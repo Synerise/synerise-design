@@ -24,8 +24,23 @@ module.exports = api => {
     ],
 
     plugins: [
-      ['@babel/plugin-proposal-class-properties', { loose: true }],
       '@babel/plugin-proposal-object-rest-spread',
+      ['@babel/plugin-proposal-class-properties', { loose: true }],
+      [
+        'transform-rename-import',
+        {
+          replacements: [
+            {
+              original: '^(.+?)\\.jsx$',
+              replacement: '$1.js',
+            },
+            {
+              original: '^(.+?)\\.less$',
+              replacement: '$1.css',
+            },
+          ],
+        },
+      ],
     ],
   };
 };

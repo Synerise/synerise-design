@@ -9,7 +9,7 @@ const copyTemplateDir = require('copy-template-dir');
 const { getPackages, toPackageName } = require('../utils/packages.js');
 const { smush, pascalize } = require('../utils/string.js');
 
-const packagesDir = path.resolve(__dirname, '..', '..', 'packages');
+const packagesDir = path.resolve(__dirname, '..', '..', 'packages', 'components');
 const templateDir = path.resolve(__dirname, 'package-template');
 
 const copyPackageFromTemplateDir = (source, dest, vars) => {
@@ -23,7 +23,6 @@ const copyPackageFromTemplateDir = (source, dest, vars) => {
 
 async function main() {
   const packages = await getPackages();
-  console.log(packages);
   const packagesMap = packages.reduce((acc, pkg) => ({
     ...acc,
     [pkg.name]: pkg.version,

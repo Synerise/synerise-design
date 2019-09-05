@@ -1,0 +1,50 @@
+@import '~antd/lib/style/index.less';
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  outline: none !important;
+
+  &::placeholder {
+    font-size: inherit !important;
+    font-weight: inherit !important;
+  }
+}
+
+.ant-calendar-picker-container {
+  * {
+    &::placeholder {
+      font-size: inherit !important;
+    }
+  }
+}
+
+.snrs-body-portal {
+  strong,
+  b {
+    font-weight: 500;
+  }
+
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    outline: none !important;
+
+    &::placeholder {
+      font-size: inherit !important;
+      font-weight: inherit !important;
+    }
+  }
+}
+
+.ant-dropdown,
+.ant-modal-wrap,
+.ant-tooltip,
+.ant-popover,
+.ant-message,
+.ant-calendar-picker-container {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@import './variables.less';

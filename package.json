@@ -2,7 +2,8 @@
   "name": "root",
   "private": true,
   "workspaces": [
-    "packages/*"
+    "packages/components/*",
+    "packages/portal"
   ],
   "scripts": {
     "bootstrap": "lerna bootstrap",
@@ -11,29 +12,28 @@
   },
   "husky": {
     "hooks": {
-      "commit-msg": "commitlint -e",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
       "pre-commit": "lint-staged"
     }
   },
   "lint-staged": {
-    "ignore": [
-      "scripts/create-component/package-template/**/*"
+    "**/*.{css,less}": [
+      "prettier-eslint --write",
+      "git add"
     ],
-    "linters": {
-      "**/*.js": [
-        "prettier-eslint --write",
-        "eslint",
-        "git add"
-      ],
-      "**/*.{css,less}": [
-        "prettier-eslint --write",
-        "git add"
-      ],
-      "package.json": [
-        "format-package -w",
-        "git add"
-      ]
-    }
+    "./package.json": [
+      "format-package -w",
+      "git add"
+    ],
+    "packages/**/*.js": [
+      "prettier-eslint --write",
+      "eslint",
+      "git add"
+    ],
+    "packages/components/*/package.json": [
+      "format-package -w",
+      "git add"
+    ]
   },
   "dependencies": {
     "react": "^16.9.0",
@@ -47,8 +47,12 @@
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-typescript": "^7.3.3",
+    "@commitlint/cli": "^8.1.0",
+    "@commitlint/config-conventional": "^8.1.0",
+    "@commitlint/config-lerna-scopes": "^8.1.0",
     "@types/enzyme": "^3.10.3",
     "@types/jest": "^24.0.18",
+    "babel-plugin-transform-rename-import": "^2.3.0",
     "copy-template-dir": "^1.4.0",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
@@ -68,6 +72,9 @@
     "inquirer": "^7.0.0",
     "jest": "^24.9.0",
     "lerna": "^3.0.3",
+    "less": "^3.10.3",
+    "less-plugin-clean-css": "^1.5.1",
+    "less-plugin-npm-import": "^2.1.0",
     "lint-staged": "^9.2.5",
     "prettier": "^1.18.2",
     "prettier-eslint-cli": "^5.0.0",

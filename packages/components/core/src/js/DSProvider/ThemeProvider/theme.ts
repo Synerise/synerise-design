@@ -1,4 +1,4 @@
-import variables from '../../../style/variables';
+import variables from './variables';
 
 export type ThemeProps = {
   variables: { [key: string]: string };

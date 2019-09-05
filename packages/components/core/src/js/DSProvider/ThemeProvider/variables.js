@@ -1,5 +1,5 @@
 /* eslint import/no-webpack-loader-syntax: off */
-const colors = require('!less-vars-loader!./colors.less');
+const colors = require('!less-vars-loader!../../../style/colors.less');
 const variables = colors;
 
 const MAX_DEPTH = 8;
