@@ -1,0 +1,12 @@
+{
+  "include": ["packages/*/src"],
+  "compilerOptions": {
+    "jsx": "preserve",
+    "declaration": true,
+    "declarationMap": true,
+    "baseUrl": ".",
+    "paths": {
+      "@synerise/ds-*": ["packages/*/src"]
+    }
+  }
+}

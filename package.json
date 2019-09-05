@@ -1,0 +1,79 @@
+{
+  "name": "root",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "bootstrap": "lerna bootstrap",
+    "component:create": "node ./scripts/create-component/index.js",
+    "lint": "eslint ."
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -e",
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "ignore": [
+      "scripts/create-component/package-template/**/*"
+    ],
+    "linters": {
+      "**/*.js": [
+        "prettier-eslint --write",
+        "eslint",
+        "git add"
+      ],
+      "**/*.{css,less}": [
+        "prettier-eslint --write",
+        "git add"
+      ],
+      "package.json": [
+        "format-package -w",
+        "git add"
+      ]
+    }
+  },
+  "dependencies": {
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/plugin-proposal-object-rest-spread": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/preset-typescript": "^7.3.3",
+    "@types/enzyme": "^3.10.3",
+    "@types/jest": "^24.0.18",
+    "copy-template-dir": "^1.4.0",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
+    "eslint": "^6.3.0",
+    "eslint-config-prettier": "^6.2.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-config-standard-react": "^9.1.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jest": "^22.16.0",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-react": "^7.14.3",
+    "eslint-plugin-react-hooks": "^2.0.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "format-package": "^5.2.0",
+    "husky": "^3.0.5",
+    "inquirer": "^7.0.0",
+    "jest": "^24.9.0",
+    "lerna": "^3.0.3",
+    "lint-staged": "^9.2.5",
+    "prettier": "^1.18.2",
+    "prettier-eslint-cli": "^5.0.0",
+    "react-intl": "^3.2.0",
+    "styled-components": "^4.3.2",
+    "ts-jest": "^24.0.2",
+    "typescript": "^3.6.2"
+  }
+}
