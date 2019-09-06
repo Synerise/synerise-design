@@ -1,0 +1,18 @@
+.color-bar {
+  width: 100%;
+  padding: 10px;
+}
+
+.color-bar:nth-child(n + 8) {
+  color: #fff;
+}
+
+.color-group {
+  width: 33.33%;
+  padding: 30px;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+}

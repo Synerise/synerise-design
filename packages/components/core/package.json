@@ -12,7 +12,7 @@
     "build:watch": "npm run build:js -- --watch",
     "copy": "node ./build/copy.js",
     "prepublish": "npm run build",
-    "test": "jest",
+    "test": "jest --coverage",
     "test:watch": "npm run test -- --watchAll",
     "vars": "node ./build/vars.js"
   },

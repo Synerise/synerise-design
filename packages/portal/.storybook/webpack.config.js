@@ -1,5 +1,14 @@
 module.exports = async ({ config, mode }) => {
   config.module.rules.push({
+    test: /\.less$/,
+    use: [
+      {
+        loader: require.resolve('less-vars-loader'),
+      },
+    ],
+  });
+
+  config.module.rules.push({
     test: /\.tsx?$/,
     use: [
       {
