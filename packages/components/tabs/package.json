@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-tabs",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Tabs UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "synerise/ds",
@@ -8,7 +8,7 @@
   "scripts": {
     "build": "npm run build:js && npm run build:css",
     "build:css": "node ../../../scripts/style/less.js",
-    "build:js": "babel --root-mode upward src --out-dir dist --extensions '.js,.ts,.tsx' --ignore '**/*.d.ts' --copy-files",
+    "build:js": "babel --root-mode upward src --out-dir dist --extensions '.js,.ts,.tsx'",
     "build:watch": "npm run build:js -- --watch",
     "prepublish": "npm run build",
     "storybook": "start-storybook -p 9009",

@@ -7,8 +7,10 @@
   ],
   "scripts": {
     "bootstrap": "lerna bootstrap",
+    "build": "lerna run build",
     "component:create": "node ./scripts/create-component/index.js",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "test:ci": "lerna run test"
   },
   "husky": {
     "hooks": {

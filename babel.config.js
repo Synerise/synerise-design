@@ -15,10 +15,7 @@ module.exports = api => {
     presets: [
       '@babel/preset-react',
       [
-        '@babel/preset-env',
-        {
-          modules: false,
-        },
+        '@babel/preset-env'
       ],
       '@babel/preset-typescript',
     ],

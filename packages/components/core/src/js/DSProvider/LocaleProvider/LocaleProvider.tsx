@@ -7,7 +7,7 @@ type Messages = Record<string, string> | Record<string, MessageFormatElement[]>;
 
 export interface LocaleProviderProps {
   locale?: string; // ex. en_GB/pl_PL
-  code?: string; // ex. en/pl
+  code: string; // ex. en/pl
   messages?: {
     [key: string]: {
       [key: string]: string;
