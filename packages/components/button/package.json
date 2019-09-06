@@ -5,24 +5,25 @@
   "license": "ISC",
   "repository": "synerise/ds",
   "main": "dist/index.js",
+  "publishConfig": {
+    "directory": "dist"
+  },
   "scripts": {
     "build": "npm run build:js && npm run build:css",
     "build:css": "node ../../../scripts/style/less.js",
     "build:js": "babel --root-mode upward src --out-dir dist --extensions '.js,.ts,.tsx' --ignore '**/*.d.ts'",
     "build:watch": "npm run build:js -- --watch",
     "prepublish": "npm run build",
-    "storybook": "start-storybook -p 9009",
     "test": "jest",
     "test:watch": "npm run test -- --watchAll"
   },
   "sideEffects": false,
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-core": "*",
+    "@synerise/ds-core": "^0.0.2",
     "antd": "*"
   },
   "peerDependencies": {
     "react": ">=16.9.0 < 17.0.0"
-  },
-  "devDependencies": {}
+  }
 }

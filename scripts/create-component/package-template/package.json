@@ -1,22 +1,23 @@
 {
   "name": "{{packageName}}",
   "version": "0.0.1",
+  "publishConfig": {
+    "directory": "dist"
+  },
   "description": "{{componentName}} UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "synerise/ds",
-  "sideEffects": false,
-  "main": "index.js",
-  "module": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "build": "npm run build:js && npm run build:css",
     "build:css": "node ../../../scripts/style/less.js",
     "build:js": "babel --root-mode upward src --out-dir dist --extensions '.js,.ts,.tsx'",
     "build:watch": "npm run build:js -- --watch",
     "prepublish": "npm run build",
-    "storybook": "start-storybook -p 9009",
     "test": "jest",
     "test:watch": "npm run test -- --watchAll"
   },
+  "sideEffects": false,
   "dependencies": {{dependencies}},
   "peerDependencies": {
     "react": ">=16.9.0 < 17.0.0"

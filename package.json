@@ -1,5 +1,6 @@
 {
   "name": "root",
+  "version": "0.0.0",
   "private": true,
   "workspaces": [
     "packages/components/*",
@@ -9,6 +10,7 @@
     "bootstrap": "lerna bootstrap",
     "build": "lerna run build",
     "component:create": "node ./scripts/create-component/index.js",
+    "lerna:version": "lerna version --conventional-commits  --message \"build: publish\"",
     "lint": "eslint .",
     "test:ci": "lerna run test"
   },
