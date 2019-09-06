@@ -1,13 +1,10 @@
 {
   "name": "@synerise/ds-core",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Core Components for the Synerise Design System",
   "license": "ISC",
   "repository": "synerise/ds",
   "main": "dist/js/index.js",
-  "publishConfig": {
-    "directory": "dist"
-  },
   "scripts": {
     "build": "npm run build:js && npm run vars && npm run copy && npm run build:css",
     "build:css": "node ../../../scripts/style/less.js",

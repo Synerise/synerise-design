@@ -30,7 +30,7 @@ async function main() {
 
   const suggestedExternalDependencies = ['antd'];
 
-  const suggestedDependencies = ['button', 'core', 'filter-react-props', 'icon'].map(toPackageName);
+  const suggestedDependencies = ['button'].map(toPackageName);
 
   const questions = [
     {

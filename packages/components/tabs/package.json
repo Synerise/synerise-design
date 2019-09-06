@@ -1,13 +1,10 @@
 {
   "name": "@synerise/ds-tabs",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Tabs UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "synerise/ds",
   "main": "dist/index.js",
-  "publishConfig": {
-    "directory": "dist"
-  },
   "scripts": {
     "build": "npm run build:js && npm run build:css",
     "build:css": "node ../../../scripts/style/less.js",
@@ -19,10 +16,10 @@
   },
   "sideEffects": false,
   "dependencies": {
-    "@synerise/ds-core": "^0.0.2",
     "antd": "*"
   },
   "peerDependencies": {
+    "@synerise/ds-core": "*",
     "react": ">=16.9.0 < 17.0.0"
   }
 }

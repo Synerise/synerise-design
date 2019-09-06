@@ -1,0 +1,28 @@
+image: node:lts
+
+variables:
+  NPM_REGISTRY_LOCAL: http://artifactory.service/api/npm/npm-release-local/
+  NODE_OPTIONS: --max-old-space-size=4096
+
+cache:
+  key: ds
+  paths:
+    - node_modules/
+
+before_script:
+  - yarn
+
+build:
+  tags:
+    - vms
+  script:
+    - yarn lint
+    - yarn build
+    - yarn test:ci
+    - echo "Tag version $CI_COMMIT_TAG"
+    - echo "Commit ref $CI_COMMIT_REF_NAME"
+    - echo "Publisher $GITLAB_USER_EMAIL"
+    - echo "_auth = $NPM_TOKEN" >> .npmrc
+    - echo "email = $GITLAB_USER_EMAIL" >> .npmrc
+    - echo "always-auth = true"  >> .npmrc
+    - (if [ "$CI_COMMIT_REF_NAME" == "master" ]; then npx lerna publish from-package --registry=$NPM_REGISTRY_LOCAL --no-git-tag-version --yes;fi);

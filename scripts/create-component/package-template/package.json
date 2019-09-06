@@ -1,9 +1,6 @@
 {
   "name": "{{packageName}}",
   "version": "0.0.1",
-  "publishConfig": {
-    "directory": "dist"
-  },
   "description": "{{componentName}} UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "synerise/ds",
@@ -20,6 +17,7 @@
   "sideEffects": false,
   "dependencies": {{dependencies}},
   "peerDependencies": {
+    "@synerise/ds-core": "*",
     "react": ">=16.9.0 < 17.0.0"
   },
   "devDependencies": {
