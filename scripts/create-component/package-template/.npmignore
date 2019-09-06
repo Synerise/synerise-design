@@ -1,4 +1,5 @@
 __specs__
+__spec__
 src
 .babelrc
 jest.config.js

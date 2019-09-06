@@ -10,7 +10,7 @@
     "bootstrap": "yarn npx:lerna bootstrap",
     "build": "yarn npx:lerna run build --parallel",
     "component:create": "node ./scripts/create-component/index.js",
-    "lerna:version": "yarn npx:lerna version --conventional-commits  --message \"build: publish\"",
+    "lerna:version": "yarn npx:lerna version --conventional-commits",
     "lint": "eslint .",
     "npx:lerna": "npx lerna",
     "test:ci": "yarn npx:lerna run test --parallel"

@@ -2,5 +2,17 @@
   "packages": ["packages/components/*", "packages/portal"],
   "version": "independent",
   "useWorkspaces": true,
-  "npmClient": "yarn"
+  "npmClient": "yarn",
+  "command": {
+    "run": {
+      "npmClient": "yarn"
+    },
+    "version": {
+      "allowBranch": [
+        "master"
+      ],
+      "message": "build: publish"
+    }
+  }
+
 }
