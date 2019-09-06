@@ -11,7 +11,7 @@ const lessOptions = {
 };
 
 const ignore = ['./src/style/variables.less'];
-glob(path.resolve(process.cwd()) + '/**/index.less', { nodir: true, ignore }, function(err, files) {
+glob(path.resolve(process.cwd()) + '/**/*(index|variables|core).less', { nodir: true, ignore }, function(err, files) {
   files.forEach(file => {
     const lessInput = fs.readFileSync(file).toString();
     const { dir, name } = path.parse(file);
