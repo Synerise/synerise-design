@@ -4,5 +4,5 @@ module.exports = {
   ...baseConfig,
   displayName: name,
   name: name,
-  testMatch: [`${__dirname}/**/?(*.)+(spec|test).(tsx|ts)`]
+  testMatch: [`${__dirname}/**/?(*.)+(spec|test).(tsx|ts)`],
 };
