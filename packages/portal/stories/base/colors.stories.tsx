@@ -1,7 +1,13 @@
 import * as React from 'react';
+// @ts-ignore
 import colors from '@synerise/ds-core/dist/style/colors.less';
 import { storiesOf } from '@storybook/react';
 import './index.css';
+
+const capitalize = s => {
+  if (typeof s !== 'string') return '';
+  return s.charAt(0).toUpperCase() + s.slice(1);
+};
 
 const mapColors = () =>
   Object.entries(colors).reduce((previousValue: any, currentValue: any) => {
@@ -34,14 +40,17 @@ const ColorBar: React.FC<{ color: any }> = props => (
 );
 const ColorGroup: React.FC = props => <div className="color-group">{props.children}</div>;
 const sort = values => values.sort((a, b) => a.value - b.value);
-storiesOf('Basic|Colors', module).add('Palette', () => (
+storiesOf('Intro|Core', module).add('Colors', () => (
   <div>
     <div className="container">
       {colorMap.map(([group, values]) => (
         <ColorGroup>
-          <h3>{group}</h3>
+          <h3>{capitalize(group)}</h3>
           {sort(values).map(({ color, value }) => (
-            <ColorBar color={color}>{value}</ColorBar>
+            <ColorBar color={color}>
+              <span>{group !== value ? `${group}-${value}` : value}</span>
+              <span>{color}</span>
+            </ColorBar>
           ))}
         </ColorGroup>
       ))}

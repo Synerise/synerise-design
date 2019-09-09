@@ -1,6 +1,9 @@
 .color-bar {
   width: 100%;
   padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .color-bar:nth-child(n + 8) {
