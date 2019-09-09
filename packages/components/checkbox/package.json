@@ -1,0 +1,26 @@
+{
+  "name": "@synerise/ds-checkbox",
+  "version": "0.0.1",
+  "description": "Checkbox UI Component for the Synerise Design System",
+  "license": "ISC",
+  "repository": "synerise/ds",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "npm run build:js && npm run build:css",
+    "build:css": "node ../../../scripts/style/less.js",
+    "build:js": "babel --root-mode upward src --out-dir dist --extensions '.js,.ts,.tsx'",
+    "build:watch": "npm run build:js -- --watch",
+    "prepublish": "npm run build",
+    "test": "jest",
+    "test:watch": "npm run test -- --watchAll"
+  },
+  "sideEffects": false,
+  "dependencies": {
+    "antd": "*"
+  },
+  "peerDependencies": {
+    "@synerise/ds-core": "*",
+    "react": ">=16.9.0 < 17.0.0"
+  },
+  "devDependencies": {}
+}
