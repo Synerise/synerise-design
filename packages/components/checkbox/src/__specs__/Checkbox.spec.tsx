@@ -1,27 +1,27 @@
 import * as React from 'react';
-import { mount } from 'enzyme';
+import { fireEvent, render } from "@testing-library/react";
 import Checkbox from '../index';
 
 describe('Checkbox', () => {
   const CHECKBOX_LABEL = 'Checkbox Label';
   const onChange = jest.fn();
 
-  it('should render', () => {
+  it('clicking input should trigger onChange event', () => {
     // ARRANGE
-    const component = mount(<Checkbox onChange={onChange}>{CHECKBOX_LABEL}</Checkbox>);
-
-    // ASSERT
-    expect(component.text()).toBe(CHECKBOX_LABEL);
-  });
-
-  it('should trigger onChange event', () => {
-    // ARRANGE
-    const component = mount(<Checkbox onChange={onChange}>{CHECKBOX_LABEL}</Checkbox>);
+    const { getByLabelText } = render(<Checkbox onChange={onChange}>{CHECKBOX_LABEL}</Checkbox>);
 
     // ACT
-    component.find('input').simulate('change');
+    fireEvent.click(getByLabelText(CHECKBOX_LABEL));
 
     // ASSERT
     expect(onChange).toBeCalled();
+  });
+
+  it('should render', () => {
+    // ARRANGE
+    const { getByText } = render(<Checkbox onChange={onChange}>{CHECKBOX_LABEL}</Checkbox>);
+
+    // ASSERT
+    getByText(CHECKBOX_LABEL);
   });
 });
