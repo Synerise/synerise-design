@@ -1,11 +1,11 @@
 import * as React from 'react';
 
-import {storiesOf} from '@storybook/react';
+import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { boolean, text, number } from '@storybook/addon-knobs';
 import Modal from '@synerise/ds-modal';
 
-import {Welcome} from '@storybook/react/demo';
+import { Welcome } from '@storybook/react/demo';
 
 const props = () => ({
     wrapClassName: 'custom-class',
@@ -26,9 +26,7 @@ const props = () => ({
 storiesOf('Components|Modal', module)
     .add('simple modal', () => {
     return (
-        <Modal {...props()} icon={'question-circle'}>
-            <p>Some contents...</p>
-            <p>Some contents...</p>
+        <Modal {...props()}>
             <p>Some contents...</p>
         </Modal>
     )
