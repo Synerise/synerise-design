@@ -1,15 +1,25 @@
 import * as React from 'react';
-import { mount } from 'enzyme';
+import { fireEvent, render } from '@testing-library/react';
 import Button from '../index';
 
 describe('Button', () => {
   const onClick = jest.fn();
-  const component = mount(<Button onClick={onClick}>Click ME!</Button>);
   it('should render', function() {
-    expect(component.text()).toBe('Click ME!');
+    // ARRANGE
+    const { getByText } = render(<Button onClick={onClick}>Click ME!</Button>);
+    // ACT
+
+    // ASSERT
+    expect(getByText('Click ME!')).toBeTruthy();
   });
   it('should onClick be called', function() {
-    component.simulate('click');
+    // ARRANGE
+    const { getByText } = render(<Button onClick={onClick}>Click ME!</Button>);
+
+    // ACT
+    fireEvent.click(getByText('Click ME!'));
+
+    // ASSERT
     expect(onClick).toBeCalled();
   });
 });

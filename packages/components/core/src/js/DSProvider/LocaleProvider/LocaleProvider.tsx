@@ -22,7 +22,10 @@ export class LocaleProvider extends React.Component<LocaleProviderProps> {
   antMessages: any;
   constructor(props) {
     super(props);
-    this.antMessages = import(`antd/lib/locale/${props.code}`);
+    this.antMessages = {
+      pl_PL: import(`antd/lib/locale/pl_PL`),
+      default: import(`antd/lib/locale/en_US`),
+    };
   }
 
   static defaultProps = {
@@ -33,7 +36,9 @@ export class LocaleProvider extends React.Component<LocaleProviderProps> {
   render() {
     const localeData = this.props.messages || {};
     const locale = this.props.locale || DEFAULT_LANG;
-    const antLocale = this.antMessages;
+    const antLocale = Object.prototype.hasOwnProperty.call(this.antMessages, this.props.code)
+      ? this.antMessages[this.props.code]
+      : this.antMessages.default;
     const messages = {
       ...localeData[locale],
     };

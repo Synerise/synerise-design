@@ -1,4 +1,4 @@
-import variables from './variables';
+import vars from './variables';
 
 export type ThemeProps = {
   variables: { [key: string]: string };
@@ -7,8 +7,8 @@ export type ThemeProps = {
 };
 
 export const theme: ThemeProps = {
-  variables: variables,
-  palette: variables,
+  variables: vars.variables,
+  palette: vars.colors,
   variable: function(name: string): string | null {
     return name ? this.variables[name.slice(1)] : null;
   },

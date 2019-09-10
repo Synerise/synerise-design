@@ -1,1 +1,3 @@
-export { default } from './Typograpy'
+import * as macro from './style/macro';
+export { default } from './Typograpy';
+export { macro };
