@@ -2239,6 +2239,25 @@
     prop-types "^15.7.2"
     qs "^6.6.0"
 
+"@storybook/addon-notes@^5.1.11":
+  version "5.1.11"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-notes/-/addon-notes-5.1.11.tgz#ad68fd7f3eb8edc1a2f1de26364e777cbe61bf91"
+  integrity sha512-C+PV8vpS6g2bN96d88imQbi1RFn8wmNGaKUsncyz9ScdX9FhQwlbV8Lv1Lthholw0DwpcOjJVaf3pPml7XssGw==
+  dependencies:
+    "@storybook/addons" "5.1.11"
+    "@storybook/api" "5.1.11"
+    "@storybook/client-logger" "5.1.11"
+    "@storybook/components" "5.1.11"
+    "@storybook/core-events" "5.1.11"
+    "@storybook/router" "5.1.11"
+    "@storybook/theming" "5.1.11"
+    core-js "^3.0.1"
+    global "^4.3.2"
+    markdown-to-jsx "^6.9.3"
+    memoizerific "^1.11.3"
+    prop-types "^15.7.2"
+    util-deprecate "^1.0.2"
+
 "@storybook/addons@5.1.11", "@storybook/addons@^5.1.11":
   version "5.1.11"
   resolved "https://registry.yarnpkg.com/@storybook/addons/-/addons-5.1.11.tgz#27f9cfed8d7f7c8a3fc341cdba3b0bdf608f02aa"

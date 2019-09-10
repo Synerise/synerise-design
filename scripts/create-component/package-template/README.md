@@ -1,1 +1,1 @@
-# "{{componentName}} UI Component
+# {{componentName}} UI Component

@@ -1,4 +1,7 @@
+const path = require('path');
+
 module.exports = async ({ config, mode }) => {
+  config.resolve.alias['@'] = path.resolve(__dirname, '../../components');
   config.module.rules.push({
     test: /\.less$/,
     use: [
