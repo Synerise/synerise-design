@@ -6,6 +6,14 @@ describe('Checkbox', () => {
   const CHECKBOX_LABEL = 'Checkbox Label';
   const onChange = jest.fn();
 
+  it('should render', () => {
+    // ARRANGE
+    const { getByText } = render(<Checkbox onChange={onChange}>{CHECKBOX_LABEL}</Checkbox>);
+
+    // ASSERT
+    getByText(CHECKBOX_LABEL);
+  });
+
   it('clicking input should trigger onChange event', () => {
     // ARRANGE
     const { getByLabelText } = render(<Checkbox onChange={onChange}>{CHECKBOX_LABEL}</Checkbox>);
@@ -15,13 +23,5 @@ describe('Checkbox', () => {
 
     // ASSERT
     expect(onChange).toBeCalled();
-  });
-
-  it('should render', () => {
-    // ARRANGE
-    const { getByText } = render(<Checkbox onChange={onChange}>{CHECKBOX_LABEL}</Checkbox>);
-
-    // ASSERT
-    getByText(CHECKBOX_LABEL);
   });
 });
