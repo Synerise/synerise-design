@@ -6,6 +6,7 @@ describe('Modal', () => {
     const TITLE = 'Test';
     const CANCEL_TEXT = 'CANCEL';
     const OK_TEXT = 'OK';
+    const MODAL_CONTENT = 'Some content';
 
     const onCancel = jest.fn();
     const onOk = jest.fn();
@@ -16,6 +17,14 @@ describe('Modal', () => {
 
         // ASSERT
         getByText(TITLE);
+    });
+
+    it('content render', () => {
+        // ARRANGE
+        const { getByText } = render(<Modal visible >{MODAL_CONTENT}</Modal>);
+
+        // ASSERT
+        getByText(MODAL_CONTENT);
     });
 
     it('onCancel should be called', () => {
