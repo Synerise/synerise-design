@@ -6,10 +6,12 @@ export type ThemeProps = {
   variable: (name: string) => string | null;
 };
 
-export const theme: ThemeProps = {
+const theme: ThemeProps = {
   variables: vars.variables,
   palette: vars.colors,
-  variable: function(name: string): string | null {
+  variable: function variable(name: string): string | null {
     return name ? this.variables[name.slice(1)] : null;
   },
 };
+
+export default theme;

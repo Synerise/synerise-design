@@ -10,27 +10,25 @@ export type PageHeaderProps = {
   backLabel?: string;
 };
 
-class PageHeader extends React.Component<PageHeaderProps> {
-  static defaultProps = {
-    backLabel: 'Back',
-  };
+const PageHeader: React.FC<PageHeaderProps> = props => {
+  const { backLabel, children, onGoBack, postTitle, rightSide, title } = props;
+  return (
+    <S.MainContainer>
+      <S.PageHeaderContainer>
+        <S.PageHeaderTitle>
+          {title}
+          {postTitle}
+          {onGoBack && <S.BackButton onClick={onGoBack}>{backLabel}</S.BackButton>}
+        </S.PageHeaderTitle>
+        <S.PageHeaderContent>{rightSide}</S.PageHeaderContent>
+      </S.PageHeaderContainer>
+      {children}
+    </S.MainContainer>
+  );
+};
 
-  render() {
-    const { backLabel, children, onGoBack, postTitle, rightSide, title } = this.props;
-    return (
-      <S.MainContainer>
-        <S.PageHeaderContainer>
-          <S.PageHeaderTitle>
-            {title}
-            {postTitle}
-            {onGoBack && <S.BackButton onClick={onGoBack}>{backLabel}</S.BackButton>}
-          </S.PageHeaderTitle>
-          <S.PageHeaderContent>{rightSide}</S.PageHeaderContent>
-        </S.PageHeaderContainer>
-        {children}
-      </S.MainContainer>
-    );
-  }
-}
+PageHeader.defaultProps = {
+  backLabel: 'Back',
+};
 
 export default PageHeader;

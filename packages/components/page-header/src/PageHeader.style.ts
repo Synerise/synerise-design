@@ -27,19 +27,19 @@ export const BackButton = styled.button`
   align-items: center;
   background: transparent;
   border: none;
-  color: ${props => props.theme.palette['grey-500']};
+  color: ${(props): string => props.theme.palette['grey-500']};
   margin-left: 16px;
-  border-left: 1px solid ${props => props.theme.palette['grey-300']};
+  border-left: 1px solid ${(props): string => props.theme.palette['grey-300']};
   cursor: pointer;
 
   &:hover {
-    color: ${props => props.theme.palette['grey-600']};
+    color: ${(props): string => props.theme.palette['grey-600']};
   }
 `;
 
 export const PageHeaderTitle = styled.div`
   ${macro.h700};
-  color: ${props => props.theme.palette['grey-800']};
+  color: ${(props): string => props.theme.palette['grey-800']};
   display: flex;
   align-items: center;
 `;

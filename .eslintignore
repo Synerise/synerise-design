@@ -4,3 +4,10 @@ node_modules/*
 .cache
 scripts/create-component
 scripts/style
+scripts/utils
+*.config.js
+config/
+**/core/build/*.js
+**/core/**/variables.js
+packages/portal
+__specs__

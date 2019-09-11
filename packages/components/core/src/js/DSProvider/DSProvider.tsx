@@ -1,24 +1,20 @@
 import * as React from 'react';
 
-import { LocaleProvider } from './LocaleProvider';
-import { ThemeProvider } from './ThemeProvider';
+import LocaleProvider from './LocaleProvider';
+import ThemeProvider from './ThemeProvider';
 
 import { LocaleProviderProps } from './LocaleProvider/LocaleProvider';
 import { ThemeProviderProps } from './ThemeProvider/ThemeProvider';
 
 export interface DSProviderProps extends LocaleProviderProps, ThemeProviderProps {}
 
-export default class DSProvider extends React.Component<DSProviderProps> {
-  render() {
-    return (
-      <LocaleProvider
-        code={this.props.code}
-        locale={this.props.locale}
-        messages={this.props.messages}
-        timeZone={this.props.timeZone}
-      >
-        <ThemeProvider theme={this.props.theme}>{this.props.children}</ThemeProvider>
-      </LocaleProvider>
-    );
-  }
-}
+const DSProvider: React.FC<DSProviderProps> = props => {
+  const { code, locale, messages, timeZone, children, theme } = props;
+  return (
+    <LocaleProvider code={code} locale={locale} messages={messages} timeZone={timeZone}>
+      <ThemeProvider theme={theme}>{children}</ThemeProvider>
+    </LocaleProvider>
+  );
+};
+
+export default DSProvider;

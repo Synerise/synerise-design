@@ -62,18 +62,18 @@ export const link = css`
   font-size: 13px;
   font-weight: 500;
   transition: 0.2s ease-in-out;
-  color: ${props => props.theme.palette['blue-600']};
+  color: ${(props): string => props.theme.palette['blue-600']};
   &:hover {
     text-decoration: underline;
-    color: ${props => props.theme.palette['blue-500']};
+    color: ${(props): string => props.theme.palette['blue-500']};
   }
 `;
 
 export const linkbutton = css`
   ${link};
-  color: ${props => props.theme.palette['grey-600']};
+  color: ${(props): string => props.theme.palette['grey-600']};
   &:hover {
-    color: ${props => props.theme.palette['grey-800']};
+    color: ${(props): string => props.theme.palette['grey-800']};
   }
 `;
 

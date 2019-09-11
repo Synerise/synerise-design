@@ -1,28 +1,27 @@
 import * as React from 'react';
 import { ThemeProvider as ThemeProviderBase } from 'styled-components';
 
-import { theme as dsTheme } from './theme';
+import dsTheme from './theme';
 
 export interface ThemeProviderProps {
   theme?: unknown;
 }
 
-export class ThemeProvider extends React.Component<ThemeProviderProps> {
-  static defaultProps = {
-    theme: {},
-  };
+const ThemeProvider: React.FC<ThemeProviderProps> = props => {
+  const { theme, children } = props;
+  return (
+    <ThemeProviderBase
+      theme={{
+        ...dsTheme,
+        ...theme,
+      }}
+    >
+      {children}
+    </ThemeProviderBase>
+  );
+};
 
-  render() {
-    const { theme, children } = this.props;
-    return (
-      <ThemeProviderBase
-        theme={{
-          ...dsTheme,
-          ...theme,
-        }}
-      >
-        {children}
-      </ThemeProviderBase>
-    );
-  }
-}
+ThemeProvider.defaultProps = {
+  theme: {},
+};
+export default ThemeProvider;
