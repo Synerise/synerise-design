@@ -24,7 +24,7 @@ describe('Modal', () => {
         const { getByText } = render(<Modal visible >{MODAL_CONTENT}</Modal>);
 
         // ASSERT
-        expect(getByText(TITLE)).toBeTruthy();
+        expect(getByText(MODAL_CONTENT)).toBeTruthy();
     });
 
     it('onCancel should be called', () => {
