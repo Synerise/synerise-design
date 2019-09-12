@@ -1,0 +1,50 @@
+.@{ant-prefix}-select-dropdown-menu-item {
+  font-weight: 500;
+  color: @gray-color-lighter-2;
+
+  &:hover {
+    background-color: @primary-color-lighter-6;
+  }
+}
+
+.@{ant-prefix}-select-dropdown-menu-item-active {
+  background-color: @primary-color-lighter-6;
+  color: @gray-color;
+}
+
+.@{ant-prefix}-select-dropdown-menu-item-selected {
+  background-color: #fff;
+  font-weight: 500;
+  color: @gray-color;
+
+  &:hover {
+    font-weight: 500;
+    color: @gray-color;
+  }
+
+  &::after {
+    position: absolute;
+    right: 12px;
+    font-family: 'synerise' !important;
+    content: '\e902';
+    color: @success-color;
+    font-size: 20px;
+  }
+}
+
+.@{ant-prefix}-select-dropdown {
+  box-shadow: @box-shadow-active;
+}
+
+.@{ant-prefix}--select-focused .@{ant-prefix}-select-selection,
+.@{ant-prefix}-select-selection:focus,
+.@{ant-prefix}-select-selection:active {
+  box-shadow: inset 0 0 0 1px @primary-color;
+  border-color: @primary-color;
+}
+
+.@{ant-prefix}-select:not(.@{ant-prefix}-select-no-arrow) {
+  .@{ant-prefix}-select-selection__clear {
+    right: 30px;
+  }
+}
