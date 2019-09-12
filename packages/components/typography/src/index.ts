@@ -1,4 +1,4 @@
 import * as macro from './style/macro';
 
-export { default } from './Typograpy';
+export { default } from './Typography';
 export { macro };

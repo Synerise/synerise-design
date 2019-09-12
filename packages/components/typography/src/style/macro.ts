@@ -2,6 +2,7 @@ import { css } from 'styled-components';
 
 export const heading = css`
   font-weight: 500;
+  color: ${(props): string => props.theme.palette['grey-800']};
 `;
 
 export const regular = css`

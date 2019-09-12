@@ -19,6 +19,9 @@
   "sideEffects": false,
   "types": "dist/index.d.ts",
   "dependencies": {
+    "@synerise/ds-dropdown": "*",
+    "@synerise/ds-pagination": "*",
+    "@synerise/ds-typography": "*",
     "antd": "*"
   },
   "peerDependencies": {

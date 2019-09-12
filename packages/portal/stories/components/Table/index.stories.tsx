@@ -2,12 +2,13 @@ import * as React from 'react';
 import faker from 'faker';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-
+import { boolean, text, number } from '@storybook/addon-knobs';
 import Table from '@synerise/ds-table';
+import { DSProvider } from '@synerise/ds-core';
 
 const stories = storiesOf('Components|Table', module);
 
-const dataSource = [...new Array(50)].map((i, k) => ({
+const dataSource = [...new Array(55)].map((i, k) => ({
   key: k + 1,
   name: faker.name.findName(),
   age: (Math.random() * 50 + 10).toFixed(0),
@@ -33,7 +34,25 @@ const columns = [
 ];
 
 stories.add('default', () => {
-  return <Table dataSource={dataSource} columns={columns} />;
+  const pagination = {
+    showSizeChanger: boolean('pagination.showSizeChanger', true),
+    showQuickJumper: boolean('pagination.showQuickJumper', true),
+    onChange: action('pageChanged'),
+  };
+  return (
+    <div style={{ padding: 20, width: '100%', minWidth: '1500px' }}>
+      <DSProvider code="pl_PL">
+        <Table
+          title="Tests"
+          subTitle={`${dataSource.length} records`}
+          dataSource={dataSource}
+          columns={columns}
+          loading={true}
+          pagination={pagination}
+        />
+      </DSProvider>
+    </div>
+  );
 });
 
 export default stories;

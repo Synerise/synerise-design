@@ -1,13 +1,36 @@
 # Synerise Design System
 
-### Add new components
+React UI library inspired by [Ant Design](https://github.com/ant-design/ant-design).
 
-To add new component run `yarn run component:create`
+### Features
 
-## Deployment
+- Written in TypeScript with predictable static types.
+- Internationalization by [react-intl](https://github.com/formatjs/react-intl)
+- [Styled-Components](https://github.com/styled-components/styled-components)
 
-In order to deploy you need to checkout to a master branch and then run command:
+### How to use
 
-```bash
-yarn lerna:version #Can be only run on a master branch (lerna.json)
+Each component is installed separately. If you want to use one of them you have to use DSProvier first.
+
+#### Step 1. - install Core
+
+```
+yarn add @synerise/ds-core
+```
+
+#### Step 2. - install component (ex. Button)
+
+```
+yarn add @synerise/ds-button
+```
+
+#### Step 3. - usage
+
+```jsx
+import { DSProvider } from '@synerise/ds-core';
+import Button from '@synerise/ds-button'
+
+<DSProvider>
+    <Button>Click Me!</Button>
+</DSProvider>
 ```

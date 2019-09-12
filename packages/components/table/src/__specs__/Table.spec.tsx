@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { render } from '@testing-library/react';
+import { renderWithProvider } from '@synerise/ds-utils';
 import Table from '../index';
 
 const props = {
@@ -39,7 +39,7 @@ const props = {
 describe('Table', () => {
   it('should render correctly', () => {
     // ARRANGE
-    const { getByText } = render(<Table {...props} />);
+    const { getByText } = renderWithProvider(<Table dataSource={props.dataSource} columns={props.columns} />);
 
     // ASSERT
     expect(getByText('Name')).toBeTruthy();
@@ -47,7 +47,7 @@ describe('Table', () => {
 
   it('should render "no data"', () => {
     // ARRANGE
-    const { getByText } = render(<Table columns={props.columns} />);
+    const { getByText } = renderWithProvider(<Table columns={props.columns} />);
 
     // ASSERT
     expect(getByText('No Data')).toBeTruthy();
@@ -62,7 +62,7 @@ describe('Table', () => {
         dataIndex: 'name',
       },
     ];
-    const { rerender, getByText, getAllByText } = render(<Table columns={columns} />);
+    const { rerender, getByText, getAllByText } = renderWithProvider(<Table columns={columns} />);
 
     // ACT
     rerender(<Table columns={props.columns} dataSource={props.dataSource} />);
@@ -70,5 +70,16 @@ describe('Table', () => {
     // ASSERT
     expect(getByText('Age')).toBeTruthy();
     expect(getAllByText('10 Downing Street')).toBeTruthy();
+  });
+
+  it('should render title and subtitle', () => {
+    // ARRANGE
+    const TITLE = 'test title';
+    const SUB_TITLE = 'test subtitle';
+    const { getByText } = renderWithProvider(<Table columns={props.columns} title={TITLE} subTitle={SUB_TITLE} />);
+
+    // ASSERT
+    expect(getByText(TITLE)).toBeTruthy();
+    expect(getByText(SUB_TITLE)).toBeTruthy();
   });
 });

@@ -9,7 +9,7 @@ const renderWithProvider = (node: React.ReactElement, options?: Options) => {
   return {
     ...rendered,
     // eslint-disable-next-line
-    rerender: (ui: any, options: Options) => renderWithProvider(ui, { container: rendered.container, ...options }),
+    rerender: (ui: any, options?: Options) => renderWithProvider(ui, { container: rendered.container, ...options }),
   };
 };
 
