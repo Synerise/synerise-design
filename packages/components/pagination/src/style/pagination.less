@@ -1,0 +1,115 @@
+@pagination-prefix-cls: ~'@{ant-prefix}-pagination';
+
+.@{pagination-prefix-cls} {
+  &-prev,
+  &-next {
+    &:hover a {
+      border-color: transparent;
+    }
+
+    .@{pagination-prefix-cls}-item-link {
+      text-decoration: none;
+    }
+
+    .@{pagination-prefix-cls}-item-link {
+      border: @border-width-base @border-style-base transparent;
+      background-color: transparent;
+      border-radius: 50%;
+    }
+
+    &:focus .@{pagination-prefix-cls}-item-link,
+    &:hover .@{pagination-prefix-cls}-item-link {
+      text-decoration: none;
+      border-color: transparent;
+    }
+
+    &:focus .@{pagination-prefix-cls}-item-link {
+      color: inherit;
+    }
+
+    &:hover .@{pagination-prefix-cls}-item-link {
+      color: @primary-color;
+    }
+
+    color: @gray-color-lighter-2;
+
+    &.@{pagination-prefix-cls}-disabled {
+      color: @gray-color-lighter-4;
+    }
+  }
+
+  &-prev {
+    .@{pagination-prefix-cls}-item-link::after {
+      content: '\e9b1';
+      font-family: 'synerise';
+      font-size: 28px;
+      position: relative;
+      margin-top: -1px;
+    }
+  }
+
+  &-next {
+    .@{pagination-prefix-cls}-item-link::after {
+      content: '\e9af';
+      font-family: 'synerise';
+      font-size: 28px;
+      position: relative;
+      margin-top: -1px;
+    }
+  }
+
+  &-item {
+    border: @border-width-base @border-style-base transparent;
+    background-color: transparent;
+    border-radius: 50%;
+
+    &:focus,
+    &:hover {
+      border-color: transparent;
+    }
+
+    &-active {
+      border-color: @gray-color-lighter-2;
+      background-color: @gray-color-lighter-2;
+
+      a {
+        color: #fff;
+      }
+
+      &:focus,
+      &:hover {
+        border-color: @primary-color;
+        background-color: @primary-color;
+
+        a {
+          color: #fff;
+        }
+      }
+    }
+  }
+
+  &-item-link {
+    i {
+      display: none;
+    }
+  }
+
+  &-options {
+    &-size-changer.@{ant-prefix}-select {
+      margin-right: 12px;
+      min-width: 115px;
+    }
+  }
+
+  &-options,
+  &-options-quick-jumper {
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+
+    input:focus {
+      box-shadow: inset 0 0 0 1px @primary-color;
+      border-color: @primary-color;
+    }
+  }
+}
