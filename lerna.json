@@ -11,7 +11,9 @@
       "allowBranch": [
         "master"
       ],
-      "message": "build: publish"
+      "message": "build: publish",
+      "conventionalCommits": true,
+      "noGitTagVersion": true
     }
   }
 
