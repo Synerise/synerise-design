@@ -10,7 +10,7 @@ const config = {
 };
 
 storiesOf('Components|Radio', module)
-  .add('basic', () => <Radio>Radio label</Radio>, config)
+  .add('default', () => <Radio>Radio label</Radio>, config)
   .add('disabled', () => <Radio disabled>Radio label</Radio>, config)
   .add(
     'solid group',

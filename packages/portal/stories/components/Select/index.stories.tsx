@@ -18,7 +18,7 @@ const handleChange = (value: string) => {
   console.log(`selected ${value}`);
 };
 
-storiesOf('Components|Select|Basic', module).add('Basic', () => {
+storiesOf('Components|Select|Basic', module).add('default', () => {
   const selectProps = () => ({
     dropdownClassName: text('dropdown classname', 'select'),
     defaultValue: text('defaultValue', 'Noodles'),

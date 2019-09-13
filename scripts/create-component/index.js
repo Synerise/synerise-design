@@ -54,6 +54,7 @@ async function main() {
   const answers = await inquirer.prompt(questions);
 
   const componentName = pascalize(answers.name);
+  const docsID = answers.name;
   const folderName = smush(answers.name);
   const packageName = toPackageName(answers.name);
 
@@ -62,6 +63,7 @@ async function main() {
   const vars = {
     ...answers,
     componentName,
+    docsID,
     folderName,
     folderPath,
     packageName,

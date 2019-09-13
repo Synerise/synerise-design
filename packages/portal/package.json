@@ -14,7 +14,7 @@
   },
   "scripts": {
     "storybook": "start-storybook -p 9099 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build-docs": "build-storybook -s public"
   },
   "eslintConfig": {
     "extends": "react-app"

@@ -1,0 +1,10 @@
+{
+  "docs": {
+    "Synerise DS": ["ds-intro"],
+    "Guidelines": ["guidelines-doc1"],
+    "Components": []
+  },
+  "docs-other": {
+    "First Category": ["ds-intro"]
+  }
+}

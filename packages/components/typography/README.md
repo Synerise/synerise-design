@@ -1,3 +1,8 @@
+---
+id: typography
+title: Typography
+---
+
 ## Synerise Design System - Typography
 
 This module provides few helpers and components to work with typograpy.

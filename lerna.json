@@ -1,5 +1,5 @@
 {
-  "packages": ["packages/components/*", "packages/portal"],
+  "packages": ["packages/components/*", "packages/portal", "packages/docs-site/website"],
   "version": "independent",
   "useWorkspaces": true,
   "npmClient": "yarn",

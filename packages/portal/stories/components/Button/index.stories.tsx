@@ -8,6 +8,7 @@ const config = {
     notes: { markdown },
 }
 storiesOf('Components|Button', module)
+  .add('default', () => <Button onClick={action('clicked')}>Hello Button</Button>, config)
   .add('with text', () => <Button onClick={action('clicked')}>Hello Button</Button>, config)
   .add('with some emoji', () => (
     <Button type="primary" onClick={action('clicked')}>

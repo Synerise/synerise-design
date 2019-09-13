@@ -1,4 +1,4 @@
-# Core components
+Core components
 
 Bunch of components to bootstrap application.
 

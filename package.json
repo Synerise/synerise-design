@@ -4,7 +4,8 @@
   "private": true,
   "workspaces": [
     "packages/components/*",
-    "packages/portal"
+    "packages/portal",
+    "packages/docs-site/website"
   ],
   "scripts": {
     "bootstrap": "yarn npx:lerna bootstrap",

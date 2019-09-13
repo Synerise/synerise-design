@@ -24,7 +24,7 @@ const props = () => ({
 });
 
 storiesOf('Components|Modal', module)
-    .add('simple modal', () => {
+    .add('default', () => {
     return (
         <Modal {...props()}>
             <p>Some contents...</p>

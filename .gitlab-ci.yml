@@ -9,13 +9,19 @@ cache:
   paths:
     - node_modules/
 
-before_script:
-  - yarn
+services:
+  - docker:dind
+
+stages:
+  - one
+  - two
 
 build:
+  stage: one
   tags:
     - vms
   script:
+    - yarn
     - yarn lint
     - yarn build
     - yarn test:ci
@@ -26,3 +32,37 @@ build:
     - echo "email = $GITLAB_USER_EMAIL" >> .npmrc
     - echo "always-auth = true"  >> .npmrc
     - (if [ "$CI_COMMIT_REF_NAME" == "master" ]; then npx lerna publish from-package --registry=$NPM_REGISTRY_LOCAL --no-git-tag-version --yes;fi);
+
+docs_build:
+  image: node:lts
+  stage: one
+  script:
+    - yarn
+    - yarn build
+    - yarn npx:lerna run postinstall
+    - yarn npx:lerna run build-docs
+    - mv packages/portal/storybook-static/ packages/docs-site/website/build/ds-docs
+  artifacts:
+    paths:
+      - packages/docs-site/website/build/*
+
+docs_deploy:
+  image: docker:stable
+  stage: two
+  allow_failure: true
+  script:
+    - SANITY_BRANCH=$CI_COMMIT_REF_SLUG
+    - echo "Sanitized branch name ${SANITY_BRANCH}"
+    - docker login $QUAY_REPO_HOST -u "$QUAY_REPO_USER" -p "$QUAY_REPO_PASS"
+    - cd packages/docs-site
+    - pwd
+    - docker build -t ds-docs .
+    - echo "Push commit image"
+
+    - docker tag ds-docs quay.io/synerise/ds-docs:"$SANITY_BRANCH"-"${CI_COMMIT_SHA}"
+    - docker push quay.io/synerise/ds-docs:"$SANITY_BRANCH"-"${CI_COMMIT_SHA}"
+    - echo "Image pushed to remote repository from branch ${CI_COMMIT_REF_NAME}"
+
+    - docker tag ds-docs quay.io/synerise/ds-docs:"$SANITY_BRANCH"-latest
+    - docker push quay.io/synerise/ds-docs:"$SANITY_BRANCH"-latest
+    - echo "Image pushed to remote repository from branch ${CI_COMMIT_REF_NAME} for commit ${CI_COMMIT_SHA}"
