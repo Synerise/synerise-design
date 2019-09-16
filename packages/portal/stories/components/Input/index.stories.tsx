@@ -1,10 +1,37 @@
 import * as React from 'react';
-
 import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
+import { number, text, boolean } from '@storybook/addon-knobs';
+import { DSProvider } from '@synerise/ds-core';
 
-import Input from '@synerise/ds-input';
+import { Input, TextArea } from '@synerise/ds-input';
 
 storiesOf('Components|Input', module)
-  .add('default', () => <Input placeholder="Basic input" />)
-  .add('Basic', () => <Input placeholder="Basic input" />)
-  .add('Textarea', () => <Input.TextArea placeholder="Text Area" rows={4} />);
+  .add('Input', () => (
+    <DSProvider code="en_GB">
+      <Input
+        placeholder={text('placeholder', 'Placeholder')}
+        label={text('label', 'Label')}
+        description={text('description', 'Description')}
+        errorText={text('errorText', 'Error message')}
+        counterLimit={number('counterLimit', 10)}
+        disabled={boolean('disabled', false)}
+        onChange={action('onChange')}
+        value={text('value', '')}
+      />
+    </DSProvider>
+  ))
+  .add('Textarea', () => (
+    <DSProvider code="en_GB">
+      <TextArea
+        rows={number('rows', 4)}
+        placeholder={text('placeholder', 'Placeholder')}
+        label={text('label', 'Label')}
+        description={text('description', 'Description')}
+        errorText={text('errorText', 'Error message')}
+        counterLimit={number('counterLimit', 10)}
+        disabled={boolean('disabled', false)}
+        onChange={action('onChange')}
+      />
+    </DSProvider>
+  ));
