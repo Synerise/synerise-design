@@ -36,6 +36,9 @@ build:
 docs_build:
   image: node:lts
   stage: one
+  only:
+    refs:
+      - master
   script:
     - yarn
     - yarn build
@@ -50,6 +53,9 @@ docs_deploy:
   image: docker:stable
   stage: two
   allow_failure: true
+  only:
+    refs:
+      - master
   script:
     - SANITY_BRANCH=$CI_COMMIT_REF_SLUG
     - echo "Sanitized branch name ${SANITY_BRANCH}"

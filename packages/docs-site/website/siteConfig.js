@@ -38,7 +38,7 @@ const siteConfig = {
 
   // For no header links in the top nav bar -> headerLinks: [],
   headerLinks: [
-    { doc: 'guidelines-doc1', label: 'Guidelines' },
+    { doc: 'palette', label: 'Guidelines' },
     { doc: 'components/button', label: 'Components' },
     { href: 'https://synerise.com', label: 'Synerise' },
   ],
