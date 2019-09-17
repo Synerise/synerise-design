@@ -52,6 +52,7 @@ docs_build:
 docs_deploy:
   image: docker:stable
   stage: two
+  needs: ['docs_build']
   allow_failure: true
   only:
     refs:
