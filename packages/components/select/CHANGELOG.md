@@ -8,15 +8,15 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
-* **input:** add input text field ([7099f19](https://github.com/synerise/ds/commit/7099f19))
+* **select:** add select component ([97ae77e](https://github.com/synerise/ds/commit/97ae77e))
 
 
 
 
 
-## 0.0.3 (2019-09-12)
+# 0.1.0 (2019-09-17)
 
 
 ### Features
 
-* **input:** add input text field ([7099f19](https://github.com/synerise/ds/commit/7099f19))
+* **select:** add select component ([97ae77e](https://github.com/synerise/ds/commit/97ae77e))
