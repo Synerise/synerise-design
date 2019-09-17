@@ -5,7 +5,7 @@ export type PageHeaderProps = {
   rightSide?: React.ReactNode;
   children?: React.ReactNode;
   postTitle?: React.ReactNode | string;
-  title: string;
+  title: React.ReactNode | string;
   onGoBack?: () => void;
   backLabel?: string;
 };
