@@ -19,7 +19,8 @@
   "sideEffects": false,
   "types": "dist/index.d.ts",
   "dependencies": {
-    "antd": "*"
+    "antd": "*",
+    "uuid": "^3.3.3"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

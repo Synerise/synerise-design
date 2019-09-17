@@ -13,6 +13,10 @@ Input UI Component
 
 | Property | Description | Type | Default |
 | --- | --- | --- | --- |
+| errorText | error message, if provided input will be set in error state | string | - |
+| label | input label | string | - |
+| description | input description | string | - |
+| counterLimit | maximum input length, if provided counter will be shown | number | - |
 | addonAfter | The label text displayed after (on the right side of) the input field. | string\ReactNode |  |
 | addonBefore | The label text displayed before (on the left side of) the input field. | string\ReactNode |  |
 | defaultValue | The initial input content | string |  |

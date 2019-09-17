@@ -1,10 +1,7 @@
 import * as React from 'react';
 import { renderWithProvider } from '@synerise/ds-utils';
-import { fireEvent, cleanup } from '@testing-library/react';
-import { DSProvider } from '@synerise/ds-core';
+import { fireEvent } from '@testing-library/react';
 import { Input, TextArea } from '../index';
-
-afterEach(cleanup);
 
 describe('Input', () => {
   const onChange = jest.fn();

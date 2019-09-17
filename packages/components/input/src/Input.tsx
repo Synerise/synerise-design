@@ -1,5 +1,6 @@
 import * as React from 'react';
 import '@synerise/ds-core/dist/js/style';
+import { v4 as uuid } from 'uuid';
 import { InputProps } from 'antd/lib/input';
 import './style/index.less';
 import * as S from './Input.style';
@@ -59,19 +60,26 @@ const enhancedInput = <P extends object>(WrappedComponent: React.ComponentType<P
       const { errorText, label, description, counterLimit, ...antdInputProps } = this.props;
       const { value, charCount } = this.state;
       const showError = Boolean(errorText);
+      const id = uuid();
 
       return (
         <>
           {(label || counterLimit) && (
             <S.ContentAbove>
-              <S.Label>{label}</S.Label>
+              <S.Label htmlFor={id}>{label}</S.Label>
               <S.Counter data-testid="counter">
                 {charCount}/{counterLimit}
               </S.Counter>
             </S.ContentAbove>
           )}
-          {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-          <WrappedComponent {...(antdInputProps as P)} error={showError} onChange={this.handleChange} value={value} />
+          <WrappedComponent
+            // eslint-disable-next-line react/jsx-props-no-spreading
+            {...(antdInputProps as P)}
+            error={showError}
+            onChange={this.handleChange}
+            value={value}
+            id={id}
+          />
           {(showError || description) && (
             <S.ContentBelow>
               {showError && <S.ErrorText>{errorText}</S.ErrorText>}
