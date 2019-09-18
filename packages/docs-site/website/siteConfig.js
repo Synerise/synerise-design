@@ -22,7 +22,7 @@ const users = [
 
 const siteConfig = {
   title: 'Design system', // Title for your website.
-  tagline: 'Docs...',
+  tagline: 'Work in progress...',
   url: 'https://your-docusaurus-ds-docs.com', // Your website URL
   baseUrl: '/', // Base URL for your project */
   // For github.io type URLs, you would set the url and baseUrl like:
@@ -40,6 +40,7 @@ const siteConfig = {
   headerLinks: [
     { doc: 'palette', label: 'Guidelines' },
     { doc: 'components/button', label: 'Components' },
+    { href: '/storybook-static/', label: 'Storybook' },
     { href: 'https://synerise.com', label: 'Synerise' },
   ],
 

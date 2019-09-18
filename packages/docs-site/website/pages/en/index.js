@@ -63,11 +63,11 @@ class HomeSplash extends React.Component {
         <Logo img_src={`${baseUrl}img/undraw_monitor.svg`} />
         <div className="inner">
           <ProjectTitle siteConfig={siteConfig} />
-          <PromoSection>
-            <Button href="#try">Try It Out</Button>
-            <Button href={docUrl('doc1.html')}>Example Link</Button>
-            <Button href={docUrl('doc2.html')}>Example Link 2</Button>
-          </PromoSection>
+          {/*<PromoSection>*/}
+          {/*  <Button href="#try">Try It Out</Button>*/}
+          {/*  <Button href={docUrl('doc1.html')}>Example Link</Button>*/}
+          {/*  <Button href={docUrl('doc2.html')}>Example Link 2</Button>*/}
+          {/*</PromoSection>*/}
         </div>
       </SplashContainer>
     );
@@ -97,12 +97,10 @@ class Index extends React.Component {
         {[
           {
             content:
-              'To make your landing page more attractive, use illustrations! Check out ' +
-              '[**unDraw**](https://undraw.co/) which provides you with customizable illustrations which are free to use. ' +
-              'The illustrations you see on this page are from unDraw.',
+              'This is demo page',
             image: `${baseUrl}img/undraw_code_review.svg`,
             imageAlign: 'left',
-            title: 'Wonderful SVG Illustrations',
+            title: 'Work in progress...',
           },
         ]}
       </Block>
@@ -186,11 +184,11 @@ class Index extends React.Component {
       <div>
         <HomeSplash siteConfig={siteConfig} language={language} />
         <div className="mainContainer">
-          <Features />
-          <FeatureCallout />
-          <LearnHow />
+          {/*<Features />*/}
+          {/*<FeatureCallout />*/}
+          {/*<LearnHow />*/}
           <TryOut />
-          <Description />
+          {/*<Description />*/}
           <Showcase />
         </div>
       </div>

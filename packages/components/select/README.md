@@ -7,7 +7,7 @@ Select UI Component
 
 ## Demo
 
-<iframe src="/storybook-static/iframe.html?id=components-select--default"></iframe>
+<iframe src="/storybook-static/iframe.html?id=components-select-basic--default"></iframe>
 
 ## API
 

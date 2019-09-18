@@ -5,9 +5,13 @@ title: Input
 
 Input UI Component
 
-## Demo
+## Input
 
-<iframe src="/storybook-static/iframe.html?id=components-input--default"></iframe>
+<iframe src="/storybook-static/iframe.html?id=components-input--input"></iframe>
+
+## Textarea
+
+<iframe src="/storybook-static/iframe.html?id=components-input--textarea"></iframe>
 
 ## API
 
