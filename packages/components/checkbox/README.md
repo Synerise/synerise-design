@@ -22,6 +22,8 @@ Based on [Ant Design Checkbox](https://ant.design/components/checkbox/)
 
 | Property | Description | Type | Default |
 | --- | --- | --- | --- |
+| description | checkbox description | string | - |
+| errorText | error message, if provided sets error state on checkbox | string | - |
 | autoFocus | get focus when component mounted | boolean | false |
 | checked | Specifies whether the checkbox is selected. | boolean | false |
 | defaultChecked | Specifies the initial state: whether or not the checkbox is selected. | boolean | false |
