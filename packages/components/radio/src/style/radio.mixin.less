@@ -1,100 +1,46 @@
-.@{radio-group-prefix-cls} {
-  > label.ant-radio-wrapper {
-    display: block;
-    margin-bottom: 16px;
+@radio-prefix-cls: ~'ant-radio';
+
+.@{radio-prefix-cls} + span {
+  padding: 0;
+  color: @grey-700;
+  font-weight: 500;
+  margin-left: 16px;
+  position: relative;
+}
+
+.@{radio-prefix-cls}-checked + span {
+  color: @grey-800;
+}
+
+.@{radio-prefix-cls}-wrapper-disabled {
+  .@{radio-prefix-cls} + span {
+    color: @grey-600;
+    opacity: 0.4;
   }
 }
 
-.@{radio-prefix-cls} {
-  .@{radio-prefix-cls}-wrapper:hover &,
-  &:hover,
-  &-focused {
-    .@{radio-inner-prefix-cls} {
-      border-color: @gray-color-lighter-3;
-    }
+.@{radio-prefix-cls}-input:hover + .@{radio-prefix-cls}-inner {
+  border-color: @grey-400;
+}
 
-    & + span {
-      color: @gray-color;
-    }
-  }
+.@{radio-prefix-cls}-input:focus + .@{radio-prefix-cls}-inner {
+  border-color: @blue-600;
+  background-color: @blue-050;
+  border-width: 2px;
+}
 
-  &-inner {
-    &:after {
-      @radio-dot-size: @radio-size - 8px;
-      width: @radio-dot-size;
-      height: @radio-dot-size;
-      left: (@radio-size - @radio-dot-size) / 2 - 2px;
-      top: (@radio-size - @radio-dot-size) / 2 - 2px;
-      border-radius: @radio-dot-size;
-      background-color: @radio-dot-color;
-    }
-
-    transition: border-color @radio-duration;
-  }
-  & + span {
-    color: @gray-color-lighter-2;
-  }
+.@{radio-prefix-cls}-input:focus + .@{radio-prefix-cls}-inner {
+  box-shadow: none;
 }
 
 .@{radio-prefix-cls}-checked {
-  .@{radio-inner-prefix-cls} {
-    border-color: @radio-dot-color;
+  .@{radio-prefix-cls}-inner {
+    border-color: @blue-600;
     border-width: 2px;
-
-    &:after {
-      transform: scale(1);
-    }
   }
 
-  .@{radio-prefix-cls}-wrapper:hover &,
-  &:hover,
-  &-focused {
-    .@{radio-inner-prefix-cls} {
-      border-color: @radio-dot-color;
-    }
-  }
-
-  & + span {
-    color: @gray-color;
-  }
-}
-
-.@{radio-prefix-cls}-disabled {
-  .@{radio-inner-prefix-cls} {
-    border-color: @gray-color-lighter-4 !important;
-    background-color: @input-disabled-bg;
-    &:after {
-      background-color: @gray-color-lighter-4;
-    }
-  }
-
-  .@{radio-prefix-cls}-wrapper:hover &,
-  &:hover,
-  &-focused {
-    & + span {
-      color: @gray-color-lighter-4;
-    }
-  }
-
-  &.@{radio-prefix-cls}-checked {
-    .@{radio-inner-prefix-cls} {
-      background-color: transparent;
-    }
-  }
-
-  & + span {
-    color: @gray-color-lighter-4;
-  }
-}
-
-span.@{radio-prefix-cls} + * {
-  padding-left: 12px;
-  padding-right: 12px;
-  font-size: 14px;
-  font-weight: 500;
-  color: @gray-color-lighter-2;
-
-  > span {
-    font-weight: 400;
+  .@{radio-prefix-cls}-inner::after {
+    top: 2px;
+    left: 2px;
   }
 }

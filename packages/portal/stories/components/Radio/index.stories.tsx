@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
+import { number, text, boolean } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
+import { DSProvider } from "@synerise/ds-core";
 
 import Radio from '@synerise/ds-radio';
 import markdown from '@/radio/README.md';
@@ -10,16 +12,23 @@ const config = {
 };
 
 storiesOf('Components|Radio', module)
-  .add('default', () => <Radio>Radio label</Radio>, config)
-  .add('disabled', () => <Radio disabled>Radio label</Radio>, config)
-  .add(
-    'solid group',
-    () => (
-      <Radio.Group buttonStyle="solid" defaultValue="a" onChange={action('changed')}>
-        <Radio.Button value="a">A</Radio.Button>
-        <Radio.Button value="b">B</Radio.Button>
-        <Radio.Button value="c">C</Radio.Button>
+  .add('default', () => (
+    <DSProvider code="en_GB">
+      <Radio.Group onChange={action('onChange')} defaultValue="A">
+        <Radio
+          disabled={boolean('disabled', false)}
+          description={text('description', 'Description')}
+          value="A"
+        >
+          {text('children', 'Label')}
+        </Radio>
+        <Radio
+          disabled={boolean('disabled', false)}
+          description={text('description', 'Description')}
+          value="B"
+        >
+          {text('children', 'Label')}
+        </Radio>
       </Radio.Group>
-    ),
-    config
-  );
+    </DSProvider>
+  ), config);
