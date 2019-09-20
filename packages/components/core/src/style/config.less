@@ -10,6 +10,8 @@
 @primary-color-lighter-5: @blue-100;
 @primary-color-lighter-6: @blue-050;
 
+@primary-color-opacity-4: rgba(@blue-600, 0.4);
+
 @gray-color-darker-1: @grey-900;
 @gray-color: @grey-800;
 @gray-color-lighter-1: @grey-700;
@@ -20,6 +22,12 @@
 @gray-color-lighter-6: @grey-200;
 @gray-color-lighter-7: @grey-100;
 @gray-color-lighter-8: @grey-050;
+
+@gray-color-opacity-1: rgba(@grey-400, 0.15);
+@gray-color-opacity-2: rgba(@grey-400, 0.25);
+@gray-color-opacity-3: rgba(@grey-400, 0.35);
+@gray-color-opacity-4: rgba(@grey-050, 0.4);
+@gray-color-opacity-5: rgba(@grey-700, 0.4);
 
 @secondary-color-darker-3: @red-900;
 @secondary-color-darker-2: @red-800;
@@ -43,6 +51,8 @@
 @red-color-lighter-5: @red-100;
 @red-color-lighter-6: @red-050;
 
+@red-color-opacity-4: rgba(@red-600, 0.4);
+
 @orange-color-darker-3: @orange-900;
 @orange-color-darker-2: @orange-800;
 @orange-color-darker-1: @orange-700;
@@ -65,6 +75,8 @@
 @yellow-color-lighter-5: @yellow-100;
 @yellow-color-lighter-6: @yellow-050;
 
+@yellow-color-opacity-4: rgba(@yellow-600, 0.4);
+
 @green-color-darker-3: @green-900;
 @green-color-darker-2: @green-800;
 @green-color-darker-1: @green-700;
@@ -75,6 +87,8 @@
 @green-color-lighter-4: @green-200;
 @green-color-lighter-5: @green-100;
 @green-color-lighter-6: @green-050;
+
+@green-color-opacity-4: rgba(@green-600, 0.4);
 
 @cyan-color-darker-3: @cyan-900;
 @cyan-color-darker-2: @cyan-800;
@@ -206,17 +220,58 @@
 @btn-primary-color: #fff;
 @btn-primary-bg: @primary-color;
 @btn-primary-hover-bg: @primary-color-lighter-1;
+@btn-primary-focus-bg: @primary-color-darker-1;
+@btn-primary-active-bg: @primary-color-darker-1;
+@btn-primary-shadow: rgba(35, 138, 254, 0.2);
 
-@btn-default-color: @gray-color-lighter-2;
+@btn-default-color: @gray-color-lighter-1;
 @btn-default-bg: @gray-color-lighter-8;
 @btn-default-border: @gray-color-lighter-5;
+@btn-default-focus-bg: @gray-color-lighter-8;
+@btn-default-active-bg: @gray-color-lighter-7;
 @btn-default-hover-bg: #fff;
+@btn-default-shadow: rgba(219, 224, 227, 0.2);
+
+@btn-tertiary-color: @gray-color-lighter-1;
+@btn-tertiary-bg: @gray-color-opacity-1;
+@btn-tertiary-hover-bg: @gray-color-opacity-2;
+@btn-tertiary-focus-bg: @gray-color-opacity-1;
+@btn-tertiary-active-bg: @gray-color-opacity-3;
+@btn-tertiary-border: transparent;
+@btn-tertiary-shadow: @btn-default-shadow;
+
+@btn-ghost-color: @gray-color-lighter-1;
+@btn-ghost-bg: transparent;
+@btn-ghost-hover-bg: @gray-color-opacity-2;
+@btn-ghost-focus-bg: transparent;
+@btn-ghost-active-bg: @gray-color-opacity-3;
+@btn-ghost-border: transparent;
+@btn-ghost-shadow: @btn-default-shadow;
 
 @btn-danger-color: #fff;
-@btn-danger-bg: @secondary-color;
-@btn-danger-border: @secondary-color;
-@btn-danger-hover-bg: @secondary-color-lighter-1;
-@btn-danger-ghost-bg: @secondary-color-lighter-6;
+@btn-danger-bg: @red-color;
+@btn-danger-border: @red-color;
+@btn-danger-hover-bg: @red-color-lighter-1;
+@btn-danger-active-bg: @red-color-darker-1;
+@btn-danger-focus-bg: @red-color;
+@btn-danger-ghost-bg: @red-color-lighter-6;
+@btn-danger-shadow: rgba(255, 90, 77, 0.2);
+
+@btn-success-color: #fff;
+@btn-success-bg: @success-color;
+@btn-success-border: @success-color;
+@btn-success-hover-bg: @green-color-lighter-1;
+@btn-success-focus-bg: @success-color;
+@btn-success-active-bg: @green-color-darker-1;
+@btn-success-shadow: rgba(118, 220, 37, 0.2);
+
+@btn-warning-color: #fff;
+@btn-warning-bg: @yellow-color;
+@btn-warning-border: @yellow-color;
+@btn-warning-hover-bg: @yellow-color-lighter-1;
+@btn-warning-focus-bg: @yellow-color;
+@btn-warning-active-bg: @yellow-color-darker-1;
+@btn-warning-shadow: rgba(255, 195, 0, 0.2);
 
 @btn-gray-color: #fff;
 @btn-gray-bg: @gray-color-lighter-3;
@@ -227,11 +282,6 @@
 @btn-dark-bg: @gray-color-lighter-1;
 @btn-dark-border: @gray-color-lighter-1;
 @btn-dark-hover-bg: @gray-color-lighter-2;
-
-@btn-success-color: #fff;
-@btn-success-bg: @success-color;
-@btn-success-border: @success-color;
-@btn-success-hover-bg: @green-color-lighter-1;
 
 @btn-flat-color: @gray-color-lighter-2;
 @btn-flat-bg: transparent;
@@ -245,28 +295,40 @@
 @btn-disable-primary-on-blue-bg: @primary-color-lighter-1;
 
 @btn-disable-primary-color: #fff;
-@btn-disable-primary-bg: @gray-color-lighter-4;
-@btn-disable-primary-border: @gray-color-lighter-4;
+@btn-disable-primary-bg: @primary-color-opacity-4;
+@btn-disable-primary-border: transparent;
 
-@btn-disable-default-color: @gray-color-lighter-4;
-@btn-disable-default-bg: @gray-color-lighter-8;
+@btn-disable-default-color: @gray-color-opacity-5;
+@btn-disable-default-bg: @gray-color-opacity-4;
 @btn-disable-default-border: @gray-color-lighter-6;
+
+@btn-disable-tertiary-color: @gray-color-opacity-5;
+@btn-disable-tertiary-bg: @gray-color-opacity-4;
+@btn-disable-tertiary-border: transparent;
+
+@btn-disable-ghost-color: @gray-color-opacity-5;
+@btn-disable-ghost-bg: transparent;
+@btn-disable-ghost-border: transparent;
 
 @btn-disable-gray-color: @gray-color-lighter-4;
 @btn-disable-gray-bg: @gray-color-lighter-8;
-@btn-disable-gray-border: @gray-color-lighter-6;
+@btn-disable-gray-border: @gray-color-lighter-5;
 
 @btn-disable-dark-color: @gray-color-lighter-3;
 @btn-disable-dark-bg: @gray-color-darker-1;
 @btn-disable-dark-border: @gray-color-darker-1;
 
 @btn-disable-danger-color: #fff;
-@btn-disable-danger-bg: @secondary-color-lighter-3;
-@btn-disable-danger-border: @secondary-color-lighter-3;
+@btn-disable-danger-bg: @red-color-opacity-4;
+@btn-disable-danger-border: transparent;
 
 @btn-disable-success-color: #fff;
-@btn-disable-success-bg: @green-color-lighter-4;
-@btn-disable-success-border: @green-color-lighter-4;
+@btn-disable-success-bg: @green-color-opacity-4;
+@btn-disable-success-border: transparent;
+
+@btn-disable-warning-color: #fff;
+@btn-disable-warning-bg: @yellow-color-opacity-4;
+@btn-disable-warning-border: transparent;
 
 @btn-disable-flat-color: @gray-color-lighter-4;
 @btn-disable-flat-bg: transparent;
