@@ -3,44 +3,61 @@ import { fireEvent, render } from "@testing-library/react";
 import Tooltip from '../index';
 
 describe('Tooltip', () => {
-    const TITLE = 'Test';
-    const TOOLTIP_CONTENT = 'Test content';
+    const TOOLTIP_TITLE = 'Test';
+    const SPAN_CONTENT = 'Tooltip will show on mouse enter.';
+    const TEST_ID = 'inner-element';
 
     it('should render', () => {
         // ARRANGE
-        const { getByText } = render(<Tooltip visible title={TITLE} />);
+        const { getByText } = render(<Tooltip visible title={TOOLTIP_TITLE} />);
 
         // ASSERT
-        expect(getByText(TOOLTIP_CONTENT)).toBeTruthy();
-    });
-
-    it('should render content', () => {
-        // ARRANGE
-        const { getByText } = render(<Tooltip visible title={TOOLTIP_CONTENT} />);
-
-        // ASSERT
-        expect(getByText(TOOLTIP_CONTENT)).toBeTruthy();
-    });
-
-    it('should trigger on click', () => {
-        // ARRANGE
-        const { getByText } = render(<Tooltip visible title={TOOLTIP_CONTENT} trigger="click" />);
-
-        //ACT
-        fireEvent.click(getByText(TOOLTIP_CONTENT));
-
-        // ASSERT
-        expect(getByText(TOOLTIP_CONTENT)).toBeTruthy();
+        expect(getByText(TOOLTIP_TITLE)).toBeTruthy();
     });
 
     it('should appear on mouseOver', () => {
         // ARRANGE
-        const { getByText } = render(<Tooltip visible title={TOOLTIP_CONTENT} />);
+        const { getByText, getByTestId } = render(
+            <Tooltip title={TOOLTIP_TITLE} mouseEnterDelay={0} mouseLeaveDelay={0}>
+                <span data-testid={TEST_ID}>{SPAN_CONTENT}</span>
+            </Tooltip>);
 
         //ACT
-        fireEvent.mouseOver(getByText(TOOLTIP_CONTENT));
+        const INNER_SPAN = getByTestId(TEST_ID);
+        fireEvent.mouseOver(INNER_SPAN);
 
         // ASSERT
-        expect(getByText(TOOLTIP_CONTENT)).toHaveBeenCalled();
+        expect(getByText(TOOLTIP_TITLE)).toBeTruthy();
+    });
+
+    it('should appear on click', () => {
+        // ARRANGE
+        const { getByText, getByTestId } = render(
+            <Tooltip title={TOOLTIP_TITLE} trigger="click">
+                <span data-testid={TEST_ID}>{SPAN_CONTENT}</span>
+            </Tooltip>);
+
+        //ACT
+        const INNER_SPAN = getByTestId(TEST_ID);
+        fireEvent.click(INNER_SPAN);
+
+        // ASSERT
+        expect(getByText(TOOLTIP_TITLE)).toBeTruthy();
+    });
+
+    it('should trigger onVisibleChange', () => {
+        // ARRANGE
+        const onVisibleChange = jest.fn();
+        const { getByText, getByTestId } = render(
+            <Tooltip title={TOOLTIP_TITLE} onVisibleChange={onVisibleChange} mouseEnterDelay={0} mouseLeaveDelay={0}>
+                <span data-testid={TEST_ID}>{SPAN_CONTENT}</span>
+            </Tooltip>);
+
+        //ACT
+        const INNER_SPAN = getByTestId(TEST_ID);
+        fireEvent.mouseOver(INNER_SPAN);
+
+        // ASSERT
+        expect(onVisibleChange).toHaveBeenCalled();
     });
 });

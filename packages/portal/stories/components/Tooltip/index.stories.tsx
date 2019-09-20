@@ -6,12 +6,9 @@ import Tooltip from '@synerise/ds-tooltip';
 
 
 const props = () => ({
-    visible: boolean('Visible', false),
     title: text('Tooltip text', 'example text'),
     placement: text('Placement', 'top'),
     trigger: text('Trigger', 'hover'),
-    mouseEnterDelay: number('Mouse enter delay', 0.2),
-    mouseLeaveDelay: number('Mouse leave delay', 0.2),
 });
 
 
@@ -19,6 +16,14 @@ storiesOf('Components|Tooltip', module)
     .add('default', () => {
         return (
             <Tooltip {...props()}>
+                <span data-testid="inner-element">Tooltip will show on mouse enter.</span>
+            </Tooltip>
+        )
+    })
+
+    .add('force visibility', () => {
+        return (
+            <Tooltip {...props()} visible={boolean('visible', true)}>
                 <span>Tooltip will show on mouse enter.</span>
             </Tooltip>
         )
