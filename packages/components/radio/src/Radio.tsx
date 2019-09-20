@@ -2,7 +2,7 @@ import * as React from 'react';
 import '@synerise/ds-core/dist/js/style';
 import './style/index.less';
 import AntdRadio, { RadioProps } from 'antd/lib/radio';
-import * as S from './Radio.style';
+import * as S from './Radio.styles';
 
 interface Props extends RadioProps {
   description?: string;

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as S from './Layout.style';
+import * as S from './Layout.styles';
 
 interface Style<T> {
   left?: T;

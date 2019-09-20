@@ -2,7 +2,7 @@ import * as React from 'react';
 import '@synerise/ds-core/dist/js/style';
 import './style/index.less';
 import { CheckboxProps } from 'antd/lib/checkbox';
-import * as S from './Checkbox.style';
+import * as S from './Checkbox.styles';
 
 interface Props extends CheckboxProps {
   description?: string;

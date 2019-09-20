@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as S from './PageHeader.style';
+import * as S from './PageHeader.styles';
 
 export type PageHeaderProps = {
   rightSide?: React.ReactNode;

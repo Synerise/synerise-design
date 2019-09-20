@@ -3,7 +3,7 @@ import '@synerise/ds-core/dist/js/style';
 import { v4 as uuid } from 'uuid';
 import { InputProps } from 'antd/lib/input';
 import './style/index.less';
-import * as S from './Input.style';
+import * as S from './Input.styles';
 
 interface Props extends InputProps {
   errorText?: React.ReactNode | string;
