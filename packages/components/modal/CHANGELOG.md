@@ -8,9 +8,9 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
-* **modal:** add modal component ([80b30ad](https://github.com/synerise/ds/commit/80b30ad))
-* **modal:** modal ([800ec8b](https://github.com/synerise/ds/commit/800ec8b))
-* **modal:** modal ([608395a](https://github.com/synerise/ds/commit/608395a))
+* **modal:** add modal component ([80b30ad](https://github.com/synerise/synerise-design/commit/80b30ad))
+* **modal:** modal ([800ec8b](https://github.com/synerise/synerise-design/commit/800ec8b))
+* **modal:** modal ([608395a](https://github.com/synerise/synerise-design/commit/608395a))
 
 
 
@@ -21,9 +21,9 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
-* **modal:** add modal component ([80b30ad](https://github.com/synerise/ds/commit/80b30ad))
-* **modal:** modal ([800ec8b](https://github.com/synerise/ds/commit/800ec8b))
-* **modal:** modal ([608395a](https://github.com/synerise/ds/commit/608395a))
+* **modal:** add modal component ([80b30ad](https://github.com/synerise/synerise-design/commit/80b30ad))
+* **modal:** modal ([800ec8b](https://github.com/synerise/synerise-design/commit/800ec8b))
+* **modal:** modal ([608395a](https://github.com/synerise/synerise-design/commit/608395a))
 
 
 
@@ -34,6 +34,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
-* **modal:** add modal component ([80b30ad](https://github.com/synerise/ds/commit/80b30ad))
-* **modal:** modal ([800ec8b](https://github.com/synerise/ds/commit/800ec8b))
-* **modal:** modal ([608395a](https://github.com/synerise/ds/commit/608395a))
+* **modal:** add modal component ([80b30ad](https://github.com/synerise/synerise-design/commit/80b30ad))
+* **modal:** modal ([800ec8b](https://github.com/synerise/synerise-design/commit/800ec8b))
+* **modal:** modal ([608395a](https://github.com/synerise/synerise-design/commit/608395a))

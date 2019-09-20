@@ -8,7 +8,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
-* **page-header:** add new component ([3f2e12c](https://github.com/synerise/ds/commit/3f2e12c))
+* **page-header:** add new component ([3f2e12c](https://github.com/synerise/synerise-design/commit/3f2e12c))
 
 
 
@@ -19,7 +19,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
-* **page-header:** add new component ([3f2e12c](https://github.com/synerise/ds/commit/3f2e12c))
+* **page-header:** add new component ([3f2e12c](https://github.com/synerise/synerise-design/commit/3f2e12c))
 
 
 
@@ -30,4 +30,4 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
-* **page-header:** add new component ([3f2e12c](https://github.com/synerise/ds/commit/3f2e12c))
+* **page-header:** add new component ([3f2e12c](https://github.com/synerise/synerise-design/commit/3f2e12c))

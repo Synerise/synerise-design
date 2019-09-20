@@ -8,12 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-* fix less paths ([344b097](https://github.com/synerise/ds/commit/344b097))
+* fix less paths ([344b097](https://github.com/synerise/synerise-design/commit/344b097))
 
 
 ### Features
 
-* **radio:** add radio button ([826f69e](https://github.com/synerise/ds/commit/826f69e))
+* **radio:** add radio button ([826f69e](https://github.com/synerise/synerise-design/commit/826f69e))
 
 
 
@@ -24,7 +24,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
-* **radio:** add radio button ([826f69e](https://github.com/synerise/ds/commit/826f69e))
+* **radio:** add radio button ([826f69e](https://github.com/synerise/synerise-design/commit/826f69e))
 
 
 
@@ -35,4 +35,4 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
-* **radio:** add radio button ([826f69e](https://github.com/synerise/ds/commit/826f69e))
+* **radio:** add radio button ([826f69e](https://github.com/synerise/synerise-design/commit/826f69e))

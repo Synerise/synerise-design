@@ -8,7 +8,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
-* **portal:** add color palette ([4b214bc](https://github.com/synerise/ds/commit/4b214bc))
+* **portal:** add color palette ([4b214bc](https://github.com/synerise/synerise-design/commit/4b214bc))
 
 
 
@@ -19,7 +19,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
-* **portal:** add color palette ([4b214bc](https://github.com/synerise/ds/commit/4b214bc))
+* **portal:** add color palette ([4b214bc](https://github.com/synerise/synerise-design/commit/4b214bc))
 
 
 
@@ -30,7 +30,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
-* **portal:** add color palette ([4b214bc](https://github.com/synerise/ds/commit/4b214bc))
+* **portal:** add color palette ([4b214bc](https://github.com/synerise/synerise-design/commit/4b214bc))
 
 
 

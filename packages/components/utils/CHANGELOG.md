@@ -8,8 +8,8 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
-* **page-header:** add new component ([3f2e12c](https://github.com/synerise/ds/commit/3f2e12c))
-* **table:** add title and subtitle support ([e84c201](https://github.com/synerise/ds/commit/e84c201))
+* **page-header:** add new component ([3f2e12c](https://github.com/synerise/synerise-design/commit/3f2e12c))
+* **table:** add title and subtitle support ([e84c201](https://github.com/synerise/synerise-design/commit/e84c201))
 
 
 
@@ -20,7 +20,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
-* **page-header:** add new component ([3f2e12c](https://github.com/synerise/ds/commit/3f2e12c))
+* **page-header:** add new component ([3f2e12c](https://github.com/synerise/synerise-design/commit/3f2e12c))
 
 
 
@@ -31,4 +31,4 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
-* **page-header:** add new component ([3f2e12c](https://github.com/synerise/ds/commit/3f2e12c))
+* **page-header:** add new component ([3f2e12c](https://github.com/synerise/synerise-design/commit/3f2e12c))

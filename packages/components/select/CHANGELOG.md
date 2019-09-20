@@ -8,7 +8,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
-* **select:** add select component ([97ae77e](https://github.com/synerise/ds/commit/97ae77e))
+* **select:** add select component ([97ae77e](https://github.com/synerise/synerise-design/commit/97ae77e))
 
 
 
@@ -19,7 +19,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
-* **select:** add select component ([97ae77e](https://github.com/synerise/ds/commit/97ae77e))
+* **select:** add select component ([97ae77e](https://github.com/synerise/synerise-design/commit/97ae77e))
 
 
 
@@ -30,4 +30,4 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
-* **select:** add select component ([97ae77e](https://github.com/synerise/ds/commit/97ae77e))
+* **select:** add select component ([97ae77e](https://github.com/synerise/synerise-design/commit/97ae77e))

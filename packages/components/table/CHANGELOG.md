@@ -8,8 +8,8 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
-* **table:** add new component ([b860b24](https://github.com/synerise/ds/commit/b860b24))
-* **table:** add title and subtitle support ([e84c201](https://github.com/synerise/ds/commit/e84c201))
+* **table:** add new component ([b860b24](https://github.com/synerise/synerise-design/commit/b860b24))
+* **table:** add title and subtitle support ([e84c201](https://github.com/synerise/synerise-design/commit/e84c201))
 
 
 
@@ -20,7 +20,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
-* **table:** add new component ([b860b24](https://github.com/synerise/ds/commit/b860b24))
+* **table:** add new component ([b860b24](https://github.com/synerise/synerise-design/commit/b860b24))
 
 
 
@@ -31,4 +31,4 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
-* **table:** add new component ([b860b24](https://github.com/synerise/ds/commit/b860b24))
+* **table:** add new component ([b860b24](https://github.com/synerise/synerise-design/commit/b860b24))

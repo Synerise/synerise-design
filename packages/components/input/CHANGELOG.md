@@ -8,8 +8,8 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
-* **input:** add input text field ([7099f19](https://github.com/synerise/ds/commit/7099f19))
-* **input:** handle label click ([80480c1](https://github.com/synerise/ds/commit/80480c1))
+* **input:** add input text field ([7099f19](https://github.com/synerise/synerise-design/commit/7099f19))
+* **input:** handle label click ([80480c1](https://github.com/synerise/synerise-design/commit/80480c1))
 
 
 
@@ -20,7 +20,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
-* **input:** add input text field ([7099f19](https://github.com/synerise/ds/commit/7099f19))
+* **input:** add input text field ([7099f19](https://github.com/synerise/synerise-design/commit/7099f19))
 
 
 
@@ -31,4 +31,4 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
-* **input:** add input text field ([7099f19](https://github.com/synerise/ds/commit/7099f19))
+* **input:** add input text field ([7099f19](https://github.com/synerise/synerise-design/commit/7099f19))

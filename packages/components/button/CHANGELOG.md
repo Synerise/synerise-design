@@ -8,7 +8,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
-* **typography:** add styled-components macros ([e62d35f](https://github.com/synerise/ds/commit/e62d35f))
+* **typography:** add styled-components macros ([e62d35f](https://github.com/synerise/synerise-design/commit/e62d35f))
 
 
 
@@ -19,7 +19,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
-* **typography:** add styled-components macros ([e62d35f](https://github.com/synerise/ds/commit/e62d35f))
+* **typography:** add styled-components macros ([e62d35f](https://github.com/synerise/synerise-design/commit/e62d35f))
 
 
 
@@ -30,7 +30,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
-* **typography:** add styled-components macros ([e62d35f](https://github.com/synerise/ds/commit/e62d35f))
+* **typography:** add styled-components macros ([e62d35f](https://github.com/synerise/synerise-design/commit/e62d35f))
 
 
 
