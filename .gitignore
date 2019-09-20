@@ -46,3 +46,4 @@ jspm_packages
 
 .vscode
 storybook-static
+.npmrc
