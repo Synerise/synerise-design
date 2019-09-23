@@ -1,7 +1,6 @@
 image: node:lts
 
 variables:
-  NPM_REGISTRY_LOCAL: http://artifactory.service/api/npm/npm-release-local/
   NODE_OPTIONS: --max-old-space-size=4096
 
 cache:
