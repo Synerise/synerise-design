@@ -5,6 +5,9 @@
   "license": "ISC",
   "repository": "synerise/ds",
   "main": "dist/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "npm run build:js && npm run build:css && npm run defs",
     "build:css": "node ../../../scripts/style/less.js",
