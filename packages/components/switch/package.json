@@ -3,8 +3,11 @@
   "version": "0.0.1",
   "description": "Switch UI Component for the Synerise Design System",
   "license": "ISC",
-  "repository": "synerise/ds",
+  "repository": "synerise/synerise-design",
   "main": "dist/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "npm run build:js && npm run build:css && npm run defs",
     "build:css": "node ../../../scripts/style/less.js",
