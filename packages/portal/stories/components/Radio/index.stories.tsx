@@ -31,4 +31,15 @@ storiesOf('Components|Radio', module)
         </Radio>
       </Radio.Group>
     </DSProvider>
-  ), config);
+  ), config)
+  .add('radio buttons', () => (
+    <DSProvider code="en_GB">
+      <Radio.Group defaultValue="a" buttonStyle="solid" onChange={action('onChange')}>
+        <Radio.Button value="a">A</Radio.Button>
+        <Radio.Button value="b" disabled={boolean('disable B', false)}>B</Radio.Button>
+        <Radio.Button value="c">C</Radio.Button>
+        <Radio.Button value="d">D</Radio.Button>
+      </Radio.Group>
+    </DSProvider>
+  ), config)
+;

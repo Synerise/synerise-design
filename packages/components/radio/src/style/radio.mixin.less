@@ -44,3 +44,66 @@
     left: 2px;
   }
 }
+
+.@{radio-prefix-cls}-button-wrapper {
+  background-color: @grey-050;
+  color: @grey-700;
+
+  &:hover {
+    background-color: #fff;
+    color: @grey-700;
+  }
+
+  &:focus {
+    border: 2px solid @blue-600;
+    z-index: 2;
+    margin-left: -1px;
+    top: 1px;
+
+    span + span {
+      top: -2px;
+    }
+  }
+
+  &:not(:focus) {
+    top: 0;
+  }
+}
+
+.@{radio-prefix-cls}-button-wrapper:not(:first-child)::before {
+  display: none;
+}
+
+.@{radio-prefix-cls}-button-wrapper:not(:first-child):not(:focus)::before {
+  position: absolute;
+  top: 0;
+  left: -1px;
+  display: block;
+  width: 1px;
+  height: 100%;
+  background-color: @grey-300;
+  content: '';
+}
+
+.@{radio-prefix-cls}-button-wrapper-checked:not(.@{radio-prefix-cls}-button-wrapper-disabled) {
+  box-shadow: -1px 0 0 0 @blue-600;
+}
+
+.@{radio-prefix-cls}-button-wrapper {
+  span + span {
+    position: relative;
+    top: -1px;
+  }
+}
+
+.@{radio-prefix-cls}-button-wrapper-disabled {
+  color: @grey-700;
+  opacity: 0.4;
+}
+
+.ant-radio-group-solid .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled):hover {
+  color: #fff;
+  background: @blue-500;
+  border-color: @blue-500;
+  box-shadow: -1px 0 0 0 @blue-500;
+}

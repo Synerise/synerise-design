@@ -10,6 +10,7 @@ interface Props extends RadioProps {
 
 class Radio extends React.Component<Props> {
   static Group = AntdRadio.Group;
+  static Button = AntdRadio.Button;
 
   render(): React.ReactNode {
     const { description, ...antdRadioButtonProps } = this.props;
