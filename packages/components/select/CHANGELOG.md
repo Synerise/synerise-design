@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.2.3 (2019-09-23)
+
+
+### Features
+
+* **select:** add select component ([97ae77e](https://github.com/synerise/synerise-design/commit/97ae77e))
+
+
+
+
+
 ## 0.2.2 (2019-09-23)
 
 

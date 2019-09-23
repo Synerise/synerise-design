@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-table",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Table UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "synerise/synerise-design",
@@ -22,9 +22,9 @@
   "sideEffects": false,
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-dropdown": "^0.2.2",
-    "@synerise/ds-pagination": "^0.2.2",
-    "@synerise/ds-typography": "^0.2.2",
+    "@synerise/ds-dropdown": "^0.2.3",
+    "@synerise/ds-pagination": "^0.2.3",
+    "@synerise/ds-typography": "^0.2.3",
     "antd": "*"
   },
   "peerDependencies": {
