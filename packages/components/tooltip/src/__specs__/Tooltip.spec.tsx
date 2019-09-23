@@ -4,7 +4,6 @@ import Tooltip from '../index';
 
 describe('Tooltip', () => {
     const TOOLTIP_TITLE = 'Test';
-    const SPAN_CONTENT = 'Tooltip will show on mouse enter.';
     const TEST_ID = 'inner-element';
 
     it('should render', () => {
@@ -19,7 +18,7 @@ describe('Tooltip', () => {
         // ARRANGE
         const { getByText, getByTestId } = render(
             <Tooltip title={TOOLTIP_TITLE} mouseEnterDelay={0} mouseLeaveDelay={0}>
-                <span data-testid={TEST_ID}>{SPAN_CONTENT}</span>
+                <span data-testid={TEST_ID}>Tooltip will show on mouse enter.</span>
             </Tooltip>);
 
         //ACT
@@ -34,7 +33,7 @@ describe('Tooltip', () => {
         // ARRANGE
         const { getByText, getByTestId } = render(
             <Tooltip title={TOOLTIP_TITLE} trigger="click">
-                <span data-testid={TEST_ID}>{SPAN_CONTENT}</span>
+                <span data-testid={TEST_ID}>Tooltip will show on mouse enter.</span>
             </Tooltip>);
 
         //ACT
@@ -50,7 +49,7 @@ describe('Tooltip', () => {
         const onVisibleChange = jest.fn();
         const { getByText, getByTestId } = render(
             <Tooltip title={TOOLTIP_TITLE} onVisibleChange={onVisibleChange} mouseEnterDelay={0} mouseLeaveDelay={0}>
-                <span data-testid={TEST_ID}>{SPAN_CONTENT}</span>
+                <span data-testid={TEST_ID}>Tooltip will show on mouse enter.</span>
             </Tooltip>);
 
         //ACT
