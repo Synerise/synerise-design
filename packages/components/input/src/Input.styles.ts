@@ -27,12 +27,12 @@ export const ErrorText = styled.div`
 
 export const Label = styled.label`
   color: ${(props): string => props.theme.palette['grey-800']};
-  font-weight: 600;
+  font-weight: 500;
   display: block;
 `;
 
 export const Counter = styled.div`
-  font-weight: 600;
+  font-weight: 500;
 `;
 
 export const Description = styled.div`
