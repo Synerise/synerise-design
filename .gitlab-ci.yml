@@ -30,7 +30,7 @@ build:
     - echo "_auth = $NPM_TOKEN" >> .npmrc
     - echo "email = $GITLAB_USER_EMAIL" >> .npmrc
     - echo "always-auth = true"  >> .npmrc
-    - (if [ "$CI_COMMIT_REF_NAME" == "master" ]; then npx lerna publish from-package --registry=$NPM_REGISTRY_LOCAL --no-git-tag-version --yes;fi);
+    - (if [ "$CI_COMMIT_REF_NAME" == "master" ]; then npx lerna publish from-package --no-git-tag-version --yes;fi);
 
 docs_build:
   image: node:lts
