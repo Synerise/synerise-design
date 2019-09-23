@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.2.2 (2019-09-23)
+
+
+### Features
+
+* **input:** add input text field ([7099f19](https://github.com/synerise/ds/commit/7099f19))
+* **input:** handle label click ([80480c1](https://github.com/synerise/ds/commit/80480c1))
+
+
+
+
+
 ## 0.2.1 (2019-09-20)
 
 

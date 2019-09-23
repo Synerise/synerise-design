@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.2.2 (2019-09-23)
+
+
+### Features
+
+* **button:** button ([b2a6f5f](https://github.com/synerise/ds/commit/b2a6f5f))
+* **typography:** add styled-components macros ([e62d35f](https://github.com/synerise/ds/commit/e62d35f))
+
+
+
+
+
 ## 0.2.1 (2019-09-20)
 
 
