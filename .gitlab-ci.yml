@@ -27,9 +27,8 @@ build:
     - echo "Tag version $CI_COMMIT_TAG"
     - echo "Commit ref $CI_COMMIT_REF_NAME"
     - echo "Publisher $GITLAB_USER_EMAIL"
-    - echo "_auth = $NPM_TOKEN" >> .npmrc
+    - echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}'>.npmrc
     - echo "email = $GITLAB_USER_EMAIL" >> .npmrc
-    - echo "always-auth = true"  >> .npmrc
     - (if [ "$CI_COMMIT_REF_NAME" == "master" ]; then npx lerna publish from-package --no-git-tag-version --yes;fi);
 
 docs_build:
