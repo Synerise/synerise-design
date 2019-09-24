@@ -9,7 +9,7 @@ export const Header = styled.div`
 `;
 
 export const SelectionHeader = styled(Header)`
-  background: ${props => props.theme.palette['blue-600']};
+  background: ${(props): string => props.theme.palette['blue-600']};
 `;
 
 export const Size = styled.div`

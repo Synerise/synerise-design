@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { render } from '@testing-library/react';
 import { FormattedMessage, injectIntl } from 'react-intl';
-import LocaleProvider from './LocaleProvider';
+import LocaleProvider from '../LocaleProvider';
 
 describe('LocaleProvider', () => {
   const ExampleComponenent: React.FC<any> = () => (
