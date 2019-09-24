@@ -35,7 +35,7 @@ type BreakpointsType = {
 };
 
 export const MEDIA_FROM = Object.keys(breakpoints).reduce((acc, label) => {
-  acc[label] = (...args): object => css`
+  acc[label] = (...args): string => css`
     @media (min-width: ${breakpoints[label].max / 16}em) {
       ${css(...args)};
     }
@@ -45,7 +45,7 @@ export const MEDIA_FROM = Object.keys(breakpoints).reduce((acc, label) => {
 }, {});
 
 export const MEDIA_TO = Object.keys(breakpoints).reduce((acc, label) => {
-  acc[label] = (...args): object => css`
+  acc[label] = (...args): string => css`
     @media (max-width: ${breakpoints[label].max / 16}em) {
       ${css(...args)};
     }
@@ -55,7 +55,7 @@ export const MEDIA_TO = Object.keys(breakpoints).reduce((acc, label) => {
 }, {});
 
 export const MEDIA_ONLY = Object.keys(breakpoints).reduce((acc, label) => {
-  acc[label] = (...args): object => css`
+  acc[label] = (...args): string => css`
     @media (min-width: ${breakpoints[label].min / 16}em) and (max-width: ${breakpoints[label].max / 16}em) {
       ${css(...args)};
     }
