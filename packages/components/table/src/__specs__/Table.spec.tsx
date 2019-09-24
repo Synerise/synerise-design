@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { renderWithProvider } from '@synerise/ds-utils';
+import { fireEvent } from '@testing-library/react';
 import Table from '../index';
 
 const props = {
@@ -81,5 +82,25 @@ describe('Table', () => {
     // ASSERT
     expect(getByText(TITLE)).toBeTruthy();
     expect(getByText(SUB_TITLE)).toBeTruthy();
+  });
+
+  it('should call onSearch', () => {
+    // ARRANGE
+    const onSearch = jest.fn();
+    const TITLE = 'test title';
+    const SUB_TITLE = 'test subtitle';
+    const { container } = renderWithProvider(
+      <Table columns={props.columns} title={TITLE} subTitle={SUB_TITLE} onSearch={onSearch} />
+    );
+    const input = container.querySelector('input');
+
+    // ACT
+
+    fireEvent.change(input, { target: { value: '23' } });
+
+    // ASSERT
+    expect(input).toBeTruthy();
+    expect(onSearch).toBeCalled();
+    expect(input.value).toBe('23');
   });
 });
