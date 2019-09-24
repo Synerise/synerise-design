@@ -8,6 +8,19 @@ export const Header = styled.div`
   justify-content: space-between;
 `;
 
+export const SelectionHeader = styled(Header)`
+  background: ${props => props.theme.palette['blue-600']};
+`;
+
+export const Size = styled.div`
+  ${macro.medium};
+  color: #fff;
+  b {
+    ${macro.h400};
+    color: inherit;
+  }
+`;
+
 export const Title = styled.div`
   ${macro.h400};
 `;

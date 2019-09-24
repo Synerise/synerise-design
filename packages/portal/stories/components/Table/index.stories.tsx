@@ -34,6 +34,7 @@ const columns = [
 ];
 
 stories.add('default', () => {
+  const selection = boolean('show selection', false);
   const pagination = {
     showSizeChanger: boolean('pagination.showSizeChanger', true),
     showQuickJumper: boolean('pagination.showQuickJumper', true),
@@ -43,7 +44,7 @@ stories.add('default', () => {
     selectedRowKeys: [0, 5],
     onChange: action('checkboxChanged'),
   };
-  const onSearch = action('onSearch')
+  const onSearch = action('onSearch');
   return (
     <div style={{ padding: 20, width: '100%', minWidth: '1500px' }}>
       <DSProvider code="pl_PL">
@@ -54,7 +55,7 @@ stories.add('default', () => {
           columns={columns}
           loading={true}
           pagination={pagination}
-          rowSelection={rowSelection}
+          rowSelection={selection ? rowSelection : undefined}
           onSearch={onSearch}
         />
       </DSProvider>

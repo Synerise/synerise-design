@@ -90,17 +90,53 @@ describe('Table', () => {
     const TITLE = 'test title';
     const SUB_TITLE = 'test subtitle';
     const { container } = renderWithProvider(
-      <Table columns={props.columns} title={TITLE} subTitle={SUB_TITLE} onSearch={onSearch} />
+      <Table columns={props.columns} title={TITLE} subTitle={SUB_TITLE} onSearch={onSearch} search="test" />
     );
     const input = container.querySelector('input');
 
     // ACT
-
-    fireEvent.change(input, { target: { value: '23' } });
+    fireEvent.change(input, { target: { value: '23' } }); // this shoundn't work
 
     // ASSERT
     expect(input).toBeTruthy();
     expect(onSearch).toBeCalled();
-    expect(input.value).toBe('23');
+    expect(input.value).toBe('test');
+  });
+
+  it('should selected items header render', () => {
+    // ARRANGE
+    const onChange = jest.fn();
+    const rowSelection = {
+      selectedRowKeys: Array(123).fill(0),
+      onChange,
+    };
+    const TITLE = 'test title';
+    const SUB_TITLE = 'test subtitle';
+    const itemsMenu = (
+      <>
+        <button>example button</button>
+      </>
+    );
+    const { getByText, getAllByRole } = renderWithProvider(
+      <Table
+        columns={props.columns}
+        dataSource={props.dataSource}
+        title={TITLE}
+        subTitle={SUB_TITLE}
+        rowSelection={rowSelection}
+        itemsMenu={itemsMenu}
+      />
+    );
+    // Select second items on list (index 0 selects all)
+    const checkbox = getAllByRole('checkbox')[2];
+    const selectedRecord = props.dataSource[1];
+
+    // ACT
+    checkbox && fireEvent.click(checkbox);
+
+    // ASSERT
+    expect(getByText('123')).toBeTruthy();
+    expect(getByText('example button')).toBeTruthy();
+    expect(onChange).toBeCalledWith([...rowSelection.selectedRowKeys, selectedRecord.key], [selectedRecord]);
   });
 });
