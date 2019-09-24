@@ -41,6 +41,10 @@
       "eslint",
       "git add"
     ],
+    "packages/**/*.{md}": [
+      "prettier-eslint --write",
+      "git add"
+    ],
     "packages/components/*/package.json": [
       "format-package -w",
       "git add"

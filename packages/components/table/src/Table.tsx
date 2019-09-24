@@ -1,5 +1,6 @@
 import * as React from 'react';
 import '@synerise/ds-core/dist/js/style';
+import { Input } from '@synerise/ds-input';
 import Table, { TableProps } from 'antd/lib/table';
 
 import * as S from './Table.styles';
@@ -8,18 +9,19 @@ import './style/index.less';
 interface DSTableProps<T> extends Omit<TableProps<T>, 'title'> {
   title?: string | React.ReactNode;
   subTitle?: string | React.ReactNode;
+  onSearch?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 class DSTable<T> extends React.Component<DSTableProps<T>> {
   renderTitle = (): React.ReactNode => {
-    const { title, subTitle } = this.props;
+    const { title, subTitle, onSearch } = this.props;
     return (
       <S.Header>
         <S.Left>
           {title && <S.Title>{title}</S.Title>}
           {subTitle && <S.SubTitle>{subTitle}</S.SubTitle>}
         </S.Left>
-        <S.Right />
+        <S.Right>{onSearch && <Input onChange={onSearch} />}</S.Right>
       </S.Header>
     );
   };

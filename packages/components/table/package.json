@@ -22,6 +22,7 @@
   "sideEffects": false,
   "types": "dist/index.d.ts",
   "dependencies": {
+    "@synerise/ds-checkbox": "^0.2.3",
     "@synerise/ds-dropdown": "^0.2.3",
     "@synerise/ds-pagination": "^0.2.3",
     "@synerise/ds-typography": "^0.2.3",
