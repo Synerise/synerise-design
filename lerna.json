@@ -8,13 +8,8 @@
       "npmClient": "yarn"
     },
     "version": {
-      "allowBranch": [
-        "master"
-      ],
-      "message": "build: publish",
-      "conventionalCommits": true,
-      "noGitTagVersion": true
+      "allowBranch": ["master"],
+      "message": "build: publish"
     }
   }
-
 }

@@ -17,6 +17,9 @@ stages:
 
 build:
   stage: one
+  except:
+    refs:
+      - tags
   tags:
     - vms
   script:
