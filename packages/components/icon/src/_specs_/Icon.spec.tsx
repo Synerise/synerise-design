@@ -8,6 +8,7 @@ describe('Icon', () => {
     const TEST_TEXT = 'test text';
     const { getByTitle } = render(<Icon title={TEST_TEXT} name={TEST_TEXT} />);
 
+    // ASSERT
     expect(getByTitle(TEST_TEXT)).toBeTruthy();
   });
 });
