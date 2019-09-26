@@ -1,0 +1,32 @@
+{
+  "name": "@synerise/ds-icon",
+  "version": "0.0.2",
+  "description": "Icon UI Component for the Synerise Design System",
+  "license": "ISC",
+  "repository": "Synerise/synerise-design",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "npm run build:js && npm run build:css && npm run defs",
+    "build:css": "node ../../../scripts/style/less.js",
+    "build:js": "babel --root-mode upward src --out-dir dist --extensions '.js,.ts,.tsx'",
+    "build:watch": "npm run build:js -- --watch",
+    "defs": "tsc --declaration --outDir dist/ --emitDeclarationOnly --declarationMap",
+    "icon": "yarn svgr && yarn rename && yarn create-index --recursive ./icon-components -x tsx",
+    "prepublish": "npm run build",
+    "rename": "node ./dist/tools/rename.js",
+    "svgr": "npx @svgr/cli --icon --expand-props none --ext tsx --template ./dist/tools/template.js -d ./icon-components ./icons",
+    "test": "jest",
+    "test:watch": "npm run test -- --watchAll",
+    "types": "tsc --noEmit"
+  },
+  "sideEffects": false,
+  "types": "dist/index.d.ts",
+  "peerDependencies": {
+    "@synerise/ds-core": "*",
+    "react": ">=16.9.0 < 17.0.0"
+  },
+  "devDependencies": {
+    "@svgr/cli": "^4.3.2",
+    "create-index": "^2.4.0"
+  }
+}
