@@ -6,9 +6,8 @@ describe('Icon', () => {
   it('should render', () => {
     // ARRANGE
     const TEST_TEXT = 'test text';
-    const { getByText } = render(<Icon name={TEST_TEXT} />);
+    const { getByTitle } = render(<Icon title={TEST_TEXT} name={TEST_TEXT} />);
 
-    // ASSERT
-    expect(getByText(TEST_TEXT)).toBeTruthy();
+    expect(getByTitle(TEST_TEXT)).toBeTruthy();
   });
 });

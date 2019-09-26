@@ -5,6 +5,7 @@ import * as Icons from '../icon-components';
 type IconProps = {
   color?: string;
   name: string;
+  title?: string;
   size?: string | number;
   type?: string;
   stroke?: boolean;
@@ -29,7 +30,7 @@ const Icon: React.FC<IconProps> = props => {
   const { color, name, size, type, stroke, onClick } = props;
   const nameReplace = name.replace(/-/g, '').toUpperCase();
   return (
-    <S.IconContainer color={color} name={name} size={size} type={type} stroke={stroke} onClick={onClick}>
+    <S.IconContainer color={color} title={name} name={name} size={size} type={type} stroke={stroke} onClick={onClick}>
       {iconMap[nameReplace]}
     </S.IconContainer>
   );
