@@ -29,6 +29,7 @@ const CardSelect = ({
       size={size}
       onClick={handleClick}
       className={className}
+      data-testid="test-id"
     >
       <Aside size={size}>
         {tickVisible && (
