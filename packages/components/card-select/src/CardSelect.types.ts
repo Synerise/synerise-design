@@ -1,10 +1,10 @@
 import { ReactNode } from 'react';
 
 export interface Props {
-  description?: Node;
   icon?: string;
   raised?: boolean;
-  title?: Node;
+  description?: string | ReactNode;
+  title?: string | ReactNode;
   value: boolean;
   onChange?: (value: boolean) => void;
   disabled?: boolean;
