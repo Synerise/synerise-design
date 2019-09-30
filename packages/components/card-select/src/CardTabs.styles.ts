@@ -56,7 +56,11 @@ export const Container = styled.div`
         border: 2px solid ${getVar('blue-600')};
       `}
     `}
-  `} ${is('disabled')`
+  `}
+
+  ${is('disabled')`
+    opacity: 0.65;
+
     ${isNot('raised')`
       ${isNot('value')`
         padding: 1px;
