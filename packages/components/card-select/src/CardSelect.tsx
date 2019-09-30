@@ -39,11 +39,12 @@ const CardSelect = ({
         )}
       </Aside>
       <Main size={size}>
-        {icon ? (
+        {icon && (
           <IconWrapper size={size}>
             {/* <Icon name={this.props.icon} size={this.props.size === 'small' ? 42 : this.props.iconSize || 64} /> */}
           </IconWrapper>
-        ) : null}
+        )}
+
         {title ? <Title size={size}>{title}</Title> : null}
         {description ? <Description size={size}>{description}</Description> : null}
       </Main>
