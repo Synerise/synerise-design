@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { macro } from '@synerise/ds-typography';
 
 export const SwitchWrapper = styled.div`
   display: flex;
@@ -10,7 +11,7 @@ export const Texts = styled.div`
 `;
 
 export const Label = styled.div`
-  color: ${(props): string => props.theme.palette['grey-700']};
+  ${macro.heading};
   cursor: pointer;
   transition: 0.3s ease;
 `;
