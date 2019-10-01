@@ -48,7 +48,7 @@ export const Container = styled.div`
         box-shadow: ${props => props.theme.variable('@box-shadow-base')};
         
         &:hover, &:active {
-          box-shadow: ${props => props.theme.variable('box-shadow-active')};
+          box-shadow: ${props => props.theme.variable('@box-shadow-active')};
         }
       `}
       

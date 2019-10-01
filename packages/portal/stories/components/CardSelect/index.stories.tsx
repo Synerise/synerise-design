@@ -15,7 +15,7 @@ storiesOf('Components|CardSelect', module)
 
     return (
       <DSProvider code="en_GB">
-        <div style={{ background: '#fff', padding: '16px', display: 'flex' }}>
+        <div style={{ background: '#f2f5f6', padding: '16px', display: 'flex' }}>
           <div style={{ marginLeft: 6, marginRight: 6 }}>
             <CardSelect
               icon="ad-simple-push-l"
