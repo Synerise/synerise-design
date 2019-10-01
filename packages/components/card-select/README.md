@@ -27,3 +27,9 @@ Card-Select UI Component
 | disabled                   | disabled state (onChange still fires) | boolean            | -       |
 | customTickVisible          | whether to render a custom tick       | boolean            | -       |
 | customTickVisibleComponent | custom tick component                 | ReactNode          | -       |
+
+### Methods
+
+| Property | Description              | Type                     | Default |
+| -------- | ------------------------ | ------------------------ | ------- |
+| onChange | handler for state change | (state: boolean) => void | -       |
