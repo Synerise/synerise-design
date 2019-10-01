@@ -5,11 +5,11 @@ export interface Props {
   raised?: boolean;
   description?: string | ReactNode;
   title?: string | ReactNode;
-  value: boolean;
+  value?: boolean;
   onChange?: (value: boolean) => void;
   disabled?: boolean;
   tickVisible?: boolean;
-  size: 'small' | 'medium';
+  size?: 'small' | 'medium';
   className?: string;
   iconSize?: number;
   customTickVisible?: boolean;
