@@ -5,7 +5,7 @@ import * as React from 'react';
 import { Props } from './CardSelect.types';
 import { Container, IconWrapper, Title, Description, Main, Aside, Radio } from './CardTabs.styles';
 
-const CardSelect = ({
+const CardSelect: React.FC<Props> = ({
   title,
   description,
   customTickVisible,
