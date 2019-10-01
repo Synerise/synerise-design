@@ -1,6 +1,6 @@
 ---
 id: card-select
-title: Card-Select
+title: Card Select
 ---
 
 Card-Select UI Component
@@ -11,6 +11,19 @@ Card-Select UI Component
 
 ## API
 
-| Property | Description | Type | Default |
-| -------- | ----------- | ---- | ------- |
+### Props
 
+| Property                   | Description                           | Type               | Default |
+| -------------------------- | ------------------------------------- | ------------------ | ------- |
+| className                  | className of container                | string             | -       |
+| size                       | direction type of divider             | enum: small medium | medium  |
+| raised                     | whether component should be raised    | boolean            | -       |
+| icon                       | display given icon                    | string             | -       |
+| iconSize                   | size of the icon                      | number             | -       |
+| title                      | title of the card                     | string             | -       |
+| description                | description of the card               | string             | -       |
+| value                      | whether the card is selected          | boolean            | false   |
+| tickVisible                | whether or not to display a tick      | boolean            | true    |
+| disabled                   | disabled state (onChange still fires) | boolean            | -       |
+| customTickVisible          | whether to render a custom tick       | boolean            | -       |
+| customTickVisibleComponent | custom tick component                 | ReactNode          | -       |
