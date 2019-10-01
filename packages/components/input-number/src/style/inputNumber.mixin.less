@@ -1,0 +1,53 @@
+.ant-input-number-input {
+  height: 32px;
+  padding: 0 12px;
+  border: 0;
+  outline: 0;
+  transition: unset;
+
+  * {
+    transition: unset;
+  }
+}
+
+.ant-input-number-input {
+  &:focus {
+    box-shadow: unset;
+  }
+}
+
+.ant-input-number {
+  border-width: 1px;
+
+  &:hover {
+    border-width: 1px;
+  }
+
+  .ant-input-number-handler-wrap {
+    z-index: 3;
+  }
+
+  .ant-input-number-input {
+    position: relative;
+    top: -2px;
+  }
+
+  &.ant-input-number-focused {
+    border: 2px solid @blue-600 !important;
+
+    .ant-input-number-input {
+      top: 0;
+      box-shadow: unset;
+      height: 28px;
+    }
+  }
+
+  &.error {
+    border: 2px solid @red-600 !important;
+
+    .ant-input-number-input {
+      top: 0;
+      height: 28px;
+    }
+  }
+}
