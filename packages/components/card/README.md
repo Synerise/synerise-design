@@ -16,7 +16,7 @@ Card UI Component
 | Property           | Description                         | Type                | Default         |
 | ------------------ | ----------------------------------- | ------------------- | --------------- |
 | title              | title of the card (in header)       | string              | -               |
-| description        | description of the card (in header) | string              | React.ReactNode | - |
+| description        | description of the card (in header) | string              | React.ReactNode |
 | withHeader         | whether to show the header          | boolean             | -               |
 | icon               | display given icon                  | string              | -               |
 | iconSize           | size of the icon                    | number              | 36              |
