@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const SwitchWrapper = styled.div`
   display: flex;
+  padding: 7px 12px;
 `;
 
 export const Texts = styled.div`

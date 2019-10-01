@@ -1,7 +1,12 @@
 import styled from 'styled-components';
 import BaseAntCheckbox from 'antd/lib/checkbox';
 
-export const AntdCheckbox = styled(BaseAntCheckbox)``;
+export const AntdCheckbox = styled(BaseAntCheckbox)`
+  && {
+    padding: 7px 12px;
+    display: block;
+  }
+`;
 
 export const Description = styled.div`
   color: ${(props): string => props.theme.palette['grey-600']};
