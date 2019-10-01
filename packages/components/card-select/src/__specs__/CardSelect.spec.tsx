@@ -43,4 +43,26 @@ describe('CardSelect', () => {
     // ASSERT
     expect(onChange).toBeCalled();
   });
+
+  it('should onChange be called if disabled', function() {
+    // ARRANGE
+    const onChange = jest.fn();
+    const TEST_ID = 'test-id';
+
+    const { getByTestId } = renderWithProvider(
+      <CardSelect
+        icon="ad-simple-push-l"
+        iconSize={32}
+        title="Disabled Card"
+        disabled={true}
+        onChange={onChange}
+      />
+    );
+
+    // ACT
+    fireEvent.click(getByTestId(TEST_ID));
+
+    // ASSERT
+    expect(onChange).toBeCalled();
+  });
 });
