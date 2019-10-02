@@ -23,6 +23,7 @@ export const Container = styled.div<{
   ${props =>
     props.disabled &&
     css`
+      pointer-events: none;
       opacity: 0.5;
     `};
 
