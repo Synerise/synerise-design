@@ -8,6 +8,7 @@ export interface Props {
   children?: ReactNode;
   style?: CSSProperties;
   withHeader?: boolean;
+  compactHeader?: boolean;
   title?: string;
   description?: ReactNode | string;
   icon?: string;

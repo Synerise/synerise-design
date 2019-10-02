@@ -18,6 +18,7 @@ storiesOf('Components|Card', module)
     const showContent = boolean('Show content', true);
     const withHeaderSide = boolean('With header side children', true);
     const withIcon = boolean('With icon', false);
+    const compactHeader = boolean('Compact header', false);
 
     return (
       <DSProvider code="en_GB">
@@ -31,6 +32,7 @@ storiesOf('Components|Card', module)
               title="Card title"
               description="Description of the card contents"
               icon={withIcon}
+              compactHeader={compactHeader}
               headerSideChildren={withHeaderSide && (
                 <Button type="primary">Button</Button>
               )}

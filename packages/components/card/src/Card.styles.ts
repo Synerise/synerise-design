@@ -48,10 +48,6 @@ export const Header = styled.div<{ isContentful?: boolean }>`
     `};
 `;
 
-export const HeaderContent = styled.div`
-  width: 100%;
-`;
-
 export const HeaderSideChildren = styled.div``;
 
 export const Title = styled.h4`
@@ -65,6 +61,32 @@ export const Description = styled.p`
   margin: 0;
   color: ${props => props.theme.palette['grey-600']};
   font-size: 13px;
+`;
+
+export const HeaderContent = styled.div<{ compact?: boolean }>`
+  width: 100%;
+
+  ${props =>
+    props.compact &&
+    css`
+      display: flex;
+      align-items: flex-start;
+      flex-direction: row;
+
+      ${Title} {
+        height: 32px;
+        line-height: 32px;
+        margin: 0;
+      }
+
+      ${Description} {
+        border-left: 1px solid ${props.theme.palette['grey-200']};
+        height: 32px;
+        line-height: 32px;
+        padding: 0 0 0 24px;
+        margin: 0 0 0 24px;
+      }
+    `}
 `;
 
 export const IconContainer = styled.div`
