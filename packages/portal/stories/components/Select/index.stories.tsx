@@ -1,78 +1,90 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
+import { DSProvider } from '@synerise/ds-core';
 import { action } from '@storybook/addon-actions';
-import { boolean, text, number } from '@storybook/addon-knobs';
+import { boolean, text, select, object } from '@storybook/addon-knobs';
 
 import Select from '@synerise/ds-select';
 
 const { Option, OptGroup } = Select;
-
-const style = { width: 120, margin: '0 20px 20px' };
 
 const children = [];
 for (let i = 10; i < 36; i++) {
   children.push(<Option key={i.toString(36) + i}>{i.toString(36) + i}</Option>);
 }
 
-const handleChange = (value: string) => {
-  console.log(`selected ${value}`);
-};
+const modes = ['default', 'multiple', 'tags'];
+const sizes = ['default', 'large', 'small'];
+const values = ['Option A', 'Option B', 'Option C'];
+const wrapperStyles = { padding: '20px', width: '322px' };
+const dropdownMenuStyles = {};
+const dropdownStyles = {};
 
 storiesOf('Components|Select|Basic', module).add('default', () => {
   const selectProps = () => ({
-    dropdownClassName: text('dropdown classname', 'select'),
-    defaultValue: text('defaultValue', 'Noodles'),
-    placeholder: text('placeholder', 'select'),
-    size: text('size', 'large'),
-    value: text('value', 'Jackie Chan'),
     allowClear: boolean('allowClear', true),
-    open: boolean('open', true),
-    loading: boolean('loading', false),
+    defaultActiveFirstOption: boolean('defaultActiveFirstOption', true),
+    defaultValue: text('defaultValue', 'Option A'),
     disabled: boolean('disabled', false),
-    mode: text('mode', 'default'),
+    dropdownMatchSelectWidth: boolean('dropdownMatchSelectWidth', true),
+    dropdownStyle: object('dropdownStyle', dropdownMenuStyles),
+    dropdownMenuStyle: object('dropdownMenuStyle', dropdownStyles),
+    loading: boolean('loading', false),
+    mode: select('mode', modes, 'default'),
+    onBlur: action('I am blurred'),
     onChange: action('I am changed'),
     onFocus: action('I am focused'),
-    onBlur: action('I am blurred'),
+    placeholder: text('placeholder', 'Please select value...'),
+    size: select<'default' | 'small' | 'large'>('size', sizes as any, 'default'),
+    showArraow: boolean('showArrow', false),
   });
 
   return (
-    <>
-      <Select defaultValue="lucy" style={style} {...selectProps()}>
-        <Option value="jack">Jack</Option>
-        <Option value="lucy">Lucy</Option>
-        <Option value="disabled" disabled>
-          Disabled
-        </Option>
-        <Option value="Yiminghe">yiminghe</Option>
-      </Select>
-    </>
+    <div style={wrapperStyles}>
+      <DSProvider code="en_GB">
+        <Select
+          description={text('description', 'Description')}
+          errorText={text('errorText', 'Error')}
+          label={text('label', 'Label')}
+          {...selectProps()}
+          onChange={action('OnChange')}
+          style={{ width: '100%' }}
+        >
+          {values.map(opt => (
+            <Option value={opt}>{opt}</Option>
+          ))}
+        </Select>
+      </DSProvider>
+    </div>
   );
 });
 
 storiesOf('Components|Select', module).add('multiple mode', () => {
   return (
-    <Select
-      style={{ ...style, width: '70%' }}
-      mode="multiple"
-      placeholder="Please select"
-      defaultValue="a10"
-      onChange={handleChange}
-    >
-      {children}
-    </Select>
+    <div style={wrapperStyles}>
+      <DSProvider code="en_GB">
+        <Select style={{ width: '100%' }} mode="multiple" defaultValue="a10" onChange={action('OnChange')}>
+          {children}
+        </Select>
+      </DSProvider>
+    </div>
   );
 });
 
 storiesOf('Components|Select', module).add('with OptGroup', () => {
   return (
-    <Select defaultValue="lucy" style={style} onChange={handleChange}>
-      <OptGroup label="Manager">
-        <Option value="jack">Jack</Option>
-        <Option value="lucy">Lucy</Option>
-      </OptGroup>
-      <OptGroup label="Engineer">
-        <Option value="Yiminghe">yiminghe</Option>
-      </OptGroup>
-    </Select>
+    <div style={wrapperStyles}>
+      <DSProvider code="en_GB">
+        <Select style={{ width: '100%' }} defaultValue="lucy" onChange={action('OnChange')}>
+          <OptGroup label="Manager">
+            <Option value="jack">Jack</Option>
+            <Option value="lucy">Lucy</Option>
+          </OptGroup>
+          <OptGroup label="Engineer">
+            <Option value="Yiminghe">yiminghe</Option>
+          </OptGroup>
+        </Select>
+      </DSProvider>
+    </div>
   );
 });

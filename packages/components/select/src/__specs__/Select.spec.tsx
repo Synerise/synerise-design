@@ -1,14 +1,13 @@
 import * as React from 'react';
-import { fireEvent, cleanup, render } from '@testing-library/react';
+import { renderWithProvider } from '@synerise/ds-utils';
+import { fireEvent } from '@testing-library/react';
 import Select from '../index';
 
 const { Option } = Select;
 
-afterEach(cleanup);
-
 describe('Select', () => {
   it('should render', () => {
-    const { debug, getByText } = render(
+    const { getByText } = renderWithProvider(
       <Select defaultValue="lucy" disabled>
         <Option value="lucy">Lucy</Option>
       </Select>
@@ -19,7 +18,7 @@ describe('Select', () => {
 
   it('change selected item when unselected is clicked', () => {
     const options = [{ value: 'red', label: 'Red' }, { value: 'green', label: 'Green' }];
-    const { getByTestId, getByText } = render(
+    const { getByTestId, getByText } = renderWithProvider(
       <Select data-testid="select" defaultValue="red">
         {options.map(o => (
           <Option key={o.value} value={o.value}>
@@ -44,7 +43,7 @@ describe('Select', () => {
     for (let i = 10; i < 36; i++) {
       children.push(<Option key={i.toString(36) + i}>{i.toString(36) + i}</Option>);
     }
-    const { getByTestId, getByText } = render(
+    const { getByTestId, getByText } = renderWithProvider(
       <Select
         data-testid="select-multiple"
         mode="multiple"
@@ -64,5 +63,26 @@ describe('Select', () => {
     fireEvent.click(unselectedOption);
     const selectedOptions = select.querySelectorAll('.ant-select-selection__choice');
     expect(selectedOptions.length).toBe(2);
+  });
+
+  it('should show label', () => {
+    const LABEL = 'label';
+    const { getByText } = renderWithProvider(<Select label={LABEL} />);
+
+    expect(getByText(LABEL)).toBeTruthy();
+  });
+
+  it('should show errorText', () => {
+    const ERROR = 'error';
+    const { getByText } = renderWithProvider(<Select errorText={ERROR} />);
+
+    expect(getByText(ERROR)).toBeTruthy();
+  });
+
+  it('should show description', () => {
+    const DESC = 'label';
+    const { getByText } = renderWithProvider(<Select description={DESC} />);
+
+    expect(getByText(DESC)).toBeTruthy();
   });
 });
