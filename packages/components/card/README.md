@@ -18,6 +18,7 @@ Card UI Component
 | title              | title of the card (in header)       | string                   | -               |
 | description        | description of the card (in header) | React.ReactNode | string | -               |
 | withHeader         | whether to show the header          | boolean                  | -               |
+| compactHeader      | display compact header              | boolean                  | -               |
 | icon               | display given icon                  | string                   | -               |
 | iconSize           | size of the icon                    | number                   | 36              |
 | className          | className of container              | string                   | -               |
