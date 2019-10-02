@@ -1,6 +1,5 @@
 import * as React from 'react';
 import * as S from './Icon.styles';
-import * as Icons from '../icon-components';
 
 type IconProps = {
   color?: string;
@@ -12,26 +11,27 @@ type IconProps = {
   onClick?: EventListener;
 };
 
-interface MapIconComponents<T> {
-  [key: string]: T;
-}
+const camelCase = (string): string => {
+  const iconName = string.replace(/(?:(^.)|([-\s]+.))/g, (match: string) => {
+    return match.charAt(match.length - 1).toUpperCase();
+  });
 
-const mapIconComponents = (item): MapIconComponents<React.FC> => {
-  return Object.entries(item).reduce((obj, i: [string, React.FC]) => {
-    const reducedObject = obj;
-    reducedObject[i[0].toUpperCase()] = React.createElement(i[1]);
-    return reducedObject;
-  }, {});
+  return iconName;
 };
 
-const iconMap = mapIconComponents(Icons);
+const importSVG = (props): React.FC => {
+  // eslint-disable-next-line
+  return require(`../icon-components/${props}`).default;
+};
 
 const Icon: React.FC<IconProps> = props => {
   const { color, name, size, type, stroke, onClick } = props;
-  const nameReplace = name.replace(/-/g, '').toUpperCase();
+  const nameReplace = camelCase(name);
+  const IconComponent = importSVG(nameReplace);
+
   return (
     <S.IconContainer color={color} title={name} name={name} size={size} type={type} stroke={stroke} onClick={onClick}>
-      {iconMap[nameReplace]}
+      <IconComponent />
     </S.IconContainer>
   );
 };
