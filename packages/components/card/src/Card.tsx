@@ -13,6 +13,7 @@ const Card = ({
   withHeader,
   title,
   description,
+  compactHeader,
   icon,
   iconSize,
   headerSideChildren,
@@ -23,7 +24,7 @@ const Card = ({
         <S.Header isContentful={!!children}>
           {icon && <S.IconContainer>{/* <Icon /> */}</S.IconContainer>}
 
-          <S.HeaderContent>
+          <S.HeaderContent compact={compactHeader}>
             {title && <S.Title>{title}</S.Title>}
             {description && <S.Description>{description}</S.Description>}
           </S.HeaderContent>
