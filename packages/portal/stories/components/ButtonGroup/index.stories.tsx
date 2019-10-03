@@ -1,5 +1,4 @@
 import * as React from 'react';
-import range from 'lodash/range';
 
 import { DSProvider } from '@synerise/ds-core';
 import Button from '@synerise/ds-button';
@@ -10,7 +9,6 @@ import { boolean } from '@storybook/addon-knobs';
 
 storiesOf('Components|ButtonGroup', module)
   .add('default', () => {
-    const [store, setStore] = React.useState<{[k: number]: boolean}>({});
     const withTitle = boolean('With title', true);
     const withDescription = boolean('With description', true);
     
