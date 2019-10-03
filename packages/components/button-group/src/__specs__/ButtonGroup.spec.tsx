@@ -14,7 +14,6 @@ describe('ButtonGroup', () => {
         <Button onClick={onClick}>Button Text</Button>
       </ButtonGroup>
     );
-    // ACT
 
     // ASSERT
     expect(getByText('Button Text')).toBeTruthy();
@@ -33,8 +32,6 @@ describe('ButtonGroup', () => {
         <Button onClick={onClick}>Button Text</Button>
       </ButtonGroup>
     );
-
-    // ACT
 
     // ASSERT
     expect(getByText(TITLE)).toBeTruthy();
