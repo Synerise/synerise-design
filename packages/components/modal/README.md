@@ -33,7 +33,7 @@ Modal UI Component
 | cancelButtonProps | The cancel button props                                                                                    | [ButtonProps](/components/button)                     | -                     |
 | style             | Style of floating layer, typically used at least for adjusting the position.                               | object                                                | -                     |
 | title             | The modal dialog's title                                                                                   | string\ReactNode                                      | -                     |
-| description       | The modal dialog's description                                                                             | React.ReactNode                                       | -                     |
+| description       | The modal dialog's description                                                                             | string                                                | -                     |
 | visible           | Whether the modal dialog is visible or not                                                                 | boolean                                               | false                 |
 | width             | Width of the modal dialog                                                                                  | string\number                                         | 520                   |
 | wrapClassName     | The class name of the container of the modal dialog                                                        | string                                                | -                     |
