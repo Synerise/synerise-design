@@ -7,9 +7,9 @@ import * as S from './ButtonGroup.styles';
 export default ({ children, title, description }: Props) => {
   return (
     <S.Container>
-      <h4>{title}</h4>
+      {title && <S.Title>{title}</S.Title>}
       <Button.Group>{children}</Button.Group>
-      <p>{description}</p>
+      {description && <S.Description>{description}</S.Description>}
     </S.Container>
   );
 };
