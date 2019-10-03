@@ -4,6 +4,7 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { boolean, text, number } from '@storybook/addon-knobs';
 import { DSProvider } from '@synerise/ds-core';
+import Button from '@synerise/ds-button';
 import Modal from '@synerise/ds-modal';
 
 const props = () => ({
@@ -21,13 +22,22 @@ const props = () => ({
 
   onOk: action('onOk CLICK'),
   onCancel: action('onCancel CLICK'),
+  showHeaderAction: boolean('Show example of an additional header button', false),
 });
 
 storiesOf('Components|Modal', module)
   .add('default', () => {
     return (
       <DSProvider code="en_GB">
-        <Modal {...props()}>
+        <Modal
+          {...props()}
+          headerActions={
+            props().showHeaderAction &&
+              <Button type="ghost" onClick={() => window.alert('You just clicked on an additional header button')}>
+                Additional Button
+              </Button>
+          }
+        >
           Some contents...
         </Modal>
       </DSProvider>

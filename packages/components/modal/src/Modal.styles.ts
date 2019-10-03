@@ -33,4 +33,5 @@ export const Description = styled(Typography.Text)`
 export const ActionButtons = styled.div`
   display: flex;
   flex-direction: row;
+  align-items: center;
 `;
