@@ -11,6 +11,9 @@ Button-Group UI Component
 
 ## API
 
-| Property | Description | Type | Default |
-| -------- | ----------- | ---- | ------- |
+| Property     | Description.         | Type             | Default |
+| ------------ | -------------------- | ---------------- | ------- |
+| title        | title of group       | string           | -       |
+| description  | description of group | string           | -       |
+| children     | buttons within group | React.ReactNode  | -       |
 
