@@ -15,18 +15,20 @@ interface Props extends ModalProps {
 }
 
 const ModalProxy = (props: Props) => {
+  const { closable, headerActions, title, description } = props;
+
   return (
     <Modal
       {...props}
       closable={false}
       title={
         <>
-          {props.title && (
+          {title && (
             <S.TitleContainer>
-              <S.Title>{props.title}</S.Title>
+              <S.Title>{title}</S.Title>
               <S.ActionButtons>
-                {props.headerActions}
-                {props.closable && (
+                {headerActions}
+                {closable && (
                   <Button className="close-modal" type="ghost">
                     <Icon type="close" />
                   </Button>
@@ -35,7 +37,7 @@ const ModalProxy = (props: Props) => {
             </S.TitleContainer>
           )}
 
-          {props.description && <S.Description>{props.description}</S.Description>}
+          {description && <S.Description>{description}</S.Description>}
         </>
       }
     />
