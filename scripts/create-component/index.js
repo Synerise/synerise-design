@@ -2,21 +2,29 @@
 
 const fs = require('fs');
 const path = require('path');
+const chalk = require('chalk');
 
 const inquirer = require('inquirer');
 const copyTemplateDir = require('copy-template-dir');
 
 const { getPackages, toPackageName } = require('../utils/packages.js');
+const { createComponent } = require('../utils/templates.js');
 const { smush, pascalize } = require('../utils/string.js');
 
 const packagesDir = path.resolve(__dirname, '..', '..', 'packages', 'components');
+const storiesDir = path.resolve(__dirname, '..', '..', 'packages', 'portal', 'stories', 'components');
+const storiesTemplateDir = path.resolve(__dirname, 'stories-template');
 const templateDir = path.resolve(__dirname, 'package-template');
+
 
 const copyPackageFromTemplateDir = (source, dest, vars) => {
   return new Promise((resolve, reject) => {
     copyTemplateDir(source, dest, vars, (err, createdFiles) => {
       if (err) reject(err);
-      else resolve(createdFiles);
+      else {
+        resolve(createdFiles)
+        createComponent(vars)
+      };
     });
   });
 };
@@ -59,6 +67,7 @@ async function main() {
   const packageName = toPackageName(answers.name);
 
   const folderPath = path.resolve(packagesDir, folderName);
+  const storiesPath = path.resolve(storiesDir, componentName);
 
   const vars = {
     ...answers,
@@ -67,6 +76,7 @@ async function main() {
     folderName,
     folderPath,
     packageName,
+    storiesPath
   };
 
   if (fs.existsSync(folderPath)) {
@@ -74,6 +84,7 @@ async function main() {
   }
 
   await copyPackageFromTemplateDir(templateDir, folderPath, vars);
+  await copyPackageFromTemplateDir(storiesTemplateDir, storiesPath, vars);
 
   return vars;
 }
@@ -81,6 +92,6 @@ async function main() {
 main()
   .then(vars => {
     console.info(`\n${vars.componentName} created at: ${vars.folderPath}\n`);
-    console.info('Next run: yarn bootstrap\n');
+    console.info(`Next run: ${chalk.magenta('yarn bootstrap')}\n`);
   })
   .catch(console.error);
