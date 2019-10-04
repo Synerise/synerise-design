@@ -30,14 +30,14 @@ const sizeMap = {
 };
 
 const ModalProxy = (props: Props) => {
-  const { closable, headerActions, title, description, afterClose, size } = props;
+  const { closable, headerActions, title, description, size, ...antModalProps } = props;
 
-  const onClose = () => afterClose && afterClose();
+  const onClose = () => antModalProps.afterClose && antModalProps.afterClose();
 
   return (
     <Modal
       // eslint-disable-next-line react/jsx-props-no-spreading
-      {...props}
+      {...antModalProps}
       width={!size ? undefined : sizeMap[size]}
       closable={false}
       title={
