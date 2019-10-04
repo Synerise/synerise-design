@@ -72,7 +72,10 @@ storiesOf('Components|Tags', module)
             <Tag name="Small Square" shape={TagShape.SMALL_SQUARE} />
             <Tag name="Small Round" shape={TagShape.SMALL_ROUND} />
             
-            <Tag name="Status" shape={TagShape.STATUS} />
+            <Tag name="Status Neutral" shape={TagShape.STATUS_NEUTRAL} />
+            <Tag name="Status Success" shape={TagShape.STATUS_SUCCESS} />
+            <Tag name="Status Warning" shape={TagShape.STATUS_WARNING} />
+            <Tag name="Status Error" shape={TagShape.STATUS_ERROR} />
           </div>
         </div>
       </DSProvider>
