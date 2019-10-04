@@ -22,7 +22,8 @@ const props = () => ({
 
   onOk: action('onOk CLICK'),
   onCancel: action('onCancel CLICK'),
-  showHeaderAction: boolean('Show example of an additional header button', false),
+  showHeaderAction: boolean('Show example of an additional header button', true),
+  renderCustomFooter: boolean('Render custom footer', true),
 });
 
 storiesOf('Components|Modal', module)
@@ -31,6 +32,26 @@ storiesOf('Components|Modal', module)
       <DSProvider code="en_GB">
         <Modal
           {...props()}
+          footer={
+            !props().renderCustomFooter ? undefined :
+              <div style={{ display: 'flex', flexWrap: 'nowrap' }}>
+                <div style={{ width: '100%', display: 'flex' }}>
+                  <Button type="secondary">
+                    Settings
+                  </Button>
+                </div>
+
+                <div style={{ display: 'flex' }}>
+                  <Button type="secondary">
+                    Cancel
+                  </Button>
+
+                  <Button type="primary">
+                    Apply
+                  </Button>
+                </div>
+              </div>
+          }
           headerActions={
             props().showHeaderAction &&
               <Button type="ghost" onClick={() => window.alert('You just clicked on an additional header button')}>
