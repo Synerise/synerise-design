@@ -20,7 +20,7 @@ const pascalize = str => {
 
 const titleize = str => {
   validateIsString(str)
-  return str.toLowerCase().replace(/(?:^|\s|-)\S/g, x => x.toUpperCase())
+  return str.toLowerCase().replace(/(?:^|\s|-)\S/g, x => x.toUpperCase()).replace('-','')
 }
 
 module.exports = {
