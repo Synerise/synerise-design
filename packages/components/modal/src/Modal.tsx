@@ -21,6 +21,7 @@ const ModalProxy = (props: Props) => {
 
   return (
     <Modal
+      // eslint-disable-next-line react/jsx-props-no-spreading
       {...props}
       closable={false}
       title={
