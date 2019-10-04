@@ -2,10 +2,18 @@ import * as React from 'react';
 
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { boolean, text, number } from '@storybook/addon-knobs';
+import { boolean, text, select, number } from '@storybook/addon-knobs';
 import { DSProvider } from '@synerise/ds-core';
 import Button from '@synerise/ds-button';
 import Modal from '@synerise/ds-modal';
+
+const sizes = {
+  Auto: null,
+  Small: 'small',
+  Medium: 'medium',
+  Large: 'large',
+  'Extra Large': 'extra_large'
+};
 
 const props = () => ({
   wrapClassName: 'custom-class',
@@ -24,6 +32,7 @@ const props = () => ({
   onCancel: action('onCancel CLICK'),
   showHeaderAction: boolean('Show example of an additional header button', true),
   renderCustomFooter: boolean('Render custom footer', true),
+  size: select('Size', sizes, null),
 });
 
 storiesOf('Components|Modal', module)

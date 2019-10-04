@@ -9,13 +9,28 @@ import '@synerise/ds-core/dist/js/style';
 import './style/index.less';
 import * as S from './Modal.styles';
 
+enum ModalSize {
+  SMALL = 'small',
+  MEDIUM = 'medium',
+  LARGE = 'large',
+  EXTRA_LARGE = 'extra_large',
+}
+
 interface Props extends ModalProps {
   description?: string;
   headerActions?: React.ReactNode;
+  size?: ModalSize;
 }
 
+const sizeMap = {
+  [ModalSize.SMALL]: 520,
+  [ModalSize.MEDIUM]: 792,
+  [ModalSize.LARGE]: 1044,
+  [ModalSize.EXTRA_LARGE]: 1280,
+};
+
 const ModalProxy = (props: Props) => {
-  const { closable, headerActions, title, description, afterClose } = props;
+  const { closable, headerActions, title, description, afterClose, size } = props;
 
   const onClose = () => afterClose && afterClose();
 
@@ -23,6 +38,7 @@ const ModalProxy = (props: Props) => {
     <Modal
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...props}
+      width={!size ? undefined : sizeMap[size]}
       closable={false}
       title={
         <>
