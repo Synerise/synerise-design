@@ -34,7 +34,7 @@ Modal UI Component
 | style             | Style of floating layer, typically used at least for adjusting the position.                               | object                                                | -                     |
 | title             | The modal dialog's title                                                                                   | string\ReactNode                                      | -                     |
 | description       | The modal dialog's description                                                                             | string                                                | -                     |
-| size              | The modal size                                                                                             | 'small'                                               | 'medium'              | 'large' | 'extra_large'. | - |
+| size              | The modal size                                                                                             | 'small' | 'medium' | 'large' | 'extra_large'.         | -                     |
 | visible           | Whether the modal dialog is visible or not                                                                 | boolean                                               | false                 |
 | width             | Width of the modal dialog                                                                                  | string\number                                         | 520                   |
 | wrapClassName     | The class name of the container of the modal dialog                                                        | string                                                | -                     |
