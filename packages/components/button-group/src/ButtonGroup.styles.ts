@@ -8,5 +8,5 @@ export const Title = styled.h4`
 
 export const Description = styled.p`
   margin: 8px 0 0;
-  color: ${props => props.theme.palette['grey-500']};
+  color: ${(props): string => props.theme.palette['grey-500']};
 `;

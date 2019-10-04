@@ -22,7 +22,7 @@ export const Description = styled(Typography.Text)`
 
   background-image: linear-gradient(
     to right,
-    ${props => props.theme.palette['grey-300']} 33%,
+    ${(props): string => props.theme.palette['grey-300']} 33%,
     rgba(255, 255, 255, 0) 0%
   );
   background-repeat: repeat-x;
