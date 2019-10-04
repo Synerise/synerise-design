@@ -55,7 +55,7 @@ storiesOf('Components|Modal', module)
                     Cancel
                   </Button>
 
-                  <Button type="primary">
+                  <Button type="primary" loading={props().confirmLoading}>
                     Apply
                   </Button>
                 </div>
