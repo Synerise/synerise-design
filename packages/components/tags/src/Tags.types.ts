@@ -11,4 +11,5 @@ export interface Props {
   addable?: boolean;
   removable?: boolean;
   creatable?: boolean;
+  disabled?: boolean;
 }
