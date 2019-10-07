@@ -39,7 +39,6 @@ storiesOf('Components|Tags', module)
       id: 2,
       name: 'Polonez',
       color: '#76dc25',
-      disabled: disableSingleTag,
     }, {
       id: 3,
       name: 'Mazda',
@@ -67,7 +66,7 @@ storiesOf('Components|Tags', module)
     }];
 
     const selectedTags = allTags.slice(0, 5);
-    const [selected, setSelected] = React.useState<Array<Object>>(selectedTags);
+    const [selected, setSelected] = React.useState<Array<any>>(selectedTags);
 
     return (
       <DSProvider code="en_GB">
@@ -77,7 +76,16 @@ storiesOf('Components|Tags', module)
             <Tags
               data={allTags}
               tagShape={shape}
-              selected={selected}
+              selected={selected.map(t => {
+                if (t.name !== 'Polonez') {
+                  return t;
+                }
+
+                return {
+                  ...t,
+                  disabled: disableSingleTag,
+                };
+              })}
               disabled={disabled}
               addable={addable}
               creatable={creatable}
