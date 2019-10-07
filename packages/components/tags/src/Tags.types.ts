@@ -8,4 +8,7 @@ export interface Props {
   tagShape?: TagShape;
   className?: string;
   style?: CSSProperties;
+  addable?: boolean;
+  removable?: boolean;
+  creatable?: boolean;
 }

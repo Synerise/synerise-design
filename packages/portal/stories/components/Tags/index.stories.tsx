@@ -60,6 +60,9 @@ storiesOf('Components|Tags', module)
               data={allTags}
               tagShape={shape}
               selected={[]}
+              addable={true}
+              creatable={true}
+              removable={true}
             />
           </div>
 
