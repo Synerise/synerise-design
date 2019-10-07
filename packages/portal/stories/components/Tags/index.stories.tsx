@@ -24,31 +24,40 @@ storiesOf('Components|Tags', module)
 
     const allTags = [{
       key: 0,
-      name: 'Aston Martin'
+      name: 'Aston Martin',
+      color: '#ffc300',
     }, {
       key: 1,
-      name: 'Ferrari'
+      name: 'Ferrari',
+      color: '#13c2bc',
     }, {
       key: 2,
-      name: 'Polonez'
+      name: 'Polonez',
+      color: '#76dc25',
     }, {
       key: 3,
-      name: 'Mazda'
+      name: 'Mazda',
+      color: '#6d2dd3',
     }, {
       key: 4,
-      name: 'Honda'
+      name: 'Honda',
+      color: '#ff4d67',
     }, {
       key: 5,
-      name: 'Pagani'
+      name: 'Pagani',
+      color: '#fd9f05',
     }, {
       key: 6,
-      name: 'BMW'
+      name: 'BMW',
+      color: '#2b71cb',
     }, {
       key: 7,
-      name: 'Porsche'
+      name: 'Porsche',
+      color: '#61b71e',
     }, {
       key: 8,
-      name: 'Lancia'
+      name: 'Lancia',
+      color: '#e62425',
     }];
 
     return (

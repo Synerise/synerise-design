@@ -18,16 +18,24 @@ export enum TagShape {
 const Tag: React.FC<Props> = ({ name, className, removable, image, shape, color, textColor, onRemove }: Props) => {
   const isDefaultType = [TagShape.DEFAULT_ROUND, TagShape.DEFAULT_SQUARE].includes(shape);
   const isDefaultRound = shape === TagShape.DEFAULT_ROUND;
+  const isStatusType = [
+    TagShape.STATUS_ERROR,
+    TagShape.STATUS_NEUTRAL,
+    TagShape.STATUS_SUCCESS,
+    TagShape.STATUS_WARNING,
+  ].includes(shape);
 
   return (
     <S.Tag className={className} shape={shape} color={color} textColor={textColor} removable={removable}>
-      {image && isDefaultType && <img src={image} alt="" />}
-      <span>{name}</span>
-      {removable && isDefaultRound && (
-        <button type="button" onClick={onRemove}>
-          x
-        </button>
-      )}
+      <div className="content">
+        {image && isDefaultType && <img src={image} alt="" />}
+        <span>{name}</span>
+        {removable && isDefaultRound && (
+          <button type="button" onClick={onRemove}>
+            <div>x</div>
+          </button>
+        )}
+      </div>
     </S.Tag>
   );
 };

@@ -14,7 +14,6 @@ const insertShapeStyles = (props): string => {
   switch (props.shape) {
     case TagShape.SMALL_SQUARE:
       return css`
-        background-color: ${props.color || props.theme.palette['grey-500']};
         color: ${props.textColor || '#fff'};
         border-radius: 3px;
         font-size: 10px;
@@ -27,7 +26,6 @@ const insertShapeStyles = (props): string => {
 
     case TagShape.SMALL_ROUND:
       return css`
-        background-color: ${props.color || props.theme.palette['grey-500']};
         color: ${props.textColor || '#fff'};
         border-radius: 8px;
         font-size: 10px;
@@ -39,7 +37,6 @@ const insertShapeStyles = (props): string => {
 
     case TagShape.DEFAULT_ROUND:
       return css`
-        background-color: ${props.color || props.theme.palette['grey-500']};
         color: ${props.textColor || '#fff'};
         border-radius: 12px;
         font-size: 13px;
@@ -55,7 +52,6 @@ const insertShapeStyles = (props): string => {
 
     case TagShape.DEFAULT_SQUARE:
       return css`
-        background-color: ${props.color || props.theme.palette['grey-500']};
         color: ${props.textColor || '#fff'};
         border-radius: 3px;
         font-size: 13px;
@@ -66,7 +62,6 @@ const insertShapeStyles = (props): string => {
 
     case TagShape.SINGLE_CHARACTER_SQUARE:
       return css`
-        background-color: ${props.color || props.theme.palette['grey-500']};
         color: ${props.textColor || '#fff'};
         border-radius: 12px;
         font-size: 13px;
@@ -78,7 +73,6 @@ const insertShapeStyles = (props): string => {
 
     case TagShape.SINGLE_CHARACTER_ROUND:
       return css`
-        background-color: ${props.color || props.theme.palette['grey-500']};
         color: ${props.textColor || '#fff'};
         border-radius: 3px;
         font-size: 13px;
@@ -122,11 +116,32 @@ const insertShapeStyles = (props): string => {
 };
 
 export const Tag = styled.div<{ shape: string; color: string; textColor: string; removable: boolean }>`
+  position: relative;
   margin: 4px;
   display: inline-flex;
+  align-items: center;
   font-weight: 500;
+  overflow: hidden;
 
   ${insertShapeStyles}
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: ${(props): string => props.color || props.theme.palette['grey-500']};
+  }
+
+  &:hover:before {
+    filter: brightness(90%);
+  }
+
+  div.content {
+    position: relative;
+  }
 
   img {
     width: 18px;
@@ -141,17 +156,40 @@ export const Tag = styled.div<{ shape: string; color: string; textColor: string;
   }
 
   button {
-    background-color: ${(props): string => props.theme.palette['yellow-800']};
     color: #fff;
     height: 18px;
     width: 18px;
-    line-height: 17px;
     border-radius: 10px;
     padding: 0;
     border: none;
     outline: none;
     margin: 3px 3px 3px 7px;
     text-align: center;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+
+    > div {
+      position: relative;
+      line-height: 16px;
+      width: 100%;
+      height: 100%;
+    }
+
+    &:before {
+      background-color: ${(props): string => props.color || props.theme.palette['grey-500']};
+      filter: brightness(70%);
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    &:hover:before {
+      filter: brightness(60%);
+    }
   }
 
   &:last-of-type {
