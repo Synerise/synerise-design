@@ -16,6 +16,7 @@ export enum TagShape {
 }
 
 const Tag: React.FC<Props> = ({
+  id,
   name,
   className,
   disabled,
@@ -36,6 +37,8 @@ const Tag: React.FC<Props> = ({
   ].includes(shape);
   const isActionable = !isStatusShape && !disabled && removable;
 
+  const onRemoveCall = (): void => onRemove && onRemove(id);
+
   return (
     <S.Tag
       className={className}
@@ -51,7 +54,7 @@ const Tag: React.FC<Props> = ({
         {image && isDefaultType && <img src={image} alt="" />}
         <span>{name}</span>
         {removable && isDefaultRound && (
-          <button type="button" onClick={onRemove}>
+          <button type="button" onClick={onRemoveCall}>
             <div>x</div>
           </button>
         )}

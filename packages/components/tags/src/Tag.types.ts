@@ -1,7 +1,7 @@
 import { TagShape } from './Tag';
 
 export interface Props {
-  key?: string | number;
+  id?: string | number;
   name?: string;
   textColor?: string;
   color?: string;
@@ -10,5 +10,5 @@ export interface Props {
   removable?: boolean;
   className?: string;
   disabled?: boolean;
-  onRemove?: () => void;
+  onRemove?: (tag: string | number) => void;
 }

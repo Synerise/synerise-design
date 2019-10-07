@@ -12,4 +12,5 @@ export interface Props {
   removable?: boolean;
   creatable?: boolean;
   disabled?: boolean;
+  onSelectedChange?: (tags: Array<TagProps>) => void;
 }
