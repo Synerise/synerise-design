@@ -46,7 +46,19 @@ const insertShapeStyles = (props): string => {
         padding: ${props.removable ? '0' : '0 12px'};
 
         span {
-          padding: ${props.removable ? '0 0 0 12px' : '0'};
+          padding: ${props.removable ? '0 12px' : '0'};
+        }
+
+        &:hover {
+          span {
+            padding: ${props.removable ? '0 7px 0 12px' : '0'};
+            width: calc(100% - 16px);
+          }
+
+          button {
+            margin-left: -16px;
+            left: 10px;
+          }
         }
       `;
 
@@ -119,7 +131,6 @@ export const Tag = styled.div<{ shape: string; color: string; textColor: string;
   position: relative;
   margin: 4px;
   display: inline-flex;
-  align-items: center;
   font-weight: 500;
   overflow: hidden;
 
@@ -141,6 +152,10 @@ export const Tag = styled.div<{ shape: string; color: string; textColor: string;
 
   div.content {
     position: relative;
+    display: flex;
+    align-items: center;
+    flex-grow: 0;
+    flex-shrink: 1;
   }
 
   img {
@@ -150,6 +165,7 @@ export const Tag = styled.div<{ shape: string; color: string; textColor: string;
   }
 
   span {
+    display: inline-block;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -163,11 +179,12 @@ export const Tag = styled.div<{ shape: string; color: string; textColor: string;
     padding: 0;
     border: none;
     outline: none;
-    margin: 3px 3px 3px 7px;
+    margin: 3px 3px 3px 0;
     text-align: center;
     cursor: pointer;
     position: relative;
     overflow: hidden;
+    display: none;
 
     > div {
       position: relative;
@@ -189,6 +206,12 @@ export const Tag = styled.div<{ shape: string; color: string; textColor: string;
 
     &:hover:before {
       filter: brightness(60%);
+    }
+  }
+
+  &:hover {
+    button {
+      display: inline-block;
     }
   }
 
