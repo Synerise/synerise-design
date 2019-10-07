@@ -117,11 +117,17 @@ const insertShapeStyles = (props): string => {
 };
 
 export const Tag = styled.div<{ shape: string; color: string; textColor: string }>`
-  margin: 4px 8px 4px 0;
+  margin: 4px;
   display: inline-flex;
   font-weight: 500;
 
   ${insertShapeStyles}
+
+  img {
+    width: 18px;
+    height: 18px;
+    margin: 3px 4px 0 0;
+  }
 
   &:last-of-type {
     margin-right: 0;

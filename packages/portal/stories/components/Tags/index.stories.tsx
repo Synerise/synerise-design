@@ -7,6 +7,8 @@ import Tags, { Tag, TagShape } from '@synerise/ds-Tags';
 
 storiesOf('Components|Tags', module)
   .add('default', () => {
+    const IMAGE_URL = 'https://cdn4.iconfinder.com/data/icons/social-messaging-ui-color-shapes-2-free/128/social-reddit-square2-512.png';
+
     const shapes = {
       'Default Round': TagShape.DEFAULT_ROUND,
       'Default Square': TagShape.DEFAULT_SQUARE,
@@ -63,19 +65,24 @@ storiesOf('Components|Tags', module)
 
           <div style={{padding: 24}}>
             <h4>Tag shapes</h4>
-            <Tag name="Default Square" shape={TagShape.DEFAULT_SQUARE} />
-            <Tag name="Default Round" shape={TagShape.DEFAULT_ROUND} />
-            
-            <Tag name="A" shape={TagShape.SINGLE_CHARACTER_SQUARE} />
-            <Tag name="A" shape={TagShape.SINGLE_CHARACTER_ROUND} />
+            <div style={{display: 'flex', alignItems: 'flex-start', flexWrap: 'wrap'}}>
+              <Tag name="Default Square" shape={TagShape.DEFAULT_SQUARE} />
+              <Tag name="Default Round" shape={TagShape.DEFAULT_ROUND} />
 
-            <Tag name="Small Square" shape={TagShape.SMALL_SQUARE} />
-            <Tag name="Small Round" shape={TagShape.SMALL_ROUND} />
-            
-            <Tag name="Status Neutral" shape={TagShape.STATUS_NEUTRAL} />
-            <Tag name="Status Success" shape={TagShape.STATUS_SUCCESS} />
-            <Tag name="Status Warning" shape={TagShape.STATUS_WARNING} />
-            <Tag name="Status Error" shape={TagShape.STATUS_ERROR} />
+              <Tag name="Default Square w/ image" shape={TagShape.DEFAULT_SQUARE} image={IMAGE_URL} />
+              <Tag name="Default Round w/ image" shape={TagShape.DEFAULT_ROUND} image={IMAGE_URL} />
+              
+              <Tag name="A" shape={TagShape.SINGLE_CHARACTER_SQUARE} />
+              <Tag name="A" shape={TagShape.SINGLE_CHARACTER_ROUND} />
+
+              <Tag name="Small Square" shape={TagShape.SMALL_SQUARE} />
+              <Tag name="Small Round" shape={TagShape.SMALL_ROUND} />
+              
+              <Tag name="Status Neutral" shape={TagShape.STATUS_NEUTRAL} />
+              <Tag name="Status Success" shape={TagShape.STATUS_SUCCESS} />
+              <Tag name="Status Warning" shape={TagShape.STATUS_WARNING} />
+              <Tag name="Status Error" shape={TagShape.STATUS_ERROR} />
+            </div>
           </div>
         </div>
       </DSProvider>
