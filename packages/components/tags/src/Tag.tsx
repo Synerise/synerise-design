@@ -35,7 +35,8 @@ const Tag: React.FC<Props> = ({
     TagShape.STATUS_SUCCESS,
     TagShape.STATUS_WARNING,
   ].includes(shape);
-  const isActionable = !isStatusShape && !disabled && removable;
+  const isRemovable = removable && isDefaultRound;
+  const isActionable = !disabled && isRemovable;
 
   const onRemoveCall = (): void => onRemove && onRemove(id);
 
