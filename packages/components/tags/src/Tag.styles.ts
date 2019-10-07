@@ -49,17 +49,21 @@ const insertShapeStyles = (props): string => {
           padding: ${props.removable ? '0 12px' : '0'};
         }
 
-        &:hover {
-          span {
-            padding: ${props.removable ? '0 7px 0 12px' : '0'};
-            width: calc(100% - 16px);
-          }
+        ${!props.isStatusShape &&
+          props.removable &&
+          css`
+            &:hover {
+              span {
+                padding: ${props.removable ? '0 7px 0 12px' : '0'};
+                width: calc(100% - 16px);
+              }
 
-          button {
-            margin-left: -16px;
-            left: 10px;
-          }
-        }
+              button {
+                margin-left: -16px;
+                left: 10px;
+              }
+            }
+          `}
       `;
 
     case TagShape.DEFAULT_SQUARE:
@@ -127,7 +131,13 @@ const insertShapeStyles = (props): string => {
   }
 };
 
-export const Tag = styled.div<{ shape: string; color: string; textColor: string; removable: boolean }>`
+export const Tag = styled.div<{
+  isStatusShape: boolean;
+  shape: string;
+  color: string;
+  textColor: string;
+  removable: boolean;
+}>`
   position: relative;
   margin: 4px;
   display: inline-flex;
@@ -136,19 +146,23 @@ export const Tag = styled.div<{ shape: string; color: string; textColor: string;
 
   ${insertShapeStyles}
 
-  &:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: ${(props): string => props.color || props.theme.palette['grey-500']};
-  }
+  ${(props): string =>
+    !props.isStatusShape &&
+    css`
+      &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: ${props.color || props.theme.palette['grey-500']};
+      }
 
-  &:hover:before {
-    filter: brightness(90%);
-  }
+      &:hover:before {
+        filter: brightness(90%);
+      }
+    `}
 
   div.content {
     position: relative;
@@ -161,7 +175,7 @@ export const Tag = styled.div<{ shape: string; color: string; textColor: string;
   img {
     width: 18px;
     height: 18px;
-    margin: 3px 4px 0 0;
+    margin: 0 4px 0 0;
   }
 
   span {
