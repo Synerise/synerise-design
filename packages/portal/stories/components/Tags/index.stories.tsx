@@ -46,6 +46,7 @@ storiesOf('Components|Tags', module)
       key: 5,
       name: 'Pagani',
       color: '#fd9f05',
+      disabled: true,
     }, {
       key: 6,
       name: 'BMW',
