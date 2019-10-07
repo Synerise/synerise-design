@@ -29,15 +29,8 @@ const sizeMap = {
   [ModalSize.EXTRA_LARGE]: 1280,
 };
 
-const ModalProxy: React.FC<Props> = ({
-  closable,
-  headerActions,
-  title,
-  description,
-  size,
-  ...antModalProps
-}: Props) => {
-  const onClose = () => antModalProps.afterClose && antModalProps.afterClose();
+const ModalProxy: React.FC<Props> = ({ closable, headerActions, title, description, size, ...antModalProps }) => {
+  const onClose = (): void => antModalProps.afterClose && antModalProps.afterClose();
 
   return (
     <Modal
