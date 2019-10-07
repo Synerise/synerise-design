@@ -21,8 +21,10 @@ storiesOf('Components|Tags', module)
     };
 
     const shape = select('Shape', shapes, shapes['Default Round']);
-    const removable = boolean('Removable', true);
-    const disabled = boolean('Disable all tags');
+    const removable = boolean('Ability to remove', true);
+    const addable = boolean('Ability to add', true);
+    const creatable = boolean('Ability to create', true);
+    const disabled = boolean('Disable entire group');
     const disableSingleTag = boolean('Disable single tag (Polonez)', true);
 
     const allTags = [{
@@ -74,8 +76,8 @@ storiesOf('Components|Tags', module)
               tagShape={shape}
               selected={[]}
               disabled={disabled}
-              addable={true}
-              creatable={true}
+              addable={addable}
+              creatable={creatable}
               removable={removable}
             />
           </div>
