@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import { select } from '@storybook/addon-knobs';
+import { select, boolean } from '@storybook/addon-knobs';
 import { DSProvider } from '@synerise/ds-core';
 
 import Tags, { Tag, TagShape } from '@synerise/ds-Tags';
@@ -21,6 +21,9 @@ storiesOf('Components|Tags', module)
     };
 
     const shape = select('Shape', shapes, shapes['Default Round']);
+    const removable = boolean('Removable');
+    const disabled = boolean('Disable all tags');
+    const disableSingleTag = boolean('Disable single tag (Polonez)');
 
     const allTags = [{
       key: 0,
@@ -34,6 +37,7 @@ storiesOf('Components|Tags', module)
       key: 2,
       name: 'Polonez',
       color: '#76dc25',
+      disabled: disableSingleTag,
     }, {
       key: 3,
       name: 'Mazda',
@@ -46,7 +50,6 @@ storiesOf('Components|Tags', module)
       key: 5,
       name: 'Pagani',
       color: '#fd9f05',
-      disabled: true,
     }, {
       key: 6,
       name: 'BMW',
@@ -70,9 +73,10 @@ storiesOf('Components|Tags', module)
               data={allTags}
               tagShape={shape}
               selected={[]}
+              disabled={disabled}
               addable={true}
               creatable={true}
-              removable={true}
+              removable={removable}
             />
           </div>
 
