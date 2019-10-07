@@ -1,19 +1,19 @@
 import * as React from 'react';
 import * as S from './ProgressBar.styles';
 
-interface Value {
+interface ProgressBarValue {
   amount: number;
-  color?: COLORS;
+  color?: PROGRESS_BAR_COLORS;
 }
 
 interface Props {
-  values: Value[];
+  values: ProgressBarValue[];
   showLabel: boolean;
   total?: number;
   description?: string;
 }
 
-export enum COLORS {
+export enum PROGRESS_BAR_COLORS {
   CYAN = '#13c2bc',
   FERN = '#25dc44',
   GREEN = '#76dc25',
@@ -31,6 +31,7 @@ const PERCENT = 100;
 class ProgressBar extends React.PureComponent<Props> {
   static defaultProps = {
     total: PERCENT,
+    showLabel: false,
   };
 
   getMaxValue(): number {
@@ -77,7 +78,7 @@ class ProgressBar extends React.PureComponent<Props> {
               data-testid="progress-bar-value"
               key={`progress-bar-${value.amount}`}
               percent={this.calcPercent(value.amount)}
-              color={value.color ? value.color : COLORS.GREEN}
+              color={value.color ? value.color : PROGRESS_BAR_COLORS.GREEN}
             />
           ))}
         </S.ProgressBar>

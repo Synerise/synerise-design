@@ -1,5 +1,5 @@
 import * as React from 'react';
-import ProgressBar, { COLORS } from '../index';
+import ProgressBar, { PROGRESS_BAR_COLORS } from '../index';
 import { renderWithProvider } from '@synerise/ds-utils';
 
 const SINGLE_BAR_VALUES =[
@@ -11,15 +11,15 @@ const SINGLE_BAR_VALUES =[
 const MULTIVALUE_BAR_VALUES =[
   {
     amount: 20,
-    color: COLORS.MARS
+    color: PROGRESS_BAR_COLORS.MARS
   },
   {
     amount: 55,
-    color: COLORS.GREEN
+    color: PROGRESS_BAR_COLORS.GREEN
   },
   {
     amount: 10,
-    color: COLORS.MARS
+    color: PROGRESS_BAR_COLORS.MARS
   },
 ];
 

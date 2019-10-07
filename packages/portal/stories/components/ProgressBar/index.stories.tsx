@@ -3,7 +3,7 @@ import { DSProvider } from '@synerise/ds-core';
 import { storiesOf } from "@storybook/react";
 import ProgressBar from "@synerise/ds-progress-bar";
 // @ts-ignore
-import { COLORS } from '@synerise/ds-progress-bar';
+import { PROGRESS_BAR_COLORS } from '@synerise/ds-progress-bar';
 
 storiesOf('Components|Progress Bar', module)
   .add('Solo bar', () => (
@@ -70,19 +70,19 @@ storiesOf('Components|Progress Bar', module)
               [
                 {
                   amount: 10,
-                  color: COLORS.GREEN,
+                  color: PROGRESS_BAR_COLORS.GREEN,
                 },
                 {
                   amount: 20,
-                  color: COLORS.MARS,
+                  color: PROGRESS_BAR_COLORS.MARS,
                 },
                 {
                   amount: 100,
-                  color: COLORS.PURPLE,
+                  color: PROGRESS_BAR_COLORS.PURPLE,
                 },
                 {
                   amount: 70,
-                  color: COLORS.YELLOW,
+                  color: PROGRESS_BAR_COLORS.YELLOW,
                 },
               ]
             }
@@ -103,19 +103,19 @@ storiesOf('Components|Progress Bar', module)
               [
                 {
                   amount: 10,
-                  color: COLORS.GREEN,
+                  color: PROGRESS_BAR_COLORS.GREEN,
                 },
                 {
                   amount: 20,
-                  color: COLORS.MARS,
+                  color: PROGRESS_BAR_COLORS.MARS,
                 },
                 {
                   amount: 100,
-                  color: COLORS.PURPLE,
+                  color: PROGRESS_BAR_COLORS.PURPLE,
                 },
                 {
                   amount: 70,
-                  color: COLORS.YELLOW,
+                  color: PROGRESS_BAR_COLORS.YELLOW,
                 },
               ]
             }
@@ -137,19 +137,19 @@ storiesOf('Components|Progress Bar', module)
               [
                 {
                   amount: 10,
-                  color: COLORS.GREEN,
+                  color: PROGRESS_BAR_COLORS.GREEN,
                 },
                 {
                   amount: 20,
-                  color: COLORS.MARS,
+                  color: PROGRESS_BAR_COLORS.MARS,
                 },
                 {
                   amount: 100,
-                  color: COLORS.PURPLE,
+                  color: PROGRESS_BAR_COLORS.PURPLE,
                 },
                 {
                   amount: 70,
-                  color: COLORS.YELLOW,
+                  color: PROGRESS_BAR_COLORS.YELLOW,
                 },
               ]
             }
