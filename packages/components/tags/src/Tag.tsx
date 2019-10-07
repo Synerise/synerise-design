@@ -15,10 +15,13 @@ export enum TagShape {
   STATUS_WARNING = 'status_paused',
 }
 
-const Tag: React.FC<Props> = ({ name, shape, color, textColor }: Props) => {
+const Tag: React.FC<Props> = ({ name, image, shape, color, textColor }: Props) => {
+  const isDefaultType = [TagShape.DEFAULT_ROUND, TagShape.DEFAULT_SQUARE].includes(shape);
+
   return (
     <S.Tag shape={shape} color={color} textColor={textColor}>
-      {name}
+      {image && isDefaultType && <img src={image} alt="" />}
+      <span>{name}</span>
     </S.Tag>
   );
 };
