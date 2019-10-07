@@ -73,7 +73,7 @@ class ProgressBar extends React.PureComponent<Props> {
           </span>
         )}
         <S.ProgressBar fullFilled={this.isFullFilled()} data-testid="progress-bar">
-          {values.map((value, index) => (
+          {values.map(value => (
             <S.ValueBar
               data-testid="progress-bar-value"
               key={`progress-bar-${value.amount}`}

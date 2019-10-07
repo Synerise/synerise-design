@@ -1,9 +1,7 @@
 import * as React from 'react';
 import { DSProvider } from '@synerise/ds-core';
 import { storiesOf } from "@storybook/react";
-import ProgressBar from "@synerise/ds-progress-bar";
-// @ts-ignore
-import { PROGRESS_BAR_COLORS } from '@synerise/ds-progress-bar';
+import ProgressBar, { PROGRESS_BAR_COLORS } from "@synerise/ds-progress-bar";
 
 storiesOf('Components|Progress Bar', module)
   .add('Solo bar', () => (
