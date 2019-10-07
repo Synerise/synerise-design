@@ -20,7 +20,7 @@ storiesOf('Components|Tags', module)
       'Status Warning': TagShape.STATUS_WARNING,
     };
 
-    const shape = select('Shape', shapes, shapes['Default Square']);
+    const shape = select('Shape', shapes, shapes['Default Round']);
 
     const allTags = [{
       key: 0,

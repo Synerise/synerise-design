@@ -3,11 +3,11 @@ import { TagShape } from './Tag';
 
 const defaultStatusStyles = css`
   border-radius: 8px;
-  padding: 0 8px;
   font-size: 10px;
   height: 16px;
   line-height: 14px;
   text-transform: uppercase;
+  padding: 0 8px;
 `;
 
 const insertShapeStyles = (props): string => {
@@ -17,12 +17,12 @@ const insertShapeStyles = (props): string => {
         background-color: ${props.color || props.theme.palette['grey-500']};
         color: ${props.textColor || '#fff'};
         border-radius: 3px;
-        padding: 0 4px;
         font-size: 10px;
         height: 16px;
         line-height: 16px;
         text-transform: uppercase;
         font-weight: 500;
+        padding: 0 4px;
       `;
 
     case TagShape.SMALL_ROUND:
@@ -30,11 +30,11 @@ const insertShapeStyles = (props): string => {
         background-color: ${props.color || props.theme.palette['grey-500']};
         color: ${props.textColor || '#fff'};
         border-radius: 8px;
-        padding: 0 4px;
         font-size: 10px;
         height: 16px;
         line-height: 16px;
         text-transform: uppercase;
+        padding: 0 4px;
       `;
 
     case TagShape.DEFAULT_ROUND:
@@ -42,10 +42,15 @@ const insertShapeStyles = (props): string => {
         background-color: ${props.color || props.theme.palette['grey-500']};
         color: ${props.textColor || '#fff'};
         border-radius: 12px;
-        padding: 0 12px;
         font-size: 13px;
         height: 24px;
         line-height: 24px;
+
+        padding: ${props.removable ? '0' : '0 12px'};
+
+        span {
+          padding: ${props.removable ? '0 0 0 12px' : '0'};
+        }
       `;
 
     case TagShape.DEFAULT_SQUARE:
@@ -53,10 +58,10 @@ const insertShapeStyles = (props): string => {
         background-color: ${props.color || props.theme.palette['grey-500']};
         color: ${props.textColor || '#fff'};
         border-radius: 3px;
-        padding: 0 8px;
         font-size: 13px;
         height: 24px;
         line-height: 24px;
+        padding: 0 8px;
       `;
 
     case TagShape.SINGLE_CHARACTER_SQUARE:
@@ -116,7 +121,7 @@ const insertShapeStyles = (props): string => {
   }
 };
 
-export const Tag = styled.div<{ shape: string; color: string; textColor: string }>`
+export const Tag = styled.div<{ shape: string; color: string; textColor: string; removable: boolean }>`
   margin: 4px;
   display: inline-flex;
   font-weight: 500;
@@ -127,6 +132,26 @@ export const Tag = styled.div<{ shape: string; color: string; textColor: string 
     width: 18px;
     height: 18px;
     margin: 3px 4px 0 0;
+  }
+
+  span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  button {
+    background-color: ${(props): string => props.theme.palette['yellow-800']};
+    color: #fff;
+    height: 18px;
+    width: 18px;
+    line-height: 17px;
+    border-radius: 10px;
+    padding: 0;
+    border: none;
+    outline: none;
+    margin: 3px 3px 3px 7px;
+    text-align: center;
   }
 
   &:last-of-type {
