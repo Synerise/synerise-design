@@ -28,43 +28,46 @@ storiesOf('Components|Tags', module)
     const disableSingleTag = boolean('Disable single tag (Polonez)', true);
 
     const allTags = [{
-      key: 0,
+      id: 0,
       name: 'Aston Martin',
       color: '#ffc300',
     }, {
-      key: 1,
+      id: 1,
       name: 'Ferrari',
       color: '#13c2bc',
     }, {
-      key: 2,
+      id: 2,
       name: 'Polonez',
       color: '#76dc25',
       disabled: disableSingleTag,
     }, {
-      key: 3,
+      id: 3,
       name: 'Mazda',
       color: '#6d2dd3',
     }, {
-      key: 4,
+      id: 4,
       name: 'Honda',
       color: '#ff4d67',
     }, {
-      key: 5,
+      id: 5,
       name: 'Pagani',
       color: '#fd9f05',
     }, {
-      key: 6,
+      id: 6,
       name: 'BMW',
       color: '#2b71cb',
     }, {
-      key: 7,
+      id: 7,
       name: 'Porsche',
       color: '#61b71e',
     }, {
-      key: 8,
+      id: 8,
       name: 'Lancia',
       color: '#e62425',
     }];
+
+    const selectedTags = allTags.slice(0, 5);
+    const [selected, setSelected] = React.useState<Array<Object>>(selectedTags);
 
     return (
       <DSProvider code="en_GB">
@@ -74,11 +77,15 @@ storiesOf('Components|Tags', module)
             <Tags
               data={allTags}
               tagShape={shape}
-              selected={[]}
+              selected={selected}
               disabled={disabled}
               addable={addable}
               creatable={creatable}
               removable={removable}
+              onSelectedChange={tags => {
+                console.log('Selected tags change', tags)
+                setSelected(tags);
+              }}
             />
           </div>
 

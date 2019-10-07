@@ -3,13 +3,32 @@ import { Props } from './Tags.types';
 import * as S from './Tags.styles';
 import Tag from './Tag';
 
-const Tags: React.FC<Props> = ({ data, tagShape, disabled, removable, selected, style, className }: Props) => {
+const Tags: React.FC<Props> = ({
+  data,
+  tagShape,
+  onSelectedChange,
+  disabled,
+  removable,
+  selected,
+  style,
+  className,
+}: Props) => {
+  const onRemove = (tagKey: string | number): void =>
+    onSelectedChange && onSelectedChange(selected.filter(tag => tag.id !== tagKey));
+
   return (
     <S.Container className={className} style={style}>
       <S.SelectedTags>
-        {(data || []).map(tag => (
-          // eslint-disable-next-line react/jsx-props-no-spreading
-          <Tag key={tag.key} shape={tagShape} removable={removable} disabled={disabled} {...tag} />
+        {(selected || []).map(tag => (
+          <Tag
+            key={tag.id}
+            shape={tagShape}
+            removable={removable}
+            onRemove={removable ? onRemove : undefined}
+            disabled={disabled}
+            // eslint-disable-next-line react/jsx-props-no-spreading
+            {...tag}
+          />
         ))}
       </S.SelectedTags>
     </S.Container>
