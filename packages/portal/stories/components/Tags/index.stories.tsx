@@ -24,7 +24,7 @@ storiesOf('Components|Tags', module)
     const removable = boolean('Ability to remove', true);
     const addable = boolean('Ability to add', true);
     const creatable = boolean('Ability to create', true);
-    const disabled = boolean('Disable entire group');
+    const disabled = boolean('Disable entire group', false);
     const disableSingleTag = boolean('Disable single tag (Polonez)', true);
 
     const allTags = [{
