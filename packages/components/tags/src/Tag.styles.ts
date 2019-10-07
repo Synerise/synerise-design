@@ -106,8 +106,8 @@ const insertShapeStyles = (props): string => {
 
     case TagShape.STATUS_WARNING:
       return css`
-        border: 1px solid ${props.theme.palette['red-600']};
-        color: ${props.theme.palette['red-600']};
+        border: 1px solid ${props.theme.palette['yellow-600']};
+        color: ${props.theme.palette['yellow-600']};
         ${defaultStatusStyles}
       `;
 
