@@ -26,17 +26,17 @@ export enum PROGRESS_BAR_COLORS {
   YELLOW = '#ffc300',
 }
 
-const PERCENT = 100;
+const ONE_HOUNDRED = 100;
 
 class ProgressBar extends React.PureComponent<Props> {
   static defaultProps = {
-    total: PERCENT,
+    total: ONE_HOUNDRED,
     showLabel: false,
   };
 
   getMaxValue(): number {
     const { values } = this.props;
-    const orderedByAmount = [...values].sort((a, b) => (a.amount <= b.amount ? 1 : -1));
+    const orderedByAmount = [...values].sort((a, b) => b.amount - a.amount);
     return orderedByAmount[0].amount;
   }
 
@@ -51,11 +51,11 @@ class ProgressBar extends React.PureComponent<Props> {
   }
 
   getMaxValuePercent(): string {
-    return `${((this.getMaxValue() / this.getTotal()) * PERCENT).toFixed(2)}%`;
+    return `${((this.getMaxValue() / this.getTotal()) * ONE_HOUNDRED).toFixed(2)}%`;
   }
 
   calcPercent(amount: number): number {
-    return (amount / this.getTotal()) * PERCENT;
+    return (amount / this.getTotal()) * ONE_HOUNDRED;
   }
 
   isFullFilled(): boolean {
