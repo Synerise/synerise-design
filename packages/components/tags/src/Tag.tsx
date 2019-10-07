@@ -15,7 +15,17 @@ export enum TagShape {
   STATUS_WARNING = 'status_paused',
 }
 
-const Tag: React.FC<Props> = ({ name, className, removable, image, shape, color, textColor, onRemove }: Props) => {
+const Tag: React.FC<Props> = ({
+  name,
+  className,
+  disabled,
+  removable,
+  image,
+  shape,
+  color,
+  textColor,
+  onRemove,
+}: Props) => {
   const isDefaultType = [TagShape.DEFAULT_ROUND, TagShape.DEFAULT_SQUARE].includes(shape);
   const isDefaultRound = shape === TagShape.DEFAULT_ROUND;
   const isStatusShape = [
@@ -24,6 +34,7 @@ const Tag: React.FC<Props> = ({ name, className, removable, image, shape, color,
     TagShape.STATUS_SUCCESS,
     TagShape.STATUS_WARNING,
   ].includes(shape);
+  const isActionable = !isStatusShape && !disabled && removable;
 
   return (
     <S.Tag
@@ -33,6 +44,8 @@ const Tag: React.FC<Props> = ({ name, className, removable, image, shape, color,
       color={color}
       textColor={textColor}
       removable={removable}
+      disabled={disabled}
+      isActionable={isActionable}
     >
       <div className="content">
         {image && isDefaultType && <img src={image} alt="" />}

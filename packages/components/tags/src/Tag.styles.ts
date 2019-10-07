@@ -49,8 +49,7 @@ const insertShapeStyles = (props): string => {
           padding: ${props.removable ? '0 12px' : '0'};
         }
 
-        ${!props.isStatusShape &&
-          props.removable &&
+        ${props.isActionable &&
           css`
             &:hover {
               span {
@@ -137,6 +136,8 @@ export const Tag = styled.div<{
   color: string;
   textColor: string;
   removable: boolean;
+  disabled: boolean;
+  isActionable: boolean;
 }>`
   position: relative;
   margin: 4px;
@@ -145,6 +146,13 @@ export const Tag = styled.div<{
   overflow: hidden;
 
   ${insertShapeStyles}
+
+  ${(props): string =>
+    props.disabled &&
+    css`
+      opacity: 0.4;
+      cursor: not-allowed;
+    `}
 
   ${(props): string =>
     !props.isStatusShape &&
@@ -159,9 +167,12 @@ export const Tag = styled.div<{
         background-color: ${props.color || props.theme.palette['grey-500']};
       }
 
-      &:hover:before {
-        filter: brightness(90%);
-      }
+      ${props.isActionable &&
+        css`
+          &:hover:before {
+            filter: brightness(90%);
+          }
+        `};
     `}
 
   div.content {
@@ -223,11 +234,15 @@ export const Tag = styled.div<{
     }
   }
 
-  &:hover {
-    button {
-      display: inline-block;
-    }
-  }
+  ${(props): string =>
+    props.isActionable &&
+    css`
+      &:hover {
+        button {
+          display: inline-block;
+        }
+      }
+    `};
 
   &:last-of-type {
     margin-right: 0;

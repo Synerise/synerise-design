@@ -9,5 +9,6 @@ export interface Props {
   shape?: TagShape;
   removable?: boolean;
   className?: string;
+  disabled?: boolean;
   onRemove?: () => void;
 }
