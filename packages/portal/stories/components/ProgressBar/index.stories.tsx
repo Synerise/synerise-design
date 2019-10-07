@@ -87,7 +87,7 @@ storiesOf('Components|Progress Bar', module)
               ]
             }
             showLabel={false}
-            total={200}
+            total={100}
           />
 
         </div>
@@ -120,7 +120,7 @@ storiesOf('Components|Progress Bar', module)
               ]
             }
             showLabel={true}
-            total={200}
+            total={100}
             description="Description"
           />
 

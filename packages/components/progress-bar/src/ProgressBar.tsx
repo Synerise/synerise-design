@@ -39,45 +39,49 @@ class ProgressBar extends React.PureComponent<Props> {
     return orderedByAmount[0].amount;
   }
 
-  getMaxValuePercent(): string {
+  getSumOfValues(): number {
+    const { values } = this.props;
+    return values.map(value => value.amount).reduce((sum, current) => sum + current, 0);
+  }
+
+  getTotal(): number {
     const { total } = this.props;
-    return `${((this.getMaxValue() / total) * PERCENT).toFixed(2)}%`;
+    return this.getSumOfValues() <= total ? total : this.getSumOfValues();
+  }
+
+  getMaxValuePercent(): string {
+    return `${((this.getMaxValue() / this.getTotal()) * PERCENT).toFixed(2)}%`;
   }
 
   calcPercent(amount: number): number {
-    const { total } = this.props;
-    return (amount / total) * 100;
+    return (amount / this.getTotal()) * PERCENT;
   }
 
   isFullFilled(): boolean {
-    const { total, values } = this.props;
-    let sum = 0;
-    values.forEach((v: Value) => {
-      sum += v.amount;
-    });
-    return total === sum;
+    return this.getTotal() === this.getSumOfValues();
   }
 
   render() {
     const { showLabel, description, values } = this.props;
     return (
-      <S.ProgressBarContainer>
+      <S.ProgressBarContainer data-testid="progress-bar-container">
         {showLabel && (
-          <span>
-            <strong>{this.getMaxValue()}</strong>
-            <span>{` (${this.getMaxValuePercent()})`}</span>
+          <span data-testid="progress-bar-label">
+            <strong data-testid="progress-bar-max-value">{this.getMaxValue()}</strong>
+            <span data-testid="progress-bar-max-percent">{` (${this.getMaxValuePercent()})`}</span>
           </span>
         )}
-        <S.ProgressBar fullFilled={this.isFullFilled()}>
+        <S.ProgressBar fullFilled={this.isFullFilled()} data-testid="progress-bar">
           {values.map((value, index) => (
             <S.ValueBar
+              data-testid="progress-bar-value"
               key={`progress-bar-${value.amount}`}
               percent={this.calcPercent(value.amount)}
               color={value.color ? value.color : COLORS.GREEN}
             />
           ))}
         </S.ProgressBar>
-        {description && <span>{description}</span>}
+        {description && <span data-testid="progress-bar-description">{description}</span>}
       </S.ProgressBarContainer>
     );
   }
