@@ -7,4 +7,7 @@ export interface Props {
   color?: string;
   image?: string;
   shape?: TagShape;
+  removable?: boolean;
+  className?: string;
+  onRemove?: () => void;
 }
