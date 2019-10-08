@@ -25,7 +25,6 @@ storiesOf('Components|Tags', module)
     const addable = boolean('Ability to add', true);
     const creatable = boolean('Ability to create', true);
     const disabled = boolean('Disable entire group', false);
-    const disableSingleTag = boolean('Disable single tag (Polonez)', true);
 
     const allTags = [{
       id: 0,
@@ -76,16 +75,7 @@ storiesOf('Components|Tags', module)
             <Tags
               data={allTags}
               tagShape={shape}
-              selected={selected.map(t => {
-                if (t.name !== 'Polonez') {
-                  return t;
-                }
-
-                return {
-                  ...t,
-                  disabled: disableSingleTag,
-                };
-              })}
+              selected={selected}
               disabled={disabled}
               addable={addable}
               creatable={creatable}

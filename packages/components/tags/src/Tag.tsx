@@ -54,7 +54,7 @@ const Tag: React.FC<Props> = ({
       <div className="content">
         {image && isDefaultType && <img src={image} alt="" />}
         <span>{name}</span>
-        {removable && isDefaultRound && (
+        {isRemovable && (
           <button type="button" onClick={onRemoveCall}>
             <div>x</div>
           </button>
