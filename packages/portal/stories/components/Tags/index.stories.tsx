@@ -92,7 +92,7 @@ storiesOf('Components|Tags', module)
 
           <div style={{padding: 24}}>
             <h4>Tag shapes</h4>
-            <div style={{display: 'flex', alignItems: 'flex-start', flexWrap: 'wrap'}}>
+            <div style={{display: 'flex', alignItems: 'flex-start', flexWrap: 'wrap', height: 40}}>
               <Tag name="Default Square" shape={TagShape.DEFAULT_SQUARE} />
               <Tag name="Default Round" shape={TagShape.DEFAULT_ROUND} />
 
