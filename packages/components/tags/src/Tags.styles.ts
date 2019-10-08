@@ -27,10 +27,12 @@ export const AddTagDropdownButton = styled(Button)`
   text-overflow: ellipsis;
 
   && {
+    font-weight: 400;
     text-align: left;
   }
 
   strong {
+    font-weight: 500;
     margin: 0 0 0 3px;
   }
 `;
@@ -69,6 +71,9 @@ export const DropdownTagsContainer = styled.div<{ isCreatable: boolean }>`
 
   > * {
     width: fit-content;
+    max-width: fit-content;
+    display: block;
+    width: inherit;
     cursor: pointer;
   }
 `;
