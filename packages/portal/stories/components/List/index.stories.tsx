@@ -127,7 +127,7 @@ storiesOf('Components|List', module)
           <List
             dataSource={dataSingle}
             renderItem={item => (
-              <List.TextItem
+              <List.Item
                 onSelect={action('onSelect')}
                 icon={<div>a</div>}
                 disabled={item.disabled}
@@ -135,7 +135,7 @@ storiesOf('Components|List', module)
                 actions={actions}
               >
                 {item.text}
-              </List.TextItem>
+              </List.Item>
             )}
           />
         </div>

@@ -18,8 +18,12 @@ class Checkbox extends React.Component<Props> {
 
     return (
       <S.CheckboxWrapper>
-        {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-        <S.AntdCheckbox {...antdCheckboxProps} className={Boolean(errorText) && 'error'}>
+        <S.AntdCheckbox
+          // eslint-disable-next-line react/jsx-props-no-spreading
+          {...antdCheckboxProps}
+          className={Boolean(errorText) && 'error'}
+          solo={!children && !errorText && !description}
+        >
           {children}
         </S.AntdCheckbox>
         <S.AdditionalData>
