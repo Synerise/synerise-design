@@ -110,8 +110,7 @@ const Tags: React.FC<Props> = ({
           onVisibleChange={setAddingState}
           overlay={dropdownOverlay}
         >
-          <S.AddButton type="ghost">
-            {/* TODO(BLOCKED): ADD + ICON HERE */}
+          <S.AddButton type="ghost" icon="plus" noMargin={!selected.length}>
             {texts.addButtonLabel && <span>{texts.addButtonLabel}</span>}
           </S.AddButton>
         </Dropdown>
