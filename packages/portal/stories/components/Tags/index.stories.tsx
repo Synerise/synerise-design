@@ -63,9 +63,17 @@ storiesOf('Components|Tags', module)
       id: 8,
       name: 'Lancia',
       color: '#e62425',
+    }, {
+      id: 9,
+      name: 'Fiat',
+      color: '#f551a9',
+    }, {
+      id: 10,
+      name: 'Alfa Romeo',
+      color: '#04bdff',
     }];
 
-    const selectedTags = allTags.slice(0, 5);
+    const selectedTags = allTags.slice(0, 6);
     const [selected, setSelected] = React.useState<Array<any>>(selectedTags);
 
     return (
