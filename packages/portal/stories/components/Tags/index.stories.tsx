@@ -24,6 +24,7 @@ storiesOf('Components|Tags', module)
     const removable = boolean('Ability to remove', true);
     const addable = boolean('Ability to add', true);
     const creatable = boolean('Ability to create', true);
+    const withManageLink = boolean('With manage tags link', true);
     const disabled = boolean('Disable entire group', false);
 
     const allTags = [{
@@ -82,11 +83,15 @@ storiesOf('Components|Tags', module)
               removable={removable}
               texts={{
                 addButtonLabel: 'Add tag',
+                manageLinkLabel: 'Manage tags',
+                addTagButtonLabel: 'Add tag',
+                searchPlaceholder: 'Search tag...',
               }}
               onSelectedChange={tags => {
-                console.log('Selected tags change', tags)
+                console.log('Selected tags change', tags);
                 setSelected(tags);
               }}
+              manageLink={withManageLink && 'https://en.wikipedia.org/wiki/San_Escobar'}
             />
           </div>
 

@@ -2,6 +2,13 @@ import { CSSProperties } from 'react';
 import { Props as TagProps } from './Tag/Tag.types';
 import { TagShape } from './Tag/Tag';
 
+export interface TagsTexts {
+  addButtonLabel?: string;
+  searchPlaceholder?: string;
+  manageLinkLabel?: string;
+  addTagButtonLabel?: string;
+}
+
 export interface Props {
   data?: Array<TagProps>;
   selected?: Array<TagProps>;
@@ -12,8 +19,7 @@ export interface Props {
   removable?: boolean;
   creatable?: boolean;
   disabled?: boolean;
-  texts?: {
-    addButtonLabel?: string;
-  };
+  manageLink?: string;
+  texts?: TagsTexts;
   onSelectedChange?: (tags: Array<TagProps>) => void;
 }
