@@ -1,10 +1,17 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import BaseAntCheckbox from 'antd/lib/checkbox';
+
+const soloCss = css`
+  padding: 4px;
+  display: inline-block;
+`;
 
 export const AntdCheckbox = styled(BaseAntCheckbox)`
   && {
     padding: 7px 12px;
     display: block;
+
+    ${(props): string => props.solo && soloCss};
   }
 `;
 
