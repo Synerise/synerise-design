@@ -8,10 +8,10 @@ interface Props {
   addItemLabel: string;
   showMoreLabel: string;
   maxToShowItems: number;
-  onItemAdd: (createCatalogRequest: object) => void;
-  onItemRemove: Function;
-  onItemEdit: Function;
-  onItemSelect: Function;
+  onItemAdd: (addParams: { name: string }) => void;
+  onItemRemove: (removeParams: { id: string }) => void;
+  onItemEdit: (editParams: { id: string; name: string }) => void;
+  onItemSelect: (selectParams: { id: string }) => void;
   items: [];
   loading: boolean;
 }

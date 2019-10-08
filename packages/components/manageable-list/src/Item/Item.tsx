@@ -5,7 +5,12 @@ import List from '@synerise/ds-list';
 import * as S from './Item.styles';
 
 type Props = {
-  item: any;
+  item: {
+    catalogId: string;
+    canUpdateCatalog: boolean;
+    canDeleteCatalog: boolean;
+    name: string;
+  };
   onRemove: (removeParams: { id: string }) => void;
   onSelect: (selectParams: { id: string }) => void;
   onUpdate: (updateParams: { id: string; name: string }) => void;
@@ -90,13 +95,17 @@ class Item extends React.PureComponent<Props, State> {
       >
         <S.ItemContainer>
           {editMode ? (
-            <Input
-              onClick={(event): void => event.stopPropagation()}
-              onFocus={(event): void => event.stopPropagation()}
-              onChange={this.editName.bind(this)}
-              value={stateName}
-              onPressEnter={this.updateName.bind(this)}
-            />
+            <>
+              <S.ItemIcon>i</S.ItemIcon>
+              <Input
+                autoFocus
+                onClick={(event): void => event.stopPropagation()}
+                onFocus={(event): void => event.stopPropagation()}
+                onChange={this.editName.bind(this)}
+                value={stateName}
+                onPressEnter={this.updateName.bind(this)}
+              />
+            </>
           ) : (
             <>
               <S.ItemIcon>i</S.ItemIcon>

@@ -56,6 +56,7 @@ class AddItem extends React.PureComponent<Props, State> {
         </S.AddItemButton>
         {active && (
           <Input
+            autoFocus
             value={name}
             onChange={this.handleNameChange.bind(this)}
             onPressEnter={this.createCatalog.bind(this)}

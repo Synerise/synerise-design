@@ -5,6 +5,10 @@ const ManageableListContainer = styled.div`
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
+
+  .ant-list {
+    width: 100%;
+  }
 `;
 
 export default ManageableListContainer;
