@@ -4,6 +4,7 @@ import Dropdown from '@synerise/ds-dropdown';
 import { Props } from './Tags.types';
 import * as S from './Tags.styles';
 import Tag from './Tag/Tag';
+import { Props as TagProps } from './Tag/Tag.types';
 
 const Tags: React.FC<Props> = ({
   data,
@@ -18,6 +19,7 @@ const Tags: React.FC<Props> = ({
   style,
   className,
   manageLink,
+  onAdd,
 }: Props) => {
   const [isAdding, setAddingState] = React.useState<boolean>(false);
   const [searchQuery, setSearchQuery] = React.useState<string>('');
@@ -26,11 +28,17 @@ const Tags: React.FC<Props> = ({
     onSelectedChange && onSelectedChange(selected.filter(tag => tag.id !== tagKey));
 
   const notSelectedList = data.filter(t => !selected.find(s => s.id === t.id));
-  const dropdownList = !searchQuery
+  const selectablePool = !searchQuery
     ? notSelectedList
     : notSelectedList.filter(t => t.name.toLowerCase().includes(searchQuery.toLowerCase()));
-  const isExactMatchFound = searchQuery && dropdownList.find(t => t.name === searchQuery);
+  const isExactMatchFound = searchQuery && selectablePool.find(t => t.name === searchQuery);
+  const emptyPool = selectablePool.length === 0;
   const isCreatable = creatable && !isExactMatchFound && searchQuery;
+
+  const onPoolTagSelect = (tag: TagProps): void => {
+    setAddingState(false);
+    onAdd && onAdd(tag);
+  };
 
   const dropdownOverlay = (
     <Dropdown.Wrapper>
@@ -46,18 +54,22 @@ const Tags: React.FC<Props> = ({
           </>
         )}
 
-        {dropdownList.length > 0 && (
+        {!emptyPool && (
           <S.DropdownTagsContainer isCreatable={isCreatable}>
-            {dropdownList.map(tag => (
+            {selectablePool.map(tag => (
               // eslint-disable-next-line react/jsx-props-no-spreading
-              <Tag key={tag.id} shape={tagShape} {...tag} />
+              <Tag {...tag} key={tag.id} shape={tagShape} onClick={(): void => onPoolTagSelect(tag)} />
             ))}
           </S.DropdownTagsContainer>
         )}
 
-        {manageLink && !dropdownList.length && (
+        {emptyPool && !isCreatable && !manageLink && <S.DropdownNoTags>{texts.dropdownNoTags}</S.DropdownNoTags>}
+
+        {manageLink && !selectablePool.length && (
           <>
-            <S.ManageLink href={manageLink}>{texts.manageLinkLabel}</S.ManageLink>
+            <S.ManageLink href={manageLink} onlyChild={emptyPool && !isCreatable}>
+              {texts.manageLinkLabel}
+            </S.ManageLink>
           </>
         )}
       </S.DropdownContainer>

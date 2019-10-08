@@ -86,6 +86,11 @@ storiesOf('Components|Tags', module)
                 manageLinkLabel: 'Manage tags',
                 addTagButtonLabel: 'Add tag',
                 searchPlaceholder: 'Search tag...',
+                dropdownNoTags: 'No tags found',
+              }}
+              onAdd={tag => {
+                console.log('Added tag', tag);
+                setSelected([...selected, tag]);
               }}
               onSelectedChange={tags => {
                 console.log('Selected tags change', tags);

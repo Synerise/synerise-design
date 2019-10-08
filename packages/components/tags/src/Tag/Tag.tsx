@@ -26,6 +26,7 @@ const Tag: React.FC<Props> = ({
   color,
   textColor,
   onRemove,
+  onClick,
 }: Props) => {
   const isDefaultType = [TagShape.DEFAULT_ROUND, TagShape.DEFAULT_SQUARE].includes(shape);
   const isDefaultRound = shape === TagShape.DEFAULT_ROUND;
@@ -50,6 +51,7 @@ const Tag: React.FC<Props> = ({
       removable={removable}
       disabled={disabled}
       isActionable={isActionable}
+      onClick={onClick}
     >
       <div className="content">
         {image && isDefaultType && <img src={image} alt="" />}

@@ -10,5 +10,6 @@ export interface Props {
   removable?: boolean;
   className?: string;
   disabled?: boolean;
+  onClick?: () => void;
   onRemove?: (tag: string | number) => void;
 }

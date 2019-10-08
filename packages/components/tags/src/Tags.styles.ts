@@ -35,11 +35,11 @@ export const AddTagDropdownButton = styled(Button)`
   }
 `;
 
-export const ManageLink = styled.a`
+export const ManageLink = styled.a<{ onlyChild: boolean }>`
   display: block;
   font-size: 13px;
   font-weight: 500;
-  margin: 8px 0 0;
+  margin: ${(props): string => (props.onlyChild ? '0' : '8px 0 0')};
   height: 32px;
   line-height: 32px;
   padding: 0 16px;
@@ -69,6 +69,7 @@ export const DropdownTagsContainer = styled.div<{ isCreatable: boolean }>`
 
   > * {
     width: fit-content;
+    cursor: pointer;
   }
 `;
 
@@ -82,4 +83,8 @@ export const DropdownSearch = styled(Dropdown.SearchInput)`
   && {
     margin: 0;
   }
+`;
+
+export const DropdownNoTags = styled.span`
+  padding: 4px;
 `;
