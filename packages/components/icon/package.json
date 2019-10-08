@@ -1,0 +1,30 @@
+{
+  "name": "@synerise/ds-icon",
+  "version": "0.0.2",
+  "description": "Icon UI Component for the Synerise Design System",
+  "license": "ISC",
+  "repository": "Synerise/synerise-design",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "npm run build:js && npm run build:css && npm run defs && npm run icon",
+    "build:css": "node ../../../scripts/style/less.js",
+    "build:icon": "node ./dist/tools/rename.js && node ./dist/tools/copy.js",
+    "build:js": "babel --root-mode upward src --out-dir dist --extensions '.js,.ts,.tsx'",
+    "build:watch": "npm run build:js -- --watch",
+    "defs": "tsc --declaration --outDir dist/ --emitDeclarationOnly --declarationMap",
+    "icon": "yarn build:icon",
+    "prepublish": "npm run build",
+    "test": "jest",
+    "test:watch": "npm run test -- --watchAll",
+    "types": "tsc --noEmit"
+  },
+  "sideEffects": false,
+  "types": "dist/index.d.ts",
+  "peerDependencies": {
+    "@synerise/ds-core": "*",
+    "react": ">=16.9.0 < 17.0.0"
+  },
+  "devDependencies": {
+    "fs-extra": "^8.1.0"
+  }
+}
