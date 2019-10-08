@@ -2,11 +2,13 @@ import styled, { css } from 'styled-components';
 import { TagShape } from './Tag';
 
 const defaultStatusStyles = css`
-  border-radius: 8px;
+  border-radius: 9px;
   font-size: 10px;
-  height: 16px;
-  line-height: 14px;
+  height: 18px;
+  font-weight: 500;
+  line-height: 18px;
   text-transform: uppercase;
+  letter-spacing: 0.1px;
   padding: 0 8px;
 `;
 
@@ -17,10 +19,11 @@ const insertShapeStyles = (props): string => {
         color: ${props.textColor || '#fff'};
         border-radius: 3px;
         font-size: 10px;
-        height: 16px;
-        line-height: 16px;
+        height: 14px;
+        line-height: 14px;
         text-transform: uppercase;
         font-weight: 500;
+        letter-spacing: 0.1px;
         padding: 0 4px;
       `;
 
@@ -29,9 +32,10 @@ const insertShapeStyles = (props): string => {
         color: ${props.textColor || '#fff'};
         border-radius: 8px;
         font-size: 10px;
-        height: 16px;
-        line-height: 16px;
+        height: 14px;
+        line-height: 14px;
         text-transform: uppercase;
+        letter-spacing: 0.1px;
         padding: 0 4px;
       `;
 
