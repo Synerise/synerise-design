@@ -80,6 +80,9 @@ storiesOf('Components|Tags', module)
               addable={addable}
               creatable={creatable}
               removable={removable}
+              texts={{
+                addButtonLabel: 'Add tag',
+              }}
               onSelectedChange={tags => {
                 console.log('Selected tags change', tags)
                 setSelected(tags);

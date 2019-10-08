@@ -1,6 +1,6 @@
 import { CSSProperties } from 'react';
-import { Props as TagProps } from './Tag.types';
-import { TagShape } from './Tag';
+import { Props as TagProps } from './Tag/Tag.types';
+import { TagShape } from './Tag/Tag';
 
 export interface Props {
   data?: Array<TagProps>;
@@ -12,5 +12,8 @@ export interface Props {
   removable?: boolean;
   creatable?: boolean;
   disabled?: boolean;
+  texts?: {
+    addButtonLabel?: string;
+  };
   onSelectedChange?: (tags: Array<TagProps>) => void;
 }
