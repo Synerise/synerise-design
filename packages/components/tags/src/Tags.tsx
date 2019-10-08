@@ -20,6 +20,7 @@ const Tags: React.FC<Props> = ({
   className,
   manageLink,
   onAdd,
+  onCreate,
 }: Props) => {
   const [isAdding, setAddingState] = React.useState<boolean>(false);
   const [searchQuery, setSearchQuery] = React.useState<string>('');
@@ -35,18 +36,28 @@ const Tags: React.FC<Props> = ({
   const emptyPool = selectablePool.length === 0;
   const isCreatable = creatable && !isExactMatchFound && searchQuery;
 
-  const onPoolTagSelect = (tag: TagProps): void => {
+  const reset = (): void => {
     setAddingState(false);
+    setSearchQuery('');
+  };
+
+  const onPoolTagSelect = (tag: TagProps): void => {
     onAdd && onAdd(tag);
+    reset();
+  };
+
+  const onCreateNewTag = (): void => {
+    onCreate && onCreate(searchQuery);
+    reset();
   };
 
   const dropdownOverlay = (
     <Dropdown.Wrapper>
-      <S.DropdownSearch onSearchChange={setSearchQuery} placeholder={texts.searchPlaceholder} />
+      <S.DropdownSearch value={searchQuery} onSearchChange={setSearchQuery} placeholder={texts.searchPlaceholder} />
       <S.DropdownContainer>
         {isCreatable && (
           <>
-            <S.AddTagDropdownButton type="ghost" icon="plus">
+            <S.AddTagDropdownButton type="ghost" icon="plus" onClick={onCreateNewTag}>
               <span>{texts.addTagButtonLabel}</span>
               <strong>{searchQuery}</strong>
             </S.AddTagDropdownButton>

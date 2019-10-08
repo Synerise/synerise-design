@@ -23,5 +23,6 @@ export interface Props {
   manageLink?: string;
   texts?: TagsTexts;
   onAdd: (tag: TagProps) => void;
+  onCreate: (name: string) => void;
   onSelectedChange?: (tags: Array<TagProps>) => void;
 }
