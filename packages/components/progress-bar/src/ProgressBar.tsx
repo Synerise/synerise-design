@@ -55,7 +55,7 @@ class ProgressBar extends React.PureComponent<Props> {
     description: '',
   };
 
-  render() {
+  render(): React.ReactNode {
     const { showLabel, description, amount, percent, type, status, strokeColor, strokeLinecap } = this.props;
     return (
       <div className="progress-bar-container" data-testid="progress-bar-container">
