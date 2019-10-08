@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const ManageableListContainer = styled.div`
+export const ManageableListContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -11,4 +11,11 @@ const ManageableListContainer = styled.div`
   }
 `;
 
-export default ManageableListContainer;
+export const ShowMoreButton = styled.div`
+  background: transparent;
+  outline: 0;
+  cursor: pointer;
+  strong {
+    font-weight: 500;
+  }
+`;

@@ -1,6 +1,9 @@
 import * as React from 'react';
 import { Input } from '@synerise/ds-input';
+import Icon from '@synerise/ds-icon';
 import onClickOutside from 'react-onclickoutside';
+import { SyntheticEventData } from 'react-dom/test-utils';
+import FileM from '@synerise/ds-icon/dist/icons/file-m.svg';
 import * as S from './AddItem.styles';
 
 type Props = {
@@ -26,7 +29,7 @@ class AddItem extends React.PureComponent<Props, State> {
     });
   }
 
-  private handleNameChange(event: any): void {
+  private handleNameChange(event: React.SyntheticEvent): void {
     this.setState({ name: event.target.value });
   }
 
@@ -51,7 +54,7 @@ class AddItem extends React.PureComponent<Props, State> {
     return (
       <S.AddItemLayout>
         <S.AddItemButton onClick={this.toggleInput.bind(this)}>
-          {/* ikonka */}
+          <Icon component={<FileM />} size={24} color="#000" />
           <span>{addItemLabel}</span>
         </S.AddItemButton>
         {active && (

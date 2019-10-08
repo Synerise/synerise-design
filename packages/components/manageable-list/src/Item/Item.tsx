@@ -2,7 +2,9 @@ import * as React from 'react';
 import onClickOutside from 'react-onclickoutside';
 import { Input } from '@synerise/ds-input';
 import List from '@synerise/ds-list';
+import Icon from '@synerise/ds-icon';
 import * as S from './Item.styles';
+import FileM from '../../../icon/dist/icons/file-m.svg';
 
 type Props = {
   item: {
@@ -81,14 +83,10 @@ class Item extends React.PureComponent<Props, State> {
         actions={
           <S.ItemActions>
             {canUpdateCatalog && (
-              <button onClick={this.enterEditMode.bind(this)} type="button">
-                Edit
-              </button>
+              <Icon component={<FileM />} size={24} color="#000" onClick={this.enterEditMode.bind(this)} />
             )}
             {canDeleteCatalog && (
-              <button onClick={this.removeCatalog.bind(this)} type="button">
-                Delete
-              </button>
+              <Icon component={<FileM />} size={24} color="#000" onClick={this.removeCatalog.bind(this)} />
             )}
           </S.ItemActions>
         }
@@ -96,7 +94,7 @@ class Item extends React.PureComponent<Props, State> {
         <S.ItemContainer>
           {editMode ? (
             <>
-              <S.ItemIcon>i</S.ItemIcon>
+              <Icon component={<FileM />} size={24} color="#000" />
               <Input
                 autoFocus
                 onClick={(event): void => event.stopPropagation()}
@@ -108,7 +106,7 @@ class Item extends React.PureComponent<Props, State> {
             </>
           ) : (
             <>
-              <S.ItemIcon>i</S.ItemIcon>
+              <Icon component={<FileM />} size={24} color="#000" />
               <span>{name}</span>
             </>
           )}

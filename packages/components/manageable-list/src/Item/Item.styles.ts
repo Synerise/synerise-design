@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Input } from '@synerise/ds-input';
+import Icon from '@synerise/ds-icon';
 
 export const ItemActions = styled.div`
   display: flex;
@@ -58,16 +59,4 @@ export const ItemContainer = styled.div`
       font-weight: 500;
     }
   }
-`;
-
-export const ItemIcon = styled.span`
-  width: 24px;
-  min-width: 24px;
-  height: 24px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #ccc;
-  border-radius: 50%;
-  margin-right: 8px;
 `;

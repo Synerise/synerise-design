@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Icon from '@synerise/ds-icon/dist/Icon';
 
 export const AddItemLayout = styled.div`
   display: flex;
@@ -7,7 +8,7 @@ export const AddItemLayout = styled.div`
   justify-content: center;
   width: 100%;
   margin-bottom: 8px;
-  padding: 4px 24px;
+  padding: 4px 12px;
 `;
 
 export const AddItemButton = styled.span`

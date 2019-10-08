@@ -31,6 +31,42 @@ const ITEMS:any = [
     canDelete: true,
     canUpdateCatalog: true,
     canDeleteCatalog: true,
+  },
+  {
+    catalogId: "00000000-0000-0000-0000-000000000003",
+    name: "My folder 2",
+    canAdd: true,
+    canUpdate: true,
+    canDelete: true,
+    canUpdateCatalog: true,
+    canDeleteCatalog: true,
+  },
+  {
+    catalogId: "00000000-0000-0000-0000-000000000004",
+    name: "My folder 3",
+    canAdd: true,
+    canUpdate: true,
+    canDelete: true,
+    canUpdateCatalog: true,
+    canDeleteCatalog: true,
+  },
+  {
+    catalogId: "00000000-0000-0000-0000-000000000005",
+    name: "My folder 4",
+    canAdd: true,
+    canUpdate: true,
+    canDelete: true,
+    canUpdateCatalog: true,
+    canDeleteCatalog: true,
+  },
+  {
+    catalogId: "00000000-0000-0000-0000-000000000006",
+    name: "My folder 5",
+    canAdd: true,
+    canUpdate: true,
+    canDelete: true,
+    canUpdateCatalog: true,
+    canDeleteCatalog: true,
   }
 ]
 
@@ -41,7 +77,8 @@ storiesOf('Components|Manageable List', module)
         <div style={{ background: "#fff", padding: '16px', width: '300px' }}>
           <ManageableList
             addItemLabel="Add folder"
-            showMoreLabel="show more"
+            showMoreLabel="show all"
+            showLessLabel="show less"
             maxToShowItems={5}
             onItemAdd={action('onItemAdd')}
             onItemRemove={action('onItemRemove')}
