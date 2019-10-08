@@ -2,6 +2,8 @@ import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { select, boolean } from '@storybook/addon-knobs';
 import { DSProvider } from '@synerise/ds-core';
+import sample from 'lodash/sample';
+import { v4 as uuid } from 'uuid';
 
 import Tags, { Tag, TagShape } from '@synerise/ds-Tags';
 
@@ -26,6 +28,21 @@ storiesOf('Components|Tags', module)
     const creatable = boolean('Ability to create', true);
     const withManageLink = boolean('With manage tags link', true);
     const disabled = boolean('Disable entire group', false);
+
+    const randomColorPool = [
+      '#699788',
+      '#6676e4',
+      '#c3f424',
+      '#f45a0d',
+      '#caaa5b',
+      '#c7fdf0',
+      '#df3caa',
+      '#917809',
+      '#ea8a6f',
+      '#04ed74',
+      '#1c43a2',
+      '#0db790',
+    ];
 
     const allTags = [{
       id: 0,
@@ -73,8 +90,8 @@ storiesOf('Components|Tags', module)
       color: '#04bdff',
     }];
 
-    const selectedTags = allTags.slice(0, 6);
-    const [selected, setSelected] = React.useState<Array<any>>(selectedTags);
+    const [tags, setTags] = React.useState<Array<any>>(allTags);
+    const [selected, setSelected] = React.useState<Array<any>>(allTags.slice(0, 6));
 
     return (
       <DSProvider code="en_GB">
@@ -82,7 +99,7 @@ storiesOf('Components|Tags', module)
           <div style={{padding: 24}}>
             <h4>Tag group</h4>
             <Tags
-              data={allTags}
+              data={tags}
               tagShape={shape}
               selected={selected}
               disabled={disabled}
@@ -98,6 +115,18 @@ storiesOf('Components|Tags', module)
               }}
               onAdd={tag => {
                 console.log('Added tag', tag);
+                setSelected([...selected, tag]);
+              }}
+              onCreate={name => {
+                const tag = {
+                  id: uuid(),
+                  name,
+                  color: sample(randomColorPool),
+                };
+
+                console.log('Created new tag', name, tag);
+
+                setTags([...tags, tag]);
                 setSelected([...selected, tag]);
               }}
               onSelectedChange={tags => {
