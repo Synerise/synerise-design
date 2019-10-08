@@ -16,8 +16,8 @@ export const SelectedTags = styled.div`
   flex-wrap: wrap;
 `;
 
-export const AddButton = styled(Button)`
-  margin: 0 0 0 8px;
+export const AddButton = styled<{ noMargin: boolean }>(Button)`
+  margin: ${(props): string => (props.noMargin ? '0' : '0 0 0 8px')};
 `;
 
 export const AddTagDropdownButton = styled(Button)`
