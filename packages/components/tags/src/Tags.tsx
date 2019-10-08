@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Props } from './Tags.types';
 import * as S from './Tags.styles';
-import Tag from './Tag';
+import Tag from './Tag/Tag';
 
 const Tags: React.FC<Props> = ({
   data,
@@ -9,6 +9,9 @@ const Tags: React.FC<Props> = ({
   onSelectedChange,
   disabled,
   removable,
+  addable,
+  creatable,
+  texts,
   selected,
   style,
   className,
@@ -19,7 +22,7 @@ const Tags: React.FC<Props> = ({
   return (
     <S.Container className={className} style={style}>
       <S.SelectedTags>
-        {(selected || []).map(tag => (
+        {selected.map(tag => (
           <Tag
             key={tag.id}
             shape={tagShape}
@@ -31,8 +34,19 @@ const Tags: React.FC<Props> = ({
           />
         ))}
       </S.SelectedTags>
+      {addable && (
+        <S.AddButton type="flat">
+          {/* TODO(BLOCKED): ADD + ICON HERE */}
+          {texts && texts.addButtonLabel && <span>{texts.addButtonLabel}</span>}
+        </S.AddButton>
+      )}
     </S.Container>
   );
+};
+
+Tags.defaultProps = {
+  texts: {},
+  selected: [],
 };
 
 export default Tags;
