@@ -34,15 +34,7 @@ class Icon extends React.Component<IconProps> {
     const IconComponent = SVGComponent;
 
     return (
-      <S.IconContainer
-        color={color}
-        title={name}
-        size={size}
-        type={type}
-        stroke={stroke}
-        onClick={onClick}
-        data-testid="icon-container"
-      >
+      <S.IconContainer color={color} title={name} size={size} type={type} stroke={stroke} onClick={onClick}>
         {' '}
         {component || (SVGComponent ? <IconComponent /> : null)}{' '}
       </S.IconContainer>
