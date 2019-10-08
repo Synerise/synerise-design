@@ -1,0 +1,30 @@
+@import '~antd/lib/modal/style/index.less';
+@import '~@synerise/ds-core/src/style/variables.less';
+@import '~@synerise/ds-core/src/style/config.less';
+
+.progress-bar-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  color: #949ea6;
+
+  strong {
+    font-weight: 500;
+    color: #384350;
+  }
+}
+
+.ant-progress-line {
+  margin: 14px 0;
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: @grey-200;
+  overflow: hidden;
+  box-sizing: content-box;
+  .ant-progress-bg {
+    border-right: 2px solid @white;
+  }
+}

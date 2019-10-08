@@ -24,8 +24,7 @@
   "dependencies": {
     "@synerise/ds-typography": "*",
     "antd": "*",
-    "eslint-plugin-flowtype": "^4.3.0",
-    "styled-components": "^4.4.0"
+    "eslint-plugin-flowtype": "^4.3.0 "
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

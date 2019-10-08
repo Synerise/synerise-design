@@ -1,19 +1,38 @@
 import * as React from 'react';
-import * as S from './ProgressBar.styles';
-
-interface ProgressBarValue {
-  amount: number;
-  color?: PROGRESS_BAR_COLORS;
-}
+import Progress from 'antd/lib/progress';
+import '@synerise/ds-core/dist/js/style';
+import './style/index.less';
 
 interface Props {
-  values: ProgressBarValue[];
+  amount: number;
+  percent: number;
+  type: PROGRESS_TYPE;
+  status: PROGRESS_STATUS;
+  strokeLinecap: PROGRESS_STROKE_LINECAP;
+  strokeColor: PROGRESS_COLORS;
   showLabel: boolean;
-  total?: number;
-  description?: string;
+  description: string;
 }
 
-export enum PROGRESS_BAR_COLORS {
+export enum PROGRESS_STATUS {
+  SUCCESS = 'success',
+  EXCEPTION = 'exception',
+  NORMAL = 'normal',
+  ACTIVE = 'active',
+}
+
+export enum PROGRESS_STROKE_LINECAP {
+  ROUND = 'round',
+  SQUARE = 'square',
+}
+
+export enum PROGRESS_TYPE {
+  LINE = 'line',
+  CIRCLE = 'circle',
+  DASHBOARD = 'dashboard',
+}
+
+export enum PROGRESS_COLORS {
   CYAN = '#13c2bc',
   FERN = '#25dc44',
   GREEN = '#76dc25',
@@ -26,64 +45,40 @@ export enum PROGRESS_BAR_COLORS {
   YELLOW = '#ffc300',
 }
 
-const ONE_HOUNDRED = 100;
-
 class ProgressBar extends React.PureComponent<Props> {
   static defaultProps = {
-    total: ONE_HOUNDRED,
+    type: PROGRESS_TYPE.LINE,
+    status: PROGRESS_STATUS.NORMAL,
+    strokeLinecap: PROGRESS_STROKE_LINECAP.ROUND,
+    strokeColor: PROGRESS_COLORS.GREEN,
     showLabel: false,
+    description: '',
   };
 
-  getMaxValue(): number {
-    const { values } = this.props;
-    const orderedByAmount = [...values].sort((a, b) => b.amount - a.amount);
-    return orderedByAmount[0].amount;
-  }
-
-  getSumOfValues(): number {
-    const { values } = this.props;
-    return values.map(value => value.amount).reduce((sum, current) => sum + current, 0);
-  }
-
-  getTotal(): number {
-    const { total } = this.props;
-    return this.getSumOfValues() <= total ? total : this.getSumOfValues();
-  }
-
-  getMaxValuePercent(): string {
-    return `${((this.getMaxValue() / this.getTotal()) * ONE_HOUNDRED).toFixed(2)}%`;
-  }
-
-  calcPercent(amount: number): number {
-    return (amount / this.getTotal()) * ONE_HOUNDRED;
-  }
-
-  isFullFilled(): boolean {
-    return this.getTotal() === this.getSumOfValues();
-  }
-
   render() {
-    const { showLabel, description, values } = this.props;
+    const { showLabel, description, amount, percent, type, status, strokeColor, strokeLinecap } = this.props;
     return (
-      <S.ProgressBarContainer data-testid="progress-bar-container">
+      <div className="progress-bar-container" data-testid="progress-bar-container">
         {showLabel && (
-          <span data-testid="progress-bar-label">
-            <strong data-testid="progress-bar-max-value">{this.getMaxValue()}</strong>
-            <span data-testid="progress-bar-max-percent">{` (${this.getMaxValuePercent()})`}</span>
+          <span className="progress-bar-label" data-testid="progress-bar-label">
+            <strong data-testid="progress-bar-max-value">{amount}</strong>
+            <span data-testid="progress-bar-max-percent">{` (${percent}%)`}</span>
           </span>
         )}
-        <S.ProgressBar fullFilled={this.isFullFilled()} data-testid="progress-bar">
-          {values.map(value => (
-            <S.ValueBar
-              data-testid="progress-bar-value"
-              key={`progress-bar-${value.amount}`}
-              percent={this.calcPercent(value.amount)}
-              color={value.color ? value.color : PROGRESS_BAR_COLORS.GREEN}
-            />
-          ))}
-        </S.ProgressBar>
-        {description && <span data-testid="progress-bar-description">{description}</span>}
-      </S.ProgressBarContainer>
+        <Progress
+          percent={percent}
+          type={type}
+          status={status}
+          strokeColor={strokeColor}
+          strokeLinecap={strokeLinecap}
+          showInfo={false}
+        />
+        {description && (
+          <span className="progress-bar-description" data-testid="progress-bar-description">
+            {description}
+          </span>
+        )}
+      </div>
     );
   }
 }
