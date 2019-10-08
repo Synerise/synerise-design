@@ -5,7 +5,7 @@ import Icon from '../index';
 describe('Icon', () => {
   it('should render', () => {
     // ARRANGE
-    const TEST_TEXT = 'ArrowDownM';
+    const TEST_TEXT = 'angle-left-m';
     const { getByTitle } = render(<Icon title={TEST_TEXT} name={TEST_TEXT} />);
 
     // ASSERT

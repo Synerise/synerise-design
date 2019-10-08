@@ -1,4 +1,4 @@
-import { readdirSync, removeSync, rename, copy } from 'fs-extra';
+import { readdirSync, rename } from 'fs-extra';
 
 const ICON_PATH = './icons/';
 const files = readdirSync(ICON_PATH);
