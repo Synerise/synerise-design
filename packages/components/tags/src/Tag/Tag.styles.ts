@@ -10,6 +10,7 @@ const defaultStatusStyles = css`
   text-transform: uppercase;
   letter-spacing: 0.1px;
   padding: 0 8px;
+  line-height: 18px;
 `;
 
 const insertShapeStyles = (props): string => {
