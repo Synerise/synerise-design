@@ -9,17 +9,33 @@ type IconProps = {
   type?: string;
   stroke?: boolean;
   onClick?: EventListener;
-  component?: React.ReactChild;
+  component?: React.ReactNode;
 };
 
-const Icon: React.FC<IconProps> = props => {
-  const { color, name, size, type, stroke, onClick, component } = props;
+class Icon extends React.Component<IconProps> {
+  state = {
+    SVGComponent: null,
+  };
 
-  return (
-    <S.IconContainer color={color} title={name} size={size} type={type} stroke={stroke} onClick={onClick}>
-      {component}
-    </S.IconContainer>
-  );
-};
+  componentDidMount() {
+    const { name } = this.props;
+    return import(`@synerise/ds-icon/dist/icons/${name}.svg`).then(module => {
+      this.setState({ SVGComponent: module.default });
+    });
+  }
+
+  render(): React.ReactNode {
+    const { name, color, size, type, stroke, onClick, component } = this.props;
+    const { SVGComponent } = this.state;
+    const IconComponent = SVGComponent;
+
+    return (
+      <S.IconContainer color={color} title={name} size={size} type={type} stroke={stroke} onClick={onClick}>
+        {' '}
+        {component || (SVGComponent ? <IconComponent /> : null)}{' '}
+      </S.IconContainer>
+    );
+  }
+}
 
 export default Icon;

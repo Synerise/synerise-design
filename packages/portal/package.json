@@ -44,6 +44,7 @@
     "eslint-config-standard-react": "^9.2.0",
     "eslint-plugin-jest": "^22.17.0",
     "faker": "^4.1.0",
-    "react-docgen-typescript-loader": "^3.2.1"
+    "react-docgen-typescript-loader": "^3.2.1",
+    "react-svg-loader": "^3.0.3"
   }
 }
