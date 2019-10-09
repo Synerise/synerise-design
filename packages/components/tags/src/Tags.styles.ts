@@ -16,12 +16,12 @@ export const SelectedTags = styled.div`
   flex-wrap: wrap;
 `;
 
-export const AddButton = styled<{ noMargin: boolean }>(Button)`
-  margin: ${(props): string => (props.noMargin ? '0' : '0 0 0 8px')};
+export const AddButton = styled<{ marginless: boolean }>(Button)`
+  margin: ${(props): string => (props.marginless ? '0' : '0 0 0 8px')};
 `;
 
-export const AddTagDropdownButton = styled(Button)`
-  margin: 0 0 8px;
+export const CreateTagDropdownButton = styled<{ marginless: boolean }>(Button)`
+  margin: ${(props): string => (props.marginless ? '0' : '0 0 8px')};
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

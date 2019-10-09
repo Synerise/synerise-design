@@ -34,6 +34,7 @@ const Tags: React.FC<Props> = ({
   const isExactMatchFound = searchQuery && selectablePool.find(t => t.name === searchQuery);
   const emptyPool = selectablePool.length === 0;
   const isCreatable = creatable && !isExactMatchFound && searchQuery;
+  const isSeperated = !(!manageLink && emptyPool);
 
   const reset = (): void => {
     setAddingState(false);
@@ -53,14 +54,15 @@ const Tags: React.FC<Props> = ({
   const dropdownOverlay = (
     <Dropdown.Wrapper>
       <S.DropdownSearch value={searchQuery} onSearchChange={setSearchQuery} placeholder={texts.searchPlaceholder} />
-      <S.DropdownContainer>
+      <S.DropdownContainer data-testid="dropdown">
         {isCreatable && (
           <>
-            <S.AddTagDropdownButton type="ghost" icon="plus" onClick={onCreateNewTag}>
+            <S.CreateTagDropdownButton type="ghost" icon="plus" onClick={onCreateNewTag} marginless={!isSeperated}>
               <span>{texts.createTagButtonLabel}</span>
               <strong>{searchQuery}</strong>
-            </S.AddTagDropdownButton>
-            <S.Seperator />
+            </S.CreateTagDropdownButton>
+
+            {isSeperated && <S.Seperator />}
           </>
         )}
 
@@ -87,7 +89,7 @@ const Tags: React.FC<Props> = ({
   );
 
   return (
-    <S.Container className={className} style={style}>
+    <S.Container className={className} style={style} data-testid="tags">
       <S.SelectedTags>
         {selected.map(tag => (
           <Tag
@@ -109,7 +111,7 @@ const Tags: React.FC<Props> = ({
           onVisibleChange={setAddingState}
           overlay={dropdownOverlay}
         >
-          <S.AddButton type="ghost" icon="plus" noMargin={!selected.length}>
+          <S.AddButton type="ghost" icon="plus" marginless={!selected.length ? true : undefined}>
             {texts.addButtonLabel && <span>{texts.addButtonLabel}</span>}
           </S.AddButton>
         </Dropdown>
