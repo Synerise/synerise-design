@@ -109,13 +109,9 @@ storiesOf('Components|Tags', module)
               texts={{
                 addButtonLabel: 'Add tag',
                 manageLinkLabel: 'Manage tags',
-                addTagButtonLabel: 'Add tag',
+                createTagButtonLabel: 'Add tag',
                 searchPlaceholder: 'Search tag...',
                 dropdownNoTags: 'No tags found',
-              }}
-              onAdd={tag => {
-                console.log('Added tag', tag);
-                setSelected([...selected, tag]);
               }}
               onCreate={name => {
                 const tag = {
