@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { fireEvent, render } from '@testing-library/react';
+import { fireEvent } from '@testing-library/react';
 import { renderWithProvider } from '@synerise/ds-utils';
 import Button from '@synerise/ds-button';
 import { Tag, TagShape } from '../index';
