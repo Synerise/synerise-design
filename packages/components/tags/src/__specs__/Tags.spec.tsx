@@ -136,7 +136,7 @@ describe('Tags', () => {
     const data = [tagOne, tagTwo, tagThree];
     const selected = [];
 
-    const { getByText, getByTestId, getByPlaceholderText, container } = renderWithProvider(
+    const { getByText, getByTestId, getByPlaceholderText } = renderWithProvider(
       <Tags
         data={data}
         selected={selected}
