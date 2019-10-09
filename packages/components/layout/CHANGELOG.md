@@ -9,10 +9,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 - **layout:** fix to grid layout ([860844d](https://github.com/synerise/synerise-design/commit/860844d))
 
-### Features
-
-- **layout:** add layout component ([ca125d2](https://github.com/synerise/synerise-design/commit/ca125d2))
-
 # 0.1.0 (2019-09-24)
 
 ### Features
