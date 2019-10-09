@@ -74,7 +74,7 @@ storiesOf('Components|Manageable List', module)
   .add('default', () => (
     <div style={{width: '200px'}}>
       <DSProvider code="en_GB">
-        <div style={{ background: "#fff", padding: '16px', width: '300px' }}>
+        <div style={{ background: "#fff", width: '300px' }}>
           <ManageableList
             addItemLabel="Add folder"
             showMoreLabel="show all"

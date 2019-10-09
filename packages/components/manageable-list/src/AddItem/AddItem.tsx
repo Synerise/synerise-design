@@ -2,7 +2,6 @@ import * as React from 'react';
 import { Input } from '@synerise/ds-input';
 import Icon from '@synerise/ds-icon';
 import onClickOutside from 'react-onclickoutside';
-import { SyntheticEventData } from 'react-dom/test-utils';
 import FileM from '@synerise/ds-icon/dist/icons/file-m.svg';
 import * as S from './AddItem.styles';
 
@@ -29,7 +28,7 @@ class AddItem extends React.PureComponent<Props, State> {
     });
   }
 
-  private handleNameChange(event: React.SyntheticEvent): void {
+  private handleNameChange(event: any): void {
     this.setState({ name: event.target.value });
   }
 
@@ -55,7 +54,7 @@ class AddItem extends React.PureComponent<Props, State> {
       <S.AddItemLayout>
         <S.AddItemButton onClick={this.toggleInput.bind(this)}>
           <Icon component={<FileM />} size={24} color="#000" />
-          <span>{addItemLabel}</span>
+          <S.AddItemLabel>{addItemLabel}</S.AddItemLabel>
         </S.AddItemButton>
         {active && (
           <Input

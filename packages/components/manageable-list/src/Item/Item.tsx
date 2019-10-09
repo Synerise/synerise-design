@@ -3,8 +3,8 @@ import onClickOutside from 'react-onclickoutside';
 import { Input } from '@synerise/ds-input';
 import List from '@synerise/ds-list';
 import Icon from '@synerise/ds-icon';
+import FileM from '@synerise/ds-icon/dist/icons/file-m.svg';
 import * as S from './Item.styles';
-import FileM from '../../../icon/dist/icons/file-m.svg';
 
 type Props = {
   item: {
@@ -79,6 +79,7 @@ class Item extends React.PureComponent<Props, State> {
     const { name: stateName, editMode } = this.state;
     return (
       <List.Item
+        icon={<Icon component={<FileM />} size={24} color="#000" />}
         onSelect={this.onSelect.bind(this)}
         actions={
           <S.ItemActions>
@@ -93,22 +94,16 @@ class Item extends React.PureComponent<Props, State> {
       >
         <S.ItemContainer>
           {editMode ? (
-            <>
-              <Icon component={<FileM />} size={24} color="#000" />
-              <Input
-                autoFocus
-                onClick={(event): void => event.stopPropagation()}
-                onFocus={(event): void => event.stopPropagation()}
-                onChange={this.editName.bind(this)}
-                value={stateName}
-                onPressEnter={this.updateName.bind(this)}
-              />
-            </>
+            <Input
+              autoFocus
+              onClick={(event): void => event.stopPropagation()}
+              onFocus={(event): void => event.stopPropagation()}
+              onChange={this.editName.bind(this)}
+              value={stateName}
+              onPressEnter={this.updateName.bind(this)}
+            />
           ) : (
-            <>
-              <Icon component={<FileM />} size={24} color="#000" />
-              <span>{name}</span>
-            </>
+            <S.ItemLabel>{name}</S.ItemLabel>
           )}
         </S.ItemContainer>
       </List.Item>

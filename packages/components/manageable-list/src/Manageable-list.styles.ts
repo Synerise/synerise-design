@@ -5,7 +5,6 @@ export const ManageableListContainer = styled.div`
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-
   .ant-list {
     width: 100%;
   }
@@ -15,6 +14,7 @@ export const ShowMoreButton = styled.div`
   background: transparent;
   outline: 0;
   cursor: pointer;
+  margin: 16px 12px;
   strong {
     font-weight: 500;
   }

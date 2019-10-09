@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import Icon from '@synerise/ds-icon/dist/Icon';
 
 export const AddItemLayout = styled.div`
   display: flex;
@@ -18,4 +17,8 @@ export const AddItemButton = styled.span`
   align-items: center;
   justify-content: flex-start;
   height: 36px;
+`;
+
+export const AddItemLabel = styled.span`
+  margin-left: 12px;
 `;

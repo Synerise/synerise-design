@@ -39,7 +39,7 @@ export const ItemContainer = styled.div`
     background-size: 5px 1px;
     background-position: center bottom;
     background-repeat: repeat-x;
-    height: 17px;
+    height: 24px;
     color: #000;
     &:focus {
       border: 0;
@@ -54,9 +54,15 @@ export const ItemContainer = styled.div`
       background-size: 5px 1px;
       background-position: center bottom;
       background-repeat: repeat-x;
-      height: 17px;
+      height: 24px;
       color: #57616d;
       font-weight: 500;
     }
   }
+`;
+
+export const ItemLabel = styled.span`
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
 `;
