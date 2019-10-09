@@ -52,12 +52,13 @@ const Tag: React.FC<Props> = ({
       disabled={disabled}
       isActionable={isActionable}
       onClick={onClick}
+      data-testid="tag"
     >
       <div className="content">
         {image && isDefaultType && <img src={image} alt="" />}
         <span>{name}</span>
         {isRemovable && (
-          <button type="button" onClick={onRemoveCall}>
+          <button type="button" onClick={onRemoveCall} data-testid="remove-btn">
             <div>x</div>
           </button>
         )}
