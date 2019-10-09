@@ -52,7 +52,7 @@ const Tag: React.FC<Props> = ({
       disabled={disabled}
       isActionable={isActionable}
       onClick={onClick}
-      data-testid="tag"
+      data-testid={typeof id !== 'undefined' ? `tag-${id}` : 'tag'}
     >
       <div className="content">
         {image && isDefaultType && <img src={image} alt="" />}
