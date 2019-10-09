@@ -9,6 +9,7 @@ scripts/utils
 config/
 **/core/build/*.js
 **/core/**/variables.js
+**/icon/build/*.js
 packages/portal
 packages/docs-site
 __specs__

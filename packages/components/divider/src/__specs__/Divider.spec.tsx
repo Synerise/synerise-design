@@ -21,4 +21,13 @@ describe('Divider', () => {
     // ASSERT
     expect(getByText(TEST_TEXT)).toBeTruthy();
   });
+
+  it('should use margin props', () => {
+    // ARRANGE
+    const { container } = renderWithProvider(<Divider marginBottom={5} marginTop={10} />);
+
+    // ASSERT
+    expect(container.getElementsByClassName('ant-divider-horizontal')[0]).toHaveStyle('margin-bottom: 5px');
+    expect(container.getElementsByClassName('ant-divider-horizontal')[0]).toHaveStyle('margin-top: 10px');
+  });
 });
