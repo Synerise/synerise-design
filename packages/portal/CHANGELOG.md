@@ -3,6 +3,37 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/synerise/synerise-design/compare/portal@0.5.0...portal@0.6.0) (2019-10-09)
+
+
+### Bug Fixes
+
+* **modal:** loading state when using custom footer (storybook) ([fb7b7d2](https://github.com/synerise/synerise-design/commit/fb7b7d2))
+* **tooltip:** add styling fixes to tooltip ([242f7fd](https://github.com/synerise/synerise-design/commit/242f7fd))
+
+
+### Features
+
+* **button-group:** add button group component ([46f485c](https://github.com/synerise/synerise-design/commit/46f485c))
+* **button-group:** add more button customization (storybook) ([0b34223](https://github.com/synerise/synerise-design/commit/0b34223))
+* **button-group:** initial button-group component ([faef5a0](https://github.com/synerise/synerise-design/commit/faef5a0))
+* **dropdown:** Add overlay helper components ([d4a0e6b](https://github.com/synerise/synerise-design/commit/d4a0e6b))
+* **icon:** add icon component ([e84fc24](https://github.com/synerise/synerise-design/commit/e84fc24))
+* **modal:** add a custom footer example to storybook ([1076eb1](https://github.com/synerise/synerise-design/commit/1076eb1))
+* **modal:** add example with header actions to storybook ([9370bef](https://github.com/synerise/synerise-design/commit/9370bef))
+* **modal:** add size support ([dc76464](https://github.com/synerise/synerise-design/commit/dc76464))
+* **modal:** customizing modal & styling ([85c798e](https://github.com/synerise/synerise-design/commit/85c798e))
+* **progress-bar:** add progress-bar component ([78b04a3](https://github.com/synerise/synerise-design/commit/78b04a3))
+* **progress-bar:** add progress-bar tests ([9616cb0](https://github.com/synerise/synerise-design/commit/9616cb0))
+* **progress-bar:** CR fixes ([aad9d16](https://github.com/synerise/synerise-design/commit/aad9d16))
+* **progress-bar:** refactor ([f510421](https://github.com/synerise/synerise-design/commit/f510421))
+* **progress-bar:** use Progress component from antd ([cb8465e](https://github.com/synerise/synerise-design/commit/cb8465e))
+* **select:** add error, label and description + additional styles ([8f58a29](https://github.com/synerise/synerise-design/commit/8f58a29))
+
+
+
+
+
 # 0.5.0 (2019-10-03)
 
 
