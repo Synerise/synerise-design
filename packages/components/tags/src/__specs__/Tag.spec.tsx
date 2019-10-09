@@ -4,7 +4,7 @@ import { renderWithProvider } from '@synerise/ds-utils';
 import Button from '@synerise/ds-button';
 import { Tag, TagShape } from '../index';
 
-describe('Modal', () => {
+describe('Tag', () => {
   const TAGNAME = 'Test';
   const TAG_TESTID = 'tag';
   const REMOVE_BUTTON_TESTID = 'remove-btn'
