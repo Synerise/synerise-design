@@ -19,7 +19,6 @@ const Tags: React.FC<Props> = ({
   style,
   className,
   manageLink,
-  onAdd,
   onCreate,
 }: Props) => {
   const [isAdding, setAddingState] = React.useState<boolean>(false);
@@ -42,7 +41,7 @@ const Tags: React.FC<Props> = ({
   };
 
   const onPoolTagSelect = (tag: TagProps): void => {
-    onAdd && onAdd(tag);
+    onSelectedChange && onSelectedChange([...selected, tag]);
     reset();
   };
 
@@ -58,7 +57,7 @@ const Tags: React.FC<Props> = ({
         {isCreatable && (
           <>
             <S.AddTagDropdownButton type="ghost" icon="plus" onClick={onCreateNewTag}>
-              <span>{texts.addTagButtonLabel}</span>
+              <span>{texts.createTagButtonLabel}</span>
               <strong>{searchQuery}</strong>
             </S.AddTagDropdownButton>
             <S.Seperator />
@@ -121,6 +120,7 @@ const Tags: React.FC<Props> = ({
 
 Tags.defaultProps = {
   texts: {},
+  data: [],
   selected: [],
 };
 

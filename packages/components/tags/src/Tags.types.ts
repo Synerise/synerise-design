@@ -6,7 +6,7 @@ export interface TagsTexts {
   addButtonLabel?: string;
   searchPlaceholder?: string;
   manageLinkLabel?: string;
-  addTagButtonLabel?: string;
+  createTagButtonLabel?: string;
   dropdownNoTags?: string;
 }
 
@@ -22,7 +22,6 @@ export interface Props {
   disabled?: boolean;
   manageLink?: string;
   texts?: TagsTexts;
-  onAdd: (tag: TagProps) => void;
   onCreate: (name: string) => void;
   onSelectedChange?: (tags: Array<TagProps>) => void;
 }
