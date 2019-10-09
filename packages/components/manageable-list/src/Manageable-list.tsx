@@ -57,21 +57,23 @@ export default class ManageableList extends React.PureComponent<Props, State> {
       maxToShowItems,
       showMoreLabel,
       showLessLabel,
+      loading,
     } = this.props;
     const { allItemsVisible, itemsOverLimit } = this.state;
     const buttonLabel = allItemsVisible ? showLessLabel : showMoreLabel;
-    const buttonLabelDiff = allItemsVisible ? `- ${itemsOverLimit} more ` : `+ ${itemsOverLimit} less `;
+    const buttonLabelDiff = allItemsVisible ? `- ${itemsOverLimit} less ` : `+ ${itemsOverLimit} more `;
     return (
       <S.ManageableListContainer>
         <AddItem addItemLabel={addItemLabel} onItemAdd={onItemAdd} />
         <List
+          loading={loading}
           dataSource={[this.items()]}
           renderItem={(item): React.ReactNode => (
             <Item onSelect={onItemSelect} onUpdate={onItemEdit} onRemove={onItemRemove} item={item} />
           )}
         />
         {items.length > maxToShowItems ? (
-          <S.ShowMoreButton onClick={this.toggleAllItems.bind(this)}>
+          <S.ShowMoreButton onClick={this.toggleAllItems.bind(this)} data-testid="show-more-button">
             <span>{buttonLabelDiff}</span>
             <strong>{buttonLabel}</strong>
           </S.ShowMoreButton>

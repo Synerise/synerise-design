@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { Input } from '@synerise/ds-input';
-import Icon from '@synerise/ds-icon';
 
 export const ItemActions = styled.div`
   display: flex;

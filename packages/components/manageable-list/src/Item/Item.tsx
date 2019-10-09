@@ -63,6 +63,7 @@ class Item extends React.PureComponent<Props, State> {
     const { onUpdate, item } = this.props;
     const { catalogId } = item;
     const { name } = this.state;
+    this.setState({ editMode: false, name: item.name });
     onUpdate({ id: catalogId, name });
   }
 
@@ -84,15 +85,19 @@ class Item extends React.PureComponent<Props, State> {
         actions={
           <S.ItemActions>
             {canUpdateCatalog && (
-              <Icon component={<FileM />} size={24} color="#000" onClick={this.enterEditMode.bind(this)} />
+              <div data-testid="list-item-edit">
+                <Icon component={<FileM />} size={24} color="#000" onClick={this.enterEditMode.bind(this)} />
+              </div>
             )}
             {canDeleteCatalog && (
-              <Icon component={<FileM />} size={24} color="#000" onClick={this.removeCatalog.bind(this)} />
+              <div data-testid="list-item-remove">
+                <Icon component={<FileM />} size={24} color="#000" onClick={this.removeCatalog.bind(this)} />
+              </div>
             )}
           </S.ItemActions>
         }
       >
-        <S.ItemContainer>
+        <S.ItemContainer data-testid="list-item">
           {editMode ? (
             <Input
               autoFocus
@@ -101,9 +106,10 @@ class Item extends React.PureComponent<Props, State> {
               onChange={this.editName.bind(this)}
               value={stateName}
               onPressEnter={this.updateName.bind(this)}
+              data-testid="list-item-name-input"
             />
           ) : (
-            <S.ItemLabel>{name}</S.ItemLabel>
+            <S.ItemLabel data-testid="list-item-name">{name}</S.ItemLabel>
           )}
         </S.ItemContainer>
       </List.Item>

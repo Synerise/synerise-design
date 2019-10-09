@@ -52,7 +52,7 @@ class AddItem extends React.PureComponent<Props, State> {
     const { addItemLabel } = this.props;
     return (
       <S.AddItemLayout>
-        <S.AddItemButton onClick={this.toggleInput.bind(this)}>
+        <S.AddItemButton onClick={this.toggleInput.bind(this)} data-testid="add-item-button">
           <Icon component={<FileM />} size={24} color="#000" />
           <S.AddItemLabel>{addItemLabel}</S.AddItemLabel>
         </S.AddItemButton>
@@ -62,6 +62,7 @@ class AddItem extends React.PureComponent<Props, State> {
             value={name}
             onChange={this.handleNameChange.bind(this)}
             onPressEnter={this.createCatalog.bind(this)}
+            data-testid="add-item-input"
           />
         )}
       </S.AddItemLayout>
