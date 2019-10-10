@@ -6,28 +6,28 @@ export const Container = styled.div<{
   lively?: boolean;
 }>`
   background: #fff;
-  box-shadow: ${props => props.theme.variable('@box-shadow-base')};
-  border-radius: ${props => props.theme.variable('@border-radius-base')};
+  box-shadow: ${(props): string => props.theme.variable('@box-shadow-base')};
+  border-radius: ${(props): string => props.theme.variable('@border-radius-base')};
   padding: 24px;
   display: flex;
   flex-flow: column;
   transition: 0.3s ease;
   width: 100%;
 
-  ${props =>
+  ${(props): string =>
     props.raised &&
     css`
       box-shadow: ${props.theme.variable('@box-shadow-active')};
     `}
 
-  ${props =>
+  ${(props): string =>
     props.disabled &&
     css`
       pointer-events: none;
       opacity: 0.5;
     `};
 
-  ${props =>
+  ${(props): string =>
     props.lively &&
     css`
       &:hover {
@@ -42,7 +42,7 @@ export const Header = styled.div<{ isContentful?: boolean }>`
   flex-wrap: nowrap;
   align-items: center;
 
-  ${props =>
+  ${(props): string =>
     props.isContentful &&
     css`
       margin: 0 0 24px;
@@ -53,21 +53,21 @@ export const HeaderSideChildren = styled.div``;
 
 export const Title = styled.h4`
   font-size: 16px;
-  color: ${props => props.theme.variable('@gray-color')};
+  color: ${(props): string => props.theme.variable('@gray-color')};
   margin: 0 0 8px;
   font-weight: 500;
 `;
 
 export const Description = styled.p`
   margin: 0;
-  color: ${props => props.theme.palette['grey-600']};
+  color: ${(props): string => props.theme.palette['grey-600']};
   font-size: 13px;
 `;
 
 export const HeaderContent = styled.div<{ compact?: boolean }>`
   width: 100%;
 
-  ${props =>
+  ${(props): string =>
     props.compact &&
     css`
       display: flex;
