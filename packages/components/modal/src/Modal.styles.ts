@@ -7,14 +7,16 @@ export const TitleContainer = styled.div`
   flex-wrap: nowrap;
 `;
 
-export const Title = styled.span`
+export const Title = styled(Typography.Title)`
   width: 100%;
-  font-size: 18px;
-  font-weight: 500;
   color: ${(props): string => props.theme.palette['grey-800']};
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+
+  && {
+    margin: 0;
+  }
 `;
 
 export const Description = styled(Typography.Text)`
