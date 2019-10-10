@@ -21,7 +21,7 @@ interface Props extends ModalProps {
   headerActions?: React.ReactNode;
   size?: ModalSize;
   texts?: {
-    applyButton: string;
+    okButton: string;
     cancelButton: string;
   };
 }
@@ -72,8 +72,8 @@ const ModalProxy: React.FC<Props> = ({
       </Button>
 
       {/* eslint-disable-next-line */}
-      <Button type="primary" onClick={antModalProps.onOk} {...antModalProps.okButtonProps}>
-        {texts.applyButton}
+      <Button type={antModalProps.okType || 'primary'} onClick={antModalProps.onOk} {...antModalProps.okButtonProps}>
+        {texts.okButton}
       </Button>
     </S.FooterContainer>
   );
@@ -93,7 +93,7 @@ const ModalProxy: React.FC<Props> = ({
 ModalProxy.defaultProps = {
   closable: true,
   texts: {
-    applyButton: 'Apply',
+    okButton: 'Apply',
     cancelButton: 'Cancel',
   },
 };
