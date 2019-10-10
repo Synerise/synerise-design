@@ -16,10 +16,16 @@ enum ModalSize {
   EXTRA_LARGE = 'extra_large',
 }
 
+export enum ModalBackground {
+  WHITE = 'white',
+  GREY = 'grey',
+}
+
 interface Props extends ModalProps {
   description?: string;
   headerActions?: React.ReactNode;
   size?: ModalSize;
+  bodyBackground: ModalBackground;
   texts?: {
     okButton: string;
     cancelButton: string;
@@ -35,6 +41,7 @@ const sizeMap = {
 
 const ModalProxy: React.FC<Props> = ({
   texts,
+  bodyBackground,
   closable,
   headerActions,
   title,
@@ -43,6 +50,7 @@ const ModalProxy: React.FC<Props> = ({
   ...antModalProps
 }) => {
   const onClose = (): void => antModalProps.afterClose && antModalProps.afterClose();
+  const className = `bodybg-${bodyBackground} ${antModalProps.className || ''}`;
 
   const titleContainer = (
     <>
@@ -82,6 +90,7 @@ const ModalProxy: React.FC<Props> = ({
     <Modal
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...antModalProps}
+      className={className}
       width={!size ? undefined : sizeMap[size]}
       closable={false}
       title={titleContainer}
@@ -92,6 +101,7 @@ const ModalProxy: React.FC<Props> = ({
 
 ModalProxy.defaultProps = {
   closable: true,
+  bodyBackground: ModalBackground.WHITE,
   texts: {
     okButton: 'Apply',
     cancelButton: 'Cancel',

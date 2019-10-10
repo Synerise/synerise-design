@@ -1,1 +1,1 @@
-export { default } from './Modal';
+export { default, ModalBackground } from './Modal';

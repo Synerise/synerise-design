@@ -24,8 +24,10 @@
   }
 
   &-mask {
-    background-color: @grey-800;
-    opacity: 0.2;
+    && {
+      background-color: @grey-800;
+      opacity: 0.2;
+    }
   }
 
   &-close {
@@ -68,9 +70,11 @@
   }
 
   &-body {
-    padding: @modal-base-padding;
-    font-size: @font-size-base;
-    line-height: @line-height-base;
+    && {
+      padding: @modal-base-padding;
+      font-size: @font-size-base;
+      line-height: @line-height-base;
+    }
 
     .anticon-question-circle {
       margin-top: -4px;
@@ -96,6 +100,14 @@
     button + button {
       margin-left: 16px;
       margin-bottom: 0;
+    }
+  }
+
+  && {
+    &.bodybg-grey {
+      .@{dialog-prefix-cls}-body {
+        background-color: @grey-050;
+      }
     }
   }
 }
