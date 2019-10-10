@@ -14,7 +14,7 @@ export const Container = styled.div<{ items: number }>`
     ${CardContainer} {
       margin: 12px;
       width: calc(${100 / props.items}% - 24px);
-      
+
       &:nth-child(${props.items}n+1), &:nth-child(${props.items}n+${props.items}) {
         width: calc(${100 / props.items}% - 12px);
       }
