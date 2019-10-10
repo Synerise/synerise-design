@@ -3,6 +3,10 @@ import * as React from 'react';
 import * as S from './Card.styles';
 import { Props } from './Card.types';
 
+const mapSizeToWidth = {
+  medium: 588,
+};
+
 const Card: React.FC<Props> = ({
   children,
   raised,
@@ -15,13 +19,22 @@ const Card: React.FC<Props> = ({
   description,
   compactHeader,
   icon,
+  size,
   // iconSize,
   headerSideChildren,
 }: Props) => {
   const fatTitle = !description || (description && compactHeader);
+  console.log(mapSizeToWidth[size]);
 
   return (
-    <S.Container raised={raised} disabled={disabled} style={style} className={className} lively={lively}>
+    <S.Container
+      size={size && mapSizeToWidth[size]}
+      raised={raised}
+      disabled={disabled}
+      style={style}
+      className={className}
+      lively={lively}
+    >
       {withHeader && (
         <S.Header isContentful={!!children}>
           {icon && <S.IconContainer>{/* <Icon /> */}</S.IconContainer>}

@@ -12,6 +12,7 @@ export interface Props {
   title?: string;
   description?: ReactNode | string;
   icon?: string;
+  size?: 'medium';
   iconSize?: number;
   headerSideChildren?: ReactNode;
 }

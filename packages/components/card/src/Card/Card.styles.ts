@@ -5,6 +5,7 @@ export const Container = styled.div<{
   raised?: boolean;
   disabled?: boolean;
   lively?: boolean;
+  size?: string;
 }>`
   background: #fff;
   box-shadow: ${(props): string => props.theme.variable('@box-shadow-base')};
@@ -13,7 +14,7 @@ export const Container = styled.div<{
   display: flex;
   flex-flow: column;
   transition: 0.3s ease;
-  width: 100%;
+  width: ${(props): string => `${props.size}px` || '100%'};
 
   ${(props): string =>
     props.raised &&
