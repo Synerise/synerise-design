@@ -38,7 +38,7 @@ storiesOf('Components|Card', module)
               )}
             >
               {showContent &&
-                <div style={{backgroundColor: '#ffcccb', width: '100%', height: 300}}>
+                <div style={{width: '100%', height: 300}}>
                   Wow so great, such content!1
                 </div>
               }
