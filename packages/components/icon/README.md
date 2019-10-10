@@ -11,5 +11,13 @@ Icon UI Component
 
 ## API
 
-| Property | Description | Type | Default |
-| --- | --- | --- | --- |
+| Property  | Description | Type             | Default |
+| --------- | ----------- | ---------------- | ------- |
+| color     |             | string           | inherit |
+| title     |             | string           |         |
+| size      |             | string or number | 24      |
+| type      |             | string           |         |
+| onClick   |             | fucnction        |         |
+| component |             | ReactNode        |         |
+| className |             | string           |         |
+| style     |             | CSSProperties    |         |
