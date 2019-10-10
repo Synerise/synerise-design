@@ -9,6 +9,9 @@ export const TitleContainer = styled.div`
 
 export const Title = styled.span`
   width: 100%;
+  font-size: 18px;
+  font-weight: 500;
+  color: ${(props): string => props.theme.palette['grey-800']};
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -34,4 +37,10 @@ export const ActionButtons = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+`;
+
+export const FooterContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 `;

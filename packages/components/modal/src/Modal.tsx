@@ -20,6 +20,10 @@ interface Props extends ModalProps {
   description?: string;
   headerActions?: React.ReactNode;
   size?: ModalSize;
+  texts: {
+    applyButton: string;
+    cancelButton: string;
+  };
 }
 
 const sizeMap = {
@@ -29,8 +33,30 @@ const sizeMap = {
   [ModalSize.EXTRA_LARGE]: 1280,
 };
 
-const ModalProxy: React.FC<Props> = ({ closable, headerActions, title, description, size, ...antModalProps }) => {
+const ModalProxy: React.FC<Props> = ({
+  texts,
+  closable,
+  headerActions,
+  title,
+  description,
+  size,
+  ...antModalProps
+}) => {
   const onClose = (): void => antModalProps.afterClose && antModalProps.afterClose();
+
+  const footer = (
+    <S.FooterContainer>
+      {/* eslint-disable-next-line react/jsx-handler-names */}
+      <Button type="ghost" onClick={antModalProps.onCancel}>
+        {texts.cancelButton}
+      </Button>
+
+      {/* eslint-disable-next-line react/jsx-handler-names */}
+      <Button type="primary" onClick={antModalProps.onOk}>
+        {texts.applyButton}
+      </Button>
+    </S.FooterContainer>
+  );
 
   return (
     <Modal
@@ -57,12 +83,17 @@ const ModalProxy: React.FC<Props> = ({ closable, headerActions, title, descripti
           {description && <S.Description>{description}</S.Description>}
         </>
       }
+      footer={antModalProps.footer || footer}
     />
   );
 };
 
 ModalProxy.defaultProps = {
   closable: true,
+  texts: {
+    applyButton: 'Apply',
+    cancelButton: 'Cancel',
+  },
 };
 
 export default ModalProxy;
