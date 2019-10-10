@@ -5,9 +5,40 @@ title: Slider
 
 Slider UI Component
 
-## Demo
+Based on [Ant Design Slider](https://ant.design/components/slider/)
+
+## Installation
+
+```
+npm i @synerise/ds-slider
+or
+yarn add @synerise/ds-slider
+```
+
+## Usage
+
+```jsx
+import Slider from '@synerise/ds-slider';
+
+<Slider
+  label="Label"
+  max={100}
+  min={0}
+  range
+  step={5}
+  onAfterChange={props.onAfterChange}
+  OnChange={props.onChange}
+  tooltipPlacement="topLeft"
+/>;
+```
+
+## Slider Default
 
 <iframe src="/storybook-static/iframe.html?id=components-slider--default"></iframe>
+
+## Slider Multiple Mode
+
+<iframe src="/storybook-static/iframe.html?id=components-slider--multiple-range"></iframe>
 
 ## API
 
