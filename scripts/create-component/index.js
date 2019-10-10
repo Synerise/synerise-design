@@ -38,7 +38,7 @@ async function main() {
 
   const suggestedExternalDependencies = ['antd'];
 
-  const suggestedDependencies = ['button', 'typography'].map(toPackageName);
+  const suggestedDependencies = ['button', 'typography', 'card'].map(toPackageName);
 
   const questions = [
     {
