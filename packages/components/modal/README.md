@@ -42,12 +42,5 @@ Modal UI Component
 | onCancel          | Specify a function that will be called when a user clicks mask, close button on top right or Cancel button | function(e)                                           | -                                             |
 | onOk              | Specify a function that will be called when a user clicks the OK button                                    | function(e)                                           | -                                             |
 | headerActions     | Append additional content to header actions space                                                          | React.ReactNode                                       | -                                             |
-| bodyBackground    | Set color for body of modal                                                                                | ModalBackground                                       | ModalBackground.WHITE                         |
+| bodyBackground    | Set color for body of modal                                                                                | 'white' / 'grey'                                      | 'white'                                       |
 | texts             | Labels to render                                                                                           | { okButton: string; cancelButton: string; }           | { okButton: 'Apply', cancelButton: 'Cancel' } |
-
-## ModelBackground
-
-| Property |
-| -------- |
-| WHITE    |
-| GREY     |
