@@ -7,18 +7,23 @@ export const TitleContainer = styled.div`
   flex-wrap: nowrap;
 `;
 
-export const Title = styled.span`
+export const Title = styled(Typography.Title)`
   width: 100%;
+  color: ${(props): string => props.theme.palette['grey-800']};
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+
+  && {
+    margin: 0;
+  }
 `;
 
 export const Description = styled(Typography.Text)`
-  font-size: 13px;
+  font-weight: normal;
   display: block;
-  padding: 4px 0 0;
-  margin: 8px 0 -16px;
+  padding: 12px 0 0;
+  margin: 8px 0 -14px;
 
   background-image: linear-gradient(
     to right,
@@ -34,4 +39,10 @@ export const ActionButtons = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+`;
+
+export const FooterContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 `;

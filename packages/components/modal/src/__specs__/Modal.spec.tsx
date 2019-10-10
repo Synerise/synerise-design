@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { fireEvent, render } from '@testing-library/react';
+import { fireEvent } from '@testing-library/react';
 import { renderWithProvider } from '@synerise/ds-utils';
 import Button from '@synerise/ds-button';
 import Modal from '../index';
@@ -15,7 +15,7 @@ describe('Modal', () => {
 
   it('should render', () => {
     // ARRANGE
-    const { getByText } = render(<Modal visible title={TITLE} />);
+    const { getByText } = renderWithProvider(<Modal visible title={TITLE} />);
 
     // ASSERT
     expect(getByText(TITLE)).toBeTruthy();
@@ -23,7 +23,7 @@ describe('Modal', () => {
 
   it('content render', () => {
     // ARRANGE
-    const { getByText } = render(<Modal visible >{MODAL_CONTENT}</Modal>);
+    const { getByText } = renderWithProvider(<Modal visible >{MODAL_CONTENT}</Modal>);
 
     // ASSERT
     expect(getByText(MODAL_CONTENT)).toBeTruthy();
@@ -31,7 +31,7 @@ describe('Modal', () => {
 
   it('onCancel should be called', () => {
     // ARRANGE
-    const { getByText } = render(<Modal visible onCancel={onCancel} cancelText={CANCEL_TEXT} />);
+    const { getByText } = renderWithProvider(<Modal visible onCancel={onCancel} texts={{cancelButton: CANCEL_TEXT}} />);
 
     // ACT
     fireEvent.click(getByText(CANCEL_TEXT));
@@ -42,7 +42,7 @@ describe('Modal', () => {
 
   it('onOk should be called', () => {
     // ARRANGE
-    const { getByText } = render(<Modal visible onOk={onOk} okText={OK_TEXT} />);
+    const { getByText } = renderWithProvider(<Modal visible onOk={onOk} texts={{okButton: OK_TEXT}} />);
 
     // ACT
     fireEvent.click(getByText(OK_TEXT));

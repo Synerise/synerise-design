@@ -12,7 +12,12 @@ const sizes = {
   Small: 'small',
   Medium: 'medium',
   Large: 'large',
-  'Extra Large': 'extra_large'
+  'Extra Large': 'extraLarge'
+};
+
+const bodyBackgroundColors = {
+  White: 'white',
+  Grey: 'grey',
 };
 
 const props = () => ({
@@ -32,44 +37,52 @@ const props = () => ({
   onCancel: action('onCancel CLICK'),
   showHeaderAction: boolean('Show example of an additional header button', true),
   renderCustomFooter: boolean('Render custom footer', true),
+  removeFooter: boolean('Render without footer', false),
   size: select('Size', sizes, null),
+  bodyBackground: select('Body background color', bodyBackgroundColors, bodyBackgroundColors.White),
 });
 
 storiesOf('Components|Modal', module)
   .add('default', () => {
+    const spread = props();
+
     return (
       <DSProvider code="en_GB">
-        <Modal
-          {...props()}
-          footer={
-            !props().renderCustomFooter ? undefined :
-              <div style={{ display: 'flex', flexWrap: 'nowrap' }}>
-                <div style={{ width: '100%', display: 'flex' }}>
-                  <Button type="secondary">
-                    Settings
-                  </Button>
-                </div>
+        <>
+          Some page content
 
-                <div style={{ display: 'flex' }}>
-                  <Button type="secondary">
-                    Cancel
-                  </Button>
+          <Modal
+            {...spread}
+            footer={spread.removeFooter ? null :
+              !spread.renderCustomFooter ? undefined :
+                <div style={{ display: 'flex', flexWrap: 'nowrap' }}>
+                  <div style={{ width: '100%', display: 'flex' }}>
+                    <Button type="secondary">
+                      Settings
+                    </Button>
+                  </div>
 
-                  <Button type="primary" loading={props().confirmLoading}>
-                    Apply
-                  </Button>
+                  <div style={{ display: 'flex' }}>
+                    <Button type="secondary">
+                      Cancel
+                    </Button>
+
+                    <Button type="primary" loading={props().confirmLoading}>
+                      Apply
+                    </Button>
+                  </div>
                 </div>
-              </div>
-          }
-          headerActions={
-            props().showHeaderAction &&
-              <Button type="ghost" onClick={() => window.alert('You just clicked on an additional header button')}>
-                Additional Button
-              </Button>
-          }
-        >
-          Some contents...
-        </Modal>
+            }
+            headerActions={
+              props().showHeaderAction &&
+                <Button type="ghost" onClick={() => window.alert('You just clicked on an additional header button')}>
+                  Additional Button
+                </Button>
+            }
+          >
+            Some contents...
+          </Modal>
+        </>
       </DSProvider>
     )
 });
