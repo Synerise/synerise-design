@@ -48,37 +48,41 @@ storiesOf('Components|Modal', module)
 
     return (
       <DSProvider code="en_GB">
-        <Modal
-          {...spread}
-          footer={spread.removeFooter ? null :
-            !spread.renderCustomFooter ? undefined :
-              <div style={{ display: 'flex', flexWrap: 'nowrap' }}>
-                <div style={{ width: '100%', display: 'flex' }}>
-                  <Button type="secondary">
-                    Settings
-                  </Button>
-                </div>
+        <>
+          Some page content
 
-                <div style={{ display: 'flex' }}>
-                  <Button type="secondary">
-                    Cancel
-                  </Button>
+          <Modal
+            {...spread}
+            footer={spread.removeFooter ? null :
+              !spread.renderCustomFooter ? undefined :
+                <div style={{ display: 'flex', flexWrap: 'nowrap' }}>
+                  <div style={{ width: '100%', display: 'flex' }}>
+                    <Button type="secondary">
+                      Settings
+                    </Button>
+                  </div>
 
-                  <Button type="primary" loading={props().confirmLoading}>
-                    Apply
-                  </Button>
+                  <div style={{ display: 'flex' }}>
+                    <Button type="secondary">
+                      Cancel
+                    </Button>
+
+                    <Button type="primary" loading={props().confirmLoading}>
+                      Apply
+                    </Button>
+                  </div>
                 </div>
-              </div>
-          }
-          headerActions={
-            props().showHeaderAction &&
-              <Button type="ghost" onClick={() => window.alert('You just clicked on an additional header button')}>
-                Additional Button
-              </Button>
-          }
-        >
-          Some contents...
-        </Modal>
+            }
+            headerActions={
+              props().showHeaderAction &&
+                <Button type="ghost" onClick={() => window.alert('You just clicked on an additional header button')}>
+                  Additional Button
+                </Button>
+            }
+          >
+            Some contents...
+          </Modal>
+        </>
       </DSProvider>
     )
 });
