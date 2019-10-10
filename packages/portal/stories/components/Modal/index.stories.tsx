@@ -5,7 +5,7 @@ import { action } from '@storybook/addon-actions';
 import { boolean, text, select, number } from '@storybook/addon-knobs';
 import { DSProvider } from '@synerise/ds-core';
 import Button from '@synerise/ds-button';
-import Modal from '@synerise/ds-modal';
+import Modal, { ModalBackground } from '@synerise/ds-modal';
 
 const sizes = {
   Auto: null,
@@ -13,6 +13,11 @@ const sizes = {
   Medium: 'medium',
   Large: 'large',
   'Extra Large': 'extra_large'
+};
+
+const bodyBackgroundColors = {
+  White: ModalBackground.WHITE,
+  Grey: ModalBackground.GREY,
 };
 
 const props = () => ({
@@ -34,6 +39,7 @@ const props = () => ({
   renderCustomFooter: boolean('Render custom footer', true),
   removeFooter: boolean('Render without footer', false),
   size: select('Size', sizes, null),
+  bodyBackground: select('Body background color', bodyBackgroundColors, bodyBackgroundColors.White),
 });
 
 storiesOf('Components|Modal', module)
