@@ -18,6 +18,8 @@ const Card: React.FC<Props> = ({
   // iconSize,
   headerSideChildren,
 }: Props) => {
+  const fatTitle = !description || (description && compactHeader);
+
   return (
     <S.Container raised={raised} disabled={disabled} style={style} className={className} lively={lively}>
       {withHeader && (
@@ -25,7 +27,11 @@ const Card: React.FC<Props> = ({
           {icon && <S.IconContainer>{/* <Icon /> */}</S.IconContainer>}
 
           <S.HeaderContent compact={compactHeader}>
-            {title && <S.Title>{title}</S.Title>}
+            {title && (
+              <S.Title level={4} fat={fatTitle}>
+                {title}
+              </S.Title>
+            )}
             {description && <S.Description>{description}</S.Description>}
           </S.HeaderContent>
 

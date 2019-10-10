@@ -21,7 +21,9 @@
   },
   "sideEffects": false,
   "types": "dist/index.d.ts",
-  "dependencies": {},
+  "dependencies": {
+    "@synerise/ds-typography": "^0.4.0"
+  },
   "peerDependencies": {
     "@synerise/ds-core": "*",
     "react": ">=16.9.0 < 17.0.0"
