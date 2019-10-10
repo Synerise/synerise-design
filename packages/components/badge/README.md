@@ -5,6 +5,8 @@ title: Badge
 
 Badge UI Component
 
+Based on [Ant Design Badge](https://ant.design/components/badge/)
+
 ## Installation
 
 ```
@@ -18,13 +20,29 @@ yarn add @synerise/ds-badge
 ```
 import Badge from '@synerise/ds-badge'
 
-<Badge />
+<Badge
+  count={10}
+  overflowCount={11}
+  showZero={false}
+/>
 
 ```
 
-## Demo
+## Badge Standalone
 
-<iframe src="/storybook-static/iframe.html?id=components-badge--default"></iframe>
+<iframe src="/storybook-static/iframe.html?id=components-badge--standalone"></iframe>
+
+## Badge Dot
+
+<iframe src="/storybook-static/iframe.html?id=components-badge--dot"></iframe>
+
+## Badge Count
+
+<iframe src="/storybook-static/iframe.html?id=components-badge--count"></iframe>
+
+## Badge Status
+
+<iframe src="/storybook-static/iframe.html?id=components-badge--status"></iframe>
 
 ## API
 
