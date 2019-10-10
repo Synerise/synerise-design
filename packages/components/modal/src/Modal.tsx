@@ -16,16 +16,11 @@ enum ModalSize {
   EXTRA_LARGE = 'extra_large',
 }
 
-export enum ModalBackground {
-  WHITE = 'white',
-  GREY = 'grey',
-}
-
 interface Props extends ModalProps {
   description?: string;
   headerActions?: React.ReactNode;
   size?: ModalSize;
-  bodyBackground: ModalBackground;
+  bodyBackground: 'white' | 'grey';
   texts?: {
     okButton: string;
     cancelButton: string;
@@ -101,7 +96,7 @@ const ModalProxy: React.FC<Props> = ({
 
 ModalProxy.defaultProps = {
   closable: true,
-  bodyBackground: ModalBackground.WHITE,
+  bodyBackground: 'white',
   texts: {
     okButton: 'Apply',
     cancelButton: 'Cancel',

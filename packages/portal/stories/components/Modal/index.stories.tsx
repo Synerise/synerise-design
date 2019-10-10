@@ -5,7 +5,7 @@ import { action } from '@storybook/addon-actions';
 import { boolean, text, select, number } from '@storybook/addon-knobs';
 import { DSProvider } from '@synerise/ds-core';
 import Button from '@synerise/ds-button';
-import Modal, { ModalBackground } from '@synerise/ds-modal';
+import Modal from '@synerise/ds-modal';
 
 const sizes = {
   Auto: null,
@@ -16,8 +16,8 @@ const sizes = {
 };
 
 const bodyBackgroundColors = {
-  White: ModalBackground.WHITE,
-  Grey: ModalBackground.GREY,
+  White: 'white',
+  Grey: 'grey',
 };
 
 const props = () => ({
