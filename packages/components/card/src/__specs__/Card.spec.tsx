@@ -14,8 +14,6 @@ describe('Card', () => {
       />
     );
 
-    // ACT
-
     // ASSERT
     expect(getByText('Card title')).toBeTruthy();
     expect(getByText('Card description')).toBeTruthy();
@@ -32,8 +30,6 @@ describe('Card', () => {
       </Card>
     );
 
-    // ACT
-
     // ASSERT
     expect(getByTestId(TEST_ID)).toBeTruthy();
   });
@@ -46,8 +42,6 @@ describe('Card', () => {
         description="Card description"
       />
     );
-
-    // ACT
 
     // ASSERT
     expect(queryByText('Card title')).toBeNull();
@@ -66,8 +60,6 @@ describe('Card', () => {
         }
       />
     );
-
-    // ACT
 
     // ASSERT
     expect(getByTestId(TEST_ID)).toBeTruthy();
