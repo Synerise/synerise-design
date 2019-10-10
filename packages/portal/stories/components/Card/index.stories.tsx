@@ -10,6 +10,8 @@ import { boolean, text, number } from '@storybook/addon-knobs';
 
 const init = () => {
   const props = {
+    title: text('Title', 'Card Title'),
+    description: text('Description', 'Description of the card contents'),
     raised: boolean('Raised', false),
     disabled: boolean('Disabled', false),
     lively: boolean('Lively', false),
@@ -29,8 +31,8 @@ const renderCard = props => (
     disabled={props.disabled}
     raised={props.raised}
     withHeader={props.withHeader}
-    title="Card title"
-    description="Description of the card contents"
+    title={props.title}
+    description={props.description}
     icon={props.withIcon}
     compactHeader={props.compactHeader}
     headerSideChildren={props.withHeaderSide && (
