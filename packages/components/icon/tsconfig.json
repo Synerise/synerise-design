@@ -1,0 +1,11 @@
+{
+  "include": ["src"],
+  "extends": "../../../config/typescript/tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "rootDirs": ["./icon-components", "src"],
+    "baseUrl": "src",
+    "jsx": "preserve"
+  },
+  "references": []
+}

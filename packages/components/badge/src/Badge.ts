@@ -1,4 +1,4 @@
 import '@synerise/ds-core/dist/js/style';
 import './style/index.less';
 
-export { default } from 'antd/lib/dropdown';
+export { default } from 'antd/lib/badge';

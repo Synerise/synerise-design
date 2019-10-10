@@ -1,3 +1,4 @@
+import '@formatjs/intl-relativetimeformat/polyfill';
 import { configure, addDecorator, addParameters } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
 import { withKnobs } from '@storybook/addon-knobs';

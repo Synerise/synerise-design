@@ -1,5 +1,23 @@
 @checkbox-prefix-cls: ~'@{ant-prefix}-checkbox';
 
+.@{checkbox-prefix-cls}-inner {
+  && {
+    transition: unset;
+
+    &:after {
+      transition: unset;
+    }
+  }
+}
+
+.@{checkbox-prefix-cls}-wrapper {
+  transition: unset;
+
+  * {
+    transition: unset;
+  }
+}
+
 .@{checkbox-prefix-cls} + span {
   padding: 0;
   color: @grey-700;
@@ -17,6 +35,17 @@
 .@{checkbox-prefix-cls}-wrapper.error {
   .@{checkbox-prefix-cls}-inner {
     border-color: @red-600 !important;
+    border-width: 2px;
+  }
+
+  .ant-checkbox-checked {
+    .ant-checkbox-inner {
+      background: @red-600 !important;
+
+      &:after {
+        left: 20%;
+      }
+    }
   }
 }
 
@@ -57,6 +86,10 @@
   .@{checkbox-prefix-cls}-input:focus + .@{checkbox-prefix-cls}-inner {
     border-color: @blue-600;
     background-color: @blue-500;
+
+    &:after {
+      left: 20%;
+    }
   }
 }
 
