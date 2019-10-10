@@ -15,8 +15,8 @@ interface Props extends ModalProps {
   size?: 'small' | 'medium' | 'large' | 'extra_large';
   bodyBackground?: 'white' | 'grey';
   texts?: {
-    okButton: string;
-    cancelButton: string;
+    okButton?: string;
+    cancelButton?: string;
   };
 }
 
