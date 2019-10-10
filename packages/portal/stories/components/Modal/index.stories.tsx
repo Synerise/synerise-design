@@ -32,17 +32,20 @@ const props = () => ({
   onCancel: action('onCancel CLICK'),
   showHeaderAction: boolean('Show example of an additional header button', true),
   renderCustomFooter: boolean('Render custom footer', true),
+  removeFooter: boolean('Render without footer', false),
   size: select('Size', sizes, null),
 });
 
 storiesOf('Components|Modal', module)
   .add('default', () => {
+    const spread = props();
+
     return (
       <DSProvider code="en_GB">
         <Modal
-          {...props()}
-          footer={
-            !props().renderCustomFooter ? undefined :
+          {...spread}
+          footer={spread.removeFooter ? null :
+            !spread.renderCustomFooter ? undefined :
               <div style={{ display: 'flex', flexWrap: 'nowrap' }}>
                 <div style={{ width: '100%', display: 'flex' }}>
                   <Button type="secondary">

@@ -20,7 +20,7 @@ interface Props extends ModalProps {
   description?: string;
   headerActions?: React.ReactNode;
   size?: ModalSize;
-  texts: {
+  texts?: {
     applyButton: string;
     cancelButton: string;
   };
@@ -44,15 +44,35 @@ const ModalProxy: React.FC<Props> = ({
 }) => {
   const onClose = (): void => antModalProps.afterClose && antModalProps.afterClose();
 
-  const footer = (
+  const titleContainer = (
+    <>
+      {title && (
+        <S.TitleContainer>
+          <S.Title>{title}</S.Title>
+          <S.ActionButtons>
+            {headerActions}
+            {closable && (
+              <Button className="close-modal" type="ghost" onClick={onClose}>
+                <Icon type="close" />
+              </Button>
+            )}
+          </S.ActionButtons>
+        </S.TitleContainer>
+      )}
+
+      {description && <S.Description>{description}</S.Description>}
+    </>
+  );
+
+  const footerContainer = antModalProps.footer || (
     <S.FooterContainer>
-      {/* eslint-disable-next-line react/jsx-handler-names */}
-      <Button type="ghost" onClick={antModalProps.onCancel}>
+      {/* eslint-disable-next-line */}
+      <Button type="ghost" onClick={antModalProps.onCancel} {...antModalProps.cancelButtonProps}>
         {texts.cancelButton}
       </Button>
 
-      {/* eslint-disable-next-line react/jsx-handler-names */}
-      <Button type="primary" onClick={antModalProps.onOk}>
+      {/* eslint-disable-next-line */}
+      <Button type="primary" onClick={antModalProps.onOk} {...antModalProps.okButtonProps}>
         {texts.applyButton}
       </Button>
     </S.FooterContainer>
@@ -64,26 +84,8 @@ const ModalProxy: React.FC<Props> = ({
       {...antModalProps}
       width={!size ? undefined : sizeMap[size]}
       closable={false}
-      title={
-        <>
-          {title && (
-            <S.TitleContainer>
-              <S.Title>{title}</S.Title>
-              <S.ActionButtons>
-                {headerActions}
-                {closable && (
-                  <Button className="close-modal" type="ghost" onClick={onClose}>
-                    <Icon type="close" />
-                  </Button>
-                )}
-              </S.ActionButtons>
-            </S.TitleContainer>
-          )}
-
-          {description && <S.Description>{description}</S.Description>}
-        </>
-      }
-      footer={antModalProps.footer || footer}
+      title={titleContainer}
+      footer={antModalProps.footer !== null ? footerContainer : null}
     />
   );
 };
