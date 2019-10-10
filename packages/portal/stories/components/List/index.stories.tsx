@@ -3,6 +3,9 @@ import { DSProvider } from '@synerise/ds-core';
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 
+import Icon from '@synerise/ds-icon';
+import FileM from '@synerise/ds-icon/dist/icons/file-m.svg'
+
 import List from '@synerise/ds-list';
 import Checkbox from '@synerise/ds-checkbox';
 import Radio from "@synerise/ds-radio";
@@ -48,14 +51,14 @@ storiesOf('Components|List', module)
   .add('default', () => (
     <div style={{width: '200px'}}>
       <DSProvider code="en_GB">
-        <div style={{ background: "#fff", padding: '16px', width: '300px' }}>
+        <div style={{ background: "#fff", width: '300px' }}>
           <List
             header="Folders"
             dataSource={dataSingle}
             renderItem={item => (
               <List.Item
                 onSelect={action('onSelect')}
-                icon={<div>a</div>}
+                icon={<Icon component={<FileM />} />}
                 disabled={item.disabled}
                 danger={item.danger}
               >
@@ -70,14 +73,14 @@ storiesOf('Components|List', module)
   .add('complex list', () => (
     <div style={{width: '200px'}}>
       <DSProvider code="en_GB">
-        <div style={{ background: "#fff", padding: '16px', width: '300px' }}>
+        <div style={{ background: "#fff", width: '300px' }}>
           <List
             header="Folders"
             dataSource={dataMultiple}
             renderItem={item => (
               <List.Item
                 onSelect={action('onSelect')}
-                icon={<div>a</div>}
+                icon={<Icon component={<FileM />} />}
                 disabled={item.disabled}
                 danger={item.danger}
                 actions={actions}
@@ -93,7 +96,7 @@ storiesOf('Components|List', module)
   .add('with checkboxes', () => (
     <div style={{width: '200px'}}>
       <DSProvider code="en_GB">
-        <div style={{ background: "#fff", padding: '16px', width: '300px' }}>
+        <div style={{ background: "#fff", width: '300px' }}>
           <List
             header="Select option"
             dataSource={dataCheckboxes}
@@ -112,7 +115,7 @@ storiesOf('Components|List', module)
   .add('mixed', () => (
     <div style={{width: '200px'}}>
       <DSProvider code="en_GB">
-        <div style={{ background: "#fff", padding: '16px', width: '300px' }}>
+        <div style={{ background: "#fff", width: '300px' }}>
           <List
             dataSource={dataCheckboxes}
             renderItem={item => (
@@ -129,7 +132,7 @@ storiesOf('Components|List', module)
             renderItem={item => (
               <List.Item
                 onSelect={action('onSelect')}
-                icon={<div>a</div>}
+                icon={<Icon component={<FileM />} />}
                 disabled={item.disabled}
                 danger={item.danger}
                 actions={actions}
@@ -145,7 +148,7 @@ storiesOf('Components|List', module)
   .add('with radios', () => (
     <div style={{width: '200px'}}>
       <DSProvider code="en_GB">
-        <div style={{ background: "#fff", padding: '16px', width: '300px' }}>
+        <div style={{ background: "#fff", width: '300px' }}>
           <List
             header="Select option"
             dataSource={dataCheckboxes}
@@ -178,7 +181,7 @@ storiesOf('Components|List', module)
         return innerArray.map(item => {
           const newCheckedValue = !item.checked;
 
-          if (item.label === 'Option D') {
+          if (item.label === 'Option D' && item.label === label) {
             return { ...item, checked: newCheckedValue, ...(newCheckedValue ? {errorText: ''} : {errorText: 'This option in recommended'} ) };
           }
 
@@ -193,18 +196,19 @@ storiesOf('Components|List', module)
     return (
       <div style={{width: '200px'}}>
         <DSProvider code="en_GB">
-          <div style={{ background: "#fff", padding: '16px', width: '300px' }}>
-            {console.log(state)}
+          <div style={{ background: "#fff", width: '300px' }}>
             <List
               dataSource={state}
-              renderItem={item => (
-                <Switch
-                  label={item.label}
-                  errorText={item.errorText}
-                  checked={item.checked}
-                  onChange={() => handleChange(item.label)}
-                />
-              )}
+              renderItem={item => {
+                return (
+                  <Switch
+                    label={item.label}
+                    errorText={item.errorText}
+                    checked={item.checked}
+                    onChange={() => handleChange(item.label)}
+                  />
+                );
+              }}
             />
           </div>
         </DSProvider>
