@@ -19,7 +19,7 @@ const Text: React.FC<Props> = ({ disabled, icon, onSelect, danger, actions, chil
   >
     {icon && <S.IconWrapper>{icon}</S.IconWrapper>}
     <div>{children}</div>
-    <S.Actions>{actions}</S.Actions>
+    {actions && <S.Actions>{actions}</S.Actions>}
   </S.Wrapper>
 );
 

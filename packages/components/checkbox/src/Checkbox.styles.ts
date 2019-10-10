@@ -8,7 +8,7 @@ const soloCss = css`
 
 export const AntdCheckbox = styled(BaseAntCheckbox)`
   && {
-    padding: 7px 12px;
+    padding: 8px 12px;
     display: block;
 
     ${(props): string => props.solo && soloCss};
