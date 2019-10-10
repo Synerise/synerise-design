@@ -6,12 +6,18 @@ import Button from '@synerise/ds-button';
 import Card, { CardGroup } from '@synerise/ds-card';
 
 import { storiesOf } from '@storybook/react';
-import { boolean, text, number } from '@storybook/addon-knobs';
+import { boolean, text, number, select } from '@storybook/addon-knobs';
+
+const sizes = {
+  'None': null,
+  'Medium': 'medium',
+};
 
 const init = () => {
   const props = {
     title: text('Title', 'Card Title'),
     description: text('Description', 'Description of the card contents'),
+    size: select('Size', sizes, null),
     raised: boolean('Raised', false),
     disabled: boolean('Disabled', false),
     lively: boolean('Lively', false),
@@ -34,6 +40,7 @@ const renderCard = props => (
     title={props.title}
     description={props.description}
     icon={props.withIcon}
+    size={props.size}
     compactHeader={props.compactHeader}
     headerSideChildren={props.withHeaderSide && (
       <Button type="primary">Button</Button>
