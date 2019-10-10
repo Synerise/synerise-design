@@ -9,17 +9,10 @@ import '@synerise/ds-core/dist/js/style';
 import './style/index.less';
 import * as S from './Modal.styles';
 
-enum ModalSize {
-  SMALL = 'small',
-  MEDIUM = 'medium',
-  LARGE = 'large',
-  EXTRA_LARGE = 'extra_large',
-}
-
 interface Props extends ModalProps {
   description?: string;
   headerActions?: React.ReactNode;
-  size?: ModalSize;
+  size?: 'small' | 'medium' | 'large' | 'extra_large';
   bodyBackground?: 'white' | 'grey';
   texts?: {
     okButton: string;
@@ -28,10 +21,10 @@ interface Props extends ModalProps {
 }
 
 const sizeMap = {
-  [ModalSize.SMALL]: 520,
-  [ModalSize.MEDIUM]: 792,
-  [ModalSize.LARGE]: 1044,
-  [ModalSize.EXTRA_LARGE]: 1280,
+  small: 520,
+  medium: 792,
+  large: 1044,
+  extraLarge: 1280,
 };
 
 const ModalProxy: React.FC<Props> = ({
@@ -51,7 +44,7 @@ const ModalProxy: React.FC<Props> = ({
     <>
       {title && (
         <S.TitleContainer>
-          <S.Title>{title}</S.Title>
+          <S.Title level={3}>{title}</S.Title>
           <S.ActionButtons>
             {headerActions}
             {closable && (
