@@ -3,7 +3,7 @@ import * as React from 'react';
 import * as S from './Card.styles';
 import { Props } from './Card.types';
 
-const Card = ({
+const Card: React.FC<Props> = ({
   children,
   raised,
   disabled,
@@ -15,7 +15,7 @@ const Card = ({
   description,
   compactHeader,
   icon,
-  iconSize,
+  // iconSize,
   headerSideChildren,
 }: Props) => {
   return (
