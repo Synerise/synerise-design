@@ -1,23 +1,5 @@
 import { css } from 'styled-components';
-
-const breakpoints = {
-  small: {
-    min: 0,
-    max: 640,
-  },
-  medium: {
-    min: 641,
-    max: 1024,
-  },
-  large: {
-    min: 1025,
-    max: 1200,
-  },
-  xlarge: {
-    min: 1201,
-    max: 0,
-  },
-};
+import breakpoints from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/breakpoints';
 
 export type Media = {
   from: BreakpointsType;

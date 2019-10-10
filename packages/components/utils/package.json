@@ -15,6 +15,7 @@
     "build:watch": "npm run build:js -- --watch",
     "defs": "tsc --declaration --outDir dist/ --emitDeclarationOnly --declarationMap",
     "prepublish": "npm run build",
+    "test": "jest",
     "types": "tsc --noEmit"
   },
   "sideEffects": false,
