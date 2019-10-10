@@ -20,7 +20,7 @@ interface Props extends ModalProps {
   description?: string;
   headerActions?: React.ReactNode;
   size?: ModalSize;
-  bodyBackground: 'white' | 'grey';
+  bodyBackground?: 'white' | 'grey';
   texts?: {
     okButton: string;
     cancelButton: string;
