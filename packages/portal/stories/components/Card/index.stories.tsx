@@ -1,23 +1,21 @@
 import * as React from 'react';
-import range from 'lodash/range';
 
 import { DSProvider } from '@synerise/ds-core';
 import Button from '@synerise/ds-button';
 import Card from '@synerise/ds-card';
 
 import { storiesOf } from '@storybook/react';
-import { boolean, text, select } from '@storybook/addon-knobs';
+import { boolean, text } from '@storybook/addon-knobs';
 
 storiesOf('Components|Card', module)
   .add('default', () => {
-    const [store, setStore] = React.useState<{[k: number]: boolean}>({});
     const raised = boolean('Raised', false);
     const disabled = boolean('Disabled', false);
     const lively = boolean('Lively', false);
     const withHeader = boolean('With header', true);
     const showContent = boolean('Show content', true);
     const withHeaderSide = boolean('With header side children', true);
-    const withIcon = boolean('With icon', false);
+    const withIcon = text('With icon', '');
     const compactHeader = boolean('Compact header', false);
 
     return (
