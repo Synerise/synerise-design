@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { text, boolean } from '@storybook/addon-knobs';
+import centered from '@storybook/addon-centered/react';
 import { action } from '@storybook/addon-actions';
 import { DSProvider } from "@synerise/ds-core";
 
@@ -12,6 +13,7 @@ const config = {
 };
 
 storiesOf('Components|Switch', module)
+  .addDecorator(centered)
   .add('default', () => (
     <DSProvider code="en_GB">
       <Switch

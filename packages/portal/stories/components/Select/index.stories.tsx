@@ -3,6 +3,7 @@ import { storiesOf } from '@storybook/react';
 import { DSProvider } from '@synerise/ds-core';
 import { action } from '@storybook/addon-actions';
 import { boolean, text, select, object } from '@storybook/addon-knobs';
+import centered from '@storybook/addon-centered/react';
 
 import Select from '@synerise/ds-select';
 
@@ -20,7 +21,9 @@ const wrapperStyles = { padding: '20px', width: '322px' };
 const dropdownMenuStyles = {};
 const dropdownStyles = {};
 
-storiesOf('Components|Select|Basic', module).add('default', () => {
+storiesOf('Components|Select|Basic', module)
+  .addDecorator(centered)
+  .add('default', () => {
   const selectProps = () => ({
     allowClear: boolean('allowClear', true),
     defaultActiveFirstOption: boolean('defaultActiveFirstOption', true),
@@ -59,7 +62,9 @@ storiesOf('Components|Select|Basic', module).add('default', () => {
   );
 });
 
-storiesOf('Components|Select', module).add('multiple mode', () => {
+storiesOf('Components|Select', module)
+  .addDecorator(centered)
+  .add('multiple mode', () => {
   return (
     <div style={wrapperStyles}>
       <DSProvider code="en_GB">
@@ -71,7 +76,9 @@ storiesOf('Components|Select', module).add('multiple mode', () => {
   );
 });
 
-storiesOf('Components|Select', module).add('with OptGroup', () => {
+storiesOf('Components|Select', module)
+  .addDecorator(centered)
+  .add('with OptGroup', () => {
   return (
     <div style={wrapperStyles}>
       <DSProvider code="en_GB">
