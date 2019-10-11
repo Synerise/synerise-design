@@ -1,9 +1,11 @@
 import styled, { css } from 'styled-components';
+import Typography from '@synerise/ds-typography';
 
 export const Container = styled.div<{
   raised?: boolean;
   disabled?: boolean;
   lively?: boolean;
+  size?: string;
 }>`
   background: #fff;
   box-shadow: ${(props): string => props.theme.variable('@box-shadow-base')};
@@ -12,7 +14,7 @@ export const Container = styled.div<{
   display: flex;
   flex-flow: column;
   transition: 0.3s ease;
-  width: 100%;
+  width: ${(props): string => `${props.size}px` || '100%'};
 
   ${(props): string =>
     props.raised &&
@@ -40,7 +42,7 @@ export const Header = styled.div<{ isContentful?: boolean }>`
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  align-items: center;
+  align-items: flex-start;
 
   ${(props): string =>
     props.isContentful &&
@@ -49,19 +51,23 @@ export const Header = styled.div<{ isContentful?: boolean }>`
     `};
 `;
 
-export const HeaderSideChildren = styled.div``;
-
-export const Title = styled.h4`
-  font-size: 16px;
-  color: ${(props): string => props.theme.variable('@gray-color')};
-  margin: 0 0 8px;
-  font-weight: 500;
+export const HeaderSideChildren = styled.div`
+  padding-left: 24px;
 `;
 
-export const Description = styled.p`
-  margin: 0;
-  color: ${(props): string => props.theme.palette['grey-600']};
-  font-size: 13px;
+export const Title = styled<{ fat: boolean }>(Typography.Title)`
+  && {
+    display: flex;
+    align-items: center;
+    height: ${(props): string => (props.fat ? '32px' : '20px')};
+    margin: 0;
+  }
+`;
+
+export const Description = styled(Typography.Paragraph)`
+  && {
+    margin: 6px 0 0;
+  }
 `;
 
 export const HeaderContent = styled.div<{ compact?: boolean }>`
