@@ -95,6 +95,22 @@ describe('Input', () => {
       // ASSERT
       expect(input.value).toBe(VALID_STRING);
     });
+
+    it('should render icons', () => {
+      // ARRANGE
+      const ICON_PLACEHOLDER_1 = 'Icon placeholder 1';
+      const ICON_PLACEHOLDER_2 = 'Icon placeholder 2';
+      const { getByText } = renderWithProvider(
+        <Input
+          icon1={<div>{ICON_PLACEHOLDER_1}</div>}
+          icon2={<div>{ICON_PLACEHOLDER_2}</div>}
+        />
+      );
+
+      // ASSERT
+      expect(getByText(ICON_PLACEHOLDER_1)).toBeTruthy();
+      expect(getByText(ICON_PLACEHOLDER_2)).toBeTruthy();
+    });
   });
 
   describe('TextArea', () => {
@@ -186,6 +202,22 @@ describe('Input', () => {
 
       // ASSERT
       expect(input.value).toBe(VALID_STRING);
+    });
+
+    it('should render icons', () => {
+      // ARRANGE
+      const ICON_PLACEHOLDER_1 = 'Icon placeholder 1';
+      const ICON_PLACEHOLDER_2 = 'Icon placeholder 2';
+      const { getByText } = renderWithProvider(
+        <TextArea
+          icon1={<div>{ICON_PLACEHOLDER_1}</div>}
+          icon2={<div>{ICON_PLACEHOLDER_2}</div>}
+        />
+      );
+
+      // ASSERT
+      expect(getByText(ICON_PLACEHOLDER_1)).toBeTruthy();
+      expect(getByText(ICON_PLACEHOLDER_2)).toBeTruthy();
     });
   });
 });
