@@ -57,8 +57,9 @@ export const HeaderSideChildren = styled.div`
 
 export const Title = styled<{ fat: boolean }>(Typography.Title)`
   && {
+    display: flex;
+    align-items: center;
     height: ${(props): string => (props.fat ? '32px' : '20px')};
-    line-height: ${(props): string => (props.fat ? '32px' : '20px')};
     margin: 0;
   }
 `;

@@ -24,7 +24,6 @@ const Card: React.FC<Props> = ({
   headerSideChildren,
 }: Props) => {
   const fatTitle = !description || (description && compactHeader);
-  console.log(mapSizeToWidth[size]);
 
   return (
     <S.Container
