@@ -10,7 +10,10 @@ import { boolean, text, number, select } from '@storybook/addon-knobs';
 
 const sizes = {
   'None': null,
+  'Small': 'small',
   'Medium': 'medium',
+  'Large': 'large',
+  'Extra Large': 'extraLarge',
 };
 
 const init = () => {
