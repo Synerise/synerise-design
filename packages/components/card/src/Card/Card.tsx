@@ -4,7 +4,10 @@ import * as S from './Card.styles';
 import { Props } from './Card.types';
 
 const mapSizeToWidth = {
+  small: 472,
   medium: 588,
+  large: 996,
+  extraLarge: 1232,
 };
 
 const Card: React.FC<Props> = ({

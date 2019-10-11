@@ -20,11 +20,11 @@ interface Props extends ModalProps {
   };
 }
 
-const sizeMap = {
-  small: 520,
-  medium: 792,
-  large: 1044,
-  extraLarge: 1280,
+const mapSizeToWidth = {
+  small: 472,
+  medium: 588,
+  large: 996,
+  extraLarge: 1232,
 };
 
 const ModalProxy: React.FC<Props> = ({
@@ -79,7 +79,7 @@ const ModalProxy: React.FC<Props> = ({
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...antModalProps}
       className={className}
-      width={!size ? undefined : sizeMap[size]}
+      width={!size ? undefined : mapSizeToWidth[size]}
       closable={false}
       title={titleContainer}
       footer={antModalProps.footer !== null ? footerContainer : null}
