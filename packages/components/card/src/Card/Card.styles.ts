@@ -14,7 +14,7 @@ export const Container = styled.div<{
   display: flex;
   flex-flow: column;
   transition: 0.3s ease;
-  max-width: ${(props): string => `${props.size}px` || '100%'};
+  max-width: ${(props): string => (props.size ? `${props.size}px` : '100%')};
 
   ${(props): string =>
     props.raised &&
