@@ -10,7 +10,7 @@ describe('Input', () => {
     it('should render', () => {
       // ARRANGE
       const PLACEHOLDER = 'placeholder';
-      const { getByPlaceholderText } = renderWithProvider(<Input placeholder={PLACEHOLDER} />);
+      const { getByPlaceholderText } = renderWithProvider(<Input placeholder={PLACEHOLDER} value="" />);
 
       // ASSERT
       expect(getByPlaceholderText(PLACEHOLDER)).toBeTruthy();
@@ -20,7 +20,7 @@ describe('Input', () => {
       // ARRANGE
       const PLACEHOLDER = 'placeholder';
       const INPUT_VALUE = 'input value';
-      const { getByPlaceholderText } = renderWithProvider(<Input onChange={e => onChange(e.target.value)} placeholder={PLACEHOLDER} />);
+      const { getByPlaceholderText } = renderWithProvider(<Input onChange={e => onChange(e.target.value)} placeholder={PLACEHOLDER} value="" />);
       const input = getByPlaceholderText(PLACEHOLDER) as HTMLInputElement;
 
       // ACT
@@ -34,7 +34,7 @@ describe('Input', () => {
     it('should show label', () => {
       // ARRANGE
       const LABEL = 'label';
-      const { getByText } = renderWithProvider(<Input label={LABEL} />);
+      const { getByText } = renderWithProvider(<Input label={LABEL} value="" />);
 
       // ASSERT
       expect(getByText(LABEL)).toBeTruthy();
@@ -43,7 +43,7 @@ describe('Input', () => {
     it('should show error', () => {
       // ARRANGE
       const ERROR = 'error';
-      const { getByText } = renderWithProvider(<Input errorText={ERROR} />);
+      const { getByText } = renderWithProvider(<Input errorText={ERROR} value="" />);
 
       // ASSERT
       expect(getByText(ERROR)).toBeTruthy();
@@ -52,7 +52,7 @@ describe('Input', () => {
     it('should show description', () => {
       // ARRANGE
       const DESCRIPTION = 'description';
-      const { getByText } = renderWithProvider(<Input description={DESCRIPTION} />);
+      const { getByText } = renderWithProvider(<Input description={DESCRIPTION} value="" />);
 
       // ASSERT
       expect(getByText(DESCRIPTION)).toBeTruthy();
@@ -62,7 +62,7 @@ describe('Input', () => {
       // ARRANGE
       const PLACEHOLDER = 'placeholder';
       const COUNTER_LIMIT = 10;
-      const { getByPlaceholderText, getByTestId } = renderWithProvider(<Input placeholder={PLACEHOLDER} counterLimit={COUNTER_LIMIT} />);
+      const { getByPlaceholderText, getByTestId } = renderWithProvider(<Input placeholder={PLACEHOLDER} counterLimit={COUNTER_LIMIT} value="" />);
 
       // ASSERT
       expect(getByTestId('counter').textContent).toBe(`0/${COUNTER_LIMIT}`);
@@ -80,7 +80,7 @@ describe('Input', () => {
       const COUNTER_LIMIT = 2;
       const VALID_STRING = 'ab';
       const INVALID_STRING = 'abc';
-      const { getByPlaceholderText } = renderWithProvider(<Input placeholder={PLACEHOLDER} counterLimit={COUNTER_LIMIT} />);
+      const { getByPlaceholderText } = renderWithProvider(<Input placeholder={PLACEHOLDER} counterLimit={COUNTER_LIMIT} value="" />);
       const input = getByPlaceholderText(PLACEHOLDER) as HTMLInputElement;
 
       // ACT
@@ -104,6 +104,7 @@ describe('Input', () => {
         <Input
           icon1={<div>{ICON_PLACEHOLDER_1}</div>}
           icon2={<div>{ICON_PLACEHOLDER_2}</div>}
+          value=""
         />
       );
 
@@ -117,7 +118,7 @@ describe('Input', () => {
     it('should render', () => {
       // ARRANGE
       const PLACEHOLDER = 'placeholder';
-      const { getByPlaceholderText } = renderWithProvider(<TextArea placeholder={PLACEHOLDER} />);
+      const { getByPlaceholderText } = renderWithProvider(<TextArea placeholder={PLACEHOLDER} value="" />);
 
       // ASSERT
       expect(getByPlaceholderText(PLACEHOLDER)).toBeTruthy();
@@ -127,7 +128,7 @@ describe('Input', () => {
       // ARRANGE
       const PLACEHOLDER = 'placeholder';
       const INPUT_VALUE = 'input value';
-      const { getByPlaceholderText } = renderWithProvider(<TextArea onChange={e => onChange(e.target.value)} placeholder={PLACEHOLDER} />);
+      const { getByPlaceholderText } = renderWithProvider(<TextArea onChange={e => onChange(e.target.value)} placeholder={PLACEHOLDER} value="" />);
 
       const input = getByPlaceholderText(PLACEHOLDER) as HTMLInputElement;
 
@@ -142,7 +143,7 @@ describe('Input', () => {
     it('should show label', () => {
       // ARRANGE
       const LABEL = 'label';
-      const { getByText } = renderWithProvider(<TextArea label={LABEL} />);
+      const { getByText } = renderWithProvider(<TextArea label={LABEL} value="" />);
 
       // ASSERT
       expect(getByText(LABEL)).toBeTruthy();
@@ -151,7 +152,7 @@ describe('Input', () => {
     it('should show error', () => {
       // ARRANGE
       const ERROR = 'error';
-      const { getByText } = renderWithProvider(<TextArea errorText={ERROR} />);
+      const { getByText } = renderWithProvider(<TextArea errorText={ERROR} value="" />);
 
       // ASSERT
       expect(getByText(ERROR)).toBeTruthy();
@@ -160,7 +161,7 @@ describe('Input', () => {
     it('should show description', () => {
       // ARRANGE
       const DESCRIPTION = 'description';
-      const { getByText } = renderWithProvider(<TextArea description={DESCRIPTION} />);
+      const { getByText } = renderWithProvider(<TextArea description={DESCRIPTION} value="" />);
 
       // ASSERT
       expect(getByText(DESCRIPTION)).toBeTruthy();
@@ -170,7 +171,7 @@ describe('Input', () => {
       // ARRANGE
       const PLACEHOLDER = 'placeholder';
       const COUNTER_LIMIT = 10;
-      const { getByPlaceholderText, getByTestId } = renderWithProvider(<TextArea placeholder={PLACEHOLDER} counterLimit={COUNTER_LIMIT} />);
+      const { getByPlaceholderText, getByTestId } = renderWithProvider(<TextArea placeholder={PLACEHOLDER} counterLimit={COUNTER_LIMIT} value="" />);
 
       // ASSERT
       expect(getByTestId('counter').textContent).toBe(`0/${COUNTER_LIMIT}`);
@@ -188,7 +189,7 @@ describe('Input', () => {
       const COUNTER_LIMIT = 2;
       const VALID_STRING = 'ab';
       const INVALID_STRING = 'abc';
-      const { getByPlaceholderText } = renderWithProvider(<TextArea placeholder={PLACEHOLDER} counterLimit={COUNTER_LIMIT} />);
+      const { getByPlaceholderText } = renderWithProvider(<TextArea placeholder={PLACEHOLDER} counterLimit={COUNTER_LIMIT} value="" />);
       const input = getByPlaceholderText(PLACEHOLDER) as HTMLInputElement;
 
       // ACT
@@ -212,6 +213,7 @@ describe('Input', () => {
         <TextArea
           icon1={<div>{ICON_PLACEHOLDER_1}</div>}
           icon2={<div>{ICON_PLACEHOLDER_2}</div>}
+          value=""
         />
       );
 
