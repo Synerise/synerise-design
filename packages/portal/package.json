@@ -31,6 +31,7 @@
   ],
   "devDependencies": {
     "@babel/core": "^7.6.0",
+    "@dump247/storybook-state": "^1.6.1",
     "@storybook/addon-actions": "^5.2.1",
     "@storybook/addon-centered": "^5.2.1",
     "@storybook/addon-info": "^5.2.1",
