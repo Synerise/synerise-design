@@ -54,7 +54,6 @@ const enhancedInput = <P extends object>(WrappedComponent, { type }): React.Comp
   }, [inputRef]);
 
   React.useEffect(() => {
-    if (!antdInputProps.value) return;
     setValue(antdInputProps.value.toString());
     setCharCount(antdInputProps.value.toString().length);
   }, [antdInputProps.value]);

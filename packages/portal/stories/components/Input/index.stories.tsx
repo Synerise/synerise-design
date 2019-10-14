@@ -55,6 +55,7 @@ storiesOf('Components|Input', module)
         counterLimit={number('counterLimit', 10)}
         disabled={boolean('disabled', false)}
         onChange={action('onChange')}
+        value={text('value', '')}
       />
     </DSProvider>
   ))
@@ -69,6 +70,7 @@ storiesOf('Components|Input', module)
         counterLimit={number('counterLimit', 10)}
         disabled={boolean('disabled', false)}
         onChange={action('onChange')}
+        value={text('value', '')}
         icon1={<Icon component={<FileM />} />}
         icon2={<Icon component={<FileM />} />}
       />

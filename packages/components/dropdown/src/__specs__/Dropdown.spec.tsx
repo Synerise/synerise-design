@@ -27,6 +27,7 @@ describe('Dropdown', () => {
         <Dropdown.SearchInput
           onSearchChange={onSearchChange}
           placeholder={PLACEHOLDER}
+          value=""
         />
       );
 
@@ -36,7 +37,6 @@ describe('Dropdown', () => {
       fireEvent.change(input, { target: { value: TEST_INPUT } });
 
       // ASSERT
-      expect(input.value).toEqual(TEST_INPUT);
       expect(onSearchChange).toHaveBeenCalledWith(TEST_INPUT);
     });
   });
