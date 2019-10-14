@@ -2,7 +2,7 @@ import * as React from 'react';
 import {storiesOf} from '@storybook/react';
 import {boolean, number, text} from '@storybook/addon-knobs';
 import Icon from '@synerise/ds-icon';
-
+import centered from '@storybook/addon-centered/react';
 import iconArr from './icons'
 import AngleLeftM from '@synerise/ds-icon/dist/icons/shuffle-m.svg';
 
@@ -40,7 +40,7 @@ const props = () => ({
     stroke: boolean('Set stroke', false),
 });
 
-stories.add('single icon', () => {
+stories.addDecorator(centered).add('single icon', () => {
     return (
         <>
             <Icon {...props()} component={<AngleLeftM/>}/>

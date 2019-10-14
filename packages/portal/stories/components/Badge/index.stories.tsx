@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { boolean, text, select, number, object } from '@storybook/addon-knobs';
+import centered from '@storybook/addon-centered/react';
 import { DSProvider } from '@synerise/ds-core';
 
 import Badge from '@synerise/ds-badge';
@@ -13,7 +14,9 @@ const wrapperStyles = {
 
 const statuses = ['success', 'processing', 'default', 'error', 'warning'] as const;
 
-storiesOf('Components|Badge', module).add('standalone', () => (
+storiesOf('Components|Badge', module)
+  .addDecorator(centered)
+  .add('standalone', () => (
   <div style={wrapperStyles}>
     <DSProvider code="en_GB">
       <>
@@ -39,7 +42,9 @@ storiesOf('Components|Badge', module).add('standalone', () => (
   </div>
 ));
 
-storiesOf('Components|Badge', module).add('dot', () => (
+storiesOf('Components|Badge', module)
+  .addDecorator(centered)
+  .add('dot', () => (
   <div style={wrapperStyles}>
     <DSProvider code="en_GB">
       <>
@@ -57,7 +62,9 @@ storiesOf('Components|Badge', module).add('dot', () => (
   </div>
 ));
 
-storiesOf('Components|Badge', module).add('count', () => (
+storiesOf('Components|Badge', module)
+  .addDecorator(centered)
+  .add('count', () => (
   <div style={wrapperStyles}>
     <DSProvider code="en_GB">
       <>
@@ -106,7 +113,9 @@ storiesOf('Components|Badge', module).add('count', () => (
   </div>
 ));
 
-storiesOf('Components|Badge', module).add('status', () => (
+storiesOf('Components|Badge', module)
+  .addDecorator(centered)
+  .add('status', () => (
   <div style={wrapperStyles}>
     <DSProvider code="en_GB">
       <>

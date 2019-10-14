@@ -2,6 +2,7 @@ import * as React from 'react';
 import { DSProvider } from '@synerise/ds-core';
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
+import centered from '@storybook/addon-centered/react';
 
 import Icon from '@synerise/ds-icon';
 import FileM from '@synerise/ds-icon/dist/icons/file-m.svg'
@@ -48,6 +49,7 @@ const actions = (
 );
 
 storiesOf('Components|List', module)
+  .addDecorator(centered)
   .add('default', () => (
     <div style={{width: '200px'}}>
       <DSProvider code="en_GB">
