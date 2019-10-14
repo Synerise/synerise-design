@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-modal",
-  "version": "0.3.0",
+  "version": "0.5.0",
   "description": "Modal UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "synerise/synerise-design",
@@ -9,17 +9,21 @@
     "access": "public"
   },
   "scripts": {
-    "build": "npm run build:js && npm run build:css",
+    "build": "npm run build:js && npm run build:css && npm run defs",
     "build:css": "node ../../../scripts/style/less.js",
     "build:js": "babel --root-mode upward src --out-dir dist --extensions '.js,.ts,.tsx'",
     "build:watch": "npm run build:js -- --watch",
+    "defs": "tsc --declaration --outDir dist/ --emitDeclarationOnly --declarationMap",
     "prepublish": "npm run build",
     "test": "jest",
-    "test:watch": "npm run test -- --watchAll"
+    "test:watch": "npm run test -- --watchAll",
+    "types": "tsc --noEmit"
   },
   "sideEffects": false,
+  "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-button": "^0.3.0",
+    "@synerise/ds-button": "^0.4.0",
+    "@synerise/ds-typography": "^0.4.0",
     "antd": "*"
   },
   "peerDependencies": {

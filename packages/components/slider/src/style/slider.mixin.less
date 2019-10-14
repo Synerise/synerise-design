@@ -1,0 +1,122 @@
+.@{slider-prefix-cls} {
+  &.@{slider-prefix-cls}-inverted {
+    .@{slider-prefix-cls}-rail {
+      background-color: @green-600;
+    }
+
+    .@{slider-prefix-cls}-track {
+      background-color: @grey-300;
+    }
+
+    .@{slider-prefix-cls}-dot {
+      background-color: @green-600;
+
+      &-active {
+        background-color: @grey-300;
+      }
+    }
+
+    &:hover {
+      .@{slider-prefix-cls}-rail {
+        background-color: @green-500;
+      }
+      .@{slider-prefix-cls}-track {
+        background-color: @grey-200;
+      }
+    }
+  }
+
+  &-handle-value {
+    width: 100px;
+    display: block;
+    position: relative;
+    left: -45px;
+    text-align: center;
+    top: -30px;
+    color: @gray-color-lighter-2;
+    font-weight: 500;
+  }
+
+  &-rail {
+    height: 6px;
+    border-radius: @border-radius-base;
+    background-color: @grey-200;
+  }
+
+  &-track {
+    background-color: @green-600;
+  }
+
+  &-step,
+  &-track {
+    height: 6px;
+  }
+
+  &-mark-text {
+    color: @grey-500;
+    margin-top: 16px;
+    margin-bottom: 24px;
+  }
+
+  &-with-marks {
+    margin-bottom: 44px;
+  }
+
+  &-handle {
+    margin-left: -10px;
+    margin-top: -7px;
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    background-color: @grey-400;
+
+    &:focus {
+      background-color: @blue-600;
+      box-shadow: 0 0 0 3px rgba(35, 138, 254, 0.25);
+      border-color: #fff;
+      outline: none;
+
+      &.@{ant-prefix}-tooltip-open {
+        background-color: @blue-600;
+      }
+    }
+
+    &.@{ant-prefix}-tooltip-open {
+      background-color: @grey-500;
+      border-color: #fff;
+    }
+  }
+
+  &-dot {
+    top: -3px;
+    border: 3px solid @white;
+    width: 12px;
+    height: 12px;
+    background: @grey-300;
+
+    &-active {
+      background: @green-600;
+    }
+  }
+
+  &:hover {
+    .@{slider-prefix-cls}-rail {
+      background-color: @grey-300;
+    }
+    .@{slider-prefix-cls}-track {
+      background-color: @green-500;
+    }
+    .@{slider-prefix-cls}-handle:not(.@{ant-prefix}-tooltip-open) {
+      border-color: @white;
+    }
+  }
+
+  &-disabled {
+    .@{slider-prefix-cls}-handle {
+      background-color: @grey-300;
+      border-color: @white !important;
+    }
+  }
+}

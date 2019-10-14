@@ -85,3 +85,17 @@ export const tag = css`
 export const tooltip = css`
   font-size: 11px;
 `;
+
+export const xlAvatar = css`
+  font-size: 22px;
+`;
+
+export const xlAvatarIcon = css`
+  font-size: 44px;
+`;
+
+export const flexCentered = css`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;

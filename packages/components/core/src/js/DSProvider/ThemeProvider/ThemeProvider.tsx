@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { ThemeProvider as ThemeProviderBase } from 'styled-components';
 
-import dsTheme from './theme';
+import dsTheme, { ThemeProps } from './theme';
 
 export interface ThemeProviderProps {
-  theme?: unknown;
+  theme?: ThemeProps;
 }
 
 const ThemeProvider: React.FC<ThemeProviderProps> = props => {
@@ -22,6 +22,6 @@ const ThemeProvider: React.FC<ThemeProviderProps> = props => {
 };
 
 ThemeProvider.defaultProps = {
-  theme: {},
+  theme: dsTheme,
 };
 export default ThemeProvider;

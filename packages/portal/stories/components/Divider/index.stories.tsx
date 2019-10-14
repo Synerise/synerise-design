@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import { boolean, text, select } from '@storybook/addon-knobs';
+import { boolean, text, select, number } from '@storybook/addon-knobs';
 
 import { DSProvider } from "@synerise/ds-core";
 import Divider from '@synerise/ds-divider';
@@ -12,6 +12,8 @@ storiesOf('Components|Divider', module)
         <Divider
           dashed={boolean('dashed', false)}
           orientation={select('orientation', ['left', 'right', 'center'], 'center')}
+          marginTop={number('marginTop', 24)}
+          marginBottom={number('marginBottom', 24)}
         >
           {text('children', '')}
         </Divider>

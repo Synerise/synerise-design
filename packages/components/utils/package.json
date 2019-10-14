@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-utils",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Utils UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "synerise/synerise-design",
@@ -15,6 +15,7 @@
     "build:watch": "npm run build:js -- --watch",
     "defs": "tsc --declaration --outDir dist/ --emitDeclarationOnly --declarationMap",
     "prepublish": "npm run build",
+    "test": "jest",
     "types": "tsc --noEmit"
   },
   "sideEffects": false,

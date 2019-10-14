@@ -1,6 +1,11 @@
 import styled from 'styled-components';
 
-export const RadioWrapper = styled.div``;
+export const RadioWrapper = styled.div`
+  & {
+    padding: 8px 12px;
+    display: block;
+  }
+`;
 
 export const Description = styled.div`
   color: ${(props): string => props.theme.palette['grey-600']};

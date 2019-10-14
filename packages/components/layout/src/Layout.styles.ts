@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Transition } from 'react-transition-group';
+import { TransitionGroup } from 'react-transition-group';
 
 import { mediaQuery, hexToRgba } from '@synerise/ds-utils';
 
@@ -72,4 +72,4 @@ export const LayoutSidebarInner = styled.div`
   height: 100%;
 `;
 
-export const Transitions = styled(Transition)``;
+export const Transitions = styled(TransitionGroup)``;

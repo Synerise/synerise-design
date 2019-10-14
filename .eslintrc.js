@@ -37,6 +37,7 @@ module.exports = {
     'react/state-in-constructor': [WARNING, "never"],
     'import/no-extraneous-dependencies': [IGNORE],
     'import/no-unresolved': [IGNORE],
+    '@typescript-eslint/explicit-function-return-type': ERROR,
   },
   settings: {
     'import/resolver': {
