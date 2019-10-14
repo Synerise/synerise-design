@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 
 export interface Props {
-  icon?: string;
+  icon?: ReactNode;
   raised?: boolean;
   description?: string | ReactNode;
   title?: string | ReactNode;
@@ -12,6 +12,8 @@ export interface Props {
   size?: 'small' | 'medium';
   className?: string;
   iconSize?: number;
+  stretchToFit?: boolean;
   customTickVisible?: boolean;
   customTickVisibleComponent?: ReactNode;
+  theme: { [k: string]: string };
 }

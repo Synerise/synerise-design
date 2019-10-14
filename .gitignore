@@ -47,3 +47,4 @@ jspm_packages
 .vscode
 storybook-static
 .npmrc
+.DS_Store
