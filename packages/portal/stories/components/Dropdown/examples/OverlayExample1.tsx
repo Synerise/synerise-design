@@ -3,6 +3,11 @@ import { action } from "@storybook/addon-actions";
 
 import { DSProvider } from '@synerise/ds-core';
 import List from "@synerise/ds-list";
+
+import Icon from "@synerise/ds-icon";
+import FileM from '@synerise/ds-icon/dist/icons/file-m.svg';
+import ArrowRightCircleM from '@synerise/ds-icon/dist/icons/arrow-right-circle-m.svg';
+
 import Dropdown from "@synerise/ds-dropdown";
 
 interface Props {
@@ -16,18 +21,19 @@ const OverlayExample1: React.FC<Props> = ({ onSearchChange, data, onClickAction 
     <DSProvider code="en_GB">
       <Dropdown.Wrapper>
         <Dropdown.SearchInput onSearchChange={onSearchChange} placeholder="Search" />
+        <Dropdown.BackAction label="Attributes" onClick={() => alert('BackAction clicked')} />
         <List
           dataSource={data}
           renderItem={item => (
             <List.Item
               onSelect={action('onSelect')}
-              icon={<div>a</div>}
+              icon={<Icon component={<FileM />} />}
             >
               {(item as any).text}
             </List.Item>
           )}
         />
-        <Dropdown.BottomAction onClickAction={onClickAction}>Add folder</Dropdown.BottomAction>
+        <Dropdown.BottomAction onClickAction={onClickAction} icon={<ArrowRightCircleM />}>Add folder</Dropdown.BottomAction>
       </Dropdown.Wrapper>
     </DSProvider>
   );

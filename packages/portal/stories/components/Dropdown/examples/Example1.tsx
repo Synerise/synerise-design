@@ -28,6 +28,7 @@ const Example1 = () => {
   return (
     <Dropdown
       trigger={['click']}
+      visible
       overlay={
         <OverlayExample1 onSearchChange={filter} data={filteredData} onClickAction={() => alert('Action clicked')} />
       }>

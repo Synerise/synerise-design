@@ -4,12 +4,14 @@ import './style/index.less';
 import AntdDropdown, { DropDownProps } from 'antd/lib/dropdown';
 import SearchInput from './elements/SearchInput/SearchInput';
 import BottomAction from './elements/BottomAction/BottomAction';
+import BackAction from './elements/BackAction/BackAction';
 import { Wrapper } from './Dropdown.styles';
 
 class Dropdown extends React.Component<DropDownProps> {
   static Wrapper: typeof Wrapper = Wrapper;
   static SearchInput: typeof SearchInput = SearchInput;
   static BottomAction: typeof BottomAction = BottomAction;
+  static BackAction: typeof BackAction = BackAction;
 
   render(): React.ReactNode {
     return (

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 // eslint-disable-next-line import/prefer-default-export
 export const BottomAction = styled.div`
   background-color: ${(props): string => props.theme.palette['grey-050']};
-  padding: 0 20px;
+  padding: 0 16px;
   height: 52px;
   display: flex;
   align-items: center;
@@ -14,4 +14,12 @@ export const BottomAction = styled.div`
   border-style: solid;
   margin-top: 8px;
   cursor: pointer;
+`;
+
+export const IconWrapper = styled.div`
+  margin-right: 4px;
+`;
+
+export const TextWrapper = styled.div`
+  line-height: 12px;
 `;
