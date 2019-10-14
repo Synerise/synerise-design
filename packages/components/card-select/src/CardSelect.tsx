@@ -1,9 +1,11 @@
 import * as React from 'react';
 
-// import { Icon } from '../';
+import { withTheme } from 'styled-components';
+import Icon from '@synerise/ds-icon';
+import CheckThreeM from '@synerise/ds-icon/dist/icons/check-3-m.svg';
 
 import { Props } from './CardSelect.types';
-import { Container, IconWrapper, Title, Description, Main, Aside, Radio } from './CardTabs.styles';
+import * as S from './CardTabs.styles';
 
 const CardSelect: React.FC<Props> = ({
   title,
@@ -11,52 +13,67 @@ const CardSelect: React.FC<Props> = ({
   customTickVisible,
   customTickVisibleComponent,
   tickVisible,
+  stretchToFit,
   raised,
   value,
   size,
   disabled,
   onChange,
   icon,
+  iconSize,
   className,
+  theme,
 }: Props) => {
-  const handleClick = () => onChange && onChange(!value);
+  const handleClick = (): void => onChange && onChange(!value);
 
   return (
-    <Container
+    <S.Container
       raised={raised}
       disabled={disabled}
       value={value}
       size={size}
+      stretchToFit={stretchToFit}
       onClick={handleClick}
       className={className}
       data-testid="test-id"
     >
-      <Aside size={size}>
+      <S.Aside size={size}>
         {tickVisible && (
-          <Radio disabled={disabled} value={value} size={size}>
-            {/* <Icon name="check-s" size={this.props.size === 'small' ? 20 : 24} /> */}
-          </Radio>
+          <S.TickIcon disabled={disabled} selected={value} size={size}>
+            {value ? (
+              <Icon
+                size={size === 'small' ? 24 : 30}
+                color={value ? theme.palette['green-600'] : theme.palette['grey-400']}
+                component={<CheckThreeM />}
+              />
+            ) : (
+              <S.RadioShape />
+            )}
+          </S.TickIcon>
         )}
-      </Aside>
-      <Main size={size}>
+      </S.Aside>
+
+      <S.Main size={size} disabled={disabled}>
         {icon && (
-          <IconWrapper size={size}>
-            {/* <Icon name={this.props.icon} size={this.props.size === 'small' ? 42 : this.props.iconSize || 64} /> */}
-          </IconWrapper>
+          <S.IconWrapper size={size}>
+            <Icon size={iconSize} component={icon} />
+          </S.IconWrapper>
         )}
 
-        {title ? <Title size={size}>{title}</Title> : null}
-        {description ? <Description size={size}>{description}</Description> : null}
-      </Main>
-      <Aside size={size}>{customTickVisible && customTickVisibleComponent}</Aside>
-    </Container>
+        {title ? <S.Title size={size}>{title}</S.Title> : null}
+        {description ? <S.Description size={size}>{description}</S.Description> : null}
+      </S.Main>
+
+      <S.Aside size={size}>{customTickVisible && customTickVisibleComponent}</S.Aside>
+    </S.Container>
   );
 };
 
 CardSelect.defaultProps = {
   tickVisible: true,
+  iconSize: 82,
   value: false,
   size: 'medium',
 };
 
-export default CardSelect;
+export default withTheme(CardSelect);

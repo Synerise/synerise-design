@@ -1,32 +1,35 @@
 import styled, { css } from 'styled-components';
 import is, { isNot } from 'styled-is';
 
-// import { IconContainer } from '../Icon/Icon.styles';
-const IconContainer = () => styled.span``;
-
-const getVar = (name: string) => props => props.theme.palette[name];
+const getVar = (name: string) => (props): string => props.theme.palette[name];
 
 const transition = `
   transition-timing-function: ease-in-out;
   transition-duration: 0.2s;
   transition-property: border-color, box-shadow, background-color;
 `;
-const mainPadding = 16;
-const mainPaddingSmall = 8;
-const radioWidth = 16;
-const radioSmallWidth = 12;
+
+const mainPadding = 8;
+const mainPaddingSmall = 4;
+const radioWidth = 20;
+const radioSmallWidth = 16;
 const radioBorderWidth = 1;
 
-export const Container = styled.div`
-  ${transition} background-color: #fff;
-  border-radius: ${props => props.theme.variable('@border-radius-base')};
+export const Container = styled.div<{ disabled: boolean; raised: boolean; value: boolean; stretch: boolean }>`
+  ${transition}
+  background-color: ${getVar('white')};
+  border-radius: ${(props): string => props.theme.variable('@border-radius-base')};
   display: flex;
-  border-color: #fff;
-  height: 100%;
+  border-color: ${getVar('white')};
+  position: relative;
+
+  ${is('stretchToFit')`
+    height: 100%;
+  `}
 
   ${isNot('disabled')`
-    cursor: pointer;
-  
+    cursor: cursor;
+
     ${isNot('raised')`
       ${isNot('value')`
         padding: 1px;
@@ -45,10 +48,10 @@ export const Container = styled.div`
     ${is('raised')`
       ${isNot('value')`
         padding: 2px;
-        box-shadow: ${props => props.theme.variable('@box-shadow-base')};
+        box-shadow: ${(props): string => props.theme.variable('@box-shadow-base')};
         
         &:hover, &:active {
-          box-shadow: ${props => props.theme.variable('@box-shadow-active')};
+          box-shadow: ${(props): string => props.theme.variable('@box-shadow-active')};
         }
       `}
       
@@ -59,7 +62,7 @@ export const Container = styled.div`
   `}
 
   ${is('disabled')`
-    opacity: 0.65;
+    cursor: not-allowed;
 
     ${isNot('raised')`
       ${isNot('value')`
@@ -85,71 +88,55 @@ export const Container = styled.div`
 `;
 
 export const Main = styled.div`
-  flex: 1;
-  padding: ${props => (props.size === 'small' ? mainPaddingSmall : mainPadding)}px 0;
-  margin-left: -20px;
-  margin-right: -20px;
+  padding: 24px;
+  width: 224px;
+
+  ${is('disabled')`
+    opacity: 0.4;
+  `}
 `;
 
 export const Aside = styled.div`
-  flex: 0 0
-    ${props => (props.size === 'small' ? mainPaddingSmall * 2 + radioSmallWidth : mainPadding * 2 + radioWidth)}px;
   display: flex;
-  padding: ${props =>
-    props.size === 'small' ? mainPaddingSmall - radioBorderWidth : mainPadding - radioBorderWidth}px;
+  padding: 0;
   justify-content: center;
+  position: absolute;
+  top: 14px;
+  left: 14px;
 `;
 
-export const Radio = styled.div`
-  ${transition} width: ${props => (props.size === 'small' ? mainPaddingSmall : mainPadding)}px;
-  width: ${props => (props.size === 'small' ? radioSmallWidth : radioWidth)}px;
-  height: ${props => (props.size === 'small' ? radioSmallWidth : radioWidth)}px;
-  box-sizing: content-box;
+export const RadioShape = styled.div`
+  ${transition}
+  width: ${(props): number => (props.size === 'small' ? radioSmallWidth : radioWidth)}px;
+  height: ${(props): number => (props.size === 'small' ? radioSmallWidth : radioWidth)}px;
   border-radius: 50%;
   border-width: ${radioBorderWidth}px;
   border-style: solid;
+  border-color: ${getVar('grey-300')};
+  margin: 2px;
+
+  &:hover {
+    border-color: ${getVar('grey-400')}
+  }
+`;
+
+export const TickIcon = styled.div<{ size: string; disabled: boolean; selected: boolean }>`
+  ${is('selected')`
+    transform: translate(-4px, -4px);
+  `}
 
   ${is('disabled')`
-    color: ${getVar('grey-200')};
-    border-color: ${getVar('grey-200')};
-    background-color: ${getVar('grey-050')};
-    
-    ${isNot('value')`
-      > ${IconContainer} {
-        display: none;  
-      }
-    `}
-  `};
+    ${RadioShape} {
+        background-color: ${getVar('grey-050')};
+        border-color: ${getVar('grey-200')};
+    }
+  `}
 
   ${isNot('disabled')`
-    color: #fff;
-    
-    ${is('value')`
-      border-color: ${getVar('lime-color')};
-      background-color: ${getVar('lime-color')};
-      
-      > ${IconContainer} {
-        display: block;  
-      }
-    `}
-    
-    ${isNot('value')`
-      border-color: ${getVar('grey-300')};
-      
-      > ${IconContainer} {
-        display: none;  
-      }
-      
-      ${Container}:hover &,
-      ${Container}:active & {
-        border-color: ${getVar('grey-400')};
-      }
-    `}
-  `};
-
-  > ${IconContainer} {
-    transform: translate(-4px, -4px);
-  }
+    ${RadioShape} {
+      cursor: pointer;
+    }
+  `}
 `;
 
 export const Title = styled.div`
@@ -158,7 +145,7 @@ export const Title = styled.div`
   text-align: center;
   color: ${getVar('grey-800')};
 
-  ${props =>
+  ${(props): string =>
     props.size === 'small' &&
     css`
       font-size: 10px;
@@ -170,7 +157,7 @@ export const Description = styled.div`
   text-align: center;
   margin-top: 8px;
 
-  ${props =>
+  ${(props): string =>
     props.size === 'small' &&
     css`
       font-size: 10px;
@@ -178,10 +165,10 @@ export const Description = styled.div`
 `;
 
 export const IconWrapper = styled.div`
-  margin-bottom: ${props => (props.size === 'small' ? mainPaddingSmall : mainPadding)}px;
+  margin-bottom: ${(props): number => (props.size === 'small' ? mainPaddingSmall : mainPadding)}px;
   text-align: center;
 
-  ${props =>
+  ${(props): string =>
     props.size === 'small' &&
     css`
       margin-top: 5px;
