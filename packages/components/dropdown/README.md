@@ -34,6 +34,7 @@ Dropdown UI Component
 
 ### Dropdown.BottomAction
 
-| Property      | Description               | Type       | Default |
-| ------------- | ------------------------- | ---------- | ------- |
-| onClickAction | action triggered on click | () => void | -       |
+| Property      | Description                            | Type          | Default |
+| ------------- | -------------------------------------- | ------------- | ------- |
+| onClickAction | action triggered on click              | () => void    | -       |
+| icon          | icon component to show before the text | React.Element | -       |
