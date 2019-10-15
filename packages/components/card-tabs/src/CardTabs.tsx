@@ -40,6 +40,7 @@ const CardTabs: React.FC<CardTabsProps> = ({
             variant={tab.variant}
             draggable={!!onChangeOrder}
             prefixIcon={tab.prefixIcon}
+            suffixIcon={tab.suffixIcon}
             showTag={tab.showTag}
             disabled={tab.disabled}
             invalid={tab.invalid}

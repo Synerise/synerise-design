@@ -89,6 +89,52 @@ const ITEMS_WITH_TAGS = [
   }
 ]
 
+
+const ITEMS_WITH_SUFFIX_ICON = [
+  {
+    id: '1',
+    label: "Variant",
+    variant: {
+      tag: 'A',
+      color: 'yellow-500'
+    },
+    prefixIcon: null,
+    suffixIcon: <FileIcon />,
+    showTag: true,
+    disabled: false,
+    invalid: false,
+    tabIndex: -1,
+  },
+  {
+    id: '2',
+    label: "Variant",
+    variant: {
+      tag: 'B',
+      color: 'orange-500'
+    },
+    prefixIcon: null,
+    suffixIcon: <FileIcon />,
+    showTag: true,
+    disabled: false,
+    invalid: false,
+    tabIndex: -1,
+  },
+  {
+    id: '3',
+    label: "Variant",
+    variant: {
+      tag: 'C',
+      color: 'blue-500'
+    },
+    prefixIcon: null,
+    suffixIcon: <FileIcon />,
+    showTag: true,
+    disabled: true,
+    invalid: false,
+    tabIndex: -1,
+  }
+]
+
 storiesOf('Components|CardTabs', module)
   .add('with icons in prefix', () => (
     <div style={{background: '#fff', padding: '24px'}}>
@@ -129,6 +175,21 @@ storiesOf('Components|CardTabs', module)
       <DSProvider code="en_GB">
         <CardTabs
           items={ITEMS_WITH_TAGS}
+          currentTabIndex={0}
+          onAddTab={() => {}}
+          onChangeOrder={() => {}}
+          onRemoveTab={() => {}}
+          onDuplicateTab={() => {}}
+          onChangeName={() => {}}
+        />
+      </DSProvider>
+    </div>
+  ))
+  .add('with icon in suffix', () => (
+    <div style={{background: '#fff', padding: '24px'}}>
+      <DSProvider code="en_GB">
+        <CardTabs
+          items={ITEMS_WITH_SUFFIX_ICON}
           currentTabIndex={0}
           onAddTab={() => {}}
           onChangeOrder={() => {}}

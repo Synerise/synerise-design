@@ -24,6 +24,7 @@ export interface CardTabProps {
   onClick?: () => void;
   draggable?: boolean;
   prefixIcon?: React.ReactNode;
+  suffixIcon?: React.ReactNode;
   showTag?: boolean;
   disabled?: boolean;
   invalid?: boolean;
@@ -61,6 +62,7 @@ export default class CardTab extends React.PureComponent<CardTabProps, CardTabSt
       variant,
       draggable,
       prefixIcon,
+      suffixIcon,
       onChangeName,
       onDuplicateTab,
       onRemoveTab,
@@ -89,7 +91,7 @@ export default class CardTab extends React.PureComponent<CardTabProps, CardTabSt
           <S.CardTabPrefix>
             {showTag && !draggable && <S.CardTabTag>{variant.tag}</S.CardTabTag>}
             {prefixIcon && !draggable && <Icon component={prefixIcon} />}
-            {draggable && <Icon className="ds-handle-icon" component={<HandleIcon />} />}
+            {draggable && <Icon className="ds-card-tabs__handle-icon" component={<HandleIcon />} />}
           </S.CardTabPrefix>
         )}
         <S.CardTabLabel>
@@ -102,13 +104,14 @@ export default class CardTab extends React.PureComponent<CardTabProps, CardTabSt
             text={`${label} ${variant.tag}`}
           />
         </S.CardTabLabel>
-        {(onChangeName || onDuplicateTab || onRemoveTab) && (
+        {(onChangeName || onDuplicateTab || onRemoveTab) && !suffixIcon && (
           <S.CardTabSuffix>
             {onChangeName && <Icon component={<ChangeNameIcon />} />}
             {onDuplicateTab && <Icon component={<DuplicateIcon />} />}
-            {onRemoveTab && <Icon className="ds-remove-icon" component={<RemoveIcon />} />}
+            {onRemoveTab && <Icon className="ds-card-tabs__remove-icon" component={<RemoveIcon />} />}
           </S.CardTabSuffix>
         )}
+        {suffixIcon && <Icon className="ds-card-tabs__suffix-icon" component={suffixIcon} />}
       </S.CardTabContainer>
     );
   }

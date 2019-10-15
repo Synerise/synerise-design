@@ -8,19 +8,19 @@ export const CardTabSuffix = styled.div`
   height: 24px;
   display: none;
   svg {
-    color: ${({ theme, active }): string => {
+    color: ${({ theme }): string => {
       return theme.palette['grey-500'];
     }}
-    fill: ${({ theme, active }): string => {
+    fill: ${({ theme }): string => {
       return theme.palette['grey-500'];
     }} 
   }
-  .ds-remove-icon {
+  .ds-card-tabs__remove-icon {
     svg {
-      color: ${({ theme, active }): string => {
+      color: ${({ theme }): string => {
         return theme.palette['red-600'];
       }}
-      fill: ${({ theme, active }): string => {
+      fill: ${({ theme }): string => {
         return theme.palette['red-600'];
       }} 
     }
@@ -104,6 +104,16 @@ export const CardTabContainer = styled.div`
         }} !important;
       }
     }
+    .ds-card-tabs__suffix-icon {
+      svg {
+        color: ${({ theme }): string => {
+          return theme.palette['grey-600'];
+        }}
+        fill: ${({ theme }): string => {
+          return theme.palette['grey-600'];
+        }} 
+      }
+    }
   }
   
   &.pressed {
@@ -125,17 +135,30 @@ export const CardTabContainer = styled.div`
     color: ${({ theme, active }): string => (active ? theme.palette.white : theme.palette['grey-600'])};
   }
   
+  .ds-card-tabs__suffix-icon {
+    svg {
+      color: ${({ theme, active }): string => {
+        if (active) return theme.palette.white;
+        return theme.palette['grey-600'];
+      }}
+      fill: ${({ theme, active }): string => {
+        if (active) return theme.palette.white;
+        return theme.palette['grey-600'];
+      }} 
+    }
+  }
+  
   ${CardTabPrefix} {
-    .ds-handle-icon {
+    .ds-card-tabs__handle-icon {
       svg {
         color: ${({ theme, active }): string => {
           if (active) return theme.palette.white;
           return theme.palette['grey-400'];
         }}
-              fill: ${({ theme, active }): string => {
-                if (active) return theme.palette.white;
-                return theme.palette['grey-400'];
-              }} 
+        fill: ${({ theme, active }): string => {
+          if (active) return theme.palette.white;
+          return theme.palette['grey-400'];
+        }} 
       }
     }
     svg {
