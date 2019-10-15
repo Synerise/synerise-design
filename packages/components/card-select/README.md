@@ -7,7 +7,7 @@ Card-Select UI Component
 
 ## Demo
 
-<iframe src="/storybook-static/iframe.html?id=components-card-select--default"></iframe>
+<iframe src="/storybook-static/iframe.html?id=components-cardselect--default"></iframe>
 
 ## API
 
@@ -31,6 +31,7 @@ Card-Select UI Component
 
 ### Methods
 
-| Property | Description              | Type                     | Default |
-| -------- | ------------------------ | ------------------------ | ------- |
-| onChange | handler for state change | (state: boolean) => void | -       |
+| Property | Description                                                       | Type                     | Default |
+| -------- | ----------------------------------------------------------------- | ------------------------ | ------- |
+| onChange | handler for state change                                          | (state: boolean) => void | -       |
+| onClick  | handler for click (onChange will not fire if onClick is provided) | () => void               | -       |

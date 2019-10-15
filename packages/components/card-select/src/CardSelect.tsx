@@ -22,9 +22,10 @@ const CardSelect: React.FC<Props> = ({
   icon,
   iconSize,
   className,
+  onClick,
   theme,
 }: Props) => {
-  const handleClick = (): void => onChange && onChange(!value);
+  const handleClick = (): void => (onClick ? onClick() : onChange && onChange(!value));
 
   return (
     <S.Container
