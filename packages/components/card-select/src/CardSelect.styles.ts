@@ -148,7 +148,7 @@ export const Title = styled.div<{ hasIcon: boolean; size: string }>`
   ${(props): string =>
     !props.hasIcon &&
     css`
-      margin: 0 12px;
+      margin: 0 16px;
     `};
 
   ${(props): string =>
@@ -171,7 +171,7 @@ export const Description = styled.div<{ hasTitle: boolean; hasIcon: boolean }>`
   ${(props): string =>
     !props.hasIcon &&
     css`
-      margin: 0 12px;
+      margin: 0 16px;
     `};
 
   ${(props): string =>
