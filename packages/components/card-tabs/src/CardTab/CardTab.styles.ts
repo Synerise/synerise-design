@@ -7,6 +7,24 @@ export const CardTabSuffix = styled.div`
   justify-content: flex-end;
   height: 24px;
   display: none;
+  svg {
+    color: ${({ theme, active }): string => {
+      return theme.palette['grey-500'];
+    }}
+    fill: ${({ theme, active }): string => {
+      return theme.palette['grey-500'];
+    }} 
+  }
+  .ds-remove-icon {
+    svg {
+      color: ${({ theme, active }): string => {
+        return theme.palette['red-600'];
+      }}
+      fill: ${({ theme, active }): string => {
+        return theme.palette['red-600'];
+      }} 
+    }
+  }
 `;
 
 export const CardTabLabel = styled.span`
@@ -27,6 +45,15 @@ export const CardTabTag = styled.div`
   height: 24px;
   border-radius: 3px;
   background-color: ${({ theme, color }): string => theme.palette[color]}
+`;
+
+export const CardTabPrefix = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  margin-right: 12px;
 `;
 
 export const CardTabContainer = styled.div`
@@ -53,6 +80,7 @@ export const CardTabContainer = styled.div`
   border-style: solid;
   opacity: ${({ disabled }): number => (disabled ? 0.4 : 1)};
   pointer-events: ${({ disabled }): string => (disabled ? 'none' : 'all')};
+  
   &:hover {
     cursor: pointer;
     background-color: ${({ theme }): string => theme.palette['grey-050']};
@@ -60,16 +88,28 @@ export const CardTabContainer = styled.div`
       display: flex; 
     }
     ${CardTabLabel} {
-      color: ${({ theme }): string => theme.palette['grey-800']};  
+      color: ${({ theme }): string => theme.palette['grey-800']}; 
     }
     ${CardTabTag} {
       background-color: ${({ theme, active, color }): string => theme.palette[color]}
       color: ${({ theme, active, color }): string => theme.palette.white};
     }
+    ${CardTabPrefix} {
+      svg {
+        color: ${({ theme }): string => {
+          return theme.palette['grey-600'];
+        }} !important;
+        fill: ${({ theme }): string => {
+          return theme.palette['grey-600'];
+        }} !important;
+      }
+    }
   }
+  
   &.pressed {
     background-color: ${({ theme }): string => theme.palette['grey-100']};
   }
+  
   ${CardTabTag} {
     background-color: ${({ theme, active, color }): string => {
       if (active) return theme.palette.white;
@@ -80,16 +120,33 @@ export const CardTabContainer = styled.div`
       return theme.palette.white;
     }}
   }
+  
   ${CardTabLabel} { 
     color: ${({ theme, active }): string => (active ? theme.palette.white : theme.palette['grey-600'])};
   }
-`;
-
-export const CardTabPrefix = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 24px;
-  height: 24px;
-  margin-right: 12px;
+  
+  ${CardTabPrefix} {
+    .ds-handle-icon {
+      svg {
+        color: ${({ theme, active }): string => {
+          if (active) return theme.palette.white;
+          return theme.palette['grey-400'];
+        }}
+              fill: ${({ theme, active }): string => {
+                if (active) return theme.palette.white;
+                return theme.palette['grey-400'];
+              }} 
+      }
+    }
+    svg {
+      color: ${({ theme, active }): string => {
+        if (active) return theme.palette.white;
+        return theme.palette['grey-600'];
+      }}
+      fill: ${({ theme, active }): string => {
+        if (active) return theme.palette.white;
+        return theme.palette['grey-600'];
+      }} 
+    }
+  }
 `;

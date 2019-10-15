@@ -78,7 +78,7 @@ export default class CardTab extends React.PureComponent<CardTabProps, CardTabSt
           <S.CardTabPrefix>
             {showTag && !draggable && <S.CardTabTag>{variant.tag}</S.CardTabTag>}
             {prefixIcon && !draggable && <Icon component={prefixIcon} />}
-            {draggable && <Icon component={<HandleIcon />} />}
+            {draggable && <Icon className="ds-handle-icon" component={<HandleIcon />} />}
           </S.CardTabPrefix>
         )}
         <S.CardTabLabel>
@@ -88,7 +88,7 @@ export default class CardTab extends React.PureComponent<CardTabProps, CardTabSt
           <S.CardTabSuffix>
             {onChangeName && <Icon component={<ChangeNameIcon />} />}
             {onDuplicateTab && <Icon component={<DuplicateIcon />} />}
-            {onRemoveTab && <Icon component={<RemoveIcon />} />}
+            {onRemoveTab && <Icon className="ds-remove-icon" component={<RemoveIcon />} />}
           </S.CardTabSuffix>
         )}
       </S.CardTabContainer>
