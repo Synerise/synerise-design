@@ -4,7 +4,6 @@ import HandleIcon from '@synerise/ds-icon/dist/icons/drag-handle-m.svg';
 import ChangeNameIcon from '@synerise/ds-icon/dist/icons/edit-s.svg';
 import DuplicateIcon from '@synerise/ds-icon/dist/icons/duplicate-s.svg';
 import RemoveIcon from '@synerise/ds-icon/dist/icons/close-s.svg';
-import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import * as S from './CardTab.styles';
 
 interface Props {

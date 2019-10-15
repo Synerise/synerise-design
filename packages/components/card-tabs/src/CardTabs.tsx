@@ -1,6 +1,7 @@
 import * as React from 'react';
 import FileIcon from '@synerise/ds-icon/dist/icons/file-m.svg';
 import CardTab from './CardTab/CardTab';
+import AddButton from './AddButton/AddButton';
 
 export type CardTabsProps = {};
 const CardTabs: React.FC<CardTabsProps> = props => {
@@ -21,6 +22,7 @@ const CardTabs: React.FC<CardTabsProps> = props => {
         onDuplicateTab={(): void => {}}
         onRemoveTab={(): void => {}}
       />
+      <AddButton onClick={(): void => {}} />
     </>
   );
 };
