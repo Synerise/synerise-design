@@ -9,7 +9,6 @@ module.exports = api => {
 
   return {
     babelrcRoots: ['.', ...packages],
-
     ignore,
 
     presets: [

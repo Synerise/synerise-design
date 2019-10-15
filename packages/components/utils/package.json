@@ -9,7 +9,7 @@
     "access": "public"
   },
   "scripts": {
-    "build": "npm run build:js && npm run build:css && npm run defs",
+    "build": "rm -rf dist/ && npm run build:js && npm run build:css && npm run defs",
     "build:css": "node ../../../scripts/style/less.js",
     "build:js": "babel --root-mode upward src --out-dir dist --extensions '.js,.ts,.tsx'",
     "build:watch": "npm run build:js -- --watch",

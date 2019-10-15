@@ -2,11 +2,14 @@ import * as React from 'react';
 import { DSProvider } from '@synerise/ds-core';
 import { storiesOf } from "@storybook/react";
 import { text, boolean } from '@storybook/addon-knobs';
+import centered from '@storybook/addon-centered/react';
+
 import { action } from '@storybook/addon-actions';
 
 import Checkbox from '@synerise/ds-checkbox';
 
 storiesOf('Components|Checkbox', module)
+  .addDecorator(centered)
   .add('default', () => (
     <DSProvider code="en_GB">
       <Checkbox

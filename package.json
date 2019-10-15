@@ -13,7 +13,7 @@
   ],
   "scripts": {
     "bootstrap": "yarn npx:lerna bootstrap",
-    "build": "yarn npx:lerna run build --parallel",
+    "build": "yarn npx:lerna run build",
     "component:create": "node ./scripts/create-component/index.js",
     "lerna:version": "yarn npx:lerna version --conventional-commits",
     "lint": "eslint . --ext .ts --ext .tsx",

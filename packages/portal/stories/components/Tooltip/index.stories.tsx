@@ -1,7 +1,8 @@
 import * as React from 'react';
-
 import { storiesOf } from '@storybook/react';
 import { boolean, text, select } from '@storybook/addon-knobs';
+import centered from '@storybook/addon-centered/react';
+
 import Tooltip from '@synerise/ds-tooltip';
 
 const wrapperStyles = {
@@ -32,6 +33,7 @@ const props = () => ({
 });
 
 storiesOf('Components|Tooltip', module)
+  .addDecorator(centered)
   .add('default', () => {
     return (
       <div style={wrapperStyles}>

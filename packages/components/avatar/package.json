@@ -22,6 +22,7 @@
   "sideEffects": false,
   "types": "dist/index.d.ts",
   "dependencies": {
+    "@synerise/ds-badge": "^0.0.1",
     "antd": "*"
   },
   "peerDependencies": {

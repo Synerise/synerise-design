@@ -3,6 +3,7 @@ import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { boolean, text, number, select } from '@storybook/addon-knobs';
+import centered from '@storybook/addon-centered/react';
 import markdown from '@/button/README.md';
 import Button from '@synerise/ds-button';
 const config = {
@@ -56,6 +57,7 @@ const props = {
 
 
 storiesOf('Components|Button', module)
+  .addDecorator(centered)
   .add('with text', () =>  {
       const regularProps = props.regular();
       return (<Button icon="poweroff" {...regularProps}>Hello Button</Button>)
