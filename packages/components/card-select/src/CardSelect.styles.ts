@@ -15,6 +15,21 @@ const radioWidth = 20;
 const radioSmallWidth = 16;
 const radioBorderWidth = 1;
 
+export const RadioShape = styled.div`
+  ${transition}
+  width: ${(props): number => (props.size === 'small' ? radioSmallWidth : radioWidth)}px;
+  height: ${(props): number => (props.size === 'small' ? radioSmallWidth : radioWidth)}px;
+  border-radius: 50%;
+  border-width: ${radioBorderWidth}px;
+  border-style: solid;
+  border-color: ${getVar('grey-300')};
+  margin: 2px;
+
+  &:hover {
+    border-color: ${getVar('grey-400')};
+  }
+`;
+
 export const Container = styled.div<{ disabled: boolean; raised: boolean; value: boolean; stretch: boolean }>`
   ${transition}
   background-color: ${getVar('white')};
@@ -29,6 +44,12 @@ export const Container = styled.div<{ disabled: boolean; raised: boolean; value:
 
   ${isNot('disabled')`
     cursor: cursor;
+
+    &:hover {
+      ${RadioShape} {
+        border-color: ${getVar('grey-400')};
+      }
+    }
 
     ${isNot('raised')`
       ${isNot('value')`
@@ -105,21 +126,6 @@ export const Aside = styled.div`
   left: 14px;
 `;
 
-export const RadioShape = styled.div`
-  ${transition}
-  width: ${(props): number => (props.size === 'small' ? radioSmallWidth : radioWidth)}px;
-  height: ${(props): number => (props.size === 'small' ? radioSmallWidth : radioWidth)}px;
-  border-radius: 50%;
-  border-width: ${radioBorderWidth}px;
-  border-style: solid;
-  border-color: ${getVar('grey-300')};
-  margin: 2px;
-
-  &:hover {
-    border-color: ${getVar('grey-400')}
-  }
-`;
-
 export const TickIcon = styled.div<{ size: string; disabled: boolean; selected: boolean }>`
   ${is('selected')`
     transform: translate(-4px, -4px);
@@ -127,8 +133,8 @@ export const TickIcon = styled.div<{ size: string; disabled: boolean; selected: 
 
   ${is('disabled')`
     ${RadioShape} {
-        background-color: ${getVar('grey-050')};
-        border-color: ${getVar('grey-200')};
+      background-color: ${getVar('grey-050')};
+      border-color: ${getVar('grey-200')};
     }
   `}
 

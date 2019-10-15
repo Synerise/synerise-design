@@ -80,6 +80,16 @@ storiesOf('Components|CardSelect', module)
                 onChange={() => store !== 3 && setStore(3)}
               />
             </div>
+
+            <div style={{ marginLeft: 12, marginRight: 12 }}>
+              <CardSelect
+                {...commonProps}
+                tickVisible={false}
+                title={`Clickable example`}
+                description={`No tick or value`}
+                onClick={() => window.alert('Hello world!')}
+              />
+            </div>
           </React.Suspense>
         </div>
       </DSProvider>

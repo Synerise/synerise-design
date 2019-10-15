@@ -6,7 +6,6 @@ export interface Props {
   description?: string | ReactNode;
   title?: string | ReactNode;
   value?: boolean;
-  onChange?: (value: boolean) => void;
   disabled?: boolean;
   tickVisible?: boolean;
   size?: 'small' | 'medium';
@@ -16,4 +15,6 @@ export interface Props {
   customTickVisible?: boolean;
   customTickVisibleComponent?: ReactNode;
   theme: { [k: string]: string };
+  onChange?: (value: boolean) => void;
+  onClick?: () => void;
 }
