@@ -25,7 +25,7 @@ export default styled(({ mode, type, loading, ...rest }) => <Button type={type} 
       css`
         &.ant-btn {
           svg {
-            fill: ${(): string => props.theme.palette['grey-600']};
+            fill: ${(color): string => color.theme.palette['grey-600']};
           }
         }
       `}

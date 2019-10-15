@@ -1,12 +1,13 @@
 import * as React from 'react';
-import { fireEvent, render } from '@testing-library/react';
+import { fireEvent } from '@testing-library/react';
+import { renderWithProvider } from '@synerise/ds-utils';
 import Button from '../index';
 
 describe('Button', () => {
   const onClick = jest.fn();
   it('should render', function() {
     // ARRANGE
-    const { getByText } = render(<Button onClick={onClick}>Click ME!</Button>);
+    const { getByText } = renderWithProvider(<Button onClick={onClick}>Click ME!</Button>);
     // ACT
 
     // ASSERT
@@ -14,7 +15,7 @@ describe('Button', () => {
   });
   it('should onClick be called', function() {
     // ARRANGE
-    const { getByText } = render(<Button onClick={onClick}>Click ME!</Button>);
+    const { getByText } = renderWithProvider(<Button onClick={onClick}>Click ME!</Button>);
 
     // ACT
     fireEvent.click(getByText('Click ME!'));
