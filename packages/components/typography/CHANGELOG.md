@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-typography@0.4.0...@synerise/ds-typography@0.5.0) (2019-10-15)
+
+### Features
+
+- **avatar:** enhance component according to zeplin ([f56fa40](https://github.com/synerise/synerise-design/commit/f56fa40))
+
 # 0.4.0 (2019-10-03)
 
 ### Features

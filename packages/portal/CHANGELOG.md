@@ -3,6 +3,38 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/synerise/synerise-design/compare/portal@0.6.0...portal@0.7.0) (2019-10-15)
+
+
+### Bug Fixes
+
+* **card:** change storybook content bg color to white ([dac8f94](https://github.com/synerise/synerise-design/commit/dac8f94))
+* **inline-edit:** typings, color palette config ([c7fedcc](https://github.com/synerise/synerise-design/commit/c7fedcc))
+* **modal:** 'improvements' ([111b239](https://github.com/synerise/synerise-design/commit/111b239))
+* **modal:** fix mask backdrop color and animation ([5f64ec5](https://github.com/synerise/synerise-design/commit/5f64ec5))
+
+
+### Features
+
+* **avatar:** enhance component according to zeplin ([f56fa40](https://github.com/synerise/synerise-design/commit/f56fa40))
+* **badge:** create base structure and add stories example for component ([790a664](https://github.com/synerise/synerise-design/commit/790a664))
+* **card:** add compact header type ([c48f281](https://github.com/synerise/synerise-design/commit/c48f281))
+* **card:** add knob for size prop ([2da6e1c](https://github.com/synerise/synerise-design/commit/2da6e1c))
+* **card:** add more knobs ([e7a74e0](https://github.com/synerise/synerise-design/commit/e7a74e0))
+* **card:** add new sizes to storybook ([f465b34](https://github.com/synerise/synerise-design/commit/f465b34))
+* **card:** add story for CardGroup component ([4104cef](https://github.com/synerise/synerise-design/commit/4104cef))
+* **card:** initial card component ([d9d592c](https://github.com/synerise/synerise-design/commit/d9d592c))
+* **divider:** add margin props ([1307887](https://github.com/synerise/synerise-design/commit/1307887))
+* **dropdown:** add Dropdown elements ([2914b53](https://github.com/synerise/synerise-design/commit/2914b53))
+* **list:** fix list styles and examples ([8936914](https://github.com/synerise/synerise-design/commit/8936914))
+* **modal:** add ability to pick body background ([b7fe751](https://github.com/synerise/synerise-design/commit/b7fe751))
+* **modal:** add ability to render w/o footer, pass down button props ([f2bf3ab](https://github.com/synerise/synerise-design/commit/f2bf3ab))
+* **slider:** add slider component ([1a5e444](https://github.com/synerise/synerise-design/commit/1a5e444))
+
+
+
+
+
 # [0.6.0](https://github.com/synerise/synerise-design/compare/portal@0.5.0...portal@0.6.0) (2019-10-09)
 
 

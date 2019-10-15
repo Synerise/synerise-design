@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@0.2.1...@synerise/ds-tooltip@0.3.0) (2019-10-15)
+
+### Features
+
+- **slider:** add slider component ([1a5e444](https://github.com/synerise/synerise-design/commit/1a5e444))
+
 ## [0.2.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@0.2.0...@synerise/ds-tooltip@0.2.1) (2019-10-09)
 
 ### Bug Fixes
