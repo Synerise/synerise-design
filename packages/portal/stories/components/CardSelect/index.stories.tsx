@@ -9,7 +9,8 @@ import { boolean, text, select, number } from '@storybook/addon-knobs';
 
 storiesOf('Components|CardSelect', module)
   .add('default', () => {
-    const [store, setStore] = React.useState<{[k: number]: boolean}>({});
+    const [store, setStore] = React.useState<number | null>(null);
+
     const raised = boolean('Raised', false);
     const tickVisible = boolean('With tick', true);
     const stretchToFit = boolean('Stretch to fit', false);
@@ -32,26 +33,26 @@ storiesOf('Components|CardSelect', module)
       <DSProvider code="en_GB">
         <div style={{ background: '#f2f5f6', padding: '16px', display: 'flex' }}>
           <React.Suspense fallback={<div>Loading icons... (or perhaps you've entered an icon that couldn't be found)</div>}>
-            <div style={{ marginLeft: 6, marginRight: 6 }}>
+            <div style={{ marginLeft: 12, marginRight: 12 }}>
               <CardSelect
                 {...commonProps}
                 title={`Selectable card`}
                 description={`With description`}
-                value={store[0]}
-                onChange={() => !store[0] && setStore({ [0]: true })}
+                value={store === 0}
+                onChange={() => store !== 0 && setStore(0)}
               />
             </div>
 
-            <div style={{ marginLeft: 6, marginRight: 6 }}>
+            <div style={{ marginLeft: 12, marginRight: 12 }}>
               <CardSelect
                 {...commonProps}
                 title={`No description`}
-                value={store[1]}
-                onChange={() => !store[1] && setStore({ [1]: true })}
+                value={store === 1}
+                onChange={() => store !== 1 && setStore(1)}
               />
             </div>
 
-            <div style={{ marginLeft: 6, marginRight: 6 }}>
+            <div style={{ marginLeft: 12, marginRight: 12 }}>
               <CardSelect
                 {...commonProps}
                 title={`Disabled card`}
@@ -60,23 +61,23 @@ storiesOf('Components|CardSelect', module)
               />
             </div>
 
-            <div style={{ marginLeft: 6, marginRight: 6 }}>
+            <div style={{ marginLeft: 12, marginRight: 12 }}>
               <CardSelect
                 {...commonProps}
                 icon={undefined}
                 title={`No Icon with only title`}
-                value={store[2]}
-                onChange={() => !store[2] && setStore({ [2]: true })}
+                value={store === 2}
+                onChange={() => store !== 2 && setStore(2)}
               />
             </div>
 
-            <div style={{ marginLeft: 6, marginRight: 6 }}>
+            <div style={{ marginLeft: 12, marginRight: 12 }}>
               <CardSelect
                 {...commonProps}
                 icon={undefined}
                 description={`No Icon with only description`}
-                value={store[3]}
-                onChange={() => !store[3] && setStore({ [3]: true })}
+                value={store === 3}
+                onChange={() => store !== 3 && setStore(3)}
               />
             </div>
           </React.Suspense>
