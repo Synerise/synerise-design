@@ -5,9 +5,13 @@ title: Icon
 
 Icon UI Component
 
-## Demo
+## Single icon
 
-<iframe src="/storybook-static/iframe.html?id=components-icon--default"></iframe>
+<iframe src="/storybook-static/iframe.html?id=components-icon--single-icon"></iframe>
+
+## Icon list
+
+<iframe src="/storybook-static/iframe.html?id=components-icon--list-icon"></iframe>
 
 ## Installation
 
