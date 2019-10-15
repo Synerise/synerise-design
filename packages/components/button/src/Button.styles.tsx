@@ -31,7 +31,7 @@ export default styled(({ mode, type, loading, ...rest }) => <Button type={type} 
           padding-right: 0;
           > span {
             padding-right: 12px;
-            border-right: 1px solid rgba(255, 255, 255, 0.12);
+            border-right: 1px solid rgba(255, 255, 255, 0.15);
           }
           > div {
             margin: 4px;
