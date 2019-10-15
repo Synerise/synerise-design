@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-modal@0.5.0...@synerise/ds-modal@0.6.0) (2019-10-15)
+
+### Bug Fixes
+
+- **modal:** 'improvements' ([095df11](https://github.com/synerise/synerise-design/commit/095df11))
+- **modal:** fix mask backdrop color and animation ([a9d40b6](https://github.com/synerise/synerise-design/commit/a9d40b6))
+- **modal:** improvements & styling ([bebb70a](https://github.com/synerise/synerise-design/commit/bebb70a))
+- **modal:** make bodyBackground prop optional ([dccc2e1](https://github.com/synerise/synerise-design/commit/dccc2e1))
+- **modal:** minor improvements ([27cab73](https://github.com/synerise/synerise-design/commit/27cab73))
+- **modal:** remove ModalBackground export ([c634b65](https://github.com/synerise/synerise-design/commit/c634b65))
+- **modal:** styling ([1ca65bb](https://github.com/synerise/synerise-design/commit/1ca65bb))
+- **modal:** tests ([7fa83ad](https://github.com/synerise/synerise-design/commit/7fa83ad))
+
+### Features
+
+- **modal:** add ability to render w/o footer, pass down button props ([1763102](https://github.com/synerise/synerise-design/commit/1763102))
+- **modal:** add new props to docs ([8fa533d](https://github.com/synerise/synerise-design/commit/8fa533d))
+- changee/add Card and Modal sizes ([1ff35b6](https://github.com/synerise/synerise-design/commit/1ff35b6))
+
 # [0.5.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-modal@0.4.0...@synerise/ds-modal@0.5.0) (2019-10-09)
 
 ### Bug Fixes
