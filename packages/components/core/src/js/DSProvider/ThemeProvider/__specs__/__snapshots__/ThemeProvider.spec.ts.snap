@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ThemeProvier should match snapshot 1`] = `
+Object {
+  "breakpoints": Array [
+    "640px",
+    "1024px",
+    "1200px",
+  ],
+  "palette": Object {},
+  "space": Array [
+    0,
+    8,
+    12,
+    16,
+    24,
+    32,
+    48,
+    64,
+  ],
+  "variable": [Function],
+  "variables": Object {},
+}
+`;

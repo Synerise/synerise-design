@@ -1,20 +1,133 @@
 import * as React from 'react';
-import { mount } from 'enzyme';
+import { renderWithProvider } from '@synerise/ds-utils';
+
 import Avatar from '../index';
+import Badge from '@synerise/ds-badge';
+
+const CIRCLE_SHAPE = 'circle';
+const SQUARE_SHAPE = 'square';
+const DEF_SIZE = 'default';
+const XL_SIZE = 'extraLarge';
+const STATUS = 'default';
+const FERN = 'fern';
+const RED = 'red';
+const DEG_BG = '#ccc';
+const ANT_ICON = 'user';
+const IMG_SRC = 'https://hsto.org/web/77c/061/c05/77c061c0550f4acd98380bf554eb8886.png';
 
 describe('Avatar', () => {
-  const component = mount(
-    <Avatar size={99} shape="square">
-      U
-    </Avatar>
-  );
-  it('should render', function() {
-    const style = component
-      .find('span')
-      .at(0)
-      .props().style;
-    expect(component.text()).toBe('U');
-    expect(style.width).toBe(99);
-    expect(style.height).toBe(99);
+  it('should render with text', () => {
+    // ARRANGE
+    const { container } = renderWithProvider(
+      <Avatar backgroundColor={FERN} size={DEF_SIZE} shape={CIRCLE_SHAPE}>
+        WW
+      </Avatar>
+    );
+
+    // ASSERT
+    expect(container.querySelector('.ant-avatar-string')).toHaveTextContent(/^WW$/);
+  });
+
+  it('should render with custom icon', () => {
+    // ARRANGE
+    const { container } = renderWithProvider(
+      <Avatar
+        backgroundColor={FERN}
+        iconComponent={
+          <div>
+            <svg></svg>
+          </div>
+        }
+      />
+    );
+
+    const icon = container.querySelector(`svg`);
+
+    // ASSERT
+    expect(container).toContainElement(icon);
+  });
+
+  it('should render with icon even when custom icon provider', () => {
+    // ARRANGE
+    const { container } = renderWithProvider(
+      <Avatar backgroundColor={FERN} iconComponent={<svg></svg>} icon={ANT_ICON} />
+    );
+
+    const icon = container.querySelector('i.anticon');
+    const svg = container.querySelector('svg');
+
+    // ASSERT
+    expect(container).toContainElement(icon as HTMLElement);
+    expect(container).toContainElement(svg);
+  });
+
+  it('should render with image', () => {
+    // ARRANGE
+    const { container } = renderWithProvider(<Avatar src={IMG_SRC} />);
+
+    const img = container.querySelector('img');
+
+    // ASSERT
+    expect(container).toContainElement(img);
+    expect(img).toHaveAttribute('src', expect.stringContaining(`${IMG_SRC}`));
+  });
+
+  it('should render with badge dot and proper styles', () => {
+    // ARRANGE
+    const { container } = renderWithProvider(
+      <Badge status={'default'}>
+        <Avatar hasStatus src={IMG_SRC} />
+      </Badge>
+    );
+
+    const badge = container.querySelector('.ant-badge');
+    const avatar = container.querySelector('.ant-avatar');
+    const dot = container.querySelector('.ant-badge-dot');
+
+    // ASSERT
+    expect(container).toContainElement(badge as HTMLElement);
+    expect(container).toContainElement(avatar as HTMLElement);
+    expect(container).toContainElement(dot as HTMLElement);
+    expect(dot).toHaveStyle('box-shadow: 0px 0px 0px 2px white inset;top: 5px;right: 5px;width: 10px;height: 10px;');
+  });
+
+  it('should render with proper styles', () => {
+    // ARRANGE
+    const { container } = renderWithProvider(<Avatar backgroundColor={RED} shape={SQUARE_SHAPE} size={32} />);
+
+    const avatar = container.querySelector('.ant-avatar');
+
+    // ASSERT
+    expect(avatar).toHaveStyle('width:32px;height:32px;line-height:32px;');
+    expect(avatar).toHaveStyle('background: #ff8475');
+    expect(avatar).toHaveClass('ant-avatar-square');
+  });
+
+  it('should render with inline styles bg color', () => {
+    // ARRANGE
+    const { container } = renderWithProvider(
+      <Avatar
+        backgroundColor={RED}
+        shape={SQUARE_SHAPE}
+        style={{
+          background: '#fcc600',
+        }}
+      />
+    );
+
+    const avatar = container.querySelector('.ant-avatar');
+
+    // ASSERT
+    expect(avatar).toHaveStyle('background: rgb(252, 198, 0);');
+  });
+
+  it('should render with disabled styles', () => {
+    // ARRANGE
+    const { container } = renderWithProvider(<Avatar disabled />);
+
+    const avatar = container.querySelector('.ant-avatar');
+
+    // ASSERT
+    expect(avatar).toHaveStyle('opacity: 0.4;pointer-events: none;');
   });
 });

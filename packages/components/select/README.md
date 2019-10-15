@@ -1,11 +1,38 @@
 ---
-
 id: select
 title: Select
-
 ---
 
 Select UI Component
+
+Based on [Ant Design Select](https://ant.design/components/select/)
+
+## Installation
+
+```
+npm i @synerise/ds-select
+or
+yarn add @synerise/ds-select
+```
+
+## Usage
+
+```jsx
+import Select from '@synerise/ds-select';
+
+const { Option, OptGroup } = Select;
+
+<Select defaultValue="insta">
+  <OptGroup label="Platform">
+    <Option value="insta">Instagram</Option>
+    <Option value="fb">Facebook</Option>
+  </OptGroup>
+  <OptGroup label="Followers">
+    <Option value="1M">1 Million</Option>
+    <Option value="1B">1 Billion</Option>
+  </OptGroup>
+</Select>;
+```
 
 ## Select default
 

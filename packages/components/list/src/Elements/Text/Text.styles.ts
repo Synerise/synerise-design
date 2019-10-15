@@ -12,8 +12,9 @@ export const Wrapper = styled.li`
   cursor: ${(props): string => (props.disabled ? 'not-allowed' : 'pointer')};
   font-weight: 500;
   border-radius: 3px;
-  padding: 7px 12px;
+  padding: 4px 12px 4px 8px;
   display: flex;
+  align-items: center;
 
   &:hover {
     ${(props): string =>

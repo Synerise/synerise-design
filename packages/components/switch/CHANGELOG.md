@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.5](https://github.com/synerise/synerise-design/compare/@synerise/ds-switch@0.0.4...@synerise/ds-switch@0.0.5) (2019-10-15)
+
+### Bug Fixes
+
+- **inline-edit:** typings, color palette config ([c7fedcc](https://github.com/synerise/synerise-design/commit/c7fedcc))
+
 ## 0.0.4 (2019-10-03)
 
 ### Bug Fixes

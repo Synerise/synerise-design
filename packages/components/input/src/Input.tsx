@@ -1,95 +1,102 @@
 import * as React from 'react';
 import '@synerise/ds-core/dist/js/style';
 import { v4 as uuid } from 'uuid';
-import { InputProps } from 'antd/lib/input';
+import { InputProps, TextAreaProps } from 'antd/lib/input';
 import './style/index.less';
 import * as S from './Input.styles';
 
-interface Props extends InputProps {
+interface Props {
   errorText?: React.ReactNode | string;
   label?: React.ReactNode | string;
   description?: React.ReactNode | string;
   counterLimit?: number;
+  icon1?: React.ReactElement;
+  icon2?: React.ReactElement;
 }
 
-interface State {
-  value: string;
-  charCount: number;
-}
+type EnhancedProps = Props & (InputProps | TextAreaProps);
 
-const enhancedInput = <P extends object>(WrappedComponent: React.ComponentType<P>): React.ComponentType<P & Props> =>
-  class EnhancedInput extends React.Component<P & Props, State> {
-    state = {
-      value: '',
-      charCount: 0,
-    };
+const enhancedInput = <P extends object>(WrappedComponent, { type }): React.ComponentType<P & EnhancedProps> => ({
+  errorText,
+  label,
+  description,
+  counterLimit,
+  icon1,
+  icon2,
+  ...antdInputProps
+}): React.ReactElement => {
+  const [value, setValue] = React.useState<string>('');
+  const [charCount, setCharCount] = React.useState<number>(0);
 
-    componentDidMount(): void {
-      const { value } = this.props;
+  const showError = Boolean(errorText);
+  const id = uuid();
 
-      value &&
-        this.setState({
-          value: value.toString(),
-          charCount: value.toString().length,
-        });
-    }
+  const inputRef = React.useRef<HTMLInputElement | HTMLTextAreaElement>();
 
-    static getDerivedStateFromProps(nextProps): State {
-      if (!nextProps.value) return undefined; // if input is uncontrolled
+  const handleChange = React.useCallback(
+    (e: React.ChangeEvent<HTMLInputElement> & React.ChangeEvent<HTMLTextAreaElement>) => {
+      const { value: newValue } = e.currentTarget;
 
-      return {
-        value: nextProps.value || '',
-        charCount: nextProps.value ? nextProps.value.toString().length : 0,
-      };
-    }
+      if (newValue.length > counterLimit) return;
 
-    handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-      const { counterLimit, onChange } = this.props;
-      const { value } = e.currentTarget;
+      if (!antdInputProps.value) {
+        setValue(newValue);
+        setCharCount(newValue.length);
+      }
 
-      if (value.length > counterLimit) return;
+      antdInputProps.onChange && antdInputProps.onChange(e);
+    },
+    [antdInputProps, counterLimit]
+  );
 
-      this.setState({
-        value,
-        charCount: value.length,
-      });
-      onChange && onChange(e);
-    };
+  const handleIconsClick = React.useCallback(() => {
+    inputRef.current.focus();
+  }, [inputRef]);
 
-    render(): React.ReactNode {
-      const { errorText, label, description, counterLimit, ...antdInputProps } = this.props;
-      const { value, charCount } = this.state;
-      const showError = Boolean(errorText);
-      const id = uuid();
+  React.useEffect(() => {
+    setValue(antdInputProps.value.toString());
+    setCharCount(antdInputProps.value.toString().length);
+  }, [antdInputProps.value]);
 
-      return (
-        <>
-          {(label || counterLimit) && (
-            <S.ContentAbove>
-              <S.Label htmlFor={id}>{label}</S.Label>
-              <S.Counter data-testid="counter">
-                {charCount}/{counterLimit}
-              </S.Counter>
-            </S.ContentAbove>
+  return (
+    <>
+      {(label || counterLimit) && (
+        <S.ContentAbove>
+          <S.Label htmlFor={id}>{label}</S.Label>
+          {counterLimit && (
+            <S.Counter data-testid="counter">
+              {charCount}/{counterLimit}
+            </S.Counter>
           )}
-          <WrappedComponent
-            // eslint-disable-next-line react/jsx-props-no-spreading
-            {...(antdInputProps as P)}
-            error={showError}
-            onChange={this.handleChange}
-            value={value}
-            id={id}
-          />
-          {(showError || description) && (
-            <S.ContentBelow>
-              {showError && <S.ErrorText>{errorText}</S.ErrorText>}
-              {description && <S.Description>{description}</S.Description>}
-            </S.ContentBelow>
-          )}
-        </>
-      );
-    }
-  };
+        </S.ContentAbove>
+      )}
+      <S.InputWrapper>
+        <S.IconsWrapper onClick={handleIconsClick} disabled={antdInputProps.disabled}>
+          <S.IconsFlexContainer type={type}>
+            {icon1 &&
+              React.cloneElement(icon1, { className: 'icon icon1', ...(icon2 && { style: { marginRight: '4px' } }) })}
+            {icon2 && React.cloneElement(icon2, { className: 'icon icon2' })}
+          </S.IconsFlexContainer>
+        </S.IconsWrapper>
+        <WrappedComponent
+          // eslint-disable-next-line react/jsx-props-no-spreading
+          {...antdInputProps}
+          error={showError}
+          onChange={handleChange}
+          value={value}
+          id={id}
+          ref={inputRef}
+        />
+      </S.InputWrapper>
+      {(showError || description) && (
+        <S.ContentBelow>
+          {showError && <S.ErrorText>{errorText}</S.ErrorText>}
+          {description && <S.Description>{description}</S.Description>}
+        </S.ContentBelow>
+      )}
+    </>
+  );
+};
 
-export const TextArea = enhancedInput(S.AntdTextArea);
-export const Input = enhancedInput(S.AntdInput);
+export const TextArea = enhancedInput(S.AntdTextArea, { type: 'textArea' });
+export const Input = enhancedInput(S.AntdInput, { type: 'input' });

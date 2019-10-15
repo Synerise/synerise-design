@@ -1,14 +1,37 @@
-import Icon from '@synerise/ds-icon';
-
 import * as React from 'react';
-
 import {storiesOf} from '@storybook/react';
 import {boolean, number, text} from '@storybook/addon-knobs';
-
-import AngleLeftM from '@synerise/ds-icon/dist/icons/angle-left-m.svg'
+import Icon from '@synerise/ds-icon';
+import centered from '@storybook/addon-centered/react';
+import iconArr from './icons'
+import AngleLeftM from '@synerise/ds-icon/dist/icons/shuffle-m.svg';
 
 const stories = storiesOf('Components|Icon', module);
 
+
+const listyStyles: React.CSSProperties = {
+    margin: 10,
+    padding: 10,
+    minWidth: 145,
+    textAlign: 'center',
+    border: 1,
+    borderStyle: 'solid',
+    borderColor: '#e0e0e0'
+};
+
+const setIcon = (name) => require(`@synerise/ds-icon/dist/icons/${name}.svg`);
+
+const IconComponent = iconArr.map(i => {
+    const IconComponent = setIcon(i).default;
+
+    return (
+        <div style={listyStyles}>
+            <Icon component={<IconComponent/>}/>
+            <br/><br/>
+            <p>{i}</p>
+        </div>
+    )
+});
 
 const props = () => ({
     // name: select('Select icon name', type, 'angle-up-m'),
@@ -17,13 +40,19 @@ const props = () => ({
     stroke: boolean('Set stroke', false),
 });
 
-
-stories.add('single icon', () => {
+stories.addDecorator(centered).add('single icon', () => {
     return (
         <>
-            <Icon {...props()} component={<AngleLeftM />} />
+            <Icon {...props()} component={<AngleLeftM/>}/>
         </>
+    );
+}).add('list icon', () => {
+    return (
+        <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between'}}>
+            {IconComponent}
+        </div>
     );
 });
 
 export default stories;
+

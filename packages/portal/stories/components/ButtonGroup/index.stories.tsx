@@ -3,11 +3,13 @@ import * as React from 'react';
 import { DSProvider } from '@synerise/ds-core';
 import Button from '@synerise/ds-button';
 import ButtonGroup from '@synerise/ds-button-group';
+import centered from '@storybook/addon-centered/react';
 
 import { storiesOf } from '@storybook/react';
 import { boolean, select, text } from '@storybook/addon-knobs';
 
 storiesOf('Components|ButtonGroup', module)
+  .addDecorator(centered)
   .add('default', () => {
     // ButtonGroup props
     const withTitle = boolean('With title', true);

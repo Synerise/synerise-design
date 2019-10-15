@@ -4,8 +4,8 @@ import * as S from './SearchInput.styles';
 interface Props {
   onSearchChange: (value: string) => void;
   placeholder: string;
-  className?: string;
-  value?: string;
+  className: string;
+  value: string;
 }
 
 const SearchInput: React.FC<Props> = ({ value, className, onSearchChange, placeholder }) => (

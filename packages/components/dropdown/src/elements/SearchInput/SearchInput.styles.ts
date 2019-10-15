@@ -16,7 +16,6 @@ export const SearchInput = styled(Input)`
   && {
     padding: 25px 20px;
     border-radius: 0;
-    margin-bottom: 8px;
     background-color: ${(props): string => props.theme.palette['grey-050']};
   }
 `;

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const RadioWrapper = styled.div`
   & {
-    padding: 7px 12px;
+    padding: 8px 12px;
     display: block;
   }
 `;
