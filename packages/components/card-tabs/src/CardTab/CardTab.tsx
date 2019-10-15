@@ -21,7 +21,7 @@ interface Props {
   variant?: Variant;
   onClick?: () => void;
   draggable?: boolean;
-  icon?: React.ReactNode;
+  prefixIcon?: React.ReactNode;
   tag?: boolean;
   disabled?: boolean;
   invalid?: boolean;
@@ -52,7 +52,7 @@ export default class CardTab extends React.PureComponent<Props, State> {
       label,
       variant,
       draggable,
-      icon,
+      prefixIcon,
       onChangeName,
       onDuplicateTab,
       onRemoveTab,
@@ -73,10 +73,10 @@ export default class CardTab extends React.PureComponent<Props, State> {
         onMouseLeave={this.handleMouseUp}
         onMouseUp={this.handleMouseUp}
       >
-        {(tag || icon || draggable) && (
+        {(tag || prefixIcon || draggable) && (
           <S.CardTabPrefix>
             {tag && <S.CardTabTag>{variant.tag}</S.CardTabTag>}
-            {icon && <Icon component={icon} />}
+            {prefixIcon && <Icon component={prefixIcon} />}
             {draggable && <Icon component={<HandleIcon />} />}
           </S.CardTabPrefix>
         )}

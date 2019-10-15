@@ -24,7 +24,9 @@
   "dependencies": {
     "@synerise/ds-button": "*",
     "@synerise/ds-typography": "*",
-    "antd": "*"
+    "antd": "*",
+    "react-sortablejs": "^1.5.1",
+    "sortablejs": "^1.10.1"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

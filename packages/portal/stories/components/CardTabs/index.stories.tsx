@@ -8,7 +8,7 @@ storiesOf('Components|CardTabs', module)
 .add('default', () => (
   <div style={{background: '#fff'}}>
     <DSProvider code="en_GB">
-      <CardTabs />
+      <CardTabs sortableTags={false} onChangeOrder={() => {}} />
     </DSProvider>
   </div>
 ));

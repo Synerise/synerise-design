@@ -16192,7 +16192,11 @@ sort-scripts@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/sort-scripts/-/sort-scripts-1.0.1.tgz#c1d27f2a7d95d1d0d3d6303f1b949abaaa695b55"
 
+<<<<<<< HEAD
 sortablejs@^1.10.0:
+=======
+sortablejs@^1.10.1:
+>>>>>>> feat(card-tabs): add sortable tabs
   version "1.10.1"
   resolved "https://registry.yarnpkg.com/sortablejs/-/sortablejs-1.10.1.tgz#3d52b00f871be00f00f84d99a60d120bf3dfe52c"
   integrity sha512-N6r7GrVmO8RW1rn0cTdvK3JR0BcqecAJ0PmYMCL3ZuqTH3pY+9QyqkmJSkkLyyDvd+AJnwaxTP22Ybr/83V9hQ==
