@@ -11,6 +11,11 @@ const buttonType = {
   ghost: 'ghost',
 };
 
+const splitType = {
+  secondary: 'secondary',
+  tertiary: 'tertiary',
+};
+
 // eslint-disable-next-line react/jsx-props-no-spreading
 export default styled(({ mode, type, loading, ...rest }) => <Button type={type} loading={loading} {...rest} />)`
   && {
@@ -20,7 +25,7 @@ export default styled(({ mode, type, loading, ...rest }) => <Button type={type} 
       css`
         &.ant-btn {
           svg {
-            fill: ${props.theme.palette['grey-600']};
+            fill: ${(): string => props.theme.palette['grey-600']};
           }
         }
       `}
@@ -31,7 +36,8 @@ export default styled(({ mode, type, loading, ...rest }) => <Button type={type} 
           padding-right: 0;
           > span {
             padding-right: 12px;
-            border-right: 1px solid rgba(255, 255, 255, 0.15);
+            border-right: 1px solid
+              ${props.type !== splitType[props.type] ? `rgba(255, 255, 255, 0.15);` : props.theme.palette['grey-300']};
           }
           > div {
             margin: 4px;
