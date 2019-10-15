@@ -27,35 +27,43 @@ const init = () => {
     withHeader: boolean('With header', true),
     showContent: boolean('Show content', true),
     withHeaderSide: boolean('With header side children', true),
-    withIcon: text('With icon', ''),
+    withIcon: text('With icon', 'check-3-m'),
+    iconColor: text('Icon color', '#54cb0b'),
     compactHeader: boolean('Compact header', false),
   };
 
   return { props };
 };
 
-const renderCard = props => (
-  <Card
-    lively={props.lively}
-    disabled={props.disabled}
-    raised={props.raised}
-    withHeader={props.withHeader}
-    title={props.title}
-    description={props.description}
-    icon={props.withIcon}
-    size={props.size}
-    compactHeader={props.compactHeader}
-    headerSideChildren={props.withHeaderSide && (
-      <Button type="primary">Button</Button>
-    )}
-  >
-    {props.showContent &&
-      <div style={{width: '100%', height: 300}}>
-        Wow so great, such content!1
-      </div>
-    }
-  </Card>
-);
+const renderCard = props => {
+  const IconComponent = React.lazy(() => import(`@synerise/ds-icon/dist/icons/${props.withIcon}.svg`).catch(() => {}));
+
+  return (
+    <React.Suspense fallback={<div>Loading icon</div>}>
+      <Card
+        lively={props.lively}
+        disabled={props.disabled}
+        raised={props.raised}
+        withHeader={props.withHeader}
+        title={props.title}
+        description={props.description}
+        icon={props.withIcon && <IconComponent />}
+        iconColor={props.iconColor}
+        size={props.size}
+        compactHeader={props.compactHeader}
+        headerSideChildren={props.withHeaderSide && (
+          <Button type="primary">Button</Button>
+        )}
+      >
+        {props.showContent &&
+          <div style={{width: '100%', height: 300}}>
+            Wow so great, such content!1
+          </div>
+        }
+      </Card>
+    </React.Suspense>
+  );
+};
 
 storiesOf('Components|Card', module)
   .add('Single', () => {

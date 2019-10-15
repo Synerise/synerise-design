@@ -24,7 +24,7 @@ Card UI Component
 | withHeader         | whether to show the header                                         | boolean                                     | -       |
 | compactHeader      | display compact header                                             | boolean                                     | -       |
 | icon               | display given icon                                                 | string                                      | -       |
-| iconSize           | size of the icon                                                   | number                                      | 36      |
+| iconColor          | color of the icon                                                  | string                                      | -       |
 | className          | className of container                                             | string                                      | -       |
 | style              | direction type of divider                                          | React.CSSProperties                         | -       |
 | raised             | whether component should be raised                                 | boolean                                     | -       |

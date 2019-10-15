@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Icon from '@synerise/ds-icon';
 
 import * as S from './Card.styles';
 import { Props } from './Card.types';
@@ -23,7 +24,7 @@ const Card: React.FC<Props> = ({
   compactHeader,
   icon,
   size,
-  // iconSize,
+  iconColor,
   headerSideChildren,
 }: Props) => {
   const fatTitle = !description || (description && compactHeader);
@@ -39,9 +40,13 @@ const Card: React.FC<Props> = ({
     >
       {withHeader && (
         <S.Header isContentful={!!children}>
-          {icon && <S.IconContainer>{/* <Icon /> */}</S.IconContainer>}
+          {icon && (
+            <S.IconContainer compact={compactHeader}>
+              <Icon component={icon} color={iconColor} size={30} />
+            </S.IconContainer>
+          )}
 
-          <S.HeaderContent compact={compactHeader}>
+          <S.HeaderContent compact={compactHeader} hasIcon={!!icon}>
             {title && (
               <S.Title level={4} fat={fatTitle}>
                 {title}
