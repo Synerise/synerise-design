@@ -26,6 +26,11 @@ const CardSelect: React.FC<Props> = ({
   theme,
 }: Props) => {
   const handleClick = (): void => (onClick ? onClick() : onChange && onChange(!value));
+  let realIconSize = iconSize;
+
+  if (!realIconSize) {
+    realIconSize = size === 'small' ? 48 : 82;
+  }
 
   return (
     <S.Container
@@ -43,7 +48,7 @@ const CardSelect: React.FC<Props> = ({
           <S.TickIcon disabled={disabled} selected={value} size={size}>
             {value ? (
               <Icon
-                size={size === 'small' ? 24 : 30}
+                size={30}
                 color={value ? theme.palette['green-600'] : theme.palette['grey-400']}
                 component={<CheckThreeM />}
               />
@@ -54,10 +59,10 @@ const CardSelect: React.FC<Props> = ({
         )}
       </S.Aside>
 
-      <S.Main size={size} disabled={disabled}>
+      <S.Main size={size} disabled={disabled} hasTick={tickVisible || customTickVisible}>
         {icon && (
           <S.IconWrapper size={size}>
-            <Icon size={iconSize} component={icon} />
+            <Icon size={realIconSize} component={icon} />
           </S.IconWrapper>
         )}
 
@@ -66,7 +71,7 @@ const CardSelect: React.FC<Props> = ({
             {title}
           </S.Title>
         ) : null}
-        {description ? (
+        {description && size !== 'small' ? (
           <S.Description size={size} hasTitle={!!title} hasIcon={!!icon}>
             {description}
           </S.Description>
@@ -80,7 +85,6 @@ const CardSelect: React.FC<Props> = ({
 
 CardSelect.defaultProps = {
   tickVisible: true,
-  iconSize: 82,
   value: false,
   size: 'medium',
 };
