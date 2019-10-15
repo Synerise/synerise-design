@@ -5,7 +5,7 @@ import Icon from '@synerise/ds-icon';
 import CheckThreeM from '@synerise/ds-icon/dist/icons/check-3-m.svg';
 
 import { Props } from './CardSelect.types';
-import * as S from './CardTabs.styles';
+import * as S from './CardSelect.styles';
 
 const CardSelect: React.FC<Props> = ({
   title,
@@ -60,8 +60,16 @@ const CardSelect: React.FC<Props> = ({
           </S.IconWrapper>
         )}
 
-        {title ? <S.Title size={size}>{title}</S.Title> : null}
-        {description ? <S.Description size={size}>{description}</S.Description> : null}
+        {title ? (
+          <S.Title size={size} hasIcon={!!icon}>
+            {title}
+          </S.Title>
+        ) : null}
+        {description ? (
+          <S.Description size={size} hasTitle={!!title} hasIcon={!!icon}>
+            {description}
+          </S.Description>
+        ) : null}
       </S.Main>
 
       <S.Aside size={size}>{customTickVisible && customTickVisibleComponent}</S.Aside>
