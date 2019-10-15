@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Icon from '@synerise/ds-icon';
+import TextTruncate from 'react-text-truncate';
 import HandleIcon from '@synerise/ds-icon/dist/icons/drag-handle-m.svg';
 import ChangeNameIcon from '@synerise/ds-icon/dist/icons/edit-s.svg';
 import DuplicateIcon from '@synerise/ds-icon/dist/icons/duplicate-s.svg';
@@ -34,6 +35,7 @@ interface CardTabState {
 }
 
 export default class CardTab extends React.PureComponent<CardTabProps, CardTabState> {
+  truncateRef = null;
   state = {
     edited: false,
     pressed: false,
@@ -45,6 +47,11 @@ export default class CardTab extends React.PureComponent<CardTabProps, CardTabSt
 
   handleMouseUp = (): void => {
     this.setState({ pressed: false });
+  };
+
+  handleTruncateLabel = (event): void => {
+    event.stopPropagation();
+    this.truncateRef.onResize();
   };
 
   render(): React.ReactNode {
@@ -73,6 +80,10 @@ export default class CardTab extends React.PureComponent<CardTabProps, CardTabSt
         onMouseDown={this.handleMouseDown}
         onMouseLeave={this.handleMouseUp}
         onMouseUp={this.handleMouseUp}
+        onMouseOver={this.handleTruncateLabel}
+        onMouseOut={this.handleTruncateLabel}
+        onFocus={this.handleTruncateLabel}
+        onBlur={this.handleTruncateLabel}
       >
         {(showTag || prefixIcon || draggable) && (
           <S.CardTabPrefix>
@@ -82,7 +93,14 @@ export default class CardTab extends React.PureComponent<CardTabProps, CardTabSt
           </S.CardTabPrefix>
         )}
         <S.CardTabLabel>
-          {label} {variant.tag}
+          <TextTruncate
+            ref={(c): void => {
+              this.truncateRef = c;
+            }}
+            line={1}
+            truncateText="... "
+            text={`${label} ${variant.tag}`}
+          />
         </S.CardTabLabel>
         {(onChangeName || onDuplicateTab || onRemoveTab) && (
           <S.CardTabSuffix>

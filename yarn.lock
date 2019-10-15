@@ -15081,6 +15081,13 @@ react-textarea-autosize@^6.1.0:
   dependencies:
     prop-types "^15.6.0"
 
+react-text-truncate@^0.15.0:
+  version "0.15.0"
+  resolved "https://registry.yarnpkg.com/react-text-truncate/-/react-text-truncate-0.15.0.tgz#eaba63bfa1516424f78318977ed43ab9eae2f057"
+  integrity sha512-dOwE34gFtJw7qERqdcyDZP1kYbGbhgM+Oh6V7TqgfiBWOBxHsBCw0D23NJPEVSY1TFQRgspZI8ULp3XwFqYdrA==
+  dependencies:
+    prop-types "^15.5.7"
+
 react-textarea-autosize@^7.1.0:
   version "7.1.0"
   resolved "https://registry.yarnpkg.com/react-textarea-autosize/-/react-textarea-autosize-7.1.0.tgz#3132cb77e65d94417558d37c0bfe415a5afd3445"

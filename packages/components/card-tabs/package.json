@@ -26,6 +26,7 @@
     "@synerise/ds-typography": "*",
     "antd": "*",
     "react-sortablejs": "^1.5.1",
+    "react-text-truncate": "^0.15.0",
     "sortablejs": "^1.10.1"
   },
   "peerDependencies": {
