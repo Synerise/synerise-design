@@ -37,6 +37,7 @@ export const CardTabContainer = styled.div`
   padding: 12px;
   width: 180px;
   height: 48px;
+  user-select: none;
   background-color: ${({ theme, active, invalid, color }): string => {
     if (invalid && active) return theme.palette['red-600'];
     if (active) return theme.palette[color];

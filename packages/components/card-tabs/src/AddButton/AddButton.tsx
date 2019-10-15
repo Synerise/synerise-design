@@ -6,6 +6,7 @@ import * as S from './AddButton.styles';
 
 interface Props {
   onClick: () => void;
+  disabled: boolean;
 }
 
 interface State {
@@ -27,10 +28,11 @@ export default class AddButton extends React.PureComponent<Props, State> {
 
   render(): React.ReactNode {
     const { pressed } = this.state;
-    const { onClick } = this.props;
+    const { onClick, disabled } = this.props;
     return (
       <S.AddButton
         className={`${pressed ? 'pressed' : ''}`}
+        disabled={disabled}
         onClick={onClick}
         onMouseDown={this.handleMouseDown}
         onMouseUp={this.handleMouseUp}

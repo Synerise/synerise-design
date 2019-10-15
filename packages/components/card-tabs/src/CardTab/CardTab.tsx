@@ -6,33 +6,34 @@ import DuplicateIcon from '@synerise/ds-icon/dist/icons/duplicate-s.svg';
 import RemoveIcon from '@synerise/ds-icon/dist/icons/close-s.svg';
 import * as S from './CardTab.styles';
 
-interface Variant {
+interface CardTabVariant {
   tag?: string;
   color: string;
 }
 
-interface Props {
+export interface CardTabProps {
+  id: string;
   active?: boolean;
   onChangeName?: () => void;
   onDuplicateTab?: () => void;
   onRemoveTab?: () => void;
   tabIndex: number;
   label: string;
-  variant?: Variant;
+  variant: CardTabVariant;
   onClick?: () => void;
   draggable?: boolean;
   prefixIcon?: React.ReactNode;
-  tag?: boolean;
+  showTag?: boolean;
   disabled?: boolean;
   invalid?: boolean;
 }
 
-interface State {
+interface CardTabState {
   edited: boolean;
   pressed: boolean;
 }
 
-export default class CardTab extends React.PureComponent<Props, State> {
+export default class CardTab extends React.PureComponent<CardTabProps, CardTabState> {
   state = {
     edited: false,
     pressed: false,
@@ -58,7 +59,7 @@ export default class CardTab extends React.PureComponent<Props, State> {
       onRemoveTab,
       active,
       disabled,
-      tag,
+      showTag,
       invalid,
     } = this.props;
     return (
@@ -73,14 +74,16 @@ export default class CardTab extends React.PureComponent<Props, State> {
         onMouseLeave={this.handleMouseUp}
         onMouseUp={this.handleMouseUp}
       >
-        {(tag || prefixIcon || draggable) && (
+        {(showTag || prefixIcon || draggable) && (
           <S.CardTabPrefix>
-            {tag && <S.CardTabTag>{variant.tag}</S.CardTabTag>}
-            {prefixIcon && <Icon component={prefixIcon} />}
+            {showTag && !draggable && <S.CardTabTag>{variant.tag}</S.CardTabTag>}
+            {prefixIcon && !draggable && <Icon component={prefixIcon} />}
             {draggable && <Icon component={<HandleIcon />} />}
           </S.CardTabPrefix>
         )}
-        <S.CardTabLabel>{label}</S.CardTabLabel>
+        <S.CardTabLabel>
+          {label} {variant.tag}
+        </S.CardTabLabel>
         {(onChangeName || onDuplicateTab || onRemoveTab) && (
           <S.CardTabSuffix>
             {onChangeName && <Icon component={<ChangeNameIcon />} />}
