@@ -17,12 +17,6 @@ const config = {
     notes: { markdown },
 };
 
-// const sizes = {
-//     Default: 'default',
-//     Small: 'small',
-//     Large: 'large',
-// };
-
 const type = {
     Primary: 'primary',
     Secondary: 'secondary',
@@ -42,10 +36,8 @@ const props = {
         return {
             disabled: boolean('Disables', false),
             block: boolean('Fit button width', false),
-            // loading: boolean('Loading status', false),
             htmlType: text('Type button', 'button'),
             href: text('Redirect to link', ''),
-            // size: select('Button size (size)', sizes, 'default'),
             type: select('Set type', type, 'primary'),
 
             onClick: action('onClick CLICK')
