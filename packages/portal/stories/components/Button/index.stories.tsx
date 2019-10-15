@@ -5,18 +5,23 @@ import { action } from '@storybook/addon-actions';
 import { boolean, text, number, select } from '@storybook/addon-knobs';
 import centered from '@storybook/addon-centered/react';
 import markdown from '@/button/README.md';
+import { DSProvider } from '@synerise/ds-core';
+
+import Icon from '@synerise/ds-icon';
+import AngleDownS from '@synerise/ds-icon/dist/icons/angle-down-s.svg';
+import DragHandleM from '@synerise/ds-icon/dist/icons/drag-handle-m.svg';
+import ShowM from '@synerise/ds-icon/dist/icons/show-m.svg';
 import Button from '@synerise/ds-button';
+
 const config = {
     notes: { markdown },
 };
 
-const ButtonGroup = Button.Group;
-
-const sizes = {
-    Default: 'default',
-    Small: 'small',
-    Large: 'large',
-};
+// const sizes = {
+//     Default: 'default',
+//     Small: 'small',
+//     Large: 'large',
+// };
 
 const type = {
     Primary: 'primary',
@@ -28,27 +33,20 @@ const type = {
     Warning: 'warning',
 };
 
+const buttonStyle = {
+    margin: 20
+}
+
 const props = {
     regular: () => {
         return {
             disabled: boolean('Disables', false),
             block: boolean('Fit button width', false),
-            loading: boolean('Loading status', false),
+            // loading: boolean('Loading status', false),
             htmlType: text('Type button', 'button'),
             href: text('Redirect to link', ''),
-            size: select('Button size (size)', sizes, 'default'),
+            // size: select('Button size (size)', sizes, 'default'),
             type: select('Set type', type, 'primary'),
-            icon: text('Set icon', 'poweroff'),
-
-            onClick: action('onClick CLICK')
-        }
-    },
-    group: () => {
-        return {
-            disabled: boolean('Disables', false),
-            loading: boolean('Loading status', false),
-            size: select('Button size (size)', sizes, 'default'),
-            icon: text('Set icon', 'user'),
 
             onClick: action('onClick CLICK')
         }
@@ -60,19 +58,33 @@ storiesOf('Components|Button', module)
   .addDecorator(centered)
   .add('with text', () =>  {
       const regularProps = props.regular();
-      return (<Button icon="poweroff" {...regularProps}>Hello Button</Button>)
-  }, config)
-  .add('only icon', () =>  {
-      const regularProps = props.regular();
-      return (<Button {...regularProps} />)
-  }, config)
-  .add('group buttons', () =>  {
-      const regularProps = props.group();
       return (
-          <ButtonGroup>
-              <Button type={'warning'} {...regularProps}>Lorem ipsum dolor sit amet</Button>
-              <Button type={'default'} {...regularProps}>Lorem</Button>
-          </ButtonGroup>
+          <DSProvider code="en_GB">
+              <>
+              <Button style={buttonStyle} {...regularProps} mode={'simple'}>
+                  Button
+              </Button>
+              <Button style={buttonStyle} {...regularProps} mode={'split'}>
+                  Button
+                  <Icon component={<AngleDownS />} color={'#ffffff'}/>
+              </Button>
+              <Button style={buttonStyle} {...regularProps} mode={'two-icons'}>
+                  <Icon component={<DragHandleM />} color={'#ffffff'}/>
+                  Button
+                  <Icon component={<AngleDownS />} color={'#ffffff'}/>
+              </Button>
+              <Button style={buttonStyle} {...regularProps} mode={'label-icon'}>
+                  Button
+                  <Icon component={<AngleDownS />} color={'#ffffff'}/>
+              </Button>
+              <Button style={buttonStyle} {...regularProps} mode={'icon-label'}>
+                  <Icon component={<AngleDownS />} color={'#ffffff'}/>
+                  Button
+              </Button>
+              <Button style={buttonStyle} {...regularProps} mode={'single-icon'}>
+                  <Icon component={<ShowM />} color={'#ffffff'}/>
+              </Button>
+                  </>
+          </DSProvider>
       )
   }, config);
-;
