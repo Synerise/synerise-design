@@ -157,7 +157,7 @@ export const Title = styled.div<{ hasIcon: boolean; size: string }>`
   color: ${getVar('grey-800')};
   font-weight: 500;
   font-size: ${(props): number => (props.size === 'small' ? 10 : 14)}px;
-  margin: ${(props): string => (!props.hasIcon ? '0 16px' : '0')}px;
+  margin: ${(props): string => (!props.hasIcon ? '0 16px' : '0')};
 
   ${(props): string =>
     props.size === 'small' &&
@@ -170,7 +170,7 @@ export const Title = styled.div<{ hasIcon: boolean; size: string }>`
 export const Description = styled.div<{ hasTitle: boolean; hasIcon: boolean }>`
   font-size: 12px;
   text-align: center;
-  margin: ${(props): string => (!props.hasIcon ? '0 16px' : '0')}px;
+  margin: ${(props): string => (!props.hasIcon ? '0 16px' : '0')};
 
   ${(props): string =>
     props.hasTitle &&

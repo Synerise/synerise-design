@@ -71,26 +71,28 @@ storiesOf('Components|CardSelect', module)
               />
             </div>
 
-            <div style={{ marginLeft: 12, marginRight: 12 }}>
-              <CardSelect
-                {...commonProps}
-                icon={undefined}
-                title={`No Icon with only title`}
-                value={store === 2}
-                onChange={() => store !== 2 && setStore(2)}
-              />
-            </div>
-
             {size === 'medium' &&
-              <div style={{ marginLeft: 12, marginRight: 12 }}>
-                <CardSelect
-                  {...commonProps}
-                  icon={undefined}
-                  description={`No Icon with only description`}
-                  value={store === 3}
-                  onChange={() => store !== 3 && setStore(3)}
-                />
-              </div>
+              <React.Fragment>
+                <div style={{ marginLeft: 12, marginRight: 12 }}>
+                  <CardSelect
+                    {...commonProps}
+                    icon={undefined}
+                    title={`No Icon with only title`}
+                    value={store === 2}
+                    onChange={() => store !== 2 && setStore(2)}
+                  />
+                </div>
+
+                <div style={{ marginLeft: 12, marginRight: 12 }}>
+                  <CardSelect
+                    {...commonProps}
+                    icon={undefined}
+                    description={`No Icon with only description`}
+                    value={store === 3}
+                    onChange={() => store !== 3 && setStore(3)}
+                  />
+                </div>
+              </React.Fragment>
             }
           </React.Suspense>
         </div>
