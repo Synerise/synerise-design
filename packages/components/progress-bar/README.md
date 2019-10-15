@@ -7,7 +7,7 @@ Progress-Bar UI Component
 
 ## Demo
 
-<iframe src="/storybook-static/iframe.html?id=components-progress-bar--default"></iframe>
+<iframe src="/storybook-static/iframe.html?id=components-progress-bar--solo-bar-with-label-and-description"></iframe>
 
 ## API
 

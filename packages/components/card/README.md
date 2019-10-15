@@ -5,9 +5,13 @@ title: Card
 
 Card UI Component
 
-## Demo
+## Card single
 
-<iframe src="/storybook-static/iframe.html?id=components-card--default"></iframe>
+<iframe src="/storybook-static/iframe.html?id=components-card--single"></iframe>
+
+## Card group
+
+<iframe src="/storybook-static/iframe.html?id=components-card--group"></iframe>
 
 ## API
 
