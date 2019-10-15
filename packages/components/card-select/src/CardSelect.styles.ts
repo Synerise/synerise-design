@@ -139,11 +139,17 @@ export const TickIcon = styled.div<{ size: string; disabled: boolean; selected: 
   `}
 `;
 
-export const Title = styled.div`
+export const Title = styled.div<{ hasIcon: boolean; size: string }>`
   font-size: 14px;
   font-weight: 500;
   text-align: center;
   color: ${getVar('grey-800')};
+
+  ${(props): string =>
+    !props.hasIcon &&
+    css`
+      margin: 0 12px;
+    `};
 
   ${(props): string =>
     props.size === 'small' &&
@@ -152,10 +158,21 @@ export const Title = styled.div`
     `};
 `;
 
-export const Description = styled.div`
+export const Description = styled.div<{ hasTitle: boolean; hasIcon: boolean }>`
   font-size: 12px;
   text-align: center;
-  margin-top: 8px;
+
+  ${(props): string =>
+    props.hasTitle &&
+    css`
+      margin-top: 8px;
+    `};
+
+  ${(props): string =>
+    !props.hasIcon &&
+    css`
+      margin: 0 12px;
+    `};
 
   ${(props): string =>
     props.size === 'small' &&
