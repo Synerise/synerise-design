@@ -15,7 +15,7 @@ export const AddButton = styled(Button)`
       border: 1px dashed ${({ theme }): string => theme.palette['grey-400']};
       background-color: transparent;
     }
-    &:active {
+    &.pressed {
       background-color: ${({ theme }): string => theme.palette['grey-050']};
     }
     &:focus {

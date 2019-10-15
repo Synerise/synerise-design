@@ -8,11 +8,34 @@ interface Props {
   onClick: () => void;
 }
 
-export default class AddButton extends React.PureComponent<Props> {
+interface State {
+  pressed: boolean;
+}
+
+export default class AddButton extends React.PureComponent<Props, State> {
+  state = {
+    pressed: false,
+  };
+
+  handleMouseDown = (): void => {
+    this.setState({ pressed: true });
+  };
+
+  handleMouseUp = (): void => {
+    this.setState({ pressed: false });
+  };
+
   render(): React.ReactNode {
+    const { pressed } = this.state;
     const { onClick } = this.props;
     return (
-      <S.AddButton onClick={onClick}>
+      <S.AddButton
+        className={`${pressed ? 'pressed' : ''}`}
+        onClick={onClick}
+        onMouseDown={this.handleMouseDown}
+        onMouseUp={this.handleMouseUp}
+        onMouseLeave={this.handleMouseUp}
+      >
         <Icon component={<AddIcon />} />
       </S.AddButton>
     );

@@ -6,41 +6,81 @@ import DuplicateIcon from '@synerise/ds-icon/dist/icons/duplicate-s.svg';
 import RemoveIcon from '@synerise/ds-icon/dist/icons/close-s.svg';
 import * as S from './CardTab.styles';
 
+interface Variant {
+  tag?: string;
+  color: string;
+}
+
 interface Props {
-  active: boolean;
+  active?: boolean;
   onChangeName?: () => void;
   onDuplicateTab?: () => void;
   onRemoveTab?: () => void;
   tabIndex: number;
-  title: string;
-  variant?: string;
+  label: string;
+  variant?: Variant;
   onClick?: () => void;
   draggable?: boolean;
   icon?: React.ReactNode;
+  tag?: boolean;
+  disabled?: boolean;
+  invalid?: boolean;
 }
 
 interface State {
   edited: boolean;
+  pressed: boolean;
 }
 
 export default class CardTab extends React.PureComponent<Props, State> {
   state = {
     edited: false,
+    pressed: false,
+  };
+
+  handleMouseDown = (): void => {
+    this.setState({ pressed: true });
+  };
+
+  handleMouseUp = (): void => {
+    this.setState({ pressed: false });
   };
 
   render(): React.ReactNode {
-    const { edited } = this.state;
-    const { title, variant, draggable, icon, onChangeName, onDuplicateTab, onRemoveTab } = this.props;
+    const { edited, pressed } = this.state;
+    const {
+      label,
+      variant,
+      draggable,
+      icon,
+      onChangeName,
+      onDuplicateTab,
+      onRemoveTab,
+      active,
+      disabled,
+      tag,
+      invalid,
+    } = this.props;
     return (
-      <S.CardTabContainer edited={edited}>
-        {(variant || icon || draggable) && (
+      <S.CardTabContainer
+        className={`${pressed ? 'pressed' : ''}`}
+        edited={edited}
+        active={active}
+        invalid={invalid}
+        disabled={disabled}
+        color={variant.color}
+        onMouseDown={this.handleMouseDown}
+        onMouseLeave={this.handleMouseUp}
+        onMouseUp={this.handleMouseUp}
+      >
+        {(tag || icon || draggable) && (
           <S.CardTabPrefix>
-            {variant && <S.CardTabTag color="yellow-500">{variant}</S.CardTabTag>}
+            {tag && <S.CardTabTag>{variant.tag}</S.CardTabTag>}
             {icon && <Icon component={icon} />}
             {draggable && <Icon component={<HandleIcon />} />}
           </S.CardTabPrefix>
         )}
-        <S.CardTabLabel>{title}</S.CardTabLabel>
+        <S.CardTabLabel>{label}</S.CardTabLabel>
         {(onChangeName || onDuplicateTab || onRemoveTab) && (
           <S.CardTabSuffix>
             {onChangeName && <Icon component={<ChangeNameIcon />} />}

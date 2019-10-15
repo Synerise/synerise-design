@@ -6,7 +6,9 @@ import CardTabs from '@synerise/ds-card-tabs';
 
 storiesOf('Components|CardTabs', module)
 .add('default', () => (
+  <div style={{background: '#fff'}}>
     <DSProvider code="en_GB">
-        <CardTabs />
+      <CardTabs />
     </DSProvider>
+  </div>
 ));
