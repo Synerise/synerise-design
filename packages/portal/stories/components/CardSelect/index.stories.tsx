@@ -17,7 +17,7 @@ storiesOf('Components|CardSelect', module)
     const iconSize = number('Icon component size', 82);
     const size = select('Size', {small: 'small', medium: 'medium'}, 'medium');
 
-    const IconComponent = React.lazy(() => import(`@synerise/ds-icon/dist/icons/${icon}.svg`).catch(err => {}));
+    const IconComponent = React.lazy(() => import(`@synerise/ds-icon/dist/icons/${icon}.svg`).catch(() => {}));
 
     const commonProps = {
       size,
@@ -31,14 +31,14 @@ storiesOf('Components|CardSelect', module)
     return (
       <DSProvider code="en_GB">
         <div style={{ background: '#f2f5f6', padding: '16px', display: 'flex' }}>
-          <React.Suspense fallback={<div>Loading icons... (or perhaps given icon couldn't be found)</div>}>
+          <React.Suspense fallback={<div>Loading icons... (or perhaps you've entered an icon that couldn't be found)</div>}>
             <div style={{ marginLeft: 6, marginRight: 6 }}>
               <CardSelect
                 {...commonProps}
                 title={`Selectable card`}
                 description={`With description`}
                 value={store[0]}
-                onChange={() => setStore({ [0]: !store[0] })}
+                onChange={() => !store[0] && setStore({ [0]: true })}
               />
             </div>
 
@@ -47,7 +47,7 @@ storiesOf('Components|CardSelect', module)
                 {...commonProps}
                 title={`No description`}
                 value={store[1]}
-                onChange={() => setStore({ [1]: !store[1] })}
+                onChange={() => !store[1] && setStore({ [1]: true })}
               />
             </div>
 
@@ -64,9 +64,19 @@ storiesOf('Components|CardSelect', module)
               <CardSelect
                 {...commonProps}
                 icon={undefined}
-                description={`No Icon`}
+                title={`No Icon with only title`}
                 value={store[2]}
-                onChange={() => setStore({ [2]: !store[2] })}
+                onChange={() => !store[2] && setStore({ [2]: true })}
+              />
+            </div>
+
+            <div style={{ marginLeft: 6, marginRight: 6 }}>
+              <CardSelect
+                {...commonProps}
+                icon={undefined}
+                description={`No Icon with only description`}
+                value={store[3]}
+                onChange={() => !store[3] && setStore({ [3]: true })}
               />
             </div>
           </React.Suspense>
