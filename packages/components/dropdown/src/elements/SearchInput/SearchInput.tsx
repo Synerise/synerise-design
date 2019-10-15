@@ -4,7 +4,7 @@ import * as S from './SearchInput.styles';
 interface Props {
   onSearchChange: (value: string) => void;
   placeholder: string;
-  className: string;
+  className?: string;
   value: string;
 }
 
