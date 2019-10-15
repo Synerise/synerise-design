@@ -2,16 +2,55 @@ import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { DSProvider } from '@synerise/ds-core';
 
-// import FileIcon from '@synerise/ds-icon/dist/icons/file-m.svg';
+import FileIcon from '@synerise/ds-icon/dist/icons/file-m.svg';
 import CardTabs from '@synerise/ds-card-tabs';
 
-const ITEMS = [
+const ITEMS_WITH_ICONS = [
   {
     id: '1',
     label: "Variant",
-    onChangeName: () => {},
-    onDuplicateTab: () => {},
-    onRemoveTab: () => {},
+    variant: {
+      tag: 'A',
+      color: 'yellow-500'
+    },
+    prefixIcon: <FileIcon />,
+    showTag: false,
+    disabled: false,
+    invalid: false,
+    tabIndex: -1,
+  },
+  {
+    id: '2',
+    label: "Variant",
+    variant: {
+      tag: 'B',
+      color: 'orange-500'
+    },
+    prefixIcon: <FileIcon />,
+    showTag: false,
+    disabled: false,
+    invalid: false,
+    tabIndex: -1,
+  },
+  {
+    id: '3',
+    label: "Variant",
+    variant: {
+      tag: 'C',
+      color: 'blue-500'
+    },
+    prefixIcon: <FileIcon />,
+    showTag: false,
+    disabled: true,
+    invalid: false,
+    tabIndex: -1,
+  }
+]
+
+const ITEMS_WITH_TAGS = [
+  {
+    id: '1',
+    label: "Variant",
     variant: {
       tag: 'A',
       color: 'yellow-500'
@@ -51,14 +90,51 @@ const ITEMS = [
 ]
 
 storiesOf('Components|CardTabs', module)
-  .add('default', () => (
+  .add('with icons in prefix', () => (
     <div style={{background: '#fff', padding: '24px'}}>
       <DSProvider code="en_GB">
         <CardTabs
-          items={ITEMS}
+          items={ITEMS_WITH_ICONS}
           currentTabIndex={0}
-          onChangeOrder={() => {}}
           onAddTab={() => {}}
+        />
+      </DSProvider>
+    </div>
+  ))
+  .add('with tags in prefix', () => (
+    <div style={{background: '#fff', padding: '24px'}}>
+      <DSProvider code="en_GB">
+        <CardTabs
+          items={ITEMS_WITH_TAGS}
+          currentTabIndex={0}
+          onAddTab={() => {}}
+        />
+      </DSProvider>
+    </div>
+  ))
+  .add('with draggable items', () => (
+    <div style={{background: '#fff', padding: '24px'}}>
+      <DSProvider code="en_GB">
+        <CardTabs
+          items={ITEMS_WITH_TAGS}
+          currentTabIndex={0}
+          onAddTab={() => {}}
+          onChangeOrder={() => {}}
+        />
+      </DSProvider>
+    </div>
+  ))
+  .add('with actions in suffix', () => (
+    <div style={{background: '#fff', padding: '24px'}}>
+      <DSProvider code="en_GB">
+        <CardTabs
+          items={ITEMS_WITH_TAGS}
+          currentTabIndex={0}
+          onAddTab={() => {}}
+          onChangeOrder={() => {}}
+          onRemoveTab={() => {}}
+          onDuplicateTab={() => {}}
+          onChangeName={() => {}}
         />
       </DSProvider>
     </div>
