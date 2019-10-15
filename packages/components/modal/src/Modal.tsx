@@ -1,7 +1,8 @@
 import * as React from 'react';
 
 import Modal, { ModalProps } from 'antd/lib/modal';
-import Icon from 'antd/lib/icon';
+import Icon from '@synerise/ds-icon';
+import CloseM from '@synerise/ds-icon/dist/icons/close-m.svg';
 
 import Button from '@synerise/ds-button';
 import '@synerise/ds-core/dist/js/style';
@@ -49,7 +50,7 @@ const ModalProxy: React.FC<Props> = ({
             {headerActions}
             {closable && (
               <Button className="close-modal" type="ghost" onClick={onClose}>
-                <Icon type="close" />
+                <Icon component={<CloseM />} />
               </Button>
             )}
           </S.ActionButtons>
