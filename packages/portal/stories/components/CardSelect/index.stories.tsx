@@ -15,7 +15,7 @@ storiesOf('Components|CardSelect', module)
     const tickVisible = boolean('With tick', true);
     const stretchToFit = boolean('Stretch to fit', false);
     const icon = text('Icon component name', 'tiles-m');
-    const iconSize = number('Icon component size', 82);
+    const iconSize = number('Custom Icon component size', 0);
     const size = select('Size', {small: 'small', medium: 'medium'}, 'medium');
 
     const IconComponent = React.lazy(() => import(`@synerise/ds-icon/dist/icons/${icon}.svg`).catch(() => {}));
@@ -55,6 +55,16 @@ storiesOf('Components|CardSelect', module)
             <div style={{ marginLeft: 12, marginRight: 12 }}>
               <CardSelect
                 {...commonProps}
+                tickVisible={false}
+                title={`Clickable example`}
+                description={`No tick or value`}
+                onClick={() => window.alert('Hello world!')}
+              />
+            </div>
+
+            <div style={{ marginLeft: 12, marginRight: 12 }}>
+              <CardSelect
+                {...commonProps}
                 title={`Disabled card`}
                 description={`Description of disabled card`}
                 disabled={true}
@@ -71,25 +81,17 @@ storiesOf('Components|CardSelect', module)
               />
             </div>
 
-            <div style={{ marginLeft: 12, marginRight: 12 }}>
-              <CardSelect
-                {...commonProps}
-                icon={undefined}
-                description={`No Icon with only description`}
-                value={store === 3}
-                onChange={() => store !== 3 && setStore(3)}
-              />
-            </div>
-
-            <div style={{ marginLeft: 12, marginRight: 12 }}>
-              <CardSelect
-                {...commonProps}
-                tickVisible={false}
-                title={`Clickable example`}
-                description={`No tick or value`}
-                onClick={() => window.alert('Hello world!')}
-              />
-            </div>
+            {size === 'medium' &&
+              <div style={{ marginLeft: 12, marginRight: 12 }}>
+                <CardSelect
+                  {...commonProps}
+                  icon={undefined}
+                  description={`No Icon with only description`}
+                  value={store === 3}
+                  onChange={() => store !== 3 && setStore(3)}
+                />
+              </div>
+            }
           </React.Suspense>
         </div>
       </DSProvider>
