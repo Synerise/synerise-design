@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/synerise/synerise-design/compare/portal@0.8.1...portal@0.9.0) (2019-10-16)
+
+
+### Bug Fixes
+
+* **card-select:** box-shadow on hover ([38f2454](https://github.com/synerise/synerise-design/commit/38f2454))
+* **card-select:** box-shadow on hover ([ed5e3aa](https://github.com/synerise/synerise-design/commit/ed5e3aa))
+* **card-select:** title margin ([438028b](https://github.com/synerise/synerise-design/commit/438028b))
+* update package, changes into stories ([282bf75](https://github.com/synerise/synerise-design/commit/282bf75))
+
+
+### Features
+
+* **card:** support for icons and fixes to styling ([47fb462](https://github.com/synerise/synerise-design/commit/47fb462))
+* **card-select:** add initial card-select component (WIP) ([cd02dda](https://github.com/synerise/synerise-design/commit/cd02dda))
+* **card-select:** add initial card-select component (WIP) ([9ac3ad7](https://github.com/synerise/synerise-design/commit/9ac3ad7))
+* **card-select:** add more examples, fix minor issues ([d86ae2c](https://github.com/synerise/synerise-design/commit/d86ae2c))
+* **card-select:** add more examples, fix minor issues ([8baf643](https://github.com/synerise/synerise-design/commit/8baf643))
+* **card-select:** new features and styling fixes ([201b4b1](https://github.com/synerise/synerise-design/commit/201b4b1))
+* **card-select:** new features and styling fixes ([e62f5fe](https://github.com/synerise/synerise-design/commit/e62f5fe))
+* **card-select:** new features and styling fixes ([a5b7229](https://github.com/synerise/synerise-design/commit/a5b7229))
+* **card-select:** new features and styling fixes ([b6fbda3](https://github.com/synerise/synerise-design/commit/b6fbda3))
+* **card-select:** onClick method and improvements ([4b4e8e3](https://github.com/synerise/synerise-design/commit/4b4e8e3))
+* **card-select:** onClick method and improvements ([e61a38e](https://github.com/synerise/synerise-design/commit/e61a38e))
+* **card-select:** refactor (WIP) ([08e8184](https://github.com/synerise/synerise-design/commit/08e8184))
+* **card-select:** refactor (WIP) ([3083391](https://github.com/synerise/synerise-design/commit/3083391))
+* **card-select:** small card anatomy ([2dc82f4](https://github.com/synerise/synerise-design/commit/2dc82f4))
+* **card-select:** small card anatomy ([2f9ebbf](https://github.com/synerise/synerise-design/commit/2f9ebbf))
+* **card-select:** storybook improvements ([68de601](https://github.com/synerise/synerise-design/commit/68de601))
+* **card-select:** storybook improvements ([442baa3](https://github.com/synerise/synerise-design/commit/442baa3))
+
+
+
+
+
 ## [0.8.1](https://github.com/synerise/synerise-design/compare/portal@0.8.0...portal@0.8.1) (2019-10-16)
 
 
