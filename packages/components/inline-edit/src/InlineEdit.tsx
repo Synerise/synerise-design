@@ -28,6 +28,7 @@ export interface InlineEditProps {
   style?: { [key: string]: string | number };
   autoComplete?: string;
   error?: boolean;
+  hideIcon?: boolean;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
@@ -112,9 +113,10 @@ export class InlineEdit extends React.Component<InlineEditProps> {
       error,
       useFontStyleWatcher,
       autoComplete,
+      hideIcon,
     } = this.props;
 
-    const { name, value, disabled: inputDisabled, ...inputRest }: InputProps = input;
+    const { name, value, disabled: inputDisabled, onBlur, ...inputRest }: InputProps = input;
     const id = toCamelCase(name);
     const disabled = propsDisabled || inputDisabled;
     const activePalettes = this.getActivePalettes(size, error, disabled).join('-');
@@ -141,15 +143,18 @@ export class InlineEdit extends React.Component<InlineEditProps> {
           name={name}
           value={value || ''}
           onChange={this.handleOnChange}
+          onBlur={onBlur}
           autoComplete={autoComplete}
           placeholderIsMinWidth={false}
           input={{ ...inputRest }}
         />
-        <Tooltip title={tooltipTitle}>
-          <S.IconWrapper colors={activePalettes} margin={iconMargin} onClick={this.handleFocusInput}>
-            <Icon component={<EditM />} size={20} />
-          </S.IconWrapper>
-        </Tooltip>
+        {!hideIcon && (
+          <Tooltip data-testid="inline-edit-icon" title={tooltipTitle}>
+            <S.IconWrapper colors={activePalettes} margin={iconMargin} onClick={this.handleFocusInput}>
+              <Icon component={<EditM />} size={20} />
+            </S.IconWrapper>
+          </Tooltip>
+        )}
         {useFontStyleWatcher && (
           <S.FontStyleWatcher
             ref={(ref): void => (this.fontStyleWatcher = ref)}
