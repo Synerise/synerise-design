@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/synerise/synerise-design/compare/portal@0.7.0...portal@0.8.0) (2019-10-16)
+
+
+### Features
+
+* **input:** fix styles ([25e5ed6](https://github.com/synerise/synerise-design/commit/25e5ed6))
+
+
+
+
+
 # [0.7.0](https://github.com/synerise/synerise-design/compare/portal@0.6.0...portal@0.7.0) (2019-10-15)
 
 

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.4.1...@synerise/ds-input@0.5.0) (2019-10-16)
+
+### Features
+
+- **input:** fix styles ([25e5ed6](https://github.com/synerise/synerise-design/commit/25e5ed6))
+
 ## [0.4.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.4.0...@synerise/ds-input@0.4.1) (2019-10-15)
 
 ### Bug Fixes
