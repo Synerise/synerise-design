@@ -12,6 +12,7 @@ const SearchInput: React.FC<Props> = ({ onSearchChange, placeholder, value }) =>
     onChange={(e: React.FormEvent<HTMLInputElement>): void => onSearchChange(e.currentTarget.value)}
     placeholder={placeholder}
     value={value}
+    resetMargin
   />
 );
 
