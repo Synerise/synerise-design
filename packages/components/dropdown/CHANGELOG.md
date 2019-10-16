@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-dropdown@0.5.0...@synerise/ds-dropdown@0.6.0) (2019-10-15)
+
+### Features
+
+- **dropdown:** add Dropdown elements ([2914b53](https://github.com/synerise/synerise-design/commit/2914b53))
+
 # [0.5.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-dropdown@0.4.0...@synerise/ds-dropdown@0.5.0) (2019-10-09)
 
 ### Features

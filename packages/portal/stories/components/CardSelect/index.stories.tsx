@@ -17,7 +17,7 @@ storiesOf('Components|CardSelect', module)
     const tickVisible = boolean('With tick', true);
     const stretchToFit = boolean('Stretch to fit', false);
     const icon = text('Icon component name', 'tiles-m');
-    const iconSize = number('Icon component size', 82);
+    const iconSize = number('Custom Icon component size', 0);
     const size = select('Size', {small: 'small', medium: 'medium'}, 'medium');
 
     const IconComponent = React.lazy(() => import(`@synerise/ds-icon/dist/icons/${icon}.svg`).catch(() => {}));
@@ -57,31 +57,45 @@ storiesOf('Components|CardSelect', module)
             <div style={{ marginLeft: 12, marginRight: 12 }}>
               <CardSelect
                 {...commonProps}
+                tickVisible={false}
+                title={`Clickable example`}
+                description={`No tick or value`}
+                onClick={() => window.alert('Hello world!')}
+              />
+            </div>
+
+            <div style={{ marginLeft: 12, marginRight: 12 }}>
+              <CardSelect
+                {...commonProps}
                 title={`Disabled card`}
                 description={`Description of disabled card`}
                 disabled={true}
               />
             </div>
 
-            <div style={{ marginLeft: 12, marginRight: 12 }}>
-              <CardSelect
-                {...commonProps}
-                icon={undefined}
-                title={`No Icon with only title`}
-                value={store === 2}
-                onChange={() => store !== 2 && setStore(2)}
-              />
-            </div>
+            {size === 'medium' &&
+              <React.Fragment>
+                <div style={{ marginLeft: 12, marginRight: 12 }}>
+                  <CardSelect
+                    {...commonProps}
+                    icon={undefined}
+                    title={`No Icon with only title`}
+                    value={store === 2}
+                    onChange={() => store !== 2 && setStore(2)}
+                  />
+                </div>
 
-            <div style={{ marginLeft: 12, marginRight: 12 }}>
-              <CardSelect
-                {...commonProps}
-                icon={undefined}
-                description={`No Icon with only description`}
-                value={store === 3}
-                onChange={() => store !== 3 && setStore(3)}
-              />
-            </div>
+                <div style={{ marginLeft: 12, marginRight: 12 }}>
+                  <CardSelect
+                    {...commonProps}
+                    icon={undefined}
+                    description={`No Icon with only description`}
+                    value={store === 3}
+                    onChange={() => store !== 3 && setStore(3)}
+                  />
+                </div>
+              </React.Fragment>
+            }
           </React.Suspense>
         </div>
       </DSProvider>

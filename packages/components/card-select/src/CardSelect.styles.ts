@@ -10,10 +10,32 @@ const transition = `
 `;
 
 const mainPadding = 8;
-const mainPaddingSmall = 4;
 const radioWidth = 20;
 const radioSmallWidth = 16;
 const radioBorderWidth = 1;
+
+const getMainPadding = (props): string => {
+  if (props.size === 'small') {
+    return props.hasTick ? '24px 16px 8px' : '8px 16px';
+  }
+
+  return '24px';
+};
+
+export const RadioShape = styled.div`
+  ${transition}
+  width: ${(props): number => (props.size === 'small' ? radioSmallWidth : radioWidth)}px;
+  height: ${(props): number => (props.size === 'small' ? radioSmallWidth : radioWidth)}px;
+  border-radius: 50%;
+  border-width: ${radioBorderWidth}px;
+  border-style: solid;
+  border-color: ${getVar('grey-300')};
+  margin: 2px;
+
+  &:hover {
+    border-color: ${getVar('grey-400')};
+  }
+`;
 
 export const Container = styled.div<{ disabled: boolean; raised: boolean; value: boolean; stretch: boolean }>`
   ${transition}
@@ -29,6 +51,12 @@ export const Container = styled.div<{ disabled: boolean; raised: boolean; value:
 
   ${isNot('disabled')`
     cursor: cursor;
+
+    &:hover {
+      ${RadioShape} {
+        border-color: ${getVar('grey-400')};
+      }
+    }
 
     ${isNot('raised')`
       ${isNot('value')`
@@ -88,8 +116,8 @@ export const Container = styled.div<{ disabled: boolean; raised: boolean; value:
 `;
 
 export const Main = styled.div`
-  padding: 24px;
-  width: 224px;
+  padding: ${getMainPadding};
+  width: ${(props): number => (props.size === 'small' ? 80 : 224)}px;
 
   ${is('disabled')`
     opacity: 0.4;
@@ -101,23 +129,8 @@ export const Aside = styled.div`
   padding: 0;
   justify-content: center;
   position: absolute;
-  top: 14px;
-  left: 14px;
-`;
-
-export const RadioShape = styled.div`
-  ${transition}
-  width: ${(props): number => (props.size === 'small' ? radioSmallWidth : radioWidth)}px;
-  height: ${(props): number => (props.size === 'small' ? radioSmallWidth : radioWidth)}px;
-  border-radius: 50%;
-  border-width: ${radioBorderWidth}px;
-  border-style: solid;
-  border-color: ${getVar('grey-300')};
-  margin: 2px;
-
-  &:hover {
-    border-color: ${getVar('grey-400')}
-  }
+  top: ${(props): number => (props.size === 'small' ? 4 : 14)}px;
+  left: ${(props): number => (props.size === 'small' ? 4 : 14)}px;
 `;
 
 export const TickIcon = styled.div<{ size: string; disabled: boolean; selected: boolean }>`
@@ -127,8 +140,8 @@ export const TickIcon = styled.div<{ size: string; disabled: boolean; selected: 
 
   ${is('disabled')`
     ${RadioShape} {
-        background-color: ${getVar('grey-050')};
-        border-color: ${getVar('grey-200')};
+      background-color: ${getVar('grey-050')};
+      border-color: ${getVar('grey-200')};
     }
   `}
 
@@ -140,54 +153,33 @@ export const TickIcon = styled.div<{ size: string; disabled: boolean; selected: 
 `;
 
 export const Title = styled.div<{ hasIcon: boolean; size: string }>`
-  font-size: 14px;
-  font-weight: 500;
   text-align: center;
   color: ${getVar('grey-800')};
-
-  ${(props): string =>
-    !props.hasIcon &&
-    css`
-      margin: 0 16px;
-    `};
+  font-weight: 500;
+  font-size: ${(props): number => (props.size === 'small' ? 10 : 14)}px;
+  margin: ${(props): string => (!props.hasIcon ? '0 16px' : '0')};
 
   ${(props): string =>
     props.size === 'small' &&
+    props.hasIcon &&
     css`
-      font-size: 10px;
+      margin-top: 4px;
     `};
 `;
 
 export const Description = styled.div<{ hasTitle: boolean; hasIcon: boolean }>`
   font-size: 12px;
   text-align: center;
+  margin: ${(props): string => (!props.hasIcon ? '0 16px' : '0')};
 
   ${(props): string =>
     props.hasTitle &&
     css`
       margin-top: 8px;
     `};
-
-  ${(props): string =>
-    !props.hasIcon &&
-    css`
-      margin: 0 16px;
-    `};
-
-  ${(props): string =>
-    props.size === 'small' &&
-    css`
-      font-size: 10px;
-    `};
 `;
 
 export const IconWrapper = styled.div`
-  margin-bottom: ${(props): number => (props.size === 'small' ? mainPaddingSmall : mainPadding)}px;
+  margin-bottom: ${(props): number => (props.size === 'small' ? 0 : mainPadding)}px;
   text-align: center;
-
-  ${(props): string =>
-    props.size === 'small' &&
-    css`
-      margin-top: 5px;
-    `};
 `;

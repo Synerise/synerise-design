@@ -1,7 +1,13 @@
-\# Change Log
+# Change Log
 
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [0.6.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.5.0...@synerise/ds-core@0.6.0) (2019-10-15)
+
+### Features
+
+- **core:** add breakpoints and spaces config to ThemeProvider ([77d54a7](https://github.com/synerise/synerise-design/commit/77d54a7))
 
 # [0.5.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.4.0...@synerise/ds-core@0.5.0) (2019-10-09)
 
