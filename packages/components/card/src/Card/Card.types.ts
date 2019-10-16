@@ -11,8 +11,8 @@ export interface Props {
   compactHeader?: boolean;
   title?: string;
   description?: ReactNode | string;
-  icon?: string;
+  icon?: ReactNode;
+  iconColor?: string;
   size?: 'medium';
-  iconSize?: number;
   headerSideChildren?: ReactNode;
 }

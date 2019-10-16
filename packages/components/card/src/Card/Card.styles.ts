@@ -70,8 +70,14 @@ export const Description = styled(Typography.Paragraph)`
   }
 `;
 
-export const HeaderContent = styled.div<{ compact?: boolean }>`
+export const HeaderContent = styled.div<{ compact?: boolean; hasIcon: boolean }>`
   width: 100%;
+
+  ${(props): string =>
+    props.hasIcon &&
+    css`
+      margin: 0 0 0 20px;
+    `};
 
   ${(props): string =>
     props.compact &&
@@ -96,6 +102,8 @@ export const HeaderContent = styled.div<{ compact?: boolean }>`
     `}
 `;
 
-export const IconContainer = styled.div`
-  width: 48px;
+export const IconContainer = styled.div<{ compact?: boolean }>`
+  width: 24px;
+  height: 24px;
+  transform: translate(-5px, ${(props): string => (props.compact ? '1px' : '-5px')});
 `;
