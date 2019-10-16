@@ -10,7 +10,7 @@ const errorInputStyle = (props): string => `
 `;
 
 export const OuterWrapper = styled.div`
-  margin: 0 24px 24px 0;
+  margin: 0 0 24px 0;
 `;
 
 export const Wrapper = styled.div`
