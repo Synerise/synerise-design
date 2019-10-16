@@ -22,10 +22,13 @@ const getMainPadding = (props): string => {
   return '24px';
 };
 
+const sizeCondition = (smallValue, mediumValue) => (props): string | number =>
+  props.size === 'small' ? smallValue : mediumValue;
+
 export const RadioShape = styled.div`
   ${transition}
-  width: ${(props): number => (props.size === 'small' ? radioSmallWidth : radioWidth)}px;
-  height: ${(props): number => (props.size === 'small' ? radioSmallWidth : radioWidth)}px;
+  width: ${sizeCondition(radioSmallWidth, radioWidth)}px;
+  height: ${sizeCondition(radioSmallWidth, radioWidth)}px;
   border-radius: 50%;
   border-width: ${radioBorderWidth}px;
   border-style: solid;
@@ -59,6 +62,8 @@ export const Container = styled.div<{ disabled: boolean; raised: boolean; value:
     }
 
     ${isNot('raised')`
+      border: 2px solid ${getVar('blue-600')};
+
       ${isNot('value')`
         padding: 1px;
         border: 1px solid ${getVar('grey-300')};
@@ -66,10 +71,6 @@ export const Container = styled.div<{ disabled: boolean; raised: boolean; value:
         &:hover, &:active {
           border: 1px solid ${getVar('grey-400')};
         }
-      `};
-      
-      ${is('value')`
-        border: 2px solid ${getVar('blue-600')};
       `};
     `};
     
@@ -93,13 +94,11 @@ export const Container = styled.div<{ disabled: boolean; raised: boolean; value:
     cursor: not-allowed;
 
     ${isNot('raised')`
+      border: 2px solid ${getVar('grey-200')};
+
       ${isNot('value')`
         padding: 1px;
         border: 1px solid ${getVar('grey-200')};
-      `}
-      
-      ${is('value')`
-        border: 2px solid ${getVar('grey-200')};
       `}
     `}
     
@@ -117,7 +116,7 @@ export const Container = styled.div<{ disabled: boolean; raised: boolean; value:
 
 export const Main = styled.div`
   padding: ${getMainPadding};
-  width: ${(props): number => (props.size === 'small' ? 80 : 224)}px;
+  width: ${sizeCondition(80, 224)}px;
 
   ${is('disabled')`
     opacity: 0.4;
@@ -129,8 +128,8 @@ export const Aside = styled.div`
   padding: 0;
   justify-content: center;
   position: absolute;
-  top: ${(props): number => (props.size === 'small' ? 4 : 14)}px;
-  left: ${(props): number => (props.size === 'small' ? 4 : 14)}px;
+  top: ${sizeCondition('4px', '14px')};
+  left: ${sizeCondition('4px', '14px')};
 `;
 
 export const TickIcon = styled.div<{ size: string; disabled: boolean; selected: boolean }>`
@@ -156,7 +155,7 @@ export const Title = styled.div<{ hasIcon: boolean; size: string }>`
   text-align: center;
   color: ${getVar('grey-800')};
   font-weight: 500;
-  font-size: ${(props): number => (props.size === 'small' ? 10 : 14)}px;
+  font-size: ${sizeCondition('10px', '14px')};
   margin: ${(props): string => (!props.hasIcon ? '0 16px' : '0')};
 
   ${(props): string =>
@@ -180,6 +179,6 @@ export const Description = styled.div<{ hasTitle: boolean; hasIcon: boolean }>`
 `;
 
 export const IconWrapper = styled.div`
-  margin-bottom: ${(props): number => (props.size === 'small' ? 0 : mainPadding)}px;
+  margin-bottom: ${sizeCondition(0, mainPadding)}px;
   text-align: center;
 `;
