@@ -64,8 +64,4 @@ const Card: React.FC<Props> = ({
   );
 };
 
-Card.defaultProps = {
-  iconSize: 36,
-};
-
 export default Card;

@@ -105,5 +105,5 @@ export const HeaderContent = styled.div<{ compact?: boolean; hasIcon: boolean }>
 export const IconContainer = styled.div<{ compact?: boolean }>`
   width: 24px;
   height: 24px;
-  transform: ${(props): string => (props.compact ? 'translate(-5px, 1px)' : 'translate(-5px, -5px)')};
+  transform: translate(-5px, ${(props): string => (props.compact ? '1px' : '-5px')});
 `;
