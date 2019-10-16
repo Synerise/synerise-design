@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.1.0...@synerise/ds-card@0.2.0) (2019-10-16)
+
+### Bug Fixes
+
+- **card:** styles ([1311a05](https://github.com/Synerise/synerise-design/commit/1311a05))
+
+### Features
+
+- **card:** support for icons and fixes to styling ([47fb462](https://github.com/Synerise/synerise-design/commit/47fb462))
+
 # 0.1.0 (2019-10-15)
 
 ### Bug Fixes

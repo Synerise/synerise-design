@@ -10,7 +10,7 @@ export const Texts = styled.div`
   margin-left: 16px;
 `;
 
-export const Label = styled.div`
+export const Label = styled.label`
   ${macro.heading};
   cursor: pointer;
   transition: 0.3s ease;

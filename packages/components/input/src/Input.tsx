@@ -12,6 +12,7 @@ interface Props {
   counterLimit?: number;
   icon1?: React.ReactElement;
   icon2?: React.ReactElement;
+  resetMargin?: boolean;
 }
 
 type EnhancedProps = Props & (InputProps | TextAreaProps);
@@ -23,6 +24,7 @@ const enhancedInput = <P extends object>(WrappedComponent, { type }): React.Comp
   counterLimit,
   icon1,
   icon2,
+  resetMargin,
   ...antdInputProps
 }): React.ReactElement => {
   const [value, setValue] = React.useState<string>('');
@@ -59,7 +61,7 @@ const enhancedInput = <P extends object>(WrappedComponent, { type }): React.Comp
   }, [antdInputProps.value]);
 
   return (
-    <S.OuterWrapper>
+    <S.OuterWrapper resetMargin={resetMargin}>
       {(label || counterLimit) && (
         <S.ContentAbove>
           <S.Label htmlFor={id}>{label}</S.Label>

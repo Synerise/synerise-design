@@ -15,6 +15,7 @@ const SearchInput: React.FC<Props> = ({ value, className, onSearchChange, placeh
       placeholder={placeholder}
       value={value}
       className={className}
+      resetMargin
     />
   </>
 );
