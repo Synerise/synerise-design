@@ -4,16 +4,20 @@ import * as S from './SearchInput.styles';
 interface Props {
   onSearchChange: (value: string) => void;
   placeholder: string;
+  className?: string;
   value: string;
 }
 
-const SearchInput: React.FC<Props> = ({ onSearchChange, placeholder, value }) => (
-  <S.SearchInput
-    onChange={(e: React.FormEvent<HTMLInputElement>): void => onSearchChange(e.currentTarget.value)}
-    placeholder={placeholder}
-    value={value}
-    resetMargin
-  />
+const SearchInput: React.FC<Props> = ({ value, className, onSearchChange, placeholder }) => (
+  <>
+    <S.SearchInput
+      onChange={(e: React.FormEvent<HTMLInputElement>): void => onSearchChange(e.currentTarget.value)}
+      placeholder={placeholder}
+      value={value}
+      className={className}
+      resetMargin
+    />
+  </>
 );
 
 export default SearchInput;
