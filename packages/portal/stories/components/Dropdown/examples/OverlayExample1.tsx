@@ -20,7 +20,7 @@ const OverlayExample1: React.FC<Props> = ({ onSearchChange, data, onClickAction 
   return (
     <DSProvider code="en_GB">
       <Dropdown.Wrapper>
-        <Dropdown.SearchInput onSearchChange={onSearchChange} placeholder="Search" />
+        <Dropdown.SearchInput onSearchChange={onSearchChange} placeholder="Search" value="" />
         <Dropdown.BackAction label="Attributes" onClick={() => alert('BackAction clicked')} />
         <List
           dataSource={data}
