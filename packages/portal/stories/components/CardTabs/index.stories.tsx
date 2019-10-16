@@ -10,7 +10,7 @@ import { action } from '@storybook/addon-actions';
 const ITEMS_WITH_ICONS = [
   {
     id: '1',
-    name: "Variant",
+    name: "Variant A",
     variant: {
       tag: 'A',
       color: 'yellow-500'
@@ -23,7 +23,7 @@ const ITEMS_WITH_ICONS = [
   },
   {
     id: '2',
-    name: "Variant",
+    name: "Variant B",
     variant: {
       tag: 'B',
       color: 'orange-500'
@@ -36,7 +36,7 @@ const ITEMS_WITH_ICONS = [
   },
   {
     id: '3',
-    name: "Variant",
+    name: "Variant C",
     variant: {
       tag: 'C',
       color: 'blue-500'
@@ -52,7 +52,7 @@ const ITEMS_WITH_ICONS = [
 const ITEMS_WITH_TAGS = [
   {
     id: '1',
-    name: "Variant",
+    name: "Variant A",
     variant: {
       tag: 'A',
       color: 'yellow-500'
@@ -65,7 +65,7 @@ const ITEMS_WITH_TAGS = [
   },
   {
     id: '2',
-    name: "Variant",
+    name: "Variant B",
     variant: {
       tag: 'B',
       color: 'orange-500'
@@ -78,7 +78,7 @@ const ITEMS_WITH_TAGS = [
   },
   {
     id: '3',
-    name: "Variant",
+    name: "Variant C",
     variant: {
       tag: 'C',
       color: 'blue-500'
@@ -95,7 +95,7 @@ const ITEMS_WITH_TAGS = [
 const ITEMS_WITH_SUFFIX_ICON = [
   {
     id: '1',
-    name: "Variant",
+    name: "Variant A",
     variant: {
       tag: 'A',
       color: 'yellow-500'
@@ -109,7 +109,7 @@ const ITEMS_WITH_SUFFIX_ICON = [
   },
   {
     id: '2',
-    name: "Variant",
+    name: "Variant B",
     variant: {
       tag: 'B',
       color: 'orange-500'
@@ -123,7 +123,7 @@ const ITEMS_WITH_SUFFIX_ICON = [
   },
   {
     id: '3',
-    name: "Variant",
+    name: "Variant C",
     variant: {
       tag: 'C',
       color: 'blue-500'

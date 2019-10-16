@@ -5,6 +5,7 @@ import HandleIcon from '@synerise/ds-icon/dist/icons/drag-handle-m.svg';
 import ChangeNameIcon from '@synerise/ds-icon/dist/icons/edit-s.svg';
 import DuplicateIcon from '@synerise/ds-icon/dist/icons/duplicate-s.svg';
 import RemoveIcon from '@synerise/ds-icon/dist/icons/close-s.svg';
+import InlineEdit from '@synerise/ds-inline-edit/dist/InlineEdit';
 import * as S from './CardTab.styles';
 
 interface CardTabVariant {
@@ -63,33 +64,60 @@ export default class CardTab extends React.PureComponent<CardTabProps, CardTabSt
 
   handleTruncateLabel = (event): void => {
     event.stopPropagation();
-    this.truncateRef.onResize();
+    const { truncateRef, state } = this;
+    if (!state.edited) {
+      truncateRef.onResize();
+    }
   };
 
-  private handleChangeName(): void {
-    const { onChangeName, id } = this.props;
-    const { editedName } = this.state;
-    onChangeName(id, editedName);
+  private handleEditName(event): void {
+    event.stopPropagation();
+    this.setState({
+      edited: true,
+    });
   }
 
-  private handleDuplicate(): void {
+  private handleChangeName(event: any): void {
+    const { value } = event.target;
+    this.setState({
+      editedName: value,
+    });
+  }
+
+  private handleEditNameBlur(): void {
+    const { editedName } = this.state;
+    const { onChangeName, id } = this.props;
+    this.setState(
+      {
+        edited: false,
+      },
+      () => {
+        onChangeName(id, editedName);
+      }
+    );
+  }
+
+  private handleDuplicate(event): void {
+    event.stopPropagation();
     const { id, onDuplicateTab } = this.props;
     onDuplicateTab(id);
   }
 
-  private handleRemove(): void {
+  private handleRemove(event): void {
+    event.stopPropagation();
     const { id, onRemoveTab } = this.props;
     onRemoveTab(id);
   }
 
-  private handleSelect(): void {
+  private handleSelect(event): void {
+    event.stopPropagation();
     const { index, onSelectTab } = this.props;
     onSelectTab(index);
   }
 
   render(): React.ReactNode {
-    const { edited, pressed } = this.state;
     const {
+      id,
       name,
       variant,
       draggable,
@@ -104,6 +132,7 @@ export default class CardTab extends React.PureComponent<CardTabProps, CardTabSt
       invalid,
       greyBackground,
     } = this.props;
+    const { edited, pressed, editedName } = this.state;
     return (
       <S.CardTabContainer
         className={`${pressed ? 'pressed' : ''}`}
@@ -130,18 +159,32 @@ export default class CardTab extends React.PureComponent<CardTabProps, CardTabSt
           </S.CardTabPrefix>
         )}
         <S.CardTabLabel>
-          <TextTruncate
-            ref={(c): void => {
-              this.truncateRef = c;
-            }}
-            line={1}
-            truncateText="... "
-            text={`${name} ${variant.tag}`}
-          />
+          {edited ? (
+            <InlineEdit
+              onChange={this.handleChangeName.bind(this)}
+              size="small"
+              hideIcon
+              style={{ maxWidth: 46 }}
+              input={{
+                value: editedName,
+                name: `ds-card-tab-input-${id}`,
+                onBlur: this.handleEditNameBlur.bind(this),
+              }}
+            />
+          ) : (
+            <TextTruncate
+              ref={(c): void => {
+                this.truncateRef = c;
+              }}
+              line={1}
+              truncateText="... "
+              text={`${name}`}
+            />
+          )}
         </S.CardTabLabel>
         {(onChangeName || onDuplicateTab || onRemoveTab) && !suffixIcon && (
           <S.CardTabSuffix>
-            {onChangeName && <Icon component={<ChangeNameIcon />} onClick={this.handleChangeName.bind(this)} />}
+            {onChangeName && <Icon component={<ChangeNameIcon />} onClick={this.handleEditName.bind(this)} />}
             {onDuplicateTab && <Icon component={<DuplicateIcon />} onClick={this.handleDuplicate.bind(this)} />}
             {onRemoveTab && (
               <Icon
