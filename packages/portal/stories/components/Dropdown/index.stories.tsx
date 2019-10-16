@@ -5,11 +5,14 @@ import Dropdown from '@synerise/ds-dropdown';
 import Button from '@synerise/ds-button';
 
 import Example1 from "./examples/Example1";
+import { DSProvider } from "../../../../components/core";
 
 const Basic = () => (
-  <Dropdown trigger={['click']} overlay={<div>Dropdown overlay content</div>}>
-    <Button>Click</Button>
-  </Dropdown>
+  <DSProvider code="en_GB">
+    <Dropdown trigger={['click']} overlay={<div>Dropdown overlay content</div>}>
+      <Button>Click</Button>
+    </Dropdown>
+  </DSProvider>
 );
 
 storiesOf('Components|Dropdown', module)
