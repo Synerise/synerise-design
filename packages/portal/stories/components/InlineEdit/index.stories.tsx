@@ -34,6 +34,7 @@ stories.add(
             size={size}
             error={error}
             disabled={disabled}
+            hideIcon={boolean('HideIcon', false)}
           />
         </div>
       </DSProvider>

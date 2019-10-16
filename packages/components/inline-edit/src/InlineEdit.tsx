@@ -28,6 +28,7 @@ export interface InlineEditProps {
   style?: { [key: string]: string | number };
   autoComplete?: string;
   error?: boolean;
+  hideIcon?: boolean;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
@@ -112,6 +113,7 @@ export class InlineEdit extends React.Component<InlineEditProps> {
       error,
       useFontStyleWatcher,
       autoComplete,
+      hideIcon,
     } = this.props;
 
     const { name, value, disabled: inputDisabled, onBlur, ...inputRest }: InputProps = input;
@@ -146,11 +148,13 @@ export class InlineEdit extends React.Component<InlineEditProps> {
           placeholderIsMinWidth={false}
           input={{ ...inputRest }}
         />
-        <Tooltip title={tooltipTitle}>
-          <S.IconWrapper colors={activePalettes} margin={iconMargin} onClick={this.handleFocusInput}>
-            <Icon component={<EditM />} size={20} />
-          </S.IconWrapper>
-        </Tooltip>
+        {!hideIcon && (
+          <Tooltip title={tooltipTitle}>
+            <S.IconWrapper colors={activePalettes} margin={iconMargin} onClick={this.handleFocusInput}>
+              <Icon component={<EditM />} size={20} />
+            </S.IconWrapper>
+          </Tooltip>
+        )}
         {useFontStyleWatcher && (
           <S.FontStyleWatcher
             ref={(ref): void => (this.fontStyleWatcher = ref)}
