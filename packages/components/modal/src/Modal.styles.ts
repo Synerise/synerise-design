@@ -5,6 +5,11 @@ export const TitleContainer = styled.div`
   display: flex;
   align-items: center;
   flex-wrap: nowrap;
+  && {
+    .close-modal {
+      line-height: 1;
+    }
+  }
 `;
 
 export const Title = styled(Typography.Title)`

@@ -13,12 +13,14 @@ const setup = ({
     disabled = false, 
     maxLength,
     autoComplete,
-    name = 'name-of-input'
+    name = 'name-of-input',
+    hideIcon,
   }: {
     disabled?: boolean,
     maxLength?: number,
     autoComplete?: string,
     name?: string
+    hideIcon?: boolean
   }) => {
   const utils = renderWithProvider(
     <InlineEdit
@@ -33,6 +35,7 @@ const setup = ({
       error={false}
       disabled={disabled}
       autoComplete={autoComplete}
+      hideIcon={hideIcon}
     />
   )
   const input = utils.getByPlaceholderText(PLACEHOLDER) as HTMLInputElement
@@ -142,4 +145,11 @@ describe('InlineEdit', () => {
     // ASSERT
     expect(input).toHaveAttribute('style')
   });
+
+  it('shoud hide icon', () => {
+    const { utils } = setup({
+      hideIcon: true,
+    });
+    expect(utils.queryAllByTestId('inline-edit-icon').length).toBe(0);
+  })
 });

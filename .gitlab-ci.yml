@@ -13,15 +13,14 @@ services:
   - docker:dind
 
 stages:
-  - one
-  - two
   - test
+  - deploy
 
 include:
   - template: Code-Quality.gitlab-ci.yml
 
 build:
-  stage: one
+  stage: test
   except:
     refs:
       - tags
@@ -41,7 +40,7 @@ build:
 
 docs_build:
   image: node:lts
-  stage: one
+  stage: test
   only:
     refs:
       - master
@@ -57,7 +56,7 @@ docs_build:
 
 docs_deploy:
   image: docker:stable
-  stage: two
+  stage: deploy
   needs: ['docs_build']
   allow_failure: true
   only:
@@ -81,4 +80,3 @@ docs_deploy:
     - echo "Image pushed to remote repository from branch ${CI_COMMIT_REF_NAME} for commit ${CI_COMMIT_SHA}"
     - docker pull quay.io/synerise/stevedore:master-latest
     - docker run -e APPLICATION="${APP}" -e AUTODEPLOY_BRANCH="${SANITY_BRANCH}" -e SSHA1=${CI_COMMIT_SHA} -e AUTODEPLOY_TAG="${CI_COMMIT_TAG}" -e USERNAME="${GITLAB_USER_NAME}" --entrypoint /autodeploy.sh quay.io/synerise/stevedore:master-latest
-
