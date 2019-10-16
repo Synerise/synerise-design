@@ -54,12 +54,12 @@ const enhancedInput = <P extends object>(WrappedComponent, { type }): React.Comp
   }, [inputRef]);
 
   React.useEffect(() => {
-    setValue(antdInputProps.value.toString());
-    setCharCount(antdInputProps.value.toString().length);
+    setValue(antdInputProps.value ? antdInputProps.value.toString() : '');
+    setCharCount(antdInputProps.value ? antdInputProps.value.toString().length : 0);
   }, [antdInputProps.value]);
 
   return (
-    <>
+    <S.OuterWrapper>
       {(label || counterLimit) && (
         <S.ContentAbove>
           <S.Label htmlFor={id}>{label}</S.Label>
@@ -94,7 +94,7 @@ const enhancedInput = <P extends object>(WrappedComponent, { type }): React.Comp
           {description && <S.Description>{description}</S.Description>}
         </S.ContentBelow>
       )}
-    </>
+    </S.OuterWrapper>
   );
 };
 

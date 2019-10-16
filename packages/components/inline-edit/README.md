@@ -25,6 +25,7 @@ InlineEdit UI Component
 | style               | styles object                                           | Object                           | `false`  |
 | tooltipTitle        | text of the tooltip                                     | string                           | -        |
 | useFontStyleWatcher | is important to watch input size while content changing | boolean                          | `false`  |
+| hideIcon            | hides input icon                                        | boolean                          | `false`  |
 
 ## InlineEdit input API
 
