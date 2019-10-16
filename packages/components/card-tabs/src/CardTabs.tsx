@@ -6,10 +6,11 @@ import * as S from './CardTabs.styles';
 
 export type CardTabsProps = {
   onChangeOrder?: () => void;
-  onChangeName?: () => void;
-  onDuplicateTab?: () => void;
-  onRemoveTab?: () => void;
+  onChangeName?: (id: string, name: string) => void;
+  onDuplicateTab?: (id: string) => void;
+  onRemoveTab?: (id: string) => void;
   onAddTab?: () => void;
+  onSelectTab?: (index: number) => void;
   items: CardTabProps[];
   currentTabIndex?: number;
   addTabDisabled: boolean;
@@ -26,6 +27,7 @@ const CardTabs: React.FC<CardTabsProps> = ({
   onAddTab,
   addTabDisabled,
   greyBackground,
+  onSelectTab,
 }) => (
   <S.CardTabsContainer>
     <Sortable className="ds-card-tags-sortable" onChange={onChangeOrder} options={{ disabled: !onChangeOrder }}>
@@ -34,8 +36,10 @@ const CardTabs: React.FC<CardTabsProps> = ({
           <CardTab
             key={`card-tab-${tab.id}`}
             id={tab.id}
+            index={index}
             active={index === currentTabIndex}
-            label={tab.label}
+            name={tab.name}
+            onSelectTab={onSelectTab}
             onChangeName={onChangeName}
             onDuplicateTab={onDuplicateTab}
             onRemoveTab={onRemoveTab}
@@ -52,7 +56,7 @@ const CardTabs: React.FC<CardTabsProps> = ({
         )
       )}
     </Sortable>
-    {onAddTab && <AddButton disabled={addTabDisabled} onClick={(): void => {}} />}
+    {onAddTab && <AddButton disabled={addTabDisabled} onClick={onAddTab} />}
   </S.CardTabsContainer>
 );
 export default CardTabs;

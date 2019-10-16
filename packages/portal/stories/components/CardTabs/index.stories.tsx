@@ -4,11 +4,13 @@ import { DSProvider } from '@synerise/ds-core';
 
 import FileIcon from '@synerise/ds-icon/dist/icons/file-m.svg';
 import CardTabs from '@synerise/ds-card-tabs';
+import { boolean, select, withKnobs } from '@storybook/addon-knobs';
+import { action } from '@storybook/addon-actions';
 
 const ITEMS_WITH_ICONS = [
   {
     id: '1',
-    label: "Variant",
+    name: "Variant",
     variant: {
       tag: 'A',
       color: 'yellow-500'
@@ -21,7 +23,7 @@ const ITEMS_WITH_ICONS = [
   },
   {
     id: '2',
-    label: "Variant",
+    name: "Variant",
     variant: {
       tag: 'B',
       color: 'orange-500'
@@ -34,7 +36,7 @@ const ITEMS_WITH_ICONS = [
   },
   {
     id: '3',
-    label: "Variant",
+    name: "Variant",
     variant: {
       tag: 'C',
       color: 'blue-500'
@@ -45,12 +47,12 @@ const ITEMS_WITH_ICONS = [
     invalid: false,
     tabIndex: -1,
   }
-]
+];
 
 const ITEMS_WITH_TAGS = [
   {
     id: '1',
-    label: "Variant",
+    name: "Variant",
     variant: {
       tag: 'A',
       color: 'yellow-500'
@@ -63,7 +65,7 @@ const ITEMS_WITH_TAGS = [
   },
   {
     id: '2',
-    label: "Variant",
+    name: "Variant",
     variant: {
       tag: 'B',
       color: 'orange-500'
@@ -76,7 +78,7 @@ const ITEMS_WITH_TAGS = [
   },
   {
     id: '3',
-    label: "Variant",
+    name: "Variant",
     variant: {
       tag: 'C',
       color: 'blue-500'
@@ -87,13 +89,13 @@ const ITEMS_WITH_TAGS = [
     invalid: false,
     tabIndex: -1,
   }
-]
+];
 
 
 const ITEMS_WITH_SUFFIX_ICON = [
   {
     id: '1',
-    label: "Variant",
+    name: "Variant",
     variant: {
       tag: 'A',
       color: 'yellow-500'
@@ -107,7 +109,7 @@ const ITEMS_WITH_SUFFIX_ICON = [
   },
   {
     id: '2',
-    label: "Variant",
+    name: "Variant",
     variant: {
       tag: 'B',
       color: 'orange-500'
@@ -121,7 +123,7 @@ const ITEMS_WITH_SUFFIX_ICON = [
   },
   {
     id: '3',
-    label: "Variant",
+    name: "Variant",
     variant: {
       tag: 'C',
       color: 'blue-500'
@@ -133,16 +135,20 @@ const ITEMS_WITH_SUFFIX_ICON = [
     invalid: false,
     tabIndex: -1,
   }
-]
+];
 
-storiesOf('Components|CardTabs', module)
+const stories = storiesOf('Components|CardTabs', module);
+stories.addDecorator(withKnobs);
+
+stories
   .add('with icons in prefix', () => (
     <div style={{background: '#fff', padding: '24px'}}>
       <DSProvider code="en_GB">
         <CardTabs
           items={ITEMS_WITH_ICONS}
           currentTabIndex={0}
-          onAddTab={() => {}}
+          onSelectTab={action('onSelectTab')}
+          onAddTab={action('onAddTab')}
         />
       </DSProvider>
     </div>
@@ -153,7 +159,8 @@ storiesOf('Components|CardTabs', module)
         <CardTabs
           items={ITEMS_WITH_TAGS}
           currentTabIndex={0}
-          onAddTab={() => {}}
+          onSelectTab={action('onSelectTab')}
+          onAddTab={action('onAddTab')}
         />
       </DSProvider>
     </div>
@@ -164,8 +171,9 @@ storiesOf('Components|CardTabs', module)
         <CardTabs
           items={ITEMS_WITH_TAGS}
           currentTabIndex={0}
-          onAddTab={() => {}}
-          onChangeOrder={() => {}}
+          onSelectTab={action('onSelectTab')}
+          onAddTab={action('onAddTab')}
+          onChangeOrder={action('onChangeOrder')}
         />
       </DSProvider>
     </div>
@@ -176,11 +184,12 @@ storiesOf('Components|CardTabs', module)
         <CardTabs
           items={ITEMS_WITH_TAGS}
           currentTabIndex={0}
-          onAddTab={() => {}}
-          onChangeOrder={() => {}}
-          onRemoveTab={() => {}}
-          onDuplicateTab={() => {}}
-          onChangeName={() => {}}
+          onSelectTab={action('onSelectTab')}
+          onAddTab={action('onAddTab')}
+          onChangeOrder={action('onChangeOrder')}
+          onRemoveTab={action('onRemoveTab')}
+          onDuplicateTab={action('onDuplicateTab')}
+          onChangeName={action('onChangeName')}
         />
       </DSProvider>
     </div>
@@ -191,11 +200,12 @@ storiesOf('Components|CardTabs', module)
         <CardTabs
           items={ITEMS_WITH_SUFFIX_ICON}
           currentTabIndex={0}
-          onAddTab={() => {}}
-          onChangeOrder={() => {}}
-          onRemoveTab={() => {}}
-          onDuplicateTab={() => {}}
-          onChangeName={() => {}}
+          onSelectTab={action('onSelectTab')}
+          onAddTab={action('onAddTab')}
+          onChangeOrder={action('onChangeOrder')}
+          onRemoveTab={action('onRemoveTab')}
+          onDuplicateTab={action('onDuplicateTab')}
+          onChangeName={action('onChangeName')}
         />
       </DSProvider>
     </div>
@@ -206,12 +216,13 @@ storiesOf('Components|CardTabs', module)
         <CardTabs
           items={ITEMS_WITH_SUFFIX_ICON}
           currentTabIndex={0}
-          onAddTab={() => {}}
-          onChangeOrder={() => {}}
-          onRemoveTab={() => {}}
-          onDuplicateTab={() => {}}
-          onChangeName={() => {}}
-          greyBackground
+          onSelectTab={action('onSelectTab')}
+          onAddTab={action('onAddTab')}
+          onChangeOrder={action('onChangeOrder')}
+          onRemoveTab={action('onRemoveTab')}
+          onDuplicateTab={action('onDuplicateTab')}
+          onChangeName={action('onChangeName')}
+          greyBackground={boolean('Grey background', false)}
         />
       </DSProvider>
     </div>

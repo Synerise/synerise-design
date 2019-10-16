@@ -14,12 +14,14 @@ interface CardTabVariant {
 
 export interface CardTabProps {
   id: string;
+  index: number;
   active?: boolean;
-  onChangeName?: () => void;
-  onDuplicateTab?: () => void;
-  onRemoveTab?: () => void;
+  onSelectTab?: (index: number) => void;
+  onChangeName?: (id: string, name: string) => void;
+  onDuplicateTab?: (id: string) => void;
+  onRemoveTab?: (id: string) => void;
   tabIndex: number;
-  label: string;
+  name: string;
   variant: CardTabVariant;
   onClick?: () => void;
   draggable?: boolean;
@@ -33,15 +35,23 @@ export interface CardTabProps {
 
 interface CardTabState {
   edited: boolean;
+  editedName: string;
   pressed: boolean;
 }
 
 export default class CardTab extends React.PureComponent<CardTabProps, CardTabState> {
-  truncateRef = null;
-  state = {
-    edited: false,
-    pressed: false,
-  };
+  private truncateRef: any;
+  constructor(props) {
+    super(props);
+    const { name } = this.props;
+    this.truncateRef = null;
+
+    this.state = {
+      edited: false,
+      editedName: props.name,
+      pressed: false,
+    };
+  }
 
   handleMouseDown = (): void => {
     this.setState({ pressed: true });
@@ -56,10 +66,31 @@ export default class CardTab extends React.PureComponent<CardTabProps, CardTabSt
     this.truncateRef.onResize();
   };
 
+  private handleChangeName(): void {
+    const { onChangeName, id } = this.props;
+    const { editedName } = this.state;
+    onChangeName(id, editedName);
+  }
+
+  private handleDuplicate(): void {
+    const { id, onDuplicateTab } = this.props;
+    onDuplicateTab(id);
+  }
+
+  private handleRemove(): void {
+    const { id, onRemoveTab } = this.props;
+    onRemoveTab(id);
+  }
+
+  private handleSelect(): void {
+    const { index, onSelectTab } = this.props;
+    onSelectTab(index);
+  }
+
   render(): React.ReactNode {
     const { edited, pressed } = this.state;
     const {
-      label,
+      name,
       variant,
       draggable,
       prefixIcon,
@@ -81,6 +112,7 @@ export default class CardTab extends React.PureComponent<CardTabProps, CardTabSt
         invalid={invalid}
         disabled={disabled}
         color={variant.color}
+        onClick={this.handleSelect.bind(this)}
         onMouseDown={this.handleMouseDown}
         onMouseLeave={this.handleMouseUp}
         onMouseUp={this.handleMouseUp}
@@ -104,14 +136,20 @@ export default class CardTab extends React.PureComponent<CardTabProps, CardTabSt
             }}
             line={1}
             truncateText="... "
-            text={`${label} ${variant.tag}`}
+            text={`${name} ${variant.tag}`}
           />
         </S.CardTabLabel>
         {(onChangeName || onDuplicateTab || onRemoveTab) && !suffixIcon && (
           <S.CardTabSuffix>
-            {onChangeName && <Icon component={<ChangeNameIcon />} />}
-            {onDuplicateTab && <Icon component={<DuplicateIcon />} />}
-            {onRemoveTab && <Icon className="ds-card-tabs__remove-icon" component={<RemoveIcon />} />}
+            {onChangeName && <Icon component={<ChangeNameIcon />} onClick={this.handleChangeName.bind(this)} />}
+            {onDuplicateTab && <Icon component={<DuplicateIcon />} onClick={this.handleDuplicate.bind(this)} />}
+            {onRemoveTab && (
+              <Icon
+                className="ds-card-tabs__remove-icon"
+                component={<RemoveIcon />}
+                onClick={this.handleRemove.bind(this)}
+              />
+            )}
           </S.CardTabSuffix>
         )}
         {suffixIcon && <Icon className="ds-card-tabs__suffix-icon" component={suffixIcon} />}
