@@ -13,6 +13,7 @@ export type CardTabsProps = {
   items: CardTabProps[];
   currentTabIndex?: number;
   addTabDisabled: boolean;
+  greyBackground?: boolean;
 };
 
 const CardTabs: React.FC<CardTabsProps> = ({
@@ -24,6 +25,7 @@ const CardTabs: React.FC<CardTabsProps> = ({
   onChangeName,
   onAddTab,
   addTabDisabled,
+  greyBackground,
 }) => (
   <S.CardTabsContainer>
     <Sortable className="ds-card-tags-sortable" onChange={onChangeOrder} options={{ disabled: !onChangeOrder }}>
@@ -45,6 +47,7 @@ const CardTabs: React.FC<CardTabsProps> = ({
             disabled={tab.disabled}
             invalid={tab.invalid}
             tabIndex={tab.tabIndex}
+            greyBackground={greyBackground}
           />
         )
       )}

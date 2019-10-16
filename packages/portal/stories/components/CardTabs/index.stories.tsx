@@ -199,4 +199,20 @@ storiesOf('Components|CardTabs', module)
         />
       </DSProvider>
     </div>
+  ))
+  .add('with grey background', () => (
+    <div style={{background: '#f9fafb', padding: '24px'}}>
+      <DSProvider code="en_GB">
+        <CardTabs
+          items={ITEMS_WITH_SUFFIX_ICON}
+          currentTabIndex={0}
+          onAddTab={() => {}}
+          onChangeOrder={() => {}}
+          onRemoveTab={() => {}}
+          onDuplicateTab={() => {}}
+          onChangeName={() => {}}
+          greyBackground
+        />
+      </DSProvider>
+    </div>
   ));

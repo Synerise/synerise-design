@@ -28,6 +28,7 @@ export interface CardTabProps {
   showTag?: boolean;
   disabled?: boolean;
   invalid?: boolean;
+  greyBackground?: boolean;
 }
 
 interface CardTabState {
@@ -70,6 +71,7 @@ export default class CardTab extends React.PureComponent<CardTabProps, CardTabSt
       disabled,
       showTag,
       invalid,
+      greyBackground,
     } = this.props;
     return (
       <S.CardTabContainer
@@ -86,6 +88,7 @@ export default class CardTab extends React.PureComponent<CardTabProps, CardTabSt
         onMouseOut={this.handleTruncateLabel}
         onFocus={this.handleTruncateLabel}
         onBlur={this.handleTruncateLabel}
+        greyBackground={greyBackground}
       >
         {(showTag || prefixIcon || draggable) && (
           <S.CardTabPrefix>

@@ -65,11 +65,13 @@ export const CardTabContainer = styled.div`
   width: 180px;
   height: 48px;
   user-select: none;
-  background-color: ${({ theme, active, invalid, color }): string => {
+  background-color: ${({ theme, active, invalid, color, greyBackground }): string => {
     if (invalid && active) return theme.palette['red-600'];
     if (active) return theme.palette[color];
+    if (greyBackground) return theme.palette.white;
     return theme.palette['grey-050'];
   }};
+  box-shadow: ${({ theme, greyBackground }): string => (greyBackground ? '0 4px 12px 0 rgba(35, 41, 54, 0.04)' : '0')};
   border-radius: 3px;
   border-width: 1px;
   border-color: ${({ theme, active, invalid, color }): string => {
@@ -78,12 +80,12 @@ export const CardTabContainer = styled.div`
     return theme.palette['grey-050'];
   }};
   border-style: solid;
-  opacity: ${({ disabled }): number => (disabled ? 0.4 : 1)};
   pointer-events: ${({ disabled }): string => (disabled ? 'none' : 'all')};
   
   &:hover {
     cursor: pointer;
-    background-color: ${({ theme }): string => theme.palette['grey-050']};
+    background-color: ${({ theme, greyBackground }): string =>
+      greyBackground ? theme.palette.white : theme.palette['grey-050']};
     ${CardTabSuffix} {
       display: flex; 
     }
@@ -133,6 +135,7 @@ export const CardTabContainer = styled.div`
   
   ${CardTabLabel} { 
     color: ${({ theme, active }): string => (active ? theme.palette.white : theme.palette['grey-600'])};
+    opacity: ${({ disabled }): number => (disabled ? 0.4 : 1)};
   }
   
   .ds-card-tabs__suffix-icon {
@@ -146,9 +149,11 @@ export const CardTabContainer = styled.div`
         return theme.palette['grey-600'];
       }} 
     }
+    opacity: ${({ disabled }): number => (disabled ? 0.4 : 1)};
   }
   
   ${CardTabPrefix} {
+    opacity: ${({ disabled }): number => (disabled ? 0.4 : 1)};
     .ds-card-tabs__handle-icon {
       svg {
         color: ${({ theme, active }): string => {
@@ -170,6 +175,10 @@ export const CardTabContainer = styled.div`
         if (active) return theme.palette.white;
         return theme.palette['grey-600'];
       }} 
+    }
+    
+    ${CardTabSuffix} {
+      opacity: ${({ disabled }): number => (disabled ? 0.4 : 1)};
     }
   }
 `;
