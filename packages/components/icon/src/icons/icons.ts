@@ -1,4 +1,1 @@
-declare module '*.svg' {
-  const content;
-  export default content;
-}
+declare module '*.svg';
