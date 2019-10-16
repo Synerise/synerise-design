@@ -6,8 +6,10 @@ import CardSelect from '@synerise/ds-card-select';
 
 import { storiesOf } from '@storybook/react';
 import { boolean, text, select, number } from '@storybook/addon-knobs';
+import centered from '@storybook/addon-centered/react';
 
 storiesOf('Components|CardSelect', module)
+  .addDecorator(centered)
   .add('default', () => {
     const [store, setStore] = React.useState<number | null>(null);
 

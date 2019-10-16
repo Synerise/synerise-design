@@ -2750,6 +2750,11 @@
     "@svgr/plugin-svgo" "^4.3.1"
     loader-utils "^1.2.3"
 
+"@synerise/ds-icon@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@synerise/ds-icon/-/ds-icon-0.2.0.tgz#fa8731b520266be566d260a7acea4ca6bda391dc"
+  integrity sha512-rWjC7JXqcAbs8dhyUNOY+gAmz7iWV41o21Ku+Ty8Gi15QUSs6QRb0XEIPe5wbcFtZ0Hf6SQuMD7HMr9M6Omt7w==
+
 "@testing-library/dom@^6.1.0":
   version "6.2.0"
   resolved "https://registry.yarnpkg.com/@testing-library/dom/-/dom-6.2.0.tgz#6eeee738af12a2f02e74dc8cbadeaed1fc4223e5"
