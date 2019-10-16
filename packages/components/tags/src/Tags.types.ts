@@ -22,6 +22,7 @@ export interface Props {
   disabled?: boolean;
   manageLink?: string;
   texts?: TagsTexts;
+  theme: { [k: string]: string };
   onCreate?: (name: string) => void;
   onSelectedChange?: (tags: Array<TagProps>) => void;
 }

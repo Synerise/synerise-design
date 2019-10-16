@@ -7,7 +7,7 @@ Tags UI Component
 
 ## Demo
 
-<iframe src="/storybook-static/iframe.html?id=components-Tags--default"></iframe>
+<iframe src="/storybook-static/iframe.html?id=components-tags--default"></iframe>
 
 ## Tag API
 

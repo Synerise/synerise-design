@@ -18,6 +18,14 @@ export const SelectedTags = styled.div`
 
 export const AddButton = styled<{ marginless: boolean }>(Button)`
   margin: ${(props): string => (props.marginless ? '0' : '0 0 0 8px')};
+
+  span {
+    padding-left: 4px;
+  }
+`;
+
+export const AddIconWrapper = styled.div`
+  display: inline-block;
 `;
 
 export const CreateTagDropdownButton = styled<{ marginless: boolean }>(Button)`
@@ -25,10 +33,16 @@ export const CreateTagDropdownButton = styled<{ marginless: boolean }>(Button)`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  display: flex;
+  align-items: center;
 
   && {
     font-weight: 400;
     text-align: left;
+
+    ${AddIconWrapper} {
+      transform: translate(-10px, -2px);
+    }
   }
 
   strong {
@@ -86,7 +100,7 @@ export const DropdownContainer = styled.div`
 
 export const DropdownSearch = styled(Dropdown.SearchInput)`
   && {
-    margin: 0;
+    margin: 0 !important;
   }
 `;
 

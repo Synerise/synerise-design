@@ -239,6 +239,12 @@ export const Tag = styled.div<{
     }
   }
 
+  .icon {
+    && {
+      transform: translate(1px, -3px);
+    }
+  }
+
   ${(props): string =>
     props.isActionable &&
     css`

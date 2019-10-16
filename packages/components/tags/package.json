@@ -23,7 +23,8 @@
   "types": "dist/index.d.ts",
   "dependencies": {
     "@synerise/ds-button": "*",
-    "@synerise/ds-dropdown": "*"
+    "@synerise/ds-dropdown": "^0.6.1",
+    "@synerise/ds-icon": "^0.2.0"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

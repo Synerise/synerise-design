@@ -1,4 +1,7 @@
 import * as React from 'react';
+import Icon from '@synerise/ds-icon';
+import CloseM from '@synerise/ds-icon/dist/icons/close-m.svg';
+
 import { Props } from './Tag.types';
 import * as S from './Tag.styles';
 
@@ -59,7 +62,9 @@ const Tag: React.FC<Props> = ({
         <span>{name}</span>
         {isRemovable && (
           <button type="button" onClick={onRemoveCall} data-testid="remove-btn">
-            <div>x</div>
+            <div className="icon">
+              <Icon component={<CloseM />} size={16} color="#fff" />
+            </div>
           </button>
         )}
       </div>

@@ -1,5 +1,8 @@
 import * as React from 'react';
+import { withTheme } from 'styled-components';
 import Dropdown from '@synerise/ds-dropdown';
+import Icon from '@synerise/ds-icon';
+import AddThreeM from '@synerise/ds-icon/dist/icons/add-3-m.svg';
 
 import { Props } from './Tags.types';
 import * as S from './Tags.styles';
@@ -20,9 +23,16 @@ const Tags: React.FC<Props> = ({
   className,
   manageLink,
   onCreate,
+  theme,
 }: Props) => {
   const [isAdding, setAddingState] = React.useState<boolean>(false);
   const [searchQuery, setSearchQuery] = React.useState<string>('');
+
+  const addIcon = (
+    <S.AddIconWrapper>
+      <Icon component={<AddThreeM />} size={24} color={theme.palette['grey-500']} />
+    </S.AddIconWrapper>
+  );
 
   const onRemove = (tagKey: string | number): void =>
     onSelectedChange && onSelectedChange(selected.filter(tag => tag.id !== tagKey));
@@ -57,7 +67,8 @@ const Tags: React.FC<Props> = ({
       <S.DropdownContainer data-testid="dropdown">
         {isCreatable && (
           <>
-            <S.CreateTagDropdownButton type="ghost" icon="plus" onClick={onCreateNewTag} marginless={!isSeperated}>
+            <S.CreateTagDropdownButton type="ghost" onClick={onCreateNewTag} marginless={!isSeperated}>
+              {addIcon}
               <span>{texts.createTagButtonLabel}</span>
               <strong>{searchQuery}</strong>
             </S.CreateTagDropdownButton>
@@ -111,7 +122,8 @@ const Tags: React.FC<Props> = ({
           onVisibleChange={setAddingState}
           overlay={dropdownOverlay}
         >
-          <S.AddButton type="ghost" icon="plus" marginless={!selected.length ? true : undefined}>
+          <S.AddButton type="ghost" marginless={!selected.length ? true : undefined}>
+            {addIcon}
             {texts.addButtonLabel && <span>{texts.addButtonLabel}</span>}
           </S.AddButton>
         </Dropdown>
@@ -126,4 +138,4 @@ Tags.defaultProps = {
   selected: [],
 };
 
-export default Tags;
+export default withTheme(Tags);
