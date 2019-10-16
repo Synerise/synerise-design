@@ -4,6 +4,7 @@ import { withState } from '@dump247/storybook-state';
 import { DSProvider } from '@synerise/ds-core';
 import { select, boolean } from '@storybook/addon-knobs';
 import InlineEdit from '@synerise/ds-inline-edit';
+import { action } from '@storybook/addon-actions';
 
 
 const stories = storiesOf('Components|InlineEdit', module);
@@ -24,6 +25,7 @@ stories.add(
             input={{
               name: 'name-of-input',
               value: store.state.value,
+              onBlur: action('onBlur'),
             }}
             style={widthLimit ? { maxWidth: 128 } : {}}
             maxLength={120}

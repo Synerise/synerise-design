@@ -114,7 +114,7 @@ export class InlineEdit extends React.Component<InlineEditProps> {
       autoComplete,
     } = this.props;
 
-    const { name, value, disabled: inputDisabled, ...inputRest }: InputProps = input;
+    const { name, value, disabled: inputDisabled, onBlur, ...inputRest }: InputProps = input;
     const id = toCamelCase(name);
     const disabled = propsDisabled || inputDisabled;
     const activePalettes = this.getActivePalettes(size, error, disabled).join('-');
@@ -141,6 +141,7 @@ export class InlineEdit extends React.Component<InlineEditProps> {
           name={name}
           value={value || ''}
           onChange={this.handleOnChange}
+          onBlur={onBlur}
           autoComplete={autoComplete}
           placeholderIsMinWidth={false}
           input={{ ...inputRest }}
