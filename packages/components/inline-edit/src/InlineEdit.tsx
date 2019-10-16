@@ -149,7 +149,7 @@ export class InlineEdit extends React.Component<InlineEditProps> {
           input={{ ...inputRest }}
         />
         {!hideIcon && (
-          <Tooltip title={tooltipTitle}>
+          <Tooltip data-testid="inline-edit-icon" title={tooltipTitle}>
             <S.IconWrapper colors={activePalettes} margin={iconMargin} onClick={this.handleFocusInput}>
               <Icon component={<EditM />} size={20} />
             </S.IconWrapper>
