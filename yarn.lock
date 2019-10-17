@@ -15088,6 +15088,13 @@ react-text-truncate@^0.15.0:
   dependencies:
     prop-types "^15.5.7"
 
+react-textarea-autosize@^6.1.0:
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/react-textarea-autosize/-/react-textarea-autosize-6.1.0.tgz#df91387f8a8f22020b77e3833c09829d706a09a5"
+  integrity sha512-F6bI1dgib6fSvG8so1HuArPUv+iVEfPliuLWusLF+gAKz0FbB4jLrWUrTAeq1afnPT2c9toEZYUdz/y1uKMy4A==
+  dependencies:
+    prop-types "^15.6.0"
+
 react-textarea-autosize@^7.1.0:
   version "7.1.0"
   resolved "https://registry.yarnpkg.com/react-textarea-autosize/-/react-textarea-autosize-7.1.0.tgz#3132cb77e65d94417558d37c0bfe415a5afd3445"
@@ -16199,11 +16206,7 @@ sort-scripts@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/sort-scripts/-/sort-scripts-1.0.1.tgz#c1d27f2a7d95d1d0d3d6303f1b949abaaa695b55"
 
-<<<<<<< HEAD
-sortablejs@^1.10.0:
-=======
 sortablejs@^1.10.1:
->>>>>>> feat(card-tabs): add sortable tabs
   version "1.10.1"
   resolved "https://registry.yarnpkg.com/sortablejs/-/sortablejs-1.10.1.tgz#3d52b00f871be00f00f84d99a60d120bf3dfe52c"
   integrity sha512-N6r7GrVmO8RW1rn0cTdvK3JR0BcqecAJ0PmYMCL3ZuqTH3pY+9QyqkmJSkkLyyDvd+AJnwaxTP22Ybr/83V9hQ==

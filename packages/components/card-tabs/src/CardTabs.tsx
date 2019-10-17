@@ -6,57 +6,78 @@ import * as S from './CardTabs.styles';
 
 export type CardTabsProps = {
   onChangeOrder?: () => void;
-  onChangeName?: (id: string, name: string) => void;
-  onDuplicateTab?: (id: string) => void;
-  onRemoveTab?: (id: string) => void;
+  onChangeName?: (id: number, name: string) => void;
+  onDuplicateTab?: (id: number) => void;
+  onRemoveTab?: (id: number) => void;
   onAddTab?: () => void;
-  onSelectTab?: (index: number) => void;
+  onSelectTab?: (id: number) => void;
   items: CardTabProps[];
-  currentTabIndex?: number;
-  addTabDisabled: boolean;
+  activeTab?: number | string;
   greyBackground?: boolean;
+  maxTabsCount?: number;
+  prefixIcon?: React.ReactNode;
+  suffixIcon?: React.ReactNode;
+  showTag?: boolean;
+  disabled?: boolean;
+  invalid?: boolean;
 };
 
-const CardTabs: React.FC<CardTabsProps> = ({
-  items,
-  currentTabIndex,
-  onChangeOrder,
-  onRemoveTab,
-  onDuplicateTab,
-  onChangeName,
-  onAddTab,
-  addTabDisabled,
-  greyBackground,
-  onSelectTab,
-}) => (
-  <S.CardTabsContainer>
-    <Sortable className="ds-card-tags-sortable" onChange={onChangeOrder} options={{ disabled: !onChangeOrder }}>
-      {items.map(
-        (tab: CardTabProps, index: number): React.ReactNode => (
-          <CardTab
-            key={`card-tab-${tab.id}`}
-            id={tab.id}
-            index={index}
-            active={index === currentTabIndex}
-            name={tab.name}
-            onSelectTab={onSelectTab}
-            onChangeName={onChangeName}
-            onDuplicateTab={onDuplicateTab}
-            onRemoveTab={onRemoveTab}
-            variant={tab.variant}
-            draggable={!!onChangeOrder}
-            prefixIcon={tab.prefixIcon}
-            suffixIcon={tab.suffixIcon}
-            showTag={tab.showTag}
-            disabled={tab.disabled}
-            invalid={tab.invalid}
-            tabIndex={tab.tabIndex}
-            greyBackground={greyBackground}
-          />
-        )
+function CardTabs(props: CardTabsProps): React.ReactNode {
+  const {
+    items,
+    activeTab,
+    onChangeOrder,
+    onRemoveTab,
+    onDuplicateTab,
+    onChangeName,
+    onAddTab,
+    greyBackground,
+    onSelectTab,
+    maxTabsCount,
+    prefixIcon,
+    suffixIcon,
+    showTag,
+    disabled,
+    invalid,
+  } = props;
+
+  const renderItems = (): React.ReactNodeArray =>
+    items.map(
+      (item: CardTabProps, index: number): React.ReactNode => (
+        <CardTab
+          key={`card-tab-${item.id}`}
+          id={item.id}
+          tag={item.tag}
+          index={index}
+          active={item.id === activeTab}
+          name={item.name}
+          onSelectTab={onSelectTab}
+          onChangeName={onChangeName}
+          onDuplicateTab={onDuplicateTab}
+          onRemoveTab={onRemoveTab}
+          draggable={!!onChangeOrder}
+          prefixIcon={prefixIcon}
+          suffixIcon={suffixIcon}
+          showTag={showTag}
+          disabled={disabled}
+          invalid={invalid}
+          greyBackground={greyBackground}
+        />
+      )
+    );
+
+  return (
+    <S.CardTabsContainer>
+      {onChangeOrder ? (
+        <Sortable className="ds-card-tags-sortable" onChange={onChangeOrder}>
+          {renderItems()}
+        </Sortable>
+      ) : (
+        <div className="ds-card-tags-sortable">{renderItems()}</div>
       )}
-    </Sortable>
-    {onAddTab && <AddButton disabled={addTabDisabled} onClick={onAddTab} />}
-  </S.CardTabsContainer>
-);
+      {onAddTab && <AddButton disabled={items.length >= maxTabsCount} onClick={onAddTab} />}
+    </S.CardTabsContainer>
+  );
+}
+
 export default CardTabs;

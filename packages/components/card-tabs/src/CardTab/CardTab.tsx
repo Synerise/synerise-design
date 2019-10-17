@@ -6,24 +6,19 @@ import ChangeNameIcon from '@synerise/ds-icon/dist/icons/edit-s.svg';
 import DuplicateIcon from '@synerise/ds-icon/dist/icons/duplicate-s.svg';
 import RemoveIcon from '@synerise/ds-icon/dist/icons/close-s.svg';
 import InlineEdit from '@synerise/ds-inline-edit/dist/InlineEdit';
+import getColorByIndex from '../utils/getColorByIndex';
 import * as S from './CardTab.styles';
 
-interface CardTabVariant {
-  tag?: string;
-  color: string;
-}
-
 export interface CardTabProps {
-  id: string;
+  id: number;
   index: number;
   active?: boolean;
-  onSelectTab?: (index: number) => void;
-  onChangeName?: (id: string, name: string) => void;
-  onDuplicateTab?: (id: string) => void;
-  onRemoveTab?: (id: string) => void;
-  tabIndex: number;
+  onSelectTab?: (id: number) => void;
+  onChangeName?: (id: number, name: string) => void;
+  onDuplicateTab?: (id: number) => void;
+  onRemoveTab?: (id: number) => void;
   name: string;
-  variant: CardTabVariant;
+  tag: string;
   onClick?: () => void;
   draggable?: boolean;
   prefixIcon?: React.ReactNode;
@@ -32,6 +27,7 @@ export interface CardTabProps {
   disabled?: boolean;
   invalid?: boolean;
   greyBackground?: boolean;
+  key?: string;
 }
 
 interface CardTabState {
@@ -40,7 +36,7 @@ interface CardTabState {
   pressed: boolean;
 }
 
-export default class CardTab extends React.PureComponent<CardTabProps, CardTabState> {
+export default class CardTab extends React.Component<CardTabProps, CardTabState> {
   private truncateRef: any;
   constructor(props) {
     super(props);
@@ -111,15 +107,16 @@ export default class CardTab extends React.PureComponent<CardTabProps, CardTabSt
 
   private handleSelect(event): void {
     event.stopPropagation();
-    const { index, onSelectTab } = this.props;
-    onSelectTab(index);
+    const { id, onSelectTab } = this.props;
+    onSelectTab(id);
   }
 
   render(): React.ReactNode {
     const {
       id,
+      index,
       name,
-      variant,
+      tag,
       draggable,
       prefixIcon,
       suffixIcon,
@@ -131,6 +128,7 @@ export default class CardTab extends React.PureComponent<CardTabProps, CardTabSt
       showTag,
       invalid,
       greyBackground,
+      key,
     } = this.props;
     const { edited, pressed, editedName } = this.state;
     return (
@@ -139,8 +137,8 @@ export default class CardTab extends React.PureComponent<CardTabProps, CardTabSt
         edited={edited}
         active={active}
         invalid={invalid}
-        disabled={disabled}
-        color={variant.color}
+        disabled={!active && disabled}
+        color={getColorByIndex(index)}
         onClick={this.handleSelect.bind(this)}
         onMouseDown={this.handleMouseDown}
         onMouseLeave={this.handleMouseUp}
@@ -150,11 +148,13 @@ export default class CardTab extends React.PureComponent<CardTabProps, CardTabSt
         onFocus={this.handleTruncateLabel}
         onBlur={this.handleTruncateLabel}
         greyBackground={greyBackground}
+        key={key}
+        data-id={id}
       >
         {(showTag || prefixIcon || draggable) && (
           <S.CardTabPrefix>
-            {showTag && !draggable && <S.CardTabTag>{variant.tag}</S.CardTabTag>}
-            {prefixIcon && !draggable && <Icon component={prefixIcon} />}
+            {showTag && !draggable && <S.CardTabTag>{tag}</S.CardTabTag>}
+            {prefixIcon && !showTag && !draggable && <Icon component={prefixIcon} />}
             {draggable && <Icon className="ds-card-tabs__handle-icon" component={<HandleIcon />} />}
           </S.CardTabPrefix>
         )}
