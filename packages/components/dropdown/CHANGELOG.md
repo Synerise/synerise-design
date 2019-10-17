@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-dropdown@0.6.3...@synerise/ds-dropdown@0.7.0) (2019-10-17)
+
+
+### Bug Fixes
+
+* **dropdown:** className type ([823e24d](https://github.com/synerise/synerise-design/commit/823e24d))
+
+
+### Features
+
+* **tags:** add ability to create a tag ([0220b7c](https://github.com/synerise/synerise-design/commit/0220b7c))
+* **tags:** initial dropdown support (add, create) ([8a45c0f](https://github.com/synerise/synerise-design/commit/8a45c0f))
+
+
+
+
+
 ## [0.6.3](https://github.com/synerise/synerise-design/compare/@synerise/ds-dropdown@0.6.2...@synerise/ds-dropdown@0.6.3) (2019-10-16)
 
 ### Bug Fixes

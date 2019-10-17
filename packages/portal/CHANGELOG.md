@@ -3,6 +3,40 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/synerise/synerise-design/compare/portal@0.9.1...portal@0.10.0) (2019-10-17)
+
+
+### Bug Fixes
+
+* **tags:** ability to disable single tag (storybook) ([e209237](https://github.com/synerise/synerise-design/commit/e209237))
+* **tags:** disable entire group knob bug (storybook) ([fe17293](https://github.com/synerise/synerise-design/commit/fe17293))
+* **tags:** remove disable single tag option (storybook) ([86c52d2](https://github.com/synerise/synerise-design/commit/86c52d2))
+* **tags:** storybook changes ([6a4a7c3](https://github.com/synerise/synerise-design/commit/6a4a7c3))
+* **tags:** styling ([030a100](https://github.com/synerise/synerise-design/commit/030a100))
+* **tags:** styling for status & small shapes ([54879d6](https://github.com/synerise/synerise-design/commit/54879d6))
+
+
+### Features
+
+* **tags:** ability to add a tag, minor improvements ([00699f2](https://github.com/synerise/synerise-design/commit/00699f2))
+* **tags:** add abilities ([e19eb38](https://github.com/synerise/synerise-design/commit/e19eb38))
+* **tags:** add ability to create a tag ([0220b7c](https://github.com/synerise/synerise-design/commit/0220b7c))
+* **tags:** add more knobs to storybook ([85897c7](https://github.com/synerise/synerise-design/commit/85897c7))
+* **tags:** add more knobs to storybook ([de3c670](https://github.com/synerise/synerise-design/commit/de3c670))
+* **tags:** add more knobs to storybook ([111bf8f](https://github.com/synerise/synerise-design/commit/111bf8f))
+* **tags:** add status shapes to tag stories ([887cdb9](https://github.com/synerise/synerise-design/commit/887cdb9))
+* **tags:** add support for images ([ce57e86](https://github.com/synerise/synerise-design/commit/ce57e86))
+* **tags:** additional tag modes styling ([a0448ff](https://github.com/synerise/synerise-design/commit/a0448ff))
+* **tags:** disable effects if tag is not actionable ([0d3147d](https://github.com/synerise/synerise-design/commit/0d3147d))
+* **tags:** implement color effects ([a1980eb](https://github.com/synerise/synerise-design/commit/a1980eb))
+* **tags:** implement removable tags ([06f1358](https://github.com/synerise/synerise-design/commit/06f1358))
+* **tags:** initial dropdown support (add, create) ([8a45c0f](https://github.com/synerise/synerise-design/commit/8a45c0f))
+* **tags:** initial tag component ([cbb1ca0](https://github.com/synerise/synerise-design/commit/cbb1ca0))
+
+
+
+
+
 ## [0.9.1](https://github.com/synerise/synerise-design/compare/portal@0.9.0...portal@0.9.1) (2019-10-16)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.2.2...@synerise/ds-icon@0.2.3) (2019-10-17)
+
+
+### Bug Fixes
+
+* **icon:** fix issue with isolated ts file ([fb0b1dd](https://github.com/Synerise/synerise-design/commit/fb0b1dd))
+
+
+
+
+
 ## [0.2.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.2.1...@synerise/ds-icon@0.2.2) (2019-10-16)
 
 ### Bug Fixes
