@@ -32,12 +32,13 @@ module.exports = {
     'react-hooks/rules-of-hooks': ERROR,
     'react/jsx-no-bind': [IGNORE],
     'import/extensions': [IGNORE],
-    'react/jsx-fragments': [WARNING, "syntax"],
+    'react/jsx-fragments': [WARNING, 'syntax'],
     'react/jsx-filename-extension': [IGNORE],
-    'react/state-in-constructor': [WARNING, "never"],
+    'react/state-in-constructor': [WARNING, 'never'],
     'import/no-extraneous-dependencies': [IGNORE],
     'import/no-unresolved': [IGNORE],
     '@typescript-eslint/explicit-function-return-type': ERROR,
+    '@typescript-eslint/no-unused-vars': [ERROR, { ignoreRestSiblings: true }],
   },
   settings: {
     'import/resolver': {

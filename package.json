@@ -16,7 +16,7 @@
     "build": "yarn npx:lerna run build",
     "component:create": "node ./scripts/create-component/index.js",
     "lerna:version": "yarn npx:lerna version --conventional-commits",
-    "lint": "eslint . --ext .ts --ext .tsx",
+    "lint": "eslint . --ext .ts --ext .tsx --max-warnings 0",
     "npx:lerna": "npx lerna",
     "storybook": "yarn run build && cd packages/portal && yarn run storybook",
     "test:ci": "yarn npx:lerna run test --parallel"
