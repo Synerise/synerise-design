@@ -102,3 +102,5 @@ const enhancedInput = <P extends object>(WrappedComponent, { type }): React.Comp
 
 export const TextArea = enhancedInput(S.AntdTextArea, { type: 'textArea' });
 export const Input = enhancedInput(S.AntdInput, { type: 'input' });
+export const RawInput = S.AntdInput;
+export const RawTextArea = S.AntdTextArea;
