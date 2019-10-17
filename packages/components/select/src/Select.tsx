@@ -20,16 +20,18 @@ class Select extends React.Component<Props> {
 
     return (
       <>
-        <S.LabelWrapper>{label && <Label>{label}</Label>}</S.LabelWrapper>
+        {label && <S.LabelWrapper><Label>{label}</Label></S.LabelWrapper>}
         <S.AntdSelect
           // eslint-disable-next-line react/jsx-props-no-spreading
           {...antdProps}
           className={Boolean(errorText) && 'error'}
         />
-        <S.ErrorWrapper>{errorText && <ErrorText>{errorText}</ErrorText>}</S.ErrorWrapper>
-        <S.DescWrapper>
-          {description && <Description disabled={antdProps.disabled}>{description}</Description>}
-        </S.DescWrapper>
+        {errorText && <S.ErrorWrapper><ErrorText>{errorText}</ErrorText></S.ErrorWrapper>}
+        {description && (
+          <S.DescWrapper>
+            {description && <Description disabled={antdProps.disabled}>{description}</Description>}
+          </S.DescWrapper>
+        )}
       </>
     );
   }
