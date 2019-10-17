@@ -24,8 +24,6 @@ import Layout from '@synerise/ds-layout'
     header={<HeaderComponent />}
     left={<LeftSidebarComponent>}
     right={RightSidebarComponent}
-    transitionName={'default'}
-    transitionTime={1}
     className={layoutClass}
 >
     <Content />
@@ -34,13 +32,11 @@ import Layout from '@synerise/ds-layout'
 
 ## API
 
-| Property       | Description                              | Type          | Default   |
-| -------------- | ---------------------------------------- | ------------- | --------- |
-| header         | Set top header content page              | ReactNode     |           |
-| left           | Set left content page                    | React.Node    |           |
-| right          | Set right content page                   | React.Node    |           |
-| children       | The layout elements passed to the parent | React.Node    |           |
-| className      | Layout's className                       | string        |           |
-| transitionTime | The number of milliseconds for           | number        | 1         |
-| transitionName | Name transition option                   | string        | `default` |
-| styles         | Custom layout syles                      | CSSProperties |           |
+| Property  | Description                              | Type          | Default |
+| --------- | ---------------------------------------- | ------------- | ------- |
+| header    | Set top header content page              | ReactNode     |         |
+| left      | Set left content page                    | React.Node    |         |
+| right     | Set right content page                   | React.Node    |         |
+| children  | The layout elements passed to the parent | React.Node    |         |
+| className | Layout's className                       | string        |         |
+| styles    | Custom layout syles                      | CSSProperties |         |

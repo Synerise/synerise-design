@@ -1,6 +1,4 @@
 import styled from 'styled-components';
-import { TransitionGroup } from 'react-transition-group';
-
 import { mediaQuery, hexToRgba } from '@synerise/ds-utils';
 
 export const LayoutContainer = styled.div`
@@ -45,7 +43,7 @@ export const LayoutSidebar = styled.div`
   background-color: #fff;
   height: 100%;
   ${mediaQuery.to.medium`flex: 0 0 auto;`};
-  ${mediaQuery.from.medium`flex: 1 1 324px; width: 324px;`};
+  ${mediaQuery.from.medium`flex: 0 1 324px; width: 324px;`};
 
   ${mediaQuery.from.medium`
     &.slide-enter {
@@ -53,14 +51,12 @@ export const LayoutSidebar = styled.div`
     }
     &.slide-enter.slide-enter-active {
       max-width: 324px;
-      transition: max-width ${(props): string => props.transitionTime}ms;
     }
     &.slide-leave {
       max-width: 324px;
     }
     &.slide-leave.slide-leave-active {
       max-width: 0;
-      transition: max-width ${(props): string => props.transitionTime}ms;
     }
   `};
 `;
@@ -71,5 +67,3 @@ export const LayoutSidebarInner = styled.div`
   flex-flow: column;
   height: 100%;
 `;
-
-export const Transitions = styled(TransitionGroup)``;
