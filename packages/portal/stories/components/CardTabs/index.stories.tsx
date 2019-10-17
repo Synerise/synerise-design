@@ -17,7 +17,7 @@ storiesOf('Components|CardTabs', module)
         tag: String.fromCharCode(65 + i).toUpperCase(),
       }
     )),
-    activeTab: 0
+    activeTab: 0,
   })(({store}) => {
     const bg = boolean('White background', true);
     const prefixIcon = boolean('Show prefix icon', false);
@@ -26,6 +26,7 @@ storiesOf('Components|CardTabs', module)
     const showTag = boolean('Show prefix tag', true);
     const draggable = boolean('Enable change order of tabs', false);
     const invalid = boolean('Show invalid tabs', false);
+    const maxTabCount = number('Show invalid tabs', 4);
 
     const handleChangeName = (id, name) => {
       store.set({
@@ -39,7 +40,6 @@ storiesOf('Components|CardTabs', module)
     };
 
     const handleRemove = (id) => {
-      console.log(id, store.state.items.filter(item => item.id !== id));
       store.set({
         items: store.state.items.filter(item => item.id !== id),
       });
@@ -48,7 +48,6 @@ storiesOf('Components|CardTabs', module)
     const handleDuplicate = (id) => {
       const duplicatedTab = store.state.items.find(item => item.id === id);
       duplicatedTab.id = store.state.items.length + 1;
-      console.log(duplicatedTab, store.state.items.length + 1);
       store.set({
         items: [...store.state.items, duplicatedTab]
       });
@@ -71,41 +70,39 @@ storiesOf('Components|CardTabs', module)
       })
     }
 
+    const handleSelect = (id) => {
+      store.set({activeTab: id});
+    }
+
     return (
       <div style={{background: bg ? '#fff' : '#f9fafb', padding: '24px'}}>
         <DSProvider code="en_GB">
           <CardTabs
-            items={store.state.items}
-            activeTab={store.state.activeTab}
-            maxTabsCount={store.state.maxTabsCount}
+            maxTabsCount={maxTabCount}
             onChangeOrder={draggable ? handleChangeOrder : false}
-            greyBackground={!bg}
-            prefixIcon={prefixIcon ? <FileIcon /> : null}
-            suffixIcon={suffixIcon ? <FileIcon /> : null}
-            disabled={disabled}
-            showTag={showTag}
-            onSelectTab={id => store.set({ activeTab: id})}
-            onChangeName={handleChangeName}
-            onRemoveTab={handleRemove}
-            onDuplicateTab={handleDuplicate}
             onAddTab={handleAddItem}
-            invalid={invalid}
-          />
-          {/*{store.state.items.map((item, index) => (*/}
-          {/*  <CardTab*/}
-          {/*    key={`card-tab-${item.id}`}*/}
-          {/*    id={item.id}*/}
-          {/*    index={index}*/}
-          {/*    name={item.name}*/}
-          {/*    tag={item.tag}*/}
-          {/*    active={item.id === store.state.activeTab}*/}
-          {/*    greyBackground={!bg}*/}
-          {/*    prefixIcon={prefixIcon ? <FileIcon /> : null}*/}
-          {/*    disabled={disabled}*/}
-          {/*    showTag={showTag}*/}
-          {/*    onSelectTab={(id) => store.set({activeTab: id})}*/}
-          {/*  />*/}
-          {/*))}*/}
+          >
+          {store.state.items.map((item, index) => (
+            <CardTab
+              id={item.id}
+              index={index}
+              name={item.name}
+              tag={item.tag}
+              active={item.id === store.state.activeTab}
+              greyBackground={!bg}
+              prefixIcon={prefixIcon ? <FileIcon /> : null}
+              suffixIcon={suffixIcon ? <FileIcon /> : null}
+              disabled={disabled}
+              showTag={showTag}
+              onSelectTab={handleSelect}
+              onChangeName={handleChangeName}
+              onRemoveTab={handleRemove}
+              onDuplicateTab={handleDuplicate}
+              invalid={invalid}
+              draggable={draggable}
+            />
+          ))}
+          </CardTabs>
       </DSProvider>
       </div>
     )}));

@@ -27,7 +27,6 @@ export interface CardTabProps {
   disabled?: boolean;
   invalid?: boolean;
   greyBackground?: boolean;
-  key?: string;
 }
 
 interface CardTabState {
@@ -128,7 +127,6 @@ export default class CardTab extends React.Component<CardTabProps, CardTabState>
       showTag,
       invalid,
       greyBackground,
-      key,
     } = this.props;
     const { edited, pressed, editedName } = this.state;
     return (
@@ -148,7 +146,6 @@ export default class CardTab extends React.Component<CardTabProps, CardTabState>
         onFocus={this.handleTruncateLabel}
         onBlur={this.handleTruncateLabel}
         greyBackground={greyBackground}
-        key={key}
         data-id={id}
       >
         {(showTag || prefixIcon || draggable) && (
