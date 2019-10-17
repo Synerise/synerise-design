@@ -11,6 +11,7 @@ interface Props extends SwitchProps {
   description?: string;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const ExtendedAntdSwitchComponent = (AntdSwitch as any) as React.ComponentType<SwitchProps & { id: string }>;
 
 export const Switch: React.FC<Props> = ({ errorText, label, description, ...antdSwitchProps }) => {
