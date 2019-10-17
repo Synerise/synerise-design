@@ -5,7 +5,7 @@ import { DSProvider } from '@synerise/ds-core';
 import sample from 'lodash/sample';
 import { v4 as uuid } from 'uuid';
 
-import Tags, { Tag, TagShape } from '@synerise/ds-Tags';
+import Tags, { Tag, TagShape } from '@synerise/ds-tags';
 
 storiesOf('Components|Tags', module)
   .add('default', () => {
@@ -141,13 +141,13 @@ storiesOf('Components|Tags', module)
 
               <Tag name="Default Square w/ image" shape={TagShape.DEFAULT_SQUARE} image={IMAGE_URL} />
               <Tag name="Default Round w/ image" shape={TagShape.DEFAULT_ROUND} image={IMAGE_URL} />
-              
+
               <Tag name="A" shape={TagShape.SINGLE_CHARACTER_SQUARE} />
               <Tag name="A" shape={TagShape.SINGLE_CHARACTER_ROUND} />
 
               <Tag name="Small Square" shape={TagShape.SMALL_SQUARE} />
               <Tag name="Small Round" shape={TagShape.SMALL_ROUND} />
-              
+
               <Tag name="Status Neutral" shape={TagShape.STATUS_NEUTRAL} />
               <Tag name="Status Success" shape={TagShape.STATUS_SUCCESS} />
               <Tag name="Status Warning" shape={TagShape.STATUS_WARNING} />

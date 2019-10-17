@@ -32,6 +32,6 @@
   },
   "devDependencies": {
     "less-vars-loader": "^1.1.0",
-    "webpack": "^4.40.2"
+    "webpack": "^4.41.2"
   }
 }
