@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { withTheme } from 'styled-components';
 import Icon from '@synerise/ds-icon';
-import CheckThreeM from '@synerise/ds-icon/dist/icons/check-3-m.svg';
+import { ReactComponent as CheckThreeM } from '@synerise/ds-icon/dist/icons/check-3-m.svg';
 
 import { Props } from './CardSelect.types';
 import * as S from './CardSelect.styles';

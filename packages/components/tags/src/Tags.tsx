@@ -2,7 +2,7 @@ import * as React from 'react';
 import { withTheme } from 'styled-components';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon from '@synerise/ds-icon';
-import AddThreeM from '@synerise/ds-icon/dist/icons/add-3-m.svg';
+import { ReactComponent as AddThreeM } from '@synerise/ds-icon/dist/icons/add-3-m.svg';
 
 import { Props } from './Tags.types';
 import * as S from './Tags.styles';

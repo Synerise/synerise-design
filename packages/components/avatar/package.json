@@ -23,7 +23,7 @@
   "types": "dist/index.d.ts",
   "dependencies": {
     "@synerise/ds-badge": "^0.1.0",
-    "antd": "*"
+    "antd": "3.24.0"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

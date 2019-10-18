@@ -18,9 +18,15 @@ storiesOf('Components|CardSelect', module)
     const stretchToFit = boolean('Stretch to fit', false);
     const icon = text('Icon component name', 'tiles-m');
     const iconSize = number('Custom Icon component size', 0);
-    const size = select('Size', {small: 'small', medium: 'medium'}, 'medium');
+    const size = select('Size', { small: 'small', medium: 'medium' }, 'medium');
 
-    const IconComponent = React.lazy(() => import(`@synerise/ds-icon/dist/icons/${icon}.svg`).catch(() => {}));
+    const IconComponent = React.lazy(() =>
+      import(`@synerise/ds-icon/dist/icons/${icon}.svg`)
+        .then(({ ReactComponent }) => ({
+          default: ReactComponent,
+        }))
+        .catch(() => {})
+    );
 
     const commonProps = {
       size,
@@ -34,7 +40,9 @@ storiesOf('Components|CardSelect', module)
     return (
       <DSProvider code="en_GB">
         <div style={{ background: '#f2f5f6', padding: '16px', display: 'flex' }}>
-          <React.Suspense fallback={<div>Loading icons... (or perhaps you've entered an icon that couldn't be found)</div>}>
+          <React.Suspense
+            fallback={<div>Loading icons... (or perhaps you've entered an icon that couldn't be found)</div>}
+          >
             <div style={{ marginLeft: 12, marginRight: 12 }}>
               <CardSelect
                 {...commonProps}
@@ -73,7 +81,7 @@ storiesOf('Components|CardSelect', module)
               />
             </div>
 
-            {size === 'medium' &&
+            {size === 'medium' && (
               <React.Fragment>
                 <div style={{ marginLeft: 12, marginRight: 12 }}>
                   <CardSelect
@@ -95,10 +103,9 @@ storiesOf('Components|CardSelect', module)
                   />
                 </div>
               </React.Fragment>
-            }
+            )}
           </React.Suspense>
         </div>
       </DSProvider>
     );
-  })
-;
+  });

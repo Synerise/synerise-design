@@ -24,7 +24,7 @@
   "dependencies": {
     "@synerise/ds-divider": "^0.2.0",
     "@synerise/ds-icon": "^0.2.3",
-    "antd": "*"
+    "antd": "3.24.0"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

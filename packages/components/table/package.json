@@ -28,7 +28,7 @@
     "@synerise/ds-pagination": "^0.4.5",
     "@synerise/ds-typography": "^0.5.0",
     "@synerise/ds-utils": "^0.5.0",
-    "antd": "*"
+    "antd": "3.24.0"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

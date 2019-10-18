@@ -41,20 +41,19 @@ module.exports = async ({ config, mode }) => {
     enforce: 'pre',
   });
 
-  config.module.rules.push(
-    {
-      test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-      use: [
-        {
-          loader: '@svgr/webpack',
-          options: {
-            babel: true,
-            icon: true,
-          },
+  config.module.rules.push({
+    test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+    use: [
+      {
+        loader: '@svgr/webpack',
+        options: {
+          babel: true,
+          icon: true,
         },
-      ],
-    }
-  );
+      },
+      'url-loader',
+    ],
+  });
 
   config.resolve.extensions.push('.ts', '.tsx');
 

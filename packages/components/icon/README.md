@@ -1,4 +1,4 @@
----
+\---
 id: icon
 title: Icon
 ---
@@ -41,6 +41,7 @@ Import SVG icon as a react component by using webpack and **@svgr/webpack**
         icon: true,
       },
     },
+    'url-loader',
   ],
 }
 
@@ -48,7 +49,7 @@ Import SVG icon as a react component by using webpack and **@svgr/webpack**
 
 ```
 import Icon from '@synerise/ds-layout'
-import AngleLeftM from '@synerise/ds-icon/dist/icons/angle-left-m.svg';
+import { ReactComponent as AngleLeftM }  from '@synerise/ds-icon/dist/icons/angle-left-m.svg';
 
 <Icon component={<AngleLeftM />
       color={'red'}

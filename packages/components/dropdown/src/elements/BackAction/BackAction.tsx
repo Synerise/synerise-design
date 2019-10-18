@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import Divider from '@synerise/ds-divider';
 import Icon from '@synerise/ds-icon';
-import ArrowLeftM from '@synerise/ds-icon/dist/icons/arrow-left-m.svg';
+import { ReactComponent as ArrowLeftM } from '@synerise/ds-icon/dist/icons/arrow-left-m.svg';
 
 import * as S from './BackAction.styles';
 
