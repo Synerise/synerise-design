@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.1](https://github.com/synerise/synerise-design/compare/portal@0.11.0...portal@0.11.1) (2019-10-18)
+
+
+### Bug Fixes
+
+* **icon:** fix icon components ([c2f51df](https://github.com/synerise/synerise-design/commit/c2f51df))
+
+
+
+
+
 # [0.11.0](https://github.com/synerise/synerise-design/compare/portal@0.10.1...portal@0.11.0) (2019-10-18)
 
 

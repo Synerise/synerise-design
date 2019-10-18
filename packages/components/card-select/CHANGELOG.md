@@ -3,21 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-select@0.1.2...@synerise/ds-card-select@0.1.3) (2019-10-18)
+
+### Bug Fixes
+
+- **icon:** fix icon components ([c2f51df](https://github.com/Synerise/synerise-design/commit/c2f51df))
+
 ## [0.1.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-select@0.1.1...@synerise/ds-card-select@0.1.2) (2019-10-18)
 
 **Note:** Version bump only for package @synerise/ds-card-select
 
-
-
-
-
 ## [0.1.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-select@0.1.0...@synerise/ds-card-select@0.1.1) (2019-10-17)
 
 **Note:** Version bump only for package @synerise/ds-card-select
-
-
-
-
 
 # 0.1.0 (2019-10-16)
 
