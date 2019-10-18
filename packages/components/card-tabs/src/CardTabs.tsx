@@ -15,15 +15,23 @@ function CardTabs(props: CardTabsProps): React.ReactNode {
   const { onChangeOrder, onAddTab, maxTabsCount, children } = props;
 
   return (
-    <S.CardTabsContainer>
+    <S.CardTabsContainer data-testid="card-tabs-container">
       {onChangeOrder ? (
-        <Sortable className="ds-card-tags-sortable" onChange={onChangeOrder}>
+        <Sortable className="ds-card-tags-sortable" onChange={onChangeOrder} data-testid="card-tabs-sortable">
           {children}
         </Sortable>
       ) : (
-        <div className="ds-card-tags-sortable">{children}</div>
+        <div className="ds-card-tags-sortable" data-testid="card-tabs-static">
+          {children}
+        </div>
       )}
-      {onAddTab && <AddButton disabled={React.Children.toArray(children).length >= maxTabsCount} onClick={onAddTab} />}
+      {onAddTab && (
+        <AddButton
+          disabled={React.Children.toArray(children).length >= maxTabsCount}
+          onClick={onAddTab}
+          data-testid="card-tabs-add-button"
+        />
+      )}
     </S.CardTabsContainer>
   );
 }

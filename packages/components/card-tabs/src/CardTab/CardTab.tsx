@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Icon from '@synerise/ds-icon';
-import TextTruncate from 'react-text-truncate';
 import HandleIcon from '@synerise/ds-icon/dist/icons/drag-handle-m.svg';
 import ChangeNameIcon from '@synerise/ds-icon/dist/icons/edit-s.svg';
 import DuplicateIcon from '@synerise/ds-icon/dist/icons/duplicate-s.svg';
@@ -9,24 +8,29 @@ import InlineEdit from '@synerise/ds-inline-edit/dist/InlineEdit';
 import getColorByIndex from '../utils/getColorByIndex';
 import * as S from './CardTab.styles';
 
+export enum prefixType {
+  TAG,
+  ICON,
+}
+
 export interface CardTabProps {
   id: number;
   index: number;
-  active?: boolean;
-  onSelectTab?: (id: number) => void;
-  onChangeName?: (id: number, name: string) => void;
-  onDuplicateTab?: (id: number) => void;
-  onRemoveTab?: (id: number) => void;
   name: string;
   tag: string;
+  prefix: prefixType;
+  active?: boolean;
   onClick?: () => void;
   draggable?: boolean;
   prefixIcon?: React.ReactNode;
   suffixIcon?: React.ReactNode;
-  showTag?: boolean;
   disabled?: boolean;
   invalid?: boolean;
   greyBackground?: boolean;
+  onSelectTab?: (id: number) => void;
+  onChangeName?: (id: number, name: string) => void;
+  onDuplicateTab?: (id: number) => void;
+  onRemoveTab?: (id: number) => void;
 }
 
 interface CardTabState {
@@ -36,11 +40,8 @@ interface CardTabState {
 }
 
 export default class CardTab extends React.Component<CardTabProps, CardTabState> {
-  private truncateRef: any;
   constructor(props) {
     super(props);
-    const { name } = this.props;
-    this.truncateRef = null;
 
     this.state = {
       edited: false,
@@ -55,14 +56,6 @@ export default class CardTab extends React.Component<CardTabProps, CardTabState>
 
   handleMouseUp = (): void => {
     this.setState({ pressed: false });
-  };
-
-  handleTruncateLabel = (event): void => {
-    event.stopPropagation();
-    const { truncateRef, state } = this;
-    if (!state.edited) {
-      truncateRef.onResize();
-    }
   };
 
   private handleEditName(event): void {
@@ -124,7 +117,7 @@ export default class CardTab extends React.Component<CardTabProps, CardTabState>
       onRemoveTab,
       active,
       disabled,
-      showTag,
+      prefix,
       invalid,
       greyBackground,
     } = this.props;
@@ -141,20 +134,14 @@ export default class CardTab extends React.Component<CardTabProps, CardTabState>
         onMouseDown={this.handleMouseDown}
         onMouseLeave={this.handleMouseUp}
         onMouseUp={this.handleMouseUp}
-        onMouseOver={this.handleTruncateLabel}
-        onMouseOut={this.handleTruncateLabel}
-        onFocus={this.handleTruncateLabel}
-        onBlur={this.handleTruncateLabel}
         greyBackground={greyBackground}
         data-id={id}
       >
-        {(showTag || prefixIcon || draggable) && (
-          <S.CardTabPrefix>
-            {showTag && !draggable && <S.CardTabTag>{tag}</S.CardTabTag>}
-            {prefixIcon && !showTag && !draggable && <Icon component={prefixIcon} />}
-            {draggable && <Icon className="ds-card-tabs__handle-icon" component={<HandleIcon />} />}
-          </S.CardTabPrefix>
-        )}
+        <S.CardTabPrefix>
+          {!draggable && prefix === prefixType.TAG && tag && <S.CardTabTag>{tag}</S.CardTabTag>}
+          {!draggable && prefix === prefixType.ICON && prefixIcon && <Icon component={prefixIcon} />}
+          {draggable && <Icon className="ds-card-tabs__handle-icon" component={<HandleIcon />} />}
+        </S.CardTabPrefix>
         <S.CardTabLabel>
           {edited ? (
             <InlineEdit
@@ -169,14 +156,7 @@ export default class CardTab extends React.Component<CardTabProps, CardTabState>
               }}
             />
           ) : (
-            <TextTruncate
-              ref={(c): void => {
-                this.truncateRef = c;
-              }}
-              line={1}
-              truncateText="... "
-              text={`${name}`}
-            />
+            <span>{name}</span>
           )}
         </S.CardTabLabel>
         {(onChangeName || onDuplicateTab || onRemoveTab) && !suffixIcon && (

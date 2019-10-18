@@ -32,6 +32,9 @@ export const CardTabLabel = styled.span`
   color: ${({ theme }): string => theme.palette['grey-600']};
   line-height: 20px;
   font-size: 14px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
   flex: 1;
 `;
 
@@ -90,7 +93,7 @@ export const CardTabContainer = styled.div`
       display: flex; 
     }
     ${CardTabLabel} {
-      color: ${({ theme }): string => theme.palette['grey-800']}; 
+      color: ${({ theme }): string => theme.palette['grey-800']};
     }
     ${CardTabTag} {
       background-color: ${({ theme, active, color }): string => theme.palette[color]}
