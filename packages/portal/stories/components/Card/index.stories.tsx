@@ -9,10 +9,10 @@ import { storiesOf } from '@storybook/react';
 import { boolean, text, number, select } from '@storybook/addon-knobs';
 
 const sizes = {
-  'None': null,
-  'Small': 'small',
-  'Medium': 'medium',
-  'Large': 'large',
+  None: null,
+  Small: 'small',
+  Medium: 'medium',
+  Large: 'large',
   'Extra Large': 'extraLarge',
 };
 
@@ -36,8 +36,11 @@ const init = () => {
 };
 
 const renderCard = props => {
-  const IconComponent = React.lazy(() => import(`@synerise/ds-icon/dist/icons/${props.withIcon}.svg`).catch(() => {}));
-
+  const IconComponent = React.lazy(() =>
+    import(`@synerise/ds-icon/dist/icons/${props.withIcon}.svg`).then(({ ReactComponent }) => ({
+      default: ReactComponent
+    }))
+  );
   return (
     <React.Suspense fallback={<div>Loading icon</div>}>
       <Card
@@ -51,15 +54,9 @@ const renderCard = props => {
         iconColor={props.iconColor}
         size={props.size}
         compactHeader={props.compactHeader}
-        headerSideChildren={props.withHeaderSide && (
-          <Button type="primary">Button</Button>
-        )}
+        headerSideChildren={props.withHeaderSide && <Button type="primary">Button</Button>}
       >
-        {props.showContent &&
-          <div style={{width: '100%', height: 300}}>
-            Wow so great, such content!1
-          </div>
-        }
+        {props.showContent && <div style={{ width: '100%', height: 300 }}>Wow so great, such content!1</div>}
       </Card>
     </React.Suspense>
   );
@@ -71,16 +68,14 @@ storiesOf('Components|Card', module)
 
     return (
       <DSProvider code="en_GB">
-        <div style={{margin: 24}}>
+        <div style={{ margin: 24 }}>
           <h3>Single card</h3>
-          <div style={{ paddingTop: 12, width: '100%' }}>
-            {renderCard(props)}
-          </div>
+          <div style={{ paddingTop: 12, width: '100%' }}>{renderCard(props)}</div>
         </div>
       </DSProvider>
     );
   })
-  
+
   .add('Group', () => {
     const { props } = init();
     const itemsInGroup = number('Number of cards rendered', 9);
@@ -92,15 +87,12 @@ storiesOf('Components|Card', module)
           <h3>Card Group</h3>
           <div style={{ paddingTop: 12, width: '100%' }}>
             <CardGroup columns={rowItems}>
-              {range(1, itemsInGroup).map(i =>
-                <React.Fragment key={i}>
-                  {renderCard(props)}
-                </React.Fragment>
-              )}
+              {range(1, itemsInGroup).map(i => (
+                <React.Fragment key={i}>{renderCard(props)}</React.Fragment>
+              ))}
             </CardGroup>
           </div>
         </div>
       </DSProvider>
     );
-  }) 
-;
+  });

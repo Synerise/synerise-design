@@ -25,7 +25,7 @@
     "@synerise/ds-divider": "^0.2.0",
     "@synerise/ds-radio": "^0.5.0",
     "@synerise/ds-utils": "^0.5.0",
-    "antd": "*",
+    "antd": "3.24.0",
     "uuid": "^3.3.3"
   },
   "peerDependencies": {

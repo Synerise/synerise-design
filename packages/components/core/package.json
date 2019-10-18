@@ -24,7 +24,7 @@
   "sideEffects": false,
   "types": "dist/js/index.js",
   "dependencies": {
-    "antd": "*",
+    "antd": "3.24.0",
     "flat": "^4.1.0"
   },
   "peerDependencies": {

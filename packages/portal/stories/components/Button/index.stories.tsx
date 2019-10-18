@@ -8,75 +8,78 @@ import markdown from '@/button/README.md';
 import { DSProvider } from '@synerise/ds-core';
 
 import Icon from '@synerise/ds-icon';
-import AngleDownS from '@synerise/ds-icon/dist/icons/angle-down-s.svg';
-import DragHandleM from '@synerise/ds-icon/dist/icons/drag-handle-m.svg';
-import ShowM from '@synerise/ds-icon/dist/icons/show-m.svg';
+import { ReactComponent as AngleDownS } from '@synerise/ds-icon/dist/icons/angle-down-s.svg';
+import { ReactComponent as DragHandleM } from '@synerise/ds-icon/dist/icons/drag-handle-m.svg';
+import { ReactComponent as ShowM } from '@synerise/ds-icon/dist/icons/show-m.svg';
 import Button from '@synerise/ds-button';
 
 const config = {
-    notes: { markdown },
+  notes: { markdown },
 };
 
 const type = {
-    Primary: 'primary',
-    Secondary: 'secondary',
-    Tertiary: 'tertiary',
-    Ghost: 'ghost',
-    Danger: 'danger',
-    Success: 'success',
-    Warning: 'warning',
+  Primary: 'primary',
+  Secondary: 'secondary',
+  Tertiary: 'tertiary',
+  Ghost: 'ghost',
+  Danger: 'danger',
+  Success: 'success',
+  Warning: 'warning',
 };
 
 const buttonStyle = {
-    margin: 20
-}
-
-const props = {
-    regular: () => {
-        return {
-            disabled: boolean('Disables', false),
-            block: boolean('Fit button width', false),
-            htmlType: text('Type button', 'button'),
-            href: text('Redirect to link', ''),
-            type: select('Set type', type, 'primary'),
-
-            onClick: action('onClick CLICK')
-        }
-    }
+  margin: 20,
 };
 
+const props = {
+  regular: () => {
+    return {
+      disabled: boolean('Disables', false),
+      block: boolean('Fit button width', false),
+      htmlType: text('Type button', 'button'),
+      href: text('Redirect to link', ''),
+      type: select('Set type', type, 'primary'),
+
+      onClick: action('onClick CLICK'),
+    };
+  },
+};
 
 storiesOf('Components|Button', module)
   .addDecorator(centered)
-  .add('with text', () =>  {
+  .add(
+    'with text',
+    () => {
       const regularProps = props.regular();
       return (
-          <DSProvider code="en_GB">
-              <>
-              <Button style={buttonStyle} {...regularProps} mode={'simple'}>
-                  Button
-              </Button>
-              <Button style={buttonStyle} {...regularProps} mode={'split'}>
-                  Button
-                  <Icon component={<AngleDownS />} color={'#ffffff'}/>
-              </Button>
-              <Button style={buttonStyle} {...regularProps} mode={'two-icons'}>
-                  <Icon component={<DragHandleM />} color={'#ffffff'}/>
-                  Button
-                  <Icon component={<AngleDownS />} color={'#ffffff'}/>
-              </Button>
-              <Button style={buttonStyle} {...regularProps} mode={'label-icon'}>
-                  Button
-                  <Icon component={<AngleDownS />} color={'#ffffff'}/>
-              </Button>
-              <Button style={buttonStyle} {...regularProps} mode={'icon-label'}>
-                  <Icon component={<AngleDownS />} color={'#ffffff'}/>
-                  Button
-              </Button>
-              <Button style={buttonStyle} {...regularProps} mode={'single-icon'}>
-                  <Icon component={<ShowM />} color={'#ffffff'}/>
-              </Button>
-                  </>
-          </DSProvider>
-      )
-  }, config);
+        <DSProvider code="en_GB">
+          <>
+            <Button style={buttonStyle} {...regularProps} mode={'simple'}>
+              Button
+            </Button>
+            <Button style={buttonStyle} {...regularProps} mode={'split'}>
+              Button
+              <Icon component={<AngleDownS />} color={'#ffffff'} />
+            </Button>
+            <Button style={buttonStyle} {...regularProps} mode={'two-icons'}>
+              <Icon component={<DragHandleM />} color={'#ffffff'} />
+              Button
+              <Icon component={<AngleDownS />} color={'#ffffff'} />
+            </Button>
+            <Button style={buttonStyle} {...regularProps} mode={'label-icon'}>
+              Button
+              <Icon component={<AngleDownS />} color={'#ffffff'} />
+            </Button>
+            <Button style={buttonStyle} {...regularProps} mode={'icon-label'}>
+              <Icon component={<AngleDownS />} color={'#ffffff'} />
+              Button
+            </Button>
+            <Button style={buttonStyle} {...regularProps} mode={'single-icon'}>
+              <Icon component={<ShowM />} color={'#ffffff'} />
+            </Button>
+          </>
+        </DSProvider>
+      );
+    },
+    config
+  );

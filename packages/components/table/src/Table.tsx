@@ -6,7 +6,51 @@ import Table, { TableProps } from 'antd/lib/table';
 import * as S from './Table.styles';
 import './style/index.less';
 
-interface DSTableProps<T> extends Omit<TableProps<T>, 'title'> {
+type AntTableProps<T> = Pick<
+  TableProps<T>,
+  | 'loading'
+  | 'footer'
+  | 'style'
+  | 'scroll'
+  | 'size'
+  | 'children'
+  | 'className'
+  | 'prefixCls'
+  | 'locale'
+  | 'getPopupContainer'
+  | 'onChange'
+  | 'dataSource'
+  | 'expandIcon'
+  | 'tableLayout'
+  | 'columns'
+  | 'bordered'
+  | 'bodyStyle'
+  | 'pagination'
+  | 'rowKey'
+  | 'dropdownPrefixCls'
+  | 'rowSelection'
+  | 'components'
+  | 'rowClassName'
+  | 'expandedRowRender'
+  | 'defaultExpandAllRows'
+  | 'defaultExpandedRowKeys'
+  | 'expandedRowKeys'
+  | 'expandIconAsCell'
+  | 'expandIconColumnIndex'
+  | 'expandRowByClick'
+  | 'onExpandedRowsChange'
+  | 'onExpand'
+  | 'indentSize'
+  | 'onRowClick'
+  | 'onRow'
+  | 'onHeaderRow'
+  | 'useFixedHeader'
+  | 'showHeader'
+  | 'childrenColumnName'
+  | 'sortDirections'
+>;
+
+interface DSTableProps<T> extends AntTableProps<T> {
   title?: string | React.ReactNode;
   subTitle?: string | React.ReactNode;
   onSearch?: (e: React.ChangeEvent<HTMLInputElement>) => void;
