@@ -5,7 +5,7 @@ import { Input, InputGroup, TextArea, RawInput } from '@synerise/ds-input';
 import { DSProvider } from '@synerise/ds-core';
 
 import Icon from '@synerise/ds-icon';
-import { ReactComponent as FileM } from '@synerise/ds-icon/dist/icons/file-m.svg';
+import FileM from '@synerise/ds-icon/dist/icons/FileM';
 import Select from '@synerise/ds-select';
 
 export const InputBasic = () => (

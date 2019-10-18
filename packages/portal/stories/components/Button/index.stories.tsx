@@ -8,9 +8,7 @@ import markdown from '@/button/README.md';
 import { DSProvider } from '@synerise/ds-core';
 
 import Icon from '@synerise/ds-icon';
-import { ReactComponent as AngleDownS } from '@synerise/ds-icon/dist/icons/angle-down-s.svg';
-import { ReactComponent as DragHandleM } from '@synerise/ds-icon/dist/icons/drag-handle-m.svg';
-import { ReactComponent as ShowM } from '@synerise/ds-icon/dist/icons/show-m.svg';
+import { AngleDownS, DragHandleM, ShowM } from '@synerise/ds-icon/dist/icons';
 import Button from '@synerise/ds-button';
 
 const config = {

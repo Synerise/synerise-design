@@ -5,7 +5,7 @@ import { action } from '@storybook/addon-actions';
 import centered from '@storybook/addon-centered/react';
 
 import Icon from '@synerise/ds-icon';
-import { ReactComponent as FileM } from '@synerise/ds-icon/dist/icons/file-m.svg';
+import FileM from '@synerise/ds-icon/dist/icons/FileM';
 
 import List from '@synerise/ds-list';
 import Checkbox from '@synerise/ds-checkbox';

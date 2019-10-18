@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import Modal, { ModalProps } from 'antd/lib/modal';
 import Icon from '@synerise/ds-icon';
-import { ReactComponent as CloseM } from '@synerise/ds-icon/dist/icons/close-m.svg';
+import CloseM from '@synerise/ds-icon/dist/icons/CloseM';
 
 import Button from '@synerise/ds-button';
 import '@synerise/ds-core/dist/js/style';

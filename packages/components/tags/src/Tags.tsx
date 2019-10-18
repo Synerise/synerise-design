@@ -2,7 +2,7 @@ import * as React from 'react';
 import { withTheme } from 'styled-components';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon from '@synerise/ds-icon';
-import { ReactComponent as AddThreeM } from '@synerise/ds-icon/dist/icons/add-3-m.svg';
+import Add3M from '@synerise/ds-icon/dist/icons/Add3M';
 
 import { Props } from './Tags.types';
 import * as S from './Tags.styles';
@@ -30,7 +30,7 @@ const Tags: React.FC<Props> = ({
 
   const addIcon = (
     <S.AddIconWrapper>
-      <Icon component={<AddThreeM />} size={24} color={theme.palette['grey-500']} />
+      <Icon component={<Add3M />} size={24} color={theme.palette['grey-500']} />
     </S.AddIconWrapper>
   );
 

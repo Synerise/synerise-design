@@ -6,7 +6,7 @@ import { DSProvider } from '@synerise/ds-core';
 
 import Badge from '@synerise/ds-badge';
 import Icon from '@synerise/ds-icon';
-import { ReactComponent as FileM } from '@synerise/ds-icon/dist/icons/file-m.svg';
+import FileM from '@synerise/ds-icon/dist/icons/FileM';
 
 const wrapperStyles = {
   padding: '40px',

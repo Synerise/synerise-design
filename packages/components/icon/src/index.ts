@@ -1,3 +1,3 @@
-import './icons/icons';
+import './svg/icons';
 
 export { default } from './Icon';

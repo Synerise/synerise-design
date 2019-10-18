@@ -3,7 +3,7 @@ const { packages } = require('./lerna.json');
 module.exports = api => {
   const isTest = api.env('test');
 
-  let ignore = ['**/dist/'];
+  let ignore = ['**/dist/!(es)'];
 
   if (!isTest) ignore = ignore.concat(['**/__specs__/', '**/__stories__/']);
 
@@ -11,13 +11,7 @@ module.exports = api => {
     babelrcRoots: ['.', ...packages],
     ignore,
 
-    presets: [
-      '@babel/preset-react',
-      [
-        '@babel/preset-env'
-      ],
-      '@babel/preset-typescript',
-    ],
+    presets: ['@babel/preset-react', ['@babel/preset-env'], '@babel/preset-typescript'],
 
     plugins: [
       '@babel/plugin-proposal-object-rest-spread',

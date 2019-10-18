@@ -27,7 +27,7 @@ const init = () => {
     withHeader: boolean('With header', true),
     showContent: boolean('Show content', true),
     withHeaderSide: boolean('With header side children', true),
-    withIcon: text('With icon', 'check-3-m'),
+    withIcon: text('With icon', 'Check3M'),
     iconColor: text('Icon color', '#54cb0b'),
     compactHeader: boolean('Compact header', false),
   };
@@ -36,11 +36,7 @@ const init = () => {
 };
 
 const renderCard = props => {
-  const IconComponent = React.lazy(() =>
-    import(`@synerise/ds-icon/dist/icons/${props.withIcon}.svg`).then(({ ReactComponent }) => ({
-      default: ReactComponent
-    }))
-  );
+  const IconComponent = React.lazy(() => import(`@synerise/ds-icon/dist/icons/${props.withIcon}`));
   return (
     <React.Suspense fallback={<div>Loading icon</div>}>
       <Card

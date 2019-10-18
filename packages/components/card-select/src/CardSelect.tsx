@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { withTheme } from 'styled-components';
 import Icon from '@synerise/ds-icon';
-import { ReactComponent as CheckThreeM } from '@synerise/ds-icon/dist/icons/check-3-m.svg';
+import Check3M from '@synerise/ds-icon/dist/icons/Check3M';
 
 import { Props } from './CardSelect.types';
 import * as S from './CardSelect.styles';
@@ -50,7 +50,7 @@ const CardSelect: React.FC<Props> = ({
               <Icon
                 size={30}
                 color={value ? theme.palette['green-600'] : theme.palette['grey-400']}
-                component={<CheckThreeM />}
+                component={<Check3M />}
               />
             ) : (
               <S.RadioShape />

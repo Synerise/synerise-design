@@ -1,7 +1,7 @@
 const fs = require('fs-extra');
 
-const ICON_PATH = './src/icons/';
-const ICON_PATH_DIST = './dist/icons';
+const ICON_PATH = './src/svg/';
+const ICON_PATH_DIST = './dist/svg';
 const OPTIONS = {
   filter: file => !/\.ts$/.exec(file),
 };
