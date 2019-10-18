@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Field, Form } from 'react-final-form';
+import { Field, Form as FinalForm } from 'react-final-form';
 import { storiesOf } from '@storybook/react';
 
 import InputNumber from "@synerise/ds-input-number";
@@ -9,8 +9,10 @@ import Checkbox from "@synerise/ds-checkbox";
 import Radio from "@synerise/ds-radio";
 import Select from "@synerise/ds-select";
 import { DSProvider } from "@synerise/ds-core";
+import Form from '@synerise/ds-form';
 
 import { action } from "@storybook/addon-actions";
+import { boolean, text } from "@storybook/addon-knobs";
 
 interface FormValues {
   age: number;
@@ -60,7 +62,7 @@ const FormExample = () => {
     <DSProvider code="en_GB">
       <div style={{ width: '400px', padding: '16px', background: '#fff' }}>
 
-        <Form
+        <FinalForm
           onSubmit={onSubmit}
           validate={validate}
           initialValues={{ age: 1, firstName: '', description: '' }}
@@ -158,5 +160,21 @@ const FormExample = () => {
   )
 };
 
+const FieldSetExample = () => (
+  <div style={{ width: "400px", background: '#fff', padding: '16px' }}>
+    <DSProvider code="en_GB">
+      <Form.FieldSet
+        heading={text('heading', "Heading")}
+        description={text('description', "Description")}
+        withLine={boolean('withLine', false)}
+      >
+        Content
+      </Form.FieldSet>
+    </DSProvider>
+  </div>
+);
+
 storiesOf('Form|Example', module)
-  .add('default', FormExample);
+  .add('default', FormExample)
+  .add('Field Set', FieldSetExample)
+;
