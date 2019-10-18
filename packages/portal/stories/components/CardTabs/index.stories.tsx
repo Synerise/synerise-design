@@ -4,13 +4,12 @@ import { DSProvider } from '@synerise/ds-core';
 import range from 'lodash/range';
 import FileIcon from '@synerise/ds-icon/dist/icons/file-m.svg';
 import CardTabs from '@synerise/ds-card-tabs';
-import { action } from '@storybook/addon-actions';
 import { withState } from '@dump247/storybook-state';
 import { boolean, number, select, text, withKnobs } from '@storybook/addon-knobs';
 import CardTab, { prefixType } from '@synerise/ds-card-tabs/dist/CardTab/CardTab';
 
 storiesOf('Components|CardTabs', module)
-  .add('with icons in prefix', withState({
+  .add('default', withState({
     items: range(3).map((i: number) => ({
         id: i,
         name: `Variant ${String.fromCharCode(65 + i).toUpperCase()}`,
@@ -22,10 +21,10 @@ storiesOf('Components|CardTabs', module)
   })(({store}) => {
     const bg = boolean('White background', true);
     const suffixIcon = boolean('Show suffix icon', false);
-    const disabled = boolean('Disable tabs', false);
+    const disabled = boolean('Disabled tabs', false);
     const draggable = boolean('Enable change order of tabs', false);
-    const invalid = boolean('Show invalid tabs', false);
-    const maxTabCount = number('Max tabs count', 4);
+    const invalid = boolean('Invalid tabs', false);
+    const maxTabCount = number('Max number of tabs', 4);
     const prefix = select('Prefix type', {'tag': prefixType.TAG, 'icon': prefixType.ICON}, prefixType.TAG);
     const handleChangeName = (id, name) => {
       store.set({
