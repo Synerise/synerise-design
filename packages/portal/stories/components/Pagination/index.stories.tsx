@@ -6,8 +6,8 @@ import { action } from '@storybook/addon-actions';
 import centered from '@storybook/addon-centered/react';
 
 import Icon from '@synerise/ds-icon';
-import { ReactComponent as AngleLeftM } from '@synerise/ds-icon/dist/icons/angle-left-m.svg';
-import { ReactComponent as AngleRighttM } from '@synerise/ds-icon/dist/icons/angle-right-m.svg';
+import AngleLeftM from '@synerise/ds-icon/dist/icons/AngleLeftM';
+import AngleRightM from '@synerise/ds-icon/dist/icons/AngleRightM';
 
 const stories = storiesOf('Components|Pagination', module);
 

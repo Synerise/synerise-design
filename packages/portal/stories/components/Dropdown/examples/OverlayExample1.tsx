@@ -5,8 +5,8 @@ import { DSProvider } from '@synerise/ds-core';
 import List from '@synerise/ds-list';
 
 import Icon from '@synerise/ds-icon';
-import { ReactComponent as FileM } from '@synerise/ds-icon/dist/icons/file-m.svg';
-import { ReactComponent as ArrowRightCircleM } from '@synerise/ds-icon/dist/icons/arrow-right-circle-m.svg';
+import FileM from '@synerise/ds-icon/dist/icons/FileM';
+import ArrowRightCircleM from '@synerise/ds-icon/dist/icons/ArrowRightCircleM';
 
 import Dropdown from '@synerise/ds-dropdown';
 

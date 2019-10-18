@@ -6,9 +6,7 @@ import { DSProvider } from '@synerise/ds-core';
 import Avatar from '@synerise/ds-avatar';
 import Badge from '@synerise/ds-badge';
 import Icon from '@synerise/ds-icon';
-import { ReactComponent as FileM } from '@synerise/ds-icon/dist/icons/file-m.svg';
-import { ReactComponent as ArroUpM } from '@synerise/ds-icon/dist/icons/arrow-up-m.svg';
-import { ReactComponent as ArrowDownM } from '@synerise/ds-icon/dist/icons/arrow-down-m.svg';
+import { FileM, ArrowUpM, ArrowDownM } from '@synerise/ds-icon/dist/icons';
 
 const shapes = ['circle', 'square'] as const;
 const sizes = ['small', 'default', 'large', 'extraLarge'] as const;
@@ -149,7 +147,7 @@ stories.add('types', () => {
             <Icon
               color={text('CustomIconColor', '#ff5831')}
               size={number('CustomIconSize', 32)}
-              component={<ArroUpM />}
+              component={<ArrowUpM />}
             />
           }
           size={number('CustomIconSize', 32)}

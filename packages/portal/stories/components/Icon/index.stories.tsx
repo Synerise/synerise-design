@@ -4,7 +4,7 @@ import { boolean, number, text } from '@storybook/addon-knobs';
 import Icon from '@synerise/ds-icon';
 import centered from '@storybook/addon-centered/react';
 import iconArr from './icons';
-import { ReactComponent as AngleLeftM } from '@synerise/ds-icon/dist/icons/shuffle-m.svg';
+import AngleLeftM from '@synerise/ds-icon/dist/icons/AngleLeftM';
 
 const stories = storiesOf('Components|Icon', module);
 
@@ -18,14 +18,20 @@ const listyStyles: React.CSSProperties = {
   borderColor: '#e0e0e0',
 };
 
-const setIcon = name => require(`@synerise/ds-icon/dist/icons/${name}.svg`).ReactComponent;
+const setIcon = name => React.lazy(() => import(`@synerise/ds-icon/dist/icons/${name}.js`));
 
 const IconComponent = iconArr.map(i => {
   const IconComponent = setIcon(i);
 
   return (
     <div style={listyStyles}>
-      <Icon component={<IconComponent />} />
+      <Icon
+        component={
+          <React.Suspense fallback="">
+            <IconComponent />
+          </React.Suspense>
+        }
+      />
       <br />
       <br />
       <p>{i}</p>

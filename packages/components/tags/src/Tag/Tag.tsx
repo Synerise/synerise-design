@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Icon from '@synerise/ds-icon';
-import { ReactComponent as CloseM } from '@synerise/ds-icon/dist/icons/close-m.svg';
+import CloseM from '@synerise/ds-icon/dist/icons/CloseM';
 
 import { Props } from './Tag.types';
 import * as S from './Tag.styles';

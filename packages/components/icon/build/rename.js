@@ -1,6 +1,6 @@
 const fs = require('fs-extra');
 
-const ICON_PATH = './src/icons/';
+const ICON_PATH = './src/svg/';
 const files = fs.readdirSync(ICON_PATH);
 
 const renameFun = files.map(i => {

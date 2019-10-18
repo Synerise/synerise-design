@@ -16,15 +16,12 @@ storiesOf('Components|CardSelect', module)
     const raised = boolean('Raised', false);
     const tickVisible = boolean('With tick', true);
     const stretchToFit = boolean('Stretch to fit', false);
-    const icon = text('Icon component name', 'tiles-m');
+    const icon = text('Icon component name', 'TilesM');
     const iconSize = number('Custom Icon component size', 0);
     const size = select('Size', { small: 'small', medium: 'medium' }, 'medium');
 
     const IconComponent = React.lazy(() =>
-      import(`@synerise/ds-icon/dist/icons/${icon}.svg`)
-        .then(({ ReactComponent }) => ({
-          default: ReactComponent,
-        }))
+      import(`@synerise/ds-icon/dist/icons/${icon}`)
         .catch(() => {})
     );
 

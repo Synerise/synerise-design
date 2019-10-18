@@ -2,7 +2,7 @@ import * as React from 'react';
 import AutosizeInput from 'react-input-autosize';
 import Tooltip from '@synerise/ds-tooltip';
 import Icon from '@synerise/ds-icon';
-import { ReactComponent as EditM } from '@synerise/ds-icon/dist/icons/edit-m.svg';
+import EditM from '@synerise/ds-icon/dist/icons/EditM';
 import { toCamelCase } from '@synerise/ds-utils';
 import { attachWidthWatcher } from './utils';
 import * as S from './InlineEdit.styles';
