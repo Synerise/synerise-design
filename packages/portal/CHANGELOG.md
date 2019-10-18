@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.1](https://github.com/synerise/synerise-design/compare/portal@0.10.0...portal@0.10.1) (2019-10-18)
+
+
+### Bug Fixes
+
+* **input:** export raw inputs ([47e18b3](https://github.com/synerise/synerise-design/commit/47e18b3))
+
+
+
+
+
 # [0.10.0](https://github.com/synerise/synerise-design/compare/portal@0.9.1...portal@0.10.0) (2019-10-17)
 
 
