@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Sortable from 'react-sortablejs';
-import CardTab, { CardTabProps } from './CardTab/CardTab';
 import AddButton from './AddButton/AddButton';
 import * as S from './CardTabs.styles';
 
@@ -11,9 +10,7 @@ export type CardTabsProps = {
   children?: React.ReactChildren;
 };
 
-function CardTabs(props: CardTabsProps): React.ReactElement {
-  const { onChangeOrder, onAddTab, maxTabsCount, children } = props;
-
+const CardTabs: React.FC<CardTabsProps> = ({ onChangeOrder, onAddTab, maxTabsCount, children }) => {
   return (
     <S.CardTabsContainer data-testid="card-tabs-container">
       {onChangeOrder ? (
@@ -32,6 +29,6 @@ function CardTabs(props: CardTabsProps): React.ReactElement {
       )}
     </S.CardTabsContainer>
   );
-}
+};
 
 export default CardTabs;

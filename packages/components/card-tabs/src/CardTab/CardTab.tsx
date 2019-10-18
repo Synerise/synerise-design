@@ -1,12 +1,10 @@
 import * as React from 'react';
 import Icon from '@synerise/ds-icon';
-import HandleIcon from '@synerise/ds-icon/dist/icons/drag-handle-m.svg';
-import ChangeNameIcon from '@synerise/ds-icon/dist/icons/edit-s.svg';
-import DuplicateIcon from '@synerise/ds-icon/dist/icons/duplicate-s.svg';
-import RemoveIcon from '@synerise/ds-icon/dist/icons/close-s.svg';
 import InlineEdit from '@synerise/ds-inline-edit/dist/InlineEdit';
 import getColorByIndex from '../utils/getColorByIndex';
 import * as S from './CardTab.styles';
+import CardTabPrefix from './CardTabPrefix/CardTabPrefix';
+import CardTabActions from './CardTabActions/CardTabActions';
 
 export enum prefixType {
   TAG,
@@ -20,7 +18,6 @@ export interface CardTabProps {
   tag: string;
   prefix: prefixType;
   active?: boolean;
-  onClick?: () => void;
   draggable?: boolean;
   prefixIcon?: React.ReactNode;
   suffixIcon?: React.ReactNode;
@@ -39,158 +36,109 @@ interface CardTabState {
   pressed: boolean;
 }
 
-export default class CardTab extends React.Component<CardTabProps, CardTabState> {
-  constructor(props) {
-    super(props);
+const CardTab: React.FC<CardTabProps> = ({
+  id,
+  name,
+  index,
+  tag,
+  prefix,
+  prefixIcon,
+  suffixIcon,
+  active,
+  draggable,
+  disabled,
+  invalid,
+  greyBackground,
+  onChangeName,
+  onSelectTab,
+  onDuplicateTab,
+  onRemoveTab,
+}) => {
+  const [edited, setEdited] = React.useState(false);
+  const [editedName, setEditedName] = React.useState(name);
+  const [pressed, setPressed] = React.useState(false);
 
-    this.state = {
-      edited: false,
-      editedName: props.name,
-      pressed: false,
-    };
-  }
-
-  handleMouseDown = (): void => {
-    this.setState({ pressed: true });
-  };
-
-  handleMouseUp = (): void => {
-    this.setState({ pressed: false });
-  };
-
-  private handleEditName(event): void {
+  const handleEditName = (event): void => {
     event.stopPropagation();
-    this.setState({
-      edited: true,
-    });
-  }
+    setEdited(true);
+  };
 
-  private handleChangeName(event: any): void {
+  const handleChangeName = (event): void => {
     const { value } = event.target;
-    this.setState({
-      editedName: value,
-    });
-  }
+    setEditedName(value);
+  };
 
-  private handleEditNameBlur(): void {
-    const { editedName } = this.state;
-    const { onChangeName, id } = this.props;
-    this.setState(
-      {
-        edited: false,
-      },
-      () => {
-        onChangeName(id, editedName);
-      }
-    );
-  }
+  const handleEditNameBlur = (): void => {
+    setEdited(false);
+    onChangeName(id, editedName);
+  };
 
-  private handleDuplicate(event): void {
+  const handleDuplicate = (event): void => {
     event.stopPropagation();
-    const { id, onDuplicateTab } = this.props;
     onDuplicateTab(id);
-  }
+  };
 
-  private handleRemove(event): void {
+  const handleRemove = (event): void => {
     event.stopPropagation();
-    const { id, onRemoveTab } = this.props;
     onRemoveTab(id);
-  }
+  };
 
-  private handleSelect(event): void {
+  const handleSelect = (event): void => {
     event.stopPropagation();
-    const { id, onSelectTab } = this.props;
     onSelectTab(id);
-  }
+  };
 
-  render(): React.ReactNode {
-    const {
-      id,
-      index,
-      name,
-      tag,
-      draggable,
-      prefixIcon,
-      suffixIcon,
-      onChangeName,
-      onDuplicateTab,
-      onRemoveTab,
-      active,
-      disabled,
-      prefix,
-      invalid,
-      greyBackground,
-    } = this.props;
-    const { edited, pressed, editedName } = this.state;
-    return (
-      <S.CardTabContainer
-        className={`${pressed ? 'pressed' : ''}`}
-        edited={edited}
-        active={active}
-        invalid={invalid}
-        disabled={!active && disabled}
-        color={getColorByIndex(index)}
-        onClick={this.handleSelect.bind(this)}
-        onMouseDown={this.handleMouseDown}
-        onMouseLeave={this.handleMouseUp}
-        onMouseUp={this.handleMouseUp}
-        greyBackground={greyBackground}
-        data-id={id}
-        data-testid="card-tab-container"
-      >
-        <S.CardTabPrefix data-testid="card-tab-prefix">
-          {!draggable && prefix === prefixType.TAG && tag && (
-            <S.CardTabTag data-testid="card-tab-tag">{tag}</S.CardTabTag>
-          )}
-          {!draggable && prefix === prefixType.ICON && prefixIcon && <Icon component={prefixIcon} />}
-          {draggable && <Icon className="ds-card-tabs__handle-icon" component={<HandleIcon />} />}
-        </S.CardTabPrefix>
-        <S.CardTabLabel data-testid="card-tab-label">
-          {edited ? (
-            <InlineEdit
-              className="ds-card-tabs__edit-name"
-              onChange={this.handleChangeName.bind(this)}
-              size="small"
-              hideIcon
-              style={{ maxWidth: 46 }}
-              input={{
-                value: editedName,
-                name: `ds-card-tab-input-${id}`,
-                onBlur: this.handleEditNameBlur.bind(this),
-              }}
-              data-testid="card-tab-edit-input"
-            />
-          ) : (
-            <span data-testid="card-tab-name">{name}</span>
-          )}
-        </S.CardTabLabel>
-        {(onChangeName || onDuplicateTab || onRemoveTab) && !suffixIcon && (
-          <S.CardTabSuffix data-testid="card-tab-suffix">
-            {onChangeName && (
-              <Icon
-                className="ds-card-tabs__change-name-icon"
-                component={<ChangeNameIcon />}
-                onClick={this.handleEditName.bind(this)}
-              />
-            )}
-            {onDuplicateTab && (
-              <Icon
-                className="ds-card-tabs__duplicate-icon"
-                component={<DuplicateIcon />}
-                onClick={this.handleDuplicate.bind(this)}
-              />
-            )}
-            {onRemoveTab && (
-              <Icon
-                className="ds-card-tabs__remove-icon"
-                component={<RemoveIcon />}
-                onClick={this.handleRemove.bind(this)}
-              />
-            )}
-          </S.CardTabSuffix>
+  const showCardActions = (): boolean => {
+    return (onChangeName || onDuplicateTab || onRemoveTab) && !suffixIcon;
+  };
+
+  return (
+    <S.CardTabContainer
+      className={`${pressed ? 'pressed' : ''}`}
+      edited={edited}
+      active={active}
+      invalid={invalid}
+      disabled={!active && disabled}
+      color={getColorByIndex(index)}
+      onClick={handleSelect}
+      onMouseDown={(): void => setPressed(true)}
+      onMouseLeave={(): void => setPressed(false)}
+      onMouseUp={(): void => setPressed(false)}
+      greyBackground={greyBackground}
+      data-id={id}
+      data-testid="card-tab-container"
+    >
+      <CardTabPrefix draggable={draggable} prefixIcon={prefixIcon} prefix={prefix} tag={tag} />
+      <S.CardTabLabel data-testid="card-tab-label">
+        {edited ? (
+          <InlineEdit
+            className="ds-card-tabs__edit-name"
+            onChange={handleChangeName}
+            size="small"
+            hideIcon
+            style={{ maxWidth: 46 }}
+            input={{
+              value: editedName,
+              name: `ds-card-tab-input-${id}`,
+              onBlur: handleEditNameBlur,
+            }}
+            data-testid="card-tab-edit-input"
+          />
+        ) : (
+          <span data-testid="card-tab-name">{name}</span>
         )}
-        {suffixIcon && <Icon className="ds-card-tabs__suffix-icon" component={suffixIcon} />}
-      </S.CardTabContainer>
-    );
-  }
-}
+      </S.CardTabLabel>
+      {showCardActions() && (
+        <CardTabActions
+          enterEditNameMode={handleEditName}
+          changeNameAvailable={!!onChangeName}
+          onDuplicateTab={handleDuplicate}
+          onRemoveTab={handleRemove}
+        />
+      )}
+      {suffixIcon && <Icon className="ds-card-tabs__suffix-icon" component={suffixIcon} />}
+    </S.CardTabContainer>
+  );
+};
+
+export default CardTab;
