@@ -8,10 +8,10 @@ export type CardTabsProps = {
   onChangeOrder?: () => void;
   onAddTab?: () => void;
   maxTabsCount?: number;
-  children: React.ReactChildren;
+  children?: React.ReactChildren;
 };
 
-function CardTabs(props: CardTabsProps): React.ReactNode {
+function CardTabs(props: CardTabsProps): React.ReactElement {
   const { onChangeOrder, onAddTab, maxTabsCount, children } = props;
 
   return (
@@ -26,11 +26,9 @@ function CardTabs(props: CardTabsProps): React.ReactNode {
         </div>
       )}
       {onAddTab && (
-        <AddButton
-          disabled={React.Children.toArray(children).length >= maxTabsCount}
-          onClick={onAddTab}
-          data-testid="card-tabs-add-button"
-        />
+        <span data-testid="card-tabs-add-button">
+          <AddButton disabled={React.Children.toArray(children).length >= maxTabsCount} onClick={onAddTab} />
+        </span>
       )}
     </S.CardTabsContainer>
   );

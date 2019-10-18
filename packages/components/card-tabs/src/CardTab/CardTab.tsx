@@ -136,15 +136,19 @@ export default class CardTab extends React.Component<CardTabProps, CardTabState>
         onMouseUp={this.handleMouseUp}
         greyBackground={greyBackground}
         data-id={id}
+        data-testid="card-tab-container"
       >
-        <S.CardTabPrefix>
-          {!draggable && prefix === prefixType.TAG && tag && <S.CardTabTag>{tag}</S.CardTabTag>}
+        <S.CardTabPrefix data-testid="card-tab-prefix">
+          {!draggable && prefix === prefixType.TAG && tag && (
+            <S.CardTabTag data-testid="card-tab-tag">{tag}</S.CardTabTag>
+          )}
           {!draggable && prefix === prefixType.ICON && prefixIcon && <Icon component={prefixIcon} />}
           {draggable && <Icon className="ds-card-tabs__handle-icon" component={<HandleIcon />} />}
         </S.CardTabPrefix>
-        <S.CardTabLabel>
+        <S.CardTabLabel data-testid="card-tab-label">
           {edited ? (
             <InlineEdit
+              className="ds-card-tabs__edit-name"
               onChange={this.handleChangeName.bind(this)}
               size="small"
               hideIcon
@@ -154,15 +158,28 @@ export default class CardTab extends React.Component<CardTabProps, CardTabState>
                 name: `ds-card-tab-input-${id}`,
                 onBlur: this.handleEditNameBlur.bind(this),
               }}
+              data-testid="card-tab-edit-input"
             />
           ) : (
-            <span>{name}</span>
+            <span data-testid="card-tab-name">{name}</span>
           )}
         </S.CardTabLabel>
         {(onChangeName || onDuplicateTab || onRemoveTab) && !suffixIcon && (
-          <S.CardTabSuffix>
-            {onChangeName && <Icon component={<ChangeNameIcon />} onClick={this.handleEditName.bind(this)} />}
-            {onDuplicateTab && <Icon component={<DuplicateIcon />} onClick={this.handleDuplicate.bind(this)} />}
+          <S.CardTabSuffix data-testid="card-tab-suffix">
+            {onChangeName && (
+              <Icon
+                className="ds-card-tabs__change-name-icon"
+                component={<ChangeNameIcon />}
+                onClick={this.handleEditName.bind(this)}
+              />
+            )}
+            {onDuplicateTab && (
+              <Icon
+                className="ds-card-tabs__duplicate-icon"
+                component={<DuplicateIcon />}
+                onClick={this.handleDuplicate.bind(this)}
+              />
+            )}
             {onRemoveTab && (
               <Icon
                 className="ds-card-tabs__remove-icon"
