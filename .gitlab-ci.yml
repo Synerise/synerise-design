@@ -27,7 +27,7 @@ build:
   tags:
     - vms
   script:
-    - yarn
+    - yarn --frozen-lockfile
     - yarn lint
     - yarn build
     - yarn test:ci
@@ -45,7 +45,7 @@ docs_build:
     refs:
       - master
   script:
-    - yarn
+    - yarn --frozen-lockfile
     - yarn build
     - yarn npx:lerna run postinstall
     - yarn npx:lerna run build-docs
