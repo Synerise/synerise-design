@@ -3493,6 +3493,24 @@
     "@svgr/plugin-svgo" "^4.3.1"
     loader-utils "^1.2.3"
 
+"@synerise/ds-dropdown@^0.6.1":
+  version "0.6.3"
+  resolved "https://registry.yarnpkg.com/@synerise/ds-dropdown/-/ds-dropdown-0.6.3.tgz#00cc51e66fffab2659bfad38cb0861a08c54bcef"
+  integrity sha512-0hjjpoCyP/O9Jy55OAlfa+XqF2E5PfmJa4pNN3+es6V3DztlgpTDcpJXnAciJLm63uNJ8ePqH49aJ6cv5PI5+Q==
+  dependencies:
+    "@synerise/ds-divider" "^0.2.0"
+    "@synerise/ds-icon" "^0.2.2"
+    antd "*"
+
+"@synerise/ds-tags@^0.0.1":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@synerise/ds-tags/-/ds-tags-0.0.1.tgz#ab2c0e88114bf53506b2fdff28e9deac8e40b29d"
+  integrity sha512-EF1ohc7y673oJsUDTT0szBFzjASPcSlce59iH7worUpsshL7HcyDcFZGLvuBPyZtUHdoDmx94pg21unWLSFoBA==
+  dependencies:
+    "@synerise/ds-button" "*"
+    "@synerise/ds-dropdown" "^0.6.1"
+    "@synerise/ds-icon" "^0.2.0"
+
 "@testing-library/dom@^6.1.0":
   version "6.2.0"
   resolved "https://registry.yarnpkg.com/@testing-library/dom/-/dom-6.2.0.tgz#6eeee738af12a2f02e74dc8cbadeaed1fc4223e5"
