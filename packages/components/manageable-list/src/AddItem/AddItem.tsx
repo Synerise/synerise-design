@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { Input } from '@synerise/ds-input';
 import Icon from '@synerise/ds-icon';
-import onClickOutside from 'react-onclickoutside';
-import FileM from '@synerise/ds-icon/dist/icons/file-m.svg';
+import { Add3M } from '@synerise/ds-icon/dist/icons';
 import * as S from './AddItem.styles';
 
 type Props = {
@@ -10,64 +9,49 @@ type Props = {
   addItemLabel: string;
 };
 
-type State = {
-  active: boolean;
-  name: string;
-};
+const DEFAULT_NAME = '';
 
-class AddItem extends React.PureComponent<Props, State> {
-  state = {
-    active: false,
-    name: '',
+const AddItem: React.FC<Props> = ({ onItemAdd, addItemLabel }) => {
+  const [active, setActive] = React.useState(false);
+  const [name, setName] = React.useState(DEFAULT_NAME);
+
+  const handleClickOutside = (): void => {
+    setActive(false);
+    setName(DEFAULT_NAME);
   };
 
-  private handleClickOutside(): void {
-    this.setState({
-      active: false,
-      name: '',
-    });
-  }
+  const handleNameChange = (event: any): void => {
+    setName(event.target.value);
+  };
 
-  private handleNameChange(event: any): void {
-    this.setState({ name: event.target.value });
-  }
+  const toggleInput = (): void => {
+    setActive(!active);
+    setName(DEFAULT_NAME);
+  };
 
-  private toggleInput(): void {
-    const { active } = this.state;
-    this.setState({
-      active: !active,
-      name: '',
-    });
-  }
-
-  private createCatalog(): void {
-    const { name } = this.state;
-    const { onItemAdd } = this.props;
+  const createCatalog = (): void => {
     onItemAdd({ name });
-    this.toggleInput();
-  }
+    toggleInput();
+  };
 
-  render(): React.ReactNode {
-    const { active, name } = this.state;
-    const { addItemLabel } = this.props;
-    return (
-      <S.AddItemLayout>
-        <S.AddItemButton onClick={this.toggleInput.bind(this)} data-testid="add-item-button">
-          <Icon component={<FileM />} size={24} color="#000" />
-          <S.AddItemLabel>{addItemLabel}</S.AddItemLabel>
-        </S.AddItemButton>
-        {active && (
-          <Input
-            autoFocus
-            value={name}
-            onChange={this.handleNameChange.bind(this)}
-            onPressEnter={this.createCatalog.bind(this)}
-            data-testid="add-item-input"
-          />
-        )}
-      </S.AddItemLayout>
-    );
-  }
-}
+  return (
+    <S.AddItemLayout>
+      <S.AddItemButton onClick={toggleInput} data-testid="add-item-button">
+        <Icon component={<Add3M />} size={24} color="#b5bdc3" />
+        <S.AddItemLabel>{addItemLabel}</S.AddItemLabel>
+      </S.AddItemButton>
+      {active && (
+        <Input
+          autoFocus
+          value={name}
+          onBlur={handleClickOutside}
+          onChange={handleNameChange}
+          onPressEnter={createCatalog}
+          data-testid="add-item-input"
+        />
+      )}
+    </S.AddItemLayout>
+  );
+};
 
-export default onClickOutside(AddItem);
+export default AddItem;

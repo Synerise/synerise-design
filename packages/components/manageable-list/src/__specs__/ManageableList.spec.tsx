@@ -130,7 +130,7 @@ describe('ManageableList', () => {
       />);
       expect(getByTestId('add-item-button')).toBeTruthy();
       expect(queryByTestId('show-more-button')).toBeNull();
-      expect(queryByTestId('list-item')).toBeNull();
+      expect(queryByTestId('list-item-name')).toBeNull();
   });
 
   it('should render with 4 items', () => {
@@ -149,7 +149,7 @@ describe('ManageableList', () => {
       />);
     expect(getByTestId('add-item-button')).toBeTruthy();
     expect(queryByTestId('show-more-button')).toBeNull();
-    expect(queryAllByTestId('list-item').length).toBe(4);
+    expect(queryAllByTestId('list-item-name').length).toBe(4);
     expect(queryAllByTestId('list-item-edit').length).toBe(3);
     expect(queryAllByTestId('list-item-remove').length).toBe(3);
   });
@@ -171,7 +171,7 @@ describe('ManageableList', () => {
     const showMore = getByTestId('show-more-button');
     expect(getByTestId('add-item-button')).toBeTruthy();
     expect(showMore).toBeTruthy();
-    expect(queryAllByTestId('list-item').length).toBe(5);
+    expect(queryAllByTestId('list-item-name').length).toBe(5);
     expect(showMore.textContent).toBe('+ 2 more Show all');
   });
 
@@ -191,10 +191,10 @@ describe('ManageableList', () => {
       />);
     const showMore = getByTestId('show-more-button');
     expect(showMore.textContent).toBe('+ 2 more Show all');
-    expect(queryAllByTestId('list-item').length).toBe(5);
+    expect(queryAllByTestId('list-item-name').length).toBe(5);
     fireEvent.click(showMore);
     expect(showMore.textContent).toBe('- 2 less Show less');
-    expect(queryAllByTestId('list-item').length).toBe(7);
+    expect(queryAllByTestId('list-item-name').length).toBe(7);
   });
 
   it('should fire onItemSelect method on item click', () => {
@@ -212,7 +212,7 @@ describe('ManageableList', () => {
         onItemSelect={onItemSelect}
         onItemRemove={itemRemove}
       />);
-    const firstListItem = queryAllByTestId('list-item')[0];
+    const firstListItem = queryAllByTestId('list-item-name')[0];
     fireEvent.click(firstListItem);
     expect(onItemSelect).toHaveBeenCalledWith({id: '00000000-0000-0000-0000-000000000000'});
   });
@@ -241,7 +241,7 @@ describe('ManageableList', () => {
     expect(addItemInput).toBeTruthy();
     // SET ADD ITEM INPUT VALUE
     fireEvent.change(addItemInput, {target: {value: NEW_FOLDER_NAME}});
-    expect(addItemInput.value).toBe(NEW_FOLDER_NAME);
+    expect((addItemInput as HTMLInputElement).value).toBe(NEW_FOLDER_NAME);
     // SUBMIT NEW ITEM
     fireEvent.keyDown(addItemInput, {key: 'Enter', keyCode: 13});
     expect(onItemAdd).toHaveBeenCalledWith({name: NEW_FOLDER_NAME});

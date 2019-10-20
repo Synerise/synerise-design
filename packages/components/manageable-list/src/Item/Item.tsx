@@ -1,9 +1,10 @@
 import * as React from 'react';
-import onClickOutside from 'react-onclickoutside';
-import { Input } from '@synerise/ds-input';
 import List from '@synerise/ds-list';
 import Icon from '@synerise/ds-icon';
-import FileM from '@synerise/ds-icon/dist/icons/file-m.svg';
+import FileM from '@synerise/ds-icon/dist/icons/FileM';
+import CloseS from '@synerise/ds-icon/dist/icons/CloseS';
+import InlineEdit from '@synerise/ds-inline-edit/dist/InlineEdit';
+import EditS from '@synerise/ds-icon/dist/icons/EditS';
 import * as S from './Item.styles';
 
 type Props = {
@@ -18,103 +19,71 @@ type Props = {
   onUpdate: (updateParams: { id: string; name: string }) => void;
 };
 
-type State = {
-  editMode: boolean;
-  name: string;
+const Item: React.FC<Props> = ({ item, onRemove, onSelect, onUpdate }) => {
+  const [editMode, setEditMode] = React.useState(false);
+  const [editedName, setName] = React.useState(item.name);
+
+  const { canUpdateCatalog, canDeleteCatalog, name } = item;
+
+  const enterEditMode = (event: any): void => {
+    event.stopPropagation();
+    setEditMode(true);
+  };
+
+  const editName = (event: any): void => {
+    setName(event.target.value);
+  };
+
+  const updateName = (): void => {
+    setEditMode(false);
+    setName(item.name);
+    onUpdate({ id: item.catalogId, name: editedName });
+  };
+
+  const removeCatalog = (event: any): void => {
+    event.stopPropagation();
+    onRemove({ id: item.catalogId });
+  };
+
+  return (
+    <List.Item
+      icon={<Icon component={<FileM />} size={24} color="#000" />}
+      onSelect={(): void => onSelect({ id: item.catalogId })}
+      actions={
+        <S.ItemActions>
+          {canUpdateCatalog && (
+            <div data-testid="list-item-edit">
+              <Icon component={<EditS />} size={24} color="#949ea6" onClick={enterEditMode} />
+            </div>
+          )}
+          {canDeleteCatalog && (
+            <div data-testid="list-item-remove">
+              <Icon component={<CloseS />} size={24} color="#f52922" onClick={removeCatalog} />
+            </div>
+          )}
+        </S.ItemActions>
+      }
+    >
+      <>
+        {editMode ? (
+          <InlineEdit
+            size="small"
+            hideIcon
+            onChange={editName}
+            input={{
+              name: 'list-item-name-input',
+              defaultValue: editedName,
+              value: editedName,
+              onBlur: updateName,
+            }}
+            data-testid="list-item-name-input"
+          />
+        ) : (
+          <S.ItemLabel data-testid="list-item-name">{name}</S.ItemLabel>
+        )}
+      </>
+    </List.Item>
+  );
 };
 
-class Item extends React.PureComponent<Props, State> {
-  constructor(props) {
-    super(props);
-
-    const { name } = props.item;
-
-    this.state = {
-      editMode: false,
-      name,
-    };
-  }
-
-  private onSelect(): void {
-    const { onSelect, item } = this.props;
-    const { catalogId } = item;
-    onSelect({ id: catalogId });
-  }
-
-  private enterEditMode(event: any): void {
-    event.stopPropagation();
-    this.setState({ editMode: true });
-  }
-
-  private handleClickOutside(): void {
-    const { item } = this.props;
-    const { name } = item;
-    this.setState({
-      editMode: false,
-      name,
-    });
-  }
-
-  private editName(event: any): void {
-    this.setState({ name: event.target.value });
-  }
-
-  private updateName(): void {
-    const { onUpdate, item } = this.props;
-    const { catalogId } = item;
-    const { name } = this.state;
-    this.setState({ editMode: false, name: item.name });
-    onUpdate({ id: catalogId, name });
-  }
-
-  private removeCatalog(event: any): void {
-    event.stopPropagation();
-    const { onRemove, item } = this.props;
-    const { catalogId } = item;
-    onRemove({ id: catalogId });
-  }
-
-  render(): React.ReactNode {
-    const { item } = this.props;
-    const { canUpdateCatalog, canDeleteCatalog, name } = item;
-    const { name: stateName, editMode } = this.state;
-    return (
-      <List.Item
-        icon={<Icon component={<FileM />} size={24} color="#000" />}
-        onSelect={this.onSelect.bind(this)}
-        actions={
-          <S.ItemActions>
-            {canUpdateCatalog && (
-              <div data-testid="list-item-edit">
-                <Icon component={<FileM />} size={24} color="#000" onClick={this.enterEditMode.bind(this)} />
-              </div>
-            )}
-            {canDeleteCatalog && (
-              <div data-testid="list-item-remove">
-                <Icon component={<FileM />} size={24} color="#000" onClick={this.removeCatalog.bind(this)} />
-              </div>
-            )}
-          </S.ItemActions>
-        }
-      >
-        <S.ItemContainer data-testid="list-item">
-          {editMode ? (
-            <Input
-              autoFocus
-              onClick={(event): void => event.stopPropagation()}
-              onFocus={(event): void => event.stopPropagation()}
-              onChange={this.editName.bind(this)}
-              value={stateName}
-              onPressEnter={this.updateName.bind(this)}
-              data-testid="list-item-name-input"
-            />
-          ) : (
-            <S.ItemLabel data-testid="list-item-name">{name}</S.ItemLabel>
-          )}
-        </S.ItemContainer>
-      </List.Item>
-    );
-  }
-}
-
-export default onClickOutside(Item);
+export default Item;
