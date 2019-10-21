@@ -2,11 +2,10 @@ import styled from 'styled-components';
 import { macro } from '@synerise/ds-typography';
 import { IconContainer } from '@synerise/ds-icon/dist/Icon.styles';
 
-
 export const TabLabel = styled.span`
   ${macro.h300}
   line-height: 20px;
-  word-wrap: nowrap;
+  white-space: nowrap;
   color: ${({ theme }): string => theme.palette['grey-700']};
 `;
 

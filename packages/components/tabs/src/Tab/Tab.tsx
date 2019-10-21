@@ -1,6 +1,7 @@
 import * as React from 'react';
 import * as S from './Tab.styles';
 import Icon from '@synerise/ds-icon';
+import { RefObject } from 'react';
 
 export type TabProps = {
   index: number;
@@ -9,6 +10,7 @@ export type TabProps = {
   isActive?: boolean;
   disabled?: boolean;
   onClick: (index: number) => void;
+  forwardedRef: RefObject<HTMLButtonElement>;
 }
 
 const Tab: React.FC<TabProps> = ({
@@ -18,6 +20,7 @@ const Tab: React.FC<TabProps> = ({
   isActive,
   disabled,
   onClick,
+  forwardedRef,
 }:TabProps) => {
   const [isPressed, setPressed] = React.useState(false);
   const handleClick = (): void => {
@@ -49,6 +52,7 @@ const Tab: React.FC<TabProps> = ({
       onMouseOut={handleMouseUp}
       onBlur={handleMouseUp}
       disabled={disabled}
+      ref={forwardedRef}
     >
       <S.TabContent>
         {icon && <Icon component={icon} size={24} />}
