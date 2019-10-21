@@ -6,7 +6,7 @@ import AntdList, { ListProps } from 'antd/lib/list';
 import { RadioGroupProps } from 'antd/lib/radio';
 import './style/index.less';
 
-import { TextItem, ListDivider } from './Elements';
+import { TextItem, ListDivider, ItemWrapper } from './Elements';
 
 interface Props<T> extends Omit<ListProps<T>, 'dataSource' | 'footer'> {
   dataSource: T[][];
@@ -20,6 +20,7 @@ const RadioGroupWrapper: React.FC<{ options?: RadioGroupProps }> = ({ children, 
 );
 
 class List<T> extends React.Component<Props<T>> {
+  static ItemWrapper: typeof ItemWrapper = ItemWrapper;
   static Item: typeof TextItem = TextItem;
   static Divider: typeof ListDivider = ListDivider;
 
