@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import { Tag } from '@synerise/ds-tags';
+import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 
-const typeColor = (props): string =>
+const typeColor = (props: ThemeProps & { type: string }): string =>
   ({
     primary: props.theme.palette['blue-600'],
     danger: props.theme.palette['red-600'],

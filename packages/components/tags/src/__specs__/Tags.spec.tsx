@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { fireEvent, getByText as globalGetByText } from '@testing-library/react';
 import { renderWithProvider } from '@synerise/ds-utils';
-import Button from '@synerise/ds-button';
 import Tags, { TagShape } from '../index';
 
 describe('Tags', () => {
@@ -11,7 +10,6 @@ describe('Tags', () => {
   const DROPDOWN_TESTID = 'dropdown';
   const SEARCH_PLACEHOLDER = 'Search...';
   const MANAGE_LINK_LABEL = 'Manage Link Label';
-  const CREATE_TAG_BTN_TESTID = 'create-tag-btn';
 
   const onSelectedChange = jest.fn();
   const onCreate = jest.fn();
@@ -30,8 +28,6 @@ describe('Tags', () => {
     id: 2,
     name: 'Tag Three',
   };
-
-  const onClick = jest.fn();
 
   it('should render without any props', () => {
     // ARRANGE
@@ -101,7 +97,7 @@ describe('Tags', () => {
   it('should render with create button', () => {
     // ARRANGE
     const data = [tagOne, tagTwo, tagThree];
-    const selected = [];
+    const selected: any[] = [];
 
     const { getByText, getByTestId, getByPlaceholderText } = renderWithProvider(
       <Tags
@@ -134,9 +130,9 @@ describe('Tags', () => {
   it('should render with manage link', () => {
     // ARRANGE
     const data = [tagOne, tagTwo, tagThree];
-    const selected = [];
+    const selected: any = [];
 
-    const { getByText, getByTestId, getByPlaceholderText } = renderWithProvider(
+    const { getByText, getByPlaceholderText } = renderWithProvider(
       <Tags
         data={data}
         selected={selected}
@@ -161,9 +157,9 @@ describe('Tags', () => {
   it('should fire onSelectedChange', () => {
     // ARRANGE
     const data = [tagOne, tagTwo, tagThree];
-    const selected = [];
+    const selected: any = [];
 
-    const { getByText, getByTestId, getByPlaceholderText } = renderWithProvider(
+    const { getByText, getByTestId } = renderWithProvider(
       <Tags
         data={data}
         selected={selected}
@@ -182,7 +178,7 @@ describe('Tags', () => {
 
     const dropdown = getByTestId(DROPDOWN_TESTID);
     const foundTag = globalGetByText(dropdown, tagOne.name);
-    
+
     fireEvent.click(foundTag);
 
     // ASSERT

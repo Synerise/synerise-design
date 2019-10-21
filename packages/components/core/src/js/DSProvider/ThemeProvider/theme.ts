@@ -1,7 +1,10 @@
+import { ThemeProps as SCThemeProps } from 'styled-components';
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore
 import vars from './variables';
 import breakpoints from './breakpoints';
 
-export type ThemeProps = {
+export type ThemePropsVars = {
   variables: { [key: string]: string };
   palette: { [key: string]: string };
   variable: (name: string) => string | null;
@@ -9,10 +12,12 @@ export type ThemeProps = {
   breakpoints: string[];
 };
 
+export type ThemeProps = SCThemeProps<ThemePropsVars>;
+
 const getBreakpoints = (): string[] =>
   [breakpoints.small.max, breakpoints.medium.max, breakpoints.large.max].map(item => `${item}px`);
 
-const theme: ThemeProps = {
+const theme: ThemePropsVars = {
   variables: vars.variables,
   palette: vars.colors,
   breakpoints: getBreakpoints(),

@@ -75,7 +75,7 @@ describe('Modal', () => {
     // ARRANGE
     const HEADER_ACTION_BUTTON_TEST_ID = 'button-testid';
 
-    const { getByText, getByTestId } = renderWithProvider(
+    const { getByTestId } = renderWithProvider(
       <Modal
         visible
         title="Modal title"

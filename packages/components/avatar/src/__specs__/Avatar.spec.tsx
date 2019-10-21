@@ -7,11 +7,8 @@ import Badge from '@synerise/ds-badge';
 const CIRCLE_SHAPE = 'circle';
 const SQUARE_SHAPE = 'square';
 const DEF_SIZE = 'default';
-const XL_SIZE = 'extraLarge';
-const STATUS = 'default';
 const FERN = 'fern';
 const RED = 'red';
-const DEG_BG = '#ccc';
 const ANT_ICON = 'user';
 const IMG_SRC = 'https://hsto.org/web/77c/061/c05/77c061c0550f4acd98380bf554eb8886.png';
 

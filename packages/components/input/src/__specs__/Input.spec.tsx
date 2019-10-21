@@ -20,7 +20,13 @@ describe('Input', () => {
       // ARRANGE
       const PLACEHOLDER = 'placeholder';
       const INPUT_VALUE = 'input value';
-      const { getByPlaceholderText } = renderWithProvider(<Input onChange={e => onChange(e.target.value)} placeholder={PLACEHOLDER} value="" />);
+      const { getByPlaceholderText } = renderWithProvider(
+        <Input
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e.target.value)}
+          placeholder={PLACEHOLDER}
+          value=""
+        />
+      );
       const input = getByPlaceholderText(PLACEHOLDER) as HTMLInputElement;
 
       // ACT
@@ -62,7 +68,9 @@ describe('Input', () => {
       // ARRANGE
       const PLACEHOLDER = 'placeholder';
       const COUNTER_LIMIT = 10;
-      const { getByPlaceholderText, getByTestId } = renderWithProvider(<Input placeholder={PLACEHOLDER} counterLimit={COUNTER_LIMIT} value="" />);
+      const { getByPlaceholderText, getByTestId } = renderWithProvider(
+        <Input placeholder={PLACEHOLDER} counterLimit={COUNTER_LIMIT} value="" />
+      );
 
       // ASSERT
       expect(getByTestId('counter').textContent).toBe(`0/${COUNTER_LIMIT}`);
@@ -80,7 +88,9 @@ describe('Input', () => {
       const COUNTER_LIMIT = 2;
       const VALID_STRING = 'ab';
       const INVALID_STRING = 'abc';
-      const { getByPlaceholderText } = renderWithProvider(<Input placeholder={PLACEHOLDER} counterLimit={COUNTER_LIMIT} value="" />);
+      const { getByPlaceholderText } = renderWithProvider(
+        <Input placeholder={PLACEHOLDER} counterLimit={COUNTER_LIMIT} value="" />
+      );
       const input = getByPlaceholderText(PLACEHOLDER) as HTMLInputElement;
 
       // ACT
@@ -101,11 +111,7 @@ describe('Input', () => {
       const ICON_PLACEHOLDER_1 = 'Icon placeholder 1';
       const ICON_PLACEHOLDER_2 = 'Icon placeholder 2';
       const { getByText } = renderWithProvider(
-        <Input
-          icon1={<div>{ICON_PLACEHOLDER_1}</div>}
-          icon2={<div>{ICON_PLACEHOLDER_2}</div>}
-          value=""
-        />
+        <Input icon1={<div>{ICON_PLACEHOLDER_1}</div>} icon2={<div>{ICON_PLACEHOLDER_2}</div>} value="" />
       );
 
       // ASSERT
@@ -128,7 +134,13 @@ describe('Input', () => {
       // ARRANGE
       const PLACEHOLDER = 'placeholder';
       const INPUT_VALUE = 'input value';
-      const { getByPlaceholderText } = renderWithProvider(<TextArea onChange={e => onChange(e.target.value)} placeholder={PLACEHOLDER} value="" />);
+      const { getByPlaceholderText } = renderWithProvider(
+        <TextArea
+          onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => onChange(e.target.value)}
+          placeholder={PLACEHOLDER}
+          value=""
+        />
+      );
 
       const input = getByPlaceholderText(PLACEHOLDER) as HTMLInputElement;
 
@@ -171,7 +183,9 @@ describe('Input', () => {
       // ARRANGE
       const PLACEHOLDER = 'placeholder';
       const COUNTER_LIMIT = 10;
-      const { getByPlaceholderText, getByTestId } = renderWithProvider(<TextArea placeholder={PLACEHOLDER} counterLimit={COUNTER_LIMIT} value="" />);
+      const { getByPlaceholderText, getByTestId } = renderWithProvider(
+        <TextArea placeholder={PLACEHOLDER} counterLimit={COUNTER_LIMIT} value="" />
+      );
 
       // ASSERT
       expect(getByTestId('counter').textContent).toBe(`0/${COUNTER_LIMIT}`);
@@ -189,7 +203,9 @@ describe('Input', () => {
       const COUNTER_LIMIT = 2;
       const VALID_STRING = 'ab';
       const INVALID_STRING = 'abc';
-      const { getByPlaceholderText } = renderWithProvider(<TextArea placeholder={PLACEHOLDER} counterLimit={COUNTER_LIMIT} value="" />);
+      const { getByPlaceholderText } = renderWithProvider(
+        <TextArea placeholder={PLACEHOLDER} counterLimit={COUNTER_LIMIT} value="" />
+      );
       const input = getByPlaceholderText(PLACEHOLDER) as HTMLInputElement;
 
       // ACT
@@ -210,11 +226,7 @@ describe('Input', () => {
       const ICON_PLACEHOLDER_1 = 'Icon placeholder 1';
       const ICON_PLACEHOLDER_2 = 'Icon placeholder 2';
       const { getByText } = renderWithProvider(
-        <TextArea
-          icon1={<div>{ICON_PLACEHOLDER_1}</div>}
-          icon2={<div>{ICON_PLACEHOLDER_2}</div>}
-          value=""
-        />
+        <TextArea icon1={<div>{ICON_PLACEHOLDER_1}</div>} icon2={<div>{ICON_PLACEHOLDER_2}</div>} value="" />
       );
 
       // ASSERT

@@ -1,9 +1,18 @@
-import styled, { css } from 'styled-components';
+import styled, { css, SimpleInterpolation } from 'styled-components';
+import * as React from 'react';
 
 export const defaultSize = 24;
 
-export const IconContainer = styled.div`
-  ${(props): string => css`
+type Props = {
+  size?: string | number;
+  color?: string;
+  stroke?: boolean;
+  type?: string;
+  onClick?: React.MouseEventHandler;
+};
+
+export const IconContainer = styled.div<Props>`
+  ${(props): SimpleInterpolation => css`
       vertical-align: middle;
       display: inline-block;
       width: ${props.size || defaultSize}px;

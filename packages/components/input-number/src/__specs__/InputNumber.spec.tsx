@@ -119,7 +119,7 @@ describe('InputNumber', () => {
   it('should handle error state', () => {
     // ARRANGE
     const ERROR_MESSAGE = 'error message';
-    const { getByText, debug, container } = renderWithProvider(
+    const { getByText, container } = renderWithProvider(
       <InputNumber
         errorText={ERROR_MESSAGE}
       />

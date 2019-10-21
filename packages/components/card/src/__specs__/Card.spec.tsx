@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { fireEvent, render } from '@testing-library/react';
 import { renderWithProvider } from '@synerise/ds-utils';
 import Card from '../index';
 

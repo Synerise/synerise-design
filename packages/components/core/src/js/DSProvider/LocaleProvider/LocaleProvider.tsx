@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { IntlProvider } from 'react-intl';
-import flatten from 'flat';
+import {flatten} from 'flat';
 import AntConfigProvider from 'antd/lib/config-provider';
 import { MessageFormatElement } from 'intl-messageformat-parser';
 
@@ -24,7 +24,7 @@ export default class LocaleProvider extends React.Component<LocaleProviderProps>
 
   static defaultProps = { locale: DEFAULT_LANG, localeData: {} };
 
-  constructor(props) {
+  constructor(props: LocaleProviderProps) {
     super(props);
     this.antMessages = {
       // eslint-disable-next-line @typescript-eslint/camelcase

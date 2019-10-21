@@ -30,11 +30,11 @@ describe('Select', () => {
 
     const select = getByTestId('select') as HTMLSelectElement;
     const selectedOption = select.querySelector('.ant-select-selection-selected-value');
-    expect(selectedOption.textContent).toBe('Red');
+    expect(selectedOption && selectedOption.textContent).toBe('Red');
     fireEvent.click(select);
     const unselectedOption = getByText('Green');
     fireEvent.click(unselectedOption);
-    expect(selectedOption.textContent).toBe('Green');
+    expect(selectedOption && selectedOption.textContent).toBe('Green');
   });
 
   it('handle clicking multiple mode', () => {

@@ -1512,6 +1512,13 @@
     unique-filename "^1.1.1"
     which "^1.3.1"
 
+"@formatjs/intl-pluralrules@^1.3.0":
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/@formatjs/intl-pluralrules/-/intl-pluralrules-1.3.0.tgz#c8bbc6f4f858bbadb5bfc792fa77a27026d324a4"
+  integrity sha512-m5u9m0wjuR4B52ppb8Pm6zdKBNNVAAMJw9rIS2Ti8PYE+eB+LOUAw97WOn58URSE85FBhbXUYy/rIpWs1Jc38g==
+  dependencies:
+    "@formatjs/intl-utils" "^1.4.0"
+
 "@formatjs/intl-relativetimeformat@^3.1.0":
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/@formatjs/intl-relativetimeformat/-/intl-relativetimeformat-3.1.0.tgz#a657d67e8e26a5985d72a80699be874c9bc470d3"
@@ -3420,23 +3427,6 @@
     "@svgr/babel-plugin-transform-react-native-svg" "^4.2.0"
     "@svgr/babel-plugin-transform-svg-component" "^4.2.0"
 
-"@svgr/cli@^4.3.3":
-  version "4.3.3"
-  resolved "https://registry.yarnpkg.com/@svgr/cli/-/cli-4.3.3.tgz#90b3acd1e1067b73a4dd6a768eea86d0dccf975c"
-  integrity sha512-FHsb9+2zMy9XZgEBFEh+1iofE0TBQn7OnJ9JF/2YimdyE93u2/j1p1K71+rJQ0GWKy96aSSbFWkRVR1i3zATOQ==
-  dependencies:
-    "@svgr/core" "^4.3.3"
-    "@svgr/plugin-jsx" "^4.3.3"
-    "@svgr/plugin-prettier" "^4.3.2"
-    "@svgr/plugin-svgo" "^4.3.1"
-    camelcase "^5.3.1"
-    chalk "^2.4.2"
-    commander "^2.20.0"
-    dashify "^2.0.0"
-    glob "^7.1.4"
-    output-file-sync "^2.0.1"
-    recursive-readdir "^2.2.2"
-
 "@svgr/core@^4.3.2":
   version "4.3.2"
   resolved "https://registry.yarnpkg.com/@svgr/core/-/core-4.3.2.tgz#939c89be670ad79b762f4c063f213f0e02535f2e"
@@ -3521,24 +3511,6 @@
     "@svgr/plugin-jsx" "^4.3.3"
     "@svgr/plugin-svgo" "^4.3.1"
     loader-utils "^1.2.3"
-
-"@synerise/ds-dropdown@^0.6.1":
-  version "0.6.3"
-  resolved "https://registry.yarnpkg.com/@synerise/ds-dropdown/-/ds-dropdown-0.6.3.tgz#00cc51e66fffab2659bfad38cb0861a08c54bcef"
-  integrity sha512-0hjjpoCyP/O9Jy55OAlfa+XqF2E5PfmJa4pNN3+es6V3DztlgpTDcpJXnAciJLm63uNJ8ePqH49aJ6cv5PI5+Q==
-  dependencies:
-    "@synerise/ds-divider" "^0.2.0"
-    "@synerise/ds-icon" "^0.2.2"
-    antd "*"
-
-"@synerise/ds-tags@^0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@synerise/ds-tags/-/ds-tags-0.0.1.tgz#ab2c0e88114bf53506b2fdff28e9deac8e40b29d"
-  integrity sha512-EF1ohc7y673oJsUDTT0szBFzjASPcSlce59iH7worUpsshL7HcyDcFZGLvuBPyZtUHdoDmx94pg21unWLSFoBA==
-  dependencies:
-    "@synerise/ds-button" "*"
-    "@synerise/ds-dropdown" "^0.6.1"
-    "@synerise/ds-icon" "^0.2.0"
 
 "@testing-library/dom@^6.1.0":
   version "6.2.0"
@@ -3659,6 +3631,11 @@
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/@types/events/-/events-3.0.0.tgz#2862f3f58a9a7f7c3e78d79f130dd4d71c25c2a7"
 
+"@types/flat@^0.0.28":
+  version "0.0.28"
+  resolved "https://registry.yarnpkg.com/@types/flat/-/flat-0.0.28.tgz#5c788149d85a6cf8ff5f5f000acdd912cdea4274"
+  integrity sha1-XHiBSdhabPj/X18ACs3ZEs3qQnQ=
+
 "@types/glob@^7.1.1":
   version "7.1.1"
   resolved "https://registry.yarnpkg.com/@types/glob/-/glob-7.1.1.tgz#aa59a1c6e3fbc421e07ccd31a944c30eba521575"
@@ -3777,6 +3754,21 @@
   dependencies:
     "@types/react" "*"
 
+"@types/react-input-autosize@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@types/react-input-autosize/-/react-input-autosize-2.0.1.tgz#04ac4b532128c98532352042b6c7af8b5d3f52ca"
+  integrity sha512-vsmqA6Pp5IyMZv3C7x7mNM8lqikfWQ4lCWsoVk/w+HZ2Y3KOdFk6ad4jsQeltXn/UaO+YUZLtWdMIjLLIeCxBA==
+  dependencies:
+    "@types/react" "*"
+
+"@types/react-native@*":
+  version "0.60.21"
+  resolved "https://registry.yarnpkg.com/@types/react-native/-/react-native-0.60.21.tgz#81a41cae7b232f52ab3983d854f4a0b0df79531e"
+  integrity sha512-E7F+P/UG4Utu+kh8Hy544i0m4CzpHw1awNX6hVfkhlu4mXSlAn6KLZzKEkPBbHm7g1kspmZTiuP23HAKZpASPw==
+  dependencies:
+    "@types/prop-types" "*"
+    "@types/react" "*"
+
 "@types/react-slick@^0.23.4":
   version "0.23.4"
   resolved "https://registry.yarnpkg.com/@types/react-slick/-/react-slick-0.23.4.tgz#c97e2a9e7e3d1933c68593b8e82752fab1e8ce53"
@@ -3819,6 +3811,15 @@
     "@types/react" "*"
     "@types/webpack-env" "*"
 
+"@types/styled-components@^4.1.19":
+  version "4.1.19"
+  resolved "https://registry.yarnpkg.com/@types/styled-components/-/styled-components-4.1.19.tgz#535b455d7744fda1608c605df82c0800eda61a09"
+  integrity sha512-nDkoTQ8ItcJiyEvTa24TwsIpIfNKCG+Lq0LvAwApOcjQ8OaeOOCg66YSPHBePHUh6RPt1LA8aEzRlgWhQPFqPg==
+  dependencies:
+    "@types/react" "*"
+    "@types/react-native" "*"
+    csstype "^2.2.0"
+
 "@types/testing-library__dom@*", "@types/testing-library__dom@^6.0.0":
   version "6.0.3"
   resolved "https://registry.yarnpkg.com/@types/testing-library__dom/-/testing-library__dom-6.0.3.tgz#fb7f98d215de209a9c8ad677c13c2955a5b8a999"
@@ -3831,6 +3832,13 @@
   dependencies:
     "@types/react-dom" "*"
     "@types/testing-library__dom" "*"
+
+"@types/uuid@^3.4.5":
+  version "3.4.5"
+  resolved "https://registry.yarnpkg.com/@types/uuid/-/uuid-3.4.5.tgz#d4dc10785b497a1474eae0ba7f0cb09c0ddfd6eb"
+  integrity sha512-MNL15wC3EKyw1VLF+RoVO4hJJdk9t/Hlv3rt1OL65Qvuadm4BYo6g9ZJQqoq7X8NBFSsQXgAujWciovh2lpVjA==
+  dependencies:
+    "@types/node" "*"
 
 "@types/webpack-env@*":
   version "1.14.0"
@@ -6679,11 +6687,6 @@ dashdash@^1.12.0:
   resolved "https://registry.yarnpkg.com/dashdash/-/dashdash-1.14.1.tgz#853cfa0f7cbe2fed5de20326b8dd581035f6e2f0"
   dependencies:
     assert-plus "^1.0.0"
-
-dashify@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/dashify/-/dashify-2.0.0.tgz#fff270ca2868ca427fee571de35691d6e437a648"
-  integrity sha512-hpA5C/YrPjucXypHPPc0oJ1l9Hf6wWbiOL7Ik42cxnsUOhWiCB/fylKbKqqJalW9FgkNQCw16YO8uW9Hs0Iy1A==
 
 data-urls@^1.0.0, data-urls@^1.1.0:
   version "1.1.0"
@@ -12721,7 +12724,7 @@ osenv@^0.1.4, osenv@^0.1.5:
     os-homedir "^1.0.0"
     os-tmpdir "^1.0.0"
 
-output-file-sync@^2.0.0, output-file-sync@^2.0.1:
+output-file-sync@^2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/output-file-sync/-/output-file-sync-2.0.1.tgz#f53118282f5f553c2799541792b723a4c71430c0"
   dependencies:
@@ -15297,7 +15300,7 @@ rechoir@^0.6.2:
   dependencies:
     resolve "^1.1.6"
 
-recursive-readdir@2.2.2, recursive-readdir@^2.2.2:
+recursive-readdir@2.2.2:
   version "2.2.2"
   resolved "https://registry.yarnpkg.com/recursive-readdir/-/recursive-readdir-2.2.2.tgz#9946fb3274e1628de6e36b2f6714953b4845094f"
   dependencies:
@@ -17166,10 +17169,6 @@ typedarray@^0.0.6:
 typescript@^3.2.1:
   version "3.6.2"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.6.2.tgz#105b0f1934119dde543ac8eb71af3a91009efe54"
-
-typescript@^3.6.3:
-  version "3.6.3"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.6.3.tgz#fea942fabb20f7e1ca7164ff626f1a9f3f70b4da"
 
 typescript@^3.6.4:
   version "3.6.4"

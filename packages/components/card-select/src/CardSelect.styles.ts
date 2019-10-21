@@ -1,7 +1,8 @@
-import styled, { css } from 'styled-components';
+import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import is, { isNot } from 'styled-is';
+import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 
-const getVar = (name: string) => (props): string => props.theme.palette[name];
+const getVar = (name: string) => (props: ThemeProps): string => props.theme.palette[name];
 
 const transition = `
   transition-timing-function: ease-in-out;
@@ -14,19 +15,22 @@ const radioWidth = 20;
 const radioSmallWidth = 16;
 const radioBorderWidth = 1;
 
-const getMainPadding = (props): string => {
+/*
+const getMainPadding = (props: { size?: string; hasTick?: boolean }): string => {
   if (props.size === 'small') {
     return props.hasTick ? '24px 16px 8px' : '8px 16px';
   }
 
   return '24px';
 };
+*/
 
-const sizeCondition = (smallValue, mediumValue) => (props): string | number =>
-  props.size === 'small' ? smallValue : mediumValue;
+const sizeCondition = (smallValue: number | string, mediumValue: number | string) => (props: {
+  size?: string;
+}): string | number => (props.size === 'small' ? smallValue : mediumValue);
 
 export const RadioShape = styled.div`
-  ${transition}
+  ${transition};
   width: ${sizeCondition(radioSmallWidth, radioWidth)}px;
   height: ${sizeCondition(radioSmallWidth, radioWidth)}px;
   border-radius: 50%;
@@ -40,8 +44,17 @@ export const RadioShape = styled.div`
   }
 `;
 
-export const Container = styled.div<{ disabled: boolean; raised: boolean; value: boolean; stretch: boolean }>`
-  ${transition}
+export const Container = styled.div<
+  {
+    disabled?: boolean;
+    raised?: boolean;
+    value?: boolean;
+    stretch?: boolean;
+    size?: string;
+    stretchToFit?: boolean;
+  } & ThemeProps
+>`
+  ${transition};
   background-color: ${getVar('white')};
   border-radius: ${(props): string => props.theme.variable('@border-radius-base')};
   display: flex;
@@ -77,10 +90,10 @@ export const Container = styled.div<{ disabled: boolean; raised: boolean; value:
     ${is('raised')`
       ${isNot('value')`
         padding: 2px;
-        box-shadow: ${(props): string => props.theme.variable('@box-shadow-base')};
+        box-shadow: ${(props: ThemeProps): string => props.theme.variable('@box-shadow-base') || 'none'};
         
         &:hover, &:active {
-          box-shadow: ${(props): string => props.theme.variable('@box-shadow-active')};
+          box-shadow: ${(props: ThemeProps): string => props.theme.variable('@box-shadow-active') || 'none'};
         }
       `}
       
@@ -114,10 +127,7 @@ export const Container = styled.div<{ disabled: boolean; raised: boolean; value:
   `};
 `;
 
-export const Main = styled.div`
-  padding: ${getMainPadding};
-  width: ${sizeCondition(80, 224)}px;
-
+export const Main = styled.div<{ disabled?: boolean; size?: string; hasTick?: boolean }>`
   ${is('disabled')`
     opacity: 0.4;
   `}
@@ -132,7 +142,7 @@ export const Aside = styled.div`
   left: ${sizeCondition('4px', '14px')};
 `;
 
-export const TickIcon = styled.div<{ size: string; disabled: boolean; selected: boolean }>`
+export const TickIcon = styled.div<{ size?: string; disabled?: boolean; selected?: boolean }>`
   ${is('selected')`
     transform: translate(-4px, -4px);
   `}
@@ -151,14 +161,14 @@ export const TickIcon = styled.div<{ size: string; disabled: boolean; selected: 
   `}
 `;
 
-export const Title = styled.div<{ hasIcon: boolean; size: string }>`
+export const Title = styled.div<{ hasIcon: boolean; size?: string }>`
   text-align: center;
   color: ${getVar('grey-800')};
   font-weight: 500;
   font-size: ${sizeCondition('10px', '14px')};
   margin: ${(props): string => (!props.hasIcon ? '0 16px' : '0')};
 
-  ${(props): string =>
+  ${(props): FlattenSimpleInterpolation | false =>
     props.size === 'small' &&
     props.hasIcon &&
     css`
@@ -166,12 +176,12 @@ export const Title = styled.div<{ hasIcon: boolean; size: string }>`
     `};
 `;
 
-export const Description = styled.div<{ hasTitle: boolean; hasIcon: boolean }>`
+export const Description = styled.div<{ hasTitle?: boolean; hasIcon?: boolean; size?: string }>`
   font-size: 12px;
   text-align: center;
   margin: ${(props): string => (!props.hasIcon ? '0 16px' : '0')};
 
-  ${(props): string =>
+  ${(props): FlattenSimpleInterpolation | undefined | false =>
     props.hasTitle &&
     css`
       margin-top: 8px;

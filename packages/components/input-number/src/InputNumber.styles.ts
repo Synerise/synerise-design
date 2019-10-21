@@ -1,16 +1,18 @@
 import styled from 'styled-components';
 import BaseAntInputNumber from 'antd/lib/input-number';
+import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 
 export const AntdInputNumber = styled(BaseAntInputNumber)`
   color: ${(props): string => props.theme.palette['grey-700']};
 
   input {
-    ${(props): string =>
-      props.error &&
-      `
+    ${(props: { error: boolean } & ThemeProps): string =>
+      props.error
+        ? `
       background: ${props.theme.palette['red-050']};
       border: 0;
-    `};
+    `
+        : ''};
   }
 `;
 
@@ -21,13 +23,13 @@ export const ContentAbove = styled.div`
 `;
 
 export const Label = styled.label`
-  color: ${(props): string => props.theme.palette['grey-800']};
+  color: ${(props: ThemeProps): string => props.theme.palette['grey-800']};
   font-weight: 500;
   display: block;
 `;
 
 export const Description = styled.div`
-  color: ${(props): string => props.theme.palette['grey-500']};
+  color: ${(props: ThemeProps): string => props.theme.palette['grey-500']};
 `;
 
 export const ContentBelow = styled.div`
@@ -35,6 +37,6 @@ export const ContentBelow = styled.div`
 `;
 
 export const ErrorText = styled.div`
-  color: ${(props): string => props.theme.palette['red-600']};
+  color: ${(props: ThemeProps): string => props.theme.palette['red-600']};
   margin-bottom: 4px;
 `;

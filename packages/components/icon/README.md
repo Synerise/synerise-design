@@ -1,4 +1,4 @@
-\---
+---
 id: icon
 title: Icon
 

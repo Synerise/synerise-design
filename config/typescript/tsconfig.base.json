@@ -3,6 +3,20 @@
   "compilerOptions": {
     "jsx": "preserve",
     "declaration": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "target": "es6",
+    "lib": ["dom", "dom.iterable", "esnext", "es2018"],
+    "sourceMap": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "importHelpers": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "esModuleInterop": false,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
     "baseUrl": ".",
     "paths": {
       "@synerise/ds-*": ["packages/*/src"]

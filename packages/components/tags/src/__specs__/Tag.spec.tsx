@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { fireEvent } from '@testing-library/react';
 import { renderWithProvider } from '@synerise/ds-utils';
-import Button from '@synerise/ds-button';
 import { Tag, TagShape } from '../index';
 
 describe('Tag', () => {
@@ -35,7 +34,7 @@ describe('Tag', () => {
   it('should onRemove fire', () => {
     // ARRANGE
     const { getByTestId } = renderWithProvider(
-      <Tag shape={TagShape.DEFAULT_ROUND} name={TAGNAME} onRemove={onRemove} removable />
+      <Tag id='test' shape={TagShape.DEFAULT_ROUND} name={TAGNAME} onRemove={onRemove} removable />
     );
 
     // ACT

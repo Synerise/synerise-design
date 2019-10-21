@@ -8,7 +8,7 @@ type IconProps = {
   size?: string | number;
   type?: string;
   stroke?: boolean;
-  onClick?: EventListener;
+  onClick?: React.MouseEventHandler;
   component?: React.ReactNode;
   className?: string;
   style?: React.CSSProperties;

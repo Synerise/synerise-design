@@ -12,9 +12,9 @@ interface Props {
 const Text: React.FC<Props> = ({ disabled, icon, onSelect, danger, actions, children }) => (
   <S.Wrapper
     disabled={disabled}
-    tabIndex={!disabled && '0'}
+    tabIndex={!disabled ? 0 : undefined}
     onClick={onSelect}
-    onKeyUp={(event: React.KeyboardEvent): void => event.nativeEvent.code === 'Space' && onSelect()}
+    onKeyUp={(event: React.KeyboardEvent): void | false => event.nativeEvent.code === 'Space' && onSelect && onSelect()}
     danger={danger}
   >
     {icon && <S.IconWrapper>{icon}</S.IconWrapper>}

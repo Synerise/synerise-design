@@ -23,7 +23,6 @@
     "react-dom": "^16.10.2",
     "react-final-form": "^6.3.0",
     "react-scripts": "^3.2.0",
-    "typescript": "^3.6.4",
     "uuid": "^3.3.3"
   },
   "devDependencies": {
@@ -67,7 +66,6 @@
     "lint-staged": "^9.4.2",
     "react-docgen-typescript-loader": "^3.3.0",
     "react-intl": "^3.3.2",
-    "styled-components": "^4.4.0",
-    "typescript": "^3.6.4"
+    "styled-components": "^4.4.0"
   }
 }

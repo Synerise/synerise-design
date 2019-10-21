@@ -1,15 +1,18 @@
 import styled from 'styled-components';
-import Select from 'antd/lib/select';
+import Select, { SelectProps, SelectValue } from 'antd/lib/select';
+import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import * as React from 'react';
 
 const { OptGroup, Option } = Select;
 
-const errorStyle = (props): string => `
+const errorStyle = (props: ThemeProps): string => `
 border-color: ${props.theme.palette['red-600']};
 box-shadow: inset 0 0 0 1px ${props.theme.palette['red-600']};
 background: ${props.theme.palette['red-050']};
 `;
 
-export const AntdSelect = styled(Select)`
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const AntdSelect = styled((Select as any) as React.ComponentType<SelectProps<SelectValue>>)`
   &.error {
     .ant-select-selection {
       ${(props): string => errorStyle(props)}

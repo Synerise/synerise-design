@@ -40,7 +40,7 @@ describe('Bagde', () => {
     const { container } = renderWithProvider(<Badge count={COUNT} overflowCount={OVERFLOW_COUNT} showZero={false} />);
 
     const bagdeIndexContainer = container.querySelector('sup');
-    const currentIndexElement = bagdeIndexContainer.querySelector('.current');
+    const currentIndexElement = bagdeIndexContainer && bagdeIndexContainer.querySelector('.current');
 
     // ASSERT
     expect(currentIndexElement).toHaveTextContent(`${COUNT}`);

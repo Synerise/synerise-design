@@ -65,12 +65,12 @@ const ModalProxy: React.FC<Props> = ({
     <S.FooterContainer>
       {/* eslint-disable-next-line */}
       <Button type="ghost" onClick={antModalProps.onCancel} {...antModalProps.cancelButtonProps}>
-        {texts.cancelButton}
+        {texts && texts.cancelButton}
       </Button>
 
       {/* eslint-disable-next-line */}
       <Button type={antModalProps.okType || 'primary'} onClick={antModalProps.onOk} {...antModalProps.okButtonProps}>
-        {texts.okButton}
+        {texts && texts.okButton}
       </Button>
     </S.FooterContainer>
   );

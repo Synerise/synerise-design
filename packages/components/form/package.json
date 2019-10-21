@@ -25,6 +25,9 @@
     "@synerise/ds-divider": "*",
     "@synerise/ds-typography": "*"
   },
+  "devDependencies": {
+    "@synerise/ds-utils": "*"
+  },
   "peerDependencies": {
     "@synerise/ds-core": "*",
     "react": ">=16.9.0 < 17.0.0"

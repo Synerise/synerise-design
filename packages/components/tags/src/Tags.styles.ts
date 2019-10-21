@@ -16,7 +16,7 @@ export const SelectedTags = styled.div`
   flex-wrap: wrap;
 `;
 
-export const AddButton = styled<{ marginless: boolean }>(Button)`
+export const AddButton = styled(Button)<{ marginless?: boolean }>`
   margin: ${(props): string => (props.marginless ? '0' : '0 0 0 8px')};
 
   span {
@@ -28,7 +28,7 @@ export const AddIconWrapper = styled.div`
   display: inline-block;
 `;
 
-export const CreateTagDropdownButton = styled<{ marginless: boolean }>(Button)`
+export const CreateTagDropdownButton = styled(Button)<{ marginless: boolean }>`
   margin: ${(props): string => (props.marginless ? '0' : '0 0 8px')};
   white-space: nowrap;
   overflow: hidden;

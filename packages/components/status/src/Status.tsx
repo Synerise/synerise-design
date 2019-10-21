@@ -4,7 +4,7 @@ import * as S from './Status.styles';
 
 export interface StatusProps {
   label: string;
-  type?: 'primary' | 'success' | 'warning' | 'danger' | 'disabled';
+  type: 'primary' | 'success' | 'warning' | 'danger' | 'disabled';
   className?: string;
   onClick?: () => void;
 }

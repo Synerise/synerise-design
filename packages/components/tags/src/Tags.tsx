@@ -35,14 +35,15 @@ const Tags: React.FC<Props> = ({
   );
 
   const onRemove = (tagKey: string | number): void =>
-    onSelectedChange && onSelectedChange(selected.filter(tag => tag.id !== tagKey));
+    onSelectedChange && selected && onSelectedChange(selected.filter(tag => tag.id !== tagKey));
 
-  const notSelectedList = data.filter(t => !selected.find(s => s.id === t.id));
+  const notSelectedList = data && selected && data.filter(t => !selected.find(s => s.id === t.id));
   const selectablePool = !searchQuery
     ? notSelectedList
-    : notSelectedList.filter(t => t.name.toLowerCase().includes(searchQuery.toLowerCase()));
-  const isExactMatchFound = searchQuery && selectablePool.find(t => t.name === searchQuery);
-  const emptyPool = selectablePool.length === 0;
+    : notSelectedList &&
+      notSelectedList.filter(t => t.name && t.name.toLowerCase().includes(searchQuery.toLowerCase()));
+  const isExactMatchFound = searchQuery && selectablePool && selectablePool.find(t => t.name === searchQuery);
+  const emptyPool = selectablePool && selectablePool.length === 0;
   const isCreatable = creatable && !isExactMatchFound && searchQuery;
   const isSeperated = !(!manageLink && emptyPool);
 
@@ -52,7 +53,7 @@ const Tags: React.FC<Props> = ({
   };
 
   const onPoolTagSelect = (tag: TagProps): void => {
-    onSelectedChange && onSelectedChange([...selected, tag]);
+    onSelectedChange && selected && onSelectedChange([...selected, tag]);
     reset();
   };
 
@@ -63,13 +64,17 @@ const Tags: React.FC<Props> = ({
 
   const dropdownOverlay = (
     <Dropdown.Wrapper>
-      <S.DropdownSearch value={searchQuery} onSearchChange={setSearchQuery} placeholder={texts.searchPlaceholder} />
+      <S.DropdownSearch
+        value={searchQuery}
+        onSearchChange={setSearchQuery}
+        placeholder={(texts && texts.searchPlaceholder) || ''}
+      />
       <S.DropdownContainer data-testid="dropdown">
         {isCreatable && (
           <>
             <S.CreateTagDropdownButton type="ghost" onClick={onCreateNewTag} marginless={!isSeperated}>
               {addIcon}
-              <span>{texts.createTagButtonLabel}</span>
+              <span>{texts && texts.createTagButtonLabel}</span>
               <strong>{searchQuery}</strong>
             </S.CreateTagDropdownButton>
 
@@ -78,20 +83,23 @@ const Tags: React.FC<Props> = ({
         )}
 
         {!emptyPool && (
-          <S.DropdownTagsContainer isCreatable={isCreatable}>
-            {selectablePool.map(tag => (
-              // eslint-disable-next-line react/jsx-props-no-spreading
-              <Tag {...tag} key={tag.id} shape={tagShape} onClick={(): void => onPoolTagSelect(tag)} />
-            ))}
+          <S.DropdownTagsContainer isCreatable={!!isCreatable}>
+            {selectablePool &&
+              selectablePool.map(tag => (
+                // eslint-disable-next-line react/jsx-props-no-spreading
+                <Tag {...tag} key={tag.id} shape={tagShape} onClick={(): void => onPoolTagSelect(tag)} />
+              ))}
           </S.DropdownTagsContainer>
         )}
 
-        {emptyPool && !isCreatable && !manageLink && <S.DropdownNoTags>{texts.dropdownNoTags}</S.DropdownNoTags>}
+        {emptyPool && !isCreatable && !manageLink && (
+          <S.DropdownNoTags>{texts && texts.dropdownNoTags}</S.DropdownNoTags>
+        )}
 
-        {manageLink && !selectablePool.length && (
+        {manageLink && selectablePool && !selectablePool.length && (
           <>
-            <S.ManageLink href={manageLink} onlyChild={emptyPool && !isCreatable}>
-              {texts.manageLinkLabel}
+            <S.ManageLink href={manageLink} onlyChild={!!(emptyPool && !isCreatable)}>
+              {texts && texts.manageLinkLabel}
             </S.ManageLink>
           </>
         )}
@@ -102,17 +110,18 @@ const Tags: React.FC<Props> = ({
   return (
     <S.Container className={className} style={style} data-testid="tags">
       <S.SelectedTags>
-        {selected.map(tag => (
-          <Tag
-            key={tag.id}
-            shape={tagShape}
-            removable={removable}
-            onRemove={removable ? onRemove : undefined}
-            disabled={disabled}
-            // eslint-disable-next-line react/jsx-props-no-spreading
-            {...tag}
-          />
-        ))}
+        {selected &&
+          selected.map(tag => (
+            <Tag
+              key={tag.id}
+              shape={tagShape}
+              removable={removable}
+              onRemove={removable ? onRemove : undefined}
+              disabled={disabled}
+              // eslint-disable-next-line react/jsx-props-no-spreading
+              {...tag}
+            />
+          ))}
       </S.SelectedTags>
       {addable && (
         <Dropdown
@@ -122,9 +131,9 @@ const Tags: React.FC<Props> = ({
           onVisibleChange={setAddingState}
           overlay={dropdownOverlay}
         >
-          <S.AddButton type="ghost" marginless={!selected.length ? true : undefined}>
+          <S.AddButton type="ghost" marginless={selected && !selected.length ? true : undefined}>
             {addIcon}
-            {texts.addButtonLabel && <span>{texts.addButtonLabel}</span>}
+            {texts && texts.addButtonLabel && <span>{texts.addButtonLabel}</span>}
           </S.AddButton>
         </Dropdown>
       )}

@@ -14,6 +14,7 @@ describe('Pagination', () => {
 
     // ASSERT
     expect(onChange).toHaveBeenCalled();
-    expect(container.querySelector('.ant-pagination-item-active').textContent).toBe('5');
+    const activeItem = container.querySelector('.ant-pagination-item-active');
+    expect(activeItem && activeItem.textContent).toBe('5');
   });
 });
