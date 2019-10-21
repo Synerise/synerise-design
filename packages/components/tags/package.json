@@ -26,6 +26,9 @@
     "@synerise/ds-dropdown": "^0.7.2",
     "@synerise/ds-icon": "^0.2.5"
   },
+  "devDependencies": {
+    "@synerise/ds-utils": "*"
+  },
   "peerDependencies": {
     "@synerise/ds-core": "*",
     "react": ">=16.9.0 < 17.0.0"

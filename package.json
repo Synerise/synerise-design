@@ -19,7 +19,8 @@
     "lint": "eslint . --ext .ts --ext .tsx --max-warnings 0",
     "npx:lerna": "npx lerna",
     "storybook": "yarn run build && cd packages/portal && yarn run storybook",
-    "test:ci": "yarn npx:lerna run test --parallel"
+    "test:ci": "yarn npx:lerna run test --parallel",
+    "types": "yarn npx:lerna run types --parallel"
   },
   "husky": {
     "hooks": {
@@ -65,10 +66,12 @@
     "@commitlint/cli": "^8.2.0",
     "@commitlint/config-conventional": "^8.2.0",
     "@commitlint/config-lerna-scopes": "^8.2.0",
+    "@formatjs/intl-pluralrules": "^1.3.0",
     "@testing-library/jest-dom": "^4.1.1",
     "@testing-library/react": "^9.1.4",
     "@types/enzyme": "^3.10.3",
     "@types/jest": "^24.0.18",
+    "@types/styled-components": "^4.1.19",
     "@typescript-eslint/eslint-plugin": "^2.3.0",
     "@typescript-eslint/parser": "^2.3.0",
     "babel-jest": "^24.9.0",
@@ -104,6 +107,6 @@
     "react-intl": "^3.2.2",
     "styled-components": "^4.3.2",
     "ts-jest": "^24.1.0",
-    "typescript": "^3.6.3"
+    "typescript": "^3.6.4"
   }
 }

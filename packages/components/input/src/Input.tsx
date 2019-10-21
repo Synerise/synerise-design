@@ -5,7 +5,7 @@ import { InputProps, TextAreaProps } from 'antd/lib/input';
 import './style/index.less';
 import * as S from './Input.styles';
 
-interface Props {
+export interface Props {
   errorText?: React.ReactNode | string;
   label?: React.ReactNode | string;
   description?: React.ReactNode | string;
@@ -17,7 +17,10 @@ interface Props {
 
 type EnhancedProps = Props & (InputProps | TextAreaProps);
 
-const enhancedInput = <P extends object>(WrappedComponent, { type }): React.ComponentType<P & EnhancedProps> => ({
+const enhancedInput = <P extends object>(
+  WrappedComponent: React.ComponentType,
+  { type }: { type: string }
+): React.ComponentType<P & EnhancedProps> => ({
   errorText,
   label,
   description,
@@ -39,7 +42,7 @@ const enhancedInput = <P extends object>(WrappedComponent, { type }): React.Comp
     (e: React.ChangeEvent<HTMLInputElement> & React.ChangeEvent<HTMLTextAreaElement>) => {
       const { value: newValue } = e.currentTarget;
 
-      if (newValue.length > counterLimit) return;
+      if (counterLimit && newValue.length > counterLimit) return;
 
       if (!antdInputProps.value) {
         setValue(newValue);
@@ -52,7 +55,7 @@ const enhancedInput = <P extends object>(WrappedComponent, { type }): React.Comp
   );
 
   const handleIconsClick = React.useCallback(() => {
-    inputRef.current.focus();
+    inputRef.current && inputRef.current.focus();
   }, [inputRef]);
 
   React.useEffect(() => {

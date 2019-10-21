@@ -26,6 +26,9 @@
     "antd": "3.24.0",
     "uuid": "^3.3.3"
   },
+  "devDependencies": {
+
+  },
   "peerDependencies": {
     "@synerise/ds-core": "*",
     "react": ">=16.9.0 < 17.0.0"

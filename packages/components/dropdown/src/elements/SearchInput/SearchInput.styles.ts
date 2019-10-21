@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Input } from '@synerise/ds-input';
 
 // eslint-disable-next-line import/prefer-default-export
-export const SearchInput = styled(Input)`
+export const DropdownSearchInput = styled(Input)`
   &&:not(:hover) {
     border: 1px solid transparent;
     border-bottom: 1px solid ${(props): string => props.theme.palette['grey-100']};

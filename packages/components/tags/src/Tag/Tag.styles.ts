@@ -1,4 +1,5 @@
-import styled, { css } from 'styled-components';
+import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import { TagShape } from './Tag';
 
 const defaultStatusStyles = css`
@@ -13,7 +14,15 @@ const defaultStatusStyles = css`
   line-height: 18px;
 `;
 
-const insertShapeStyles = (props): string => {
+type InsertShapeStyles = {
+  shape?: TagShape;
+  textColor?: string;
+  color?: string;
+  removable?: boolean;
+  isActionable?: boolean;
+} & ThemeProps;
+
+const insertShapeStyles = (props: InsertShapeStyles): FlattenSimpleInterpolation => {
   switch (props.shape) {
     case TagShape.SMALL_SQUARE:
       return css`
@@ -135,31 +144,33 @@ const insertShapeStyles = (props): string => {
   }
 };
 
-export const Tag = styled.div<{
-  isStatusShape: boolean;
-  shape: string;
-  color: string;
-  textColor: string;
-  removable: boolean;
-  disabled: boolean;
-  isActionable: boolean;
-}>`
+type TagProps = {
+  isStatusShape?: boolean;
+  shape?: TagShape;
+  color?: string;
+  textColor?: string;
+  removable?: boolean;
+  disabled?: boolean;
+  isActionable?: boolean;
+} & ThemeProps;
+
+export const Tag = styled.div<TagProps>`
   position: relative;
   margin: 4px;
   display: inline-flex;
   font-weight: 500;
   overflow: hidden;
 
-  ${insertShapeStyles}
+  ${(props): FlattenSimpleInterpolation => insertShapeStyles(props)};
 
-  ${(props): string =>
-    props.disabled &&
+  ${(props: TagProps): FlattenSimpleInterpolation | false =>
+    !!props.disabled &&
     css`
       opacity: 0.4;
       cursor: not-allowed;
     `}
 
-  ${(props): string =>
+  ${(props: TagProps): FlattenSimpleInterpolation | false =>
     !props.isStatusShape &&
     css`
       &:before {
@@ -245,8 +256,8 @@ export const Tag = styled.div<{
     }
   }
 
-  ${(props): string =>
-    props.isActionable &&
+  ${(props): FlattenSimpleInterpolation | false =>
+    !!props.isActionable &&
     css`
       &:hover {
         button {

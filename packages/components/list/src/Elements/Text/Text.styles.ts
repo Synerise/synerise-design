@@ -1,7 +1,13 @@
 import styled from 'styled-components';
+import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 
-export const Wrapper = styled.li`
-  color: ${(props): string => {
+type WrapperProps = {
+  disabled?: boolean;
+  danger?: boolean;
+};
+
+export const Wrapper = styled.li<WrapperProps>`
+  color: ${(props: WrapperProps & ThemeProps): string => {
     if (props.danger) return props.theme.palette['red-600'];
 
     if (props.disabled) return props.theme.palette['grey-600'];
@@ -17,7 +23,7 @@ export const Wrapper = styled.li`
   align-items: center;
 
   &:hover {
-    ${(props): string =>
+    ${(props): string | false =>
       !props.disabled &&
       `
       color: ${props.danger ? props.theme.palette['red-600'] : props.theme.palette['blue-600']};

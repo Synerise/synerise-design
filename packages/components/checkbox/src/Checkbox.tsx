@@ -11,6 +11,8 @@ interface Props extends CheckboxProps {
 }
 
 class Checkbox extends React.Component<Props> {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+  // @ts-ignore
   static Group = S.AntdCheckbox.Group;
 
   render(): React.ReactNode {
@@ -21,7 +23,7 @@ class Checkbox extends React.Component<Props> {
         <S.AntdCheckbox
           // eslint-disable-next-line react/jsx-props-no-spreading
           {...antdCheckboxProps}
-          className={Boolean(errorText) && 'error'}
+          className={errorText ? 'error' : undefined}
           solo={!children && !errorText && !description}
         >
           {children}

@@ -18,7 +18,7 @@ describe('FieldSet', () => {
 
   it('should render divider', () => {
     // ARRANGE
-    const { rerender, getAllByRole, queryByRole, debug } = renderWithProvider(
+    const { rerender, queryByRole } = renderWithProvider(
       <FieldSet heading={HEADING} description={DESCRIPTION} withLine />
     );
 

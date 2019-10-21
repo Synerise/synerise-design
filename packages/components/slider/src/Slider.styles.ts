@@ -1,7 +1,9 @@
 import styled from 'styled-components';
-import Slider from 'antd/lib/slider';
+import Slider, { SliderProps } from 'antd/lib/slider';
+import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { ComponentType } from 'react';
 
-const multipleTracksStyles = (props): string => `
+const multipleTracksStyles = (props: ThemeProps): string => `
   .ant-slider-track {
     &-1,
     &-11 {
@@ -55,10 +57,13 @@ const multipleTracksStyles = (props): string => `
   }
 `;
 
-export const AntdSlider = styled(Slider)<{ useColorPalette?: boolean }>`
-  ${(props): string => props.useColorPalette && multipleTracksStyles(props)}
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const AntdSlider = styled((Slider as any) as ComponentType<Omit<SliderProps, 'value'>>)<{
+  useColorPalette?: boolean;
+}>`
+  ${(props): string => (props.useColorPalette ? multipleTracksStyles(props) : '')}
   &.ant-slider:hover {
-    ${(props): string => props.useColorPalette && multipleTracksStyles(props)};
+    ${(props): string => (props.useColorPalette ? multipleTracksStyles(props) : '')};
   }
 
   .ant-tooltip-inner {

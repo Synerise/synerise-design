@@ -1,5 +1,6 @@
 import * as React from 'react';
-import styled, { css } from 'styled-components';
+import styled, { css, FlattenInterpolation, FlattenSimpleInterpolation } from 'styled-components';
+import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import Button from 'antd/lib/button';
 
 const leftIcon = '4px 4px 4px 8px';
@@ -20,7 +21,7 @@ const splitType = {
 export default styled(({ mode, type, loading, ...rest }) => <Button type={type} loading={loading} {...rest} />)`
   && {
     padding: 0 12px;
-    ${(props): string =>
+    ${(props): FlattenInterpolation<ThemeProps> | false =>
       props.type === buttonType[props.type] &&
       css`
         &.ant-btn {
@@ -29,7 +30,7 @@ export default styled(({ mode, type, loading, ...rest }) => <Button type={type} 
           }
         }
       `}
-    ${(props): string =>
+    ${(props): FlattenSimpleInterpolation | false =>
       props.mode === 'split' &&
       css`
         &.ant-btn {
@@ -44,7 +45,7 @@ export default styled(({ mode, type, loading, ...rest }) => <Button type={type} 
           }
         }
       `}
-    ${(props): string =>
+    ${(props): FlattenSimpleInterpolation | false =>
       props.mode === 'two-icons' &&
       css`
         &.ant-btn {
@@ -57,7 +58,7 @@ export default styled(({ mode, type, loading, ...rest }) => <Button type={type} 
           }
         }
       `}
-    ${(props): string =>
+    ${(props): FlattenSimpleInterpolation | false =>
       props.mode === 'label-icon' &&
       css`
         &.ant-btn {
@@ -67,7 +68,7 @@ export default styled(({ mode, type, loading, ...rest }) => <Button type={type} 
           }
         }
       `}
-    ${(props): string =>
+    ${(props): FlattenSimpleInterpolation | false =>
       props.mode === 'icon-label' &&
       css`
         &.ant-btn {
@@ -77,7 +78,7 @@ export default styled(({ mode, type, loading, ...rest }) => <Button type={type} 
           }
         }
       `}
-    ${(props): string =>
+    ${(props): FlattenSimpleInterpolation | false =>
       props.mode === 'single-icon' &&
       css`
         &.ant-btn {

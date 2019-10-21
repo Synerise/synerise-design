@@ -1,4 +1,4 @@
-import { toCamelCase } from '@synerise/ds-utils';
+import toCamelCase from '../toCamelCase';
 
 describe('toCamelCase', () => {
   it('should function return camel case string converted from kebab case', () => {

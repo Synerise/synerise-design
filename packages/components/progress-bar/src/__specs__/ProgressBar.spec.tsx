@@ -1,5 +1,5 @@
 import * as React from 'react';
-import ProgressBar, { PROGRESS_STATUS, PROGRESS_TYPE } from '../index';
+import ProgressBar from '../index';
 import { renderWithProvider } from '@synerise/ds-utils';
 
 

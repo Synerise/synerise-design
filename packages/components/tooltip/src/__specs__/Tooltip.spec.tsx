@@ -47,7 +47,7 @@ describe('Tooltip', () => {
     it('should trigger onVisibleChange', () => {
         // ARRANGE
         const onVisibleChange = jest.fn();
-        const { getByText, getByTestId } = render(
+        const { getByTestId } = render(
             <Tooltip title={TOOLTIP_TITLE} onVisibleChange={onVisibleChange} mouseEnterDelay={0} mouseLeaveDelay={0}>
                 <span data-testid={TEST_ID}>Tooltip will show on mouse enter.</span>
             </Tooltip>);

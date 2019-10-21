@@ -95,12 +95,12 @@ describe('Table', () => {
     const input = container.querySelector('input');
 
     // ACT
-    fireEvent.change(input, { target: { value: '23' } }); // this shoundn't work
+    input && fireEvent.change(input, { target: { value: '23' } }); // this shoundn't work
 
     // ASSERT
     expect(input).toBeTruthy();
     expect(onSearch).toBeCalled();
-    expect(input.value).toBe('test');
+    expect(input && input.value).toBe('test');
   });
 
   it('should selected items header render', () => {

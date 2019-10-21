@@ -23,11 +23,14 @@
   "types": "dist/index.d.ts",
   "dependencies": {
     "@synerise/ds-icon": "^0.2.5",
-    "@synerise/ds-utils": "^0.5.0",
     "react-input-autosize": "^2.2.2"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
     "react": ">=16.9.0 < 17.0.0"
+  },
+  "devDependencies": {
+    "@synerise/ds-utils": "^0.5.0",
+    "@types/react-input-autosize": "^2.0.1"
   }
 }

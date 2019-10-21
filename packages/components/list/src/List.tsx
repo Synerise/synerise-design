@@ -14,7 +14,7 @@ interface Props<T> extends Omit<ListProps<T>, 'dataSource' | 'footer'> {
   options?: RadioGroupProps;
 }
 
-const RadioGroupWrapper: React.FC<{ options: RadioGroupProps }> = ({ children, options }) => (
+const RadioGroupWrapper: React.FC<{ options?: RadioGroupProps }> = ({ children, options }) => (
   // eslint-disable-next-line react/jsx-props-no-spreading
   <Radio.Group {...options}>{children}</Radio.Group>
 );

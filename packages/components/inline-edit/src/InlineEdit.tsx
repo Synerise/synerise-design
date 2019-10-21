@@ -12,10 +12,11 @@ export type InputProps = {
   defaultValue?: string;
   value?: string | number;
   disabled?: boolean;
-  onBlur?: (event: MouseEvent) => void;
+  onBlur?: React.FocusEventHandler<HTMLInputElement>;
 };
 
 export interface InlineEditProps {
+  dupa?: string;
   placeholder?: string;
   size: 'normal' | 'small';
   tooltipTitle?: string;
@@ -33,9 +34,10 @@ export interface InlineEditProps {
 }
 
 export class InlineEdit extends React.Component<InlineEditProps> {
-  autosizeInputComponent: typeof AutosizeInput;
-  input: HTMLInputElement;
-  fontStyleWatcher: HTMLDivElement;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  autosizeInputComponent: any;
+  input: HTMLInputElement | undefined;
+  fontStyleWatcher: HTMLDivElement | undefined;
 
   static defaultProps = {
     size: 'normal',
@@ -51,8 +53,10 @@ export class InlineEdit extends React.Component<InlineEditProps> {
   }
 
   updateInputWidth = (): void => {
-    this.autosizeInputComponent.copyInputStyles();
-    this.autosizeInputComponent.updateInputWidth();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (this.autosizeInputComponent as any).copyInputStyles();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (this.autosizeInputComponent as any).updateInputWidth();
   };
 
   handleFocusInput = (): void => {
@@ -63,7 +67,7 @@ export class InlineEdit extends React.Component<InlineEditProps> {
 
   handleKeyPress = (e: React.KeyboardEvent): void => {
     if (e.key === 'Enter') {
-      this.input.blur();
+      this.input && this.input.blur();
     }
   };
 
@@ -72,9 +76,9 @@ export class InlineEdit extends React.Component<InlineEditProps> {
       valid: boolean;
       palette: string;
     }[]
-  ): string[] => arr.map(item => item.valid && item.palette).filter(p => p);
+  ): (string | false)[] => arr.map(item => item.valid && item.palette).filter(p => p);
 
-  getActivePalettes = (size, error, disabled): string[] =>
+  getActivePalettes = (size: string, error: boolean, disabled: boolean): (string | false)[] =>
     this.checkPalettes([
       {
         valid: disabled,
@@ -117,12 +121,14 @@ export class InlineEdit extends React.Component<InlineEditProps> {
     } = this.props;
 
     const { name, value, disabled: inputDisabled, onBlur, ...inputRest }: InputProps = input;
-    const id = toCamelCase(name);
+    const id = name ? toCamelCase(name) : 'id';
     const disabled = propsDisabled || inputDisabled;
-    const activePalettes = this.getActivePalettes(size, error, disabled).join('-');
+    const activePalettes = this.getActivePalettes(size, !!error, !!disabled).join('-');
 
     const iconMargin = size !== 'small' ? '0 16px' : '0';
     return (
+      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+      // @ts-ignore
       <S.InPlaceEditableInputContainer
         className={className}
         style={style}
@@ -137,8 +143,18 @@ export class InlineEdit extends React.Component<InlineEditProps> {
           placeholder={placeholder}
           maxLength={maxLength}
           onKeyPress={this.handleKeyPress}
-          ref={(ref): void => (this.autosizeInputComponent = ref)}
-          inputRef={(ref): void => (this.input = ref)}
+          // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+          // @ts-ignore
+          ref={(ref: HTMLInputElement): void => {
+            if (ref) {
+              this.autosizeInputComponent = ref;
+            }
+          }}
+          inputRef={(ref: HTMLInputElement | null): void => {
+            if (ref) {
+              this.input = ref;
+            }
+          }}
           disabled={disabled}
           name={name}
           value={value || ''}
@@ -157,8 +173,12 @@ export class InlineEdit extends React.Component<InlineEditProps> {
         )}
         {useFontStyleWatcher && (
           <S.FontStyleWatcher
-            ref={(ref): void => (this.fontStyleWatcher = ref)}
-            style={{ position: 'absolute', visibility: 'hidden', 'pointer-events': 'none' }}
+            ref={(ref): void => {
+              if (ref) {
+                this.fontStyleWatcher = ref;
+              }
+            }}
+            style={{ position: 'absolute', visibility: 'hidden', pointerEvents: 'none' }}
           >
             0dsad
           </S.FontStyleWatcher>

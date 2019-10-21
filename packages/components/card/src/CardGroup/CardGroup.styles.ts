@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import { Container as CardContainer } from '../Card/Card.styles';
 
 // eslint-disable-next-line import/prefer-default-export
@@ -8,7 +8,7 @@ export const Container = styled.div<{ items: number }>`
   flex-direction: row;
   width: 100%;
 
-  ${(props): string =>
+  ${(props): FlattenSimpleInterpolation | 0 =>
     props.items &&
     css`
     ${CardContainer} {

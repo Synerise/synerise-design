@@ -23,8 +23,10 @@
   "types": "dist/index.d.ts",
   "dependencies": {
     "@synerise/ds-typography": "^0.5.1",
-    "@synerise/ds-utils": "^0.5.0",
     "antd": "3.24.0"
+  },
+  "devDependencies": {
+    "@synerise/ds-utils": "^0.5.0"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

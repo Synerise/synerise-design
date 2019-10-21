@@ -1,7 +1,8 @@
-import styled, { css } from 'styled-components';
+import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import BaseAntInput from 'antd/lib/input';
+import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 
-const errorInputStyle = (props): string => `
+const errorInputStyle = (props: ThemeProps): string => `
   && {
     border-color: ${props.theme.palette['red-600']};
     box-shadow: inset 0 0 0 1px ${props.theme.palette['red-600']};
@@ -9,7 +10,7 @@ const errorInputStyle = (props): string => `
   }
 `;
 
-export const OuterWrapper = styled.div`
+export const OuterWrapper = styled.div<{ resetMargin?: boolean }>`
   margin: ${(props): string => (props.resetMargin ? '0' : '0 0 24px 0')};
 `;
 
@@ -21,7 +22,7 @@ export const InputWrapper = styled.div`
   position: relative;
 `;
 
-export const IconsWrapper = styled.div`
+export const IconsWrapper = styled.div<{ disabled?: boolean }>`
   position: absolute;
   right: 8px;
   top: 0;
@@ -32,13 +33,13 @@ export const IconsWrapper = styled.div`
     svg {
       transition: 0.3s all;
       fill: ${(props): string => props.theme.palette['grey-600']};
-      opacity: ${(props): string => props.disabled && '0.4'};
+      opacity: ${(props): string => (props.disabled ? '0.4' : '')};
     }
   }
 `;
 
-export const IconsFlexContainer = styled.div`
-  ${(props): string => {
+export const IconsFlexContainer = styled.div<{ type: string }>`
+  ${(props): FlattenSimpleInterpolation => {
     if (props.type === 'input') {
       return css`
         display: flex;
@@ -56,8 +57,8 @@ export const IconsFlexContainer = styled.div`
   }}
 `;
 
-export const AntdInput = styled(BaseAntInput)`
-  ${(props): string => props.error && errorInputStyle(props)};
+export const AntdInput = styled(BaseAntInput)<{ error?: boolean }>`
+  ${(props): string => (props.error ? errorInputStyle(props) : '')};
 
   && {
     color: ${(props): string => props.theme.palette['grey-700']};
@@ -65,7 +66,7 @@ export const AntdInput = styled(BaseAntInput)`
 `;
 
 export const AntdTextArea = styled(BaseAntInput.TextArea)`
-  ${(props): string => props.error && errorInputStyle(props)};
+  ${(props: { error?: boolean } & ThemeProps): string => (props.error ? errorInputStyle(props) : '')};
 
   && {
     color: ${(props): string => props.theme.palette['grey-700']};

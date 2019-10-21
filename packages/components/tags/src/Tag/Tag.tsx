@@ -31,9 +31,9 @@ const Tag: React.FC<Props> = ({
   onRemove,
   onClick,
 }: Props) => {
-  const isDefaultType = [TagShape.DEFAULT_ROUND, TagShape.DEFAULT_SQUARE].includes(shape);
+  const isDefaultType = shape && [TagShape.DEFAULT_ROUND, TagShape.DEFAULT_SQUARE].includes(shape);
   const isDefaultRound = shape === TagShape.DEFAULT_ROUND;
-  const isStatusShape = [
+  const isStatusShape = shape && [
     TagShape.STATUS_ERROR,
     TagShape.STATUS_NEUTRAL,
     TagShape.STATUS_SUCCESS,
@@ -42,7 +42,7 @@ const Tag: React.FC<Props> = ({
   const isRemovable = removable && isDefaultRound;
   const isActionable = !disabled && isRemovable;
 
-  const onRemoveCall = (): void => onRemove && onRemove(id);
+  const onRemoveCall = (): void | false => !!onRemove && !!id && onRemove(id);
 
   return (
     <S.Tag

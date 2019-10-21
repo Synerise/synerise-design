@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-export const Description = styled.div`
+export const Description = styled.div<{ disabled?: boolean }>`
   color: ${(props): string => props.theme.palette['grey-600']};
-  ${(props): string => props.disabled && `opacity: 0.4;`}
+  ${(props): string => (props.disabled ? `opacity: 0.4;` : '')}
 `;
 
 export const ErrorText = styled.div`

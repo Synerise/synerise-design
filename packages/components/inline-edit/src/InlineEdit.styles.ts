@@ -1,14 +1,15 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
+import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 
 const FONT_WEIGHT_SMALL = 400;
 const FONT_WEIGHT_NORMAL = 500;
 
-const resolveInactiveColor = (props): string => props.theme.palette['grey-400'];
-const resolveEditedColor = (props): string => props.theme.palette['grey-600'];
-const resolveErrorColor = (props): string => props.theme.palette['red-600'];
-const resolveDisableColor = (props): string => props.theme.palette['grey-400'];
+const resolveInactiveColor = (props: ThemeProps): string => props.theme.palette['grey-400'];
+const resolveEditedColor = (props: ThemeProps): string => props.theme.palette['grey-600'];
+// const resolveErrorColor = (props: ThemeProps): string => props.theme.palette['red-600'];
+// const resolveDisableColor = (props: ThemeProps): string => props.theme.palette['grey-400'];
 
-const defaultPalette = (props): { [key: string]: string } => ({
+const defaultPalette = (props: ThemeProps): { [key: string]: string } => ({
   bgColor: props.theme.palette['grey-100'],
   hoverBgColor: props.theme.palette['grey-200'],
   activeBgColor: props.theme.palette['grey-300'],
@@ -20,7 +21,7 @@ const transparentPalette = (): { [key: string]: string } => ({
   activeBgColor: 'transparent',
 });
 
-const resolveColors = (props): { [key: string]: string } => {
+const resolveColors = (props: ThemeProps & { colors: string }): { [key: string]: string } => {
   const config = {
     transparent: {
       color: props.theme.palette['grey-800'],
@@ -63,10 +64,38 @@ export const FontStyleWatcher = styled.div`
   pointer-events: none;
 `;
 
-export const InPlaceEditableInputContainer = styled.div.attrs(({ size }) => ({
-  height: size === 'small' ? 13 : 21,
-  fontWeight: size === 'small' ? FONT_WEIGHT_SMALL : FONT_WEIGHT_NORMAL,
-}))`
+export const IconWrapper = styled.div<{ margin: string; colors: string; iconMargin?: number } & ThemeProps>`
+  border-radius: 24px;
+  color: ${(props): string => resolveColors(props).color};
+  background: ${(props): string => resolveColors(props).bgColor};
+  margin: ${(props): string => `${props.margin}px`};
+  font-size: 11px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: ${(props): string => `${props.iconMargin}px`};
+  width: 24px;
+  height: 24px;
+  line-height: inherit;
+  cursor: pointer;
+  &:hover {
+    background-color: ${(props): string => resolveColors(props).hoverBgColor};
+  }
+`;
+
+type InPlaceEditableInputContainerProps = {
+  size: 'small' | 'normal';
+  disabled?: boolean;
+  error?: boolean;
+  darkTheme: boolean;
+};
+
+export const InPlaceEditableInputContainer = styled.div.attrs<InPlaceEditableInputContainerProps>(
+  ({ size }: InPlaceEditableInputContainerProps) => ({
+    height: size === 'small' ? 13 : 21,
+    fontWeight: size === 'small' ? FONT_WEIGHT_SMALL : FONT_WEIGHT_NORMAL,
+  })
+)<{ height: number; fontWeight: number } & InPlaceEditableInputContainerProps>`
   display: flex;
   max-width: 100%;
   align-items: center;
@@ -85,80 +114,34 @@ export const InPlaceEditableInputContainer = styled.div.attrs(({ size }) => ({
     background-repeat: repeat-x;
     font-size: ${(props): number => props.height}px;
     line-height: ${(props): number => props.height + 8}px;
-    font-weight: ${(props): string => props.fontWeight};
+    font-weight: ${(props): number => props.fontWeight};
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 100%;
     padding: 0;
     margin: 0;
     vertical-align: top;
-    color: ${(props): string => resolveInactiveColor(props)};
+    color: ${(props: ThemeProps): string => resolveInactiveColor(props)};
     ::placeholder {
-      color: ${(props): string => props.theme.palette['grey-400']};
+      color: ${(props: ThemeProps): string => props.theme.palette['grey-400']};
     }
+
     &:hover {
       background-image: linear-gradient(
         to right,
         ${(props): string => props.theme.palette['grey-400']} 20%,
         rgba(255, 255, 255, 0) 10%
       );
-      color: ${(props): string => resolveEditedColor(props)};
+      color: ${(props: ThemeProps): string => resolveEditedColor(props)};
     }
 
     &:focus {
       background-image: linear-gradient(
         to right,
-        ${(props): string => props.theme.palette['blue-600']} 20%,
+        ${(props: ThemeProps): string => props.theme.palette['blue-600']} 20%,
         rgba(255, 255, 255, 0) 10%
       );
-      color: ${(props): string => resolveEditedColor(props)};
+      color: ${(props: ThemeProps): string => resolveEditedColor(props)};
     }
-    ${(props): string =>
-      props.error &&
-      css`
-        &:focus,
-        &:hover {
-          background-image: linear-gradient(
-            to right,
-            ${props.theme.palette['red-600']} 20%,
-            rgba(255, 255, 255, 0) 10%
-          );
-          color: ${resolveErrorColor(props)};
-        }
-        color: ${resolveErrorColor(props)};
-      `}
-    ${(props): string =>
-      props.disabled &&
-      css`
-        &:focus,
-        &:hover {
-          color: ${resolveDisableColor(props)};
-          background-image: none;
-          cursor: not-allowed;
-        }
-        color: ${resolveDisableColor(props)};
-        cursor: not-allowed;
-      `}
   }
-`;
-
-export const IconWrapper = styled.div`
-  ${(props): string => css`
-    border-radius: 24px;
-    color: ${resolveColors(props).color};
-    background: ${resolveColors(props).bgColor};
-    margin: ${props.margin};
-    font-size: 11px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: ${props.iconMargin}px;
-    width: 24px;
-    height: 24px;
-    line-height: inherit;
-    cursor: pointer;
-    &:hover {
-      background-color: ${resolveColors(props).hoverBgColor};
-    }
-  `};
 `;

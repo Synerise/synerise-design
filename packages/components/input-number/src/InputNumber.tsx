@@ -27,7 +27,7 @@ const InputNumber: React.FC<Props> = ({ label, description, errorText, ...antdPr
         {...antdProps}
         id={id}
         error={showError}
-        className={Boolean(errorText) && 'error'}
+        className={showError ? 'error' : undefined}
       />
       {(showError || description) && (
         <S.ContentBelow>

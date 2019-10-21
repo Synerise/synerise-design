@@ -1,11 +1,11 @@
-import styled, { css } from 'styled-components';
+import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import Typography from '@synerise/ds-typography';
 
 export const Container = styled.div<{
   raised?: boolean;
   disabled?: boolean;
   lively?: boolean;
-  size?: string;
+  size?: number;
 }>`
   background: #fff;
   box-shadow: ${(props): string => props.theme.variable('@box-shadow-base')};
@@ -16,21 +16,21 @@ export const Container = styled.div<{
   transition: 0.3s ease;
   max-width: ${(props): string => (props.size ? `${props.size}px` : '100%')};
 
-  ${(props): string =>
-    props.raised &&
+  ${(props): FlattenSimpleInterpolation | false =>
+    !!props.raised &&
     css`
       box-shadow: ${props.theme.variable('@box-shadow-active')};
     `}
 
-  ${(props): string =>
-    props.disabled &&
+  ${(props): FlattenSimpleInterpolation | false =>
+    !!props.disabled &&
     css`
       pointer-events: none;
       opacity: 0.5;
     `};
 
-  ${(props): string =>
-    props.lively &&
+  ${(props): FlattenSimpleInterpolation | false =>
+    !!props.lively &&
     css`
       &:hover {
         box-shadow: ${props.theme.variable('@box-shadow-active')};
@@ -44,8 +44,8 @@ export const Header = styled.div<{ isContentful?: boolean }>`
   flex-wrap: nowrap;
   align-items: flex-start;
 
-  ${(props): string =>
-    props.isContentful &&
+  ${(props): FlattenSimpleInterpolation | false =>
+    !!props.isContentful &&
     css`
       margin: 0 0 24px;
     `};
@@ -55,7 +55,7 @@ export const HeaderSideChildren = styled.div`
   padding-left: 24px;
 `;
 
-export const Title = styled<{ fat: boolean }>(Typography.Title)`
+export const Title = styled(Typography.Title)<{ fat: boolean }>`
   && {
     display: flex;
     align-items: center;
@@ -64,7 +64,7 @@ export const Title = styled<{ fat: boolean }>(Typography.Title)`
   }
 `;
 
-export const Description = styled(Typography.Paragraph)`
+export const Description = styled.p`
   && {
     margin: 6px 0 0;
   }
@@ -73,14 +73,14 @@ export const Description = styled(Typography.Paragraph)`
 export const HeaderContent = styled.div<{ compact?: boolean; hasIcon: boolean }>`
   width: 100%;
 
-  ${(props): string =>
+  ${(props): FlattenSimpleInterpolation | false =>
     props.hasIcon &&
     css`
       margin: 0 0 0 20px;
     `};
 
-  ${(props): string =>
-    props.compact &&
+  ${(props): FlattenSimpleInterpolation | false =>
+    !!props.compact &&
     css`
       display: flex;
       align-items: flex-start;
