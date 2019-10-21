@@ -23,6 +23,7 @@ const Tabs: React.FC<TabsProps> = ({
              icon={tab.icon}
              onClick={setActiveTab}
              isActive={index === activeTab}
+             disabled={tab.disabled}
            />
         ))}
      </S.TabsContainer>

@@ -15,6 +15,11 @@ const tabs = [
   {
     label: 'Tab #3',
     icon: <SearchM />
+  },
+  {
+    label: 'Tab #4',
+    icon: <SearchM />,
+    disabled: true,
   }
 ];
 

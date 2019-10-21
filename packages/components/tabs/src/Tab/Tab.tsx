@@ -7,6 +7,7 @@ export type TabProps = {
   label?: string;
   icon?: React.ReactNode;
   isActive?: boolean;
+  disabled?: boolean;
   onClick: (index: number) => void;
 }
 
@@ -15,6 +16,7 @@ const Tab: React.FC<TabProps> = ({
   label,
   icon,
   isActive,
+  disabled,
   onClick,
 }:TabProps) => {
   const [isPressed, setPressed] = React.useState(false);
@@ -31,21 +33,22 @@ const Tab: React.FC<TabProps> = ({
   };
 
   const isPressedClassName = (): string => {
-    if (isPressed) return 'pressed';
-    return '';
+    return isPressed ? 'pressed': '';
   };
 
   const isActiveClassName = (): string => {
-    if (isActive) return 'active';
-    return '';
+    return isActive ? 'active' : '';
   };
 
   return (
     <S.TabContainer
-      className={`${ isActiveClassName() } ${isPressedClassName()}`}
+      className={`${isActiveClassName()}${isPressedClassName()}`}
       onClick={handleClick}
       onMouseDown={handleMouseDown}
       onMouseUp={handleMouseUp}
+      onMouseOut={handleMouseUp}
+      onBlur={handleMouseUp}
+      disabled={disabled}
     >
       <S.TabContent>
         {icon && <Icon component={icon} size={24} />}

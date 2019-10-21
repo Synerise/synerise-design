@@ -34,7 +34,8 @@ export const TabContainer = styled.button`
   border: 0;
   outline: 0;
   padding: 0;
-  
+  pointer-events: ${({disabled}) => disabled ? 'none' : 'all'}
+  opacity: ${({disabled}) => disabled ? '0.4' : '1'}
   ${IconContainer} {
     margin-right: 4px;
   }
