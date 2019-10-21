@@ -12,7 +12,6 @@ const soloCss = css`
 
 export const AntdCheckbox = styled(BaseAntCheckbox)`
   && {
-    padding: 8px 12px;
     display: block;
 
     ${(props: Props): FlattenSimpleInterpolation | undefined | false => props.solo && soloCss};

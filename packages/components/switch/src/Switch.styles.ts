@@ -3,7 +3,6 @@ import { macro } from '@synerise/ds-typography';
 
 export const SwitchWrapper = styled.div`
   display: flex;
-  padding: 7px 12px;
 `;
 
 export const Texts = styled.div`

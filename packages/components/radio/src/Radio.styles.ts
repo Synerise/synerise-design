@@ -3,7 +3,6 @@ import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/t
 
 export const RadioWrapper = styled.div`
   & {
-    padding: 8px 12px;
     display: block;
   }
 `;

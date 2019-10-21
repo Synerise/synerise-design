@@ -45,3 +45,6 @@ List UI Component
 | Property | Description | Type | Default |
 | -------- | ----------- | ---- | ------- |
 
+### List.ItemWrapper
+| Property | Description | Type | Default |
+| -------- | ----------- | ---- | ------- |

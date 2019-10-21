@@ -98,7 +98,15 @@ storiesOf('Components|List', module)
           <List
             header="Select option"
             dataSource={dataCheckboxes}
-            renderItem={item => <Checkbox value={item.value}>{item.label}</Checkbox>}
+            renderItem={item => (
+              <List.ItemWrapper>
+                <Checkbox
+                  value={item.value}
+                >
+                  {item.label}
+                </Checkbox>
+              </List.ItemWrapper>
+            )}
           />
         </div>
       </DSProvider>
@@ -108,7 +116,16 @@ storiesOf('Components|List', module)
     <div style={{ width: '200px' }}>
       <DSProvider code="en_GB">
         <div style={{ background: '#fff', width: '300px' }}>
-          <List dataSource={dataCheckboxes} renderItem={item => <Checkbox value={item.value}>{item.label}</Checkbox>} />
+          <List dataSource={dataCheckboxes} renderItem={item => (
+            <List.ItemWrapper>
+                <Checkbox
+                  value={item.value}
+                >
+                  {item.label}
+                </Checkbox>
+              </List.ItemWrapper>
+            )}
+          />
           <List.Divider />
           <List
             dataSource={dataSingle}
@@ -137,7 +154,15 @@ storiesOf('Components|List', module)
             dataSource={dataCheckboxes}
             radio
             options={{ defaultValue: 'A' }}
-            renderItem={item => <Radio value={item.value}>{item.label}</Radio>}
+            renderItem={item => (
+              <List.ItemWrapper>
+                <Radio
+                  value={item.value}
+                >
+                  {item.label}
+                </Radio>
+              </List.ItemWrapper>
+            )}
           />
         </div>
       </DSProvider>
@@ -184,12 +209,14 @@ storiesOf('Components|List', module)
               dataSource={state}
               renderItem={item => {
                 return (
-                  <Switch
-                    label={item.label}
-                    errorText={item.errorText}
-                    checked={item.checked}
-                    onChange={() => handleChange(item.label)}
-                  />
+                  <List.ItemWrapper>
+                    <Switch
+                      label={item.label}
+                      errorText={item.errorText}
+                      checked={item.checked}
+                      onChange={() => handleChange(item.label)}
+                    />
+                  </List.ItemWrapper>
                 );
               }}
             />
