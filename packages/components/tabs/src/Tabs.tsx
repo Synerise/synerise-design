@@ -73,15 +73,18 @@ const Tabs: React.FC<TabsProps> = ({
 
   const renderHiddenTabs = () => (
     <S.TabsDropdownContainer>
-      {hiddenTabs && (
+      {hiddenTabs.length > 0 && (
         <List
           dataSource={[hiddenTabs]}
           renderItem={(item, index) => (
-            <List.Item onSelect={() => setActiveTab(visibleTabs.length + index)} icon={<Icon component={<FileM />} />}>
+            <List.Item onSelect={() => setActiveTab(visibleTabs.length + index)} disabled={item.disabled} icon={<Icon component={<FileM />} />}>
               {(item as any).label}
             </List.Item>
           )}
         />
+      )}
+      { hiddenTabs.length > 0 && configuration && (
+        <S.TabsDropdownDivider />
       )}
       {configuration && (
         <Button type={'ghost'} onClick={configuration.action}>

@@ -45,7 +45,7 @@ const Tab: React.FC<TabProps> = ({
 
   return (
     <S.TabContainer
-      className={`${isActiveClassName()}${isPressedClassName()}`}
+      className={`${isActiveClassName()} ${isPressedClassName()}`}
       onClick={handleClick}
       onMouseDown={handleMouseDown}
       onMouseUp={handleMouseUp}

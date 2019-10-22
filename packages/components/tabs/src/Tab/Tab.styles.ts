@@ -35,6 +35,7 @@ export const TabContainer = styled.button`
   padding: 0;
   pointer-events: ${({disabled}) => disabled ? 'none' : 'all'}
   opacity: ${({disabled}) => disabled ? '0.4' : '1'}
+  margin-top: 4px;
   ${IconContainer} {
     margin-right: 4px;
   }
@@ -46,7 +47,8 @@ export const TabContainer = styled.button`
     bottom: 0;
     left: 0;
     width: 100%;
-    border-bottom: 2px solid transparent;
+    height: 2px;
+    background: transparent;
   }
   
   &:hover {
@@ -58,7 +60,7 @@ export const TabContainer = styled.button`
       fill: ${({ theme }): string => theme.palette['grey-800']};
     }
     &::after {
-      border-bottom: 0px;
+      height: 0;
     }
   }
   
@@ -69,7 +71,12 @@ export const TabContainer = styled.button`
   
   &:focus {
     &::after {
-      border-bottom: 1px dotted ${({theme}) => theme.palette['blue-600']};
+      height: 1px;
+      background-color: transparent;
+      background-image: linear-gradient(to right, ${({theme}) => theme.palette.white } 66%, ${({theme}) => theme.palette['blue-600'] } 34%);
+      background-position: top;
+      background-size: 5px 1px;
+      background-repeat: repeat-x;
     }
   }
   
@@ -88,7 +95,9 @@ export const TabContainer = styled.button`
     }
     
     &::after {
-      border-bottom: 2px solid ${({theme}) => theme.palette['blue-600']} !important;
+      height: 2px !important;
+      background-image: none;
+      background-color: ${({theme}) => theme.palette['blue-600']} !important;
     }
   }
   
@@ -103,7 +112,8 @@ export const TabContainer = styled.button`
     }
     
     &::after {
-      border-bottom: 0px solid ${({theme}) => theme.palette['blue-700']} !important;
+      background-image: none;
+      height: 0 !important;
     }
   }
 `;

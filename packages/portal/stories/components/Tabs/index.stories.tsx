@@ -21,9 +21,6 @@ const tabs = [
     label: 'Tab #1',
   },
   {
-    label: 'Tab #2',
-  },
-  {
     label: 'Tab #3',
     icon: <SearchM />
   },
@@ -59,7 +56,7 @@ storiesOf('Components|Tabs', module)
           setActiveTab={(index: number) => store.set({activeTab: index})}
           configuration={{
             label: 'Manage dashboards',
-            action: action('click'),
+            action: action('Manage dashboards click'),
           }}
         />
       </div>

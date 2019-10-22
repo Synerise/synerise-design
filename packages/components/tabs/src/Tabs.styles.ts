@@ -16,4 +16,22 @@ export const TabsDropdownContainer = styled.div`
   justify-content: flex-start;
   background-color: ${({theme}) => theme.palette.white};
   opacity: 1;
+  padding: 8px 8px;
+  
+  .ant-list {
+    width: 100%;
+    padding: 0;
+  }
+`;
+
+export const TabsDropdownDivider = styled.div`
+  margin: 7.5px 0;
+  height: 1px;
+  width: 100%;
+  box-sizing: content-box;
+  background-image: linear-gradient(to right, ${({theme}) => theme.palette.white } 66%, ${({theme}) => theme.palette['grey-300'] } 34%);
+  background-position: top;
+  background-size: 5px 1px;
+  background-repeat: repeat-x;
+
 `;
