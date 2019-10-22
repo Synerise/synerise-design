@@ -19,62 +19,90 @@ const tabs = [
 
 describe('Tabs component', () => {
   it('should render tabs container', () => {
+    // ARRANGE
     const content = <div style={{width: '800px'}}><Tabs tabs={tabs} activeTab={0} handleTabClick={() => {}} /></div>;
     const { getByTestId } = renderWithProvider(content);
-      expect(getByTestId('tabs-container')).toBeTruthy();
+
+    // ASSERT
+    expect(getByTestId('tabs-container')).toBeTruthy();
   });
 
   it('should render tabs container with 3 items', () => {
+    // ARRANGE
     const content = <div style={{width: '800px'}}><Tabs tabs={tabs} activeTab={0} handleTabClick={() => {}} /></div>;
     const { rerender, queryAllByTestId } = renderWithProvider(content);
+
+    // ACT
     setTimeout(() => {
       rerender(content);
+
+      // ASSERT
       expect(queryAllByTestId('tab-container').length).toBe(3);
     }, 100)
   });
 
   it('should call handleTabClick', () => {
+    // ARRANGE
     const handleTabClick = jest.fn();
     const content = <div style={{width: '800px'}}><Tabs tabs={tabs} activeTab={0} handleTabClick={handleTabClick} /></div>;
     const { rerender, queryAllByTestId } = renderWithProvider(content);
+
+    // ACT
     setTimeout(() => {
       rerender(content);
       const firstTab = queryAllByTestId('tab-container')[0];
       fireEvent.click(firstTab);
+
+      // ASSERT
       expect(handleTabClick).toBeCalled();
     }, 100)
   });
 
   it('should render dropdown', () => {
+    // ARRANGE
     const handleConfigurationAction = jest.fn();
     const content = <div style={{width: '800px'}}><Tabs tabs={[]} activeTab={0} handleTabClick={() => {}} configuration={{label: 'Button label', action: handleConfigurationAction}} /></div>;
     const { rerender, getByTestId } = renderWithProvider(content);
+
+    // ACT
     setTimeout(() => {
       rerender(content);
+
+      // ASSERT
       expect(getByTestId('tabs-dropdown-container')).toBeTruthy();
     }, 100)
   });
 
   it('should render configuration action button ', () => {
+    // ARRANGE
     const handleConfigurationAction = jest.fn();
     const LABEL = 'Button label';
     const content = <div style={{width: '800px'}}><Tabs tabs={[]} activeTab={0} handleTabClick={() => {}} configuration={{label: LABEL, action: handleConfigurationAction}} /></div>;
     const { rerender, getByText } = renderWithProvider(content);
+
+    // ACT
     setTimeout(() => {
       rerender(content);
+
+      // ASSERT
       expect(getByText(LABEL)).toBeTruthy();
     }, 100)
   });
 
   it('should call configuration action ', () => {
+    // ARRANGE
     const handleConfigurationAction = jest.fn();
     const LABEL = 'Button label';
     const content = <div style={{width: '800px'}}><Tabs tabs={[]} activeTab={0} handleTabClick={() => {}} configuration={{label: LABEL, action: handleConfigurationAction}} /></div>;
     const { rerender, getByText } = renderWithProvider(content);
+
+    // ACT
     setTimeout(() => {
       rerender(content);
       const button = getByText(LABEL);
       fireEvent.click(button);
+
+      // ASSERT
       expect(handleConfigurationAction).toBeCalled();
     }, 100)
   });

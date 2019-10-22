@@ -61,6 +61,7 @@ const Tabs: React.FC<TabsProps> = ({
     });
     setItemsWidths(itemsWithWidths);
   }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   ,[]);
 
   React.useLayoutEffect((): void => {
@@ -68,6 +69,7 @@ const Tabs: React.FC<TabsProps> = ({
       window.addEventListener('resize', handleResize);
       handleResize();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [itemsWidths]);
 
   const handleConfigurationAction = (): void => {
@@ -98,7 +100,7 @@ const Tabs: React.FC<TabsProps> = ({
   );
 
   return itemsWidths && (
-     <S.TabsContainer ref={(c): void => { if(!container) { container = c! }}} data-testid="tabs-container">
+     <S.TabsContainer ref={(c): void => { if(!container) { container = c }}} data-testid="tabs-container">
         {visibleTabs.map((tab, index) => {
           const ref = React.createRef<HTMLButtonElement>();
           items[index] = ref;
