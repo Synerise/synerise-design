@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { Input } from '@synerise/ds-input';
 
 export const ItemActions = styled.div`
   display: flex;
@@ -16,46 +15,18 @@ export const ItemContainer = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: flex-start;
-
-  ${Input} {
-    background: transparent;
-    outline: 0;
-    border: 0;
-    border-radius: 0;
+  justify-content: stretch;
+  li {
+    width: 100%;
   }
 
-  input {
-    border: 0;
-    display: inline-block;
-    padding: 0;
-    border: 0;
-    outline: 0;
-    border-radius: 0;
-    box-shadow: none;
-    background: transparent;
-    background-image: linear-gradient(to right, rgb(148, 158, 166) 20%, rgba(255, 255, 255, 0) 0%);
-    background-size: 5px 1px;
-    background-position: center bottom;
-    background-repeat: repeat-x;
-    height: 24px;
-    color: #000;
-    &:focus {
-      border: 0;
-      display: inline-block;
-      padding: 0;
-      border: 0;
-      outline: 0;
-      border-radius: 0;
-      box-shadow: none;
-      background: transparent;
-      background-image: linear-gradient(to right, rgb(148, 158, 166) 20%, rgba(255, 255, 255, 0) 0%);
-      background-size: 5px 1px;
-      background-position: center bottom;
-      background-repeat: repeat-x;
-      height: 24px;
-      color: #57616d;
-      font-weight: 500;
+  ${ItemActions} {
+    display: none;
+  }
+
+  &:hover {
+    ${ItemActions} {
+      display: flex;
     }
   }
 `;

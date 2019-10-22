@@ -108,11 +108,6 @@ const ITEMS:any = [
   }
 ]
 
-const itemAdd = (params) => console.log;
-const itemEdit = (params) => console.log;
-const itemRemove = (params) => console.log;
-const itemSelect = (params) => console.log;
-
 describe('ManageableList', () => {
   it('should render with no items', () => {
     const { queryByTestId, getByTestId } = renderWithProvider(
@@ -123,10 +118,10 @@ describe('ManageableList', () => {
         addItemLabel="Add folder"
         loading={false}
         maxToShowItems={5}
-        onItemAdd={itemAdd}
-        onItemEdit={itemEdit}
-        onItemSelect={itemSelect}
-        onItemRemove={itemRemove}
+        onItemAdd={() => {}}
+        onItemEdit={() => {}}
+        onItemSelect={() => {}}
+        onItemRemove={() => {}}
       />);
       expect(getByTestId('add-item-button')).toBeTruthy();
       expect(queryByTestId('show-more-button')).toBeNull();
@@ -142,10 +137,10 @@ describe('ManageableList', () => {
         addItemLabel="Add folder"
         loading={false}
         maxToShowItems={5}
-        onItemAdd={itemAdd}
-        onItemEdit={itemEdit}
-        onItemSelect={itemSelect}
-        onItemRemove={itemRemove}
+        onItemAdd={() => {}}
+        onItemEdit={() => {}}
+        onItemSelect={() => {}}
+        onItemRemove={() => {}}
       />);
     expect(getByTestId('add-item-button')).toBeTruthy();
     expect(queryByTestId('show-more-button')).toBeNull();
@@ -163,10 +158,10 @@ describe('ManageableList', () => {
         addItemLabel="Add folder"
         loading={false}
         maxToShowItems={5}
-        onItemAdd={itemAdd}
-        onItemEdit={itemEdit}
-        onItemSelect={itemSelect}
-        onItemRemove={itemRemove}
+        onItemAdd={() => {}}
+        onItemEdit={() => {}}
+        onItemSelect={() => {}}
+        onItemRemove={() => {}}
       />);
     const showMore = getByTestId('show-more-button');
     expect(getByTestId('add-item-button')).toBeTruthy();
@@ -184,10 +179,10 @@ describe('ManageableList', () => {
         addItemLabel="Add folder"
         loading={false}
         maxToShowItems={5}
-        onItemAdd={itemAdd}
-        onItemEdit={itemEdit}
-        onItemSelect={itemSelect}
-        onItemRemove={itemRemove}
+        onItemAdd={() => {}}
+        onItemEdit={() => {}}
+        onItemSelect={() => {}}
+        onItemRemove={() => {}}
       />);
     const showMore = getByTestId('show-more-button');
     expect(showMore.textContent).toBe('+ 2 more Show all');
@@ -207,14 +202,34 @@ describe('ManageableList', () => {
         addItemLabel="Add folder"
         loading={false}
         maxToShowItems={5}
-        onItemAdd={itemAdd}
-        onItemEdit={itemEdit}
+        onItemAdd={() => {}}
+        onItemEdit={() => {}}
         onItemSelect={onItemSelect}
-        onItemRemove={itemRemove}
+        onItemRemove={() => {}}
       />);
     const firstListItem = queryAllByTestId('list-item-name')[0];
     fireEvent.click(firstListItem);
     expect(onItemSelect).toHaveBeenCalledWith({id: '00000000-0000-0000-0000-000000000000'});
+  });
+
+  it('should fire remove item', () => {
+    const onItemRemove = jest.fn();
+    const { getByTestId, queryAllByTestId } = renderWithProvider(
+      <ManageableList
+        items={ITEMS}
+        showMoreLabel="Show all"
+        showLessLabel="Show less"
+        addItemLabel="Add folder"
+        loading={false}
+        maxToShowItems={5}
+        onItemAdd={() => {}}
+        onItemEdit={() => {}}
+        onItemSelect={() => {}}
+        onItemRemove={onItemRemove}
+      />);
+    const firstRemoveButton = queryAllByTestId('list-item-remove')[0];
+    fireEvent.click(firstRemoveButton.querySelector('svg'));
+    expect(onItemRemove).toHaveBeenCalled();
   });
 
   it('should fire onItemAdd', () => {
@@ -228,9 +243,9 @@ describe('ManageableList', () => {
         loading={false}
         maxToShowItems={5}
         onItemAdd={onItemAdd}
-        onItemEdit={itemEdit}
-        onItemSelect={itemSelect}
-        onItemRemove={itemRemove}
+        onItemEdit={() => {}}
+        onItemSelect={() => {}}
+        onItemRemove={() => {}}
       />);
     const NEW_FOLDER_NAME = 'New folder';
     const addItemButton = getByTestId('add-item-button');
