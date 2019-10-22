@@ -3,32 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.13](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.4.12...@synerise/ds-table@0.4.13) (2019-10-22)
+
+**Note:** Version bump only for package @synerise/ds-table
+
 ## [0.4.12](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.4.11...@synerise/ds-table@0.4.12) (2019-10-22)
 
 **Note:** Version bump only for package @synerise/ds-table
 
-
-
-
-
 ## [0.4.11](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.4.10...@synerise/ds-table@0.4.11) (2019-10-22)
-
 
 ### Bug Fixes
 
-* **table:** fix issue with missing style for pagination dropdown ([17ccd73](https://github.com/synerise/synerise-design/commit/17ccd73))
-
-
-
-
+- **table:** fix issue with missing style for pagination dropdown ([17ccd73](https://github.com/synerise/synerise-design/commit/17ccd73))
 
 ## [0.4.10](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.4.9...@synerise/ds-table@0.4.10) (2019-10-21)
 
 **Note:** Version bump only for package @synerise/ds-table
-
-
-
-
 
 ## [0.4.9](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.4.8...@synerise/ds-table@0.4.9) (2019-10-18)
 
