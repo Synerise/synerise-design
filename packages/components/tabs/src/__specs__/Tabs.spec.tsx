@@ -17,6 +17,8 @@ const tabs = [
   },
 ];
 
+const WAIT_FOR_HOOKS = 100;
+
 describe('Tabs component', () => {
   it('should render tabs container', () => {
     // ARRANGE
@@ -38,7 +40,7 @@ describe('Tabs component', () => {
 
       // ASSERT
       expect(queryAllByTestId('tab-container').length).toBe(3);
-    }, 100)
+    }, WAIT_FOR_HOOKS)
   });
 
   it('should call handleTabClick', () => {
@@ -55,7 +57,7 @@ describe('Tabs component', () => {
 
       // ASSERT
       expect(handleTabClick).toBeCalled();
-    }, 100)
+    }, WAIT_FOR_HOOKS)
   });
 
   it('should render dropdown', () => {
@@ -70,7 +72,7 @@ describe('Tabs component', () => {
 
       // ASSERT
       expect(getByTestId('tabs-dropdown-container')).toBeTruthy();
-    }, 100)
+    }, WAIT_FOR_HOOKS)
   });
 
   it('should render configuration action button ', () => {
@@ -86,7 +88,7 @@ describe('Tabs component', () => {
 
       // ASSERT
       expect(getByText(LABEL)).toBeTruthy();
-    }, 100)
+    }, WAIT_FOR_HOOKS)
   });
 
   it('should call configuration action ', () => {
@@ -104,6 +106,6 @@ describe('Tabs component', () => {
 
       // ASSERT
       expect(handleConfigurationAction).toBeCalled();
-    }, 100)
+    }, WAIT_FOR_HOOKS)
   });
 });

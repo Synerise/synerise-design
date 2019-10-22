@@ -33,7 +33,7 @@ const Tabs: React.FC<TabsProps> = ({
   configuration,
 }) => {
   const items: React.RefObject<HTMLButtonElement>[] = [];
-  let container: HTMLDivElement;
+  let container: HTMLDivElement | null;
   const [itemsWidths, setItemsWidths] = React.useState<number[]>([]);
   const [visibleTabs, setVisibleTabs] = React.useState<TabItem[]>(tabs);
   const [hiddenTabs, setHiddenTabs] = React.useState<TabItem[]>([]);
