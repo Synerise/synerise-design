@@ -38,7 +38,7 @@ storiesOf('Components|Tabs', module)
   return (
     <DSProvider code="en_GB">
       <div style={{width: '600px', maxWidth: '100%', padding: '24px', background: '#fff'}}>
-        <Tabs tabs={tabs} activeTab={store.state.activeTab} setActiveTab={(index: number) => store.set({activeTab: index})} />
+        <Tabs tabs={tabs} activeTab={store.state.activeTab} handleTabClick={(index: number) => store.set({activeTab: index})} />
       </div>
     </DSProvider>
   );
@@ -53,7 +53,7 @@ storiesOf('Components|Tabs', module)
         <Tabs
           tabs={tabs}
           activeTab={store.state.activeTab}
-          setActiveTab={(index: number) => store.set({activeTab: index})}
+          handleTabClick={(index: number) => store.set({activeTab: index})}
           configuration={{
             label: 'Manage dashboards',
             action: action('Manage dashboards click'),

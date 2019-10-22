@@ -1,18 +1,17 @@
 import * as React from 'react';
-import * as S from './Tabs.styles';
-import Tab from './Tab/Tab';
 import Dropdown from '@synerise/ds-dropdown';
 import List from '@synerise/ds-list';
 import Icon from '@synerise/ds-icon';
 import FileM from '@synerise/ds-icon/dist/icons/FileM';
 import Button from '@synerise/ds-button';
 import OptionHorizontalM from '@synerise/ds-icon/dist/icons/OptionHorizontalM';
-import { RefObject } from 'react';
+import * as S from './Tabs.styles';
+import Tab from './Tab/Tab';
 
 export type TabsProps = {
   activeTab: number;
   tabs: TabItem[];
-  setActiveTab: (index: number) => void;
+  handleTabClick: (index: number) => void;
   configuration: Cofiguration;
 };
 
@@ -30,16 +29,33 @@ type TabItem = {
 const Tabs: React.FC<TabsProps> = ({
   activeTab,
   tabs,
-  setActiveTab,
+  handleTabClick,
   configuration,
 }) => {
-  let items: RefObject<HTMLButtonElement>[] = [];
+  const items: React.RefObject<HTMLButtonElement>[] = [];
   let container: HTMLDivElement;
   const [itemsWidths, setItemsWidths] = React.useState<number[]>([]);
   const [visibleTabs, setVisibleTabs] = React.useState<TabItem[]>(tabs);
   const [hiddenTabs, setHiddenTabs] = React.useState<TabItem[]>([]);
 
-  React.useEffect(() => {
+  const handleResize = (): void => {
+    let width = 56;
+    const visibleItems: TabItem[] = [];
+    const hiddenItems: TabItem[] = [];
+    itemsWidths.forEach((itemWidth, index) => {
+      if(container && (width + itemWidth) < container.offsetWidth) {
+        visibleItems.push(tabs[index]);
+      } else {
+        hiddenItems.push(tabs[index]);
+      }
+      width += itemWidth;
+    });
+    setVisibleTabs(visibleItems);
+    setHiddenTabs(hiddenItems);
+  };
+
+
+  React.useEffect((): void => {
     const itemsWithWidths: number[] = [];
     items.forEach((item, index) => {
       itemsWithWidths[index] = item.current !== null ? item.current.offsetWidth + 24 : 0;
@@ -48,37 +64,21 @@ const Tabs: React.FC<TabsProps> = ({
   }
   ,[]);
 
-  React.useEffect(() => {
+  React.useEffect((): void => {
     if(itemsWidths.length){
       window.addEventListener('resize', handleResize);
       handleResize();
     }
   }, [itemsWidths]);
 
-  const handleResize = () => {
-    let width = 56;
-    const visibleTabs: TabItem[] = [];
-    const hiddenTabs: TabItem[] = [];
-    itemsWidths.forEach((itemWidth, index) => {
-      if(container && (width + itemWidth) < container.offsetWidth) {
-        visibleTabs.push(tabs[index]);
-      } else {
-        hiddenTabs.push(tabs[index]);
-      }
-      width += itemWidth;
-    });
-    setVisibleTabs(visibleTabs);
-    setHiddenTabs(hiddenTabs);
-  };
-
-  const renderHiddenTabs = () => (
+  const renderHiddenTabs = (): React.ReactNode => (
     <S.TabsDropdownContainer>
       {hiddenTabs.length > 0 && (
         <List
           dataSource={[hiddenTabs]}
-          renderItem={(item, index) => (
-            <List.Item onSelect={() => setActiveTab(visibleTabs.length + index)} disabled={item.disabled} icon={<Icon component={<FileM />} />}>
-              {(item as any).label}
+          renderItem={(item, index): React.ReactNode => (
+            <List.Item onSelect={(): void => handleTabClick(visibleTabs.length + index)} disabled={item.disabled} icon={<Icon component={<FileM />} />}>
+              {item.label}
             </List.Item>
           )}
         />
@@ -87,7 +87,8 @@ const Tabs: React.FC<TabsProps> = ({
         <S.TabsDropdownDivider />
       )}
       {configuration && (
-        <Button type={'ghost'} onClick={configuration.action}>
+        // eslint-disable-next-line react/ jsx-handler-names
+        <Button type="ghost" onClick={configuration.action}>
           { configuration.label }
         </Button>
       )}
@@ -95,25 +96,26 @@ const Tabs: React.FC<TabsProps> = ({
   );
 
   return itemsWidths && (
-     <S.TabsContainer ref={c => { if(!container) { container = c! }}}>
+     <S.TabsContainer ref={(c): void => { if(!container) { container = c! }}}>
         {visibleTabs.map((tab, index) => {
           const ref = React.createRef<HTMLButtonElement>();
           items[index] = ref;
+          const key = `tabs-tab-${index}`;
           return (
             <Tab
               forwardedRef={ref}
-              key={index}
+              key={key}
               index={index}
               label={tab.label}
               icon={tab.icon}
-              onClick={setActiveTab}
+              onClick={handleTabClick}
               isActive={index === activeTab}
               disabled={tab.disabled}
             />
           )
         })}
        {(hiddenTabs.length || configuration) && (<Dropdown overlay={ renderHiddenTabs() }>
-          <Button type={'ghost'} mode={'single-icon'}>
+          <Button type="ghost" mode="single-icon">
             <Icon component={<OptionHorizontalM />} />
           </Button>
        </Dropdown>)}

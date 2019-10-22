@@ -33,8 +33,8 @@ export const TabContainer = styled.button`
   border: 0;
   outline: 0;
   padding: 0;
-  pointer-events: ${({disabled}) => disabled ? 'none' : 'all'}
-  opacity: ${({disabled}) => disabled ? '0.4' : '1'}
+  pointer-events: ${({disabled}): string => disabled ? 'none' : 'all'}
+  opacity: ${({disabled}): string => disabled ? '0.4' : '1'}
   margin-top: 4px;
   ${IconContainer} {
     margin-right: 4px;
@@ -73,7 +73,7 @@ export const TabContainer = styled.button`
     &::after {
       height: 1px;
       background-color: transparent;
-      background-image: linear-gradient(to right, ${({theme}) => theme.palette.white } 66%, ${({theme}) => theme.palette['blue-600'] } 34%);
+      background-image: linear-gradient(to right, ${({theme}): string => theme.palette.white } 66%, ${({theme}): string => theme.palette['blue-600'] } 34%);
       background-position: top;
       background-size: 5px 1px;
       background-repeat: repeat-x;
@@ -97,7 +97,7 @@ export const TabContainer = styled.button`
     &::after {
       height: 2px !important;
       background-image: none;
-      background-color: ${({theme}) => theme.palette['blue-600']} !important;
+      background-color: ${({theme}): string => theme.palette['blue-600']} !important;
     }
   }
   
