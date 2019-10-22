@@ -73,7 +73,9 @@ const Tabs: React.FC<TabsProps> = ({
   }, [itemsWidths]);
 
   const handleConfigurationAction = (): void => {
-    configuration.action();
+    if(configuration){
+      configuration.action();
+    }
   }
 
   const renderHiddenTabs = (): React.ReactNode => (
