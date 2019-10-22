@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { boolean, number, text } from '@storybook/addon-knobs';
+import { boolean, number, text, array } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
-import { Input, InputGroup, TextArea, RawInput } from '@synerise/ds-input';
+import { Input, TextArea, RawInput, InputGroup } from '@synerise/ds-input';
 import { DSProvider } from '@synerise/ds-core';
 
 import Icon from '@synerise/ds-icon';
@@ -46,10 +46,16 @@ export const InputWithPreSelect = () => {
   return (
     <div style={{ width: '300px' }}>
       <DSProvider code="en_GB">
-        <RawInput.Group compact>
+        <InputGroup
+          label={text('label', 'Label')}
+          description={text('description', 'Description')}
+          errors={array('errors', ['First error', 'Second error'])}
+          resetMargin={boolean('resetMargin', false)}
+          compact
+        >
           {select}
           {input}
-        </RawInput.Group>
+        </InputGroup>
       </DSProvider>
     </div>
   );
