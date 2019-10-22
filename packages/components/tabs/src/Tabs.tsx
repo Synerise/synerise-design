@@ -18,20 +18,15 @@ export type TabsProps = {
 type Configuration = {
   action: () => void;
   label: string;
-}
+};
 
 type TabItem = {
   label?: string;
   icon?: React.ReactNode;
   disabled?: boolean;
-}
+};
 
-const Tabs: React.FC<TabsProps> = ({
-  activeTab,
-  tabs,
-  handleTabClick,
-  configuration,
-}) => {
+const Tabs: React.FC<TabsProps> = ({ activeTab, tabs, handleTabClick, configuration }) => {
   const items: React.RefObject<HTMLButtonElement>[] = [];
   let container: HTMLDivElement | null;
   const [itemsWidths, setItemsWidths] = React.useState<number[]>([]);
@@ -43,7 +38,7 @@ const Tabs: React.FC<TabsProps> = ({
     const visibleItems: TabItem[] = [];
     const hiddenItems: TabItem[] = [];
     itemsWidths.forEach((itemWidth, index) => {
-      if(container && (width + itemWidth) < container.offsetWidth) {
+      if (container && width + itemWidth < container.offsetWidth) {
         visibleItems.push(tabs[index]);
       } else {
         hiddenItems.push(tabs[index]);
@@ -60,23 +55,22 @@ const Tabs: React.FC<TabsProps> = ({
       itemsWithWidths[index] = item.current !== null ? item.current.offsetWidth + 24 : 0;
     });
     setItemsWidths(itemsWithWidths);
-  }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  ,[]);
+  }, // eslint-disable-next-line react-hooks/exhaustive-deps
+  []);
 
   React.useLayoutEffect((): void => {
-    if(itemsWidths.length){
+    if (itemsWidths.length) {
       window.addEventListener('resize', handleResize);
-      handleResize();
     }
+    handleResize();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [itemsWidths]);
 
   const handleConfigurationAction = (): void => {
-    if(configuration){
+    if (configuration) {
       configuration.action();
     }
-  }
+  };
 
   const renderHiddenTabs = (): React.ReactNode => (
     <S.TabsDropdownContainer data-testid="tabs-dropdown-container">
@@ -84,48 +78,59 @@ const Tabs: React.FC<TabsProps> = ({
         <List
           dataSource={[hiddenTabs]}
           renderItem={(item, index): React.ReactNode => (
-            <List.Item onSelect={(): void => handleTabClick(visibleTabs.length + index)} disabled={item.disabled} icon={<Icon component={<FileM />} />}>
+            <List.Item
+              onSelect={(): void => handleTabClick(visibleTabs.length + index)}
+              disabled={item.disabled}
+              icon={<Icon component={<FileM />} />}
+            >
               {item.label}
             </List.Item>
           )}
         />
       )}
-      { hiddenTabs.length > 0 && configuration && (
-        <S.TabsDropdownDivider />
-      )}
+      {hiddenTabs.length > 0 && configuration && <S.TabsDropdownDivider />}
       {configuration && (
         <Button type="ghost" onClick={handleConfigurationAction}>
-          { configuration.label }
+          {configuration.label}
         </Button>
       )}
     </S.TabsDropdownContainer>
   );
 
-  return itemsWidths && (
-     <S.TabsContainer ref={(c): void => { if(!container) { container = c }}} data-testid="tabs-container">
-        {visibleTabs.map((tab, index) => {
-          const ref = React.createRef<HTMLButtonElement>();
-          items[index] = ref;
-          const key = `tabs-tab-${index}`;
-          return (
-            <Tab
-              forwardedRef={ref}
-              key={key}
-              index={index}
-              label={tab.label}
-              icon={tab.icon}
-              onClick={handleTabClick}
-              isActive={index === activeTab}
-              disabled={tab.disabled}
-            />
-          )
-        })}
-       {(hiddenTabs.length || configuration) && (<Dropdown overlay={ renderHiddenTabs() }>
+  return (
+    <S.TabsContainer
+      ref={(c): void => {
+        if (!container) {
+          container = c;
+        }
+      }}
+      data-testid="tabs-container"
+    >
+      {visibleTabs.map((tab, index) => {
+        const ref = React.createRef<HTMLButtonElement>();
+        items[index] = ref;
+        const key = `tabs-tab-${index}`;
+        return (
+          <Tab
+            forwardedRef={ref}
+            key={key}
+            index={index}
+            label={tab.label}
+            icon={tab.icon}
+            onClick={handleTabClick}
+            isActive={index === activeTab}
+            disabled={tab.disabled}
+          />
+        );
+      })}
+      {(hiddenTabs.length || configuration) && (
+        <Dropdown data-testid="tabs-dropdown" overlay={renderHiddenTabs()}>
           <Button type="ghost" mode="single-icon">
             <Icon component={<OptionHorizontalM />} />
           </Button>
-       </Dropdown>)}
-     </S.TabsContainer>
-   );
+        </Dropdown>
+      )}
+    </S.TabsContainer>
+  );
 };
 export default Tabs;
