@@ -105,5 +105,6 @@ const enhancedInput = <P extends object>(
 
 export const TextArea = enhancedInput(S.AntdTextArea, { type: 'textArea' });
 export const Input = enhancedInput(S.AntdInput, { type: 'input' });
+export { default as InputGroup } from './InputGroup';
 export const RawInput = S.AntdInput;
 export const RawTextArea = S.AntdTextArea;

@@ -1,3 +1,1 @@
-import { Input, TextArea, RawInput, RawTextArea } from './Input';
-
-export { Input, TextArea, RawInput, RawTextArea };
+export { Input, TextArea, RawInput, RawTextArea, InputGroup } from './Input';

@@ -15,6 +15,8 @@ Input UI Component
 
 ## API
 
+#### Input
+
 | Property     | Description                                                                                                                                                        | Type             | Default   |
 | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------- | --------- |
 | resetMargin  | whether input should have margin reset                                                                                                                             | boolean          | -         |
@@ -35,3 +37,10 @@ Input UI Component
 | onChange     | callback when user input                                                                                                                                           | function(e)      |           |
 | onPressEnter | The callback function that is triggered when Enter key is pressed.                                                                                                 | function(e)      |           |
 | allowClear   | allow to remove input content with clear icon                                                                                                                      | boolean          |           |
+
+#### InputGroup
+
+| Property | Description                                                                                             | Type    | Default |
+| -------- | ------------------------------------------------------------------------------------------------------- | ------- | ------- |
+| compact  | Whether use compact style                                                                               | boolean | false	 |
+| size     | The size of Input.Group specifies the size of the included Input fields. Available: large default small | string  | default |

@@ -11,7 +11,7 @@ import {
 
 storiesOf('Components|Input', module)
   .add('Input', InputBasic)
-  .add('Input with Pre', InputWithPreSelect)
+  .add('InputGroup', InputWithPreSelect)
   .add('Input with icons', InputWithIcons)
   .add('Textarea', TextAreaBasic)
   .add('Textarea with icons', TextAreaWithIcons)
