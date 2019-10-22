@@ -12,10 +12,10 @@ export type TabsProps = {
   activeTab: number;
   tabs: TabItem[];
   handleTabClick: (index: number) => void;
-  configuration: Cofiguration;
+  configuration?: Configuration;
 };
 
-type Cofiguration = {
+type Configuration = {
   action: () => void;
   label: string;
 }
