@@ -15,9 +15,9 @@ type Props = {
 };
 
 export type ItemProps = {
-  catalogId: string;
-  canUpdateCatalog: boolean;
-  canDeleteCatalog: boolean;
+  id: string;
+  canUpdate: boolean;
+  canDelete: boolean;
   name: string;
 };
 
@@ -25,9 +25,9 @@ const Item: React.FC<Props> = ({ item, onRemove, onSelect, onUpdate }) => {
   const [editMode, setEditMode] = React.useState(false);
   const [editedName, setName] = React.useState(item.name);
 
-  const { canUpdateCatalog, canDeleteCatalog, name } = item;
+  const { canUpdate, canDelete, name } = item;
 
-  const enterEditMode = (event: MouseEvent): void => {
+  const enterEditMode = (event: React.MouseEvent): void => {
     event.stopPropagation();
     setEditMode(true);
   };
@@ -39,29 +39,29 @@ const Item: React.FC<Props> = ({ item, onRemove, onSelect, onUpdate }) => {
   const updateName = (): void => {
     setEditMode(false);
     setName(item.name);
-    onUpdate({ id: item.catalogId, name: editedName });
+    onUpdate({ id: item.id, name: editedName });
   };
 
-  const removeCatalog = (event: Event): void => {
+  const removeItem = (event: React.MouseEvent): void => {
     event.stopPropagation();
-    onRemove({ id: item.catalogId });
+    onRemove({ id: item.id });
   };
 
   return (
     <S.ItemContainer>
       <List.Item
         icon={<Icon component={<FolderM />} size={24} color="#000" />}
-        onSelect={(): void => onSelect({ id: item.catalogId })}
+        onSelect={(): void => onSelect({ id: item.id })}
         actions={
           <S.ItemActions>
-            {canUpdateCatalog && (
+            {canUpdate && (
               <div data-testid="list-item-edit">
                 <Icon component={<EditS />} size={24} color="#949ea6" onClick={enterEditMode} />
               </div>
             )}
-            {canDeleteCatalog && (
+            {canDelete && (
               <div data-testid="list-item-remove">
-                <Icon component={<CloseS />} size={24} color="#f52922" onClick={removeCatalog} />
+                <Icon component={<CloseS />} size={24} color="#f52922" onClick={removeItem} />
               </div>
             )}
           </S.ItemActions>

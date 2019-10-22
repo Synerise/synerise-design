@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Input } from '@synerise/ds-input';
 import Icon from '@synerise/ds-icon';
 import { Add3M } from '@synerise/ds-icon/dist/icons';
+import Button from '@synerise/ds-button';
 import * as S from './AddItem.styles';
 
 type Props = {
@@ -29,24 +30,24 @@ const AddItem: React.FC<Props> = ({ onItemAdd, addItemLabel }) => {
     setName(DEFAULT_NAME);
   };
 
-  const createCatalog = (): void => {
+  const createItem = (): void => {
     onItemAdd({ name });
     toggleInput();
   };
 
   return (
     <S.AddItemLayout>
-      <S.AddItemButton onClick={toggleInput} data-testid="add-item-button">
+      <Button type="ghost" onClick={toggleInput} size="small">
         <Icon component={<Add3M />} size={24} color="#b5bdc3" />
         <S.AddItemLabel>{addItemLabel}</S.AddItemLabel>
-      </S.AddItemButton>
+      </Button>
       {active && (
         <Input
           autoFocus
           value={name}
           onBlur={handleClickOutside}
           onChange={handleNameChange}
-          onPressEnter={createCatalog}
+          onPressEnter={createItem}
           data-testid="add-item-input"
         />
       )}

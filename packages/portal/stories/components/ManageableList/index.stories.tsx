@@ -5,120 +5,64 @@ import { action } from "@storybook/addon-actions";
 import ManageableList from '@synerise/ds-manageablelist/dist/Manageable-list';
 import { withState } from '@dump247/storybook-state';
 
-
-const DEFAULT_ITEMS:any = [
-  {
-    catalogId: "00000000-0000-0000-0000-000000000000",
-    name: "Default",
-    canAdd: true,
-    canUpdate: true,
-    canDelete: true,
-    canUpdateCatalog: false,
-    canDeleteCatalog: false,
-  },
-  {
-    catalogId: "00000000-0000-0000-0000-000000000001",
-    name: "Basic",
-    canAdd: true,
-    canUpdate: true,
-    canDelete: true,
-    canUpdateCatalog: true,
-    canDeleteCatalog: false,
-  },
-  {
-    catalogId: "00000000-0000-0000-0000-000000000002",
-    name: "My folder",
-    canAdd: true,
-    canUpdate: true,
-    canDelete: true,
-    canUpdateCatalog: true,
-    canDeleteCatalog: true,
-  },
-  {
-    catalogId: "00000000-0000-0000-0000-000000000003",
-    name: "My folder 2",
-    canAdd: true,
-    canUpdate: true,
-    canDelete: true,
-    canUpdateCatalog: true,
-    canDeleteCatalog: true,
-  },
-]
-
 const ITEMS:any = [
   {
-    catalogId: "00000000-0000-0000-0000-000000000000",
+    id: "00000000-0000-0000-0000-000000000000",
     name: "Default",
     canAdd: true,
-    canUpdate: true,
-    canDelete: true,
-    canUpdateCatalog: false,
-    canDeleteCatalog: false,
+    canUpdate: false,
+    canDelete: false,
   },
   {
-    catalogId: "00000000-0000-0000-0000-000000000001",
+    id: "00000000-0000-0000-0000-000000000001",
     name: "Basic",
     canAdd: true,
     canUpdate: true,
     canDelete: true,
-    canUpdateCatalog: true,
-    canDeleteCatalog: true,
   },
   {
-    catalogId: "00000000-0000-0000-0000-000000000002",
+    id: "00000000-0000-0000-0000-000000000002",
     name: "My folder",
     canAdd: true,
     canUpdate: true,
     canDelete: true,
-    canUpdateCatalog: true,
-    canDeleteCatalog: true,
   },
   {
-    catalogId: "00000000-0000-0000-0000-000000000003",
+    id: "00000000-0000-0000-0000-000000000003",
     name: "My folder 2",
     canAdd: true,
     canUpdate: true,
     canDelete: true,
-    canUpdateCatalog: true,
-    canDeleteCatalog: true,
   },
   {
-    catalogId: "00000000-0000-0000-0000-000000000004",
+    id: "00000000-0000-0000-0000-000000000004",
     name: "My folder 3",
     canAdd: true,
     canUpdate: true,
     canDelete: true,
-    canUpdateCatalog: true,
-    canDeleteCatalog: true,
   },
   {
-    catalogId: "00000000-0000-0000-0000-000000000005",
+    id: "00000000-0000-0000-0000-000000000005",
     name: "My folder 4",
     canAdd: true,
     canUpdate: true,
     canDelete: true,
-    canUpdateCatalog: true,
-    canDeleteCatalog: true,
   },
   {
-    catalogId: "00000000-0000-0000-0000-000000000006",
+    id: "00000000-0000-0000-0000-000000000006",
     name: "My folder 5",
     canAdd: true,
     canUpdate: true,
     canDelete: true,
-    canUpdateCatalog: true,
-    canDeleteCatalog: true,
   }
 ];
 
 const EMPTY_ITEM = {
-  catalogId: '',
+  id: '',
   name: '',
   canAdd: true,
   canUpdate: true,
   canDelete: true,
-  canUpdateCatalog: true,
-  canDeleteCatalog: true
 }
 
 storiesOf('Components|Manageable List', module)
@@ -131,7 +75,7 @@ storiesOf('Components|Manageable List', module)
           ...store.state.items,
           {
             ...EMPTY_ITEM,
-            catalogId: Date.now(),
+            id: Date.now(),
             name,
           }
         ]
@@ -140,14 +84,14 @@ storiesOf('Components|Manageable List', module)
 
     const removeItem = ({id}): void => {
       store.set({
-        items: store.state.items.filter(item => item.catalogId !== id),
+        items: store.state.items.filter(item => item.id !== id),
       });
     }
 
     const editItem = (props): void => {
       store.set({
         items: store.state.items.map(item => {
-          if(item.catalogId === props.id) {
+          if(item.id === props.id) {
             item.name = props.name;
           }
           return item;
