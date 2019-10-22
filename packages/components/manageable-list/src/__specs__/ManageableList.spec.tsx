@@ -150,7 +150,7 @@ describe('ManageableList', () => {
   });
 
   it('should render with hidden items and show-more button', () => {
-    const { queryByTestId, queryAllByTestId, getByTestId } = renderWithProvider(
+    const { queryAllByTestId, getByTestId } = renderWithProvider(
       <ManageableList
         items={ITEMS}
         showMoreLabel="Show all"
@@ -171,7 +171,7 @@ describe('ManageableList', () => {
   });
 
   it('should show all items after show more button clicked', () => {
-    const { queryByTestId, queryAllByTestId, getByTestId } = renderWithProvider(
+    const { queryAllByTestId, getByTestId } = renderWithProvider(
       <ManageableList
         items={ITEMS}
         showMoreLabel="Show all"
@@ -194,7 +194,7 @@ describe('ManageableList', () => {
 
   it('should fire onItemSelect method on item click', () => {
     const onItemSelect = jest.fn();
-    const { getByTestId, queryAllByTestId } = renderWithProvider(
+    const { queryAllByTestId } = renderWithProvider(
       <ManageableList
         items={ITEMS}
         showMoreLabel="Show all"
@@ -214,7 +214,7 @@ describe('ManageableList', () => {
 
   it('should fire remove item', () => {
     const onItemRemove = jest.fn();
-    const { getByTestId, queryAllByTestId } = renderWithProvider(
+    const { queryAllByTestId } = renderWithProvider(
       <ManageableList
         items={ITEMS}
         showMoreLabel="Show all"
@@ -228,13 +228,17 @@ describe('ManageableList', () => {
         onItemRemove={onItemRemove}
       />);
     const firstRemoveButton = queryAllByTestId('list-item-remove')[0];
-    fireEvent.click(firstRemoveButton.querySelector('svg'));
+    const removeItemIcon = firstRemoveButton.querySelector('svg')
+    expect(removeItemIcon).toBeTruthy();
+    if(removeItemIcon){
+      fireEvent.click(removeItemIcon);
+    }
     expect(onItemRemove).toHaveBeenCalled();
   });
 
   it('should fire onItemAdd', () => {
     const onItemAdd = jest.fn();
-    const { getByTestId, queryAllByTestId } = renderWithProvider(
+    const { getByTestId } = renderWithProvider(
       <ManageableList
         items={DEFAULT_ITEMS}
         showMoreLabel="Show all"

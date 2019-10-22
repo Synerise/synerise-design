@@ -1,7 +1,7 @@
 import * as React from 'react';
 import List from '@synerise/ds-list';
 import * as S from './Manageable-list.styles';
-import Item from './Item/Item';
+import Item, { ItemProps } from './Item/Item';
 import AddItem from './AddItem/AddItem';
 
 interface Props {
@@ -13,26 +13,22 @@ interface Props {
   onItemRemove: (removeParams: { id: string }) => void;
   onItemEdit: (editParams: { id: string; name: string }) => void;
   onItemSelect: (selectParams: { id: string }) => void;
-  items: [];
+  items: ItemProps[];
   loading: boolean;
 }
 
 interface State {
   allItemsVisible: boolean;
-  itemsOverLimit: number;
 }
 
 export default class ManageableList extends React.PureComponent<Props, State> {
-  constructor(props) {
-    super(props);
+  state = {
+    allItemsVisible: false,
+  };
 
-    const { length } = props.items;
-    const { maxToShowItems } = props;
-
-    this.state = {
-      allItemsVisible: false,
-      itemsOverLimit: length - maxToShowItems,
-    };
+  private getItemsOverLimit(): number {
+    const { items, maxToShowItems } = this.props;
+    return items.length - maxToShowItems;
   }
 
   private toggleAllItems(): void {
@@ -40,7 +36,7 @@ export default class ManageableList extends React.PureComponent<Props, State> {
     this.setState({ allItemsVisible: !allItemsVisible });
   }
 
-  private items(): any[] {
+  private items(): ItemProps[] {
     const { maxToShowItems, items } = this.props;
     const { allItemsVisible } = this.state;
     return allItemsVisible ? items : items.slice(0, maxToShowItems);
@@ -59,9 +55,11 @@ export default class ManageableList extends React.PureComponent<Props, State> {
       showLessLabel,
       loading,
     } = this.props;
-    const { allItemsVisible, itemsOverLimit } = this.state;
+    const { allItemsVisible } = this.state;
     const buttonLabel = allItemsVisible ? showLessLabel : showMoreLabel;
-    const buttonLabelDiff = allItemsVisible ? `- ${itemsOverLimit} less ` : `+ ${itemsOverLimit} more `;
+    const buttonLabelDiff = allItemsVisible
+      ? `- ${this.getItemsOverLimit()} less `
+      : `+ ${this.getItemsOverLimit()} more `;
     return (
       <S.ManageableListContainer>
         <AddItem addItemLabel={addItemLabel} onItemAdd={onItemAdd} />

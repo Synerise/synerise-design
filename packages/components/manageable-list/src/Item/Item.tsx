@@ -3,19 +3,22 @@ import List from '@synerise/ds-list';
 import Icon from '@synerise/ds-icon';
 import CloseS from '@synerise/ds-icon/dist/icons/CloseS';
 import InlineEdit from '@synerise/ds-inline-edit/dist/InlineEdit';
+import FolderM from '@synerise/ds-icon/dist/icons/FolderM';
 import EditS from '@synerise/ds-icon/dist/icons/EditS';
 import * as S from './Item.styles';
 
 type Props = {
-  item: {
-    catalogId: string;
-    canUpdateCatalog: boolean;
-    canDeleteCatalog: boolean;
-    name: string;
-  };
+  item: ItemProps;
   onRemove: (removeParams: { id: string }) => void;
   onSelect: (selectParams: { id: string }) => void;
   onUpdate: (updateParams: { id: string; name: string }) => void;
+};
+
+export type ItemProps = {
+  catalogId: string;
+  canUpdateCatalog: boolean;
+  canDeleteCatalog: boolean;
+  name: string;
 };
 
 const Item: React.FC<Props> = ({ item, onRemove, onSelect, onUpdate }) => {
@@ -24,12 +27,12 @@ const Item: React.FC<Props> = ({ item, onRemove, onSelect, onUpdate }) => {
 
   const { canUpdateCatalog, canDeleteCatalog, name } = item;
 
-  const enterEditMode = (event: any): void => {
+  const enterEditMode = (event: MouseEvent): void => {
     event.stopPropagation();
     setEditMode(true);
   };
 
-  const editName = (event: any): void => {
+  const editName = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setName(event.target.value);
   };
 
@@ -39,7 +42,7 @@ const Item: React.FC<Props> = ({ item, onRemove, onSelect, onUpdate }) => {
     onUpdate({ id: item.catalogId, name: editedName });
   };
 
-  const removeCatalog = (event: any): void => {
+  const removeCatalog = (event: Event): void => {
     event.stopPropagation();
     onRemove({ id: item.catalogId });
   };
@@ -47,7 +50,7 @@ const Item: React.FC<Props> = ({ item, onRemove, onSelect, onUpdate }) => {
   return (
     <S.ItemContainer>
       <List.Item
-        icon={<Icon component={<CloseS />} size={24} color="#000" />}
+        icon={<Icon component={<FolderM />} size={24} color="#000" />}
         onSelect={(): void => onSelect({ id: item.catalogId })}
         actions={
           <S.ItemActions>

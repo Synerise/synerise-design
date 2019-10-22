@@ -20,7 +20,7 @@ const AddItem: React.FC<Props> = ({ onItemAdd, addItemLabel }) => {
     setName(DEFAULT_NAME);
   };
 
-  const handleNameChange = (event: any): void => {
+  const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setName(event.target.value);
   };
 
