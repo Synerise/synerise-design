@@ -54,8 +54,7 @@ const Tabs: React.FC<TabsProps> = ({
     setHiddenTabs(hiddenItems);
   };
 
-
-  React.useEffect((): void => {
+  React.useLayoutEffect((): void => {
     const itemsWithWidths: number[] = [];
     items.forEach((item, index) => {
       itemsWithWidths[index] = item.current !== null ? item.current.offsetWidth + 24 : 0;
@@ -64,15 +63,19 @@ const Tabs: React.FC<TabsProps> = ({
   }
   ,[]);
 
-  React.useEffect((): void => {
+  React.useLayoutEffect((): void => {
     if(itemsWidths.length){
       window.addEventListener('resize', handleResize);
       handleResize();
     }
   }, [itemsWidths]);
 
+  const handleConfigurationAction = (): void => {
+    configuration.action();
+  }
+
   const renderHiddenTabs = (): React.ReactNode => (
-    <S.TabsDropdownContainer>
+    <S.TabsDropdownContainer data-testid="tabs-dropdown-container">
       {hiddenTabs.length > 0 && (
         <List
           dataSource={[hiddenTabs]}
@@ -87,8 +90,7 @@ const Tabs: React.FC<TabsProps> = ({
         <S.TabsDropdownDivider />
       )}
       {configuration && (
-        // eslint-disable-next-line react/ jsx-handler-names
-        <Button type="ghost" onClick={configuration.action}>
+        <Button type="ghost" onClick={handleConfigurationAction}>
           { configuration.label }
         </Button>
       )}
@@ -96,7 +98,7 @@ const Tabs: React.FC<TabsProps> = ({
   );
 
   return itemsWidths && (
-     <S.TabsContainer ref={(c): void => { if(!container) { container = c! }}}>
+     <S.TabsContainer ref={(c): void => { if(!container) { container = c! }}} data-testid="tabs-container">
         {visibleTabs.map((tab, index) => {
           const ref = React.createRef<HTMLButtonElement>();
           items[index] = ref;

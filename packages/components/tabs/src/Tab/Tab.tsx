@@ -52,6 +52,7 @@ const Tab: React.FC<TabProps> = ({
       onBlur={handleMouseUp}
       disabled={disabled}
       ref={forwardedRef}
+      data-testid="tab-container"
     >
       <S.TabContent>
         {icon && <Icon component={icon} size={24} />}
