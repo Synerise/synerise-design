@@ -77,7 +77,7 @@ const ResponsiveTabs: React.FC<TabsProps> = ({ activeTab, tabs, handleTabClick, 
       {hiddenTabs.length > 0 && (
         <List
           dataSource={[hiddenTabs]}
-          renderItem={(item, index): React.ReactNode => (
+          renderItem={(item: TabItem, index: number): React.ReactNode => (
             <List.Item
               onSelect={(): void => handleTabClick(visibleTabs.length + index)}
               disabled={item.disabled}
