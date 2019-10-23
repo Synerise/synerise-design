@@ -8,19 +8,23 @@ export const AddItemLayout = styled.div`
   width: 100%;
   margin-bottom: 8px;
   padding: 4px 12px;
-  button {
+  && {
+    .ant-btn {
+      padding: 0;
+
+      svg {
+        color: ${({ theme }): string => theme.palette['grey-500']};
+        fill: ${({ theme }): string => theme.palette['grey-500']};
+      }
+    }
+  }
+  .ant-btn {
     cursor: pointer;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
     height: 36px;
-    padding: 0 !important;
-
-    svg {
-      color: ${({ theme }): string => theme.palette['grey-500']} !important;
-      fill: ${({ theme }): string => theme.palette['grey-500']} !important;
-    }
   }
 `;
 

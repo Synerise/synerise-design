@@ -18,13 +18,13 @@ onItemEdit={editItem}
 onItemSelect={action('onItemSelect')}
 items={[{
 
- }]}
+}]}
 loading={false}
 />
 
 ## Demo
 
-<iframe src="/storybook-static/iframe.html?id=components-Manageable list--default"></iframe>
+<iframe src="/storybook-static/iframe.html?id=components-manageable-list--default"></iframe>
 
 ## API
 

@@ -1,1 +1,1 @@
-export { default } from './Manageable-list';
+export { default } from './ManageableList';

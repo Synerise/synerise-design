@@ -1,5 +1,5 @@
 import * as React from 'react';
-import ManageableList from '../Manageable-list';
+import ManageableList from '../ManageableList';
 import { renderWithProvider } from '@synerise/ds-utils';
 import { fireEvent } from '@testing-library/react';
 
