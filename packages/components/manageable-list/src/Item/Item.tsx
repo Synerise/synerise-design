@@ -49,21 +49,17 @@ const Item: React.FC<Props> = ({ item, onRemove, onSelect, onUpdate, theme }) =>
     onRemove({ id: item.id });
   };
 
-  const renderEditIcon = (): React.ReactNode => {
+  const renderIcon = (
+    condition: boolean,
+    icon: React.ReactNode,
+    color: string,
+    handleClick: (event: React.MouseEvent) => void,
+    testId: string
+  ): React.ReactNode => {
     return (
-      canUpdate && (
-        <div data-testid="list-item-edit">
-          <Icon component={<EditS />} size={24} color={theme.palette['grey-500']} onClick={enterEditMode} />
-        </div>
-      )
-    );
-  };
-
-  const renderDeleteIcon = (): React.ReactNode => {
-    return (
-      canDelete && (
-        <div data-testid="list-item-remove">
-          <Icon component={<CloseS />} size={24} color={theme.palette['red-600']} onClick={removeItem} />
+      condition && (
+        <div data-testid={testId}>
+          <Icon component={icon} size={24} color={color} onClick={handleClick} />
         </div>
       )
     );
@@ -76,8 +72,8 @@ const Item: React.FC<Props> = ({ item, onRemove, onSelect, onUpdate, theme }) =>
         onSelect={(): void => onSelect({ id: item.id })}
         actions={
           <S.ItemActions>
-            {renderEditIcon()}
-            {renderDeleteIcon()}
+            {renderIcon(canUpdate, <EditS />, theme.palette['grey-500'], enterEditMode, 'list-item-edit')}
+            {renderIcon(canDelete, <CloseS />, theme.palette['red-600'], removeItem, 'list-item-remove')}
           </S.ItemActions>
         }
       >
