@@ -90,9 +90,9 @@ const CardTab: React.FC<CardTabProps> = ({
     <S.CardTabContainer
       className={`${pressed ? 'pressed' : ''}`}
       edited={edited}
-      active={!!active}
-      invalid={!!invalid}
-      disabled={!active && !!disabled}
+      active={Boolean(active)}
+      invalid={Boolean(invalid)}
+      disabled={!active && Boolean(disabled)}
       color={getColorByIndex(index)}
       onClick={handleSelect}
       onMouseDown={(): void => setPressed(true)}
@@ -125,7 +125,7 @@ const CardTab: React.FC<CardTabProps> = ({
       {showCardActions() && (
         <CardTabActions
           enterEditNameMode={handleEditName}
-          changeNameAvailable={!!onChangeName}
+          changeNameAvailable={Boolean(onChangeName)}
           onDuplicateTab={handleDuplicate}
           onRemoveTab={handleRemove}
         />
