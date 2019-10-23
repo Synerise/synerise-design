@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { withTheme } from 'styled-components';
 import List from '@synerise/ds-list';
 import Icon from '@synerise/ds-icon';
 import CloseS from '@synerise/ds-icon/dist/icons/CloseS';
@@ -12,6 +13,7 @@ type Props = {
   onRemove: (removeParams: { id: string }) => void;
   onSelect: (selectParams: { id: string }) => void;
   onUpdate: (updateParams: { id: string; name: string }) => void;
+  theme: { [k: string]: string };
 };
 
 export type ItemProps = {
@@ -21,7 +23,7 @@ export type ItemProps = {
   name: string;
 };
 
-const Item: React.FC<Props> = ({ item, onRemove, onSelect, onUpdate }) => {
+const Item: React.FC<Props> = ({ item, onRemove, onSelect, onUpdate, theme }) => {
   const [editMode, setEditMode] = React.useState(false);
   const [editedName, setName] = React.useState(item.name);
 
@@ -47,23 +49,35 @@ const Item: React.FC<Props> = ({ item, onRemove, onSelect, onUpdate }) => {
     onRemove({ id: item.id });
   };
 
+  const renderEditIcon = (): React.ReactNode => {
+    return (
+      canUpdate && (
+        <div data-testid="list-item-edit">
+          <Icon component={<EditS />} size={24} color={theme.palette['grey-500']} onClick={enterEditMode} />
+        </div>
+      )
+    );
+  };
+
+  const renderDeleteIcon = (): React.ReactNode => {
+    return (
+      canDelete && (
+        <div data-testid="list-item-remove">
+          <Icon component={<CloseS />} size={24} color={theme.palette['red-600']} onClick={removeItem} />
+        </div>
+      )
+    );
+  };
+
   return (
     <S.ItemContainer>
       <List.Item
-        icon={<Icon component={<FolderM />} size={24} color="#000" />}
+        icon={<Icon component={<FolderM />} size={24} />}
         onSelect={(): void => onSelect({ id: item.id })}
         actions={
           <S.ItemActions>
-            {canUpdate && (
-              <div data-testid="list-item-edit">
-                <Icon component={<EditS />} size={24} color="#949ea6" onClick={enterEditMode} />
-              </div>
-            )}
-            {canDelete && (
-              <div data-testid="list-item-remove">
-                <Icon component={<CloseS />} size={24} color="#f52922" onClick={removeItem} />
-              </div>
-            )}
+            {renderEditIcon()}
+            {renderDeleteIcon()}
           </S.ItemActions>
         }
       >
@@ -91,4 +105,4 @@ const Item: React.FC<Props> = ({ item, onRemove, onSelect, onUpdate }) => {
   );
 };
 
-export default Item;
+export default withTheme(Item);
