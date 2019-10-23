@@ -5,111 +5,79 @@ import { fireEvent } from '@testing-library/react';
 
 const DEFAULT_ITEMS:any = [
   {
-    catalogId: "00000000-0000-0000-0000-000000000000",
+    id: "00000000-0000-0000-0000-000000000000",
     name: "Default",
-    canAdd: true,
-    canUpdate: true,
-    canDelete: true,
-    canUpdateCatalog: false,
-    canDeleteCatalog: false,
+    canUpdate: false,
+    canDelete: false,
   },
   {
-    catalogId: "00000000-0000-0000-0000-000000000001",
+    id: "00000000-0000-0000-0000-000000000001",
     name: "Basic",
-    canAdd: true,
     canUpdate: true,
     canDelete: true,
-    canUpdateCatalog: true,
-    canDeleteCatalog: true,
   },
   {
-    catalogId: "00000000-0000-0000-0000-000000000002",
+    id: "00000000-0000-0000-0000-000000000002",
     name: "My folder",
-    canAdd: true,
     canUpdate: true,
     canDelete: true,
-    canUpdateCatalog: true,
-    canDeleteCatalog: true,
   },
   {
-    catalogId: "00000000-0000-0000-0000-000000000003",
+    id: "00000000-0000-0000-0000-000000000003",
     name: "My folder 2",
-    canAdd: true,
     canUpdate: true,
     canDelete: true,
-    canUpdateCatalog: true,
-    canDeleteCatalog: true,
   },
 ]
 
 const ITEMS:any = [
   {
-    catalogId: "00000000-0000-0000-0000-000000000000",
+    id: "00000000-0000-0000-0000-000000000000",
     name: "Default",
-    canAdd: true,
-    canUpdate: true,
-    canDelete: true,
-    canUpdateCatalog: false,
-    canDeleteCatalog: false,
+    canUpdate: false,
+    canDelete: false,
   },
   {
-    catalogId: "00000000-0000-0000-0000-000000000001",
+    id: "00000000-0000-0000-0000-000000000001",
     name: "Basic",
-    canAdd: true,
     canUpdate: true,
     canDelete: true,
-    canUpdateCatalog: true,
-    canDeleteCatalog: true,
   },
   {
-    catalogId: "00000000-0000-0000-0000-000000000002",
+    id: "00000000-0000-0000-0000-000000000002",
     name: "My folder",
-    canAdd: true,
     canUpdate: true,
     canDelete: true,
-    canUpdateCatalog: true,
-    canDeleteCatalog: true,
   },
   {
-    catalogId: "00000000-0000-0000-0000-000000000003",
+    id: "00000000-0000-0000-0000-000000000003",
     name: "My folder 2",
-    canAdd: true,
     canUpdate: true,
     canDelete: true,
-    canUpdateCatalog: true,
-    canDeleteCatalog: true,
   },
   {
-    catalogId: "00000000-0000-0000-0000-000000000004",
+    id: "00000000-0000-0000-0000-000000000004",
     name: "My folder 3",
-    canAdd: true,
     canUpdate: true,
     canDelete: true,
-    canUpdateCatalog: true,
-    canDeleteCatalog: true,
   },
   {
-    catalogId: "00000000-0000-0000-0000-000000000005",
+    id: "00000000-0000-0000-0000-000000000005",
     name: "My folder 4",
-    canAdd: true,
     canUpdate: true,
     canDelete: true,
-    canUpdateCatalog: true,
-    canDeleteCatalog: true,
   },
   {
-    catalogId: "00000000-0000-0000-0000-000000000006",
+    id: "00000000-0000-0000-0000-000000000006",
     name: "My folder 5",
-    canAdd: true,
     canUpdate: true,
     canDelete: true,
-    canUpdateCatalog: true,
-    canDeleteCatalog: true,
   }
 ]
 
 describe('ManageableList', () => {
   it('should render with no items', () => {
+    // ARRANGE
     const { queryByTestId, getByTestId } = renderWithProvider(
       <ManageableList
         items={[]}
@@ -123,13 +91,16 @@ describe('ManageableList', () => {
         onItemSelect={() => {}}
         onItemRemove={() => {}}
       />);
-      expect(getByTestId('add-item-button')).toBeTruthy();
-      expect(queryByTestId('show-more-button')).toBeNull();
-      expect(queryByTestId('list-item-name')).toBeNull();
+
+    // ASSERT
+    expect(getByTestId('add-item-button')).toBeTruthy();
+    expect(queryByTestId('show-more-button')).toBeNull();
+    expect(queryByTestId('list-item-name')).toBeNull();
   });
 
   it('should render with 4 items', () => {
     const { queryByTestId, queryAllByTestId, getByTestId } = renderWithProvider(
+      // ARRANGE
       <ManageableList
         items={DEFAULT_ITEMS}
         showMoreLabel="Show all"
@@ -142,6 +113,8 @@ describe('ManageableList', () => {
         onItemSelect={() => {}}
         onItemRemove={() => {}}
       />);
+
+    // ASSERT
     expect(getByTestId('add-item-button')).toBeTruthy();
     expect(queryByTestId('show-more-button')).toBeNull();
     expect(queryAllByTestId('list-item-name').length).toBe(4);
@@ -150,6 +123,7 @@ describe('ManageableList', () => {
   });
 
   it('should render with hidden items and show-more button', () => {
+    // ARRANGE
     const { queryAllByTestId, getByTestId } = renderWithProvider(
       <ManageableList
         items={ITEMS}
@@ -164,6 +138,8 @@ describe('ManageableList', () => {
         onItemRemove={() => {}}
       />);
     const showMore = getByTestId('show-more-button');
+
+    // ASSERT
     expect(getByTestId('add-item-button')).toBeTruthy();
     expect(showMore).toBeTruthy();
     expect(queryAllByTestId('list-item-name').length).toBe(5);
@@ -171,6 +147,7 @@ describe('ManageableList', () => {
   });
 
   it('should show all items after show more button clicked', () => {
+    // ARRANGE
     const { queryAllByTestId, getByTestId } = renderWithProvider(
       <ManageableList
         items={ITEMS}
@@ -185,6 +162,8 @@ describe('ManageableList', () => {
         onItemRemove={() => {}}
       />);
     const showMore = getByTestId('show-more-button');
+
+    // ASSERT
     expect(showMore.textContent).toBe('+ 2 more Show all');
     expect(queryAllByTestId('list-item-name').length).toBe(5);
     fireEvent.click(showMore);
@@ -193,6 +172,7 @@ describe('ManageableList', () => {
   });
 
   it('should fire onItemSelect method on item click', () => {
+    // ARRANGE
     const onItemSelect = jest.fn();
     const { queryAllByTestId } = renderWithProvider(
       <ManageableList
@@ -207,12 +187,17 @@ describe('ManageableList', () => {
         onItemSelect={onItemSelect}
         onItemRemove={() => {}}
       />);
+
+    //ACT
     const firstListItem = queryAllByTestId('list-item-name')[0];
     fireEvent.click(firstListItem);
+
+    // ASSERT
     expect(onItemSelect).toHaveBeenCalledWith({id: '00000000-0000-0000-0000-000000000000'});
   });
 
   it('should fire remove item', () => {
+    // ARRANGE
     const onItemRemove = jest.fn();
     const { queryAllByTestId } = renderWithProvider(
       <ManageableList
@@ -228,7 +213,8 @@ describe('ManageableList', () => {
         onItemRemove={onItemRemove}
       />);
     const firstRemoveButton = queryAllByTestId('list-item-remove')[0];
-    const removeItemIcon = firstRemoveButton.querySelector('svg')
+    const removeItemIcon = firstRemoveButton.querySelector('svg');
+    // ASSERT
     expect(removeItemIcon).toBeTruthy();
     if(removeItemIcon){
       fireEvent.click(removeItemIcon);
@@ -237,6 +223,7 @@ describe('ManageableList', () => {
   });
 
   it('should fire onItemAdd', () => {
+    // ARRANGE
     const onItemAdd = jest.fn();
     const { getByTestId } = renderWithProvider(
       <ManageableList
@@ -252,7 +239,9 @@ describe('ManageableList', () => {
         onItemRemove={() => {}}
       />);
     const NEW_FOLDER_NAME = 'New folder';
-    const addItemButton = getByTestId('add-item-button');
+    const addItemButton = getByTestId('add-item-button').getElementsByTagName('button')[0];
+    
+    // ASSERT
     expect(addItemButton).toBeTruthy();
     // SHOW ADD ITEM INPUT
     fireEvent.click(addItemButton);

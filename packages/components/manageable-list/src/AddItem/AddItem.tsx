@@ -36,7 +36,7 @@ const AddItem: React.FC<Props> = ({ onItemAdd, addItemLabel }) => {
   };
 
   return (
-    <S.AddItemLayout>
+    <S.AddItemLayout data-testid="add-item-button">
       <Button type="ghost" onClick={toggleInput} size="small">
         <Icon component={<Add3M />} size={24} color="#b5bdc3" />
         <S.AddItemLabel>{addItemLabel}</S.AddItemLabel>
