@@ -22,7 +22,8 @@
   "sideEffects": false,
   "types": "dist/index.d.ts",
   "dependencies": {
-    "antd": "3.24.0"
+    "antd": "3.24.0",
+    "@synerise/ds-dropdown": "*"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

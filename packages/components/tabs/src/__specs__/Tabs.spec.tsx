@@ -1,31 +1,49 @@
 import * as React from 'react';
-import { mount } from 'enzyme';
-import Tabs from '../index';
+import { renderWithProvider } from '@synerise/ds-utils';
+import Tabs from '../Tabs';
+import SearchM from '@synerise/ds-icon/dist/icons/SearchM';
 
-const { TabPane } = Tabs;
+const tabs = [
+  {
+    icon: <SearchM />
+  },
+  {
+    label: 'Tab #2',
+  },
+  {
+    label: 'Tab #3',
+    icon: <SearchM />
+  },
+];
 
-describe('Tabs', () => {
-  const component = mount(
-    <Tabs defaultActiveKey="2">
-      <TabPane tab="Tab 1" key="1">
-        TestTab1
-      </TabPane>
-      <TabPane tab="Tab 2" key="2">
-        TestTab2
-      </TabPane>
-      <TabPane tab="Tab 3" key="3">
-        TestTab3
-      </TabPane>
-    </Tabs>
-  );
-  it('should render active', function() {
-    expect(component.find('TabPane[active=true]').text()).toBe('TestTab2');
+describe('Tabs component', () => {
+  it('should render tabs container', () => {
+    // ARRANGE
+    const content = <div style={{width: '800px'}}><Tabs tabs={tabs} activeTab={0} handleTabClick={() => {}} /></div>;
+    const { getByTestId } = renderWithProvider(content);
+
+    // ASSERT
+    expect(getByTestId('tabs-container')).toBeTruthy();
   });
-  it('should active third after click', function() {
-    component
-      .find('.ant-tabs-tab')
-      .at(2)
-      .simulate('click');
-    expect(component.find('TabPane[active=true]').text()).toBe('TestTab3');
+
+  it('should render dropdown', () => {
+    // ARRANGE
+    const handleConfigurationAction = jest.fn();
+    const content = <div style={{width: '800px'}}><Tabs tabs={[]} activeTab={0} handleTabClick={() => {}} configuration={{label: 'Button label', action: handleConfigurationAction}} /></div>;
+    const { baseElement } = renderWithProvider(content, { container: document.body});
+
+    // ASSERT
+    expect(baseElement.getElementsByClassName('ant-dropdown')).toBeTruthy();
+  });
+
+  it('should render configuration action button ', () => {
+    // ARRANGE
+    const handleConfigurationAction = jest.fn();
+    const LABEL = 'Button label';
+    const content = <div style={{width: '800px'}}><Tabs tabs={[]} activeTab={0} handleTabClick={() => {}} configuration={{label: LABEL, action: handleConfigurationAction}} /></div>;
+    const { baseElement } = renderWithProvider(content, { container: document.body });
+
+    // ASSERT
+    expect(baseElement.getElementsByClassName('ant-dropdown-trigger')).toBeTruthy();
   });
 });

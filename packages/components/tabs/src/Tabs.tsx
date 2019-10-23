@@ -5,7 +5,7 @@ import Icon from '@synerise/ds-icon';
 import FileM from '@synerise/ds-icon/dist/icons/FileM';
 import Button from '@synerise/ds-button';
 import OptionHorizontalM from '@synerise/ds-icon/dist/icons/OptionHorizontalM';
-import * as S from './ResponsiveTabs.styles';
+import * as S from './Tabs.styles';
 import Tab from './Tab/Tab';
 
 export type TabsProps = {
@@ -26,7 +26,7 @@ type TabItem = {
   disabled?: boolean;
 };
 
-const ResponsiveTabs: React.FC<TabsProps> = ({ activeTab, tabs, handleTabClick, configuration }) => {
+const Tabs: React.FC<TabsProps> = ({ activeTab, tabs, handleTabClick, configuration }) => {
   const items: React.RefObject<HTMLButtonElement>[] = [];
   let container: HTMLDivElement | null;
   const [itemsWidths, setItemsWidths] = React.useState<number[]>([]);
@@ -133,4 +133,4 @@ const ResponsiveTabs: React.FC<TabsProps> = ({ activeTab, tabs, handleTabClick, 
     </S.TabsContainer>
   );
 };
-export default ResponsiveTabs;
+export default Tabs;
