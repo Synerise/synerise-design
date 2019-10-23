@@ -1,6 +1,15 @@
 import styled from 'styled-components';
 import { macro } from '@synerise/ds-typography';
 
+type CardTabContainerProps = {
+  active: boolean;
+  invalid: boolean;
+  greyBackground: boolean;
+  color: string;
+  disabled: boolean;
+  edited: boolean;
+}
+
 const getColor = (isActive: boolean, activeColor: string, defaultColor: string): string => {
   if (isActive) return activeColor;
   return defaultColor;
@@ -44,7 +53,6 @@ export const CardTabTag = styled.div`
   width: 24px;
   height: 24px;
   border-radius: 3px;
-  background-color: ${({ theme, color }): string => theme.palette[color]}
 `;
 
 export const CardTabPrefix = styled.div`
@@ -56,7 +64,7 @@ export const CardTabPrefix = styled.div`
   margin-right: 12px;
 `;
 
-export const CardTabContainer = styled.div`
+export const CardTabContainer = styled.div<CardTabContainerProps>`
   display: flex;
   flex-direction: row;
   align-items: center;

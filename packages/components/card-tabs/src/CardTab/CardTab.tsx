@@ -30,12 +30,6 @@ export interface CardTabProps {
   onRemoveTab?: (id: number) => void;
 }
 
-interface CardTabState {
-  edited: boolean;
-  editedName: string;
-  pressed: boolean;
-}
-
 const CardTab: React.FC<CardTabProps> = ({
   id,
   name,
@@ -58,53 +52,53 @@ const CardTab: React.FC<CardTabProps> = ({
   const [editedName, setEditedName] = React.useState(name);
   const [pressed, setPressed] = React.useState(false);
 
-  const handleEditName = (event): void => {
+  const handleEditName = (event: React.MouseEvent<HTMLElement>): void => {
     event.stopPropagation();
     setEdited(true);
   };
 
-  const handleChangeName = (event): void => {
+  const handleChangeName = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const { value } = event.target;
     setEditedName(value);
   };
 
   const handleEditNameBlur = (): void => {
     setEdited(false);
-    onChangeName(id, editedName);
+    onChangeName && onChangeName(id, editedName);
   };
 
-  const handleDuplicate = (event): void => {
+  const handleDuplicate = (event: React.MouseEvent<HTMLElement>): void => {
     event.stopPropagation();
-    onDuplicateTab(id);
+    onDuplicateTab && onDuplicateTab(id);
   };
 
-  const handleRemove = (event): void => {
+  const handleRemove = (event: React.MouseEvent<HTMLElement>): void => {
     event.stopPropagation();
-    onRemoveTab(id);
+    onRemoveTab && onRemoveTab(id);
   };
 
-  const handleSelect = (event): void => {
+  const handleSelect = (event: React.MouseEvent<HTMLElement>): void => {
     event.stopPropagation();
-    onSelectTab(id);
+    onSelectTab && onSelectTab(id);
   };
 
   const showCardActions = (): boolean => {
-    return (onChangeName || onDuplicateTab || onRemoveTab) && !suffixIcon;
+    return (!!onChangeName || !!onDuplicateTab || !!onRemoveTab) && !suffixIcon;
   };
 
   return (
     <S.CardTabContainer
       className={`${pressed ? 'pressed' : ''}`}
       edited={edited}
-      active={active}
-      invalid={invalid}
-      disabled={!active && disabled}
+      active={!!active}
+      invalid={!!invalid}
+      disabled={!active && !!disabled}
       color={getColorByIndex(index)}
       onClick={handleSelect}
       onMouseDown={(): void => setPressed(true)}
       onMouseLeave={(): void => setPressed(false)}
       onMouseUp={(): void => setPressed(false)}
-      greyBackground={greyBackground}
+      greyBackground={!!greyBackground}
       data-id={id}
       data-testid="card-tab-container"
     >

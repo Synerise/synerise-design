@@ -2,11 +2,12 @@ import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { DSProvider } from '@synerise/ds-core';
 import range from 'lodash/range';
-import FileIcon from '@synerise/ds-icon/dist/icons/file-m.svg';
 import CardTabs from '@synerise/ds-card-tabs';
 import { withState } from '@dump247/storybook-state';
 import { boolean, number, select, text, withKnobs } from '@storybook/addon-knobs';
 import CardTab, { prefixType } from '@synerise/ds-card-tabs/dist/CardTab/CardTab';
+import FileM from '@synerise/ds-icon/dist/icons/FileM';
+import { CardTabsItem } from '@synerise/ds-card-tabs/dist/CardTabs';
 
 storiesOf('Components|CardTabs', module)
   .add('default', withState({
@@ -65,10 +66,8 @@ storiesOf('Components|CardTabs', module)
       })
     };
 
-    const handleChangeOrder = (newOrder) => {
-      store.set({
-        items: newOrder.map(id => store.state.items.find(item => String(item.id) === id))
-      })
+    const handleChangeOrder = (newOrder: CardTabsItem): void => {
+      store.set({items: newOrder});
     }
 
     const handleSelect = (id) => {
@@ -91,8 +90,8 @@ storiesOf('Components|CardTabs', module)
               tag={item.tag}
               active={item.id === store.state.activeTab}
               greyBackground={!bg}
-              prefixIcon={<FileIcon />}
-              suffixIcon={suffixIcon ? <FileIcon /> : null}
+              prefixIcon={<FileM />}
+              suffixIcon={suffixIcon ? <FileM /> : null}
               disabled={disabled}
               prefix={prefix}
               onSelectTab={handleSelect}

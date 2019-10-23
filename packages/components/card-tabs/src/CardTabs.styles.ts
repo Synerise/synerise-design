@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { CardTabContainer } from './CardTab/CardTab.styles';
-import AddButton from './AddButton/AddButton';
 
 // eslint-disable-next-line import/prefer-default-export
 export const CardTabsContainer = styled.div`

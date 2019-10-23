@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Icon from '@synerise/ds-icon';
-import AddIcon from '@synerise/ds-icon/dist/icons/add-1-m.svg';
+import Add1M from '@synerise/ds-icon/dist/icons/Add1M';
 import * as S from './AddButton.styles';
 
 interface Props {
@@ -20,7 +20,7 @@ const AddButton: React.FC<Props> = ({ onClick, disabled }) => {
       onMouseUp={(): void => setPressed(false)}
       onMouseLeave={(): void => setPressed(false)}
     >
-      <Icon component={<AddIcon />} />
+      <Icon component={<Add1M />} />
     </S.AddButton>
   );
 };

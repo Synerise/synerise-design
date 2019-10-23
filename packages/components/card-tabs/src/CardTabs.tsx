@@ -1,22 +1,39 @@
 import * as React from 'react';
-import Sortable from 'react-sortablejs';
+import { ReactSortable } from 'react-sortablejs-typescript';
 import AddButton from './AddButton/AddButton';
 import * as S from './CardTabs.styles';
 
 export type CardTabsProps = {
-  onChangeOrder?: () => void;
+  onChangeOrder?: (newOrder: CardTabsItem[]) => void;
   onAddTab?: () => void;
   maxTabsCount?: number;
-  children?: React.ReactChildren;
+  children?: JSX.Element[];
 };
 
-const CardTabs: React.FC<CardTabsProps> = ({ onChangeOrder, onAddTab, maxTabsCount, children }) => {
+export type CardTabsItem = {
+  id: number;
+  name: string;
+  tag: string;
+};
+
+
+const CardTabs: React.FC<CardTabsProps> = ({ onChangeOrder, onAddTab, maxTabsCount, children = [] }) => {
+  const handleChangeOrder = (newOrder: React.ReactElement[]): void => {
+    onChangeOrder && onChangeOrder(newOrder.map(item => ({
+      id: item.props.id,
+      name: item.props.name,
+      tag: item.props.tag,
+    })));
+  };
+
   return (
     <S.CardTabsContainer data-testid="card-tabs-container">
       {onChangeOrder ? (
-        <Sortable className="ds-card-tags-sortable" onChange={onChangeOrder} data-testid="card-tabs-sortable">
-          {children}
-        </Sortable>
+        <div data-testid="card-tabs-sortable">
+          <ReactSortable className="ds-card-tags-sortable" list={children} setList={handleChangeOrder}>
+            {children}
+          </ReactSortable>
+        </div>
       ) : (
         <div className="ds-card-tags-sortable" data-testid="card-tabs-static">
           {children}
@@ -24,7 +41,7 @@ const CardTabs: React.FC<CardTabsProps> = ({ onChangeOrder, onAddTab, maxTabsCou
       )}
       {onAddTab && (
         <span data-testid="card-tabs-add-button">
-          <AddButton disabled={React.Children.toArray(children).length >= maxTabsCount} onClick={onAddTab} />
+          <AddButton disabled={!!maxTabsCount && React.Children.toArray(children).length >= maxTabsCount} onClick={onAddTab} />
         </span>
       )}
     </S.CardTabsContainer>
