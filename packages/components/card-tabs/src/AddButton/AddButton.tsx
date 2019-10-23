@@ -9,16 +9,16 @@ interface Props {
 }
 
 const AddButton: React.FC<Props> = ({ onClick, disabled }) => {
-  const [pressed, setPressed] = React.useState(false);
+  const [pressed, setPressed] = React.useState('pressed');
 
   return (
     <S.AddButton
-      className={`${pressed ? 'pressed' : ''}`}
+      className={pressed}
       disabled={disabled}
       onClick={onClick}
-      onMouseDown={(): void => setPressed(true)}
-      onMouseUp={(): void => setPressed(false)}
-      onMouseLeave={(): void => setPressed(false)}
+      onMouseDown={(): void => setPressed('pressed')}
+      onMouseUp={(): void => setPressed('')}
+      onMouseLeave={(): void => setPressed('')}
     >
       <Icon component={<Add1M />} />
     </S.AddButton>
