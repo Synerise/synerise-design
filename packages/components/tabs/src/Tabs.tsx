@@ -97,6 +97,36 @@ const Tabs: React.FC<TabsProps> = ({ activeTab, tabs, handleTabClick, configurat
     </S.TabsDropdownContainer>
   );
 
+  const renderDropdown = (): React.ReactNode => {
+    return (hiddenTabs.length || configuration) && (
+      <Dropdown data-testid="tabs-dropdown" overlay={renderHiddenTabs()}>
+        <Button type="ghost" mode="single-icon">
+          <Icon component={<OptionHorizontalM />} />
+        </Button>
+      </Dropdown>
+    )
+  };
+
+  const renderVisibleTabs = (): React.ReactNode => {
+    return visibleTabs.map((tab, index) => {
+      const ref = React.createRef<HTMLButtonElement>();
+      items[index] = ref;
+      const key = `tabs-tab-${index}`;
+      return (
+        <Tab
+          forwardedRef={ref}
+          key={key}
+          index={index}
+          label={tab.label}
+          icon={tab.icon}
+          onClick={handleTabClick}
+          isActive={index === activeTab}
+          disabled={tab.disabled}
+        />
+      );
+    });
+  };
+
   return (
     <S.TabsContainer
       ref={(c): void => {
@@ -106,30 +136,8 @@ const Tabs: React.FC<TabsProps> = ({ activeTab, tabs, handleTabClick, configurat
       }}
       data-testid="tabs-container"
     >
-      {visibleTabs.map((tab, index) => {
-        const ref = React.createRef<HTMLButtonElement>();
-        items[index] = ref;
-        const key = `tabs-tab-${index}`;
-        return (
-          <Tab
-            forwardedRef={ref}
-            key={key}
-            index={index}
-            label={tab.label}
-            icon={tab.icon}
-            onClick={handleTabClick}
-            isActive={index === activeTab}
-            disabled={tab.disabled}
-          />
-        );
-      })}
-      {(hiddenTabs.length || configuration) && (
-        <Dropdown data-testid="tabs-dropdown" overlay={renderHiddenTabs()}>
-          <Button type="ghost" mode="single-icon">
-            <Icon component={<OptionHorizontalM />} />
-          </Button>
-        </Dropdown>
-      )}
+      { renderVisibleTabs() }
+      { renderDropdown() }
     </S.TabsContainer>
   );
 };

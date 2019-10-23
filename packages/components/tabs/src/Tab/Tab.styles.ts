@@ -94,10 +94,14 @@ export const TabContainer = styled.button`
       color: ${({ theme }): string => theme.palette['blue-600']};
     }
     
+    && {
+      &::after {
+        height: 2px;
+        background-color: ${({theme}): string => theme.palette['blue-600']};
+      }
+    }
     &::after {
-      height: 2px !important;
       background-image: none;
-      background-color: ${({theme}): string => theme.palette['blue-600']} !important;
     }
   }
   
@@ -110,10 +114,13 @@ export const TabContainer = styled.button`
     ${TabLabel} {
       color: ${({ theme }): string => theme.palette['blue-700']};
     }
-    
+    && {
+      &::after {
+        height: 0;
+      }
+    }
     &::after {
       background-image: none;
-      height: 0 !important;
     }
   }
 `;
