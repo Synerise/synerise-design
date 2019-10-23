@@ -3,7 +3,7 @@ id: tabs
 title: Tabs
 ---
 
-Responsive Tabs UI Component
+Tabs UI Component
 
 ## Installation
 ```
