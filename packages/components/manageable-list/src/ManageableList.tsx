@@ -31,27 +31,27 @@ const ManageableList: React.FC<Props> = ({
 }) => {
   const [allItemsVisible, setAllItemsVisible] = React.useState(false);
 
-  const toggleAllItems = (): void => {
+  const toggleAllItems = React.useCallback((): void => {
     setAllItemsVisible(!allItemsVisible);
-  };
+  }, [allItemsVisible]);
 
-  const visibleItems = (): ItemProps[] => {
+  const visibleItems = React.useMemo((): ItemProps[] => {
     return allItemsVisible ? items : items.slice(0, maxToShowItems);
-  };
+  }, [items, allItemsVisible, maxToShowItems]);
 
-  const getItemsOverLimit = (): number => {
+  const getItemsOverLimit = React.useMemo((): number => {
     return items.length - maxToShowItems;
-  };
+  }, [items, maxToShowItems]);
 
   const buttonLabel = allItemsVisible ? showLessLabel : showMoreLabel;
-  const buttonLabelDiff = allItemsVisible ? `- ${getItemsOverLimit()} less ` : `+ ${getItemsOverLimit()} more `;
+  const buttonLabelDiff = allItemsVisible ? `- ${getItemsOverLimit} less ` : `+ ${getItemsOverLimit} more `;
 
   return (
     <S.ManageableListContainer>
       <AddItem addItemLabel={addItemLabel} onItemAdd={onItemAdd} />
       <List
         loading={loading}
-        dataSource={[visibleItems()]}
+        dataSource={[visibleItems]}
         renderItem={(item): React.ReactNode => (
           <Item onSelect={onItemSelect} onUpdate={onItemEdit} onRemove={onItemRemove} item={item} />
         )}

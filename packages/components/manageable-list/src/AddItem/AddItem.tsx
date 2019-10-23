@@ -16,24 +16,24 @@ const AddItem: React.FC<Props> = ({ onItemAdd, addItemLabel }) => {
   const [active, setActive] = React.useState(false);
   const [name, setName] = React.useState(DEFAULT_NAME);
 
-  const handleClickOutside = (): void => {
+  const handleClickOutside = React.useCallback((): void => {
     setActive(false);
     setName(DEFAULT_NAME);
-  };
+  }, []);
 
-  const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+  const handleNameChange = React.useCallback((event: React.ChangeEvent<HTMLInputElement>): void => {
     setName(event.target.value);
-  };
+  }, []);
 
-  const toggleInput = (): void => {
+  const toggleInput = React.useCallback((): void => {
     setActive(!active);
     setName(DEFAULT_NAME);
-  };
+  }, [active]);
 
-  const createItem = (): void => {
+  const createItem = React.useCallback((): void => {
     onItemAdd({ name });
     toggleInput();
-  };
+  }, [name, onItemAdd, toggleInput]);
 
   return (
     <S.AddItemLayout data-testid="add-item-button">

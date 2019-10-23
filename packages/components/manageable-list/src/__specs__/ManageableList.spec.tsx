@@ -3,7 +3,7 @@ import ManageableList from '../ManageableList';
 import { renderWithProvider } from '@synerise/ds-utils';
 import { fireEvent } from '@testing-library/react';
 
-const DEFAULT_ITEMS:any = [
+const DEFAULT_ITEMS: any = [
   {
     id: "00000000-0000-0000-0000-000000000000",
     name: "Default",
@@ -30,7 +30,7 @@ const DEFAULT_ITEMS:any = [
   },
 ]
 
-const ITEMS:any = [
+const ITEMS: any = [
   {
     id: "00000000-0000-0000-0000-000000000000",
     name: "Default",
