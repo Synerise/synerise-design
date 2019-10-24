@@ -1,0 +1,24 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# 0.1.0 (2019-10-24)
+
+### Bug Fixes
+
+- **manageable-list:** fix package name, import in storybook ([5d2f815](https://github.com/Synerise/synerise-design/commit/5d2f81500fc26936678b3600ff8de1268e4b7865))
+- **manageablelist:** styles of hovered item ([17ff643](https://github.com/Synerise/synerise-design/commit/17ff64323a92e64fcc43080d8a54ffbe0f31a600))
+
+### Features
+
+- **manageablelist:** add component ([bcd1163](https://github.com/Synerise/synerise-design/commit/bcd11633fb6ea9591f98bcc38a56ce4e9974a8c0))
+- **manageablelist:** add component styles ([ee56a6d](https://github.com/Synerise/synerise-design/commit/ee56a6d605657c50eef46e2ea5c573bb0eac5baf))
+- **manageablelist:** add documentation ([e5375f5](https://github.com/Synerise/synerise-design/commit/e5375f5ba2e87efa7acc0834f9030deef1a62ed2))
+- **manageablelist:** add inline-edit, fix tests ([c5f5abd](https://github.com/Synerise/synerise-design/commit/c5f5abdf70e7a59424d7d726e39a3b280bfcfd85))
+- **manageablelist:** add test for remove button ([dc3622b](https://github.com/Synerise/synerise-design/commit/dc3622bcb383ed3b4f54fc1e7a3a738d9d890663))
+- **manageablelist:** add tests ([41ff7c7](https://github.com/Synerise/synerise-design/commit/41ff7c75bc10d59ae39692c507b1db68a9fb08fe))
+- **manageablelist:** add toggle button ([9adc8d4](https://github.com/Synerise/synerise-design/commit/9adc8d40d5425091c616e77138425fd66471474c))
+- **manageablelist:** refactor ([954aeaa](https://github.com/Synerise/synerise-design/commit/954aeaa810a64bae9a0109af29b9c8735de427f0))
+- **manageablelist:** update storybook, fix minor issues ([e165a94](https://github.com/Synerise/synerise-design/commit/e165a94307c6742830713ec75fe73f573cbe9865))
+- **manageablelist:** update styles ([6d2c85a](https://github.com/Synerise/synerise-design/commit/6d2c85abf07b0db49520521fcc37445703b4db05))

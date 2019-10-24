@@ -3,6 +3,46 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.13.0](https://github.com/synerise/synerise-design/compare/portal@0.12.0...portal@0.13.0) (2019-10-24)
+
+
+### Bug Fixes
+
+* **manageable-list:** fix package name, import in storybook ([5d2f815](https://github.com/synerise/synerise-design/commit/5d2f81500fc26936678b3600ff8de1268e4b7865))
+
+
+### Features
+
+* **card-tabs:** add actions ([f16a670](https://github.com/synerise/synerise-design/commit/f16a6706685f35be59e4aa69674521c64ca5b7ef))
+* **card-tabs:** add base componets ([4f4c754](https://github.com/synerise/synerise-design/commit/4f4c754976d8b6fe1dfc5ddd317d0726d993f0a7))
+* **card-tabs:** add default example in storybook ([4795d78](https://github.com/synerise/synerise-design/commit/4795d78e4e51e3b0cb1123cdc26872d55f2be246))
+* **card-tabs:** add documentation ([b9a3745](https://github.com/synerise/synerise-design/commit/b9a3745a6abb46b1481ecba3b605565fa8147ea3))
+* **card-tabs:** add more examples in storybook ([6bc07a3](https://github.com/synerise/synerise-design/commit/6bc07a3dabe0acd97644e49397e8e0b986027e4b))
+* **card-tabs:** add sortable tabs ([51f2f4d](https://github.com/synerise/synerise-design/commit/51f2f4d5d350db94f6e78f77efca9b8b523cbddb))
+* **card-tabs:** add styles for active, hover, disabled, validate states ([16e46fa](https://github.com/synerise/synerise-design/commit/16e46fad5e3edb942575b6dd633943b156eac12b))
+* **card-tabs:** add suffix single icon ([46bf7c5](https://github.com/synerise/synerise-design/commit/46bf7c58740f8f7c271166f4f8c5b62a83c144b3))
+* **card-tabs:** add support for grey background ([cfdc2a4](https://github.com/synerise/synerise-design/commit/cfdc2a420613098516b6330ccf83aee11e3e65ee))
+* **card-tabs:** add tab name inline edit ([05deb7d](https://github.com/synerise/synerise-design/commit/05deb7d3353c8f05e499137cf888a46111d6e282))
+* **card-tabs:** examples in storybook ([a8125db](https://github.com/synerise/synerise-design/commit/a8125db4f59c6b53cc50174c216d252c1aafa1f4))
+* **card-tabs:** refactor ([3142580](https://github.com/synerise/synerise-design/commit/3142580d2e8b6116ab921dcc7c3d3ef4339c8879))
+* **card-tabs:** refactor ([fad9bf1](https://github.com/synerise/synerise-design/commit/fad9bf1c556b8cd040a6a28c99cb05c21d415c67))
+* **manageablelist:** add component ([bcd1163](https://github.com/synerise/synerise-design/commit/bcd11633fb6ea9591f98bcc38a56ce4e9974a8c0))
+* **manageablelist:** add tests ([41ff7c7](https://github.com/synerise/synerise-design/commit/41ff7c75bc10d59ae39692c507b1db68a9fb08fe))
+* **manageablelist:** add toggle button ([9adc8d4](https://github.com/synerise/synerise-design/commit/9adc8d40d5425091c616e77138425fd66471474c))
+* **manageablelist:** refactor ([954aeaa](https://github.com/synerise/synerise-design/commit/954aeaa810a64bae9a0109af29b9c8735de427f0))
+* **manageablelist:** update storybook, fix minor issues ([e165a94](https://github.com/synerise/synerise-design/commit/e165a94307c6742830713ec75fe73f573cbe9865))
+* **manageablelist:** update styles ([6d2c85a](https://github.com/synerise/synerise-design/commit/6d2c85abf07b0db49520521fcc37445703b4db05))
+* **responsive-tabs:** restore basic tabs component ([49f300a](https://github.com/synerise/synerise-design/commit/49f300a384d3486c1fd3883255f26afde71a4712))
+* **tabs:** add disabled tab state ([66ed546](https://github.com/synerise/synerise-design/commit/66ed5462b578bfb8f2ea0a1d26378a110e33633d))
+* **tabs:** adds responsivity ([dbedaf8](https://github.com/synerise/synerise-design/commit/dbedaf8b44827fd82069ea6b30a0790dbb9de74c))
+* **tabs:** create tabs component ([9477f10](https://github.com/synerise/synerise-design/commit/9477f10fdc2b3605064611043704892717bd11a0))
+* **tabs:** fix issues from eslint ([5eccc5f](https://github.com/synerise/synerise-design/commit/5eccc5fc5810f3597b2fdb7289bc4f5e463bdf56))
+* **tabs:** update styles ([d1f5cea](https://github.com/synerise/synerise-design/commit/d1f5ceacde4ef74c49033c20c0fb7505df62962b))
+
+
+
+
+
 # [0.12.0](https://github.com/synerise/synerise-design/compare/portal@0.11.2...portal@0.12.0) (2019-10-22)
 
 
