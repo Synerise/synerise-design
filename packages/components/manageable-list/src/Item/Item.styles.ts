@@ -28,6 +28,12 @@ export const ItemContainer = styled.div`
     ${ItemActions} {
       display: flex;
     }
+    .ds-manageable-list-item-icon {
+      svg {
+        color: ${({ theme }): string => theme.palette['blue-600']};
+        fill: ${({ theme }): string => theme.palette['blue-600']};
+      }
+    }
   }
 `;
 

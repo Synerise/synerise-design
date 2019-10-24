@@ -86,7 +86,7 @@ const Item: React.FC<Props> = ({ item, onRemove, onSelect, onUpdate, theme }) =>
   return (
     <S.ItemContainer>
       <List.Item
-        icon={<Icon component={<FolderM />} size={24} />}
+        icon={<Icon className="ds-manageable-list-item-icon" component={<FolderM />} size={24} />}
         onSelect={handleSelect}
         actions={
           <S.ItemActions>
