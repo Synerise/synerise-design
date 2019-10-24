@@ -2,7 +2,7 @@ import * as React from 'react';
 import { DSProvider } from '@synerise/ds-core';
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
-import ManageableList from '@synerise/ds-manageablelist/dist/Manageable-list';
+import ManageableList from '@synerise/ds-manageable-list';
 import { withState } from '@dump247/storybook-state';
 
 const ITEMS:any = [
