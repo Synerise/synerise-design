@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.1.0...@synerise/ds-manageable-list@0.1.1) (2019-10-28)
+
+### Bug Fixes
+
+- **manageable-list:** add ds-icon as dependency ([b7f0198](https://github.com/Synerise/synerise-design/commit/b7f0198c41d53dbce0124f1aa63a392da715d1e2))
+- **manageable-list:** fix dependencies ([9ac6def](https://github.com/Synerise/synerise-design/commit/9ac6def8240b7d5a8d21681ea83d61667ca78a29))
+
 # 0.1.0 (2019-10-24)
 
 ### Bug Fixes
