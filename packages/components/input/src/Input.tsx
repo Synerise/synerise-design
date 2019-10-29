@@ -30,7 +30,6 @@ const enhancedInput = <P extends object>(
   resetMargin,
   ...antdInputProps
 }): React.ReactElement => {
-  const [value, setValue] = React.useState<string>('');
   const [charCount, setCharCount] = React.useState<number>(0);
 
   const showError = Boolean(errorText);
@@ -56,7 +55,6 @@ const enhancedInput = <P extends object>(
   React.useEffect(() => {
     if (counterLimit && antdInputProps.value && antdInputProps.value.toString().length > counterLimit) return;
 
-    setValue(antdInputProps.value ? antdInputProps.value.toString() : '');
     setCharCount(antdInputProps.value ? antdInputProps.value.toString().length : 0);
   }, [antdInputProps.value, counterLimit]);
 
@@ -85,7 +83,7 @@ const enhancedInput = <P extends object>(
           {...antdInputProps}
           error={showError}
           onChange={handleChange}
-          value={value}
+          value={antdInputProps.value}
           id={id}
           ref={inputRef}
         />
