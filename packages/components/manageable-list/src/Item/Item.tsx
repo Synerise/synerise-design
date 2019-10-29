@@ -25,6 +25,7 @@ export type ItemProps = {
   tag?: React.ReactElement;
   icon?: React.ReactNode;
   content?: () => React.ReactNode;
+  changeOrderDisabled?: boolean;
 };
 
 const Item: React.FC<Props> = ({ item, onRemove, onSelect, onUpdate, theme }) => {

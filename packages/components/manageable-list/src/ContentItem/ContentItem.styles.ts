@@ -7,8 +7,13 @@ type ItemContainerProps = {
   greyBackground: boolean;
 };
 
-export const DraggerWrapper = styled.div`
+type DraggerWrapperProps = {
+  disabled: boolean;
+};
+
+export const DraggerWrapper = styled.div<DraggerWrapperProps>`
   display: flex;
+  opacity: ${({ disabled }): string => (disabled ? '0.4' : '1')};
 `;
 
 export const IconWrapper = styled.div`

@@ -3,6 +3,7 @@ import List from '@synerise/ds-list';
 import Button from '@synerise/ds-button';
 import Add1M from '@synerise/ds-icon/dist/icons/Add1M';
 import Icon from '@synerise/ds-icon';
+import { ReactSortable } from 'react-sortablejs-typescript';
 import * as S from './ManageableList.styles';
 import Item, { ItemProps } from './Item/Item';
 import AddItem from './AddItem/AddItem';
@@ -17,17 +18,20 @@ interface Props {
   addItemLabel: string;
   showMoreLabel: string;
   showLessLabel: string;
+  more: string;
+  less: string;
   maxToShowItems: number;
   onItemAdd?: (addParams?: { name: string }) => void;
   onItemRemove?: (removeParams: { id: string }) => void;
   onItemEdit?: (editParams: { id: string; name: string }) => void;
   onItemSelect: (selectParams: { id: string }) => void;
   onItemDuplicate?: (duplicateParams: { id: string }) => void;
-  onChangeOrder?: () => void;
+  onChangeOrder?: (newOrder: ItemProps[]) => void;
   items: ItemProps[];
   loading: boolean;
   type?: ListType;
   addButtonDisabled?: boolean;
+  changeOrderDisabled?: boolean;
   greyBackground?: boolean;
 }
 
@@ -43,12 +47,29 @@ const ManageableList: React.FC<Props> = ({
   maxToShowItems,
   showMoreLabel,
   showLessLabel,
+  more,
+  less,
   loading,
   type = ListType.default,
   addButtonDisabled = false,
+  changeOrderDisabled = false,
   greyBackground = false,
 }) => {
   const [allItemsVisible, setAllItemsVisible] = React.useState(false);
+
+  const getItemsOverLimit = React.useMemo((): number => {
+    return items.length - maxToShowItems;
+  }, [items, maxToShowItems]);
+
+  const visibleItems = React.useMemo((): ItemProps[] => {
+    return allItemsVisible ? items : items.slice(0, maxToShowItems);
+  }, [items, allItemsVisible, maxToShowItems]);
+
+  const buttonLabel = React.useMemo(() => (allItemsVisible ? showLessLabel : showMoreLabel), [allItemsVisible, showLessLabel, showMoreLabel]);
+  const buttonLabelDiff = React.useMemo(
+    () => (allItemsVisible ? `- ${getItemsOverLimit} ${less} ` : `+ ${getItemsOverLimit} ${more} `),
+    [allItemsVisible, getItemsOverLimit, less, more]
+  );
 
   const toggleAllItems = React.useCallback((): void => {
     setAllItemsVisible(!allItemsVisible);
@@ -57,14 +78,6 @@ const ManageableList: React.FC<Props> = ({
   const createItem = React.useCallback(() => {
     onItemAdd && onItemAdd();
   }, [onItemAdd]);
-
-  const visibleItems = React.useMemo((): ItemProps[] => {
-    return allItemsVisible ? items : items.slice(0, maxToShowItems);
-  }, [items, allItemsVisible, maxToShowItems]);
-
-  const getItemsOverLimit = React.useMemo((): number => {
-    return items.length - maxToShowItems;
-  }, [items, maxToShowItems]);
 
   const getItem = (item: ItemProps): React.ReactNode => {
     return type === ListType.default ? (
@@ -77,18 +90,22 @@ const ManageableList: React.FC<Props> = ({
         onDuplicate={onItemDuplicate}
         item={item}
         draggable={Boolean(onChangeOrder)}
+        changeOrderDisabled={changeOrderDisabled}
         greyBackground={greyBackground}
       />
     );
   };
 
-  const buttonLabel = allItemsVisible ? showLessLabel : showMoreLabel;
-  const buttonLabelDiff = allItemsVisible ? `- ${getItemsOverLimit} less ` : `+ ${getItemsOverLimit} more `;
-
   return (
     <S.ManageableListContainer listType={type} greyBackground={greyBackground}>
       {type === ListType.default && Boolean(onItemAdd) && <AddItem addItemLabel={addItemLabel} onItemAdd={onItemAdd} />}
-      <List loading={loading} dataSource={[visibleItems]} renderItem={(item): React.ReactNode => getItem(item)} />
+      {onChangeOrder && !changeOrderDisabled ? (
+        <ReactSortable list={items} setList={onChangeOrder}>
+          {visibleItems.map(item => getItem(item))}
+        </ReactSortable>
+      ) : (
+        <List loading={loading} dataSource={[visibleItems]} renderItem={(item): React.ReactNode => getItem(item)} />
+      )}
       {items.length > maxToShowItems ? (
         <S.ShowMoreButton onClick={toggleAllItems} data-testid="show-more-button">
           <span>{buttonLabelDiff}</span>

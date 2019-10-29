@@ -19,6 +19,7 @@ export type ContentItemProps = {
   onSelect: (selectParams: { id: string }) => void;
   greyBackground: boolean;
   theme: { [k: string]: string };
+  changeOrderDisabled: boolean;
 };
 
 export type ItemProps = {
@@ -39,6 +40,7 @@ const ContentItem: React.FC<ContentItemProps> = ({
   draggable,
   item,
   greyBackground = false,
+  changeOrderDisabled,
   theme,
 }): React.ReactElement => {
   const [contentVisible, setContentVisible] = React.useState(false);
@@ -108,11 +110,11 @@ const ContentItem: React.FC<ContentItemProps> = ({
   );
 
   return (
-    <S.ItemContainer opened={contentVisible} greyBackground={greyBackground}>
+    <S.ItemContainer opened={contentVisible} greyBackground={greyBackground} key={item.id}>
       <S.ItemHeader>
         <S.ItemHeaderPrefix>
           {draggable && (
-            <S.DraggerWrapper>
+            <S.DraggerWrapper disabled={Boolean(changeOrderDisabled)}>
               <Icon size={24} component={<DragHandleM />} />
             </S.DraggerWrapper>
           )}

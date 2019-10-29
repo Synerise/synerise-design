@@ -72,7 +72,7 @@ const EMPTY_ITEM = {
 const CONTENT_ITEMS: any = [
   {
     id: "00000000-0000-0000-0000-000000000000",
-    name: "Position 1",
+    name: "Position 0",
     canAdd: true,
     canUpdate: false,
     canDelete: false,
@@ -141,6 +141,8 @@ storiesOf('Components|Manageable List', module)
               addItemLabel="Add folder"
               showMoreLabel="show all"
               showLessLabel="show less"
+              more="more"
+              less="less"
               maxToShowItems={5}
               onItemAdd={addItem}
               onItemRemove={removeItem}
@@ -162,6 +164,8 @@ storiesOf('Components|Manageable List', module)
             addItemLabel="Add folder"
             showMoreLabel="show all"
             showLessLabel="show less"
+            more="more"
+            less="less"
             maxToShowItems={5}
             onItemAdd={action('onItemAdd')}
             onItemRemove={action('onItemRemove')}
@@ -174,7 +178,13 @@ storiesOf('Components|Manageable List', module)
       </DSProvider>
     </div>
   ))
-  .add('content list', () => {
+  .add('content list', withState({
+    items: CONTENT_ITEMS,
+  })(({store}) => {
+    const handleChangeOrder = (newOrder) => {
+      store.set({items: newOrder});
+    };
+
     return (
       <div style={{width: '600'}}>
         <DSProvider code="en_GB">
@@ -183,21 +193,24 @@ storiesOf('Components|Manageable List', module)
               addItemLabel="Add folder"
               showMoreLabel="show all"
               showLessLabel="show less"
-              maxToShowItems={5}
+              more="more"
+              less="less"
+              maxToShowItems={2}
               onItemAdd={action('onItemAdd')}
               onItemRemove={action('onItemRemove')}
               onItemEdit={action('onItemEdit')}
               onItemSelect={action('onItemSelect')}
               onItemDuplicate={action('onItemDuplicate')}
-              onChangeOrder={ boolean('Change order available', false) ? action('onChangeOrder') : null}
+              onChangeOrder={ boolean('Change order available', false) ? handleChangeOrder : null}
               type={ListType.content}
-              items={CONTENT_ITEMS}
+              items={store.state.items}
               loading={false}
               addButtonDisabled={boolean('Disable add item button', false)}
+              changeOrderDisabled={boolean('Disable change order', false)}
               greyBackground={ boolean('Grey background', false) }
             />
           </div>
         </DSProvider>
       </div>
     )
-  });
+  }));
