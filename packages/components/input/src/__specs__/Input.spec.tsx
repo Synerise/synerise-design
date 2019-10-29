@@ -83,23 +83,32 @@ describe('Input', () => {
 
     it('should not allow to exceed counterLimit', () => {
       // ARRANGE
+      const onChange = jest.fn();
       const PLACEHOLDER = 'placeholder';
       const COUNTER_LIMIT = 2;
       const VALID_STRING = 'ab';
       const INVALID_STRING = 'abc';
-      const { getByPlaceholderText, rerender } = renderWithProvider(
-        <Input placeholder={PLACEHOLDER} counterLimit={COUNTER_LIMIT} value={VALID_STRING} />
+      const { getByPlaceholderText } = renderWithProvider(
+        <Input
+          placeholder={PLACEHOLDER}
+          counterLimit={COUNTER_LIMIT}
+          value=""
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e.target.value)}
+        />
       );
       const input = getByPlaceholderText(PLACEHOLDER) as HTMLInputElement;
 
+      // ACT
+      fireEvent.change(input, { target: { value: VALID_STRING } });
+
       // ASSERT
-      expect(input.value).toBe(VALID_STRING);
+      expect(onChange).toHaveBeenCalledWith(VALID_STRING);
 
       // ACT
-      rerender(<Input placeholder={PLACEHOLDER} counterLimit={COUNTER_LIMIT} value={INVALID_STRING} />);
+      fireEvent.change(input, { target: { value: INVALID_STRING } }); // should not call onChange event
 
       // ASSERT
-      expect(input.value).toBe(VALID_STRING);
+      expect(onChange).toHaveBeenCalledTimes(1);
     });
 
     it('should render icons', () => {
@@ -194,26 +203,32 @@ describe('Input', () => {
 
     it('should not allow to exceed counterLimit', () => {
       // ARRANGE
+      const onChange = jest.fn();
       const PLACEHOLDER = 'placeholder';
       const COUNTER_LIMIT = 2;
       const VALID_STRING = 'ab';
       const INVALID_STRING = 'abc';
-      const { getByPlaceholderText, rerender } = renderWithProvider(
-        <TextArea placeholder={PLACEHOLDER} counterLimit={COUNTER_LIMIT} value="" />
+      const { getByPlaceholderText } = renderWithProvider(
+        <TextArea
+          placeholder={PLACEHOLDER}
+          counterLimit={COUNTER_LIMIT}
+          value=""
+          onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => onChange(e.target.value)}
+        />
       );
       const input = getByPlaceholderText(PLACEHOLDER) as HTMLInputElement;
 
       // ACT
-      rerender(<TextArea placeholder={PLACEHOLDER} counterLimit={COUNTER_LIMIT} value={VALID_STRING} />);
+      fireEvent.change(input, { target: { value: VALID_STRING } });
 
       // ASSERT
-      expect(input.value).toBe(VALID_STRING);
+      expect(onChange).toHaveBeenCalledWith(VALID_STRING);
 
       // ACT
-      rerender(<TextArea placeholder={PLACEHOLDER} counterLimit={COUNTER_LIMIT} value={INVALID_STRING} />);
+      fireEvent.change(input, { target: { value: INVALID_STRING } }); // should not call onChange event
 
       // ASSERT
-      expect(input.value).toBe(VALID_STRING);
+      expect(onChange).toHaveBeenCalledTimes(1);
     });
 
     it('should render icons', () => {
