@@ -33,7 +33,6 @@ describe('Input', () => {
       fireEvent.change(input, { target: { value: INPUT_VALUE } });
 
       // ASSERT
-      expect(input.value).toBe(INPUT_VALUE);
       expect(onChange).toBeCalledWith(INPUT_VALUE);
     });
 
@@ -68,7 +67,7 @@ describe('Input', () => {
       // ARRANGE
       const PLACEHOLDER = 'placeholder';
       const COUNTER_LIMIT = 10;
-      const { getByPlaceholderText, getByTestId } = renderWithProvider(
+      const { getByTestId, rerender } = renderWithProvider(
         <Input placeholder={PLACEHOLDER} counterLimit={COUNTER_LIMIT} value="" />
       );
 
@@ -76,7 +75,7 @@ describe('Input', () => {
       expect(getByTestId('counter').textContent).toBe(`0/${COUNTER_LIMIT}`);
 
       // ACT
-      fireEvent.change(getByPlaceholderText(PLACEHOLDER), { target: { value: 'test' } });
+      rerender(<Input placeholder={PLACEHOLDER} counterLimit={COUNTER_LIMIT} value="test" />);
 
       // ASSERT
       expect(getByTestId('counter').textContent).toBe(`4/${COUNTER_LIMIT}`);
@@ -88,19 +87,16 @@ describe('Input', () => {
       const COUNTER_LIMIT = 2;
       const VALID_STRING = 'ab';
       const INVALID_STRING = 'abc';
-      const { getByPlaceholderText } = renderWithProvider(
-        <Input placeholder={PLACEHOLDER} counterLimit={COUNTER_LIMIT} value="" />
+      const { getByPlaceholderText, rerender } = renderWithProvider(
+        <Input placeholder={PLACEHOLDER} counterLimit={COUNTER_LIMIT} value={VALID_STRING} />
       );
       const input = getByPlaceholderText(PLACEHOLDER) as HTMLInputElement;
-
-      // ACT
-      fireEvent.change(input, { target: { value: VALID_STRING } });
 
       // ASSERT
       expect(input.value).toBe(VALID_STRING);
 
       // ACT
-      fireEvent.change(input, { target: { value: INVALID_STRING } });
+      rerender(<Input placeholder={PLACEHOLDER} counterLimit={COUNTER_LIMIT} value={INVALID_STRING} />);
 
       // ASSERT
       expect(input.value).toBe(VALID_STRING);
@@ -148,7 +144,6 @@ describe('Input', () => {
       fireEvent.change(input, { target: { value: INPUT_VALUE } });
 
       // ASSERT
-      expect(input.value).toBe(INPUT_VALUE);
       expect(onChange).toBeCalledWith(INPUT_VALUE);
     });
 
@@ -183,7 +178,7 @@ describe('Input', () => {
       // ARRANGE
       const PLACEHOLDER = 'placeholder';
       const COUNTER_LIMIT = 10;
-      const { getByPlaceholderText, getByTestId } = renderWithProvider(
+      const { getByTestId, rerender } = renderWithProvider(
         <TextArea placeholder={PLACEHOLDER} counterLimit={COUNTER_LIMIT} value="" />
       );
 
@@ -191,7 +186,7 @@ describe('Input', () => {
       expect(getByTestId('counter').textContent).toBe(`0/${COUNTER_LIMIT}`);
 
       // ACT
-      fireEvent.change(getByPlaceholderText(PLACEHOLDER), { target: { value: 'test' } });
+      rerender(<TextArea placeholder={PLACEHOLDER} counterLimit={COUNTER_LIMIT} value="test" />);
 
       // ASSERT
       expect(getByTestId('counter').textContent).toBe(`4/${COUNTER_LIMIT}`);
@@ -203,19 +198,19 @@ describe('Input', () => {
       const COUNTER_LIMIT = 2;
       const VALID_STRING = 'ab';
       const INVALID_STRING = 'abc';
-      const { getByPlaceholderText } = renderWithProvider(
+      const { getByPlaceholderText, rerender } = renderWithProvider(
         <TextArea placeholder={PLACEHOLDER} counterLimit={COUNTER_LIMIT} value="" />
       );
       const input = getByPlaceholderText(PLACEHOLDER) as HTMLInputElement;
 
       // ACT
-      fireEvent.change(input, { target: { value: VALID_STRING } });
+      rerender(<TextArea placeholder={PLACEHOLDER} counterLimit={COUNTER_LIMIT} value={VALID_STRING} />);
 
       // ASSERT
       expect(input.value).toBe(VALID_STRING);
 
       // ACT
-      fireEvent.change(input, { target: { value: INVALID_STRING } });
+      rerender(<TextArea placeholder={PLACEHOLDER} counterLimit={COUNTER_LIMIT} value={INVALID_STRING} />);
 
       // ASSERT
       expect(input.value).toBe(VALID_STRING);
