@@ -7,14 +7,15 @@ import EditS from '@synerise/ds-icon/dist/icons/EditS';
 import CloseS from '@synerise/ds-icon/dist/icons/CloseS';
 import DuplicateS from '@synerise/ds-icon/dist/icons/DuplicateS';
 import { withTheme } from 'styled-components';
+import InlineEdit from '@synerise/ds-inline-edit/dist/InlineEdit';
 import * as S from './ContentItem.styles';
 
 export type ContentItemProps = {
   item: ItemProps;
   draggable?: boolean;
-  onRemove: (removeParams: { id: string }) => void;
-  onDuplicate: (removeParams: { id: string }) => void;
-  onUpdate: (editParams: { id: string; name: string }) => void;
+  onRemove?: (removeParams: { id: string }) => void;
+  onDuplicate?: (duplicateParams: { id: string }) => void;
+  onUpdate?: (editParams: { id: string; name: string }) => void;
   onSelect: (selectParams: { id: string }) => void;
   theme: { [k: string]: string };
 };
@@ -32,20 +33,37 @@ export type ItemProps = {
 
 const ContentItem: React.FC<ContentItemProps> = ({
   onRemove,
-  // onUpdate,
-  // onSelect,
+  onUpdate,
   onDuplicate,
   draggable,
   item,
   theme,
 }): React.ReactElement => {
   const [contentVisible, setContentVisible] = React.useState(false);
-  // const [editMode, setEditMode] = React.useState(false);
-  // const [editedName, setName] = React.useState(item.name);
+  const [editMode, setEditMode] = React.useState(false);
+  const [editedName, setName] = React.useState(item.name);
 
-  const toggleContentVisibility = (): void => {
+  const toggleContentVisibility = React.useCallback((): void => {
     setContentVisible(!contentVisible);
-  };
+  }, [setContentVisible, contentVisible]);
+
+  const updateName = React.useCallback((): void => {
+    setEditMode(false);
+    onUpdate && onUpdate({ id: item.id, name: editedName });
+  }, [editedName, item.id, onUpdate]);
+
+  const editName = React.useCallback((event: React.ChangeEvent<HTMLInputElement>): void => {
+    setName(event.target.value);
+  }, []);
+
+  const inputProps = React.useMemo(() => {
+    return {
+      name: 'list-item-name-input',
+      defaultValue: editedName,
+      value: editedName,
+      onBlur: updateName,
+    };
+  }, [editedName, updateName]);
 
   const renderIcon = React.useCallback(
     (
@@ -68,13 +86,13 @@ const ContentItem: React.FC<ContentItemProps> = ({
 
   const enterEditMode = React.useCallback((event: React.MouseEvent): void => {
     event.stopPropagation();
-    // setEditMode(true);
+    setEditMode(true);
   }, []);
 
   const removeItem = React.useCallback(
     (event: React.MouseEvent): void => {
       event.stopPropagation();
-      onRemove({ id: item.id });
+      onRemove && onRemove({ id: item.id });
     },
     [onRemove, item.id]
   );
@@ -82,7 +100,7 @@ const ContentItem: React.FC<ContentItemProps> = ({
   const duplicateItem = React.useCallback(
     (event: React.MouseEvent): void => {
       event.stopPropagation();
-      onDuplicate({ id: item.id });
+      onDuplicate && onDuplicate({ id: item.id });
     },
     [onDuplicate, item.id]
   );
@@ -103,7 +121,20 @@ const ContentItem: React.FC<ContentItemProps> = ({
             </S.IconWrapper>
           )}
         </S.ItemHeaderPrefix>
-        <S.ItemLabel>{item.name}</S.ItemLabel>
+        <S.ItemLabelWrapper>
+          {editMode ? (
+            <InlineEdit
+              size="small"
+              hideIcon
+              onChange={editName}
+              style={{ maxWidth: '100%' }}
+              input={inputProps}
+              data-testid="list-item-name-input"
+            />
+          ) : (
+            <S.ItemLabel data-testid="list-item-name">{item.name}</S.ItemLabel>
+          )}
+        </S.ItemLabelWrapper>
         <S.ItemHeaderSuffix>
           <S.ItemActions>
             {renderIcon(Boolean(item.canUpdate), <EditS />, theme.palette['grey-500'], enterEditMode, 'list-item-edit')}

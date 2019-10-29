@@ -41,7 +41,11 @@ export const ItemHeaderSuffix = styled.div`
 export const ItemLabel = styled.span`
   ${macro.h300};
   color: ${({ theme }): string => theme.palette['grey-600']};
+`;
+
+export const ItemLabelWrapper = styled.div`
   flex: 1;
+  overflow: hidden;
 `;
 
 export const ItemHeader = styled.div`
@@ -111,6 +115,8 @@ export const ItemHeader = styled.div`
 
 export const ContentWrapper = styled.div`
   padding: 16px 16px 24px;
+  width: 100%;
+  border-top: 1px solid ${({ theme }): string => theme.palette['grey-200']};
 `;
 
 export const ItemContainer = styled.div<ItemContainerProps>`

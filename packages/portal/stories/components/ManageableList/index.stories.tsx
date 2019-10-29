@@ -6,7 +6,7 @@ import Tag, { TagShape } from '@synerise/ds-tags/dist/Tag/Tag';
 import { storiesOf } from '@storybook/react';
 import { withState } from '@dump247/storybook-state';
 import { action } from '@storybook/addon-actions';
-import { AddItemPosition, ListType } from '@synerise/ds-manageable-list/dist/ManageableList';
+import { ListType } from '@synerise/ds-manageable-list/dist/ManageableList';
 import { boolean } from '@storybook/addon-knobs';
 
 const ITEMS:any = [
@@ -184,7 +184,6 @@ storiesOf('Components|Manageable List', module)
               showMoreLabel="show all"
               showLessLabel="show less"
               maxToShowItems={5}
-              addItemPosition={AddItemPosition.onBottom}
               onItemAdd={action('onItemAdd')}
               onItemRemove={action('onItemRemove')}
               onItemEdit={action('onItemEdit')}
@@ -194,6 +193,7 @@ storiesOf('Components|Manageable List', module)
               type={ListType.content}
               items={CONTENT_ITEMS}
               loading={false}
+              addButtonDisabled={true}
             />
           </div>
         </DSProvider>

@@ -10,17 +10,21 @@ import * as S from './Item.styles';
 
 type Props = {
   item: ItemProps;
-  onRemove: (removeParams: { id: string }) => void;
+  onRemove?: (removeParams: { id: string }) => void;
   onSelect: (selectParams: { id: string }) => void;
-  onUpdate: (updateParams: { id: string; name: string }) => void;
+  onUpdate?: (updateParams: { id: string; name: string }) => void;
   theme: { [k: string]: string };
 };
 
 export type ItemProps = {
   id: string;
-  name: string;
   canUpdate?: boolean;
   canDelete?: boolean;
+  canDuplicate?: boolean;
+  name: string;
+  tag?: React.ReactElement;
+  icon?: React.ReactNode;
+  content?: () => React.ReactNode;
 };
 
 const Item: React.FC<Props> = ({ item, onRemove, onSelect, onUpdate, theme }) => {
@@ -31,7 +35,7 @@ const Item: React.FC<Props> = ({ item, onRemove, onSelect, onUpdate, theme }) =>
   const updateName = React.useCallback((): void => {
     setEditMode(false);
     setName(item.name);
-    onUpdate({ id: item.id, name: editedName });
+    onUpdate && onUpdate({ id: item.id, name: editedName });
   }, [editedName, item.id, item.name, onUpdate]);
 
   const inputProps = React.useMemo(() => {
@@ -59,7 +63,7 @@ const Item: React.FC<Props> = ({ item, onRemove, onSelect, onUpdate, theme }) =>
   const removeItem = React.useCallback(
     (event: React.MouseEvent): void => {
       event.stopPropagation();
-      onRemove({ id: item.id });
+      onRemove && onRemove({ id: item.id });
     },
     [onRemove, item.id]
   );
