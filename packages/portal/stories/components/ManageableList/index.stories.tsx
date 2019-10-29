@@ -8,6 +8,7 @@ import { withState } from '@dump247/storybook-state';
 import { action } from '@storybook/addon-actions';
 import { ListType } from '@synerise/ds-manageable-list/dist/ManageableList';
 import { boolean } from '@storybook/addon-knobs';
+import FolderM from '@synerise/ds-icon/dist/icons/FolderM';
 
 const ITEMS:any = [
   {
@@ -16,6 +17,7 @@ const ITEMS:any = [
     canAdd: true,
     canUpdate: false,
     canDelete: false,
+    icon: <FolderM />
   },
   {
     id: "00000000-0000-0000-0000-000000000001",
@@ -23,6 +25,7 @@ const ITEMS:any = [
     canAdd: true,
     canUpdate: true,
     canDelete: true,
+    icon: <FolderM />
   },
   {
     id: "00000000-0000-0000-0000-000000000002",
@@ -30,6 +33,7 @@ const ITEMS:any = [
     canAdd: true,
     canUpdate: true,
     canDelete: true,
+    icon: <FolderM />
   },
   {
     id: "00000000-0000-0000-0000-000000000003",
@@ -37,6 +41,7 @@ const ITEMS:any = [
     canAdd: true,
     canUpdate: true,
     canDelete: true,
+    icon: <FolderM />
   },
   {
     id: "00000000-0000-0000-0000-000000000004",
@@ -44,6 +49,7 @@ const ITEMS:any = [
     canAdd: true,
     canUpdate: true,
     canDelete: true,
+    icon: <FolderM />
   },
   {
     id: "00000000-0000-0000-0000-000000000005",
@@ -51,6 +57,7 @@ const ITEMS:any = [
     canAdd: true,
     canUpdate: true,
     canDelete: true,
+    icon: <FolderM />
   },
   {
     id: "00000000-0000-0000-0000-000000000006",
@@ -58,6 +65,7 @@ const ITEMS:any = [
     canAdd: true,
     canUpdate: true,
     canDelete: true,
+    icon: <FolderM />
   }
 ];
 
@@ -67,6 +75,7 @@ const EMPTY_ITEM = {
   canAdd: true,
   canUpdate: true,
   canDelete: true,
+  icon: <FolderM />
 };
 
 const CONTENT_ITEMS: any = [
@@ -190,7 +199,7 @@ storiesOf('Components|Manageable List', module)
         <DSProvider code="en_GB">
           <div style={{ background: "#fff", width: '600px' }}>
             <ManageableList
-              addItemLabel="Add folder"
+              addItemLabel="Add position"
               showMoreLabel="show all"
               showLessLabel="show less"
               more="more"

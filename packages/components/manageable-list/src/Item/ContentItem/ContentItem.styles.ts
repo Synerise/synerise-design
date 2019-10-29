@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { macro } from '@synerise/ds-typography';
 import { Tag } from '@synerise/ds-tags/dist/Tag/Tag.styles';
+import { ItemActions, ItemLabel } from '../SimpleItem/SimpleItem.styles';
 
 type ItemContainerProps = {
   opened: boolean;
@@ -20,16 +20,6 @@ export const IconWrapper = styled.div`
   display: flex;
 `;
 
-export const ItemActions = styled.div`
-  display: none;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-end;
-  span {
-    margin: 0 0 0 8px;
-  }
-`;
-
 export const ItemHeaderPrefix = styled.div`
   display: flex;
   flex-direction: row;
@@ -42,16 +32,6 @@ export const ItemHeaderSuffix = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
-`;
-
-export const ItemLabel = styled.span`
-  ${macro.h300};
-  color: ${({ theme }): string => theme.palette['grey-600']};
-`;
-
-export const ItemLabelWrapper = styled.div`
-  flex: 1;
-  overflow: hidden;
 `;
 
 export const ItemHeader = styled.div`

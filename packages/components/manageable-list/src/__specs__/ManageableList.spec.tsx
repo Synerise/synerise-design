@@ -1,7 +1,8 @@
 import * as React from 'react';
-import ManageableList from '../ManageableList';
+import ManageableList, { ListType } from '../ManageableList';
 import { renderWithProvider } from '@synerise/ds-utils';
 import { fireEvent } from '@testing-library/react';
+import FileM from '@synerise/ds-icon/dist/icons/FileM';
 
 const DEFAULT_ITEMS: any = [
   {
@@ -9,24 +10,28 @@ const DEFAULT_ITEMS: any = [
     name: "Default",
     canUpdate: false,
     canDelete: false,
+    icon: <FileM />
   },
   {
     id: "00000000-0000-0000-0000-000000000001",
     name: "Basic",
     canUpdate: true,
     canDelete: true,
+    icon: <FileM />
   },
   {
     id: "00000000-0000-0000-0000-000000000002",
     name: "My folder",
     canUpdate: true,
     canDelete: true,
+    icon: <FileM />
   },
   {
     id: "00000000-0000-0000-0000-000000000003",
     name: "My folder 2",
     canUpdate: true,
     canDelete: true,
+    icon: <FileM />
   },
 ]
 
@@ -36,42 +41,49 @@ const ITEMS: any = [
     name: "Default",
     canUpdate: false,
     canDelete: false,
+    icon: <FileM />
   },
   {
     id: "00000000-0000-0000-0000-000000000001",
     name: "Basic",
     canUpdate: true,
     canDelete: true,
+    icon: <FileM />
   },
   {
     id: "00000000-0000-0000-0000-000000000002",
     name: "My folder",
     canUpdate: true,
     canDelete: true,
+    icon: <FileM />
   },
   {
     id: "00000000-0000-0000-0000-000000000003",
     name: "My folder 2",
     canUpdate: true,
     canDelete: true,
+    icon: <FileM />
   },
   {
     id: "00000000-0000-0000-0000-000000000004",
     name: "My folder 3",
     canUpdate: true,
     canDelete: true,
+    icon: <FileM />
   },
   {
     id: "00000000-0000-0000-0000-000000000005",
     name: "My folder 4",
     canUpdate: true,
     canDelete: true,
+    icon: <FileM />
   },
   {
     id: "00000000-0000-0000-0000-000000000006",
     name: "My folder 5",
     canUpdate: true,
     canDelete: true,
+    icon: <FileM />
   }
 ]
 
@@ -90,6 +102,9 @@ describe('ManageableList', () => {
         onItemEdit={() => {}}
         onItemSelect={() => {}}
         onItemRemove={() => {}}
+        type={ListType.default}
+        more="more"
+        less="less"
       />);
 
     // ASSERT
@@ -112,6 +127,9 @@ describe('ManageableList', () => {
         onItemEdit={() => {}}
         onItemSelect={() => {}}
         onItemRemove={() => {}}
+        type={ListType.default}
+        more="more"
+        less="less"
       />);
 
     // ASSERT
@@ -136,6 +154,9 @@ describe('ManageableList', () => {
         onItemEdit={() => {}}
         onItemSelect={() => {}}
         onItemRemove={() => {}}
+        type={ListType.default}
+        more="more"
+        less="less"
       />);
     const showMore = getByTestId('show-more-button');
 
@@ -160,6 +181,9 @@ describe('ManageableList', () => {
         onItemEdit={() => {}}
         onItemSelect={() => {}}
         onItemRemove={() => {}}
+        type={ListType.default}
+        more="more"
+        less="less"
       />);
     const showMore = getByTestId('show-more-button');
 
@@ -186,6 +210,9 @@ describe('ManageableList', () => {
         onItemEdit={() => {}}
         onItemSelect={onItemSelect}
         onItemRemove={() => {}}
+        type={ListType.default}
+        more="more"
+        less="less"
       />);
 
     //ACT
@@ -211,6 +238,9 @@ describe('ManageableList', () => {
         onItemEdit={() => {}}
         onItemSelect={() => {}}
         onItemRemove={onItemRemove}
+        type={ListType.default}
+        more="more"
+        less="less"
       />);
     const firstRemoveButton = queryAllByTestId('list-item-remove')[0];
     const removeItemIcon = firstRemoveButton.querySelector('svg');
@@ -237,6 +267,9 @@ describe('ManageableList', () => {
         onItemEdit={() => {}}
         onItemSelect={() => {}}
         onItemRemove={() => {}}
+        type={ListType.default}
+        more="more"
+        less="less"
       />);
     const NEW_FOLDER_NAME = 'New folder';
     const addItemButton = getByTestId('add-item-button').getElementsByTagName('button')[0];

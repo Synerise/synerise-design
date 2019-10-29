@@ -7,7 +7,6 @@ import { ReactSortable } from 'react-sortablejs-typescript';
 import * as S from './ManageableList.styles';
 import Item, { ItemProps } from './Item/Item';
 import AddItem from './AddItem/AddItem';
-import ContentItem from './ContentItem/ContentItem';
 
 export enum ListType {
   default,
@@ -65,7 +64,11 @@ const ManageableList: React.FC<Props> = ({
     return allItemsVisible ? items : items.slice(0, maxToShowItems);
   }, [items, allItemsVisible, maxToShowItems]);
 
-  const buttonLabel = React.useMemo(() => (allItemsVisible ? showLessLabel : showMoreLabel), [allItemsVisible, showLessLabel, showMoreLabel]);
+  const buttonLabel = React.useMemo(() => (allItemsVisible ? showLessLabel : showMoreLabel), [
+    allItemsVisible,
+    showLessLabel,
+    showMoreLabel,
+  ]);
   const buttonLabelDiff = React.useMemo(
     () => (allItemsVisible ? `- ${getItemsOverLimit} ${less} ` : `+ ${getItemsOverLimit} ${more} `),
     [allItemsVisible, getItemsOverLimit, less, more]
@@ -75,15 +78,25 @@ const ManageableList: React.FC<Props> = ({
     setAllItemsVisible(!allItemsVisible);
   }, [allItemsVisible]);
 
+  const renderShowMoreButton = React.useCallback(() => {
+    return (
+      items.length > maxToShowItems && (
+        <S.ShowMoreButton onClick={toggleAllItems} data-testid="show-more-button">
+          <span>{buttonLabelDiff}</span>
+          <strong>{buttonLabel}</strong>
+        </S.ShowMoreButton>
+      )
+    );
+  }, [items, maxToShowItems, buttonLabelDiff, toggleAllItems, buttonLabel]);
+
   const createItem = React.useCallback(() => {
     onItemAdd && onItemAdd();
   }, [onItemAdd]);
 
-  const getItem = (item: ItemProps): React.ReactNode => {
-    return type === ListType.default ? (
-      <Item onSelect={onItemSelect} onUpdate={onItemEdit} onRemove={onItemRemove} item={item} />
-    ) : (
-      <ContentItem
+  const getItem = React.useCallback(
+    (item: ItemProps): React.ReactNode => (
+      <Item
+        listType={type}
         onSelect={onItemSelect}
         onUpdate={onItemEdit}
         onRemove={onItemRemove}
@@ -93,33 +106,40 @@ const ManageableList: React.FC<Props> = ({
         changeOrderDisabled={changeOrderDisabled}
         greyBackground={greyBackground}
       />
+    ),
+    [onChangeOrder, changeOrderDisabled, greyBackground, onItemDuplicate, onItemSelect, onItemEdit, onItemRemove, type]
+  );
+
+  const renderAddContentItemButton = React.useCallback(() => {
+    return (
+      type === ListType.content &&
+      Boolean(onItemAdd) && (
+        <S.AddContentButtonWrapper>
+          <Button onClick={createItem} type="dashed" size="large" disabled={addButtonDisabled}>
+            <Icon size={24} component={<Add1M />} />
+            {addItemLabel}
+          </Button>
+        </S.AddContentButtonWrapper>
+      )
     );
-  };
+  }, [type, onItemAdd, createItem, addButtonDisabled, addItemLabel]);
+
+  const renderList = React.useCallback(() => {
+    return onChangeOrder && !changeOrderDisabled ? (
+      <ReactSortable list={items} setList={onChangeOrder}>
+        {visibleItems.map(item => getItem(item))}
+      </ReactSortable>
+    ) : (
+      <List loading={loading} dataSource={[visibleItems]} renderItem={(item): React.ReactNode => getItem(item)} />
+    );
+  }, [changeOrderDisabled, items, visibleItems, onChangeOrder, loading, getItem]);
 
   return (
     <S.ManageableListContainer listType={type} greyBackground={greyBackground}>
       {type === ListType.default && Boolean(onItemAdd) && <AddItem addItemLabel={addItemLabel} onItemAdd={onItemAdd} />}
-      {onChangeOrder && !changeOrderDisabled ? (
-        <ReactSortable list={items} setList={onChangeOrder}>
-          {visibleItems.map(item => getItem(item))}
-        </ReactSortable>
-      ) : (
-        <List loading={loading} dataSource={[visibleItems]} renderItem={(item): React.ReactNode => getItem(item)} />
-      )}
-      {items.length > maxToShowItems ? (
-        <S.ShowMoreButton onClick={toggleAllItems} data-testid="show-more-button">
-          <span>{buttonLabelDiff}</span>
-          <strong>{buttonLabel}</strong>
-        </S.ShowMoreButton>
-      ) : null}
-      {type === ListType.content && Boolean(onItemAdd) && (
-        <S.AddContentButtonWrapper>
-          <Button onClick={createItem} type="dashed" size="large" disabled={addButtonDisabled}>
-            <Icon size={24} component={<Add1M />} />
-            Add position
-          </Button>
-        </S.AddContentButtonWrapper>
-      )}
+      {renderList()}
+      {renderShowMoreButton()}
+      {renderAddContentItemButton()}
     </S.ManageableListContainer>
   );
 };
