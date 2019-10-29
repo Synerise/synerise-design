@@ -18,7 +18,7 @@ interface Props {
   showMoreLabel: string;
   showLessLabel: string;
   maxToShowItems: number;
-  onItemAdd: (addParams?: { name: string }) => void;
+  onItemAdd?: (addParams?: { name: string }) => void;
   onItemRemove?: (removeParams: { id: string }) => void;
   onItemEdit?: (editParams: { id: string; name: string }) => void;
   onItemSelect: (selectParams: { id: string }) => void;
@@ -28,6 +28,7 @@ interface Props {
   loading: boolean;
   type?: ListType;
   addButtonDisabled?: boolean;
+  greyBackground?: boolean;
 }
 
 const ManageableList: React.FC<Props> = ({
@@ -45,6 +46,7 @@ const ManageableList: React.FC<Props> = ({
   loading,
   type = ListType.default,
   addButtonDisabled = false,
+  greyBackground = false,
 }) => {
   const [allItemsVisible, setAllItemsVisible] = React.useState(false);
 
@@ -53,7 +55,7 @@ const ManageableList: React.FC<Props> = ({
   }, [allItemsVisible]);
 
   const createItem = React.useCallback(() => {
-    onItemAdd();
+    onItemAdd && onItemAdd();
   }, [onItemAdd]);
 
   const visibleItems = React.useMemo((): ItemProps[] => {
@@ -75,6 +77,7 @@ const ManageableList: React.FC<Props> = ({
         onDuplicate={onItemDuplicate}
         item={item}
         draggable={Boolean(onChangeOrder)}
+        greyBackground={greyBackground}
       />
     );
   };
@@ -83,8 +86,8 @@ const ManageableList: React.FC<Props> = ({
   const buttonLabelDiff = allItemsVisible ? `- ${getItemsOverLimit} less ` : `+ ${getItemsOverLimit} more `;
 
   return (
-    <S.ManageableListContainer listType={type}>
-      {type === ListType.default && <AddItem addItemLabel={addItemLabel} onItemAdd={onItemAdd} />}
+    <S.ManageableListContainer listType={type} greyBackground={greyBackground}>
+      {type === ListType.default && Boolean(onItemAdd) && <AddItem addItemLabel={addItemLabel} onItemAdd={onItemAdd} />}
       <List loading={loading} dataSource={[visibleItems]} renderItem={(item): React.ReactNode => getItem(item)} />
       {items.length > maxToShowItems ? (
         <S.ShowMoreButton onClick={toggleAllItems} data-testid="show-more-button">
@@ -92,7 +95,7 @@ const ManageableList: React.FC<Props> = ({
           <strong>{buttonLabel}</strong>
         </S.ShowMoreButton>
       ) : null}
-      {type === ListType.content && (
+      {type === ListType.content && Boolean(onItemAdd) && (
         <S.AddContentButtonWrapper>
           <Button onClick={createItem} type="dashed" size="large" disabled={addButtonDisabled}>
             <Icon size={24} component={<Add1M />} />

@@ -193,7 +193,8 @@ storiesOf('Components|Manageable List', module)
               type={ListType.content}
               items={CONTENT_ITEMS}
               loading={false}
-              addButtonDisabled={true}
+              addButtonDisabled={boolean('Disable add item button', false)}
+              greyBackground={ boolean('Grey background', false) }
             />
           </div>
         </DSProvider>

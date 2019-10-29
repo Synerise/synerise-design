@@ -17,6 +17,7 @@ export type ContentItemProps = {
   onDuplicate?: (duplicateParams: { id: string }) => void;
   onUpdate?: (editParams: { id: string; name: string }) => void;
   onSelect: (selectParams: { id: string }) => void;
+  greyBackground: boolean;
   theme: { [k: string]: string };
 };
 
@@ -37,6 +38,7 @@ const ContentItem: React.FC<ContentItemProps> = ({
   onDuplicate,
   draggable,
   item,
+  greyBackground = false,
   theme,
 }): React.ReactElement => {
   const [contentVisible, setContentVisible] = React.useState(false);
@@ -106,7 +108,7 @@ const ContentItem: React.FC<ContentItemProps> = ({
   );
 
   return (
-    <S.ItemContainer opened={contentVisible}>
+    <S.ItemContainer opened={contentVisible} greyBackground={greyBackground}>
       <S.ItemHeader>
         <S.ItemHeaderPrefix>
           {draggable && (

@@ -5,6 +5,7 @@ import { ListType } from './ManageableList';
 
 type ManageableListProps = {
   listType: ListType;
+  greyBackground: boolean;
 };
 
 export const ManageableListContainer = styled.div<ManageableListProps>`
@@ -13,6 +14,8 @@ export const ManageableListContainer = styled.div<ManageableListProps>`
   align-items: flex-start;
   justify-content: flex-start;
   padding: ${({ listType }): string => (listType === ListType.content ? '24px' : '12px')};
+  background-color: ${({ theme, greyBackground }): string =>
+    greyBackground ? theme.palette['grey-050'] : theme.palette.white};
   .ant-list {
     width: 100%;
     padding: 0;

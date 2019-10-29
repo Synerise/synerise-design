@@ -4,6 +4,7 @@ import { Tag } from '@synerise/ds-tags/dist/Tag/Tag.styles';
 
 type ItemContainerProps = {
   opened: boolean;
+  greyBackground: boolean;
 };
 
 export const DraggerWrapper = styled.div`
@@ -88,6 +89,7 @@ export const ItemHeader = styled.div`
       justify-content: center;
       margin: 0 0 0 12px;
       transition: transform 0.2s ease;
+      box-shadow: none;
       & > div {
         justify-content: center;
         margin: 0 !important;
@@ -127,7 +129,9 @@ export const ItemContainer = styled.div<ItemContainerProps>`
   justify-content: flex-start;
   margin-bottom: 16px;
   border-radius: 3px;
-  background-color: ${({ theme }): string => theme.palette['grey-050']};
+  background-color: ${({ theme, greyBackground }): string =>
+    greyBackground ? theme.palette.white : theme.palette['grey-050']};
+  box-shadow: ${({ greyBackground }): string => (greyBackground ? '0 4px 12px 0 rgba(35, 41, 54, 0.04)' : 'none')};
 
   ${ContentWrapper} {
     display: ${({ opened }): string => (opened ? 'flex' : 'none')};
@@ -135,6 +139,8 @@ export const ItemContainer = styled.div<ItemContainerProps>`
   ${ItemHeader} {
     .ant-btn {
       transform: ${({ opened }): string => (opened ? 'rotateZ(-180deg)' : 'rotateZ(0deg)')};
+      background-color: ${({ theme, greyBackground }): string =>
+        greyBackground ? theme.palette['grey-050'] : theme.palette.whte};
     }
   }
 `;

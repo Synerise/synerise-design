@@ -6,7 +6,7 @@ import Button from '@synerise/ds-button';
 import * as S from './AddItem.styles';
 
 type Props = {
-  onItemAdd: (addParams: { name: string }) => void;
+  onItemAdd?: (addParams: { name: string }) => void;
   addItemLabel: string;
 };
 
@@ -31,7 +31,7 @@ const AddItem: React.FC<Props> = ({ onItemAdd, addItemLabel }) => {
   }, [active]);
 
   const createItem = React.useCallback((): void => {
-    onItemAdd({ name });
+    onItemAdd && onItemAdd({ name });
     toggleInput();
   }, [name, onItemAdd, toggleInput]);
 
