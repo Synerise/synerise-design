@@ -1,9 +1,13 @@
 import * as React from 'react';
 import { DSProvider } from '@synerise/ds-core';
-import { storiesOf } from "@storybook/react";
-import { action } from "@storybook/addon-actions";
 import ManageableList from '@synerise/ds-manageable-list';
+import FileM from '@synerise/ds-icon/dist/icons/FileM';
+import Tag, { TagShape } from '@synerise/ds-tags/dist/Tag/Tag';
+import { storiesOf } from '@storybook/react';
 import { withState } from '@dump247/storybook-state';
+import { action } from '@storybook/addon-actions';
+import { AddItemPosition, ListType } from '@synerise/ds-manageable-list/dist/ManageableList';
+import { boolean } from '@storybook/addon-knobs';
 
 const ITEMS:any = [
   {
@@ -63,7 +67,37 @@ const EMPTY_ITEM = {
   canAdd: true,
   canUpdate: true,
   canDelete: true,
-}
+};
+
+const CONTENT_ITEMS: any = [
+  {
+    id: "00000000-0000-0000-0000-000000000000",
+    name: "Position 1",
+    canAdd: true,
+    canUpdate: false,
+    canDelete: false,
+    tag: <Tag name={"A"} shape={TagShape.SINGLE_CHARACTER_ROUND} color={"red"} />,
+    content: <div>content</div>,
+  },
+  {
+    id: "00000000-0000-0000-0000-000000000002",
+    name: "Position 1",
+    canAdd: true,
+    canUpdate: true,
+    canDelete: true,
+    tag: <Tag name={"1"} shape={TagShape.SINGLE_CHARACTER_SQUARE} color={"#f3f5f6"} textColor={"#949ea6"} />,
+    content: <div>content</div>,
+  },
+  {
+    id: "00000000-0000-0000-0000-000000000001",
+    name: "Position 2",
+    canAdd: true,
+    canUpdate: true,
+    canDuplicate: true,
+    canDelete: true,
+    icon: <FileM />,
+  }
+];
 
 storiesOf('Components|Manageable List', module)
   .add('default', withState({
@@ -139,4 +173,30 @@ storiesOf('Components|Manageable List', module)
         </div>
       </DSProvider>
     </div>
-  ));
+  ))
+  .add('content list', () => {
+    return (
+      <div style={{width: '600'}}>
+        <DSProvider code="en_GB">
+          <div style={{ background: "#fff", width: '600px' }}>
+            <ManageableList
+              addItemLabel="Add folder"
+              showMoreLabel="show all"
+              showLessLabel="show less"
+              maxToShowItems={5}
+              addItemPosition={AddItemPosition.onBottom}
+              onItemAdd={action('onItemAdd')}
+              onItemRemove={action('onItemRemove')}
+              onItemEdit={action('onItemEdit')}
+              onItemSelect={action('onItemSelect')}
+              onItemDuplicate={action('onItemDuplicate')}
+              onChangeOrder={ boolean('Change order available', false) ? action('onChangeOrder') : null}
+              type={ListType.content}
+              items={CONTENT_ITEMS}
+              loading={false}
+            />
+          </div>
+        </DSProvider>
+      </div>
+    )
+  });

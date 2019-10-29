@@ -18,9 +18,9 @@ type Props = {
 
 export type ItemProps = {
   id: string;
-  canUpdate: boolean;
-  canDelete: boolean;
   name: string;
+  canUpdate?: boolean;
+  canDelete?: boolean;
 };
 
 const Item: React.FC<Props> = ({ item, onRemove, onSelect, onUpdate, theme }) => {
@@ -90,8 +90,8 @@ const Item: React.FC<Props> = ({ item, onRemove, onSelect, onUpdate, theme }) =>
         onSelect={handleSelect}
         actions={
           <S.ItemActions>
-            {renderIcon(canUpdate, <EditS />, theme.palette['grey-500'], enterEditMode, 'list-item-edit')}
-            {renderIcon(canDelete, <CloseS />, theme.palette['red-600'], removeItem, 'list-item-remove')}
+            {renderIcon(Boolean(canUpdate), <EditS />, theme.palette['grey-500'], enterEditMode, 'list-item-edit')}
+            {renderIcon(Boolean(canDelete), <CloseS />, theme.palette['red-600'], removeItem, 'list-item-remove')}
           </S.ItemActions>
         }
       >
