@@ -16,7 +16,7 @@ function itemRender(current, type, originalElement) {
     return <Icon component={<AngleLeftM />} />;
   }
   if (type === 'next') {
-    return <Icon component={<AngleRighttM />} />;
+    return <Icon component={<AngleRightM />} />;
   }
   return originalElement;
 }

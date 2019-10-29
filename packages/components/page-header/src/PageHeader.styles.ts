@@ -1,8 +1,19 @@
 import styled from 'styled-components';
 import { macro } from '@synerise/ds-typography';
 
-export const MainContainer = styled.div`
+export const MainContainer = styled.div<{ isolated?: boolean }>`
   background-color: #fff;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    ${(props): string => (props.isolated ? `background-color: ${props.theme.palette['grey-100']}` : '')}
+    z-index: 0;
+  }
 `;
 
 export const PageHeaderContainer = styled.div`
@@ -11,35 +22,92 @@ export const PageHeaderContainer = styled.div`
   padding: 24px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
   align-content: center;
 `;
 
-export const PageHeaderContent = styled.div`
-  > * {
-    margin-left: 12px;
+export const PageHeaderBack = styled.div`
+  margin-right 52px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  
+  &::after {
+    content: '';
+    position: absolute
+    width: 1px;
+    height: 40px
+    right: -29px;
+    background-color: ${(props): string => props.theme.palette['grey-300']};
   }
 `;
 
-export const BackButton = styled.button`
-  ${macro.medium};
+export const PageHeaderRightSide = styled.div`
   display: flex;
-  align-items: center;
-  background: transparent;
-  border: none;
+  flex: 1 100%;
+  justify-content: flex-end;
+
+  > div {
+    display: flex;
+
+    > * {
+      margin-left: 8px;
+    }
+  }
+`;
+
+export const PageHeaderDescription = styled.div`
+  margin: 0 24px;
+  font-size: 13px;
+  line-height: 18px;
   color: ${(props): string => props.theme.palette['grey-500']};
-  margin-left: 16px;
-  border-left: 1px solid ${(props): string => props.theme.palette['grey-300']};
-  cursor: pointer;
-
-  &:hover {
-    color: ${(props): string => props.theme.palette['grey-600']};
-  }
 `;
 
-export const PageHeaderTitle = styled.div`
-  ${macro.h700};
+export const PageHeaderClamp = styled.div`
+  ${macro.h600};
+  line-height: 26px;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
   color: ${(props): string => props.theme.palette['grey-800']};
+  align-items: center;
+  display: flex;
+  flex: 1 0 auto;
+`;
+
+export const PageHeaderTabsWrapper = styled.div`
+  padding: 0 24px;
+`;
+
+export const PageHeaderBar = styled.div`
+  padding: 12px 24px;
+  border-top: 1px solid ${(props): string => props.theme.palette['grey-100']};
+  position: relative;
+  top: -1px;
+`;
+
+export const PageHeaderMore = styled.div`
+  padding: 0 24px;
+`;
+
+export const PageHeaderInlineEdit = styled.div`
+  display: flex;
+  margin-left: 14px;
+`;
+
+export const PageHeaderClose = styled.div`
+  & div {
+  margin-left 52px;
   display: flex;
   align-items: center;
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute
+    width: 1px;
+    height: 40px
+    left: -25px;
+    background-color: ${(props): string => props.theme.palette['grey-300']};
+  }}
 `;
