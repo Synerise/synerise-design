@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.14.0](https://github.com/synerise/synerise-design/compare/portal@0.13.0...portal@0.14.0) (2019-10-29)
+
+
+### Features
+
+* **input:** Fix error with jumping cursor ([e459585](https://github.com/synerise/synerise-design/commit/e45958570419ba172724bbd5a9e2a8224b5e8b8c))
+
+
+
+
+
 # [0.13.0](https://github.com/synerise/synerise-design/compare/portal@0.12.0...portal@0.13.0) (2019-10-24)
 
 
