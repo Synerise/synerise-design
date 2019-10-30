@@ -41,7 +41,7 @@ const ManageableList: React.FC<Props> = ({
   onChangeOrder,
   addItemLabel,
   items,
-  maxToShowItems,
+  maxToShowItems = 5,
   showMoreLabel,
   showLessLabel,
   more,
