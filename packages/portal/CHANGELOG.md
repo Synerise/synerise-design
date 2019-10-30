@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.16.0](https://github.com/synerise/synerise-design/compare/portal@0.15.0...portal@0.16.0) (2019-10-30)
+
+
+### Bug Fixes
+
+* **avatar:** tests, storybook ([785820e](https://github.com/synerise/synerise-design/commit/785820e63437cf47a818e53388e37ccda8cf3fa3))
+
+
+### Features
+
+* **avatar:** add status badges position, hover styles ([a7fbdeb](https://github.com/synerise/synerise-design/commit/a7fbdeb88a48ed3d1852571e6c141cd10734e545))
+
+
+
+
+
 # [0.15.0](https://github.com/synerise/synerise-design/compare/portal@0.14.0...portal@0.15.0) (2019-10-30)
 
 
