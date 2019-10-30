@@ -51,7 +51,12 @@ const ContentItem: React.FC<ContentItemProps> = ({
   }, []);
 
   return (
-    <S.ItemContainer opened={contentVisible} greyBackground={greyBackground} key={item.id}>
+    <S.ItemContainer
+      opened={contentVisible}
+      greyBackground={greyBackground}
+      key={item.id}
+      data-testid="item-with-content"
+    >
       <S.ItemHeader>
         <S.ItemHeaderPrefix>
           {draggable && (
@@ -70,13 +75,15 @@ const ContentItem: React.FC<ContentItemProps> = ({
         <S.ItemHeaderSuffix>
           <ItemActions item={item} duplicateAction={onDuplicate} removeAction={onRemove} editAction={enterEditMode} />
           {item.content && (
-            <Button type="ghost" onClick={toggleContentVisibility} mode="single-icon" size="small">
-              <Icon component={<AngleDownS />} size={24} />
-            </Button>
+            <S.ToggleContentWrapper data-testid="item-toggle-content-wrapper">
+              <Button type="ghost" onClick={toggleContentVisibility} mode="single-icon" size="small">
+                <Icon component={<AngleDownS />} size={24} />
+              </Button>
+            </S.ToggleContentWrapper>
           )}
         </S.ItemHeaderSuffix>
       </S.ItemHeader>
-      <S.ContentWrapper>{Boolean(item.content) && item.content}</S.ContentWrapper>
+      {Boolean(item.content) && <S.ContentWrapper data-testid="item-content-wrapper">{item.content}</S.ContentWrapper>}
     </S.ItemContainer>
   );
 };

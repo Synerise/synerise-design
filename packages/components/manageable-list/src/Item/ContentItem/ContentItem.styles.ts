@@ -129,3 +129,5 @@ export const ItemContainer = styled.div<ItemContainerProps>`
     }
   }
 `;
+
+export const ToggleContentWrapper = styled.div``;

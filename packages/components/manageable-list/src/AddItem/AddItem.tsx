@@ -12,7 +12,7 @@ type AddItemProps = {
 
 const AddItem: React.FC<AddItemProps> = ({ disabled, onItemAdd, addItemLabel }) => {
   return (
-    <S.AddContentButtonWrapper>
+    <S.AddContentButtonWrapper data-testid="add-item-button">
       <Button onClick={onItemAdd} type="dashed" size="large" disabled={disabled}>
         <Icon size={24} component={<Add1M />} />
         {addItemLabel}

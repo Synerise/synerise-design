@@ -85,7 +85,7 @@ const ITEMS: any = [
     canDelete: true,
     icon: <FileM />
   }
-]
+];
 
 describe('ManageableList', () => {
   it('should render with no items', () => {
@@ -108,7 +108,7 @@ describe('ManageableList', () => {
       />);
 
     // ASSERT
-    expect(getByTestId('add-item-button')).toBeTruthy();
+    expect(getByTestId('add-item-with-name-button')).toBeTruthy();
     expect(queryByTestId('show-more-button')).toBeNull();
     expect(queryByTestId('list-item-name')).toBeNull();
   });
@@ -133,7 +133,7 @@ describe('ManageableList', () => {
       />);
 
     // ASSERT
-    expect(getByTestId('add-item-button')).toBeTruthy();
+    expect(getByTestId('add-item-with-name-button')).toBeTruthy();
     expect(queryByTestId('show-more-button')).toBeNull();
     expect(queryAllByTestId('list-item-name').length).toBe(4);
     expect(queryAllByTestId('list-item-edit').length).toBe(3);
@@ -161,7 +161,7 @@ describe('ManageableList', () => {
     const showMore = getByTestId('show-more-button');
 
     // ASSERT
-    expect(getByTestId('add-item-button')).toBeTruthy();
+    expect(getByTestId('add-item-with-name-button')).toBeTruthy();
     expect(showMore).toBeTruthy();
     expect(queryAllByTestId('list-item-name').length).toBe(5);
     expect(showMore.textContent).toBe('+ 2 more Show all');
@@ -272,7 +272,7 @@ describe('ManageableList', () => {
         less="less"
       />);
     const NEW_FOLDER_NAME = 'New folder';
-    const addItemButton = getByTestId('add-item-button').getElementsByTagName('button')[0];
+    const addItemButton = getByTestId('add-item-with-name-button').getElementsByTagName('button')[0];
     
     // ASSERT
     expect(addItemButton).toBeTruthy();
@@ -287,5 +287,4 @@ describe('ManageableList', () => {
     fireEvent.keyDown(addItemInput, {key: 'Enter', keyCode: 13});
     expect(onItemAdd).toHaveBeenCalledWith({name: NEW_FOLDER_NAME});
   });
-
 });
