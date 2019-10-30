@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.15.0](https://github.com/synerise/synerise-design/compare/portal@0.14.0...portal@0.15.0) (2019-10-30)
+
+
+### Features
+
+* **manageable-list:** add drag and drop ([786a1db](https://github.com/synerise/synerise-design/commit/786a1dbe49875add642861aeeb7912622b0d21fd))
+* **manageable-list:** add styles ([f6db380](https://github.com/synerise/synerise-design/commit/f6db380cf3ab2a826b452da7902ab893dd179fe9))
+* **manageable-list:** add styles for grey background ([55384e5](https://github.com/synerise/synerise-design/commit/55384e591675860c15e0e22ad999d740ce5cfe38))
+* **manageable-list:** add support for content list ([d0730be](https://github.com/synerise/synerise-design/commit/d0730be07dab4bed07843300ab52fe658be571cc))
+
+
+
+
+
 # [0.14.0](https://github.com/synerise/synerise-design/compare/portal@0.13.0...portal@0.14.0) (2019-10-29)
 
 
