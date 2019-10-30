@@ -1,13 +1,18 @@
 import styled from 'styled-components';
+import { macro } from '@synerise/ds-typography';
+import { ItemActionsWrapper } from '../ItemActions/ItemActions.styles';
 
-export const ItemActions = styled.div`
-  display: flex;
-  flex-direction: row;
+export const ItemLabel = styled.span`
+  ${macro.h300};
+  color: ${({ theme }): string => theme.palette['grey-600']};
+  height: 24px;
+  display: inline-flex;
   align-items: center;
-  justify-content: flex-end;
-  span {
-    margin: 0 0 0 8px;
-  }
+`;
+
+export const ItemLabelWrapper = styled.div`
+  flex: 1;
+  overflow: hidden;
 `;
 
 export const ItemContainer = styled.div`
@@ -20,12 +25,8 @@ export const ItemContainer = styled.div`
     width: 100%;
   }
 
-  ${ItemActions} {
-    display: none;
-  }
-
   &:hover {
-    ${ItemActions} {
+    ${ItemActionsWrapper} {
       display: flex;
     }
     .ds-manageable-list-item-icon {
@@ -35,10 +36,4 @@ export const ItemContainer = styled.div`
       }
     }
   }
-`;
-
-export const ItemLabel = styled.span`
-  height: 24px;
-  display: inline-flex;
-  align-items: center;
 `;
