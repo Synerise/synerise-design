@@ -16,7 +16,6 @@ export type InputProps = {
 };
 
 export interface InlineEditProps {
-  dupa?: string;
   placeholder?: string;
   size: 'normal' | 'small';
   tooltipTitle?: string;

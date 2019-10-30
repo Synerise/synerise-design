@@ -3,8 +3,7 @@ import Icon from '@synerise/ds-icon';
 import ArrowLeftM from '@synerise/ds-icon/dist/icons/ArrowLeftM';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import InlineEdit from '@synerise/ds-inline-edit/dist/InlineEdit';
-import Button from '@synerise/ds-button/dist/Button';
-import { ArrowRightCircleM, CloseS } from '@synerise/ds-icon/dist/icons';
+import { CloseS } from '@synerise/ds-icon/dist/icons';
 import * as S from './PageHeader.styles';
 
 export type PageHeaderProps = {
@@ -15,12 +14,18 @@ export type PageHeaderProps = {
   avatar?: React.ReactNode;
   title?: React.ReactNode | string;
   description?: React.ReactNode | string;
-  backLabel?: string;
+  more?: React.ReactNode;
   onGoBack?: () => void;
   onClose?: () => void;
   isolated?: boolean;
-  inlineEdit?: boolean;
-  more?: boolean;
+  inlineEdit?: {
+    name: string;
+    value: string;
+    maxLength: number;
+    handleOnChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    placeholder: string;
+    size: 'small' | 'normal';
+  };
 };
 
 const PageHeader: React.FC<PageHeaderProps> = props => {
@@ -38,7 +43,6 @@ const PageHeader: React.FC<PageHeaderProps> = props => {
     more,
     avatar,
   } = props;
-  const [inputValue, setInputValue] = React.useState<string>('');
 
   return (
     <S.MainContainer isolated={isolated}>
@@ -53,27 +57,20 @@ const PageHeader: React.FC<PageHeaderProps> = props => {
           <S.PageHeaderInlineEdit>
             <InlineEdit
               input={{
-                name: 'name-of-input',
-                value: inputValue,
+                name: inlineEdit.name,
+                value: inlineEdit.value,
               }}
-              maxLength={60}
-              onChange={(event: React.ChangeEvent<HTMLInputElement>): void => setInputValue(event.target.value)}
-              placeholder="Example text"
-              size="normal"
+              maxLength={inlineEdit.maxLength}
+              onChange={inlineEdit.handleOnChange}
+              placeholder={inlineEdit.placeholder}
+              size={inlineEdit.size}
             />
           </S.PageHeaderInlineEdit>
         )}
 
-        {more && (
-          <S.PageHeaderMore>
-            <Button type="ghost" mode="icon-label">
-              <Icon component={<ArrowRightCircleM />} color={theme.palette['grey-600']} />
-              More details
-            </Button>
-          </S.PageHeaderMore>
-        )}
+        {more && <S.PageHeaderMore>{more}</S.PageHeaderMore>}
 
-        {children || <S.PageHeaderClamp>{title}</S.PageHeaderClamp>}
+        <S.PageHeaderClamp>{children || title}</S.PageHeaderClamp>
 
         {description && <S.PageHeaderDescription>{description}</S.PageHeaderDescription>}
         <S.PageHeaderRightSide>
@@ -93,10 +90,6 @@ const PageHeader: React.FC<PageHeaderProps> = props => {
       {bar && <S.PageHeaderBar>{bar}</S.PageHeaderBar>}
     </S.MainContainer>
   );
-};
-
-PageHeader.defaultProps = {
-  backLabel: 'Back',
 };
 
 export default PageHeader;

@@ -7,11 +7,12 @@ import {action} from '@storybook/addon-actions';
 import Tabs from "@synerise/ds-tabs/dist/Tabs";
 import {withState} from "@dump247/storybook-state";
 import Icon from "@synerise/ds-icon/dist/Icon";
-import {AngleDownS} from "@synerise/ds-icon/dist/icons";
+import {AngleDownS, ArrowRightCircleM} from "@synerise/ds-icon/dist/icons";
 import Button from "@synerise/ds-button/dist/Button";
 import {boolean, number, select} from "@storybook/addon-knobs";
 import Avatar from "@synerise/ds-avatar/dist/Avatar";
 import Badge from "antd/lib/badge";
+import theme from "@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme";
 
 const shapes = ['circle', 'square'] as
 const ;
@@ -154,12 +155,22 @@ stories.add('close ', () => {
 
 stories.add('examples', withState({
   activeTab: 0,
+  value: ''
 })(({store}) => {
   return (
     <DSProvider code="en_GB">
-      <>
-        <PageHeader onGoBack={action('goBack')} bar={<><br/><br/></>} inlineEdit={boolean('Inline edit', true)}
-                    more={boolean('More details', true)} avatar={
+      <>{console.log(store)}
+        <PageHeader onGoBack={action('goBack')} bar={<><br/><br/></>} inlineEdit={{
+          name: 'name-of-input', value: store.state.value, maxLength: 60, handleOnChange: (event) => {
+            store.set({ value: event.target.value })
+          }, placeholder: 'Example text', size: 'normal'
+        }}
+                    more={
+                      <Button type="ghost" mode="icon-label">
+                        <Icon component={<ArrowRightCircleM />} color={theme.palette['grey-600']} />
+                        More details
+                      </Button>
+                    } avatar={
           <Badge status={select('status', statuses, 'success')}>
             <Avatar
               backgroundColor={select('backgroundColors', backgroundColors, 'red')}

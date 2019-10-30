@@ -43,7 +43,7 @@ export const PageHeaderBack = styled.div`
 
 export const PageHeaderRightSide = styled.div`
   display: flex;
-  flex: 1 100%;
+  flex: 1 auto;
   justify-content: flex-end;
 
   > div {
@@ -70,9 +70,6 @@ export const PageHeaderClamp = styled.div`
   -webkit-box-orient: vertical;
   overflow: hidden;
   color: ${(props): string => props.theme.palette['grey-800']};
-  align-items: center;
-  display: flex;
-  flex: 1 0 auto;
 `;
 
 export const PageHeaderTabsWrapper = styled.div`
