@@ -15,7 +15,6 @@ export const AddContentButtonWrapper = styled.div`
     background-color: transparent;
     color: ${({ theme }): string => theme.palette['grey-500']};
     svg {
-      transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
       color: ${({ theme }): string => theme.palette['grey-500']};
       fill: ${({ theme }): string => theme.palette['grey-500']};
     }

@@ -204,7 +204,7 @@ storiesOf('Components|Manageable List', module)
               showLessLabel="show less"
               more="more"
               less="less"
-              maxToShowItems={2}
+              maxToShowItems={5}
               onItemAdd={action('onItemAdd')}
               onItemRemove={action('onItemRemove')}
               onItemEdit={action('onItemEdit')}

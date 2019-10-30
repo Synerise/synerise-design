@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { Tag } from '@synerise/ds-tags/dist/Tag/Tag.styles';
-import { ItemActions, ItemLabel } from '../SimpleItem/SimpleItem.styles';
+import { ItemLabel } from '../SimpleItem/SimpleItem.styles';
+import { ItemActionsWrapper } from '../ItemActions/ItemActions.styles';
 
 type ItemContainerProps = {
   opened: boolean;
@@ -88,7 +89,7 @@ export const ItemHeader = styled.div`
     ${ItemLabel} {
       color: ${({ theme }): string => theme.palette['grey-800']};
     }
-    ${ItemActions} {
+    ${ItemActionsWrapper} {
       display: flex;
     }
     ${DraggerWrapper} {

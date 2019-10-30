@@ -1,15 +1,6 @@
 import styled from 'styled-components';
 import { macro } from '@synerise/ds-typography';
-
-export const ItemActions = styled.div`
-  display: none;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-end;
-  span {
-    margin: 0 0 0 8px;
-  }
-`;
+import { ItemActionsWrapper } from '../ItemActions/ItemActions.styles';
 
 export const ItemLabel = styled.span`
   ${macro.h300};
@@ -35,7 +26,7 @@ export const ItemContainer = styled.div`
   }
 
   &:hover {
-    ${ItemActions} {
+    ${ItemActionsWrapper} {
       display: flex;
     }
     .ds-manageable-list-item-icon {

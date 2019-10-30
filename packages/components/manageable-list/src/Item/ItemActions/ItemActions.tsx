@@ -5,7 +5,7 @@ import CloseS from '@synerise/ds-icon/dist/icons/CloseS';
 import Icon from '@synerise/ds-icon';
 import { withTheme } from 'styled-components';
 import { ItemProps } from '../Item';
-import * as S from '../SimpleItem/SimpleItem.styles';
+import * as S from './ItemActions.styles';
 
 type ItemActionsProps = {
   item: ItemProps;
@@ -65,7 +65,7 @@ const ItemActions: React.FC<ItemActionsProps> = ({
   );
 
   return (
-    <S.ItemActions>
+    <S.ItemActionsWrapper>
       {renderIcon(Boolean(item.canUpdate), <EditS />, theme.palette['grey-500'], handleEdit, 'list-item-edit')}
       {renderIcon(
         Boolean(item.canDuplicate),
@@ -75,7 +75,7 @@ const ItemActions: React.FC<ItemActionsProps> = ({
         'list-item-duplicate'
       )}
       {renderIcon(Boolean(item.canDelete), <CloseS />, theme.palette['red-600'], handleRemove, 'list-item-remove')}
-    </S.ItemActions>
+    </S.ItemActionsWrapper>
   );
 };
 
