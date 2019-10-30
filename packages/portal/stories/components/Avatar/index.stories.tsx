@@ -26,7 +26,7 @@ const backgroundColors = [
   'violet',
 ] as const;
 
-const imgSrc = 'https://hsto.org/web/77c/061/c05/77c061c0550f4acd98380bf554eb8886.png';
+const imgSrc = 'https://www.w3schools.com/howto/img_avatar.png';
 
 const wrapperStyles = {
   padding: '40px',
@@ -184,7 +184,7 @@ stories.add('statuses', () => {
             disabled={boolean('disabled', false)}
             hasStatus
             shape={select('shape', shapes, 'circle')}
-            size={number('size', 32)}
+            size={select('sizeString', sizes, 'default')}
             src={imgSrc}
           />
         </Badge>
