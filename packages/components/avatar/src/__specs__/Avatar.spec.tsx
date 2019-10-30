@@ -85,7 +85,7 @@ describe('Avatar', () => {
     expect(container).toContainElement(badge as HTMLElement);
     expect(container).toContainElement(avatar as HTMLElement);
     expect(container).toContainElement(dot as HTMLElement);
-    expect(dot).toHaveStyle('box-shadow: 0px 0px 0px 2px white inset;top: 5px;right: 5px;width: 10px;height: 10px;');
+    expect(dot).toHaveStyle('border: 2px solid #ffffff;top: 5px;right: 5px;width: 10px;height: 10px;');
   });
 
   it('should render with proper styles', () => {
