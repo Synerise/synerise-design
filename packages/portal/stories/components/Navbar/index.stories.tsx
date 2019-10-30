@@ -60,6 +60,7 @@ storiesOf('Components|Navbar', module)
           <Icon component={<DashboardM />} color={'#ffffff'} size={24} onClick={action('onClick')} />
           <Icon component={<CalendarM />} color={'#ffffff'} size={24} onClick={action('onClick')} />
           <Icon component={<NotificationsPlayM />} color={'#ffffff'} size={24} onClick={action('onClick')} />
+          <Icon type="question-circle" />
         </>
       } dropdown={
         <Dropdown trigger={['click']} overlay={
