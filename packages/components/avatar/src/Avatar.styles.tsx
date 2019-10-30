@@ -26,10 +26,23 @@ const BADGE_POSITION = {
   squareextraLarge: '3px',
 };
 
+const FONT_SIZE = {
+  small: 'xsmall',
+  default: 'small',
+  large: 'small',
+  extraLarge: 'xlAvatar',
+};
+
 const applyBadgePosition = (props: AvatarProps): string => {
   return `
-    top:  ${BADGE_POSITION[`${props.shape}${props.size}`]}; 
-    right: ${BADGE_POSITION[`${props.shape}${props.size}`]};
+    top:  ${BADGE_POSITION[`${props.shape}${props.size}`] || '5px'}; 
+    right: ${BADGE_POSITION[`${props.shape}${props.size}`] || '5px'};
+  `;
+};
+
+const applyFontSize = (props: AvatarProps): string => {
+  return `
+    ${macro[FONT_SIZE[`${props.size}`]]}
   `;
 };
 
@@ -43,7 +56,30 @@ export default styled(({ backgroundColor, hasStatus, ...rest }) => <Avatar {...r
     .ant-avatar-string {
       width: 100%;
       height: 100%;
+      left: 0;
+      position: relative;
+      transform: none !important;
+      ${(props): string => applyFontSize(props)};
       ${macro.flexCentered}
+      & > div {
+        max-width: 100%;
+        max-height: 100%;
+        svg {
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: ${({ theme }): string => theme.palette['grey-800']};
+      opacity: 0.05;
+      border-radius: inherit;
     }
 
     &:hover {
@@ -55,16 +91,23 @@ export default styled(({ backgroundColor, hasStatus, ...rest }) => <Avatar {...r
         width: 100%;
         height: 100%;
         background-color: transparent;
-        border: 2px solid white;
+        border: 2px solid ${({ theme }): string => theme.palette.white};
         opacity: 0.3;
         border-radius: inherit;
       }
     }
+
+    & + .ant-badge-dot {
+      display: none;
+    }
+
     ${(props): FlattenSimpleInterpolation | false =>
       props.hasStatus &&
       css`
         & + .ant-badge-dot {
-          box-shadow: 0px 0px 0px 2px white inset;
+          display: flex;
+          border: 2px solid ${props.theme.palette.white};
+          box-sizing: border-box;
           width: 10px;
           height: 10px;
           ${applyBadgePosition(props)};
