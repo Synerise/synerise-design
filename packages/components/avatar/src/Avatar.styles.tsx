@@ -81,6 +81,13 @@ export default styled(({ backgroundColor, hasStatus, ...rest }) => <Avatar {...r
       opacity: 0.05;
       border-radius: inherit;
     }
+    ${(props): FlattenSimpleInterpolation | false =>
+      props.pressed &&
+      css`
+        &::after {
+          opacity: 0.1;
+        }
+      `}
 
     &:hover {
       &::before {
