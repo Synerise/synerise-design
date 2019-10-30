@@ -14,9 +14,12 @@ const FileUploader: React.FC<FileUploaderProps> = ({ mode, label, description, t
   return (
     <S.Container>
       {label && <S.Label>{label}</S.Label>}
-      {description && <S.Description>{description}</S.Description>}
 
-      <S.UploadButton type="ghost">{texts.buttonLabel}</S.UploadButton>
+      <div>
+        <S.UploadButton type="ghost">{texts.buttonLabel}</S.UploadButton>
+      </div>
+
+      {description && <S.Description>{description}</S.Description>}
     </S.Container>
   );
 };
