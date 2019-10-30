@@ -1,11 +1,9 @@
 import * as React from 'react';
 import List from '@synerise/ds-list';
-import Button from '@synerise/ds-button';
-import Add1M from '@synerise/ds-icon/dist/icons/Add1M';
-import Icon from '@synerise/ds-icon';
 import { ReactSortable } from 'react-sortablejs-typescript';
 import * as S from './ManageableList.styles';
 import Item, { ItemProps } from './Item/Item';
+import AddItemWithName from './AddItemWithName/AddItemWithName';
 import AddItem from './AddItem/AddItem';
 
 export enum ListType {
@@ -69,6 +67,7 @@ const ManageableList: React.FC<Props> = ({
     showLessLabel,
     showMoreLabel,
   ]);
+
   const buttonLabelDiff = React.useMemo(
     () => (allItemsVisible ? `- ${getItemsOverLimit} ${less} ` : `+ ${getItemsOverLimit} ${more} `),
     [allItemsVisible, getItemsOverLimit, less, more]
@@ -110,20 +109,6 @@ const ManageableList: React.FC<Props> = ({
     [onChangeOrder, changeOrderDisabled, greyBackground, onItemDuplicate, onItemSelect, onItemEdit, onItemRemove, type]
   );
 
-  const renderAddContentItemButton = React.useCallback(() => {
-    return (
-      type === ListType.content &&
-      Boolean(onItemAdd) && (
-        <S.AddContentButtonWrapper>
-          <Button onClick={createItem} type="dashed" size="large" disabled={addButtonDisabled}>
-            <Icon size={24} component={<Add1M />} />
-            {addItemLabel}
-          </Button>
-        </S.AddContentButtonWrapper>
-      )
-    );
-  }, [type, onItemAdd, createItem, addButtonDisabled, addItemLabel]);
-
   const renderList = React.useCallback(() => {
     return onChangeOrder && !changeOrderDisabled ? (
       <ReactSortable list={items} setList={onChangeOrder}>
@@ -136,10 +121,14 @@ const ManageableList: React.FC<Props> = ({
 
   return (
     <S.ManageableListContainer listType={type} greyBackground={greyBackground}>
-      {type === ListType.default && Boolean(onItemAdd) && <AddItem addItemLabel={addItemLabel} onItemAdd={onItemAdd} />}
+      {type === ListType.default && Boolean(onItemAdd) && (
+        <AddItemWithName addItemLabel={addItemLabel} onItemAdd={onItemAdd} disabled={addButtonDisabled} />
+      )}
       {renderList()}
       {renderShowMoreButton()}
-      {renderAddContentItemButton()}
+      {type === ListType.content && Boolean(onItemAdd) && (
+        <AddItem addItemLabel={addItemLabel} onItemAdd={createItem} disabled={addButtonDisabled} />
+      )}
     </S.ManageableListContainer>
   );
 };

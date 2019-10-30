@@ -1,57 +1,23 @@
 import * as React from 'react';
-import { Input } from '@synerise/ds-input';
-import Icon from '@synerise/ds-icon';
-import { Add3M } from '@synerise/ds-icon/dist/icons';
 import Button from '@synerise/ds-button';
+import Icon from '@synerise/ds-icon';
+import Add1M from '@synerise/ds-icon/dist/icons/Add1M';
 import * as S from './AddItem.styles';
 
-type Props = {
-  onItemAdd?: (addParams: { name: string }) => void;
+type AddItemProps = {
+  onItemAdd: () => void;
   addItemLabel: string;
+  disabled: boolean;
 };
 
-const DEFAULT_NAME = '';
-
-const AddItem: React.FC<Props> = ({ onItemAdd, addItemLabel }) => {
-  const [active, setActive] = React.useState(false);
-  const [name, setName] = React.useState(DEFAULT_NAME);
-
-  const handleClickOutside = React.useCallback((): void => {
-    setActive(false);
-    setName(DEFAULT_NAME);
-  }, []);
-
-  const handleNameChange = React.useCallback((event: React.ChangeEvent<HTMLInputElement>): void => {
-    setName(event.target.value);
-  }, []);
-
-  const toggleInput = React.useCallback((): void => {
-    setActive(!active);
-    setName(DEFAULT_NAME);
-  }, [active]);
-
-  const createItem = React.useCallback((): void => {
-    onItemAdd && onItemAdd({ name });
-    toggleInput();
-  }, [name, onItemAdd, toggleInput]);
-
+const AddItem: React.FC<AddItemProps> = ({ disabled, onItemAdd, addItemLabel }) => {
   return (
-    <S.AddItemLayout data-testid="add-item-button">
-      <Button type="ghost" onClick={toggleInput} size="small">
-        <Icon component={<Add3M />} size={24} />
-        <S.AddItemLabel>{addItemLabel}</S.AddItemLabel>
+    <S.AddContentButtonWrapper>
+      <Button onClick={onItemAdd} type="dashed" size="large" disabled={disabled}>
+        <Icon size={24} component={<Add1M />} />
+        {addItemLabel}
       </Button>
-      {active && (
-        <Input
-          autoFocus
-          value={name}
-          onBlur={handleClickOutside}
-          onChange={handleNameChange}
-          onPressEnter={createItem}
-          data-testid="add-item-input"
-        />
-      )}
-    </S.AddItemLayout>
+    </S.AddContentButtonWrapper>
   );
 };
 
