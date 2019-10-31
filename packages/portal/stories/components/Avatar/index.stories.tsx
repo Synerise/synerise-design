@@ -4,6 +4,7 @@ import Avatar from '@synerise/ds-avatar';
 import Badge from '@synerise/ds-badge';
 import Icon from '@synerise/ds-icon';
 import { FileM, ArrowUpM, ArrowDownM } from '@synerise/ds-icon/dist/icons';
+import DuplicateS from "@synerise/ds-icon/dist/icons/DuplicateS";
 
 const wrapperStyles = {
   padding: '40px',
@@ -38,7 +39,7 @@ const backgroundColors = [
   'violet',
 ] as const;
 
-const imgSrc = 'https://hsto.org/web/77c/061/c05/77c061c0550f4acd98380bf554eb8886.png';
+const imgSrc = 'https://www.w3schools.com/howto/img_avatar.png';
 
 const stories = {
   sizes: () => (
@@ -173,10 +174,47 @@ const stories = {
         disabled={boolean('disabled', false)}
         hasStatus
         shape={select('shape', shapes, 'circle')}
-        size={number('size', 32)}
+        size={select('sizeString', sizes, 'default')}
         src={imgSrc}
       />
     </Badge>
+  ),
+  allOptions: () => (
+    <React.Fragment>
+      <Badge status={select('status', statuses, 'default')}>
+        <Avatar
+          backgroundColor={select('backgroundColors', backgroundColors, 'green')}
+          disabled={boolean('disabled', false)}
+          hasStatus={boolean('has status', false)}
+          shape={select('shape', shapes, 'circle')}
+          size={select('sizeString', sizes, 'default')}
+        >
+          AK
+        </Avatar>
+      </Badge>
+      <Badge status={select('status', statuses, 'default')}>
+        <Avatar
+          backgroundColor={select('backgroundColors', backgroundColors, 'green')}
+          disabled={boolean('disabled', false)}
+          hasStatus={boolean('has status', false)}
+          shape={select('shape', shapes, 'circle')}
+          size={select('sizeString', sizes, 'default')}
+          iconComponent={
+            <Icon color={text('IconColor', '#fff')} size={number('sizeNumber', 32)} component={<DuplicateS />} />
+          }
+        />
+      </Badge>
+      <Badge status={select('status', statuses, 'default')}>
+        <Avatar
+          backgroundColor={select('backgroundColors', backgroundColors, 'green')}
+          disabled={boolean('disabled', false)}
+          hasStatus={boolean('has status', false)}
+          shape={select('shape', shapes, 'circle')}
+          size={select('sizeString', sizes, 'default')}
+          src={imgSrc}
+        />
+      </Badge>
+    </React.Fragment>
   ),
 };
 

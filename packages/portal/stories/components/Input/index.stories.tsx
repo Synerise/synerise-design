@@ -14,17 +14,25 @@ const decorator = (storyFn) => (
 );
 
 const stories = {
-  basic: () => ({
-    placeholder: text('placeholder', 'Placeholder'),
-    label: text('label', 'Label'),
-    description: text('description', 'Description'),
-    errorText: text('errorText', 'Error message'),
-    counterLimit: number('counterLimit', 10),
-    disabled: boolean('disabled', false),
-    onChange: action('onChange'),
-    value: text('value', ''),
-  }),
+  basic: () => {
+    const [value, setValue] = React.useState<string>('');
+
+    return (
+      <Input
+        placeholder={text('placeholder', 'Placeholder')}
+        label={text('label', 'Label')}
+        description={text('description', 'Description')}
+        errorText={text('errorText', 'Error message')}
+        counterLimit={number('counterLimit', 10)}
+        disabled={boolean('disabled', false)}
+        onChange={e => setValue(e.target.value)}
+        value={value}
+      />
+    );
+  },
   inputGroup: () => {
+    const [value, setValue] = React.useState<string>('');
+
     const select = (
       <Select onChange={action('OnChange')} style={{ width: '50%' }} defaultValue="post">
         <Select.Option value="post">POST</Select.Option>
@@ -36,8 +44,8 @@ const stories = {
       <RawInput
         placeholder={text('placeholder', 'Placeholder')}
         disabled={boolean('disabled', false)}
-        onChange={action('onChange')}
-        value={text('value', '')}
+        onChange={e => setValue(e.target.value)}
+        value={value}
         style={{ width: '50%' }}
       />
     );
@@ -55,46 +63,60 @@ const stories = {
       </InputGroup>
     );
   },
-  inputWithIcons: () => ({
-    placeholder: text('placeholder', 'Placeholder'),
-    label: text('label', 'Label'),
-    description: text('description', 'Description'),
-    errorText: text('errorText', 'Error message'),
-    counterLimit: number('counterLimit', 10),
-    disabled: boolean('disabled', false),
-    onChange: action('onChange'),
-    value: text('value', ''),
-    icon1: (<Icon component={<FileM />} />),
-    icon2: (<Icon component={<FileM />} />),
-  }),
-  textarea: () => (
-    <TextArea
-      rows={number('rows', 4)}
-      placeholder={text('placeholder', 'Placeholder')}
-      label={text('label', 'Label')}
-      description={text('description', 'Description')}
-      errorText={text('errorText', 'Error message')}
-      counterLimit={number('counterLimit', 10)}
-      disabled={boolean('disabled', false)}
-      onChange={action('onChange')}
-      value={text('value', '')}
-    />
-  ),
-  textareaWithIcons: () => (
-    <TextArea
-      rows={number('rows', 4)}
-      placeholder={text('placeholder', 'Placeholder')}
-      label={text('label', 'Label')}
-      description={text('description', 'Description')}
-      errorText={text('errorText', 'Error message')}
-      counterLimit={number('counterLimit', 10)}
-      disabled={boolean('disabled', false)}
-      onChange={action('onChange')}
-      value={text('value', '')}
-      icon1={<Icon component={<FileM />} />}
-      icon2={<Icon component={<FileM />} />}
-    />
-  ),
+  inputWithIcons: () => {
+    const [value, setValue] = React.useState<string>('');
+
+    return (
+      <Input
+        placeholder={text('placeholder', 'Placeholder')}
+        label={text('label', 'Label')}
+        description={text('description', 'Description')}
+        errorText={text('errorText', 'Error message')}
+        counterLimit={number('counterLimit', 10)}
+        disabled={boolean('disabled', false)}
+        onChange={e => setValue(e.target.value)}
+        value={value}
+        icon1={<Icon component={<FileM />} />}
+        icon2={<Icon component={<FileM />} />}
+      />
+    );
+  },
+  textarea: () => {
+    const [value, setValue] = React.useState<string>('');
+
+    return (
+      <TextArea
+        rows={number('rows', 4)}
+        placeholder={text('placeholder', 'Placeholder')}
+        label={text('label', 'Label')}
+        description={text('description', 'Description')}
+        errorText={text('errorText', 'Error message')}
+        counterLimit={number('counterLimit', 10)}
+        disabled={boolean('disabled', false)}
+        onChange={e => setValue(e.target.value)}
+        value={value}
+      />
+    );
+  },
+  textareaWithIcons: () => {
+    const [value, setValue] = React.useState<string>('');
+
+    return (
+      <TextArea
+        rows={number('rows', 4)}
+        placeholder={text('placeholder', 'Placeholder')}
+        label={text('label', 'Label')}
+        description={text('description', 'Description')}
+        errorText={text('errorText', 'Error message')}
+        counterLimit={number('counterLimit', 10)}
+        disabled={boolean('disabled', false)}
+        onChange={e => setValue(e.target.value)}
+        value={value}
+        icon1={<Icon component={<FileM />} />}
+        icon2={<Icon component={<FileM />} />}
+      />
+    );
+  },
 };
 
 export default {
