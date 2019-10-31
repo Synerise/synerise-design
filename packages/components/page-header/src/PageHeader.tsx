@@ -52,7 +52,7 @@ const PageHeader: React.FC<PageHeaderProps> = props => {
             <Icon color={theme.palette['grey-500']} component={<ArrowLeftM />} size={24} onClick={onGoBack} />
           </S.PageHeaderBack>
         )}
-        {avatar && avatar}
+        {!!avatar && avatar}
         {inlineEdit && (
           <S.PageHeaderInlineEdit>
             <InlineEdit
