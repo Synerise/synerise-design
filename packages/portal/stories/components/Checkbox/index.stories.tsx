@@ -1,60 +1,50 @@
 import * as React from 'react';
-import { DSProvider } from '@synerise/ds-core';
-import { storiesOf } from "@storybook/react";
 import { text, boolean } from '@storybook/addon-knobs';
-import centered from '@storybook/addon-centered/react';
-
 import { action } from '@storybook/addon-actions';
-
 import Checkbox from '@synerise/ds-checkbox';
 
-storiesOf('Components|Checkbox', module)
-  .addDecorator(centered)
-  .add('default', () => (
-    <DSProvider code="en_GB">
+const stories = {
+  default: () => ({
+    onChange: action('changed'),
+    disabled: boolean('disabled', false),
+    indeterminate: boolean('indeterminate', false),
+    description: text('description', ''),
+    errorText: text('errorText', ''),
+    children: text('children', 'Option'),
+  }),
+  solo: () => ({
+    onChange: action('changed'),
+    disabled: boolean('disabled', false),
+    indeterminate: boolean('indeterminate', false),
+  }),
+  group: () => (
+    <Checkbox.Group
+      onChange={values => console.log('Checked values', values)}
+    >
       <Checkbox
-        onChange={action('changed')}
         disabled={boolean('disabled', false)}
         indeterminate={boolean('indeterminate', false)}
         description={text('description', '')}
         errorText={text('errorText', '')}
+        value="A"
       >
         {text('children', 'Option')}
       </Checkbox>
-    </DSProvider>
-  ))
-  .add('solo', () => (
-    <DSProvider code="en_GB">
       <Checkbox
-        onChange={action('changed')}
         disabled={boolean('disabled', false)}
         indeterminate={boolean('indeterminate', false)}
-      />
-    </DSProvider>
-  ))
-  .add('group', () => (
-    <DSProvider code="en_GB">
-      <Checkbox.Group
-        onChange={values => console.log('Checked values', values)}
+        description={text('description', '')}
+        errorText={text('errorText', '')}
+        value="B"
       >
-        <Checkbox
-          disabled={boolean('disabled', false)}
-          indeterminate={boolean('indeterminate', false)}
-          description={text('description', '')}
-          errorText={text('errorText', '')}
-          value="A"
-        >
-          {text('children', 'Option')}
-        </Checkbox>
-        <Checkbox
-          disabled={boolean('disabled', false)}
-          indeterminate={boolean('indeterminate', false)}
-          description={text('description', '')}
-          errorText={text('errorText', '')}
-          value="B"
-        >
-          {text('children', 'Option')}
-        </Checkbox>
-      </Checkbox.Group>
-    </DSProvider>
-  ));
+        {text('children', 'Option')}
+      </Checkbox>
+    </Checkbox.Group>
+  ),
+};
+
+export default {
+  name: 'Components|Checkbox',
+  stories,
+  Component: Checkbox,
+};

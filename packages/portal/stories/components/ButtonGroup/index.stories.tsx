@@ -1,20 +1,14 @@
 import * as React from 'react';
-
-import { DSProvider } from '@synerise/ds-core';
+import { text, select, boolean } from '@storybook/addon-knobs';
 import Button from '@synerise/ds-button';
 import ButtonGroup from '@synerise/ds-button-group';
-import centered from '@storybook/addon-centered/react';
 
-import { storiesOf } from '@storybook/react';
-import { boolean, select, text } from '@storybook/addon-knobs';
-
-storiesOf('Components|ButtonGroup', module)
-  .addDecorator(centered)
-  .add('default', () => {
+const stories = {
+  default: () => {
     // ButtonGroup props
     const withTitle = boolean('With title', true);
     const withDescription = boolean('With description', true);
-    
+
     // Button props
     const buttonTypes = {
       Primary: 'primary',
@@ -33,20 +27,24 @@ storiesOf('Components|ButtonGroup', module)
       type: select('Button type', buttonTypes, 'primary'),
       icon: text('Button icon', 'poweroff'),
     };
-    
+
     return (
-      <DSProvider code="en_GB">
-        <div style={{ background: '#f2f5f6', padding: '16px', display: 'flex' }}>
-          <ButtonGroup
-            title={withTitle && 'Some title'}
-            description={withDescription && 'Some description'}
-          >
-            <Button {...buttonProps}>{buttonProps.content}</Button>
-            <Button {...buttonProps}>{buttonProps.content}</Button>
-            <Button {...buttonProps}>{buttonProps.content}</Button>
-          </ButtonGroup>
-        </div>
-      </DSProvider>
+      <div style={{ background: '#f2f5f6', padding: '16px', display: 'flex' }}>
+        <ButtonGroup
+          title={withTitle && 'Some title'}
+          description={withDescription && 'Some description'}
+        >
+          <Button {...buttonProps}>{buttonProps.content}</Button>
+          <Button {...buttonProps}>{buttonProps.content}</Button>
+          <Button {...buttonProps}>{buttonProps.content}</Button>
+        </ButtonGroup>
+      </div>
     );
-  })
-;
+  },
+};
+
+export default {
+  name: 'Components|ButtonGroup',
+  stories,
+  Component: ButtonGroup,
+};

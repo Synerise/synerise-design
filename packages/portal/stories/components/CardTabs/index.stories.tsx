@@ -1,16 +1,14 @@
 import * as React from 'react';
-import { storiesOf } from '@storybook/react';
-import { DSProvider } from '@synerise/ds-core';
 import range from 'lodash/range';
 import CardTabs from '@synerise/ds-card-tabs';
 import { withState } from '@dump247/storybook-state';
-import { boolean, number, select, text, withKnobs } from '@storybook/addon-knobs';
+import { boolean, number, select  } from '@storybook/addon-knobs';
 import CardTab, { prefixType } from '@synerise/ds-card-tabs/dist/CardTab/CardTab';
 import FileM from '@synerise/ds-icon/dist/icons/FileM';
 import { CardTabsItem } from '@synerise/ds-card-tabs/dist/CardTabs';
 
-storiesOf('Components|CardTabs', module)
-  .add('default', withState({
+const stories = {
+  default: withState({
     items: range(3).map((i: number) => ({
         id: i,
         name: `Variant ${String.fromCharCode(65 + i).toUpperCase()}`,
@@ -68,20 +66,19 @@ storiesOf('Components|CardTabs', module)
 
     const handleChangeOrder = (newOrder: CardTabsItem): void => {
       store.set({items: newOrder});
-    }
+    };
 
     const handleSelect = (id) => {
       store.set({activeTab: id});
-    }
+    };
 
     return (
       <div style={{background: bg ? '#fff' : '#f9fafb', padding: '24px'}}>
-        <DSProvider code="en_GB">
-          <CardTabs
-            maxTabsCount={maxTabCount}
-            onChangeOrder={draggable ? handleChangeOrder : null}
-            onAddTab={handleAddItem}
-          >
+        <CardTabs
+          maxTabsCount={maxTabCount}
+          onChangeOrder={draggable ? handleChangeOrder : null}
+          onAddTab={handleAddItem}
+        >
           {store.state.items.map((item, index) => (
             <CardTab
               id={item.id}
@@ -102,7 +99,13 @@ storiesOf('Components|CardTabs', module)
               draggable={draggable}
             />
           ))}
-          </CardTabs>
-      </DSProvider>
+        </CardTabs>
       </div>
-    )}));
+    )}),
+};
+
+export default {
+  name: 'Components|CardTabs',
+  stories,
+  Component: CardTabs,
+};
