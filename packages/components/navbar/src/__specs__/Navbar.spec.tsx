@@ -6,14 +6,13 @@ describe('Navbar', () => {
   const DESCRIPTION = 'DESCRIPTION';
   const LOGO = 'LOGO';
   const AVATAR = 'AVATAR';
-  const DROPDOWN = 'DROPDOWN';
   const ACTIONS = 'ACTIONS';
 
   it('should render logo', () => {
     // ARRANGE
-    const { getByText } = renderWithProvider(<Navbar description={DESCRIPTION} avatar logo={LOGO} dropdown actions />);
+    const { getByRole } = renderWithProvider(<Navbar description={DESCRIPTION} avatar logo={LOGO} dropdown actions />);
     // ASSERT
-    expect(getByText(LOGO)).toBeTruthy();
+    expect(getByRole('img')).toBeTruthy();
   });
 
   it('should render description', () => {
@@ -25,16 +24,17 @@ describe('Navbar', () => {
 
   it('should render avatar', () => {
     // ARRANGE
-    const { getByText } = renderWithProvider(<Navbar description={DESCRIPTION} avatar={AVATAR} logo dropdown actions />);
+    const { getByTestId } = renderWithProvider(<Navbar description={DESCRIPTION} avatar={<div data-testid="AVATAR">avatar</div>} logo dropdown actions />);
     // ASSERT
-    expect(getByText(AVATAR)).toBeTruthy();
+    expect(getByTestId(AVATAR)).toBeTruthy();
   });
 
   it('should render dropdown', () => {
     // ARRANGE
-    const { getByText } = renderWithProvider(<Navbar description={DESCRIPTION} avatar logo dropdown={DROPDOWN} actions />);
+    const { getByTestId } = renderWithProvider(
+      <Navbar description={DESCRIPTION} avatar logo dropdown={<div data-testid="dropdown">dropdown</div>} actions />);
     // ASSERT
-    expect(getByText(DROPDOWN)).toBeTruthy();
+    expect(getByTestId('dropdown') as HTMLElement).toBeTruthy();
   });
 
   it('should render actions', () => {

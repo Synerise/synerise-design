@@ -28,6 +28,11 @@ import Navbar from '@synerise/ds-navbar'
 
 ## API
 
-| Property | Description | Type | Default |
-| -------- | ----------- | ---- | ------- |
-
+| Property    | Description                        | Type                        | Default |
+| ----------- | ---------------------------------- | --------------------------- | ------- |
+| color       | Color code                         | string                      | -       |
+| description | Description of navbar              | string                      | -       |
+| logo        | Src to image or React.Node element | React.ReactNode `or` string | -       |
+| avatar      | Place for avatar component         | React.ReactNode             | -       |
+| dropdown    | Place for dropdown component       | React.ReactNode             | -       |
+| actions     | Place for icon actions             | React.ReactNode             | -       |
