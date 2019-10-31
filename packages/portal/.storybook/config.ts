@@ -1,6 +1,6 @@
 import * as React from 'react';
 import '@formatjs/intl-relativetimeformat/polyfill';
-import { configure, addDecorator, addParameters, storiesOf } from '@storybook/react';
+import { configure, addDecorator, addParameters, storiesOf, DecoratorFn } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
 import { withKnobs } from '@storybook/addon-knobs';
 import centered from '@storybook/addon-centered/react';
@@ -13,6 +13,17 @@ const withDSProvider = (storyFn) => React.createElement(DSProvider, {
   code: 'en_GB',
 }, storyFn());
 
+interface storyConfig {
+  Component: React.FunctionComponent | React.ComponentClass,
+  name: string,
+  stories: {
+    [key: string]: object | Function,
+  },
+  decorator?: DecoratorFn,
+  config?: object,
+  withoutCenter?: boolean,
+}
+
 function loadStories() {
   req.keys().forEach(filename => {
     const {
@@ -22,7 +33,7 @@ function loadStories() {
       decorator,
       config = {},
       withoutCenter = false,
-    } = req(filename).default;
+    }: storyConfig = req(filename).default;
 
     if (typeof Component !== undefined && typeof name === 'string' && typeof stories === 'object') {
       const componentStories = storiesOf(name, module);
