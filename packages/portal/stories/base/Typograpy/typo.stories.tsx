@@ -1,11 +1,9 @@
 import * as React from 'react';
-import { storiesOf } from '@storybook/react';
 import Typograpy from '@synerise/ds-typography';
-import { DSProvider } from '@synerise/ds-core';
 import * as S from './examples';
 
-storiesOf('Intro|Core', module).add('Typograpy', () => (
-  <DSProvider code="en_GB">
+const stories = {
+  Typograpy: () => (
     <div style={{ padding: 10 }}>
       <Typograpy.Title>Headers</Typograpy.Title>
       <Typograpy.Title level={1}>h1. Synerise DS</Typograpy.Title>
@@ -26,5 +24,11 @@ storiesOf('Intro|Core', module).add('Typograpy', () => (
       </Typograpy.Paragraph>
       <S.Color>I am red!</S.Color>
     </div>
-  </DSProvider>
-));
+  ),
+};
+
+export default {
+  name: 'Intro|Core',
+  stories,
+  Component: Typograpy,
+};
