@@ -95,6 +95,40 @@ const stories = {
     status: select('status', statuses, 'success'),
     text: text('text', 'Success'),
   }),
+  flag: () => (
+    <div style={wrapperStyles}>
+      <DSProvider code="en_GB">
+        <>
+          <Badge
+            status={select('status', statuses, 'success')}
+            text={text('text', 'Success')}
+            flag={true}
+          />
+          <div style={{width: '50px', height: '50px'}} />
+          <Badge
+            status={select('status', statuses, 'success')}
+            flag={true}
+          >
+            <div
+              style={{
+                width: '48px',
+                height: '48px',
+                background: 'grey',
+                borderRadius: '5px',
+              }}
+            />
+          </Badge>
+          <div style={{width: '50px', height: '50px'}} />
+          <Badge
+            status={select('status', statuses, 'success')}
+            flag={true}
+          >
+            <Icon color={text('IconColor', '#6a7580')} size={number('IconSize', 24)} component={<FileM />} />
+          </Badge>
+        </>
+      </DSProvider>
+    </div>
+  )
 };
 
 export default {
