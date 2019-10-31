@@ -4,8 +4,9 @@ import { select, boolean } from '@storybook/addon-knobs';
 import InlineEdit from '@synerise/ds-inline-edit';
 import { action } from '@storybook/addon-actions';
 
+const DEFAULT_VALUE = "Input value";
 const stories = {
-  default: withState({ value: '' })(({ store }) => {
+  default: withState({ value: DEFAULT_VALUE, tempValue: DEFAULT_VALUE })(({ store }) => {
     const size = select('Size', ['small', 'normal'], 'normal');
     const widthLimit = boolean('Width limit', false);
     const error = boolean('Error', false);
@@ -17,7 +18,10 @@ const stories = {
           input={{
             name: 'name-of-input',
             value: store.state.value,
-            onBlur: action('onBlur'),
+            onBlur: event => store.set({tempValue: store.state.value}),
+            onChange: event => store.set({ tempValue: event.target.value }),
+            onEnterPress: event => store.set({value: store.state.tempValue}),
+            placeholder={'This is placeholder'}
           }}
           style={widthLimit ? { maxWidth: 128 } : {}}
           maxLength={120}
