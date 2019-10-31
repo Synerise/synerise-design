@@ -1,12 +1,8 @@
 import * as React from 'react';
-import { storiesOf } from '@storybook/react';
-import { boolean, number, text } from '@storybook/addon-knobs';
+import { text, number, boolean } from '@storybook/addon-knobs';
 import Icon from '@synerise/ds-icon';
-import centered from '@storybook/addon-centered/react';
 import iconArr from './icons';
 import AngleLeftM from '@synerise/ds-icon/dist/icons/AngleLeftM';
-
-const stories = storiesOf('Components|Icon', module);
 
 const listyStyles: React.CSSProperties = {
   margin: 10,
@@ -17,6 +13,13 @@ const listyStyles: React.CSSProperties = {
   borderStyle: 'solid',
   borderColor: '#e0e0e0',
 };
+
+const props = () => ({
+  // name: select('Select icon name', type, 'angle-up-m'),
+  color: text('Set color', 'red'),
+  size: number('Size', 40),
+  stroke: boolean('Set stroke', false),
+});
 
 const setIcon = name => React.lazy(() => import(`@synerise/ds-icon/dist/icons/${name}.js`));
 
@@ -39,24 +42,20 @@ const IconComponent = iconArr.map(i => {
   );
 });
 
-const props = () => ({
-  // name: select('Select icon name', type, 'angle-up-m'),
-  color: text('Set color', 'red'),
-  size: number('Size', 40),
-  stroke: boolean('Set stroke', false),
-});
+const stories = {
+  singleIcon: () => ({
+    ...props(),
+    component: (<AngleLeftM />),
+  }),
+  listIcon: () => (
+    <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between' }}>
+      {IconComponent}
+    </div>
+  ),
+};
 
-stories
-  .addDecorator(centered)
-  .add('single icon', () => {
-    return (
-      <>
-        <Icon {...props()} component={<AngleLeftM />} />
-      </>
-    );
-  })
-  .add('list icon', () => {
-    return <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between' }}>{IconComponent}</div>;
-  });
-
-export default stories;
+export default {
+  name: 'Components|Icon',
+  stories,
+  Component: Icon,
+};
