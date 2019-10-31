@@ -3,7 +3,8 @@ id: message
 title: Message
 ---
 
-Message UI Component
+Message UI Component.
+Display global messages as feedback in response to user operations.
 
 ## Installation
 
@@ -16,17 +17,15 @@ yarn add @synerise/ds-message
 ## Usage
 
 ```
-import Message from '@synerise/ds-message'
+import message from '@synerise/ds-message'
 
-<Message />
+message.success('It works!');
 
 ```
 
 ## Demo
 
 <iframe src="/storybook-static/iframe.html?id=components-message--default"></iframe>
-
-Display global messages as feedback in response to user operations.
 
 ## When To Use
 
