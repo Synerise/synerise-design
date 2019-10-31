@@ -3,6 +3,7 @@ import { text, select, number, boolean, object } from '@storybook/addon-knobs';
 import Badge from '@synerise/ds-badge';
 import Icon from '@synerise/ds-icon';
 import FileM from '@synerise/ds-icon/dist/icons/FileM';
+import Avatar from '@synerise/ds-avatar';
 
 const decorator = (storyFn) => (
   <div style={{ padding: '40px' }}>
@@ -11,6 +12,8 @@ const decorator = (storyFn) => (
 );
 
 const statuses = ['success', 'processing', 'default', 'error', 'warning'] as const;
+const avatarSize = ['small', 'default', 'large', 'extraLarge'] as const;
+const avatarShape = ['circle', 'square'] as const;
 
 const stories = {
   standalone: () => (
@@ -18,6 +21,7 @@ const stories = {
       <Badge
         count={number('count', 4)}
         offset={[0, 0]}
+        outlined={boolean('badge outline', false)}
         overflowCount={number('overflowCount', 99)}
         showZero={boolean('showZero', false)}
         title={text('title', 'text')}
@@ -51,6 +55,7 @@ const stories = {
     <React.Fragment>
       <Badge
         count={number('count', 5)}
+        outlined={boolean('badge outline', false)}
         overflowCount={number('overflowCount', 99)}
         showZero={boolean('showZero', false)}
         title={text('title', 'text')}
@@ -101,6 +106,11 @@ const stories = {
         <>
           <Badge
             status={select('status', statuses, 'success')}
+            flag={true}
+          />
+          <div style={{width: '50px', height: '50px'}} />
+          <Badge
+            status={select('status', statuses, 'success')}
             text={text('text', 'Success')}
             flag={true}
           />
@@ -124,6 +134,18 @@ const stories = {
             flag={true}
           >
             <Icon color={text('IconColor', '#6a7580')} size={number('IconSize', 24)} component={<FileM />} />
+          </Badge>
+          <div style={{width: '50px', height: '50px'}} />
+          <Badge
+            status={select('status', statuses, 'success')}
+            flag={true}
+          >
+            <Avatar
+              size={select('avatar size', avatarSize,'extraLarge')}
+              shape={select('avatar shape', avatarShape,'square')}
+              src={'https://www.w3schools.com/howto/img_avatar.png'}
+              hasStatus
+            />
           </Badge>
         </>
       </DSProvider>

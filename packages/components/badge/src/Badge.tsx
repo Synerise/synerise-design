@@ -5,13 +5,14 @@ import { BadgeProps } from 'antd/lib/badge';
 import AntdBadge from './Badge.styles';
 
 interface Props extends BadgeProps {
-  flag: boolean;
+  flag?: boolean;
+  outlined?: boolean;
 }
 
-const Badge: React.FC<Props> = ({ flag, ...antdProps }) => {
+const Badge: React.FC<Props> = ({ flag, outlined, ...antdProps }) => {
   return (
     // eslint-disable-next-line react/jsx-props-no-spreading
-    <AntdBadge flag={flag} {...antdProps} />
+    <AntdBadge flag={flag} outlined={outlined} {...antdProps} />
   );
 };
 
