@@ -49,7 +49,13 @@ const PageHeader: React.FC<PageHeaderProps> = props => {
       <S.PageHeaderContainer>
         {onGoBack && (
           <S.PageHeaderBack>
-            <Icon color={theme.palette['grey-500']} component={<ArrowLeftM />} size={24} onClick={onGoBack} />
+            <Icon
+              className="page-header__back"
+              color={theme.palette['grey-500']}
+              component={<ArrowLeftM />}
+              size={24}
+              onClick={onGoBack}
+            />
           </S.PageHeaderBack>
         )}
         {!!avatar && avatar}
@@ -68,26 +74,32 @@ const PageHeader: React.FC<PageHeaderProps> = props => {
           </S.PageHeaderInlineEdit>
         )}
 
-        {more && <S.PageHeaderMore>{more}</S.PageHeaderMore>}
+        {!!more && <S.PageHeaderMore>{more}</S.PageHeaderMore>}
 
         <S.PageHeaderClamp>{children || title}</S.PageHeaderClamp>
 
-        {description && <S.PageHeaderDescription>{description}</S.PageHeaderDescription>}
+        {!!description && <S.PageHeaderDescription>{description}</S.PageHeaderDescription>}
         <S.PageHeaderRightSide>
           <div>
             {rightSide && rightSide}
             {onClose && (
               <S.PageHeaderClose>
-                <Icon color={theme.palette['grey-500']} component={<CloseS />} size={32} onClick={onClose} />
+                <Icon
+                  className="page-header__close"
+                  color={theme.palette['grey-500']}
+                  component={<CloseS />}
+                  size={32}
+                  onClick={onClose}
+                />
               </S.PageHeaderClose>
             )}
           </div>
         </S.PageHeaderRightSide>
       </S.PageHeaderContainer>
 
-      {tabs && <S.PageHeaderTabsWrapper>{tabs}</S.PageHeaderTabsWrapper>}
+      {!!tabs && <S.PageHeaderTabsWrapper>{tabs}</S.PageHeaderTabsWrapper>}
 
-      {bar && <S.PageHeaderBar>{bar}</S.PageHeaderBar>}
+      {!!bar && <S.PageHeaderBar>{bar}</S.PageHeaderBar>}
     </S.MainContainer>
   );
 };

@@ -159,7 +159,7 @@ stories.add('examples', withState({
 })(({store}) => {
   return (
     <DSProvider code="en_GB">
-      <>{console.log(store)}
+      <>
         <PageHeader onGoBack={action('goBack')} bar={<><br/><br/></>} inlineEdit={{
           name: 'name-of-input', value: store.state.value, maxLength: 60, handleOnChange: (event) => {
             store.set({ value: event.target.value })
