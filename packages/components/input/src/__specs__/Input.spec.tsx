@@ -33,7 +33,6 @@ describe('Input', () => {
       fireEvent.change(input, { target: { value: INPUT_VALUE } });
 
       // ASSERT
-      expect(input.value).toBe(INPUT_VALUE);
       expect(onChange).toBeCalledWith(INPUT_VALUE);
     });
 
@@ -68,7 +67,7 @@ describe('Input', () => {
       // ARRANGE
       const PLACEHOLDER = 'placeholder';
       const COUNTER_LIMIT = 10;
-      const { getByPlaceholderText, getByTestId } = renderWithProvider(
+      const { getByTestId, rerender } = renderWithProvider(
         <Input placeholder={PLACEHOLDER} counterLimit={COUNTER_LIMIT} value="" />
       );
 
@@ -76,7 +75,7 @@ describe('Input', () => {
       expect(getByTestId('counter').textContent).toBe(`0/${COUNTER_LIMIT}`);
 
       // ACT
-      fireEvent.change(getByPlaceholderText(PLACEHOLDER), { target: { value: 'test' } });
+      rerender(<Input placeholder={PLACEHOLDER} counterLimit={COUNTER_LIMIT} value="test" />);
 
       // ASSERT
       expect(getByTestId('counter').textContent).toBe(`4/${COUNTER_LIMIT}`);
@@ -84,12 +83,18 @@ describe('Input', () => {
 
     it('should not allow to exceed counterLimit', () => {
       // ARRANGE
+      const onChange = jest.fn();
       const PLACEHOLDER = 'placeholder';
       const COUNTER_LIMIT = 2;
       const VALID_STRING = 'ab';
       const INVALID_STRING = 'abc';
       const { getByPlaceholderText } = renderWithProvider(
-        <Input placeholder={PLACEHOLDER} counterLimit={COUNTER_LIMIT} value="" />
+        <Input
+          placeholder={PLACEHOLDER}
+          counterLimit={COUNTER_LIMIT}
+          value=""
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e.target.value)}
+        />
       );
       const input = getByPlaceholderText(PLACEHOLDER) as HTMLInputElement;
 
@@ -97,13 +102,13 @@ describe('Input', () => {
       fireEvent.change(input, { target: { value: VALID_STRING } });
 
       // ASSERT
-      expect(input.value).toBe(VALID_STRING);
+      expect(onChange).toHaveBeenCalledWith(VALID_STRING);
 
       // ACT
-      fireEvent.change(input, { target: { value: INVALID_STRING } });
+      fireEvent.change(input, { target: { value: INVALID_STRING } }); // should not call onChange event
 
       // ASSERT
-      expect(input.value).toBe(VALID_STRING);
+      expect(onChange).toHaveBeenCalledTimes(1);
     });
 
     it('should render icons', () => {
@@ -148,7 +153,6 @@ describe('Input', () => {
       fireEvent.change(input, { target: { value: INPUT_VALUE } });
 
       // ASSERT
-      expect(input.value).toBe(INPUT_VALUE);
       expect(onChange).toBeCalledWith(INPUT_VALUE);
     });
 
@@ -183,7 +187,7 @@ describe('Input', () => {
       // ARRANGE
       const PLACEHOLDER = 'placeholder';
       const COUNTER_LIMIT = 10;
-      const { getByPlaceholderText, getByTestId } = renderWithProvider(
+      const { getByTestId, rerender } = renderWithProvider(
         <TextArea placeholder={PLACEHOLDER} counterLimit={COUNTER_LIMIT} value="" />
       );
 
@@ -191,7 +195,7 @@ describe('Input', () => {
       expect(getByTestId('counter').textContent).toBe(`0/${COUNTER_LIMIT}`);
 
       // ACT
-      fireEvent.change(getByPlaceholderText(PLACEHOLDER), { target: { value: 'test' } });
+      rerender(<TextArea placeholder={PLACEHOLDER} counterLimit={COUNTER_LIMIT} value="test" />);
 
       // ASSERT
       expect(getByTestId('counter').textContent).toBe(`4/${COUNTER_LIMIT}`);
@@ -199,12 +203,18 @@ describe('Input', () => {
 
     it('should not allow to exceed counterLimit', () => {
       // ARRANGE
+      const onChange = jest.fn();
       const PLACEHOLDER = 'placeholder';
       const COUNTER_LIMIT = 2;
       const VALID_STRING = 'ab';
       const INVALID_STRING = 'abc';
       const { getByPlaceholderText } = renderWithProvider(
-        <TextArea placeholder={PLACEHOLDER} counterLimit={COUNTER_LIMIT} value="" />
+        <TextArea
+          placeholder={PLACEHOLDER}
+          counterLimit={COUNTER_LIMIT}
+          value=""
+          onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => onChange(e.target.value)}
+        />
       );
       const input = getByPlaceholderText(PLACEHOLDER) as HTMLInputElement;
 
@@ -212,13 +222,13 @@ describe('Input', () => {
       fireEvent.change(input, { target: { value: VALID_STRING } });
 
       // ASSERT
-      expect(input.value).toBe(VALID_STRING);
+      expect(onChange).toHaveBeenCalledWith(VALID_STRING);
 
       // ACT
-      fireEvent.change(input, { target: { value: INVALID_STRING } });
+      fireEvent.change(input, { target: { value: INVALID_STRING } }); // should not call onChange event
 
       // ASSERT
-      expect(input.value).toBe(VALID_STRING);
+      expect(onChange).toHaveBeenCalledTimes(1);
     });
 
     it('should render icons', () => {

@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.1.1...@synerise/ds-manageable-list@0.2.0) (2019-10-30)
+
+### Features
+
+- **manageable-list:** add drag and drop ([786a1db](https://github.com/Synerise/synerise-design/commit/786a1dbe49875add642861aeeb7912622b0d21fd))
+- **manageable-list:** add styles ([f6db380](https://github.com/Synerise/synerise-design/commit/f6db380cf3ab2a826b452da7902ab893dd179fe9))
+- **manageable-list:** add styles for grey background ([55384e5](https://github.com/Synerise/synerise-design/commit/55384e591675860c15e0e22ad999d740ce5cfe38))
+- **manageable-list:** add support for content list ([d0730be](https://github.com/Synerise/synerise-design/commit/d0730be07dab4bed07843300ab52fe658be571cc))
+
+## [0.1.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.1.0...@synerise/ds-manageable-list@0.1.1) (2019-10-28)
+
+### Bug Fixes
+
+- **manageable-list:** add ds-icon as dependency ([b7f0198](https://github.com/Synerise/synerise-design/commit/b7f0198c41d53dbce0124f1aa63a392da715d1e2))
+- **manageable-list:** fix dependencies ([9ac6def](https://github.com/Synerise/synerise-design/commit/9ac6def8240b7d5a8d21681ea83d61667ca78a29))
+
 # 0.1.0 (2019-10-24)
 
 ### Bug Fixes

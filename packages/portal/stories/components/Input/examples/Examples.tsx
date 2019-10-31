@@ -8,24 +8,32 @@ import Icon from '@synerise/ds-icon';
 import FileM from '@synerise/ds-icon/dist/icons/FileM';
 import Select from '@synerise/ds-select';
 
-export const InputBasic = () => (
-  <div style={{ width: '300px' }}>
-    <DSProvider code="en_GB">
-      <Input
-        placeholder={text('placeholder', 'Placeholder')}
-        label={text('label', 'Label')}
-        description={text('description', 'Description')}
-        errorText={text('errorText', 'Error message')}
-        counterLimit={number('counterLimit', 10)}
-        disabled={boolean('disabled', false)}
-        onChange={action('onChange')}
-        value={text('value', '')}
-      />
-    </DSProvider>
-  </div>
-);
+export const InputBasic = () => {
+  const [value, setValue] = React.useState<string>('');
+
+  return (
+    <div style={{ width: '300px' }}>
+      <DSProvider code="en_GB">
+        <Input
+          placeholder={text('placeholder', 'Placeholder')}
+          label={text('label', 'Label')}
+          description={text('description', 'Description')}
+          errorText={text('errorText', 'Error message')}
+          counterLimit={number('counterLimit', 10)}
+          disabled={boolean('disabled', false)}
+          onChange={e => setValue(e.target.value)}
+          value={value}
+        />
+      </DSProvider>
+    </div>
+  );
+} ;
+
+
 
 export const InputWithPreSelect = () => {
+  const [value, setValue] = React.useState<string>('');
+
   const select = (
     <Select onChange={action('OnChange')} style={{ width: '50%' }} defaultValue="post">
       <Select.Option value="post">POST</Select.Option>
@@ -37,8 +45,8 @@ export const InputWithPreSelect = () => {
     <RawInput
       placeholder={text('placeholder', 'Placeholder')}
       disabled={boolean('disabled', false)}
-      onChange={action('onChange')}
-      value={text('value', '')}
+      onChange={e => setValue(e.target.value)}
+      value={value}
       style={{ width: '50%' }}
     />
   );
@@ -61,59 +69,73 @@ export const InputWithPreSelect = () => {
   );
 };
 
-export const InputWithIcons = () => (
-  <div style={{ width: '300px' }}>
-    <DSProvider code="en_GB">
-      <Input
-        placeholder={text('placeholder', 'Placeholder')}
-        label={text('label', 'Label')}
-        description={text('description', 'Description')}
-        errorText={text('errorText', 'Error message')}
-        counterLimit={number('counterLimit', 10)}
-        disabled={boolean('disabled', false)}
-        onChange={action('onChange')}
-        value={text('value', '')}
-        icon1={<Icon component={<FileM />} />}
-        icon2={<Icon component={<FileM />} />}
-      />
-    </DSProvider>
-  </div>
-);
+export const InputWithIcons = () => {
+  const [value, setValue] = React.useState<string>('');
 
-export const TextAreaBasic = () => (
-  <div style={{ width: '300px' }}>
-    <DSProvider code="en_GB">
-      <TextArea
-        rows={number('rows', 4)}
-        placeholder={text('placeholder', 'Placeholder')}
-        label={text('label', 'Label')}
-        description={text('description', 'Description')}
-        errorText={text('errorText', 'Error message')}
-        counterLimit={number('counterLimit', 10)}
-        disabled={boolean('disabled', false)}
-        onChange={action('onChange')}
-        value={text('value', '')}
-      />
-    </DSProvider>
-  </div>
-);
+  return (
+    <div style={{ width: '300px' }}>
+      <DSProvider code="en_GB">
+        <Input
+          placeholder={text('placeholder', 'Placeholder')}
+          label={text('label', 'Label')}
+          description={text('description', 'Description')}
+          errorText={text('errorText', 'Error message')}
+          counterLimit={number('counterLimit', 10)}
+          disabled={boolean('disabled', false)}
+          onChange={e => setValue(e.target.value)}
+          value={value}
+          icon1={<Icon component={<FileM />} />}
+          icon2={<Icon component={<FileM />} />}
+        />
+      </DSProvider>
+    </div>
+  );
+};
 
-export const TextAreaWithIcons = () => (
-  <div style={{ width: '300px' }}>
-    <DSProvider code="en_GB">
-      <TextArea
-        rows={number('rows', 4)}
-        placeholder={text('placeholder', 'Placeholder')}
-        label={text('label', 'Label')}
-        description={text('description', 'Description')}
-        errorText={text('errorText', 'Error message')}
-        counterLimit={number('counterLimit', 10)}
-        disabled={boolean('disabled', false)}
-        onChange={action('onChange')}
-        value={text('value', '')}
-        icon1={<Icon component={<FileM />} />}
-        icon2={<Icon component={<FileM />} />}
-      />
-    </DSProvider>
-  </div>
-);
+export const TextAreaBasic = () => {
+  const [value, setValue] = React.useState<string>('');
+
+  return (
+    <div style={{ width: '300px' }}>
+      <DSProvider code="en_GB">
+        <TextArea
+          rows={number('rows', 4)}
+          placeholder={text('placeholder', 'Placeholder')}
+          label={text('label', 'Label')}
+          description={text('description', 'Description')}
+          errorText={text('errorText', 'Error message')}
+          counterLimit={number('counterLimit', 10)}
+          disabled={boolean('disabled', false)}
+          onChange={e => setValue(e.target.value)}
+          value={value}
+        />
+      </DSProvider>
+    </div>
+  );
+};
+
+
+
+export const TextAreaWithIcons = () => {
+  const [value, setValue] = React.useState<string>('');
+
+  return (
+    <div style={{ width: '300px' }}>
+      <DSProvider code="en_GB">
+        <TextArea
+          rows={number('rows', 4)}
+          placeholder={text('placeholder', 'Placeholder')}
+          label={text('label', 'Label')}
+          description={text('description', 'Description')}
+          errorText={text('errorText', 'Error message')}
+          counterLimit={number('counterLimit', 10)}
+          disabled={boolean('disabled', false)}
+          onChange={e => setValue(e.target.value)}
+          value={value}
+          icon1={<Icon component={<FileM />} />}
+          icon2={<Icon component={<FileM />} />}
+        />
+      </DSProvider>
+    </div>
+  );
+};

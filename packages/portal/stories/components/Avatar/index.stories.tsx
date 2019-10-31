@@ -6,7 +6,10 @@ import { DSProvider } from '@synerise/ds-core';
 import Avatar from '@synerise/ds-avatar';
 import Badge from '@synerise/ds-badge';
 import Icon from '@synerise/ds-icon';
-import { FileM, ArrowUpM, ArrowDownM } from '@synerise/ds-icon/dist/icons';
+import FileM from '@synerise/ds-icon/dist/icons/FileM';
+import ArrowDownM from '@synerise/ds-icon/dist/icons/ArrowDownM';
+import ArrowUpM from '@synerise/ds-icon/dist/icons/ArrowUpM';
+import DuplicateS from '@synerise/ds-icon/dist/icons/DuplicateS';
 
 const shapes = ['circle', 'square'] as const;
 const sizes = ['small', 'default', 'large', 'extraLarge'] as const;
@@ -26,7 +29,7 @@ const backgroundColors = [
   'violet',
 ] as const;
 
-const imgSrc = 'https://hsto.org/web/77c/061/c05/77c061c0550f4acd98380bf554eb8886.png';
+const imgSrc = 'https://www.w3schools.com/howto/img_avatar.png';
 
 const wrapperStyles = {
   padding: '40px',
@@ -184,7 +187,50 @@ stories.add('statuses', () => {
             disabled={boolean('disabled', false)}
             hasStatus
             shape={select('shape', shapes, 'circle')}
-            size={number('size', 32)}
+            size={select('sizeString', sizes, 'default')}
+            src={imgSrc}
+          />
+        </Badge>
+      </div>
+    </DSProvider>
+  );
+});
+
+
+stories.add('all options', () => {
+  return (
+    <DSProvider code="en_GB">
+      <div style={wrapperStyles}>
+        <Badge status={select('status', statuses, 'default')}>
+          <Avatar
+            backgroundColor={select('backgroundColors', backgroundColors, 'green')}
+            disabled={boolean('disabled', false)}
+            hasStatus={boolean('has status', false)}
+            shape={select('shape', shapes, 'circle')}
+            size={select('sizeString', sizes, 'default')}
+          >
+            AK
+          </Avatar>
+        </Badge>
+        <Badge status={select('status', statuses, 'default')}>
+          <Avatar
+            backgroundColor={select('backgroundColors', backgroundColors, 'green')}
+            disabled={boolean('disabled', false)}
+            hasStatus={boolean('has status', false)}
+            shape={select('shape', shapes, 'circle')}
+            size={select('sizeString', sizes, 'default')}
+            iconComponent={
+              <Icon color={text('IconColor', '#fff')} size={number('sizeNumber', 32)} component={<DuplicateS />} />
+            }
+          />
+        </Badge>
+        <Badge status={select('status', statuses, 'default')}>
+          <Avatar
+            backgroundColor={select('backgroundColors', backgroundColors, 'green')}
+            disabled={boolean('disabled', false)}
+            hasStatus={boolean('has status', false)}
+            shape={select('shape', shapes, 'circle')}
+            size={select('sizeString', sizes, 'default')}
             src={imgSrc}
           />
         </Badge>

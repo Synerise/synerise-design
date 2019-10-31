@@ -28,8 +28,15 @@ export interface Props extends Omit<AvatarProps, 'size'> {
 }
 
 const Avatar: React.FC<Props> = ({ backgroundColor, disabled, hasStatus, iconComponent, ...antdProps }) => {
+  const [pressed, setPressed] = React.useState(false);
+
   return (
     <AntdAvatar
+      onMouseDown={(): void => setPressed(true)}
+      onMouseOut={(): void => setPressed(false)}
+      onMouseUp={(): void => setPressed(false)}
+      onBlur={(): void => setPressed(false)}
+      pressed={pressed}
       hasStatus={hasStatus}
       backgroundColor={backgroundColor}
       disabled={disabled}
