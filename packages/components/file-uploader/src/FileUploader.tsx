@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as S from './FileUploader.styles';
 
 export interface FileUploaderProps {
-  mode: 'single' | 'multiple';
+  mode: 'single' | 'multi';
   description?: string;
   label?: string;
   texts: {
