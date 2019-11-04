@@ -28,5 +28,7 @@
     "@synerise/ds-core": "*",
     "react": ">=16.9.0 < 17.0.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@synerise/ds-utils": "^0.5.3"
+  }
 }
