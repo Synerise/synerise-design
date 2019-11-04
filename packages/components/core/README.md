@@ -11,7 +11,15 @@ Bunch of components to bootstrap application.
 ### Usage
 
 ```jsx harmony
-<DSProvider code="pl_PL" timeZone="Europe/Warsaw" messages={...} />
+<DSProvider locale="pl-PL" timeZone="Europe/Warsaw" messages={...} />
 ...
 </DSProvider>
 ```
+
+## API
+
+| Property | Description                          | Type   | Default |
+| -------- | ------------------------------------ | ------ | ------- |
+| locale   | Current lang (ex. en-US)             | string | en      |
+| timeZone | Current timezone (ex. Europe/Warsaw) | string |         |
+| messages | Object with translations             | object |         |
