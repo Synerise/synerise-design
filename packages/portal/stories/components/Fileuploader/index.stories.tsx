@@ -12,20 +12,22 @@ const getDefaultProps = () => ({
     single: 'single',
     multi: 'multi'
   }, 'single'),
+  disabled: boolean('Disabled', false),
+  error: text('Error message', ''),
 });
 
 const stories = {
   single: () => {
-    const props = getDefaultProps();
+    const { buttonLabel, ...rest } = getDefaultProps();
 
     const texts = {
-      buttonLabel: props.buttonLabel,
+      buttonLabel,
     };
 
     return (
       <DSProvider code="en_GB">
-        <div style={{ margin: 24 }}>
-          <FileUploader {...props} texts={texts} />
+        <div style={{ margin: 24, width: 340 }}>
+          <FileUploader {...rest} texts={texts} />
         </div>
       </DSProvider>
     );

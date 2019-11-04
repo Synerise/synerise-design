@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { useDropzone } from 'react-dropzone';
 
-import Typography from '@synerise/ds-typography';
 import Icon from '@synerise/ds-icon';
 import Add1M from '@synerise/ds-icon/dist/icons/Add1M';
 
@@ -10,13 +9,15 @@ import * as S from './FileUploader.styles';
 export interface FileUploaderProps {
   mode: 'single' | 'multi';
   description?: string;
+  disabled?: boolean;
   label?: string;
+  error?: string;
   texts: {
     buttonLabel: string;
   };
 }
 
-const FileUploader: React.FC<FileUploaderProps> = ({ mode, label, description, texts }) => {
+const FileUploader: React.FC<FileUploaderProps> = ({ mode, disabled, error, label, description, texts }) => {
   const onDrop = React.useCallback((acceptedFiles: any[]) => {
     console.log(acceptedFiles);
   }, []);
@@ -30,17 +31,14 @@ const FileUploader: React.FC<FileUploaderProps> = ({ mode, label, description, t
       <S.DropAreaContainer {...getRootProps()}>
         <input {...getInputProps()} />
 
-        {isDragActive ? (
-          <span>Drop those</span>
-        ) : (
-          <S.DropArea>
-            <Icon component={<Add1M />} size={24} color="#000" />
-            <Typography.Text>{texts.buttonLabel}</Typography.Text>
-          </S.DropArea>
-        )}
+        <S.DropArea disabled={disabled} isDropping={isDragActive} hasError={!!error}>
+          <Icon component={<Add1M />} size={24} />
+          <S.DropAreaLabel>{texts.buttonLabel}</S.DropAreaLabel>
+        </S.DropArea>
       </S.DropAreaContainer>
 
-      {description && <S.Description>{description}</S.Description>}
+      {error && <S.ErrorMessage>{error}</S.ErrorMessage>}
+      {description && <S.Description hasError={!!error}>{description}</S.Description>}
     </S.Container>
   );
 };
