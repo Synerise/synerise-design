@@ -1,15 +1,15 @@
 import * as React from 'react';
-import { render, RenderOptions } from '@testing-library/react';
+import { render, RenderOptions, RenderResult } from '@testing-library/react';
 import { DSProvider } from '@synerise/ds-core';
 
 type Options = Omit<RenderOptions, 'queries'>;
-// eslint-disable-next-line
-const renderWithProvider = (node: React.ReactElement, options?: Options) => {
+
+const renderWithProvider = (node: React.ReactElement, options?: Options): RenderResult => {
   const rendered = render(<DSProvider>{node}</DSProvider>, options);
   return {
     ...rendered,
-    // eslint-disable-next-line
-    rerender: (ui: any, options?: Options) => renderWithProvider(ui, { container: rendered.container, ...options }),
+    rerender: (ui: React.ReactElement, opt?: Options): RenderResult =>
+      renderWithProvider(ui, { container: rendered.container, ...opt }),
   };
 };
 
