@@ -32,13 +32,13 @@ const setup = ({
         onChange: e => onChange(e.target.value),
         onEnterPress: e => onEnterPress(e),
         onBlur: e => onBlur(e),
+        maxLength: maxLength,
+        placeholder: PLACEHOLDER,
+        autoComplete: autoComplete,
       }}
-      maxLength={maxLength}
-      placeholder={PLACEHOLDER}
       size={'normal'}
       error={false}
       disabled={disabled}
-      autoComplete={autoComplete}
       hideIcon={hideIcon}
     />
   )
