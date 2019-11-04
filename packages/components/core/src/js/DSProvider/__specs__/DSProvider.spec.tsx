@@ -11,7 +11,7 @@ describe('DSProvider', function() {
     },
   };
   const C = mount(
-    <DSProvider code="en_US" locale="en" messages={messages}>
+    <DSProvider locale="en" messages={messages}>
       <div>
         <FormattedMessage id="CLICK" />
       </div>
