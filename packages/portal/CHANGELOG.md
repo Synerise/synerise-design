@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.17.0](https://github.com/synerise/synerise-design/compare/portal@0.16.0...portal@0.17.0) (2019-11-04)
+
+
+### Bug Fixes
+
+* add interface for stories config ([4929233](https://github.com/synerise/synerise-design/commit/4929233344f67874da841592d947ec6a99f792b6))
+
+
+### Features
+
+* storybook improvement with custom config ([ea325eb](https://github.com/synerise/synerise-design/commit/ea325ebefbb58c200482ef81d1ec91bb18faf21c))
+* update stories to new scheme ([96ad5ab](https://github.com/synerise/synerise-design/commit/96ad5ab1f52bf15874affabb723e3de7fc2ddb5a))
+* **message:** add message component ([a82fbae](https://github.com/synerise/synerise-design/commit/a82fbae03d79b6bbe09082f7e6b67992dcd62782))
+
+
+
+
+
 # [0.16.0](https://github.com/synerise/synerise-design/compare/portal@0.15.0...portal@0.16.0) (2019-10-30)
 
 
