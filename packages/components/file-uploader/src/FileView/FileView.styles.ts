@@ -1,8 +1,8 @@
-import styled from 'styled-components';
+import styled, { SimpleInterpolation } from 'styled-components';
 import Typography, { Label } from '@synerise/ds-typography';
 import { IconContainer } from '@synerise/ds-icon/dist/Icon.styles';
 
-export const FileViewContainer = styled.div`
+export const FileViewContainer = styled.div<{ disabled?: boolean; error?: string }>`
   background-color: ${(props): string => props.theme.palette.white};
   border-radius: 3px;
   border: 1px solid ${(props): string => props.theme.palette['grey-200']};
@@ -15,6 +15,13 @@ export const FileViewContainer = styled.div`
     width: 32px;
     height: 32px;
   }
+
+  ${(props): SimpleInterpolation =>
+    props.disabled &&
+    `
+    background-color: ${props.theme.palette['grey-050']};
+    opacity: 0.4;
+  `};
 `;
 
 export const PreviewImage = styled.div<{ source: string }>`
@@ -50,6 +57,7 @@ export const Name = styled(Label)`
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 100%;
+    cursor: initial;
   }
 `;
 

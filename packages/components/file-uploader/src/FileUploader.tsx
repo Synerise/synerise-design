@@ -7,13 +7,19 @@ import Add1M from '@synerise/ds-icon/dist/icons/Add1M';
 import FileView, { FileViewTexts } from './FileView/FileView';
 import * as S from './FileUploader.styles';
 
+export interface ExtendedFile {
+  file: File;
+  error?: string;
+  disabled?: boolean;
+}
+
 export interface FileUploaderProps {
   mode: 'single' | 'multi';
   description?: string;
   disabled?: boolean;
   label?: string;
   error?: string;
-  files?: File[];
+  files?: ExtendedFile[];
   accept?: string[];
   onChange?: (files: File[]) => void;
   texts: FileViewTexts & {
@@ -53,7 +59,7 @@ const FileUploader: React.FC<FileUploaderProps> = ({
       {label && <S.Label>{label}</S.Label>}
 
       {/* eslint-disable-next-line react/no-array-index-key */}
-      {files && files.length > 0 && files.map((file, index) => <FileView key={index} texts={texts} file={file} />)}
+      {files && files.length > 0 && files.map((file, index) => <FileView key={index} texts={texts} data={file} />)}
 
       {mode === 'single' && files && files.length === 0 && (
         <>

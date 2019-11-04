@@ -16,22 +16,36 @@ const getDefaultProps = () => ({
   disabled: boolean('Disabled', false),
   error: text('Error message', ''),
   accept: array('Accepted mime types (comma seperated)', ['image/png, image/svg+xml']),
+  testFileError: boolean('Display preview error example', false),
+  testFileDisable: boolean('Display disabled preview example', false),
 });
 
 const stories = {
   single: () => {
     const [files, setFiles] = React.useState([]);
-    const { buttonLabel, size, ...rest } = getDefaultProps();
+    const { testFileError, testFileDisable, buttonLabel, size, ...rest } = getDefaultProps();
 
     const texts = {
       buttonLabel,
       size,
     };
 
+    const getFiles = () => {
+      if (testFileError) {
+        return files.map(f => ({ ...f, error: 'Our AI could not detect the cat' }));
+      }
+
+      if (testFileDisable) {
+        return files.map(f => ({ ...f, disabled: true }));
+      }
+
+      return files;
+    };
+
     return (
       <DSProvider code="en_GB">
         <div style={{ margin: 24, width: 340 }}>
-          <FileUploader {...rest} files={files} onChange={setFiles} texts={texts} />
+          <FileUploader {...rest} files={getFiles()} onChange={newFiles => setFiles(newFiles.map(f => ({ file: f })))} texts={texts} />
         </div>
       </DSProvider>
     );
