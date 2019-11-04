@@ -32,11 +32,14 @@ const FileUploader: React.FC<FileUploaderProps> = ({
   description,
   texts,
 }) => {
-  const onDrop = React.useCallback((acceptedFiles: File[]) => {
-    console.log(acceptedFiles);
+  const onDrop = React.useCallback(
+    (acceptedFiles: File[]) => {
+      console.log(acceptedFiles);
 
-    onChange && onChange(acceptedFiles);
-  }, [onChange]);
+      onChange && onChange(acceptedFiles);
+    },
+    [onChange]
+  );
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     accept: accept ? accept.join(',') : undefined,
@@ -49,17 +52,22 @@ const FileUploader: React.FC<FileUploaderProps> = ({
     <S.Container>
       {label && <S.Label>{label}</S.Label>}
 
-      {files.length > 0 && files.map((file, index) => <FileView key={index} texts={texts} file={file} />)}
+      {/* eslint-disable-next-line react/no-array-index-key */}
+      {files && files.length > 0 && files.map((file, index) => <FileView key={index} texts={texts} file={file} />)}
 
-      {mode === 'single' && files.length === 0 && (
-        <S.DropAreaContainer {...getRootProps()}>
-          <input {...getInputProps()} />
+      {mode === 'single' && files && files.length === 0 && (
+        <>
+          {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+          <S.DropAreaContainer {...getRootProps()}>
+            {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+            <input {...getInputProps()} />
 
-          <S.DropAreaButton disabled={disabled} isDropping={isDragActive} hasError={hasError}>
-            <Icon component={<Add1M />} size={24} />
-            <S.DropAreaLabel>{texts.buttonLabel}</S.DropAreaLabel>
-          </S.DropAreaButton>
-        </S.DropAreaContainer>
+            <S.DropAreaButton disabled={disabled} isDropping={isDragActive} hasError={hasError}>
+              <Icon component={<Add1M />} size={24} />
+              <S.DropAreaLabel>{texts.buttonLabel}</S.DropAreaLabel>
+            </S.DropAreaButton>
+          </S.DropAreaContainer>
+        </>
       )}
 
       {hasError && <S.ErrorMessage>{error}</S.ErrorMessage>}
