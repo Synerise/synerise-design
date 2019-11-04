@@ -13,18 +13,18 @@ export type InputProps = {
   onBlur?: React.FocusEventHandler<HTMLInputElement>;
   onEnterPress?: React.KeyboardEventHandler<HTMLInputElement>;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  placeholder?: string;
+  maxLength?: number;
+  autoComplete?: string;
 };
 
 export interface InlineEditProps {
-  placeholder?: string;
   size: 'normal' | 'small';
   tooltipTitle?: string;
   className?: string;
-  maxLength?: number;
   disabled?: boolean;
   input: InputProps;
   style?: { [key: string]: string | number };
-  autoComplete?: string;
   autoFocus?: boolean;
   error?: boolean;
   hideIcon?: boolean;
@@ -35,9 +35,6 @@ const InlineEdit: React.FC<InlineEditProps> = ({
   style,
   size,
   disabled,
-  placeholder,
-  maxLength,
-  autoComplete,
   autoFocus,
   hideIcon,
   tooltipTitle,
@@ -45,6 +42,9 @@ const InlineEdit: React.FC<InlineEditProps> = ({
   input,
 }): React.ReactElement => {
   const inputRef = React.useRef<HTMLInputElement>(null);
+  const inputKey = React.useMemo(() => {
+    return `autosize-input-${size}`;
+  }, [size]);
 
   const handleChange = React.useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -72,7 +72,7 @@ const InlineEdit: React.FC<InlineEditProps> = ({
 
   const handleFocusInput = React.useCallback(() => {
     inputRef.current && inputRef.current.focus();
-  }, [inputRef]);
+  }, []);
 
   React.useEffect(() => {
     autoFocus && inputRef.current && inputRef.current.focus();
@@ -88,20 +88,22 @@ const InlineEdit: React.FC<InlineEditProps> = ({
       emptyValue={input.value === ''}
     >
       <AutosizeInput
+        key={inputKey}
         id={input.name ? toCamelCase(input.name) : 'id'}
         className="autosize-input"
-        placeholder={placeholder}
-        maxLength={maxLength}
+        placeholder={input.placeholder}
+        maxLength={input.maxLength}
         onKeyPress={handleKeyPress}
-        ref={inputRef}
         disabled={disabled}
         name={input.name}
         value={input.value || ''}
         onChange={handleChange}
         onBlur={handleBlur}
-        autoComplete={autoComplete}
+        autoComplete={input.autoComplete}
         placeholderIsMinWidth={false}
-        input={{ ...input }}
+        /* eslint-disable-next-line @typescript-eslint/ban-ts-ignore */
+        // @ts-ignore
+        ref={inputRef}
       />
       {!hideIcon && (
         <Tooltip data-testid="inline-edit-icon" title={tooltipTitle}>
