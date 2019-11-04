@@ -4,7 +4,7 @@ import Button from '@synerise/ds-button';
 import { DrawerContent, DrawerHeader, DrawerBody } from '@synerise/ds-drawer/dist/Drawer.styles';
 import Tabs from '@synerise/ds-tabs';
 import { action } from '@storybook/addon-actions';
-import Typograpy from 'antd/lib/typography';
+import Typography from 'antd/lib/typography';
 
 const TABS = [
   {
@@ -37,8 +37,9 @@ const stories = {
         >
           <>
             <DrawerHeader>
+              {/* TODO: use PageHeader Component*/}
               <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: 24}}>
-                <Typograpy.Title style={{flex: 1, margin: 0,}} level={4}>Example drawer</Typograpy.Title>
+                <Typography.Title style={{flex: 1, margin: 0,}} level={4}>Example drawer</Typography.Title>
                 <Button type={'ghost'} onClick={() => setDrawerVisible(false)}>Cancel</Button>
                 <Button style={{marginLeft: '20px'}} type={'primary'} onClick={() => setDrawerVisible(false)}>Save</Button>
               </div>

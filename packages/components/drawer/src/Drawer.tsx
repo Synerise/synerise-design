@@ -5,14 +5,14 @@ import './style/index.less';
 
 export type DrawerProps = {
   children: React.ReactChild;
-  title: string;
-  closable: string;
+  title?: string;
+  closable?: string;
 };
 
 const Drawer: React.FC<DrawerProps & AntdDrawerProps> = ({ children, title, closable, ...drawerProps }) => {
   return (
     // eslint-disable-next-line react/jsx-props-no-spreading
-    <AntdDrawer {...drawerProps} closable={false}>
+    <AntdDrawer {...drawerProps} closable={false} data-testid="ds-drawer">
       {children}
     </AntdDrawer>
   );
