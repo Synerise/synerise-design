@@ -22,13 +22,13 @@
   "sideEffects": false,
   "types": "dist/index.d.ts",
   "dependencies": {
-    "antd": "3.24.0"
-  },
-  "devDependencies": {
-    "@synerise/ds-utils": "^0.5.1"
+    "antd": "3.24.3"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
     "react": ">=16.9.0 < 17.0.0"
+  },
+  "devDependencies": {
+    "@synerise/ds-utils": "^0.5.1"
   }
 }

@@ -26,7 +26,7 @@
     "@synerise/ds-list": "*",
     "@synerise/ds-tags": "*",
     "@synerise/ds-typography": "*",
-    "antd": "3.24.0"
+    "antd": "3.24.3"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

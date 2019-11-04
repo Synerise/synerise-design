@@ -22,7 +22,7 @@
   "sideEffects": false,
   "dependencies": {
     "@synerise/ds-utils": "^0.5.1",
-    "antd": "3.24.0"
+    "antd": "3.24.3"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
