@@ -31,7 +31,6 @@
   "peerDependencies": {
     "@synerise/ds-core": "*",
     "react": ">=16.9.0 < 17.0.0",
-    "react-sortablejs-typescript": "^2.0.3",
     "styled-components": "^4.4.0"
   }
 }

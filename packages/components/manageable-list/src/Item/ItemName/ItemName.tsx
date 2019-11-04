@@ -38,6 +38,7 @@ const ItemName: React.FC<ItemLabelProps> = ({ item, onUpdate, editMode }): React
           style={{ maxWidth: '100%' }}
           input={inputProps}
           data-testid="list-item-name-input"
+          autoFocus
         />
       ) : (
         <S.ItemLabel data-testid="list-item-name">{item.name}</S.ItemLabel>
