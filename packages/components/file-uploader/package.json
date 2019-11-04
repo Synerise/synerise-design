@@ -25,6 +25,7 @@
     "@synerise/ds-button": "*",
     "@synerise/ds-icon": "^0.3.0",
     "@synerise/ds-typography": "^0.5.2",
+    "filesize.js": "^2.0.0",
     "react-dropzone": "^10.1.10"
   },
   "peerDependencies": {

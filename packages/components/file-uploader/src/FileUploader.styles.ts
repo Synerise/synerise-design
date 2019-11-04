@@ -1,4 +1,4 @@
-import styled, { css, SimpleInterpolation } from 'styled-components';
+import styled, { SimpleInterpolation } from 'styled-components';
 import Typography from '@synerise/ds-typography';
 import Button from '@synerise/ds-button';
 import { IconContainer } from '@synerise/ds-icon/dist/Icon.styles';
@@ -20,23 +20,23 @@ export const DropAreaContainer = styled.div`
 `;
 
 export const DropAreaLabel = styled(Typography.Text)`
-  color: ${props => props.theme.palette['grey-500']};
+  color: ${(props): string => props.theme.palette['grey-500']};
   font-weight: 500;
 `;
 
-export const DropArea = styled.button<{ isDropping?: boolean; hasError?: boolean }>`
+export const DropAreaButton = styled.button<{ isDropping?: boolean; hasError?: boolean }>`
   display: flex;
   align-items: center;
-  border: 1px dashed ${(props): SimpleInterpolation => props.theme.palette['grey-300']};
-  padding: 12px;
+  border: 1px dashed ${(props): string => props.theme.palette['grey-300']};
+  padding: 11px 12px;
   border-radius: 3px;
   cursor: pointer;
   background-color: transparent;
   width: 100%;
+  height: 48px;
 
   ${IconContainer} {
-    fill: ${(props): SimpleInterpolation => props.theme.palette['grey-500']};
-    color: ${(props): SimpleInterpolation => props.theme.palette['grey-500']};
+    fill: ${(props): string => props.theme.palette['grey-500']};
   }
 
   span {
@@ -44,26 +44,34 @@ export const DropArea = styled.button<{ isDropping?: boolean; hasError?: boolean
     margin: 0 0 0 12px;
   }
 
+  ${(props): SimpleInterpolation =>
+    props.hasError &&
+    `
+      background-color: ${props.theme.palette['red-050']};
+      border-color: ${props.theme.palette['red-600']};
+    `}
+
   &:hover:not(:disabled) {
-    border-color: ${(props): SimpleInterpolation => props.theme.palette['grey-400']};
+    background-color: transparent;
+    border-color: ${(props): string => props.theme.palette['grey-400']};
 
     ${DropAreaLabel} {
-      color: ${(props): SimpleInterpolation => props.theme.palette['grey-600']};
+      color: ${(props): string => props.theme.palette['grey-600']};
     }
 
     ${IconContainer} {
-      fill: ${(props): SimpleInterpolation => props.theme.palette['grey-600']};
-      color: ${(props): SimpleInterpolation => props.theme.palette['grey-600']};
+      fill: ${(props): string => props.theme.palette['grey-600']};
+      color: ${(props): string => props.theme.palette['grey-600']};
     }
   }
 
   &:active,
   &:disabled {
-    background-color: ${(props): SimpleInterpolation => props.theme.palette['grey-050']};
+    background-color: ${(props): string => props.theme.palette['grey-050']};
   }
 
   &:focus:not(:active):not(:disabled) {
-    border-color: ${(props): SimpleInterpolation => props.theme.palette['blue-600']};
+    border-color: ${(props): string => props.theme.palette['blue-600']};
   }
 
   &:disabled {
@@ -75,21 +83,17 @@ export const DropArea = styled.button<{ isDropping?: boolean; hasError?: boolean
 
   ${(props): SimpleInterpolation =>
     props.isDropping &&
-    css`
-      background-color: ${props.theme.palette['blue-050']};
-      border-color: ${props.theme.palette['blue-300']};
+    `
+      background-color: ${props.theme.palette['blue-050']} !important;
+      border-color: ${props.theme.palette['blue-300']} !important;
 
-      span,
-      ${IconContainer} {
-        color: ${props.theme.palette['blue-500']};
+      span {
+        color: ${props.theme.palette['blue-500']} !important;
       }
-    `}
 
-  ${(props): SimpleInterpolation =>
-    props.hasError &&
-    css`
-      background-color: ${props.theme.palette['red-050']};
-      border-color: ${props.theme.palette['red-600']};
+      ${IconContainer} {
+        fill: ${props.theme.palette['blue-500']} !important;
+      }
     `}
 `;
 
@@ -97,7 +101,7 @@ export const ErrorMessage = styled(Typography.Text)`
   && {
     margin: 8px 0 0;
     display: block;
-    color: ${(props): SimpleInterpolation => props.theme.palette['red-600']};
+    color: ${(props): string => props.theme.palette['red-600']};
   }
 `;
 

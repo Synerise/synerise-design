@@ -8313,6 +8313,11 @@ filenamify@^2.0.0:
     strip-outer "^1.0.0"
     trim-repeated "^1.0.0"
 
+filesize.js@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/filesize.js/-/filesize.js-2.0.0.tgz#b212f8dfe35de64bca9b7141ca3ddb2e7413f139"
+  integrity sha512-dOngzfsRfjwTQkG3UPY3GI+OqbBj4mO1UW1FoDYN2SF/p7hACKXHKGjgA62ug4KtORXcXdlEKOXrgfzt+qB2Nw==
+
 filesize@3.6.1:
   version "3.6.1"
   resolved "https://registry.yarnpkg.com/filesize/-/filesize-3.6.1.tgz#090bb3ee01b6f801a8a8be99d31710b3422bb317"
