@@ -57,3 +57,5 @@ import Badge from '@synerise/ds-badge'
 | status        | Set Badge as a status dot                                      | `success \ processing \ default \ error \ warning` | ''      |
 | text          | If status is set, text sets the display text of the status dot | string                                             | ''      |
 | title         | Text to show when hovering over the badge                      | string                                             | count   |
+| flag          | Show badge as a flag                                           | boolean                                            | false   |
+| outlined      | Add outline to counter badge                                   | boolean                                            | false   |
