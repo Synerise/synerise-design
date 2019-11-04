@@ -25,7 +25,7 @@
     "@synerise/ds-button": "*",
     "@synerise/ds-typography": "*",
     "@types/lodash": "^4.14.144",
-    "antd": "*",
+    "antd": "3.24.3",
     "react-sortablejs-typescript": "^2.0.3",
     "sortablejs": "^1.10.1"
   },

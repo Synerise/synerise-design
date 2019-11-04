@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { IntlProvider } from 'react-intl';
-import {flatten} from 'flat';
+import { flatten } from 'flat';
 import AntConfigProvider from 'antd/lib/config-provider';
 import { MessageFormatElement } from 'intl-messageformat-parser';
 

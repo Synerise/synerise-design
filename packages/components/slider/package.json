@@ -24,13 +24,13 @@
   "dependencies": {
     "@synerise/ds-tooltip": "^0.3.2",
     "@synerise/ds-typography": "^0.5.2",
-    "antd": "3.24.0"
-  },
-  "devDependencies": {
-    "@synerise/ds-utils": "^0.5.1"
+    "antd": "3.24.3"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
     "react": ">=16.9.0 < 17.0.0"
+  },
+  "devDependencies": {
+    "@synerise/ds-utils": "^0.5.1"
   }
 }
