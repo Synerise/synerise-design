@@ -14,7 +14,7 @@
     "build:js": "babel --root-mode upward src --out-dir dist --extensions '.js,.ts,.tsx'",
     "build:watch": "npm run build:js -- --watch",
     "copy": "node ./build/copy.js",
-    "defs": "tsc --declaration --outDir dist/ --emitDeclarationOnly --declarationMap",
+    "defs": "tsc --declaration --outDir dist/ --emitDeclarationOnly",
     "prepublish": "npm run build",
     "test": "jest --coverage",
     "test:watch": "npm run test -- --watchAll",
