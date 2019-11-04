@@ -42,6 +42,7 @@ InlineEdit UI Component
 | style        | styles object                    | Object                           | `false`  |
 | tooltipTitle | text of the tooltip              | string                           | -        |
 | hideIcon     | hides input icon                 | boolean                          | `false`  |
+| autoFocus    | set focus on input after mount   | boolean                          | false    |
 
 ## InlineEdit input API
 
