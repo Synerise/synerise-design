@@ -25,12 +25,30 @@ const DRAWER = (visible: boolean) => (<Drawer
 
 describe('Drawer component', () => {
   it('should render', () => {
+    // ARRANGE
     const {getByTestId} = renderWithProvider(DRAWER(true));
+
+    // ASSERT
     expect(getByTestId('ds-drawer')).toBeTruthy();
   });
 
   it('should not render', () => {
+    //ARRANGE
     const {queryAllByTestId} = renderWithProvider(DRAWER(false));
+
+    // ASSERT
     expect(queryAllByTestId('ds-drawer').length).toBe(0);
+  });
+
+  it('should render on change visible prop', () => {
+    // ARRANGE
+    const {queryAllByTestId, rerender} = renderWithProvider(DRAWER(false));
+
+    // ASSERT
+    expect(queryAllByTestId('ds-drawer').length).toBe(0);
+
+    // ACT
+    rerender(DRAWER(true));
+    expect(queryAllByTestId('ds-drawer').length).toBe(1);
   });
 });
