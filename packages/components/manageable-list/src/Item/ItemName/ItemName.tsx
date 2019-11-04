@@ -16,18 +16,18 @@ const ItemName: React.FC<ItemLabelProps> = ({ item, onUpdate, editMode }): React
     onUpdate && onUpdate({ id: item.id, name: editedName });
   }, [editedName, onUpdate, item.id]);
 
-  const inputProps = React.useMemo(() => {
-    return {
-      name: 'list-item-name-input',
-      defaultValue: editedName,
-      value: editedName,
-      onBlur: updateName,
-    };
-  }, [editedName, updateName]);
-
   const editName = React.useCallback((event: React.ChangeEvent<HTMLInputElement>): void => {
     setName(event.target.value);
   }, []);
+
+  const inputProps = React.useMemo(() => {
+    return {
+      name: 'list-item-name-input',
+      value: editedName,
+      onBlur: updateName,
+      onChange: editName,
+    };
+  }, [editedName, updateName, editName]);
 
   return (
     <S.ItemLabelWrapper>
@@ -35,7 +35,6 @@ const ItemName: React.FC<ItemLabelProps> = ({ item, onUpdate, editMode }): React
         <InlineEdit
           size="small"
           hideIcon
-          onChange={editName}
           style={{ maxWidth: '100%' }}
           input={inputProps}
           data-testid="list-item-name-input"
