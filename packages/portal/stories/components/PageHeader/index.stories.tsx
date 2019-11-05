@@ -58,15 +58,7 @@ const stories = {
   })(({ store }) => (
     <PageHeader title="Main page header with tabs" tabs={
       <Tabs
-        tabs={[
-          {
-            label: 'Tab first',
-          }, {
-            label: 'Tab second',
-          }, {
-            label: 'Tab Third',
-          }
-        ]}
+        tabs={tabs}
         activeTab={store.state.activeTab}
         handleTabClick={(index: number) => store.set({activeTab: index})}
         configuration={{

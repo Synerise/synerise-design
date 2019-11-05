@@ -19,21 +19,21 @@ export type PageHeaderProps = {
   onClose?: () => void;
   isolated?: boolean;
   inlineEdit?: {
-    name: string;
-    value: string;
-    maxLength: number;
+    name?: string;
+    value: string | number;
+    maxLength?: number;
     handleOnChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
     handleOnBlur: React.FocusEventHandler<HTMLInputElement>;
     handleOnEnterPress: React.KeyboardEventHandler<HTMLInputElement>;
-    placeholder: string;
+    placeholder?: string;
+    size: 'small' | 'normal';
+    style?: {
+      [key: string]: string | number;
+    };
+    error?: boolean;
+    disabled?: boolean;
+    hideIcon?: boolean;
   };
-  size: 'small' | 'normal';
-  style?: {
-    [key: string]: string | number;
-  };
-  error?: boolean;
-  disabled?: boolean;
-  hideIcon?: boolean;
 };
 
 const PageHeader: React.FC<PageHeaderProps> = props => {

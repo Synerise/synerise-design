@@ -70,10 +70,8 @@ describe('PageHeader', () => {
     // ARRANGE
     const { getByPlaceholderText } = renderWithProvider(
       <PageHeader title={TITLE} onGoBack={onClick} inlineEdit={
-        {name: '', value: '', maxLength: 10, handleOnChange: () => {}, placeholder: 'test', size: 'normal'}
-      } >
-        Children
-      </PageHeader>
+        {name: '', value: '', maxLength: 10, handleOnChange: () => {}, handleOnBlur: () => {}, handleOnEnterPress: () => {}, placeholder: 'test', size: 'normal'}
+      } />
     );
     // ASSERT
     expect(getByPlaceholderText('test')).toBeTruthy();
