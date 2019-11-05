@@ -65,9 +65,9 @@ export const PageHeaderDescription = styled.div`
 export const PageHeaderClamp = styled.div`
   ${macro.h600};
   line-height: 26px;
-  display: -webkit-box;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
+  display: -webkit-box; // prefix required for line-clamp
+  -webkit-line-clamp: 1; // prefix required for line-clamp
+  -webkit-box-orient: vertical; // prefix required for line-clamp
   overflow: hidden;
   color: ${(props): string => props.theme.palette['grey-800']};
 `;
