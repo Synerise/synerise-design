@@ -1,4 +1,5 @@
 import * as React from 'react';
+import random from 'lodash/random';
 import { boolean, text, select, number, array } from '@storybook/addon-knobs';
 
 import { DSProvider } from '@synerise/ds-core';
@@ -9,6 +10,7 @@ const getDefaultProps = () => ({
   description: text('Description', 'Only pictures of cats are allowed'),
   buttonLabel: text('Button label', 'Upload a new file or drop one here'),
   size: text('Preview size label', 'Size:'),
+  uploading: text('Uploading label', 'Uploading...'),
   mode: select('Mode', {
     single: 'single',
     multi: 'multi'
@@ -18,16 +20,18 @@ const getDefaultProps = () => ({
   accept: array('Accepted mime types (comma seperated)', ['image/png, image/svg+xml']),
   testFileError: boolean('Display preview error example', false),
   testFileDisable: boolean('Display disabled preview example', false),
+  testFileProgress: boolean('Display upload progress bar example', false),
 });
 
 const stories = {
   single: () => {
     const [files, setFiles] = React.useState([]);
-    const { testFileError, testFileDisable, buttonLabel, size, ...rest } = getDefaultProps();
+    const { testFileError, testFileProgress, testFileDisable, uploading, buttonLabel, size, ...rest } = getDefaultProps();
 
     const texts = {
       buttonLabel,
       size,
+      uploading,
     };
 
     const getFiles = () => {
@@ -37,6 +41,10 @@ const stories = {
 
       if (testFileDisable) {
         return files.map(f => ({ ...f, disabled: true }));
+      }
+
+      if (testFileProgress) {
+        return files.map(f => ({ ...f, progress: random(0, 100) }));
       }
 
       return files;
