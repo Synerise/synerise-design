@@ -4,6 +4,8 @@ import { IconContainer } from '@synerise/ds-icon/dist/Icon.styles';
 
 export const PreviewImage = styled.div<{ source: string }>`
   background: url('${(props): string => props.source}') 50% 50% no-repeat;
+  min-width: 32px;
+  min-height: 32px;
   width: 32px;
   height: 32px;
   border-radius: 3px;
@@ -45,18 +47,30 @@ export const SizeOrError = styled(Typography.Text)`
   }
 `;
 
-export const FileViewContainer = styled.div<{ disabled?: boolean; error?: boolean }>`
+export const FileViewContainer = styled.button<{ disabled?: boolean; error?: boolean }>`
   background-color: ${(props): string => props.theme.palette.white};
   border-radius: 3px;
   border: 1px solid ${(props): string => props.theme.palette['grey-200']};
   display: flex;
   align-items: center;
-  padding: 8px;
+  padding: 7px;
   height: 48px;
+  width: 100%;
+  text-align: left;
+  line-height: initial;
 
-  img {
-    width: 32px;
-    height: 32px;
+  &:hover {
+    border-color: ${(props): string => props.theme.palette['grey-300']};
+  }
+
+  &:active {
+    border-color: ${(props): string => props.theme.palette['grey-300']};
+    background-color: ${(props): string => props.theme.palette['grey-050']};
+  }
+
+  &:focus {
+    border-color: ${(props): string => props.theme.palette['blue-600']};
+    background-color: ${(props): string => props.theme.palette['grey-050']};
   }
 
   ${(props): SimpleInterpolation =>
