@@ -89,6 +89,11 @@ export const FileViewContainer = styled.button<{ disabled?: boolean; error?: boo
   text-align: left;
   line-height: initial;
   position: relative;
+  margin: 0 0 12px;
+
+  &:last-of-type {
+    margin: 0;
+  }
 
   &:hover {
     border-color: ${(props): string => props.theme.palette['grey-300']};

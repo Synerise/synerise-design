@@ -50,8 +50,7 @@ const FileUploader: React.FC<FileUploaderProps> = ({
         </S.Label>
       )}
 
-      {files &&
-        files.length > 0 &&
+      {files.length > 0 &&
         files.map((file, index) => (
           <FileView
             // eslint-disable-next-line react/no-array-index-key
@@ -63,10 +62,10 @@ const FileUploader: React.FC<FileUploaderProps> = ({
           />
         ))}
 
-      {mode === 'single' && files && files.length === 0 && (
+      {(mode !== 'single' || files.length === 0) && (
         <>
           {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-          <S.DropAreaContainer {...getRootProps()}>
+          <S.DropAreaContainer {...getRootProps()} canUploadMore={mode !== 'single' && files.length > 0}>
             {/* eslint-disable-next-line react/jsx-props-no-spreading */}
             <input {...getInputProps()} />
 

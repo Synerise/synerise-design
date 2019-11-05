@@ -26,7 +26,7 @@ const FileView: React.FC<FileViewProps> = ({ data, texts, onRemove, removable })
   const getFriendlySize = (size?: number): string => filesize(size || 0, { round: 0 });
 
   const { disabled, error, file, progress } = data;
-  const fileSource = URL.createObjectURL(data.file);
+  const fileSource = React.useMemo(() => URL.createObjectURL(data.file), [data]);
 
   const hasError = !!error;
   const hasProgress = typeof progress === 'number';

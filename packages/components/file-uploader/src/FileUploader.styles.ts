@@ -15,8 +15,9 @@ export const Description = styled(Typography.Text)<{ hasError?: boolean }>`
   }
 `;
 
-export const DropAreaContainer = styled.div`
+export const DropAreaContainer = styled.div<{ canUploadMore: boolean }>`
   width: 100%;
+  margin: ${(props): string => (props.canUploadMore ? '12px 0 0' : '0')};
 `;
 
 export const DropAreaLabel = styled(Typography.Text)`
