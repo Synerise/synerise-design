@@ -12,7 +12,7 @@ type Props = {
   draggable?: boolean;
   changeOrderDisabled?: boolean;
   greyBackground?: boolean;
-  listType: ListType;
+  listType: string;
 };
 
 export type ItemProps = {

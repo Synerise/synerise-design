@@ -4,7 +4,6 @@ import FileM from '@synerise/ds-icon/dist/icons/FileM';
 import Tag, { TagShape } from '@synerise/ds-tags/dist/Tag/Tag';
 import { withState } from '@dump247/storybook-state';
 import { action } from '@storybook/addon-actions';
-import { ListType } from '@synerise/ds-manageable-list/dist/ManageableList';
 import { boolean } from '@storybook/addon-knobs';
 import FolderM from '@synerise/ds-icon/dist/icons/FolderM';
 
@@ -200,7 +199,7 @@ const stories = {
         onItemSelect={action('onItemSelect')}
         onItemDuplicate={action('onItemDuplicate')}
         onChangeOrder={boolean('Change order available', false) ? handleChangeOrder : null}
-        type={ListType.content}
+        type='content'
         items={store.state.items}
         loading={false}
         addButtonDisabled={boolean('Disable add item button', false)}
