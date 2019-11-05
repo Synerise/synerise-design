@@ -23,9 +23,17 @@ export type PageHeaderProps = {
     value: string;
     maxLength: number;
     handleOnChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    handleOnBlur: React.FocusEventHandler<HTMLInputElement>;
+    handleOnEnterPress: React.KeyboardEventHandler<HTMLInputElement>;
     placeholder: string;
-    size: 'small' | 'normal';
   };
+  size: 'small' | 'normal';
+  style?: {
+    [key: string]: string | number;
+  };
+  error?: boolean;
+  disabled?: boolean;
+  hideIcon?: boolean;
 };
 
 const PageHeader: React.FC<PageHeaderProps> = props => {
@@ -65,11 +73,17 @@ const PageHeader: React.FC<PageHeaderProps> = props => {
               input={{
                 name: inlineEdit.name,
                 value: inlineEdit.value,
+                maxLength: inlineEdit.maxLength,
+                onChange: inlineEdit.handleOnChange,
+                onBlur: inlineEdit.handleOnBlur,
+                onEnterPress: inlineEdit.handleOnEnterPress,
+                placeholder: inlineEdit.placeholder,
               }}
-              maxLength={inlineEdit.maxLength}
-              onChange={inlineEdit.handleOnChange}
-              placeholder={inlineEdit.placeholder}
               size={inlineEdit.size}
+              error={inlineEdit.error}
+              disabled={inlineEdit.disabled}
+              hideIcon={inlineEdit.hideIcon}
+              style={inlineEdit.style}
             />
           </S.PageHeaderInlineEdit>
         )}

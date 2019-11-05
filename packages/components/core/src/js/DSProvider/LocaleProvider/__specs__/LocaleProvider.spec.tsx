@@ -25,7 +25,7 @@ describe('LocaleProvider', () => {
   it('should flat keys', function() {
     // ARRANGE
     const C = render(
-      <LocaleProvider code="en_GB" locale="en" messages={messages}>
+      <LocaleProvider locale="en-GB" messages={messages}>
         <ExampleComponenentIntl />
       </LocaleProvider>
     );
@@ -41,7 +41,7 @@ describe('LocaleProvider', () => {
     console.error = mockedError;
     // ARRANGE
     const C = render(
-      <LocaleProvider code="en_GB" locale="ru" messages={messages}>
+      <LocaleProvider locale="es" messages={messages}>
         <ExampleComponenentIntl />
       </LocaleProvider>
     );
@@ -49,7 +49,7 @@ describe('LocaleProvider', () => {
     // ASSERT
     expect(C.getByText('FOO.BAR.ITEM')).toBeTruthy();
     expect(mockedError).toHaveBeenCalledWith(
-      '[React Intl] Missing locale data for locale: "ru". Using default locale: "en" as fallback.'
+      '[React Intl] Missing locale data for locale: "es". Using default locale: "en" as fallback.'
     );
   });
 });

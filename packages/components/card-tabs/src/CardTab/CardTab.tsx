@@ -107,7 +107,6 @@ const CardTab: React.FC<CardTabProps> = ({
         {edited ? (
           <InlineEdit
             className="ds-card-tabs__edit-name"
-            onChange={handleChangeName}
             size="small"
             hideIcon
             style={{ maxWidth: 46 }}
@@ -115,6 +114,7 @@ const CardTab: React.FC<CardTabProps> = ({
               value: editedName,
               name: `ds-card-tab-input-${id}`,
               onBlur: handleEditNameBlur,
+              onChange: handleChangeName,
             }}
             data-testid="card-tab-edit-input"
           />

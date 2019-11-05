@@ -1,12 +1,8 @@
 import * as React from 'react';
 import range from 'lodash/range';
-
-import { DSProvider } from '@synerise/ds-core';
+import { text, select, number, boolean } from '@storybook/addon-knobs';
 import Button from '@synerise/ds-button';
 import Card, { CardGroup } from '@synerise/ds-card';
-
-import { storiesOf } from '@storybook/react';
-import { boolean, text, number, select } from '@storybook/addon-knobs';
 
 const sizes = {
   None: null,
@@ -58,37 +54,39 @@ const renderCard = props => {
   );
 };
 
-storiesOf('Components|Card', module)
-  .add('Single', () => {
+const stories = {
+  single: () => {
     const { props } = init();
 
     return (
-      <DSProvider code="en_GB">
-        <div style={{ margin: 24 }}>
-          <h3>Single card</h3>
-          <div style={{ paddingTop: 12, width: '100%' }}>{renderCard(props)}</div>
-        </div>
-      </DSProvider>
+      <div style={{ margin: 24 }}>
+        <h3>Single card</h3>
+        <div style={{ paddingTop: 12, width: '100%' }}>{renderCard(props)}</div>
+      </div>
     );
-  })
-
-  .add('Group', () => {
+  },
+  group: () => {
     const { props } = init();
     const itemsInGroup = number('Number of cards rendered', 9);
     const rowItems = number('Items per row', 3);
 
     return (
-      <DSProvider code="en_GB">
-        <div style={{ margin: 24 }}>
-          <h3>Card Group</h3>
-          <div style={{ paddingTop: 12, width: '100%' }}>
-            <CardGroup columns={rowItems}>
-              {range(1, itemsInGroup).map(i => (
-                <React.Fragment key={i}>{renderCard(props)}</React.Fragment>
-              ))}
-            </CardGroup>
-          </div>
+      <div style={{ margin: 24 }}>
+        <h3>Card Group</h3>
+        <div style={{ paddingTop: 12, width: '100%' }}>
+          <CardGroup columns={rowItems}>
+            {range(1, itemsInGroup).map(i => (
+              <React.Fragment key={i}>{renderCard(props)}</React.Fragment>
+            ))}
+          </CardGroup>
         </div>
-      </DSProvider>
+      </div>
     );
-  });
+  },
+};
+
+export default {
+  name: 'Components|Card',
+  stories,
+  Component: Card,
+};

@@ -8,6 +8,8 @@ const PLACEHOLDER = 'Placeholder';
 const INPUT_VALUE = 'input value';
 const INPUT_VALUE_CHANGED = 'input value changed';
 const onChange = jest.fn();
+const onEnterPress = jest.fn();
+const onBlur = jest.fn();
 
 const setup = ({
     disabled = false, 
@@ -27,18 +29,20 @@ const setup = ({
       input={{
         name,
         value: INPUT_VALUE,
+        onChange: e => onChange(e.target.value),
+        onEnterPress: e => onEnterPress(e),
+        onBlur: e => onBlur(e),
+        maxLength: maxLength,
+        placeholder: PLACEHOLDER,
+        autoComplete: autoComplete,
       }}
-      onChange={e => onChange(e.target.value)}
-      maxLength={maxLength}
-      placeholder={PLACEHOLDER}
       size={'normal'}
       error={false}
       disabled={disabled}
-      autoComplete={autoComplete}
       hideIcon={hideIcon}
     />
   )
-  const input = utils.getByPlaceholderText(PLACEHOLDER) as HTMLInputElement
+  const input = utils.getByPlaceholderText(PLACEHOLDER) as HTMLInputElement;
 
   return {
     input,
@@ -65,7 +69,7 @@ describe('InlineEdit', () => {
     fireEvent.change(input, { target: { value: INPUT_VALUE_CHANGED } })
     
     // ASSERT
-    expect(onChange).toHaveBeenCalled()
+    expect(onChange).toHaveBeenCalled();
     expect(input.value).toBe(INPUT_VALUE)
   });
 
@@ -76,8 +80,8 @@ describe('InlineEdit', () => {
       // ARRANGE
       const { input } = setup({
         name
-      })
-      
+      });
+
       // ASSERT
       expect(input.id).toBe(ids[i])
     });
@@ -147,9 +151,36 @@ describe('InlineEdit', () => {
   });
 
   it('shoud hide icon', () => {
+    // ARRANGE
     const { utils } = setup({
       hideIcon: true,
     });
+
+    // ASSERT
     expect(utils.queryAllByTestId('inline-edit-icon').length).toBe(0);
-  })
+  });
+
+  it('should fire onEnterPress', () => {
+    // ARRANGE
+    const { input } = setup({});
+
+    // ACT
+    fireEvent.focus(input);
+    fireEvent.keyPress(input, {key: 'Enter', keyCode: 13});
+
+    // ASSERT
+    expect(onEnterPress).toBeCalled();
+  });
+
+  it('should fire onBlur', () => {
+    // ARRANGE
+    const { input } = setup({});
+
+    // ACT
+    fireEvent.focus(input);
+    fireEvent.blur(input);
+
+    // ASSERT
+    expect(onBlur).toBeCalled();
+  });
 });

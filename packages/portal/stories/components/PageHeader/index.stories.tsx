@@ -1,8 +1,6 @@
 import PageHeader from '@synerise/ds-page-header';
 
 import * as React from 'react';
-import {storiesOf} from '@storybook/react';
-import {DSProvider} from '@synerise/ds-core';
 import {action} from '@storybook/addon-actions';
 import Tabs from "@synerise/ds-tabs/dist/Tabs";
 import {withState} from "@dump247/storybook-state";
@@ -43,168 +41,105 @@ const tabs = [
   }
 ];
 
-const stories = storiesOf('Components|Page Header', module);
-
-stories.add('default', () => {
-  return (
-    <DSProvider code="en_GB">
-      <>
-        <PageHeader title="Default Main page header"/>
-      </>
-    </DSProvider>
-  );
-});
-
-stories.add('description', () => {
-  return (
-    <DSProvider code="en_GB">
-      <>
-        <PageHeader title="Main page header with description" description="Description"/>
-      </>
-    </DSProvider>
-  );
-});
-
-stories.add('option bar', () => {
-  return (
-    <DSProvider code="en_GB">
-      <>
-        <PageHeader title="Main page header with option bar" bar={
-          <Button>
-            Function
-          </Button>}
-        />
-      </>
-    </DSProvider>
-  );
-});
-
-stories.add('tabs', withState({
-  activeTab: 0,
-})(({store}) => {
-  return (
-    <DSProvider code="en_GB">
-      <>
-        <PageHeader title="Main page header with tabs" tabs={
-          <Tabs
-            tabs={tabs}
-            activeTab={store.state.activeTab}
-            handleTabClick={(index: number) => store.set({activeTab: index})}
-            configuration={{
-              label: 'Manage dashboards',
-              action: action('Manage dashboards click'),
-            }}
-          />
-        }/>
-      </>
-    </DSProvider>
-  );
-}));
-
-stories.add('tabs and bar', withState({
-  activeTab: 0,
-})(({store}) => {
-  return (
-    <DSProvider code="en_GB">
-      <>
-        <PageHeader title="Main page header with tabs" bar={<><br/><br/></>} tabs={
-          <Tabs
-            tabs={tabs}
-            activeTab={store.state.activeTab}
-            handleTabClick={(index: number) => store.set({activeTab: index})}
-            configuration={{
-              label: 'Manage dashboards',
-              action: action('Manage dashboards click'),
-            }}
-          />
-        }/>
-      </>
-    </DSProvider>
-  );
-}));
-
-stories.add('isolated', () => {
-  return (
-    <DSProvider code="en_GB">
-      <>
-        <PageHeader title="Nav can be isolated from header's wrapper" isolated={boolean('Isolated', true)}/>
-      </>
-    </DSProvider>
-  );
-});
-
-stories.add('back button', () => {
-  return (
-    <DSProvider code="en_GB">
-      <>
-        <PageHeader title="Main page header witch back button" onGoBack={action('goBack')}/>
-      </>
-    </DSProvider>
-  );
-});
-
-stories.add('close ', () => {
-  return (
-    <DSProvider code="en_GB">
-      <>
-        <PageHeader title="close button" onClose={action('onClick')}/>
-      </>
-    </DSProvider>
-  );
-});
-
-stories.add('examples', withState({
-  activeTab: 0,
-  value: ''
-})(({store}) => {
-  return (
-    <DSProvider code="en_GB">
-      <>
-        <PageHeader onGoBack={action('goBack')} bar={<><br/><br/></>} inlineEdit={{
-          name: 'name-of-input', value: store.state.value, maxLength: 60, handleOnChange: (event) => {
-            store.set({ value: event.target.value })
-          }, placeholder: 'Example text', size: 'normal'
+const stories = {
+  default: {
+    title: 'Default Main page header'
+  },
+  description: {
+    title: 'Main page header with description',
+    description: 'Description',
+  },
+  optionBar: {
+    title: 'Main page header with option bar',
+    bar: <Button>Function</Button>,
+  },
+  tabs: withState({
+    activeTab: 0,
+  })(({ store }) => (
+    <PageHeader title="Main page header with tabs" tabs={
+      <Tabs
+        tabs={[
+          {
+            label: 'Tab first',
+          }, {
+            label: 'Tab second',
+          }, {
+            label: 'Tab Third',
+          }
+        ]}
+        activeTab={store.state.activeTab}
+        handleTabClick={(index: number) => store.set({activeTab: index})}
+        configuration={{
+          label: 'Manage dashboards',
+          action: action('Manage dashboards click'),
         }}
-                    more={
-                      <Button type="ghost" mode="icon-label">
-                        <Icon component={<ArrowRightCircleM />} color={theme.palette['grey-600']} />
-                        More details
-                      </Button>
-                    } avatar={
-          <Badge status={select('status', statuses, 'success')}>
-            <Avatar
-              backgroundColor={select('backgroundColors', backgroundColors, 'red')}
-              disabled={boolean('disabled', false)}
-              icon={'mail'}
-              hasStatus
-              shape={select('shape', shapes, 'circle')}
-              size={number('size', 40)}
-            />
-          </Badge>
-        } tabs={
-          <Tabs
-            tabs={tabs}
-            activeTab={store.state.activeTab}
-            handleTabClick={(index: number) => store.set({activeTab: index})}
-            configuration={{
-              label: 'Manage dashboards',
-              action: action('Manage dashboards click'),
-            }}
-          />
-        } rightSide={
-          <>
-            <Button>
-              Duplicate
-            </Button>
-            <Button mode={'split'} type={'primary'}>
-              Edit
-              <Icon component={<AngleDownS/>} color={'#ffffff'}/>
-            </Button>
-          </>}
+      />
+    }/>
+    )),
+  isolated: {
+    title: 'Nav can be isolated from header\'s wrapper',
+    isolated: boolean('Isolated', true),
+  },
+  backButton: {
+    title: 'Main page header witch back button',
+    onGoBack: action('goBack'),
+  },
+  closeButton: {
+    title: 'Main page header witch close button',
+    onClose: action('onClick'),
+  },
+  examples: withState({
+    activeTab: 0,
+    value: '',
+  })(({ store }) => (
+    <PageHeader onGoBack={action('goBack')} bar={<><br/><br/></>} inlineEdit={{
+      name: 'name-of-input', value: store.state.value, maxLength: 60, handleOnChange: (event) => {
+        store.set({ value: event.target.value })
+      }, handleOnBlur: () => action('onBlur'), handleOnEnterPress: () => action('onEnterPress'), placeholder: 'Example text', size: 'normal'
+    }}
+                more={
+                  <Button type="ghost" mode="icon-label">
+                    <Icon component={<ArrowRightCircleM />} color={theme.palette['grey-600']} />
+                    More details
+                  </Button>
+                } avatar={
+      <Badge status={select('status', statuses, 'success')}>
+        <Avatar
+          backgroundColor={select('backgroundColors', backgroundColors, 'red')}
+          disabled={boolean('disabled', false)}
+          icon={'mail'}
+          hasStatus
+          shape={select('shape', shapes, 'circle')}
+          size={number('size', 40)}
         />
-      </>
-    </DSProvider>
-  );
-}));
+      </Badge>
+    } tabs={
+      <Tabs
+        tabs={tabs}
+        activeTab={store.state.activeTab}
+        handleTabClick={(index: number) => store.set({activeTab: index})}
+        configuration={{
+          label: 'Manage dashboards',
+          action: action('Manage dashboards click'),
+        }}
+      />
+    } rightSide={
+      <>
+        <Button>
+          Duplicate
+        </Button>
+        <Button mode={'split'} type={'primary'}>
+          Edit
+          <Icon component={<AngleDownS/>} color={'#ffffff'}/>
+        </Button>
+      </>}
+    />
+  )),
+};
 
-export default stories;
+export default {
+  name: 'Components|Page Header',
+  withoutCenter: true,
+  stories,
+  Component: PageHeader,
+};

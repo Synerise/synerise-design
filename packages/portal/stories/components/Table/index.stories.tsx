@@ -1,12 +1,14 @@
 import * as React from 'react';
 import faker from 'faker';
-import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { boolean, text, number } from '@storybook/addon-knobs';
+import { boolean } from '@storybook/addon-knobs';
 import Table from '@synerise/ds-table';
-import { DSProvider } from '@synerise/ds-core';
 
-const stories = storiesOf('Components|Table', module);
+const decorator = (storyFn) => (
+  <div style={{ padding: 20, width: '100%', minWidth: '1500px' }}>
+    {storyFn()}
+  </div>
+);
 
 const dataSource = [...new Array(55)].map((i, k) => ({
   key: k + 1,
@@ -33,34 +35,31 @@ const columns = [
   },
 ];
 
-stories.add('default', () => {
-  const selection = boolean('show selection', false);
-  const pagination = {
-    showSizeChanger: boolean('pagination.showSizeChanger', true),
-    showQuickJumper: boolean('pagination.showQuickJumper', true),
-    onChange: action('pageChanged'),
-  };
-  const rowSelection = {
-    selectedRowKeys: [0, 5],
-    onChange: action('checkboxChanged'),
-  };
-  const onSearch = action('onSearch');
-  return (
-    <div style={{ padding: 20, width: '100%', minWidth: '1500px' }}>
-      <DSProvider code="pl_PL">
-        <Table
-          title="Tests"
-          subTitle={`${dataSource.length} records`}
-          dataSource={dataSource}
-          columns={columns}
-          loading={true}
-          pagination={pagination}
-          rowSelection={selection ? rowSelection : undefined}
-          onSearch={onSearch}
-        />
-      </DSProvider>
-    </div>
-  );
-});
+const rowSelection = {
+  selectedRowKeys: [0, 5],
+  onChange: action('checkboxChanged'),
+};
 
-export default stories;
+const stories = {
+  default: () => ({
+    title: 'Tests',
+    subTitle: `${dataSource.length} records`,
+    dataSource,
+    columns,
+    loading: true,
+    pagination: {
+      showSizeChanger: boolean('pagination.showSizeChanger', true),
+      showQuickJumper: boolean('pagination.showQuickJumper', true),
+      onChange: action('pageChanged'),
+    },
+    rowSelection: (boolean('show selection', false) ? rowSelection : undefined),
+    onSearch: action('onSearch'),
+  }),
+};
+
+export default {
+  name: 'Components|Table',
+  decorator,
+  stories,
+  Component: Table,
+};

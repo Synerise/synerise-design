@@ -70,4 +70,19 @@ describe('Bagde', () => {
     expect(badgeDot).toHaveStyle('background: rgb(255, 255, 255)');
     expect(badgeHoverPopup).toHaveTextContent(/^error$/);
   });
+
+  it('should render counter badge with outline', () => {
+    // ARRANGE
+    const { container } = renderWithProvider(<Badge
+      count={4}
+      offset={[0, 0]}
+      outlined={true}
+      overflowCount={99}
+      showZero={false}
+      title={'title'}
+    />);
+    const badgeDot = container.querySelector('.ant-badge-count');
+
+    expect(badgeDot).toHaveStyle('box-shadow: 0 0 0 1px #ffffff;');
+  });
 });

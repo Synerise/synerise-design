@@ -1,7 +1,7 @@
 {
   "name": "docs",
   "private": true,
-  "version": "0.0.8",
+  "version": "0.0.9",
   "scripts": {
     "postinstall": "node ../../../scripts/docs/componentmd.js",
     "examples": "docusaurus-examples",
@@ -12,6 +12,6 @@
     "rename-version": "docusaurus-rename-version"
   },
   "devDependencies": {
-    "docusaurus": "^1.13.0"
+    "docusaurus": "^1.14.0"
   }
 }

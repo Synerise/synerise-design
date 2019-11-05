@@ -1,14 +1,20 @@
 import * as React from 'react';
-import { DSProvider } from '@synerise/ds-core';
 import ManageableList from '@synerise/ds-manageable-list';
 import FileM from '@synerise/ds-icon/dist/icons/FileM';
 import Tag, { TagShape } from '@synerise/ds-tags/dist/Tag/Tag';
-import { storiesOf } from '@storybook/react';
 import { withState } from '@dump247/storybook-state';
 import { action } from '@storybook/addon-actions';
 import { ListType } from '@synerise/ds-manageable-list/dist/ManageableList';
 import { boolean } from '@storybook/addon-knobs';
 import FolderM from '@synerise/ds-icon/dist/icons/FolderM';
+
+const decorator = (storyFn) => (
+  <div style={{ width: '200px' }}>
+    <div style={{ background: '#fff', width: '300px' }}>
+      {storyFn()}
+    </div>
+  </div>
+);
 
 const ITEMS:any = [
   {
@@ -108,10 +114,10 @@ const CONTENT_ITEMS: any = [
   }
 ];
 
-storiesOf('Components|Manageable List', module)
-  .add('default', withState({
+const stories = {
+  default: withState({
     items: ITEMS,
-  })(({store}) => {
+  })(({ store }) => {
     const addItem = ({name}): void => {
       store.set({
         items: [
@@ -129,7 +135,7 @@ storiesOf('Components|Manageable List', module)
       store.set({
         items: store.state.items.filter(item => item.id !== id),
       });
-    }
+    };
 
     const editItem = (props): void => {
       store.set({
@@ -143,83 +149,71 @@ storiesOf('Components|Manageable List', module)
     };
 
     return (
-      <div style={{ width: '200px' }}>
-        <DSProvider code="en_GB">
-          <div style={{ background: "#fff", width: '300px' }}>
-            <ManageableList
-              addItemLabel="Add folder"
-              showMoreLabel="show all"
-              showLessLabel="show less"
-              more="more"
-              less="less"
-              maxToShowItems={5}
-              onItemAdd={addItem}
-              onItemRemove={removeItem}
-              onItemEdit={editItem}
-              onItemSelect={action('onItemSelect')}
-              items={store.state.items}
-              loading={false}
-            />
-          </div>
-        </DSProvider>
-      </div>
+      <ManageableList
+        addItemLabel="Add folder"
+        showMoreLabel="show all"
+        showLessLabel="show less"
+        more="more"
+        less="less"
+        maxToShowItems={5}
+        onItemAdd={addItem}
+        onItemRemove={removeItem}
+        onItemEdit={editItem}
+        onItemSelect={action('onItemSelect')}
+        items={store.state.items}
+        loading={false}
+      />
     )
-  }))
-  .add('empty list', () => (
-    <div style={{width: '200px'}}>
-      <DSProvider code="en_GB">
-        <div style={{ background: "#fff", width: '300px' }}>
-          <ManageableList
-            addItemLabel="Add folder"
-            showMoreLabel="show all"
-            showLessLabel="show less"
-            more="more"
-            less="less"
-            maxToShowItems={5}
-            onItemAdd={action('onItemAdd')}
-            onItemRemove={action('onItemRemove')}
-            onItemEdit={action('onItemEdit')}
-            onItemSelect={action('onItemSelect')}
-            items={[]}
-            loading={false}
-          />
-        </div>
-      </DSProvider>
-    </div>
-  ))
-  .add('content list', withState({
+  }),
+  emptyList: {
+    addItemLabel: 'Add folder',
+    showMoreLabel: 'show all',
+    showLessLabel: 'show less',
+    more: 'more',
+    less: 'less',
+    maxToShowItems: 5,
+    onItemAdd: action('onItemAdd'),
+    onItemRemove: action('onItemRemove'),
+    onItemEdit: action('onItemEdit'),
+    onItemSelect: action('onItemSelect'),
+    items: [],
+    loading: false,
+  },
+  contentList: withState({
     items: CONTENT_ITEMS,
-  })(({store}) => {
+  })(({ store }) => {
     const handleChangeOrder = (newOrder) => {
       store.set({items: newOrder});
     };
 
     return (
-      <div style={{width: '600'}}>
-        <DSProvider code="en_GB">
-          <div style={{ background: "#fff", width: '600px' }}>
-            <ManageableList
-              addItemLabel="Add position"
-              showMoreLabel="show all"
-              showLessLabel="show less"
-              more="more"
-              less="less"
-              maxToShowItems={5}
-              onItemAdd={action('onItemAdd')}
-              onItemRemove={action('onItemRemove')}
-              onItemEdit={action('onItemEdit')}
-              onItemSelect={action('onItemSelect')}
-              onItemDuplicate={action('onItemDuplicate')}
-              onChangeOrder={ boolean('Change order available', false) ? handleChangeOrder : null}
-              type={ListType.content}
-              items={store.state.items}
-              loading={false}
-              addButtonDisabled={boolean('Disable add item button', false)}
-              changeOrderDisabled={boolean('Disable change order', false)}
-              greyBackground={ boolean('Grey background', false) }
-            />
-          </div>
-        </DSProvider>
-      </div>
+      <ManageableList
+        addItemLabel="Add position"
+        showMoreLabel="show all"
+        showLessLabel="show less"
+        more="more"
+        less="less"
+        maxToShowItems={5}
+        onItemAdd={action('onItemAdd')}
+        onItemRemove={action('onItemRemove')}
+        onItemEdit={action('onItemEdit')}
+        onItemSelect={action('onItemSelect')}
+        onItemDuplicate={action('onItemDuplicate')}
+        onChangeOrder={boolean('Change order available', false) ? handleChangeOrder : null}
+        type={ListType.content}
+        items={store.state.items}
+        loading={false}
+        addButtonDisabled={boolean('Disable add item button', false)}
+        changeOrderDisabled={boolean('Disable change order', false)}
+        greyBackground={boolean('Grey background', false)}
+      />
     )
-  }));
+  })
+};
+
+export default {
+  name: 'Components|Manageable List',
+  decorator,
+  stories,
+  Component: ManageableList,
+};
