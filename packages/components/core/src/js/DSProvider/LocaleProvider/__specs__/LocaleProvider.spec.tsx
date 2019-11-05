@@ -41,7 +41,7 @@ describe('LocaleProvider', () => {
     console.error = mockedError;
     // ARRANGE
     const C = render(
-      <LocaleProvider locale="ru" messages={messages}>
+      <LocaleProvider locale="es" messages={messages}>
         <ExampleComponenentIntl />
       </LocaleProvider>
     );
@@ -49,7 +49,7 @@ describe('LocaleProvider', () => {
     // ASSERT
     expect(C.getByText('FOO.BAR.ITEM')).toBeTruthy();
     expect(mockedError).toHaveBeenCalledWith(
-      '[React Intl] Missing locale data for locale: "ru". Using default locale: "en" as fallback.'
+      '[React Intl] Missing locale data for locale: "es". Using default locale: "en" as fallback.'
     );
   });
 });

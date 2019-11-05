@@ -16,20 +16,39 @@ export interface LocaleProviderProps {
   timeZone?: string; // Europe/Warsaw
 }
 
+interface LocaleProviderState {
+  dsLocales: NestedMessages;
+}
+
 const DEFAULT_LANG = 'en-US';
 
-export default class LocaleProvider extends React.Component<LocaleProviderProps> {
+export default class LocaleProvider extends React.Component<LocaleProviderProps, LocaleProviderState> {
   static defaultProps = { locale: DEFAULT_LANG, localeData: {} };
+
+  state = {
+    dsLocales: {},
+  };
+
+  componentDidMount(): void {
+    const { locale } = this.props;
+    const lang = this.getLangForCode(locale || DEFAULT_LANG);
+    import(`../../../i18n/${lang}.json`).then(dsLocales =>
+      this.setState({
+        dsLocales,
+      })
+    );
+  }
 
   getLangForCode = (code: string): string => code.substring(0, 2);
 
   render(): React.ReactNode {
     const { messages, locale, timeZone, children } = this.props;
+    const { dsLocales } = this.state;
     const code = locale || DEFAULT_LANG;
     const lang = this.getLangForCode(code);
     const localeData = messages || {};
     const antLocale = Object.prototype.hasOwnProperty.call(antMessages, lang) ? antMessages[lang] : antMessages.default;
-    const currentMessages = flatten({ ...(localeData[lang] as NestedMessages) });
+    const currentMessages = flatten({ ...dsLocales, ...(localeData[lang] as NestedMessages) });
     return (
       <AntConfigProvider locale={antLocale}>
         <IntlProvider textComponent="span" locale={code} messages={currentMessages as Messages} timeZone={timeZone}>

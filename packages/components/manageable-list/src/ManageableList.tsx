@@ -1,6 +1,7 @@
 import * as React from 'react';
 import List from '@synerise/ds-list';
 import { ReactSortable } from 'react-sortablejs-typescript';
+import { FormattedMessage } from 'react-intl';
 import * as S from './ManageableList.styles';
 import Item, { ItemProps } from './Item/Item';
 import AddItemWithName from './AddItemWithName/AddItemWithName';
@@ -11,12 +12,12 @@ export enum ListType {
   content,
 }
 
-interface Props {
-  addItemLabel: string;
-  showMoreLabel: string;
-  showLessLabel: string;
-  more: string;
-  less: string;
+interface ManageableListProps {
+  addItemLabel?: string | React.ReactNode;
+  showMoreLabel?: string | React.ReactNode;
+  showLessLabel?: string | React.ReactNode;
+  more?: string | React.ReactNode;
+  less?: string | React.ReactNode;
   maxToShowItems: number;
   onItemAdd?: (addParams?: { name: string }) => void;
   onItemRemove?: (removeParams: { id: string }) => void;
@@ -32,20 +33,20 @@ interface Props {
   greyBackground?: boolean;
 }
 
-const ManageableList: React.FC<Props> = ({
+const ManageableList: React.FC<ManageableListProps> = ({
   onItemAdd,
   onItemSelect,
   onItemDuplicate,
   onItemRemove,
   onItemEdit,
   onChangeOrder,
-  addItemLabel,
+  addItemLabel = <FormattedMessage id="DS.MANAGABLE-LIST.ADD-ITEM" />,
   items,
   maxToShowItems = 5,
-  showMoreLabel,
-  showLessLabel,
-  more,
-  less,
+  showMoreLabel = <FormattedMessage id="DS.MANAGABLE-LIST.SHOW-MORE" />,
+  showLessLabel = <FormattedMessage id="DS.MANAGABLE-LIST.SHOW-LESS" />,
+  more = <FormattedMessage id="DS.MANAGABLE-LIST.MORE" />,
+  less = <FormattedMessage id="DS.MANAGABLE-LIST.LESS" />,
   loading,
   type = ListType.default,
   addButtonDisabled = false,
@@ -112,10 +113,10 @@ const ManageableList: React.FC<Props> = ({
   const renderList = React.useCallback(() => {
     return onChangeOrder && !changeOrderDisabled ? (
       <ReactSortable list={items} setList={onChangeOrder}>
-        {visibleItems.map(item => getItem(item))}
+        {visibleItems.map(getItem)}
       </ReactSortable>
     ) : (
-      <List loading={loading} dataSource={[visibleItems]} renderItem={(item): React.ReactNode => getItem(item)} />
+      <List loading={loading} dataSource={[visibleItems]} renderItem={getItem} />
     );
   }, [changeOrderDisabled, items, visibleItems, onChangeOrder, loading, getItem]);
 
