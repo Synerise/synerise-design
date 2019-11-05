@@ -17,6 +17,7 @@ const getDefaultProps = () => ({
     multi: 'multi'
   }, 'single'),
   disabled: boolean('Disabled', false),
+  removable: boolean('Allow to remove uploaded files', true),
   error: text('Error message', ''),
   accept: array('Accepted mime types (comma seperated)', ['image/png, image/svg+xml']),
   testFileError: boolean('Display preview error example', false),
@@ -54,7 +55,13 @@ const stories = {
     return (
       <DSProvider code="en_GB">
         <div style={{ margin: 24, width: 340 }}>
-          <FileUploader {...rest} files={getFiles()} onChange={newFiles => setFiles(newFiles.map(file => ({ file })))} texts={texts} />
+          <FileUploader
+            {...rest}
+            files={getFiles()}
+            texts={texts}
+            onUpload={newFiles => setFiles(newFiles.map(file => ({ file })))}
+            onRemove={(rf, rfi) => setFiles(files.filter((f, i) => i !== rfi))}
+          />
         </div>
       </DSProvider>
     );

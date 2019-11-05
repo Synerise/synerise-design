@@ -48,7 +48,36 @@ export const SizeOrError = styled(Typography.Text)`
   }
 `;
 
-export const FileViewContainer = styled.button<{ disabled?: boolean; error?: boolean }>`
+export const RemoveButtonWrapper = styled.div`
+  display: none;
+  background-color: #fff;
+  z-index: 100;
+  border: 0;
+  border-radius: 8px;
+  padding: 0;
+  margin: 0;
+  height: 16px;
+  width: 16px;
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  cursor: pointer;
+  overflow: hidden;
+
+  ${IconContainer} {
+    position: absolute;
+    right: -4px;
+    top: -4px;
+    transition: fill 0.3s;
+    fill: ${(props): string => props.theme.palette['red-600']};
+
+    &:hover {
+      fill: ${(props): string => props.theme.palette['red-500']};
+    }
+  }
+`;
+
+export const FileViewContainer = styled.button<{ disabled?: boolean; error?: boolean; removable?: boolean }>`
   background-color: ${(props): string => props.theme.palette.white};
   border-radius: 3px;
   border: 1px solid ${(props): string => props.theme.palette['grey-200']};
@@ -59,9 +88,18 @@ export const FileViewContainer = styled.button<{ disabled?: boolean; error?: boo
   width: 100%;
   text-align: left;
   line-height: initial;
+  position: relative;
 
   &:hover {
     border-color: ${(props): string => props.theme.palette['grey-300']};
+
+    ${(props): SimpleInterpolation =>
+      props.removable &&
+      `
+      ${RemoveButtonWrapper} {
+        display: block;
+      }
+    `}
   }
 
   &:focus {
