@@ -11,6 +11,7 @@ export interface ExtendedFile {
   file: File;
   error?: string;
   disabled?: boolean;
+  progress?: number;
 }
 
 export interface FileUploaderProps {
@@ -88,6 +89,7 @@ FileUploader.defaultProps = {
   texts: {
     buttonLabel: 'Upload a new file or drag one here',
     size: 'Size:',
+    uploading: 'Uploading...',
   },
 };
 

@@ -27,6 +27,7 @@ export const PlaceholderImage = styled.div`
 export const Info = styled.div`
   overflow: hidden;
   margin: 0 0 0 10px;
+  width: 100%;
 `;
 
 export const Name = styled(Label)`
@@ -91,4 +92,8 @@ export const FileViewContainer = styled.button<{ disabled?: boolean; error?: boo
       }
     }
   `};
+
+  .ant-progress-line {
+    margin: 8px 0 0 !important;
+  }
 `;
