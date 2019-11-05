@@ -15,6 +15,23 @@ const decorator = (storyFn) => (
   </div>
 );
 
+const removeItem = (props, store): void => {
+  store.set({
+    items: store.state.items.filter(item => item.id !== props.id),
+  });
+};
+
+const editItem = (props, store): void => {
+  store.set({
+    items: store.state.items.map(item => {
+      if(item.id === props.id) {
+        item.name = props.name;
+      }
+      return item;
+    })
+  })
+};
+
 const ITEMS:any = [
   {
     id: "00000000-0000-0000-0000-000000000000",
@@ -113,6 +130,16 @@ const CONTENT_ITEMS: any = [
   }
 ];
 
+const EMPTY_CONTENT_ITEM = {
+    id: "",
+    name: "New Item",
+    canAdd: true,
+    canUpdate: true,
+    canDelete: true,
+    tag: <Tag name={"A"} shape={TagShape.SINGLE_CHARACTER_ROUND} color={"red"} />,
+    content: <div>content</div>
+};
+
 const stories = {
   default: withState({
     items: ITEMS,
@@ -130,23 +157,6 @@ const stories = {
       });
     };
 
-    const removeItem = ({id}): void => {
-      store.set({
-        items: store.state.items.filter(item => item.id !== id),
-      });
-    };
-
-    const editItem = (props): void => {
-      store.set({
-        items: store.state.items.map(item => {
-          if(item.id === props.id) {
-            item.name = props.name;
-          }
-          return item;
-        })
-      })
-    };
-
     return (
       <ManageableList
         addItemLabel="Add folder"
@@ -156,8 +166,8 @@ const stories = {
         less="less"
         maxToShowItems={5}
         onItemAdd={addItem}
-        onItemRemove={removeItem}
-        onItemEdit={editItem}
+        onItemRemove={props => removeItem(props, store)}
+        onItemEdit={props => editItem(props, store)}
         onItemSelect={action('onItemSelect')}
         items={store.state.items}
         loading={false}
@@ -185,6 +195,31 @@ const stories = {
       store.set({items: newOrder});
     };
 
+    const addItem = (): void => {
+      store.set({
+        items: [
+          ...store.state.items,
+          {
+            ...EMPTY_CONTENT_ITEM,
+            id: Date.now(),
+          }
+        ]
+      });
+    };
+
+    const duplicateItem = (props): void => {
+      const itemForDuplication = store.state.items.find(item => item.id === props.id);
+      store.set({
+        items: [
+          ...store.state.items,
+          {
+            ...itemForDuplication,
+            id: Date.now(),
+          }
+        ]
+      })
+    };
+
     return (
       <ManageableList
         addItemLabel="Add position"
@@ -193,11 +228,11 @@ const stories = {
         more="more"
         less="less"
         maxToShowItems={5}
-        onItemAdd={action('onItemAdd')}
-        onItemRemove={action('onItemRemove')}
-        onItemEdit={action('onItemEdit')}
+        onItemAdd={addItem}
+        onItemRemove={props => removeItem(props, store)}
+        onItemEdit={props => editItem(props, store)}
         onItemSelect={action('onItemSelect')}
-        onItemDuplicate={action('onItemDuplicate')}
+        onItemDuplicate={duplicateItem}
         onChangeOrder={boolean('Change order available', false) ? handleChangeOrder : null}
         type='content'
         items={store.state.items}
