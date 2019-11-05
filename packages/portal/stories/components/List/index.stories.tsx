@@ -1,8 +1,5 @@
 import * as React from 'react';
-import { DSProvider } from '@synerise/ds-core';
-import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import centered from '@storybook/addon-centered/react';
 
 import Icon from '@synerise/ds-icon';
 import FileM from '@synerise/ds-icon/dist/icons/FileM';
@@ -11,6 +8,14 @@ import List from '@synerise/ds-list';
 import Checkbox from '@synerise/ds-checkbox';
 import Radio from '@synerise/ds-radio';
 import Switch from '@synerise/ds-switch';
+
+const decorator = (storyFn) => (
+  <div style={{ width: '200px' }}>
+    <div style={{ background: '#fff', width: '300px' }}>
+      {storyFn()}
+    </div>
+  </div>
+);
 
 const dataMultiple = [
   [
@@ -44,131 +49,94 @@ const actions = (
   </div>
 );
 
-storiesOf('Components|List', module)
-  .addDecorator(centered)
-  .add('default', () => (
-    <div style={{ width: '200px' }}>
-      <DSProvider code="en_GB">
-        <div style={{ background: '#fff', width: '300px' }}>
-          <List
-            header="Folders"
-            dataSource={dataSingle}
-            renderItem={item => (
-              <List.Item
-                onSelect={action('onSelect')}
-                icon={<Icon component={<FileM />} />}
-                disabled={item.disabled}
-                danger={item.danger}
-              >
-                {item.text}
-              </List.Item>
-            )}
-          />
-        </div>
-      </DSProvider>
-    </div>
-  ))
-  .add('complex list', () => (
-    <div style={{ width: '200px' }}>
-      <DSProvider code="en_GB">
-        <div style={{ background: '#fff', width: '300px' }}>
-          <List
-            header="Folders"
-            dataSource={dataMultiple}
-            renderItem={item => (
-              <List.Item
-                onSelect={action('onSelect')}
-                icon={<Icon component={<FileM />} />}
-                disabled={item.disabled}
-                danger={item.danger}
-                actions={actions}
-              >
-                {item.text}
-              </List.Item>
-            )}
-          />
-        </div>
-      </DSProvider>
-    </div>
-  ))
-  .add('with checkboxes', () => (
-    <div style={{ width: '200px' }}>
-      <DSProvider code="en_GB">
-        <div style={{ background: '#fff', width: '300px' }}>
-          <List
-            header="Select option"
-            dataSource={dataCheckboxes}
-            renderItem={item => (
-              <List.ItemWrapper>
-                <Checkbox
-                  value={item.value}
-                >
-                  {item.label}
-                </Checkbox>
-              </List.ItemWrapper>
-            )}
-          />
-        </div>
-      </DSProvider>
-    </div>
-  ))
-  .add('mixed', () => (
-    <div style={{ width: '200px' }}>
-      <DSProvider code="en_GB">
-        <div style={{ background: '#fff', width: '300px' }}>
-          <List dataSource={dataCheckboxes} renderItem={item => (
-            <List.ItemWrapper>
-                <Checkbox
-                  value={item.value}
-                >
-                  {item.label}
-                </Checkbox>
-              </List.ItemWrapper>
-            )}
-          />
-          <List.Divider />
-          <List
-            dataSource={dataSingle}
-            renderItem={item => (
-              <List.Item
-                onSelect={action('onSelect')}
-                icon={<Icon component={<FileM />} />}
-                disabled={item.disabled}
-                danger={item.danger}
-                actions={actions}
-              >
-                {item.text}
-              </List.Item>
-            )}
-          />
-        </div>
-      </DSProvider>
-    </div>
-  ))
-  .add('with radios', () => (
-    <div style={{ width: '200px' }}>
-      <DSProvider code="en_GB">
-        <div style={{ background: '#fff', width: '300px' }}>
-          <List
-            header="Select option"
-            dataSource={dataCheckboxes}
-            radio
-            options={{ defaultValue: 'A' }}
-            renderItem={item => (
-              <List.ItemWrapper>
-                <Radio
-                  value={item.value}
-                >
-                  {item.label}
-                </Radio>
-              </List.ItemWrapper>
-            )}
-          />
-        </div>
-      </DSProvider>
-    </div>
-  ))
-  .add('with switches', () => {
+const stories = {
+  default: {
+    header: 'Folders',
+    dataSource: dataSingle,
+    renderItem: (item => (
+      <List.Item
+        onSelect={action('onSelect')}
+        icon={<Icon component={<FileM />} />}
+        disabled={item.disabled}
+        danger={item.danger}
+      >
+        {item.text}
+      </List.Item>
+    )),
+  },
+  complexList: {
+    header: 'Folders',
+    dataSource: dataMultiple,
+    renderItem: (item => (
+      <List.Item
+        onSelect={action('onSelect')}
+        icon={<Icon component={<FileM />} />}
+        disabled={item.disabled}
+        danger={item.danger}
+        actions={actions}
+      >
+        {item.text}
+      </List.Item>
+    )),
+  },
+  withCheckboxes: {
+    header: 'Select option',
+    dataSource: dataCheckboxes,
+    renderItem: (item => (
+      <List.ItemWrapper>
+        <Checkbox
+          value={item.value}
+        >
+          {item.label}
+        </Checkbox>
+      </List.ItemWrapper>
+    )),
+  },
+  mixed: () => (
+    <React.Fragment>
+      <List dataSource={dataCheckboxes} renderItem={item => (
+        <List.ItemWrapper>
+          <Checkbox
+            value={item.value}
+          >
+            {item.label}
+          </Checkbox>
+        </List.ItemWrapper>
+      )}
+      />
+      <List.Divider />
+      <List
+        dataSource={dataSingle}
+        renderItem={item => (
+          <List.Item
+            onSelect={action('onSelect')}
+            icon={<Icon component={<FileM />} />}
+            disabled={item.disabled}
+            danger={item.danger}
+            actions={actions}
+          >
+            {item.text}
+          </List.Item>
+        )}
+      />
+    </React.Fragment>
+  ),
+  withRadios: {
+    header: 'Select option',
+    dataSource: dataCheckboxes,
+    radio: true,
+    options: { defaultValue: 'A' },
+    renderItem: (item => (
+      <List.ItemWrapper>
+        <Radio
+          value={item.value}
+        >
+          {item.label}
+        </Radio>
+      </List.ItemWrapper>
+    )),
+  },
+  withSwitches: () => {
     const [state, setState] = React.useState([
       [
         { label: 'Option A', checked: false },
@@ -202,26 +170,28 @@ storiesOf('Components|List', module)
     };
 
     return (
-      <div style={{ width: '200px' }}>
-        <DSProvider code="en_GB">
-          <div style={{ background: '#fff', width: '300px' }}>
-            <List
-              dataSource={state}
-              renderItem={item => {
-                return (
-                  <List.ItemWrapper>
-                    <Switch
-                      label={item.label}
-                      errorText={item.errorText}
-                      checked={item.checked}
-                      onChange={() => handleChange(item.label)}
-                    />
-                  </List.ItemWrapper>
-                );
-              }}
-            />
-          </div>
-        </DSProvider>
-      </div>
+      <List
+        dataSource={state}
+        renderItem={item => {
+          return (
+            <List.ItemWrapper>
+              <Switch
+                label={item.label}
+                errorText={item.errorText}
+                checked={item.checked}
+                onChange={() => handleChange(item.label)}
+              />
+            </List.ItemWrapper>
+          );
+        }}
+      />
     );
-  });
+  },
+};
+
+export default {
+  name: 'Components|List',
+  decorator,
+  stories,
+  Component: List,
+};

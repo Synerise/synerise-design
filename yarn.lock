@@ -74,7 +74,7 @@
     semver "^5.4.1"
     source-map "^0.5.0"
 
-"@babel/core@^7.0.0", "@babel/core@^7.1.0", "@babel/core@^7.4.5", "@babel/core@^7.5.5", "@babel/core@^7.6.0", "@babel/core@^7.6.4":
+"@babel/core@^7.0.0", "@babel/core@^7.1.0", "@babel/core@^7.4.5", "@babel/core@^7.6.0", "@babel/core@^7.6.2", "@babel/core@^7.6.4":
   version "7.6.4"
   resolved "https://registry.yarnpkg.com/@babel/core/-/core-7.6.4.tgz#6ebd9fe00925f6c3e177bb726a188b5f578088ff"
   integrity sha512-Rm0HGw101GY8FTzpWSyRbki/jzq+/PkNQJ+nSulrdY6gFGOsNseCqD6KHRYe2E+EdzuBdr2pxCp6s4Uk6eJ+XQ==
@@ -825,7 +825,7 @@
     js-levenshtein "^1.1.3"
     semver "^5.5.0"
 
-"@babel/preset-env@^7.4.5", "@babel/preset-env@^7.5.5", "@babel/preset-env@^7.6.0", "@babel/preset-env@^7.6.3":
+"@babel/preset-env@^7.4.5", "@babel/preset-env@^7.6.0", "@babel/preset-env@^7.6.2", "@babel/preset-env@^7.6.3":
   version "7.6.3"
   resolved "https://registry.yarnpkg.com/@babel/preset-env/-/preset-env-7.6.3.tgz#9e1bf05a2e2d687036d24c40e4639dc46cef2271"
   integrity sha512-CWQkn7EVnwzlOdR5NOm2+pfgSNEZmvGjOhlCHBDq0J8/EStr+G+FvPEiz9B56dR6MoiUFjXhfE4hjLoAKKJtIQ==
@@ -919,10 +919,10 @@
     "@babel/helper-plugin-utils" "^7.0.0"
     "@babel/plugin-transform-typescript" "^7.6.0"
 
-"@babel/register@^7.5.5":
+"@babel/register@^7.6.2":
   version "7.6.2"
-  resolved "https://registry.yarnpkg.com/@babel/register/-/register-7.6.2.tgz#25765a922202cb06f8bdac5a3b1e70cd6bf3dd45"
-  integrity sha512-xgZk2LRZvt6i2SAUWxc7ellk4+OYRgS3Zpsnr13nMS1Qo25w21Uu8o6vTOAqNaxiqrnv30KTYzh9YWY2k21CeQ==
+  resolved "http://artifactory.service/api/npm/npm-release/@babel/register/-/register-7.6.2.tgz#25765a922202cb06f8bdac5a3b1e70cd6bf3dd45"
+  integrity sha1-JXZakiICywb4vaxaOx5wzWvz3UU=
   dependencies:
     find-cache-dir "^2.0.0"
     lodash "^4.17.13"
@@ -968,7 +968,7 @@
     globals "^11.1.0"
     lodash "^4.17.13"
 
-"@babel/types@^7.0.0", "@babel/types@^7.2.0", "@babel/types@^7.3.0", "@babel/types@^7.4.0", "@babel/types@^7.4.4", "@babel/types@^7.5.5", "@babel/types@^7.6.0", "@babel/types@^7.6.3":
+"@babel/types@^7.0.0", "@babel/types@^7.2.0", "@babel/types@^7.3.0", "@babel/types@^7.4.0", "@babel/types@^7.4.4", "@babel/types@^7.5.5", "@babel/types@^7.6.0", "@babel/types@^7.6.1", "@babel/types@^7.6.3":
   version "7.6.3"
   resolved "https://registry.yarnpkg.com/@babel/types/-/types-7.6.3.tgz#3f07d96f854f98e2fbd45c64b0cb942d11e8ba09"
   integrity sha512-CqbcpTxMcpuQTMhjI37ZHVgjBkysg5icREQIEZ0eG1yCNwg3oy+5AaLiOKmjsCj6nqOsa6Hf0ObjRVwokb7srA==
@@ -1323,28 +1323,28 @@
     unique-filename "^1.1.1"
     which "^1.3.1"
 
-"@formatjs/intl-pluralrules@^1.3.0":
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/@formatjs/intl-pluralrules/-/intl-pluralrules-1.3.0.tgz#c8bbc6f4f858bbadb5bfc792fa77a27026d324a4"
-  integrity sha512-m5u9m0wjuR4B52ppb8Pm6zdKBNNVAAMJw9rIS2Ti8PYE+eB+LOUAw97WOn58URSE85FBhbXUYy/rIpWs1Jc38g==
+"@formatjs/intl-pluralrules@^1.3.1":
+  version "1.3.1"
+  resolved "http://artifactory.service/api/npm/npm-release/@formatjs/intl-pluralrules/-/intl-pluralrules-1.3.1.tgz#e3459a976a1a26e83f36f6d62d92eff948717a6e"
+  integrity sha1-40Wal2oaJug/NvbWLZLv+Uhxem4=
   dependencies:
     "@formatjs/intl-utils" "^1.4.0"
 
-"@formatjs/intl-relativetimeformat@^4.1.1":
-  version "4.2.0"
-  resolved "https://registry.yarnpkg.com/@formatjs/intl-relativetimeformat/-/intl-relativetimeformat-4.2.0.tgz#dc403699eb5755dd19307c93a6541232b14dd721"
-  integrity sha512-0NQnixfRIdwRMagVR0CmqfKaI8xCtT1oZ0tAU7zrsch0k6N2wJFUYBsOtlgSqRR4hz2gAbVc7Rv5tdzkWW5fgg==
+"@formatjs/intl-relativetimeformat@^4.2.1":
+  version "4.4.0"
+  resolved "http://artifactory.service/api/npm/npm-release/@formatjs/intl-relativetimeformat/-/intl-relativetimeformat-4.4.0.tgz#8de1d25457cd34531c87f3fa4c7d381606f010ed"
+  integrity sha1-jeHSVFfNNFMch/P6TH04FgbwEO0=
   dependencies:
     "@formatjs/intl-utils" "^1.4.0"
 
-"@formatjs/intl-unified-numberformat@^1.0.0":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@formatjs/intl-unified-numberformat/-/intl-unified-numberformat-1.0.1.tgz#5c74d5d1a1e2a9451482da83dfb8524f65603665"
-  integrity sha512-nlHCmisXCzCOloy+My1PCGkjfrkFeHwDSq2IVnt8OFwDbljXX+atGg32T+w3nvRpbMWBJ7GsYIEeaZq+UFMomw==
+"@formatjs/intl-unified-numberformat@^2.1.0":
+  version "2.1.0"
+  resolved "http://artifactory.service/api/npm/npm-release/@formatjs/intl-unified-numberformat/-/intl-unified-numberformat-2.1.0.tgz#0b8ef3bc3ebbafb40a65f09606a3fc414f1a392a"
+  integrity sha1-C47zvD67r7QKZfCWBqP8QU8aOSo=
   dependencies:
-    "@formatjs/intl-utils" "^1.3.0"
+    "@formatjs/intl-utils" "^1.4.0"
 
-"@formatjs/intl-utils@^1.3.0", "@formatjs/intl-utils@^1.4.0":
+"@formatjs/intl-utils@^1.4.0":
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/@formatjs/intl-utils/-/intl-utils-1.4.0.tgz#b59fdf78bbae9f99c500a298bf73b1945f5991f1"
   integrity sha512-z5HyJumGzORM+5SpvkAlp/hu0AHDeZcUNKSmj9NjS7kWxOGZMuAdS3X1K5XiE0j5I8r8s8SIaz0IQOdMA1WFeA==
@@ -1579,16 +1579,16 @@
     read-package-tree "^5.1.6"
     semver "^6.2.0"
 
-"@lerna/changed@3.18.0":
-  version "3.18.0"
-  resolved "https://registry.yarnpkg.com/@lerna/changed/-/changed-3.18.0.tgz#2175163861170dd6ecf82cd424152770bdf1832d"
-  integrity sha512-caur6qjNXIZmBwJts6gkWfl5A1MlSq4/p8lAABuZ7fsEIkgoeoTVvMIDvEcYiVSGdVV/WJZGgG3kU+MTBIv/Bg==
+"@lerna/changed@3.18.3":
+  version "3.18.3"
+  resolved "http://artifactory.service/api/npm/npm-release/@lerna/changed/-/changed-3.18.3.tgz#50529e8bd5d7fe2d0ace046a6e274d3de652a493"
+  integrity sha1-UFKei9XX/i0KzgRqbidNPeZSpJM=
   dependencies:
     "@lerna/collect-updates" "3.18.0"
     "@lerna/command" "3.18.0"
     "@lerna/listable" "3.18.0"
     "@lerna/output" "3.13.0"
-    "@lerna/version" "3.18.0"
+    "@lerna/version" "3.18.3"
 
 "@lerna/check-working-tree@3.16.5":
   version "3.16.5"
@@ -2021,10 +2021,10 @@
     inquirer "^6.2.0"
     npmlog "^4.1.2"
 
-"@lerna/publish@3.18.1":
-  version "3.18.1"
-  resolved "https://registry.yarnpkg.com/@lerna/publish/-/publish-3.18.1.tgz#8d27ae4f3b72824c8c7afbdc35bfb494a5f7168e"
-  integrity sha512-3u65cMBkq24U8l7pQaZgdIAh2NO1Iw/sladW6/VBwFMcACwBBwEWm2LnrGStsB5Yijg3f+0NK1sT72xrzBpbag==
+"@lerna/publish@3.18.3":
+  version "3.18.3"
+  resolved "http://artifactory.service/api/npm/npm-release/@lerna/publish/-/publish-3.18.3.tgz#478bb94ee712a40b723413e437bcb9e307d3709c"
+  integrity sha1-R4u5TucSpAtyNBPkN7y54wfTcJw=
   dependencies:
     "@evocateur/libnpmaccess" "^3.1.2"
     "@evocateur/npm-registry-fetch" "^4.0.0"
@@ -2047,7 +2047,7 @@
     "@lerna/run-lifecycle" "3.16.2"
     "@lerna/run-topologically" "3.18.0"
     "@lerna/validation-error" "3.13.0"
-    "@lerna/version" "3.18.0"
+    "@lerna/version" "3.18.3"
     figgy-pudding "^3.5.1"
     fs-extra "^8.1.0"
     npm-package-arg "^6.1.0"
@@ -2159,10 +2159,10 @@
   dependencies:
     npmlog "^4.1.2"
 
-"@lerna/version@3.18.0":
-  version "3.18.0"
-  resolved "https://registry.yarnpkg.com/@lerna/version/-/version-3.18.0.tgz#81657c913f12eceee1ae499349365fed55440a36"
-  integrity sha512-mGw5EoQ8wXyofJIHEWNsNWqnTsXlgVvsqePyKkUZTZCsG54ez0ZKpU87EgirxXvj+QDyKgB7X5Dz1hftaX5PSw==
+"@lerna/version@3.18.3":
+  version "3.18.3"
+  resolved "http://artifactory.service/api/npm/npm-release/@lerna/version/-/version-3.18.3.tgz#01344b39c0749fdeb6c178714733bacbde4d602f"
+  integrity sha1-ATRLOcB0n962wXhxRzO6y95NYC8=
   dependencies:
     "@lerna/check-working-tree" "3.16.5"
     "@lerna/child-process" "3.16.5"
@@ -2179,6 +2179,7 @@
     "@lerna/validation-error" "3.13.0"
     chalk "^2.3.1"
     dedent "^0.7.0"
+    load-json-file "^5.3.0"
     minimatch "^3.0.4"
     npmlog "^4.1.2"
     p-map "^2.1.0"
@@ -2188,6 +2189,7 @@
     semver "^6.2.0"
     slash "^2.0.0"
     temp-write "^3.4.0"
+    write-json-file "^3.2.0"
 
 "@lerna/write-log-file@3.13.0":
   version "3.13.0"
@@ -2320,17 +2322,17 @@
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-0.7.0.tgz#9a06f4f137ee84d7df0460c1fdb1135ffa6c50fd"
   integrity sha512-ONhaKPIufzzrlNbqtWFFd+jlnemX6lJAgq9ZeiZtS7I1PIf/la7CW4m83rTXRnVnsMbW2k56pGYu7AUFJD9Pow==
 
-"@storybook/addon-actions@^5.2.4":
-  version "5.2.4"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-actions/-/addon-actions-5.2.4.tgz#79d13c1b6e58c75dd548eb162aa6626a93dfd041"
-  integrity sha512-5E8uXopy6Gq5R3MXrPf0VM9QiLaGLxLCXtDYHQ0gku+HhPYR25KQudS/PyuO+OWzuyB0fsvTi240B3zw+zilOg==
+"@storybook/addon-actions@^5.2.5":
+  version "5.2.5"
+  resolved "http://artifactory.service/api/npm/npm-release/@storybook/addon-actions/-/addon-actions-5.2.5.tgz#e8279907367392387d5c3c6af6031f9da2be9816"
+  integrity sha1-6CeZBzZzkjh9XDxq9gMfnaK+mBY=
   dependencies:
-    "@storybook/addons" "5.2.4"
-    "@storybook/api" "5.2.4"
-    "@storybook/client-api" "5.2.4"
-    "@storybook/components" "5.2.4"
-    "@storybook/core-events" "5.2.4"
-    "@storybook/theming" "5.2.4"
+    "@storybook/addons" "5.2.5"
+    "@storybook/api" "5.2.5"
+    "@storybook/client-api" "5.2.5"
+    "@storybook/components" "5.2.5"
+    "@storybook/core-events" "5.2.5"
+    "@storybook/theming" "5.2.5"
     core-js "^3.0.1"
     fast-deep-equal "^2.0.1"
     global "^4.3.2"
@@ -2340,25 +2342,25 @@
     react-inspector "^3.0.2"
     uuid "^3.3.2"
 
-"@storybook/addon-centered@^5.2.4":
-  version "5.2.4"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-centered/-/addon-centered-5.2.4.tgz#8e2b78cec11df56b828b5d8b41fa896f83c54a25"
-  integrity sha512-T5hFGkdKfoFJflU91GX21XJbgrEmIVRnIk8Ar01S2xEblzAnGZVIKoP+16wR71PbxUsr97zmrJaegQQ+2/vhRw==
+"@storybook/addon-centered@^5.2.5":
+  version "5.2.5"
+  resolved "http://artifactory.service/api/npm/npm-release/@storybook/addon-centered/-/addon-centered-5.2.5.tgz#03573fbbaa5a01049705e6b3ec9ea07396d83aa0"
+  integrity sha1-A1c/u6paAQSXBeaz7J6gc5bYOqA=
   dependencies:
-    "@storybook/addons" "5.2.4"
+    "@storybook/addons" "5.2.5"
     core-js "^3.0.1"
     global "^4.3.2"
     util-deprecate "^1.0.2"
 
-"@storybook/addon-info@^5.2.4":
-  version "5.2.4"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-info/-/addon-info-5.2.4.tgz#9484c0b20feabe8971112f7c55398ba090cb130e"
-  integrity sha512-/uDYPRGN822M+8O0ZUTnmySG3aoUPOMTyUrIvF+Qb2pqTe1iCkMVgMtr4GwaJaPo5dZ9mAhSApQgMKhN6Qck8w==
+"@storybook/addon-info@^5.2.5":
+  version "5.2.5"
+  resolved "http://artifactory.service/api/npm/npm-release/@storybook/addon-info/-/addon-info-5.2.5.tgz#ef651bdb03282d345a4515988af544314fe6cd06"
+  integrity sha1-72Ub2wMoLTRaRRWYivVEMU/mzQY=
   dependencies:
-    "@storybook/addons" "5.2.4"
-    "@storybook/client-logger" "5.2.4"
-    "@storybook/components" "5.2.4"
-    "@storybook/theming" "5.2.4"
+    "@storybook/addons" "5.2.5"
+    "@storybook/client-logger" "5.2.5"
+    "@storybook/components" "5.2.5"
+    "@storybook/theming" "5.2.5"
     core-js "^3.0.1"
     global "^4.3.2"
     jsx-to-string "^1.4.0"
@@ -2372,56 +2374,56 @@
     react-lifecycles-compat "^3.0.4"
     util-deprecate "^1.0.2"
 
-"@storybook/addon-knobs@^5.2.4":
-  version "5.2.4"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-knobs/-/addon-knobs-5.2.4.tgz#f5db98235bc2870361dd3c224f8c10f901592c43"
-  integrity sha512-VYxbDARJs5RwTEOlcfa98tkDXLcRocB7QXLqt8wwCdXPIqkuoVeQLROXGYJm2NzSn49RyHPKUuVWnRhy34qBbQ==
+"@storybook/addon-knobs@^5.2.5":
+  version "5.2.5"
+  resolved "http://artifactory.service/api/npm/npm-release/@storybook/addon-knobs/-/addon-knobs-5.2.5.tgz#cb3c617d2f017fc98c22b6db4384c90556cc074c"
+  integrity sha1-yzxhfS8Bf8mMIrbbQ4TJBVbMB0w=
   dependencies:
-    "@storybook/addons" "5.2.4"
-    "@storybook/api" "5.2.4"
-    "@storybook/client-api" "5.2.4"
-    "@storybook/components" "5.2.4"
-    "@storybook/core-events" "5.2.4"
-    "@storybook/theming" "5.2.4"
+    "@storybook/addons" "5.2.5"
+    "@storybook/api" "5.2.5"
+    "@storybook/client-api" "5.2.5"
+    "@storybook/components" "5.2.5"
+    "@storybook/core-events" "5.2.5"
+    "@storybook/theming" "5.2.5"
     "@types/react-color" "^3.0.1"
     copy-to-clipboard "^3.0.8"
     core-js "^3.0.1"
     escape-html "^1.0.3"
     fast-deep-equal "^2.0.1"
     global "^4.3.2"
-    lodash "^4.17.11"
+    lodash "^4.17.15"
     prop-types "^15.7.2"
     qs "^6.6.0"
     react-color "^2.17.0"
     react-lifecycles-compat "^3.0.4"
     react-select "^3.0.0"
 
-"@storybook/addon-links@^5.2.4":
-  version "5.2.4"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-links/-/addon-links-5.2.4.tgz#5a5d631dbd66bf5800d4be7660b79568085a210d"
-  integrity sha512-MG+Qne4gUWGYx2qQuLQXNcl7oOBF4PbIcR0oboZNrkZ+D+6f3nHwyb53CTtzVTc+SF45CFFYLHvFdGZvv5fcAw==
+"@storybook/addon-links@^5.2.5":
+  version "5.2.5"
+  resolved "http://artifactory.service/api/npm/npm-release/@storybook/addon-links/-/addon-links-5.2.5.tgz#4e700688a5826b47a82adee5f4cb4d96130499e8"
+  integrity sha1-TnAGiKWCa0eoKt7l9MtNlhMEmeg=
   dependencies:
-    "@storybook/addons" "5.2.4"
-    "@storybook/core-events" "5.2.4"
-    "@storybook/router" "5.2.4"
+    "@storybook/addons" "5.2.5"
+    "@storybook/core-events" "5.2.5"
+    "@storybook/router" "5.2.5"
     common-tags "^1.8.0"
     core-js "^3.0.1"
     global "^4.3.2"
     prop-types "^15.7.2"
     qs "^6.6.0"
 
-"@storybook/addon-notes@^5.2.4":
-  version "5.2.4"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-notes/-/addon-notes-5.2.4.tgz#19f65fb9c00710dab91d8d9401266f83a6685f5d"
-  integrity sha512-JsledhFR9dKUk54+g6G1Y1Mz9+cxVx227fv1r3RnB6Kjb5bMriYmUsbb8nPRgXnUR8b+Pp7u8v8ZOiGxBN0mOw==
+"@storybook/addon-notes@^5.2.5":
+  version "5.2.5"
+  resolved "http://artifactory.service/api/npm/npm-release/@storybook/addon-notes/-/addon-notes-5.2.5.tgz#bd5564dcee415f22f259721b5ee4f2faced625ed"
+  integrity sha1-vVVk3O5BXyLyWXIbXuTy+s7WJe0=
   dependencies:
-    "@storybook/addons" "5.2.4"
-    "@storybook/api" "5.2.4"
-    "@storybook/client-logger" "5.2.4"
-    "@storybook/components" "5.2.4"
-    "@storybook/core-events" "5.2.4"
-    "@storybook/router" "5.2.4"
-    "@storybook/theming" "5.2.4"
+    "@storybook/addons" "5.2.5"
+    "@storybook/api" "5.2.5"
+    "@storybook/client-logger" "5.2.5"
+    "@storybook/components" "5.2.5"
+    "@storybook/core-events" "5.2.5"
+    "@storybook/router" "5.2.5"
+    "@storybook/theming" "5.2.5"
     core-js "^3.0.1"
     global "^4.3.2"
     markdown-to-jsx "^6.10.3"
@@ -2448,7 +2450,7 @@
     regenerator-runtime "^0.12.1"
     util-deprecate "^1.0.2"
 
-"@storybook/addons@5.2.4", "@storybook/addons@^5.2.4":
+"@storybook/addons@5.2.4":
   version "5.2.4"
   resolved "https://registry.yarnpkg.com/@storybook/addons/-/addons-5.2.4.tgz#5c4f031e403c90a517cd6d208ec51d7e2455683a"
   integrity sha512-Q+bnVlBA308qnELxnh18hBDRSUgltR9KbV537285dUL/okv/NC6n51mxJwIaG+ksBW2wU+5e6tqSayaKF3uHLw==
@@ -2457,6 +2459,19 @@
     "@storybook/channels" "5.2.4"
     "@storybook/client-logger" "5.2.4"
     "@storybook/core-events" "5.2.4"
+    core-js "^3.0.1"
+    global "^4.3.2"
+    util-deprecate "^1.0.2"
+
+"@storybook/addons@5.2.5", "@storybook/addons@^5.2.5":
+  version "5.2.5"
+  resolved "http://artifactory.service/api/npm/npm-release/@storybook/addons/-/addons-5.2.5.tgz#e3e23d5ea6eb221df31e1a5d125be47454e9a0e8"
+  integrity sha1-4+I9XqbrIh3zHhpdElvkdFTpoOg=
+  dependencies:
+    "@storybook/api" "5.2.5"
+    "@storybook/channels" "5.2.5"
+    "@storybook/client-logger" "5.2.5"
+    "@storybook/core-events" "5.2.5"
     core-js "^3.0.1"
     global "^4.3.2"
     util-deprecate "^1.0.2"
@@ -2484,13 +2499,36 @@
     telejson "^3.0.2"
     util-deprecate "^1.0.2"
 
-"@storybook/channel-postmessage@5.2.4":
-  version "5.2.4"
-  resolved "https://registry.yarnpkg.com/@storybook/channel-postmessage/-/channel-postmessage-5.2.4.tgz#e3735bdce42156e54bf462083aebaf23245ab5c3"
-  integrity sha512-ic7/Ho8z2/aOMjoEbr5p8rijOfO3SZdJnwMvDdUxrqvYq7yACZWidPo3w2+iBwQi9HLqEsWesP1c2doJBxVGRw==
+"@storybook/api@5.2.5":
+  version "5.2.5"
+  resolved "http://artifactory.service/api/npm/npm-release/@storybook/api/-/api-5.2.5.tgz#dcc68c873820485372a47c095a8fc5e4fb53a34c"
+  integrity sha1-3MaMhzggSFNypHwJWo/F5PtTo0w=
   dependencies:
-    "@storybook/channels" "5.2.4"
-    "@storybook/client-logger" "5.2.4"
+    "@storybook/channels" "5.2.5"
+    "@storybook/client-logger" "5.2.5"
+    "@storybook/core-events" "5.2.5"
+    "@storybook/router" "5.2.5"
+    "@storybook/theming" "5.2.5"
+    core-js "^3.0.1"
+    fast-deep-equal "^2.0.1"
+    global "^4.3.2"
+    lodash "^4.17.15"
+    memoizerific "^1.11.3"
+    prop-types "^15.6.2"
+    react "^16.8.3"
+    semver "^6.0.0"
+    shallow-equal "^1.1.0"
+    store2 "^2.7.1"
+    telejson "^3.0.2"
+    util-deprecate "^1.0.2"
+
+"@storybook/channel-postmessage@5.2.5":
+  version "5.2.5"
+  resolved "http://artifactory.service/api/npm/npm-release/@storybook/channel-postmessage/-/channel-postmessage-5.2.5.tgz#47397e543a87ea525cbe93f7d85bd8533edc9127"
+  integrity sha1-Rzl+VDqH6lJcvpP32FvYUz7ckSc=
+  dependencies:
+    "@storybook/channels" "5.2.5"
+    "@storybook/client-logger" "5.2.5"
     core-js "^3.0.1"
     global "^4.3.2"
     telejson "^3.0.2"
@@ -2502,23 +2540,30 @@
   dependencies:
     core-js "^3.0.1"
 
-"@storybook/client-api@5.2.4":
-  version "5.2.4"
-  resolved "https://registry.yarnpkg.com/@storybook/client-api/-/client-api-5.2.4.tgz#2507a3a739a6f6b13e4afefb938a6f3eab34ed55"
-  integrity sha512-SOwzEFHoNapURhNqdcI7HA76o5tkWvs2+2s++i/S7xsAd3KyefIVDOdqSMlAxJkxZb8Mlrb3UNRxlrpA8SZqNA==
+"@storybook/channels@5.2.5":
+  version "5.2.5"
+  resolved "http://artifactory.service/api/npm/npm-release/@storybook/channels/-/channels-5.2.5.tgz#d6ca2b490281dacb272096563fe760ccb353c4bb"
+  integrity sha1-1sorSQKB2ssnIJZWP+dgzLNTxLs=
   dependencies:
-    "@storybook/addons" "5.2.4"
-    "@storybook/channel-postmessage" "5.2.4"
-    "@storybook/channels" "5.2.4"
-    "@storybook/client-logger" "5.2.4"
-    "@storybook/core-events" "5.2.4"
-    "@storybook/router" "5.2.4"
+    core-js "^3.0.1"
+
+"@storybook/client-api@5.2.5":
+  version "5.2.5"
+  resolved "http://artifactory.service/api/npm/npm-release/@storybook/client-api/-/client-api-5.2.5.tgz#53151a236b6ffc2088acc4535a08e010013e3278"
+  integrity sha1-UxUaI2tv/CCIrMRTWgjgEAE+Mng=
+  dependencies:
+    "@storybook/addons" "5.2.5"
+    "@storybook/channel-postmessage" "5.2.5"
+    "@storybook/channels" "5.2.5"
+    "@storybook/client-logger" "5.2.5"
+    "@storybook/core-events" "5.2.5"
+    "@storybook/router" "5.2.5"
     common-tags "^1.8.0"
     core-js "^3.0.1"
     eventemitter3 "^4.0.0"
     global "^4.3.2"
     is-plain-object "^3.0.0"
-    lodash "^4.17.11"
+    lodash "^4.17.15"
     memoizerific "^1.11.3"
     qs "^6.6.0"
     util-deprecate "^1.0.2"
@@ -2527,6 +2572,13 @@
   version "5.2.4"
   resolved "https://registry.yarnpkg.com/@storybook/client-logger/-/client-logger-5.2.4.tgz#6ebe37cbc92e0efe27c7119f52d94f647fbb470c"
   integrity sha512-ofp6QQPQZBU+RvlAH5KpZRsfAFHecCZDnl/7YG6FwjHseJr3jHTYmBGGjJDMHFHq+Q7FGQu/yVb9lMFgoQ43QQ==
+  dependencies:
+    core-js "^3.0.1"
+
+"@storybook/client-logger@5.2.5":
+  version "5.2.5"
+  resolved "http://artifactory.service/api/npm/npm-release/@storybook/client-logger/-/client-logger-5.2.5.tgz#6f386ac6f81b4a783c57d54bb328281abbea1bab"
+  integrity sha1-bzhqxvgbSng8V9VLsygoGrvqG6s=
   dependencies:
     core-js "^3.0.1"
 
@@ -2554,6 +2606,31 @@
     react-textarea-autosize "^7.1.0"
     simplebar-react "^1.0.0-alpha.6"
 
+"@storybook/components@5.2.5":
+  version "5.2.5"
+  resolved "http://artifactory.service/api/npm/npm-release/@storybook/components/-/components-5.2.5.tgz#40190dafbee34f083182255d26c19a0ea50789c8"
+  integrity sha1-QBkNr77jTwgxgiVdJsGaDqUHicg=
+  dependencies:
+    "@storybook/client-logger" "5.2.5"
+    "@storybook/theming" "5.2.5"
+    "@types/react-syntax-highlighter" "10.1.0"
+    "@types/react-textarea-autosize" "^4.3.3"
+    core-js "^3.0.1"
+    global "^4.3.2"
+    markdown-to-jsx "^6.9.1"
+    memoizerific "^1.11.3"
+    polished "^3.3.1"
+    popper.js "^1.14.7"
+    prop-types "^15.7.2"
+    react "^16.8.3"
+    react-dom "^16.8.3"
+    react-focus-lock "^1.18.3"
+    react-helmet-async "^1.0.2"
+    react-popper-tooltip "^2.8.3"
+    react-syntax-highlighter "^8.0.1"
+    react-textarea-autosize "^7.1.0"
+    simplebar-react "^1.0.0-alpha.6"
+
 "@storybook/core-events@5.2.4":
   version "5.2.4"
   resolved "https://registry.yarnpkg.com/@storybook/core-events/-/core-events-5.2.4.tgz#210c968e96e2fc031cad1d3a09b06fa69ae433fc"
@@ -2561,25 +2638,32 @@
   dependencies:
     core-js "^3.0.1"
 
-"@storybook/core@5.2.4":
-  version "5.2.4"
-  resolved "https://registry.yarnpkg.com/@storybook/core/-/core-5.2.4.tgz#188509ac0eb0c85144816c385c21acfb5c8fbefd"
-  integrity sha512-r5kDgZETNawHxpsAPw+h+pRk6l/mJhsSHeDo9/OdYtYFW7lmk2gadViXOTM+6gIWc6vQ8y750bgkahmyIIY0nQ==
+"@storybook/core-events@5.2.5":
+  version "5.2.5"
+  resolved "http://artifactory.service/api/npm/npm-release/@storybook/core-events/-/core-events-5.2.5.tgz#62881164a4a01aa99ff0691e70eaed2dd58e229e"
+  integrity sha1-YogRZKSgGqmf8GkecOrtLdWOIp4=
+  dependencies:
+    core-js "^3.0.1"
+
+"@storybook/core@5.2.5":
+  version "5.2.5"
+  resolved "http://artifactory.service/api/npm/npm-release/@storybook/core/-/core-5.2.5.tgz#cc04313480a1847aa6881420c675517cc400dc2e"
+  integrity sha1-zAQxNIChhHqmiBQgxnVRfMQA3C4=
   dependencies:
     "@babel/plugin-proposal-class-properties" "^7.3.3"
     "@babel/plugin-proposal-object-rest-spread" "^7.3.2"
     "@babel/plugin-syntax-dynamic-import" "^7.2.0"
     "@babel/plugin-transform-react-constant-elements" "^7.2.0"
     "@babel/preset-env" "^7.4.5"
-    "@storybook/addons" "5.2.4"
-    "@storybook/channel-postmessage" "5.2.4"
-    "@storybook/client-api" "5.2.4"
-    "@storybook/client-logger" "5.2.4"
-    "@storybook/core-events" "5.2.4"
-    "@storybook/node-logger" "5.2.4"
-    "@storybook/router" "5.2.4"
-    "@storybook/theming" "5.2.4"
-    "@storybook/ui" "5.2.4"
+    "@storybook/addons" "5.2.5"
+    "@storybook/channel-postmessage" "5.2.5"
+    "@storybook/client-api" "5.2.5"
+    "@storybook/client-logger" "5.2.5"
+    "@storybook/core-events" "5.2.5"
+    "@storybook/node-logger" "5.2.5"
+    "@storybook/router" "5.2.5"
+    "@storybook/theming" "5.2.5"
+    "@storybook/ui" "5.2.5"
     airbnb-js-shims "^1 || ^2"
     ansi-to-html "^0.6.11"
     autoprefixer "^9.4.9"
@@ -2635,10 +2719,10 @@
     webpack-dev-middleware "^3.7.0"
     webpack-hot-middleware "^2.25.0"
 
-"@storybook/node-logger@5.2.4":
-  version "5.2.4"
-  resolved "https://registry.yarnpkg.com/@storybook/node-logger/-/node-logger-5.2.4.tgz#52dc380c76bdac68de35e7d72efe920c3ba52a23"
-  integrity sha512-4OOzce02IAfrRv+Y7h3icyw6WIuDekpWF2eYjgYVVvAJYklCEwgeBTBCY0/2TJjPPTBDPUKHVP1Bdz3Vpci9pA==
+"@storybook/node-logger@5.2.5":
+  version "5.2.5"
+  resolved "http://artifactory.service/api/npm/npm-release/@storybook/node-logger/-/node-logger-5.2.5.tgz#87f53de795db6eed912b54d3cca82fd7b7857771"
+  integrity sha1-h/U955Xbbu2RK1TTzKgv17eFd3E=
   dependencies:
     chalk "^2.4.2"
     core-js "^3.0.1"
@@ -2646,17 +2730,17 @@
     pretty-hrtime "^1.0.3"
     regenerator-runtime "^0.12.1"
 
-"@storybook/react@^5.2.4":
-  version "5.2.4"
-  resolved "https://registry.yarnpkg.com/@storybook/react/-/react-5.2.4.tgz#305db3fa7cd113c185aba97e5239d7754dc14859"
-  integrity sha512-AO0qwbD/2UGe5CrVizbaek+gCAPWkPVc0KUk38cT1mcuLpXwt1zZe7iHLQf2zOeBVSiBkPLOHrEtzDfnIJXKFQ==
+"@storybook/react@^5.2.5":
+  version "5.2.5"
+  resolved "http://artifactory.service/api/npm/npm-release/@storybook/react/-/react-5.2.5.tgz#f0082d75b14a10642986c7934fcbc8ff855b07fe"
+  integrity sha1-8AgtdbFKEGQphseTT8vI/4VbB/4=
   dependencies:
     "@babel/plugin-transform-react-constant-elements" "^7.2.0"
     "@babel/preset-flow" "^7.0.0"
     "@babel/preset-react" "^7.0.0"
-    "@storybook/addons" "5.2.4"
-    "@storybook/core" "5.2.4"
-    "@storybook/node-logger" "5.2.4"
+    "@storybook/addons" "5.2.5"
+    "@storybook/core" "5.2.5"
+    "@storybook/node-logger" "5.2.5"
     "@svgr/webpack" "^4.0.3"
     "@types/webpack-env" "^1.13.7"
     babel-plugin-add-react-displayname "^0.0.5"
@@ -2666,7 +2750,7 @@
     common-tags "^1.8.0"
     core-js "^3.0.1"
     global "^4.3.2"
-    lodash "^4.17.11"
+    lodash "^4.17.15"
     mini-css-extract-plugin "^0.7.0"
     prop-types "^15.7.2"
     react-dev-utils "^9.0.0"
@@ -2684,6 +2768,19 @@
     core-js "^3.0.1"
     global "^4.3.2"
     lodash "^4.17.11"
+    memoizerific "^1.11.3"
+    qs "^6.6.0"
+
+"@storybook/router@5.2.5":
+  version "5.2.5"
+  resolved "http://artifactory.service/api/npm/npm-release/@storybook/router/-/router-5.2.5.tgz#a005332bc6aa1e7849503187ad50c41b3f3bef92"
+  integrity sha1-oAUzK8aqHnhJUDGHrVDEGz8775I=
+  dependencies:
+    "@reach/router" "^1.2.1"
+    "@types/reach__router" "^1.2.3"
+    core-js "^3.0.1"
+    global "^4.3.2"
+    lodash "^4.17.15"
     memoizerific "^1.11.3"
     qs "^6.6.0"
 
@@ -2720,19 +2817,37 @@
     prop-types "^15.7.2"
     resolve-from "^5.0.0"
 
-"@storybook/ui@5.2.4":
-  version "5.2.4"
-  resolved "https://registry.yarnpkg.com/@storybook/ui/-/ui-5.2.4.tgz#7116c9be0dcdcc5d5b425d998263de1e27cdc078"
-  integrity sha512-zsS43k1h4bWEW6oj9FNHlUL3niHoJJ8v7iqYbRtVM12rxrYhV3K8TGVG3LCuNB75i3Be0Myy+/RHA4x9kco08A==
+"@storybook/theming@5.2.5":
+  version "5.2.5"
+  resolved "http://artifactory.service/api/npm/npm-release/@storybook/theming/-/theming-5.2.5.tgz#9579e7944f61ded637d1d79be5fb859a617620f5"
+  integrity sha1-lXnnlE9h3tY30deb5fuFmmF2IPU=
   dependencies:
-    "@storybook/addons" "5.2.4"
-    "@storybook/api" "5.2.4"
-    "@storybook/channels" "5.2.4"
-    "@storybook/client-logger" "5.2.4"
-    "@storybook/components" "5.2.4"
-    "@storybook/core-events" "5.2.4"
-    "@storybook/router" "5.2.4"
-    "@storybook/theming" "5.2.4"
+    "@emotion/core" "^10.0.14"
+    "@emotion/styled" "^10.0.14"
+    "@storybook/client-logger" "5.2.5"
+    common-tags "^1.8.0"
+    core-js "^3.0.1"
+    deep-object-diff "^1.1.0"
+    emotion-theming "^10.0.14"
+    global "^4.3.2"
+    memoizerific "^1.11.3"
+    polished "^3.3.1"
+    prop-types "^15.7.2"
+    resolve-from "^5.0.0"
+
+"@storybook/ui@5.2.5":
+  version "5.2.5"
+  resolved "http://artifactory.service/api/npm/npm-release/@storybook/ui/-/ui-5.2.5.tgz#0c2c67216e4c808e39cdb48301cafde81b77d074"
+  integrity sha1-DCxnIW5MgI45zbSDAcr96Bt30HQ=
+  dependencies:
+    "@storybook/addons" "5.2.5"
+    "@storybook/api" "5.2.5"
+    "@storybook/channels" "5.2.5"
+    "@storybook/client-logger" "5.2.5"
+    "@storybook/components" "5.2.5"
+    "@storybook/core-events" "5.2.5"
+    "@storybook/router" "5.2.5"
+    "@storybook/theming" "5.2.5"
     copy-to-clipboard "^3.0.8"
     core-js "^3.0.1"
     core-js-pure "^3.0.1"
@@ -2740,7 +2855,7 @@
     fast-deep-equal "^2.0.1"
     fuse.js "^3.4.4"
     global "^4.3.2"
-    lodash "^4.17.11"
+    lodash "^4.17.15"
     markdown-to-jsx "^6.9.3"
     memoizerific "^1.11.3"
     polished "^3.3.1"
@@ -2884,6 +2999,21 @@
     "@svgr/plugin-svgo" "^4.3.1"
     loader-utils "^1.2.3"
 
+"@synerise/ds-core@^0.6.5":
+  version "0.6.5"
+  resolved "https://registry.yarnpkg.com/@synerise/ds-core/-/ds-core-0.6.5.tgz#67cad99f74c1af97740f9f025c002cccee80a676"
+  integrity sha512-rAw2e2SYR4Qx2Y2eoq7PGnWwRMqYm8Spdxeo1T6xfINBkg8534MFKTKPfhljXrg2oyQ+kUMOpvIq+cO31yz71w==
+  dependencies:
+    antd "3.24.3"
+    flat "^5.0.0"
+
+"@synerise/ds-utils@^0.5.3":
+  version "0.5.3"
+  resolved "https://registry.yarnpkg.com/@synerise/ds-utils/-/ds-utils-0.5.3.tgz#f886c062cfec2eacfd1766dfe07fc11edbb14616"
+  integrity sha512-vtuIYVhuktV01GS9hifcCJpComXSX/X9oW9NO5SkVlJKJa+lqD1Bw+lh8yXkha1djakFzDtc1E5+HKu1D58EXw==
+  dependencies:
+    "@synerise/ds-core" "^0.6.5"
+
 "@testing-library/dom@^6.3.0":
   version "6.8.1"
   resolved "https://registry.yarnpkg.com/@testing-library/dom/-/dom-6.8.1.tgz#47b4e0cc0742302fc9d122ac43010e6fc60bee65"
@@ -2896,10 +3026,10 @@
     pretty-format "^24.9.0"
     wait-for-expect "^3.0.0"
 
-"@testing-library/jest-dom@^4.1.1", "@testing-library/jest-dom@^4.1.2":
-  version "4.1.2"
-  resolved "https://registry.yarnpkg.com/@testing-library/jest-dom/-/jest-dom-4.1.2.tgz#e523047191379abd67cf0896dfd93cabc7e33eab"
-  integrity sha512-fNf2rCfu0dBD4DmpzqR2ibsaFlFojrWI/EuU8LLqv73CzFIMvT2RMq88p5JVRe4DfeNj0mu0MQ5FTG4mQ0qFaA==
+"@testing-library/jest-dom@^4.2.3":
+  version "4.2.3"
+  resolved "http://artifactory.service/api/npm/npm-release/@testing-library/jest-dom/-/jest-dom-4.2.3.tgz#2b40d463d6cb00b5550d04381912e048e8e35966"
+  integrity sha1-K0DUY9bLALVVDQQ4GRLgSOjjWWY=
   dependencies:
     "@babel/runtime" "^7.5.1"
     chalk "^2.4.1"
@@ -2911,10 +3041,10 @@
     pretty-format "^24.0.0"
     redent "^3.0.0"
 
-"@testing-library/react@^9.1.4", "@testing-library/react@^9.3.0":
-  version "9.3.0"
-  resolved "https://registry.yarnpkg.com/@testing-library/react/-/react-9.3.0.tgz#1dabf46d1ea018a1c89acecc0e7b86859b34c0f8"
-  integrity sha512-FTPCwmLo0tLtP50Au2uGz4/N1BcJTnBx4StDVHZ47zPMEj1/+J2rk/RTj8SLoHRKWCtcmhN4wRmudOXQNP29/w==
+"@testing-library/react@^9.3.1":
+  version "9.3.1"
+  resolved "http://artifactory.service/api/npm/npm-release/@testing-library/react/-/react-9.3.1.tgz#96573fb9942e1ca0ed1ec9984ea7b12b66945963"
+  integrity sha1-llc/uZQuHKDtHsmYTqexK2aUWWM=
   dependencies:
     "@babel/runtime" "^7.6.0"
     "@testing-library/dom" "^6.3.0"
@@ -3040,10 +3170,10 @@
   resolved "https://registry.yarnpkg.com/@types/jest-diff/-/jest-diff-20.0.1.tgz#35cc15b9c4f30a18ef21852e255fdb02f6d59b89"
   integrity sha512-yALhelO3i0hqZwhjtcr6dYyaLoCHbAMshwtj6cGxTvHZAKXHsYGdff6E8EPw3xLKY0ELUTQ69Q1rQiJENnccMA==
 
-"@types/jest@24.0.19", "@types/jest@^24.0.18":
-  version "24.0.19"
-  resolved "https://registry.yarnpkg.com/@types/jest/-/jest-24.0.19.tgz#f7036058d2a5844fe922609187c0ad8be430aff5"
-  integrity sha512-YYiqfSjocv7lk5H/T+v5MjATYjaTMsUkbDnjGqSMoO88jWdtJXJV4ST/7DKZcoMHMBvB2SeSfyOzZfkxXHR5xg==
+"@types/jest@24.0.21", "@types/jest@^24.0.21":
+  version "24.0.21"
+  resolved "http://artifactory.service/api/npm/npm-release/@types/jest/-/jest-24.0.21.tgz#2c0a25440e025bb265f4a17d8b79b11b231426bf"
+  integrity sha1-LAolRA4CW7Jl9KF9i3mxGyMUJr8=
   dependencies:
     "@types/jest-diff" "*"
 
@@ -3062,10 +3192,15 @@
   resolved "https://registry.yarnpkg.com/@types/minimatch/-/minimatch-3.0.3.tgz#3dca0e3f33b200fc7d1139c0cd96c1268cadfd9d"
   integrity sha512-tHq6qdbT9U1IRSGf14CL0pUlULksvY9OZ+5eEgl1N7t+OA3tGvNpxJCzuKQlsNgCVwbAs670L1vcVQi8j9HjnA==
 
-"@types/node@*", "@types/node@12.11.1", "@types/node@^12.0.2":
+"@types/node@*", "@types/node@^12.0.2":
   version "12.11.1"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-12.11.1.tgz#1fd7b821f798b7fa29f667a1be8f3442bb8922a3"
   integrity sha512-TJtwsqZ39pqcljJpajeoofYRfeZ7/I/OMUQ5pR4q5wOKf2ocrUvBAZUMhWsOvKx3dVc/aaV5GluBivt0sWqA5A==
+
+"@types/node@12.12.5":
+  version "12.12.5"
+  resolved "http://artifactory.service/api/npm/npm-release/@types/node/-/node-12.12.5.tgz#66103d2eddc543d44a04394abb7be52506d7f290"
+  integrity sha1-ZhA9Lt3FQ9RKBDlKu3vlJQbX8pA=
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.0"
@@ -3097,10 +3232,17 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-dom@*", "@types/react-dom@16.9.2":
+"@types/react-dom@*":
   version "16.9.2"
   resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-16.9.2.tgz#90f9e6c161850be1feb31d2f448121be2a4f3b47"
   integrity sha512-hgPbBoI1aTSTvZwo8HYw35UaTldW6n2ETLvHAcfcg1FaOuBV3olmyCe5eMpx2WybWMBPv0MdU2t5GOcQhP+3zA==
+  dependencies:
+    "@types/react" "*"
+
+"@types/react-dom@16.9.3":
+  version "16.9.3"
+  resolved "http://artifactory.service/api/npm/npm-release/@types/react-dom/-/react-dom-16.9.3.tgz#4006ff0e13958af91313869077c04cb20d9b9d04"
+  integrity sha1-QAb/DhOVivkTE4aQd8BMsg2bnQQ=
   dependencies:
     "@types/react" "*"
 
@@ -3133,10 +3275,25 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react@*", "@types/react@16.9.9":
+"@types/react-textarea-autosize@^4.3.3":
+  version "4.3.4"
+  resolved "http://artifactory.service/api/npm/npm-release/@types/react-textarea-autosize/-/react-textarea-autosize-4.3.4.tgz#9a93f751c91ad5e86387bce75e3b7e11ed195813"
+  integrity sha1-mpP3Ucka1ehjh7znXjt+Ee0ZWBM=
+  dependencies:
+    "@types/react" "*"
+
+"@types/react@*":
   version "16.9.9"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-16.9.9.tgz#a62c6f40f04bc7681be5e20975503a64fe783c3a"
   integrity sha512-L+AudFJkDukk+ukInYvpoAPyJK5q1GanFOINOJnM0w6tUgITuWvJ4jyoBPFL7z4/L8hGLd+K/6xR5uUjXu0vVg==
+  dependencies:
+    "@types/prop-types" "*"
+    csstype "^2.2.0"
+
+"@types/react@16.9.11":
+  version "16.9.11"
+  resolved "http://artifactory.service/api/npm/npm-release/@types/react/-/react-16.9.11.tgz#70e0b7ad79058a7842f25ccf2999807076ada120"
+  integrity sha1-cOC3rXkFinhC8lzPKZmAcHatoSA=
   dependencies:
     "@types/prop-types" "*"
     csstype "^2.2.0"
@@ -3159,10 +3316,10 @@
     "@types/react" "*"
     "@types/webpack-env" "*"
 
-"@types/styled-components@^4.1.19":
-  version "4.1.19"
-  resolved "https://registry.yarnpkg.com/@types/styled-components/-/styled-components-4.1.19.tgz#535b455d7744fda1608c605df82c0800eda61a09"
-  integrity sha512-nDkoTQ8ItcJiyEvTa24TwsIpIfNKCG+Lq0LvAwApOcjQ8OaeOOCg66YSPHBePHUh6RPt1LA8aEzRlgWhQPFqPg==
+"@types/styled-components@^4.1.20":
+  version "4.1.20"
+  resolved "http://artifactory.service/api/npm/npm-release/@types/styled-components/-/styled-components-4.1.20.tgz#8afd41039c0fd582152e57ff75c58a5353870de6"
+  integrity sha1-iv1BA5wP1YIVLlf/dcWKU1OHDeY=
   dependencies:
     "@types/react" "*"
     "@types/react-native" "*"
@@ -3183,10 +3340,10 @@
     "@types/react-dom" "*"
     "@types/testing-library__dom" "*"
 
-"@types/uuid@^3.4.5":
-  version "3.4.5"
-  resolved "https://registry.yarnpkg.com/@types/uuid/-/uuid-3.4.5.tgz#d4dc10785b497a1474eae0ba7f0cb09c0ddfd6eb"
-  integrity sha512-MNL15wC3EKyw1VLF+RoVO4hJJdk9t/Hlv3rt1OL65Qvuadm4BYo6g9ZJQqoq7X8NBFSsQXgAujWciovh2lpVjA==
+"@types/uuid@^3.4.6":
+  version "3.4.6"
+  resolved "http://artifactory.service/api/npm/npm-release/@types/uuid/-/uuid-3.4.6.tgz#d2c4c48eb85a757bf2927f75f939942d521e3016"
+  integrity sha1-0sTEjrhadXvykn91+TmULVIeMBY=
   dependencies:
     "@types/node" "*"
 
@@ -3207,7 +3364,7 @@
   dependencies:
     "@types/yargs-parser" "*"
 
-"@typescript-eslint/eslint-plugin@^2.2.0", "@typescript-eslint/eslint-plugin@^2.3.0", "@typescript-eslint/eslint-plugin@^2.4.0":
+"@typescript-eslint/eslint-plugin@^2.2.0":
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/eslint-plugin/-/eslint-plugin-2.4.0.tgz#aaf6b542ff75b78f4191a8bf1c519184817caa24"
   integrity sha512-se/YCk7PUoyMwSm/u3Ii9E+BgDUc736uw/lXCDpXEqRgPGsoBTtS8Mntue/vZX8EGyzGplYuePBuVyhZDM9EpQ==
@@ -3218,7 +3375,18 @@
     regexpp "^2.0.1"
     tsutils "^3.17.1"
 
-"@typescript-eslint/experimental-utils@1.13.0", "@typescript-eslint/experimental-utils@^1.13.0":
+"@typescript-eslint/eslint-plugin@^2.6.0":
+  version "2.6.0"
+  resolved "http://artifactory.service/api/npm/npm-release/@typescript-eslint/eslint-plugin/-/eslint-plugin-2.6.0.tgz#e82ed43fc4527b21bfe35c20a2d6e4ed49fc7957"
+  integrity sha1-6C7UP8RSeyG/41wgotbk7Un8eVc=
+  dependencies:
+    "@typescript-eslint/experimental-utils" "2.6.0"
+    eslint-utils "^1.4.2"
+    functional-red-black-tree "^1.0.1"
+    regexpp "^2.0.1"
+    tsutils "^3.17.1"
+
+"@typescript-eslint/experimental-utils@1.13.0":
   version "1.13.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/experimental-utils/-/experimental-utils-1.13.0.tgz#b08c60d780c0067de2fb44b04b432f540138301e"
   integrity sha512-zmpS6SyqG4ZF64ffaJ6uah6tWWWgZ8m+c54XXgwFtUv0jNz8aJAVx8chMCvnk7yl6xwn8d+d96+tWp7fXzTuDg==
@@ -3236,6 +3404,15 @@
     "@typescript-eslint/typescript-estree" "2.4.0"
     eslint-scope "^5.0.0"
 
+"@typescript-eslint/experimental-utils@2.6.0", "@typescript-eslint/experimental-utils@^2.5.0":
+  version "2.6.0"
+  resolved "http://artifactory.service/api/npm/npm-release/@typescript-eslint/experimental-utils/-/experimental-utils-2.6.0.tgz#ed70bef72822bff54031ff0615fc888b9e2b6e8a"
+  integrity sha1-7XC+9ygiv/VAMf8GFfyIi54rboo=
+  dependencies:
+    "@types/json-schema" "^7.0.3"
+    "@typescript-eslint/typescript-estree" "2.6.0"
+    eslint-scope "^5.0.0"
+
 "@typescript-eslint/parser@^1.10.2":
   version "1.13.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/parser/-/parser-1.13.0.tgz#61ac7811ea52791c47dc9fd4dd4a184fae9ac355"
@@ -3246,7 +3423,7 @@
     "@typescript-eslint/typescript-estree" "1.13.0"
     eslint-visitor-keys "^1.0.0"
 
-"@typescript-eslint/parser@^2.2.0", "@typescript-eslint/parser@^2.3.0", "@typescript-eslint/parser@^2.4.0":
+"@typescript-eslint/parser@^2.2.0":
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/parser/-/parser-2.4.0.tgz#fe43ed5fec14af03d3594fce2c3b7ec4c8df0243"
   integrity sha512-IouAKi/grJ4MFrwdXIJ1GHAwbPWYgkT3b/x8Q49F378c9nwgxVkO76e0rZeUVpwHMaUuoKG2sUeK0XGkwdlwkw==
@@ -3254,6 +3431,16 @@
     "@types/eslint-visitor-keys" "^1.0.0"
     "@typescript-eslint/experimental-utils" "2.4.0"
     "@typescript-eslint/typescript-estree" "2.4.0"
+    eslint-visitor-keys "^1.1.0"
+
+"@typescript-eslint/parser@^2.6.0":
+  version "2.6.0"
+  resolved "http://artifactory.service/api/npm/npm-release/@typescript-eslint/parser/-/parser-2.6.0.tgz#5106295c6a7056287b4719e24aae8d6293d5af49"
+  integrity sha1-UQYpXGpwVih7RxniSq6NYpPVr0k=
+  dependencies:
+    "@types/eslint-visitor-keys" "^1.0.0"
+    "@typescript-eslint/experimental-utils" "2.6.0"
+    "@typescript-eslint/typescript-estree" "2.6.0"
     eslint-visitor-keys "^1.1.0"
 
 "@typescript-eslint/typescript-estree@1.13.0":
@@ -3270,6 +3457,17 @@
   integrity sha512-/DzDAtMqF5d9IlXrrvu/Id/uoKjnSxf/3FbtKK679a/T7lbDM8qQuirtGvFy6Uh+x0hALuCMwnMfUf0P24/+Iw==
   dependencies:
     chokidar "^3.0.2"
+    glob "^7.1.4"
+    is-glob "^4.0.1"
+    lodash.unescape "4.0.1"
+    semver "^6.3.0"
+
+"@typescript-eslint/typescript-estree@2.6.0":
+  version "2.6.0"
+  resolved "http://artifactory.service/api/npm/npm-release/@typescript-eslint/typescript-estree/-/typescript-estree-2.6.0.tgz#d3e9d8e001492e2b9124c4d4bd4e7f03c0fd7254"
+  integrity sha1-0+nY4AFJLiuRJMTUvU5/A8D9clQ=
+  dependencies:
+    debug "^4.1.1"
     glob "^7.1.4"
     is-glob "^4.0.1"
     lodash.unescape "4.0.1"
@@ -3493,7 +3691,7 @@ acorn-jsx@^3.0.0:
   dependencies:
     acorn "^3.0.4"
 
-acorn-jsx@^5.0.0, acorn-jsx@^5.0.2:
+acorn-jsx@^5.0.0, acorn-jsx@^5.0.2, acorn-jsx@^5.1.0:
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/acorn-jsx/-/acorn-jsx-5.1.0.tgz#294adb71b57398b0680015f0a38c563ee1db5384"
   integrity sha512-tMUqwBWfLFbJbizRmEcWSLw6HnFzfdJs2sOJEOwwtVPMoH/0Ay+E703oZz78VSXZiiDcZrQ5XKjPIUQixhmgVw==
@@ -3518,7 +3716,7 @@ acorn@^6.0.1, acorn@^6.0.4, acorn@^6.0.7, acorn@^6.2.1:
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-6.3.0.tgz#0087509119ffa4fc0a0041d1e93a417e68cb856e"
   integrity sha512-/czfa8BwS88b9gWQVhc8eknunSA2DoJpJyTQkhheIf5E48u1N0R4q/YxxsAeqRrmK9TQ/uYfgLDfZo91UlANIA==
 
-acorn@^7.0.0:
+acorn@^7.0.0, acorn@^7.1.0:
   version "7.1.0"
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-7.1.0.tgz#949d36f2c292535da602283586c2477c57eb2d6c"
   integrity sha512-kL5CuoXA/dgxlBbVrflsflzQ3PAas7RYZB52NOm/6839iVYJgKMJ3cQJD+t2i5+qFa8h3MDpEOJiS64E8JLnSQ==
@@ -3719,10 +3917,10 @@ ansi-wrap@0.1.0:
   resolved "https://registry.yarnpkg.com/ansi-wrap/-/ansi-wrap-0.1.0.tgz#a82250ddb0015e9a27ca82e82ea603bbfa45efaf"
   integrity sha1-qCJQ3bABXponyoLoLqYDu/pF768=
 
-antd@*:
-  version "3.24.2"
-  resolved "https://registry.yarnpkg.com/antd/-/antd-3.24.2.tgz#c8923eaa28f8c25a91e4a3fee7c64d9f3ec31aaf"
-  integrity sha512-Y6hMwWjp7IhstDXr2QNdsGmR/Bl2ySmmsKSkGm2BMB3LRnL711UT7u0bUczqMvgvXr9rwOlfTRqxdkq525f0yg==
+antd@3.24.3:
+  version "3.24.3"
+  resolved "http://artifactory.service/api/npm/npm-release/antd/-/antd-3.24.3.tgz#103e31a1a287166566db9ea16450588314367265"
+  integrity sha1-ED4xoaKHFmVm256hZFBYgxQ2cmU=
   dependencies:
     "@ant-design/create-react-context" "^0.2.4"
     "@ant-design/icons" "~2.1.1"
@@ -3763,65 +3961,6 @@ antd@*:
     rc-steps "~3.5.0"
     rc-switch "~1.9.0"
     rc-table "~6.9.4"
-    rc-tabs "~9.6.4"
-    rc-time-picker "~3.7.1"
-    rc-tooltip "~3.7.3"
-    rc-tree "~2.1.0"
-    rc-tree-select "~2.9.1"
-    rc-trigger "^2.6.2"
-    rc-upload "~2.8.0"
-    rc-util "^4.10.0"
-    react-lazy-load "^3.0.13"
-    react-lifecycles-compat "^3.0.4"
-    react-slick "~0.25.2"
-    resize-observer-polyfill "^1.5.1"
-    shallowequal "^1.1.0"
-    warning "~4.0.3"
-
-antd@3.24.0:
-  version "3.24.0"
-  resolved "https://registry.yarnpkg.com/antd/-/antd-3.24.0.tgz#a78d442c0640f7b4521d9a634a85da06e9169f39"
-  integrity sha512-uP+zT7x5uc8hasrKDgek0Li8y0onveE6866PigCdihd85D1+cTzljMFQhU+2XNYR+zgtgx4kLSc26uliHM58Eg==
-  dependencies:
-    "@ant-design/create-react-context" "^0.2.4"
-    "@ant-design/icons" "~2.1.1"
-    "@ant-design/icons-react" "~2.0.1"
-    "@types/react-slick" "^0.23.4"
-    array-tree-filter "^2.1.0"
-    babel-runtime "6.x"
-    classnames "~2.2.6"
-    copy-to-clipboard "^3.2.0"
-    css-animation "^1.5.0"
-    dom-closest "^0.2.0"
-    enquire.js "^2.1.6"
-    lodash "^4.17.13"
-    moment "^2.24.0"
-    omit.js "^1.0.2"
-    prop-types "^15.7.2"
-    raf "^3.4.1"
-    rc-animate "^2.8.3"
-    rc-calendar "~9.15.5"
-    rc-cascader "~0.17.4"
-    rc-checkbox "~2.1.6"
-    rc-collapse "~1.11.3"
-    rc-dialog "~7.5.2"
-    rc-drawer "~3.0.0"
-    rc-dropdown "~2.4.1"
-    rc-editor-mention "^1.1.13"
-    rc-form "^2.4.5"
-    rc-input-number "~4.5.0"
-    rc-mentions "~0.4.0"
-    rc-menu "~7.5.1"
-    rc-notification "~3.3.1"
-    rc-pagination "~1.20.5"
-    rc-progress "~2.5.0"
-    rc-rate "~2.5.0"
-    rc-resize-observer "^0.1.0"
-    rc-select "~9.2.0"
-    rc-slider "~8.7.1"
-    rc-steps "~3.5.0"
-    rc-switch "~1.9.0"
-    rc-table "~6.8.6"
     rc-tabs "~9.6.4"
     rc-time-picker "~3.7.1"
     rc-tooltip "~3.7.3"
@@ -6878,20 +7017,20 @@ doctrine@^3.0.0:
   dependencies:
     esutils "^2.0.2"
 
-docusaurus@^1.13.0:
-  version "1.13.0"
-  resolved "https://registry.yarnpkg.com/docusaurus/-/docusaurus-1.13.0.tgz#628c4491227ec422400b7421961b8603e389a2ae"
-  integrity sha512-3L/0p7CVM4jzAKoUzDDO4IFvLAJ6aA/8zin00tvLk32VQSdw+6S8JggE2ZFKOg+c+oxQ5MQUnsUxL/n5HyBtVg==
+docusaurus@^1.14.0:
+  version "1.14.0"
+  resolved "http://artifactory.service/api/npm/npm-release/docusaurus/-/docusaurus-1.14.0.tgz#081b931098fcb0a9e837fe3e4851815c607cd632"
+  integrity sha1-CBuTEJj8sKnoN/4+SFGBXGB81jI=
   dependencies:
-    "@babel/core" "^7.5.5"
+    "@babel/core" "^7.6.2"
     "@babel/plugin-proposal-class-properties" "^7.5.5"
-    "@babel/plugin-proposal-object-rest-spread" "^7.5.5"
+    "@babel/plugin-proposal-object-rest-spread" "^7.6.2"
     "@babel/polyfill" "^7.4.4"
-    "@babel/preset-env" "^7.5.5"
+    "@babel/preset-env" "^7.6.2"
     "@babel/preset-react" "^7.0.0"
-    "@babel/register" "^7.5.5"
-    "@babel/traverse" "^7.5.5"
-    "@babel/types" "^7.5.5"
+    "@babel/register" "^7.6.2"
+    "@babel/traverse" "^7.6.2"
+    "@babel/types" "^7.6.1"
     autoprefixer "^9.6.1"
     babylon "^6.18.0"
     chalk "^2.4.2"
@@ -7476,10 +7615,17 @@ eslint-config-airbnb@^18.0.1:
     object.assign "^4.1.0"
     object.entries "^1.1.0"
 
-eslint-config-prettier@^6.3.0, eslint-config-prettier@^6.4.0:
+eslint-config-prettier@^6.4.0:
   version "6.4.0"
   resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-6.4.0.tgz#0a04f147e31d33c6c161b2dd0971418ac52d0477"
   integrity sha512-YrKucoFdc7SEko5Sxe4r6ixqXPDP1tunGw91POeZTTRKItf/AMFYt/YLEQtZMkR2LVpAVhcAcZgcWpm1oGPW7w==
+  dependencies:
+    get-stdin "^6.0.0"
+
+eslint-config-prettier@^6.5.0:
+  version "6.5.0"
+  resolved "http://artifactory.service/api/npm/npm-release/eslint-config-prettier/-/eslint-config-prettier-6.5.0.tgz#aaf9a495e2a816865e541bfdbb73a65cc162b3eb"
+  integrity sha1-qvmkleKoFoZeVBv9u3OmXMFis+s=
   dependencies:
     get-stdin "^6.0.0"
 
@@ -7566,12 +7712,12 @@ eslint-plugin-import@2.18.2, eslint-plugin-import@^2.18.2:
     read-pkg-up "^2.0.0"
     resolve "^1.11.0"
 
-eslint-plugin-jest@^22.17.0, eslint-plugin-jest@^22.19.0:
-  version "22.19.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-jest/-/eslint-plugin-jest-22.19.0.tgz#0cf90946a8c927d40a2c64458c89bb635d0f2a0b"
-  integrity sha512-4zUc3rh36ds0SXdl2LywT4YWA3zRe8sfLhz8bPp8qQPIKvynTTkNGwmSCMpl5d9QiZE2JxSinGF+WD8yU+O0Lg==
+eslint-plugin-jest@^23.0.2:
+  version "23.0.2"
+  resolved "http://artifactory.service/api/npm/npm-release/eslint-plugin-jest/-/eslint-plugin-jest-23.0.2.tgz#54a59bfe77245186afe13711a297067aefefff0a"
+  integrity sha1-VKWb/nckUYav4TcRopcGeu/v/wo=
   dependencies:
-    "@typescript-eslint/experimental-utils" "^1.13.0"
+    "@typescript-eslint/experimental-utils" "^2.5.0"
 
 eslint-plugin-jsx-a11y@6.2.3, eslint-plugin-jsx-a11y@^6.2.3:
   version "6.2.3"
@@ -7610,10 +7756,10 @@ eslint-plugin-react-hooks@^1.6.1:
   resolved "https://registry.yarnpkg.com/eslint-plugin-react-hooks/-/eslint-plugin-react-hooks-1.7.0.tgz#6210b6d5a37205f0b92858f895a4e827020a7d04"
   integrity sha512-iXTCFcOmlWvw4+TOE8CLWj6yX1GwzT0Y6cUfHHZqWnSk144VmVIRcVGtUAzrLES7C798lmvnt02C7rxaOX1HNA==
 
-eslint-plugin-react-hooks@^2.0.1, eslint-plugin-react-hooks@^2.1.2:
-  version "2.1.2"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-react-hooks/-/eslint-plugin-react-hooks-2.1.2.tgz#1358d2acb2c5e02b7e90c37e611ac258a488e3a7"
-  integrity sha512-ZR+AyesAUGxJAyTFlF3MbzeVHAcQTFQt1fFVe5o0dzY/HFoj1dgQDMoIkiM+ltN/HhlHBYX4JpJwYonjxsyQMA==
+eslint-plugin-react-hooks@^2.2.0:
+  version "2.2.0"
+  resolved "http://artifactory.service/api/npm/npm-release/eslint-plugin-react-hooks/-/eslint-plugin-react-hooks-2.2.0.tgz#078264e9e388da6929ace09d6abe92c85963aff4"
+  integrity sha1-B4Jk6eOI2mkprOCdar6SyFljr/Q=
 
 eslint-plugin-react@7.14.3:
   version "7.14.3"
@@ -7681,6 +7827,13 @@ eslint-utils@^1.3.1, eslint-utils@^1.4.2:
   dependencies:
     eslint-visitor-keys "^1.0.0"
 
+eslint-utils@^1.4.3:
+  version "1.4.3"
+  resolved "http://artifactory.service/api/npm/npm-release/eslint-utils/-/eslint-utils-1.4.3.tgz#74fec7c54d0776b6f67e0251040b5806564e981f"
+  integrity sha1-dP7HxU0Hdrb2fgJRBAtYBlZOmB8=
+  dependencies:
+    eslint-visitor-keys "^1.1.0"
+
 eslint-visitor-keys@^1.0.0, eslint-visitor-keys@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/eslint-visitor-keys/-/eslint-visitor-keys-1.1.0.tgz#e2a82cea84ff246ad6fb57f9bde5b46621459ec2"
@@ -7728,7 +7881,7 @@ eslint@^5.0.0:
     table "^5.2.3"
     text-table "^0.2.0"
 
-eslint@^6.1.0, eslint@^6.4.0, eslint@^6.5.1:
+eslint@^6.1.0:
   version "6.5.1"
   resolved "https://registry.yarnpkg.com/eslint/-/eslint-6.5.1.tgz#828e4c469697d43bb586144be152198b91e96ed6"
   integrity sha512-32h99BoLYStT1iq1v2P9uwpyznQ4M2jRiFB6acitKz52Gqn+vPaMDUTB1bYi1WN4Nquj2w+t+bimYUG83DC55A==
@@ -7771,6 +7924,49 @@ eslint@^6.1.0, eslint@^6.4.0, eslint@^6.5.1:
     text-table "^0.2.0"
     v8-compile-cache "^2.0.3"
 
+eslint@^6.6.0:
+  version "6.6.0"
+  resolved "http://artifactory.service/api/npm/npm-release/eslint/-/eslint-6.6.0.tgz#4a01a2fb48d32aacef5530ee9c5a78f11a8afd04"
+  integrity sha1-SgGi+0jTKqzvVTDunFp48RqK/QQ=
+  dependencies:
+    "@babel/code-frame" "^7.0.0"
+    ajv "^6.10.0"
+    chalk "^2.1.0"
+    cross-spawn "^6.0.5"
+    debug "^4.0.1"
+    doctrine "^3.0.0"
+    eslint-scope "^5.0.0"
+    eslint-utils "^1.4.3"
+    eslint-visitor-keys "^1.1.0"
+    espree "^6.1.2"
+    esquery "^1.0.1"
+    esutils "^2.0.2"
+    file-entry-cache "^5.0.1"
+    functional-red-black-tree "^1.0.1"
+    glob-parent "^5.0.0"
+    globals "^11.7.0"
+    ignore "^4.0.6"
+    import-fresh "^3.0.0"
+    imurmurhash "^0.1.4"
+    inquirer "^7.0.0"
+    is-glob "^4.0.0"
+    js-yaml "^3.13.1"
+    json-stable-stringify-without-jsonify "^1.0.1"
+    levn "^0.3.0"
+    lodash "^4.17.14"
+    minimatch "^3.0.4"
+    mkdirp "^0.5.1"
+    natural-compare "^1.4.0"
+    optionator "^0.8.2"
+    progress "^2.0.0"
+    regexpp "^2.0.1"
+    semver "^6.1.2"
+    strip-ansi "^5.2.0"
+    strip-json-comments "^3.0.1"
+    table "^5.2.3"
+    text-table "^0.2.0"
+    v8-compile-cache "^2.0.3"
+
 espree@^3.5.2:
   version "3.5.4"
   resolved "https://registry.yarnpkg.com/espree/-/espree-3.5.4.tgz#b0f447187c8a8bed944b815a660bddf5deb5d1a7"
@@ -7795,6 +7991,15 @@ espree@^6.1.1:
   dependencies:
     acorn "^7.0.0"
     acorn-jsx "^5.0.2"
+    eslint-visitor-keys "^1.1.0"
+
+espree@^6.1.2:
+  version "6.1.2"
+  resolved "http://artifactory.service/api/npm/npm-release/espree/-/espree-6.1.2.tgz#6c272650932b4f91c3714e5e7b5f5e2ecf47262d"
+  integrity sha1-bCcmUJMrT5HDcU5ee19eLs9HJi0=
+  dependencies:
+    acorn "^7.1.0"
+    acorn-jsx "^5.1.0"
     eslint-visitor-keys "^1.1.0"
 
 esprima-fb@^15001.1.0-dev-harmony-fb:
@@ -8431,12 +8636,12 @@ flat-cache@^2.0.1:
     rimraf "2.6.3"
     write "1.0.3"
 
-flat@^4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/flat/-/flat-4.1.0.tgz#090bec8b05e39cba309747f1d588f04dbaf98db2"
-  integrity sha512-Px/TiLIznH7gEDlPXcUD4KnBusa6kR6ayRUVcnEAbreRIuhkqow/mun59BuRXwoYk7ZQOLW1ZM05ilIvK38hFw==
+flat@^5.0.0:
+  version "5.0.0"
+  resolved "http://artifactory.service/api/npm/npm-release/flat/-/flat-5.0.0.tgz#dab7d71d60413becb0ac2de9bf4304495e3af6af"
+  integrity sha1-2rfXHWBBO+ywrC3pv0MESV469q8=
   dependencies:
-    is-buffer "~2.0.3"
+    is-buffer "~2.0.4"
 
 flatted@^2.0.0:
   version "2.0.1"
@@ -8908,6 +9113,18 @@ glob@^7.0.0, glob@^7.0.3, glob@^7.0.5, glob@^7.1.1, glob@^7.1.2, glob@^7.1.3, gl
   version "7.1.4"
   resolved "https://registry.yarnpkg.com/glob/-/glob-7.1.4.tgz#aa608a2f6c577ad357e1ae5a5c26d9a8d1969255"
   integrity sha512-hkLPepehmnKk41pUGm3sYxoFs/umurYfYJCerbXEyFIWcAzvpipAgVkBqqT9RBKMGjnq6kMuyYwha6csxbiM1A==
+  dependencies:
+    fs.realpath "^1.0.0"
+    inflight "^1.0.4"
+    inherits "2"
+    minimatch "^3.0.4"
+    once "^1.3.0"
+    path-is-absolute "^1.0.0"
+
+glob@^7.1.5:
+  version "7.1.5"
+  resolved "http://artifactory.service/api/npm/npm-release/glob/-/glob-7.1.5.tgz#6714c69bee20f3c3e64c4dd905553e532b40cdc0"
+  integrity sha1-ZxTGm+4g88PmTE3ZBVU+UytAzcA=
   dependencies:
     fs.realpath "^1.0.0"
     inflight "^1.0.4"
@@ -9858,28 +10075,28 @@ interpret@^1.0.0, interpret@^1.2.0:
   resolved "https://registry.yarnpkg.com/interpret/-/interpret-1.2.0.tgz#d5061a6224be58e8083985f5014d844359576296"
   integrity sha512-mT34yGKMNceBQUoVn7iCDKDntA7SC6gycMAWzGx1z/CMCTV7b2AAtXlo3nRyHZ1FelRkQbQjprHSYGwzLtkVbw==
 
-intl-format-cache@^4.2.1, intl-format-cache@^4.2.2:
-  version "4.2.2"
-  resolved "https://registry.yarnpkg.com/intl-format-cache/-/intl-format-cache-4.2.2.tgz#4e745d4cda3aa9df2495f0493bed4c6c4ff7093d"
-  integrity sha512-7tY3XadLn8rMHiYVUzH/6NmOe944nJ59LdAWuFm64/m2OfFAEkZTtTHxrEtoxq7HWFddX4aRwDb9P8KB5Z2AvQ==
+intl-format-cache@^4.2.3, intl-format-cache@^4.2.5:
+  version "4.2.5"
+  resolved "http://artifactory.service/api/npm/npm-release/intl-format-cache/-/intl-format-cache-4.2.5.tgz#6319f5707cdc766ab5c196990a6e55b0df9cc70f"
+  integrity sha1-Yxn1cHzcdmq1wZaZCm5VsN+cxw8=
 
-intl-locales-supported@^1.5.0:
-  version "1.6.0"
-  resolved "https://registry.yarnpkg.com/intl-locales-supported/-/intl-locales-supported-1.6.0.tgz#6f66501ef23a58c87f242021cfadb1b012770808"
-  integrity sha512-n8J5v2oBjaOu065/HXeDFU3huv76Ehwj6YovPI7IJ3DCf0EvvwL1lncRj/qobmlyDh0LumwxpU+pVhFR34xjEA==
+intl-locales-supported@^1.6.0:
+  version "1.8.0"
+  resolved "http://artifactory.service/api/npm/npm-release/intl-locales-supported/-/intl-locales-supported-1.8.0.tgz#cfec56f5ac8cbb828bd5ce3155c4392555cd5c5c"
+  integrity sha1-z+xW9ayMu4KL1c4xVcQ5JVXNXFw=
 
-intl-messageformat-parser@^3.2.0, intl-messageformat-parser@^3.2.1:
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/intl-messageformat-parser/-/intl-messageformat-parser-3.2.1.tgz#598795221267cbbd206f1497c42ffced9b5565b6"
-  integrity sha512-ajCL1k1ha0mUrutlBTo5vcTzyfdH2OoghUu8SmR7tJ1D0uifZh9Hqd3ZC2SYVv/GTfTdW//rgKonMgAhZWmwZg==
+intl-messageformat-parser@^3.2.2:
+  version "3.2.2"
+  resolved "http://artifactory.service/api/npm/npm-release/intl-messageformat-parser/-/intl-messageformat-parser-3.2.2.tgz#28cacc80a53823a28b5ecaf16b3b35d0a1d5f9d2"
+  integrity sha1-KMrMgKU4I6KLXsrxazs10KHV+dI=
 
-intl-messageformat@^7.3.1:
-  version "7.3.2"
-  resolved "https://registry.yarnpkg.com/intl-messageformat/-/intl-messageformat-7.3.2.tgz#8dcf53237faec86061ace315f36aeffe7edb4c8d"
-  integrity sha512-1hSgNhnpQqNrr09lFiz/oA3jX+REBuSyXh/ePvSncUicMsREtH3j2X1tDTTFHbK5kHjI+9vcwGpDSZpP8CM/uQ==
+intl-messageformat@^7.3.3:
+  version "7.5.0"
+  resolved "http://artifactory.service/api/npm/npm-release/intl-messageformat/-/intl-messageformat-7.5.0.tgz#53582b6e911d4f41434e9d897b4789d2a2b2ff8e"
+  integrity sha1-U1grbpEdT0FDTp2Je0eJ0qKy/44=
   dependencies:
-    intl-format-cache "^4.2.2"
-    intl-messageformat-parser "^3.2.1"
+    intl-format-cache "^4.2.5"
+    intl-messageformat-parser "^3.2.2"
 
 into-stream@^3.1.0:
   version "3.1.0"
@@ -9992,10 +10209,10 @@ is-buffer@^1.0.2, is-buffer@^1.1.5:
   resolved "https://registry.yarnpkg.com/is-buffer/-/is-buffer-1.1.6.tgz#efaa2ea9daa0d7ab2ea13a97b2b8ad51fefbe8be"
   integrity sha512-NcdALwpXkTm5Zvvbk7owOUSvVvBKDgKP5/ewfXEznmQFfs4ZRmanOeKBTjRVjka3QFoN6XJ+9F3USqfHqTaU5w==
 
-is-buffer@~2.0.3:
+is-buffer@~2.0.4:
   version "2.0.4"
-  resolved "https://registry.yarnpkg.com/is-buffer/-/is-buffer-2.0.4.tgz#3e572f23c8411a5cfd9557c849e3665e0b290623"
-  integrity sha512-Kq1rokWXOPXWuaMAqZiJW4XxsmD9zGx9q4aePabbn3qCRGedtH7Cm+zV8WETitMfu1wdh+Rvd6w5egwSngUX2A==
+  resolved "http://artifactory.service/api/npm/npm-release/is-buffer/-/is-buffer-2.0.4.tgz#3e572f23c8411a5cfd9557c849e3665e0b290623"
+  integrity sha1-PlcvI8hBGlz9lVfISeNmXgspBiM=
 
 is-callable@^1.1.4:
   version "1.1.4"
@@ -11210,14 +11427,14 @@ left-pad@^1.3.0:
   resolved "https://registry.yarnpkg.com/left-pad/-/left-pad-1.3.0.tgz#5b8a3a7765dfe001261dde915589e782f8c94d1e"
   integrity sha512-XI5MPzVNApjAyhQzphX8BkmKsKUxD4LdyK24iZeQGinBN9yTQT3bFlCBy/aVx2HrNcqQGsdot8ghrjyrvMCoEA==
 
-lerna@^3.0.3, lerna@^3.18.1:
-  version "3.18.1"
-  resolved "https://registry.yarnpkg.com/lerna/-/lerna-3.18.1.tgz#ddc3b68fbba09cb71e3d893500ade787e794b828"
-  integrity sha512-+EAAEgGl+oNeI1TBBW2btHp7NtpCrsRQET/NNCMRyVsl9/8a322t/WcpO9sCsAyEAITBXfhlRVB9rYifFQ6gNA==
+lerna@^3.18.3:
+  version "3.18.3"
+  resolved "http://artifactory.service/api/npm/npm-release/lerna/-/lerna-3.18.3.tgz#c94556e76f98df9c7ae4ed3bc0166117cc42cd13"
+  integrity sha1-yUVW52+Y35x65O07wBZhF8xCzRM=
   dependencies:
     "@lerna/add" "3.18.0"
     "@lerna/bootstrap" "3.18.0"
-    "@lerna/changed" "3.18.0"
+    "@lerna/changed" "3.18.3"
     "@lerna/clean" "3.18.0"
     "@lerna/cli" "3.18.0"
     "@lerna/create" "3.18.0"
@@ -11227,9 +11444,9 @@ lerna@^3.0.3, lerna@^3.18.1:
     "@lerna/init" "3.18.0"
     "@lerna/link" "3.18.0"
     "@lerna/list" "3.18.0"
-    "@lerna/publish" "3.18.1"
+    "@lerna/publish" "3.18.3"
     "@lerna/run" "3.18.0"
-    "@lerna/version" "3.18.0"
+    "@lerna/version" "3.18.3"
     import-local "^2.0.0"
     npmlog "^4.1.2"
 
@@ -15084,22 +15301,6 @@ rc-switch@~1.9.0:
     prop-types "^15.5.6"
     react-lifecycles-compat "^3.0.4"
 
-rc-table@~6.8.6:
-  version "6.8.6"
-  resolved "https://registry.yarnpkg.com/rc-table/-/rc-table-6.8.6.tgz#11832e4696f4c81cec5dd8a14ad1c9f7021e287a"
-  integrity sha512-HKCtWneUq0pKgJUdfUSVtPhjP23DkerIyoamNcbErrejM9lRv8Prt6VfHSQRRSnXzCMn4Q0GeE1D5Wt0rDMAOQ==
-  dependencies:
-    babel-runtime "6.x"
-    classnames "^2.2.5"
-    component-classes "^1.2.6"
-    lodash "^4.17.5"
-    mini-store "^2.0.0"
-    prop-types "^15.5.8"
-    rc-util "^4.0.4"
-    react-lifecycles-compat "^3.0.2"
-    shallowequal "^1.0.2"
-    warning "^4.0.3"
-
 rc-table@~6.9.4:
   version "6.9.5"
   resolved "https://registry.yarnpkg.com/rc-table/-/rc-table-6.9.5.tgz#b7394c3780d4ad2398d08d2059aba454f195273f"
@@ -15360,7 +15561,17 @@ react-docgen@^4.1.0:
     node-dir "^0.1.10"
     recast "^0.17.3"
 
-react-dom@^16.10.2, react-dom@^16.8.3, react-dom@^16.8.4, react-dom@^16.9.0:
+react-dom@^16.11.0:
+  version "16.11.0"
+  resolved "http://artifactory.service/api/npm/npm-release/react-dom/-/react-dom-16.11.0.tgz#7e7c4a5a85a569d565c2462f5d345da2dd849af5"
+  integrity sha1-fnxKWoWladVlwkYvXTRdot2EmvU=
+  dependencies:
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+    prop-types "^15.6.2"
+    scheduler "^0.17.0"
+
+react-dom@^16.8.3, react-dom@^16.8.4:
   version "16.10.2"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.10.2.tgz#4840bce5409176bc3a1f2bd8cb10b92db452fda6"
   integrity sha512-kWGDcH3ItJK4+6Pl9DZB16BXYAZyrYQItU4OMy0jAkv5aNqc+mAKb4TpFtAteI6TJZu+9ZlNhaeNQSVQDHJzkw==
@@ -15448,20 +15659,20 @@ react-inspector@^3.0.2:
     is-dom "^1.0.9"
     prop-types "^15.6.1"
 
-react-intl@^3.2.2, react-intl@^3.3.2:
-  version "3.3.2"
-  resolved "https://registry.yarnpkg.com/react-intl/-/react-intl-3.3.2.tgz#e60ba59736b612654653be2409be3b9711a646af"
-  integrity sha512-Y2QMrcVxkVSzuTD/3+wkbJOV+vYcu60KsKY5XqJ6IkzseFY68myk7ijJ1UHXOP/xBdJtwiXVOCG10EDwDGj/xQ==
+react-intl@^3.4.0:
+  version "3.4.0"
+  resolved "http://artifactory.service/api/npm/npm-release/react-intl/-/react-intl-3.4.0.tgz#25986ac75b3c0073c0a7bce31ab2cb1b8bbf421c"
+  integrity sha1-JZhqx1s8AHPAp7zjGrLLG4u/Qhw=
   dependencies:
-    "@formatjs/intl-relativetimeformat" "^4.1.1"
-    "@formatjs/intl-unified-numberformat" "^1.0.0"
+    "@formatjs/intl-relativetimeformat" "^4.2.1"
+    "@formatjs/intl-unified-numberformat" "^2.1.0"
     "@types/hoist-non-react-statics" "^3.3.1"
     "@types/invariant" "^2.2.30"
     hoist-non-react-statics "^3.3.0"
-    intl-format-cache "^4.2.1"
-    intl-locales-supported "^1.5.0"
-    intl-messageformat "^7.3.1"
-    intl-messageformat-parser "^3.2.0"
+    intl-format-cache "^4.2.3"
+    intl-locales-supported "^1.6.0"
+    intl-messageformat "^7.3.3"
+    intl-messageformat-parser "^3.2.2"
     invariant "^2.1.1"
     shallow-equal "^1.1.0"
 
@@ -15680,7 +15891,16 @@ react@^0.14.0:
     envify "^3.0.0"
     fbjs "^0.6.1"
 
-react@^16.10.2, react@^16.6.0, react@^16.8.3, react@^16.8.4, react@^16.9.0:
+react@^16.11.0:
+  version "16.11.0"
+  resolved "http://artifactory.service/api/npm/npm-release/react/-/react-16.11.0.tgz#d294545fe62299ccee83363599bf904e4a07fdbb"
+  integrity sha1-0pRUX+YimczugzY1mb+QTkoH/bs=
+  dependencies:
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+    prop-types "^15.6.2"
+
+react@^16.6.0, react@^16.8.3, react@^16.8.4:
   version "16.10.2"
   resolved "https://registry.yarnpkg.com/react/-/react-16.10.2.tgz#a5ede5cdd5c536f745173c8da47bda64797a4cf0"
   integrity sha512-MFVIq0DpIhrHFyqLU0S3+4dIcBhhOvBE8bJ/5kHPVOVaGdo0KuiQzpcjCPsf585WvhypqtrMILyoE2th6dT+Lw==
@@ -16438,6 +16658,14 @@ scheduler@^0.16.2:
   version "0.16.2"
   resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.16.2.tgz#f74cd9d33eff6fc554edfb79864868e4819132c1"
   integrity sha512-BqYVWqwz6s1wZMhjFvLfVR5WXP7ZY32M/wYPo04CcuPM7XZEbV2TBNW7Z0UkguPTl0dWMA59VbNXxK6q+pHItg==
+  dependencies:
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+
+scheduler@^0.17.0:
+  version "0.17.0"
+  resolved "http://artifactory.service/api/npm/npm-release/scheduler/-/scheduler-0.17.0.tgz#7c9c673e4ec781fac853927916d1c426b6f3ddfe"
+  integrity sha1-fJxnPk7HgfrIU5J5FtHEJrbz3f4=
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
@@ -17411,10 +17639,10 @@ style-loader@^0.23.1:
     loader-utils "^1.1.0"
     schema-utils "^1.0.0"
 
-styled-components@^4.3.2, styled-components@^4.4.0:
-  version "4.4.0"
-  resolved "https://registry.yarnpkg.com/styled-components/-/styled-components-4.4.0.tgz#4e381e2dab831d0e6ea431c2840a96323e84e21b"
-  integrity sha512-xQ6vTI/0zNjZ1BBDRxyjvBddrxhQ3DxjeCdaLM1lSn5FDnkTOQgRkmWvcUiTajqc5nJqKVl+7sUioMqktD0+Zw==
+styled-components@^4.4.1:
+  version "4.4.1"
+  resolved "http://artifactory.service/api/npm/npm-release/styled-components/-/styled-components-4.4.1.tgz#e0631e889f01db67df4de576fedaca463f05c2f2"
+  integrity sha1-4GMeiJ8B22ffTeV2/trKRj8FwvI=
   dependencies:
     "@babel/helper-module-imports" "^7.0.0"
     "@babel/traverse" "^7.0.0"

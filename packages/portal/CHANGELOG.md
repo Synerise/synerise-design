@@ -3,6 +3,81 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.18.0](https://github.com/synerise/synerise-design/compare/portal@0.17.0...portal@0.18.0) (2019-11-05)
+
+
+### Bug Fixes
+
+* **badge:** counter badge styles ([7ba3dd1](https://github.com/synerise/synerise-design/commit/7ba3dd10f8e5393b5f3921320b5803cadec0e934))
+
+
+### Features
+
+* **badge:** flag styles ([29a23bb](https://github.com/synerise/synerise-design/commit/29a23bb2d0c74388f7af0c7559e13707aaa4c092))
+
+
+
+
+
+# [0.17.0](https://github.com/synerise/synerise-design/compare/portal@0.16.0...portal@0.17.0) (2019-11-04)
+
+
+### Bug Fixes
+
+* add interface for stories config ([4929233](https://github.com/synerise/synerise-design/commit/4929233344f67874da841592d947ec6a99f792b6))
+
+
+### Features
+
+* storybook improvement with custom config ([ea325eb](https://github.com/synerise/synerise-design/commit/ea325ebefbb58c200482ef81d1ec91bb18faf21c))
+* update stories to new scheme ([96ad5ab](https://github.com/synerise/synerise-design/commit/96ad5ab1f52bf15874affabb723e3de7fc2ddb5a))
+* **message:** add message component ([a82fbae](https://github.com/synerise/synerise-design/commit/a82fbae03d79b6bbe09082f7e6b67992dcd62782))
+
+
+
+
+
+# [0.16.0](https://github.com/synerise/synerise-design/compare/portal@0.15.0...portal@0.16.0) (2019-10-30)
+
+
+### Bug Fixes
+
+* **avatar:** tests, storybook ([785820e](https://github.com/synerise/synerise-design/commit/785820e63437cf47a818e53388e37ccda8cf3fa3))
+
+
+### Features
+
+* **avatar:** add status badges position, hover styles ([a7fbdeb](https://github.com/synerise/synerise-design/commit/a7fbdeb88a48ed3d1852571e6c141cd10734e545))
+
+
+
+
+
+# [0.15.0](https://github.com/synerise/synerise-design/compare/portal@0.14.0...portal@0.15.0) (2019-10-30)
+
+
+### Features
+
+* **manageable-list:** add drag and drop ([786a1db](https://github.com/synerise/synerise-design/commit/786a1dbe49875add642861aeeb7912622b0d21fd))
+* **manageable-list:** add styles ([f6db380](https://github.com/synerise/synerise-design/commit/f6db380cf3ab2a826b452da7902ab893dd179fe9))
+* **manageable-list:** add styles for grey background ([55384e5](https://github.com/synerise/synerise-design/commit/55384e591675860c15e0e22ad999d740ce5cfe38))
+* **manageable-list:** add support for content list ([d0730be](https://github.com/synerise/synerise-design/commit/d0730be07dab4bed07843300ab52fe658be571cc))
+
+
+
+
+
+# [0.14.0](https://github.com/synerise/synerise-design/compare/portal@0.13.0...portal@0.14.0) (2019-10-29)
+
+
+### Features
+
+* **input:** Fix error with jumping cursor ([e459585](https://github.com/synerise/synerise-design/commit/e45958570419ba172724bbd5a9e2a8224b5e8b8c))
+
+
+
+
+
 # [0.13.0](https://github.com/synerise/synerise-design/compare/portal@0.12.0...portal@0.13.0) (2019-10-24)
 
 

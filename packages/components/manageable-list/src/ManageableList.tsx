@@ -1,67 +1,135 @@
 import * as React from 'react';
 import List from '@synerise/ds-list';
+import { ReactSortable } from 'react-sortablejs-typescript';
+import { FormattedMessage } from 'react-intl';
 import * as S from './ManageableList.styles';
 import Item, { ItemProps } from './Item/Item';
+import AddItemWithName from './AddItemWithName/AddItemWithName';
 import AddItem from './AddItem/AddItem';
 
-interface Props {
-  addItemLabel: string;
-  showMoreLabel: string;
-  showLessLabel: string;
-  maxToShowItems: number;
-  onItemAdd: (addParams: { name: string }) => void;
-  onItemRemove: (removeParams: { id: string }) => void;
-  onItemEdit: (editParams: { id: string; name: string }) => void;
-  onItemSelect: (selectParams: { id: string }) => void;
-  items: ItemProps[];
-  loading: boolean;
+export enum ListType {
+  default,
+  content,
 }
 
-const ManageableList: React.FC<Props> = ({
+interface ManageableListProps {
+  addItemLabel?: string | React.ReactNode;
+  showMoreLabel?: string | React.ReactNode;
+  showLessLabel?: string | React.ReactNode;
+  more?: string | React.ReactNode;
+  less?: string | React.ReactNode;
+  maxToShowItems: number;
+  onItemAdd?: (addParams?: { name: string }) => void;
+  onItemRemove?: (removeParams: { id: string }) => void;
+  onItemEdit?: (editParams: { id: string; name: string }) => void;
+  onItemSelect: (selectParams: { id: string }) => void;
+  onItemDuplicate?: (duplicateParams: { id: string }) => void;
+  onChangeOrder?: (newOrder: ItemProps[]) => void;
+  items: ItemProps[];
+  loading: boolean;
+  type?: ListType;
+  addButtonDisabled?: boolean;
+  changeOrderDisabled?: boolean;
+  greyBackground?: boolean;
+}
+
+const ManageableList: React.FC<ManageableListProps> = ({
   onItemAdd,
   onItemSelect,
+  onItemDuplicate,
   onItemRemove,
   onItemEdit,
-  addItemLabel,
+  onChangeOrder,
+  addItemLabel = <FormattedMessage id="DS.MANAGABLE-LIST.ADD-ITEM" />,
   items,
-  maxToShowItems,
-  showMoreLabel,
-  showLessLabel,
+  maxToShowItems = 5,
+  showMoreLabel = <FormattedMessage id="DS.MANAGABLE-LIST.SHOW-MORE" />,
+  showLessLabel = <FormattedMessage id="DS.MANAGABLE-LIST.SHOW-LESS" />,
+  more = <FormattedMessage id="DS.MANAGABLE-LIST.MORE" />,
+  less = <FormattedMessage id="DS.MANAGABLE-LIST.LESS" />,
   loading,
+  type = ListType.default,
+  addButtonDisabled = false,
+  changeOrderDisabled = false,
+  greyBackground = false,
 }) => {
   const [allItemsVisible, setAllItemsVisible] = React.useState(false);
-
-  const toggleAllItems = React.useCallback((): void => {
-    setAllItemsVisible(!allItemsVisible);
-  }, [allItemsVisible]);
-
-  const visibleItems = React.useMemo((): ItemProps[] => {
-    return allItemsVisible ? items : items.slice(0, maxToShowItems);
-  }, [items, allItemsVisible, maxToShowItems]);
 
   const getItemsOverLimit = React.useMemo((): number => {
     return items.length - maxToShowItems;
   }, [items, maxToShowItems]);
 
-  const buttonLabel = allItemsVisible ? showLessLabel : showMoreLabel;
-  const buttonLabelDiff = allItemsVisible ? `- ${getItemsOverLimit} less ` : `+ ${getItemsOverLimit} more `;
+  const visibleItems = React.useMemo((): ItemProps[] => {
+    return allItemsVisible ? items : items.slice(0, maxToShowItems);
+  }, [items, allItemsVisible, maxToShowItems]);
 
-  return (
-    <S.ManageableListContainer>
-      <AddItem addItemLabel={addItemLabel} onItemAdd={onItemAdd} />
-      <List
-        loading={loading}
-        dataSource={[visibleItems]}
-        renderItem={(item): React.ReactNode => (
-          <Item onSelect={onItemSelect} onUpdate={onItemEdit} onRemove={onItemRemove} item={item} />
-        )}
-      />
-      {items.length > maxToShowItems ? (
+  const buttonLabel = React.useMemo(() => (allItemsVisible ? showLessLabel : showMoreLabel), [
+    allItemsVisible,
+    showLessLabel,
+    showMoreLabel,
+  ]);
+
+  const buttonLabelDiff = React.useMemo(
+    () => (allItemsVisible ? `- ${getItemsOverLimit} ${less} ` : `+ ${getItemsOverLimit} ${more} `),
+    [allItemsVisible, getItemsOverLimit, less, more]
+  );
+
+  const toggleAllItems = React.useCallback((): void => {
+    setAllItemsVisible(!allItemsVisible);
+  }, [allItemsVisible]);
+
+  const renderShowMoreButton = React.useCallback(() => {
+    return (
+      items.length > maxToShowItems && (
         <S.ShowMoreButton onClick={toggleAllItems} data-testid="show-more-button">
           <span>{buttonLabelDiff}</span>
           <strong>{buttonLabel}</strong>
         </S.ShowMoreButton>
-      ) : null}
+      )
+    );
+  }, [items, maxToShowItems, buttonLabelDiff, toggleAllItems, buttonLabel]);
+
+  const createItem = React.useCallback(() => {
+    onItemAdd && onItemAdd();
+  }, [onItemAdd]);
+
+  const getItem = React.useCallback(
+    (item: ItemProps): React.ReactNode => (
+      <Item
+        listType={type}
+        onSelect={onItemSelect}
+        onUpdate={onItemEdit}
+        onRemove={onItemRemove}
+        onDuplicate={onItemDuplicate}
+        item={item}
+        draggable={Boolean(onChangeOrder)}
+        changeOrderDisabled={changeOrderDisabled}
+        greyBackground={greyBackground}
+      />
+    ),
+    [onChangeOrder, changeOrderDisabled, greyBackground, onItemDuplicate, onItemSelect, onItemEdit, onItemRemove, type]
+  );
+
+  const renderList = React.useCallback(() => {
+    return onChangeOrder && !changeOrderDisabled ? (
+      <ReactSortable list={items} setList={onChangeOrder}>
+        {visibleItems.map(getItem)}
+      </ReactSortable>
+    ) : (
+      <List loading={loading} dataSource={[visibleItems]} renderItem={getItem} />
+    );
+  }, [changeOrderDisabled, items, visibleItems, onChangeOrder, loading, getItem]);
+
+  return (
+    <S.ManageableListContainer listType={type} greyBackground={greyBackground}>
+      {type === ListType.default && Boolean(onItemAdd) && (
+        <AddItemWithName addItemLabel={addItemLabel} onItemAdd={onItemAdd} disabled={addButtonDisabled} />
+      )}
+      {renderList()}
+      {renderShowMoreButton()}
+      {type === ListType.content && Boolean(onItemAdd) && (
+        <AddItem addItemLabel={addItemLabel} onItemAdd={createItem} disabled={addButtonDisabled} />
+      )}
     </S.ManageableListContainer>
   );
 };

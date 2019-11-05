@@ -1,9 +1,6 @@
 import * as React from 'react';
-
-import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { boolean, text, select, number } from '@storybook/addon-knobs';
-import { DSProvider } from '@synerise/ds-core';
 import Button from '@synerise/ds-button';
 import Modal from '@synerise/ds-modal';
 
@@ -42,47 +39,52 @@ const props = () => ({
   bodyBackground: select('Body background color', bodyBackgroundColors, bodyBackgroundColors.White),
 });
 
-storiesOf('Components|Modal', module)
-  .add('default', () => {
+const stories = {
+  default: () => {
     const spread = props();
 
     return (
-      <DSProvider code="en_GB">
-        <>
-          Some page content
+      <React.Fragment>
+        Some page content
 
-          <Modal
-            {...spread}
-            footer={spread.removeFooter ? null :
-              !spread.renderCustomFooter ? undefined :
-                <div style={{ display: 'flex', flexWrap: 'nowrap' }}>
-                  <div style={{ width: '100%', display: 'flex' }}>
-                    <Button type="secondary">
-                      Settings
-                    </Button>
-                  </div>
-
-                  <div style={{ display: 'flex' }}>
-                    <Button type="secondary">
-                      Cancel
-                    </Button>
-
-                    <Button type="primary" loading={props().confirmLoading}>
-                      Apply
-                    </Button>
-                  </div>
+        <Modal
+          {...spread}
+          footer={spread.removeFooter ? null :
+            !spread.renderCustomFooter ? undefined :
+              <div style={{ display: 'flex', flexWrap: 'nowrap' }}>
+                <div style={{ width: '100%', display: 'flex' }}>
+                  <Button type="secondary">
+                    Settings
+                  </Button>
                 </div>
-            }
-            headerActions={
-              props().showHeaderAction &&
-                <Button type="ghost" onClick={() => window.alert('You just clicked on an additional header button')}>
-                  Additional Button
-                </Button>
-            }
-          >
-            Some contents...
-          </Modal>
-        </>
-      </DSProvider>
+
+                <div style={{ display: 'flex' }}>
+                  <Button type="secondary">
+                    Cancel
+                  </Button>
+
+                  <Button type="primary" loading={props().confirmLoading}>
+                    Apply
+                  </Button>
+                </div>
+              </div>
+          }
+          headerActions={
+            props().showHeaderAction &&
+            <Button type="ghost" onClick={() => window.alert('You just clicked on an additional header button')}>
+              Additional Button
+            </Button>
+          }
+        >
+          Some contents...
+        </Modal>
+      </React.Fragment>
     )
-});
+  },
+};
+
+export default {
+  name: 'Components|Modal',
+  stories,
+  Component: Modal,
+};

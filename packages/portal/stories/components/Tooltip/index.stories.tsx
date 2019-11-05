@@ -1,13 +1,13 @@
 import * as React from 'react';
-import { storiesOf } from '@storybook/react';
 import { boolean, text, select } from '@storybook/addon-knobs';
-import centered from '@storybook/addon-centered/react';
 
 import Tooltip from '@synerise/ds-tooltip';
 
-const wrapperStyles = {
-  padding: '60px',
-};
+const decorator = (storyFn) => (
+  <div style={{ padding: '60px' }}>
+    {storyFn()}
+  </div>
+);
 
 const props = () => ({
   title: text('Tooltip text', 'More than just example text'),
@@ -32,33 +32,25 @@ const props = () => ({
   trigger: select('Trigger', ['hover', 'focus', 'click', 'contextMenu'], 'hover'),
 });
 
-storiesOf('Components|Tooltip', module)
-  .addDecorator(centered)
-  .add('default', () => {
-    return (
-      <div style={wrapperStyles}>
-        <Tooltip
-          autoAdjustOverflow={boolean('autoAdjustOverflow', true)}
-          arrowPointAtCenter={boolean('arrowPointAtCenter', false)}
-          {...props()}
-        >
-          <span>Tooltip will show on mouse enter.</span>
-        </Tooltip>
-      </div>
-    );
-  })
+const stories = {
+  default: () => ({
+    ...props(),
+    autoAdjustOverflow: boolean('autoAdjustOverflow', true),
+    arrowPointAtCenter: boolean('arrowPointAtCenter', false),
+    children: (<span>Tooltip will show on mouse enter.</span>),
+  }),
+  forceVisibility: () => ({
+    ...props(),
+    autoAdjustOverflow: boolean('autoAdjustOverflow', true),
+    arrowPointAtCenter: boolean('arrowPointAtCenter', false),
+    visible: boolean('visible', true),
+    children: (<span>Tooltip will show on mouse enter.</span>),
+  }),
+};
 
-  .add('force visibility', () => {
-    return (
-      <div style={wrapperStyles}>
-        <Tooltip
-          {...props()}
-          autoAdjustOverflow={boolean('autoAdjustOverflow', true)}
-          arrowPointAtCenter={boolean('arrowPointAtCenter', false)}
-          visible={boolean('visible', true)}
-        >
-          <span>Tooltip will show on mouse enter.</span>
-        </Tooltip>
-      </div>
-    );
-  });
+export default {
+  name: 'Components|Tooltip',
+  decorator,
+  stories,
+  Component: Tooltip,
+};

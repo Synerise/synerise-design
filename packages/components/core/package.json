@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-core",
-  "version": "0.6.3",
+  "version": "0.6.5",
   "description": "Core Components for the Synerise Design System",
   "license": "ISC",
   "repository": "synerise/synerise-design",
@@ -14,7 +14,7 @@
     "build:js": "babel --root-mode upward src --out-dir dist --extensions '.js,.ts,.tsx'",
     "build:watch": "npm run build:js -- --watch",
     "copy": "node ./build/copy.js",
-    "defs": "tsc --declaration --outDir dist/ --emitDeclarationOnly --declarationMap",
+    "defs": "tsc --declaration --outDir dist/ --emitDeclarationOnly",
     "prepublish": "npm run build",
     "test": "jest --coverage",
     "test:watch": "npm run test -- --watchAll",
@@ -24,8 +24,8 @@
   "sideEffects": false,
   "types": "dist/js/index.js",
   "dependencies": {
-    "antd": "3.24.0",
-    "flat": "^4.1.0"
+    "antd": "3.24.3",
+    "flat": "^5.0.0"
   },
   "peerDependencies": {
     "react": ">=16.9.0 < 17.0.0"

@@ -1,0 +1,11 @@
+{
+  "DS": {
+    "MANAGABLE-LIST": {
+      "LESS": "mniej",
+      "MORE": "więcej",
+      "ADD-ITEM": "Dodaj",
+      "SHOW-MORE": "Pokaż więcej",
+      "SHOW-LESS": "Pokaż mniej"
+    }
+  }
+}

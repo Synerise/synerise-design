@@ -48,3 +48,4 @@ jspm_packages
 storybook-static
 .npmrc
 .DS_Store
+.idea
