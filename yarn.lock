@@ -2999,21 +2999,6 @@
     "@svgr/plugin-svgo" "^4.3.1"
     loader-utils "^1.2.3"
 
-"@synerise/ds-core@^0.6.5":
-  version "0.6.5"
-  resolved "https://registry.yarnpkg.com/@synerise/ds-core/-/ds-core-0.6.5.tgz#67cad99f74c1af97740f9f025c002cccee80a676"
-  integrity sha512-rAw2e2SYR4Qx2Y2eoq7PGnWwRMqYm8Spdxeo1T6xfINBkg8534MFKTKPfhljXrg2oyQ+kUMOpvIq+cO31yz71w==
-  dependencies:
-    antd "3.24.3"
-    flat "^5.0.0"
-
-"@synerise/ds-utils@^0.5.3":
-  version "0.5.3"
-  resolved "https://registry.yarnpkg.com/@synerise/ds-utils/-/ds-utils-0.5.3.tgz#f886c062cfec2eacfd1766dfe07fc11edbb14616"
-  integrity sha512-vtuIYVhuktV01GS9hifcCJpComXSX/X9oW9NO5SkVlJKJa+lqD1Bw+lh8yXkha1djakFzDtc1E5+HKu1D58EXw==
-  dependencies:
-    "@synerise/ds-core" "^0.6.5"
-
 "@testing-library/dom@^6.3.0":
   version "6.8.1"
   resolved "https://registry.yarnpkg.com/@testing-library/dom/-/dom-6.8.1.tgz#47b4e0cc0742302fc9d122ac43010e6fc60bee65"

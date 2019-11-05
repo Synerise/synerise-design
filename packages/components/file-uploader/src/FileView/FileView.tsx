@@ -15,10 +15,10 @@ export interface FileViewTexts {
 interface FileViewProps {
   data: ExtendedFile;
   texts: FileViewTexts;
-  onRemove: () => void;
+  // onRemove: () => void;
 }
 
-const FileView: React.FC<FileViewProps> = ({ data, texts, onRemove }) => {
+const FileView: React.FC<FileViewProps> = ({ data, texts }) => {
   const previewableMimeTypes = ['image/png', 'image/gif', 'image/jpeg', 'image/svg+xml'];
 
   const getFriendlySize = (size?: number): string => filesize(size || 0, { round: 0 });
