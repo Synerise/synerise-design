@@ -28,6 +28,7 @@ const FileUploader: React.FC<FileUploaderProps> = ({
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     accept: accept ? accept.join(',') : undefined,
+    multiple: mode !== 'single',
     onDrop,
   });
 
