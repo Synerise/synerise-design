@@ -63,13 +63,13 @@ export const FileViewContainer = styled.button<{ disabled?: boolean; error?: boo
     border-color: ${(props): string => props.theme.palette['grey-300']};
   }
 
-  &:active {
-    border-color: ${(props): string => props.theme.palette['grey-300']};
+  &:focus {
+    border-color: ${(props): string => props.theme.palette['blue-600']};
     background-color: ${(props): string => props.theme.palette['grey-050']};
   }
 
-  &:focus {
-    border-color: ${(props): string => props.theme.palette['blue-600']};
+  &:active {
+    border-color: ${(props): string => props.theme.palette['grey-300']};
     background-color: ${(props): string => props.theme.palette['grey-050']};
   }
 
