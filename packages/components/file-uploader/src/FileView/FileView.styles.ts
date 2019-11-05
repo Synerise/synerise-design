@@ -100,6 +100,7 @@ export const FileViewContainer = styled.button<{ disabled?: boolean; error?: boo
 
     ${(props): SimpleInterpolation =>
       props.removable &&
+      !props.disabled &&
       `
       ${RemoveButtonWrapper} {
         display: block;
