@@ -2,7 +2,9 @@ import * as React from 'react';
 import { useDropzone } from 'react-dropzone';
 
 import Icon from '@synerise/ds-icon';
+import Tooltip from '@synerise/ds-tooltip';
 import Add1M from '@synerise/ds-icon/dist/icons/Add1M';
+import InfoM from '@synerise/ds-icon/dist/icons/InfoM';
 
 import FileView, { FileViewTexts } from './FileView/FileView';
 import * as S from './FileUploader.styles';
@@ -18,6 +20,7 @@ export interface FileUploaderProps {
   mode: 'single' | 'multi';
   description?: string;
   disabled?: boolean;
+  infoTooltip?: string;
   label?: string;
   error?: string;
   files?: ExtendedFile[];
@@ -38,6 +41,7 @@ const FileUploader: React.FC<FileUploaderProps> = ({
   label,
   description,
   texts,
+  infoTooltip,
 }) => {
   const onDrop = React.useCallback(
     (acceptedFiles: File[]) => {
@@ -57,7 +61,19 @@ const FileUploader: React.FC<FileUploaderProps> = ({
 
   return (
     <S.Container>
-      {label && <S.Label>{label}</S.Label>}
+      {label && (
+        <S.Label>
+          <span>{label}</span>
+
+          {infoTooltip && (
+            <Tooltip trigger="hover" placement="top" title={infoTooltip}>
+              <span>
+                <Icon component={<InfoM />} size={24} />
+              </span>
+            </Tooltip>
+          )}
+        </S.Label>
+      )}
 
       {/* eslint-disable-next-line react/no-array-index-key */}
       {files && files.length > 0 && files.map((file, index) => <FileView key={index} texts={texts} data={file} />)}

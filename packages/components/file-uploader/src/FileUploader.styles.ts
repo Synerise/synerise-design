@@ -1,5 +1,5 @@
 import styled, { SimpleInterpolation } from 'styled-components';
-import Typography from '@synerise/ds-typography';
+import Typography, { Label as TypographyLabel } from '@synerise/ds-typography';
 import Button from '@synerise/ds-button';
 import { IconContainer } from '@synerise/ds-icon/dist/Icon.styles';
 
@@ -105,10 +105,16 @@ export const ErrorMessage = styled(Typography.Text)`
   }
 `;
 
-export const Label = styled(Typography.Title)`
+export const Label = styled(TypographyLabel)`
   && {
+    cursor: initial;
     margin: 0 0 8px;
-    font-size: 13px;
+    display: flex;
+    align-items: center;
+
+    ${IconContainer} {
+      fill: ${(props): string => props.theme.palette['grey-400']};
+    }
   }
 `;
 

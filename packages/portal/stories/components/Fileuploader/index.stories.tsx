@@ -8,6 +8,7 @@ import FileUploader from '@synerise/ds-file-uploader';
 const getDefaultProps = () => ({
   label: text('Label', 'File upload'),
   description: text('Description', 'Only pictures of cats are allowed'),
+  infoTooltip: text('Informational tooltip text', ''),
   buttonLabel: text('Button label', 'Upload a new file or drop one here'),
   size: text('Preview size label', 'Size:'),
   uploading: text('Uploading label', 'Uploading...'),
