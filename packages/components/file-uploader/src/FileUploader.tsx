@@ -8,10 +8,10 @@ import ArrowDownCircleM from '@synerise/ds-icon/dist/icons/ArrowDownCircleM';
 import InfoM from '@synerise/ds-icon/dist/icons/InfoM';
 
 import FileView from './FileView/FileView';
-import { FileUploaderOwnProps } from './FileUploader.types';
+import { FileUploaderProps } from './FileUploader.types';
 import * as S from './FileUploader.styles';
 
-const FileUploader: React.FC = ({
+const FileUploader: React.FC<FileUploaderProps> = ({
   mode,
   onUpload,
   disabled,
@@ -24,7 +24,7 @@ const FileUploader: React.FC = ({
   description,
   texts,
   infoTooltip,
-}: FileUploaderOwnProps) => {
+}) => {
   const onDrop = React.useCallback((acceptedFiles: File[]) => onUpload && onUpload(acceptedFiles), [onUpload]);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({

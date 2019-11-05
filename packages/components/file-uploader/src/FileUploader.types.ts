@@ -20,15 +20,10 @@ export interface FileUploaderProps {
   infoTooltip?: string;
   label?: string;
   error?: string;
-  files?: ExtendedFile[];
+  texts: Texts;
+  files: ExtendedFile[];
   accept?: string[];
-  texts?: Texts;
 
   onRemove?: (file: File, index: number) => void;
   onUpload?: (files: File[]) => void;
-}
-
-export interface FileUploaderOwnProps extends FileUploaderProps {
-  texts: Texts;
-  files: ExtendedFile[];
 }
