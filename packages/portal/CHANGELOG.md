@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.18.0](https://github.com/synerise/synerise-design/compare/portal@0.17.0...portal@0.18.0) (2019-11-05)
+
+
+### Bug Fixes
+
+* **badge:** counter badge styles ([7ba3dd1](https://github.com/synerise/synerise-design/commit/7ba3dd10f8e5393b5f3921320b5803cadec0e934))
+
+
+### Features
+
+* **badge:** flag styles ([29a23bb](https://github.com/synerise/synerise-design/commit/29a23bb2d0c74388f7af0c7559e13707aaa4c092))
+
+
+
+
+
 # [0.17.0](https://github.com/synerise/synerise-design/compare/portal@0.16.0...portal@0.17.0) (2019-11-04)
 
 
