@@ -8,10 +8,10 @@ import ArrowDownCircleM from '@synerise/ds-icon/dist/icons/ArrowDownCircleM';
 import InfoM from '@synerise/ds-icon/dist/icons/InfoM';
 
 import FileView from './FileView/FileView';
-import { FileUploaderProps } from './FileUploader.types';
+import { FileUploaderOwnProps } from './FileUploader.types';
 import * as S from './FileUploader.styles';
 
-const FileUploader: React.FC<FileUploaderProps> = ({
+const FileUploader: React.FC = ({
   mode,
   onUpload,
   disabled,
@@ -24,7 +24,7 @@ const FileUploader: React.FC<FileUploaderProps> = ({
   description,
   texts,
   infoTooltip,
-}) => {
+}: FileUploaderOwnProps) => {
   const onDrop = React.useCallback((acceptedFiles: File[]) => onUpload && onUpload(acceptedFiles), [onUpload]);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
@@ -44,7 +44,7 @@ const FileUploader: React.FC<FileUploaderProps> = ({
 
           {infoTooltip && (
             <Tooltip trigger="hover" placement="top" title={infoTooltip}>
-              <span>
+              <span data-testid="tooltip-info">
                 <Icon component={<InfoM />} size={24} />
               </span>
             </Tooltip>
@@ -95,16 +95,18 @@ const FileUploader: React.FC<FileUploaderProps> = ({
   );
 };
 
+export const defaultTexts = {
+  buttonLabel: 'Upload a new file or drag one here',
+  buttonDescription: '',
+  size: 'Size:',
+  uploading: 'Uploading...',
+};
+
 FileUploader.defaultProps = {
   mode: 'single',
   files: [],
   removable: true,
-  texts: {
-    buttonLabel: 'Upload a new file or drag one here',
-    buttonDescription: '',
-    size: 'Size:',
-    uploading: 'Uploading...',
-  },
+  texts: defaultTexts,
 };
 
 export default FileUploader;
