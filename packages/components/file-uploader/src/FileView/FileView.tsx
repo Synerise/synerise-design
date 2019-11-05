@@ -38,7 +38,9 @@ const FileView: React.FC<FileViewProps> = ({ data, texts, onRemove }) => {
         <S.Name>{file.name}</S.Name>
 
         <S.SizeOrError>
-          {texts.size} {getFriendlySize(file.size)}
+          {error || (
+            <>{texts.size} {getFriendlySize(file.size)}</>
+          )}
         </S.SizeOrError>
       </S.Info>
     </S.FileViewContainer>
