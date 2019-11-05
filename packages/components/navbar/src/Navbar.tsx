@@ -5,13 +5,12 @@ export type NavbarProps = {
   color?: string;
   description: string;
   logo: React.ReactNode | string;
-  avatar: React.ReactNode;
-  dropdown: React.ReactNode;
-  actions: React.ReactNode;
+  children?: React.ReactNode;
+  actions?: React.ReactNode;
 };
 
 const Navbar: React.FC<NavbarProps> & { Divider: typeof S.NavbarDivider } = props => {
-  const { color, logo, description, avatar, dropdown, actions } = props;
+  const { color, logo, description, children, actions } = props;
 
   return (
     <S.Navbar color={color}>
@@ -22,10 +21,7 @@ const Navbar: React.FC<NavbarProps> & { Divider: typeof S.NavbarDivider } = prop
         <div>
           <S.NavbarActionsWrapper>{actions}</S.NavbarActionsWrapper>
         </div>
-        <S.NavbarDivider />
-        {dropdown}
-        <S.NavbarDivider />
-        {avatar}
+        {children}
       </S.NavbarActions>
     </S.Navbar>
   );
