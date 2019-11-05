@@ -14,8 +14,9 @@ const getDefaultProps = () => ({
   uploading: text('Uploading label', 'Uploading...'),
   mode: select('Mode', {
     single: 'single',
-    multi: 'multi'
-  }, 'single'),
+    'multi-medium': 'multi-medium',
+    'multi-large': 'multi-large'
+  }, 'multi-medium'),
   disabled: boolean('Disabled', false),
   removable: boolean('Allow to remove uploaded files', true),
   error: text('Error message', ''),
