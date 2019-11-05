@@ -3,24 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.4](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.6.3...@synerise/ds-select@0.6.4) (2019-11-04)
+
+**Note:** Version bump only for package @synerise/ds-select
+
+## [0.6.3](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.6.2...@synerise/ds-select@0.6.3) (2019-11-04)
+
+**Note:** Version bump only for package @synerise/ds-select
+
 ## [0.6.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.6.1...@synerise/ds-select@0.6.2) (2019-10-21)
 
 **Note:** Version bump only for package @synerise/ds-select
 
-
-
-
-
 ## [0.6.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.6.0...@synerise/ds-select@0.6.1) (2019-10-18)
-
 
 ### Bug Fixes
 
-* **input:** export raw inputs ([47e18b3](https://github.com/synerise/synerise-design/commit/47e18b3))
-
-
-
-
+- **input:** export raw inputs ([47e18b3](https://github.com/synerise/synerise-design/commit/47e18b3))
 
 # [0.6.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.5.0...@synerise/ds-select@0.6.0) (2019-10-15)
 

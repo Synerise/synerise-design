@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-badge",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Badge UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -13,7 +13,7 @@
     "build:css": "node ../../../scripts/style/less.js",
     "build:js": "babel --root-mode upward src --out-dir dist --extensions '.js,.ts,.tsx'",
     "build:watch": "npm run build:js -- --watch",
-    "defs": "tsc --declaration --outDir dist/ --emitDeclarationOnly --declarationMap",
+    "defs": "tsc --declaration --outDir dist/ --emitDeclarationOnly",
     "prepublish": "npm run build",
     "test": "jest",
     "test:watch": "npm run test -- --watchAll",
@@ -22,14 +22,14 @@
   "sideEffects": false,
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-typography": "^0.5.2",
-    "antd": "3.24.0"
-  },
-  "devDependencies": {
-    "@synerise/ds-utils": "^0.5.1"
+    "@synerise/ds-typography": "^0.5.4",
+    "antd": "3.24.3"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
     "react": ">=16.9.0 < 17.0.0"
+  },
+  "devDependencies": {
+    "@synerise/ds-utils": "^0.5.3"
   }
 }

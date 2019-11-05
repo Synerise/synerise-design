@@ -7,7 +7,7 @@ import * as S from './AddItemWithName.styles';
 
 type Props = {
   onItemAdd?: (addParams: { name: string }) => void;
-  addItemLabel: string;
+  addItemLabel: string | React.ReactNode;
   disabled: boolean;
 };
 

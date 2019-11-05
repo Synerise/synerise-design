@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-tabs",
-  "version": "0.5.2",
+  "version": "0.5.4",
   "description": "Tabs UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "synerise/synerise-design",
@@ -13,7 +13,7 @@
     "build:css": "node ../../../scripts/style/less.js",
     "build:js": "babel --root-mode upward src --out-dir dist --extensions '.js,.ts,.tsx'",
     "build:watch": "npm run build:js -- --watch",
-    "defs": "tsc --declaration --outDir dist/ --emitDeclarationOnly --declarationMap",
+    "defs": "tsc --declaration --outDir dist/ --emitDeclarationOnly",
     "prepublish": "npm run build",
     "test": "jest  --coverage",
     "test:watch": "npm run test -- --watchAll",
@@ -22,8 +22,8 @@
   "sideEffects": false,
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-dropdown": "^0.7.8",
-    "antd": "3.24.0"
+    "@synerise/ds-dropdown": "^0.7.10",
+    "antd": "3.24.3"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

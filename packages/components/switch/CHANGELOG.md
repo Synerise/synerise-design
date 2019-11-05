@@ -3,29 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.0.9](https://github.com/synerise/synerise-design/compare/@synerise/ds-switch@0.0.8...@synerise/ds-switch@0.0.9) (2019-10-21)
+## [0.0.11](https://github.com/synerise/synerise-design/compare/@synerise/ds-switch@0.0.10...@synerise/ds-switch@0.0.11) (2019-11-04)
 
 **Note:** Version bump only for package @synerise/ds-switch
 
+## [0.0.10](https://github.com/synerise/synerise-design/compare/@synerise/ds-switch@0.0.9...@synerise/ds-switch@0.0.10) (2019-11-04)
 
+**Note:** Version bump only for package @synerise/ds-switch
 
+## [0.0.9](https://github.com/synerise/synerise-design/compare/@synerise/ds-switch@0.0.8...@synerise/ds-switch@0.0.9) (2019-10-21)
 
+**Note:** Version bump only for package @synerise/ds-switch
 
 ## [0.0.8](https://github.com/synerise/synerise-design/compare/@synerise/ds-switch@0.0.7...@synerise/ds-switch@0.0.8) (2019-10-18)
 
 **Note:** Version bump only for package @synerise/ds-switch
 
-
-
-
-
 ## [0.0.7](https://github.com/synerise/synerise-design/compare/@synerise/ds-switch@0.0.6...@synerise/ds-switch@0.0.7) (2019-10-17)
 
 **Note:** Version bump only for package @synerise/ds-switch
-
-
-
-
 
 ## [0.0.6](https://github.com/synerise/synerise-design/compare/@synerise/ds-switch@0.0.5...@synerise/ds-switch@0.0.6) (2019-10-16)
 
