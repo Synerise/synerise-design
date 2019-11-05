@@ -60,7 +60,7 @@ const stories = {
             {...rest}
             files={getFiles()}
             texts={texts}
-            onUpload={newFiles => setFiles(newFiles.map(file => ({ file })))}
+            onUpload={newFiles => setFiles([...files, ...newFiles.map(file => ({ file }))])}
             onRemove={(rf, rfi) => setFiles(files.filter((f, i) => i !== rfi))}
           />
         </div>

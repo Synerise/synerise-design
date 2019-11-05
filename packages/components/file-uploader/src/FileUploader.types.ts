@@ -15,7 +15,7 @@ export interface FileUploaderProps {
   infoTooltip?: string;
   label?: string;
   error?: string;
-  files?: ExtendedFile[];
+  files: ExtendedFile[];
   accept?: string[];
   texts: FileViewTexts & {
     buttonLabel: string;
