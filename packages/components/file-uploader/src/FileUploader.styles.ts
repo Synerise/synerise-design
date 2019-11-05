@@ -25,7 +25,24 @@ export const DropAreaLabel = styled(Typography.Text)`
   font-weight: 500;
 `;
 
-export const DropAreaButton = styled.button<{ isDropping?: boolean; hasError?: boolean }>`
+export const LargeDropAreaLabel = styled(TypographyLabel)`
+  && {
+    font-size: 14px;
+    margin: 4px 0 0;
+    display: block;
+    color: ${(props): string => props.theme.palette['grey-500']};
+  }
+`;
+
+export const LargeDropAreaDescription = styled(Typography.Text)`
+  && {
+    margin: 4px 0 0;
+    display: block;
+    color: ${(props): string => props.theme.palette['grey-500']};
+  }
+`;
+
+export const DropAreaButton = styled.button<{ isDropping?: boolean; hasError?: boolean; mode: string }>`
   display: flex;
   align-items: center;
   border: 1px dashed ${(props): string => props.theme.palette['grey-300']};
@@ -35,6 +52,16 @@ export const DropAreaButton = styled.button<{ isDropping?: boolean; hasError?: b
   background-color: transparent;
   width: 100%;
   height: 48px;
+  transition: height 0.3s;
+
+  ${(props): SimpleInterpolation =>
+    props.mode === 'multi-large' &&
+    `
+      height: 108px;
+      flex-direction: column;
+      text-align: center;
+      justify-content: center;
+  `};
 
   ${IconContainer} {
     fill: ${(props): string => props.theme.palette['grey-500']};
@@ -56,7 +83,7 @@ export const DropAreaButton = styled.button<{ isDropping?: boolean; hasError?: b
     background-color: transparent;
     border-color: ${(props): string => props.theme.palette['grey-400']};
 
-    ${DropAreaLabel} {
+    ${DropAreaLabel}, ${LargeDropAreaLabel} {
       color: ${(props): string => props.theme.palette['grey-600']};
     }
 
@@ -69,6 +96,10 @@ export const DropAreaButton = styled.button<{ isDropping?: boolean; hasError?: b
   &:active,
   &:disabled {
     background-color: ${(props): string => props.theme.palette['grey-050']};
+  }
+
+  &:active {
+    border-color: ${(props): string => props.theme.palette['grey-400']};
   }
 
   &:focus:not(:active):not(:disabled) {
@@ -84,11 +115,13 @@ export const DropAreaButton = styled.button<{ isDropping?: boolean; hasError?: b
 
   ${(props): SimpleInterpolation =>
     props.isDropping &&
+    !props.disabled &&
     `
+      height: ${props.mode === 'multi-large' ? '168px' : 'auto'};
       background-color: ${props.theme.palette['blue-050']} !important;
       border-color: ${props.theme.palette['blue-300']} !important;
 
-      span {
+      span, ${DropAreaLabel}, ${LargeDropAreaLabel}, ${LargeDropAreaDescription} {
         color: ${props.theme.palette['blue-500']} !important;
       }
 

@@ -8,7 +8,7 @@ export interface ExtendedFile {
 }
 
 export interface FileUploaderProps {
-  mode: 'single' | 'multi';
+  mode: 'single' | 'multi-medium' | 'multi-large';
   description?: string;
   disabled?: boolean;
   removable?: boolean;
@@ -19,6 +19,7 @@ export interface FileUploaderProps {
   accept?: string[];
   texts: FileViewTexts & {
     buttonLabel: string;
+    buttonDescription: string;
   };
 
   onRemove?: (file: File, index: number) => void;

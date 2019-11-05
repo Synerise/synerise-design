@@ -10,13 +10,14 @@ const getDefaultProps = () => ({
   description: text('Description', 'Only pictures of cats are allowed'),
   infoTooltip: text('Informational tooltip text', ''),
   buttonLabel: text('Button label', 'Upload a new file or drop one here'),
+  buttonDescription: text('Button description', 'Upload button description'),
   size: text('Preview size label', 'Size:'),
   uploading: text('Uploading label', 'Uploading...'),
   mode: select('Mode', {
     single: 'single',
     'multi-medium': 'multi-medium',
     'multi-large': 'multi-large'
-  }, 'multi-medium'),
+  }, 'multi-large'),
   disabled: boolean('Disabled', false),
   removable: boolean('Allow to remove uploaded files', true),
   error: text('Error message', ''),
@@ -29,10 +30,11 @@ const getDefaultProps = () => ({
 const stories = {
   single: () => {
     const [files, setFiles] = React.useState([]);
-    const { testFileError, testFileProgress, testFileDisable, uploading, buttonLabel, size, ...rest } = getDefaultProps();
+    const { testFileError, testFileProgress, testFileDisable, uploading, buttonLabel, buttonDescription, size, ...rest } = getDefaultProps();
 
     const texts = {
       buttonLabel,
+      buttonDescription,
       size,
       uploading,
     };
