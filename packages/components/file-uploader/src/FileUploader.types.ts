@@ -7,6 +7,11 @@ export interface ExtendedFile {
   progress?: number;
 }
 
+type Texts = FileViewTexts & {
+  buttonLabel: string;
+  buttonDescription: string;
+};
+
 export interface FileUploaderProps {
   mode: 'single' | 'multi-medium' | 'multi-large';
   description?: string;
@@ -15,13 +20,15 @@ export interface FileUploaderProps {
   infoTooltip?: string;
   label?: string;
   error?: string;
-  files: ExtendedFile[];
+  files?: ExtendedFile[];
   accept?: string[];
-  texts: FileViewTexts & {
-    buttonLabel: string;
-    buttonDescription: string;
-  };
+  texts?: Texts;
 
   onRemove?: (file: File, index: number) => void;
   onUpload?: (files: File[]) => void;
+}
+
+export interface FileUploaderOwnProps extends FileUploaderProps {
+  texts: Texts;
+  files: ExtendedFile[];
 }
