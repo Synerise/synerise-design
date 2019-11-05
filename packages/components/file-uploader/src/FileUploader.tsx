@@ -6,51 +6,25 @@ import Tooltip from '@synerise/ds-tooltip';
 import Add1M from '@synerise/ds-icon/dist/icons/Add1M';
 import InfoM from '@synerise/ds-icon/dist/icons/InfoM';
 
-import FileView, { FileViewTexts } from './FileView/FileView';
+import FileView from './FileView/FileView';
+import { FileUploaderProps } from './FileUploader.types';
 import * as S from './FileUploader.styles';
-
-export interface ExtendedFile {
-  file: File;
-  error?: string;
-  disabled?: boolean;
-  progress?: number;
-}
-
-export interface FileUploaderProps {
-  mode: 'single' | 'multi';
-  description?: string;
-  disabled?: boolean;
-  infoTooltip?: string;
-  label?: string;
-  error?: string;
-  files?: ExtendedFile[];
-  accept?: string[];
-  onChange?: (files: File[]) => void;
-  texts: FileViewTexts & {
-    buttonLabel: string;
-  };
-}
 
 const FileUploader: React.FC<FileUploaderProps> = ({
   mode,
-  onChange,
+  onUpload,
   disabled,
   accept,
   files,
   error,
   label,
+  removable,
+  onRemove,
   description,
   texts,
   infoTooltip,
 }) => {
-  const onDrop = React.useCallback(
-    (acceptedFiles: File[]) => {
-      console.log(acceptedFiles);
-
-      onChange && onChange(acceptedFiles);
-    },
-    [onChange]
-  );
+  const onDrop = React.useCallback((acceptedFiles: File[]) => onUpload && onUpload(acceptedFiles), [onUpload]);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     accept: accept ? accept.join(',') : undefined,
@@ -75,8 +49,18 @@ const FileUploader: React.FC<FileUploaderProps> = ({
         </S.Label>
       )}
 
-      {/* eslint-disable-next-line react/no-array-index-key */}
-      {files && files.length > 0 && files.map((file, index) => <FileView key={index} texts={texts} data={file} />)}
+      {files &&
+        files.length > 0 &&
+        files.map((file, index) => (
+          <FileView
+            // eslint-disable-next-line react/no-array-index-key
+            key={index}
+            texts={texts}
+            removable={removable}
+            onRemove={(): void => onRemove && onRemove(file.file, index)}
+            data={file}
+          />
+        ))}
 
       {mode === 'single' && files && files.length === 0 && (
         <>
@@ -102,6 +86,7 @@ const FileUploader: React.FC<FileUploaderProps> = ({
 FileUploader.defaultProps = {
   mode: 'single',
   files: [],
+  removable: true,
   texts: {
     buttonLabel: 'Upload a new file or drag one here',
     size: 'Size:',
