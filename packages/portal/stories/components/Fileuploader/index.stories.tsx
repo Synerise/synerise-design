@@ -42,8 +42,6 @@ const stories = {
       return files;
     };
 
-    console.dir(getFiles())
-
     return (
       <DSProvider code="en_GB">
         <div style={{ margin: 24, width: 340 }}>
