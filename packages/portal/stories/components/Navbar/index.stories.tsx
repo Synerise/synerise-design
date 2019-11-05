@@ -12,6 +12,7 @@ import { AngleDownS, NotificationsPlayM, CalendarM, DashboardM} from '@synerise/
 import List from "@synerise/ds-list/dist/List";
 import {action} from "@storybook/addon-actions";
 import FileM from "@synerise/ds-icon/dist/icons/FileM";
+import * as S from "@synerise/ds-navbar/dist/Navbar.styles";
 
 const backgroundColors = [
   'red',
@@ -49,19 +50,14 @@ storiesOf('Components|Navbar', module)
   .add('default', () => (
     <DSProvider code="en_GB">
       <Navbar description={'Module name'} logo={logoSrc}
-              color={select('Background color', backgroundColors, '#0b68ff')} avatar={
-        <Avatar
-          src={avatarSrc}
-          shape={'circle'}
-          size={32}
-        />
-      } actions={
+              color={select('Background color', backgroundColors, '#0b68ff')} actions={
         <>
           <Icon component={<DashboardM />} color={'#ffffff'} size={24} onClick={action('onClick')} />
           <Icon component={<CalendarM />} color={'#ffffff'} size={24} onClick={action('onClick')} />
           <Icon component={<NotificationsPlayM />} color={'#ffffff'} size={24} onClick={action('onClick')} />
         </>
-      } dropdown={
+      }>
+        <S.NavbarDivider />
         <Dropdown trigger={['click']} overlay={
           <div style={{ background: '#fff', width: '300px' }}>
             <List
@@ -85,6 +81,12 @@ storiesOf('Components|Navbar', module)
             <Icon component={<AngleDownS />} color={'#ffffff'} />
           </Button>
         </Dropdown>
-      } />
+        <S.NavbarDivider />
+        <Avatar
+          src={avatarSrc}
+          shape={'circle'}
+          size={32}
+        />
+      </Navbar>
     </DSProvider>
   ));
