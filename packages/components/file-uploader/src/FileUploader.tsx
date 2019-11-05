@@ -4,6 +4,7 @@ import { useDropzone } from 'react-dropzone';
 import Icon from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 import Add1M from '@synerise/ds-icon/dist/icons/Add1M';
+import ArrowDownCircleM from '@synerise/ds-icon/dist/icons/ArrowDownCircleM';
 import InfoM from '@synerise/ds-icon/dist/icons/InfoM';
 
 import FileView from './FileView/FileView';
@@ -30,6 +31,7 @@ const FileUploader: React.FC<FileUploaderProps> = ({
     accept: accept ? accept.join(',') : undefined,
     multiple: mode !== 'single',
     onDrop,
+    disabled,
   });
 
   const hasError = !!error;
@@ -69,9 +71,19 @@ const FileUploader: React.FC<FileUploaderProps> = ({
             {/* eslint-disable-next-line react/jsx-props-no-spreading */}
             <input {...getInputProps()} />
 
-            <S.DropAreaButton disabled={disabled} isDropping={isDragActive} hasError={hasError}>
-              <Icon component={<Add1M />} size={24} />
-              <S.DropAreaLabel>{texts.buttonLabel}</S.DropAreaLabel>
+            <S.DropAreaButton mode={mode} disabled={disabled} isDropping={isDragActive} hasError={hasError}>
+              {mode === 'multi-large' ? (
+                <>
+                  <Icon component={<ArrowDownCircleM />} size={24} />
+                  <S.LargeDropAreaLabel>{texts.buttonLabel}</S.LargeDropAreaLabel>
+                  <S.LargeDropAreaDescription>{texts.buttonDescription}</S.LargeDropAreaDescription>
+                </>
+              ) : (
+                <>
+                  <Icon component={<Add1M />} size={24} />
+                  <S.DropAreaLabel>{texts.buttonLabel}</S.DropAreaLabel>
+                </>
+              )}
             </S.DropAreaButton>
           </S.DropAreaContainer>
         </>
@@ -89,6 +101,7 @@ FileUploader.defaultProps = {
   removable: true,
   texts: {
     buttonLabel: 'Upload a new file or drag one here',
+    buttonDescription: '',
     size: 'Size:',
     uploading: 'Uploading...',
   },
