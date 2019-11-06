@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { FormattedMessage } from 'react-intl';
 import { useDropzone } from 'react-dropzone';
 
 import Icon from '@synerise/ds-icon';
@@ -12,18 +13,23 @@ import { FileUploaderProps } from './FileUploader.types';
 import * as S from './FileUploader.styles';
 
 const FileUploader: React.FC<FileUploaderProps> = ({
-  mode,
   onUpload,
   disabled,
   accept,
-  files,
   error,
   label,
-  removable,
   onRemove,
   description,
-  texts,
   infoTooltip,
+  mode = 'single',
+  removable = true,
+  files = [],
+  texts = {
+    buttonLabel: <FormattedMessage id="DS.FILE-UPLOADER.BUTTON-LABEL" />,
+    buttonDescription: <FormattedMessage id="DS.FILE-UPLOADER.BUTTON-DESC" />,
+    size: <FormattedMessage id="DS.FILE-UPLOADER.SIZE" />,
+    uploading: <FormattedMessage id="DS.FILE-UPLOADER.UPLOADING" />,
+  },
 }) => {
   const onDrop = React.useCallback((acceptedFiles: File[]) => onUpload && onUpload(acceptedFiles), [onUpload]);
 
@@ -99,20 +105,6 @@ const FileUploader: React.FC<FileUploaderProps> = ({
       {description && <S.Description hasError={hasError}>{description}</S.Description>}
     </S.Container>
   );
-};
-
-export const defaultTexts = {
-  buttonLabel: 'Upload a new file or drag one here',
-  buttonDescription: '',
-  size: 'Size:',
-  uploading: 'Uploading...',
-};
-
-FileUploader.defaultProps = {
-  mode: 'single',
-  files: [],
-  removable: true,
-  texts: defaultTexts,
 };
 
 export default FileUploader;

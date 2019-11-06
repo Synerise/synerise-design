@@ -65,9 +65,9 @@ import FileUploader from '@synerise/ds-file-uploader'
 
 ## FileUploaderTexts
 
-| Property          | Description                           | Default |
-| ----------------- | ------------------------------------- | ------- |
-| buttonLabel       | upload button label                   | -       |
-| buttonDescription | upload button description             | -       |
-| size              | file size label                       | -       |
-| uploading         | text to display when uploading a file | -       |
+| Property          | Description                           | Type   | Default         |
+| ----------------- | ------------------------------------- | ------ | --------------- |
+| buttonLabel       | upload button label                   | string | React.ReactNode | - |
+| buttonDescription | upload button description             | string | React.ReactNode | - |
+| size              | file size label                       | string | React.ReactNode | - |
+| uploading         | text to display when uploading a file | string | React.ReactNode | - |

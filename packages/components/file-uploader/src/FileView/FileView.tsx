@@ -9,8 +9,8 @@ import { ExtendedFile } from '../FileUploader.types';
 import * as S from './FileView.styles';
 
 export interface FileViewTexts {
-  size: string;
-  uploading: string;
+  size: string | React.ReactNode;
+  uploading: string | React.ReactNode;
 }
 
 interface FileViewProps {

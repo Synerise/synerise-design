@@ -8,8 +8,8 @@ export interface ExtendedFile {
 }
 
 type FileUploaderTexts = FileViewTexts & {
-  buttonLabel: string;
-  buttonDescription: string;
+  buttonLabel: string | React.ReactNode;
+  buttonDescription: string | React.ReactNode;
 };
 
 export interface FileUploaderProps {

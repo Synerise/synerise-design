@@ -2,7 +2,13 @@ import * as React from 'react';
 import { renderWithProvider } from '@synerise/ds-utils';
 import { fireEvent } from '@testing-library/react';
 import FileUploader from '../index';
-import { defaultTexts } from '../FileUploader';
+
+const defaultTexts = {
+  buttonLabel: 'Upload a new file or drag one here',
+  buttonDescription: '',
+  size: 'Size:',
+  uploading: 'Uploading...',
+};
 
 window.URL.createObjectURL = function() {return ''};
 
