@@ -4,7 +4,7 @@ import { fireEvent } from '@testing-library/react';
 import FileUploader from '../index';
 import { defaultTexts } from '../FileUploader';
 
-window.URL.createObjectURL = function() {};
+window.URL.createObjectURL = function() {return ''};
 
 describe('FileUploader', () => {
   const REMOVE_BUTTON_TESTID = 'fileview-remove';
@@ -90,7 +90,6 @@ describe('FileUploader', () => {
 
   it('should not fire onUpload when disabled', () => {
     // ARRANGE
-    const DROPAREA_TESTID = 'droparea';
     const onUpload = jest.fn();
 
     const { getByTestId } = renderWithProvider(
@@ -167,7 +166,7 @@ describe('FileUploader', () => {
     // ARRANGE
     const ERROR_TEXT = 'SOME ERROR HAPPENED';
 
-    const { getByTestId, getByText } = renderWithProvider(
+    const { getByText } = renderWithProvider(
       <FileUploader
         mode="single"
         files={[{file, error: ERROR_TEXT}]}
