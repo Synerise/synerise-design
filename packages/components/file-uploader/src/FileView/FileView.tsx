@@ -23,7 +23,7 @@ interface FileViewProps {
 const FileView: React.FC<FileViewProps> = ({ data, texts, onRemove, removable }) => {
   const previewableMimeTypes = ['image/png', 'image/gif', 'image/jpeg', 'image/svg+xml'];
 
-  const getFriendlySize = (size?: number): string => filesize(size || 0, { round: 0 });
+  const getFriendlySize = (size?: number): string => filesize(size || 0);
 
   const { disabled, error, file, progress } = data;
   const fileSource = React.useMemo(() => URL.createObjectURL(data.file), [data]);

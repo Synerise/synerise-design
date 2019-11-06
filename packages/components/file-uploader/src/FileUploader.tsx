@@ -69,9 +69,15 @@ const FileUploader: React.FC<FileUploaderProps> = ({
           {/* eslint-disable-next-line react/jsx-props-no-spreading */}
           <S.DropAreaContainer {...getRootProps()} canUploadMore={mode !== 'single' && files.length > 0}>
             {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-            <input {...getInputProps()} />
+            <input {...getInputProps()} data-testid="droparea-input" />
 
-            <S.DropAreaButton mode={mode} disabled={disabled} isDropping={isDragActive} hasError={hasError}>
+            <S.DropAreaButton
+              mode={mode}
+              disabled={disabled}
+              isDropping={isDragActive}
+              hasError={hasError}
+              data-testid="droparea"
+            >
               {mode === 'multi-large' ? (
                 <>
                   <Icon component={<ArrowDownCircleM />} size={24} />
