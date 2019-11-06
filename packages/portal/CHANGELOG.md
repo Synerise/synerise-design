@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.19.0](https://github.com/synerise/synerise-design/compare/portal@0.18.0...portal@0.19.0) (2019-11-06)
+
+
+### Features
+
+* **navbar:** add navbar ([d0ffc00](https://github.com/synerise/synerise-design/commit/d0ffc003ae64c39315e4a187c284fdb88dec07bc))
+* **navbar:** add navbar ([6affab8](https://github.com/synerise/synerise-design/commit/6affab875d94e1bdcfc2c93a204795fa2c1e6388))
+* **page-header:** add page-header component ([768cb8c](https://github.com/synerise/synerise-design/commit/768cb8c6e9af1def032ea8718285c101bb506ef1))
+* **page-header:** add tests ([7b09db6](https://github.com/synerise/synerise-design/commit/7b09db60d66033feb54412f7c7ad16ea5cd1fb6f))
+* **page-header:** write missed readme file, code refactor ([5dc1433](https://github.com/synerise/synerise-design/commit/5dc1433c0c9bd3a8dfd0f1d173b58c72f84fe72f))
+* **popconfirm:** add standard antd popconfirm ([0244dfc](https://github.com/synerise/synerise-design/commit/0244dfc7694bf74930054a00af03fe996d5aa90a))
+
+
+
+
+
 # [0.18.0](https://github.com/synerise/synerise-design/compare/portal@0.17.0...portal@0.18.0) (2019-11-05)
 
 
