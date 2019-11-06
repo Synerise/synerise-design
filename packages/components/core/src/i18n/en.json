@@ -8,7 +8,8 @@
             "SHOW-LESS": "Show less"
         },
         "FILE-UPLOADER": {
-            "BUTTON-LABEL": "Upload a new file"
+            "BUTTON-LABEL": "Upload a new file",
+            "BUTTON-DESC": "or drag one here"
         }
     }
 }
