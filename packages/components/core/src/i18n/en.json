@@ -10,7 +10,8 @@
         "FILE-UPLOADER": {
             "BUTTON-LABEL": "Upload a new file",
             "BUTTON-DESC": "or drag one here",
-            "SIZE": "Size:"
+            "SIZE": "Size:",
+            "UPLOADING": "Uploading..."
         }
     }
 }
