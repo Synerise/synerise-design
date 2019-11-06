@@ -35,7 +35,7 @@ import FileUploader from '@synerise/ds-file-uploader'
 
 ## Demo
 
-<iframe src="/storybook-static/iframe.html?id=components-file-uploader--default"></iframe>
+<iframe src="/storybook-static/iframe.html?id=components-fileuploader--single"></iframe>
 
 ## FileUploader
 
