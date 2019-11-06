@@ -1,11 +1,14 @@
 {
-  "DS": {
-    "MANAGABLE-LIST": {
-      "LESS": "less",
-      "MORE": "more",
-      "ADD-ITEM": "Add item",
-      "SHOW-MORE": "Show more",
-      "SHOW-LESS": "Show less"
+    "DS": {
+        "MANAGABLE-LIST": {
+            "LESS": "less",
+            "MORE": "more",
+            "ADD-ITEM": "Add item",
+            "SHOW-MORE": "Show more",
+            "SHOW-LESS": "Show less"
+        },
+        "FILE-UPLOADER": {
+            "BUTTON-LABEL": "Upload a new file"
+        }
     }
-  }
 }
