@@ -54,6 +54,7 @@ describe('FileUploader', () => {
       <FileUploader
         mode="multi-large"
         files={[]}
+        texts={defaultTexts}
         label="Some label"
         infoTooltip="Some tooltip text"
       />
@@ -61,5 +62,51 @@ describe('FileUploader', () => {
 
     // ASSERT
     expect(getByTestId(TOOLTIP_TEST_ID)).toBeTruthy();
+  });
+
+  it('should render with error', () => {
+    // ARRANGE
+    const ERROR_TEXT = 'CRAZY ERROR';
+
+    const { getByText } = renderWithProvider(
+      <FileUploader
+        mode="single"
+        files={[]}
+        texts={defaultTexts}
+        error={ERROR_TEXT}
+      />
+    );
+
+    // ASSERT
+    expect(getByText(ERROR_TEXT)).toBeTruthy();
+  });
+
+  it('should not fire onUpload when disabled', () => {
+    // ARRANGE
+    const DROPAREA_TESTID = 'droparea';
+    const onUpload = jest.fn();
+
+    const file = new File(['foo'], 'hello from the other side.png', {
+      type: 'image/png',
+    });
+
+    const { getByTestId } = renderWithProvider(
+      <FileUploader
+        mode="single"
+        files={[]}
+        texts={defaultTexts}
+        onUpload={onUpload}
+        disabled
+      />
+    );
+
+    const dropAreaInput = getByTestId('droparea-input');
+    Object.defineProperty(dropAreaInput, 'files', { value: [file] });
+
+    // ACT
+    fireEvent.change(dropAreaInput);
+
+    // ASSERT
+    expect(onUpload).not.toHaveBeenCalled();
   });
 });
