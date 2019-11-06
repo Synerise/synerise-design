@@ -23,7 +23,7 @@ import Drawer from '@synerise/ds-drawer'
   width={400}
   onClose={() => {}}
   header={<span>Header</span>}
-  header={<span>Content</span>}
+  content={<span>Content</span>}
 />
 
 ```
