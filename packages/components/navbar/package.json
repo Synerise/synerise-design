@@ -25,7 +25,7 @@
     "@synerise/ds-button": "*",
     "@synerise/ds-card": "*",
     "@synerise/ds-typography": "*",
-    "antd": "*"
+    "antd": "3.24.3"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
