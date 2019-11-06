@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-ignore */
-
 import * as React from 'react';
 import AutosizeInput from 'react-input-autosize';
 import Tooltip from '@synerise/ds-tooltip';
@@ -84,10 +82,8 @@ const InlineEdit: React.FC<InlineEditProps> = ({
 
   const updateInputWidth = React.useCallback(() => {
     if (inputRef.current) {
-      // @ts-ignore
-      inputRef.current.copyInputStyles();
-      // @ts-ignore
-      inputRef.current.updateInputWidth();
+      (inputRef.current as any).copyInputStyles();
+      (inputRef.current as any).updateInputWidth();
     }
   }, [inputRef]);
 
@@ -95,8 +91,7 @@ const InlineEdit: React.FC<InlineEditProps> = ({
     autoFocus && inputRef.current && inputRef.current.focus();
     updateInputWidth();
     if (fontStyleWatcher) {
-      // @ts-ignore
-      attachWidthWatcher(fontStyleWatcher.current, updateInputWidth);
+      attachWidthWatcher(fontStyleWatcher.current as any, updateInputWidth);
     }
   }, [autoFocus, fontStyleWatcher, inputRef, updateInputWidth]);
 
@@ -122,8 +117,7 @@ const InlineEdit: React.FC<InlineEditProps> = ({
         onBlur={handleBlur}
         autoComplete={input.autoComplete}
         placeholderIsMinWidth={false}
-        // @ts-ignore
-        ref={inputRef}
+        ref={inputRef as any}
       />
       {!hideIcon && (
         <Tooltip data-testid="inline-edit-icon" title={tooltipTitle}>
