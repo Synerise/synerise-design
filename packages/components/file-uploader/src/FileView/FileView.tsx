@@ -62,8 +62,8 @@ const FileView: React.FC<FileViewProps> = ({ data, texts, onRemove, removable })
         )}
       </S.Info>
 
-      {removable && (
-        <S.RemoveButtonWrapper onClick={onRemove}>
+      {removable && !disabled && (
+        <S.RemoveButtonWrapper onClick={onRemove} data-testid="fileview-remove">
           <Icon component={<Close3M />} size={24} />
         </S.RemoveButtonWrapper>
       )}
