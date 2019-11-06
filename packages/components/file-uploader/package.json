@@ -1,0 +1,37 @@
+{
+  "name": "@synerise/ds-file-uploader",
+  "version": "0.0.1",
+  "description": "FileUploader UI Component for the Synerise Design System",
+  "license": "ISC",
+  "repository": "Synerise/synerise-design",
+  "main": "dist/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "npm run build:js && npm run build:css && npm run defs",
+    "build:css": "node ../../../scripts/style/less.js",
+    "build:js": "babel --root-mode upward src --out-dir dist --extensions '.js,.ts,.tsx'",
+    "build:watch": "npm run build:js -- --watch",
+    "defs": "tsc --declaration --outDir dist/ --emitDeclarationOnly --declarationMap",
+    "prepublish": "npm run build",
+    "test": "jest",
+    "test:watch": "npm run test -- --watchAll",
+    "types": "tsc --noEmit"
+  },
+  "sideEffects": false,
+  "types": "dist/index.d.ts",
+  "dependencies": {
+    "@synerise/ds-icon": "^0.3.0",
+    "@synerise/ds-progress-bar": "^0.1.5",
+    "@synerise/ds-tooltip": "^0.3.4",
+    "@synerise/ds-typography": "^0.5.2",
+    "filesize.js": "^2.0.0",
+    "react-dropzone": "^10.1.10"
+  },
+  "peerDependencies": {
+    "@synerise/ds-core": "*",
+    "react": ">=16.9.0 < 17.0.0"
+  },
+  "devDependencies": {}
+}
