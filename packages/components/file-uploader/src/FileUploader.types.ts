@@ -7,7 +7,7 @@ export interface ExtendedFile {
   progress?: number;
 }
 
-type Texts = FileViewTexts & {
+type FileUploaderTexts = FileViewTexts & {
   buttonLabel: string;
   buttonDescription: string;
 };
@@ -20,7 +20,7 @@ export interface FileUploaderProps {
   infoTooltip?: string;
   label?: string;
   error?: string;
-  texts: Texts;
+  texts: FileUploaderTexts;
   files: ExtendedFile[];
   accept?: string[];
 
