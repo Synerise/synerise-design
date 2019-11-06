@@ -82,7 +82,9 @@ const InlineEdit: React.FC<InlineEditProps> = ({
 
   const updateInputWidth = React.useCallback(() => {
     if (inputRef.current) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       (inputRef.current as any).copyInputStyles();
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       (inputRef.current as any).updateInputWidth();
     }
   }, [inputRef]);
@@ -91,7 +93,7 @@ const InlineEdit: React.FC<InlineEditProps> = ({
     autoFocus && inputRef.current && inputRef.current.focus();
     updateInputWidth();
     if (fontStyleWatcher) {
-      attachWidthWatcher(fontStyleWatcher.current as any, updateInputWidth);
+      attachWidthWatcher(fontStyleWatcher.current as HTMLDivElement, updateInputWidth);
     }
   }, [autoFocus, fontStyleWatcher, inputRef, updateInputWidth]);
 
@@ -117,6 +119,7 @@ const InlineEdit: React.FC<InlineEditProps> = ({
         onBlur={handleBlur}
         autoComplete={input.autoComplete}
         placeholderIsMinWidth={false}
+        /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
         ref={inputRef as any}
       />
       {!hideIcon && (
