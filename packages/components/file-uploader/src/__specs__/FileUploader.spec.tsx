@@ -6,12 +6,11 @@ import { defaultTexts } from '../FileUploader';
 
 window.URL.createObjectURL = function() {};
 
-const getFile = () => new File(['foo'], 'hello from the other side.png', {
-  type: 'image/png',
-});
-
 describe('FileUploader', () => {
   const REMOVE_BUTTON_TESTID = 'fileview-remove';
+  const file = new File(['foo'], 'hello from the other side.png', {
+    type: 'image/png',
+  });
 
   it('should render with drop area', () => {
     // ARRANGE
@@ -93,7 +92,6 @@ describe('FileUploader', () => {
     // ARRANGE
     const DROPAREA_TESTID = 'droparea';
     const onUpload = jest.fn();
-    const file = getFile();
 
     const { getByTestId } = renderWithProvider(
       <FileUploader
@@ -118,7 +116,6 @@ describe('FileUploader', () => {
   it('should fire onRemove', () => {
     // ARRANGE
     const onRemove = jest.fn();
-    const file = getFile();
 
     const { getByTestId } = renderWithProvider(
       <FileUploader
@@ -139,8 +136,6 @@ describe('FileUploader', () => {
 
   it('should not show remove button if `removable` prop is false', () => {
     // ARRANGE
-    const file = getFile();
-
     const { queryByTestId } = renderWithProvider(
       <FileUploader
         mode="single"
@@ -156,8 +151,6 @@ describe('FileUploader', () => {
 
   it('should not show remove button if file is disabled', () => {
     // ARRANGE
-    const file = getFile();
-
     const { queryByTestId } = renderWithProvider(
       <FileUploader
         mode="single"
@@ -173,7 +166,6 @@ describe('FileUploader', () => {
   it('should render individual file error', () => {
     // ARRANGE
     const ERROR_TEXT = 'SOME ERROR HAPPENED';
-    const file = getFile();
 
     const { getByTestId, getByText } = renderWithProvider(
       <FileUploader
