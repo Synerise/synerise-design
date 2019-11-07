@@ -22,9 +22,16 @@ import Drawer from '@synerise/ds-drawer'
   visible={true}
   width={400}
   onClose={() => {}}
-  header={<span>Header</span>}
-  content={<span>Content</span>}
-/>
+>
+    <Drawer.DrawerHeader>
+        <span>Header</span>
+    </Drawer.DrawerHeader>
+    <Drawer.DrawerBody>
+        <Drawer.DrawerContent>
+            <p>Content</p>
+        </Drawer.DrawerContent>
+    </Drawer.DrawerBody>
+</Drawer>
 
 ```
 
@@ -52,5 +59,3 @@ import Drawer from '@synerise/ds-drawer'
 | onClose            | Specify a callback that will be called when a user clicks mask, close button or Cancel button. | function(e)                     | -         |
 | afterVisibleChange | Callback after the animation ends when switching drawers.                                      | function(visible)               | -         |
 | keyboard           | Whether support press esc to close                                                             | boolean                         | true      |
-| header             | Drawer header renderer                                                                         | React.ReactNode                 | -         |
-| content            | Drawer content renderer                                                                        | React.ReactNode                 | -         |

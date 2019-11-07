@@ -33,18 +33,17 @@ const stories = {
           placement='right'
           width={400}
           onClose={() => setDrawerVisible(false)}
-          header={
-            <>
-              <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: 24}}>
-                <Typography.Title style={{flex: 1, margin: 0,}} level={4}>Example drawer</Typography.Title>
-                <Button type={'ghost'} onClick={() => setDrawerVisible(false)}>Cancel</Button>
-                <Button style={{marginLeft: '20px'}} type={'primary'} onClick={() => setDrawerVisible(false)}>Save</Button>
-              </div>
-              <Tabs activeTab={activeTab} tabs={TABS} handleTabClick={setActiveTab} configuration={{label: 'Configure', action: action('onConfigurationClick')}} />
-            </>
-          }
-          content={
-            <>
+        >
+          <Drawer.DrawerHeader>
+            <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: 24}}>
+              <Typography.Title style={{flex: 1, margin: 0,}} level={4}>Example drawer</Typography.Title>
+              <Button type={'ghost'} onClick={() => setDrawerVisible(false)}>Cancel</Button>
+              <Button style={{marginLeft: '20px'}} type={'primary'} onClick={() => setDrawerVisible(false)}>Save</Button>
+            </div>
+            <Tabs activeTab={activeTab} tabs={TABS} handleTabClick={setActiveTab} configuration={{label: 'Configure', action: action('onConfigurationClick')}} />
+          </Drawer.DrawerHeader>
+          <Drawer.DrawerBody>
+            <Drawer.DrawerContent>
               <p>Content</p>
               <p>Content</p>
               <p>Content</p>
@@ -73,9 +72,9 @@ const stories = {
               <p>Content</p>
               <p>Content</p>
               <p>Content</p>
-            </>
-          }
-        />
+            </Drawer.DrawerContent>
+          </Drawer.DrawerBody>
+        </Drawer>
       </div>
     )
   },

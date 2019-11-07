@@ -5,15 +5,20 @@ import Drawer from '../Drawer';
 
 const DRAWER = (visible: boolean) => (<Drawer
   visible={visible}
-  placement='right'
   width={400}
-  header={
+  placement='right'
+>
+  <Drawer.DrawerHeader>
     <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: 24}}>
       <Typography.Title style={{flex: 1, margin: 0,}} level={4}>Example drawer</Typography.Title>
     </div>
-  }
-  content={<p>Content</p>}
-/>);
+  </Drawer.DrawerHeader>
+  <Drawer.DrawerBody>
+    <Drawer.DrawerContent>
+      <p>Content</p>
+    </Drawer.DrawerContent>
+  </Drawer.DrawerBody>
+</Drawer>);
 
 describe('Drawer component', () => {
   it('should render', () => {
