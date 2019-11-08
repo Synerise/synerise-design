@@ -60,6 +60,7 @@ export const Container = styled.div<
   display: flex;
   border-color: ${getVar('white')};
   position: relative;
+  padding: ${(props): string => (props.size === 'small' ? '24px 16px 12px' : '24px')};
 
   ${is('stretchToFit')`
     height: 100%;
@@ -78,7 +79,6 @@ export const Container = styled.div<
       border: 2px solid ${getVar('blue-600')};
 
       ${isNot('value')`
-        padding: 1px;
         border: 1px solid ${getVar('grey-300')};
         
         &:hover, &:active {
@@ -89,7 +89,6 @@ export const Container = styled.div<
     
     ${is('raised')`
       ${isNot('value')`
-        padding: 2px;
         box-shadow: ${(props: ThemeProps): string => props.theme.variable('@box-shadow-base') || 'none'};
         
         &:hover, &:active {
@@ -110,7 +109,6 @@ export const Container = styled.div<
       border: 2px solid ${getVar('grey-200')};
 
       ${isNot('value')`
-        padding: 1px;
         border: 1px solid ${getVar('grey-200')};
       `}
     `}
@@ -118,10 +116,6 @@ export const Container = styled.div<
     ${is('raised')`
       ${is('value')`
         border: 2px solid ${getVar('grey-200')};
-      `}
-      
-      ${isNot('value')`
-        padding: 2px;
       `}
     `}
   `};
