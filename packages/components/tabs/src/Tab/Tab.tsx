@@ -4,23 +4,15 @@ import * as S from './Tab.styles';
 
 export type TabProps = {
   index: number;
-  label?: string;
+  label?: string | React.ReactNode;
   icon?: React.ReactNode;
   isActive?: boolean;
   disabled?: boolean;
   onClick: (index: number) => void;
   forwardedRef: React.RefObject<HTMLButtonElement>;
-}
+};
 
-const Tab: React.FC<TabProps> = ({
-  index,
-  label,
-  icon,
-  isActive,
-  disabled,
-  onClick,
-  forwardedRef,
-}: TabProps) => {
+const Tab: React.FC<TabProps> = ({ index, label, icon, isActive, disabled, onClick, forwardedRef }: TabProps) => {
   const [isPressed, setPressed] = React.useState(false);
   const handleClick = (): void => {
     onClick(index);
@@ -35,7 +27,7 @@ const Tab: React.FC<TabProps> = ({
   };
 
   const isPressedClassName = (): string => {
-    return isPressed ? 'pressed': '';
+    return isPressed ? 'pressed' : '';
   };
 
   const isActiveClassName = (): string => {
@@ -52,6 +44,7 @@ const Tab: React.FC<TabProps> = ({
       onBlur={handleMouseUp}
       disabled={disabled}
       ref={forwardedRef}
+      type="button"
       data-testid="tab-container"
     >
       <S.TabContent>
@@ -59,7 +52,7 @@ const Tab: React.FC<TabProps> = ({
         {label && <S.TabLabel>{label}</S.TabLabel>}
       </S.TabContent>
     </S.TabContainer>
-  )
+  );
 };
 
 export default Tab;
