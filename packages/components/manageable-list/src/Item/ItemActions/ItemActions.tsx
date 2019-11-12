@@ -42,7 +42,7 @@ const ItemActions: React.FC<ItemActionsProps> = ({
 
   const handleEdit = React.useCallback(
     (event: React.MouseEvent) => {
-      event.preventDefault();
+      event.stopPropagation();
       editAction && editAction();
     },
     [editAction]

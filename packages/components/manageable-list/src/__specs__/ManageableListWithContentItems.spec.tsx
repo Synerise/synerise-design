@@ -2,7 +2,7 @@ import Tag, { TagShape } from '@synerise/ds-tags/dist/Tag/Tag';
 import FileM from '@synerise/ds-icon/dist/icons/FileM';
 import * as React from 'react';
 import { renderWithProvider } from '@synerise/ds-utils';
-import ManageableList, { ListType } from '../ManageableList';
+import ManageableList from '../ManageableList';
 import { fireEvent } from '@testing-library/react';
 
 const CONTENT_ITEMS: any = [
@@ -51,7 +51,7 @@ describe('ManageableList with content items', () => {
         onItemEdit={() => {}}
         onItemSelect={() => {}}
         onItemRemove={() => {}}
-        type={ListType.content}
+        type='content'
         more="more"
         less="less"
       />);
@@ -77,7 +77,7 @@ describe('ManageableList with content items', () => {
         onItemSelect={() => {}}
         onItemRemove={() => {}}
         onItemDuplicate={() => {}}
-        type={ListType.content}
+        type='content'
         more="more"
         less="less"
       />);
@@ -104,7 +104,7 @@ describe('ManageableList with content items', () => {
         onItemSelect={() => {}}
         onItemRemove={() => {}}
         onItemDuplicate={() => {}}
-        type={ListType.content}
+        type='content'
         more="more"
         less="less"
       />);
@@ -135,7 +135,7 @@ describe('ManageableList with content items', () => {
         onItemSelect={() => {}}
         onItemRemove={() => {}}
         onItemDuplicate={() => {}}
-        type={ListType.content}
+        type='content'
         more="more"
         less="less"
       />);
@@ -162,7 +162,7 @@ describe('ManageableList with content items', () => {
         onItemSelect={() => {}}
         onItemRemove={onItemRemove}
         onItemDuplicate={onItemDuplicate}
-        type={ListType.content}
+        type='content'
         more="more"
         less="less"
       />);

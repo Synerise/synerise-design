@@ -25,8 +25,8 @@ const SimpleItem: React.FC<Props> = ({ item, onRemove, onSelect, onUpdate }) => 
   );
 
   const handleSelect = React.useCallback(() => {
-    onSelect({ id: item.id });
-  }, [onSelect, item.id]);
+    !editMode && onSelect({ id: item.id });
+  }, [onSelect, item.id, editMode]);
 
   const enterEditMode = React.useCallback(() => {
     setEditMode(true);

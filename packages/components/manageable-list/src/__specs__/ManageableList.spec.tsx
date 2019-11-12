@@ -1,5 +1,5 @@
 import * as React from 'react';
-import ManageableList, { ListType } from '../ManageableList';
+import ManageableList from '../ManageableList';
 import { renderWithProvider } from '@synerise/ds-utils';
 import { fireEvent } from '@testing-library/react';
 import FileM from '@synerise/ds-icon/dist/icons/FileM';
@@ -102,7 +102,7 @@ describe('ManageableList', () => {
         onItemEdit={() => {}}
         onItemSelect={() => {}}
         onItemRemove={() => {}}
-        type={ListType.default}
+        type='default'
         more="more"
         less="less"
       />);
@@ -127,7 +127,7 @@ describe('ManageableList', () => {
         onItemEdit={() => {}}
         onItemSelect={() => {}}
         onItemRemove={() => {}}
-        type={ListType.default}
+        type='default'
         more="more"
         less="less"
       />);
@@ -154,7 +154,7 @@ describe('ManageableList', () => {
         onItemEdit={() => {}}
         onItemSelect={() => {}}
         onItemRemove={() => {}}
-        type={ListType.default}
+        type='default'
         more="more"
         less="less"
       />);
@@ -181,7 +181,7 @@ describe('ManageableList', () => {
         onItemEdit={() => {}}
         onItemSelect={() => {}}
         onItemRemove={() => {}}
-        type={ListType.default}
+        type='default'
         more="more"
         less="less"
       />);
@@ -210,7 +210,7 @@ describe('ManageableList', () => {
         onItemEdit={() => {}}
         onItemSelect={onItemSelect}
         onItemRemove={() => {}}
-        type={ListType.default}
+        type='default'
         more="more"
         less="less"
       />);
@@ -238,7 +238,7 @@ describe('ManageableList', () => {
         onItemEdit={() => {}}
         onItemSelect={() => {}}
         onItemRemove={onItemRemove}
-        type={ListType.default}
+        type='default'
         more="more"
         less="less"
       />);
@@ -267,7 +267,7 @@ describe('ManageableList', () => {
         onItemEdit={() => {}}
         onItemSelect={() => {}}
         onItemRemove={() => {}}
-        type={ListType.default}
+        type='default'
         more="more"
         less="less"
       />);
