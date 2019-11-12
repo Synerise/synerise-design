@@ -6,9 +6,9 @@ import AntdSwitch, { SwitchProps } from 'antd/lib/switch';
 import * as S from './Switch.styles';
 
 interface Props extends SwitchProps {
-  errorText?: string;
-  label: string;
-  description?: string;
+  errorText?: string | React.ReactNode;
+  label: string | React.ReactNode;
+  description?: string | React.ReactNode;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
