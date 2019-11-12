@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.14](https://github.com/synerise/synerise-design/compare/@synerise/ds-switch@0.0.13...@synerise/ds-switch@0.0.14) (2019-11-12)
+
+### Bug Fixes
+
+- **switch:** add support for React.ReactNode type with string ([fa84822](https://github.com/synerise/synerise-design/commit/fa84822b32c5ab67f397c141d516c90488c710f7))
+
 ## [0.0.13](https://github.com/synerise/synerise-design/compare/@synerise/ds-switch@0.0.12...@synerise/ds-switch@0.0.13) (2019-11-09)
 
 **Note:** Version bump only for package @synerise/ds-switch

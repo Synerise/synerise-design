@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.19.5](https://github.com/synerise/synerise-design/compare/portal@0.19.4...portal@0.19.5) (2019-11-12)
+
+
+### Bug Fixes
+
+* **tabs:** html type button for container, ReactNode or string as label ([1167cad](https://github.com/synerise/synerise-design/commit/1167cad2f0607d91ade00790beddd30d8d063dff))
+
+
+
+
+
 ## [0.19.4](https://github.com/synerise/synerise-design/compare/portal@0.19.3...portal@0.19.4) (2019-11-12)
 
 **Note:** Version bump only for package portal
