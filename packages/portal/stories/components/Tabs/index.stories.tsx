@@ -58,6 +58,34 @@ const stories = {
       }}
     />
   )),
+  withLabelAsNodes: {
+    tabs: [
+      {
+        icon: <SearchM />
+      },
+      {
+        label: (<React.Fragment>Tab #2</React.Fragment>),
+      },
+      {
+        label: (<React.Fragment>Tab #3</React.Fragment>),
+        icon: <SearchM />
+      },
+      {
+        label: (<React.Fragment>Tab #4</React.Fragment>),
+      },
+      {
+        label: <span style={{ color: 'red' }}>Tab #3</span>,
+        icon: <SearchM />
+      },
+      {
+        label: (<span>Test</span>),
+        icon: <SearchM />,
+        disabled: true,
+      }
+    ],
+    activeTab: 1,
+    handleTabClick: action('handleTabClick'),
+  },
 };
 
 export default {
