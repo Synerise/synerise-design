@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.19.2](https://github.com/synerise/synerise-design/compare/portal@0.19.1...portal@0.19.2) (2019-11-12)
+
+
+### Bug Fixes
+
+* **slider:** add styling fixes to slider ([3596448](https://github.com/synerise/synerise-design/commit/35964488a317c27e6ac184d3b7f3ab288ac0d87d))
+
+
+
+
+
 ## [0.19.1](https://github.com/synerise/synerise-design/compare/portal@0.19.0...portal@0.19.1) (2019-11-09)
 
 **Note:** Version bump only for package portal
