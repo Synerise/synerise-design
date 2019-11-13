@@ -4,6 +4,7 @@
   "version": "0.0.9",
   "scripts": {
     "postinstall": "node ../../../scripts/docs/componentmd.js",
+    "docs-watch": "npm run postinstall && node ../../../scripts/docs/watch.js",
     "examples": "docusaurus-examples",
     "start": "docusaurus-start",
     "build-docs": "docusaurus-build",

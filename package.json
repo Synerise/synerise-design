@@ -15,6 +15,7 @@
     "bootstrap": "yarn npx:lerna bootstrap",
     "build": "yarn npx:lerna run build",
     "component:create": "node ./scripts/create-component/index.js",
+    "docs-watch": "cd packages/docs-site/website && yarn docs-watch",
     "lerna:version": "yarn npx:lerna version --conventional-commits",
     "lint": "eslint . --ext .ts --ext .tsx --max-warnings 0",
     "npx:lerna": "npx lerna",
