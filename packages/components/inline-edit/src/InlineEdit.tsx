@@ -5,6 +5,9 @@ import Icon from '@synerise/ds-icon';
 import EditM from '@synerise/ds-icon/dist/icons/EditM';
 import { toCamelCase } from '@synerise/ds-utils';
 import * as S from './InlineEdit.styles';
+import { attachWidthWatcher } from './utils';
+
+const SAMPLE = String.fromCharCode(...[...Array(26).keys()].map(i => i + 65));
 
 export type InputProps = {
   name?: string;
@@ -19,7 +22,7 @@ export type InputProps = {
 };
 
 export interface InlineEditProps {
-  size: 'normal' | 'small';
+  size?: 'normal' | 'small';
   tooltipTitle?: string;
   className?: string;
   disabled?: boolean;
@@ -33,7 +36,7 @@ export interface InlineEditProps {
 const InlineEdit: React.FC<InlineEditProps> = ({
   className,
   style,
-  size,
+  size = 'normal',
   disabled,
   autoFocus,
   hideIcon,
@@ -41,10 +44,13 @@ const InlineEdit: React.FC<InlineEditProps> = ({
   error,
   input,
 }): React.ReactElement => {
-  const inputRef = React.useRef<HTMLInputElement>(null);
-  const inputKey = React.useMemo(() => {
-    return `autosize-input-${size}`;
-  }, [size]);
+  const inputRef = React.useMemo(() => {
+    return React.createRef<HTMLInputElement>();
+  }, []);
+
+  const fontStyleWatcher = React.useMemo(() => {
+    return React.createRef<HTMLDivElement>();
+  }, []);
 
   const handleChange = React.useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -67,16 +73,29 @@ const InlineEdit: React.FC<InlineEditProps> = ({
         inputRef.current && inputRef.current.blur();
       }
     },
-    [input]
+    [input, inputRef]
   );
 
   const handleFocusInput = React.useCallback(() => {
     inputRef.current && inputRef.current.focus();
-  }, []);
+  }, [inputRef]);
+
+  const updateInputWidth = React.useCallback(() => {
+    if (inputRef.current) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (inputRef.current as any).copyInputStyles();
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (inputRef.current as any).updateInputWidth();
+    }
+  }, [inputRef]);
 
   React.useEffect(() => {
     autoFocus && inputRef.current && inputRef.current.focus();
-  }, [autoFocus, inputRef]);
+    updateInputWidth();
+    if (fontStyleWatcher) {
+      attachWidthWatcher(fontStyleWatcher.current as HTMLDivElement, updateInputWidth);
+    }
+  }, [autoFocus, fontStyleWatcher, inputRef, updateInputWidth]);
 
   return (
     <S.InPlaceEditableInputContainer
@@ -88,7 +107,6 @@ const InlineEdit: React.FC<InlineEditProps> = ({
       emptyValue={input.value === ''}
     >
       <AutosizeInput
-        key={inputKey}
         id={input.name ? toCamelCase(input.name) : 'id'}
         className="autosize-input"
         placeholder={input.placeholder}
@@ -101,9 +119,8 @@ const InlineEdit: React.FC<InlineEditProps> = ({
         onBlur={handleBlur}
         autoComplete={input.autoComplete}
         placeholderIsMinWidth={false}
-        /* eslint-disable-next-line @typescript-eslint/ban-ts-ignore */
-        // @ts-ignore
-        ref={inputRef}
+        /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
+        ref={inputRef as any}
       />
       {!hideIcon && (
         <Tooltip data-testid="inline-edit-icon" title={tooltipTitle}>
@@ -112,6 +129,12 @@ const InlineEdit: React.FC<InlineEditProps> = ({
           </S.IconWrapper>
         </Tooltip>
       )}
+      <S.FontStyleWatcher
+        ref={fontStyleWatcher}
+        style={{ position: 'absolute', visibility: 'hidden', pointerEvents: 'none' }}
+      >
+        {SAMPLE}
+      </S.FontStyleWatcher>
     </S.InPlaceEditableInputContainer>
   );
 };

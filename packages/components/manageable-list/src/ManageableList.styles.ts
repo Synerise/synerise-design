@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { ListType } from './ManageableList';
 
 type ManageableListProps = {
-  listType: ListType;
+  listType: string;
   greyBackground: boolean;
 };
 

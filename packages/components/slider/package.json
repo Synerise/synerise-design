@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-slider",
-  "version": "0.1.5",
+  "version": "0.1.7",
   "description": "Slider UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -31,6 +31,6 @@
     "react": ">=16.9.0 < 17.0.0"
   },
   "devDependencies": {
-    "@synerise/ds-utils": "^0.5.4"
+    "@synerise/ds-utils": "^0.5.5"
   }
 }

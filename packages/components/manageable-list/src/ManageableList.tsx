@@ -8,8 +8,8 @@ import AddItemWithName from './AddItemWithName/AddItemWithName';
 import AddItem from './AddItem/AddItem';
 
 export enum ListType {
-  default,
-  content,
+  default = 'default',
+  content = 'content',
 }
 
 interface ManageableListProps {
@@ -27,7 +27,7 @@ interface ManageableListProps {
   onChangeOrder?: (newOrder: ItemProps[]) => void;
   items: ItemProps[];
   loading: boolean;
-  type?: ListType;
+  type?: string;
   addButtonDisabled?: boolean;
   changeOrderDisabled?: boolean;
   greyBackground?: boolean;

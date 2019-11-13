@@ -54,8 +54,7 @@
 
   &-mark-text {
     color: @grey-500;
-    margin-top: 16px;
-    margin-bottom: 24px;
+    margin: 16px 0px 24px 3px;
   }
 
   &-with-marks {
@@ -63,7 +62,7 @@
   }
 
   &-handle {
-    margin-left: -10px;
+    margin-left: 0px;
     margin-top: -7px;
     width: 18px;
     height: 18px;
@@ -117,6 +116,18 @@
     .@{slider-prefix-cls}-handle {
       background-color: @grey-300;
       border-color: @white !important;
+    }
+
+    .@{slider-prefix-cls}-dot {
+      top: -3px;
+      border: 3px solid @grey-200 !important;
+      width: 12px;
+      height: 12px;
+      background: @white;
+
+      &-active {
+        border: 3px solid @grey-400 !important;
+      }
     }
   }
 }

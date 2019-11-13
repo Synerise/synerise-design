@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.15](https://github.com/Synerise/synerise-design/compare/@synerise/ds-inline-edit@0.0.14...@synerise/ds-inline-edit@0.0.15) (2019-11-12)
+
+### Bug Fixes
+
+- **inline-edit:** fix width of input on font size changes ([cf4de50](https://github.com/Synerise/synerise-design/commit/cf4de50e12703e1cbda50ea525706d553bb61af2))
+
+## [0.0.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-inline-edit@0.0.13...@synerise/ds-inline-edit@0.0.14) (2019-11-09)
+
+**Note:** Version bump only for package @synerise/ds-inline-edit
+
 ## [0.0.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-inline-edit@0.0.12...@synerise/ds-inline-edit@0.0.13) (2019-11-06)
 
 **Note:** Version bump only for package @synerise/ds-inline-edit

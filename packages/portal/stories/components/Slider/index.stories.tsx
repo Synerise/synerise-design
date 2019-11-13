@@ -5,11 +5,7 @@ import Tooltip from '@synerise/ds-tooltip';
 
 import Slider from '@synerise/ds-slider';
 
-const decorator = (storyFn) => (
-  <div style={{ padding: '48px' }}>
-    {storyFn()}
-  </div>
-);
+const decorator = storyFn => <div style={{ padding: '48px' }}>{storyFn()}</div>;
 
 const sliderValues = [-100, -95, -90, -75, -50, -40, -30, -25, -10, 0, 10, 25, 30, 40, 50, 75, 90, 95, 100];
 const placements = [
@@ -34,7 +30,8 @@ const marks = {
   '-25': '-25°',
   0: {
     style: {
-      color: 'cornflowerblue',
+      color: '#384350',
+      fontWeight: 500,
     },
     label: <strong>0°C</strong>,
   },
@@ -75,7 +72,7 @@ const marks = {
   100: '100°',
 };
 
-const tipFormatter = (value: string) => (<div>{value} °C</div>);
+const tipFormatter = (value: string) => <div>{value} °C</div>;
 
 const Wrapper = (props: any) => {
   const [value, setValue] = React.useState(0);

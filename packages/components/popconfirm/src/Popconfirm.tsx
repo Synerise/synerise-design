@@ -1,7 +1,6 @@
 import * as React from 'react';
 import '@synerise/ds-core/dist/js/style';
 import { PopconfirmProps } from 'antd/lib/popconfirm';
-import 'antd/lib/popconfirm/style';
 import './style/index.less';
 import AntdPopconfirm from './Popconfirm.styles';
 
