@@ -13,5 +13,9 @@
   },
   "devDependencies": {
     "docusaurus": "^1.14.0"
+  },
+  "dependencies": {
+    "docusaurus": "^1.14.0",
+    "global": "^4.4.0"
   }
 }
