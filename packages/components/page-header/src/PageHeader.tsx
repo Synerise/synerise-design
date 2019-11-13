@@ -3,7 +3,7 @@ import Icon from '@synerise/ds-icon';
 import ArrowLeftM from '@synerise/ds-icon/dist/icons/ArrowLeftM';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import InlineEdit from '@synerise/ds-inline-edit/dist/InlineEdit';
-import { CloseS } from '@synerise/ds-icon/dist/icons/CloseS';
+import CloseS from '@synerise/ds-icon/dist/icons/CloseS';
 import * as S from './PageHeader.styles';
 
 export type PageHeaderProps = {
