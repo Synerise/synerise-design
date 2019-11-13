@@ -20,8 +20,8 @@ type Configuration = {
   label: string;
 };
 
-type TabItem = {
-  label?: string;
+export type TabItem = {
+  label?: string | React.ReactNode;
   icon?: React.ReactNode;
   disabled?: boolean;
 };
@@ -55,8 +55,7 @@ const Tabs: React.FC<TabsProps> = ({ activeTab, tabs, handleTabClick, configurat
       itemsWithWidths[index] = item.current !== null ? item.current.offsetWidth + 24 : 0;
     });
     setItemsWidths(itemsWithWidths);
-  }, // eslint-disable-next-line react-hooks/exhaustive-deps
-  []);
+  }, [items]); // eslint-disable-next-line react-hooks/exhaustive-deps
 
   React.useLayoutEffect((): void => {
     if (itemsWidths.length) {
@@ -98,13 +97,15 @@ const Tabs: React.FC<TabsProps> = ({ activeTab, tabs, handleTabClick, configurat
   );
 
   const renderDropdown = (): React.ReactNode => {
-    return (hiddenTabs.length || configuration) && (
-      <Dropdown data-testid="tabs-dropdown" overlay={renderHiddenTabs()}>
-        <Button type="ghost" mode="single-icon">
-          <Icon component={<OptionHorizontalM />} />
-        </Button>
-      </Dropdown>
-    )
+    return (
+      (hiddenTabs.length || configuration) && (
+        <Dropdown data-testid="tabs-dropdown" overlay={renderHiddenTabs()}>
+          <Button type="ghost" mode="single-icon">
+            <Icon component={<OptionHorizontalM />} />
+          </Button>
+        </Dropdown>
+      )
+    );
   };
 
   const renderVisibleTabs = (): React.ReactNode => {
@@ -136,8 +137,8 @@ const Tabs: React.FC<TabsProps> = ({ activeTab, tabs, handleTabClick, configurat
       }}
       data-testid="tabs-container"
     >
-      { renderVisibleTabs() }
-      { renderDropdown() }
+      {renderVisibleTabs()}
+      {renderDropdown()}
     </S.TabsContainer>
   );
 };
