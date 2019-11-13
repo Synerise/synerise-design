@@ -24,6 +24,7 @@
   "dependencies": {
     "@synerise/ds-button": "^0.4.8",
     "@synerise/ds-icon": "*",
+    "@synerise/ds-inline-edit": "*",
     "@synerise/ds-typography": "^0.5.4",
     "@synerise/ds-utils": "^0.5.5",
     "antd": "3.24.3"
