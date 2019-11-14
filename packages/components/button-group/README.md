@@ -5,7 +5,26 @@ title: Button-Group
 
 A group of buttons is used to wrap a series of buttons.
 
+## When to use it
+
+---
+
+- To combine primary and secondary buttons.
+- To allow users to navigate between several separate tabs with options in a main screen.
+
+## Component anatomy
+
+---
+
+This is a complex component, which means that it may consist of other components:
+
+- [icon](/docs/components/icon/)
+- [button](/docs/components/button/)
+- [utils](/docs/components/utils/)
+
 ## Installation
+
+---
 
 ```
 npm i @synerise/ds-button-group
@@ -14,6 +33,8 @@ yarn add @synerise/ds-button-group
 ```
 
 ## Usage
+
+---
 
 ```
 import ButtonGroup from '@synerise/ds-button-group'
@@ -29,23 +50,6 @@ import ButtonGroup from '@synerise/ds-button-group'
 </ButtonGroup>
 
 ```
-
-## When to use it
-
----
-
-- To combine primary and secondary buttons.
-- To allow users navigate between several separate tabs with options in a main screen.
-
-## Component anatomy
-
----
-
-This is a complex component which means that it may consist of other components:
-
-- [icon](/docs/components/icon/)
-- [button](/docs/components/button/)
-- [utils](/docs/components/utils/)
 
 ## Demo
 
