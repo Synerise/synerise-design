@@ -4,7 +4,7 @@ import { useDropzone } from 'react-dropzone';
 
 import Icon from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
-import Add1M from '@synerise/ds-icon/dist/icons/Add1M';
+import AddM from '@synerise/ds-icon/dist/icons/AddM';
 import ArrowDownCircleM from '@synerise/ds-icon/dist/icons/ArrowDownCircleM';
 import InfoM from '@synerise/ds-icon/dist/icons/InfoM';
 
@@ -92,7 +92,7 @@ const FileUploader: React.FC<FileUploaderProps> = ({
                 </>
               ) : (
                 <>
-                  <Icon component={<Add1M />} size={24} />
+                  <Icon component={<AddM />} size={24} />
                   <S.DropAreaLabel>{texts.buttonLabel}</S.DropAreaLabel>
                 </>
               )}
