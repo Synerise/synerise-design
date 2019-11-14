@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Button from '@synerise/ds-button';
 import Icon from '@synerise/ds-icon';
-import Add1M from '@synerise/ds-icon/dist/icons/Add1M';
+import AddM from '@synerise/ds-icon/dist/icons/AddM';
 import * as S from './AddItem.styles';
 
 type AddItemProps = {
@@ -14,7 +14,7 @@ const AddItem: React.FC<AddItemProps> = ({ disabled, onItemAdd, addItemLabel }) 
   return (
     <S.AddContentButtonWrapper data-testid="add-item-button">
       <Button onClick={onItemAdd} type="dashed" size="large" disabled={disabled}>
-        <Icon size={24} component={<Add1M />} />
+        <Icon size={24} component={<AddM />} />
         {addItemLabel}
       </Button>
     </S.AddContentButtonWrapper>
