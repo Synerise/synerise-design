@@ -5,6 +5,31 @@ title: Button-Group
 
 A group of buttons is used to wrap a series of buttons.
 
+## Installation
+
+```
+npm i @synerise/ds-button-group
+or
+yarn add @synerise/ds-button-group
+```
+
+## Usage
+
+```
+import ButtonGroup from '@synerise/ds-button-group'
+
+
+<ButtonGroup
+  title={'Some title'}
+  description={'Some description'}
+>
+  <Button {...buttonProps}>{buttonProps.content}</Button>
+  <Button {...buttonProps}>{buttonProps.content}</Button>
+  <Button {...buttonProps}>{buttonProps.content}</Button>
+</ButtonGroup>
+
+```
+
 ## When to use it
 
 ---
