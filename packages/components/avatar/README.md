@@ -3,7 +3,7 @@ id: avatar
 title: Avatar
 ---
 
-Avatar is an icon that represents a particular person. But, the avatar has more applications in the Synerise platform.
+An avatar is an icon that represents a particular person, but, the avatar has more applications in the Synerise platform.
 It is used as:
 
 1. Human-related icon
@@ -23,7 +23,7 @@ Inspired by [Ant Design Avatar](https://ant.design/components/avatar/)
 
 ---
 
-This is a complex component which means it consists of more components:
+This is a complex component, which means it may consist of more components, for example:
 
 - [badge](/docs/components/badge/)
 
@@ -66,16 +66,16 @@ import Avatar from '@synerise/ds-avatar'
 
 ## API
 
-| Property        | Description                                                                                           | Type                                       | Default   |
-| --------------- | ----------------------------------------------------------------------------------------------------- | ------------------------------------------ | --------- |
-| icon            | The `Icon` type for an icon avatar, see `Icon` Component                                              | string                                     | -         |
-| shape           | The shape of the avatar                                                                               | `circle` \ `square`                        | `circle`  |
-| size            | The size of the avatar                                                                                | number \ string: `large` `small` `default` | `default` |
-| src             | The URL of the image for the avatar                                                                   | string                                     | -         |
-| srcSet          | The list of sources to use for different screen resolutions                                           | string                                     | -         |
-| alt             | The alternate text for the image                                                                      | string                                     | -         |
-| onError         | The handler for image load errors, return `false` to prevent a default fallback behavior              | () => boolean                              | -         |
-| hasStatus       | Aligns `badge` with the avatar                                                                        | boolean                                    | `false`   |
-| iconComponent   | Allows to provide a custom component as a child. The prop icon has greater priority if both provided  | ReactNode                                  |           |
-| backgroundColor | Background color of the avatar: `red/green/grey/yellow/blue/pink/mars/orange/fern/cyan/purple/violet` | string                                     |           |
-| disabled        | Disabled state of the avatar                                                                          | boolean                                    | `false`   |
+| Property        | Description                                                                                              | Type                                       | Default   |
+| --------------- | -------------------------------------------------------------------------------------------------------- | ------------------------------------------ | --------- |
+| icon            | The `Icon` type for an icon avatar, see `Icon` Component                                                 | string                                     | -         |
+| shape           | The shape of the avatar                                                                                  | `circle` \ `square`                        | `circle`  |
+| size            | The size of the avatar                                                                                   | number \ string: `large` `small` `default` | `default` |
+| src             | The URL of the image for the avatar                                                                      | string                                     | -         |
+| srcSet          | The list of sources to use for different screen resolutions                                              | string                                     | -         |
+| alt             | The alternate text for the image                                                                         | string                                     | -         |
+| onError         | The handler for image load errors, return `false` to prevent a default fallback behavior                 | () => boolean                              | -         |
+| hasStatus       | Aligns `badge` with the avatar                                                                           | boolean                                    | `false`   |
+| iconComponent   | Allows to provide a custom component as a child. The prop icon has greater priority if both are provided | ReactNode                                  |           |
+| backgroundColor | Background color of the avatar: `red/green/grey/yellow/blue/pink/mars/orange/fern/cyan/purple/violet`    | string                                     |           |
+| disabled        | Defines if the avatar is diabled                                                                         | boolean                                    | `false`   |
