@@ -3,9 +3,23 @@ id: badge
 title: Badge
 ---
 
-Badge UI Component
+Badges are small status descriptors for UI elements such as avatar-like icons. A badge consists of a small circle, typically containing a number that appears in proximity to another object. It can be used to add additional information to any content or highlight the status of an object.
 
-Based on [Ant Design Badge](https://ant.design/components/badge/)
+Inspired by [Ant Design Badge](https://ant.design/components/badge/)
+
+## When to use it
+
+---
+
+- To indicate the status of the object: active, inactive, error, success, in process.
+
+## Component anatomy
+
+---
+
+This is a complex component which means it consists of more components:
+
+- [typography](/docs/components/typography/)
 
 ## Installation
 
