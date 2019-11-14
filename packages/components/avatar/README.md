@@ -17,13 +17,13 @@ Inspired by [Ant Design Avatar](https://ant.design/components/avatar/)
 
 - To represent a platform user (for example, to indicate the author of the campaign).
 - To represent a customer (for example, on a list of customers, on a customer card).
-- To represent the type of item on a list (for example, a campaign, an analysis).
+- To represent the type of the item on a list (for example, a campaign, an analysis).
 
 ## Component anatomy
 
 ---
 
-This is a complex component which means it consist of more components:
+This is a complex component which means it consists of more components:
 
 - [badge](/docs/components/badge/)
 
@@ -74,7 +74,7 @@ import Avatar from '@synerise/ds-avatar'
 | src             | The URL of the image for the avatar                                                                   | string                                     | -         |
 | srcSet          | The list of sources to use for different screen resolutions                                           | string                                     | -         |
 | alt             | The alternate text for the image                                                                      | string                                     | -         |
-| onError         | Handler for image load errors, return `false` to prevent a default fallback behavior                  | () => boolean                              | -         |
+| onError         | The handler for image load errors, return `false` to prevent a default fallback behavior              | () => boolean                              | -         |
 | hasStatus       | Aligns `badge` with the avatar                                                                        | boolean                                    | `false`   |
 | iconComponent   | Allows to provide a custom component as a child. The prop icon has greater priority if both provided  | ReactNode                                  |           |
 | backgroundColor | Background color of the avatar: `red/green/grey/yellow/blue/pink/mars/orange/fern/cyan/purple/violet` | string                                     |           |
