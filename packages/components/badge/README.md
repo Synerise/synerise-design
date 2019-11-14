@@ -3,7 +3,7 @@ id: badge
 title: Badge
 ---
 
-Badges are small status descriptors for UI elements such as avatar-like icons. A badge consists of a small circle, typically containing a number and appears in proximity to another object. It can be used to add information to any content or highlight the status of an object.
+Badges are small status descriptors for UI elements such as avatar-like icons. A badge consists of a small circle, typically containing a number, and appears in proximity to another object. It can be used to add information to any content or highlight the status of an object.
 
 Inspired by [Ant Design Badge](https://ant.design/components/badge/)
 
@@ -11,14 +11,14 @@ Inspired by [Ant Design Badge](https://ant.design/components/badge/)
 
 ---
 
-- To indicate the status of the object: active, inactive, error, success, in process.
+- To indicate the status of an object: active, inactive, error, success, in process.
 - To draw attention to unread notifications.
 
 ## Component anatomy
 
 ---
 
-This is a complex component which means it consists of more components:
+This is a complex component, which means it consists of more components:
 
 - [typography](/docs/components/typography/)
 
@@ -74,7 +74,7 @@ import Badge from '@synerise/ds-badge'
 | color         | Customize the badge dot color                                      | string                                             | -       |
 | count         | Number to show in the badge counter                                | ReactNode                                          |         |
 | dot           | Display a red dot instead of a counter                             | boolean                                            | false   |
-| offset        | The offset of the badge dot, like[x, y]                            | [number, number]                                   | -       |
+| offset        | The offset of the badge dot in [x, y] format                       | [number, number]                                   | -       |
 | overflowCount | Maximum number to show in the counter                              | number                                             | 99      |
 | showZero      | Show the badge when the counter is zero                            | boolean                                            | false   |
 | status        | Set badge as a status dot                                          | `success \ processing \ default \ error \ warning` | ''      |
