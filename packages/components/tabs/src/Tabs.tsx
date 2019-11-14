@@ -20,8 +20,8 @@ type Configuration = {
   label: string;
 };
 
-type TabItem = {
-  label?: string;
+export type TabItem = {
+  label?: string | React.ReactNode;
   icon?: React.ReactNode;
   disabled?: boolean;
 };
