@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.9](https://github.com/synerise/synerise-design/compare/@synerise/ds-tabs@0.5.8...@synerise/ds-tabs@0.5.9) (2019-11-14)
+
+### Bug Fixes
+
+- **tabs:** allow label as react node, export TabItem type ([a836b72](https://github.com/synerise/synerise-design/commit/a836b726efb11d510c9c27259c85c51de2c87c0e))
+- **tabs:** allow label as react node, export TabItem type ([a3f89f6](https://github.com/synerise/synerise-design/commit/a3f89f6909fda62701e96fa514367d6636821a17))
+
 ## [0.5.7](https://github.com/synerise/synerise-design/compare/@synerise/ds-tabs@0.5.6...@synerise/ds-tabs@0.5.7) (2019-11-12)
 
 ### Bug Fixes
