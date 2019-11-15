@@ -22,7 +22,17 @@ Inspired by [Ant Design Button](https://ant.design/components/button/)
 
 This is a simple component, which means that it doesn't consist of other components.
 
-## Example
+## Installation
+
+---
+
+```
+npm i @synerise/ds-button
+or
+yarn add @synerise/ds-button
+```
+
+## Usage
 
 ---
 
