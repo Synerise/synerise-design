@@ -62,7 +62,7 @@ import Button from '@synerise/ds-button';
 | loading  | Sets the loading status of the button                                                                                             | boolean \ { delay: number } | `false`   |
 | shape    | Defines the shape of the button: circle, round or omitted                                                                         | string                      | -         |
 | size     | Defines the size of the button: small, large or omitted                                                                           | string                      | `default` |
-| target   | same as target attribute of a, works when `href` is specified                                                                     | string                      | -         |
+| target   | Defines where to display the linked URL (for example, a tab or a window), works when `href` is specified                          | string                      | -         |
 | type     | Defines the type of the button: `primary`, `ghost`, `dashed`, `danger`, `link` or omitted (meaning `default`)                     | string                      | `default` |
 | onClick  | Sets the handler to handle `click` event                                                                                          | (event) => void             | -         |
 | block    | Fits the button width to its parent width                                                                                         | boolean                     | `false`   |
