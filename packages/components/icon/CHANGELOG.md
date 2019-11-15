@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.3.3...@synerise/ds-icon@0.3.4) (2019-11-15)
+
+### Bug Fixes
+
+- **icon:** remove style colors from svg ([f196404](https://github.com/Synerise/synerise-design/commit/f19640446c89f4e15c2fa493e65d05a43990f988))
+
 ## [0.3.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.3.1...@synerise/ds-icon@0.3.2) (2019-11-06)
 
 **Note:** Version bump only for package @synerise/ds-icon
