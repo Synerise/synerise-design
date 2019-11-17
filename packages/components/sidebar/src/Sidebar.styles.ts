@@ -35,6 +35,7 @@ export const AntdCollapse = styled((Collapse as any) as React.ComponentType<Coll
     }
 
     .ant-collapse-item {
+      position: relative;
       background-color: #fff;
     }
   }
@@ -47,6 +48,10 @@ export const AntdCollapse = styled((Collapse as any) as React.ComponentType<Coll
       right: 24px;
     }
   }
+
+  &.ant-collapse-icon-position-right.is-drag-drop > .ant-collapse-item > .ant-collapse-header {
+    padding: 18px 24px 18px 0;
+  }
 `;
 
 export const AntdPanel = styled(Panel)`
@@ -54,5 +59,29 @@ export const AntdPanel = styled(Panel)`
     background-color: white;
     border-radius: 0;
     border-color: ${(props): string => props.theme.palette['grey-800']};
+  }
+`;
+
+export const SidebarHandle = styled.div`
+  display: flex;
+
+  &::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    pointer-events: none;
+  }
+`;
+
+export const SidebarHeader = styled.div`
+  display: flex;
+  align-items: center;
+  max-height: 20px;
+
+  span {
+    order: 1;
   }
 `;

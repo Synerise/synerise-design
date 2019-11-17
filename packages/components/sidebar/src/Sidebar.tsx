@@ -5,28 +5,21 @@ import Icon from '@synerise/ds-icon';
 import { AngleDownS, AngleUpS } from '@synerise/ds-icon/dist/icons';
 import { DndProvider } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
+import update from 'immutability-helper';
 import * as S from './Sidebar.styles';
+import { Panel } from './Panel/Panel';
+import { SidebarProps, PanelProps, CompareFnType } from './Sidebar.types';
+import { SidebarContext } from './Sidebar.context';
 
-export type SidebarProps = {
-  children: React.ReactNode | string;
-  id: any;
-  text: any;
-  index: any;
-  moveCard: any;
-  order: any;
-  onChangeOrder: any;
-};
+const Sidebar: React.FC<SidebarProps> & { Panel: typeof Panel } = ({
+  children,
+  order = '',
+  onChangeOrder,
+  defaultActiveKey,
+}) => {
+  const isDragDrop = order;
 
-const SortableWrapper: any = ({ children }: { children: (ref: any) => React.ReactElement }) => {
-  const ref: any = 'test';
-
-  return children(ref);
-};
-
-const Sidebar: React.FC<SidebarProps> & { AntdPanel: typeof S.AntdPanel } = props => {
-  const { children } = props;
-
-  const isActive: any = (checkActive?: boolean | undefined) => {
+  const isActive: (checkActive?: boolean | undefined) => React.ReactElement = checkActive => {
     return (
       <Icon
         color={checkActive ? theme.palette['grey-400'] : theme.palette['grey-800']}
@@ -35,26 +28,40 @@ const Sidebar: React.FC<SidebarProps> & { AntdPanel: typeof S.AntdPanel } = prop
     );
   };
 
-  const childrenWithProps:any  = React.Children.map(children, child => (
-    <SortableWrapper>{ref => React.cloneElement(child, { extra: <div> Handle {ref}</div> })}</SortableWrapper>
-  ));
+  const compareByPositionOfKey: CompareFnType = (a, b) => {
+    if (!isDragDrop) {
+      return 1;
+    }
+    return order.indexOf(a.props.id) > order.indexOf(b.props.id) ? 1 : -1;
+  };
+
+  const changeOrder: (dragIndex: number, hoverIndex: number) => void = (dragIndex, hoverIndex) => {
+    const dragItemBlock = order[dragIndex];
+    const orderedItems = update(order, {
+      $splice: [[dragIndex, 1], [hoverIndex, 0, dragItemBlock]],
+    });
+
+    onChangeOrder && onChangeOrder(orderedItems);
+  };
 
   return (
-    <>
-      <DndProvider backend={HTML5Backend}>
+    <DndProvider backend={HTML5Backend}>
+      <SidebarContext.Provider value={{ order, setOrder: changeOrder }}>
         <S.AntdCollapse
-          expandIcon={(panelProps):any => {
+          className={isDragDrop && 'is-drag-drop'}
+          defaultActiveKey={defaultActiveKey && defaultActiveKey.map(el => `.${el}`)}
+          expandIcon={(panelProps): React.ReactElement => {
             const checkActive = panelProps.isActive;
             return isActive(checkActive);
           }}
           expandIconPosition="right"
         >
-          {childrenWithProps}
+          {React.Children.toArray(children as React.ReactElement<PanelProps>).sort(compareByPositionOfKey)}
         </S.AntdCollapse>
-      </DndProvider>
-    </>
+      </SidebarContext.Provider>
+    </DndProvider>
   );
 };
 
-Sidebar.AntdPanel = S.AntdPanel;
+Sidebar.Panel = Panel;
 export default Sidebar;
