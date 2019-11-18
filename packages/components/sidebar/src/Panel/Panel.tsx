@@ -14,7 +14,7 @@ export const Panel: React.FC<PanelProps> = ({ header, children, id, ...props }) 
   const { order } = context || {};
 
   const isDragDrop = context && !!order;
-  const index = isDragDrop && context ? order.indexOf(id) : 0;
+  const index = order ? order.indexOf(id) : 0;
 
   const [, drop] = useDrop({
     accept: 'PANEL',
