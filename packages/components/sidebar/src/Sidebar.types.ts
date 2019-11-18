@@ -1,14 +1,14 @@
 import * as React from 'react';
 
 export type SidebarProps = {
-  children: React.ReactNode | string;
-  order?: string[] | string;
+  children: React.ReactNode;
+  order?: string[];
   onChangeOrder?: (order: string[] | string) => void;
   defaultActiveKey?: Array<string>;
 };
 
 export type PanelProps = {
-  header: React.ReactNode;
+  header: React.ReactNode | string;
   children: React.ReactNode | string;
   id: string;
 };
