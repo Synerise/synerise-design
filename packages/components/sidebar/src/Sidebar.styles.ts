@@ -4,6 +4,32 @@ import * as React from 'react';
 
 const { Panel } = Collapse;
 
+export const SidebarHandle = styled.div`
+  display: flex;
+  opacity: 0;
+  transition: 0.2s ease-in-out;
+
+  &::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    pointer-events: none;
+  }
+`;
+
+export const SidebarHeader = styled.div`
+  display: flex;
+  align-items: center;
+  max-height: 20px;
+
+  span {
+    order: 1;
+  }
+`;
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const AntdCollapse = styled((Collapse as any) as React.ComponentType<CollapseProps>)`
   &.ant-collapse {
@@ -30,6 +56,18 @@ export const AntdCollapse = styled((Collapse as any) as React.ComponentType<Coll
       border-top: 0;
     }
 
+    .ant-collapse-item-active {
+      border-top: 0;
+
+      ${SidebarHeader} {
+        color: ${(props): string => props.theme.palette['grey-800']};
+      }
+
+      ${SidebarHandle} {
+        opacity: 1;
+      }
+    }
+
     .ant-collapse-content-box {
       padding: 0 24px 24px;
     }
@@ -37,6 +75,12 @@ export const AntdCollapse = styled((Collapse as any) as React.ComponentType<Coll
     .ant-collapse-item {
       position: relative;
       background-color: #fff;
+    }
+  }
+
+  .ant-collapse-item:hover {
+    ${SidebarHandle} {
+      opacity: 1;
     }
   }
 
@@ -59,29 +103,5 @@ export const AntdPanel = styled(Panel)`
     background-color: white;
     border-radius: 0;
     border-color: ${(props): string => props.theme.palette['grey-800']};
-  }
-`;
-
-export const SidebarHandle = styled.div`
-  display: flex;
-
-  &::before {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    top: 0;
-    pointer-events: none;
-  }
-`;
-
-export const SidebarHeader = styled.div`
-  display: flex;
-  align-items: center;
-  max-height: 20px;
-
-  span {
-    order: 1;
   }
 `;

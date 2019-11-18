@@ -4,7 +4,7 @@ export type SidebarProps = {
   children: React.ReactNode;
   order?: string[];
   onChangeOrder?: (order: string[] | string) => void;
-  defaultActiveKey?: Array<string>;
+  defaultActiveKey?: string[];
 };
 
 export type PanelProps = {

@@ -17,7 +17,7 @@ const Sidebar: React.FC<SidebarProps> & { Panel: typeof Panel } = ({
   onChangeOrder,
   defaultActiveKey,
 }) => {
-  const isDragDrop = order;
+  const isDragDrop = !!order;
 
   const isActive: (checkActive?: boolean | undefined) => React.ReactElement = checkActive => {
     return (
@@ -48,7 +48,7 @@ const Sidebar: React.FC<SidebarProps> & { Panel: typeof Panel } = ({
     <DndProvider backend={HTML5Backend}>
       <SidebarContext.Provider value={{ order, setOrder: changeOrder }}>
         <S.AntdCollapse
-          className={isDragDrop && 'is-drag-drop'}
+          className={isDragDrop ? 'is-drag-drop' : ''}
           defaultActiveKey={defaultActiveKey && defaultActiveKey.map(el => `.${el}`)}
           expandIcon={(panelProps): React.ReactElement => {
             const checkActive = panelProps.isActive;

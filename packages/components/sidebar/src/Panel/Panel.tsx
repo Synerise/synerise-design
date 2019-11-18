@@ -30,7 +30,7 @@ export const Panel: React.FC<PanelProps> = ({ header, children, id, ...props }) 
         return;
       }
       const hoverMonitor = monitor;
-      const hoverBoundingRect = ref.current!.getBoundingClientRect();
+      const hoverBoundingRect = ref.current.getBoundingClientRect();
       const hoverMiddleY = hoverBoundingRect.bottom - hoverBoundingRect.top;
       const clientOffset = hoverMonitor.getClientOffset();
       const hoverClientY = (clientOffset as XYCoord).y - hoverBoundingRect.top;
@@ -75,7 +75,7 @@ export const Panel: React.FC<PanelProps> = ({ header, children, id, ...props }) 
         </S.SidebarHeader>
       }
       key={id}
-      {...props}
+      {...props} // eslint-disable-line
     >
       {children}
     </S.AntdPanel>

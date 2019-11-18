@@ -39,7 +39,6 @@ module.exports = {
     'import/no-unresolved': [IGNORE],
     '@typescript-eslint/explicit-function-return-type': ERROR,
     '@typescript-eslint/no-unused-vars': [ERROR, { ignoreRestSiblings: true }],
-    "react/jsx-props-no-spreading": "off",
   },
   settings: {
     'import/resolver': {
