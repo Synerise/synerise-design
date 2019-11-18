@@ -3,11 +3,28 @@ id: badge
 title: Badge
 ---
 
-Badge UI Component
+Badges are small status descriptors for UI elements such as avatar-like icons. A badge consists of a small circle, typically containing a number, and appears in proximity to another object. It can be used to add information to any content or highlight the status of an object.
 
-Based on [Ant Design Badge](https://ant.design/components/badge/)
+Inspired by [Ant Design Badge](https://ant.design/components/badge/)
+
+## When to use it
+
+---
+
+- To indicate the status of an object: active, inactive, error, success, in process.
+- To draw attention to unread notifications.
+
+## Component anatomy
+
+---
+
+This is a complex component, which means it consists of more components:
+
+- [typography](/docs/components/typography/)
 
 ## Installation
+
+---
 
 ```
 npm i @synerise/ds-badge
@@ -16,6 +33,8 @@ yarn add @synerise/ds-badge
 ```
 
 ## Usage
+
+---
 
 ```
 import Badge from '@synerise/ds-badge'
@@ -29,6 +48,8 @@ import Badge from '@synerise/ds-badge'
 ```
 
 ## Badge Standalone
+
+---
 
 <iframe src="/storybook-static/iframe.html?id=components-badge--standalone"></iframe>
 
@@ -46,16 +67,18 @@ import Badge from '@synerise/ds-badge'
 
 ## API
 
-| Property      | Description                                                    | Type                                               | Default |
-| ------------- | -------------------------------------------------------------- | -------------------------------------------------- | ------- |
-| color         | Customize Badge dot color                                      | string                                             | -       |
-| count         | Number to show in badge                                        | ReactNode                                          |         |
-| dot           | Whether to display a red dot instead of count                  | boolean                                            | false   |
-| offset        | set offset of the badge dot, like[x, y]                        | [number, number]                                   | -       |
-| overflowCount | Max count to show                                              | number                                             | 99      |
-| showZero      | Whether to show badge when count is zero                       | boolean                                            | false   |
-| status        | Set Badge as a status dot                                      | `success \ processing \ default \ error \ warning` | ''      |
-| text          | If status is set, text sets the display text of the status dot | string                                             | ''      |
-| title         | Text to show when hovering over the badge                      | string                                             | count   |
-| flag          | Show badge as a flag                                           | boolean                                            | false   |
-| outlined      | Add outline to counter badge                                   | boolean                                            | false   |
+---
+
+| Property      | Description                                                        | Type                                               | Default |
+| ------------- | ------------------------------------------------------------------ | -------------------------------------------------- | ------- |
+| color         | Customize the badge dot color                                      | string                                             | -       |
+| count         | Number to show in the badge counter                                | ReactNode                                          |         |
+| dot           | Display a red dot instead of a counter                             | boolean                                            | false   |
+| offset        | The offset of the badge dot in [x, y] format                       | [number, number]                                   | -       |
+| overflowCount | Maximum number to show in the counter                              | number                                             | 99      |
+| showZero      | Show the badge when the counter is zero                            | boolean                                            | false   |
+| status        | Set badge as a status dot                                          | `success \ processing \ default \ error \ warning` | ''      |
+| text          | If `status` is set, `text` sets the display text of the status dot | string                                             | ''      |
+| title         | Text shown when a cursor is hovered over the badge                 | string                                             | count   |
+| flag          | Show the badge as a flag                                           | boolean                                            | false   |
+| outlined      | Add outline to the badge counter                                   | boolean                                            | false   |

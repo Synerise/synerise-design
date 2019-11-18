@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.11](https://github.com/synerise/synerise-design/compare/@synerise/ds-tabs@0.5.10...@synerise/ds-tabs@0.5.11) (2019-11-18)
+
+**Note:** Version bump only for package @synerise/ds-tabs
+
+## [0.5.10](https://github.com/synerise/synerise-design/compare/@synerise/ds-tabs@0.5.9...@synerise/ds-tabs@0.5.10) (2019-11-15)
+
+**Note:** Version bump only for package @synerise/ds-tabs
+
+## [0.5.9](https://github.com/synerise/synerise-design/compare/@synerise/ds-tabs@0.5.8...@synerise/ds-tabs@0.5.9) (2019-11-14)
+
+### Bug Fixes
+
+- **tabs:** allow label as react node, export TabItem type ([a836b72](https://github.com/synerise/synerise-design/commit/a836b726efb11d510c9c27259c85c51de2c87c0e))
+- **tabs:** allow label as react node, export TabItem type ([a3f89f6](https://github.com/synerise/synerise-design/commit/a3f89f6909fda62701e96fa514367d6636821a17))
+
+## [0.5.7](https://github.com/synerise/synerise-design/compare/@synerise/ds-tabs@0.5.6...@synerise/ds-tabs@0.5.7) (2019-11-12)
+
+### Bug Fixes
+
+- **tabs:** html type button for container, ReactNode or string as label ([1167cad](https://github.com/synerise/synerise-design/commit/1167cad2f0607d91ade00790beddd30d8d063dff))
+
+## [0.5.6](https://github.com/synerise/synerise-design/compare/@synerise/ds-tabs@0.5.5...@synerise/ds-tabs@0.5.6) (2019-11-09)
+
+**Note:** Version bump only for package @synerise/ds-tabs
+
 ## [0.5.5](https://github.com/synerise/synerise-design/compare/@synerise/ds-tabs@0.5.4...@synerise/ds-tabs@0.5.5) (2019-11-06)
 
 **Note:** Version bump only for package @synerise/ds-tabs

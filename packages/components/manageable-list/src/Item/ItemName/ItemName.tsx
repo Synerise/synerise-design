@@ -35,9 +35,10 @@ const ItemName: React.FC<ItemLabelProps> = ({ item, onUpdate, editMode }): React
         <InlineEdit
           size="small"
           hideIcon
-          style={{ maxWidth: '100%' }}
+          style={{ maxWidth: '100%', lineHeight: '24px' }}
           input={inputProps}
           data-testid="list-item-name-input"
+          autoFocus
         />
       ) : (
         <S.ItemLabel data-testid="list-item-name">{item.name}</S.ItemLabel>

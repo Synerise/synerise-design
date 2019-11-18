@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.6](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.7.5...@synerise/ds-input@0.7.6) (2019-11-18)
+
+### Bug Fixes
+
+- **input:** remove input-group whitespace if label not exist ([b7d80b8](https://github.com/synerise/synerise-design/commit/b7d80b88e27b8778da20f003d14c19256b40b276))
+
+## [0.7.5](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.7.4...@synerise/ds-input@0.7.5) (2019-11-09)
+
+**Note:** Version bump only for package @synerise/ds-input
+
 ## [0.7.4](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.7.3...@synerise/ds-input@0.7.4) (2019-11-06)
 
 **Note:** Version bump only for package @synerise/ds-input

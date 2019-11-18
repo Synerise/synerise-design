@@ -6,13 +6,20 @@ export const ItemLabel = styled.span`
   ${macro.h300};
   color: ${({ theme }): string => theme.palette['grey-600']};
   height: 24px;
-  display: inline-flex;
+  display: inline-block;
   align-items: center;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  flex: 1;
+  line-height: 24px;
+  max-width: 100%;
 `;
 
 export const ItemLabelWrapper = styled.div`
   flex: 1;
   overflow: hidden;
+  height: 24px;
 `;
 
 export const ItemContainer = styled.div`
@@ -23,6 +30,12 @@ export const ItemContainer = styled.div`
   justify-content: stretch;
   li {
     width: 100%;
+    & > div {
+      height: 24px;
+      &:nth-child(2) {
+        overflow: hidden;
+      }
+    }
   }
 
   &:hover {

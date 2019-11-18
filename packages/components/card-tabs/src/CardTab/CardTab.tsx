@@ -52,39 +52,54 @@ const CardTab: React.FC<CardTabProps> = ({
   const [editedName, setEditedName] = React.useState(name);
   const [pressed, setPressed] = React.useState(false);
 
-  const handleEditName = (event: React.MouseEvent<HTMLElement>): void => {
-    event.stopPropagation();
-    setEdited(true);
-  };
+  const handleEditName = React.useCallback(
+    (event: React.MouseEvent<HTMLElement>): void => {
+      event.stopPropagation();
+      setEdited(true);
+    },
+    [setEdited]
+  );
 
-  const handleChangeName = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    const { value } = event.target;
-    setEditedName(value);
-  };
+  const handleChangeName = React.useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>): void => {
+      const { value } = event.target;
+      setEditedName(value);
+    },
+    [setEditedName]
+  );
 
-  const handleEditNameBlur = (): void => {
+  const handleEditNameBlur = React.useCallback((): void => {
     setEdited(false);
     onChangeName && onChangeName(id, editedName);
-  };
+  }, [onChangeName, id, editedName]);
 
-  const handleDuplicate = (event: React.MouseEvent<HTMLElement>): void => {
-    event.stopPropagation();
-    onDuplicateTab && onDuplicateTab(id);
-  };
+  const handleDuplicate = React.useCallback(
+    (event: React.MouseEvent<HTMLElement>): void => {
+      event.stopPropagation();
+      onDuplicateTab && onDuplicateTab(id);
+    },
+    [id, onDuplicateTab]
+  );
 
-  const handleRemove = (event: React.MouseEvent<HTMLElement>): void => {
-    event.stopPropagation();
-    onRemoveTab && onRemoveTab(id);
-  };
+  const handleRemove = React.useCallback(
+    (event: React.MouseEvent<HTMLElement>): void => {
+      event.stopPropagation();
+      onRemoveTab && onRemoveTab(id);
+    },
+    [id, onRemoveTab]
+  );
 
-  const handleSelect = (event: React.MouseEvent<HTMLElement>): void => {
-    event.stopPropagation();
-    onSelectTab && onSelectTab(id);
-  };
+  const handleSelect = React.useCallback(
+    (event: React.MouseEvent<HTMLElement>): void => {
+      event.stopPropagation();
+      !edited && onSelectTab && onSelectTab(id);
+    },
+    [edited, id, onSelectTab]
+  );
 
-  const showCardActions = (): boolean => {
+  const showCardActions = React.useCallback((): boolean => {
     return (!!onChangeName || !!onDuplicateTab || !!onRemoveTab) && !suffixIcon;
-  };
+  }, [onChangeName, onDuplicateTab, onRemoveTab, suffixIcon]);
 
   return (
     <S.CardTabContainer
@@ -110,6 +125,7 @@ const CardTab: React.FC<CardTabProps> = ({
             size="small"
             hideIcon
             style={{ maxWidth: 46 }}
+            autoFocus
             input={{
               value: editedName,
               name: `ds-card-tab-input-${id}`,
