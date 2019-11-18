@@ -24,6 +24,7 @@
   "dependencies": {
     "@synerise/ds-button": "*",
     "@synerise/ds-card": "*",
+    "@synerise/ds-icon": "^0.3.5",
     "@synerise/ds-typography": "*",
     "antd": "*",
     "immutability-helper": "^3.0.1",
