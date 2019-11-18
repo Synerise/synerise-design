@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-manageable-list",
-  "version": "0.2.7",
+  "version": "0.2.8",
   "description": "ManageableList UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -24,7 +24,7 @@
   "dependencies": {
     "@synerise/ds-icon": "^0.3.4",
     "@synerise/ds-list": "^0.2.6",
-    "@synerise/ds-tags": "^0.1.14",
+    "@synerise/ds-tags": "^0.1.15",
     "@synerise/ds-typography": "^0.5.4",
     "antd": "3.24.3"
   },
