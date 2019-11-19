@@ -15,16 +15,16 @@ const stories = {
     <div style={wrapperStyles}>
       <Sidebar defaultActiveKey={['0']}>
         <Sidebar.Panel header={'Collapse title'} id={'first'}>
-          <Block isDragging={0} icon={<Icon component={<EditM />} size={24} color={theme.palette['grey-600']}/>} >
+          <Block isDragging={false} icon={<Icon component={<EditM />} size={24} color={theme.palette['grey-600']}/>}>
             Block name
           </Block>
-          <Block isDragging={0} icon={<Icon component={<EditM />} size={24} color={theme.palette['grey-600']}/>} >
+          <Block isDragging={false} icon={<Icon component={<EditM />} size={24} color={theme.palette['grey-600']}/>}>
             Block name
           </Block>
-          <Block isDragging={0} icon={<Icon component={<EditM />} size={24} color={theme.palette['grey-600']}/>} >
+          <Block isDragging={false} icon={<Icon component={<EditM />} size={24} color={theme.palette['grey-600']}/>}>
             Block name
           </Block>
-          <Block isDragging={0} icon={<Icon component={<EditM />} size={24} color={theme.palette['grey-600']}/>} >
+          <Block isDragging={false} icon={<Icon component={<EditM />} size={24} color={theme.palette['grey-600']}/>}>
             Block name
           </Block>
         </Sidebar.Panel>

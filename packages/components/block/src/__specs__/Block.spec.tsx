@@ -11,7 +11,7 @@ describe('Sidebar', () => {
   it('should render title', () => {
     // ARRANGE
     const { getByText } = renderWithProvider(
-      <Block isDragging={0} icon={<Icon component={<EditM />} />}>
+      <Block isDragging={false} icon={<Icon component={<EditM />} />}>
         {TITLE}
       </Block>
     );
