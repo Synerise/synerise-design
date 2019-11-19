@@ -28,6 +28,8 @@ import Block from '@synerise/ds-block'
 
 ## API
 
-| Property | Description | Type | Default |
-| -------- | ----------- | ---- | ------- |
-
+| Property   | Description                   | Type                        | Default |
+| ---------- | ----------------------------- | --------------------------- | ------- |
+| children   | Header name                   | React.ReactNode `or` string | -       |
+| isDragging | Return true if Block dragging | boolean                     | -       |
+| icon       | Place for Block icon          | React.ReactNode             | -       |
