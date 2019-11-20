@@ -21,7 +21,6 @@ module.exports = async ({ config, mode }) => {
           presets: [require.resolve('babel-preset-react-app')],
         },
       },
-      require.resolve('react-docgen-typescript-loader'),
     ],
   });
 
