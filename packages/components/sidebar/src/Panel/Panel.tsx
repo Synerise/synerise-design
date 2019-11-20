@@ -77,7 +77,7 @@ export const Panel: React.FC<PanelProps> = ({ header, children, id, ...props }) 
       key={id}
       {...props} // eslint-disable-line
     >
-      {children}
+      <S.SidebarContentWrapper>{children}</S.SidebarContentWrapper>
     </S.AntdPanel>
   );
 };
