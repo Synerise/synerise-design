@@ -22,11 +22,13 @@ export const AntRadioGroup = styled(AntdRadio.Group)<{ fullWidth?: boolean }>`
   ${(props): string =>
     props.fullWidth
       ? `
-      display: flex;
-      width: 100%;
-      
-      label {
-        flex: 1;
+      && {
+        display: flex;
+        width: 100%;
+        
+        label {
+          flex: 1;
+        }
       }
     `
       : ''}
