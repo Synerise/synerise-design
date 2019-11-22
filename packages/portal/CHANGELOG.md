@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.20.0](https://github.com/synerise/synerise-design/compare/portal@0.19.9...portal@0.20.0) (2019-11-22)
+
+
+### Features
+
+* **radio:** Enhance radio button ([343ab5b](https://github.com/synerise/synerise-design/commit/343ab5b3f7fc4e7f6d95084df941155823f7a14e))
+
+
+
+
+
 ## [0.19.5](https://github.com/synerise/synerise-design/compare/portal@0.19.4...portal@0.19.5) (2019-11-12)
 
 

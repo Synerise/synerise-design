@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-radio@0.5.6...@synerise/ds-radio@0.6.0) (2019-11-22)
+
+### Features
+
+- **radio:** Enhance radio button ([343ab5b](https://github.com/synerise/synerise-design/commit/343ab5b3f7fc4e7f6d95084df941155823f7a14e))
+
 ## [0.5.6](https://github.com/synerise/synerise-design/compare/@synerise/ds-radio@0.5.5...@synerise/ds-radio@0.5.6) (2019-11-09)
 
 **Note:** Version bump only for package @synerise/ds-radio
