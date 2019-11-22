@@ -13,8 +13,8 @@ export const AddItemLayout = styled.div`
       padding: 0;
 
       svg {
-        color: ${({ theme }): string => theme.palette['grey-500']};
-        fill: ${({ theme }): string => theme.palette['grey-500']};
+        color: ${({ theme }): string => theme.palette['grey-700']};
+        fill: ${({ theme }): string => theme.palette['grey-700']};
       }
     }
   }
@@ -30,5 +30,5 @@ export const AddItemLayout = styled.div`
 
 export const AddItemLabel = styled.span`
   margin-left: 12px;
-  color: ${({ theme }): string => theme.palette['grey-600']};
+  color: ${({ theme }): string => theme.palette['grey-700']};
 `;
