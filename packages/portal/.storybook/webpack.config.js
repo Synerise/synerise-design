@@ -1,6 +1,6 @@
 const path = require('path');
 
-module.exports = async ({ config, mode }) => {
+module.exports = async ({ config }) => {
   config.resolve.alias['@'] = path.resolve(__dirname, '../../components');
 
   config.module.rules.push({
@@ -23,9 +23,9 @@ module.exports = async ({ config, mode }) => {
     test: /\.tsx?$/,
     use: [
       {
-        loader: require.resolve('babel-loader'),
+        loader: 'babel-loader',
         options: {
-          presets: [require.resolve('babel-preset-react-app')],
+          presets: ['babel-preset-react-app'],
           plugins: [
             ['transform-rename-import', {
               replacements: [
