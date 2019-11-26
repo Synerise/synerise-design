@@ -7,7 +7,14 @@ module.exports = async ({ config, mode }) => {
     test: /\.less$/,
     use: [
       {
-        loader: require.resolve('less-vars-loader'),
+        loader: require.resolve('style-loader'),
+      }, {
+        loader: require.resolve('css-loader'),
+      }, {
+        loader: require.resolve('less-loader'),
+        options: {
+          javascriptEnabled: true,
+        },
       },
     ],
   });
@@ -19,6 +26,23 @@ module.exports = async ({ config, mode }) => {
         loader: require.resolve('babel-loader'),
         options: {
           presets: [require.resolve('babel-preset-react-app')],
+          plugins: [
+            ['transform-rename-import', {
+              replacements: [
+                {
+                  original: '@synerise\/ds-core(\/dist)?(.*)',
+                  replacement: (importName, isDist, rest) => {
+                    let result = '@synerise/ds-core/src';
+                    return isDist ? `${result}${rest}` : `${result}/js`;
+                  },
+                },
+                {
+                  original: '@synerise\/ds-((?!core)[a-z0-9-]+)(\/dist)?(.*)',
+                  replacement: '@synerise/ds-$1/src$3',
+                },
+              ],
+            }],
+          ],
         },
       },
     ],

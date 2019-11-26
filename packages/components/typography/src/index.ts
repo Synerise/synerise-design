@@ -1,4 +1,4 @@
-import * as macro from './style/macro';
+import * as macro from './style/macro.ts';
 
 export { default } from './Typography';
 export * from './CommonElements';
