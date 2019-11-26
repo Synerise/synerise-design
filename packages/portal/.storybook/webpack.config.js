@@ -1,17 +1,17 @@
 const path = require('path');
 
-module.exports = async ({ config }) => {
+module.exports = async ({ config, mode }) => {
   config.resolve.alias['@'] = path.resolve(__dirname, '../../components');
 
   config.module.rules.push({
     test: /\.less$/,
     use: [
       {
-        loader: require.resolve('style-loader'),
+        loader: 'style-loader',
       }, {
-        loader: require.resolve('css-loader'),
+        loader: 'css-loader',
       }, {
-        loader: require.resolve('less-loader'),
+        loader: 'less-loader',
         options: {
           javascriptEnabled: true,
         },
@@ -37,7 +37,7 @@ module.exports = async ({ config }) => {
                   },
                 },
                 {
-                  original: '@synerise\/ds-((?!core)[a-z0-9-]+)(\/dist)?(.*)',
+                  original: '@synerise\/ds-((?!core|icon)[a-z0-9-]+)(\/dist)?(.*)',
                   replacement: '@synerise/ds-$1/src$3',
                 },
               ],
