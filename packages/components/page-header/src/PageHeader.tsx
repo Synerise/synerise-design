@@ -23,8 +23,8 @@ export type PageHeaderProps = {
     value: string | number;
     maxLength?: number;
     handleOnChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-    handleOnBlur: React.FocusEventHandler<HTMLInputElement>;
-    handleOnEnterPress: React.KeyboardEventHandler<HTMLInputElement>;
+    handleOnBlur?: React.FocusEventHandler<HTMLInputElement>;
+    handleOnEnterPress?: React.KeyboardEventHandler<HTMLInputElement>;
     placeholder?: string;
     size: 'small' | 'normal';
     style?: {
