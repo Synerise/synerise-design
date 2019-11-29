@@ -593,6 +593,10 @@ const iconArr = [
     'YoutubeM',
     'WthSunsetM',
     'WthTemperatureM',
+    'JourneyEndM',
+    'MergeM',
+    'SplitAbM',
+    'SplitM'
 ];
 
 export default iconArr

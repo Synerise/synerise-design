@@ -10,8 +10,7 @@ import { AngleDownS, NotificationsPlayM, CalendarM, DashboardM} from '@synerise/
 import List from "@synerise/ds-list/dist/List";
 import {action} from "@storybook/addon-actions";
 import FileM from "@synerise/ds-icon/dist/icons/FileM";
-import * as S from "@synerise/ds-navbar/dist/Navbar.styles";
-// import Navbar from "@synerise/ds-navbar/Navbar";
+import * as S from "@synerise/ds-navbar/dist/Navbar.styles"
 
 const backgroundColors = [
   'red',

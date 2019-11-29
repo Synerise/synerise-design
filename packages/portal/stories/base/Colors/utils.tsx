@@ -1,5 +1,6 @@
 import * as React from 'react';
-import colors from '@synerise/ds-core/dist/style/colors.less';
+// @ts-ignore
+import colors from '!less-vars-loader!@synerise/ds-core/src/style/colors.less';
 
 const mapColors = () =>
   Object.entries(colors).reduce((previousValue: any, currentValue: any) => {
@@ -34,6 +35,7 @@ export const ColorPalette = (props: { palette: any }) => (
         <ColorGroup>
           {colors.map(({ color, value }, index) => (
             <ColorBar
+              key={index}
               group={group}
               value={value}
               color={color}
