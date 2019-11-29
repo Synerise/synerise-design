@@ -22,10 +22,10 @@ interface Props extends ModalProps {
 }
 
 const mapSizeToWidth = {
-  small: 472,
-  medium: 588,
-  large: 996,
-  extraLarge: 1232,
+  small: 520,
+  medium: 792,
+  large: 1044,
+  extraLarge: 1280,
 };
 
 const ModalProxy: React.FC<Props> = ({
