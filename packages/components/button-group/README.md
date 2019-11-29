@@ -28,7 +28,11 @@ This is a complex component, which means that it may consist of other components
 
 ```
 npm i @synerise/ds-button-group
+```
+
 or
+
+```
 yarn add @synerise/ds-button-group
 ```
 
@@ -44,9 +48,9 @@ import ButtonGroup from '@synerise/ds-button-group'
   title={'Some title'}
   description={'Some description'}
 >
-  <Button {...buttonProps}>{buttonProps.content}</Button>
-  <Button {...buttonProps}>{buttonProps.content}</Button>
-  <Button {...buttonProps}>{buttonProps.content}</Button>
+  <Button onClick={() => alert('Clicked!')}>Click me!</Button>
+  <Button onClick={() => alert('Clicked!')}>Click me!</Button>
+  <Button onClick={() => alert('Clicked!')}>Click me!</Button>
 </ButtonGroup>
 
 ```
