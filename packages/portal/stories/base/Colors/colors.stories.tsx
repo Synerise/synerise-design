@@ -3,7 +3,8 @@ import groupBy from 'ramda/es/groupBy';
 // @ts-ignore
 import './index.css';
 import { ColorBar, colorMap, ColorPalette } from './utils';
-import colors from '@synerise/ds-core/dist/style/colors.less';
+// @ts-ignore
+import colors from '!less-vars-loader!@synerise/ds-core/src/style/colors.less';
 
 const PRIMARY = ['blue', 'grey'];
 const DISABLED = ['white'];

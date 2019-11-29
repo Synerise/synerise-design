@@ -11,7 +11,7 @@ const req = require.context('../stories', true, /\.stories.tsx$/);
 
 const withDSProvider = (storyFn) => React.createElement(DSProvider, {
   code: 'en_GB',
-}, storyFn());
+} as object, storyFn());
 
 interface storyConfig {
   Component: React.FunctionComponent | React.ComponentClass,

@@ -2,7 +2,6 @@ import * as React from 'react';
 import random from 'lodash/random';
 import { boolean, text, select, number, array } from '@storybook/addon-knobs';
 
-import { DSProvider } from '@synerise/ds-core';
 import FileUploader from '@synerise/ds-file-uploader';
 
 const getDefaultProps = () => ({
@@ -56,20 +55,18 @@ const stories = {
     };
 
     return (
-      <DSProvider code="en_GB">
-        <div style={{ margin: 24, width: 340 }}>
-          <FileUploader
-            {...rest}
-            files={getFiles()}
-            texts={texts}
-            onUpload={newFiles => setFiles([...files, ...newFiles.map(file => ({ file }))])}
-            onRemove={(rf, rfi) => setFiles(files.filter((f, i) => i !== rfi))}
-          />
-        </div>
-      </DSProvider>
+      <div style={{ margin: 24, width: 340 }}>
+        <FileUploader
+          {...rest}
+          files={getFiles()}
+          texts={texts}
+          onUpload={newFiles => setFiles([...files, ...newFiles.map(file => ({ file }))])}
+          onRemove={(rf, rfi) => setFiles(files.filter((f, i) => i !== rfi))}
+        />
+      </div>
     );
   }
-}
+};
 
 export default {
   name: 'Components|FileUploader',

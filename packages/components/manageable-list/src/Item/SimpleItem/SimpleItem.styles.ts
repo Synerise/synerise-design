@@ -38,10 +38,18 @@ export const ItemContainer = styled.div`
     }
   }
 
+  .ds-manageable-list-item-icon {
+    svg {
+      color: ${({ theme }): string => theme.palette['grey-600']};
+      fill: ${({ theme }): string => theme.palette['grey-600']};
+    }
+  }
+
   &:hover {
     ${ItemActionsWrapper} {
       display: flex;
     }
+
     .ds-manageable-list-item-icon {
       svg {
         color: ${({ theme }): string => theme.palette['blue-600']};

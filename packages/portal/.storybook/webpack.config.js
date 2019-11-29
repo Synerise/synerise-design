@@ -7,7 +7,14 @@ module.exports = async ({ config, mode }) => {
     test: /\.less$/,
     use: [
       {
-        loader: require.resolve('less-vars-loader'),
+        loader: 'style-loader',
+      }, {
+        loader: 'css-loader',
+      }, {
+        loader: 'less-loader',
+        options: {
+          javascriptEnabled: true,
+        },
       },
     ],
   });
@@ -16,12 +23,28 @@ module.exports = async ({ config, mode }) => {
     test: /\.tsx?$/,
     use: [
       {
-        loader: require.resolve('babel-loader'),
+        loader: 'babel-loader',
         options: {
-          presets: [require.resolve('babel-preset-react-app')],
+          presets: ['babel-preset-react-app'],
+          plugins: [
+            ['transform-rename-import', {
+              replacements: [
+                {
+                  original: '@synerise\/ds-core(\/dist)?(.*)',
+                  replacement: (importName, isDist, rest) => {
+                    let result = '@synerise/ds-core/src';
+                    return isDist ? `${result}${rest}` : `${result}/js`;
+                  },
+                },
+                {
+                  original: '@synerise\/ds-((?!core|icon)[a-z0-9-]+)(\/dist)?(.*)',
+                  replacement: '@synerise/ds-$1/src$3',
+                },
+              ],
+            }],
+          ],
         },
       },
-      require.resolve('react-docgen-typescript-loader'),
     ],
   });
 
