@@ -3,7 +3,7 @@ id: card-select
 title: Card Select
 ---
 
-A card select is a form of presenting a selectable option on a separate, usually, rectangle-shaped object.
+A card select is a form of presenting a selectable option on a separate, usually rectangle-shaped, object.
 
 ## When to use it
 
@@ -23,7 +23,11 @@ This is a simple component, which means it doesn't consist of any other componen
 
 ```
 npm i @synerise/ds-card-select
+```
+
 or
+
+```
 yarn add @synerise/ds-card-select
 
 ```
@@ -55,21 +59,21 @@ yarn add @synerise/ds-card-select
 
 ### Properties
 
-| Property                   | Description                                                          | Type               | Default                                   |
-| -------------------------- | -------------------------------------------------------------------- | ------------------ | ----------------------------------------- |
-| className                  | The name of the container                                            | string             | -                                         |
-| size                       | The size of the card                                                 | `small` / `medium` | `medium`                                  |
-| raised                     | Defines if the component casts shadow on the background              | boolean            | -                                         |
-| icon                       | Defines the URL of the icon                                          | string             | -                                         |
-| iconSize                   | Defines the size of the icon                                         | number             | 82 for `medium` size, 48 for `small` size |
-| title                      | Defines the title of the card                                        | string             | -                                         |
-| description                | Defines the description of the card (not available for `small` size) | string             | -                                         |
-| value                      | Defines if the card is selected by a user                            | boolean            | false                                     |
-| tickVisible                | Defines the display of the checkbox                                  | boolean            | true                                      |
-| disabled                   | Defines if the card is disabled (`onChange` still fires)             | boolean            | -                                         |
-| customTickVisible          | Defines if the checkbox is custom                                    | boolean            | -                                         |
-| customTickVisibleComponent | Custom checkbox component                                            | ReactNode          | -                                         |
-| stretchToFit               | Aligns the height of each card                                       | boolean            | -                                         |
+| Property                   | Description                                                          | Type               | Default                                         |
+| -------------------------- | -------------------------------------------------------------------- | ------------------ | ----------------------------------------------- |
+| className                  | The name of the container                                            | string             | -                                               |
+| size                       | The size of the card                                                 | `small` / `medium` | `medium`                                        |
+| raised                     | Defines if the component casts shadow on the background              | boolean            | -                                               |
+| icon                       | Defines the URL of the icon                                          | string             | -                                               |
+| iconSize                   | Defines the size of the icon                                         | number             | 82 px for `medium` size, 48 px for `small` size |
+| title                      | Defines the title of the card                                        | string             | -                                               |
+| description                | Defines the description of the card (not available for `small` size) | string             | -                                               |
+| value                      | Defines if the card is selected by a user                            | boolean            | false                                           |
+| tickVisible                | Defines the display of the checkbox                                  | boolean            | true                                            |
+| disabled                   | Defines if the card is disabled (`onChange` still fires)             | boolean            | -                                               |
+| customTickVisible          | Defines if the checkbox is custom                                    | boolean            | -                                               |
+| customTickVisibleComponent | Custom checkbox component                                            | ReactNode          | -                                               |
+| stretchToFit               | Aligns the height of each card                                       | boolean            | -                                               |
 
 ### Methods
 
