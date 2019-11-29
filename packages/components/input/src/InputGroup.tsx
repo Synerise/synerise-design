@@ -12,19 +12,19 @@ interface Props extends GroupProps {
 
 const InputGroup: React.FC<Props> = ({ children, label, errors, description, resetMargin, ...antdInputGroupProps }) => (
   <InputStyles.OuterWrapper resetMargin={resetMargin}>
-    <InputStyles.ContentAbove>
-      <InputStyles.Label>{label}</InputStyles.Label>
-    </InputStyles.ContentAbove>
+    {label && (
+      <InputStyles.ContentAbove>
+        <InputStyles.Label>{label}</InputStyles.Label>
+      </InputStyles.ContentAbove>
+    )}
     {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-    <Input.Group {...antdInputGroupProps}>
-      {children}
-    </Input.Group>
+    <Input.Group {...antdInputGroupProps}>{children}</Input.Group>
     {((errors && errors.length > 0) || description) && (
-        <InputStyles.ContentBelow>
-          {errors && errors.map(error => <InputStyles.ErrorText key="error">{error}</InputStyles.ErrorText>)}
-          {description && <InputStyles.Description>{description}</InputStyles.Description>}
-        </InputStyles.ContentBelow>
-      )}
+      <InputStyles.ContentBelow>
+        {errors && errors.map(error => <InputStyles.ErrorText key="error">{error}</InputStyles.ErrorText>)}
+        {description && <InputStyles.Description>{description}</InputStyles.Description>}
+      </InputStyles.ContentBelow>
+    )}
   </InputStyles.OuterWrapper>
 );
 
