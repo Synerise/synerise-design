@@ -3,8 +3,8 @@ import styled, { css, FlattenInterpolation, FlattenSimpleInterpolation } from 's
 import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import Button from 'antd/lib/button';
 
-const leftIcon = '4px 4px 4px 8px';
-const rightIcon = '4px 8px 4px 4px';
+const leftIcon = '0 4px 4px 8px';
+const rightIcon = '2px 8px 4px 4px';
 
 const buttonType = {
   secondary: 'secondary',
@@ -41,7 +41,7 @@ export default styled(({ mode, type, loading, ...rest }) => <Button type={type} 
               ${props.type !== splitType[props.type] ? `rgba(255, 255, 255, 0.15);` : props.theme.palette['grey-300']};
           }
           > div {
-            margin: 4px;
+            margin: 0 4px 2px 4px;
           }
         }
       `}
@@ -84,7 +84,7 @@ export default styled(({ mode, type, loading, ...rest }) => <Button type={type} 
         &.ant-btn {
           padding: 0;
           > div {
-            margin: 4px;
+            margin: 0 4px 4px 4px;
           }
         }
       `}
