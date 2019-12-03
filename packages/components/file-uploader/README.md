@@ -20,6 +20,7 @@ import FileUploader from '@synerise/ds-file-uploader'
 
 <FileUploader
   mode="single"
+  filesAmount={1}
   files={[]}
   accept={['image/png']}
   texts={{
@@ -42,6 +43,7 @@ import FileUploader from '@synerise/ds-file-uploader'
 | Property    | Description                                                                      | Type                                      | Default  |
 | ----------- | -------------------------------------------------------------------------------- | ----------------------------------------- | -------- |
 | mode        | uploader operation mode                                                          | 'single' / 'multi-medium' / 'multi-large' | 'single' |
+| mode        | uploader maximum files number                                                    | number                                    | -        |
 | description | description shown with uploader                                                  | string                                    | -        |
 | disabled    | whether the uploader should be disabled                                          | boolean                                   | -        |
 | removable   | whether or not files should be removable                                         | boolean                                   | -        |

@@ -21,6 +21,7 @@ const FileUploader: React.FC<FileUploaderProps> = ({
   onRemove,
   description,
   infoTooltip,
+  filesAmount,
   mode = 'single',
   removable = true,
   files = [],
@@ -31,7 +32,23 @@ const FileUploader: React.FC<FileUploaderProps> = ({
     uploading: <FormattedMessage id="DS.FILE-UPLOADER.UPLOADING" />,
   },
 }) => {
-  const onDrop = React.useCallback((acceptedFiles: File[]) => onUpload && onUpload(acceptedFiles), [onUpload]);
+  const [errors, setErrors] = React.useState([error]);
+
+  const onDrop = React.useCallback(
+    (acceptedFiles: File[]) => {
+      let possibleUpload = 0;
+      if (filesAmount) {
+        possibleUpload = filesAmount - files.length;
+      }
+      if (possibleUpload !== 0 && acceptedFiles.length > possibleUpload) {
+        setErrors([...errors, 'To many files uploaded']);
+      } else {
+        setErrors([]);
+        onUpload && onUpload(acceptedFiles);
+      }
+    },
+    [onUpload, filesAmount, files, setErrors, errors]
+  );
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     accept: accept ? accept.join(',') : undefined,
@@ -40,14 +57,22 @@ const FileUploader: React.FC<FileUploaderProps> = ({
     disabled,
   });
 
-  const hasError = !!error;
+  if (filesAmount && filesAmount < 1) {
+    // eslint-disable-next-line no-param-reassign
+    filesAmount = 1;
+    throw new Error('Invalid value of property "filesAmount" ');
+  }
+  if (filesAmount && filesAmount === 1) {
+    // eslint-disable-next-line no-param-reassign
+    mode = 'single';
+  }
 
+  const hasError = !!errors.filter(arrayElement => arrayElement !== '').length;
   return (
     <S.Container>
       {label && (
         <S.Label>
           <span>{label}</span>
-
           {infoTooltip && (
             <Tooltip trigger="hover" placement="top" title={infoTooltip}>
               <span data-testid="tooltip-info">
@@ -57,7 +82,6 @@ const FileUploader: React.FC<FileUploaderProps> = ({
           )}
         </S.Label>
       )}
-
       {files.length > 0 &&
         files.map((file, index) => (
           <FileView
@@ -69,8 +93,7 @@ const FileUploader: React.FC<FileUploaderProps> = ({
             data={file}
           />
         ))}
-
-      {(mode !== 'single' || files.length === 0) && (
+      {((mode !== 'single' && (filesAmount ? files.length < filesAmount : true)) || files.length === 0) && (
         <>
           {/* eslint-disable-next-line react/jsx-props-no-spreading */}
           <S.DropAreaContainer {...getRootProps()} canUploadMore={mode !== 'single' && files.length > 0}>
@@ -100,8 +123,15 @@ const FileUploader: React.FC<FileUploaderProps> = ({
           </S.DropAreaContainer>
         </>
       )}
-
-      {hasError && <S.ErrorMessage>{error}</S.ErrorMessage>}
+      {hasError &&
+        errors.map((errorText, index) => (
+          <S.ErrorMessage
+            // eslint-disable-next-line react/no-array-index-key
+            key={index}
+          >
+            {errorText}
+          </S.ErrorMessage>
+        ))}
       {description && <S.Description hasError={hasError}>{description}</S.Description>}
     </S.Container>
   );

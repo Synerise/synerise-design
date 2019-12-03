@@ -14,6 +14,7 @@ type FileUploaderTexts = FileViewTexts & {
 
 export interface FileUploaderProps {
   mode: 'single' | 'multi-medium' | 'multi-large';
+  filesAmount?: number;
   description?: string;
   disabled?: boolean;
   removable?: boolean;
