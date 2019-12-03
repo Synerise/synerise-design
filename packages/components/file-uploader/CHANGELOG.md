@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-file-uploader@0.0.8...@synerise/ds-file-uploader@0.1.0) (2019-12-03)
+
+### Features
+
+- 🎸 Optional prop fileAmount ([36e3ceb](https://github.com/Synerise/synerise-design/commit/36e3cebce4068527874dee756955da166a650b30))
+
 ## [0.0.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-file-uploader@0.0.6...@synerise/ds-file-uploader@0.0.7) (2019-11-22)
 
 **Note:** Version bump only for package @synerise/ds-file-uploader

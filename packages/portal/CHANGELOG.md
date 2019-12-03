@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.21.0](https://github.com/synerise/synerise-design/compare/portal@0.20.1...portal@0.21.0) (2019-12-03)
+
+
+### Features
+
+* 🎸 Optional prop fileAmount ([36e3ceb](https://github.com/synerise/synerise-design/commit/36e3cebce4068527874dee756955da166a650b30))
+
+
+
+
+
 # [0.20.0](https://github.com/synerise/synerise-design/compare/portal@0.19.9...portal@0.20.0) (2019-11-22)
 
 
