@@ -17,10 +17,11 @@ const getDefaultProps = () => ({
     'multi-medium': 'multi-medium',
     'multi-large': 'multi-large'
   }, 'multi-large'),
+  filesAmount: number('Uploading files amount', 1),
   disabled: boolean('Disabled', false),
   removable: boolean('Allow to remove uploaded files', true),
   error: text('Error message', ''),
-  accept: array('Accepted mime types (comma seperated)', ['image/png, image/svg+xml']),
+  accept: array('Accepted mime types (comma separated)', ['image/png, image/svg+xml']),
   testFileError: boolean('Display preview error example', false),
   testFileDisable: boolean('Display disabled preview example', false),
   testFileProgress: boolean('Display upload progress bar example', false),
