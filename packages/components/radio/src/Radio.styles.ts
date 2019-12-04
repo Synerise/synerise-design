@@ -18,7 +18,7 @@ export const AdditionalData = styled.div`
   margin-top: 4px;
 `;
 
-export const AntRadioGroup = styled(AntdRadio.Group)<{ fullWidth?: boolean }>`
+export const AntRadioGroup = styled(AntdRadio.Group)<{ fullWidth?: boolean; big?: boolean }>`
   ${(props): string =>
     props.fullWidth
       ? `
@@ -28,6 +28,15 @@ export const AntRadioGroup = styled(AntdRadio.Group)<{ fullWidth?: boolean }>`
         
         label {
           flex: 1;
+          height: ${props.big ? '48px' : '32px'}
+          
+          span + span {
+            display: flex;
+            height: 100%;
+            align-items: center;
+            justify-content: center;
+            font-weight: 500;
+          }
         }
       }
     `
