@@ -25,7 +25,7 @@ const stories = {
     </Radio.Group>
   ),
   radioButtons: () => (
-    <Radio.Group defaultValue="a" buttonStyle="solid" onChange={action('onChange')} fullWidth={boolean('fullWidth', false)}>
+    <Radio.Group defaultValue="a" buttonStyle="solid" onChange={action('onChange')} fullWidth={boolean('fullWidth', false)} big={boolean('big', false)}>
       <Radio.Button value="a">A</Radio.Button>
       <Radio.Button value="b" disabled={boolean('disable B', false)}>B</Radio.Button>
       <Radio.Button value="c">C</Radio.Button>

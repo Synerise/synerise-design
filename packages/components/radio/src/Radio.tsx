@@ -8,10 +8,15 @@ interface Props extends RadioProps {
   description?: string;
 }
 
-const Group: React.FC<RadioGroupProps & { fullWidth?: boolean }> = ({ children, fullWidth, ...props }) => {
+const Group: React.FC<RadioGroupProps & { fullWidth?: boolean; big?: boolean }> = ({
+  children,
+  fullWidth,
+  big,
+  ...props
+}) => {
   return (
     // eslint-disable-next-line react/jsx-props-no-spreading
-    <S.AntRadioGroup fullWidth={fullWidth} {...props}>
+    <S.AntRadioGroup fullWidth={fullWidth} big={big} {...props}>
       {children}
     </S.AntRadioGroup>
   );
