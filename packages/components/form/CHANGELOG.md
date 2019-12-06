@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-form@0.1.6...@synerise/ds-form@0.1.7) (2019-12-06)
+
+### Bug Fixes
+
+- 🐛 Corrected error display logic ([d6597df](https://github.com/Synerise/synerise-design/commit/d6597dfe93a251b54c9bb107264ec81dfc12b1df))
+
 ## [0.1.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-form@0.1.4...@synerise/ds-form@0.1.5) (2019-11-09)
 
 **Note:** Version bump only for package @synerise/ds-form

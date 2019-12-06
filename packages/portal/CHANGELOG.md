@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.22.1](https://github.com/synerise/synerise-design/compare/portal@0.22.0...portal@0.22.1) (2019-12-06)
+
+
+### Bug Fixes
+
+* 🐛 Corrected error display logic ([d6597df](https://github.com/synerise/synerise-design/commit/d6597dfe93a251b54c9bb107264ec81dfc12b1df))
+
+
+
+
+
 # [0.22.0](https://github.com/synerise/synerise-design/compare/portal@0.21.0...portal@0.22.0) (2019-12-04)
 
 

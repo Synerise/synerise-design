@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-file-uploader@0.1.0...@synerise/ds-file-uploader@0.1.1) (2019-12-06)
+
+### Bug Fixes
+
+- 🐛 Corrected error display logic ([d6597df](https://github.com/Synerise/synerise-design/commit/d6597dfe93a251b54c9bb107264ec81dfc12b1df))
+
 # [0.1.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-file-uploader@0.0.8...@synerise/ds-file-uploader@0.1.0) (2019-12-03)
 
 ### Features
