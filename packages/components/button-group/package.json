@@ -24,7 +24,7 @@
   "dependencies": {
     "@synerise/ds-button": "^0.4.9",
     "@synerise/ds-utils": "^0.5.5",
-    "antd": "3.24.3"
+    "antd": "3.26.0"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

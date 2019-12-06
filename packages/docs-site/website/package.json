@@ -16,7 +16,7 @@
     "docusaurus": "^1.14.0"
   },
   "dependencies": {
-    "docusaurus": "^1.14.0",
+    "docusaurus": "^1.14.3",
     "global": "^4.4.0"
   }
 }

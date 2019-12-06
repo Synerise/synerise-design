@@ -27,10 +27,10 @@
     "@synerise/ds-card": "^0.2.16",
     "@synerise/ds-icon": "^0.5.0",
     "@synerise/ds-typography": "^0.5.5",
-    "antd": "3.24.3",
+    "antd": "3.26.0",
     "immutability-helper": "^3.0.1",
-    "react-dnd": "^9.4.0",
-    "react-dnd-html5-backend": "^9.4.0"
+    "react-dnd": "^9.5.1",
+    "react-dnd-html5-backend": "^9.5.1"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

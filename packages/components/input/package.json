@@ -23,7 +23,7 @@
   "types": "dist/index.d.ts",
   "dependencies": {
     "@synerise/ds-utils": "^0.5.5",
-    "antd": "3.24.3",
+    "antd": "3.26.0",
     "uuid": "^3.3.3"
   },
   "peerDependencies": {

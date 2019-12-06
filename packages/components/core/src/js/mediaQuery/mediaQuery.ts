@@ -1,5 +1,5 @@
 import { BaseThemedCssFunction, css, FlattenSimpleInterpolation } from 'styled-components';
-import breakpoints from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/breakpoints';
+import breakpoints from '../DSProvider/ThemeProvider/breakpoints';
 
 export type Media = {
   from: BreakpointsType;
