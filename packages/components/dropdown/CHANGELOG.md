@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-dropdown@0.7.18...@synerise/ds-dropdown@0.8.0) (2019-12-06)
+
+### Features
+
+- update ant to 3.26.0 ([d67df46](https://github.com/synerise/synerise-design/commit/d67df4605844fb09680096df333886db40cb7c32))
+
 ## [0.7.18](https://github.com/synerise/synerise-design/compare/@synerise/ds-dropdown@0.7.17...@synerise/ds-dropdown@0.7.18) (2019-11-22)
 
 **Note:** Version bump only for package @synerise/ds-dropdown

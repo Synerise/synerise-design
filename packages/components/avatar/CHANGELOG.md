@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-avatar@0.2.7...@synerise/ds-avatar@0.3.0) (2019-12-06)
+
+### Features
+
+- update ant to 3.26.0 ([d67df46](https://github.com/synerise/synerise-design/commit/d67df4605844fb09680096df333886db40cb7c32))
+
 ## [0.2.6](https://github.com/synerise/synerise-design/compare/@synerise/ds-avatar@0.2.5...@synerise/ds-avatar@0.2.6) (2019-11-15)
 
 **Note:** Version bump only for package @synerise/ds-avatar
