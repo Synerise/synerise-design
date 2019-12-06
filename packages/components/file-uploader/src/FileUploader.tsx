@@ -32,7 +32,7 @@ const FileUploader: React.FC<FileUploaderProps> = ({
     uploading: <FormattedMessage id="DS.FILE-UPLOADER.UPLOADING" />,
   },
 }) => {
-  const [errors, setErrors] = React.useState([error]);
+  const [uploadSuccess, setUploadSuccess] = React.useState(true);
 
   const onDrop = React.useCallback(
     (acceptedFiles: File[]) => {
@@ -41,13 +41,13 @@ const FileUploader: React.FC<FileUploaderProps> = ({
         possibleUpload = filesAmount - files.length;
       }
       if (possibleUpload !== 0 && acceptedFiles.length > possibleUpload) {
-        setErrors([...errors, 'To many files uploaded']);
+        setUploadSuccess(false);
       } else {
-        setErrors([]);
+        setUploadSuccess(true);
         onUpload && onUpload(acceptedFiles);
       }
     },
-    [onUpload, filesAmount, files, setErrors, errors]
+    [onUpload, filesAmount, files, setUploadSuccess]
   );
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
@@ -62,12 +62,9 @@ const FileUploader: React.FC<FileUploaderProps> = ({
     filesAmount = 1;
     throw new Error('Invalid value of property "filesAmount" ');
   }
-  if (filesAmount && filesAmount === 1) {
-    // eslint-disable-next-line no-param-reassign
-    mode = 'single';
-  }
 
-  const hasError = !!errors.filter(arrayElement => arrayElement !== '').length;
+  const hasError = Boolean(error) || !uploadSuccess;
+  const errors = hasError && !uploadSuccess ? [error].concat('To many files uploaded') : [error];
   return (
     <S.Container>
       {label && (
@@ -124,6 +121,7 @@ const FileUploader: React.FC<FileUploaderProps> = ({
         </>
       )}
       {hasError &&
+        errors &&
         errors.map((errorText, index) => (
           <S.ErrorMessage
             // eslint-disable-next-line react/no-array-index-key

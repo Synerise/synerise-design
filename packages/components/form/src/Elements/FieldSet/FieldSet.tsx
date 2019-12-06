@@ -1,10 +1,10 @@
 import * as React from 'react';
-import Divider from "@synerise/ds-divider";
+import Divider from '@synerise/ds-divider';
 import * as S from './FieldSet.styles';
 
 interface Props {
   heading: React.ReactNode;
-  description: React.ReactNode;
+  description?: React.ReactNode;
   withLine?: boolean;
 }
 
