@@ -20,10 +20,10 @@
   },
   "sideEffects": false,
   "types": "dist/index.d.ts",
-  "dependencies": {
-    "@synerise/ds-core": "^0.6.7"
-  },
   "peerDependencies": {
     "react": ">=16.9.0 < 17.0.0"
+  },
+  "devDependencies": {
+    "@synerise/ds-core": "^0.6.7"
   }
 }

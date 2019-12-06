@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Input } from 'antd';
+import Input from 'antd/lib/input';
 import { GroupProps } from 'antd/es/input';
 import * as InputStyles from './Input.styles';
 

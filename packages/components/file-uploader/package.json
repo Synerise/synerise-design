@@ -27,7 +27,7 @@
     "@synerise/ds-tooltip": "^0.3.4",
     "@synerise/ds-typography": "^0.5.5",
     "filesize.js": "^2.0.0",
-    "react-dropzone": "^10.1.10"
+    "react-dropzone": "^10.2.1"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

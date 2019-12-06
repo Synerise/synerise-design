@@ -27,7 +27,7 @@
     "@synerise/ds-inline-edit": "^0.0.20",
     "@synerise/ds-typography": "^0.5.5",
     "@synerise/ds-utils": "^0.5.5",
-    "antd": "3.24.3"
+    "antd": "3.26.0"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

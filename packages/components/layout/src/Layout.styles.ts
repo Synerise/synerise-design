@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { mediaQuery, hexToRgba } from '@synerise/ds-utils';
+import { hexToRgba } from '@synerise/ds-utils';
+import { mediaQuery } from '@synerise/ds-core';
 
 export const LayoutContainer = styled.div`
   height: 100%;
