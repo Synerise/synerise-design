@@ -47,7 +47,7 @@ const applyFontSize = (props: AvatarProps): string => {
 };
 
 // eslint-disable-next-line react/jsx-props-no-spreading
-export default styled(({ backgroundColor, hasStatus, ...rest }) => <Avatar {...rest} />)`
+export default styled(({ backgroundColor, hasStatus, pressed, ...rest }) => <Avatar {...rest} />)`
   && {
     ${(props): string => applyBgColors(props)};
     ${(props): string | false => applyDisabledStyles(props)};
