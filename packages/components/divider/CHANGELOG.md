@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-divider@0.3.0...@synerise/ds-divider@0.3.1) (2019-12-10)
+
+### Bug Fixes
+
+- omit unneeded props which emit warnings ([1c60866](https://github.com/Synerise/synerise-design/commit/1c608662ec1314e2cc182bb91bdeb20dd9d4ad34))
+
 # [0.3.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-divider@0.2.6...@synerise/ds-divider@0.3.0) (2019-12-06)
 
 ### Features

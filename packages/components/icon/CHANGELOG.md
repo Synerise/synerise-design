@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.5.0...@synerise/ds-icon@0.6.0) (2019-12-10)
+
+### Features
+
+- **icon:** add edit noline s icon ([f99b3ba](https://github.com/Synerise/synerise-design/commit/f99b3ba5f939e709482436e8ddaa82fb7389eb4b))
+
 # [0.5.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.4.0...@synerise/ds-icon@0.5.0) (2019-11-22)
 
 ### Features

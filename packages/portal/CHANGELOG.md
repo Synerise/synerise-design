@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.24.0](https://github.com/synerise/synerise-design/compare/portal@0.23.0...portal@0.24.0) (2019-12-10)
+
+
+### Features
+
+* **icon:** add edit noline s icon ([f99b3ba](https://github.com/synerise/synerise-design/commit/f99b3ba5f939e709482436e8ddaa82fb7389eb4b))
+
+
+
+
+
 # [0.23.0](https://github.com/synerise/synerise-design/compare/portal@0.22.1...portal@0.23.0) (2019-12-06)
 
 
