@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.23](https://github.com/Synerise/synerise-design/compare/@synerise/ds-inline-edit@0.0.22...@synerise/ds-inline-edit@0.0.23) (2019-12-10)
+
+### Bug Fixes
+
+- **inline-edit:** add edit noline s icon ([b4e7a47](https://github.com/Synerise/synerise-design/commit/b4e7a47355598bea35da932028737c94f2e93543))
+
 ## [0.0.22](https://github.com/Synerise/synerise-design/compare/@synerise/ds-inline-edit@0.0.21...@synerise/ds-inline-edit@0.0.22) (2019-12-10)
 
 **Note:** Version bump only for package @synerise/ds-inline-edit
