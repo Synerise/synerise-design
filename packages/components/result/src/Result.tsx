@@ -16,7 +16,8 @@ export type ResultProps = {
 
   description?: string;
   closable?: boolean;
-  buttons: React.ReactNode;
+  buttons?: React.ReactNode;
+  panel?: React.ReactNode;
 
   onClose?: () => void;
 };
@@ -54,7 +55,7 @@ const mapTypeToStatus = {
   },
 };
 
-const Result: React.FC<ResultProps> = ({ type, title, description, buttons, closable, onClose }) => {
+const Result: React.FC<ResultProps> = ({ type, title, description, panel, buttons, closable, onClose }) => {
   const { IconComponent, ...iconContainerStyles } = mapTypeToStatus[type];
 
   return (
@@ -72,9 +73,10 @@ const Result: React.FC<ResultProps> = ({ type, title, description, buttons, clos
         </S.StatusIconContainer>
 
         <S.Title>{title}</S.Title>
-        <S.Description>{description}</S.Description>
 
-        <S.ButtonContainer>{buttons}</S.ButtonContainer>
+        {description && <S.Description>{description}</S.Description>}
+        {panel && <S.PanelContainer>{panel}</S.PanelContainer>}
+        {buttons && <S.ButtonContainer>{buttons}</S.ButtonContainer>}
       </S.MainPanel>
     </S.ResultContainer>
   );

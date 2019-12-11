@@ -28,7 +28,11 @@ export const CloseButton = styled(Button)`
 
 export const CloseIcon = styled(Icon)``;
 
-export const MainPanel = styled.div``;
+export const MainPanel = styled.div`
+  > div:last-of-type {
+    margin-bottom: 0;
+  }
+`;
 
 export const Title = styled.h4`
   ${T.macro.h500};
@@ -56,6 +60,11 @@ export const ButtonContainer = styled.div`
       margin-right: 0;
     }
   }
+`;
+
+export const PanelContainer = styled.div`
+  margin: 24px 0;
+  width: 100%;
 `;
 
 export const StatusIconContainer = styled.div<{ iconColor: string; background: string }>`
