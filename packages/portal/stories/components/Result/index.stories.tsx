@@ -27,20 +27,21 @@ const buttonSetExample = (
       Cancel
     </Button>
     <Button type="primary">
-      Freeze
+      Cook
     </Button>
   </>
 );
 
 const panelExample = (
   <List
-    header="Folders"
+    header="Select chicken to cook"
     dataSource={[
       [
-        { text: 'Item 1', disabled: true },
-        { text: 'Item 2', disabled: false },
-        { text: 'Item 3', disabled: true },
-        { text: 'Item 4', disabled: false, danger: true },
+        { text: 'Chicken ID 20291', disabled: true },
+        { text: 'Chicken ID 11925', disabled: false },
+        { text: 'Chicken ID 69209', disabled: false },
+        { text: 'Chicken ID 96022', disabled: false },
+        { text: 'Chicken ID 10921', disabled: false, danger: true },
       ],
     ]}
     renderItem={(item => (
@@ -60,7 +61,7 @@ const stories = {
     onClose: () => alert('Close event'),
     closable: boolean('Closable', true),
     title: text('Title', 'Chicken has been successfully cooked'),
-    description: text('Description', 'At 150 degrees, as you requested'),
+    description: text('Description', 'Would you like to cook any other chickens?'),
     buttons: boolean('Show buttons', true) && buttonSetExample,
     panel: boolean('Show panel', true) && panelExample,
   }),
@@ -72,7 +73,7 @@ const stories = {
         onClose={() => alert('Close event')}
         closable={boolean('Closable', true)}
         title={text('Title', 'Chicken has been successfully cooked')}
-        description={text('Description', 'At 150 degrees, as you requested')}
+        description={text('Description', 'Would you like to cook any other chickens?')}
         buttons={boolean('Show buttons', true) && buttonSetExample}
         panel={boolean('Show panel', true) && panelExample}
       />
