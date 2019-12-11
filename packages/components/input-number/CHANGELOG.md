@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-input-number@0.2.0...@synerise/ds-input-number@0.2.1) (2019-12-11)
+
+### Bug Fixes
+
+- **input-number:** fix position of handler outside DS ([6bd04bd](https://github.com/Synerise/synerise-design/commit/6bd04bdc953a89666132aa17d7273a237046854e))
+
 # [0.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-input-number@0.1.7...@synerise/ds-input-number@0.2.0) (2019-12-06)
 
 ### Features
