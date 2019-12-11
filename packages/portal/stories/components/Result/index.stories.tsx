@@ -5,6 +5,8 @@ import Button from '@synerise/ds-button';
 import Card from '@synerise/ds-card';
 import Result from '@synerise/ds-result';
 import List from '@synerise/ds-list';
+import Icon from '@synerise/ds-icon';
+import WthTemperatureM from '@synerise/ds-icon/dist/icons/WthTemperatureM';
 
 const decorator = storyFn => (
   <div style={{ width: '520px' }}>
@@ -48,6 +50,7 @@ const panelExample = (
       <List.Item
         disabled={item.disabled}
         danger={item.danger}
+        icon={<Icon component={<WthTemperatureM />} />}
       >
         {item.text}
       </List.Item>

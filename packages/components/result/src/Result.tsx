@@ -61,7 +61,7 @@ const Result: React.FC<ResultProps> = ({ type, title, description, panel, button
   return (
     <S.ResultContainer>
       {closable && (
-        <S.CloseButton className="close-modal" type="ghost" onClick={onClose}>
+        <S.CloseButton className="close-modal" data-testid="test-closebtn" type="ghost" onClick={onClose}>
           <S.CloseIcon component={<CloseM />} size={24} />
         </S.CloseButton>
       )}
