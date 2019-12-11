@@ -25,7 +25,7 @@ const types = {
 
 const buttonSetExample = (
   <>
-    <Button type="secondary">
+    <Button type="default">
       Cancel
     </Button>
     <Button type="primary">
