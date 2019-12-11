@@ -47,7 +47,7 @@ describe('Result', () => {
         title={TITLE}
         description={DESCRIPTION}
         buttons={(
-          <button type="default">{BUTTON_TEXT}</button>
+          <button>{BUTTON_TEXT}</button>
         )}
       />
     );
