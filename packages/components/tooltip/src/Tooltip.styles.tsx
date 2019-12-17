@@ -14,3 +14,7 @@ export const TooltipTitle = styled.div<TooltipExtendedProps>`
 export const TooltipComponent = styled.div<TooltipExtendedProps>`
   color: ${(props): string => props.theme.palette['grey-200']};
 `;
+
+export const TooltipTutorial = styled.div<TooltipExtendedProps>`
+  background-color: ${(props): string => props.theme.palette['grey-800']};
+`;
