@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.25.0](https://github.com/synerise/synerise-design/compare/portal@0.24.0...portal@0.25.0) (2019-12-17)
+
+
+### Bug Fixes
+
+* **result:** story button type ([e8fc5f3](https://github.com/synerise/synerise-design/commit/e8fc5f355f4102b708ca15d2bdcf3ce3b28879ed))
+
+
+### Features
+
+* **result:** add docs ([62a6335](https://github.com/synerise/synerise-design/commit/62a6335a6ca3ba649ae4d5a4754c3fc41092ae2f))
+* **result:** structure for result component ([d9455b5](https://github.com/synerise/synerise-design/commit/d9455b5fc0196d02afb8e0096cac706fe684cc5f))
+
+
+
+
+
 # [0.24.0](https://github.com/synerise/synerise-design/compare/portal@0.23.0...portal@0.24.0) (2019-12-10)
 
 
