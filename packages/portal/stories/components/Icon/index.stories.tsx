@@ -25,7 +25,6 @@ const setIcon = name => React.lazy(() => import(`@synerise/ds-icon/dist/icons/${
 
 const IconComponent = iconArr.map(i => {
   const IconComponent = setIcon(i);
-
   return (
     <div style={listyStyles}>
       <Icon
