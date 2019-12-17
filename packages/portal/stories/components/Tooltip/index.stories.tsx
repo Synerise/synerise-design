@@ -11,6 +11,7 @@ const decorator = (storyFn) => (
 
 const props = () => ({
   title: text('Tooltip text', 'More than just example text'),
+  description: text('Tooltip description', 'You can change profile name later in your profile settings. More info'),
   placement: select(
     'Placement',
     [
@@ -29,6 +30,7 @@ const props = () => ({
     ],
     'top'
   ),
+  type: select('Type', ['default', 'icon', 'largeSimple', 'tutorial'], 'default'),
   trigger: select('Trigger', ['hover', 'focus', 'click', 'contextMenu'], 'hover'),
 });
 

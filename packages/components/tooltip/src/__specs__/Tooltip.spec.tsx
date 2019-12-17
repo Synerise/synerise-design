@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { fireEvent, render } from "@testing-library/react";
+import { fireEvent } from "@testing-library/react";
 import Tooltip from '../index';
+import { renderWithProvider } from '@synerise/ds-utils';
 
 describe('Tooltip', () => {
     const TOOLTIP_TITLE = 'Test';
@@ -8,7 +9,7 @@ describe('Tooltip', () => {
 
     it('should render', () => {
         // ARRANGE
-        const { getByText } = render(<Tooltip visible title={TOOLTIP_TITLE} />);
+        const { getByText } = renderWithProvider(<Tooltip visible title={TOOLTIP_TITLE} />);
 
         // ASSERT
         expect(getByText(TOOLTIP_TITLE)).toBeTruthy();
@@ -16,7 +17,7 @@ describe('Tooltip', () => {
 
     it('should appear on mouseOver', () => {
         // ARRANGE
-        const { getByText, getByTestId } = render(
+        const { getByText, getByTestId } = renderWithProvider(
             <Tooltip title={TOOLTIP_TITLE} mouseEnterDelay={0} mouseLeaveDelay={0}>
                 <span data-testid={TEST_ID}>Tooltip will show on mouse enter.</span>
             </Tooltip>);
@@ -31,7 +32,7 @@ describe('Tooltip', () => {
 
     it('should appear on click', () => {
         // ARRANGE
-        const { getByText, getByTestId } = render(
+        const { getByText, getByTestId } = renderWithProvider(
             <Tooltip title={TOOLTIP_TITLE} trigger="click">
                 <span data-testid={TEST_ID}>Tooltip will show on mouse enter.</span>
             </Tooltip>);
@@ -47,7 +48,7 @@ describe('Tooltip', () => {
     it('should trigger onVisibleChange', () => {
         // ARRANGE
         const onVisibleChange = jest.fn();
-        const { getByTestId } = render(
+        const { getByTestId } = renderWithProvider(
             <Tooltip title={TOOLTIP_TITLE} onVisibleChange={onVisibleChange} mouseEnterDelay={0} mouseLeaveDelay={0}>
                 <span data-testid={TEST_ID}>Tooltip will show on mouse enter.</span>
             </Tooltip>);
