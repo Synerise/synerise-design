@@ -1,5 +1,7 @@
 {
-  "include": ["src"],
+  "include": [
+    "src"
+  ],
   "extends": "../../../config/typescript/tsconfig.base.json",
   "compilerOptions": {
     "outDir": "dist",
