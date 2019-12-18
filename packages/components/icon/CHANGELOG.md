@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.6.0...@synerise/ds-icon@0.6.1) (2019-12-18)
+
+### Bug Fixes
+
+- 🐛 Added missing icons, storybook update script ([e37101d](https://github.com/Synerise/synerise-design/commit/e37101d4eddfa56c5c5b8e5bd8db5b4f0f42bed8))
+
 # [0.6.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.5.0...@synerise/ds-icon@0.6.0) (2019-12-10)
 
 ### Features

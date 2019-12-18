@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@0.4.1...@synerise/ds-tooltip@0.4.2) (2019-12-18)
+
+### Bug Fixes
+
+- 🐛 Added missing icons, storybook update script ([e37101d](https://github.com/synerise/synerise-design/commit/e37101d4eddfa56c5c5b8e5bd8db5b4f0f42bed8))
+
 ## [0.4.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@0.4.0...@synerise/ds-tooltip@0.4.1) (2019-12-17)
 
 **Note:** Version bump only for package @synerise/ds-tooltip

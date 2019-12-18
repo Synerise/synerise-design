@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.25.1](https://github.com/synerise/synerise-design/compare/portal@0.25.0...portal@0.25.1) (2019-12-18)
+
+
+### Bug Fixes
+
+* 🐛 Added missing icons, storybook update script ([c56a255](https://github.com/synerise/synerise-design/commit/c56a255fe015cd6a84e591249dda3f6d672b6c94))
+* 🐛 Added missing icons, storybook update script ([e37101d](https://github.com/synerise/synerise-design/commit/e37101d4eddfa56c5c5b8e5bd8db5b4f0f42bed8))
+
+
+
+
+
 # [0.25.0](https://github.com/synerise/synerise-design/compare/portal@0.24.0...portal@0.25.0) (2019-12-17)
 
 
