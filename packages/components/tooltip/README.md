@@ -26,3 +26,17 @@ Tooltip UI Component
 | visible            | Whether the floating tooltip card is visible or not                                                                                                                                                   | boolean                                  | `false`             |
 | onVisibleChange    | Callback executed when visibility of the tooltip card is changed                                                                                                                                      | (visible) => void                        | -                   |
 | align              | this value will be merged into placement's config, please refer to the settings rc-tooltip                                                                                                            | Object                                   | -                   |
+
+## ExtendedFile
+
+| Property | Description                              | Type            | Default                    |
+| -------- | ---------------------------------------- | --------------- | -------------------------- |
+| type     | type of tooltip                          | tooltipTypes    | -                          |
+| icon     | icon that can be displayed next to title | React.ReactNode | NotificationsM, orange-500 |
+
+## FileUploaderTexts
+
+| Property    | Description              | Type   | Default |
+| ----------- | ------------------------ | ------ | ------- |
+| title       | tooltip title text       | string | -       |
+| description | tooltip description text | string | -       |

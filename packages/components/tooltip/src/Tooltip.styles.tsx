@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css, SimpleInterpolation } from 'styled-components';
 import TooltipExtendedProps from './Tooltip.types';
 
 export const TooltipDescription = styled.div<TooltipExtendedProps>`
@@ -13,8 +13,21 @@ export const TooltipTitle = styled.div<TooltipExtendedProps>`
 
 export const TooltipComponent = styled.div<TooltipExtendedProps>`
   color: ${(props): string => props.theme.palette['grey-200']};
+  text-align: left;
+  padding: 16px;
+  ${(props): SimpleInterpolation =>
+    props.type === 'icon' &&
+    css`
+      padding-top: 8px;
+    `}
+  ${(props): SimpleInterpolation =>
+    props.type === 'default' &&
+    css`
+      padding: 3px 8px;
+    `}
 `;
 
 export const TooltipTutorial = styled.div<TooltipExtendedProps>`
-  background-color: ${(props): string => props.theme.palette['grey-800']};
+  background-color: ${(props): string => props.theme.palette['grey-900']};
+  display: flex;
 `;
