@@ -2,7 +2,9 @@ import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import { Label } from '@synerise/ds-typography';
 
 export const Container = styled.div`
-  width: 104px;
+  min-width: 104px;
+  max-width: 208px;
+  width: inherit;
   height: 32px;
   position: relative;
 `;
@@ -13,12 +15,21 @@ export const OverlayContainer = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
+  overflow: hidden;
 `;
 
 export const Unit = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+  height: 192px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    width: 0;
+  }
 `;
 
 export const UnitSeperator = styled.div`
@@ -75,7 +86,7 @@ export const Cell = styled.button<{ active?: boolean }>`
     }
   }
 
-  ${(props): FlattenSimpleInterpolation | false =>
+  ${(props): FlattenSimpleInterpolation | false | undefined =>
     props.active &&
     css`
       && {
