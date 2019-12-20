@@ -31,8 +31,8 @@
     "react": ">=16.9.0 < 17.0.0"
   },
   "devDependencies": {
-    "@types/flat": "^0.0.28",
-    "less-vars-loader": "^1.1.0",
-    "webpack": "^4.41.2"
+    "@types/flat": "0.0.28",
+    "less-vars-loader": "1.1.0",
+    "webpack": "4.41.2"
   }
 }

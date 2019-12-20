@@ -34,6 +34,6 @@
     "react": ">=16.9.0 < 17.0.0"
   },
   "devDependencies": {
-    "@types/lodash": "^4.14.144"
+    "@types/lodash": "4.14.149"
   }
 }
