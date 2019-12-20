@@ -22,6 +22,7 @@ const Unit: React.FC<UnitProps> = ({ options, disabled, value, unit, onSelect })
     <S.Unit>
       {options.map((option: number) => {
         const normalizedValue = option + 1;
+        const normalizedStringValue = normalizedValue < 10 ? `0${normalizedValue}` : normalizedValue.toString();
         const isDisabled = disabled && disabled.includes(normalizedValue);
 
         return (
@@ -31,7 +32,7 @@ const Unit: React.FC<UnitProps> = ({ options, disabled, value, unit, onSelect })
             onClick={(): void => onSelect(normalizedValue)}
             active={selected === normalizedValue}
           >
-            <S.CellText>{normalizedValue}</S.CellText>
+            <S.CellText>{normalizedStringValue}</S.CellText>
           </S.Cell>
         );
       })}
