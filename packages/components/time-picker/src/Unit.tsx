@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as dayjs from 'dayjs';
+import dayjs from 'dayjs';
 
 import * as S from './TimePicker.styles';
 
@@ -27,6 +27,7 @@ const Unit: React.FC<UnitProps> = ({ options, disabled, value, unit, onSelect })
 
         return (
           <S.Cell
+            data-unitvalue={`${unit}-${normalizedStringValue}`}
             key={option}
             disabled={isDisabled}
             onClick={(): void => onSelect(normalizedValue)}

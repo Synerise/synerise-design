@@ -27,7 +27,6 @@ const stories = {
     const disabledSeconds = array('disabledSeconds', [], ',').map(Number);
 
     const onChange = (newValue: Date) => {
-      console.log('date changed', newValue)
       store.set({
         value: newValue,
       })
