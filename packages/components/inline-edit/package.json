@@ -32,6 +32,6 @@
   },
   "devDependencies": {
     "@synerise/ds-utils": "^0.6.0",
-    "@types/react-input-autosize": "^2.0.1"
+    "@types/react-input-autosize": "2.0.1"
   }
 }
