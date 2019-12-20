@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { fireEvent, waitForElement } from '@testing-library/react';
+import { fireEvent } from '@testing-library/react';
 import { renderWithProvider } from '@synerise/ds-utils';
 import TimePicker from '../index';
 
