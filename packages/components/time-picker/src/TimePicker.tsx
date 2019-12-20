@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as dayjs from 'dayjs';
+import dayjs from 'dayjs';
 
 import { Input } from '@synerise/ds-input';
 import Icon from '@synerise/ds-icon';
@@ -10,9 +10,9 @@ import Unit, { UnitConfig } from './Unit';
 import * as S from './TimePicker.styles';
 
 export type TimePickerDisabledUnits = {
-  disabledSeconds: number[];
-  disabledMinutes: number[];
-  disabledHours: number[];
+  disabledSeconds?: number[];
+  disabledMinutes?: number[];
+  disabledHours?: number[];
 };
 
 export type TimePickerProps = TimePickerDisabledUnits & {
@@ -92,13 +92,13 @@ const TimePicker: React.FC<TimePickerProps> = ({
   };
 
   const overlay = (
-    <S.OverlayContainer className={overlayClassName}>
+    <S.OverlayContainer data-testid="tp-overlay-container" className={overlayClassName}>
       {units.map(({ insertSeperator, ...rest }) => (
-        <>
+        <React.Fragment key={rest.unit}>
           {/* eslint-disable-next-line react/jsx-props-no-spreading */}
           <Unit {...rest} value={localValue} onSelect={(newValue): void => handleChange(rest.unit, newValue)} />
           {insertSeperator && <S.UnitSeperator />}
-        </>
+        </React.Fragment>
       ))}
     </S.OverlayContainer>
   );
@@ -106,25 +106,23 @@ const TimePicker: React.FC<TimePickerProps> = ({
   const dateString = localValue && getTimeString(localValue);
 
   return (
-    <>
-      <S.Container>
-        <Dropdown
-          trigger={trigger}
-          visible={alwaysOpen || open}
-          onVisibleChange={onVisibleChange}
-          placement={placement}
-          overlay={overlay}
-          disabled={disabled}
-        >
-          <Input
-            className={className}
-            value={dateString}
-            placeholder={placeholder}
-            icon1={<Icon component={<ClockM />} size={24} />}
-          />
-        </Dropdown>
-      </S.Container>
-    </>
+    <S.Container className={className} data-testid="tp-container">
+      <Dropdown
+        trigger={trigger}
+        visible={alwaysOpen || open}
+        onVisibleChange={onVisibleChange}
+        placement={placement}
+        overlay={overlay}
+        disabled={disabled}
+      >
+        <Input
+          data-testid="tp-input"
+          value={dateString}
+          placeholder={placeholder}
+          icon1={<Icon component={<ClockM />} size={24} />}
+        />
+      </Dropdown>
+    </S.Container>
   );
 };
 
