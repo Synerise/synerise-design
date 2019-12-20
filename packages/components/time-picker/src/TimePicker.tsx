@@ -9,7 +9,13 @@ import ClockM from '@synerise/ds-icon/dist/icons/ClockM';
 import Unit, { UnitConfig } from './Unit';
 import * as S from './TimePicker.styles';
 
-export type TimePickerProps = {
+export type TimePickerDisabledUnits = {
+  disabledSeconds: number[];
+  disabledMinutes: number[];
+  disabledHours: number[];
+};
+
+export type TimePickerProps = TimePickerDisabledUnits & {
   placement?: 'topLeft' | 'topCenter' | 'topRight' | 'bottomLeft' | 'bottomCenter' | 'bottomRight';
   placeholder?: string;
   value?: Date;
@@ -17,6 +23,7 @@ export type TimePickerProps = {
   timeFormat?: string;
   use12HourClock?: boolean;
   trigger?: ('click' | 'hover' | 'contextMenu')[];
+  disabled?: boolean;
   onChange?: (value: Date, timeString: string) => void;
 };
 
@@ -29,6 +36,10 @@ const TimePicker: React.FC<TimePickerProps> = ({
   onChange,
   timeFormat,
   use12HourClock,
+  disabled,
+  disabledHours,
+  disabledMinutes,
+  disabledSeconds,
 }) => {
   const [open, setOpen] = React.useState<boolean>(defaultOpen || false);
   const [localValue, setLocalValue] = React.useState<Date | undefined>(value);
@@ -41,16 +52,19 @@ const TimePicker: React.FC<TimePickerProps> = ({
     {
       unit: 'hour',
       options: [...Array(use12HourClock ? 11 : 23).keys()],
+      disabled: disabledHours,
       insertSeperator: true,
     },
     {
       unit: 'minute',
       options: [...Array(59).keys()],
+      disabled: disabledMinutes,
       insertSeperator: true,
     },
     {
       unit: 'second',
       options: [...Array(59).keys()],
+      disabled: disabledSeconds,
     },
   ];
 
@@ -94,6 +108,7 @@ const TimePicker: React.FC<TimePickerProps> = ({
           onVisibleChange={onVisibleChange}
           placement={placement}
           overlay={overlay}
+          disabled={disabled}
         >
           <Input value={dateString} placeholder={placeholder} icon1={<Icon component={<ClockM />} size={24} />} />
         </Dropdown>
