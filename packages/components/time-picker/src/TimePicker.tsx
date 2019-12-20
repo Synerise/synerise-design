@@ -20,10 +20,13 @@ export type TimePickerProps = TimePickerDisabledUnits & {
   placeholder?: string;
   value?: Date;
   defaultOpen?: boolean;
+  alwaysOpen?: boolean;
   timeFormat?: string;
   use12HourClock?: boolean;
   trigger?: ('click' | 'hover' | 'contextMenu')[];
   disabled?: boolean;
+  overlayClassName?: string;
+  className?: string;
   onChange?: (value: Date, timeString: string) => void;
 };
 
@@ -36,10 +39,13 @@ const TimePicker: React.FC<TimePickerProps> = ({
   onChange,
   timeFormat,
   use12HourClock,
+  alwaysOpen,
   disabled,
   disabledHours,
   disabledMinutes,
   disabledSeconds,
+  overlayClassName,
+  className,
 }) => {
   const [open, setOpen] = React.useState<boolean>(defaultOpen || false);
   const [localValue, setLocalValue] = React.useState<Date | undefined>(value);
@@ -86,7 +92,7 @@ const TimePicker: React.FC<TimePickerProps> = ({
   };
 
   const overlay = (
-    <S.OverlayContainer>
+    <S.OverlayContainer className={overlayClassName}>
       {units.map(({ insertSeperator, ...rest }) => (
         <>
           {/* eslint-disable-next-line react/jsx-props-no-spreading */}
@@ -104,13 +110,18 @@ const TimePicker: React.FC<TimePickerProps> = ({
       <S.Container>
         <Dropdown
           trigger={trigger}
-          visible={open}
+          visible={alwaysOpen || open}
           onVisibleChange={onVisibleChange}
           placement={placement}
           overlay={overlay}
           disabled={disabled}
         >
-          <Input value={dateString} placeholder={placeholder} icon1={<Icon component={<ClockM />} size={24} />} />
+          <Input
+            className={className}
+            value={dateString}
+            placeholder={placeholder}
+            icon1={<Icon component={<ClockM />} size={24} />}
+          />
         </Dropdown>
       </S.Container>
     </>
