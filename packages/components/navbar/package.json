@@ -24,11 +24,11 @@
   "dependencies": {
     "@synerise/ds-button": "^0.5.0",
     "@synerise/ds-card": "^0.2.19",
-    "@synerise/ds-typography": "^0.6.0",
-    "antd": "3.26.0"
+    "@synerise/ds-typography": "^0.6.0"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
+    "antd": "^3",
     "react": ">=16.9.0 < 17.0.0"
   }
 }

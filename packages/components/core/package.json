@@ -24,15 +24,15 @@
   "sideEffects": false,
   "types": "dist/js/index.js",
   "dependencies": {
-    "antd": "3.26.0",
     "flat": "^5.0.0"
   },
   "peerDependencies": {
+    "antd": "^3",
     "react": ">=16.9.0 < 17.0.0"
   },
   "devDependencies": {
     "@types/flat": "0.0.28",
     "less-vars-loader": "1.1.0",
-    "webpack": "4.41.2"
+    "webpack": "4.41.4"
   }
 }
