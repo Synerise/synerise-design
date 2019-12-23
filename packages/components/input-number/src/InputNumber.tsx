@@ -5,7 +5,7 @@ import './style/index.less';
 import { InputNumberProps } from 'antd/lib/input-number';
 import * as S from './InputNumber.styles';
 
-interface Props extends InputNumberProps {
+export interface Props extends InputNumberProps {
   errorText?: React.ReactNode | string;
   label?: React.ReactNode | string;
   description?: React.ReactNode | string;

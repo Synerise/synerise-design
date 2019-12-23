@@ -5,7 +5,7 @@ import './style/index.less';
 import AntdSwitch, { SwitchProps } from 'antd/lib/switch';
 import * as S from './Switch.styles';
 
-interface Props extends SwitchProps {
+export interface Props extends SwitchProps {
   errorText?: string | React.ReactNode;
   label: string | React.ReactNode;
   description?: string | React.ReactNode;
