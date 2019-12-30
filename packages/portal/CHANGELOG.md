@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.26.0](https://github.com/synerise/synerise-design/compare/portal@0.25.2...portal@0.26.0) (2019-12-30)
+
+
+### Bug Fixes
+
+* **deps:** pin dependency antd to 3.26.3 ([ef5eb1f](https://github.com/synerise/synerise-design/commit/ef5eb1f3bcbd140fb8befcc7e49309a46980f340))
+
+
+### Features
+
+* **autocomplete:** add styles, docs and tests ([8810626](https://github.com/synerise/synerise-design/commit/88106266f47803e8ef2790242e3a2d82e95760ef))
+
+
+
+
+
 ## [0.25.2](https://github.com/synerise/synerise-design/compare/portal@0.25.1...portal@0.25.2) (2019-12-23)
 
 **Note:** Version bump only for package portal
