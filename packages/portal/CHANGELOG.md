@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.27.0](https://github.com/synerise/synerise-design/compare/portal@0.26.0...portal@0.27.0) (2019-12-30)
+
+
+### Features
+
+* **icon:** add custom block icons ([7fbbdc8](https://github.com/synerise/synerise-design/commit/7fbbdc815ab6dfcb83accbbf21b0291a00568121))
+
+
+
+
+
 # [0.26.0](https://github.com/synerise/synerise-design/compare/portal@0.25.2...portal@0.26.0) (2019-12-30)
 
 

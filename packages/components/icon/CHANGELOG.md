@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.6.2...@synerise/ds-icon@0.7.0) (2019-12-30)
+
+### Features
+
+- **icon:** add custom block icons ([7fbbdc8](https://github.com/Synerise/synerise-design/commit/7fbbdc815ab6dfcb83accbbf21b0291a00568121))
+
 ## [0.6.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.6.1...@synerise/ds-icon@0.6.2) (2019-12-23)
 
 **Note:** Version bump only for package @synerise/ds-icon
