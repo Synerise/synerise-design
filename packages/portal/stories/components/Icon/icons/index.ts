@@ -212,6 +212,8 @@ const iconArr = [
 'CropM',
 'CupM',
 'CurrencyConversionM',
+'CustomBlockAction',
+'CustomBlockTrigger',
 'CutM',
 'DashboardM',
 'DatabaseAddM',
