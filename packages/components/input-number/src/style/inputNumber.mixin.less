@@ -17,10 +17,21 @@
 }
 
 .ant-input-number {
+  && {
+    line-height: 1.38;
+    height: 32px;
+  }
   border-width: 1px;
 
   &:hover {
-    border-width: 1px;
+    && {
+      border-right-width: 2px !important;
+    }
+
+    .ant-input-number-handler-wrap {
+      top: 1px;
+      bottom: 1px;
+    }
   }
 
   &&.ant-input-number-focused {
@@ -36,7 +47,7 @@
 
   .ant-input-number-input {
     position: relative;
-    top: -2px;
+    top: 0px;
   }
 
   &.ant-input-number-focused {
@@ -46,6 +57,7 @@
       top: 0;
       box-shadow: unset;
       height: 28px;
+      border: none;
     }
   }
 
