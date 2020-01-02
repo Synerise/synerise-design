@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.27.1](https://github.com/synerise/synerise-design/compare/portal@0.27.0...portal@0.27.1) (2020-01-02)
+
+
+### Bug Fixes
+
+* **icon:** add dynamic loading for icons in storybook ([fc277b8](https://github.com/synerise/synerise-design/commit/fc277b824728b200c979ecf234eb1f137be253e2))
+
+
+
+
+
 # [0.27.0](https://github.com/synerise/synerise-design/compare/portal@0.26.0...portal@0.27.0) (2019-12-30)
 
 
