@@ -20,17 +20,22 @@
   && {
     line-height: 1.38;
     height: 32px;
+
+    &:hover {
+      border-right-width: 1px !important;
+
+      &.ant-input-number-focused {
+        border-right-width: 2px !important;
+      }
+    }
   }
   border-width: 1px;
 
   &:hover {
-    && {
-      border-right-width: 2px !important;
-    }
-
     .ant-input-number-handler-wrap {
       top: 1px;
       bottom: 1px;
+      height: auto;
     }
   }
 
