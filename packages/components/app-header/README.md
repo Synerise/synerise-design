@@ -24,7 +24,7 @@ import AppHeader from '@synerise/ds-app-header'
 
 ## Demo
 
-<iframe src="/storybook-static/iframe.html?id=components-app-header--default"></iframe>
+<iframe src="/storybook-static/iframe.html?id=components-appheader--default"></iframe>
 
 ## API
 

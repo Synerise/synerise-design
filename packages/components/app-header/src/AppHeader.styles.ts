@@ -11,7 +11,19 @@ export const Container = styled.div<{ backgroundColor?: string }>`
 export const InnerContainer = styled.div`
   display: flex;
   align-items: center;
+  justify-content: space-between;
   height: 32px;
+`;
+
+export const Main = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+export const Aside = styled.div`
+  display: flex;
+  align-items: center;
+  margin: 0 0 0 24px;
 `;
 
 export const Logo = styled.img`
@@ -23,6 +35,12 @@ export const Seperator = styled.div`
   height: 24px;
   background-color: rgba(255, 255, 255, 0.3);
   margin: 12px;
+`;
+
+export const Avatar = styled.img`
+  width: 32px;
+  height: 32px;
+  border-radius: 16px;
 `;
 
 export const Title = styled.div`
