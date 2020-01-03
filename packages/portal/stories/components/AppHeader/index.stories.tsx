@@ -44,20 +44,29 @@ const stories = {
       title,
       backgroundColor,
       logo: LogoSVG,
-      sideNodes: renderExampleNodes && [(
-        <div style={{color: '#fff', fontWeight: 500}}>some seperate text</div>
-      ), (
-        <div>
-          <Button type="primary" mode="single-icon">
-            <Icon component={<NotificationsM />} size={32} />
-          </Button>
-          <Button type="primary" mode="single-icon">
-            <Icon component={<HelpM />} size={32} />
-          </Button>
-        </div>
-      ), (
-        <div><img src={AvatarImage} alt="" style={{width: 32, height: 32, borderRadius: 16}} /></div>
-      )]
+      sideNodes: renderExampleNodes && [{
+        id: 0,
+        render: (
+          <div style={{color: '#fff', fontWeight: 500}}>some seperate text</div>
+        ),
+      }, {
+        id: 1,
+        render: (
+          <div>
+            <Button type="primary" mode="single-icon">
+              <Icon component={<NotificationsM />} size={32} />
+            </Button>
+            <Button type="primary" mode="single-icon">
+              <Icon component={<HelpM />} size={32} />
+            </Button>
+          </div>
+        ),
+      }, {
+        id: 2,
+        render: (
+          <div><img src={AvatarImage} alt="" style={{width: 32, height: 32, borderRadius: 16}} /></div>
+        ),
+      }]
     };
 
     return <AppHeader {...props} />;

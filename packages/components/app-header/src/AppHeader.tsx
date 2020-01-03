@@ -2,12 +2,17 @@ import * as React from 'react';
 
 import * as S from './AppHeader.styles';
 
+export type SideNode = {
+  id: string | number;
+  render: React.ReactNode;
+};
+
 export type AppHeaderProps = {
   logo: string;
 
   className?: string;
   title?: string;
-  sideNodes: React.ReactNode[];
+  sideNodes?: SideNode[];
   backgroundColor?:
     | 'red'
     | 'blue'
@@ -30,24 +35,24 @@ const AppHeader: React.FC<AppHeaderProps> = ({ sideNodes, title, logo, backgroun
         <S.Main>
           <S.Logo src={logo} alt="" />
 
-          {title &&
+          {title && (
             <>
               <S.Seperator />
               <S.Title>{title}</S.Title>
             </>
-          }
+          )}
         </S.Main>
 
-        {sideNodes &&
+        {sideNodes && (
           <S.Aside>
-            {sideNodes.map((node, index) => (
-              <React.Fragment key={index}>
+            {sideNodes.map(({ render, id }, index) => (
+              <React.Fragment key={id}>
                 {index !== 0 && <S.Seperator />}
-                {node}
+                {render}
               </React.Fragment>
             ))}
           </S.Aside>
-        }
+        )}
       </S.InnerContainer>
     </S.Container>
   );
