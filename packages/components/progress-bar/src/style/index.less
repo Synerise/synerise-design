@@ -23,9 +23,6 @@
     background: @grey-200;
     overflow: hidden;
     box-sizing: content-box;
-    .ant-progress-bg {
-      border-right: 2px solid @white;
-    }
     .ant-progress-outer {
       display: flex;
     }
@@ -33,7 +30,9 @@
     .ant-progress-inner {
       background: transparent;
     }
-    div {
+    .ant-progress-outer,
+    .ant-progress-inner,
+    .ant-progress-bg {
       height: 6px !important;
     }
   }
