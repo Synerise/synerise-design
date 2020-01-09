@@ -30,7 +30,7 @@ export type AppHeaderProps = {
 
 const AppHeader: React.FC<AppHeaderProps> = ({ sideNodes, title, logo, backgroundColor, className }) => {
   return (
-    <S.Container backgroundColor={backgroundColor} className={className}>
+    <S.Container backgroundColor={backgroundColor} className={className} data-testid="header-container">
       <S.InnerContainer>
         <S.Main>
           <S.Logo src={logo} alt="" />
