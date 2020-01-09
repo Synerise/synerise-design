@@ -16,7 +16,9 @@ const useOnClickOutside = (ref: RefObject<HTMLElement>, handler: Handler | null)
   });
   useEffect(() => {
     if (!handler) {
-      return (): void => {};
+      return (): void => {
+        
+      };
     }
     const listener = (event: PossibleEvent): void => {
       if (!ref.current || !handlerRef.current || ref.current.contains(event.target as Node)) {
