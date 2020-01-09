@@ -18,12 +18,14 @@ export const InnerContainer = styled.div`
 export const Main = styled.div`
   display: flex;
   align-items: center;
+  width: 100%;
 `;
 
 export const Aside = styled.div`
   display: flex;
   align-items: center;
   margin: 0 0 0 24px;
+  flex-shrink: 0;
 `;
 
 export const Logo = styled.img`
