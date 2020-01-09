@@ -54,10 +54,16 @@ const stories = {
         render: (
           <div>
             <Button type="primary" mode="single-icon">
-              <Icon component={<NotificationsM />} size={24} color="white" />
+              <Icon component={<Add3M />} size={24} color="white" />
+            </Button>
+            <Button type="primary" mode="single-icon">
+              <Icon component={<BookM />} size={24} color="white" />
             </Button>
             <Button type="primary" mode="single-icon">
               <Icon component={<HelpM />} size={24} color="white" />
+            </Button>
+            <Button type="primary" mode="single-icon">
+              <Icon component={<NotificationsM />} size={24} color="white" />
             </Button>
           </div>
         ),

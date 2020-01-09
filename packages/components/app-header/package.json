@@ -22,7 +22,8 @@
   "sideEffects": false,
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-typography": "*"
+    "@synerise/ds-typography": "*",
+    "@synerise/ds-utils": "^0.6.1"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
