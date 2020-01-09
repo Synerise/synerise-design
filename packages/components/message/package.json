@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-message",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Message UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -21,11 +21,9 @@
   },
   "sideEffects": false,
   "types": "dist/index.d.ts",
-  "dependencies": {
-    "antd": "3.26.0"
-  },
   "peerDependencies": {
     "@synerise/ds-core": "*",
+    "antd": "^3",
     "react": ">=16.9.0 < 17.0.0"
   }
 }

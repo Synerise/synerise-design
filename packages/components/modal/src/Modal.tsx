@@ -82,7 +82,7 @@ const ModalProxy: React.FC<Props> = ({
       className={className}
       width={!size ? undefined : mapSizeToWidth[size]}
       closable={false}
-      title={titleContainer}
+      title={(title || description) && titleContainer}
       footer={antModalProps.footer !== null ? footerContainer : null}
     />
   );

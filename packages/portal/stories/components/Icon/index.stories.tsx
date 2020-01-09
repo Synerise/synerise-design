@@ -1,8 +1,10 @@
 import * as React from 'react';
-import { text, number, boolean } from '@storybook/addon-knobs';
+import { text, number, boolean, select } from '@storybook/addon-knobs';
 import Icon from '@synerise/ds-icon';
-import iconArr from './icons';
-import AngleLeftM from '@synerise/ds-icon/dist/icons/AngleLeftM';
+
+const req = require.context('@synerise/ds-icon/dist/icons', true, /index.js/);
+const iconsRaw = req(req.keys()[0]);
+const iconsNames = Object.keys(iconsRaw);
 
 const listyStyles: React.CSSProperties = {
   margin: 10,
@@ -14,38 +16,35 @@ const listyStyles: React.CSSProperties = {
   borderColor: '#e0e0e0',
 };
 
-const props = () => ({
-  // name: select('Select icon name', type, 'angle-up-m'),
+const getProps = () => ({
+  component: select('Select icon name', iconsNames, iconsNames[0]),
   color: text('Set color', 'red'),
   size: number('Size', 40),
   stroke: boolean('Set stroke', false),
 });
 
-const setIcon = name => React.lazy(() => import(`@synerise/ds-icon/dist/icons/${name}.js`));
-
-const IconComponent = iconArr.map(i => {
-  const IconComponent = setIcon(i);
+const IconComponent = Object.entries(iconsRaw).map(([key, value]) => {
+  const IconModule = value as React.ComponentType;
   return (
-    <div style={listyStyles}>
-      <Icon
-        component={
-          <React.Suspense fallback="">
-            <IconComponent />
-          </React.Suspense>
-        }
-      />
+    <div style={listyStyles} key={key}>
+      <Icon component={<IconModule />} />
       <br />
       <br />
-      <p>{i}</p>
+      <p>{key}</p>
     </div>
   );
 });
 
 const stories = {
-  singleIcon: () => ({
-    ...props(),
-    component: (<AngleLeftM />),
-  }),
+  singleIcon: () => {
+    const props = getProps();
+    const IconComp = iconsRaw[props.component];
+
+    return ({
+      ...props,
+      component: (<IconComp />),
+    });
+  },
   listIcon: () => (
     <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between' }}>
       {IconComponent}

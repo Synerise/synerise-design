@@ -3,6 +3,64 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.27.1](https://github.com/synerise/synerise-design/compare/portal@0.27.0...portal@0.27.1) (2020-01-02)
+
+
+### Bug Fixes
+
+* **icon:** add dynamic loading for icons in storybook ([fc277b8](https://github.com/synerise/synerise-design/commit/fc277b824728b200c979ecf234eb1f137be253e2))
+
+
+
+
+
+# [0.27.0](https://github.com/synerise/synerise-design/compare/portal@0.26.0...portal@0.27.0) (2019-12-30)
+
+
+### Features
+
+* **icon:** add custom block icons ([7fbbdc8](https://github.com/synerise/synerise-design/commit/7fbbdc815ab6dfcb83accbbf21b0291a00568121))
+
+
+
+
+
+# [0.26.0](https://github.com/synerise/synerise-design/compare/portal@0.25.2...portal@0.26.0) (2019-12-30)
+
+
+### Bug Fixes
+
+* **deps:** pin dependency antd to 3.26.3 ([ef5eb1f](https://github.com/synerise/synerise-design/commit/ef5eb1f3bcbd140fb8befcc7e49309a46980f340))
+
+
+### Features
+
+* **autocomplete:** add styles, docs and tests ([8810626](https://github.com/synerise/synerise-design/commit/88106266f47803e8ef2790242e3a2d82e95760ef))
+
+
+
+
+
+## [0.25.2](https://github.com/synerise/synerise-design/compare/portal@0.25.1...portal@0.25.2) (2019-12-23)
+
+**Note:** Version bump only for package portal
+
+
+
+
+
+## [0.25.1](https://github.com/synerise/synerise-design/compare/portal@0.25.0...portal@0.25.1) (2019-12-18)
+
+
+### Bug Fixes
+
+* 🐛 Added missing icons, storybook update script ([c56a255](https://github.com/synerise/synerise-design/commit/c56a255fe015cd6a84e591249dda3f6d672b6c94))
+* 🐛 Added missing icons, storybook update script ([e37101d](https://github.com/synerise/synerise-design/commit/e37101d4eddfa56c5c5b8e5bd8db5b4f0f42bed8))
+
+
+
+
+
 # [0.25.0](https://github.com/synerise/synerise-design/compare/portal@0.24.0...portal@0.25.0) (2019-12-17)
 
 

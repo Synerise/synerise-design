@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-input-number@0.2.3...@synerise/ds-input-number@0.2.4) (2020-01-02)
+
+### Bug Fixes
+
+- **input-number:** fix handle-wrap styles in input-number ([5a5b988](https://github.com/Synerise/synerise-design/commit/5a5b988394bd30653be84d685a03b920e8455e92))
+
+## [0.2.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-input-number@0.2.2...@synerise/ds-input-number@0.2.3) (2020-01-02)
+
+**Note:** Version bump only for package @synerise/ds-input-number
+
+## [0.2.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-input-number@0.2.1...@synerise/ds-input-number@0.2.2) (2019-12-23)
+
+### Bug Fixes
+
+- export props from switch & input number components ([4e7546c](https://github.com/Synerise/synerise-design/commit/4e7546c93748c8e8db02bf5ed4676c253729e244))
+
 ## [0.2.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-input-number@0.2.0...@synerise/ds-input-number@0.2.1) (2019-12-11)
 
 ### Bug Fixes

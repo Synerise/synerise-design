@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-icon",
-  "version": "0.6.0",
+  "version": "0.7.1",
   "description": "Icon UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -11,7 +11,7 @@
   "scripts": {
     "build": "npm run build:svgr && npm run build:js && npm run build:css && npm run icon && npm run defs",
     "build:css": "node ../../../scripts/style/less.js",
-    "build:icon": "node ./build/rename.js && node ./build/copy.js && node ./build/update.js",
+    "build:icon": "node ./build/rename.js && node ./build/copy.js",
     "build:js": "babel --root-mode upward src --out-dir dist --extensions '.js,.ts,.tsx'",
     "build:svgr": "node ./build/svgr.js",
     "build:watch": "npm run build:js -- --watch",
@@ -29,11 +29,11 @@
     "react": ">=16.9.0 < 17.0.0"
   },
   "devDependencies": {
-    "@svgr/core": "^4.3.3",
-    "@svgr/plugin-jsx": "^4.3.3",
-    "@svgr/plugin-prettier": "^4.3.2",
-    "@svgr/plugin-svgo": "^4.3.1",
-    "fs-extra": "^8.1.0",
-    "glob": "^7.1.5"
+    "@svgr/core": "5.0.1",
+    "@svgr/plugin-jsx": "5.0.1",
+    "@svgr/plugin-prettier": "5.0.1",
+    "@svgr/plugin-svgo": "5.0.1",
+    "fs-extra": "8.1.0",
+    "glob": "7.1.6"
   }
 }

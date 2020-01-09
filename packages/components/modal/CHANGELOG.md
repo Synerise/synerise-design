@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.5](https://github.com/synerise/synerise-design/compare/@synerise/ds-modal@0.7.4...@synerise/ds-modal@0.7.5) (2020-01-02)
+
+**Note:** Version bump only for package @synerise/ds-modal
+
+## [0.7.4](https://github.com/synerise/synerise-design/compare/@synerise/ds-modal@0.7.3...@synerise/ds-modal@0.7.4) (2019-12-30)
+
+**Note:** Version bump only for package @synerise/ds-modal
+
+## [0.7.3](https://github.com/synerise/synerise-design/compare/@synerise/ds-modal@0.7.2...@synerise/ds-modal@0.7.3) (2019-12-23)
+
+**Note:** Version bump only for package @synerise/ds-modal
+
+## [0.7.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-modal@0.7.1...@synerise/ds-modal@0.7.2) (2019-12-18)
+
+### Bug Fixes
+
+- **modal:** hide modal header if no title/desc provided ([bfabc30](https://github.com/synerise/synerise-design/commit/bfabc303280b1c2f5730e9b6d2463438f4f24687))
+- **modal:** styles changed ([f22b068](https://github.com/synerise/synerise-design/commit/f22b0681a83278c9096fe07faf267a82746a5779))
+
 ## [0.7.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-modal@0.7.0...@synerise/ds-modal@0.7.1) (2019-12-10)
 
 **Note:** Version bump only for package @synerise/ds-modal

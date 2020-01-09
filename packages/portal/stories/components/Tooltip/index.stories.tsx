@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { boolean, text, select } from '@storybook/addon-knobs';
+import { boolean, text, select, array } from '@storybook/addon-knobs';
 
 import Tooltip from '@synerise/ds-tooltip';
 
@@ -43,6 +43,14 @@ const stories = {
   }),
   forceVisibility: () => ({
     ...props(),
+    autoAdjustOverflow: boolean('autoAdjustOverflow', true),
+    arrowPointAtCenter: boolean('arrowPointAtCenter', false),
+    visible: boolean('visible', true),
+    children: (<span>Tooltip will show on mouse enter.</span>),
+  }),
+  isDescriptionArray: () => ({
+    ...props(),
+    description: array('Tooltip description', ['You can change profile name later in your profile settings. More info','More tips. This is a second tab of tutorial tips.'],','),
     autoAdjustOverflow: boolean('autoAdjustOverflow', true),
     arrowPointAtCenter: boolean('arrowPointAtCenter', false),
     visible: boolean('visible', true),
