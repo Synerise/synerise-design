@@ -12,6 +12,7 @@ interface Props extends AntdSliderProps {
   inverted?: boolean;
   useColorPalette?: boolean;
   autoFocus?: boolean;
+  tracksColorMap?: S.colorMapProps;
 }
 
 const getDefaultTooltipPopupContainer = (): HTMLElement => document.querySelector(`.ant-slider`) as HTMLElement;
@@ -19,7 +20,14 @@ const getDefaultTooltipPopupContainer = (): HTMLElement => document.querySelecto
 const couldBeInverted = (value: number | number[], inverted: boolean): boolean =>
   inverted && (typeof value === 'number' || value.length < 3);
 
-const Slider: React.FC<Props> = ({ useColorPalette, label, inverted, getTooltipPopupContainer, ...antdProps }) => {
+const Slider: React.FC<Props> = ({
+  useColorPalette,
+  label,
+  inverted,
+  getTooltipPopupContainer,
+  tracksColorMap,
+  ...antdProps
+}) => {
   return (
     <>
       {label && (
@@ -32,6 +40,7 @@ const Slider: React.FC<Props> = ({ useColorPalette, label, inverted, getTooltipP
         {...antdProps}
         className={antdProps.value && couldBeInverted(antdProps.value, !!inverted) ? 'ant-slider-inverted' : undefined}
         useColorPalette={useColorPalette}
+        tracksColorMap={tracksColorMap}
         getTooltipPopupContainer={getTooltipPopupContainer || getDefaultTooltipPopupContainer}
       />
     </>
