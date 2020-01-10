@@ -10,7 +10,7 @@ export const Wrapper = styled.li<WrapperProps>`
   color: ${(props: WrapperProps & ThemeProps): string => {
     if (props.danger) return props.theme.palette['red-600'];
 
-    if (props.disabled) return props.theme.palette['grey-600'];
+    if (props.disabled) return props.theme.palette['grey-700'];
 
     return props.theme.palette['grey-700'];
   }};
@@ -18,14 +18,23 @@ export const Wrapper = styled.li<WrapperProps>`
   cursor: ${(props): string => (props.disabled ? 'not-allowed' : 'pointer')};
   font-weight: 500;
   border-radius: 3px;
-  padding: 4px 12px 4px 8px;
+  padding: 5px 12px 4px 7px;
   display: flex;
   align-items: center;
-
+  svg {
+    ${(props): string | false =>
+      !props.disabled &&
+      `
+      fill: ${props.danger ? props.theme.palette['red-600'] : props.theme.palette['grey-600']};
+    `}
+  }
   &:hover {
     ${(props): string | false =>
       !props.disabled &&
       `
+      svg {
+        fill: ${props.danger ? props.theme.palette['red-600'] : props.theme.palette['blue-600']};
+      }
       color: ${props.danger ? props.theme.palette['red-600'] : props.theme.palette['blue-600']};
       background: ${props.danger ? props.theme.palette['red-050'] : props.theme.palette['grey-050']};
     `}
@@ -37,7 +46,7 @@ export const Wrapper = styled.li<WrapperProps>`
 `;
 
 export const IconWrapper = styled.div`
-  margin-right: 12px;
+  margin-right: 11px;
 `;
 
 export const Actions = styled.div`
