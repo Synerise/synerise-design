@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-slider@0.2.6...@synerise/ds-slider@0.3.0) (2020-01-10)
+
+### Features
+
+- **slider:** allow add color map for slider ([ccf6654](https://github.com/Synerise/synerise-design/commit/ccf66542ef732f65fe374ea910de5a882ecb1d16))
+
 ## [0.2.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-slider@0.2.4...@synerise/ds-slider@0.2.5) (2020-01-02)
 
 **Note:** Version bump only for package @synerise/ds-slider
