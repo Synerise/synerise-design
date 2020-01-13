@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.29.1](https://github.com/synerise/synerise-design/compare/portal@0.29.0...portal@0.29.1) (2020-01-13)
+
+
+### Bug Fixes
+
+* **list:** add divider list type solid ([83c89bd](https://github.com/synerise/synerise-design/commit/83c89bd8556c9d82602d5f713d42790979a96a0a))
+* **list:** delete wraper on action element ([783624d](https://github.com/synerise/synerise-design/commit/783624dfbfb938eaaa013c396c4959beeea0fee2))
+
+
+
+
+
 # [0.29.0](https://github.com/synerise/synerise-design/compare/portal@0.28.0...portal@0.29.0) (2020-01-13)
 
 
