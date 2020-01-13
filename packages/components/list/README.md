@@ -29,6 +29,7 @@ List UI Component
 | pagination | Pagination config, hide it by setting it to false                                                                 | boolean                        | object               | false |
 | split      | Toggles rendering of the split under the list item                                                                | boolean                        | true                 |
 | renderItem | customize list item when using dataSource                                                                         | item => ReactNode              | -                    |
+| dashed     | Define type of divider line                                                                                       | boolean                        | true                 |
 
 ### List.TextItem
 
@@ -42,9 +43,12 @@ List UI Component
 
 ### List.Divider
 
+| Property | Description         | Type    | Default |
+| -------- | ------------------- | ------- | ------- |
+| dashed   | dash type of a line | boolean | true    |
+
+### List.ItemWrapper
+
 | Property | Description | Type | Default |
 | -------- | ----------- | ---- | ------- |
 
-### List.ItemWrapper
-| Property | Description | Type | Default |
-| -------- | ----------- | ---- | ------- |
