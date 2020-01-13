@@ -67,6 +67,7 @@ const stories = {
   complexList: {
     header: 'Folders',
     dataSource: dataMultiple,
+    dashed: false,
     renderItem: (item => (
       <List.Item
         onSelect={action('onSelect')}
