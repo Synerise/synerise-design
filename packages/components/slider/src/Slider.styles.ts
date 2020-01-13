@@ -50,7 +50,14 @@ export const AntdSlider = styled((Slider as any) as ComponentType<Omit<SliderPro
         ? createTracksStyles(props, props.tracksColorMap ? props.tracksColorMap : indexMap)
         : css``};
   }
-
+  ${(props): FlattenSimpleInterpolation =>
+    props.tracksColorMap
+      ? css`
+          .ant-slider-rail {
+            display: none;
+          }
+        `
+      : css``}
   .ant-tooltip-inner {
     font-size: 13px;
     padding: 3px 7px;
