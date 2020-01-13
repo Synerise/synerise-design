@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.29.0](https://github.com/synerise/synerise-design/compare/portal@0.28.0...portal@0.29.0) (2020-01-13)
+
+
+### Features
+
+* **slider:** allow add color map for slider ([6d34662](https://github.com/synerise/synerise-design/commit/6d346624b9c0548add47691a4523998557c39719))
+
+
+
+
+
 # [0.28.0](https://github.com/synerise/synerise-design/compare/portal@0.27.2...portal@0.28.0) (2020-01-10)
 
 
