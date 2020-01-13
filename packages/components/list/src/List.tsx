@@ -12,6 +12,7 @@ interface Props<T> extends Omit<ListProps<T>, 'dataSource' | 'footer'> {
   dataSource: T[][];
   radio?: boolean;
   options?: RadioGroupProps;
+  dashed?: boolean;
 }
 
 const RadioGroupWrapper: React.FC<{ options?: RadioGroupProps }> = ({ children, options }) => (
@@ -25,7 +26,7 @@ class List<T> extends React.Component<Props<T>> {
   static Divider: typeof ListDivider = ListDivider;
 
   render(): React.ReactNode {
-    const { dataSource, radio, options, ...rest } = this.props;
+    const { dataSource, radio, options, dashed, ...rest } = this.props;
 
     const ReadyList = dataSource.map((singleDataSource, index) => {
       const isLastItem = dataSource.length === index + 1;
@@ -35,7 +36,7 @@ class List<T> extends React.Component<Props<T>> {
           <React.Fragment key={uuid()}>
             {/* eslint-disable-next-line react/jsx-props-no-spreading */}
             <AntdList {...rest} dataSource={singleDataSource} />
-            {!isLastItem && <ListDivider data-testid="divider" />}
+            {!isLastItem && <ListDivider dashed={!!dashed} data-testid="divider" />}
           </React.Fragment>
         );
       }
@@ -44,7 +45,7 @@ class List<T> extends React.Component<Props<T>> {
         <React.Fragment key={uuid()}>
           {/* eslint-disable-next-line react/jsx-props-no-spreading */}
           <AntdList {...rest} header={null} dataSource={singleDataSource} />
-          {!isLastItem && <ListDivider data-testid="divider" />}
+          {!isLastItem && <ListDivider dashed={!!dashed} data-testid="divider" />}
         </React.Fragment>
       );
     });
