@@ -53,7 +53,7 @@ const ModalProxy: React.FC<Props> = ({
           <S.ActionButtons>
             {headerActions}
             {closable && (
-              <Button className="close-modal" type="ghost" onClick={handleOnClose}>
+              <Button data-testid="modal-close" className="close-modal" type="ghost" onClick={handleOnClose}>
                 <Icon component={<CloseM />} />
               </Button>
             )}
