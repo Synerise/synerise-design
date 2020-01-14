@@ -21,27 +21,37 @@ export const Wrapper = styled.li<WrapperProps>`
   padding: 5px 12px 4px 7px;
   display: flex;
   align-items: center;
-  svg {
-    ${(props): string | false =>
-      !props.disabled &&
-      `
-      fill: ${props.danger ? props.theme.palette['red-600'] : props.theme.palette['grey-600']};
-    `}
+  .ds-manageable-list-item-icon {
+     svg {
+      ${(props): string | false =>
+        !props.disabled &&
+        `
+        fill: ${props.danger ? props.theme.palette['red-600'] : props.theme.palette['grey-600']};
+      `}
+    } 
   }
   &:hover {
     ${(props): string | false =>
       !props.disabled &&
       `
-      svg {
-        fill: ${props.danger ? props.theme.palette['red-600'] : props.theme.palette['blue-600']};
+      .ds-manageable-list-item-icon {
+        svg {
+          fill: ${props.danger ? props.theme.palette['red-600'] : props.theme.palette['blue-600']};
+        }
       }
       color: ${props.danger ? props.theme.palette['red-600'] : props.theme.palette['blue-600']};
       background: ${props.danger ? props.theme.palette['red-050'] : props.theme.palette['grey-050']};
     `}
+    span {
+      color: ${({ theme }): string => theme.palette['blue-600']};
+    }
   }
 
   &:focus {
     box-shadow: inset 0 0 0 2px ${(props): string => props.theme.palette['blue-600']};
+  }
+  
+  
   }
 `;
 

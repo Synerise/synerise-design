@@ -17,7 +17,7 @@ const Text: React.FC<Props> = ({ disabled, icon, onSelect, danger, actions, chil
     onKeyUp={(event: React.KeyboardEvent): void | false => event.nativeEvent.code === 'Space' && onSelect && onSelect()}
     danger={danger}
   >
-    {icon && <S.IconWrapper>{icon}</S.IconWrapper>}
+    {icon && <S.IconWrapper className="ds-manageable-list-item-icon">{icon}</S.IconWrapper>}
     <S.ContentWrapper>{children}</S.ContentWrapper>
     <S.ActionWraper>{actions && actions}</S.ActionWraper>
   </S.Wrapper>
