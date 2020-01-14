@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.7](https://github.com/synerise/synerise-design/compare/@synerise/ds-modal@0.7.6...@synerise/ds-modal@0.7.7) (2020-01-14)
+
+### Bug Fixes
+
+- **modal:** fix onClick method on close button ([60d3ce2](https://github.com/synerise/synerise-design/commit/60d3ce2452a3451a69598dc46335e25c134afa80))
+
 ## [0.7.5](https://github.com/synerise/synerise-design/compare/@synerise/ds-modal@0.7.4...@synerise/ds-modal@0.7.5) (2020-01-02)
 
 **Note:** Version bump only for package @synerise/ds-modal

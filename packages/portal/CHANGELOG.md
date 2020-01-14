@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.29.2](https://github.com/synerise/synerise-design/compare/portal@0.29.1...portal@0.29.2) (2020-01-14)
+
+
+### Bug Fixes
+
+* **modal:** fix onClick method on close button ([60d3ce2](https://github.com/synerise/synerise-design/commit/60d3ce2452a3451a69598dc46335e25c134afa80))
+* **navbar:** removed duplicated navbar ([2a7c038](https://github.com/synerise/synerise-design/commit/2a7c038ea7ebf1460c6f1882cc1992b99f8c168d))
+
+
+
+
+
 ## [0.29.1](https://github.com/synerise/synerise-design/compare/portal@0.29.0...portal@0.29.1) (2020-01-13)
 
 
