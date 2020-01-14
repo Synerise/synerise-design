@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { action } from '@storybook/addon-actions';
-import { text, boolean, number, select } from '@storybook/addon-knobs';
+import { text, boolean, number, select, object, array } from '@storybook/addon-knobs';
 import Tooltip from '@synerise/ds-tooltip';
 
 import Slider from '@synerise/ds-slider';
@@ -109,7 +109,7 @@ const stories = {
       onAfterChange={action('onAfterChange')}
       OnChange={action('OnChange')}
       tooltipPlacement={select('Placement', placements, 'top')}
-      useColorPalette={boolean('useColorPalette', true)}
+      useColorPalette={boolean('useColorPalette', false)}
       getTooltipPopupContainer={() => document.body}
     />
   ),
@@ -131,6 +131,18 @@ const stories = {
       OnChange={action('OnChange')}
       tooltipPlacement={select('Placement', placements, 'top')}
       useColorPalette={boolean('useColorPalette', true)}
+      tracksColorMap={{
+        '0': 'cyan-600',
+        '1': 'yellow-600',
+        '2': 'pink-600',
+        '3': 'green-600',
+        '4': 'mars-600',
+        '5': 'orange-600',
+        '6': 'purple-600',
+        '7': 'violet-600',
+        '8': 'red-600',
+        '9': 'fern-600',
+      }}
     />
   ),
 };

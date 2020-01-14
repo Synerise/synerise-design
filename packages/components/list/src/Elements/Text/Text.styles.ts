@@ -59,6 +59,13 @@ export const IconWrapper = styled.div`
   margin-right: 11px;
 `;
 
-export const Actions = styled.div`
-  flex-grow: 1;
+export const ContentWrapper = styled.div`
+  overflow: hidden;
+  overflow-wrap: normal;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+`;
+
+export const ActionWraper = styled.div`
+  flex: 1;
 `;

@@ -3,9 +3,13 @@ import Divider from '@synerise/ds-divider';
 
 import * as S from './Divider.styles';
 
-const ListDivider: React.FC = () => (
+export interface DividerProps {
+  dashed?: boolean;
+}
+
+const ListDivider: React.FC<DividerProps> = ({ dashed = true }) => (
   <S.Wrapper>
-    <Divider dashed marginBottom={0} marginTop={0} />
+    <Divider dashed={dashed} marginBottom={0} marginTop={0} />
   </S.Wrapper>
 );
 

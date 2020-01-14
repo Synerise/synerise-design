@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-list@0.3.4...@synerise/ds-list@0.3.5) (2020-01-13)
+
+### Bug Fixes
+
+- **list:** add divider list type solid ([83c89bd](https://github.com/Synerise/synerise-design/commit/83c89bd8556c9d82602d5f713d42790979a96a0a))
+- **list:** delete wraper on action element ([783624d](https://github.com/Synerise/synerise-design/commit/783624dfbfb938eaaa013c396c4959beeea0fee2))
+
 ## [0.3.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-list@0.3.1...@synerise/ds-list@0.3.2) (2019-12-23)
 
 **Note:** Version bump only for package @synerise/ds-list
