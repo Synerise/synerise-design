@@ -48,12 +48,13 @@ export const MenuGroupWrapper = styled.div`
 
 export const MenuGroupTitle = styled.h3`
   ${macro.h600};
-
+  letter-spacing: -0.1px;
   padding: 14px 12px 8px;
 `;
 
 export const MenuGroupSubTitle = styled.h4`
   ${macro.h100};
+  letter-spacing: 0.1px;
   color: ${(props): string => props.theme.palette['grey-500']};
   border-top: 1px dashed ${(props): string => props.theme.palette['grey-200']};
   margin: 12px 12px 12px;
