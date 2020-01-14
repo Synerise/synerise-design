@@ -19,7 +19,7 @@ const decorator = (storyFn) => (
 
 const dataMultiple = [
   [
-    { text: 'Item 1', disabled: true },
+    { text: 'Item 11111111122222222223333333333333333333', disabled: true },
     { text: 'Item 2', disabled: false },
     { text: 'Item 3', disabled: true },
     { text: 'Item 4', disabled: false, danger: true },
@@ -40,13 +40,13 @@ const dataCheckboxes = [
   [{ label: 'Country', value: 'country' }, { label: 'City', value: 'city' }, { label: 'Address', value: 'address' }],
 ];
 
-const actions = (
-  <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-    <div style={{ marginRight: '8px' }} onClick={action('edit')}>
-      Edit
-    </div>
-    <div onClick={action('delete')}>Delete</div>
+const actions = () => (
+<div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+  <div style={{ marginRight: '8px' }} onClick={action('edit')}>
+    Edit
   </div>
+  <div onClick={action('delete')}>Delete</div>
+</div>
 );
 
 const stories = {
@@ -67,13 +67,14 @@ const stories = {
   complexList: {
     header: 'Folders',
     dataSource: dataMultiple,
+    dashed: false,
     renderItem: (item => (
       <List.Item
         onSelect={action('onSelect')}
         icon={<Icon component={<FileM />} />}
         disabled={item.disabled}
         danger={item.danger}
-        actions={actions}
+        actions={actions()}
       >
         {item.text}
       </List.Item>

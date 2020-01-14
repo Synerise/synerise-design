@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const AddItemLayout = styled.div`
-  display: flex;
+  display: inline;
   flex-direction: column;
   align-items: stretch;
   justify-content: center;
@@ -10,12 +10,7 @@ export const AddItemLayout = styled.div`
   padding: 4px 12px;
   && {
     .ant-btn {
-      padding: 0;
-
-      svg {
-        color: ${({ theme }): string => theme.palette['grey-700']};
-        fill: ${({ theme }): string => theme.palette['grey-700']};
-      }
+      padding: 0 9px;
     }
   }
   .ant-btn {
@@ -25,10 +20,10 @@ export const AddItemLayout = styled.div`
     align-items: center;
     justify-content: flex-start;
     height: 36px;
+    margin-left: -4px;
   }
 `;
 
 export const AddItemLabel = styled.span`
   margin-left: 12px;
-  color: ${({ theme }): string => theme.palette['grey-700']};
 `;

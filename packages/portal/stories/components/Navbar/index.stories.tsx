@@ -1,16 +1,16 @@
 import Navbar from '@synerise/ds-navbar';
 
 import * as React from 'react';
-import {select} from "@storybook/addon-knobs";
-import Avatar from "@synerise/ds-avatar/dist/Avatar";
-import Button from "@synerise/ds-button/dist/Button";
-import Dropdown from "@synerise/ds-dropdown/dist/Dropdown";
+import { select } from '@storybook/addon-knobs';
+import Avatar from '@synerise/ds-avatar/dist/Avatar';
+import Button from '@synerise/ds-button/dist/Button';
+import Dropdown from '@synerise/ds-dropdown/dist/Dropdown';
 import Icon from '@synerise/ds-icon';
-import { AngleDownS, NotificationsPlayM, CalendarM, DashboardM} from '@synerise/ds-icon/dist/icons';
-import List from "@synerise/ds-list/dist/List";
-import {action} from "@storybook/addon-actions";
-import FileM from "@synerise/ds-icon/dist/icons/FileM";
-import * as S from "@synerise/ds-navbar/dist/Navbar.styles"
+import { AngleDownS, NotificationsPlayM, CalendarM, DashboardM } from '@synerise/ds-icon/dist/icons';
+import List from '@synerise/ds-list/dist/List';
+import { action } from '@storybook/addon-actions';
+import FileM from '@synerise/ds-icon/dist/icons/FileM';
+import * as S from '@synerise/ds-navbar/dist/Navbar.styles';
 
 const backgroundColors = [
   'red',
@@ -49,42 +49,47 @@ const stories = {
     description: 'Module name',
     logo: logoSrc,
     color: select('Background color', backgroundColors, '#0b68ff'),
-    actions: <>
-      <Icon component={<DashboardM />} color={'#ffffff'} size={24} onClick={action('onClick')} />
-      <Icon component={<CalendarM />} color={'#ffffff'} size={24} onClick={action('onClick')} />
-      <Icon component={<NotificationsPlayM />} color={'#ffffff'} size={24} onClick={action('onClick')} />
-    </>,
-    children: <>
-      <S.NavbarDivider />
-      <Dropdown trigger={['click']} overlay={
-        <div style={{ background: '#fff', width: '300px' }}>
-          <List
-            header="Folders"
-            dataSource={dataSingle}
-            renderItem={item => (
-              <List.Item
-                onSelect={action('onSelect')}
-                icon={<Icon component={<FileM />} />}
-                disabled={item.disabled}
-                danger={item.danger}
-              >
-                {item.text}
-              </List.Item>
-            )}
-          />
-        </div>
-      }>
-        <Button mode={'label-icon'} type={'ghost'} style={buttonStyle}>
-          Profile Name
-          <Icon component={<AngleDownS />} color={'#ffffff'} />
-        </Button>
-      </Dropdown>
-      <S.NavbarDivider />
-      <Avatar
-        src={avatarSrc}
-        shape={'circle'}
-        size={32}
-      /></>
+    additionalNodes: [<div>some text</div>, <div>some other text</div>],
+    actions: (
+      <>
+        <Icon component={<DashboardM />} color={'#ffffff'} size={24} onClick={action('onClick')} />
+        <Icon component={<CalendarM />} color={'#ffffff'} size={24} onClick={action('onClick')} />
+        <Icon component={<NotificationsPlayM />} color={'#ffffff'} size={24} onClick={action('onClick')} />
+      </>
+    ),
+    children: (
+      <>
+        <S.NavbarDivider />
+        <Dropdown
+          trigger={['click']}
+          overlay={
+            <div style={{ background: '#fff', width: '300px' }}>
+              <List
+                header="Folders"
+                dataSource={dataSingle}
+                renderItem={item => (
+                  <List.Item
+                    onSelect={action('onSelect')}
+                    icon={<Icon component={<FileM />} />}
+                    disabled={item.disabled}
+                    danger={item.danger}
+                  >
+                    {item.text}
+                  </List.Item>
+                )}
+              />
+            </div>
+          }
+        >
+          <Button mode={'label-icon'} type={'ghost'} style={buttonStyle}>
+            Profile Name
+            <Icon component={<AngleDownS />} color={'#ffffff'} />
+          </Button>
+        </Dropdown>
+        <S.NavbarDivider />
+        <Avatar src={avatarSrc} shape={'circle'} size={32} />
+      </>
+    ),
   },
 };
 

@@ -10,6 +10,7 @@ describe('Modal', () => {
   const OK_TEXT = 'OK';
   const MODAL_CONTENT = 'Some content';
 
+  const onClose = jest.fn();
   const onCancel = jest.fn();
   const onOk = jest.fn();
 
@@ -27,6 +28,16 @@ describe('Modal', () => {
 
     // ASSERT
     expect(getByText(MODAL_CONTENT)).toBeTruthy();
+  });
+
+  it('onClose should be called', async () => {
+    // ARRANGE
+    const C = renderWithProvider(<Modal visible onClose={onClose} title={TITLE} closable={true} />);
+    const button = await C.getByTestId('modal-close');
+    // ACT
+    await fireEvent.click(button);
+    // ASSERT
+    expect(onClose).toHaveBeenCalled();
   });
 
   it('onCancel should be called', () => {

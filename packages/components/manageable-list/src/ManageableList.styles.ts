@@ -22,17 +22,8 @@ export const ManageableListContainer = styled.div<ManageableListProps>`
     width: 100%;
     padding: 0;
   }
-
-  li {
-    span {
-      color: ${({ theme }): string => theme.palette['grey-700']};
-    }
-
-    &:hover {
-      span {
-        color: ${({ theme }): string => theme.palette['blue-600']};
-      }
-    }
+  .ant-spin-nested-loading {
+    width: 100%;
   }
 `;
 

@@ -9,11 +9,12 @@ type Props = {
   onItemAdd?: (addParams: { name: string }) => void;
   addItemLabel: string | React.ReactNode;
   disabled: boolean;
+  placeholder?: string;
 };
 
 const DEFAULT_NAME = '';
 
-const AddItemWithName: React.FC<Props> = ({ onItemAdd, addItemLabel, disabled }) => {
+const AddItemWithName: React.FC<Props> = ({ onItemAdd, addItemLabel, disabled, placeholder }) => {
   const [active, setActive] = React.useState(false);
   const [name, setName] = React.useState(DEFAULT_NAME);
 
@@ -38,7 +39,7 @@ const AddItemWithName: React.FC<Props> = ({ onItemAdd, addItemLabel, disabled })
 
   return (
     <S.AddItemLayout data-testid="add-item-with-name-button">
-      <Button type="ghost" onClick={toggleInput} size="small" disabled={disabled}>
+      <Button type="ghost-primary" onClick={toggleInput} size="small" disabled={disabled}>
         <Icon component={<Add3M />} size={24} />
         <S.AddItemLabel>{addItemLabel}</S.AddItemLabel>
       </Button>
@@ -50,6 +51,7 @@ const AddItemWithName: React.FC<Props> = ({ onItemAdd, addItemLabel, disabled })
           onChange={handleNameChange}
           onPressEnter={createItem}
           data-testid="add-item-input"
+          placeholder={placeholder}
         />
       )}
     </S.AddItemLayout>
