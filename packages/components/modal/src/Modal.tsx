@@ -19,6 +19,7 @@ interface Props extends ModalProps {
     okButton?: string;
     cancelButton?: string;
   };
+  onClose?: () => void;
 }
 
 const mapSizeToWidth = {
@@ -36,9 +37,12 @@ const ModalProxy: React.FC<Props> = ({
   title,
   description,
   size,
+  onClose,
   ...antModalProps
 }) => {
-  const onClose = (): void => antModalProps.afterClose && antModalProps.afterClose();
+  // TODO onClose shouldn't work as afterClose - it will trigger passed afterClose function twice,
+  // TODO Need check if any Modal in app uses it and fix this behaviour
+  const handleOnClose = onClose || ((): void => antModalProps.afterClose && antModalProps.afterClose());
   const className = `bodybg-${bodyBackground} ${antModalProps.className || ''}`;
 
   const titleContainer = (
@@ -49,7 +53,7 @@ const ModalProxy: React.FC<Props> = ({
           <S.ActionButtons>
             {headerActions}
             {closable && (
-              <Button className="close-modal" type="ghost" onClick={onClose}>
+              <Button className="close-modal" type="ghost" onClick={handleOnClose}>
                 <Icon component={<CloseM />} />
               </Button>
             )}

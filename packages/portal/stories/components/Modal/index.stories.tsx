@@ -30,6 +30,7 @@ const props = () => ({
   closable: boolean('(x) button is visible on top right', true),
   confirmLoading: boolean('Loading visual effect', false),
 
+  onClose: action('onClose CLICK'),
   onOk: action('onOk CLICK'),
   onCancel: action('onCancel CLICK'),
   showHeaderAction: boolean('Show example of an additional header button', true),
@@ -49,6 +50,7 @@ const stories = {
 
         <Modal
           {...spread}
+          onClose={()=>window.alert('You clicked Close button')}
           footer={spread.removeFooter ? null :
             !spread.renderCustomFooter ? undefined :
               <div style={{ display: 'flex', flexWrap: 'nowrap' }}>
