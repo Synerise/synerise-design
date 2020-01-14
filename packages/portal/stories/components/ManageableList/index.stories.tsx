@@ -171,6 +171,7 @@ const stories = {
         onItemSelect={action('onItemSelect')}
         items={store.state.items}
         loading={false}
+        placeholder={'Folder name'}
       />
     )
   }),

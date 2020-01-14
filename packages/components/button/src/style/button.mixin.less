@@ -106,6 +106,32 @@
   .button-variant-tertiary();
 }
 
+.button-variant-tertiary-white() {
+  .button-color(@btn-tertiary-white-color, @btn-tertiary-white-bg, @btn-tertiary-white-border);
+
+  &:hover {
+    .button-color(@btn-tertiary-white-color, @btn-tertiary-white-hover-bg, @btn-tertiary-white-border);
+    box-shadow: none;
+  }
+
+  &:focus {
+    .button-color(@btn-tertiary-white-color, @btn-tertiary-white-focus-bg, @btn-tertiary-white-focus-bg);
+    box-shadow: none;
+    border-color: @primary-color;
+  }
+
+  &:active,
+  &.active {
+    .button-color(@btn-tertiary-white-color, @btn-tertiary-white-active-bg, @btn-tertiary-white-active-bg);
+  }
+
+  .button-disabled(@btn-disable-tertiary-color, @btn-disable-tertiary-bg, @btn-disable-tertiary-border);
+}
+
+.btn-tertiary-white() {
+  .button-variant-tertiary-white();
+}
+
 .button-variant-ghost() {
   .button-color(@btn-ghost-color, @btn-ghost-bg, @btn-ghost-border);
   box-shadow: none;
@@ -132,6 +158,78 @@
 
 .btn-ghost() {
   .button-variant-ghost();
+}
+
+.button-variant-ghost-primary() {
+  .button-color(@btn-ghost-primary-color, @btn-ghost-primary-bg, @btn-ghost-primary-border);
+
+  &:hover {
+    .button-color(@btn-ghost-primary-color, @btn-ghost-primary-hover-bg, @btn-ghost-primary-border);
+    box-shadow: none;
+  }
+
+  &:focus {
+    .button-color(@btn-ghost-primary-color, @btn-ghost-primary-focus-bg, @btn-ghost-primary-focus-bg);
+    box-shadow: none;
+    border-color: @primary-color;
+  }
+
+  &:active,
+  &.active {
+    .button-color(@btn-ghost-primary-color, @btn-ghost-primary-active-bg, @btn-ghost-primary-active-bg);
+  }
+
+  .button-disabled(@btn-disable-ghost-primary-color, @btn-disable-ghost-primary-bg, @btn-disable-ghost-primary-border);
+
+  svg {
+    fill: @primary-color;
+  }
+
+  &[disabled] {
+    svg {
+      fill-opacity: 0.4;
+    }
+  }
+}
+
+.btn-ghost-primary() {
+  .button-variant-ghost-primary();
+}
+
+.button-variant-ghost-white() {
+  .button-color(@btn-ghost-white-color, @btn-ghost-white-bg, @btn-ghost-white-border);
+
+  &:hover {
+    .button-color(@btn-ghost-white-color, @btn-ghost-white-hover-bg, @btn-ghost-white-border);
+    box-shadow: none;
+  }
+
+  &:focus {
+    .button-color(@btn-ghost-white-color, @btn-ghost-white-focus-bg, @btn-ghost-white-focus-bg);
+    box-shadow: none;
+    border-color: @primary-color;
+  }
+
+  &:active,
+  &.active {
+    .button-color(@btn-ghost-white-color, @btn-ghost-white-active-bg, @btn-ghost-white-active-bg);
+  }
+
+  .button-disabled(@btn-disable-ghost-white-color, @btn-disable-ghost-white-bg, @btn-disable-ghost-white-border);
+
+  svg {
+    fill: @white;
+  }
+
+  &[disabled] {
+    svg {
+      fill-opacity: 0.4;
+    }
+  }
+}
+
+.btn-ghost-white() {
+  .button-variant-ghost-white();
 }
 
 .button-variant-danger() {
@@ -293,6 +391,10 @@
     .button-variant-tertiary();
   }
 
+  &-tertiary-white {
+    .button-variant-tertiary-white();
+  }
+
   &-success {
     .button-variant-success();
   }
@@ -303,6 +405,14 @@
 
   &-ghost {
     .button-variant-ghost();
+  }
+
+  &-ghost-white {
+    .button-variant-ghost-white();
+  }
+
+  &-ghost-primary {
+    .button-variant-ghost-primary();
   }
 
   &-warning {

@@ -6,7 +6,20 @@ import './style/index.less';
 import AntdButton from './Button.styles';
 
 export interface Props extends Omit<ButtonProps, 'type'> {
-  type?: string | 'default' | 'primary' | 'ghost' | 'dashed' | 'danger' | 'link' | 'success' | 'flat' | 'warning';
+  type?:
+    | string
+    | 'default'
+    | 'primary'
+    | 'ghost'
+    | 'dashed'
+    | 'danger'
+    | 'link'
+    | 'success'
+    | 'flat'
+    | 'warning'
+    | 'tertiary-white'
+    | 'ghost-primary'
+    | 'ghost-white';
   mode?: string;
 }
 

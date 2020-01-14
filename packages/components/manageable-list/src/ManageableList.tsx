@@ -31,6 +31,7 @@ interface ManageableListProps {
   addButtonDisabled?: boolean;
   changeOrderDisabled?: boolean;
   greyBackground?: boolean;
+  placeholder?: string;
 }
 
 const ManageableList: React.FC<ManageableListProps> = ({
@@ -52,6 +53,7 @@ const ManageableList: React.FC<ManageableListProps> = ({
   addButtonDisabled = false,
   changeOrderDisabled = false,
   greyBackground = false,
+  placeholder,
 }) => {
   const [allItemsVisible, setAllItemsVisible] = React.useState(false);
 
@@ -123,7 +125,12 @@ const ManageableList: React.FC<ManageableListProps> = ({
   return (
     <S.ManageableListContainer listType={type} greyBackground={greyBackground}>
       {type === ListType.default && Boolean(onItemAdd) && (
-        <AddItemWithName addItemLabel={addItemLabel} onItemAdd={onItemAdd} disabled={addButtonDisabled} />
+        <AddItemWithName
+          addItemLabel={addItemLabel}
+          onItemAdd={onItemAdd}
+          disabled={addButtonDisabled}
+          placeholder={placeholder}
+        />
       )}
       {renderList()}
       {renderShowMoreButton()}

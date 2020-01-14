@@ -15,6 +15,9 @@ const typeOptions = {
   Danger: 'danger',
   Success: 'success',
   Warning: 'warning',
+  tertiaryWhite: 'tertiary-white',
+  ghostPrimary: 'ghost-primary',
+  ghostWhite: 'ghost-white',
 };
 
 const getDefaultProps = () => ({
@@ -34,9 +37,8 @@ const stories = {
         margin: 20,
       },
     } as object;
-    
     return (
-      <React.Fragment>
+      <div style={{background:`${(props.type === 'tertiary-white' || props.type === 'ghost-white') ? '#384350' : 'transparent'}`}}>
         <Button {...props} mode="simple">
           Button
         </Button>
@@ -60,7 +62,7 @@ const stories = {
         <Button {...props} mode="single-icon">
           <Icon component={<ShowM />} color="#ffffff" />
         </Button>
-      </React.Fragment>
+      </div>
     );
   },
   simple: () => ({

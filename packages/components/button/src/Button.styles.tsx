@@ -88,5 +88,14 @@ export default styled(({ mode, type, loading, ...rest }) => <Button type={type} 
           }
         }
       `}
+    ${(props): FlattenSimpleInterpolation | false => css`
+      &.ant-btn {
+        box-shadow: none;
+        &:focus {
+          box-shadow: 0 0 0 2px
+            ${props.type !== 'primary' ? props.theme.palette['blue-600'] : props.theme.palette['blue-700']};
+        }
+      }
+    `}
   }
 `;
