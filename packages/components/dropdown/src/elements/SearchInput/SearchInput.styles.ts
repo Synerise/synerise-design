@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css, SimpleInterpolation } from 'styled-components';
 import { Input } from '@synerise/ds-input';
 
 // eslint-disable-next-line import/prefer-default-export
@@ -18,4 +18,31 @@ export const DropdownSearchInput = styled(Input)`
     border-radius: 0;
     background-color: ${(props): string => props.theme.palette['grey-050']};
   }
+`;
+
+export const DropdownSearchInputWrapper = styled.div<{ iconLeft: React.ReactNode }>`
+  position: relative;
+
+  ${DropdownSearchInput} {
+    ${(props): SimpleInterpolation =>
+      props.iconLeft &&
+      css`
+        padding-left: 52px;
+      `}
+  }
+`;
+
+export const IconLeftWrapper = styled.div`
+  position: absolute;
+  left: 16px;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  z-index: 1;
+`;
+
+export const ClearInputWrapper = styled(IconLeftWrapper)`
+  right: 14px;
+  left: unset;
+  cursor: pointer;
 `;

@@ -27,7 +27,7 @@ describe('Dropdown', () => {
         <Dropdown.SearchInput
           onSearchChange={onSearchChange}
           placeholder={PLACEHOLDER}
-          value=""
+        value=""
         />
       );
 

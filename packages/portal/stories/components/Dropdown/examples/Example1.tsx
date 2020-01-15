@@ -13,21 +13,31 @@ const Example1 = () => {
   ];
 
   const [ filteredData, setFilteredData ] = React.useState(data);
+  const [value, setValue] = React.useState('');
 
   const filter = (searchTerm: string) => {
+    setValue(searchTerm);
+
     const newData = data.map(list => list.filter(item => {
-      return item.text.includes(searchTerm);
+      return item.text.toLowerCase().includes(searchTerm.toLowerCase());
     }));
 
     setFilteredData(newData);
   };
+
+  const onClearInput = () => {
+    setValue('');
+    setFilteredData(data);
+  }
 
   return {
     trigger: ['click'],
     visible: true,
     overlay: (
       <OverlayExample1
+        value={value}
         onSearchChange={filter}
+        onClearInput={onClearInput}
         data={filteredData}
         onClickAction={() => alert('Action clicked')}
       />
