@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-list@0.3.6...@synerise/ds-list@0.3.7) (2020-01-15)
+
+### Bug Fixes
+
+- **list:** icon class fix ([1100ba0](https://github.com/Synerise/synerise-design/commit/1100ba04641f6bbc80099987e78dc9e9d853ad74))
+
 ## [0.3.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-list@0.3.4...@synerise/ds-list@0.3.5) (2020-01-13)
 
 ### Bug Fixes
