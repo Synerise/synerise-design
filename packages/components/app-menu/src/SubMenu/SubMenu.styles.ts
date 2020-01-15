@@ -44,6 +44,12 @@ export const MenuGroupWrapper = styled.div`
       }
     `
   )}
+
+  &:hover {
+    > * {
+      transition-delay: 0s;
+    }
+  }
 `;
 
 export const MenuGroupTitle = styled.h3`

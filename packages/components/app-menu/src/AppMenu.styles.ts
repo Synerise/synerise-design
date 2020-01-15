@@ -14,7 +14,7 @@ export const MenuWrapper = styled.div<{ top: number }>`
   padding-top: 12px;
   transition: all 0.25s cubic-bezier(0.95, 0.17, 0.27, 0.79);
   transition-delay: 0.25s;
-  overflow-y: hidden;
+  overflow: hidden;
 
   &.menu--opened {
     transition-delay: 0s;
