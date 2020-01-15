@@ -10,7 +10,6 @@ import TooltipExtendedProps, { tooltipTypes, descriptionType } from './Tooltip.t
 
 const shouldRenderDescription = (description: descriptionType, type: tooltipTypes): descriptionType | null => {
   if (type === 'default' || !description) return null;
-  // if(isDescriptionArray) return description[tutorialPart]
   return description;
 };
 
@@ -22,19 +21,12 @@ const Tooltip: React.FC<TooltipExtendedProps & TooltipProps> = ({
   theme,
   ...props
 }) => {
-  // state to change tutorial description array
-  // const [tutorialPart, setTutorialPart] = useState<number>(0);
-
   const shouldRenderIcon = (tooltipType: tooltipTypes, tooltipIcon: React.ReactNode): React.ReactNode | undefined => {
     if (tooltipType !== 'icon') return null;
     if (tooltipIcon && icon) return icon;
     return <Icon component={<NotificationsM />} color={theme.palette['orange-500']} />;
   };
-  // const isDescriptionArray = !(typeof description === 'string' || React.isValidElement(description));
 
-  // const children = (description: descriptionType) => {return description.map((element:string, index:number)=>{
-  //   return <Icon  component={<svg><circle onClick={()=>{setTutorialPart(index)}} cx='10' cy='10' r="4px" fill="blue" /></svg>} color={'blue'} />
-  // })}
   // TODO: map tutorial dots, need Icons, uncomment code responsible for array validation, tutorial (and types,styles)
   // Add delay swap tabs action and default change action that might be define by developer
 
@@ -47,7 +39,6 @@ const Tooltip: React.FC<TooltipExtendedProps & TooltipProps> = ({
         </S.TooltipTitle>
         <S.TooltipDescription>{shouldRenderDescription(description, type)}</S.TooltipDescription>
       </S.TooltipComponent>
-      {/* {description && <S.TooltipTutorial>{type === 'tutorial' && isDescriptionArray ? children(description) : null}</S.TooltipTutorial>} */}
     </div>
   );
   // eslint-disable-next-line react/jsx-props-no-spreading
