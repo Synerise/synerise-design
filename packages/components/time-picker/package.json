@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-time-picker",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "TimePicker UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -22,8 +22,8 @@
   "sideEffects": false,
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-dropdown": "^0.8.7",
-    "@synerise/ds-icon": "^0.7.2",
+    "@synerise/ds-dropdown": "^0.8.8",
+    "@synerise/ds-icon": "^0.7.3",
     "@synerise/ds-input": "^0.8.3",
     "@synerise/ds-typography": "^0.6.1",
     "dayjs": "^1.8.19"
