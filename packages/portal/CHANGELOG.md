@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.29.6](https://github.com/synerise/synerise-design/compare/portal@0.29.5...portal@0.29.6) (2020-01-16)
+
+
+### Bug Fixes
+
+* **progress-bar:** fix width of ant-progress-inner element ([ba47248](https://github.com/synerise/synerise-design/commit/ba4724895a4c8b0485dfbbc1f7fd53d956cbf1f5))
+
+
+
+
+
 ## [0.29.2](https://github.com/synerise/synerise-design/compare/portal@0.29.1...portal@0.29.2) (2020-01-14)
 
 
