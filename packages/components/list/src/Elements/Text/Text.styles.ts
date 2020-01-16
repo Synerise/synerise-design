@@ -61,6 +61,7 @@ export const ContentWrapper = styled.div`
   overflow-wrap: normal;
   text-overflow: ellipsis;
   white-space: nowrap;
+  font-size: 14px;
 `;
 
 export const ActionWraper = styled.div`
