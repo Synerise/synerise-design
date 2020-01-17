@@ -68,7 +68,6 @@ import Avatar from '@synerise/ds-avatar'
 
 | Property        | Description                                                                                              | Type                                       | Default   |
 | --------------- | -------------------------------------------------------------------------------------------------------- | ------------------------------------------ | --------- |
-| icon            | The `Icon` type for an icon avatar, see `Icon` Component                                                 | string                                     | -         |
 | shape           | The shape of the avatar                                                                                  | `circle` \ `square`                        | `circle`  |
 | size            | The size of the avatar                                                                                   | number \ string: `large` `small` `default` | `default` |
 | src             | The URL of the image for the avatar                                                                      | string                                     | -         |
