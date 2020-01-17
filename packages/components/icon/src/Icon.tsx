@@ -6,7 +6,6 @@ type IconProps = {
   name?: string;
   title?: string;
   size?: string | number;
-  type?: string;
   stroke?: boolean;
   onClick?: React.MouseEventHandler;
   component?: React.ReactNode;
@@ -15,7 +14,7 @@ type IconProps = {
 };
 
 const Icon: React.FC<IconProps> = props => {
-  const { color, name, size, type, stroke, onClick, component, className, style } = props;
+  const { color, name, size, stroke, onClick, component, className, style } = props;
 
   return (
     <S.IconContainer
@@ -24,7 +23,6 @@ const Icon: React.FC<IconProps> = props => {
       color={color}
       title={name}
       size={size}
-      type={type}
       stroke={stroke}
       onClick={onClick}
     >

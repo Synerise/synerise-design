@@ -7,7 +7,6 @@ type Props = {
   size?: string | number;
   color?: string;
   stroke?: boolean;
-  type?: string;
   onClick?: React.MouseEventHandler;
 };
 

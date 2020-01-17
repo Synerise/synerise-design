@@ -19,7 +19,7 @@ type backgroundColors =
   | 'purple'
   | 'violet';
 
-export interface Props extends Omit<AvatarProps, 'size'> {
+export interface Props extends Omit<AvatarProps, 'size' | 'icon'> {
   hasStatus?: boolean;
   size?: number | 'small' | 'default' | 'large' | 'extraLarge' | undefined;
   iconComponent?: React.ReactNode;
