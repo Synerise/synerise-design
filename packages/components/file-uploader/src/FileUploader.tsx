@@ -98,6 +98,7 @@ const FileUploader: React.FC<FileUploaderProps> = ({
             <input {...getInputProps()} data-testid="droparea-input" />
 
             <S.DropAreaButton
+              type="button"
               mode={mode}
               disabled={disabled}
               isDropping={isDragActive}
