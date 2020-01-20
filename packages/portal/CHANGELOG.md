@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.30.0](https://github.com/synerise/synerise-design/compare/portal@0.29.6...portal@0.30.0) (2020-01-20)
+
+
+### Features
+
+* **progress-bar:** use strings instead of enums in props ([0076b66](https://github.com/synerise/synerise-design/commit/0076b6693f83eeb8e747177b86be3cce465a3273))
+
+
+
+
+
 ## [0.29.6](https://github.com/synerise/synerise-design/compare/portal@0.29.5...portal@0.29.6) (2020-01-16)
 
 

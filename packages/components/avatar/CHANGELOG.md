@@ -3,16 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.3.6](https://github.com/synerise/synerise-design/compare/@synerise/ds-avatar@0.3.5...@synerise/ds-avatar@0.3.6) (2020-01-16)
-
+## [0.3.7](https://github.com/synerise/synerise-design/compare/@synerise/ds-avatar@0.3.6...@synerise/ds-avatar@0.3.7) (2020-01-20)
 
 ### Bug Fixes
 
-* **avatar:** fix issue with string css ([a079bcb](https://github.com/synerise/synerise-design/commit/a079bcbf1dee096af15518bffa576be6a61f716c))
+- **avatar:** delete prop 'type' for default antd icons ([c602fe8](https://github.com/synerise/synerise-design/commit/c602fe8478eab51e590a652f5e3be249b1171939))
 
+## [0.3.6](https://github.com/synerise/synerise-design/compare/@synerise/ds-avatar@0.3.5...@synerise/ds-avatar@0.3.6) (2020-01-16)
 
+### Bug Fixes
 
-
+- **avatar:** fix issue with string css ([a079bcb](https://github.com/synerise/synerise-design/commit/a079bcbf1dee096af15518bffa576be6a61f716c))
 
 ## [0.3.5](https://github.com/synerise/synerise-design/compare/@synerise/ds-avatar@0.3.4...@synerise/ds-avatar@0.3.5) (2020-01-15)
 
