@@ -1,56 +1,20 @@
 import * as React from 'react';
-import Progress from 'antd/lib/progress';
+import Progress, { ProgressProps } from 'antd/lib/progress';
 import '@synerise/ds-core/dist/js/style';
 import './style/index.less';
 
 interface Props {
-  amount: number;
-  percent: number;
-  type: PROGRESS_TYPE;
-  status: PROGRESS_STATUS;
-  strokeLinecap: PROGRESS_STROKE_LINECAP;
-  strokeColor: PROGRESS_COLORS;
-  showLabel: boolean;
-  description: string;
+  amount?: number;
+  showLabel?: boolean;
+  description?: string;
 }
 
-export enum PROGRESS_STATUS {
-  SUCCESS = 'success',
-  EXCEPTION = 'exception',
-  NORMAL = 'normal',
-  ACTIVE = 'active',
-}
-
-export enum PROGRESS_STROKE_LINECAP {
-  ROUND = 'round',
-  SQUARE = 'square',
-}
-
-export enum PROGRESS_TYPE {
-  LINE = 'line',
-  CIRCLE = 'circle',
-  DASHBOARD = 'dashboard',
-}
-
-export enum PROGRESS_COLORS {
-  CYAN = '#13c2bc',
-  FERN = '#25dc44',
-  GREEN = '#76dc25',
-  MARS = '#ff6c4d',
-  ORANGE = '#fd9f05',
-  PINK = '#ff4d67',
-  PURPLE = '#6d2ed3',
-  RED = '#ff5a4d',
-  VIOLET = '#ce2feb',
-  YELLOW = '#ffc300',
-}
-
-class ProgressBar extends React.PureComponent<Props> {
+class ProgressBar extends React.PureComponent<ProgressProps & Props> {
   static defaultProps = {
-    type: PROGRESS_TYPE.LINE,
-    status: PROGRESS_STATUS.NORMAL,
-    strokeLinecap: PROGRESS_STROKE_LINECAP.ROUND,
-    strokeColor: PROGRESS_COLORS.GREEN,
+    type: 'line',
+    status: 'normal',
+    strokeLinecap: 'round',
+    strokeColor: '#76dc25',
     showLabel: false,
     description: '',
   };
