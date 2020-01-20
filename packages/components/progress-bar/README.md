@@ -20,5 +20,5 @@ Progress-Bar UI Component
 | showLabel   | Shows label above progress bar, label contains amount and percentage. | boolean                               | false     |
 | description | Text of description under progress bar                                | string                                | -         |
 | type        | Type of progress bar                                                  | string: 'line', 'circle', 'dashboard' | 'line'    |
-| strokeLine  | To set the style of the progress linecap                              | string: 'round', 'square'             | 'round    |
+| strokeLine  | To set the style of the progress linecap                              | string: 'round', 'square'             | 'round'   |
 | strokeColor | Color of progress bar                                                 | string                                | '#76dc25' |
