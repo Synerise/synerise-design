@@ -19,7 +19,6 @@ interface Props extends ModalProps {
     okButton?: string;
     cancelButton?: string;
   };
-  onClose?: () => void;
 }
 
 const mapSizeToWidth = {
@@ -46,20 +45,8 @@ class ModalProxy extends React.Component<Props> {
   static confirm = Modal.confirm;
 
   render(): React.ReactNode {
-    const {
-      texts,
-      bodyBackground,
-      closable,
-      headerActions,
-      title,
-      description,
-      size,
-      onClose,
-      ...antModalProps
-    } = this.props;
-    // TODO onClose shouldn't work as afterClose - it will trigger passed afterClose function twice,
-    // TODO Need check if any Modal in app uses it and fix this behaviour
-    const handleOnClose = onClose || ((): void => antModalProps.afterClose && antModalProps.afterClose());
+    const { texts, bodyBackground, closable, headerActions, title, description, size, ...antModalProps } = this.props;
+    const handleOnClose = antModalProps.onCancel;
     const className = `bodybg-${bodyBackground} ${antModalProps.className || ''}`;
 
     const titleContainer = (

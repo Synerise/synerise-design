@@ -32,7 +32,7 @@ describe('Modal', () => {
 
   it('onClose should be called', async () => {
     // ARRANGE
-    const C = renderWithProvider(<Modal visible onClose={onClose} title={TITLE} closable={true} />);
+    const C = renderWithProvider(<Modal visible onCancel={onClose} title={TITLE} closable={true} />);
     const button = await C.getByTestId('modal-close');
     // ACT
     await fireEvent.click(button);
