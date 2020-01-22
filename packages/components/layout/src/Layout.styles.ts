@@ -67,4 +67,6 @@ export const LayoutSidebarInner = styled.div`
   display: flex;
   flex-flow: column;
   height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
 `;
