@@ -19,15 +19,25 @@ type backgroundColors =
   | 'purple'
   | 'violet';
 
+type backgroundColorHue = '900' | '800' | '700' | '600' | '500' | '400' | '300' | '200' | '100' | '050';
+
 export interface Props extends Omit<AvatarProps, 'size'> {
   hasStatus?: boolean;
   size?: number | 'small' | 'default' | 'large' | 'extraLarge' | undefined;
   iconComponent?: React.ReactNode;
   backgroundColor?: backgroundColors;
+  backgroundColorHue?: backgroundColorHue;
   disabled?: boolean;
 }
 
-const Avatar: React.FC<Props> = ({ backgroundColor, disabled, hasStatus, iconComponent, ...antdProps }) => {
+const Avatar: React.FC<Props> = ({
+  backgroundColor,
+  backgroundColorHue,
+  disabled,
+  hasStatus,
+  iconComponent,
+  ...antdProps
+}) => {
   const [pressed, setPressed] = React.useState(false);
 
   return (
@@ -39,6 +49,7 @@ const Avatar: React.FC<Props> = ({ backgroundColor, disabled, hasStatus, iconCom
       pressed={pressed}
       hasStatus={hasStatus}
       backgroundColor={backgroundColor}
+      backgroundColorHue={backgroundColorHue}
       disabled={disabled}
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...antdProps}

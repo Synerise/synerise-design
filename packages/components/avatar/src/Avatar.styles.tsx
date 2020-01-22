@@ -4,8 +4,10 @@ import Avatar, { AvatarProps } from 'antd/lib/avatar';
 import { macro } from '@synerise/ds-typography';
 import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 
-const applyBgColors = (props: ThemeProps & { backgroundColor: string }): string => `
-  background: ${props.theme.palette[`${props.backgroundColor}-400`]};
+const applyBgColors = (props: ThemeProps & { backgroundColor: string; backgroundColorHue: string }): string => `
+  background: ${
+    props.theme.palette[`${props.backgroundColor}-${props.backgroundColorHue ? props.backgroundColorHue : '400'}`]
+  };
 `;
 
 const applyDisabledStyles = (props: { disabled: boolean }): string | false =>

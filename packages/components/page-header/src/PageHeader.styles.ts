@@ -11,7 +11,7 @@ export const MainContainer = styled.div<{ isolated?: boolean }>`
     bottom: 0;
     width: 100%;
     height: 1px;
-    ${(props): string => (props.isolated ? `background-color: ${props.theme.palette['grey-100']}` : '')}
+    ${(props): string => (props.isolated ? `background-color: ${props.theme.palette['grey-100']}` : '')};
     z-index: 0;
   }
 `;
@@ -26,18 +26,26 @@ export const PageHeaderContainer = styled.div`
 `;
 
 export const PageHeaderBack = styled.div`
-  margin-right 52px;
+  margin-right: 49px;
   display: flex;
   align-items: center;
   position: relative;
-  
+
   &::after {
     content: '';
-    position: absolute
+    position: absolute;
     width: 1px;
-    height: 40px
-    right: -29px;
+    height: 40px;
+    right: -25px;
     background-color: ${(props): string => props.theme.palette['grey-300']};
+  }
+
+  && {
+    button {
+      display: flex;
+      align-items: center;
+      padding: 0 4px;
+    }
   }
 `;
 
@@ -94,17 +102,18 @@ export const PageHeaderInlineEdit = styled.div`
 
 export const PageHeaderClose = styled.div`
   & div {
-  margin-left 52px;
-  display: flex;
-  align-items: center;
-  position: relative;
-  
-  &::before {
-    content: '';
-    position: absolute
-    width: 1px;
-    height: 40px
-    left: -25px;
-    background-color: ${(props): string => props.theme.palette['grey-300']};
-  }}
+    margin-left: 52px;
+    display: flex;
+    align-items: center;
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      width: 1px;
+      height: 40px;
+      left: -25px;
+      background-color: ${(props): string => props.theme.palette['grey-300']};
+    }
+  }
 `;
