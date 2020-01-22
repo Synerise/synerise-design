@@ -46,6 +46,7 @@ import ButtonGroup from '@synerise/ds-button-group'
 
 <ButtonGroup
   title={'Some title'}
+  size={'large'}
   description={'Some description'}
 >
   <Button onClick={() => alert('Clicked!')}>Click me!</Button>
@@ -65,8 +66,9 @@ import ButtonGroup from '@synerise/ds-button-group'
 
 ---
 
-| Property    | Description                  | Type            | Default |
-| ----------- | ---------------------------- | --------------- | ------- |
-| title       | The title of the group       | string          | -       |
-| description | The description of the group | string          | -       |
-| children    | Buttons used in the group    | React.ReactNode | -       |
+| Property    | Description                                      | Type            | Default |
+| ----------- | ------------------------------------------------ | --------------- | ------- |
+| title       | The title of the group                           | string          | -       |
+| description | The description of the group                     | string          | -       |
+| size        | Defines the size of the button: `small`, `large` | string          | -       |
+| children    | Buttons used in the group                        | React.ReactNode | -       |
