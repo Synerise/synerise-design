@@ -39,6 +39,19 @@ const backgroundColors = [
   'violet',
 ] as const;
 
+const backgroundColorHue = [
+  '900',
+  '800',
+  '700',
+  '600',
+  '500',
+  '400',
+  '300',
+  '200',
+  '100',
+  '050',
+] as const;
+
 const imgSrc = 'https://www.w3schools.com/howto/img_avatar.png';
 
 const stories = {
@@ -47,6 +60,7 @@ const stories = {
       <div style={wrapperStyles}>
         <Avatar
           backgroundColor={select('backgroundColors', backgroundColors, 'mars')}
+          backgroundColorHue={select('backgroundColorHue', backgroundColorHue, '050')}
           disabled={boolean('disabled', false)}
           size={select('sizeString', sizes, 'default')}
           shape={select('shape', shapes, 'circle')}
@@ -58,6 +72,7 @@ const stories = {
         </Avatar>
         <Avatar
           backgroundColor={select('backgroundColors', backgroundColors, 'mars')}
+          backgroundColorHue={select('backgroundColorHue', backgroundColorHue, '050')}
           disabled={boolean('disabled', false)}
           iconComponent={
             <Icon color={text('IconColor', '#ff5831')} size={number('iconSize', 32)} component={<FileM />} />
@@ -67,6 +82,7 @@ const stories = {
         />
         <Avatar
           backgroundColor={select('backgroundColors', backgroundColors, 'mars')}
+          backgroundColorHue={select('backgroundColorHue', backgroundColorHue, '050')}
           disabled={boolean('disabled', false)}
           icon={'user'}
           size={select('sizeString', sizes, 'default')}
@@ -74,6 +90,7 @@ const stories = {
         />
         <Avatar
           backgroundColor={select('backgroundColors', backgroundColors, 'mars')}
+          backgroundColorHue={select('backgroundColorHue', backgroundColorHue, '050')}
           disabled={boolean('disabled', false)}
           size={select('sizeString', sizes, 'default')}
           shape={select('shape', shapes, 'circle')}
@@ -81,6 +98,7 @@ const stories = {
         />
         <Avatar
           backgroundColor={select('backgroundColors', backgroundColors, 'mars')}
+          backgroundColorHue={select('backgroundColorHue', backgroundColorHue, '050')}
           disabled={boolean('disabled', false)}
           shape={select('shape', shapes, 'circle')}
           size={select('sizeString', sizes, 'default')}
@@ -92,6 +110,7 @@ const stories = {
       <div style={wrapperStyles}>
         <Avatar
           backgroundColor={select('backgroundColors', backgroundColors, 'mars')}
+          backgroundColorHue={select('backgroundColorHue', backgroundColorHue, '050')}
           disabled={boolean('disabled', false)}
           size={number('sizeNumber', 48)}
           shape={select('shape', shapes, 'circle')}
@@ -100,6 +119,7 @@ const stories = {
         </Avatar>
         <Avatar
           backgroundColor={select('backgroundColors', backgroundColors, 'mars')}
+          backgroundColorHue={select('backgroundColorHue', backgroundColorHue, '050')}
           disabled={boolean('disabled', false)}
           iconComponent={
             <Icon color={text('IconColor', '#ff5831')} size={number('sizeNumber', 48)} component={<ArrowDownM />} />
@@ -112,6 +132,7 @@ const stories = {
         />
         <Avatar
           backgroundColor={select('backgroundColors', backgroundColors, 'mars')}
+          backgroundColorHue={select('backgroundColorHue', backgroundColorHue, '050')}
           disabled={boolean('disabled', false)}
           icon={'user'}
           size={number('sizeNumber', 48)}
@@ -130,6 +151,7 @@ const stories = {
     <React.Fragment>
       <Avatar
         backgroundColor={select('backgroundColors', backgroundColors, 'mars')}
+        backgroundColorHue={select('backgroundColorHue', backgroundColorHue, '050')}
         disabled={boolean('disabled', false)}
         size={number('size', 32)}
         shape={select('shape', shapes, 'circle')}
@@ -138,6 +160,7 @@ const stories = {
       </Avatar>
       <Avatar
         backgroundColor={select('backgroundColors', backgroundColors, 'mars')}
+        backgroundColorHue={select('backgroundColorHue', backgroundColorHue, '050')}
         disabled={boolean('disabled', false)}
         iconComponent={
           <Icon
@@ -154,6 +177,7 @@ const stories = {
       />
       <Avatar
         backgroundColor={select('backgroundColors', backgroundColors, 'mars')}
+        backgroundColorHue={select('backgroundColorHue', backgroundColorHue, '050')}
         disabled={boolean('disabled', false)}
         icon={'user'}
         size={select('IconAvatarSize', sizes, 'default')}
@@ -171,6 +195,7 @@ const stories = {
     <Badge status={select('status', statuses, 'default')}>
       <Avatar
         backgroundColor={select('backgroundColors', backgroundColors, 'mars')}
+        backgroundColorHue={select('backgroundColorHue', backgroundColorHue, '050')}
         disabled={boolean('disabled', false)}
         hasStatus
         shape={select('shape', shapes, 'circle')}
@@ -184,6 +209,7 @@ const stories = {
       <Badge status={select('status', statuses, 'default')}>
         <Avatar
           backgroundColor={select('backgroundColors', backgroundColors, 'green')}
+          backgroundColorHue={select('backgroundColorHue', backgroundColorHue, '050')}
           disabled={boolean('disabled', false)}
           hasStatus={boolean('has status', false)}
           shape={select('shape', shapes, 'circle')}
@@ -195,6 +221,7 @@ const stories = {
       <Badge status={select('status', statuses, 'default')}>
         <Avatar
           backgroundColor={select('backgroundColors', backgroundColors, 'green')}
+          backgroundColorHue={select('backgroundColorHue', backgroundColorHue, '050')}
           disabled={boolean('disabled', false)}
           hasStatus={boolean('has status', false)}
           shape={select('shape', shapes, 'circle')}
@@ -207,6 +234,7 @@ const stories = {
       <Badge status={select('status', statuses, 'default')}>
         <Avatar
           backgroundColor={select('backgroundColors', backgroundColors, 'green')}
+          backgroundColorHue={select('backgroundColorHue', backgroundColorHue, '050')}
           disabled={boolean('disabled', false)}
           hasStatus={boolean('has status', false)}
           shape={select('shape', shapes, 'circle')}

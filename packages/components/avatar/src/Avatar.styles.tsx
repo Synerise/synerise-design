@@ -4,16 +4,20 @@ import Avatar, { AvatarProps } from 'antd/lib/avatar';
 import { macro } from '@synerise/ds-typography';
 import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 
-const applyBgColors = (props: ThemeProps & { backgroundColor: string }): FlattenSimpleInterpolation => css`
-  background: ${props.theme.palette[`${props.backgroundColor}-400`]};
+const applyBgColors = (
+  props: ThemeProps & { backgroundColor: string; backgroundColorHue: string }
+): FlattenSimpleInterpolation => css`
+  background: ${props.theme.palette[
+    `${props.backgroundColor}-${props.backgroundColorHue ? props.backgroundColorHue : '400'}`
+  ]};
 `;
 
 const applyDisabledStyles = (props: { disabled: boolean }): FlattenSimpleInterpolation | false =>
   props.disabled &&
   css`
-  opacity: 0.4;
-  pointer-events: none;
-`;
+    opacity: 0.4;
+    pointer-events: none;
+  `;
 
 const BADGE_POSITION = {
   circlesmall: '3px',
@@ -35,7 +39,7 @@ const FONT_SIZE = {
 
 const applyBadgePosition = (props: AvatarProps): FlattenSimpleInterpolation => {
   return css`
-    top:  ${BADGE_POSITION[`${props.shape}${props.size}`] || '5px'}; 
+    top: ${BADGE_POSITION[`${props.shape}${props.size}`] || '5px'};
     right: ${BADGE_POSITION[`${props.shape}${props.size}`] || '5px'};
   `;
 };

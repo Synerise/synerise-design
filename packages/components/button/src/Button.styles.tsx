@@ -3,8 +3,8 @@ import styled, { css, FlattenInterpolation, FlattenSimpleInterpolation } from 's
 import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import Button from 'antd/lib/button';
 
-const leftIcon = '0 4px 4px 8px';
-const rightIcon = '2px 8px 4px 4px';
+const leftIcon = '0 4px 0 8px';
+const rightIcon = '0 8px 0 4px';
 
 const buttonType = {
   secondary: 'secondary',
@@ -18,9 +18,12 @@ const splitType = {
 };
 
 // eslint-disable-next-line react/jsx-props-no-spreading
-export default styled(({ mode, type, loading, ...rest }) => <Button type={type} loading={loading} {...rest} />)`
+export default styled(({ mode, type, loading, ...rest }) => <Button type={type} loading={loading} {...rest} />)`  
   && {
+    display: inline-flex;
+    align-items: center;
     padding: 0 12px;
+    
     ${(props): FlattenInterpolation<ThemeProps> | false =>
       props.type === buttonType[props.type] &&
       css`
@@ -41,7 +44,7 @@ export default styled(({ mode, type, loading, ...rest }) => <Button type={type} 
               ${props.type !== splitType[props.type] ? `rgba(255, 255, 255, 0.15);` : props.theme.palette['grey-300']};
           }
           > div {
-            margin: 0 4px 2px 4px;
+            margin: 0 4px 0 4px;
           }
         }
       `}
@@ -84,7 +87,7 @@ export default styled(({ mode, type, loading, ...rest }) => <Button type={type} 
         &.ant-btn {
           padding: 0;
           > div {
-            margin: 0 4px 4px 4px;
+            margin: 0 4px 0 4px;
           }
         }
       `}

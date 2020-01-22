@@ -4,6 +4,7 @@ import ArrowLeftM from '@synerise/ds-icon/dist/icons/ArrowLeftM';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import InlineEdit from '@synerise/ds-inline-edit/dist/InlineEdit';
 import CloseS from '@synerise/ds-icon/dist/icons/CloseS';
+import Button from '@synerise/ds-button/dist/Button';
 import * as S from './PageHeader.styles';
 
 export type PageHeaderProps = {
@@ -57,13 +58,14 @@ const PageHeader: React.FC<PageHeaderProps> = props => {
       <S.PageHeaderContainer>
         {onGoBack && (
           <S.PageHeaderBack>
-            <Icon
-              className="page-header__back"
-              color={theme.palette['grey-500']}
-              component={<ArrowLeftM />}
-              size={24}
-              onClick={onGoBack}
-            />
+            <Button type="ghost" onClick={onGoBack}>
+              <Icon
+                className="page-header__back"
+                color={theme.palette['grey-600']}
+                component={<ArrowLeftM />}
+                size={24}
+              />
+            </Button>
           </S.PageHeaderBack>
         )}
         {!!avatar && avatar}

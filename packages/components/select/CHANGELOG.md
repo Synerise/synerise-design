@@ -5,15 +5,10 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [0.7.5](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.7.4...@synerise/ds-select@0.7.5) (2020-01-16)
 
-
 ### Bug Fixes
 
-* **select:** icon variable ([e37eef0](https://github.com/synerise/synerise-design/commit/e37eef0a435ef0cefb5d7badd99cfe307ec89d17))
-* **select:** select style and icon fix ([9380073](https://github.com/synerise/synerise-design/commit/9380073bde9c631cbcfb5c3788e6c765b2b4cfe0))
-
-
-
-
+- **select:** icon variable ([e37eef0](https://github.com/synerise/synerise-design/commit/e37eef0a435ef0cefb5d7badd99cfe307ec89d17))
+- **select:** select style and icon fix ([9380073](https://github.com/synerise/synerise-design/commit/9380073bde9c631cbcfb5c3788e6c765b2b4cfe0))
 
 ## [0.7.4](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.7.3...@synerise/ds-select@0.7.4) (2020-01-15)
 

@@ -5,14 +5,9 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [0.8.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-modal@0.8.1...@synerise/ds-modal@0.8.2) (2020-01-20)
 
-
 ### Bug Fixes
 
-* **modal:** invoke onCancel function on close click, remove onClose prop ([d80c26c](https://github.com/synerise/synerise-design/commit/d80c26cee095674c79caa1285b9d1ed1abb7bd55))
-
-
-
-
+- **modal:** invoke onCancel function on close click, remove onClose prop ([d80c26c](https://github.com/synerise/synerise-design/commit/d80c26cee095674c79caa1285b9d1ed1abb7bd55))
 
 ## [0.8.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-modal@0.8.0...@synerise/ds-modal@0.8.1) (2020-01-20)
 
