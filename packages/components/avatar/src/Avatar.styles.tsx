@@ -4,18 +4,20 @@ import Avatar, { AvatarProps } from 'antd/lib/avatar';
 import { macro } from '@synerise/ds-typography';
 import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 
-const applyBgColors = (props: ThemeProps & { backgroundColor: string; backgroundColorHue: string }): string => `
-  background: ${
-    props.theme.palette[`${props.backgroundColor}-${props.backgroundColorHue ? props.backgroundColorHue : '400'}`]
-  };
+const applyBgColors = (
+  props: ThemeProps & { backgroundColor: string; backgroundColorHue: string }
+): FlattenSimpleInterpolation => css`
+  background: ${props.theme.palette[
+    `${props.backgroundColor}-${props.backgroundColorHue ? props.backgroundColorHue : '400'}`
+  ]};
 `;
 
-const applyDisabledStyles = (props: { disabled: boolean }): string | false =>
+const applyDisabledStyles = (props: { disabled: boolean }): FlattenSimpleInterpolation | false =>
   props.disabled &&
-  `
-  opacity: 0.4;
-  pointer-events: none;
-`;
+  css`
+    opacity: 0.4;
+    pointer-events: none;
+  `;
 
 const BADGE_POSITION = {
   circlesmall: '3px',
@@ -35,15 +37,15 @@ const FONT_SIZE = {
   extraLarge: 'xlAvatar',
 };
 
-const applyBadgePosition = (props: AvatarProps): string => {
-  return `
-    top:  ${BADGE_POSITION[`${props.shape}${props.size}`] || '5px'}; 
+const applyBadgePosition = (props: AvatarProps): FlattenSimpleInterpolation => {
+  return css`
+    top: ${BADGE_POSITION[`${props.shape}${props.size}`] || '5px'};
     right: ${BADGE_POSITION[`${props.shape}${props.size}`] || '5px'};
   `;
 };
 
-const applyFontSize = (props: AvatarProps): string => {
-  return `
+const applyFontSize = (props: AvatarProps): FlattenSimpleInterpolation => {
+  return css`
     ${macro[FONT_SIZE[`${props.size}`]]}
   `;
 };
@@ -51,8 +53,8 @@ const applyFontSize = (props: AvatarProps): string => {
 // eslint-disable-next-line react/jsx-props-no-spreading
 export default styled(({ backgroundColor, hasStatus, pressed, ...rest }) => <Avatar {...rest} />)`
   && {
-    ${(props): string => applyBgColors(props)};
-    ${(props): string | false => applyDisabledStyles(props)};
+    ${(props): FlattenSimpleInterpolation => applyBgColors(props)};
+    ${(props): FlattenSimpleInterpolation | false => applyDisabledStyles(props)};
     transition: background 0.3s ease;
 
     .ant-avatar-string {
@@ -61,7 +63,7 @@ export default styled(({ backgroundColor, hasStatus, pressed, ...rest }) => <Ava
       left: 0;
       position: relative;
       transform: none !important;
-      ${(props): string => applyFontSize(props)};
+      ${(props): FlattenSimpleInterpolation => applyFontSize(props)};
       ${macro.flexCentered}
       & > div {
         max-width: 100%;

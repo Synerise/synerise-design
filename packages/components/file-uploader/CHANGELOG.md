@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.15](https://github.com/Synerise/synerise-design/compare/@synerise/ds-file-uploader@0.2.14...@synerise/ds-file-uploader@0.2.15) (2020-01-20)
+
+### Bug Fixes
+
+- **file-uploader:** button type, prevent submit when placed inside form ([7034161](https://github.com/Synerise/synerise-design/commit/70341611bb98e6bee70db754c1e4f66b131256b9))
+
+## [0.2.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-file-uploader@0.2.13...@synerise/ds-file-uploader@0.2.14) (2020-01-20)
+
+**Note:** Version bump only for package @synerise/ds-file-uploader
+
+## [0.2.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-file-uploader@0.2.12...@synerise/ds-file-uploader@0.2.13) (2020-01-16)
+
+**Note:** Version bump only for package @synerise/ds-file-uploader
+
+## [0.2.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-file-uploader@0.2.11...@synerise/ds-file-uploader@0.2.12) (2020-01-16)
+
+**Note:** Version bump only for package @synerise/ds-file-uploader
+
 ## [0.2.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-file-uploader@0.2.10...@synerise/ds-file-uploader@0.2.11) (2020-01-15)
 
 **Note:** Version bump only for package @synerise/ds-file-uploader

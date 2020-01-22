@@ -1,10 +1,8 @@
 ---
+
 id: icon
 title: Icon
-
----
-
-Icon UI Component
+---Icon UI Component
 
 ## Single icon
 
@@ -43,7 +41,6 @@ import AngleLeftM from '@synerise/ds-icon/dist/icons/AngleLeftM';
 | color     | Define the color used                                      | string           | inherit |
 | title     | Name icon                                                  | string           |         |
 | size      | Define size icon                                           | string or number | 24      |
-| type      | Define custom type of special category icons               | string           |         |
 | onClick   | The callback function that is triggered when click on icon | fucnction        |         |
 | component | The component used for the root node                       | ReactNode        |         |
 | className | icon className                                             | string           |         |

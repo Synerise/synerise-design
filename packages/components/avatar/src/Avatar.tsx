@@ -21,7 +21,7 @@ type backgroundColors =
 
 type backgroundColorHue = '900' | '800' | '700' | '600' | '500' | '400' | '300' | '200' | '100' | '050';
 
-export interface Props extends Omit<AvatarProps, 'size'> {
+export interface Props extends Omit<AvatarProps, 'size' | 'icon'> {
   hasStatus?: boolean;
   size?: number | 'small' | 'default' | 'large' | 'extraLarge' | undefined;
   iconComponent?: React.ReactNode;

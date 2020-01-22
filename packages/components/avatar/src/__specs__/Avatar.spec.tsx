@@ -9,7 +9,6 @@ const SQUARE_SHAPE = 'square';
 const DEF_SIZE = 'default';
 const FERN = 'fern';
 const RED = 'red';
-const ANT_ICON = 'user';
 const IMG_SRC = 'https://hsto.org/web/77c/061/c05/77c061c0550f4acd98380bf554eb8886.png';
 
 describe('Avatar', () => {
@@ -42,20 +41,6 @@ describe('Avatar', () => {
 
     // ASSERT
     expect(container).toContainElement(icon);
-  });
-
-  it('should render with icon even when custom icon provider', () => {
-    // ARRANGE
-    const { container } = renderWithProvider(
-      <Avatar backgroundColor={FERN} iconComponent={<svg></svg>} icon={ANT_ICON} />
-    );
-
-    const icon = container.querySelector('i.anticon');
-    const svg = container.querySelector('svg');
-
-    // ASSERT
-    expect(container).toContainElement(icon as HTMLElement);
-    expect(container).toContainElement(svg);
   });
 
   it('should render with image', () => {

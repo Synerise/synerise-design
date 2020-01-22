@@ -19,7 +19,6 @@ interface Props extends ModalProps {
     okButton?: string;
     cancelButton?: string;
   };
-  onClose?: () => void;
 }
 
 const mapSizeToWidth = {
@@ -29,76 +28,73 @@ const mapSizeToWidth = {
   extraLarge: 1280,
 };
 
-const ModalProxy: React.FC<Props> = ({
-  texts,
-  bodyBackground,
-  closable,
-  headerActions,
-  title,
-  description,
-  size,
-  onClose,
-  ...antModalProps
-}) => {
-  // TODO onClose shouldn't work as afterClose - it will trigger passed afterClose function twice,
-  // TODO Need check if any Modal in app uses it and fix this behaviour
-  const handleOnClose = onClose || ((): void => antModalProps.afterClose && antModalProps.afterClose());
-  const className = `bodybg-${bodyBackground} ${antModalProps.className || ''}`;
+class ModalProxy extends React.Component<Props> {
+  static defaultProps = {
+    closable: true,
+    bodyBackground: 'white',
+    texts: {
+      okButton: 'Apply',
+      cancelButton: 'Cancel',
+    },
+  };
 
-  const titleContainer = (
-    <>
-      {title && (
-        <S.TitleContainer>
-          <S.Title level={3}>{title}</S.Title>
-          <S.ActionButtons>
-            {headerActions}
-            {closable && (
-              <Button data-testid="modal-close" className="close-modal" type="ghost" onClick={handleOnClose}>
-                <Icon component={<CloseM />} />
-              </Button>
-            )}
-          </S.ActionButtons>
-        </S.TitleContainer>
-      )}
+  static info = Modal.info;
+  static success = Modal.success;
+  static error = Modal.error;
+  static warning = Modal.warning;
+  static confirm = Modal.confirm;
 
-      {description && <S.Description>{description}</S.Description>}
-    </>
-  );
+  render(): React.ReactNode {
+    const { texts, bodyBackground, closable, headerActions, title, description, size, ...antModalProps } = this.props;
+    const handleOnClose = antModalProps.onCancel;
+    const className = `bodybg-${bodyBackground} ${antModalProps.className || ''}`;
 
-  const footerContainer = antModalProps.footer || (
-    <S.FooterContainer>
-      {/* eslint-disable-next-line */}
-      <Button type="ghost" onClick={antModalProps.onCancel} {...antModalProps.cancelButtonProps}>
-        {texts && texts.cancelButton}
-      </Button>
+    const titleContainer = (
+      <>
+        {title && (
+          <S.TitleContainer>
+            <S.Title level={3}>{title}</S.Title>
+            <S.ActionButtons>
+              {headerActions}
+              {closable && (
+                <Button data-testid="modal-close" className="close-modal" type="ghost" onClick={handleOnClose}>
+                  <Icon component={<CloseM />} />
+                </Button>
+              )}
+            </S.ActionButtons>
+          </S.TitleContainer>
+        )}
 
-      {/* eslint-disable-next-line */}
-      <Button type={antModalProps.okType || 'primary'} onClick={antModalProps.onOk} {...antModalProps.okButtonProps}>
-        {texts && texts.okButton}
-      </Button>
-    </S.FooterContainer>
-  );
+        {description && <S.Description>{description}</S.Description>}
+      </>
+    );
 
-  return (
-    <Modal
-      // eslint-disable-next-line react/jsx-props-no-spreading
-      {...antModalProps}
-      className={className}
-      width={!size ? undefined : mapSizeToWidth[size]}
-      closable={false}
-      title={(title || description) && titleContainer}
-      footer={antModalProps.footer !== null ? footerContainer : null}
-    />
-  );
-};
+    const footerContainer = antModalProps.footer || (
+      <S.FooterContainer>
+        {/* eslint-disable-next-line */}
+        <Button type="ghost" onClick={antModalProps.onCancel} {...antModalProps.cancelButtonProps}>
+          {texts && texts.cancelButton}
+        </Button>
 
-ModalProxy.defaultProps = {
-  closable: true,
-  bodyBackground: 'white',
-  texts: {
-    okButton: 'Apply',
-    cancelButton: 'Cancel',
-  },
-};
+        {/* eslint-disable-next-line */}
+        <Button type={antModalProps.okType || 'primary'} onClick={antModalProps.onOk} {...antModalProps.okButtonProps}>
+          {texts && texts.okButton}
+        </Button>
+      </S.FooterContainer>
+    );
+
+    return (
+      <Modal
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        {...antModalProps}
+        className={className}
+        width={!size ? undefined : mapSizeToWidth[size]}
+        closable={false}
+        title={(title || description) && titleContainer}
+        footer={antModalProps.footer !== null ? footerContainer : null}
+      />
+    );
+  }
+}
 
 export default ModalProxy;

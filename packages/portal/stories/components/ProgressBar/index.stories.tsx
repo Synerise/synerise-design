@@ -23,6 +23,7 @@ const stories = {
     percent: 60,
     showLabel: true,
     description: 'Description',
+    strokeColor: '#ff5a4d',
   },
 };
 

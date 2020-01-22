@@ -12,6 +12,7 @@ class Dropdown extends React.Component<DropDownProps> {
   static SearchInput: typeof SearchInput = SearchInput;
   static BottomAction: typeof BottomAction = BottomAction;
   static BackAction: typeof BackAction = BackAction;
+  static Button: typeof AntdDropdown.Button = AntdDropdown.Button;
 
   render(): React.ReactNode {
     return (

@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-progress-bar@0.2.6...@synerise/ds-progress-bar@0.3.0) (2020-01-20)
+
+### Bug Fixes
+
+- **progress-bar:** fix typo in readme ([b562400](https://github.com/Synerise/synerise-design/commit/b562400302442ce66680e88d4d8d21e7e825f110))
+
+### Features
+
+- **progress-bar:** use strings instead of enums in props ([0076b66](https://github.com/Synerise/synerise-design/commit/0076b6693f83eeb8e747177b86be3cce465a3273))
+
+## [0.2.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-progress-bar@0.2.5...@synerise/ds-progress-bar@0.2.6) (2020-01-16)
+
+### Bug Fixes
+
+- **progress-bar:** fix width of ant-progress-inner element ([ba47248](https://github.com/Synerise/synerise-design/commit/ba4724895a4c8b0485dfbbc1f7fd53d956cbf1f5))
+
 ## [0.2.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-progress-bar@0.2.4...@synerise/ds-progress-bar@0.2.5) (2020-01-15)
 
 **Note:** Version bump only for package @synerise/ds-progress-bar
