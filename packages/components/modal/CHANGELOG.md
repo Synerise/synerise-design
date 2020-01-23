@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.4](https://github.com/synerise/synerise-design/compare/@synerise/ds-modal@0.8.3...@synerise/ds-modal@0.8.4) (2020-01-23)
+
+### Bug Fixes
+
+- **modal:** close modal button position ([e9c5752](https://github.com/synerise/synerise-design/commit/e9c5752d444491ba1cac98be75fbe56734be4164))
+
 ## [0.8.3](https://github.com/synerise/synerise-design/compare/@synerise/ds-modal@0.8.2...@synerise/ds-modal@0.8.3) (2020-01-23)
 
 ### Bug Fixes
