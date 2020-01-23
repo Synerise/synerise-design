@@ -8,9 +8,6 @@ export const TitleContainer = styled.div`
   && {
     .close-modal {
       line-height: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
   }
 `;
@@ -47,6 +44,12 @@ export const ActionButtons = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+  .close-modal {
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 `;
 
 export const FooterContainer = styled.div`
