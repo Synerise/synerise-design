@@ -8,6 +8,9 @@ export const TitleContainer = styled.div`
   && {
     .close-modal {
       line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
   }
 `;
