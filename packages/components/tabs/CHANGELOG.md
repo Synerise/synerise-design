@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-tabs@0.6.13...@synerise/ds-tabs@0.7.0) (2020-01-23)
+
+### Features
+
+- **tabs:** ability to disable underscore active ([1ce9665](https://github.com/synerise/synerise-design/commit/1ce96658168d02a9620f98d4d1d54b7d71e72261))
+
 ## [0.6.13](https://github.com/synerise/synerise-design/compare/@synerise/ds-tabs@0.6.12...@synerise/ds-tabs@0.6.13) (2020-01-20)
 
 **Note:** Version bump only for package @synerise/ds-tabs

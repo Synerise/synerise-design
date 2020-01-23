@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.5](https://github.com/synerise/synerise-design/compare/@synerise/ds-layout@0.4.4...@synerise/ds-layout@0.4.5) (2020-01-23)
+
+### Bug Fixes
+
+- **layout:** fix sidebar scroll ([02e6bb8](https://github.com/synerise/synerise-design/commit/02e6bb8502917f4ab7e9439945738814d82fb72b))
+
 ## [0.4.4](https://github.com/synerise/synerise-design/compare/@synerise/ds-layout@0.4.3...@synerise/ds-layout@0.4.4) (2020-01-15)
 
 **Note:** Version bump only for package @synerise/ds-layout

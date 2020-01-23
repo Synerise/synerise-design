@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.31.0](https://github.com/synerise/synerise-design/compare/portal@0.30.0...portal@0.31.0) (2020-01-23)
+
+
+### Bug Fixes
+
+* **avatar:** page header component fixes ([9beecdd](https://github.com/synerise/synerise-design/commit/9beecddeb37a8b44e4ada380421102d713ca19d2))
+* **avatar:** resolve conflicts ([1584324](https://github.com/synerise/synerise-design/commit/15843244b160cbae3b0ce1cc9d635918fe67f62a))
+
+
+### Features
+
+* **tabs:** ability to disable underscore active ([1ce9665](https://github.com/synerise/synerise-design/commit/1ce96658168d02a9620f98d4d1d54b7d71e72261))
+
+
+
+
+
 # [0.30.0](https://github.com/synerise/synerise-design/compare/portal@0.29.6...portal@0.30.0) (2020-01-20)
 
 

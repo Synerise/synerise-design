@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.5](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.5.4...@synerise/ds-button@0.5.5) (2020-01-23)
+
+### Bug Fixes
+
+- **avatar:** page header component fixes ([9beecdd](https://github.com/synerise/synerise-design/commit/9beecddeb37a8b44e4ada380421102d713ca19d2))
+
 ## [0.5.4](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.5.3...@synerise/ds-button@0.5.4) (2020-01-15)
 
 **Note:** Version bump only for package @synerise/ds-button

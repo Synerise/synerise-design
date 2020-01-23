@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.16](https://github.com/Synerise/synerise-design/compare/@synerise/ds-file-uploader@0.2.15...@synerise/ds-file-uploader@0.2.16) (2020-01-23)
+
+### Bug Fixes
+
+- **avatar:** resolve conflicts ([1584324](https://github.com/Synerise/synerise-design/commit/15843244b160cbae3b0ce1cc9d635918fe67f62a))
+
 ## [0.2.15](https://github.com/Synerise/synerise-design/compare/@synerise/ds-file-uploader@0.2.14...@synerise/ds-file-uploader@0.2.15) (2020-01-20)
 
 ### Bug Fixes
