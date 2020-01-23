@@ -31,6 +31,7 @@ const stories = {
     return (
       <div style={{ background: '#f2f5f6', padding: '16px', display: 'flex' }}>
         <ButtonGroup
+          size="large"
           title={withTitle && 'Some title'}
           description={withDescription && 'Some description'}
         >
