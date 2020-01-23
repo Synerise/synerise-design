@@ -13,6 +13,7 @@ export type TabsProps = {
   tabs: TabItem[];
   handleTabClick: (index: number) => void;
   configuration?: Configuration;
+  underscore?: boolean;
 };
 
 type Configuration = {
@@ -26,7 +27,7 @@ export type TabItem = {
   disabled?: boolean;
 };
 
-const Tabs: React.FC<TabsProps> = ({ activeTab, tabs, handleTabClick, configuration }) => {
+const Tabs: React.FC<TabsProps> = ({ activeTab, tabs, handleTabClick, configuration, underscore }) => {
   const items: React.RefObject<HTMLButtonElement>[] = [];
   let container: HTMLDivElement | null;
   const [itemsWidths, setItemsWidths] = React.useState<number[]>([]);
@@ -55,8 +56,7 @@ const Tabs: React.FC<TabsProps> = ({ activeTab, tabs, handleTabClick, configurat
       itemsWithWidths[index] = item.current !== null ? item.current.offsetWidth + 24 : 0;
     });
     setItemsWidths(itemsWithWidths);
-  }, // eslint-disable-next-line react-hooks/exhaustive-deps
-  []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   React.useLayoutEffect((): void => {
     if (itemsWidths.length) {
@@ -98,13 +98,15 @@ const Tabs: React.FC<TabsProps> = ({ activeTab, tabs, handleTabClick, configurat
   );
 
   const renderDropdown = (): React.ReactNode => {
-    return (hiddenTabs.length || configuration) && (
-      <Dropdown data-testid="tabs-dropdown" overlay={renderHiddenTabs()}>
-        <Button type="ghost" mode="single-icon">
-          <Icon component={<OptionHorizontalM />} />
-        </Button>
-      </Dropdown>
-    )
+    return (
+      (hiddenTabs.length || configuration) && (
+        <Dropdown data-testid="tabs-dropdown" overlay={renderHiddenTabs()}>
+          <Button type="ghost" mode="single-icon">
+            <Icon component={<OptionHorizontalM />} />
+          </Button>
+        </Dropdown>
+      )
+    );
   };
 
   const renderVisibleTabs = (): React.ReactNode => {
@@ -114,6 +116,7 @@ const Tabs: React.FC<TabsProps> = ({ activeTab, tabs, handleTabClick, configurat
       const key = `tabs-tab-${index}`;
       return (
         <Tab
+          underscore={underscore}
           forwardedRef={ref}
           key={key}
           index={index}
@@ -136,9 +139,14 @@ const Tabs: React.FC<TabsProps> = ({ activeTab, tabs, handleTabClick, configurat
       }}
       data-testid="tabs-container"
     >
-      { renderVisibleTabs() }
-      { renderDropdown() }
+      {renderVisibleTabs()}
+      {renderDropdown()}
     </S.TabsContainer>
   );
 };
+
+Tabs.defaultProps = {
+  underscore: true,
+};
+
 export default Tabs;
