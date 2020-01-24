@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.6](https://github.com/synerise/synerise-design/compare/@synerise/ds-checkbox@0.6.5...@synerise/ds-checkbox@0.6.6) (2020-01-24)
+
+### Bug Fixes
+
+- add missing classnames to components ([dfc4f92](https://github.com/synerise/synerise-design/commit/dfc4f921747285155eec967e95c7edc4f27a9e77))
+
 ## [0.6.5](https://github.com/synerise/synerise-design/compare/@synerise/ds-checkbox@0.6.4...@synerise/ds-checkbox@0.6.5) (2020-01-24)
 
 ### Bug Fixes

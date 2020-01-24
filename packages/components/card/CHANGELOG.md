@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.29](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.2.28...@synerise/ds-card@0.2.29) (2020-01-24)
+
+### Bug Fixes
+
+- add missing classnames to components ([dfc4f92](https://github.com/Synerise/synerise-design/commit/dfc4f921747285155eec967e95c7edc4f27a9e77))
+
 ## [0.2.28](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.2.27...@synerise/ds-card@0.2.28) (2020-01-20)
 
 **Note:** Version bump only for package @synerise/ds-card

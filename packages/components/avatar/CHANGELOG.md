@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.9](https://github.com/synerise/synerise-design/compare/@synerise/ds-avatar@0.3.8...@synerise/ds-avatar@0.3.9) (2020-01-24)
+
+### Bug Fixes
+
+- add missing classnames to components ([dfc4f92](https://github.com/synerise/synerise-design/commit/dfc4f921747285155eec967e95c7edc4f27a9e77))
+
 ## [0.3.8](https://github.com/synerise/synerise-design/compare/@synerise/ds-avatar@0.3.7...@synerise/ds-avatar@0.3.8) (2020-01-23)
 
 ### Bug Fixes

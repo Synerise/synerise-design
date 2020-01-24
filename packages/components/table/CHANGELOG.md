@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.17](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.5.16...@synerise/ds-table@0.5.17) (2020-01-24)
+
+### Bug Fixes
+
+- add missing classnames to components ([dfc4f92](https://github.com/synerise/synerise-design/commit/dfc4f921747285155eec967e95c7edc4f27a9e77))
+
 ## [0.5.16](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.5.15...@synerise/ds-table@0.5.16) (2020-01-24)
 
 **Note:** Version bump only for package @synerise/ds-table

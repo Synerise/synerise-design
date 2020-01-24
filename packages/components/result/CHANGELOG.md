@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-result@0.1.11...@synerise/ds-result@0.1.12) (2020-01-24)
+
+### Bug Fixes
+
+- add missing classnames to components ([dfc4f92](https://github.com/Synerise/synerise-design/commit/dfc4f921747285155eec967e95c7edc4f27a9e77))
+
 ## [0.1.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-result@0.1.10...@synerise/ds-result@0.1.11) (2020-01-23)
 
 **Note:** Version bump only for package @synerise/ds-result

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-badge@0.3.4...@synerise/ds-badge@0.3.5) (2020-01-24)
+
+### Bug Fixes
+
+- add missing classnames to components ([dfc4f92](https://github.com/Synerise/synerise-design/commit/dfc4f921747285155eec967e95c7edc4f27a9e77))
+
 ## [0.3.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-badge@0.3.3...@synerise/ds-badge@0.3.4) (2020-01-15)
 
 **Note:** Version bump only for package @synerise/ds-badge
