@@ -12,7 +12,8 @@ export enum ListType {
   content = 'content',
 }
 
-interface ManageableListProps {
+export interface ManageableListProps {
+  className?: string;
   addItemLabel?: string | React.ReactNode;
   showMoreLabel?: string | React.ReactNode;
   showLessLabel?: string | React.ReactNode;
@@ -35,6 +36,7 @@ interface ManageableListProps {
 }
 
 const ManageableList: React.FC<ManageableListProps> = ({
+  className,
   onItemAdd,
   onItemSelect,
   onItemDuplicate,
@@ -123,7 +125,7 @@ const ManageableList: React.FC<ManageableListProps> = ({
   }, [changeOrderDisabled, items, visibleItems, onChangeOrder, loading, getItem]);
 
   return (
-    <S.ManageableListContainer listType={type} greyBackground={greyBackground}>
+    <S.ManageableListContainer className={className} listType={type} greyBackground={greyBackground}>
       {type === ListType.default && Boolean(onItemAdd) && (
         <AddItemWithName
           addItemLabel={addItemLabel}

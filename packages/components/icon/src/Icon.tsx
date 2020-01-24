@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as S from './Icon.styles';
 
-type IconProps = {
+export type IconProps = {
   color?: string;
   name?: string;
   title?: string;

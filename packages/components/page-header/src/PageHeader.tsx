@@ -8,6 +8,7 @@ import Button from '@synerise/ds-button/dist/Button';
 import * as S from './PageHeader.styles';
 
 export type PageHeaderProps = {
+  className?: string;
   rightSide?: React.ReactNode;
   children?: React.ReactNode;
   bar?: React.ReactNode;
@@ -39,6 +40,7 @@ export type PageHeaderProps = {
 
 const PageHeader: React.FC<PageHeaderProps> = props => {
   const {
+    className,
     onGoBack,
     onClose,
     children,
@@ -54,7 +56,7 @@ const PageHeader: React.FC<PageHeaderProps> = props => {
   } = props;
 
   return (
-    <S.MainContainer isolated={isolated}>
+    <S.MainContainer isolated={isolated} className={className}>
       <S.PageHeaderContainer>
         {onGoBack && (
           <S.PageHeaderBack>

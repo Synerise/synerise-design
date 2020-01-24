@@ -1,8 +1,23 @@
 import * as React from 'react';
 import Icon from '@synerise/ds-icon';
-
 import * as S from './Card.styles';
-import { Props } from './Card.types';
+
+export interface CardProps {
+  raised?: boolean;
+  disabled?: boolean;
+  className?: string;
+  lively?: boolean;
+  children?: React.ReactNode;
+  style?: React.CSSProperties;
+  withHeader?: boolean;
+  compactHeader?: boolean;
+  title?: string;
+  description?: React.ReactNode | string;
+  icon?: React.ReactNode;
+  iconColor?: string;
+  size?: 'medium';
+  headerSideChildren?: React.ReactNode;
+}
 
 const mapSizeToWidth = {
   small: 472,
@@ -11,7 +26,7 @@ const mapSizeToWidth = {
   extraLarge: 1232,
 };
 
-const Card: React.FC<Props> = ({
+const Card: React.FC<CardProps> = ({
   children,
   raised,
   disabled,
@@ -26,7 +41,7 @@ const Card: React.FC<Props> = ({
   size,
   iconColor,
   headerSideChildren,
-}: Props) => {
+}) => {
   const fatTitle = !description || (description && compactHeader);
 
   return (

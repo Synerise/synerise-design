@@ -3,13 +3,12 @@ import { DrawerProps as AntdDrawerProps } from 'antd/lib/drawer';
 import { AntdDrawer, DrawerBody, DrawerContent, DrawerHeader } from './Drawer.styles';
 import './style/index.less';
 
-export type DrawerProps = {
+export interface DrawerProps extends Omit<AntdDrawerProps, 'closable'> {
   title?: string;
   closable?: string;
-  children: React.ReactNode;
-};
+}
 
-class Drawer extends React.PureComponent<DrawerProps & AntdDrawerProps> {
+class Drawer extends React.PureComponent<DrawerProps> {
   static DrawerBody = DrawerBody;
   static DrawerHeader = DrawerHeader;
   static DrawerContent = DrawerContent;

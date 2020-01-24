@@ -1,15 +1,15 @@
 import * as React from 'react';
-import Progress, { ProgressProps } from 'antd/lib/progress';
+import Progress, { ProgressProps as AntProgressProps } from 'antd/lib/progress';
 import '@synerise/ds-core/dist/js/style';
 import './style/index.less';
 
-interface Props {
+export interface ProgressProps extends AntProgressProps {
   amount?: number;
   showLabel?: boolean;
   description?: string;
 }
 
-class ProgressBar extends React.PureComponent<ProgressProps & Props> {
+class ProgressBar extends React.PureComponent<ProgressProps> {
   static defaultProps = {
     type: 'line',
     status: 'normal',
@@ -20,9 +20,9 @@ class ProgressBar extends React.PureComponent<ProgressProps & Props> {
   };
 
   render(): React.ReactNode {
-    const { showLabel, description, amount, percent, type, status, strokeColor, strokeLinecap } = this.props;
+    const { showLabel, description, amount, percent, type, status, strokeColor, strokeLinecap, className } = this.props;
     return (
-      <div className="progress-bar-container" data-testid="progress-bar-container">
+      <div className={`${className} progress-bar-container`} data-testid="progress-bar-container">
         {showLabel && (
           <span className="progress-bar-label" data-testid="progress-bar-label">
             <strong data-testid="progress-bar-max-value">{amount}</strong>

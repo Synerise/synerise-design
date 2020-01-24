@@ -11,14 +11,13 @@ import InfoM from '@synerise/ds-icon/dist/icons/InfoM';
 import * as S from './Result.styles';
 
 export type ResultProps = {
+  className?: string;
   title: string;
   type: 'info' | 'warning' | 'error' | 'success' | 'progress' | 'no-results';
-
   description?: string;
   closable?: boolean;
   buttons?: React.ReactNode;
   panel?: React.ReactNode;
-
   onClose?: () => void;
 };
 
@@ -55,11 +54,11 @@ const mapTypeToStatus = {
   },
 };
 
-const Result: React.FC<ResultProps> = ({ type, title, description, panel, buttons, closable, onClose }) => {
+const Result: React.FC<ResultProps> = ({ className, type, title, description, panel, buttons, closable, onClose }) => {
   const { IconComponent, ...iconContainerStyles } = mapTypeToStatus[type];
 
   return (
-    <S.ResultContainer>
+    <S.ResultContainer className={className}>
       {closable && (
         <S.CloseButton className="close-modal" data-testid="test-closebtn" type="ghost" onClick={onClose}>
           <S.CloseIcon component={<CloseM />} size={24} />

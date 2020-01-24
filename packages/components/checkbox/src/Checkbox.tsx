@@ -1,18 +1,16 @@
 import * as React from 'react';
 import '@synerise/ds-core/dist/js/style';
 import './style/index.less';
-import { CheckboxProps } from 'antd/lib/checkbox';
+import { CheckboxProps as AntCheckboxProps } from 'antd/lib/checkbox';
 import { Description, ErrorText } from '@synerise/ds-typography';
 import * as S from './Checkbox.styles';
 
-interface Props extends CheckboxProps {
+export interface CheckboxProps extends AntCheckboxProps {
   description?: string;
   errorText?: string;
 }
 
-class Checkbox extends React.Component<Props> {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-  // @ts-ignore
+class Checkbox extends React.Component<CheckboxProps> {
   static Group = S.AntdCheckbox.Group;
 
   render(): React.ReactNode {

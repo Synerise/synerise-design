@@ -1,14 +1,14 @@
 import * as React from 'react';
 import '@synerise/ds-core/dist/js/style';
 import './style/index.less';
-import AntdDivider, { DividerProps } from 'antd/lib/divider';
+import AntdDivider, { DividerProps as AntDividerProps } from 'antd/lib/divider';
 
-interface Props extends DividerProps {
+export interface DividerProps extends AntDividerProps {
   marginTop?: number;
   marginBottom?: number;
 }
 
-const Divider: React.FC<Props> = ({ marginBottom, marginTop, style, ...antdDividerProps }) => {
+const Divider: React.FC<DividerProps> = ({ marginBottom, marginTop, style, ...antdDividerProps }) => {
   return (
     <AntdDivider
       // eslint-disable-next-line react/jsx-props-no-spreading

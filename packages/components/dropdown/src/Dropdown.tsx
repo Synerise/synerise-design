@@ -1,13 +1,15 @@
 import * as React from 'react';
 import '@synerise/ds-core/dist/js/style';
 import './style/index.less';
-import AntdDropdown, { DropDownProps } from 'antd/lib/dropdown';
+import AntdDropdown, { DropDownProps as AntDropDownProps } from 'antd/lib/dropdown';
 import SearchInput from './elements/SearchInput/SearchInput';
 import BottomAction from './elements/BottomAction/BottomAction';
 import BackAction from './elements/BackAction/BackAction';
 import { Wrapper } from './Dropdown.styles';
 
-class Dropdown extends React.Component<DropDownProps> {
+export type DropdownProps = AntDropDownProps;
+
+class Dropdown extends React.Component<DropdownProps> {
   static Wrapper: typeof Wrapper = Wrapper;
   static SearchInput: typeof SearchInput = SearchInput;
   static BottomAction: typeof BottomAction = BottomAction;
