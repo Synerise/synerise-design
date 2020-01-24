@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.5](https://github.com/synerise/synerise-design/compare/@synerise/ds-checkbox@0.6.4...@synerise/ds-checkbox@0.6.5) (2020-01-24)
+
+### Bug Fixes
+
+- **checkbox:** set padding space ([6d903b9](https://github.com/synerise/synerise-design/commit/6d903b9811e9b401a9e74e55bd8ea44afbfaae99))
+
 ## [0.6.4](https://github.com/synerise/synerise-design/compare/@synerise/ds-checkbox@0.6.3...@synerise/ds-checkbox@0.6.4) (2020-01-15)
 
 **Note:** Version bump only for package @synerise/ds-checkbox

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.31.1](https://github.com/synerise/synerise-design/compare/portal@0.31.0...portal@0.31.1) (2020-01-24)
+
+
+### Bug Fixes
+
+* **button-group:** add size prop ([6ac3c52](https://github.com/synerise/synerise-design/commit/6ac3c52b93d718b0a25f07e8db101a606295a0ad))
+
+
+
+
+
 # [0.31.0](https://github.com/synerise/synerise-design/compare/portal@0.30.0...portal@0.31.0) (2020-01-23)
 
 

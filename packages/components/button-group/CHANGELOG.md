@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-button-group@0.2.5...@synerise/ds-button-group@0.2.6) (2020-01-24)
+
+### Bug Fixes
+
+- **button-group:** add size prop ([6ac3c52](https://github.com/Synerise/synerise-design/commit/6ac3c52b93d718b0a25f07e8db101a606295a0ad))
+
 ## [0.2.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-button-group@0.2.4...@synerise/ds-button-group@0.2.5) (2020-01-23)
 
 **Note:** Version bump only for package @synerise/ds-button-group
