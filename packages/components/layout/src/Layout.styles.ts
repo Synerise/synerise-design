@@ -40,7 +40,8 @@ export const LayoutMainInner = styled.div`
 
 export const LayoutSidebar = styled.div`
   z-index: 1;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
   background-color: #fff;
   height: 100%;
   ${mediaQuery.to.medium`flex: 0 0 auto;`};
