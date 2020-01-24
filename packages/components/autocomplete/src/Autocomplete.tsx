@@ -5,22 +5,25 @@ import AntdAutoComplete, { AutoCompleteProps as OriginalProps } from 'antd/lib/a
 import { ErrorText, Description, Label } from '@synerise/ds-typography';
 import * as S from './Autocomplete.styles';
 
-export interface AutocompleteProps {
+export type OverrideProps = {
+  className?: string;
   getPopupContainer?: () => Element | undefined;
   errorText?: React.ReactNode | string;
   label?: React.ReactNode | string;
   description?: React.ReactNode | string;
-}
+};
+
+export type AutocompleteProps = OverrideProps & OriginalProps;
 
 const getDefaultPopupContainer = (): HTMLElement => document.querySelector(`.ant-select-auto-complete`) as HTMLElement;
 
-class Autocomplete extends React.PureComponent<AutocompleteProps & OriginalProps> {
+class Autocomplete extends React.PureComponent<AutocompleteProps> {
   static Option = AntdAutoComplete.Option;
 
   render(): React.ReactElement {
-    const { label, description, errorText, getPopupContainer, disabled } = this.props;
+    const { className, label, description, errorText, getPopupContainer, disabled } = this.props;
     return (
-      <S.AutocompleteWrapper>
+      <S.AutocompleteWrapper className={className}>
         {label && (
           <S.LabelWrapper>
             <Label>{label}</Label>

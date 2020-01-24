@@ -13,6 +13,7 @@ type FileUploaderTexts = FileViewTexts & {
 };
 
 export interface FileUploaderProps {
+  className?: string;
   mode: 'single' | 'multi-medium' | 'multi-large';
   filesAmount?: number;
   description?: string;

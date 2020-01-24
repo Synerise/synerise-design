@@ -10,7 +10,7 @@ import SearchM from '@synerise/ds-icon/dist/icons/SearchM';
 import { useOnClickOutside } from '@synerise/ds-utils';
 import * as S from './Table.styles';
 
-type AntTableProps<T> = Pick<
+export type AntTableProps<T> = Pick<
   TableProps<T>,
   | 'loading'
   | 'footer'
@@ -54,7 +54,7 @@ type AntTableProps<T> = Pick<
   | 'sortDirections'
 >;
 
-interface DSTableProps<T> extends AntTableProps<T> {
+export interface DSTableProps<T> extends AntTableProps<T> {
   title?: string | React.ReactNode;
   subTitle?: string | React.ReactNode;
   onSearch?: (e: React.ChangeEvent<HTMLInputElement>) => void;

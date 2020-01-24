@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { AvatarProps } from 'antd/lib/avatar';
+import { AvatarProps as AntAvatarProps } from 'antd/lib/avatar';
 import '@synerise/ds-core/dist/js/style';
 import './style/index.less';
 
@@ -21,7 +21,7 @@ type backgroundColors =
 
 type backgroundColorHue = '900' | '800' | '700' | '600' | '500' | '400' | '300' | '200' | '100' | '050';
 
-export interface Props extends Omit<AvatarProps, 'size' | 'icon'> {
+export interface AvatarProps extends Omit<AntAvatarProps, 'size' | 'icon'> {
   hasStatus?: boolean;
   size?: number | 'small' | 'default' | 'large' | 'extraLarge' | undefined;
   iconComponent?: React.ReactNode;
@@ -30,7 +30,7 @@ export interface Props extends Omit<AvatarProps, 'size' | 'icon'> {
   disabled?: boolean;
 }
 
-const Avatar: React.FC<Props> = ({
+const Avatar: React.FC<AvatarProps> = ({
   backgroundColor,
   backgroundColorHue,
   disabled,

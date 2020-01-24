@@ -1,12 +1,8 @@
 import * as React from 'react';
 import * as S from './Navbar.styles';
 
-export type SideNode = {
-  id: string | number;
-  render: React.ReactNode;
-};
-
 export type NavbarProps = {
+  className?: string;
   color?: string;
   description: string;
   logo: React.ReactNode | string;
@@ -16,10 +12,10 @@ export type NavbarProps = {
 };
 
 const Navbar: React.FC<NavbarProps> & { Divider: typeof S.NavbarDivider } = props => {
-  const { color, logo, description, children, actions, additionalNodes } = props;
+  const { className, color, logo, description, children, actions, additionalNodes } = props;
 
   return (
-    <S.Navbar color={color}>
+    <S.Navbar className={className} color={color}>
       {typeof logo === 'string' ? <img src={logo} alt="" /> : logo}
       <S.NavbarDivider />
       <S.NavbarDescription>{description}</S.NavbarDescription>

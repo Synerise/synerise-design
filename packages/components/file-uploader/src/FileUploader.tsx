@@ -13,6 +13,7 @@ import { FileUploaderProps } from './FileUploader.types';
 import * as S from './FileUploader.styles';
 
 const FileUploader: React.FC<FileUploaderProps> = ({
+  className,
   onUpload,
   disabled,
   accept,
@@ -66,7 +67,7 @@ const FileUploader: React.FC<FileUploaderProps> = ({
   const hasError = Boolean(error) || !uploadSuccess;
   const errors = hasError && !uploadSuccess ? [error].concat('To many files uploaded') : [error];
   return (
-    <S.Container>
+    <S.Container className={className}>
       {label && (
         <S.Label>
           <span>{label}</span>

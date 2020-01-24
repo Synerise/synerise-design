@@ -6,6 +6,7 @@ import './style/index.less';
 import * as S from './Input.styles';
 
 export interface Props {
+  className?: string;
   errorText?: React.ReactNode | string;
   label?: React.ReactNode | string;
   description?: React.ReactNode | string;
@@ -21,6 +22,7 @@ const enhancedInput = <P extends object>(
   WrappedComponent: React.ComponentType,
   { type }: { type: string }
 ): React.ComponentType<P & EnhancedProps> => ({
+  className,
   errorText,
   label,
   description,
@@ -59,7 +61,7 @@ const enhancedInput = <P extends object>(
   }, [antdInputProps.value, counterLimit]);
 
   return (
-    <S.OuterWrapper resetMargin={resetMargin}>
+    <S.OuterWrapper className={className} resetMargin={resetMargin}>
       {(label || counterLimit) && (
         <S.ContentAbove>
           <S.Label htmlFor={id}>{label}</S.Label>

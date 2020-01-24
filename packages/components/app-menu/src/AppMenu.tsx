@@ -8,6 +8,7 @@ import NavigableItems from './NavigableItems/NavigableItems';
 import * as S from './AppMenu.styles';
 
 type AppMenuProps = {
+  className?: string;
   activeItem: string;
   footer: React.ReactElement;
   children: React.ReactNodeArray;
@@ -15,6 +16,7 @@ type AppMenuProps = {
 };
 
 const AppMenu: React.FC<AppMenuProps> & { SubMenu: typeof SubMenu; Item: typeof Item } = ({
+  className,
   children,
   footer,
   activeItem: activeId,
@@ -30,7 +32,7 @@ const AppMenu: React.FC<AppMenuProps> & { SubMenu: typeof SubMenu; Item: typeof 
   });
 
   return (
-    <S.MenuWrapper className={`menu ${isOpened ? 'menu--opened' : ''}`} ref={ref} top={top}>
+    <S.MenuWrapper className={`${className} menu ${isOpened ? 'menu--opened' : ''}`} ref={ref} top={top}>
       <S.ItemsWrapper>
         <MenuContext.Provider value={{ isOpened, setOpened, activeItem, setActiveItem }}>
           <NavigableItems onHideMenu={(): void => setOpened(false)}>{children}</NavigableItems>
