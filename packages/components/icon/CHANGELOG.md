@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.7.6...@synerise/ds-icon@0.7.7) (2020-01-27)
+
+### Bug Fixes
+
+- **list:** list padding corrected ([8b40531](https://github.com/Synerise/synerise-design/commit/8b40531122869bd47a266e7bb396e2205a3bde5b))
+
 ## [0.7.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.7.5...@synerise/ds-icon@0.7.6) (2020-01-24)
 
 ### Bug Fixes

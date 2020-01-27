@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.31.2](https://github.com/synerise/synerise-design/compare/portal@0.31.1...portal@0.31.2) (2020-01-27)
+
+
+### Bug Fixes
+
+* **list:** list padding corrected ([8b40531](https://github.com/synerise/synerise-design/commit/8b40531122869bd47a266e7bb396e2205a3bde5b))
+
+
+
+
+
 ## [0.31.1](https://github.com/synerise/synerise-design/compare/portal@0.31.0...portal@0.31.1) (2020-01-24)
 
 
