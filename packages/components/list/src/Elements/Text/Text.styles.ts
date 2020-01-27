@@ -1,14 +1,16 @@
-import styled from 'styled-components';
+import styled, { css, SimpleInterpolation } from 'styled-components';
 import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 
 type WrapperProps = {
   disabled?: boolean;
   danger?: boolean;
+  icon?: JSX.Element;
+  size?: ListItemType;
 };
 
-export const IconWrapper = styled.div`
-  margin-right: 11px;
-`;
+export type ListItemType = 'small' | 'medium';
+
+export const IconWrapper = styled.div``;
 
 export const Wrapper = styled.li<WrapperProps>`
   color: ${(props: WrapperProps & ThemeProps): string => {
@@ -22,9 +24,19 @@ export const Wrapper = styled.li<WrapperProps>`
   cursor: ${(props): string => (props.disabled ? 'not-allowed' : 'pointer')};
   font-weight: 500;
   border-radius: 3px;
-  padding: 5px 12px 4px 7px;
   display: flex;
   align-items: center;
+  ${(props): SimpleInterpolation =>
+    props.size === 'small' &&
+    css`
+      padding: 5px 12px 4px 7px;
+    `}
+  ${(props): SimpleInterpolation =>
+    props.size === 'medium' &&
+    css`
+      padding: 12px;
+      padding-left: ${props.icon ? '12px' : '16px'};
+    `}
   ${IconWrapper} {
     svg {
       ${(props): string | false =>
