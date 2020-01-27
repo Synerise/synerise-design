@@ -45,4 +45,6 @@ const Tooltip: React.FC<TooltipExtendedProps & TooltipProps> = ({
   return <AntdTooltip {...props} title={tooltipComponent} />;
 };
 
-export default withTheme(Tooltip);
+const TooltipWithTheme = withTheme(Tooltip);
+TooltipWithTheme.displayName = 'Tooltip';
+export default TooltipWithTheme;
