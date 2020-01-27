@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 
-export const ItemWrapper = styled.li`
-  padding: 0;
-  margin: 0;
-`;
-
 export const ItemLink = styled.div`
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  height: 40px;
+  width: 40px;
   padding: 8px;
   margin: 12px 0;
   cursor: pointer;
@@ -22,6 +23,27 @@ export const ItemLink = styled.div`
 
   &:hover {
     background: ${(props): string => props.theme.palette['grey-050']};
+  }
+
+  > a {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+  }
+`;
+
+export const ItemWrapper = styled.li`
+  padding: 0;
+  margin: 0;
+  overflow: auto;
+
+  &:first-child {
+    ${ItemLink} {
+      margin-top: 8px;
+    }
   }
 `;
 
