@@ -95,8 +95,7 @@ export default styled(({ mode, type, loading, ...rest }) => <Button type={type} 
       &.ant-btn {
         box-shadow: none;
         &:focus {
-          box-shadow: inset 0 0 0 1px
-            ${props.type !== 'primary' ? props.theme.palette['blue-600'] : props.theme.palette['blue-700']};
+          box-shadow: inset 0 0 0 1px ${props.theme.palette['blue-700']};
         }
       }
     `}
