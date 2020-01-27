@@ -10,7 +10,7 @@ type NavigableItemsProps = {
   children: React.ReactNodeArray;
 };
 
-const itemHeight = 52;
+const itemHeight = 64;
 const animationTime = 100;
 
 const NavigableItems: React.FC<NavigableItemsProps> = ({ children, onHideMenu }) => {
@@ -35,7 +35,7 @@ const NavigableItems: React.FC<NavigableItemsProps> = ({ children, onHideMenu })
     }
   }, [children.length, ref]);
 
-  React.useLayoutEffect(() => {
+  React.useEffect(() => {
     window.addEventListener('resize', countCapacity);
 
     return (): void => window.removeEventListener('resize', countCapacity);

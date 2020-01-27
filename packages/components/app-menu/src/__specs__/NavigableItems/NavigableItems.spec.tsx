@@ -19,9 +19,9 @@ describe('NavigableItems', () => {
 
   it('should render navigable items and allow to navigate through them', async () => {
     Element.prototype.getBoundingClientRect = jest.fn(
-      () => ({ 
+      () => ({
         width: 120,
-        height: 208,
+        height: 256,
         top: 0,
         left: 0,
         x: 0,
@@ -61,7 +61,7 @@ describe('NavigableItems', () => {
 
   it('should skip nav buttons when container has enough space', () => {
     Element.prototype.getBoundingClientRect = jest.fn(
-      () => ({ 
+      () => ({
         width: 120,
         height: 1000,
         top: 0,
@@ -77,7 +77,7 @@ describe('NavigableItems', () => {
     // ARRANGE
     const { getByText, queryAllByRole } = renderWithProvider(Component);
 
-    expect(queryAllByRole('listitem').length).toEqual(0); 
+    expect(queryAllByRole('listitem').length).toEqual(0);
     expect(getByText('Item #1')).toBeTruthy();
     expect(getByText('Item #5')).toBeTruthy();
   });
