@@ -10,7 +10,7 @@ type NavigableItemsProps = {
   children: React.ReactNodeArray;
 };
 
-const itemHeight = 52;
+const itemHeight = 64;
 const animationTime = 100;
 
 const NavigableItems: React.FC<NavigableItemsProps> = ({ children, onHideMenu }) => {
