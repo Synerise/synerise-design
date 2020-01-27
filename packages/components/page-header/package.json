@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-page-header",
-  "version": "0.6.16",
+  "version": "0.6.17",
   "description": "Page-Header UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "synerise/synerise-design",
@@ -24,7 +24,7 @@
   "dependencies": {
     "@synerise/ds-button": "^0.5.6",
     "@synerise/ds-icon": "^0.7.6",
-    "@synerise/ds-inline-edit": "^0.0.35",
+    "@synerise/ds-inline-edit": "^0.0.36",
     "@synerise/ds-typography": "^0.6.1",
     "@synerise/ds-utils": "^0.7.0"
   },
