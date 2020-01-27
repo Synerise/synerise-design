@@ -29,7 +29,7 @@ const Tooltip: React.FC<TooltipExtendedProps & TooltipProps> = ({
 
   // TODO: map tutorial dots, need Icons, uncomment code responsible for array validation, tutorial (and types,styles)
   // Add delay swap tabs action and default change action that might be define by developer
-
+  const titleExists = Boolean(description || title || icon);
   const tooltipComponent = (
     <div>
       <S.TooltipComponent type={type}>
@@ -42,7 +42,7 @@ const Tooltip: React.FC<TooltipExtendedProps & TooltipProps> = ({
     </div>
   );
   // eslint-disable-next-line react/jsx-props-no-spreading
-  return <AntdTooltip {...props} title={tooltipComponent} />;
+  return titleExists ? <AntdTooltip {...props} title={tooltipComponent} /> : null;
 };
 
 const TooltipWithTheme = withTheme(Tooltip);

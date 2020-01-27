@@ -11,7 +11,10 @@ describe('List', () => {
   it('should render basic list', () => {
     // ARRANGE
     const { getByText } = renderWithProvider(
-      <List dataSource={defaultData} renderItem={(item): React.ReactNode => <List.Item>{item}</List.Item>} />
+      <List
+        dataSource={defaultData}
+        renderItem={(item): React.ReactNode => <List.Item size="small">{item}</List.Item>}
+      />
     );
 
     // ASSERT
@@ -88,7 +91,12 @@ describe('List', () => {
 
   it('should render wrapped radio group', () => {
     // ARRANGE
-    const data = [[{ label: 'Country', value: 'country' }, { label: 'Address', value: 'address' }]];
+    const data = [
+      [
+        { label: 'Country', value: 'country' },
+        { label: 'Address', value: 'address' },
+      ],
+    ];
 
     const { container } = renderWithProvider(
       <List
@@ -101,5 +109,18 @@ describe('List', () => {
 
     // ASSERT
     expect(container.querySelectorAll('.ant-radio-group')).toHaveLength(1);
+  });
+
+  it('should render basic medium size list', () => {
+    // ARRANGE
+    const { container } = renderWithProvider(
+      <List
+        dataSource={defaultData}
+        renderItem={(item): React.ReactNode => <List.Item size="medium">{item}</List.Item>}
+      />
+    );
+
+    // ASSERT
+    expect(container.querySelector('.ant-list-items > li')).toHaveStyle('padding: 12px 12px 12px 16px');
   });
 });

@@ -59,6 +59,7 @@ const stories = {
         icon={<Icon component={<FileM />} />}
         disabled={item.disabled}
         danger={item.danger}
+        size={'medium'}
       >
         {item.text}
       </List.Item>
@@ -75,6 +76,7 @@ const stories = {
         disabled={item.disabled}
         danger={item.danger}
         actions={actions()}
+        size={'medium'}
       >
         {item.text}
       </List.Item>
@@ -115,6 +117,7 @@ const stories = {
             disabled={item.disabled}
             danger={item.danger}
             actions={actions}
+            size={'medium'}
           >
             {item.text}
           </List.Item>
