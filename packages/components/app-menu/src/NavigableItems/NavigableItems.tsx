@@ -35,7 +35,7 @@ const NavigableItems: React.FC<NavigableItemsProps> = ({ children, onHideMenu })
     }
   }, [children.length, ref]);
 
-  React.useLayoutEffect(() => {
+  React.useEffect(() => {
     window.addEventListener('resize', countCapacity);
 
     return (): void => window.removeEventListener('resize', countCapacity);
