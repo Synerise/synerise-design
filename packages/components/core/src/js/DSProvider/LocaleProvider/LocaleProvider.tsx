@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { IntlProvider } from 'react-intl';
 import { flatten } from 'flat';
+import * as merge from 'deepmerge';
 import AntConfigProvider from 'antd/lib/config-provider';
 import { MessageFormatElement } from 'intl-messageformat-parser';
 import antMessages from './antLocales';
@@ -13,6 +14,7 @@ type NestedMessages = {
 export interface LocaleProviderProps {
   locale?: string; // ex. pl, en-GB
   messages?: NestedMessages;
+  defaultMessages?: NestedMessages;
   timeZone?: string; // Europe/Warsaw
 }
 
@@ -42,13 +44,17 @@ export default class LocaleProvider extends React.Component<LocaleProviderProps,
   getLangForCode = (code: string): string => code.substring(0, 2);
 
   render(): React.ReactNode {
-    const { messages, locale, timeZone, children } = this.props;
+    const { defaultMessages = {}, messages = {}, locale, timeZone, children } = this.props;
     const { dsLocales } = this.state;
     const code = locale || DEFAULT_LANG;
     const lang = this.getLangForCode(code);
     const localeData = messages || {};
+    const localeDataForLang = localeData[lang] || {};
     const antLocale = Object.prototype.hasOwnProperty.call(antMessages, lang) ? antMessages[lang] : antMessages.default;
-    const currentMessages = flatten({ ...dsLocales, ...(localeData[lang] as NestedMessages) });
+    const currentMessages = flatten({
+      ...dsLocales,
+      ...merge.all([defaultMessages, localeDataForLang as NestedMessages]),
+    });
     return (
       <AntConfigProvider locale={antLocale}>
         <IntlProvider textComponent="span" locale={code} messages={currentMessages as Messages} timeZone={timeZone}>
