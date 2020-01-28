@@ -24,6 +24,7 @@
   "sideEffects": false,
   "types": "dist/js/index.js",
   "dependencies": {
+    "deepmerge": "^4.2.2",
     "flat": "^5.0.0"
   },
   "peerDependencies": {

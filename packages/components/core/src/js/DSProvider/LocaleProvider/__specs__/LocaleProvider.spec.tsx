@@ -52,4 +52,40 @@ describe('LocaleProvider', () => {
       '[React Intl] Missing locale data for locale: "es". Using default locale: "en" as fallback.'
     );
   });
+
+  it('should render fallback translations', function() {
+    // ARRANGE
+
+    const messagesPl = {
+      pl: {
+        EXAMPLE: 'Example',
+        FOO: {
+          BAR: {
+            ITEM: 'PL_VALUE',
+          },
+        },
+      },
+    };
+
+    const messagesDefault = {
+      TEST: 'Fallback_1',
+      FOO: {
+        BAR: {
+          ITEM: 'Fallback_2',
+        },
+      },
+    };
+
+    const C = render(
+      <LocaleProvider locale="pl" messages={messagesPl} defaultMessages={messagesDefault}>
+        <ExampleComponenentIntl />
+      </LocaleProvider>
+    );
+
+    C.debug();
+
+    // ASSERT
+    expect(C.getByText('PL_VALUE')).toBeTruthy();
+    expect(C.getByText('Fallback_1')).toBeTruthy();
+  });
 });
