@@ -7,6 +7,9 @@ type WrapperProps = {
   icon?: JSX.Element;
   size?: ListItemType;
 };
+type ContentWrapperProps = {
+  icon?: JSX.Element;
+};
 
 export type ListItemType = 'small' | 'medium';
 
@@ -68,12 +71,13 @@ export const Wrapper = styled.li<WrapperProps>`
   }
 `;
 
-export const ContentWrapper = styled.div`
+export const ContentWrapper = styled.div<ContentWrapperProps>`
   overflow: hidden;
   overflow-wrap: normal;
   text-overflow: ellipsis;
   white-space: nowrap;
   font-size: 14px;
+  padding-left: ${(props): string => (props.icon ? '12px' : '0')};
 `;
 
 export const ActionWraper = styled.div`
