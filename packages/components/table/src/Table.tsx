@@ -60,7 +60,6 @@ export interface DSTableProps<T> extends AntTableProps<T> {
   onSearch?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   itemsMenu?: string | React.ReactNode;
   search?: string;
-  showSelection: boolean;
 }
 
 const DSTable: <T>(p: DSTableProps<T>) => React.ReactElement<DSTableProps<T>> = props => {
