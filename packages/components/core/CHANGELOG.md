@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.7.3...@synerise/ds-core@0.8.0) (2020-01-28)
+
+### Features
+
+- **core:** add messages fallback ([320b176](https://github.com/synerise/synerise-design/commit/320b176365ecb88d18627b96df7e85604c14d915))
+
 ## [0.7.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.7.0...@synerise/ds-core@0.7.1) (2019-12-23)
 
 **Note:** Version bump only for package @synerise/ds-core
