@@ -60,6 +60,7 @@ export interface DSTableProps<T> extends AntTableProps<T> {
   onSearch?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   itemsMenu?: string | React.ReactNode;
   search?: string;
+  showSelection: boolean;
 }
 
 const DSTable: <T>(p: DSTableProps<T>) => React.ReactElement<DSTableProps<T>> = props => {
@@ -116,9 +117,9 @@ const DSTable: <T>(p: DSTableProps<T>) => React.ReactElement<DSTableProps<T>> = 
   };
 
   const renderHeader = (): React.ReactNode => {
-    const { rowSelection } = props;
+    const { rowSelection, title } = props;
     const size = rowSelection && rowSelection.selectedRowKeys && rowSelection.selectedRowKeys.length;
-    return size ? renderSelection(size) : renderTitle();
+    return size ? renderSelection(size) : title && renderTitle();
   };
 
   return (
