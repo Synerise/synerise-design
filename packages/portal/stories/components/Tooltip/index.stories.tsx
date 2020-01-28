@@ -62,8 +62,7 @@ const stories = {
     description: undefined,
     autoAdjustOverflow: boolean('autoAdjustOverflow', true),
     arrowPointAtCenter: boolean('arrowPointAtCenter', false),
-    children: (<span>Tooltip will show on mouse enter.</span>),
-    visible: boolean('force visible when empty', false)
+    children: (<span>Tooltip will show on mouse enter.</span>)
   }),
 };
 
