@@ -26,7 +26,6 @@ const Tooltip: React.FC<TooltipExtendedProps & TooltipProps> = ({
     if (tooltipIcon && icon) return icon;
     return <Icon component={<NotificationsM />} color={theme.palette['orange-500']} />;
   };
-
   // TODO: map tutorial dots, need Icons, uncomment code responsible for array validation, tutorial (and types,styles)
   // Add delay swap tabs action and default change action that might be define by developer
   const titleExists = Boolean(description || title || icon);
@@ -41,8 +40,12 @@ const Tooltip: React.FC<TooltipExtendedProps & TooltipProps> = ({
       </S.TooltipComponent>
     </div>
   );
+  const renderChildren = (): TooltipProps => {
+    const { children } = props;
+    return <div>{children}</div>;
+  };
   // eslint-disable-next-line react/jsx-props-no-spreading
-  return titleExists ? <AntdTooltip {...props} title={tooltipComponent} /> : null;
+  return titleExists ? <AntdTooltip {...props} title={tooltipComponent} /> : renderChildren();
 };
 
 const TooltipWithTheme = withTheme(Tooltip);
