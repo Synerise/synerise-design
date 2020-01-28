@@ -40,7 +40,7 @@ const Tooltip: React.FC<TooltipExtendedProps & TooltipProps> = ({
       </S.TooltipComponent>
     </div>
   );
-  const renderChildren = (): Element => {
+  const renderChildren = (): React.ReactElement => {
     const { children } = props;
     return <div>{children}</div>;
   };
