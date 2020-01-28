@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-list@0.3.12...@synerise/ds-list@0.3.13) (2020-01-28)
+
+### Bug Fixes
+
+- **list:** list padding corrected ([9582d8f](https://github.com/Synerise/synerise-design/commit/9582d8fc9147b32d9ebec9d716670fbe3b6e4c6c))
+
 ## [0.3.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-list@0.3.11...@synerise/ds-list@0.3.12) (2020-01-28)
 
 **Note:** Version bump only for package @synerise/ds-list
