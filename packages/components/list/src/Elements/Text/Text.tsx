@@ -21,7 +21,7 @@ const Text: React.FC<Props> = ({ disabled, icon, onSelect, danger, actions, chil
     size={size}
   >
     {icon && <S.IconWrapper>{icon}</S.IconWrapper>}
-    <S.ContentWrapper>{children}</S.ContentWrapper>
+    <S.ContentWrapper icon={icon}>{children}</S.ContentWrapper>
     <S.ActionWraper>{actions && actions}</S.ActionWraper>
   </S.Wrapper>
 );
