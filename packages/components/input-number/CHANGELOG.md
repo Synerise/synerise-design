@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-input-number@0.2.9...@synerise/ds-input-number@0.2.10) (2020-01-29)
+
+### Bug Fixes
+
+- **input-number:** fix focused styles ([06e9f61](https://github.com/Synerise/synerise-design/commit/06e9f6128ae2516c3d978b8be36c3a6d37c0949f))
+
 ## [0.2.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-input-number@0.2.8...@synerise/ds-input-number@0.2.9) (2020-01-29)
 
 ### Bug Fixes
