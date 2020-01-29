@@ -305,14 +305,19 @@
 .button-variant-flat() {
   .button-color(@btn-flat-color, @btn-flat-bg, @btn-flat-border);
 
-  &:hover,
-  &:focus {
+  &:hover {
     .button-color(@btn-flat-hover-color, @btn-flat-bg, @btn-flat-border);
     box-shadow: none;
 
     &:not([disabled]) {
       text-decoration: underline;
     }
+  }
+
+  &:focus {
+    .button-color(@btn-flat-hover-color, @btn-flat-bg, @btn-flat-border);
+    box-shadow: inset 0 0 0 1px @primary-color-darker-1;
+    border-color: @primary-color-darker-1;
   }
 
   &:active,

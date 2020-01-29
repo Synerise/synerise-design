@@ -22,4 +22,6 @@ export const AdditionalData = styled.div`
   margin: 4px 8px 15px 28px;
 `;
 
-export const CheckboxWrapper = styled.div``;
+export const CheckboxWrapper = styled.div`
+  margin-bottom: 15px;
+`;
