@@ -58,7 +58,7 @@ const Result: React.FC<ResultProps> = ({ className, type, title, description, pa
   const { IconComponent, ...iconContainerStyles } = mapTypeToStatus[type];
 
   return (
-    <S.ResultContainer className={className}>
+    <S.ResultContainer className={`ds-result ${className}`}>
       {closable && (
         <S.CloseButton className="close-modal" data-testid="test-closebtn" type="ghost" onClick={onClose}>
           <S.CloseIcon component={<CloseM />} size={24} />

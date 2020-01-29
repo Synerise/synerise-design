@@ -125,7 +125,11 @@ const ManageableList: React.FC<ManageableListProps> = ({
   }, [changeOrderDisabled, items, visibleItems, onChangeOrder, loading, getItem]);
 
   return (
-    <S.ManageableListContainer className={className} listType={type} greyBackground={greyBackground}>
+    <S.ManageableListContainer
+      className={`ds-manageable-list ${className}`}
+      listType={type}
+      greyBackground={greyBackground}
+    >
       {type === ListType.default && Boolean(onItemAdd) && (
         <AddItemWithName
           addItemLabel={addItemLabel}

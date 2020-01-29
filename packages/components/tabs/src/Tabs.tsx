@@ -132,6 +132,7 @@ const Tabs: React.FC<TabsProps> = ({ activeTab, tabs, handleTabClick, configurat
 
   return (
     <S.TabsContainer
+      className="ds-tabs"
       ref={(c): void => {
         if (!container) {
           container = c;

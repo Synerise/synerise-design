@@ -122,7 +122,7 @@ const DSTable: <T>(p: DSTableProps<T>) => React.ReactElement<DSTableProps<T>> = 
   };
 
   return (
-    <div>
+    <div className="ds-table">
       {/* disable eslint to pass all antd table props */}
       <Table {...props} title={renderHeader} /> {/* eslint-disable-line  react/jsx-props-no-spreading */}
     </div>

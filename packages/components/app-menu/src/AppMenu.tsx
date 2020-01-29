@@ -32,7 +32,7 @@ const AppMenu: React.FC<AppMenuProps> & { SubMenu: typeof SubMenu; Item: typeof 
   });
 
   return (
-    <S.MenuWrapper className={`${className} menu ${isOpened ? 'menu--opened' : ''}`} ref={ref} top={top}>
+    <S.MenuWrapper className={`${className} menu ${isOpened ? 'menu--opened' : ''} ds-app-menu`} ref={ref} top={top}>
       <S.ItemsWrapper>
         <MenuContext.Provider value={{ isOpened, setOpened, activeItem, setActiveItem }}>
           <NavigableItems onHideMenu={(): void => setOpened(false)}>{children}</NavigableItems>

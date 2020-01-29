@@ -108,7 +108,7 @@ const Tags: React.FC<Props> = ({
   );
 
   return (
-    <S.Container className={className} style={style} data-testid="tags">
+    <S.Container className={`ds-tags ${className}`} style={style} data-testid="tags">
       <S.SelectedTags>
         {selected &&
           selected.map(tag => (

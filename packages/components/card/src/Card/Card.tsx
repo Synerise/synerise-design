@@ -50,7 +50,7 @@ const Card: React.FC<CardProps> = ({
       raised={raised}
       disabled={disabled}
       style={style}
-      className={className}
+      className={`ds-card ${className}`}
       lively={lively}
     >
       {withHeader && (

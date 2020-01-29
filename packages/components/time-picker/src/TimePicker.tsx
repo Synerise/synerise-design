@@ -106,7 +106,7 @@ const TimePicker: React.FC<TimePickerProps> = ({
   const dateString = localValue && getTimeString(localValue);
 
   return (
-    <S.Container className={className} data-testid="tp-container">
+    <S.Container className={`ds-time-picker ${className}`} data-testid="tp-container">
       <Dropdown
         trigger={trigger}
         visible={alwaysOpen || open}
