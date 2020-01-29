@@ -5,6 +5,7 @@ import AntdRadio from 'antd/lib/radio';
 export const RadioWrapper = styled.div`
   & {
     display: block;
+    margin-bottom: 15px;
   }
 `;
 
