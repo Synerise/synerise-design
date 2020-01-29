@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.8](https://github.com/synerise/synerise-design/compare/@synerise/ds-radio@0.9.7...@synerise/ds-radio@0.9.8) (2020-01-29)
+
+### Bug Fixes
+
+- **radio:** change margin space ([fa9eb86](https://github.com/synerise/synerise-design/commit/fa9eb8646e5019be8120b871fd6ba3ddb9a1cd7c))
+
 ## [0.9.7](https://github.com/synerise/synerise-design/compare/@synerise/ds-radio@0.9.6...@synerise/ds-radio@0.9.7) (2020-01-29)
 
 ### Bug Fixes
