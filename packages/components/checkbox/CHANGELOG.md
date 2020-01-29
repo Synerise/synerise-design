@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-checkbox@0.6.7...@synerise/ds-checkbox@0.7.0) (2020-01-29)
+
+### Features
+
+- add ds classes ([311d4d4](https://github.com/synerise/synerise-design/commit/311d4d48a76c6e1df493261f3d1c4423f4601426))
+
 ## [0.6.7](https://github.com/synerise/synerise-design/compare/@synerise/ds-checkbox@0.6.6...@synerise/ds-checkbox@0.6.7) (2020-01-28)
 
 **Note:** Version bump only for package @synerise/ds-checkbox

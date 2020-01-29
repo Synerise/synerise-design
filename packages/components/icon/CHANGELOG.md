@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.7.7...@synerise/ds-icon@0.8.0) (2020-01-29)
+
+### Features
+
+- add ds classes ([311d4d4](https://github.com/Synerise/synerise-design/commit/311d4d48a76c6e1df493261f3d1c4423f4601426))
+
 ## [0.7.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.7.6...@synerise/ds-icon@0.7.7) (2020-01-27)
 
 ### Bug Fixes

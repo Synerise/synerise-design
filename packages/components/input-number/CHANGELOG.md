@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-input-number@0.2.8...@synerise/ds-input-number@0.2.9) (2020-01-29)
+
+### Bug Fixes
+
+- **input-number:** fix styles ([5b273cc](https://github.com/Synerise/synerise-design/commit/5b273ccdd3a9bdc8e9c495cc6300a049bdf68ec8))
+- **select:** add properly arrow icon ([5fb691d](https://github.com/Synerise/synerise-design/commit/5fb691d114592c9b99f5360c88a5cca84a34d2b5))
+
 ## [0.2.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-input-number@0.2.7...@synerise/ds-input-number@0.2.8) (2020-01-28)
 
 **Note:** Version bump only for package @synerise/ds-input-number
