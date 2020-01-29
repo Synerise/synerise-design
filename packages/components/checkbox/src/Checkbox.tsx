@@ -17,7 +17,7 @@ class Checkbox extends React.Component<CheckboxProps> {
     const { description, errorText, children, ...antdCheckboxProps } = this.props;
 
     return (
-      <S.CheckboxWrapper>
+      <S.CheckboxWrapper className="ds-checkbox">
         <S.AntdCheckbox
           // eslint-disable-next-line react/jsx-props-no-spreading
           {...antdCheckboxProps}

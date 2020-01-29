@@ -18,7 +18,7 @@ export const Switch: React.FC<Props> = ({ errorText, label, description, ...antd
   const id = uuid();
 
   return (
-    <S.SwitchWrapper>
+    <S.SwitchWrapper className="ds-switch">
       <ExtendedAntdSwitchComponent
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...antdSwitchProps}

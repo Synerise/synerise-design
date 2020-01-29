@@ -11,7 +11,13 @@ export interface StatusProps {
 
 const Status: React.FC<StatusProps> = ({ type, onClick, className, label }) => {
   return (
-    <S.StatusTag onClick={onClick} className={className} shape={TagShape.STATUS_NEUTRAL} type={type} name={label} />
+    <S.StatusTag
+      onClick={onClick}
+      className={`ds-status ${className}`}
+      shape={TagShape.STATUS_NEUTRAL}
+      type={type}
+      name={label}
+    />
   );
 };
 
