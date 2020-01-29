@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.8](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.7.7...@synerise/ds-select@0.7.8) (2020-01-29)
+
+### Bug Fixes
+
+- **select:** add properly arrow icon ([1b5ddd9](https://github.com/synerise/synerise-design/commit/1b5ddd922a92d3f8f162e881d896ef46a426424d))
+
 ## [0.7.7](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.7.6...@synerise/ds-select@0.7.7) (2020-01-28)
 
 **Note:** Version bump only for package @synerise/ds-select
