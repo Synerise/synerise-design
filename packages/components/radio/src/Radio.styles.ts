@@ -15,8 +15,7 @@ export const Description = styled.div<{ disabled?: boolean }>`
 `;
 
 export const AdditionalData = styled.div`
-  margin-left: 32px;
-  margin-top: 4px;
+  margin: 4px 8px 15px 28px;
 `;
 
 export const AntRadioGroup = styled(AntdRadio.Group)<{ fullWidth?: boolean; big?: boolean }>`
