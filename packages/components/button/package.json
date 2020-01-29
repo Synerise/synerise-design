@@ -27,6 +27,7 @@
     "react": ">=16.9.0 < 17.0.0"
   },
   "devDependencies": {
-    "@synerise/ds-utils": "^0.7.1"
+    "@synerise/ds-utils": "^0.7.1",
+    "csstype": "^2.6.8"
   }
 }

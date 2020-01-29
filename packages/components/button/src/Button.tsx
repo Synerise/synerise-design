@@ -3,6 +3,8 @@ import { ButtonProps } from 'antd/lib/button';
 import '@synerise/ds-core/dist/js/style';
 import './style/index.less';
 
+import { JustifyContentProperty } from 'csstype';
+
 import AntdButton from './Button.styles';
 
 export interface Props extends Omit<ButtonProps, 'type'> {
@@ -21,12 +23,13 @@ export interface Props extends Omit<ButtonProps, 'type'> {
     | 'ghost-primary'
     | 'ghost-white';
   mode?: string;
+  justifyContent?: JustifyContentProperty;
 }
 
-const Button: React.FC<Props> = ({ type, mode, ...antdProps }) => {
+const Button: React.FC<Props> = ({ type, mode, justifyContent = 'center', ...antdProps }) => {
   return (
     // eslint-disable-next-line react/jsx-props-no-spreading
-    <AntdButton type={type} mode={mode} {...antdProps}>
+    <AntdButton justifyContent={justifyContent} type={type} mode={mode} {...antdProps}>
       {antdProps.children}
     </AntdButton>
   );
