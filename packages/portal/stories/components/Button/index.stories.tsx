@@ -20,12 +20,28 @@ const typeOptions = {
   ghostWhite: 'ghost-white',
 };
 
+const justifyContentOptions = {
+  'flex-start': 'flex-start',
+  'flex-end': 'flex-end',
+  'center': 'center',
+  'space-between': 'space-between',
+  'space-around': 'space-around',
+  'space-evenly': 'space-evenly',
+  'start': 'start',
+  'end': 'end',
+  'left': 'left',
+  'right': 'right',
+  'safe': 'safe',
+  'unsafe': 'unsafe',
+};
+
 const getDefaultProps = () => ({
   disabled: boolean('Disables', false),
   block: boolean('Fit button width', false),
   htmlType: text('Type button', 'button'),
   href: text('Redirect to link', ''),
   type: select('Set type', typeOptions, 'primary'),
+  justifyContent: select('Set justify content', justifyContentOptions, 'center'),
   onClick: action('onClick CLICK'),
 });
 

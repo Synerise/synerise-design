@@ -18,12 +18,15 @@ const splitType = {
 };
 
 // eslint-disable-next-line react/jsx-props-no-spreading
-export default styled(({ mode, type, loading, ...rest }) => <Button type={type} loading={loading} {...rest} />)`  
+export default styled(({ mode, type, loading, justifyContent, ...rest }) => (
+  // eslint-disable-next-line react/jsx-props-no-spreading
+  <Button type={type} loading={loading} {...rest} />
+))`  
   && {
     display: inline-flex;
     align-items: center;
     padding: 0 12px;
-    
+    justify-content: ${(props): FlattenInterpolation<ThemeProps> | false => props.justifyContent};
     ${(props): FlattenInterpolation<ThemeProps> | false =>
       props.type === buttonType[props.type] &&
       css`
