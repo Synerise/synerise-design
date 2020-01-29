@@ -78,7 +78,6 @@
   }
 
   &.ant-input-number-focused {
-    outline: #0b68ff;
     .ant-input-number-input {
       top: 0;
       box-shadow: unset;
@@ -86,7 +85,9 @@
   }
 
   &.error {
-    box-shadow: inset 0px 0px 0px 2px @red-600 !important;
+    && {
+      box-shadow: inset 0px 0px 0px 2px @red-600;
+    }
 
     .ant-input-number-handler-wrap {
       z-index: 3;
