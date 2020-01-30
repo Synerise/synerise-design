@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css, SimpleInterpolation } from 'styled-components';
 import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import AntdRadio from 'antd/lib/radio';
 
@@ -19,23 +19,23 @@ export const AdditionalData = styled.div`
 `;
 
 export const AntRadioGroup = styled(AntdRadio.Group)<{ fullWidth?: boolean; big?: boolean }>`
-  ${(props): string =>
-    props.fullWidth
-      ? `
-      && {
-        display: flex;
-        width: 100%;
-        
-        label {
-          flex: 1;
-          height: ${props.big ? '48px' : '32px'}
+  ${(props): SimpleInterpolation =>
+    css`
+      ${props.fullWidth &&
+        css`
+         && {
           display: flex;
-          align-items: center;
-          justify-content: center;
-          font-weight: 500;
+          width: 100%;
+          
+          label {
+            flex: 1;
+            height: ${props.big ? '48px' : '32px'}
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 500;
+            }
           }
-        }
-      }
-    `
-      : ''}
+     `};
+    `}
 `;
