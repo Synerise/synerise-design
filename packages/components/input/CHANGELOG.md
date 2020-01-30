@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.8.6...@synerise/ds-input@0.9.0) (2020-01-30)
+
+
+### Bug Fixes
+
+* **input:** fix eslint error ([dd8e948](https://github.com/synerise/synerise-design/commit/dd8e94845538cbbf1673d496b7ee4c00c244ac98))
+
+
+### Features
+
+* **dropdown:** autofocus DropdownSearch ([b73327f](https://github.com/synerise/synerise-design/commit/b73327fbc3027dc588dc16d6cbc377c84b359040))
+
+
+
+
+
 ## [0.8.6](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.8.5...@synerise/ds-input@0.8.6) (2020-01-28)
 
 **Note:** Version bump only for package @synerise/ds-input
