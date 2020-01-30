@@ -20,22 +20,19 @@ export const AdditionalData = styled.div`
 
 export const AntRadioGroup = styled(AntdRadio.Group)<{ fullWidth?: boolean; big?: boolean }>`
   ${(props): SimpleInterpolation =>
+    props.fullWidth &&
     css`
-      ${props.fullWidth &&
-        css`
-         && {
+      && {
+        display: flex;
+        width: 100%;
+        label {
+          flex: 1;
+          height: ${props.big ? '48px' : '32px'};
           display: flex;
-          width: 100%;
-          
-          label {
-            flex: 1;
-            height: ${props.big ? '48px' : '32px'}
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 500;
-            }
-          }
-     `};
+          align-items: center;
+          justify-content: center;
+          font-weight: 500;
+        }
+      }
     `}
 `;
