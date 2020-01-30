@@ -27,6 +27,7 @@ const OverlayExample1: React.FC<Props> = ({ value, onSearchChange, onClearInput,
         placeholder="Search"
         value={value}
         iconLeft={<Icon component={<SearchM />} color="#6a7580" />}
+        autofocus
       />
       <Dropdown.BackAction label="Attributes" onClick={() => alert('BackAction clicked')} />
       <List

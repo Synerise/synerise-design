@@ -11,6 +11,7 @@ export interface SearchInputProps {
   className?: string;
   value: string;
   iconLeft?: React.ReactNode;
+  autofocus?: boolean;
 }
 
 const SearchInput: React.FC<SearchInputProps> = ({
@@ -20,7 +21,12 @@ const SearchInput: React.FC<SearchInputProps> = ({
   onClearInput,
   placeholder,
   iconLeft,
+  autofocus,
 }) => {
+  const focus = (inputRef: React.MutableRefObject<HTMLInputElement | HTMLTextAreaElement | undefined>): void => {
+    autofocus && inputRef.current && inputRef.current.focus();
+  };
+
   return (
     <S.DropdownSearchInputWrapper iconLeft={iconLeft}>
       {iconLeft && <S.IconLeftWrapper>{iconLeft}</S.IconLeftWrapper>}
@@ -35,6 +41,7 @@ const SearchInput: React.FC<SearchInputProps> = ({
         value={value}
         className={className}
         resetMargin
+        handleInputRef={focus}
       />
     </S.DropdownSearchInputWrapper>
   );

@@ -14,6 +14,7 @@ export interface Props {
   icon1?: React.ReactElement;
   icon2?: React.ReactElement;
   resetMargin?: boolean;
+  handleInputRef?: (ref: React.MutableRefObject<HTMLInputElement | HTMLTextAreaElement | undefined>) => void;
 }
 
 type EnhancedProps = Props & (InputProps | TextAreaProps);
@@ -30,6 +31,7 @@ const enhancedInput = <P extends object>(
   icon1,
   icon2,
   resetMargin,
+  handleInputRef,
   ...antdInputProps
 }): React.ReactElement => {
   const [charCount, setCharCount] = React.useState<number>(0);
@@ -38,6 +40,10 @@ const enhancedInput = <P extends object>(
   const id = uuid();
 
   const inputRef = React.useRef<HTMLInputElement | HTMLTextAreaElement>();
+
+  React.useEffect(() => {
+    handleInputRef && handleInputRef(inputRef);
+  }, [inputRef]);
 
   const handleChange = React.useCallback(
     (e: React.ChangeEvent<HTMLInputElement> & React.ChangeEvent<HTMLTextAreaElement>) => {
