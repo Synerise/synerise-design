@@ -8,7 +8,7 @@ export interface DividerProps {
 }
 
 const ListDivider: React.FC<DividerProps> = ({ dashed = true }) => (
-  <S.Wrapper>
+  <S.Wrapper className="ant-divider-wrapper">
     <Divider dashed={dashed} marginBottom={0} marginTop={0} />
   </S.Wrapper>
 );
