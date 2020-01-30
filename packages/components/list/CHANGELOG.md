@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.18](https://github.com/Synerise/synerise-design/compare/@synerise/ds-list@0.3.17...@synerise/ds-list@0.3.18) (2020-01-30)
+
+### Bug Fixes
+
+- **list:** add className to divider wrapper ([1cad95b](https://github.com/Synerise/synerise-design/commit/1cad95bec408e74c76f0af2cef2cf0a70b150990))
+
 ## [0.3.17](https://github.com/Synerise/synerise-design/compare/@synerise/ds-list@0.3.16...@synerise/ds-list@0.3.17) (2020-01-30)
 
 **Note:** Version bump only for package @synerise/ds-list
