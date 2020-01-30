@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const ItemLink = styled.div`
+  position: relative;
   display: flex;
   align-items: center;
   align-content: center;
@@ -36,9 +37,11 @@ export const ItemLink = styled.div`
 `;
 
 export const ItemWrapper = styled.li`
+  display: flex;
+  align-items: center;
   padding: 0;
   margin: 0;
-  overflow: auto;
+  height: 64px;
 
   &:first-child {
     ${ItemLink} {
