@@ -29,13 +29,10 @@ export const AntRadioGroup = styled(AntdRadio.Group)<{ fullWidth?: boolean; big?
         label {
           flex: 1;
           height: ${props.big ? '48px' : '32px'}
-          
-          span + span {
-            display: flex;
-            height: 100%;
-            align-items: center;
-            justify-content: center;
-            font-weight: 500;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-weight: 500;
           }
         }
       }
