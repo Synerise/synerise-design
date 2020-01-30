@@ -43,7 +43,7 @@ const enhancedInput = <P extends object>(
 
   React.useEffect(() => {
     handleInputRef && handleInputRef(inputRef);
-  }, [inputRef]);
+  }, [inputRef, handleInputRef]);
 
   const handleChange = React.useCallback(
     (e: React.ChangeEvent<HTMLInputElement> & React.ChangeEvent<HTMLTextAreaElement>) => {
