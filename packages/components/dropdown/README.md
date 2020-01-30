@@ -31,6 +31,7 @@ Dropdown UI Component
 | -------------- | ----------------------------------- | ----------------------- | ------- |
 | onSearchChange | action triggered after input change | (value: string) => void | -       |
 | placeholder    | input placeholder                   | string                  | -       |
+| autofocus      | autofocus input                     | boolean                 | -       | 
 
 ### Dropdown.BottomAction
 
