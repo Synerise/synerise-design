@@ -78,7 +78,7 @@ const enhancedInput = <P extends object>(
           )}
         </S.ContentAbove>
       )}
-      <S.InputWrapper>
+      <S.InputWrapper icon1={Boolean(icon1)} icon2={Boolean(icon2)}>
         <S.IconsWrapper onClick={handleIconsClick} disabled={antdInputProps.disabled}>
           <S.IconsFlexContainer type={type}>
             {icon1 &&
@@ -94,6 +94,7 @@ const enhancedInput = <P extends object>(
           value={antdInputProps.value}
           id={id}
           ref={inputRef}
+          icons
         />
       </S.InputWrapper>
       {(showError || description) && (

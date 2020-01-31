@@ -18,8 +18,20 @@ export const Wrapper = styled.div`
   margin-bottom: 24px;
 `;
 
-export const InputWrapper = styled.div`
+interface InputWrapperProps {
+  icon1: boolean;
+  icon2: boolean;
+}
+
+export const InputWrapper = styled.div<InputWrapperProps>`
   position: relative;
+  .ant-input {
+    padding-right: ${(props): string => {
+      if (props.icon1 && props.icon2) return '64px;';
+      if (props.icon1 || props.icon2) return '36px;';
+      return '12px';
+    }};
+  }
 `;
 
 export const IconsWrapper = styled.div<{ disabled?: boolean }>`
