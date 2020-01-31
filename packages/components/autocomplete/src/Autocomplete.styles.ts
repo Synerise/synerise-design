@@ -15,12 +15,14 @@ export const DescWrapper = styled.div`
 `;
 
 const active = (): FlattenInterpolation<ThemeProps> => css`
+  transition: ease-in-out all 0.2s;
   box-shadow: inset 0 0 0 1px ${(props): string => props.theme.palette['blue-600']};
   border: 1px solid ${(props): string => props.theme.palette['blue-600']};
   background-color: ${(props): string => props.theme.palette['blue-050']};
 `;
 
 const error = (): FlattenInterpolation<ThemeProps> => css`
+  transition: ease-in-out all 0.2s;
   box-shadow: inset 0 0 0 1px ${(props): string => props.theme.palette['red-600']};
   background: ${(props): string => props.theme.palette['red-050']};
   border: 1px solid ${(props): string => props.theme.palette['red-600']};
@@ -28,20 +30,24 @@ const error = (): FlattenInterpolation<ThemeProps> => css`
 
 export const AutocompleteWrapper = styled.div`
   .ant-select-auto-complete {
-    &:focus,
-    &:hover {
-      .ant-select-selection {
-        ${active()}
+    &.ant-select {
+      .ant-input {
+        transition: ease-in-out all 0.3s;
+        &:focus {
+          ${active()}
+          &:hover {
+            ${active()}
+          }
+        }
       }
     }
 
     &.error {
-      .ant-select-selection {
-        ${error()}
-      }
-
       .ant-input {
-        border-color: ${(props): string => props.theme.palette['red-600']};
+        &:hover {
+          ${error()}
+        }
+        ${error()}
       }
     }
 
