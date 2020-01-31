@@ -7,7 +7,6 @@ import * as S from './Autocomplete.styles';
 
 export type OverrideProps = {
   className?: string;
-  getPopupContainer?: () => Element | undefined;
   errorText?: React.ReactNode | string;
   label?: React.ReactNode | string;
   description?: React.ReactNode | string;
@@ -15,13 +14,11 @@ export type OverrideProps = {
 
 export type AutocompleteProps = OverrideProps & OriginalProps;
 
-const getDefaultPopupContainer = (): HTMLElement => document.querySelector(`.ant-select-auto-complete`) as HTMLElement;
-
 class Autocomplete extends React.PureComponent<AutocompleteProps> {
   static Option = AntdAutoComplete.Option;
 
   render(): React.ReactElement {
-    const { className, label, description, errorText, getPopupContainer, disabled } = this.props;
+    const { className, label, description, errorText, disabled } = this.props;
     return (
       <S.AutocompleteWrapper className={`ds-autocomplete ${className}`}>
         {label && (
@@ -32,7 +29,6 @@ class Autocomplete extends React.PureComponent<AutocompleteProps> {
         <AntdAutoComplete
           // eslint-disable-next-line react/jsx-props-no-spreading
           {...this.props}
-          getPopupContainer={getPopupContainer || getDefaultPopupContainer}
           className={errorText ? 'error' : undefined}
         />
         {errorText && (
