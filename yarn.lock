@@ -4373,10 +4373,10 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-12.11.1.tgz#1fd7b821f798b7fa29f667a1be8f3442bb8922a3"
   integrity sha512-TJtwsqZ39pqcljJpajeoofYRfeZ7/I/OMUQ5pR4q5wOKf2ocrUvBAZUMhWsOvKx3dVc/aaV5GluBivt0sWqA5A==
 
-"@types/node@13.1.4":
-  version "13.1.4"
-  resolved "https://registry.npmjs.org/@types/node/-/node-13.1.4.tgz#4cfd90175a200ee9b02bd6b1cd19bc349741607e"
-  integrity sha512-Lue/mlp2egZJoHXZr4LndxDAd7i/7SQYhV0EjWfb/a4/OZ6tuVwMCVPiwkU5nsEipxEf7hmkSU7Em5VQ8P5NGA==
+"@types/node@13.7.0":
+  version "13.7.0"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-13.7.0.tgz#b417deda18cf8400f278733499ad5547ed1abec4"
+  integrity sha512-GnZbirvmqZUzMgkFn70c74OQpTTUcCzlhQliTzYjQMqg+hVKcDnxdL19Ne3UdYzdMA/+W3eb646FWn/ZaT1NfQ==
 
 "@types/parse-json@^4.0.0":
   version "4.0.0"
