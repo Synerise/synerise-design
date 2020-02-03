@@ -42,19 +42,6 @@ export const Right = styled.div`
   direction: rtl;
 `;
 
-export const InputWrapper = styled.div<{ isOpen?: boolean }>`
-  ${(props): string => (props.isOpen ? `width: 100%` : 'width: 30px')};
-  transition: all 0.5s ease;
-  position: relative;
-  display: flex;
-  align-items: center;
-  direction: ltr;
-
-  .search-input {
-    width: 0;
-  }
-`;
-
 export const Icon = styled.div`
   transition: all 0.5s ease;
   position: absolute;
@@ -64,20 +51,39 @@ export const Icon = styled.div`
 `;
 
 export const Input = styled.div<{ isOpen?: boolean }>`
-  ${(props): string => (props.isOpen ? `opacity: 1` : 'opacity: 0')};
   transition: all 0.2s ease;
   overflow: hidden;
   position: relative;
   right: 0;
 
+  > div {
+    margin: 0;
+  }
+`;
+
+export const InputWrapper = styled.div<{ isOpen?: boolean; searchValue: string | undefined }>`
+  ${(props): string => (props.searchValue !== '' || props.isOpen ? `width: 100%` : 'width: 30px')};
+  transition: all 0.5s ease;
+  position: relative;
+  display: flex;
+  align-items: center;
+  direction: ltr;
+
+  ${Input} {
+    ${(props): string => (props.searchValue !== '' ? `opacity: 1 !important` : 'opacity: 0')};
+    ${(props): string => (props.isOpen ? `opacity: 1` : 'opacity: 0')};
+    ${(props): string => (!props.isOpen && props.searchValue === '' ? `opacity: 0` : 'opacity: 1')};
+  }
+
   & {
     input {
       padding: 4px 12px 4px 32px;
-      ${(props): string => (props.isOpen ? `cursor: initial;` : 'cursor: pointer')};
+      ${(props): string =>
+        props.searchValue !== '' || props.isOpen ? `cursor: initial;` : 'cursor: pointer'} !important;
     }
   }
 
-  > div {
-    margin: 0;
+  .search-input {
+    width: 0;
   }
 `;

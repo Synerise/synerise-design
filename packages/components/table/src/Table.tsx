@@ -101,7 +101,7 @@ const DSTable: <T>(p: DSTableProps<T>) => React.ReactElement<DSTableProps<T>> = 
         </S.Left>
         <S.Right>
           {onSearch && (
-            <S.InputWrapper isOpen={isSearchOpen}>
+            <S.InputWrapper isOpen={isSearchOpen} searchValue={search}>
               <S.Icon>
                 <Icon color={theme.palette['grey-600']} component={<SearchM />} size={24} />
               </S.Icon>
