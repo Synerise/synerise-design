@@ -12,16 +12,22 @@ const soloCss = css`
 
 export const AntdCheckbox = styled(BaseAntCheckbox)`
   && {
-    display: block;
-
+    display: flex;
+    align-items: center;
+    line-height: 1;
     ${(props: Props): FlattenSimpleInterpolation | undefined | false => props.solo && soloCss};
+    .ant-checkbox {
+      top: 0;
+    }
   }
 `;
 
 export const AdditionalData = styled.div`
-  margin: 4px 8px 15px 28px;
+  margin: 2px 12px 0px 28px;
 `;
 
 export const CheckboxWrapper = styled.div`
-  margin-bottom: 15px;
+  display: flex;
+  padding: 4px 12px 8px 8px;
+  flex-direction: column;
 `;
