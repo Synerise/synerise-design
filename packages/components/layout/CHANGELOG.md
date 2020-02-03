@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-layout@0.5.0...@synerise/ds-layout@0.5.1) (2020-02-03)
+
+### Bug Fixes
+
+- **layout:** remove border from LayoutHeader ([17a77a8](https://github.com/synerise/synerise-design/commit/17a77a8b94657b4f7c53120817df8cc24b7fa68e))
+
 # [0.5.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-layout@0.4.7...@synerise/ds-layout@0.5.0) (2020-01-29)
 
 ### Features
