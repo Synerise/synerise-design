@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.3](https://github.com/synerise/synerise-design/compare/@synerise/ds-checkbox@0.7.2...@synerise/ds-checkbox@0.7.3) (2020-02-03)
+
+### Bug Fixes
+
+- **checkbox:** fix no animation on check ([ade4409](https://github.com/synerise/synerise-design/commit/ade4409d66f5b22887d9e98b605c8b18beaf5854))
+
 ## [0.7.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-checkbox@0.7.0...@synerise/ds-checkbox@0.7.1) (2020-01-29)
 
 ### Bug Fixes

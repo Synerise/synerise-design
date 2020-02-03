@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.32.1](https://github.com/synerise/synerise-design/compare/portal@0.32.0...portal@0.32.1) (2020-02-03)
+
+
+### Bug Fixes
+
+* **checkbox:** fix no animation on check ([ade4409](https://github.com/synerise/synerise-design/commit/ade4409d66f5b22887d9e98b605c8b18beaf5854))
+
+
+
+
+
 # [0.32.0](https://github.com/synerise/synerise-design/compare/portal@0.31.4...portal@0.32.0) (2020-01-30)
 
 
