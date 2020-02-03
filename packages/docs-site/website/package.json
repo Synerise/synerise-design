@@ -13,10 +13,10 @@
     "rename-version": "docusaurus-rename-version"
   },
   "devDependencies": {
-    "docusaurus": "1.14.3"
+    "docusaurus": "1.14.4"
   },
   "dependencies": {
-    "docusaurus": "1.14.3",
+    "docusaurus": "1.14.4",
     "global": "4.4.0"
   }
 }
