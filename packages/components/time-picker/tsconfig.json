@@ -2,6 +2,7 @@
   "include": ["src"],
   "extends": "../../../config/typescript/tsconfig.base.json",
   "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
     "outDir": "dist",
     "rootDir": "src",
     "baseUrl": "src",
