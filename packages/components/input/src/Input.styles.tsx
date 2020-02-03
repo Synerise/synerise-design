@@ -1,6 +1,7 @@
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import BaseAntInput from 'antd/lib/input';
 import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import * as React from 'react';
 
 const errorInputStyle = (props: ThemeProps): string => `
   && {
@@ -69,7 +70,8 @@ export const IconsFlexContainer = styled.div<{ type: string }>`
   }}
 `;
 
-export const AntdInput = styled(BaseAntInput)<{ error?: boolean }>`
+// eslint-disable-next-line
+export const AntdInput = styled(({ error, ...props }) => <BaseAntInput {...props} />)<{ error?: boolean }>`
   ${(props): string => (props.error ? errorInputStyle(props) : '')};
 
   && {
@@ -77,8 +79,9 @@ export const AntdInput = styled(BaseAntInput)<{ error?: boolean }>`
   }
 `;
 
-export const AntdTextArea = styled(BaseAntInput.TextArea)`
-  ${(props: { error?: boolean } & ThemeProps): string => (props.error ? errorInputStyle(props) : '')};
+// eslint-disable-next-line
+export const AntdTextArea = styled(({ error, ...props }) => <BaseAntInput.TextArea {...props} />)<{ error?: boolean }>`
+  ${(props): string => (props.error ? errorInputStyle(props) : '')};
 
   && {
     color: ${(props): string => props.theme.palette['grey-700']};
