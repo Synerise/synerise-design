@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as dayjs from 'dayjs';
+import dayjs from 'dayjs';
 
 import { Input } from '@synerise/ds-input';
 import Icon from '@synerise/ds-icon';
