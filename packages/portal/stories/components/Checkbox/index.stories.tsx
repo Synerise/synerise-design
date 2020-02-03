@@ -24,7 +24,7 @@ const stories = {
       <Checkbox
         disabled={boolean('disabled', false)}
         indeterminate={boolean('indeterminate', false)}
-        description={text('description', '')}
+        description={text('description', '123')}
         errorText={text('errorText', '')}
         value="A"
       >
@@ -33,7 +33,7 @@ const stories = {
       <Checkbox
         disabled={boolean('disabled', false)}
         indeterminate={boolean('indeterminate', false)}
-        description={text('description', '')}
+        description={text('description', '123')}
         errorText={text('errorText', '')}
         value="B"
       >
