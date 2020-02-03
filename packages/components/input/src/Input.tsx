@@ -3,6 +3,7 @@ import '@synerise/ds-core/dist/js/style';
 import { v4 as uuid } from 'uuid';
 import { InputProps, TextAreaProps } from 'antd/lib/input';
 import './style/index.less';
+import { StyledComponent } from 'styled-components';
 import * as S from './Input.styles';
 
 export interface Props {
@@ -20,7 +21,7 @@ export interface Props {
 type EnhancedProps = Props & (InputProps | TextAreaProps);
 
 const enhancedInput = <P extends object>(
-  WrappedComponent: React.ComponentType,
+  WrappedComponent: StyledComponent<React.ComponentType<InputProps | TextAreaProps>, { error?: string }>,
   { type }: { type: string }
 ): React.ComponentType<P & EnhancedProps> => ({
   className,
