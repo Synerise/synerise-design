@@ -25,6 +25,7 @@ const stories = {
     const disabledHours = array('disabledHours', [], ',').map(Number);
     const disabledMinutes = array('disabledMinutes', [], ',').map(Number);
     const disabledSeconds = array('disabledSeconds', [], ',').map(Number);
+    const units = array('units', undefined, ',');
 
     const onChange = (newValue: Date) => {
       store.set({
@@ -33,7 +34,7 @@ const stories = {
     };
 
     return (
-      <TimePicker alwaysOpen={alwaysOpen} value={store.state.value} disabledHours={disabledHours} disabledMinutes={disabledMinutes} disabledSeconds={disabledSeconds} disabled={disabled} use12HourClock={use12HourClock} timeFormat={timeFormat} placeholder={placeholder} placement={placement} onChange={onChange} />
+      <TimePicker alwaysOpen={alwaysOpen} units={units as any[]} value={store.state.value} disabledHours={disabledHours} disabledMinutes={disabledMinutes} disabledSeconds={disabledSeconds} disabled={disabled} use12HourClock={use12HourClock} timeFormat={timeFormat} placeholder={placeholder} placement={placement} onChange={onChange} />
     )
   }),
 };

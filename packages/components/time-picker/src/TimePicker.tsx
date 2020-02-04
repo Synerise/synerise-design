@@ -27,6 +27,7 @@ export type TimePickerProps = TimePickerDisabledUnits & {
   disabled?: boolean;
   overlayClassName?: string;
   className?: string;
+  units: dayjs.UnitType[];
   onChange?: (value: Date, timeString: string) => void;
 };
 
@@ -35,6 +36,7 @@ const TimePicker: React.FC<TimePickerProps> = ({
   placeholder,
   trigger,
   value,
+  units,
   defaultOpen,
   onChange,
   timeFormat,
@@ -54,7 +56,7 @@ const TimePicker: React.FC<TimePickerProps> = ({
     setLocalValue(value);
   }, [value]);
 
-  const units: UnitConfig[] = [
+  const unitConfig: UnitConfig[] = [
     {
       unit: 'hour',
       options: [...Array(use12HourClock ? 11 : 23).keys()],
@@ -73,6 +75,8 @@ const TimePicker: React.FC<TimePickerProps> = ({
       disabled: disabledSeconds,
     },
   ];
+
+  const unitsToRender = unitConfig.filter(u => units.includes(u.unit));
 
   const getTimeString = (date: Date): string => dayjs(date).format(timeFormat);
   const onVisibleChange = (visible: boolean): void => {
@@ -93,11 +97,11 @@ const TimePicker: React.FC<TimePickerProps> = ({
 
   const overlay = (
     <S.OverlayContainer data-testid="tp-overlay-container" className={overlayClassName}>
-      {units.map(({ insertSeperator, ...rest }) => (
-        <React.Fragment key={rest.unit}>
+      {unitsToRender.map((u, index) => (
+        <React.Fragment key={u.unit}>
           {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-          <Unit {...rest} value={localValue} onSelect={(newValue): void => handleChange(rest.unit, newValue)} />
-          {insertSeperator && <S.UnitSeperator />}
+          <Unit {...u} value={localValue} onSelect={(newValue): void => handleChange(u.unit, newValue)} />
+          {index !== unitsToRender.length - 1 && <S.UnitSeperator />}
         </React.Fragment>
       ))}
     </S.OverlayContainer>
@@ -130,6 +134,7 @@ TimePicker.defaultProps = {
   placement: 'bottomLeft',
   timeFormat: 'HH:mm:ss',
   trigger: ['click'],
+  units: ['hour', 'minute', 'second'],
 };
 
 export default TimePicker;
