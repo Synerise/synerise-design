@@ -76,7 +76,7 @@ const TimePicker: React.FC<TimePickerProps> = ({
     },
   ];
 
-  const unitsToRender = unitConfig.filter(u => units.includes(u.unit));
+  const unitsToRender = unitConfig.filter(u => units && units.includes(u.unit));
 
   const getTimeString = (date: Date): string => dayjs(date).format(timeFormat);
   const onVisibleChange = (visible: boolean): void => {
