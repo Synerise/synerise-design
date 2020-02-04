@@ -27,7 +27,7 @@ export type TimePickerProps = TimePickerDisabledUnits & {
   disabled?: boolean;
   overlayClassName?: string;
   className?: string;
-  units: dayjs.UnitType[];
+  units?: dayjs.UnitType[];
   onChange?: (value: Date, timeString: string) => void;
 };
 
