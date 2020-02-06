@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.32.4](https://github.com/synerise/synerise-design/compare/portal@0.32.3...portal@0.32.4) (2020-02-06)
+
+
+### Bug Fixes
+
+* **select:** fix empty list styles ([4ea770d](https://github.com/synerise/synerise-design/commit/4ea770def39cdd6c29a89152da042c08a6610ec0))
+
+
+
+
+
 ## [0.32.1](https://github.com/synerise/synerise-design/compare/portal@0.32.0...portal@0.32.1) (2020-02-03)
 
 

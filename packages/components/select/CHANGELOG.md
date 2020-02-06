@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.9](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.7.8...@synerise/ds-select@0.7.9) (2020-02-06)
+
+### Bug Fixes
+
+- **select:** fix empty list styles ([4ea770d](https://github.com/synerise/synerise-design/commit/4ea770def39cdd6c29a89152da042c08a6610ec0))
+- **select:** use [@ant-prefix](https://github.com/ant-prefix) ([f66eda0](https://github.com/synerise/synerise-design/commit/f66eda0aca8f8cc609ca3101d328e5ca93fc8ffc))
+
 ## [0.7.8](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.7.7...@synerise/ds-select@0.7.8) (2020-01-29)
 
 ### Bug Fixes
