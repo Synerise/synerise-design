@@ -95,7 +95,6 @@ const enhancedInput = <P extends object>(
           value={antdInputProps.value}
           id={id}
           ref={inputRef}
-          icons
         />
       </S.InputWrapper>
       {(showError || description) && (
