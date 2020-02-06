@@ -47,6 +47,9 @@ const stories = {
       <Option value={opt}>{opt}</Option>
     ))),
   }),
+  empty: () => ({
+    style: { width: '100%' },
+  }),
   multipleMode: {
     style: {
       width: '100%',
