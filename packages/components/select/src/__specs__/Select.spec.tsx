@@ -85,4 +85,16 @@ describe('Select', () => {
 
     expect(getByText(DESC)).toBeTruthy();
   });
+
+  it('should be empty', () => {
+    // ARRANGE
+    const { getByText, getByTestId } = renderWithProvider(<Select data-testid="select-empty" />);
+    const select = getByTestId('select-empty') as HTMLSelectElement;
+
+    // ACT
+    fireEvent.click(select);
+
+    // ASSERT
+    expect(getByText('No Data')).toBeTruthy();
+  });
 });
