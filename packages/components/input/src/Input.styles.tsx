@@ -1,5 +1,6 @@
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import BaseAntInput from 'antd/lib/input';
+import TextArea from 'antd/lib/input/TextArea';
 import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import * as React from 'react';
 
@@ -70,8 +71,15 @@ export const IconsFlexContainer = styled.div<{ type: string }>`
   }}
 `;
 
-// eslint-disable-next-line
-export const AntdInput = styled(({ error, ...props }) => <BaseAntInput {...props} />)<{ error?: boolean }>`
+export const AntdInput = styled(
+  React.forwardRef<BaseAntInput, { error?: boolean }>(
+    // eslint-disable-next-line
+    ({ error, ...props }, ref) => (
+      // eslint-disable-next-line
+      <BaseAntInput {...props} ref={ref} />
+    )
+  )
+)<{ error?: boolean }>`
   ${(props): string => (props.error ? errorInputStyle(props) : '')};
 
   && {
@@ -79,8 +87,15 @@ export const AntdInput = styled(({ error, ...props }) => <BaseAntInput {...props
   }
 `;
 
-// eslint-disable-next-line
-export const AntdTextArea = styled(({ error, ...props }) => <BaseAntInput.TextArea {...props} />)<{ error?: boolean }>`
+export const AntdTextArea = styled(
+  React.forwardRef<TextArea, { error?: boolean }>(
+    // eslint-disable-next-line
+    ({ error, ...props }, ref) => (
+      // eslint-disable-next-line
+      <BaseAntInput.TextArea {...props} ref={ref} />
+    )
+  )
+)<{ error?: boolean }>`
   ${(props): string => (props.error ? errorInputStyle(props) : '')};
 
   && {
