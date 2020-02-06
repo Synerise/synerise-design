@@ -10,7 +10,11 @@ export const AddItemLayout = styled.div`
   padding: 4px 12px;
   && {
     .ant-btn {
-      padding: 0 9px;
+      padding: 0;
+
+      &:hover {
+        background-color: transparent;
+      }
     }
   }
   .ant-btn {
@@ -20,7 +24,10 @@ export const AddItemLayout = styled.div`
     align-items: center;
     justify-content: flex-start;
     height: 36px;
-    margin-left: -4px;
+
+    + div {
+      margin: 12px 0;
+    }
   }
 `;
 
