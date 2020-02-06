@@ -32,7 +32,7 @@ export const ShowMoreButton = styled.div`
   outline: 0;
   cursor: pointer;
   && {
-    padding: 16px 12px;
+    padding: 16px 8px;
     margin: 0;
   }
   strong {
