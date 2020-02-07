@@ -27,12 +27,42 @@ export interface Props extends Omit<ButtonProps, 'type'> {
   mode?: string;
   justifyContent?: JustifyContentProperty;
   spinner?: boolean;
+  onClick?: (event: React.MouseEvent<HTMLElement>) => void;
 }
 
-const Button: React.FC<Props> = ({ type, mode, justifyContent = 'center', spinner = false, ...antdProps }) => {
+const RIPPLE_ANIMATION_OFFSET = 50;
+
+const Button: React.FC<Props> = ({ type, mode, justifyContent = 'center', spinner = false, onClick, ...antdProps }) => {
+  const rippleRef =  React.useRef<HTMLSpanElement>(null);
+  const [rippleClassName, setRippleClassName] = React.useState('');
+
+  React.useEffect(() => {
+    if(rippleClassName !== '') {
+      setTimeout(() => {
+        setRippleClassName('');
+      }, S.RIPPLE_ANIMATION_TIME - RIPPLE_ANIMATION_OFFSET);
+    }
+  }, [rippleClassName]);
+
+  const handleClick = (event: React.MouseEvent<HTMLElement>): void => {
+    const button = event.currentTarget.closest('.ant-btn');
+    if(button) {
+      const buttonBoundingRect = button.getBoundingClientRect();
+      const x = event.clientX - buttonBoundingRect.left;
+      const y = event.clientY - buttonBoundingRect.top;
+
+      if(rippleRef.current) {
+        rippleRef.current.style.cssText = `top: ${y}px; left: ${x}px`;
+      }
+      setRippleClassName('animate');
+      onClick && onClick(event);
+    }
+  };
+
   return (
     // eslint-disable-next-line react/jsx-props-no-spreading
-    <AntdButton justifyContent={justifyContent} type={type} mode={mode} spinner={spinner} {...antdProps}>
+    <AntdButton justifyContent={justifyContent} type={type} mode={mode} spinner={spinner} {...antdProps} onClick={handleClick}>
+      <S.RippleEffect ref={rippleRef} className={`btn-ripple ${rippleClassName}`} />
       {antdProps.children}
       {spinner && (
         <S.Spinner data-testid="button-spinner">

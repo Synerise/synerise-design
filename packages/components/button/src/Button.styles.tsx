@@ -4,8 +4,11 @@ import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/t
 import Button from 'antd/lib/button';
 import { IconContainer } from '@synerise/ds-icon/dist/Icon.styles';
 
+export const RIPPLE_ANIMATION_TIME = 500;
+
 const leftIcon = '0 4px 0 8px';
 const rightIcon = '0 8px 0 4px';
+const rippleInitialSize = 20;
 
 const buttonType = {
   secondary: 'secondary',
@@ -28,8 +31,19 @@ const spinnerAnimation = keyframes`
   }
 `;
 
+const rippleAnimation = keyframes`
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(20);
+  }
+`;
+
 export const Spinner = styled.div`
-  position: absolute;
+  position: absolute !important;
   top: 0;
   left: 0;
   width: 100%;
@@ -45,6 +59,27 @@ export const Spinner = styled.div`
   }
 `;
 
+export const RippleEffect = styled.span`
+  && {
+    display: flex;
+    width: ${rippleInitialSize}px;
+    height: ${rippleInitialSize}px;
+    top: 0;
+    left: 0;
+    position: absolute !important;
+    border-radius: 50%;
+    padding: 0;
+    margin: -${rippleInitialSize/2}px 0 0 -${rippleInitialSize/2}px;
+    z-index: 0;
+    opacity: 0;
+    &.animate {
+      opacity: 1;
+      animation: ${rippleAnimation} ${RIPPLE_ANIMATION_TIME}ms ease-in;
+      animation-iteration-count: 1;
+    }
+  }
+`;
+
 // eslint-disable-next-line react/jsx-props-no-spreading
 export default styled(({ mode, type, loading, justifyContent, ...rest }) => (
   // eslint-disable-next-line react/jsx-props-no-spreading
@@ -55,7 +90,12 @@ export default styled(({ mode, type, loading, justifyContent, ...rest }) => (
     display: inline-flex;
     align-items: center;
     padding: 0 12px;
+    position: relative;
+    overflow: hidden;
     justify-content: ${(props): FlattenInterpolation<ThemeProps> | false => props.justifyContent};
+    > * {
+      position: relative;
+    }
     ${(props): FlattenInterpolation<ThemeProps> | false =>
       props.spinner &&
       css`
@@ -98,16 +138,6 @@ export default styled(({ mode, type, loading, justifyContent, ...rest }) => (
           }
           > ${IconContainer} {
             margin: 0 4px 0 4px;
-          }
-          &:focus {
-            &:not(:active) {
-              & > span {
-                &:after {
-                  top: 1px;
-                  bottom: 1px;
-                }
-              }
-            }
           }
         }
       `}
@@ -161,8 +191,23 @@ export default styled(({ mode, type, loading, justifyContent, ...rest }) => (
     ${(props): FlattenSimpleInterpolation | false => css`
       &.ant-btn {
         box-shadow: none;
+        box-sizing: border-box;
+        &:after {
+            content: '';
+            display: flex;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            transition: box-shadow .3s ease;
+            box-shadow: inset 0 0 0 0px ${props.theme.palette['blue-700']};
+          }
         &:focus {
-          box-shadow: inset 0 0 0 2px ${props.theme.palette['blue-700']};
+          &:after {
+            box-shadow: inset 0 0 0 2px ${props.theme.palette['blue-700']};
+          }
         }
       }
     `}

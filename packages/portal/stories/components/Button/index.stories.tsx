@@ -39,7 +39,7 @@ const getDefaultProps = () => ({
   disabled: boolean('Disables', false),
   block: boolean('Fit button width', false),
   htmlType: text('Type button', 'button'),
-  href: text('Redirect to link', ''),
+  href: text('Redirect to link', null),
   type: select('Set type', typeOptions, 'primary'),
   justifyContent: select('Set justify content', justifyContentOptions, 'center'),
   onClick: action('onClick CLICK'),
