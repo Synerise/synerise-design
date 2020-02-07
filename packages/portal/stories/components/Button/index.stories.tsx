@@ -50,11 +50,11 @@ const stories = {
     const props = {
       ...getDefaultProps(),
       style: {
-        margin: 20,
+        margin: 4,
       },
     } as object;
     return (
-      <div style={{background:`${(props.type === 'tertiary-white' || props.type === 'ghost-white') ? '#384350' : 'transparent'}`}}>
+      <div style={{background:`${(props.type === 'tertiary-white' || props.type === 'ghost-white') ? '#384350' : 'transparent'}`, display: 'flex'}}>
         <Button {...props} mode="simple">
           Button
         </Button>

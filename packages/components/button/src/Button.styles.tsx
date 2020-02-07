@@ -23,6 +23,7 @@ export default styled(({ mode, type, loading, justifyContent, ...rest }) => (
   <Button type={type} loading={loading} {...rest} />
 ))`  
   && {
+    border: 0;
     display: inline-flex;
     align-items: center;
     padding: 0 12px;
@@ -70,7 +71,7 @@ export default styled(({ mode, type, loading, justifyContent, ...rest }) => (
         &.ant-btn {
           padding-right: 0;
           > div {
-            margin: ${leftIcon};
+            margin: ${rightIcon};
           }
         }
       `}
@@ -80,7 +81,7 @@ export default styled(({ mode, type, loading, justifyContent, ...rest }) => (
         &.ant-btn {
           padding-left: 0;
           > div {
-            margin: ${rightIcon};
+            margin: ${leftIcon};
           }
         }
       `}
@@ -88,7 +89,11 @@ export default styled(({ mode, type, loading, justifyContent, ...rest }) => (
       props.mode === 'single-icon' &&
       css`
         &.ant-btn {
+          display: flex;
+          align-items: center;
+          justify-content: center;
           padding: 0;
+          width: 32px;
           > div {
             margin: 0 4px 0 4px;
           }
