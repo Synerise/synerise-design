@@ -23,4 +23,10 @@ describe('Button', () => {
     // ASSERT
     expect(onClick).toBeCalled();
   });
+  it('should show spinner animation', () => {
+    // ARRANGE
+    const { getByTestId } = renderWithProvider(<Button spinner>Click ME!</Button>);
+    // ASSERT
+    expect(getByTestId('button-spinner')).toBeTruthy();
+  });
 });

@@ -43,6 +43,7 @@ const getDefaultProps = () => ({
   type: select('Set type', typeOptions, 'primary'),
   justifyContent: select('Set justify content', justifyContentOptions, 'center'),
   onClick: action('onClick CLICK'),
+  spinner: boolean('Show spinner', false),
 });
 
 const stories = {
