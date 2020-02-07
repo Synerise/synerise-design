@@ -21,6 +21,9 @@
   },
   "sideEffects": false,
   "types": "dist/index.d.ts",
+  "dependencies": {
+    "@synerise/ds-icon": "*"
+  },
   "peerDependencies": {
     "@synerise/ds-core": "*",
     "antd": "^3",
