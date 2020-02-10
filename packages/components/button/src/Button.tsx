@@ -25,6 +25,11 @@ export interface Props extends Omit<ButtonProps, 'type'> {
     | 'ghost-primary'
     | 'ghost-white';
   mode?: string;
+  groupVariant?:
+    | string
+    | 'left-rounded'
+    | 'squared'
+    | 'right-rounded';
   justifyContent?: JustifyContentProperty;
   spinner?: boolean;
   onClick?: (event: React.MouseEvent<HTMLElement>) => void;
@@ -32,7 +37,7 @@ export interface Props extends Omit<ButtonProps, 'type'> {
 
 const RIPPLE_ANIMATION_OFFSET = 50;
 
-const Button: React.FC<Props> = ({ type, mode, justifyContent = 'center', spinner = false, onClick, ...antdProps }) => {
+const Button: React.FC<Props> = ({ type, mode, justifyContent = 'center', groupVariant, spinner = false, onClick, ...antdProps }) => {
   const rippleRef =  React.useRef<HTMLSpanElement>(null);
   const [rippleClassName, setRippleClassName] = React.useState('');
 
@@ -61,7 +66,7 @@ const Button: React.FC<Props> = ({ type, mode, justifyContent = 'center', spinne
 
   return (
     // eslint-disable-next-line react/jsx-props-no-spreading
-    <AntdButton justifyContent={justifyContent} type={type} mode={mode} spinner={spinner} {...antdProps} onClick={handleClick}>
+    <AntdButton justifyContent={justifyContent} type={type} mode={mode} groupVariant={groupVariant} spinner={spinner} onClick={handleClick} {...antdProps}>
       <S.RippleEffect ref={rippleRef} className={`btn-ripple ${rippleClassName}`} />
       {antdProps.children}
       {spinner && (

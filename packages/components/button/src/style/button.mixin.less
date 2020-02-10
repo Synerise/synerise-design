@@ -9,6 +9,10 @@
       .button-color(@color, @bg, @border);
       box-shadow: none;
     }
+    svg {
+      fill: @color;
+      color: @color;
+    }
   }
 }
 
@@ -141,7 +145,7 @@
     background-color: @btn-tertiary-white-active-bg;
   }
 
-  .button-disabled(@btn-disable-tertiary-color, @btn-disable-tertiary-bg, @btn-disable-tertiary-border);
+  .button-disabled(@btn-disable-tertiary-white-color, @btn-disable-tertiary-white-bg, @btn-disable-tertiary-white-border);
 }
 
 .btn-tertiary-white() {

@@ -36,14 +36,10 @@ const justifyContentOptions = {
 };
 
 const getDefaultProps = () => ({
-  disabled: boolean('Disables', false),
-  block: boolean('Fit button width', false),
   htmlType: text('Type button', 'button'),
   href: text('Redirect to link', null),
   type: select('Set type', typeOptions, 'primary'),
-  justifyContent: select('Set justify content', justifyContentOptions, 'center'),
   onClick: action('onClick CLICK'),
-  spinner: boolean('Show spinner', false),
 });
 
 const stories = {
@@ -55,30 +51,93 @@ const stories = {
       },
     } as object;
     return (
-      <div style={{background:`${(props.type === 'tertiary-white' || props.type === 'ghost-white') ? '#384350' : 'transparent'}`, display: 'flex'}}>
-        <Button {...props} mode="simple">
-          Button
-        </Button>
-        <Button {...props} mode="split">
-          Button
-          <Icon component={<AngleDownS />} color="#ffffff" />
-        </Button>
-        <Button {...props} mode="two-icons">
-          <Icon component={<DragHandleM />} color="#ffffff" />
-          Button
-          <Icon component={<AngleDownS />} color="#ffffff" />
-        </Button>
-        <Button {...props} mode="label-icon">
-          Button
-          <Icon component={<AngleDownS />} color="#ffffff" />
-        </Button>
-        <Button {...props} mode="icon-label">
-          <Icon component={<AngleDownS />} color="#ffffff" />
-          Button
-        </Button>
-        <Button {...props} mode="single-icon">
-          <Icon component={<ShowM />} color="#ffffff" />
-        </Button>
+      <div style={{background:`${(props.type === 'tertiary-white' || props.type === 'ghost-white') ? '#384350' : 'transparent'}`, display: 'flex', flexDirection: 'column'}}>
+        <div style={{display: 'flex'}}>
+          <Button {...props} mode="simple">
+            Button
+          </Button>
+          <Button {...props} mode="split">
+            Button
+            <Icon component={<AngleDownS />} color="#ffffff" />
+          </Button>
+          <Button {...props} mode="two-icons">
+            <Icon component={<DragHandleM />} color="#ffffff" />
+            Button
+            <Icon component={<AngleDownS />} color="#ffffff" />
+          </Button>
+          <Button {...props} mode="label-icon">
+            Button
+            <Icon component={<AngleDownS />} color="#ffffff" />
+          </Button>
+          <Button {...props} mode="icon-label">
+            <Icon component={<AngleDownS />} color="#ffffff" />
+            Button
+          </Button>
+          <Button {...props} mode="single-icon">
+            <Icon component={<ShowM />} color="#ffffff" />
+          </Button>
+        </div>
+        <div style={{display: 'flex'}}>
+          <Button {...props} disabled mode="simple">
+            Button
+          </Button>
+          <Button {...props} disabled mode="split">
+            Button
+            <Icon component={<AngleDownS />} color="#ffffff" />
+          </Button>
+          <Button {...props} disabled mode="two-icons">
+            <Icon component={<DragHandleM />} color="#ffffff" />
+            Button
+            <Icon component={<AngleDownS />} color="#ffffff" />
+          </Button>
+          <Button {...props} disabled mode="label-icon">
+            Button
+            <Icon component={<AngleDownS />} color="#ffffff" />
+          </Button>
+          <Button {...props} disabled mode="icon-label">
+            <Icon component={<AngleDownS />} color="#ffffff" />
+            Button
+          </Button>
+          <Button {...props} disabled mode="single-icon">
+            <Icon component={<ShowM />} color="#ffffff" />
+          </Button>
+        </div>
+        <div style={{display: 'flex'}}>
+          <Button {...props} spinner mode="simple">
+            Button
+          </Button>
+          <Button {...props} spinner mode="split">
+            Button
+            <Icon component={<AngleDownS />} color="#ffffff" />
+          </Button>
+          <Button {...props} spinner mode="two-icons">
+            <Icon component={<DragHandleM />} color="#ffffff" />
+            Button
+            <Icon component={<AngleDownS />} color="#ffffff" />
+          </Button>
+          <Button {...props} spinner mode="label-icon">
+            Button
+            <Icon component={<AngleDownS />} color="#ffffff" />
+          </Button>
+          <Button {...props} spinner mode="icon-label">
+            <Icon component={<AngleDownS />} color="#ffffff" />
+            Button
+          </Button>
+          <Button {...props} spinner mode="single-icon">
+            <Icon component={<ShowM />} color="#ffffff" />
+          </Button>
+        </div>
+        <div style={{display: 'flex'}}>
+          <Button {...props} mode="simple" groupVariant="left-rounded">
+            Button
+          </Button>
+          <Button {...props} mode="simple" groupVariant="squared">
+            Button
+          </Button>
+          <Button {...props} mode="simple" groupVariant="right-rounded">
+            Button
+          </Button>
+        </div>
       </div>
     );
   },

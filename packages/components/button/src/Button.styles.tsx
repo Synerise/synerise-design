@@ -49,7 +49,7 @@ export const Spinner = styled.div`
   width: 100%;
   height: 100%;
   margin: 0;
-  background-color: inherit;
+  background-color: transparent;
   border-radius: inherit;
   display: flex;
   align-items: center;
@@ -72,6 +72,7 @@ export const RippleEffect = styled.span`
     margin: -${rippleInitialSize/2}px 0 0 -${rippleInitialSize/2}px;
     z-index: 0;
     opacity: 0;
+    visibility: visible !important;
     &.animate {
       opacity: 1;
       animation: ${rippleAnimation} ${RIPPLE_ANIMATION_TIME}ms ease-in;
@@ -93,6 +94,23 @@ export default styled(({ mode, type, loading, justifyContent, ...rest }) => (
     position: relative;
     overflow: hidden;
     justify-content: ${(props): FlattenInterpolation<ThemeProps> | false => props.justifyContent};
+    &::after {
+      content: '';
+      display: flex;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      transition: box-shadow .3s ease;
+      box-shadow: inset 0 0 0 0px ${(props): string => props.theme.palette['blue-700']};
+    }
+    &:focus {
+      &::after {
+        box-shadow: inset 0 0 0 2px ${(props): string => props.theme.palette['blue-700']};
+      }
+    }
     > * {
       position: relative;
     }
@@ -110,8 +128,10 @@ export default styled(({ mode, type, loading, justifyContent, ...rest }) => (
       props.type === buttonType[props.type] &&
       css`
         &.ant-btn {
-          svg {
-            fill: ${(color): string => color.theme.palette['grey-600']};
+          &:not(disabled){
+            svg {
+              fill: ${(color): string => color.theme.palette['grey-600']};
+            }
           }
         }
       `}
@@ -188,28 +208,26 @@ export default styled(({ mode, type, loading, justifyContent, ...rest }) => (
           }
         }
       `}
-    ${(props): FlattenSimpleInterpolation | false => css`
-      &.ant-btn {
-        box-shadow: none;
-        box-sizing: border-box;
-        &:after {
-            content: '';
-            display: flex;
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            transition: box-shadow .3s ease;
-            box-shadow: inset 0 0 0 0px ${props.theme.palette['blue-700']};
-          }
-        &:focus {
-          &:after {
-            box-shadow: inset 0 0 0 2px ${props.theme.palette['blue-700']};
-          }
+    ${(props): FlattenSimpleInterpolation | false =>
+      props.groupVariant === 'squared' &&
+      css`
+        &.ant-btn {
+          border-radius: 0;  
         }
-      }
-    `}
+      `}
+    ${(props): FlattenSimpleInterpolation | false =>
+      props.groupVariant === 'left-rounded' &&
+      css`
+        &.ant-btn {
+          border-radius: 3px 0 0 3px;  
+        }
+      `}
+     ${(props): FlattenSimpleInterpolation | false =>
+      props.groupVariant === 'right-rounded' &&
+      css`
+        &.ant-btn {
+          border-radius: 0 3px 3px 0;  
+        }
+      `}
   }
 `;
