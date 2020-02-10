@@ -59,19 +59,19 @@ const TimePicker: React.FC<TimePickerProps> = ({
   const unitConfig: UnitConfig[] = [
     {
       unit: 'hour',
-      options: [...Array(use12HourClock ? 11 : 23).keys()],
+      options: [...Array(use12HourClock ? 12 : 24).keys()],
       disabled: disabledHours,
       insertSeperator: true,
     },
     {
       unit: 'minute',
-      options: [...Array(59).keys()],
+      options: [...Array(60).keys()],
       disabled: disabledMinutes,
       insertSeperator: true,
     },
     {
       unit: 'second',
-      options: [...Array(59).keys()],
+      options: [...Array(60).keys()],
       disabled: disabledSeconds,
     },
   ];
