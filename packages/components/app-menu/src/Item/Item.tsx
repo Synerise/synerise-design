@@ -3,6 +3,7 @@ import Tooltip from '@synerise/ds-tooltip';
 
 import SubMenuContext from '../SubMenu/SubMenuContext/SubMenuContext';
 import MenuContext from '../MenuContext/MenuContext';
+import Icon from './Icon/Icon';
 import * as S from './Item.styles';
 
 type ItemProps = {
@@ -12,7 +13,7 @@ type ItemProps = {
   className?: string;
 };
 
-const Item: React.FC<ItemProps> = ({ children, subMenu, id, name, className }) => {
+const Item: React.FC<ItemProps> & { Icon: typeof Icon } = ({ children, subMenu, id, name, className }) => {
   const menuContext = React.useContext(MenuContext);
 
   if (!menuContext) {
@@ -33,7 +34,7 @@ const Item: React.FC<ItemProps> = ({ children, subMenu, id, name, className }) =
 
   return (
     <S.ItemWrapper className={className}>
-      <Tooltip style={{ marginLeft: '5px' }} placement="right" title={name}>
+      <Tooltip style={{ marginLeft: '5px' }} placement="right" title={isActive && menuContext.isOpened ? '' : name}>
         <S.ItemLink className={`menu__item ${isActive ? 'menu__item--active' : ''}`} onClick={handleOpen}>
           {children}
         </S.ItemLink>
@@ -46,5 +47,7 @@ const Item: React.FC<ItemProps> = ({ children, subMenu, id, name, className }) =
     </S.ItemWrapper>
   );
 };
+
+Item.Icon = Icon;
 
 export default Item;

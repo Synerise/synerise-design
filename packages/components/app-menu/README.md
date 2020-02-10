@@ -18,14 +18,14 @@ yarn add @synerise/ds-app-menu
 ```
 import AppMenu from '@synerise/ds-app-menu'
 import Icon from '@synerise/ds-icon';
-import { DashboardColorM, SettingsColorM, AnalyticsColorM } from '@synerise/ds-icon/dist/icons';
+import { DashboardColorM, DashboardGreyM, SettingsColorM, SettingsColorM, AnalyticsColorM } from '@synerise/ds-icon/dist/icons';
 
 <AppMenu
   activeItem="settings"
   top={20}
   footer={
     <AppMenu.Item id="dashboards" name="Dashboards">
-      <Icon component={<DashboardColorM />} />
+      <AppMenu.Item.Icon active={<DashboardColorM />} inActive={<DashboardGreyM />} />
     </AppMenu.Item>
   }
 >
@@ -41,10 +41,10 @@ import { DashboardColorM, SettingsColorM, AnalyticsColorM } from '@synerise/ds-i
       </AppMenu.SubMenu>
     })
   >
-    <Icon component={<SettingsColorM />} />
+    <AppMenu.Item.Icon active={<SettingsColorM />} inActive={<SettingsGreyM />} />
   </AppMenu.Item>
   <AppMenu.Item id="analyics" name="Analytics">
-    <Icon component={<AnalyticsColorM />} />
+    <AppMenu.Item.Icon active={<AnalyticsColorM />} inActive={<AnalyticsGreyM />} />
   </AppMenu.Item>
 </AppMenu>
 ```
@@ -55,9 +55,52 @@ import { DashboardColorM, SettingsColorM, AnalyticsColorM } from '@synerise/ds-i
 
 ## API
 
+### AppMenu
+
 | Property   | Description                       | Type                 | Default |
 | ---------- | --------------------------------- | -------------------- | ------- |
 | activeItem | ID of active menu item            | string               | -       |
 | footer     | Footer of menu                    | React.ReactNode      | -       |
 | children   | Menu items                        | React.ReactNodeArray | -       |
 | top        | Distance from top of window in px | number               | -       |
+
+### AppMenu.Item
+
+| Property | Description                 | Type            | Default |
+| -------- | --------------------------- | --------------- | ------- |
+| subMenu  | Submenu component           | React.ReactNode | -       |
+| name     | Name visible in toolti      | string          | -       |
+| id       | ID of submenu               | string          | -       |
+| children | Menu item children ie. icon | React.ReactNode | -       |
+
+### AppMenu.Item.Icon
+
+| Property | Description             | Type            | Default |
+| -------- | ----------------------- | --------------- | ------- |
+| active   | Active icon component   | React.ReactNode | -       |
+| inActive | Inactive icon component | React.ReactNode | -       |
+
+### AppMenu.SubMenu
+
+| Property | Description      | Type                 | Default |
+| -------- | ---------------- | -------------------- | ------- |
+| children | Submenu elements | React.ReactNodeArray | -       |
+
+### AppMenu.SubMenu.Title
+
+| Property | Description      | Type            | Default |
+| -------- | ---------------- | --------------- | ------- |
+| children | Title of submenu | React.ReactNode | -       |
+
+### AppMenu.SubMenu.SubTitle
+
+| Property | Description              | Type            | Default |
+| -------- | ------------------------ | --------------- | ------- |
+| children | Text of subtitle section | React.ReactNode | -       |
+
+### AppMenu.SubMenu.Item
+
+| Property | Description            | Type            | Default |
+| -------- | ---------------------- | --------------- | ------- |
+| active   | Whether item is active | boolean         | -       |
+| children | Item children ie. link | React.ReactNode | -       |

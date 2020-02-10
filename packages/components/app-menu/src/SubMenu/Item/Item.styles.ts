@@ -25,11 +25,7 @@ export const Wrapper = styled.div`
     opacity: 1;
 
     ${ItemAction} {
-      opacity: 0.7;
-
-      &:hover {
-        opacity: 1;
-      }
+      opacity: 1;
     }
   }
 `;
