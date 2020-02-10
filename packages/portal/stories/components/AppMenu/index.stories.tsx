@@ -2,7 +2,25 @@ import * as React from 'react';
 
 import AppMenu from '@synerise/ds-app-menu';
 import Icon from '@synerise/ds-icon';
-import { AnalyticsColorM, AssetsBaseColorM, AutomationColorM, CampaignsColorM, ChatColorM, CustomersColorM, DashboardColorM, SettingsColorM , Add3M} from '@synerise/ds-icon/dist/icons';
+import { 
+  AnalyticsColorM, 
+  AnalyticsGreyM, 
+  AssetsColorM, 
+  AssetsGreyM, 
+  AutomationColorM, 
+  AutomationGreyM, 
+  CampaignsColorM, 
+  CampaignsGreyM,
+  ChatColorM, 
+  ChatGreyM,
+  CustomersColorM, 
+  CustomersGreyM,
+  DashboardColorM, 
+  DashboardGreyM,
+  SettingsColorM, 
+  SettingsGreyM, 
+  Add3M
+} from '@synerise/ds-icon/dist/icons';
 
 const stories = {
   default: () => ({
@@ -51,7 +69,7 @@ const stories = {
             <AppMenu.SubMenu.Item>Export</AppMenu.SubMenu.Item>
           </AppMenu.SubMenu>
         )}>
-        <Icon component={<SettingsColorM />} />
+        <AppMenu.Item.Icon active={<SettingsColorM />} inActive={<SettingsGreyM />}/>
       </AppMenu.Item>
     ),
     children: ([
@@ -60,7 +78,7 @@ const stories = {
         id="dashboards" 
         name="Dashboards" 
       >
-        <Icon component={<DashboardColorM />} />
+        <AppMenu.Item.Icon active={<DashboardColorM />} inActive={<DashboardGreyM />}/>
       </AppMenu.Item>,
       <AppMenu.Item 
         key="customers" 
@@ -75,7 +93,7 @@ const stories = {
           </AppMenu.SubMenu>
         )}
       >
-        <Icon component={<CustomersColorM />} />
+        <AppMenu.Item.Icon active={<CustomersColorM />} inActive={<CustomersGreyM />}/>
       </AppMenu.Item>,
       <AppMenu.Item 
        key="campaigns" 
@@ -104,13 +122,13 @@ const stories = {
         </AppMenu.SubMenu>
        )}
        >
-         <Icon component={<CampaignsColorM />} />
+         <AppMenu.Item.Icon active={<CampaignsColorM />} inActive={<CampaignsGreyM />}/>
        </AppMenu.Item>,
         <AppMenu.Item key="chat" name="Chat" id="chat">
-        <Icon component={<ChatColorM />} />
+        <AppMenu.Item.Icon active={<ChatColorM />} inActive={<ChatGreyM />}/>
       </AppMenu.Item>,
-        <AppMenu.Item  key="automation" name="Automation" id="automation">
-        <Icon component={<AutomationColorM />} />
+      <AppMenu.Item  key="automation" name="Automation" id="automation">
+        <AppMenu.Item.Icon active={<AutomationColorM />} inActive={<AutomationGreyM />}/>
       </AppMenu.Item>,
       <AppMenu.Item 
         key="analytics"  
@@ -139,7 +157,7 @@ const stories = {
         </AppMenu.SubMenu>
         )}
       >
-        <Icon component={<AnalyticsColorM />} />
+        <AppMenu.Item.Icon active={<AnalyticsColorM />} inActive={<AnalyticsGreyM />}/>
       </AppMenu.Item>,
       <AppMenu.Item 
       key="assets" 
@@ -168,7 +186,7 @@ const stories = {
         </AppMenu.SubMenu>
         )}
       >
-        <Icon component={<AssetsBaseColorM />} />
+        <AppMenu.Item.Icon active={<AssetsColorM />} inActive={<AssetsGreyM />}/>
       </AppMenu.Item>,
     ]
     )

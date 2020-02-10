@@ -15,6 +15,8 @@ export const MenuGroupWrapper = styled.div`
   transition: opacity 0.2s ease-in-out;
   transition-delay: 0.1s;
   overflow-y: auto;
+  display: flex;
+  flex-flow: column;
 
   &.menu__sub-menu--active {
     visibility: visible;

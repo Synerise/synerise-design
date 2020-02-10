@@ -5,11 +5,11 @@ import * as S from './SubMenu.styles';
 import Item from './Item/Item';
 import SubMenuContext from './SubMenuContext/SubMenuContext';
 
-const SubMenu: React.FC<{ className?: string }> & {
+const SubMenu: React.FC<{ className?: string; style?: React.CSSProperties }> & {
   Title: typeof S.MenuGroupTitle;
   SubTitle: typeof S.MenuGroupSubTitle;
   Item: typeof Item;
-} = ({ children, className }) => {
+} = ({ children, className, style }) => {
   const subMenuContext = React.useContext(SubMenuContext);
 
   if (!subMenuContext) {
@@ -19,6 +19,7 @@ const SubMenu: React.FC<{ className?: string }> & {
   return (
     <S.MenuGroupWrapper
       className={`menu__sub-menu ${className || ''} ${subMenuContext.isActive ? 'menu__sub-menu--active' : ''}`}
+      style={style}
     >
       {children}
     </S.MenuGroupWrapper>
