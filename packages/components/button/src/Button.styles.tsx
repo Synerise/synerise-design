@@ -1,10 +1,14 @@
 import * as React from 'react';
-import styled, { css, FlattenInterpolation, FlattenSimpleInterpolation } from 'styled-components';
+import styled, { css, FlattenInterpolation, FlattenSimpleInterpolation, keyframes } from 'styled-components';
 import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import Button from 'antd/lib/button';
+import { IconContainer } from '@synerise/ds-icon/dist/Icon.styles';
+
+export const RIPPLE_ANIMATION_TIME = 500;
 
 const leftIcon = '0 4px 0 8px';
 const rightIcon = '0 8px 0 4px';
+const rippleInitialSize = 20;
 
 const buttonType = {
   secondary: 'secondary',
@@ -17,22 +21,115 @@ const splitType = {
   tertiary: 'tertiary',
 };
 
+const spinnerAnimation = keyframes`
+  from {
+    transform: rotateZ(0deg);
+  }
+  
+  to {
+    transform: rotateZ(360deg);
+  }
+`;
+
+const rippleAnimation = keyframes`
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(20);
+  }
+`;
+
+export const Spinner = styled.div`
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  background-color: transparent;
+  border-radius: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  ${IconContainer} {
+    animation: ${spinnerAnimation} 1s forwards linear infinite;
+  }
+`;
+
+export const RippleEffect = styled.span`
+  && {
+    display: flex;
+    width: ${rippleInitialSize}px;
+    height: ${rippleInitialSize}px;
+    top: 50%;
+    left: 50%;
+    position: absolute !important;
+    border-radius: 50%;
+    padding: 0;
+    margin: -${rippleInitialSize / 2}px 0 0 -${rippleInitialSize / 2}px;
+    z-index: 0;
+    opacity: 0;
+    visibility: visible !important;
+    &.animate {
+      opacity: 1;
+      animation: ${rippleAnimation} ${RIPPLE_ANIMATION_TIME}ms ease-in;
+      animation-iteration-count: 1;
+    }
+  }
+`;
+
+export const ButtonFocus = styled.div`
+  content: '';
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  transition: box-shadow 0.3s ease;
+  border-radius: inherit;
+  z-index: 99;
+  box-shadow: inset 0 0 0 0px transparent;
+`;
+
 // eslint-disable-next-line react/jsx-props-no-spreading
 export default styled(({ mode, type, loading, justifyContent, ...rest }) => (
   // eslint-disable-next-line react/jsx-props-no-spreading
-  <Button type={type} loading={loading} {...rest} />
+  <Button type={type} {...rest} />
 ))`  
   && {
+    border: 0;
     display: inline-flex;
     align-items: center;
     padding: 0 12px;
+    position: relative;
+    overflow: hidden;
     justify-content: ${(props): FlattenInterpolation<ThemeProps> | false => props.justifyContent};
+    > *:not(.btn-focus) {
+      position: relative;
+    }
+    ${(props): FlattenInterpolation<ThemeProps> | false =>
+      props.spinner &&
+      css`
+        > *:not(.btn-focus) {
+          visibility: hidden;
+        }
+        ${Spinner} {
+          visibility: visible;
+        }
+      `};
     ${(props): FlattenInterpolation<ThemeProps> | false =>
       props.type === buttonType[props.type] &&
       css`
         &.ant-btn {
-          svg {
-            fill: ${(color): string => color.theme.palette['grey-600']};
+          &:not(:disabled) {
+            svg {
+              fill: ${(color): string => color.theme.palette['grey-600']};
+            }
           }
         }
       `}
@@ -41,13 +138,24 @@ export default styled(({ mode, type, loading, justifyContent, ...rest }) => (
       css`
         &.ant-btn {
           padding-right: 0;
-          > span {
+          > span:not(.btn-focus) {
             padding-right: 12px;
-            border-right: 1px solid
-              ${props.type !== splitType[props.type] ? `rgba(255, 255, 255, 0.15);` : props.theme.palette['grey-300']};
+            position: relative;
+            &:after {
+              content: '';
+              background-color: ${props.type !== splitType[props.type]
+                ? `rgba(255, 255, 255, 0.15);`
+                : props.theme.palette['grey-300']};
+              width: 1px;
+              top: 0;
+              bottom: 0;
+              right: 0;
+              position: absolute;
+              transition: all 0.3s ease;
+            }
           }
-          > div {
-            margin: 0 4px 0 4px;
+          > ${IconContainer} {
+            margin: 0 4px 0 3px;
           }
         }
       `}
@@ -56,10 +164,10 @@ export default styled(({ mode, type, loading, justifyContent, ...rest }) => (
       css`
         &.ant-btn {
           padding: 0;
-          > div:first-child {
+          > ${IconContainer}:first-of-type {
             margin: ${leftIcon};
           }
-          > div:last-child {
+          > ${IconContainer}:nth-of-type(2) {
             margin: ${rightIcon};
           }
         }
@@ -69,8 +177,8 @@ export default styled(({ mode, type, loading, justifyContent, ...rest }) => (
       css`
         &.ant-btn {
           padding-right: 0;
-          > div {
-            margin: ${leftIcon};
+          > ${IconContainer} {
+            margin: ${rightIcon};
           }
         }
       `}
@@ -79,8 +187,8 @@ export default styled(({ mode, type, loading, justifyContent, ...rest }) => (
       css`
         &.ant-btn {
           padding-left: 0;
-          > div {
-            margin: ${rightIcon};
+          > ${IconContainer} {
+            margin: ${leftIcon};
           }
         }
       `}
@@ -88,19 +196,36 @@ export default styled(({ mode, type, loading, justifyContent, ...rest }) => (
       props.mode === 'single-icon' &&
       css`
         &.ant-btn {
+          display: flex;
+          align-items: center;
+          justify-content: center;
           padding: 0;
-          > div {
+          width: 32px;
+          > ${IconContainer} {
             margin: 0 4px 0 4px;
           }
         }
       `}
-    ${(props): FlattenSimpleInterpolation | false => css`
-      &.ant-btn {
-        box-shadow: none;
-        &:focus {
-          box-shadow: inset 0 0 0 1px ${props.theme.palette['blue-700']};
+    ${(props): FlattenSimpleInterpolation | false =>
+      props.groupVariant === 'squared' &&
+      css`
+        &.ant-btn {
+          border-radius: 0;
         }
-      }
-    `}
+      `}
+    ${(props): FlattenSimpleInterpolation | false =>
+      props.groupVariant === 'left-rounded' &&
+      css`
+        &.ant-btn {
+          border-radius: 3px 0 0 3px;
+        }
+      `}
+     ${(props): FlattenSimpleInterpolation | false =>
+       props.groupVariant === 'right-rounded' &&
+       css`
+         &.ant-btn {
+           border-radius: 0 3px 3px 0;
+         }
+       `}
   }
 `;
