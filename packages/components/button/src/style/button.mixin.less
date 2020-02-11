@@ -17,6 +17,7 @@
 }
 
 .button-hover(@color; @bg; @border) {
+  box-shadow: none;
   &:not(:disabled) {
     .button-color(@color, @bg, @border);
     span {
@@ -38,7 +39,6 @@
 
   &:hover {
     .button-hover(@btn-primary-color, @btn-primary-hover-bg, @btn-primary-hover-bg);
-    box-shadow: 0 2px 4px 0 @btn-primary-shadow;
   }
 
   &:focus {
@@ -78,8 +78,6 @@
 
   &:hover {
     .button-hover(@primary-color, @btn-default-hover-bg, @btn-default-border);
-    box-shadow: 0 2px 4px 0 @btn-default-shadow;
-    border-color: @btn-default-border;
   }
 
   &:focus {
@@ -129,8 +127,7 @@
   }
 
   &:hover {
-    .button-color(@btn-tertiary-color, @btn-tertiary-hover-bg, @btn-tertiary-border);
-    box-shadow: 0 2px 4px 0 @btn-tertiary-shadow;
+    .button-hover(@btn-tertiary-color, @btn-tertiary-hover-bg, @btn-tertiary-border);
   }
 
   &:focus {
@@ -163,13 +160,13 @@
   }
   &:hover {
     .button-hover(@btn-tertiary-white-color, @btn-tertiary-white-hover-bg, @btn-tertiary-white-border);
-    box-shadow: none;
   }
 
   &:focus {
     .button-color(@btn-tertiary-white-color, @btn-tertiary-white-focus-bg, @btn-tertiary-white-focus-bg);
-    box-shadow: none;
-    border-color: @primary-color;
+    .btn-focus {
+      box-shadow: inset 0 0 0 2px @primary-color;
+    }
   }
 
   &:active,
@@ -207,14 +204,12 @@
 
   &:hover {
     .button-hover(@primary-color, @btn-ghost-hover-bg, @btn-ghost-border);
-    box-shadow: 0 2px 4px 0 @btn-ghost-shadow;
   }
 
   &:focus {
     .button-color(@btn-ghost-color, @btn-ghost-focus-bg, @btn-ghost-focus-bg);
     .btn-focus {
       box-shadow: inset 0 0 0 2px @primary-color;
-      border-color: @primary-color;
     }
   }
 
@@ -242,14 +237,12 @@
 
   &:hover {
     .button-hover(@btn-ghost-primary-color, @btn-ghost-primary-hover-bg, @btn-ghost-primary-border);
-    box-shadow: none;
   }
 
   &:focus {
     .button-color(@btn-ghost-primary-color, @btn-ghost-primary-focus-bg, @btn-ghost-primary-focus-bg);
     .btn-focus {
       box-shadow: inset 0 0 0 2px @primary-color;
-      border-color: @primary-color;
     }
   }
 
@@ -289,14 +282,12 @@
 
   &:hover {
     .button-hover(@btn-ghost-white-color, @btn-ghost-white-hover-bg, @btn-ghost-white-border);
-    box-shadow: none;
   }
 
   &:focus {
     .button-color(@btn-ghost-white-color, @btn-ghost-white-focus-bg, @btn-ghost-white-focus-bg);
     .btn-focus {
       box-shadow: inset 0 0 0 2px @primary-color;
-      border-color: @primary-color;
     }
   }
 
@@ -341,7 +332,6 @@
     .button-color(@btn-danger-color, @btn-danger-focus-bg, @btn-danger-focus-bg);
     .btn-focus {
       box-shadow: inset 0 0 0 2px @primary-color;
-      border-color: @primary-color-darker-1;
     }
   }
 
@@ -370,14 +360,12 @@
 
   &:hover {
     .button-hover(@btn-success-color, @btn-success-hover-bg, @btn-success-hover-bg);
-    box-shadow: 0 2px 4px 0 @btn-success-shadow;
   }
 
   &:focus {
     .button-color(@btn-success-color, @btn-success-focus-bg, @btn-success-hover-bg);
     .btn-focus {
       box-shadow: inset 0 0 0 2px @primary-color-darker-1;
-      border-color: @primary-color;
     }
   }
 
@@ -406,14 +394,12 @@
 
   &:hover {
     .button-hover(@btn-warning-color, @btn-warning-hover-bg, @btn-warning-hover-bg);
-    box-shadow: 0 2px 4px 0 @btn-warning-shadow;
   }
 
   &:focus {
     .button-color(@btn-warning-color, @btn-warning-focus-bg, @btn-warning-hover-bg);
     .btn-focus {
       box-shadow: inset 0 0 0 2px @primary-color;
-      border-color: @primary-color-darker-1;
     }
   }
 
@@ -457,7 +443,6 @@
     .button-color(@btn-flat-hover-color, @btn-flat-bg, @btn-flat-border);
     .btn-focus {
       box-shadow: inset 0 0 0 2px @primary-color-darker-1;
-      border-color: @primary-color-darker-1;
     }
   }
 

@@ -9,14 +9,15 @@ import markdown from '@/button/README.md';
 const typeOptions = {
   Primary: 'primary',
   Secondary: 'secondary',
-  Tertiary: 'tertiary',
-  Ghost: 'ghost',
-  Danger: 'danger',
+  TertiaryDark: 'tertiary',
+  TertiaryWhite: 'tertiary-white',
+  GhostPrimary: 'ghost-primary',
+  GhostSecondaryDark: 'ghost',
+  GhostSecondaryWhite: 'ghost-white',
   Success: 'success',
   Warning: 'warning',
-  tertiaryWhite: 'tertiary-white',
-  ghostPrimary: 'ghost-primary',
-  ghostWhite: 'ghost-white',
+  Danger: 'danger',
+
 };
 
 const buttonSizes = {
