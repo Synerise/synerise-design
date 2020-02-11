@@ -8,9 +8,22 @@
     &.active {
       .button-color(@color, @bg, @border);
       box-shadow: none;
+      svg {
+        fill: @color !important;
+        color: @color;
+      }
+    }
+  }
+}
+
+.button-hover(@color; @bg; @border) {
+  &:not(:disabled) {
+    .button-color(@color, @bg, @border);
+    span {
+      color: @color;
     }
     svg {
-      fill: @color;
+      fill: @color !important;
       color: @color;
     }
   }
@@ -19,14 +32,20 @@
 .button-variant-primary() {
   .button-color(@btn-primary-color, @btn-primary-bg, @btn-primary-bg);
 
+  .btn-focus {
+    box-shadow: inset 0 0 0 0px @btn-default-border;
+  }
+
   &:hover {
-    .button-color(@btn-primary-color, @btn-primary-hover-bg, @btn-primary-hover-bg);
+    .button-hover(@btn-primary-color, @btn-primary-hover-bg, @btn-primary-hover-bg);
     box-shadow: 0 2px 4px 0 @btn-primary-shadow;
   }
 
   &:focus {
     .button-color(@btn-primary-color, @btn-primary-bg, @btn-primary-focus-bg);
-    box-shadow: inset 0 0 0 2px @primary-color-darker-1;
+    .btn-focus {
+      box-shadow: inset 0 0 0 2px @primary-color-darker-1;
+    }
   }
 
   &:active,
@@ -48,8 +67,12 @@
 .button-variant-default() {
   .button-color(@btn-default-color, @btn-default-bg, @btn-default-border);
 
+  .btn-focus {
+    box-shadow: inset 0 0 0 1px @btn-default-border;
+  }
+
   &:hover {
-    .button-color(@btn-default-color, @btn-default-hover-bg, @btn-default-border);
+    .button-hover(@primary-color, @btn-default-hover-bg, @btn-default-border);
     box-shadow: 0 2px 4px 0 @btn-default-shadow;
     border-color: @btn-default-border;
   }
@@ -57,8 +80,7 @@
   &:focus {
     .button-color(@btn-default-color, @btn-default-focus-bg, @btn-default-border);
     .btn-focus {
-      box-shadow: inset 0 0 0 2px @primary-color-darker-1;
-      border-color: @primary-color-darker-1;
+      box-shadow: inset 0 0 0 2px @primary-color;
     }
   }
 
@@ -97,6 +119,10 @@
 .button-variant-tertiary() {
   .button-color(@btn-tertiary-color, @btn-tertiary-bg, @btn-tertiary-border);
 
+  .btn-focus {
+    box-shadow: inset 0 0 0 0px @btn-default-border;
+  }
+
   &:hover {
     .button-color(@btn-tertiary-color, @btn-tertiary-hover-bg, @btn-tertiary-border);
     box-shadow: 0 2px 4px 0 @btn-tertiary-shadow;
@@ -105,8 +131,7 @@
   &:focus {
     .button-color(@btn-tertiary-color, @btn-tertiary-focus-bg, @btn-tertiary-focus-bg);
     .btn-focus {
-      box-shadow: inset 0 0 0 2px @primary-color-darker-1;
-      border-color: @primary-color-darker-1;
+      box-shadow: inset 0 0 0 2px @primary-color;
     }
   }
 
@@ -128,16 +153,18 @@
 
 .button-variant-tertiary-white() {
   .button-color(@btn-tertiary-white-color, @btn-tertiary-white-bg, @btn-tertiary-white-border);
-
+  .btn-focus {
+    box-shadow: inset 0 0 0 0px @primary-color;
+  }
   &:hover {
-    .button-color(@btn-tertiary-white-color, @btn-tertiary-white-hover-bg, @btn-tertiary-white-border);
+    .button-hover(@btn-tertiary-white-color, @btn-tertiary-white-hover-bg, @btn-tertiary-white-border);
     box-shadow: none;
   }
 
   &:focus {
     .button-color(@btn-tertiary-white-color, @btn-tertiary-white-focus-bg, @btn-tertiary-white-focus-bg);
     box-shadow: none;
-    border-color: @primary-color-darker-1;
+    border-color: @primary-color;
   }
 
   &:active,
@@ -164,17 +191,20 @@
   .button-color(@btn-ghost-color, @btn-ghost-bg, @btn-ghost-border);
   box-shadow: none;
   border-color: transparent;
+  .btn-focus {
+    box-shadow: inset 0 0 0 0px transparent;
+  }
 
   &:hover {
-    .button-color(@btn-ghost-color, @btn-ghost-hover-bg, @btn-ghost-border);
+    .button-hover(@primary-color, @btn-ghost-hover-bg, @btn-ghost-border);
     box-shadow: 0 2px 4px 0 @btn-ghost-shadow;
   }
 
   &:focus {
     .button-color(@btn-ghost-color, @btn-ghost-focus-bg, @btn-ghost-focus-bg);
     .btn-focus {
-      box-shadow: inset 0 0 0 2px @primary-color-darker-1;
-      border-color: @primary-color-darker-1;
+      box-shadow: inset 0 0 0 2px @primary-color;
+      border-color: @primary-color;
     }
   }
 
@@ -196,16 +226,21 @@
 
 .button-variant-ghost-primary() {
   .button-color(@btn-ghost-primary-color, @btn-ghost-primary-bg, @btn-ghost-primary-border);
+  .btn-focus {
+    box-shadow: inset 0 0 0 0px transparent;
+  }
 
   &:hover {
-    .button-color(@btn-ghost-primary-color, @btn-ghost-primary-hover-bg, @btn-ghost-primary-border);
+    .button-hover(@btn-ghost-primary-color, @btn-ghost-primary-hover-bg, @btn-ghost-primary-border);
     box-shadow: none;
   }
 
   &:focus {
     .button-color(@btn-ghost-primary-color, @btn-ghost-primary-focus-bg, @btn-ghost-primary-focus-bg);
-    box-shadow: none;
-    border-color: @primary-color-darker-1;
+    .btn-focus {
+      box-shadow: inset 0 0 0 2px @primary-color;
+      border-color: @primary-color;
+    }
   }
 
   &:active,
@@ -237,15 +272,21 @@
 .button-variant-ghost-white() {
   .button-color(@btn-ghost-white-color, @btn-ghost-white-bg, @btn-ghost-white-border);
 
+  .btn-focus {
+    box-shadow: inset 0 0 0 0 transparent;
+  }
+
   &:hover {
-    .button-color(@btn-ghost-white-color, @btn-ghost-white-hover-bg, @btn-ghost-white-border);
+    .button-hover(@btn-ghost-white-color, @btn-ghost-white-hover-bg, @btn-ghost-white-border);
     box-shadow: none;
   }
 
   &:focus {
     .button-color(@btn-ghost-white-color, @btn-ghost-white-focus-bg, @btn-ghost-white-focus-bg);
-    box-shadow: none;
-    border-color: @primary-color-darker-1;
+    .btn-focus {
+      box-shadow: inset 0 0 0 2px @primary-color;
+      border-color: @primary-color;
+    }
   }
 
   &:active,
@@ -276,16 +317,19 @@
 
 .button-variant-danger() {
   .button-color(@btn-danger-color, @btn-danger-bg, @btn-danger-border);
+  .btn-focus {
+    box-shadow: inset 0 0 0 0 transparent;
+  }
 
   &:hover {
-    .button-color(@btn-danger-color, @btn-danger-hover-bg, @btn-danger-hover-bg);
+    .button-hover(@btn-danger-color, @btn-danger-hover-bg, @btn-danger-hover-bg);
     box-shadow: 0 2px 4px 0 @btn-danger-shadow;
   }
 
   &:focus {
     .button-color(@btn-danger-color, @btn-danger-focus-bg, @btn-danger-focus-bg);
     .btn-focus {
-      box-shadow: inset 0 0 0 2px @primary-color-darker-1;
+      box-shadow: inset 0 0 0 2px @primary-color;
       border-color: @primary-color-darker-1;
     }
   }
@@ -304,9 +348,12 @@
 
 .button-variant-success() {
   .button-color(@btn-success-color, @btn-success-bg, @btn-success-border);
+  .btn-focus {
+    box-shadow: inset 0 0 0 0 transparent;
+  }
 
   &:hover {
-    .button-color(@btn-success-color, @btn-success-hover-bg, @btn-success-hover-bg);
+    .button-hover(@btn-success-color, @btn-success-hover-bg, @btn-success-hover-bg);
     box-shadow: 0 2px 4px 0 @btn-success-shadow;
   }
 
@@ -314,7 +361,7 @@
     .button-color(@btn-success-color, @btn-success-focus-bg, @btn-success-hover-bg);
     .btn-focus {
       box-shadow: inset 0 0 0 2px @primary-color-darker-1;
-      border-color: @primary-color-darker-1;
+      border-color: @primary-color;
     }
   }
 
@@ -332,16 +379,19 @@
 
 .button-variant-warning() {
   .button-color(@btn-warning-color, @btn-warning-bg, @btn-warning-border);
+  .btn-focus {
+    box-shadow: inset 0 0 0 0 transparent;
+  }
 
   &:hover {
-    .button-color(@btn-warning-color, @btn-warning-hover-bg, @btn-warning-hover-bg);
+    .button-hover(@btn-warning-color, @btn-warning-hover-bg, @btn-warning-hover-bg);
     box-shadow: 0 2px 4px 0 @btn-warning-shadow;
   }
 
   &:focus {
     .button-color(@btn-warning-color, @btn-warning-focus-bg, @btn-warning-hover-bg);
     .btn-focus {
-      box-shadow: inset 0 0 0 2px @primary-color-darker-1;
+      box-shadow: inset 0 0 0 2px @primary-color;
       border-color: @primary-color-darker-1;
     }
   }
@@ -364,9 +414,12 @@
 
 .button-variant-flat() {
   .button-color(@btn-flat-color, @btn-flat-bg, @btn-flat-border);
+  .btn-focus {
+    box-shadow: inset 0 0 0 0 transparent;
+  }
 
   &:hover {
-    .button-color(@btn-flat-hover-color, @btn-flat-bg, @btn-flat-border);
+    .button-hover(@btn-flat-hover-color, @btn-flat-bg, @btn-flat-border);
     box-shadow: none;
 
     &:not([disabled]) {

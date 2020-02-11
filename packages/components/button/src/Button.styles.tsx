@@ -91,8 +91,9 @@ export const ButtonFocus = styled.div`
   height: 100%;
   pointer-events: none;
   transition: box-shadow 0.3s ease;
+  border-radius: inherit;
   z-index: 99;
-  box-shadow: inset 0 0 0 0px ${(props): string => props.theme.palette['blue-700']};
+  box-shadow: inset 0 0 0 0px transparent;
 `;
 
 // eslint-disable-next-line react/jsx-props-no-spreading
@@ -108,11 +109,6 @@ export default styled(({ mode, type, loading, justifyContent, ...rest }) => (
     position: relative;
     overflow: hidden;
     justify-content: ${(props): FlattenInterpolation<ThemeProps> | false => props.justifyContent};
-    &:focus {
-      ${ButtonFocus} {
-        box-shadow: inset 0 0 0 2px ${(props): string => props.theme.palette['blue-700']};
-      }
-    }
     > *:not(.btn-focus) {
       position: relative;
     }
@@ -130,7 +126,7 @@ export default styled(({ mode, type, loading, justifyContent, ...rest }) => (
       props.type === buttonType[props.type] &&
       css`
         &.ant-btn {
-          &:not(disabled) {
+          &:not(:disabled) {
             svg {
               fill: ${(color): string => color.theme.palette['grey-600']};
             }
@@ -159,7 +155,7 @@ export default styled(({ mode, type, loading, justifyContent, ...rest }) => (
             }
           }
           > ${IconContainer} {
-            margin: 0 4px 0 4px;
+            margin: 0 4px 0 3px;
           }
         }
       `}

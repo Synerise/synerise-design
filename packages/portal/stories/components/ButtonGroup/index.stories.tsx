@@ -47,8 +47,8 @@ const stories = {
             <Icon component={<AngleDownS />} color="#ffffff" />
           </Button>
           <Button mode='label-icon' {...buttonProps}>
-            <Icon component={<DragHandleM />} color="#ffffff" />
             Button
+            <Icon component={<DragHandleM />} color="#ffffff" />
           </Button>
           <Button {...buttonProps} loading>{buttonProps.content}</Button>
           <Button {...buttonProps} disabled>{buttonProps.content}</Button>
