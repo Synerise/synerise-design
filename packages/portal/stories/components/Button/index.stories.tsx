@@ -19,9 +19,15 @@ const typeOptions = {
   ghostWhite: 'ghost-white',
 };
 
+const buttonSizes = {
+  default: 'default',
+  large: 'large',
+}
+
 const getDefaultProps = () => ({
   htmlType: text('Type button', 'button'),
   type: select('Set type', typeOptions, 'primary'),
+  size: select('Set Size', buttonSizes, 'default'),
   onClick: action('onClick CLICK'),
 });
 
