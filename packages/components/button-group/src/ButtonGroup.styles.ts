@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const Container = styled.div<{ options?: boolean }>`
   .ant-btn-group {
     width: 100%;
     display: flex;
@@ -12,20 +12,6 @@ export const Container = styled.div`
       width: auto;
       &:focus {
         z-index: 99999;
-        + .ant-btn {
-          &:before {
-            content: '';
-            display: flex;
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 100%;
-            width: 1px;
-            z-index: 99999;
-            opacity: 1;
-            background-color: ${(props): string => props.theme.palette['blue-600']};
-          }
-        }
       }
     }
   }
