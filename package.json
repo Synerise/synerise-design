@@ -99,7 +99,7 @@
     "inquirer": "7.0.3",
     "jest": "25.1.0",
     "lerna": "3.20.2",
-    "less": "3.10.3",
+    "less": "3.11.1",
     "less-plugin-clean-css": "1.5.1",
     "less-plugin-npm-import": "2.1.0",
     "lint-staged": "10.0.7",
