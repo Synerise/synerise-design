@@ -81,6 +81,20 @@ export const RippleEffect = styled.span`
   }
 `;
 
+export const ButtonFocus = styled.div`
+  content: '';
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  transition: box-shadow 0.3s ease;
+  z-index: 99;
+  box-shadow: inset 0 0 0 0px ${(props): string => props.theme.palette['blue-700']};
+`;
+
 // eslint-disable-next-line react/jsx-props-no-spreading
 export default styled(({ mode, type, loading, justifyContent, ...rest }) => (
   // eslint-disable-next-line react/jsx-props-no-spreading
@@ -94,31 +108,18 @@ export default styled(({ mode, type, loading, justifyContent, ...rest }) => (
     position: relative;
     overflow: hidden;
     justify-content: ${(props): FlattenInterpolation<ThemeProps> | false => props.justifyContent};
-    &::after {
-      content: '';
-      display: flex;
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      transition: box-shadow .3s ease;
-      z-index: 99;
-      box-shadow: inset 0 0 0 0px ${(props): string => props.theme.palette['blue-700']};
-    }
     &:focus {
-      &::after {
+      ${ButtonFocus} {
         box-shadow: inset 0 0 0 2px ${(props): string => props.theme.palette['blue-700']};
       }
     }
-    > * {
+    > *:not(.btn-focus) {
       position: relative;
     }
     ${(props): FlattenInterpolation<ThemeProps> | false =>
       props.spinner &&
       css`
-        > * {
+        > *:not(.btn-focus) {
           visibility: hidden;
         }
         ${Spinner} {
@@ -141,7 +142,7 @@ export default styled(({ mode, type, loading, justifyContent, ...rest }) => (
       css`
         &.ant-btn {
           padding-right: 0;
-          > span {
+          > span:not(.btn-focus) {
             padding-right: 12px;
             position: relative;
             &:after {

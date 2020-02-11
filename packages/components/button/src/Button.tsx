@@ -25,11 +25,7 @@ export interface Props extends Omit<ButtonProps, 'type'> {
     | 'ghost-primary'
     | 'ghost-white';
   mode?: string;
-  groupVariant?:
-    | string
-    | 'left-rounded'
-    | 'squared'
-    | 'right-rounded';
+  groupVariant?: string | 'left-rounded' | 'squared' | 'right-rounded';
   justifyContent?: JustifyContentProperty;
   spinner?: boolean;
   onClick?: (event: React.MouseEvent<HTMLElement>) => void;
@@ -37,12 +33,20 @@ export interface Props extends Omit<ButtonProps, 'type'> {
 
 const RIPPLE_ANIMATION_OFFSET = 50;
 
-const Button: React.FC<Props> = ({ type, mode, justifyContent = 'center', groupVariant, spinner = false, onClick, ...antdProps }) => {
-  const rippleRef =  React.useRef<HTMLSpanElement>(null);
+const Button: React.FC<Props> = ({
+  type,
+  mode,
+  justifyContent = 'center',
+  groupVariant,
+  spinner = false,
+  onClick,
+  ...antdProps
+}) => {
+  const rippleRef = React.useRef<HTMLSpanElement>(null);
   const [rippleClassName, setRippleClassName] = React.useState('');
 
   React.useEffect(() => {
-    if(rippleClassName !== '') {
+    if (rippleClassName !== '') {
       setTimeout(() => {
         setRippleClassName('');
       }, S.RIPPLE_ANIMATION_TIME - RIPPLE_ANIMATION_OFFSET);
@@ -51,12 +55,12 @@ const Button: React.FC<Props> = ({ type, mode, justifyContent = 'center', groupV
 
   const handleClick = (event: React.MouseEvent<HTMLElement>): void => {
     const button = event.currentTarget.closest('.ant-btn');
-    if(button) {
+    if (button) {
       const buttonBoundingRect = button.getBoundingClientRect();
       const x = event.clientX - buttonBoundingRect.left;
       const y = event.clientY - buttonBoundingRect.top;
 
-      if(rippleRef.current) {
+      if (rippleRef.current) {
         rippleRef.current.style.cssText = `top: ${y}px; left: ${x}px`;
       }
       setRippleClassName('animate');
@@ -65,8 +69,16 @@ const Button: React.FC<Props> = ({ type, mode, justifyContent = 'center', groupV
   };
 
   return (
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    <AntdButton justifyContent={justifyContent} type={type} mode={mode} groupVariant={groupVariant} spinner={spinner} onClick={handleClick} {...antdProps}>
+    <AntdButton
+      justifyContent={justifyContent}
+      type={type}
+      mode={mode}
+      groupVariant={groupVariant}
+      spinner={spinner}
+      onClick={handleClick}
+      /* eslint-disable-next-line react/jsx-props-no-spreading */
+      {...antdProps}
+    >
       <S.RippleEffect ref={rippleRef} className={`btn-ripple ${rippleClassName}`} />
       {antdProps.children}
       {spinner && (
@@ -74,6 +86,7 @@ const Button: React.FC<Props> = ({ type, mode, justifyContent = 'center', groupV
           <Icon component={<SpinnerM />} color="#fff" />
         </S.Spinner>
       )}
+      <S.ButtonFocus className="btn-focus" />
     </AntdButton>
   );
 };
