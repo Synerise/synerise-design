@@ -84,7 +84,7 @@ export const RippleEffect = styled.span`
 // eslint-disable-next-line react/jsx-props-no-spreading
 export default styled(({ mode, type, loading, justifyContent, ...rest }) => (
   // eslint-disable-next-line react/jsx-props-no-spreading
-  <Button type={type} loading={loading} {...rest} />
+  <Button type={type} {...rest} />
 ))`  
   && {
     border: 0;
