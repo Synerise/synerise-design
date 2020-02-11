@@ -51,7 +51,7 @@ const applyFontSize = (props: AvatarProps): FlattenSimpleInterpolation => {
 };
 
 // eslint-disable-next-line react/jsx-props-no-spreading
-export default styled(({ backgroundColor, hasStatus, pressed, ...rest }) => <Avatar {...rest} />)`
+export default styled(({ backgroundColorHue, backgroundColor, hasStatus, pressed, ...rest }) => <Avatar {...rest} />)`
   && {
     ${(props): FlattenSimpleInterpolation => applyBgColors(props)};
     ${(props): FlattenSimpleInterpolation | false => applyDisabledStyles(props)};
