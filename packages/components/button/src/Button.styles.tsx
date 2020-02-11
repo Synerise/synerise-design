@@ -64,12 +64,12 @@ export const RippleEffect = styled.span`
     display: flex;
     width: ${rippleInitialSize}px;
     height: ${rippleInitialSize}px;
-    top: 0;
-    left: 0;
+    top: 50%;
+    left: 50%;
     position: absolute !important;
     border-radius: 50%;
     padding: 0;
-    margin: -${rippleInitialSize/2}px 0 0 -${rippleInitialSize/2}px;
+    margin: -${rippleInitialSize / 2}px 0 0 -${rippleInitialSize / 2}px;
     z-index: 0;
     opacity: 0;
     visibility: visible !important;
@@ -104,6 +104,7 @@ export default styled(({ mode, type, loading, justifyContent, ...rest }) => (
       height: 100%;
       pointer-events: none;
       transition: box-shadow .3s ease;
+      z-index: 99;
       box-shadow: inset 0 0 0 0px ${(props): string => props.theme.palette['blue-700']};
     }
     &:focus {
@@ -128,7 +129,7 @@ export default styled(({ mode, type, loading, justifyContent, ...rest }) => (
       props.type === buttonType[props.type] &&
       css`
         &.ant-btn {
-          &:not(disabled){
+          &:not(disabled) {
             svg {
               fill: ${(color): string => color.theme.palette['grey-600']};
             }
@@ -212,22 +213,22 @@ export default styled(({ mode, type, loading, justifyContent, ...rest }) => (
       props.groupVariant === 'squared' &&
       css`
         &.ant-btn {
-          border-radius: 0;  
+          border-radius: 0;
         }
       `}
     ${(props): FlattenSimpleInterpolation | false =>
       props.groupVariant === 'left-rounded' &&
       css`
         &.ant-btn {
-          border-radius: 3px 0 0 3px;  
+          border-radius: 3px 0 0 3px;
         }
       `}
      ${(props): FlattenSimpleInterpolation | false =>
-      props.groupVariant === 'right-rounded' &&
-      css`
-        &.ant-btn {
-          border-radius: 0 3px 3px 0;  
-        }
-      `}
+       props.groupVariant === 'right-rounded' &&
+       css`
+         &.ant-btn {
+           border-radius: 0 3px 3px 0;
+         }
+       `}
   }
 `;

@@ -26,7 +26,7 @@
 
   &:focus {
     .button-color(@btn-primary-color, @btn-primary-bg, @btn-primary-focus-bg);
-    box-shadow: inset 0 0 0 1px @primary-color-darker-1;
+    box-shadow: inset 0 0 0 2px @primary-color-darker-1;
   }
 
   &:active,
@@ -56,7 +56,7 @@
 
   &:focus {
     .button-color(@btn-default-color, @btn-default-focus-bg, @btn-default-border);
-    box-shadow: inset 0 0 0 1px @primary-color-darker-1;
+    box-shadow: inset 0 0 0 2px @primary-color-darker-1;
     border-color: @primary-color-darker-1;
   }
 
@@ -102,7 +102,7 @@
 
   &:focus {
     .button-color(@btn-tertiary-color, @btn-tertiary-focus-bg, @btn-tertiary-focus-bg);
-    box-shadow: inset 0 0 0 1px @primary-color-darker-1;
+    box-shadow: inset 0 0 0 2px @primary-color-darker-1;
     border-color: @primary-color-darker-1;
   }
 
@@ -145,7 +145,11 @@
     background-color: @btn-tertiary-white-active-bg;
   }
 
-  .button-disabled(@btn-disable-tertiary-white-color, @btn-disable-tertiary-white-bg, @btn-disable-tertiary-white-border);
+  .button-disabled(
+    @btn-disable-tertiary-white-color,
+    @btn-disable-tertiary-white-bg,
+    @btn-disable-tertiary-white-border
+  );
 }
 
 .btn-tertiary-white() {
@@ -164,7 +168,7 @@
 
   &:focus {
     .button-color(@btn-ghost-color, @btn-ghost-focus-bg, @btn-ghost-focus-bg);
-    box-shadow: inset 0 0 0 1px @primary-color-darker-1;
+    box-shadow: inset 0 0 0 2px @primary-color-darker-1;
     border-color: @primary-color-darker-1;
   }
 
@@ -274,7 +278,7 @@
 
   &:focus {
     .button-color(@btn-danger-color, @btn-danger-focus-bg, @btn-danger-focus-bg);
-    box-shadow: inset 0 0 0 1px @primary-color-darker-1;
+    box-shadow: inset 0 0 0 2px @primary-color-darker-1;
     border-color: @primary-color-darker-1;
   }
 
@@ -300,7 +304,7 @@
 
   &:focus {
     .button-color(@btn-success-color, @btn-success-focus-bg, @btn-success-hover-bg);
-    box-shadow: inset 0 0 0 1px @primary-color-darker-1;
+    box-shadow: inset 0 0 0 2px @primary-color-darker-1;
     border-color: @primary-color-darker-1;
   }
 
@@ -326,7 +330,7 @@
 
   &:focus {
     .button-color(@btn-warning-color, @btn-warning-focus-bg, @btn-warning-hover-bg);
-    box-shadow: inset 0 0 0 1px @primary-color-darker-1;
+    box-shadow: inset 0 0 0 2px @primary-color-darker-1;
     border-color: @primary-color-darker-1;
   }
 
@@ -360,7 +364,7 @@
 
   &:focus {
     .button-color(@btn-flat-hover-color, @btn-flat-bg, @btn-flat-border);
-    box-shadow: inset 0 0 0 1px @primary-color-darker-1;
+    box-shadow: inset 0 0 0 2px @primary-color-darker-1;
     border-color: @primary-color-darker-1;
   }
 
@@ -644,20 +648,5 @@
   }
   &-sm {
     line-height: @btn-height-sm - 1px;
-  }
-  &-loading {
-    &::before {
-      display: none !important;
-    }
-    span {
-      visibility: hidden;
-    }
-    .anticon-loading {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      margin-top: -7px;
-      margin-left: -7px !important;
-    }
   }
 }

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { boolean, text, select } from '@storybook/addon-knobs';
+import { text, select } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import Icon from '@synerise/ds-icon';
 import { AngleDownS, DragHandleM, ShowM } from '@synerise/ds-icon/dist/icons';
@@ -20,24 +20,8 @@ const typeOptions = {
   ghostWhite: 'ghost-white',
 };
 
-const justifyContentOptions = {
-  'flex-start': 'flex-start',
-  'flex-end': 'flex-end',
-  'center': 'center',
-  'space-between': 'space-between',
-  'space-around': 'space-around',
-  'space-evenly': 'space-evenly',
-  'start': 'start',
-  'end': 'end',
-  'left': 'left',
-  'right': 'right',
-  'safe': 'safe',
-  'unsafe': 'unsafe',
-};
-
 const getDefaultProps = () => ({
   htmlType: text('Type button', 'button'),
-  href: text('Redirect to link', null),
   type: select('Set type', typeOptions, 'primary'),
   onClick: action('onClick CLICK'),
 });
