@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-slider@0.5.13...@synerise/ds-slider@0.6.0) (2020-02-12)
+
+### Features
+
+- **slider:** update tooltip styles ([6340950](https://github.com/Synerise/synerise-design/commit/634095065a46a4de893b6ab46ecd28f0d98ace78))
+
 ## [0.5.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-slider@0.5.12...@synerise/ds-slider@0.5.13) (2020-02-12)
 
 **Note:** Version bump only for package @synerise/ds-slider
