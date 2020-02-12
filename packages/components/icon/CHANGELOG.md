@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.9.0...@synerise/ds-icon@0.10.0) (2020-02-12)
+
+### Features
+
+- **icon:** replace navigation icons ([c2cc05a](https://github.com/Synerise/synerise-design/commit/c2cc05aea9b80d97fdd720b4cb56fbdf161a008e))
+
 # [0.9.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.8.1...@synerise/ds-icon@0.9.0) (2020-02-12)
 
 ### Features
