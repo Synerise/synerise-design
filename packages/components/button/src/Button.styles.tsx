@@ -68,8 +68,8 @@ export const RippleEffect = styled.span`
     left: 50%;
     position: absolute !important;
     border-radius: 50%;
-    padding: 0;
-    margin: -${rippleInitialSize / 2}px 0 0 -${rippleInitialSize / 2}px;
+    padding: 0 !important;
+    margin: -${rippleInitialSize / 2}px 0 0 -${rippleInitialSize / 2}px !important;
     z-index: 0;
     opacity: 0;
     visibility: visible !important;
@@ -77,6 +77,9 @@ export const RippleEffect = styled.span`
       opacity: 1;
       animation: ${rippleAnimation} ${RIPPLE_ANIMATION_TIME}ms ease-in;
       animation-iteration-count: 1;
+    }
+    &::after {
+      display: none;
     }
   }
 `;
@@ -206,6 +209,14 @@ export default styled(({ mode, type, loading, justifyContent, ...rest }) => (
           }
         }
       `}
+      ${(props): FlattenSimpleInterpolation | false =>
+        props.mode === 'single-icon' &&
+        props.size === 'large' &&
+        css`
+          &.ant-btn {
+            width: 48px;
+          }
+        `}
     ${(props): FlattenSimpleInterpolation | false =>
       props.groupVariant === 'squared' &&
       css`

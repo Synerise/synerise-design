@@ -82,7 +82,7 @@ const Button: React.FC<Props> = ({
       <S.RippleEffect ref={rippleRef} className={`btn-ripple ${rippleClassName}`} />
       {antdProps.children}
       {spinner && (
-        <S.Spinner data-testid="button-spinner">
+        <S.Spinner className="btn-spinner" data-testid="button-spinner">
           <Icon component={<SpinnerM />} color="#fff" />
         </S.Spinner>
       )}
