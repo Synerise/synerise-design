@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.11](https://github.com/synerise/synerise-design/compare/@synerise/ds-avatar@0.3.10...@synerise/ds-avatar@0.3.11) (2020-02-12)
+
+### Bug Fixes
+
+- **avatar:** bg hue prop fix ([4e3afc7](https://github.com/synerise/synerise-design/commit/4e3afc719e362fefa50a72a0f20e0a8a300a134e))
+
 ## [0.3.10](https://github.com/synerise/synerise-design/compare/@synerise/ds-avatar@0.3.9...@synerise/ds-avatar@0.3.10) (2020-01-28)
 
 **Note:** Version bump only for package @synerise/ds-avatar

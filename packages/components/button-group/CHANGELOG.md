@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-button-group@0.3.2...@synerise/ds-button-group@0.3.3) (2020-02-12)
+
+### Bug Fixes
+
+- **button:** hover state styles, colors ([a14b299](https://github.com/Synerise/synerise-design/commit/a14b2996f56c02d96aab90c7d01b6643ada2d8bd))
+- **button-group:** fix styles ([91705f7](https://github.com/Synerise/synerise-design/commit/91705f789a3cc60142675faacad9fcd7bb7c59dd))
+
 ## [0.3.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-button-group@0.3.0...@synerise/ds-button-group@0.3.1) (2020-01-29)
 
 **Note:** Version bump only for package @synerise/ds-button-group

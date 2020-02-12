@@ -3,16 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.2.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-app-menu@0.2.0...@synerise/ds-app-menu@0.2.1) (2020-01-30)
+## [0.3.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-app-menu@0.3.0...@synerise/ds-app-menu@0.3.1) (2020-02-12)
 
+**Note:** Version bump only for package @synerise/ds-app-menu
+
+## [0.2.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-app-menu@0.2.0...@synerise/ds-app-menu@0.2.1) (2020-01-30)
 
 ### Bug Fixes
 
-* **app-menu:** safari fix ([b640f50](https://github.com/Synerise/synerise-design/commit/b640f502d45d8aa6c29135995030130420ff0b6b))
-
-
-
-
+- **app-menu:** safari fix ([b640f50](https://github.com/Synerise/synerise-design/commit/b640f502d45d8aa6c29135995030130420ff0b6b))
 
 # [0.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-app-menu@0.1.9...@synerise/ds-app-menu@0.2.0) (2020-01-29)
 

@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-tabs@0.3.3...@synerise/ds-card-tabs@0.3.4) (2020-02-12)
+
+**Note:** Version bump only for package @synerise/ds-card-tabs
+
 ## [0.3.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-tabs@0.3.0...@synerise/ds-card-tabs@0.3.1) (2020-01-29)
 
 **Note:** Version bump only for package @synerise/ds-card-tabs

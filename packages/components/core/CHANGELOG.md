@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.8.0...@synerise/ds-core@0.8.1) (2020-02-12)
+
+### Bug Fixes
+
+- **buttons:** fix colors ([36b887f](https://github.com/synerise/synerise-design/commit/36b887f4bc4099304b6bfbb2e6b8d7c48cbcc17b))
+
 # [0.8.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.7.3...@synerise/ds-core@0.8.0) (2020-01-28)
 
 ### Features
