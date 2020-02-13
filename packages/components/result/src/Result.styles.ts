@@ -1,8 +1,6 @@
 import styled from 'styled-components';
-import Button from '@synerise/ds-button';
 // eslint-disable-next-line import/no-named-default
 import { default as StyledButtonContainer } from '@synerise/ds-button/dist/Button.styles';
-import Icon from '@synerise/ds-icon';
 import { IconContainer } from '@synerise/ds-icon/dist/Icon.styles';
 import * as T from '@synerise/ds-typography';
 
@@ -12,23 +10,11 @@ export const ResultContainer = styled.div`
   position: relative;
 `;
 
-export const CloseButton = styled(Button)`
-  && {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 32px;
-    height: 32px;
-    line-height: 31px;
-    margin: 0 4px;
-    text-align: center;
-    padding: 0;
-  }
-`;
-
-export const CloseIcon = styled(Icon)``;
-
 export const MainPanel = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   > div:last-of-type {
     margin-bottom: 0;
   }
@@ -36,7 +22,7 @@ export const MainPanel = styled.div`
 
 export const Title = styled.h4`
   ${T.macro.h500};
-  margin: 24px 0;
+  margin: 0 0 24px;
   text-align: center;
 `;
 
@@ -63,8 +49,15 @@ export const ButtonContainer = styled.div`
 `;
 
 export const PanelContainer = styled.div`
-  margin: 24px 0;
+  margin: 0 0 24px;
   width: 100%;
+  textarea {
+    max-height: 234px;
+  }
+`;
+
+export const ResultIconContainer = styled.div`
+  margin: 0 0 24px;
 `;
 
 export const StatusIconContainer = styled.div<{ iconColor: string; background: string }>`

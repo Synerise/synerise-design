@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { fireEvent } from '@testing-library/react';
 import { renderWithProvider } from '@synerise/ds-utils';
 
 import Result from '../index';
@@ -10,7 +9,6 @@ describe('Result', () => {
   const BUTTON_TEXT = 'Cancel action';
   const PANEL_TEXT = 'Panel text';
   const CLOSE_BUTTON_TESTID = 'test-closebtn';
-  const onClose = jest.fn();
 
   it('should render with title', function() {
     // ARRANGE
@@ -89,22 +87,4 @@ describe('Result', () => {
     expect(queryByTestId(CLOSE_BUTTON_TESTID)).toBeFalsy();
   });
 
-  it('onClose should be called', function() {
-    // ARRANGE
-    const { getByTestId } = renderWithProvider(
-      <Result
-        type="success"
-        title={TITLE}
-        description={DESCRIPTION}
-        onClose={onClose}
-        closable
-      />
-    );
-
-    // ACT
-    fireEvent.click(getByTestId(CLOSE_BUTTON_TESTID));
-
-    // ASSERT
-    expect(onClose).toHaveBeenCalled();
-  });
 });
