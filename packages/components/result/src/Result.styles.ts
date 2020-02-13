@@ -29,6 +29,10 @@ export const CloseButton = styled(Button)`
 export const CloseIcon = styled(Icon)``;
 
 export const MainPanel = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   > div:last-of-type {
     margin-bottom: 0;
   }

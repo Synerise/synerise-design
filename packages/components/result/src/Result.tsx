@@ -1,7 +1,6 @@
 import * as React from 'react';
 
 import Icon from '@synerise/ds-icon';
-import CloseM from '@synerise/ds-icon/dist/icons/CloseM';
 import WarningM from '@synerise/ds-icon/dist/icons/WarningM';
 import CheckM from '@synerise/ds-icon/dist/icons/CheckM';
 import HourglassM from '@synerise/ds-icon/dist/icons/HourglassM';
@@ -13,12 +12,11 @@ import * as S from './Result.styles';
 export type ResultProps = {
   className?: string;
   title: string;
-  type: 'info' | 'warning' | 'error' | 'success' | 'progress' | 'no-results';
+  type: string | 'info' | 'warning' | 'error' | 'success' | 'progress' | 'no-results';
   description?: string;
-  closable?: boolean;
   buttons?: React.ReactNode;
   panel?: React.ReactNode;
-  onClose?: () => void;
+  customIcon?: Element;
 };
 
 const mapTypeToStatus = {
@@ -54,24 +52,21 @@ const mapTypeToStatus = {
   },
 };
 
-const Result: React.FC<ResultProps> = ({ className, type, title, description, panel, buttons, closable, onClose }) => {
+const Result: React.FC<ResultProps> = ({ className, type, title, description, panel, buttons, customIcon = null }) => {
   const { IconComponent, ...iconContainerStyles } = mapTypeToStatus[type];
 
   return (
     <S.ResultContainer className={`ds-result ${className}`}>
-      {closable && (
-        <S.CloseButton className="close-modal" data-testid="test-closebtn" type="ghost" onClick={onClose}>
-          <S.CloseIcon component={<CloseM />} size={24} />
-        </S.CloseButton>
-      )}
-
       <S.MainPanel>
+        {customIcon || (
+          // eslint-disable-next-line react/jsx-props-no-spreading
+          <S.StatusIconContainer {...iconContainerStyles}>
+            <Icon component={<IconComponent />} size={24} />
+          </S.StatusIconContainer>
+        )}
         {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-        <S.StatusIconContainer {...iconContainerStyles}>
-          <Icon component={<IconComponent />} size={24} />
-        </S.StatusIconContainer>
 
-        <S.Title>{title}</S.Title>
+        {title && <S.Title>{title}</S.Title>}
 
         {description && <S.Description>{description}</S.Description>}
         {panel && <S.PanelContainer>{panel}</S.PanelContainer>}

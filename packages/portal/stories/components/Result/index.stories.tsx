@@ -7,6 +7,7 @@ import Result from '@synerise/ds-result';
 import List from '@synerise/ds-list';
 import Icon from '@synerise/ds-icon';
 import WthTemperatureM from '@synerise/ds-icon/dist/icons/WthTemperatureM';
+import Avatar from '@synerise/ds-avatar';
 
 const decorator = storyFn => (
   <div style={{ width: '520px' }}>
@@ -58,16 +59,29 @@ const panelExample = (
   />
 );
 
+const getDefaultProps = () => ({
+  type: select('type', types, 'success'),
+  customIcon: boolean('Custom icon', false),
+  title: text('Title', 'Chicken has been successfully cooked'),
+  description: text('Description', 'Would you like to cook any other chickens?'),
+  // panel: boolean('Show panel', true) && panelExample,
+});
+
+const exampleAvatar = <Avatar
+  backgroundColor='mars'
+  backgroundColorHue='100'
+  size='default'
+  shape='circle'
+  src={'https://www.w3schools.com/howto/img_avatar.png'}
+/>
+
 const stories = {
-  default: () => ({
-    type: select('type', types, 'success'),
-    onClose: () => alert('Close event'),
-    closable: boolean('Closable', true),
-    title: text('Title', 'Chicken has been successfully cooked'),
-    description: text('Description', 'Would you like to cook any other chickens?'),
-    buttons: boolean('Show buttons', true) && buttonSetExample,
-    panel: boolean('Show panel', true) && panelExample,
-  }),
+  default: () => {
+    const props = getDefaultProps();
+    return (
+      <Result {...props} customIcon={props.customIcon ? exampleAvatar : null} buttons={buttonSetExample} />
+    )
+  },
 
   insideCard: () => (
     <Card>
