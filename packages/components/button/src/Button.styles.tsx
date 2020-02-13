@@ -115,6 +115,10 @@ export default styled(({ mode, type, loading, justifyContent, ...rest }) => (
     > *:not(.btn-focus) {
       position: relative;
     }
+    > .icon {
+      width: 24px;
+      height: 24px;
+    }
     ${(props): FlattenInterpolation<ThemeProps> | false =>
       props.spinner &&
       css`
@@ -157,7 +161,7 @@ export default styled(({ mode, type, loading, justifyContent, ...rest }) => (
               transition: all 0.3s ease;
             }
           }
-          > ${IconContainer} {
+          > ${IconContainer}, > .icon {
             margin: 0 4px 0 3px;
           }
         }
@@ -167,10 +171,11 @@ export default styled(({ mode, type, loading, justifyContent, ...rest }) => (
       css`
         &.ant-btn {
           padding: 0;
-          > ${IconContainer}:first-of-type {
+          > ${IconContainer}:first-of-type, > .icon:first-of-type {
             margin: ${leftIcon};
           }
-          > ${IconContainer}:nth-of-type(2) {
+          > ${IconContainer}:nth-of-type(2),
+          > .icon:nth-of-type(2) {
             margin: ${rightIcon};
           }
         }
@@ -180,7 +185,7 @@ export default styled(({ mode, type, loading, justifyContent, ...rest }) => (
       css`
         &.ant-btn {
           padding-right: 0;
-          > ${IconContainer} {
+          > ${IconContainer}, > .icon {
             margin: ${rightIcon};
           }
         }
@@ -190,7 +195,7 @@ export default styled(({ mode, type, loading, justifyContent, ...rest }) => (
       css`
         &.ant-btn {
           padding-left: 0;
-          > ${IconContainer} {
+          > ${IconContainer}, > .icon {
             margin: ${leftIcon};
           }
         }
@@ -204,7 +209,7 @@ export default styled(({ mode, type, loading, justifyContent, ...rest }) => (
           justify-content: center;
           padding: 0;
           width: 32px;
-          > ${IconContainer} {
+          > ${IconContainer}, > .icon {
             margin: 0 4px 0 4px;
           }
         }
