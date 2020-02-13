@@ -56,3 +56,4 @@ import Result from '@synerise/ds-result'
 | onClose     | event called when clicked on close button | () => void                                                           | -       |
 | buttons     | render buttons                            | React.ReactNode                                                      | -       |
 | panel       | render custom panel                       | React.ReactNode                                                      | -       |
+| customIcon  | render custom icon in place of type icon  | React.ReactNode                                                      | -       |
