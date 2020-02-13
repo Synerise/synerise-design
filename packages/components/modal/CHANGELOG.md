@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-modal@0.8.21...@synerise/ds-modal@0.9.0) (2020-02-13)
+
+### Features
+
+- **modal:** add blank modal mode ([eaa2e04](https://github.com/synerise/synerise-design/commit/eaa2e04ff0bc0afd9fb118f6a7b9e9cf9627e287))
+
 ## [0.8.21](https://github.com/synerise/synerise-design/compare/@synerise/ds-modal@0.8.20...@synerise/ds-modal@0.8.21) (2020-02-13)
 
 **Note:** Version bump only for package @synerise/ds-modal

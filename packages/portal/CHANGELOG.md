@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.34.0](https://github.com/synerise/synerise-design/compare/portal@0.33.1...portal@0.34.0) (2020-02-13)
+
+
+### Bug Fixes
+
+* **modal:** update story ([c07f64f](https://github.com/synerise/synerise-design/commit/c07f64fde63932dde3d2f38b3021ad559da8b044))
+* **result:** update default story ([2a59844](https://github.com/synerise/synerise-design/commit/2a5984424bd0a242b1a56aad211e3043d6fb91e9))
+* **result:** update default story ([506fe53](https://github.com/synerise/synerise-design/commit/506fe53431e7f434ab8a1f00d95c4d5e7dbcd5bc))
+
+
+### Features
+
+* **modal:** add blank modal mode ([eaa2e04](https://github.com/synerise/synerise-design/commit/eaa2e04ff0bc0afd9fb118f6a7b9e9cf9627e287))
+* **result:** add stories with Result on Modal ([ca75d1c](https://github.com/synerise/synerise-design/commit/ca75d1c87dd6735925d24b8cc40c9fdd9d317094))
+* **result:** add story with textarea ([121d047](https://github.com/synerise/synerise-design/commit/121d047dc883bc57213769d5950b99dba618529b))
+* **result:** add support for custom icons ([bf11e5d](https://github.com/synerise/synerise-design/commit/bf11e5df83c52736820407a0cac658fa40f43be3))
+
+
+
+
+
 ## [0.33.1](https://github.com/synerise/synerise-design/compare/portal@0.33.0...portal@0.33.1) (2020-02-12)
 
 

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-result@0.2.7...@synerise/ds-result@0.3.0) (2020-02-13)
+
+### Features
+
+- **result:** add story with textarea ([121d047](https://github.com/Synerise/synerise-design/commit/121d047dc883bc57213769d5950b99dba618529b))
+- **result:** add support for custom icons ([bf11e5d](https://github.com/Synerise/synerise-design/commit/bf11e5df83c52736820407a0cac658fa40f43be3))
+
 ## [0.2.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-result@0.2.6...@synerise/ds-result@0.2.7) (2020-02-13)
 
 **Note:** Version bump only for package @synerise/ds-result
