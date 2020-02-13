@@ -8,6 +8,7 @@ import List from '@synerise/ds-list';
 import Icon from '@synerise/ds-icon';
 import WthTemperatureM from '@synerise/ds-icon/dist/icons/WthTemperatureM';
 import Avatar from '@synerise/ds-avatar';
+import { action } from '@storybook/addon-actions';
 
 const decorator = storyFn => (
   <div style={{ width: '520px' }}>
@@ -26,11 +27,11 @@ const types = {
 
 const buttonSetExample = (
   <>
-    <Button type="default">
+    <Button type="default" onClick={action('onClick: Cancel')}>
       Cancel
     </Button>
-    <Button type="primary">
-      Cook
+    <Button type="primary" onClick={action('onClick: Unpublish')}>
+      Unpublish
     </Button>
   </>
 );
@@ -62,8 +63,8 @@ const panelExample = (
 const getDefaultProps = () => ({
   type: select('type', types, 'success'),
   customIcon: boolean('Custom icon', false),
-  title: text('Title', 'Chicken has been successfully cooked'),
-  description: text('Description', 'Would you like to cook any other chickens?'),
+  title: text('Title', 'File upload is in progress…'),
+  description: text('Description', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'),
   // panel: boolean('Show panel', true) && panelExample,
 });
 
