@@ -3,6 +3,8 @@ import { action } from '@storybook/addon-actions';
 import { boolean, text, select, number } from '@storybook/addon-knobs';
 import Button from '@synerise/ds-button';
 import Modal from '@synerise/ds-modal';
+import Result from '@synerise/ds-result';
+import Avatar from '@synerise/ds-avatar';
 
 const sizes = {
   Auto: null,
@@ -83,6 +85,11 @@ const stories = {
       </React.Fragment>
     )
   },
+  blank: () => (
+    <Modal closable={true} visible={true} size={'small'} footer={null} blank onCancel={action('Cancel')}>
+      <div style={{height: 362}}></div>
+    </Modal>
+  )
 };
 
 export default {

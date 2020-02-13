@@ -15,6 +15,7 @@ interface Props extends ModalProps {
   headerActions?: React.ReactNode;
   size?: 'small' | 'medium' | 'large' | 'extra_large';
   bodyBackground?: 'white' | 'grey';
+  blank?: boolean;
   texts?: {
     okButton?: string;
     cancelButton?: string;
@@ -45,12 +46,27 @@ class ModalProxy extends React.Component<Props> {
   static confirm = Modal.confirm;
 
   render(): React.ReactNode {
-    const { texts, bodyBackground, closable, headerActions, title, description, size, ...antModalProps } = this.props;
+    const {
+      texts,
+      bodyBackground,
+      closable,
+      headerActions,
+      title,
+      description,
+      size,
+      blank,
+      ...antModalProps
+    } = this.props;
     const handleOnClose = antModalProps.onCancel;
-    const className = `bodybg-${bodyBackground} ${antModalProps.className || ''}`;
+    const className = `bodybg-${bodyBackground} ${antModalProps.className || ''} ${blank && 'modal-blank'}`;
 
     const titleContainer = (
       <>
+        {blank && closable && (
+          <Button data-testid="modal-close" className="close-modal" type="ghost" onClick={handleOnClose}>
+            <Icon component={<CloseM />} />
+          </Button>
+        )}
         {title && (
           <S.TitleContainer>
             <S.Title level={3}>{title}</S.Title>
@@ -90,7 +106,7 @@ class ModalProxy extends React.Component<Props> {
         className={className}
         width={!size ? undefined : mapSizeToWidth[size]}
         closable={false}
-        title={(title || description) && titleContainer}
+        title={(title || description || blank) && titleContainer}
         footer={antModalProps.footer !== null ? footerContainer : null}
       />
     );
