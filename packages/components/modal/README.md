@@ -44,3 +44,4 @@ Modal UI Component
 | headerActions     | Append additional content to header actions space                                                          | React.ReactNode                                       | -                                             |
 | bodyBackground    | Set color for body of modal                                                                                | 'white' / 'grey'                                      | 'white'                                       |
 | texts             | Labels to render                                                                                           | { okButton: string; cancelButton: string; }           | { okButton: 'Apply', cancelButton: 'Cancel' } |
+| blank             | Modal with header which contains only close button                                                         | Boolean                                               | false                                         |

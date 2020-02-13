@@ -83,6 +83,11 @@ const stories = {
       </React.Fragment>
     )
   },
+  blank: () => (
+    <Modal closable={true} visible={true} size={'small'} footer={null} blank onCancel={action('Cancel')}>
+      <div style={{height: 362}}></div>
+    </Modal>
+  )
 };
 
 export default {
