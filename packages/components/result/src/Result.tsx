@@ -58,13 +58,14 @@ const Result: React.FC<ResultProps> = ({ className, type, title, description, pa
   return (
     <S.ResultContainer className={`ds-result ${className}`}>
       <S.MainPanel>
-        {customIcon || (
-          // eslint-disable-next-line react/jsx-props-no-spreading
-          <S.StatusIconContainer {...iconContainerStyles}>
-            <Icon component={<IconComponent />} size={24} />
-          </S.StatusIconContainer>
-        )}
-        {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+        <S.ResultIconContainer>
+          {customIcon || (
+            // eslint-disable-next-line react/jsx-props-no-spreading
+            <S.StatusIconContainer {...iconContainerStyles}>
+              <Icon component={<IconComponent />} size={24} />
+            </S.StatusIconContainer>
+          )}
+        </S.ResultIconContainer>
 
         {title && <S.Title>{title}</S.Title>}
 
