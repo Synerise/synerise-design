@@ -71,10 +71,10 @@ const getDefaultProps = () => ({
 const exampleAvatar = <Avatar
   backgroundColor='mars'
   backgroundColorHue='100'
-  size='default'
+  size='large'
   shape='circle'
   src={'https://www.w3schools.com/howto/img_avatar.png'}
-/>
+/>;
 
 const stories = {
   default: () => {
