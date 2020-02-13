@@ -3,8 +3,6 @@ import { action } from '@storybook/addon-actions';
 import { boolean, text, select, number } from '@storybook/addon-knobs';
 import Button from '@synerise/ds-button';
 import Modal from '@synerise/ds-modal';
-import Result from '@synerise/ds-result';
-import Avatar from '@synerise/ds-avatar';
 
 const sizes = {
   Auto: null,
