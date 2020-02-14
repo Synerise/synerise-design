@@ -1,5 +1,7 @@
 import * as React from 'react';
 import InlineEdit from '@synerise/ds-inline-edit/dist/InlineEdit';
+import { InfoFillM } from '@synerise/ds-icon/dist/icons';
+import Tooltip from '@synerise/ds-tooltip';
 import * as S from '../SimpleItem/SimpleItem.styles';
 import { ItemProps } from '../Item';
 
@@ -30,7 +32,7 @@ const ItemName: React.FC<ItemLabelProps> = ({ item, onUpdate, editMode }): React
   }, [editedName, updateName, editName]);
 
   return (
-    <S.ItemLabelWrapper>
+    <S.ItemLabelWrapper data-testid={item.description && 'item-description-icon'}>
       {editMode ? (
         <InlineEdit
           size="small"
@@ -42,6 +44,11 @@ const ItemName: React.FC<ItemLabelProps> = ({ item, onUpdate, editMode }): React
         />
       ) : (
         <S.ItemLabel data-testid="list-item-name">{item.name}</S.ItemLabel>
+      )}
+      {item.description && (
+        <Tooltip description={item.description} placement="right" trigger="click" type="largeSimple">
+          <S.DescriptionIcon component={<InfoFillM />} size={18} color="#b5bdc3" />
+        </Tooltip>
       )}
     </S.ItemLabelWrapper>
   );

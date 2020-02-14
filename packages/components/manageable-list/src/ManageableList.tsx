@@ -10,6 +10,7 @@ import AddItem from './AddItem/AddItem';
 export enum ListType {
   default = 'default',
   content = 'content',
+  filter = 'filter',
 }
 
 export interface ManageableListProps {
@@ -33,6 +34,7 @@ export interface ManageableListProps {
   changeOrderDisabled?: boolean;
   greyBackground?: boolean;
   placeholder?: string;
+  selectedItemId?: string;
 }
 
 const ManageableList: React.FC<ManageableListProps> = ({
@@ -56,6 +58,7 @@ const ManageableList: React.FC<ManageableListProps> = ({
   changeOrderDisabled = false,
   greyBackground = false,
   placeholder,
+  selectedItemId,
 }) => {
   const [allItemsVisible, setAllItemsVisible] = React.useState(false);
 
@@ -109,9 +112,10 @@ const ManageableList: React.FC<ManageableListProps> = ({
         draggable={Boolean(onChangeOrder)}
         changeOrderDisabled={changeOrderDisabled}
         greyBackground={greyBackground}
+        selected={Boolean(item.id === selectedItemId)}
       />
     ),
-    [onChangeOrder, changeOrderDisabled, greyBackground, onItemDuplicate, onItemSelect, onItemEdit, onItemRemove, type]
+    [type, onItemSelect, onItemEdit, onItemRemove, onItemDuplicate, onChangeOrder, changeOrderDisabled, greyBackground, selectedItemId]
   );
 
   const renderList = React.useCallback(() => {

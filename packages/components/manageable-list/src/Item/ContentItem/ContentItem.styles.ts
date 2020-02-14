@@ -2,10 +2,11 @@ import styled from 'styled-components';
 import { Tag } from '@synerise/ds-tags/dist/Tag/Tag.styles';
 import { ItemLabel } from '../SimpleItem/SimpleItem.styles';
 import { ItemActionsWrapper } from '../ItemActions/ItemActions.styles';
+import { ItemMeta } from '../ItemMeta/ItemMeta.styles';
 
 type ItemContainerProps = {
   opened: boolean;
-  greyBackground: boolean;
+  greyBackground: boolean | undefined;
 };
 
 type DraggerWrapperProps = {
@@ -98,6 +99,9 @@ export const ItemHeader = styled.div`
         fill: ${({ theme }): string => theme.palette['grey-600']};
       }
     }
+    ${ItemMeta} {
+      display: none;
+    }
   }
 `;
 
@@ -115,6 +119,7 @@ export const ItemContainer = styled.div<ItemContainerProps>`
   justify-content: flex-start;
   margin-bottom: 16px;
   border-radius: 3px;
+  position: relative;
   background-color: ${({ theme, greyBackground }): string =>
     greyBackground ? theme.palette.white : theme.palette['grey-050']};
   box-shadow: ${({ greyBackground }): string => (greyBackground ? '0 4px 12px 0 rgba(35, 41, 54, 0.04)' : 'none')};
