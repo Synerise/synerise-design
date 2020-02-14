@@ -4192,6 +4192,11 @@
     "@svgr/plugin-svgo" "^5.0.1"
     loader-utils "^1.2.3"
 
+"@synerise/ds-button@^0.5.10":
+  version "0.5.10"
+  resolved "https://registry.yarnpkg.com/@synerise/ds-button/-/ds-button-0.5.10.tgz#d99a035e906045141be4ca66d12fc31468ea3b86"
+  integrity sha512-hFrupreEio+IX9mo6ndcBhgZdy9e5FCkiDdPv/RG4xiBqM8NxJbDJ/aD/EjDPqwjUAxvHCjexh25GYiMr6lfww==
+
 "@testing-library/dom@^6.11.0":
   version "6.11.0"
   resolved "https://registry.npmjs.org/@testing-library/dom/-/dom-6.11.0.tgz#962a38f1a721fdb7c9e35e7579e33ff13a00eda4"
