@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.8](https://github.com/synerise/synerise-design/compare/@synerise/ds-page-header@0.7.7...@synerise/ds-page-header@0.7.8) (2020-02-14)
+
+### Bug Fixes
+
+- **page-header:** downgrade buttons version ([f2e74fe](https://github.com/synerise/synerise-design/commit/f2e74fe398cd417a47e646d8888fe282650ea68f))
+
 ## [0.7.7](https://github.com/synerise/synerise-design/compare/@synerise/ds-page-header@0.7.6...@synerise/ds-page-header@0.7.7) (2020-02-13)
 
 **Note:** Version bump only for package @synerise/ds-page-header
