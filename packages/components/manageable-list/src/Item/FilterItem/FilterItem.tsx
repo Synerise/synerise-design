@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Check3M, CircleShapeM, WarningFillM } from '@synerise/ds-icon/dist/icons';
+import { CheckS, CircleShapeM, WarningFillM } from '@synerise/ds-icon/dist/icons';
 import Icon from '@synerise/ds-icon';
 import Popconfirm from '@synerise/ds-popconfirm';
 import ModalProxy from '@synerise/ds-modal';
@@ -57,7 +57,7 @@ const FilterItem: React.FC<FilterItemProps> = ({
           <S.ItemHeaderPrefix>
             <SelectFilterItem data-testid={selected && 'filter-item-selected'}>
               {selected ? (
-                <Icon component={<Check3M />} color="#54cb0b" />
+                <Icon className="selected-item-icon" component={<CheckS />} color="#ffffff" />
               ) : (
                 <Popconfirm
                   okText="Activate"

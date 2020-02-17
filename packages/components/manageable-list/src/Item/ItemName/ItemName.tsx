@@ -1,7 +1,7 @@
 import * as React from 'react';
+import Tooltip from '@synerise/ds-tooltip';
 import InlineEdit from '@synerise/ds-inline-edit/dist/InlineEdit';
 import { InfoFillM } from '@synerise/ds-icon/dist/icons';
-import Tooltip from '@synerise/ds-tooltip';
 import * as S from '../SimpleItem/SimpleItem.styles';
 import { ItemProps } from '../Item';
 
