@@ -5,7 +5,7 @@ import { action } from '@storybook/addon-actions';
 import Popconfirm from '@synerise/ds-popconfirm';
 import Button from '@synerise/ds-button';
 import Icon from '@synerise/ds-icon';
-import ClickM from '@synerise/ds-icon/dist/icons/ClickM';
+import { WarningFillM } from '@synerise/ds-icon/dist/icons';
 
 const decorator = storyFn => <div style={{ padding: 40 }}>{storyFn()}</div>;
 
@@ -29,10 +29,10 @@ const placements = [
 const triggers = ['hover', 'focus', 'click', 'contextMenu'] as const;
 
 const getDefaultProps = () => ({
-  cancelText: text('cancelText', 'cancel'),
-  okText: text('okText', 'ok'),
+  cancelText: text('cancelText', 'No'),
+  okText: text('okText', 'Yes'),
   okType: select('Set type', typeOptions, 'primary'),
-  title: text('title', 'title'),
+  title: text('title', 'Are you sure to delete this item and move to the next category'),
   onCancel: action('onCancel Clicked'),
   onConfirm: action('onConfirm Clicked'),
   disabled: boolean('disabled', false),
@@ -49,13 +49,7 @@ const stories = {
       <>
         <Popconfirm
           {...getDefaultProps()}
-          okButtonProps={{
-            size: 'large',
-          }}
-          cancelButtonProps={{
-            icon: 'user',
-          }}
-          icon={<Icon component={<ClickM />} />}
+          icon={<Icon component={<WarningFillM />} color='#ffc300' />}
         >
           <Button>Click me</Button>
         </Popconfirm>
