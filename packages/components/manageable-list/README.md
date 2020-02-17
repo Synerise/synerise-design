@@ -32,21 +32,21 @@ ManageableList UI Component
 
 ## API
 
-| Property            | Description                                                                      | Type                                   | Default   |
-| ------------------- | -------------------------------------------------------------------------------- | -------------------------------------- | --------- |
-| maxToShowItems      | Shows x first items, rest are hidden under `show more` button                    | number                                 | 5         |
-| onItemAdd           | Callback triggered when user hits `enter` key in the new item input field.       | Function({ name: string })             | -         |
-| onItemRemove        | Callback triggered when user clicks on the remove item button.                   | Function({ id: string })               | -         |
-| onItemEdit          | Callback triggered then user hits `enter` key in the edit item name input field. | Function({ id: string; name: string }) | -         |
-| onItemSelect        | Callback triggered when user clicks on list item.                                | Function({ id: string })               | -         |
-| onChangeOrder       | Callback triggered when user changes order of items                              | Function(Item[])                       | -         |
-| items               | Array of list items                                                              | Item[]                                 | -         |
-| loading             | Loading state                                                                    | boolean                                | -         |
-| type                | Type of list                                                                     | string `default` or `content`          | 'default' |
-| addButtonDisabled   | Disable add item button                                                          | boolean                                | false     |
-| changeOrderDisabled | Disable change of order                                                          | boolean                                | false     |
-| greyBackground      | Change background color of list and list items                                   | boolean                                | false     |
-| texts               | Texts on buttons, confirms and popups                                            | Texts                                  | -         |
+| Property            | Description                                                                      | Type                                    | Default   |
+| ------------------- | -------------------------------------------------------------------------------- | --------------------------------------- | --------- |
+| maxToShowItems      | Shows x first items, rest are hidden under `show more` button                    | number                                  | 5         |
+| onItemAdd           | Callback triggered when user hits `enter` key in the new item input field.       | Function({ name: string })              | -         |
+| onItemRemove        | Callback triggered when user clicks on the remove item button.                   | Function({ id: string })                | -         |
+| onItemEdit          | Callback triggered then user hits `enter` key in the edit item name input field. | Function({ id: string; name: string })  | -         |
+| onItemSelect        | Callback triggered when user clicks on list item.                                | Function({ id: string })                | -         |
+| onChangeOrder       | Callback triggered when user changes order of items                              | Function(Item[])                        | -         |
+| items               | Array of list items                                                              | Item[]                                  | -         |
+| loading             | Loading state                                                                    | boolean                                 | -         |
+| type                | Type of list                                                                     | string `default`, `content` or `filter` | 'default' |
+| addButtonDisabled   | Disable add item button                                                          | boolean                                 | false     |
+| changeOrderDisabled | Disable change of order                                                          | boolean                                 | false     |
+| greyBackground      | Change background color of list and list items                                   | boolean                                 | false     |
+| texts               | Texts on buttons, confirms and popups                                            | Texts                                   | -         |
 
 ### Texts
 
