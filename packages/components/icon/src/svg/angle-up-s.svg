@@ -1,4 +1,1 @@
-<svg id="angle-up_-s" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="enable-background:new 0 0 24 24">
-  <rect id="bg" width="24" height="24" style="fill:#f2f2f2;fill-opacity:0"/>
-  <path id="path" d="M9.7 14.2l2.3-2.3 2.3 2.3c.4.4 1 .4 1.4 0 .4-.4.4-1 0-1.4l-3-3c-.4-.4-1-.4-1.4 0l-3 3c-.4.4-.4 1 0 1.4.4.4 1 .4 1.4 0z"/>
-</svg>
+<svg id="icons" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>01-01-angle-up-s</title><rect id="canvas" width="24" height="24" style="fill:none"/><path d="M9.28027,14.15527,12,11.43555l2.71973,2.71972a.74992.74992,0,0,0,1.06054-1.06054l-3.25-3.25a.74972.74972,0,0,0-1.06054,0l-3.25,3.25a.74992.74992,0,0,0,1.06054,1.06054Z"/></svg>
