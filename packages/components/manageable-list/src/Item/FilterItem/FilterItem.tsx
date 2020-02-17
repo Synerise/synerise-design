@@ -99,8 +99,8 @@ const FilterItem: React.FC<FilterItemProps> = ({
       >
         <Result
           type="warning"
-          title={texts.deleteConfirmationTitle as string}
-          description={texts.deleteConfirmationDescription as string}
+          title={texts.deleteConfirmationTitle}
+          description={texts.deleteConfirmationDescription}
           buttons={
             <>
               <Button type="default" onClick={(): void => setConfirmDeleteVisible(false)}>
