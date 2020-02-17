@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.34.1](https://github.com/synerise/synerise-design/compare/portal@0.34.0...portal@0.34.1) (2020-02-17)
+
+
+### Bug Fixes
+
+* **popconfirm:** fix styles ([44bceea](https://github.com/synerise/synerise-design/commit/44bceea04e993c1e551e080bf12fd2bfebc78c9b))
+
+
+
+
+
 # [0.34.0](https://github.com/synerise/synerise-design/compare/portal@0.33.1...portal@0.34.0) (2020-02-13)
 
 

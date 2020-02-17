@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.15](https://github.com/Synerise/synerise-design/compare/@synerise/ds-popconfirm@0.2.14...@synerise/ds-popconfirm@0.2.15) (2020-02-17)
+
+### Bug Fixes
+
+- **popconfirm:** fix font color ([f4aaad0](https://github.com/Synerise/synerise-design/commit/f4aaad04b775ca604587d581035c3cd4ac69dd2c))
+- **popconfirm:** fix styles ([44bceea](https://github.com/Synerise/synerise-design/commit/44bceea04e993c1e551e080bf12fd2bfebc78c9b))
+
 ## [0.2.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-popconfirm@0.2.13...@synerise/ds-popconfirm@0.2.14) (2020-02-13)
 
 **Note:** Version bump only for package @synerise/ds-popconfirm
