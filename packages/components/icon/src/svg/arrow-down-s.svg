@@ -1,4 +1,1 @@
-<svg id="arrow-down-s" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="enable-background:new 0 0 24 24">
-  <rect id="bg" width="24" height="24" style="opacity:0;fill:#f2f2f2"/>
-  <path id="path" d="M15.3 11.3L13 13.6V8c0-.6-.4-1-1-1s-1 .4-1 1v5.6l-2.3-2.3c-.4-.4-1-.4-1.4 0-.4.4-.4 1 0 1.4l4 4c.4.4 1 .4 1.4 0l4-4c.4-.4.4-1 0-1.4-.4-.4-1-.4-1.4 0z"/>
-</svg>
+<svg id="icons" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>01-07-arrow-down-s</title><rect id="canvas" width="24" height="24" style="fill:none"/><path d="M14.71973,12.71973,12.75,14.68945V7.5a.75.75,0,0,0-1.5,0v7.18945L9.28027,12.71973a.74992.74992,0,0,0-1.06054,1.06054l3.25,3.25a.74971.74971,0,0,0,1.06054,0l3.25-3.25a.74992.74992,0,0,0-1.06054-1.06054Z"/></svg>
