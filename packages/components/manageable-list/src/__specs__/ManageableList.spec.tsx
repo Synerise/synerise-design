@@ -87,15 +87,26 @@ const ITEMS: any = [
   }
 ];
 
+const texts = {
+  addItemLabel: 'Add folder',
+  showMoreLabel: 'Show all',
+  showLessLabel: 'Show less',
+  more: 'more',
+  less: 'less',
+  activateItemTitle: 'By activating this filter, you will cancel your unsaved filter settings',
+  activate: 'Activate',
+  cancel: 'Cancel',
+  deleteConfirmationTitle: 'Detele filter',
+  deleteConfirmationDescription: 'Deleting this filter will permanently remove it from templates library. All tables using this filter will be reset.',
+  deleteLabel: 'Delete',
+};
+
 describe('ManageableList', () => {
   it('should render with no items', () => {
     // ARRANGE
     const { queryByTestId, getByTestId } = renderWithProvider(
       <ManageableList
         items={[]}
-        showMoreLabel="Show all"
-        showLessLabel="Show less"
-        addItemLabel="Add folder"
         loading={false}
         maxToShowItems={5}
         onItemAdd={() => {}}
@@ -103,8 +114,7 @@ describe('ManageableList', () => {
         onItemSelect={() => {}}
         onItemRemove={() => {}}
         type='default'
-        more="more"
-        less="less"
+        texts={texts}
       />);
 
     // ASSERT
@@ -118,9 +128,6 @@ describe('ManageableList', () => {
       // ARRANGE
       <ManageableList
         items={DEFAULT_ITEMS}
-        showMoreLabel="Show all"
-        showLessLabel="Show less"
-        addItemLabel="Add folder"
         loading={false}
         maxToShowItems={5}
         onItemAdd={() => {}}
@@ -128,8 +135,7 @@ describe('ManageableList', () => {
         onItemSelect={() => {}}
         onItemRemove={() => {}}
         type='default'
-        more="more"
-        less="less"
+        texts={texts}
       />);
 
     // ASSERT
@@ -145,9 +151,6 @@ describe('ManageableList', () => {
     const { queryAllByTestId, getByTestId } = renderWithProvider(
       <ManageableList
         items={ITEMS}
-        showMoreLabel="Show all"
-        showLessLabel="Show less"
-        addItemLabel="Add folder"
         loading={false}
         maxToShowItems={5}
         onItemAdd={() => {}}
@@ -155,8 +158,7 @@ describe('ManageableList', () => {
         onItemSelect={() => {}}
         onItemRemove={() => {}}
         type='default'
-        more="more"
-        less="less"
+        texts={texts}
       />);
     const showMore = getByTestId('show-more-button');
 
@@ -172,9 +174,6 @@ describe('ManageableList', () => {
     const { queryAllByTestId, getByTestId } = renderWithProvider(
       <ManageableList
         items={ITEMS}
-        showMoreLabel="Show all"
-        showLessLabel="Show less"
-        addItemLabel="Add folder"
         loading={false}
         maxToShowItems={5}
         onItemAdd={() => {}}
@@ -182,8 +181,7 @@ describe('ManageableList', () => {
         onItemSelect={() => {}}
         onItemRemove={() => {}}
         type='default'
-        more="more"
-        less="less"
+        texts={texts}
       />);
     const showMore = getByTestId('show-more-button');
 
@@ -201,9 +199,6 @@ describe('ManageableList', () => {
     const { queryAllByTestId } = renderWithProvider(
       <ManageableList
         items={ITEMS}
-        showMoreLabel="Show all"
-        showLessLabel="Show less"
-        addItemLabel="Add folder"
         loading={false}
         maxToShowItems={5}
         onItemAdd={() => {}}
@@ -211,8 +206,7 @@ describe('ManageableList', () => {
         onItemSelect={onItemSelect}
         onItemRemove={() => {}}
         type='default'
-        more="more"
-        less="less"
+        texts={texts}
       />);
 
     //ACT
@@ -229,9 +223,6 @@ describe('ManageableList', () => {
     const { queryAllByTestId } = renderWithProvider(
       <ManageableList
         items={ITEMS}
-        showMoreLabel="Show all"
-        showLessLabel="Show less"
-        addItemLabel="Add folder"
         loading={false}
         maxToShowItems={5}
         onItemAdd={() => {}}
@@ -239,8 +230,7 @@ describe('ManageableList', () => {
         onItemSelect={() => {}}
         onItemRemove={onItemRemove}
         type='default'
-        more="more"
-        less="less"
+        texts={texts}
       />);
     const firstRemoveButton = queryAllByTestId('list-item-remove')[0];
     const removeItemIcon = firstRemoveButton.querySelector('svg');
@@ -258,9 +248,6 @@ describe('ManageableList', () => {
     const { getByTestId } = renderWithProvider(
       <ManageableList
         items={DEFAULT_ITEMS}
-        showMoreLabel="Show all"
-        showLessLabel="Show less"
-        addItemLabel="Add folder"
         loading={false}
         maxToShowItems={5}
         onItemAdd={onItemAdd}
@@ -268,8 +255,7 @@ describe('ManageableList', () => {
         onItemSelect={() => {}}
         onItemRemove={() => {}}
         type='default'
-        more="more"
-        less="less"
+        texts={texts}
       />);
     const NEW_FOLDER_NAME = 'New folder';
     const addItemButton = getByTestId('add-item-with-name-button').getElementsByTagName('button')[0];

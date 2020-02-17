@@ -28,6 +28,20 @@ const FILTER_LIST_ITEMS = [{
   }
 ];
 
+const texts = {
+  addItemLabel: 'Add folder',
+  showMoreLabel: 'show all',
+  showLessLabel: 'show less',
+  more: 'more',
+  less: 'less',
+  activateItemTitle: 'By activating this filter, you will cancel your unsaved filter settings',
+  activate: 'Activate',
+  cancel: 'Cancel',
+  deleteConfirmationTitle: 'Detele filter',
+  deleteConfirmationDescription: 'Deleting this filter will permanently remove it from templates library. All tables using this filter will be reset.',
+  deleteLabel: 'Delete',
+};
+
 describe('ManageableList with filter items', () => {
   it('should render with 2 items', () => {
     // ARRANGE
@@ -37,11 +51,6 @@ describe('ManageableList with filter items', () => {
     const duplicate = jest.fn();
     const { queryAllByTestId } = renderWithProvider(
       <ManageableList
-        addItemLabel="Add position"
-        showMoreLabel="show all"
-        showLessLabel="show less"
-        more="more"
-        less="less"
         maxToShowItems={5}
         onItemRemove={remove}
         onItemEdit={edit}
@@ -54,6 +63,7 @@ describe('ManageableList with filter items', () => {
         changeOrderDisabled={false}
         greyBackground={false}
         selectedItemId={undefined}
+        texts={texts}
       />);
 
     // ASSERT
@@ -68,11 +78,6 @@ describe('ManageableList with filter items', () => {
     const duplicate = jest.fn();
     const { queryByTestId } = renderWithProvider(
       <ManageableList
-        addItemLabel="Add position"
-        showMoreLabel="show all"
-        showLessLabel="show less"
-        more="more"
-        less="less"
         maxToShowItems={5}
         onItemRemove={remove}
         onItemEdit={edit}
@@ -85,6 +90,7 @@ describe('ManageableList with filter items', () => {
         changeOrderDisabled={false}
         greyBackground={false}
         selectedItemId={undefined}
+        texts={texts}
       />);
 
     // ASSERT
@@ -99,11 +105,6 @@ describe('ManageableList with filter items', () => {
     const duplicate = jest.fn();
     const { queryByTestId } = renderWithProvider(
       <ManageableList
-        addItemLabel="Add position"
-        showMoreLabel="show all"
-        showLessLabel="show less"
-        more="more"
-        less="less"
         maxToShowItems={5}
         onItemRemove={remove}
         onItemEdit={edit}
@@ -116,6 +117,7 @@ describe('ManageableList with filter items', () => {
         changeOrderDisabled={false}
         greyBackground={false}
         selectedItemId={'00000000-0000-0000-0000-000000000000'}
+        texts={texts}
       />);
 
     // ASSERT
@@ -130,11 +132,6 @@ describe('ManageableList with filter items', () => {
     const duplicate = jest.fn();
     const { queryByTestId } = renderWithProvider(
       <ManageableList
-        addItemLabel="Add position"
-        showMoreLabel="show all"
-        showLessLabel="show less"
-        more="more"
-        less="less"
         maxToShowItems={5}
         onItemRemove={remove}
         onItemEdit={edit}
@@ -147,6 +144,7 @@ describe('ManageableList with filter items', () => {
         changeOrderDisabled={false}
         greyBackground={false}
         selectedItemId={'00000000-0000-0000-0000-000000000000'}
+        texts={texts}
       />);
 
     // ASSERT

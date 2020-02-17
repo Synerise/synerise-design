@@ -34,11 +34,6 @@ ManageableList UI Component
 
 | Property            | Description                                                                      | Type                                   | Default   |
 | ------------------- | -------------------------------------------------------------------------------- | -------------------------------------- | --------- |
-| addItemLabel        | Label of add item button                                                         | string                                 | -         |
-| showMoreLabel       | Label of show more items button                                                  | string                                 | -         |
-| showLessLabel       | Label of show less items button                                                  | string                                 | -         |
-| more                | Translation of 'more'                                                            | string                                 | -         |
-| less                | Translation of 'les'                                                             | string                                 | -         |
 | maxToShowItems      | Shows x first items, rest are hidden under `show more` button                    | number                                 | 5         |
 | onItemAdd           | Callback triggered when user hits `enter` key in the new item input field.       | Function({ name: string })             | -         |
 | onItemRemove        | Callback triggered when user clicks on the remove item button.                   | Function({ id: string })               | -         |
@@ -51,6 +46,23 @@ ManageableList UI Component
 | addButtonDisabled   | Disable add item button                                                          | boolean                                | false     |
 | changeOrderDisabled | Disable change of order                                                          | boolean                                | false     |
 | greyBackground      | Change background color of list and list items                                   | boolean                                | false     |
+| texts               | Texts on buttons, confirms and popups                                            | Texts                                  | -         |
+
+### Texts
+
+| Property                | Description                                   | Type   | Default |
+| ----------------------- | --------------------------------------------- | ------ | ------- |
+| addItemLabel            | Label of add item button                      | string | -       |
+| showMoreLabel           | Label of show more items button               | string | -       |
+| showLessLabel           | Label of show less items button               | string | -       |
+| more                    | Translation of 'more'                         | string | -       |
+| less                    | Translation of 'less'                         | string | -       |
+| activateItem            | Activate item confirm title                   | string | -       |
+| activate                | Label of confirm activation button            | string | -       |
+| cancel                  | Label of cancel button                        | string | -       |
+| deleteConfirmationTitle | Title of delete item confirmation popup       | string | -       |
+| deleteConfirmationTitle | Description of delete item confirmation popup | string | -       |
+| deleteLabel             | Label of delete button                        | string | -       |
 
 #### Item
 

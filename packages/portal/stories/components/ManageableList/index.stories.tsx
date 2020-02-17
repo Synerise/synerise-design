@@ -4,7 +4,7 @@ import FileM from '@synerise/ds-icon/dist/icons/FileM';
 import Tag, { TagShape } from '@synerise/ds-tags/dist/Tag/Tag';
 import { withState } from '@dump247/storybook-state';
 import { action } from '@storybook/addon-actions';
-import { boolean } from '@storybook/addon-knobs';
+import { boolean, text } from '@storybook/addon-knobs';
 import FolderM from '@synerise/ds-icon/dist/icons/FolderM';
 
 const decorator = (storyFn) => (
@@ -173,6 +173,20 @@ const FILTER_LIST_ITEMS = [{
   }
 ];
 
+const getTexts = () => ({
+  addItemLabel: text('Add item label', 'Add folder'),
+  showMoreLabel: text('Show more label', 'show all'),
+  showLessLabel: text('Show less label', 'show less'),
+  more: text('More', 'more'),
+  less: text('Less', 'less'),
+  activateItemTitle: text('Activate item', 'By activating this filter, you will cancel your unsaved filter settings'),
+  activate: text('Activate', 'Activate'),
+  cancel: text('Cancel', 'Cancel'),
+  deleteConfirmationTitle: text('Delete confirmation title', 'Detele filter'),
+  deleteConfirmationDescription: text('Delete confirmation description', 'Deleting this filter will permanently remove it from templates library. All tables using this filter will be reset.'),
+  deleteLabel: text('Delete', 'Delete'),
+});
+
 const stories = {
   default: withState({
     items: ITEMS,
@@ -192,11 +206,6 @@ const stories = {
 
     return (
       <ManageableList
-        addItemLabel="Add folder"
-        showMoreLabel="show all"
-        showLessLabel="show less"
-        more="more"
-        less="less"
         maxToShowItems={5}
         onItemAdd={addItem}
         onItemRemove={props => removeItem(props, store)}
@@ -205,15 +214,11 @@ const stories = {
         items={store.state.items}
         loading={false}
         placeholder={'Folder name'}
+        texts={getTexts()}
       />
     )
   }),
   emptyList: {
-    addItemLabel: 'Add folder',
-    showMoreLabel: 'show all',
-    showLessLabel: 'show less',
-    more: 'more',
-    less: 'less',
     maxToShowItems: 5,
     onItemAdd: action('onItemAdd'),
     onItemRemove: action('onItemRemove'),
@@ -221,6 +226,7 @@ const stories = {
     onItemSelect: action('onItemSelect'),
     items: [],
     loading: false,
+    texts: getTexts(),
   },
   contentList: withState({
     items: CONTENT_ITEMS,
@@ -256,11 +262,6 @@ const stories = {
 
     return (
       <ManageableList
-        addItemLabel="Add position"
-        showMoreLabel="show all"
-        showLessLabel="show less"
-        more="more"
-        less="less"
         maxToShowItems={5}
         onItemAdd={addItem}
         onItemRemove={props => removeItem(props, store)}
@@ -274,6 +275,7 @@ const stories = {
         addButtonDisabled={boolean('Disable add item button', false)}
         changeOrderDisabled={boolean('Disable change order', false)}
         greyBackground={boolean('Grey background', false)}
+        texts={getTexts()}
       />
     )
   }),
@@ -297,11 +299,6 @@ const stories = {
 
     return (
       <ManageableList
-        addItemLabel="Add position"
-        showMoreLabel="show all"
-        showLessLabel="show less"
-        more="more"
-        less="less"
         maxToShowItems={5}
         onItemRemove={props => removeItem(props, store)}
         onItemEdit={props => editItem(props, store)}
@@ -315,6 +312,7 @@ const stories = {
         changeOrderDisabled={boolean('Disable change order', false)}
         greyBackground={boolean('Grey background', false)}
         selectedItemId={store.state.selectedItemId}
+        texts={getTexts()}
       />
     )
   })

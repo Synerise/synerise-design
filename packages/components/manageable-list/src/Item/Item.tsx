@@ -15,6 +15,9 @@ type Props = {
   greyBackground?: boolean;
   listType: string;
   selected: boolean;
+  texts: {
+    [k: string]: string | React.ReactNode;
+  };
 };
 
 export type ItemProps = {
@@ -47,6 +50,7 @@ const Item: React.FC<Props> = ({
   draggable,
   changeOrderDisabled,
   selected,
+  texts,
 }) => {
   switch (listType) {
     case ListType.content:
@@ -72,6 +76,7 @@ const Item: React.FC<Props> = ({
           onRemove={onRemove}
           onUpdate={onUpdate}
           selected={selected}
+          texts={texts}
         />
       );
 

@@ -20,6 +20,9 @@ interface FilterItemProps {
   onUpdate?: (updateParams: { id: string; name: string }) => void;
   onSelect: (selectParams: { id: string }) => void;
   selected: boolean;
+  texts: {
+    [k: string]: string | React.ReactNode;
+  };
 }
 
 const FilterItem: React.FC<FilterItemProps> = ({
@@ -30,6 +33,7 @@ const FilterItem: React.FC<FilterItemProps> = ({
   onRemove,
   onUpdate,
   onSelect,
+  texts,
 }: FilterItemProps) => {
   const [editMode, setEditMode] = React.useState(false);
   const [confirmDeleteVisible, setConfirmDeleteVisible] = React.useState(false);
@@ -60,12 +64,12 @@ const FilterItem: React.FC<FilterItemProps> = ({
                 <Icon className="selected-item-icon" component={<CheckS />} color="#ffffff" />
               ) : (
                 <Popconfirm
-                  okText="Activate"
-                  cancelText="Cancel"
+                  okText={texts.activate}
+                  cancelText={texts.cancel}
                   okType="primary"
                   placement="top"
                   onConfirm={(): void => onSelect({ id: item.id })}
-                  title="By activating this view, you will cancel your unsaved view settings"
+                  title={texts.activateItemTitle}
                   icon={<Icon component={<WarningFillM />} color="#ffc300" />}
                 >
                   <Icon component={<CircleShapeM />} color="#dbe0e3" />
@@ -95,15 +99,15 @@ const FilterItem: React.FC<FilterItemProps> = ({
       >
         <Result
           type="warning"
-          title="Delete filter"
-          description="Deleting this filter will permanently remove it from templates library. All tables using this filter will be reset."
+          title={texts.deleteConfirmationTitle as string}
+          description={texts.deleteConfirmationDescription as string}
           buttons={
             <>
               <Button type="default" onClick={(): void => setConfirmDeleteVisible(false)}>
-                Cancel
+                {texts.cancel}
               </Button>
               <Button type="primary" onClick={(): void => onRemove && onRemove({ id: item.id })}>
-                Delete
+                {texts.deleteLabel}
               </Button>
             </>
           }
