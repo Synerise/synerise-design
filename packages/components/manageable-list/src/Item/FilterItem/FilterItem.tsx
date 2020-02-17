@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { withTheme } from 'styled-components';
 import { CheckS, CircleShapeM, WarningFillM } from '@synerise/ds-icon/dist/icons';
 import Icon from '@synerise/ds-icon';
 import Popconfirm from '@synerise/ds-popconfirm';
@@ -11,7 +12,6 @@ import ItemActions from '../ItemActions/ItemActions';
 import ItemName from '../ItemName/ItemName';
 import { ItemProps } from '../Item';
 import ItemMeta from '../ItemMeta/ItemMeta';
-import { withTheme } from 'styled-components';
 
 interface FilterItemProps {
   item: ItemProps;
@@ -64,6 +64,7 @@ const FilterItem: React.FC<FilterItemProps> = ({
           <S.ItemHeaderPrefix>
             <SelectFilterItem data-testid={selected && 'filter-item-selected'}>
               {selected ? (
+                // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
                 // @ts-ignore
                 <Icon className="selected-item-icon" component={<CheckS />} color={theme.palette.white} />
               ) : (
