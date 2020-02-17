@@ -11,6 +11,7 @@ import ItemActions from '../ItemActions/ItemActions';
 import ItemName from '../ItemName/ItemName';
 import { ItemProps } from '../Item';
 import ItemMeta from '../ItemMeta/ItemMeta';
+import { withTheme } from 'styled-components';
 
 interface FilterItemProps {
   item: ItemProps;
@@ -23,6 +24,7 @@ interface FilterItemProps {
   texts: {
     [k: string]: string | React.ReactNode;
   };
+  theme: { [k: string]: string };
 }
 
 const FilterItem: React.FC<FilterItemProps> = ({
@@ -34,6 +36,7 @@ const FilterItem: React.FC<FilterItemProps> = ({
   onUpdate,
   onSelect,
   texts,
+  theme,
 }: FilterItemProps) => {
   const [editMode, setEditMode] = React.useState(false);
   const [confirmDeleteVisible, setConfirmDeleteVisible] = React.useState(false);
@@ -61,7 +64,8 @@ const FilterItem: React.FC<FilterItemProps> = ({
           <S.ItemHeaderPrefix>
             <SelectFilterItem data-testid={selected && 'filter-item-selected'}>
               {selected ? (
-                <Icon className="selected-item-icon" component={<CheckS />} color="#ffffff" />
+                // @ts-ignore
+                <Icon className="selected-item-icon" component={<CheckS />} color={theme.palette.white} />
               ) : (
                 <Popconfirm
                   okText={texts.activate}
@@ -70,9 +74,9 @@ const FilterItem: React.FC<FilterItemProps> = ({
                   placement="top"
                   onConfirm={(): void => onSelect({ id: item.id })}
                   title={texts.activateItemTitle}
-                  icon={<Icon component={<WarningFillM />} color="#ffc300" />}
+                  icon={<Icon component={<WarningFillM />} color={theme.palette['yellow-600']} />}
                 >
-                  <Icon component={<CircleShapeM />} color="#dbe0e3" />
+                  <Icon component={<CircleShapeM />} color={theme.palette['grey-300']} />
                 </Popconfirm>
               )}
             </SelectFilterItem>
@@ -117,4 +121,4 @@ const FilterItem: React.FC<FilterItemProps> = ({
   );
 };
 
-export default FilterItem;
+export default withTheme(FilterItem);
