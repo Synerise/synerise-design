@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Tooltip from '@synerise/ds-tooltip';
 import InlineEdit from '@synerise/ds-inline-edit/dist/InlineEdit';
-import { InfoFillM } from '@synerise/ds-icon/dist/icons';
+import { InfoFillS } from '@synerise/ds-icon/dist/icons';
 import * as S from '../SimpleItem/SimpleItem.styles';
 import { ItemProps } from '../Item';
 
@@ -47,7 +47,7 @@ const ItemName: React.FC<ItemLabelProps> = ({ item, onUpdate, editMode }): React
       )}
       {item.description && (
         <Tooltip description={item.description} placement="right" trigger="click" type="largeSimple">
-          <S.DescriptionIcon component={<InfoFillM />} size={18} color="#b5bdc3" />
+          <S.DescriptionIcon component={<InfoFillS />} color="#b5bdc3" />
         </Tooltip>
       )}
     </S.ItemLabelWrapper>

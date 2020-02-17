@@ -68,5 +68,5 @@ export const ItemContainer = styled.div`
 `;
 
 export const DescriptionIcon = styled(Icon)`
-  margin-left: 4px;
+  margin-left: 2px;
 `;
