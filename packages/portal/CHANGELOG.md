@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.35.0](https://github.com/synerise/synerise-design/compare/portal@0.34.1...portal@0.35.0) (2020-02-18)
+
+
+### Features
+
+* **manageable-list:** add filter list item ([87cb274](https://github.com/synerise/synerise-design/commit/87cb274bdea02a038b3e19706ade22015f219aa7))
+* **manageable-list:** move all labels, text, etc to 'texts' props ([7be555c](https://github.com/synerise/synerise-design/commit/7be555cef05d44a081f5f6c7794f584f8e952247))
+
+
+
+
+
 ## [0.34.1](https://github.com/synerise/synerise-design/compare/portal@0.34.0...portal@0.34.1) (2020-02-17)
 
 

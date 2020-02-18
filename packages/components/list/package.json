@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-list",
-  "version": "0.3.19",
+  "version": "0.3.20",
   "description": "List UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -22,9 +22,9 @@
   "sideEffects": false,
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-divider": "^0.3.8",
-    "@synerise/ds-radio": "^0.9.11",
-    "@synerise/ds-utils": "^0.7.2",
+    "@synerise/ds-divider": "^0.3.9",
+    "@synerise/ds-radio": "^0.9.12",
+    "@synerise/ds-utils": "^0.8.0",
     "uuid": "^3.3.3"
   },
   "peerDependencies": {

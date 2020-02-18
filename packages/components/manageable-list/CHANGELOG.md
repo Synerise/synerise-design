@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.4.18...@synerise/ds-manageable-list@0.5.0) (2020-02-18)
+
+### Bug Fixes
+
+- **manageable-list:** fix eslint error ([72191e8](https://github.com/Synerise/synerise-design/commit/72191e84e44c4c7d51f08921f21e3875657a3084))
+- **manageable-list:** update Result modal props ([e13644a](https://github.com/Synerise/synerise-design/commit/e13644acdf59968df394a5fe6ec5853e64caf370))
+- **manageable-list:** use colors from theme.paletter ([e1baaa3](https://github.com/Synerise/synerise-design/commit/e1baaa3dbbb9c2fddafdcf6a78e2be3f997fb40d))
+
+### Features
+
+- **manageable-list:** add filter list item ([87cb274](https://github.com/Synerise/synerise-design/commit/87cb274bdea02a038b3e19706ade22015f219aa7))
+- **manageable-list:** move all labels, text, etc to 'texts' props ([7be555c](https://github.com/Synerise/synerise-design/commit/7be555cef05d44a081f5f6c7794f584f8e952247))
+- **manageable-list:** update checked list item icon ([43bedff](https://github.com/Synerise/synerise-design/commit/43bedff23e940546e7bbe96d2f281edb3a7782ac))
+- **manageable-list:** update description icon ([47c74f9](https://github.com/Synerise/synerise-design/commit/47c74f9af93018cea358a974a533dbef00b9e365))
+
 ## [0.4.18](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.4.17...@synerise/ds-manageable-list@0.4.18) (2020-02-17)
 
 **Note:** Version bump only for package @synerise/ds-manageable-list

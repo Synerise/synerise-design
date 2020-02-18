@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@0.7.2...@synerise/ds-utils@0.8.0) (2020-02-18)
+
+### Bug Fixes
+
+- **utils:** simplify getInitials helper ([3f87035](https://github.com/synerise/synerise-design/commit/3f8703511174b955b30d65b10a7f71236f7752dc))
+- **utils:** simplify getInitials helper ([16f969b](https://github.com/synerise/synerise-design/commit/16f969b20e74b4c26538a1525738370ae7c6450a))
+
+### Features
+
+- **utils:** add getInitials helper ([191a277](https://github.com/synerise/synerise-design/commit/191a27797b470df9ad0f6abcdfb02e8946a4cac9))
+
 ## [0.7.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@0.7.1...@synerise/ds-utils@0.7.2) (2020-02-12)
 
 **Note:** Version bump only for package @synerise/ds-utils
