@@ -15,6 +15,7 @@ type Props = {
   greyBackground?: boolean;
   listType: string;
   selected: boolean;
+  searchQuery?: string;
   texts: {
     [k: string]: string | React.ReactNode;
   };
@@ -37,7 +38,6 @@ export type ItemProps = {
     lastname?: string;
   };
   created?: string;
-  searchQuery?: string;
 };
 
 const Item: React.FC<Props> = ({
