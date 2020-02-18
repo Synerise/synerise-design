@@ -27,7 +27,7 @@ export interface Props extends Omit<ButtonProps, 'type'> {
   mode?: string;
   groupVariant?: string | 'left-rounded' | 'squared' | 'right-rounded';
   justifyContent?: JustifyContentProperty;
-  loading?: boolean;
+  loading?: boolean | { delay: number };
   onClick?: (event: React.MouseEvent<HTMLElement>) => void;
 }
 
