@@ -43,7 +43,7 @@ export const DropdownSearchInputWrapper = styled.div<{ iconLeft: React.ReactNode
       width: ${(props): string => {
         if (props.iconLeft && !props.isEmpty) return 'calc(100% - 94px)';
         if (props.iconLeft && props.isEmpty) return 'calc(100% - 64px)';
-        if (!props.iconLeft && !props.isEmpty) return 'calc(100% - 56px)';
+        if (!props.iconLeft && !props.isEmpty) return 'calc(100% - 54px)';
         return 'calc(100% - 24px)';
       }};
     }
