@@ -18,6 +18,9 @@ const getTexts = () => ({
   deleteConfirmationTitle: text('Delete confirmation title', 'Detele filter'),
   deleteConfirmationDescription: text('Delete confirmation description', 'Deleting this filter will permanently remove it from templates library. All tables using this filter will be reset.'),
   deleteLabel: text('Delete', 'Delete'),
+  noResults: text('No results', 'No results'),
+  searchPlaceholder: text('Search placeholder', 'Search'),
+  title: text('Drawer title', 'Filter'),
 });
 
 const CATEGORIES = [
