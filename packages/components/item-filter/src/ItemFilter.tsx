@@ -98,6 +98,7 @@ const ItemFilter: React.FC<ItemFilterProps> = ({
                 loading={false}
                 selectedItemId={selectedItemId}
                 texts={texts}
+                searchQuery={searchQuery}
               />
             ) : (
               <S.NoResults>

@@ -37,6 +37,7 @@ export type ItemProps = {
     lastname?: string;
   };
   created?: string;
+  searchQuery?: string;
 };
 
 const Item: React.FC<Props> = ({
@@ -51,6 +52,7 @@ const Item: React.FC<Props> = ({
   changeOrderDisabled,
   selected,
   texts,
+  searchQuery,
 }) => {
   switch (listType) {
     case ListType.content:
@@ -77,6 +79,7 @@ const Item: React.FC<Props> = ({
           onUpdate={onUpdate}
           selected={selected}
           texts={texts}
+          searchQuery={searchQuery}
         />
       );
 

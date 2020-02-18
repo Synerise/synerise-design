@@ -30,6 +30,7 @@ export interface ManageableListProps {
   greyBackground?: boolean;
   placeholder?: string;
   selectedItemId?: string;
+  searchQuery?: string;
   texts: {
     addItemLabel?: string | React.ReactNode;
     showMoreLabel?: string | React.ReactNode;
@@ -62,6 +63,7 @@ const ManageableList: React.FC<ManageableListProps> = ({
   greyBackground = false,
   placeholder,
   selectedItemId,
+  searchQuery,
   texts: {
     addItemLabel = <FormattedMessage id="DS.MANAGABLE-LIST.ADD-ITEM" />,
     showMoreLabel = <FormattedMessage id="DS.MANAGABLE-LIST.SHOW-MORE" />,
@@ -139,20 +141,10 @@ const ManageableList: React.FC<ManageableListProps> = ({
         greyBackground={greyBackground}
         selected={Boolean(item.id === selectedItemId)}
         texts={itemTexts}
+        searchQuery={searchQuery}
       />
     ),
-    [
-      type,
-      onItemSelect,
-      onItemEdit,
-      onItemRemove,
-      onItemDuplicate,
-      onChangeOrder,
-      changeOrderDisabled,
-      greyBackground,
-      selectedItemId,
-      itemTexts,
-    ]
+    [type, onItemSelect, onItemEdit, onItemRemove, onItemDuplicate, onChangeOrder, changeOrderDisabled, greyBackground, selectedItemId, itemTexts, searchQuery]
   );
 
   const renderList = React.useCallback(() => {
