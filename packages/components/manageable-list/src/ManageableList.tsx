@@ -10,15 +10,11 @@ import AddItem from './AddItem/AddItem';
 export enum ListType {
   default = 'default',
   content = 'content',
+  filter = 'filter',
 }
 
 export interface ManageableListProps {
   className?: string;
-  addItemLabel?: string | React.ReactNode;
-  showMoreLabel?: string | React.ReactNode;
-  showLessLabel?: string | React.ReactNode;
-  more?: string | React.ReactNode;
-  less?: string | React.ReactNode;
   maxToShowItems: number;
   onItemAdd?: (addParams?: { name: string }) => void;
   onItemRemove?: (removeParams: { id: string }) => void;
@@ -33,6 +29,20 @@ export interface ManageableListProps {
   changeOrderDisabled?: boolean;
   greyBackground?: boolean;
   placeholder?: string;
+  selectedItemId?: string;
+  texts: {
+    addItemLabel?: string | React.ReactNode;
+    showMoreLabel?: string | React.ReactNode;
+    showLessLabel?: string | React.ReactNode;
+    more?: string | React.ReactNode;
+    less?: string | React.ReactNode;
+    activateItemTitle?: string | React.ReactNode;
+    activate?: string | React.ReactNode;
+    cancel?: string | React.ReactNode;
+    deleteConfirmationTitle?: string | React.ReactNode;
+    deleteConfirmationDescription?: string | React.ReactNode;
+    deleteLabel?: string | React.ReactNode;
+  };
 }
 
 const ManageableList: React.FC<ManageableListProps> = ({
@@ -43,21 +53,39 @@ const ManageableList: React.FC<ManageableListProps> = ({
   onItemRemove,
   onItemEdit,
   onChangeOrder,
-  addItemLabel = <FormattedMessage id="DS.MANAGABLE-LIST.ADD-ITEM" />,
   items,
   maxToShowItems = 5,
-  showMoreLabel = <FormattedMessage id="DS.MANAGABLE-LIST.SHOW-MORE" />,
-  showLessLabel = <FormattedMessage id="DS.MANAGABLE-LIST.SHOW-LESS" />,
-  more = <FormattedMessage id="DS.MANAGABLE-LIST.MORE" />,
-  less = <FormattedMessage id="DS.MANAGABLE-LIST.LESS" />,
   loading,
   type = ListType.default,
   addButtonDisabled = false,
   changeOrderDisabled = false,
   greyBackground = false,
   placeholder,
+  selectedItemId,
+  texts: {
+    addItemLabel = <FormattedMessage id="DS.MANAGABLE-LIST.ADD-ITEM" />,
+    showMoreLabel = <FormattedMessage id="DS.MANAGABLE-LIST.SHOW-MORE" />,
+    showLessLabel = <FormattedMessage id="DS.MANAGABLE-LIST.SHOW-LESS" />,
+    more = <FormattedMessage id="DS.MANAGABLE-LIST.MORE" />,
+    less = <FormattedMessage id="DS.MANAGABLE-LIST.LESS" />,
+    activateItemTitle = <FormattedMessage id="DS.MANAGABLE-LIST.ACTIVATE-ITEM" />,
+    activate = <FormattedMessage id="DS.MANAGABLE-LIST.ACTIVATE" />,
+    cancel = <FormattedMessage id="DS.MANAGABLE-LIST.CANCEL" />,
+    deleteConfirmationTitle = <FormattedMessage id="DS.MANAGABLE-LIST.DELETE-ITEM-TITLE" />,
+    deleteConfirmationDescription = <FormattedMessage id="DS.MANAGABLE-LIST.DELETE-ITEM-DESCRIPTION" />,
+    deleteLabel = <FormattedMessage id="DS.MANAGABLE-LIST.DELETE" />,
+  },
 }) => {
   const [allItemsVisible, setAllItemsVisible] = React.useState(false);
+
+  const itemTexts = {
+    activateItemTitle,
+    activate,
+    cancel,
+    deleteConfirmationDescription,
+    deleteConfirmationTitle,
+    deleteLabel,
+  };
 
   const getItemsOverLimit = React.useMemo((): number => {
     return items.length - maxToShowItems;
@@ -109,9 +137,22 @@ const ManageableList: React.FC<ManageableListProps> = ({
         draggable={Boolean(onChangeOrder)}
         changeOrderDisabled={changeOrderDisabled}
         greyBackground={greyBackground}
+        selected={Boolean(item.id === selectedItemId)}
+        texts={itemTexts}
       />
     ),
-    [onChangeOrder, changeOrderDisabled, greyBackground, onItemDuplicate, onItemSelect, onItemEdit, onItemRemove, type]
+    [
+      type,
+      onItemSelect,
+      onItemEdit,
+      onItemRemove,
+      onItemDuplicate,
+      onChangeOrder,
+      changeOrderDisabled,
+      greyBackground,
+      selectedItemId,
+      itemTexts,
+    ]
   );
 
   const renderList = React.useCallback(() => {

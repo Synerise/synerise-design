@@ -4,12 +4,12 @@ import FileM from '@synerise/ds-icon/dist/icons/FileM';
 import Tag, { TagShape } from '@synerise/ds-tags/dist/Tag/Tag';
 import { withState } from '@dump247/storybook-state';
 import { action } from '@storybook/addon-actions';
-import { boolean } from '@storybook/addon-knobs';
+import { boolean, text } from '@storybook/addon-knobs';
 import FolderM from '@synerise/ds-icon/dist/icons/FolderM';
 
 const decorator = (storyFn) => (
-  <div style={{ width: '200px' }}>
-    <div style={{ background: '#fff', width: '300px' }}>
+  <div style={{ width: '600px' }}>
+    <div style={{ background: '#fff', width: '600px' }}>
       {storyFn()}
     </div>
   </div>
@@ -29,6 +29,12 @@ const editItem = (props, store): void => {
       }
       return item;
     })
+  })
+};
+
+const setSelectedItem = (props, store): void => {
+  store.set({
+    selectedItemId: props.id,
   })
 };
 
@@ -140,6 +146,47 @@ const EMPTY_CONTENT_ITEM = {
     content: <div>content</div>
 };
 
+const FILTER_LIST_ITEMS = [{
+    id: "00000000-0000-0000-0000-000000000000",
+    name: "Position 0",
+    description: 'The last 10 days of all customers sales ',
+    canAdd: true,
+    canUpdate: true,
+    canDelete: true,
+    canDuplicate: true,
+    user: {
+      avatar_url: 'https://www.w3schools.com/howto/img_avatar.png'
+    },
+    created: '2020-02-14T08:50:05+00:00',
+  },
+  {
+    id: "00000000-0000-0000-0000-000000000002",
+    name: "Position 1",
+    canAdd: true,
+    canUpdate: true,
+    canDelete: true,
+    user: {
+      firstname: 'Jan',
+      lastname: 'Nowak',
+    },
+    created: '2020-02-12T08:50:05+00:00',
+  }
+];
+
+const getTexts = () => ({
+  addItemLabel: text('Add item label', 'Add folder'),
+  showMoreLabel: text('Show more label', 'show all'),
+  showLessLabel: text('Show less label', 'show less'),
+  more: text('More', 'more'),
+  less: text('Less', 'less'),
+  activateItemTitle: text('Activate item', 'By activating this filter, you will cancel your unsaved filter settings'),
+  activate: text('Activate', 'Activate'),
+  cancel: text('Cancel', 'Cancel'),
+  deleteConfirmationTitle: text('Delete confirmation title', 'Detele filter'),
+  deleteConfirmationDescription: text('Delete confirmation description', 'Deleting this filter will permanently remove it from templates library. All tables using this filter will be reset.'),
+  deleteLabel: text('Delete', 'Delete'),
+});
+
 const stories = {
   default: withState({
     items: ITEMS,
@@ -159,11 +206,6 @@ const stories = {
 
     return (
       <ManageableList
-        addItemLabel="Add folder"
-        showMoreLabel="show all"
-        showLessLabel="show less"
-        more="more"
-        less="less"
         maxToShowItems={5}
         onItemAdd={addItem}
         onItemRemove={props => removeItem(props, store)}
@@ -172,15 +214,11 @@ const stories = {
         items={store.state.items}
         loading={false}
         placeholder={'Folder name'}
+        texts={getTexts()}
       />
     )
   }),
   emptyList: {
-    addItemLabel: 'Add folder',
-    showMoreLabel: 'show all',
-    showLessLabel: 'show less',
-    more: 'more',
-    less: 'less',
     maxToShowItems: 5,
     onItemAdd: action('onItemAdd'),
     onItemRemove: action('onItemRemove'),
@@ -188,6 +226,7 @@ const stories = {
     onItemSelect: action('onItemSelect'),
     items: [],
     loading: false,
+    texts: getTexts(),
   },
   contentList: withState({
     items: CONTENT_ITEMS,
@@ -223,11 +262,6 @@ const stories = {
 
     return (
       <ManageableList
-        addItemLabel="Add position"
-        showMoreLabel="show all"
-        showLessLabel="show less"
-        more="more"
-        less="less"
         maxToShowItems={5}
         onItemAdd={addItem}
         onItemRemove={props => removeItem(props, store)}
@@ -241,6 +275,44 @@ const stories = {
         addButtonDisabled={boolean('Disable add item button', false)}
         changeOrderDisabled={boolean('Disable change order', false)}
         greyBackground={boolean('Grey background', false)}
+        texts={getTexts()}
+      />
+    )
+  }),
+  filterItemsList: withState({
+    items: FILTER_LIST_ITEMS,
+    selectedItemId: '00000000-0000-0000-0000-000000000000',
+  })(({ store }) => {
+
+    const duplicateItem = (props): void => {
+      const itemForDuplication = store.state.items.find(item => item.id === props.id);
+      store.set({
+        items: [
+          ...store.state.items,
+          {
+            ...itemForDuplication,
+            id: Date.now(),
+          }
+        ]
+      })
+    };
+
+    return (
+      <ManageableList
+        maxToShowItems={5}
+        onItemRemove={props => removeItem(props, store)}
+        onItemEdit={props => editItem(props, store)}
+        onItemSelect={props => setSelectedItem(props, store)}
+        onItemDuplicate={duplicateItem}
+        onChangeOrder={null}
+        type='filter'
+        items={store.state.items}
+        loading={false}
+        addButtonDisabled={boolean('Disable add item button', false)}
+        changeOrderDisabled={boolean('Disable change order', false)}
+        greyBackground={boolean('Grey background', false)}
+        selectedItemId={store.state.selectedItemId}
+        texts={getTexts()}
       />
     )
   })

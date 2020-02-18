@@ -24,6 +24,7 @@
   "dependencies": {
     "@synerise/ds-icon": "^0.11.1",
     "@synerise/ds-list": "^0.3.19",
+    "@synerise/ds-popconfirm": "^0.2.15",
     "@synerise/ds-tags": "^0.2.13",
     "@synerise/ds-typography": "^0.6.1"
   },

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { macro } from '@synerise/ds-typography';
+import Icon from '@synerise/ds-icon';
 import { ItemActionsWrapper } from '../ItemActions/ItemActions.styles';
 
 export const ItemLabel = styled.span`
@@ -11,15 +12,22 @@ export const ItemLabel = styled.span`
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
-  flex: 1;
   line-height: 24px;
   max-width: 100%;
 `;
 
 export const ItemLabelWrapper = styled.div`
   flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
   overflow: hidden;
   height: 24px;
+  .ant-tooltip-inner {
+    max-width: 164px;
+    padding: 16px 16px 19px;
+  }
 `;
 
 export const ItemContainer = styled.div`
@@ -57,4 +65,8 @@ export const ItemContainer = styled.div`
       }
     }
   }
+`;
+
+export const DescriptionIcon = styled(Icon)`
+  margin-left: 2px;
 `;
