@@ -26,6 +26,11 @@ export const DrawerHeader = styled.div`
   border-bottom: 1px solid ${({ theme }): string => theme.palette['grey-100']};
 `;
 
+export const DrawerHeaderWithoutPadding = styled.div`
+  padding: 0;
+  border-bottom: 0;
+`;
+
 export const DrawerContent = styled.div`
   padding: 24px;
 `;
