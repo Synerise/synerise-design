@@ -4,6 +4,7 @@ import Button from '@synerise/ds-button';
 import Tabs from '@synerise/ds-tabs';
 import { action } from '@storybook/addon-actions';
 import Typography from 'antd/lib/typography';
+import SearchInput from '@synerise/ds-dropdown/dist/elements/SearchInput/SearchInput';
 
 const TABS = [
   {
@@ -63,6 +64,47 @@ const stories = {
               <p>Content</p>
               <p>Content</p>
               <p>Content</p>
+              <p>Content</p>
+              <p>Content</p>
+              <p>Content</p>
+              <p>Content</p>
+              <p>Content</p>
+              <p>Content</p>
+              <p>Content</p>
+              <p>Content</p>
+              <p>Content</p>
+            </Drawer.DrawerContent>
+          </Drawer.DrawerBody>
+        </Drawer>
+      </div>
+    )
+  },
+  withSearch: () => {
+    const [drawerVisible, setDrawerVisible] = React.useState(false);
+    const [activeTab, setActiveTab] = React.useState(0);
+
+    return (
+      <div>
+        <Button onClick={() => setDrawerVisible(!drawerVisible)} type='primary'>Show drawer</Button>
+        <Drawer
+          visible={drawerVisible}
+          placement='right'
+          width={400}
+          onClose={() => setDrawerVisible(false)}
+        >
+          <Drawer.DrawerHeaderWithoutPadding>
+            <Drawer.DrawerHeader>
+              <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: 24}}>
+                <Typography.Title style={{flex: 1, margin: 0,}} level={4}>Example drawer</Typography.Title>
+                <Button type={'ghost'} onClick={() => setDrawerVisible(false)}>Cancel</Button>
+                <Button style={{marginLeft: '20px'}} type={'primary'} onClick={() => setDrawerVisible(false)}>Save</Button>
+              </div>
+              <Tabs activeTab={activeTab} tabs={TABS} handleTabClick={setActiveTab} configuration={{label: 'Configure', action: action('onConfigurationClick')}} />
+            </Drawer.DrawerHeader>
+            <SearchInput onSearchChange={action('onSearchChange')} placeholder={'Search'} value={''} />
+          </Drawer.DrawerHeaderWithoutPadding>
+          <Drawer.DrawerBody>
+            <Drawer.DrawerContent>
               <p>Content</p>
               <p>Content</p>
               <p>Content</p>

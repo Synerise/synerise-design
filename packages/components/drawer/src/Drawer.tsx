@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { DrawerProps as AntdDrawerProps } from 'antd/lib/drawer';
-import { AntdDrawer, DrawerBody, DrawerContent, DrawerHeader } from './Drawer.styles';
+import { AntdDrawer, DrawerBody, DrawerContent, DrawerHeader, DrawerHeaderWithoutPadding } from './Drawer.styles';
 import './style/index.less';
 
 export interface DrawerProps extends Omit<AntdDrawerProps, 'closable'> {
@@ -11,6 +11,7 @@ export interface DrawerProps extends Omit<AntdDrawerProps, 'closable'> {
 class Drawer extends React.PureComponent<DrawerProps> {
   static DrawerBody = DrawerBody;
   static DrawerHeader = DrawerHeader;
+  static DrawerHeaderWithoutPadding = DrawerHeaderWithoutPadding;
   static DrawerContent = DrawerContent;
 
   render(): React.ReactNode {
