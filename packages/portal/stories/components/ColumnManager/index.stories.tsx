@@ -1,9 +1,12 @@
 import * as React from 'react';
 
 import ColumnManager from '@synerise/ds-column-manager';
+import { action } from '@storybook/addon-actions';
 
 const stories = {
-  default: () => ({}),
+  default: () => (
+    <ColumnManager hide={action('hide Column Manager')} showList={action('show Item Filter')} visible />
+  ),
 };
 
 export default {
