@@ -120,7 +120,7 @@ export default styled(({ mode, type, loading, justifyContent, ...rest }) => (
       height: 24px;
     }
     ${(props): FlattenInterpolation<ThemeProps> | false =>
-      props.spinner &&
+      props.loading &&
       css`
         > *:not(.btn-focus) {
           visibility: hidden;

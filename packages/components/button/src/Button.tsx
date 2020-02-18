@@ -27,7 +27,7 @@ export interface Props extends Omit<ButtonProps, 'type'> {
   mode?: string;
   groupVariant?: string | 'left-rounded' | 'squared' | 'right-rounded';
   justifyContent?: JustifyContentProperty;
-  spinner?: boolean;
+  loading?: boolean;
   onClick?: (event: React.MouseEvent<HTMLElement>) => void;
 }
 
@@ -38,7 +38,7 @@ const Button: React.FC<Props> = ({
   mode,
   justifyContent = 'center',
   groupVariant,
-  spinner = false,
+  loading = false,
   onClick,
   ...antdProps
 }) => {
@@ -74,14 +74,14 @@ const Button: React.FC<Props> = ({
       type={type}
       mode={mode}
       groupVariant={groupVariant}
-      spinner={spinner}
+      loading={loading}
       onClick={handleClick}
       /* eslint-disable-next-line react/jsx-props-no-spreading */
       {...antdProps}
     >
       <S.RippleEffect ref={rippleRef} className={`btn-ripple ${rippleClassName}`} />
       {antdProps.children}
-      {spinner && (
+      {loading && (
         <S.Spinner className="btn-spinner" data-testid="button-spinner">
           <Icon component={<SpinnerM />} color="#fff" />
         </S.Spinner>
