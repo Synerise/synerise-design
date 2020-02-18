@@ -123,9 +123,11 @@ export default styled(({ mode, type, loading, justifyContent, ...rest }) => (
       props.loading &&
       css`
         > *:not(.btn-focus) {
+          opacity: 0;
           visibility: hidden;
         }
         ${Spinner} {
+          opacity: 1;
           visibility: visible;
         }
       `};
