@@ -13,24 +13,40 @@ export const DropdownSearchInput = styled(Input)`
       position: absolute;
       top: 0;
       left: 0;
-      width: 100%;
+      max-width: 100%;
       height: 52px;
       border: 0;
       background: ${(props): string => props.theme.palette['grey-050']};
       border-radius: 3px 3px 0 0;
+      box-sizing: content-box;
 
       &:focus {
-        box-shadow: inset 0 0 0 2px ${(props): string => props.theme.palette['blue-600']};
+        border-bottom: 2px solid ${(props): string => props.theme.palette['blue-600']};
+        box-shadow: none;
       }
     }
   }
 `;
 
-export const DropdownSearchInputWrapper = styled.div<{ iconLeft: React.ReactNode }>`
+export const DropdownSearchInputWrapper = styled.div<{ iconLeft: React.ReactNode; isEmpty: boolean }>`
   position: relative;
   border-bottom: 1px solid ${(props): string => props.theme.palette['grey-100']};
-  input {
-    padding: ${(props): string => (props.iconLeft ? '0 42px 0 52px' : '0 42px 0 16px')};
+
+  && {
+    input {
+      padding: ${(props): string => {
+        if (props.iconLeft && !props.isEmpty) return '0 42px 0 52px';
+        if (props.iconLeft && props.isEmpty) return '0 12px 0 52px';
+        if (!props.iconLeft && !props.isEmpty) return '0 42px 0 12px';
+        return '0 12px 0 12px';
+      }};
+      width: ${(props): string => {
+        if (props.iconLeft && !props.isEmpty) return 'calc(100% - 94px)';
+        if (props.iconLeft && props.isEmpty) return 'calc(100% - 64px)';
+        if (!props.iconLeft && !props.isEmpty) return 'calc(100% - 56px)';
+        return 'calc(100% - 24px)';
+      }};
+    }
   }
 `;
 

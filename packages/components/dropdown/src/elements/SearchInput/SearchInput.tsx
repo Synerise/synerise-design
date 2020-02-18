@@ -28,7 +28,7 @@ const SearchInput: React.FC<SearchInputProps> = ({
   };
 
   return (
-    <S.DropdownSearchInputWrapper iconLeft={iconLeft}>
+    <S.DropdownSearchInputWrapper iconLeft={iconLeft} isEmpty={value.length === 0}>
       {iconLeft && <S.IconLeftWrapper>{iconLeft}</S.IconLeftWrapper>}
       {onClearInput && !!value.length && (
         <S.ClearInputWrapper onClick={onClearInput}>

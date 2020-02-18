@@ -5,6 +5,8 @@ import Tabs from '@synerise/ds-tabs';
 import { action } from '@storybook/addon-actions';
 import Typography from 'antd/lib/typography';
 import SearchInput from '@synerise/ds-dropdown/dist/elements/SearchInput/SearchInput';
+import { SearchM } from '@synerise/ds-icon/dist/icons';
+import Icon from '@synerise/ds-icon';
 
 const TABS = [
   {
@@ -101,7 +103,7 @@ const stories = {
               </div>
               <Tabs activeTab={activeTab} tabs={TABS} handleTabClick={setActiveTab} configuration={{label: 'Configure', action: action('onConfigurationClick')}} />
             </Drawer.DrawerHeader>
-            <SearchInput onSearchChange={action('onSearchChange')} placeholder={'Search'} value={''} />
+            <SearchInput onSearchChange={action('onSearchChange')} placeholder={'Search'} value={''} iconLeft={<Icon component={<SearchM />} color={'#6a7580'} />} />
           </Drawer.DrawerHeaderWithoutPadding>
           <Drawer.DrawerBody>
             <Drawer.DrawerContent>
