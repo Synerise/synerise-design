@@ -83,6 +83,104 @@ const ITEMS = [
       lastname: 'Nowak',
     }
   },
+  {
+    id: '0004',
+    name: 'Filter #5',
+    description: 'Lorem Ipsum...',
+    created: '01-05-2020 12:02',
+    canUpdate: true,
+    canDelete: true,
+    canDuplicate: true,
+    categories: ['My filters', 'All filters'],
+    user: {
+      firstname: 'Jan',
+      lastname: 'Nowak',
+    }
+  },
+  {
+    id: '0005',
+    name: 'Filter #6',
+    description: 'Lorem Ipsum...',
+    created: '01-12-2019 12:02',
+    canUpdate: false,
+    canDelete: false,
+    canDuplicate: true,
+    categories: ['All filters'],
+    user: {
+      firstname: 'Kamil',
+      lastname: 'Kowalski',
+    }
+  },
+  {
+    id: '0006',
+    name: 'Filter #7',
+    created: '01-12-2019 12:02',
+    canUpdate: false,
+    canDelete: false,
+    canDuplicate: true,
+    categories: ['All filters'],
+    user: {
+      avatar_url: 'https://www.w3schools.com/howto/img_avatar.png',
+      firstname: 'Kamil',
+      lastname: 'Kowalski',
+    }
+  },
+  {
+    id: '0007',
+    name: 'Filter #8',
+    description: 'Lorem Ipsum...',
+    created: '08-22-2018 12:02',
+    canUpdate: true,
+    canDelete: true,
+    canDuplicate: true,
+    categories: ['My filters', 'All filters'],
+    user: {
+      firstname: 'Jan',
+      lastname: 'Nowak',
+    }
+  },
+  {
+    id: '0008',
+    name: 'Filter #9',
+    description: 'Lorem Ipsum...',
+    created: '01-12-2019 12:02',
+    canUpdate: false,
+    canDelete: false,
+    canDuplicate: true,
+    categories: ['All filters'],
+    user: {
+      firstname: 'Kamil',
+      lastname: 'Kowalski',
+    }
+  },
+  {
+    id: '0009',
+    name: 'Filter #10',
+    created: '01-12-2019 12:02',
+    canUpdate: false,
+    canDelete: false,
+    canDuplicate: true,
+    categories: ['All filters'],
+    user: {
+      avatar_url: 'https://www.w3schools.com/howto/img_avatar.png',
+      firstname: 'Kamil',
+      lastname: 'Kowalski',
+    }
+  },
+  {
+    id: '0010',
+    name: 'Filter #11',
+    description: 'Lorem Ipsum...',
+    created: '08-22-2018 12:02',
+    canUpdate: true,
+    canDelete: true,
+    canDuplicate: true,
+    categories: ['My filters', 'All filters'],
+    user: {
+      firstname: 'Jan',
+      lastname: 'Nowak',
+    }
+  },
 ];
 
 

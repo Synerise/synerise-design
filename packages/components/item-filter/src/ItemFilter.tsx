@@ -56,12 +56,14 @@ const ItemFilter: React.FC<ItemFilterProps> = ({
   const [searchQuery, setSearchQuery] = React.useState('');
 
   const filteredItems = React.useMemo(() => {
-    return items.filter(
+    const filterd = items.filter(
       (item: Item) =>
         item.categories.includes(categories[activeTab].label) &&
         (!searchQuery || (searchQuery && item.name.toLowerCase().includes(searchQuery.toLowerCase())))
     );
-  }, [activeTab, items, categories, searchQuery]);
+
+    return filterd.sort((a, b) => (a.id === selectedItemId && b.id !== selectedItemId ? -1 : 1));
+  }, [activeTab, items, categories, searchQuery, selectedItemId]);
 
   return (
     <Drawer visible={visible} placement="right" width={676} onClose={hide}>
