@@ -1,10 +1,8 @@
 import * as React from 'react';
 
 import ItemFilter from '@synerise/ds-item-filter';
-import { action } from '@storybook/addon-actions';
 import { text } from '@storybook/addon-knobs';
 import { withState } from '@dump247/storybook-state';
-import ManageableList from '@synerise/ds-manageable-list';
 import Button from '@synerise/ds-button';
 
 const getTexts = () => ({
