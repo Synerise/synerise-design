@@ -80,3 +80,17 @@ import ItemFilter from '@synerise/ds-item-filter'
 | avatar_url | Link avatar | string | -       |
 | firstname  | First name  | string | -       |
 | lastname   | Last name   | string | -       |
+
+#### Texts
+
+| Property                      | Description                      | Type   | Default                                                                                                                |
+| ----------------------------- | -------------------------------- | ------ | ---------------------------------------------------------------------------------------------------------------------- |
+| activateItemTitle             | Popconfirm title                 | string | 'By activating this filter, you will cancel your unsaved filter settings',                                             |
+| activate                      | Activate button label            | string | 'Activate',                                                                                                            |
+| cancel                        | Cancel button label              | string | 'Cancel',                                                                                                              |
+| deleteConfirmationTitle       | Delete confirmation title        | string | 'Detele filter',                                                                                                       |
+| deleteConfirmationDescription | Delete confirmation description  | string | 'Deleting this filter will permanently remove it from templates library. All tables using this filter will be reset.', |
+| deleteLabel                   | Delete confirmation button label | string | 'Delete',                                                                                                              |
+| noResults                     | No results information           | string | 'No results',                                                                                                          |
+| searchPlaceholder             | Placeholder of search input      | string | 'Search',                                                                                                              |
+| title                         | Title of ItemFilter drawer       | string | 'Filter',                                                                                                              |
