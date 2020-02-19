@@ -25,9 +25,9 @@ interface Item extends ItemProps {
 export type ItemFilterProps = {
   visible: boolean;
   hide: () => void;
-  removeItem: (removeParams: { id: string }) => void;
-  editItem: (editParams: { id: string; name: string }) => void;
-  duplicateItem: (duplicateParams: { id: string }) => void;
+  removeItem?: (removeParams: { id: string }) => void;
+  editItem?: (editParams: { id: string; name: string }) => void;
+  duplicateItem?: (duplicateParams: { id: string }) => void;
   selectItem: (selectParams: { id: string }) => void;
   items: Item[];
   categories: Category[];
