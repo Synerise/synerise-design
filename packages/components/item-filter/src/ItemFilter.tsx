@@ -11,6 +11,7 @@ import ManageableList from '@synerise/ds-manageable-list';
 import { ItemProps } from '@synerise/ds-manageable-list/dist/Item/Item';
 import { withTheme } from 'styled-components';
 import Avatar from '@synerise/ds-avatar';
+import { FormattedMessage } from 'react-intl';
 import * as S from './ItemFIlter.styles';
 
 type Category = {
@@ -31,7 +32,7 @@ export type ItemFilterProps = {
   items: Item[];
   categories: Category[];
   selectedItemId: string | undefined;
-  texts: {
+  texts?: {
     [k: string]: string | React.ReactNode;
   };
   theme: {
@@ -48,7 +49,17 @@ const ItemFilter: React.FC<ItemFilterProps> = ({
   selectItem,
   items,
   selectedItemId,
-  texts,
+  texts = {
+    activateItemTitle: <FormattedMessage id="DS.ITEM-FILTER.ACTIVATE-ITEM-TITLE" />,
+    activate: <FormattedMessage id="DS.ITEM-FILTER.ACTIVATE" />,
+    cancel: <FormattedMessage id="DS.ITEM-FILTER.CANCEL" />,
+    deleteConfirmationTitle: <FormattedMessage id="DS.ITEM-FILTER.DELETE-CONFIRMATION-TITLE" />,
+    deleteConfirmationDescription: <FormattedMessage id="DS.ITEM-FILTER.DELETE-CONFIRMATION-DESCRIPTION" />,
+    deleteLabel: <FormattedMessage id="DS.ITEM-FILTER.DELETE-LABEL" />,
+    noResults: <FormattedMessage id="DS.ITEM-FILTER.NO-RESULTS" />,
+    searchPlaceholder: <FormattedMessage id="DS.ITEM-FILTER.SEARCH-PLACEHOLDER" />,
+    title: <FormattedMessage id="DS.ITEM-FILTER.TITLE" />,
+  },
   categories,
   theme,
 }) => {
@@ -122,4 +133,5 @@ const ItemFilter: React.FC<ItemFilterProps> = ({
     </Drawer>
   );
 };
+
 export default withTheme(ItemFilter);
