@@ -41,18 +41,18 @@ import ItemFilter from '@synerise/ds-item-filter'
 
 #### ItemFilter
 
-| Property       | Description                                                                     | Type                                   | Default |
-| -------------- | ------------------------------------------------------------------------------- | -------------------------------------- | ------- |
-| visible        | Whether the ItemFilter is visible or not.                                       | boolean                                | false   |
-| hide           | Specify a callback that will be called when a user clicks mask or close button. | Function                               | -       |
-| removeItem     | Specify a callback that will be called when a user removes list item            | Function({ id: string })               | -       |
-| editItem       | Specify a callback that will be called when a user change name of list item     | Function({ id: string, name: string }) | -       |
-| duplicateItem  | Specify a callback that will be called when a user duplicates list item         | Function({ id: string })               | -       |
-| selectItem     | Specify a callback that will be called when a user select list item             | Function({ id: string })               | -       |
-| items          | Array of list items                                                             | Item[]                                 | []      |
-| categories     | Array of categories                                                             | Category[]                             | []      |
-| selectedItemId | Id of selected item                                                             | string                                 | null    |
-| texts          | Object contains texts for buttons, title, confirms etc.                         | Texts                                  | -       |
+| Property       | Description                                                                     | Type                                   | Default   |
+| -------------- | ------------------------------------------------------------------------------- | -------------------------------------- | --------- |
+| visible        | Whether the ItemFilter is visible or not.                                       | boolean                                | false     |
+| hide           | Specify a callback that will be called when a user clicks mask or close button. | Function                               | -         |
+| removeItem     | Specify a callback that will be called when a user removes list item            | Function({ id: string })               | -         |
+| editItem       | Specify a callback that will be called when a user change name of list item     | Function({ id: string, name: string }) | -         |
+| duplicateItem  | Specify a callback that will be called when a user duplicates list item         | Function({ id: string })               | -         |
+| selectItem     | Specify a callback that will be called when a user select list item             | Function({ id: string })               | -         |
+| items          | Array of list items                                                             | Item[]                                 | []        |
+| categories     | Array of categories                                                             | Category[]                             | []        |
+| selectedItemId | Id of selected item                                                             | string                                 | undefined |
+| texts          | Object contains texts for buttons, title, confirms etc.                         | Texts                                  | -         |
 
 #### Category
 
