@@ -96,7 +96,6 @@ const stories = {
     <Wrapper
       label={text('label', 'Label')}
       disabled={boolean('disabled', false)}
-      marks={marks}
       dots={boolean('dots', false)}
       included={boolean('included', true)}
       inverted={boolean('inverted', false)}
@@ -105,6 +104,25 @@ const stories = {
       range={boolean('range', true)}
       step={number('step', 1)}
       tipFormatter={tipFormatter}
+      vertical={boolean('vertical', false)}
+      onAfterChange={action('onAfterChange')}
+      OnChange={action('OnChange')}
+      tooltipPlacement={select('Placement', placements, 'top')}
+      useColorPalette={boolean('useColorPalette', false)}
+      getTooltipPopupContainer={() => document.body}
+    />
+  ),
+  withVisibleLabels: () => (
+    <Wrapper
+      tooltipVisible={true}
+      disabled={boolean('disabled', false)}
+      dots={boolean('dots', false)}
+      included={boolean('included', true)}
+      inverted={boolean('inverted', false)}
+      max={number('max', 24)}
+      min={number('min', 0)}
+      range={boolean('range', true)}
+      step={number('step', 1)}
       vertical={boolean('vertical', false)}
       onAfterChange={action('onAfterChange')}
       OnChange={action('OnChange')}
