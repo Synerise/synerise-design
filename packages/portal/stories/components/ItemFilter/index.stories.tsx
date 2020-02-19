@@ -211,7 +211,7 @@ const setSelectedItem = (props, store): void => {
 const stories = {
   default: withState({
     items: ITEMS,
-    selectedItemId: null,
+    selectedItemId: undefined,
     itemFilterVisible: false,
   })(({ store }) => {
     const duplicateItem = (props): void => {
@@ -241,7 +241,7 @@ const stories = {
           removeItem={props => removeItem(props, store)}
           editItem={props => editItem(props, store)}
           selectItem={props => setSelectedItem(props, store)}
-          duplicateItem={props => duplicateItem(props, store)}
+          duplicateItem={props => duplicateItem(props)}
           selectedItemId={store.state.selectedItemId}
           categories={CATEGORIES}
           items={store.state.items}

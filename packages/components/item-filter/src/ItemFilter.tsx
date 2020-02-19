@@ -24,13 +24,13 @@ interface Item extends ItemProps {
 export type ItemFilterProps = {
   visible: boolean;
   hide: () => void;
-  removeItem: () => void;
-  editItem: () => void;
-  duplicateItem: () => void;
-  selectItem: () => void;
+  removeItem: (removeParams: { id: string }) => void;
+  editItem: (editParams: { id: string; name: string }) => void;
+  duplicateItem: (duplicateParams: { id: string }) => void;
+  selectItem: (selectParams: { id: string }) => void;
   items: Item[];
   categories: Category[];
-  selectedItemId: string;
+  selectedItemId: string | undefined;
   texts: {
     [k: string]: string | React.ReactNode;
   };
