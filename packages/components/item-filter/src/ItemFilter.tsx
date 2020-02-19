@@ -65,18 +65,18 @@ const ItemFilter: React.FC<ItemFilterProps> = ({
 
   return (
     <Drawer visible={visible} placement="right" width={676} onClose={hide}>
-      <Drawer.DrawerHeader>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: 24 }}>
-          <Typography.Title style={{ flex: 1, margin: 0 }} level={4}>
-            {texts.title}
-          </Typography.Title>
-          <Button type="ghost" mode="single-icon" onClick={hide}>
-            <Icon component={<CloseM />} />
-          </Button>
-        </div>
-        <Tabs activeTab={activeTab} tabs={categories} handleTabClick={setActiveTab} />
-      </Drawer.DrawerHeader>
-      <Drawer.DrawerBody>
+      <Drawer.DrawerHeaderWithoutPadding>
+        <Drawer.DrawerHeader>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: 24 }}>
+            <Typography.Title style={{ flex: 1, margin: 0 }} level={4}>
+              {texts.title}
+            </Typography.Title>
+            <Button type="ghost" mode="single-icon" onClick={hide}>
+              <Icon component={<CloseM />} />
+            </Button>
+          </div>
+          <Tabs activeTab={activeTab} tabs={categories} handleTabClick={setActiveTab} />
+        </Drawer.DrawerHeader>
         <SearchInput
           onSearchChange={setSearchQuery}
           placeholder={texts.searchPlaceholder as string}
@@ -84,6 +84,8 @@ const ItemFilter: React.FC<ItemFilterProps> = ({
           onClearInput={(): void => setSearchQuery('')}
           iconLeft={<Icon component={<SearchM />} color={theme.palette['grey-600']} />}
         />
+      </Drawer.DrawerHeaderWithoutPadding>
+      <Drawer.DrawerBody>
         <Drawer.DrawerContent>
           <S.FiltersList>
             {filteredItems.length ? (
@@ -107,7 +109,7 @@ const ItemFilter: React.FC<ItemFilterProps> = ({
                   shape="circle"
                   backgroundColor="grey"
                   backgroundColorHue="050"
-                  iconComponent={<Icon component={<SearchNoResultsM />} color={theme.palette['grey-800']} />}
+                  iconComponent={<Icon component={<SearchNoResultsM />} color={theme.palette['grey-600']} />}
                 />
                 <span>{texts.noResults}</span>
               </S.NoResults>

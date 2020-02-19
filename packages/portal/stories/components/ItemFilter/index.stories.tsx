@@ -5,13 +5,9 @@ import { action } from '@storybook/addon-actions';
 import { text } from '@storybook/addon-knobs';
 import { withState } from '@dump247/storybook-state';
 import ManageableList from '@synerise/ds-manageable-list';
+import Button from '@synerise/ds-button';
 
 const getTexts = () => ({
-  addItemLabel: text('Add item label', 'Add folder'),
-  showMoreLabel: text('Show more label', 'show all'),
-  showLessLabel: text('Show less label', 'show less'),
-  more: text('More', 'more'),
-  less: text('Less', 'less'),
   activateItemTitle: text('Activate item', 'By activating this filter, you will cancel your unsaved filter settings'),
   activate: text('Activate', 'Activate'),
   cancel: text('Cancel', 'Cancel'),
@@ -70,6 +66,7 @@ const ITEMS = [
     canDuplicate: true,
     categories: ['All filters'],
     user: {
+      avatar_url: 'https://www.w3schools.com/howto/img_avatar.png',
       firstname: 'Kamil',
       lastname: 'Kowalski',
     }
@@ -119,6 +116,7 @@ const stories = {
   default: withState({
     items: ITEMS,
     selectedItemId: null,
+    itemFilterVisible: false,
   })(({ store }) => {
     const duplicateItem = (props): void => {
       const itemForDuplication = store.state.items.find(item => item.id === props.id);
@@ -132,19 +130,27 @@ const stories = {
         ]
       })
     };
+
+    const toggleItemFilterVisible = (): void => {
+      store.set({itemFilterVisible: !store.state.itemFilterVisible});
+    };
+
     return (
-      <ItemFilter
-        visible
-        hide={action('hide')}
-        texts={getTexts()}
-        removeItem={props => removeItem(props, store)}
-        editItem={props => editItem(props, store)}
-        selectItem={props => setSelectedItem(props, store)}
-        duplicateItem={props => duplicateItem(props, store)}
-        selectedItemId={store.state.selectedItemId}
-        categories={CATEGORIES}
-        items={store.state.items}
-      />
+      <>
+        <Button onClick={toggleItemFilterVisible} type='primary'>Show item filter</Button>
+        <ItemFilter
+          visible={store.state.itemFilterVisible}
+          hide={toggleItemFilterVisible}
+          texts={getTexts()}
+          removeItem={props => removeItem(props, store)}
+          editItem={props => editItem(props, store)}
+          selectItem={props => setSelectedItem(props, store)}
+          duplicateItem={props => duplicateItem(props, store)}
+          selectedItemId={store.state.selectedItemId}
+          categories={CATEGORIES}
+          items={store.state.items}
+        />
+      </>
     )
   })
 };
