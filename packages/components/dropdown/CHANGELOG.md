@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.10](https://github.com/synerise/synerise-design/compare/@synerise/ds-dropdown@0.10.9...@synerise/ds-dropdown@0.10.10) (2020-02-19)
+
+### Bug Fixes
+
+- **drawer:** fix searchInput styles ([07c7160](https://github.com/synerise/synerise-design/commit/07c71602cdacca9b4e8aa54ce9363694c94f604b))
+- **drawer:** fix searchInput styles ([0bb77bc](https://github.com/synerise/synerise-design/commit/0bb77bcf8c5230184ffd37f995d0dd3fe834e7c7))
+
 ## [0.10.9](https://github.com/synerise/synerise-design/compare/@synerise/ds-dropdown@0.10.8...@synerise/ds-dropdown@0.10.9) (2020-02-18)
 
 **Note:** Version bump only for package @synerise/ds-dropdown

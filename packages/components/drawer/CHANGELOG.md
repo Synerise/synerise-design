@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-drawer@0.2.8...@synerise/ds-drawer@0.3.0) (2020-02-19)
+
+### Features
+
+- **drawer:** add Drawer with search ([4b95b61](https://github.com/Synerise/synerise-design/commit/4b95b61de615537005cfb626c55a0e250ebbec8d))
+
 ## [0.2.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-drawer@0.2.7...@synerise/ds-drawer@0.2.8) (2020-02-18)
 
 **Note:** Version bump only for package @synerise/ds-drawer

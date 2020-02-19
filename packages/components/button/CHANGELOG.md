@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.7](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.6.6...@synerise/ds-button@0.6.7) (2020-02-19)
+
+### Bug Fixes
+
+- **button:** fix styles, loading prop type ([83dbe17](https://github.com/synerise/synerise-design/commit/83dbe17c6c83df3dffd14336af1baa5bcf63aa6f))
+- **button:** rename props spinner -> loading ([7798910](https://github.com/synerise/synerise-design/commit/77989102abf853873cf27271da8746aa99c9de88))
+- **button:** update docs ([86ec686](https://github.com/synerise/synerise-design/commit/86ec6862761a43439e154e07311d55cdbcc97bb9))
+- **button:** update tests ([2fde39e](https://github.com/synerise/synerise-design/commit/2fde39e8b97b99f10cd586182e7ee6f2cae45aa6))
+
 ## [0.6.6](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.6.5...@synerise/ds-button@0.6.6) (2020-02-18)
 
 **Note:** Version bump only for package @synerise/ds-button

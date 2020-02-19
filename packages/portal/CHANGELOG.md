@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.36.0](https://github.com/synerise/synerise-design/compare/portal@0.35.0...portal@0.36.0) (2020-02-19)
+
+
+### Bug Fixes
+
+* **button:** rename props spinner -> loading ([7798910](https://github.com/synerise/synerise-design/commit/77989102abf853873cf27271da8746aa99c9de88))
+* **drawer:** fix searchInput styles ([091c166](https://github.com/synerise/synerise-design/commit/091c1664ef22e19e0b7ed6d7ea5bacdc8e77e11f))
+* **drawer:** fix searchInput styles ([0bb77bc](https://github.com/synerise/synerise-design/commit/0bb77bcf8c5230184ffd37f995d0dd3fe834e7c7))
+
+
+### Features
+
+* **drawer:** add Drawer with search ([4b95b61](https://github.com/synerise/synerise-design/commit/4b95b61de615537005cfb626c55a0e250ebbec8d))
+
+
+
+
+
 # [0.35.0](https://github.com/synerise/synerise-design/compare/portal@0.34.1...portal@0.35.0) (2020-02-18)
 
 
