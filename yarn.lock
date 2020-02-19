@@ -4197,11 +4197,6 @@
   resolved "https://registry.yarnpkg.com/@synerise/ds-button/-/ds-button-0.5.10.tgz#d99a035e906045141be4ca66d12fc31468ea3b86"
   integrity sha512-hFrupreEio+IX9mo6ndcBhgZdy9e5FCkiDdPv/RG4xiBqM8NxJbDJ/aD/EjDPqwjUAxvHCjexh25GYiMr6lfww==
 
-"@synerise/ds-drawer@^0.2.8":
-  version "0.2.8"
-  resolved "https://registry.yarnpkg.com/@synerise/ds-drawer/-/ds-drawer-0.2.8.tgz#878b23b617b1227f4b7543a2d61a318680159257"
-  integrity sha512-9nyAh3izZkSAR3HnP4i1F5kJIfiAnEzOs7RXdrWAE1ZYCSlO7RQK+9kqzxRbPv2Im+OHeqmBV8zPfkUXNEKeVg==
-
 "@testing-library/dom@^6.11.0":
   version "6.11.0"
   resolved "https://registry.npmjs.org/@testing-library/dom/-/dom-6.11.0.tgz#962a38f1a721fdb7c9e35e7579e33ff13a00eda4"
