@@ -25,7 +25,7 @@ describe('Button', () => {
   });
   it('should show spinner animation', () => {
     // ARRANGE
-    const { getByTestId } = renderWithProvider(<Button spinner>Click ME!</Button>);
+    const { getByTestId } = renderWithProvider(<Button loading>Click ME!</Button>);
     // ASSERT
     expect(getByTestId('button-spinner')).toBeTruthy();
   });
