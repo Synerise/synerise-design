@@ -73,11 +73,11 @@ const ItemFilter: React.FC<ItemFilterProps> = ({
             <Typography.Title style={{ flex: 1, margin: 0 }} level={4}>
               {texts.title}
             </Typography.Title>
-            <Button type="ghost" mode="single-icon" onClick={hide}>
+            <Button type="ghost" mode="single-icon" onClick={hide} data-testid="ds-item-filter-close-button">
               <Icon component={<CloseM />} />
             </Button>
           </div>
-          <Tabs activeTab={activeTab} tabs={categories} handleTabClick={setActiveTab} />
+          <Tabs activeTab={activeTab} tabs={categories} handleTabClick={setActiveTab} underscore />
         </Drawer.DrawerHeader>
         <SearchInput
           onSearchChange={setSearchQuery}
