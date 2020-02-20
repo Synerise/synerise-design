@@ -107,7 +107,7 @@
     "prettier-eslint-cli": "5.0.0",
     "react-intl": "3.9.3",
     "styled-components": "4.4.1",
-    "ts-jest": "25.1.0",
+    "ts-jest": "25.2.1",
     "typescript": "3.7.4"
   }
 }
