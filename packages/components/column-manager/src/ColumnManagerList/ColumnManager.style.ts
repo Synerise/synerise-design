@@ -13,6 +13,14 @@ export const ColumnManagerList = styled.div`
     align-items: flex-start;
     justify-content: flex-start;
   }
+
+  .sortable-list-ghost-element {
+    background-color: ${(props): string => props.theme.palette['blue-050']};
+    opacity: 1;
+    * {
+      visibility: hidden;
+    }
+  }
 `;
 
 export const ListHeadline = styled.span`

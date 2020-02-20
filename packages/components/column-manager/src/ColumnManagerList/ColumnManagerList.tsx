@@ -53,6 +53,13 @@ type Props = {
   searchQuery: string;
 };
 
+const SORTABLE_COFIG = {
+  ghostClass: 'sortable-list-ghost-element',
+  className: 'sortable-list',
+  animation: 150,
+  group: 'column-manager',
+};
+
 const ColumnManagerList: React.FC<Props> = ({ searchQuery }) => {
   const [visibleList, setVisibleList] = React.useState(LIST.filter(column => column.visible));
   const [hiddenList, setHiddenList] = React.useState(LIST.filter(column => !column.visible));
@@ -93,9 +100,8 @@ const ColumnManagerList: React.FC<Props> = ({ searchQuery }) => {
         <>
           <S.ListHeadline>Visible</S.ListHeadline>
           <ReactSortable
-            className="sortable-list"
-            animation={150}
-            group="test"
+            /* eslint-disable-next-line react/jsx-props-no-spreading */
+            {...SORTABLE_COFIG}
             list={visibleList}
             setList={updateVisibleItems}
           >
@@ -106,9 +112,8 @@ const ColumnManagerList: React.FC<Props> = ({ searchQuery }) => {
           </ReactSortable>
           <S.ListHeadline>Hidden</S.ListHeadline>
           <ReactSortable
-            className="sortable-list"
-            animation={150}
-            group="test"
+            /* eslint-disable-next-line react/jsx-props-no-spreading */
+            {...SORTABLE_COFIG}
             list={hiddenList}
             setList={updateHiddenItems}
           >
