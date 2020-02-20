@@ -3740,6 +3740,11 @@
   resolved "https://registry.yarnpkg.com/@types/source-list-map/-/source-list-map-0.1.2.tgz#0078836063ffaf17412349bba364087e0ac02ec9"
   integrity sha512-K5K+yml8LTo9bWJI/rECfIPrGgxdpeNbj+d53lwN4QjW1MCwlkhUms+gtdzigTeUyBr09+u8BwOIY3MXvHdcsA==
 
+"@types/sortablejs@^1.10.0":
+  version "1.10.2"
+  resolved "https://registry.yarnpkg.com/@types/sortablejs/-/sortablejs-1.10.2.tgz#d749f6fe9965322b2107f6711a6fed692a71941e"
+  integrity sha512-aWK2oTpbjNmLyexl95L4ttd0kFIvbMIf1JR2YbNhUwIk9Y1cOwfAfyvfxBBmtg1ZDy64gpbgEdFjyqnzjh+3/A==
+
 "@types/stack-utils@^1.0.1":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@types/stack-utils/-/stack-utils-1.0.1.tgz#0a851d3bd96498fa25c33ab7278ed3bd65f06c3e"
@@ -17450,6 +17455,14 @@ react-sortablejs-typescript@2.0.3:
     lodash.uniqueid "^4.0.1"
     sortablejs "^1.10.0"
 
+react-sortablejs-typescript@^2.0.15:
+  version "2.0.15"
+  resolved "https://registry.yarnpkg.com/react-sortablejs-typescript/-/react-sortablejs-typescript-2.0.15.tgz#89fb0e62f9650c682f713a42bbffff30e77eae25"
+  integrity sha512-ReMW/61osOBBukhEbpWK1q6Ee6L83yNlyaOvzO6L+F84/V/2gH/dppzCFro955c80h+D3bpNIkmtZzAP0TNUBA==
+  dependencies:
+    "@types/sortablejs" "^1.10.0"
+    sortablejs "1.10.1"
+
 react-sortablejs@^1.5.1:
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/react-sortablejs/-/react-sortablejs-1.5.1.tgz#ba05a554548cf9733cc2d5411ece9b97f911b63e"
@@ -17461,6 +17474,20 @@ react-styleguidist@^11.0.5:
   version "11.0.5"
   resolved "https://registry.yarnpkg.com/react-styleguidist/-/react-styleguidist-11.0.5.tgz#b1a1eb91f8bf7c538fc0d652f83c2d8cd997f5aa"
   integrity sha512-LsLZ4aIN1gsBRgRJcEmOAoobdwVMJbnhG+49F4CgKDuuYkPazkJ1l4GuBcMcOSNfiLz/vA2nkl3TpJHH/7CVug==
+react-sortablejs@^2.0.11:
+  version "2.0.11"
+  resolved "https://registry.yarnpkg.com/react-sortablejs/-/react-sortablejs-2.0.11.tgz#eecf621f801ab8c16a8a5c3c856005f0795ccbcf"
+  integrity sha512-Id44yygU6H/fNRp0uWkGZnKGuBF8GF/Ts6gKX5NfwmzceRjH0e0XHsmBuQ6WXhBIVnMM+XgkEPub851mdti0TA==
+  dependencies:
+    "@types/sortablejs" "^1.10.0"
+    classnames "^2.2.6"
+    sortablejs "1.10.1"
+    tiny-invariant "^1.0.6"
+
+react-syntax-highlighter@^8.0.1:
+  version "8.1.0"
+  resolved "https://registry.yarnpkg.com/react-syntax-highlighter/-/react-syntax-highlighter-8.1.0.tgz#59103ff17a828a27ed7c8f035ae2558f09b6b78c"
+  integrity sha512-G2bkZxmF3VOa4atEdXIDSfwwCqjw6ZQX5znfTaHcErA1WqHIS0o6DaSCDKFPVaOMXQEB9Hf1UySYQvuJmV8CXg==
   dependencies:
     "@vxna/mini-html-webpack-template" "^1.0.0"
     acorn "^6.4.1"
@@ -19783,6 +19810,11 @@ tiny-emitter@^2.0.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/tiny-emitter/-/tiny-emitter-2.1.0.tgz#1d1a56edfc51c43e863cbb5382a72330e3555423"
   integrity sha512-NB6Dk1A9xgQPMoGqC5CVXn123gWyte215ONT5Pp5a0yt4nlEoO1ZWeCwpncaekPHXO60i47ihFnZPiRPjRMq4Q==
+
+tiny-invariant@^1.0.6:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/tiny-invariant/-/tiny-invariant-1.1.0.tgz#634c5f8efdc27714b7f386c35e6760991d230875"
+  integrity sha512-ytxQvrb1cPc9WBEI/HSeYYoGD0kWnGEOR8RY6KomWLBVhqz0RgTwVO9dLrGz7dC+nN9llyI7OKAgRq8Vq4ZBSw==
 
 tiny-lr@^1.1.1:
   version "1.1.1"

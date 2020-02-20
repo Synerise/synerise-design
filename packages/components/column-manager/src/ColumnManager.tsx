@@ -7,6 +7,7 @@ import Icon from '@synerise/ds-icon';
 import SearchInput from '@synerise/ds-dropdown/dist/elements/SearchInput/SearchInput';
 import { withTheme } from 'styled-components';
 import ColumnManagerActions from './ColumnManagerActions/ColumnManagerActions';
+import ColumnManagerList from './ColumnManagerList/ColumnManagerList';
 
 export type ColumnManagerProps = {
   showList: () => void;
@@ -17,7 +18,7 @@ export type ColumnManagerProps = {
   };
 };
 
-const ColumnManager: React.FC<ColumnManagerProps> = ({ showList, hide, visible, theme }): React.ReactNode => {
+const ColumnManager: React.FC<ColumnManagerProps> = ({ showList, hide, visible, theme }) => {
   const [searchQuery, setSearchQuery] = React.useState<string>('');
 
   return (
@@ -43,7 +44,9 @@ const ColumnManager: React.FC<ColumnManagerProps> = ({ showList, hide, visible, 
         iconLeft={<Icon component={<SearchM />} color={theme.palette['grey-800']} />}
       />
       <Drawer.DrawerBody>
-        <Drawer.DrawerContent></Drawer.DrawerContent>
+        <Drawer.DrawerContent style={{ padding: '0 0 80px' }}>
+          <ColumnManagerList />
+        </Drawer.DrawerContent>
         <ColumnManagerActions />
       </Drawer.DrawerBody>
     </Drawer>

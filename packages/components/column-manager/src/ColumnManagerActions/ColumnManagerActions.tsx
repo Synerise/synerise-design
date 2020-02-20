@@ -1,8 +1,8 @@
-import React from 'react';
+import * as React from 'react';
 import Button from '@synerise/ds-button';
 import * as S from './ColumnManagerActions.styles';
 
-const ColumnManagerActions = (): React.ReactNode => {
+const ColumnManagerActions: React.FC = () => {
   return (
     <S.ColumnManagerActions>
       <Button type="secondary" mode="simple">
