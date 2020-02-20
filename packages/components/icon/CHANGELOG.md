@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.12.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.11.1...@synerise/ds-icon@0.12.0) (2020-02-20)
+
+### Features
+
+- **icon:** add operator icons ([914f198](https://github.com/Synerise/synerise-design/commit/914f1985b303f77dde7c0c124b1eed463a7d9a00))
+
 ## [0.11.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.11.0...@synerise/ds-icon@0.11.1) (2020-02-17)
 
 ### Bug Fixes
