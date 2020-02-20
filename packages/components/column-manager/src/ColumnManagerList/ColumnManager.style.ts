@@ -6,7 +6,7 @@ export const ColumnManagerList = styled.div`
   align-items: flex-start;
   justify-content: flex-start;
   width: 100%;
-  & > div {
+  & > .sortable-list {
     width: 100%;
     display: flex;
     flex-direction: column;

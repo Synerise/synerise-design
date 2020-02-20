@@ -45,7 +45,7 @@ const ColumnManager: React.FC<ColumnManagerProps> = ({ showList, hide, visible, 
       />
       <Drawer.DrawerBody>
         <Drawer.DrawerContent style={{ padding: '0 0 80px' }}>
-          <ColumnManagerList />
+          <ColumnManagerList searchQuery={searchQuery} />
         </Drawer.DrawerContent>
         <ColumnManagerActions />
       </Drawer.DrawerBody>

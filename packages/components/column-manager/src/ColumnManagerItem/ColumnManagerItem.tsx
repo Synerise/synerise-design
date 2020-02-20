@@ -34,6 +34,7 @@ export type Column = {
 
 export type ColumnProps = {
   setFixed: (id: string, fixed?: string) => void;
+  draggable?: boolean;
   switchAction: (id: string) => void;
   theme: {
     [k: string]: string;
@@ -57,6 +58,7 @@ const ColumnManagerItem: React.FC<Column & ColumnProps> = ({
   theme,
   setFixed,
   switchAction,
+  draggable,
 }) => {
   const fixedMenu = (): React.ReactNode => (
     <S.FixedMenu>
@@ -85,7 +87,7 @@ const ColumnManagerItem: React.FC<Column & ColumnProps> = ({
   return (
     <S.ColumnManagerItem>
       <S.ItemPart align="left">
-        <S.DragHandler component={<DragHandleM />} color={theme.palette['grey-400']} />
+        {draggable && <S.DragHandler component={<DragHandleM />} color={theme.palette['grey-400']} />}
         <Icon component={typeIcon[type]} color={theme.palette['grey-600']} />
         <S.ColumnManagerItemName>{name}</S.ColumnManagerItemName>
       </S.ItemPart>
