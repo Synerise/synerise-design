@@ -11,12 +11,13 @@ import * as S from './Result.styles';
 
 export type ResultProps = {
   className?: string;
-  title: string | React.ReactNode;
+  title?: string | React.ReactNode;
   type: string | 'info' | 'warning' | 'error' | 'success' | 'progress' | 'no-results';
   description?: string | React.ReactNode;
   buttons?: React.ReactNode;
   panel?: React.ReactNode;
   customIcon?: Element;
+  noSearchResults?: boolean;
 };
 
 const mapTypeToStatus = {
@@ -52,11 +53,20 @@ const mapTypeToStatus = {
   },
 };
 
-const Result: React.FC<ResultProps> = ({ className, type, title, description, panel, buttons, customIcon = null }) => {
+const Result: React.FC<ResultProps> = ({
+  className,
+  type,
+  title,
+  description,
+  panel,
+  buttons,
+  customIcon = null,
+  noSearchResults = false,
+}) => {
   const { IconComponent, ...iconContainerStyles } = mapTypeToStatus[type];
 
   return (
-    <S.ResultContainer className={`ds-result ${className}`}>
+    <S.ResultContainer className={`ds-result ${className}`} noSearchResults={noSearchResults}>
       <S.MainPanel>
         <S.ResultIconContainer>
           {customIcon || (

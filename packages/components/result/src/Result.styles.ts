@@ -1,14 +1,8 @@
-import styled from 'styled-components';
+import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 // eslint-disable-next-line import/no-named-default
 import { default as StyledButtonContainer } from '@synerise/ds-button/dist/Button.styles';
 import { IconContainer } from '@synerise/ds-icon/dist/Icon.styles';
 import * as T from '@synerise/ds-typography';
-
-export const ResultContainer = styled.div`
-  width: 100%;
-  padding: 24px;
-  position: relative;
-`;
 
 export const MainPanel = styled.div`
   display: flex;
@@ -76,4 +70,27 @@ export const StatusIconContainer = styled.div<{ iconColor: string; background: s
       fill: ${(props): string => props.theme.palette[props.iconColor]};
     }
   }
+`;
+
+export const ResultContainer = styled.div<{ noSearchResults: boolean }>`
+  width: 100%;
+  padding: 24px;
+  position: relative;
+
+  ${(props): FlattenSimpleInterpolation | false =>
+    props.noSearchResults &&
+    css`
+      ${ResultIconContainer} {
+        margin: 0 0 16px;
+      }
+      ${Title} {
+        margin: 0 0 16px;
+      }
+      ${Description} {
+        margin: 0 0 16px;
+        font-size: 14px;
+        line-height: 1.43;
+        color: ${props.theme.palette['grey-600']};
+      }
+    `}
 `;

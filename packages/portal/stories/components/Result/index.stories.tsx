@@ -81,6 +81,11 @@ const stories = {
       <Result {...props} customIcon={props.customIcon ? exampleAvatar : null} buttons={buttonSetExample} />
     )
   },
+  noSearchResults: () => {
+    return (
+      <Result description="No results" type="no-results" noSearchResults />
+    )
+  },
   withTextarea: () => {
     const props = getDefaultProps();
     return (
