@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { ReactSortable } from 'react-sortablejs-typescript';
+import Result from '@synerise/ds-result';
 import * as S from './ColumnManager.style';
 import ColumnManagerItem, { Column } from '../ColumnManagerItem/ColumnManagerItem';
 
@@ -48,9 +49,17 @@ const LIST: Column[] = [
   },
 ];
 
-const ColumnManagerList: React.FC = () => {
+type Props = {
+  searchQuery: string;
+};
+
+const ColumnManagerList: React.FC<Props> = ({ searchQuery }) => {
   const [visibleList, setVisibleList] = React.useState(LIST.filter(column => column.visible));
   const [hiddenList, setHiddenList] = React.useState(LIST.filter(column => !column.visible));
+
+  const searchResult = React.useMemo(() => {
+    return [...visibleList, ...hiddenList].filter(column => column.name.includes(searchQuery));
+  }, [searchQuery, visibleList, hiddenList]);
 
   const updateVisibleItems = (newVisibleList: Column[]): void => {
     setVisibleList(newVisibleList.map((column: Column): Column => ({ ...column, visible: true })));
@@ -80,20 +89,48 @@ const ColumnManagerList: React.FC = () => {
 
   return (
     <S.ColumnManagerList>
-      <S.ListHeadline>Visible</S.ListHeadline>
-      <ReactSortable animation={150} group="test" list={visibleList} setList={updateVisibleItems}>
-        {visibleList.map(item => (
-          // eslint-disable-next-line react/jsx-props-no-spreading
-          <ColumnManagerItem key={item.id} {...item} setFixed={setFixed} switchAction={hideColumn} />
-        ))}
-      </ReactSortable>
-      <S.ListHeadline>Hidden</S.ListHeadline>
-      <ReactSortable animation={150} group="test" list={hiddenList} setList={updateHiddenItems}>
-        {hiddenList.map(item => (
-          // eslint-disable-next-line react/jsx-props-no-spreading
-          <ColumnManagerItem key={item.id} {...item} setFixed={setFixed} switchAction={showColumn} />
-        ))}
-      </ReactSortable>
+      {!searchQuery ? (
+        <>
+          <S.ListHeadline>Visible</S.ListHeadline>
+          <ReactSortable
+            className="sortable-list"
+            animation={150}
+            group="test"
+            list={visibleList}
+            setList={updateVisibleItems}
+          >
+            {visibleList.map(item => (
+              // eslint-disable-next-line react/jsx-props-no-spreading
+              <ColumnManagerItem key={item.id} {...item} setFixed={setFixed} switchAction={hideColumn} draggable />
+            ))}
+          </ReactSortable>
+          <S.ListHeadline>Hidden</S.ListHeadline>
+          <ReactSortable
+            className="sortable-list"
+            animation={150}
+            group="test"
+            list={hiddenList}
+            setList={updateHiddenItems}
+          >
+            {hiddenList.map(item => (
+              // eslint-disable-next-line react/jsx-props-no-spreading
+              <ColumnManagerItem key={item.id} {...item} setFixed={setFixed} switchAction={showColumn} draggable />
+            ))}
+          </ReactSortable>
+        </>
+      ) : (
+        <>
+          <S.ListHeadline>Search results</S.ListHeadline>
+          {searchResult.length ? (
+            searchResult.map(item => (
+              // eslint-disable-next-line react/jsx-props-no-spreading
+              <ColumnManagerItem key={item.id} {...item} setFixed={setFixed} switchAction={hideColumn} />
+            ))
+          ) : (
+            <Result description="No results" type="no-results" title="" />
+          )}
+        </>
+      )}
     </S.ColumnManagerList>
   );
 };
