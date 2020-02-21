@@ -53,6 +53,7 @@ import ItemFilter from '@synerise/ds-item-filter'
 | categories     | Array of categories                                                             | Category[]                             | []        |
 | selectedItemId | Id of selected item                                                             | string                                 | undefined |
 | texts          | Object contains texts for buttons, title, confirms etc.                         | Texts                                  | -         |
+| maxToShowItems | Shows x first items, rest are hidden under `show more` button                   | number                                 | 200       |
 
 #### Category
 

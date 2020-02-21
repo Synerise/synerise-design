@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { ManageableListContainer } from '@synerise/ds-manageable-list/dist/ManageableList.styles';
 
-// eslint-disable-next-line import/prefer-default-export
 export const FiltersList = styled.div`
   ${ManageableListContainer} {
     padding: 0;
@@ -10,4 +9,11 @@ export const FiltersList = styled.div`
   .ds-result {
     margin-top: 24px;
   }
+`;
+
+export const ItemFilterHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 24px;
 `;

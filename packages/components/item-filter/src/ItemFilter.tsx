@@ -32,6 +32,7 @@ export type ItemFilterProps = {
   items: Item[];
   categories: Category[];
   selectedItemId: string | undefined;
+  maxToShowItems?: number;
   texts?: {
     [k: string]: string | React.ReactNode;
   };
@@ -59,7 +60,10 @@ const ItemFilter: React.FC<ItemFilterProps> = ({
     noResults: <FormattedMessage id="DS.ITEM-FILTER.NO-RESULTS" />,
     searchPlaceholder: <FormattedMessage id="DS.ITEM-FILTER.SEARCH-PLACEHOLDER" />,
     title: <FormattedMessage id="DS.ITEM-FILTER.TITLE" />,
+    more: <FormattedMessage id="DS.MANAGABLE-LIST.MORE" />,
+    less: <FormattedMessage id="DS.MANAGABLE-LIST.LESS" />,
   },
+  maxToShowItems = 200,
   categories,
   theme,
 }) => {
@@ -80,14 +84,14 @@ const ItemFilter: React.FC<ItemFilterProps> = ({
     <Drawer visible={visible} placement="right" width={676} onClose={hide}>
       <Drawer.DrawerHeaderWithoutPadding>
         <Drawer.DrawerHeader>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: 24 }}>
+          <S.ItemFilterHeader>
             <Typography.Title style={{ flex: 1, margin: 0 }} level={4}>
               {texts.title}
             </Typography.Title>
             <Button type="ghost" mode="single-icon" onClick={hide} data-testid="ds-item-filter-close-button">
               <Icon component={<CloseM />} />
             </Button>
-          </div>
+          </S.ItemFilterHeader>
           <Tabs activeTab={activeTab} tabs={categories} handleTabClick={setActiveTab} underscore />
         </Drawer.DrawerHeader>
         <SearchInput
@@ -103,7 +107,7 @@ const ItemFilter: React.FC<ItemFilterProps> = ({
           <S.FiltersList>
             {filteredItems.length ? (
               <ManageableList
-                maxToShowItems={200}
+                maxToShowItems={maxToShowItems}
                 onItemRemove={removeItem}
                 onItemEdit={editItem}
                 onItemSelect={selectItem}
