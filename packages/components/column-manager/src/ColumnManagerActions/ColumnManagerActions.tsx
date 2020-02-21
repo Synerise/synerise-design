@@ -65,16 +65,16 @@ const ColumnManagerActions: React.FC<Props> = ({ onSave }) => {
         onCancel={handleCancel}
         title="Save view"
         footer={
-          <div style={{ display: 'flex', flexWrap: 'nowrap' }}>
+          <S.ModalFooter style={{ display: 'flex', flexWrap: 'nowrap' }}>
             <div style={{ display: 'flex' }}>
-              <Button type="secondary" onClick={handleCancel}>
+              <Button type="ghost" onClick={handleCancel}>
                 Cancel
               </Button>
               <Button type="primary" onClick={(event): void => submit(event)}>
                 Apply
               </Button>
             </div>
-          </div>
+          </S.ModalFooter>
         }
       >
         <FinalForm
@@ -84,7 +84,7 @@ const ColumnManagerActions: React.FC<Props> = ({ onSave }) => {
           render={({ handleSubmit }): React.ReactNode => {
             submit = handleSubmit;
             return (
-              <form ref={formRef} onSubmit={handleSubmit}>
+              <S.Form ref={formRef} onSubmit={handleSubmit}>
                 <Field
                   name="name"
                   render={({ input, meta }): React.ReactNode => (
@@ -110,7 +110,7 @@ const ColumnManagerActions: React.FC<Props> = ({ onSave }) => {
                     />
                   )}
                 />
-              </form>
+              </S.Form>
             );
           }}
         />
