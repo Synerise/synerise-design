@@ -28,9 +28,10 @@ export const ColumnManagerItem = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+  height: 56px;
   justify-content: space-between;
   width: 100%;
-  padding: 16px 24px;
+  padding: 13px 24px;
   position: relative;
   border-bottom: 1px solid ${(props): string => props.theme.palette['grey-200']};
 
@@ -57,6 +58,11 @@ export const ColumnManagerItemName = styled.span`
   line-height: 1.38;
   color: ${(props): string => props.theme.palette['grey-600']};
   margin-left: 8px;
+
+  .search-highlight {
+    font-weight: 500;
+    color: ${(props): string => props.theme.palette['grey-800']};
+  }
 `;
 
 export const FixedMenuItemIcon = styled(Icon)`

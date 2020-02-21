@@ -26,7 +26,7 @@
     "@synerise/ds-drawer": "^0.3.0",
     "@synerise/ds-dropdown": "^0.10.10",
     "@synerise/ds-icon": "^0.11.1",
-    "@synerise/ds-result": "^0.3.4",
+    "@synerise/ds-result": "^0.4.0",
     "@synerise/ds-typography": "*",
     "antd": "*",
     "react-sortablejs": "^2.0.11",
