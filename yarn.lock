@@ -18966,6 +18966,14 @@ react-final-form@6.3.5:
     "@babel/runtime" "^7.8.3"
     ts-essentials "^5.0.0"
 
+react-final-form@^6.3.5:
+  version "6.3.5"
+  resolved "https://registry.yarnpkg.com/react-final-form/-/react-final-form-6.3.5.tgz#772781071d26d26493b0c8ef4f97f76f06fc1c0f"
+  integrity sha512-btqEp1+n1WO4bUDopBdvUoIuoGHf91n/EOJg0QU5YjhX9CK+4RIsBI0M41lmyT3H6hWv6NELdX5n5zBJyOIXoA==
+  dependencies:
+    "@babel/runtime" "^7.8.3"
+    ts-essentials "^5.0.0"
+
 react-focus-lock@^1.18.3:
   version "1.19.1"
   resolved "https://registry.yarnpkg.com/react-focus-lock/-/react-focus-lock-1.19.1.tgz#2f3429793edaefe2d077121f973ce5a3c7a0651a"

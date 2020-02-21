@@ -4,53 +4,15 @@ import * as S from './ColumnManager.style';
 import ColumnManagerItem, { Column } from '../ColumnManagerItem/ColumnManagerItem';
 import ColumnManagerSearchResults from '../ColumnManagerSearchResults/ColumnManagerSearchResults';
 
-const LIST: Column[] = [
-  {
-    id: '0',
-    name: 'test',
-    visible: true,
-    type: 'text',
-    fixed: 'left',
-  },
-  {
-    id: '1',
-    name: 'test 1',
-    visible: true,
-    type: 'text',
-    fixed: undefined,
-  },
-  {
-    id: '2',
-    name: 'test 2',
-    visible: true,
-    type: 'number',
-    fixed: undefined,
-  },
-  {
-    id: '3',
-    name: 'test 4',
-    visible: false,
-    type: 'text',
-    fixed: undefined,
-  },
-  {
-    id: '4',
-    name: 'test 5',
-    visible: false,
-    type: 'text',
-    fixed: undefined,
-  },
-  {
-    id: '5',
-    name: 'test 6',
-    visible: false,
-    type: 'text',
-    fixed: undefined,
-  },
-];
-
 type Props = {
   searchQuery: string;
+  visibleList: Column[];
+  hiddenList: Column[];
+  searchResults: Column[];
+  setFixed: (id: string, fixed?: string) => void;
+  toggleColumn: (id: string, visible: boolean) => void;
+  updateVisibleList: (newList: Column[]) => void;
+  updateHiddenList: (newList: Column[]) => void;
 };
 
 const SORTABLE_COFIG = {
@@ -60,48 +22,16 @@ const SORTABLE_COFIG = {
   group: 'column-manager',
 };
 
-const ColumnManagerList: React.FC<Props> = ({ searchQuery }) => {
-  const [visibleList, setVisibleList] = React.useState(LIST.filter(column => column.visible));
-  const [hiddenList, setHiddenList] = React.useState(LIST.filter(column => !column.visible));
-
-  const searchResults = React.useMemo(() => {
-    return [...visibleList, ...hiddenList].filter(column => column.name.includes(searchQuery));
-  }, [searchQuery, visibleList, hiddenList]);
-
-  const updateVisibleItems = (newVisibleList: Column[]): void => {
-    setVisibleList(newVisibleList.map((column: Column): Column => ({ ...column, visible: true })));
-  };
-
-  const updateHiddenItems = (newHiddenList: Column[]): void => {
-    setHiddenList(newHiddenList.map((column: Column): Column => ({ ...column, visible: false })));
-  };
-
-  const setFixed = (id: string, fixed?: string): void => {
-    setVisibleList(
-      visibleList.map(visibleColumn => (visibleColumn.id === id ? { ...visibleColumn, fixed } : visibleColumn))
-    );
-  };
-
-  const hideColumn = (id: string): void => {
-    const column = visibleList.find(col => col.id === id);
-    column && setVisibleList(visibleList.filter(visibleColumn => visibleColumn.id !== column.id));
-    column && setHiddenList([...hiddenList, { ...column, visible: false }]);
-  };
-
-  const showColumn = (id: string): void => {
-    const column = hiddenList.find(col => col.id === id);
-    column && setHiddenList(hiddenList.filter(hiddenColumn => hiddenColumn.id !== column.id));
-    column && setVisibleList([...visibleList, { ...column, visible: true }]);
-  };
-
-  const toggleColumn = (id: string, visible: boolean): void => {
-    if (visible) {
-      hideColumn(id);
-    } else {
-      showColumn(id);
-    }
-  };
-
+const ColumnManagerList: React.FC<Props> = ({
+  searchQuery,
+  visibleList,
+  hiddenList,
+  updateVisibleList,
+  updateHiddenList,
+  setFixed,
+  toggleColumn,
+  searchResults,
+}) => {
   return (
     <S.ColumnManagerList>
       {!searchQuery ? (
@@ -111,7 +41,7 @@ const ColumnManagerList: React.FC<Props> = ({ searchQuery }) => {
             /* eslint-disable-next-line react/jsx-props-no-spreading */
             {...SORTABLE_COFIG}
             list={visibleList}
-            setList={updateVisibleItems}
+            setList={updateVisibleList}
           >
             {visibleList.map(item => (
               // eslint-disable-next-line react/jsx-props-no-spreading
@@ -123,7 +53,7 @@ const ColumnManagerList: React.FC<Props> = ({ searchQuery }) => {
             /* eslint-disable-next-line react/jsx-props-no-spreading */
             {...SORTABLE_COFIG}
             list={hiddenList}
-            setList={updateHiddenItems}
+            setList={updateHiddenList}
           >
             {hiddenList.map(item => (
               // eslint-disable-next-line react/jsx-props-no-spreading

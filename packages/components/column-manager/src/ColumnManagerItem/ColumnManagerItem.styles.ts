@@ -3,7 +3,7 @@ import Icon from '@synerise/ds-icon';
 
 export const DragHandler = styled(Icon)`
   position: absolute;
-  top: 20px;
+  top: 16px;
   left: 0;
   opacity: 0;
 `;
@@ -13,7 +13,8 @@ export const ItemPart = styled.div<{ align: string }>`
   flex-direction: row;
   align-items: center;
   justify-content: ${(props): string => (props.align === 'left' ? 'flex-start' : 'flex-end')};
-  flex: 1;
+  flex: ${(props): string => (props.align === 'left' ? '1' : 'auto')};
+  max-width: ${(props): string => (props.align === 'left' ? 'calc(100% - 80px)' : '68px')};
 
   .switch-texts {
     margin: 0;
@@ -58,6 +59,10 @@ export const ColumnManagerItemName = styled.span`
   line-height: 1.38;
   color: ${(props): string => props.theme.palette['grey-600']};
   margin-left: 8px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  flex: 1;
 
   .search-highlight {
     font-weight: 500;
