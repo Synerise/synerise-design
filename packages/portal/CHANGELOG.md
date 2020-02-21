@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.38.0](https://github.com/synerise/synerise-design/compare/portal@0.37.0...portal@0.38.0) (2020-02-21)
+
+
+### Features
+
+* **result:** add noSearchResults prop, upadte styles ([d8021ea](https://github.com/synerise/synerise-design/commit/d8021ea2a80a7141b15d4074c3af69e3538b7c7a))
+
+
+
+
+
 # [0.37.0](https://github.com/synerise/synerise-design/compare/portal@0.36.0...portal@0.37.0) (2020-02-19)
 
 

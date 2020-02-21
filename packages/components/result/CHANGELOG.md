@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-result@0.3.5...@synerise/ds-result@0.4.0) (2020-02-21)
+
+### Features
+
+- **result:** add noSearchResults prop, upadte styles ([d8021ea](https://github.com/Synerise/synerise-design/commit/d8021ea2a80a7141b15d4074c3af69e3538b7c7a))
+
 ## [0.3.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-result@0.3.4...@synerise/ds-result@0.3.5) (2020-02-20)
 
 **Note:** Version bump only for package @synerise/ds-result
