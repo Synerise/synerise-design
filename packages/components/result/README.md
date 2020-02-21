@@ -47,13 +47,14 @@ import Result from '@synerise/ds-result'
 
 ## API
 
-| Property    | Description                               | Type                                                                 | Default | 
-| ----------- | ----------------------------------------- | -------------------------------------------------------------------- | ------- | 
-| type        | type of result                            | 'info' / 'warning' / 'error' / 'success' / 'progress' / 'no-results' | -       | 
-| closable    | whether or not to show X button to close  | boolean                                                              | -       | 
-| title       | title text                                | string / React.ReactNode                                             | -       | 
-| description | description text                          | string / React.ReactNode                                             | -       | 
-| onClose     | event called when clicked on close button | () => void                                                           | -       | 
-| buttons     | render buttons                            | React.ReactNode                                                      | -       | 
-| panel       | render custom panel                       | React.ReactNode                                                      | -       | 
-| customIcon  | render custom icon in place of type icon  | React.ReactNode                                                      | -       | 
+| Property        | Description                                                              | Type                                                                 | Default |
+| --------------- | ------------------------------------------------------------------------ | -------------------------------------------------------------------- | ------- |
+| type            | type of result                                                           | 'info' / 'warning' / 'error' / 'success' / 'progress' / 'no-results' | -       |
+| closable        | whether or not to show X button to close                                 | boolean                                                              | -       |
+| title           | title text                                                               | string / React.ReactNode                                             | -       |
+| description     | description text                                                         | string / React.ReactNode                                             | -       |
+| onClose         | event called when clicked on close button                                | () => void                                                           | -       |
+| buttons         | render buttons                                                           | React.ReactNode                                                      | -       |
+| panel           | render custom panel                                                      | React.ReactNode                                                      | -       |
+| customIcon      | render custom icon in place of type icon                                 | React.ReactNode                                                      | -       |
+| noSearchResults | use only in search results (renders with smaller space between elements) | boolean                                                              | -       |
