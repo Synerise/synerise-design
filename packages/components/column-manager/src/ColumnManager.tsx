@@ -4,6 +4,7 @@ import Button from '@synerise/ds-button';
 import Typography from 'antd/lib/typography';
 import { CloseM, FolderM, SearchM } from '@synerise/ds-icon/dist/icons';
 import Icon from '@synerise/ds-icon';
+import { FormattedMessage } from 'react-intl';
 import SearchInput from '@synerise/ds-dropdown/dist/elements/SearchInput/SearchInput';
 import { withTheme } from 'styled-components';
 import ColumnManagerActions from './ColumnManagerActions/ColumnManagerActions';
@@ -16,6 +17,9 @@ export type ColumnManagerProps = {
   visible: boolean;
   onSave: (savedView: SavedView) => void;
   columns: Column[];
+  texts?: {
+    [k: string]: string | React.ReactNode;
+  };
   theme: {
     [k: string]: string;
   };
@@ -31,7 +35,32 @@ export type ViewMeta = {
   description: string;
 };
 
-const ColumnManager: React.FC<ColumnManagerProps> = ({ showSavedViews, hide, visible, theme, onSave, columns }) => {
+const ColumnManager: React.FC<ColumnManagerProps> = ({
+  showSavedViews,
+  hide,
+  visible,
+  theme,
+  onSave,
+  columns,
+  texts = {
+    title: <FormattedMessage id="DS.COLUMN-MANAGER.TITLE" />,
+    searchPlaceholder: <FormattedMessage id="DS.COLUMN-MANAGER.SEARCH-PLACEHOLDER" />,
+    noResults: <FormattedMessage id="DS.COLUMN-MANAGER.NO-RESULTS" />,
+    visible: <FormattedMessage id="DS.COLUMN-MANAGER.VISIBLE" />,
+    hidden: <FormattedMessage id="DS.COLUMN-MANAGER.HIDDEN" />,
+    saveView: <FormattedMessage id="DS.COLUMN-MANAGER.SAVE-VIEW" />,
+    cancel: <FormattedMessage id="DS.COLUMN-MANAGER.CANCEL" />,
+    apply: <FormattedMessage id="DS.COLUMN-MANAGER.APPLY" />,
+    fixedLeft: <FormattedMessage id="DS.COLUMN-MANAGER.FIXED-LEFT" />,
+    fixedRight: <FormattedMessage id="DS.COLUMN-MANAGER.FIXED-RIGHT" />,
+    clear: <FormattedMessage id="DS.COLUMN-MANAGER.CLEAR" />,
+    viewName: <FormattedMessage id="DS.COLUMN-MANAGER.VIEW-NAME" />,
+    viewDescription: <FormattedMessage id="DS.COLUMN-MANAGER.VIEW-DESCRIPTION" />,
+    viewNamePlaceholder: <FormattedMessage id="DS.COLUMN-MANAGER.VIEW-NAME-PLACEHOLDER" />,
+    viewDescriptionPlaceholder: <FormattedMessage id="DS.COLUMN-MANAGER.VIEW-DESCRIPTION-PLACEHOLDER" />,
+    mustNotBeEmpty: <FormattedMessage id="DS.COLUMN-MANAGER.MUST-NOT-BE-EMPTY" />,
+  },
+}) => {
   const [searchQuery, setSearchQuery] = React.useState<string>('');
   const [visibleList, setVisibleList] = React.useState(columns.filter(column => column.visible));
   const [hiddenList, setHiddenList] = React.useState(columns.filter(column => !column.visible));
@@ -88,7 +117,7 @@ const ColumnManager: React.FC<ColumnManagerProps> = ({ showSavedViews, hide, vis
       <Drawer.DrawerHeader>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: 24 }}>
           <Typography.Title style={{ flex: 1, margin: 0 }} level={4}>
-            Manage columns
+            {texts.title}
           </Typography.Title>
           <Button type="ghost" mode="single-icon" onClick={showSavedViews}>
             <Icon component={<FolderM />} />
@@ -100,7 +129,7 @@ const ColumnManager: React.FC<ColumnManagerProps> = ({ showSavedViews, hide, vis
       </Drawer.DrawerHeader>
       <SearchInput
         onSearchChange={setSearchQuery}
-        placeholder="Search"
+        placeholder={texts.searchPlaceholder as string}
         value={searchQuery}
         onClearInput={(): void => setSearchQuery('')}
         iconLeft={<Icon component={<SearchM />} color={theme.palette['grey-800']} />}
@@ -108,6 +137,7 @@ const ColumnManager: React.FC<ColumnManagerProps> = ({ showSavedViews, hide, vis
       <Drawer.DrawerBody>
         <Drawer.DrawerContent style={{ padding: '0 0 80px' }}>
           <ColumnManagerList
+            texts={texts}
             searchQuery={searchQuery}
             searchResults={searchResults}
             visibleList={visibleList}
@@ -118,7 +148,7 @@ const ColumnManager: React.FC<ColumnManagerProps> = ({ showSavedViews, hide, vis
             updateHiddenList={updateHiddenColumns}
           />
         </Drawer.DrawerContent>
-        <ColumnManagerActions onSave={handleSave} />
+        <ColumnManagerActions onSave={handleSave} texts={texts} />
       </Drawer.DrawerBody>
     </Drawer>
   );

@@ -64,9 +64,35 @@ const COLUMNS: Column[] = [
   },
 ];
 
+const TEXTS = {
+  title: "Manage columns",
+  searchPlaceholder: "Search",
+  noResults: "No results",
+  visible: "Visible",
+  hidden: "Hidden",
+  saveView: "Save view",
+  cancel: "Cancel",
+  apply: "Apply",
+  fixedLeft: "Fixed left",
+  fixedRight: "Fixed right",
+  clear: "Clear",
+  viewName: "View name",
+  viewDescription: "Description",
+  viewNamePlaceholder: "Placeholder",
+  viewDescriptionPlaceholder: "Placeholder",
+  mustNotBeEmpty: "Must not be empty",
+};
+
 const stories = {
   default: () => (
-    <ColumnManager hide={action('hide Column Manager')} showSavedViews={action('show Item Filter')} visible columns={COLUMNS}  onSave={action('SAVE')}/>
+    <ColumnManager
+      hide={action('hide Column Manager')}
+      showSavedViews={action('show Item Filter')}
+      visible
+      columns={COLUMNS}
+      onSave={action('SAVE')}
+      texts={TEXTS}
+    />
   ),
 };
 

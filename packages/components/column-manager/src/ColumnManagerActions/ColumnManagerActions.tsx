@@ -8,9 +8,12 @@ import { ViewMeta } from '../ColumnManager';
 
 type Props = {
   onSave: (viewMeta: ViewMeta) => void;
+  texts: {
+    [k: string]: string | React.ReactNode;
+  };
 };
 
-const ColumnManagerActions: React.FC<Props> = ({ onSave }) => {
+const ColumnManagerActions: React.FC<Props> = ({ onSave, texts }) => {
   const [modalVisible, setModalVisible] = React.useState(false);
 
   const formRef = React.useRef<HTMLFormElement>(null);
@@ -48,14 +51,14 @@ const ColumnManagerActions: React.FC<Props> = ({ onSave }) => {
     <>
       <S.ColumnManagerActions>
         <Button type="secondary" mode="simple" onClick={handleShowModal}>
-          Save view
+          {texts.saveView}
         </Button>
         <S.RightButtons>
           <Button type="ghost" mode="simple">
-            Cancel
+            {texts.cancel}
           </Button>
           <Button type="primary" mode="simple">
-            Apply
+            {texts.apply}
           </Button>
         </S.RightButtons>
       </S.ColumnManagerActions>
@@ -63,15 +66,15 @@ const ColumnManagerActions: React.FC<Props> = ({ onSave }) => {
         visible={modalVisible}
         closable
         onCancel={handleCancel}
-        title="Save view"
+        title={texts.saveView}
         footer={
           <S.ModalFooter style={{ display: 'flex', flexWrap: 'nowrap' }}>
             <div style={{ display: 'flex' }}>
               <Button type="ghost" onClick={handleCancel}>
-                Cancel
+                {texts.cancel}
               </Button>
               <Button type="primary" onClick={(event): void => submit(event)}>
-                Apply
+                {texts.apply}
               </Button>
             </div>
           </S.ModalFooter>
@@ -91,8 +94,8 @@ const ColumnManagerActions: React.FC<Props> = ({ onSave }) => {
                     <Input
                       // eslint-disable-next-line react/jsx-props-no-spreading
                       {...input}
-                      label="View name"
-                      placeholder="Placeholder"
+                      label={texts.viewName}
+                      placeholder={texts.viewNamePlaceholder as string}
                       errorText={meta.touched && meta.error}
                     />
                   )}
@@ -103,8 +106,8 @@ const ColumnManagerActions: React.FC<Props> = ({ onSave }) => {
                     <TextArea
                       // eslint-disable-next-line react/jsx-props-no-spreading
                       {...input}
-                      label="View description"
-                      placeholder="Placeholder"
+                      label={texts.viewDescription}
+                      placeholder={texts.viewDescriptionPlaceholder as string}
                       rows={2}
                       errorText={meta.touched && meta.error}
                     />

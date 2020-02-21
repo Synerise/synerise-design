@@ -27,6 +27,24 @@
             "NO-RESULTS": "No results",
             "SEARCH-PLACEHOLDER": "Search",
             "TITLE": "Filter"
+        },
+        "COLUMN-MANAGER": {
+            "TITLE": "Manage columns",
+            "SEARCH-PLACEHOLDER": "Search",
+            "NO-RESULTS": "No results",
+            "VISIBLE": "Visible",
+            "HIDDEN": "Hidden",
+            "SAVE-VIEW": "Save view",
+            "CANCEL": "Cancel",
+            "APPLY": "Apply",
+            "FIXED-LEFT": "Fixed left",
+            "FIXED-RIGHT": "Fixed right",
+            "CLEAR": "Clear",
+            "VIEW-NAME": "View name",
+            "VIEW-DESCRIPTION": "Description",
+            "VIEW-NAME-PLACEHOLDER": "Placeholder",
+            "VIEW-DESCRIPTION-PLACEHOLDER": "Placeholder",
+            "MUST-NOT-BE-EMPTY": "Must not be empty"
         }
     }
 }

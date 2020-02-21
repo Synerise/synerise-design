@@ -13,6 +13,9 @@ type Props = {
   toggleColumn: (id: string, visible: boolean) => void;
   updateVisibleList: (newList: Column[]) => void;
   updateHiddenList: (newList: Column[]) => void;
+  texts: {
+    [k: string]: string | React.ReactNode;
+  };
 };
 
 const SORTABLE_COFIG = {
@@ -31,12 +34,13 @@ const ColumnManagerList: React.FC<Props> = ({
   setFixed,
   toggleColumn,
   searchResults,
+  texts,
 }) => {
   return (
     <S.ColumnManagerList>
       {!searchQuery ? (
         <>
-          <S.ListHeadline>Visible</S.ListHeadline>
+          <S.ListHeadline>{texts.visible}</S.ListHeadline>
           <ReactSortable
             /* eslint-disable-next-line react/jsx-props-no-spreading */
             {...SORTABLE_COFIG}
@@ -48,7 +52,7 @@ const ColumnManagerList: React.FC<Props> = ({
               <ColumnManagerItem key={item.id} {...item} setFixed={setFixed} switchAction={toggleColumn} draggable />
             ))}
           </ReactSortable>
-          <S.ListHeadline>Hidden</S.ListHeadline>
+          <S.ListHeadline>{texts.hidden}</S.ListHeadline>
           <ReactSortable
             /* eslint-disable-next-line react/jsx-props-no-spreading */
             {...SORTABLE_COFIG}
@@ -63,6 +67,7 @@ const ColumnManagerList: React.FC<Props> = ({
         </>
       ) : (
         <ColumnManagerSearchResults
+          texts={texts}
           searchResults={searchResults}
           searchQuery={searchQuery}
           setFixed={setFixed}
