@@ -14,6 +14,10 @@ export const ItemLabel = styled.span`
   overflow: hidden;
   line-height: 24px;
   max-width: 100%;
+
+  .search-highlight {
+    color: ${(props): string => props.theme.palette['grey-800']};
+  }
 `;
 
 export const ItemLabelWrapper = styled.div`

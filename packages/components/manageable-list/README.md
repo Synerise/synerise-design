@@ -47,6 +47,7 @@ ManageableList UI Component
 | changeOrderDisabled | Disable change of order                                                          | boolean                                 | false     |
 | greyBackground      | Change background color of list and list items                                   | boolean                                 | false     |
 | texts               | Texts on buttons, confirms and popups                                            | Texts                                   | -         |
+| searchQuery         | Search query used to highlight list item name                                    | Texts                                   | -         |
 
 ### Texts
 

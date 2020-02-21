@@ -9,9 +9,10 @@ type ItemLabelProps = {
   item: ItemProps;
   onUpdate?: (updateParams: { id: string; name: string }) => void;
   editMode: boolean;
+  searchQuery?: string;
 };
 
-const ItemName: React.FC<ItemLabelProps> = ({ item, onUpdate, editMode }): React.ReactElement => {
+const ItemName: React.FC<ItemLabelProps> = ({ item, onUpdate, editMode, searchQuery }): React.ReactElement => {
   const [editedName, setName] = React.useState(item.name);
 
   const updateName = React.useCallback(() => {
@@ -31,6 +32,15 @@ const ItemName: React.FC<ItemLabelProps> = ({ item, onUpdate, editMode }): React
     };
   }, [editedName, updateName, editName]);
 
+  const name = React.useMemo(() => {
+    if (searchQuery) {
+      const startOfQuery = item.name.toLowerCase().search(searchQuery.toLowerCase());
+      const result = item.name.substr(startOfQuery, searchQuery.length);
+      return item.name.replace(result, `<span class="search-highlight">${result}</span>`);
+    }
+    return item.name;
+  }, [item.name, searchQuery]);
+
   return (
     <S.ItemLabelWrapper data-testid={item.description && 'item-description-icon'}>
       {editMode ? (
@@ -43,7 +53,7 @@ const ItemName: React.FC<ItemLabelProps> = ({ item, onUpdate, editMode }): React
           autoFocus
         />
       ) : (
-        <S.ItemLabel data-testid="list-item-name">{item.name}</S.ItemLabel>
+        <S.ItemLabel data-testid="list-item-name" dangerouslySetInnerHTML={{ __html: name }}></S.ItemLabel>
       )}
       {item.description && (
         <Tooltip description={item.description} placement="right" trigger="click" type="largeSimple">

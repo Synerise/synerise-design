@@ -25,6 +25,7 @@ interface FilterItemProps {
     [k: string]: string | React.ReactNode;
   };
   theme: { [k: string]: string };
+  searchQuery?: string;
 }
 
 const FilterItem: React.FC<FilterItemProps> = ({
@@ -37,6 +38,7 @@ const FilterItem: React.FC<FilterItemProps> = ({
   onSelect,
   texts,
   theme,
+  searchQuery,
 }: FilterItemProps) => {
   const [editMode, setEditMode] = React.useState(false);
   const [confirmDeleteVisible, setConfirmDeleteVisible] = React.useState(false);
@@ -82,7 +84,7 @@ const FilterItem: React.FC<FilterItemProps> = ({
               )}
             </SelectFilterItem>
           </S.ItemHeaderPrefix>
-          <ItemName item={item} editMode={editMode} onUpdate={updateName} />
+          <ItemName item={item} editMode={editMode} onUpdate={updateName} searchQuery={searchQuery} />
           <S.ItemHeaderSuffix>
             {item.user && item.created && <ItemMeta user={item.user} created={item.created} />}
             <ItemActions

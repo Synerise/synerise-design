@@ -15,6 +15,7 @@ type Props = {
   greyBackground?: boolean;
   listType: string;
   selected: boolean;
+  searchQuery?: string;
   texts: {
     [k: string]: string | React.ReactNode;
   };
@@ -51,6 +52,7 @@ const Item: React.FC<Props> = ({
   changeOrderDisabled,
   selected,
   texts,
+  searchQuery,
 }) => {
   switch (listType) {
     case ListType.content:
@@ -77,6 +79,7 @@ const Item: React.FC<Props> = ({
           onUpdate={onUpdate}
           selected={selected}
           texts={texts}
+          searchQuery={searchQuery}
         />
       );
 

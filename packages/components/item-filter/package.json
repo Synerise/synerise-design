@@ -1,0 +1,40 @@
+{
+  "name": "@synerise/ds-item-filter",
+  "version": "0.0.1",
+  "description": "ItemFilter UI Component for the Synerise Design System",
+  "license": "ISC",
+  "repository": "Synerise/synerise-design",
+  "main": "dist/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "npm run build:js && npm run build:css && npm run defs",
+    "build:css": "node ../../../scripts/style/less.js",
+    "build:js": "babel --root-mode upward src --out-dir dist --extensions '.js,.ts,.tsx'",
+    "build:watch": "npm run build:js -- --watch",
+    "defs": "tsc --declaration --outDir dist/ --emitDeclarationOnly",
+    "prepublish": "npm run build",
+    "test": "jest",
+    "test:watch": "npm run test -- --watchAll",
+    "types": "tsc --noEmit"
+  },
+  "sideEffects": false,
+  "types": "dist/index.d.ts",
+  "dependencies": {
+    "@synerise/ds-button": "^0.6.7",
+    "@synerise/ds-drawer": "^0.3.0",
+    "@synerise/ds-dropdown": "^0.10.10",
+    "@synerise/ds-icon": "^0.11.1",
+    "@synerise/ds-manageable-list": "^0.5.1",
+    "@synerise/ds-result": "^0.4.0",
+    "@synerise/ds-tabs": "^0.8.12",
+    "@synerise/ds-typography": "*",
+    "antd": "*"
+  },
+  "peerDependencies": {
+    "@synerise/ds-core": "*",
+    "react": ">=16.9.0 < 17.0.0"
+  },
+  "devDependencies": {}
+}
