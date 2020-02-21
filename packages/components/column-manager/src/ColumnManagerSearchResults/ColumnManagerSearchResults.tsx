@@ -9,9 +9,12 @@ type Props = {
   searchQuery: string;
   setFixed: (id: string, fixed?: string) => void;
   switchAction: (id: string, visible: boolean) => void;
+  texts: {
+    [k: string]: string | React.ReactNode;
+  };
 };
 
-const ColumnManagerSearchResults: React.FC<Props> = ({ searchResults, searchQuery, setFixed, switchAction }) => {
+const ColumnManagerSearchResults: React.FC<Props> = ({ searchResults, searchQuery, setFixed, switchAction, texts }) => {
   return (
     <SearchResults>
       {searchResults.length ? (
@@ -31,7 +34,7 @@ const ColumnManagerSearchResults: React.FC<Props> = ({ searchResults, searchQuer
           )}
         </>
       ) : (
-        <Result description="No results" type="no-results" noSearchResults />
+        <Result description={texts.noResults} type="no-results" noSearchResults />
       )}
     </SearchResults>
   );
