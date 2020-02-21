@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { ReactSortable } from 'react-sortablejs-typescript';
-import Result from '@synerise/ds-result';
 import * as S from './ColumnManager.style';
 import ColumnManagerItem, { Column } from '../ColumnManagerItem/ColumnManagerItem';
+import ColumnManagerSearchResults from '../ColumnManagerSearchResults/ColumnManagerSearchResults';
 
 const LIST: Column[] = [
   {
@@ -64,7 +64,7 @@ const ColumnManagerList: React.FC<Props> = ({ searchQuery }) => {
   const [visibleList, setVisibleList] = React.useState(LIST.filter(column => column.visible));
   const [hiddenList, setHiddenList] = React.useState(LIST.filter(column => !column.visible));
 
-  const searchResult = React.useMemo(() => {
+  const searchResults = React.useMemo(() => {
     return [...visibleList, ...hiddenList].filter(column => column.name.includes(searchQuery));
   }, [searchQuery, visibleList, hiddenList]);
 
@@ -94,6 +94,14 @@ const ColumnManagerList: React.FC<Props> = ({ searchQuery }) => {
     column && setVisibleList([...visibleList, { ...column, visible: true }]);
   };
 
+  const toggleColumn = (id: string, visible: boolean): void => {
+    if (visible) {
+      hideColumn(id);
+    } else {
+      showColumn(id);
+    }
+  };
+
   return (
     <S.ColumnManagerList>
       {!searchQuery ? (
@@ -107,7 +115,7 @@ const ColumnManagerList: React.FC<Props> = ({ searchQuery }) => {
           >
             {visibleList.map(item => (
               // eslint-disable-next-line react/jsx-props-no-spreading
-              <ColumnManagerItem key={item.id} {...item} setFixed={setFixed} switchAction={hideColumn} draggable />
+              <ColumnManagerItem key={item.id} {...item} setFixed={setFixed} switchAction={toggleColumn} draggable />
             ))}
           </ReactSortable>
           <S.ListHeadline>Hidden</S.ListHeadline>
@@ -119,22 +127,17 @@ const ColumnManagerList: React.FC<Props> = ({ searchQuery }) => {
           >
             {hiddenList.map(item => (
               // eslint-disable-next-line react/jsx-props-no-spreading
-              <ColumnManagerItem key={item.id} {...item} setFixed={setFixed} switchAction={showColumn} draggable />
+              <ColumnManagerItem key={item.id} {...item} setFixed={setFixed} switchAction={toggleColumn} draggable />
             ))}
           </ReactSortable>
         </>
       ) : (
-        <>
-          <S.ListHeadline>Search results</S.ListHeadline>
-          {searchResult.length ? (
-            searchResult.map(item => (
-              // eslint-disable-next-line react/jsx-props-no-spreading
-              <ColumnManagerItem key={item.id} {...item} setFixed={setFixed} switchAction={hideColumn} />
-            ))
-          ) : (
-            <Result description="No results" type="no-results" title="" />
-          )}
-        </>
+        <ColumnManagerSearchResults
+          searchResults={searchResults}
+          searchQuery={searchQuery}
+          setFixed={setFixed}
+          switchAction={toggleColumn}
+        />
       )}
     </S.ColumnManagerList>
   );

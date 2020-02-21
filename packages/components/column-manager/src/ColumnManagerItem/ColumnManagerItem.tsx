@@ -35,7 +35,8 @@ export type Column = {
 export type ColumnProps = {
   setFixed: (id: string, fixed?: string) => void;
   draggable?: boolean;
-  switchAction: (id: string) => void;
+  switchAction: (id: string, visible: boolean) => void;
+  searchQuery?: string;
   theme: {
     [k: string]: string;
   };
@@ -59,7 +60,17 @@ const ColumnManagerItem: React.FC<Column & ColumnProps> = ({
   setFixed,
   switchAction,
   draggable,
+  searchQuery,
 }) => {
+  const columnName = React.useMemo(() => {
+    if (searchQuery) {
+      const startOfQuery = name.toLowerCase().search(searchQuery.toLowerCase());
+      const result = name.substr(startOfQuery, searchQuery.length);
+      return name.replace(result, `<span class="search-highlight">${result}</span>`);
+    }
+    return name;
+  }, [name, searchQuery]);
+
   const fixedMenu = (): React.ReactNode => (
     <S.FixedMenu>
       <S.FixedMenuItem delete={false} onClick={(): void => setFixed(id, FIXED_TYPES.left)}>
@@ -71,7 +82,7 @@ const ColumnManagerItem: React.FC<Column & ColumnProps> = ({
       </S.FixedMenuItem>
       <S.FixedMenuItem delete={false} onClick={(): void => setFixed(id, FIXED_TYPES.right)}>
         <S.FixedMenuItemIcon component={<Grid4M />} color={theme.palette['grey-600']} />
-        <S.FixedMenuItemLabel>Fixed left</S.FixedMenuItemLabel>
+        <S.FixedMenuItemLabel>Fixed right</S.FixedMenuItemLabel>
         {fixed === FIXED_TYPES.right && (
           <S.FixedMenuItemCheckIcon component={<CheckS />} color={theme.palette['green-600']} />
         )}
@@ -89,7 +100,7 @@ const ColumnManagerItem: React.FC<Column & ColumnProps> = ({
       <S.ItemPart align="left">
         {draggable && <S.DragHandler component={<DragHandleM />} color={theme.palette['grey-400']} />}
         <Icon component={typeIcon[type]} color={theme.palette['grey-600']} />
-        <S.ColumnManagerItemName>{name}</S.ColumnManagerItemName>
+        <S.ColumnManagerItemName dangerouslySetInnerHTML={{ __html: columnName }} />
       </S.ItemPart>
       <S.ItemPart align="right">
         {visible && (
@@ -102,7 +113,7 @@ const ColumnManagerItem: React.FC<Column & ColumnProps> = ({
             </Button>
           </Dropdown>
         )}
-        <Switch checked={visible} label="" onChange={(): void => switchAction(id)} />
+        <Switch checked={visible} label="" onChange={(): void => switchAction(id, visible)} />
       </S.ItemPart>
     </S.ColumnManagerItem>
   );
