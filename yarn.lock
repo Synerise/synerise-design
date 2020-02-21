@@ -4197,6 +4197,11 @@
   resolved "https://registry.yarnpkg.com/@synerise/ds-button/-/ds-button-0.5.10.tgz#d99a035e906045141be4ca66d12fc31468ea3b86"
   integrity sha512-hFrupreEio+IX9mo6ndcBhgZdy9e5FCkiDdPv/RG4xiBqM8NxJbDJ/aD/EjDPqwjUAxvHCjexh25GYiMr6lfww==
 
+"@synerise/ds-icon@^0.11.1":
+  version "0.11.1"
+  resolved "https://registry.yarnpkg.com/@synerise/ds-icon/-/ds-icon-0.11.1.tgz#ddd8f650a2cc971920be1f46f80062ab394f7f1a"
+  integrity sha512-1zFdRbdCX7Kn9oaC6yZwjRa6yJdBBHWzYM6kUWICKVN88HZVCY6KgCtBK9Y5SAMRdXRjOuxhVG+l/v9fSqS1Yw==
+
 "@testing-library/dom@^6.11.0":
   version "6.11.0"
   resolved "https://registry.npmjs.org/@testing-library/dom/-/dom-6.11.0.tgz#962a38f1a721fdb7c9e35e7579e33ff13a00eda4"

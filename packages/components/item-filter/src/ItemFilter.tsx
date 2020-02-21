@@ -4,13 +4,13 @@ import Drawer from '@synerise/ds-drawer';
 import Button from '@synerise/ds-button';
 import Tabs from '@synerise/ds-tabs';
 import Icon from '@synerise/ds-icon';
-import { CloseM, SearchNoResultsM } from '@synerise/ds-icon/dist/icons';
+import { CloseM } from '@synerise/ds-icon/dist/icons';
 import SearchInput from '@synerise/ds-dropdown/dist/elements/SearchInput/SearchInput';
 import SearchM from '@synerise/ds-icon/dist/icons/SearchM';
 import ManageableList from '@synerise/ds-manageable-list';
+import Result from '@synerise/ds-result';
 import { ItemProps } from '@synerise/ds-manageable-list/dist/Item/Item';
 import { withTheme } from 'styled-components';
-import Avatar from '@synerise/ds-avatar';
 import { FormattedMessage } from 'react-intl';
 import * as S from './ItemFIlter.styles';
 
@@ -116,16 +116,7 @@ const ItemFilter: React.FC<ItemFilterProps> = ({
                 searchQuery={searchQuery}
               />
             ) : (
-              <S.NoResults>
-                <Avatar
-                  size="large"
-                  shape="circle"
-                  backgroundColor="grey"
-                  backgroundColorHue="050"
-                  iconComponent={<Icon component={<SearchNoResultsM />} color={theme.palette['grey-600']} />}
-                />
-                <span>{texts.noResults}</span>
-              </S.NoResults>
+              <Result type="no-results" noSearchResults description={texts.noResults} />
             )}
           </S.FiltersList>
         </Drawer.DrawerContent>
