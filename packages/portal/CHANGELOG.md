@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.38.1](https://github.com/synerise/synerise-design/compare/portal@0.38.0...portal@0.38.1) (2020-02-21)
+
+
+### Bug Fixes
+
+* **slider:** remove vertical variant from storybook ([91ae6d8](https://github.com/synerise/synerise-design/commit/91ae6d84ec30140cb3eb4d3d18d8941f8d72f2a5))
+
+
+
+
+
 # [0.38.0](https://github.com/synerise/synerise-design/compare/portal@0.37.0...portal@0.38.0) (2020-02-21)
 
 
