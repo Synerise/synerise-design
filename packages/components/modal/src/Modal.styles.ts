@@ -50,6 +50,9 @@ export const ActionButtons = styled.div`
     align-items: center;
     justify-content: center;
   }
+  .ant-btn {
+    margin: 0 4px;
+  }
 `;
 
 export const FooterContainer = styled.div`
