@@ -52,9 +52,15 @@ const stories = {
     additionalNodes: [<div>some text</div>, <div>some other text</div>],
     actions: (
       <>
-        <Icon component={<DashboardM />} color={'#ffffff'} size={24} onClick={action('onClick')} />
-        <Icon component={<CalendarM />} color={'#ffffff'} size={24} onClick={action('onClick')} />
-        <Icon component={<NotificationsPlayM />} color={'#ffffff'} size={24} onClick={action('onClick')} />
+        <Button onClick={action('onClick')} type="ghost-white" mode="single-icon">
+          <Icon component={<DashboardM />} color={'#ffffff'} />
+        </Button>
+        <Button onClick={action('onClick')} type="ghost-white" mode="single-icon">
+          <Icon component={<CalendarM />} color={'#ffffff'} />
+        </Button>
+        <Button onClick={action('onClick')} type="ghost-white" mode="single-icon">
+          <Icon component={<NotificationsPlayM />} color={'#ffffff'} />
+        </Button>
       </>
     ),
     children: (
@@ -81,9 +87,9 @@ const stories = {
             </div>
           }
         >
-          <Button mode={'label-icon'} type={'ghost'} style={buttonStyle}>
+          <Button mode='label-icon' type='ghost-white'>
             Profile Name
-            <Icon component={<AngleDownS />} color={'#ffffff'} />
+            <Icon component={<AngleDownS />} />
           </Button>
         </Dropdown>
         <S.NavbarDivider />
