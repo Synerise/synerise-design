@@ -8,27 +8,6 @@ export const AddItemLayout = styled.div`
   width: 100%;
   margin-bottom: 8px;
   padding: 4px 12px;
-  && {
-    .ant-btn {
-      padding: 0;
-
-      &:hover {
-        background-color: transparent;
-      }
-    }
-  }
-  .ant-btn {
-    cursor: pointer;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
-    height: 36px;
-
-    + div {
-      margin: 12px 0;
-    }
-  }
 `;
 
 export const AddItemLabel = styled.span`
