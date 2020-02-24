@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.10](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.6.9...@synerise/ds-button@0.6.10) (2020-02-24)
+
+### Bug Fixes
+
+- **button:** fix ripple animation on safari ([ec1f8b4](https://github.com/synerise/synerise-design/commit/ec1f8b4e61f71be22adccbbdfb28c9e71d2b44b5))
+- **button:** update props & documentation ([4f24a2c](https://github.com/synerise/synerise-design/commit/4f24a2c34cee9845e4e7b11d7cca2541bfa7c725))
+
 ## [0.6.9](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.6.8...@synerise/ds-button@0.6.9) (2020-02-24)
 
 **Note:** Version bump only for package @synerise/ds-button
