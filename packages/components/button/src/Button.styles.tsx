@@ -105,12 +105,14 @@ export default styled(({ mode, type, loading, justifyContent, ...rest }) => (
   <Button type={type} {...rest} />
 ))`  
   && {
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
     border: 0;
     display: inline-flex;
     align-items: center;
     padding: 0 12px;
     position: relative;
     overflow: hidden;
+    border-radius: 3px !important;
     justify-content: ${(props): FlattenInterpolation<ThemeProps> | false => props.justifyContent};
     > *:not(.btn-focus) {
       position: relative;
