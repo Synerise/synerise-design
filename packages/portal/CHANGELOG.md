@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.39.0](https://github.com/synerise/synerise-design/compare/portal@0.38.1...portal@0.39.0) (2020-02-24)
+
+
+### Bug Fixes
+
+* **item-filter:** fix types ([6eec36c](https://github.com/synerise/synerise-design/commit/6eec36c928c810023c24f3ad026994c34c1d7618))
+* **item-filter:** remove unused imports ([ffe2dfc](https://github.com/synerise/synerise-design/commit/ffe2dfc5bee613e3be33c30c6f719e49101d2dad))
+
+
+### Features
+
+* **item-filter:** add ItemFilter header and search ([e1ceeda](https://github.com/synerise/synerise-design/commit/e1ceeda39327ace0a52c6695b0fb3e724e574828))
+* **item-filter:** add list of filters ([9db1087](https://github.com/synerise/synerise-design/commit/9db108782bebe4021c61790d1a4831010f25f0c0))
+* **item-filter:** bootstrap component ([288f34a](https://github.com/synerise/synerise-design/commit/288f34ab4cad32ad43c257752625cf7a0d0d6fd8))
+* **item-filter:** connect search with list of filters ([c21edc0](https://github.com/synerise/synerise-design/commit/c21edc08850322f5acc24f544f43dbf388977834))
+* **item-filter:** selected item on top of list ([40585d1](https://github.com/synerise/synerise-design/commit/40585d1634f68b3f4d8d76d59d2cc02abbd269c5))
+* **item-filter:** use Drawer with search bar ([4081dfb](https://github.com/synerise/synerise-design/commit/4081dfbc1cfe48259fd5e7b6f785c0c494cbab50))
+* **search-bar:** add searchbar component ([e67c7cc](https://github.com/synerise/synerise-design/commit/e67c7cc0309beb49bf41b40eaf4a35ac71423053))
+
+
+
+
+
 ## [0.38.1](https://github.com/synerise/synerise-design/compare/portal@0.38.0...portal@0.38.1) (2020-02-21)
 
 

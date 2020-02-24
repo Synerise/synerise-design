@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-navbar",
-  "version": "0.3.12",
+  "version": "0.3.13",
   "description": "Navbar UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -22,8 +22,8 @@
   "sideEffects": false,
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-button": "^0.6.8",
-    "@synerise/ds-card": "^0.3.7",
+    "@synerise/ds-button": "^0.6.9",
+    "@synerise/ds-card": "^0.3.8",
     "@synerise/ds-typography": "^0.6.1"
   },
   "peerDependencies": {

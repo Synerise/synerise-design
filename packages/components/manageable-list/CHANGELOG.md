@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.5.2...@synerise/ds-manageable-list@0.6.0) (2020-02-24)
+
+### Bug Fixes
+
+- **manageable-list:** fix props ([11350c0](https://github.com/Synerise/synerise-design/commit/11350c0d9986f1f355fc95cb6b8ab603e5f62824))
+
+### Features
+
+- **manageable-list:** add searchQuery prop ([f9514d4](https://github.com/Synerise/synerise-design/commit/f9514d4f4973cb560fb91bd18a7f9511b71c8e25))
+
 ## [0.5.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.5.1...@synerise/ds-manageable-list@0.5.2) (2020-02-20)
 
 **Note:** Version bump only for package @synerise/ds-manageable-list
