@@ -6,7 +6,7 @@ import './style/index.less';
 import { JustifyContentProperty } from 'csstype';
 
 import Icon from '@synerise/ds-icon';
-import { SpinnerM } from '@synerise/ds-icon/dist/icons';
+import SpinnerM from '@synerise/ds-icon/dist/icons/SpinnerM';
 import AntdButton, * as S from './Button.styles';
 
 export interface Props extends Omit<ButtonProps, 'type'> {
