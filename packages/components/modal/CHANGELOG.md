@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-modal@0.9.8...@synerise/ds-modal@0.10.0) (2020-02-24)
+
+### Features
+
+- **modal:** update ds-button version ([9feada6](https://github.com/synerise/synerise-design/commit/9feada6fb24850a734958d1f57f167564ddaa066))
+
 ## [0.9.7](https://github.com/synerise/synerise-design/compare/@synerise/ds-modal@0.9.6...@synerise/ds-modal@0.9.7) (2020-02-24)
 
 **Note:** Version bump only for package @synerise/ds-modal

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.6.2...@synerise/ds-manageable-list@0.7.0) (2020-02-24)
+
+### Features
+
+- **manageable-list:** update ds-button version ([da96376](https://github.com/Synerise/synerise-design/commit/da96376ba06189fc20ae36ea285d387f9f455745))
+
 ## [0.6.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.6.0...@synerise/ds-manageable-list@0.6.1) (2020-02-24)
 
 **Note:** Version bump only for package @synerise/ds-manageable-list

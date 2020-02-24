@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-page-header@0.7.13...@synerise/ds-page-header@0.8.0) (2020-02-24)
+
+### Features
+
+- **page-header:** update ds-button version ([9383e57](https://github.com/synerise/synerise-design/commit/9383e57fb0e6e8ed3f4f48b476a3458f7843a1c7))
+
 ## [0.7.13](https://github.com/synerise/synerise-design/compare/@synerise/ds-page-header@0.7.12...@synerise/ds-page-header@0.7.13) (2020-02-24)
 
 **Note:** Version bump only for package @synerise/ds-page-header

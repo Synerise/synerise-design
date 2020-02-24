@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.40.0](https://github.com/synerise/synerise-design/compare/portal@0.39.0...portal@0.40.0) (2020-02-24)
+
+
+### Features
+
+* **navbar:** update stories ([2f63d1a](https://github.com/synerise/synerise-design/commit/2f63d1a067c087ba0b9e09c604fce5544b43e2b0))
+
+
+
+
+
 # [0.39.0](https://github.com/synerise/synerise-design/compare/portal@0.38.1...portal@0.39.0) (2020-02-24)
 
 
