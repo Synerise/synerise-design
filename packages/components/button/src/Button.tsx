@@ -12,18 +12,16 @@ import AntdButton, * as S from './Button.styles';
 export interface Props extends Omit<ButtonProps, 'type'> {
   type?:
     | string
-    | 'default'
     | 'primary'
-    | 'ghost'
-    | 'dashed'
-    | 'danger'
-    | 'link'
-    | 'success'
-    | 'flat'
-    | 'warning'
+    | 'secondary'
+    | 'tertiary'
     | 'tertiary-white'
     | 'ghost-primary'
-    | 'ghost-white';
+    | 'ghost'
+    | 'ghost-white'
+    | 'danger'
+    | 'success'
+    | 'warning';
   mode?: string;
   groupVariant?: string | 'left-rounded' | 'squared' | 'right-rounded';
   justifyContent?: JustifyContentProperty;
@@ -34,12 +32,13 @@ export interface Props extends Omit<ButtonProps, 'type'> {
 const RIPPLE_ANIMATION_OFFSET = 50;
 
 const Button: React.FC<Props> = ({
-  type,
+  type = 'secondary',
   mode,
   justifyContent = 'center',
   groupVariant,
   loading = false,
   onClick,
+  className,
   ...antdProps
 }) => {
   const rippleRef = React.useRef<HTMLSpanElement>(null);
@@ -76,6 +75,7 @@ const Button: React.FC<Props> = ({
       groupVariant={groupVariant}
       loading={loading}
       onClick={handleClick}
+      className={`ds-button ${className}`}
       /* eslint-disable-next-line react/jsx-props-no-spreading */
       {...antdProps}
     >

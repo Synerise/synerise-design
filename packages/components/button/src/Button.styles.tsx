@@ -112,12 +112,15 @@ export default styled(({ mode, type, loading, justifyContent, ...rest }) => (
     padding: 0 12px;
     position: relative;
     overflow: hidden;
-    border-radius: 3px !important;
+    border-radius: ${(props): string => (props.shape === 'circle' ? '50%' : '3px')} !important;
     justify-content: ${(props): FlattenInterpolation<ThemeProps> | false => props.justifyContent};
     > *:not(.btn-focus) {
       position: relative;
     }
     > .icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
       width: 24px;
       height: 24px;
     }
