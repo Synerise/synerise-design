@@ -76,7 +76,7 @@ const ContentItem: React.FC<ContentItemProps> = ({
           <ItemActions item={item} duplicateAction={onDuplicate} removeAction={onRemove} editAction={enterEditMode} />
           {item.content && (
             <S.ToggleContentWrapper data-testid="item-toggle-content-wrapper">
-              <Button type="ghost" onClick={toggleContentVisibility} mode="single-icon" size="small">
+              <Button type="ghost" onClick={toggleContentVisibility} mode="single-icon" shape="circle">
                 <Icon component={<AngleDownS />} size={24} />
               </Button>
             </S.ToggleContentWrapper>

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Button from '@synerise/ds-button';
+import { ButtonFocus } from '@synerise/ds-button/dist/Button.styles';
 
 // eslint-disable-next-line import/prefer-default-export
 export const AddButton = styled(Button)`
@@ -10,6 +11,10 @@ export const AddButton = styled(Button)`
     border-radius: 3px;
     border: 1px dashed ${({ theme }): string => theme.palette['grey-300']};
     background-color: transparent;
+
+    ${ButtonFocus} {
+      display: none;
+    }
 
     &:hover {
       border: 1px dashed ${({ theme }): string => theme.palette['grey-400']};

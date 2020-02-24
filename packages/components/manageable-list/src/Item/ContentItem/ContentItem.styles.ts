@@ -60,32 +60,6 @@ export const ItemHeader = styled.div`
     }
   }
 
-  && {
-    .ant-btn {
-      border-radius: 50%;
-      box-sizing: border-box;
-      width: 24px;
-      height: 24px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      line-height: 0;
-      border: 1px solid ${({ theme }): string => theme.palette['grey-400']};
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 0 0 12px;
-      transition: transform 0.2s ease;
-      box-shadow: none;
-      & > div {
-        justify-content: center;
-        margin: 0 !important;
-        display: flex;
-        align-items: center;
-      }
-    }
-  }
-
   &:hover {
     ${ItemLabel} {
       color: ${({ theme }): string => theme.palette['grey-800']};
@@ -130,8 +104,6 @@ export const ItemContainer = styled.div<ItemContainerProps>`
   ${ItemHeader} {
     .ant-btn {
       transform: ${({ opened }): string => (opened ? 'rotateZ(-180deg)' : 'rotateZ(0deg)')};
-      background-color: ${({ theme, greyBackground }): string =>
-        greyBackground ? theme.palette['grey-050'] : theme.palette.whte};
     }
   }
 `;

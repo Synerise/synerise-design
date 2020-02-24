@@ -39,9 +39,9 @@ const AddItemWithName: React.FC<Props> = ({ onItemAdd, addItemLabel, disabled, p
 
   return (
     <S.AddItemLayout data-testid="add-item-with-name-button">
-      <Button type="ghost-primary" onClick={toggleInput} size="small" disabled={disabled}>
+      <Button type="ghost-primary" mode="icon-label" onClick={toggleInput} disabled={disabled}>
         <Icon component={<Add3M />} size={24} />
-        <S.AddItemLabel>{addItemLabel}</S.AddItemLabel>
+        {addItemLabel}
       </Button>
       {active && (
         <Input

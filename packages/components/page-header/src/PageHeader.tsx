@@ -101,7 +101,7 @@ const PageHeader: React.FC<PageHeaderProps> = props => {
           <div>
             {rightSide && rightSide}
             {onClose && (
-              <S.PageHeaderClose>
+              <Button type="ghost" mode="single-icon">
                 <Icon
                   className="page-header__close"
                   color={theme.palette['grey-500']}
@@ -109,7 +109,7 @@ const PageHeader: React.FC<PageHeaderProps> = props => {
                   size={32}
                   onClick={onClose}
                 />
-              </S.PageHeaderClose>
+              </Button>
             )}
           </div>
         </S.PageHeaderRightSide>
