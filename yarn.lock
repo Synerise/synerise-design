@@ -4192,11 +4192,6 @@
     "@svgr/plugin-svgo" "^5.0.1"
     loader-utils "^1.2.3"
 
-"@synerise/ds-button@^0.5.10":
-  version "0.5.10"
-  resolved "https://registry.yarnpkg.com/@synerise/ds-button/-/ds-button-0.5.10.tgz#d99a035e906045141be4ca66d12fc31468ea3b86"
-  integrity sha512-hFrupreEio+IX9mo6ndcBhgZdy9e5FCkiDdPv/RG4xiBqM8NxJbDJ/aD/EjDPqwjUAxvHCjexh25GYiMr6lfww==
-
 "@synerise/ds-icon@^0.11.1":
   version "0.11.1"
   resolved "https://registry.yarnpkg.com/@synerise/ds-icon/-/ds-icon-0.11.1.tgz#ddd8f650a2cc971920be1f46f80062ab394f7f1a"
@@ -5229,10 +5224,10 @@ antd@*:
     shallowequal "^1.1.0"
     warning "~4.0.3"
 
-antd@3.26.7:
-  version "3.26.7"
-  resolved "https://registry.yarnpkg.com/antd/-/antd-3.26.7.tgz#271555f4862b747019defb972f70b7dd4015fd3f"
-  integrity sha512-WPsU3ulEUA1vZfVO9PmDNWkYueaLPoE74EJlfPqW2rZjKl7YMkMxJleSVCM9FqVI4PNLbIVr0hoieM9yZiEBFQ==
+antd@3.26.12:
+  version "3.26.12"
+  resolved "https://registry.yarnpkg.com/antd/-/antd-3.26.12.tgz#2f075670780ac0490b2945d8bca883edcd93158c"
+  integrity sha512-aXiRDDpDx1jH/gKJDE2dgZPT1C7qurOZ1OSt9RklQT2K6CFlveF8HJY7Jz1/xHikXA+kmy6kr/OACJiaxBFRkA==
   dependencies:
     "@ant-design/create-react-context" "^0.2.4"
     "@ant-design/icons" "~2.1.1"
