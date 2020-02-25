@@ -66,9 +66,11 @@ import ButtonGroup from '@synerise/ds-button-group'
 
 ---
 
-| Property    | Description                                      | Type            | Default |
-| ----------- | ------------------------------------------------ | --------------- | ------- |
-| title       | The title of the group                           | string          | -       |
-| description | The description of the group                     | string          | -       |
-| size        | Defines the size of the button: `small`, `large` | string          | -       |
-| children    | Buttons used in the group                        | React.ReactNode | -       |
+| Property        | Description                                                             | Type            | Default  |
+| --------------- | ----------------------------------------------------------------------- | --------------- | -------- |
+| title           | The title of the group                                                  | string          | -        |
+| description     | The description of the group                                            | string          | -        |
+| size            | Defines the size of the button: `small`, `large`                        | string          | -        |
+| buttonsPosition | Defines the horizontal position of buttons: `left`, `center` or `right` | string          | `center` |
+| fullWidth       | Set buttons width to fill all available space                           | boolean         | `false`  |
+| children        | Buttons used in the group                                               | React.ReactNode | -        |

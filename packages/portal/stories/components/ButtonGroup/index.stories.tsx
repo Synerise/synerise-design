@@ -3,11 +3,17 @@ import { text, select, boolean } from '@storybook/addon-knobs';
 import Button from '@synerise/ds-button';
 import ButtonGroup from '@synerise/ds-button-group';
 import Icon from '@synerise/ds-icon';
-import { AngleDownS, DragHandleM, ShowM } from '@synerise/ds-icon/dist/icons';
+import { AngleDownS, DragHandleM } from '@synerise/ds-icon/dist/icons';
 
 const buttonSizes = {
   large: 'large',
   default: 'default',
+};
+
+const positionOfButtons = {
+  left: 'left',
+  center: 'center',
+  right: 'right',
 };
 
 const stories = {
@@ -20,6 +26,7 @@ const stories = {
     const description = text('Description', 'Some description');
     const size = select('Button size', buttonSizes, 'default');
     const fullWidth = boolean('Full width', false);
+    const buttonsPosition = select('Horizontal position of buttons', positionOfButtons, positionOfButtons.left );
 
     // Button props
     const buttonTypes = {
@@ -44,6 +51,7 @@ const stories = {
           title={withTitle && title}
           description={withDescription && description}
           fullWidth={fullWidth}
+          buttonsPosition={buttonsPosition}
         >
           <Button mode="single-icon" {...buttonProps}>
             <Icon component={<DragHandleM />} color="#ffffff" />
