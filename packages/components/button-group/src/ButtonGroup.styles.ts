@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
-export const Container = styled.div<{ options?: boolean }>`
+export const Container = styled.div<{ options?: boolean; fullWidth?: boolean }>`
+  width: ${(props): string => (props.fullWidth ? '100%' : 'auto')};
   .ant-btn-group {
     width: 100%;
     display: flex;
@@ -10,6 +11,7 @@ export const Container = styled.div<{ options?: boolean }>`
 
     .ant-btn {
       width: auto;
+      flex: ${(props): string => (props.fullWidth ? '1' : 'auto')};
       &:focus {
         z-index: 99999;
       }

@@ -19,6 +19,7 @@ const stories = {
     const withDescription = boolean('With description', true);
     const description = text('Description', 'Some description');
     const size = select('Button size', buttonSizes, 'default');
+    const fullWidth = boolean('Full width', false);
 
     // Button props
     const buttonTypes = {
@@ -37,11 +38,12 @@ const stories = {
     };
 
     return (
-      <div style={{ background: '#f2f5f6', padding: '16px', display: 'flex' }}>
+      <div style={{ background: '#f2f5f6', padding: '16px', display: 'flex', width: '100%', position: 'absolute', top: 0, left: 0, height: '100%', justifyContent: 'center', alignItems: 'center' }}>
         <ButtonGroup
           size={size}
           title={withTitle && title}
           description={withDescription && description}
+          fullWidth={fullWidth}
         >
           <Button mode="single-icon" {...buttonProps}>
             <Icon component={<DragHandleM />} color="#ffffff" />
@@ -59,7 +61,7 @@ const stories = {
             Button
             <Icon component={<DragHandleM />} color="#ffffff" />
           </Button>
-          <Button {...buttonProps} spinner>{buttonProps.content}</Button>
+          <Button {...buttonProps} loading>{buttonProps.content}</Button>
           <Button {...buttonProps} disabled>{buttonProps.content}</Button>
         </ButtonGroup>
       </div>

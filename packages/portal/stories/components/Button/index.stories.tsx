@@ -48,6 +48,7 @@ const getDefaultProps = (isSplit = false) => ({
   rightIconSize: select('Set size of right icon', iconSizes, 'S'),
   disabled: boolean('Disabled', false),
   loading: boolean('Loading', false),
+  block: boolean('Block', false),
   onClick: action('onClick CLICK'),
 });
 
