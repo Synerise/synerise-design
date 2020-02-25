@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-button-group@0.3.15...@synerise/ds-button-group@0.4.0) (2020-02-25)
+
+### Bug Fixes
+
+- **button-group:** fix fullwidth ([ae11620](https://github.com/Synerise/synerise-design/commit/ae1162003811100b6246b36e42b7ab1eb89cc8de))
+
+### Features
+
+- **button-group:** add buttonsPosition prop ([6466b4f](https://github.com/Synerise/synerise-design/commit/6466b4f2cd238142599017f0d2306ea8674d361a))
+
 ## [0.3.15](https://github.com/Synerise/synerise-design/compare/@synerise/ds-button-group@0.3.14...@synerise/ds-button-group@0.3.15) (2020-02-24)
 
 **Note:** Version bump only for package @synerise/ds-button-group
