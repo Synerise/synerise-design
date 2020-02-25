@@ -3,11 +3,17 @@ import { text, select, boolean } from '@storybook/addon-knobs';
 import Button from '@synerise/ds-button';
 import ButtonGroup from '@synerise/ds-button-group';
 import Icon from '@synerise/ds-icon';
-import { AngleDownS, DragHandleM, ShowM } from '@synerise/ds-icon/dist/icons';
+import { AngleDownS, DragHandleM } from '@synerise/ds-icon/dist/icons';
 
 const buttonSizes = {
   large: 'large',
   default: 'default',
+};
+
+const positionOfButtons = {
+  left: 'left',
+  center: 'center',
+  right: 'right',
 };
 
 const stories = {
@@ -19,6 +25,8 @@ const stories = {
     const withDescription = boolean('With description', true);
     const description = text('Description', 'Some description');
     const size = select('Button size', buttonSizes, 'default');
+    const fullWidth = boolean('Full width', false);
+    const buttonsPosition = select('Horizontal position of buttons', positionOfButtons, positionOfButtons.left );
 
     // Button props
     const buttonTypes = {
@@ -37,11 +45,13 @@ const stories = {
     };
 
     return (
-      <div style={{ background: '#f2f5f6', padding: '16px', display: 'flex' }}>
+      <div style={{ background: '#f2f5f6', padding: '16px', display: 'flex', width: '100%', position: 'absolute', top: 0, left: 0, height: '100%', justifyContent: 'center', alignItems: 'center' }}>
         <ButtonGroup
           size={size}
           title={withTitle && title}
           description={withDescription && description}
+          fullWidth={fullWidth}
+          buttonsPosition={buttonsPosition}
         >
           <Button mode="single-icon" {...buttonProps}>
             <Icon component={<DragHandleM />} color="#ffffff" />
@@ -59,7 +69,7 @@ const stories = {
             Button
             <Icon component={<DragHandleM />} color="#ffffff" />
           </Button>
-          <Button {...buttonProps} spinner>{buttonProps.content}</Button>
+          <Button {...buttonProps} loading>{buttonProps.content}</Button>
           <Button {...buttonProps} disabled>{buttonProps.content}</Button>
         </ButtonGroup>
       </div>

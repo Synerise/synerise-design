@@ -1,15 +1,27 @@
 import styled from 'styled-components';
 
-export const Container = styled.div<{ options?: boolean }>`
+const mapButtonsPosition = {
+  left: 'flex-start',
+  right: 'flex-end',
+  center: 'center',
+};
+
+export const Container = styled.div<{
+  options?: boolean;
+  fullWidth?: boolean;
+  buttonsPosition: string | 'left' | 'center' | 'right';
+}>`
+  width: 100%;
   .ant-btn-group {
     width: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: ${(props): string => mapButtonsPosition[props.buttonsPosition]};
 
     .ant-btn {
       width: auto;
+      flex: ${(props): string => (props.fullWidth ? '1' : 'none')};
       &:focus {
         z-index: 99999;
       }
