@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ReactSortable } from 'react-sortablejs-typescript';
-import AddButton from './AddButton/AddButton';
+import AddButton from '@synerise/ds-add-button';
 import * as S from './CardTabs.styles';
 
 export type CardTabsProps = {
