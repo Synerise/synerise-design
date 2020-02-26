@@ -227,14 +227,14 @@ export default styled(({ mode, type, loading, justifyContent, ...rest }) => (
           }
         }
       `}
-      ${(props): FlattenSimpleInterpolation | false =>
-        props.mode === 'single-icon' &&
-        props.size === 'large' &&
-        css`
-          &.ant-btn {
-            width: 48px;
-          }
-        `}
+    ${(props): FlattenSimpleInterpolation | false =>
+      props.mode === 'single-icon' &&
+      props.size === 'large' &&
+      css`
+        &.ant-btn {
+          width: 48px;
+        }
+      `}
     ${(props): FlattenSimpleInterpolation | false =>
       props.groupVariant === 'squared' &&
       css`
@@ -249,12 +249,68 @@ export default styled(({ mode, type, loading, justifyContent, ...rest }) => (
           border-radius: 3px 0 0 3px;
         }
       `}
-     ${(props): FlattenSimpleInterpolation | false =>
-       props.groupVariant === 'right-rounded' &&
-       css`
-         &.ant-btn {
-           border-radius: 0 3px 3px 0;
-         }
-       `}
+    ${(props): FlattenSimpleInterpolation | false =>
+      props.groupVariant === 'right-rounded' &&
+      css`
+        &.ant-btn {
+          border-radius: 0 3px 3px 0;
+        }
+      `}
+       
+    ${(props): FlattenSimpleInterpolation | false =>
+      props.type === 'custom-color' &&
+      css`
+        &.ant-btn {
+          background-color: ${props.theme.palette[`${props.color}-600`]};
+          border: 0 solid transparent;
+
+          span {
+            color: ${props.theme.palette.white};
+          }
+
+          svg {
+            color: ${props.theme.palette.white};
+            fill: ${props.theme.palette.white};
+          }
+
+          ${ButtonFocus} {
+            box-shadow: inset 0 0 0 0px transparent;
+          }
+
+          ${RippleEffect} {
+            background-color: ${props.theme.palette[`${props.color}-700`]};
+          }
+
+          &:focus {
+            ${ButtonFocus} {
+              box-shadow: inset 0 0 0 2px ${props.theme.palette['blue-600']};
+            }
+          }
+
+          &:hover:not(:disabled):not(:focus) {
+            background-color: ${props.theme.palette[`${props.color}-500`]};
+            span {
+              color: ${props.theme.palette.white};
+            }
+            svg {
+              color: ${props.theme.palette.white} !important;
+              fill: ${props.theme.palette.white} !important;
+            }
+          }
+
+          &:disabled {
+            opacity: 0.4;
+            background-color: ${props.theme.palette[`${props.color}-600`]};
+            span {
+              color: ${props.theme.palette.white};
+            }
+
+            svg {
+              color: ${props.theme.palette.white} !important;
+              fill: ${props.theme.palette.white} !important;
+            }
+          }
+        }
+      `}
   }
 `;

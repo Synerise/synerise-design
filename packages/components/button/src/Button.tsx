@@ -19,10 +19,22 @@ export interface Props extends Omit<ButtonProps, 'type'> {
     | 'ghost-primary'
     | 'ghost'
     | 'ghost-white'
-    | 'danger'
-    | 'success'
-    | 'warning';
+    | 'custom-color';
   mode?: string;
+  color?:
+    | string
+    | 'blue'
+    | 'grey'
+    | 'red'
+    | 'green'
+    | 'yellow'
+    | 'pink'
+    | 'mars'
+    | 'orange'
+    | 'fern'
+    | 'cyan'
+    | 'purple'
+    | 'violet';
   groupVariant?: string | 'left-rounded' | 'squared' | 'right-rounded';
   justifyContent?: JustifyContentProperty;
   loading?: boolean | { delay?: number };
@@ -39,6 +51,7 @@ const Button: React.FC<Props> = ({
   loading = false,
   onClick,
   className,
+  color = 'red',
   ...antdProps
 }) => {
   const rippleRef = React.useRef<HTMLSpanElement>(null);
@@ -76,6 +89,7 @@ const Button: React.FC<Props> = ({
       loading={loading}
       onClick={handleClick}
       className={`ds-button ${className}`}
+      color={color}
       /* eslint-disable-next-line react/jsx-props-no-spreading */
       {...antdProps}
     >
