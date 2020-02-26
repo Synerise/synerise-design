@@ -13,13 +13,17 @@ export const AddButtonLabel = styled.span`
 
 export const AddButton = styled(Button)<{ withLabel: boolean }>`
   &&& {
-    width: ${(props): string => (props.withLabel ? 'auto' : '48px')};
+    width: ${(props): string => {
+      if (props.block) return '100%';
+      return props.withLabel ? 'auto' : '48px';
+    }};
     height: 48px;
     padding: 0;
     border-radius: 3px;
     border: 1px dashed ${({ theme }): string => theme.palette['grey-300']};
     background-color: transparent;
     transition: all 0.3s ease;
+    justify-content: flex-start;
 
     ${IconContainer} {
       margin: 12px;
