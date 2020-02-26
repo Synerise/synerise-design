@@ -1,0 +1,11 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# 0.1.0 (2020-02-26)
+
+### Features
+
+- **add-button:** create AddButton component ([53fc502](https://github.com/Synerise/synerise-design/commit/53fc50294a9133e4692313e4860e78a4cd0847fd))
+- **add-button:** fix hover styles ([a9d0543](https://github.com/Synerise/synerise-design/commit/a9d0543996cc04029cd3222f7061738e0d7b72e7))

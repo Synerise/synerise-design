@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.42.0](https://github.com/synerise/synerise-design/compare/portal@0.41.1...portal@0.42.0) (2020-02-26)
+
+
+### Features
+
+* **add-button:** create AddButton component ([53fc502](https://github.com/synerise/synerise-design/commit/53fc50294a9133e4692313e4860e78a4cd0847fd))
+
+
+
+
+
 ## [0.41.1](https://github.com/synerise/synerise-design/compare/portal@0.41.0...portal@0.41.1) (2020-02-26)
 
 
