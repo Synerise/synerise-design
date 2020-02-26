@@ -15,7 +15,7 @@ const Navbar: React.FC<NavbarProps> & { Divider: typeof S.NavbarDivider } = prop
   const { className, color, logo, description, children, actions, additionalNodes } = props;
 
   return (
-    <S.Navbar className={`ds-navbar ${className}`} color={color}>
+    <S.Navbar className={`ds-navbar ${className || ''}`} color={color}>
       {typeof logo === 'string' ? <img src={logo} alt="" /> : logo}
       <S.NavbarDivider />
       <S.NavbarDescription>{description}</S.NavbarDescription>

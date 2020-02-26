@@ -56,7 +56,7 @@ const CardSelect: React.FC<CardSelectProps> = ({
       size={size}
       stretchToFit={stretchToFit}
       onClick={handleClick}
-      className={`ds-card-select ${className}`}
+      className={`ds-card-select ${className || ''}`}
       data-testid="test-id"
     >
       <S.Aside size={size}>

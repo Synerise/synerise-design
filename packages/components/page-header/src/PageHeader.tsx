@@ -56,7 +56,7 @@ const PageHeader: React.FC<PageHeaderProps> = props => {
   } = props;
 
   return (
-    <S.MainContainer isolated={isolated} className={`${className} ds-page-header`}>
+    <S.MainContainer isolated={isolated} className={`${className || ''} ds-page-header`}>
       <S.PageHeaderContainer>
         {onGoBack && (
           <S.PageHeaderBack>

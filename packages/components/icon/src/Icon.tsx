@@ -18,7 +18,7 @@ const Icon: React.FC<IconProps> = props => {
 
   return (
     <S.IconContainer
-      className={`ds-icon ${className}`}
+      className={`ds-icon ${className || ''}`}
       style={style}
       color={color}
       title={name}

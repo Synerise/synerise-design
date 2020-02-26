@@ -22,7 +22,7 @@ class ProgressBar extends React.PureComponent<ProgressProps> {
   render(): React.ReactNode {
     const { showLabel, description, amount, percent, type, status, strokeColor, strokeLinecap, className } = this.props;
     return (
-      <div className={`${className} progress-bar-container`} data-testid="progress-bar-container">
+      <div className={`${className || ''} progress-bar-container`} data-testid="progress-bar-container">
         {showLabel && (
           <span className="progress-bar-label" data-testid="progress-bar-label">
             <strong data-testid="progress-bar-max-value">{amount}</strong>

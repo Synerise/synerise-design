@@ -19,7 +19,7 @@ const ButtonGroup: React.FC<ButtonGroupProps> = ({
   fullWidth,
   buttonsPosition = 'center',
 }) => (
-  <S.Container className={`ds-button-group ${className}`} fullWidth={fullWidth} buttonsPosition={buttonsPosition}>
+  <S.Container className={`ds-button-group ${className || ''}`} fullWidth={fullWidth} buttonsPosition={buttonsPosition}>
     {title && <S.Title>{title}</S.Title>}
     <Button.Group size={size}>{children}</Button.Group>
     {description && <S.Description>{description}</S.Description>}

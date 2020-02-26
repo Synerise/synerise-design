@@ -22,7 +22,7 @@ export type LayoutProps = {
 const Layout: React.FC<LayoutProps> = props => {
   const { header, left, right, children, className, styles } = props;
   return (
-    <S.LayoutContainer className={`ds-layout ${className}`}>
+    <S.LayoutContainer className={`ds-layout ${className || ''}`}>
       {header ? <S.LayoutHeader className="ds-layout__header">{header}</S.LayoutHeader> : null}
       <S.LayoutBody>
         <>

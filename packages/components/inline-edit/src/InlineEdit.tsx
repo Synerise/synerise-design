@@ -99,7 +99,7 @@ const InlineEdit: React.FC<InlineEditProps> = ({
 
   return (
     <S.InPlaceEditableInputContainer
-      className={`ds-inline-edit ${className}`}
+      className={`ds-inline-edit ${className || ''}`}
       style={style}
       size={size}
       disabled={disabled}
