@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-page-header@0.8.0...@synerise/ds-page-header@0.8.1) (2020-02-26)
+
+### Bug Fixes
+
+- fix undefined class ([36a0dab](https://github.com/synerise/synerise-design/commit/36a0dabe726c71e05f22612dde4ffd1ae7236e38))
+
 # [0.8.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-page-header@0.7.13...@synerise/ds-page-header@0.8.0) (2020-02-24)
 
 ### Features

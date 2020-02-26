@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.7.0...@synerise/ds-button@0.7.1) (2020-02-26)
+
+### Bug Fixes
+
+- **button:** fix border-radius ([eb1b690](https://github.com/synerise/synerise-design/commit/eb1b6902e725e9a03722cf7d804a017fea8c4827))
+
 # [0.7.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.6.11...@synerise/ds-button@0.7.0) (2020-02-24)
 
 ### Features

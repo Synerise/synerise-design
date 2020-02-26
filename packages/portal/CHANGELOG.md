@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.41.1](https://github.com/synerise/synerise-design/compare/portal@0.41.0...portal@0.41.1) (2020-02-26)
+
+
+### Bug Fixes
+
+* **deps:** update dependency antd to v3.26.12 ([690717d](https://github.com/synerise/synerise-design/commit/690717d06e322aee18f65644971ef1e0779d5d93))
+
+
+
+
+
 # [0.41.0](https://github.com/synerise/synerise-design/compare/portal@0.40.0...portal@0.41.0) (2020-02-25)
 
 

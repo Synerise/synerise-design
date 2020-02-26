@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.17](https://github.com/Synerise/synerise-design/compare/@synerise/ds-block@0.2.16...@synerise/ds-block@0.2.17) (2020-02-26)
+
+### Bug Fixes
+
+- fix undefined class ([36a0dab](https://github.com/Synerise/synerise-design/commit/36a0dabe726c71e05f22612dde4ffd1ae7236e38))
+
 ## [0.2.16](https://github.com/Synerise/synerise-design/compare/@synerise/ds-block@0.2.15...@synerise/ds-block@0.2.16) (2020-02-24)
 
 **Note:** Version bump only for package @synerise/ds-block
