@@ -36,7 +36,7 @@ export const AddButton = styled(Button)<{ withLabel: boolean }>`
       display: none;
     }
 
-    &:hover:not(:disabled) {
+    &:hover:not(:disabled):not(:focus) {
       border: 1px dashed ${({ theme }): string => theme.palette['grey-400']} !important;
       background-color: transparent !important;
 
