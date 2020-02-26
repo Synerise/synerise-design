@@ -112,8 +112,13 @@ export default styled(({ mode, type, loading, justifyContent, ...rest }) => (
     padding: 0 12px;
     position: relative;
     overflow: hidden;
-    border-radius: ${(props): string => (props.shape === 'circle' ? '50% !important' : '3px')};
     justify-content: ${(props): FlattenInterpolation<ThemeProps> | false => props.justifyContent};
+    ${(props): FlattenInterpolation<ThemeProps> | false =>
+      props.shape &&
+      props.shape === 'circle' &&
+      css`
+        border-radius: 50%;
+      `};
     > *:not(.btn-focus) {
       position: relative;
     }
