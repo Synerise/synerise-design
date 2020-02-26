@@ -30,7 +30,7 @@ const CardTabs: React.FC<CardTabsProps> = ({ className, onChangeOrder, onAddTab,
   };
 
   return (
-    <S.CardTabsContainer className={`ds-card-tabs ${className}`} data-testid="card-tabs-container">
+    <S.CardTabsContainer className={`ds-card-tabs ${className || ''}`} data-testid="card-tabs-container">
       {onChangeOrder ? (
         <div data-testid="card-tabs-sortable">
           <ReactSortable className="ds-card-tags-sortable" list={children} setList={handleChangeOrder}>

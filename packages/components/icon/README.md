@@ -1,8 +1,9 @@
 ---
-
 id: icon
 title: Icon
----Icon UI Component
+---
+
+Icon UI Component
 
 ## Single icon
 

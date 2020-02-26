@@ -67,7 +67,7 @@ const FileUploader: React.FC<FileUploaderProps> = ({
   const hasError = Boolean(error) || !uploadSuccess;
   const errors = hasError && !uploadSuccess ? [error].concat('To many files uploaded') : [error];
   return (
-    <S.Container className={`ds-file-uploader ${className}`}>
+    <S.Container className={`ds-file-uploader ${className || ''}`}>
       {label && (
         <S.Label>
           <span>{label}</span>

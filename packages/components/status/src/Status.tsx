@@ -13,7 +13,7 @@ const Status: React.FC<StatusProps> = ({ type, onClick, className, label }) => {
   return (
     <S.StatusTag
       onClick={onClick}
-      className={`ds-status ${className}`}
+      className={`ds-status ${className || ''}`}
       shape={TagShape.STATUS_NEUTRAL}
       type={type}
       name={label}

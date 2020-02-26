@@ -20,7 +20,7 @@ class Autocomplete extends React.PureComponent<AutocompleteProps> {
   render(): React.ReactElement {
     const { className, label, description, errorText, disabled } = this.props;
     return (
-      <S.AutocompleteWrapper className={`ds-autocomplete ${className}`}>
+      <S.AutocompleteWrapper className={`ds-autocomplete ${className || ''}`}>
         {label && (
           <S.LabelWrapper>
             <Label>{label}</Label>

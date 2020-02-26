@@ -159,7 +159,7 @@ const ManageableList: React.FC<ManageableListProps> = ({
 
   return (
     <S.ManageableListContainer
-      className={`ds-manageable-list ${className}`}
+      className={`ds-manageable-list ${className || ''}`}
       listType={type}
       greyBackground={greyBackground}
     >

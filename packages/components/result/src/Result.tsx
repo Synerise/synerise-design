@@ -66,7 +66,7 @@ const Result: React.FC<ResultProps> = ({
   const { IconComponent, ...iconContainerStyles } = mapTypeToStatus[type];
 
   return (
-    <S.ResultContainer className={`ds-result ${className}`} noSearchResults={noSearchResults}>
+    <S.ResultContainer className={`ds-result ${className || ''}`} noSearchResults={noSearchResults}>
       <S.MainPanel>
         <S.ResultIconContainer>
           {customIcon || (

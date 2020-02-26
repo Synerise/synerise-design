@@ -12,7 +12,7 @@ const Block: React.FC<BlockProps> = ({ className, children, isDragging, icon }) 
   const ref = React.useRef<HTMLDivElement>(null);
 
   return (
-    <S.BlockWrapper className={`ds-block ${className} ${isDragging ? 'is-dragging' : ''}`} ref={ref}>
+    <S.BlockWrapper className={`ds-block ${className || ''} ${isDragging ? 'is-dragging' : ''}`} ref={ref}>
       <S.BlockContent>
         {icon} <S.BlockName>{children}</S.BlockName>
       </S.BlockContent>
