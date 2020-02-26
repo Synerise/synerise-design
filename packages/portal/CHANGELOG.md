@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.43.0](https://github.com/synerise/synerise-design/compare/portal@0.42.0...portal@0.43.0) (2020-02-26)
+
+
+### Features
+
+* **button:** custom-color type instead of danger, warning and success ([4479348](https://github.com/synerise/synerise-design/commit/447934862ea6ff1154bb1c38ac63e553c2bb4f92))
+
+
+
+
+
 # [0.42.0](https://github.com/synerise/synerise-design/compare/portal@0.41.1...portal@0.42.0) (2020-02-26)
 
 
