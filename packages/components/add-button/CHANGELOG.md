@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-add-button@0.1.0...@synerise/ds-add-button@0.1.1) (2020-02-26)
+
+### Bug Fixes
+
+- **add-button:** fix fullwidth styles ([e082d9e](https://github.com/Synerise/synerise-design/commit/e082d9e4b58d83da706b09944fb35e4c0ecf4018))
+
 # 0.1.0 (2020-02-26)
 
 ### Features
