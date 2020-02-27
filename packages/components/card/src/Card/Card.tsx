@@ -11,11 +11,11 @@ export interface CardProps {
   style?: React.CSSProperties;
   withHeader?: boolean;
   compactHeader?: boolean;
-  title?: string;
-  description?: React.ReactNode | string;
+  title?: React.ReactNode;
+  description?: React.ReactNode;
   icon?: React.ReactNode;
   iconColor?: string;
-  size?: 'medium';
+  size?: 'small' | 'medium' | 'large' | 'extraLarge';
   headerSideChildren?: React.ReactNode;
 }
 
