@@ -60,7 +60,7 @@
     "eslint-config-standard-react": "9.2.0",
     "eslint-plugin-flowtype": "4.6.0",
     "eslint-plugin-jest": "23.8.0",
-    "eslint-plugin-react": "7.17.0",
+    "eslint-plugin-react": "7.18.3",
     "eslint-plugin-react-hooks": "2.3.0",
     "faker": "4.1.0",
     "less-loader": "5.0.0",
