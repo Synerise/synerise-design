@@ -4,14 +4,10 @@ import { Input, TextArea, RawInput, InputGroup } from '@synerise/ds-input';
 import Icon from '@synerise/ds-icon';
 import FileM from '@synerise/ds-icon/dist/icons/FileM';
 import Select from '@synerise/ds-select';
-import { array, boolean, number, text } from "@storybook/addon-knobs";
-import { action } from "@storybook/addon-actions";
+import { array, boolean, number, text } from '@storybook/addon-knobs';
+import { action } from '@storybook/addon-actions';
 
-const decorator = (storyFn) => (
-  <div style={{ width: '300px' }}>
-    {storyFn()}
-  </div>
-);
+const decorator = storyFn => <div style={{ width: '300px' }}>{storyFn()}</div>;
 
 const stories = {
   basic: () => {
@@ -19,6 +15,7 @@ const stories = {
 
     return (
       <Input
+        tooltip={text('tooltip', 'This is example tooltip!')}
         placeholder={text('placeholder', 'Placeholder')}
         label={text('label', 'Label')}
         description={text('description', 'Description')}
@@ -34,7 +31,12 @@ const stories = {
     const [value, setValue] = React.useState<string>('');
 
     const select = (
-      <Select onChange={action('OnChange')} style={{ width: '50%' }} defaultValue="post">
+      <Select
+        tooltip={text('tooltip', 'This is example tooltip!')}
+        onChange={action('OnChange')}
+        style={{ width: '50%' }}
+        defaultValue="post"
+      >
         <Select.Option value="post">POST</Select.Option>
         <Select.Option value="get">GET</Select.Option>
       </Select>

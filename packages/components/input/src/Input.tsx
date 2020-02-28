@@ -5,9 +5,11 @@ import { InputProps, TextAreaProps } from 'antd/lib/input';
 import './style/index.less';
 import { StyledComponent } from 'styled-components';
 import * as S from './Input.styles';
+import Label from './Label/Label';
 
 export interface Props {
   className?: string;
+  tooltip?: React.ReactNode;
   errorText?: React.ReactNode | string;
   label?: React.ReactNode | string;
   description?: React.ReactNode | string;
@@ -29,6 +31,7 @@ const enhancedInput = <P extends object>(
   label,
   description,
   counterLimit,
+  tooltip,
   icon1,
   icon2,
   resetMargin,
@@ -38,7 +41,7 @@ const enhancedInput = <P extends object>(
   const [charCount, setCharCount] = React.useState<number>(0);
 
   const showError = Boolean(errorText);
-  const id = uuid();
+  const id = React.useMemo(() => uuid(), []);
 
   const inputRef = React.useRef<HTMLInputElement | HTMLTextAreaElement>();
 
@@ -71,7 +74,7 @@ const enhancedInput = <P extends object>(
     <S.OuterWrapper className={className} resetMargin={resetMargin}>
       {(label || counterLimit) && (
         <S.ContentAbove>
-          <S.Label htmlFor={id}>{label}</S.Label>
+          <Label label={label} id={id} tooltip={tooltip} />
           {counterLimit && (
             <S.Counter data-testid="counter">
               {charCount}/{counterLimit}

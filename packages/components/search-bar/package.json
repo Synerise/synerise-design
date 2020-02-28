@@ -23,6 +23,7 @@
   "types": "dist/index.d.ts",
   "dependencies": {
     "@synerise/ds-button": "^0.8.1",
+    "@synerise/ds-input": "^0.9.7",
     "@synerise/ds-typography": "*",
     "antd": "*"
   },
