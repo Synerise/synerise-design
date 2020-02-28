@@ -36,7 +36,7 @@ async function main() {
     [pkg.name]: pkg.version,
   }));
 
-  const suggestedExternalDependencies = ['antd'];
+  const suggestedExternalDependencies = [];
 
   const suggestedDependencies = ['button', 'typography', 'card'].map(toPackageName);
 
