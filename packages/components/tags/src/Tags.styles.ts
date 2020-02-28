@@ -35,6 +35,7 @@ export const CreateTagDropdownButton = styled(Button)<{ marginless: boolean }>`
   text-overflow: ellipsis;
   display: flex;
   align-items: center;
+  margin: 0 8px 8px;
 
   && {
     font-weight: 400;
@@ -78,10 +79,19 @@ export const Seperator = styled.hr`
   background-position: top;
 `;
 
+export const DropdownContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 8px 0;
+`;
+
 export const DropdownTagsContainer = styled.div<{ isCreatable: boolean }>`
   display: flex;
   flex-direction: column;
   padding: ${(props): string => (props.isCreatable ? '8px 0 0' : '0')};
+  max-height: 320px;
+  overflow-y: auto;
+  padding: 0 8px;
 
   > * {
     width: fit-content;
@@ -89,13 +99,8 @@ export const DropdownTagsContainer = styled.div<{ isCreatable: boolean }>`
     display: block;
     width: inherit;
     cursor: pointer;
+    flex-shrink: 0;
   }
-`;
-
-export const DropdownContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding: 8px;
 `;
 
 export const DropdownSearch = styled(Dropdown.SearchInput)`
