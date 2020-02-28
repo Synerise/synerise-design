@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search-bar@0.1.6...@synerise/ds-search-bar@0.2.0) (2020-02-28)
+
+### Features
+
+- **input:** add label with tooltip component ([4359a43](https://github.com/Synerise/synerise-design/commit/4359a43130b7d146d8f49a23da8aaed550865ac2))
+
 ## [0.1.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search-bar@0.1.4...@synerise/ds-search-bar@0.1.5) (2020-02-26)
 
 **Note:** Version bump only for package @synerise/ds-search-bar

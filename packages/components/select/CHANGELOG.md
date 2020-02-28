@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.7.13...@synerise/ds-select@0.8.0) (2020-02-28)
+
+### Features
+
+- **input:** add label with tooltip component ([4359a43](https://github.com/synerise/synerise-design/commit/4359a43130b7d146d8f49a23da8aaed550865ac2))
+
 ## [0.7.13](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.7.12...@synerise/ds-select@0.7.13) (2020-02-26)
 
 **Note:** Version bump only for package @synerise/ds-select
