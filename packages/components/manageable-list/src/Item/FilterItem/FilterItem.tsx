@@ -1,14 +1,22 @@
 import * as React from 'react';
 import { withTheme } from 'styled-components';
-import { CheckS, CircleShapeM, WarningFillM } from '@synerise/ds-icon/dist/icons';
+import {
+  CheckS,
+  CircleShapeM,
+  DuplicateM,
+  RenameM,
+  OptionHorizontalM,
+  TrashM,
+  WarningFillM,
+} from '@synerise/ds-icon/dist/icons';
 import Icon from '@synerise/ds-icon';
 import Popconfirm from '@synerise/ds-popconfirm';
 import ModalProxy from '@synerise/ds-modal';
 import Result from '@synerise/ds-result';
 import Button from '@synerise/ds-button';
+import Dropdown from '@synerise/ds-dropdown';
 import * as S from '../ContentItem/ContentItem.styles';
-import { SelectFilterItem } from './FilterItem.styles';
-import ItemActions from '../ItemActions/ItemActions';
+import { SelectFilterItem, MenuList, MenuItem, ItemHeader } from './FilterItem.styles';
 import ItemName from '../ItemName/ItemName';
 import { ItemProps } from '../Item';
 import ItemMeta from '../ItemMeta/ItemMeta';
@@ -59,10 +67,14 @@ const FilterItem: React.FC<FilterItemProps> = ({
     return onRemove ? setConfirmDeleteVisible(true) : false;
   }, [onRemove]);
 
+  const handleDuplicate = React.useCallback((): void => {
+    return onDuplicate && onDuplicate({ id: item.id });
+  }, [item.id, onDuplicate]);
+
   return (
     <>
       <S.ItemContainer opened={false} greyBackground={greyBackground} key={item.id} data-testid="filter-item">
-        <S.ItemHeader>
+        <ItemHeader>
           <S.ItemHeaderPrefix>
             <SelectFilterItem data-testid={selected && 'filter-item-selected'}>
               {selected ? (
@@ -87,14 +99,33 @@ const FilterItem: React.FC<FilterItemProps> = ({
           <ItemName item={item} editMode={editMode} onUpdate={updateName} searchQuery={searchQuery} />
           <S.ItemHeaderSuffix>
             {item.user && item.created && <ItemMeta user={item.user} created={item.created} />}
-            <ItemActions
-              item={item}
-              duplicateAction={onDuplicate}
-              removeAction={handleRemove}
-              editAction={enterEditMode}
-            />
+            <Dropdown
+              overlay={
+                <MenuList>
+                  {item.canUpdate && (
+                    <MenuItem onClick={enterEditMode}>
+                      <Icon component={<RenameM />} /> Edit name
+                    </MenuItem>
+                  )}
+                  {item.canDuplicate && (
+                    <MenuItem onClick={handleDuplicate}>
+                      <Icon component={<DuplicateM />} /> Duplicate
+                    </MenuItem>
+                  )}
+                  {item.canDelete && (
+                    <MenuItem danger onClick={handleRemove}>
+                      <Icon component={<TrashM />} /> Delete
+                    </MenuItem>
+                  )}
+                </MenuList>
+              }
+            >
+              <Button type="ghost" mode="single-icon">
+                <Icon component={<OptionHorizontalM />} />
+              </Button>
+            </Dropdown>
           </S.ItemHeaderSuffix>
-        </S.ItemHeader>
+        </ItemHeader>
       </S.ItemContainer>
       <ModalProxy
         blank

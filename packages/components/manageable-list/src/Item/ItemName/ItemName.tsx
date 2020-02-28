@@ -53,12 +53,16 @@ const ItemName: React.FC<ItemLabelProps> = ({ item, onUpdate, editMode, searchQu
           autoFocus
         />
       ) : (
-        <S.ItemLabel data-testid="list-item-name" dangerouslySetInnerHTML={{ __html: name }}></S.ItemLabel>
-      )}
-      {item.description && (
-        <Tooltip description={item.description} placement="right" trigger="click" type="largeSimple">
-          <S.DescriptionIcon component={<InfoFillS />} color="#b5bdc3" />
-        </Tooltip>
+        <S.ItemLabelWithIcon>
+          <S.ItemLabel data-testid="list-item-name" dangerouslySetInnerHTML={{ __html: name }}></S.ItemLabel>
+          {item.description && (
+            <Tooltip description={item.description} placement="top" trigger="hover" type="largeSimple">
+              <span>
+                <S.DescriptionIcon component={<InfoFillS />} color="#b5bdc3" />
+              </span>
+            </Tooltip>
+          )}
+        </S.ItemLabelWithIcon>
       )}
     </S.ItemLabelWrapper>
   );

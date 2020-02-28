@@ -1,4 +1,7 @@
 import styled from 'styled-components';
+import { IconContainer } from '@synerise/ds-icon/dist/Icon.styles';
+import { ItemLabel } from '../SimpleItem/SimpleItem.styles';
+import { ItemMeta } from '../ItemMeta/ItemMeta.styles';
 
 // eslint-disable-next-line import/prefer-default-export
 export const SelectFilterItem = styled.div`
@@ -22,5 +25,68 @@ export const SelectFilterItem = styled.div`
       top: 4px;
       left: 4px;
     }
+  }
+`;
+
+export const MenuList = styled.div`
+  && {
+    background-color: ${(props): string => props.theme.palette.white};
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 8px;
+    width: 216px;
+  }
+`;
+
+export const MenuItem = styled.div<{ danger?: boolean }>`
+  && {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    border-radius: 3px; 
+    height: 32px;
+    width: 100%;
+    font-size: 13px;
+    line-height: 1.38;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 0 8px;
+    
+    background-color: ${(props): string => (props.danger ? props.theme.palette['red-050'] : props.theme.palette.white)};
+    color: ${(props): string => (props.danger ? props.theme.palette['red-600'] : props.theme.palette['grey-700'])};
+    &:hover {
+      background-color: background-color: ${(props): string =>
+        props.danger ? props.theme.palette['red-050'] : props.theme.palette.white};;
+      color: ${(props): string => (props.danger ? props.theme.palette['red-600'] : props.theme.palette['grey-700'])};
+    }
+    
+    ${IconContainer} {
+      margin-right: 12px;
+      svg {
+        color: ${(props): string => (props.danger ? props.theme.palette['red-600'] : props.theme.palette['grey-600'])};
+        fill: ${(props): string => (props.danger ? props.theme.palette['red-600'] : props.theme.palette['grey-600'])};
+      }
+    }
+  }
+`;
+
+export const ItemHeader = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: stretch;
+  width: 100%;
+  padding: 12px;
+
+  &:hover {
+    ${ItemLabel} {
+      color: ${({ theme }): string => theme.palette['grey-800']};
+    }
+  }
+
+  ${ItemMeta} {
+    margin-right: 12px;
   }
 `;

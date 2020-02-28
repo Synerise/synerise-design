@@ -30,7 +30,7 @@ const ITEMS = [
   {
     id: '0000',
     name: 'Filter #1',
-    description: 'Lorem Ipsum...',
+    description: 'The last 10 days of all customers sales ',
     created: '01-05-2020 12:02',
     canUpdate: true,
     canDelete: true,
@@ -44,7 +44,7 @@ const ITEMS = [
   {
     id: '0001',
     name: 'Filter #2',
-    description: 'Lorem Ipsum...',
+    description: 'The last 10 days of all customers sales The last 10 days of all customers sales ',
     created: '01-12-2019 12:02',
     canUpdate: false,
     canDelete: false,
@@ -72,7 +72,7 @@ const ITEMS = [
   {
     id: '0003',
     name: 'Filter #4',
-    description: 'Lorem Ipsum...',
+    description: 'The last 10 days of all customers sales ',
     created: '08-22-2018 12:02',
     canUpdate: true,
     canDelete: true,
@@ -86,7 +86,7 @@ const ITEMS = [
   {
     id: '0004',
     name: 'Filter #5',
-    description: 'Lorem Ipsum...',
+    description: 'The last 10 days of all customers sales ',
     created: '01-05-2020 12:02',
     canUpdate: true,
     canDelete: true,
@@ -100,7 +100,7 @@ const ITEMS = [
   {
     id: '0005',
     name: 'Filter #6',
-    description: 'Lorem Ipsum...',
+    description: 'The last 10 days of all customers sales ',
     created: '01-12-2019 12:02',
     canUpdate: false,
     canDelete: false,
@@ -128,7 +128,7 @@ const ITEMS = [
   {
     id: '0007',
     name: 'Filter #8',
-    description: 'Lorem Ipsum...',
+    description: 'The last 10 days of all customers sales ',
     created: '08-22-2018 12:02',
     canUpdate: true,
     canDelete: true,
@@ -142,7 +142,7 @@ const ITEMS = [
   {
     id: '0008',
     name: 'Filter #9',
-    description: 'Lorem Ipsum...',
+    description: 'The last 10 days of all customers sales ',
     created: '01-12-2019 12:02',
     canUpdate: false,
     canDelete: false,
@@ -170,7 +170,7 @@ const ITEMS = [
   {
     id: '0010',
     name: 'Filter #11',
-    description: 'Lorem Ipsum...',
+    description: 'The last 10 days of all customers sales ',
     created: '08-22-2018 12:02',
     canUpdate: true,
     canDelete: true,
@@ -222,6 +222,11 @@ const stories = {
           {
             ...itemForDuplication,
             id: Date.now(),
+            categories: ['My filters', 'All filters'],
+            canUpdate: true,
+            canDelete: true,
+            canDuplicate: true,
+            name: `${itemForDuplication.name} - copy`
           }
         ]
       })

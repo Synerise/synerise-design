@@ -74,3 +74,10 @@ export const ItemContainer = styled.div`
 export const DescriptionIcon = styled(Icon)`
   margin-left: 2px;
 `;
+
+export const ItemLabelWithIcon = styled.span`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+`;
