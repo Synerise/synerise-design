@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-filter@0.1.7...@synerise/ds-item-filter@0.2.0) (2020-02-28)
+
+### Features
+
+- **item-filter:** update docs ([a411237](https://github.com/Synerise/synerise-design/commit/a4112374fdb77ae5884adcd3b76f17e1edd7d6e9))
+- **item-filter:** use ds-search-bar ([6b62cd6](https://github.com/Synerise/synerise-design/commit/6b62cd6f3ad94cdd8a9e332f4e4b981e6bb8c109))
+
 ## [0.1.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-filter@0.1.6...@synerise/ds-item-filter@0.1.7) (2020-02-28)
 
 **Note:** Version bump only for package @synerise/ds-item-filter

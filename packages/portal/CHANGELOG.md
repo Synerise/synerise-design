@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.45.0](https://github.com/synerise/synerise-design/compare/portal@0.44.1...portal@0.45.0) (2020-02-28)
+
+
+### Features
+
+* **item-filter:** update docs ([a411237](https://github.com/synerise/synerise-design/commit/a4112374fdb77ae5884adcd3b76f17e1edd7d6e9))
+* **item-filter:** update list item ([a5696db](https://github.com/synerise/synerise-design/commit/a5696db303a548756814f0dc8fe473ca1b60b300))
+
+
+
+
+
 ## [0.44.1](https://github.com/synerise/synerise-design/compare/portal@0.44.0...portal@0.44.1) (2020-02-28)
 
 **Note:** Version bump only for package portal
