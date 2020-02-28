@@ -15,6 +15,7 @@ const getTexts = () => ({
   noResults: text('No results', 'No results'),
   searchPlaceholder: text('Search placeholder', 'Search'),
   title: text('Drawer title', 'Filter'),
+  searchClearTooltip: text('Clear tooltip', 'Clear'),
 });
 
 const CATEGORIES = [

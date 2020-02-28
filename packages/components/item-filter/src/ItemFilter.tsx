@@ -62,6 +62,7 @@ const ItemFilter: React.FC<ItemFilterProps> = ({
     title: <FormattedMessage id="DS.ITEM-FILTER.TITLE" />,
     more: <FormattedMessage id="DS.MANAGABLE-LIST.MORE" />,
     less: <FormattedMessage id="DS.MANAGABLE-LIST.LESS" />,
+    searchClearTooltip: <FormattedMessage id="DS.ITEM-FILETER.SEARCH-CLEAR" />,
   },
   maxToShowItems = 200,
   categories,
@@ -99,6 +100,7 @@ const ItemFilter: React.FC<ItemFilterProps> = ({
           placeholder={texts.searchPlaceholder as string}
           value={searchQuery}
           onClearInput={(): void => setSearchQuery('')}
+          clearTooltip={texts.searchClearTooltip}
           iconLeft={<Icon component={<SearchM />} color={theme.palette['grey-600']} />}
         />
       </Drawer.DrawerHeaderWithoutPadding>
