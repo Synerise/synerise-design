@@ -5,13 +5,13 @@ import Button from '@synerise/ds-button';
 import Tabs from '@synerise/ds-tabs';
 import Icon from '@synerise/ds-icon';
 import { CloseM } from '@synerise/ds-icon/dist/icons';
-import SearchInput from '@synerise/ds-dropdown/dist/elements/SearchInput/SearchInput';
 import SearchM from '@synerise/ds-icon/dist/icons/SearchM';
 import ManageableList from '@synerise/ds-manageable-list';
 import Result from '@synerise/ds-result';
 import { ItemProps } from '@synerise/ds-manageable-list/dist/Item/Item';
 import { withTheme } from 'styled-components';
 import { FormattedMessage } from 'react-intl';
+import SearchBar from '@synerise/ds-search-bar';
 import * as S from './ItemFIlter.styles';
 
 type Category = {
@@ -62,6 +62,7 @@ const ItemFilter: React.FC<ItemFilterProps> = ({
     title: <FormattedMessage id="DS.ITEM-FILTER.TITLE" />,
     more: <FormattedMessage id="DS.MANAGABLE-LIST.MORE" />,
     less: <FormattedMessage id="DS.MANAGABLE-LIST.LESS" />,
+    searchClearTooltip: <FormattedMessage id="DS.ITEM-FILETER.SEARCH-CLEAR" />,
   },
   maxToShowItems = 200,
   categories,
@@ -94,11 +95,12 @@ const ItemFilter: React.FC<ItemFilterProps> = ({
           </S.ItemFilterHeader>
           <Tabs activeTab={activeTab} tabs={categories} handleTabClick={setActiveTab} underscore />
         </Drawer.DrawerHeader>
-        <SearchInput
+        <SearchBar
           onSearchChange={setSearchQuery}
           placeholder={texts.searchPlaceholder as string}
           value={searchQuery}
           onClearInput={(): void => setSearchQuery('')}
+          clearTooltip={texts.searchClearTooltip}
           iconLeft={<Icon component={<SearchM />} color={theme.palette['grey-600']} />}
         />
       </Drawer.DrawerHeaderWithoutPadding>
