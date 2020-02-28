@@ -1,14 +1,16 @@
 import * as React from 'react';
 import { SelectProps, SelectValue } from 'antd/lib/select';
-import { ErrorText, Description, Label } from '@synerise/ds-typography';
+import { ErrorText, Description } from '@synerise/ds-typography';
+import { Label } from '@synerise/ds-input';
 import '@synerise/ds-core/dist/js/style';
 import './style/index.less';
 import * as S from './Select.styles';
 
 interface Props<T = SelectValue> extends SelectProps<T> {
-  errorText?: React.ReactNode | string;
-  label?: React.ReactNode | string;
-  description?: React.ReactNode | string;
+  errorText?: React.ReactNode;
+  label?: React.ReactNode;
+  description?: React.ReactNode;
+  tooltip?: React.ReactNode;
 }
 
 class Select extends React.Component<Props> {
@@ -16,15 +18,11 @@ class Select extends React.Component<Props> {
   static OptGroup = S.AntdSelectOptGroup;
 
   render(): React.ReactNode {
-    const { label, description, errorText, ...antdProps } = this.props;
+    const { label, description, errorText, tooltip, ...antdProps } = this.props;
 
     return (
       <>
-        {label && (
-          <S.LabelWrapper>
-            <Label>{label}</Label>
-          </S.LabelWrapper>
-        )}
+        <Label label={label} tooltip={tooltip} />
         <S.AntdSelect
           // eslint-disable-next-line react/jsx-props-no-spreading
           {...antdProps}

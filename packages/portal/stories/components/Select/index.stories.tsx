@@ -24,6 +24,7 @@ const dropdownStyles = {};
 
 const stories = {
   default: () => ({
+    tooltip: text('tooltip', 'This is example tooltip!'),
     description: text('description', 'Description'),
     errorText: text('errorText', 'Error'),
     label: text('label', 'Label'),
