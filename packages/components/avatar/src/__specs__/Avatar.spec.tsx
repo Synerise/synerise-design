@@ -6,7 +6,7 @@ import Badge from '@synerise/ds-badge';
 
 const CIRCLE_SHAPE = 'circle';
 const SQUARE_SHAPE = 'square';
-const DEF_SIZE = 'default';
+const DEF_SIZE = 'medium';
 const FERN = 'fern';
 const RED = 'red';
 const IMG_SRC = 'https://hsto.org/web/77c/061/c05/77c061c0550f4acd98380bf554eb8886.png';
@@ -54,11 +54,11 @@ describe('Avatar', () => {
     expect(img).toHaveAttribute('src', expect.stringContaining(`${IMG_SRC}`));
   });
 
-  it('should render with badge dot and proper styles', () => {
+  it('should render with badge dot', () => {
     // ARRANGE
     const { container } = renderWithProvider(
       <Badge status={'default'}>
-        <Avatar hasStatus src={IMG_SRC} />
+        <Avatar hasStatus={true} src={IMG_SRC} size={'small'} />
       </Badge>
     );
 
@@ -70,7 +70,6 @@ describe('Avatar', () => {
     expect(container).toContainElement(badge as HTMLElement);
     expect(container).toContainElement(avatar as HTMLElement);
     expect(container).toContainElement(dot as HTMLElement);
-    expect(dot).toHaveStyle('border: 2px solid #ffffff;top: 5px;right: 5px;width: 10px;height: 10px;');
   });
 
   it('should render with proper styles', () => {
