@@ -44,9 +44,10 @@ Tags UI Component
 
 ## ActionTaken
 
-| Property | Description | Type |
-| type | Type of action taken that caused onSelectedChange to be called | 'ADD' / 'REMOVE' |
-| tag | Affected tag | Tag |
+| Property | Description                                                    | Type             |
+| -------- | -------------------------------------------------------------- | ---------------- |
+| type     | Type of action taken that caused onSelectedChange to be called | 'ADD' / 'REMOVE' |
+| tag      | Affected tag                                                   | Tag              |
 
 ## TagsTexts
 
