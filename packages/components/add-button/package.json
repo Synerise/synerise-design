@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-add-button",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "AddButton UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -24,7 +24,7 @@
   "dependencies": {
     "@synerise/ds-button": "^0.8.1",
     "@synerise/ds-icon": "*",
-    "@synerise/ds-typography": "*"
+    "@synerise/ds-typography": "^0.7.0"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

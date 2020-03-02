@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-avatar@0.3.14...@synerise/ds-avatar@0.4.0) (2020-03-02)
+
+### Features
+
+- **avatar:** avatar improvement ([098bfe1](https://github.com/synerise/synerise-design/commit/098bfe1fb6b88b9be1eead83425d4af16a4f8026))
+
 ## [0.3.14](https://github.com/synerise/synerise-design/compare/@synerise/ds-avatar@0.3.13...@synerise/ds-avatar@0.3.14) (2020-02-26)
 
 **Note:** Version bump only for package @synerise/ds-avatar
