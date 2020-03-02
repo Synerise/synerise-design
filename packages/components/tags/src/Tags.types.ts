@@ -10,6 +10,11 @@ export interface TagsTexts {
   dropdownNoTags?: string;
 }
 
+export interface ActionTaken {
+  type: 'ADD' | 'REMOVE';
+  tag: TagProps;
+}
+
 export interface Props {
   data?: Array<TagProps>;
   selected?: Array<TagProps>;
@@ -24,5 +29,5 @@ export interface Props {
   texts?: TagsTexts;
   theme: { [k: string]: string };
   onCreate?: (name: string) => void;
-  onSelectedChange?: (tags: Array<TagProps>) => void;
+  onSelectedChange?: (tags: Array<TagProps>, action: ActionTaken) => void;
 }
