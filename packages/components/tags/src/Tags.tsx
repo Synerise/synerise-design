@@ -34,8 +34,25 @@ const Tags: React.FC<Props> = ({
     </S.AddIconWrapper>
   );
 
-  const onRemove = (tagKey: string | number): void =>
-    onSelectedChange && selected && onSelectedChange(selected.filter(tag => tag.id !== tagKey));
+  const onRemove = (tagKey: string | number): void => {
+    if (!onSelectedChange || !selected) {
+      return;
+    }
+
+    const removedTag = selected.find(tag => tag.id === tagKey);
+
+    if (!removedTag) {
+      return;
+    }
+
+    onSelectedChange(
+      selected.filter(tag => tag.id !== tagKey),
+      {
+        type: 'REMOVE',
+        tag: removedTag,
+      }
+    );
+  };
 
   const notSelectedList = data && selected && data.filter(t => !selected.find(s => s.id === t.id));
   const selectablePool = !searchQuery
@@ -53,7 +70,13 @@ const Tags: React.FC<Props> = ({
   };
 
   const onPoolTagSelect = (tag: TagProps): void => {
-    onSelectedChange && selected && onSelectedChange([...selected, tag]);
+    onSelectedChange &&
+      selected &&
+      onSelectedChange([...selected, tag], {
+        type: 'ADD',
+        tag,
+      });
+
     reset();
   };
 

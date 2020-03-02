@@ -122,8 +122,8 @@ const stories = {
               setTags([...tags, tag]);
               setSelected([...selected, tag]);
             }}
-            onSelectedChange={tags => {
-              console.log('Selected tags change', tags);
+            onSelectedChange={(tags, actionTaken) => {
+              console.log('Selected tags change', tags, 'with action', actionTaken);
               setSelected(tags);
             }}
             manageLink={withManageLink && 'https://en.wikipedia.org/wiki/San_Escobar'}

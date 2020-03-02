@@ -26,21 +26,28 @@ Tags UI Component
 
 ## Tags API (Group of <Tag />)
 
-| Property         | Description                                                         | Type                      | Default |
-| ---------------- | ------------------------------------------------------------------- | ------------------------- | ------- |
-| data             | All available tags                                                  | Tag[]                     | []      |
-| selected         | Selected tags                                                       | Tag[]                     | []      |
-| tagShape         | Shape of tags                                                       | TagShape                  | -       |
-| className        | Tag Group container class                                           | string                    | -       |
-| style            | Tag Group container styles                                          | React.CSSProperties       | -       |
-| addable          | Allow adding tags from `data` (which are not present in `selected`) | boolean                   | -       |
-| removable        | Allow removing tags from `selected`                                 | boolean                   | -       |
-| creatable        | Allow creating new tags                                             | boolean                   | -       |
-| disabled         | Disable entire group (all tags)                                     | boolean                   | -       |
-| manageLink       | optional link visible in add tag dropdown                           | string                    | -       |
-| texts            | necessary texts to render tags group                                | TagsTexts                 | {}      |
-| onCreate         | fired whenever a new tag has been created                           | (tagName: string) -> void | -       |
-| onSelectedChange | fired whenever the list of selected tags changes                    | (tags: Tag[]) -> void     | -       |
+| Property         | Description                                                         | Type                                            | Default |
+| ---------------- | ------------------------------------------------------------------- | ----------------------------------------------- | ------- |
+| data             | All available tags                                                  | Tag[]                                           | []      |
+| selected         | Selected tags                                                       | Tag[]                                           | []      |
+| tagShape         | Shape of tags                                                       | TagShape                                        | -       |
+| className        | Tag Group container class                                           | string                                          | -       |
+| style            | Tag Group container styles                                          | React.CSSProperties                             | -       |
+| addable          | Allow adding tags from `data` (which are not present in `selected`) | boolean                                         | -       |
+| removable        | Allow removing tags from `selected`                                 | boolean                                         | -       |
+| creatable        | Allow creating new tags                                             | boolean                                         | -       |
+| disabled         | Disable entire group (all tags)                                     | boolean                                         | -       |
+| manageLink       | optional link visible in add tag dropdown                           | string                                          | -       |
+| texts            | necessary texts to render tags group                                | TagsTexts                                       | {}      |
+| onCreate         | fired whenever a new tag has been created                           | (tagName: string) -> void                       | -       |
+| onSelectedChange | fired whenever the list of selected tags changes                    | (tags: Tag[], actionTaken: ActionTaken) -> void | -       |
+
+## ActionTaken
+
+| Property | Description                                                    | Type             |
+| -------- | -------------------------------------------------------------- | ---------------- |
+| type     | Type of action taken that caused onSelectedChange to be called | 'ADD' / 'REMOVE' |
+| tag      | Affected tag                                                   | Tag              |
 
 ## TagsTexts
 
