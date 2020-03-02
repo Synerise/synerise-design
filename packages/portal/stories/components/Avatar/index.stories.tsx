@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { text, select, number, boolean } from '@storybook/addon-knobs';
+import {text, select, number, boolean} from '@storybook/addon-knobs';
 import Avatar from '@synerise/ds-avatar';
 import Badge from '@synerise/ds-badge';
 import Icon from '@synerise/ds-icon';
-import { FileM, ArrowUpM, ArrowDownM } from '@synerise/ds-icon/dist/icons';
+import {FileM, ArrowUpM, ArrowDownM} from '@synerise/ds-icon/dist/icons';
 import DuplicateS from "@synerise/ds-icon/dist/icons/DuplicateS";
 
 const wrapperStyles = {
@@ -21,9 +21,12 @@ const decorator = (storyFn) => (
   </div>
 );
 
-const shapes = ['circle', 'square'] as const;
-const sizes = ['small', 'default', 'large', 'extraLarge'] as const;
-const statuses = ['error', 'default', 'success'] as const;
+const shapes = ['circle', 'square'] as
+const ;
+const sizes = ['small', 'medium', 'large', 'extraLarge'] as
+const ;
+const statuses = ['error', 'default', 'success'] as
+const ;
 const backgroundColors = [
   'red',
   'green',
@@ -54,195 +57,180 @@ const backgroundColorHue = [
 
 const imgSrc = 'https://www.w3schools.com/howto/img_avatar.png';
 
+const image = [
+  '',
+  imgSrc
+] as
+const ;
+
 const stories = {
   sizes: () => (
-    <React.Fragment>
-      <div style={wrapperStyles}>
-        <Avatar
-          backgroundColor={select('backgroundColors', backgroundColors, 'mars')}
-          backgroundColorHue={select('backgroundColorHue', backgroundColorHue, '050')}
-          disabled={boolean('disabled', false)}
-          size={select('sizeString', sizes, 'default')}
-          shape={select('shape', shapes, 'circle')}
-          style={{
-            background: '#fcc600',
-          }}
-        >
-          WW
-        </Avatar>
-        <Avatar
-          backgroundColor={select('backgroundColors', backgroundColors, 'mars')}
-          backgroundColorHue={select('backgroundColorHue', backgroundColorHue, '050')}
-          disabled={boolean('disabled', false)}
-          iconComponent={
-            <Icon color={text('IconColor', '#ff5831')} size={number('iconSize', 32)} component={<FileM />} />
-          }
-          size={select('sizeString', sizes, 'default')}
-          shape={select('shape', shapes, 'circle')}
-        />
-        <Avatar
-          backgroundColor={select('backgroundColors', backgroundColors, 'mars')}
-          backgroundColorHue={select('backgroundColorHue', backgroundColorHue, '050')}
-          disabled={boolean('disabled', false)}
-          icon={'user'}
-          size={select('sizeString', sizes, 'default')}
-          shape={select('shape', shapes, 'circle')}
-        />
-        <Avatar
-          backgroundColor={select('backgroundColors', backgroundColors, 'mars')}
-          backgroundColorHue={select('backgroundColorHue', backgroundColorHue, '050')}
-          disabled={boolean('disabled', false)}
-          size={select('sizeString', sizes, 'default')}
-          shape={select('shape', shapes, 'circle')}
-          src={imgSrc}
-        />
-        <Avatar
-          backgroundColor={select('backgroundColors', backgroundColors, 'mars')}
-          backgroundColorHue={select('backgroundColorHue', backgroundColorHue, '050')}
-          disabled={boolean('disabled', false)}
-          shape={select('shape', shapes, 'circle')}
-          size={select('sizeString', sizes, 'default')}
-        >
-          <a href="#">link to something</a>
-        </Avatar>
-      </div>
-
-      <div style={wrapperStyles}>
-        <Avatar
-          backgroundColor={select('backgroundColors', backgroundColors, 'mars')}
-          backgroundColorHue={select('backgroundColorHue', backgroundColorHue, '050')}
-          disabled={boolean('disabled', false)}
-          size={number('sizeNumber', 48)}
-          shape={select('shape', shapes, 'circle')}
-        >
-          WW
-        </Avatar>
-        <Avatar
-          backgroundColor={select('backgroundColors', backgroundColors, 'mars')}
-          backgroundColorHue={select('backgroundColorHue', backgroundColorHue, '050')}
-          disabled={boolean('disabled', false)}
-          iconComponent={
-            <Icon color={text('IconColor', '#ff5831')} size={number('sizeNumber', 48)} component={<ArrowDownM />} />
-          }
-          size={number('sizeNumber', 48)}
-          shape={select('shape', shapes, 'circle')}
-          style={{
-            background: '#ffe9e9',
-          }}
-        />
-        <Avatar
-          backgroundColor={select('backgroundColors', backgroundColors, 'mars')}
-          backgroundColorHue={select('backgroundColorHue', backgroundColorHue, '050')}
-          disabled={boolean('disabled', false)}
-          icon={'user'}
-          size={number('sizeNumber', 48)}
-          shape={select('shape', shapes, 'circle')}
-        />
-        <Avatar
-          disabled={boolean('disabled', false)}
-          size={number('sizeNumber', 48)}
-          shape={select('shape', shapes, 'circle')}
-          src={imgSrc}
-        />
-      </div>
-    </React.Fragment>
-  ),
-  types: () => (
-    <React.Fragment>
+    <div
+      style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', paddingTop: 200}}>
       <Avatar
-        backgroundColor={select('backgroundColors', backgroundColors, 'mars')}
-        backgroundColorHue={select('backgroundColorHue', backgroundColorHue, '050')}
+        backgroundColor={select('backgroundColors', backgroundColors, 'blue')}
+        backgroundColorHue={select('backgroundColorHue', backgroundColorHue, '800')}
         disabled={boolean('disabled', false)}
-        size={number('size', 32)}
+        size={'small'}
         shape={select('shape', shapes, 'circle')}
+        tooltip={{name: 'Silvia Jobs', email: 'silvia.jobs@gmail.com'}}
+        src={imgSrc}
+        hasStatus={boolean('has status', true)}
       >
-        WW
+        AK
       </Avatar>
       <Avatar
-        backgroundColor={select('backgroundColors', backgroundColors, 'mars')}
-        backgroundColorHue={select('backgroundColorHue', backgroundColorHue, '050')}
+        backgroundColor={select('backgroundColors', backgroundColors, 'blue')}
+        backgroundColorHue={select('backgroundColorHue', backgroundColorHue, '800')}
         disabled={boolean('disabled', false)}
-        iconComponent={
-          <Icon
-            color={text('CustomIconColor', '#ff5831')}
-            size={number('CustomIconSize', 32)}
-            component={<ArrowUpM />}
-          />
-        }
-        size={number('CustomIconSize', 32)}
+        size={'medium'}
         shape={select('shape', shapes, 'circle')}
-        style={{
-          background: '#fcc600',
-        }}
-      />
-      <Avatar
-        backgroundColor={select('backgroundColors', backgroundColors, 'mars')}
-        backgroundColorHue={select('backgroundColorHue', backgroundColorHue, '050')}
-        disabled={boolean('disabled', false)}
-        icon={'user'}
-        size={select('IconAvatarSize', sizes, 'default')}
-        shape={select('shape', shapes, 'circle')}
-      />
-      <Avatar
+        tooltip={{name: 'Silvia Jobs', email: 'silvia.jobs@gmail.com'}}
         src={imgSrc}
+        hasStatus={boolean('has status', true)}
+      >
+        AK
+      </Avatar>
+      <Avatar
+        backgroundColor={select('backgroundColors', backgroundColors, 'blue')}
+        backgroundColorHue={select('backgroundColorHue', backgroundColorHue, '800')}
         disabled={boolean('disabled', false)}
-        size={number('size', 32)}
+        size={'large'}
         shape={select('shape', shapes, 'circle')}
-      />
-    </React.Fragment>
+        tooltip={{name: 'Silvia Jobs', email: 'silvia.jobs@gmail.com'}}
+        src={imgSrc}
+        hasStatus={boolean('has status', true)}
+      >
+        AK
+      </Avatar>
+      <Avatar
+        backgroundColor={select('backgroundColors', backgroundColors, 'blue')}
+        backgroundColorHue={select('backgroundColorHue', backgroundColorHue, '800')}
+        disabled={boolean('disabled', false)}
+        size={'extraLarge'}
+        shape={select('shape', shapes, 'circle')}
+        tooltip={{name: 'Silvia Jobs', email: 'silvia.jobs@gmail.com'}}
+        src={imgSrc}
+        hasStatus={boolean('has status', true)}
+      >
+        AK
+      </Avatar>
+    </div>
   ),
   statuses: () => (
-    <Badge status={select('status', statuses, 'default')}>
+    <div
+      style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', paddingTop: 200}}>
       <Avatar
-        backgroundColor={select('backgroundColors', backgroundColors, 'mars')}
-        backgroundColorHue={select('backgroundColorHue', backgroundColorHue, '050')}
+        backgroundColor={select('backgroundColors', backgroundColors, 'blue')}
+        backgroundColorHue={select('backgroundColorHue', backgroundColorHue, '800')}
         disabled={boolean('disabled', false)}
-        hasStatus
+        size={select('sizeString', sizes, 'small')}
         shape={select('shape', shapes, 'circle')}
-        size={select('sizeString', sizes, 'default')}
-        src={imgSrc}
-      />
-    </Badge>
-  ),
-  allOptions: () => (
-    <React.Fragment>
-      <Badge status={select('status', statuses, 'default')}>
+        tooltip={{name: 'Silvia Jobs'}}
+        hasStatus={boolean('has status', true)}
+      >
+        AK
+      </Avatar>
+      <Badge status={'default'}>
         <Avatar
-          backgroundColor={select('backgroundColors', backgroundColors, 'green')}
-          backgroundColorHue={select('backgroundColorHue', backgroundColorHue, '050')}
+          backgroundColor={select('backgroundColors', backgroundColors, 'blue')}
+          backgroundColorHue={select('backgroundColorHue', backgroundColorHue, '800')}
           disabled={boolean('disabled', false)}
-          hasStatus={boolean('has status', false)}
+          size={'medium'}
           shape={select('shape', shapes, 'circle')}
-          size={select('sizeString', sizes, 'default')}
+          tooltip={{name: 'Silvia Jobs', email: 'silvia.jobs@gmail.com'}}
+          hasStatus={boolean('has status', true)}
         >
           AK
         </Avatar>
       </Badge>
-      <Badge status={select('status', statuses, 'default')}>
+      <Badge status={'success'}>
         <Avatar
-          backgroundColor={select('backgroundColors', backgroundColors, 'green')}
-          backgroundColorHue={select('backgroundColorHue', backgroundColorHue, '050')}
+          backgroundColor={select('backgroundColors', backgroundColors, 'blue')}
+          backgroundColorHue={select('backgroundColorHue', backgroundColorHue, '800')}
           disabled={boolean('disabled', false)}
-          hasStatus={boolean('has status', false)}
+          size={'large'}
           shape={select('shape', shapes, 'circle')}
-          size={select('sizeString', sizes, 'default')}
-          iconComponent={
-            <Icon color={text('IconColor', '#fff')} size={number('sizeNumber', 32)} component={<DuplicateS />} />
-          }
-        />
+          tooltip={{name: 'Silvia Jobs', email: 'silvia.jobs@gmail.com'}}
+          hasStatus={boolean('has status', true)}
+        >
+          AK
+        </Avatar>
       </Badge>
-      <Badge status={select('status', statuses, 'default')}>
+      <Badge status={'error'}>
         <Avatar
-          backgroundColor={select('backgroundColors', backgroundColors, 'green')}
-          backgroundColorHue={select('backgroundColorHue', backgroundColorHue, '050')}
+          backgroundColor={select('backgroundColors', backgroundColors, 'blue')}
+          backgroundColorHue={select('backgroundColorHue', backgroundColorHue, '800')}
           disabled={boolean('disabled', false)}
-          hasStatus={boolean('has status', false)}
+          size={'extraLarge'}
+          tooltip={{name: 'Silvia Jobs', email: 'silvia.jobs@gmail.com'}}
+          hasStatus={boolean('has status', true)}
+        >
+          AK
+        </Avatar>
+      </Badge>
+    </div>
+  ),
+  allOptions: () => (
+    <div
+      style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', paddingTop: 200}}>
+      <Avatar
+        backgroundColor={select('backgroundColors', backgroundColors, 'blue')}
+        backgroundColorHue={select('backgroundColorHue', backgroundColorHue, '800')}
+        disabled={boolean('disabled', false)}
+        size={select('sizeString', sizes, 'small')}
+        shape={select('shape', shapes, 'circle')}
+        tooltip={{name: 'Silvia Jobs'}}
+        hasStatus={boolean('has status', true)}
+        iconComponent={
+          <Icon color={text('IconColor', '#fff')} size={number('iconSize', 20)} component={<DuplicateS/>}/>
+        }
+      >
+        AK
+      </Avatar>
+      <Badge status={'default'}>
+        <Avatar
+          backgroundColor={select('backgroundColors', backgroundColors, 'blue')}
+          backgroundColorHue={select('backgroundColorHue', backgroundColorHue, '800')}
+          disabled={boolean('disabled', false)}
+          size={'medium'}
           shape={select('shape', shapes, 'circle')}
-          size={select('sizeString', sizes, 'default')}
+          tooltip={{name: 'Silvia Jobs', email: 'silvia.jobs@gmail.com'}}
           src={imgSrc}
-        />
+          hasStatus={boolean('has status', true)}
+        >
+          AK
+        </Avatar>
       </Badge>
-    </React.Fragment>
+      <Badge status={'success'}>
+        <Avatar
+          backgroundColor={select('backgroundColors', backgroundColors, 'blue')}
+          backgroundColorHue={select('backgroundColorHue', backgroundColorHue, '800')}
+          disabled={boolean('disabled', false)}
+          size={'large'}
+          shape={select('shape', shapes, 'circle')}
+          tooltip={{name: 'Silvia Jobs', email: 'silvia.jobs@gmail.com'}}
+          src={select('withImage', image, '')}
+          hasStatus={boolean('has status', true)}
+        >
+          AK
+        </Avatar>
+      </Badge>
+      <Badge status={'error'}>
+        <Avatar
+          backgroundColor={select('backgroundColors', backgroundColors, 'blue')}
+          backgroundColorHue={select('backgroundColorHue', backgroundColorHue, '800')}
+          disabled={boolean('disabled', false)}
+          size={'extraLarge'}
+          shape={'square'}
+          tooltip={{name: 'Silvia Jobs', email: 'silvia.jobs@gmail.com'}}
+          src={imgSrc}
+          hasStatus={boolean('has status', true)}
+        >
+          AK
+        </Avatar>
+      </Badge>
+    </div>
   ),
 };
 

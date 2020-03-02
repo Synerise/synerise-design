@@ -86,6 +86,10 @@ export const tooltip = css`
   font-size: 11px;
 `;
 
+export const xsAvatar = css`
+  font-size: 11px;
+`;
+
 export const xlAvatar = css`
   font-size: 22px;
 `;
