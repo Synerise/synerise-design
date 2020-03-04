@@ -81,6 +81,7 @@ import ItemFilter from '@synerise/ds-item-filter'
 | avatar_url | Link avatar | string | -       |
 | firstname  | First name  | string | -       |
 | lastname   | Last name   | string | -       |
+| email      | Email       | string | -       |
 
 #### Texts
 
