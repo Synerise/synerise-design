@@ -57,7 +57,7 @@ const ITEMS = [
     categories: ['All filters'],
     user: {
       firstname: 'Kamil',
-      lastname: 'Kowalski',
+      email: 'kamil.kowalski@synerise.com'
     }
   },
   {
@@ -70,8 +70,8 @@ const ITEMS = [
     categories: ['All filters'],
     user: {
       avatar_url: 'https://www.w3schools.com/howto/img_avatar.png',
-      firstname: 'Kamil',
       lastname: 'Kowalski',
+      email: 'kamil.kowalski@synerise.com'
     }
   },
   {
@@ -86,6 +86,7 @@ const ITEMS = [
     user: {
       firstname: 'Jan',
       lastname: 'Nowak',
+      email: 'jan.nowak@synerise.com'
     }
   },
   {
@@ -100,6 +101,7 @@ const ITEMS = [
     user: {
       firstname: 'Jan',
       lastname: 'Nowak',
+      email: 'jan.nowak@synerise.com'
     }
   },
   {
@@ -114,6 +116,7 @@ const ITEMS = [
     user: {
       firstname: 'Kamil',
       lastname: 'Kowalski',
+      email: 'kamil.kowalski@synerise.com'
     }
   },
   {
@@ -128,6 +131,7 @@ const ITEMS = [
       avatar_url: 'https://www.w3schools.com/howto/img_avatar.png',
       firstname: 'Kamil',
       lastname: 'Kowalski',
+      email: 'kamil.kowalski@synerise.com'
     }
   },
   {
@@ -142,6 +146,7 @@ const ITEMS = [
     user: {
       firstname: 'Jan',
       lastname: 'Nowak',
+      email: 'jan.nowak@synerise.com'
     }
   },
   {
@@ -156,6 +161,7 @@ const ITEMS = [
     user: {
       firstname: 'Kamil',
       lastname: 'Kowalski',
+      email: 'kamil.kowalski@synerise.com'
     }
   },
   {
@@ -170,6 +176,7 @@ const ITEMS = [
       avatar_url: 'https://www.w3schools.com/howto/img_avatar.png',
       firstname: 'Kamil',
       lastname: 'Kowalski',
+      email: 'kamil.kowalski@synerise.com'
     }
   },
   {
@@ -184,6 +191,7 @@ const ITEMS = [
     user: {
       firstname: 'Jan',
       lastname: 'Nowak',
+      email: 'jan.nowak@synerise.com'
     }
   },
 ];

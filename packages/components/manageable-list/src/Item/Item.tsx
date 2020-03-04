@@ -36,6 +36,7 @@ export type ItemProps = {
     avatar_url?: string;
     firstname?: string;
     lastname?: string;
+    email?: string;
   };
   created?: string;
 };
