@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { SelectProps, SelectValue } from 'antd/lib/select';
 import { ErrorText, Description } from '@synerise/ds-typography';
-import { Label } from '@synerise/ds-input';
 import '@synerise/ds-core/dist/js/style';
 import './style/index.less';
 import * as S from './Select.styles';
@@ -22,7 +21,7 @@ class Select extends React.Component<Props> {
 
     return (
       <>
-        <Label label={label} tooltip={tooltip} />
+        <S.Label label={label} tooltip={tooltip} />
         <S.AntdSelect
           // eslint-disable-next-line react/jsx-props-no-spreading
           {...antdProps}
