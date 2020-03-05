@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.8.1...@synerise/ds-select@0.9.0) (2020-03-05)
+
+
+### Features
+
+* **select:** Add margin to selects label ([d323061](https://github.com/synerise/synerise-design/commit/d3230612cc292414be38ccb37e23f1084433df21))
+
+
+
+
+
 ## [0.8.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.8.0...@synerise/ds-select@0.8.1) (2020-03-02)
 
 **Note:** Version bump only for package @synerise/ds-select
