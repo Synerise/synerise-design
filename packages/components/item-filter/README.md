@@ -81,6 +81,7 @@ import ItemFilter from '@synerise/ds-item-filter'
 | avatar_url | Link avatar | string | -       |
 | firstname  | First name  | string | -       |
 | lastname   | Last name   | string | -       |
+| email      | Email       | string | -       |
 
 #### Texts
 
@@ -91,7 +92,11 @@ import ItemFilter from '@synerise/ds-item-filter'
 | cancel                        | Cancel button label                 | string | 'Cancel',                                                                                                              |
 | deleteConfirmationTitle       | Delete confirmation title           | string | 'Detele filter',                                                                                                       |
 | deleteConfirmationDescription | Delete confirmation description     | string | 'Deleting this filter will permanently remove it from templates library. All tables using this filter will be reset.', |
-| deleteLabel                   | Delete confirmation button label    | string | 'Delete',                                                                                                              |
+| deleteConfirmationYes         | Label of delete confirmation button | string | 'Delete'                                                                                                               |
+| deleteConfirmationNo          | Label of delete cancellation button | string | 'Cancel'                                                                                                               |
+| itemActionRename              | Label of rename item action         | string | 'Rename'                                                                                                               |
+| itemActionDuplicate           | Label of duplicate item action      | string | 'Duplicate'                                                                                                            |
+| itemActionDelete              | Label of delete item action         | string | 'Delete'                                                                                                               |
 | noResults                     | No results information              | string | 'No results',                                                                                                          |
 | searchPlaceholder             | Placeholder of search input         | string | 'Search',                                                                                                              |
 | title                         | Title of ItemFilter drawer          | string | 'Filter',                                                                                                              |

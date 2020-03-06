@@ -42,7 +42,11 @@ export interface ManageableListProps {
     cancel?: string | React.ReactNode;
     deleteConfirmationTitle?: string | React.ReactNode;
     deleteConfirmationDescription?: string | React.ReactNode;
-    deleteLabel?: string | React.ReactNode;
+    deleteConfirmationYes?: string | React.ReactNode;
+    deleteConfirmationNo?: string | React.ReactNode;
+    itemActionRename?: string | React.ReactNode;
+    itemActionDuplicate?: string | React.ReactNode;
+    itemActionDelete?: string | React.ReactNode;
   };
 }
 
@@ -75,7 +79,11 @@ const ManageableList: React.FC<ManageableListProps> = ({
     cancel = <FormattedMessage id="DS.MANAGABLE-LIST.CANCEL" />,
     deleteConfirmationTitle = <FormattedMessage id="DS.MANAGABLE-LIST.DELETE-ITEM-TITLE" />,
     deleteConfirmationDescription = <FormattedMessage id="DS.MANAGABLE-LIST.DELETE-ITEM-DESCRIPTION" />,
-    deleteLabel = <FormattedMessage id="DS.MANAGABLE-LIST.DELETE" />,
+    deleteConfirmationYes = <FormattedMessage id="DS.MANAGABLE-LIST.DELETE" />,
+    deleteConfirmationNo = <FormattedMessage id="DS.MANAGABLE-LIST.CANCEL" />,
+    itemActionRename = <FormattedMessage id="DS.MANAGABLE-LIST.ITEM-RENAME" />,
+    itemActionDuplicate = <FormattedMessage id="DS.MANAGABLE-LIST.ITEM-DUPLICATE" />,
+    itemActionDelete = <FormattedMessage id="DS.MANAGABLE-LIST.ITEM-DELETE" />,
   },
 }) => {
   const [allItemsVisible, setAllItemsVisible] = React.useState(false);
@@ -86,7 +94,11 @@ const ManageableList: React.FC<ManageableListProps> = ({
     cancel,
     deleteConfirmationDescription,
     deleteConfirmationTitle,
-    deleteLabel,
+    deleteConfirmationYes,
+    deleteConfirmationNo,
+    itemActionRename,
+    itemActionDuplicate,
+    itemActionDelete,
   };
 
   const getItemsOverLimit = React.useMemo((): number => {
@@ -144,7 +156,19 @@ const ManageableList: React.FC<ManageableListProps> = ({
         searchQuery={searchQuery}
       />
     ),
-    [type, onItemSelect, onItemEdit, onItemRemove, onItemDuplicate, onChangeOrder, changeOrderDisabled, greyBackground, selectedItemId, itemTexts, searchQuery]
+    [
+      type,
+      onItemSelect,
+      onItemEdit,
+      onItemRemove,
+      onItemDuplicate,
+      onChangeOrder,
+      changeOrderDisabled,
+      greyBackground,
+      selectedItemId,
+      itemTexts,
+      searchQuery,
+    ]
   );
 
   const renderList = React.useCallback(() => {

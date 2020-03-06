@@ -9,13 +9,17 @@ const getTexts = () => ({
   activateItemTitle: text('Activate item', 'By activating this filter, you will cancel your unsaved filter settings'),
   activate: text('Activate', 'Activate'),
   cancel: text('Cancel', 'Cancel'),
-  deleteConfirmationTitle: text('Delete confirmation title', 'Detele filter'),
-  deleteConfirmationDescription: text('Delete confirmation description', 'Deleting this filter will permanently remove it from templates library. All tables using this filter will be reset.'),
-  deleteLabel: text('Delete', 'Delete'),
+  deleteConfirmationTitle: text('Delete confirmation title', 'Delete view'),
+  deleteConfirmationDescription: text('Delete confirmation description', 'Deleting this template will permanently remove it from templates library. All tables using this template will be reset to the default template.'),
+  deleteConfirmationYes: text('Delete confirm', 'Yes, delete view'),
+  deleteConfirmationNo: text('Delete cancel', 'No, Keep it'),
   noResults: text('No results', 'No results'),
   searchPlaceholder: text('Search placeholder', 'Search'),
   title: text('Drawer title', 'Filter'),
   searchClearTooltip: text('Clear tooltip', 'Clear'),
+  itemActionRename: text('Rename label', 'Rename'),
+  itemActionDuplicate: text('Duplicate label', 'Duplicate'),
+  itemActionDelete: text('Delete label', 'Delete'),
 });
 
 const CATEGORIES = [
@@ -53,7 +57,7 @@ const ITEMS = [
     categories: ['All filters'],
     user: {
       firstname: 'Kamil',
-      lastname: 'Kowalski',
+      email: 'kamil.kowalski@synerise.com'
     }
   },
   {
@@ -66,8 +70,8 @@ const ITEMS = [
     categories: ['All filters'],
     user: {
       avatar_url: 'https://www.w3schools.com/howto/img_avatar.png',
-      firstname: 'Kamil',
       lastname: 'Kowalski',
+      email: 'kamil.kowalski@synerise.com'
     }
   },
   {
@@ -82,6 +86,7 @@ const ITEMS = [
     user: {
       firstname: 'Jan',
       lastname: 'Nowak',
+      email: 'jan.nowak@synerise.com'
     }
   },
   {
@@ -96,6 +101,7 @@ const ITEMS = [
     user: {
       firstname: 'Jan',
       lastname: 'Nowak',
+      email: 'jan.nowak@synerise.com'
     }
   },
   {
@@ -110,6 +116,7 @@ const ITEMS = [
     user: {
       firstname: 'Kamil',
       lastname: 'Kowalski',
+      email: 'kamil.kowalski@synerise.com'
     }
   },
   {
@@ -124,6 +131,7 @@ const ITEMS = [
       avatar_url: 'https://www.w3schools.com/howto/img_avatar.png',
       firstname: 'Kamil',
       lastname: 'Kowalski',
+      email: 'kamil.kowalski@synerise.com'
     }
   },
   {
@@ -138,6 +146,7 @@ const ITEMS = [
     user: {
       firstname: 'Jan',
       lastname: 'Nowak',
+      email: 'jan.nowak@synerise.com'
     }
   },
   {
@@ -152,6 +161,7 @@ const ITEMS = [
     user: {
       firstname: 'Kamil',
       lastname: 'Kowalski',
+      email: 'kamil.kowalski@synerise.com'
     }
   },
   {
@@ -166,6 +176,7 @@ const ITEMS = [
       avatar_url: 'https://www.w3schools.com/howto/img_avatar.png',
       firstname: 'Kamil',
       lastname: 'Kowalski',
+      email: 'kamil.kowalski@synerise.com'
     }
   },
   {
@@ -180,6 +191,7 @@ const ITEMS = [
     user: {
       firstname: 'Jan',
       lastname: 'Nowak',
+      email: 'jan.nowak@synerise.com'
     }
   },
 ];
@@ -218,6 +230,7 @@ const stories = {
     const duplicateItem = (props): void => {
       const itemForDuplication = store.state.items.find(item => item.id === props.id);
       store.set({
+        // @ts-ignore
         items: [
           ...store.state.items,
           {

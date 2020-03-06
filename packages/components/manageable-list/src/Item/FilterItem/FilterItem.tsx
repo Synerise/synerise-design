@@ -4,10 +4,10 @@ import {
   CheckS,
   CircleShapeM,
   DuplicateM,
-  RenameM,
   OptionHorizontalM,
   TrashM,
   WarningFillM,
+  EditM,
 } from '@synerise/ds-icon/dist/icons';
 import Icon from '@synerise/ds-icon';
 import Popconfirm from '@synerise/ds-popconfirm';
@@ -104,17 +104,17 @@ const FilterItem: React.FC<FilterItemProps> = ({
                 <MenuList>
                   {item.canUpdate && (
                     <MenuItem onClick={enterEditMode}>
-                      <Icon component={<RenameM />} /> Edit name
+                      <Icon component={<EditM />} /> {texts.itemActionRename}
                     </MenuItem>
                   )}
                   {item.canDuplicate && (
                     <MenuItem onClick={handleDuplicate}>
-                      <Icon component={<DuplicateM />} /> Duplicate
+                      <Icon component={<DuplicateM />} /> {texts.itemActionDuplicate}
                     </MenuItem>
                   )}
                   {item.canDelete && (
                     <MenuItem danger onClick={handleRemove}>
-                      <Icon component={<TrashM />} /> Delete
+                      <Icon component={<TrashM />} /> {texts.itemActionDelete}
                     </MenuItem>
                   )}
                 </MenuList>
@@ -142,10 +142,10 @@ const FilterItem: React.FC<FilterItemProps> = ({
           buttons={
             <>
               <Button type="default" onClick={(): void => setConfirmDeleteVisible(false)}>
-                {texts.cancel}
+                {texts.deleteConfirmationNo}
               </Button>
               <Button type="primary" onClick={(): void => onRemove && onRemove({ id: item.id })}>
-                {texts.deleteLabel}
+                {texts.deleteConfirmationYes}
               </Button>
             </>
           }

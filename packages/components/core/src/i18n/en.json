@@ -5,7 +5,10 @@
             "MORE": "more",
             "ADD-ITEM": "Add item",
             "SHOW-MORE": "Show more",
-            "SHOW-LESS": "Show less"
+            "SHOW-LESS": "Show less",
+            "ITEM-RENAME": "Rename",
+            "ITEM-DUPLICATE": "Duplicate",
+            "ITEM-DELETE": "Delete"
         },
         "FILE-UPLOADER": {
             "BUTTON-LABEL": "Upload a new file",
@@ -19,7 +22,8 @@
             "CANCEL": "Cancel",
             "DELETE-CONFIRMATION-TITLE": "Delete filter",
             "DELETE-CONFIRMATION-DESCRIPTION": "Deleting this filter will permanently remove it from templates library. All tables using this filter will be reset.",
-            "DELETE-LABEL": "Delete",
+            "DELETE-CONFIRMATION-YES": "Delete",
+            "DELETE-CONFIRMATION-NO": "Cancel",
             "NO-RESULTS": "No results",
             "SEARCH-PLACEHOLDER": "Search",
             "TITLE": "Filter"

@@ -9,10 +9,14 @@ const TEXTS = {
   cancel: 'Cancel',
   deleteConfirmationTitle: 'Detele filter',
   deleteConfirmationDescription: 'Deleting this filter will permanently remove it from templates library. All tables using this filter will be reset.',
-  deleteLabel: 'Delete',
+  deleteConfirmationNo: 'Cancel',
+  deleteConfirmationYes: 'Delete',
   noResults: 'No results',
   searchPlaceholder: 'Search',
   title: 'Filter',
+  more: 'more',
+  less: 'less',
+  searchClearTooltip: 'Clear',
 };
 
 const CATEGORIES = [

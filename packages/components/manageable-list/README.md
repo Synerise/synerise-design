@@ -63,7 +63,11 @@ ManageableList UI Component
 | cancel                  | Label of cancel button                        | string | -       |
 | deleteConfirmationTitle | Title of delete item confirmation popup       | string | -       |
 | deleteConfirmationTitle | Description of delete item confirmation popup | string | -       |
-| deleteLabel             | Label of delete button                        | string | -       |
+| deleteConfirmationYes   | Label of delete confirmation button           | string | -       |
+| deleteConfirmationNo    | Label of delete cancellation button           | string | -       |
+| itemActionRename        | Label of rename item action                   | string | -       |
+| itemActionDuplicate     | Label of duplicate item action                | string | -       |
+| itemActionDelete        | Label of delete item action                   | string | -       |
 
 #### Item
 
