@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { renderWithProvider } from '@synerise/ds-utils/dist';
+import { renderWithProvider } from '@synerise/ds-utils';
 import { fireEvent } from '@testing-library/react';
 import ItemFilter from '../ItemFilter';
 
@@ -9,10 +9,14 @@ const TEXTS = {
   cancel: 'Cancel',
   deleteConfirmationTitle: 'Detele filter',
   deleteConfirmationDescription: 'Deleting this filter will permanently remove it from templates library. All tables using this filter will be reset.',
-  deleteLabel: 'Delete',
+  deleteConfirmationNo: 'Cancel',
+  deleteConfirmationYes: 'Delete',
   noResults: 'No results',
   searchPlaceholder: 'Search',
   title: 'Filter',
+  more: 'more',
+  less: 'less',
+  searchClearTooltip: 'Clear',
 };
 
 const CATEGORIES = [

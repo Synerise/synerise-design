@@ -8,7 +8,7 @@
             "SHOW-LESS": "Show less",
             "ITEM-RENAME": "Rename",
             "ITEM-DUPLICATE": "Duplicate",
-            "ITEM-DELETE": "Delete",
+            "ITEM-DELETE": "Delete"
         },
         "FILE-UPLOADER": {
             "BUTTON-LABEL": "Upload a new file",
