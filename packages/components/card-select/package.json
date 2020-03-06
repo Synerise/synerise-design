@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-card-select",
-  "version": "0.2.9",
+  "version": "0.2.10",
   "description": "Card-Select UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -33,6 +33,6 @@
     "react": ">=16.9.0 < 17.0.0"
   },
   "devDependencies": {
-    "@synerise/ds-utils": "^0.8.2"
+    "@synerise/ds-utils": "^0.8.3"
   }
 }

@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.47.0](https://github.com/synerise/synerise-design/compare/portal@0.46.0...portal@0.47.0) (2020-03-06)
+
+
+### Bug Fixes
+
+* **item-filter:** fix translations & icons ([65ebe04](https://github.com/synerise/synerise-design/commit/65ebe04685624528f44f810cb655ca469f2f836a))
+
+
+### Features
+
+* **item-filter:** use Avatar with tooltip ([f090c08](https://github.com/synerise/synerise-design/commit/f090c081740bae8f666ec1d96109b488fe1e9420))
+
+
+
+
+
 # [0.46.0](https://github.com/synerise/synerise-design/compare/portal@0.45.1...portal@0.46.0) (2020-03-02)
 
 
