@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.9.1...@synerise/ds-manageable-list@0.9.2) (2020-03-09)
+
+### Bug Fixes
+
+- **manageable-list:** dropdown trigger styles ([b2c48a4](https://github.com/Synerise/synerise-design/commit/b2c48a449b60db9a5d91ffd3478b8c329939a892))
+
 ## [0.9.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.9.0...@synerise/ds-manageable-list@0.9.1) (2020-03-09)
 
 ### Bug Fixes
