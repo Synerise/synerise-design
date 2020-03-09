@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.9.0...@synerise/ds-manageable-list@0.9.1) (2020-03-09)
+
+### Bug Fixes
+
+- **manageable-list:** use Icon instead of Button in FilterItem ([9d8085a](https://github.com/Synerise/synerise-design/commit/9d8085aa643c8c207b4bedebe0280d1311dcaf27))
+
 # [0.9.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.8.2...@synerise/ds-manageable-list@0.9.0) (2020-03-06)
 
 ### Bug Fixes
