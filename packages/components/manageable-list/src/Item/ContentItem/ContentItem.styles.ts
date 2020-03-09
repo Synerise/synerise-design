@@ -35,14 +35,15 @@ export const ItemHeaderSuffix = styled.div`
   align-items: center;
   justify-content: flex-start;
 
-  svg {
-    transition: all 0.3s ease;
-  }
-
-  .ant-dropdown-open {
+  .ds-dropdown-trigger {
     svg {
-      color: ${(props): string => props.theme.palette['blue-600']};
-      fill: ${(props): string => props.theme.palette['blue-600']};
+      transition: all 0.3s ease;
+    }
+    &.ant-dropdown-open {
+      svg {
+        color: ${(props): string => props.theme.palette['blue-600']};
+        fill: ${(props): string => props.theme.palette['blue-600']};
+      }
     }
   }
 `;
