@@ -100,7 +100,7 @@ const FilterItem: React.FC<FilterItemProps> = ({
           <S.ItemHeaderSuffix>
             {item.user && item.created && <ItemMeta user={item.user} created={item.created} />}
             <Dropdown
-              trigger={['click']}
+              trigger={['click', 'hover']}
               overlay={
                 <MenuList>
                   {item.canUpdate && (
@@ -121,7 +121,9 @@ const FilterItem: React.FC<FilterItemProps> = ({
                 </MenuList>
               }
             >
-              <Icon component={<OptionHorizontalM />} color={theme.palette['grey-400']} />
+              <span className="ds-dropdown-trigger">
+                <Icon component={<OptionHorizontalM />} color={theme.palette['grey-600']} />
+              </span>
             </Dropdown>
           </S.ItemHeaderSuffix>
         </ItemHeader>
