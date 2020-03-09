@@ -100,6 +100,7 @@ const FilterItem: React.FC<FilterItemProps> = ({
           <S.ItemHeaderSuffix>
             {item.user && item.created && <ItemMeta user={item.user} created={item.created} />}
             <Dropdown
+              trigger={['click']}
               overlay={
                 <MenuList>
                   {item.canUpdate && (
@@ -120,9 +121,7 @@ const FilterItem: React.FC<FilterItemProps> = ({
                 </MenuList>
               }
             >
-              <Button type="ghost" mode="single-icon">
-                <Icon component={<OptionHorizontalM />} />
-              </Button>
+              <Icon component={<OptionHorizontalM />} color={theme.palette['grey-400']} />
             </Dropdown>
           </S.ItemHeaderSuffix>
         </ItemHeader>

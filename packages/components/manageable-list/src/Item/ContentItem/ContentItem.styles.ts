@@ -34,6 +34,17 @@ export const ItemHeaderSuffix = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
+
+  svg {
+    transition: all 0.3s ease;
+  }
+
+  .ant-dropdown-open {
+    svg {
+      color: ${(props): string => props.theme.palette['blue-600']};
+      fill: ${(props): string => props.theme.palette['blue-600']};
+    }
+  }
 `;
 
 export const ItemHeader = styled.div`
