@@ -49,14 +49,17 @@ export const Label = styled.div`
   color: ${(props): string => props.theme.palette['blue-600']};
 `;
 
-export const SearchButton = styled.div<{ isOpen: boolean }>`
+export const SearchButton = styled.div<{ isOpen: boolean; inputFocused: boolean }>`
   position: absolute;
   z-index: 1;
   top: 0;
   right: 0;
-  opacity: ${(props): number => (props.isOpen ? 0 : 1)};
   transition: all 0.2s ease-out;
-  pointer-events: ${(props): string => (props.isOpen ? 'none' : 'initial')};
+
+  svg {
+    fill: ${(props): string =>
+      props.inputFocused ? props.theme.palette['blue-600'] : props.theme.palette['grey-600']} !important;
+  }
 
   && {
     button {
@@ -103,16 +106,6 @@ export const ClearButton = styled.div`
   align-items: center;
   justify-content: center;
   padding: 0 11px 0 10px;
-
-  svg {
-    transition: all 0.3s ease-out;
-  }
-
-  &:hover {
-    svg {
-      fill: ${(props): string => props.theme.palette['red-600']};
-    }
-  }
 `;
 
 export const List = styled.div`
