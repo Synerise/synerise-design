@@ -220,16 +220,18 @@ const stories = {
       />
     );
   }),
-  emptyList: {
-    maxToShowItems: 5,
-    onItemAdd: action('onItemAdd'),
-    onItemRemove: action('onItemRemove'),
-    onItemEdit: action('onItemEdit'),
-    onItemSelect: action('onItemSelect'),
-    items: [],
-    loading: false,
-    texts: {},
-  },
+  emptyList: () => {
+    const texts = getTexts();
+    return (
+    <ManageableList maxToShowItems={5}
+      onItemAdd = {action('onItemAdd')}
+      onItemRemove = {action('onItemRemove')}
+      onItemEdit = {action('onItemEdit')}
+      onItemSelect = {action('onItemSelect')}
+      items = {[]}
+      loading = {false}
+      texts = {texts} />
+  )},
   contentList: withState({
     items: CONTENT_ITEMS,
   })(({ store }) => {
