@@ -9,7 +9,7 @@ import Close3M from '@synerise/ds-icon/dist/icons/Close3M';
 import { useOnClickOutside } from '@synerise/ds-utils';
 import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
-import List from '@synerise/ds-list/dist/List';
+import List from '@synerise/ds-list';
 import * as S from './Search.styles';
 import { FilterElement, SearchProps } from './Search.types';
 
@@ -33,6 +33,7 @@ const Search: React.FC<SearchProps> = ({
   const [filteredRecent, setFilterRecent] = useState();
   const [filteredResult, setFilterResult] = useState();
   const [inputOffset, setInputOffset] = useState(0);
+  const [focus, setFocus] = useState(false);
   const [resultChoosed, setResultChoosed] = useState(false);
   const ref = React.useRef<HTMLDivElement>(null);
 
@@ -43,6 +44,7 @@ const Search: React.FC<SearchProps> = ({
   };
 
   useOnClickOutside(ref, () => {
+    setFocus(false);
     if (filterData) {
       !value && !label && setInputOpen(false);
     } else {
@@ -50,7 +52,7 @@ const Search: React.FC<SearchProps> = ({
     }
   });
 
-  const selectFilter = (item: FilterElement): void => {
+  const selectFilter = React.useCallback((item: FilterElement): void => {
     onValueChange('');
     setLabel(item);
 
@@ -61,12 +63,12 @@ const Search: React.FC<SearchProps> = ({
     } else {
       onFilterValueChange(item.text);
     }
-  };
+  }, [onFilterValueChange, onValueChange]);
 
-  const selectResult = (item: FilterElement): void => {
+  const selectResult = React.useCallback((item: FilterElement): void => {
     setResultChoosed(true);
     onValueChange(item.text);
-  };
+  }, [onValueChange]);
 
   const findIncludes = (data: FilterElement[][] | undefined, currentValue: string, type: string): void => {
     const final: FilterElement[][] = [];
@@ -91,7 +93,7 @@ const Search: React.FC<SearchProps> = ({
     type === 'results' && setFilterResult(final);
   };
 
-  const clearValue = (): void => {
+  const clearValue = React.useCallback((): void => {
     setLabel(null);
     onValueChange('');
     setInputOffset(0);
@@ -99,7 +101,7 @@ const Search: React.FC<SearchProps> = ({
     setFilterRecent(recent);
     onFilterValueChange('');
     setResultChoosed(false);
-  };
+  }, [filterData, onFilterValueChange, onValueChange, recent]);
 
   const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>): void => {
     if (e.keyCode === 8 && value === '') {
@@ -110,7 +112,7 @@ const Search: React.FC<SearchProps> = ({
     }
   };
 
-  const change = (e: React.ChangeEvent<HTMLInputElement>): void => {
+  const change = React.useCallback((e: React.ChangeEvent<HTMLInputElement>): void => {
     const currentValue = e.currentTarget.value;
     onValueChange(currentValue);
     setResultChoosed(false);
@@ -121,7 +123,7 @@ const Search: React.FC<SearchProps> = ({
       findIncludes(recent, currentValue, 'recent');
       findIncludes(filterData, currentValue, 'filter');
     }
-  };
+  }, [filterData, filterValue, onValueChange, recent, results]);
 
   return (
     <S.SearchWrapper ref={ref}>
@@ -147,15 +149,16 @@ const Search: React.FC<SearchProps> = ({
             value={value}
             onChange={change}
             onKeyDown={onKeyDown}
+            onFocus={(): void => setFocus(true)}
           />
         </div>
       </S.SearchInputWrapper>
-      <S.SearchButton isOpen={inputOpen}>
+      <S.SearchButton isOpen={inputOpen} inputFocused={focus} hidden={!!value || !!filterValue}>
         <Button type="ghost" onClick={toggleOpen} data-testid="btn">
           <Icon component={<SearchM />} />
         </Button>
       </S.SearchButton>
-      <S.ClearButton hidden={!value}>
+      <S.ClearButton hidden={!value && !filterValue}>
         <Icon
           onClick={clearValue}
           component={
@@ -163,7 +166,7 @@ const Search: React.FC<SearchProps> = ({
               <Close3M />
             </Tooltip>
           }
-          color={theme.palette['grey-500']}
+          color={theme.palette['red-600']}
           size={18}
         />
       </S.ClearButton>
