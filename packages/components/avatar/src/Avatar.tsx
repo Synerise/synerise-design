@@ -3,10 +3,12 @@ import { AvatarProps as AntAvatarProps } from 'antd/lib/avatar';
 import Tooltip from '@synerise/ds-tooltip';
 import '@synerise/ds-core/dist/js/style';
 import './style/index.less';
+import Icon from '@synerise/ds-icon';
+import UserM from '@synerise/ds-icon/dist/icons/UserM';
 
-import AntdAvatar, { TooltipGroup } from './Avatar.styles';
+import AntdAvatar, { TooltipGroup} from './Avatar.styles';
 
-type backgroundColors =
+type color =
   | 'red'
   | 'green'
   | 'grey'
@@ -20,21 +22,22 @@ type backgroundColors =
   | 'purple'
   | 'violet';
 
-type backgroundColorHue = '900' | '800' | '700' | '600' | '500' | '400' | '300' | '200' | '100' | '050';
-
+type colorHue = '900' | '800' | '700' | '600' | '500' | '400' | '300' | '200' | '100' | '050';
+type size = number | 'small' | 'medium' | 'large' | 'extraLarge' | undefined;
 export interface AvatarProps extends Omit<AntAvatarProps, 'size' | 'icon'> {
   hasStatus?: boolean;
-  size?: number | 'small' | 'medium' | 'large' | 'extraLarge' | undefined;
+  size?: size;
   iconComponent?: React.ReactNode;
-  backgroundColor?: backgroundColors;
-  backgroundColorHue?: backgroundColorHue;
+  backgroundColor?: color;
+  backgroundColorHue?: colorHue;
   disabled?: boolean;
+  placeholderColor?: color;
+  placeholderColorHue?: colorHue;
   tooltip?: {
     name: string;
     email: string;
   };
 }
-
 const Avatar: React.FC<AvatarProps> = ({
   backgroundColor,
   backgroundColorHue,
@@ -42,6 +45,8 @@ const Avatar: React.FC<AvatarProps> = ({
   hasStatus,
   iconComponent,
   tooltip,
+  placeholderColor,
+  placeholderColorHue,
   ...antdProps
 }) => {
   const [pressed, setPressed] = React.useState(false);
@@ -51,6 +56,13 @@ const Avatar: React.FC<AvatarProps> = ({
       <p>{tooltip.email}</p>
     </TooltipGroup>
   );
+  const iconPlaceholder = (antdProps.children ||
+    <Icon
+      component={<UserM/>}
+    />
+  );
+
+
   return (
     <Tooltip title={tooltipGroup}>
       <AntdAvatar
@@ -62,11 +74,13 @@ const Avatar: React.FC<AvatarProps> = ({
         hasStatus={hasStatus}
         backgroundColor={backgroundColor}
         backgroundColorHue={backgroundColorHue}
+        placeholderColor={placeholderColor || 'grey'}
+        placeholderColorHue={placeholderColor? placeholderColorHue : '050'}
         disabled={disabled}
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...antdProps}
       >
-        {iconComponent || antdProps.children}
+        {iconComponent || iconPlaceholder}
       </AntdAvatar>
     </Tooltip>
   );

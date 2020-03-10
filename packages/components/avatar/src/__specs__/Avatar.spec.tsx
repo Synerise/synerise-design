@@ -111,4 +111,43 @@ describe('Avatar', () => {
     // ASSERT
     expect(avatar).toHaveStyle('opacity: 0.4;pointer-events: none;');
   });
+
+  it('should render placeholderIcon when iconComponent is not provided', () => {
+    // ARRANGE
+    const { container } = renderWithProvider(<Avatar />);
+
+    const placeholderIcon = container.querySelector('.ds-icon');
+
+    // ASSERT
+    expect(container).toContainElement(placeholderIcon as HTMLElement);
+  });
+
+  it('should render placeholderIcon with proper color', () => {
+    // ARRANGE
+    const { container } = renderWithProvider(<Avatar
+      placeholderColor={RED}
+      placeholderColorHue={'800'}
+    />);
+
+    const placeholderIcon = container.querySelector('.ds-icon > svg');
+    // ASSERT
+    expect(placeholderIcon).toHaveStyle('fill: #87020b')
+  });
+  it('should render white placeholderIcon when placeholderColor is not provided', () => {
+    // ARRANGE
+    const { container } = renderWithProvider(<Avatar />);
+
+    const placeholderIcon = container.querySelector('.ds-icon > svg');
+    // ASSERT
+    expect(placeholderIcon).toHaveStyle('fill: #f9fafb')
+  });
+  it('should scale placeholderIcon container', () => {
+    // ARRANGE
+    const { container } = renderWithProvider(<Avatar
+      size={'large'} />);
+
+    const placeholderIconContainer = container.querySelector('.ds-icon');
+    // ASSERT
+    expect(placeholderIconContainer).toHaveStyle('width: 60%');
+  });
 });

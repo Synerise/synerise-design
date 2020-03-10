@@ -37,7 +37,7 @@ const backgroundColors = [
   'purple',
   'violet',
 ] as const;
-
+const placeholderColors = backgroundColors;
 const backgroundColorHue = [
   '900',
   '800',
@@ -50,7 +50,7 @@ const backgroundColorHue = [
   '100',
   '050',
 ] as const;
-
+const placeholderColorHue = backgroundColorHue;
 const imgSrc = 'https://www.w3schools.com/howto/img_avatar.png';
 
 const image = [
@@ -202,6 +202,20 @@ const stories = {
           tooltip={{name: 'Silvia Jobs', email: 'silvia.jobs@gmail.com'}}
         >
           AK
+        </Avatar>
+      </Badge>
+      <Badge status={'error'}>
+        <Avatar
+          backgroundColor={select('backgroundColors', backgroundColors, 'blue')}
+          backgroundColorHue={select('backgroundColorHue', backgroundColorHue, '800')}
+          disabled={boolean('disabled', false)}
+          size={'extraLarge'}
+          tooltip={{name: 'Silvia Jobs', email: 'silvia.jobs@gmail.com'}}
+          hasStatus={boolean('has status', true)}
+          placeholderColor={select('placeholderColors', placeholderColors, 'blue')}
+          placeholderColorHue={select('placeholderColorHue', placeholderColorHue, '300')}
+        >
+          
         </Avatar>
       </Badge>
     </div>
