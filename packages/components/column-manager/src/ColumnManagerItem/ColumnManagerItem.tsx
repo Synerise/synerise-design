@@ -16,7 +16,7 @@ import Switch from '@synerise/ds-switch/dist/Switch';
 import { withTheme } from 'styled-components';
 import Dropdown from '@synerise/ds-dropdown';
 import Button from '@synerise/ds-button';
-import Divider from 'antd/es/divider';
+import Divider from '@synerise/ds-divider';
 import * as S from './ColumnManagerItem.styles';
 
 const FIXED_TYPES = {
@@ -61,6 +61,7 @@ const ColumnManagerItem: React.FC<Column & ColumnProps> = ({
   switchAction,
   draggable,
   searchQuery,
+  ...rest
 }) => {
   const columnName = React.useMemo(() => {
     if (searchQuery) {
@@ -96,7 +97,8 @@ const ColumnManagerItem: React.FC<Column & ColumnProps> = ({
   );
 
   return (
-    <S.ColumnManagerItem>
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    <S.ColumnManagerItem {...rest}>
       <S.ItemPart align="left">
         {draggable && <S.DragHandler component={<DragHandleM />} color={theme.palette['grey-400']} />}
         <Icon component={typeIcon[type]} color={theme.palette['grey-600']} />

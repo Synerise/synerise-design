@@ -3450,10 +3450,39 @@
   resolved "https://registry.yarnpkg.com/@synerise/ds-icon/-/ds-icon-0.11.1.tgz#ddd8f650a2cc971920be1f46f80062ab394f7f1a"
   integrity sha512-1zFdRbdCX7Kn9oaC6yZwjRa6yJdBBHWzYM6kUWICKVN88HZVCY6KgCtBK9Y5SAMRdXRjOuxhVG+l/v9fSqS1Yw==
 
-"@testing-library/dom@^7.0.2":
-  version "7.1.1"
-  resolved "https://registry.yarnpkg.com/@testing-library/dom/-/dom-7.1.1.tgz#bf890c2468bd717ffd8b336a819686907fbe4daa"
-  integrity sha512-CxspAIntyK2joLUJChOZgnwx7xBxdBC8ugwP+Z49Dd9O3sGVs0wHkOUOsfBVXHgBjmdZk8E3SyHZVrMRd9O1sA==
+"@synerise/ds-item-filter@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@synerise/ds-item-filter/-/ds-item-filter-0.2.0.tgz#802410116c91a13ada43fbd2029ae758187f92fe"
+  integrity sha512-QGT5BFDE5MvQQb0OI6aQcp3ig3z+VFxmi3paHmha0xb372cEcvUpUT0HxuGR+F/tSGW7VdK9JI+wDLxxScfj2A==
+  dependencies:
+    "@synerise/ds-button" "^0.8.1"
+    "@synerise/ds-drawer" "^0.3.2"
+    "@synerise/ds-dropdown" "^0.10.14"
+    "@synerise/ds-icon" "^0.11.1"
+    "@synerise/ds-manageable-list" "^0.8.0"
+    "@synerise/ds-result" "^0.4.7"
+    "@synerise/ds-search-bar" "^0.2.0"
+    "@synerise/ds-tabs" "^0.8.16"
+    "@synerise/ds-typography" "*"
+    antd "*"
+
+"@synerise/ds-manageable-list@^0.8.0":
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/@synerise/ds-manageable-list/-/ds-manageable-list-0.8.0.tgz#97d288a8c1449768f3a61f30227de144d3b643e0"
+  integrity sha512-zVafGHK5zjR9u1aeEfPCFQUdOBVJWpkUPy91hv8ggNfbihUSTqiFkDjrhlEj1Wr1y1t9ZkFPvabIGkCzW9hcrw==
+  dependencies:
+    "@synerise/ds-button" "^0.8.1"
+    "@synerise/ds-icon" "^0.12.1"
+    "@synerise/ds-list" "^0.3.22"
+    "@synerise/ds-popconfirm" "^0.2.27"
+    "@synerise/ds-tags" "^0.2.24"
+    "@synerise/ds-tooltip" "^0.4.22"
+    "@synerise/ds-typography" "^0.6.1"
+
+"@testing-library/dom@^6.11.0":
+  version "6.11.0"
+  resolved "https://registry.npmjs.org/@testing-library/dom/-/dom-6.11.0.tgz#962a38f1a721fdb7c9e35e7579e33ff13a00eda4"
+  integrity sha512-Pkx9LMIGshyNbfmecjt18rrAp/ayMqGH674jYER0SXj0iG9xZc+zWRjk2Pg9JgPBDvwI//xGrI/oOQkAi4YEew==
   dependencies:
     "@babel/runtime" "^7.9.2"
     "@types/testing-library__dom" "^7.0.0"

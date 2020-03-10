@@ -1,5 +1,5 @@
 import * as React from 'react';
-
+import * as moment from 'moment';
 import ColumnManager from '@synerise/ds-column-manager';
 import { action } from '@storybook/addon-actions';
 import { Column } from '@synerise/ds-column-manager/dist/ColumnManagerItem/ColumnManagerItem';
@@ -7,7 +7,6 @@ import { text } from '@storybook/addon-knobs';
 import Button from '@synerise/ds-button';
 import { withState } from '@dump247/storybook-state';
 import { SavedView } from '@synerise/ds-column-manager/dist/ColumnManager';
-import moment from 'moment';
 
 
 const COLUMNS: Column[] = [
@@ -112,7 +111,8 @@ const FILTERS = [
       avatar_url: 'https://www.w3schools.com/howto/img_avatar.png',
       firstname: 'Kamil',
       lastname: 'Kowalski',
-    }
+    },
+    columns: [],
   }
 ];
 
@@ -141,6 +141,7 @@ const getTexts = () => ({
   deleteLabel: text('Delete', 'Delete'),
   noResults: text('No results', 'No results'),
   searchPlaceholder: text('Search placeholder', 'Search'),
+  searchClearTooltip: text('Clear tooltip', 'Clear'),
   title: text('Drawer title', 'Filter'),
 });
 
@@ -161,19 +162,22 @@ const getColumnManagerTexts = () => ({
   viewNamePlaceholder: text('Column manager - view name placeholder', 'Placeholder'),
   viewDescriptionPlaceholder: text('Column manager - view description placeholder', 'Placeholder'),
   mustNotBeEmpty: text('Column manager - Error messege', 'Must not be empty'),
+  searchClearTooltip: text('Clear tooltip', 'Clear'),
 });
 
 const saveFilter = (savedView: SavedView, store) => {
+  const id = moment().format('MM-DD-YYYY_HH:mm:ss');
   store.set({
+    selectedItemId: id,
     filters: [
       ...store.state.filters,
       {
         ...EMPTY_FILTER,
         name: savedView.meta.name,
         description: savedView.meta.description,
-        columns: savedView.columns,
-        id: moment().format('DD-MM-YYYY'),
-        created: moment().format('DD-MM-YYYY'),
+        columns: [...savedView.columns],
+        id: id,
+        created: moment().format('MM-DD-YYYY HH:mm:ss'),
       }
     ],
   })
@@ -210,7 +214,7 @@ const stories = {
     selectedItemId: undefined,
     columnManagerVisible: false,
   })(({ store }) => {
-    console.log(store.state);
+
     return (
       <>
         <Button type="primary" mode="simple" onClick={() => store.set({columnManagerVisible: true})}>
@@ -220,6 +224,7 @@ const stories = {
           hide={() => store.set({columnManagerVisible: false})}
           visible={store.state.columnManagerVisible}
           columns={store.state.columns}
+          onApply={action('onApply')}
           onSave={(savedView) => saveFilter(savedView, store)}
           texts={getColumnManagerTexts()}
           itemFilterConfig={{

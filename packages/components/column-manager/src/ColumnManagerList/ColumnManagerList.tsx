@@ -48,8 +48,15 @@ const ColumnManagerList: React.FC<Props> = ({
             setList={updateVisibleList}
           >
             {visibleList.map(item => (
-              // eslint-disable-next-line react/jsx-props-no-spreading
-              <ColumnManagerItem key={item.id} {...item} setFixed={setFixed} switchAction={toggleColumn} draggable />
+              <ColumnManagerItem
+                data-testid="ds-column-manager-visible-item"
+                key={item.id}
+                // eslint-disable-next-line react/jsx-props-no-spreading
+                {...item}
+                setFixed={setFixed}
+                switchAction={toggleColumn}
+                draggable
+              />
             ))}
           </ReactSortable>
           <S.ListHeadline>{texts.hidden}</S.ListHeadline>
@@ -60,8 +67,15 @@ const ColumnManagerList: React.FC<Props> = ({
             setList={updateHiddenList}
           >
             {hiddenList.map(item => (
-              // eslint-disable-next-line react/jsx-props-no-spreading
-              <ColumnManagerItem key={item.id} {...item} setFixed={setFixed} switchAction={toggleColumn} draggable />
+              <ColumnManagerItem
+                data-testid="ds-column-manager-hidden-item"
+                key={item.id}
+                // eslint-disable-next-line react/jsx-props-no-spreading
+                {...item}
+                setFixed={setFixed}
+                switchAction={toggleColumn}
+                draggable
+              />
             ))}
           </ReactSortable>
         </>

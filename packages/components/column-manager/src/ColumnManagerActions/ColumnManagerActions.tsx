@@ -8,18 +8,21 @@ import { ViewMeta } from '../ColumnManager';
 
 type Props = {
   onSave: (viewMeta: ViewMeta) => void;
+  onApply: () => void;
+  onCancel: () => void;
   texts: {
     [k: string]: string | React.ReactNode;
   };
 };
 
-const ColumnManagerActions: React.FC<Props> = ({ onSave, texts }) => {
+const ColumnManagerActions: React.FC<Props> = ({ onSave, onApply, onCancel, texts }) => {
   const [modalVisible, setModalVisible] = React.useState(false);
 
   const formRef = React.useRef<HTMLFormElement>(null);
 
   const handleCancel = React.useCallback(() => {
     setModalVisible(false);
+    formRef.current && formRef.current.reset();
   }, [setModalVisible]);
 
   const handleShowModal = React.useCallback(() => {
@@ -29,7 +32,7 @@ const ColumnManagerActions: React.FC<Props> = ({ onSave, texts }) => {
   let submit = React.useCallback(
     values => {
       const { name, description } = values;
-
+      setModalVisible(false);
       onSave({ name, description });
     },
     [onSave]
@@ -50,14 +53,14 @@ const ColumnManagerActions: React.FC<Props> = ({ onSave, texts }) => {
   return (
     <>
       <S.ColumnManagerActions>
-        <Button type="secondary" mode="simple" onClick={handleShowModal}>
+        <Button data-testid="ds-column-manager-save" type="secondary" mode="simple" onClick={handleShowModal}>
           {texts.saveView}
         </Button>
         <S.RightButtons>
-          <Button type="ghost" mode="simple">
+          <Button data-testid="ds-column-manager-cancel" type="ghost" mode="simple" onClick={onCancel}>
             {texts.cancel}
           </Button>
-          <Button type="primary" mode="simple">
+          <Button data-testid="ds-column-manager-apply" type="primary" mode="simple" onClick={onApply}>
             {texts.apply}
           </Button>
         </S.RightButtons>
@@ -70,10 +73,10 @@ const ColumnManagerActions: React.FC<Props> = ({ onSave, texts }) => {
         footer={
           <S.ModalFooter style={{ display: 'flex', flexWrap: 'nowrap' }}>
             <div style={{ display: 'flex' }}>
-              <Button type="ghost" onClick={handleCancel}>
+              <Button data-testid="ds-modal-cancel" type="ghost" onClick={handleCancel}>
                 {texts.cancel}
               </Button>
-              <Button type="primary" onClick={(event): void => submit(event)}>
+              <Button data-testid="ds-modal-apply" type="primary" onClick={(event): void => submit(event)}>
                 {texts.apply}
               </Button>
             </div>

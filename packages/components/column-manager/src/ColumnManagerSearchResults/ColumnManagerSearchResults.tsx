@@ -29,6 +29,7 @@ const ColumnManagerSearchResults: React.FC<Props> = ({ searchResults, searchQuer
                 setFixed={setFixed}
                 switchAction={(): void => switchAction(column.id, column.visible)}
                 searchQuery={searchQuery}
+                data-testid="ds-column-manager-filtered-item"
               />
             )
           )}
