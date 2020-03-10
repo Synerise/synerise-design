@@ -76,6 +76,7 @@ class ColumnManager extends React.Component<ColumnManagerProps, State> {
 
   constructor(props: ColumnManagerProps) {
     super(props);
+    // eslint-disable-next-line react/state-in-constructor
     this.state = {
       ...DEFAULT_STATE,
       visibleList: props.columns.filter((column: Column) => column.visible),
