@@ -101,7 +101,7 @@ const FilterItem: React.FC<FilterItemProps> = ({
           <S.ItemHeaderSuffix>
             {item.user && item.created && <ItemMeta user={item.user} created={item.created} />}
             <Dropdown
-              trigger={['click', 'hover']}
+              trigger={['click']}
               overlay={
                 <ItemMenu>
                   {item.canUpdate && (

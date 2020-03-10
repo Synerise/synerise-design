@@ -36,10 +36,12 @@ export const ItemHeaderSuffix = styled.div`
   justify-content: flex-start;
 
   .ds-dropdown-trigger {
+    cursor: pointer;
     svg {
       transition: all 0.3s ease;
     }
-    &.ant-dropdown-open {
+    &.ant-dropdown-open,
+    &:hover {
       svg {
         color: ${(props): string => props.theme.palette['blue-600']};
         fill: ${(props): string => props.theme.palette['blue-600']};
