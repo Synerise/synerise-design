@@ -29,8 +29,6 @@
     "@synerise/ds-item-filter": "^0.2.0",
     "@synerise/ds-result": "^0.4.0",
     "@synerise/ds-typography": "*",
-    "antd": "*",
-    "moment": "^2.24.0",
     "react-final-form": "^6.3.5",
     "react-sortablejs": "^2.0.11",
     "react-sortablejs-typescript": "^2.0.15"
@@ -39,5 +37,7 @@
     "@synerise/ds-core": "*",
     "react": ">=16.9.0 < 17.0.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "moment": "^2.24.0"
+  }
 }

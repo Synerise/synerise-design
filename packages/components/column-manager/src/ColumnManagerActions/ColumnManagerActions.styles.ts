@@ -39,7 +39,11 @@ export const Form = styled.form`
 
 export const ModalFooter = styled.div`
   display: flex;
+  flex-wrap: nowrap;
   flex-direction: row;
   align-items: center;
   justify-content: flex-end;
+  > div {
+    display: flex;
+  }
 `;

@@ -174,10 +174,10 @@ describe('ColumnManager', () => {
     const hide = jest.fn();
     const apply = jest.fn();
     const save = jest.fn();
-    const { getByTestId, getByPlaceholderText } = renderWithProvider(COLUMN_MANAGER(true, hide, save, apply, '' ));
+    const { getByTestId, getByPlaceholderText, getByText } = renderWithProvider(COLUMN_MANAGER(true, hide, save, apply, '' ));
 
     // ACT
-    fireEvent.click(getByTestId('ds-column-manager-save'));
+    fireEvent.click(getByText('Save view'));
     await wait();
 
     // ARRANGE
@@ -200,7 +200,7 @@ describe('ColumnManager', () => {
     const { getByTestId, getByText } = renderWithProvider(COLUMN_MANAGER(true, hide, save, apply, '' ));
 
     // ACT
-    fireEvent.click(getByTestId('ds-column-manager-save'));
+    fireEvent.click(getByText('Save view'));
     await wait();
 
     // ARRANGE

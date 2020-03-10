@@ -180,6 +180,7 @@ const saveFilter = (savedView: SavedView, store) => {
         created: moment().format('MM-DD-YYYY HH:mm:ss'),
       }
     ],
+    columns: [...savedView.columns],
   })
 };
 

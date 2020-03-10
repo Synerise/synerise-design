@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { withTheme } from 'styled-components';
 import { FormattedMessage } from 'react-intl';
 import Typography from 'antd/lib/typography';
 import Drawer from '@synerise/ds-drawer';
@@ -19,11 +18,8 @@ export type ColumnManagerProps = {
   onSave: (savedView: SavedView) => void;
   onApply: (columns: Column[]) => void;
   columns: Column[];
-  texts?: {
+  texts: {
     [k: string]: string | React.ReactNode;
-  };
-  theme: {
-    [k: string]: string;
   };
   itemFilterConfig?: Omit<ItemFilterProps, 'visible' | 'hide' | 'theme'>;
 };
@@ -38,159 +34,220 @@ export type ViewMeta = {
   description: string;
 };
 
-const ColumnManager: React.FC<ColumnManagerProps> = ({
-  hide,
-  visible,
-  theme,
-  onSave,
-  onApply,
-  columns,
-  itemFilterConfig,
-  texts = {
-    title: <FormattedMessage id="DS.COLUMN-MANAGER.TITLE" />,
-    searchPlaceholder: <FormattedMessage id="DS.COLUMN-MANAGER.SEARCH-PLACEHOLDER" />,
-    searchClearTooltip: <FormattedMessage id="DS.ITEM-FILTER.SEARCH-CLEAR" />,
-    noResults: <FormattedMessage id="DS.COLUMN-MANAGER.NO-RESULTS" />,
-    searchResults: <FormattedMessage id="DS.COLUMN-MANAGER.SEARCH-RESULTS" />,
-    visible: <FormattedMessage id="DS.COLUMN-MANAGER.VISIBLE" />,
-    hidden: <FormattedMessage id="DS.COLUMN-MANAGER.HIDDEN" />,
-    saveView: <FormattedMessage id="DS.COLUMN-MANAGER.SAVE-VIEW" />,
-    cancel: <FormattedMessage id="DS.COLUMN-MANAGER.CANCEL" />,
-    apply: <FormattedMessage id="DS.COLUMN-MANAGER.APPLY" />,
-    fixedLeft: <FormattedMessage id="DS.COLUMN-MANAGER.FIXED-LEFT" />,
-    fixedRight: <FormattedMessage id="DS.COLUMN-MANAGER.FIXED-RIGHT" />,
-    clear: <FormattedMessage id="DS.COLUMN-MANAGER.CLEAR" />,
-    viewName: <FormattedMessage id="DS.COLUMN-MANAGER.VIEW-NAME" />,
-    viewDescription: <FormattedMessage id="DS.COLUMN-MANAGER.VIEW-DESCRIPTION" />,
-    viewNamePlaceholder: <FormattedMessage id="DS.COLUMN-MANAGER.VIEW-NAME-PLACEHOLDER" />,
-    viewDescriptionPlaceholder: <FormattedMessage id="DS.COLUMN-MANAGER.VIEW-DESCRIPTION-PLACEHOLDER" />,
-    mustNotBeEmpty: <FormattedMessage id="DS.COLUMN-MANAGER.MUST-NOT-BE-EMPTY" />,
-  },
-}) => {
-  const [searchQuery, setSearchQuery] = React.useState<string>('');
-  const [visibleList, setVisibleList] = React.useState(columns.filter(column => column.visible));
-  const [hiddenList, setHiddenList] = React.useState(columns.filter(column => !column.visible));
-  const [itemFilterVisible, setItemFilterVisible] = React.useState(false);
+type State = {
+  searchQuery: string;
+  visibleList: Column[];
+  hiddenList: Column[];
+  itemFilterVisible: boolean;
+  selectedFilterId: string | undefined;
+};
 
-  React.useEffect(() => {
-    setVisibleList(columns.filter(column => column.visible));
-    setHiddenList(columns.filter(column => !column.visible));
-  }, [columns, itemFilterConfig]);
+const DEFAULT_STATE: State = {
+  searchQuery: '',
+  visibleList: [],
+  hiddenList: [],
+  itemFilterVisible: false,
+  selectedFilterId: undefined,
+};
 
-  const searchResults = React.useMemo(() => {
-    return [...visibleList, ...hiddenList].filter(column =>
-      column.name.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-  }, [searchQuery, visibleList, hiddenList]);
-
-  const updateVisibleColumns = (newVisibleList: Column[]): void => {
-    setVisibleList(newVisibleList.map((column: Column): Column => ({ ...column, visible: true })));
+class ColumnManager extends React.Component<ColumnManagerProps, State> {
+  static defaultProps = {
+    texts: {
+      title: <FormattedMessage id="DS.COLUMN-MANAGER.TITLE" />,
+      searchPlaceholder: <FormattedMessage id="DS.COLUMN-MANAGER.SEARCH-PLACEHOLDER" />,
+      searchClearTooltip: <FormattedMessage id="DS.ITEM-FILTER.SEARCH-CLEAR" />,
+      noResults: <FormattedMessage id="DS.COLUMN-MANAGER.NO-RESULTS" />,
+      searchResults: <FormattedMessage id="DS.COLUMN-MANAGER.SEARCH-RESULTS" />,
+      visible: <FormattedMessage id="DS.COLUMN-MANAGER.VISIBLE" />,
+      hidden: <FormattedMessage id="DS.COLUMN-MANAGER.HIDDEN" />,
+      saveView: <FormattedMessage id="DS.COLUMN-MANAGER.SAVE-VIEW" />,
+      cancel: <FormattedMessage id="DS.COLUMN-MANAGER.CANCEL" />,
+      apply: <FormattedMessage id="DS.COLUMN-MANAGER.APPLY" />,
+      fixedLeft: <FormattedMessage id="DS.COLUMN-MANAGER.FIXED-LEFT" />,
+      fixedRight: <FormattedMessage id="DS.COLUMN-MANAGER.FIXED-RIGHT" />,
+      clear: <FormattedMessage id="DS.COLUMN-MANAGER.CLEAR" />,
+      viewName: <FormattedMessage id="DS.COLUMN-MANAGER.VIEW-NAME" />,
+      viewDescription: <FormattedMessage id="DS.COLUMN-MANAGER.VIEW-DESCRIPTION" />,
+      viewNamePlaceholder: <FormattedMessage id="DS.COLUMN-MANAGER.VIEW-NAME-PLACEHOLDER" />,
+      viewDescriptionPlaceholder: <FormattedMessage id="DS.COLUMN-MANAGER.VIEW-DESCRIPTION-PLACEHOLDER" />,
+      mustNotBeEmpty: <FormattedMessage id="DS.COLUMN-MANAGER.MUST-NOT-BE-EMPTY" />,
+    },
   };
 
-  const updateHiddenColumns = (newHiddenList: Column[]): void => {
-    setHiddenList(newHiddenList.map((column: Column): Column => ({ ...column, visible: false })));
+  static getDerivedStateFromProps(props: ColumnManagerProps, state: State): Partial<State> | null {
+    if (props.itemFilterConfig && props.itemFilterConfig.selectedItemId !== state.selectedFilterId) {
+      const visible = props.columns.filter((column: Column) => column.visible);
+      const hidden = props.columns.filter((column: Column) => !column.visible);
+      return {
+        visibleList: visible,
+        hiddenList: hidden,
+        selectedFilterId: (props.itemFilterConfig && props.itemFilterConfig.selectedItemId) || undefined,
+      };
+    }
+    return null;
+  }
+
+  constructor(props: ColumnManagerProps) {
+    super(props);
+    this.state = {
+      ...DEFAULT_STATE,
+      visibleList: props.columns.filter((column: Column) => column.visible),
+      hiddenList: props.columns.filter((column: Column) => !column.visible),
+      selectedFilterId: props.itemFilterConfig && props.itemFilterConfig.selectedItemId,
+    };
+  }
+
+  updateVisibleColumns = (newVisibleList: Column[]): void => {
+    this.setState({
+      visibleList: newVisibleList.map((column: Column): Column => ({ ...column, visible: true })),
+    });
   };
 
-  const setFixed = (id: string, fixed?: string): void => {
-    setVisibleList(
-      visibleList.map(visibleColumn => (visibleColumn.id === id ? { ...visibleColumn, fixed } : visibleColumn))
-    );
+  updateHiddenColumns = (newVisibleList: Column[]): void => {
+    this.setState({
+      hiddenList: newVisibleList.map((column: Column): Column => ({ ...column, visible: true })),
+    });
   };
 
-  const hideColumn = (id: string): void => {
+  hideColumn = (id: string): void => {
+    const { visibleList, hiddenList } = this.state;
     const column = visibleList.find(col => col.id === id);
-    column && setVisibleList(visibleList.filter(visibleColumn => visibleColumn.id !== column.id));
-    column && setHiddenList([...hiddenList, { ...column, visible: false }]);
+    column &&
+      this.setState({
+        visibleList: visibleList.filter(visibleColumn => visibleColumn.id !== column.id),
+        hiddenList: [...hiddenList, { ...column, visible: false }],
+      });
   };
 
-  const showColumn = (id: string): void => {
+  showColumn = (id: string): void => {
+    const { visibleList, hiddenList } = this.state;
     const column = hiddenList.find(col => col.id === id);
-    column && setHiddenList(hiddenList.filter(hiddenColumn => hiddenColumn.id !== column.id));
-    column && setVisibleList([...visibleList, { ...column, visible: true }]);
+    column &&
+      this.setState({
+        hiddenList: hiddenList.filter(hiddenColumn => hiddenColumn.id !== column.id),
+        visibleList: [...visibleList, { ...column, visible: true }],
+      });
   };
 
-  const toggleColumn = (id: string, columnVisible: boolean): void => {
+  toggleColumn = (id: string, columnVisible: boolean): void => {
     if (columnVisible) {
-      hideColumn(id);
+      this.hideColumn(id);
     } else {
-      showColumn(id);
+      this.showColumn(id);
     }
   };
 
-  const hideItemFilter = React.useCallback(() => {
-    setItemFilterVisible(false);
-  }, [setItemFilterVisible]);
+  setFixed = (id: string, fixed?: string): void => {
+    const { visibleList } = this.state;
+    this.setState({
+      visibleList: visibleList.map(visibleColumn =>
+        visibleColumn.id === id ? { ...visibleColumn, fixed } : visibleColumn
+      ),
+    });
+  };
 
-  const showItemFilter = React.useCallback(() => {
-    setItemFilterVisible(true);
-  }, [setItemFilterVisible]);
+  hideItemFilter = (): void => {
+    this.setState({
+      itemFilterVisible: false,
+    });
+  };
 
-  const handleSave = (viewMeta: { name: string; description: string }): void => {
+  handleShowItemFilter = (): void => {
+    this.setState({
+      itemFilterVisible: true,
+    });
+  };
+
+  handleSearchChange = (query: string): void => {
+    this.setState({
+      searchQuery: query,
+    });
+  };
+
+  handleSave = (viewMeta: { name: string; description: string }): void => {
+    const { onSave } = this.props;
+    const { visibleList, hiddenList } = this.state;
     onSave({
       meta: viewMeta,
       columns: [...visibleList, ...hiddenList],
     });
   };
 
-  const handleApply = React.useCallback(() => {
+  handleApply = (): void => {
+    const { onApply } = this.props;
+    const { visibleList, hiddenList } = this.state;
     onApply([...visibleList, ...hiddenList]);
-  }, [onApply, visibleList, hiddenList]);
+  };
 
-  return (
-    <Drawer visible={visible} width={338} onClose={hide}>
-      <Drawer.DrawerHeader>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: 24 }}>
-          <Typography.Title style={{ flex: 1, margin: 0 }} level={4}>
-            {texts.title}
-          </Typography.Title>
-          <Button data-testid="ds-column-manager-show-filters" type="ghost" mode="single-icon" onClick={showItemFilter}>
-            <Icon component={<FolderM />} />
-          </Button>
-          <Button
-            data-testid="ds-column-manager-close"
-            style={{ marginLeft: '8px' }}
-            mode="single-icon"
-            type="ghost"
-            onClick={hide}
-          >
-            <Icon component={<CloseM />} />
-          </Button>
-        </div>
-      </Drawer.DrawerHeader>
-      <SearchBar
-        onSearchChange={setSearchQuery}
-        placeholder={texts.searchPlaceholder as string}
-        value={searchQuery}
-        onClearInput={(): void => setSearchQuery('')}
-        iconLeft={<Icon component={<SearchM />} color={theme.palette['grey-800']} />}
-        clearTooltip={texts.searchClearTooltip as string}
-      />
-      <Drawer.DrawerBody>
-        <Drawer.DrawerContent style={{ padding: '0 0 80px' }}>
-          <ColumnManagerList
-            texts={texts}
-            searchQuery={searchQuery}
-            searchResults={searchResults}
-            visibleList={visibleList}
-            hiddenList={hiddenList}
-            setFixed={setFixed}
-            toggleColumn={toggleColumn}
-            updateVisibleList={updateVisibleColumns}
-            updateHiddenList={updateHiddenColumns}
-          />
-        </Drawer.DrawerContent>
-        <ColumnManagerActions onSave={handleSave} onApply={handleApply} onCancel={hide} texts={texts} />
-      </Drawer.DrawerBody>
-      {itemFilterConfig && (
-        <ItemFilter
-          /* eslint-disable-next-line react/jsx-props-no-spreading */
-          {...itemFilterConfig}
-          theme={theme}
-          visible={itemFilterVisible}
-          hide={hideItemFilter}
+  render(): React.ReactElement {
+    const { visible, hide, texts, itemFilterConfig } = this.props;
+    const { visibleList, hiddenList, searchQuery, itemFilterVisible } = this.state;
+
+    const searchResults = [...visibleList, ...hiddenList].filter(column =>
+      column.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
+    return (
+      <Drawer visible={visible} width={338} onClose={hide}>
+        <Drawer.DrawerHeader>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: 24 }}>
+            <Typography.Title style={{ flex: 1, margin: 0 }} level={4}>
+              {texts.title}
+            </Typography.Title>
+            <Button
+              data-testid="ds-column-manager-show-filters"
+              type="ghost"
+              mode="single-icon"
+              onClick={this.handleShowItemFilter}
+            >
+              <Icon component={<FolderM />} />
+            </Button>
+            <Button
+              data-testid="ds-column-manager-close"
+              style={{ marginLeft: '8px' }}
+              mode="single-icon"
+              type="ghost"
+              onClick={hide}
+            >
+              <Icon component={<CloseM />} />
+            </Button>
+          </div>
+        </Drawer.DrawerHeader>
+        <SearchBar
+          onSearchChange={this.handleSearchChange}
+          placeholder={texts.searchPlaceholder as string}
+          value={searchQuery}
+          onClearInput={(): void => this.handleSearchChange('')}
+          iconLeft={<Icon component={<SearchM />} />}
+          clearTooltip={texts.searchClearTooltip as string}
         />
-      )}
-    </Drawer>
-  );
-};
-export default withTheme(ColumnManager);
+        <Drawer.DrawerBody>
+          <Drawer.DrawerContent style={{ padding: '0 0 80px' }}>
+            <ColumnManagerList
+              texts={texts}
+              searchQuery={searchQuery}
+              searchResults={searchResults}
+              visibleList={visibleList}
+              hiddenList={hiddenList}
+              setFixed={this.setFixed}
+              toggleColumn={this.toggleColumn}
+              updateVisibleList={this.updateVisibleColumns}
+              updateHiddenList={this.updateHiddenColumns}
+            />
+          </Drawer.DrawerContent>
+          <ColumnManagerActions onSave={this.handleSave} onApply={this.handleApply} onCancel={hide} texts={texts} />
+        </Drawer.DrawerBody>
+        {itemFilterConfig && (
+          <ItemFilter
+            /* eslint-disable-next-line react/jsx-props-no-spreading */
+            {...itemFilterConfig}
+            visible={itemFilterVisible}
+            hide={this.hideItemFilter}
+          />
+        )}
+      </Drawer>
+    );
+  }
+}
+
+export default ColumnManager;
