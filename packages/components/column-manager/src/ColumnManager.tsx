@@ -74,6 +74,16 @@ class ColumnManager extends React.Component<ColumnManagerProps, State> {
     },
   };
 
+  constructor(props: ColumnManagerProps) {
+    super(props);
+    this.state = {
+      ...DEFAULT_STATE,
+      visibleList: props.columns.filter((column: Column) => column.visible),
+      hiddenList: props.columns.filter((column: Column) => !column.visible),
+      selectedFilterId: props.itemFilterConfig && props.itemFilterConfig.selectedItemId,
+    };
+  }
+
   static getDerivedStateFromProps(props: ColumnManagerProps, state: State): Partial<State> | null {
     if (props.itemFilterConfig && props.itemFilterConfig.selectedItemId !== state.selectedFilterId) {
       const visible = props.columns.filter((column: Column) => column.visible);
@@ -85,16 +95,6 @@ class ColumnManager extends React.Component<ColumnManagerProps, State> {
       };
     }
     return null;
-  }
-
-  constructor(props: ColumnManagerProps) {
-    super(props);
-    this.state = {
-      ...DEFAULT_STATE,
-      visibleList: props.columns.filter((column: Column) => column.visible),
-      hiddenList: props.columns.filter((column: Column) => !column.visible),
-      selectedFilterId: props.itemFilterConfig && props.itemFilterConfig.selectedItemId,
-    };
   }
 
   updateVisibleColumns = (newVisibleList: Column[]): void => {
