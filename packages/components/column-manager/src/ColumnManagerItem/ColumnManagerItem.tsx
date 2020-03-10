@@ -37,6 +37,9 @@ export type ColumnProps = {
   draggable?: boolean;
   switchAction: (id: string, visible: boolean) => void;
   searchQuery?: string;
+  texts: {
+    [k: string]: string | React.ReactNode;
+  };
   theme: {
     [k: string]: string;
   };
@@ -61,6 +64,7 @@ const ColumnManagerItem: React.FC<Column & ColumnProps> = ({
   switchAction,
   draggable,
   searchQuery,
+  texts,
   ...rest
 }) => {
   const columnName = React.useMemo(() => {
@@ -76,14 +80,14 @@ const ColumnManagerItem: React.FC<Column & ColumnProps> = ({
     <S.FixedMenu>
       <S.FixedMenuItem delete={false} onClick={(): void => setFixed(id, FIXED_TYPES.left)}>
         <S.FixedMenuItemIcon component={<Grid4M />} color={theme.palette['grey-600']} />
-        <S.FixedMenuItemLabel>Fixed left</S.FixedMenuItemLabel>
+        <S.FixedMenuItemLabel>{texts.fixedLeft}</S.FixedMenuItemLabel>
         {fixed === FIXED_TYPES.left && (
           <S.FixedMenuItemCheckIcon component={<CheckS />} color={theme.palette['green-600']} />
         )}
       </S.FixedMenuItem>
       <S.FixedMenuItem delete={false} onClick={(): void => setFixed(id, FIXED_TYPES.right)}>
         <S.FixedMenuItemIcon component={<Grid4M />} color={theme.palette['grey-600']} />
-        <S.FixedMenuItemLabel>Fixed right</S.FixedMenuItemLabel>
+        <S.FixedMenuItemLabel>{texts.fixedRight}</S.FixedMenuItemLabel>
         {fixed === FIXED_TYPES.right && (
           <S.FixedMenuItemCheckIcon component={<CheckS />} color={theme.palette['green-600']} />
         )}
@@ -91,7 +95,7 @@ const ColumnManagerItem: React.FC<Column & ColumnProps> = ({
       <Divider dashed style={{ margin: '8px 0' }} />
       <S.FixedMenuItem delete onClick={(): void => setFixed(id, undefined)}>
         <Icon component={<Close2M />} color={theme.palette['grey-600']} />
-        <S.FixedMenuItemLabel>Clear</S.FixedMenuItemLabel>
+        <S.FixedMenuItemLabel>{texts.clear}</S.FixedMenuItemLabel>
       </S.FixedMenuItem>
     </S.FixedMenu>
   );

@@ -56,6 +56,7 @@ const ColumnManagerList: React.FC<Props> = ({
                 setFixed={setFixed}
                 switchAction={toggleColumn}
                 draggable
+                texts={texts}
               />
             ))}
           </ReactSortable>
@@ -75,6 +76,7 @@ const ColumnManagerList: React.FC<Props> = ({
                 setFixed={setFixed}
                 switchAction={toggleColumn}
                 draggable
+                texts={texts}
               />
             ))}
           </ReactSortable>

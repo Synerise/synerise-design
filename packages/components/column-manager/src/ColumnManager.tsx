@@ -51,6 +51,7 @@ const ColumnManager: React.FC<ColumnManagerProps> = ({
     searchPlaceholder: <FormattedMessage id="DS.COLUMN-MANAGER.SEARCH-PLACEHOLDER" />,
     searchClearTooltip: <FormattedMessage id="DS.ITEM-FILTER.SEARCH-CLEAR" />,
     noResults: <FormattedMessage id="DS.COLUMN-MANAGER.NO-RESULTS" />,
+    searchResults: <FormattedMessage id="DS.COLUMN-MANAGER.SEARCH-RESULTS" />,
     visible: <FormattedMessage id="DS.COLUMN-MANAGER.VISIBLE" />,
     hidden: <FormattedMessage id="DS.COLUMN-MANAGER.HIDDEN" />,
     saveView: <FormattedMessage id="DS.COLUMN-MANAGER.SAVE-VIEW" />,

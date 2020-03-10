@@ -57,6 +57,7 @@ import ColumnManager from '@synerise/ds-column-manager'
 | title                      | Manage columns title                       | string | 'Manage columns'    |
 | searchPlaceholder          | Search input placeholder                   | string | 'Search'            |
 | noResults                  | No search results placeholder              | string | 'No results'        |
+| searchResults              | Search results title                       | string | 'Search results'    |
 | visible                    | Visible group label                        | string | 'Visible'           |
 | hidden                     | Hidden group label                         | string | 'Hidden'            |
 | saveView                   | Save button label                          | string | 'Save view'         |

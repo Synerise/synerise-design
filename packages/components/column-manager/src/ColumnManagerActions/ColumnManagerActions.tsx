@@ -40,15 +40,15 @@ const ColumnManagerActions: React.FC<Props> = ({ onSave, onApply, onCancel, text
 
   const validate = React.useCallback((values: ViewMeta) => {
     const errors: {
-      [k: string]: string;
+      [k: string]: string | React.ReactNode;
     } = {};
 
     if (!values.name) {
-      errors.name = 'Must not be empty';
+      errors.name = texts.mustNotBeEmpty;
     }
 
     return errors;
-  }, []);
+  }, [texts.mustNotBeEmpty]);
 
   return (
     <>

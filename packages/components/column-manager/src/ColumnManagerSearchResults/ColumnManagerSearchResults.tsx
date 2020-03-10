@@ -19,7 +19,7 @@ const ColumnManagerSearchResults: React.FC<Props> = ({ searchResults, searchQuer
     <SearchResults>
       {searchResults.length ? (
         <>
-          <S.ListHeadline>Search results</S.ListHeadline>
+          <S.ListHeadline>{texts.searchResults}</S.ListHeadline>
           {searchResults.map(
             (column): React.ReactNode => (
               <ColumnManagerItem
@@ -30,6 +30,7 @@ const ColumnManagerSearchResults: React.FC<Props> = ({ searchResults, searchQuer
                 switchAction={(): void => switchAction(column.id, column.visible)}
                 searchQuery={searchQuery}
                 data-testid="ds-column-manager-filtered-item"
+                texts={texts}
               />
             )
           )}
