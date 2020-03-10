@@ -3,7 +3,6 @@ import {text, select, number, boolean} from '@storybook/addon-knobs';
 import Avatar from '@synerise/ds-avatar';
 import Badge from '@synerise/ds-badge';
 import Icon from '@synerise/ds-icon';
-import {FileM, ArrowUpM, ArrowDownM} from '@synerise/ds-icon/dist/icons';
 import DuplicateS from "@synerise/ds-icon/dist/icons/DuplicateS";
 
 const wrapperStyles = {
@@ -41,7 +40,7 @@ const backgroundColors = [
   'purple',
   'violet',
 ] as const;
-
+const placeholderColors = backgroundColors;
 const backgroundColorHue = [
   '900',
   '800',
@@ -54,7 +53,7 @@ const backgroundColorHue = [
   '100',
   '050',
 ] as const;
-
+const placeholderColorHue = backgroundColorHue;
 const imgSrc = 'https://www.w3schools.com/howto/img_avatar.png';
 
 const image = [
@@ -167,6 +166,20 @@ const stories = {
           hasStatus={boolean('has status', true)}
         >
           AK
+        </Avatar>
+      </Badge>
+      <Badge status={'error'}>
+        <Avatar
+          backgroundColor={select('backgroundColors', backgroundColors, 'blue')}
+          backgroundColorHue={select('backgroundColorHue', backgroundColorHue, '800')}
+          disabled={boolean('disabled', false)}
+          size={'extraLarge'}
+          tooltip={{name: 'Silvia Jobs', email: 'silvia.jobs@gmail.com'}}
+          hasStatus={boolean('has status', true)}
+          placeholderColor={select('placeholderColors', placeholderColors, 'blue')}
+          placeholderColorHue={select('placeholderColorHue', placeholderColorHue, '300')}
+        >
+          
         </Avatar>
       </Badge>
     </div>

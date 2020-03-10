@@ -20,13 +20,11 @@ export const TooltipGroup = styled.div`
   }
 `;
 
-const applyBgColors = (
-  props: ThemeProps & { backgroundColor: string; backgroundColorHue: string }
-): FlattenSimpleInterpolation => css`
-  background: ${props.theme.palette[
-    `${props.backgroundColor}-${props.backgroundColorHue ? props.backgroundColorHue : '400'}`
-  ]};
-`;
+function resolveColorFromProps(props: ThemeProps, colorPropKey: string, colorHuePropKey: string): string {
+  return (`${props.theme.palette[
+    `${props[colorPropKey]}-${props[colorHuePropKey] ? props[colorHuePropKey] : '400'}`
+    ]};`)
+}
 
 const applyDisabledStyles = (props: { disabled: boolean }): FlattenSimpleInterpolation | false =>
   props.disabled &&
@@ -66,13 +64,22 @@ const applyFontSize = (props: AvatarProps): FlattenSimpleInterpolation => {
   `;
 };
 
+
+
 // eslint-disable-next-line react/jsx-props-no-spreading
-export default styled(({ backgroundColorHue, backgroundColor, hasStatus, pressed, ...rest }) => <Avatar {...rest} />)`
+export default styled(({ backgroundColorHue, backgroundColor,placeholderColor, placeholderColorHue, hasStatus, pressed, ...rest }) => <Avatar {...rest} />)`
   && {
-    ${(props): FlattenSimpleInterpolation => applyBgColors(props)};
+    background:${(props): string =>resolveColorFromProps(props,'backgroundColor','backgroundColorHue')};
     ${(props): FlattenSimpleInterpolation | false => applyDisabledStyles(props)};
     transition: background 0.3s ease;
-
+    .ds-icon{
+      width:60%;
+      height:60%;
+    }
+    .ds-icon > svg{
+      fill:${(props): string =>resolveColorFromProps(props,'placeholderColor','placeholderColorHue')};
+    }
+    
     .ant-avatar-string {
       width: 100%;
       height: 100%;
