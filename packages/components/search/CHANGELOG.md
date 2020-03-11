@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.0.4...@synerise/ds-search@0.0.6) (2020-03-11)
+
+### Bug Fixes
+
+- **search:** remove ant from dependencies ([2325fcb](https://github.com/Synerise/synerise-design/commit/2325fcbf4a65b70e8b6bf1c2167e14473b111d5c))
+
 ## [0.0.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.0.3...@synerise/ds-search@0.0.4) (2020-03-06)
 
 **Note:** Version bump only for package @synerise/ds-search

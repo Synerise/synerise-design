@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search-bar@0.2.2...@synerise/ds-search-bar@0.2.3) (2020-03-11)
+
+### Bug Fixes
+
+- **search-bar:** remove ant from dependencies ([91471f6](https://github.com/Synerise/synerise-design/commit/91471f60d11d24bea7f21d1216a9ffbd0139fe9c))
+
 ## [0.2.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search-bar@0.2.1...@synerise/ds-search-bar@0.2.2) (2020-03-06)
 
 **Note:** Version bump only for package @synerise/ds-search-bar
