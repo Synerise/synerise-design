@@ -7,7 +7,7 @@ import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/t
 export const TooltipGroup = styled.div`
   margin: 13px 8px;
   font-size: 11px;
-  line-height: 16px;
+  line-height: 1.45;
   text-align: center;
 
   p {
@@ -166,7 +166,7 @@ export default styled(({ backgroundColorHue, backgroundColor, hasStatus, pressed
         width: 80px;
         height: 80px;
         font-size: 21px;
-        line-height: 21px;
+        line-height: 1;
         .ant-avatar-string {
           line-height: 80px;
           ${macro.xlAvatar};

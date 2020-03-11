@@ -52,23 +52,29 @@ const Search: React.FC<SearchProps> = ({
     }
   });
 
-  const selectFilter = React.useCallback((item: FilterElement): void => {
-    onValueChange('');
-    setLabel(item);
+  const selectFilter = React.useCallback(
+    (item: FilterElement): void => {
+      onValueChange('');
+      setLabel(item);
 
-    if (item.filter) {
-      onValueChange(item.text);
-      onFilterValueChange(item.filter);
+      if (item.filter) {
+        onValueChange(item.text);
+        onFilterValueChange(item.filter);
+        setResultChoosed(true);
+      } else {
+        onFilterValueChange(item.text);
+      }
+    },
+    [onFilterValueChange, onValueChange]
+  );
+
+  const selectResult = React.useCallback(
+    (item: FilterElement): void => {
       setResultChoosed(true);
-    } else {
-      onFilterValueChange(item.text);
-    }
-  }, [onFilterValueChange, onValueChange]);
-
-  const selectResult = React.useCallback((item: FilterElement): void => {
-    setResultChoosed(true);
-    onValueChange(item.text);
-  }, [onValueChange]);
+      onValueChange(item.text);
+    },
+    [onValueChange]
+  );
 
   const findIncludes = (data: FilterElement[][] | undefined, currentValue: string, type: string): void => {
     const final: FilterElement[][] = [];
@@ -112,18 +118,21 @@ const Search: React.FC<SearchProps> = ({
     }
   };
 
-  const change = React.useCallback((e: React.ChangeEvent<HTMLInputElement>): void => {
-    const currentValue = e.currentTarget.value;
-    onValueChange(currentValue);
-    setResultChoosed(false);
+  const change = React.useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>): void => {
+      const currentValue = e.currentTarget.value;
+      onValueChange(currentValue);
+      setResultChoosed(false);
 
-    if (filterValue) {
-      findIncludes(results, currentValue, 'results');
-    } else {
-      findIncludes(recent, currentValue, 'recent');
-      findIncludes(filterData, currentValue, 'filter');
-    }
-  }, [filterData, filterValue, onValueChange, recent, results]);
+      if (filterValue) {
+        findIncludes(results, currentValue, 'results');
+      } else {
+        findIncludes(recent, currentValue, 'recent');
+        findIncludes(filterData, currentValue, 'filter');
+      }
+    },
+    [filterData, filterValue, onValueChange, recent, results]
+  );
 
   return (
     <S.SearchWrapper ref={ref}>
