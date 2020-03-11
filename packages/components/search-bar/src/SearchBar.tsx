@@ -16,6 +16,7 @@ export interface SearchBarProps {
   iconLeft?: React.ReactNode;
   autofocus?: boolean;
   disabled?: boolean;
+  borderRadius?: boolean | undefined;
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({
@@ -28,6 +29,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
   autofocus,
   clearTooltip,
   disabled,
+  borderRadius,
 }) => {
   const [isFocused, setFocus] = useState(false);
   const focus = (inputRef: React.MutableRefObject<HTMLInputElement | HTMLTextAreaElement | undefined>): void => {
@@ -40,6 +42,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
       isEmpty={value.length === 0}
       className={isFocused ? 'is-focused' : ''}
       disabled={disabled as boolean}
+      borderRadius={borderRadius}
       data-testid="input-wrapper"
     >
       {iconLeft && <S.IconLeftWrapper>{iconLeft}</S.IconLeftWrapper>}

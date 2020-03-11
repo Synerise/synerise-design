@@ -226,7 +226,7 @@ const stories = {
     onItemSelect: action('onItemSelect'),
     items: [],
     loading: false,
-    texts: getTexts(),
+    texts: {},
   },
   contentList: withState({
     items: CONTENT_ITEMS,

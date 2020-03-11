@@ -34,7 +34,6 @@ export const SearchBar = styled(Input)`
       height: 52px;
       border: 0;
       background: ${(props): string => props.theme.palette['grey-050']};
-      border-radius: 3px 3px 0 0;
       box-sizing: content-box;
 
       &:focus {
@@ -44,11 +43,18 @@ export const SearchBar = styled(Input)`
   }
 `;
 
-export const SearchBarWrapper = styled.div<{ iconLeft: React.ReactNode; isEmpty: boolean; disabled: boolean }>`
+export const SearchBarWrapper = styled.div<{
+  iconLeft: React.ReactNode;
+  isEmpty: boolean;
+  disabled: boolean;
+  borderRadius: boolean | undefined;
+}>`
   position: relative;
+  overflow: hidden;
   border-bottom: 1px solid ${(props): string => props.theme.palette['grey-100']};
   pointer-events: ${(props): string => (props.disabled ? 'none' : '')};
   user-select: ${(props): string => (props.disabled ? 'none' : '')};
+  border-radius: ${(props): string => (props.borderRadius ? '3px' : '')};
 
   && {
     svg {
@@ -57,6 +63,7 @@ export const SearchBarWrapper = styled.div<{ iconLeft: React.ReactNode; isEmpty:
     }
 
     input {
+      border-radius: 0;
       padding: ${(props): string => {
         if (props.iconLeft && !props.isEmpty) return '0 42px 0 52px';
         if (props.iconLeft && props.isEmpty) return '0 12px 0 52px';
