@@ -12,6 +12,26 @@ import ColumnManagerActions from './ColumnManagerActions/ColumnManagerActions';
 import ColumnManagerList from './ColumnManagerList/ColumnManagerList';
 import { Column } from './ColumnManagerItem/ColumnManagerItem';
 
+export type Texts =
+  | 'title'
+  | 'searchPlaceholder'
+  | 'searchClearTooltip'
+  | 'noResults'
+  | 'searchResults'
+  | 'visible'
+  | 'hidden'
+  | 'saveView'
+  | 'cancel'
+  | 'apply'
+  | 'fixedLeft'
+  | 'fixedRight'
+  | 'clear'
+  | 'viewName'
+  | 'viewDescription'
+  | 'viewNamePlaceholder'
+  | 'viewDescriptionPlaceholder'
+  | 'mustNotBeEmpty';
+
 export type ColumnManagerProps = {
   hide: () => void;
   visible: boolean;
@@ -19,7 +39,7 @@ export type ColumnManagerProps = {
   onApply: (columns: Column[]) => void;
   columns: Column[];
   texts?: {
-    [k: string]: string | React.ReactNode;
+    [k in Texts]: string | React.ReactNode;
   };
   itemFilterConfig?: Omit<ItemFilterProps, 'visible' | 'hide' | 'theme'>;
 };
@@ -51,29 +71,6 @@ const DEFAULT_STATE: State = {
 };
 
 class ColumnManager extends React.Component<ColumnManagerProps, State> {
-  static defaultProps: Partial<ColumnManagerProps> = {
-    texts: {
-      title: <FormattedMessage id="DS.COLUMN-MANAGER.TITLE" />,
-      searchPlaceholder: <FormattedMessage id="DS.COLUMN-MANAGER.SEARCH-PLACEHOLDER" />,
-      searchClearTooltip: <FormattedMessage id="DS.ITEM-FILTER.SEARCH-CLEAR" />,
-      noResults: <FormattedMessage id="DS.COLUMN-MANAGER.NO-RESULTS" />,
-      searchResults: <FormattedMessage id="DS.COLUMN-MANAGER.SEARCH-RESULTS" />,
-      visible: <FormattedMessage id="DS.COLUMN-MANAGER.VISIBLE" />,
-      hidden: <FormattedMessage id="DS.COLUMN-MANAGER.HIDDEN" />,
-      saveView: <FormattedMessage id="DS.COLUMN-MANAGER.SAVE-VIEW" />,
-      cancel: <FormattedMessage id="DS.COLUMN-MANAGER.CANCEL" />,
-      apply: <FormattedMessage id="DS.COLUMN-MANAGER.APPLY" />,
-      fixedLeft: <FormattedMessage id="DS.COLUMN-MANAGER.FIXED-LEFT" />,
-      fixedRight: <FormattedMessage id="DS.COLUMN-MANAGER.FIXED-RIGHT" />,
-      clear: <FormattedMessage id="DS.COLUMN-MANAGER.CLEAR" />,
-      viewName: <FormattedMessage id="DS.COLUMN-MANAGER.VIEW-NAME" />,
-      viewDescription: <FormattedMessage id="DS.COLUMN-MANAGER.VIEW-DESCRIPTION" />,
-      viewNamePlaceholder: <FormattedMessage id="DS.COLUMN-MANAGER.VIEW-NAME-PLACEHOLDER" />,
-      viewDescriptionPlaceholder: <FormattedMessage id="DS.COLUMN-MANAGER.VIEW-DESCRIPTION-PLACEHOLDER" />,
-      mustNotBeEmpty: <FormattedMessage id="DS.COLUMN-MANAGER.MUST-NOT-BE-EMPTY" />,
-    },
-  };
-
   constructor(props: ColumnManagerProps) {
     super(props);
     // eslint-disable-next-line react/state-in-constructor
@@ -96,6 +93,31 @@ class ColumnManager extends React.Component<ColumnManagerProps, State> {
       };
     }
     return null;
+  }
+
+  get texts(): { [k in Texts]: string | React.ReactNode } {
+    const { texts } = this.props;
+    return {
+      title: <FormattedMessage id="DS.COLUMN-MANAGER.TITLE" />,
+      searchPlaceholder: <FormattedMessage id="DS.COLUMN-MANAGER.SEARCH-PLACEHOLDER" />,
+      searchClearTooltip: <FormattedMessage id="DS.ITEM-FILTER.SEARCH-CLEAR" />,
+      noResults: <FormattedMessage id="DS.COLUMN-MANAGER.NO-RESULTS" />,
+      searchResults: <FormattedMessage id="DS.COLUMN-MANAGER.SEARCH-RESULTS" />,
+      visible: <FormattedMessage id="DS.COLUMN-MANAGER.VISIBLE" />,
+      hidden: <FormattedMessage id="DS.COLUMN-MANAGER.HIDDEN" />,
+      saveView: <FormattedMessage id="DS.COLUMN-MANAGER.SAVE-VIEW" />,
+      cancel: <FormattedMessage id="DS.COLUMN-MANAGER.CANCEL" />,
+      apply: <FormattedMessage id="DS.COLUMN-MANAGER.APPLY" />,
+      fixedLeft: <FormattedMessage id="DS.COLUMN-MANAGER.FIXED-LEFT" />,
+      fixedRight: <FormattedMessage id="DS.COLUMN-MANAGER.FIXED-RIGHT" />,
+      clear: <FormattedMessage id="DS.COLUMN-MANAGER.CLEAR" />,
+      viewName: <FormattedMessage id="DS.COLUMN-MANAGER.VIEW-NAME" />,
+      viewDescription: <FormattedMessage id="DS.COLUMN-MANAGER.VIEW-DESCRIPTION" />,
+      viewNamePlaceholder: <FormattedMessage id="DS.COLUMN-MANAGER.VIEW-NAME-PLACEHOLDER" />,
+      viewDescriptionPlaceholder: <FormattedMessage id="DS.COLUMN-MANAGER.VIEW-DESCRIPTION-PLACEHOLDER" />,
+      mustNotBeEmpty: <FormattedMessage id="DS.COLUMN-MANAGER.MUST-NOT-BE-EMPTY" />,
+      ...texts,
+    };
   }
 
   updateVisibleColumns = (newVisibleList: Column[]): void => {
@@ -181,7 +203,7 @@ class ColumnManager extends React.Component<ColumnManagerProps, State> {
   };
 
   render(): React.ReactElement {
-    const { visible, hide, texts, itemFilterConfig } = this.props;
+    const { visible, hide, itemFilterConfig } = this.props;
     const { visibleList, hiddenList, searchQuery, itemFilterVisible } = this.state;
 
     const searchResults = [...visibleList, ...hiddenList].filter(column =>
@@ -193,7 +215,7 @@ class ColumnManager extends React.Component<ColumnManagerProps, State> {
         <Drawer.DrawerHeader>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: 24 }}>
             <Typography.Title style={{ flex: 1, margin: 0 }} level={4}>
-              {texts!.title}
+              {this.texts.title}
             </Typography.Title>
             <Button
               data-testid="ds-column-manager-show-filters"
@@ -216,16 +238,16 @@ class ColumnManager extends React.Component<ColumnManagerProps, State> {
         </Drawer.DrawerHeader>
         <SearchBar
           onSearchChange={this.handleSearchChange}
-          placeholder={texts!.searchPlaceholder as string}
+          placeholder={this.texts.searchPlaceholder as string}
           value={searchQuery}
           onClearInput={(): void => this.handleSearchChange('')}
           iconLeft={<Icon component={<SearchM />} />}
-          clearTooltip={texts!.searchClearTooltip as string}
+          clearTooltip={(this.texts.searchClearTooltip as string) || ''}
         />
         <Drawer.DrawerBody>
           <Drawer.DrawerContent style={{ padding: '0 0 80px' }}>
             <ColumnManagerList
-              texts={texts!}
+              texts={this.texts}
               searchQuery={searchQuery}
               searchResults={searchResults}
               visibleList={visibleList}
@@ -236,7 +258,12 @@ class ColumnManager extends React.Component<ColumnManagerProps, State> {
               updateHiddenList={this.updateHiddenColumns}
             />
           </Drawer.DrawerContent>
-          <ColumnManagerActions onSave={this.handleSave} onApply={this.handleApply} onCancel={hide} texts={texts!} />
+          <ColumnManagerActions
+            onSave={this.handleSave}
+            onApply={this.handleApply}
+            onCancel={hide}
+            texts={this.texts}
+          />
         </Drawer.DrawerBody>
         {itemFilterConfig && (
           <ItemFilter
