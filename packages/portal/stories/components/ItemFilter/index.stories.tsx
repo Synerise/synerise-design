@@ -10,7 +10,10 @@ const getTexts = () => ({
   activate: text('Activate', 'Activate'),
   cancel: text('Cancel', 'Cancel'),
   deleteConfirmationTitle: text('Delete confirmation title', 'Delete view'),
-  deleteConfirmationDescription: text('Delete confirmation description', 'Deleting this template will permanently remove it from templates library. All tables using this template will be reset to the default template.'),
+  deleteConfirmationDescription: text(
+    'Delete confirmation description',
+    'Deleting this template will permanently remove it from templates library. All tables using this template will be reset to the default template.'
+  ),
   deleteConfirmationYes: text('Delete confirm', 'Yes, delete view'),
   deleteConfirmationNo: text('Delete cancel', 'No, Keep it'),
   noResults: text('No results', 'No results'),
@@ -44,7 +47,7 @@ const ITEMS = [
     user: {
       firstname: 'Jan',
       lastname: 'Nowak',
-    }
+    },
   },
   {
     id: '0001',
@@ -57,8 +60,8 @@ const ITEMS = [
     categories: ['All filters'],
     user: {
       firstname: 'Kamil',
-      email: 'kamil.kowalski@synerise.com'
-    }
+      email: 'kamil.kowalski@synerise.com',
+    },
   },
   {
     id: '0002',
@@ -71,8 +74,8 @@ const ITEMS = [
     user: {
       avatar_url: 'https://www.w3schools.com/howto/img_avatar.png',
       lastname: 'Kowalski',
-      email: 'kamil.kowalski@synerise.com'
-    }
+      email: 'kamil.kowalski@synerise.com',
+    },
   },
   {
     id: '0003',
@@ -86,8 +89,8 @@ const ITEMS = [
     user: {
       firstname: 'Jan',
       lastname: 'Nowak',
-      email: 'jan.nowak@synerise.com'
-    }
+      email: 'jan.nowak@synerise.com',
+    },
   },
   {
     id: '0004',
@@ -101,8 +104,8 @@ const ITEMS = [
     user: {
       firstname: 'Jan',
       lastname: 'Nowak',
-      email: 'jan.nowak@synerise.com'
-    }
+      email: 'jan.nowak@synerise.com',
+    },
   },
   {
     id: '0005',
@@ -116,8 +119,8 @@ const ITEMS = [
     user: {
       firstname: 'Kamil',
       lastname: 'Kowalski',
-      email: 'kamil.kowalski@synerise.com'
-    }
+      email: 'kamil.kowalski@synerise.com',
+    },
   },
   {
     id: '0006',
@@ -131,8 +134,8 @@ const ITEMS = [
       avatar_url: 'https://www.w3schools.com/howto/img_avatar.png',
       firstname: 'Kamil',
       lastname: 'Kowalski',
-      email: 'kamil.kowalski@synerise.com'
-    }
+      email: 'kamil.kowalski@synerise.com',
+    },
   },
   {
     id: '0007',
@@ -146,8 +149,8 @@ const ITEMS = [
     user: {
       firstname: 'Jan',
       lastname: 'Nowak',
-      email: 'jan.nowak@synerise.com'
-    }
+      email: 'jan.nowak@synerise.com',
+    },
   },
   {
     id: '0008',
@@ -161,8 +164,8 @@ const ITEMS = [
     user: {
       firstname: 'Kamil',
       lastname: 'Kowalski',
-      email: 'kamil.kowalski@synerise.com'
-    }
+      email: 'kamil.kowalski@synerise.com',
+    },
   },
   {
     id: '0009',
@@ -176,8 +179,8 @@ const ITEMS = [
       avatar_url: 'https://www.w3schools.com/howto/img_avatar.png',
       firstname: 'Kamil',
       lastname: 'Kowalski',
-      email: 'kamil.kowalski@synerise.com'
-    }
+      email: 'kamil.kowalski@synerise.com',
+    },
   },
   {
     id: '0010',
@@ -191,11 +194,10 @@ const ITEMS = [
     user: {
       firstname: 'Jan',
       lastname: 'Nowak',
-      email: 'jan.nowak@synerise.com'
-    }
+      email: 'jan.nowak@synerise.com',
+    },
   },
 ];
-
 
 const removeItem = (props, store): void => {
   store.set({
@@ -206,20 +208,19 @@ const removeItem = (props, store): void => {
 const editItem = (props, store): void => {
   store.set({
     items: store.state.items.map(item => {
-      if(item.id === props.id) {
+      if (item.id === props.id) {
         item.name = props.name;
       }
       return item;
-    })
-  })
+    }),
+  });
 };
 
 const setSelectedItem = (props, store): void => {
   store.set({
     selectedItemId: props.id,
-  })
+  });
 };
-
 
 const stories = {
   default: withState({
@@ -240,19 +241,21 @@ const stories = {
             canUpdate: true,
             canDelete: true,
             canDuplicate: true,
-            name: `${itemForDuplication.name} - copy`
-          }
-        ]
-      })
+            name: `${itemForDuplication.name} - copy`,
+          },
+        ],
+      });
     };
 
     const toggleItemFilterVisible = (): void => {
-      store.set({itemFilterVisible: !store.state.itemFilterVisible});
+      store.set({ itemFilterVisible: !store.state.itemFilterVisible });
     };
 
     return (
       <>
-        <Button onClick={toggleItemFilterVisible} type='primary'>Show item filter</Button>
+        <Button onClick={toggleItemFilterVisible} type="primary">
+          Show item filter
+        </Button>
         <ItemFilter
           visible={store.state.itemFilterVisible}
           hide={toggleItemFilterVisible}
@@ -266,8 +269,8 @@ const stories = {
           items={store.state.items}
         />
       </>
-    )
-  })
+    );
+  }),
 };
 
 export default {
@@ -275,4 +278,4 @@ export default {
   config: {},
   stories,
   Component: ItemFilter,
-}
+};

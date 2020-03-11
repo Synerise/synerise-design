@@ -124,14 +124,11 @@ describe('Avatar', () => {
 
   it('should render placeholderIcon with proper color', () => {
     // ARRANGE
-    const { container } = renderWithProvider(<Avatar
-      placeholderColor={RED}
-      placeholderColorHue={'800'}
-    />);
+    const { container } = renderWithProvider(<Avatar placeholderColor={RED} placeholderColorHue={'800'} />);
 
     const placeholderIcon = container.querySelector('.ds-icon > svg');
     // ASSERT
-    expect(placeholderIcon).toHaveStyle('fill: #87020b')
+    expect(placeholderIcon).toHaveStyle('fill: #87020b');
   });
   it('should render white placeholderIcon when placeholderColor is not provided', () => {
     // ARRANGE
@@ -139,12 +136,11 @@ describe('Avatar', () => {
 
     const placeholderIcon = container.querySelector('.ds-icon > svg');
     // ASSERT
-    expect(placeholderIcon).toHaveStyle('fill: #f9fafb')
+    expect(placeholderIcon).toHaveStyle('fill: #f9fafb');
   });
   it('should scale placeholderIcon container', () => {
     // ARRANGE
-    const { container } = renderWithProvider(<Avatar
-      size={'large'} />);
+    const { container } = renderWithProvider(<Avatar size={'large'} />);
 
     const placeholderIconContainer = container.querySelector('.ds-icon');
     // ASSERT

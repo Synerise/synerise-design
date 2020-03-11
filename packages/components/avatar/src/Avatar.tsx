@@ -6,7 +6,7 @@ import './style/index.less';
 import Icon from '@synerise/ds-icon';
 import UserM from '@synerise/ds-icon/dist/icons/UserM';
 
-import AntdAvatar, { TooltipGroup} from './Avatar.styles';
+import AntdAvatar, { TooltipGroup } from './Avatar.styles';
 
 type color =
   | 'red'
@@ -56,12 +56,7 @@ const Avatar: React.FC<AvatarProps> = ({
       <p>{tooltip.email}</p>
     </TooltipGroup>
   );
-  const iconPlaceholder = (antdProps.children ||
-    <Icon
-      component={<UserM/>}
-    />
-  );
-
+  const iconPlaceholder = antdProps.children || <Icon component={<UserM />} />;
 
   return (
     <Tooltip title={tooltipGroup}>
@@ -75,7 +70,7 @@ const Avatar: React.FC<AvatarProps> = ({
         backgroundColor={backgroundColor}
         backgroundColorHue={backgroundColorHue}
         placeholderColor={placeholderColor || 'grey'}
-        placeholderColorHue={placeholderColor? placeholderColorHue : '050'}
+        placeholderColorHue={placeholderColor ? placeholderColorHue : '050'}
         disabled={disabled}
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...antdProps}
