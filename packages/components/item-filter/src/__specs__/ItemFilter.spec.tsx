@@ -8,7 +8,8 @@ const TEXTS = {
   activate: 'Activate',
   cancel: 'Cancel',
   deleteConfirmationTitle: 'Detele filter',
-  deleteConfirmationDescription: 'Deleting this filter will permanently remove it from templates library. All tables using this filter will be reset.',
+  deleteConfirmationDescription:
+    'Deleting this filter will permanently remove it from templates library. All tables using this filter will be reset.',
   deleteConfirmationNo: 'Cancel',
   deleteConfirmationYes: 'Delete',
   noResults: 'No results',
@@ -41,7 +42,7 @@ const ITEMS = [
     user: {
       firstname: 'Jan',
       lastname: 'Nowak',
-    }
+    },
   },
   {
     id: '0001',
@@ -55,7 +56,7 @@ const ITEMS = [
     user: {
       firstname: 'Kamil',
       lastname: 'Kowalski',
-    }
+    },
   },
   {
     id: '0002',
@@ -69,7 +70,7 @@ const ITEMS = [
       avatar_url: 'https://www.w3schools.com/howto/img_avatar.png',
       firstname: 'Kamil',
       lastname: 'Kowalski',
-    }
+    },
   },
   {
     id: '0003',
@@ -83,7 +84,7 @@ const ITEMS = [
     user: {
       firstname: 'Jan',
       lastname: 'Nowak',
-    }
+    },
   },
   {
     id: '0004',
@@ -97,7 +98,7 @@ const ITEMS = [
     user: {
       firstname: 'Jan',
       lastname: 'Nowak',
-    }
+    },
   },
   {
     id: '0005',
@@ -111,7 +112,7 @@ const ITEMS = [
     user: {
       firstname: 'Kamil',
       lastname: 'Kowalski',
-    }
+    },
   },
   {
     id: '0006',
@@ -125,7 +126,7 @@ const ITEMS = [
       avatar_url: 'https://www.w3schools.com/howto/img_avatar.png',
       firstname: 'Kamil',
       lastname: 'Kowalski',
-    }
+    },
   },
   {
     id: '0007',
@@ -139,7 +140,7 @@ const ITEMS = [
     user: {
       firstname: 'Jan',
       lastname: 'Nowak',
-    }
+    },
   },
   {
     id: '0008',
@@ -153,7 +154,7 @@ const ITEMS = [
     user: {
       firstname: 'Kamil',
       lastname: 'Kowalski',
-    }
+    },
   },
   {
     id: '0009',
@@ -167,7 +168,7 @@ const ITEMS = [
       avatar_url: 'https://www.w3schools.com/howto/img_avatar.png',
       firstname: 'Kamil',
       lastname: 'Kowalski',
-    }
+    },
   },
   {
     id: '0010',
@@ -181,10 +182,9 @@ const ITEMS = [
     user: {
       firstname: 'Jan',
       lastname: 'Nowak',
-    }
+    },
   },
 ];
-
 
 const ITEM_FILTER = (visible: boolean, hide: () => void, selectedItemId?: string) => (
   <ItemFilter
@@ -234,7 +234,7 @@ describe('Drawer component', () => {
   it('should hide after close button has been clicked', () => {
     // ARRANGE
     const hideFn = jest.fn();
-    const {getByTestId} = renderWithProvider(ITEM_FILTER(true, hideFn));
+    const { getByTestId } = renderWithProvider(ITEM_FILTER(true, hideFn));
     const closeButton = getByTestId('ds-item-filter-close-button');
 
     //ACT

@@ -3,14 +3,10 @@ import * as React from 'react';
 import SearchBar from '@synerise/ds-search-bar';
 import SearchM from '@synerise/ds-icon/dist/icons/SearchM';
 import Icon from '@synerise/ds-icon';
-import {boolean, text} from "@storybook/addon-knobs";
-import theme from "@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme";
+import { boolean, text } from '@storybook/addon-knobs';
+import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 
-const decorator = (storyFn) => (
-  <div style={{ width: '300px' }}>
-    {storyFn()}
-  </div>
-);
+const decorator = storyFn => <div style={{ width: '300px' }}>{storyFn()}</div>;
 
 const stories = {
   default: () => {
@@ -21,15 +17,15 @@ const stories = {
         disabled={boolean('disabled', false)}
         borderRadius={boolean('border radius', false)}
         autofocus={boolean('focus', false)}
-        iconLeft={boolean('icon', true) && <Icon component={<SearchM/>} color={theme.palette['grey-600']} />}
+        iconLeft={boolean('icon', true) && <Icon component={<SearchM />} color={theme.palette['grey-600']} />}
         value={value}
         onSearchChange={targetValue => setValue(targetValue)}
         placeholder={text('placeholder', 'Placeholder')}
-        onClearInput={()=> setValue('')}
+        onClearInput={() => setValue('')}
         clearTooltip={'Clear'}
       />
-    )
-  }
+    );
+  },
 };
 
 export default {
@@ -38,4 +34,4 @@ export default {
   config: {},
   stories,
   Component: SearchBar,
-}
+};

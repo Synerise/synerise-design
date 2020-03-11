@@ -9,32 +9,23 @@ export const TooltipGroup = styled.div`
   font-size: 11px;
   line-height: 1.45;
   text-align: center;
-
   p {
     margin: 0;
     font-weight: normal;
-
     &:first-child {
       font-weight: 500;
     }
   }
 `;
-
-const applyBgColors = (
-  props: ThemeProps & { backgroundColor: string; backgroundColorHue: string }
-): FlattenSimpleInterpolation => css`
-  background: ${props.theme.palette[
-    `${props.backgroundColor}-${props.backgroundColorHue ? props.backgroundColorHue : '400'}`
-  ]};
-`;
-
+function resolveColorFromProps(props: ThemeProps, colorPropKey: string, colorHuePropKey: string): string {
+  return `${props.theme.palette[`${props[colorPropKey]}-${props[colorHuePropKey] ? props[colorHuePropKey] : '400'}`]};`;
+}
 const applyDisabledStyles = (props: { disabled: boolean }): FlattenSimpleInterpolation | false =>
   props.disabled &&
   css`
     opacity: 0.4;
     pointer-events: none;
   `;
-
 const BADGE_POSITION = {
   circlesmall: '3px',
   circlemedium: '5px',
@@ -45,34 +36,40 @@ const BADGE_POSITION = {
   squarelarge: '3px',
   squareextraLarge: '3px',
 };
-
 const FONT_SIZE = {
   small: 'xsAvatar',
   medium: 'small',
   large: 'small',
   extraLarge: 'xlAvatar',
 };
-
 const applyBadgePosition = (props: AvatarProps): FlattenSimpleInterpolation => {
   return css`
     top: ${BADGE_POSITION[`${props.shape}${props.size}`] || '11px'};
     right: ${BADGE_POSITION[`${props.shape}${props.size}`] || '11px'};
   `;
 };
-
 const applyFontSize = (props: AvatarProps): FlattenSimpleInterpolation => {
   return css`
     ${macro[FONT_SIZE[`${props.size}`]]};
   `;
 };
-
-// eslint-disable-next-line react/jsx-props-no-spreading
-export default styled(({ backgroundColorHue, backgroundColor, hasStatus, pressed, ...rest }) => <Avatar {...rest} />)`
+export default styled(
+  ({ backgroundColorHue, backgroundColor, placeholderColor, placeholderColorHue, hasStatus, pressed, ...rest }) => (
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    <Avatar {...rest} />
+  )
+)`
   && {
-    ${(props): FlattenSimpleInterpolation => applyBgColors(props)};
+    background: ${(props): string => resolveColorFromProps(props, 'backgroundColor', 'backgroundColorHue')};
     ${(props): FlattenSimpleInterpolation | false => applyDisabledStyles(props)};
     transition: background 0.3s ease;
-
+    .ds-icon {
+      width: 60%;
+      height: 60%;
+    }
+    .ds-icon > svg {
+      fill: ${(props): string => resolveColorFromProps(props, 'placeholderColor', 'placeholderColorHue')};
+    }
     .ant-avatar-string {
       width: 100%;
       height: 100%;
@@ -108,7 +105,6 @@ export default styled(({ backgroundColorHue, backgroundColor, hasStatus, pressed
           opacity: 0.1;
         }
       `};
-
     &:hover {
       &::before {
         content: '';
@@ -123,11 +119,9 @@ export default styled(({ backgroundColorHue, backgroundColor, hasStatus, pressed
         border-radius: inherit;
       }
     }
-
     & + .ant-badge-dot {
       display: none;
     }
-
     ${(props): FlattenSimpleInterpolation | false =>
       props.hasStatus &&
       css`
@@ -141,7 +135,6 @@ export default styled(({ backgroundColorHue, backgroundColor, hasStatus, pressed
           ${applyBadgePosition(props)};
         }
       `};
-
     ${(props): FlattenSimpleInterpolation | false =>
       props.size === 'medium' &&
       css`
@@ -150,7 +143,6 @@ export default styled(({ backgroundColorHue, backgroundColor, hasStatus, pressed
         .ant-avatar-string {
           line-height: 32px;
         }
-
         ${props.icon &&
           css`
             &.ant-avatar-icon {
@@ -159,7 +151,6 @@ export default styled(({ backgroundColorHue, backgroundColor, hasStatus, pressed
             }
           `};
       `};
-
     ${(props): FlattenSimpleInterpolation | false =>
       props.size === 'extraLarge' &&
       css`
@@ -171,7 +162,6 @@ export default styled(({ backgroundColorHue, backgroundColor, hasStatus, pressed
           line-height: 80px;
           ${macro.xlAvatar};
         }
-
         ${props.icon &&
           css`
             &.ant-avatar-icon {
