@@ -30,8 +30,7 @@
     "@synerise/ds-result": "^0.4.9",
     "@synerise/ds-search-bar": "^0.2.2",
     "@synerise/ds-tabs": "^0.8.18",
-    "@synerise/ds-typography": "^0.7.0",
-    "antd": "*"
+    "@synerise/ds-typography": "^0.7.0"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
