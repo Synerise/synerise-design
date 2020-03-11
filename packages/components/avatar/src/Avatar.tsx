@@ -5,7 +5,6 @@ import '@synerise/ds-core/dist/js/style';
 import './style/index.less';
 import Icon from '@synerise/ds-icon';
 import UserM from '@synerise/ds-icon/dist/icons/UserM';
-
 import AntdAvatar, { TooltipGroup } from './Avatar.styles';
 
 type color =
