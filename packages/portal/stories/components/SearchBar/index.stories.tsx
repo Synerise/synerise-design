@@ -14,18 +14,19 @@ const decorator = (storyFn) => (
 
 const stories = {
   default: () => {
-    const [value, setValue] = React.useState<string>('text example');
+    const [value, setValue] = React.useState<string>('');
 
     return (
       <SearchBar
         disabled={boolean('disabled', false)}
+        borderRadius={boolean('border radius', false)}
+        autofocus={boolean('focus', false)}
+        iconLeft={boolean('icon', true) && <Icon component={<SearchM/>} color={theme.palette['grey-600']} />}
         value={value}
         onSearchChange={targetValue => setValue(targetValue)}
         placeholder={text('placeholder', 'Placeholder')}
-        autofocus={boolean('focus', false)}
         onClearInput={()=> setValue('')}
         clearTooltip={'Clear'}
-        iconLeft={boolean('icon', true) && <Icon component={<SearchM/>} color={theme.palette['grey-600']} />}
       />
     )
   }
