@@ -18,7 +18,7 @@ export type ColumnManagerProps = {
   onSave: (savedView: SavedView) => void;
   onApply: (columns: Column[]) => void;
   columns: Column[];
-  texts: {
+  texts?: {
     [k: string]: string | React.ReactNode;
   };
   itemFilterConfig?: Omit<ItemFilterProps, 'visible' | 'hide' | 'theme'>;
@@ -51,7 +51,7 @@ const DEFAULT_STATE: State = {
 };
 
 class ColumnManager extends React.Component<ColumnManagerProps, State> {
-  static defaultProps = {
+  static defaultProps: Partial<ColumnManagerProps> = {
     texts: {
       title: <FormattedMessage id="DS.COLUMN-MANAGER.TITLE" />,
       searchPlaceholder: <FormattedMessage id="DS.COLUMN-MANAGER.SEARCH-PLACEHOLDER" />,
@@ -193,7 +193,7 @@ class ColumnManager extends React.Component<ColumnManagerProps, State> {
         <Drawer.DrawerHeader>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: 24 }}>
             <Typography.Title style={{ flex: 1, margin: 0 }} level={4}>
-              {texts.title}
+              {texts!.title}
             </Typography.Title>
             <Button
               data-testid="ds-column-manager-show-filters"
@@ -216,16 +216,16 @@ class ColumnManager extends React.Component<ColumnManagerProps, State> {
         </Drawer.DrawerHeader>
         <SearchBar
           onSearchChange={this.handleSearchChange}
-          placeholder={texts.searchPlaceholder as string}
+          placeholder={texts!.searchPlaceholder as string}
           value={searchQuery}
           onClearInput={(): void => this.handleSearchChange('')}
           iconLeft={<Icon component={<SearchM />} />}
-          clearTooltip={texts.searchClearTooltip as string}
+          clearTooltip={texts!.searchClearTooltip as string}
         />
         <Drawer.DrawerBody>
           <Drawer.DrawerContent style={{ padding: '0 0 80px' }}>
             <ColumnManagerList
-              texts={texts}
+              texts={texts!}
               searchQuery={searchQuery}
               searchResults={searchResults}
               visibleList={visibleList}
@@ -236,7 +236,7 @@ class ColumnManager extends React.Component<ColumnManagerProps, State> {
               updateHiddenList={this.updateHiddenColumns}
             />
           </Drawer.DrawerContent>
-          <ColumnManagerActions onSave={this.handleSave} onApply={this.handleApply} onCancel={hide} texts={texts} />
+          <ColumnManagerActions onSave={this.handleSave} onApply={this.handleApply} onCancel={hide} texts={texts!} />
         </Drawer.DrawerBody>
         {itemFilterConfig && (
           <ItemFilter
