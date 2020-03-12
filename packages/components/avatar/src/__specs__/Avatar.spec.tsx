@@ -57,7 +57,7 @@ describe('Avatar', () => {
   it('should render with badge dot', () => {
     // ARRANGE
     const { container } = renderWithProvider(
-      <Badge status={'default'}>
+      <Badge status={'inactive'}>
         <Avatar hasStatus={true} src={IMG_SRC} size={'small'} />
       </Badge>
     );

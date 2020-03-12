@@ -20,7 +20,7 @@ const decorator = storyFn => <div style={wrapperStyles}>{storyFn()}</div>;
 
 const shapes = ['circle', 'square'] as const;
 const sizes = ['small', 'medium', 'large', 'extraLarge'] as const;
-const statuses = ['error', 'default', 'success'] as const;
+const statuses = ['blocked', 'inactive', 'active'] as const;
 const backgroundColors = [
   'red',
   'green',
@@ -77,7 +77,7 @@ const getIconSize = (size) => {
 const stories = {
   withPhoto: () => (
     <div style={{paddingTop: 200}}>
-      <Badge status={select('Set status', statuses, 'error')}>
+      <Badge status={select('Set status', statuses, 'blocked')}>
         <Avatar
           size={select('Set size', sizes, 'large')}
           shape={select('Set shape', shapes, 'circle')}
@@ -91,7 +91,7 @@ const stories = {
   ),
   withInitals: () => (
     <div style={{paddingTop: 200}}>
-      <Badge status={select('Set status', statuses, 'success')}>
+      <Badge status={select('Set status', statuses, 'active')}>
         <Avatar
           backgroundColor={select('Set background color', backgroundColors, 'blue')}
           backgroundColorHue={select('Set background color hue', backgroundColorHue, '200')}
@@ -108,7 +108,7 @@ const stories = {
   ),
   withIcon: () => (
     <div style={{paddingTop: 200}}>
-      <Badge status={select('Set status', statuses, 'error')}>
+      <Badge status={select('Set status', statuses, 'blocked')}>
         <Avatar
           backgroundColor={select('Set background color', backgroundColors, 'blue')}
           backgroundColorHue={select('Set background color hue', backgroundColorHue, '800')}
