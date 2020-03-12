@@ -27,10 +27,10 @@ const applyDisabledStyles = (props: { disabled: boolean }): FlattenSimpleInterpo
     pointer-events: none;
   `;
 const BADGE_POSITION = {
-  circlesmall: '3px',
+  circlesmall: '2px',
   circlemedium: '5px',
-  circlelarge: '5px',
-  circleextraLarge: '10px',
+  circlelarge: '6px',
+  circleextraLarge: '11px',
   squaresmall: '3px',
   squaremedium: '3px',
   squarelarge: '3px',

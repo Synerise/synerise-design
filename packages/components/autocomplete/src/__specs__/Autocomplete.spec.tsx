@@ -34,7 +34,7 @@ describe('Autocomplete', () => {
     renderWithProvider(
       <Autocomplete value="red" onChange={onChange}>
         {options.map(o => (
-          <Option key={o}>{o}</Option>
+          <Option key={o} value={o}>{o}</Option>
         ))}
       </Autocomplete>
     );
@@ -58,7 +58,7 @@ describe('Autocomplete', () => {
     renderWithProvider(
       <Autocomplete allowClear>
         {options.map(o => (
-          <Option key={o}>{o}</Option>
+          <Option key={o} value={o}>{o}</Option>
         ))}
       </Autocomplete>
     );
