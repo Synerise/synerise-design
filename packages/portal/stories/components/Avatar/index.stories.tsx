@@ -1,9 +1,11 @@
 import * as React from 'react';
-import { text, select, number, boolean } from '@storybook/addon-knobs';
+import {text, select, boolean} from '@storybook/addon-knobs';
 import Avatar from '@synerise/ds-avatar';
 import Badge from '@synerise/ds-badge';
 import Icon from '@synerise/ds-icon';
-import DuplicateS from '@synerise/ds-icon/dist/icons/DuplicateS';
+import theme from "@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme";
+import DuplicateS from "@synerise/ds-icon/dist/icons/DuplicateS";
+import DuplicateM from "@synerise/ds-icon/dist/icons/DuplicateM";
 
 const wrapperStyles = {
   padding: '40px',
@@ -33,194 +35,92 @@ const backgroundColors = [
   'purple',
   'violet',
 ] as const;
-const placeholderColors = backgroundColors;
-const backgroundColorHue = ['900', '800', '700', '600', '500', '400', '300', '200', '100', '050'] as const;
-const placeholderColorHue = backgroundColorHue;
+
+const iconColors = [
+  'red-600',
+  'green-600',
+  'grey-600',
+  'yellow-600',
+  'blue-600',
+  'pink-600',
+  'mars-600',
+  'orange-600',
+  'fern-600',
+  'cyan-600',
+  'purple-600',
+  'violet-600',
+] as const;
+
+const backgroundColorHue = [
+  '900',
+  '800',
+  '700',
+  '600',
+  '500',
+  '400',
+  '300',
+  '200',
+  '100',
+  '050',
+] as const;
+
 const imgSrc = 'https://www.w3schools.com/howto/img_avatar.png';
 
-const image = ['', imgSrc] as const;
+const getColor = (name) => {
+  return theme.palette[name];
+};
+
+const getIconSize = (size) => {
+  return size === 'small' ? <DuplicateS/> : <DuplicateM/>;
+};
 
 const stories = {
-  sizes: () => (
-    <div
-      style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', paddingTop: 200 }}
-    >
-      <Avatar
-        backgroundColor={select('backgroundColors', backgroundColors, 'blue')}
-        backgroundColorHue={select('backgroundColorHue', backgroundColorHue, '800')}
-        disabled={boolean('disabled', false)}
-        size={'small'}
-        shape={select('shape', shapes, 'circle')}
-        tooltip={{ name: 'Silvia Jobs', email: 'silvia.jobs@gmail.com' }}
-        src={imgSrc}
-        hasStatus={boolean('has status', true)}
-      >
-        AK
-      </Avatar>
-      <Avatar
-        backgroundColor={select('backgroundColors', backgroundColors, 'blue')}
-        backgroundColorHue={select('backgroundColorHue', backgroundColorHue, '800')}
-        disabled={boolean('disabled', false)}
-        size={'medium'}
-        shape={select('shape', shapes, 'circle')}
-        tooltip={{ name: 'Silvia Jobs', email: 'silvia.jobs@gmail.com' }}
-        src={imgSrc}
-        hasStatus={boolean('has status', true)}
-      >
-        AK
-      </Avatar>
-      <Avatar
-        backgroundColor={select('backgroundColors', backgroundColors, 'blue')}
-        backgroundColorHue={select('backgroundColorHue', backgroundColorHue, '800')}
-        disabled={boolean('disabled', false)}
-        size={'large'}
-        shape={select('shape', shapes, 'circle')}
-        tooltip={{ name: 'Silvia Jobs', email: 'silvia.jobs@gmail.com' }}
-        src={imgSrc}
-        hasStatus={boolean('has status', true)}
-      >
-        AK
-      </Avatar>
-      <Avatar
-        backgroundColor={select('backgroundColors', backgroundColors, 'blue')}
-        backgroundColorHue={select('backgroundColorHue', backgroundColorHue, '800')}
-        disabled={boolean('disabled', false)}
-        size={'extraLarge'}
-        shape={select('shape', shapes, 'circle')}
-        tooltip={{ name: 'Silvia Jobs', email: 'silvia.jobs@gmail.com' }}
-        src={imgSrc}
-        hasStatus={boolean('has status', true)}
-      >
-        AK
-      </Avatar>
-    </div>
-  ),
-  statuses: () => (
-    <div
-      style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', paddingTop: 200 }}
-    >
-      <Avatar
-        backgroundColor={select('backgroundColors', backgroundColors, 'blue')}
-        backgroundColorHue={select('backgroundColorHue', backgroundColorHue, '800')}
-        disabled={boolean('disabled', false)}
-        size={select('sizeString', sizes, 'small')}
-        shape={select('shape', shapes, 'circle')}
-        tooltip={{ name: 'Silvia Jobs' }}
-        hasStatus={boolean('has status', true)}
-      >
-        AK
-      </Avatar>
-      <Badge status={'default'}>
+  withPhoto: () => (
+    <div style={{paddingTop: 200}}>
+      <Badge status={select('Set status', statuses, 'error')}>
         <Avatar
-          backgroundColor={select('backgroundColors', backgroundColors, 'blue')}
-          backgroundColorHue={select('backgroundColorHue', backgroundColorHue, '800')}
-          disabled={boolean('disabled', false)}
-          size={'medium'}
-          shape={select('shape', shapes, 'circle')}
-          tooltip={{ name: 'Silvia Jobs', email: 'silvia.jobs@gmail.com' }}
-          hasStatus={boolean('has status', true)}
-        >
-          AK
-        </Avatar>
-      </Badge>
-      <Badge status={'success'}>
-        <Avatar
-          backgroundColor={select('backgroundColors', backgroundColors, 'blue')}
-          backgroundColorHue={select('backgroundColorHue', backgroundColorHue, '800')}
-          disabled={boolean('disabled', false)}
-          size={'large'}
-          shape={select('shape', shapes, 'circle')}
-          tooltip={{ name: 'Silvia Jobs', email: 'silvia.jobs@gmail.com' }}
-          hasStatus={boolean('has status', true)}
-        >
-          AK
-        </Avatar>
-      </Badge>
-      <Badge status={'error'}>
-        <Avatar
-          backgroundColor={select('backgroundColors', backgroundColors, 'blue')}
-          backgroundColorHue={select('backgroundColorHue', backgroundColorHue, '800')}
-          disabled={boolean('disabled', false)}
-          size={'extraLarge'}
-          tooltip={{ name: 'Silvia Jobs', email: 'silvia.jobs@gmail.com' }}
-          hasStatus={boolean('has status', true)}
-        >
-          AK
-        </Avatar>
-      </Badge>
-      <Badge status={'error'}>
-        <Avatar
-          backgroundColor={select('backgroundColors', backgroundColors, 'blue')}
-          backgroundColorHue={select('backgroundColorHue', backgroundColorHue, '800')}
-          disabled={boolean('disabled', false)}
-          size={'extraLarge'}
-          tooltip={{ name: 'Silvia Jobs', email: 'silvia.jobs@gmail.com' }}
-          hasStatus={boolean('has status', true)}
-          placeholderColor={select('placeholderColors', placeholderColors, 'blue')}
-          placeholderColorHue={select('placeholderColorHue', placeholderColorHue, '300')}
-        ></Avatar>
+          size={select('Set size', sizes, 'large')}
+          shape={select('Set shape', shapes, 'circle')}
+          tooltip={{name: 'Silvia Jobs', email: 'silvia.jobs@gmail.com'}}
+          src={imgSrc}
+          hasStatus={boolean('Has status', true)}
+          disabled={boolean('Disabled', false)}
+        />
       </Badge>
     </div>
   ),
-  allOptions: () => (
-    <div
-      style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', paddingTop: 200 }}
-    >
-      <Avatar
-        backgroundColor={select('backgroundColors', backgroundColors, 'blue')}
-        backgroundColorHue={select('backgroundColorHue', backgroundColorHue, '800')}
-        disabled={boolean('disabled', false)}
-        size={select('sizeString', sizes, 'small')}
-        shape={select('shape', shapes, 'circle')}
-        tooltip={{ name: 'Silvia Jobs' }}
-        hasStatus={boolean('has status', true)}
-        iconComponent={
-          <Icon color={text('IconColor', '#fff')} size={number('iconSize', 20)} component={<DuplicateS />} />
-        }
-      >
-        AK
-      </Avatar>
-      <Badge status={'default'}>
+  withInitals: () => (
+    <div style={{paddingTop: 200}}>
+      <Badge status={select('Set status', statuses, 'success')}>
         <Avatar
-          backgroundColor={select('backgroundColors', backgroundColors, 'blue')}
-          backgroundColorHue={select('backgroundColorHue', backgroundColorHue, '800')}
-          disabled={boolean('disabled', false)}
-          size={'medium'}
-          shape={select('shape', shapes, 'circle')}
-          tooltip={{ name: 'Silvia Jobs', email: 'silvia.jobs@gmail.com' }}
-          src={imgSrc}
-          hasStatus={boolean('has status', true)}
+          backgroundColor={select('Set background color', backgroundColors, 'blue')}
+          backgroundColorHue={select('Set background color hue', backgroundColorHue, '200')}
+          disabled={boolean('Disabled', false)}
+          size={select('Set size', sizes, 'extraLarge')}
+          shape={select('Set shape', shapes, 'circle')}
+          tooltip={{name: 'Silvia Jobs', email: 'silvia.jobs@gmail.com'}}
+          hasStatus={boolean('Has status', true)}
         >
-          AK
+          {text('Set initals', 'DS')}
         </Avatar>
       </Badge>
-      <Badge status={'success'}>
+    </div>
+  ),
+  withIcon: () => (
+    <div style={{paddingTop: 200}}>
+      <Badge status={select('Set status', statuses, 'error')}>
         <Avatar
-          backgroundColor={select('backgroundColors', backgroundColors, 'blue')}
-          backgroundColorHue={select('backgroundColorHue', backgroundColorHue, '800')}
-          disabled={boolean('disabled', false)}
-          size={'large'}
-          shape={select('shape', shapes, 'circle')}
-          tooltip={{ name: 'Silvia Jobs', email: 'silvia.jobs@gmail.com' }}
-          src={select('withImage', image, '')}
-          hasStatus={boolean('has status', true)}
-        >
-          AK
-        </Avatar>
-      </Badge>
-      <Badge status={'error'}>
-        <Avatar
-          backgroundColor={select('backgroundColors', backgroundColors, 'blue')}
-          backgroundColorHue={select('backgroundColorHue', backgroundColorHue, '800')}
-          disabled={boolean('disabled', false)}
-          size={'extraLarge'}
-          shape={'square'}
-          tooltip={{ name: 'Silvia Jobs', email: 'silvia.jobs@gmail.com' }}
-          src={imgSrc}
-          hasStatus={boolean('has status', true)}
-        >
-          AK
-        </Avatar>
+          backgroundColor={select('Set background color', backgroundColors, 'blue')}
+          backgroundColorHue={select('Set background color hue', backgroundColorHue, '800')}
+          size={select('Set size', sizes, 'extraLarge')}
+          shape={select('Set shape', shapes, 'circle')}
+          iconComponent={
+            <Icon color={getColor(select('Set icon color', iconColors, 'cyan-600'))} component={getIconSize(select('Set size', sizes, 'extraLarge'))}/>
+          }
+          tooltip={{name: 'Silvia Jobs', email: 'silvia.jobs@gmail.com'}}
+          hasStatus={boolean('Has status', true)}
+          disabled={boolean('Disabled', false)}
+        />
       </Badge>
     </div>
   ),
