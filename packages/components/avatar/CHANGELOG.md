@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.3](https://github.com/synerise/synerise-design/compare/@synerise/ds-avatar@0.4.2...@synerise/ds-avatar@0.4.3) (2020-03-12)
+
+### Bug Fixes
+
+- **avatar:** added placeholder icon ([74d7bc4](https://github.com/synerise/synerise-design/commit/74d7bc48fd4dd6c0098f2037f4eabae11dde867d))
+- **avatar:** added placeholder icon ([5bf124c](https://github.com/synerise/synerise-design/commit/5bf124cb71eb511cd172e36f7b71d903d5221a92))
+- **avatar:** ran prettier on the code ([59d5648](https://github.com/synerise/synerise-design/commit/59d5648db8c2d05eabf9c3a24e1950af0d5e0be4))
+- **avatar:** resolving conflicts ([f50d008](https://github.com/synerise/synerise-design/commit/f50d00875b6fd6ad3b57fb4d074c053221a4fce8))
+- **dashboards:** added placeholder icon inside avatar to avoid empty avatar circles ([3764bd8](https://github.com/synerise/synerise-design/commit/3764bd89e6b7e90330e589318778a11a4dc1cb16))
+- **dashboards:** added placeholder icon inside avatar to avoid empty avatar circles ([0d05936](https://github.com/synerise/synerise-design/commit/0d05936880cb720921d673015881c11eddadfed2))
+
 ## [0.4.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-avatar@0.4.1...@synerise/ds-avatar@0.4.2) (2020-03-11)
 
 **Note:** Version bump only for package @synerise/ds-avatar

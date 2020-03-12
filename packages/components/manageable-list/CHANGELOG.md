@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.9.2...@synerise/ds-manageable-list@0.9.3) (2020-03-12)
+
+### Bug Fixes
+
+- **avatar:** placeholder icon in avatar - pipeline fix ([7c5db87](https://github.com/Synerise/synerise-design/commit/7c5db870c5130fb882f25e8b6e532092f3c2087a))
+
 ## [0.9.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.9.1...@synerise/ds-manageable-list@0.9.2) (2020-03-09)
 
 ### Bug Fixes
