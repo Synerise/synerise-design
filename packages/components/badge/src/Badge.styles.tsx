@@ -24,6 +24,24 @@ export default styled(({ flag, outlined, ...rest }) => <Badge {...rest} />)`
   }
   ${(props): FlattenSimpleInterpolation | false =>
     css`
+      ${props.status === 'active' &&
+        css`
+          .ant-badge-status-active {
+            background-color: ${props.theme.palette['green-600']};
+          }
+        `}
+        ${props.status === 'inactive' &&
+          css`
+            .ant-badge-status-inactive {
+              background-color: ${props.theme.palette['grey-400']};
+            }
+          `}
+      ${props.status === 'blocked' &&
+        css`
+          .ant-badge-status-blocked {
+            background-color: ${props.theme.palette['red-600']};
+          }
+        `}
       ${props.outlined &&
         css`
           .ant-badge-count {

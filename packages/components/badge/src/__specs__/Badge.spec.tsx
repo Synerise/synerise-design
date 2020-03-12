@@ -8,7 +8,7 @@ const COUNT = 3;
 const OVERFLOW_COUNT = 99;
 const LOW_OVERFLOW_COUNT = 2;
 const COLOR = '#ffffff';
-const ERROR_STATUS = 'error';
+const ERROR_STATUS = 'blocked';
 const TITLE = 'title';
 
 describe('Bagde', () => {
@@ -66,9 +66,9 @@ describe('Bagde', () => {
     const badgeHoverPopup = container.querySelector('.ant-badge-status-text');
 
     // ASSERT
-    expect(badgeDot).toHaveClass('ant-badge-status-error');
+    expect(badgeDot).toHaveClass('ant-badge-status-blocked');
     expect(badgeDot).toHaveStyle('background: rgb(255, 255, 255)');
-    expect(badgeHoverPopup).toHaveTextContent(/^error$/);
+    expect(badgeHoverPopup).toHaveTextContent(/^blocked$/);
   });
 
   it('should render counter badge with outline', () => {

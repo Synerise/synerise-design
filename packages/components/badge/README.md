@@ -69,16 +69,16 @@ import Badge from '@synerise/ds-badge'
 
 ---
 
-| Property      | Description                                                        | Type                                               | Default |
-| ------------- | ------------------------------------------------------------------ | -------------------------------------------------- | ------- |
-| color         | Customize the badge dot color                                      | string                                             | -       |
-| count         | Number to show in the badge counter                                | ReactNode                                          |         |
-| dot           | Display a red dot instead of a counter                             | boolean                                            | false   |
-| offset        | The offset of the badge dot in [x, y] format                       | [number, number]                                   | -       |
-| overflowCount | Maximum number to show in the counter                              | number                                             | 99      |
-| showZero      | Show the badge when the counter is zero                            | boolean                                            | false   |
-| status        | Set badge as a status dot                                          | `success \ processing \ default \ error \ warning` | ''      |
-| text          | If `status` is set, `text` sets the display text of the status dot | string                                             | ''      |
-| title         | Text shown when a cursor is hovered over the badge                 | string                                             | count   |
-| flag          | Show the badge as a flag                                           | boolean                                            | false   |
-| outlined      | Add outline to the badge counter                                   | boolean                                            | false   |
+| Property      | Description                                                        | Type                                                                             | Default |
+| ------------- | ------------------------------------------------------------------ | -------------------------------------------------------------------------------- | ------- |
+| color         | Customize the badge dot color                                      | string                                                                           | -       |
+| count         | Number to show in the badge counter                                | ReactNode                                                                        |         |
+| dot           | Display a red dot instead of a counter                             | boolean                                                                          | false   |
+| offset        | The offset of the badge dot in [x, y] format                       | [number, number]                                                                 | -       |
+| overflowCount | Maximum number to show in the counter                              | number                                                                           | 99      |
+| showZero      | Show the badge when the counter is zero                            | boolean                                                                          | false   |
+| status        | Set badge as a status dot                                          | `success \ processing \ default \ error \ warning \ active \ inactive \ blocked` | ''      |
+| text          | If `status` is set, `text` sets the display text of the status dot | string                                                                           | ''      |
+| title         | Text shown when a cursor is hovered over the badge                 | string                                                                           | count   |
+| flag          | Show the badge as a flag                                           | boolean                                                                          | false   |
+| outlined      | Add outline to the badge counter                                   | boolean                                                                          | false   |

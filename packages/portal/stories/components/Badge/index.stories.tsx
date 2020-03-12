@@ -11,7 +11,7 @@ const decorator = (storyFn) => (
   </div>
 );
 
-const statuses = ['success', 'processing', 'default', 'error', 'warning'] as const;
+const statuses = ['active', 'inactive', 'blocked', 'processing',  'warning'] as const;
 const avatarSize = ['small', 'default', 'large', 'extraLarge'] as const;
 const avatarShape = ['circle', 'square'] as const;
 
@@ -97,24 +97,24 @@ const stories = {
     </React.Fragment>
   ),
   status: () => ({
-    status: select('status', statuses, 'success'),
+    status: select('status', statuses, 'active'),
     text: text('text', 'Success'),
   }),
   flag: () => (
     <>
       <Badge
-        status={select('status', statuses, 'success')}
+        status={select('status', statuses, 'active')}
         flag={true}
       />
       <div style={{width: '50px', height: '50px'}} />
       <Badge
-        status={select('status', statuses, 'success')}
+        status={select('status', statuses, 'active')}
         text={text('text', 'Success')}
         flag={true}
       />
       <div style={{width: '50px', height: '50px'}} />
       <Badge
-        status={select('status', statuses, 'success')}
+        status={select('status', statuses, 'active')}
         flag={true}
       >
         <div
@@ -128,14 +128,14 @@ const stories = {
       </Badge>
       <div style={{width: '50px', height: '50px'}} />
       <Badge
-        status={select('status', statuses, 'success')}
+        status={select('status', statuses, 'active')}
         flag={true}
       >
         <Icon color={text('IconColor', '#6a7580')} size={number('IconSize', 24)} component={<FileM />} />
       </Badge>
       <div style={{width: '50px', height: '50px'}} />
       <Badge
-        status={select('status', statuses, 'success')}
+        status={select('status', statuses, 'active')}
         flag={true}
       >
         <Avatar
