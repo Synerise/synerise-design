@@ -24,6 +24,7 @@ const ITEM_FILTER_TEXTS = {
 const TEXTS = {
   title: 'Manage columns',
   searchPlaceholder: 'Search',
+  searchResults: 'Results',
   noResults: 'No results',
   visible: 'Visible',
   hidden: 'Hidden',
