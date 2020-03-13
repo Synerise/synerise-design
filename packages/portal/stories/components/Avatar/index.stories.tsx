@@ -4,8 +4,8 @@ import Avatar from '@synerise/ds-avatar';
 import Badge from '@synerise/ds-badge';
 import Icon from '@synerise/ds-icon';
 import theme from "@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme";
-import DuplicateS from "@synerise/ds-icon/dist/icons/DuplicateS";
-import DuplicateM from "@synerise/ds-icon/dist/icons/DuplicateM";
+import MailS from "@synerise/ds-icon/dist/icons/MailS";
+import MailM from "@synerise/ds-icon/dist/icons/MailM";
 
 const wrapperStyles = {
   padding: '40px',
@@ -71,7 +71,7 @@ const getColor = (name) => {
 };
 
 const getIconSize = (size) => {
-  return size === 'small' ? <DuplicateS/> : <DuplicateM/>;
+  return size === 'small' ? <MailS/> : <MailM/>;
 };
 
 const stories = {
@@ -93,8 +93,8 @@ const stories = {
     <div style={{paddingTop: 200}}>
       <Badge status={select('Set status', statuses, 'active')}>
         <Avatar
-          backgroundColor={select('Set background color', backgroundColors, 'blue')}
-          backgroundColorHue={select('Set background color hue', backgroundColorHue, '200')}
+          backgroundColor={select('Set background color', backgroundColors, 'green')}
+          backgroundColorHue={select('Set background color hue', backgroundColorHue, '400')}
           disabled={boolean('Disabled', false)}
           size={select('Set size', sizes, 'extraLarge')}
           shape={select('Set shape', shapes, 'circle')}
@@ -110,12 +110,12 @@ const stories = {
     <div style={{paddingTop: 200}}>
       <Badge status={select('Set status', statuses, 'blocked')}>
         <Avatar
-          backgroundColor={select('Set background color', backgroundColors, 'blue')}
-          backgroundColorHue={select('Set background color hue', backgroundColorHue, '800')}
+          backgroundColor={select('Set background color', backgroundColors, 'mars')}
+          backgroundColorHue={select('Set background color hue', backgroundColorHue, '100')}
           size={select('Set size', sizes, 'extraLarge')}
           shape={select('Set shape', shapes, 'circle')}
           iconComponent={
-            <Icon color={getColor(select('Set icon color', iconColors, 'cyan-600'))} component={getIconSize(select('Set size', sizes, 'extraLarge'))}/>
+            <Icon color={getColor(select('Set icon color', iconColors, 'mars-600'))} component={getIconSize(select('Set size', sizes, 'extraLarge'))}/>
           }
           tooltip={{name: 'Silvia Jobs', email: 'silvia.jobs@gmail.com'}}
           hasStatus={boolean('Has status', true)}
