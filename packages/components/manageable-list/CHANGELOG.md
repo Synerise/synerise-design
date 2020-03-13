@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.9.5...@synerise/ds-manageable-list@0.9.6) (2020-03-13)
+
+### Bug Fixes
+
+- **manageable-list:** fix XSS issue ([6fdfb8e](https://github.com/Synerise/synerise-design/commit/6fdfb8e5b48193e89c30518af908e9f8f67f4ff0))
+
 ## [0.9.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.9.4...@synerise/ds-manageable-list@0.9.5) (2020-03-13)
 
 **Note:** Version bump only for package @synerise/ds-manageable-list
