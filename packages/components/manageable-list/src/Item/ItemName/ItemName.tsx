@@ -35,11 +35,19 @@ const ItemName: React.FC<ItemLabelProps> = ({ item, onUpdate, editMode, searchQu
   const name = React.useMemo(() => {
     if (searchQuery) {
       const startOfQuery = item.name.toLowerCase().search(searchQuery.toLowerCase());
-      const result = item.name.substr(startOfQuery, searchQuery.length);
-      return item.name.replace(result, `<span class="search-highlight">${result}</span>`);
+      const endOfQuery = startOfQuery + searchQuery.length;
+      const resultArray = [
+        item.name.substring(0, startOfQuery),
+        <span key={item.id} className="search-highlight">
+          {item.name.substring(startOfQuery, endOfQuery)}
+        </span>,
+        item.name.substring(endOfQuery, item.name.length),
+      ];
+
+      return resultArray;
     }
     return item.name;
-  }, [item.name, searchQuery]);
+  }, [item.id, item.name, searchQuery]);
 
   return (
     <S.ItemLabelWrapper data-testid={item.description && 'item-description-icon'}>
@@ -54,7 +62,7 @@ const ItemName: React.FC<ItemLabelProps> = ({ item, onUpdate, editMode, searchQu
         />
       ) : (
         <S.ItemLabelWithIcon>
-          <S.ItemLabel data-testid="list-item-name" dangerouslySetInnerHTML={{ __html: name }} />
+          <S.ItemLabel data-testid="list-item-name">{name}</S.ItemLabel>
           {item.description && (
             <Tooltip description={item.description} placement="top" trigger="hover" type="largeSimple">
               <span>
