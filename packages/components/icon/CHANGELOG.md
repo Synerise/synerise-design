@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.13.0...@synerise/ds-icon@0.13.1) (2020-03-13)
+
+### Bug Fixes
+
+- **icon:** fix product-add-m icon file name ([93dd7f5](https://github.com/Synerise/synerise-design/commit/93dd7f556966162dac09e0b29e26acf6698a0020))
+
 # [0.13.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.12.1...@synerise/ds-icon@0.13.0) (2020-03-12)
 
 ### Features
