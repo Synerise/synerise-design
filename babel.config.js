@@ -11,7 +11,16 @@ module.exports = api => {
     babelrcRoots: ['.', ...packages],
     ignore,
 
-    presets: ['@babel/preset-react', ['@babel/preset-env'], '@babel/preset-typescript'],
+    presets: [
+      '@babel/preset-react',
+      [
+        '@babel/preset-env',
+        {
+          modules: false,
+        },
+      ],
+      '@babel/preset-typescript',
+    ],
 
     plugins: [
       '@babel/plugin-proposal-object-rest-spread',
