@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.47.4](https://github.com/synerise/synerise-design/compare/portal@0.47.3...portal@0.47.4) (2020-03-13)
+
+
+### Bug Fixes
+
+* **avatar:** incon and color change ([d121fac](https://github.com/synerise/synerise-design/commit/d121fac25da56caeb3eb0934fc53db4309494c7d))
+
+
+
+
+
 ## [0.47.3](https://github.com/synerise/synerise-design/compare/portal@0.47.2...portal@0.47.3) (2020-03-12)
 
 **Note:** Version bump only for package portal
