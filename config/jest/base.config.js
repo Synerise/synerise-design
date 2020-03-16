@@ -1,6 +1,8 @@
 const path = require('path')
 const {defaults} = require('jest-config');
 
+const esModules = ['@synerise'].join('|');
+
 module.exports = {
   coverageDirectory: '<rootDir>/coverage',
   coverageReporters: ['lcov'],
@@ -16,7 +18,7 @@ module.exports = {
     '^.+\\.[jt]sx?$': '<rootDir>/config/jest/babel-transformer.js'
   },
   moduleFileExtensions: [...defaults.moduleFileExtensions, 'ts', 'tsx'],
-  transformIgnorePatterns: ['<rootDir>/node_modules', '<rootDir>/.*/dist'],
+  transformIgnorePatterns: [`<rootDir>/node_modules/(?!${esModules})`],
   // watchPlugins: [
   //   'jest-watch-typeahead/filename',
   //   'jest-watch-typeahead/testname'
