@@ -3,15 +3,15 @@ import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
 import Badge from '@synerise/ds-badge';
 import Avatar from '@synerise/ds-avatar';
 import { AvatarProps } from '@synerise/ds-avatar/dist/Avatar';
+import { Status } from '@synerise/ds-badge/dist/Badge';
 import * as S from './AvatarGroup.styles';
 
-export type Status = 'active' | 'inactive' | 'blocked' | undefined;
 export type Size = number | 'small' | 'medium' | 'large' | undefined;
 export type AvatarGroupProps = {
   numberOfVisibleUsers: number;
   hasStatus?: boolean;
   size?: Size;
-  users: AvatarProps & { initials: string; status: Status }[];
+  users: AvatarProps & { initials: string; status?: Status }[];
   moreInfoTooltip: string;
 };
 
