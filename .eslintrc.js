@@ -20,9 +20,6 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
   ],
   plugins: ['jest', 'react', 'react-hooks'],
-  env: {
-    'jest/globals': true,
-  },
   parserOptions: {
     ecmaVersion: 2018,
     sourceType: 'module', // Allows for the use of imports
@@ -39,6 +36,7 @@ module.exports = {
     'import/no-unresolved': [IGNORE],
     '@typescript-eslint/explicit-function-return-type': ERROR,
     '@typescript-eslint/no-unused-vars': [ERROR, { ignoreRestSiblings: true }],
+    'react/jsx-props-no-spreading': [IGNORE],
   },
   settings: {
     'import/resolver': {
