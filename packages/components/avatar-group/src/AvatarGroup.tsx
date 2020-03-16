@@ -24,12 +24,12 @@ const AvatarGroup: React.FC<AvatarGroupProps> = ({
 }: AvatarGroupProps): React.ReactElement => {
   const moreInfo = React.useMemo(() => {
     const diff = users.length - numberOfVisibleUsers;
-    return diff <= 0 ? (
-      false
-    ) : (
-      <Tooltip title={`${diff} ${moreInfoTooltip}`}>
-        <S.MoreInfo size={size}>+{diff}</S.MoreInfo>
-      </Tooltip>
+    return (
+      diff > 0 && (
+        <Tooltip title={`${diff} ${moreInfoTooltip}`}>
+          <S.MoreInfo size={size}>+{diff}</S.MoreInfo>
+        </Tooltip>
+      )
     );
   }, [users, numberOfVisibleUsers, size, moreInfoTooltip]);
   return (

@@ -51,7 +51,7 @@ const groupAvatars = [
 
 
 const stories = {
-  default: (
+  default: () => (
     <div style={{padding: 24, backgroundColor: '#fff', display: 'flex', justifyContent: 'flex-start', width: 500}}>
       <AvatarGroup
         size={select('Set size', groupSizes, 'medium')}
