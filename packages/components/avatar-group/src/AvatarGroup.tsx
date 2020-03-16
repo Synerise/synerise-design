@@ -7,7 +7,7 @@ import { BadgeProps } from '@synerise/ds-badge/dist/Badge';
 import * as S from './AvatarGroup.styles';
 
 export type Size = number | 'small' | 'medium' | 'large' | undefined;
-export type Avatar = AvatarProps & BadgeProps & { initials: string };
+export type Avatar = BadgeProps & { initials: string; avatarProps: AvatarProps };
 export type AvatarGroupProps = {
   numberOfVisibleUsers: number;
   hasStatus?: boolean;
@@ -18,9 +18,9 @@ export type AvatarGroupProps = {
 
 const AvatarGroup: React.FC<AvatarGroupProps> = ({
   avatars,
-  size,
+  size = 'medium',
   hasStatus,
-  numberOfVisibleUsers,
+  numberOfVisibleUsers = 5,
   moreInfoTooltip,
 }: AvatarGroupProps): React.ReactElement => {
   const moreInfo = React.useMemo(() => {
@@ -37,7 +37,7 @@ const AvatarGroup: React.FC<AvatarGroupProps> = ({
     <S.Group size={size} className="ds-avatar-group">
       {avatars.slice(0, numberOfVisibleUsers).map(avatar => (
         <Badge key={JSON.stringify(avatar)} status={avatar.status}>
-          <Avatar size={size} shape="circle" hasStatus={hasStatus} {...avatar}>
+          <Avatar size={size} shape="circle" hasStatus={hasStatus} {...avatar.avatarProps}>
             {avatar.initials}
           </Avatar>
         </Badge>

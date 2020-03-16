@@ -54,7 +54,7 @@ export const Group = styled.div<{ size: Size }>`
       }
       .ant-avatar {
         pointer-events: none;
-        box-shadow: 0 0 0 2px rgba(255, 255, 255, 1);
+        box-shadow: 0 0 0 2px ${(props): string => `${props.theme.palette.white}FF`};
       }
     }
     &:hover {
@@ -68,7 +68,7 @@ export const Group = styled.div<{ size: Size }>`
         }
         .ant-avatar {
           pointer-events: all;
-          box-shadow: 0 0 0 2px rgba(255, 255, 255, 0);
+          box-shadow: 0 0 0 2px ${(props): string => `${props.theme.palette.white}00`};
         }
       }
     }
@@ -77,7 +77,7 @@ export const Group = styled.div<{ size: Size }>`
 
 export const MoreInfo = styled.div<{ size: Size }>`
   ${(props): FlattenSimpleInterpolation | false => applyMoreInfoStyles(props.size)};
-  border: 2px solid ${(props): string => props.theme.palette['grey-300']};
+  border: 1px solid ${(props): string => props.theme.palette['grey-300']};
   margin-left: 8px;
   border-radius: 50%;
   color: ${(props): string => props.theme.palette['grey-300']};

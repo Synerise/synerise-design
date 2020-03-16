@@ -4,43 +4,61 @@ import AvatarGroup, { Avatar } from './../AvatarGroup';
 
 const groupAvatars: Avatar[] = [
   {
-    tooltip: { name: 'Jan Nowak', email: 'email' },
+    avatarProps: {
+      tooltip: { name: 'Jan Nowak', email: 'email' },
+    },
     initials: 'JN',
     status: 'active',
   },
   {
-    tooltip: { name: 'Kamil Kowalski', email: 'email' },
+    avatarProps: {
+      tooltip: { name: 'Kamil Kowalski', email: 'email' },
+    },
     initials: 'KK',
     status: 'active',
   },
   {
-    tooltip: { name: 'Adam Staszewski', email: 'email' },
+    avatarProps: {
+      tooltip: { name: 'Adam Staszewski', email: 'email' },
+    },
     initials: 'AS',
     status: 'inactive',
   },
   {
-    tooltip: { name: 'Jan Nowak', email: 'email' },
+    avatarProps: {
+      tooltip: { name: 'Jan Nowak', email: 'email' },
+    },
     initials: 'JW',
     status: 'blocked',
   },
   {
-    tooltip: { name: 'Jan Nowak', email: 'email' },
+    avatarProps: {
+      tooltip: { name: 'Jan Nowak', email: 'email' },
+    },
     initials: 'JE',
   },
   {
-    tooltip: { name: 'Jan Nowak', email: 'email' },
+    avatarProps: {
+      tooltip: { name: 'Jan Nowak', email: 'email' },
+    },
     initials: 'JJ',
   },
   {
-    tooltip: { name: 'Jan Nowak', email: 'email' },
+    avatarProps: {
+      tooltip: { name: 'Jan Nowak', email: 'email' },
+    },
     initials: 'JZ',
   },
   {
-    tooltip: { name: 'Jan Nowak', email: 'email' },
+    avatarProps: {
+      tooltip: { name: 'Jan Nowak', email: 'email' },
+    },
     initials: 'AN',
   },
   {
-    tooltip: { name: 'Jan Nowak', email: 'email' },
+    avatarProps: {
+      tooltip: { name: 'Jan Nowak', email: 'email' },
+    },
     initials: 'TN',
   }
 ];

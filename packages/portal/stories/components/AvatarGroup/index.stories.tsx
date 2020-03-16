@@ -8,44 +8,68 @@ const imgSrc = 'https://www.w3schools.com/howto/img_avatar.png';
 const groupSizes = ['small', 'medium', 'large'] as const;
 const groupAvatars: Avatar[] = [
   {
-    tooltip: { name: 'Jan Nowak', email: 'email' },
-    src: imgSrc,
+    avatarProps: {
+      tooltip: { name: 'Jan Nowak', email: 'email' },
+      src: imgSrc,
+    },
     initials: 'JN',
     status: 'active',
   },
   {
-    tooltip: { name: 'Kamil Kowalski', email: 'email' },
+    avatarProps: {
+      tooltip: { name: 'Kamil Kowalski', email: 'email' },
+      backgroundColor: 'red',
+      backgroundColorHue: '800',
+    },
     initials: 'KK',
     status: 'active',
   },
   {
-    tooltip: { name: 'Adam Staszewski', email: 'email' },
+    avatarProps: {
+      tooltip: { name: 'Adam Staszewski', email: 'email' },
+      backgroundColor: 'green',
+      backgroundColorHue: '800',
+    },
     initials: 'AS',
     status: 'inactive',
   },
   {
-    tooltip: { name: 'Jan Nowak', email: 'email' },
+    avatarProps: {
+      tooltip: { name: 'Jan Nowak', email: 'email' },
+      backgroundColor: 'blue',
+      backgroundColorHue: '600',
+    },
     initials: 'JN',
     status: 'blocked',
   },
   {
-    tooltip: { name: 'Jan Nowak', email: 'email' },
+    avatarProps: {
+      tooltip: { name: 'Jan Nowak', email: 'email' },
+    },
     initials: 'JN',
   },
   {
-    tooltip: { name: 'Jan Nowak', email: 'email' },
+    avatarProps: {
+      tooltip: { name: 'Jan Nowak', email: 'email' },
+    },
     initials: 'JN',
   },
   {
-    tooltip: { name: 'Jan Nowak', email: 'email' },
+    avatarProps: {
+      tooltip: { name: 'Jan Nowak', email: 'email' },
+    },
     initials: 'JN',
   },
   {
-    tooltip: { name: 'Jan Nowak', email: 'email' },
+    avatarProps: {
+      tooltip: { name: 'Jan Nowak', email: 'email' },
+    },
     initials: 'JN',
   },
   {
-    tooltip: { name: 'Jan Nowak', email: 'email' },
+    avatarProps: {
+      tooltip: { name: 'Jan Nowak', email: 'email' },
+    },
     initials: 'JN',
   }
 ];
