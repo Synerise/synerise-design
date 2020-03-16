@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { renderWithProvider } from '@synerise/ds-utils';
+import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import Block from "../index";
 import Icon from "@synerise/ds-icon/dist/Icon";
 import {EditM} from "@synerise/ds-icon/dist/icons";

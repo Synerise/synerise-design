@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { renderWithProvider } from '@synerise/ds-utils';
+import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 
 import AppMenu from '../index';
 import { fireEvent } from '@testing-library/react';
@@ -15,7 +15,7 @@ describe('AppMenu', () => {
     const CAMPAIGNS_ITEM_2 = 'facebook';
 
     Element.prototype.getBoundingClientRect = jest.fn(
-      () => ({ 
+      () => ({
         width: 120,
         height: 1000,
         top: 0,
@@ -31,14 +31,14 @@ describe('AppMenu', () => {
     // ARRANGE
     const { getByText, getByTestId, container } = renderWithProvider(
       <>
-        <AppMenu 
-          activeItem={CAMPAIGNS} 
+        <AppMenu
+          activeItem={CAMPAIGNS}
           footer={<AppMenu.Item name={SETTINGS} id={SETTINGS}>{SETTINGS}</AppMenu.Item>}
         >
           <AppMenu.Item name={ASSETS} id={ASSETS}>{ASSETS}</AppMenu.Item>
-          <AppMenu.Item 
-            name={CAMPAIGNS} 
-            id={CAMPAIGNS} 
+          <AppMenu.Item
+            name={CAMPAIGNS}
+            id={CAMPAIGNS}
             subMenu={(
               <AppMenu.SubMenu>
                 <AppMenu.SubMenu.Title>{CAMPAIGNS_SUBMENU}</AppMenu.SubMenu.Title>

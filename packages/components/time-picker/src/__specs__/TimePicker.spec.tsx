@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { fireEvent } from '@testing-library/react';
-import { renderWithProvider } from '@synerise/ds-utils';
+import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import TimePicker from '../index';
 
 describe('TimePicker', () => {
