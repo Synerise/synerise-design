@@ -1,7 +1,7 @@
 import Tag, { TagShape } from '@synerise/ds-tags/dist/Tag/Tag';
 import FileM from '@synerise/ds-icon/dist/icons/FileM';
 import * as React from 'react';
-import { renderWithProvider } from '@synerise/ds-utils';
+import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import ManageableList from '../ManageableList';
 import { fireEvent } from '@testing-library/react';
 

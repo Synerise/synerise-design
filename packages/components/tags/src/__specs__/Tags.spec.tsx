@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { fireEvent, getByText as globalGetByText } from '@testing-library/react';
-import { renderWithProvider } from '@synerise/ds-utils';
+import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import Tags, { TagShape } from '../index';
 
 describe('Tags', () => {

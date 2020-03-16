@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { renderWithProvider } from '@synerise/ds-utils';
+import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 
 import Avatar from '../index';
 import Badge from '@synerise/ds-badge';

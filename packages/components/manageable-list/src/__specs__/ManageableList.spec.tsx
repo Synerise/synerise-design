@@ -1,6 +1,6 @@
 import * as React from 'react';
 import ManageableList from '../ManageableList';
-import { renderWithProvider } from '@synerise/ds-utils';
+import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import { fireEvent } from '@testing-library/react';
 import FileM from '@synerise/ds-icon/dist/icons/FileM';
 
@@ -259,7 +259,7 @@ describe('ManageableList', () => {
       />);
     const NEW_FOLDER_NAME = 'New folder';
     const addItemButton = getByTestId('add-item-with-name-button').getElementsByTagName('button')[0];
-    
+
     // ASSERT
     expect(addItemButton).toBeTruthy();
     // SHOW ADD ITEM INPUT

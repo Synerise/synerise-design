@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { fireEvent } from "@testing-library/react";
 import Tooltip from '../index';
-import { renderWithProvider } from '@synerise/ds-utils';
+import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 
 describe('Tooltip', () => {
     const TOOLTIP_TITLE = 'Test';

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import '@testing-library/jest-dom/extend-expect';
-import { renderWithProvider } from '@synerise/ds-utils';
+import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import { fireEvent } from "@testing-library/react";
 import InlineEdit from '../';
 
@@ -12,7 +12,7 @@ const onEnterPress = jest.fn();
 const onBlur = jest.fn();
 
 const setup = ({
-    disabled = false, 
+    disabled = false,
     maxLength,
     autoComplete,
     name = 'name-of-input',
@@ -60,14 +60,14 @@ describe('InlineEdit', () => {
     expect(input).toBeTruthy()
   });
 
-  
+
   it('should trigger onChange', () => {
     // ARRANGE
     const { input } = setup({})
 
     // ACT
     fireEvent.change(input, { target: { value: INPUT_VALUE_CHANGED } })
-    
+
     // ASSERT
     expect(onChange).toHaveBeenCalled();
     expect(input.value).toBe(INPUT_VALUE)
@@ -86,11 +86,11 @@ describe('InlineEdit', () => {
       expect(input.id).toBe(ids[i])
     });
   })
-  
+
   it('should have name attribute', () => {
     // ARRANGE
     const { input } = setup({})
-    
+
     // ASSERT
     expect(input.name).toBe('name-of-input')
   });
@@ -100,7 +100,7 @@ describe('InlineEdit', () => {
     const { input } = setup({
       disabled: true
     })
-    
+
     // ASSERT
     expect(input).toBeDisabled()
   });
@@ -110,7 +110,7 @@ describe('InlineEdit', () => {
     const { input } = setup({
       disabled: false
     })
-    
+
     // ASSERT
     expect(input).not.toBeDisabled()
   });
@@ -135,17 +135,17 @@ describe('InlineEdit', () => {
       const { input } = setup({
         autoComplete
       })
-      
+
       // ASSERT
       expect(input).toHaveAttribute('autoComplete', autoComplete)
     });
   })
-  
+
 
   it('should have style', () => {
     // ARRANGE
     const { input } = setup({})
-    
+
     // ASSERT
     expect(input).toHaveAttribute('style')
   });
