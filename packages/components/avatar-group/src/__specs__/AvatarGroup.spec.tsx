@@ -1,61 +1,84 @@
 import * as React from 'react';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
-import AvatarGroup from './../AvatarGroup';
-import { Status } from '@synerise/ds-badge/dist/Badge';
+import AvatarGroup, { Avatar } from './../AvatarGroup';
 
-const groupAvatars = [
+const groupAvatars: Avatar[] = [
   {
     tooltip: { name: 'Jan Nowak', email: 'email' },
     initials: 'JN',
-    status: 'active' as Status,
+    status: 'active',
   },
   {
     tooltip: { name: 'Kamil Kowalski', email: 'email' },
     initials: 'KK',
-    status: 'active' as Status,
+    status: 'active',
   },
   {
     tooltip: { name: 'Adam Staszewski', email: 'email' },
     initials: 'AS',
-    status: 'inactive' as Status,
+    status: 'inactive',
   },
   {
     tooltip: { name: 'Jan Nowak', email: 'email' },
-    initials: 'JN',
-    status: 'blocked' as Status,
+    initials: 'JW',
+    status: 'blocked',
   },
   {
     tooltip: { name: 'Jan Nowak', email: 'email' },
-    initials: 'JN',
+    initials: 'JE',
   },
   {
     tooltip: { name: 'Jan Nowak', email: 'email' },
-    initials: 'JN',
+    initials: 'JJ',
   },
   {
     tooltip: { name: 'Jan Nowak', email: 'email' },
-    initials: 'JN',
+    initials: 'JZ',
   },
   {
     tooltip: { name: 'Jan Nowak', email: 'email' },
-    initials: 'JN',
+    initials: 'AN',
   },
   {
     tooltip: { name: 'Jan Nowak', email: 'email' },
-    initials: 'JN',
+    initials: 'TN',
   }
 ];
 
 describe('AvatarGroup', () => {
   it('should render', () => {
+    const { container } = renderWithProvider(<AvatarGroup
+      size={'medium'}
+      hasStatus={true}
+      numberOfVisibleUsers={5}
+      avatars={groupAvatars}
+      moreInfoTooltip={'more users'}
+    />);
+
+    expect(container.querySelector('.ds-avatar-group')).toBeTruthy();
+  });
+
+  it('should render more users info', () => {
     const { getByText } = renderWithProvider(<AvatarGroup
       size={'medium'}
       hasStatus={true}
       numberOfVisibleUsers={5}
-      users={groupAvatars}
+      avatars={groupAvatars}
       moreInfoTooltip={'more users'}
     />);
 
     expect(getByText('+4')).toBeTruthy();
+  });
+
+  it('should render 5 avatars', () => {
+    const { container } = renderWithProvider(<AvatarGroup
+      size={'medium'}
+      hasStatus={true}
+      numberOfVisibleUsers={5}
+      avatars={groupAvatars}
+      moreInfoTooltip={'more users'}
+    />);
+
+    expect(container.querySelectorAll('.ant-avatar').length).toBe(5);
   });
 });

@@ -3,27 +3,28 @@ import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
 import Badge from '@synerise/ds-badge';
 import Avatar from '@synerise/ds-avatar';
 import { AvatarProps } from '@synerise/ds-avatar/dist/Avatar';
-import { Status } from '@synerise/ds-badge/dist/Badge';
+import { BadgeProps } from '@synerise/ds-badge/dist/Badge';
 import * as S from './AvatarGroup.styles';
 
 export type Size = number | 'small' | 'medium' | 'large' | undefined;
+export type Avatar = AvatarProps & BadgeProps & { initials: string };
 export type AvatarGroupProps = {
   numberOfVisibleUsers: number;
   hasStatus?: boolean;
   size?: Size;
-  users: AvatarProps & { initials: string; status?: Status }[];
+  avatars: Avatar[];
   moreInfoTooltip: string;
 };
 
 const AvatarGroup: React.FC<AvatarGroupProps> = ({
-  users,
+  avatars,
   size,
   hasStatus,
   numberOfVisibleUsers,
   moreInfoTooltip,
 }: AvatarGroupProps): React.ReactElement => {
   const moreInfo = React.useMemo(() => {
-    const diff = users.length - numberOfVisibleUsers;
+    const diff = avatars.length - numberOfVisibleUsers;
     return (
       diff > 0 && (
         <Tooltip title={`${diff} ${moreInfoTooltip}`}>
@@ -31,13 +32,13 @@ const AvatarGroup: React.FC<AvatarGroupProps> = ({
         </Tooltip>
       )
     );
-  }, [users, numberOfVisibleUsers, size, moreInfoTooltip]);
+  }, [avatars, numberOfVisibleUsers, size, moreInfoTooltip]);
   return (
-    <S.Group size={size} className="ds-group-avatar">
-      {users.slice(0, numberOfVisibleUsers).map(user => (
-        <Badge key={user.initials} status={user.status}>
-          <Avatar size={size} shape="circle" hasStatus={hasStatus} {...user}>
-            {user.initials}
+    <S.Group size={size} className="ds-avatar-group">
+      {avatars.slice(0, numberOfVisibleUsers).map(avatar => (
+        <Badge key={JSON.stringify(avatar)} status={avatar.status}>
+          <Avatar size={size} shape="circle" hasStatus={hasStatus} {...avatar}>
+            {avatar.initials}
           </Avatar>
         </Badge>
       ))}

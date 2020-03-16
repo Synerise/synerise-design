@@ -2,10 +2,11 @@ import * as React from 'react';
 
 import AvatarGroup from '@synerise/ds-avatar-group';
 import { boolean, number, select, text } from '@storybook/addon-knobs';
+import { Avatar } from '@synerise/ds-avatar-group/dist/AvatarGroup';
 
 const imgSrc = 'https://www.w3schools.com/howto/img_avatar.png';
 const groupSizes = ['small', 'medium', 'large'] as const;
-const groupAvatars = [
+const groupAvatars: Avatar[] = [
   {
     tooltip: { name: 'Jan Nowak', email: 'email' },
     src: imgSrc,
@@ -57,7 +58,7 @@ const stories = {
         size={select('Set size', groupSizes, 'medium')}
         hasStatus={boolean('Has status', true)}
         numberOfVisibleUsers={number('Number of visible avatars', 5)}
-        users={groupAvatars}
+        avatars={groupAvatars}
         moreInfoTooltip={text('More info tooltip copy', 'more users')}
       />
     </div>
