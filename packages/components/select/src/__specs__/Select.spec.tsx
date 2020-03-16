@@ -19,7 +19,7 @@ describe('Select', () => {
   it('change selected item when unselected is clicked', () => {
     const options = [{ value: 'red', label: 'Red' }, { value: 'green', label: 'Green' }];
     const { getByTestId, getByText } = renderWithProvider(
-      <Select data-testid="select" defaultValue="red">
+      <Select open data-testid="select" defaultValue="red">
         {options.map(o => (
           <Option key={o.value} value={o.value}>
             {o.label}
@@ -29,7 +29,7 @@ describe('Select', () => {
     );
 
     const select = getByTestId('select') as HTMLSelectElement;
-    const selectedOption = select.querySelector('.ant-select-selection-selected-value');
+    const selectedOption = select.querySelector('.ant-select-selection-item');
     expect(selectedOption && selectedOption.textContent).toBe('Red');
     fireEvent.click(select);
     const unselectedOption = getByText('Green');
@@ -43,8 +43,9 @@ describe('Select', () => {
     for (let i = 10; i < 36; i++) {
       children.push(<Option key={i.toString(36) + i}>{i.toString(36) + i}</Option>);
     }
-    const { getByTestId, getByText } = renderWithProvider(
+    const { getByTestId, getAllByText } = renderWithProvider(
       <Select
+        open
         data-testid="select-multiple"
         mode="multiple"
         placeholder="Please select"
@@ -56,12 +57,12 @@ describe('Select', () => {
     );
 
     const select = getByTestId('select-multiple') as HTMLSelectElement;
-    const selectedOption = getByText('a10');
-    expect(selectedOption.textContent).toBe('a10');
+    const selectedOption = getAllByText('a10');
+    expect(selectedOption[0].textContent).toBe('a10');
     fireEvent.click(select);
-    const unselectedOption = getByText('b11');
-    fireEvent.click(unselectedOption);
-    const selectedOptions = select.querySelectorAll('.ant-select-selection__choice');
+    const unselectedOption = getAllByText('b11');
+    fireEvent.click(unselectedOption[0]);
+    const selectedOptions = document.querySelectorAll('div[aria-selected="true"]');
     expect(selectedOptions.length).toBe(2);
   });
 
@@ -88,11 +89,7 @@ describe('Select', () => {
 
   it('should be empty', () => {
     // ARRANGE
-    const { getByText, getByTestId } = renderWithProvider(<Select data-testid="select-empty" />);
-    const select = getByTestId('select-empty') as HTMLSelectElement;
-
-    // ACT
-    fireEvent.click(select);
+    const { getByText } = renderWithProvider(<Select open data-testid="select-empty" />);
 
     // ASSERT
     expect(getByText('No Data')).toBeTruthy();

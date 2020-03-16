@@ -1,5 +1,5 @@
-const path = require('path')
-const {defaults} = require('jest-config');
+const path = require('path');
+const { defaults } = require('jest-config');
 
 const esModules = ['@synerise'].join('|');
 
@@ -8,14 +8,16 @@ module.exports = {
   coverageReporters: ['lcov'],
   modulePathIgnorePatterns: ['<rootDir>/scripts/', '<rootDir>/.*/__mocks__'],
   moduleNameMapper: {
-    "\\.(css|less|sass|scss)$": "<rootDir>/config/jest/__mocks__/styleMock.js",
-    "\\.(jpg|jpeg|png|gif|eot|otf|webp|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/config/jest/__mocks__/fileMock.js",
-    "\\.svg$": "<rootDir>/config/jest/__mocks__/svgrMock.js"
+    '\\.(css|less|sass|scss)$': '<rootDir>/config/jest/__mocks__/styleMock.js',
+    '\\.(jpg|jpeg|png|gif|eot|otf|webp|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
+      '<rootDir>/config/jest/__mocks__/fileMock.js',
+    '\\.svg$': '<rootDir>/config/jest/__mocks__/svgrMock.js',
+    '^rc-virtual-list$': '<rootDir>/config/jest/__mocks__/rc-virtual-list.js',
   },
   rootDir: path.resolve(__dirname, '..', '..'),
   setupFilesAfterEnv: ['<rootDir>/config/jest/setup/index.js'],
   transform: {
-    '^.+\\.[jt]sx?$': '<rootDir>/config/jest/babel-transformer.js'
+    '^.+\\.[jt]sx?$': '<rootDir>/config/jest/babel-transformer.js',
   },
   moduleFileExtensions: [...defaults.moduleFileExtensions, 'ts', 'tsx'],
   transformIgnorePatterns: [`<rootDir>/node_modules/(?!${esModules})`],
@@ -23,4 +25,4 @@ module.exports = {
   //   'jest-watch-typeahead/filename',
   //   'jest-watch-typeahead/testname'
   // ]
-}
+};

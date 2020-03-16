@@ -10,49 +10,7 @@ import SearchM from '@synerise/ds-icon/dist/icons/SearchM';
 import { useOnClickOutside } from '@synerise/ds-utils';
 import * as S from './Table.styles';
 
-export type AntTableProps<T> = Pick<
-  TableProps<T>,
-  | 'loading'
-  | 'footer'
-  | 'style'
-  | 'scroll'
-  | 'size'
-  | 'children'
-  | 'className'
-  | 'prefixCls'
-  | 'locale'
-  | 'getPopupContainer'
-  | 'onChange'
-  | 'dataSource'
-  | 'expandIcon'
-  | 'tableLayout'
-  | 'columns'
-  | 'bordered'
-  | 'bodyStyle'
-  | 'pagination'
-  | 'rowKey'
-  | 'dropdownPrefixCls'
-  | 'rowSelection'
-  | 'components'
-  | 'rowClassName'
-  | 'expandedRowRender'
-  | 'defaultExpandAllRows'
-  | 'defaultExpandedRowKeys'
-  | 'expandedRowKeys'
-  | 'expandIconAsCell'
-  | 'expandIconColumnIndex'
-  | 'expandRowByClick'
-  | 'onExpandedRowsChange'
-  | 'onExpand'
-  | 'indentSize'
-  | 'onRowClick'
-  | 'onRow'
-  | 'onHeaderRow'
-  | 'useFixedHeader'
-  | 'showHeader'
-  | 'childrenColumnName'
-  | 'sortDirections'
->;
+export type AntTableProps<T> = Omit<TableProps<T>, 'title' | 'subTitle' | 'onSearch' | 'itemsMenu' | 'search'>;
 
 export interface DSTableProps<T> extends AntTableProps<T> {
   title?: string | React.ReactNode;
@@ -62,38 +20,38 @@ export interface DSTableProps<T> extends AntTableProps<T> {
   search?: string;
 }
 
-const DSTable: <T>(p: DSTableProps<T>) => React.ReactElement<DSTableProps<T>> = props => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function DSTable<T extends object = any>(props: DSTableProps<T>): React.ReactElement {
   const ref = React.useRef<HTMLDivElement>(null);
   const [isSearchOpen, setIsSearchOpen] = React.useState(false);
-
+  const { title, subTitle, onSearch, search, rowSelection, itemsMenu } = props;
   useOnClickOutside(ref, () => {
     setIsSearchOpen(false);
   });
 
-  const renderSelection = (size: number): React.ReactNode => {
-    const { itemsMenu } = props;
-    return (
+  const renderSelection = React.useCallback(
+    (size: number): React.ReactNode => (
       <S.SelectionHeader>
         <S.Size>
           <b>{size}</b> selected
         </S.Size>
         {itemsMenu}
       </S.SelectionHeader>
-    );
-  };
+    ),
+    [itemsMenu]
+  );
 
-  const toggleSearch = (): void => {
+  const toggleSearch = React.useCallback((): void => {
     if (isSearchOpen === true) {
       return;
     }
     setIsSearchOpen(prevState => {
       return !prevState;
     });
-  };
+  }, [isSearchOpen, setIsSearchOpen]);
 
-  const renderTitle = (): React.ReactNode => {
-    const { title, subTitle, onSearch, search } = props;
-    return (
+  const renderTitle = React.useCallback(
+    (): React.ReactNode => (
       <S.Header>
         <S.Left>
           {title && <S.Title>{title}</S.Title>}
@@ -112,21 +70,21 @@ const DSTable: <T>(p: DSTableProps<T>) => React.ReactElement<DSTableProps<T>> = 
           )}
         </S.Right>
       </S.Header>
-    );
-  };
+    ),
+    [title, subTitle, onSearch, isSearchOpen, search, toggleSearch]
+  );
 
-  const renderHeader = (): React.ReactNode => {
-    const { rowSelection, title } = props;
+  const renderHeader = React.useCallback((): React.ReactNode => {
     const size = rowSelection && rowSelection.selectedRowKeys && rowSelection.selectedRowKeys.length;
     return size ? renderSelection(size) : title && renderTitle();
-  };
+  }, [rowSelection, title, renderSelection, renderTitle]);
 
   return (
     <div className="ds-table">
       {/* disable eslint to pass all antd table props */}
-      <Table {...props} title={renderHeader} /> {/* eslint-disable-line  react/jsx-props-no-spreading */}
+      <Table<T> {...props} title={renderHeader} /> {/* eslint-disable-line  react/jsx-props-no-spreading */}
     </div>
   );
-};
+}
 
 export default DSTable;
