@@ -76,7 +76,7 @@ const groupAvatars: Avatar[] = [
 
 
 const stories = {
-  default: () => (
+  avatarGroup: () => (
     <div style={{padding: 24, backgroundColor: '#fff', display: 'flex', justifyContent: 'flex-start', width: 500}}>
       <AvatarGroup
         size={select('Set size', groupSizes, 'medium')}
@@ -90,7 +90,7 @@ const stories = {
 };
 
 export default {
-  name: 'Components|AvatarGroup',
+  name: 'Components|Avatar',
   config: {},
   stories,
   Component: AvatarGroup,
