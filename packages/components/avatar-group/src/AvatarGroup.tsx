@@ -23,6 +23,10 @@ const AvatarGroup: React.FC<AvatarGroupProps> = ({
   numberOfVisibleUsers = 5,
   moreInfoTooltip,
 }: AvatarGroupProps): React.ReactElement => {
+  const avatarsWithKeys = React.useMemo(() => {
+    return avatars.map((avatar, index) => ({ ...avatar, key: `${avatar.initials}-${index}` }));
+  }, [avatars]);
+
   const moreInfo = React.useMemo(() => {
     const diff = avatars.length - numberOfVisibleUsers;
     return (
@@ -35,8 +39,8 @@ const AvatarGroup: React.FC<AvatarGroupProps> = ({
   }, [avatars, numberOfVisibleUsers, size, moreInfoTooltip]);
   return (
     <S.Group size={size} className="ds-avatar-group">
-      {avatars.slice(0, numberOfVisibleUsers).map(avatar => (
-        <Badge key={JSON.stringify(avatar)} status={avatar.status}>
+      {avatarsWithKeys.slice(0, numberOfVisibleUsers).map(avatar => (
+        <Badge key={avatar.key} status={avatar.status}>
           <Avatar size={size} shape="circle" hasStatus={hasStatus} {...avatar.avatarProps}>
             {avatar.initials}
           </Avatar>
