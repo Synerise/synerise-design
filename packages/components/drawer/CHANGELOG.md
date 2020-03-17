@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-drawer@0.3.5...@synerise/ds-drawer@0.4.0) (2020-03-17)
+
+### Features
+
+- prepare components for ant-design v4 ([8b0128f](https://github.com/Synerise/synerise-design/commit/8b0128f4e8cd581bc522835a03412f9c78439def))
+
 ## [0.3.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-drawer@0.3.4...@synerise/ds-drawer@0.3.5) (2020-03-17)
 
 **Note:** Version bump only for package @synerise/ds-drawer

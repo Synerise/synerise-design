@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.6.28...@synerise/ds-table@0.7.0) (2020-03-17)
+
+### Features
+
+- prepare components for ant-design v4 ([8b0128f](https://github.com/synerise/synerise-design/commit/8b0128f4e8cd581bc522835a03412f9c78439def))
+
 ## [0.6.28](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.6.27...@synerise/ds-table@0.6.28) (2020-03-17)
 
 **Note:** Version bump only for package @synerise/ds-table

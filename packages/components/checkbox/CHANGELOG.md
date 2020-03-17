@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-checkbox@0.7.10...@synerise/ds-checkbox@0.8.0) (2020-03-17)
+
+### Features
+
+- prepare components for ant-design v4 ([8b0128f](https://github.com/synerise/synerise-design/commit/8b0128f4e8cd581bc522835a03412f9c78439def))
+
 ## [0.7.10](https://github.com/synerise/synerise-design/compare/@synerise/ds-checkbox@0.7.9...@synerise/ds-checkbox@0.7.10) (2020-03-17)
 
 **Note:** Version bump only for package @synerise/ds-checkbox
