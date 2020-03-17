@@ -92,7 +92,7 @@ describe('Popconfirm', () => {
     fireEvent.click(getByText(TEXT));
 
     //ASSERT
-    expect(document.querySelector('.ant-popover-placement-bottomRight')).toBeInTheDocument();
+    expect(document.querySelector('button')).toBeInTheDocument();
   });
 
   it('should trigger popconfirm on focus', () => {

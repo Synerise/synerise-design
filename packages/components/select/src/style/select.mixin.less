@@ -40,18 +40,16 @@
   }
 }
 
-.@{ant-prefix}-select-dropdown--single {
-  .@{ant-prefix}-select-dropdown-menu-item-selected {
-    &:after {
-      position: absolute;
-      width: 24px;
-      height: 24px;
-      right: 8px;
-      content: url(@check-s-icon);
-      color: @success-color;
-      font-size: 20px;
-      z-index: 11;
-    }
+.@{ant-prefix}-select-item-option-selected {
+  &:after {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    right: 8px;
+    content: url(@check-s-icon);
+    color: @success-color;
+    font-size: 20px;
+    z-index: 11;
   }
 }
 
@@ -70,6 +68,9 @@
 }
 
 .@{ant-prefix}-select-arrow {
+  .anticon-down {
+    display: none;
+  }
   background-image: url(@angle-down-s-icon);
   width: 24px;
   height: 24px;

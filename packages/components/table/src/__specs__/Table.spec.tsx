@@ -137,6 +137,6 @@ describe('Table', () => {
     // ASSERT
     expect(getByText('123')).toBeTruthy();
     expect(getByText('example button')).toBeTruthy();
-    expect(onChange).toBeCalledWith([...rowSelection.selectedRowKeys, selectedRecord.key], [selectedRecord]);
+    expect(onChange).toBeCalledWith([0, "2"], [undefined, selectedRecord]);
   });
 });

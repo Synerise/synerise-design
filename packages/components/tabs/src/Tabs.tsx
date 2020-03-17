@@ -72,7 +72,7 @@ const Tabs: React.FC<TabsProps> = ({ activeTab, tabs, handleTabClick, configurat
     }
   };
 
-  const renderHiddenTabs = (): React.ReactNode => (
+  const renderHiddenTabs = (): React.ReactElement => (
     <S.TabsDropdownContainer data-testid="tabs-dropdown-container">
       {hiddenTabs.length > 0 && (
         <List
@@ -97,37 +97,43 @@ const Tabs: React.FC<TabsProps> = ({ activeTab, tabs, handleTabClick, configurat
     </S.TabsDropdownContainer>
   );
 
-  const renderDropdown = (): React.ReactNode => {
+  const renderDropdown = (): React.ReactElement => {
     return (
-      (hiddenTabs.length || configuration) && (
-        <Dropdown data-testid="tabs-dropdown" overlay={renderHiddenTabs()}>
-          <Button type="ghost" mode="single-icon">
-            <Icon component={<OptionHorizontalM />} />
-          </Button>
-        </Dropdown>
-      )
+      <>
+        {(hiddenTabs.length || configuration) && (
+          <Dropdown data-testid="tabs-dropdown" overlay={renderHiddenTabs()}>
+            <Button type="ghost" mode="single-icon">
+              <Icon component={<OptionHorizontalM />} />
+            </Button>
+          </Dropdown>
+        )}
+      </>
     );
   };
 
-  const renderVisibleTabs = (): React.ReactNode => {
-    return visibleTabs.map((tab, index) => {
-      const ref = React.createRef<HTMLButtonElement>();
-      items[index] = ref;
-      const key = `tabs-tab-${index}`;
-      return (
-        <Tab
-          underscore={underscore}
-          forwardedRef={ref}
-          key={key}
-          index={index}
-          label={tab.label}
-          icon={tab.icon}
-          onClick={handleTabClick}
-          isActive={index === activeTab}
-          disabled={tab.disabled}
-        />
-      );
-    });
+  const renderVisibleTabs = (): React.ReactElement => {
+    return (
+      <>
+        {visibleTabs.map((tab, index) => {
+          const ref = React.createRef<HTMLButtonElement>();
+          items[index] = ref;
+          const key = `tabs-tab-${index}`;
+          return (
+            <Tab
+              underscore={underscore}
+              forwardedRef={ref}
+              key={key}
+              index={index}
+              label={tab.label}
+              icon={tab.icon}
+              onClick={handleTabClick}
+              isActive={index === activeTab}
+              disabled={tab.disabled}
+            />
+          );
+        })}
+      </>
+    );
   };
 
   return (

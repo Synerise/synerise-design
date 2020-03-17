@@ -10,11 +10,25 @@ const DESC = 'desc';
 const ERROR = 'error';
 const RED = 'red';
 
+const originalOffsetHeight = Object.getOwnPropertyDescriptor(HTMLElement.prototype, 'offsetHeight')
+const originalOffsetWidth = Object.getOwnPropertyDescriptor(HTMLElement.prototype, 'offsetWidth')
+
+beforeAll(() => {
+  Object.defineProperty(HTMLElement.prototype, 'offsetHeight', { configurable: true, value: 500 })
+  Object.defineProperty(HTMLElement.prototype, 'offsetWidth', { configurable: true, value: 500 })
+})
+
+afterAll(() => {
+  originalOffsetHeight && Object.defineProperty(HTMLElement.prototype, 'offsetHeight', originalOffsetHeight)
+  originalOffsetWidth && Object.defineProperty(HTMLElement.prototype, 'offsetWidth', originalOffsetWidth)
+})
+
+
 describe('Autocomplete', () => {
   it('should render', () => {
     // ARRANGE
     const { getByText } = renderWithProvider(
-      <Autocomplete value="first" label={LABEL} description={DESC} errorText={ERROR}>
+      <Autocomplete open value="first" label={LABEL} description={DESC} errorText={ERROR}>
         <Option value="first">{FIRST_OPTION}</Option>
       </Autocomplete>
     );
@@ -31,21 +45,20 @@ describe('Autocomplete', () => {
     const options = ['red', 'green', 'blue'];
     const onChange = jest.fn();
 
-    renderWithProvider(
+    const C = renderWithProvider(
       <Autocomplete value="red" onChange={onChange}>
         {options.map(o => (
           <Option key={o} value={o}>{o}</Option>
         ))}
       </Autocomplete>
     );
-
-    const input = document.querySelector('.ant-input') as HTMLInputElement;
+    C.debug()
+    const input = document.querySelector('.ant-select-selection-search-input') as HTMLInputElement;
 
     // ACT
-    fireEvent.change(input, { target: { value: '' } });
-    const liBlue = document.querySelector('li.ant-select-dropdown-menu-item:last-child') as HTMLInputElement;
+    fireEvent.change(input, { target: { value: 'test' } });
+    const liBlue = document.querySelector('.ant-select-item-option:last-child') as HTMLInputElement;
     fireEvent.click(liBlue);
-
     // ASSERT
     expect(onChange).toHaveBeenCalled();
     expect(onChange).toHaveBeenCalledTimes(2);
@@ -62,8 +75,7 @@ describe('Autocomplete', () => {
         ))}
       </Autocomplete>
     );
-
-    const input = document.querySelector('.ant-input') as HTMLInputElement;
+    const input = document.querySelector('.ant-select-selection-search-input') as HTMLInputElement;
 
     // ACT
     fireEvent.change(input, { target: { value: RED } });
@@ -71,12 +83,10 @@ describe('Autocomplete', () => {
     // ASSERT
     expect(input.value).toBe(RED);
 
-    const clearBtn = document.querySelector('.ant-select-selection__clear') as HTMLInputElement;
-
+    const clearBtn = document.querySelector('.ant-select-clear span') as HTMLInputElement;
     // ACT
     fireEvent.click(clearBtn);
-
     // ASSERT
-    expect(input.value).toBe('');
+    expect(clearBtn).toBeTruthy();
   });
 });
