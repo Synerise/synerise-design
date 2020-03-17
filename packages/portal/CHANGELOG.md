@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.48.1](https://github.com/synerise/synerise-design/compare/portal@0.48.0...portal@0.48.1) (2020-03-17)
+
+
+### Bug Fixes
+
+* **avatar-group:** fix stytles, update stories ([8ffaa93](https://github.com/synerise/synerise-design/commit/8ffaa93514b73ffea8be75dfca535cad49c842a1))
+* **avatar-group:** move avatar-group stories to catagory 'avatar' ([d298304](https://github.com/synerise/synerise-design/commit/d298304e8216b0ba6b74f8c3bf52b8ed9fd0d9dc))
+
+
+
+
+
 # [0.48.0](https://github.com/synerise/synerise-design/compare/portal@0.47.4...portal@0.48.0) (2020-03-17)
 
 

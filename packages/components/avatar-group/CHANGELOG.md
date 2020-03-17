@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-avatar-group@0.1.1...@synerise/ds-avatar-group@0.1.2) (2020-03-17)
+
+### Bug Fixes
+
+- **avatar-group:** fix stytles, update stories ([8ffaa93](https://github.com/Synerise/synerise-design/commit/8ffaa93514b73ffea8be75dfca535cad49c842a1))
+
 ## [0.1.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-avatar-group@0.1.0...@synerise/ds-avatar-group@0.1.1) (2020-03-17)
 
 **Note:** Version bump only for package @synerise/ds-avatar-group
