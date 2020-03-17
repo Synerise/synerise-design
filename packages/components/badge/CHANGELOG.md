@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.15](https://github.com/Synerise/synerise-design/compare/@synerise/ds-badge@0.3.14...@synerise/ds-badge@0.3.15) (2020-03-17)
+
+### Bug Fixes
+
+- **avatar-group:** eslint errors ([e2d51ce](https://github.com/Synerise/synerise-design/commit/e2d51ce44957728b1cd759cfb919244f7d13a10f))
+
 ## [0.3.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-badge@0.3.13...@synerise/ds-badge@0.3.14) (2020-03-12)
 
 **Note:** Version bump only for package @synerise/ds-badge

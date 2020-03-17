@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.22](https://github.com/synerise/synerise-design/compare/@synerise/ds-tabs@0.8.21...@synerise/ds-tabs@0.8.22) (2020-03-17)
+
+### Bug Fixes
+
+- fix jest setup ([7d3402b](https://github.com/synerise/synerise-design/commit/7d3402b6cb6e99f7203b42c349c71b89d74d27f4))
+
 ## [0.8.21](https://github.com/synerise/synerise-design/compare/@synerise/ds-tabs@0.8.20...@synerise/ds-tabs@0.8.21) (2020-03-13)
 
 **Note:** Version bump only for package @synerise/ds-tabs

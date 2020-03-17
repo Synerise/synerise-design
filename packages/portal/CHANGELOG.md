@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.48.0](https://github.com/synerise/synerise-design/compare/portal@0.47.4...portal@0.48.0) (2020-03-17)
+
+
+### Features
+
+* **avatar-group:** add tests ([69a1e35](https://github.com/synerise/synerise-design/commit/69a1e3547a36c0a15a64c7e12189258a589c2112))
+* **avatar-group:** init component ([e853b0e](https://github.com/synerise/synerise-design/commit/e853b0ed0e9e2cefa0e9721af6217085b2c538ee))
+* **avatar-group:** styles, stories ([f17ebb0](https://github.com/synerise/synerise-design/commit/f17ebb0394d820a969f4a95b9e839912d612c762))
+
+
+
+
+
 ## [0.47.4](https://github.com/synerise/synerise-design/compare/portal@0.47.3...portal@0.47.4) (2020-03-13)
 
 

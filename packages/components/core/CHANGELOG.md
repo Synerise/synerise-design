@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.4](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.9.3...@synerise/ds-core@0.9.4) (2020-03-17)
+
+### Bug Fixes
+
+- fix jest setup ([7d3402b](https://github.com/synerise/synerise-design/commit/7d3402b6cb6e99f7203b42c349c71b89d74d27f4))
+
 ## [0.9.3](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.9.2...@synerise/ds-core@0.9.3) (2020-03-12)
 
 ### Bug Fixes
