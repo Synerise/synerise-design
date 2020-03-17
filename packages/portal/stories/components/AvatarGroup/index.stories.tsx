@@ -9,17 +9,9 @@ const groupSizes = ['small', 'medium', 'large'] as const;
 const groupAvatars: Avatar[] = [
   {
     avatarProps: {
-      tooltip: { name: 'Jan Nowak', email: 'email' },
-      src: imgSrc,
-    },
-    initials: 'JN',
-    status: 'active',
-  },
-  {
-    avatarProps: {
       tooltip: { name: 'Kamil Kowalski', email: 'email' },
-      backgroundColor: 'red',
-      backgroundColorHue: '800',
+      backgroundColor: 'blue',
+      backgroundColorHue: '600',
     },
     initials: 'KK',
     status: 'active',
@@ -28,7 +20,7 @@ const groupAvatars: Avatar[] = [
     avatarProps: {
       tooltip: { name: 'Adam Staszewski', email: 'email' },
       backgroundColor: 'green',
-      backgroundColorHue: '800',
+      backgroundColorHue: '600',
     },
     initials: 'AS',
     status: 'inactive',
@@ -36,7 +28,7 @@ const groupAvatars: Avatar[] = [
   {
     avatarProps: {
       tooltip: { name: 'Jan Nowak', email: 'email' },
-      backgroundColor: 'blue',
+      backgroundColor: 'orange',
       backgroundColorHue: '600',
     },
     initials: 'JN',
@@ -45,43 +37,31 @@ const groupAvatars: Avatar[] = [
   {
     avatarProps: {
       tooltip: { name: 'Jan Nowak', email: 'email' },
+      backgroundColor: 'red',
+      backgroundColorHue: '600',
     },
     initials: 'JN',
+    status: 'active',
   },
   {
     avatarProps: {
       tooltip: { name: 'Jan Nowak', email: 'email' },
+      backgroundColor: 'violet',
+      backgroundColorHue: '600',
     },
     initials: 'JN',
-  },
-  {
-    avatarProps: {
-      tooltip: { name: 'Jan Nowak', email: 'email' },
-    },
-    initials: 'JN',
-  },
-  {
-    avatarProps: {
-      tooltip: { name: 'Jan Nowak', email: 'email' },
-    },
-    initials: 'JN',
-  },
-  {
-    avatarProps: {
-      tooltip: { name: 'Jan Nowak', email: 'email' },
-    },
-    initials: 'JN',
+    status: 'inactive',
   }
 ];
 
 
 const stories = {
-  default: () => (
+  avatarGroup: () => (
     <div style={{padding: 24, backgroundColor: '#fff', display: 'flex', justifyContent: 'flex-start', width: 500}}>
       <AvatarGroup
         size={select('Set size', groupSizes, 'medium')}
         hasStatus={boolean('Has status', true)}
-        numberOfVisibleUsers={number('Number of visible avatars', 5)}
+        numberOfVisibleUsers={number('Number of visible avatars', 3)}
         avatars={groupAvatars}
         moreInfoTooltip={text('More info tooltip copy', 'more users')}
       />

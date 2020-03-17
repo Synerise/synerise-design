@@ -20,7 +20,7 @@ const AvatarGroup: React.FC<AvatarGroupProps> = ({
   avatars,
   size = 'medium',
   hasStatus,
-  numberOfVisibleUsers = 5,
+  numberOfVisibleUsers = 3,
   moreInfoTooltip,
 }: AvatarGroupProps): React.ReactElement => {
   const avatarsWithKeys = React.useMemo(() => {
