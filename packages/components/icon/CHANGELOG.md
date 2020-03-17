@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.14.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.13.1...@synerise/ds-icon@0.14.0) (2020-03-17)
+
+### Features
+
+- **icon:** add PasteClipboardM, ArrowUpDownM/S, ArrowLeftRightM/S icons ([1bd030e](https://github.com/Synerise/synerise-design/commit/1bd030eebc497b195813a8e8af019975be5e6a53))
+
 ## [0.13.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.13.0...@synerise/ds-icon@0.13.1) (2020-03-13)
 
 ### Bug Fixes
