@@ -58,7 +58,7 @@ const Avatar: React.FC<AvatarProps> = ({
   const iconPlaceholder = antdProps.children || <Icon component={<UserM />} />;
 
   return (
-    <Tooltip title={tooltipGroup}>
+    <Tooltip title={tooltipGroup} mouseLeaveDelay={0} mouseEnterDelay={0}>
       <AntdAvatar
         onMouseDown={(): void => setPressed(true)}
         onMouseOut={(): void => setPressed(false)}

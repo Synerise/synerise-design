@@ -119,6 +119,7 @@ export default styled(({ backgroundColorHue, backgroundColor, hasStatus, pressed
         border: 2px solid ${({ theme }): string => theme.palette.white};
         opacity: 0.3;
         border-radius: inherit;
+        box-sizing: border-box;
       }
     }
 
