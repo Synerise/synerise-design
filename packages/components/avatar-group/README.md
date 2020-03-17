@@ -30,7 +30,7 @@ import AvatarGroup from '@synerise/ds-avatar-group'
 
 | Property             | Description                                                     | Type                                      | Default  |
 | -------------------- | --------------------------------------------------------------- | ----------------------------------------- | -------- |
-| numberOfVisibleUsers | Number of visible avatars                                       | number                                    | 5        |
+| numberOfVisibleUsers | Number of visible avatars                                       | number                                    | 3        |
 | hasStatus            | Aligns `badge` with the avatars                                 | boolean                                   | false    |
 | size                 | The size of the avatars                                         | number \ string: `large` `small` `medium` | `medium` |
 | avatars              | Array of avatars                                                | Avatar[]                                  | -        |

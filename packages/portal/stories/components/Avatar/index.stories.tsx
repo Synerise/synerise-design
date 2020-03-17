@@ -94,7 +94,7 @@ const stories = {
       <Badge status={select('Set status', statuses, 'active')}>
         <Avatar
           backgroundColor={select('Set background color', backgroundColors, 'green')}
-          backgroundColorHue={select('Set background color hue', backgroundColorHue, '400')}
+          backgroundColorHue={select('Set background color hue', backgroundColorHue, '600')}
           disabled={boolean('Disabled', false)}
           size={select('Set size', sizes, 'extraLarge')}
           shape={select('Set shape', shapes, 'circle')}
@@ -110,12 +110,12 @@ const stories = {
     <div style={{paddingTop: 200}}>
       <Badge status={select('Set status', statuses, 'blocked')}>
         <Avatar
-          backgroundColor={select('Set background color', backgroundColors, 'mars')}
+          backgroundColor={select('Set background color', backgroundColors, 'blue')}
           backgroundColorHue={select('Set background color hue', backgroundColorHue, '100')}
           size={select('Set size', sizes, 'extraLarge')}
           shape={select('Set shape', shapes, 'circle')}
           iconComponent={
-            <Icon color={getColor(select('Set icon color', iconColors, 'mars-600'))} component={getIconSize(select('Set size', sizes, 'extraLarge'))}/>
+            <Icon color={getColor(select('Set icon color', iconColors, 'blue-600'))} component={getIconSize(select('Set size', sizes, 'extraLarge'))}/>
           }
           tooltip={{name: 'Silvia Jobs', email: 'silvia.jobs@gmail.com'}}
           hasStatus={boolean('Has status', true)}
