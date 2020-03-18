@@ -100,7 +100,7 @@ export const ButtonFocus = styled.div`
 `;
 
 // eslint-disable-next-line react/jsx-props-no-spreading
-export default styled(({ mode, type, loading, justifyContent, ...rest }) => (
+export default styled(({ mode, type, loading, justifyContent, groupVariant, ...rest }) => (
   // eslint-disable-next-line react/jsx-props-no-spreading
   <Button type={type} {...rest} />
 ))`  
