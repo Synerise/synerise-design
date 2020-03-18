@@ -24,7 +24,7 @@ export interface DSTableProps<T> extends AntTableProps<T> {
 function DSTable<T extends object = any>(props: DSTableProps<T>): React.ReactElement {
   const ref = React.useRef<HTMLDivElement>(null);
   const [isSearchOpen, setIsSearchOpen] = React.useState(false);
-  const { title, subTitle, onSearch, search, rowSelection, itemsMenu } = props;
+  const { title, subTitle, onSearch, search, rowSelection, itemsMenu, pagination, dataSource } = props;
   useOnClickOutside(ref, () => {
     setIsSearchOpen(false);
   });
@@ -82,7 +82,8 @@ function DSTable<T extends object = any>(props: DSTableProps<T>): React.ReactEle
   return (
     <div className="ds-table">
       {/* disable eslint to pass all antd table props */}
-      <Table<T> {...props} title={renderHeader} /> {/* eslint-disable-line  react/jsx-props-no-spreading */}
+      {/* eslint-disable-next-line  react/jsx-props-no-spreading */}
+      <Table<T> {...props} pagination={dataSource?.length ? pagination : false} title={renderHeader} />
     </div>
   );
 }

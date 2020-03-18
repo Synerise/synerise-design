@@ -77,9 +77,9 @@ export const InputWrapper = styled.div<{ isOpen?: boolean; searchValue: string |
 
   & {
     input {
-      padding: 4px 12px 4px 32px;
+      padding-left: 32px;
       ${(props): string =>
-        props.searchValue !== '' || props.isOpen ? `cursor: initial;` : 'cursor: pointer'} !important;
+        props.searchValue !== '' || props.isOpen ? `cursor: initial!important;` : 'cursor: pointer!important'};
     }
   }
 
