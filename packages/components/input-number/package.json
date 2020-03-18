@@ -19,11 +19,14 @@
     "test:watch": "npm run test -- --watchAll",
     "types": "tsc --noEmit"
   },
-  "sideEffects": false,
+  "sideEffects": [
+    "dist/style/*",
+    "*.less"
+  ],
   "types": "dist/index.d.ts",
   "dependencies": {
     "@synerise/ds-utils": "^0.8.6",
-    "uuid": "^3.3.3"
+    "uuid": "^7.0.2"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
@@ -31,6 +34,6 @@
     "react": ">=16.9.0 < 17.0.0"
   },
   "devDependencies": {
-    "@types/uuid": "3.4.7"
+    "@types/uuid": "7.0.0"
   }
 }

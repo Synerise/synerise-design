@@ -28,10 +28,10 @@ const Search: React.FC<SearchProps> = ({
   resultTitle,
 }) => {
   const [inputOpen, setInputOpen] = useState(false);
-  const [label, setLabel] = useState();
-  const [filteredData, setFilterData] = useState();
-  const [filteredRecent, setFilterRecent] = useState();
-  const [filteredResult, setFilterResult] = useState();
+  const [label, setLabel] = useState<FilterElement | null>();
+  const [filteredData, setFilterData] = useState<FilterElement[][]>();
+  const [filteredRecent, setFilterRecent] = useState<FilterElement[][]>();
+  const [filteredResult, setFilterResult] = useState<FilterElement[][]>();
   const [inputOffset, setInputOffset] = useState(0);
   const [focus, setFocus] = useState(false);
   const [resultChoosed, setResultChoosed] = useState(false);

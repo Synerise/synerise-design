@@ -7,6 +7,7 @@ import centered from '@storybook/addon-centered/react';
 import { DSProvider } from '@synerise/ds-core';
 import syneriseTheme from './theme';
 import './style/index.css';
+import '@synerise/ds-core/dist/js/style';
 const req = require.context('../stories', true, /\.stories.tsx$/);
 
 const withDSProvider = (storyFn) => React.createElement(DSProvider, {

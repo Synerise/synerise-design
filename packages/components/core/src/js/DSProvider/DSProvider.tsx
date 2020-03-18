@@ -1,5 +1,5 @@
+import '../style';
 import * as React from 'react';
-
 import LocaleProvider from './LocaleProvider';
 import ThemeProvider from './ThemeProvider';
 

@@ -38,7 +38,10 @@ const Sidebar: React.FC<SidebarProps> & { Panel: typeof Panel } = ({
   const changeOrder: (dragIndex: number, hoverIndex: number) => void = (dragIndex, hoverIndex) => {
     const dragItemBlock = order[dragIndex];
     const orderedItems = update(order, {
-      $splice: [[dragIndex, 1], [hoverIndex, 0, dragItemBlock]],
+      $splice: [
+        [dragIndex, 1],
+        [hoverIndex, 0, dragItemBlock],
+      ],
     });
 
     onChangeOrder && onChangeOrder(orderedItems);
@@ -56,7 +59,7 @@ const Sidebar: React.FC<SidebarProps> & { Panel: typeof Panel } = ({
           }}
           expandIconPosition="right"
         >
-          {React.Children.toArray(children as React.ReactElement<PanelProps>).sort(compareByPositionOfKey)}
+          {(React.Children.toArray(children) as React.ReactElement<PanelProps>[]).sort(compareByPositionOfKey)}
         </S.AntdCollapse>
       </SidebarContext.Provider>
     </DndProvider>

@@ -1,5 +1,5 @@
 import * as macro from './style/macro-utils';
 
 export { default } from './Typography';
-export * from './CommonElements';
+export { Description, ErrorText, Label } from './CommonElements';
 export { macro };

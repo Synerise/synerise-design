@@ -19,7 +19,10 @@
     "test:watch": "npm run test -- --watchAll",
     "types": "tsc --noEmit"
   },
-  "sideEffects": false,
+  "sideEffects": [
+    "dist/style/*",
+    "*.less"
+  ],
   "types": "dist/index.d.ts",
   "dependencies": {
     "@synerise/ds-add-button": "^0.1.12",
