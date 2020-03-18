@@ -3,16 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.7.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.7.0...@synerise/ds-table@0.7.1) (2020-03-18)
-
+## [0.7.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.7.1...@synerise/ds-table@0.7.2) (2020-03-18)
 
 ### Bug Fixes
 
-* **core:** allow side effects ([0fcca2b](https://github.com/synerise/synerise-design/commit/0fcca2b3476b539a60d6d21af5a43a7d32135868))
+- **table:** disable pagination in empty table ([2bf00fe](https://github.com/synerise/synerise-design/commit/2bf00feab775003faf1413e2a39025763bb57023))
 
+## [0.7.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.7.0...@synerise/ds-table@0.7.1) (2020-03-18)
 
+### Bug Fixes
 
-
+- **core:** allow side effects ([0fcca2b](https://github.com/synerise/synerise-design/commit/0fcca2b3476b539a60d6d21af5a43a7d32135868))
 
 # [0.7.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.6.28...@synerise/ds-table@0.7.0) (2020-03-17)
 

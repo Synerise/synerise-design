@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.49.0](https://github.com/synerise/synerise-design/compare/portal@0.48.3...portal@0.49.0) (2020-03-18)
+
+
+### Features
+
+* **icon-picker:** add icon picker component ([c29d318](https://github.com/synerise/synerise-design/commit/c29d31815e1da48d23396135bf5c53f6fdea71e3))
+
+
+
+
+
 ## [0.48.3](https://github.com/synerise/synerise-design/compare/portal@0.48.2...portal@0.48.3) (2020-03-18)
 
 
