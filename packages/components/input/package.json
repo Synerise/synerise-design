@@ -19,14 +19,17 @@
     "test:watch": "npm run test -- --watchAll",
     "types": "tsc --noEmit"
   },
-  "sideEffects": false,
+  "sideEffects": [
+    "dist/style/*",
+    "*.less"
+  ],
   "types": "dist/index.d.ts",
   "dependencies": {
     "@synerise/ds-icon": "^0.14.0",
     "@synerise/ds-tooltip": "^0.5.0",
     "@synerise/ds-typography": "^0.8.0",
     "@synerise/ds-utils": "^0.8.6",
-    "uuid": "^3.3.3"
+    "uuid": "^7.0.2"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

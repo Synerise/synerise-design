@@ -6,10 +6,9 @@ describe('Pagination', () => {
   const onChange = jest.fn();
   it('should set active prop', async function() {
     // ARRANGE
-    const { findByText, container } = render(<Pagination onChange={onChange} defaultCurrent={1} total={50} />);
-
+    const { getByText, container } = render(<Pagination onChange={onChange} defaultCurrent={1} total={50} />);
     // ACT
-    const fifth = await findByText('5');
+    const fifth = getByText('5');
     fireEvent.click(fifth);
 
     // ASSERT

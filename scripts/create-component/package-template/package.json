@@ -19,7 +19,10 @@
     "test": "jest",
     "test:watch": "npm run test -- --watchAll"
   },
-  "sideEffects": false,
+  "sideEffects": [
+    "dist/style/*",
+    "*.less"
+  ],
   "types": "dist/index.d.ts",
   "dependencies": {{dependencies}},
   "peerDependencies": {

@@ -21,6 +21,7 @@ module.exports = {
   },
   moduleFileExtensions: [...defaults.moduleFileExtensions, 'ts', 'tsx'],
   transformIgnorePatterns: [`<rootDir>/node_modules/(?!${esModules})`],
+  testEnvironment: 'jest-environment-jsdom-fourteen',
   // watchPlugins: [
   //   'jest-watch-typeahead/filename',
   //   'jest-watch-typeahead/testname'
