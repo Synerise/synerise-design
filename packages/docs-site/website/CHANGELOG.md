@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.3](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.1.2...docs@0.1.3) (2020-03-18)
+
+**Note:** Version bump only for package docs
+
+
+
+
+
 ## [0.1.1](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.1.0...docs@0.1.1) (2019-12-23)
 
 **Note:** Version bump only for package docs
