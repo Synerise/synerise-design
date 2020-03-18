@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.9.0...@synerise/ds-button@0.9.1) (2020-03-18)
+
+
+### Bug Fixes
+
+* **button:** omit groupVariant passing ([5d5abad](https://github.com/synerise/synerise-design/commit/5d5abad9e7bbf1d3962df13386e086ab2368b223))
+* **core:** allow side effects ([0fcca2b](https://github.com/synerise/synerise-design/commit/0fcca2b3476b539a60d6d21af5a43a7d32135868))
+
+
+
+
+
 # [0.9.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.8.7...@synerise/ds-button@0.9.0) (2020-03-17)
 
 ### Features

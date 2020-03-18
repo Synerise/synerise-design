@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.34](https://github.com/Synerise/synerise-design/compare/@synerise/ds-status@0.1.33...@synerise/ds-status@0.1.34) (2020-03-18)
+
+
+### Bug Fixes
+
+* **core:** allow side effects ([0fcca2b](https://github.com/Synerise/synerise-design/commit/0fcca2b3476b539a60d6d21af5a43a7d32135868))
+
+
+
+
+
 ## [0.1.33](https://github.com/Synerise/synerise-design/compare/@synerise/ds-status@0.1.32...@synerise/ds-status@0.1.33) (2020-03-17)
 
 **Note:** Version bump only for package @synerise/ds-status

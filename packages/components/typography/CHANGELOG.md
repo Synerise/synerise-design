@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-typography@0.8.0...@synerise/ds-typography@0.8.1) (2020-03-18)
+
+
+### Bug Fixes
+
+* **core:** allow side effects ([0fcca2b](https://github.com/synerise/synerise-design/commit/0fcca2b3476b539a60d6d21af5a43a7d32135868))
+
+
+
+
+
 # [0.8.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-typography@0.7.0...@synerise/ds-typography@0.8.0) (2020-03-17)
 
 ### Features

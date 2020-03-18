@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.48.3](https://github.com/synerise/synerise-design/compare/portal@0.48.2...portal@0.48.3) (2020-03-18)
+
+
+### Bug Fixes
+
+* **core:** allow side effects ([0fcca2b](https://github.com/synerise/synerise-design/commit/0fcca2b3476b539a60d6d21af5a43a7d32135868))
+
+
+
+
+
 ## [0.48.2](https://github.com/synerise/synerise-design/compare/portal@0.48.1...portal@0.48.2) (2020-03-17)
 
 **Note:** Version bump only for package portal

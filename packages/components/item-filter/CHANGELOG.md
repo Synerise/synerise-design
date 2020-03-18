@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-filter@0.2.13...@synerise/ds-item-filter@0.2.14) (2020-03-18)
+
+
+### Bug Fixes
+
+* **core:** allow side effects ([0fcca2b](https://github.com/Synerise/synerise-design/commit/0fcca2b3476b539a60d6d21af5a43a7d32135868))
+
+
+
+
+
 ## [0.2.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-filter@0.2.12...@synerise/ds-item-filter@0.2.13) (2020-03-17)
 
 **Note:** Version bump only for package @synerise/ds-item-filter

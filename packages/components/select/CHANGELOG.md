@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.10.0...@synerise/ds-select@0.10.1) (2020-03-18)
+
+
+### Bug Fixes
+
+* **core:** allow side effects ([0fcca2b](https://github.com/synerise/synerise-design/commit/0fcca2b3476b539a60d6d21af5a43a7d32135868))
+
+
+
+
+
 # [0.10.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.9.6...@synerise/ds-select@0.10.0) (2020-03-17)
 
 ### Features
