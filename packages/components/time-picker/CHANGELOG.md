@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.31](https://github.com/Synerise/synerise-design/compare/@synerise/ds-time-picker@0.1.30...@synerise/ds-time-picker@0.1.31) (2020-03-19)
+
+**Note:** Version bump only for package @synerise/ds-time-picker
+
+
+
+
+
 ## [0.1.30](https://github.com/Synerise/synerise-design/compare/@synerise/ds-time-picker@0.1.29...@synerise/ds-time-picker@0.1.30) (2020-03-18)
 
 **Note:** Version bump only for package @synerise/ds-time-picker
