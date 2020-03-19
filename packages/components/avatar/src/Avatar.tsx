@@ -66,10 +66,7 @@ const Avatar: React.FC<AvatarProps> = ({
         hasStatus={hasStatus}
         backgroundColor={backgroundColor}
         backgroundColorHue={backgroundColorHue}
-        placeholderColor={placeholderColor || 'grey'}
-        placeholderColorHue={placeholderColor ? placeholderColorHue : '050'}
         disabled={disabled}
-        // eslint-disable-next-line react/jsx-props-no-spreading
         {...antdProps}
       >
         {iconComponent || antdProps.children}
