@@ -3,8 +3,7 @@ import { AvatarProps as AntAvatarProps } from 'antd/lib/avatar';
 import Tooltip from '@synerise/ds-tooltip';
 import '@synerise/ds-core/dist/js/style';
 import './style/index.less';
-import Icon from '@synerise/ds-icon';
-import UserM from '@synerise/ds-icon/dist/icons/UserM';
+
 import AntdAvatar, { TooltipGroup } from './Avatar.styles';
 
 type color =
@@ -55,7 +54,6 @@ const Avatar: React.FC<AvatarProps> = ({
       <p>{tooltip.email}</p>
     </TooltipGroup>
   );
-  const iconPlaceholder = antdProps.children || <Icon component={<UserM />} />;
 
   return (
     <Tooltip title={tooltipGroup} mouseLeaveDelay={0} mouseEnterDelay={0}>
@@ -74,7 +72,7 @@ const Avatar: React.FC<AvatarProps> = ({
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...antdProps}
       >
-        {iconComponent || iconPlaceholder}
+        {iconComponent || antdProps.children}
       </AntdAvatar>
     </Tooltip>
   );

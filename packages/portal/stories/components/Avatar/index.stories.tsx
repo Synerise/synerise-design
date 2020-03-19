@@ -85,7 +85,7 @@ const stories = {
           src={imgSrc}
           hasStatus={boolean('Has status', true)}
           disabled={boolean('Disabled', false)}
-        />
+        >JJ</Avatar>
       </Badge>
     </div>
   ),
