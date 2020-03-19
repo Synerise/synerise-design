@@ -30,17 +30,16 @@ const props = () => ({
     ],
     'top'
   ),
-  type: select('Type', ['default', 'icon', 'largeSimple', 'tutorial'], 'default'),
+  type: select('Type', ['default', 'icon', 'largeSimple', 'tutorial', 'avatar'], 'default'),
   trigger: select('Trigger', ['hover', 'focus', 'click', 'contextMenu'], 'hover'),
 });
 
 const stories = {
-  default: () => ({
-    ...props(),
-    autoAdjustOverflow: boolean('autoAdjustOverflow', true),
-    arrowPointAtCenter: boolean('arrowPointAtCenter', false),
-    children: (<span>Tooltip will show on mouse enter.</span>),
-  }),
+  default: () => (<div>
+    <Tooltip {...props()} visible={true}>
+      <span>Tooltip will show on mouse enter.</span>
+    </Tooltip>
+    </div>),
   forceVisibility: () => ({
     ...props(),
     autoAdjustOverflow: boolean('autoAdjustOverflow', true),
