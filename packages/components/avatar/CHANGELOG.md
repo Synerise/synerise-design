@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.3](https://github.com/synerise/synerise-design/compare/@synerise/ds-avatar@0.5.2...@synerise/ds-avatar@0.5.3) (2020-03-19)
+
+
+### Bug Fixes
+
+* **avatar:** remove placeholder color ([9ac0fba](https://github.com/synerise/synerise-design/commit/9ac0fbacb952a7634f42219b0a8a46713cda7731))
+* **avatar:** remove UserM icon as default avatar ([5e0d3b7](https://github.com/synerise/synerise-design/commit/5e0d3b7c7175f3b129485861a990446945f04491))
+
+
+
+
+
 ## [0.5.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-avatar@0.5.1...@synerise/ds-avatar@0.5.2) (2020-03-18)
 
 **Note:** Version bump only for package @synerise/ds-avatar
