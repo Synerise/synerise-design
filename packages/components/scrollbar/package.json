@@ -1,0 +1,37 @@
+{
+  "name": "@synerise/ds-scrollbar",
+  "version": "0.0.1",
+  "description": "Scrollbar UI Component for the Synerise Design System",
+  "license": "ISC",
+  "repository": "Synerise/synerise-design",
+  "main": "dist/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "npm run build:js && npm run build:css && npm run defs",
+    "build:css": "node ../../../scripts/style/less.js",
+    "build:js": "babel --root-mode upward src --out-dir dist --extensions '.js,.ts,.tsx'",
+    "build:watch": "npm run build:js -- --watch",
+    "defs": "tsc --declaration --outDir dist/ --emitDeclarationOnly",
+    "prepublish": "npm run build",
+    "test": "jest",
+    "test:watch": "npm run test -- --watchAll",
+    "types": "tsc --noEmit"
+  },
+  "sideEffects": [
+    "dist/style/*",
+    "*.less"
+  ],
+  "types": "dist/index.d.ts",
+  "dependencies": {
+    "simplebar-react": "^2.1.0"
+  },
+  "peerDependencies": {
+    "@synerise/ds-core": "*",
+    "react": ">=16.9.0 < 17.0.0"
+  },
+  "devDependencies": {
+    "@synerise/ds-utils": "^0.8.8"
+  }
+}
