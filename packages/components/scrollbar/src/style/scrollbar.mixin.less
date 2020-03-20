@@ -1,0 +1,25 @@
+.simplebar-track.simplebar-vertical {
+  width: 7px;
+  right: 2px;
+  top: 2px;
+  bottom: 2px;
+  pointer-events: auto;
+
+  &:hover,
+  &:active {
+    .simplebar-scrollbar:before {
+      opacity: 0.6;
+    }
+  }
+}
+
+.simplebar-scrollbar:before {
+  opacity: 0.2;
+  border-radius: 1px;
+  background: @grey-600;
+}
+
+.simplebar-scrollbar.simplebar-visible:before {
+  opacity: 0.2;
+  transition: opacity 0.2s linear;
+}
