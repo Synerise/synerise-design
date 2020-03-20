@@ -10,7 +10,7 @@ export type FilterElement = {
 };
 
 export type IconPickerProps = {
-  button: React.ReactNode;
+  button: React.ReactElement;
   data: FilterElement[];
   onSelect: (val: React.ReactNode) => void;
   trigger: ('click' | 'hover' | 'contextMenu')[];

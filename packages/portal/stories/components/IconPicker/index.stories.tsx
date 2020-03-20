@@ -34,20 +34,6 @@ import {
 import Avatar from "@synerise/ds-avatar/dist/Avatar";
 import theme from "@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme";
 
-let array = [];
-
-const Avatars = () => {
-  for (let i = 0; i <= 15; i++) {
-    const src = `https://api.adorable.io/avatars/32/${Math.ceil(Math.random() * 100)}`;
-
-    array.push({
-      item: <Avatar shape="square" src={src}/>
-    });
-  }
-  return array;
-};
-Avatars();
-
 const data =
   [
     {
@@ -64,7 +50,20 @@ const data =
     },
     {
       category: 'avatar',
-      items: array,
+      items: [
+        { item: <Avatar shape="circle" src={'https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairShortWaved&accessoriesType=Kurt&hairColor=Platinum&facialHairType=Blank&clotheType=ShirtVNeck&clotheColor=Blue03&eyeType=Default&eyebrowType=DefaultNatural&mouthType=ScreamOpen&skinColor=Pale'}/>},
+        { item: <Avatar shape="circle" src={'https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairSides&accessoriesType=Wayfarers&hairColor=PastelPink&facialHairType=BeardMedium&facialHairColor=BrownDark&clotheType=ShirtVNeck&clotheColor=Gray01&eyeType=Squint&eyebrowType=UpDownNatural&mouthType=Default&skinColor=Brown'}/>},
+        { item: <Avatar shape="circle" src={'https://avataaars.io/?avatarStyle=Transparent&topType=LongHairFroBand&accessoriesType=Prescription01&hairColor=SilverGray&facialHairType=Blank&facialHairColor=Black&clotheType=Overall&clotheColor=Pink&eyeType=Dizzy&eyebrowType=Angry&mouthType=Disbelief&skinColor=Yellow'}/>},
+        { item: <Avatar shape="circle" src={'https://avataaars.io/?avatarStyle=Transparent&topType=LongHairFrida&accessoriesType=Wayfarers&hairColor=Auburn&facialHairType=Blank&facialHairColor=Platinum&clotheType=BlazerShirt&clotheColor=Blue03&eyeType=Close&eyebrowType=FlatNatural&mouthType=Twinkle&skinColor=DarkBrown'}/>},
+        { item: <Avatar shape="circle" src={'https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairFrizzle&accessoriesType=Sunglasses&hairColor=BlondeGolden&facialHairType=BeardMagestic&facialHairColor=Brown&clotheType=BlazerShirt&eyeType=Surprised&eyebrowType=RaisedExcitedNatural&mouthType=Tongue&skinColor=Light'}/>},
+        { item: <Avatar shape="circle" src={'https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairShortFlat&accessoriesType=Blank&hairColor=Auburn&facialHairType=MoustacheMagnum&facialHairColor=Auburn&clotheType=ShirtCrewNeck&clotheColor=Pink&eyeType=Surprised&eyebrowType=RaisedExcited&mouthType=Disbelief&skinColor=Tanned'}/>},
+        { item: <Avatar shape="circle" src={'https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairShortCurly&accessoriesType=Blank&hairColor=BrownDark&facialHairType=Blank&clotheType=BlazerShirt&eyeType=Hearts&eyebrowType=FlatNatural&mouthType=Tongue&skinColor=Black'}/>},
+        { item: <Avatar shape="circle" src={'https://avataaars.io/?avatarStyle=Transparent&topType=Eyepatch&accessoriesType=Prescription02&hairColor=Blonde&facialHairType=BeardMedium&facialHairColor=BrownDark&clotheType=ShirtScoopNeck&clotheColor=Black&eyeType=Hearts&eyebrowType=Angry&mouthType=Vomit&skinColor=DarkBrown'}/>},
+        { item: <Avatar shape="circle" src={'https://avataaars.io/?avatarStyle=Transparent&topType=WinterHat4&accessoriesType=Prescription01&hatColor=Blue03&facialHairType=BeardMedium&facialHairColor=BrownDark&clotheType=BlazerSweater&clotheColor=Heather&eyeType=WinkWacky&eyebrowType=RaisedExcitedNatural&mouthType=Sad&skinColor=Pale'}/>},
+        { item: <Avatar shape="circle" src={'https://avataaars.io/?avatarStyle=Transparent&topType=Hat&accessoriesType=Prescription02&hatColor=PastelOrange&facialHairType=BeardLight&facialHairColor=Auburn&clotheType=Hoodie&clotheColor=Blue03&eyeType=Close&eyebrowType=DefaultNatural&mouthType=Tongue&skinColor=DarkBrown'}/>},
+        { item: <Avatar shape="circle" src={'https://avataaars.io/?avatarStyle=Transparent&topType=LongHairStraight2&accessoriesType=Kurt&hairColor=Blonde&facialHairType=Blank&clotheType=ShirtCrewNeck&clotheColor=Gray01&eyeType=WinkWacky&eyebrowType=UnibrowNatural&mouthType=Grimace&skinColor=Light'}/>},
+        { item: <Avatar shape="circle" src={'https://avataaars.io/?avatarStyle=Transparent&topType=Hijab&accessoriesType=Blank&hatColor=Blue03&clotheType=CollarSweater&clotheColor=Red&eyeType=Hearts&eyebrowType=SadConcerned&mouthType=Twinkle&skinColor=Pale'}/>},
+      ],
     },
   ];
 
@@ -97,8 +96,9 @@ const stories = {
           data={data}
           placeholder={"search"}
           onSelect={(value: React.ReactNode): void => setSelectedIcon(value)}
-          trigger={["click"]}
-        />
+          trigger={["click"]}>
+          <Button type="primary" mode='icon-label'><Icon component={<Add3M/>}/>Add icon</Button>
+        </IconPicker>
       </div>
     )
   }
