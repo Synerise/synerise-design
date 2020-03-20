@@ -12,15 +12,18 @@ export const ListItem = styled.div`
   margin-bottom: 8px;
 `;
 export const OverlayWrapper = styled.div`
-  padding: 4px 8px;
+  padding: 6px;
 `;
 
 export const Overlay = styled.div`
-  width: 248px;
+  width: 250px;
   min-height: 260px;
   max-height: 330px;
   overflow-y: scroll;
   background-color: ${(props): string => props.theme.palette.white};
+  top: 4px;
+  position: relative;
+  border-radius: 3px;
 
   ${OverlayWrapper}:not(:last-child) {
     &::after {
@@ -28,16 +31,21 @@ export const Overlay = styled.div`
       display: flex;
       width: calc(100% - 6px);
       height: 1px;
-      background-image: linear-gradient(to right, ${({theme}): string => theme.palette.white} 40%, ${({theme}): string => theme.palette['grey-300']} 100%, transparent 0%);
-      background-position: 0 bottom; 
+      background-image: linear-gradient(
+        to right,
+        ${({ theme }): string => theme.palette.white} 40%,
+        ${({ theme }): string => theme.palette['grey-300']} 100%,
+        transparent 0%
+      );
+      background-position: 0 bottom;
       background-size: 4px 1px;
       background-repeat: repeat-x;
       margin: 4px auto 0;
     }
   }
-   
+
   ${OverlayWrapper}:nth-child(2) {
-    padding-top: 8px;
+    padding-top: 16px;
   }
 `;
 
@@ -45,6 +53,7 @@ export const Title = styled.div`
   font-size: 10px;
   line-height: 1.6;
   font-weight: 500;
+  text-transform: uppercase;
   color: ${(props): string => props.theme.palette['grey-500']};
   padding: 0 4px 8px 4px;
 `;
@@ -53,12 +62,12 @@ export const FontIcon = styled.div`
   font-family: 'apple color emoji,segoe ui emoji,noto color emoji,android emoji,emojisymbols,emojione mozilla,twemoji mozilla,segoe ui symbol';
   font-size: 18px;
   line-height: 35px;
-  margin-left: 3px;
 `;
 
 export const IconTrigger = styled.div`
   display: inline-block;
-  
+  cursor: pointer;
+
   &&& {
     .icon-wrapper {
       display: flex;
@@ -66,9 +75,6 @@ export const IconTrigger = styled.div`
       svg {
         fill: currentColor;
       }
-    }  
+    }
   }
 `;
-
-export const Button = styled.div``;
-

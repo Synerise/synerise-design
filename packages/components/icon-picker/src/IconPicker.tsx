@@ -2,12 +2,13 @@ import * as React from 'react';
 import Dropdown from '@synerise/ds-dropdown';
 import * as S from './IconPicker.styles';
 import Overlay from './Overlay/Overlay';
-import List from './List/List';
 import { FilterElement, IconPickerProps } from './IconPicker.types';
 
 const IconPicker: React.FC<IconPickerProps> = ({ button, data, onSelect, trigger, placeholder }) => {
   const [filteredData, setFilteredData] = React.useState(data);
   const [value, setValue] = React.useState('');
+  const [isOpen, setOpen] = React.useState(false);
+  const [focus, setFocus] = React.useState(false);
 
   const filter = (searchTerm: string): void => {
     setValue(searchTerm);
@@ -23,8 +24,16 @@ const IconPicker: React.FC<IconPickerProps> = ({ button, data, onSelect, trigger
     setFilteredData(data);
   };
 
+  const toggleOpen = (): void => {
+    setOpen(prevState => !prevState);
+    setFocus(() => {
+      return !isOpen && true;
+    });
+  };
+
   return (
     <Dropdown
+      visible={isOpen}
       trigger={trigger}
       placement="bottomRight"
       overlay={
@@ -35,13 +44,16 @@ const IconPicker: React.FC<IconPickerProps> = ({ button, data, onSelect, trigger
             onClearInput={onClearInput}
             placeholder={placeholder}
             data={filteredData}
-            onSelect={onSelect}
+            onSelect={(val): void => {
+              onSelect(val);
+              setFocus(false);
+            }}
+            focus={focus}
           />
-          <List onSelect={onSelect} data={filteredData} />
         </S.Overlay>
       }
     >
-      {!!button && button}
+      {button && React.cloneElement(button, { onClick: toggleOpen })}
     </Dropdown>
   );
 };

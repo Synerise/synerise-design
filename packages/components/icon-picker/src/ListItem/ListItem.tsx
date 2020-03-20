@@ -10,13 +10,19 @@ const ListItem: React.FC<ListItemProps> = ({ element, index, onSelect }) => {
 
   return (
     <S.ListItem>
-      <Button type="ghost" mode="single-icon">
+      {typeof element.item !== 'string' && (element.item as any).type.name === 'Avatar' ? ( // eslint-disable-line
         <S.IconTrigger onMouseUp={selectIcon} data-testid={`icon${index}`}>
-          <div className="icon-wrapper">
-            {typeof element.item === 'string' ? <S.FontIcon>{element.item}</S.FontIcon> : element.item}
-          </div>
+          {element.item}
         </S.IconTrigger>
-      </Button>
+      ) : (
+        <Button type="ghost" mode="single-icon">
+          <S.IconTrigger onMouseUp={selectIcon} data-testid={`icon${index}`}>
+            <div className="icon-wrapper">
+              {typeof element.item === 'string' ? <S.FontIcon>{element.item}</S.FontIcon> : element.item}
+            </div>
+          </S.IconTrigger>
+        </Button>
+      )}
     </S.ListItem>
   );
 };
