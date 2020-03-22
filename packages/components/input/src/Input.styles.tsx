@@ -14,6 +14,15 @@ const errorInputStyle = (props: ThemeProps): string => `
 
 export const OuterWrapper = styled.div<{ resetMargin?: boolean }>`
   margin: ${(props): string => (props.resetMargin ? '0' : '0 0 24px 0')};
+  &.active {
+    && {
+      input {
+        box-shadow: inset 0 0 0 1px ${(props): string => props.theme.palette['blue-600']};
+        border-color: ${(props): string => props.theme.palette['blue-600']};
+        background-color: ${(props): string => props.theme.palette['blue-050']};
+      }
+    }
+  }
 `;
 
 export const Wrapper = styled.div`

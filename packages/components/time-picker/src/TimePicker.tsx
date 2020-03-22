@@ -120,6 +120,7 @@ const TimePicker: React.FC<TimePickerProps> = ({
         disabled={disabled}
       >
         <Input
+          className={`${open ? 'active' : ''}`}
           data-testid="tp-input"
           value={dateString}
           placeholder={placeholder}
