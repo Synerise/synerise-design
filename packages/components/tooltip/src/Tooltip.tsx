@@ -58,7 +58,7 @@ const Tooltip: React.FC<TooltipExtendedProps & TooltipProps> = ({
 
   const tooltipComponent = React.useMemo(() => {
     return type === 'tutorial' ? renderTutorial : renderTooltip;
-  }, [type, tutorials, tutorialAutoplay, tutorialAutoplaySpeed, title, description, renderTooltip, renderTutorial]);
+  }, [type, renderTooltip, renderTutorial]);
 
   const titleExists = Boolean(description || title || icon || tutorials?.length);
 
