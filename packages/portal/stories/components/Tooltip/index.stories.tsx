@@ -1,7 +1,11 @@
 import * as React from 'react';
-import { boolean, text, select, array } from '@storybook/addon-knobs';
+import { boolean, text, select, number } from '@storybook/addon-knobs';
 
 import Tooltip from '@synerise/ds-tooltip';
+import Avatar from '@synerise/ds-avatar';
+import { InfoFillS } from '@synerise/ds-icon/dist/icons';
+import Icon from '@synerise/ds-icon';
+import Button from '@synerise/ds-button';
 
 const decorator = (storyFn) => (
   <div style={{ padding: '60px' }}>
@@ -9,9 +13,22 @@ const decorator = (storyFn) => (
   </div>
 );
 
+const TUTORIALS = [
+  {
+    title: 'Tip for you',
+    description: 'You can change profile name later in your profile settings.'
+  },
+  {
+    title: 'Tip for you',
+    description: 'You can change avatar later in your profile settings.'
+  },
+  {
+    title: 'Tip for you',
+    description: 'You can change password later in your profile settings.'
+  }
+];
+
 const props = () => ({
-  title: text('Tooltip text', 'More than just example text'),
-  description: text('Tooltip description', 'You can change profile name later in your profile settings. More info'),
   placement: select(
     'Placement',
     [
@@ -30,39 +47,73 @@ const props = () => ({
     ],
     'top'
   ),
-  type: select('Type', ['default', 'icon', 'largeSimple', 'tutorial', 'avatar'], 'default'),
   trigger: select('Trigger', ['hover', 'focus', 'click', 'contextMenu'], 'hover'),
+  tutorialAutoplay: boolean('Enable tutorial autoplay', true),
+  tutorialAutoplaySpeed: number('Set speed of tutorial [ms]', 5000),
+  tutorials: TUTORIALS,
 });
 
 const stories = {
-  default: () => (<div>
-    <Tooltip {...props()} visible={true}>
-      <span>Tooltip will show on mouse enter.</span>
-    </Tooltip>
-    </div>),
-  forceVisibility: () => ({
-    ...props(),
-    autoAdjustOverflow: boolean('autoAdjustOverflow', true),
-    arrowPointAtCenter: boolean('arrowPointAtCenter', false),
-    visible: boolean('visible', true),
-    children: (<span>Tooltip will show on mouse enter.</span>),
-  }),
-  isDescriptionArray: () => ({
-    ...props(),
-    description: array('Tooltip description', ['You can change profile name later in your profile settings. More info','More tips. This is a second tab of tutorial tips.'],','),
-    autoAdjustOverflow: boolean('autoAdjustOverflow', true),
-    arrowPointAtCenter: boolean('arrowPointAtCenter', false),
-    visible: boolean('visible', true),
-    children: (<span>Tooltip will show on mouse enter.</span>),
-  }),
-  noTitleDescriptionIconProvided: () => ({
-    ...props(),
-    title: undefined,
-    description: undefined,
-    autoAdjustOverflow: boolean('autoAdjustOverflow', true),
-    arrowPointAtCenter: boolean('arrowPointAtCenter', false),
-    children: (<span>Tooltip will show on mouse enter.</span>)
-  }),
+  default: () => (
+    <div>
+      <Tooltip
+        {...props()}
+        type="default"
+        title={text('Set tooltip title', 'More than just example text')}
+      >
+        <span>Tooltip will show on mouse enter.</span>
+      </Tooltip>
+    </div>
+  ),
+  withIcon: () => (
+    <div>
+      <Tooltip
+        {...props()}
+        type="icon"
+        title={text('Set tooltip title', 'More than just example text')}
+        description={text('Set tooltip description', 'You can change profile name later in your profile settings. More info')}
+      >
+        <Button type="primary">Show more</Button>
+      </Tooltip>
+    </div>
+  ),
+  large: () => (
+    <div>
+      <Tooltip
+        {...props()}
+        type="largeSimple"
+        title={text('Set tooltip title', 'More than just example text')}
+        description={text('Set tooltip description', 'You can change profile name later in your profile settings. More info')}
+      >
+        <span>
+          <Icon component={<InfoFillS />} color="#b5bdc3" />
+        </span>
+      </Tooltip>
+    </div>
+  ),
+  avatar: () => (
+    <div>
+      <Tooltip
+        {...props()}
+        type="avatar"
+        title={text('Set user name', 'Jan Nowak')}
+        description={text('Set user email', 'jan.nowak@gmail.com')}
+      >
+        <Avatar>JN</Avatar>
+      </Tooltip>
+    </div>
+  ),
+  tutorial: () => (
+    <div>
+      <Tooltip
+        {...props()}
+        type="tutorial"
+        tutorials={TUTORIALS}
+      >
+        <span>Show tips</span>
+      </Tooltip>
+    </div>
+  ),
 };
 
 export default {
