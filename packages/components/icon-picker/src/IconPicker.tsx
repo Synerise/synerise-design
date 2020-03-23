@@ -4,7 +4,7 @@ import * as S from './IconPicker.styles';
 import Overlay from './Overlay/Overlay';
 import { FilterElement, IconPickerProps } from './IconPicker.types';
 
-const IconPicker: React.FC<IconPickerProps> = ({ button, data, onSelect, trigger, placeholder }) => {
+const IconPicker: React.FC<IconPickerProps> = ({ button, data, onSelect, trigger, placeholder, noResultMsg }) => {
   const [filteredData, setFilteredData] = React.useState(data);
   const [value, setValue] = React.useState('');
   const [isOpen, setOpen] = React.useState(false);
@@ -49,6 +49,7 @@ const IconPicker: React.FC<IconPickerProps> = ({ button, data, onSelect, trigger
               setFocus(false);
             }}
             focus={focus}
+            noResultMsg={noResultMsg}
           />
         </S.Overlay>
       }

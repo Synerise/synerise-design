@@ -15,4 +15,5 @@ export type IconPickerProps = {
   onSelect: (val: React.ReactNode) => void;
   trigger: ('click' | 'hover' | 'contextMenu')[];
   placeholder: string;
+  noResultMsg?: string | React.ReactElement;
 };

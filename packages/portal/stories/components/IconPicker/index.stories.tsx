@@ -96,9 +96,9 @@ const stories = {
           data={data}
           placeholder={"search"}
           onSelect={(value: React.ReactNode): void => setSelectedIcon(value)}
-          trigger={["click"]}>
-          <Button type="primary" mode='icon-label'><Icon component={<Add3M/>}/>Add icon</Button>
-        </IconPicker>
+          trigger={["click"]}
+          noResultMsg={'No results'}
+        />
       </div>
     )
   }
