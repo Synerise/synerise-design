@@ -10,6 +10,10 @@ export const ListItem = styled.div`
   display: flex;
   justify-content: center;
   margin-bottom: 8px;
+
+  button {
+    transition-duration: 0s;
+  }
 `;
 export const OverlayWrapper = styled.div`
   padding: 6px;
@@ -17,9 +21,6 @@ export const OverlayWrapper = styled.div`
 
 export const Overlay = styled.div`
   width: 250px;
-  min-height: 260px;
-  max-height: 330px;
-  overflow-y: scroll;
   background-color: ${(props): string => props.theme.palette.white};
   top: 4px;
   position: relative;
@@ -76,5 +77,37 @@ export const IconTrigger = styled.div`
         fill: currentColor;
       }
     }
+  }
+
+  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 144dpi) {
+    letter-spacing: -0.2em;
+  }
+`;
+
+export const NoResults = styled.div`
+  min-height: 206px;
+  display: flex;
+  justify-content: center;
+`;
+
+export const Icon = styled.div`
+  width: 40px;
+  height: 40px;
+  background: rgba(148, 158, 166, 0.05);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+`;
+
+export const Content = styled.div`
+  margin-top: 42px;
+
+  p {
+    margin-top: 16px;
+    font-size: 14px;
+    line-height: 1.43;
+    text-align: center;
   }
 `;
