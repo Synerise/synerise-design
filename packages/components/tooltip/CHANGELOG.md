@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@0.5.2...@synerise/ds-tooltip@0.6.0) (2020-03-23)
+
+
+### Bug Fixes
+
+* **tooltip:** fix types ([ac7a877](https://github.com/synerise/synerise-design/commit/ac7a87731b0a046548b924953e8bb025e021402b))
+
+
+### Features
+
+* **tooltip:** add avatar type, update styles ([55f2647](https://github.com/synerise/synerise-design/commit/55f26471330f6311e5d3a404b2521b3636525513))
+* **tooltip:** add tutorial type ([392f221](https://github.com/synerise/synerise-design/commit/392f22168054fd12f8cfbbade43f5319debdcac7))
+* **tooltip:** update styles ([2784372](https://github.com/synerise/synerise-design/commit/27843728c9c7ee9b7043250cef8dcefdf40c2700))
+
+
+
+
+
 ## [0.5.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@0.5.1...@synerise/ds-tooltip@0.5.2) (2020-03-18)
 
 **Note:** Version bump only for package @synerise/ds-tooltip

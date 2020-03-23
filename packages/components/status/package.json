@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-status",
-  "version": "0.1.36",
+  "version": "0.1.37",
   "description": "Status UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -25,7 +25,7 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-tags": "^0.2.36"
+    "@synerise/ds-tags": "^0.2.37"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.50.0](https://github.com/synerise/synerise-design/compare/portal@0.49.3...portal@0.50.0) (2020-03-23)
+
+
+### Features
+
+* **tooltip:** add avatar type, update styles ([55f2647](https://github.com/synerise/synerise-design/commit/55f26471330f6311e5d3a404b2521b3636525513))
+* **tooltip:** update stories ([374d9e9](https://github.com/synerise/synerise-design/commit/374d9e9599c68f8c577b347a82b1c6b9bc78b4d8))
+
+
+
+
+
 ## [0.49.3](https://github.com/synerise/synerise-design/compare/portal@0.49.2...portal@0.49.3) (2020-03-20)
 
 **Note:** Version bump only for package portal

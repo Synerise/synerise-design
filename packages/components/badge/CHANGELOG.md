@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-badge@0.4.3...@synerise/ds-badge@0.4.4) (2020-03-23)
+
+
+### Bug Fixes
+
+* **badge:** fix to zeplin preview ([6b26e9d](https://github.com/Synerise/synerise-design/commit/6b26e9d4692d98f065d42014c7a3b0d4b479b7a8))
+
+
+
+
+
 ## [0.4.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-badge@0.4.2...@synerise/ds-badge@0.4.3) (2020-03-19)
 
 **Note:** Version bump only for package @synerise/ds-badge

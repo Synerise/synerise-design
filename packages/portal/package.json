@@ -1,6 +1,6 @@
 {
   "name": "portal",
-  "version": "0.49.3",
+  "version": "0.50.0",
   "private": true,
   "repository": "synerise/synerise-design",
   "scripts": {
