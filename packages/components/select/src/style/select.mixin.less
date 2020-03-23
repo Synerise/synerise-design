@@ -78,18 +78,27 @@
   background-repeat: no-repeat;
   background-size: contain;
   top: 50%;
-  margin-top: -12px;
   right: 8px;
-  transform-origin: center;
-  transition: transform 0.25s ease-in-out;
+  transform-origin: 50% 25%;
+  display: flex;
+  transform: translateY(-50%);
+  align-items: center;
+  justify-content: center;
+  margin-top: 0;
   i {
     display: none !important;
   }
 }
 
-.@{ant-prefix}-select-open {
+.@{ant-prefix}-select-open:not(.@{ant-prefix}-select-show-search) {
   .@{ant-prefix}-select-arrow {
     transform: rotateZ(-180deg);
+  }
+}
+
+.@{ant-prefix}-select-open.@{ant-prefix}-select-show-search {
+  .@{ant-prefix}-select-arrow {
+    background: none;
   }
 }
 
