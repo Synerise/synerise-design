@@ -15,15 +15,15 @@ const decorator = (storyFn) => (
 
 const TUTORIALS = [
   {
-    title: 'Tip for you',
+    title: 'Tip for you - 1',
     description: 'You can change profile name later in your profile settings.'
   },
   {
-    title: 'Tip for you',
+    title: 'Tip for you - 2',
     description: 'You can change avatar later in your profile settings.'
   },
   {
-    title: 'Tip for you',
+    title: 'Tip for you - 3',
     description: 'You can change password later in your profile settings.'
   }
 ];
@@ -48,6 +48,9 @@ const props = () => ({
     'top'
   ),
   trigger: select('Trigger', ['hover', 'focus', 'click', 'contextMenu'], 'hover'),
+});
+
+const tutorialProps = () => ({
   tutorialAutoplay: boolean('Enable tutorial autoplay', true),
   tutorialAutoplaySpeed: number('Set speed of tutorial [ms]', 5000),
   tutorials: TUTORIALS,
@@ -65,7 +68,7 @@ const stories = {
       </Tooltip>
     </div>
   ),
-  withIcon: () => (
+  icon: () => (
     <div>
       <Tooltip
         {...props()}
@@ -82,7 +85,6 @@ const stories = {
       <Tooltip
         {...props()}
         type="largeSimple"
-        title={text('Set tooltip title', 'More than just example text')}
         description={text('Set tooltip description', 'You can change profile name later in your profile settings. More info')}
       >
         <span>
@@ -95,11 +97,12 @@ const stories = {
     <div>
       <Tooltip
         {...props()}
+        {...tutorialProps()}
         type="avatar"
         title={text('Set user name', 'Jan Nowak')}
         description={text('Set user email', 'jan.nowak@gmail.com')}
       >
-        <Avatar>JN</Avatar>
+        <Avatar backgroundColor='green' backgroundColorHue='600'>JN</Avatar>
       </Tooltip>
     </div>
   ),
@@ -110,7 +113,7 @@ const stories = {
         type="tutorial"
         tutorials={TUTORIALS}
       >
-        <span>Show tips</span>
+        <Button type="primary">Show tips</Button>
       </Tooltip>
     </div>
   ),

@@ -1,4 +1,5 @@
 import styled, { css, SimpleInterpolation } from 'styled-components';
+import { IconContainer } from '@synerise/ds-icon/dist/Icon.styles';
 import TooltipExtendedProps from './Tooltip.types';
 
 export const TooltipDescription = styled.div<TooltipExtendedProps>`
@@ -17,10 +18,14 @@ export const TooltipTitle = styled.div<TooltipExtendedProps>`
   align-items: center;
   justify-content: flex-start;
   text-align: inherit;
+  ${IconContainer} {
+    align-self: flex-start;
+  }
 `;
 
 export const TooltipComponent = styled.div<TooltipExtendedProps>`
   background-color: rgba(56, 67, 80, 0.9);
+  min-height: 24px;
   color: ${(props): string => props.theme.palette['grey-200']};
   padding: 16px;
   text-align: left;
@@ -73,13 +78,15 @@ export const TooltipComponent = styled.div<TooltipExtendedProps>`
         width: 8px;
         height: 8px;
         border-radius: 50%;
-        background-color: transparent;
+        background-color: rgba(56, 67, 80, 0.9);
         margin: 0 8px 0 0;
         display: flex;
         align-items: center;
         justify-content: center;
         button {
+          box-sizing: content-box;
           background-color: ${(props): string => props.theme.palette['grey-600']};
+          border: 2px solid rgba(56, 67, 80, 0.9);
           height: 4px;
           width: 4px;
           border-radius: 50%;
@@ -87,10 +94,8 @@ export const TooltipComponent = styled.div<TooltipExtendedProps>`
         }
       }
       li.slick-active {
-        background-color: ${(props): string => props.theme.palette['green-600']};
-        width: 8px;
-        height: 8px;
         button {
+          border: 2px solid ${(props): string => props.theme.palette['green-600']};
           background-color: ${(props): string => `${props.theme.palette['grey-800']}E5`};
         }
       }
