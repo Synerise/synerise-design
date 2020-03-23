@@ -27,7 +27,8 @@
   "dependencies": {
     "@synerise/ds-button": "^0.9.5",
     "@synerise/ds-dropdown": "^0.11.6",
-    "@synerise/ds-icon": "^0.14.2"
+    "@synerise/ds-icon": "^0.14.2",
+    "@synerise/ds-search-bar": "^0.1.5"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
