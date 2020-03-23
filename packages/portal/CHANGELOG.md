@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.50.3](https://github.com/synerise/synerise-design/compare/portal@0.50.1...portal@0.50.3) (2020-03-23)
+
+
+### Bug Fixes
+
+* **select:** showSearch props support ([9088ca8](https://github.com/synerise/synerise-design/commit/9088ca84c17aa9e2395628bb9bf2f4d87aa1c454))
+* **tooltip:** fix styles, stories ([4c092bb](https://github.com/synerise/synerise-design/commit/4c092bb5b8c5b7c10241468823863aa4f38f9d21))
+
+
+
+
+
 ## [0.50.2](https://github.com/synerise/synerise-design/compare/portal@0.50.1...portal@0.50.2) (2020-03-23)
 
 **Note:** Version bump only for package portal

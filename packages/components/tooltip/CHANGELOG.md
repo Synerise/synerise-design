@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@0.6.0...@synerise/ds-tooltip@0.6.1) (2020-03-23)
+
+
+### Bug Fixes
+
+* **tooltip:** fix min-height ([7019e51](https://github.com/synerise/synerise-design/commit/7019e518ecb4186afe6f55eda05f7c7550792201))
+* **tooltip:** fix styles, stories ([4c092bb](https://github.com/synerise/synerise-design/commit/4c092bb5b8c5b7c10241468823863aa4f38f9d21))
+
+
+
+
+
 # [0.6.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@0.5.2...@synerise/ds-tooltip@0.6.0) (2020-03-23)
 
 

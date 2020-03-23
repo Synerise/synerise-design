@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.6](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.10.4...@synerise/ds-select@0.10.6) (2020-03-23)
+
+
+### Bug Fixes
+
+* **select:** showSearch props support ([9088ca8](https://github.com/synerise/synerise-design/commit/9088ca84c17aa9e2395628bb9bf2f4d87aa1c454))
+
+
+
+
+
 ## [0.10.5](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.10.4...@synerise/ds-select@0.10.5) (2020-03-23)
 
 **Note:** Version bump only for package @synerise/ds-select
