@@ -5,6 +5,7 @@ import * as React from 'react';
 import Icon from '@synerise/ds-icon';
 import NotificationsM from '@synerise/ds-icon/dist/icons/NotificationsM';
 import { withTheme } from 'styled-components';
+import { Carousel } from 'antd';
 import * as S from './Tooltip.styles';
 import TooltipExtendedProps, { tooltipTypes, descriptionType } from './Tooltip.types';
 
@@ -18,7 +19,11 @@ const Tooltip: React.FC<TooltipExtendedProps & TooltipProps> = ({
   icon,
   title,
   description,
+  tutorials,
+  tutorialAutoplay = false,
+  tutorialAutoplaySpeed = 5000,
   theme,
+  children,
   ...props
 }) => {
   const shouldRenderIcon = (tooltipType: tooltipTypes, tooltipIcon: React.ReactNode): React.ReactNode | undefined => {
@@ -26,26 +31,44 @@ const Tooltip: React.FC<TooltipExtendedProps & TooltipProps> = ({
     if (tooltipIcon && icon) return icon;
     return <Icon component={<NotificationsM />} color={theme.palette['orange-500']} />;
   };
-  // TODO: map tutorial dots, need Icons, uncomment code responsible for array validation, tutorial (and types,styles)
-  // Add delay swap tabs action and default change action that might be define by developer
-  const titleExists = Boolean(description || title || icon);
-  const tooltipComponent = (
-    <div>
-      <S.TooltipComponent type={type}>
-        <S.TooltipTitle type={type}>
-          {type && shouldRenderIcon(type, icon)}
-          {type !== 'largeSimple' ? title : null}
-        </S.TooltipTitle>
-        <S.TooltipDescription>{shouldRenderDescription(description, type)}</S.TooltipDescription>
-      </S.TooltipComponent>
-    </div>
+
+  const renderTutorial = (
+    <S.TooltipComponent type={type}>
+      <Carousel autoplay={tutorialAutoplay} autoplaySpeed={tutorialAutoplaySpeed} effect="fade">
+        {tutorials &&
+          tutorials.map(tutorial => (
+            <S.TutorialItem key={`${JSON.stringify(tutorial.title)}`}>
+              <S.TooltipTitle type="tutorial">{tutorial.title}</S.TooltipTitle>
+              <S.TooltipDescription>{tutorial.description}</S.TooltipDescription>
+            </S.TutorialItem>
+          ))}
+      </Carousel>
+    </S.TooltipComponent>
   );
-  const renderChildren = (): React.ReactElement => {
-    const { children } = props;
-    return <div>{children}</div>;
-  };
-  // eslint-disable-next-line react/jsx-props-no-spreading
-  return titleExists ? <AntdTooltip {...props} title={tooltipComponent} /> : renderChildren();
+
+  const renderTooltip = (
+    <S.TooltipComponent type={type}>
+      <S.TooltipTitle type={type}>
+        {type && shouldRenderIcon(type, icon)}
+        {type !== 'largeSimple' ? title : null}
+      </S.TooltipTitle>
+      <S.TooltipDescription>{shouldRenderDescription(description, type)}</S.TooltipDescription>
+    </S.TooltipComponent>
+  );
+
+  const tooltipComponent = React.useMemo(() => {
+    return type === 'tutorial' ? renderTutorial : renderTooltip;
+  }, [type, renderTooltip, renderTutorial]);
+
+  const titleExists = Boolean(description || title || icon || tutorials?.length);
+
+  return titleExists ? (
+    <AntdTooltip autoAdjustOverflow={false} {...props} title={tooltipComponent}>
+      {children}
+    </AntdTooltip>
+  ) : (
+    <>{children}</>
+  );
 };
 
 const TooltipWithTheme = withTheme(Tooltip);

@@ -4,7 +4,7 @@ import Tooltip from '@synerise/ds-tooltip';
 import '@synerise/ds-core/dist/js/style';
 import './style/index.less';
 
-import AntdAvatar, { TooltipGroup } from './Avatar.styles';
+import AntdAvatar from './Avatar.styles';
 
 type color =
   | 'red'
@@ -48,15 +48,9 @@ const Avatar: React.FC<AvatarProps> = ({
   ...antdProps
 }) => {
   const [pressed, setPressed] = React.useState(false);
-  const tooltipGroup = tooltip && (
-    <TooltipGroup>
-      <p>{tooltip.name}</p>
-      <p>{tooltip.email}</p>
-    </TooltipGroup>
-  );
 
   return (
-    <Tooltip title={tooltipGroup} mouseLeaveDelay={0} mouseEnterDelay={0}>
+    <Tooltip title={tooltip?.name} description={tooltip?.email} mouseLeaveDelay={0} mouseEnterDelay={0}>
       <AntdAvatar
         onMouseDown={(): void => setPressed(true)}
         onMouseOut={(): void => setPressed(false)}
