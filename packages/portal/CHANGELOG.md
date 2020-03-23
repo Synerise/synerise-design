@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.50.1](https://github.com/synerise/synerise-design/compare/portal@0.50.0...portal@0.50.1) (2020-03-23)
+
+
+### Bug Fixes
+
+* **avatar-group:** fix stories ([64c548d](https://github.com/synerise/synerise-design/commit/64c548dfad71dcf9bf7cf0020f74c45de789b43a))
+
+
+
+
+
 # [0.50.0](https://github.com/synerise/synerise-design/compare/portal@0.49.3...portal@0.50.0) (2020-03-23)
 
 

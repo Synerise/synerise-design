@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-avatar@0.6.0...@synerise/ds-avatar@0.7.0) (2020-03-23)
+
+
+### Features
+
+* **avatar:** update tooltips ([4bf47e4](https://github.com/synerise/synerise-design/commit/4bf47e4f5f668640043e3d36cc1170e91429e3ec))
+
+
+
+
+
 # [0.6.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-avatar@0.5.4...@synerise/ds-avatar@0.6.0) (2020-03-23)
 
 
