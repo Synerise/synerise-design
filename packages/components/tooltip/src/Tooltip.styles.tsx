@@ -4,7 +4,7 @@ import TooltipExtendedProps from './Tooltip.types';
 
 export const TooltipDescription = styled.div<TooltipExtendedProps>`
   font-size: 13px;
-  line-height: 1.39;
+  line-height: 1.38;
   font-weight: normal;
   text-align: inherit;
 `;
@@ -12,7 +12,7 @@ export const TooltipDescription = styled.div<TooltipExtendedProps>`
 export const TooltipTitle = styled.div<TooltipExtendedProps>`
   margin-bottom: ${(props): string => (props.type === 'icon' || props.type === 'tutorial' ? '8px' : '0px')};
   font-size: 13px;
-  line-height: 1.39;
+  line-height: 1.38;
   font-weight: ${(props): number => (props.type === 'default' ? 400 : 500)};
   display: flex;
   align-items: center;
@@ -25,6 +25,7 @@ export const TooltipTitle = styled.div<TooltipExtendedProps>`
 
 export const TooltipComponent = styled.div<TooltipExtendedProps>`
   background-color: rgba(56, 67, 80, 0.9);
+  min-height: 24px;
   color: ${(props): string => props.theme.palette['grey-200']};
   padding: 16px;
   text-align: left;
