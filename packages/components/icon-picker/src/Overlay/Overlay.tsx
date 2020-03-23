@@ -14,6 +14,7 @@ const Overlay: React.FC<OverlayTypes> = ({
   onSelect,
   data,
   focus,
+  noResultMsg,
 }) => {
   return (
     <>
@@ -25,7 +26,7 @@ const Overlay: React.FC<OverlayTypes> = ({
         autofocus={focus}
         iconLeft={<Icon component={<SearchM />} color={theme.palette['grey-600']} />}
       />
-      <List onSelect={onSelect} data={data} />
+      <List onSelect={onSelect} data={data} noResultMsg={noResultMsg} />
     </>
   );
 };

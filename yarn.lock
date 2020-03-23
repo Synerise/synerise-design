@@ -14596,6 +14596,11 @@ pend@~1.2.0:
   resolved "https://registry.yarnpkg.com/pend/-/pend-1.2.0.tgz#7a57eb550a6783f9115331fcf4663d5c8e007a50"
   integrity sha1-elfrVQpng/kRUzH89GY9XI4AelA=
 
+perfect-scrollbar@^1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/perfect-scrollbar/-/perfect-scrollbar-1.5.0.tgz#821d224ed8ff61990c23f26db63048cdc75b6b83"
+  integrity sha512-NrNHJn5mUGupSiheBTy6x+6SXCFbLlm8fVZh9moIzw/LgqElN5q4ncR4pbCBCYuCJ8Kcl9mYM0NgDxvW+b4LxA==
+
 performance-now@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/performance-now/-/performance-now-2.1.0.tgz#6309f4e0e5fa913ec1c69307ae364b4b377c9e7b"
@@ -16561,6 +16566,14 @@ react-lifecycles-compat@^3.0.2, react-lifecycles-compat@^3.0.4:
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
 
+react-perfect-scrollbar@^1.5.8:
+  version "1.5.8"
+  resolved "https://registry.yarnpkg.com/react-perfect-scrollbar/-/react-perfect-scrollbar-1.5.8.tgz#380959387a325c5c9d0268afc08b3f73ed5b3078"
+  integrity sha512-bQ46m70gp/HJtiBOF3gRzBISSZn8FFGNxznTdmTG8AAwpxG1bJCyn7shrgjEvGSQ5FJEafVEiosY+ccER11OSA==
+  dependencies:
+    perfect-scrollbar "^1.5.0"
+    prop-types "^15.6.1"
+
 react-popper-tooltip@^2.8.3:
   version "2.10.1"
   resolved "https://registry.yarnpkg.com/react-popper-tooltip/-/react-popper-tooltip-2.10.1.tgz#e10875f31916297c694d64a677d6f8fa0a48b4d1"
@@ -17791,30 +17804,10 @@ simplebar-react@^1.0.0-alpha.6:
     prop-types "^15.6.1"
     simplebar "^4.2.3"
 
-simplebar-react@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/simplebar-react/-/simplebar-react-2.1.0.tgz#57d524f4253579d81ac30db00acf7886b17bf826"
-  integrity sha512-UIMFPNkn6o57v058vPOiYbnbpc1CUZwPKLmQaDMvEJdgm+btZ2umFA6meXfiqFEQUjDE6Vq4ePnL7Fr6nzJd8w==
-  dependencies:
-    prop-types "^15.6.1"
-    simplebar "^5.1.0"
-
 simplebar@^4.2.3:
   version "4.2.3"
   resolved "https://registry.yarnpkg.com/simplebar/-/simplebar-4.2.3.tgz#dac40aced299c17928329eab3d5e6e795fafc10c"
   integrity sha512-9no0pK7/1y+8/oTF3sy/+kx0PjQ3uk4cYwld5F1CJGk2gx+prRyUq8GRfvcVLq5niYWSozZdX73a2wIr1o9l/g==
-  dependencies:
-    can-use-dom "^0.1.0"
-    core-js "^3.0.1"
-    lodash.debounce "^4.0.8"
-    lodash.memoize "^4.1.2"
-    lodash.throttle "^4.1.1"
-    resize-observer-polyfill "^1.5.1"
-
-simplebar@^5.1.0:
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/simplebar/-/simplebar-5.1.0.tgz#15437ace314ec888accd7d8f24ada672e9bb2717"
-  integrity sha512-bdi1SleK1YOSnfeUjo5UQXt/79zNjsCJVEfzrm6photmGi2aU6x0l7rX4KAGcrtj5AwsWPBVXgDyYAqbbpnuRg==
   dependencies:
     can-use-dom "^0.1.0"
     core-js "^3.0.1"

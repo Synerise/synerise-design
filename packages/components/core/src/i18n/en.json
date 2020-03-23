@@ -27,6 +27,9 @@
       "NO-RESULTS": "No results",
       "SEARCH-PLACEHOLDER": "Search",
       "TITLE": "Filter"
+    },
+    "ICON-PICKER": {
+      "NO-RESULTS": "No results"
     }
   }
 }

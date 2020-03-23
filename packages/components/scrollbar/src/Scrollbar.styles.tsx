@@ -1,9 +1,7 @@
 import styled from 'styled-components';
 
-export const ScrollbarContent = styled.div<{ absolute: boolean }>`
-  .simplebar-content-wrapper {
-    padding-right: ${(props): string => (props.absolute ? '0 !important' : '')};
-  }
-`;
+export const ScrollbarContent = styled.div``;
 
-export const Scrollbar = styled.div``;
+export const ScrollbarWrapper = styled.div<{ absolute?: boolean }>`
+  padding-right: ${(props): string => (props.absolute ? '' : '11px !important')};
+`;
