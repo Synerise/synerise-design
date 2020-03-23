@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.50.4](https://github.com/synerise/synerise-design/compare/portal@0.50.3...portal@0.50.4) (2020-03-23)
+
+
+### Bug Fixes
+
+* **portal:** fix font paths ([f7fec1b](https://github.com/synerise/synerise-design/commit/f7fec1ba9e32f46c9ec073b89a04989c774ced97))
+
+
+
+
+
 ## [0.50.3](https://github.com/synerise/synerise-design/compare/portal@0.50.1...portal@0.50.3) (2020-03-23)
 
 
