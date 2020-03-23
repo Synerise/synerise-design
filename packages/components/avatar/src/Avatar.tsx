@@ -50,7 +50,7 @@ const Avatar: React.FC<AvatarProps> = ({
   const [pressed, setPressed] = React.useState(false);
 
   return (
-    <Tooltip title={tooltip?.name} description={tooltip?.email} mouseLeaveDelay={0} mouseEnterDelay={0}>
+    <Tooltip type="avatar" title={tooltip?.name} description={tooltip?.email} mouseLeaveDelay={0} mouseEnterDelay={0}>
       <AntdAvatar
         onMouseDown={(): void => setPressed(true)}
         onMouseOut={(): void => setPressed(false)}

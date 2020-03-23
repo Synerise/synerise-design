@@ -9,7 +9,7 @@ const groupSizes = ['small', 'medium', 'large'] as const;
 const groupAvatars: Avatar[] = [
   {
     avatarProps: {
-      tooltip: { name: 'Kamil Kowalski', email: 'email' },
+      tooltip: { name: 'Kamil Kowalski', email: 'k.kowalski@gmail.com' },
       backgroundColor: 'blue',
       backgroundColorHue: '600',
     },
@@ -18,7 +18,7 @@ const groupAvatars: Avatar[] = [
   },
   {
     avatarProps: {
-      tooltip: { name: 'Adam Staszewski', email: 'email' },
+      tooltip: { name: 'Adam Staszewski', email: 'adam.staszewski@test.pl' },
       backgroundColor: 'green',
       backgroundColorHue: '600',
     },
@@ -27,7 +27,7 @@ const groupAvatars: Avatar[] = [
   },
   {
     avatarProps: {
-      tooltip: { name: 'Jan Nowak', email: 'email' },
+      tooltip: { name: 'Jan Nowak', email: 'jan@nowak.com.pl' },
       backgroundColor: 'orange',
       backgroundColorHue: '600',
     },
@@ -36,7 +36,7 @@ const groupAvatars: Avatar[] = [
   },
   {
     avatarProps: {
-      tooltip: { name: 'Jan Nowak', email: 'email' },
+      tooltip: { name: 'Jan Nowak', email: 'jan@nowak.com.pl' },
       backgroundColor: 'red',
       backgroundColorHue: '600',
     },
@@ -45,7 +45,7 @@ const groupAvatars: Avatar[] = [
   },
   {
     avatarProps: {
-      tooltip: { name: 'Jan Nowak', email: 'email' },
+      tooltip: { name: 'Jan Nowak', email: 'jan@nowak.com.pl' },
       backgroundColor: 'violet',
       backgroundColorHue: '600',
     },
