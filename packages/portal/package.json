@@ -2,6 +2,7 @@
   "name": "portal",
   "version": "0.50.3",
   "private": true,
+  "homepage": "./",
   "repository": "synerise/synerise-design",
   "scripts": {
     "build-docs": "build-storybook -s public",
