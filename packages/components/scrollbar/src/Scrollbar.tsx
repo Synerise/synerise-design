@@ -1,5 +1,5 @@
 import * as React from 'react';
-import SimpleBar from 'simplebar-react';
+import PerfectScrollbar from 'react-perfect-scrollbar';
 import './style/index.less';
 import * as S from './Scrollbar.styles';
 
@@ -10,15 +10,13 @@ export type ScrollbarProps = {
   absolute?: boolean;
 };
 
-const Scrollbar: React.FC<ScrollbarProps> = ({ children, classes, maxHeight, absolute = true }) => {
+const Scrollbar: React.FC<ScrollbarProps> = ({ children, classes, maxHeight, absolute = false }) => {
   return (
-    <S.ScrollbarContent absolute={absolute}>
-      {/*
-        // @ts-ignore */}
-      <SimpleBar className={classes} style={{ maxHeight }} autoHide={false}>
-        {children}
-      </SimpleBar>
-    </S.ScrollbarContent>
+    <PerfectScrollbar>
+      <S.ScrollbarContent className={classes} style={{ maxHeight }}>
+        <S.ScrollbarWrapper absolute={absolute}>{children}</S.ScrollbarWrapper>
+      </S.ScrollbarContent>
+    </PerfectScrollbar>
   );
 };
 export default Scrollbar;
