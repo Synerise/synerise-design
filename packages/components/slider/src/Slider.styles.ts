@@ -10,14 +10,14 @@ export declare type colorMapProps = {
 const indexMap = {
   '0': 'green-600',
   '1': 'cyan-600',
-  '2': 'fern-600',
-  '3': 'mars-600',
-  '4': 'orange-600',
+  '2': 'yellow-600',
+  '3': 'orange-600',
+  '4': 'mars-600',
   '5': 'pink-600',
   '6': 'purple-600',
   '7': 'red-600',
   '8': 'violet-600',
-  '9': 'yellow-600',
+  '9': 'fern-600',
 };
 
 const createTracksStyles = (props: ThemeProps, colorsMap: colorMapProps): FlattenSimpleInterpolation => {
