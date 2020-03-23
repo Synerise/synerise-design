@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Button from '@synerise/ds-button';
-import Dropdown from '@synerise/ds-dropdown';
+import SearchBar from '@synerise/ds-search-bar/';
 
 export const Container = styled.div`
   margin-bottom: 24px;
@@ -103,7 +103,7 @@ export const DropdownTagsContainer = styled.div<{ isCreatable: boolean }>`
   }
 `;
 
-export const DropdownSearch = styled(Dropdown.SearchInput)`
+export const DropdownSearch = styled(SearchBar)`
   && {
     margin: 0 !important;
   }

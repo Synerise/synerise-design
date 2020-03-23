@@ -29,6 +29,7 @@
     "@synerise/ds-dropdown": "^0.11.6",
     "@synerise/ds-input": "^0.11.6",
     "@synerise/ds-pagination": "^0.6.2",
+    "@synerise/ds-search-bar": "^0.1.5",
     "@synerise/ds-select": "^0.10.6",
     "@synerise/ds-typography": "^0.8.2",
     "@synerise/ds-utils": "^0.8.11"

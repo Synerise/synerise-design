@@ -22,7 +22,6 @@ export const OverlayWrapper = styled.div`
 export const Overlay = styled.div`
   width: 250px;
   background-color: ${(props): string => props.theme.palette.white};
-  top: 4px;
   position: relative;
   border-radius: 3px;
 
@@ -45,7 +44,7 @@ export const Overlay = styled.div`
     }
   }
 
-  ${OverlayWrapper}:nth-child(2) {
+  ${OverlayWrapper}:first-child {
     padding-top: 16px;
   }
 `;
