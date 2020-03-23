@@ -31,6 +31,8 @@ Tooltip UI Component
 | title              | tooltip title text                                                                                                                                                                                    | string                                                 | -                          |
 | description        | tooltip description text                                                                                                                                                                              | string                                                 | -                          |
 | tutorials          | steps of tutorial                                                                                                                                                                                     | Tutorials[]                                            | -                          |
+| tutorialAutoplay   | Whether to autoplay tutorial                                                                                                                                                                          | boolean                                                | false                      |
+| autoplaySpeed      | speed of autoplay [ms]                                                                                                                                                                                | number                                                 | 5000                       |
 
 
 ### Tutorial
