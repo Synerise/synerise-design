@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.4](https://github.com/synerise/synerise-design/compare/@synerise/ds-avatar@0.7.3...@synerise/ds-avatar@0.7.4) (2020-03-24)
+
+
+### Bug Fixes
+
+* **avatar:** hover fix ([9614df5](https://github.com/synerise/synerise-design/commit/9614df529c330e08e25f11d90d6162e9b38ed13b))
+
+
+
+
+
 ## [0.7.3](https://github.com/synerise/synerise-design/compare/@synerise/ds-avatar@0.7.2...@synerise/ds-avatar@0.7.3) (2020-03-24)
 
 **Note:** Version bump only for package @synerise/ds-avatar
