@@ -71,9 +71,9 @@ const Tooltip: React.FC<TooltipExtendedProps & TooltipProps> = ({
     <AntdTooltip
       overlayClassName={offsetClassName}
       autoAdjustOverflow={false}
-      {...props}
       title={tooltipComponent}
       align={{ offset: [0, 0] }}
+      {...props}
     >
       {children}
     </AntdTooltip>
