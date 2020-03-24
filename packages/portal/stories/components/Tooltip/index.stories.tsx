@@ -86,8 +86,9 @@ const stories = {
         {...props()}
         type="largeSimple"
         description={text('Set tooltip description', 'You can change profile name later in your profile settings. More info')}
+        offset='small'
       >
-        <span>
+        <span style={{display: 'flex'}}>
           <Icon component={<InfoFillS />} color="#b5bdc3" />
         </span>
       </Tooltip>

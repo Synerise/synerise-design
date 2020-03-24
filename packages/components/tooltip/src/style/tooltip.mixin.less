@@ -1,5 +1,39 @@
 .@{ant-prefix}-tooltip {
   transform-origin: 50% !important;
+  &.@{ant-prefix}-tooltip-placement {
+    &-left,
+    &-leftTop,
+    &-leftBottom {
+      padding: 0 8px 0 0;
+      &.ds-tooltip-offset-small {
+        padding: 0 4px 0 0;
+      }
+    }
+    &-right,
+    &-rightTop,
+    &-rightBottom {
+      padding: 0 0 0 8px;
+      &.ds-tooltip-offset-small {
+        padding: 0 0 0 4px;
+      }
+    }
+    &-top,
+    &-topLeft,
+    &-topRight {
+      padding: 0 0 8px 0;
+      &.ds-tooltip-offset-small {
+        padding: 0 0 4px 0;
+      }
+    }
+    &-bottom,
+    &-bottomLeft,
+    &-bottomRight {
+      padding: 8px 0 0 0;
+      &.ds-tooltip-offset-small {
+        padding: 4px 0 0 0;
+      }
+    }
+  }
 }
 
 .@{ant-prefix}-tooltip-inner {

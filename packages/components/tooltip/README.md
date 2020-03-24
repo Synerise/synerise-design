@@ -33,6 +33,7 @@ Tooltip UI Component
 | tutorials             | steps of tutorial                                                                                                                                                                                     | Tutorials[]                                            | -                          |
 | tutorialAutoplay      | Whether to autoplay tutorial                                                                                                                                                                          | boolean                                                | false                      |
 | tutorialAutoplaySpeed | speed of autoplay [ms]                                                                                                                                                                                | number                                                 | 5000                       |
+| offset                | size of space between trigger and tooltip, you should set `small` when the you use `Icon` as a trigger                                                                                                | `default`, `small`                                     | `default`                  |
 
 
 ### Tutorial
