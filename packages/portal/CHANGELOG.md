@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.50.5](https://github.com/synerise/synerise-design/compare/portal@0.50.4...portal@0.50.5) (2020-03-24)
+
+
+### Bug Fixes
+
+* **tooltip:** fix knobs in stories ([97a15b5](https://github.com/synerise/synerise-design/commit/97a15b54595ef259c7e88a690691c035bfa75a36))
+
+
+
+
+
 ## [0.50.4](https://github.com/synerise/synerise-design/compare/portal@0.50.3...portal@0.50.4) (2020-03-23)
 
 
