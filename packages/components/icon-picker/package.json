@@ -24,7 +24,7 @@
   "dependencies": {
     "@synerise/ds-button": "^0.9.6",
     "@synerise/ds-dropdown": "^0.11.8",
-    "@synerise/ds-search-bar": "^0.1.5",
+    "@synerise/ds-search-bar": "^0.2.15",
     "@synerise/ds-typography": "*"
   },
   "peerDependencies": {

@@ -97,7 +97,6 @@ const stories = {
     <div>
       <Tooltip
         {...props()}
-        {...tutorialProps()}
         type="avatar"
         title={text('Set user name', 'Jan Nowak')}
         description={text('Set user email', 'jan.nowak@gmail.com')}
@@ -110,6 +109,7 @@ const stories = {
     <div>
       <Tooltip
         {...props()}
+        {...tutorialProps()}
         type="tutorial"
         tutorials={TUTORIALS}
       >

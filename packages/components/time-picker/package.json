@@ -28,7 +28,7 @@
     "@synerise/ds-dropdown": "^0.11.8",
     "@synerise/ds-icon": "^0.14.2",
     "@synerise/ds-input": "^0.11.7",
-    "@synerise/ds-search-bar": "^0.1.5",
+    "@synerise/ds-search-bar": "^0.2.15",
     "@synerise/ds-typography": "^0.8.2",
     "dayjs": "^1.8.19"
   },
