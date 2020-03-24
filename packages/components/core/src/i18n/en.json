@@ -30,6 +30,9 @@
     },
     "ICON-PICKER": {
       "NO-RESULTS": "No results"
+    },
+    "SEARCH-BAR": {
+      "CLEAR-TOOLTIP": "Clear"
     }
   }
 }

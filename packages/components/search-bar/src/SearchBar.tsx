@@ -4,6 +4,7 @@ import Close3M from '@synerise/ds-icon/dist/icons/Close3M';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { useState } from 'react';
 import Tooltip from '@synerise/ds-tooltip';
+import { FormattedMessage } from 'react-intl';
 import * as S from './SearchBar.styles';
 
 export interface SearchBarProps {
@@ -27,7 +28,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
   placeholder,
   iconLeft,
   autofocus,
-  clearTooltip,
+  clearTooltip = <FormattedMessage id="DS.SEARCH-BAR.CLEAR-TOOLTIP" />,
   disabled,
   borderRadius,
 }) => {
@@ -35,7 +36,6 @@ const SearchBar: React.FC<SearchBarProps> = ({
   const focus = (inputRef: React.MutableRefObject<HTMLInputElement | HTMLTextAreaElement | undefined>): void => {
     autofocus && inputRef.current && inputRef.current.focus();
   };
-
   return (
     <S.SearchBarWrapper
       iconLeft={iconLeft}
