@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@0.6.1...@synerise/ds-tooltip@0.7.0) (2020-03-24)
+
+
+### Bug Fixes
+
+* **tooltip:** typo ([36c57ef](https://github.com/synerise/synerise-design/commit/36c57efb0f27d3d7f614ade710778d352fd96204))
+
+
+### Features
+
+* **tooltip:** add offset size props ([fca819a](https://github.com/synerise/synerise-design/commit/fca819ada15f340fded90c79f840ddc6011aba3c))
+
+
+
+
+
 ## [0.6.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@0.6.0...@synerise/ds-tooltip@0.6.1) (2020-03-23)
 
 

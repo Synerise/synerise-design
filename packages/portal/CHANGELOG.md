@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.51.0](https://github.com/synerise/synerise-design/compare/portal@0.50.5...portal@0.51.0) (2020-03-24)
+
+
+### Features
+
+* **tooltip:** add offset size props ([fca819a](https://github.com/synerise/synerise-design/commit/fca819ada15f340fded90c79f840ddc6011aba3c))
+
+
+
+
+
 ## [0.50.5](https://github.com/synerise/synerise-design/compare/portal@0.50.4...portal@0.50.5) (2020-03-24)
 
 
