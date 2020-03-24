@@ -121,6 +121,9 @@ export default styled(({ backgroundColorHue, backgroundColor, hasStatus, pressed
         border-radius: inherit;
         box-sizing: border-box;
       }
+      &::after {
+        opacity: 0.1;
+      }
     }
 
     & + .ant-badge-dot {
