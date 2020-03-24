@@ -15,5 +15,6 @@ export default interface TooltipExtendedProps {
   tutorials?: Tutorial[];
   tutorialAutoplay?: boolean;
   tutorialAutoplaySpeed?: number;
+  offset?: 'default' | 'small';
   theme: { [k: string]: string };
 }

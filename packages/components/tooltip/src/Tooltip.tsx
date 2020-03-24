@@ -23,6 +23,7 @@ const Tooltip: React.FC<TooltipExtendedProps & TooltipProps> = ({
   tutorialAutoplay = false,
   tutorialAutoplaySpeed = 5000,
   theme,
+  offset = 'default',
   children,
   ...props
 }) => {
@@ -60,10 +61,20 @@ const Tooltip: React.FC<TooltipExtendedProps & TooltipProps> = ({
     return type === 'tutorial' ? renderTutorial : renderTooltip;
   }, [type, renderTooltip, renderTutorial]);
 
+  const offsetClassName = React.useMemo(() => {
+    return `ds-tooltip-offset-${offset}`;
+  }, [offset]);
+
   const titleExists = Boolean(description || title || icon || tutorials?.length);
 
   return titleExists ? (
-    <AntdTooltip autoAdjustOverflow={false} {...props} title={tooltipComponent}>
+    <AntdTooltip
+      overlayClassName={offsetClassName}
+      autoAdjustOverflow={false}
+      {...props}
+      title={tooltipComponent}
+      align={{ offset: [0, 0] }}
+    >
       {children}
     </AntdTooltip>
   ) : (
