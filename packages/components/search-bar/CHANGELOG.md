@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.16](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search-bar@0.2.15...@synerise/ds-search-bar@0.2.16) (2020-03-24)
+
+
+### Bug Fixes
+
+* **search-bar:** add default tooltip value ([5f733f4](https://github.com/Synerise/synerise-design/commit/5f733f4169c386af0562d2a79dbb0bc64a2e36e5))
+
+
+
+
+
 ## [0.2.15](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search-bar@0.2.13...@synerise/ds-search-bar@0.2.15) (2020-03-23)
 
 **Note:** Version bump only for package @synerise/ds-search-bar

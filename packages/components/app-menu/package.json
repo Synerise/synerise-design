@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-app-menu",
-  "version": "0.3.23",
+  "version": "0.3.24",
   "description": "AppMenu UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -28,7 +28,7 @@
     "@synerise/ds-icon": "^0.14.2",
     "@synerise/ds-tooltip": "^0.6.1",
     "@synerise/ds-typography": "^0.8.2",
-    "@synerise/ds-utils": "^0.8.11"
+    "@synerise/ds-utils": "^0.8.12"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
