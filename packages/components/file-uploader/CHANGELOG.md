@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.26](https://github.com/Synerise/synerise-design/compare/@synerise/ds-file-uploader@0.3.25...@synerise/ds-file-uploader@0.3.26) (2020-03-25)
+
+
+### Bug Fixes
+
+* **input:** fix tooltip ([0bc13eb](https://github.com/Synerise/synerise-design/commit/0bc13eb144577bd14fc08e74a3107b831e90ff20))
+
+
+
+
+
 ## [0.3.25](https://github.com/Synerise/synerise-design/compare/@synerise/ds-file-uploader@0.3.24...@synerise/ds-file-uploader@0.3.25) (2020-03-24)
 
 **Note:** Version bump only for package @synerise/ds-file-uploader

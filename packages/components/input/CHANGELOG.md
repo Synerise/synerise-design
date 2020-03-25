@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.9](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.11.8...@synerise/ds-input@0.11.9) (2020-03-25)
+
+
+### Bug Fixes
+
+* **input:** fix tooltip ([0bc13eb](https://github.com/synerise/synerise-design/commit/0bc13eb144577bd14fc08e74a3107b831e90ff20))
+* **time-picker:** update opened timepicker styles ([bfb04e8](https://github.com/synerise/synerise-design/commit/bfb04e8c09aae7c9752f62e00e0cecbc81e0f2d2))
+
+
+
+
+
 ## [0.11.8](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.11.7...@synerise/ds-input@0.11.8) (2020-03-24)
 
 **Note:** Version bump only for package @synerise/ds-input
