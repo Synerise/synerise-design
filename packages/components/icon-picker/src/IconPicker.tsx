@@ -38,32 +38,31 @@ const IconPicker: React.FC<IconPickerProps> = ({ button, data, onSelect, trigger
   };
 
   return (
-    <div ref={ref}>
-      <Dropdown
-        visible={isOpen}
-        trigger={trigger}
-        placement="bottomRight"
-        overlay={
-          <S.Overlay>
-            <Overlay
-              value={value}
-              onSearchChange={(val: string): void => filter(val)}
-              onClearInput={onClearInput}
-              placeholder={placeholder}
-              data={filteredData}
-              onSelect={(val): void => {
-                onSelect(val);
-                setFocus(false);
-              }}
-              focus={focus}
-              noResultMsg={noResultMsg}
-            />
-          </S.Overlay>
-        }
-      >
-        {button && React.cloneElement(button, { onClick: toggleOpen })}
-      </Dropdown>
-    </div>
+    <Dropdown
+      visible={isOpen}
+      trigger={trigger}
+      placement="bottomRight"
+      overlay={
+        <S.Overlay ref={ref}>
+          <Overlay
+            value={value}
+            onSearchChange={(val: string): void => filter(val)}
+            onClearInput={onClearInput}
+            placeholder={placeholder}
+            data={filteredData}
+            onSelect={(val): void => {
+              setOpen(prevState => !prevState);
+              onSelect(val);
+              setFocus(false);
+            }}
+            focus={focus}
+            noResultMsg={noResultMsg}
+          />
+        </S.Overlay>
+      }
+    >
+      {button && React.cloneElement(button, { onClick: toggleOpen })}
+    </Dropdown>
   );
 };
 
