@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { fireEvent } from '@testing-library/react';
+import { fireEvent, waitFor } from '@testing-library/react';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import TimePicker from '../index';
 
@@ -105,5 +105,34 @@ describe('TimePicker', () => {
       fireEvent.blur(input);
       expect(onChange).toHaveBeenCalled();
     }, 1000);
+  });
+
+  it('should render open on focus and show buttons for hours, minutes and seconds', async () => {
+    // ARRANGE
+    const { findByTestId, getByPlaceholderText } = renderWithProvider(<TimePicker placeholder="Select time" />);
+    const input = getByPlaceholderText('Select time');
+
+    // ACT
+    fireEvent.focus(input);
+
+    // ARRANGE
+    let hours: NodeListOf<HTMLButtonElement>;
+    let minutes: NodeListOf<HTMLButtonElement>;
+    let seconds: NodeListOf<HTMLButtonElement>;
+
+    await waitFor(() => {
+      findByTestId('ds-time-picker-unit-hour').then((result) => {
+        hours = result?.querySelectorAll('button');
+        expect(hours.length).toBe(24);
+      });
+      findByTestId('ds-time-picker-unit-minute').then((result) => {
+        minutes = result?.querySelectorAll('button');
+        expect(minutes.length).toBe(60);
+      });
+      findByTestId('ds-time-picker-unit-second').then((result) => {
+        seconds = result?.querySelectorAll('button');
+        expect(seconds.length).toBe(60);
+      });
+    });
   });
 });
