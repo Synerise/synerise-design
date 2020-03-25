@@ -1,5 +1,7 @@
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import { Label } from '@synerise/ds-typography';
+import Icon from '@synerise/ds-icon';
+import { Input } from '@synerise/ds-input';
 
 export const Container = styled.div`
   min-width: 104px;
@@ -99,4 +101,25 @@ export const Cell = styled.button<{ active?: boolean }>`
         color: ${props.theme.palette['blue-600']};
       }
     `};
+`;
+
+export const ClearIcon = styled(Icon)`
+  && {
+    svg {
+      color: ${(props): string => props.theme.palette['red-600']};
+      fill: ${(props): string => props.theme.palette['red-600']};
+    }
+  }
+`;
+
+export const TimePickerInput = styled(Input)`
+  &:not(.active) {
+    input {
+      &:focus {
+        box-shadow: none;
+        background-color: ${(props): string => props.theme.palette.white};
+        border-color: ${(props): string => props.theme.palette['grey-300']};
+      }
+    }
+  }
 `;
