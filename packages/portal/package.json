@@ -58,7 +58,7 @@
     "eslint-config-prettier": "6.10.0",
     "eslint-config-react-app": "5.2.0",
     "eslint-config-standard-react": "9.2.0",
-    "eslint-plugin-flowtype": "4.6.0",
+    "eslint-plugin-flowtype": "4.7.0",
     "eslint-plugin-jest": "23.8.2",
     "eslint-plugin-react": "7.19.0",
     "eslint-plugin-react-hooks": "2.5.0",
