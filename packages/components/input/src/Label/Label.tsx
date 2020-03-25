@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Tooltip from '@synerise/ds-tooltip';
 import Icon from '@synerise/ds-icon';
-import InfoFillM from '@synerise/ds-icon/dist/icons/InfoFillM';
+import InfoFillS from '@synerise/ds-icon/dist/icons/InfoFillS';
 import * as S from './Label.styles';
 
 export type LabelProps = {
@@ -20,7 +20,7 @@ const Label: React.FC<LabelProps> = ({ id, className, label, tooltip, style }) =
         {tooltip && (
           <Tooltip title={tooltip} placement="top" trigger="hover" transitionName="zoom-big-fast">
             <span>
-              <Icon size={24} component={<InfoFillM />} />
+              <Icon size={24} component={<InfoFillS />} />
             </span>
           </Tooltip>
         )}
