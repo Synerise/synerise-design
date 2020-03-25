@@ -53,8 +53,8 @@ const FONT_SIZE = {
 
 const applyBadgePosition = (props: AvatarProps): FlattenSimpleInterpolation => {
   return css`
-    top: ${BADGE_POSITION[`${props.shape}${props.size}`] || '11px'};
-    right: ${BADGE_POSITION[`${props.shape}${props.size}`] || '11px'};
+    top: ${BADGE_POSITION[`${props.shape}${props.size}`] || '0'};
+    right: ${BADGE_POSITION[`${props.shape}${props.size}`] || '0'};
   `;
 };
 
