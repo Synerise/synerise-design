@@ -74,12 +74,11 @@ describe('Avatar', () => {
 
   it('should render with proper styles', () => {
     // ARRANGE
-    const { container } = renderWithProvider(<Avatar backgroundColor={RED} shape={SQUARE_SHAPE} size={32} />);
+    const { container } = renderWithProvider(<Avatar backgroundColor={RED} shape={SQUARE_SHAPE} size={'small'} />);
 
     const avatar = container.querySelector('.ant-avatar');
 
     // ASSERT
-    expect(avatar).toHaveStyle('width:32px;height:32px;line-height:32px;');
     expect(avatar).toHaveStyle('background: #ff8475');
     expect(avatar).toHaveClass('ant-avatar-square');
   });
