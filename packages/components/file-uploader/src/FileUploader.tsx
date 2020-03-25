@@ -6,7 +6,7 @@ import Icon from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 import AddM from '@synerise/ds-icon/dist/icons/AddM';
 import ArrowDownCircleM from '@synerise/ds-icon/dist/icons/ArrowDownCircleM';
-import InfoFillM from '@synerise/ds-icon/dist/icons/InfoFillM';
+import InfoFillS from '@synerise/ds-icon/dist/icons/InfoFillS';
 
 import FileView from './FileView/FileView';
 import { FileUploaderProps } from './FileUploader.types';
@@ -74,7 +74,7 @@ const FileUploader: React.FC<FileUploaderProps> = ({
           {tooltip && (
             <Tooltip trigger="hover" placement="top" title={tooltip}>
               <span data-testid="tooltip-info">
-                <Icon component={<InfoFillM />} size={24} />
+                <Icon component={<InfoFillS />} size={24} />
               </span>
             </Tooltip>
           )}
