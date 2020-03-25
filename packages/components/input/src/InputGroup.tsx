@@ -2,19 +2,29 @@ import * as React from 'react';
 import Input from 'antd/lib/input';
 import { GroupProps } from 'antd/es/input';
 import * as InputStyles from './Input.styles';
+import Label from './Label/Label';
 
 interface Props extends GroupProps {
   label?: React.ReactNode;
   errors?: string[];
   description?: React.ReactNode;
   resetMargin?: boolean;
+  tooltip?: React.ReactNode;
 }
 
-const InputGroup: React.FC<Props> = ({ children, label, errors, description, resetMargin, ...antdInputGroupProps }) => (
+const InputGroup: React.FC<Props> = ({
+  children,
+  label,
+  errors,
+  description,
+  resetMargin,
+  tooltip,
+  ...antdInputGroupProps
+}) => (
   <InputStyles.OuterWrapper resetMargin={resetMargin}>
     {label && (
       <InputStyles.ContentAbove>
-        <InputStyles.Label>{label}</InputStyles.Label>
+        <Label label={label} tooltip={tooltip} />
       </InputStyles.ContentAbove>
     )}
     {/* eslint-disable-next-line react/jsx-props-no-spreading */}

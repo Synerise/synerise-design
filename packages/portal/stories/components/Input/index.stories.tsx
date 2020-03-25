@@ -54,6 +54,7 @@ const stories = {
 
     return (
       <InputGroup
+        tooltip={text('tooltip', 'This is example tooltip!')}
         label={text('label', 'Label')}
         description={text('description', 'Description')}
         errors={array('errors', ['First error', 'Second error'])}
