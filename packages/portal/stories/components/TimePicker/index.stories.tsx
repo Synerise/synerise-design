@@ -19,7 +19,6 @@ const stories = {
       bottomCenter: 'bottomCenter',
       bottomRight: 'bottomRight',
     }, undefined);
-    const use12HourClock = boolean('Use 12 hour clock', false);
     const disabled = boolean('Disabled', false);
     const alwaysOpen = boolean('Always open', false);
     const disabledHours = array('Disabled hours', [], ',').map(Number);
@@ -43,7 +42,6 @@ const stories = {
           disabledMinutes={disabledMinutes}
           disabledSeconds={disabledSeconds}
           disabled={disabled}
-          use12HourClock={use12HourClock}
           timeFormat={timeFormat}
           placeholder={placeholder}
           placement={placement}
