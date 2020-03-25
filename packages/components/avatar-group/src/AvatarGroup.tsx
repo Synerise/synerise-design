@@ -6,7 +6,7 @@ import { AvatarProps } from '@synerise/ds-avatar/dist/Avatar';
 import { BadgeProps } from '@synerise/ds-badge/dist/Badge';
 import * as S from './AvatarGroup.styles';
 
-export type Size = number | 'small' | 'medium' | 'large' | undefined;
+export type Size = 'small' | 'medium' | 'large' | undefined;
 export type Avatar = BadgeProps & { initials: string; avatarProps: AvatarProps };
 export type AvatarGroupProps = {
   numberOfVisibleUsers: number;

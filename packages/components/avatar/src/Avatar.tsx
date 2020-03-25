@@ -21,7 +21,7 @@ type color =
   | 'violet';
 
 type colorHue = '900' | '800' | '700' | '600' | '500' | '400' | '300' | '200' | '100' | '050';
-type size = number | 'small' | 'medium' | 'large' | 'extraLarge' | undefined;
+type size = 'small' | 'medium' | 'large' | 'extraLarge' | undefined;
 export interface AvatarProps extends Omit<AntAvatarProps, 'size' | 'icon'> {
   hasStatus?: boolean;
   size?: size;
