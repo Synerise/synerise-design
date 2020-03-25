@@ -12,7 +12,6 @@ export const Label = styled.label`
     display: inline-block;
   }
   svg {
-    margin-left: 6px;
     fill: ${(props): string => props.theme.palette['grey-400']};
   }
 `;

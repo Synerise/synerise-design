@@ -6,7 +6,7 @@ import Icon from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 import AddM from '@synerise/ds-icon/dist/icons/AddM';
 import ArrowDownCircleM from '@synerise/ds-icon/dist/icons/ArrowDownCircleM';
-import InfoM from '@synerise/ds-icon/dist/icons/InfoM';
+import InfoFillM from '@synerise/ds-icon/dist/icons/InfoFillM';
 
 import FileView from './FileView/FileView';
 import { FileUploaderProps } from './FileUploader.types';
@@ -21,7 +21,7 @@ const FileUploader: React.FC<FileUploaderProps> = ({
   label,
   onRemove,
   description,
-  infoTooltip,
+  tooltip,
   filesAmount,
   mode = 'single',
   removable = true,
@@ -71,10 +71,10 @@ const FileUploader: React.FC<FileUploaderProps> = ({
       {label && (
         <S.Label>
           <span>{label}</span>
-          {infoTooltip && (
-            <Tooltip trigger="hover" placement="top" title={infoTooltip}>
+          {tooltip && (
+            <Tooltip trigger="hover" placement="top" title={tooltip}>
               <span data-testid="tooltip-info">
-                <Icon component={<InfoM />} size={24} />
+                <Icon component={<InfoFillM />} size={24} />
               </span>
             </Tooltip>
           )}

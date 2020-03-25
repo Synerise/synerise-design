@@ -20,7 +20,7 @@ const Label: React.FC<LabelProps> = ({ id, className, label, tooltip, style }) =
         {tooltip && (
           <Tooltip title={tooltip} placement="top" trigger="hover" transitionName="zoom-big-fast">
             <span>
-              <Icon size={18} component={<InfoFillM />} />
+              <Icon size={24} component={<InfoFillM />} />
             </span>
           </Tooltip>
         )}

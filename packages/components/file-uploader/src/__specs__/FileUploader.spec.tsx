@@ -69,7 +69,7 @@ describe('FileUploader', () => {
         files={[]}
         texts={defaultTexts}
         label="Some label"
-        infoTooltip="Some tooltip text"
+        tooltip="Some tooltip text"
       />
     );
 

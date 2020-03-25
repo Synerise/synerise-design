@@ -19,7 +19,7 @@ export interface FileUploaderProps {
   description?: string;
   disabled?: boolean;
   removable?: boolean;
-  infoTooltip?: string;
+  tooltip?: string;
   label?: string;
   error?: string;
   texts: FileUploaderTexts;

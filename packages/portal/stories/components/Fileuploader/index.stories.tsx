@@ -7,7 +7,7 @@ import FileUploader from '@synerise/ds-file-uploader';
 const getDefaultProps = () => ({
   label: text('Label', 'File upload'),
   description: text('Description', 'Only pictures of cats are allowed'),
-  infoTooltip: text('Informational tooltip text', ''),
+  tooltip: text('Informational tooltip text', 'Test Tooltip'),
   buttonLabel: text('Button label', 'Upload a new file or drop one here'),
   buttonDescription: text('Button description', 'Upload button description'),
   size: text('Preview size label', 'Size:'),
@@ -74,4 +74,3 @@ export default {
   stories,
   Component: FileUploader,
 };
-  
