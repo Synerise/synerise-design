@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.6](https://github.com/synerise/synerise-design/compare/@synerise/ds-avatar@0.7.5...@synerise/ds-avatar@0.7.6) (2020-03-25)
+
+
+### Bug Fixes
+
+* **avatar:** allow only strict avatar size ([8a48450](https://github.com/synerise/synerise-design/commit/8a48450b5258134d3c440e1b7800ed2b99e00299))
+* **avatar:** no default offset in badge ([a63ef3d](https://github.com/synerise/synerise-design/commit/a63ef3dd5d86b7befdf4994909bc4be5111bfaff))
+
+
+
+
+
 ## [0.7.5](https://github.com/synerise/synerise-design/compare/@synerise/ds-avatar@0.7.4...@synerise/ds-avatar@0.7.5) (2020-03-24)
 
 **Note:** Version bump only for package @synerise/ds-avatar
