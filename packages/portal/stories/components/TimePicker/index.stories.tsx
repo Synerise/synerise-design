@@ -7,7 +7,7 @@ import TimePicker from '@synerise/ds-time-picker';
 
 const stories = {
   default: withState({
-    value: null,
+    value: undefined,
   })(({ store }) => {
     const timeFormat = text('Set timeFormat', undefined);
     const placement = select('Set placement of timepicker', {

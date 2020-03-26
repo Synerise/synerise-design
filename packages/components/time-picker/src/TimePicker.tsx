@@ -28,7 +28,7 @@ export type TimePickerProps = TimePickerDisabledUnits & {
   overlayClassName?: string;
   className?: string;
   units?: dayjs.UnitType[];
-  onChange?: (value: Date, timeString: string) => void;
+  onChange?: (value: Date | undefined, timeString: string) => void;
   clearTooltip?: string | React.ReactNode;
 };
 
@@ -90,7 +90,6 @@ const TimePicker: React.FC<TimePickerProps> = ({
     if (!onChange) {
       return;
     }
-
     const newDateObject = dayjs(localValue || undefined)
       .set(unit, newValue)
       .toDate();
@@ -114,10 +113,11 @@ const TimePicker: React.FC<TimePickerProps> = ({
   const clear = React.useCallback(() => {
     setLocalValue(undefined);
     setOpen(false);
-  }, [setOpen, setLocalValue]);
+    onChange && onChange(undefined, '');
+  }, [setOpen, setLocalValue, onChange]);
 
   const timePickerIcon = React.useMemo(() => {
-    return open && dateString ? (
+    return (alwaysOpen || open) && dateString ? (
       <S.ClearIcon
         component={
           <Tooltip title={clearTooltip}>
@@ -142,7 +142,7 @@ const TimePicker: React.FC<TimePickerProps> = ({
         disabled={disabled}
       >
         <S.TimePickerInput
-          className={`${open ? 'active' : ''}`}
+          className={`${alwaysOpen || open ? 'active' : ''}`}
           data-testid="tp-input"
           value={dateString}
           placeholder={placeholder as string}
