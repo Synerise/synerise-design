@@ -129,7 +129,7 @@ const TimePicker: React.FC<TimePickerProps> = ({
     ) : (
       <Icon component={<ClockM />} size={24} />
     );
-  }, [open, dateString, clear, clearTooltip]);
+  }, [open, dateString, clear, clearTooltip, alwaysOpen]);
 
   return (
     <S.Container className={`ds-time-picker ${className || ''}`} data-testid="tp-container">
