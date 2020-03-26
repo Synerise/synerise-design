@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.8](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.9.7...@synerise/ds-button@0.9.8) (2020-03-26)
+
+
+### Bug Fixes
+
+* **button:** remove unnecessary line-height ([2640196](https://github.com/synerise/synerise-design/commit/26401960465cbbced3bb6c2deb5b10bcc6f9abfd))
+
+
+
+
+
 ## [0.9.7](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.9.6...@synerise/ds-button@0.9.7) (2020-03-26)
 
 

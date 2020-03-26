@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-card-tabs",
-  "version": "0.6.9",
+  "version": "0.6.10",
   "description": "CardTabs UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -25,8 +25,8 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-add-button": "^0.1.19",
-    "@synerise/ds-button": "^0.9.7",
+    "@synerise/ds-add-button": "^0.1.20",
+    "@synerise/ds-button": "^0.9.8",
     "@synerise/ds-inline-edit": "^0.1.25",
     "@synerise/ds-typography": "^0.8.2",
     "react-sortablejs-typescript": "2.0.3",
