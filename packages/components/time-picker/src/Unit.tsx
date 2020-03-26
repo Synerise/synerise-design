@@ -19,7 +19,7 @@ const Unit: React.FC<UnitProps> = ({ options, disabled, value, unit, onSelect })
   const selected = value && dayjs(value).get(unit);
 
   return (
-    <S.Unit>
+    <S.Unit data-testid={`ds-time-picker-unit-${unit}`}>
       {options.map((option: number) => {
         const normalizedStringValue = option < 10 ? `0${option}` : option.toString();
         const isDisabled = disabled && disabled.includes(option);

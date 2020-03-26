@@ -33,6 +33,10 @@
     },
     "SEARCH-BAR": {
       "CLEAR-TOOLTIP": "Clear"
+    },
+    "TIME-PICKER": {
+      "CLEAR-TOOLTIP": "Clear",
+      "PLACEHOLDER": "Select time"
     }
   }
 }

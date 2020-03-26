@@ -7,9 +7,8 @@ import TimePicker from '@synerise/ds-time-picker';
 
 const stories = {
   default: withState({
-    value: null,
+    value: undefined,
   })(({ store }) => {
-    const placeholder = text('Set placeholder', 'Select time');
     const timeFormat = text('Set timeFormat', undefined);
     const placement = select('Set placement of timepicker', {
       topLeft: 'topLeft',
@@ -25,6 +24,8 @@ const stories = {
     const disabledMinutes = array('Disabled minutes', [], ',').map(Number);
     const disabledSeconds = array('Disabled seconds', [], ',').map(Number);
     const units = array('Available units', undefined, ',');
+    const placeholder = text('Set placeholder', 'Select time');
+    const clearTooltip = text('Set clear tooltip', 'Clear');
 
     const onChange = (newValue: Date) => {
       store.set({
@@ -44,6 +45,7 @@ const stories = {
           disabled={disabled}
           timeFormat={timeFormat}
           placeholder={placeholder}
+          clearTooltip={clearTooltip}
           placement={placement}
           onChange={onChange}
         />

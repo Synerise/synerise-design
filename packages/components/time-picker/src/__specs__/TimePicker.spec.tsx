@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { fireEvent } from '@testing-library/react';
+import { fireEvent, waitFor } from '@testing-library/react';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import TimePicker from '../index';
+import dayjs from 'dayjs';
 
 describe('TimePicker', () => {
   const CONTAINER_TESTID = 'tp-container';
@@ -105,5 +106,58 @@ describe('TimePicker', () => {
       fireEvent.blur(input);
       expect(onChange).toHaveBeenCalled();
     }, 1000);
+  });
+
+  it('should render open on focus and show buttons for hours, minutes and seconds', async () => {
+    // ARRANGE
+    const { findByTestId, getByPlaceholderText } = renderWithProvider(<TimePicker placeholder="Select time" />);
+    const input = getByPlaceholderText('Select time');
+    let hours: NodeListOf<HTMLButtonElement>;
+    let minutes: NodeListOf<HTMLButtonElement>;
+    let seconds: NodeListOf<HTMLButtonElement>;
+
+    // ACT
+    fireEvent.focus(input);
+
+    // ASSERT
+    await waitFor(() => {
+      findByTestId('ds-time-picker-unit-hour').then((result) => {
+        hours = result?.querySelectorAll('button');
+        expect(hours.length).toBe(24);
+      });
+      findByTestId('ds-time-picker-unit-minute').then((result) => {
+        minutes = result?.querySelectorAll('button');
+        expect(minutes.length).toBe(60);
+      });
+      findByTestId('ds-time-picker-unit-second').then((result) => {
+        seconds = result?.querySelectorAll('button');
+        expect(seconds.length).toBe(60);
+      });
+    });
+  });
+
+  it('should render with value', async () => {
+    // ARRANGE
+    const { getByPlaceholderText } = renderWithProvider(<TimePicker placeholder="Select time" alwaysOpen value={dayjs('12-04-2020 10:24:52', 'DD-MM-YYYY HH:mm:ss').toDate()} />);
+    const input = getByPlaceholderText('Select time') as HTMLInputElement;
+
+    // ASSERT
+    expect(input.value).toBe('10:24:52');
+  });
+
+  it('should clear value', async () => {
+    // ARRANGE
+    const handleChange = jest.fn();
+    const { getByTestId, getByPlaceholderText } = renderWithProvider(<TimePicker onChange={handleChange} placeholder="Select time" alwaysOpen value={dayjs('12-04-2020 10:24:52', 'DD-MM-YYYY HH:mm:ss').toDate()} />);
+    const inputContainer = getByTestId(CONTAINER_TESTID);
+    const input = getByPlaceholderText('Select time') as HTMLInputElement;
+    const clearIcon = inputContainer.querySelector('.ds-icon');
+
+    // ACT
+    clearIcon && fireEvent.click(clearIcon);
+
+    // ASSERT
+    expect(input.value).toBe('');
+    expect(handleChange).toBeCalledWith(undefined, '');
   });
 });
