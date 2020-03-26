@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-time-picker@0.1.41...@synerise/ds-time-picker@0.2.0) (2020-03-26)
+
+
+### Bug Fixes
+
+* **time-picker:** fix eslint warning ([09f0099](https://github.com/Synerise/synerise-design/commit/09f0099b7512d75db67342ffa143e2d732cdad22))
+* **time-picker:** fix eslint warnings ([4bea43a](https://github.com/Synerise/synerise-design/commit/4bea43ab9a8f770cdcb4fd1c5d32a7dcd050f66d))
+* **time-picker:** fix eslint warnings ([4b74311](https://github.com/Synerise/synerise-design/commit/4b7431186770f9285348bbe158b7652c6f48b067))
+* **time-picker:** fix onChange ([215b783](https://github.com/Synerise/synerise-design/commit/215b783bceb2875bf5c4a28d756be18f3c5820d1))
+
+
+### Features
+
+* **time-picker:** add reset button ([9a17ce4](https://github.com/Synerise/synerise-design/commit/9a17ce44c463de15ab22f1fbb392dbae9ead785d))
+
+
+
+
+
 ## [0.1.41](https://github.com/Synerise/synerise-design/compare/@synerise/ds-time-picker@0.1.40...@synerise/ds-time-picker@0.1.41) (2020-03-25)
 
 **Note:** Version bump only for package @synerise/ds-time-picker

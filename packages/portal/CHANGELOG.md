@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.52.0](https://github.com/synerise/synerise-design/compare/portal@0.51.1...portal@0.52.0) (2020-03-26)
+
+
+### Bug Fixes
+
+* **time-picker:** fix onChange ([215b783](https://github.com/synerise/synerise-design/commit/215b783bceb2875bf5c4a28d756be18f3c5820d1))
+
+
+### Features
+
+* **time-picker:** update stories ([e7b08e1](https://github.com/synerise/synerise-design/commit/e7b08e1420211419aabc3e80c2df00e52e655a26))
+
+
+
+
+
 ## [0.51.1](https://github.com/synerise/synerise-design/compare/portal@0.51.0...portal@0.51.1) (2020-03-25)
 
 

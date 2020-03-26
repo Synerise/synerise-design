@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.10.6...@synerise/ds-core@0.11.0) (2020-03-26)
+
+
+### Features
+
+* **time-picker:** add reset button ([9a17ce4](https://github.com/synerise/synerise-design/commit/9a17ce44c463de15ab22f1fbb392dbae9ead785d))
+
+
+
+
+
 ## [0.10.6](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.10.5...@synerise/ds-core@0.10.6) (2020-03-24)
 
 
