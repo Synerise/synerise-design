@@ -2,7 +2,7 @@ import * as React from 'react';
 import AutosizeInput from 'react-input-autosize';
 import Tooltip from '@synerise/ds-tooltip';
 import Icon from '@synerise/ds-icon';
-import EditM from '@synerise/ds-icon/dist/icons/EditM';
+import EditS from '@synerise/ds-icon/dist/icons/EditS';
 import { toCamelCase } from '@synerise/ds-utils';
 import * as S from './InlineEdit.styles';
 import { attachWidthWatcher } from './utils';
@@ -125,7 +125,7 @@ const InlineEdit: React.FC<InlineEditProps> = ({
       {!hideIcon && (
         <Tooltip data-testid="inline-edit-icon" title={tooltipTitle}>
           <S.IconWrapper onClick={handleFocusInput} size={size}>
-            <Icon component={<EditM />} size={24} />
+            <Icon component={<EditS />} size={24} />
           </S.IconWrapper>
         </Tooltip>
       )}
