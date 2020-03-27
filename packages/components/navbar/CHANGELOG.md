@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-navbar@0.4.8...@synerise/ds-navbar@0.4.9) (2020-03-27)
+
+
+### Bug Fixes
+
+* add babel-plugin-styled-components ([a7c07bb](https://github.com/Synerise/synerise-design/commit/a7c07bb1e9745acda0a2ffaeb244871483faacfd))
+* **navbar:** styles duplicate fix ([b6f261a](https://github.com/Synerise/synerise-design/commit/b6f261ab49f0769be3ecb75d86bc91a7063114b1))
+
+
+
+
+
 ## [0.4.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-navbar@0.4.7...@synerise/ds-navbar@0.4.8) (2020-03-26)
 
 **Note:** Version bump only for package @synerise/ds-navbar

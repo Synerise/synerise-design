@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-button",
-  "version": "0.9.8",
+  "version": "0.9.9",
   "description": "Button UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "synerise/synerise-design",
@@ -25,7 +25,7 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-icon": "^0.14.2"
+    "@synerise/ds-icon": "^0.14.3"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
@@ -33,7 +33,7 @@
     "react": ">=16.9.0 < 17.0.0"
   },
   "devDependencies": {
-    "@synerise/ds-utils": "^0.8.13",
+    "@synerise/ds-utils": "^0.8.14",
     "csstype": "2.6.9"
   }
 }

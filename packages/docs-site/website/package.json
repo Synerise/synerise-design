@@ -1,7 +1,7 @@
 {
   "name": "docs",
   "private": true,
-  "version": "0.1.3",
+  "version": "0.1.4",
   "scripts": {
     "postinstall": "node ../../../scripts/docs/componentmd.js",
     "docs-watch": "npm run postinstall && node ../../../scripts/docs/watch.js",
