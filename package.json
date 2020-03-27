@@ -78,6 +78,7 @@
     "@typescript-eslint/eslint-plugin": "2.24.0",
     "@typescript-eslint/parser": "2.24.0",
     "babel-jest": "25.1.0",
+    "babel-plugin-styled-components": "^1.10.7",
     "babel-plugin-transform-rename-import": "2.3.0",
     "copy-template-dir": "1.4.0",
     "enzyme": "3.11.0",
