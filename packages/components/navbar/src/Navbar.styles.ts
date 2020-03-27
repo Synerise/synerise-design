@@ -29,11 +29,13 @@ export const AdditionalNode = styled.div`
 `;
 
 export const NavbarDivider = styled.div`
-  width: 1px;
-  height: 24px;
-  background-color: #fff;
-  opacity: 0.3;
-  margin: 0 12px;
+  &:not(.btn-focus) {
+    width: 1px;
+    height: 24px;
+    background-color: #fff;
+    opacity: 0.3;
+    margin: 0 12px;
+  }
 `;
 
 export const NavbarActions = styled.div`
