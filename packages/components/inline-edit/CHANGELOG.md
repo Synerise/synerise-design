@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.28](https://github.com/Synerise/synerise-design/compare/@synerise/ds-inline-edit@0.1.27...@synerise/ds-inline-edit@0.1.28) (2020-03-30)
+
+
+### Bug Fixes
+
+* **inline-edit:** fix styles according to zeplin ([d9ffdb6](https://github.com/Synerise/synerise-design/commit/d9ffdb66d3f5e1f1a4900fce85f3854c7717bd01))
+
+
+
+
+
 ## [0.1.27](https://github.com/Synerise/synerise-design/compare/@synerise/ds-inline-edit@0.1.26...@synerise/ds-inline-edit@0.1.27) (2020-03-27)
 
 **Note:** Version bump only for package @synerise/ds-inline-edit

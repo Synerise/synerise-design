@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.52.4](https://github.com/synerise/synerise-design/compare/portal@0.52.3...portal@0.52.4) (2020-03-30)
+
+
+### Bug Fixes
+
+* **inline-edit:** fix styles according to zeplin ([d9ffdb6](https://github.com/synerise/synerise-design/commit/d9ffdb66d3f5e1f1a4900fce85f3854c7717bd01))
+
+
+
+
+
 ## [0.52.3](https://github.com/synerise/synerise-design/compare/portal@0.52.2...portal@0.52.3) (2020-03-30)
 
 **Note:** Version bump only for package portal
