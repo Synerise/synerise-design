@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { select, boolean } from '@storybook/addon-knobs';
+import { select, boolean, text } from '@storybook/addon-knobs';
 import InlineEdit from '@synerise/ds-inline-edit';
 import { action } from '@storybook/addon-actions';
 
@@ -8,7 +8,7 @@ const DEFAULT_VALUE = "Input value";
 const stories = {
   default: () => {
     const [value, setValue] = React.useState<string>(DEFAULT_VALUE);
-
+    const inputValue = text( 'InputValue', value)
     const size = select('Size', ['small', 'normal'], 'normal');
     const widthLimit = boolean('Width limit', false);
     const error = boolean('Error', false);
@@ -19,7 +19,7 @@ const stories = {
         <InlineEdit
           input={{
             name: 'name-of-input',
-            value: value,
+            value: inputValue,
             maxLength: 120,
             placeholder: 'This is placeholder',
             onBlur: action('onBlur'),

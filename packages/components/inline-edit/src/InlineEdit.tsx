@@ -104,7 +104,6 @@ const InlineEdit: React.FC<InlineEditProps> = ({
       size={size}
       disabled={disabled}
       error={error}
-      emptyValue={input.value === ''}
     >
       <AutosizeInput
         id={input.name ? toCamelCase(input.name) : 'id'}
