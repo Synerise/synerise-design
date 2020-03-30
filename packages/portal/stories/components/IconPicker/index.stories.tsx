@@ -90,10 +90,12 @@ const SelectedStyle = {
 const stories = {
   default: () => {
     const [selectedIcon, setSelectedIcon] = React.useState<React.ReactNode>(null);
+    const maxFrequentlyUsedIcons = 6;
 
     const onSelect = (value) => {
       setSelectedIcon(value);
       frequentlyUsed.unshift({ item: value });
+      frequentlyUsed.length > maxFrequentlyUsedIcons && frequentlyUsed.pop();
     };
 
     return (
