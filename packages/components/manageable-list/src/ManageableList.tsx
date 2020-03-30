@@ -116,7 +116,16 @@ const ManageableList: React.FC<ManageableListProps> = ({
   ]);
 
   const buttonLabelDiff = React.useMemo(
-    () => (allItemsVisible ? `- ${getItemsOverLimit} ${less} ` : `+ ${getItemsOverLimit} ${more} `),
+    () =>
+      allItemsVisible ? (
+        <>
+          - {getItemsOverLimit} {less}{' '}
+        </>
+      ) : (
+        <>
+          + {getItemsOverLimit} {more}{' '}
+        </>
+      ),
     [allItemsVisible, getItemsOverLimit, less, more]
   );
 

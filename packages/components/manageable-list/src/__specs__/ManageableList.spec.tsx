@@ -3,88 +3,89 @@ import ManageableList from '../ManageableList';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import { fireEvent } from '@testing-library/react';
 import FileM from '@synerise/ds-icon/dist/icons/FileM';
+import { IntlProvider } from 'react-intl';
 
 const DEFAULT_ITEMS: any = [
   {
-    id: "00000000-0000-0000-0000-000000000000",
-    name: "Default",
+    id: '00000000-0000-0000-0000-000000000000',
+    name: 'Default',
     canUpdate: false,
     canDelete: false,
-    icon: <FileM />
+    icon: <FileM />,
   },
   {
-    id: "00000000-0000-0000-0000-000000000001",
-    name: "Basic",
+    id: '00000000-0000-0000-0000-000000000001',
+    name: 'Basic',
     canUpdate: true,
     canDelete: true,
-    icon: <FileM />
+    icon: <FileM />,
   },
   {
-    id: "00000000-0000-0000-0000-000000000002",
-    name: "My folder",
+    id: '00000000-0000-0000-0000-000000000002',
+    name: 'My folder',
     canUpdate: true,
     canDelete: true,
-    icon: <FileM />
+    icon: <FileM />,
   },
   {
-    id: "00000000-0000-0000-0000-000000000003",
-    name: "My folder 2",
+    id: '00000000-0000-0000-0000-000000000003',
+    name: 'My folder 2',
     canUpdate: true,
     canDelete: true,
-    icon: <FileM />
+    icon: <FileM />,
   },
-]
+];
 
 const ITEMS: any = [
   {
-    id: "00000000-0000-0000-0000-000000000000",
-    name: "Default",
+    id: '00000000-0000-0000-0000-000000000000',
+    name: 'Default',
     canUpdate: false,
     canDelete: false,
-    icon: <FileM />
+    icon: <FileM />,
   },
   {
-    id: "00000000-0000-0000-0000-000000000001",
-    name: "Basic",
+    id: '00000000-0000-0000-0000-000000000001',
+    name: 'Basic',
     canUpdate: true,
     canDelete: true,
-    icon: <FileM />
+    icon: <FileM />,
   },
   {
-    id: "00000000-0000-0000-0000-000000000002",
-    name: "My folder",
+    id: '00000000-0000-0000-0000-000000000002',
+    name: 'My folder',
     canUpdate: true,
     canDelete: true,
-    icon: <FileM />
+    icon: <FileM />,
   },
   {
-    id: "00000000-0000-0000-0000-000000000003",
-    name: "My folder 2",
+    id: '00000000-0000-0000-0000-000000000003',
+    name: 'My folder 2',
     canUpdate: true,
     canDelete: true,
-    icon: <FileM />
+    icon: <FileM />,
   },
   {
-    id: "00000000-0000-0000-0000-000000000004",
-    name: "My folder 3",
+    id: '00000000-0000-0000-0000-000000000004',
+    name: 'My folder 3',
     canUpdate: true,
     canDelete: true,
-    icon: <FileM />
+    icon: <FileM />,
   },
   {
-    id: "00000000-0000-0000-0000-000000000005",
-    name: "My folder 4",
+    id: '00000000-0000-0000-0000-000000000005',
+    name: 'My folder 4',
     canUpdate: true,
     canDelete: true,
-    icon: <FileM />
+    icon: <FileM />,
   },
   {
-    id: "00000000-0000-0000-0000-000000000006",
-    name: "My folder 5",
+    id: '00000000-0000-0000-0000-000000000006',
+    name: 'My folder 5',
     canUpdate: true,
     canDelete: true,
-    icon: <FileM />
-  }
+    icon: <FileM />,
+  },
 ];
 
 const texts = {
@@ -97,7 +98,8 @@ const texts = {
   activate: 'Activate',
   cancel: 'Cancel',
   deleteConfirmationTitle: 'Detele filter',
-  deleteConfirmationDescription: 'Deleting this filter will permanently remove it from templates library. All tables using this filter will be reset.',
+  deleteConfirmationDescription:
+    'Deleting this filter will permanently remove it from templates library. All tables using this filter will be reset.',
   deleteLabel: 'Delete',
 };
 
@@ -113,9 +115,10 @@ describe('ManageableList', () => {
         onItemEdit={() => {}}
         onItemSelect={() => {}}
         onItemRemove={() => {}}
-        type='default'
+        type="default"
         texts={texts}
-      />);
+      />
+    );
 
     // ASSERT
     expect(getByTestId('add-item-with-name-button')).toBeTruthy();
@@ -134,9 +137,10 @@ describe('ManageableList', () => {
         onItemEdit={() => {}}
         onItemSelect={() => {}}
         onItemRemove={() => {}}
-        type='default'
+        type="default"
         texts={texts}
-      />);
+      />
+    );
 
     // ASSERT
     expect(getByTestId('add-item-with-name-button')).toBeTruthy();
@@ -157,9 +161,10 @@ describe('ManageableList', () => {
         onItemEdit={() => {}}
         onItemSelect={() => {}}
         onItemRemove={() => {}}
-        type='default'
+        type="default"
         texts={texts}
-      />);
+      />
+    );
     const showMore = getByTestId('show-more-button');
 
     // ASSERT
@@ -180,9 +185,10 @@ describe('ManageableList', () => {
         onItemEdit={() => {}}
         onItemSelect={() => {}}
         onItemRemove={() => {}}
-        type='default'
+        type="default"
         texts={texts}
-      />);
+      />
+    );
     const showMore = getByTestId('show-more-button');
 
     // ASSERT
@@ -205,16 +211,17 @@ describe('ManageableList', () => {
         onItemEdit={() => {}}
         onItemSelect={onItemSelect}
         onItemRemove={() => {}}
-        type='default'
+        type="default"
         texts={texts}
-      />);
+      />
+    );
 
     //ACT
     const firstListItem = queryAllByTestId('list-item-name')[0];
     fireEvent.click(firstListItem);
 
     // ASSERT
-    expect(onItemSelect).toHaveBeenCalledWith({id: '00000000-0000-0000-0000-000000000000'});
+    expect(onItemSelect).toHaveBeenCalledWith({ id: '00000000-0000-0000-0000-000000000000' });
   });
 
   it('should fire remove item', () => {
@@ -229,14 +236,15 @@ describe('ManageableList', () => {
         onItemEdit={() => {}}
         onItemSelect={() => {}}
         onItemRemove={onItemRemove}
-        type='default'
+        type="default"
         texts={texts}
-      />);
+      />
+    );
     const firstRemoveButton = queryAllByTestId('list-item-remove')[0];
     const removeItemIcon = firstRemoveButton.querySelector('svg');
     // ASSERT
     expect(removeItemIcon).toBeTruthy();
-    if(removeItemIcon){
+    if (removeItemIcon) {
       fireEvent.click(removeItemIcon);
     }
     expect(onItemRemove).toHaveBeenCalled();
@@ -254,9 +262,10 @@ describe('ManageableList', () => {
         onItemEdit={() => {}}
         onItemSelect={() => {}}
         onItemRemove={() => {}}
-        type='default'
+        type="default"
         texts={texts}
-      />);
+      />
+    );
     const NEW_FOLDER_NAME = 'New folder';
     const addItemButton = getByTestId('add-item-with-name-button').getElementsByTagName('button')[0];
 
@@ -267,10 +276,45 @@ describe('ManageableList', () => {
     const addItemInput = getByTestId('add-item-input');
     expect(addItemInput).toBeTruthy();
     // SET ADD ITEM INPUT VALUE
-    fireEvent.change(addItemInput, {target: {value: NEW_FOLDER_NAME}});
+    fireEvent.change(addItemInput, { target: { value: NEW_FOLDER_NAME } });
     expect((addItemInput as HTMLInputElement).value).toBe(NEW_FOLDER_NAME);
     // SUBMIT NEW ITEM
-    fireEvent.keyDown(addItemInput, {key: 'Enter', keyCode: 13});
-    expect(onItemAdd).toHaveBeenCalledWith({name: NEW_FOLDER_NAME});
+    fireEvent.keyDown(addItemInput, { key: 'Enter', keyCode: 13 });
+    expect(onItemAdd).toHaveBeenCalledWith({ name: NEW_FOLDER_NAME });
+  });
+
+  it('should show "show more" without texts props', () => {
+    // ARRANGE
+    const { queryAllByTestId, getByTestId } = renderWithProvider(
+      <IntlProvider
+        locale="en"
+        messages={{
+          'DS.MANAGABLE-LIST.MORE': 'more',
+          'DS.MANAGABLE-LIST.LESS': 'less',
+          'DS.MANAGABLE-LIST.SHOW-MORE': 'show more',
+          'DS.MANAGABLE-LIST.SHOW-LESS': 'show less',
+        }}
+      >
+        <ManageableList
+          items={ITEMS}
+          loading={false}
+          maxToShowItems={5}
+          onItemAdd={() => {}}
+          onItemEdit={() => {}}
+          onItemSelect={() => {}}
+          onItemRemove={() => {}}
+          type="default"
+          texts={{}}
+        />
+      </IntlProvider>
+    );
+    const showMore = getByTestId('show-more-button');
+
+    // ASSERT
+    expect(showMore.textContent).toBe('+ 2 more show more');
+    expect(queryAllByTestId('list-item-name').length).toBe(5);
+    fireEvent.click(showMore);
+    expect(showMore.textContent).toBe('- 2 less show less');
+    expect(queryAllByTestId('list-item-name').length).toBe(7);
   });
 });
