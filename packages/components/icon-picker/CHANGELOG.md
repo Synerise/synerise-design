@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.17](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon-picker@0.1.16...@synerise/ds-icon-picker@0.1.17) (2020-03-30)
+
+
+### Bug Fixes
+
+* **icon-picker:** add frequently used icon into SB ([6e2c184](https://github.com/Synerise/synerise-design/commit/6e2c184ef07fe42098ebc36738b4be050e0bc0e0))
+
+
+
+
+
 ## [0.1.16](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon-picker@0.1.15...@synerise/ds-icon-picker@0.1.16) (2020-03-27)
 
 **Note:** Version bump only for package @synerise/ds-icon-picker

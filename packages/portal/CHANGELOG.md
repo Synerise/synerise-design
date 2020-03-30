@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.52.2](https://github.com/synerise/synerise-design/compare/portal@0.52.1...portal@0.52.2) (2020-03-30)
+
+
+### Bug Fixes
+
+* **icon-picker:** add frequently used icon into SB ([6e2c184](https://github.com/synerise/synerise-design/commit/6e2c184ef07fe42098ebc36738b4be050e0bc0e0))
+
+
+
+
+
 ## [0.52.1](https://github.com/synerise/synerise-design/compare/portal@0.52.0...portal@0.52.1) (2020-03-27)
 
 **Note:** Version bump only for package portal

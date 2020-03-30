@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.17](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.10.16...@synerise/ds-manageable-list@0.10.17) (2020-03-30)
+
+
+### Bug Fixes
+
+* **manageable-list:** fix render labels ([64d3989](https://github.com/Synerise/synerise-design/commit/64d398994ca596fd30a67509d58e0393a327e50c))
+
+
+
+
+
 ## [0.10.16](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.10.15...@synerise/ds-manageable-list@0.10.16) (2020-03-27)
 
 **Note:** Version bump only for package @synerise/ds-manageable-list
