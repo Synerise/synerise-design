@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { v4 as uuid } from 'uuid';
 import Scrollbar from '@synerise/ds-scrollbar';
 import Icon from '@synerise/ds-icon/dist/Icon';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
@@ -29,16 +28,19 @@ const List: React.FC<ListProps> = ({
           </S.NoResults>
         </S.OverlayWrapper>
       ) : (
-        data.map((list: FilterElement) => (
-          <S.OverlayWrapper key={uuid()}>
-            {list.category && <S.Title>{list.category}</S.Title>}
-            <S.List>
-              {list.items.map((el: FilterItem, i: number) => (
-                <ListItem key={uuid()} element={el} onSelect={onSelect} index={i} />
-              ))}
-            </S.List>
-          </S.OverlayWrapper>
-        ))
+        data.map(
+          (list: FilterElement) =>
+            !!list.items.length && (
+              <S.OverlayWrapper key={list.category}>
+                {list.category && <S.Title>{list.category}</S.Title>}
+                <S.List>
+                  {list.items.map((el: FilterItem, i: number) => (
+                    <ListItem key={i} element={el} onSelect={onSelect} index={i} /> // eslint-disable-line react/no-array-index-key
+                  ))}
+                </S.List>
+              </S.OverlayWrapper>
+            )
+        )
       )}
     </Scrollbar>
   );
