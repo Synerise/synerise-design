@@ -34,8 +34,14 @@ import {
 import Avatar from "@synerise/ds-avatar/dist/Avatar";
 import theme from "@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme";
 
+const frequentlyUsed = [];
+
 const data =
   [
+    {
+      category: 'frequently used',
+      items: frequentlyUsed
+    },
     {
       category: 'arrows',
       items: [
@@ -85,6 +91,11 @@ const stories = {
   default: () => {
     const [selectedIcon, setSelectedIcon] = React.useState<React.ReactNode>(null);
 
+    const onSelect = (value) => {
+      setSelectedIcon(value);
+      frequentlyUsed.unshift({ item: value });
+    };
+
     return (
       <div style={WrapperStyle}>
         <div style={SelectedStyle}>
@@ -95,7 +106,7 @@ const stories = {
           button={<Button type="primary" mode='icon-label'><Icon component={<Add3M/>}/>Add icon</Button>}
           data={data}
           placeholder={"search"}
-          onSelect={(value: React.ReactNode): void => setSelectedIcon(value)}
+          onSelect={(value: React.ReactNode): void => onSelect(value)}
           trigger={["click"]}
           noResultMsg={'No results'}
         />
