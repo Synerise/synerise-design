@@ -32,7 +32,7 @@ export type TimePickerProps = TimePickerDisabledUnits & {
   clearTooltip?: string | React.ReactNode;
 };
 
-const defaultUnits = ['hour', 'minute', 'second'];
+const defaultUnits = ['hour', 'minute', 'second'] as dayjs.UnitType[];
 
 const TimePicker: React.FC<TimePickerProps> = ({
   placement,
@@ -81,8 +81,7 @@ const TimePicker: React.FC<TimePickerProps> = ({
   ];
 
   const unitsToRender = React.useMemo(() => {
-    const availableUnits = units.length ? units : defaultUnits;
-    console.log(availableUnits);
+    const availableUnits = units?.length ? units : defaultUnits;
     return unitConfig.filter(u => availableUnits && availableUnits.includes(u.unit));
   }, [units]);
 
@@ -96,10 +95,14 @@ const TimePicker: React.FC<TimePickerProps> = ({
     if (!onChange) {
       return;
     }
-    const newDateObject = dayjs(localValue || undefined)
-      .set(unit, newValue)
-      .toDate();
-    setLocalValue(newDateObject);
+    let newDateObject = dayjs(localValue || undefined).set(unit, newValue);
+    const res = defaultUnits.filter(u => unitsToRender.find(val => val.unit !== u));
+    if (res.length !== defaultUnits.length) {
+      res.forEach(u => {
+        newDateObject = dayjs(newDateObject).set(u, 0);
+      });
+    }
+    setLocalValue(newDateObject.toDate());
   };
 
   const overlay = (
