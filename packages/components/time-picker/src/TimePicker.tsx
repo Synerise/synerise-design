@@ -83,7 +83,7 @@ const TimePicker: React.FC<TimePickerProps> = ({
   const unitsToRender = React.useMemo(() => {
     const availableUnits = units?.length ? units : defaultUnits;
     return unitConfig.filter(u => availableUnits && availableUnits.includes(u.unit));
-  }, [units]);
+  }, [units, unitConfig]);
 
   const getTimeString = (date: Date): string => dayjs(date).format(timeFormat);
   const onVisibleChange = (visible: boolean): void => {
