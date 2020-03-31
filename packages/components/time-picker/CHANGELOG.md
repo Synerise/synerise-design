@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-time-picker@0.2.2...@synerise/ds-time-picker@0.2.3) (2020-03-31)
+
+
+### Bug Fixes
+
+* **time-picker:** clock icon click handler ([121dc2d](https://github.com/Synerise/synerise-design/commit/121dc2d852dbf25178be2a41499d26aaa8067c43))
+* **time-picker:** default value for unavailable units ([d02c929](https://github.com/Synerise/synerise-design/commit/d02c9291f3b24c1b143c15dab8f00a5f9a7f5fcb))
+* **time-picker:** fix misising useMemo dependency ([9c7026a](https://github.com/Synerise/synerise-design/commit/9c7026a5e756c1c2c86b2300a14d2055da87a460))
+
+
+
+
+
 ## [0.2.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-time-picker@0.2.1...@synerise/ds-time-picker@0.2.2) (2020-03-27)
 
 **Note:** Version bump only for package @synerise/ds-time-picker
