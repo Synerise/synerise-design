@@ -60,7 +60,7 @@ export const Spinner = styled.div`
 `;
 
 export const RippleEffect = styled.span`
-  &&& {
+  && {
     display: flex;
     width: ${rippleInitialSize}px;
     height: ${rippleInitialSize}px;
@@ -104,7 +104,7 @@ export default styled(({ mode, type, loading, justifyContent, groupVariant, ...r
   // eslint-disable-next-line react/jsx-props-no-spreading
   <Button type={type} {...rest} />
 ))`  
-  &&& {
+  && {
     -webkit-mask-image: -webkit-radial-gradient(white, black);
     border: 0;
     display: inline-flex;
