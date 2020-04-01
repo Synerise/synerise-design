@@ -16,9 +16,9 @@
     "@emotion/core": "^10.0.14",
     "@emotion/styled": "^10.0.14",
     "@synerise/ds-avatar": "^0.7.8",
+    "@synerise/ds-button": "^0.9.10",
     "@synerise/ds-core": "^0.11.1",
     "@synerise/ds-icon": "^0.14.3",
-    "@synerise/ds-button": "^0.9.10",
     "antd": "^4.1.0",
     "docz": "latest",
     "react": "^16.8.6",
@@ -28,6 +28,7 @@
   },
   "devDependencies": {
     "@types/react": "^16.8.23",
-    "@types/react-dom": "^16.8.4"
+    "@types/react-dom": "^16.8.4",
+    "gatsby-theme-docz": "^2.2.0"
   }
 }

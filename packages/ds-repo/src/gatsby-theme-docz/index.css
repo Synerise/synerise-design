@@ -65,3 +65,13 @@
 body * {
   font-family: 'Graphik LCG Web', sans-serif !important;
 }
+
+.ds-package-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 24px;
+  border: 1px solid #ccc;
+  margin-bottom: 16px;
+}
