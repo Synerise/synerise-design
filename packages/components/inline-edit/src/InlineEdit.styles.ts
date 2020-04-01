@@ -12,6 +12,11 @@ const applyColor = (props: ThemeProps & InPlaceEditableInputContainerProps): str
   return props.theme.palette['grey-800'];
 };
 
+const applyDots = (props: ThemeProps & InPlaceEditableInputContainerProps): string => {
+  if (props.error) return props.theme.palette['red-600'];
+  return props.theme.palette['grey-400'];
+};
+
 export const FontStyleWatcher = styled.div`
   visibility: hidden;
   pointer-events: none;
@@ -57,7 +62,7 @@ export const InPlaceEditableInputContainer = styled.div<InPlaceEditableInputCont
       color: ${(props): string => props.theme.palette['grey-800']};
       background-image: linear-gradient(
         to right,
-        ${(props): string => props.theme.palette['grey-400']} 20%,
+        ${(props): string => applyDots(props)} 20%,
         rgba(255, 255, 255, 0) 10%
       );
     }
@@ -88,8 +93,7 @@ export const InPlaceEditableInputContainer = styled.div<InPlaceEditableInputCont
     background-position: bottom left;
     background-size: 5px 1px;
     background-repeat: repeat-x;
-    ${({ size }): FlattenInterpolation<ThemeProps> =>
-      size === 'normal' ? macro.h500 : macro.small}; //todo: set type
+    ${({ size }): FlattenInterpolation<ThemeProps> => (size === 'normal' ? macro.h500 : macro.small)}; //todo: set type
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 100%;
@@ -98,7 +102,7 @@ export const InPlaceEditableInputContainer = styled.div<InPlaceEditableInputCont
     vertical-align: top;
     color: ${(props): string => applyColor(props)};
     ::placeholder {
-      color: ${(props: ThemeProps): string => props.theme.palette['grey-400']};
+      color: ${(props): string => props.theme.palette[props.error ? 'red-600' : 'grey-400']};
     }
   }
 `;
