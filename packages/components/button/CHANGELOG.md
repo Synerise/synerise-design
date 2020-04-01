@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.9.10...@synerise/ds-button@0.10.0) (2020-04-01)
+
+
+### Features
+
+* **button:** update props, export package version ([98a91a1](https://github.com/synerise/synerise-design/commit/98a91a16fbb05a1c0afd6b303d1da9702da826d8))
+
+
+
+
+
 ## [0.9.10](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.9.9...@synerise/ds-button@0.9.10) (2020-03-31)
 
 
