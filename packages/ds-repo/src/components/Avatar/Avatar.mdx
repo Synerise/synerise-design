@@ -10,29 +10,64 @@ import { FileM} from "@synerise/ds-icon/dist/icons";
 
 # Avatar
 
+<div className="ds-package-info">
+    <p>@syneries/ds-avatar</p>
+    <a target="_blank" href="https://www.npmjs.com/package/@synerise/ds-avatar">https://www.npmjs.com/package/@synerise/ds-avatar</a>
+</div>
+
+<a target="_blank" href="https://ds-docs.rc.snrstage.com/storybook-static/?path=/story/components-avatar--withphoto">Storybook</a>
+<br />
+<br />
+
 An avatar is an icon that represents a particular person, but, the avatar has more applications in the Synerise platform.
     It is used as:
 
-1. Human-related icon
-1. Object icon
+- Human-related icon
+- Object icon
 
 Inspired by [Ant Design Avatar](https://ant.design/components/avatar/)
 
-## When to use it
+1. Avatar zawiera wizerunek klienta w formie zdjęcia lub inicjałów
+2. Avatar może posiadać status ( `Active, Inactive, Blocked` )służący doidentyfikacji dostępności użytkownika
+3. Kształt avatarów może być zarówno okrągły jak i kwadratowy (zawierający `3px radius` na rogach)
 
----
+![Avatar](./2.png)
+
+## General guidance
+
+
+### Usage:
+
+Use avatars to quickly identify users.
+
+### Best practices
 
 - To represent a platform user (for example, to indicate the author of the campaign).
 - To represent a customer (for example, on a list of customers, on a customer card).
 - To represent the type of the item on a list (for example, a campaign, an analysis).
 
-## Component anatomy
+## Anatomy
 
----
 
-This is a complex component, which means it may consist of more components, for example:
+### Budowa
 
-- [badge](/docs/components/badge/)
+Avatary zbudowane są z form o proporcjonalnych bokach. Ich kształt wpisanyjest w formę kwadratu lub koła.
+
+![Avatar](./1.png)
+
+### Wielkości
+
+Avatary posiadają 4 możliwe rozmiary:
+- Small - `size 24x24px`
+- Medium - `size 32x32px`
+- Large - `size 40x40px`
+- XL - `size 80x80px`
+
+![Avatar](./3.png)
+
+Avatary w rozmiarach Small posiadają również ikony o rozmiarach `s` z setu `Standard icons`. Rozmiar Medium, Large oraz XL zawierają ikony o rozmiarach `M`.
+
+![Avatar](./4.png)
 
 ## Installation
 
@@ -59,61 +94,45 @@ import Avatar from '@synerise/ds-avatar'
 
 ```
 
-## Avatar sizes
+## Demo
 
-<Playground style={{marginBottom: '40px'}} >
-    <div style={{padding: 40, display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start'}}>
-        <Avatar size="small" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
-        <span style={{width: 20, display: 'flex'}}></span>
-        <Avatar size="medium" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
-        <span style={{width: 20, display: 'flex'}}></span>
-        <Avatar size="large" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
-        <span style={{width: 20, display: 'flex'}}></span>
-        <Avatar size="extraLarge" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
-    </div>
+### Avatar sizes
+
+<Playground className="ds-repo-playground" >
+    <Avatar size="small" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
+    <Avatar size="medium" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
+    <Avatar size="large" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
+    <Avatar size="extraLarge" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
 </Playground>
 
-## Avatar with tooltips
+### Avatar with tooltips
 
 <Playground>
-    <div style={{padding: 40, display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start'}}>
-        <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@test.pl'}} size="small" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
-        <span style={{width: 20, display: 'flex'}}></span>
-        <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@test.pl'}} size="medium" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
-        <span style={{width: 20, display: 'flex'}}></span>
-        <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@test.pl'}} size="large" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
-        <span style={{width: 20, display: 'flex'}}></span>
-        <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@test.pl'}} size="extraLarge" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
-    </div>
+    <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@test.pl'}} size="small" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
+    <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@test.pl'}} size="medium" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
+    <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@test.pl'}} size="large" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
+    <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@test.pl'}} size="extraLarge" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
 </Playground>
 
-## Avatar types
+### Avatar types
 
 <Playground>
-    <div style={{padding: 40, display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start'}}>
-        <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@test.pl'}} shape="square" size="medium" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
-        <span style={{width: 20, display: 'flex'}}></span>
-        <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@test.pl'}} shape="cirlce" size="medium" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
-        <span style={{width: 20, display: 'flex'}}></span>
-        <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@test.pl'}} src="https://www.w3schools.com/howto/img_avatar.png" size="large" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
-        <span style={{width: 20, display: 'flex'}}></span>
-        <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@test.pl'}} src="https://www.w3schools.com/howto/img_avatar.png" shape="square" size="extraLarge" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
-    </div>
+    <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@test.pl'}} shape="square" size="medium" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
+    <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@test.pl'}} shape="cirlce" size="medium" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
+    <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@test.pl'}} src="https://www.w3schools.com/howto/img_avatar.png" size="large" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
+    <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@test.pl'}} src="https://www.w3schools.com/howto/img_avatar.png" shape="square" size="extraLarge" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
 </Playground>
 
 
-## Avatar icons
+### Avatar icons
 
 <Playground>
-    <div style={{padding: 40, display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start'}}>
-        <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@test.pl'}} shape="square" size="medium" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
-        <span style={{width: 20, display: 'flex'}}></span>
-        <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@test.pl'}} shape="cirlce" size="medium" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
-        <span style={{width: 20, display: 'flex'}}></span>
-        <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@test.pl'}} iconComponent={<Icon component={<FileM />} color={"white"} />} size="large" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
-        <span style={{width: 20, display: 'flex'}}></span>
-        <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@test.pl'}} src="https://www.w3schools.com/howto/img_avatar.png" shape="square" size="extraLarge" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
-    </div>
+    <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@test.pl'}} shape="square" size="medium" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
+    <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@test.pl'}} shape="cirlce" size="medium" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
+    <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@test.pl'}} iconComponent={<Icon component={<FileM />} color={"white"} />} size="large" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
+    <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@test.pl'}} src="https://www.w3schools.com/howto/img_avatar.png" shape="square" size="extraLarge" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
 </Playground>
+
+## API
 
 <Props of={Avatar} />
