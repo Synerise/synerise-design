@@ -6,6 +6,7 @@ import { AngleDownM, AngleDownS, CheckM, CheckS } from '@synerise/ds-icon/dist/i
 import Icon from '@synerise/ds-icon';
 import Button from '@synerise/ds-button';
 import markdown from '@/button/README.md';
+import { version } from '@/button/package.json';
 
 const typeOptions = {
   Primary: 'primary',
@@ -68,6 +69,8 @@ const getBackgroundStyles = (type) => {
   const darkBg = ['tertiary-white', 'ghost-white'].includes(type);
   return {background:`${darkBg ? '#384350' : '#fff'}`, display: 'flex', position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center'}
 };
+
+console.log('V:', version);
 
 const stories = {
   simple: () => {

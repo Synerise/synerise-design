@@ -49,3 +49,4 @@ storybook-static
 .npmrc
 .DS_Store
 .idea
+.docz

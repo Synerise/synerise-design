@@ -10,6 +10,10 @@ import SpinnerM from '@synerise/ds-icon/dist/icons/SpinnerM';
 import AntdButton, * as S from './Button.styles';
 
 export interface Props extends Omit<ButtonProps, 'type'> {
+  /**
+   * Defines the type of the button. It affects the button color
+   * @default secondary
+   */
   type?:
     | string
     | 'primary'
@@ -20,7 +24,15 @@ export interface Props extends Omit<ButtonProps, 'type'> {
     | 'ghost'
     | 'ghost-white'
     | 'custom-color';
+  /**
+   * Defines the type of the button content. It affects content inside the button
+   * @default simple
+   */
   mode?: string;
+  /**
+   * Defines color of `custom-color` button.
+   * @default red
+   */
   color?:
     | string
     | 'blue'
@@ -35,9 +47,22 @@ export interface Props extends Omit<ButtonProps, 'type'> {
     | 'cyan'
     | 'purple'
     | 'violet';
+  /**
+   * Defines shape of the button.
+   */
   groupVariant?: string | 'left-rounded' | 'squared' | 'right-rounded';
+  /**
+   * Defines justify of content in button.
+   */
   justifyContent?: JustifyContentProperty;
+  /**
+   * Set the loading status of button
+   * @default false
+   */
   loading?: boolean | { delay?: number };
+  /**
+   * Sets the handler to handle `click` event
+   */
   onClick?: (event: React.MouseEvent<HTMLElement>) => void;
 }
 
