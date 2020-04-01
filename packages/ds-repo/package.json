@@ -10,7 +10,6 @@
   ],
   "scripts": {
     "dev": "docz dev",
-    "build": "docz build",
     "build-docs": "docz build"
   },
   "dependencies": {
