@@ -10,7 +10,8 @@
   ],
   "scripts": {
     "dev": "docz dev",
-    "build": "docz build"
+    "build": "docz build",
+    "build-docs": "docz build"
   },
   "dependencies": {
     "@emotion/core": "^10.0.14",
