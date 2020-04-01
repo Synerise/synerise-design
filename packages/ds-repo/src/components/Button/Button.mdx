@@ -1,18 +1,73 @@
 ---
-name: Button
-menu: Components
+    name: Button
+    menu: Components
 ---
 
+# Button
+
+Buttons allow users to take actions, and make choices, with a single tap. Buttons communicate actions that users can take. They are typically placed throughout your UI, in places such as dialogs, modal windows, forms, cards, and toolbars.
+
+Inspired by [Ant Design Button](https://ant.design/components/button/)
+
+## When to use it
+
+---
+
+- To produce things that didn’t exist before (register, submit, save, and more).
+- To perform actions (send, delete, edit, cancel, and more).
+- To confirm the displayed information.
+- Generally, to be used when actions caused by users affect back-end and/or front-end of the application.
+
+## Component anatomy
+
+---
+
+This is a simple component, which means that it doesn't consist of other components.
+
+## Installation
+
+---
+
+  ```
+npm i @synerise/ds-button
+```
+
+or
+
+  ```
+yarn add @synerise/ds-button
+```
+
+## Usage
+
+---
+
+```jsx
+import Button from '@synerise/ds-button';
+
+<Button>Example</Button>;
+```
+
+## Demo
 
 import { Playground, Props } from 'docz'
-import Button from '@synerise/ds-button';
+import Button  from '@synerise/ds-button/dist/index';
+
+### Types
 
 <Playground>
     <Button type="primary">Click me!</Button>
     <Button type="secondary">Click me!</Button>
+    <Button type="tertiary">Click me!</Button>
+    <Button type="tertiary-white">Click me!</Button>
+    <Button type="ghost">Click me!</Button>
+    <Button type="ghost-white">Click me!</Button>
     <Button type="custom-color" color='red'>Click me!</Button>
+    <Button type="custom-color" color='yellow'>Click me!</Button>
+    <Button type="custom-color" color='green'>Click me!</Button>
 </Playground>
 
-### Props
+## API
 
 <Props of={Button} />
+
