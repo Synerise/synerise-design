@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.52.7](https://github.com/synerise/synerise-design/compare/portal@0.52.6...portal@0.52.7) (2020-04-02)
+
+
+### Bug Fixes
+
+* **drawer:** added search filters ([0ab41f4](https://github.com/synerise/synerise-design/commit/0ab41f4feefeefcd4e89d9d2b03bef2aefb146ce))
+
+
+
+
+
 ## [0.52.6](https://github.com/synerise/synerise-design/compare/portal@0.52.5...portal@0.52.6) (2020-04-01)
 
 **Note:** Version bump only for package portal

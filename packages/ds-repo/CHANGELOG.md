@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-rc.43](https://gitlab.synerise.com/Frontend/synerise-design/compare/ds-repo@2.0.0-rc.42...ds-repo@2.0.0-rc.43) (2020-04-02)
+
+
+### Bug Fixes
+
+* **ds-repo:** base path ([16a5cfe](https://gitlab.synerise.com/Frontend/synerise-design/commit/16a5cfec474b5c0b6d0637e079f813524c33d792))
+
+
+### Features
+
+* **ds-repo:** add information about components versions ([7d6bdca](https://gitlab.synerise.com/Frontend/synerise-design/commit/7d6bdca0178d6faa62bc356dadee4a53143264a1))
+
+
+
+
+
 # 2.0.0-rc.42 (2020-04-01)
 
 
