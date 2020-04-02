@@ -102,9 +102,9 @@ const Tabs: React.FC<TabsProps> = ({ activeTab, tabs, handleTabClick, configurat
       <>
         {(hiddenTabs.length || configuration) && (
           <Dropdown data-testid="tabs-dropdown" overlay={renderHiddenTabs()}>
-            <Button type="ghost" mode="single-icon">
+            <S.TabsShowHiddenTabsButton type="ghost" mode="single-icon">
               <Icon component={<OptionHorizontalM />} />
-            </Button>
+            </S.TabsShowHiddenTabsButton>
           </Dropdown>
         )}
       </>

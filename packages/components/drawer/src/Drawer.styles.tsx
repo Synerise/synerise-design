@@ -39,3 +39,6 @@ export const DrawerBody = styled.div`
   background-color: white;
   overflow-y: auto;
 `;
+export const DrawerHeaderBack = styled.div`
+  margin-right: 24px;
+`;

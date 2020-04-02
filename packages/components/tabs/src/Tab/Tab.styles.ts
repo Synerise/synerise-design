@@ -98,7 +98,7 @@ export const TabContainer = styled.button`
     
     && {
       &.underscore::after {
-        height: 2px;
+        height: 1px;
         background-color: ${({ theme }): string => theme.palette['blue-600']};
       }
     }
