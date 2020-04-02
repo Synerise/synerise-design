@@ -5,7 +5,7 @@ import Icon from '@synerise/ds-icon';
 import Dropdown from '@synerise/ds-dropdown';
 import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
 import { ClockM, Close3M } from '@synerise/ds-icon/dist/icons';
-import { injectIntl, IntlShape } from 'react-intl';
+import { FormattedMessage, injectIntl, IntlShape } from 'react-intl';
 import Unit, { UnitConfig } from './Unit';
 import * as S from './TimePicker.styles';
 
