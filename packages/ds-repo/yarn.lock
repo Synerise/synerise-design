@@ -1330,10 +1330,10 @@
   dependencies:
     "@synerise/ds-typography" "^0.8.3"
 
-"@synerise/ds-button@^0.9.10":
-  version "0.9.10"
-  resolved "https://registry.yarnpkg.com/@synerise/ds-button/-/ds-button-0.9.10.tgz#a492a1dbc6be97fc93e50e313dc7b3555061768a"
-  integrity sha512-7kLsDEkw9j+eb0NclwS8kt1afnoc94g399Ab36S5kQ1R7FWkHg4nwpPFNOBf4SwZyC1WtBic8j7MLWD+I3qOCg==
+"@synerise/ds-button@^0.10.0":
+  version "0.10.0"
+  resolved "https://registry.yarnpkg.com/@synerise/ds-button/-/ds-button-0.10.0.tgz#d30e8b6f82c9e46e54c894d85dc7a117823d2856"
+  integrity sha512-3UtRekU/15qh/HGc/Dvj1H5yTB1AgM7fBW4KLogHgSaHvk8JZvoaPzOx52n/ZwjDhWZQJIsZRxEPKt2WB118fw==
   dependencies:
     "@synerise/ds-icon" "^0.14.3"
 
