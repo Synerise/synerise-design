@@ -5,7 +5,7 @@ import Icon from '@synerise/ds-icon';
 import Dropdown from '@synerise/ds-dropdown';
 import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
 import { ClockM, Close3M } from '@synerise/ds-icon/dist/icons';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, injectIntl, IntlShape } from 'react-intl';
 import Unit, { UnitConfig } from './Unit';
 import * as S from './TimePicker.styles';
 
@@ -17,7 +17,7 @@ export type TimePickerDisabledUnits = {
 
 export type TimePickerProps = TimePickerDisabledUnits & {
   placement?: 'topLeft' | 'topCenter' | 'topRight' | 'bottomLeft' | 'bottomCenter' | 'bottomRight';
-  placeholder?: string | React.ReactNode;
+  placeholder?: string;
   value?: Date;
   defaultOpen?: boolean;
   alwaysOpen?: boolean;
@@ -30,13 +30,14 @@ export type TimePickerProps = TimePickerDisabledUnits & {
   units?: dayjs.UnitType[];
   onChange?: (value: Date | undefined, timeString: string) => void;
   clearTooltip?: string | React.ReactNode;
+  intl: IntlShape;
 };
 
 const defaultUnits = ['hour', 'minute', 'second'] as dayjs.UnitType[];
 
 const TimePicker: React.FC<TimePickerProps> = ({
   placement,
-  placeholder = <FormattedMessage id="DS.TIME-PICKER.PLACEHOLDER" />,
+  placeholder,
   trigger,
   value,
   units,
@@ -52,6 +53,7 @@ const TimePicker: React.FC<TimePickerProps> = ({
   overlayClassName,
   className,
   clearTooltip = <FormattedMessage id="DS.TIME-PICKER.CLEAR" />,
+  intl
 }) => {
   const [open, setOpen] = React.useState<boolean>(defaultOpen || false);
   const [localValue, setLocalValue] = React.useState<Date | undefined>(value);
@@ -140,6 +142,10 @@ const TimePicker: React.FC<TimePickerProps> = ({
     );
   }, [open, dateString, clear, clearTooltip, alwaysOpen]);
 
+  const placeholderValue = React.useMemo((): string => {
+    return placeholder || intl.formatMessage({id: 'DS.TIME-PICKER.PLACEHOLDER'});
+  }, [placeholder, intl]);
+
   return (
     <S.Container className={`ds-time-picker ${className || ''}`} data-testid="tp-container">
       <Dropdown
@@ -154,7 +160,7 @@ const TimePicker: React.FC<TimePickerProps> = ({
           className={`${alwaysOpen || open ? 'active' : ''}`}
           data-testid="tp-input"
           value={dateString}
-          placeholder={placeholder as string}
+          placeholder={placeholderValue}
           readOnly
           icon1={timePickerIcon}
         />
@@ -170,4 +176,4 @@ TimePicker.defaultProps = {
   units: defaultUnits,
 };
 
-export default TimePicker;
+export default injectIntl(TimePicker);
