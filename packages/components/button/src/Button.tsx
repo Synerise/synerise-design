@@ -1,8 +1,3 @@
-/**
- * Component is described here.
- * @example ./../Button.md
- */
-
 import * as React from 'react';
 import { ButtonProps } from 'antd/lib/button';
 import '@synerise/ds-core/dist/js/style';
