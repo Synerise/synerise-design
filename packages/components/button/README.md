@@ -48,6 +48,12 @@ import Button from '@synerise/ds-button';
 
 ## Demo
 
+React component example:
+
+```js
+<Button type="primary">Click me!</Button>
+```
+
 ---
 
 <iframe src="/storybook-static/iframe.html?id=components-button--with-text&_ijt=15r4sa9s8lrq673m3u169apsa0"></iframe>

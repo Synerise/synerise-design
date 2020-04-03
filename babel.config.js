@@ -34,10 +34,6 @@ module.exports = api => {
               original: '^(.+?)\\.jsx$',
               replacement: '$1.js',
             },
-            {
-              original: '^(.+?)\\.less$',
-              replacement: '$1.css',
-            },
           ],
         },
       ],
