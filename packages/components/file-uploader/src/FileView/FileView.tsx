@@ -32,7 +32,7 @@ const FileView: React.FC<FileViewProps> = ({ data, texts, onRemove, removable })
   const hasProgress = typeof progress === 'number';
 
   return (
-    <S.FileViewContainer disabled={disabled} error={hasError} removable={removable}>
+    <S.FileViewContainer disabled={disabled} error={hasError} removable={removable} type="button">
       {previewableMimeTypes.indexOf(file.type) > -1 ? (
         <S.PreviewImage source={fileSource} />
       ) : (
