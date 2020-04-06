@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-file-uploader",
-  "version": "0.3.29",
+  "version": "0.4.0",
   "description": "FileUploader UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
