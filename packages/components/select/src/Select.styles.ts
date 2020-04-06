@@ -14,7 +14,7 @@ background: ${props.theme.palette['red-050']};
 
 export const AntdSelect = styled((Select as unknown) as React.ComponentType<SelectProps<SelectValue>>)`
   &.error {
-    .ant-select-selection {
+    .ant-select-selector {
       ${(props): string => errorStyle(props)}
     }
   }
