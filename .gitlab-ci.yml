@@ -44,7 +44,6 @@ docs_build:
   only:
     refs:
       - master
-      - release
   script:
     - yarn --frozen-lockfile
     - yarn build
@@ -52,7 +51,7 @@ docs_build:
     - yarn npx:lerna run build-docs
     - mv packages/portal/storybook-static/ packages/docs-site/website/build/ds-docs
     - yarn docs-build
-    - mv styleguide/ packages/docs-site/website/build/ds-docs/styleguide
+    - mv docs/dist/ packages/docs-site/website/build/ds-docs/styleguide
   artifacts:
     paths:
       - packages/docs-site/website/build/*
@@ -65,7 +64,6 @@ docs_deploy:
   only:
     refs:
       - master
-      - release
   script:
     - SANITY_BRANCH=$CI_COMMIT_REF_SLUG
     - echo "Sanitized branch name ${SANITY_BRANCH}"
