@@ -9,9 +9,10 @@ import Icon from '@synerise/ds-icon';
 import SpinnerM from '@synerise/ds-icon/dist/icons/SpinnerM';
 import AntdButton, * as S from './Button.styles';
 
-export interface Props extends Omit<ButtonProps, 'type'> {
+export type Props = Omit<ButtonProps, 'type'> & {
   /**
    * Defines the type of the button. It affects the button color
+   *
    * @default secondary
    */
   type?:
@@ -26,11 +27,13 @@ export interface Props extends Omit<ButtonProps, 'type'> {
     | 'custom-color';
   /**
    * Defines the type of the button content. It affects content inside the button
+   *
    * @default simple
    */
   mode?: string;
   /**
    * Defines color of `custom-color` button.
+   *
    * @default red
    */
   color?:
@@ -64,7 +67,7 @@ export interface Props extends Omit<ButtonProps, 'type'> {
    * Sets the handler to handle `click` event
    */
   onClick?: (event: React.MouseEvent<HTMLElement>) => void;
-}
+};
 
 const RIPPLE_ANIMATION_OFFSET = 50;
 
@@ -78,7 +81,7 @@ const Button: React.FC<Props> = ({
   className,
   color = 'red',
   ...antdProps
-}) => {
+}: Props) => {
   const rippleRef = React.useRef<HTMLSpanElement>(null);
   const [rippleClassName, setRippleClassName] = React.useState('');
 
