@@ -50,7 +50,8 @@ docs_build:
     - yarn npx:lerna run postinstall
     - yarn npx:lerna run build-docs
     - mv packages/portal/storybook-static/ packages/docs-site/website/build/ds-docs
-    - mv packages/ds-repo/dist/ packages/docs-site/website/build/ds-docs/ds-repo
+    - yarn docs-build
+    - mv styleguide packages/docs-site/website/build/ds-docs/styleguide
   artifacts:
     paths:
       - packages/docs-site/website/build/*

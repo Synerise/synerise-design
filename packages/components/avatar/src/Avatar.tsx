@@ -46,7 +46,7 @@ const Avatar: React.FC<AvatarProps> = ({
   placeholderColor,
   placeholderColorHue,
   ...antdProps
-}) => {
+}: AvatarProps) => {
   const [pressed, setPressed] = React.useState(false);
 
   return (

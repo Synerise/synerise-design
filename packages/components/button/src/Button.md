@@ -51,7 +51,7 @@ yarn add @synerise/ds-button
 
 ---
 
-![Avatar](button/avatar.png)
+## Demo
 
 ```
 import Icon from '@synerise/ds-icon';
