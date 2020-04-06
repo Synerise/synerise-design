@@ -5,6 +5,7 @@ module.exports = {
   title: 'Synerise Design System',
   components: './packages/components/**/*.tsx',
   assetsDir: './docs/assets',
+  styleguideDir: './docs/dist',
   pagePerSection: true,
   sections: [
     {

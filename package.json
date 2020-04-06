@@ -9,8 +9,7 @@
   "workspaces": [
     "packages/components/*",
     "packages/portal",
-    "packages/docs-site/website",
-    "packages/ds-repo"
+    "packages/docs-site/website"
   ],
   "scripts": {
     "bootstrap": "yarn npx:lerna bootstrap",
