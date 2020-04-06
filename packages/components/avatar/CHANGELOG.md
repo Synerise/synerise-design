@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-avatar@0.7.8...@synerise/ds-avatar@0.8.0) (2020-04-06)
+
+
+### Features
+
+* **portal:** update react-styleguidist ([13af56d](https://github.com/synerise/synerise-design/commit/13af56de3b67977345dfcf638e191327b755386c))
+
+
+
+
+
 ## [0.7.8](https://github.com/synerise/synerise-design/compare/@synerise/ds-avatar@0.7.7...@synerise/ds-avatar@0.7.8) (2020-03-27)
 
 **Note:** Version bump only for package @synerise/ds-avatar

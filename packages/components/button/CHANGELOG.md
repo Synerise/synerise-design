@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.10.0...@synerise/ds-button@0.11.0) (2020-04-06)
+
+
+### Features
+
+* **portal:** react-styleguidist ([9339a08](https://github.com/synerise/synerise-design/commit/9339a08785cef30b428ebe438d749d0b7c2a9bf8))
+* **portal:** update button example ([f9eacff](https://github.com/synerise/synerise-design/commit/f9eacffbfececa3840f44a495ed5f77106dbb586))
+* **portal:** update react-styleguidist ([13af56d](https://github.com/synerise/synerise-design/commit/13af56de3b67977345dfcf638e191327b755386c))
+
+
+
+
+
 # [0.10.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.9.10...@synerise/ds-button@0.10.0) (2020-04-01)
 
 

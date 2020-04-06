@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-avatar-group",
-  "version": "0.1.17",
+  "version": "0.1.18",
   "description": "AvatarGroup UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -25,7 +25,7 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-avatar": "^0.7.8",
+    "@synerise/ds-avatar": "^0.8.0",
     "@synerise/ds-badge": "^0.4.9",
     "@synerise/ds-tooltip": "^0.7.1"
   },
