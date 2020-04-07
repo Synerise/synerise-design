@@ -14,7 +14,6 @@ interface Props<T = SelectValue> extends SelectProps<T> {
   description?: React.ReactNode;
   tooltip?: React.ReactNode;
   clearTooltip?: string;
-  theme?: { [k: string]: string };
 }
 
 class Select extends React.Component<Props> {
