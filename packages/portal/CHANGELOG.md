@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.52.8](https://github.com/synerise/synerise-design/compare/portal@0.52.7...portal@0.52.8) (2020-04-07)
+
+
+### Bug Fixes
+
+* **select:** fix select styles ([0310dc7](https://github.com/synerise/synerise-design/commit/0310dc730e1f3fb037faec60733121d1d111c29d))
+
+
+
+
+
 ## [0.52.7](https://github.com/synerise/synerise-design/compare/portal@0.52.6...portal@0.52.7) (2020-04-02)
 
 

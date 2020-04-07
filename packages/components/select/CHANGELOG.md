@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.14](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.10.13...@synerise/ds-select@0.10.14) (2020-04-07)
+
+
+### Bug Fixes
+
+* **select:** fix select styles ([0310dc7](https://github.com/synerise/synerise-design/commit/0310dc730e1f3fb037faec60733121d1d111c29d))
+* **select:** fix styles ([b11fb45](https://github.com/synerise/synerise-design/commit/b11fb45f299e1d589889be08f0c7e66909074e09))
+* **select:** fix styles ([fb81d9b](https://github.com/synerise/synerise-design/commit/fb81d9bc65035b4c6833a49bfd0ce1c998e2cf5c))
+* **select:** fix types ([264672b](https://github.com/synerise/synerise-design/commit/264672b0b109bbc73d4832450693a8194c6c14f3))
+* **select:** fix types issue ([f60e882](https://github.com/synerise/synerise-design/commit/f60e882d68f2b9db6e72cdbe27e9415a1f29f691))
+* **select:** issue from CR ([c8a8077](https://github.com/synerise/synerise-design/commit/c8a8077edbbc9389156ddfd5ed93840e530afff5))
+* **select:** remove unused props ([1a59d1a](https://github.com/synerise/synerise-design/commit/1a59d1aef962fa2316b773da7a82a047b942c6aa))
+
+
+
+
+
 ## [0.10.13](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.10.12...@synerise/ds-select@0.10.13) (2020-04-06)
 
 
