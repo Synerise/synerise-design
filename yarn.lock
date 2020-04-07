@@ -3382,13 +3382,13 @@
     "@svgr/hast-util-to-babel-ast" "^5.0.1"
     svg-parser "^2.0.2"
 
-"@svgr/plugin-prettier@5.0.1":
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/@svgr/plugin-prettier/-/plugin-prettier-5.0.1.tgz#4522e5d457c1b893b6ed19094ce9c95c7506b737"
-  integrity sha512-d74rQ7RQZ8bFsbgF9fGaWdMYkQtZK6NBbTqNfHTtqpvjjDG4+GKLFiXr0o8axwUcMoP2koTntCA7kxI4M6MvKg==
+"@svgr/plugin-prettier@5.3.1":
+  version "5.3.1"
+  resolved "https://registry.yarnpkg.com/@svgr/plugin-prettier/-/plugin-prettier-5.3.1.tgz#91b378874682c4cd938d8c64943424e565cd055d"
+  integrity sha512-SMAXcbseXWjyJ8ZnLy8Rw9zM3OQsXdXVw0cW5IiqfDk/3vjBWy7iZDiAyIdXhOWuFQKl7k8WUVRboIHFtTX2iA==
   dependencies:
     merge-deep "^3.0.2"
-    prettier "^1.17.1"
+    prettier "^2.0.2 || ^1.19.1"
 
 "@svgr/plugin-svgo@5.2.0":
   version "5.2.0"
@@ -16206,10 +16206,15 @@ prettier-eslint@^9.0.0:
     typescript "^3.2.1"
     vue-eslint-parser "^2.0.2"
 
-prettier@1.19.1, prettier@^1.17.1, prettier@^1.7.0:
+prettier@1.19.1, prettier@^1.7.0:
   version "1.19.1"
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.19.1.tgz#f7d7f5ff8a9cd872a7be4ca142095956a60797cb"
   integrity sha512-s7PoyDv/II1ObgQunCbB9PdLmUcBZcnWOcxDh7O0N/UwDEsHyqkW+Qh28jW+mVuCdx7gLB0BotYI1Y6uI9iyew==
+
+"prettier@^2.0.2 || ^1.19.1":
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.0.4.tgz#2d1bae173e355996ee355ec9830a7a1ee05457ef"
+  integrity sha512-SVJIQ51spzFDvh4fIbCLvciiDMCrRhlN3mbZvv/+ycjvmF5E73bKdGfU8QDLNmjYJf+lsGnDBC4UUnvTe5OO0w==
 
 pretty-bytes@^5.1.0:
   version "5.3.0"
