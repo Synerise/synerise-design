@@ -4,7 +4,6 @@ import { ErrorText, Description } from '@synerise/ds-typography';
 import '@synerise/ds-core/dist/js/style';
 import './style/index.less';
 import { Close3M, CloseS } from '@synerise/ds-icon/dist/icons';
-import { withTheme } from 'styled-components';
 import Icon from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 import * as S from './Select.styles';
@@ -15,7 +14,7 @@ interface Props<T = SelectValue> extends SelectProps<T> {
   description?: React.ReactNode;
   tooltip?: React.ReactNode;
   clearTooltip?: string;
-  theme: { [k: string]: string };
+  theme?: { [k: string]: string };
 }
 
 class Select extends React.Component<Props> {
@@ -23,7 +22,7 @@ class Select extends React.Component<Props> {
   static OptGroup = S.AntdSelectOptGroup;
 
   render(): React.ReactNode {
-    const { label, description, errorText, tooltip, theme, clearTooltip, ...antdProps } = this.props;
+    const { label, description, errorText, tooltip, clearTooltip, ...antdProps } = this.props;
 
     return (
       <>
@@ -33,11 +32,11 @@ class Select extends React.Component<Props> {
           clearIcon={
             <Tooltip title={clearTooltip}>
               <span>
-                <Icon component={<Close3M />} color={theme.palette['red-600']} />
+                <Icon component={<Close3M />} />
               </span>
             </Tooltip>
           }
-          removeIcon={<Icon component={<CloseS />} color={theme.palette['red-600']} />}
+          removeIcon={<Icon component={<CloseS />} />}
           className={errorText ? 'error' : undefined}
         />
         {errorText && (
@@ -55,4 +54,4 @@ class Select extends React.Component<Props> {
   }
 }
 
-export default withTheme(Select);
+export default Select;

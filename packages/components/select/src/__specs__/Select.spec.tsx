@@ -3,7 +3,6 @@ import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import { fireEvent } from '@testing-library/react';
 import Select from '../index';
 
-// @ts-ignore
 const { Option } = Select;
 
 describe('Select', () => {
