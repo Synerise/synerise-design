@@ -74,6 +74,7 @@ yarn add @synerise/ds-card-select
 | customTickVisible          | Defines if the checkbox is custom                                    | boolean            | -                                               |
 | customTickVisibleComponent | Custom checkbox component                                            | ReactNode          | -                                               |
 | stretchToFit               | Aligns the height of each card                                       | boolean            | -                                               |
+| clearTooltip               | Defines the title of clear icon tooltip                              | string             | -                                               |
 
 ### Methods
 

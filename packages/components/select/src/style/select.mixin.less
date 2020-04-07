@@ -9,6 +9,10 @@
   color: @grey-500;
 }
 
+.@{ant-prefix}-select-dropdown {
+  margin-top: 4px;
+}
+
 .@{ant-prefix}-select-dropdown-menu-item {
   font-weight: 500;
   color: @grey-700;
@@ -17,6 +21,15 @@
     background-color: @grey-050;
     color: @primary-color;
   }
+}
+
+.@{ant-prefix}-select-item-group {
+  padding: 8px 12px;
+  text-transform: uppercase;
+  color: @grey-500;
+  font-size: 10px;
+  line-height: 16px;
+  font-weight: 500;
 }
 
 .@{ant-prefix}-select-multiple .@{ant-prefix}-select-selection-item {
@@ -151,6 +164,10 @@
   font-weight: 400;
 }
 
+.@{ant-prefix}-select-selector {
+  padding: 0 12px;
+}
+
 .@{ant-prefix}-select-focused .@{ant-prefix}-select-selector,
 .@{ant-prefix}-select-selector:focus,
 .@{ant-prefix}-select-selector:active {
@@ -159,9 +176,37 @@
   background: @blue-050 !important;
 }
 
-.@{ant-prefix}-select:not(.@{ant-prefix}-select-no-arrow) {
-  .@{ant-prefix}-select-selection__clear {
-    right: 30px;
+.@{ant-prefix}-select-focused {
+  .@{ant-prefix}-select-clear {
+    background-color: @blue-050 !important;
+  }
+}
+
+.@{ant-prefix}-select {
+  .@{ant-prefix}-select-clear {
+    width: 24px;
+    height: 24px;
+    top: 9px;
+    right: 8px;
+    svg {
+      fill: @red-600;
+      color: @red-600;
+    }
+  }
+}
+.@{ant-prefix}-select-multiple {
+  .@{ant-prefix}-select-selection-item {
+    padding: 0 0 0 8px;
+    border: 0;
+  }
+
+  .@{ant-prefix}-select-selection-item-remove {
+    width: 24px;
+    height: 24px;
+    svg {
+      fill: @red-600;
+      color: @red-600;
+    }
   }
 }
 

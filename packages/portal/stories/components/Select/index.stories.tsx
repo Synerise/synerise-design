@@ -13,7 +13,7 @@ const { Option, OptGroup } = Select;
 
 const children = [];
 for (let i = 10; i < 36; i++) {
-  children.push(<Option key={i.toString(36) + i}>{i.toString(36) + i}</Option>);
+  children.push(<Option key={`Options ${i.toString(36).toUpperCase()}`}>{`Option ${i.toString(36).toUpperCase()}`}</Option>);
 }
 
 const modes = ['default', 'multiple', 'tags'];
@@ -25,6 +25,7 @@ const dropdownStyles = {};
 const stories = {
   default: () => ({
     tooltip: text('tooltip', 'This is example tooltip!'),
+    clearTooltip: text('Clear tooltip', 'Clear'),
     description: text('description', 'Description'),
     errorText: text('errorText', 'Error'),
     label: text('label', 'Label'),
@@ -49,9 +50,7 @@ const stories = {
       <Option value={opt}>{opt}</Option>
     ))),
   }),
-  empty: () => ({
-    style: { width: '100%' },
-  }),
+
   multipleMode: {
     style: {
       width: '100%',
@@ -61,7 +60,7 @@ const stories = {
     onChange: action('OnChange'),
     children,
   },
-  withOptGroup: {
+  withMultiselect: {
     style: {
       width: '100%',
     },
@@ -73,10 +72,13 @@ const stories = {
         <Option value="lucy">Lucy</Option>
       </OptGroup>),
       (<OptGroup label="Engineer">
-        <Option value="Yiminghe">yiminghe</Option>
+        <Option value="Yiminghe">Adam</Option>
       </OptGroup>),
     ],
   },
+  empty: () => ({
+    style: { width: '100%' },
+  }),
 };
 
 export default {

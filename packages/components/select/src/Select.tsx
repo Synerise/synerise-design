@@ -3,6 +3,9 @@ import { SelectProps, SelectValue } from 'antd/lib/select';
 import { ErrorText, Description } from '@synerise/ds-typography';
 import '@synerise/ds-core/dist/js/style';
 import './style/index.less';
+import { Close3M, CloseS } from '@synerise/ds-icon/dist/icons';
+import Icon from '@synerise/ds-icon';
+import Tooltip from '@synerise/ds-tooltip';
 import * as S from './Select.styles';
 
 interface Props<T = SelectValue> extends SelectProps<T> {
@@ -10,6 +13,7 @@ interface Props<T = SelectValue> extends SelectProps<T> {
   label?: React.ReactNode;
   description?: React.ReactNode;
   tooltip?: React.ReactNode;
+  clearTooltip?: string;
 }
 
 class Select extends React.Component<Props> {
@@ -17,14 +21,21 @@ class Select extends React.Component<Props> {
   static OptGroup = S.AntdSelectOptGroup;
 
   render(): React.ReactNode {
-    const { label, description, errorText, tooltip, ...antdProps } = this.props;
+    const { label, description, errorText, tooltip, clearTooltip, ...antdProps } = this.props;
 
     return (
       <>
         <S.Label label={label} tooltip={tooltip} />
         <S.AntdSelect
-          // eslint-disable-next-line react/jsx-props-no-spreading
           {...antdProps}
+          clearIcon={
+            <Tooltip title={clearTooltip}>
+              <span>
+                <Icon component={<Close3M />} />
+              </span>
+            </Tooltip>
+          }
+          removeIcon={<Icon component={<CloseS />} />}
           className={errorText ? 'error' : undefined}
         />
         {errorText && (
@@ -33,7 +44,7 @@ class Select extends React.Component<Props> {
           </S.ErrorWrapper>
         )}
         {description && (
-          <S.DescWrapper>
+          <S.DescWrapper withError={Boolean(errorText)}>
             {description && <Description disabled={antdProps.disabled}>{description}</Description>}
           </S.DescWrapper>
         )}

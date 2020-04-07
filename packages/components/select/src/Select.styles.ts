@@ -17,6 +17,9 @@ export const AntdSelect = styled((Select as unknown) as React.ComponentType<Sele
     .ant-select-selector {
       ${(props): string => errorStyle(props)}
     }
+    .ant-select-clear {
+      background-color: ${(props): string => props.theme.palette['red-050']};
+    }
   }
 `;
 
@@ -25,15 +28,15 @@ export const AntdSelectOption = styled(Option)``;
 export const AntdSelectOptGroup = styled(OptGroup)``;
 
 export const LabelWrapper = styled.div`
-  margin: 0 0 8px 4px;
+  margin: 0 0 8px 0;
 `;
 
 export const ErrorWrapper = styled.div`
-  margin: 8px 0 4px 4px;
+  margin: 8px 0 0;
 `;
 
-export const DescWrapper = styled.div`
-  margin: 4px 0 0 4px;
+export const DescWrapper = styled.div<{ withError: boolean }>`
+  margin: ${(props): string => (props.withError ? '4px 0 0' : '8px 0 0')};
 `;
 
 export const Label = styled(DSLabel)`
