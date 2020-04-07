@@ -7,10 +7,9 @@ import { Close3M, CloseS } from '@synerise/ds-icon/dist/icons';
 import { ThemeProps, withTheme } from 'styled-components';
 import Icon from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
-import { injectIntl, WithIntlProps } from 'react-intl';
 import * as S from './Select.styles';
 
-interface Props<T = SelectValue> extends SelectProps<T>, ThemeProps<any>, WithIntlProps<any> {
+interface Props<T = SelectValue> extends SelectProps<T>, ThemeProps<any> {
   errorText?: React.ReactNode;
   label?: React.ReactNode;
   description?: React.ReactNode;
@@ -29,7 +28,6 @@ class Select extends React.Component<Props> {
       <>
         <S.Label label={label} tooltip={tooltip} />
         <S.AntdSelect
-          // eslint-disable-next-line react/jsx-props-no-spreading
           {...antdProps}
           clearIcon={
             <Tooltip title={clearTooltip}>
@@ -56,4 +54,4 @@ class Select extends React.Component<Props> {
   }
 }
 
-export default injectIntl(withTheme(Select));
+export default withTheme(Select);
