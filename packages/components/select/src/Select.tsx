@@ -4,17 +4,18 @@ import { ErrorText, Description } from '@synerise/ds-typography';
 import '@synerise/ds-core/dist/js/style';
 import './style/index.less';
 import { Close3M, CloseS } from '@synerise/ds-icon/dist/icons';
-import { ThemeProps, withTheme } from 'styled-components';
+import { withTheme } from 'styled-components';
 import Icon from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 import * as S from './Select.styles';
 
-interface Props<T = SelectValue> extends SelectProps<T>, ThemeProps<any> {
+interface Props<T = SelectValue> extends SelectProps<T> {
   errorText?: React.ReactNode;
   label?: React.ReactNode;
   description?: React.ReactNode;
   tooltip?: React.ReactNode;
   clearTooltip?: string;
+  theme: { [k: string]: string };
 }
 
 class Select extends React.Component<Props> {
