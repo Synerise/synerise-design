@@ -34,6 +34,6 @@
     "react": ">=16.9.0 < 17.0.0"
   },
   "devDependencies": {
-    "@types/uuid": "7.0.0"
+    "@types/uuid": "7.0.2"
   }
 }
