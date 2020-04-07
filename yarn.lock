@@ -3735,6 +3735,11 @@
     "@types/prop-types" "*"
     csstype "^2.2.0"
 
+"@types/sortablejs@^1.10.0":
+  version "1.10.4"
+  resolved "https://registry.yarnpkg.com/@types/sortablejs/-/sortablejs-1.10.4.tgz#1be9681f6c9a405146644f52d76b74c7beb0dbd6"
+  integrity sha512-iXdJUEM09Hc0RacStDvkEi5BBdHuuwdys0L5/GtsRiEht69Df4hapA3FwFIeXn2STicqJjBAkowyD1OA3jGgwA==
+
 "@types/source-list-map@*":
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/@types/source-list-map/-/source-list-map-0.1.2.tgz#0078836063ffaf17412349bba364087e0ac02ec9"
@@ -13425,11 +13430,6 @@ lodash.uniq@^4.5.0:
   resolved "https://registry.yarnpkg.com/lodash.uniq/-/lodash.uniq-4.5.0.tgz#d0225373aeb652adc1bc82e4945339a842754773"
   integrity sha1-0CJTc662Uq3BvILklFM5qEJ1R3M=
 
-lodash.uniqueid@^4.0.1:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/lodash.uniqueid/-/lodash.uniqueid-4.0.1.tgz#3268f26a7c88e4f4b1758d679271814e31fa5b26"
-  integrity sha1-MmjyanyI5PSxdY1nknGBTjH6WyY=
-
 lodash@4.17.15, "lodash@>=3.5 <5", lodash@^4.0.1, lodash@^4.15.0, lodash@^4.17.11, lodash@^4.17.12, lodash@^4.17.13, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.4, lodash@^4.17.5, lodash@^4.2.1, lodash@~4.17.12:
   version "4.17.15"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
@@ -17442,13 +17442,13 @@ react-sizeme@^2.6.7:
     shallowequal "^1.1.0"
     throttle-debounce "^2.1.0"
 
-react-sortablejs-typescript@2.0.3:
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/react-sortablejs-typescript/-/react-sortablejs-typescript-2.0.3.tgz#25de8cc14c0080e69c888bd272be1128ff0c8091"
-  integrity sha512-cRpSS3DxeUhK15fDX5DgPe5sfj9aBTvYrqNw8hKdDsDgD7MykT/JQ2YIEGI4SFCPugbr53vsZ5BK3uNrGIBiNw==
+react-sortablejs-typescript@2.0.15:
+  version "2.0.15"
+  resolved "https://registry.yarnpkg.com/react-sortablejs-typescript/-/react-sortablejs-typescript-2.0.15.tgz#89fb0e62f9650c682f713a42bbffff30e77eae25"
+  integrity sha512-ReMW/61osOBBukhEbpWK1q6Ee6L83yNlyaOvzO6L+F84/V/2gH/dppzCFro955c80h+D3bpNIkmtZzAP0TNUBA==
   dependencies:
-    lodash.uniqueid "^4.0.1"
-    sortablejs "^1.10.0"
+    "@types/sortablejs" "^1.10.0"
+    sortablejs "1.10.1"
 
 react-sortablejs@^1.5.1:
   version "1.5.1"
@@ -18851,6 +18851,11 @@ sort-scripts@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/sort-scripts/-/sort-scripts-1.0.1.tgz#c1d27f2a7d95d1d0d3d6303f1b949abaaa695b55"
   integrity sha512-58eys3wXg05rI51Gg/90Uvc0id0aboGLSzHm4nFvuD0MofSg/y8cyJ7ZqYuZ1eyj6AA8XwFTGaXA+6tApsMv4w==
+
+sortablejs@1.10.1:
+  version "1.10.1"
+  resolved "https://registry.yarnpkg.com/sortablejs/-/sortablejs-1.10.1.tgz#3d52b00f871be00f00f84d99a60d120bf3dfe52c"
+  integrity sha512-N6r7GrVmO8RW1rn0cTdvK3JR0BcqecAJ0PmYMCL3ZuqTH3pY+9QyqkmJSkkLyyDvd+AJnwaxTP22Ybr/83V9hQ==
 
 sortablejs@^1.10.0, sortablejs@^1.10.1:
   version "1.10.2"
