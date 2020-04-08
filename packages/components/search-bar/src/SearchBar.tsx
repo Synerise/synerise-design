@@ -39,14 +39,14 @@ const SearchBar: React.FC<SearchBarProps> = ({
   return (
     <S.SearchBarWrapper
       iconLeft={iconLeft}
-      isEmpty={value.length === 0}
+      isEmpty={!value}
       className={isFocused ? 'is-focused' : ''}
       disabled={disabled as boolean}
       borderRadius={borderRadius}
       data-testid="input-wrapper"
     >
       {iconLeft && <S.IconLeftWrapper>{iconLeft}</S.IconLeftWrapper>}
-      {onClearInput && !!value.length && (
+      {onClearInput && Boolean(value) && (
         <S.ClearInputWrapper onClick={onClearInput} data-testid="clear-btn">
           <Icon
             component={
