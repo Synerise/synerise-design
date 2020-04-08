@@ -9,7 +9,7 @@ const sizes = {
   Small: 'small',
   Medium: 'medium',
   Large: 'large',
-  'Extra Large': 'extraLarge'
+  'Extra Large': 'extra_large'
 };
 
 const bodyBackgroundColors = {

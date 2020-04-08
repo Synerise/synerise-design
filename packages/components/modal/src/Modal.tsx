@@ -26,7 +26,7 @@ const mapSizeToWidth = {
   small: 520,
   medium: 792,
   large: 1044,
-  extraLarge: 1280,
+  extra_large: 1280,
 };
 
 class ModalProxy extends React.Component<Props> {
