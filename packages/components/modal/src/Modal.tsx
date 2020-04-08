@@ -13,7 +13,7 @@ import * as S from './Modal.styles';
 interface Props extends ModalProps {
   description?: string;
   headerActions?: React.ReactNode;
-  size?: 'small' | 'medium' | 'large' | 'extra_large';
+  size?: 'small' | 'medium' | 'large' | 'extraLarge';
   bodyBackground?: 'white' | 'grey';
   blank?: boolean;
   texts?: {
@@ -26,7 +26,7 @@ const mapSizeToWidth = {
   small: 520,
   medium: 792,
   large: 1044,
-  extra_large: 1280,
+  extraLarge: 1280,
 };
 
 class ModalProxy extends React.Component<Props> {
