@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.52.9](https://github.com/synerise/synerise-design/compare/portal@0.52.8...portal@0.52.9) (2020-04-08)
+
+
+### Bug Fixes
+
+* **menu:** fixed focus,pressed and hover styles ([f3c3083](https://github.com/synerise/synerise-design/commit/f3c30831b71691817bcc9e0178d83f410b524f46))
+
+
+
+
+
 ## [0.52.8](https://github.com/synerise/synerise-design/compare/portal@0.52.7...portal@0.52.8) (2020-04-07)
 
 
