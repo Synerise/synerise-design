@@ -13,7 +13,7 @@ import * as S from './Modal.styles';
 interface Props extends ModalProps {
   description?: string;
   headerActions?: React.ReactNode;
-  size?: 'small' | 'medium' | 'large' | 'extra_large';
+  size?: 'small' | 'medium' | 'large' | 'extraLarge';
   bodyBackground?: 'white' | 'grey';
   blank?: boolean;
   texts?: {
