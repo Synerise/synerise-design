@@ -24,7 +24,6 @@ class Menu extends React.Component<AntdMenuProps> {
               item.subMenu ? (
                 <SubMenuItem
                   parent={item.parent}
-                  checked={item.checked}
                   danger={item.danger}
                   prefixel={item.prefixel}
                   suffixel={item.suffixel}
@@ -34,13 +33,15 @@ class Menu extends React.Component<AntdMenuProps> {
                   description={item.description}
                   subMenu={item.subMenu}
                   ordered={ordered}
+                  copyable={item.copyable}
+                  copyHint={item.copyHint}
+                  copyValue={item.copyValue}
                   key={`${item.text}${index}`} // eslint-disable-line react/no-array-index-key
                   {...rest}
                 />
               ) : (
                 <MenuItem
                   parent={item.parent}
-                  checked={item.checked}
                   danger={item.danger}
                   prefixel={item.prefixel}
                   suffixel={item.suffixel}
@@ -50,6 +51,9 @@ class Menu extends React.Component<AntdMenuProps> {
                   description={item.description}
                   subMenu={item.subMenu}
                   ordered={ordered}
+                  copyable={item.copyable}
+                  copyHint={item.copyHint}
+                  copyValue={item.copyValue}
                   key={`${item.text}${index}`} // eslint-disable-line react/no-array-index-key
                   {...rest}
                 />

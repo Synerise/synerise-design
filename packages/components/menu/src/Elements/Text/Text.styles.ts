@@ -2,13 +2,15 @@ import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import * as React from 'react';
 import MenuItem from 'antd/lib/menu/MenuItem';
+import { IconContainer } from '@synerise/ds-icon/dist/Icon.styles';
 
 type WrapperProps = {
   disabled?: boolean;
-  checked?: boolean;
   danger?: boolean;
   prefixel?: React.ReactNode;
   pressed: boolean;
+  description?: string | React.ReactNode;
+  copyable?: boolean;
 };
 
 export const ArrowRight = styled.div`
@@ -16,26 +18,58 @@ export const ArrowRight = styled.div`
   opacity: 0;
 `;
 
-export const Checked = styled.div`
-  transition: all 0.3s ease-out;
-  flex-grow: 1;
+export const prefixelWrapper = styled.div<{ disabled?: boolean; pressed?: boolean }>`
   display: flex;
-  justify-content: flex-end;
-`;
-
-export const prefixelWrapper = styled.div<{ disabled?: boolean }>`
-  display: flex;
+  margin-left: -4px;
   align-items: center;
+  svg {
+    fill: ${(props): string => (props.disabled ? props.theme.palette['grey-600'] : 'inherit')};
+  }
 `;
 
+function colorOnFocus(props: WrapperProps & ThemeProps): string {
+  const { pressed, disabled, danger } = props;
+  if (danger) {
+    return `${props.theme.palette['red-600']}`;
+  }
+  if (pressed && !disabled) {
+    return `${props.theme.palette['blue-600']}`;
+  }
+  return `${props.theme.palette['grey-700']}`;
+}
+function backgroundColorOnFocus(props: WrapperProps & ThemeProps): string {
+  const { description, danger } = props;
+  if (description) {
+    return props.theme.palette.white;
+  }
+  if (danger) {
+    return props.theme.palette['red-050'];
+  }
+  return props.theme.palette['grey-050'];
+}
+function iconFillOnFocus(props: WrapperProps & ThemeProps): string {
+  const { danger } = props;
+  if (danger) {
+    return `${props.theme.palette['red-600']}`;
+  }
+  return `${props.theme.palette['grey-700']}`;
+}
+function backgroundColorOnPressed(props: WrapperProps & ThemeProps): string {
+  const { danger } = props;
+  if (danger) {
+    return `${props.theme.palette['red-100']}`;
+  }
+  return `${props.theme.palette['grey-100']}`;
+}
 export const Wrapper = styled(MenuItem)<WrapperProps>`
   &&& {
     color: ${(props): string => (props.danger ? props.theme.palette['red-600'] : props.theme.palette['grey-700'])};
     opacity: ${(props): string => (props.disabled ? '0.4' : '1')};
     cursor: ${(props): string => (props.disabled ? 'not-allowed' : 'pointer')};
     background: ${(props): string =>
-      props.pressed && !props.disabled ? `${props.theme.palette['grey-100']} !important` : ''};
-    padding-right: ${(props): string => (props.checked ? '8px' : '12px')};
+      props.pressed && !props.disabled ? `${backgroundColorOnPressed(props)} !important` : ''};
+    padding-right: 12px;
+    padding-left: ${(props): string => (props.prefixel ? '8px' : '12px')};
     font-weight: 500;
     border-radius: 3px;
     display: flex;
@@ -43,7 +77,16 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
     margin: 0;
     height: auto;
     transition: background-color 0.3s ease-out;
-
+    ${(props): string =>
+      props.disabled
+        ? `
+    & > * {
+       pointer-events: none
+    }`
+        : ''}
+    &.ant-menu-item-only-child {
+      margin-bottom: 0px;
+    }
     &.ant-menu-item-selected {
       background: none;
 
@@ -56,7 +99,6 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
         content: none;
       }
     }
-
     &.ant-menu-item-disabled,
     &.ant-menu-submenu-disabled {
       color: ${(props): string => props.theme.palette['grey-600']} !important;
@@ -69,7 +111,17 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
           }
         `}
     }
-
+    & .ds-menu-prefix > * > .ant-avatar::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: ${(props): string => props.theme.palette['grey-800']};
+      opacity: 0.05;
+      border-radius: inherit;
+    }
     &:active {
       background: none;
 
@@ -80,28 +132,27 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
           fill: ${(props): string => props.theme.palette['blue-600']};
         }
       }
-
-      ${Checked} {
-        svg {
-          fill: currentColor;
-        }
+    }
+    & .ds-checkbox {
+      padding: 0px;
+      margin-bottom: -2px;
+    }
+    &:focus:not(:active) {
+      box-shadow: ${(props): string =>
+        props.pressed && !props.disabled ? 'none' : `inset 0 0 0 2px ${props.theme.palette['blue-600']} !important`};
+      color: ${(props): string => colorOnFocus(props)};
+      background: ${(props): string => backgroundColorOnFocus(props)};
+      .ds-menu-prefix > ${IconContainer} > svg {
+        fill: ${(props): string => iconFillOnFocus(props)};
       }
     }
 
-    &:focus {
-      box-shadow: inset 0 0 0 2px ${(props): string => props.theme.palette['blue-600']};
-
+    &:focus:active {
       ${ArrowRight} {
         opacity: 1;
 
         svg {
           fill: ${(props): string => props.theme.palette['blue-600']};
-        }
-      }
-
-      ${Checked} {
-        svg {
-          fill: currentColor;
         }
       }
     }
@@ -123,8 +174,30 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
         `}
       }
     }
-
+    &:focus {
+      color: ${(props): string => (props.description ? `${props.theme.palette['blue-600']} !important` : 'inherit')};
+    }
     &:hover {
+      & .ds-menu-prefix > * > .ant-avatar::before,
+      .ds-menu-prefix > .ant-badge::before,
+      .ds-menu-prefix > .ant-avatar::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: transparent;
+        border: 2px solid ${(props): string => props.theme.palette.white};
+        opacity: 0.3;
+        border-radius: inherit;
+        box-sizing: border-box;
+      }
+      & .ds-menu-prefix > * > .ant-avatar::after,
+      .ds-menu-prefix > .ant-badge::after,
+      .ds-menu-prefix > .ant-avatar::after {
+        opacity: 0.1;
+      }
       ${ArrowRight} {
         opacity: 1;
 
@@ -135,17 +208,12 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
       ${(props): string | false =>
         !props.disabled &&
         `
-        svg {
+        .ds-menu-prefix > ${IconContainer} > svg {
           fill: ${props.danger ? props.theme.palette['red-600'] : props.theme.palette['blue-600']};
         }
         color: ${props.danger ? props.theme.palette['red-600'] : props.theme.palette['blue-600']};
         background: ${props.danger ? props.theme.palette['red-050'] : props.theme.palette['grey-050']};
       `}
-      ${Checked} {
-        svg {
-          fill: currentColor;
-        }
-      }
     }
   }
 `;
@@ -155,6 +223,7 @@ export const Content = styled.div`
   white-space: nowrap;
   font-size: 13px;
   line-height: 1.39;
+  min-height: 18px;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
@@ -168,10 +237,22 @@ export const Description = styled.div`
   width: 100%;
 `;
 
-export const SuffixWraper = styled.div`
+export const SuffixWraper = styled.div<{ disabled?: boolean }>`
   flex: 1;
   justify-content: flex-end;
   display: flex;
+  ${(props): string | false =>
+    !!props.disabled &&
+    `
+    svg {
+      fill:${props.theme.palette['grey-600']}
+    }
+  `};
+  &:hover {
+    svg {
+      fill: currentColor !important;
+    }
+  }
 `;
 
 export const ContentWrapper = styled.div<{ prefixel?: React.ReactNode; suffixel?: React.ReactNode }>`
@@ -188,7 +269,6 @@ export const ContentWrapper = styled.div<{ prefixel?: React.ReactNode; suffixel?
 `;
 
 export const Inner = styled.div<{ prefixel?: React.ReactNode }>`
-  transform: translateX(${(props): string => (props.prefixel ? '-4px' : '0')});
   width: ${(props): string => (props.prefixel ? 'calc(100% + 4px)' : '100%')};
   display: flex;
 `;
