@@ -4,7 +4,6 @@ import { SubMenuProps } from '../SubMenu/SubMenu.types';
 
 export interface MenuItemProps extends Omit<MenuProps, 'dataSource' | 'footer'> {
   parent?: boolean;
-  checked?: boolean;
   prefixel?: React.ReactNode;
   suffixel?: React.ReactNode;
   disabled?: boolean;
@@ -15,4 +14,7 @@ export interface MenuItemProps extends Omit<MenuProps, 'dataSource' | 'footer'> 
   ordered?: boolean | undefined;
   description?: string | React.ReactNode;
   subMenu?: SubMenuProps[] | string[];
+  copyable?: boolean;
+  copyHint?: string;
+  copyValue?: string;
 }

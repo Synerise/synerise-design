@@ -11,6 +11,7 @@ type SubMenuProps = {
   danger?: boolean | undefined;
   prefixel?: React.ReactNode;
   title: string | React.ReactNode;
+  childrenCollapsed?: boolean;
 };
 
 type AntdMenuProps = {
@@ -86,7 +87,7 @@ export const SubMenuItem = styled(SubMenu)<SubMenuProps>`
     }
 
     &:focus {
-      box-shadow: inset 0 0 0 2px ${(props): string => props.theme.palette['blue-600']};
+      border: 2px solid ${(props): string => props.theme.palette['blue-600']};
     }
 
     i {
@@ -95,8 +96,8 @@ export const SubMenuItem = styled(SubMenu)<SubMenuProps>`
 
     .ant-menu-submenu-title {
       border-radius: 3px;
-      color: ${(props): string => props.theme.palette['grey-700']};
-
+      color: ${(props): string =>
+        props.childrenCollapsed ? props.theme.palette['grey-700'] : props.theme.palette['blue-600']};
       &:hover {
         color: ${(props): string => props.theme.palette['blue-600']};
         background: ${(props): string => props.theme.palette['grey-050']};
@@ -108,6 +109,13 @@ export const SubMenuItem = styled(SubMenu)<SubMenuProps>`
         background: none !important;
       }
     }
+    ${(props): string =>
+      props.disabled
+        ? `
+     > * {
+        pointer-events:none;
+     }`
+        : ``}
 
     > ul {
       li {

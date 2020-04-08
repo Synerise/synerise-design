@@ -9,4 +9,6 @@ export interface AntdMenuProps extends Omit<MenuProps, 'dataSource' | 'footer'> 
   prefixel?: React.ReactNode;
   subMenu?: string[];
   ordered?: boolean | undefined;
+  copyable?: boolean;
+  copyHint?: string;
 }
