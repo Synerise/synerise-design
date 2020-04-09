@@ -11,7 +11,6 @@ class SubMenuItem extends React.PureComponent<SubMenuProps & MenuItemProps, SubM
   state = { childrenCollapsed: true, uuidKey: uuid() };
 
   render(): React.ReactNode {
-    console.log('SubmenuRender');
     const { text, subMenu, disabled, danger, ordered, ...rest } = this.props;
     const { childrenCollapsed, uuidKey } = this.state;
     return (
