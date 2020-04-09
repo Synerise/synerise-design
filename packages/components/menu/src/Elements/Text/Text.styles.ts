@@ -13,20 +13,6 @@ type WrapperProps = {
   copyable?: boolean;
 };
 
-export const ArrowRight = styled.div`
-  transition: all 0.3s ease-out;
-  opacity: 0;
-`;
-
-export const prefixelWrapper = styled.div<{ disabled?: boolean; pressed?: boolean }>`
-  display: flex;
-  margin-left: -4px;
-  align-items: center;
-  svg {
-    fill: ${(props): string => (props.disabled ? props.theme.palette['grey-600'] : 'inherit')};
-  }
-`;
-
 function colorOnFocus(props: WrapperProps & ThemeProps): string {
   const { pressed, disabled, danger } = props;
   if (danger) {
@@ -61,6 +47,24 @@ function backgroundColorOnPressed(props: WrapperProps & ThemeProps): string {
   }
   return `${props.theme.palette['grey-100']}`;
 }
+
+export const ArrowRight = styled.div`
+  transition: all 0.3s ease-out;
+  opacity: 0;
+`;
+
+export const prefixelWrapper = styled.div<{ disabled?: boolean; pressed?: boolean }>`
+  display: flex;
+  margin-top: -7px;
+  margin-bottom: -7px;
+  margin-left: -4px;
+  margin-right: 12px;
+  align-items: center;
+  svg {
+    fill: ${(props): string => (props.disabled ? props.theme.palette['grey-600'] : 'inherit')};
+  }
+`;
+
 export const Wrapper = styled(MenuItem)<WrapperProps>`
   &&& {
     color: ${(props): string => (props.danger ? props.theme.palette['red-600'] : props.theme.palette['grey-700'])};
@@ -219,17 +223,20 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
 `;
 
 export const Content = styled.div`
+  flex: 1;
   text-overflow: ellipsis;
+  overflow: hidden;
   white-space: nowrap;
   font-size: 13px;
   line-height: 1.39;
   min-height: 18px;
-  display: flex;
   align-items: center;
   flex-wrap: wrap;
 `;
 
 export const Description = styled.div`
+  text-overflow: ellipsis;
+  overflow: hidden;
   color: ${(props): string => props.theme.palette['grey-600']};
   font-weight: normal;
   line-height: 1.39;
@@ -238,7 +245,6 @@ export const Description = styled.div`
 `;
 
 export const SuffixWraper = styled.div<{ disabled?: boolean }>`
-  flex: 1;
   justify-content: flex-end;
   display: flex;
   ${(props): string | false =>
@@ -246,6 +252,7 @@ export const SuffixWraper = styled.div<{ disabled?: boolean }>`
     `
     svg {
       fill:${props.theme.palette['grey-600']}
+       margin-right:-4px;
     }
   `};
   &:hover {
@@ -261,14 +268,9 @@ export const ContentWrapper = styled.div<{ prefixel?: React.ReactNode; suffixel?
   display: flex;
   align-items: center;
   flex-wrap: ${(props): string => (props.suffixel ? 'wrap' : 'nowrap')};
-
-  > div {
-    padding-left: ${(props): string => (props.prefixel ? '12px' : '0')};
-    width: 100%;
-  }
 `;
 
 export const Inner = styled.div<{ prefixel?: React.ReactNode }>`
-  width: ${(props): string => (props.prefixel ? 'calc(100% + 4px)' : '100%')};
+  width: 100%;
   display: flex;
 `;
