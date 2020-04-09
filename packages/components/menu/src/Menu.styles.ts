@@ -20,6 +20,12 @@ type AntdMenuProps = {
 
 export const prefixelWrapper = styled.div``;
 
+const arrowDownSvgWithCustomColor = (color: string): string => {
+  const colorValueForSvg = color.replace(/#/, '%23');
+  const iconWithColor = `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' >/><path fill='none' d='M0 0h24v24H0z' /><path style='fill: ${colorValueForSvg};' d='M14.71973,9.84473,12,12.56445,9.28027,9.84473a.74992.74992,0,0,0-1.06054,1.06054l3.25,3.25a.74971.74971,0,0,0,1.06054,0l3.25-3.25a.74992.74992,0,0,0-1.06054-1.06054Z'/></svg>`;
+  return iconWithColor;
+};
+
 export const AntdMenu = styled(Menu)<AntdMenuProps>`
   ${(props: AntdMenuProps & ThemeProps): FlattenSimpleInterpolation | false =>
     props.ordered !== undefined &&
@@ -93,14 +99,40 @@ export const SubMenuItem = styled(SubMenu)<SubMenuProps>`
     i {
       right: 12px;
     }
-
-    .ant-menu-submenu-title {
-      border-radius: 3px;
+    .ant-menu-submenu-title:not(:hover){
       color: ${(props): string =>
         props.childrenCollapsed ? props.theme.palette['grey-700'] : props.theme.palette['blue-600']};
+    }
+    .ant-menu-submenu-title {
+      ${(props): string | false => !props.childrenCollapsed && `background:${props.theme.palette['grey-050']};`}
+      border-radius: 3px;
+      & > i.ant-menu-submenu-arrow {
+          transform: ${(props): string => (props.childrenCollapsed ? `rotate(0deg)` : `rotate(180deg)`)};
+          top:5px;
+          right:5px;
+          height:24px;
+          width:24px;
+          background-image: url("${(props): string =>
+            props.childrenCollapsed
+              ? arrowDownSvgWithCustomColor(props.theme.palette['grey-400'])
+              : arrowDownSvgWithCustomColor(props.theme.palette['blue-600'])}");
+      }
+      & > i.ant-menu-submenu-arrow::after,
+      & > i.ant-menu-submenu-arrow::before {
+              background-image: none;
+      }
+
+      &:hover > i.ant-menu-submenu-arrow::after,
+      &:hover > i.ant-menu-submenu-arrow::before{
+          background-image: none;
+      }
       &:hover {
         color: ${(props): string => props.theme.palette['blue-600']};
         background: ${(props): string => props.theme.palette['grey-050']};
+      }
+      &:hover > i.ant-menu-submenu-arrow{
+        background-image: url("${(props): string => arrowDownSvgWithCustomColor(props.theme.palette['blue-600'])}");
+
       }
     }
 
