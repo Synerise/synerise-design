@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.28](https://github.com/Synerise/synerise-design/compare/@synerise/ds-result@0.4.27...@synerise/ds-result@0.4.28) (2020-04-09)
+
+
+### Bug Fixes
+
+* **result:** type of customIcon prop ([f843c4d](https://github.com/Synerise/synerise-design/commit/f843c4d863e0c7c1199b62cb57b691c9b6edc064))
+
+
+
+
+
 ## [0.4.27](https://github.com/Synerise/synerise-design/compare/@synerise/ds-result@0.4.26...@synerise/ds-result@0.4.27) (2020-04-06)
 
 **Note:** Version bump only for package @synerise/ds-result

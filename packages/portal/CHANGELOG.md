@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.52.10](https://github.com/synerise/synerise-design/compare/portal@0.52.9...portal@0.52.10) (2020-04-09)
+
+
+### Bug Fixes
+
+* **menu:** updated storybook ([635fd18](https://github.com/synerise/synerise-design/commit/635fd18292b562ee1def7ef4875c1b428595154e))
+
+
+
+
+
 ## [0.52.9](https://github.com/synerise/synerise-design/compare/portal@0.52.8...portal@0.52.9) (2020-04-08)
 
 
