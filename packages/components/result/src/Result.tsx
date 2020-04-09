@@ -16,7 +16,7 @@ export type ResultProps = {
   description?: string | React.ReactNode;
   buttons?: React.ReactNode;
   panel?: React.ReactNode;
-  customIcon?: Element;
+  customIcon?: React.ReactElement;
   noSearchResults?: boolean;
 };
 
