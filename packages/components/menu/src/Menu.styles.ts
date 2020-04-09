@@ -113,13 +113,14 @@ export const SubMenuItem = styled(SubMenu)<SubMenuProps>`
           height:24px;
           width:24px;
           background-image: url("${(props): string =>
-            props.childrenCollapsed
+            props.childrenCollapsed || props.disabled
               ? arrowDownSvgWithCustomColor(props.theme.palette['grey-400'])
               : arrowDownSvgWithCustomColor(props.theme.palette['blue-600'])}");
       }
       & > i.ant-menu-submenu-arrow::after,
       & > i.ant-menu-submenu-arrow::before {
               background-image: none;
+              display:none;
       }
 
       &:hover > i.ant-menu-submenu-arrow::after,

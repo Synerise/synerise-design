@@ -59,13 +59,13 @@ const Text: React.FC<Props> = ({
       {...rest}
     >
       <S.Inner prefixel={Boolean(prefixel)}>
-        {prefixel && (
-          <S.prefixelWrapper className="ds-menu-prefix" pressed={pressed} disabled={disabled}>
-            {prefixel}
-          </S.prefixelWrapper>
-        )}
-        <S.ContentWrapper prefixel={Boolean(prefixel)}>
-          <S.Content>
+        <S.ContentWrapper prefixel={Boolean(prefixel)} className="ContentWrapper">
+          {prefixel && (
+            <S.PrefixelWrapper className="ds-menu-prefix" pressed={pressed} disabled={disabled}>
+              {prefixel}
+            </S.PrefixelWrapper>
+          )}
+          <S.Content className="S-Content">
             {canCopyToClipboard && hovered ? copyHint : children}
             {Boolean(description) && <S.Description>{description}</S.Description>}
             {parent && (
