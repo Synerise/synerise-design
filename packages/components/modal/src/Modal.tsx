@@ -63,7 +63,13 @@ class ModalProxy extends React.Component<Props> {
     const titleContainer = (
       <>
         {blank && closable && (
-          <Button data-testid="modal-close" className="close-modal" type="ghost" onClick={handleOnClose}>
+          <Button
+            mode="single-icon"
+            data-testid="modal-close"
+            className="close-modal"
+            type="ghost"
+            onClick={handleOnClose}
+          >
             <Icon component={<CloseM />} />
           </Button>
         )}
@@ -73,7 +79,13 @@ class ModalProxy extends React.Component<Props> {
             <S.ActionButtons>
               {headerActions}
               {closable && (
-                <Button data-testid="modal-close" className="close-modal" type="ghost" onClick={handleOnClose}>
+                <Button
+                  mode="single-icon"
+                  data-testid="modal-close"
+                  className="close-modal"
+                  type="ghost"
+                  onClick={handleOnClose}
+                >
                   <Icon component={<CloseM />} />
                 </Button>
               )}
