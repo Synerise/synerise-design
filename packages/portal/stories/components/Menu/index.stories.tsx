@@ -35,7 +35,8 @@ const suffixType = {
   warning:'warning',
   icon:'icon',
   switch:'switch',
-  label:'label'
+  label:'label',
+  none:'none',
 }
 const iconPrefixType = {
   singleIcon:'singleIcon',
@@ -48,30 +49,25 @@ function renderSuffix(suffixElementType: string){
         <Icon color={theme.palette['grey-600']} component={<EditS />}/>
         <Icon color={theme.palette['red-600']} component={<CloseS />}/>
       </React.Fragment>
-      break;
     case suffixType.delete:
       return <Icon color={theme.palette['red-600']} component={<CloseS />}/>;
-      break;
     case suffixType.check:
       return <Icon color={theme.palette['green-600']} component={<CheckS />}/>;
-      break;
     case suffixType.warning:
       return <Icon color={theme.palette['orange-600']} component={<WarningFillS />}/>;
-      break;
     case suffixType.icon:
       return <Icon color={theme.palette['grey-600']} component={<UserS />}/>;
-      break;
     case suffixType.label:
       return <Label label={
         <div style={{lineHeight:'18px',color:"#6a7580"}}>
          <span>[key:value]</span>
         </div>}/>
-      break;
     case suffixType.switch:
       return <React.Fragment>
         <ExtendedAntdSwitchComponent id={"toggle"}/>
       </React.Fragment>
-      return
+    case suffixType.none:
+      return null;
     default:
       return null;
       break;
@@ -93,7 +89,7 @@ const getDefaultProps = () => ({
   disabled: boolean('Set disabled', false),
 });
 const getSuffixElement = () =>{
-  const selectedSuffix = select('Set suffix type',suffixType,suffixType.check);
+  const selectedSuffix = select('Set suffix type',suffixType,suffixType.none);
   const suffixElement = renderSuffix(selectedSuffix);
   return suffixElement;
 }
@@ -179,7 +175,7 @@ const parent = [
 
 const avatar = [
   [
-    { text: 'Option', prefixel: <Badge status="active"><Avatar size="small" backgroundColor="green" backgroundColorHue="400" shape="square">AK</Avatar></Badge>, suffixel: getSuffixElement(), },
+    { text: 'Option', prefixel: <Badge status="active"><Avatar size="small" backgroundColor="green" backgroundColorHue="400" shape="square">AK</Avatar></Badge> },
   ],
 ];
 
@@ -200,14 +196,13 @@ const deleteState = [
     { text: 'Delete', danger: true, prefixel: <Icon onClick={()=>{alert('Clicked')}} component={<TrashM />} /> },
   ],
 ];
-const withCheckbox = [
+
+const withCheckBox = [
   [
     {
-      prefixel: <Checkbox children = "Option" />,
     },
   ],
 ]
-
 const withCopyable = [
   [
     {
@@ -242,12 +237,14 @@ const stories = {
   },
   withCheckbox: ()=>{
     const defaultProps = getDefaultProps();
-
+    const [isChecked,setChecked] = React.useState(false);
     const props = {
-      dataSource: withCheckbox,
+      dataSource: withCheckBox,
       suffixel: getSuffixElement(),
+      prefixel: <Checkbox children = "Option" checked={isChecked} onChange={()=>setChecked(!isChecked)}/>,
+      onClick: ()=> setChecked(!isChecked),
       ...defaultProps
-    } as object;
+    };
     return decorator(props)
   },
   withOrderedList: ()=>{
@@ -280,6 +277,7 @@ const stories = {
   const defaultProps = getDefaultProps();
   const props = {
     dataSource: avatar,
+    suffixel: getSuffixElement(),
     ...defaultProps
   } as object;
   return decorator(props)
@@ -314,7 +312,7 @@ const stories = {
   const prefixel =  <ExtendedAntdSwitchComponent id={"toggle"} checked={isChecked} onChange={()=>setChecked(!isChecked)}/>
   const text = isChecked? "Check" : "Not Checked";
     const props = {
-    dataSource: withCheckbox,
+    dataSource: simpleText,
     prefixel,
       text,
     ...defaultProps
