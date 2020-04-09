@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.0.5...@synerise/ds-menu@0.0.6) (2020-04-09)
+
+
+### Bug Fixes
+
+* **menu:** replaced antd arrow with arrow from ds ([e73c793](https://github.com/Synerise/synerise-design/commit/e73c793dc1a5793b3db4ffe0fbf20bdf33f17039))
+
+
+
+
+
 ## [0.0.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.0.4...@synerise/ds-menu@0.0.5) (2020-04-08)
 
 
