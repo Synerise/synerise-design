@@ -18,5 +18,5 @@ export interface AntdMenuProps extends Omit<MenuProps, 'dataSource' | 'footer'> 
 }
 export interface AntdMenuState {
   toRender: MenuItemProps[][];
-  renderPointer?: number;
+  itemsCountToShow?: number;
 }

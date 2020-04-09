@@ -14,15 +14,17 @@ class Menu extends React.Component<AntdMenuProps, AntdMenuState> {
   private virtualize = this.shouldVirtualizeItems();
 
   // eslint-disable-next-line react/destructuring-assignment
-  state: AntdMenuState = { toRender: this.props.dataSource, renderPointer: 7 };
+  state: AntdMenuState = { toRender: this.props.dataSource, itemsCountToShow: 7 }; // hardcoded - needs to be calculated in constructor
 
   handleScroll = (e: any): void => {
     const { dataLength, rowHeight } = this.props;
     const element = e.target;
-    const { renderPointer } = this.state;
+    const { itemsCountToShow } = this.state;
     const lastVisibleElement = Math.floor(element.scrollHeight / rowHeight);
-    if (renderPointer < dataLength && element.scrollHeight > (lastVisibleElement - 1) * rowHeight) {
-      this.setState((prevState: AntdMenuState) => ({ ...prevState, renderPointer: prevState.renderPointer + 1 }));
+    if (itemsCountToShow < dataLength && element.scrollHeight > (lastVisibleElement - 1) * rowHeight) {
+      // eslint-disable-next-line no-console
+      console.log('Top level menu State changed', this.state);
+      this.setState((prevState: AntdMenuState) => ({ ...prevState, itemsCountToShow: prevState.itemsCountToShow + 1 }));
     }
   };
 
@@ -33,9 +35,9 @@ class Menu extends React.Component<AntdMenuProps, AntdMenuState> {
 
   prepareDataForRender(items: MenuItemProps[]): MenuItemProps[] {
     if (this.virtualize) {
-      const { renderPointer } = this.state;
-      if (renderPointer !== undefined && renderPointer > 0) {
-        return items.slice(0, renderPointer);
+      const { itemsCountToShow } = this.state;
+      if (itemsCountToShow !== undefined && itemsCountToShow > 0) {
+        return items.slice(0, itemsCountToShow);
       }
     }
     return items;
@@ -89,6 +91,7 @@ class Menu extends React.Component<AntdMenuProps, AntdMenuState> {
                   copyable={item.copyable}
                   copyHint={item.copyHint}
                   copyValue={item.copyValue}
+                  show
                   key={`${item.text}${index}`} // eslint-disable-line react/no-array-index-key
                   {...rest}
                 />

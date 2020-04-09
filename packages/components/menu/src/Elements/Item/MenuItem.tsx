@@ -11,6 +11,14 @@ import { SubMenuProps } from '../SubMenu/SubMenu.types';
 class MenuItem extends React.Component<SubMenuProps & MenuItemProps> {
   static Item: typeof TextItem = TextItem;
 
+  shouldComponentUpdate(nextProps: Readonly<SubMenuProps & MenuItemProps>): boolean {
+    const { show } = this.props;
+    if (show !== nextProps.show) {
+      return true;
+    }
+    return false;
+  }
+
   render(): React.ReactNode {
     const {
       onSelect,
@@ -24,9 +32,12 @@ class MenuItem extends React.Component<SubMenuProps & MenuItemProps> {
       description,
       subMenu,
       nestedMenu,
+      show,
       ...rest
     } = this.props;
 
+    // eslint-disable-next-line no-console
+    console.log('MenuItemRender');
     return subMenu || nestedMenu ? (
       <SubMenuItem
         prefixel={prefixel}
