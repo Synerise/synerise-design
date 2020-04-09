@@ -61,9 +61,9 @@ const Text: React.FC<Props> = ({
       <S.Inner prefixel={Boolean(prefixel)}>
         <S.ContentWrapper prefixel={Boolean(prefixel)} className="ContentWrapper">
           {prefixel && (
-            <S.prefixelWrapper className="ds-menu-prefix" pressed={pressed} disabled={disabled}>
+            <S.PrefixelWrapper className="ds-menu-prefix" pressed={pressed} disabled={disabled}>
               {prefixel}
-            </S.prefixelWrapper>
+            </S.PrefixelWrapper>
           )}
           <S.Content className="S-Content">
             {canCopyToClipboard && hovered ? copyHint : children}

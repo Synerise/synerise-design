@@ -53,7 +53,7 @@ export const ArrowRight = styled.div`
   opacity: 0;
 `;
 
-export const prefixelWrapper = styled.div<{ disabled?: boolean; pressed?: boolean }>`
+export const PrefixelWrapper = styled.div<{ disabled?: boolean; pressed?: boolean }>`
   display: flex;
   margin-top: -7px;
   margin-bottom: -7px;
@@ -169,7 +169,7 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
       }
     }
 
-    ${prefixelWrapper} {
+    ${PrefixelWrapper} {
       svg {
         ${(props): string | false =>
           !props.disabled &&
@@ -249,12 +249,13 @@ export const SuffixWraper = styled.div<{ disabled?: boolean }>`
   display: flex;
   ${(props): string | false =>
     !!props.disabled &&
-    `
-    svg {
+    `svg {
       fill:${props.theme.palette['grey-600']}
-       margin-right:-4px;
     }
   `};
+  svg {
+    margin-right: -4px;
+  }
   &:hover {
     svg {
       fill: currentColor !important;
