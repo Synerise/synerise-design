@@ -60,7 +60,7 @@ const PageHeader: React.FC<PageHeaderProps> = props => {
       <S.PageHeaderContainer>
         {onGoBack && (
           <S.PageHeaderBack>
-            <Button type="ghost" onClick={onGoBack}>
+            <Button type="ghost" mode="single-icon" onClick={onGoBack}>
               <Icon
                 className="page-header__back"
                 color={theme.palette['grey-600']}
