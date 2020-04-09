@@ -13,7 +13,7 @@ class Menu extends React.Component<AntdMenuProps> {
 
   // contactRenderer = (list: any, rest: any): any => ({index,key,style,}: {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  contactRenderer = (list: any, rest: any): any => ({
+  contactRenderer = (list: any): any => ({
     index,
   }: {
     index: number;
@@ -35,8 +35,6 @@ class Menu extends React.Component<AntdMenuProps> {
         copyable={item.copyable}
         copyHint={item.copyHint}
         copyValue={item.copyValue}
-        key={`${item.text}${index}`} // eslint-disable-line react/no-array-index-key
-        {...rest}
       />
     ) : (
       <MenuItem
@@ -53,27 +51,24 @@ class Menu extends React.Component<AntdMenuProps> {
         copyHint={item.copyHint}
         copyValue={item.copyValue}
         key={`${item.text}${index}`} // eslint-disable-line react/no-array-index-key
-        {...rest}
       />
     );
   };
 
   render(): React.ReactNode {
     const { dataSource, dataLength, ordered, height, rowHeight, virtualized, ...rest } = this.props;
+    const data = dataSource[0];
     return (
       <>
         {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-        <S.AntdMenu ordered={ordered} mode="inline" inlineIndent={24} {...rest} height={height}>
-          {dataSource.map(items => (
-            // eslint-disable-next-line react/jsx-key
-            <List
-              width={200}
-              height={items.length < 10 ? items.length * 32 : 200}
-              rowCount={items.length}
-              rowHeight={32}
-              rowRenderer={this.contactRenderer(items, { ...rest })}
-            />
-          ))}
+        <S.AntdMenu ordered={ordered} mode="inline" inlineIndent={24} {...rest}>
+          <List
+            width={200}
+            height={data.length < 10 ? data.length * 32 : 200}
+            rowCount={data.length}
+            rowHeight={32}
+            rowRenderer={this.contactRenderer(data)}
+          />
         </S.AntdMenu>
       </>
     );
