@@ -1,5 +1,4 @@
 const path = require('path');
-const resolve = require('resolve');
 
 module.exports = {
   title: 'Synerise Design System',
@@ -7,31 +6,9 @@ module.exports = {
   assetsDir: './docs/assets',
   styleguideDir: './docs/dist',
   pagePerSection: true,
-  sections: [
-    {
-      name: 'Intro',
-      content: './docs/intro.md',
-    },
-    {
-      name: 'Pallete',
-      content: './docs/palette.md',
-    },
-    {
-      name: 'Components',
-      components: () => ([
-        './packages/components/Button/**/*.tsx',
-        './packages/components/Avatar/**/*.tsx',
-        './packages/components/Modal/**/*.tsx',
-      ])
-    },
-    {
-      name: 'Components #2',
-      components: () => ([
-        './packages/components/AppMenu/**/*.tsx',
-        './packages/components/Badge/**/*.tsx',
-      ])
-    }
-  ],
+  usageMode: 'expand',
+  verbose: true,
+  skipComponentsWithoutExample: true,
   webpackConfig: {
     module: {
       rules: [
@@ -99,7 +76,7 @@ module.exports = {
             }]
         },
         {
-          test: /\.(woff(2)?|ttf|eot|svg|jpg|png|svg)(\?v=\d+\.\d+\.\d+)?$/,
+          test: /\.(woff(2)?|ttf|eot|svg|jpg|png)(\?v=\d+\.\d+\.\d+)?$/,
           use: [
             {
               loader: 'file-loader',
