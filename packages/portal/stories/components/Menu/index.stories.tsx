@@ -264,6 +264,10 @@ const stories = {
   const props = {
     dataSource: largeList,
     ordered: true,
+    height:200,
+    rowHeight:32,
+    virtualized:true,
+    dataLength:30,
     ...defaultProps
   } as object;
   return decorator(props)

@@ -11,4 +11,12 @@ export interface AntdMenuProps extends Omit<MenuProps, 'dataSource' | 'footer'> 
   ordered?: boolean | undefined;
   copyable?: boolean;
   copyHint?: string;
+  virtualized?: boolean;
+  height?: number;
+  rowHeight?: number;
+  dataLength?: number;
+}
+export interface AntdMenuState {
+  toRender: MenuItemProps[][];
+  renderPointer?: number;
 }

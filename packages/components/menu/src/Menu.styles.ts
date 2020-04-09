@@ -16,6 +16,7 @@ type SubMenuProps = {
 
 type AntdMenuProps = {
   ordered?: boolean | undefined;
+  height?: number;
 };
 
 export const prefixelWrapper = styled.div``;
@@ -52,7 +53,8 @@ export const AntdMenu = styled(Menu)<AntdMenuProps>`
         }
       }
     `}
-
+    ${(props): string | false => !!props.height && `height:${props.height}px;`}
+    ${(props): string | false => !!props.height && `overflow-y: scroll;`}
   > li {
     > .ant-menu-submenu-title {
       padding-left: 12px !important;

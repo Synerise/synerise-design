@@ -5,22 +5,57 @@ import * as S from './Menu.styles';
 
 import { TextItem } from './Elements';
 import SubMenuItem from './Elements/SubMenu/SubMenu';
-import { AntdMenuProps } from './Menu.types';
+import { AntdMenuProps, AntdMenuState } from './Menu.types';
 import MenuItem from './Elements/Item/MenuItem';
 import { MenuItemProps } from './Elements/Item/MenuItem.types';
 
-class Menu extends React.Component<AntdMenuProps> {
+class Menu extends React.Component<AntdMenuProps, AntdMenuState> {
   static Item: typeof TextItem = TextItem;
+  private virtualize = this.shouldVirtualizeItems();
+
+  // eslint-disable-next-line react/destructuring-assignment
+  state: AntdMenuState = { toRender: this.props.dataSource, renderPointer: 7 };
+
+  handleScroll = (e: any): void => {
+    const { dataLength, rowHeight } = this.props;
+    const element = e.target;
+    const { renderPointer } = this.state;
+    const lastVisibleElement = Math.floor(element.scrollHeight / rowHeight);
+    if (renderPointer < dataLength && element.scrollHeight > (lastVisibleElement - 1) * rowHeight) {
+      this.setState((prevState: AntdMenuState) => ({ ...prevState, renderPointer: prevState.renderPointer + 1 }));
+    }
+  };
+
+  shouldVirtualizeItems(): boolean {
+    const { virtualized, rowHeight, height, dataLength } = this.props;
+    return !!virtualized && !!rowHeight && !!height && !!dataLength;
+  }
+
+  prepareDataForRender(items: MenuItemProps[]): MenuItemProps[] {
+    if (this.virtualize) {
+      const { renderPointer } = this.state;
+      if (renderPointer !== undefined && renderPointer > 0) {
+        return items.slice(0, renderPointer);
+      }
+    }
+    return items;
+  }
 
   render(): React.ReactNode {
-    const { dataSource, ordered, ...rest } = this.props;
-
+    const { dataSource, dataLength, ordered, height, rowHeight, virtualized, ...rest } = this.props;
     return (
       <>
         {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-        <S.AntdMenu ordered={ordered} mode="inline" inlineIndent={24} {...rest}>
+        <S.AntdMenu
+          ordered={ordered}
+          mode="inline"
+          inlineIndent={24}
+          {...rest}
+          height={height}
+          onScroll={(e): void => this.handleScroll(e)}
+        >
           {dataSource.map(items =>
-            items.map((item: MenuItemProps, index: number) =>
+            this.prepareDataForRender(items).map((item: MenuItemProps, index: number) =>
               item.subMenu ? (
                 <SubMenuItem
                   parent={item.parent}
