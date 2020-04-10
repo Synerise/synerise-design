@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-drawer@0.4.9...@synerise/ds-drawer@0.4.10) (2020-04-10)
+
+
+### Bug Fixes
+
+* **drawer:** removed inline styles ([d0b9b87](https://github.com/Synerise/synerise-design/commit/d0b9b874a47e024495772741cf282fc32154decc))
+
+
+
+
+
 ## [0.4.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-drawer@0.4.8...@synerise/ds-drawer@0.4.9) (2020-04-02)
 
 

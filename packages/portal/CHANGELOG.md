@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.53.1](https://github.com/synerise/synerise-design/compare/portal@0.53.0...portal@0.53.1) (2020-04-10)
+
+
+### Bug Fixes
+
+* **drawer:** ran prettier ([7372680](https://github.com/synerise/synerise-design/commit/73726803eaf62b72f7a248e6d56710a96d853a62))
+* **drawer:** removed inline styles ([d0b9b87](https://github.com/synerise/synerise-design/commit/d0b9b874a47e024495772741cf282fc32154decc))
+
+
+
+
+
 # [0.53.0](https://github.com/synerise/synerise-design/compare/portal@0.52.10...portal@0.53.0) (2020-04-10)
 
 
