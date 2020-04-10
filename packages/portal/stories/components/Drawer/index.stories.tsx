@@ -4,15 +4,12 @@ import Button from '@synerise/ds-button';
 import Tabs from '@synerise/ds-tabs';
 import { action } from '@storybook/addon-actions';
 import Typography from 'antd/lib/typography';
-import SearchInput from '@synerise/ds-dropdown/dist/elements/SearchInput/SearchInput';
 import { SearchM } from '@synerise/ds-icon/dist/icons';
 import Icon from '@synerise/ds-icon';
 import Result from '@synerise/ds-result';
-import { text, select, boolean } from '@storybook/addon-knobs';
-
+import { select } from '@storybook/addon-knobs';
 import ArrowLeftM from '@synerise/ds-icon/dist/icons/ArrowLeftM';
 import CloseM from '@synerise/ds-icon/dist/icons/CloseM';
-import * as S from '@synerise/ds-item-filter/dist/ItemFIlter.styles';
 import SearchBar from '@synerise/ds-search-bar';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { FormattedMessage } from 'react-intl';
@@ -92,11 +89,11 @@ const stories = {
           onClose={() => setDrawerVisible(false)}
         >
           <Drawer.DrawerHeader>
-            <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: 24}}>
-              {renderBackIcon(headerType,()=>setDrawerVisible(false))}
+          <Drawer.DrawerHeaderBar>
+                {renderBackIcon(headerType,()=>setDrawerVisible(false))}
               <Typography.Title style={{flex: 1, margin: 0,}} level={4}>Title</Typography.Title>
               {renderActionButtons(closeActionType,()=>setDrawerVisible(false))}
-            </div>
+        </Drawer.DrawerHeaderBar>
           </Drawer.DrawerHeader>
           <Drawer.DrawerBody>
             <Drawer.DrawerContent>
@@ -123,11 +120,11 @@ const stories = {
         >
           <Drawer.DrawerHeaderWithoutPadding>
             <Drawer.DrawerHeader>
-              <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: 24}}>
+              <Drawer.DrawerHeaderBar>
                 {renderBackIcon(headerType,()=>setDrawerVisible(false))}
                 <Typography.Title style={{flex: 1, margin: 0,}} level={4}>Title</Typography.Title>
                 {renderActionButtons(closeActionType,()=>setDrawerVisible(false))}
-              </div>
+               </Drawer.DrawerHeaderBar>
             </Drawer.DrawerHeader>
             <SearchBar
               disabled={false}
@@ -166,11 +163,11 @@ const stories = {
         >
           <Drawer.DrawerHeaderWithoutPadding>
             <Drawer.DrawerHeader>
-              <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: '24px'}}>
+              <Drawer.DrawerHeaderBar>
                 {renderBackIcon(headerType,()=>setDrawerVisible(false))}
                 <Typography.Title style={{flex: 1, margin: 0,}} level={4}>Title</Typography.Title>
                 {renderActionButtons(closeActionType,()=>setDrawerVisible(false))}
-              </div>
+              </Drawer.DrawerHeaderBar>
               <Tabs activeTab={activeTab} tabs={TABS} handleTabClick={setActiveTab} configuration={{label: 'Configure', action: action('onConfigurationClick')}} />
             </Drawer.DrawerHeader>
           </Drawer.DrawerHeaderWithoutPadding>
@@ -200,11 +197,11 @@ const stories = {
         >
           <Drawer.DrawerHeaderWithoutPadding>
             <Drawer.DrawerHeader>
-              <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: '24px'}}>
+              <Drawer.DrawerHeaderBar>
                 {renderBackIcon(headerType,()=>setDrawerVisible(false))}
                 <Typography.Title style={{flex: 1, margin: 0,}} level={4}>Title</Typography.Title>
                 {renderActionButtons(closeActionType,()=>setDrawerVisible(false))}
-              </div>
+              </Drawer.DrawerHeaderBar>
               <Tabs activeTab={activeTab} tabs={TABS} handleTabClick={setActiveTab} configuration={{label: 'Configure', action: action('onConfigurationClick')}} />
             </Drawer.DrawerHeader>
             <SearchBar
