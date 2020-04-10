@@ -4,7 +4,7 @@ import ShowM from '@synerise/ds-icon/dist/icons/ShowM';
 import TrashM from '@synerise/ds-icon/dist/icons/TrashM';
 import Menu from '@synerise/ds-menu';
 import Avatar from "@synerise/ds-avatar/";
-import { boolean, select } from '@storybook/addon-knobs';
+import { boolean, select, text } from '@storybook/addon-knobs';
 import Badge from '@synerise/ds-badge';
 import Checkbox from '@synerise/ds-checkbox/dist';
 import {
@@ -95,7 +95,8 @@ const getSuffixElement = () =>{
 }
 
 const defaultProps = getDefaultProps();
-
+const textPlaceholder = "Option";
+const descriptionPlaceholder = "Description";
 const imgSrc = 'https://www.w3schools.com/howto/img_avatar.png';
 
 let simpleText = [
@@ -106,61 +107,67 @@ let simpleText = [
 
 const textWithIcon = [
   [
-    { text: 'Option', disabled: defaultProps.disabled },
+    { text: textPlaceholder, disabled: defaultProps.disabled },
   ],
 ];
+const attachKnobsToDataSource = (data) => (
+  data.map(item => (
+    {...item,
+      text: text('Set text',textPlaceholder),
+      disabled: boolean('Set disabled', false),
+      ...item.description && {description:text('Set description',descriptionPlaceholder)},
+      ...item.copyValue && {copyValue:item.text},
 
+    }
+    ))
+
+);
 const ordered = [
-  [
-    { text: 'Option', disabled: defaultProps.disabled },
-    { text: 'Option', disabled: defaultProps.disabled },
-    { text: 'Option', disabled: defaultProps.disabled },
-    { text: 'Option', disabled: defaultProps.disabled },
-  ],
+    { text: 'Option',  },
+    { text: 'Option',  },
+    { text: 'Option',  },
+    { text: 'Option',  },
 ];
 const largeList = [
-  [
-    { text: 'Option', disabled: defaultProps.disabled },
-    { text: 'Option', disabled: defaultProps.disabled },
-    { text: 'Option', disabled: defaultProps.disabled },
-    { text: 'Option', disabled: defaultProps.disabled },
-    { text: 'Option', disabled: defaultProps.disabled },
-    { text: 'Option', disabled: defaultProps.disabled },
-    { text: 'Option', disabled: defaultProps.disabled },
-    { text: 'Option', disabled: defaultProps.disabled },
-    { text: 'Option', disabled: defaultProps.disabled },
-    { text: 'Option', disabled: defaultProps.disabled },
-    { text: 'Option', disabled: defaultProps.disabled },
-    { text: 'Option', disabled: defaultProps.disabled },
-    { text: 'Option', disabled: defaultProps.disabled },
-    { text: 'Option', disabled: defaultProps.disabled },
-    { text: 'Option', disabled: defaultProps.disabled },
-    { text: 'Option', disabled: defaultProps.disabled },
-    { text: 'Option', disabled: defaultProps.disabled },
-    { text: 'Option', disabled: defaultProps.disabled },
-    { text: 'Option', disabled: defaultProps.disabled },
-    { text: 'Option', disabled: defaultProps.disabled },
-    { text: 'Option', disabled: defaultProps.disabled },
-    { text: 'Option', disabled: defaultProps.disabled },
-    { text: 'Option', disabled: defaultProps.disabled },
-    { text: 'Option', disabled: defaultProps.disabled },
-    { text: 'Option', disabled: defaultProps.disabled },
-    { text: 'Option', disabled: defaultProps.disabled },
-    { text: 'Option', disabled: defaultProps.disabled },
-    { text: 'Option', disabled: defaultProps.disabled },
-    { text: 'Option', disabled: defaultProps.disabled },
-    { text: 'Option', disabled: defaultProps.disabled },
-  ],
+    { text: 'Option',  },
+    { text: 'Option',  },
+    { text: 'Option',  },
+    { text: 'Option',  },
+    { text: 'Option',  },
+    { text: 'Option',  },
+    { text: 'Option',  },
+    { text: 'Option',  },
+    { text: 'Option',  },
+    { text: 'Option',  },
+    { text: 'Option',  },
+    { text: 'Option',  },
+    { text: 'Option',  },
+    { text: 'Option',  },
+    { text: 'Option',  },
+    { text: 'Option',  },
+    { text: 'Option',  },
+    { text: 'Option',  },
+    { text: 'Option',  },
+    { text: 'Option',  },
+    { text: 'Option',  },
+    { text: 'Option',  },
+    { text: 'Option',  },
+    { text: 'Option',  },
+    { text: 'Option',  },
+    { text: 'Option',  },
+    { text: 'Option',  },
+    { text: 'Option',  },
+    { text: 'Option',  },
+    { text: 'Option',  },
 ];
 const parent = [
-  [
     { text: 'Parent 1',
       subMenu: [
         { text: 'Child 1',ordered: true, },
         { text: 'Child 2',ordered: true, },
         { text: 'Child 3', }
       ],
-      disabled: defaultProps.disabled
+
     },
     { text: 'Parent 2',
       subMenu: [
@@ -168,43 +175,31 @@ const parent = [
         { text: 'Child 2', },
         { text: 'Child 3', }
       ],
-      disabled: defaultProps.disabled
+
     }
-  ],
 ];
 
 const avatar = [
-  [
-    { text: 'Option', prefixel: <Badge status="active"><Avatar size="small" backgroundColor="green" backgroundColorHue="400" shape="square">AK</Avatar></Badge> },
-  ],
+    { text: 'Option',description:'desc', prefixel: <Badge status="active"><Avatar size="small" backgroundColor="green" backgroundColorHue="400" shape="square">AK</Avatar></Badge>  },
 ];
 
 const avatarSmall = [
-  [
-    { text: 'Option', prefixel: <Badge status="active"><Avatar size="small" src={imgSrc} shape="circle" /></Badge>, description: 'description'},
-  ],
+    { text: 'Option', prefixel: <Badge status="active"><Avatar size="small" src={imgSrc} shape="circle" /></Badge>, description: 'description', suffixel:renderSuffix((suffixType.delete))},
 ];
 
 const avatarMedium = [
-  [
     { text: 'Option', prefixel: <Avatar size="medium" src={imgSrc} shape="circle" />, description: 'description'},
-  ],
 ];
 
 const deleteState = [
-  [
     { text: 'Delete', danger: true, prefixel: <Icon onClick={()=>{alert('Clicked')}} component={<TrashM />} /> },
-  ],
 ];
 
 const withCheckBox = [
-  [
     {
     },
-  ],
 ]
 const withCopyable = [
-  [
     {
       text:"Item",
       prefixel: <Icon component={<CopyClipboardM />} />,
@@ -212,13 +207,12 @@ const withCopyable = [
       copyHint: "Copy to clipboard",
       copyValue: "Item",
     },
-  ],
 ]
 const stories = {
   withLabel: ()=>{
   const defaultProps = getDefaultProps();
   const props = {
-    dataSource: simpleText,
+    dataSource: [attachKnobsToDataSource(simpleText)],
     suffixel: getSuffixElement(),
     ...defaultProps
   } as object;
@@ -226,9 +220,9 @@ const stories = {
   },
   withIconAndLabel: ()=>{
   const defaultProps = getDefaultProps();
-    const singleIcon = select('Set prefix type',iconPrefixType,iconPrefixType.singleIcon)
+    const singleIcon = select('Set prefix type',iconPrefixType,iconPrefixType.singleIcon);
     const props = {
-    dataSource: textWithIcon,
+    dataSource: [attachKnobsToDataSource(textWithIcon)],
     prefixel: renderPrefixIcon(singleIcon),
     suffixel: getSuffixElement(),
     ...defaultProps
@@ -239,9 +233,9 @@ const stories = {
     const defaultProps = getDefaultProps();
     const [isChecked,setChecked] = React.useState(false);
     const props = {
-      dataSource: withCheckBox,
+      dataSource: [attachKnobsToDataSource(withCheckBox)],
       suffixel: getSuffixElement(),
-      prefixel: <Checkbox children = "Option" checked={isChecked} onChange={()=>setChecked(!isChecked)}/>,
+      prefixel: <Checkbox checked={isChecked} onChange={()=>setChecked(!isChecked)}/>,
       onClick: ()=> setChecked(!isChecked),
       ...defaultProps
     };
@@ -250,7 +244,7 @@ const stories = {
   withOrderedList: ()=>{
   const defaultProps = getDefaultProps();
   const props = {
-    dataSource: ordered,
+    dataSource: [attachKnobsToDataSource(ordered)],
     ordered: true,
     ...defaultProps
   } as object;
@@ -259,7 +253,7 @@ const stories = {
   withLargeList: ()=>{
   const defaultProps = getDefaultProps();
   const props = {
-    dataSource: largeList,
+    dataSource: [attachKnobsToDataSource(largeList)],
     ordered: true,
     ...defaultProps
   } as object;
@@ -268,7 +262,7 @@ const stories = {
   withParent: ()=>{
   const defaultProps = getDefaultProps();
   const props = {
-    dataSource: parent,
+    dataSource: [attachKnobsToDataSource(parent)],
     ...defaultProps
   } as object;
   return decorator(props)
@@ -276,7 +270,7 @@ const stories = {
   withSquareAvatar: ()=>{
   const defaultProps = getDefaultProps();
   const props = {
-    dataSource: avatar,
+    dataSource: [attachKnobsToDataSource(avatar)],
     suffixel: getSuffixElement(),
     ...defaultProps
   } as object;
@@ -285,7 +279,7 @@ const stories = {
   withSmallAvatar: ()=>{
   const defaultProps = getDefaultProps();
   const props = {
-    dataSource: avatarSmall,
+    dataSource: [attachKnobsToDataSource(avatarSmall)],
     ...defaultProps
   } as object;
   return decorator(props)
@@ -293,7 +287,7 @@ const stories = {
   withMediumAvatar: ()=>{
   const defaultProps = getDefaultProps();
   const props = {
-    dataSource: avatarMedium,
+    dataSource: [attachKnobsToDataSource(avatarMedium)],
     ...defaultProps
   } as object;
   return decorator(props)
@@ -301,7 +295,7 @@ const stories = {
   withDelete: ()=>{
   const defaultProps = getDefaultProps();
   const props = {
-    dataSource: deleteState,
+    dataSource: [attachKnobsToDataSource(deleteState)],
     ...defaultProps
   } as object;
   return decorator(props)
@@ -312,7 +306,7 @@ const stories = {
   const prefixel =  <ExtendedAntdSwitchComponent id={"toggle"} checked={isChecked} onChange={()=>setChecked(!isChecked)}/>
   const text = isChecked? "Check" : "Not Checked";
     const props = {
-    dataSource: simpleText,
+    dataSource: [attachKnobsToDataSource(simpleText)],
     prefixel,
       text,
     ...defaultProps
@@ -322,7 +316,7 @@ const stories = {
   withCopyable: ()=>{
   const defaultProps = getDefaultProps();
   const props = {
-    dataSource: withCopyable,
+    dataSource: [attachKnobsToDataSource(withCopyable)],
     ...defaultProps
   } as object;
   return (<Tooltip
