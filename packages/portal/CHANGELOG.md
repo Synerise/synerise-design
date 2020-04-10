@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.53.0](https://github.com/synerise/synerise-design/compare/portal@0.52.10...portal@0.53.0) (2020-04-10)
+
+
+### Features
+
+* **menu:** MenuItems as Menu childs components ([e703360](https://github.com/synerise/synerise-design/commit/e7033606927f6c303bcbae835219b5528be09b05))
+
+
+
+
+
 ## [0.52.10](https://github.com/synerise/synerise-design/compare/portal@0.52.9...portal@0.52.10) (2020-04-09)
 
 

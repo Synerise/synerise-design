@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.0.7...@synerise/ds-menu@0.1.0) (2020-04-10)
+
+
+### Features
+
+* **menu:** MenuItems as Menu childs components ([e703360](https://github.com/Synerise/synerise-design/commit/e7033606927f6c303bcbae835219b5528be09b05))
+
+
+
+
+
 ## [0.0.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.0.6...@synerise/ds-menu@0.0.7) (2020-04-09)
 
 
