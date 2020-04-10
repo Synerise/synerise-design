@@ -76,7 +76,7 @@ const ColumnManagerItem: React.FC<Column & ColumnProps> = ({
     return name;
   }, [name, searchQuery]);
 
-  const fixedMenu = (): React.ReactNode => (
+  const fixedMenu = (): React.ReactElement => (
     <S.FixedMenu>
       <S.FixedMenuItem delete={false} onClick={(): void => setFixed(id, FIXED_TYPES.left)}>
         <S.FixedMenuItemIcon component={<Grid4M />} color={theme.palette['grey-600']} />
