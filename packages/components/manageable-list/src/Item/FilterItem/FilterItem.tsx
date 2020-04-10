@@ -15,8 +15,9 @@ import ModalProxy from '@synerise/ds-modal';
 import Result from '@synerise/ds-result';
 import Button from '@synerise/ds-button';
 import Dropdown from '@synerise/ds-dropdown';
+import Menu from '@synerise/ds-menu';
 import * as S from '../ContentItem/ContentItem.styles';
-import { SelectFilterItem, MenuList, MenuItem, ItemHeader } from './FilterItem.styles';
+import { SelectFilterItem, ItemHeader, ItemMenu } from './FilterItem.styles';
 import ItemName from '../ItemName/ItemName';
 import { ItemProps } from '../Item';
 import ItemMeta from '../ItemMeta/ItemMeta';
@@ -102,23 +103,23 @@ const FilterItem: React.FC<FilterItemProps> = ({
             <Dropdown
               trigger={['click', 'hover']}
               overlay={
-                <MenuList>
+                <ItemMenu>
                   {item.canUpdate && (
-                    <MenuItem onClick={enterEditMode}>
-                      <Icon component={<EditM />} /> {texts.itemActionRename}
-                    </MenuItem>
+                    <Menu.Item onClick={enterEditMode} prefixel={<Icon component={<EditM />} />}>
+                      {texts.itemActionRename}
+                    </Menu.Item>
                   )}
                   {item.canDuplicate && (
-                    <MenuItem onClick={handleDuplicate}>
-                      <Icon component={<DuplicateM />} /> {texts.itemActionDuplicate}
-                    </MenuItem>
+                    <Menu.Item onClick={handleDuplicate} prefixel={<Icon component={<DuplicateM />} />}>
+                      {texts.itemActionDuplicate}
+                    </Menu.Item>
                   )}
                   {item.canDelete && (
-                    <MenuItem danger onClick={handleRemove}>
-                      <Icon component={<TrashM />} /> {texts.itemActionDelete}
-                    </MenuItem>
+                    <Menu.Item danger onClick={handleRemove} prefixel={<Icon component={<TrashM />} />}>
+                      {texts.itemActionDelete}
+                    </Menu.Item>
                   )}
-                </MenuList>
+                </ItemMenu>
               }
             >
               <span className="ds-dropdown-trigger">
