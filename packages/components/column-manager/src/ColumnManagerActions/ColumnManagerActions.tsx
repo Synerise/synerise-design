@@ -3,29 +3,7 @@ import Button from '@synerise/ds-button';
 import Modal from '@synerise/ds-modal/dist/Modal';
 import { Input, TextArea } from '@synerise/ds-input';
 import * as S from './ColumnManagerActions.styles';
-import { ViewMeta } from '../ColumnManager';
-
-type Props = {
-  onSave: (viewMeta: ViewMeta) => void;
-  onApply: () => void;
-  onCancel: () => void;
-  texts: {
-    [k: string]: string | React.ReactNode;
-  };
-};
-
-const INPUT_NAMES = ['name', 'description'] as const;
-
-type FormFields = {
-  [k in typeof INPUT_NAMES[number]]: {
-    value: string;
-    error: string | React.ReactNode;
-  };
-};
-
-type State = FormFields & {
-  modalVisible: boolean;
-};
+import { Props, State } from './ColumnManagerActions.types';
 
 const DEFAULT_STATE: State = {
   name: {

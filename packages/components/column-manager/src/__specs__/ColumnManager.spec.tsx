@@ -1,8 +1,9 @@
 import * as React from 'react';
-import ColumnManager, { ViewMeta } from '../ColumnManager';
-import { Column } from '../ColumnManagerItem/ColumnManagerItem';
 import { fireEvent, wait } from '@testing-library/react';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
+import { ViewMeta } from '../ColumnManager.types';
+import ColumnManager from '../ColumnManager';
+import { Column } from '../ColumnManagerItem/ColumManagerIte.types';
 
 interface View {
   meta: ViewMeta;

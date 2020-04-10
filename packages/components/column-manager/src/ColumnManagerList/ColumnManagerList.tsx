@@ -1,22 +1,9 @@
 import * as React from 'react';
 import { ReactSortable } from 'react-sortablejs-typescript';
 import * as S from './ColumnManager.style';
-import ColumnManagerItem, { Column } from '../ColumnManagerItem/ColumnManagerItem';
+import ColumnManagerItem from '../ColumnManagerItem/ColumnManagerItem';
 import ColumnManagerSearchResults from '../ColumnManagerSearchResults/ColumnManagerSearchResults';
-
-type Props = {
-  searchQuery: string;
-  visibleList: Column[];
-  hiddenList: Column[];
-  searchResults: Column[];
-  setFixed: (id: string, fixed?: string) => void;
-  toggleColumn: (id: string, visible: boolean) => void;
-  updateVisibleList: (newList: Column[]) => void;
-  updateHiddenList: (newList: Column[]) => void;
-  texts: {
-    [k: string]: string | React.ReactNode;
-  };
-};
+import { Props } from './ColumnManagerList.types';
 
 const SORTABLE_COFIG = {
   ghostClass: 'sortable-list-ghost-element',

@@ -6,61 +6,11 @@ import Button from '@synerise/ds-button';
 import Icon from '@synerise/ds-icon';
 import ItemFilter from '@synerise/ds-item-filter';
 import { CloseM, FolderM, SearchM } from '@synerise/ds-icon/dist/icons';
-import { ItemFilterProps } from '@synerise/ds-item-filter/src/ItemFilter';
 import SearchBar from '@synerise/ds-search-bar';
 import ColumnManagerActions from './ColumnManagerActions/ColumnManagerActions';
 import ColumnManagerList from './ColumnManagerList/ColumnManagerList';
-import { Column } from './ColumnManagerItem/ColumnManagerItem';
-
-export type Texts =
-  | 'title'
-  | 'searchPlaceholder'
-  | 'searchClearTooltip'
-  | 'noResults'
-  | 'searchResults'
-  | 'visible'
-  | 'hidden'
-  | 'saveView'
-  | 'cancel'
-  | 'apply'
-  | 'fixedLeft'
-  | 'fixedRight'
-  | 'clear'
-  | 'viewName'
-  | 'viewDescription'
-  | 'viewNamePlaceholder'
-  | 'viewDescriptionPlaceholder'
-  | 'mustNotBeEmpty';
-
-export type ColumnManagerProps = {
-  hide: () => void;
-  visible: boolean;
-  onSave: (savedView: SavedView) => void;
-  onApply: (columns: Column[]) => void;
-  columns: Column[];
-  texts?: {
-    [k in Texts]: string | React.ReactNode;
-  };
-  itemFilterConfig?: Omit<ItemFilterProps, 'visible' | 'hide' | 'theme'>;
-};
-
-export type SavedView = {
-  meta: ViewMeta;
-  columns: Column[];
-};
-
-export type ViewMeta = {
-  name: string;
-  description: string;
-};
-
-type State = {
-  searchQuery: string;
-  visibleList: Column[];
-  hiddenList: Column[];
-  itemFilterVisible: boolean;
-  selectedFilterId: string | undefined;
-};
+import { ColumnManagerProps, State, Texts } from './ColumnManager.types';
+import { Column } from './ColumnManagerItem/ColumManagerIte.types';
 
 const DEFAULT_STATE: State = {
   searchQuery: '',

@@ -2,17 +2,8 @@ import * as React from 'react';
 import Result from '@synerise/ds-result';
 import * as S from '../ColumnManagerList/ColumnManager.style';
 import { SearchResults } from './ColumnMangerSearchResults.styles';
-import ColumnManagerItem, { Column } from '../ColumnManagerItem/ColumnManagerItem';
-
-type Props = {
-  searchResults: Column[];
-  searchQuery: string;
-  setFixed: (id: string, fixed?: string) => void;
-  switchAction: (id: string, visible: boolean) => void;
-  texts: {
-    [k: string]: string | React.ReactNode;
-  };
-};
+import ColumnManagerItem from '../ColumnManagerItem/ColumnManagerItem';
+import { Props } from './ColumManagerResults.types';
 
 const ColumnManagerSearchResults: React.FC<Props> = ({ searchResults, searchQuery, setFixed, switchAction, texts }) => {
   return (

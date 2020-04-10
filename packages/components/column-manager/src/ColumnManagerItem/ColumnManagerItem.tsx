@@ -18,31 +18,11 @@ import Dropdown from '@synerise/ds-dropdown';
 import Button from '@synerise/ds-button';
 import Divider from '@synerise/ds-divider';
 import * as S from './ColumnManagerItem.styles';
+import { Column, ColumnProps } from './ColumManagerIte.types';
 
 const FIXED_TYPES = {
   left: 'left',
   right: 'right',
-};
-
-export type Column = {
-  id: string;
-  name: string;
-  visible: boolean;
-  type: string | 'text' | 'number' | 'date' | 'boolean' | 'list';
-  fixed?: string | 'left' | 'right';
-};
-
-export type ColumnProps = {
-  setFixed: (id: string, fixed?: string) => void;
-  draggable?: boolean;
-  switchAction: (id: string, visible: boolean) => void;
-  searchQuery?: string;
-  texts: {
-    [k: string]: string | React.ReactNode;
-  };
-  theme: {
-    [k: string]: string;
-  };
 };
 
 const typeIcon = {
