@@ -26,54 +26,64 @@ const TABS = [
   },
   {
     label: 'Layout',
-  }
-]
+  },
+];
 const texts = {
   noResults: <FormattedMessage id="DS.ITEM-FILTER.NO-RESULTS" />,
-}
+};
 const headerTypes = {
   singleTitle: 'singleTitle',
   singleTitleWithBackIcon: 'singleTitleWithBackIcon',
 };
 
 const closeActionTypes = {
-  twoButtons: "twoButtons",
-  singleCloseIcon: "singleCloseIcon",
-}
+  twoButtons: 'twoButtons',
+  singleCloseIcon: 'singleCloseIcon',
+};
 
-const renderDrawerContent  = (query) =>{
-  const content = ( query && query.length>0) ? <Result type="no-results" noSearchResults description={texts.noResults} /> : <div>Put some content here</div>;
+const renderDrawerContent = query => {
+  const content =
+    query && query.length > 0 ? (
+      <Result type="no-results" noSearchResults description={texts.noResults} />
+    ) : (
+      <div>Put some content here</div>
+    );
   return content;
-}
+};
 
-const renderBackIcon = (headerType,onBackClickHandler) =>{
-  if(headerType === headerTypes.singleTitleWithBackIcon){
-    return (<Drawer.DrawerHeaderBack>
-      <Button type="ghost" mode="single-icon" onClick={onBackClickHandler} data-testid="ds-item-filter-close-button">
-        <Icon component={<ArrowLeftM />} />
-      </Button>
-    </Drawer.DrawerHeaderBack>)
-  }
-  else return null;
-}
+const renderBackIcon = (headerType, onBackClickHandler) => {
+  if (headerType === headerTypes.singleTitleWithBackIcon) {
+    return (
+      <Drawer.DrawerHeaderBack>
+        <Button type="ghost" mode="single-icon" onClick={onBackClickHandler} data-testid="ds-item-filter-close-button">
+          <Icon component={<ArrowLeftM />} />
+        </Button>
+      </Drawer.DrawerHeaderBack>
+    );
+  } else return null;
+};
 
-const renderActionButtons = (closeActionType, actionClickHandler) =>{
-      if(closeActionType === closeActionTypes.singleCloseIcon){
-      return (
-        <React.Fragment>
-          <Button type="ghost" mode="single-icon" onClick={actionClickHandler} data-testid="ds-item-filter-close-button">
-            <Icon component={<CloseM />} />
-          </Button>
-        </React.Fragment>
-      )}
-      else return (
-        <React.Fragment>
-          <Button type={'ghost'} onClick={actionClickHandler}>Cancel</Button>
-          <Button style={{marginLeft: '8px'}} type={'primary'} onClick={actionClickHandler}>Save</Button>
-        </React.Fragment>
-      )
-
-}
+const renderActionButtons = (closeActionType, actionClickHandler) => {
+  if (closeActionType === closeActionTypes.singleCloseIcon) {
+    return (
+      <React.Fragment>
+        <Button type="ghost" mode="single-icon" onClick={actionClickHandler} data-testid="ds-item-filter-close-button">
+          <Icon component={<CloseM />} />
+        </Button>
+      </React.Fragment>
+    );
+  } else
+    return (
+      <React.Fragment>
+        <Button type={'ghost'} onClick={actionClickHandler}>
+          Cancel
+        </Button>
+        <Button style={{ marginLeft: '8px' }} type={'primary'} onClick={actionClickHandler}>
+          Save
+        </Button>
+      </React.Fragment>
+    );
+};
 const stories = {
   default: () => {
     const [drawerVisible, setDrawerVisible] = React.useState(false);
@@ -81,28 +91,25 @@ const stories = {
     let closeActionType = select('Set close action type', closeActionTypes, closeActionTypes.twoButtons);
     return (
       <div>
-        <Button onClick={() => setDrawerVisible(!drawerVisible)} type='primary'>Show drawer</Button>
-        <Drawer
-          visible={drawerVisible}
-          placement='right'
-          width={676}
-          onClose={() => setDrawerVisible(false)}
-        >
+        <Button onClick={() => setDrawerVisible(!drawerVisible)} type="primary">
+          Show drawer
+        </Button>
+        <Drawer visible={drawerVisible} placement="right" width={676} onClose={() => setDrawerVisible(false)}>
           <Drawer.DrawerHeader>
-          <Drawer.DrawerHeaderBar>
-                {renderBackIcon(headerType,()=>setDrawerVisible(false))}
-              <Typography.Title style={{flex: 1, margin: 0,}} level={4}>Title</Typography.Title>
-              {renderActionButtons(closeActionType,()=>setDrawerVisible(false))}
-        </Drawer.DrawerHeaderBar>
+            <Drawer.DrawerHeaderBar>
+              {renderBackIcon(headerType, () => setDrawerVisible(false))}
+              <Typography.Title style={{ flex: 1, margin: 0 }} level={4}>
+                Title
+              </Typography.Title>
+              {renderActionButtons(closeActionType, () => setDrawerVisible(false))}
+            </Drawer.DrawerHeaderBar>
           </Drawer.DrawerHeader>
           <Drawer.DrawerBody>
-            <Drawer.DrawerContent>
-              {renderDrawerContent()}
-            </Drawer.DrawerContent>
+            <Drawer.DrawerContent>{renderDrawerContent()}</Drawer.DrawerContent>
           </Drawer.DrawerBody>
         </Drawer>
       </div>
-    )
+    );
   },
   withSearchBar: () => {
     const [drawerVisible, setDrawerVisible] = React.useState(false);
@@ -111,20 +118,19 @@ const stories = {
     let closeActionType = select('Set close action type', closeActionTypes, closeActionTypes.twoButtons);
     return (
       <div>
-        <Button onClick={() => setDrawerVisible(!drawerVisible)} type='primary'>Show drawer</Button>
-        <Drawer
-          visible={drawerVisible}
-          placement='right'
-          width={676}
-          onClose={() => setDrawerVisible(false)}
-        >
+        <Button onClick={() => setDrawerVisible(!drawerVisible)} type="primary">
+          Show drawer
+        </Button>
+        <Drawer visible={drawerVisible} placement="right" width={676} onClose={() => setDrawerVisible(false)}>
           <Drawer.DrawerHeaderWithoutPadding>
             <Drawer.DrawerHeader>
               <Drawer.DrawerHeaderBar>
-                {renderBackIcon(headerType,()=>setDrawerVisible(false))}
-                <Typography.Title style={{flex: 1, margin: 0,}} level={4}>Title</Typography.Title>
-                {renderActionButtons(closeActionType,()=>setDrawerVisible(false))}
-               </Drawer.DrawerHeaderBar>
+                {renderBackIcon(headerType, () => setDrawerVisible(false))}
+                <Typography.Title style={{ flex: 1, margin: 0 }} level={4}>
+                  Title
+                </Typography.Title>
+                {renderActionButtons(closeActionType, () => setDrawerVisible(false))}
+              </Drawer.DrawerHeaderBar>
             </Drawer.DrawerHeader>
             <SearchBar
               disabled={false}
@@ -133,19 +139,17 @@ const stories = {
               iconLeft={<Icon component={<SearchM />} color={theme.palette['grey-600']} />}
               value={searchQuery}
               onSearchChange={targetValue => setSearchQuery(targetValue)}
-              placeholder={"Search"}
-              onClearInput={()=>setSearchQuery('')}
+              placeholder={'Search'}
+              onClearInput={() => setSearchQuery('')}
               clearTooltip={'Clear'}
             />
           </Drawer.DrawerHeaderWithoutPadding>
           <Drawer.DrawerBody>
-            <Drawer.DrawerContent>
-              {renderDrawerContent(searchQuery)}
-            </Drawer.DrawerContent>
+            <Drawer.DrawerContent>{renderDrawerContent(searchQuery)}</Drawer.DrawerContent>
           </Drawer.DrawerBody>
         </Drawer>
       </div>
-    )
+    );
   },
   withTabs: () => {
     const [drawerVisible, setDrawerVisible] = React.useState(false);
@@ -154,31 +158,33 @@ const stories = {
     let closeActionType = select('Set close action type', closeActionTypes, closeActionTypes.twoButtons);
     return (
       <div>
-        <Button onClick={() => setDrawerVisible(!drawerVisible)} type='primary'>Show drawer</Button>
-        <Drawer
-          visible={drawerVisible}
-          placement='right'
-          width={676}
-          onClose={() => setDrawerVisible(false)}
-        >
+        <Button onClick={() => setDrawerVisible(!drawerVisible)} type="primary">
+          Show drawer
+        </Button>
+        <Drawer visible={drawerVisible} placement="right" width={676} onClose={() => setDrawerVisible(false)}>
           <Drawer.DrawerHeaderWithoutPadding>
             <Drawer.DrawerHeader>
               <Drawer.DrawerHeaderBar>
-                {renderBackIcon(headerType,()=>setDrawerVisible(false))}
-                <Typography.Title style={{flex: 1, margin: 0,}} level={4}>Title</Typography.Title>
-                {renderActionButtons(closeActionType,()=>setDrawerVisible(false))}
+                {renderBackIcon(headerType, () => setDrawerVisible(false))}
+                <Typography.Title style={{ flex: 1, margin: 0 }} level={4}>
+                  Title
+                </Typography.Title>
+                {renderActionButtons(closeActionType, () => setDrawerVisible(false))}
               </Drawer.DrawerHeaderBar>
-              <Tabs activeTab={activeTab} tabs={TABS} handleTabClick={setActiveTab} configuration={{label: 'Configure', action: action('onConfigurationClick')}} />
+              <Tabs
+                activeTab={activeTab}
+                tabs={TABS}
+                handleTabClick={setActiveTab}
+                configuration={{ label: 'Configure', action: action('onConfigurationClick') }}
+              />
             </Drawer.DrawerHeader>
           </Drawer.DrawerHeaderWithoutPadding>
           <Drawer.DrawerBody>
-            <Drawer.DrawerContent>
-              {renderDrawerContent()}
-            </Drawer.DrawerContent>
+            <Drawer.DrawerContent>{renderDrawerContent()}</Drawer.DrawerContent>
           </Drawer.DrawerBody>
         </Drawer>
       </div>
-    )
+    );
   },
   withSearchAndTabs: () => {
     const [drawerVisible, setDrawerVisible] = React.useState(false);
@@ -188,21 +194,25 @@ const stories = {
     let closeActionType = select('Set close action type', closeActionTypes, closeActionTypes.twoButtons);
     return (
       <div>
-        <Button onClick={() => setDrawerVisible(!drawerVisible)} type='primary'>Show drawer</Button>
-        <Drawer
-          visible={drawerVisible}
-          placement='right'
-          width={676}
-          onClose={() => setDrawerVisible(false)}
-        >
+        <Button onClick={() => setDrawerVisible(!drawerVisible)} type="primary">
+          Show drawer
+        </Button>
+        <Drawer visible={drawerVisible} placement="right" width={676} onClose={() => setDrawerVisible(false)}>
           <Drawer.DrawerHeaderWithoutPadding>
             <Drawer.DrawerHeader>
               <Drawer.DrawerHeaderBar>
-                {renderBackIcon(headerType,()=>setDrawerVisible(false))}
-                <Typography.Title style={{flex: 1, margin: 0,}} level={4}>Title</Typography.Title>
-                {renderActionButtons(closeActionType,()=>setDrawerVisible(false))}
+                {renderBackIcon(headerType, () => setDrawerVisible(false))}
+                <Typography.Title style={{ flex: 1, margin: 0 }} level={4}>
+                  Title
+                </Typography.Title>
+                {renderActionButtons(closeActionType, () => setDrawerVisible(false))}
               </Drawer.DrawerHeaderBar>
-              <Tabs activeTab={activeTab} tabs={TABS} handleTabClick={setActiveTab} configuration={{label: 'Configure', action: action('onConfigurationClick')}} />
+              <Tabs
+                activeTab={activeTab}
+                tabs={TABS}
+                handleTabClick={setActiveTab}
+                configuration={{ label: 'Configure', action: action('onConfigurationClick') }}
+              />
             </Drawer.DrawerHeader>
             <SearchBar
               disabled={false}
@@ -211,19 +221,17 @@ const stories = {
               iconLeft={<Icon component={<SearchM />} color={theme.palette['grey-600']} />}
               value={searchQuery}
               onSearchChange={targetValue => setSearchQuery(targetValue)}
-              placeholder={"Search"}
-              onClearInput={()=>setSearchQuery('')}
+              placeholder={'Search'}
+              onClearInput={() => setSearchQuery('')}
               clearTooltip={'Clear'}
             />
           </Drawer.DrawerHeaderWithoutPadding>
           <Drawer.DrawerBody>
-            <Drawer.DrawerContent>
-              {renderDrawerContent(searchQuery)}
-            </Drawer.DrawerContent>
+            <Drawer.DrawerContent>{renderDrawerContent(searchQuery)}</Drawer.DrawerContent>
           </Drawer.DrawerBody>
         </Drawer>
       </div>
-    )
+    );
   },
 };
 
@@ -232,4 +240,4 @@ export default {
   config: {},
   stories,
   Component: Drawer,
-}
+};
