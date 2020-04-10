@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { IconContainer } from '@synerise/ds-icon/dist/Icon.styles';
+import Menu from '@synerise/ds-menu';
 import { ItemLabel } from '../SimpleItem/SimpleItem.styles';
 import { ItemMeta } from '../ItemMeta/ItemMeta.styles';
 
@@ -89,4 +90,8 @@ export const ItemHeader = styled.div`
   ${ItemMeta} {
     margin-right: 12px;
   }
+`;
+
+export const ItemMenu = styled(Menu)`
+  padding: 8px;
 `;

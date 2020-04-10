@@ -3,7 +3,7 @@ import * as React from 'react';
 import { MenuItemProps } from './Elements/Item/MenuItem.types';
 
 export interface AntdMenuProps extends Omit<MenuProps, 'dataSource' | 'footer'> {
-  dataSource: MenuItemProps[][];
+  dataSource?: MenuItemProps[][];
   radio?: boolean;
   dashed?: boolean;
   prefixel?: React.ReactNode;

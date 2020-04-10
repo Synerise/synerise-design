@@ -3,6 +3,7 @@ import Icon from '@synerise/ds-icon/';
 import AngleRightS from '@synerise/ds-icon/dist/icons/AngleRightS';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import * as copy from 'copy-to-clipboard';
+import { ClickParam, SelectParam } from 'antd/lib/menu';
 import * as S from './Text.styles';
 
 interface Props {
@@ -12,7 +13,8 @@ interface Props {
   suffixel?: React.ReactNode;
   danger?: boolean;
   actions?: React.ReactNode;
-  onSelect?: () => void;
+  onSelect?: (props: SelectParam) => void;
+  onClick?: (props: ClickParam) => void;
   description?: string | React.ReactNode;
   copyable?: boolean;
   copyHint?: string;
@@ -35,6 +37,8 @@ const Text: React.FC<Props> = ({
   const [hovered, setHovered] = React.useState(false);
   const canCopyToClipboard = copyable && copyHint && copyValue;
   return (
+    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+    // @ts-ignore
     // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
     <S.Wrapper
       onMouseOver={(): void => {
