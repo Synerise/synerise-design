@@ -13,13 +13,12 @@ class Menu extends React.Component<AntdMenuProps> {
   static Item: typeof TextItem = TextItem;
 
   render(): React.ReactNode {
-    const { dataSource, ordered, ...rest } = this.props;
+    const { dataSource, ordered, children, ...rest } = this.props;
 
     return (
-      <>
-        {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-        <S.AntdMenu ordered={ordered} mode="inline" inlineIndent={24} {...rest}>
-          {dataSource.map(items =>
+      <S.AntdMenu ordered={ordered} mode="inline" inlineIndent={24} {...rest}>
+        {children ||
+          dataSource?.map(items =>
             items.map((item: MenuItemProps, index: number) =>
               item.subMenu ? (
                 <SubMenuItem
@@ -60,8 +59,7 @@ class Menu extends React.Component<AntdMenuProps> {
               )
             )
           )}
-        </S.AntdMenu>
-      </>
+      </S.AntdMenu>
     );
   }
 }
