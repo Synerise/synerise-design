@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.54.0](https://github.com/synerise/synerise-design/compare/portal@0.53.1...portal@0.54.0) (2020-04-13)
+
+
+### Features
+
+* **column-manager:** add Drawer with header, search nad footer buttons ([a9daee7](https://github.com/synerise/synerise-design/commit/a9daee7560e4466f78d0100de8196a0f93e6f194))
+* **column-manager:** add story with ItemFilter ([8c3b1fd](https://github.com/synerise/synerise-design/commit/8c3b1fddae63c57b69d6762ede1adcc5a9d8686f))
+* **column-manager:** add translations ([2362085](https://github.com/synerise/synerise-design/commit/2362085d835f0ada054ccad03c8698d23412a101))
+* **column-manager:** bootstrap component ([2115277](https://github.com/synerise/synerise-design/commit/211527798410d9d6271d7d0873ad195e24bc6fe5))
+
+
+
+
+
 ## [0.53.1](https://github.com/synerise/synerise-design/compare/portal@0.53.0...portal@0.53.1) (2020-04-10)
 
 
