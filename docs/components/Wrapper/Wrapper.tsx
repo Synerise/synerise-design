@@ -1,4 +1,4 @@
-import './index.css';
+import '../index.css';
 import * as React from 'react';
 import { DSProvider } from '@synerise/ds-core/dist/js';
 
