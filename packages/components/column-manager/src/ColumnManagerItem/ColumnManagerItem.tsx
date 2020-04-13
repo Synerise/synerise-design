@@ -17,6 +17,7 @@ import { withTheme } from 'styled-components';
 import Dropdown from '@synerise/ds-dropdown';
 import Button from '@synerise/ds-button';
 import Divider from '@synerise/ds-divider';
+import Menu from '@synerise/ds-menu';
 import * as S from './ColumnManagerItem.styles';
 import { Column, ColumnProps } from './ColumManagerIte.types';
 
@@ -58,25 +59,28 @@ const ColumnManagerItem: React.FC<Column & ColumnProps> = ({
 
   const fixedMenu = (): React.ReactElement => (
     <S.FixedMenu>
-      <S.FixedMenuItem delete={false} onClick={(): void => setFixed(id, FIXED_TYPES.left)}>
-        <S.FixedMenuItemIcon component={<Grid4M />} color={theme.palette['grey-600']} />
-        <S.FixedMenuItemLabel>{texts.fixedLeft}</S.FixedMenuItemLabel>
-        {fixed === FIXED_TYPES.left && (
-          <S.FixedMenuItemCheckIcon component={<CheckS />} color={theme.palette['green-600']} />
-        )}
-      </S.FixedMenuItem>
-      <S.FixedMenuItem delete={false} onClick={(): void => setFixed(id, FIXED_TYPES.right)}>
-        <S.FixedMenuItemIcon component={<Grid4M />} color={theme.palette['grey-600']} />
-        <S.FixedMenuItemLabel>{texts.fixedRight}</S.FixedMenuItemLabel>
-        {fixed === FIXED_TYPES.right && (
-          <S.FixedMenuItemCheckIcon component={<CheckS />} color={theme.palette['green-600']} />
-        )}
-      </S.FixedMenuItem>
+      <Menu.Item
+        onClick={(): void => setFixed(id, FIXED_TYPES.left)}
+        prefixel={<Icon component={<Grid4M />} color={theme.palette['grey-600']} />}
+        suffixel={fixed === FIXED_TYPES.left && <Icon component={<CheckS />} color={theme.palette['green-600']} />}
+      >
+        {texts.fixedLeft}
+      </Menu.Item>
+      <Menu.Item
+        onClick={(): void => setFixed(id, FIXED_TYPES.right)}
+        prefixel={<Icon component={<Grid4M />} color={theme.palette['grey-600']} />}
+        suffixel={fixed === FIXED_TYPES.right && <Icon component={<CheckS />} color={theme.palette['green-600']} />}
+      >
+        {texts.fixedRight}
+      </Menu.Item>
       <Divider dashed style={{ margin: '8px 0' }} />
-      <S.FixedMenuItem delete onClick={(): void => setFixed(id, undefined)}>
-        <Icon component={<Close2M />} color={theme.palette['grey-600']} />
-        <S.FixedMenuItemLabel>{texts.clear}</S.FixedMenuItemLabel>
-      </S.FixedMenuItem>
+      <Menu.Item
+        danger
+        onClick={(): void => setFixed(id, undefined)}
+        prefixel={<Icon component={<Close2M />} color={theme.palette['grey-600']} />}
+      >
+        {texts.clear}
+      </Menu.Item>
     </S.FixedMenu>
   );
 

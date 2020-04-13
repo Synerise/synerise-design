@@ -3450,11 +3450,6 @@
   resolved "https://registry.yarnpkg.com/@synerise/ds-divider/-/ds-divider-0.3.14.tgz#704f5e0edec6d9d7540c48ba451befef40660ca0"
   integrity sha512-QGX4QinvKhGLKuQu+S6ftTUsW3kgoQJM0cKm9wtkMIiwvRyNd37k6Q9PoVk3Kh+UdSq/jB/l8kmL1Dhm84XL4w==
 
-"@synerise/ds-drawer@^0.3.0":
-  version "0.3.5"
-  resolved "https://registry.yarnpkg.com/@synerise/ds-drawer/-/ds-drawer-0.3.5.tgz#866c42edc223df6575be52cebdbfc8815187dd5f"
-  integrity sha512-xY99+ja+ZjDQMW62CQKhbY9d7cgIZy0ht4/MdyOXVl0CWeWjRhDBpmJwCsLJCoYI3tXfT8Q+rwNOUP2TEkf/ng==
-
 "@synerise/ds-dropdown@^0.10.10":
   version "0.10.21"
   resolved "https://registry.yarnpkg.com/@synerise/ds-dropdown/-/ds-dropdown-0.10.21.tgz#28dd6d1a66e549d97e15e36e48701c266c701d7c"
@@ -3479,34 +3474,6 @@
     "@synerise/ds-typography" "^0.7.0"
     "@synerise/ds-utils" "^0.8.5"
     uuid "^3.3.3"
-
-"@synerise/ds-item-filter@^0.2.37":
-  version "0.2.37"
-  resolved "https://registry.yarnpkg.com/@synerise/ds-item-filter/-/ds-item-filter-0.2.37.tgz#81c5b5fa365d48bf79ae2a29d9a7940423c66f31"
-  integrity sha512-XSwTR+mYS7InJQMlxzj08OCJlURcyimybCP3OwO4oc5+KeBFPcepioZm94dFpr060QEgSK+Gzpn1o4NL4bb4kg==
-  dependencies:
-    "@synerise/ds-button" "^0.11.0"
-    "@synerise/ds-drawer" "^0.4.9"
-    "@synerise/ds-dropdown" "^0.11.20"
-    "@synerise/ds-icon" "^0.11.1"
-    "@synerise/ds-manageable-list" "^0.10.22"
-    "@synerise/ds-result" "^0.4.28"
-    "@synerise/ds-search-bar" "^0.2.26"
-    "@synerise/ds-tabs" "^0.9.21"
-    "@synerise/ds-typography" "^0.8.3"
-
-"@synerise/ds-manageable-list@^0.10.22":
-  version "0.10.22"
-  resolved "https://registry.yarnpkg.com/@synerise/ds-manageable-list/-/ds-manageable-list-0.10.22.tgz#7a79b301a161a03ca583da7fed9881fd0fe9115f"
-  integrity sha512-Qw6DtIEdaEdQ1/ZxSN0BEN0h6XXClc80nSSb5xJPpizBB5VvB6A6wBsAUmW1HWr/hKo0/ris9IVreA9oI9sabQ==
-  dependencies:
-    "@synerise/ds-button" "^0.11.0"
-    "@synerise/ds-icon" "^0.14.3"
-    "@synerise/ds-list" "^0.4.8"
-    "@synerise/ds-popconfirm" "^0.3.12"
-    "@synerise/ds-tags" "^0.2.53"
-    "@synerise/ds-tooltip" "^0.7.1"
-    "@synerise/ds-typography" "^0.8.3"
 
 "@synerise/ds-tooltip@^0.4.26":
   version "0.4.26"

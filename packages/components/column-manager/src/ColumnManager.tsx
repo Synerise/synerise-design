@@ -163,7 +163,7 @@ class ColumnManager extends React.Component<ColumnManagerProps, State> {
     return (
       <Drawer visible={visible} width={338} onClose={hide}>
         <Drawer.DrawerHeader>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: 24 }}>
+          <Drawer.DrawerHeaderBar>
             <Typography.Title style={{ flex: 1, margin: 0 }} level={4}>
               {this.texts.title}
             </Typography.Title>
@@ -184,7 +184,7 @@ class ColumnManager extends React.Component<ColumnManagerProps, State> {
             >
               <Icon component={<CloseM />} />
             </Button>
-          </div>
+          </Drawer.DrawerHeaderBar>
         </Drawer.DrawerHeader>
         <SearchBar
           onSearchChange={this.handleSearchChange}
