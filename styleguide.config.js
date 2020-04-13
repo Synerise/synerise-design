@@ -6,19 +6,35 @@ module.exports = {
   assetsDir: './docs/assets',
   styleguideDir: './docs/dist',
   pagePerSection: true,
+  sections: [
+    {
+      name: 'Guideline',
+      content: 'docs/intro.md',
+      sections: [
+        {
+          name: 'Intro',
+          content: 'docs/intro.md'
+        },
+        {
+          name: 'Colors',
+          content: 'docs/colors.md'
+        }
+      ]
+    }
+  ],
   usageMode: 'expand',
-  verbose: true,
+  verbose: false,
   skipComponentsWithoutExample: true,
   webpackConfig: {
     module: {
       rules: [
         {
-          test: /\.(tsx|jsx|ts|js)?$/,
+          test: /\.(tsx|ts)?$/,
           exclude: /node_modules/,
           use: [
             {
               loader: 'babel-loader',
-              options: {
+               options: {
                 presets: [
                   '@babel/preset-react',
                   [
@@ -89,7 +105,7 @@ module.exports = {
       ]
     }
   },
-  ignore: ['**/*.styles.tsx', '**/*.spec.tsx', '**/utils/**/*', '**/*.types.tsx', '**/*.context.tsx', '**/icon/**/*', 'packages/components/**/dist/*.js'],
+  ignore: ['**/*.styles.tsx', '**/*.spec.tsx', '**/utils/**/*', '**/node_modules/**/*', '**/*.types.tsx', '**/*.context.tsx', '**/icon/**/*', 'packages/components/**/dist/*.js'],
   styleguideComponents: {
     Wrapper: path.join(__dirname, 'docs/components/Wrapper'),
   }
