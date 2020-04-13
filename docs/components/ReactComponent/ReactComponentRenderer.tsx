@@ -1,10 +1,11 @@
+// @ts-nocheck
+
 import React from 'react';
-import PropTypes from 'prop-types';
 import Pathline from 'rsg-components/Pathline';
 import Styled, { JssInjectedProps } from 'rsg-components/Styled';
 import * as Rsg from '../../../typings';
 
-const styles = ({ color, fontSize, space }: Rsg.Theme) => ({
+const styles = ({ color, fontSize, space }: Rsg.Theme): Record<string, object> => ({
 	root: {
 		marginBottom: space[6],
 	},
@@ -74,20 +75,6 @@ export const ReactComponentRenderer: React.FunctionComponent<ReactComponentRende
 			)}
 		</div>
 	);
-};
-
-ReactComponentRenderer.propTypes = {
-	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
-	name: PropTypes.string.isRequired,
-	heading: PropTypes.node.isRequired,
-	filepath: PropTypes.string,
-	pathLine: PropTypes.string,
-	tabButtons: PropTypes.node,
-	tabBody: PropTypes.node,
-	description: PropTypes.node,
-	docs: PropTypes.node,
-	examples: PropTypes.node,
-	isolated: PropTypes.bool,
 };
 
 export default Styled<ReactComponentRendererProps>(styles)(ReactComponentRenderer);

@@ -52,6 +52,7 @@ function renderAdvancedType(type: TypeDescriptor): React.ReactNode {
 		case 'tuple':
 			return renderComplexType(type.name, type.raw);
 		default:
+			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 			return (type as any).raw || (type as any).name;
 	}
 }
@@ -62,6 +63,7 @@ export default function renderTypeColumn(prop: PropDescriptor): React.ReactNode 
 		return null;
 	}
 	if (prop.flowType || prop.tsType) {
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		return <Type>{renderAdvancedType(type as any)}</Type>;
 	}
 	return <Type>{renderType(type)}</Type>;

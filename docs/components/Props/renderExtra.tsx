@@ -31,6 +31,7 @@ function renderUnion(type: PropTypeDescriptor | TypeDescriptor): React.ReactNode
 	}
 
 	const values = type.value.map((value, index) => (
+		// eslint-disable-next-line react/no-array-index-key
 		<Type key={`${value.name}-${index}`}>{renderType(value)}</Type>
 	));
 	return (
@@ -40,11 +41,11 @@ function renderUnion(type: PropTypeDescriptor | TypeDescriptor): React.ReactNode
 	);
 }
 
-function renderShape(props: Record<string, PropDescriptor>) {
+function renderShape(props: Record<string, PropDescriptor>): React.ReactNode {
 	return Object.keys(props).map(name => {
 		const prop = props[name];
 		const defaultValue = renderDefault(prop);
-		const description = prop.description;
+		const {description} = prop;
 		return (
 			<div key={name}>
 				<Name>{name}</Name>

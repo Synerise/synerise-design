@@ -6,6 +6,7 @@ import { PropDescriptor as BasePropDescriptor, PropTypeDescriptor } from 'react-
 export function unquote(string?: string): string | undefined {
 	return string && string.replace(/^['"]|['"]$/g, '');
 }
+// @ts-nocheck
 
 export interface PropDescriptor extends BasePropDescriptor {
 	flowType?: TypeDescriptor;

@@ -8,6 +8,7 @@ import * as S from './Palette.styles';
 import SingleColor from './SingleColor/SingleColor';
 
 const mapColors = (): void =>
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   Object.entries(palette).reduce((previousValue: any, currentValue: any) => {
     const key = currentValue[0].split('-');
     const value = key[key.length - 1];
@@ -27,10 +28,10 @@ const mapColors = (): void =>
     };
   }, {});
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const colorMap: any = Object.entries(mapColors() as any);
 
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const Palette = () => {
+const Palette = (): React.ReactNode => {
   const renderPalette = colorMap.map(color => (
       color[1].map(colorDetails => (
         <SingleColor key={`${color[0]}-${colorDetails.value}`} color={`${color[0]}-${colorDetails.value}`} />

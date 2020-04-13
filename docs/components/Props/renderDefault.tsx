@@ -11,21 +11,24 @@ export default function renderDefault(prop: PropDescriptor): React.ReactNode {
 	if (prop.defaultValue) {
 		const defaultValueString = showSpaces(unquote(String(prop.defaultValue.value)));
 		if (prop.type || prop.flowType || prop.tsType) {
-			const propName = prop.type
-				? prop.type.name
-				: prop.flowType
-				? prop.flowType.type
-				: prop.tsType && prop.tsType.type;
+			let propName: string;
+			if (prop.type) {
+				propName = prop.type.name;
+			} else if (prop.flowType) {
+					propName = prop.flowType.type;
+				} else {
+					propName = prop.tsType && prop.tsType.type;
+				}
 
 			if (defaultValueBlacklist.indexOf(prop.defaultValue.value) > -1) {
 				return <Code>{defaultValueString}</Code>;
-			} else if (propName === 'func' || propName === 'function') {
+			} if (propName === 'func' || propName === 'function') {
 				return (
 					<Text size="small" color="light" underlined title={defaultValueString}>
 						Function
 					</Text>
 				);
-			} else if (propName === 'shape' || propName === 'object') {
+			} if (propName === 'shape' || propName === 'object') {
 				try {
 					// We eval source code to be able to format the defaultProp here. This
 					// can be considered safe, as it is the source code that is evaled,
@@ -51,7 +54,7 @@ export default function renderDefault(prop: PropDescriptor): React.ReactNode {
 		}
 
 		return <Code>{defaultValueString}</Code>;
-	} else if (prop.required) {
+	} if (prop.required) {
 		return (
 			<Text size="small" color="light">
 				Required

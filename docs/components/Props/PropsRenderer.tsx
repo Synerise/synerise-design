@@ -1,5 +1,6 @@
+// @ts-nocheck
+
 import React from 'react';
-import PropTypes from 'prop-types';
 import Arguments from 'rsg-components/Arguments';
 import Argument from 'rsg-components/Argument';
 import JsDoc from 'rsg-components/JsDoc';
@@ -12,7 +13,7 @@ import renderExtra from './renderExtra';
 import renderDefault from './renderDefault';
 import { PropDescriptor } from './util';
 
-function renderDescription(prop: PropDescriptor): React.Element {
+function renderDescription(prop: PropDescriptor): React.ReactNode {
 	const { description, tags = {} } = prop;
 	const extra = renderExtra(prop);
 	const args = [...(tags.arg || []), ...(tags.argument || []), ...(tags.param || [])];
@@ -29,12 +30,12 @@ function renderDescription(prop: PropDescriptor): React.Element {
 	);
 }
 
-function renderName(prop: PropDescriptor) {
+function renderName(prop: PropDescriptor): React.ReactNode {
 	const { name, tags = {} } = prop;
 	return <Name deprecated={!!tags.deprecated}>{name}</Name>;
 }
 
-export function getRowKey(row: { name: string }) {
+export function getRowKey(row: { name: string }): string {
 	return row.name;
 }
 
@@ -63,10 +64,6 @@ interface PropsProps {
 
 const PropsRenderer: React.FunctionComponent<PropsProps> = ({ props }) => {
 	return <Table columns={columns} rows={props} getRowKey={getRowKey} />;
-};
-
-PropsRenderer.propTypes = {
-	props: PropTypes.array.isRequired,
 };
 
 export default PropsRenderer;
