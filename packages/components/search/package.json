@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-search",
-  "version": "0.0.25",
+  "version": "0.0.26",
   "description": "Search UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -25,7 +25,7 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-button": "^0.11.1",
+    "@synerise/ds-button": "^0.11.2",
     "@synerise/ds-typography": "^0.8.3"
   },
   "peerDependencies": {

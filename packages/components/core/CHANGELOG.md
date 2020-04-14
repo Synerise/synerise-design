@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.12.0...@synerise/ds-core@0.12.1) (2020-04-14)
+
+
+### Bug Fixes
+
+* **column-manager:** fix styles ([ae62416](https://github.com/synerise/synerise-design/commit/ae62416003bc2d222a3c0fac0bfb7b2eccdc6792))
+
+
+
+
+
 # [0.12.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.11.1...@synerise/ds-core@0.12.0) (2020-04-13)
 
 

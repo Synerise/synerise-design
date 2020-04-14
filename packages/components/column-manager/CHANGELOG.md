@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-column-manager@0.1.0...@synerise/ds-column-manager@0.2.0) (2020-04-14)
+
+
+### Bug Fixes
+
+* **column-manager:** fix styles ([ae62416](https://github.com/Synerise/synerise-design/commit/ae62416003bc2d222a3c0fac0bfb7b2eccdc6792))
+
+
+### Features
+
+* **column-manager:** use ds-scrollbar ([14f6eac](https://github.com/Synerise/synerise-design/commit/14f6eac25814fca2fdac907061fd529ac60f8560))
+
+
+
+
+
 # 0.1.0 (2020-04-13)
 
 
