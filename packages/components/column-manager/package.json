@@ -28,6 +28,7 @@
     "@synerise/ds-icon": "^0.11.1",
     "@synerise/ds-item-filter": "^0.2.39",
     "@synerise/ds-result": "^0.4.29",
+    "@synerise/ds-scrollbar": "^0.0.8",
     "@synerise/ds-search-bar": "^0.2.27",
     "@synerise/ds-typography": "*",
     "react-final-form": "^6.3.5",
