@@ -10,6 +10,7 @@ const SORTABLE_COFIG = {
   className: 'sortable-list',
   animation: 150,
   group: 'column-manager',
+  forceFallback: true,
 };
 
 const ColumnManagerList: React.FC<Props> = ({
@@ -28,17 +29,11 @@ const ColumnManagerList: React.FC<Props> = ({
       {!searchQuery ? (
         <>
           <S.ListHeadline>{texts.visible}</S.ListHeadline>
-          <ReactSortable
-            /* eslint-disable-next-line react/jsx-props-no-spreading */
-            {...SORTABLE_COFIG}
-            list={visibleList}
-            setList={updateVisibleList}
-          >
+          <ReactSortable {...SORTABLE_COFIG} list={visibleList} setList={updateVisibleList}>
             {visibleList.map(item => (
               <ColumnManagerItem
                 data-testid="ds-column-manager-visible-item"
                 key={item.id}
-                // eslint-disable-next-line react/jsx-props-no-spreading
                 {...item}
                 setFixed={setFixed}
                 switchAction={toggleColumn}
@@ -48,17 +43,11 @@ const ColumnManagerList: React.FC<Props> = ({
             ))}
           </ReactSortable>
           <S.ListHeadline>{texts.hidden}</S.ListHeadline>
-          <ReactSortable
-            /* eslint-disable-next-line react/jsx-props-no-spreading */
-            {...SORTABLE_COFIG}
-            list={hiddenList}
-            setList={updateHiddenList}
-          >
+          <ReactSortable {...SORTABLE_COFIG} list={hiddenList} setList={updateHiddenList}>
             {hiddenList.map(item => (
               <ColumnManagerItem
                 data-testid="ds-column-manager-hidden-item"
                 key={item.id}
-                // eslint-disable-next-line react/jsx-props-no-spreading
                 {...item}
                 setFixed={setFixed}
                 switchAction={toggleColumn}

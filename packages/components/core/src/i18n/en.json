@@ -31,6 +31,7 @@
     "COLUMN-MANAGER": {
         "TITLE": "Manage columns",
         "SEARCH-PLACEHOLDER": "Search",
+        "SEARCH-RESULTS": "Search results",
         "NO-RESULTS": "No results",
         "VISIBLE": "Visible",
         "HIDDEN": "Hidden",

@@ -14,9 +14,14 @@ export const ColumnManagerList = styled.div`
     justify-content: flex-start;
   }
 
+  .sortable-chosen {
+    cursor: grabbing;
+  }
+
   .sortable-list-ghost-element {
     background-color: ${(props): string => props.theme.palette['blue-050']};
     opacity: 1;
+    cursor: grabbing;
     * {
       visibility: hidden;
     }
@@ -31,4 +36,5 @@ export const ListHeadline = styled.span`
   font-weight: 500;
   padding: 24px 24px 12px;
   border-bottom: 1px solid ${(props): string => props.theme.palette['grey-200']};
+  color: ${(props): string => props.theme.palette['grey-800']};
 `;

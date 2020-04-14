@@ -6,11 +6,13 @@ import Button from '@synerise/ds-button';
 import Icon from '@synerise/ds-icon';
 import ItemFilter from '@synerise/ds-item-filter';
 import { CloseM, FolderM, SearchM } from '@synerise/ds-icon/dist/icons';
+import Scrollbar from '@synerise/ds-scrollbar';
 import SearchBar from '@synerise/ds-search-bar';
 import ColumnManagerActions from './ColumnManagerActions/ColumnManagerActions';
 import ColumnManagerList from './ColumnManagerList/ColumnManagerList';
 import { ColumnManagerProps, State, Texts } from './ColumnManager.types';
 import { Column } from './ColumnManagerItem/ColumManagerIte.types';
+import * as S from './styles/ColumnManager.styles';
 
 const DEFAULT_STATE: State = {
   searchQuery: '',
@@ -76,9 +78,9 @@ class ColumnManager extends React.Component<ColumnManagerProps, State> {
     });
   };
 
-  updateHiddenColumns = (newVisibleList: Column[]): void => {
+  updateHiddenColumns = (newHiddenList: Column[]): void => {
     this.setState({
-      hiddenList: newVisibleList.map((column: Column): Column => ({ ...column, visible: true })),
+      hiddenList: newHiddenList.map((column: Column): Column => ({ ...column, visible: false })),
     });
   };
 
@@ -161,7 +163,7 @@ class ColumnManager extends React.Component<ColumnManagerProps, State> {
     );
 
     return (
-      <Drawer visible={visible} width={338} onClose={hide}>
+      <S.ColumnManager visible={visible} width={338} onClose={hide}>
         <Drawer.DrawerHeader>
           <Drawer.DrawerHeaderBar>
             <Typography.Title style={{ flex: 1, margin: 0 }} level={4}>
@@ -194,7 +196,7 @@ class ColumnManager extends React.Component<ColumnManagerProps, State> {
           iconLeft={<Icon component={<SearchM />} />}
           clearTooltip={(this.texts.searchClearTooltip as string) || ''}
         />
-        <Drawer.DrawerBody>
+        <Scrollbar>
           <Drawer.DrawerContent style={{ padding: '0 0 80px' }}>
             <ColumnManagerList
               texts={this.texts}
@@ -208,13 +210,9 @@ class ColumnManager extends React.Component<ColumnManagerProps, State> {
               updateHiddenList={this.updateHiddenColumns}
             />
           </Drawer.DrawerContent>
-          <ColumnManagerActions
-            onSave={this.handleSave}
-            onApply={this.handleApply}
-            onCancel={hide}
-            texts={this.texts}
-          />
-        </Drawer.DrawerBody>
+        </Scrollbar>
+
+        <ColumnManagerActions onSave={this.handleSave} onApply={this.handleApply} onCancel={hide} texts={this.texts} />
         {itemFilterConfig && (
           <ItemFilter
             /* eslint-disable-next-line react/jsx-props-no-spreading */
@@ -223,7 +221,7 @@ class ColumnManager extends React.Component<ColumnManagerProps, State> {
             hide={this.hideItemFilter}
           />
         )}
-      </Drawer>
+      </S.ColumnManager>
     );
   }
 }
