@@ -53,6 +53,7 @@ module.exports = {
     Wrapper: path.join(__dirname, 'docs/components/Wrapper/Wrapper'),
     ToolbarButtonRenderer: path.join(__dirname, 'docs/components/ToolbarButton/ToolbarButtonRenderer'),
     ReactComponentRenderer: path.join(__dirname, 'docs/components/ReactComponent/ReactComponentRenderer'),
+    SectionHeadingRenderer: path.join(__dirname, 'docs/components/SectionHeading/SectionHeadingRenderer'),
     Props: path.join(__dirname, 'docs/components/Props/PropsRenderer'),
   }
 }
