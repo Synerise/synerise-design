@@ -73,4 +73,8 @@ export const ColumnManagerItemName = styled.span`
 
 export const FixedMenu = styled(Menu)`
   padding: 8px;
+
+  .ant-dropdown-menu-item {
+    padding: 0 8px !important;
+  }
 `;

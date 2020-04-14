@@ -76,9 +76,9 @@ class ColumnManager extends React.Component<ColumnManagerProps, State> {
     });
   };
 
-  updateHiddenColumns = (newVisibleList: Column[]): void => {
+  updateHiddenColumns = (newHiddenList: Column[]): void => {
     this.setState({
-      hiddenList: newVisibleList.map((column: Column): Column => ({ ...column, visible: true })),
+      hiddenList: newHiddenList.map((column: Column): Column => ({ ...column, visible: false })),
     });
   };
 
