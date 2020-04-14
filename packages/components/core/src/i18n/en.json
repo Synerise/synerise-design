@@ -8,7 +8,9 @@
         "SHOW-LESS": "Show less",
         "ITEM-RENAME": "Rename",
         "ITEM-DUPLICATE": "Duplicate",
-        "ITEM-DELETE": "Delete"
+        "ITEM-DELETE": "Delete",
+        "CANCEL": "No, keep it",
+        "DELETE": "Yes, delete view"
     },
     "FILE-UPLOADER": {
         "BUTTON-LABEL": "Upload a new file",
