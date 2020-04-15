@@ -35,7 +35,7 @@ const Text: React.FC<Props> = ({
 }) => {
   const [pressed, setPressed] = React.useState(false);
   const [hovered, setHovered] = React.useState(false);
-  const canCopyToClipboard = copyable && copyHint && copyValue;
+  const canCopyToClipboard = copyable && copyHint && copyValue && !disabled;
   return (
     // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
     // @ts-ignore
@@ -63,13 +63,13 @@ const Text: React.FC<Props> = ({
       {...rest}
     >
       <S.Inner prefixel={Boolean(prefixel)}>
-        <S.ContentWrapper prefixel={Boolean(prefixel)} className="ContentWrapper">
+        <S.ContentWrapper prefixel={Boolean(prefixel)}>
           {prefixel && (
             <S.PrefixelWrapper className="ds-menu-prefix" pressed={pressed} disabled={disabled}>
               {prefixel}
             </S.PrefixelWrapper>
           )}
-          <S.Content className="S-Content">
+          <S.Content>
             {canCopyToClipboard && hovered ? copyHint : children}
             {Boolean(description) && <S.Description>{description}</S.Description>}
             {parent && (
