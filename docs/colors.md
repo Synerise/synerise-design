@@ -51,19 +51,26 @@ There are two primary colors:
 
 - `Green-600` 
     - This color is used to communicate a successful operation.
+    
+``` jsx noeditor
+import SingleColor from './utils/Palette/SingleColor/SingleColor';
+<SingleColor color="green-600" />
+```
 - `Yellow-600` 
     - This color is used to convey significant information and warnings - if a user misses it, they will not achieve the desired result.
+    
+``` jsx noeditor
+import SingleColor from './utils/Palette/SingleColor/SingleColor';
+<SingleColor color="yellow-600" />
+```
 - `Red-600` 
     - This color is used to communicate alerts, failed operations or to convey information of the greatest importance - if a user misses it, it will cause downtime.
 
 ``` jsx noeditor
 import SingleColor from './utils/Palette/SingleColor/SingleColor';
-<>
-<SingleColor color="green-600" />
-<SingleColor color="yellow-600" />
 <SingleColor color="red-600" />
-</>
 ```
+
 ---
 
 **Full palette**

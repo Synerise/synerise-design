@@ -55,6 +55,7 @@ module.exports = {
       h5: 16,
       h6: 16,
     },
+    buttonTextTransform: 'initial'
   },
   verbose: true,
   skipComponentsWithoutExample: true,
@@ -66,6 +67,10 @@ module.exports = {
     ReactComponentRenderer: path.join(__dirname, 'docs/theme/components/ReactComponent/ReactComponentRenderer'),
     SectionHeadingRenderer: path.join(__dirname, 'docs/theme/components/SectionHeading/SectionHeadingRenderer'),
     ExamplesRenderer: path.join(__dirname, 'docs/theme/components/Examples/ExamplesRenderer'),
+    ComponentsListRenderer: path.join(__dirname, 'docs/theme/components/ComponentsList/ComponentsListRenderer'),
     Props: path.join(__dirname, 'docs/theme/components/Props/PropsRenderer'),
+  },
+  getExampleFilename: (componentPath) => {
+    return `${componentPath.split('src')[0]}README.md`
   }
 }

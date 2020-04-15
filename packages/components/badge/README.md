@@ -20,7 +20,7 @@ Inspired by [Ant Design Badge](https://ant.design/components/badge/)
 
 This is a complex component, which means it consists of more components:
 
-- [typography](/docs/theme/components/typography/)
+- [typography](/docs/components/typography/)
 
 ## Installation
 

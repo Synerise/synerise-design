@@ -8,6 +8,7 @@ import * as Rsg from '../../../typings';
 const styles = ({ color, fontSize, space }: Rsg.Theme): Record<string, object> => ({
 	root: {
 		marginBottom: space[6],
+		borderBottom: '1px solid #e9edee'
 	},
 	header: {
 		marginBottom: space[3],
