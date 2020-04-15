@@ -7,6 +7,7 @@ import {
   DrawerHeader,
   DrawerHeaderWithoutPadding,
   DrawerHeaderBack,
+  DrawerHeaderBar,
 } from './Drawer.styles';
 import './style/index.less';
 
@@ -18,6 +19,7 @@ export interface DrawerProps extends Omit<AntdDrawerProps, 'closable'> {
 class Drawer extends React.PureComponent<DrawerProps> {
   static DrawerBody = DrawerBody;
   static DrawerHeader = DrawerHeader;
+  static DrawerHeaderBar = DrawerHeaderBar;
   static DrawerHeaderWithoutPadding = DrawerHeaderWithoutPadding;
   static DrawerContent = DrawerContent;
   static DrawerHeaderBack = DrawerHeaderBack;

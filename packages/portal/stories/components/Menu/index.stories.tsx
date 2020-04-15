@@ -12,6 +12,7 @@ import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import Label from '@synerise/ds-input/dist/Label/Label';
 import AntdSwitch, { SwitchProps } from 'antd/lib/switch';
 import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
+import { action } from '@storybook/addon-actions';
 
 const TEXT_PLACEHOLDER = 'Option';
 const DESCRIPTION_PLACEHOLDER = 'Description';
@@ -348,6 +349,18 @@ const stories = {
       </Tooltip>
     );
   },
+  withMenuItemAsChild: () => (
+    <Menu dataSource={largeList}>
+      <Menu.Item
+        onClick={action('onSelect')}
+        key="test"
+        prefixel={
+          <Icon component={
+            <FileM />
+          } />
+        }>Option</Menu.Item>
+    </Menu>
+    ),
 };
 
 export default {

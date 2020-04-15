@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.12.1...@synerise/ds-core@0.12.2) (2020-04-15)
+
+
+### Bug Fixes
+
+* **column-manager:** add missing translations ([c3be748](https://github.com/synerise/synerise-design/commit/c3be74863275c459173f908f722594121f4e3395))
+
+
+
+
+
+## [0.12.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.12.0...@synerise/ds-core@0.12.1) (2020-04-14)
+
+
+### Bug Fixes
+
+* **column-manager:** fix styles ([ae62416](https://github.com/synerise/synerise-design/commit/ae62416003bc2d222a3c0fac0bfb7b2eccdc6792))
+
+
+
+
+
+# [0.12.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.11.1...@synerise/ds-core@0.12.0) (2020-04-13)
+
+
+### Features
+
+* **column-manager:** add translations ([2362085](https://github.com/synerise/synerise-design/commit/2362085d835f0ada054ccad03c8698d23412a101))
+
+
+
+
+
 ## [0.11.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.11.0...@synerise/ds-core@0.11.1) (2020-03-27)
 
 **Note:** Version bump only for package @synerise/ds-core

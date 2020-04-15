@@ -42,3 +42,9 @@ export const DrawerBody = styled.div`
 export const DrawerHeaderBack = styled.div`
   margin-right: 24px;
 `;
+export const DrawerHeaderBar = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 24px;
+`;

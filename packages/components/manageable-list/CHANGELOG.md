@@ -3,6 +3,45 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.25](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.10.24...@synerise/ds-manageable-list@0.10.25) (2020-04-15)
+
+**Note:** Version bump only for package @synerise/ds-manageable-list
+
+
+
+
+
+## [0.10.24](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.10.23...@synerise/ds-manageable-list@0.10.24) (2020-04-14)
+
+**Note:** Version bump only for package @synerise/ds-manageable-list
+
+
+
+
+
+## [0.10.23](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.10.22...@synerise/ds-manageable-list@0.10.23) (2020-04-13)
+
+
+### Bug Fixes
+
+* **manageable-list:** filterItem context menu styles ([7028009](https://github.com/Synerise/synerise-design/commit/70280098004950a671b9452c9d4cedbafb7e2e77))
+* **manageable-list:** fix search results styles ([76872e6](https://github.com/Synerise/synerise-design/commit/76872e6228c46dd98dddcb716addab312292c39f))
+
+
+
+
+
+## [0.10.22](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.10.21...@synerise/ds-manageable-list@0.10.22) (2020-04-10)
+
+
+### Bug Fixes
+
+* **item-filter:** use ds-menu instead of ant-menu ([5ab2e33](https://github.com/Synerise/synerise-design/commit/5ab2e3383342c02b15ff4de245cde21801cd9e62))
+
+
+
+
+
 ## [0.10.21](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.10.20...@synerise/ds-manageable-list@0.10.21) (2020-04-08)
 
 **Note:** Version bump only for package @synerise/ds-manageable-list
