@@ -16,10 +16,9 @@ const styles = ({ color, space }: Rsg.Theme) => ({
     marginLeft: 'auto',
   },
   sectionName: {
+    display: 'inline-block',
     '&:hover, &:active': {
       isolate: false,
-      textDecoration: 'underline',
-      cursor: 'pointer',
     },
   },
   isDeprecated: {
@@ -56,9 +55,9 @@ const SectionHeadingRenderer: React.FunctionComponent<SectionHeadingRendererProp
   return (
     <div className={classes.wrapper}>
       <Heading level={headingLevel} id={id}>
-
+        <span className={sectionNameClasses}>
           {children}
-
+        </span>
       </Heading>
       <div className={classes.toolbar}>{toolbar}</div>
     </div>

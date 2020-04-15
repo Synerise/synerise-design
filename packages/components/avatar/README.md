@@ -25,7 +25,7 @@ Inspired by [Ant Design Avatar](https://ant.design/components/avatar/)
 
 This is a complex component, which means it may consist of more components, for example:
 
-- [badge](/docs/components/badge/)
+- [badge](/docs/theme/components/badge/)
 
 ## Installation
 

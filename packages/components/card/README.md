@@ -17,8 +17,8 @@ To display any kind of content (for example, tables, charts, dashboards, and mor
 
 This component is complex, which means it consists of other components:
 
-- [icon](/docs/components/icon/)
-- [typography](/docs/components/typography/)
+- [icon](/docs/theme/components/icon/)
+- [typography](/docs/theme/components/typography/)
 
 ## Installation
 

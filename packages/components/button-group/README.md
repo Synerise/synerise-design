@@ -18,9 +18,9 @@ A group of buttons is used to wrap a series of buttons.
 
 This is a complex component, which means that it may consist of other components:
 
-- [icon](/docs/components/icon/)
-- [button](/docs/components/button/)
-- [utils](/docs/components/utils/)
+- [icon](/docs/theme/components/icon/)
+- [button](/docs/theme/components/button/)
+- [utils](/docs/theme/components/utils/)
 
 ## Installation
 

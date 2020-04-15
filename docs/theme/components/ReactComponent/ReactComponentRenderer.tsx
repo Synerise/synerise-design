@@ -58,7 +58,7 @@ export const ReactComponentRenderer: React.FunctionComponent<ReactComponentRende
 		<div className={classes.root} data-testid={`${name}-container`}>
 			<header className={classes.header}>
 				{heading}
-				{pathLine && <Pathline>{pathLine}</Pathline>}
+				{/*{pathLine && <Pathline>{pathLine}</Pathline>}*/}
 			</header>
 			{(description || docs) && (
 				<div className={classes.docs}>
