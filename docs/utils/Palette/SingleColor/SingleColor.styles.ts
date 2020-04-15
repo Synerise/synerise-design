@@ -8,13 +8,14 @@ export const ColorBox = styled.div<{color: string}>`
 
 export const ColorName = styled.span`
   font-weight: 600;
-  font-size: 13px;
+  font-size: 11px;
   margin: 16px 0 8px;
   color: ${(props): string => props.theme.palette['grey-600']};
 `;
 
 export const ColorHex = styled.span`
   font-weight: normal;
-  font-size: 13px;
+  font-size: 10px;
+  line-height: 1.25;
   color: ${(props): string => props.theme.palette['grey-600']};
 `;

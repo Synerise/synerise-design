@@ -22,15 +22,35 @@ type color =
 
 type colorHue = '900' | '800' | '700' | '600' | '500' | '400' | '300' | '200' | '100' | '050';
 type size = 'small' | 'medium' | 'large' | 'extraLarge' | undefined;
+
 export interface AvatarProps extends Omit<AntAvatarProps, 'size' | 'icon'> {
+  /**
+   * Aligns badge with the avatar
+   */
   hasStatus?: boolean;
+  /**
+   * The size of the avatar
+   */
   size?: size;
+  /**
+   * Allows to provide a custom component as a child. The prop icon has greater priority if both are provided
+   */
   iconComponent?: React.ReactNode;
+  /**
+   * Background color of the avatar
+   */
   backgroundColor?: color;
+  /**
+   * Background color hue of the avatar
+   */
   backgroundColorHue?: colorHue;
+  /**
+   * Defines if the avatar is disabled
+   */
   disabled?: boolean;
-  placeholderColor?: color;
-  placeholderColorHue?: colorHue;
+  /**
+   * Text on tooltip
+   */
   tooltip?: {
     name: string;
     email: string;
@@ -38,13 +58,12 @@ export interface AvatarProps extends Omit<AntAvatarProps, 'size' | 'icon'> {
 }
 const Avatar: React.FC<AvatarProps> = ({
   backgroundColor,
-  backgroundColorHue,
-  disabled,
-  hasStatus,
+  backgroundColorHue = '400',
+  disabled = false,
+  hasStatus = false,
   iconComponent,
   tooltip,
-  placeholderColor,
-  placeholderColorHue,
+  size = 'medium',
   ...antdProps
 }: AvatarProps) => {
   const [pressed, setPressed] = React.useState(false);
@@ -61,6 +80,7 @@ const Avatar: React.FC<AvatarProps> = ({
         backgroundColor={backgroundColor}
         backgroundColorHue={backgroundColorHue}
         disabled={disabled}
+        size={size}
         {...antdProps}
       >
         {iconComponent || antdProps.children}

@@ -1,13 +1,13 @@
 // @ts-nocheck
 
 import React from 'react';
-import Pathline from 'rsg-components/Pathline';
 import Styled, { JssInjectedProps } from 'rsg-components/Styled';
 import * as Rsg from '../../../typings';
 
 const styles = ({ color, fontSize, space }: Rsg.Theme): Record<string, object> => ({
 	root: {
 		marginBottom: space[6],
+		borderBottom: '1px solid #e9edee'
 	},
 	header: {
 		marginBottom: space[3],
@@ -47,7 +47,6 @@ export const ReactComponentRenderer: React.FunctionComponent<ReactComponentRende
 	classes,
 	name,
 	heading,
-	pathLine,
 	description,
 	docs,
 	examples,
@@ -58,7 +57,6 @@ export const ReactComponentRenderer: React.FunctionComponent<ReactComponentRende
 		<div className={classes.root} data-testid={`${name}-container`}>
 			<header className={classes.header}>
 				{heading}
-				{pathLine && <Pathline>{pathLine}</Pathline>}
 			</header>
 			{(description || docs) && (
 				<div className={classes.docs}>

@@ -8,5 +8,6 @@ export const PaletteBox = styled.div`
   max-width: 100%;
   & > div {
     flex: 1;
+    background-color: white;
   }
 `;

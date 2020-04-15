@@ -36,32 +36,46 @@ Tutaj musimy pokazac blue 600 i gray 600  jako bloczki zawierajace obrazek- kwad
 
 There are two primary colors:
 
-- `Blue-600` - This color is used mainly to draw attention to specific elements:
-- basic CTA elements, 
-- primary buttons, 
-- links, 
-- active buttons,
-- additional icons (non-standard icons that mark the selection of the specific option).
-- `Grey-600` - This is the main color for typography, shadows and shape of components.
+- `Blue-600`
+    - This color is used mainly to draw attention to specific elements:
+    - basic CTA elements, 
+    - primary buttons, 
+    - links, 
+    - active buttons,
+    - additional icons (non-standard icons that mark the selection of the specific option).
 
- **Notification colors**
+- `Grey-600` 
+    - This is the main color for typography, shadows and shape of components.
+ 
+**Notification colors**
 
-- `Green-600` - This color is used to communicate a successful operation.
-- `Yellow-600` - This color is used to convey significant information and warnings - if a user misses it, they will not achieve the desired result.
-- `Red-600` - This color is used to communicate alerts, failed operations or to convey information of the greatest importance - if a user misses it, it will cause downtime.
-
-``` jsx
+- `Green-600` 
+    - This color is used to communicate a successful operation.
+    
+``` jsx noeditor
 import SingleColor from './utils/Palette/SingleColor/SingleColor';
-<>
 <SingleColor color="green-600" />
-<SingleColor color="yellow-600" />
-<SingleColor color="red-600" />
-</>
 ```
+- `Yellow-600` 
+    - This color is used to convey significant information and warnings - if a user misses it, they will not achieve the desired result.
+    
+``` jsx noeditor
+import SingleColor from './utils/Palette/SingleColor/SingleColor';
+<SingleColor color="yellow-600" />
+```
+- `Red-600` 
+    - This color is used to communicate alerts, failed operations or to convey information of the greatest importance - if a user misses it, it will cause downtime.
+
+``` jsx noeditor
+import SingleColor from './utils/Palette/SingleColor/SingleColor';
+<SingleColor color="red-600" />
+```
+
+---
 
 **Full palette**
 
-```jsx
+```jsx noeditor
 import Palette from './utils/Palette/Palette';
 
 <Palette /> 
