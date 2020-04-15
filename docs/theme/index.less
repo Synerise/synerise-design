@@ -1,7 +1,7 @@
 @import './fonts/index.less';
 
 body * {
-  font-family: 'Graphik LCG Web', sans-serif !important;
+  font-family: 'Graphik LCG Web', sans-serif;
 }
 
 .ds-package-info {
@@ -23,13 +23,15 @@ body * {
 
     a,
     button {
-      box-sizing: border-box;
-      color: rgb(14, 105, 255);
-      cursor: pointer;
-      display: inline-block;
-      font-size: 16px;
-      font-weight: 500;
-      border-bottom: 0;
+      &:not('.ds-btn') {
+        box-sizing: border-box;
+        color: rgb(14, 105, 255);
+        cursor: pointer;
+        display: inline-block;
+        font-size: 16px;
+        font-weight: 500;
+        border-bottom: 0;
+      }
     }
     h1 {
       font-size: 48px;

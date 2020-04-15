@@ -68,6 +68,7 @@ module.exports = {
     SectionHeadingRenderer: path.join(__dirname, 'docs/theme/components/SectionHeading/SectionHeadingRenderer'),
     ExamplesRenderer: path.join(__dirname, 'docs/theme/components/Examples/ExamplesRenderer'),
     ComponentsListRenderer: path.join(__dirname, 'docs/theme/components/ComponentsList/ComponentsListRenderer'),
+    LogoRenderer: path.join(__dirname, 'docs/theme/components/Logo/LogoRenderer'),
     Props: path.join(__dirname, 'docs/theme/components/Props/PropsRenderer'),
   },
   getExampleFilename: (componentPath) => {
