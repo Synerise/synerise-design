@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.55.0](https://github.com/synerise/synerise-design/compare/portal@0.54.0...portal@0.55.0) (2020-04-15)
+
+
+### Bug Fixes
+
+* **menu:** changed width of the last story ([f372cf4](https://github.com/synerise/synerise-design/commit/f372cf4dad1c2a9419ffb7a6b291ff9163e93896))
+* **menu,checkbox:** added new knobs to menu, changed checked icon ([123c049](https://github.com/synerise/synerise-design/commit/123c049b0075fc48e0e1fa4c4ff92ccdd11e8b10))
+
+
+### Features
+
+* **menu:** added new knobs ([c4c3ecc](https://github.com/synerise/synerise-design/commit/c4c3ecc207443ae58de38e26e796100a30476b40))
+
+
+
+
+
 # [0.54.0](https://github.com/synerise/synerise-design/compare/portal@0.53.1...portal@0.54.0) (2020-04-13)
 
 

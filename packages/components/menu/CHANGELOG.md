@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.1.3...@synerise/ds-menu@0.1.4) (2020-04-15)
+
+
+### Bug Fixes
+
+* **menu,checkbox:** added new knobs to menu, changed checked icon ([123c049](https://github.com/Synerise/synerise-design/commit/123c049b0075fc48e0e1fa4c4ff92ccdd11e8b10))
+
+
+
+
+
 ## [0.1.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.1.2...@synerise/ds-menu@0.1.3) (2020-04-15)
 
 **Note:** Version bump only for package @synerise/ds-menu

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.12](https://github.com/synerise/synerise-design/compare/@synerise/ds-checkbox@0.8.11...@synerise/ds-checkbox@0.8.12) (2020-04-15)
+
+
+### Bug Fixes
+
+* **menu,checkbox:** added new knobs to menu, changed checked icon ([123c049](https://github.com/synerise/synerise-design/commit/123c049b0075fc48e0e1fa4c4ff92ccdd11e8b10))
+
+
+
+
+
 ## [0.8.11](https://github.com/synerise/synerise-design/compare/@synerise/ds-checkbox@0.8.10...@synerise/ds-checkbox@0.8.11) (2020-04-15)
 
 **Note:** Version bump only for package @synerise/ds-checkbox
