@@ -26,10 +26,12 @@ class Checkbox extends React.Component<CheckboxProps> {
         >
           {children}
         </S.AntdCheckbox>
-        <S.AdditionalData>
-          {errorText && <ErrorText>{errorText}</ErrorText>}
-          {description && <Description disabled={antdCheckboxProps.disabled}>{description}</Description>}
-        </S.AdditionalData>
+        {(errorText || description) && (
+          <S.AdditionalData>
+            {errorText && <ErrorText>{errorText}</ErrorText>}
+            {description && <Description disabled={antdCheckboxProps.disabled}>{description}</Description>}
+          </S.AdditionalData>
+        )}
       </S.CheckboxWrapper>
     );
   }
