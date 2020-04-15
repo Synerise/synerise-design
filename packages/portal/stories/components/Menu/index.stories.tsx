@@ -7,7 +7,16 @@ import Avatar from '@synerise/ds-avatar/';
 import { boolean, select, text } from '@storybook/addon-knobs';
 import Badge from '@synerise/ds-badge';
 import Checkbox from '@synerise/ds-checkbox/dist';
-import { CheckS, CloseS, CopyClipboardM, EditS, FolderM, UserS, WarningFillS } from '@synerise/ds-icon/dist/icons';
+import {
+  CheckS,
+  CloseS,
+  CopyClipboardM,
+  EditS,
+  FolderM,
+  UserS,
+  WarningFillS,
+  FileM,
+} from '@synerise/ds-icon/dist/icons';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import Label from '@synerise/ds-input/dist/Label/Label';
 import AntdSwitch, { SwitchProps } from 'antd/lib/switch';
@@ -172,7 +181,6 @@ const parent = [
 const avatar = [
   {
     text: TEXT_PLACEHOLDER,
-    description: 'desc',
     prefixel: (
       <Badge status="active">
         <Avatar size="small" backgroundColor="green" backgroundColorHue="400" shape="square">
@@ -349,18 +357,23 @@ const stories = {
       </Tooltip>
     );
   },
-  withMenuItemAsChild: () => (
-    <Menu dataSource={largeList}>
-      <Menu.Item
-        onClick={action('onSelect')}
-        key="test"
-        prefixel={
-          <Icon component={
-            <FileM />
-          } />
-        }>Option</Menu.Item>
-    </Menu>
-    ),
+  withMenuItemAsChild: () => {
+    const defaultProps = getDefaultProps();
+    return (
+      <div style={{ background: 'rgba(0,0,0,0)', width: '200px' }}>
+        <Menu>
+          <Menu.Item
+            onClick={action('onSelect')}
+            key="test"
+            {...defaultProps}
+            prefixel={<Icon component={<FileM />} />}
+          >
+            Option
+          </Menu.Item>
+        </Menu>
+      </div>
+    );
+  },
 };
 
 export default {
