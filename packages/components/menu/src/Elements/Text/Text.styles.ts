@@ -139,7 +139,9 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
     }
     & .ds-checkbox {
       padding: 0px;
-      margin-bottom: -2px;
+    }
+    & .ds-checkbox > .ant-checkbox-wrapper {
+      padding: 0px;
     }
     &:focus:not(:active) {
       box-shadow: ${(props): string =>
