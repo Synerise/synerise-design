@@ -8,7 +8,6 @@ const defaultValueBlacklist = ['null', 'undefined'];
 export default function renderDefault(prop: PropDescriptor): React.ReactNode {
 	// Workaround for issue https://github.com/reactjs/react-docgen/issues/221
 	// If prop has defaultValue it can not be required
-	console.log(prop);
 	if (prop.defaultValue) {
 		const defaultValueString = showSpaces(unquote(String(prop.defaultValue.value)));
 		if (prop.type || prop.flowType || prop.tsType) {

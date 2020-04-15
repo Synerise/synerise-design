@@ -1,11 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import cx from 'clsx';
 import Heading from 'rsg-components/Heading';
 import Styled, { JssInjectedProps } from 'rsg-components/Styled';
 import * as Rsg from '../../../typings';
 
-const styles = ({ color, space }: Rsg.Theme) => ({
+const styles = ({ color, space }: Rsg.Theme): object => ({
   wrapper: {
     display: 'flex',
     flexDirection: 'row',
@@ -43,7 +42,6 @@ const SectionHeadingRenderer: React.FunctionComponent<SectionHeadingRendererProp
                                                                                         children,
                                                                                         toolbar,
                                                                                         id,
-                                                                                        href,
                                                                                         depth,
                                                                                         deprecated,
                                                                                       }) => {
@@ -62,16 +60,6 @@ const SectionHeadingRenderer: React.FunctionComponent<SectionHeadingRendererProp
       <div className={classes.toolbar}>{toolbar}</div>
     </div>
   );
-};
-
-SectionHeadingRenderer.propTypes = {
-  classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
-  children: PropTypes.node,
-  toolbar: PropTypes.node,
-  id: PropTypes.string.isRequired,
-  href: PropTypes.string.isRequired,
-  depth: PropTypes.number.isRequired,
-  deprecated: PropTypes.bool,
 };
 
 export default Styled<SectionHeadingRendererProps>(styles)(SectionHeadingRenderer);

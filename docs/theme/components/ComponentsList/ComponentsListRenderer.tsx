@@ -1,12 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import cx from 'clsx';
 import Link from 'rsg-components/Link';
 import Styled, { JssInjectedProps } from 'rsg-components/Styled';
 import { useStyleGuideContext } from 'rsg-components/Context';
 import * as Rsg from '../../../typings';
 
-const styles = ({ color, fontFamily, fontSize, space, mq }: Rsg.Theme) => ({
+const styles = ({ color, fontFamily, space, mq }: Rsg.Theme): object => ({
 	list: {
 		margin: 0,
 		paddingLeft: space[2],
@@ -76,7 +75,8 @@ const ComponentsListSectionRenderer: React.FunctionComponent<Rsg.TOCItem & JssIn
 		config: { tocMode },
 	} = useStyleGuideContext();
 
-	const [open, setOpen] = tocMode !== 'collapse' ? [true, () => {}] : React.useState(!!initialOpen);
+	// eslint-disable-next-line react-hooks/rules-of-hooks,@typescript-eslint/no-empty-function
+	const [open, setOpen] = tocMode !== 'collapse' ? [true, (): void => {}] : React.useState(!!initialOpen);
 	return (
 		<li
 			className={cx(classes.item, {
@@ -88,7 +88,7 @@ const ComponentsListSectionRenderer: React.FunctionComponent<Rsg.TOCItem & JssIn
 			<Link
 				className={cx([heading && classes.heading, selected && classes.isSelected, classes.itemLink])}
 				href={href}
-				onClick={() => setOpen(!open)}
+				onClick={(): void => setOpen(!open)}
 				target={shouldOpenInNewTab ? '_blank' : undefined}
 			>
 				{visibleName}
@@ -96,11 +96,6 @@ const ComponentsListSectionRenderer: React.FunctionComponent<Rsg.TOCItem & JssIn
 			{open || forcedOpen ? content : null}
 		</li>
 	);
-};
-
-ComponentsListRenderer.propTypes = {
-	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
-	items: PropTypes.array.isRequired,
 };
 
 export default Styled<ComponentsListRendererProps>(styles)(ComponentsListRenderer);

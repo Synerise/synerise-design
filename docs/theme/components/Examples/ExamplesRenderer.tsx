@@ -1,8 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Styled, { JssInjectedProps } from 'rsg-components/Styled';
 
-const styles = () => ({
+const styles = (): object => ({
 	// Just default jss-isolate rules
 	root: {},
 });
@@ -22,12 +21,6 @@ export const ExamplesRenderer: React.FunctionComponent<ExamplesRendererProps> = 
 			{children}
 		</article>
 	);
-};
-
-ExamplesRenderer.propTypes = {
-	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
-	name: PropTypes.string.isRequired,
-	children: PropTypes.node,
 };
 
 export default Styled<ExamplesRendererProps>(styles)(ExamplesRenderer);
