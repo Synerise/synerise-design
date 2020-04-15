@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.12.1...@synerise/ds-core@0.12.2) (2020-04-15)
+
+
+### Bug Fixes
+
+* **column-manager:** add missing translations ([c3be748](https://github.com/synerise/synerise-design/commit/c3be74863275c459173f908f722594121f4e3395))
+
+
+
+
+
 ## [0.12.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.12.0...@synerise/ds-core@0.12.1) (2020-04-14)
 
 

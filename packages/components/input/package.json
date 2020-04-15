@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-input",
-  "version": "0.11.14",
+  "version": "0.11.15",
   "description": "Input UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "synerise/synerise-design",
@@ -28,7 +28,7 @@
     "@synerise/ds-icon": "^0.14.3",
     "@synerise/ds-tooltip": "^0.7.1",
     "@synerise/ds-typography": "^0.8.3",
-    "@synerise/ds-utils": "^0.8.16",
+    "@synerise/ds-utils": "^0.8.17",
     "uuid": "^7.0.2"
   },
   "peerDependencies": {
