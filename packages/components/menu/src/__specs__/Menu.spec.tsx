@@ -7,8 +7,7 @@ import { CloseS } from '@synerise/ds-icon/dist/icons';
 import Icon from '@synerise/ds-icon';
 import { RenderResult, wait } from '@testing-library/react';
 
-
-describe('Simple menu',  () => {
+describe('Simple menu', () => {
   const data = [
     [
       {
@@ -18,26 +17,44 @@ describe('Simple menu',  () => {
         text: 'Item 2',
         disabled: true,
       },
+      {
+        text: 'Danger',
+        danger: true,
+      },
     ],
   ];
-  let renderedMenu: RenderResult;
+  let items: NodeListOf<HTMLLIElement>;
   beforeEach(() => {
-    renderedMenu = renderWithProvider(<Menu dataSource={data} />);
+    const { container } = renderWithProvider(<Menu dataSource={data} />);
+    items = container.querySelectorAll('li');
   });
 
-  it('should display text with proper color',  () => {
+  it('should display enabled item text with proper color', () => {
+    const enabledItem = items[0];
     // ARRANGE
-    const { container } = renderedMenu;
-    const [enabledItem,disabledItem] = container.querySelectorAll('li');
-    expect(enabledItem).toHaveStyle(`color: ${theme.palette['grey-700']}`)
-    expect(disabledItem).toHaveStyle(`color: ${theme.palette['grey-600']}`)
+    expect(enabledItem).toHaveStyle(`color: ${theme.palette['grey-700']}`);
+  });
+  it('should display disabled item text with proper color', () => {
+    const disabledItem = items[1];
+    // ARRANGE
+    expect(disabledItem).toHaveStyle(`color: ${theme.palette['grey-600']}`);
+  });
+  it('should display danger item text with proper color', () => {
+    const dangerItem = items[2];
+    // ARRANGE
+    expect(dangerItem).toHaveStyle(`color: ${theme.palette['red-600']}`);
   });
 });
 
 describe('Menu with nested items', () => {
-  const data = [[{ text: 'Option 1' }, { text: 'Option 2' }, { text: 'Option 3', subMenu: [{ text: 'Child 1' }] },
-    { text: 'Option 4', subMenu: [{ text: 'Child 1' }] },
-  ]];
+  const data = [
+    [
+      { text: 'Option 1' },
+      { text: 'Option 2' },
+      { text: 'Option 3', subMenu: [{ text: 'Child 1' }] },
+      { text: 'Option 4', subMenu: [{ text: 'Child 1' }] },
+    ],
+  ];
 
   it('should render basic menu list', () => {
     // ARRANGE
@@ -65,13 +82,13 @@ describe('Menu with nested items', () => {
     fireEvent.click(firstParent);
     fireEvent.click(secondParent);
 
-    const visibleChildren = getAllByText('Child 1')
+    const visibleChildren = getAllByText('Child 1');
     // ASSERT
     expect(visibleChildren.length).toBe(2);
   });
 });
 
-describe('Menu with prefix and suffix',  () => {
+describe('Menu with prefix and suffix', () => {
   const data = [
     [
       {
@@ -107,7 +124,7 @@ describe('Menu with prefix and suffix',  () => {
     ],
   ];
   let renderedMenu: RenderResult;
-  beforeEach(async () => {
+  beforeEach( () => {
     renderedMenu = renderWithProvider(<Menu dataSource={data} />);
   });
   it('should render prefix element', () => {
@@ -158,7 +175,7 @@ describe('Menu with description', () => {
     expect(getByText('Description 1')).toBeTruthy();
   });
 });
-describe('Menu with copyable items',  () => {
+describe('Menu with copyable items', () => {
   const data = [
     [
       {
@@ -180,7 +197,7 @@ describe('Menu with copyable items',  () => {
       },
       {
         text: 'Disabled',
-        disabled:true,
+        disabled: true,
         copyable: true,
         copyHint: 'Copy to clipboard',
         copyValue: 'Item',
@@ -191,30 +208,27 @@ describe('Menu with copyable items',  () => {
   beforeEach(() => {
     renderedMenu = renderWithProvider(<Menu dataSource={data} />);
   });
-  it('should display copyHint on hover', async () => {
+  it('should display copyHint on hover',  () => {
     // ARRANGE
     const { getByText } = renderedMenu;
     const element = getByText('Item 1') as HTMLElement;
     fireEvent.mouseOver(element);
-    await wait();
     // ASSERT
     expect(element).toHaveTextContent('Copy to clipboard');
   });
-  it('should not display copyHint when copyable prop is false', async () => {
+  it('should not display copyHint when copyable prop is false',  () => {
     // ARRANGE
     const { getByText } = renderedMenu;
     const element = getByText('Item 2') as HTMLElement;
     fireEvent.mouseOver(element);
-    await wait();
     // ASSERT
     expect(element.textContent).toBe('Item 2');
   });
-  it('should not display copyHint when item is disabled', async () => {
+  it('should not display copyHint when item is disabled',  () => {
     // ARRANGE
     const { getByText } = renderedMenu;
     const element = getByText('Disabled') as HTMLElement;
     fireEvent.mouseOver(element);
-    await wait();
     // ASSERT
     expect(element.textContent).toBe('Disabled');
   });
