@@ -76,21 +76,18 @@ describe('Table', () => {
   it('should render title and subtitle', () => {
     // ARRANGE
     const TITLE = 'test title';
-    const SUB_TITLE = 'test subtitle';
-    const { getByText } = renderWithProvider(<Table columns={props.columns} title={TITLE} subTitle={SUB_TITLE} />);
+    const { getByText } = renderWithProvider(<Table columns={props.columns} title={TITLE} />);
 
     // ASSERT
     expect(getByText(TITLE)).toBeTruthy();
-    expect(getByText(SUB_TITLE)).toBeTruthy();
   });
 
   it('should call onSearch', () => {
     // ARRANGE
     const onSearch = jest.fn();
     const TITLE = 'test title';
-    const SUB_TITLE = 'test subtitle';
     const { container } = renderWithProvider(
-      <Table columns={props.columns} title={TITLE} subTitle={SUB_TITLE} onSearch={onSearch} search="test" />
+      <Table columns={props.columns} title={TITLE} onSearch={onSearch} search="test" />
     );
     const input = container.querySelector('input');
 
@@ -111,7 +108,6 @@ describe('Table', () => {
       onChange,
     };
     const TITLE = 'test title';
-    const SUB_TITLE = 'test subtitle';
     const itemsMenu = (
       <>
         <button>example button</button>
@@ -122,7 +118,6 @@ describe('Table', () => {
         columns={props.columns}
         dataSource={props.dataSource}
         title={TITLE}
-        subTitle={SUB_TITLE}
         rowSelection={rowSelection}
         itemsMenu={itemsMenu}
       />
