@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as S from './TagIcon.styled';
+import * as S from './TagIcon.styles';
 
 interface Props {
   children: React.ReactChildren;

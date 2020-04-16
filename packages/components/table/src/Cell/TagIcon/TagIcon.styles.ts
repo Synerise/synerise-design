@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Tag } from '@synerise/ds-tags';
+import { Tag } from '@synerise/ds-tags/dist/Tag/Tag.styles';
 
 // eslint-disable-next-line import/prefer-default-export
 export const TagIcon = styled.div`
