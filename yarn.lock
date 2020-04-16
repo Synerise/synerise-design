@@ -7035,7 +7035,7 @@ copy-template-dir@1.4.0:
     readdirp "^2.0.0"
     run-parallel "^1.1.4"
 
-copy-to-clipboard@^3.0.8, copy-to-clipboard@^3.2.0:
+copy-to-clipboard@^3.0.8, copy-to-clipboard@^3.2.0, copy-to-clipboard@^3.3.1:
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/copy-to-clipboard/-/copy-to-clipboard-3.3.1.tgz#115aa1a9998ffab6196f93076ad6da3b913662ae"
   integrity sha512-i13qo6kIHTTpCm8/Wup+0b1mVWETvu2kIMzKoK8FpkLkFxlt0znUAHcMzox+T8sPlqtZXq3CulEjQHsYiGFJUw==
@@ -7165,6 +7165,13 @@ create-react-context@0.3.0, create-react-context@^0.3.0:
   dependencies:
     gud "^1.0.0"
     warning "^4.0.3"
+
+cross-env@^5.1.1:
+  version "5.2.1"
+  resolved "https://registry.yarnpkg.com/cross-env/-/cross-env-5.2.1.tgz#b2c76c1ca7add66dc874d11798466094f551b34d"
+  integrity sha512-1yHhtcfAd1r4nwQgknowuUNfIT9E8dOMMspC36g45dN+iD1blloi7xp8X/xAIDnjHWyt1uQ8PHk2fkNaym7soQ==
+  dependencies:
+    cross-spawn "^6.0.5"
 
 cross-spawn@6.0.5, cross-spawn@^6.0.0, cross-spawn@^6.0.5:
   version "6.0.5"
@@ -9389,6 +9396,14 @@ file-loader@4.3.0, file-loader@^4.2.0:
   dependencies:
     loader-utils "^1.2.3"
     schema-utils "^2.5.0"
+
+file-loader@^1.1.5:
+  version "1.1.11"
+  resolved "https://registry.yarnpkg.com/file-loader/-/file-loader-1.1.11.tgz#6fe886449b0f2a936e43cabaac0cdbfb369506f8"
+  integrity sha512-TGR4HU7HUsGg6GCOPJnFk06RhWgEWFLAGWiT6rcD+GRC2keU3s9RGJ+b3Z6/U73jwwNb2gKLJ7YCrp+jvU4ALg==
+  dependencies:
+    loader-utils "^1.0.2"
+    schema-utils "^0.4.5"
 
 file-loader@^6.0.0:
   version "6.0.0"
@@ -17268,7 +17283,7 @@ react-dom@16.13.0:
     prop-types "^15.6.2"
     scheduler "^0.19.0"
 
-react-dom@^16.8.3, react-dom@^16.8.4:
+react-dom@^16.0.0, react-dom@^16.8.3, react-dom@^16.8.4:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.13.1.tgz#c1bd37331a0486c078ee54c4740720993b2e0e7f"
   integrity sha512-81PIMmVLnCNLO/fFOQxdQkvEq/+Hfpv24XNJfpyZhTRfO0QcmQIF/PgCa1zCOj2w1hrn12MFLyaJ/G0+Mxtfag==
@@ -17328,6 +17343,17 @@ react-final-form@^6.3.5:
   dependencies:
     "@babel/runtime" "^7.9.2"
     ts-essentials "^6.0.3"
+
+react-flagkit@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/react-flagkit/-/react-flagkit-1.0.2.tgz#327080ab7c8f1816c7fdcb83df544cfd43559039"
+  integrity sha1-MnCAq3yPGBbH/cuD31RM/UNVkDk=
+  dependencies:
+    cross-env "^5.1.1"
+    file-loader "^1.1.5"
+    prop-types "^15.6.0"
+    react "^16.0.0"
+    react-dom "^16.0.0"
 
 react-focus-lock@^2.1.0:
   version "2.2.1"
@@ -17722,7 +17748,7 @@ react@16.13.0:
     object-assign "^4.1.1"
     prop-types "^15.6.2"
 
-react@^16.6.0, react@^16.8.3, react@^16.8.4:
+react@^16.0.0, react@^16.6.0, react@^16.8.3, react@^16.8.4:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react/-/react-16.13.1.tgz#2e818822f1a9743122c063d6410d85c1e3afe48e"
   integrity sha512-YMZQQq32xHLX0bz5Mnibv1/LHb3Sqzngu7xstSM+vrkE5Kzr9xE0yMByK5kMoTK30YVJE61WfbxIFFvfeDKT1w==
@@ -18545,6 +18571,14 @@ scheduler@^0.19.0, scheduler@^0.19.1:
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
+
+schema-utils@^0.4.5:
+  version "0.4.7"
+  resolved "https://registry.yarnpkg.com/schema-utils/-/schema-utils-0.4.7.tgz#ba74f597d2be2ea880131746ee17d0a093c68187"
+  integrity sha512-v/iwU6wvwGK8HbU9yi3/nhGzP0yGSuhQMzL6ySiec1FSrZZDkhm4noOSWzrNFo/jEc+SJY6jRTwuwbSXJPDUnQ==
+  dependencies:
+    ajv "^6.1.0"
+    ajv-keywords "^3.1.0"
 
 schema-utils@^1.0.0:
   version "1.0.0"
