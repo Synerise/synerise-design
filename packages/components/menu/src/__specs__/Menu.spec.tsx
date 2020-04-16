@@ -5,7 +5,7 @@ import Menu from '../Menu';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { CloseS } from '@synerise/ds-icon/dist/icons';
 import Icon from '@synerise/ds-icon';
-import { RenderResult, wait } from '@testing-library/react';
+import { RenderResult } from '@testing-library/react';
 
 describe('Simple menu', () => {
   const data = [
