@@ -6,8 +6,7 @@ import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { CloseS } from '@synerise/ds-icon/dist/icons';
 import Icon from '@synerise/ds-icon';
 import { RenderResult, wait } from '@testing-library/react';
-import Avatar from '@synerise/ds-avatar/dist/avatar';
-import Badge from '@synerise/ds-badge/dist/badge';
+
 
 describe('Simple menu',  () => {
   const data = [
@@ -139,17 +138,12 @@ describe('Menu with prefix and suffix', async () => {
     expect(suffixIcon).toHaveStyle(`fill:${theme.palette['grey-600']}`);
   });
 });
-describe('Menu with avatars', () => {
+describe('Menu with description', () => {
   const data = [
     [
       {
         text: 'Avatar 1',
         description: 'Description 1',
-        prefixel: (
-          <Badge status="active">
-            <Avatar size="small" shape="circle" />
-          </Badge>
-        ),
       },
     ],
   ];
@@ -162,13 +156,6 @@ describe('Menu with avatars', () => {
     const { getByText } = renderedMenu;
     // ASSERT
     expect(getByText('Description 1')).toBeTruthy();
-  });
-  it('should render avatar', () => {
-    // ARRANGE
-    const { container } = renderedMenu;
-    const avatar = container.querySelector('.ant-avatar');
-    // ASSERT
-    expect(avatar).toBeTruthy();
   });
 });
 describe('Menu with copyable items', async () => {
