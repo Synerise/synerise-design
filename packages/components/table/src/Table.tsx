@@ -11,6 +11,8 @@ import { useOnClickOutside } from '@synerise/ds-utils';
 import { FilterM, Grid2M } from '@synerise/ds-icon/dist/icons';
 import Button from '@synerise/ds-button';
 import Dropdown from '@synerise/ds-dropdown';
+import Checkbox from '@synerise/ds-checkbox';
+import Tooltip from '@synerise/ds-tooltip';
 import * as S from './Table.styles';
 
 export type AntTableProps<T> = Omit<TableProps<T>, 'title' | 'subTitle' | 'onSearch' | 'itemsMenu' | 'search'>;
@@ -21,27 +23,29 @@ export interface DSTableProps<T> extends AntTableProps<T> {
   itemsMenu?: string | React.ReactNode;
   search?: string;
   cellSize?: string | 'medium' | 'small';
+  roundedHeader?: boolean;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function DSTable<T extends object = any>(props: DSTableProps<T>): React.ReactElement {
   const ref = React.useRef<HTMLDivElement>(null);
   const [isSearchOpen, setIsSearchOpen] = React.useState(false);
-  const { title, onSearch, search, rowSelection, itemsMenu, cellSize, pagination, dataSource } = props;
+  const { title, onSearch, search, rowSelection, itemsMenu, cellSize, pagination, dataSource, roundedHeader } = props;
   useOnClickOutside(ref, () => {
     setIsSearchOpen(false);
   });
 
-  const renderSelection = (size: number): React.ReactNode => {
-    return (
-      <S.Header>
-        <S.Size>
-          <b>{size}</b> selected
-        </S.Size>
-        {itemsMenu}
-      </S.Header>
-    );
-  };
+  const footerPagination = React.useMemo((): object => {
+    return {
+      showTotal: (total: number, range: number[]): React.ReactNode => (
+        <span>
+          <strong>{range[0]}</strong>-<strong>{range[1]}</strong> of <strong>{total}</strong> items
+        </span>
+      ),
+      columnWidth: 72,
+      ...pagination,
+    };
+  }, [pagination]);
 
   const toggleSearch = React.useCallback((): void => {
     if (isSearchOpen === true) {
@@ -52,26 +56,61 @@ function DSTable<T extends object = any>(props: DSTableProps<T>): React.ReactEle
     });
   }, [isSearchOpen, setIsSearchOpen]);
 
+  const customSelection = React.useMemo((): React.ReactNode => {
+    if (rowSelection) {
+      return (
+        <S.Selection>
+          {/* eslint-disable-next-line react/jsx-handler-names */}
+          <Checkbox onChange={console.log} indeterminate={false} />
+        </S.Selection>
+      );
+    }
+    return '';
+  }, [rowSelection]);
+
+  const renderSelection = (size: number): React.ReactNode => {
+    return (
+      <S.Header>
+        <S.Left>
+          {customSelection}
+          <S.Title>
+            <strong>{size}</strong> selected
+          </S.Title>
+          {itemsMenu}
+        </S.Left>
+      </S.Header>
+    );
+  };
+
   const renderTitle = (): React.ReactNode => {
     return (
       <S.Header>
-        <S.Left>{title && <S.Title>{title}</S.Title>}</S.Left>
+        <S.Left>
+          {customSelection}
+          {title && <S.Title>{title}</S.Title>}
+        </S.Left>
         <S.Right>
           <Dropdown trigger={['click']} overlay={<div>Saved views</div>}>
-            <Button type="ghost" mode="single-icon">
-              <Icon component={<Grid2M />} />
-            </Button>
+            <Tooltip title="Table view">
+              <Button type="ghost" mode="single-icon">
+                <Icon component={<Grid2M />} />
+              </Button>
+            </Tooltip>
           </Dropdown>
           <Dropdown trigger={['click']} overlay={<div>Saved filters</div>}>
-            <Button type="ghost" mode="single-icon">
-              <Icon component={<FilterM />} />
-            </Button>
+            <Tooltip title="Filter">
+              <Button type="ghost" mode="single-icon">
+                <Icon component={<FilterM />} />
+              </Button>
+            </Tooltip>
           </Dropdown>
           {onSearch && (
             <S.InputWrapper isOpen={isSearchOpen} searchValue={search}>
-              <S.Icon onClick={toggleSearch}>
-                <Icon color={theme.palette['grey-600']} component={<SearchM />} size={24} />
-              </S.Icon>
+              <Tooltip title="Search">
+                <S.Icon onClick={toggleSearch}>
+                  <Icon color={theme.palette['grey-600']} component={<SearchM />} size={24} />
+                </S.Icon>
+              </Tooltip>
               <S.Input onClick={toggleSearch} ref={ref} isOpen={isSearchOpen}>
                 <Input value={search} onChange={onSearch} />
               </S.Input>
@@ -88,10 +127,17 @@ function DSTable<T extends object = any>(props: DSTableProps<T>): React.ReactEle
   }, [rowSelection, title, renderSelection, renderTitle]);
 
   return (
-    <div className={`ds-table ds-table-cell-size-${cellSize}`}>
-      {/* disable eslint to pass all antd table props */}
-      {/* eslint-disable-next-line  react/jsx-props-no-spreading */}
-      <Table<T> {...props} pagination={dataSource?.length ? pagination : false} title={renderHeader} />
+    <div className={`ds-table ds-table-cell-size-${cellSize} ${roundedHeader ? 'ds-table-rounded' : ''}`}>
+      <Table<T>
+        {...props}
+        pagination={dataSource?.length ? footerPagination : false}
+        title={renderHeader}
+        rowSelection={
+          rowSelection && {
+            ...rowSelection,
+          }
+        }
+      />
     </div>
   );
 }

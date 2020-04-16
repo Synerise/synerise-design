@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { macro } from '@synerise/ds-typography';
+import { CheckboxWrapper } from '@synerise/ds-checkbox/dist/Checkbox.styles';
 
 export const Header = styled.div`
   background: #ffffff;
@@ -21,6 +22,9 @@ export const Title = styled.div`
   ${macro.small};
   color: ${(props): string => props.theme.palette['grey-800']};
   padding: 0 24px 0 0;
+  strong {
+    font-weight: 500;
+  }
 `;
 
 export const Left = styled.div`
@@ -80,5 +84,15 @@ export const InputWrapper = styled.div<{ isOpen?: boolean; searchValue: string |
 
   .search-input {
     width: 0;
+  }
+`;
+
+export const Selection = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 72px;
+  ${CheckboxWrapper} {
+    padding: 0;
   }
 `;
