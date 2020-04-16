@@ -71,7 +71,7 @@ describe('Menu with nested items', () => {
   });
 });
 
-describe('Menu with prefix and suffix', async () => {
+describe('Menu with prefix and suffix',  () => {
   const data = [
     [
       {
@@ -158,7 +158,7 @@ describe('Menu with description', () => {
     expect(getByText('Description 1')).toBeTruthy();
   });
 });
-describe('Menu with copyable items', async () => {
+describe('Menu with copyable items',  () => {
   const data = [
     [
       {
