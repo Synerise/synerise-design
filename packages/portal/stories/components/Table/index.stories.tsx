@@ -4,17 +4,30 @@ import { action } from '@storybook/addon-actions';
 import VirtualTable from '@synerise/ds-table/dist/Virtualized/Virtualized';
 import { withState } from '@dump247/storybook-state';
 import { boolean, select } from '@storybook/addon-knobs';
-import Table, { TableCell } from '@synerise/ds-table';
-import { LockM, MailM, UserM } from '@synerise/ds-icon/dist/icons';
+import Table, { ItemsMenu, TableCell } from '@synerise/ds-table';
+import {
+  AngleDownS,
+  EditM,
+  FileDownloadM,
+  LockM,
+  MailM,
+  OptionHorizontalM,
+  TrashM,
+  UserM,
+  PlayM,
+} from '@synerise/ds-icon/dist/icons';
 import Select from '@synerise/ds-select';
 import Button from '@synerise/ds-button';
 import { Tag, TagShape } from '@synerise/ds-tags';
 import Avatar from '@synerise/ds-avatar';
 import Icon from '@synerise/ds-icon';
 import Switch from '@synerise/ds-switch/dist/Switch';
+import Dropdown from '@synerise/ds-dropdown';
+import Menu from '@synerise/ds-menu';
+import Tooltip from '@synerise/ds-tooltip';
 
 const decorator = (storyFn) => (
-  <div style={{ padding: 20, width: '100%', minWidth: '1500px' }}>
+  <div style={{ padding: 20, width: '100vw', minWidth: '100%' }}>
     {storyFn()}
   </div>
 );
@@ -22,6 +35,8 @@ const decorator = (storyFn) => (
 const dataSource = [...new Array(55)].map((i, k) => ({
   key: k + 1,
   name: faker.name.findName(),
+  active: faker.random.boolean(),
+  country: faker.random.arrayElement(['us', 'pl', 'de', 'it', 'es', 'ru']),
   age: (Math.random() * 50 + 10).toFixed(0),
   address: faker.address.streetAddress(),
   status: faker.random.arrayElement(['active', 'inactive', 'blocked']),
@@ -43,7 +58,8 @@ const dataSource = [...new Array(55)].map((i, k) => ({
     label: 'status',
     shape: TagShape.STATUS_NEUTRAL,
   },
-  enabled: faker.random.boolean()
+  enabled: faker.random.boolean(),
+  editable: faker.name.findName(),
 }));
 
 const columns = [
@@ -51,24 +67,64 @@ const columns = [
     title: 'Name',
     dataIndex: 'name',
     defaultSortOrder: 'descend',
-    sorter: (a, b) => a.name <= b.name,
+    width: 254,
+    textWrap: 'word-break',
+    ellipsis: true,
+    sorter: (a, b) => a.name < b.name,
     key: 'name',
+  },
+  {
+    title: 'Name with flag',
+    key: 'country',
+    dataIndex: 'country',
+    width: 254,
+    render: (country, record) => {
+      return (<TableCell.FlagLabelCell countryCode={country} label={record.name} />)
+    }
+  },
+  {
+    title: 'Name with star',
+    key: 'name',
+    dataIndex: 'name',
+    width: 254,
+    sorter: (a, b) => a.active < b.active,
+    render: (name, record) => {
+      return (<TableCell.StarCell active={record.active} onClick={action('Click start')}>{name}</TableCell.StarCell>)
+    }
+  },
+  {
+    title: 'Name with icon and star',
+    key: 'name',
+    dataIndex: 'name',
+    width: 254,
+    render: (name, record) => {
+      return (<TableCell.StarCell active={record.active} onClick={action('Click start')}><TableCell.IconLabelCell label={name} icon={{component: <UserM />}}/></TableCell.StarCell>)
+    }
   },
   {
     title: 'Icon with label',
     dataIndex: 'name',
+    width: 254,
+    textWrap: 'word-break',
+    ellipsis: true,
     render: (name, record) => (<TableCell.IconLabelCell icon={{component: <UserM />}} label={name}/>)
   },
   {
     title: 'Status',
     dataIndex: 'status',
     key: 'status',
+    width: 254,
+    textWrap: 'word-break',
+    ellipsis: true,
     render: (status) => (<TableCell.StatusLabelCell status={status} label={status} />)
   },
   {
     title: 'Select',
     dataIndex: 'select',
     key: 'key',
+    width: 254,
+    textWrap: 'word-break',
+    ellipsis: true,
     render: (select) => (
       <Select value={select.value}>
         {select.options.map((option: string) => (
@@ -81,18 +137,27 @@ const columns = [
     title: 'Button',
     dataIndex: 'age',
     key: 'age',
+    width: 254,
+    textWrap: 'word-break',
+    ellipsis: true,
     render: (age) => (<Button type="secondary" onClick={() => alert(age)}>Show age</Button>)
   },
   {
     title: 'Tag',
     dataIndex: 'tag',
     key: 'tag',
+    width: 254,
+    textWrap: 'word-break',
+    ellipsis: true,
     render: (tag) => (<Tag shape={tag.shape} name={tag.label} />)
   },
   {
     title: 'Tag',
     dataIndex: 'tag',
     key: 'tag',
+    width: 254,
+    textWrap: 'word-break',
+    ellipsis: true,
     render: (tag) => (<TableCell.TagIconCell>
       <Tag shape={tag.shape} name={tag.label} />
       <Icon component={<LockM />} color="#949ea6" />
@@ -102,35 +167,175 @@ const columns = [
     title: 'Avatar',
     dataIndex: 'avatar',
     key: 'avatar',
+    width: 254,
+    textWrap: 'word-break',
+    ellipsis: true,
     render: (avatar) => <Avatar backgroundColor='red' backgroundColorHue='050' size='medium' iconComponent={<Icon component={avatar.icon} color='red' />}>{avatar.initials}</Avatar>
   },
   {
     title: 'Avatar with title',
     dataIndex: 'avatar',
     key: 'avatar',
+    width: 254,
+    textWrap: 'word-break',
+    ellipsis: true,
     render: (avatar) => <TableCell.AvatarLabelCell avatar={<Avatar backgroundColor='red' backgroundColorHue='050' size='medium' iconComponent={<Icon component={avatar.icon} color='red' />}>{avatar.initials}</Avatar>} title={avatar.title}/>
   },
   {
     title: 'Avatar with title and meta',
     dataIndex: 'avatar',
     key: 'avatar',
+    width: 254,
+    textWrap: 'word-break',
+    ellipsis: true,
     render: (avatar) => <TableCell.AvatarLabelCell avatar={<Avatar backgroundColor='red' backgroundColorHue='050' size='large' iconComponent={<Icon component={avatar.icon} color='red' />}>{avatar.initials}</Avatar>} title={avatar.title} labels={avatar.labels}/>
   },
   {
     title: 'Enabled',
     dataIndex: 'enabled',
     key: 'enabled',
+    width: 254,
+    textWrap: 'word-break',
+    ellipsis: true,
     render: (enabled) => <Switch onChange={action('Status change')} checked={enabled} label='' />
   },
   {
-    title: 'Action',
-    dataIndex: '',
-    key: 'x'
+    title: 'Editable row',
+    dataIndex: 'editable',
+    key: 'editable',
+    width: 254,
+    textWrap: 'word-break',
+    ellipsis: true,
+    render: (editable) => <TableCell.EditableCell value={editable} onChange={console.log} />
+  },
+  {
+    title: 'Copyable',
+    dataIndex: 'editable',
+    key: 'editable',
+    width: 254,
+    textWrap: 'word-break',
+    ellipsis: true,
+    render: (editable) => <TableCell.CopyableCell value={editable} confirmMessage="Copied to clipboard!" />
+  },
+  {
+    title: 'Icon with tooltip',
+    width: 254,
+    textWrap: 'word-break',
+    ellipsis: true,
+    render: (editable) => <Tooltip title="Run"><Icon component={<PlayM/>} color='#54cb0b' /> </Tooltip>
+  },
+  {
+    width: 254,
+    render: () => <TableCell.ActionCell>
+      <Button type='secondary' mode='split'>Edit rule</Button>
+    </TableCell.ActionCell>
+  }
+];
+
+const simpleList = [
+  {
+    title: 'Avatar with title',
+    dataIndex: 'avatar',
+    key: 'avatar',
+    render: (avatar) => <TableCell.AvatarLabelCell avatar={<Avatar backgroundColor='red' backgroundColorHue='050' size='medium' iconComponent={<Icon component={avatar.icon} color='red' />}>{avatar.initials}</Avatar>} title={avatar.title}/>
+  }, {
+    render: () => <TableCell.ActionCell>
+      <Dropdown
+        overlay={
+          <Menu style={{padding: 8}}>
+            <Menu.Item>Copy</Menu.Item>
+            <Menu.Item>Rename</Menu.Item>
+            <Menu.Item danger>Remove</Menu.Item>
+          </Menu>
+        }
+        trigger='click'>
+        <Button type='ghost' mode='single-icon'>
+          <Icon component={<OptionHorizontalM/>}/>
+        </Button>
+      </Dropdown>
+    </TableCell.ActionCell>
+  }
+];
+
+const expandableDataSource = [
+  {
+    key: '0',
+    name: 'John Doe',
+  },
+  {
+    key: '1',
+    name: 'John Doe',
+  },
+  {
+    key: '2',
+    name: 'John Doe',
+    children: [
+      {
+        key: '3',
+        name: 'John Doe',
+      },
+      {
+        key: '4',
+        name: 'John Doe',
+      }
+    ]
+  },
+  {
+    key: '5',
+    name: 'John Doe',
+  },
+  {
+    key: '6',
+    name: 'John Doe',
+  },
+  {
+    key: '7',
+    name: 'John Doe',
+    children: [
+      {
+        key: '8',
+        name: 'John Doe',
+      },
+      {
+        key: '9',
+        name: 'John Doe',
+        children: [
+          {
+            key: '10',
+            name: 'John Doe',
+          },
+          {
+            key: '11',
+            name: 'John Doe',
+          }
+        ]
+      }
+    ]
+  }
+];
+
+const expandable = [
+  {
+    title: 'Name',
+    dataIndex: 'name',
+    key: 'name',
+  },{
+    dataIndex: 'children',
+    key: 'children',
+    render: (children, record) => {
+      if(children !== undefined) {
+        return (
+          <TableCell.ActionCell>
+            <Icon component={<AngleDownS />} onClick={() => {console.log(record)}} />
+          </TableCell.ActionCell>
+        );
+      }
+    }
   }
 ];
 
 const rowSelection = {
-  selectedRowKeys: [0, 5],
+  selectedRowKeys: ['0', '5'],
   onChange: action('checkboxChanged'),
 };
 
@@ -141,15 +346,19 @@ const CELL_SIZES = {
 };
 
 const stories = {
-  default: () => ({
+  allColumnTypes: () => ({
     title: `${dataSource.length} records`,
     dataSource,
     columns,
     loading: true,
+    roundedHeader: true,
     pagination: {
       showSizeChanger: boolean('pagination.showSizeChanger', true),
       showQuickJumper: boolean('pagination.showQuickJumper', true),
       onChange: action('pageChanged'),
+    },
+    scroll: {
+      x: false,
     },
     rowSelection: (boolean('show selection', false) ? rowSelection : undefined),
     onSearch: action('onSearch'),
@@ -179,19 +388,54 @@ const stories = {
       </div>
     )
   }),
-  expandable: () => ({
+  simpleList: () => ({
     title: `${dataSource.length} records`,
     dataSource,
-    columns,
+    columns: simpleList,
+    loading: true,
+    roundedHeader: true,
+    pagination: {
+      showSizeChanger: boolean('pagination.showSizeChanger', true),
+      showQuickJumper: boolean('pagination.showQuickJumper', true),
+      onChange: action('pageChanged'),
+    },
+    rowSelection: true,
+    onSearch: action('onSearch'),
+    cellSize: select('Set cells size', CELL_SIZES, CELL_SIZES.default)
+  }),
+  expandable: () => ({
+    title: `${dataSource.length} records`,
+    dataSource: expandableDataSource,
+    columns: expandable,
     loading: true,
     pagination: {
       showSizeChanger: boolean('pagination.showSizeChanger', true),
       showQuickJumper: boolean('pagination.showQuickJumper', true),
       onChange: action('pageChanged'),
     },
+    expandable: {
+      expandIconColumnIndex: -1,
+      expandedRowKeys: ['2']
+    },
     rowSelection: (boolean('show selection', false) ? rowSelection : undefined),
     onSearch: action('onSearch'),
-    cellSize: select('Set cells size', CELL_SIZES, CELL_SIZES.default)
+    cellSize: select('Set cells size', CELL_SIZES, CELL_SIZES.default),
+    itemsMenu: (
+      <ItemsMenu>
+        <Button onClick={action('Export')} type='secondary' mode='icon-label'>
+          <Icon component={<FileDownloadM />} />
+          Export
+        </Button>
+        <Button onClick={action('Edit')} type='secondary' mode='icon-label'>
+          <Icon component={<EditM />} />
+          Edit
+        </Button>
+        <Button onClick={action('Delete')} type='secondary' mode='icon-label'>
+          <Icon component={<TrashM />} />
+          Delete
+        </Button>
+      </ItemsMenu>
+    )
   })
 };
 
