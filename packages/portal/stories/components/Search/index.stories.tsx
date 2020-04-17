@@ -1,9 +1,10 @@
 import * as React from 'react';
-
+import * as DataPopulator from './dataPopulator';
 import Search from '@synerise/ds-search';
 import VarTypeStringM from '@synerise/ds-icon/dist/icons/VarTypeStringM';
 import Divider from '@synerise/ds-divider';
 import { boolean } from '@storybook/addon-knobs';
+import { VarTypeListM, VarTypeNumberM } from '@synerise/ds-icon/dist/icons';
 
 const decorator = storyFn => (
   <div style={{ width: '300px', height: '500px' }}>
@@ -17,6 +18,13 @@ const filterList = [
     { text: 'Last Name', icon: <VarTypeStringM /> },
     { text: 'Sex', icon: <VarTypeStringM /> },
     { text: 'City', icon: <VarTypeStringM /> },
+    { text: 'Email', icon: <VarTypeStringM /> },
+    { text: 'Transactions', icon: <VarTypeNumberM /> },
+    { text: 'IP', icon: <VarTypeStringM /> },
+    { text: 'Price', icon: <VarTypeListM /> },
+    { text: 'Discount', icon: <VarTypeListM /> },
+    { text: 'Products bought', icon: <VarTypeListM /> },
+    { text: 'Loyalty points', icon: <VarTypeListM /> },
   ],
 ];
 
@@ -30,43 +38,21 @@ const recent = [
 ];
 
 const results = [[{ text: 'Cirilla' }, { text: 'Frank' }, { text: 'Naomi' }, { text: 'Severus' }]];
+const cities = DataPopulator.populateCities(50).map(item=>({text:item}));
+const firstNames = DataPopulator.populateFirstName(50).map(item=>({text:item}));
+const lastNames = DataPopulator.populateCities(50).map(item=>({text:item}));
 const getSuggestions = filter => {
   if (filter === 'City') {
-    return [
-      [
-        { text: 'Athens' },
-        { text: 'Bangkok' },
-        { text: 'Basel' },
-        { text: 'Bilbao' },
-        { text: 'Chicago' },
-        { text: 'Dresno' },
-        { text: 'Florence' },
-        { text: 'Geneva' },
-      ],
-    ];
+    return [cities];
   }
   if (filter === 'First Name') {
     return [
-      [
-        { text: 'Andrew' },
-        { text: 'Anna' },
-        { text: 'Brad' },
-        { text: 'Cintia' },
-        { text: 'Ciri' },
-        { text: 'Ciprian' },
-      ],
+      firstNames
     ];
   }
   if (filter === 'Last Name') {
     return [
-      [
-        { text: 'Adkins' },
-        { text: 'Barkley' },
-        { text: 'Cirilla' },
-        { text: 'Frank' },
-        { text: 'Lennox' },
-        { text: 'Snow' },
-      ],
+      lastNames
     ];
   }
   if (filter === 'Sex') {
@@ -92,15 +78,14 @@ const stories = {
         value={value}
         filterValue={filterValue}
         onValueChange={value => {
+/*
           console.log('Value changed!', value);
+*/
           setValue(value);
         }}
         onFilterValueChange={value => {
           setFilterValue(value);
-          console.log('Value filter changed', value);
-          console.log('Fetching api for suggestions by type...', value);
           const fakeApiResponse = getSuggestions(value);
-          console.log('fake api', fakeApiResponse);
           setSuggestions(fakeApiResponse);
         }}
         divider={

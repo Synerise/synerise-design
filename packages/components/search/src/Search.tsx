@@ -11,6 +11,7 @@ import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { InfoFillS } from '@synerise/ds-icon/dist/icons';
 import Icon from '@synerise/ds-icon/dist/Icon';
+import { List } from 'react-virtualized';
 import * as S from './Search.styles';
 import { FilterElement, SearchProps } from './Search.types';
 import { HeaderIconWrapper } from './Search.styles';
@@ -30,28 +31,33 @@ const Search: React.FC<SearchProps> = ({
   resultTitle,
   divider,
 }) => {
-  console.log('Results',results);
   const [inputOpen, setInputOpen] = useState(false);
   const [label, setLabel] = useState<FilterElement | null>();
   const [filteredParameters, setFilteredParameters] = useState<FilterElement[][]>();
   const [filteredRecent, setFilterRecent] = useState<FilterElement[][]>();
   const [filteredSuggestions, setFilteredSuggestions] = useState<FilterElement[][]>();
   const [inputOffset, setInputOffset] = useState(0);
+  const [listVisible, setListVisible] = useState(true);
   const [focus, setFocus] = useState(false);
   const [resultChoosed, setResultChoosed] = useState(false);
   const ref = React.useRef<HTMLDivElement>(null);
+  const inputRef = React.useRef<HTMLInputElement>(null);
 
   const toggleOpen = (): void => {
     setInputOpen(prevState => {
       return !prevState;
     });
   };
-  useEffect(()=>{
-    console.log('Results have changed!')
+  useEffect(() => {
     setFilteredSuggestions(results);
-  },[results])
+  }, [results]);
+  useEffect(() => {
+    setFilteredParameters(parameters);
+  }, [parameters]);
+
   useOnClickOutside(ref, () => {
     setFocus(false);
+    setListVisible(false);
     if (parameters) {
       !value && !label && setInputOpen(false);
     } else {
@@ -64,13 +70,11 @@ const Search: React.FC<SearchProps> = ({
       onValueChange('');
       setLabel(item);
       if (item.filter) {
-        console.log('In the if - item.filter clicked')
         onValueChange(item.text);
         onFilterValueChange(item.filter);
         setResultChoosed(true);
       } else {
         onFilterValueChange(item.text);
-
       }
     },
     [onFilterValueChange, onValueChange]
@@ -85,7 +89,7 @@ const Search: React.FC<SearchProps> = ({
     [onValueChange]
   );
 
-  const findIncludes = (data: FilterElement[][] | undefined, currentValue: string, type: string): void => {
+  const findIncludes = (data: FilterElement[][] | undefined, currentValue: string, type: string): boolean => {
     const final: FilterElement[][] = [];
     let temp: FilterElement[] = [];
 
@@ -106,6 +110,7 @@ const Search: React.FC<SearchProps> = ({
     type === 'recent' && setFilterRecent(final);
     type === 'filter' && setFilteredParameters(final);
     type === 'results' && setFilteredSuggestions(final);
+    return final.flat().length > 0;
   };
 
   const clearValue = React.useCallback((): void => {
@@ -117,14 +122,15 @@ const Search: React.FC<SearchProps> = ({
     setFilteredSuggestions(results);
     onFilterValueChange('');
     setResultChoosed(false);
-  }, [parameters, onFilterValueChange, onValueChange,results, recent]);
+    inputRef && inputRef.current && inputRef.current.focus();
+  }, [parameters, onFilterValueChange, onValueChange, results, recent]);
 
   const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>): void => {
     if (e.keyCode === 8 && value === '') {
       setLabel(null);
       setInputOffset(0);
       setFilterRecent(recent);
-/*
+      /*
       setFilteredSuggestions(results);
 */
       onFilterValueChange('');
@@ -144,13 +150,15 @@ const Search: React.FC<SearchProps> = ({
       const currentValue = e.currentTarget.value;
       onValueChange(currentValue);
       setResultChoosed(false);
-
+      let isAnythingToShow = false;
       if (filterValue) {
-        findIncludes(results, currentValue, 'results');
+        isAnythingToShow = findIncludes(results, currentValue, 'results');
       } else {
-        findIncludes(recent, currentValue, 'recent');
-        findIncludes(parameters, currentValue, 'filter');
+        const anyRecentItem = findIncludes(recent, currentValue, 'recent');
+        const anyFilter = findIncludes(parameters, currentValue, 'filter');
+        isAnythingToShow = anyFilter || anyRecentItem;
       }
+      setListVisible(isAnythingToShow);
     },
     [parameters, filterValue, onValueChange, recent, results]
   );
@@ -166,7 +174,11 @@ const Search: React.FC<SearchProps> = ({
   );
 
   const renderInputWrapper = (): ReactElement => (
-    <S.SearchInputWrapper className={inputOpen ? 'is-open' : ''} offset={inputOffset}>
+    <S.SearchInputWrapper
+      className={inputOpen ? 'is-open' : ''}
+      offset={inputOffset}
+      onClick={(): void => setListVisible(true)}
+    >
       <S.LeftSide isOpen={inputOpen}>
         {label && (
           <S.Filter
@@ -182,9 +194,7 @@ const Search: React.FC<SearchProps> = ({
       <div>
         <Input
           placeholder={placeholder}
-          ref={(input): void => {
-            inputOpen && input && input.focus();
-          }}
+          ref={inputRef}
           value={value}
           onChange={change}
           onKeyDown={onKeyDown}
@@ -193,6 +203,47 @@ const Search: React.FC<SearchProps> = ({
       </div>
     </S.SearchInputWrapper>
   );
+  function suggestionRenderer({
+    key, // Unique key within array of rows
+    index, // Index of row within collection
+    style, // Style object to be applied to row (to position it)
+  }: {
+    key: string;
+    index: number;
+    style: any;
+  }): ReactElement {
+    const item = filteredSuggestions && filteredSuggestions.flat()[index];
+    return (
+      // eslint-disable-next-line @typescript-eslint/no-empty-function
+      <Menu.Item key={key} style={style} onClick={(): void => selectResult(item)} onItemHover={(): void => {}}>
+        {item && item.text}
+      </Menu.Item>
+    );
+  }
+  function parameterRenderer({
+    key, // Unique key within array of rows
+    index, // Index of row within collection
+    style, // Style object to be applied to row (to position it)
+  }: {
+    key: string;
+    index: number;
+    style: object;
+  }): ReactElement {
+    const item = filteredParameters && filteredParameters.flat()[index];
+    return (
+      <Menu.Item
+        key={key}
+        style={style}
+        prefixel={<Icon component={item && item.icon} />}
+        onClick={(): void => item && selectFilter(item)}
+        /* eslint-disable-next-line @typescript-eslint/no-empty-function */
+        onItemHover={(): void => {}}
+      >
+        {item && item.text}
+      </Menu.Item>
+    );
+  }
+
   return (
     <S.SearchWrapper ref={ref} className="SearchWrapper">
       {renderInputWrapper()}
@@ -202,7 +253,16 @@ const Search: React.FC<SearchProps> = ({
         hidden={!!value || !!filterValue}
         className="SearchButton"
       >
-        <Button type="ghost" onClick={toggleOpen} data-testid="btn">
+        <Button
+          type="ghost"
+          onClick={(): void => {
+            toggleOpen();
+            setListVisible(true);
+            inputRef!.current!.focus();
+          }}
+          className={inputOpen ? 'btn-search-open' : 'btn-search'}
+          data-testid="btn"
+        >
           <Icon component={<SearchM />} />
         </Button>
       </S.SearchButton>
@@ -218,8 +278,12 @@ const Search: React.FC<SearchProps> = ({
           size={18}
         />
       </S.ClearButton>
-      <S.ListWrapper>
-        <S.List isOpen={inputOpen && !resultChoosed} className={inputOpen && !resultChoosed ? 'listVisible' : ''}>
+      <S.ListWrapper
+        onClick={(): void => {
+          inputRef!.current!.focus();
+        }}
+      >
+        <S.List className={inputOpen && !resultChoosed && listVisible ? 'listVisible' : ''}>
           {recent && inputOpen && !label && (
             <>
               {!!recentTitle && renderHeader(recentTitle)}
@@ -235,40 +299,32 @@ const Search: React.FC<SearchProps> = ({
               </Menu>
             </>
           )}
-          {parameters && inputOpen && !label && (
+          {parameters && inputOpen && !label && filteredParameters && (
             <>
               {!!filterTitle && renderHeader(filterTitle)}
               <Menu>
-                {(filteredParameters || parameters).map(items =>
-                  items.map(item => (
-                    <Menu.Item
-                      key={item.text}
-                      prefixel={<Icon component={item.icon} />}
-                      onClick={(): void => selectFilter(item)}
-                    >
-                      {item.text}
-                    </Menu.Item>
-                  ))
-                )}
+                <List
+                  width={284}
+                  height={filteredParameters.flat().length > 6 ? 6 * 32 : filteredParameters.flat().length * 32}
+                  rowCount={filteredParameters.flat().length}
+                  rowHeight={32}
+                  rowRenderer={parameterRenderer}
+                />
               </Menu>
             </>
           )}
-          {results && inputOpen && filterValue && !resultChoosed && (
+          {results && inputOpen && filterValue && !resultChoosed && filteredSuggestions && (
             <>
               {!!resultTitle && renderHeader(resultTitle)}
-              {(filteredSuggestions && filteredSuggestions.flat().length === 0) || results.flat().length === 0 ? (
-                <div>zwijanie dropa, ale wartosc zostaje</div>
-              ) : (
-                <Menu>
-                  {(filteredSuggestions || results).map(items =>
-                    items.map(item => (
-                      <Menu.Item key={item.text} onClick={(): void => selectResult(item)}>
-                        {item.text}
-                      </Menu.Item>
-                    ))
-                  )}
-                </Menu>
-              )}
+              <Menu>
+                <List
+                  width={284}
+                  height={filteredSuggestions.flat().length > 6 ? 6 * 32 : filteredSuggestions.flat().length * 32}
+                  rowCount={filteredSuggestions.flat().length}
+                  rowHeight={32}
+                  rowRenderer={suggestionRenderer}
+                />
+              </Menu>
             </>
           )}
         </S.List>

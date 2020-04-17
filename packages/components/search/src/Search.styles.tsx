@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 export const SearchWrapper = styled.div`
   position: relative;
@@ -21,6 +21,7 @@ export const Filter = styled.div`
   font-weight: 500;
   max-width: 120px;
   direction: ltr;
+  margin-right: ${(props): string | false => props.isOpen && `-8px`};
 
   span {
     white-space: nowrap;
@@ -57,18 +58,21 @@ export const SearchButton = styled.div<{ isOpen: boolean; inputFocused: boolean 
   z-index: 1;
   top: 0;
   right: 0;
-  transition: width 0.2s ease-out;
-
+  transition: width 0.5s;
+  transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
   svg {
     fill: ${(props): string =>
       props.inputFocused ? props.theme.palette['blue-600'] : props.theme.palette['grey-600']} !important;
   }
-
+  .btn-search-open:hover {
+    background: transparent !important;
+  }
   && {
     button {
+      transition: background 0.2s;
       padding: 4px;
-      transition: padding-right 0.2s ease-out;
-      padding-right: ${(props): string | false => (props.isOpen && `8px`)};
+      transition: padding-right 0.15s;
+      transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
     }
   }
 `;
@@ -76,27 +80,26 @@ export const SearchButton = styled.div<{ isOpen: boolean; inputFocused: boolean 
 export const SearchInputWrapper = styled.div<{ offset: number }>`
   overflow: hidden;
   width: 0;
-  transition: all 0.1s ease-out;
   direction: rtl;
   position: relative;
-
+  transition: width 0.2s;
+  transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
   > div {
     direction: ltr;
-    transition: all 0.1s ease-out;
     margin-bottom: 0;
   }
 
   input {
     opacity: 0;
-    transition: all 0.1s ease-out;
   }
 
   &.is-open {
     width: 100%;
-
+    overflow: visible;
     input {
       padding-left: ${(props): string => (props.offset ? `${Math.round(props.offset + 7)}px` : '12px')};
       opacity: 1;
+      width: calc(100% + 5px);
     }
   }
 `;
@@ -113,18 +116,20 @@ export const ClearButton = styled.div`
   padding: 0 11px 0 10px;
 `;
 
-export const List = styled.div<{ isOpen: boolean }>`
+export const List = styled.div<{ isOpen?: boolean }>`
   position: absolute;
   top: 40px;
   background: ${(props): string => props.theme.palette.white};
   direction: ltr;
   width: 100%;
   opacity: 0;
+  display: none;
   border-radius: 3px;
   box-shadow: 0 16px 32px 0 rgba(35, 41, 54, 0.1);
   box-sizing: border-box;
-  transition: width 0.15s ease-out;
-  transition: opacity 0.3s ease-out;
+  transition: width 0.5s;
+  transition: opacity 0.5s;
+  transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
 `;
 export const MenuHeader = styled.div`
   display: flex;
@@ -145,10 +150,26 @@ export const HeaderIconWrapper = styled.div`
     fill: ${(props): string => props.theme.palette['grey-400']};
   }
 `;
+export const keyFrameExampleOne = keyframes`
+  0% {
+    opacity:0;
+  }
+  50% {
+    opacity:0;
+    width:0;
+  }
+  100% {
+    opacity: 1;
+    width:100%;
+  }
+`;
 export const ListWrapper = styled.div`
   & > .listVisible {
-    width: 100%;
+    animation: ${keyFrameExampleOne} 0.3s ease-in-out 0s 1;
     opacity: 1;
+    width: calc(100% + 4px);
+    margin-right: -4px;
+    display: initial;
     padding: 8px;
   }
 `;
