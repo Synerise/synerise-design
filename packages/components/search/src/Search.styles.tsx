@@ -3,7 +3,6 @@ import styled from 'styled-components';
 export const SearchWrapper = styled.div`
   position: relative;
   direction: rtl;
-
 `;
 
 export const LeftSide = styled.span<{ isOpen: boolean }>`
@@ -36,7 +35,7 @@ export const Filter = styled.div`
   }
 
   .ds-icon {
-  margin-left:4px;
+    margin-left: 4px;
   }
   svg {
     fill: ${(props): string => props.theme.palette['blue-600']};
@@ -110,24 +109,20 @@ export const ClearButton = styled.div`
   align-items: center;
   justify-content: center;
   padding: 0 11px 0 10px;
-  
 `;
 
-export const List = styled.div`
+export const List = styled.div<{ isOpen: boolean }>`
   position: absolute;
   top: 40px;
   background: ${(props): string => props.theme.palette.white};
   direction: ltr;
-  width:100%;
-  opacity:0;
+  width: 100%;
+  opacity: 0;
   border-radius: 3px;
   box-shadow: 0 16px 32px 0 rgba(35, 41, 54, 0.1);
-  box-sizing:border-box;
+  box-sizing: border-box;
   transition: width 0.15s ease-out;
   transition: opacity 0.3s ease-out;
-
-
-  ${(props): string | false =>(props.isOpen && `padding:8px;`)};
 `;
 export const MenuHeader = styled.div`
   display: flex;
@@ -142,16 +137,16 @@ export const MenuHeader = styled.div`
   margin: 12px;
   line-height: 1.6;
   letter-spacing: 0.1px;
-
 `;
 export const HeaderIconWrapper = styled.div`
   & > .ds-icon > svg {
     fill: ${(props): string => props.theme.palette['grey-400']};
   }
-`
+`;
 export const ListWrapper = styled.div`
   & > .listVisible {
-    width:100%;
-    opacity:1;
+    width: 100%;
+    opacity: 1;
+    padding: 8px;
   }
-`
+`;
