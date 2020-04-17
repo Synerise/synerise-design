@@ -12,12 +12,12 @@ export type SearchProps = {
   recentTitle?: string;
   resultTitle?: string;
   clearTooltip: string | React.ReactNode;
-  filterData?: FilterElement[][];
+  parameters?: FilterElement[][];
   recent?: FilterElement[][];
   results: FilterElement[][];
   onValueChange: (value: string) => void;
   value: string;
   filterValue: string;
-  onFilterValueChange: (value: string) => void;
+  onFilterValueChange: (value: string) => any;
   divider?: React.ReactNode;
 };

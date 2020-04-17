@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { ReactElement, useState } from 'react';
-import Result from '@synerise/ds-result';
+import { ReactElement, useEffect, useState } from 'react';
 import Menu from '@synerise/ds-menu';
 import { Input } from 'antd';
 import Button from '@synerise/ds-button/dist/Button';
@@ -21,7 +20,7 @@ const Search: React.FC<SearchProps> = ({
   clearTooltip,
   filterTitle,
   recentTitle,
-  filterData,
+  parameters,
   recent,
   results,
   onValueChange,
@@ -31,24 +30,29 @@ const Search: React.FC<SearchProps> = ({
   resultTitle,
   divider,
 }) => {
+  console.log('Results',results);
   const [inputOpen, setInputOpen] = useState(false);
   const [label, setLabel] = useState<FilterElement | null>();
-  const [filteredData, setFilterData] = useState<FilterElement[][]>();
+  const [filteredParameters, setFilteredParameters] = useState<FilterElement[][]>();
   const [filteredRecent, setFilterRecent] = useState<FilterElement[][]>();
-  const [filteredResult, setFilterResult] = useState<FilterElement[][]>();
+  const [filteredSuggestions, setFilteredSuggestions] = useState<FilterElement[][]>();
   const [inputOffset, setInputOffset] = useState(0);
   const [focus, setFocus] = useState(false);
   const [resultChoosed, setResultChoosed] = useState(false);
   const ref = React.useRef<HTMLDivElement>(null);
+
   const toggleOpen = (): void => {
     setInputOpen(prevState => {
       return !prevState;
     });
   };
-
+  useEffect(()=>{
+    console.log('Results have changed!')
+    setFilteredSuggestions(results);
+  },[results])
   useOnClickOutside(ref, () => {
     setFocus(false);
-    if (filterData) {
+    if (parameters) {
       !value && !label && setInputOpen(false);
     } else {
       !value && setInputOpen(false);
@@ -60,11 +64,13 @@ const Search: React.FC<SearchProps> = ({
       onValueChange('');
       setLabel(item);
       if (item.filter) {
+        console.log('In the if - item.filter clicked')
         onValueChange(item.text);
         onFilterValueChange(item.filter);
         setResultChoosed(true);
       } else {
         onFilterValueChange(item.text);
+
       }
     },
     [onFilterValueChange, onValueChange]
@@ -72,6 +78,7 @@ const Search: React.FC<SearchProps> = ({
 
   const selectResult = React.useCallback(
     (item: FilterElement): void => {
+      console.log('Select result');
       setResultChoosed(true);
       onValueChange(item.text);
     },
@@ -97,30 +104,38 @@ const Search: React.FC<SearchProps> = ({
       });
 
     type === 'recent' && setFilterRecent(final);
-    type === 'filter' && setFilterData(final);
-    type === 'results' && setFilterResult(final);
+    type === 'filter' && setFilteredParameters(final);
+    type === 'results' && setFilteredSuggestions(final);
   };
 
   const clearValue = React.useCallback((): void => {
     setLabel(null);
     onValueChange('');
     setInputOffset(0);
-    setFilterData(filterData);
+    setFilteredParameters(parameters);
     setFilterRecent(recent);
-    setFilterResult(results);
+    setFilteredSuggestions(results);
     onFilterValueChange('');
     setResultChoosed(false);
-  }, [filterData, onFilterValueChange, onValueChange, results, recent]);
+  }, [parameters, onFilterValueChange, onValueChange,results, recent]);
 
   const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>): void => {
     if (e.keyCode === 8 && value === '') {
       setLabel(null);
       setInputOffset(0);
       setFilterRecent(recent);
+/*
+      setFilteredSuggestions(results);
+*/
       onFilterValueChange('');
     }
-    if (e.keyCode === 13 && filteredData && filteredData.flat().length === 1) {
-      selectFilter(filteredData.flat()[0]);
+    if (e.keyCode === 13 && filteredParameters && filteredParameters.flat().length === 1) {
+      selectFilter(filteredParameters.flat()[0]);
+      setFilteredParameters(parameters);
+    }
+    if (e.keyCode === 13 && filteredSuggestions && filteredSuggestions.flat().length === 1) {
+      selectResult(filteredSuggestions.flat()[0]);
+      setFilteredSuggestions(results);
     }
   };
 
@@ -134,10 +149,10 @@ const Search: React.FC<SearchProps> = ({
         findIncludes(results, currentValue, 'results');
       } else {
         findIncludes(recent, currentValue, 'recent');
-        findIncludes(filterData, currentValue, 'filter');
+        findIncludes(parameters, currentValue, 'filter');
       }
     },
-    [filterData, filterValue, onValueChange, recent, results]
+    [parameters, filterValue, onValueChange, recent, results]
   );
   const renderHeader = (headerText: string, tooltip?: string): ReactElement => (
     <S.MenuHeader>
@@ -159,7 +174,7 @@ const Search: React.FC<SearchProps> = ({
               reference && setInputOffset(reference.getBoundingClientRect().width);
             }}
           >
-            {label.icon && <Icon component={label.icon} />}
+            {label.icon && !resultChoosed && <Icon component={label.icon} />}
             <span>{label.filter ? label.filter : label.text}</span>
           </S.Filter>
         )}
@@ -220,11 +235,11 @@ const Search: React.FC<SearchProps> = ({
               </Menu>
             </>
           )}
-          {filterData && inputOpen && !label && (
+          {parameters && inputOpen && !label && (
             <>
               {!!filterTitle && renderHeader(filterTitle)}
               <Menu>
-                {(filteredData || filterData).map(items =>
+                {(filteredParameters || parameters).map(items =>
                   items.map(item => (
                     <Menu.Item
                       key={item.text}
@@ -241,11 +256,11 @@ const Search: React.FC<SearchProps> = ({
           {results && inputOpen && filterValue && !resultChoosed && (
             <>
               {!!resultTitle && renderHeader(resultTitle)}
-              {(filteredResult && filteredResult.flat().length === 0) || results.flat().length === 0 ? (
-                <Result type="no-results" noSearchResults description="texts.noResults" />
+              {(filteredSuggestions && filteredSuggestions.flat().length === 0) || results.flat().length === 0 ? (
+                <div>zwijanie dropa, ale wartosc zostaje</div>
               ) : (
                 <Menu>
-                  {(filteredResult || results).map(items =>
+                  {(filteredSuggestions || results).map(items =>
                     items.map(item => (
                       <Menu.Item key={item.text} onClick={(): void => selectResult(item)}>
                         {item.text}

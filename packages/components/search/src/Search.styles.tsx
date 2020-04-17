@@ -57,7 +57,7 @@ export const SearchButton = styled.div<{ isOpen: boolean; inputFocused: boolean 
   z-index: 1;
   top: 0;
   right: 0;
-  transition: all 0.2s ease-out;
+  transition: width 0.2s ease-out;
 
   svg {
     fill: ${(props): string =>
@@ -67,6 +67,8 @@ export const SearchButton = styled.div<{ isOpen: boolean; inputFocused: boolean 
   && {
     button {
       padding: 4px;
+      transition: padding-right 0.2s ease-out;
+      padding-right: ${(props): string | false => (props.isOpen && `8px`)};
     }
   }
 `;
@@ -74,19 +76,19 @@ export const SearchButton = styled.div<{ isOpen: boolean; inputFocused: boolean 
 export const SearchInputWrapper = styled.div<{ offset: number }>`
   overflow: hidden;
   width: 0;
-  transition: all 0.15s ease-out;
+  transition: all 0.1s ease-out;
   direction: rtl;
   position: relative;
 
   > div {
     direction: ltr;
-    transition: all 0.15s ease-out;
+    transition: all 0.1s ease-out;
     margin-bottom: 0;
   }
 
   input {
     opacity: 0;
-    transition: all 0.15s ease-out;
+    transition: all 0.1s ease-out;
   }
 
   &.is-open {
