@@ -19,4 +19,5 @@ export type SearchProps = {
   value: string;
   filterValue: string;
   onFilterValueChange: (value: string) => void;
+  divider?: React.ReactNode;
 };

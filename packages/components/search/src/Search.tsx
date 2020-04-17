@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { useState } from 'react';
-
+import { ReactElement, useState } from 'react';
+import Menu from '@synerise/ds-menu';
 import { Input } from 'antd';
 import Button from '@synerise/ds-button/dist/Button';
 import Icon from '@synerise/ds-icon/dist/Icon';
@@ -9,14 +9,19 @@ import Close3M from '@synerise/ds-icon/dist/icons/Close3M';
 import { useOnClickOutside } from '@synerise/ds-utils';
 import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
-import List from '@synerise/ds-list';
 import * as S from './Search.styles';
+import Dropdown from '@synerise/ds-dropdown';
 import { FilterElement, SearchProps } from './Search.types';
+import { InfoFillS } from '@synerise/ds-icon/dist/icons';
+import { HeaderIconWrapper } from './Search.styles';
+import { List } from 'react-virtualized';
+import Result from '@synerise/ds-result';
 
 const Search: React.FC<SearchProps> = ({
   placeholder,
   clearTooltip,
   filterTitle,
+  suggestTitle,
   recentTitle,
   filterData,
   recent,
@@ -26,6 +31,7 @@ const Search: React.FC<SearchProps> = ({
   filterValue,
   onFilterValueChange,
   resultTitle,
+  divider,
 }) => {
   const [inputOpen, setInputOpen] = useState(false);
   const [label, setLabel] = useState<FilterElement | null>();
@@ -36,7 +42,6 @@ const Search: React.FC<SearchProps> = ({
   const [focus, setFocus] = useState(false);
   const [resultChoosed, setResultChoosed] = useState(false);
   const ref = React.useRef<HTMLDivElement>(null);
-
   const toggleOpen = (): void => {
     setInputOpen(prevState => {
       return !prevState;
@@ -45,6 +50,7 @@ const Search: React.FC<SearchProps> = ({
 
   useOnClickOutside(ref, () => {
     setFocus(false);
+    console.log('UseOnClickOutside')
     if (filterData) {
       !value && !label && setInputOpen(false);
     } else {
@@ -56,8 +62,9 @@ const Search: React.FC<SearchProps> = ({
     (item: FilterElement): void => {
       onValueChange('');
       setLabel(item);
-
+      console.log('Select filter', item);
       if (item.filter) {
+        console.log('In the if');
         onValueChange(item.text);
         onFilterValueChange(item.filter);
         setResultChoosed(true);
@@ -105,6 +112,7 @@ const Search: React.FC<SearchProps> = ({
     setInputOffset(0);
     setFilterData(filterData);
     setFilterRecent(recent);
+    setFilterResult(results);
     onFilterValueChange('');
     setResultChoosed(false);
   }, [filterData, onFilterValueChange, onValueChange, recent]);
@@ -133,87 +141,143 @@ const Search: React.FC<SearchProps> = ({
     },
     [filterData, filterValue, onValueChange, recent, results]
   );
+  const renderHeader = (headerText: string, tooltip?: string): ReactElement => (
+    <S.MenuHeader>
+      {headerText}
+      <Tooltip type="default" trigger="hover" title={tooltip || headerText}>
+        <HeaderIconWrapper>
+          <Icon component={<InfoFillS />} />
+        </HeaderIconWrapper>
+      </Tooltip>
+    </S.MenuHeader>
+  );
 
-  return (
-    <S.SearchWrapper ref={ref}>
-      <S.SearchInputWrapper className={inputOpen ? 'is-open' : ''} offset={inputOffset}>
-        <S.LeftSide isOpen={inputOpen}>
-          {label && (
-            <S.Filter
-              ref={(reference): void => {
-                reference && setInputOffset(reference.getBoundingClientRect().width);
-              }}
-            >
-              <Icon component={label.icon} />
-              <span>{label.filter ? label.filter : label.text}</span>
-            </S.Filter>
-          )}
-        </S.LeftSide>
-        <div>
-          <Input
-            placeholder={placeholder}
-            ref={(input): void => {
-              inputOpen && input && input.focus();
+  const renderInputWrapper = (): ReactElement => (
+    <S.SearchInputWrapper className={inputOpen ? 'is-open' : ''} offset={inputOffset}>
+      <S.LeftSide isOpen={inputOpen}>
+        {label && (
+          <S.Filter
+            ref={(reference): void => {
+              reference && setInputOffset(reference.getBoundingClientRect().width);
             }}
-            value={value}
-            onChange={change}
-            onKeyDown={onKeyDown}
-            onFocus={(): void => setFocus(true)}
-          />
-        </div>
-      </S.SearchInputWrapper>
-      <S.SearchButton isOpen={inputOpen} inputFocused={focus} hidden={!!value || !!filterValue}>
-        <Button type="ghost" onClick={toggleOpen} data-testid="btn">
-          <Icon component={<SearchM />} />
-        </Button>
-      </S.SearchButton>
-      <S.ClearButton hidden={!value && !filterValue}>
-        <Icon
-          onClick={clearValue}
-          component={
-            <Tooltip title={clearTooltip}>
-              <Close3M />
-            </Tooltip>
-          }
-          color={theme.palette['red-600']}
-          size={18}
+          >
+            {label.icon && <Icon component={label.icon} />}
+            <span>{label.filter ? label.filter : label.text}</span>
+          </S.Filter>
+        )}
+      </S.LeftSide>
+      <div>
+        <Input
+          placeholder={placeholder}
+          ref={(input): void => {
+            inputOpen && input && input.focus();
+          }}
+          value={value}
+          onChange={change}
+          onKeyDown={onKeyDown}
+          onFocus={(): void => setFocus(true)}
         />
-      </S.ClearButton>
-      <S.List>
-        {recent && inputOpen && !label && (
-          <List
-            header={recentTitle}
-            dataSource={filteredRecent || recent}
-            renderItem={(item: FilterElement): React.ReactNode => (
-              <List.Item size="small" onSelect={(): void => selectFilter(item)}>
-                {item.text}
-              </List.Item>
-            )}
+      </div>
+    </S.SearchInputWrapper>
+  );
+  function rowRenderer({
+    key, // Unique key within array of rows
+    index, // Index of row within collection
+    style, // Style object to be applied to row (to position it)
+  }): ReactElement {
+    const item = results.flat()[index];
+    return (
+      <Menu.Item key={key} style={style} onClick={(): void => selectResult(item)}>
+        {item.text}
+      </Menu.Item>
+    );
+  }
+  return (
+
+    <S.SearchWrapper ref={ref} className={'SearchWrapper'}>
+        {renderInputWrapper()}
+        <S.SearchButton
+          isOpen={inputOpen}
+          inputFocused={focus}
+          hidden={!!value || !!filterValue}
+          className={'SearchButton'}
+        >
+          <Button type="ghost" onClick={toggleOpen} data-testid="btn">
+            <Icon component={<SearchM />} />
+          </Button>
+        </S.SearchButton>
+        <S.ClearButton hidden={!value && !filterValue}>
+          <Icon
+            onClick={clearValue}
+            component={
+              <Tooltip title={clearTooltip}>
+                <Close3M />
+              </Tooltip>
+            }
+            color={theme.palette['red-600']}
+            size={18}
           />
-        )}
-        {filterData && inputOpen && !label && (
-          <List
-            header={filterTitle}
-            dataSource={filteredData || filterData}
-            renderItem={(item: FilterElement): React.ReactNode => (
-              <List.Item icon={<Icon component={item.icon} />} size="small" onSelect={(): void => selectFilter(item)}>
-                <span data-testid="filter">{item.text}</span>
-              </List.Item>
-            )}
-          />
-        )}
-        {results && inputOpen && filterValue && !resultChoosed && (
-          <List
-            header={resultTitle}
-            dataSource={filteredResult || results}
-            renderItem={(item: FilterElement): React.ReactNode => (
-              <List.Item size="small" onSelect={(): void => selectResult(item)}>
-                {item.text}
-              </List.Item>
-            )}
-          />
-        )}
-      </S.List>
+        </S.ClearButton>
+      <S.ListWrapper>
+        <S.List isOpen={inputOpen && !resultChoosed } className={inputOpen && !resultChoosed ? 'listVisible' : ''}>
+          {recent && inputOpen && !label && (
+            <React.Fragment>
+              {renderHeader(recentTitle)}
+              <Menu>
+                {(filteredRecent || recent).map(items =>
+                  items.map(item => (
+                    <Menu.Item key={item.text} onClick={(): void => selectFilter(item)}>
+                      {item.text}
+                    </Menu.Item>
+                  ))
+                )}
+                {!!divider && divider}
+              </Menu>
+            </React.Fragment>
+          )}
+          {filterData && inputOpen && !label && (
+            <React.Fragment>
+              {renderHeader(filterTitle)}
+              <Menu>
+                {(filteredData || filterData).map(items =>
+                  items.map(item => (
+                    <Menu.Item
+                      key={item.text}
+                      prefixel={<Icon component={item.icon} />}
+                      onClick={(): void => selectFilter(item)}
+                    >
+                      {item.text}
+                    </Menu.Item>
+                  ))
+                )}
+              </Menu>
+            </React.Fragment>
+          )}
+                  <Menu>
+{/*        <List
+          width={300}
+          height={6*32}
+          rowCount={results.flat().length-2}
+          rowHeight={32}
+          rowRenderer={rowRenderer}
+        />*/}
+        </Menu>
+                    {results && inputOpen && filterValue && !resultChoosed && (
+            <React.Fragment>
+              {renderHeader(resultTitle)}
+              {(filteredResult && filteredResult.flat().length === 0) || results.flat().length === 0 ? (
+                <Result type="no-results" noSearchResults description={'texts.noResults'} />
+              ) : (
+                <Menu>
+                  {(filteredResult || results).map(items =>
+                    items.map(item => <Menu.Item onClick={(): void => selectResult(item)}>{item.text}</Menu.Item>)
+                  )}
+                </Menu>
+              )}
+            </React.Fragment>
+          )}
+        </S.List>
+      </S.ListWrapper>
     </S.SearchWrapper>
   );
 };
