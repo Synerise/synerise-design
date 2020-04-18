@@ -5,6 +5,7 @@ import VarTypeStringM from '@synerise/ds-icon/dist/icons/VarTypeStringM';
 import Divider from '@synerise/ds-divider';
 import { boolean } from '@storybook/addon-knobs';
 import { VarTypeListM, VarTypeNumberM } from '@synerise/ds-icon/dist/icons';
+import { SearchInput } from '@synerise/ds-search/dist/Elements';
 
 const decorator = storyFn => (
   <div style={{ width: '300px', height: '500px' }}>
@@ -99,12 +100,24 @@ const stories = {
       />
     );
   },
+  withInput: () => {
+    const [value, setValue] = React.useState<string>('');
+    return (
+      <SearchInput
+        placeholder={"Type here..."}
+        clearTooltip={'Clear value'}
+        onValueChange={(value)=>{console.log(value); setValue(value)}}
+        value={value}
+        onClear={()=>{console.log('Cleared!')}}
+        onKeyDown={(e)=>{console.log(e.target)}}
+      />
+    );
+  },
 };
 
 export default {
   name: 'Components|Search',
   config: {},
   stories,
-  Component: Search,
   decorator,
 };

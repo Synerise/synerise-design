@@ -1,36 +1,16 @@
 import * as React from 'react';
 import { ReactElement, useEffect, useState } from 'react';
 import Menu from '@synerise/ds-menu';
-import { Input } from 'antd';
-import Button from '@synerise/ds-button/dist/Button';
-
-import SearchM from '@synerise/ds-icon/dist/icons/SearchM';
-import Close3M from '@synerise/ds-icon/dist/icons/Close3M';
 import { useOnClickOutside } from '@synerise/ds-utils';
 import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { InfoFillS } from '@synerise/ds-icon/dist/icons';
 import Icon from '@synerise/ds-icon/dist/Icon';
 import { List } from 'react-virtualized';
 import * as S from './Search.styles';
 import { FilterElement, SearchProps } from './Search.types';
 import { HeaderIconWrapper } from './Search.styles';
+import { SearchInput } from './Elements';
 
-const removeDuplicates = (array: any): any => {
-  const result = [];
-  const map = new Map();
-  for (let i = 0; i < array.length; i = +1) {
-    const item = array[i];
-    if (!map.has(item.text)) {
-      map.set(item.text, true); // set any value to Map
-      result.push({
-        ...item,
-        text: item.text,
-      });
-    }
-  }
-  return result;
-};
 const Search: React.FC<SearchProps> = ({
   placeholder,
   clearTooltip,
@@ -51,35 +31,29 @@ const Search: React.FC<SearchProps> = ({
   const [filteredParameters, setFilteredParameters] = useState<FilterElement[][]>();
   const [filteredRecent, setFilterRecent] = useState<FilterElement[][]>();
   const [filteredSuggestions, setFilteredSuggestions] = useState<FilterElement[][]>();
-  const [inputOffset, setInputOffset] = useState(0);
   const [listVisible, setListVisible] = useState(true);
-  const [focus, setFocus] = useState(false);
+  const [focusTrigger, focusInputComponent] = useState(false);
+  const [toggleTrigger, setToggleTrigger] = useState(true);
   const [resultChoosed, setResultChoosed] = useState(false);
   const ref = React.useRef<HTMLDivElement>(null);
   const inputRef = React.useRef<HTMLInputElement>(null);
 
-  const toggleOpen = (): void => {
-    setInputOpen(prevState => {
-      return !prevState;
-    });
-  };
   useEffect(() => {
-    setFilteredSuggestions(removeDuplicates(results.flat()));
+    setFilteredSuggestions(results.flat());
   }, [results]);
   useEffect(() => {
-    setFilteredParameters(removeDuplicates(parameters.flat()));
+    parameters && setFilteredParameters(parameters.flat());
   }, [parameters]);
   useEffect(() => {
     setFilterRecent(recent);
   }, [recent]);
+
   useOnClickOutside(ref, () => {
-    setFocus(false);
-    setListVisible(false);
-    if (parameters) {
-      !value && !label && setInputOpen(false);
-    } else {
-      !value && setInputOpen(false);
+    if (inputOpen && !value && !label) {
+      console.log(value);
+      setToggleTrigger(!toggleTrigger);
     }
+    setListVisible(false);
   });
 
   const selectFilter = React.useCallback(
@@ -130,7 +104,6 @@ const Search: React.FC<SearchProps> = ({
   const clearValue = React.useCallback((): void => {
     setLabel(null);
     onValueChange('');
-    setInputOffset(0);
     setFilteredParameters(parameters);
     setFilterRecent(recent);
     setFilteredSuggestions(results);
@@ -142,11 +115,7 @@ const Search: React.FC<SearchProps> = ({
   const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>): void => {
     if (e.keyCode === 8 && value === '') {
       setLabel(null);
-      setInputOffset(0);
       setFilterRecent(recent);
-      /*
-      setFilteredSuggestions(results);
-*/
       onFilterValueChange('');
       return;
     }
@@ -156,26 +125,25 @@ const Search: React.FC<SearchProps> = ({
       const narrowedRecent = filteredRecent && filteredRecent.flat().length;
 
       if (narrowedParameters === 1 && narrowedRecent === 0) {
-        selectFilter(filteredParameters.flat()[0]);
+        filteredParameters && selectFilter(filteredParameters.flat()[0]);
         setFilteredParameters(parameters);
         return;
       }
       if (narrowedSuggestions === 1) {
-        selectResult(filteredSuggestions.flat()[0]);
+        filteredSuggestions && selectResult(filteredSuggestions.flat()[0]);
         setFilteredSuggestions(results);
         return;
       }
       if (narrowedRecent === 1 && narrowedParameters === 0) {
-        selectFilter(filteredRecent.flat()[0]);
+        filteredRecent && selectFilter(filteredRecent.flat()[0]);
         setFilteredParameters(parameters);
-        
       }
     }
   };
 
   const change = React.useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>): void => {
-      const currentValue = e.currentTarget.value;
+    (inputValue): void => {
+      const currentValue = inputValue;
       onValueChange(currentValue);
       setResultChoosed(false);
       let isAnythingToShow = false;
@@ -201,51 +169,35 @@ const Search: React.FC<SearchProps> = ({
     </S.MenuHeader>
   );
 
-  const renderInputWrapper = (): ReactElement => (
-    <S.SearchInputWrapper
-      className={inputOpen ? 'is-open' : ''}
-      offset={inputOffset}
-      onClick={(): void => setListVisible(true)}
-    >
-      <S.LeftSide isOpen={inputOpen}>
-        {label && (
-          <S.Filter
-            ref={(reference): void => {
-              reference && setInputOffset(reference.getBoundingClientRect().width);
-            }}
-          >
-            {label.icon && !resultChoosed && <Icon component={label.icon} />}
-            <span>{label.filter ? label.filter : label.text}</span>
-          </S.Filter>
-        )}
-      </S.LeftSide>
-      <div>
-        <Input
-          placeholder={placeholder}
-          ref={inputRef}
-          value={value}
-          onChange={change}
-          onKeyDown={onKeyDown}
-          onFocus={(): void => setFocus(true)}
-        />
-      </div>
-    </S.SearchInputWrapper>
-  );
-  function suggestionRenderer({
-    key, // Unique key within array of rows
-    index, // Index of row within collection
-    style, // Style object to be applied to row (to position it)
-  }: {
-    key: string;
-    index: number;
-    style: any;
-  }): ReactElement {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+  // @ts-ignore
+  const renderInputWrapper = (): ReactElement => {
+    return (
+      <SearchInput
+        onClick={(): void => setListVisible(true)}
+        placeholder={placeholder}
+        clearTooltip={clearTooltip}
+        onValueChange={change}
+        value={value}
+        onClear={clearValue}
+        onKeyDown={onKeyDown}
+        closeOnClickOutside={false}
+        filterLabel={label}
+        focusTrigger={focusTrigger}
+        onToggle={(toggle): void => {
+          setInputOpen(toggle);
+        }}
+        toggleTrigger={toggleTrigger}
+      />
+    );
+  };
+  function suggestionRenderer({ key, index, style }: { key: string; index: number; style: any }): ReactElement {
     const item = filteredSuggestions && filteredSuggestions.flat()[index];
     return (
       <Menu.Item
         key={key}
         style={style}
-        onClick={(): void => selectResult(item)}
+        onClick={(): void => item && selectResult(item)}
         highlight={value || ''}
         /* eslint-disable-next-line @typescript-eslint/no-empty-function */
         onItemHover={(): void => {}}
@@ -254,15 +206,7 @@ const Search: React.FC<SearchProps> = ({
       </Menu.Item>
     );
   }
-  function parameterRenderer({
-    key, // Unique key within array of rows
-    index, // Index of row within collection
-    style, // Style object to be applied to row (to position it)
-  }: {
-    key: string;
-    index: number;
-    style: object;
-  }): ReactElement {
+  function parameterRenderer({ key, index, style }: { key: string; index: number; style: object }): ReactElement {
     const item = filteredParameters && filteredParameters.flat()[index];
     return (
       <Menu.Item
@@ -278,16 +222,10 @@ const Search: React.FC<SearchProps> = ({
       </Menu.Item>
     );
   }
-  function recentRenderer({
-    key, // Unique key within array of rows
-    index, // Index of row within collection
-    style, // Style object to be applied to row (to position it)
-  }: {
-    key: string;
-    index: number;
-    style: object;
-  }): ReactElement {
+  function recentRenderer({ key, index, style }: { key: string; index: number; style: object }): ReactElement {
     const item = filteredRecent && filteredRecent.flat()[index];
+    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+    // @ts-ignore
     return (
       <Menu.Item
         key={key}
@@ -301,43 +239,13 @@ const Search: React.FC<SearchProps> = ({
       </Menu.Item>
     );
   }
+  console.log('Rendering');
   return (
     <S.SearchWrapper ref={ref} className="SearchWrapper">
       {renderInputWrapper()}
-      <S.SearchButton
-        isOpen={inputOpen}
-        inputFocused={focus}
-        hidden={!!value || !!filterValue}
-        className="SearchButton"
-      >
-        <Button
-          type="ghost"
-          onClick={(): void => {
-            toggleOpen();
-            setListVisible(true);
-            inputRef!.current!.focus();
-          }}
-          className={inputOpen ? 'btn-search-open' : 'btn-search'}
-          data-testid="btn"
-        >
-          <Icon component={<SearchM />} />
-        </Button>
-      </S.SearchButton>
-      <S.ClearButton hidden={!value && !filterValue}>
-        <Icon
-          onClick={clearValue}
-          component={
-            <Tooltip title={clearTooltip}>
-              <Close3M />
-            </Tooltip>
-          }
-          color={theme.palette['red-600']}
-          size={18}
-        />
-      </S.ClearButton>
       <S.ListWrapper
         onClick={(): void => {
-          inputRef!.current!.focus();
+          focusInputComponent(!focusTrigger);
         }}
       >
         <S.List className={inputOpen && !resultChoosed && listVisible ? 'listVisible' : ''}>
@@ -347,8 +255,12 @@ const Search: React.FC<SearchProps> = ({
               <Menu>
                 <List
                   width={284}
-                  height={filteredRecent.flat().length > 3 ? 3 * 32 : filteredRecent.flat().length * 32}
-                  rowCount={filteredRecent.flat().length}
+                  height={
+                    filteredRecent && filteredRecent.flat().length > 3
+                      ? 3 * 32
+                      : filteredRecent && filteredRecent.flat().length * 32
+                  }
+                  rowCount={filteredRecent && filteredRecent.flat().length}
                   rowHeight={32}
                   rowRenderer={recentRenderer}
                 />

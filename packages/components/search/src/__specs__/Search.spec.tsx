@@ -34,7 +34,7 @@ describe('SearchBar', () => {
     const {getByPlaceholderText} = renderWithProvider(
       <Search
         clearTooltip={'clear'}
-        filterData={filterList}
+        parameters={filterList}
         placeholder={PLACEHOLDER}
         recent={recent}
         results={results}
@@ -53,7 +53,7 @@ describe('SearchBar', () => {
     const {getByPlaceholderText} = renderWithProvider(
       <Search
         clearTooltip={'clear'}
-        filterData={filterList}
+        parameters={filterList}
         placeholder={PLACEHOLDER}
         recent={recent}
         results={results}
@@ -77,7 +77,7 @@ describe('SearchBar', () => {
     const { getByTestId } = renderWithProvider(
       <Search
         clearTooltip={'clear'}
-        filterData={filterList}
+        parameters={filterList}
         placeholder={PLACEHOLDER}
         recent={recent}
         results={results}

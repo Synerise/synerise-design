@@ -38,8 +38,9 @@ const Text: React.FC<Props> = ({
   const [pressed, setPressed] = React.useState(false);
   const [hovered, setHovered] = React.useState(false);
   const canCopyToClipboard = copyable && copyHint && copyValue && !disabled;
-  const hightlightContent = React.useMemo(() => {
-    if (highlight) {
+
+  const hightlightContent = React.useMemo((): string => {
+    if (highlight && !!children && children !== undefined && typeof children === 'string') {
       const index = children.toLocaleLowerCase().indexOf(highlight.toLocaleLowerCase());
       if (index === -1) {
         return children;
@@ -48,7 +49,7 @@ const Text: React.FC<Props> = ({
       const result = children.substr(startOfQuery, highlight.length);
       return children.replace(result, `<span class="search-highlight">${result}</span>`);
     }
-    return children;
+    return children as string;
   }, [children, highlight]);
   const myChildren = hightlightContent;
   return (
