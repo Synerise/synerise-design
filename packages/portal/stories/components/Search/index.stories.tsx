@@ -40,7 +40,7 @@ const recent = [
 const results = [[{ text: 'Cirilla' }, { text: 'Frank' }, { text: 'Naomi' }, { text: 'Severus' }]];
 const cities = DataPopulator.populateCities(50).map(item=>({text:item}));
 const firstNames = DataPopulator.populateFirstName(50).map(item=>({text:item}));
-const lastNames = DataPopulator.populateCities(50).map(item=>({text:item}));
+const lastNames = DataPopulator.popuLateLastName(50).map(item=>({text:item}));
 const getSuggestions = filter => {
   if (filter === 'City') {
     return [cities];

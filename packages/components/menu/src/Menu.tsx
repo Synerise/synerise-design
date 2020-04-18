@@ -53,6 +53,7 @@ class Menu extends React.Component<AntdMenuProps> {
                   copyable={item.copyable}
                   copyHint={item.copyHint}
                   copyValue={item.copyValue}
+                  hightlight={item.hightlight}
                   key={`${item.text}${index}`} // eslint-disable-line react/no-array-index-key
                   {...rest}
                 />

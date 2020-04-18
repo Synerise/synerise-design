@@ -19,6 +19,7 @@ interface Props {
   copyable?: boolean;
   copyHint?: string;
   copyValue?: string;
+  highlight?: string;
 }
 const Text: React.FC<Props> = ({
   parent,
@@ -31,11 +32,25 @@ const Text: React.FC<Props> = ({
   copyable,
   copyHint,
   copyValue,
+  highlight,
   ...rest
 }) => {
   const [pressed, setPressed] = React.useState(false);
   const [hovered, setHovered] = React.useState(false);
   const canCopyToClipboard = copyable && copyHint && copyValue && !disabled;
+  const hightlightContent = React.useMemo(() => {
+    if (highlight) {
+      const index = children.toLocaleLowerCase().indexOf(highlight.toLocaleLowerCase());
+      if (index === -1) {
+        return children;
+      }
+      const startOfQuery = children.toLocaleLowerCase().search(highlight.toLocaleLowerCase());
+      const result = children.substr(startOfQuery, highlight.length);
+      return children.replace(result, `<span class="search-highlight">${result}</span>`);
+    }
+    return children;
+  }, [children, highlight]);
+  const myChildren = hightlightContent;
   return (
     // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
     // @ts-ignore
@@ -69,8 +84,8 @@ const Text: React.FC<Props> = ({
               {prefixel}
             </S.PrefixelWrapper>
           )}
-          <S.Content>
-            {canCopyToClipboard && hovered ? copyHint : children}
+          <S.Content hightlight={!!highlight}>
+            {canCopyToClipboard && hovered ? copyHint : <div dangerouslySetInnerHTML={{ __html: myChildren }} />}
             {Boolean(description) && <S.Description>{description}</S.Description>}
             {parent && (
               <S.ArrowRight>

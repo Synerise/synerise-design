@@ -16,6 +16,21 @@ import * as S from './Search.styles';
 import { FilterElement, SearchProps } from './Search.types';
 import { HeaderIconWrapper } from './Search.styles';
 
+const removeDuplicates = (array: any): any => {
+  const result = [];
+  const map = new Map();
+  for (let i = 0; i < array.length; i = +1) {
+    const item = array[i];
+    if (!map.has(item.text)) {
+      map.set(item.text, true); // set any value to Map
+      result.push({
+        ...item,
+        text: item.text,
+      });
+    }
+  }
+  return result;
+};
 const Search: React.FC<SearchProps> = ({
   placeholder,
   clearTooltip,
@@ -49,12 +64,14 @@ const Search: React.FC<SearchProps> = ({
     });
   };
   useEffect(() => {
-    setFilteredSuggestions(results);
+    setFilteredSuggestions(removeDuplicates(results.flat()));
   }, [results]);
   useEffect(() => {
-    setFilteredParameters(parameters);
+    setFilteredParameters(removeDuplicates(parameters.flat()));
   }, [parameters]);
-
+  useEffect(() => {
+    setFilterRecent(recent);
+  }, [recent]);
   useOnClickOutside(ref, () => {
     setFocus(false);
     setListVisible(false);
@@ -82,7 +99,6 @@ const Search: React.FC<SearchProps> = ({
 
   const selectResult = React.useCallback(
     (item: FilterElement): void => {
-      console.log('Select result');
       setResultChoosed(true);
       onValueChange(item.text);
     },
@@ -101,12 +117,10 @@ const Search: React.FC<SearchProps> = ({
           }
           return null;
         });
-
         final.push(temp);
         temp = [];
         return x;
       });
-
     type === 'recent' && setFilterRecent(final);
     type === 'filter' && setFilteredParameters(final);
     type === 'results' && setFilteredSuggestions(final);
@@ -134,14 +148,28 @@ const Search: React.FC<SearchProps> = ({
       setFilteredSuggestions(results);
 */
       onFilterValueChange('');
+      return;
     }
-    if (e.keyCode === 13 && filteredParameters && filteredParameters.flat().length === 1) {
-      selectFilter(filteredParameters.flat()[0]);
-      setFilteredParameters(parameters);
-    }
-    if (e.keyCode === 13 && filteredSuggestions && filteredSuggestions.flat().length === 1) {
-      selectResult(filteredSuggestions.flat()[0]);
-      setFilteredSuggestions(results);
+    if (e.keyCode === 13) {
+      const narrowedParameters = filteredParameters && filteredParameters.flat().length;
+      const narrowedSuggestions = filteredSuggestions && filteredSuggestions.flat().length;
+      const narrowedRecent = filteredRecent && filteredRecent.flat().length;
+
+      if (narrowedParameters === 1 && narrowedRecent === 0) {
+        selectFilter(filteredParameters.flat()[0]);
+        setFilteredParameters(parameters);
+        return;
+      }
+      if (narrowedSuggestions === 1) {
+        selectResult(filteredSuggestions.flat()[0]);
+        setFilteredSuggestions(results);
+        return;
+      }
+      if (narrowedRecent === 1 && narrowedParameters === 0) {
+        selectFilter(filteredRecent.flat()[0]);
+        setFilteredParameters(parameters);
+        
+      }
     }
   };
 
@@ -214,8 +242,14 @@ const Search: React.FC<SearchProps> = ({
   }): ReactElement {
     const item = filteredSuggestions && filteredSuggestions.flat()[index];
     return (
-      // eslint-disable-next-line @typescript-eslint/no-empty-function
-      <Menu.Item key={key} style={style} onClick={(): void => selectResult(item)} onItemHover={(): void => {}}>
+      <Menu.Item
+        key={key}
+        style={style}
+        onClick={(): void => selectResult(item)}
+        highlight={value || ''}
+        /* eslint-disable-next-line @typescript-eslint/no-empty-function */
+        onItemHover={(): void => {}}
+      >
         {item && item.text}
       </Menu.Item>
     );
@@ -236,6 +270,7 @@ const Search: React.FC<SearchProps> = ({
         style={style}
         prefixel={<Icon component={item && item.icon} />}
         onClick={(): void => item && selectFilter(item)}
+        highlight={value || ''}
         /* eslint-disable-next-line @typescript-eslint/no-empty-function */
         onItemHover={(): void => {}}
       >
@@ -243,7 +278,29 @@ const Search: React.FC<SearchProps> = ({
       </Menu.Item>
     );
   }
-
+  function recentRenderer({
+    key, // Unique key within array of rows
+    index, // Index of row within collection
+    style, // Style object to be applied to row (to position it)
+  }: {
+    key: string;
+    index: number;
+    style: object;
+  }): ReactElement {
+    const item = filteredRecent && filteredRecent.flat()[index];
+    return (
+      <Menu.Item
+        key={key}
+        style={style}
+        onClick={(): void => item && selectFilter(item)}
+        highlight={value || ''}
+        /* eslint-disable-next-line @typescript-eslint/no-empty-function */
+        onItemHover={(): void => {}}
+      >
+        {item && item.text}
+      </Menu.Item>
+    );
+  }
   return (
     <S.SearchWrapper ref={ref} className="SearchWrapper">
       {renderInputWrapper()}
@@ -288,13 +345,13 @@ const Search: React.FC<SearchProps> = ({
             <>
               {!!recentTitle && renderHeader(recentTitle)}
               <Menu>
-                {(filteredRecent || recent).map(items =>
-                  items.map(item => (
-                    <Menu.Item key={item.text} onClick={(): void => selectFilter(item)}>
-                      {item.text}
-                    </Menu.Item>
-                  ))
-                )}
+                <List
+                  width={284}
+                  height={filteredRecent.flat().length > 3 ? 3 * 32 : filteredRecent.flat().length * 32}
+                  rowCount={filteredRecent.flat().length}
+                  rowHeight={32}
+                  rowRenderer={recentRenderer}
+                />
                 {!!divider && divider}
               </Menu>
             </>

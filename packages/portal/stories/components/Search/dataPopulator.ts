@@ -8,6 +8,7 @@ export const populateCities = (numberOfCities) =>{
   return result;
 }
 export const populateFirstName = (numberOfCities) =>{
+  faker.locale = "pl";
   const result = [];
   for(let i =0;i<numberOfCities; i++){
     result.push(faker.name.firstName());
@@ -16,6 +17,7 @@ export const populateFirstName = (numberOfCities) =>{
   return result;
 }
 export const popuLateLastName = (numberOfCities) =>{
+  faker.locale = "pl";
   const result = [];
   for(let i =0;i<numberOfCities; i++){
     result.push(faker.name.lastName());
