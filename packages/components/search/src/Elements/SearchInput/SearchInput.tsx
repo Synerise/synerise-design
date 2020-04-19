@@ -42,6 +42,12 @@ const SearchInput: React.FC<SearchInputProps> = ({
       return !prevState;
     });
   };
+
+  const focusOnInput = (): void => {
+    if (!focus && !firstRender) {
+      inputRef && inputRef.current && inputRef.current.focus();
+    }
+  }
   useEffect(() => {
     if (filterLabel === null) {
       setInputOffset(0);
@@ -50,9 +56,8 @@ const SearchInput: React.FC<SearchInputProps> = ({
   }, [filterLabel]);
 
   useEffect(() => {
-    if (!focus && !firstRender) {
-      inputRef && inputRef.current && inputRef.current.focus();
-    }
+    focusOnInput();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value, filterLabel, focusTrigger]);
 
   useEffect(() => {
@@ -61,11 +66,11 @@ const SearchInput: React.FC<SearchInputProps> = ({
     } else {
       toggleOpen();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [toggleTrigger]);
 
   useOnClickOutside(ref, () => {
     if (closeOnClickOutside && Boolean(!value) && value.length === 0 && label === null) {
-      console.log('Hello')
       setInputOpen(false);
       setFocus(false);
     }
@@ -79,7 +84,7 @@ const SearchInput: React.FC<SearchInputProps> = ({
     onClear('');
     setResultChoosed(false);
     inputRef && inputRef.current && inputRef.current.focus();
-  }, [onValueChange]);
+  }, [onValueChange, onClear]);
 
   const change = React.useCallback(
     (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -131,7 +136,9 @@ const SearchInput: React.FC<SearchInputProps> = ({
             toggleOpen();
             clearValue();
             onButtonClick && onButtonClick();
-            inputRef!.current!.focus();
+            if(inputRef!==null && inputRef.current && inputRef.current !== null && inputRef.current.focus){
+              inputRef.current.focus();
+            }
           }}
           className={inputOpen ? 'btn-search-open' : 'btn-search'}
           data-testid="btn"

@@ -93,6 +93,7 @@ const Text: React.FC<Props> = ({
             </S.PrefixelWrapper>
           )}
           <S.Content hightlight={!!highlight}>
+            {/* eslint-disable-next-line react/no-danger */}
             {canCopyToClipboard && hovered ? copyHint : <div dangerouslySetInnerHTML={{ __html: myChildren }} />}
             {Boolean(description) && <S.Description>{description}</S.Description>}
             {parent && (

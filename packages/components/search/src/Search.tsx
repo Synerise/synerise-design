@@ -13,23 +13,27 @@ import { SearchInput } from './Elements';
 
 const Search: React.FC<SearchProps> = ({
   placeholder,
-  clearTooltip,
-  filterTitle,
+  parametersTitle,
   recentTitle,
   parameters,
   recent,
-  results,
+  suggestions,
   onValueChange,
   value,
-  filterValue,
-  onFilterValueChange,
-  resultTitle,
+  parameterValue,
+  onParameterValueChange,
+  suggestionsTitle,
   divider,
+  suggestionsTooltip,
+  recentTooltip,
+  parametersTooltip,
+  clearTooltip,
+  width,
 }) => {
   const [inputOpen, setInputOpen] = useState(false);
   const [label, setLabel] = useState<FilterElement | null>();
   const [filteredParameters, setFilteredParameters] = useState<FilterElement[]>();
-  const [filteredRecent, setFilterRecent] = useState<FilterElement[]>();
+  const [filteredRecent, setFilteredRecent] = useState<FilterElement[]>();
   const [filteredSuggestions, setFilteredSuggestions] = useState<FilterElement[]>();
   const [listVisible, setListVisible] = useState(true);
   const [focusTrigger, focusInputComponent] = useState(false);
@@ -37,20 +41,23 @@ const Search: React.FC<SearchProps> = ({
   const [resultChoosed, setResultChoosed] = useState(false);
   const ref = React.useRef<HTMLDivElement>(null);
   const inputRef = React.useRef<HTMLInputElement>(null);
-
+  const menuItemWidthOffset = 12;
+  const rowHeight = 32;
+  const canRenderVirtualizedList =
+    (!!width && width > menuItemWidthOffset) ||
+    (!!ref && !!ref.current && ref.current.clientWidth > menuItemWidthOffset);
   useEffect(() => {
-    results && setFilteredSuggestions(results);
-  }, [results]);
+    suggestions && setFilteredSuggestions(suggestions);
+  }, [suggestions]);
   useEffect(() => {
     parameters && setFilteredParameters(parameters);
   }, [parameters]);
   useEffect(() => {
-    recent && setFilterRecent(recent);
+    recent && setFilteredRecent(recent);
   }, [recent]);
 
   useOnClickOutside(ref, () => {
     if (inputOpen && !value && !label) {
-      console.log(value);
       setToggleTrigger(!toggleTrigger);
     }
     setListVisible(false);
@@ -62,13 +69,13 @@ const Search: React.FC<SearchProps> = ({
       setLabel(item);
       if (item.filter) {
         onValueChange(item.text);
-        onFilterValueChange(item.filter);
+        onParameterValueChange(item.filter);
         setResultChoosed(true);
       } else {
-        onFilterValueChange(item.text);
+        onParameterValueChange(item.text);
       }
     },
-    [onFilterValueChange, onValueChange]
+    [onParameterValueChange, onValueChange]
   );
 
   const selectResult = React.useCallback(
@@ -80,32 +87,34 @@ const Search: React.FC<SearchProps> = ({
   );
 
   const filterByInputValue = (data: FilterElement[] | undefined, currentValue: string): FilterElement[] => {
-    const filtered: FilterElement[] = data && data.filter(el=>(el.text.toLowerCase().includes(currentValue.toLocaleLowerCase()))) || [];
+    const filtered: FilterElement[] =
+      (data && data.filter(el => el.text.toLowerCase().includes(currentValue.toLocaleLowerCase()))) || [];
     return filtered;
   };
   const hasAnyElementToShow = (data: FilterElement[] | undefined, currentValue: string): boolean => {
-    const anything: boolean = (!!data && data.some(el=>(el.text.toLowerCase().includes(currentValue.toLocaleLowerCase()))))|| false;
+    const anything: boolean =
+      (!!data && data.some(el => el.text.toLowerCase().includes(currentValue.toLocaleLowerCase()))) || false;
     return anything;
-};
+  };
   const clearValue = React.useCallback((): void => {
     setLabel(null);
     onValueChange('');
     setFilteredParameters(parameters);
-    setFilterRecent(recent);
-    setFilteredSuggestions(results);
-    onFilterValueChange('');
+    setFilteredRecent(recent);
+    setFilteredSuggestions(suggestions);
+    onParameterValueChange('');
     setResultChoosed(false);
     inputRef && inputRef.current && inputRef.current.focus();
-  }, [parameters, onFilterValueChange, onValueChange, results, recent]);
+  }, [parameters, onParameterValueChange, onValueChange, suggestions, recent]);
 
   const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>): void => {
-    if (e.key === "Backspace" && value === '') {
+    if (e.key === 'Backspace' && value === '' && inputOpen) {
       setLabel(null);
-      setFilterRecent(recent);
-      onFilterValueChange('');
+      setFilteredRecent(recent);
+      onParameterValueChange('');
       return;
     }
-    if (e.key === "Enter") {
+    if (e.key === 'Enter' && inputOpen) {
       const narrowedParameters = filteredParameters && filteredParameters.length;
       const narrowedSuggestions = filteredSuggestions && filteredSuggestions.length;
       const narrowedRecent = filteredRecent && filteredRecent.length;
@@ -117,7 +126,7 @@ const Search: React.FC<SearchProps> = ({
       }
       if (narrowedSuggestions === 1) {
         filteredSuggestions && selectResult(filteredSuggestions[0]);
-        setFilteredSuggestions(results);
+        setFilteredSuggestions(suggestions);
         return;
       }
       if (narrowedRecent === 1 && narrowedParameters === 0) {
@@ -132,49 +141,58 @@ const Search: React.FC<SearchProps> = ({
       const currentValue = inputValue;
       onValueChange(currentValue);
       setResultChoosed(false);
-      let isAnythingToShow = false;
-      if (filterValue) {
-        const matchingValues = filterByInputValue(results,currentValue);
+      let isAnythingToShow;
+      if (parameterValue) {
+        const matchingValues = filterByInputValue(suggestions, currentValue);
         setFilteredSuggestions(matchingValues);
         isAnythingToShow = matchingValues.length > 0;
       } else {
         const matchingRecent = filterByInputValue(recent, currentValue);
-        setFilterRecent(matchingRecent);
+        setFilteredRecent(matchingRecent);
         const matchingFilters = filterByInputValue(parameters, currentValue);
-        setFilteredParameters(matchingFilters)
+        setFilteredParameters(matchingFilters);
         isAnythingToShow = matchingRecent.length > 0 || matchingFilters.length > 0;
       }
       setListVisible(isAnythingToShow);
     },
-    [parameters, filterValue, onValueChange, recent, results]
+    [parameters, parameterValue, onValueChange, recent, suggestions]
   );
-  const isThereAnythingToShow = () =>{
-    console.log('anything?')
+  const isThereAnythingToShow = (): boolean => {
     let isAnythingToShow;
-    if (filterValue) {
-      isAnythingToShow = hasAnyElementToShow(results, value);
+    if (parameterValue) {
+      isAnythingToShow = hasAnyElementToShow(suggestions, value);
     } else {
       const anyRecentItem = hasAnyElementToShow(recent, value);
       const anyFilter = hasAnyElementToShow(parameters, value);
       isAnythingToShow = anyFilter || anyRecentItem;
     }
     return isAnythingToShow;
-  }
+  };
   const renderHeader = (headerText: string, tooltip?: string): ReactElement => (
     <S.MenuHeader>
       {headerText}
-      <Tooltip type="default" trigger="hover" title={tooltip || headerText}>
-        <HeaderIconWrapper>
-          <Icon component={<InfoFillS />} />
-        </HeaderIconWrapper>
-      </Tooltip>
+      {tooltip && tooltip.length > 0 && (
+        <Tooltip type="default" trigger="hover" title={tooltip || headerText}>
+          <HeaderIconWrapper>
+            <Icon component={<InfoFillS />} />
+          </HeaderIconWrapper>
+        </Tooltip>
+      )}
     </S.MenuHeader>
   );
-
+  const getMenuListWidth = (): number =>{
+    if(width){
+      return width - menuItemWidthOffset;
+    }
+    if(ref && ref!==null && ref.current && ref.current.clientWidth > menuItemWidthOffset){
+      return ref.current.clientWidth - menuItemWidthOffset;
+    }
+    return 0;
+  }
   const renderInputWrapper = (): ReactElement => {
     return (
       <SearchInput
-        onClick={(): void =>  setListVisible(true)}
+        onClick={(): void => setListVisible(true)}
         placeholder={placeholder}
         clearTooltip={clearTooltip}
         onValueChange={change}
@@ -222,10 +240,8 @@ const Search: React.FC<SearchProps> = ({
       </Menu.Item>
     );
   }
-  function recentRenderer({ key, index, style}: ListRowProps): ReactElement {
+  function recentRenderer({ key, index, style }: ListRowProps): ReactElement {
     const item = filteredRecent && filteredRecent[index];
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-    // @ts-ignore
     return (
       <Menu.Item
         key={key}
@@ -236,68 +252,76 @@ const Search: React.FC<SearchProps> = ({
         onItemHover={(): void => {}}
       >
         {item && item.text}
-
       </Menu.Item>
     );
   }
-  console.log('Rendering');
+
   return (
-    <S.SearchWrapper ref={ref} className="SearchWrapper">
+    <S.SearchWrapper ref={ref} className="SearchWrapper" width={width}>
       {renderInputWrapper()}
       <S.ListWrapper
         onClick={(): void => {
           focusInputComponent(!focusTrigger);
         }}
       >
-        <S.List className={inputOpen && !resultChoosed && listVisible && isThereAnythingToShow()? 'listVisible' : ''}>
-
-          {listVisible && recent && inputOpen && !label && filteredRecent && filteredRecent.length>0 &&  (
+        <S.List
+          className={inputOpen && !resultChoosed && listVisible && isThereAnythingToShow() ? 'search-list-open' : ''}
+        >
+          {listVisible && recent && inputOpen && !label && filteredRecent && filteredRecent.length > 0 && (
             <>
-              {!!recentTitle && renderHeader(recentTitle)}
+              {!!recentTitle && renderHeader(recentTitle, recentTooltip)}
               <Menu>
-                <List
-                  width={284}
-                  height={
-                     filteredRecent.length > 3
-                      ? 3 * 32
-                      : filteredRecent.length * 32
-                  }
-                  rowCount={filteredRecent && filteredRecent.length || 0}
-                  rowHeight={32}
-                  rowRenderer={recentRenderer}
-                />
+                {canRenderVirtualizedList && (
+                  <List
+                    width={getMenuListWidth()}
+                    height={filteredRecent.length > 3 ? 3 * rowHeight : filteredRecent.length * rowHeight}
+                    rowCount={(filteredRecent && filteredRecent.length) || 0}
+                    rowHeight={rowHeight}
+                    rowRenderer={recentRenderer}
+                  />
+                )}
                 {!!divider && divider}
               </Menu>
             </>
           )}
           {listVisible && parameters && inputOpen && !label && filteredParameters && filteredParameters.length > 0 && (
             <>
-              {!!filterTitle && renderHeader(filterTitle)}
+              {!!parametersTitle && renderHeader(parametersTitle, parametersTooltip)}
               <Menu>
-                <List
-                  width={284}
-                  height={filteredParameters.length > 6 ? 6 * 32 : filteredParameters.length * 32}
-                  rowCount={filteredParameters.length}
-                  rowHeight={32}
-                  rowRenderer={parameterRenderer}
-                />
+                {canRenderVirtualizedList && (
+                  <List
+                    width={getMenuListWidth()}
+                    height={filteredParameters.length > 6 ? 6 * rowHeight : filteredParameters.length * rowHeight}
+                    rowCount={filteredParameters.length}
+                    rowHeight={rowHeight}
+                    rowRenderer={parameterRenderer}
+                  />
+                )}
               </Menu>
             </>
           )}
-          {listVisible && results && inputOpen && filterValue && !resultChoosed && filteredSuggestions && filteredSuggestions.length > 0 && (
-            <>
-              {!!resultTitle && renderHeader(resultTitle)}
-              <Menu>
-                <List
-                  width={284}
-                  height={filteredSuggestions.length > 6 ? 6 * 32 : filteredSuggestions.length * 32}
-                  rowCount={filteredSuggestions.length}
-                  rowHeight={32}
-                  rowRenderer={suggestionRenderer}
-                />
-              </Menu>
-            </>
-          )}
+          {listVisible &&
+            suggestions &&
+            inputOpen &&
+            parameterValue &&
+            !resultChoosed &&
+            filteredSuggestions &&
+            filteredSuggestions.length > 0 && (
+              <>
+                {!!suggestionsTitle && renderHeader(suggestionsTitle, suggestionsTooltip)}
+                <Menu>
+                  {canRenderVirtualizedList && (
+                    <List
+                      width={getMenuListWidth()}
+                      height={filteredSuggestions.length > 6 ? 6 * rowHeight : filteredSuggestions.length * rowHeight}
+                      rowCount={filteredSuggestions.length}
+                      rowHeight={rowHeight}
+                      rowRenderer={suggestionRenderer}
+                    />
+                  )}
+                </Menu>
+              </>
+            )}
         </S.List>
       </S.ListWrapper>
     </S.SearchWrapper>

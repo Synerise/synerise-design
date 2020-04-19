@@ -3,13 +3,13 @@ import * as DataPopulator from './dataPopulator';
 import Search from '@synerise/ds-search';
 import VarTypeStringM from '@synerise/ds-icon/dist/icons/VarTypeStringM';
 import Divider from '@synerise/ds-divider';
-import { boolean } from '@storybook/addon-knobs';
+import { boolean, text } from '@storybook/addon-knobs';
 import { VarTypeListM, VarTypeNumberM } from '@synerise/ds-icon/dist/icons';
 import { SearchInput } from '@synerise/ds-search/dist/Elements';
 
 const decorator = storyFn => (
   <div style={{ width: '300px', height: '500px' }}>
-    <div style={{ position: 'relative' }}>{storyFn()}</div>
+    {storyFn()}
   </div>
 );
 
@@ -55,6 +55,20 @@ const getSuggestions = filter => {
 const stories = {
   default: () => {
     const [value, setValue] = React.useState<string>('');
+    return (
+      <SearchInput
+        placeholder={"Type here..."}
+        clearTooltip={'Clear value'}
+        onValueChange={(value)=>{console.log(value); setValue(value)}}
+        value={value}
+        onClear={()=>{console.log('Cleared!')}}
+        onKeyDown={(e)=>{console.log(e.target)}}
+        closeOnClickOutside={true}
+      />
+    );
+  },
+  withDropdown: () => {
+    const [value, setValue] = React.useState<string>('');
     const [filterValue, setFilterValue] = React.useState<string>('');
     const [suggestions, setSuggestions] = React.useState(results);
     let withDivider = boolean('Set divider', true);
@@ -62,21 +76,21 @@ const stories = {
       <Search
         clearTooltip="Clear"
         placeholder="Search"
-        filterTitle="Search in"
+        parametersTitle="Search in"
+        parametersTooltip={text('Set parameters tooltip','Search in')}
         recentTitle="Recent"
-        resultTitle="Suggest"
+        recentTooltip={text('Set recent tooltip','Recent')}
+        suggestionsTitle="Suggest"
+        suggestionsTooltip={text('Set suggestions tooltip','Suggestions')}
         parameters={filterList}
         recent={recent}
-        results={suggestions}
+        suggestions={suggestions}
         value={value}
-        filterValue={filterValue}
+        parameterValue={filterValue}
         onValueChange={value => {
-/*
-          console.log('Value changed!', value);
-*/
           setValue(value);
         }}
-        onFilterValueChange={value => {
+        onParameterValueChange={value => {
           setFilterValue(value);
           const fakeApiResponse = getSuggestions(value);
           setSuggestions(fakeApiResponse);
@@ -89,20 +103,6 @@ const stories = {
             </div>
           )
         }
-      />
-    );
-  },
-  withInput: () => {
-    const [value, setValue] = React.useState<string>('');
-    return (
-      <SearchInput
-        placeholder={"Type here..."}
-        clearTooltip={'Clear value'}
-        onValueChange={(value)=>{console.log(value); setValue(value)}}
-        value={value}
-        onClear={()=>{console.log('Cleared!')}}
-        onKeyDown={(e)=>{console.log(e.target)}}
-        closeOnClickOutside={true}
       />
     );
   },

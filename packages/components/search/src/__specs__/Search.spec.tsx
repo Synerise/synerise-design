@@ -4,7 +4,7 @@ import Search from './../Search';
 import {fireEvent} from "@testing-library/dom";
 import VarTypeStringM from "@synerise/ds-icon/dist/icons/VarTypeStringM";
 
-const filterList = [
+const parametersList = [
     { text: 'City', icon: <VarTypeStringM/> },
 ];
 
@@ -12,7 +12,7 @@ const recent = [
     { text: 'Cirilla', filter: 'City', icon: <VarTypeStringM/> },
 ];
 
-const results = [
+const suggestions = [
     { text: 'Cirilla' },
 ];
 
@@ -28,14 +28,15 @@ describe('SearchBar', () => {
     const {getByPlaceholderText} = renderWithProvider(
       <Search
         clearTooltip={'clear'}
-        parameters={filterList}
+        parameters={parametersList}
         placeholder={PLACEHOLDER}
         recent={recent}
-        results={results}
+        suggestions={suggestions}
         value={INPUT_VALUE}
-        filterValue={FILTER_VALUE}
+        parameterValue={FILTER_VALUE}
         onValueChange={onChange}
-        onFilterValueChange={onChange}
+        onParameterValueChange={onChange}
+        width={200}
       />);
 
     // ASSERT
@@ -47,14 +48,15 @@ describe('SearchBar', () => {
     const {getByPlaceholderText} = renderWithProvider(
       <Search
         clearTooltip={'clear'}
-        parameters={filterList}
+        parameters={parametersList}
         placeholder={PLACEHOLDER}
         recent={recent}
-        results={results}
+        suggestions={suggestions}
         value={''}
-        filterValue={FILTER_VALUE}
+        parameterValue={FILTER_VALUE}
         onValueChange={onChange}
-        onFilterValueChange={onFilterChange}
+        onParameterValueChange={onFilterChange}
+        width={200}
       />);
 
     const input = getByPlaceholderText(PLACEHOLDER) as HTMLInputElement;
@@ -68,17 +70,18 @@ describe('SearchBar', () => {
 
   it('should set filter', () => {
     // ARRANGE
-    const { getByTestId } = renderWithProvider(
+    const { getByTestId, getByText } = renderWithProvider(
       <Search
         clearTooltip={'clear'}
-        parameters={filterList}
+        parameters={parametersList}
         placeholder={PLACEHOLDER}
         recent={recent}
-        results={results}
+        suggestions={suggestions}
         value={''}
-        filterValue={FILTER_VALUE}
+        parameterValue={FILTER_VALUE}
         onValueChange={onChange}
-        onFilterValueChange={onFilterChange}
+        onParameterValueChange={onFilterChange}
+        width={200}
       />);
 
     const btn = getByTestId('btn') as HTMLInputElement;
@@ -86,9 +89,9 @@ describe('SearchBar', () => {
     // ACT
     btn.click();
 
-    const filter = getByTestId('filter') as HTMLInputElement;
+    const parameter = getByText('City') as HTMLInputElement;
 
-    filter.click();
+    parameter.click();
 
     // ASSERT
     expect(onFilterChange).toBeCalledWith('City');

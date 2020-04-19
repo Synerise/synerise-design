@@ -1,6 +1,7 @@
 import styled, { keyframes } from 'styled-components';
 
-export const SearchWrapper = styled.div`
+export const SearchWrapper = styled.div<{width?: number}>`
+  ${(props): string | false=>(`width:${props.width}px;`)}
   position: relative;
   direction: rtl;
 `;
@@ -168,7 +169,7 @@ export const keyFrameExampleOne = keyframes`
   }
 `;
 export const ListWrapper = styled.div`
-  & > .listVisible {
+  & > .search-list-open {
     animation: ${keyFrameExampleOne} 0.3s ease-in-out 0s 1;
     opacity: 1;
     width: calc(100% + 4px);
