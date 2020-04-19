@@ -20,6 +20,11 @@ interface Props {
   copyHint?: string;
   copyValue?: string;
   highlight?: string;
+  style?: React.CSSProperties;
+  onItemHover?: (e: {
+    key: string;
+    domEvent: MouseEvent;
+  }) => void;
 }
 const Text: React.FC<Props> = ({
   parent,
@@ -33,6 +38,7 @@ const Text: React.FC<Props> = ({
   copyHint,
   copyValue,
   highlight,
+  style,
   ...rest
 }) => {
   const [pressed, setPressed] = React.useState(false);
@@ -76,6 +82,7 @@ const Text: React.FC<Props> = ({
       danger={danger}
       prefixel={prefixel}
       description={description}
+      style={style}
       {...rest}
     >
       <S.Inner prefixel={Boolean(prefixel)}>

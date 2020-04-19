@@ -34,7 +34,7 @@ const SearchInput: React.FC<SearchInputProps> = ({
   const [focus, setFocus] = useState(false);
   const [resultChoosed, setResultChoosed] = useState(false);
   const ref = React.useRef<HTMLDivElement>(null);
-  const inputRef = React.useRef<HTMLInputElement>(null);
+  const inputRef = React.useRef<Input>(null);
 
   const toggleOpen = (): void => {
     onToggle && onToggle(!inputOpen);
@@ -53,7 +53,7 @@ const SearchInput: React.FC<SearchInputProps> = ({
     if (!focus && !firstRender) {
       inputRef && inputRef.current && inputRef.current.focus();
     }
-  }, [value, filterLabel, focusTrigger, focus]);
+  }, [value, filterLabel, focusTrigger]);
 
   useEffect(() => {
     if (firstRender) {
@@ -64,8 +64,10 @@ const SearchInput: React.FC<SearchInputProps> = ({
   }, [toggleTrigger]);
 
   useOnClickOutside(ref, () => {
-    if (closeOnClickOutside) {
+    if (closeOnClickOutside && Boolean(!value) && value.length === 0 && label === null) {
+      console.log('Hello')
       setInputOpen(false);
+      setFocus(false);
     }
     setFocus(false);
   });
@@ -102,7 +104,7 @@ const SearchInput: React.FC<SearchInputProps> = ({
           </S.Filter>
         )}
       </S.LeftSide>
-      <div>
+      <div className={inputOpen ? 'input-open-wrapper' : ''}>
         <Input
           placeholder={placeholder}
           ref={inputRef}

@@ -21,7 +21,6 @@ export const Filter = styled.div`
   font-weight: 500;
   max-width: 120px;
   direction: ltr;
-  margin-right: ${(props): string | false => props.isOpen && `-8px`};
 
   span {
     white-space: nowrap;
@@ -92,6 +91,11 @@ export const SearchInputWrapper = styled.div<{ offset: number }>`
   input {
     opacity: 0;
   }
+  .input-open-wrapper > input{
+        box-shadow: inset 0 0 0 1px ${(props): string => props.theme.palette['blue-600']};
+        border-color: ${(props): string => props.theme.palette['blue-600']};
+        background-color: ${(props): string => props.theme.palette['blue-050']};
+    }
 
   &.is-open {
     width: 100%;

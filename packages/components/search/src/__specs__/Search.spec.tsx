@@ -5,21 +5,15 @@ import {fireEvent} from "@testing-library/dom";
 import VarTypeStringM from "@synerise/ds-icon/dist/icons/VarTypeStringM";
 
 const filterList = [
-  [
     { text: 'City', icon: <VarTypeStringM/> },
-  ]
 ];
 
 const recent = [
-  [
     { text: 'Cirilla', filter: 'City', icon: <VarTypeStringM/> },
-  ]
 ];
 
 const results = [
-  [
     { text: 'Cirilla' },
-  ]
 ];
 
 describe('SearchBar', () => {

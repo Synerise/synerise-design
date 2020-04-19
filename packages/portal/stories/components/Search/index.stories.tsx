@@ -14,7 +14,6 @@ const decorator = storyFn => (
 );
 
 const filterList = [
-  [
     { text: 'First Name', icon: <VarTypeStringM /> },
     { text: 'Last Name', icon: <VarTypeStringM /> },
     { text: 'Sex', icon: <VarTypeStringM /> },
@@ -26,39 +25,32 @@ const filterList = [
     { text: 'Discount', icon: <VarTypeListM /> },
     { text: 'Products bought', icon: <VarTypeListM /> },
     { text: 'Loyalty points', icon: <VarTypeListM /> },
-  ],
 ];
 
 const recent = [
-  [
     { text: 'Bangkok', filter: 'City', icon: <VarTypeStringM /> },
     { text: 'Frank', filter: 'Last Name', icon: <VarTypeStringM /> },
     { text: 'Basel', filter: 'City', icon: <VarTypeStringM /> },
     { text: 'Male', filter: 'Sex', icon: <VarTypeStringM /> },
-  ],
 ];
 
-const results = [[{ text: 'Cirilla' }, { text: 'Frank' }, { text: 'Naomi' }, { text: 'Severus' }]];
+const results = [{ text: 'Cirilla' }, { text: 'Frank' }, { text: 'Naomi' }, { text: 'Severus' }];
 const cities = DataPopulator.populateCities(50).map(item=>({text:item}));
 const firstNames = DataPopulator.populateFirstName(50).map(item=>({text:item}));
 const lastNames = DataPopulator.popuLateLastName(50).map(item=>({text:item}));
 const getSuggestions = filter => {
   if (filter === 'City') {
-    return [cities];
+    return cities;
   }
   if (filter === 'First Name') {
-    return [
-      firstNames
-    ];
+    return firstNames;
   }
   if (filter === 'Last Name') {
-    return [
-      lastNames
-    ];
+    return lastNames;
   }
   if (filter === 'Sex') {
-    return [[{ text: 'Female' }, { text: 'Male' }]];
-  } else return [[{ text: 'Some suggestions' }, { text: 'not matched' }, { text: 'by filter type' }, { text: 'yet' }]];
+    return [{ text: 'Female' }, { text: 'Male' }];
+  } else return [{ text: 'Some suggestions' }, { text: 'not matched' }, { text: 'by filter type' }, { text: 'yet' }];
 };
 const stories = {
   default: () => {
@@ -110,6 +102,7 @@ const stories = {
         value={value}
         onClear={()=>{console.log('Cleared!')}}
         onKeyDown={(e)=>{console.log(e.target)}}
+        closeOnClickOutside={true}
       />
     );
   },

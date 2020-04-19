@@ -9,15 +9,15 @@ export type FilterElement = {
 export type SearchInputProps = {
   placeholder: string;
   clearTooltip: string | React.ReactNode;
-  onValueChange: (value: string) => void;
+  onValueChange: (value: string) => any;
   value: string;
   onClear: (value: string) => any;
   onKeyDown: (e: any) => any;
-  onClick?: (e: any) => any;
-  onButtonClick?: (e: any) => any;
-  onExpand?: (e: any) => any;
+  onClick?: () => void;
+  onButtonClick?: () => void;
+  onExpand?: () => void;
   closeOnClickOutside?: boolean;
-  filterLabel?: FilterElement;
+  filterLabel?: FilterElement | null;
   focusTrigger?: boolean;
   toggleTrigger?: boolean;
   onToggle?: (isOpen: boolean) => any;
