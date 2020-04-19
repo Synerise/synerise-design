@@ -12,7 +12,7 @@ export type SearchInputProps = {
   onValueChange: (value: string) => void;
   value: string;
   onClear: (value: string) => void;
-  onKeyDown: (e: KeyboardEvent) => void;
+  onKeyDown: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   onClick?: () => void;
   onButtonClick?: () => void;
   onExpand?: () => void;
