@@ -45,19 +45,22 @@ const Text: React.FC<Props> = ({
   const [hovered, setHovered] = React.useState(false);
   const canCopyToClipboard = copyable && copyHint && copyValue && !disabled;
 
-  const hightlightContent = React.useMemo((): string => {
-    if (highlight && !!children && children !== undefined && typeof children === 'string') {
-      const index = children.toLocaleLowerCase().indexOf(highlight.toLocaleLowerCase());
-      if (index === -1) {
-        return children;
+  const renderChildren = (): React.ReactNode => {
+    if(highlight){
+      if (!!children && children !== undefined && typeof children === 'string') {
+        const index = children.toLocaleLowerCase().indexOf(highlight.toLocaleLowerCase());
+        if (index === -1) {
+          return children;
+        }
+        const startOfQuery = children.toLocaleLowerCase().search(highlight.toLocaleLowerCase());
+        const result = children.substr(startOfQuery, highlight.length);
+        const highlighted =  children.replace(result, `<span class="search-highlight">${result}</span>`);
+        return <div dangerouslySetInnerHTML={{ __html: highlighted }} />
       }
-      const startOfQuery = children.toLocaleLowerCase().search(highlight.toLocaleLowerCase());
-      const result = children.substr(startOfQuery, highlight.length);
-      return children.replace(result, `<span class="search-highlight">${result}</span>`);
     }
-    return children as string;
-  }, [children, highlight]);
-  const myChildren = hightlightContent;
+    return children;
+  };
+
   return (
     // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
     // @ts-ignore
@@ -94,7 +97,7 @@ const Text: React.FC<Props> = ({
           )}
           <S.Content hightlight={!!highlight}>
             {/* eslint-disable-next-line react/no-danger */}
-            {canCopyToClipboard && hovered ? copyHint : <div dangerouslySetInnerHTML={{ __html: myChildren }} />}
+            {canCopyToClipboard && hovered ? copyHint : renderChildren() }
             {Boolean(description) && <S.Description>{description}</S.Description>}
             {parent && (
               <S.ArrowRight>
