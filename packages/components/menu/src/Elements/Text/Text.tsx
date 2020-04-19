@@ -55,6 +55,7 @@ const Text: React.FC<Props> = ({
         const startOfQuery = children.toLocaleLowerCase().search(highlight.toLocaleLowerCase());
         const result = children.substr(startOfQuery, highlight.length);
         const highlighted =  children.replace(result, `<span class="search-highlight">${result}</span>`);
+        /* eslint-disable-next-line react/no-danger */
         return <div dangerouslySetInnerHTML={{ __html: highlighted }} />
       }
     }
@@ -96,7 +97,7 @@ const Text: React.FC<Props> = ({
             </S.PrefixelWrapper>
           )}
           <S.Content hightlight={!!highlight}>
-            {/* eslint-disable-next-line react/no-danger */}
+
             {canCopyToClipboard && hovered ? copyHint : renderChildren() }
             {Boolean(description) && <S.Description>{description}</S.Description>}
             {parent && (
