@@ -40,7 +40,7 @@ const FilterTrigger: React.FC<Props> = ({
 
   const handleOpen = React.useCallback(() => {
     setOpened(true);
-  }, [opened, setOpened]);
+  }, [setOpened]);
 
   const renderOpened = React.useMemo(
     () => (
@@ -71,7 +71,7 @@ const FilterTrigger: React.FC<Props> = ({
         )}
       </>
     ),
-    [opened, tooltips, selected, handleClear, show, showList]
+    [opened, tooltips, selected, handleClear, show, showList, handleOpen, iconComponent]
   );
 
   return (
