@@ -1,8 +1,6 @@
 import * as React from 'react';
 import { ReactElement, useState, useEffect } from 'react';
 import { Input } from 'antd';
-import Button from '@synerise/ds-button/dist/Button';
-import SearchM from '@synerise/ds-icon/dist/icons/SearchM';
 import Close3M from '@synerise/ds-icon/dist/icons/Close3M';
 import { useOnClickOutside } from '@synerise/ds-utils';
 import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
@@ -11,6 +9,7 @@ import Icon from '@synerise/ds-icon/dist/Icon';
 import * as S from '../../Search.styles';
 import { FilterElement } from '../../Search.types';
 import { SearchInputProps } from './SearchInput.types';
+import SearchButton from '../SearchButton/SearchButton';
 
 const SearchInput: React.FC<SearchInputProps> = ({
   onClick,
@@ -47,7 +46,7 @@ const SearchInput: React.FC<SearchInputProps> = ({
     if (!focus && !firstRender) {
       inputRef && inputRef.current && inputRef.current.focus();
     }
-  }
+  };
   useEffect(() => {
     if (filterLabel === null) {
       setInputOffset(0);
@@ -70,7 +69,7 @@ const SearchInput: React.FC<SearchInputProps> = ({
   }, [toggleTrigger]);
 
   useOnClickOutside(ref, () => {
-    if (closeOnClickOutside) {
+    if (closeOnClickOutside && value && value.length===0) {
       setInputOpen(false);
     }
     setFocus(false);
@@ -123,28 +122,19 @@ const SearchInput: React.FC<SearchInputProps> = ({
   return (
     <S.SearchWrapper ref={ref} className="SearchWrapper">
       {renderInputWrapper()}
-      <S.SearchButton
-        isOpen={inputOpen}
-        inputFocused={focus}
+      <SearchButton
+        inputOpen={inputOpen}
         hidden={!!value || !!filterLabel}
-        className="SearchButton"
-      >
-        <Button
-          type="ghost"
-          onClick={(): void => {
-            toggleOpen();
-            clearValue();
-            onButtonClick && onButtonClick();
-            if(inputRef!==null && inputRef.current && inputRef.current !== null && inputRef.current.focus){
-              inputRef.current.focus();
-            }
-          }}
-          className={inputOpen ? 'btn-search-open' : 'btn-search'}
-          data-testid="btn"
-        >
-          <Icon component={<SearchM />} />
-        </Button>
-      </S.SearchButton>
+        inputFocused={focus}
+        onClick={(): void => {
+          toggleOpen();
+          clearValue();
+          onButtonClick && onButtonClick();
+          if (inputRef !== null && inputRef.current && inputRef.current !== null && inputRef.current.focus) {
+            inputRef.current.focus();
+          }
+        }}
+      />
       <S.ClearButton hidden={!value && !filterLabel} data-testid="clear">
         <Icon
           onClick={clearValue}
