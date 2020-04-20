@@ -214,16 +214,13 @@ class ColumnManager extends React.Component<ColumnManagerProps, State> {
 
         <ColumnManagerActions onSave={this.handleSave} onApply={this.handleApply} onCancel={hide} texts={this.texts} />
         {itemFilterConfig && (
-          <ItemFilter
-            /* eslint-disable-next-line react/jsx-props-no-spreading */
-            {...itemFilterConfig}
-            visible={itemFilterVisible}
-            hide={this.hideItemFilter}
-          />
+          <ItemFilter {...itemFilterConfig} visible={itemFilterVisible} hide={this.hideItemFilter} />
         )}
       </S.ColumnManager>
     );
   }
 }
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore
 export default injectIntl(ColumnManager);

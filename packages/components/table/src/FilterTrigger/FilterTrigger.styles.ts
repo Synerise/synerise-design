@@ -44,7 +44,7 @@ export const FilterButtonLabel = styled.span`
   opacity: 0;
   width: 100%;
   visibility: hidden;
-  transition: all 0.3s ease !important;
+  transition: all 0.3s ease, color 0s ease !important;
 `;
 
 export const FilterTrigger = styled.div<{ opened: boolean; selected?: object }>`
@@ -54,8 +54,7 @@ export const FilterTrigger = styled.div<{ opened: boolean; selected?: object }>`
   max-width: ${(props): string => (props.opened ? '191px' : '32px')};
   height: 32px;
   position: relative;
-  margin-right: 8px;
-  ${(props): FlattenInterpolation<ThemeProps> | false =>
+  ${(props): FlattenInterpolation<ThemeProps<boolean>> | false =>
     props.opened &&
     css`
       ${FilterButtonLabel} {
@@ -78,7 +77,7 @@ export const FilterTrigger = styled.div<{ opened: boolean; selected?: object }>`
       }
     `}
 
-  ${(props): FlattenInterpolation<ThemeProps> | false =>
+  ${(props): FlattenInterpolation<ThemeProps<boolean>> | false =>
     Boolean(props.selected) &&
     css`
       ${FilterButtonLabel} {

@@ -7,7 +7,7 @@ import Icon from '@synerise/ds-icon';
 import {
   DuplicateM,
   EditM,
-  FileDownloadM, Grid2M,
+  FileDownloadM, FilterM, Grid2M,
   OptionHorizontalM,
   TrashM,
 } from '@synerise/ds-icon/dist/icons';
@@ -20,6 +20,8 @@ import Switch from '@synerise/ds-switch/dist/Switch';
 import ColumnManager, { SavedView } from '@synerise/ds-column-manager/dist/ColumnManager';
 import * as moment from 'moment';
 import ItemFilter from '@synerise/ds-item-filter/dist/ItemFilter';
+import Result from '@synerise/ds-result';
+import ModalProxy from '@synerise/ds-modal';
 
 const decorator = (storyFn) => (
   <div style={{ padding: 20, width: '100vw', minWidth: '100%' }}>
@@ -195,6 +197,7 @@ const stories = {
     selectedView: undefined,
     columnManagerVisible: false,
     itemFilterVisible: false,
+    modalVisible: false,
   })(({store}) => {
     const { selectedRows, columns } = store.state;
 
@@ -287,15 +290,28 @@ const stories = {
           columns={getColumns()}
           loading={boolean('Set loading state', false)}
           cellSize={select('Set cells size', CELL_SIZES, CELL_SIZES.default)}
-          filters={[{
-            key: 'view',
-            icon: <Grid2M />,
-            tooltips: { default: 'Table view', clear: 'Clear view', define: 'Define view', list: 'Saved views' },
-            showList: () => store.set({itemFilterVisible: true}),
-            show: () => store.set({columnManagerVisible: true}),
-            handleClear: () => store.set({selectedView: undefined}),
-            selected: store.state.filters.find(filter => filter.id === store.state.selectedView),
-          }]}
+          filters={
+            [
+              {
+                key: 'view',
+                icon: <Grid2M />,
+                tooltips: { default: 'Table view', clear: 'Clear view', define: 'Define view', list: 'Saved views' },
+                showList: () => store.set({itemFilterVisible: true}),
+                show: () => store.set({columnManagerVisible: true}),
+                handleClear: () => store.set({selectedView: undefined}),
+                selected: store.state.filters.find(filter => filter.id === store.state.selectedView),
+              },
+              {
+                key: 'filter',
+                icon: <FilterM />,
+                tooltips: { default: 'Filter', clear: 'Clear filter', define: 'Define filter', list: 'Saved filters' },
+                showList: () => store.set({modalVisible: true}),
+                show: () => store.set({modalVisible: true}),
+                handleClear: action('clear filter'),
+                selected: undefined,
+              }
+            ]
+          }
           showColumnManager={() => store.set({columnManagerVisible: true})}
           showItemFilter={() => store.set({itemFilterVisible: true})}
           pagination={{
@@ -363,13 +379,16 @@ const stories = {
           categories={[{label: 'All filters'}, {label: 'My filters'}]}
           items={store.state.filters}
         />
+        <ModalProxy blank closable onCancel={() => store.set({modalVisible: false})} visible={store.state.modalVisible} size={'small'} footer={null}>
+          <Result type='info' title='Inplace of this modal you can implement any filter component.' description='This is just an example of filter trigger.' />
+        </ModalProxy>
       </>
     )
   }),
 };
 
 export default {
-  name: 'Table|Simple table',
+  name: 'Table|Table with filters',
   decorator,
   stories,
   Component: Table,
