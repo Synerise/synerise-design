@@ -1,6 +1,8 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { macro } from '@synerise/ds-typography';
 import { CheckboxWrapper } from '@synerise/ds-checkbox/dist/Checkbox.styles';
+import Menu from '@synerise/ds-menu';
+import { IconContainer } from '@synerise/ds-icon/dist/Icon.styles';
 
 export const Header = styled.div`
   background: #ffffff;
@@ -94,5 +96,37 @@ export const Selection = styled.div`
   width: 72px;
   ${CheckboxWrapper} {
     padding: 0;
+  }
+`;
+
+export const SelectionMenu = styled(Menu)`
+  padding: 8px;
+`;
+
+const spinnerAnimation = keyframes`
+  from {
+    transform: rotateZ(0deg);
+  }
+  
+  to {
+    transform: rotateZ(360deg);
+  }
+`;
+
+export const Spinner = styled.div`
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  border-radius: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(233, 237, 238, 0.3);
+  z-index: 10;
+  ${IconContainer} {
+    animation: ${spinnerAnimation} 1s forwards linear infinite;
   }
 `;

@@ -1,39 +1,69 @@
 import * as React from 'react';
 import '@synerise/ds-core/dist/js/style';
-import { Input } from '@synerise/ds-input';
 import Table, { TableProps } from 'antd/lib/table';
 
 import './style/index.less';
 import Icon from '@synerise/ds-icon';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
-import SearchM from '@synerise/ds-icon/dist/icons/SearchM';
-import { useOnClickOutside } from '@synerise/ds-utils';
-import { FilterM, Grid2M } from '@synerise/ds-icon/dist/icons';
+import { AngleLeftS, FilterM, Grid2M, AngleRightS, AngleDownS } from '@synerise/ds-icon/dist/icons';
 import Button from '@synerise/ds-button';
 import Dropdown from '@synerise/ds-dropdown';
 import Checkbox from '@synerise/ds-checkbox';
 import Tooltip from '@synerise/ds-tooltip';
+import Menu from '@synerise/ds-menu';
+import SpinnerM from '@synerise/ds-icon/dist/icons/SpinnerM';
+import { CheckboxChangeEvent } from 'antd/es/checkbox';
 import * as S from './Table.styles';
+import FilterTrigger from './FilterTrigger/FilterTrigger';
+
+const SELECTION_ALL = 'SELECTION_ALL';
+const SELECTION_VISIBLE = 'SELECTION_VISIBLE';
+const SELECTION_INVERT = 'SELECTION_INVERT';
 
 export type AntTableProps<T> = Omit<TableProps<T>, 'title' | 'subTitle' | 'onSearch' | 'itemsMenu' | 'search'>;
 
-export interface DSTableProps<T> extends AntTableProps<T> {
+type Selection = {
+  key: string;
+  label: string;
+  onClick: () => void;
+};
+
+type SelectionItem = 'SELECTION_ALL' | 'SELECTION_VISIBLE' | 'SELECTION_INVERT';
+
+interface RowSelection<T> {
+  fixed?: boolean;
+  selectedRowKeys: React.ReactText[];
+  selections?: [SelectionItem, Selection];
+  onChange: (selectedRowKeys: React.ReactText[], selectedRows: T[]) => void;
+  setRowSelection: (keys: React.ReactText[]) => void;
+}
+
+export interface DSTableProps<T extends { key: React.ReactText }> extends AntTableProps<T> {
   title?: string | React.ReactNode;
   onSearch?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   itemsMenu?: string | React.ReactNode;
   search?: string;
   cellSize?: string | 'medium' | 'small';
   roundedHeader?: boolean;
+  selection?: RowSelection<T>;
+  showColumnManager: () => void;
+  showItemFilter: () => void;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-function DSTable<T extends object = any>(props: DSTableProps<T>): React.ReactElement {
-  const ref = React.useRef<HTMLDivElement>(null);
-  const [isSearchOpen, setIsSearchOpen] = React.useState(false);
-  const { title, onSearch, search, rowSelection, itemsMenu, cellSize, pagination, dataSource, roundedHeader } = props;
-  useOnClickOutside(ref, () => {
-    setIsSearchOpen(false);
-  });
+function DSTable<T extends { key: React.ReactText }>(props: DSTableProps<T>): React.ReactElement {
+  const {
+    title,
+    onSearch,
+    loading,
+    selection,
+    itemsMenu,
+    cellSize,
+    pagination,
+    dataSource,
+    roundedHeader,
+    showColumnManager,
+    showItemFilter,
+  } = props;
 
   const footerPagination = React.useMemo((): object => {
     return {
@@ -43,36 +73,105 @@ function DSTable<T extends object = any>(props: DSTableProps<T>): React.ReactEle
         </span>
       ),
       columnWidth: 72,
+      itemRender: (page: number, type: string, originalElement: React.ReactNode): React.ReactNode => {
+        if (type === 'prev') {
+          return (
+            <Button mode="single-icon" type="ghost">
+              <Icon component={<AngleLeftS />} />
+            </Button>
+          );
+        }
+        if (type === 'next') {
+          return (
+            <Button mode="single-icon" type="ghost">
+              <Icon component={<AngleRightS />} />
+            </Button>
+          );
+        }
+        return originalElement;
+      },
       ...pagination,
     };
   }, [pagination]);
 
-  const toggleSearch = React.useCallback((): void => {
-    if (isSearchOpen === true) {
-      return;
-    }
-    setIsSearchOpen(prevState => {
-      return !prevState;
-    });
-  }, [isSearchOpen, setIsSearchOpen]);
+  const selectAll = React.useCallback(() => {
+    if (dataSource && selection) selection.setRowSelection(dataSource.map(record => record.key));
+  }, [dataSource, selection]);
+
+  const unselectAll = React.useCallback(() => {
+    if (selection) selection.setRowSelection([]);
+  }, [selection]);
+
+  const selectInvert = React.useCallback(() => {
+    if (dataSource && selection)
+      selection.setRowSelection(
+        dataSource.filter(record => !selection.selectedRowKeys.includes(record.key)).map(record => record.key)
+      );
+  }, [dataSource, selection]);
+
+  const allSelected = React.useMemo(() => {
+    return dataSource && selection?.selectedRowKeys && dataSource.length === selection.selectedRowKeys.length;
+  }, [dataSource, selection]);
 
   const customSelection = React.useMemo((): React.ReactNode => {
-    if (rowSelection) {
+    if (selection && dataSource) {
+      const { selectedRowKeys, selections } = selection;
       return (
         <S.Selection>
-          {/* eslint-disable-next-line react/jsx-handler-names */}
-          <Checkbox onChange={console.log} indeterminate={false} />
+          <Checkbox
+            checked={allSelected}
+            onChange={(event: CheckboxChangeEvent): void => {
+              if (event.target.checked) {
+                selectAll();
+              } else {
+                unselectAll();
+              }
+            }}
+            indeterminate={selectedRowKeys.length > 0 && !allSelected}
+          />
+          {selections && (
+            <Dropdown
+              trigger={['click']}
+              overlay={
+                <S.SelectionMenu>
+                  {selections.indexOf(SELECTION_ALL) >= 0 && !allSelected && (
+                    <Menu.Item onClick={selectAll}>Select all</Menu.Item>
+                  )}
+                  {selections.indexOf(SELECTION_INVERT) && (
+                    <Menu.Item onClick={selectInvert}>Invert selection</Menu.Item>
+                  )}
+                  {selections.indexOf(SELECTION_ALL) >= 0 && allSelected && (
+                    <Menu.Item onClick={unselectAll}>Unselect all</Menu.Item>
+                  )}
+                  {selections
+                    .filter((sel): sel is Selection => typeof (sel as Selection).key === 'string')
+                    .map(
+                      (sel): React.ReactNode => (
+                        // eslint-disable-next-line react/jsx-handler-names
+                        <Menu.Item key={sel.key} onClick={sel.onClick}>
+                          {sel.label}
+                        </Menu.Item>
+                      )
+                    )}
+                </S.SelectionMenu>
+              }
+            >
+              <Button mode="single-icon" type="ghost">
+                <Icon component={<AngleDownS />} />
+              </Button>
+            </Dropdown>
+          )}
         </S.Selection>
       );
     }
     return '';
-  }, [rowSelection]);
+  }, [selection, selectAll, unselectAll]);
 
   const renderSelection = (size: number): React.ReactNode => {
     return (
       <S.Header>
         <S.Left>
-          {customSelection}
+          {selection && customSelection}
           <S.Title>
             <strong>{size}</strong> selected
           </S.Title>
@@ -90,56 +189,54 @@ function DSTable<T extends object = any>(props: DSTableProps<T>): React.ReactEle
           {title && <S.Title>{title}</S.Title>}
         </S.Left>
         <S.Right>
-          <Dropdown trigger={['click']} overlay={<div>Saved views</div>}>
-            <Tooltip title="Table view">
-              <Button type="ghost" mode="single-icon">
-                <Icon component={<Grid2M />} />
-              </Button>
-            </Tooltip>
-          </Dropdown>
-          <Dropdown trigger={['click']} overlay={<div>Saved filters</div>}>
-            <Tooltip title="Filter">
-              <Button type="ghost" mode="single-icon">
-                <Icon component={<FilterM />} />
-              </Button>
-            </Tooltip>
-          </Dropdown>
-          {onSearch && (
-            <S.InputWrapper isOpen={isSearchOpen} searchValue={search}>
-              <Tooltip title="Search">
-                <S.Icon onClick={toggleSearch}>
-                  <Icon color={theme.palette['grey-600']} component={<SearchM />} size={24} />
-                </S.Icon>
-              </Tooltip>
-              <S.Input onClick={toggleSearch} ref={ref} isOpen={isSearchOpen}>
-                <Input value={search} onChange={onSearch} />
-              </S.Input>
-            </S.InputWrapper>
-          )}
+          <FilterTrigger
+            iconComponent={<Grid2M />}
+            tooltips={{ default: 'Table view', clear: 'Clear view', define: 'Define view', list: 'Saved views' }}
+            onClear={(filter: object): void => console.log('clear filter', filter)}
+            showFilter={showColumnManager}
+            showList={showItemFilter}
+          />
+          <Tooltip title="Filter">
+            <Button type="ghost" mode="single-icon">
+              <Icon component={<FilterM />} />
+            </Button>
+          </Tooltip>
+          {onSearch && 'Search'}
         </S.Right>
       </S.Header>
     );
   };
 
   const renderHeader = React.useCallback((): React.ReactNode => {
-    const size = rowSelection && rowSelection.selectedRowKeys && rowSelection.selectedRowKeys.length;
+    const size = selection && selection?.selectedRowKeys && selection?.selectedRowKeys.length;
     return size ? renderSelection(size) : title && renderTitle();
-  }, [rowSelection, title, renderSelection, renderTitle]);
+  }, [selection, title, renderSelection, renderTitle]);
 
   return (
     <div className={`ds-table ds-table-cell-size-${cellSize} ${roundedHeader ? 'ds-table-rounded' : ''}`}>
+      {loading && (
+        <S.Spinner className="spinner">
+          <Icon component={<SpinnerM />} color="#6a7580" />
+        </S.Spinner>
+      )}
       <Table<T>
         {...props}
         pagination={dataSource?.length ? footerPagination : false}
         title={renderHeader}
+        /* eslint-disable-next-line @typescript-eslint/ban-ts-ignore */
+        // @ts-ignore
         rowSelection={
-          rowSelection && {
-            ...rowSelection,
+          selection && {
+            ...selection,
           }
         }
       />
     </div>
   );
 }
+
+DSTable.SELECTION_ALL = SELECTION_ALL;
+DSTable.SELECTION_VISIBLE = SELECTION_VISIBLE;
+DSTable.SELECTION_INVERT = SELECTION_INVERT;
 
 export default DSTable;

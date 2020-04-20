@@ -7,6 +7,7 @@
 @sorter-btn-size: 24px;
 
 .@{ds-table-prefix-cls} {
+  position: relative;
   &.ds-table-rounded {
     .@{table-prefix-cls} {
       border-radius: 3px 3px 0 0;
@@ -42,11 +43,11 @@
     }
     .ant-table-column-has-sorters {
       &:hover {
-        background-color: rgba(233, 237, 238, 0.3);
+        background-color: #f4f6f7 !important;
       }
     }
     .ant-table-column-sort {
-      background-color: rgba(233, 237, 238, 0.2);
+      background-color: #fbfbfc !important;
     }
 
     thead > tr > th {
@@ -90,6 +91,23 @@
           }
         }
       }
+      &.ant-table-row-level-1,
+      &.ant-table-row-level-2 {
+        td {
+          &:first-of-type {
+            &:before {
+              position: absolute;
+              width: 2px;
+              height: 100%;
+              left: 0;
+              top: 0;
+              background-color: @grey-600;
+              content: '';
+            }
+          }
+        }
+      }
+
       &.ant-table-row-level-1 {
         td {
           &:not(.ant-table-selection-column) {

@@ -20,7 +20,7 @@ const StartCell: React.FC<Props> = ({ children, active, onClick, theme }: Props)
     ) : (
       <Icon component={<StarM />} color={theme.palette['grey-300']} />
     );
-  }, [active]);
+  }, [active, theme.palette]);
 
   return (
     <S.StarCell>

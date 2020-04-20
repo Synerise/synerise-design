@@ -19,11 +19,11 @@ const CopyableCell: React.FC<Props> = ({ value, confirmMessage, tooltipTimeout =
       setTooltipVisible(false);
     }, tooltipTimeout);
     return (): void => clearTimeout(timer);
-  }, [tooltipVisible, setTooltipVisible]);
+  }, [tooltipVisible, setTooltipVisible, tooltipTimeout]);
 
   const handleCopy = React.useCallback(() => {
     if (copy(value)) setTooltipVisible(true);
-  }, [value, confirmMessage]);
+  }, [value]);
 
   return (
     <S.Copyable>
