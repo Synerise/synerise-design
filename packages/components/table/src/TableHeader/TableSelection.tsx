@@ -1,10 +1,11 @@
 import * as React from 'react';
-import Checkbox, { CheckboxChangeEvent } from 'antd/es/checkbox';
 import Dropdown from '@synerise/ds-dropdown';
 import Menu from '@synerise/ds-menu';
 import Button from '@synerise/ds-button';
 import Icon from '@synerise/ds-icon';
 import { AngleDownS } from '@synerise/ds-icon/dist/icons';
+import Checkbox from '@synerise/ds-checkbox';
+import { CheckboxChangeEvent } from 'antd/lib/checkbox';
 import * as S from '../Table.styles';
 import { RowSelection, Selection, SelectionItem } from '../Table.types';
 import { SELECTION_ALL, SELECTION_INVERT } from '../Table';
