@@ -69,7 +69,7 @@ const SearchInput: React.FC<SearchInputProps> = ({
   }, [toggleTrigger]);
 
   useOnClickOutside(ref, () => {
-    if (closeOnClickOutside && value && value.length===0) {
+    if (closeOnClickOutside && !value) {
       setInputOpen(false);
     }
     setFocus(false);
