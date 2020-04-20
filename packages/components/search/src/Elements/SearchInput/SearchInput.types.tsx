@@ -10,7 +10,6 @@ export type SearchInputProps = {
   onKeyDown: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   onClick?: () => void;
   onButtonClick?: () => void;
-  onExpand?: () => void;
   closeOnClickOutside?: boolean;
   filterLabel?: FilterElement | null;
   focusTrigger?: boolean;

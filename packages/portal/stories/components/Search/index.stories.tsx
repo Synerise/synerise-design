@@ -62,7 +62,6 @@ const stories = {
         onValueChange={(value)=>{console.log(value); setValue(value)}}
         value={value}
         onClear={()=>{console.log('Cleared!')}}
-        onKeyDown={(e)=>{console.log(e.target)}}
         closeOnClickOutside={true}
       />
     );

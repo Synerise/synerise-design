@@ -145,7 +145,7 @@ const SearchInput: React.FC<SearchInputProps> = ({
           <Icon component={<SearchM />} />
         </Button>
       </S.SearchButton>
-      <S.ClearButton hidden={!value && !filterLabel}>
+      <S.ClearButton hidden={!value && !filterLabel} data-testid="clear">
         <Icon
           onClick={clearValue}
           component={
