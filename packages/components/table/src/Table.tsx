@@ -4,11 +4,10 @@ import Table, { TableProps } from 'antd/lib/table';
 
 import './style/index.less';
 import Icon from '@synerise/ds-icon';
-import { AngleLeftS, FilterM, Grid2M, AngleRightS, AngleDownS } from '@synerise/ds-icon/dist/icons';
+import { AngleLeftS, AngleRightS, AngleDownS, SearchM } from '@synerise/ds-icon/dist/icons';
 import Button from '@synerise/ds-button';
 import Dropdown from '@synerise/ds-dropdown';
 import Checkbox from '@synerise/ds-checkbox';
-import Tooltip from '@synerise/ds-tooltip';
 import Menu from '@synerise/ds-menu';
 import SpinnerM from '@synerise/ds-icon/dist/icons/SpinnerM';
 import { CheckboxChangeEvent } from 'antd/es/checkbox';
@@ -37,6 +36,23 @@ interface RowSelection<T> {
   setRowSelection: (keys: React.ReactText[]) => void;
 }
 
+interface Filter {
+  tooltips: {
+    default: string;
+    clear: string;
+    define: string;
+    list: string;
+  };
+  key: string;
+  icon: React.ReactNode;
+  showList: () => void;
+  show: () => void;
+  handleClear: () => void;
+  selected?: {
+    name: string;
+  };
+}
+
 export interface DSTableProps<T extends { key: React.ReactText }> extends AntTableProps<T> {
   title?: string | React.ReactNode;
   onSearch?: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -45,8 +61,7 @@ export interface DSTableProps<T extends { key: React.ReactText }> extends AntTab
   cellSize?: string | 'medium' | 'small';
   roundedHeader?: boolean;
   selection?: RowSelection<T>;
-  showColumnManager: () => void;
-  showItemFilter: () => void;
+  filters?: Filter[];
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -61,8 +76,7 @@ function DSTable<T extends { key: React.ReactText }>(props: DSTableProps<T>): Re
     pagination,
     dataSource,
     roundedHeader,
-    showColumnManager,
-    showItemFilter,
+    filters,
   } = props;
 
   const footerPagination = React.useMemo((): object => {
@@ -189,19 +203,19 @@ function DSTable<T extends { key: React.ReactText }>(props: DSTableProps<T>): Re
           {title && <S.Title>{title}</S.Title>}
         </S.Left>
         <S.Right>
-          <FilterTrigger
-            iconComponent={<Grid2M />}
-            tooltips={{ default: 'Table view', clear: 'Clear view', define: 'Define view', list: 'Saved views' }}
-            onClear={(filter: object): void => console.log('clear filter', filter)}
-            showFilter={showColumnManager}
-            showList={showItemFilter}
-          />
-          <Tooltip title="Filter">
-            <Button type="ghost" mode="single-icon">
-              <Icon component={<FilterM />} />
-            </Button>
-          </Tooltip>
-          {onSearch && 'Search'}
+          {filters?.map(filter => (
+            <FilterTrigger
+              key={filter.key}
+              iconComponent={filter.icon}
+              tooltips={filter.tooltips}
+              /* eslint-disable-next-line react/jsx-handler-names */
+              handleClear={filter.handleClear}
+              show={filter.show}
+              showList={filter.showList}
+              selected={filter.selected}
+            />
+          ))}
+          {onSearch && <Icon component={<SearchM />} />}
         </S.Right>
       </S.Header>
     );

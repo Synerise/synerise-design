@@ -1,12 +1,11 @@
 import * as React from 'react';
 import Icon from '@synerise/ds-icon';
-import Button from '@synerise/ds-button';
-import { FolderM } from '@synerise/ds-icon/dist/icons';
+import { Close3S, FolderM } from '@synerise/ds-icon/dist/icons';
 import Tooltip from '@synerise/ds-tooltip';
 import * as S from './FilterTrigger.styles';
 
 interface Props {
-  selectedFilter?: {
+  selected?: {
     name: string;
   };
   iconComponent: React.ReactNode;
@@ -16,13 +15,13 @@ interface Props {
     clear: string;
     list: string;
   };
-  onClear: (filter: object) => void;
+  handleClear: () => void;
   showList: () => void;
-  showFilter: () => void;
+  show: () => void;
 }
 
 const FilterTrigger: React.FC<Props> = ({
-  selectedFilter,
+  selected,
   iconComponent,
   tooltips = {
     default: 'Filter',
@@ -30,14 +29,14 @@ const FilterTrigger: React.FC<Props> = ({
     clear: 'Clear filter',
     list: 'Saved filters',
   },
-  onClear,
+  handleClear,
   showList,
-  showFilter,
+  show,
 }) => {
   const [opened, setOpened] = React.useState<boolean>(false);
   React.useEffect(() => {
-    selectedFilter && setOpened(true);
-  }, [selectedFilter, opened, setOpened]);
+    selected && setOpened(true);
+  }, [selected, opened, setOpened]);
 
   const handleOpen = React.useCallback(() => {
     setOpened(true);
@@ -46,39 +45,38 @@ const FilterTrigger: React.FC<Props> = ({
   const renderOpened = React.useMemo(
     () => (
       <>
-        <Tooltip title={tooltips.define}>
-          <Button mode="icon-label" type="ghost" onClick={showFilter}>
+        <Tooltip title={selected?.name || tooltips.define}>
+          <S.FilterButton
+            mode={opened ? 'icon-label' : 'single-icon'}
+            type="ghost"
+            onClick={opened ? show : handleOpen}
+          >
             <Icon component={iconComponent} />
-            Define
-          </Button>
+            <S.FilterButtonLabel>{selected?.name || 'Define'}</S.FilterButtonLabel>
+          </S.FilterButton>
         </Tooltip>
-        <Tooltip title={tooltips.list}>
-          <Button mode="single-icon" type="ghost" onClick={showList}>
-            <Icon component={<FolderM />} />
-          </Button>
-        </Tooltip>
+        {selected && (
+          <Tooltip title={tooltips.clear}>
+            <S.ClearButton mode="single-icon" type="ghost" onClick={handleClear}>
+              <Icon component={<Close3S />} />
+            </S.ClearButton>
+          </Tooltip>
+        )}
+        {opened && (
+          <Tooltip title={tooltips.list}>
+            <S.ListButton mode="single-icon" type="ghost" onClick={showList}>
+              <Icon component={<FolderM />} />
+            </S.ListButton>
+          </Tooltip>
+        )}
       </>
     ),
-    [opened, tooltips, selectedFilter, onClear, showFilter, showList]
-  );
-
-  const renderClosed = React.useMemo(
-    () => (
-      <Tooltip title={tooltips.default}>
-        <Button mode="single-icon" type="ghost" onClick={handleOpen}>
-          <Icon component={iconComponent} />
-        </Button>
-      </Tooltip>
-    ),
-    [iconComponent, handleOpen, tooltips]
+    [opened, tooltips, selected, handleClear, show, showList]
   );
 
   return (
-    <S.FilterTrigger>
-      <S.FilterButton opened={opened}>
-        {!opened && renderClosed}
-        {opened && renderOpened}
-      </S.FilterButton>
+    <S.FilterTrigger opened={opened} selected={selected}>
+      <S.FilterButtons>{renderOpened}</S.FilterButtons>
     </S.FilterTrigger>
   );
 };

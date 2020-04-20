@@ -5,11 +5,9 @@ import { ItemsMenu, TableCell } from '@synerise/ds-table';
 import faker from 'faker';
 import Icon from '@synerise/ds-icon';
 import {
-  AngleDownS,
   DuplicateM,
   EditM,
-  FileDownloadM,
-  MailM,
+  FileDownloadM, Grid2M,
   OptionHorizontalM,
   TrashM,
 } from '@synerise/ds-icon/dist/icons';
@@ -142,7 +140,7 @@ const EMPTY_FILTER = {
 const saveFilter = (savedView: SavedView, store) => {
   const id = moment().format('MM-DD-YYYY_HH:mm:ss');
   store.set({
-    selectedItemId: id,
+    selectedView: id,
     filters: [
       ...store.state.filters,
       {
@@ -178,7 +176,7 @@ const editItem = (props, store): void => {
 
 const setSelectedItem = (props, store): void => {
   store.set({
-    selectedItemId: props.id,
+    selectedView: props.id,
     columns: store.state.filters.filter(filter => filter.id === props.id)[0].columns,
   });
 };
@@ -194,7 +192,7 @@ const stories = {
     selectedRows: [],
     filters: FILTERS,
     columns: COLUMNS,
-    selectedItemId: undefined,
+    selectedView: undefined,
     columnManagerVisible: false,
     itemFilterVisible: false,
   })(({store}) => {
@@ -289,6 +287,15 @@ const stories = {
           columns={getColumns()}
           loading={boolean('Set loading state', false)}
           cellSize={select('Set cells size', CELL_SIZES, CELL_SIZES.default)}
+          filters={[{
+            key: 'view',
+            icon: <Grid2M />,
+            tooltips: { default: 'Table view', clear: 'Clear view', define: 'Define view', list: 'Saved views' },
+            showList: () => store.set({itemFilterVisible: true}),
+            show: () => store.set({columnManagerVisible: true}),
+            handleClear: () => store.set({selectedView: undefined}),
+            selected: store.state.filters.find(filter => filter.id === store.state.selectedView),
+          }]}
           showColumnManager={() => store.set({columnManagerVisible: true})}
           showItemFilter={() => store.set({itemFilterVisible: true})}
           pagination={{
@@ -340,7 +347,7 @@ const stories = {
             editItem: (params) => editItem(params, store),
             selectItem: (params) => setSelectedItem(params, store),
             duplicateItem: action('duplicate item'),
-            selectedItemId: store.state.selectedItemId,
+            selectedItemId: store.state.selectedView,
             categories: [{label: 'All filters'}, {label: 'My filters'}],
             items: store.state.filters,
           }}
@@ -352,7 +359,7 @@ const stories = {
           editItem={props => editItem(props, store)}
           selectItem={props => setSelectedItem(props, store)}
           duplicateItem={props => duplicateItem(props)}
-          selectedItemId={store.state.selectedItemId}
+          selectedItemId={store.state.selectedView}
           categories={[{label: 'All filters'}, {label: 'My filters'}]}
           items={store.state.filters}
         />
