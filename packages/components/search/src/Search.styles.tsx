@@ -160,7 +160,7 @@ export const HeaderIconWrapper = styled.div`
     fill: ${(props): string => props.theme.palette['grey-400']};
   }
 `;
-export const keyFrameExampleOne = keyframes`
+export const openDropdownAnimation = keyframes`
   0% {
     opacity:0;
   }
@@ -175,7 +175,7 @@ export const keyFrameExampleOne = keyframes`
 `;
 export const ListWrapper = styled.div`
   & > .search-list-open {
-    animation: ${keyFrameExampleOne} 0.3s ease-in-out 0s 1;
+    animation: ${openDropdownAnimation} 0.3s ease-in-out 0s 1;
     opacity: 1; 
     width: calc(100% + 4px);
     margin-right: -4px;
