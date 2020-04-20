@@ -21,10 +21,7 @@ interface Props {
   copyValue?: string;
   highlight?: string;
   style?: React.CSSProperties;
-  onItemHover?: (e: {
-    key: string;
-    domEvent: MouseEvent;
-  }) => void;
+  onItemHover?: (e: MouseEvent) => void;
 }
 const Text: React.FC<Props> = ({
   parent,
@@ -91,8 +88,8 @@ const Text: React.FC<Props> = ({
       style={style}
       {...rest}
     >
-      <S.Inner prefixel={Boolean(prefixel)}>
-        <S.ContentWrapper prefixel={Boolean(prefixel)}>
+      <S.Inner prefixel={!!prefixel}>
+        <S.ContentWrapper prefixel={!!prefixel}>
           {prefixel && (
             <S.PrefixelWrapper className="ds-menu-prefix" pressed={pressed} disabled={disabled}>
               {prefixel}
@@ -101,14 +98,14 @@ const Text: React.FC<Props> = ({
           <S.Content highlight={!!highlight}>
 
             {canCopyToClipboard && hovered ? copyHint : renderChildren() }
-            {Boolean(description) && <S.Description>{description}</S.Description>}
+            {!!description && <S.Description>{description}</S.Description>}
             {parent && (
               <S.ArrowRight>
                 <Icon component={<AngleRightS />} color={theme.palette['grey-600']} />
               </S.ArrowRight>
             )}
           </S.Content>
-          {Boolean(suffixel) && <S.SuffixWraper disabled={disabled}>{suffixel}</S.SuffixWraper>}
+          {!!suffixel && <S.SuffixWraper disabled={disabled}>{suffixel}</S.SuffixWraper>}
         </S.ContentWrapper>
       </S.Inner>
     </S.Wrapper>
