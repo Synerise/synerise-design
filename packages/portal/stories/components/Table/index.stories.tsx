@@ -6,15 +6,13 @@ import { withState } from '@dump247/storybook-state';
 import { boolean, select } from '@storybook/addon-knobs';
 import Table, { ItemsMenu, TableCell } from '@synerise/ds-table';
 import {
-  AngleDownS,
   EditM,
-  FileDownloadM,
   LockM,
   MailM,
   OptionHorizontalM,
   TrashM,
   UserM,
-  PlayM,
+  PlayM, DuplicateM, FileDownloadM, AngleDownS
 } from '@synerise/ds-icon/dist/icons';
 import Select from '@synerise/ds-select';
 import Button from '@synerise/ds-button';
@@ -84,10 +82,10 @@ const columns = [
   },
   {
     title: 'Name with star',
-    key: 'name',
-    dataIndex: 'name',
+    key: 'active',
+    dataIndex: 'active',
     width: 254,
-    sorter: (a, b) => a.active < b.active,
+    sorter: (a, b) =>  a.active - b.active,
     render: (name, record) => {
       return (<TableCell.StarCell active={record.active} onClick={action('Click start')}>{name}</TableCell.StarCell>)
     }
@@ -243,9 +241,15 @@ const simpleList = [
       <Dropdown
         overlay={
           <Menu style={{padding: 8}}>
-            <Menu.Item>Copy</Menu.Item>
-            <Menu.Item>Rename</Menu.Item>
-            <Menu.Item danger>Remove</Menu.Item>
+            <Menu.Item onClick={action('Edit')} prefixel={<Icon component={<EditM />} />}>
+              Edit
+            </Menu.Item>
+            <Menu.Item onClick={action('Duplicate')} prefixel={<Icon component={<DuplicateM />} />}>
+              Duplicate
+            </Menu.Item>
+            <Menu.Item onClick={action('Delete')} danger prefixel={<Icon component={<TrashM />} />}>
+              Delete
+            </Menu.Item>
           </Menu>
         }
         trigger='click'>
@@ -256,88 +260,6 @@ const simpleList = [
     </TableCell.ActionCell>
   }
 ];
-
-const expandableDataSource = [
-  {
-    key: '0',
-    name: 'John Doe',
-  },
-  {
-    key: '1',
-    name: 'John Doe',
-  },
-  {
-    key: '2',
-    name: 'John Doe',
-    children: [
-      {
-        key: '3',
-        name: 'John Doe',
-      },
-      {
-        key: '4',
-        name: 'John Doe',
-      }
-    ]
-  },
-  {
-    key: '5',
-    name: 'John Doe',
-  },
-  {
-    key: '6',
-    name: 'John Doe',
-  },
-  {
-    key: '7',
-    name: 'John Doe',
-    children: [
-      {
-        key: '8',
-        name: 'John Doe',
-      },
-      {
-        key: '9',
-        name: 'John Doe',
-        children: [
-          {
-            key: '10',
-            name: 'John Doe',
-          },
-          {
-            key: '11',
-            name: 'John Doe',
-          }
-        ]
-      }
-    ]
-  }
-];
-
-const expandable = [
-  {
-    title: 'Name',
-    dataIndex: 'name',
-    key: 'name',
-  },{
-    dataIndex: 'children',
-    key: 'children',
-    render: (children, record) => {
-      if(children !== undefined) {
-        return (
-          <TableCell.ActionCell>
-            <Icon component={<AngleDownS />} onClick={() => {console.log(record)}} />
-          </TableCell.ActionCell>
-        );
-      }
-    }
-  }
-];
-
-const rowSelection = {
-  selectedRowKeys: ['0', '5'],
-  onChange: action('checkboxChanged'),
-};
 
 const CELL_SIZES = {
   default: 'default',
@@ -350,8 +272,8 @@ const stories = {
     title: `${dataSource.length} records`,
     dataSource,
     columns,
-    loading: true,
-    roundedHeader: true,
+    loading: boolean('Set loading state', false),
+    roundedHeader: boolean('Rounded header', false),
     pagination: {
       showSizeChanger: boolean('pagination.showSizeChanger', true),
       showQuickJumper: boolean('pagination.showQuickJumper', true),
@@ -360,7 +282,6 @@ const stories = {
     scroll: {
       x: false,
     },
-    rowSelection: (boolean('show selection', false) ? rowSelection : undefined),
     onSearch: action('onSearch'),
     cellSize: select('Set cells size', CELL_SIZES, CELL_SIZES.default)
   }),
@@ -388,59 +309,10 @@ const stories = {
       </div>
     )
   }),
-  simpleList: () => ({
-    title: `${dataSource.length} records`,
-    dataSource,
-    columns: simpleList,
-    loading: true,
-    roundedHeader: true,
-    pagination: {
-      showSizeChanger: boolean('pagination.showSizeChanger', true),
-      showQuickJumper: boolean('pagination.showQuickJumper', true),
-      onChange: action('pageChanged'),
-    },
-    rowSelection: true,
-    onSearch: action('onSearch'),
-    cellSize: select('Set cells size', CELL_SIZES, CELL_SIZES.default)
-  }),
-  expandable: () => ({
-    title: `${dataSource.length} records`,
-    dataSource: expandableDataSource,
-    columns: expandable,
-    loading: true,
-    pagination: {
-      showSizeChanger: boolean('pagination.showSizeChanger', true),
-      showQuickJumper: boolean('pagination.showQuickJumper', true),
-      onChange: action('pageChanged'),
-    },
-    expandable: {
-      expandIconColumnIndex: -1,
-      expandedRowKeys: ['2']
-    },
-    rowSelection: (boolean('show selection', false) ? rowSelection : undefined),
-    onSearch: action('onSearch'),
-    cellSize: select('Set cells size', CELL_SIZES, CELL_SIZES.default),
-    itemsMenu: (
-      <ItemsMenu>
-        <Button onClick={action('Export')} type='secondary' mode='icon-label'>
-          <Icon component={<FileDownloadM />} />
-          Export
-        </Button>
-        <Button onClick={action('Edit')} type='secondary' mode='icon-label'>
-          <Icon component={<EditM />} />
-          Edit
-        </Button>
-        <Button onClick={action('Delete')} type='secondary' mode='icon-label'>
-          <Icon component={<TrashM />} />
-          Delete
-        </Button>
-      </ItemsMenu>
-    )
-  })
 };
 
 export default {
-  name: 'Components|Table',
+  name: 'Table|Table with all types of content',
   decorator,
   stories,
   Component: Table,
