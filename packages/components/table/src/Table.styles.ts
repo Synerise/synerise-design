@@ -124,9 +124,13 @@ export const Spinner = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba(233, 237, 238, 0.3);
+  background-color: rgba(255, 255, 255, 0.6);
   z-index: 10;
   ${IconContainer} {
     animation: ${spinnerAnimation} 1s forwards linear infinite;
+    svg {
+      color: ${(props): string => props.theme.palette['blue-600']};
+      fill: ${(props): string => props.theme.palette['blue-600']};
+    }
   }
 `;

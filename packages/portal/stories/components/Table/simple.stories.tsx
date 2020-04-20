@@ -315,8 +315,8 @@ const stories = {
           showColumnManager={() => store.set({columnManagerVisible: true})}
           showItemFilter={() => store.set({itemFilterVisible: true})}
           pagination={{
-            showSizeChanger: boolean('pagination.showSizeChanger', true),
-            showQuickJumper: boolean('pagination.showQuickJumper', true),
+            showSizeChanger: boolean('Show size changer', true),
+            showQuickJumper: boolean('Show quick jumper', true),
             onChange: action('pageChanged'),
           }}
           selection={boolean('Enable row selection', false) && {

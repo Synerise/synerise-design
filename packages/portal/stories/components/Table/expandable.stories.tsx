@@ -154,8 +154,8 @@ const stories = {
       roundedHeader={boolean('Rounded header', false)}
       cellSize={select('Set cells size', CELL_SIZES, CELL_SIZES.default)}
       pagination={{
-        showSizeChanger: boolean('pagination.showSizeChanger', true),
-        showQuickJumper: boolean('pagination.showQuickJumper', true),
+        showSizeChanger: boolean('Show size changer', true),
+        showQuickJumper: boolean('Show quick jumper', true),
         onChange: action('pageChanged'),
       }}
       expandable={{

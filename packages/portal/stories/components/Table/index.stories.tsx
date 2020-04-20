@@ -275,8 +275,8 @@ const stories = {
     loading: boolean('Set loading state', false),
     roundedHeader: boolean('Rounded header', false),
     pagination: {
-      showSizeChanger: boolean('pagination.showSizeChanger', true),
-      showQuickJumper: boolean('pagination.showQuickJumper', true),
+      showSizeChanger: boolean('Show size changer', true),
+      showQuickJumper: boolean('Show quick jumper', true),
       onChange: action('pageChanged'),
     },
     scroll: {
