@@ -1,10 +1,5 @@
 import * as React from 'react';
-
-export type FilterElement = {
-  text: string;
-  filter?: string;
-  icon?: React.ReactNode;
-};
+import { FilterElement } from '../../Search.types';
 
 export type SearchInputProps = {
   placeholder: string;

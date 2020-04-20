@@ -17,5 +17,5 @@ export interface MenuItemProps extends Omit<MenuProps, 'dataSource' | 'footer'> 
   copyable?: boolean;
   copyHint?: string;
   copyValue?: string;
-  hightlight?: string;
+  highlight?: string;
 }

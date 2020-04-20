@@ -46,18 +46,20 @@ const Text: React.FC<Props> = ({
   const canCopyToClipboard = copyable && copyHint && copyValue && !disabled;
 
   const renderChildren = (): React.ReactNode => {
-    if(highlight){
-      if (!!children && children !== undefined && typeof children === 'string') {
+    if(highlight && typeof children === 'string'){
         const index = children.toLocaleLowerCase().indexOf(highlight.toLocaleLowerCase());
         if (index === -1) {
           return children;
         }
-        const startOfQuery = children.toLocaleLowerCase().search(highlight.toLocaleLowerCase());
-        const result = children.substr(startOfQuery, highlight.length);
-        const highlighted =  children.replace(result, `<span class="search-highlight">${result}</span>`);
-        /* eslint-disable-next-line react/no-danger */
-        return <div dangerouslySetInnerHTML={{ __html: highlighted }} />
-      }
+        const startOfQuery = children.toLowerCase().search(highlight.toLowerCase());
+        const endOfQuery = startOfQuery + highlight.length;
+        const resultArray = [
+          children.substring(0, startOfQuery),
+        <span key={children} className="search-highlight">
+          {children.substring(startOfQuery, endOfQuery)}
+        </span>,
+          children.substring(endOfQuery, children.length),];
+        return resultArray;
     }
     return children;
   };
@@ -96,7 +98,7 @@ const Text: React.FC<Props> = ({
               {prefixel}
             </S.PrefixelWrapper>
           )}
-          <S.Content hightlight={!!highlight}>
+          <S.Content highlight={!!highlight}>
 
             {canCopyToClipboard && hovered ? copyHint : renderChildren() }
             {Boolean(description) && <S.Description>{description}</S.Description>}

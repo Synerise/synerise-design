@@ -70,9 +70,8 @@ const SearchInput: React.FC<SearchInputProps> = ({
   }, [toggleTrigger]);
 
   useOnClickOutside(ref, () => {
-    if (closeOnClickOutside && Boolean(!value) && value.length === 0 && label === null) {
+    if (closeOnClickOutside) {
       setInputOpen(false);
-      setFocus(false);
     }
     setFocus(false);
   });
@@ -109,7 +108,7 @@ const SearchInput: React.FC<SearchInputProps> = ({
           </S.Filter>
         )}
       </S.LeftSide>
-      <div className={inputOpen ? 'input-open-wrapper' : ''}>
+      <div>
         <Input
           placeholder={placeholder}
           ref={inputRef}

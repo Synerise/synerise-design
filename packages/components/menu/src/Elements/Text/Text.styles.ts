@@ -224,7 +224,7 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
   }
 `;
 
-export const Content = styled.div<{ hightlight?: boolean }>`
+export const Content = styled.div<{ highlight?: boolean }>`
   flex: 1;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -235,10 +235,10 @@ export const Content = styled.div<{ hightlight?: boolean }>`
   align-items: center;
   flex-wrap: wrap;
   ${(props): string | false =>
-    !!props.hightlight &&
+    !!props.highlight &&
     `
   font-weight:400;
-  & > div > .search-highlight{
+  & > .search-highlight{
     font-weight:600;
   }
   `}
