@@ -8,7 +8,6 @@ import Button from '@synerise/ds-button';
 import { withState } from '@dump247/storybook-state';
 import { SavedView } from '@synerise/ds-column-manager/dist/ColumnManager';
 
-
 const COLUMNS: Column[] = [
   {
     id: '0',
@@ -245,7 +244,7 @@ const stories = {
 };
 
 export default {
-  name: 'Components|ColumnManager',
+  name: 'Table|Column Manager',
   config: {},
   stories,
   Component: ColumnManager,
