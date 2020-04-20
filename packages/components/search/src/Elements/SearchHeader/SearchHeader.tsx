@@ -12,7 +12,7 @@ const SearchHeader: React.FC<SearchHeaderProps> = ({headerText,tooltip}: SearchH
   return (
     <S.MenuHeader>
       {headerText}
-      {tooltip && tooltip.length > 0 && (
+      {tooltip && (
         <Tooltip type="default" trigger="hover" title={tooltip || headerText}>
           <S.HeaderIconWrapper>
             <Icon component={<InfoFillS />} />

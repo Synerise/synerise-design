@@ -11,7 +11,7 @@ const rowRenderer = (onItemClick: (e: FilterElement) => void, data: FilterElemen
   return (
     <Menu.Item
       key={key}
-      prefixel={!!withIcon && <Icon component={item && item.icon} />}
+      prefixel={withIcon && <Icon component={item && item.icon} />}
       style={style}
       onClick={(): void => item && onItemClick && onItemClick(item)}
       highlight={highlight || ''}
