@@ -44,7 +44,7 @@ const SearchInput: React.FC<SearchInputProps> = ({
 
   const focusOnInput = (): void => {
     if (!focus && !firstRender) {
-      inputRef && inputRef.current && inputRef.current.focus();
+      inputRef!==null && inputRef.current && inputRef.current.focus();
     }
   };
   useEffect(() => {
@@ -107,7 +107,7 @@ const SearchInput: React.FC<SearchInputProps> = ({
           </S.Filter>
         )}
       </S.LeftSide>
-      <div>
+      <S.InputWrapper hasValue={!!value && value.length > 0}>
         <Input
           placeholder={placeholder}
           ref={inputRef}
@@ -116,7 +116,7 @@ const SearchInput: React.FC<SearchInputProps> = ({
           onKeyDown={onKeyDown}
           onFocus={(): void => setFocus(true)}
         />
-      </div>
+      </S.InputWrapper>
     </S.SearchInputWrapper>
   );
   return (
@@ -130,9 +130,7 @@ const SearchInput: React.FC<SearchInputProps> = ({
           toggleOpen();
           clearValue();
           onButtonClick && onButtonClick();
-          if (inputRef !== null && inputRef.current && inputRef.current !== null && inputRef.current.focus) {
-            inputRef.current.focus();
-          }
+          focusOnInput()
         }}
       />
       <S.ClearButton hidden={!value && !filterLabel} data-testid="clear">

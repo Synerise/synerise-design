@@ -1,7 +1,7 @@
 import styled, { keyframes } from 'styled-components';
 
-export const SearchWrapper = styled.div<{width?: number}>`
-  ${(props): string | false=>(`width:${props.width}px;`)}
+export const SearchWrapper = styled.div<{ width?: number }>`
+  ${(props): string | false => `width:${props.width}px;`}
   position: relative;
   direction: rtl;
 `;
@@ -76,7 +76,17 @@ export const SearchButton = styled.div<{ isOpen: boolean; inputFocused: boolean 
     }
   }
 `;
-
+export const InputWrapper = styled.div<{ hasValue: boolean }>`
+  ${(props): string | false =>
+    props.hasValue &&
+    `
+  input{
+        box-shadow: inset 0 0 0 1px ${props.theme.palette['blue-600']};
+        border-color: ${props.theme.palette['blue-600']};
+        background-color: ${props.theme.palette['blue-050']};
+   }
+  `}
+`;
 export const SearchInputWrapper = styled.div<{ offset: number }>`
   overflow: hidden;
   width: 0;
@@ -92,11 +102,6 @@ export const SearchInputWrapper = styled.div<{ offset: number }>`
   input {
     opacity: 0;
   }
-  .input-open-wrapper > input{
-        box-shadow: inset 0 0 0 1px ${(props): string => props.theme.palette['blue-600']};
-        border-color: ${(props): string => props.theme.palette['blue-600']};
-        background-color: ${(props): string => props.theme.palette['blue-050']};
-    }
 
   &.is-open {
     width: 100%;
@@ -171,7 +176,7 @@ export const keyFrameExampleOne = keyframes`
 export const ListWrapper = styled.div`
   & > .search-list-open {
     animation: ${keyFrameExampleOne} 0.3s ease-in-out 0s 1;
-    opacity: 1;
+    opacity: 1; 
     width: calc(100% + 4px);
     margin-right: -4px;
     display: initial;
