@@ -19,6 +19,9 @@ interface Props {
   copyable?: boolean;
   copyHint?: string;
   copyValue?: string;
+  highlight?: string;
+  style?: React.CSSProperties;
+  onItemHover?: (e: MouseEvent) => void;
 }
 const Text: React.FC<Props> = ({
   parent,
@@ -31,11 +34,33 @@ const Text: React.FC<Props> = ({
   copyable,
   copyHint,
   copyValue,
+  highlight,
+  style,
   ...rest
 }) => {
   const [pressed, setPressed] = React.useState(false);
   const [hovered, setHovered] = React.useState(false);
   const canCopyToClipboard = copyable && copyHint && copyValue && !disabled;
+
+  const renderChildren = (): React.ReactNode => {
+    if(highlight && typeof children === 'string'){
+        const index = children.toLocaleLowerCase().indexOf(highlight.toLocaleLowerCase());
+        if (index === -1) {
+          return children;
+        }
+        const startOfQuery = children.toLowerCase().search(highlight.toLowerCase());
+        const endOfQuery = startOfQuery + highlight.length;
+        const resultArray = [
+          children.substring(0, startOfQuery),
+        <span key={children} className="search-highlight">
+          {children.substring(startOfQuery, endOfQuery)}
+        </span>,
+          children.substring(endOfQuery, children.length),];
+        return resultArray;
+    }
+    return children;
+  };
+
   return (
     // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
     // @ts-ignore
@@ -60,25 +85,27 @@ const Text: React.FC<Props> = ({
       danger={danger}
       prefixel={prefixel}
       description={description}
+      style={style}
       {...rest}
     >
-      <S.Inner prefixel={Boolean(prefixel)}>
-        <S.ContentWrapper prefixel={Boolean(prefixel)}>
+      <S.Inner prefixel={!!prefixel}>
+        <S.ContentWrapper prefixel={!!prefixel}>
           {prefixel && (
             <S.PrefixelWrapper className="ds-menu-prefix" pressed={pressed} disabled={disabled}>
               {prefixel}
             </S.PrefixelWrapper>
           )}
-          <S.Content>
-            {canCopyToClipboard && hovered ? copyHint : children}
-            {Boolean(description) && <S.Description>{description}</S.Description>}
+          <S.Content highlight={!!highlight}>
+
+            {canCopyToClipboard && hovered ? copyHint : renderChildren() }
+            {!!description && <S.Description>{description}</S.Description>}
             {parent && (
               <S.ArrowRight>
                 <Icon component={<AngleRightS />} color={theme.palette['grey-600']} />
               </S.ArrowRight>
             )}
           </S.Content>
-          {Boolean(suffixel) && <S.SuffixWraper disabled={disabled}>{suffixel}</S.SuffixWraper>}
+          {!!suffixel && <S.SuffixWraper disabled={disabled}>{suffixel}</S.SuffixWraper>}
         </S.ContentWrapper>
       </S.Inner>
     </S.Wrapper>

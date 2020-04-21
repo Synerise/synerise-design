@@ -224,7 +224,7 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
   }
 `;
 
-export const Content = styled.div`
+export const Content = styled.div<{ highlight?: boolean }>`
   flex: 1;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -234,6 +234,14 @@ export const Content = styled.div`
   min-height: 18px;
   align-items: center;
   flex-wrap: wrap;
+  ${(props): string | false =>
+    !!props.highlight &&
+    `
+  font-weight:400;
+  & > .search-highlight{
+    font-weight:600;
+  }
+  `}
 `;
 
 export const Description = styled.div`

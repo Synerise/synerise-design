@@ -8,15 +8,20 @@ export type FilterElement = {
 
 export type SearchProps = {
   placeholder: string;
-  filterTitle?: string;
+  parametersTitle?: string;
+  parametersTooltip?: string;
   recentTitle?: string;
-  resultTitle?: string;
+  recentTooltip?: string;
+  suggestionsTitle?: string;
+  suggestionsTooltip?: string;
   clearTooltip: string | React.ReactNode;
-  filterData?: FilterElement[][];
-  recent?: FilterElement[][];
-  results: FilterElement[][];
+  parameters?: FilterElement[];
+  recent?: FilterElement[];
+  suggestions: FilterElement[];
   onValueChange: (value: string) => void;
   value: string;
-  filterValue: string;
-  onFilterValueChange: (value: string) => void;
+  parameterValue: string;
+  onParameterValueChange: (parameterValue: string) => void;
+  divider?: React.ReactNode;
+  width?: number;
 };

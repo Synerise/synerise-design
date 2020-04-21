@@ -374,6 +374,15 @@ const stories = {
       </div>
     );
   },
+  withHighlighting: () => {
+    const defaultProps = getDefaultProps();
+    const props = {
+      dataSource: [attachKnobsToDataSource(simpleText)],
+      highlight: text('Set text to be highlighted','Opt'),
+      ...defaultProps,
+    } as object;
+    return decorator(props);
+  },
 };
 
 export default {
