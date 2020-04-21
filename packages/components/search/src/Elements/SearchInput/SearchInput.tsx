@@ -42,24 +42,24 @@ const SearchInput: React.FC<SearchInputProps> = ({
     });
   };
 
-  const focusOnInput = (): void => {
+  const focusOnInput = React.useCallback((): void => {
     if (!focus && !firstRender) {
       inputRef!==null && inputRef.current && inputRef.current.focus();
     }
-  };
-  useEffect(() => {
+  },[inputRef,firstRender,focus])
+  React.useEffect(() => {
     if (filterLabel === null) {
       setInputOffset(0);
     }
     setLabel(filterLabel);
   }, [filterLabel]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     focusOnInput();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value, filterLabel, focusTrigger]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (firstRender) {
       setFirstRender(false);
     } else {

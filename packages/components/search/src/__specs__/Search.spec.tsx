@@ -3,7 +3,6 @@ import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import Search from './../Search';
 import {fireEvent} from "@testing-library/dom";
 import VarTypeStringM from "@synerise/ds-icon/dist/icons/VarTypeStringM";
-import { SearchInput } from '../Elements';
 
 const parametersList = [
     { text: 'City', icon: <VarTypeStringM/> },
