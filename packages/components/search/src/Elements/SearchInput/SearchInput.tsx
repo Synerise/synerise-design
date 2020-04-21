@@ -32,7 +32,7 @@ const SearchInput: React.FC<SearchInputProps> = ({
   const [inputOffset, setInputOffset] = useState(0);
   const [focus, setFocus] = useState(false);
   const [resultChoosed, setResultChoosed] = useState(false);
-  const ref = React.useRef<HTMLDivElement>(null);
+  const inputWrapperRef = React.useRef<HTMLDivElement>(null);
   const inputRef = React.useRef<Input>(null);
 
   const toggleOpen = (): void => {
@@ -68,7 +68,7 @@ const SearchInput: React.FC<SearchInputProps> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [toggleTrigger]);
 
-  useOnClickOutside(ref, () => {
+  useOnClickOutside(inputWrapperRef, () => {
     if (closeOnClickOutside && !value) {
       setInputOpen(false);
     }
@@ -76,13 +76,14 @@ const SearchInput: React.FC<SearchInputProps> = ({
   });
 
   const clearValue = React.useCallback((): void => {
+    setFocus(false);
     setLabel(null);
     onValueChange('');
     setInputOffset(0);
     onClear('');
     setResultChoosed(false);
-    inputRef && inputRef.current && inputRef.current.focus();
-  }, [onValueChange, onClear]);
+    focusOnInput();
+  }, [onValueChange, onClear,focusOnInput] );
 
   const change = React.useCallback(
     (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -93,8 +94,8 @@ const SearchInput: React.FC<SearchInputProps> = ({
     [onValueChange]
   );
 
-  const renderInputWrapper = (): ReactElement => (
-    <S.SearchInputWrapper className={inputOpen ? 'is-open' : ''} offset={inputOffset} onClick={onClick}>
+  const renderInputWrapper = React.useMemo((): ReactElement => (
+    <S.SearchInputWrapper className={inputOpen ? 'is-open' : 'search-input-wrapper'} offset={inputOffset} onClick={onClick}>
       <S.LeftSide isOpen={inputOpen}>
         {label && (
           <S.Filter
@@ -107,7 +108,7 @@ const SearchInput: React.FC<SearchInputProps> = ({
           </S.Filter>
         )}
       </S.LeftSide>
-      <S.InputWrapper hasValue={!!value && value.length > 0}>
+      <S.SearchInner hasValue={!!value && value.length > 0}>
         <Input
           placeholder={placeholder}
           ref={inputRef}
@@ -116,12 +117,12 @@ const SearchInput: React.FC<SearchInputProps> = ({
           onKeyDown={onKeyDown}
           onFocus={(): void => setFocus(true)}
         />
-      </S.InputWrapper>
+      </S.SearchInner>
     </S.SearchInputWrapper>
-  );
+  ),[change,inputOffset,inputOpen,label,onClick,onKeyDown,placeholder,resultChoosed,value]);
   return (
-    <S.SearchWrapper ref={ref} className="SearchWrapper">
-      {renderInputWrapper()}
+    <S.SearchWrapper ref={inputWrapperRef} className="SearchWrapper">
+      {renderInputWrapper}
       <SearchButton
         inputOpen={inputOpen}
         hidden={!!value || !!filterLabel}

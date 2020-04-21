@@ -1,5 +1,7 @@
 import styled, { keyframes } from 'styled-components';
 
+const RIGHT_BORDER_OFFSET = 4;
+const LABEL_LEFT_OFFSET = 7;
 export const SearchWrapper = styled.div<{ width?: number }>`
   ${(props): string | false => `width:${props.width}px;`}
   position: relative;
@@ -76,7 +78,7 @@ export const SearchButton = styled.div<{ isOpen: boolean; inputFocused: boolean 
     }
   }
 `;
-export const InputWrapper = styled.div<{ hasValue: boolean }>`
+export const SearchInner = styled.div<{ hasValue: boolean }>`
   ${(props): string | false =>
     props.hasValue &&
     `
@@ -107,9 +109,9 @@ export const SearchInputWrapper = styled.div<{ offset: number }>`
     width: 100%;
     overflow: visible;
     input {
-      padding-left: ${(props): string => (props.offset ? `${Math.round(props.offset + 7)}px` : '12px')};
+      padding-left: ${(props): string => (props.offset ? `${Math.round(props.offset + LABEL_LEFT_OFFSET)}px` : '12px')};
       opacity: 1;
-      width: calc(100% + 5px);
+      width: calc(100% + ${RIGHT_BORDER_OFFSET}px);
     }
   }
 `;
@@ -177,8 +179,8 @@ export const ListWrapper = styled.div`
   & > .search-list-open {
     animation: ${openDropdownAnimation} 0.3s ease-in-out 0s 1;
     opacity: 1; 
-    width: calc(100% + 4px);
-    margin-right: -4px;
+    width: calc(100% + ${RIGHT_BORDER_OFFSET}px);
+    margin-right: -${RIGHT_BORDER_OFFSET}px;
     display: initial;
     padding: 8px;
   }
