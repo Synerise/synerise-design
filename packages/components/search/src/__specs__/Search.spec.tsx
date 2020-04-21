@@ -3,8 +3,8 @@ import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import Search from './../Search';
 import {fireEvent} from "@testing-library/dom";
 import VarTypeStringM from "@synerise/ds-icon/dist/icons/VarTypeStringM";
-import { FilterElement } from '../../dist/Search.types';
 import Menu from '@synerise/ds-menu';
+import { FilterElement } from '../Search.types';
 
 const parametersList = [
     { text: 'City', icon: <VarTypeStringM/> },
