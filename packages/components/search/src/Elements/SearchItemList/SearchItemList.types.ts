@@ -9,5 +9,5 @@ export type SearchItemListProps = {
   divider?: React.ReactNode;
   onItemClick?: (e: FilterElement) => void;
   highlight?: string;
-  withIcon?: boolean;
+  itemRender: (item: FilterElement) => React.ReactElement;
 };

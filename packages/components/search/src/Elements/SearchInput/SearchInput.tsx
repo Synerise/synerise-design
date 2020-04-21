@@ -25,9 +25,11 @@ const SearchInput: React.FC<SearchInputProps> = ({
   closeOnClickOutside,
   focusTrigger,
   toggleTrigger,
+  withDropdown,
+  expanded,
 }) => {
   const [firstRender, setFirstRender] = useState(true);
-  const [inputOpen, setInputOpen] = useState(false);
+  const [inputOpen, setInputOpen] = useState(expanded || false);
   const [label, setLabel] = useState<FilterElement | null>();
   const [inputOffset, setInputOffset] = useState(0);
   const [focus, setFocus] = useState(false);
@@ -43,10 +45,13 @@ const SearchInput: React.FC<SearchInputProps> = ({
   };
 
   const focusOnInput = React.useCallback((): void => {
-    if (!focus && !firstRender) {
+    if (!firstRender) {
       inputRef!==null && inputRef.current && inputRef.current.focus();
+      setFocus(true);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   },[inputRef,firstRender,focus])
+
   React.useEffect(() => {
     if (filterLabel === null) {
       setInputOffset(0);
@@ -108,18 +113,18 @@ const SearchInput: React.FC<SearchInputProps> = ({
           </S.Filter>
         )}
       </S.LeftSide>
-      <S.SearchInner hasValue={!!value && value.length > 0}>
+      <S.SearchInner hasValue={!!value && value.length > 0} withDropdown={!!withDropdown}>
         <Input
           placeholder={placeholder}
           ref={inputRef}
           value={value}
           onChange={change}
           onKeyDown={onKeyDown}
-          onFocus={(): void => setFocus(true)}
+          onFocus={(): void => {inputOpen && setFocus(true)}}
         />
       </S.SearchInner>
     </S.SearchInputWrapper>
-  ),[change,inputOffset,inputOpen,label,onClick,onKeyDown,placeholder,resultChoosed,value]);
+  ),[change,inputOffset,inputOpen,label,onClick,onKeyDown,placeholder,resultChoosed,value,withDropdown]);
   return (
     <S.SearchWrapper ref={inputWrapperRef} className="SearchWrapper">
       {renderInputWrapper}

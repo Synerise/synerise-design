@@ -1,86 +1,87 @@
 import * as React from 'react';
-import * as DataPopulator from './dataPopulator';
 import Search from '@synerise/ds-search';
 import VarTypeStringM from '@synerise/ds-icon/dist/icons/VarTypeStringM';
-import Divider from '@synerise/ds-divider';
-import { boolean, text } from '@storybook/addon-knobs';
+import {  number, text } from '@storybook/addon-knobs';
 import { VarTypeListM, VarTypeNumberM } from '@synerise/ds-icon/dist/icons';
-import { SearchInput } from '@synerise/ds-search/dist/Elements';
+import { SearchInput, SearchItemList } from '@synerise/ds-search/dist/Elements';
+import { FilterElement } from '@synerise/ds-search/dist/Search.types';
+import Menu from '@synerise/ds-menu';
+import Icon from '@synerise/ds-icon';
+import { getItemsWithAvatar, getSuggestions } from './dataPopulator';
 
 const decorator = storyFn => (
-  <div style={{ width: '300px', height: '500px' }}>
-    {storyFn()}
+  <div style={{ width: '100vw', position: 'absolute', left: '0', top: '20vh' }}>
+    <div style={{ width: '300px', margin: 'auto' }}>{storyFn()}</div>
   </div>
 );
 
 const filterList = [
-    { text: 'First Name', icon: <VarTypeStringM /> },
-    { text: 'Last Name', icon: <VarTypeStringM /> },
-    { text: 'Sex', icon: <VarTypeStringM /> },
-    { text: 'City', icon: <VarTypeStringM /> },
-    { text: 'Email', icon: <VarTypeStringM /> },
-    { text: 'Transactions', icon: <VarTypeNumberM /> },
-    { text: 'IP', icon: <VarTypeStringM /> },
-    { text: 'Price', icon: <VarTypeListM /> },
-    { text: 'Discount', icon: <VarTypeListM /> },
-    { text: 'Products bought', icon: <VarTypeListM /> },
-    { text: 'Loyalty points', icon: <VarTypeListM /> },
+  { text: 'First Name', icon: <VarTypeStringM /> },
+  { text: 'Last Name', icon: <VarTypeStringM /> },
+  { text: 'Sex', icon: <VarTypeStringM /> },
+  { text: 'City', icon: <VarTypeStringM /> },
+  { text: 'Transactions', icon: <VarTypeNumberM /> },
+  { text: 'IP', icon: <VarTypeStringM /> },
+  { text: 'Price', icon: <VarTypeListM /> },
+  { text: 'Discount', icon: <VarTypeListM /> },
+  { text: 'Products bought', icon: <VarTypeListM /> },
+  { text: 'Loyalty points', icon: <VarTypeListM /> },
 ];
 
 const recent = [
-    { text: 'Bangkok', filter: 'City', icon: <VarTypeStringM /> },
-    { text: 'Frank', filter: 'Last Name', icon: <VarTypeStringM /> },
-    { text: 'Basel', filter: 'City', icon: <VarTypeStringM /> },
-    { text: 'Male', filter: 'Sex', icon: <VarTypeStringM /> },
+  { text: 'Bangkok', filter: 'City', icon: <VarTypeStringM /> },
+  { text: 'Frank', filter: 'Last Name', icon: <VarTypeStringM /> },
+  { text: 'Basel', filter: 'City', icon: <VarTypeStringM /> },
+  { text: 'Male', filter: 'Sex', icon: <VarTypeStringM /> },
 ];
+const recentWithAvatars = getItemsWithAvatar(20);
 
-const results = [{ text: 'Cirilla' }, { text: 'Frank' }, { text: 'Naomi' }, { text: 'Severus' }];
-const cities = DataPopulator.populateCities(50).map(item=>({text:item}));
-const firstNames = DataPopulator.populateFirstName(50).map(item=>({text:item}));
-const lastNames = DataPopulator.popuLateLastName(50).map(item=>({text:item}));
-const getSuggestions = filter => {
-  if (filter === 'City') {
-    return cities;
-  }
-  if (filter === 'First Name') {
-    return firstNames;
-  }
-  if (filter === 'Last Name') {
-    return lastNames;
-  }
-  if (filter === 'Sex') {
-    return [{ text: 'Female' }, { text: 'Male' }];
-  } else return [{ text: 'Some suggestions' }, { text: 'not matched' }, { text: 'by filter type' }, { text: 'yet' }];
-};
 const stories = {
   default: () => {
     const [value, setValue] = React.useState<string>('');
     return (
       <SearchInput
-        placeholder={"Type here..."}
+        placeholder={'Type here...'}
         clearTooltip={'Clear value'}
-        onValueChange={(value)=>{console.log(value); setValue(value)}}
+        onValueChange={value => {
+          console.log(value);
+          setValue(value);
+        }}
         value={value}
-        onClear={()=>{console.log('Cleared!')}}
+        onClear={() => {
+          console.log('Cleared!');
+        }}
         closeOnClickOutside={true}
+      />
+    );
+  },
+  expanded: () => {
+    const [value, setValue] = React.useState<string>('');
+    return (
+      <SearchInput
+        placeholder={'Type here...'}
+        clearTooltip={'Clear value'}
+        onValueChange={value => {
+          console.log(value);
+          setValue(value);
+        }}
+        value={value}
+        onClear={() => {
+          console.log('Cleared!');
+        }}
+        closeOnClickOutside={false}
+        expanded={true}
       />
     );
   },
   withDropdown: () => {
     const [value, setValue] = React.useState<string>('');
     const [filterValue, setFilterValue] = React.useState<string>('');
-    const [suggestions, setSuggestions] = React.useState(results);
-    let withDivider = boolean('Set divider', true);
+    const [suggestions, setSuggestions] = React.useState([]);
     return (
       <Search
         clearTooltip="Clear"
         placeholder="Search"
-        parametersTitle="Search in"
-        parametersTooltip={text('Set parameters tooltip','Search in')}
-        recentTitle="Recent"
-        recentTooltip={text('Set recent tooltip','Recent')}
-        suggestionsTitle="Suggest"
-        suggestionsTooltip={text('Set suggestions tooltip','Suggestions')}
         parameters={filterList}
         recent={recent}
         suggestions={suggestions}
@@ -94,14 +95,88 @@ const stories = {
           const fakeApiResponse = getSuggestions(value);
           setSuggestions(fakeApiResponse);
         }}
-        divider={
-          withDivider && (
-            <div style={{ padding: '12px', paddingBottom: '0px' }}>
-              {' '}
-              <Divider dashed={true} />{' '}
-            </div>
-          )
-        }
+        parametersDisplayProps={{
+          tooltip: text('Set search in tooltip', 'Search in'),
+          title: text('Set search in title', 'Search in'),
+          rowHeight: 32,
+          visibleRows: number('Set search in visible items',6,{min:1}),
+          itemRender: (item: FilterElement) => (
+            <Menu.Item
+              highlight={value}
+              onItemHover={(): void => {}}
+              prefixel={item && <Icon component={item && item.icon} />}
+            >
+              {item && item.text}
+            </Menu.Item>
+          ),
+        }}
+        suggestionsDisplayProps={{
+          tooltip: text('Set suggestions tooltip', 'Suggestions'),
+          title: text('Set suggestions title', 'Suggestions'),
+          rowHeight: 32,
+          visibleRows: number('Set suggestions visible items',6,{min:1}),
+          itemRender: (item: FilterElement) => <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>,
+        }}
+        recentDisplayProps={{
+          tooltip: text('Set recent tooltip', 'Recent'),
+          title: text('Set recent title', 'Recent'),
+          rowHeight: 32,
+          visibleRows: number('Set recent visible items',3,{min:1}),
+          itemRender: (item: FilterElement) => <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>,
+        }}
+
+      />
+    );
+  },
+  withItemsWithAvatars: () => {
+    const [value, setValue] = React.useState<string>('');
+    const [filterValue, setFilterValue] = React.useState<string>('');
+    const [suggestions, setSuggestions] = React.useState([]);
+    return (
+      <Search
+        clearTooltip="Clear"
+        placeholder="Search"
+        parameters={filterList}
+        recent={recentWithAvatars}
+        suggestions={suggestions}
+        value={value}
+        parameterValue={filterValue}
+        onValueChange={value => {
+          setValue(value);
+        }}
+        onParameterValueChange={value => {
+          setFilterValue(value);
+          const fakeApiResponse = getSuggestions(value);
+          setSuggestions(fakeApiResponse);
+        }}
+        parametersDisplayProps={{
+          tooltip: text('Set search in tooltip', 'Search in'),
+          title: text('Set search in title', 'Search in'),
+          rowHeight: 32,
+          visibleRows: number('Set search in visible items',6,{min:1}),
+          itemRender: (item: FilterElement) => (
+            <Menu.Item
+              onItemHover={(): void => {}}
+              prefixel={item && <Icon component={item && item.icon} />}
+            >
+              {item && item.text}
+            </Menu.Item>
+          ),
+        }}
+        suggestionsDisplayProps={{
+          tooltip: text('Set suggestions tooltip', 'Suggestions'),
+          title: text('Set suggestions title', 'Suggestions'),
+          rowHeight: 32,
+          visibleRows: number('Set suggestions visible items',6,{min:1}),
+          itemRender: (item: FilterElement) => <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>,
+        }}
+        recentDisplayProps={{
+          tooltip: text('Set recent tooltip', 'Recent'),
+          title: text('Set recent title', 'Recent'),
+          rowHeight: 50,
+          visibleRows: number('Set recent visible items',3,{min:1}),
+          itemRender: (item: FilterElement) => <Menu.Item onItemHover={(): void => {}} {...item}>{item.text}</Menu.Item>
+        }}
       />
     );
   },

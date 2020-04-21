@@ -3,6 +3,8 @@ import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import Search from './../Search';
 import {fireEvent} from "@testing-library/dom";
 import VarTypeStringM from "@synerise/ds-icon/dist/icons/VarTypeStringM";
+import { FilterElement } from '../../dist/Search.types';
+import Menu from '@synerise/ds-menu';
 
 const parametersList = [
     { text: 'City', icon: <VarTypeStringM/> },
@@ -15,14 +17,36 @@ const recent = [
 const suggestions = [
     { text: 'Cirilla' },
 ];
+const PLACEHOLDER = 'placeholder';
+const SUGGESTIONS_TITLE = 'suggestions';
+const PARAMETERS_TITLE = 'parameters';
+const RECENT_TITLE = 'recent';
+const INPUT_VALUE = 'input value';
+const FILTER_VALUE = 'input value';
 
+const parametersDisplayProps = {
+  tooltip: 'Parameters',
+  title: PARAMETERS_TITLE,
+  rowHeight: 32,
+  visibleRows: 3,
+  itemRender: (item: FilterElement) => <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>,
+};
+const suggestionsDisplayProps = {
+  tooltip: 'Suggest',
+  title: SUGGESTIONS_TITLE,
+  rowHeight: 32,
+  visibleRows: 3,
+  itemRender: (item: FilterElement) => <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>,
+};
+const recentDisplayProps = {
+  tooltip: 'Recent',
+  title: RECENT_TITLE,
+  rowHeight: 32,
+  visibleRows: 3,
+  itemRender: (item: FilterElement) => <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>,
+};
 describe('Search with dropdown', () => {
-  const PLACEHOLDER = 'placeholder';
-  const SUGGESTIONS_TITLE = 'suggestions';
-  const PARAMETERS_TITLE = 'parameters';
-  const RECENT_TITLE = 'recent';
-  const INPUT_VALUE = 'input value';
-  const FILTER_VALUE = 'input value';
+
   const onChange = jest.fn();
   const onParameterValueChange = jest.fn();
 
@@ -39,6 +63,9 @@ describe('Search with dropdown', () => {
         parameterValue={FILTER_VALUE}
         onValueChange={onChange}
         onParameterValueChange={onChange}
+        parametersDisplayProps={parametersDisplayProps}
+        recentDisplayProps={recentDisplayProps}
+        suggestionsDisplayProps={suggestionsDisplayProps}
         width={200}
       />);
 
@@ -59,6 +86,9 @@ describe('Search with dropdown', () => {
         parameterValue={FILTER_VALUE}
         onValueChange={onChange}
         onParameterValueChange={onParameterValueChange}
+        parametersDisplayProps={parametersDisplayProps}
+        recentDisplayProps={recentDisplayProps}
+        suggestionsDisplayProps={suggestionsDisplayProps}
         width={200}
       />);
 
@@ -84,6 +114,9 @@ describe('Search with dropdown', () => {
         parameterValue={FILTER_VALUE}
         onValueChange={onChange}
         onParameterValueChange={onParameterValueChange}
+        parametersDisplayProps={parametersDisplayProps}
+        recentDisplayProps={recentDisplayProps}
+        suggestionsDisplayProps={suggestionsDisplayProps}
         width={200}
       />);
 
@@ -112,6 +145,9 @@ describe('Search with dropdown', () => {
         parameterValue={FILTER_VALUE}
         onValueChange={onChange}
         onParameterValueChange={onParameterValueChange}
+        parametersDisplayProps={parametersDisplayProps}
+        recentDisplayProps={recentDisplayProps}
+        suggestionsDisplayProps={suggestionsDisplayProps}
         width={200}
       />);
 
@@ -128,7 +164,6 @@ describe('Search with dropdown', () => {
       <div>
       <button>differentElement</button>
       <Search
-        suggestionsTitle={SUGGESTIONS_TITLE}
         clearTooltip={'clear'}
         parameters={parametersList}
         placeholder={PLACEHOLDER}
@@ -138,6 +173,9 @@ describe('Search with dropdown', () => {
         parameterValue={FILTER_VALUE}
         onValueChange={onChange}
         onParameterValueChange={onParameterValueChange}
+        parametersDisplayProps={parametersDisplayProps}
+        recentDisplayProps={recentDisplayProps}
+        suggestionsDisplayProps={suggestionsDisplayProps}
         width={200}
       />
       </div>);
@@ -155,7 +193,6 @@ describe('Search with dropdown', () => {
       <div>
       <button>differentElement</button>
       <Search
-        parametersTitle={PARAMETERS_TITLE}
         clearTooltip={'clear'}
         parameters={parametersList}
         placeholder={PLACEHOLDER}
@@ -165,7 +202,11 @@ describe('Search with dropdown', () => {
         parameterValue={FILTER_VALUE}
         onValueChange={onChange}
         onParameterValueChange={onParameterValueChange}
+        parametersDisplayProps={parametersDisplayProps}
+        recentDisplayProps={recentDisplayProps}
+        suggestionsDisplayProps={suggestionsDisplayProps}
         width={200}
+
       />
       </div>);
 
@@ -182,7 +223,6 @@ describe('Search with dropdown', () => {
       <div>
       <button>differentElement</button>
       <Search
-        recentTitle={RECENT_TITLE}
         clearTooltip={'clear'}
         parameters={parametersList}
         placeholder={PLACEHOLDER}
@@ -192,6 +232,9 @@ describe('Search with dropdown', () => {
         parameterValue={FILTER_VALUE}
         onValueChange={onChange}
         onParameterValueChange={onParameterValueChange}
+        parametersDisplayProps={parametersDisplayProps}
+        recentDisplayProps={recentDisplayProps}
+        suggestionsDisplayProps={suggestionsDisplayProps}
         width={200}
       />
       </div>);
