@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.1.4...@synerise/ds-menu@0.2.0) (2020-04-21)
+
+
+### Bug Fixes
+
+* **menu:** added tests for danger item ([a6f64ef](https://github.com/Synerise/synerise-design/commit/a6f64ef131c98e898189e24396ca4e52eb237fa5))
+* **menu:** fixing linter error ([cea9e9b](https://github.com/Synerise/synerise-design/commit/cea9e9b51b5ab30af5b519276128528295dd98fc))
+* **menu:** fixing tests ([b48494c](https://github.com/Synerise/synerise-design/commit/b48494ce1eca64a674ac78695bce9d467b619619))
+* **menu:** fixing the build ([3290b4f](https://github.com/Synerise/synerise-design/commit/3290b4fb96b3a33ef208c8205f7ed572b0916ead))
+* **menu:** fixing the build again ([3c7caf4](https://github.com/Synerise/synerise-design/commit/3c7caf46c814a1e2d27c53eaf7799dfc71ea7139))
+* **menu:** got rid of async in tests suits ([686fb9c](https://github.com/Synerise/synerise-design/commit/686fb9cb1374c5aaaf9ef13fcead83d91bc901e5))
+* **menu:** removed unused wait ([adc9bd8](https://github.com/Synerise/synerise-design/commit/adc9bd8d116d37b940387fb7e42488b59c5cd58d))
+* **search:** added highlighting of menu item ([9206211](https://github.com/Synerise/synerise-design/commit/9206211990732ef033eb3998e99f3b3e2225004c))
+* **search:** fixed type errors, updated tests ([7f1f676](https://github.com/Synerise/synerise-design/commit/7f1f676e10c79dbb58a44507872950b8052af5f5))
+* **search:** refactor - using callbacks and splitted search code ([6f70ec5](https://github.com/Synerise/synerise-design/commit/6f70ec5e474a53107061d79c22fbcc0e6386ecd5))
+* **search:** refactored - extracted input ([a31ead1](https://github.com/Synerise/synerise-design/commit/a31ead144d8fcfb0bf72d3069fdf318e6e80d939))
+* **search:** resolving threads after code review ([908d67d](https://github.com/Synerise/synerise-design/commit/908d67dbba1014d745276abb03ae539c120b98b9))
+* **search:** updated tests, refactored naming, updated types ([c26f659](https://github.com/Synerise/synerise-design/commit/c26f6597bbcbe22bbdc4af21051ac4bfe69c87f4))
+
+
+### Features
+
+* **menu:** added unit tests ([dda3a35](https://github.com/Synerise/synerise-design/commit/dda3a357e60705ea871697abb4a01606461ba453))
+
+
+
+
+
 ## [0.1.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.1.3...@synerise/ds-menu@0.1.4) (2020-04-15)
 
 

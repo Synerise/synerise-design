@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.55.1](https://github.com/synerise/synerise-design/compare/portal@0.55.0...portal@0.55.1) (2020-04-21)
+
+
+### Bug Fixes
+
+* **menu:** added highlighted item story ([50fdccd](https://github.com/synerise/synerise-design/commit/50fdccd0498a893e6c43cca5fa4f51ee2ff2629c))
+* **portal:** logos ([e904646](https://github.com/synerise/synerise-design/commit/e9046468385b0e7155446a053f0018732238e736))
+* **search:** added highlighting of menu item ([9206211](https://github.com/synerise/synerise-design/commit/9206211990732ef033eb3998e99f3b3e2225004c))
+* **search:** added tests ([330484f](https://github.com/synerise/synerise-design/commit/330484f3edc43a5b3efdd8b79aadd4465660209c))
+* **search:** before refactor ([2b9c86d](https://github.com/synerise/synerise-design/commit/2b9c86d5d2fe36a55ec8a85eb90a9aa47f421766))
+* **search:** fixed serving suggestions ([808abbc](https://github.com/synerise/synerise-design/commit/808abbca86d0f3626d04834b58c26fff38a4090b))
+* **search:** fixed type errors, updated tests ([7f1f676](https://github.com/synerise/synerise-design/commit/7f1f676e10c79dbb58a44507872950b8052af5f5))
+* **search:** refactored - extracted input ([a31ead1](https://github.com/synerise/synerise-design/commit/a31ead144d8fcfb0bf72d3069fdf318e6e80d939))
+* **search:** trying to fix animations ([7abe7d2](https://github.com/synerise/synerise-design/commit/7abe7d279062093338667e9bd14e42e814f4b887))
+* **search:** updated tests, refactored naming, updated types ([c26f659](https://github.com/synerise/synerise-design/commit/c26f6597bbcbe22bbdc4af21051ac4bfe69c87f4))
+
+
+
+
+
 # [0.55.0](https://github.com/synerise/synerise-design/compare/portal@0.54.0...portal@0.55.0) (2020-04-15)
 
 

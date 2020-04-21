@@ -3,6 +3,35 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.28](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.0.27...@synerise/ds-search@0.0.28) (2020-04-21)
+
+
+### Bug Fixes
+
+* **search:** added highlighting of menu item ([9206211](https://github.com/Synerise/synerise-design/commit/9206211990732ef033eb3998e99f3b3e2225004c))
+* **search:** added tests ([330484f](https://github.com/Synerise/synerise-design/commit/330484f3edc43a5b3efdd8b79aadd4465660209c))
+* **search:** before refactor ([2b9c86d](https://github.com/Synerise/synerise-design/commit/2b9c86d5d2fe36a55ec8a85eb90a9aa47f421766))
+* **search:** fixed closing on outside in searchinput ([e54aee5](https://github.com/Synerise/synerise-design/commit/e54aee5a2af1a45d11d4121bb5d5cf4535ff2325))
+* **search:** fixed serving suggestions ([808abbc](https://github.com/Synerise/synerise-design/commit/808abbca86d0f3626d04834b58c26fff38a4090b))
+* **search:** fixed styles of input with value ([4165b41](https://github.com/Synerise/synerise-design/commit/4165b4136fcc6012e3fa4df160c4666144ab6126))
+* **search:** fixed type errors, updated tests ([7f1f676](https://github.com/Synerise/synerise-design/commit/7f1f676e10c79dbb58a44507872950b8052af5f5))
+* **search:** fixing the build ([1ee85b9](https://github.com/Synerise/synerise-design/commit/1ee85b97ae65aee903d4cfa7e73073b419eb5472))
+* **search:** fixing ts and linter errors ([0a68952](https://github.com/Synerise/synerise-design/commit/0a6895226f84b9671421933f66a35bc25034e526))
+* **search:** input close fix ([54f339d](https://github.com/Synerise/synerise-design/commit/54f339dbf99913f2c6c334c0dca3f9f1e09bbe54))
+* **search:** made placeholder optional, fixed linter errors ([f9b6d03](https://github.com/Synerise/synerise-design/commit/f9b6d0332256c49c776aee2ed615a4ca252e1df1))
+* **search:** naming in styles - refactor ([89d05f5](https://github.com/Synerise/synerise-design/commit/89d05f58b9e9b4117e783f92e3ff2490de2186b5))
+* **search:** refactor - using callbacks and splitted search code ([6f70ec5](https://github.com/Synerise/synerise-design/commit/6f70ec5e474a53107061d79c22fbcc0e6386ecd5))
+* **search:** refactored - extracted input ([a31ead1](https://github.com/Synerise/synerise-design/commit/a31ead144d8fcfb0bf72d3069fdf318e6e80d939))
+* **search:** removed redundant imports ([e7fedb7](https://github.com/Synerise/synerise-design/commit/e7fedb7b7b11f1a6572e2cd7151b998da0011968))
+* **search:** removed redundant value checks ([191f236](https://github.com/Synerise/synerise-design/commit/191f236978e3ea840b530eeb3c01f86557f65882))
+* **search:** splitted tests, added consts in styles ([10fb333](https://github.com/Synerise/synerise-design/commit/10fb33304e092979b6da54dd56ba9d6cc2e03fa9))
+* **search:** trying to fix animations ([7abe7d2](https://github.com/Synerise/synerise-design/commit/7abe7d279062093338667e9bd14e42e814f4b887))
+* **search:** updated tests, refactored naming, updated types ([c26f659](https://github.com/Synerise/synerise-design/commit/c26f6597bbcbe22bbdc4af21051ac4bfe69c87f4))
+
+
+
+
+
 ## [0.0.27](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.0.26...@synerise/ds-search@0.0.27) (2020-04-15)
 
 **Note:** Version bump only for package @synerise/ds-search
