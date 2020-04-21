@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ReactElement, useState, useEffect } from 'react';
+import { ReactElement, useState } from 'react';
 import { Input } from 'antd';
 import Close3M from '@synerise/ds-icon/dist/icons/Close3M';
 import { useOnClickOutside } from '@synerise/ds-utils';
