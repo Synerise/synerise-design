@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-popconfirm@0.3.16...@synerise/ds-popconfirm@0.4.0) (2020-04-22)
+
+
+### Bug Fixes
+
+* **popconfirm:** fix eslint error ([12731a8](https://github.com/Synerise/synerise-design/commit/12731a83bf6863ccb67c9a5bff5b514a41791f7f))
+* **popconfirm:** fix eslint errors ([25cfcd1](https://github.com/Synerise/synerise-design/commit/25cfcd1f78981775f938f7f9d0652ea60744c3b9))
+
+
+### Features
+
+* **popconfirm:** add confirm message ([f3d9dd5](https://github.com/Synerise/synerise-design/commit/f3d9dd5e94c99ee49cb2af0071dd89e26c6a0095))
+
+
+
+
+
 ## [0.3.16](https://github.com/Synerise/synerise-design/compare/@synerise/ds-popconfirm@0.3.15...@synerise/ds-popconfirm@0.3.16) (2020-04-21)
 
 **Note:** Version bump only for package @synerise/ds-popconfirm

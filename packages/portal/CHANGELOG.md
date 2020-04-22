@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.56.0](https://github.com/synerise/synerise-design/compare/portal@0.55.2...portal@0.56.0) (2020-04-22)
+
+
+### Features
+
+* **popconfirm:** add stories for confirm message ([882cd9c](https://github.com/synerise/synerise-design/commit/882cd9c9288495f5f050f2038d818dc6ac209227))
+
+
+
+
+
 ## [0.55.2](https://github.com/synerise/synerise-design/compare/portal@0.55.1...portal@0.55.2) (2020-04-22)
 
 
