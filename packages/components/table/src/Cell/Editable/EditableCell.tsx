@@ -14,6 +14,10 @@ const EditableCell: React.FC<Props> = ({ value, onChange }: Props) => {
   const [editMode, setEditMode] = React.useState(false);
   const [editValue, setEditValue] = React.useState(value);
 
+  const enterEditMode = React.useCallback(() => {
+    setEditMode(true);
+  }, [setEditMode]);
+
   const render = React.useMemo(() => {
     return editMode ? (
       // eslint-disable-next-line react/jsx-handler-names
@@ -30,10 +34,10 @@ const EditableCell: React.FC<Props> = ({ value, onChange }: Props) => {
     ) : (
       <>
         <span>{value}</span>
-        <Icon onClick={(): void => setEditMode(true)} component={<EditNolineS />} />
+        <Icon onClick={enterEditMode} component={<EditNolineS />} />
       </>
     );
-  }, [editMode, value, editValue, setEditValue, onChange]);
+  }, [editMode, value, enterEditMode, editValue, setEditValue, onChange]);
 
   return <S.EditableCell>{render}</S.EditableCell>;
 };

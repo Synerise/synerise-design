@@ -15,6 +15,11 @@ export const SELECTION_ALL = 'SELECTION_ALL';
 export const SELECTION_VISIBLE = 'SELECTION_VISIBLE';
 export const SELECTION_INVERT = 'SELECTION_INVERT';
 
+const ITEM_RENDER_TYPE = {
+  prev: 'prev',
+  next: 'next',
+};
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function DSTable<T extends { key: React.ReactText }>(props: DSTableProps<T>): React.ReactElement {
   const {
@@ -39,14 +44,14 @@ function DSTable<T extends { key: React.ReactText }>(props: DSTableProps<T>): Re
       ),
       columnWidth: 72,
       itemRender: (page: number, type: string, originalElement: React.ReactNode): React.ReactNode => {
-        if (type === 'prev') {
+        if (type === ITEM_RENDER_TYPE.prev) {
           return (
             <Button mode="single-icon" type="ghost">
               <Icon component={<AngleLeftS />} />
             </Button>
           );
         }
-        if (type === 'next') {
+        if (type === ITEM_RENDER_TYPE.next) {
           return (
             <Button mode="single-icon" type="ghost">
               <Icon component={<AngleRightS />} />

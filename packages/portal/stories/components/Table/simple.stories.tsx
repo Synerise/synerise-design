@@ -22,6 +22,7 @@ import * as moment from 'moment';
 import ItemFilter from '@synerise/ds-item-filter/dist/ItemFilter';
 import Result from '@synerise/ds-result';
 import ModalProxy from '@synerise/ds-modal';
+import { COLUMNS, EMPTY_FILTER, FILTERS } from './content/simpe.data';
 
 const decorator = (storyFn) => (
   <div style={{ padding: 20, width: '100vw', minWidth: '100%' }}>
@@ -37,107 +38,6 @@ const dataSource = [...new Array(55)].map((i, k) => ({
   country: faker.random.arrayElement(['us', 'pl', 'de', 'it', 'es', 'ru']),
   age: (Math.random() * 50 + 10).toFixed(0),
 }));
-
-
-const COLUMNS = [
-  {
-    id: '0',
-    name: 'Name',
-    key: 'name',
-    visible: true,
-    type: 'text',
-    fixed: undefined
-  },
-  {
-    id: '1',
-    name: 'Statux',
-    key: 'active',
-    visible: true,
-    type: 'boolean',
-    fixed: undefined
-  },
-  {
-    id: '2',
-    name: 'Country',
-    key: 'country',
-    visible: true,
-    type: 'text',
-    fixed: undefined
-  },
-  {
-    id: '3',
-    name: 'Age',
-    key: 'age',
-    visible: true,
-    type: 'number',
-    fixed: undefined
-  },
-];
-
-const FILTERS = [
-  {
-    id: '0000',
-    name: 'Filter #1',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do elit',
-    created: '01-05-2020 12:02',
-    canUpdate: true,
-    canDelete: true,
-    canDuplicate: true,
-    categories: ['My filters', 'All filters'],
-    user: {
-      firstname: 'Jan',
-      lastname: 'Nowak',
-    },
-    columns: COLUMNS,
-  },
-  {
-    id: '0001',
-    name: 'Filter #2',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do elit',
-    created: '01-12-2019 12:02',
-    canUpdate: false,
-    canDelete: false,
-    canDuplicate: true,
-    categories: ['All filters'],
-    user: {
-      firstname: 'Kamil',
-      lastname: 'Kowalski',
-    },
-    columns: COLUMNS,
-  },
-  {
-    id: '0002',
-    name: 'Filter #3',
-    created: '01-12-2019 12:02',
-    canUpdate: false,
-    canDelete: false,
-    canDuplicate: true,
-    categories: ['All filters'],
-    user: {
-      avatar_url: 'https://www.w3schools.com/howto/img_avatar.png',
-      firstname: 'Kamil',
-      lastname: 'Kowalski',
-    },
-    columns: COLUMNS,
-  }
-];
-
-const EMPTY_FILTER = {
-  id: '0003',
-  name: '',
-  created: '01-12-2019 12:02',
-  canUpdate: true,
-  canDelete: true,
-  canDuplicate: true,
-  categories: ['All filters', 'My filters'],
-  user: {
-    avatar_url: 'https://www.w3schools.com/howto/img_avatar.png',
-    firstname: 'Kamil',
-    lastname: 'Kowalski',
-  },
-  columns: COLUMNS,
-};
-
 
 const saveFilter = (savedView: SavedView, store) => {
   const id = moment().format('MM-DD-YYYY_HH:mm:ss');

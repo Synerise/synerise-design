@@ -44,7 +44,7 @@ export const FilterButtonLabel = styled.span`
   opacity: 0;
   width: 100%;
   visibility: hidden;
-  transition: all 0.3s ease, color 0s ease !important;
+  transition: width 0.3s ease, opacity: 0.3s ease, visiblity 0.3s ease, color 0s ease !important;
 `;
 
 export const FilterTrigger = styled.div<{ opened: boolean; selected?: object }>`

@@ -7,6 +7,7 @@ import { AngleDownS, EditM, FileDownloadM, TrashM } from '@synerise/ds-icon/dist
 import Table from '@synerise/ds-table';
 import Button from '@synerise/ds-button';
 import * as React from 'react';
+import { dataSource } from './content/expandable.data';
 
 const decorator = (storyFn) => (
   <div style={{ padding: 20, width: '100vw', minWidth: '100%' }}>
@@ -14,90 +15,7 @@ const decorator = (storyFn) => (
   </div>
 );
 
-const dataSource = [
-  {
-    key: '0',
-    name: 'John Doe',
-  },
-  {
-    key: '1',
-    name: 'John Doe',
-  },
-  {
-    key: '2',
-    name: 'John Doe',
-    children: [
-      {
-        key: '3',
-        name: 'John Doe',
-      },
-      {
-        key: '4',
-        name: 'John Doe',
-      }
-    ]
-  },
-  {
-    key: '5',
-    name: 'John Doe',
-  },
-  {
-    key: '6',
-    name: 'John Doe',
-  },
-  {
-    key: '7',
-    name: 'John Doe',
-    children: [
-      {
-        key: '8',
-        name: 'John Doe',
-      },
-      {
-        key: '9',
-        name: 'John Doe',
-        children: [
-          {
-            key: '10',
-            name: 'John Doe',
-          },
-          {
-            key: '11',
-            name: 'John Doe',
-          }
-        ]
-      }
-    ]
-  },
-  {
-    key: '12',
-    name: 'John Doe',
-  },
-  {
-    key: '13',
-    name: 'John Doe',
-  },
-  {
-    key: '14',
-    name: 'John Doe',
-  },
-  {
-    key: '15',
-    name: 'John Doe',
-  },
-  {
-    key: '16',
-    name: 'John Doe',
-  },
-  {
-    key: '17',
-    name: 'John Doe',
-  },
-  {
-    key: '18',
-    name: 'John Doe',
-  },
-];
+
 
 const CELL_SIZES = {
   default: 'default',

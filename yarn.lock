@@ -3475,6 +3475,15 @@
     "@synerise/ds-utils" "^0.8.5"
     uuid "^3.3.3"
 
+"@synerise/ds-menu@^0.1.4":
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/@synerise/ds-menu/-/ds-menu-0.1.4.tgz#49137f5d94f9dd0c7f2258ad8c4687a31dc1d507"
+  integrity sha512-HlYb8QUlYvt5xBBYRa6Pybpvww6mRXZvmTx4HQ8Qxw+IJxxxKOiuOMpFkWxiWQ0/h5Ld8xpGGycN8gWKrVabgA==
+  dependencies:
+    "@synerise/ds-button" "^0.11.3"
+    "@synerise/ds-card" "^0.4.11"
+    "@synerise/ds-typography" "*"
+
 "@synerise/ds-tooltip@^0.4.26":
   version "0.4.26"
   resolved "https://registry.yarnpkg.com/@synerise/ds-tooltip/-/ds-tooltip-0.4.26.tgz#e52227e3287e01d23db84531c6e79f66f4184108"

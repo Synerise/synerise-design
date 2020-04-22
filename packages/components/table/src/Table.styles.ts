@@ -49,7 +49,6 @@ export const Icon = styled.div`
   position: absolute;
   left: 4px;
   z-index: 1;
-  //pointer-events: none;
 `;
 
 export const Input = styled.div<{ isOpen?: boolean }>`
