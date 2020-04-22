@@ -3,12 +3,12 @@ import AntdTooltip from 'antd/lib/tooltip';
 import * as S from './ConfirmMessage.style';
 
 export interface ConfirmMessageProps {
-  children: React.ReactChildren;
-  displayDuration: number;
+  children: React.ReactChildren | React.ReactChild;
+  displayDuration?: number;
   title: string;
   onClick: (callback: () => void) => void;
   icon?: React.ReactNode;
-  placement:
+  placement?:
     | 'top'
     | 'left'
     | 'right'
