@@ -8,6 +8,13 @@
 
 .@{ds-table-prefix-cls} {
   position: relative;
+  .virtual-table-cell {
+    padding: 16px 24px;
+    border-bottom: 1px solid @gray-color-lighter-6;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
   &.ds-table-rounded {
     .@{table-prefix-cls} {
       border-radius: 3px 3px 0 0;

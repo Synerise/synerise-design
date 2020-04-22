@@ -45,5 +45,5 @@ export interface DSTableProps<T extends { key: React.ReactText }> extends AntTab
   roundedHeader?: boolean;
   selection?: RowSelection<T>;
   filters?: Filter[];
-  serachComponent?: React.ReactNode;
+  searchComponent?: React.ReactNode;
 }

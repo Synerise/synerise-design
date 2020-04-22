@@ -40,10 +40,10 @@
     "@synerise/ds-utils": "^0.8.17",
     "@types/react-window": "^1.8.2",
     "classnames": "^2.2.6",
-    "rc-resize-observer": "^0.2.1",
-    "react-window": "^1.8.5",
     "copy-to-clipboard": "^3.3.1",
-    "react-flagkit": "^1.0.2"
+    "rc-resize-observer": "^0.2.1",
+    "react-flagkit": "^1.0.2",
+    "react-window": "^1.8.5"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

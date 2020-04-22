@@ -79,7 +79,7 @@ function DSTable<T extends { key: React.ReactText }>(props: DSTableProps<T>): Re
         searchComponent={searchComponent}
       />
     );
-  }, [selection, title, onSearch, dataSource, filters, itemsMenu]);
+  }, [selection, title, onSearch, dataSource, filters, itemsMenu, searchComponent]);
 
   return (
     <div className={`ds-table ds-table-cell-size-${cellSize} ${roundedHeader ? 'ds-table-rounded' : ''}`}>
@@ -90,7 +90,7 @@ function DSTable<T extends { key: React.ReactText }>(props: DSTableProps<T>): Re
       )}
       <Table<T>
         {...props}
-        pagination={dataSource?.length ? footerPagination : false}
+        pagination={dataSource?.length && pagination ? footerPagination : false}
         title={renderHeader}
         /* eslint-disable-next-line @typescript-eslint/ban-ts-ignore */
         // @ts-ignore
