@@ -34,8 +34,8 @@ const Search: React.FC<SearchProps> = ({
 
   const ref = React.useRef<HTMLDivElement>(null);
   const inputRef = React.useRef<HTMLInputElement>(null);
-  const menuItemWidthOffset = 16;
-
+  const MENU_WIDTH_OFFSET = 16;
+  const DEFAULT_VISIBLE_ROWS = 5;
   useEffect(() => {
     suggestions && setFilteredSuggestions(suggestions);
   }, [suggestions]);
@@ -165,10 +165,10 @@ const Search: React.FC<SearchProps> = ({
   };
   const getMenuListWidth = React.useCallback((): number => {
     if (width) {
-      return width - menuItemWidthOffset;
+      return width - MENU_WIDTH_OFFSET;
     }
-    if (ref && ref !== null && ref.current && ref.current.clientWidth > menuItemWidthOffset) {
-      return ref.current.clientWidth - menuItemWidthOffset;
+    if (ref && ref !== null && ref.current && ref.current.clientWidth > MENU_WIDTH_OFFSET) {
+      return ref.current.clientWidth - MENU_WIDTH_OFFSET;
     }
     return 0;
   }, [width, ref]);
@@ -200,6 +200,7 @@ const Search: React.FC<SearchProps> = ({
   const renderRecentItems = React.useCallback(() => {
     return (
       recent &&
+      recentDisplayProps &&
       !label &&
       hasSomeElement(filteredRecent) && (
         <>
@@ -209,7 +210,7 @@ const Search: React.FC<SearchProps> = ({
           <SearchItemList
             data={filteredRecent}
             width={getMenuListWidth()}
-            visibleRows={recentDisplayProps.visibleRows || 5}
+            visibleRows={recentDisplayProps.visibleRows || DEFAULT_VISIBLE_ROWS}
             rowHeight={recentDisplayProps.rowHeight}
             highlight={value}
             onItemClick={selectFilter}
@@ -227,15 +228,12 @@ const Search: React.FC<SearchProps> = ({
     recent,
     selectFilter,
     value,
-    recentDisplayProps.visibleRows,
-    recentDisplayProps.rowHeight,
-    recentDisplayProps.itemRender,
-    recentDisplayProps.title,
-    recentDisplayProps.tooltip,
+    recentDisplayProps,
   ]);
   const renderParameters = React.useCallback(() => {
     return (
       parameters &&
+      parametersDisplayProps &&
       !label &&
       hasSomeElement(filteredParameters) && (
         <>
@@ -245,7 +243,7 @@ const Search: React.FC<SearchProps> = ({
           <SearchItemList
             data={filteredParameters}
             width={getMenuListWidth()}
-            visibleRows={parametersDisplayProps.visibleRows || 5}
+            visibleRows={parametersDisplayProps.visibleRows || DEFAULT_VISIBLE_ROWS}
             rowHeight={parametersDisplayProps.rowHeight}
             highlight={value}
             onItemClick={(item): void => selectFilter(item)}
@@ -261,15 +259,12 @@ const Search: React.FC<SearchProps> = ({
     value,
     getMenuListWidth,
     selectFilter,
-    parametersDisplayProps.visibleRows,
-    parametersDisplayProps.rowHeight,
-    parametersDisplayProps.itemRender,
-    parametersDisplayProps.title,
-    parametersDisplayProps.tooltip,
+    parametersDisplayProps,
   ]);
   const renderSuggestions = React.useCallback(() => {
     return (
       suggestions &&
+        suggestionsDisplayProps &&
       parameterValue &&
       !resultChoosed &&
       hasSomeElement(filteredSuggestions) && (
@@ -280,7 +275,7 @@ const Search: React.FC<SearchProps> = ({
           <SearchItemList
             data={filteredSuggestions}
             width={getMenuListWidth()}
-            visibleRows={suggestionsDisplayProps.visibleRows || 5}
+            visibleRows={suggestionsDisplayProps.visibleRows || DEFAULT_VISIBLE_ROWS}
             rowHeight={suggestionsDisplayProps.rowHeight}
             highlight={value}
             onItemClick={selectResult}
@@ -297,11 +292,7 @@ const Search: React.FC<SearchProps> = ({
     resultChoosed,
     selectResult,
     value,
-    suggestionsDisplayProps.visibleRows,
-    suggestionsDisplayProps.rowHeight,
-    suggestionsDisplayProps.itemRender,
-    suggestionsDisplayProps.title,
-    suggestionsDisplayProps.tooltip,
+    suggestionsDisplayProps,
   ]);
   return (
     <S.SearchWrapper ref={ref} className="SearchWrapper" width={width}>

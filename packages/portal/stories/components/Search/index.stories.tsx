@@ -111,8 +111,8 @@ const stories = {
           ),
         }}
         suggestionsDisplayProps={{
-          tooltip: text('Set suggestions tooltip', 'Suggestions'),
-          title: text('Set suggestions title', 'Suggestions'),
+          tooltip: text('Set suggestions tooltip', 'Suggest'),
+          title: text('Set suggestions title', 'Suggest'),
           rowHeight: 32,
           visibleRows: number('Set suggestions visible items',6,{min:1}),
           itemRender: (item: FilterElement) => <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>,
@@ -164,8 +164,8 @@ const stories = {
           ),
         }}
         suggestionsDisplayProps={{
-          tooltip: text('Set suggestions tooltip', 'Suggestions'),
-          title: text('Set suggestions title', 'Suggestions'),
+          tooltip: text('Set suggestions tooltip', 'Suggest'),
+          title: text('Set suggestions title', 'Suggest'),
           rowHeight: 32,
           visibleRows: number('Set suggestions visible items',6,{min:1}),
           itemRender: (item: FilterElement) => <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>,
