@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.31](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.0.30...@synerise/ds-search@0.0.31) (2020-04-22)
+
+
+### Bug Fixes
+
+* **search:** added divider, fixed bugs with enter press ([a28fee6](https://github.com/Synerise/synerise-design/commit/a28fee6eb2c78547c3c67dc03aad733224e664fb))
+
+
+
+
+
 ## [0.0.30](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.0.29...@synerise/ds-search@0.0.30) (2020-04-22)
 
 

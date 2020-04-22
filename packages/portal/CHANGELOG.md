@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.56.3](https://github.com/synerise/synerise-design/compare/portal@0.56.2...portal@0.56.3) (2020-04-22)
+
+
+### Bug Fixes
+
+* **search:** added divider, fixed bugs with enter press ([a28fee6](https://github.com/synerise/synerise-design/commit/a28fee6eb2c78547c3c67dc03aad733224e664fb))
+
+
+
+
+
 ## [0.56.2](https://github.com/synerise/synerise-design/compare/portal@0.56.1...portal@0.56.2) (2020-04-22)
 
 
