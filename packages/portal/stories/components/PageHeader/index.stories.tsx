@@ -2,18 +2,18 @@ import PageHeader from '@synerise/ds-page-header';
 
 import * as React from 'react';
 import { action } from '@storybook/addon-actions';
-import Tabs from '@synerise/ds-tabs/dist/Tabs';
+import Tabs from '@synerise/ds-tabs';
 import { withState } from '@dump247/storybook-state';
-import Icon from '@synerise/ds-icon/dist/Icon';
-import { AngleDownS, ArrowRightCircleM } from '@synerise/ds-icon/dist/icons';
-import Button from '@synerise/ds-button/dist/Button';
+import Icon from '@synerise/ds-icon/';
+import { AngleDownS, ArrowRightCircleM, MailM } from '@synerise/ds-icon/dist/icons';
+import Button from '@synerise/ds-button';
 import { boolean, number, select } from '@storybook/addon-knobs';
-import Avatar from '@synerise/ds-avatar/dist/Avatar';
-import Badge from 'antd/lib/badge';
+import Avatar from '@synerise/ds-avatar';
+import Badge from '@synerise/ds-badge';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 
 const shapes = ['circle', 'square'] as const;
-const statuses = ['error', 'default', 'success'] as const;
+const statuses = ['active', 'inactive', 'blocked'] as const;
 const backgroundColors = [
   'red',
   'green',
@@ -90,8 +90,9 @@ const stories = {
       onGoBack={action('goBack')}
       bar={
         <>
-          <br />
-          <br />
+          <Button type='tertiary'>
+            Function
+          </Button>
         </>
       }
       inlineEdit={{
@@ -113,15 +114,17 @@ const stories = {
         </Button>
       }
       avatar={
-        <Badge status={select('status', statuses, 'success')}>
+        <Badge status='active'>
           <Avatar
             backgroundColor={select('backgroundColors', backgroundColors, 'red')}
+            backgroundColorHue={'100'}
             disabled={boolean('disabled', false)}
-            icon={'mail'}
             hasStatus
             shape={select('shape', shapes, 'circle')}
-            size={number('size', 40)}
-          />
+            size={select('size', ['small', 'medium', 'large', 'extraLarge'],'large')}
+          >
+            <Icon component={<MailM />} color={theme.palette['red-600']} />
+          </Avatar>
         </Badge>
       }
       tabs={
