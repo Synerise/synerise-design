@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.29](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.0.28...@synerise/ds-search@0.0.29) (2020-04-22)
+
+
+### Bug Fixes
+
+* **search:** added consts, simplifed callbacks deps ([46db54c](https://github.com/Synerise/synerise-design/commit/46db54cdf8a82cb70d0535bdcb629fbb24eb9bfd))
+* **search:** added renderers to props, fixed scrollbar ([1ba7972](https://github.com/Synerise/synerise-design/commit/1ba797293619c449983f326f3a5537a0689fa4e3))
+* **search:** fixing the build ([9780b7d](https://github.com/Synerise/synerise-design/commit/9780b7dfdef7924a5cf30dc8972d1120671a1fef))
+
+
+
+
+
 ## [0.0.28](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.0.27...@synerise/ds-search@0.0.28) (2020-04-21)
 
 

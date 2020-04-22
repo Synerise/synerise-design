@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.2.0...@synerise/ds-menu@0.2.1) (2020-04-22)
+
+
+### Bug Fixes
+
+* **search:** added renderers to props, fixed scrollbar ([1ba7972](https://github.com/Synerise/synerise-design/commit/1ba797293619c449983f326f3a5537a0689fa4e3))
+
+
+
+
+
 # [0.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.1.4...@synerise/ds-menu@0.2.0) (2020-04-21)
 
 

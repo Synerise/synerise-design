@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-scrollbar@0.0.10...@synerise/ds-scrollbar@0.0.11) (2020-04-22)
+
+
+### Bug Fixes
+
+* **search:** added renderers to props, fixed scrollbar ([1ba7972](https://github.com/Synerise/synerise-design/commit/1ba797293619c449983f326f3a5537a0689fa4e3))
+
+
+
+
+
 ## [0.0.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-scrollbar@0.0.9...@synerise/ds-scrollbar@0.0.10) (2020-04-15)
 
 **Note:** Version bump only for package @synerise/ds-scrollbar

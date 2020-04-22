@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.55.2](https://github.com/synerise/synerise-design/compare/portal@0.55.1...portal@0.55.2) (2020-04-22)
+
+
+### Bug Fixes
+
+* **search:** added consts, simplifed callbacks deps ([46db54c](https://github.com/synerise/synerise-design/commit/46db54cdf8a82cb70d0535bdcb629fbb24eb9bfd))
+* **search:** added renderers to props, fixed scrollbar ([1ba7972](https://github.com/synerise/synerise-design/commit/1ba797293619c449983f326f3a5537a0689fa4e3))
+
+
+
+
+
 ## [0.55.1](https://github.com/synerise/synerise-design/compare/portal@0.55.0...portal@0.55.1) (2020-04-21)
 
 
