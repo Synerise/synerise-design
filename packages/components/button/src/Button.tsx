@@ -8,6 +8,7 @@ import { JustifyContentProperty } from 'csstype';
 import Icon from '@synerise/ds-icon';
 import SpinnerM from '@synerise/ds-icon/dist/icons/SpinnerM';
 import AntdButton, * as S from './Button.styles';
+import Expander from './Expander/Expander';
 
 export type Props = Omit<ButtonProps, 'type'> & {
   /**
@@ -69,9 +70,13 @@ export type Props = Omit<ButtonProps, 'type'> & {
   onClick?: (event: React.MouseEvent<HTMLElement>) => void;
 };
 
+type IButton<Props> = React.FC<Props> & {
+  Expander: React.ReactNode;
+}
+
 const RIPPLE_ANIMATION_OFFSET = 50;
 
-const Button: React.FC<Props> = ({
+const Button: IButton<Props> = ({
   type = 'secondary',
   mode,
   justifyContent = 'center',
@@ -132,5 +137,6 @@ const Button: React.FC<Props> = ({
     </AntdButton>
   );
 };
+Button.Expander = (props: any): React.ReactNode =>(Expander(props)) ;
 
 export default Button;

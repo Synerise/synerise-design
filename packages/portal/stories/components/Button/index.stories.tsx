@@ -174,6 +174,22 @@ const stories = {
       </div>
     );
   },
+  expander: () => {
+    const defaultProps = getDefaultProps();
+    const props = {
+      ...defaultProps,
+      style: {
+        margin: 4,
+      },
+    } as object;
+    return (
+      <div style={getBackgroundStyles(props.type)}>
+        <Button.Expander>
+
+        </Button.Expander>
+      </div>
+    );
+  },
 };
 
 export default {
