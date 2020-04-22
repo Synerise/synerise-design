@@ -1,13 +1,14 @@
 import * as React from 'react';
 import Search from '@synerise/ds-search';
 import VarTypeStringM from '@synerise/ds-icon/dist/icons/VarTypeStringM';
-import {  number, text } from '@storybook/addon-knobs';
+import { number, text } from '@storybook/addon-knobs';
 import { VarTypeListM, VarTypeNumberM } from '@synerise/ds-icon/dist/icons';
 import { SearchInput, SearchItemList } from '@synerise/ds-search/dist/Elements';
 import { FilterElement } from '@synerise/ds-search/dist/Search.types';
 import Menu from '@synerise/ds-menu';
 import Icon from '@synerise/ds-icon';
 import { getItemsWithAvatar, getSuggestions } from './dataPopulator';
+import Divider from '@synerise/ds-divider';
 
 const decorator = storyFn => (
   <div style={{ width: '100vw', position: 'absolute', left: '0', top: '20vh' }}>
@@ -87,11 +88,11 @@ const stories = {
 
     const recentTitle = text('Set recent title', 'Recent');
     const recentTooltip = text('Set recent tooltip', 'Recent');
-    const recentCount = number('Set recent count',3,{min:1,max:recent.length});
+    const recentCount = number('Set recent count', 3, { min: 1, max: recent.length });
 
     const parametersTitle = text('Set search in title', 'Search in');
     const parametersTooltip = text('Set search in tooltip', 'Search in');
-    const parametersCount = number('Set search in count',6,{min:1,max:parameters.length});
+    const parametersCount = number('Set search in count', 6, { min: 1, max: parameters.length });
 
     const suggestionsTitle = text('Set suggestions title', 'Suggest');
     const suggestionsTooltip = text('Set suggestions tooltip', 'Suggest');
@@ -100,8 +101,8 @@ const stories = {
       <Search
         clearTooltip="Clear"
         placeholder="Search"
-        parameters={parameters.slice(0,parametersCount)}
-        recent={recent.slice(0,recentCount)}
+        parameters={parameters.slice(0, parametersCount)}
+        recent={recent.slice(0, recentCount)}
         suggestions={suggestions}
         value={value}
         parameterValue={filterValue}
@@ -119,6 +120,12 @@ const stories = {
           rowHeight: 32,
           visibleRows: 3,
           itemRender: (item: FilterElement) => <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>,
+          divider: (
+            <div style={{ padding: '12px', paddingBottom: '0px' }}>
+              {' '}
+              <Divider dashed={true} />{' '}
+            </div>
+          ),
         }}
         parametersDisplayProps={{
           tooltip: parametersTooltip,
@@ -142,8 +149,6 @@ const stories = {
           visibleRows: 6,
           itemRender: (item: FilterElement) => <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>,
         }}
-
-
       />
     );
   },
@@ -154,11 +159,11 @@ const stories = {
 
     const recentTitle = text('Set recent title', 'Recent');
     const recentTooltip = text('Set recent tooltip', 'Recent');
-    const recentCount = number('Set recent count',3,{min:1,max:recentWithAvatars.length});
+    const recentCount = number('Set recent count', 3, { min: 1, max: recentWithAvatars.length });
 
     const parametersTitle = text('Set search in title', 'Search in');
     const parametersTooltip = text('Set search in tooltip', 'Search in');
-    const parametersCount = number('Set search in count',6,{min:1,max:parameters.length});
+    const parametersCount = number('Set search in count', 6, { min: 1, max: parameters.length });
 
     const suggestionsTitle = text('Set suggestions title', 'Suggest');
     const suggestionsTooltip = text('Set suggestions tooltip', 'Suggest');
@@ -166,8 +171,8 @@ const stories = {
       <Search
         clearTooltip="Clear"
         placeholder="Search"
-        parameters={parameters.slice(0,parametersCount)}
-        recent={recentWithAvatars.slice(0,recentCount)}
+        parameters={parameters.slice(0, parametersCount)}
+        recent={recentWithAvatars.slice(0, recentCount)}
         suggestions={suggestions}
         value={value}
         parameterValue={filterValue}
@@ -184,7 +189,17 @@ const stories = {
           title: recentTitle,
           rowHeight: 50,
           visibleRows: 3,
-          itemRender: (item: FilterElement) => <Menu.Item onItemHover={(): void => {}} {...item} style={{paddingLeft:'12px'}}>{item.text}</Menu.Item>
+          itemRender: (item: FilterElement) => (
+            <Menu.Item onItemHover={(): void => {}} {...item} style={{ paddingLeft: '12px' }}>
+              {item.text}
+            </Menu.Item>
+          ),
+          divider: (
+            <div style={{ padding: '12px', paddingBottom: '0px' }}>
+              {' '}
+              <Divider dashed={true} />{' '}
+            </div>
+          ),
         }}
         parametersDisplayProps={{
           tooltip: parametersTooltip,
@@ -192,10 +207,7 @@ const stories = {
           rowHeight: 32,
           visibleRows: 6,
           itemRender: (item: FilterElement) => (
-            <Menu.Item
-              onItemHover={(): void => {}}
-              prefixel={item && <Icon component={item && item.icon} />}
-            >
+            <Menu.Item onItemHover={(): void => {}} prefixel={item && <Icon component={item && item.icon} />}>
               {item && item.text}
             </Menu.Item>
           ),
@@ -207,7 +219,6 @@ const stories = {
           visibleRows: 6,
           itemRender: (item: FilterElement) => <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>,
         }}
-
       />
     );
   },

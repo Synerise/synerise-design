@@ -23,7 +23,6 @@ export type SearchProps = {
   value: string;
   parameterValue: string;
   onParameterValueChange: (parameterValue: string) => void;
-  divider?: React.ReactNode;
   width?: number;
   recentDisplayProps: DataSetProps;
   suggestionsDisplayProps: DataSetProps;
