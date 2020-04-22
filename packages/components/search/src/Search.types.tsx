@@ -11,6 +11,7 @@ export type DataSetProps ={
   rowHeight: number;
   visibleRows: number;
   itemRender: (item: FilterElement) => (React.ReactElement);
+  divider?: React.ReactElement;
 }
 export type SearchProps = {
   placeholder: string;

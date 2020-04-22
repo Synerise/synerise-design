@@ -1,19 +1,7 @@
 import styled, { keyframes } from 'styled-components';
 
-const RIGHT_BORDER_OFFSET = 0;
 const LABEL_LEFT_OFFSET = 7;
 
-export const inputExpandAnimation = keyframes`
-  0% {
-     direction: rtl;
-  }
-  90% {
-     direction: rtl;
-  }
-  100% {
-    direction: ltr;
-  }
-`;
 export const openDropdownAnimation = keyframes`
   0% {
     opacity:0;
@@ -29,6 +17,12 @@ export const openDropdownAnimation = keyframes`
   }
 `;
 
+export const SearchInputWrapper = styled.div<{ width?: number }>`
+  ${(props): string | false => `width:${props.width}px;`}
+  position: relative;
+  direction: rtl;
+  overflow-x: hidden;
+`;
 export const SearchWrapper = styled.div<{ width?: number }>`
   ${(props): string | false => `width:${props.width}px;`}
   position: relative;
@@ -82,8 +76,9 @@ export const Label = styled.div`
   color: ${(props): string => props.theme.palette['blue-600']};
 `;
 
-export const SearchButton = styled.div<{ isOpen: boolean; inputFocused: boolean }>`
+export const SearchButton = styled.div<{ isOpen: boolean; inputFocused: boolean; clickable?: boolean }>`
   position: absolute;
+  ${(props): string | false => !props.clickable && `pointer-events:none !important;`}
   z-index: 1;
   top: 0;
   right: 0;
@@ -91,13 +86,18 @@ export const SearchButton = styled.div<{ isOpen: boolean; inputFocused: boolean 
   transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
   svg {
     fill: ${(props): string =>
-      props.inputFocused ? props.theme.palette['blue-600'] : props.theme.palette['grey-600']} !important;
+      props.inputFocused && props.isOpen
+        ? props.theme.palette['blue-600']
+        : props.theme.palette['grey-600']} !important;
   }
+
   .btn-search-open:hover {
     background: transparent !important;
   }
   && {
-    ${(props): string | false =>!!props.isOpen && `
+    ${(props): string | false =>
+      !!props.isOpen &&
+      `
     .btn-focus{
        border-color: transparent;
        box-shadow: none;
@@ -108,23 +108,25 @@ export const SearchButton = styled.div<{ isOpen: boolean; inputFocused: boolean 
       padding: 4px;
       transition: padding-right 0.15s;
       transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+      ${(props): string | false => !props.clickable && `pointer-events:none !important;`}
     }
   }
 `;
-export const SearchInner = styled.div<{ hasValue: boolean; withDropdown: boolean}>`
-    direction:ltr;
-    margin-bottom: 0;
+export const SearchInner = styled.div<{ hasValue: boolean; alwaysHighlight: boolean }>`
+  direction: ltr;
+  margin-bottom: 0;
   ${(props): string | false =>
-  (props.hasValue || props.withDropdown) &&
+    (props.hasValue || props.alwaysHighlight) &&
     `
-  input{
+  input, input:hover{
         box-shadow: inset 0 0 0 1px ${props.theme.palette['blue-600']};
         border-color: ${props.theme.palette['blue-600']};
         background-color: ${props.theme.palette['blue-050']};
    }
+   
   `}
 `;
-export const SearchInputWrapper = styled.div<{ offset: number }>`
+export const SearchInputContent = styled.div<{ offset: number }>`
   overflow: hidden;
   width: 0;
   direction: rtl;
@@ -134,7 +136,7 @@ export const SearchInputWrapper = styled.div<{ offset: number }>`
   input {
     opacity: 0;
   }
-  input.ant-input{
+  input.ant-input {
     transition: padding-left 0.1s ease !important;
   }
   &.is-open {
@@ -143,7 +145,6 @@ export const SearchInputWrapper = styled.div<{ offset: number }>`
     input {
       padding-left: ${(props): string => (props.offset ? `${Math.round(props.offset + LABEL_LEFT_OFFSET)}px` : '12px')};
       opacity: 1;
-      width: calc(100% + ${RIGHT_BORDER_OFFSET}px);
     }
   }
 `;
@@ -197,11 +198,9 @@ export const HeaderIconWrapper = styled.div`
 
 export const ListWrapper = styled.div`
   & > .search-list-open {
-    width:100%;
+    width: 100%;
     animation: ${openDropdownAnimation} 0.3s ease-in-out 0s 1;
-    opacity: 1; 
-    width: calc(100% + ${RIGHT_BORDER_OFFSET}px);
-    margin-right: -${RIGHT_BORDER_OFFSET}px;
+    opacity: 1;
     display: initial;
     padding: 8px;
   }

@@ -15,6 +15,6 @@ export type SearchInputProps = {
   focusTrigger?: boolean;
   toggleTrigger?: boolean;
   onToggle?: (isOpen: boolean) => void;
-  withDropdown?: boolean;
-  expanded?: boolean;
+  alwaysHighlight?: boolean;
+  alwaysExpanded?: boolean;
 };

@@ -13,7 +13,10 @@ const rowRenderer = (
   highlight: Pick<MenuItemProps,'highlight'> | string | undefined,
 ) => ({ key, index, style }: ListRowProps,): React.ReactElement => {
   const item = data && data[index];
-  const RenderedItem = React.cloneElement(itemRender(item),{key,style,highlight,onClick:()=>onItemClick && onItemClick(item)})
+  const itemReturnedFromRenderer = itemRender(item);
+  const rendererCustomStyles = itemReturnedFromRenderer && itemReturnedFromRenderer.props && itemReturnedFromRenderer.props.style || {};
+  const mergedStyles = {...rendererCustomStyles,...style};
+  const RenderedItem = React.cloneElement(itemReturnedFromRenderer, {key,style:mergedStyles,highlight,onClick:()=>onItemClick && onItemClick(item)});
   return RenderedItem;
 };
 

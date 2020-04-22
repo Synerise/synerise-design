@@ -29,7 +29,7 @@ const stories = {
 };
 
 export default {
-  name: 'Components|SearchBar',
+  name: 'Search|SearchBar',
   decorator,
   config: {},
   stories,
