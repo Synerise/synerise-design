@@ -1,7 +1,34 @@
 import styled, { keyframes } from 'styled-components';
 
-const RIGHT_BORDER_OFFSET = 4;
+const RIGHT_BORDER_OFFSET = 0;
 const LABEL_LEFT_OFFSET = 7;
+
+export const inputExpandAnimation = keyframes`
+  0% {
+     direction: rtl;
+  }
+  90% {
+     direction: rtl;
+  }
+  100% {
+    direction: ltr;
+  }
+`;
+export const openDropdownAnimation = keyframes`
+  0% {
+    opacity:0;
+    overflow:hidden;
+  }
+  50% {
+    opacity:0;
+    overflow:hidden;
+  }
+  100% {
+    opacity: 1;
+ 
+  }
+`;
+
 export const SearchWrapper = styled.div<{ width?: number }>`
   ${(props): string | false => `width:${props.width}px;`}
   position: relative;
@@ -70,6 +97,12 @@ export const SearchButton = styled.div<{ isOpen: boolean; inputFocused: boolean 
     background: transparent !important;
   }
   && {
+    ${(props): string | false =>!!props.isOpen && `
+    .btn-focus{
+       border-color: transparent;
+       box-shadow: none;
+    }
+    `}
     button {
       transition: background 0.2s;
       padding: 4px;
@@ -78,9 +111,11 @@ export const SearchButton = styled.div<{ isOpen: boolean; inputFocused: boolean 
     }
   }
 `;
-export const SearchInner = styled.div<{ hasValue: boolean }>`
+export const SearchInner = styled.div<{ hasValue: boolean; withDropdown: boolean}>`
+    direction:ltr;
+    margin-bottom: 0;
   ${(props): string | false =>
-    props.hasValue &&
+  (props.hasValue || props.withDropdown) &&
     `
   input{
         box-shadow: inset 0 0 0 1px ${props.theme.palette['blue-600']};
@@ -93,18 +128,15 @@ export const SearchInputWrapper = styled.div<{ offset: number }>`
   overflow: hidden;
   width: 0;
   direction: rtl;
-  position: relative;
   transition: width 0.2s;
   transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
-  > div {
-    direction: ltr;
-    margin-bottom: 0;
-  }
 
   input {
     opacity: 0;
   }
-
+  input.ant-input{
+    transition: padding-left 0.1s ease !important;
+  }
   &.is-open {
     width: 100%;
     overflow: visible;
@@ -125,7 +157,7 @@ export const ClearButton = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 11px 0 10px;
+  padding: 0 10px 0 10px;
 `;
 
 export const List = styled.div<{ isOpen?: boolean }>`
@@ -162,21 +194,10 @@ export const HeaderIconWrapper = styled.div`
     fill: ${(props): string => props.theme.palette['grey-400']};
   }
 `;
-export const openDropdownAnimation = keyframes`
-  0% {
-    opacity:0;
-  }
-  50% {
-    opacity:0;
-    width:0;
-  }
-  100% {
-    opacity: 1;
-    width:100%;
-  }
-`;
+
 export const ListWrapper = styled.div`
   & > .search-list-open {
+    width:100%;
     animation: ${openDropdownAnimation} 0.3s ease-in-out 0s 1;
     opacity: 1; 
     width: calc(100% + ${RIGHT_BORDER_OFFSET}px);

@@ -8,11 +8,12 @@ export type ScrollbarProps = {
   classes?: string;
   maxHeight?: string | number;
   absolute?: boolean;
+  onScroll?: (e: React.UIEvent) => void;
 };
 
-const Scrollbar: React.FC<ScrollbarProps> = ({ children, classes, maxHeight, absolute = false }) => {
+const Scrollbar: React.FC<ScrollbarProps> = ({ children, classes, maxHeight, absolute = false ,onScroll}) => {
   return (
-    <PerfectScrollbar>
+    <PerfectScrollbar onScroll={onScroll}>
       <S.ScrollbarContent className={classes} style={{ maxHeight }}>
         <S.ScrollbarWrapper absolute={absolute}>{children}</S.ScrollbarWrapper>
       </S.ScrollbarContent>

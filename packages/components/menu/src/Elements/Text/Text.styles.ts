@@ -215,9 +215,9 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
         !props.disabled &&
         `
         .ds-menu-prefix > ${IconContainer} > svg {
-          fill: ${props.danger ? props.theme.palette['red-600'] : props.theme.palette['blue-600']};
+          fill: ${props.danger ? props.theme.palette['red-600'] : props.theme.palette['blue-600']} !important;
         }
-        color: ${props.danger ? props.theme.palette['red-600'] : props.theme.palette['blue-600']};
+        color: ${props.danger ? props.theme.palette['red-600'] : props.theme.palette['blue-600']} !important;
         background: ${props.danger ? props.theme.palette['red-050'] : props.theme.palette['grey-050']};
       `}
     }

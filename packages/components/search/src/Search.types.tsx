@@ -5,15 +5,15 @@ export type FilterElement = {
   filter?: string;
   icon?: React.ReactNode;
 };
-
+export type DataSetProps ={
+  title: string;
+  tooltip: string;
+  rowHeight: number;
+  visibleRows: number;
+  itemRender: (item: FilterElement) => (React.ReactElement);
+}
 export type SearchProps = {
   placeholder: string;
-  parametersTitle?: string;
-  parametersTooltip?: string;
-  recentTitle?: string;
-  recentTooltip?: string;
-  suggestionsTitle?: string;
-  suggestionsTooltip?: string;
   clearTooltip: string | React.ReactNode;
   parameters?: FilterElement[];
   recent?: FilterElement[];
@@ -24,4 +24,7 @@ export type SearchProps = {
   onParameterValueChange: (parameterValue: string) => void;
   divider?: React.ReactNode;
   width?: number;
+  recentDisplayProps: DataSetProps;
+  suggestionsDisplayProps: DataSetProps;
+  parametersDisplayProps: DataSetProps;
 };
