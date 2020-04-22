@@ -15,7 +15,6 @@ const Search: React.FC<SearchProps> = ({
   value,
   parameterValue,
   onParameterValueChange,
-  divider,
   clearTooltip,
   width,
   parametersDisplayProps,
@@ -97,37 +96,25 @@ const Search: React.FC<SearchProps> = ({
       }
       if (e.key === 'Enter' && inputOpen) {
         const narrowedParameters = filteredParameters && filteredParameters.length;
-        const narrowedSuggestions = filteredSuggestions && filteredSuggestions.length;
         const narrowedRecent = filteredRecent && filteredRecent.length;
-
-        if (narrowedParameters === 1 && narrowedRecent === 0) {
+        if (narrowedParameters === 1 && narrowedRecent === 0 && !parameterValue) {
           filteredParameters && selectFilter(filteredParameters[0]);
           setFilteredParameters(parameters);
           return;
         }
-        if (narrowedSuggestions === 1) {
-          filteredSuggestions && selectResult(filteredSuggestions[0]);
-          setFilteredSuggestions(suggestions);
-          return;
-        }
-        if (narrowedRecent === 1 && narrowedParameters === 0) {
-          filteredRecent && selectFilter(filteredRecent[0]);
-          setFilteredParameters(parameters);
-        }
+        setResultChoosed(true);
       }
     },
     [
       parameters,
       recent,
       selectFilter,
-      selectResult,
-      suggestions,
       value,
       filteredParameters,
       filteredRecent,
-      filteredSuggestions,
       inputOpen,
       onParameterValueChange,
+      parameterValue,
     ]
   );
 
@@ -213,20 +200,19 @@ const Search: React.FC<SearchProps> = ({
             visibleRows={recentDisplayProps.visibleRows || DEFAULT_VISIBLE_ROWS}
             rowHeight={recentDisplayProps.rowHeight}
             highlight={value}
-            onItemClick={selectFilter}
-            divider={divider}
+            onItemClick={selectResult}
+            divider={recentDisplayProps.divider}
             itemRender={recentDisplayProps.itemRender}
           />
         </>
       )
     );
   }, [
-    divider,
     filteredRecent,
     getMenuListWidth,
     label,
     recent,
-    selectFilter,
+    selectResult,
     value,
     recentDisplayProps,
   ]);
@@ -248,6 +234,7 @@ const Search: React.FC<SearchProps> = ({
             highlight={value}
             onItemClick={(item): void => selectFilter(item)}
             itemRender={parametersDisplayProps.itemRender}
+            divider={parametersDisplayProps.divider}
           />
         </>
       )
@@ -280,6 +267,7 @@ const Search: React.FC<SearchProps> = ({
             highlight={value}
             onItemClick={selectResult}
             itemRender={suggestionsDisplayProps.itemRender}
+            divider={suggestionsDisplayProps.divider}
           />
         </>
       )
@@ -297,7 +285,7 @@ const Search: React.FC<SearchProps> = ({
   return (
     <S.SearchWrapper ref={ref} className="SearchWrapper" width={width}>
       {renderInputWrapper()}
-      <S.ListWrapper
+      {listVisible && <S.ListWrapper
         onClick={(): void => {
           focusInputComponent(!focusTrigger);
         }}
@@ -309,7 +297,7 @@ const Search: React.FC<SearchProps> = ({
           {renderParameters()}
           {renderSuggestions()}
         </S.List>
-      </S.ListWrapper>
+      </S.ListWrapper>}
     </S.SearchWrapper>
   );
 };
