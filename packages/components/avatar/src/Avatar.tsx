@@ -33,7 +33,7 @@ export interface AvatarProps extends Omit<AntAvatarProps, 'size' | 'icon'> {
    */
   size?: size;
   /**
-   * Provides a custom component as a child. The prop icon has a greater priority if both are provided
+   * Provides a custom component as a child. If both are provided, the prop icon has a greater priority 
    */
   iconComponent?: React.ReactNode;
   /**
@@ -41,7 +41,7 @@ export interface AvatarProps extends Omit<AntAvatarProps, 'size' | 'icon'> {
    */
   backgroundColor?: color;
   /**
-   * Shade of the avatar background color
+   * Hue of the avatar background color
    */
   backgroundColorHue?: colorHue;
   /**

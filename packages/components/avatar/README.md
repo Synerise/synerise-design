@@ -14,11 +14,11 @@ import {version} from './package.json';
 
 ## General guidelines
 
-An avatar is an object used to represent a particular person in the application. The avatar is usually accompanied with the status (for example, **Active**, **Inactive**, **Blocked**) identifying availability of any person in the application.
+An avatar is an object used to represent a particular person in the application. The avatar is usually accompanied by the status (for example, **Active**, **Inactive**, **Blocked**) identifying the availability of any person in the application.
 
 
 - Use avatars to represent a persona in the application. It may be a user of the application or a customer in the CRM module.
-- You can use avatars to represent a general entity such as the campaign type, analysis type on a list in the application
+- You can use avatars to represent a general entity such as the campaign type or analysis type on a list in the application
 - Every time when you use an image to communicate a concept, it’s important to use descriptive alt text. This ensures users with accessibility as it lets screen readers to describe what’s in the image to people who are visually impaired.  
 
 ---  
@@ -29,7 +29,7 @@ An avatar is an object used to represent a particular person in the application.
 
 ![Avatar](avatar/2.png)
 
-1. Avatars contain an image that represents a user, a customer or entity. In the case when an image of a person is not uploaded, the application displays their initials instead (**3**).  
+1. Avatars contain an image that represents a user, a customer or entity. hen an image of a person is not uploaded, the application displays their initials instead (**3**).  
 2. To give users an idea about the status of a particular user, you can display a status on the avatar. For instance, an avatar can show if the user is active or inactive. 
 3. When a user haven't uploaded an image, the application users initials of the user to represent them.
 
@@ -45,7 +45,7 @@ Avatars are forms of proportional sides. Their shape is placed in a square or a 
 ### Shapes
 
 
-The shape of avatars can be both circular or square (make sure each corner has **3px radius**).
+The shape of avatars can be both circular or square (make sure each corner has a **3px radius**).
 
 ### Sizes
 
@@ -77,7 +77,7 @@ The **S**-sized avatars contain the **S**-sized icons of the **Standard icons se
 
 ## Avatar types
 
-We divide avatars into three types. Every type has its own use case. If a customer hasn't uploaded an image, the application automatically displays avatar with the initial of the customer. 
+We divide avatars into three types. Every type has its own use case. If a customer hasn't uploaded an image, the application automatically displays an avatar with the initials of the customer. 
 
 **Types of avatars:**
 
@@ -136,16 +136,19 @@ import { FileM} from "@synerise/ds-icon/dist/icons";
 ## Installation
 
 
-```static
+```jsx static
 npm i @synerise/ds-avatar
+```
 or
+
+```jsx static
 yarn add @synerise/ds-avatar
 ```
 
 ## Usage
 
 
-```static
+```jsx static
 import Avatar from '@synerise/ds-avatar'
 
 <Avatar
