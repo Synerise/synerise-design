@@ -48,8 +48,8 @@ const stories = {
     const [value, setValue] = React.useState<string>('');
     return (
       <SearchInput
-        placeholder={'Type here...'}
-        clearTooltip={'Clear value'}
+        clearTooltip="Clear"
+        placeholder="Search"
         onValueChange={value => {
           console.log(value);
           setValue(value);
@@ -66,8 +66,8 @@ const stories = {
     const [value, setValue] = React.useState<string>('');
     return (
       <SearchInput
-        placeholder={'Type here...'}
-        clearTooltip={'Clear value'}
+        clearTooltip="Clear"
+        placeholder="Search"
         onValueChange={value => {
           console.log(value);
           setValue(value);
