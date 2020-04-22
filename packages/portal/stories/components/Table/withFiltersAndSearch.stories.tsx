@@ -1,4 +1,4 @@
-import { boolean, select } from '@storybook/addon-knobs';
+import { boolean, number, select } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import { withState } from '@dump247/storybook-state';
 import { ItemsMenu, TableCell } from '@synerise/ds-table';
@@ -9,7 +9,7 @@ import {
   EditM,
   FileDownloadM, FilterM, Grid2M,
   OptionHorizontalM,
-  TrashM,
+  TrashM, VarTypeBooleanM, VarTypeDateM, VarTypeListM, VarTypeNumberM,
 } from '@synerise/ds-icon/dist/icons';
 import Table from '@synerise/ds-table';
 import Button from '@synerise/ds-button';
@@ -22,7 +22,11 @@ import * as moment from 'moment';
 import ItemFilter from '@synerise/ds-item-filter/dist/ItemFilter';
 import Result from '@synerise/ds-result';
 import ModalProxy from '@synerise/ds-modal';
-import { COLUMNS, EMPTY_FILTER, FILTERS } from './content/simpe.data';
+import { COLUMNS, EMPTY_FILTER, FILTERS } from './content/withFiltersAndSearch.data';
+import { FilterElement } from '@synerise/ds-search/dist/Search.types';
+import Divider from '@synerise/ds-divider';
+import Search from '@synerise/ds-search';
+import VarTypeStringM from '@synerise/ds-icon/dist/icons/VarTypeStringM';
 
 const decorator = (storyFn) => (
   <div style={{ padding: 20, width: '100vw', minWidth: '100%' }}>
@@ -89,6 +93,24 @@ const CELL_SIZES = {
   small: 'small',
 };
 
+const COLUMN_ICONS = {
+  text: <VarTypeStringM />,
+  number: <VarTypeNumberM />,
+  list: <VarTypeListM />,
+  boolean: <VarTypeBooleanM />,
+  date: <VarTypeDateM />
+};
+
+const parameters = COLUMNS.map((column) => ({
+  text: column.name,
+  icon: COLUMN_ICONS[column.type]
+}));
+
+const recent = dataSource.map(record => ({
+  text: record.name,
+  filter: 'name',
+}));
+
 const stories = {
   default: withState({
     selectedRows: [],
@@ -98,6 +120,9 @@ const stories = {
     columnManagerVisible: false,
     itemFilterVisible: false,
     modalVisible: false,
+    searchValue: '',
+    searchFilterValue: '',
+    searchSuggestions: []
   })(({store}) => {
     const { selectedRows, columns } = store.state;
 
@@ -182,11 +207,17 @@ const stories = {
       store.set({ itemFilterVisible: !store.state.itemFilterVisible });
     };
 
+    const filteredDataSource = () => {
+      return !store.state.searchValue ? dataSource : dataSource.filter(record => {
+        return record.name.toLowerCase().includes(store.state.searchValue.toLowerCase());
+      });
+    };
+
     return (
       <>
         <Table
-          title={`${dataSource.length} records`}
-          dataSource={dataSource}
+          title={`${filteredDataSource().length} records`}
+          dataSource={filteredDataSource()}
           columns={getColumns()}
           loading={boolean('Set loading state', false)}
           cellSize={select('Set cells size', CELL_SIZES, CELL_SIZES.default)}
@@ -234,7 +265,6 @@ const stories = {
             ],
             setRowSelection: handleSelectRow
           }}
-          onSearch={console.log}
           itemsMenu={
             <ItemsMenu>
               <Button onClick={action('Export')} type='secondary' mode='icon-label'>
@@ -250,6 +280,62 @@ const stories = {
                 Delete
               </Button>
             </ItemsMenu>
+          }
+          searchComponent={
+            <Search
+              clearTooltip="Clear"
+              placeholder="Search"
+              parameters={parameters.slice(0, number('Parameters count', 5))}
+              recent={recent.slice(0, number('Recent count', 5))}
+              suggestions={store.state.searchSuggestions}
+              value={store.state.searchValue}
+              parameterValue={store.state.searchFilterValue}
+              onValueChange={value => {
+                store.set({searchValue: value});
+              }}
+              onParameterValueChange={value => {
+                store.set({
+                  searchFilterValue: value,
+                  searchSuggestions: recent,
+                });
+
+              }}
+              recentDisplayProps={{
+                tooltip: 'Recent',
+                title: 'Recent',
+                rowHeight: 32,
+                visibleRows: 3,
+                itemRender: (item: FilterElement) => <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>,
+                divider: (
+                  <div style={{ padding: '12px', paddingBottom: '0px' }}>
+                    {' '}
+                    <Divider dashed={true} />{' '}
+                  </div>
+                ),
+              }}
+              parametersDisplayProps={{
+                tooltip: 'Parameters',
+                title: 'Parameters',
+                rowHeight: 32,
+                visibleRows: 6,
+                itemRender: (item: FilterElement) => (
+                  <Menu.Item
+                    highlight={store.state.searchValue}
+                    onItemHover={(): void => {}}
+                    prefixel={item && <Icon component={item && item.icon} />}
+                  >
+                    {item && item.text}
+                  </Menu.Item>
+                ),
+              }}
+              suggestionsDisplayProps={{
+                tooltip: 'Suggestions',
+                title: 'Suggestions',
+                rowHeight: 32,
+                visibleRows: 6,
+                itemRender: (item: FilterElement) => <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>,
+              }}
+            />
           }
         />
         <ColumnManager
@@ -288,7 +374,7 @@ const stories = {
 };
 
 export default {
-  name: 'Table|Table with filters',
+  name: 'Table|Table with filters and search',
   decorator,
   stories,
   Component: Table,

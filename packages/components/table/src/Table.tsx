@@ -33,6 +33,7 @@ function DSTable<T extends { key: React.ReactText }>(props: DSTableProps<T>): Re
     dataSource,
     roundedHeader,
     filters,
+    searchComponent,
   } = props;
 
   const footerPagination = React.useMemo((): object => {
@@ -75,6 +76,7 @@ function DSTable<T extends { key: React.ReactText }>(props: DSTableProps<T>): Re
         itemsMenu={itemsMenu}
         selection={selection}
         dataSource={dataSource}
+        searchComponent={searchComponent}
       />
     );
   }, [selection, title, onSearch, dataSource, filters, itemsMenu]);

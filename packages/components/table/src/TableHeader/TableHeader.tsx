@@ -1,7 +1,4 @@
 import * as React from 'react';
-import Icon from '@synerise/ds-icon';
-import { SearchM } from '@synerise/ds-icon/dist/icons';
-import { ChangeEvent } from 'react';
 import * as S from '../Table.styles';
 import FilterTrigger from '../FilterTrigger/FilterTrigger';
 import { Filter, RowSelection } from '../Table.types';
@@ -10,15 +7,23 @@ import TableSelection from './TableSelection';
 interface Props<T extends { key: React.ReactText }> {
   title?: React.ReactNode;
   filters?: Filter[];
-  onSearch?: (e: ChangeEvent<HTMLInputElement>) => void;
   selectedRows?: number;
   itemsMenu: React.ReactNode;
   selection?: RowSelection<T>;
   dataSource: T[];
+  searchComponent?: React.ReactNode;
 }
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
-const TableHeader: React.FC<Props> = ({ title, filters, onSearch, selectedRows, itemsMenu, selection, dataSource }) => {
+const TableHeader: React.FC<Props> = ({
+  title,
+  filters,
+  searchComponent,
+  selectedRows,
+  itemsMenu,
+  selection,
+  dataSource,
+}) => {
   const renderLeftSide = React.useMemo(() => {
     return selectedRows && selectedRows > 0 ? (
       <S.Left>
@@ -52,7 +57,7 @@ const TableHeader: React.FC<Props> = ({ title, filters, onSearch, selectedRows, 
             selected={filter.selected}
           />
         ))}
-        {onSearch && <Icon component={<SearchM />} />}
+        {searchComponent}
       </S.Right>
     </S.Header>
   );

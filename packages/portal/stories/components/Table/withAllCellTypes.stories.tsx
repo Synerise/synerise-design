@@ -9,7 +9,7 @@ import {
   MailM,
 } from '@synerise/ds-icon/dist/icons';
 import { TagShape } from '@synerise/ds-tags';
-import { COLUMNS } from './content/index.data';
+import { COLUMNS } from './content/withAllCellTypes.data';
 
 
 const decorator = (storyFn) => (
