@@ -3,8 +3,13 @@ import '@synerise/ds-core/dist/js/style';
 import { PopconfirmProps } from 'antd/lib/popconfirm';
 import './style/index.less';
 import AntdPopconfirm from './Popconfirm.styles';
+import ConfirmMessage, { ConfirmMessageProps } from './ConfirmMessage/ConfirmMessage';
 
-const Popconfirm: React.FC<PopconfirmProps> = ({ ...antdProps }) => {
+type PopconfirmType = React.FC<PopconfirmProps> & {
+  ConfirmMessage: React.FC<ConfirmMessageProps>;
+};
+
+const Popconfirm: PopconfirmType = ({ ...antdProps }) => {
   return (
     <AntdPopconfirm
       // eslint-disable-next-line react/jsx-props-no-spreading
@@ -12,5 +17,7 @@ const Popconfirm: React.FC<PopconfirmProps> = ({ ...antdProps }) => {
     />
   );
 };
+
+Popconfirm.ConfirmMessage = ConfirmMessage;
 
 export default Popconfirm;

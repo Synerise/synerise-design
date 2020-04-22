@@ -56,6 +56,21 @@ const stories = {
       </>
     );
   },
+  confirmMessage: () => {
+    return (
+      <Popconfirm.ConfirmMessage
+        title='Copied! Keep it somewhere safe.'
+        icon={<Icon component={<WarningFillM />} color={'#ffc300'} />}
+        displayDuration={number('Set confirm message display time', 2000)}
+        placement={select('Placement', placements, 'topLeft')}
+        onClick={(showMessage) => {showMessage()}}
+      >
+        <Button>
+          Click to show ConfirmMessage!
+        </Button>
+      </Popconfirm.ConfirmMessage>
+    )
+  }
 };
 
 export default {
