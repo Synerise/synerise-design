@@ -48,7 +48,7 @@ export const ConfirmMessage: React.FC<ConfirmMessageProps> = ({
 
   const handleClick = React.useCallback(() => {
     onClick && onClick(showMessage);
-  }, [setVisible, onClick]);
+  }, [onClick]);
 
   const content = React.useMemo(() => {
     return (
