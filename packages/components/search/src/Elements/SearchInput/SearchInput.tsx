@@ -25,11 +25,11 @@ const SearchInput: React.FC<SearchInputProps> = ({
   closeOnClickOutside,
   focusTrigger,
   toggleTrigger,
-  withDropdown,
-  expanded,
+  alwaysHighlight,
+  alwaysExpanded,
 }) => {
   const [firstRender, setFirstRender] = useState(true);
-  const [inputOpen, setInputOpen] = useState(expanded || false);
+  const [inputOpen, setInputOpen] = useState(alwaysExpanded || false);
   const [label, setLabel] = useState<FilterElement | null>();
   const [inputOffset, setInputOffset] = useState(0);
   const [focus, setFocus] = useState(false);
@@ -46,11 +46,11 @@ const SearchInput: React.FC<SearchInputProps> = ({
 
   const focusOnInput = React.useCallback((): void => {
     if (!firstRender) {
-      inputRef!==null && inputRef.current && inputRef.current.focus();
+      inputRef !== null && inputRef.current && inputRef.current.focus();
       setFocus(true);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[inputRef,firstRender,focus])
+  }, [inputRef, firstRender, focus]);
 
   React.useEffect(() => {
     if (filterLabel === null) {
@@ -88,7 +88,7 @@ const SearchInput: React.FC<SearchInputProps> = ({
     onClear('');
     setResultChoosed(false);
     focusOnInput();
-  }, [onValueChange, onClear,focusOnInput] );
+  }, [onValueChange, onClear, focusOnInput]);
 
   const change = React.useCallback(
     (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -99,44 +99,63 @@ const SearchInput: React.FC<SearchInputProps> = ({
     [onValueChange]
   );
 
-  const renderInputWrapper = React.useMemo((): ReactElement => (
-    <S.SearchInputWrapper className={inputOpen ? 'is-open' : 'search-input-wrapper'} offset={inputOffset} onClick={onClick}>
-      <S.LeftSide isOpen={inputOpen}>
-        {label && (
-          <S.Filter
-            ref={(reference): void => {
-              reference && setInputOffset(reference.getBoundingClientRect().width);
+  const renderSearchInputContent = React.useMemo(
+    (): ReactElement => (
+      <S.SearchInputContent
+        className={inputOpen ? 'is-open' : 'search-input-wrapper'}
+        offset={inputOffset}
+        onClick={(): void => {
+          focusOnInput();
+          setFocus(true);
+          onClick && onClick();
+        }}
+      >
+        <S.LeftSide isOpen={inputOpen}>
+          {label && (
+            <S.Filter
+              ref={(reference): void => {
+                reference && setInputOffset(reference.getBoundingClientRect().width);
+              }}
+            >
+              {label.icon && !resultChoosed && <Icon component={label.icon} />}
+              <span>{label.filter ? label.filter : label.text}</span>
+            </S.Filter>
+          )}
+        </S.LeftSide>
+        <S.SearchInner hasValue={!!value && value.length > 0} alwaysHighlight={!!alwaysHighlight}>
+          <Input
+            placeholder={placeholder}
+            ref={inputRef}
+            value={value}
+            onChange={change}
+            onKeyDown={onKeyDown}
+            onFocus={(): void => {
+              inputOpen && setFocus(true);
             }}
-          >
-            {label.icon && !resultChoosed && <Icon component={label.icon} />}
-            <span>{label.filter ? label.filter : label.text}</span>
-          </S.Filter>
-        )}
-      </S.LeftSide>
-      <S.SearchInner hasValue={!!value && value.length > 0} withDropdown={!!withDropdown}>
-        <Input
-          placeholder={placeholder}
-          ref={inputRef}
-          value={value}
-          onChange={change}
-          onKeyDown={onKeyDown}
-          onFocus={(): void => {inputOpen && setFocus(true)}}
-        />
-      </S.SearchInner>
-    </S.SearchInputWrapper>
-  ),[change,inputOffset,inputOpen,label,onClick,onKeyDown,placeholder,resultChoosed,value,withDropdown]);
+            onBlur={(): void => {
+              inputOpen && !alwaysHighlight && setFocus(false);
+            }}
+          />
+        </S.SearchInner>
+      </S.SearchInputContent>
+    ),
+    [change, inputOffset, inputOpen, label, onClick, onKeyDown, placeholder, resultChoosed, value, alwaysHighlight, focusOnInput]
+  );
   return (
-    <S.SearchWrapper ref={inputWrapperRef} className="SearchWrapper">
-      {renderInputWrapper}
+    <S.SearchInputWrapper ref={inputWrapperRef}>
+      {renderSearchInputContent}
       <SearchButton
         inputOpen={inputOpen}
         hidden={!!value || !!filterLabel}
         inputFocused={focus}
+        clickable={!alwaysExpanded}
         onClick={(): void => {
-          toggleOpen();
-          clearValue();
-          onButtonClick && onButtonClick();
-          focusOnInput()
+          if (!alwaysExpanded) {
+            toggleOpen();
+            clearValue();
+            onButtonClick && onButtonClick();
+            focusOnInput();
+          }
         }}
       />
       <S.ClearButton hidden={!value && !filterLabel} data-testid="clear">
@@ -151,7 +170,7 @@ const SearchInput: React.FC<SearchInputProps> = ({
           size={18}
         />
       </S.ClearButton>
-    </S.SearchWrapper>
+    </S.SearchInputWrapper>
   );
 };
 export default SearchInput;

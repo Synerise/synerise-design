@@ -9,18 +9,20 @@ export type SearchButtonProps = {
   hidden: boolean;
   inputFocused: boolean;
   onClick: () => void;
+  clickable? : boolean;
 };
-const SearchButton: React.FC<SearchButtonProps> = ({inputOpen,hidden,inputFocused,onClick}: SearchButtonProps ) => {
+const SearchButton: React.FC<SearchButtonProps> = ({inputOpen,hidden,inputFocused,onClick,clickable }: SearchButtonProps ) => {
   return (
     <S.SearchButton
       isOpen={inputOpen}
       inputFocused={inputFocused}
       hidden={hidden}
       className="SearchButton"
+      clickable={clickable}
+      onClick={onClick}
     >
       <Button
         type="ghost"
-        onClick={onClick}
         className={inputOpen ? 'btn-search-open' : 'btn-search'}
         data-testid="btn"
       >

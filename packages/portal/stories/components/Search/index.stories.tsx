@@ -15,7 +15,7 @@ const decorator = storyFn => (
   </div>
 );
 
-const filterList = [
+const parameters = [
   { text: 'First Name', icon: <VarTypeStringM /> },
   { text: 'Last Name', icon: <VarTypeStringM /> },
   { text: 'Sex', icon: <VarTypeStringM /> },
@@ -32,7 +32,13 @@ const recent = [
   { text: 'Bangkok', filter: 'City', icon: <VarTypeStringM /> },
   { text: 'Frank', filter: 'Last Name', icon: <VarTypeStringM /> },
   { text: 'Basel', filter: 'City', icon: <VarTypeStringM /> },
+  { text: 'Chicago', filter: 'City', icon: <VarTypeStringM /> },
+  { text: 'London', filter: 'City', icon: <VarTypeStringM /> },
+  { text: 'Brandon', filter: 'Last Name', icon: <VarTypeStringM /> },
   { text: 'Male', filter: 'Sex', icon: <VarTypeStringM /> },
+  { text: 'Brandon', filter: 'Last Name', icon: <VarTypeStringM /> },
+  { text: 'Rogers', filter: 'Last Name', icon: <VarTypeStringM /> },
+  { text: 'Richards', filter: 'Last Name', icon: <VarTypeStringM /> },
 ];
 const recentWithAvatars = getItemsWithAvatar(20);
 
@@ -70,7 +76,7 @@ const stories = {
           console.log('Cleared!');
         }}
         closeOnClickOutside={false}
-        expanded={true}
+        alwaysExpanded={true}
       />
     );
   },
@@ -78,12 +84,24 @@ const stories = {
     const [value, setValue] = React.useState<string>('');
     const [filterValue, setFilterValue] = React.useState<string>('');
     const [suggestions, setSuggestions] = React.useState([]);
+
+    const recentTitle = text('Set recent title', 'Recent');
+    const recentTooltip = text('Set recent tooltip', 'Recent');
+    const recentCount = number('Set recent count',3,{min:1,max:recent.length});
+
+    const parametersTitle = text('Set search in title', 'Search in');
+    const parametersTooltip = text('Set search in tooltip', 'Search in');
+    const parametersCount = number('Set search in count',6,{min:1,max:parameters.length});
+
+    const suggestionsTitle = text('Set suggestions title', 'Suggest');
+    const suggestionsTooltip = text('Set suggestions tooltip', 'Suggest');
+
     return (
       <Search
         clearTooltip="Clear"
         placeholder="Search"
-        parameters={filterList}
-        recent={recent}
+        parameters={parameters.slice(0,parametersCount)}
+        recent={recent.slice(0,recentCount)}
         suggestions={suggestions}
         value={value}
         parameterValue={filterValue}
@@ -95,11 +113,18 @@ const stories = {
           const fakeApiResponse = getSuggestions(value);
           setSuggestions(fakeApiResponse);
         }}
-        parametersDisplayProps={{
-          tooltip: text('Set search in tooltip', 'Search in'),
-          title: text('Set search in title', 'Search in'),
+        recentDisplayProps={{
+          tooltip: recentTooltip,
+          title: recentTitle,
           rowHeight: 32,
-          visibleRows: number('Set search in visible items',6,{min:1}),
+          visibleRows: 3,
+          itemRender: (item: FilterElement) => <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>,
+        }}
+        parametersDisplayProps={{
+          tooltip: parametersTooltip,
+          title: parametersTitle,
+          rowHeight: 32,
+          visibleRows: 6,
           itemRender: (item: FilterElement) => (
             <Menu.Item
               highlight={value}
@@ -111,19 +136,13 @@ const stories = {
           ),
         }}
         suggestionsDisplayProps={{
-          tooltip: text('Set suggestions tooltip', 'Suggest'),
-          title: text('Set suggestions title', 'Suggest'),
+          tooltip: suggestionsTooltip,
+          title: suggestionsTitle,
           rowHeight: 32,
-          visibleRows: number('Set suggestions visible items',6,{min:1}),
+          visibleRows: 6,
           itemRender: (item: FilterElement) => <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>,
         }}
-        recentDisplayProps={{
-          tooltip: text('Set recent tooltip', 'Recent'),
-          title: text('Set recent title', 'Recent'),
-          rowHeight: 32,
-          visibleRows: number('Set recent visible items',3,{min:1}),
-          itemRender: (item: FilterElement) => <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>,
-        }}
+
 
       />
     );
@@ -132,12 +151,23 @@ const stories = {
     const [value, setValue] = React.useState<string>('');
     const [filterValue, setFilterValue] = React.useState<string>('');
     const [suggestions, setSuggestions] = React.useState([]);
+
+    const recentTitle = text('Set recent title', 'Recent');
+    const recentTooltip = text('Set recent tooltip', 'Recent');
+    const recentCount = number('Set recent count',3,{min:1,max:recentWithAvatars.length});
+
+    const parametersTitle = text('Set search in title', 'Search in');
+    const parametersTooltip = text('Set search in tooltip', 'Search in');
+    const parametersCount = number('Set search in count',6,{min:1,max:parameters.length});
+
+    const suggestionsTitle = text('Set suggestions title', 'Suggest');
+    const suggestionsTooltip = text('Set suggestions tooltip', 'Suggest');
     return (
       <Search
         clearTooltip="Clear"
         placeholder="Search"
-        parameters={filterList}
-        recent={recentWithAvatars}
+        parameters={parameters.slice(0,parametersCount)}
+        recent={recentWithAvatars.slice(0,recentCount)}
         suggestions={suggestions}
         value={value}
         parameterValue={filterValue}
@@ -149,11 +179,18 @@ const stories = {
           const fakeApiResponse = getSuggestions(value);
           setSuggestions(fakeApiResponse);
         }}
+        recentDisplayProps={{
+          tooltip: recentTooltip,
+          title: recentTitle,
+          rowHeight: 50,
+          visibleRows: 3,
+          itemRender: (item: FilterElement) => <Menu.Item onItemHover={(): void => {}} {...item} style={{paddingLeft:'12px'}}>{item.text}</Menu.Item>
+        }}
         parametersDisplayProps={{
-          tooltip: text('Set search in tooltip', 'Search in'),
-          title: text('Set search in title', 'Search in'),
+          tooltip: parametersTooltip,
+          title: parametersTitle,
           rowHeight: 32,
-          visibleRows: number('Set search in visible items',6,{min:1}),
+          visibleRows: 6,
           itemRender: (item: FilterElement) => (
             <Menu.Item
               onItemHover={(): void => {}}
@@ -164,26 +201,20 @@ const stories = {
           ),
         }}
         suggestionsDisplayProps={{
-          tooltip: text('Set suggestions tooltip', 'Suggest'),
-          title: text('Set suggestions title', 'Suggest'),
+          tooltip: suggestionsTooltip,
+          title: suggestionsTitle,
           rowHeight: 32,
-          visibleRows: number('Set suggestions visible items',6,{min:1}),
+          visibleRows: 6,
           itemRender: (item: FilterElement) => <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>,
         }}
-        recentDisplayProps={{
-          tooltip: text('Set recent tooltip', 'Recent'),
-          title: text('Set recent title', 'Recent'),
-          rowHeight: 50,
-          visibleRows: number('Set recent visible items',3,{min:1}),
-          itemRender: (item: FilterElement) => <Menu.Item onItemHover={(): void => {}} {...item}>{item.text}</Menu.Item>
-        }}
+
       />
     );
   },
 };
 
 export default {
-  name: 'Components|Search',
+  name: 'Search|Search',
   config: {},
   stories,
   decorator,

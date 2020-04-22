@@ -37,14 +37,14 @@ const Search: React.FC<SearchProps> = ({
   const MENU_WIDTH_OFFSET = 16;
   const DEFAULT_VISIBLE_ROWS = 5;
   useEffect(() => {
-    suggestions && setFilteredSuggestions(suggestions);
-  }, [suggestions]);
+    suggestions && setFilteredSuggestions(getAllElementsFiltered(suggestions,value));
+  }, [suggestions,value]);
   useEffect(() => {
-    parameters && setFilteredParameters(parameters);
-  }, [parameters]);
+    parameters && setFilteredParameters(getAllElementsFiltered(parameters,value));
+  }, [parameters,value]);
   useEffect(() => {
-    recent && setFilteredRecent(recent);
-  }, [recent]);
+    recent && setFilteredRecent(getAllElementsFiltered(recent,value));
+  }, [recent,value]);
 
   useOnClickOutside(ref, () => {
     if (inputOpen && !value && !label) {
@@ -193,7 +193,7 @@ const Search: React.FC<SearchProps> = ({
           setInputOpen(toggle);
         }}
         toggleTrigger={toggleTrigger}
-        withDropdown
+        alwaysHighlight
       />
     );
   }, [change, clearTooltip, clearValue, value, focusTrigger, toggleTrigger, label, onKeyDown, placeholder]);
