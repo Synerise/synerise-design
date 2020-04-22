@@ -1,10 +1,10 @@
 import * as React from 'react';
 import Icon from '@synerise/ds-icon';
-import ArrowLeftM from '@synerise/ds-icon/dist/icons/ArrowLeftM';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
-import InlineEdit from '@synerise/ds-inline-edit/dist/InlineEdit';
-import CloseS from '@synerise/ds-icon/dist/icons/CloseS';
-import Button from '@synerise/ds-button/dist/Button';
+import InlineEdit from '@synerise/ds-inline-edit/';
+import { CloseS, ArrowLeftM } from '@synerise/ds-icon/dist/icons';
+import Button from '@synerise/ds-button/';
+import { withTheme } from 'styled-components';
 import * as S from './PageHeader.styles';
 
 export type PageHeaderProps = {
@@ -122,4 +122,6 @@ const PageHeader: React.FC<PageHeaderProps> = props => {
   );
 };
 
-export default PageHeader;
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore
+export default withTheme(PageHeader);
