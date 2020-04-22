@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.56.4](https://github.com/synerise/synerise-design/compare/portal@0.56.3...portal@0.56.4) (2020-04-22)
+
+
+### Bug Fixes
+
+* **search:** changed placeholder texts ([d1c9c6d](https://github.com/synerise/synerise-design/commit/d1c9c6db5fdf0f7f9fc2b49b4a6c363383d9b275))
+
+
+
+
+
 ## [0.56.3](https://github.com/synerise/synerise-design/compare/portal@0.56.2...portal@0.56.3) (2020-04-22)
 
 
