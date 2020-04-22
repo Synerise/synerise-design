@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.56.1](https://github.com/synerise/synerise-design/compare/portal@0.56.0...portal@0.56.1) (2020-04-22)
+
+
+### Bug Fixes
+
+* **search:** styles fixes, attaching custom styles to row renderer ([b99e60f](https://github.com/synerise/synerise-design/commit/b99e60f9d97d26e9121cb5a997d9cfb5a1c31adc))
+
+
+
+
+
 # [0.56.0](https://github.com/synerise/synerise-design/compare/portal@0.55.2...portal@0.56.0) (2020-04-22)
 
 
