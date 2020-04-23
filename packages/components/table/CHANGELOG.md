@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.8.0...@synerise/ds-table@0.8.1) (2020-04-23)
+
+
+### Bug Fixes
+
+* **table:** calculation of virtual columns width ([1c39a9f](https://github.com/synerise/synerise-design/commit/1c39a9f346e4ec59543442197a6040696a32ae9c))
+
+
+
+
+
 # [0.8.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.7.27...@synerise/ds-table@0.8.0) (2020-04-23)
 
 
