@@ -145,7 +145,7 @@ const VirtualTable: React.FC<Props> = (props: Props) => {
       <DSTable
         {...props}
         className={classNames(className, 'virtual-table')}
-        columns={mergedColumns}
+        columns={rowSelection ? mergedColumns.slice(1) : mergedColumns}
         rowSelection={rowSelection}
         pagination={false}
         components={{
