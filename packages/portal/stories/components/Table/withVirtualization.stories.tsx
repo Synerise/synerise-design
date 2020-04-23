@@ -38,7 +38,7 @@ const stories = {
     return (
       <>
         <DSVirtualTable
-          scroll={{y: 500, x: 20}}
+          scroll={{y: 500, x: 0}}
           title={`${filteredDataSource().length} records`}
           dataSource={filteredDataSource()}
           columns={columns}

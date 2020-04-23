@@ -5,6 +5,7 @@ import Tooltip from '@synerise/ds-tooltip';
 import * as S from './FilterTrigger.styles';
 
 interface Props {
+  name: string;
   selected?: {
     name: string;
   };
@@ -15,12 +16,14 @@ interface Props {
     clear: string;
     list: string;
   };
+  openedLabel: string;
   handleClear: () => void;
   showList: () => void;
   show: () => void;
 }
 
 const FilterTrigger: React.FC<Props> = ({
+  name,
   selected,
   iconComponent,
   tooltips = {
@@ -29,6 +32,7 @@ const FilterTrigger: React.FC<Props> = ({
     clear: 'Clear filter',
     list: 'Saved filters',
   },
+  openedLabel,
   handleClear,
   showList,
   show,
@@ -50,21 +54,22 @@ const FilterTrigger: React.FC<Props> = ({
             mode={opened ? 'icon-label' : 'single-icon'}
             type="ghost"
             onClick={opened ? show : handleOpen}
+            data-testid="show-filter-button"
           >
             <Icon component={iconComponent} />
-            <S.FilterButtonLabel>{selected?.name || 'Define'}</S.FilterButtonLabel>
+            <S.FilterButtonLabel>{selected?.name || openedLabel}</S.FilterButtonLabel>
           </S.FilterButton>
         </Tooltip>
         {selected && (
           <Tooltip title={tooltips.clear}>
-            <S.ClearButton mode="single-icon" type="ghost" onClick={handleClear}>
+            <S.ClearButton mode="single-icon" type="ghost" onClick={handleClear} data-testid="clear-button">
               <Icon component={<Close3S />} />
             </S.ClearButton>
           </Tooltip>
         )}
         {opened && (
           <Tooltip title={tooltips.list}>
-            <S.ListButton mode="single-icon" type="ghost" onClick={showList}>
+            <S.ListButton mode="single-icon" type="ghost" onClick={showList} data-testid="show-list-button">
               <Icon component={<FolderM />} />
             </S.ListButton>
           </Tooltip>
@@ -75,7 +80,7 @@ const FilterTrigger: React.FC<Props> = ({
   );
 
   return (
-    <S.FilterTrigger opened={opened} selected={selected}>
+    <S.FilterTrigger data-testid={`filter-trigger-${name}`} opened={opened} selected={selected}>
       <S.FilterButtons>{renderOpened}</S.FilterButtons>
     </S.FilterTrigger>
   );

@@ -48,8 +48,10 @@ const TableHeader: React.FC<Props> = ({
         {filters?.map((filter: Filter) => (
           <FilterTrigger
             key={filter.key}
+            name={filter.key}
             iconComponent={filter.icon}
             tooltips={filter.tooltips}
+            openedLabel={filter.openedLabel}
             /* eslint-disable-next-line react/jsx-handler-names */
             handleClear={filter.handleClear}
             show={filter.show}

@@ -26,6 +26,7 @@ export interface Filter {
     define: string;
     list: string;
   };
+  openedLabel: string;
   key: string;
   icon: React.ReactNode;
   showList: () => void;

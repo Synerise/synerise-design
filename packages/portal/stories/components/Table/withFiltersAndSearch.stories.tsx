@@ -227,6 +227,7 @@ const stories = {
                 key: 'view',
                 icon: <Grid2M />,
                 tooltips: { default: 'Table view', clear: 'Clear view', define: 'Define view', list: 'Saved views' },
+                openedLabel: 'Define',
                 showList: () => store.set({itemFilterVisible: true}),
                 show: () => store.set({columnManagerVisible: true}),
                 handleClear: () => store.set({selectedView: undefined}),
@@ -236,6 +237,7 @@ const stories = {
                 key: 'filter',
                 icon: <FilterM />,
                 tooltips: { default: 'Filter', clear: 'Clear filter', define: 'Define filter', list: 'Saved filters' },
+                openedLabel: 'Define',
                 showList: () => store.set({modalVisible: true}),
                 show: () => store.set({modalVisible: true}),
                 handleClear: action('clear filter'),
@@ -243,8 +245,6 @@ const stories = {
               }
             ]
           }
-          showColumnManager={() => store.set({columnManagerVisible: true})}
-          showItemFilter={() => store.set({itemFilterVisible: true})}
           pagination={{
             showSizeChanger: boolean('Show size changer', true),
             showQuickJumper: boolean('Show quick jumper', true),
