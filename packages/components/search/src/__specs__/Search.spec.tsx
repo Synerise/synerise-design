@@ -45,6 +45,8 @@ const recentDisplayProps = {
   visibleRows: 3,
   itemRender: (item: FilterElement) => <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>,
 };
+const INPUT_EXPAND_ANIMATION_DURATION = 200;
+const waitForDropdownToExpand = () => (new Promise((r) => setTimeout(r, INPUT_EXPAND_ANIMATION_DURATION)));
 describe('Search with dropdown', () => {
 
   const onChange = jest.fn();
@@ -101,7 +103,7 @@ describe('Search with dropdown', () => {
     expect(onChange).toBeCalledWith(INPUT_VALUE);
   });
 
-  it('should set filter', () => {
+  it('should set filter', async () => {
     // ARRANGE
     const { getByTestId, getByText } = renderWithProvider(
       <Search
@@ -123,11 +125,11 @@ describe('Search with dropdown', () => {
     const btn = getByTestId('btn') as HTMLInputElement;
 
     // ACT
-    btn.click();
-
+    await btn.click();
+    await waitForDropdownToExpand();
     const parameter = getByText('City') as HTMLInputElement;
 
-    parameter.click();
+    await parameter.click();
 
     // ASSERT
     expect(onParameterValueChange).toBeCalledWith('City');

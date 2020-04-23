@@ -1,7 +1,7 @@
 import styled, { keyframes } from 'styled-components';
 
 const LABEL_LEFT_OFFSET = 7;
-
+const INPUT_EXPAND_ANIMATION_DURATION = 0.2;
 export const openDropdownAnimation = keyframes`
   0% {
     opacity:0;
@@ -16,15 +16,19 @@ export const openDropdownAnimation = keyframes`
  
   }
 `;
-
 export const SearchInputWrapper = styled.div<{ width?: number }>`
   ${(props): string | false => `width:${props.width}px;`}
   position: relative;
   direction: rtl;
   overflow-x: hidden;
 `;
-export const SearchWrapper = styled.div<{ width?: number }>`
-  ${(props): string | false => `width:${props.width}px;`}
+export const SearchWrapper = styled.div<{ width?: number; inputOpen?: boolean }>`
+
+  ${(props): string | false =>
+    !!props.width &&
+    `
+   ${props.inputOpen ? `width:${props.width}px;` : `width:32px`};
+  `}
   position: relative;
   direction: rtl;
 `;
@@ -128,9 +132,9 @@ export const SearchInner = styled.div<{ hasValue: boolean; alwaysHighlight: bool
 `;
 export const SearchInputContent = styled.div<{ offset: number }>`
   overflow: hidden;
-  width: 0;
   direction: rtl;
-  transition: width 0.2s;
+  transition: width ${INPUT_EXPAND_ANIMATION_DURATION}s;
+  width: 0px;
   transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
 
   input {
@@ -166,7 +170,6 @@ export const List = styled.div<{ isOpen?: boolean }>`
   top: 40px;
   background: ${(props): string => props.theme.palette.white};
   direction: ltr;
-  width: 100%;
   opacity: 0;
   display: none;
   border-radius: 3px;
@@ -197,11 +200,13 @@ export const HeaderIconWrapper = styled.div`
 `;
 
 export const ListWrapper = styled.div`
+  width: 0%;
   & > .search-list-open {
     width: 100%;
     animation: ${openDropdownAnimation} 0.3s ease-in-out 0s 1;
     opacity: 1;
     display: initial;
     padding: 8px;
+    z-index: 10;
   }
 `;
