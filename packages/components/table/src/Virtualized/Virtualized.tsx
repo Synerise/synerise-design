@@ -32,19 +32,13 @@ const VirtualTable: React.FC<Props> = (props: Props) => {
               checked={rowSelection.selectedRowKeys && rowSelection.selectedRowKeys.indexOf(key) >= 0}
               onChange={(event): void => {
                 const { selectedRowKeys, onChange } = rowSelection;
+                let selectedRows = selectedRowKeys || [];
                 if (event.target.checked) {
-                  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-                  // @ts-ignore
-                  onChange && onChange([...selectedRowKeys, key], props.dataSource);
+                  selectedRows = [...selectedRows, key];
                 } else {
-                  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-                  // @ts-ignore
-                  onChange &&
-                    onChange(
-                      selectedRowKeys.filter(k => k !== key),
-                      props.dataSource
-                    );
+                  selectedRows = selectedRows.filter(k => k !== key);
                 }
+                onChange && onChange(selectedRows, props.dataSource || []);
               }}
             />
           );
