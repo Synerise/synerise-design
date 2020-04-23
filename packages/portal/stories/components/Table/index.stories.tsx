@@ -66,12 +66,12 @@ const stories = {
     selectedRowKeys: [],
   })(({store}) => {
     return (
-      <div style={{width: 500}}>
+      <div style={{width: 1200}}>
         <VirtualTable
           scroll={{ x: 0, y: 480 }}
           rowSelection={{ onChange: (selectedRows, records) => store.set({selectedRowKeys: selectedRows}), selectedRowKeys: store.state.selectedRowKeys }}
           dataSource={virtualDataSource}
-          columns={[{name: 'Segment name', key: 'name', dataIndex: 'name'}, {name: 'Age', key: 'age', dataIndex: 'age'}]}
+          columns={[{title: 'Segment name', key: 'name', dataIndex: 'name'}, {title: 'Age', key: 'age', dataIndex: 'age'}]}
           rowKey="key"
           pagination={false}
           onRowClick={(record) => {

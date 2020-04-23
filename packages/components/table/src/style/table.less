@@ -15,10 +15,13 @@
   }
 
   .virtual-table-cell {
-    .ds-checkbox {
-      padding: 0;
-      label {
+    &.ant-table-selection-column {
+      padding: 0 24px;
+      .ds-checkbox {
         padding: 0;
+        label {
+          padding: 0;
+        }
       }
     }
   }
@@ -126,7 +129,7 @@
   }
 
   .virtual-table-cell {
-    padding: 0 24px;
+    padding: 0 16px;
     border-bottom: @border-width-base @border-style-base @border-color-split;
     display: flex;
     align-items: center;
