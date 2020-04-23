@@ -32,7 +32,11 @@
     "@synerise/ds-search-bar": "^0.2.30",
     "@synerise/ds-select": "^0.10.17",
     "@synerise/ds-typography": "^0.8.3",
-    "@synerise/ds-utils": "^0.8.17"
+    "@synerise/ds-utils": "^0.8.17",
+    "@types/react-window": "^1.8.2",
+    "classnames": "^2.2.6",
+    "rc-resize-observer": "^0.2.1",
+    "react-window": "^1.8.5"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

@@ -8,6 +8,21 @@
 .@{table-prefix-cls} {
   border-radius: 0;
 
+  .@{table-prefix-cls}-selection-column {
+    text-align: left;
+    width: 64px;
+    height: 64px;
+  }
+
+  .virtual-table-cell {
+    .ds-checkbox {
+      padding: 0;
+      label {
+        padding: 0;
+      }
+    }
+  }
+
   table {
     border-radius: 0;
     background-color: #fff;
@@ -44,9 +59,9 @@
     }
   }
 
-  &-thead > tr > th,
-  &-tbody > tr > td,
-  &-tfoot > tr > th {
+  thead > tr > th,
+  tbody > tr > td,
+  tfoot > tr > th {
     text-overflow: ellipsis;
     overflow: hidden;
     padding: @table-padding-vertical @table-padding-horizontal;
@@ -58,21 +73,15 @@
     &:first-child {
       padding-left: 24px;
     }
-
-    &.@{table-prefix-cls}-selection-column {
-      text-align: left;
-      width: 64px;
-      height: 64px;
-    }
   }
 
-  &-tfoot > tr > th {
+  tfoot > tr > th {
     color: #fff;
     background-color: @gray-color-lighter-2;
     font-weight: 500;
   }
 
-  &-thead > tr > th {
+  thead > tr > th {
     color: @gray-color-lighter-2;
     font-size: @font-size-base;
     font-weight: 500;
@@ -114,6 +123,16 @@
 
   tr.clickable {
     cursor: pointer;
+  }
+
+  .virtual-table-cell {
+    padding: 0 24px;
+    border-bottom: @border-width-base @border-style-base @border-color-split;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex: 1;
+    max-width: 100%;
   }
 
   &-pagination.@{ant-prefix}-pagination {
