@@ -25,7 +25,7 @@ type size = 'small' | 'medium' | 'large' | 'extraLarge' | undefined;
 
 export interface AvatarProps extends Omit<AntAvatarProps, 'size' | 'icon'> {
   /**
-   * Aligns badge with the avatar
+   * Aligns a badge with the avatar
    */
   hasStatus?: boolean;
   /**
@@ -33,7 +33,7 @@ export interface AvatarProps extends Omit<AntAvatarProps, 'size' | 'icon'> {
    */
   size?: size;
   /**
-   * Allows to provide a custom component as a child. The prop icon has greater priority if both are provided
+   * Provides a custom component as a child. If both are provided, the prop icon has a greater priority 
    */
   iconComponent?: React.ReactNode;
   /**
@@ -41,7 +41,7 @@ export interface AvatarProps extends Omit<AntAvatarProps, 'size' | 'icon'> {
    */
   backgroundColor?: color;
   /**
-   * Background color hue of the avatar
+   * Hue of the avatar background color
    */
   backgroundColorHue?: colorHue;
   /**
@@ -49,7 +49,7 @@ export interface AvatarProps extends Omit<AntAvatarProps, 'size' | 'icon'> {
    */
   disabled?: boolean;
   /**
-   * Text on tooltip
+   * Text on a tooltip
    */
   tooltip?: {
     name: string;

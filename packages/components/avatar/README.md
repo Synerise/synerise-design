@@ -12,84 +12,58 @@ import {version} from './package.json';
 <br />
 <br />
 
-An avatar is an icon that represents a particular person, but, the avatar has more applications in the Synerise platform.
-It is used as:
+## General guidelines
 
-- Human-related icon
-- Object icon
+An avatar is an object used to represent a particular person in the application. The avatar is usually accompanied by the status (for example, **Active**, **Inactive**, **Blocked**) identifying the availability of any person in the application.
 
-Inspired by [Ant Design Avatar](https://ant.design/components/avatar/)
 
-1. Avatar zawiera wizerunek klienta w formie zdjęcia lub inicjałów
-2. Avatar może posiadać status ( `Active, Inactive, Blocked` )służący doidentyfikacji dostępności użytkownika
-3. Kształt avatarów może być zarówno okrągły jak i kwadratowy (zawierający `3px radius` na rogach)
+- Use avatars to represent a persona in the application. It may be a user of the application or a customer in the CRM module.
+- You can use avatars to represent a general entity such as the campaign type or analysis type on a list in the application
+- Every time when you use an image to communicate a concept, it’s important to use descriptive alt text. This ensures users with accessibility as it lets screen readers to describe what’s in the image to people who are visually impaired.  
+
+---  
+
+
+## Anatomy of avatars
+
 
 ![Avatar](avatar/2.png)
 
-## General guidance
+1. Avatars contain an image that represents a user, a customer or entity. hen an image of a person is not uploaded, the application displays their initials instead (**3**).  
+2. To give users an idea about the status of a particular user, you can display a status on the avatar. For instance, an avatar can show if the user is active or inactive. 
+3. When a user haven't uploaded an image, the application users initials of the user to represent them.
 
 
-### Usage:
-
-Use avatars to quickly identify users.
-
-### Best practices
-
-- To represent a platform user (for example, to indicate the author of the campaign).
-- To represent a customer (for example, on a list of customers, on a customer card).
-- To represent the type of the item on a list (for example, a campaign, an analysis).
-
-## Anatomy
+### Structure
 
 
-### Budowa
+Avatars are forms of proportional sides. Their shape is placed in a square or a circle.
 
-Avatary zbudowane są z form o proporcjonalnych bokach. Ich kształt wpisanyjest w formę kwadratu lub koła.
 
 ![Avatar](avatar/1.png)
 
-### Wielkości
+### Shapes
 
-Avatary posiadają 4 możliwe rozmiary:
-- Small - `size 24x24px`
-- Medium - `size 32x32px`
-- Large - `size 40x40px`
-- XL - `size 80x80px`
+
+The shape of avatars can be both circular or square (make sure each corner has a **3px radius**).
+
+### Sizes
+
+
+Avatars have 4 sizes:
+
+- Small - **24x24px**
+- Medium - **32x32px**
+- Large - **40x40px**
+- Extra large - **80x80px**
 
 ![Avatar](avatar/3.png)
 
-Avatary w rozmiarach Small posiadają również ikony o rozmiarach `s` z setu `Standard icons`. Rozmiar Medium, Large oraz XL zawierają ikony o rozmiarach `M`.
+The **S**-sized avatars contain the **S**-sized icons of the **Standard icons set**. The **M**, **L** and **XL** sizes contain the **M**-sized icons.
 
 ![Avatar](avatar/4.png)
 
-## Installation
 
----
-
-```static
-npm i @synerise/ds-avatar
-or
-yarn add @synerise/ds-avatar
-```
-
-## Usage
-
----
-
-```static
-import Avatar from '@synerise/ds-avatar'
-
-<Avatar
-shape={circle}
-backgroundColor={grey}
-size={20}
-/>
-
-```
-
-## Demo
-
-### Avatar sizes
 ```
 <div style={{ 'display': 'flex', 'justifyContent': 'space-between' }}>
     <Avatar size="small" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
@@ -98,6 +72,40 @@ size={20}
     <Avatar size="extraLarge" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
 </div>
 ```
+
+---
+
+## Avatar types
+
+We divide avatars into three types. Every type has its own use case. If a customer hasn't uploaded an image, the application automatically displays an avatar with the initials of the customer. 
+
+**Types of avatars:**
+
+![Avatar types](avatar/avatar-type.png)
+
+1. Avatar with a photo
+2. Avatar with initials
+3. Avatar with an icon
+
+```
+<div style={{ 'display': 'flex', 'justifyContent': 'space-between' }}>
+    <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@test.pl'}} shape="square" size="medium" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
+    <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@test.pl'}} shape="cirlce" size="medium" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
+    <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@test.pl'}} src="https://www.w3schools.com/howto/img_avatar.png" size="large" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
+    <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@test.pl'}} src="https://www.w3schools.com/howto/img_avatar.png" shape="square" size="extraLarge" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
+</div>
+```
+
+---
+
+## Variations
+
+We can present avatars as a single entity or in a group.
+
+![Avatar groups](avatar/avatar-groups.png)
+
+1. Single avatar
+2. Group avatar
 
 ### Avatar with tooltips
 
@@ -109,18 +117,6 @@ size={20}
     <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@test.pl'}} size="extraLarge" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
 </div>
 ```
-
-### Avatar types
-
-```
-<div style={{ 'display': 'flex', 'justifyContent': 'space-between' }}>
-    <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@test.pl'}} shape="square" size="medium" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
-    <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@test.pl'}} shape="cirlce" size="medium" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
-    <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@test.pl'}} src="https://www.w3schools.com/howto/img_avatar.png" size="large" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
-    <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@test.pl'}} src="https://www.w3schools.com/howto/img_avatar.png" shape="square" size="extraLarge" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
-</div>
-```
-
 
 ### Avatar icons
 
@@ -134,3 +130,39 @@ import { FileM} from "@synerise/ds-icon/dist/icons";
     <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@test.pl'}} src="https://www.w3schools.com/howto/img_avatar.png" shape="square" size="extraLarge" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
 </div>
 ```
+
+---
+
+## Installation
+
+
+```jsx static
+npm i @synerise/ds-avatar
+```
+or
+
+```jsx static
+yarn add @synerise/ds-avatar
+```
+
+## Usage
+
+
+```jsx static
+import Avatar from '@synerise/ds-avatar'
+
+<Avatar
+shape={circle}
+backgroundColor={grey}
+size={20}
+/>
+
+```
+
+
+
+
+
+
+
+
