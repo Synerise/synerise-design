@@ -8,7 +8,7 @@ import { JustifyContentProperty } from 'csstype';
 import Icon from '@synerise/ds-icon';
 import SpinnerM from '@synerise/ds-icon/dist/icons/SpinnerM';
 import AntdButton, * as S from './Button.styles';
-import Expander from './Expander/Expander';
+import Expander, { ExpanderProps } from './Expander/Expander';
 
 export type Props = Omit<ButtonProps, 'type'> & {
   /**
@@ -137,6 +137,6 @@ const Button: IButton<Props> = ({
     </AntdButton>
   );
 };
-Button.Expander = (props: any): React.ReactNode =>(Expander(props)) ;
+Button.Expander = (props: ExpanderProps): React.ReactNode =>(Expander(props)) ;
 
 export default Button;

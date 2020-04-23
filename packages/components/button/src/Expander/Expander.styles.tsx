@@ -1,8 +1,8 @@
-import Button from '../Button';
 import styled from 'styled-components';
 import * as React from 'react';
-import theme, { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import  { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { IconContainer } from '@synerise/ds-icon/dist/Icon.styles';
+import Button from '../Button';
 
 export type ExpanderProps = {
   size: 'S' | 'M' | number;
@@ -21,7 +21,7 @@ export const Expander = styled(({ children, pressed, expanded, ...rest }) => (
     border-radius: 50px;
     border: none;
     outline: none !important;
-    box-shadow: inset 0 0 0 1px ${(props: ThemeProps): string => props.theme.palette['grey-300']} !important;
+    box-shadow: inset 0 0 0 1px ${(props: ThemeProps): string => props.theme.palette['grey-300']};
     opacity: ${(props: ExpanderProps): string => (props.disabled ? `0.4` : `1`)};
     ${IconContainer} {
       svg {
@@ -34,11 +34,13 @@ export const Expander = styled(({ children, pressed, expanded, ...rest }) => (
       !props.disabled &&
       `&:hover {
       .btn-focus {
-        box-shadow: inset 0 0 0 1px ${props.theme.palette['grey-400']} !important;
+         box-shadow: inset 0 0 0 1px
+          ${(
+        props.pressed ? props.theme.palette['blue-600'] : props.theme.palette['grey-400'])} !important;
       }
       background-color: ${props.theme.palette['grey-050']};
     }
-    &:focus {
+    &:focus:not(:hover) {
       .btn-focus {
         box-shadow: inset 0 0 0 1px
           ${(
