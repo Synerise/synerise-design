@@ -1,33 +1,42 @@
 import * as React from 'react';
 import Icon from '@synerise/ds-icon';
-import { AngleDownM, AngleDownS } from '@synerise/ds-icon/dist/icons';
+import { AngleDownS } from '@synerise/ds-icon/dist/icons';
 import * as S from './Expander.styles';
 
 export interface ExpanderProps {
-  size: 'S' | 'M' | number;
+  size: 'S' | 'M' ;
   disabled: boolean;
   pressed: boolean;
   expanded: boolean;
 }
+const SIZE_IN_PX = {
+  S:24,
+  M:32,
+}
 
-const Expander: React.FC<ExpanderProps> = ({ size, disabled }) => {
+const Expander: React.FC<ExpanderProps> = ({ size, expanded,disabled }) => {
+  const defaultExpandedValue = expanded;
   const [pressed, setPressed] = React.useState(false);
-  const [expanded, setExpanded] = React.useState(false);
+  const [isExpanded, setExpanded] = React.useState(defaultExpandedValue || false);
   return (
     <S.Expander
+      size = {SIZE_IN_PX[size]}
       className="ds-expander"
       onMouseDown={(): void => {
         setPressed(true);
-        setExpanded(!expanded);
+        setExpanded(!isExpanded);
       }}
       onMouseUp={(): void => {
         setPressed(false);
       }}
+      onMouseLeave={(): void => {
+        setPressed(false);
+      }}
       pressed={pressed}
-      expanded={expanded}
+      expanded={isExpanded && !disabled}
       disabled={disabled}
     >
-      <Icon component={size === 'M' ? <AngleDownM /> : <AngleDownS />} />
+      <Icon component={<AngleDownS />} />
     </S.Expander>
   );
 };

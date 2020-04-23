@@ -64,7 +64,10 @@ const getDefaultProps = (isSplit = false) => ({
   block: boolean('Block', false),
   onClick: action('onClick CLICK'),
 });
-
+const getSpecialButtonKnobs = (isSplit = false) => ({
+  size: select('Set size', iconSizes, 'S'),
+  disabled: boolean('Disabled', false),
+});
 const getBackgroundStyles = (type) => {
   const darkBg = ['tertiary-white', 'ghost-white'].includes(type);
   return {background:`${darkBg ? '#384350' : '#fff'}`, display: 'flex', position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center'}
@@ -175,18 +178,34 @@ const stories = {
     );
   },
   expander: () => {
-    const defaultProps = getDefaultProps();
+    const expanderProps = getSpecialButtonKnobs();
     const props = {
-      ...defaultProps,
+      ...expanderProps,
       style: {
         margin: 4,
       },
     } as object;
     return (
       <div style={getBackgroundStyles(props.type)}>
-        <Button.Expander>
+        <Button.Expander {...expanderProps} >
 
         </Button.Expander>
+      </div>
+    );
+  },
+  creator: () => {
+    const expanderProps = getSpecialButtonKnobs();
+    const props = {
+      ...expanderProps,
+      style: {
+        margin: 4,
+      },
+    } as object;
+    return (
+      <div style={getBackgroundStyles(props.type)}>
+        <Button.Creator {...expanderProps} >
+
+        </Button.Creator>
       </div>
     );
   },

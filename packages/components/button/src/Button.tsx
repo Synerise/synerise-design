@@ -7,6 +7,7 @@ import { JustifyContentProperty } from 'csstype';
 
 import Icon from '@synerise/ds-icon';
 import SpinnerM from '@synerise/ds-icon/dist/icons/SpinnerM';
+import Creator, { CreatorProps } from './Creator/Creator';
 import AntdButton, * as S from './Button.styles';
 import Expander, { ExpanderProps } from './Expander/Expander';
 
@@ -71,7 +72,8 @@ export type Props = Omit<ButtonProps, 'type'> & {
 };
 
 type IButton<Props> = React.FC<Props> & {
-  Expander: React.ReactNode;
+  Expander: React.ElementType;
+  Creator: React.ElementType;
 }
 
 const RIPPLE_ANIMATION_OFFSET = 50;
@@ -137,6 +139,7 @@ const Button: IButton<Props> = ({
     </AntdButton>
   );
 };
-Button.Expander = (props: ExpanderProps): React.ReactNode =>(Expander(props)) ;
+Button.Expander = (props: ExpanderProps): React.ReactElement =>(Expander(props)) as React.ReactElement;
+Button.Creator = (props: CreatorProps): React.ReactElement =>(Creator(props)) as React.ReactElement;
 
 export default Button;
