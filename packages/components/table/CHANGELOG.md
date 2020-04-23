@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.7.27...@synerise/ds-table@0.8.0) (2020-04-23)
+
+
+### Bug Fixes
+
+* **table:** fix eslint errors ([dc1bd95](https://github.com/synerise/synerise-design/commit/dc1bd95fed6d089ed7f37a3ad8a08d835eeae184))
+
+
+### Features
+
+* **table:** add table with virtualization ([4c0bc22](https://github.com/synerise/synerise-design/commit/4c0bc228ea6a3287854048cdb2762c155d0c16e0))
+
+
+
+
+
 ## [0.7.27](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.7.26...@synerise/ds-table@0.7.27) (2020-04-21)
 
 **Note:** Version bump only for package @synerise/ds-table

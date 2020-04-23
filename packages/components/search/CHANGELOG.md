@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.32](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.0.31...@synerise/ds-search@0.0.32) (2020-04-23)
+
+
+### Bug Fixes
+
+* **search:** width attribute fix ([5dc4365](https://github.com/Synerise/synerise-design/commit/5dc43659db2a4413afc1769f73d32a7e3d78e653))
+
+
+
+
+
 ## [0.0.31](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.0.30...@synerise/ds-search@0.0.31) (2020-04-22)
 
 
