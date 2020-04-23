@@ -20,6 +20,7 @@ const Search: React.FC<SearchProps> = ({
   parametersDisplayProps,
   recentDisplayProps,
   suggestionsDisplayProps,
+  ...rest
 }) => {
   const [inputOpen, setInputOpen] = useState(false);
   const [label, setLabel] = useState<FilterElement | null>();
@@ -30,21 +31,30 @@ const Search: React.FC<SearchProps> = ({
   const [focusTrigger, focusInputComponent] = useState(false);
   const [toggleTrigger, setToggleTrigger] = useState(true);
   const [resultChoosed, setResultChoosed] = useState(false);
-
+  const [itemsListWidth, setItemListWidth] = useState(0);
   const ref = React.useRef<HTMLDivElement>(null);
   const inputRef = React.useRef<HTMLInputElement>(null);
   const MENU_WIDTH_OFFSET = 16;
   const DEFAULT_VISIBLE_ROWS = 5;
+  const INPUT_EXPAND_ANIMATION_DURATION = 200;
+  const getSearchWrapperWidth = React.useCallback((): number => {
+    if (width) {
+      return width - MENU_WIDTH_OFFSET;
+    }
+    if (ref && ref !== null && ref.current && ref.current.clientWidth > MENU_WIDTH_OFFSET) {
+      return ref.current.clientWidth - MENU_WIDTH_OFFSET;
+    }
+    return 0;
+  }, [ref, width]);
   useEffect(() => {
-    suggestions && setFilteredSuggestions(getAllElementsFiltered(suggestions,value));
-  }, [suggestions,value]);
+    suggestions && setFilteredSuggestions(getAllElementsFiltered(suggestions, value));
+  }, [suggestions, value]);
   useEffect(() => {
-    parameters && setFilteredParameters(getAllElementsFiltered(parameters,value));
-  }, [parameters,value]);
+    parameters && setFilteredParameters(getAllElementsFiltered(parameters, value));
+  }, [parameters, value]);
   useEffect(() => {
-    recent && setFilteredRecent(getAllElementsFiltered(recent,value));
-  }, [recent,value]);
-
+    recent && setFilteredRecent(getAllElementsFiltered(recent, value));
+  }, [recent, value]);
   useOnClickOutside(ref, () => {
     if (inputOpen && !value && !label) {
       setToggleTrigger(!toggleTrigger);
@@ -150,15 +160,6 @@ const Search: React.FC<SearchProps> = ({
     }
     return isAnythingToShow;
   };
-  const getMenuListWidth = React.useCallback((): number => {
-    if (width) {
-      return width - MENU_WIDTH_OFFSET;
-    }
-    if (ref && ref !== null && ref.current && ref.current.clientWidth > MENU_WIDTH_OFFSET) {
-      return ref.current.clientWidth - MENU_WIDTH_OFFSET;
-    }
-    return 0;
-  }, [width, ref]);
 
   const renderInputWrapper = React.useCallback(() => {
     return (
@@ -178,12 +179,26 @@ const Search: React.FC<SearchProps> = ({
         focusTrigger={focusTrigger}
         onToggle={(toggle): void => {
           setInputOpen(toggle);
+          setTimeout(() => {
+            setItemListWidth(getSearchWrapperWidth());
+          }, INPUT_EXPAND_ANIMATION_DURATION);
         }}
         toggleTrigger={toggleTrigger}
         alwaysHighlight
       />
     );
-  }, [change, clearTooltip, clearValue, value, focusTrigger, toggleTrigger, label, onKeyDown, placeholder]);
+  }, [
+    change,
+    clearTooltip,
+    clearValue,
+    value,
+    focusTrigger,
+    toggleTrigger,
+    label,
+    onKeyDown,
+    placeholder,
+    getSearchWrapperWidth,
+  ]);
   const renderRecentItems = React.useCallback(() => {
     return (
       recent &&
@@ -196,7 +211,7 @@ const Search: React.FC<SearchProps> = ({
           )}
           <SearchItemList
             data={filteredRecent}
-            width={getMenuListWidth()}
+            width={itemsListWidth}
             visibleRows={recentDisplayProps.visibleRows || DEFAULT_VISIBLE_ROWS}
             rowHeight={recentDisplayProps.rowHeight}
             highlight={value}
@@ -207,15 +222,7 @@ const Search: React.FC<SearchProps> = ({
         </>
       )
     );
-  }, [
-    filteredRecent,
-    getMenuListWidth,
-    label,
-    recent,
-    selectResult,
-    value,
-    recentDisplayProps,
-  ]);
+  }, [filteredRecent, label, recent, itemsListWidth, selectResult, value, recentDisplayProps]);
   const renderParameters = React.useCallback(() => {
     return (
       parameters &&
@@ -228,7 +235,7 @@ const Search: React.FC<SearchProps> = ({
           )}
           <SearchItemList
             data={filteredParameters}
-            width={getMenuListWidth()}
+            width={itemsListWidth}
             visibleRows={parametersDisplayProps.visibleRows || DEFAULT_VISIBLE_ROWS}
             rowHeight={parametersDisplayProps.rowHeight}
             highlight={value}
@@ -239,19 +246,11 @@ const Search: React.FC<SearchProps> = ({
         </>
       )
     );
-  }, [
-    filteredParameters,
-    parameters,
-    label,
-    value,
-    getMenuListWidth,
-    selectFilter,
-    parametersDisplayProps,
-  ]);
+  }, [filteredParameters, parameters, label, value, itemsListWidth, selectFilter, parametersDisplayProps]);
   const renderSuggestions = React.useCallback(() => {
     return (
       suggestions &&
-        suggestionsDisplayProps &&
+      suggestionsDisplayProps &&
       parameterValue &&
       !resultChoosed &&
       hasSomeElement(filteredSuggestions) && (
@@ -261,7 +260,7 @@ const Search: React.FC<SearchProps> = ({
           )}
           <SearchItemList
             data={filteredSuggestions}
-            width={getMenuListWidth()}
+            width={itemsListWidth}
             visibleRows={suggestionsDisplayProps.visibleRows || DEFAULT_VISIBLE_ROWS}
             rowHeight={suggestionsDisplayProps.rowHeight}
             highlight={value}
@@ -275,7 +274,7 @@ const Search: React.FC<SearchProps> = ({
   }, [
     suggestions,
     filteredSuggestions,
-    getMenuListWidth,
+    itemsListWidth,
     parameterValue,
     resultChoosed,
     selectResult,
@@ -283,21 +282,23 @@ const Search: React.FC<SearchProps> = ({
     suggestionsDisplayProps,
   ]);
   return (
-    <S.SearchWrapper ref={ref} className="SearchWrapper" width={width}>
+    <S.SearchWrapper ref={ref} className="SearchWrapper" inputOpen={inputOpen} width={width} {...rest}>
       {renderInputWrapper()}
-      {listVisible && <S.ListWrapper
-        onClick={(): void => {
-          focusInputComponent(!focusTrigger);
-        }}
-      >
-        <S.List
-          className={inputOpen && !resultChoosed && listVisible && isListItemRendered() ? 'search-list-open' : ''}
+      {listVisible && (
+        <S.ListWrapper
+          onClick={(): void => {
+            focusInputComponent(!focusTrigger);
+          }}
         >
-          {renderRecentItems()}
-          {renderParameters()}
-          {renderSuggestions()}
-        </S.List>
-      </S.ListWrapper>}
+          <S.List
+            className={inputOpen && !resultChoosed && listVisible && isListItemRendered() ? 'search-list-open' : ''}
+          >
+            {renderRecentItems()}
+            {renderParameters()}
+            {renderSuggestions()}
+          </S.List>
+        </S.ListWrapper>
+      )}
     </S.SearchWrapper>
   );
 };
