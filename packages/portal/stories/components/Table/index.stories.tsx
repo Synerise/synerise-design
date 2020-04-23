@@ -12,12 +12,14 @@ const decorator = (storyFn) => (
   </div>
 );
 
-const dataSource = [...new Array(55)].map((i, k) => ({
-  key: k + 1,
-  name: faker.name.findName(),
-  age: (Math.random() * 50 + 10).toFixed(0),
-  address: faker.address.streetAddress(),
-}));
+const dataSource = (limit: number = 55) => {
+ return [...new Array(limit)].map((i, k) => ({
+   key: k + 1,
+   name: faker.name.findName(),
+   age: (Math.random() * 50 + 10).toFixed(0),
+   address: faker.address.streetAddress(),
+ }))
+};
 
 const columns = [
   {
@@ -42,11 +44,14 @@ const rowSelection = {
   onChange: action('checkboxChanged'),
 };
 
+const defaultDataSource = dataSource(55);
+const virtualDataSource = dataSource(10000);
+
 const stories = {
   default: () => ({
     title: 'Tests',
-    subTitle: `${dataSource.length} records`,
-    dataSource,
+    subTitle: `${defaultDataSource.length} records`,
+    dataSource: defaultDataSource,
     columns,
     loading: true,
     pagination: {
@@ -65,7 +70,7 @@ const stories = {
         <VirtualTable
           scroll={{ x: 0, y: 480 }}
           rowSelection={{ onChange: (selectedRows, records) => store.set({selectedRowKeys: selectedRows}), selectedRowKeys: store.state.selectedRowKeys }}
-          dataSource={dataSource}
+          dataSource={virtualDataSource}
           columns={[{name: 'Segment name', key: 'name', dataIndex: 'name'}, {name: 'Age', key: 'age', dataIndex: 'age'}]}
           rowKey="key"
           pagination={false}

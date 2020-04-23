@@ -12,7 +12,7 @@ interface Props extends AntTableProps<{ key: React.ReactText }> {
     x: number;
     y: number;
   };
-  onRowClick: (row: object) => void;
+  onRowClick?: (row: object) => void;
   cellHeight: number;
 }
 
@@ -49,6 +49,9 @@ const VirtualTable: React.FC<Props> = (props: Props) => {
   }
 
   const widthColumnCount = virtualColumns.filter(({ width }) => !width).length;
+  const definedWidth = virtualColumns
+    .filter(({ width }) => width)
+    .reduce((total: number, { width }): number => total + width, 0);
   const mergedColumns = virtualColumns?.map(column => {
     if (column.width) {
       return column;
@@ -56,10 +59,9 @@ const VirtualTable: React.FC<Props> = (props: Props) => {
 
     return {
       ...column,
-      width: Math.floor(tableWidth / widthColumnCount),
+      width: Math.floor((tableWidth - definedWidth) / widthColumnCount),
     };
   });
-
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const gridRef = React.useRef<any>();
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -119,7 +121,7 @@ const VirtualTable: React.FC<Props> = (props: Props) => {
               'virtual-table-cell-last': columnIndex === mergedColumns.length - 1,
               'ant-table-selection-column': columnIndex === 0 && rowSelection,
             })}
-            onClick={(): void => onRowClick(rawData[rowIndex])}
+            onClick={(): void => onRowClick && onRowClick(rawData[rowIndex])}
             style={style}
           >
             {mergedColumns[columnIndex].render
