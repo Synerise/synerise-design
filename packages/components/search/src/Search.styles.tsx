@@ -23,7 +23,6 @@ export const SearchInputWrapper = styled.div<{ width?: number }>`
   overflow-x: hidden;
 `;
 export const SearchWrapper = styled.div<{ width?: number; inputOpen?: boolean }>`
-
   ${(props): string | false =>
     !!props.width &&
     `
@@ -148,7 +147,12 @@ export const SearchInputContent = styled.div<{ offset: number }>`
     overflow: visible;
     input {
       padding-left: ${(props): string => (props.offset ? `${Math.round(props.offset + LABEL_LEFT_OFFSET)}px` : '12px')};
+      padding-right: 30px;
       opacity: 1;
+      line-height: 18px;
+    }
+    input::placeholder {
+      line-height: 18px;
     }
   }
 `;
