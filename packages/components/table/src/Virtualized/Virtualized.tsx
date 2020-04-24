@@ -19,12 +19,25 @@ interface Props<T> extends AntTableProps<T> {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function VirtualTable<T extends object = any>(props: Props<T>): React.ReactElement {
-  const { columns, scroll, className, cellHeight = 52, rowSelection, onRowClick, rowKey, initialWidth = 0 } = props;
+  const {
+    columns,
+    scroll,
+    className,
+    cellHeight = 52,
+    rowSelection,
+    onRowClick,
+    rowKey,
+    initialWidth = 0,
+    dataSource,
+  } = props;
   const [tableWidth, setTableWidth] = React.useState(initialWidth);
 
-  const getRowKey = (row: T): React.ReactText => {
-    return typeof rowKey === 'function' ? rowKey(row) : rowKey || 'key';
-  };
+  const getRowKey = React.useCallback(
+    (row: T): React.ReactText => {
+      return typeof rowKey === 'function' ? rowKey(row) : rowKey || 'key';
+    },
+    [rowKey]
+  );
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const virtualColumns = React.useMemo((): any[] => {
@@ -50,7 +63,7 @@ function VirtualTable<T extends object = any>(props: Props<T>): React.ReactEleme
                   onChange &&
                     onChange(
                       selectedKeys,
-                      (props.dataSource && props.dataSource.filter(row => selectedKeys.includes(getRowKey(row)))) || []
+                      (dataSource && dataSource.filter(row => selectedKeys.includes(getRowKey(row)))) || []
                     );
                 }}
               />
@@ -61,7 +74,7 @@ function VirtualTable<T extends object = any>(props: Props<T>): React.ReactEleme
       ];
     }
     return columns;
-  }, [columns, rowSelection, getRowKey]);
+  }, [columns, rowSelection, getRowKey, dataSource]);
 
   const mergedColumns = React.useMemo(() => {
     const widthColumnCount = virtualColumns.filter(({ width }) => !width).length;
