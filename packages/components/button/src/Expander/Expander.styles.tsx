@@ -5,6 +5,7 @@ import { IconContainer } from '@synerise/ds-icon/dist/Icon.styles';
 import Button from '../Button';
 
 export type ExpanderProps = {
+  onClick: () => void;
   size: number;
   disabled: boolean;
   pressed: boolean;

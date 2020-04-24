@@ -8,22 +8,23 @@ export interface CreatorProps {
   disabled?: boolean;
   label?: string;
   block?: boolean;
+  status?: 'default' | 'error' | 'upload';
 }
 
-const Creator: React.FC<CreatorProps> = ({ onClick, disabled, label, block }) => {
-  const [pressed, setPressed] = React.useState('pressed');
-
+const Creator: React.FC<CreatorProps> = ({ onClick, disabled, label, block,status }) => {
+  const [pressed, setPressed] = React.useState(false);
   return (
     <S.Creator
-      data-testId="ds-add-button"
       block={block}
-      className={`ds-add-button ${pressed}`}
+      className="ds-button-creator"
       disabled={disabled}
       onClick={onClick}
-      onMouseDown={(): void => setPressed('pressed')}
-      onMouseUp={(): void => setPressed('')}
-      onMouseLeave={(): void => setPressed('')}
+      onMouseDown={(): void => setPressed(true)}
+      onMouseUp={(): void => setPressed(false)}
+      onMouseLeave={(): void => setPressed(false)}
       withLabel={Boolean(label)}
+      pressed={pressed}
+      status={status}
     >
       <>
         <Icon component={<AddM />} />

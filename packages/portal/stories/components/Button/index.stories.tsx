@@ -52,6 +52,12 @@ const iconSizes = {
   Medium: 'M',
 };
 
+const CREATOR_TYPE = {
+  default: 'default',
+  upload: 'upload',
+  error: 'error',
+};
+
 const getDefaultProps = (isSplit = false) => ({
   label: text('Label', 'Button'),
   type: select('Set type', !isSplit ? typeOptions : splitTypeOptions, 'primary'),
@@ -64,9 +70,13 @@ const getDefaultProps = (isSplit = false) => ({
   block: boolean('Block', false),
   onClick: action('onClick CLICK'),
 });
-const getSpecialButtonKnobs = (isSplit = false) => ({
+const getExpanderProps = (isSplit = false) => ({
   size: select('Set size', iconSizes, 'S'),
   disabled: boolean('Disabled', false),
+});
+const getCreatorKnobs = (isSplit = false) => ({
+  disabled: boolean('Disabled', false),
+  status: select('Set creator mode',CREATOR_TYPE,CREATOR_TYPE.default)
 });
 const getBackgroundStyles = (type) => {
   const darkBg = ['tertiary-white', 'ghost-white'].includes(type);
@@ -178,7 +188,7 @@ const stories = {
     );
   },
   expander: () => {
-    const expanderProps = getSpecialButtonKnobs();
+    const expanderProps = getExpanderProps();
     const props = {
       ...expanderProps,
       style: {
@@ -187,27 +197,38 @@ const stories = {
     } as object;
     return (
       <div style={getBackgroundStyles(props.type)}>
-        <Button.Expander {...expanderProps} >
+        <Button.Expander onClick={()=>{console.log('Button clicked!')}}  {...expanderProps} >
 
         </Button.Expander>
       </div>
     );
   },
   creator: () => {
-    const expanderProps = getSpecialButtonKnobs();
+    const creatorProps = getCreatorKnobs();
     const props = {
-      ...expanderProps,
+      ...creatorProps,
       style: {
         margin: 4,
       },
     } as object;
     return (
-      <div style={getBackgroundStyles(props.type)}>
-        <Button.Creator {...expanderProps} >
-
+        <Button.Creator {...props} onClick={()=>{console.log('Button clicked!')}} >
+        </Button.Creator>
+    );
+  },
+  creatorWithLabel: () => {
+    const creatorProps = getCreatorKnobs();
+    const props = {
+      ...creatorProps,
+      style: {
+        margin: 4,
+      },
+    } as object;
+    return (<div>
+        <Button.Creator {...props} label={"Add position"} onClick={()=>{console.log('Button clicked!')}}  >
         </Button.Creator>
       </div>
-    );
+      );
   },
 };
 

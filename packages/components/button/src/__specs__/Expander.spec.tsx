@@ -1,11 +1,13 @@
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import Button from '../Button';
 import * as React from 'react';
+import { fireEvent } from '@testing-library/react';
 const SIZES = {
   M:32,
   S:24,
 }
 describe('Expander', () => {
+  const onClick = jest.fn();
   it('should render', ()=> {
     // ARRANGE
     const { container } = renderWithProvider(<Button.Expander></Button.Expander>);
@@ -37,5 +39,14 @@ describe('Expander', () => {
     const expander = container.querySelector('svg');
     // ASSERT
     expect(expander).toHaveStyle(`opacity:0.4`);
+  });
+  it('should handle onClick', ()=> {
+    // ARRANGE
+    const { container } = renderWithProvider(<Button.Expander onClick={onClick}></Button.Expander>);
+    // ACT
+    const expander = container.querySelector('.ds-expander') as HTMLElement;
+    fireEvent.click(expander);
+    // ASSERT
+    expect(onClick).toBeCalledTimes(1);
   });
 });
