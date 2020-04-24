@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import Checkbox from '@synerise/ds-checkbox';
 import DSTable, { AntTableProps } from '../Table';
 
-interface Props extends AntTableProps<{ key: React.ReactText }> {
+interface Props<T> extends AntTableProps<T> {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   columns: any[];
   scroll: {
@@ -16,7 +16,8 @@ interface Props extends AntTableProps<{ key: React.ReactText }> {
   cellHeight: number;
 }
 
-const VirtualTable: React.FC<Props> = (props: Props) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function VirtualTable<T extends object = any>(props: Props<T>): React.ReactElement {
   const { columns, scroll, className, cellHeight = 52, rowSelection, onRowClick } = props;
   const [tableWidth, setTableWidth] = React.useState(0);
   let virtualColumns = columns;
@@ -154,6 +155,6 @@ const VirtualTable: React.FC<Props> = (props: Props) => {
       />
     </ResizeObserver>
   );
-};
+}
 
 export default VirtualTable;
