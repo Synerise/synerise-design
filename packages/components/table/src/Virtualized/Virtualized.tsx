@@ -112,10 +112,12 @@ function VirtualTable<T extends object = any>(props: Props<T>): React.ReactEleme
   });
 
   const resetVirtualGrid = (): void => {
-    gridRef.current.resetAfterIndices({
-      columnIndex: 0,
-      shouldForceUpdate: false,
-    });
+    if (gridRef.current) {
+      gridRef.current.resetAfterIndices({
+        columnIndex: 0,
+        shouldForceUpdate: false,
+      });
+    }
   };
 
   React.useEffect(() => resetVirtualGrid, []);
