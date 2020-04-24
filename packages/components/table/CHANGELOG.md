@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.6](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.8.5...@synerise/ds-table@0.8.6) (2020-04-24)
+
+
+### Bug Fixes
+
+* **table:** fix ref issue ([648b299](https://github.com/synerise/synerise-design/commit/648b29932bda461f7fe3334978aad4581046de50))
+
+
+
+
+
 ## [0.8.5](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.8.4...@synerise/ds-table@0.8.5) (2020-04-24)
 
 
