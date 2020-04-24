@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.58.1](https://github.com/synerise/synerise-design/compare/portal@0.58.0...portal@0.58.1) (2020-04-24)
+
+
+### Bug Fixes
+
+* **table:** fix virualtable ([00961a2](https://github.com/synerise/synerise-design/commit/00961a26418fce796477b1413f21a35f4f207db1))
+
+
+
+
+
 # [0.58.0](https://github.com/synerise/synerise-design/compare/portal@0.57.2...portal@0.58.0) (2020-04-24)
 
 
