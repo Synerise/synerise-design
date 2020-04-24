@@ -100,10 +100,12 @@ export const ButtonFocus = styled.div`
 `;
 
 // eslint-disable-next-line react/jsx-props-no-spreading
-export default styled(({ mode, type, loading, justifyContent, groupVariant, ...rest }) => (
-  // eslint-disable-next-line react/jsx-props-no-spreading
-  <Button type={type} {...rest} />
-))`  
+export default styled(
+  ({ mode, type, loading, justifyContent, groupVariant, customColor, rightIconSize, leftIconSize, ...rest }) => (
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    <Button type={type} {...rest} />
+  )
+)`  
   && {
     -webkit-mask-image: -webkit-radial-gradient(white, black);
     border: 0;

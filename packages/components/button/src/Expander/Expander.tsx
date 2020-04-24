@@ -20,21 +20,21 @@ const Expander: React.FC<ExpanderProps> = ({ size, expanded, disabled, onClick }
   const defaultExpandedValue = expanded;
   const [pressed, setPressed] = React.useState(false);
   const [isExpanded, setExpanded] = React.useState(defaultExpandedValue || false);
+  const onPress = React.useCallback((): void => {
+    setPressed(false);
+    setExpanded(!isExpanded);
+  }, [isExpanded]);
+  const onRelease = React.useCallback((): void => {
+    setPressed(false);
+  }, []);
   return (
     <S.Expander
       onClick={onClick}
       size={ExpanderSize[size]}
       className="ds-expander"
-      onMouseDown={(): void => {
-        setPressed(true);
-        setExpanded(!isExpanded);
-      }}
-      onMouseUp={(): void => {
-        setPressed(false);
-      }}
-      onMouseLeave={(): void => {
-        setPressed(false);
-      }}
+      onMouseDown={onPress}
+      onMouseUp={onRelease}
+      onMouseLeave={onRelease}
       pressed={pressed}
       expanded={isExpanded && !disabled}
       disabled={disabled}

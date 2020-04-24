@@ -78,7 +78,11 @@ const uploadStyles = ({ theme }: ThemeProps): FlattenSimpleInterpolation => css`
     }
   }
 `;
-export const Creator = styled(props => <Button {...props} />)<{ withLabel: boolean; pressed: boolean; status: string }>`
+export const Creator = styled(({ pressed, withLabel, ...rest }) => <Button {...rest} />)<{
+  withLabel: boolean;
+  pressed: boolean;
+  status: string;
+}>`
   &&& {
     width: ${(props): string => {
       if (props.block) return '100%';

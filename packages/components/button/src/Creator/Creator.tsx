@@ -17,15 +17,21 @@ export interface CreatorProps {
 }
 const Creator: React.FC<CreatorProps> = ({ onClick, disabled, label, block, status }) => {
   const [pressed, setPressed] = React.useState(false);
+  const onPress = React.useCallback((): void => {
+    setPressed(false);
+  }, []);
+  const onRelease = React.useCallback((): void => {
+    setPressed(false);
+  }, []);
   return (
     <S.Creator
       block={block}
       className="ds-button-creator"
       disabled={disabled}
       onClick={onClick}
-      onMouseDown={(): void => setPressed(true)}
-      onMouseUp={(): void => setPressed(false)}
-      onMouseLeave={(): void => setPressed(false)}
+      onMouseDown={onPress}
+      onMouseUp={onRelease}
+      onMouseLeave={onRelease}
       withLabel={Boolean(label)}
       pressed={pressed}
       status={status}
