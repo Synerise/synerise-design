@@ -9,7 +9,7 @@ export const COLUMNS = [
   },
   {
     id: '1',
-    name: 'Statux',
+    name: 'Status',
     key: 'active',
     visible: true,
     type: 'boolean',

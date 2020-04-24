@@ -1,10 +1,9 @@
-import { DSVirtualTable } from '@synerise/ds-table';
+import { VirtualTable } from '@synerise/ds-table';
 import faker from 'faker';
 import Table from '@synerise/ds-table';
 import * as React from 'react';
 import { SearchInput } from '@synerise/ds-search/dist/Elements';
 import { withState } from '@dump247/storybook-state';
-import { number } from '@storybook/addon-knobs';
 
 const decorator = (storyFn) => (
   <div style={{ padding: 20, width: '100vw', minWidth: '100%' }}>
@@ -28,6 +27,7 @@ const columns = [
 const stories = {
   default: withState({
     searchValue: '',
+    selectedRows: [],
   })(({store}) => {
     const filteredDataSource = () => {
       return !store.state.searchValue ? dataSource : dataSource.filter(record => {
@@ -35,14 +35,26 @@ const stories = {
       });
     };
 
+    const handleSelectRow = (selectedRowKeys) => {
+      store.set({selectedRows: selectedRowKeys});
+    };
+
     return (
       <>
-        <DSVirtualTable
+        <VirtualTable
           scroll={{y: 500, x: 0}}
           title={`${filteredDataSource().length} records`}
           dataSource={filteredDataSource()}
           columns={columns}
-          cellHeight={number('Height of table row', 50)}
+          cellHeight={50}
+          selection={{
+            onChange: handleSelectRow,
+            selectedRowKeys: store.state.selectedRows,
+            setRowSelection: handleSelectRow
+          }}
+          onRowClick={record => {
+            store.state.selectedRows.indexOf(record.key) >= 0 ? store.set({selectedRows: store.state.selectedRows.filter(k => k !== record.key)}) : store.set({selectedRows: [...store.state.selectedRows, record.key]});
+          }}
           searchComponent={
             <SearchInput
               placeholder={'Type here...'}

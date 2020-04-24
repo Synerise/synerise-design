@@ -72,30 +72,6 @@ const stories = {
     onSearch: action('onSearch'),
     cellSize: select('Set cells size', CELL_SIZES, CELL_SIZES.default)
   }),
-  withVirtualization: withState({
-    selectedRowKeys: [],
-  })(({store}) => {
-    return (
-      <div style={{width: 1200}}>
-        <VirtualTable
-          scroll={{ x: 0, y: 480 }}
-          rowSelection={{ onChange: (selectedRows, records) => store.set({selectedRowKeys: selectedRows}), selectedRowKeys: store.state.selectedRowKeys }}
-          dataSource={dataSource}
-          columns={[{title: 'Segment name', key: 'name', dataIndex: 'name'}, {title: 'Age', key: 'age', dataIndex: 'age'}]}
-          rowKey="key"
-          pagination={false}
-          onRowClick={(record) => {
-            if(store.state.selectedRowKeys.indexOf(record.key) >= 0) {
-              store.set({selectedRowKeys: store.state.selectedRowKeys.filter(k => k !== record.key)});
-            }else {
-              store.set({selectedRowKeys: [...store.state.selectedRowKeys, record.key]});
-            }
-          }}
-          cellHeight={64}
-        />
-      </div>
-    )
-  }),
 };
 
 export default {

@@ -32,6 +32,7 @@
     "@synerise/ds-input": "^0.11.15",
     "@synerise/ds-menu": "^0.1.4",
     "@synerise/ds-pagination": "^0.6.3",
+    "@synerise/ds-search": "^0.0.32",
     "@synerise/ds-search-bar": "^0.2.30",
     "@synerise/ds-select": "^0.10.17",
     "@synerise/ds-tags": "^0.2.56",
