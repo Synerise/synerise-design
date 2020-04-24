@@ -66,13 +66,14 @@ const stories = {
     selectedRowKeys: [],
   })(({store}) => {
     return (
-      <div style={{width: 1200}}>
+      <div style={{width: 960}}>
         <VirtualTable
           scroll={{ x: 0, y: 480 }}
+          initialWidth={960}
           rowSelection={{ onChange: (selectedRows, records) => store.set({selectedRowKeys: selectedRows}), selectedRowKeys: store.state.selectedRowKeys }}
           dataSource={virtualDataSource}
           columns={[{title: 'Segment name', key: 'name', dataIndex: 'name'}, {title: 'Age', key: 'age', dataIndex: 'age'}]}
-          rowKey="key"
+          rowKey={row => row.key}
           pagination={false}
           onRowClick={(record) => {
             if(store.state.selectedRowKeys.indexOf(record.key) >= 0) {
