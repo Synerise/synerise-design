@@ -29,7 +29,7 @@ import Search from '@synerise/ds-search';
 import VarTypeStringM from '@synerise/ds-icon/dist/icons/VarTypeStringM';
 
 const decorator = (storyFn) => (
-  <div style={{ padding: 20, width: '100vw', minWidth: '100%' }}>
+  <div style={{ padding: 20, width: '100vw', minWidth: '100%', position: 'absolute', top: 0, left: 0}}>
     {storyFn()}
   </div>
 );
@@ -39,7 +39,7 @@ const dataSource = [...new Array(55)].map((i, k) => ({
   key: k + 1,
   name: faker.name.findName(),
   active: faker.random.boolean(),
-  country: faker.random.arrayElement(['us', 'pl', 'de', 'it', 'es', 'ru']),
+  country: faker.random.arrayElement([{code: 'us', name: 'USA'}, {code: 'pl', name: 'Poland'}, {code:'de', name: 'Germany'}, {code:'it', name: 'Italy'}, {code: 'es', name: 'Spain'}, {code: 'ru', name: 'Russia'}]),
   age: (Math.random() * 50 + 10).toFixed(0),
 }));
 
@@ -111,6 +111,30 @@ const recent = dataSource.map(record => ({
   filter: 'name',
 }));
 
+const getSuggestions = (value) => {
+  if(value) {
+    const paramName = value.toLowerCase();
+    const allSuggestions = dataSource.map(record => {
+      const value = {
+        name: record.name,
+        age: record.age,
+        status: record.active.toString(),
+        country: record.country.name
+      };
+
+      return {
+        text: value[paramName],
+        filter: paramName
+      }
+    });
+    return allSuggestions.reduce((unique, item) => {
+      const exist = unique.find((record) => record.text === item.text);
+      return exist ? unique : [...unique, item];
+    }, []);
+  }
+  return [];
+};
+
 const stories = {
   default: withState({
     selectedRows: [],
@@ -146,7 +170,7 @@ const stories = {
               ...column,
               title: column.name,
               dataIndex: column.key,
-              render: (country, record) => <TableCell.FlagLabelCell countryCode={country} label={record.name} />
+              render: (country) => <TableCell.FlagLabelCell countryCode={country.code} label={country.name} />
             }
           }
           default:
@@ -208,6 +232,17 @@ const stories = {
     };
 
     const filteredDataSource = () => {
+      if(store.state.searchFilterValue && store.state.searchValue) {
+        return dataSource.filter(record => {
+          const value = {
+            name: record.name,
+            age: record.age,
+            status: record.active.toString(),
+            country: record.country.name
+          };
+          return value[store.state.searchFilterValue.toLowerCase()].includes(store.state.searchValue);
+        });
+      }
       return !store.state.searchValue ? dataSource : dataSource.filter(record => {
         return record.name.toLowerCase().includes(store.state.searchValue.toLowerCase());
       });
@@ -285,6 +320,7 @@ const stories = {
             <Search
               clearTooltip="Clear"
               placeholder="Search"
+              width={300}
               parameters={parameters.slice(0, number('Parameters count', 5))}
               recent={recent.slice(0, number('Recent count', 5))}
               suggestions={store.state.searchSuggestions}
@@ -296,7 +332,7 @@ const stories = {
               onParameterValueChange={value => {
                 store.set({
                   searchFilterValue: value,
-                  searchSuggestions: recent,
+                  searchSuggestions: getSuggestions(value),
                 });
 
               }}
