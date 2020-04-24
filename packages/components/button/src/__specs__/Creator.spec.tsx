@@ -1,8 +1,9 @@
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
-import Button from '../Button';
 import * as React from 'react';
 import { fireEvent } from '@testing-library/react';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import Button from '../Button';
+
 const LABEL_TEXT = "Add something";
 describe('Creator', () => {
   const onClick = jest.fn();

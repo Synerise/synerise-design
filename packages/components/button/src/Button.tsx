@@ -71,14 +71,12 @@ export type Props = Omit<ButtonProps, 'type'> & {
   onClick?: (event: React.MouseEvent<HTMLElement>) => void;
 };
 
-type IButton<Props> = React.FC<Props> & {
-  Expander: React.ElementType;
-  Creator: React.ElementType;
-}
-
 const RIPPLE_ANIMATION_OFFSET = 50;
 
-const Button: IButton<Props> = ({
+const Button: React.FC<Props> & {
+  Expander: React.ElementType;
+  Creator: React.ElementType;
+} = ({
   type = 'secondary',
   mode,
   justifyContent = 'center',
@@ -88,7 +86,7 @@ const Button: IButton<Props> = ({
   className,
   color = 'red',
   ...antdProps
-}: Props) => {
+}) => {
   const rippleRef = React.useRef<HTMLSpanElement>(null);
   const [rippleClassName, setRippleClassName] = React.useState('');
 
@@ -124,7 +122,7 @@ const Button: IButton<Props> = ({
       loading={loading}
       onClick={handleClick}
       className={`ds-button ${className}`}
-      color={color}
+      customColor={color}
       /* eslint-disable-next-line react/jsx-props-no-spreading */
       {...antdProps}
     >
@@ -139,7 +137,7 @@ const Button: IButton<Props> = ({
     </AntdButton>
   );
 };
-Button.Expander = (props: ExpanderProps): React.ReactElement =>(Expander(props)) as React.ReactElement;
-Button.Creator = (props: CreatorProps): React.ReactElement =>(Creator(props)) as React.ReactElement;
+Button.Expander = (props: ExpanderProps): React.ReactElement => Expander(props) as React.ReactElement;
+Button.Creator = (props: CreatorProps): React.ReactElement => Creator(props) as React.ReactElement;
 
 export default Button;

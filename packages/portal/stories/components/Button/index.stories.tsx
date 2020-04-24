@@ -7,6 +7,7 @@ import Icon from '@synerise/ds-icon';
 import Button from '@synerise/ds-button';
 import markdown from '@/button/README.md';
 import { version } from '@/button/package.json';
+import { CreatorStatus } from '@synerise/ds-button/dist/Creator/Creator';
 
 const typeOptions = {
   Primary: 'primary',
@@ -53,9 +54,9 @@ const iconSizes = {
 };
 
 const CREATOR_TYPE = {
-  default: 'default',
-  upload: 'upload',
-  error: 'error',
+  default: CreatorStatus.Default,
+  upload: CreatorStatus.Upload,
+  validated: CreatorStatus.Error,
 };
 
 const getDefaultProps = (isSplit = false) => ({
