@@ -100,10 +100,12 @@ export const ButtonFocus = styled.div`
 `;
 
 // eslint-disable-next-line react/jsx-props-no-spreading
-export default styled(({ mode, type, loading, justifyContent, groupVariant, ...rest }) => (
-  // eslint-disable-next-line react/jsx-props-no-spreading
-  <Button type={type} {...rest} />
-))`  
+export default styled(
+  ({ mode, type, loading, justifyContent, groupVariant, customColor, rightIconSize, leftIconSize, ...rest }) => (
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    <Button type={type} {...rest} />
+  )
+)`  
   && {
     -webkit-mask-image: -webkit-radial-gradient(white, black);
     border: 0;
@@ -261,7 +263,7 @@ export default styled(({ mode, type, loading, justifyContent, groupVariant, ...r
       props.type === 'custom-color' &&
       css`
         &.ant-btn {
-          background-color: ${props.theme.palette[`${props.color}-600`]};
+          background-color: ${props.theme.palette[`${props.customColor}-600`]};
           border: 0 solid transparent;
 
           span {
@@ -278,7 +280,7 @@ export default styled(({ mode, type, loading, justifyContent, groupVariant, ...r
           }
 
           ${RippleEffect} {
-            background-color: ${props.theme.palette[`${props.color}-700`]};
+            background-color: ${props.theme.palette[`${props.customColor}-700`]};
           }
 
           &:focus {
@@ -288,7 +290,7 @@ export default styled(({ mode, type, loading, justifyContent, groupVariant, ...r
           }
 
           &:hover:not(:disabled):not(:focus) {
-            background-color: ${props.theme.palette[`${props.color}-500`]};
+            background-color: ${props.theme.palette[`${props.customColor}-500`]};
             span {
               color: ${props.theme.palette.white};
             }
@@ -300,7 +302,7 @@ export default styled(({ mode, type, loading, justifyContent, groupVariant, ...r
 
           &:disabled {
             opacity: 0.4;
-            background-color: ${props.theme.palette[`${props.color}-600`]};
+            background-color: ${props.theme.palette[`${props.customColor}-600`]};
             span {
               color: ${props.theme.palette.white};
             }

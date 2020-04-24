@@ -7,7 +7,9 @@ import { JustifyContentProperty } from 'csstype';
 
 import Icon from '@synerise/ds-icon';
 import SpinnerM from '@synerise/ds-icon/dist/icons/SpinnerM';
+import Creator, { CreatorProps } from './Creator/Creator';
 import AntdButton, * as S from './Button.styles';
+import Expander, { ExpanderProps } from './Expander/Expander';
 
 export type Props = Omit<ButtonProps, 'type'> & {
   /**
@@ -71,7 +73,10 @@ export type Props = Omit<ButtonProps, 'type'> & {
 
 const RIPPLE_ANIMATION_OFFSET = 50;
 
-const Button: React.FC<Props> = ({
+const Button: React.FC<Props> & {
+  Expander: React.ElementType;
+  Creator: React.ElementType;
+} = ({
   type = 'secondary',
   mode,
   justifyContent = 'center',
@@ -81,7 +86,7 @@ const Button: React.FC<Props> = ({
   className,
   color = 'red',
   ...antdProps
-}: Props) => {
+}) => {
   const rippleRef = React.useRef<HTMLSpanElement>(null);
   const [rippleClassName, setRippleClassName] = React.useState('');
 
@@ -117,7 +122,7 @@ const Button: React.FC<Props> = ({
       loading={loading}
       onClick={handleClick}
       className={`ds-button ${className}`}
-      color={color}
+      customColor={color}
       /* eslint-disable-next-line react/jsx-props-no-spreading */
       {...antdProps}
     >
@@ -132,5 +137,7 @@ const Button: React.FC<Props> = ({
     </AntdButton>
   );
 };
+Button.Expander = (props: ExpanderProps): React.ReactElement => Expander(props) as React.ReactElement;
+Button.Creator = (props: CreatorProps): React.ReactElement => Creator(props) as React.ReactElement;
 
 export default Button;
