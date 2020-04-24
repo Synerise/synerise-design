@@ -12,17 +12,21 @@ describe('Creator', () => {
   it('should render', ()=> {
     // ARRANGE
     const { container } = renderWithProvider(<Button.Creator></Button.Creator>);
+
     // ACT
     const creator = container.querySelector('.ds-button-creator');
+
     // ASSERT
     expect(creator).toBeTruthy();
   });
   it('should handle onClick', ()=> {
     // ARRANGE
     const { container } = renderWithProvider(<Button.Creator onClick={onClick}></Button.Creator>);
+
     // ACT
     const creator = container.querySelector('.ds-button-creator') as HTMLElement;
     fireEvent.click(creator);
+
     // ASSERT
     expect(onClick).toBeCalledTimes(1);
   });
@@ -59,8 +63,10 @@ describe('Creator', () => {
   it('should render blue when uploading', ()=> {
     // ARRANGE
     const { container } = renderWithProvider(<Button.Creator status={'upload'}></Button.Creator>);
+
     // ACT
     const creator = container.querySelector('.ds-button-creator') as HTMLElement;
+
     // ASSERT
     expect(creator).toHaveStyle(`border: 1px dashed ${theme.palette['blue-300']}`)
   });
