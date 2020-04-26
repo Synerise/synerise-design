@@ -19,6 +19,7 @@ export const COLUMNS = [
     textWrap: 'word-break',
     ellipsis: true,
     sorter: (a, b) => a.name < b.name,
+    fixed: 'left',
     key: 'name',
   },
   {
@@ -174,8 +175,9 @@ export const COLUMNS = [
     },
     {
       width: 254,
-        render: () => <TableCell.ActionCell>
-      <Button type='secondary' mode='split'>Edit rule</Button>
-    </TableCell.ActionCell>
+      fixed: 'right',
+      render: () => <TableCell.ActionCell>
+        <Button onClick={action('click')} type='secondary' mode='split'>Edit rule</Button>
+      </TableCell.ActionCell>
     }
   ];
