@@ -38,9 +38,12 @@ build:
     - echo "email = $GITLAB_USER_EMAIL" >> .npmrc
     - (if [ "$CI_COMMIT_REF_NAME" == "master" ]; then npx lerna publish from-package --no-git-tag-version --yes;fi);
 
-.docs_build:
+docs_build:
   image: node:lts
   stage: test
+  only:
+    refs:
+      - master
   script:
     - yarn --frozen-lockfile
     - yarn build
@@ -53,9 +56,13 @@ build:
     paths:
       - packages/docs-site/website/build/*
 
-.docs_deploy:
+docs_deploy:
   image: docker:stable
   stage: deploy
+  needs: ['docs_build']
+  only:
+    refs:
+      - master
   allow_failure: true
   script:
     - SANITY_BRANCH=$CI_COMMIT_REF_SLUG
@@ -75,26 +82,3 @@ build:
     - echo "Image pushed to remote repository from branch ${CI_COMMIT_REF_NAME} for commit ${CI_COMMIT_SHA}"
     - docker pull quay.io/synerise/stevedore:master-latest
     - docker run -e APPLICATION="${APP}" -e AUTODEPLOY_BRANCH="${SANITY_BRANCH}" -e SSHA1=${CI_COMMIT_SHA} -e AUTODEPLOY_TAG="${CI_COMMIT_TAG}" -e USERNAME="${GITLAB_USER_NAME}" --entrypoint /autodeploy.sh quay.io/synerise/stevedore:master-latest
-
-build_master:
-  extends: .docs_build
-  only:
-    refs:
-      - master
-
-deploy_master:
-  extends: .docs_deploy
-  needs: ['build_master']
-  only:
-    refs:
-      - master
-
-build_manual:
-  extends: .docs_build
-  when: manual
-
-deploy_manual:
-  extends: .docs_deploy
-  needs: ['build_manual']
-  when: manual
-
