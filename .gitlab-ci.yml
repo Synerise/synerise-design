@@ -56,7 +56,6 @@ build:
 .docs_deploy:
   image: docker:stable
   stage: deploy
-  needs: ['docs_build']
   allow_failure: true
   script:
     - SANITY_BRANCH=$CI_COMMIT_REF_SLUG
@@ -85,6 +84,7 @@ build_master:
 
 deploy_master:
   extends: .docs_deploy
+  needs: ['build_master']
   only:
     refs:
       - master
@@ -95,5 +95,6 @@ build_manual:
 
 deploy_manual:
   extends: .docs_deploy
+  needs: ['build_manual']
   when: manual
 
