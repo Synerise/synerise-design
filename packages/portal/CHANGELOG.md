@@ -3,6 +3,35 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.58.1](https://github.com/synerise/synerise-design/compare/portal@0.58.0...portal@0.58.1) (2020-04-24)
+
+
+### Bug Fixes
+
+* **table:** fix virualtable ([00961a2](https://github.com/synerise/synerise-design/commit/00961a26418fce796477b1413f21a35f4f207db1))
+
+
+
+
+
+# [0.58.0](https://github.com/synerise/synerise-design/compare/portal@0.57.2...portal@0.58.0) (2020-04-24)
+
+
+### Bug Fixes
+
+* **button:** simplifed styles ([dc5e792](https://github.com/synerise/synerise-design/commit/dc5e792c4e483d3fd823a2ce57152fd2b92b39a9))
+
+
+### Features
+
+* **button:** added creator button ([48f1099](https://github.com/synerise/synerise-design/commit/48f1099df83282261e250a12cdfd6173a05b1516))
+* **button:** added epxander ([63b443b](https://github.com/synerise/synerise-design/commit/63b443b9701b2a12b6c569c308cf3811ad7e8fa6))
+* **button:** added expander ([d52b8a9](https://github.com/synerise/synerise-design/commit/d52b8a9d8e6208f621aa2e78004eebf6f033548e))
+
+
+
+
+
 ## [0.57.2](https://github.com/synerise/synerise-design/compare/portal@0.57.1...portal@0.57.2) (2020-04-23)
 
 

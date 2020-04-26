@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.12.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.11.4...@synerise/ds-button@0.12.0) (2020-04-24)
+
+
+### Bug Fixes
+
+* **button:** added new lines after each stage of test ([9f741eb](https://github.com/synerise/synerise-design/commit/9f741ebddbfe994c46e54aa62ce5f3001dd573df))
+* **button:** fixed passing unrecognized props to dom elements ([85fc4a4](https://github.com/synerise/synerise-design/commit/85fc4a439c3ef629014af506c91f04d39e1fac29))
+* **button:** fixing the build ([fce9e6e](https://github.com/synerise/synerise-design/commit/fce9e6e394bdc890ba1cf9b885d96c84055d5add))
+* **button:** simplifed styles ([dc5e792](https://github.com/synerise/synerise-design/commit/dc5e792c4e483d3fd823a2ce57152fd2b92b39a9))
+
+
+### Features
+
+* **button:** added creator button ([48f1099](https://github.com/synerise/synerise-design/commit/48f1099df83282261e250a12cdfd6173a05b1516))
+* **button:** added epxander ([63b443b](https://github.com/synerise/synerise-design/commit/63b443b9701b2a12b6c569c308cf3811ad7e8fa6))
+* **button:** added expander ([d52b8a9](https://github.com/synerise/synerise-design/commit/d52b8a9d8e6208f621aa2e78004eebf6f033548e))
+
+
+
+
+
 ## [0.11.4](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.11.3...@synerise/ds-button@0.11.4) (2020-04-21)
 
 

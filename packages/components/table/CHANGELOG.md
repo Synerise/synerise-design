@@ -3,6 +3,48 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.6](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.8.5...@synerise/ds-table@0.8.6) (2020-04-24)
+
+
+### Bug Fixes
+
+* **table:** fix ref issue ([648b299](https://github.com/synerise/synerise-design/commit/648b29932bda461f7fe3334978aad4581046de50))
+
+
+
+
+
+## [0.8.5](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.8.4...@synerise/ds-table@0.8.5) (2020-04-24)
+
+
+### Bug Fixes
+
+* **table:** fix eslint errors ([ea546ed](https://github.com/synerise/synerise-design/commit/ea546edbf9a1aac281458c437f2284fc327f653f))
+* **table:** fix virualtable ([00961a2](https://github.com/synerise/synerise-design/commit/00961a26418fce796477b1413f21a35f4f207db1))
+
+
+
+
+
+## [0.8.4](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.8.3...@synerise/ds-table@0.8.4) (2020-04-24)
+
+**Note:** Version bump only for package @synerise/ds-table
+
+
+
+
+
+## [0.8.3](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.8.2...@synerise/ds-table@0.8.3) (2020-04-24)
+
+
+### Bug Fixes
+
+* **table:** fix types ([8288816](https://github.com/synerise/synerise-design/commit/8288816cdd9a37dee3f81fc92bf86bd8f8d4d7cf))
+
+
+
+
+
 ## [0.8.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.8.1...@synerise/ds-table@0.8.2) (2020-04-23)
 
 

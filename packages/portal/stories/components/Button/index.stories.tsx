@@ -7,6 +7,7 @@ import Icon from '@synerise/ds-icon';
 import Button from '@synerise/ds-button';
 import markdown from '@/button/README.md';
 import { version } from '@/button/package.json';
+import { CreatorStatus } from '@synerise/ds-button/dist/Creator/Creator';
 
 const typeOptions = {
   Primary: 'primary',
@@ -52,6 +53,12 @@ const iconSizes = {
   Medium: 'M',
 };
 
+const CREATOR_TYPE = {
+  default: CreatorStatus.Default,
+  upload: CreatorStatus.Upload,
+  validated: CreatorStatus.Error,
+};
+
 const getDefaultProps = (isSplit = false) => ({
   label: text('Label', 'Button'),
   type: select('Set type', !isSplit ? typeOptions : splitTypeOptions, 'primary'),
@@ -64,7 +71,14 @@ const getDefaultProps = (isSplit = false) => ({
   block: boolean('Block', false),
   onClick: action('onClick CLICK'),
 });
-
+const getExpanderProps = (isSplit = false) => ({
+  size: select('Set size', iconSizes, 'S'),
+  disabled: boolean('Disabled', false),
+});
+const getCreatorKnobs = (isSplit = false) => ({
+  disabled: boolean('Disabled', false),
+  status: select('Set creator mode',CREATOR_TYPE,CREATOR_TYPE.default)
+});
 const getBackgroundStyles = (type) => {
   const darkBg = ['tertiary-white', 'ghost-white'].includes(type);
   return {background:`${darkBg ? '#384350' : '#fff'}`, display: 'flex', position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center'}
@@ -173,6 +187,49 @@ const stories = {
         </Button>
       </div>
     );
+  },
+  expander: () => {
+    const expanderProps = getExpanderProps();
+    const props = {
+      ...expanderProps,
+      style: {
+        margin: 4,
+      },
+    } as object;
+    return (
+      <div style={getBackgroundStyles(props.type)}>
+        <Button.Expander onClick={()=>{console.log('Button clicked!')}}  {...expanderProps} >
+
+        </Button.Expander>
+      </div>
+    );
+  },
+  creator: () => {
+    const creatorProps = getCreatorKnobs();
+    const props = {
+      ...creatorProps,
+      style: {
+        margin: 4,
+      },
+    } as object;
+    return (
+        <Button.Creator {...props} onClick={()=>{console.log('Button clicked!')}} >
+        </Button.Creator>
+    );
+  },
+  creatorWithLabel: () => {
+    const creatorProps = getCreatorKnobs();
+    const props = {
+      ...creatorProps,
+      style: {
+        margin: 4,
+      },
+    } as object;
+    return (<div>
+        <Button.Creator {...props} label={"Add position"} onClick={()=>{console.log('Button clicked!')}}  >
+        </Button.Creator>
+      </div>
+      );
   },
 };
 

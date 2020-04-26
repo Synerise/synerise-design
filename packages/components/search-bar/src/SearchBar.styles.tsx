@@ -64,6 +64,7 @@ export const SearchBarWrapper = styled.div<{
 
     input {
       border-radius: 0;
+      line-height: 18px;
       padding: ${(props): string => {
         if (props.iconLeft && !props.isEmpty) return '0 42px 0 52px';
         if (props.iconLeft && props.isEmpty) return '0 12px 0 52px';
@@ -77,7 +78,9 @@ export const SearchBarWrapper = styled.div<{
         return 'calc(100% - 24px)';
       }};
     }
-
+    input::placeholder {
+      line-height: 18px;
+    }
     &:hover {
       ${IconLeftWrapper} {
         svg {

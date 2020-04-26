@@ -3,66 +3,99 @@ import { VariableSizeGrid as Grid } from 'react-window';
 import ResizeObserver from 'rc-resize-observer';
 import classNames from 'classnames';
 import Checkbox from '@synerise/ds-checkbox';
-import { DSTableProps } from '../Table.types';
 import DSTable from '../Table';
+import { AntTableProps } from '../Table.types';
 
-interface Props extends DSTableProps<{ key: React.ReactText }> {
+interface Props<T> extends AntTableProps<T> {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   columns: any[];
   scroll: {
     x: number;
     y: number;
   };
-  onRowClick?: (row: object) => void;
+  onRowClick?: (row: T) => void;
   cellHeight: number;
+  initialWidth: number;
 }
 
-const VirtualTable: React.FC<Props> = (props: Props) => {
-  const { columns, scroll, className, cellHeight = 52, selection, onRowClick } = props;
-  const [tableWidth, setTableWidth] = React.useState(0);
-  let virtualColumns = columns;
-  if (selection) {
-    virtualColumns = [
-      {
-        width: 72,
-        key: 'key',
-        dataIndex: 'key',
-        render: (key: string): React.ReactNode => {
-          return (
-            <Checkbox
-              checked={selection.selectedRowKeys && selection.selectedRowKeys.indexOf(key) >= 0}
-              onChange={(event): void => {
-                const { selectedRowKeys, onChange } = selection;
-                let selectedRows = selectedRowKeys || [];
-                if (event.target.checked) {
-                  selectedRows = [...selectedRows, key];
-                } else {
-                  selectedRows = selectedRows.filter(k => k !== key);
-                }
-                onChange && onChange(selectedRows, props.dataSource || []);
-              }}
-            />
-          );
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function VirtualTable<T extends object = any>(props: Props<T>): React.ReactElement {
+  const {
+    columns,
+    scroll,
+    className,
+    cellHeight = 52,
+    rowSelection,
+    onRowClick,
+    rowKey,
+    initialWidth = 0,
+    dataSource,
+    selection,
+  } = props;
+  const [tableWidth, setTableWidth] = React.useState(initialWidth);
+
+  const getRowKey = React.useCallback(
+    (row: T): React.ReactText => {
+      return typeof rowKey === 'function' ? rowKey(row) : rowKey || 'key';
+    },
+    [rowKey]
+  );
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const virtualColumns = React.useMemo((): any[] => {
+    if (rowSelection) {
+      return [
+        {
+          width: 64,
+          key: 'key',
+          dataIndex: 'key',
+          render: (key: string, record: T): React.ReactNode => {
+            const recordKey = getRowKey(record);
+            return (
+              <Checkbox
+                checked={rowSelection.selectedRowKeys && rowSelection.selectedRowKeys.indexOf(recordKey) >= 0}
+                onChange={(event): void => {
+                  const { selectedRowKeys, onChange } = rowSelection;
+                  let selectedKeys = selectedRowKeys || [];
+                  if (event.target.checked) {
+                    selectedKeys = [...selectedKeys, recordKey];
+                  } else {
+                    selectedKeys = selectedKeys.filter(k => k !== recordKey);
+                  }
+                  onChange &&
+                    onChange(
+                      selectedKeys,
+                      (dataSource && dataSource.filter(row => selectedKeys.includes(getRowKey(row)))) || []
+                    );
+                }}
+              />
+            );
+          },
         },
-      },
-      ...virtualColumns,
-    ];
-  }
-
-  const widthColumnCount = virtualColumns.filter(({ width }) => !width).length;
-  const definedWidth = virtualColumns
-    .filter(({ width }) => width)
-    .reduce((total: number, { width }): number => total + width, 0);
-  const mergedColumns = virtualColumns?.map(column => {
-    if (column.width) {
-      return column;
+        ...columns,
+      ];
     }
+    return columns;
+  }, [columns, rowSelection, getRowKey, dataSource]);
 
-    return {
-      ...column,
-      width: Math.floor((tableWidth - definedWidth) / widthColumnCount),
-    };
-  });
+  const mergedColumns = React.useMemo(() => {
+    const widthColumnCount = virtualColumns.filter(({ width }) => !width).length;
+    const definedWidth = virtualColumns
+      .filter(({ width }) => width)
+      .reduce((total: number, { width }): number => total + width, 0);
+
+    return virtualColumns?.map(column => {
+      if (column.width) {
+        return column;
+      }
+
+      return {
+        ...column,
+        width: Math.floor((tableWidth - definedWidth) / widthColumnCount),
+      };
+    });
+  }, [virtualColumns, tableWidth]);
+
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const gridRef = React.useRef<any>();
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -81,20 +114,21 @@ const VirtualTable: React.FC<Props> = (props: Props) => {
   });
 
   const resetVirtualGrid = (): void => {
-    gridRef.current.resetAfterIndices({
-      columnIndex: 0,
-      shouldForceUpdate: false,
-    });
+    if (gridRef.current) {
+      gridRef.current.resetAfterIndices({
+        columnIndex: 0,
+        shouldForceUpdate: false,
+      });
+    }
   };
 
   React.useEffect(() => resetVirtualGrid, []);
   React.useEffect(() => resetVirtualGrid, [tableWidth]);
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const renderVirtualList = (rawData: object[], { scrollbarSize, ref, onScroll }: any): React.ReactNode => {
+  const renderVirtualList = (rawData: T[], { scrollbarSize, ref, onScroll }: any): React.ReactNode => {
     // eslint-disable-next-line no-param-reassign
     ref.current = connectObject;
-
     return (
       // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
       // @ts-ignore
@@ -104,7 +138,8 @@ const VirtualTable: React.FC<Props> = (props: Props) => {
         columnCount={mergedColumns.length}
         columnWidth={(index: number): number => {
           const { width } = mergedColumns[index];
-          return index === mergedColumns.length - 1 ? width - scrollbarSize - 1 : width;
+          const columnWidth = index === mergedColumns.length - 1 ? width - scrollbarSize - 1 : width;
+          return columnWidth;
         }}
         height={scroll.y}
         rowCount={rawData.length}
@@ -149,12 +184,14 @@ const VirtualTable: React.FC<Props> = (props: Props) => {
         columns={selection ? mergedColumns.slice(1) : mergedColumns}
         selection={selection}
         pagination={false}
+        /* eslint-disable-next-line @typescript-eslint/ban-ts-ignore */
+        // @ts-ignore
         components={{
           body: renderVirtualList,
         }}
       />
     </ResizeObserver>
   );
-};
+}
 
 export default VirtualTable;
