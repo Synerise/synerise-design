@@ -4,9 +4,9 @@ import ResizeObserver from 'rc-resize-observer';
 import classNames from 'classnames';
 import Checkbox from '@synerise/ds-checkbox';
 import DSTable from '../Table';
-import { AntTableProps } from '../Table.types';
+import { DSTableProps } from '../Table.types';
 
-interface Props<T> extends AntTableProps<T> {
+interface Props<T> extends DSTableProps<T> {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   columns: any[];
   scroll: {
@@ -182,7 +182,6 @@ function VirtualTable<T extends object = any>(props: Props<T>): React.ReactEleme
         {...props}
         className={classNames(className, 'virtual-table')}
         columns={selection ? mergedColumns.slice(1) : mergedColumns}
-        selection={selection}
         pagination={false}
         /* eslint-disable-next-line @typescript-eslint/ban-ts-ignore */
         // @ts-ignore

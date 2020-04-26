@@ -40,9 +40,10 @@ const stories = {
     };
 
     return (
-      <>
+      <div style={{width: 960}}>
         <VirtualTable
           scroll={{y: 500, x: 0}}
+          initialWidth={960}
           title={`${filteredDataSource().length} records`}
           dataSource={filteredDataSource()}
           columns={columns}
@@ -70,7 +71,7 @@ const stories = {
             />
           }
         />
-      </>
+      </div>
     )
   })
 };

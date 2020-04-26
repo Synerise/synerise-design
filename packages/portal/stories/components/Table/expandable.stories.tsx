@@ -54,9 +54,7 @@ const stories = {
             if(children !== undefined) {
               return (
                 <TableCell.ActionCell>
-                  <Button type='secondary' mode='single-icon' shape='circle' onClick={() => {handleExpandRow(record.key)}}>
-                    <Icon component={<AngleDownS />} />
-                  </Button>
+                  <Button.Expander onClick={() => {handleExpandRow(record.key)}} />
                 </TableCell.ActionCell>
               );
             }
