@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.8.6...@synerise/ds-table@0.9.0) (2020-04-27)
+
+
+### Bug Fixes
+
+* **table:** code review ([0d8429e](https://github.com/synerise/synerise-design/commit/0d8429ee1be27a605ef2b77106f8d58368c06a98))
+* **table:** CR issues ([b51b574](https://github.com/synerise/synerise-design/commit/b51b5747a5c0e7cf57b109e2a9b66d69007ade9e))
+* **table:** fix styles ([30309a0](https://github.com/synerise/synerise-design/commit/30309a0d9a9b2d5a32113521cb069a1899d80d2b))
+* **table:** fix table test ([4b42a0c](https://github.com/synerise/synerise-design/commit/4b42a0c604b08b11aa7657bf0ec7259d248502c7))
+* **table:** lint error ([929102b](https://github.com/synerise/synerise-design/commit/929102b4e240adfc55c13c312ff04facb0b83b4e))
+
+
+### Features
+
+* **table:** add Cell types ([0827902](https://github.com/synerise/synerise-design/commit/08279024f845e9491aec3e483fcab738fdb54d33))
+* **table:** add custom row selection, custom row expanding, fix styles ([e20ff99](https://github.com/synerise/synerise-design/commit/e20ff991ab46f66bbc281aaa9121c5ba3b3a1f5a))
+* **table:** add filter trigger ([c7a0ff9](https://github.com/synerise/synerise-design/commit/c7a0ff9b4add3c7b3d4e5a56f162238b9c2333dc))
+* **table:** add Items Menu ([e90b17c](https://github.com/synerise/synerise-design/commit/e90b17c634790adc878645a8703b2a60a8bd14e5))
+* **table:** add predefined cell types ([2482e9a](https://github.com/synerise/synerise-design/commit/2482e9a8db86e0dfd3372cfd11c878435ac94985))
+* **table:** add search ([4e14210](https://github.com/synerise/synerise-design/commit/4e14210c513bf985ff502271f340a2086519c25b))
+* **table:** add virtualized list ([4976607](https://github.com/synerise/synerise-design/commit/49766079297440f409f01a0d4523572ee8b8672c))
+* **table:** example with ColumnManager ([cbf6a80](https://github.com/synerise/synerise-design/commit/cbf6a80e3ca7fca5d0eea103a0d61515123e2109))
+* **table:** refactor ([72a3dc8](https://github.com/synerise/synerise-design/commit/72a3dc8fa88917d190ac91189366fc8fded5f546))
+* **table:** table virtualization ([d68823e](https://github.com/synerise/synerise-design/commit/d68823eef53457f9d2815dc81116764e7fead6e4))
+* **table:** update dependencies ([ed5e910](https://github.com/synerise/synerise-design/commit/ed5e9108766e77209339ba9438adcd4ede3d494a))
+* **table:** update styles ([371aafc](https://github.com/synerise/synerise-design/commit/371aafc57bfffaace5a9233862c73fcd4f5f06fa))
+* **table:** update styles ([e6b5245](https://github.com/synerise/synerise-design/commit/e6b5245786d1a3d4eba604a3866df7564b2f14fe))
+* **table:** update table styles ([9759f51](https://github.com/synerise/synerise-design/commit/9759f51216daf31c6535600f85c593e8bd75b138))
+* **table:** update table styles ([78649c5](https://github.com/synerise/synerise-design/commit/78649c56e2e28709cd9658f03bada860e0e11768))
+* **table:** use Expander button ([a5287ac](https://github.com/synerise/synerise-design/commit/a5287ac1050624636311eae7a9619333367d9aa3))
+
+
+
+
+
 ## [0.8.6](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.8.5...@synerise/ds-table@0.8.6) (2020-04-24)
 
 

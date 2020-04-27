@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.59.0](https://github.com/synerise/synerise-design/compare/portal@0.58.1...portal@0.59.0) (2020-04-27)
+
+
+### Bug Fixes
+
+* **table:** code review ([0d8429e](https://github.com/synerise/synerise-design/commit/0d8429ee1be27a605ef2b77106f8d58368c06a98))
+* **table:** CR issues ([b51b574](https://github.com/synerise/synerise-design/commit/b51b5747a5c0e7cf57b109e2a9b66d69007ade9e))
+* **table:** fix styles ([30309a0](https://github.com/synerise/synerise-design/commit/30309a0d9a9b2d5a32113521cb069a1899d80d2b))
+
+
+### Features
+
+* **column-manager:** update default translations ([c2f1660](https://github.com/synerise/synerise-design/commit/c2f1660139c31741d7c1701f3a68065bc3f80bab))
+* **items-roll:** add items-roll component ([def8fe5](https://github.com/synerise/synerise-design/commit/def8fe576f893bf120fab89bad3397dba498838e))
+* **table:** add search ([4e14210](https://github.com/synerise/synerise-design/commit/4e14210c513bf985ff502271f340a2086519c25b))
+* **table:** add virtualized list ([4976607](https://github.com/synerise/synerise-design/commit/49766079297440f409f01a0d4523572ee8b8672c))
+* **table:** example with ColumnManager ([cbf6a80](https://github.com/synerise/synerise-design/commit/cbf6a80e3ca7fca5d0eea103a0d61515123e2109))
+* **table:** story with search ([db91a35](https://github.com/synerise/synerise-design/commit/db91a35bd7eb95285734d15556a688ccb698b1f0))
+* **table:** table virtualization ([d68823e](https://github.com/synerise/synerise-design/commit/d68823eef53457f9d2815dc81116764e7fead6e4))
+* **table:** update stories ([0fa960a](https://github.com/synerise/synerise-design/commit/0fa960a0b767421e0d2b174c84faa69f68375a90))
+* **table:** update styles ([371aafc](https://github.com/synerise/synerise-design/commit/371aafc57bfffaace5a9233862c73fcd4f5f06fa))
+* **table:** update styles ([e6b5245](https://github.com/synerise/synerise-design/commit/e6b5245786d1a3d4eba604a3866df7564b2f14fe))
+* **table:** update table stories ([a0a4eb1](https://github.com/synerise/synerise-design/commit/a0a4eb1d29e65bb40c84561fbbb0e5d1df2e2ebc))
+* **table:** update table stories ([ec2722f](https://github.com/synerise/synerise-design/commit/ec2722f6b46d182c71f09c849478621bc2e5f66e))
+* **table:** use Expander button ([a5287ac](https://github.com/synerise/synerise-design/commit/a5287ac1050624636311eae7a9619333367d9aa3))
+
+
+
+
+
 ## [0.58.1](https://github.com/synerise/synerise-design/compare/portal@0.58.0...portal@0.58.1) (2020-04-24)
 
 

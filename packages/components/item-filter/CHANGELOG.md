@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-filter@0.2.45...@synerise/ds-item-filter@0.3.0) (2020-04-27)
+
+
+### Features
+
+* **item-filter:** update default translations ([d1cf116](https://github.com/Synerise/synerise-design/commit/d1cf116fc00dcee67459e879997e208129e31ddd))
+
+
+
+
+
 ## [0.2.45](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-filter@0.2.44...@synerise/ds-item-filter@0.2.45) (2020-04-24)
 
 **Note:** Version bump only for package @synerise/ds-item-filter

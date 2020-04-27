@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.10.17...@synerise/ds-select@0.11.0) (2020-04-27)
+
+
+### Features
+
+* **items-roll:** add items-roll component ([def8fe5](https://github.com/synerise/synerise-design/commit/def8fe576f893bf120fab89bad3397dba498838e))
+
+
+
+
+
 ## [0.10.17](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.10.16...@synerise/ds-select@0.10.17) (2020-04-15)
 
 **Note:** Version bump only for package @synerise/ds-select
