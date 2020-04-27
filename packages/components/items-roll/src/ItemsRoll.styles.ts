@@ -1,0 +1,173 @@
+import styled from 'styled-components';
+import Button from '@synerise/ds-button';
+import Icon from '@synerise/ds-icon';
+import DividerBase from '@synerise/ds-divider';
+
+export const Wrapper = styled.div`
+  padding: 12px;
+  border: 1px solid ${({ theme }): string => theme.palette['grey-200']};
+  border-radius: 3px;
+`;
+
+export const ContainerSpaceBetween = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+export const HeaderRight = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+`;
+
+export const HeaderLeft = styled.div`
+  color: ${({ theme }): string => theme.palette['grey-800']};
+  margin-left: 12px;
+`;
+
+export const ListWrapper = styled.div`
+  && {
+    .ant-menu {
+      .items-roll-list-item {
+        :hover {
+          svg {
+            fill: ${({ theme }): string => theme.palette['blue-600']};
+          }
+
+          .element-remove-icon {
+            svg {
+              fill: ${({ theme }): string => theme.palette['red-600']} !important;
+
+              :hover {
+                fill: ${({ theme }): string => theme.palette['red-600']} !important;
+              }
+            }
+          }
+        }
+      }
+
+      .ant-menu-item-group-list {
+        margin-left: -12px;
+      }
+
+      .ant-menu-item-group-title {
+        font-size: 10px;
+        text-transform: uppercase;
+        color: ${({ theme }): string => theme.palette['grey-500']};
+        font-weight: 500;
+        padding-left: 0;
+        padding-right: 0;
+        margin-left: -12px;
+      }
+
+      .ant-menu-item-group:not(:first-child):before {
+        content: '';
+        width: calc(100% + 12px);
+        height: 1px;
+        display: block;
+        border-bottom: 1px dashed ${({ theme }): string => theme.palette['grey-300']};
+        margin: 12px 0px 12px -12px;
+      }
+    }
+  }
+`;
+
+export const Bold = styled.span`
+  color: ${({ theme }): string => theme.palette['grey-800']};
+  font-weight: 500;
+`;
+
+export const ChangeSelection = styled(Button)`
+  width: 157px;
+  display: flex;
+  align-items: center;
+  padding: 4px 9px;
+  font-weight: 500;
+  color: ${({ theme }): string => theme.palette['blue-600']};
+
+  &&& {
+    .ds-icon {
+      margin-right: 4px;
+
+      svg {
+        fill: ${({ theme }): string => theme.palette['blue-600']};
+      }
+    }
+  }
+`;
+
+export const SearchWrapper = styled.div`
+  margin: 0 8px;
+  min-width: 32px;
+  flex: 1 1 auto;
+`;
+
+export const ShowButton = styled(Button)`
+  display: flex;
+  align-items: center;
+  margin-right: 8px;
+
+  span {
+    font-weight: 400;
+    color: ${({ theme }): string => theme.palette['grey-700']};
+  }
+
+  .bold-label {
+    font-weight: 500;
+
+    span {
+      font-weight: 500;
+    }
+  }
+
+  .ds-icon {
+    margin: -2px 4px 0 8px;
+  }
+`;
+
+export const ClearButton = styled(Button)`
+  margin-left: auto;
+
+  &&& {
+    .ds-icon {
+      margin-top: 1px;
+    }
+  }
+`;
+
+export const ArrowIcon = styled(Icon)`
+  svg {
+    fill: ${({ theme }): string => theme.palette['grey-600']};
+  }
+`;
+
+export const NoResults = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 144px;
+  color: ${({ theme }): string => theme.palette['grey-600']};
+`;
+
+export const NoResultIconWrapper = styled.div`
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: ${({ theme }): string => theme.palette['grey-200']};
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .ds-icon {
+    svg {
+      fill: ${({ theme }): string => theme.palette['grey-600']};
+    }
+  }
+`;
+
+export const Divider = styled(DividerBase)<{ footer?: boolean }>`
+  margin: ${(props): string => (props.footer ? '8px 0 12px' : '12px 0 8px')};
+`;

@@ -58,6 +58,17 @@
     "TIME-PICKER": {
       "CLEAR-TOOLTIP": "Clear",
       "PLACEHOLDER": "Select time"
+    },
+    "ITEMS-ROLL": {
+      "CHANGE-SELECTION": "Change selection",
+      "CLEAR-ALL": "Clear all",
+      "CLEAR-TOOLTIP": "Clear",
+      "ITEMS": "Items",
+      "MORE": "more",
+      "NO-RESULTS": "No results",
+      "REMOVE-TOOLTIP": "Remove",
+      "SHOW": "Show",
+      "SHOW-LESS": "Show less"
     }
   }
 }
