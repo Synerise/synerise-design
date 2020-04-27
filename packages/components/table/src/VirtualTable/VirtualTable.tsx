@@ -3,9 +3,10 @@ import { VariableSizeGrid as Grid } from 'react-window';
 import ResizeObserver from 'rc-resize-observer';
 import classNames from 'classnames';
 import Checkbox from '@synerise/ds-checkbox';
-import DSTable, { AntTableProps } from '../Table';
+import DSTable from '../Table';
+import { DSTableProps } from '../Table.types';
 
-interface Props<T> extends AntTableProps<T> {
+interface Props<T> extends DSTableProps<T> {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   columns: any[];
   scroll: {
@@ -29,6 +30,7 @@ function VirtualTable<T extends object = any>(props: Props<T>): React.ReactEleme
     rowKey,
     initialWidth = 0,
     dataSource,
+    selection,
   } = props;
   const [tableWidth, setTableWidth] = React.useState(initialWidth);
 
@@ -153,7 +155,7 @@ function VirtualTable<T extends object = any>(props: Props<T>): React.ReactEleme
           <div
             className={classNames('virtual-table-cell', {
               'virtual-table-cell-last': columnIndex === mergedColumns.length - 1,
-              'ant-table-selection-column': columnIndex === 0 && rowSelection,
+              'ant-table-selection-column': columnIndex === 0 && selection,
             })}
             onClick={(): void => onRowClick && onRowClick(rawData[rowIndex])}
             style={style}
@@ -179,9 +181,10 @@ function VirtualTable<T extends object = any>(props: Props<T>): React.ReactEleme
       <DSTable
         {...props}
         className={classNames(className, 'virtual-table')}
-        columns={rowSelection ? mergedColumns.slice(1) : mergedColumns}
-        rowSelection={rowSelection}
+        columns={selection ? mergedColumns.slice(1) : mergedColumns}
         pagination={false}
+        /* eslint-disable-next-line @typescript-eslint/ban-ts-ignore */
+        // @ts-ignore
         components={{
           body: renderVirtualList,
         }}

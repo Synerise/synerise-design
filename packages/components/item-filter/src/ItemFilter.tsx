@@ -10,7 +10,7 @@ import ManageableList from '@synerise/ds-manageable-list';
 import Result from '@synerise/ds-result';
 import { ItemProps } from '@synerise/ds-manageable-list/dist/Item/Item';
 import { withTheme } from 'styled-components';
-import { FormattedMessage } from 'react-intl';
+import { IntlFormatters, injectIntl } from 'react-intl';
 import SearchBar from '@synerise/ds-search-bar';
 import * as S from './ItemFIlter.styles';
 
@@ -39,6 +39,7 @@ export type ItemFilterProps = {
   theme: {
     [k: string]: string;
   };
+  intl: IntlFormatters;
 };
 
 const ItemFilter: React.FC<ItemFilterProps> = ({
@@ -50,20 +51,21 @@ const ItemFilter: React.FC<ItemFilterProps> = ({
   selectItem,
   items,
   selectedItemId,
+  intl,
   texts = {
-    activateItemTitle: <FormattedMessage id="DS.ITEM-FILTER.ACTIVATE-ITEM-TITLE" />,
-    activate: <FormattedMessage id="DS.ITEM-FILTER.ACTIVATE" />,
-    cancel: <FormattedMessage id="DS.ITEM-FILTER.CANCEL" />,
-    deleteConfirmationTitle: <FormattedMessage id="DS.ITEM-FILTER.DELETE-CONFIRMATION-TITLE" />,
-    deleteConfirmationDescription: <FormattedMessage id="DS.ITEM-FILTER.DELETE-CONFIRMATION-DESCRIPTION" />,
-    deleteConfirmationNo: <FormattedMessage id="DS.ITEM-FILTER.DELETE-CONFIRMATION-NO" />,
-    deleteConfirmationYes: <FormattedMessage id="DS.ITEM-FILTER.DELETE-CONFIRMATION-YES" />,
-    noResults: <FormattedMessage id="DS.ITEM-FILTER.NO-RESULTS" />,
-    searchPlaceholder: <FormattedMessage id="DS.ITEM-FILTER.SEARCH-PLACEHOLDER" />,
-    title: <FormattedMessage id="DS.ITEM-FILTER.TITLE" />,
-    more: <FormattedMessage id="DS.MANAGABLE-LIST.MORE" />,
-    less: <FormattedMessage id="DS.MANAGABLE-LIST.LESS" />,
-    searchClearTooltip: <FormattedMessage id="DS.ITEM-FILTER.SEARCH-CLEAR" />,
+    activateItemTitle: intl.formatMessage({ id: 'DS.ITEM-FILTER.ACTIVATE-ITEM-TITLE' }),
+    activate: intl.formatMessage({ id: 'DS.ITEM-FILTER.ACTIVATE' }),
+    cancel: intl.formatMessage({ id: 'DS.ITEM-FILTER.CANCEL' }),
+    deleteConfirmationTitle: intl.formatMessage({ id: 'DS.ITEM-FILTER.DELETE-CONFIRMATION-TITLE' }),
+    deleteConfirmationDescription: intl.formatMessage({ id: 'DS.ITEM-FILTER.DELETE-CONFIRMATION-DESCRIPTION' }),
+    deleteConfirmationNo: intl.formatMessage({ id: 'DS.ITEM-FILTER.DELETE-CONFIRMATION-NO' }),
+    deleteConfirmationYes: intl.formatMessage({ id: 'DS.ITEM-FILTER.DELETE-CONFIRMATION-YES' }),
+    noResults: intl.formatMessage({ id: 'DS.ITEM-FILTER.NO-RESULTS' }),
+    searchPlaceholder: intl.formatMessage({ id: 'DS.ITEM-FILTER.SEARCH-PLACEHOLDER' }),
+    title: intl.formatMessage({ id: 'DS.ITEM-FILTER.TITLE' }),
+    more: intl.formatMessage({ id: 'DS.MANAGABLE-LIST.MORE' }),
+    less: intl.formatMessage({ id: 'DS.MANAGABLE-LIST.LESS' }),
+    searchClearTooltip: intl.formatMessage({ id: 'DS.ITEM-FILTER.SEARCH-CLEAR' }),
   },
   maxToShowItems = 200,
   categories,
@@ -132,4 +134,4 @@ const ItemFilter: React.FC<ItemFilterProps> = ({
   );
 };
 
-export default withTheme(ItemFilter);
+export default injectIntl(withTheme(ItemFilter));

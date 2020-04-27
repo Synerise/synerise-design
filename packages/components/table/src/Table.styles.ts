@@ -1,15 +1,14 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { macro } from '@synerise/ds-typography';
+import { CheckboxWrapper } from '@synerise/ds-checkbox/dist/Checkbox.styles';
+import Menu from '@synerise/ds-menu';
+import { IconContainer } from '@synerise/ds-icon/dist/Icon.styles';
 
 export const Header = styled.div`
   background: #ffffff;
-  padding: 24px;
+  padding: 20px 24px;
   display: flex;
   justify-content: space-between;
-`;
-
-export const SelectionHeader = styled(Header)`
-  background: ${(props): string => props.theme.palette['blue-600']};
 `;
 
 export const Size = styled.div`
@@ -22,15 +21,12 @@ export const Size = styled.div`
 `;
 
 export const Title = styled.div`
-  ${macro.h400};
-`;
-
-export const SubTitle = styled.div`
   ${macro.small};
-  border-left: 1px solid ${(props): string => props.theme.palette['grey-200']};
   color: ${(props): string => props.theme.palette['grey-800']};
-  margin-left: 24px;
-  padding: 0 24px;
+  padding: 0 24px 0 0;
+  strong {
+    font-weight: 500;
+  }
 `;
 
 export const Left = styled.div`
@@ -39,7 +35,13 @@ export const Left = styled.div`
 `;
 
 export const Right = styled.div`
-  direction: rtl;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  > * {
+    margin-left: 8px;
+    min-width: 32px;
+  }
 `;
 
 export const Icon = styled.div`
@@ -47,7 +49,6 @@ export const Icon = styled.div`
   position: absolute;
   left: 4px;
   z-index: 1;
-  pointer-events: none;
 `;
 
 export const Input = styled.div<{ isOpen?: boolean }>`
@@ -70,9 +71,8 @@ export const InputWrapper = styled.div<{ isOpen?: boolean; searchValue: string |
   direction: ltr;
 
   ${Input} {
-    ${(props): string => (props.searchValue !== '' ? `opacity: 1 !important` : 'opacity: 0')};
-    ${(props): string => (props.isOpen ? `opacity: 1` : 'opacity: 0')};
-    ${(props): string => (!props.isOpen && props.searchValue === '' ? `opacity: 0` : 'opacity: 1')};
+    opacity: ${(props): string => (props.searchValue || props.isOpen ? '1 !important' : '0')};
+    width: ${(props): string => (props.searchValue || props.isOpen ? 'auto' : '0')};
   }
 
   & {
@@ -85,5 +85,51 @@ export const InputWrapper = styled.div<{ isOpen?: boolean; searchValue: string |
 
   .search-input {
     width: 0;
+  }
+`;
+
+export const Selection = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 72px;
+  ${CheckboxWrapper} {
+    padding: 0;
+  }
+`;
+
+export const SelectionMenu = styled(Menu)`
+  padding: 8px;
+`;
+
+const spinnerAnimation = keyframes`
+  from {
+    transform: rotateZ(0deg);
+  }
+  
+  to {
+    transform: rotateZ(360deg);
+  }
+`;
+
+export const Spinner = styled.div`
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  border-radius: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.6);
+  z-index: 10;
+  ${IconContainer} {
+    animation: ${spinnerAnimation} 1s forwards linear infinite;
+    svg {
+      color: ${(props): string => props.theme.palette['blue-600']};
+      fill: ${(props): string => props.theme.palette['blue-600']};
+    }
   }
 `;

@@ -1,4 +1,6 @@
-import VirtualTable from './Virtualized/Virtualized';
+import VirtualTable from './VirtualTable/VirtualTable';
+import * as TableCell from './Cell';
+import ItemsMenu from './ItemsMenu/ItemsMenu';
 
 export { default } from './Table';
-export { VirtualTable };
+export { VirtualTable, TableCell, ItemsMenu };

@@ -1,10 +1,20 @@
 @pagination-prefix-cls: ~'@{ant-prefix}-pagination';
 
 .@{pagination-prefix-cls} {
+  * {
+    font-family: 'Graphik LCG Web', sans-serif;
+  }
   &-prev,
   &-next {
+    background-size: 24px;
+    background-position: center;
+
     &:hover a {
       border-color: transparent;
+    }
+
+    &.ant-pagination-disabled {
+      opacity: 0.2;
     }
 
     .@{pagination-prefix-cls}-item-link {
@@ -42,6 +52,7 @@
     border: @border-width-base @border-style-base transparent;
     background-color: transparent;
     border-radius: 50%;
+    margin-right: 0;
 
     &:focus,
     &:hover {
@@ -58,9 +69,6 @@
 
       &:focus,
       &:hover {
-        border-color: @primary-color;
-        background-color: @primary-color;
-
         a {
           color: #fff;
         }
@@ -76,8 +84,8 @@
 
   &-options {
     &-size-changer.@{ant-prefix}-select {
-      margin-right: 12px;
-      min-width: 115px;
+      margin-right: 16px;
+      min-width: 140px;
     }
   }
 
@@ -86,6 +94,12 @@
     display: inline-flex;
     align-items: center;
     white-space: nowrap;
+
+    input {
+      margin: 0 0 0 16px;
+      padding: 7px 12px;
+      height: 32px;
+    }
 
     input:focus {
       box-shadow: inset 0 0 0 1px @primary-color;

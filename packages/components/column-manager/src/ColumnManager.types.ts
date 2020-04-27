@@ -1,5 +1,6 @@
 import { ItemFilterProps } from '@synerise/ds-item-filter/dist/ItemFilter';
 import * as React from 'react';
+import { IntlFormatters } from 'react-intl';
 import { Column } from './ColumnManagerItem/ColumManagerIte.types';
 
 export type Texts =
@@ -32,6 +33,7 @@ export type ColumnManagerProps = {
     [k in Texts]: string | React.ReactNode;
   };
   itemFilterConfig?: Omit<ItemFilterProps, 'visible' | 'hide' | 'theme'>;
+  intl: IntlFormatters;
 };
 
 export type SavedView = {

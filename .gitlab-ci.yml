@@ -60,10 +60,10 @@ docs_deploy:
   image: docker:stable
   stage: deploy
   needs: ['docs_build']
-  allow_failure: true
   only:
     refs:
       - master
+  allow_failure: true
   script:
     - SANITY_BRANCH=$CI_COMMIT_REF_SLUG
     - echo "Sanitized branch name ${SANITY_BRANCH}"

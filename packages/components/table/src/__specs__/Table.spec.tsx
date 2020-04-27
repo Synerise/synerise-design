@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
-import { fireEvent } from '@testing-library/react';
 import Table from '../index';
+import { fireEvent } from '@testing-library/react';
+import { Grid2M } from '@synerise/ds-icon/dist/icons';
 
 const props = {
   dataSource: [
@@ -13,6 +14,30 @@ const props = {
     },
     {
       key: '2',
+      name: 'John',
+      age: 42,
+      address: '10 Downing Street',
+    },
+    {
+      key: '3',
+      name: 'John',
+      age: 42,
+      address: '10 Downing Street',
+    },
+    {
+      key: '4',
+      name: 'John',
+      age: 42,
+      address: '10 Downing Street',
+    },
+    {
+      key: '5',
+      name: 'John',
+      age: 42,
+      address: '10 Downing Street',
+    },
+    {
+      key: '6',
       name: 'John',
       age: 42,
       address: '10 Downing Street',
@@ -73,70 +98,120 @@ describe('Table', () => {
     expect(getAllByText('10 Downing Street')).toBeTruthy();
   });
 
-  it('should render title and subtitle', () => {
+  it('should render title', () => {
     // ARRANGE
     const TITLE = 'test title';
-    const SUB_TITLE = 'test subtitle';
-    const { getByText } = renderWithProvider(<Table columns={props.columns} title={TITLE} subTitle={SUB_TITLE} />);
+    const { getByText } = renderWithProvider(<Table columns={props.columns} title={TITLE} />);
 
     // ASSERT
     expect(getByText(TITLE)).toBeTruthy();
-    expect(getByText(SUB_TITLE)).toBeTruthy();
   });
 
-  it('should call onSearch', () => {
+  it('should not render pagination', () => {
     // ARRANGE
-    const onSearch = jest.fn();
-    const TITLE = 'test title';
-    const SUB_TITLE = 'test subtitle';
-    const { container } = renderWithProvider(
-      <Table columns={props.columns} title={TITLE} subTitle={SUB_TITLE} onSearch={onSearch} search="test" />
-    );
-    const input = container.querySelector('input');
-
-    // ACT
-    input && fireEvent.change(input, { target: { value: '23' } }); // this shoundn't work
+    const{ container } = renderWithProvider(<Table dataSource={props.dataSource} columns={props.columns} />);
 
     // ASSERT
-    expect(input).toBeTruthy();
-    expect(onSearch).toBeCalled();
-    expect(input && input.value).toBe('test');
+    expect(container.querySelector('.ant-table-pagination')).toBeNull();
   });
 
-  it('should selected items header render', () => {
+  it('should render pagination with size changer and quick jumper', () => {
     // ARRANGE
-    const onChange = jest.fn();
-    const rowSelection = {
-      selectedRowKeys: Array(123).fill(0),
-      onChange,
-    };
-    const TITLE = 'test title';
-    const SUB_TITLE = 'test subtitle';
-    const itemsMenu = (
-      <>
-        <button>example button</button>
-      </>
-    );
-    const { getByText, getAllByRole } = renderWithProvider(
-      <Table
-        columns={props.columns}
-        dataSource={props.dataSource}
-        title={TITLE}
-        subTitle={SUB_TITLE}
-        rowSelection={rowSelection}
-        itemsMenu={itemsMenu}
-      />
-    );
-    // Select second items on list (index 0 selects all)
-    const checkbox = getAllByRole('checkbox')[2];
-    const selectedRecord = props.dataSource[1];
-
-    // ACT
-    checkbox && fireEvent.click(checkbox);
+    const handleChange = jest.fn();
+    const{ container } = renderWithProvider(<Table dataSource={props.dataSource} columns={props.columns} pagination={{
+      showSizeChanger: true,
+      showQuickJumper: true,
+      onChange: handleChange,
+      pageSize: 3
+    }} />);
 
     // ASSERT
-    expect(getByText('123')).toBeTruthy();
-    expect(getByText('example button')).toBeTruthy();
-    expect(onChange).toBeCalledWith([0, "2"], [undefined, selectedRecord]);
+    expect(container.querySelector('.ant-table-pagination')).toBeTruthy();
+    expect(container.querySelector('.ant-pagination-options-size-changer')).toBeTruthy();
+    expect(container.querySelector('.ant-pagination-options-quick-jumper')).toBeTruthy();
   });
+
+  it('should render call handleChange', () => {
+    // ARRANGE
+    const handleChange = jest.fn();
+    const{ container } = renderWithProvider(<Table dataSource={props.dataSource} columns={props.columns} pagination={{
+      showSizeChanger: true,
+      showQuickJumper: true,
+      onChange: handleChange,
+      pageSize: 3
+    }} />);
+
+    // ACT
+    const paginationItem = container.querySelector('.ant-pagination-item-2');
+    paginationItem && fireEvent.click(paginationItem);
+
+    // ARRANGE
+    expect(handleChange).toBeCalled();
+  });
+
+  it('should show loading state of table', () => {
+    // ARRANGE
+    const {container} = renderWithProvider(<Table dataSource={props.dataSource} columns={props.columns} loading /> );
+    // ASSERT
+    expect(container.querySelector('.spinner')).toBeTruthy();
+  });
+
+  it('should render filters', () => {
+    const handleShowList = jest.fn();
+    const handleShowFilter = jest.fn();
+    const handleClear = jest.fn();
+    // ARRANGE
+    const { getByTestId } = renderWithProvider(<Table dataSource={props.dataSource} columns={props.columns}  filters={
+      [
+        {
+          key: 'view',
+          icon: <Grid2M />,
+          tooltips: { default: 'Table view', clear: 'Clear view', define: 'Define view', list: 'Saved views' },
+          openedLabel: 'Define',
+          showList: handleShowList,
+          show: handleShowFilter,
+          handleClear: handleClear,
+          selected: undefined,
+        }
+      ]
+    } /> );
+    // ASSERT
+    expect(getByTestId('filter-trigger-view')).toBeTruthy();
+  });
+
+  it('should render filter with selected item', () => {
+    const handleShowList = jest.fn();
+    const handleShowFilter = jest.fn();
+    const handleClear = jest.fn();
+    // ARRANGE
+    const { getByTestId, getByText } = renderWithProvider(<Table dataSource={props.dataSource} columns={props.columns}  filters={
+      [
+        {
+          key: 'view',
+          icon: <Grid2M />,
+          tooltips: { default: 'Table view', clear: 'Clear view', define: 'Define view', list: 'Saved views' },
+          openedLabel: 'Define',
+          showList: handleShowList,
+          show: handleShowFilter,
+          handleClear: handleClear,
+          selected: {name: 'Selected filter'},
+        }
+      ]
+    } /> );
+    const clearBtn = getByTestId('clear-button');
+    const showListBtn = getByTestId('show-list-button');
+    const showFilterBtn = getByTestId('show-filter-button');
+
+    // ACT
+    fireEvent.click(clearBtn);
+    fireEvent.click(showFilterBtn);
+    fireEvent.click(showListBtn);
+
+    // ASSERT
+    expect(getByText('Selected filter')).toBeTruthy();
+    expect(handleClear).toBeCalled();
+    expect(handleShowFilter).toBeCalled();
+    expect(handleShowList).toBeCalled();
+  });
+  
 });

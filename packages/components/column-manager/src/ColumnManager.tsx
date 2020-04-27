@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { FormattedMessage } from 'react-intl';
+import { injectIntl } from 'react-intl';
 import Typography from 'antd/lib/typography';
 import Drawer from '@synerise/ds-drawer';
 import Button from '@synerise/ds-button';
@@ -48,26 +48,26 @@ class ColumnManager extends React.Component<ColumnManagerProps, State> {
   }
 
   get texts(): { [k in Texts]: string | React.ReactNode } {
-    const { texts } = this.props;
+    const { texts, intl } = this.props;
     return {
-      title: <FormattedMessage id="DS.COLUMN-MANAGER.TITLE" />,
-      searchPlaceholder: <FormattedMessage id="DS.COLUMN-MANAGER.SEARCH-PLACEHOLDER" />,
-      searchClearTooltip: <FormattedMessage id="DS.ITEM-FILTER.SEARCH-CLEAR" />,
-      noResults: <FormattedMessage id="DS.COLUMN-MANAGER.NO-RESULTS" />,
-      searchResults: <FormattedMessage id="DS.COLUMN-MANAGER.SEARCH-RESULTS" />,
-      visible: <FormattedMessage id="DS.COLUMN-MANAGER.VISIBLE" />,
-      hidden: <FormattedMessage id="DS.COLUMN-MANAGER.HIDDEN" />,
-      saveView: <FormattedMessage id="DS.COLUMN-MANAGER.SAVE-VIEW" />,
-      cancel: <FormattedMessage id="DS.COLUMN-MANAGER.CANCEL" />,
-      apply: <FormattedMessage id="DS.COLUMN-MANAGER.APPLY" />,
-      fixedLeft: <FormattedMessage id="DS.COLUMN-MANAGER.FIXED-LEFT" />,
-      fixedRight: <FormattedMessage id="DS.COLUMN-MANAGER.FIXED-RIGHT" />,
-      clear: <FormattedMessage id="DS.COLUMN-MANAGER.CLEAR" />,
-      viewName: <FormattedMessage id="DS.COLUMN-MANAGER.VIEW-NAME" />,
-      viewDescription: <FormattedMessage id="DS.COLUMN-MANAGER.VIEW-DESCRIPTION" />,
-      viewNamePlaceholder: <FormattedMessage id="DS.COLUMN-MANAGER.VIEW-NAME-PLACEHOLDER" />,
-      viewDescriptionPlaceholder: <FormattedMessage id="DS.COLUMN-MANAGER.VIEW-DESCRIPTION-PLACEHOLDER" />,
-      mustNotBeEmpty: <FormattedMessage id="DS.COLUMN-MANAGER.MUST-NOT-BE-EMPTY" />,
+      title: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.TITLE' }),
+      searchPlaceholder: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.SEARCH-PLACEHOLDER' }),
+      searchClearTooltip: intl.formatMessage({ id: 'DS.ITEM-FILTER.SEARCH-CLEAR' }),
+      noResults: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.NO-RESULTS' }),
+      searchResults: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.SEARCH-RESULTS' }),
+      visible: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.VISIBLE' }),
+      hidden: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.HIDDEN' }),
+      saveView: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.SAVE-VIEW' }),
+      cancel: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.CANCEL' }),
+      apply: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.APPLY' }),
+      fixedLeft: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.FIXED-LEFT' }),
+      fixedRight: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.FIXED-RIGHT' }),
+      clear: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.CLEAR' }),
+      viewName: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.VIEW-NAME' }),
+      viewDescription: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.VIEW-DESCRIPTION' }),
+      viewNamePlaceholder: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.VIEW-NAME-PLACEHOLDER' }),
+      viewDescriptionPlaceholder: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.VIEW-DESCRIPTION-PLACEHOLDER' }),
+      mustNotBeEmpty: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.MUST-NOT-BE-EMPTY' }),
       ...texts,
     };
   }
@@ -214,16 +214,13 @@ class ColumnManager extends React.Component<ColumnManagerProps, State> {
 
         <ColumnManagerActions onSave={this.handleSave} onApply={this.handleApply} onCancel={hide} texts={this.texts} />
         {itemFilterConfig && (
-          <ItemFilter
-            /* eslint-disable-next-line react/jsx-props-no-spreading */
-            {...itemFilterConfig}
-            visible={itemFilterVisible}
-            hide={this.hideItemFilter}
-          />
+          <ItemFilter {...itemFilterConfig} visible={itemFilterVisible} hide={this.hideItemFilter} />
         )}
       </S.ColumnManager>
     );
   }
 }
 
-export default ColumnManager;
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore
+export default injectIntl(ColumnManager);
