@@ -38,22 +38,18 @@ describe('ItemsRoll', () => {
     const onClearAll = jest.fn();
     const onChangeSelection = jest.fn();
 
-    const onClick = jest.fn();
-    const onRemoveElement = jest.fn();
+    const onItemClick = jest.fn();
+    const onItemRemove = jest.fn();
 
-    const props = propsFactory(
-      {
-        actions: ACTIONS,
-        onSearch,
-        onSearchClear,
-        onClearAll,
-        onChangeSelection,
-      },
-      {
-        onClick,
-        onRemoveElement,
-      }
-    );
+    const props = propsFactory({
+      actions: ACTIONS,
+      onSearch,
+      onSearchClear,
+      onClearAll,
+      onChangeSelection,
+      onItemClick,
+      onItemRemove,
+    });
 
     // ARRANGE
     const C = renderWithProvider(
@@ -89,13 +85,13 @@ describe('ItemsRoll', () => {
     fireEvent.click(firstListItem.querySelector('li')!);
 
     // ASSERT
-    expect(onClick).toHaveBeenCalledTimes(1);
+    expect(onItemClick).toHaveBeenCalledTimes(1);
 
     // ACT
     fireEvent.click(removeIcon);
 
     // ASSERT
-    expect(onRemoveElement).toHaveBeenCalledTimes(1);
+    expect(onItemRemove).toHaveBeenCalledTimes(1);
 
     // ACT
     const actionMenuTrigger = C.container.querySelector('.ant-dropdown-trigger') as HTMLElement;
@@ -115,20 +111,11 @@ describe('ItemsRoll', () => {
     const onSearchClear = jest.fn();
     const onClearAll = jest.fn();
 
-    const onClick = jest.fn();
-    const onRemoveElement = jest.fn();
-
-    const props = propsFactory(
-      {
-        onSearch,
-        onSearchClear,
-        onClearAll,
-      },
-      {
-        onClick,
-        onRemoveElement,
-      }
-    );
+    const props = propsFactory({
+      onSearch,
+      onSearchClear,
+      onClearAll,
+    });
 
     // ARRANGE
     const C = renderWithProvider(
@@ -147,20 +134,11 @@ describe('ItemsRoll', () => {
     const onSearchClear = jest.fn();
     const onClearAll = jest.fn();
 
-    const onClick = jest.fn();
-    const onRemoveElement = jest.fn();
-
-    const props = propsFactory(
-      {
-        onSearch,
-        onSearchClear,
-        onClearAll,
-      },
-      {
-        onClick,
-        onRemoveElement,
-      }
-    );
+    const props = propsFactory({
+      onSearch,
+      onSearchClear,
+      onClearAll,
+    });
 
     // ARRANGE
     const C = renderWithProvider(
@@ -179,20 +157,11 @@ describe('ItemsRoll', () => {
     const onSearchClear = jest.fn();
     const onClearAll = jest.fn();
 
-    const onClick = jest.fn();
-    const onRemoveElement = jest.fn();
-
-    const props = propsFactory(
-      {
-        onSearch,
-        onSearchClear,
-        onClearAll,
-      },
-      {
-        onClick,
-        onRemoveElement,
-      }
-    );
+    const props = propsFactory({
+      onSearch,
+      onSearchClear,
+      onClearAll,
+    });
 
     // ARRANGE
     const C = renderWithProvider(
@@ -210,26 +179,17 @@ describe('ItemsRoll', () => {
     const onSearch = jest.fn();
     const onSearchClear = jest.fn();
     const onClearAll = jest.fn();
-
-    const onClick = jest.fn();
-    const onRemoveElement = jest.fn();
     const onChangeSelection = jest.fn();
 
-    const props = propsFactory(
-      {
-        onSearch,
-        onSearchClear,
-        onClearAll,
-        onChangeSelection,
-        texts: {
-          changeSelectionLabel: 'Custom Change Selection',
-        } as any,
-      },
-      {
-        onClick,
-        onRemoveElement,
-      }
-    );
+    const props = propsFactory({
+      onSearch,
+      onSearchClear,
+      onClearAll,
+      onChangeSelection,
+      texts: {
+        changeSelectionLabel: 'Custom Change Selection',
+      } as any,
+    });
 
     // ARRANGE
     const C = renderWithProvider(
@@ -247,23 +207,14 @@ describe('ItemsRoll', () => {
     const onSearch = jest.fn();
     const onSearchClear = jest.fn();
     const onClearAll = jest.fn();
-
-    const onClick = jest.fn();
-    const onRemoveElement = jest.fn();
     const onChangeSelection = jest.fn();
 
-    const props = propsFactory(
-      {
-        onSearch,
-        onSearchClear,
-        onClearAll,
-        onChangeSelection,
-      },
-      {
-        onClick,
-        onRemoveElement,
-      }
-    );
+    const props = propsFactory({
+      onSearch,
+      onSearchClear,
+      onClearAll,
+      onChangeSelection,
+    });
 
     // ARRANGE
     const C = renderWithProvider(
@@ -281,9 +232,6 @@ describe('ItemsRoll', () => {
     const onSearch = jest.fn();
     const onSearchClear = jest.fn();
     const onClearAll = jest.fn();
-
-    const onClick = jest.fn();
-    const onRemoveElement = jest.fn();
     const onChangeSelection = jest.fn();
     const groups = ['Params', 'Attributes'];
 
@@ -295,8 +243,6 @@ describe('ItemsRoll', () => {
         onChangeSelection,
       },
       {
-        onClick,
-        onRemoveElement,
         groups,
       }
     );
@@ -320,22 +266,13 @@ describe('ItemsRoll', () => {
     const onClearAll = jest.fn();
     const onChangeSelection = jest.fn();
 
-    const onClick = jest.fn();
-    const onRemoveElement = jest.fn();
-
-    const props = propsFactory(
-      {
-        actions: ACTIONS,
-        onSearch,
-        onSearchClear,
-        onClearAll,
-        onChangeSelection,
-      },
-      {
-        onClick,
-        onRemoveElement,
-      }
-    );
+    const props = propsFactory({
+      actions: ACTIONS,
+      onSearch,
+      onSearchClear,
+      onClearAll,
+      onChangeSelection,
+    });
 
     // ARRANGE
     const C = renderWithProvider(
@@ -362,9 +299,6 @@ describe('ItemsRoll', () => {
     const onClearAll = jest.fn();
     const onChangeSelection = jest.fn();
 
-    const onClick = jest.fn();
-    const onRemoveElement = jest.fn();
-
     const props = propsFactory(
       {
         actions: ACTIONS,
@@ -373,10 +307,7 @@ describe('ItemsRoll', () => {
         onClearAll,
         onChangeSelection,
       },
-      {
-        onClick,
-        onRemoveElement,
-      },
+      undefined,
       true
     );
 
@@ -398,23 +329,14 @@ describe('ItemsRoll', () => {
     const onSearch = jest.fn();
     const onSearchClear = jest.fn();
     const onClearAll = jest.fn();
-
-    const onClick = jest.fn();
-    const onRemoveElement = jest.fn();
     const onChangeSelection = jest.fn();
 
-    const props = propsFactory(
-      {
-        onSearch,
-        onSearchClear,
-        onClearAll,
-        onChangeSelection,
-      },
-      {
-        onClick,
-        onRemoveElement,
-      }
-    );
+    const props = propsFactory({
+      onSearch,
+      onSearchClear,
+      onClearAll,
+      onChangeSelection,
+    });
 
     // ARRANGE
     const C = renderWithProvider(
@@ -437,23 +359,14 @@ describe('ItemsRoll', () => {
     const onSearch = jest.fn();
     const onSearchClear = jest.fn();
     const onClearAll = jest.fn();
-
-    const onClick = jest.fn();
-    const onRemoveElement = jest.fn();
     const onChangeSelection = jest.fn();
 
-    const props = propsFactory(
-      {
-        onSearch,
-        onSearchClear,
-        onClearAll,
-        onChangeSelection,
-      },
-      {
-        onClick,
-        onRemoveElement,
-      }
-    );
+    const props = propsFactory({
+      onSearch,
+      onSearchClear,
+      onClearAll,
+      onChangeSelection,
+    });
 
     // ARRANGE
     const C = renderWithProvider(
@@ -476,23 +389,14 @@ describe('ItemsRoll', () => {
     const onSearch = jest.fn();
     const onSearchClear = jest.fn();
     const onClearAll = jest.fn();
-
-    const onClick = jest.fn();
-    const onRemoveElement = jest.fn();
     const onChangeSelection = jest.fn();
 
-    const props = propsFactory(
-      {
-        onSearch,
-        onSearchClear,
-        onClearAll,
-        onChangeSelection,
-      },
-      {
-        onClick,
-        onRemoveElement,
-      }
-    );
+    const props = propsFactory({
+      onSearch,
+      onSearchClear,
+      onClearAll,
+      onChangeSelection,
+    });
 
     // ARRANGE
     const C = renderWithProvider(
@@ -510,28 +414,19 @@ describe('ItemsRoll', () => {
     const onSearch = jest.fn();
     const onSearchClear = jest.fn();
     const onClearAll = jest.fn();
-
-    const onClick = jest.fn();
-    const onRemoveElement = jest.fn();
     const onChangeSelection = jest.fn();
 
     const MAX_ITEMS_TO_SHOW = 22;
     const SHOW_MORE_STEP = 33;
 
-    const props = propsFactory(
-      {
-        onSearch,
-        onSearchClear,
-        onClearAll,
-        onChangeSelection,
-        maxToShowItems: MAX_ITEMS_TO_SHOW,
-        showMoreStep: SHOW_MORE_STEP,
-      },
-      {
-        onClick,
-        onRemoveElement,
-      }
-    );
+    const props = propsFactory({
+      onSearch,
+      onSearchClear,
+      onClearAll,
+      onChangeSelection,
+      maxToShowItems: MAX_ITEMS_TO_SHOW,
+      showMoreStep: SHOW_MORE_STEP,
+    });
 
     // ARRANGE
     const C = renderWithProvider(
@@ -550,26 +445,17 @@ describe('ItemsRoll', () => {
     const onSearch = jest.fn();
     const onSearchClear = jest.fn();
     const onClearAll = jest.fn();
-
-    const onClick = jest.fn();
-    const onRemoveElement = jest.fn();
     const onChangeSelection = jest.fn();
 
     const SHOW_MORE_STEP = 200;
 
-    const props = propsFactory(
-      {
-        onSearch,
-        onSearchClear,
-        onClearAll,
-        onChangeSelection,
-        showMoreStep: SHOW_MORE_STEP,
-      },
-      {
-        onClick,
-        onRemoveElement,
-      }
-    );
+    const props = propsFactory({
+      onSearch,
+      onSearchClear,
+      onClearAll,
+      onChangeSelection,
+      showMoreStep: SHOW_MORE_STEP,
+    });
 
     // ARRANGE
     const C = renderWithProvider(
