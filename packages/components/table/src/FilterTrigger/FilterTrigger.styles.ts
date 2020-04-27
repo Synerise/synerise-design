@@ -34,7 +34,7 @@ export const ListButton = styled(Button)`
       width: 1px;
       height: 100%;
       background-color: ${(props): string => props.theme.palette['grey-400']};
-      z-index: 9999;
+      z-index: 10;
     }
   }
 `;

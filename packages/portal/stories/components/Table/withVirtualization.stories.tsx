@@ -4,6 +4,7 @@ import Table from '@synerise/ds-table';
 import * as React from 'react';
 import { SearchInput } from '@synerise/ds-search/dist/Elements';
 import { withState } from '@dump247/storybook-state';
+import { text } from '@storybook/addon-knobs';
 
 const decorator = (storyFn) => (
   <div style={{ padding: 20, width: '100vw', minWidth: '100%' }}>
@@ -44,7 +45,7 @@ const stories = {
         <VirtualTable
           scroll={{y: 500, x: 0}}
           initialWidth={960}
-          title={`${filteredDataSource().length} records`}
+          title={`${filteredDataSource().length} ${text('Set name of table items', 'records')}`}
           dataSource={filteredDataSource()}
           columns={columns}
           cellHeight={50}
@@ -58,8 +59,8 @@ const stories = {
           }}
           searchComponent={
             <SearchInput
-              placeholder={'Type here...'}
-              clearTooltip={'Clear value'}
+              placeholder='Search'
+              clearTooltip='Clear'
               onValueChange={value => {
                 store.set({searchValue: value});
               }}

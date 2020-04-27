@@ -1,4 +1,4 @@
-import { boolean, number, select } from '@storybook/addon-knobs';
+import { boolean, number, select, text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import { withState } from '@dump247/storybook-state';
 import { ItemsMenu, TableCell } from '@synerise/ds-table';
@@ -251,7 +251,7 @@ const stories = {
     return (
       <>
         <Table
-          title={`${filteredDataSource().length} records`}
+          title={`${filteredDataSource().length} ${text('Set name of table items', 'records')}`}
           dataSource={filteredDataSource()}
           columns={getColumns()}
           loading={boolean('Set loading state', false)}
@@ -318,8 +318,8 @@ const stories = {
           }
           searchComponent={
             <Search
-              clearTooltip="Clear"
-              placeholder="Search"
+              clearTooltip= 'Clear'
+              placeholder= 'Search'
               width={300}
               parameters={parameters.slice(0, number('Parameters count', 5))}
               recent={recent.slice(0, number('Recent count', 5))}

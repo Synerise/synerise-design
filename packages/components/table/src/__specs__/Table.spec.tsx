@@ -143,9 +143,7 @@ describe('Table', () => {
 
     // ACT
     const paginationItem = container.querySelector('.ant-pagination-item-2');
-    if(paginationItem) {
-      fireEvent.click(paginationItem);
-    }
+    paginationItem && fireEvent.click(paginationItem);
 
     // ARRANGE
     expect(handleChange).toBeCalled();
