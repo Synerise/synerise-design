@@ -25,13 +25,13 @@ function VirtualTable<T extends object = any>(props: Props<T>): React.ReactEleme
     scroll,
     className,
     cellHeight = 52,
-    rowSelection,
+    selection,
     onRowClick,
     rowKey,
     initialWidth = 0,
     dataSource,
-    selection,
   } = props;
+
   const [tableWidth, setTableWidth] = React.useState(initialWidth);
 
   const getRowKey = React.useCallback(
@@ -43,7 +43,7 @@ function VirtualTable<T extends object = any>(props: Props<T>): React.ReactEleme
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const virtualColumns = React.useMemo((): any[] => {
-    if (rowSelection) {
+    if (selection) {
       return [
         {
           width: 64,
@@ -53,9 +53,9 @@ function VirtualTable<T extends object = any>(props: Props<T>): React.ReactEleme
             const recordKey = getRowKey(record);
             return (
               <Checkbox
-                checked={rowSelection.selectedRowKeys && rowSelection.selectedRowKeys.indexOf(recordKey) >= 0}
+                checked={selection.selectedRowKeys && selection.selectedRowKeys.indexOf(recordKey) >= 0}
                 onChange={(event): void => {
-                  const { selectedRowKeys, onChange } = rowSelection;
+                  const { selectedRowKeys, onChange } = selection;
                   let selectedKeys = selectedRowKeys || [];
                   if (event.target.checked) {
                     selectedKeys = [...selectedKeys, recordKey];
@@ -76,7 +76,7 @@ function VirtualTable<T extends object = any>(props: Props<T>): React.ReactEleme
       ];
     }
     return columns;
-  }, [columns, rowSelection, getRowKey, dataSource]);
+  }, [columns, selection, getRowKey, dataSource]);
 
   const mergedColumns = React.useMemo(() => {
     const widthColumnCount = virtualColumns.filter(({ width }) => !width).length;
