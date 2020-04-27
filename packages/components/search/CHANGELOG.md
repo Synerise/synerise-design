@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.1.0...@synerise/ds-search@0.1.1) (2020-04-27)
+
+
+### Bug Fixes
+
+* **items-roll:** minor fixes ([51d9d07](https://github.com/Synerise/synerise-design/commit/51d9d079fc61cba9f0b2278f5b659735309b165e))
+
+
+
+
+
 # [0.1.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.0.34...@synerise/ds-search@0.1.0) (2020-04-27)
 
 

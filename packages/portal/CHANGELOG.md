@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.59.1](https://github.com/synerise/synerise-design/compare/portal@0.59.0...portal@0.59.1) (2020-04-27)
+
+
+### Bug Fixes
+
+* **items-roll:** minor fixes ([51d9d07](https://github.com/synerise/synerise-design/commit/51d9d079fc61cba9f0b2278f5b659735309b165e))
+* **table:** virtualization story ([fcca940](https://github.com/synerise/synerise-design/commit/fcca940bb9fea77a57200a5fd76f9125f54170bf))
+
+
+
+
+
 # [0.59.0](https://github.com/synerise/synerise-design/compare/portal@0.58.1...portal@0.59.0) (2020-04-27)
 
 
