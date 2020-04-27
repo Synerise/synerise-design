@@ -11,6 +11,8 @@ import { MenuItemProps } from './Elements/Item/MenuItem.types';
 
 class Menu extends React.Component<AntdMenuProps> {
   static Item: typeof TextItem = TextItem;
+  static ItemGroup = S.AntdMenu.ItemGroup;
+  static SubMenu = S.AntdMenu.SubMenu;
 
   render(): React.ReactNode {
     const { dataSource, ordered, children, ...rest } = this.props;

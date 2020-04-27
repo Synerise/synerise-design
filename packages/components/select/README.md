@@ -50,7 +50,7 @@ const { Option, OptGroup } = Select;
 
 ### Select props
 
-| Property                 | Description                                                                                       | Type                                                                         | Default                                      |
+|         Property         |                                            Description                                            |                                     Type                                     |                   Default                    |
 | ------------------------ | ------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | -------------------------------------------- |
 | allowClear               | Show clear button.                                                                                | boolean                                                                      | false                                        |
 | autoClearSearchValue     | Whether the current search will be cleared on selecting an item                                   | boolean                                                                      | true                                         |

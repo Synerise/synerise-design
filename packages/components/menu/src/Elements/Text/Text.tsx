@@ -7,6 +7,7 @@ import { ClickParam, SelectParam } from 'antd/lib/menu';
 import * as S from './Text.styles';
 
 interface Props {
+  className?: string;
   parent?: boolean;
   disabled?: boolean;
   prefixel?: React.ReactNode;
@@ -43,20 +44,21 @@ const Text: React.FC<Props> = ({
   const canCopyToClipboard = copyable && copyHint && copyValue && !disabled;
 
   const renderChildren = (): React.ReactNode => {
-    if(highlight && typeof children === 'string'){
-        const index = children.toLocaleLowerCase().indexOf(highlight.toLocaleLowerCase());
-        if (index === -1) {
-          return children;
-        }
-        const startOfQuery = children.toLowerCase().search(highlight.toLowerCase());
-        const endOfQuery = startOfQuery + highlight.length;
-        const resultArray = [
-          children.substring(0, startOfQuery),
+    if (highlight && typeof children === 'string') {
+      const index = children.toLocaleLowerCase().indexOf(highlight.toLocaleLowerCase());
+      if (index === -1) {
+        return children;
+      }
+      const startOfQuery = children.toLowerCase().search(highlight.toLowerCase());
+      const endOfQuery = startOfQuery + highlight.length;
+      const resultArray = [
+        children.substring(0, startOfQuery),
         <span key={children} className="search-highlight">
           {children.substring(startOfQuery, endOfQuery)}
         </span>,
-          children.substring(endOfQuery, children.length),];
-        return resultArray;
+        children.substring(endOfQuery, children.length),
+      ];
+      return resultArray;
     }
     return children;
   };
@@ -96,8 +98,7 @@ const Text: React.FC<Props> = ({
             </S.PrefixelWrapper>
           )}
           <S.Content highlight={!!highlight}>
-
-            {canCopyToClipboard && hovered ? copyHint : renderChildren() }
+            {canCopyToClipboard && hovered ? copyHint : renderChildren()}
             {!!description && <S.Description>{description}</S.Description>}
             {parent && (
               <S.ArrowRight>

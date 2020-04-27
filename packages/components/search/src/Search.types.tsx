@@ -5,14 +5,14 @@ export type FilterElement = {
   filter?: string;
   icon?: React.ReactNode;
 };
-export type DataSetProps ={
+export type DataSetProps = {
   title: string;
   tooltip: string;
   rowHeight: number;
   visibleRows: number;
-  itemRender: (item: FilterElement) => (React.ReactElement);
+  itemRender: (item: FilterElement) => React.ReactElement;
   divider?: React.ReactElement;
-}
+};
 export type SearchProps = {
   placeholder: string;
   clearTooltip: string | React.ReactNode;

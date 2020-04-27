@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { useEffect, useState } from 'react';
 import { useOnClickOutside } from '@synerise/ds-utils';
+import { MenuItemProps } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.types';
+
 import { hasSomeElement, getAllElementsFiltered, hasSomeElementFiltered } from './Elements/utils/searchUtils';
 import * as S from './Search.styles';
 import { FilterElement, SearchProps } from './Search.types';
@@ -215,9 +217,9 @@ const Search: React.FC<SearchProps> = ({
             visibleRows={recentDisplayProps.visibleRows || DEFAULT_VISIBLE_ROWS}
             rowHeight={recentDisplayProps.rowHeight}
             highlight={value}
-            onItemClick={selectResult}
+            onItemClick={selectResult as (e: FilterElement | MenuItemProps) => void}
             divider={recentDisplayProps.divider}
-            itemRender={recentDisplayProps.itemRender}
+            itemRender={recentDisplayProps.itemRender as (item: FilterElement | MenuItemProps) => React.ReactElement}
           />
         </>
       )
@@ -239,8 +241,12 @@ const Search: React.FC<SearchProps> = ({
             visibleRows={parametersDisplayProps.visibleRows || DEFAULT_VISIBLE_ROWS}
             rowHeight={parametersDisplayProps.rowHeight}
             highlight={value}
-            onItemClick={(item): void => selectFilter(item)}
-            itemRender={parametersDisplayProps.itemRender}
+            onItemClick={
+              ((item: FilterElement): void => selectFilter(item)) as (e: MenuItemProps | FilterElement) => void
+            }
+            itemRender={
+              parametersDisplayProps.itemRender as (item: FilterElement | MenuItemProps) => React.ReactElement
+            }
             divider={parametersDisplayProps.divider}
           />
         </>
@@ -264,8 +270,10 @@ const Search: React.FC<SearchProps> = ({
             visibleRows={suggestionsDisplayProps.visibleRows || DEFAULT_VISIBLE_ROWS}
             rowHeight={suggestionsDisplayProps.rowHeight}
             highlight={value}
-            onItemClick={selectResult}
-            itemRender={suggestionsDisplayProps.itemRender}
+            onItemClick={selectResult as (e: FilterElement | MenuItemProps) => void}
+            itemRender={
+              suggestionsDisplayProps.itemRender as (item: FilterElement | MenuItemProps) => React.ReactElement
+            }
             divider={suggestionsDisplayProps.divider}
           />
         </>

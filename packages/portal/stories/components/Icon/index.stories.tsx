@@ -40,15 +40,13 @@ const stories = {
     const props = getProps();
     const IconComp = iconsRaw[props.component];
 
-    return ({
+    return {
       ...props,
-      component: (<IconComp />),
-    });
+      component: <IconComp />,
+    };
   },
   listIcon: () => (
-    <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between' }}>
-      {IconComponent}
-    </div>
+    <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between' }}>{IconComponent}</div>
   ),
 };
 
