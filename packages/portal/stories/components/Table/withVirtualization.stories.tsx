@@ -49,6 +49,7 @@ const stories = {
           dataSource={filteredDataSource()}
           columns={columns}
           cellHeight={50}
+          rowKey={row => row.key}
           selection={{
             onChange: handleSelectRow,
             selectedRowKeys: store.state.selectedRows,
