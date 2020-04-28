@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useOnClickOutside } from '@synerise/ds-utils';
 import { MenuItemProps } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.types';
 
+import Scrollbar from '@synerise/ds-scrollbar';
 import { hasSomeElement, getAllElementsFiltered, hasSomeElementFiltered } from './Elements/utils/searchUtils';
 import * as S from './Search.styles';
 import { FilterElement, SearchProps } from './Search.types';
@@ -34,9 +35,10 @@ const Search: React.FC<SearchProps> = ({
   const [toggleTrigger, setToggleTrigger] = useState(true);
   const [resultChoosed, setResultChoosed] = useState(false);
   const [itemsListWidth, setItemListWidth] = useState(0);
+
   const ref = React.useRef<HTMLDivElement>(null);
   const inputRef = React.useRef<HTMLInputElement>(null);
-  const MENU_WIDTH_OFFSET = 16;
+  const MENU_WIDTH_OFFSET = 27;
   const DEFAULT_VISIBLE_ROWS = 5;
   const INPUT_EXPAND_ANIMATION_DURATION = 200;
   const getSearchWrapperWidth = React.useCallback((): number => {
@@ -129,7 +131,44 @@ const Search: React.FC<SearchProps> = ({
       parameterValue,
     ]
   );
+  const onWrapperKeyDown = React.useCallback(
+    e => {
+      const activeElement = document.activeElement as HTMLElement;
+      if ((e.key === 'ArrowDown' || e.key === 'ArrowUp') && inputOpen) {
+        const narrowedParameters = (filteredParameters && filteredParameters.length) || 0;
+        const narrowedRecent = (filteredRecent && filteredRecent.length) || 0;
+        const visibleItemsCount = narrowedRecent + narrowedParameters;
+        const searchItems = document.querySelectorAll('.ds-search-item');
+        const isMenuItemFocused = activeElement && activeElement.classList.contains('ds-search-item');
+        if (e.key === 'ArrowDown') {
+          if (isMenuItemFocused) {
+            let elementToFocusOn = activeElement.nextElementSibling as HTMLElement;
+            if (elementToFocusOn === null && searchItems[visibleItemsCount - 1] !== activeElement) {
+              elementToFocusOn = searchItems[visibleItemsCount - 1] as HTMLElement;
+            }
+            elementToFocusOn === null ? focusInputComponent(!focusTrigger) : elementToFocusOn.focus();
+          } else {
+            const elementToFocusOn = document.querySelector('.ds-search-item') as HTMLElement;
+            elementToFocusOn.focus();
+          }
+        }
 
+        if (e.key === 'ArrowUp') {
+          if (isMenuItemFocused) {
+            const elementToFocusOn = activeElement.previousElementSibling as HTMLElement;
+            elementToFocusOn === null ? focusInputComponent(!focusTrigger) : elementToFocusOn.focus();
+          } else {
+            const elementToFocusOn = document.querySelector('.ds-search-item') as HTMLElement;
+            elementToFocusOn.focus();
+          }
+        }
+      }
+      if (e.key === 'Enter' && inputOpen) {
+        activeElement.click();
+      }
+    },
+    [filteredRecent, filteredParameters, focusTrigger, inputOpen]
+  );
   const change = React.useCallback(
     (inputValue): void => {
       const currentValue = inputValue;
@@ -220,6 +259,7 @@ const Search: React.FC<SearchProps> = ({
             onItemClick={selectResult as (e: FilterElement | MenuItemProps) => void}
             divider={recentDisplayProps.divider}
             itemRender={recentDisplayProps.itemRender as (item: FilterElement | MenuItemProps) => React.ReactElement}
+            listProps={{ autoHeight: true }}
           />
         </>
       )
@@ -248,6 +288,7 @@ const Search: React.FC<SearchProps> = ({
               parametersDisplayProps.itemRender as (item: FilterElement | MenuItemProps) => React.ReactElement
             }
             divider={parametersDisplayProps.divider}
+            listProps={{ autoHeight: true }}
           />
         </>
       )
@@ -290,7 +331,14 @@ const Search: React.FC<SearchProps> = ({
     suggestionsDisplayProps,
   ]);
   return (
-    <S.SearchWrapper ref={ref} className="SearchWrapper" inputOpen={inputOpen} width={width} {...rest}>
+    <S.SearchWrapper
+      ref={ref}
+      className="SearchWrapper"
+      inputOpen={inputOpen}
+      width={width}
+      {...rest}
+      onKeyDown={onWrapperKeyDown}
+    >
       {renderInputWrapper()}
       {listVisible && (
         <S.ListWrapper
@@ -301,8 +349,10 @@ const Search: React.FC<SearchProps> = ({
           <S.List
             className={inputOpen && !resultChoosed && listVisible && isListItemRendered() ? 'search-list-open' : ''}
           >
-            {renderRecentItems()}
-            {renderParameters()}
+            <Scrollbar maxHeight={350}>
+              {renderRecentItems()}
+              {renderParameters()}
+            </Scrollbar>
             {renderSuggestions()}
           </S.List>
         </S.ListWrapper>

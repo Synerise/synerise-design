@@ -12,4 +12,5 @@ export type SearchItemListProps<T extends MenuItemProps | FilterElement> = {
   onItemClick?: (e: T) => void;
   highlight?: string;
   itemRender: (item: T) => React.ReactElement;
+  listProps?: object;
 };
