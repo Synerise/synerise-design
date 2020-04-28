@@ -30,9 +30,8 @@ const errorStyles = ({ theme }: ThemeProps): FlattenSimpleInterpolation => css`
 const uploadStyles = ({ theme }: ThemeProps): FlattenSimpleInterpolation => css`
   & {
     border: 1px dashed ${theme.palette['blue-300']};
-    background: ${theme.palette['blue-050']};
+    background-color: ${theme.palette['blue-050']};
     ${IconContainer} {
-      margin: 12px;
       svg {
         transition: all 0.3s ease;
         fill: ${theme.palette['blue-500']};
@@ -57,6 +56,7 @@ const uploadStyles = ({ theme }: ThemeProps): FlattenSimpleInterpolation => css`
     }
     &:focus:active {
       border: 1px dashed ${theme.palette['blue-600']};
+      background-color: ${theme.palette['blue-050']};
       box-shadow: none;
     }
     &:focus {
@@ -96,11 +96,11 @@ export const Creator = styled(({ pressed, withLabel, ...rest }) => <Button {...r
     border: 1px dashed ${({ theme }): string => theme.palette['grey-300']};
     background: ${({ theme }): string => theme.palette.white};
     transition: all 0.3s ease;
-    justify-content: flex-start;
+    justify-content: ${(props): string => (props.withLabel ? `flex-start` : 'center')};
+    align-items: center;
 
     ${IconContainer} {
-      margin: 12px;
-      box-sizing: content-box;
+      margin: auto 12px;
       svg {
         transition: all 0.3s ease;
         color: ${(props): string => props.theme.palette['grey-500']};
@@ -134,6 +134,7 @@ export const Creator = styled(({ pressed, withLabel, ...rest }) => <Button {...r
     &:focus:active {
       border: 1px dashed ${(props): string => props.theme.palette['grey-400']} !important ;
       box-shadow: none;
+      background-color: ${(props): string => props.theme.palette['grey-050']};
     }
     &:focus {
       border: 1px dashed ${(props): string => props.theme.palette['blue-600']};
