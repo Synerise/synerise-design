@@ -3,7 +3,7 @@ import Search from '@synerise/ds-search';
 import VarTypeStringM from '@synerise/ds-icon/dist/icons/VarTypeStringM';
 import { number, text } from '@storybook/addon-knobs';
 import { VarTypeListM, VarTypeNumberM } from '@synerise/ds-icon/dist/icons';
-import { SearchInput, SearchItemList } from '@synerise/ds-search/dist/Elements';
+import { SearchInput } from '@synerise/ds-search/dist/Elements';
 import { FilterElement } from '@synerise/ds-search/dist/Search.types';
 import Menu from '@synerise/ds-menu';
 import Icon from '@synerise/ds-icon';
@@ -83,7 +83,7 @@ const stories = {
   },
   withDropdown: () => {
     const [value, setValue] = React.useState<string>('');
-    const [filterValue, setFilterValue] = React.useState<string>('');
+    const [parameterValue, setParameterValue] = React.useState<string>('');
     const [suggestions, setSuggestions] = React.useState([]);
 
     const recentTitle = text('Set recent title', 'Recent');
@@ -105,12 +105,12 @@ const stories = {
         recent={recent.slice(0, recentCount)}
         suggestions={suggestions}
         value={value}
-        parameterValue={filterValue}
+        parameterValue={parameterValue}
         onValueChange={value => {
           setValue(value);
         }}
         onParameterValueChange={value => {
-          setFilterValue(value);
+          setParameterValue(value);
           const fakeApiResponse = getSuggestions(value);
           setSuggestions(fakeApiResponse);
         }}
@@ -154,7 +154,7 @@ const stories = {
   },
   withItemsWithAvatars: () => {
     const [value, setValue] = React.useState<string>('');
-    const [filterValue, setFilterValue] = React.useState<string>('');
+    const [parameterValue, setParameterValue] = React.useState<string>('');
     const [suggestions, setSuggestions] = React.useState([]);
 
     const recentTitle = text('Set recent title', 'Recent');
@@ -175,12 +175,12 @@ const stories = {
         recent={recentWithAvatars.slice(0, recentCount)}
         suggestions={suggestions}
         value={value}
-        parameterValue={filterValue}
+        parameterValue={parameterValue}
         onValueChange={value => {
           setValue(value);
         }}
         onParameterValueChange={value => {
-          setFilterValue(value);
+          setParameterValue(value);
           const fakeApiResponse = getSuggestions(value);
           setSuggestions(fakeApiResponse);
         }}

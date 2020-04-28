@@ -16,9 +16,76 @@ yarn add @synerise/ds-search
 ## Usage
 
 ```
-import Search from '@synerise/ds-search'
+import Search from '@synerise/ds-search';
 
-<Search />
+const parameters = [
+  { text: 'First Name', icon: <VarTypeStringM /> },
+  { text: 'Last Name', icon: <VarTypeStringM /> },
+  { text: 'Sex', icon: <VarTypeStringM /> },
+  { text: 'City', icon: <VarTypeStringM /> },
+  { text: 'Transactions', icon: <VarTypeNumberM /> }
+];
+const recent = [
+  { text: 'Bangkok', filter: 'City', icon: <VarTypeStringM /> },
+  { text: 'Frank', filter: 'Last Name', icon: <VarTypeStringM /> },
+  { text: 'Basel', filter: 'City', icon: <VarTypeStringM /> },
+];
+const [value, setValue] = React.useState<string>('');
+const [parameterValue, setParameterValue] = React.useState<string>('');
+const [suggestions, setSuggestions] = React.useState([]);
+return (
+      <Search
+        clearTooltip="Clear"
+        placeholder="Search"
+        parameters={parameters.slice(0, parametersCount)}
+        recent={recent.slice(0, recentCount)}
+        suggestions={suggestions}
+        value={value}
+        parameterValue={parameterValue}
+        onValueChange={value => {
+          setValue(value);
+        }}
+        onParameterValueChange={value => {
+          setParameterValue(value);
+          const fakeApiResponse = getSuggestions(value);
+          setSuggestions(fakeApiResponse);
+        }}
+        recentDisplayProps={{
+          tooltip: "recentTooltip",
+          title: "recentTitle",
+          rowHeight: 32,
+          visibleRows: 3,
+          itemRender: (item: FilterElement) => <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>,
+          divider: (
+            <div style={{ padding: '12px', paddingBottom: '0px' }}>
+              <Divider dashed />{' '}
+            </div>
+          ),
+        }}
+        parametersDisplayProps={{
+          tooltip: "parametersTooltip",
+          title: "parametersTitle",
+          rowHeight: 32,
+          visibleRows: 6,
+          itemRender: (item: FilterElement) => (
+            <Menu.Item
+              highlight={value}
+              onItemHover={(): void => {}}
+              prefixel={item && <Icon component={item && item.icon} />}
+            >
+              {item && item.text}
+            </Menu.Item>
+          ),
+        }}
+        suggestionsDisplayProps={{
+          tooltip: "suggestionsTooltip",
+          title: "suggestionsTitle",
+          rowHeight: 32,
+          visibleRows: 6,
+          itemRender: (item: FilterElement) => <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>,
+        }}
+      />
+)
 
 ```
 
@@ -28,21 +95,21 @@ import Search from '@synerise/ds-search'
 
 ## API
 
-| Property                | Description                                                                           | Type         | Default |
-| ----------------------- | ------------------------------------------------------------------------------------- | ------------ | ------- |
-| placeholder             | Input placeholder                                                                     | string       | -       |
-| clearTooltip            | Clear button tooltip text                                                             | string       | -       |
-| parameters              | Parameters items data diplayed in search dropdown                                     | object[]     | -       |
-| recent                  | Recent items data diplayed in search dropdown                                         | object[]     | -       |
-| suggestions             | Suggestions items data diplayed after picking particular parameter in search dropdown | object[]     | -       |
-| onValueChange           | Callback when input changes                                                           | function     | -       |
-| value                   | The input content value                                                               | string       | -       |
-| parameterValue          | Chosen parameter type                                                                 | string       | -       |
-| onParameterValueChange  | Callback when set parameter type                                                      | function     | -       |
-| width                   | Width of the search input when expanded                                               | number       | -       |
-| parametersDisplayProps  | An object containing the details of how parameters list should render                 | DataSetProps | -       |
-| recentDisplayProps      | An object containing the details of how recent items list should render               | DataSetProps | -       |
-| suggestionsDisplayProps | An object containing the details of how suggestions list should render                | DataSetProps | -       |
+| Property                | Description                                                                           | Type            | Default |
+| ----------------------- | ------------------------------------------------------------------------------------- | --------------- | ------- |
+| placeholder             | Input placeholder                                                                     | string          | -       |
+| clearTooltip            | Clear button tooltip text                                                             | string          | -       |
+| parameters              | Parameters items data diplayed in search dropdown                                     | FilterElement[] | -       |
+| recent                  | Recent items data diplayed in search dropdown                                         | FilterElement[] | -       |
+| suggestions             | Suggestions items data diplayed after picking particular parameter in search dropdown | FilterElement[] | -       |
+| onValueChange           | Callback when input changes                                                           | function        | -       |
+| value                   | The input content value                                                               | string          | -       |
+| parameterValue          | Chosen parameter type                                                                 | string          | -       |
+| onParameterValueChange  | Callback when set parameter type                                                      | function        | -       |
+| width                   | Width of the search input when expanded                                               | number          | -       |
+| parametersDisplayProps  | An object containing the details of how parameters list should render                 | DataSetProps    | -       |
+| recentDisplayProps      | An object containing the details of how recent items list should render               | DataSetProps    | -       |
+| suggestionsDisplayProps | An object containing the details of how suggestions list should render                | DataSetProps    | -       |
 
 ### DataSetProps
 
@@ -54,6 +121,35 @@ import Search from '@synerise/ds-search'
 | visibleRows | Number of rows visible in the list                                              | string       | -       |
 | itemRender  | Function rendering single item of the list                                      | function     | -       |
 | divider     | ReactElement displayed at the bottom of the list                                | ReactElement | -       |
+
+### FilterElement
+
+| Property | Description                                              | Type   | Default |
+| -------- | -------------------------------------------------------- | ------ | ------- |
+| text     | Text value of the filter - e.g. "Bangkok"                | string | -       |
+| filter   | Key used for filtering data - e.g. "City"                | string | -       |
+| icon     | Icon displayed in the search input when filter is chosen | string | -       |
+
+## Search usage
+
+```
+import { SearchInput } from '@synerise/ds-search/dist/Elements';
+
+    const [value, setValue] = React.useState<string>('');
+      <SearchInput
+        clearTooltip="Clear"
+        placeholder="Search"
+        onValueChange={value => {
+          console.log(value);
+          setValue(value);
+        }}
+        value={value}
+        onClear={() => {
+          console.log('Cleared!');
+        }}
+        closeOnClickOutside={true}
+      />
+```
 
 ### SearchInput
 
@@ -74,3 +170,26 @@ import Search from '@synerise/ds-search'
 | alwaysHighlight     | When set, the input always has blue border when expanded                  | boolean  | false   |
 | alwaysExpanded      | Boolean value to force expanded state of the input                        | boolean  | false   |
 | closeOnClickOutside | Boolean value to prevent / force toggling the input when clicking outside | boolean  | false   |
+
+### SearchInput usage
+
+```
+import { SearchInput } from '@synerise/ds-search/dist/Elements';
+
+const [value, setValue] = React.useState<string>('');
+return (
+      <SearchInput
+        clearTooltip="Clear"
+        placeholder="Search"
+        onValueChange={value => {
+          console.log(value);
+          setValue(value);
+        }}
+        value={value}
+        onClear={() => {
+          console.log('Cleared!');
+        }}
+        closeOnClickOutside={true}
+      />
+)
+```
