@@ -51,7 +51,7 @@ export const ActionButtons = styled.div`
     justify-content: center;
   }
   .ant-btn {
-    margin: 0 4px;
+    margin: 0 0 0 4px;
   }
 `;
 
