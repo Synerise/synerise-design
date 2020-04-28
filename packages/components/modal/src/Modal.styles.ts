@@ -44,14 +44,16 @@ export const ActionButtons = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+
+  .ant-btn {
+    margin: 0 4px;
+  }
   .close-modal {
     padding: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-  .ant-btn {
-    margin: 0 0 0 4px;
+    margin-right: 0;
   }
 `;
 
