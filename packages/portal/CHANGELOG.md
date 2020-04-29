@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.59.4](https://github.com/synerise/synerise-design/compare/portal@0.59.3...portal@0.59.4) (2020-04-29)
+
+
+### Bug Fixes
+
+* **search:** added tests for focusWithArrowKeys utils ([187ca6b](https://github.com/synerise/synerise-design/commit/187ca6b9ff7d77a87a64e06da4c8f902a49993a7))
+* **search:** extracted focusing with arrows to utils ([2eaf8c3](https://github.com/synerise/synerise-design/commit/2eaf8c37d25777f11e475c846e60927b6226c384))
+* **tabs:** add hiddenHelpers to measure width of tabs ([2db3344](https://github.com/synerise/synerise-design/commit/2db33444b6d150017b36b685ef6c63759dd9e1b1))
+
+
+
+
+
 ## [0.59.3](https://github.com/synerise/synerise-design/compare/portal@0.59.2...portal@0.59.3) (2020-04-29)
 
 
