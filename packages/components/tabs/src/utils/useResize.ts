@@ -5,15 +5,16 @@ type Dimensions = {
   height: number;
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const useResize = (componentRef: React.RefObject<any>): Dimensions => {
-  const getDimensions = (): Dimensions => ({
-    width: componentRef.current.offsetWidth,
-    height: componentRef.current.offsetHeight,
-  });
-
   const [dimensions, setDimensions] = React.useState({ width: 0, height: 0 });
 
   React.useEffect(() => {
+    const getDimensions = (): Dimensions => ({
+      width: componentRef.current.offsetWidth,
+      height: componentRef.current.offsetHeight,
+    });
+
     const handleResize = (): void => {
       setDimensions(getDimensions());
     };
@@ -27,7 +28,7 @@ const useResize = (componentRef: React.RefObject<any>): Dimensions => {
     return (): void => {
       window.removeEventListener('resize', handleResize);
     };
-  }, [componentRef]);
+  }, [componentRef, setDimensions]);
 
   return dimensions;
 };

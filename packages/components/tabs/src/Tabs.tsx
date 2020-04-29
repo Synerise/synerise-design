@@ -34,11 +34,13 @@ type TabWithRef = TabItem & {
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 const NOOP = (): void => {};
+const MARGIN_BETWEEN_TABS = 24;
+const DROPDOWN_TRIGGER_SIZE = 32;
 
 const Tabs: React.FC<TabsProps> = ({ activeTab, tabs, handleTabClick, configuration, underscore }) => {
   const containerRef = React.useRef<HTMLDivElement>();
   const { width } = useResize(containerRef);
-  const [renderHelperTabs, setRenderHelperTabs] = React.useState(false);
+  const [renderHelperTabs, setRenderHelperTabs] = React.useState(true);
   const [items, setItems] = React.useState<TabWithRef[]>([]);
   const [itemsWidths, setItemsWidths] = React.useState<number[]>([]);
   const [visibleTabs, setVisibleTabs] = React.useState<TabWithRef[]>([]);
@@ -58,14 +60,14 @@ const Tabs: React.FC<TabsProps> = ({ activeTab, tabs, handleTabClick, configurat
   React.useEffect((): void => {
     const itemsWithWidths: number[] = [];
     items.forEach((item, index) => {
-      itemsWithWidths[index] = item.ref.current !== null ? item.ref.current.offsetWidth + 24 : 0;
+      itemsWithWidths[index] = item.ref.current !== null ? item.ref.current.offsetWidth + MARGIN_BETWEEN_TABS : 0;
     });
     setItemsWidths(itemsWithWidths);
     setRenderHelperTabs(false);
   }, [items]); // eslint-disable-line react-hooks/exhaustive-deps
 
   React.useEffect((): void => {
-    let tabsWidth = 56;
+    let tabsWidth = DROPDOWN_TRIGGER_SIZE + MARGIN_BETWEEN_TABS;
     const visibleItems: TabWithRef[] = [];
     const hiddenItems: TabWithRef[] = [];
     itemsWidths.forEach((itemWidth, index) => {
@@ -78,6 +80,7 @@ const Tabs: React.FC<TabsProps> = ({ activeTab, tabs, handleTabClick, configurat
     });
     setVisibleTabs(visibleItems);
     setHiddenTabs(hiddenItems);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [itemsWidths, width]);
 
   const handleConfigurationAction = React.useCallback((): void => {
@@ -109,7 +112,7 @@ const Tabs: React.FC<TabsProps> = ({ activeTab, tabs, handleTabClick, configurat
         )}
       </S.TabsDropdownContainer>
     );
-  }, [hiddenTabs, configuration]);
+  }, [hiddenTabs, configuration, handleConfigurationAction, handleTabClick, visibleTabs.length]);
 
   const renderDropdown = (): React.ReactElement => {
     return (
@@ -146,7 +149,7 @@ const Tabs: React.FC<TabsProps> = ({ activeTab, tabs, handleTabClick, configurat
         })}
       </>
     );
-  }, [visibleTabs, activeTab]);
+  }, [visibleTabs, activeTab, handleTabClick, underscore]);
 
   const renderHelpers = React.useMemo(() => {
     return (
@@ -168,7 +171,7 @@ const Tabs: React.FC<TabsProps> = ({ activeTab, tabs, handleTabClick, configurat
         })}
       </S.HiddenTabs>
     );
-  }, [items]);
+  }, [items, underscore]);
 
   return (
     <>
