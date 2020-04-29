@@ -87,7 +87,7 @@ export const SearchButton = styled.div<{ isOpen: boolean; inputFocused: boolean;
   top: 0;
   right: 0;
   transition: width 0.5s;
-  transition-timing-function: ease;
+  transition-timing-function: ease-in-out;
   svg {
     fill: ${(props): string =>
       props.inputFocused && props.isOpen
@@ -111,7 +111,7 @@ export const SearchButton = styled.div<{ isOpen: boolean; inputFocused: boolean;
       transition: background 0.2s;
       padding: 4px;
       transition: padding-right 0.15s;
-      transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+      transition-timing-function: ease-in-out;
       ${(props): string | false => !props.clickable && `pointer-events:none !important;`}
     }
   }
@@ -135,13 +135,12 @@ export const SearchInputContent = styled.div<{ offset: number }>`
   direction: rtl;
   transition: width ${INPUT_EXPAND_ANIMATION_DURATION}s;
   width: 0px;
-  transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
-
+ transition-timing-function: ease-in-out;
   input {
     opacity: 0;
   }
   input.ant-input {
-    transition: padding-left 0.1s ease !important;
+    transition: padding-left 0.1s ease-in-out !important;
   }
   &.is-open {
     width: 100%;
@@ -183,7 +182,12 @@ export const List = styled.div<{ isOpen?: boolean; maxHeight?: number }>`
   box-sizing: border-box;
   transition: width 0.5s;
   transition: opacity 0.5s;
-  transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+  transition-timing-function: ease-in-out;
+  .ps__rail-y {
+    .ps__thumb-y {
+      transform: translateX(1px) !important;
+    }
+  }
 `;
 export const MenuHeader = styled.div`
   display: flex;
@@ -212,7 +216,7 @@ export const ListWrapper = styled.div`
     animation: ${openDropdownAnimation} 0.3s ease-in-out 0s 1;
     opacity: 1;
     display: initial;
-    padding: 8px;
+    padding: 8px 0px 8px 8px;
     z-index: 10;
   }
 `;

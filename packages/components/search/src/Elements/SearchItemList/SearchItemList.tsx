@@ -63,7 +63,7 @@ const SearchItemList: React.FC<SearchItemListProps<FilterElement | MenuItemProps
     <>
       <Menu>
         {data && (
-          <Scrollbar onScroll={handleScroll}>
+          <Scrollbar absolute onScroll={handleScroll}>
             <List
               height={getHeight()}
               width={width}
