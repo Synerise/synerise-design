@@ -5,8 +5,9 @@ import SearchNoResultsM from '@synerise/ds-icon/dist/icons/SearchNoResultsM';
 import Menu from '@synerise/ds-menu';
 
 import * as S from '../ItemsRoll.styles';
-import { ItemElement, ItemRenderer } from './ListItem';
 import { ItemsRollProps, ItemRollElement } from '../ItemsRoll.types';
+import ItemElement from './ListItem';
+import ItemRenderer from './VirtualizedListItem';
 
 type ListProps = Pick<
   ItemsRollProps,
