@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.12.1...@synerise/ds-button@0.12.2) (2020-04-29)
+
+
+### Bug Fixes
+
+* **button:** fixed placement of the icon in creator button ([37f8fed](https://github.com/synerise/synerise-design/commit/37f8fedf4d5486a2e3419a4c3cc379a302b64a07))
+
+
+
+
+
 ## [0.12.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.12.0...@synerise/ds-button@0.12.1) (2020-04-27)
 
 **Note:** Version bump only for package @synerise/ds-button
