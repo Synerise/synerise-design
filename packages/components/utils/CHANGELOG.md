@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.19](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@0.8.18...@synerise/ds-utils@0.8.19) (2020-04-29)
+
+
+### Bug Fixes
+
+* **search:** added tests for focusWithArrowKeys utils ([187ca6b](https://github.com/synerise/synerise-design/commit/187ca6b9ff7d77a87a64e06da4c8f902a49993a7))
+* **search:** extracted focusing with arrows to utils ([2eaf8c3](https://github.com/synerise/synerise-design/commit/2eaf8c37d25777f11e475c846e60927b6226c384))
+
+
+
+
+
 ## [0.8.18](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@0.8.17...@synerise/ds-utils@0.8.18) (2020-04-27)
 
 **Note:** Version bump only for package @synerise/ds-utils

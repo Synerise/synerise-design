@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.1.3...@synerise/ds-items-roll@0.1.4) (2020-04-29)
+
+
+### Bug Fixes
+
+* **items-roll:** add onItemHover ([e209661](https://github.com/Synerise/synerise-design/commit/e209661eb002e6cf1d426fcf5abf1297747f2ed3))
+* **items-roll:** fixing the build ([bc2e938](https://github.com/Synerise/synerise-design/commit/bc2e938e88d2bc90973365efc546befd0728af8e))
+* **items-roll:** fixing the build again ([235d52b](https://github.com/Synerise/synerise-design/commit/235d52b033a17ad3d6e5180da145a21d3b620974))
+* **search:** extracted focusing with arrows to utils ([2eaf8c3](https://github.com/Synerise/synerise-design/commit/2eaf8c37d25777f11e475c846e60927b6226c384))
+
+
+
+
+
 ## [0.1.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.1.2...@synerise/ds-items-roll@0.1.3) (2020-04-29)
 
 

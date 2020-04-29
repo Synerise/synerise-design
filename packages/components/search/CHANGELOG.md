@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.1.3...@synerise/ds-search@0.1.4) (2020-04-29)
+
+
+### Bug Fixes
+
+* **search:** arrow press for focusing items ([70923f6](https://github.com/Synerise/synerise-design/commit/70923f65d7abea2526a279279d99d3581d0d5f17))
+* **search:** extracted focusing with arrows to utils ([2eaf8c3](https://github.com/Synerise/synerise-design/commit/2eaf8c37d25777f11e475c846e60927b6226c384))
+
+
+
+
+
 ## [0.1.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.1.2...@synerise/ds-search@0.1.3) (2020-04-29)
 
 

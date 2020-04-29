@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.30](https://github.com/synerise/synerise-design/compare/@synerise/ds-tabs@0.9.29...@synerise/ds-tabs@0.9.30) (2020-04-29)
+
+
+### Bug Fixes
+
+* **tabs:** add hiddenHelpers to measure width of tabs ([2db3344](https://github.com/synerise/synerise-design/commit/2db33444b6d150017b36b685ef6c63759dd9e1b1))
+* **tabs:** fix eslint ([4ef54b0](https://github.com/synerise/synerise-design/commit/4ef54b0c03ad44649e6ee3a46aa8ff644fab6e28))
+
+
+
+
+
 ## [0.9.29](https://github.com/synerise/synerise-design/compare/@synerise/ds-tabs@0.9.28...@synerise/ds-tabs@0.9.29) (2020-04-29)
 
 **Note:** Version bump only for package @synerise/ds-tabs
