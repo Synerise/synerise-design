@@ -50,7 +50,7 @@ const stories = {
       <SearchInput
         clearTooltip="Clear"
         placeholder="Search"
-        onValueChange={value => {
+        onChange={value => {
           console.log(value);
           setValue(value);
         }}
@@ -68,7 +68,7 @@ const stories = {
       <SearchInput
         clearTooltip="Clear"
         placeholder="Search"
-        onValueChange={value => {
+        onChange={value => {
           console.log(value);
           setValue(value);
         }}
@@ -88,7 +88,7 @@ const stories = {
 
     const recentTitle = text('Set recent title', 'Recent');
     const recentTooltip = text('Set recent tooltip', 'Recent');
-    const recentCount = number('Set recent count', 3, { min: 1, max: recent.length });
+    const recentCount = 3;
 
     const parametersTitle = text('Set search in title', 'Search in');
     const parametersTooltip = text('Set search in tooltip', 'Search in');
@@ -114,6 +114,11 @@ const stories = {
           const fakeApiResponse = getSuggestions(value);
           setSuggestions(fakeApiResponse);
         }}
+        divider={
+          <div style={{ padding: '12px', paddingBottom: '0px' }}>
+            <Divider dashed/>
+          </div>
+        }
         recentDisplayProps={{
           tooltip: recentTooltip,
           title: recentTitle,
@@ -121,9 +126,9 @@ const stories = {
           visibleRows: 3,
           itemRender: (item: FilterElement) => <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>,
           divider: (
-            <div style={{ padding: '12px', paddingBottom: '0px' }}>
+            <div style={{ padding: '12px', paddingBottom: '0px', marginRight:'-10px' }}>
               {' '}
-              <Divider dashed={true} />{' '}
+              <Divider dashed />{' '}
             </div>
           ),
         }}
@@ -149,6 +154,7 @@ const stories = {
           visibleRows: 6,
           itemRender: (item: FilterElement) => <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>,
         }}
+        dropdownMaxHeight={400}
       />
     );
   },
@@ -159,7 +165,7 @@ const stories = {
 
     const recentTitle = text('Set recent title', 'Recent');
     const recentTooltip = text('Set recent tooltip', 'Recent');
-    const recentCount = number('Set recent count', 3, { min: 1, max: recentWithAvatars.length });
+    const recentCount = 3;
 
     const parametersTitle = text('Set search in title', 'Search in');
     const parametersTooltip = text('Set search in tooltip', 'Search in');
@@ -194,12 +200,6 @@ const stories = {
               {item.text}
             </Menu.Item>
           ),
-          divider: (
-            <div style={{ padding: '12px', paddingBottom: '0px' }}>
-              {' '}
-              <Divider dashed={true} />{' '}
-            </div>
-          ),
         }}
         parametersDisplayProps={{
           tooltip: parametersTooltip,
@@ -219,6 +219,12 @@ const stories = {
           visibleRows: 6,
           itemRender: (item: FilterElement) => <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>,
         }}
+        divider={
+          <div style={{ padding: '12px', paddingBottom: '0px', marginRight:'-10px' }}>
+            <Divider dashed />
+          </div>
+        }
+        dropdownMaxHeight={400}
       />
     );
   },

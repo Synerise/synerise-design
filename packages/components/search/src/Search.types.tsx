@@ -11,7 +11,6 @@ export type DataSetProps = {
   rowHeight: number;
   visibleRows: number;
   itemRender: (item: FilterElement) => React.ReactElement;
-  divider?: React.ReactElement;
 };
 export type SearchProps = {
   placeholder: string;
@@ -24,7 +23,9 @@ export type SearchProps = {
   parameterValue: string;
   onParameterValueChange: (parameterValue: string) => void;
   width?: number;
+  dropdownMaxHeight?: number;
   recentDisplayProps: DataSetProps;
   suggestionsDisplayProps: DataSetProps;
   parametersDisplayProps: DataSetProps;
+  divider?: React.ReactNode;
 };

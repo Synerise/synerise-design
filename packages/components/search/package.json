@@ -29,6 +29,7 @@
     "@synerise/ds-dropdown": "^0.11.28",
     "@synerise/ds-scrollbar": "^0.0.13",
     "@synerise/ds-typography": "^0.8.3",
+    "@synerise/ds-utils": "^0.8.18",
     "@types/react-virtualized": "^9.21.9",
     "react-virtualized": "^9.21.2"
   },

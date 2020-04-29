@@ -23,6 +23,7 @@ const rowRenderer = <T extends unknown>(
     style: mergedStyles,
     highlight,
     onClick: () => onItemClick && onItemClick(item),
+    className: 'ds-search-item',
   });
   return RenderedItem;
 };
@@ -34,8 +35,9 @@ const SearchItemList: React.FC<SearchItemListProps<FilterElement | MenuItemProps
   rowHeight,
   width,
   highlight,
-  divider,
+
   itemRender,
+  listProps,
 }) => {
   let listRef: React.MutableRefObject<null | List> | List | null = React.useRef(null);
 
@@ -70,11 +72,11 @@ const SearchItemList: React.FC<SearchItemListProps<FilterElement | MenuItemProps
               ref={(instance): List | null => (listRef = instance)}
               rowRenderer={rowRenderer(itemRender, onItemClick, data, highlight)}
               rowCount={data.length}
+              {...listProps}
             />
           </Scrollbar>
         )}
       </Menu>
-      {!!divider && divider}
     </>
   );
 };

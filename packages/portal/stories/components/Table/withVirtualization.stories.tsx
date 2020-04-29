@@ -60,10 +60,10 @@ const stories = {
           }}
           searchComponent={
             <SearchInput
-              placeholder="Search"
-              clearTooltip="Clear"
-              onValueChange={value => {
-                store.set({ searchValue: value });
+              placeholder='Search'
+              clearTooltip='Clear'
+              onChange={value => {
+                store.set({searchValue: value});
               }}
               value={store.state.searchValue}
               onClear={() => {

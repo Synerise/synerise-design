@@ -8,8 +8,8 @@ export type SearchItemListProps<T extends MenuItemProps | FilterElement> = {
   width: number;
   rowHeight: number;
   visibleRows: number;
-  divider?: React.ReactNode;
   onItemClick?: (e: T) => void;
   highlight?: string;
   itemRender: (item: T) => React.ReactElement;
+  listProps?: object;
 };

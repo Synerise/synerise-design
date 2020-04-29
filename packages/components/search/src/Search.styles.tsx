@@ -21,6 +21,7 @@ export const SearchInputWrapper = styled.div<{ width?: number }>`
   position: relative;
   direction: rtl;
   overflow-x: hidden;
+  height: 34px;
 `;
 export const SearchWrapper = styled.div<{ width?: number; inputOpen?: boolean }>`
   ${(props): string | false =>
@@ -86,7 +87,7 @@ export const SearchButton = styled.div<{ isOpen: boolean; inputFocused: boolean;
   top: 0;
   right: 0;
   transition: width 0.5s;
-  transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+  transition-timing-function: ease;
   svg {
     fill: ${(props): string =>
       props.inputFocused && props.isOpen
@@ -169,10 +170,11 @@ export const ClearButton = styled.div`
   padding: 0 10px 0 10px;
 `;
 
-export const List = styled.div<{ isOpen?: boolean }>`
+export const List = styled.div<{ isOpen?: boolean; maxHeight?: number }>`
   position: absolute;
   top: 40px;
   background: ${(props): string => props.theme.palette.white};
+  max-height: ${(props): string => `${props.maxHeight}px`};
   direction: ltr;
   opacity: 0;
   display: none;
