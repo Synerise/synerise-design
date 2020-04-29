@@ -3,10 +3,10 @@ import SearchM from '@synerise/ds-icon/dist/icons/SearchM';
 import Tabs from '@synerise/ds-tabs';
 import { withState } from '@dump247/storybook-state';
 import { action } from '@storybook/addon-actions';
-import { boolean } from '@storybook/addon-knobs';
+import { boolean, number } from '@storybook/addon-knobs';
 
 const decorator = (storyFn) => (
-  <div style={{ width: '600px', maxWidth: '100%', padding: '24px', background: '#fff' }}>
+  <div style={{ width: '100%', position: 'absolute', left: 0, maxWidth: '100%', padding: '24px', background: '#fff' }}>
     {storyFn()}
   </div>
 );
@@ -38,7 +38,14 @@ const tabs = [
 
 const props = () => ({
   underscore: boolean('underscore', false)
-})
+});
+
+const getTabs = (count) => {
+  const tabs = new Array(count).fill(count);
+  return tabs.map((i, index) => ({
+    label: `Tab #${index}`,
+  }));
+};
 
 const stories = {
   default: withState({
@@ -46,7 +53,7 @@ const stories = {
   })(({ store }) => (
     <Tabs
       {...props()}
-      tabs={tabs}
+      tabs={getTabs(number('Number of tabs', 12))}
       activeTab={store.state.activeTab}
       handleTabClick={(index: number) => store.set({activeTab: index})}
     />

@@ -45,3 +45,9 @@ export const TabsDropdownDivider = styled.div`
 export const TabsShowHiddenTabsButton = styled(Button)`
   margin-top: -5px;
 `;
+
+export const HiddenTabs = styled.div`
+  position: absolute;
+  width: 0;
+  visibility: hidden;
+`;
