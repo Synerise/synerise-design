@@ -10,7 +10,14 @@ import { ItemsRollProps, ItemRollElement } from '../ItemsRoll.types';
 
 type ListProps = Pick<
   ItemsRollProps,
-  'groups' | 'items' | 'searchValue' | 'useVirtualizedList' | 'virtualizedRowHeight' | 'virtualizedRowWidth'
+  | 'groups'
+  | 'items'
+  | 'onItemClick'
+  | 'onItemRemove'
+  | 'searchValue'
+  | 'useVirtualizedList'
+  | 'virtualizedRowHeight'
+  | 'virtualizedRowWidth'
 > & {
   noResultsLabel: string | React.ReactNode;
   removeTooltipLabel: string | React.ReactNode;
@@ -23,6 +30,8 @@ export const itemsInGroup = (group: string, items: ItemRollElement[]): ItemRollE
 const List: React.FC<ListProps> = ({
   groups,
   items,
+  onItemClick,
+  onItemRemove,
   noResultsLabel,
   removeTooltipLabel,
   searchValue,
@@ -49,7 +58,12 @@ const List: React.FC<ListProps> = ({
             itemSize={virtualizedRowHeight}
             width={virtualizedRowWidth || '100%'}
           >
-            {ItemRenderer({ highlight: searchValue, tooltipLabel: removeTooltipLabel })}
+            {ItemRenderer({
+              highlight: searchValue,
+              onItemClick,
+              onItemRemove,
+              tooltipLabel: removeTooltipLabel,
+            })}
           </FixedSizeList>
         </Menu>
       ) : (
@@ -66,6 +80,8 @@ const List: React.FC<ListProps> = ({
                       <ItemElement
                         key={item.id}
                         highlight={searchValue}
+                        onItemClick={onItemClick}
+                        onItemRemove={onItemRemove}
                         item={item}
                         removeTooltipLabel={removeTooltipLabel}
                       />
@@ -78,6 +94,8 @@ const List: React.FC<ListProps> = ({
                   key={item.id}
                   highlight={searchValue}
                   item={item}
+                  onItemClick={onItemClick}
+                  onItemRemove={onItemRemove}
                   removeTooltipLabel={removeTooltipLabel}
                 />
               ))}

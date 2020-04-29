@@ -24,8 +24,6 @@ export const thousandItems = Array.from(Array(1000).keys());
 
 export const ITEMS_100 = hundredItems.map(key => ({
   id: uuid(),
-  onClick: action('OnItemRollElementClick'),
-  onRemoveElement: action('onRemoveElement'),
   text: `${TEXT}-${key}`,
   suffixel: (
     <Tooltip title="Remove">
@@ -38,8 +36,6 @@ export const ITEMS_100 = hundredItems.map(key => ({
 
 export const ITEMS_1000 = thousandItems.map(key => ({
   id: uuid(),
-  onClick: action('OnItemRollElementClick'),
-  onRemoveElement: action('onRemoveElement'),
   text: `${TEXT}-${key}`,
   suffixel: (
     <Tooltip title="Remove">
@@ -53,8 +49,6 @@ export const ITEMS_1000 = thousandItems.map(key => ({
 const tenParams = Array.from(Array(13).keys()).map(key => ({
   group: 'Parameter',
   id: uuid(),
-  onClick: action('OnItemRollElementClick'),
-  onRemoveElement: action('onRemoveElement'),
   text: `Parameter-${key}`,
   prefixel: (
     <Tooltip title="Parameter">
@@ -68,8 +62,6 @@ const tenParams = Array.from(Array(13).keys()).map(key => ({
 const tenAggregates = Array.from(Array(25).keys()).map(key => ({
   group: 'Aggregate',
   id: uuid(),
-  onClick: action('OnItemRollElementClick'),
-  onRemoveElement: action('onRemoveElement'),
   text: `Aggregate-${key}`,
   prefixel: (
     <Tooltip title="Aggregate">
@@ -83,8 +75,6 @@ const tenAggregates = Array.from(Array(25).keys()).map(key => ({
 const tenExpressions = Array.from(Array(6).keys()).map(key => ({
   group: 'Expression',
   id: uuid(),
-  onClick: action('OnItemRollElementClick'),
-  onRemoveElement: action('onRemoveElement'),
   text: `Expression-${key}`,
   prefixel: (
     <Tooltip title="Expression">

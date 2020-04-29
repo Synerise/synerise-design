@@ -3,7 +3,9 @@ import { injectIntl } from 'react-intl';
 
 import { Footer, Header, List } from './ItemsRollComponents';
 import * as S from './ItemsRoll.styles';
-import { ItemsRollProps } from './ItemsRoll.types';
+import { ItemsRollProps, ItemRollElement } from './ItemsRoll.types';
+
+export { ItemsRollProps, ItemRollElement };
 
 const ItemsRoll: React.FC<ItemsRollProps> = ({
   actions,
@@ -15,6 +17,8 @@ const ItemsRoll: React.FC<ItemsRollProps> = ({
   maxToShowItems = 10,
   onClearAll,
   onChangeSelection,
+  onItemClick,
+  onItemRemove,
   onSearchClear,
   onSearch,
   searchValue,
@@ -86,6 +90,8 @@ const ItemsRoll: React.FC<ItemsRollProps> = ({
       <List
         groups={groups}
         items={items}
+        onItemClick={onItemClick}
+        onItemRemove={onItemRemove}
         noResultsLabel={allTexts.noResultsLabel}
         removeTooltipLabel={allTexts.removeTooltipLabel}
         searchValue={searchValue}

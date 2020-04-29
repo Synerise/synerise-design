@@ -42,17 +42,19 @@ import ItemsRoll from '@synerise/ds-items-roll'
 | maxToShowItems       | Amount of initial ItemsRollElement to render. Note that if number is greater than 20, list will becoma scrollable | number                                                | 10      |
 | onClearAll           | Callback function that is fired when click on clearAll button                                                     | () => void                                            | -       |
 | onChangeSelection    | Callback function that is fired when click on changeSelection button                                              | () => void                                            | -       |
-| onItemClick          | Callback function that is fired when list element is clicked                                                      | (ItemRollElement) => void                             | -       |
+| onItemClick          | Callback function that is fired when list element is clicked                                                      | (id: string) => void                                  | -       |
+| onItemRemove         | Callback function that is fired when list element remove icon is clicked                                          | (id: string) => void                                  | -       |
 | onSearch             | Callback function that is fired when input changed                                                                | (value: string) => void                               | -       |
 | onSearchClear        | Callback function that is fired when input is cleared                                                             | () => void                                            | -       |
 | searchPlaceholder    | Placeholder for search input component                                                                            | string                                                | -       |
 | searchValue          | Value of search input component                                                                                   | string                                                | -       |
+| showMoreStep          | Amount of items to load on show more button click                                                                                   | number                                                | 10       |
 | style                | Object with CSS properties                                                                                        | React.CSSProperties                                   | -       |
 | texts                | Object contains texts for buttons, title etc.                                                                     | Texts                                                 | -       |
 | useFooter            | Whether the footer is visibile                                                                                    | boolean                                               | -       |
 | useVirtualizedList   | Whether to use react-virtualized for list                                                                         | boolean                                               | false   |
 | virtualizedRowHeight | Height of virtualizedlist row                                                                                     | number                                                | 32px    |
-| virtualizedRowWidth  | Width of virtualized list                                                                                         | number                                                | -   |
+| virtualizedRowWidth  | Width of virtualized list                                                                                         | number                                                | -       |
 
 
 #### ItemRollElement
@@ -70,13 +72,10 @@ import ItemsRoll from '@synerise/ds-items-roll'
 | id              | Unique identifier for element. Used as a key in map                                 | string                     | -       |
 | index           | Index of the element                                                                | number                     | -       |
 | nestedMenu      | Array of child elements or strings to nest inside element                           | SubMenuProps[] or string[] | -       |
-| onClick         | Callback function that is fired when click on item                                  | (el: ClickParam) => void   | -       |
-| onRemoveElement | Callback function that is fired when click on item remove icon                      | (id: string) => void       | -       |
 | ordered         | Whether item elements are ordered                                                   | boolean                    | -       |
 | parent          | ???                                                                                 | boolean                    | -       |
 | prefixel        | Element to insert before text of the element                                        | React.ReactNode            | -       |
 | subMenu         | Array of child elements or strings to add as sub menu to element                    | SubMenuProps[] or string[] | -       |
-| suffixel        | Element to insert at after text of the element, aligned to the right                | React.ReactNode            | -       |
 | text            | Label for the element                                                               | string or React.ReactNode  | -       |
 
 #### Texts
