@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { withState } from '@dump247/storybook-state';
 import { boolean, select, number } from '@storybook/addon-knobs';
+import { action } from '@storybook/addon-actions';
 import ItemsRoll from '@synerise/ds-items-roll';
 import { Add3M } from '@synerise/ds-icon/dist/icons';
 
@@ -65,6 +66,8 @@ const generateProps = (store, { onClearAllOptions }) => ({
   maxToShowItems: number('maxToShowItems', 10),
   onChangeSelection: select('onChangeSelection', onChangeSelectionOptions, onChangeSelectionOptions.function),
   onClearAll: select('onClearAll', onClearAllOptions, onClearAllOptions.function),
+  onItemClick: action('onItemClick'),
+  onItemRemove: action('onItemRemove'),
   onSearch: value => onSearch(value, store),
   onSearchClear: () => onSearchClear(store),
   searchPlaceholder: SEARCH_PLACEHOLDER,

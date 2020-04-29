@@ -14,7 +14,7 @@ export type DataSetProps = {
 };
 export type SearchProps = {
   placeholder: string;
-  clearTooltip: string | React.ReactNode;
+  clearTooltip: string;
   parameters?: FilterElement[];
   recent?: FilterElement[];
   suggestions: FilterElement[];

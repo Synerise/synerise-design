@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-scrollbar@0.0.12...@synerise/ds-scrollbar@0.0.13) (2020-04-27)
+
+
+### Bug Fixes
+
+* **items-roll:** minor fixes ([51d9d07](https://github.com/Synerise/synerise-design/commit/51d9d079fc61cba9f0b2278f5b659735309b165e))
+
+
+
+
+
 ## [0.0.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-scrollbar@0.0.11...@synerise/ds-scrollbar@0.0.12) (2020-04-27)
 
 **Note:** Version bump only for package @synerise/ds-scrollbar

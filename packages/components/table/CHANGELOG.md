@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.9.0...@synerise/ds-table@0.9.1) (2020-04-27)
+
+
+### Bug Fixes
+
+* **table:** virtualization story ([fcca940](https://github.com/synerise/synerise-design/commit/fcca940bb9fea77a57200a5fd76f9125f54170bf))
+
+
+
+
+
 # [0.9.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.8.6...@synerise/ds-table@0.9.0) (2020-04-27)
 
 
