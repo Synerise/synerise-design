@@ -24,6 +24,9 @@ export const HeaderRight = styled.div`
 export const HeaderLeft = styled.div`
   color: ${({ theme }): string => theme.palette['grey-800']};
   margin-left: 12px;
+  height: 34px;
+  display: flex;
+  align-items: center;
 `;
 
 export const ListWrapper = styled.div`
@@ -44,6 +47,11 @@ export const ListWrapper = styled.div`
               }
             }
           }
+        }
+
+        :focus {
+          box-shadow: none !important;
+          background: transparent;
         }
       }
 
