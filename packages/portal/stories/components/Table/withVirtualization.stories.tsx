@@ -6,11 +6,7 @@ import { SearchInput } from '@synerise/ds-search/dist/Elements';
 import { withState } from '@dump247/storybook-state';
 import { text } from '@storybook/addon-knobs';
 
-const decorator = (storyFn) => (
-  <div style={{ padding: 20, width: '100vw', minWidth: '100%' }}>
-    {storyFn()}
-  </div>
-);
+const decorator = storyFn => <div style={{ padding: 20, width: '100vw', minWidth: '100%' }}>{storyFn()}</div>;
 
 const dataSource = [...new Array(100000)].map((i, k) => ({
   key: k + 1,
@@ -21,29 +17,31 @@ const columns = [
   {
     title: 'User name',
     key: 'name',
-    dataIndex: 'name'
-  }
+    dataIndex: 'name',
+  },
 ];
 
 const stories = {
   default: withState({
     searchValue: '',
     selectedRows: [],
-  })(({store}) => {
+  })(({ store }) => {
     const filteredDataSource = () => {
-      return !store.state.searchValue ? dataSource : dataSource.filter(record => {
-        return record.name.toLowerCase().includes(store.state.searchValue.toLowerCase());
-      });
+      return !store.state.searchValue
+        ? dataSource
+        : dataSource.filter(record => {
+            return record.name.toLowerCase().includes(store.state.searchValue.toLowerCase());
+          });
     };
 
-    const handleSelectRow = (selectedRowKeys) => {
-      store.set({selectedRows: selectedRowKeys});
+    const handleSelectRow = selectedRowKeys => {
+      store.set({ selectedRows: selectedRowKeys });
     };
 
     return (
-      <div style={{width: 960}}>
+      <div style={{ width: 960 }}>
         <VirtualTable
-          scroll={{y: 500, x: 0}}
+          scroll={{ y: 500, x: 0 }}
           initialWidth={960}
           title={`${filteredDataSource().length} ${text('Set name of table items', 'records')}`}
           dataSource={filteredDataSource()}
@@ -53,29 +51,31 @@ const stories = {
           selection={{
             onChange: handleSelectRow,
             selectedRowKeys: store.state.selectedRows,
-            setRowSelection: handleSelectRow
+            setRowSelection: handleSelectRow,
           }}
           onRowClick={record => {
-            store.state.selectedRows.indexOf(record.key) >= 0 ? store.set({selectedRows: store.state.selectedRows.filter(k => k !== record.key)}) : store.set({selectedRows: [...store.state.selectedRows, record.key]});
+            store.state.selectedRows.indexOf(record.key) >= 0
+              ? store.set({ selectedRows: store.state.selectedRows.filter(k => k !== record.key) })
+              : store.set({ selectedRows: [...store.state.selectedRows, record.key] });
           }}
           searchComponent={
             <SearchInput
-              placeholder='Search'
-              clearTooltip='Clear'
+              placeholder="Search"
+              clearTooltip="Clear"
               onValueChange={value => {
-                store.set({searchValue: value});
+                store.set({ searchValue: value });
               }}
               value={store.state.searchValue}
               onClear={() => {
-                store.set({searchValue: ''});
+                store.set({ searchValue: '' });
               }}
               closeOnClickOutside={true}
             />
           }
         />
       </div>
-    )
-  })
+    );
+  }),
 };
 
 export default {

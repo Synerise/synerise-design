@@ -139,7 +139,19 @@ const SearchInput: React.FC<SearchInputProps> = ({
         </S.SearchInner>
       </S.SearchInputContent>
     ),
-    [change, inputOffset, inputOpen, label, onClick, onKeyDown, placeholder, resultChoosed, value, alwaysHighlight, focusOnInput]
+    [
+      change,
+      inputOffset,
+      inputOpen,
+      label,
+      onClick,
+      onKeyDown,
+      placeholder,
+      resultChoosed,
+      value,
+      alwaysHighlight,
+      focusOnInput,
+    ]
   );
   return (
     <S.SearchInputWrapper ref={inputWrapperRef}>
