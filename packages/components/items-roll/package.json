@@ -30,6 +30,7 @@
     "@synerise/ds-dropdown": "^0.11.28",
     "@synerise/ds-icon": "^0.14.3",
     "@synerise/ds-menu": "^0.3.1",
+    "@synerise/ds-popconfirm": "^0.4.3",
     "@synerise/ds-scrollbar": "^0.0.13",
     "@synerise/ds-search": "^0.1.3",
     "@synerise/ds-tooltip": "^0.7.1",
