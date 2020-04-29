@@ -10,6 +10,7 @@ export type TabProps = {
   underscore?: boolean;
   isActive?: boolean;
   disabled?: boolean;
+  className?: string;
   onClick: (index: number) => void;
   forwardedRef: React.RefObject<HTMLButtonElement>;
 };
@@ -23,6 +24,7 @@ const Tab: React.FC<TabProps> = ({
   onClick,
   forwardedRef,
   underscore,
+  className,
 }: TabProps) => {
   const [isPressed, setPressed] = React.useState(false);
   const handleClick = (): void => {
@@ -37,7 +39,7 @@ const Tab: React.FC<TabProps> = ({
     setPressed(false);
   };
 
-  const containerClasses = classNames({
+  const containerClasses = classNames(className, {
     underscore,
     active: isActive,
     pressed: isPressed,

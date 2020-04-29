@@ -7,6 +7,7 @@ import Button from '@synerise/ds-button';
 import OptionHorizontalM from '@synerise/ds-icon/dist/icons/OptionHorizontalM';
 import * as S from './Tabs.styles';
 import Tab from './Tab/Tab';
+import useResize from './utils/useResize';
 
 export type TabsProps = {
   activeTab: number;
@@ -27,81 +28,97 @@ export type TabItem = {
   disabled?: boolean;
 };
 
-const Tabs: React.FC<TabsProps> = ({ activeTab, tabs, handleTabClick, configuration, underscore }) => {
-  const items: React.RefObject<HTMLButtonElement>[] = [];
-  let container: HTMLDivElement | null;
-  const [itemsWidths, setItemsWidths] = React.useState<number[]>([]);
-  const [visibleTabs, setVisibleTabs] = React.useState<TabItem[]>(tabs);
-  const [hiddenTabs, setHiddenTabs] = React.useState<TabItem[]>([]);
+type TabWithRef = TabItem & {
+  ref: React.RefObject<HTMLButtonElement>;
+};
 
-  const handleResize = (): void => {
-    let width = 56;
-    const visibleItems: TabItem[] = [];
-    const hiddenItems: TabItem[] = [];
+// eslint-disable-next-line @typescript-eslint/no-empty-function
+const NOOP = (): void => {};
+const MARGIN_BETWEEN_TABS = 24;
+const DROPDOWN_TRIGGER_SIZE = 32;
+
+const Tabs: React.FC<TabsProps> = ({ activeTab, tabs, handleTabClick, configuration, underscore }) => {
+  const containerRef = React.useRef<HTMLDivElement>();
+  const { width } = useResize(containerRef);
+  const [renderHelperTabs, setRenderHelperTabs] = React.useState(true);
+  const [items, setItems] = React.useState<TabWithRef[]>([]);
+  const [itemsWidths, setItemsWidths] = React.useState<number[]>([]);
+  const [visibleTabs, setVisibleTabs] = React.useState<TabWithRef[]>([]);
+  const [hiddenTabs, setHiddenTabs] = React.useState<TabWithRef[]>([]);
+
+  React.useEffect(() => {
+    const newTabs = tabs.map(tab => {
+      return {
+        ...tab,
+        ref: React.createRef<HTMLButtonElement>(),
+      };
+    });
+    setRenderHelperTabs(true);
+    setItems(newTabs);
+  }, [tabs]);
+
+  React.useEffect((): void => {
+    const itemsWithWidths: number[] = [];
+    items.forEach((item, index) => {
+      itemsWithWidths[index] = item.ref.current !== null ? item.ref.current.offsetWidth + MARGIN_BETWEEN_TABS : 0;
+    });
+    setItemsWidths(itemsWithWidths);
+    setRenderHelperTabs(false);
+  }, [items]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  React.useEffect((): void => {
+    let tabsWidth = DROPDOWN_TRIGGER_SIZE + MARGIN_BETWEEN_TABS;
+    const visibleItems: TabWithRef[] = [];
+    const hiddenItems: TabWithRef[] = [];
     itemsWidths.forEach((itemWidth, index) => {
-      if (container && width + itemWidth < container.offsetWidth) {
-        visibleItems.push(tabs[index]);
+      if (containerRef && tabsWidth + itemWidth < width) {
+        visibleItems.push(items[index]);
       } else {
-        hiddenItems.push(tabs[index]);
+        hiddenItems.push(items[index]);
       }
-      width += itemWidth;
+      tabsWidth += itemWidth;
     });
     setVisibleTabs(visibleItems);
     setHiddenTabs(hiddenItems);
-  };
-
-  React.useLayoutEffect((): void => {
-    const itemsWithWidths: number[] = [];
-    items.forEach((item, index) => {
-      itemsWithWidths[index] = item.current !== null ? item.current.offsetWidth + 24 : 0;
-    });
-    setItemsWidths(itemsWithWidths);
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
-  React.useLayoutEffect((): void => {
-    if (itemsWidths.length) {
-      window.addEventListener('resize', handleResize);
-    }
-    handleResize();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [itemsWidths]);
+  }, [itemsWidths, width]);
 
-  const handleConfigurationAction = (): void => {
-    if (configuration) {
-      configuration.action();
-    }
-  };
+  const handleConfigurationAction = React.useCallback((): void => {
+    configuration && configuration.action();
+  }, [configuration]);
 
-  const renderHiddenTabs = (): React.ReactElement => (
-    <S.TabsDropdownContainer data-testid="tabs-dropdown-container">
-      {hiddenTabs.length > 0 && (
-        <List
-          dataSource={[hiddenTabs]}
-          renderItem={(item: TabItem, index: number): React.ReactNode => (
-            <List.Item
-              onSelect={(): void => handleTabClick(visibleTabs.length + index)}
-              disabled={item.disabled}
-              icon={<Icon component={<FileM />} />}
-            >
-              {item.label}
-            </List.Item>
-          )}
-        />
-      )}
-      {hiddenTabs.length > 0 && configuration && <S.TabsDropdownDivider />}
-      {configuration && (
-        <Button type="ghost" onClick={handleConfigurationAction}>
-          {configuration.label}
-        </Button>
-      )}
-    </S.TabsDropdownContainer>
-  );
+  const renderHiddenTabs = React.useMemo(() => {
+    return (
+      <S.TabsDropdownContainer data-testid="tabs-dropdown-container">
+        {hiddenTabs.length > 0 && (
+          <List
+            dataSource={[hiddenTabs]}
+            renderItem={(item: TabWithRef, index: number): React.ReactNode => (
+              <List.Item
+                onSelect={(): void => handleTabClick(visibleTabs.length + index)}
+                disabled={item.disabled}
+                icon={<Icon component={<FileM />} />}
+              >
+                {item.label}
+              </List.Item>
+            )}
+          />
+        )}
+        {hiddenTabs.length > 0 && configuration && <S.TabsDropdownDivider />}
+        {configuration && (
+          <Button type="ghost" onClick={handleConfigurationAction}>
+            {configuration.label}
+          </Button>
+        )}
+      </S.TabsDropdownContainer>
+    );
+  }, [hiddenTabs, configuration, handleConfigurationAction, handleTabClick, visibleTabs.length]);
 
   const renderDropdown = (): React.ReactElement => {
     return (
       <>
         {(hiddenTabs.length || configuration) && (
-          <Dropdown data-testid="tabs-dropdown" overlay={renderHiddenTabs()}>
+          <Dropdown trigger={['click']} data-testid="tabs-dropdown" overlay={renderHiddenTabs}>
             <S.TabsShowHiddenTabsButton type="ghost" mode="single-icon">
               <Icon component={<OptionHorizontalM />} />
             </S.TabsShowHiddenTabsButton>
@@ -111,17 +128,15 @@ const Tabs: React.FC<TabsProps> = ({ activeTab, tabs, handleTabClick, configurat
     );
   };
 
-  const renderVisibleTabs = (): React.ReactElement => {
+  const renderVisibleTabs = React.useMemo(() => {
     return (
       <>
         {visibleTabs.map((tab, index) => {
-          const ref = React.createRef<HTMLButtonElement>();
-          items[index] = ref;
           const key = `tabs-tab-${index}`;
           return (
             <Tab
               underscore={underscore}
-              forwardedRef={ref}
+              forwardedRef={tab.ref}
               key={key}
               index={index}
               label={tab.label}
@@ -134,21 +149,45 @@ const Tabs: React.FC<TabsProps> = ({ activeTab, tabs, handleTabClick, configurat
         })}
       </>
     );
-  };
+  }, [visibleTabs, activeTab, handleTabClick, underscore]);
+
+  const renderHelpers = React.useMemo(() => {
+    return (
+      <S.HiddenTabs className="ds-hidden-helper">
+        {items.map((tab, index) => {
+          const key = `tabs-tab-${tab.label}`;
+          return (
+            <Tab
+              className="hidden"
+              underscore={underscore}
+              forwardedRef={tab.ref}
+              key={key}
+              index={index}
+              onClick={NOOP}
+              label={tab.label}
+              icon={tab.icon}
+            />
+          );
+        })}
+      </S.HiddenTabs>
+    );
+  }, [items, underscore]);
 
   return (
-    <S.TabsContainer
-      className="ds-tabs"
-      ref={(c): void => {
-        if (!container) {
-          container = c;
-        }
-      }}
-      data-testid="tabs-container"
-    >
-      {renderVisibleTabs()}
-      {renderDropdown()}
-    </S.TabsContainer>
+    <>
+      <S.TabsContainer
+        className="ds-tabs"
+        /* eslint-disable-next-line @typescript-eslint/ban-ts-ignore */
+        // @ts-ignore
+        ref={containerRef}
+        data-testid="tabs-container"
+      >
+        {renderVisibleTabs}
+        {renderDropdown()}
+      </S.TabsContainer>
+      {/* rendering hidden tabs to measure their width */}
+      {renderHelperTabs && renderHelpers}
+    </>
   );
 };
 
