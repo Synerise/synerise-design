@@ -5,7 +5,7 @@ import { ItemRollElement } from '../ItemsRoll.types';
 import { RemoveIcon } from './ItemRemoveIcon';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
-const NOOP = (): void => {};
+export const NOOP = (): void => {};
 
 type ItemElementProps = {
   highlight: string;
