@@ -114,21 +114,38 @@ const stories = {
     return store.state.componentVisible ? <ItemsRoll {...props} /> : <AfterClearInfo />;
   }),
 
-  withVirtualizedList: withState(DEFAULT_STATE_VIRTUALIZED)(({ store }) => {
-    const onClearAllOptions = {
-      function: () => onClearAll(store),
-      none: undefined,
-    };
+  withVirtualizedList: () => {
+    const [searchValue, setSearchValue] = React.useState('');
+    const [visible, setVisible] = React.useState(true);
+
+    const filteredItems = React.useMemo(() => {
+      return !searchValue
+        ? ITEMS_1000
+        : ITEMS_1000.filter(item => {
+            return item.text.toLowerCase().includes(searchValue.toLowerCase());
+          });
+    }, [searchValue]);
+
     const props = {
-      ...generateProps(store, { onClearAllOptions }),
-      maxToShowItems: number('maxToShowItems', 200),
-      onSearch: value => onSearch(value, store, true),
-      showMoreStep: number('showMoreStep', 200),
+      actions: select(`Actions menu`, actionsSelectOptions, actionsSelectOptions.actions),
+      className: 'custom-class',
+      items: filteredItems,
+      onChangeSelection: select('onChangeSelection', onChangeSelectionOptions, onChangeSelectionOptions.function),
+      onClearAll: () => setVisible(false),
+      onItemClick: action('onItemClick'),
+      onItemRemove: action('onItemRemove'),
+      onSearchClear: () => setSearchValue(''),
+      searchPlaceholder: SEARCH_PLACEHOLDER,
+      searchValue: searchValue,
+      useFooter: boolean('useFooter', true),
+      maxToShowItems: number('maxToShowItems', 20),
+      onSearch: value => setSearchValue(value),
+      showMoreStep: number('showMoreStep', 100),
       useVirtualizedList: boolean('useVirtualizedList', true),
     };
 
-    return store.state.componentVisible ? <ItemsRoll {...props} /> : <AfterClearInfo />;
-  }),
+    return visible ? <ItemsRoll {...props} /> : <AfterClearInfo />;
+  },
 
   withGroups: withState(DEFAULT_GROUPED_STATE)(({ store }) => {
     const onClearAllOptions = {
