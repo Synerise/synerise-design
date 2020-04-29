@@ -62,7 +62,7 @@ const stories = {
             <SearchInput
               placeholder='Search'
               clearTooltip='Clear'
-              onValueChange={value => {
+              onChange={value => {
                 store.set({searchValue: value});
               }}
               value={store.state.searchValue}

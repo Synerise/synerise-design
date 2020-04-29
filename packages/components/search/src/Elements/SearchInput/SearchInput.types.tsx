@@ -4,7 +4,7 @@ import { FilterElement } from '../../Search.types';
 export type SearchInputProps = {
   placeholder?: string;
   clearTooltip: string | React.ReactNode;
-  onValueChange: (value: string) => void;
+  onChange: (value: string) => void;
   value: string;
   onClear: (value: string) => void;
   onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;

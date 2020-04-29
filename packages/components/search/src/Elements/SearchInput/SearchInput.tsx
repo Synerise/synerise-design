@@ -17,7 +17,7 @@ const SearchInput: React.FC<SearchInputProps> = ({
   onButtonClick,
   placeholder,
   clearTooltip,
-  onValueChange,
+  onChange,
   value,
   onClear,
   onKeyDown,
@@ -83,20 +83,20 @@ const SearchInput: React.FC<SearchInputProps> = ({
   const clearValue = React.useCallback((): void => {
     setFocus(false);
     setLabel(null);
-    onValueChange('');
+    onChange('');
     setInputOffset(0);
     onClear('');
     setResultChoosed(false);
     focusOnInput();
-  }, [onValueChange, onClear, focusOnInput]);
+  }, [onChange, onClear, focusOnInput]);
 
   const change = React.useCallback(
     (e: React.ChangeEvent<HTMLInputElement>): void => {
       const currentValue = e.currentTarget.value;
-      onValueChange(currentValue);
+      onChange(currentValue);
       setResultChoosed(false);
     },
-    [onValueChange]
+    [onChange]
   );
 
   const renderSearchInputContent = React.useMemo(
@@ -139,7 +139,19 @@ const SearchInput: React.FC<SearchInputProps> = ({
         </S.SearchInner>
       </S.SearchInputContent>
     ),
-    [change, inputOffset, inputOpen, label, onClick, onKeyDown, placeholder, resultChoosed, value, alwaysHighlight, focusOnInput]
+    [
+      change,
+      inputOffset,
+      inputOpen,
+      label,
+      onClick,
+      onKeyDown,
+      placeholder,
+      resultChoosed,
+      value,
+      alwaysHighlight,
+      focusOnInput,
+    ]
   );
   return (
     <S.SearchInputWrapper ref={inputWrapperRef}>

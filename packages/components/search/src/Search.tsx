@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useEffect, useState } from 'react';
-import { useOnClickOutside } from '@synerise/ds-utils';
+import { useOnClickOutside, focusWithArrowKeys } from '@synerise/ds-utils';
 import { MenuItemProps } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.types';
 
 import Scrollbar from '@synerise/ds-scrollbar';
@@ -9,6 +9,10 @@ import * as S from './Search.styles';
 import { FilterElement, SearchProps } from './Search.types';
 import { SearchInput, SearchHeader, SearchItemList } from './Elements';
 
+const MENU_WIDTH_OFFSET = 27;
+const DEFAULT_VISIBLE_ROWS = 5;
+const INPUT_EXPAND_ANIMATION_DURATION = 200;
+const SCROLLBAR_HEIGHT_OFFSET = 20;
 const Search: React.FC<SearchProps> = ({
   placeholder,
   parameters,
@@ -20,9 +24,11 @@ const Search: React.FC<SearchProps> = ({
   onParameterValueChange,
   clearTooltip,
   width,
+  dropdownMaxHeight,
   parametersDisplayProps,
   recentDisplayProps,
   suggestionsDisplayProps,
+  divider,
   ...rest
 }) => {
   const [inputOpen, setInputOpen] = useState(false);
@@ -38,9 +44,7 @@ const Search: React.FC<SearchProps> = ({
 
   const ref = React.useRef<HTMLDivElement>(null);
   const inputRef = React.useRef<HTMLInputElement>(null);
-  const MENU_WIDTH_OFFSET = 27;
-  const DEFAULT_VISIBLE_ROWS = 5;
-  const INPUT_EXPAND_ANIMATION_DURATION = 200;
+
   const getSearchWrapperWidth = React.useCallback((): number => {
     if (width) {
       return width - MENU_WIDTH_OFFSET;
@@ -131,44 +135,6 @@ const Search: React.FC<SearchProps> = ({
       parameterValue,
     ]
   );
-  const onWrapperKeyDown = React.useCallback(
-    e => {
-      const activeElement = document.activeElement as HTMLElement;
-      if ((e.key === 'ArrowDown' || e.key === 'ArrowUp') && inputOpen) {
-        const narrowedParameters = (filteredParameters && filteredParameters.length) || 0;
-        const narrowedRecent = (filteredRecent && filteredRecent.length) || 0;
-        const visibleItemsCount = narrowedRecent + narrowedParameters;
-        const searchItems = document.querySelectorAll('.ds-search-item');
-        const isMenuItemFocused = activeElement && activeElement.classList.contains('ds-search-item');
-        if (e.key === 'ArrowDown') {
-          if (isMenuItemFocused) {
-            let elementToFocusOn = activeElement.nextElementSibling as HTMLElement;
-            if (elementToFocusOn === null && searchItems[visibleItemsCount - 1] !== activeElement) {
-              elementToFocusOn = searchItems[visibleItemsCount - 1] as HTMLElement;
-            }
-            elementToFocusOn === null ? focusInputComponent(!focusTrigger) : elementToFocusOn.focus();
-          } else {
-            const elementToFocusOn = document.querySelector('.ds-search-item') as HTMLElement;
-            elementToFocusOn.focus();
-          }
-        }
-
-        if (e.key === 'ArrowUp') {
-          if (isMenuItemFocused) {
-            const elementToFocusOn = activeElement.previousElementSibling as HTMLElement;
-            elementToFocusOn === null ? focusInputComponent(!focusTrigger) : elementToFocusOn.focus();
-          } else {
-            const elementToFocusOn = document.querySelector('.ds-search-item') as HTMLElement;
-            elementToFocusOn.focus();
-          }
-        }
-      }
-      if (e.key === 'Enter' && inputOpen) {
-        activeElement.click();
-      }
-    },
-    [filteredRecent, filteredParameters, focusTrigger, inputOpen]
-  );
   const change = React.useCallback(
     (inputValue): void => {
       const currentValue = inputValue;
@@ -211,7 +177,7 @@ const Search: React.FC<SearchProps> = ({
         }}
         placeholder={placeholder}
         clearTooltip={clearTooltip}
-        onValueChange={change}
+        onChange={change}
         value={value}
         onClear={clearValue}
         onKeyDown={onKeyDown}
@@ -257,7 +223,6 @@ const Search: React.FC<SearchProps> = ({
             rowHeight={recentDisplayProps.rowHeight}
             highlight={value}
             onItemClick={selectResult as (e: FilterElement | MenuItemProps) => void}
-            divider={recentDisplayProps.divider}
             itemRender={recentDisplayProps.itemRender as (item: FilterElement | MenuItemProps) => React.ReactElement}
             listProps={{ autoHeight: true }}
           />
@@ -287,7 +252,6 @@ const Search: React.FC<SearchProps> = ({
             itemRender={
               parametersDisplayProps.itemRender as (item: FilterElement | MenuItemProps) => React.ReactElement
             }
-            divider={parametersDisplayProps.divider}
             listProps={{ autoHeight: true }}
           />
         </>
@@ -315,7 +279,6 @@ const Search: React.FC<SearchProps> = ({
             itemRender={
               suggestionsDisplayProps.itemRender as (item: FilterElement | MenuItemProps) => React.ReactElement
             }
-            divider={suggestionsDisplayProps.divider}
           />
         </>
       )
@@ -336,8 +299,12 @@ const Search: React.FC<SearchProps> = ({
       className="SearchWrapper"
       inputOpen={inputOpen}
       width={width}
+      onKeyDown={(e): void => {
+        focusWithArrowKeys(e, 'ds-search-item', () => {
+          focusInputComponent(!focusTrigger);
+        });
+      }}
       {...rest}
-      onKeyDown={onWrapperKeyDown}
     >
       {renderInputWrapper()}
       {listVisible && (
@@ -347,13 +314,15 @@ const Search: React.FC<SearchProps> = ({
           }}
         >
           <S.List
+            maxHeight={dropdownMaxHeight}
             className={inputOpen && !resultChoosed && listVisible && isListItemRendered() ? 'search-list-open' : ''}
           >
-            <Scrollbar maxHeight={350}>
+            <Scrollbar maxHeight={dropdownMaxHeight && Number(dropdownMaxHeight - SCROLLBAR_HEIGHT_OFFSET)}>
               {renderRecentItems()}
+              {!!filteredParameters?.length && !!filteredRecent?.length && !label && divider}
               {renderParameters()}
+              {renderSuggestions()}
             </Scrollbar>
-            {renderSuggestions()}
           </S.List>
         </S.ListWrapper>
       )}

@@ -35,7 +35,7 @@ const SearchItemList: React.FC<SearchItemListProps<FilterElement | MenuItemProps
   rowHeight,
   width,
   highlight,
-  divider,
+
   itemRender,
   listProps,
 }) => {
@@ -77,7 +77,6 @@ const SearchItemList: React.FC<SearchItemListProps<FilterElement | MenuItemProps
           </Scrollbar>
         )}
       </Menu>
-      {!!divider && divider}
     </>
   );
 };
