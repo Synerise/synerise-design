@@ -48,7 +48,7 @@ const Header: React.FC<HeaderProps> = ({
           <SearchInput
             clearTooltip={allTexts.searchClearTooltipLabel}
             onClear={onSearchClear}
-            onChange={onSearch}
+            onValueChange={onSearch}
             placeholder={searchPlaceholder}
             value={searchValue}
             closeOnClickOutside
