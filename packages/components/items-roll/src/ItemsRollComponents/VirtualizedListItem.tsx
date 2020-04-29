@@ -4,6 +4,7 @@ import Menu from '@synerise/ds-menu';
 
 import { RemoveIcon } from './ItemRemoveIcon';
 import { ItemRollElement } from '../ItemsRoll.types';
+import { NOOP } from './ListItem';
 
 type ItemRendererProps = {
   highlight: string;
@@ -33,6 +34,7 @@ const ItemRenderer = ({ highlight, onItemClick, onItemRemove, tooltipLabel }: It
       <Menu.Item
         className="items-roll-list-item"
         highlight={highlight}
+        onItemHover={NOOP}
         onClick={onClick}
         style={style}
         suffixel={
