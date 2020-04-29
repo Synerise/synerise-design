@@ -5,32 +5,36 @@ const focusWithArrowKeys = (keyDownEvent: KeyboardEvent, focusableItemClass: str
   const focusableElements = Array.from(focusableElementsNodeList);
   const activeElement = document.activeElement as HTMLElement;
   const activeElementIndex = focusableElements.indexOf(activeElement);
-  if (keyDownEvent.key === 'ArrowDown' || keyDownEvent.key === 'ArrowUp') {
+  const isItemFocused = activeElement && activeElement.classList.contains(focusableItemClass);
+
+  if (keyDownEvent.key === 'ArrowDown') {
     keyDownEvent.preventDefault();
-    const isItemFocused = activeElement && activeElement.classList.contains(focusableItemClass);
-    if (keyDownEvent.key === 'ArrowDown') {
-      let elementToFocusOn = null;
-      if (isItemFocused) {
-        const nextSibling = activeElement.nextElementSibling as HTMLElement;
-        elementToFocusOn =
-          nextSibling === null ? (focusableElements[activeElementIndex + 1] as HTMLElement) : nextSibling;
-      } else {
-        elementToFocusOn = document.querySelector(`.${focusableItemClass}`) as HTMLElement;
-      }
-      elementToFocusOn === null || elementToFocusOn === undefined ? fallback() : elementToFocusOn.focus();
+    let elementToFocusOn;
+    if (isItemFocused) {
+      const nextSibling = activeElement.nextElementSibling as HTMLElement;
+      elementToFocusOn =
+        nextSibling === null ? (focusableElements[activeElementIndex + 1] as HTMLElement) : nextSibling;
+    } else {
+      elementToFocusOn = document.querySelector(`.${focusableItemClass}`) as HTMLElement;
     }
-    if (keyDownEvent.key === 'ArrowUp') {
-      let elementToFocusOn = null;
-      if (isItemFocused) {
-        const prevSibling = activeElement.previousElementSibling as HTMLElement;
-        elementToFocusOn =
-          prevSibling === null ? (focusableElements[activeElementIndex - 1] as HTMLElement) : prevSibling;
-      }
-      elementToFocusOn === null || elementToFocusOn === undefined ? fallback() : elementToFocusOn.focus();
-    }
+    !elementToFocusOn ? fallback() : elementToFocusOn.focus();
+    return;
   }
+
+  if (keyDownEvent.key === 'ArrowUp') {
+    keyDownEvent.preventDefault();
+    let elementToFocusOn;
+    if (isItemFocused) {
+      const prevSibling = activeElement.previousElementSibling as HTMLElement;
+      elementToFocusOn =
+        prevSibling === null ? (focusableElements[activeElementIndex - 1] as HTMLElement) : prevSibling;
+    }
+    !elementToFocusOn ? fallback() : elementToFocusOn.focus();
+    return;
+  }
+
   if (keyDownEvent.key === 'Enter') {
-    activeElement.click();
+    activeElement && activeElement.click();
   }
 };
 
