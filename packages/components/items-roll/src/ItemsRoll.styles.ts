@@ -33,6 +33,8 @@ export const ListWrapper = styled.div`
   && {
     .ant-menu {
       .items-roll-list-item {
+        padding-left: 12px;
+        
         :hover {
           svg {
             fill: ${({ theme }): string => theme.palette['blue-600']};
@@ -178,4 +180,10 @@ export const NoResultIconWrapper = styled.div`
 
 export const Divider = styled(DividerBase)<{ footer?: boolean }>`
   margin: ${(props): string => (props.footer ? '8px 0 12px' : '12px 0 8px')};
+`;
+
+export const WarningIcon = styled(Icon)`
+  svg {
+    fill: ${({ theme }): string => theme.palette['yellow-500']};
+  }
 `;

@@ -12,8 +12,8 @@ import {
   ParamsBadgeM,
 } from '@synerise/ds-icon/dist/icons';
 import { text } from '@storybook/addon-knobs';
-import { action } from '@storybook/addon-actions';
 import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
+import { action } from '@storybook/addon-actions';
 
 export const SEARCH_PLACEHOLDER = 'Search...';
 
@@ -26,9 +26,9 @@ export const ITEMS_100 = hundredItems.map(key => ({
   id: uuid(),
   text: `${TEXT}-${key}`,
   suffixel: (
-    <Tooltip title="Remove">
+    <Tooltip title="Prefixel">
       <div>
-        <Icon onClick={() => alert('Item deleted')} component={<CloseS />} size={20} color="#f52922" />
+        <Icon onClick={() => alert('Item deleted')} component={<ParamsBadgeM />} size={20} color="#f52922" />
       </div>
     </Tooltip>
   ),
@@ -96,7 +96,7 @@ export const getTexts = () => ({
   itemsLabel: text('Items label', 'Items'),
   lessLabel: text('Less label', 'Show less'),
   moreLabel: text('More label', 'more'),
-  removeTooltipLabel: text('More label', 'Remove'),
+  removeTooltipLabel: text('Remove tooltip label', 'Remove'),
   searchClearTooltipLabel: text('Search clear tooltip', 'Clear'),
   showLabel: text('Show less label', 'Show'),
 });

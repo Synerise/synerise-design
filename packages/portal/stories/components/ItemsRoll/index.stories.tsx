@@ -6,11 +6,11 @@ import ItemsRoll from '@synerise/ds-items-roll';
 import { Add3M } from '@synerise/ds-icon/dist/icons';
 
 import {
+  ACTIONS,
   actionsSelectOptions,
   AfterClearInfo,
   DEFAULT_GROUPED_STATE,
   DEFAULT_STATE,
-  DEFAULT_STATE_VIRTUALIZED,
   getTexts,
   GROUPED_ITEMS,
   groupOptions,
@@ -32,8 +32,8 @@ const onSearchClear = store => {
   });
 };
 
-const onSearch = (value, store, virtualized = false) => {
-  const lookupItems = virtualized ? ITEMS_1000 : ITEMS_100;
+const onSearch = (value, store) => {
+  const lookupItems = ITEMS_100;
 
   if (store.state.searchValue !== value) {
     const filteredItems = lookupItems.filter(item => item.text.toLowerCase().includes(value.toLowerCase()));
@@ -60,7 +60,7 @@ const onClearAll = store => {
 };
 
 const generateProps = (store, { onClearAllOptions }) => ({
-  actions: select(`Actions menu`, actionsSelectOptions, actionsSelectOptions.actions),
+  actions: boolean(`Show Actions menu`, true) && ACTIONS,
   className: 'custom-class',
   items: store.state.items,
   maxToShowItems: number('maxToShowItems', 10),
