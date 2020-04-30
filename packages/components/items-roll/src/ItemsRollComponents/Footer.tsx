@@ -109,7 +109,7 @@ const Footer: React.FC<FooterProps> = ({
         {onClearAll && (
          <Popconfirm
           onConfirm={onClearAll}
-          icon={<Icon component={<WarningFillM />} color='#ffc300' />}
+          icon={<S.WarningIcon component={<WarningFillM />} />}
           cancelText={allTexts.popconfirmNoLabel}
           okText={allTexts.popconfirmYesLabel}
           title={allTexts.popconfirmTitleLabel}

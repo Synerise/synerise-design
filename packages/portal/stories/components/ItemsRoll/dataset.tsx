@@ -13,6 +13,7 @@ import {
 } from '@synerise/ds-icon/dist/icons';
 import { text } from '@storybook/addon-knobs';
 import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
+import { action } from '@storybook/addon-actions';
 
 export const SEARCH_PLACEHOLDER = 'Search...';
 
@@ -24,7 +25,7 @@ export const thousandItems = Array.from(Array(1000).keys());
 export const ITEMS_100 = hundredItems.map(key => ({
   id: uuid(),
   text: `${TEXT}-${key}`,
-  prefixel: (
+  suffixel: (
     <Tooltip title="Prefixel">
       <div>
         <Icon onClick={() => alert('Item deleted')} component={<ParamsBadgeM />} size={20} color="#f52922" />
@@ -103,13 +104,13 @@ export const getTexts = () => ({
 export const ACTIONS = [
   {
     id: uuid(),
-    onClick: () => {},
+    onClick: action('OnImportClick'),
     text: 'Import',
     prefixel: <Icon component={<FileTypeTableM />} />,
   },
   {
     id: uuid(),
-    onClick: () => {},
+    onClick: action('OnExportClick'),
     text: 'Export',
     prefixel: <Icon component={<FileDownloadM />} />,
   },
