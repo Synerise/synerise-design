@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.1.4...@synerise/ds-search@0.1.5) (2020-04-30)
+
+
+### Bug Fixes
+
+* **search:** moved scrollbar and changed width of the items in list ([8c359bd](https://github.com/Synerise/synerise-design/commit/8c359bd344d0b093e49ebeee32a0b9c88cf0642f))
+
+
+
+
+
 ## [0.1.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.1.3...@synerise/ds-search@0.1.4) (2020-04-29)
 
 

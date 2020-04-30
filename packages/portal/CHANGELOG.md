@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.59.5](https://github.com/synerise/synerise-design/compare/portal@0.59.4...portal@0.59.5) (2020-04-30)
+
+
+### Bug Fixes
+
+* **items-roll:** add minor fixes ([e36be6a](https://github.com/synerise/synerise-design/commit/e36be6a04e4e890de781529162c11f3243024df8))
+* **search:** moved scrollbar and changed width of the items in list ([8c359bd](https://github.com/synerise/synerise-design/commit/8c359bd344d0b093e49ebeee32a0b9c88cf0642f))
+
+
+
+
+
 ## [0.59.4](https://github.com/synerise/synerise-design/compare/portal@0.59.3...portal@0.59.4) (2020-04-29)
 
 

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-input-number@0.3.13...@synerise/ds-input-number@0.3.14) (2020-04-30)
+
+**Note:** Version bump only for package @synerise/ds-input-number
+
+
+
+
+
 ## [0.3.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-input-number@0.3.12...@synerise/ds-input-number@0.3.13) (2020-04-29)
 
 **Note:** Version bump only for package @synerise/ds-input-number
