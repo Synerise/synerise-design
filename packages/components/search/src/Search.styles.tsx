@@ -1,7 +1,9 @@
 import styled, { keyframes } from 'styled-components';
+import { FilterElement } from './Search.types';
 
 const LABEL_LEFT_OFFSET = 7;
 const INPUT_EXPAND_ANIMATION_DURATION = 0.2;
+
 export const openDropdownAnimation = keyframes`
   0% {
     opacity:0;
@@ -16,19 +18,20 @@ export const openDropdownAnimation = keyframes`
  
   }
 `;
+
 export const SearchInputWrapper = styled.div<{ width?: number }>`
-  ${(props): string | false => `width:${props.width}px;`}
   position: relative;
   direction: rtl;
-  overflow-x: hidden;
+  overflow-x: hidden; 
   height: 34px;
 `;
+
 export const SearchWrapper = styled.div<{ width?: number; inputOpen?: boolean }>`
   ${(props): string | false =>
     !!props.width &&
     `
    ${props.inputOpen ? `width:${props.width}px;` : `width:32px`};
-  `}
+  `};
   position: relative;
   direction: rtl;
 `;
@@ -80,20 +83,14 @@ export const Label = styled.div`
   color: ${(props): string => props.theme.palette['blue-600']};
 `;
 
-export const SearchButton = styled.div<{ isOpen: boolean; inputFocused: boolean; clickable?: boolean }>`
+export const SearchButton = styled.div<{ isOpen: boolean; clickable?: boolean }>`
   position: absolute;
-  ${(props): string | false => !props.clickable && `pointer-events:none !important;`}
+  ${(props): string | false => !props.clickable && `pointer-events:none !important;`};
   z-index: 1;
   top: 0;
   right: 0;
-  transition: width 0.5s;
-  transition-timing-function: ease-in-out;
-  svg {
-    fill: ${(props): string =>
-      props.inputFocused && props.isOpen
-        ? props.theme.palette['blue-600']
-        : props.theme.palette['grey-600']} !important;
-  }
+  transition: width 0.5s ease-in-out;
+  
 
   .btn-search-open:hover {
     background: transparent !important;
@@ -108,18 +105,16 @@ export const SearchButton = styled.div<{ isOpen: boolean; inputFocused: boolean;
     }
     `}
     button {
-      transition: background 0.2s;
       padding: 4px;
-      transition: padding-right 0.15s;
-      transition-timing-function: ease-in-out;
+      transition: padding-right 0.15s ease-in-out, background 0.2s ease-in-out;
       ${(props): string | false => !props.clickable && `pointer-events:none !important;`}
     }
   }
 `;
-export const SearchInner = styled.div<{ hasValue: boolean; alwaysHighlight: boolean }>`
+export const SearchInner = styled.div<{ hasValue: boolean; alwaysHighlight?: boolean }>`
   direction: ltr;
   margin-bottom: 0;
-  ${(props): string | false =>
+  ${(props): string | false | undefined =>
     (props.hasValue || props.alwaysHighlight) &&
     `
   input, input:hover{
@@ -130,12 +125,12 @@ export const SearchInner = styled.div<{ hasValue: boolean; alwaysHighlight: bool
    
   `}
 `;
-export const SearchInputContent = styled.div<{ offset: number }>`
+
+export const SearchInputContent = styled.div<{ offset: number; filterLabel: FilterElement | null | undefined }>`
   overflow: hidden;
   direction: rtl;
-  transition: width ${INPUT_EXPAND_ANIMATION_DURATION}s;
-  width: 0px;
- transition-timing-function: ease-in-out;
+  transition: width ${INPUT_EXPAND_ANIMATION_DURATION}s ease-in-out;
+  width: 0;
   input {
     opacity: 0;
   }
@@ -146,7 +141,7 @@ export const SearchInputContent = styled.div<{ offset: number }>`
     width: 100%;
     overflow: visible;
     input {
-      padding-left: ${(props): string => (props.offset ? `${Math.round(props.offset + LABEL_LEFT_OFFSET)}px` : '12px')};
+      padding-left: ${(props): string => (props.filterLabel && props.offset ? `${Math.round(props.offset + LABEL_LEFT_OFFSET)}px` : '12px')};
       padding-right: 30px;
       opacity: 1;
       line-height: 18px;
@@ -180,22 +175,19 @@ export const List = styled.div<{ isOpen?: boolean; maxHeight?: number }>`
   border-radius: 3px;
   box-shadow: 0 16px 32px 0 rgba(35, 41, 54, 0.1);
   box-sizing: border-box;
-  transition: width 0.5s;
-  transition: opacity 0.5s;
-  transition-timing-function: ease-in-out;
+  transition: opacity 0.5s ease-in-out, width 0.5s ease-in-out;
   .ps__rail-y {
     .ps__thumb-y {
       transform: translateX(1px) !important;
     }
   }
 `;
+
 export const MenuHeader = styled.div`
   display: flex;
   align-items: center;
   font-size: 10px;
   font-weight: 500;
-  font-stretch: normal;
-  font-style: normal;
   text-transform: uppercase;
   color: ${(props): string => props.theme.palette['grey-500']};
   height: 16px;
@@ -203,6 +195,7 @@ export const MenuHeader = styled.div`
   line-height: 1.6;
   letter-spacing: 0.1px;
 `;
+
 export const HeaderIconWrapper = styled.div`
   & > .ds-icon > svg {
     fill: ${(props): string => props.theme.palette['grey-400']};
@@ -210,13 +203,13 @@ export const HeaderIconWrapper = styled.div`
 `;
 
 export const ListWrapper = styled.div`
-  width: 0%;
+  width: 0;
   & > .search-list-open {
     width: 100%;
     animation: ${openDropdownAnimation} 0.3s ease-in-out 0s 1;
     opacity: 1;
     display: initial;
-    padding: 8px 0px 8px 8px;
+    padding: 8px 0 8px 8px;
     z-index: 10;
   }
 `;

@@ -184,7 +184,7 @@ const Search: React.FC<SearchProps> = ({
         closeOnClickOutside={false}
         filterLabel={label}
         focusTrigger={focusTrigger}
-        onToggle={(toggle): void => {
+        onToggle={(toggle: boolean): void => {
           setInputOpen(toggle);
           setTimeout(() => {
             setItemListWidth(getSearchWrapperWidth());

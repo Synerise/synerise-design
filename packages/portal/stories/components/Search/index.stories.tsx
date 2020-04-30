@@ -56,9 +56,10 @@ const stories = {
         }}
         value={value}
         onClear={() => {
-          console.log('Cleared!');
+console.log('Clear value');
+          setValue('')
         }}
-        closeOnClickOutside={true}
+        closeOnClickOutside
       />
     );
   },
@@ -74,10 +75,11 @@ const stories = {
         }}
         value={value}
         onClear={() => {
-          console.log('Cleared!');
+          console.log('Clear value')
+          setValue('')
         }}
         closeOnClickOutside={false}
-        alwaysExpanded={true}
+        alwaysExpanded
       />
     );
   },

@@ -7,15 +7,13 @@ import * as S from "../../Search.styles";
 export type SearchButtonProps = {
   inputOpen: boolean;
   hidden: boolean;
-  inputFocused: boolean;
   onClick: () => void;
   clickable? : boolean;
 };
-const SearchButton: React.FC<SearchButtonProps> = ({inputOpen,hidden,inputFocused,onClick,clickable }: SearchButtonProps ) => {
+const SearchButton: React.FC<SearchButtonProps> = ({inputOpen,hidden,onClick,clickable }: SearchButtonProps ) => {
   return (
     <S.SearchButton
       isOpen={inputOpen}
-      inputFocused={inputFocused}
       hidden={hidden}
       className="SearchButton"
       clickable={clickable}

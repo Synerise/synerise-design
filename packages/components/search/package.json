@@ -31,10 +31,14 @@
     "@synerise/ds-typography": "^0.8.3",
     "@synerise/ds-utils": "^0.8.20",
     "@types/react-virtualized": "^9.21.9",
+    "react-onclickoutside": "^6.9.0",
     "react-virtualized": "^9.21.2"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
     "react": ">=16.9.0 < 17.0.0"
+  },
+  "devDependencies": {
+    "@types/react-onclickoutside": "^6.7.3"
   }
 }
