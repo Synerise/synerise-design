@@ -32,9 +32,9 @@ export const popuLateLastName = (numberOfCities) =>{
   return result;
 }
 
-const cities = populateCities(50).map(item => ({ text: item }));
-const firstNames = populateFirstName(50).map(item => ({ text: item }));
-const lastNames = popuLateLastName(50).map(item => ({ text: item }));
+const cities = populateCities(25).map(item => ({ text: item }));
+const firstNames = populateFirstName(25).map(item => ({ text: item }));
+const lastNames = popuLateLastName(25).map(item => ({ text: item }));
 
 export const getSuggestions = filter => {
   if (filter === 'City') {

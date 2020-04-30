@@ -9,7 +9,7 @@ import * as S from './Search.styles';
 import { FilterElement, SearchProps } from './Search.types';
 import { SearchInput, SearchHeader, SearchItemList } from './Elements';
 
-const MENU_WIDTH_OFFSET = 27;
+const MENU_WIDTH_OFFSET = 17;
 const DEFAULT_VISIBLE_ROWS = 5;
 const INPUT_EXPAND_ANIMATION_DURATION = 200;
 const SCROLLBAR_HEIGHT_OFFSET = 20;
@@ -317,7 +317,7 @@ const Search: React.FC<SearchProps> = ({
             maxHeight={dropdownMaxHeight}
             className={inputOpen && !resultChoosed && listVisible && isListItemRendered() ? 'search-list-open' : ''}
           >
-            <Scrollbar maxHeight={dropdownMaxHeight && Number(dropdownMaxHeight - SCROLLBAR_HEIGHT_OFFSET)}>
+            <Scrollbar absolute maxHeight={dropdownMaxHeight && Number(dropdownMaxHeight - SCROLLBAR_HEIGHT_OFFSET)}>
               {renderRecentItems()}
               {!!filteredParameters?.length && !!filteredRecent?.length && !label && divider}
               {renderParameters()}
