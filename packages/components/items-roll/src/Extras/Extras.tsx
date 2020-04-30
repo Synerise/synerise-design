@@ -20,6 +20,7 @@ const Extras: React.FC<ExtrasProps> = ({ actions }) => {
   return (
     <Dropdown
       trigger={['click']}
+      placement="bottomRight"
       overlay={
         <ItemMenu data-testid="items-roll-action-menu">
           {actions.map(action => (

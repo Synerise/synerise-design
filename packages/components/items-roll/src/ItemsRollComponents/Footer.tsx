@@ -1,6 +1,7 @@
 import * as React from 'react';
+import Popconfirm from '@synerise/ds-popconfirm';
 import Icon from '@synerise/ds-icon';
-import { ArrowDownCircleM, ArrowUpCircleM, CloseS } from '@synerise/ds-icon/dist/icons';
+import { ArrowDownCircleM, ArrowUpCircleM, CloseS, WarningFillM } from '@synerise/ds-icon/dist/icons';
 
 import * as S from '../ItemsRoll.styles';
 import { Texts, ItemsRollProps } from '../ItemsRoll.types';
@@ -106,10 +107,18 @@ const Footer: React.FC<FooterProps> = ({
       <S.ContainerSpaceBetween data-testid="items-roll-footer">
         {itemsCount > maxToShowItems && buttonsConfiguration}
         {onClearAll && (
-          <S.ClearButton type="ghost" mode="icon-label" onClick={onClearAll}>
-            <Icon component={<CloseS />} size={22} />
-            {allTexts.clearAllLabel}
-          </S.ClearButton>
+         <Popconfirm
+          onConfirm={onClearAll}
+          icon={<S.WarningIcon component={<WarningFillM />} />}
+          cancelText={allTexts.popconfirmNoLabel}
+          okText={allTexts.popconfirmYesLabel}
+          title={allTexts.popconfirmTitleLabel}
+         >
+           <S.ClearButton type="ghost" mode="icon-label">
+             <Icon component={<CloseS />} size={22} />
+             {allTexts.clearAllLabel}
+           </S.ClearButton>
+         </Popconfirm>
         )}
       </S.ContainerSpaceBetween>
     </>

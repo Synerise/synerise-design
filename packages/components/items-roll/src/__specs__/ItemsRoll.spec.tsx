@@ -350,6 +350,8 @@ describe('ItemsRoll', () => {
 
     // ACT
     fireEvent.click(onClearAllButton);
+    const confirmBtn = document.querySelector('.ant-popover .ant-btn-primary') as HTMLButtonElement;
+    fireEvent.click(confirmBtn);
 
     // ASSERT
     expect(onClearAll).toHaveBeenCalledTimes(1);
