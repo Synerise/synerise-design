@@ -2,19 +2,25 @@ import * as React from 'react';
 import { FilterElement } from '../../Search.types';
 
 export type SearchInputProps = {
-  placeholder?: string;
   clearTooltip: string | React.ReactNode;
   onChange: (value: string) => void;
+  onClear: () => void;
   value: string;
-  onClear: (value: string) => void;
-  onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
-  onClick?: () => void;
-  onButtonClick?: () => void;
+  alwaysExpanded?: boolean;
+  alwaysHighlight?: boolean;
   closeOnClickOutside?: boolean;
   filterLabel?: FilterElement | null;
   focusTrigger?: boolean;
-  toggleTrigger?: boolean;
+  onButtonClick?: () => void;
+  onClick?: () => void;
+  onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   onToggle?: (isOpen: boolean) => void;
-  alwaysHighlight?: boolean;
-  alwaysExpanded?: boolean;
+  placeholder?: string;
+  toggleTrigger?: boolean;
 };
+
+export type SearchInputState = {
+  inputOffset: number;
+  isInputOpen: boolean;
+  isResultChosen: boolean;
+}

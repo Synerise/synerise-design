@@ -63,10 +63,12 @@ const stories = {
               placeholder='Search'
               clearTooltip='Clear'
               onChange={value => {
+console.log('value', value);
                 store.set({searchValue: value});
               }}
               value={store.state.searchValue}
               onClear={() => {
+console.log('clear');
                 store.set({ searchValue: '' });
               }}
               closeOnClickOutside={true}
