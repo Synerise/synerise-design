@@ -23,4 +23,5 @@ export type SearchInputState = {
   inputOffset: number;
   isInputOpen: boolean;
   isResultChosen: boolean;
+  isInputFocused: boolean;
 }

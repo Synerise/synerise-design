@@ -15,8 +15,8 @@ export type DataSetProps = {
 export type SearchProps = {
   placeholder: string;
   clearTooltip: string;
-  parameters?: FilterElement[];
-  recent?: FilterElement[];
+  parameters: FilterElement[];
+  recent: FilterElement[];
   suggestions: FilterElement[];
   onValueChange: (value: string) => void;
   value: string;
@@ -29,3 +29,15 @@ export type SearchProps = {
   parametersDisplayProps: DataSetProps;
   divider?: React.ReactNode;
 };
+export type SearchState = {
+  isInputOpen: boolean;
+  label: FilterElement | null;
+  filteredParameters: FilterElement[];
+  filteredRecent: FilterElement[];
+  filteredSuggestions: FilterElement[];
+  isListVisible: boolean;
+  focusInputTrigger: boolean;
+  toggleInputTrigger: boolean;
+  isResultChoosed: boolean;
+  itemsListWidth: number;
+}

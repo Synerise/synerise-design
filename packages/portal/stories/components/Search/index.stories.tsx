@@ -222,7 +222,7 @@ console.log('Clear value');
           itemRender: (item: FilterElement) => <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>,
         }}
         divider={
-          <div style={{ padding: '12px', paddingBottom: '0px', marginRight:'-10px' }}>
+          <div style={{ padding: '12px', paddingBottom: '0px',}}>
             <Divider dashed />
           </div>
         }

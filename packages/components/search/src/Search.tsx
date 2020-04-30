@@ -1,18 +1,19 @@
 import * as React from 'react';
 import { useEffect, useState } from 'react';
-import { useOnClickOutside, focusWithArrowKeys } from '@synerise/ds-utils';
+import { useOnClickOutside,focusWithArrowKeys } from '@synerise/ds-utils';
 import { MenuItemProps } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.types';
 
 import Scrollbar from '@synerise/ds-scrollbar';
 import { hasSomeElement, getAllElementsFiltered, hasSomeElementFiltered } from './Elements/utils/searchUtils';
 import * as S from './Search.styles';
 import { FilterElement, SearchProps } from './Search.types';
-import { SearchInput, SearchHeader, SearchItemList } from './Elements';
+import { SearchInput } from './Elements';
+import SearchItemsContainer from './Elements/SearchItemsContainer/SearchItemsContainer';
 
 const MENU_WIDTH_OFFSET = 17;
-const DEFAULT_VISIBLE_ROWS = 5;
 const INPUT_EXPAND_ANIMATION_DURATION = 200;
 const SCROLLBAR_HEIGHT_OFFSET = 20;
+
 const Search: React.FC<SearchProps> = ({
   placeholder,
   parameters,
@@ -185,6 +186,7 @@ const Search: React.FC<SearchProps> = ({
         filterLabel={label}
         focusTrigger={focusTrigger}
         onToggle={(toggle: boolean): void => {
+          setListVisible(toggle);
           setInputOpen(toggle);
           setTimeout(() => {
             setItemListWidth(getSearchWrapperWidth());
@@ -211,22 +213,15 @@ const Search: React.FC<SearchProps> = ({
       recent &&
       recentDisplayProps &&
       !label &&
+      filteredRecent &&
       hasSomeElement(filteredRecent) && (
-        <>
-          {!!recentDisplayProps.title && (
-            <SearchHeader headerText={recentDisplayProps.title} tooltip={recentDisplayProps.tooltip} />
-          )}
-          <SearchItemList
-            data={filteredRecent}
-            width={itemsListWidth}
-            visibleRows={recentDisplayProps.visibleRows || DEFAULT_VISIBLE_ROWS}
-            rowHeight={recentDisplayProps.rowHeight}
-            highlight={value}
-            onItemClick={selectResult as (e: FilterElement | MenuItemProps) => void}
-            itemRender={recentDisplayProps.itemRender as (item: FilterElement | MenuItemProps) => React.ReactElement}
-            listProps={{ autoHeight: true }}
-          />
-        </>
+        <SearchItemsContainer
+          displayProps={recentDisplayProps}
+          onItemClick={selectResult as (e: FilterElement | MenuItemProps) => void}
+          highlight={value}
+          data={filteredRecent}
+          width={itemsListWidth}
+        />
       )
     );
   }, [filteredRecent, label, recent, itemsListWidth, selectResult, value, recentDisplayProps]);
@@ -235,26 +230,17 @@ const Search: React.FC<SearchProps> = ({
       parameters &&
       parametersDisplayProps &&
       !label &&
+      filteredParameters &&
       hasSomeElement(filteredParameters) && (
-        <>
-          {!!parametersDisplayProps.title && (
-            <SearchHeader headerText={parametersDisplayProps.title} tooltip={parametersDisplayProps.tooltip} />
-          )}
-          <SearchItemList
-            data={filteredParameters}
-            width={itemsListWidth}
-            visibleRows={parametersDisplayProps.visibleRows || DEFAULT_VISIBLE_ROWS}
-            rowHeight={parametersDisplayProps.rowHeight}
-            highlight={value}
-            onItemClick={
-              ((item: FilterElement): void => selectFilter(item)) as (e: MenuItemProps | FilterElement) => void
-            }
-            itemRender={
-              parametersDisplayProps.itemRender as (item: FilterElement | MenuItemProps) => React.ReactElement
-            }
-            listProps={{ autoHeight: true }}
-          />
-        </>
+        <SearchItemsContainer
+          displayProps={parametersDisplayProps}
+          onItemClick={
+            ((item: FilterElement): void => selectFilter(item)) as (e: MenuItemProps | FilterElement) => void
+          }
+          highlight={value}
+          data={filteredParameters}
+          width={itemsListWidth}
+        />
       )
     );
   }, [filteredParameters, parameters, label, value, itemsListWidth, selectFilter, parametersDisplayProps]);
@@ -264,23 +250,15 @@ const Search: React.FC<SearchProps> = ({
       suggestionsDisplayProps &&
       parameterValue &&
       !resultChoosed &&
+      filteredSuggestions &&
       hasSomeElement(filteredSuggestions) && (
-        <>
-          {!!suggestionsDisplayProps.title && (
-            <SearchHeader headerText={suggestionsDisplayProps.title} tooltip={suggestionsDisplayProps.tooltip} />
-          )}
-          <SearchItemList
-            data={filteredSuggestions}
-            width={itemsListWidth}
-            visibleRows={suggestionsDisplayProps.visibleRows || DEFAULT_VISIBLE_ROWS}
-            rowHeight={suggestionsDisplayProps.rowHeight}
-            highlight={value}
-            onItemClick={selectResult as (e: FilterElement | MenuItemProps) => void}
-            itemRender={
-              suggestionsDisplayProps.itemRender as (item: FilterElement | MenuItemProps) => React.ReactElement
-            }
-          />
-        </>
+        <SearchItemsContainer
+          displayProps={suggestionsDisplayProps}
+          onItemClick={selectResult as (e: FilterElement | MenuItemProps) => void}
+          highlight={value}
+          data={filteredSuggestions}
+          width={itemsListWidth}
+        />
       )
     );
   }, [
@@ -308,12 +286,12 @@ const Search: React.FC<SearchProps> = ({
     >
       {renderInputWrapper()}
       {listVisible && (
-        <S.ListWrapper
+        <S.SearchDropdownWrapper
           onClick={(): void => {
             focusInputComponent(!focusTrigger);
           }}
         >
-          <S.List
+          <S.SearchDropdownContent
             maxHeight={dropdownMaxHeight}
             className={inputOpen && !resultChoosed && listVisible && isListItemRendered() ? 'search-list-open' : ''}
           >
@@ -323,8 +301,8 @@ const Search: React.FC<SearchProps> = ({
               {renderParameters()}
               {renderSuggestions()}
             </Scrollbar>
-          </S.List>
-        </S.ListWrapper>
+          </S.SearchDropdownContent>
+        </S.SearchDropdownWrapper>
       )}
     </S.SearchWrapper>
   );
