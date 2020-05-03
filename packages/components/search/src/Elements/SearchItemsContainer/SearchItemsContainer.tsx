@@ -10,6 +10,7 @@ export type SearchItemsContainerProps<T extends unknown> = {
   highlight: string;
   data: T[];
   width: number;
+  listProps?: object;
 };
 const DEFAULT_VISIBLE_ROWS = 5;
 const SearchItemsContainer: React.FC<SearchItemsContainerProps<FilterElement | MenuItemProps>> = ({
@@ -18,6 +19,7 @@ const SearchItemsContainer: React.FC<SearchItemsContainerProps<FilterElement | M
   width,
   highlight,
   onItemClick,
+  listProps
 }) => (
   <>
     {!!displayProps.title && <SearchHeader headerText={displayProps.title} tooltip={displayProps.tooltip} />}
@@ -29,7 +31,7 @@ const SearchItemsContainer: React.FC<SearchItemsContainerProps<FilterElement | M
       highlight={highlight}
       onItemClick={onItemClick}
       itemRender={displayProps.itemRender as (item: FilterElement | MenuItemProps) => React.ReactElement}
-      listProps={{ autoHeight: true }}
+      listProps={listProps}
     />
   </>
 );

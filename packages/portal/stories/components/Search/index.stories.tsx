@@ -184,10 +184,10 @@ console.log('Clear value');
         suggestions={suggestions}
         value={value}
         parameterValue={parameterValue}
-        onValueChange={value => {
+        onValueChange={(value):void => {
           setValue(value);
         }}
-        onParameterValueChange={value => {
+        onParameterValueChange={(value):void => {
           setParameterValue(value);
           const fakeApiResponse = getSuggestions(value);
           setSuggestions(fakeApiResponse);

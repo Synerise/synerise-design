@@ -28,6 +28,7 @@ export type SearchProps = {
   suggestionsDisplayProps: DataSetProps;
   parametersDisplayProps: DataSetProps;
   divider?: React.ReactNode;
+  style?: React.CSSProperties;
 };
 export type SearchState = {
   isInputOpen: boolean;

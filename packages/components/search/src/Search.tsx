@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { useEffect, useState } from 'react';
-import { useOnClickOutside,focusWithArrowKeys } from '@synerise/ds-utils';
+import { focusWithArrowKeys } from '@synerise/ds-utils';
 import { MenuItemProps } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.types';
+import onClickOutside from 'react-onclickoutside';
 
 import Scrollbar from '@synerise/ds-scrollbar';
 import { hasSomeElement, getAllElementsFiltered, hasSomeElementFiltered } from './Elements/utils/searchUtils';
 import * as S from './Search.styles';
-import { FilterElement, SearchProps } from './Search.types';
+import { FilterElement, SearchProps, SearchState } from './Search.types';
 import { SearchInput } from './Elements';
 import SearchItemsContainer from './Elements/SearchItemsContainer/SearchItemsContainer';
 
@@ -14,150 +14,122 @@ const MENU_WIDTH_OFFSET = 17;
 const INPUT_EXPAND_ANIMATION_DURATION = 200;
 const SCROLLBAR_HEIGHT_OFFSET = 20;
 
-const Search: React.FC<SearchProps> = ({
-  placeholder,
-  parameters,
-  recent,
-  suggestions,
-  onValueChange,
-  value,
-  parameterValue,
-  onParameterValueChange,
-  clearTooltip,
-  width,
-  dropdownMaxHeight,
-  parametersDisplayProps,
-  recentDisplayProps,
-  suggestionsDisplayProps,
-  divider,
-  ...rest
-}) => {
-  const [inputOpen, setInputOpen] = useState(false);
-  const [label, setLabel] = useState<FilterElement | null>();
-  const [filteredParameters, setFilteredParameters] = useState<FilterElement[]>();
-  const [filteredRecent, setFilteredRecent] = useState<FilterElement[]>();
-  const [filteredSuggestions, setFilteredSuggestions] = useState<FilterElement[]>();
-  const [listVisible, setListVisible] = useState(true);
-  const [focusTrigger, focusInputComponent] = useState(false);
-  const [toggleTrigger, setToggleTrigger] = useState(true);
-  const [resultChoosed, setResultChoosed] = useState(false);
-  const [itemsListWidth, setItemListWidth] = useState(0);
+class SearchClass extends React.PureComponent<SearchProps, SearchState> {
+  private wrapperRef = React.createRef<HTMLDivElement>();
+  constructor(props: SearchProps) {
+    super(props);
+    // eslint-disable-next-line react/state-in-constructor
+    this.state = {
+      isInputOpen: false,
+      label: null,
+      filteredParameters: props.parameters,
+      filteredRecent: props.recent,
+      filteredSuggestions: props.suggestions,
+      isListVisible: false,
+      isResultChoosed: false,
+      itemsListWidth: 0,
+      toggleInputTrigger: false,
+      focusInputTrigger: false,
+    };
+  }
 
-  const ref = React.useRef<HTMLDivElement>(null);
-  const inputRef = React.useRef<HTMLInputElement>(null);
+  getSnapshotBeforeUpdate(prevProps: Readonly<SearchProps>): null {
+    const { recent, suggestions, parameters, value } = this.props;
+    if (prevProps.recent !== recent) {
+      this.setState({ filteredRecent: getAllElementsFiltered(recent, value) });
+    }
+    if (prevProps.parameters !== parameters) {
+      this.setState({ filteredParameters: getAllElementsFiltered(parameters, value) });
+    }
+    if (prevProps.suggestions !== suggestions) {
+      this.setState({ filteredSuggestions: getAllElementsFiltered(suggestions, value) });
+    }
+    return null;
+  }
 
-  const getSearchWrapperWidth = React.useCallback((): number => {
+  onKeyDown(e: React.KeyboardEvent<HTMLInputElement>): void {
+    const { value, parameterValue, onParameterValueChange, recent, parameters } = this.props;
+    const { isInputOpen, filteredRecent, filteredParameters } = this.state;
+    if (e.key === 'Backspace' && value === '' && isInputOpen) {
+      this.setState({
+        label: null,
+        filteredRecent: recent,
+      });
+      onParameterValueChange('');
+      return;
+    }
+    if (e.key === 'Enter' && isInputOpen) {
+      const narrowedParameters = filteredParameters && filteredParameters.length;
+      const narrowedRecent = filteredRecent && filteredRecent.length;
+      if (narrowedParameters === 1 && narrowedRecent === 0 && !parameterValue) {
+        this.selectFilter(filteredParameters[0]);
+        this.setState({ filteredParameters: parameters });
+        return;
+      }
+      this.setState({ isResultChoosed: true });
+    }
+  }
+
+  getSearchWrapperWidth(): number {
+    const { width } = this.props;
     if (width) {
       return width - MENU_WIDTH_OFFSET;
     }
-    if (ref && ref !== null && ref.current && ref.current.clientWidth > MENU_WIDTH_OFFSET) {
-      return ref.current.clientWidth - MENU_WIDTH_OFFSET;
+    if (
+      this.wrapperRef !== null &&
+      this.wrapperRef.current &&
+      this.wrapperRef.current.clientWidth > MENU_WIDTH_OFFSET
+    ) {
+      return this.wrapperRef.current.clientWidth - MENU_WIDTH_OFFSET;
     }
     return 0;
-  }, [ref, width]);
-  useEffect(() => {
-    suggestions && setFilteredSuggestions(getAllElementsFiltered(suggestions, value));
-  }, [suggestions, value]);
-  useEffect(() => {
-    parameters && setFilteredParameters(getAllElementsFiltered(parameters, value));
-  }, [parameters, value]);
-  useEffect(() => {
-    recent && setFilteredRecent(getAllElementsFiltered(recent, value));
-  }, [recent, value]);
-  useOnClickOutside(ref, () => {
-    if (inputOpen && !value && !label) {
-      setToggleTrigger(!toggleTrigger);
+  }
+
+  handleClickOutside = (): void => {
+    const { isInputOpen, label, toggleInputTrigger } = this.state;
+    const { value } = this.props;
+    if (isInputOpen && !value && !label) {
+      this.setState({ toggleInputTrigger: !toggleInputTrigger });
     }
-    setListVisible(false);
-  });
+    this.setState({ isListVisible: false });
+  };
 
-  const selectFilter = React.useCallback(
-    (item: FilterElement): void => {
-      onValueChange('');
-      setLabel(item);
-      if (item.filter) {
-        onValueChange(item.text);
-        onParameterValueChange(item.filter);
-        setResultChoosed(true);
-      } else {
-        onParameterValueChange(item.text);
-      }
-    },
-    [onParameterValueChange, onValueChange]
-  );
+  handleChange(value: string): void {
+    const { parameterValue, recent, suggestions, parameters, onValueChange } = this.props;
+    const currentValue = value;
+    onValueChange(currentValue);
+    let isAnythingToShow;
+    if (parameterValue) {
+      const matchingSuggestions = getAllElementsFiltered(suggestions, currentValue);
+      this.setState({ filteredSuggestions: matchingSuggestions });
+      isAnythingToShow = matchingSuggestions.length > 0;
+    } else {
+      const matchingRecent = getAllElementsFiltered(recent, currentValue);
+      const matchingParameters = getAllElementsFiltered(parameters, currentValue);
+      this.setState({ filteredParameters: matchingParameters, filteredRecent: matchingRecent });
+      isAnythingToShow = matchingRecent.length > 0 || matchingParameters.length > 0;
+    }
+    this.setState({
+      isResultChoosed: false,
+      isListVisible: isAnythingToShow,
+    });
+  }
 
-  const selectResult = React.useCallback(
-    (item: FilterElement): void => {
-      setResultChoosed(true);
-      onValueChange(item.text);
-    },
-    [onValueChange]
-  );
-
-  const clearValue = React.useCallback((): void => {
-    setLabel(null);
+  clearValue(): void {
+    const { onValueChange, parameters, recent, suggestions, onParameterValueChange } = this.props;
     onValueChange('');
-    setFilteredParameters(parameters);
-    setFilteredRecent(recent);
-    setFilteredSuggestions(suggestions);
     onParameterValueChange('');
-    setResultChoosed(false);
-    inputRef && inputRef.current && inputRef.current.focus();
-  }, [parameters, onParameterValueChange, onValueChange, suggestions, recent]);
+    this.setState({
+      label: null,
+      filteredRecent: recent,
+      filteredParameters: parameters,
+      filteredSuggestions: suggestions,
+      isResultChoosed: false,
+    });
+  }
 
-  const onKeyDown = React.useCallback(
-    (e: React.KeyboardEvent<HTMLInputElement>): void => {
-      if (e.key === 'Backspace' && value === '' && inputOpen) {
-        setLabel(null);
-        setFilteredRecent(recent);
-        onParameterValueChange('');
-        return;
-      }
-      if (e.key === 'Enter' && inputOpen) {
-        const narrowedParameters = filteredParameters && filteredParameters.length;
-        const narrowedRecent = filteredRecent && filteredRecent.length;
-        if (narrowedParameters === 1 && narrowedRecent === 0 && !parameterValue) {
-          filteredParameters && selectFilter(filteredParameters[0]);
-          setFilteredParameters(parameters);
-          return;
-        }
-        setResultChoosed(true);
-      }
-    },
-    [
-      parameters,
-      recent,
-      selectFilter,
-      value,
-      filteredParameters,
-      filteredRecent,
-      inputOpen,
-      onParameterValueChange,
-      parameterValue,
-    ]
-  );
-  const change = React.useCallback(
-    (inputValue): void => {
-      const currentValue = inputValue;
-      onValueChange(currentValue);
-      setResultChoosed(false);
-      let isAnythingToShow;
-      if (parameterValue) {
-        const matchingValues = getAllElementsFiltered(suggestions, currentValue);
-        setFilteredSuggestions(matchingValues);
-        isAnythingToShow = matchingValues.length > 0;
-      } else {
-        const matchingRecent = getAllElementsFiltered(recent, currentValue);
-        setFilteredRecent(matchingRecent);
-        const matchingFilters = getAllElementsFiltered(parameters, currentValue);
-        setFilteredParameters(matchingFilters);
-        isAnythingToShow = matchingRecent.length > 0 || matchingFilters.length > 0;
-      }
-      setListVisible(isAnythingToShow);
-    },
-    [parameters, parameterValue, onValueChange, recent, suggestions]
-  );
-  const isListItemRendered = (): boolean => {
+  isListItemRendered(): boolean {
+    const { suggestions, recent, parameters, value, parameterValue } = this.props;
     let isAnythingToShow;
     if (parameterValue) {
       isAnythingToShow = hasSomeElementFiltered(suggestions, value);
@@ -167,48 +139,32 @@ const Search: React.FC<SearchProps> = ({
       isAnythingToShow = anyFilter || anyRecentItem;
     }
     return isAnythingToShow;
-  };
+  }
 
-  const renderInputWrapper = React.useCallback(() => {
-    return (
-      <SearchInput
-        onClick={(): void => setListVisible(true)}
-        onButtonClick={(): void => {
-          focusInputComponent(true);
-        }}
-        placeholder={placeholder}
-        clearTooltip={clearTooltip}
-        onChange={change}
-        value={value}
-        onClear={clearValue}
-        onKeyDown={onKeyDown}
-        closeOnClickOutside={false}
-        filterLabel={label}
-        focusTrigger={focusTrigger}
-        onToggle={(toggle: boolean): void => {
-          setListVisible(toggle);
-          setInputOpen(toggle);
-          setTimeout(() => {
-            setItemListWidth(getSearchWrapperWidth());
-          }, INPUT_EXPAND_ANIMATION_DURATION);
-        }}
-        toggleTrigger={toggleTrigger}
-        alwaysHighlight
-      />
-    );
-  }, [
-    change,
-    clearTooltip,
-    clearValue,
-    value,
-    focusTrigger,
-    toggleTrigger,
-    label,
-    onKeyDown,
-    placeholder,
-    getSearchWrapperWidth,
-  ]);
-  const renderRecentItems = React.useCallback(() => {
+  selectResult(item: FilterElement): void {
+    const { onValueChange } = this.props;
+    this.setState({
+      isResultChoosed: true,
+    });
+    onValueChange(item.text);
+  }
+
+  selectFilter(item: FilterElement): void {
+    const { onValueChange, onParameterValueChange } = this.props;
+    onValueChange('');
+    this.setState({ label: item });
+    if (item.filter) {
+      onValueChange(item.text);
+      onParameterValueChange(item.filter);
+      this.setState({ isResultChoosed: true });
+    } else {
+      onParameterValueChange(item.text);
+    }
+  }
+
+  renderRecentItems(): React.ReactNode | false {
+    const { recent, recentDisplayProps, value } = this.props;
+    const { label, filteredRecent, itemsListWidth } = this.state;
     return (
       recent &&
       recentDisplayProps &&
@@ -217,15 +173,21 @@ const Search: React.FC<SearchProps> = ({
       hasSomeElement(filteredRecent) && (
         <SearchItemsContainer
           displayProps={recentDisplayProps}
-          onItemClick={selectResult as (e: FilterElement | MenuItemProps) => void}
+          onItemClick={
+            ((item: FilterElement): void => this.selectResult(item)) as (e: MenuItemProps | FilterElement) => void
+          }
           highlight={value}
           data={filteredRecent}
           width={itemsListWidth}
+          listProps={{autoHeight: true}}
         />
       )
     );
-  }, [filteredRecent, label, recent, itemsListWidth, selectResult, value, recentDisplayProps]);
-  const renderParameters = React.useCallback(() => {
+  }
+
+  renderParameters(): React.ReactNode | false {
+    const { parameters, parametersDisplayProps, value } = this.props;
+    const { label, filteredParameters, itemsListWidth } = this.state;
     return (
       parameters &&
       parametersDisplayProps &&
@@ -235,76 +197,118 @@ const Search: React.FC<SearchProps> = ({
         <SearchItemsContainer
           displayProps={parametersDisplayProps}
           onItemClick={
-            ((item: FilterElement): void => selectFilter(item)) as (e: MenuItemProps | FilterElement) => void
+            ((item: FilterElement): void => this.selectFilter(item)) as (e: MenuItemProps | FilterElement) => void
           }
           highlight={value}
           data={filteredParameters}
           width={itemsListWidth}
+          listProps={{autoHeight: true}}
         />
       )
     );
-  }, [filteredParameters, parameters, label, value, itemsListWidth, selectFilter, parametersDisplayProps]);
-  const renderSuggestions = React.useCallback(() => {
+  }
+
+  renderSuggestions(): React.ReactNode | false {
+    const { suggestions, parameterValue, suggestionsDisplayProps, value } = this.props;
+    const { isResultChoosed, itemsListWidth, filteredSuggestions } = this.state;
     return (
       suggestions &&
       suggestionsDisplayProps &&
       parameterValue &&
-      !resultChoosed &&
+      !isResultChoosed &&
       filteredSuggestions &&
       hasSomeElement(filteredSuggestions) && (
         <SearchItemsContainer
           displayProps={suggestionsDisplayProps}
-          onItemClick={selectResult as (e: FilterElement | MenuItemProps) => void}
+          onItemClick={
+            ((item: FilterElement): void => this.selectResult(item)) as (e: MenuItemProps | FilterElement) => void
+          }
           highlight={value}
           data={filteredSuggestions}
           width={itemsListWidth}
         />
       )
     );
-  }, [
-    suggestions,
-    filteredSuggestions,
-    itemsListWidth,
-    parameterValue,
-    resultChoosed,
-    selectResult,
-    value,
-    suggestionsDisplayProps,
-  ]);
-  return (
-    <S.SearchWrapper
-      ref={ref}
-      className="SearchWrapper"
-      inputOpen={inputOpen}
-      width={width}
-      onKeyDown={(e): void => {
-        focusWithArrowKeys(e, 'ds-search-item', () => {
-          focusInputComponent(!focusTrigger);
-        });
-      }}
-      {...rest}
-    >
-      {renderInputWrapper()}
-      {listVisible && (
-        <S.SearchDropdownWrapper
-          onClick={(): void => {
-            focusInputComponent(!focusTrigger);
-          }}
-        >
-          <S.SearchDropdownContent
-            maxHeight={dropdownMaxHeight}
-            className={inputOpen && !resultChoosed && listVisible && isListItemRendered() ? 'search-list-open' : ''}
+  }
+
+  renderInputWrapper(): React.ReactNode {
+    const { placeholder, clearTooltip, value } = this.props;
+    const { label, focusInputTrigger, toggleInputTrigger } = this.state;
+    return (
+      <SearchInput
+        onClick={(): void => this.setState({ isListVisible: true })}
+        onButtonClick={(): void => {
+          this.setState({ focusInputTrigger: !focusInputTrigger });
+        }}
+        placeholder={placeholder}
+        clearTooltip={clearTooltip}
+        onChange={(val: string): void => this.handleChange(val)}
+        value={value}
+        onClear={(): void => this.clearValue()}
+        onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>): void => this.onKeyDown(e)}
+        closeOnClickOutside={false}
+        filterLabel={label}
+        focusTrigger={focusInputTrigger}
+        onToggle={(toggle: boolean): void => {
+          this.setState({ isListVisible: toggle, isInputOpen: toggle });
+          setTimeout(() => {
+            this.setState({ itemsListWidth: this.getSearchWrapperWidth() });
+          }, INPUT_EXPAND_ANIMATION_DURATION);
+        }}
+        toggleTrigger={toggleInputTrigger}
+        alwaysHighlight
+      />
+    );
+  }
+
+  render(): React.ReactElement {
+    const { divider, dropdownMaxHeight, width,style } = this.props;
+    const {
+      isInputOpen,
+      label,
+      isListVisible,
+      focusInputTrigger,
+      isResultChoosed,
+      filteredParameters,
+      filteredRecent,
+    } = this.state;
+    return (
+      <S.SearchWrapper
+        ref={this.wrapperRef}
+        className="SearchWrapper"
+        inputOpen={isInputOpen}
+        width={width}
+        onKeyDown={(e): void => {
+          focusWithArrowKeys(e, 'ds-search-item', () => {
+            this.setState({ focusInputTrigger: !focusInputTrigger });
+          });
+        }}
+        style={style}
+      >
+        {this.renderInputWrapper()}
+        {isListVisible && (
+          <S.SearchDropdownWrapper
+            onClick={(): void => {
+              this.setState({ focusInputTrigger: !focusInputTrigger });
+            }}
           >
-            <Scrollbar absolute maxHeight={dropdownMaxHeight && Number(dropdownMaxHeight - SCROLLBAR_HEIGHT_OFFSET)}>
-              {renderRecentItems()}
-              {!!filteredParameters?.length && !!filteredRecent?.length && !label && divider}
-              {renderParameters()}
-              {renderSuggestions()}
-            </Scrollbar>
-          </S.SearchDropdownContent>
-        </S.SearchDropdownWrapper>
-      )}
-    </S.SearchWrapper>
-  );
-};
-export default Search;
+            <S.SearchDropdownContent
+              maxHeight={dropdownMaxHeight}
+              className={
+                isInputOpen && !isResultChoosed && isListVisible && this.isListItemRendered() ? 'search-list-open' : ''
+              }
+            >
+              <Scrollbar absolute maxHeight={dropdownMaxHeight && Number(dropdownMaxHeight - SCROLLBAR_HEIGHT_OFFSET)}>
+                {this.renderRecentItems()}
+                {!!filteredParameters?.length && !!filteredRecent?.length && !label && divider}
+                {this.renderParameters()}
+                {this.renderSuggestions()}
+              </Scrollbar>
+            </S.SearchDropdownContent>
+          </S.SearchDropdownWrapper>
+        )}
+      </S.SearchWrapper>
+    );
+  }
+}
+export default onClickOutside(SearchClass);

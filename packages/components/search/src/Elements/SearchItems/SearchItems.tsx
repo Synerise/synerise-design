@@ -35,7 +35,6 @@ const SearchItems: React.FC<SearchItemListProps<FilterElement | MenuItemProps>> 
   rowHeight,
   width,
   highlight,
-
   itemRender,
   listProps,
 }) => {
