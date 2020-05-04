@@ -68,6 +68,8 @@ class ColumnManager extends React.Component<ColumnManagerProps, State> {
       viewNamePlaceholder: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.VIEW-NAME-PLACEHOLDER' }),
       viewDescriptionPlaceholder: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.VIEW-DESCRIPTION-PLACEHOLDER' }),
       mustNotBeEmpty: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.MUST-NOT-BE-EMPTY' }),
+      switchOn: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.SWITCH-ON' }),
+      switchOff: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.SWITCH-OFF' }),
       ...texts,
     };
   }
