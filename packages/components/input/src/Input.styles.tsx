@@ -132,7 +132,7 @@ export const Counter = styled.div`
 `;
 
 export const Description = styled.div`
-  color: ${(props): string => props.theme.palette['grey-500']};
+  color: ${(props): string => props.theme.palette['grey-600']};
 `;
 
 export const ContentAbove = styled.div`
