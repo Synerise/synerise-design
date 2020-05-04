@@ -12,7 +12,7 @@ import SearchItemsContainer from './Elements/SearchItemsContainer/SearchItemsCon
 
 const MENU_WIDTH_OFFSET = 17;
 const INPUT_EXPAND_ANIMATION_DURATION = 200;
-const SCROLLBAR_HEIGHT_OFFSET = 20;
+const SCROLLBAR_HEIGHT_OFFSET = 28;
 
 class SearchClass extends React.PureComponent<SearchProps, SearchState> {
   private wrapperRef = React.createRef<HTMLDivElement>();
@@ -179,7 +179,7 @@ class SearchClass extends React.PureComponent<SearchProps, SearchState> {
           highlight={value}
           data={filteredRecent}
           width={itemsListWidth}
-          listProps={{autoHeight: true}}
+          listProps={{ autoHeight: true }}
         />
       )
     );
@@ -202,7 +202,7 @@ class SearchClass extends React.PureComponent<SearchProps, SearchState> {
           highlight={value}
           data={filteredParameters}
           width={itemsListWidth}
-          listProps={{autoHeight: true}}
+          listProps={{ autoHeight: true }}
         />
       )
     );
@@ -262,7 +262,7 @@ class SearchClass extends React.PureComponent<SearchProps, SearchState> {
   }
 
   render(): React.ReactElement {
-    const { divider, dropdownMaxHeight, width,style } = this.props;
+    const { divider, dropdownMaxHeight, width, style } = this.props;
     const {
       isInputOpen,
       label,

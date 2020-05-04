@@ -22,7 +22,7 @@ export const openDropdownAnimation = keyframes`
 export const SearchInputWrapper = styled.div<{ width?: number }>`
   position: relative;
   direction: rtl;
-  overflow-x: hidden; 
+  overflow-x: hidden;
   height: 34px;
 `;
 
@@ -146,6 +146,7 @@ export const SearchInputContent = styled.div<{ offset: number; filterLabel: Filt
     width: 100%;
     overflow: visible;
     input {
+      color: ${(props): string => props.theme.palette['grey-700']};
       padding-left: ${(props): string =>
         props.filterLabel && props.offset ? `${Math.round(props.offset + LABEL_LEFT_OFFSET)}px` : '12px'};
       padding-right: 30px;
