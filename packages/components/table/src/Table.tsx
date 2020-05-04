@@ -22,7 +22,7 @@ const ITEM_RENDER_TYPE = {
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-function DSTable<T extends { key: React.ReactText }>(props: DSTableProps<T>): React.ReactElement {
+function DSTable<T extends object = any>(props: DSTableProps<T>): React.ReactElement {
   const {
     title,
     onSearch,
@@ -35,7 +35,17 @@ function DSTable<T extends { key: React.ReactText }>(props: DSTableProps<T>): Re
     roundedHeader,
     filters,
     searchComponent,
+    rowKey,
   } = props;
+
+  const getRowKey = React.useCallback(
+    (row: T): React.ReactText | undefined => {
+      if (typeof rowKey === 'function') return rowKey(row);
+      if (typeof rowKey === 'string') return row[rowKey];
+      return undefined;
+    },
+    [rowKey]
+  );
 
   const footerPagination = React.useMemo((): object => {
     return {
@@ -82,6 +92,21 @@ function DSTable<T extends { key: React.ReactText }>(props: DSTableProps<T>): Re
     );
   }, [selection, title, onSearch, dataSource, filters, itemsMenu, searchComponent]);
 
+  const toggleRowSelection = React.useCallback(
+    (checked, record) => {
+      const key = getRowKey(record);
+      if (selection?.selectedRowKeys && selection.setRowSelection && key) {
+        const { setRowSelection, selectedRowKeys } = selection;
+        if (checked) {
+          setRowSelection([...selectedRowKeys, key]);
+        } else {
+          setRowSelection(selectedRowKeys.filter(k => k !== key));
+        }
+      }
+    },
+    [selection, getRowKey]
+  );
+
   return (
     <div className={`ds-table ds-table-cell-size-${cellSize} ${roundedHeader ? 'ds-table-rounded' : ''}`}>
       {loading && (
@@ -98,8 +123,15 @@ function DSTable<T extends { key: React.ReactText }>(props: DSTableProps<T>): Re
         rowSelection={
           selection && {
             ...selection,
-            renderCell: (checked: boolean): React.ReactNode => {
-              return <Checkbox checked={checked} />;
+            renderCell: (checked: boolean, record: T): React.ReactNode => {
+              return (
+                <Checkbox
+                  checked={checked}
+                  onChange={(event): void => {
+                    toggleRowSelection(event.target.checked, record);
+                  }}
+                />
+              );
             },
           }
         }

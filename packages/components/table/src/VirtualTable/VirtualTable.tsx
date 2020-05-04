@@ -35,8 +35,10 @@ function VirtualTable<T extends object = any>(props: Props<T>): React.ReactEleme
   const [tableWidth, setTableWidth] = React.useState(initialWidth);
 
   const getRowKey = React.useCallback(
-    (row: T): React.ReactText => {
-      return typeof rowKey === 'function' ? rowKey(row) : rowKey || 'key';
+    (row: T): React.ReactText | undefined => {
+      if (typeof rowKey === 'function') return rowKey(row);
+      if (typeof rowKey === 'string') return row[rowKey];
+      return undefined;
     },
     [rowKey]
   );
@@ -52,23 +54,30 @@ function VirtualTable<T extends object = any>(props: Props<T>): React.ReactEleme
           render: (key: string, record: T): React.ReactNode => {
             const recordKey = getRowKey(record);
             return (
-              <Checkbox
-                checked={selection.selectedRowKeys && selection.selectedRowKeys.indexOf(recordKey) >= 0}
-                onChange={(event): void => {
-                  const { selectedRowKeys, onChange } = selection;
-                  let selectedKeys = selectedRowKeys || [];
-                  if (event.target.checked) {
-                    selectedKeys = [...selectedKeys, recordKey];
-                  } else {
-                    selectedKeys = selectedKeys.filter(k => k !== recordKey);
-                  }
-                  onChange &&
-                    onChange(
-                      selectedKeys,
-                      (dataSource && dataSource.filter(row => selectedKeys.includes(getRowKey(row)))) || []
-                    );
-                }}
-              />
+              recordKey && (
+                <Checkbox
+                  checked={selection.selectedRowKeys && selection.selectedRowKeys.indexOf(recordKey) >= 0}
+                  onChange={(event): void => {
+                    const { selectedRowKeys, onChange } = selection;
+                    let selectedKeys = selectedRowKeys || [];
+                    if (event.target.checked) {
+                      selectedKeys = [...selectedKeys, recordKey];
+                    } else {
+                      selectedKeys = selectedKeys.filter(k => k !== recordKey);
+                    }
+                    onChange &&
+                      onChange(
+                        selectedKeys,
+                        (dataSource &&
+                          dataSource.filter(row => {
+                            const dataSourceRowKey = getRowKey(row);
+                            return dataSourceRowKey && selectedKeys.includes(dataSourceRowKey);
+                          })) ||
+                          []
+                      );
+                  }}
+                />
+              )
             );
           },
         },
