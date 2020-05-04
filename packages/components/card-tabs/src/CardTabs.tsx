@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ReactSortable } from 'react-sortablejs-typescript';
-import AddButton from '@synerise/ds-add-button';
+import Button from '@synerise/ds-button';
 import * as S from './CardTabs.styles';
 
 export type CardTabsProps = {
@@ -44,7 +44,7 @@ const CardTabs: React.FC<CardTabsProps> = ({ className, onChangeOrder, onAddTab,
       )}
       {onAddTab && (
         <span data-testid="card-tabs-add-button">
-          <AddButton
+          <Button.Creator
             disabled={!!maxTabsCount && React.Children.toArray(children).length >= maxTabsCount}
             onClick={onAddTab}
           />
