@@ -90,13 +90,12 @@ export const SearchButton = styled.div<{ isOpen: boolean; clickable?: boolean; i
   top: 0;
   right: 0;
   transition: width 0.5s ease-in-out;
-    svg {
+  svg {
     fill: ${(props): string =>
-  props.inputFocused && props.isOpen
-    ? props.theme.palette['blue-600']
-    : props.theme.palette['grey-600']} !important;
+      props.inputFocused && props.isOpen
+        ? props.theme.palette['blue-600']
+        : props.theme.palette['grey-600']} !important;
   }
-
 
   .btn-search-open:hover {
     background: transparent !important;
@@ -147,7 +146,8 @@ export const SearchInputContent = styled.div<{ offset: number; filterLabel: Filt
     width: 100%;
     overflow: visible;
     input {
-      padding-left: ${(props): string => (props.filterLabel && props.offset ? `${Math.round(props.offset + LABEL_LEFT_OFFSET)}px` : '12px')};
+      padding-left: ${(props): string =>
+        props.filterLabel && props.offset ? `${Math.round(props.offset + LABEL_LEFT_OFFSET)}px` : '12px'};
       padding-right: 30px;
       opacity: 1;
       line-height: 18px;
