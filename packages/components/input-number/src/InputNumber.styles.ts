@@ -29,7 +29,7 @@ export const Label = styled.label`
 `;
 
 export const Description = styled.div`
-  color: ${(props: ThemeProps): string => props.theme.palette['grey-500']};
+  color: ${(props: ThemeProps): string => props.theme.palette['grey-600']};
 `;
 
 export const ContentBelow = styled.div`
