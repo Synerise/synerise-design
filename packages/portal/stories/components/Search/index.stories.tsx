@@ -127,12 +127,6 @@ console.log('Clear value');
           rowHeight: 32,
           visibleRows: 3,
           itemRender: (item: FilterElement) => <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>,
-          divider: (
-            <div style={{ padding: '12px', paddingBottom: '0px', marginRight:'-10px' }}>
-              {' '}
-              <Divider dashed />{' '}
-            </div>
-          ),
         }}
         parametersDisplayProps={{
           tooltip: parametersTooltip,
@@ -142,6 +136,7 @@ console.log('Clear value');
           itemRender: (item: FilterElement) => (
             <Menu.Item
               highlight={value}
+              style={{ paddingLeft: '12px' }}
               onItemHover={(): void => {}}
               prefixel={item && <Icon component={item && item.icon} />}
             >
@@ -184,10 +179,10 @@ console.log('Clear value');
         suggestions={suggestions}
         value={value}
         parameterValue={parameterValue}
-        onValueChange={value => {
+        onValueChange={(value):void => {
           setValue(value);
         }}
-        onParameterValueChange={value => {
+        onParameterValueChange={(value):void => {
           setParameterValue(value);
           const fakeApiResponse = getSuggestions(value);
           setSuggestions(fakeApiResponse);
@@ -209,7 +204,7 @@ console.log('Clear value');
           rowHeight: 32,
           visibleRows: 6,
           itemRender: (item: FilterElement) => (
-            <Menu.Item onItemHover={(): void => {}} prefixel={item && <Icon component={item && item.icon} />}>
+            <Menu.Item style={{ paddingLeft: '12px' }} onItemHover={(): void => {}} prefixel={item && <Icon component={item && item.icon} />}>
               {item && item.text}
             </Menu.Item>
           ),
@@ -222,7 +217,7 @@ console.log('Clear value');
           itemRender: (item: FilterElement) => <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>,
         }}
         divider={
-          <div style={{ padding: '12px', paddingBottom: '0px', marginRight:'-10px' }}>
+          <div style={{ padding: '12px', paddingBottom: '0px',}}>
             <Divider dashed />
           </div>
         }

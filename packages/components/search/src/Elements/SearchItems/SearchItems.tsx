@@ -3,7 +3,7 @@ import Menu from '@synerise/ds-menu';
 import { List, ListRowProps } from 'react-virtualized';
 import Scrollbar from '@synerise/ds-scrollbar';
 import { MenuItemProps } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.types';
-import { SearchItemListProps } from './SearchItemList.types';
+import { SearchItemListProps } from './SearchItems.types';
 import { FilterElement } from '../../Search.types';
 
 const rowRenderer = <T extends unknown>(
@@ -28,14 +28,13 @@ const rowRenderer = <T extends unknown>(
   return RenderedItem;
 };
 
-const SearchItemList: React.FC<SearchItemListProps<FilterElement | MenuItemProps>> = ({
+const SearchItems: React.FC<SearchItemListProps<FilterElement | MenuItemProps>> = ({
   data,
   onItemClick,
   visibleRows,
   rowHeight,
   width,
   highlight,
-
   itemRender,
   listProps,
 }) => {
@@ -81,4 +80,4 @@ const SearchItemList: React.FC<SearchItemListProps<FilterElement | MenuItemProps
   );
 };
 
-export default SearchItemList;
+export default SearchItems;

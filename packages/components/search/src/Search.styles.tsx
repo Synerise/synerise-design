@@ -83,14 +83,19 @@ export const Label = styled.div`
   color: ${(props): string => props.theme.palette['blue-600']};
 `;
 
-export const SearchButton = styled.div<{ isOpen: boolean; clickable?: boolean }>`
+export const SearchButton = styled.div<{ isOpen: boolean; clickable?: boolean; inputFocused?: boolean }>`
   position: absolute;
   ${(props): string | false => !props.clickable && `pointer-events:none !important;`};
   z-index: 1;
   top: 0;
   right: 0;
   transition: width 0.5s ease-in-out;
-  
+  svg {
+    fill: ${(props): string =>
+      props.inputFocused && props.isOpen
+        ? props.theme.palette['blue-600']
+        : props.theme.palette['grey-600']} !important;
+  }
 
   .btn-search-open:hover {
     background: transparent !important;
@@ -141,7 +146,8 @@ export const SearchInputContent = styled.div<{ offset: number; filterLabel: Filt
     width: 100%;
     overflow: visible;
     input {
-      padding-left: ${(props): string => (props.filterLabel && props.offset ? `${Math.round(props.offset + LABEL_LEFT_OFFSET)}px` : '12px')};
+      padding-left: ${(props): string =>
+        props.filterLabel && props.offset ? `${Math.round(props.offset + LABEL_LEFT_OFFSET)}px` : '12px'};
       padding-right: 30px;
       opacity: 1;
       line-height: 18px;
@@ -164,7 +170,7 @@ export const ClearButton = styled.div`
   padding: 0 10px 0 10px;
 `;
 
-export const List = styled.div<{ isOpen?: boolean; maxHeight?: number }>`
+export const SearchDropdownContent = styled.div<{ isOpen?: boolean; maxHeight?: number }>`
   position: absolute;
   top: 40px;
   background: ${(props): string => props.theme.palette.white};
@@ -202,7 +208,7 @@ export const HeaderIconWrapper = styled.div`
   }
 `;
 
-export const ListWrapper = styled.div`
+export const SearchDropdownWrapper = styled.div`
   width: 0;
   & > .search-list-open {
     width: 100%;
