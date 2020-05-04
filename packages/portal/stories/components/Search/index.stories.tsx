@@ -117,7 +117,7 @@ console.log('Clear value');
           setSuggestions(fakeApiResponse);
         }}
         divider={
-          <div style={{ padding: '12px', paddingBottom: '0px' }}>
+          <div style={{ padding: '12px', paddingBottom: '0px', paddingRight:'20px' }}>
             <Divider dashed/>
           </div>
         }
@@ -217,8 +217,8 @@ console.log('Clear value');
           itemRender: (item: FilterElement) => <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>,
         }}
         divider={
-          <div style={{ padding: '12px', paddingBottom: '0px',}}>
-            <Divider dashed />
+          <div style={{ padding: '12px', paddingBottom: '0px', paddingRight:'20px' }}>
+            <Divider dashed/>
           </div>
         }
         dropdownMaxHeight={400}
