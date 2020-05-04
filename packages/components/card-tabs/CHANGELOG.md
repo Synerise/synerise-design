@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.26](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-tabs@0.6.25...@synerise/ds-card-tabs@0.6.26) (2020-05-04)
+
+
+### Bug Fixes
+
+* **card-tabs:** removed addbutton deps ([aa5da65](https://github.com/Synerise/synerise-design/commit/aa5da6555497d65fbb8807aac140cbc90d60253b))
+
+
+
+
+
 ## [0.6.25](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-tabs@0.6.24...@synerise/ds-card-tabs@0.6.25) (2020-04-30)
 
 **Note:** Version bump only for package @synerise/ds-card-tabs

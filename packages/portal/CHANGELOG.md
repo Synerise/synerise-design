@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.59.7](https://github.com/synerise/synerise-design/compare/portal@0.59.6...portal@0.59.7) (2020-05-04)
+
+
+### Bug Fixes
+
+* **add-button:** removed addbutton story ([9e75377](https://github.com/synerise/synerise-design/commit/9e753773c5bc5eac93ef681299513622986e5a25))
+* **search:** fixing lint errors and updating tests ([1c3422a](https://github.com/synerise/synerise-design/commit/1c3422a82dc8971868e572f0888977f648e3e7aa))
+* **search:** styling changes in stories ([44b1558](https://github.com/synerise/synerise-design/commit/44b15585af66d3bd90960bba0383e5fc05d157e5))
+* **search:** styling improvements ([2562333](https://github.com/synerise/synerise-design/commit/256233353b592c5aac9935bf8540e89601ecef9f))
+
+
+
+
+
 ## [0.59.6](https://github.com/synerise/synerise-design/compare/portal@0.59.5...portal@0.59.6) (2020-04-30)
 
 **Note:** Version bump only for package portal

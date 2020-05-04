@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.19](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.11.18...@synerise/ds-input@0.11.19) (2020-05-04)
+
+
+### Bug Fixes
+
+* **input:** change description color to grey-600 ([7cf9fee](https://github.com/synerise/synerise-design/commit/7cf9feedf0e2eff71ae67e2ea122a90b149f5401))
+
+
+
+
+
 ## [0.11.18](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.11.17...@synerise/ds-input@0.11.18) (2020-04-30)
 
 **Note:** Version bump only for package @synerise/ds-input

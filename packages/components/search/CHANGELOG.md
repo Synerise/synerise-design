@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.1.6...@synerise/ds-search@0.1.7) (2020-05-04)
+
+
+### Bug Fixes
+
+* **search:** fixing lint errors and updating tests ([1c3422a](https://github.com/Synerise/synerise-design/commit/1c3422a82dc8971868e572f0888977f648e3e7aa))
+* **search:** styling changes in stories ([44b1558](https://github.com/Synerise/synerise-design/commit/44b15585af66d3bd90960bba0383e5fc05d157e5))
+* **search:** styling improvements ([2562333](https://github.com/Synerise/synerise-design/commit/256233353b592c5aac9935bf8540e89601ecef9f))
+
+
+
+
+
 ## [0.1.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.1.5...@synerise/ds-search@0.1.6) (2020-04-30)
 
 **Note:** Version bump only for package @synerise/ds-search
