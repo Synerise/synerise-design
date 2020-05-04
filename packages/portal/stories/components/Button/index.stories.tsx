@@ -8,6 +8,7 @@ import Button from '@synerise/ds-button';
 import markdown from '@/button/README.md';
 import { version } from '@/button/package.json';
 import { CreatorStatus } from '@synerise/ds-button/dist/Creator/Creator';
+import { withState } from '@dump247/storybook-state';
 
 const typeOptions = {
   Primary: 'primary',
@@ -188,7 +189,12 @@ const stories = {
       </div>
     );
   },
-  expander: () => {
+  expander: withState({
+    expanded: false,
+  })(({ store }) => {
+    const handleClick = () => {
+      store.set({expanded: !store.state.expanded});
+    };
     const expanderProps = getExpanderProps();
     const props = {
       ...expanderProps,
@@ -198,12 +204,13 @@ const stories = {
     } as object;
     return (
       <div style={getBackgroundStyles(props.type)}>
-        <Button.Expander onClick={()=>{console.log('Button clicked!')}}  {...expanderProps} >
-
-        </Button.Expander>
+        <Button.Expander
+          {...expanderProps}
+          onClick={handleClick}
+          expanded={store.state.expanded} />
       </div>
     );
-  },
+  }),
   creator: () => {
     const creatorProps = getCreatorKnobs();
     const props = {
