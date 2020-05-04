@@ -198,7 +198,7 @@ class ColumnManager extends React.Component<ColumnManagerProps, State> {
           iconLeft={<Icon component={<SearchM />} />}
           clearTooltip={(this.texts.searchClearTooltip as string) || ''}
         />
-        <Scrollbar>
+        <Scrollbar absolute>
           <Drawer.DrawerContent style={{ padding: '0 0 80px' }}>
             <ColumnManagerList
               texts={this.texts}
