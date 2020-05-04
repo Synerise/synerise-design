@@ -24,6 +24,7 @@ const stories = {
   })(({ store }) => {
     const { expandedRows, selectedRows } = store.state;
     const handleExpandRow = (key: string): void => {
+      console.log(key, expandedRows);
       if (expandedRows.indexOf(key) < 0) {
         store.set({ expandedRows: [...expandedRows, key] });
       } else {
@@ -46,14 +47,11 @@ const stories = {
           dataIndex: 'children',
           key: 'children',
           render: (children, record) => {
-            if (children !== undefined) {
+            if(children !== undefined) {
+              console.log(expandedRows.indexOf(record.key) >= 0, record);
               return (
                 <TableCell.ActionCell>
-                  <Button.Expander
-                    onClick={() => {
-                      handleExpandRow(record.key);
-                    }}
-                  />
+                  <Button.Expander expanded={expandedRows.indexOf(record.key) >= 0} onClick={() => {handleExpandRow(record.key)}} />
                 </TableCell.ActionCell>
               );
             }
@@ -96,25 +94,30 @@ const stories = {
           }
         }
         onSearch={console.log}
+        onRow={(record, index: number) => ({
+          onClick: event => {
+            boolean('Expand on row click', false) && handleExpandRow(record.key)
+          },
+        })}
         itemsMenu={
           <ItemsMenu>
-            <Button onClick={action('Export')} type="secondary" mode="icon-label">
-              <Icon component={<FileDownloadM />} />
+            <Button onClick={action('Export')} type='secondary' mode='icon-label'>
+              <Icon component={<FileDownloadM/>}/>
               Export
             </Button>
-            <Button onClick={action('Edit')} type="secondary" mode="icon-label">
-              <Icon component={<EditM />} />
+            <Button onClick={action('Edit')} type='secondary' mode='icon-label'>
+              <Icon component={<EditM/>}/>
               Edit
             </Button>
-            <Button onClick={action('Delete')} type="secondary" mode="icon-label">
-              <Icon component={<TrashM />} />
+            <Button onClick={action('Delete')} type='secondary' mode='icon-label'>
+              <Icon component={<TrashM/>}/>
               Delete
             </Button>
           </ItemsMenu>
         }
-      />
-    );
-  }),
+      />)
+    }
+  ),
 };
 
 export default {
