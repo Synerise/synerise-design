@@ -137,13 +137,15 @@
     }
 
     tbody > tr {
-      &:not(.@{table-prefix-cls}-row-level-0) {
-        td {
-          background-color: @grey-050;
-        }
-        &:hover {
+      &:not(.@{table-prefix-cls}-placeholder) {
+        &:not(.@{table-prefix-cls}-row-level-0) {
           td {
-            background-color: @grey-100;
+            background-color: @grey-050;
+          }
+          &:hover {
+            td {
+              background-color: @grey-100;
+            }
           }
         }
       }
