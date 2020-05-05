@@ -2,6 +2,7 @@ import * as React from 'react';
 import Tooltip from '@synerise/ds-tooltip';
 import InlineEdit from '@synerise/ds-inline-edit/dist/InlineEdit';
 import { InfoFillS } from '@synerise/ds-icon/dist/icons';
+import { escapeRegEx } from '@synerise/ds-utils';
 import * as S from '../SimpleItem/SimpleItem.styles';
 import { ItemProps } from '../Item';
 
@@ -34,7 +35,8 @@ const ItemName: React.FC<ItemLabelProps> = ({ item, onUpdate, editMode, searchQu
 
   const name = React.useMemo(() => {
     if (searchQuery) {
-      const startOfQuery = item.name.toLowerCase().search(searchQuery.toLowerCase());
+      const escapedQuery = escapeRegEx(searchQuery);
+      const startOfQuery = item.name.toLowerCase().search(escapedQuery.toLowerCase());
       const endOfQuery = startOfQuery + searchQuery.length;
       const resultArray = [
         item.name.substring(0, startOfQuery),

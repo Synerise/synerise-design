@@ -31,7 +31,8 @@
     "@synerise/ds-popconfirm": "^0.4.5",
     "@synerise/ds-tags": "^0.2.64",
     "@synerise/ds-tooltip": "^0.7.1",
-    "@synerise/ds-typography": "^0.8.3"
+    "@synerise/ds-typography": "^0.8.3",
+    "@synerise/ds-utils": "^0.8.20"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

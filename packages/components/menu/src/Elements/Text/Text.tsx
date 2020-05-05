@@ -4,6 +4,7 @@ import AngleRightS from '@synerise/ds-icon/dist/icons/AngleRightS';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import * as copy from 'copy-to-clipboard';
 import { ClickParam, SelectParam } from 'antd/lib/menu';
+import { escapeRegEx } from '@synerise/ds-utils';
 import * as S from './Text.styles';
 
 interface Props {
@@ -49,7 +50,8 @@ const Text: React.FC<Props> = ({
       if (index === -1) {
         return children;
       }
-      const startOfQuery = children.toLowerCase().search(highlight.toLowerCase());
+      const escapedHighlight = escapeRegEx(highlight);
+      const startOfQuery = children.toLowerCase().search(escapedHighlight.toLowerCase());
       const endOfQuery = startOfQuery + highlight.length;
       const resultArray = [
         children.substring(0, startOfQuery),
