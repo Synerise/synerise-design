@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.21](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@0.8.20...@synerise/ds-utils@0.8.21) (2020-05-05)
+
+
+### Bug Fixes
+
+* **search:** added util for escaping regex ([f10942d](https://github.com/synerise/synerise-design/commit/f10942d7b78cf0f916dd7763fa2c1d81e5295979))
+
+
+
+
+
 ## [0.8.20](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@0.8.19...@synerise/ds-utils@0.8.20) (2020-04-30)
 
 **Note:** Version bump only for package @synerise/ds-utils

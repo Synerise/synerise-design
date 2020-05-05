@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-column-manager@0.3.5...@synerise/ds-column-manager@0.3.6) (2020-05-05)
+
+
+### Bug Fixes
+
+* **search:** added util for escaping regex ([f10942d](https://github.com/Synerise/synerise-design/commit/f10942d7b78cf0f916dd7763fa2c1d81e5295979))
+
+
+
+
+
 ## [0.3.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-column-manager@0.3.4...@synerise/ds-column-manager@0.3.5) (2020-05-04)
 
 **Note:** Version bump only for package @synerise/ds-column-manager

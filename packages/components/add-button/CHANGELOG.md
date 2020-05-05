@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.34](https://github.com/Synerise/synerise-design/compare/@synerise/ds-add-button@0.1.33...@synerise/ds-add-button@0.1.34) (2020-05-05)
+
+**Note:** Version bump only for package @synerise/ds-add-button
+
+
+
+
+
 ## [0.1.33](https://github.com/Synerise/synerise-design/compare/@synerise/ds-add-button@0.1.32...@synerise/ds-add-button@0.1.33) (2020-04-30)
 
 **Note:** Version bump only for package @synerise/ds-add-button

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.3.3...@synerise/ds-menu@0.3.4) (2020-05-05)
+
+
+### Bug Fixes
+
+* **search:** added util for escaping regex ([f10942d](https://github.com/Synerise/synerise-design/commit/f10942d7b78cf0f916dd7763fa2c1d81e5295979))
+
+
+
+
+
 ## [0.3.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.3.2...@synerise/ds-menu@0.3.3) (2020-04-30)
 
 **Note:** Version bump only for package @synerise/ds-menu
