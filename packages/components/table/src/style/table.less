@@ -80,12 +80,12 @@
     }
     .@{table-prefix-cls}-cell-fix-left-last {
       &:after {
-        right: 20px;
+        right: 30px;
       }
     }
     .@{table-prefix-cls}-cell-fix-right-first {
       &:after {
-        left: 20px;
+        left: 0px;
       }
     }
     thead > tr > td,
@@ -199,13 +199,13 @@
     }
     &-cell-fix-left-last {
       &:after {
-        box-shadow: 8px 4px 12px 0 rgba(35, 41, 54, 0.04);
+        box-shadow: 8px 0 12px 0 rgba(35, 41, 54, 0.04);
       }
     }
     &-cell-fix-right-first {
       &:after {
         transform: rotateZ(180deg);
-        box-shadow: 8px 4px 12px 0 rgba(35, 41, 54, 0.04);
+        box-shadow: 8px 0 12px 0 rgba(35, 41, 54, 0.04);
       }
     }
   }
