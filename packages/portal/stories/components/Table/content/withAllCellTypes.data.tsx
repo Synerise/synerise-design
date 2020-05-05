@@ -1,6 +1,6 @@
 import { TableCell } from '@synerise/ds-table';
 import { action } from '@storybook/addon-actions';
-import { LockM, PlayM, UserM } from '@synerise/ds-icon/dist/icons';
+import { LockM, PlayM, UserM, VarTypeStringM } from '@synerise/ds-icon/dist/icons';
 import Select from '@synerise/ds-select';
 import Button from '@synerise/ds-button';
 import { Tag } from '@synerise/ds-tags';
@@ -46,7 +46,7 @@ export const COLUMNS = [
     dataIndex: 'name',
     width: 254,
     render: (name, record) => {
-      return (<TableCell.StarCell active={record.active} onClick={action('Click start')}><TableCell.IconLabelCell label={name} icon={{component: <UserM />}}/></TableCell.StarCell>)
+      return (<TableCell.StarCell active={record.active} onClick={action('Click start')}><TableCell.IconLabelCell label={name} icon={{component: <VarTypeStringM />, color: '#6a7580'}}/></TableCell.StarCell>)
     }
   },
   {
@@ -55,7 +55,7 @@ export const COLUMNS = [
     width: 254,
     textWrap: 'word-break',
     ellipsis: true,
-    render: (name, record) => (<TableCell.IconLabelCell icon={{component: <UserM />}} label={name}/>)
+    render: (name, record) => (<TableCell.IconLabelCell icon={{component: <VarTypeStringM />, color: '#6a7580'}} label={name}/>)
   },
   {
     title: 'Status',

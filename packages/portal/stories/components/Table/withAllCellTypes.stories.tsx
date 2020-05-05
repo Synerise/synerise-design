@@ -1,8 +1,6 @@
 import * as React from 'react';
 import faker from 'faker';
 import { action } from '@storybook/addon-actions';
-import VirtualTable from '@synerise/ds-table/dist/Virtualized/Virtualized';
-import { withState } from '@dump247/storybook-state';
 import { boolean, select } from '@storybook/addon-knobs';
 import Table from '@synerise/ds-table';
 import {
