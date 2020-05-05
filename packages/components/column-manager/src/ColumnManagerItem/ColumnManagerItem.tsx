@@ -89,7 +89,6 @@ const ColumnManagerItem: React.FC<Column & ColumnProps> = ({
   );
 
   return (
-    // eslint-disable-next-line react/jsx-props-no-spreading
     <S.ColumnManagerItem {...rest}>
       <S.ItemPart align="left">
         {draggable && <S.DragHandler component={<DragHandleM />} color={theme.palette['grey-400']} />}
