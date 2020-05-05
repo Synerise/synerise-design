@@ -285,6 +285,7 @@ const stories = {
             showQuickJumper: boolean('Show quick jumper', true),
             onChange: action('pageChanged'),
           }}
+          rowKey={row => row.key}
           selection={boolean('Enable row selection', false) && {
             onChange: handleSelectRow,
             selectedRowKeys: selectedRows,

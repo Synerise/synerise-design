@@ -1,6 +1,6 @@
 import { TableCell } from '@synerise/ds-table';
 import { action } from '@storybook/addon-actions';
-import { LockM, PlayM, UserM } from '@synerise/ds-icon/dist/icons';
+import { LockM, PlayM, UserM, VarTypeStringM } from '@synerise/ds-icon/dist/icons';
 import Select from '@synerise/ds-select';
 import Button from '@synerise/ds-button';
 import { Tag } from '@synerise/ds-tags';
@@ -19,7 +19,6 @@ export const COLUMNS = [
     textWrap: 'word-break',
     ellipsis: true,
     sorter: (a, b) => a.name < b.name,
-    fixed: 'left',
     key: 'name',
   },
   {
@@ -37,8 +36,8 @@ export const COLUMNS = [
     dataIndex: 'active',
     width: 254,
     sorter: (a, b) =>  a.active - b.active,
-    render: (name, record) => {
-      return (<TableCell.StarCell active={record.active} onClick={action('Click start')}>{name}</TableCell.StarCell>)
+    render: (active, record) => {
+      return (<TableCell.StarCell active={active} onClick={action('Click start')}>{record.name}</TableCell.StarCell>)
     }
   },
   {
@@ -47,7 +46,7 @@ export const COLUMNS = [
     dataIndex: 'name',
     width: 254,
     render: (name, record) => {
-      return (<TableCell.StarCell active={record.active} onClick={action('Click start')}><TableCell.IconLabelCell label={name} icon={{component: <UserM />}}/></TableCell.StarCell>)
+      return (<TableCell.StarCell active={record.active} onClick={action('Click start')}><TableCell.IconLabelCell label={name} icon={{component: <VarTypeStringM />, color: '#6a7580'}}/></TableCell.StarCell>)
     }
   },
   {
@@ -56,128 +55,127 @@ export const COLUMNS = [
     width: 254,
     textWrap: 'word-break',
     ellipsis: true,
-    render: (name, record) => (<TableCell.IconLabelCell icon={{component: <UserM />}} label={name}/>)
-},
-{
-  title: 'Status',
+    render: (name, record) => (<TableCell.IconLabelCell icon={{component: <VarTypeStringM />, color: '#6a7580'}} label={name}/>)
+  },
+  {
+    title: 'Status',
     dataIndex: 'status',
-  key: 'status',
-  width: 254,
-  textWrap: 'word-break',
-  ellipsis: true,
-  render: (status) => (<TableCell.StatusLabelCell status={status} label={status} />)
-},
-{
-  title: 'Select',
+    key: 'status',
+    width: 254,
+    textWrap: 'word-break',
+    ellipsis: true,
+    render: (status) => (<TableCell.StatusLabelCell status={status} label={status} />)
+  },
+  {
+    title: 'Select',
     dataIndex: 'select',
-  key: 'key',
-  width: 254,
-  textWrap: 'word-break',
-  ellipsis: true,
-  render: (select) => (
-  <Select value={select.value}>
-    {select.options.map((option: string) => (
-        <Select.Option value={option}>{option}</Select.Option>
-      ))}
-    </Select>
-)
-},
-{
-  title: 'Button',
+    key: 'key',
+    width: 254,
+    textWrap: 'word-break',
+    ellipsis: true,
+    render: (select) => (
+    <Select value={select.value}>
+      {select.options.map((option: string) => (
+          <Select.Option value={option}>{option}</Select.Option>
+        ))}
+      </Select>
+  )
+  },
+  {
+    title: 'Button',
     dataIndex: 'age',
-  key: 'age',
-  width: 254,
-  textWrap: 'word-break',
-  ellipsis: true,
-  render: (age) => (<Button type="secondary" onClick={() => alert(age)}>Show age</Button>)
-},
-{
-  title: 'Tag',
+    key: 'age',
+    width: 254,
+    textWrap: 'word-break',
+    ellipsis: true,
+    render: (age) => (<Button type="secondary" onClick={() => alert(age)}>Show age</Button>)
+  },
+  {
+    title: 'Tag',
     dataIndex: 'tag',
-  key: 'tag',
-  width: 254,
-  textWrap: 'word-break',
-  ellipsis: true,
-  render: (tag) => (<Tag shape={tag.shape} name={tag.label} />)
-},
-{
-  title: 'Tag',
+    key: 'tag',
+    width: 254,
+    textWrap: 'word-break',
+    ellipsis: true,
+    render: (tag) => (<Tag shape={tag.shape} name={tag.label} />)
+  },
+  {
+    title: 'Tag with icon',
     dataIndex: 'tag',
-  key: 'tag',
-  width: 254,
-  textWrap: 'word-break',
-  ellipsis: true,
-  render: (tag) => (<TableCell.TagIconCell>
-  <Tag shape={tag.shape} name={tag.label} />
-<Icon component={<LockM />} color="#949ea6" />
-  </TableCell.TagIconCell>)
-},
-{
-  title: 'Avatar',
+    key: 'tag',
+    width: 254,
+    textWrap: 'word-break',
+    ellipsis: true,
+    render: (tag) => (<TableCell.TagIconCell>
+      <Tag shape={tag.shape} name={tag.label} />
+      <Icon component={<LockM />} color="#949ea6" />
+    </TableCell.TagIconCell>)
+  },
+  {
+    title: 'Avatar',
     dataIndex: 'avatar',
-  key: 'avatar',
-  width: 254,
-  textWrap: 'word-break',
-  ellipsis: true,
-  render: (avatar) => <Avatar backgroundColor='red' backgroundColorHue='050' size='medium' iconComponent={<Icon component={avatar.icon} color='red' />}>{avatar.initials}</Avatar>
-},
-{
-  title: 'Avatar with title',
+    key: 'avatar',
+    width: 254,
+    textWrap: 'word-break',
+    ellipsis: true,
+    render: (avatar) => <Avatar backgroundColor='red' backgroundColorHue='050' size='medium' iconComponent={<Icon component={avatar.icon} color='red' />}>{avatar.initials}</Avatar>
+  },
+  {
+    title: 'Avatar with title',
     dataIndex: 'avatar',
-  key: 'avatar',
-  width: 254,
-  textWrap: 'word-break',
-  ellipsis: true,
-  render: (avatar) => <TableCell.AvatarLabelCell avatar={<Avatar backgroundColor='red' backgroundColorHue='050' size='medium' iconComponent={<Icon component={avatar.icon} color='red' />}>{avatar.initials}</Avatar>} title={avatar.title}/>
-},
+    key: 'avatar',
+    width: 254,
+    textWrap: 'word-break',
+    ellipsis: true,
+    render: (avatar) => <TableCell.AvatarLabelCell avatar={<Avatar backgroundColor='red' backgroundColorHue='050' size='medium' iconComponent={<Icon component={avatar.icon} color='red' />}>{avatar.initials}</Avatar>} title={avatar.title}/>
+  },
   {
     title: 'Avatar with title and meta',
-      dataIndex: 'avatar',
+    dataIndex: 'avatar',
     key: 'avatar',
     width: 254,
     textWrap: 'word-break',
     ellipsis: true,
     render: (avatar) => <TableCell.AvatarLabelCell avatar={<Avatar backgroundColor='red' backgroundColorHue='050' size='large' iconComponent={<Icon component={avatar.icon} color='red' />}>{avatar.initials}</Avatar>} title={avatar.title} labels={avatar.labels}/>
   },
-    {
-      title: 'Enabled',
-        dataIndex: 'enabled',
-      key: 'enabled',
-      width: 254,
-      textWrap: 'word-break',
-      ellipsis: true,
-      render: (enabled) => <Switch onChange={action('Status change')} checked={enabled} label='' />
-    },
-    {
-      title: 'Editable row',
-        dataIndex: 'editable',
-      key: 'editable',
-      width: 254,
-      textWrap: 'word-break',
-      ellipsis: true,
-      render: (editable) => <TableCell.EditableCell value={editable} onChange={console.log} />
-    },
-    {
-      title: 'Copyable',
-        dataIndex: 'editable',
-      key: 'editable',
-      width: 254,
-      textWrap: 'word-break',
-      ellipsis: true,
-      render: (editable) => <TableCell.CopyableCell value={editable} confirmMessage="Copied to clipboard!" />
-    },
-    {
-      title: 'Icon with tooltip',
-        width: 254,
-      textWrap: 'word-break',
-      ellipsis: true,
-      render: (editable) => <Tooltip title="Run"><Icon component={<PlayM/>} color='#54cb0b' /> </Tooltip>
-    },
-    {
-      width: 254,
-      fixed: 'right',
-      render: () => <TableCell.ActionCell>
-        <Button onClick={action('click')} type='secondary' mode='split'>Edit rule</Button>
-      </TableCell.ActionCell>
-    }
-  ];
+  {
+    title: 'Enabled',
+    dataIndex: 'enabled',
+    key: 'enabled',
+    width: 254,
+    textWrap: 'word-break',
+    ellipsis: true,
+    render: (enabled) => <Switch onChange={action('Status change')} checked={enabled} label='' />
+  },
+  {
+    title: 'Editable row',
+    dataIndex: 'editable',
+    key: 'editable',
+    width: 254,
+    textWrap: 'word-break',
+    ellipsis: true,
+    render: (editable) => <TableCell.EditableCell value={editable} onChange={console.log} />
+  },
+  {
+    title: 'Copyable',
+    dataIndex: 'editable',
+    key: 'editable',
+    width: 254,
+    textWrap: 'word-break',
+    ellipsis: true,
+    render: (editable) => <TableCell.CopyableCell value={editable} confirmMessage="Copied to clipboard!" />
+  },
+  {
+    title: 'Icon with tooltip',
+    width: 254,
+    textWrap: 'word-break',
+    ellipsis: true,
+    render: (editable) => <Tooltip title="Run"><Icon component={<PlayM/>} color='#54cb0b' /> </Tooltip>
+  },
+  {
+    width: 254,
+    render: () => <TableCell.ActionCell>
+      <Button onClick={action('click')} type='secondary' mode='split'>Edit rule</Button>
+    </TableCell.ActionCell>
+  }
+];

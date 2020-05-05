@@ -21,6 +21,8 @@ export type Texts =
   | 'viewDescription'
   | 'viewNamePlaceholder'
   | 'viewDescriptionPlaceholder'
+  | 'switchOn'
+  | 'switchOff'
   | 'mustNotBeEmpty';
 
 export type ColumnManagerProps = {

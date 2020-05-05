@@ -42,20 +42,24 @@ const ColumnManagerList: React.FC<Props> = ({
               />
             ))}
           </ReactSortable>
-          <S.ListHeadline>{texts.hidden}</S.ListHeadline>
-          <ReactSortable {...SORTABLE_COFIG} list={hiddenList} setList={updateHiddenList}>
-            {hiddenList.map(item => (
-              <ColumnManagerItem
-                data-testid="ds-column-manager-hidden-item"
-                key={item.id}
-                {...item}
-                setFixed={setFixed}
-                switchAction={toggleColumn}
-                draggable
-                texts={texts}
-              />
-            ))}
-          </ReactSortable>
+          {hiddenList.length > 0 && (
+            <>
+              <S.ListHeadline>{texts.hidden}</S.ListHeadline>
+              <ReactSortable {...SORTABLE_COFIG} list={hiddenList} setList={updateHiddenList}>
+                {hiddenList.map(item => (
+                  <ColumnManagerItem
+                    data-testid="ds-column-manager-hidden-item"
+                    key={item.id}
+                    {...item}
+                    setFixed={setFixed}
+                    switchAction={toggleColumn}
+                    draggable
+                    texts={texts}
+                  />
+                ))}
+              </ReactSortable>
+            </>
+          )}
         </>
       ) : (
         <ColumnManagerSearchResults

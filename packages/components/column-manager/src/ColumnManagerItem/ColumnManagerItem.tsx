@@ -20,6 +20,7 @@ import Divider from '@synerise/ds-divider';
 import Menu from '@synerise/ds-menu';
 import { escapeRegEx } from '@synerise/ds-utils';
 
+import Tooltip from '@synerise/ds-tooltip';
 import * as S from './ColumnManagerItem.styles';
 import { Column, ColumnProps } from './ColumManagerIte.types';
 
@@ -88,7 +89,6 @@ const ColumnManagerItem: React.FC<Column & ColumnProps> = ({
   );
 
   return (
-    // eslint-disable-next-line react/jsx-props-no-spreading
     <S.ColumnManagerItem {...rest}>
       <S.ItemPart align="left">
         {draggable && <S.DragHandler component={<DragHandleM />} color={theme.palette['grey-400']} />}
@@ -106,7 +106,9 @@ const ColumnManagerItem: React.FC<Column & ColumnProps> = ({
             </Button>
           </Dropdown>
         )}
-        <Switch checked={visible} label="" onChange={(): void => switchAction(id, visible)} />
+        <Tooltip title={visible ? texts.switchOff : texts.switchOn} placement="topRight">
+          <Switch checked={visible} label="" onChange={(): void => switchAction(id, visible)} />
+        </Tooltip>
       </S.ItemPart>
     </S.ColumnManagerItem>
   );

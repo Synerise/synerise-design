@@ -51,6 +51,7 @@ const FilterTrigger: React.FC<Props> = ({
       <>
         <Tooltip title={selected?.name || tooltips.define}>
           <S.FilterButton
+            opened={opened}
             mode={opened ? 'icon-label' : 'single-icon'}
             type="ghost"
             onClick={opened ? show : handleOpen}

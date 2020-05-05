@@ -2,7 +2,30 @@ import styled, { css, FlattenInterpolation, ThemeProps } from 'styled-components
 import Button from '@synerise/ds-button';
 import { IconContainer } from '@synerise/ds-icon/dist/Icon.styles';
 
-export const FilterButton = styled(Button)``;
+const buttonTransition = 'cubic-bezier(.645,.045,.355,1)';
+
+export const FilterButton = styled(Button)<{ opened: boolean }>`
+  &:hover {
+    color: ${(props): string => props.theme.palette['blue-600']};
+    ${IconContainer} {
+      svg {
+        transition: all 0.3s ${buttonTransition};
+        fill: ${(props): string => props.theme.palette['blue-600']} !important;
+        color: ${(props): string => props.theme.palette['blue-600']} !important;
+      }
+    }
+  }
+  ${(props): FlattenInterpolation<ThemeProps<boolean>> | false =>
+    props.opened &&
+    css`
+    }
+    &:focus {
+      .btn-focus {
+        box-shadow: none;
+      }
+    }
+  `}
+`;
 
 export const ClearButton = styled(Button)`
   &&& {
@@ -20,6 +43,11 @@ export const ClearButton = styled(Button)`
         }
       }
     }
+    &:focus {
+      .btn-focus {
+        box-shadow: none;
+      }
+    }
   }
 `;
 
@@ -33,6 +61,7 @@ export const ListButton = styled(Button)`
       top: 0;
       width: 1px;
       height: 100%;
+      opacity: 0.3;
       background-color: ${(props): string => props.theme.palette['grey-400']};
       z-index: 10;
     }
@@ -44,7 +73,7 @@ export const FilterButtonLabel = styled.span`
   opacity: 0;
   width: 100%;
   visibility: hidden;
-  transition: width 0.3s ease, opacity: 0.3s ease, visiblity 0.3s ease, color 0s ease !important;
+  transition: width 0.3s ${buttonTransition}, opacity: 0.3s ${buttonTransition}, visiblity 0.3s ${buttonTransition}, color 0s ${buttonTransition} !important;
 `;
 
 export const FilterTrigger = styled.div<{ opened: boolean; selected?: object }>`

@@ -17,19 +17,12 @@ export interface ExpanderProps {
 }
 
 const Expander: React.FC<ExpanderProps> = ({ size, expanded, disabled, onClick }) => {
-  const defaultExpandedValue = expanded;
-  const [isExpanded, setExpanded] = React.useState(defaultExpandedValue || false);
-  const onPress = React.useCallback((): void => {
-    onClick && onClick();
-    setExpanded(!isExpanded);
-  }, [isExpanded, onClick]);
-
   return (
     <S.Expander
-      onClick={onPress}
+      onClick={onClick}
       size={ExpanderSize[size]}
       className="ds-expander"
-      expanded={isExpanded && !disabled}
+      expanded={expanded}
       disabled={disabled}
     >
       <Icon component={<AngleDownS />} />

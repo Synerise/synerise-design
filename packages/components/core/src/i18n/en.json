@@ -47,7 +47,9 @@
         "VIEW-DESCRIPTION": "Description",
         "VIEW-NAME-PLACEHOLDER": "Placeholder",
         "VIEW-DESCRIPTION-PLACEHOLDER": "Placeholder",
-        "MUST-NOT-BE-EMPTY": "Must not be empty"
+        "MUST-NOT-BE-EMPTY": "Must not be empty",
+        "SWITCH-ON": "Switch on",
+        "SWITCH-OFF": "Switch off"
     },
     "ICON-PICKER": {
       "NO-RESULTS": "No results"

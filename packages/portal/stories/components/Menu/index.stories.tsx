@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { boolean, select, text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
-import Checkbox from '@synerise/ds-checkbox/dist';
+import Checkbox from '@synerise/ds-checkbox';
 import Icon from '@synerise/ds-icon';
 import { FileM } from '@synerise/ds-icon/dist/icons';
 import Menu from '@synerise/ds-menu';
