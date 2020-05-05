@@ -18,6 +18,8 @@ import Dropdown from '@synerise/ds-dropdown';
 import Button from '@synerise/ds-button';
 import Divider from '@synerise/ds-divider';
 import Menu from '@synerise/ds-menu';
+import { escapeRegEx } from '@synerise/ds-utils';
+
 import * as S from './ColumnManagerItem.styles';
 import { Column, ColumnProps } from './ColumManagerIte.types';
 
@@ -50,7 +52,8 @@ const ColumnManagerItem: React.FC<Column & ColumnProps> = ({
 }) => {
   const columnName = React.useMemo(() => {
     if (searchQuery) {
-      const startOfQuery = name.toLowerCase().search(searchQuery.toLowerCase());
+      const escapedQuery = escapeRegEx(searchQuery);
+      const startOfQuery = name.toLowerCase().search(escapedQuery.toLowerCase());
       const result = name.substr(startOfQuery, searchQuery.length);
       return name.replace(result, `<span class="search-highlight">${result}</span>`);
     }

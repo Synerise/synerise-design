@@ -3,3 +3,4 @@ export { default as toCamelCase } from './toCamelCase/toCamelCase';
 export { default as useOnClickOutside } from './useOnClickOutside/useOnClickOutside';
 export { default as selectColorByLetter } from './selectColorByLetter/selectColorByLetter';
 export { default as focusWithArrowKeys } from './focusWithArrowKeys/focusWithArrowKeys';
+export { default as escapeRegEx } from './regex/regex';
