@@ -7,7 +7,7 @@ import Icon from '@synerise/ds-icon';
 import { AngleLeftS, AngleRightS } from '@synerise/ds-icon/dist/icons';
 import Button from '@synerise/ds-button';
 import SpinnerM from '@synerise/ds-icon/dist/icons/SpinnerM';
-import Checkbox from '@synerise/ds-checkbox/dist';
+import Checkbox from '@synerise/ds-checkbox';
 import * as S from './Table.styles';
 import { DSTableProps } from './Table.types';
 import TableHeader from './TableHeader/TableHeader';
