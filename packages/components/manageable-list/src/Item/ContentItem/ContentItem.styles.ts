@@ -7,13 +7,19 @@ import { ItemMeta } from '../ItemMeta/ItemMeta.styles';
 type ItemContainerProps = {
   opened: boolean;
   greyBackground: boolean | undefined;
+  outline?: boolean;
 };
 
 type DraggerWrapperProps = {
   disabled: boolean;
 };
 
+type ItemHeaderProps = {
+  hasPrefix: boolean;
+};
+
 export const DraggerWrapper = styled.div<DraggerWrapperProps>`
+  cursor: pointer;
   display: flex;
   opacity: ${({ disabled }): string => (disabled ? '0.4' : '1')};
 `;
@@ -50,14 +56,14 @@ export const ItemHeaderSuffix = styled.div`
   }
 `;
 
-export const ItemHeader = styled.div`
+export const ItemHeader = styled.div<ItemHeaderProps>`
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: stretch;
   width: 100%;
   padding: 12px;
-
+  ${(props): string | false => !props.hasPrefix && `padding-left:16px;`}
   ${Tag} {
     margin: 0 12px 0 0;
   }
@@ -108,18 +114,26 @@ export const ItemContainer = styled.div<ItemContainerProps>`
   margin-bottom: 16px;
   border-radius: 3px;
   position: relative;
-  background-color: ${({ theme, greyBackground }): string =>
-    greyBackground ? theme.palette.white : theme.palette['grey-050']};
-  box-shadow: ${({ greyBackground }): string => (greyBackground ? '0 4px 12px 0 rgba(35, 41, 54, 0.04)' : 'none')};
+  background-color: ${({ theme }): string => theme.palette.white};
+  box-shadow: ${({ greyBackground, theme }): string =>
+    greyBackground ? '0 4px 12px 0 rgba(35, 41, 54, 0.04)' : `0 0 0 1px ${theme.palette['grey-200']}`};
+
+  ${({ greyBackground, theme }): string | false =>
+    !greyBackground &&
+    `
+&:hover {
+    box-shadow: 0 0 0 1px ${theme.palette['grey-300']};
+  }
+`}
 
   ${ContentWrapper} {
     display: ${({ opened }): string => (opened ? 'flex' : 'none')};
   }
-  ${ItemHeader} {
-    .ant-btn {
-      transform: ${({ opened }): string => (opened ? 'rotateZ(-180deg)' : 'rotateZ(0deg)')};
-    }
-  }
 `;
 
-export const ToggleContentWrapper = styled.div``;
+export const ToggleContentWrapper = styled.div`
+  margin-left: 12px;
+`;
+export const DropdownTrigger = styled.span`
+  margin-left: 12px;
+`;

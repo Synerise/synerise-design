@@ -3,11 +3,11 @@ import { withTheme } from 'styled-components';
 import {
   CheckS,
   CircleShapeM,
-  DuplicateM,
   OptionHorizontalM,
-  TrashM,
   WarningFillM,
   EditM,
+  DuplicateM,
+  TrashM,
 } from '@synerise/ds-icon/dist/icons';
 import Icon from '@synerise/ds-icon';
 import Popconfirm from '@synerise/ds-popconfirm';
@@ -15,9 +15,8 @@ import ModalProxy from '@synerise/ds-modal';
 import Result from '@synerise/ds-result';
 import Button from '@synerise/ds-button';
 import Dropdown from '@synerise/ds-dropdown';
-import Menu from '@synerise/ds-menu';
 import * as S from '../ContentItem/ContentItem.styles';
-import { SelectFilterItem, ItemHeader, ItemMenu } from './FilterItem.styles';
+import { SelectFilterItem, ItemHeader, DropdownMenu, DropdownMenuItem } from './FilterItem.styles';
 import ItemName from '../ItemName/ItemName';
 import { ItemProps } from '../Item';
 import ItemMeta from '../ItemMeta/ItemMeta';
@@ -103,23 +102,23 @@ const FilterItem: React.FC<FilterItemProps> = ({
             <Dropdown
               trigger={['click']}
               overlay={
-                <ItemMenu>
+                <DropdownMenu>
                   {item.canUpdate && (
-                    <Menu.Item onClick={enterEditMode} prefixel={<Icon component={<EditM />} />}>
+                    <DropdownMenuItem onClick={enterEditMode} prefixel={<Icon component={<EditM />} />}>
                       {texts.itemActionRename}
-                    </Menu.Item>
+                    </DropdownMenuItem>
                   )}
                   {item.canDuplicate && (
-                    <Menu.Item onClick={handleDuplicate} prefixel={<Icon component={<DuplicateM />} />}>
+                    <DropdownMenuItem onClick={handleDuplicate} prefixel={<Icon component={<DuplicateM />} />}>
                       {texts.itemActionDuplicate}
-                    </Menu.Item>
+                    </DropdownMenuItem>
                   )}
                   {item.canDelete && (
-                    <Menu.Item danger onClick={handleRemove} prefixel={<Icon component={<TrashM />} />}>
+                    <DropdownMenuItem danger onClick={handleRemove} prefixel={<Icon component={<TrashM />} />}>
                       {texts.itemActionDelete}
-                    </Menu.Item>
+                    </DropdownMenuItem>
                   )}
-                </ItemMenu>
+                </DropdownMenu>
               }
             >
               <span className="ds-dropdown-trigger">

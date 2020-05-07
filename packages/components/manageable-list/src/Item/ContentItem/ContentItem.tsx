@@ -2,8 +2,9 @@ import * as React from 'react';
 import Icon from '@synerise/ds-icon';
 import DragHandleM from '@synerise/ds-icon/dist/icons/DragHandleM';
 import Button from '@synerise/ds-button';
-import AngleDownS from '@synerise/ds-icon/dist/icons/AngleDownS';
 import { withTheme } from 'styled-components';
+import Dropdown from '@synerise/ds-dropdown';
+import { OptionHorizontalM } from '@synerise/ds-icon/dist/icons';
 import * as S from './ContentItem.styles';
 import { ItemProps } from '../Item';
 import ItemActions from '../ItemActions/ItemActions';
@@ -19,6 +20,10 @@ export type ContentItemProps = {
   greyBackground?: boolean;
   theme: { [k: string]: string };
   changeOrderDisabled?: boolean;
+  outline?: boolean;
+  texts: {
+    [k: string]: string | React.ReactNode;
+  };
 };
 
 const ContentItem: React.FC<ContentItemProps> = ({
@@ -30,6 +35,8 @@ const ContentItem: React.FC<ContentItemProps> = ({
   greyBackground = false,
   changeOrderDisabled,
   theme,
+  outline,
+  texts,
 }): React.ReactElement => {
   const [contentVisible, setContentVisible] = React.useState(false);
   const [editMode, setEditMode] = React.useState(false);
@@ -45,19 +52,18 @@ const ContentItem: React.FC<ContentItemProps> = ({
     },
     [onUpdate]
   );
-
   const enterEditMode = React.useCallback((): void => {
     setEditMode(true);
   }, []);
-
   return (
     <S.ItemContainer
       opened={contentVisible}
       greyBackground={greyBackground}
       key={item.id}
       data-testid="item-with-content"
+      outline={!greyBackground && outline}
     >
-      <S.ItemHeader>
+      <S.ItemHeader hasPrefix={Boolean(draggable || item.tag || item.icon)}>
         <S.ItemHeaderPrefix>
           {draggable && (
             <S.DraggerWrapper disabled={Boolean(changeOrderDisabled)}>
@@ -73,13 +79,26 @@ const ContentItem: React.FC<ContentItemProps> = ({
         </S.ItemHeaderPrefix>
         <ItemName item={item} editMode={editMode} onUpdate={updateName} />
         <S.ItemHeaderSuffix>
-          <ItemActions item={item} duplicateAction={onDuplicate} removeAction={onRemove} editAction={enterEditMode} />
+          <ItemActions
+            item={item}
+            duplicateAction={onDuplicate}
+            duplicateActionTooltip={texts.itemActionDuplicateTooltip}
+            removeAction={onRemove}
+            removeActionTooltip={texts.itemActionDeleteTooltip}
+            editAction={enterEditMode}
+            editActionTooltip={texts.itemActionRenameTooltip}
+          />{' '}
           {item.content && (
             <S.ToggleContentWrapper data-testid="item-toggle-content-wrapper">
-              <Button type="ghost" onClick={toggleContentVisibility} mode="single-icon" shape="circle">
-                <Icon component={<AngleDownS />} size={24} />
-              </Button>
+              <Button.Expander onClick={toggleContentVisibility} expanded={contentVisible} />
             </S.ToggleContentWrapper>
+          )}
+          {item.dropdown && (
+            <Dropdown trigger={['click']} overlay={item.dropdown}>
+              <S.DropdownTrigger className="ds-dropdown-trigger">
+                <Icon component={<OptionHorizontalM />} color={theme.palette['grey-600']} />
+              </S.DropdownTrigger>
+            </Dropdown>
           )}
         </S.ItemHeaderSuffix>
       </S.ItemHeader>

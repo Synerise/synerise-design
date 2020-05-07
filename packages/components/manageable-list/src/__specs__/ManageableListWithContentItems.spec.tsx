@@ -44,7 +44,7 @@ const texts = {
   activateItemTitle: 'By activating this filter, you will cancel your unsaved filter settings',
   activate: 'Activate',
   cancel: 'Cancel',
-  deleteConfirmationTitle: 'Detele filter',
+  deleteConfirmationTitle: 'Delete filter',
   deleteConfirmationDescription: 'Deleting this filter will permanently remove it from templates library. All tables using this filter will be reset.',
   deleteLabel: 'Delete',
 };

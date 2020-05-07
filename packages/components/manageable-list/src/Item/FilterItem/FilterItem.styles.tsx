@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { IconContainer } from '@synerise/ds-icon/dist/Icon.styles';
 import Menu from '@synerise/ds-menu';
+import * as React from 'react';
 import { ItemLabel } from '../SimpleItem/SimpleItem.styles';
 import { ItemMeta } from '../ItemMeta/ItemMeta.styles';
 
@@ -26,18 +27,6 @@ export const SelectFilterItem = styled.div`
       top: 4px;
       left: 4px;
     }
-  }
-`;
-
-export const MenuList = styled.div`
-  && {
-    background-color: ${(props): string => props.theme.palette.white};
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    padding: 8px;
-    width: 216px;
   }
 `;
 
@@ -92,6 +81,14 @@ export const ItemHeader = styled.div`
   }
 `;
 
-export const ItemMenu = styled(Menu)`
+export const DropdownMenu = styled(Menu)`
   padding: 8px;
+`;
+export const DropdownMenuItem = styled(({ children, ...rest }) => (
+  // eslint-disable-next-line react/jsx-props-no-spreading
+  <Menu.Item {...rest}>{children}</Menu.Item>
+))`
+  &&& {
+    height: 32px;
+  }
 `;
