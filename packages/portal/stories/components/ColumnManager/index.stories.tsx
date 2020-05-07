@@ -199,6 +199,7 @@ const getColumnManagerTexts = () => ({
   apply: text('Column manager - apply', 'Apply'),
   fixedLeft: text('Column manager - fixed left', 'Fixed left'),
   fixedRight: text('Column manager - fixed right', 'Fixed right'),
+  group: text('Group', 'Group'),
   clear: text('Column manager - clear', 'Clear'),
   viewName: text('Column manager - view name', 'View name'),
   viewDescription: text('Column manager - view description', 'Description'),

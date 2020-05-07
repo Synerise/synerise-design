@@ -50,10 +50,19 @@ export type ViewMeta = {
   description: string;
 };
 
+export type GroupSettings = {
+  column?: Column;
+  settings: {
+    [key: string]: object;
+  };
+};
+
 export type State = {
   searchQuery: string;
   visibleList: Column[];
   hiddenList: Column[];
   itemFilterVisible: boolean;
   selectedFilterId: string | undefined;
+  activeColumn: Column | undefined;
+  groupSettings: GroupSettings | undefined;
 };

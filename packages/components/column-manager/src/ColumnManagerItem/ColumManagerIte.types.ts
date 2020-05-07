@@ -6,13 +6,16 @@ export type Column = {
   visible: boolean;
   type: string | 'text' | 'number' | 'date' | 'boolean' | 'list';
   fixed?: string | 'left' | 'right';
+  group?: boolean;
 };
 
 export type ColumnProps = {
   setFixed: (id: string, fixed?: string) => void;
+  showGroupSettings: (item: Column) => void;
   draggable?: boolean;
   switchAction: (id: string, visible: boolean) => void;
   searchQuery?: string;
+  item: Column;
   texts: {
     [k: string]: string | React.ReactNode;
   };

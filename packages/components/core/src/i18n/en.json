@@ -49,7 +49,8 @@
         "VIEW-DESCRIPTION-PLACEHOLDER": "Placeholder",
         "MUST-NOT-BE-EMPTY": "Must not be empty",
         "SWITCH-ON": "Switch on",
-        "SWITCH-OFF": "Switch off"
+        "SWITCH-OFF": "Switch off",
+        "GROUP": "Group"
     },
     "ICON-PICKER": {
       "NO-RESULTS": "No results"
