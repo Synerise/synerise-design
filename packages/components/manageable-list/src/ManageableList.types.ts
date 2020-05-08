@@ -20,6 +20,7 @@ export interface ManageableListProps {
   selectedItemId?: string;
   searchQuery?: string;
   expanderDisabled?: boolean;
+  onExpand?: (id: string, isExpanded: boolean) => void;
   texts: {
     addItemLabel?: string | React.ReactNode;
     showMoreLabel?: string | React.ReactNode;

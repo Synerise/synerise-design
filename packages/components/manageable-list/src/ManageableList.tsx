@@ -40,6 +40,7 @@ const ManageableList: React.FC<ManageableListProps> = ({
   selectedItemId,
   searchQuery,
   expanderDisabled,
+  onExpand,
   texts: {
     addItemLabel = <FormattedMessage id="DS.MANAGABLE-LIST.ADD-ITEM" />,
     showMoreLabel = <FormattedMessage id="DS.MANAGABLE-LIST.SHOW-MORE" />,
@@ -142,7 +143,7 @@ const ManageableList: React.FC<ManageableListProps> = ({
         texts={itemTexts}
         searchQuery={searchQuery}
         onExpand={(id, isExpanded): void => {
-          console.log(`Element with id ${id} has changed its expanded state to:`, isExpanded);
+          onExpand && onExpand(id, isExpanded);
         }}
         expanderDisabled={expanderDisabled}
       />
@@ -160,6 +161,7 @@ const ManageableList: React.FC<ManageableListProps> = ({
       itemTexts,
       searchQuery,
       expanderDisabled,
+      onExpand,
     ]
   );
 
