@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.1.9...@synerise/ds-items-roll@0.1.10) (2020-05-08)
+
+
+### Bug Fixes
+
+* **items-roll:** add spacing ([65d9eee](https://github.com/Synerise/synerise-design/commit/65d9eee43b89feeaae5dc68eb0a0eca196ac8f11))
+
+
+
+
+
 ## [0.1.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.1.8...@synerise/ds-items-roll@0.1.9) (2020-05-08)
 
 **Note:** Version bump only for package @synerise/ds-items-roll
