@@ -11,9 +11,9 @@ export type ScrollbarProps = {
   onScroll?: (e: React.UIEvent) => void;
 };
 
-const Scrollbar: React.FC<ScrollbarProps> = ({ children, classes, maxHeight, absolute = false ,onScroll}) => {
+const Scrollbar: React.FC<ScrollbarProps> = ({ children, classes, maxHeight, absolute = false, onScroll }) => {
   return (
-    <PerfectScrollbar onScroll={onScroll}>
+    <PerfectScrollbar onScroll={onScroll} options={{ minScrollbarLength: 48 }}>
       <S.ScrollbarContent className={classes} style={{ maxHeight }}>
         <S.ScrollbarWrapper absolute={absolute}>{children}</S.ScrollbarWrapper>
       </S.ScrollbarContent>
