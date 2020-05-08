@@ -19,20 +19,26 @@ interface Props<T extends { key: React.ReactText }> {
 // @ts-ignore
 const TableSelection: React.FC<Props> = ({ dataSource, selection }) => {
   const selectAll = React.useCallback(() => {
-    if (dataSource && selection) selection.setRowSelection(dataSource.map((record: Selection) => record.key));
+    if (dataSource && selection)
+      selection.onChange(
+        dataSource.map((record: Selection) => record.key),
+        dataSource
+      );
   }, [dataSource, selection]);
 
   const unselectAll = React.useCallback(() => {
-    if (selection) selection.setRowSelection([]);
+    if (selection) selection.onChange([], []);
   }, [selection]);
 
   const selectInvert = React.useCallback(() => {
-    if (dataSource && selection)
-      selection.setRowSelection(
-        dataSource
-          .filter((record: Selection) => !selection.selectedRowKeys.includes(record.key))
-          .map((record: Selection) => record.key)
+    if (dataSource && selection) {
+      const selected = dataSource.filter((record: Selection) => selection.selectedRowKeys.indexOf(record.key) < 0);
+
+      selection.onChange(
+        selected.map((record: Selection) => record.key),
+        selected
       );
+    }
   }, [dataSource, selection]);
 
   const allSelected = React.useMemo(() => {
