@@ -13,7 +13,6 @@ import { DSTableProps } from './Table.types';
 import TableHeader from './TableHeader/TableHeader';
 
 export const SELECTION_ALL = 'SELECTION_ALL';
-export const SELECTION_VISIBLE = 'SELECTION_VISIBLE';
 export const SELECTION_INVERT = 'SELECTION_INVERT';
 
 const ITEM_RENDER_TYPE = {
