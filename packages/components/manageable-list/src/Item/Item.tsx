@@ -39,6 +39,7 @@ export type ItemProps = {
     email?: string;
   };
   created?: string;
+  dropdown?: React.ReactElement;
 };
 
 const Item: React.FC<Props> = ({
@@ -67,6 +68,7 @@ const Item: React.FC<Props> = ({
           greyBackground={greyBackground}
           changeOrderDisabled={changeOrderDisabled}
           draggable={draggable}
+          texts={texts}
         />
       );
     case ListType.filter:

@@ -52,7 +52,6 @@ export const AntdMenu = styled(Menu)<AntdMenuProps>`
         }
       }
     `}
-
   > li {
     > .ant-menu-submenu-title {
       padding-left: 12px !important;

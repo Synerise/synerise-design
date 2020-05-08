@@ -89,7 +89,7 @@ const insertShapeStyles = (props: InsertShapeStyles): FlattenSimpleInterpolation
         padding: 0 8px;
       `;
 
-    case TagShape.SINGLE_CHARACTER_SQUARE:
+    case TagShape.SINGLE_CHARACTER_ROUND:
       return css`
         color: ${props.textColor || '#fff'};
         border-radius: 12px;
@@ -100,7 +100,7 @@ const insertShapeStyles = (props: InsertShapeStyles): FlattenSimpleInterpolation
         justify-content: center;
       `;
 
-    case TagShape.SINGLE_CHARACTER_ROUND:
+    case TagShape.SINGLE_CHARACTER_SQUARE:
       return css`
         color: ${props.textColor || '#fff'};
         border-radius: 3px;

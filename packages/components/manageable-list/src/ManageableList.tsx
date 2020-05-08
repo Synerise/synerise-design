@@ -45,8 +45,11 @@ export interface ManageableListProps {
     deleteConfirmationYes?: string | React.ReactNode;
     deleteConfirmationNo?: string | React.ReactNode;
     itemActionRename?: string | React.ReactNode;
+    itemActionRenameTooltip?: string | React.ReactNode;
     itemActionDuplicate?: string | React.ReactNode;
+    itemActionDuplicateTooltip?: string | React.ReactNode;
     itemActionDelete?: string | React.ReactNode;
+    itemActionDeleteTooltip?: string | React.ReactNode;
   };
 }
 
@@ -82,8 +85,11 @@ const ManageableList: React.FC<ManageableListProps> = ({
     deleteConfirmationYes = <FormattedMessage id="DS.MANAGABLE-LIST.DELETE" />,
     deleteConfirmationNo = <FormattedMessage id="DS.MANAGABLE-LIST.CANCEL" />,
     itemActionRename = <FormattedMessage id="DS.MANAGABLE-LIST.ITEM-RENAME" />,
+    itemActionRenameTooltip = <FormattedMessage id="DS.MANAGABLE-LIST.ITEM-RENAME" />,
     itemActionDuplicate = <FormattedMessage id="DS.MANAGABLE-LIST.ITEM-DUPLICATE" />,
+    itemActionDuplicateTooltip = <FormattedMessage id="DS.MANAGABLE-LIST.ITEM-DUPLICATE" />,
     itemActionDelete = <FormattedMessage id="DS.MANAGABLE-LIST.ITEM-DELETE" />,
+    itemActionDeleteTooltip = <FormattedMessage id="DS.MANAGABLE-LIST.ITEM-DELETE" />,
   },
 }) => {
   const [allItemsVisible, setAllItemsVisible] = React.useState(false);
@@ -97,8 +103,11 @@ const ManageableList: React.FC<ManageableListProps> = ({
     deleteConfirmationYes,
     deleteConfirmationNo,
     itemActionRename,
+    itemActionRenameTooltip,
     itemActionDuplicate,
+    itemActionDuplicateTooltip,
     itemActionDelete,
+    itemActionDeleteTooltip,
   };
 
   const getItemsOverLimit = React.useMemo((): number => {

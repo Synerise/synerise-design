@@ -90,7 +90,7 @@ import ItemFilter from '@synerise/ds-item-filter'
 | activateItemTitle             | Popconfirm title                    | string | 'By activating this filter, you will cancel your unsaved filter settings',                                             |
 | activate                      | Activate button label               | string | 'Activate',                                                                                                            |
 | cancel                        | Cancel button label                 | string | 'Cancel',                                                                                                              |
-| deleteConfirmationTitle       | Delete confirmation title           | string | 'Detele filter',                                                                                                       |
+| deleteConfirmationTitle       | Delete confirmation title           | string | 'Delete filter',                                                                                                       |
 | deleteConfirmationDescription | Delete confirmation description     | string | 'Deleting this filter will permanently remove it from templates library. All tables using this filter will be reset.', |
 | deleteConfirmationYes         | Label of delete confirmation button | string | 'Delete'                                                                                                               |
 | deleteConfirmationNo          | Label of delete cancellation button | string | 'Cancel'                                                                                                               |

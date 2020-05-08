@@ -135,7 +135,7 @@ const getTexts = () => ({
   activateItemTitle: text('Activate item', 'By activating this filter, you will cancel your unsaved filter settings'),
   activate: text('Activate', 'Activate'),
   cancel: text('Cancel', 'Cancel'),
-  deleteConfirmationTitle: text('Delete confirmation title', 'Detele filter'),
+  deleteConfirmationTitle: text('Delete confirmation title', 'Delete filter'),
   deleteConfirmationDescription: text('Delete confirmation description', 'Deleting this filter will permanently remove it from templates library. All tables using this filter will be reset.'),
   deleteLabel: text('Delete', 'Delete'),
   noResults: text('No results', 'No results'),
