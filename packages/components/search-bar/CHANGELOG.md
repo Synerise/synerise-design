@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.40](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search-bar@0.2.39...@synerise/ds-search-bar@0.2.40) (2020-05-08)
+
+
+### Bug Fixes
+
+* **search-bar:** remove placeholder line height ([6a017f9](https://github.com/Synerise/synerise-design/commit/6a017f97e8e9838bec4b0f1e198af73498460092))
+
+
+
+
+
 ## [0.2.39](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search-bar@0.2.38...@synerise/ds-search-bar@0.2.39) (2020-05-08)
 
 **Note:** Version bump only for package @synerise/ds-search-bar
