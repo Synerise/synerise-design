@@ -39,7 +39,7 @@ const ContentItem: React.FC<ContentItemProps> = ({
   onExpand,
   expanderDisabled,
 }): React.ReactElement => {
-  const [contentVisible, setContentVisible] = React.useState(false);
+  const [contentVisible, setContentVisible] = React.useState(item.showContentOnMount);
   const [editMode, setEditMode] = React.useState(false);
 
   const toggleContentVisibility = React.useCallback(

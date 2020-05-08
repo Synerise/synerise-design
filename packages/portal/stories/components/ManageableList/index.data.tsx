@@ -95,6 +95,7 @@ export const CONTENT_ITEMS: any = [
     canDelete: true,
     tag: <Tag name={'1'} shape={TagShape.SINGLE_CHARACTER_ROUND} color={theme.palette['grey-200']} textColor={theme.palette['grey-500']} />,
     content: <div>content</div>,
+    showContentOnMount:true,
   },
   {
     id: '00000000-0000-0000-0000-000000000001',
