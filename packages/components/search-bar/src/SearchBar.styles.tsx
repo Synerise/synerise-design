@@ -78,9 +78,7 @@ export const SearchBarWrapper = styled.div<{
         return 'calc(100% - 24px)';
       }};
     }
-    input::placeholder {
-      line-height: 18px;
-    }
+
     &:hover {
       ${IconLeftWrapper} {
         svg {
