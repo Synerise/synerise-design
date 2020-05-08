@@ -16,14 +16,14 @@ export type ContentItemProps = {
   onRemove?: (removeParams: { id: string }) => void;
   onDuplicate?: (duplicateParams: { id: string }) => void;
   onUpdate?: (updateParams: { id: string; name: string }) => void;
-  onSelect: (selectParams: { id: string }) => void;
   greyBackground?: boolean;
   theme: { [k: string]: string };
   changeOrderDisabled?: boolean;
-  outline?: boolean;
   texts: {
     [k: string]: string | React.ReactNode;
   };
+  onExpand: (id: string, isExpanded: boolean) => void;
+  expanderDisabled?: boolean;
 };
 
 const ContentItem: React.FC<ContentItemProps> = ({
@@ -35,15 +35,20 @@ const ContentItem: React.FC<ContentItemProps> = ({
   greyBackground = false,
   changeOrderDisabled,
   theme,
-  outline,
   texts,
+  onExpand,
+  expanderDisabled,
 }): React.ReactElement => {
   const [contentVisible, setContentVisible] = React.useState(false);
   const [editMode, setEditMode] = React.useState(false);
 
-  const toggleContentVisibility = React.useCallback((): void => {
-    setContentVisible(!contentVisible);
-  }, [setContentVisible, contentVisible]);
+  const toggleContentVisibility = React.useCallback(
+    (visibility: boolean): void => {
+      setContentVisible(visibility);
+      item && item.id && onExpand && onExpand(item.id, visibility);
+    },
+    [setContentVisible, item, onExpand]
+  );
 
   const updateName = React.useCallback(
     (updateParams): void => {
@@ -61,9 +66,16 @@ const ContentItem: React.FC<ContentItemProps> = ({
       greyBackground={greyBackground}
       key={item.id}
       data-testid="item-with-content"
-      outline={!greyBackground && outline}
     >
-      <S.ItemHeader hasPrefix={Boolean(draggable || item.tag || item.icon)}>
+      <S.ItemHeader
+        hasPrefix={Boolean(draggable || item.tag || item.icon)}
+        onDoubleClick={(): void => {
+          toggleContentVisibility(false);
+        }}
+        onClick={(): void => {
+          !contentVisible && toggleContentVisibility(true);
+        }}
+      >
         <S.ItemHeaderPrefix>
           {draggable && (
             <S.DraggerWrapper disabled={Boolean(changeOrderDisabled)}>
@@ -88,14 +100,25 @@ const ContentItem: React.FC<ContentItemProps> = ({
             editAction={enterEditMode}
             editActionTooltip={texts.itemActionRenameTooltip}
           />{' '}
-          {item.content && (
+          {item.content && !expanderDisabled && (
             <S.ToggleContentWrapper data-testid="item-toggle-content-wrapper">
-              <Button.Expander onClick={toggleContentVisibility} expanded={contentVisible} />
+              <Button.Expander
+                onClick={(e: React.MouseEvent<HTMLButtonElement>): void => {
+                  e.stopPropagation();
+                  toggleContentVisibility(!contentVisible);
+                }}
+                expanded={contentVisible}
+              />
             </S.ToggleContentWrapper>
           )}
           {item.dropdown && (
             <Dropdown trigger={['click']} overlay={item.dropdown}>
-              <S.DropdownTrigger className="ds-dropdown-trigger">
+              <S.DropdownTrigger
+                className="ds-dropdown-trigger"
+                onClick={(e: React.MouseEvent<HTMLSpanElement>): void => {
+                  e.stopPropagation();
+                }}
+              >
                 <Icon component={<OptionHorizontalM />} color={theme.palette['grey-600']} />
               </S.DropdownTrigger>
             </Dropdown>

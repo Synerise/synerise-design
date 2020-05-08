@@ -19,6 +19,8 @@ type Props = {
   texts: {
     [k: string]: string | React.ReactNode;
   };
+  onExpand: (id: string, isExpanded: boolean) => void;
+  expanderDisabled?: boolean;
 };
 
 export type ItemProps = {
@@ -55,6 +57,8 @@ const Item: React.FC<Props> = ({
   selected,
   texts,
   searchQuery,
+  onExpand,
+  expanderDisabled,
 }) => {
   switch (listType) {
     case ListType.content:
@@ -64,10 +68,11 @@ const Item: React.FC<Props> = ({
           onDuplicate={onDuplicate}
           onUpdate={onUpdate}
           onRemove={onRemove}
-          onSelect={onSelect}
           greyBackground={greyBackground}
           changeOrderDisabled={changeOrderDisabled}
           draggable={draggable}
+          onExpand={onExpand}
+          expanderDisabled={expanderDisabled}
           texts={texts}
         />
       );

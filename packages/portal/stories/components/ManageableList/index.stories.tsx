@@ -3,7 +3,13 @@ import ManageableList from '@synerise/ds-manageable-list';
 import { withState } from '@dump247/storybook-state';
 import { action } from '@storybook/addon-actions';
 import { boolean, text } from '@storybook/addon-knobs';
-import { EMPTY_CONTENT_ITEM, CONTENT_ITEMS, EMPTY_ITEM, FILTER_LIST_ITEMS, ITEMS, SOLID_LIST_ITEMS } from './data';
+import {
+  EMPTY_CONTENT_ITEM,
+  CONTENT_ITEMS,
+  EMPTY_ITEM,
+  FILTER_LIST_ITEMS,
+  ITEMS,
+} from './index.data';
 
 const decorator = storyFn => (
   <div style={{ width: '600px' }}>
@@ -33,7 +39,6 @@ const setSelectedItem = (props, store): void => {
     selectedItemId: props.id,
   });
 };
-
 
 const getTexts = () => ({
   addItemLabel: text('Add item label', 'Add position'),
@@ -86,15 +91,18 @@ const stories = {
   emptyList: () => {
     const texts = getTexts();
     return (
-    <ManageableList maxToShowItems={5}
-      onItemAdd = {action('onItemAdd')}
-      onItemRemove = {action('onItemRemove')}
-      onItemEdit = {action('onItemEdit')}
-      onItemSelect = {action('onItemSelect')}
-      items = {[]}
-      loading = {false}
-      texts = {texts} />
-  )},
+      <ManageableList
+        maxToShowItems={5}
+        onItemAdd={action('onItemAdd')}
+        onItemRemove={action('onItemRemove')}
+        onItemEdit={action('onItemEdit')}
+        onItemSelect={action('onItemSelect')}
+        items={[]}
+        loading={false}
+        texts={texts}
+      />
+    );
+  },
   contentList: withState({
     items: CONTENT_ITEMS,
   })(({ store }) => {
@@ -182,111 +190,10 @@ const stories = {
       />
     );
   }),
-  solidList: withState({
-    items: SOLID_LIST_ITEMS,
-  })(({ store }) => {
-    const handleChangeOrder = newOrder => {
-      store.set({ items: newOrder });
-    };
-
-    const addItem = (): void => {
-      store.set({
-        items: [
-          ...store.state.items,
-          {
-            ...EMPTY_CONTENT_ITEM,
-            id: Date.now(),
-          },
-        ],
-      });
-    };
-
-    const duplicateItem = (props): void => {
-      const itemForDuplication = store.state.items.find(item => item.id === props.id);
-      store.set({
-        items: [
-          ...store.state.items,
-          {
-            ...itemForDuplication,
-            id: Date.now(),
-          },
-        ],
-      });
-    };
-
-    return (
-      <ManageableList
-        maxToShowItems={5}
-        onItemAdd={addItem}
-        onItemRemove={props => removeItem(props, store)}
-        onItemEdit={props => editItem(props, store)}
-        onItemSelect={action('onItemSelect')}
-        onItemDuplicate={duplicateItem}
-        onChangeOrder={boolean('Change order available', false) ? handleChangeOrder : null}
-        type="content"
-        items={store.state.items}
-        loading={false}
-        addButtonDisabled={boolean('Disable add item button', false)}
-        changeOrderDisabled={boolean('Disable change order', false)}
-        greyBackground
-        texts={getTexts()}
-      />
-    );
-  }),
-  solidListOutlined: withState({
-    items: SOLID_LIST_ITEMS,
-  })(({ store }) => {
-    const handleChangeOrder = newOrder => {
-      store.set({ items: newOrder });
-    };
-
-    const addItem = (): void => {
-      store.set({
-        items: [
-          ...store.state.items,
-          {
-            ...EMPTY_CONTENT_ITEM,
-            id: Date.now(),
-          },
-        ],
-      });
-    };
-
-    const duplicateItem = (props): void => {
-      const itemForDuplication = store.state.items.find(item => item.id === props.id);
-      store.set({
-        items: [
-          ...store.state.items,
-          {
-            ...itemForDuplication,
-            id: Date.now(),
-          },
-        ],
-      });
-    };
-
-    return (
-      <ManageableList
-        maxToShowItems={5}
-        onItemAdd={addItem}
-        onItemRemove={props => removeItem(props, store)}
-        onItemEdit={props => editItem(props, store)}
-        onItemSelect={action('onItemSelect')}
-        onItemDuplicate={duplicateItem}
-        onChangeOrder={boolean('Change order available', false) ? handleChangeOrder : null}
-        type="content"
-        items={store.state.items}
-        loading={false}
-        addButtonDisabled={boolean('Disable add item button', false)}
-        changeOrderDisabled={boolean('Disable change order', false)}
-        texts={getTexts()}
-      />
-    );
-  }),
 };
 
 export default {
-  name: 'Components|Manageable List',
+  name: 'Manageable List|Examples',
   decorator,
   stories,
   Component: ManageableList,

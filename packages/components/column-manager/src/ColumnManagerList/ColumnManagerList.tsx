@@ -5,7 +5,7 @@ import ColumnManagerItem from '../ColumnManagerItem/ColumnManagerItem';
 import ColumnManagerSearchResults from '../ColumnManagerSearchResults/ColumnManagerSearchResults';
 import { Props } from './ColumnManagerList.types';
 
-const SORTABLE_COFIG = {
+const SORTABLE_CONFIG = {
   ghostClass: 'sortable-list-ghost-element',
   className: 'sortable-list',
   animation: 150,
@@ -29,7 +29,7 @@ const ColumnManagerList: React.FC<Props> = ({
       {!searchQuery ? (
         <>
           <S.ListHeadline>{texts.visible}</S.ListHeadline>
-          <ReactSortable {...SORTABLE_COFIG} list={visibleList} setList={updateVisibleList}>
+          <ReactSortable {...SORTABLE_CONFIG} list={visibleList} setList={updateVisibleList}>
             {visibleList.map(item => (
               <ColumnManagerItem
                 data-testid="ds-column-manager-visible-item"
@@ -45,7 +45,7 @@ const ColumnManagerList: React.FC<Props> = ({
           {hiddenList.length > 0 && (
             <>
               <S.ListHeadline>{texts.hidden}</S.ListHeadline>
-              <ReactSortable {...SORTABLE_COFIG} list={hiddenList} setList={updateHiddenList}>
+              <ReactSortable {...SORTABLE_CONFIG} list={hiddenList} setList={updateHiddenList}>
                 {hiddenList.map(item => (
                   <ColumnManagerItem
                     data-testid="ds-column-manager-hidden-item"

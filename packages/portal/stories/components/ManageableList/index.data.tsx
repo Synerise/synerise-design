@@ -7,6 +7,7 @@ import { boolean, number, text } from '@storybook/addon-knobs';
 import { DropdownMenu, DropdownMenuItem } from '@synerise/ds-manageable-list/dist/Item/FilterItem/FilterItem.styles';
 import Icon from '@synerise/ds-icon';
 import { DuplicateM, EditM, ShowAddM, TrashM } from '@synerise/ds-icon/dist/icons';
+import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 
 export const ITEMS: any = [
   {
@@ -83,7 +84,7 @@ export const CONTENT_ITEMS: any = [
     canAdd: true,
     canUpdate: false,
     canDelete: false,
-    tag: <Tag name={'A'} shape={TagShape.SINGLE_CHARACTER_ROUND} color={'red'} />,
+    tag: <Tag name={'A'} shape={TagShape.SINGLE_CHARACTER_SQUARE} color={theme.palette['grey-200']} textColor={theme.palette['grey-500']} />,
     content: <div>content</div>,
   },
   {
@@ -92,7 +93,7 @@ export const CONTENT_ITEMS: any = [
     canAdd: true,
     canUpdate: true,
     canDelete: true,
-    tag: <Tag name={'1'} shape={TagShape.SINGLE_CHARACTER_SQUARE} color={'#f3f5f6'} textColor={'#949ea6'} />,
+    tag: <Tag name={'1'} shape={TagShape.SINGLE_CHARACTER_ROUND} color={theme.palette['grey-200']} textColor={theme.palette['grey-500']} />,
     content: <div>content</div>,
   },
   {
@@ -112,7 +113,7 @@ export const EMPTY_CONTENT_ITEM = {
   canAdd: true,
   canUpdate: true,
   canDelete: true,
-  tag: <Tag name={'A'} shape={TagShape.SINGLE_CHARACTER_ROUND} color={'red'} />,
+  tag: <Tag name={'A'} shape={TagShape.SINGLE_CHARACTER_SQUARE} color={theme.palette['grey-200']} textColor={theme.palette['grey-500']} />,
   content: <div>content</div>,
 };
 
@@ -158,7 +159,7 @@ export const SOLID_LIST_ITEMS: any = [
     canUpdate: true,
     canDelete: true,
     content: <Input label={'Label'} placeholder={'Placeholder'} style={{ width: '520px' }} resetMargin />,
-    tag: <Tag name={'A'} shape={TagShape.SINGLE_CHARACTER_SQUARE} color={'orange'} />,
+    tag: <Tag name={'A'} shape={TagShape.SINGLE_CHARACTER_SQUARE} color={theme.palette['grey-200']} textColor={theme.palette['grey-500']} />,
   },
   {
     id: '00000000-0000-0000-0000-000000000002',
@@ -166,7 +167,7 @@ export const SOLID_LIST_ITEMS: any = [
     canUpdate: true,
     canDelete: true,
     content: <Input label={'Label'} placeholder={'Placeholder'} style={{ width: '520px' }} resetMargin />,
-    tag: <Tag name={'1'} shape={TagShape.SINGLE_CHARACTER_ROUND} color={'grey'} />,
+    tag: <Tag name={'1'} shape={TagShape.SINGLE_CHARACTER_SQUARE} color={theme.palette['grey-200']} textColor={theme.palette['grey-500']} />,
   },
   {
     id: '00000000-0000-0000-0000-000000000001',

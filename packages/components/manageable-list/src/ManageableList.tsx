@@ -6,6 +6,7 @@ import * as S from './ManageableList.styles';
 import Item, { ItemProps } from './Item/Item';
 import AddItemWithName from './AddItemWithName/AddItemWithName';
 import AddItem from './AddItem/AddItem';
+import { ManageableListProps } from './ManageableList.types';
 
 export enum ListType {
   default = 'default',
@@ -13,46 +14,13 @@ export enum ListType {
   filter = 'filter',
 }
 
-export interface ManageableListProps {
-  className?: string;
-  maxToShowItems: number;
-  onItemAdd?: (addParams?: { name: string }) => void;
-  onItemRemove?: (removeParams: { id: string }) => void;
-  onItemEdit?: (editParams: { id: string; name: string }) => void;
-  onItemSelect: (selectParams: { id: string }) => void;
-  onItemDuplicate?: (duplicateParams: { id: string }) => void;
-  onChangeOrder?: (newOrder: ItemProps[]) => void;
-  items: ItemProps[];
-  loading: boolean;
-  type?: string;
-  addButtonDisabled?: boolean;
-  changeOrderDisabled?: boolean;
-  greyBackground?: boolean;
-  placeholder?: string;
-  selectedItemId?: string;
-  searchQuery?: string;
-  texts: {
-    addItemLabel?: string | React.ReactNode;
-    showMoreLabel?: string | React.ReactNode;
-    showLessLabel?: string | React.ReactNode;
-    more?: string | React.ReactNode;
-    less?: string | React.ReactNode;
-    activateItemTitle?: string | React.ReactNode;
-    activate?: string | React.ReactNode;
-    cancel?: string | React.ReactNode;
-    deleteConfirmationTitle?: string | React.ReactNode;
-    deleteConfirmationDescription?: string | React.ReactNode;
-    deleteConfirmationYes?: string | React.ReactNode;
-    deleteConfirmationNo?: string | React.ReactNode;
-    itemActionRename?: string | React.ReactNode;
-    itemActionRenameTooltip?: string | React.ReactNode;
-    itemActionDuplicate?: string | React.ReactNode;
-    itemActionDuplicateTooltip?: string | React.ReactNode;
-    itemActionDelete?: string | React.ReactNode;
-    itemActionDeleteTooltip?: string | React.ReactNode;
-  };
-}
-
+const SORTABLE_CONFIG = {
+  ghostClass: 'sortable-list-ghost-element',
+  className: 'sortable-list',
+  animation: 150,
+  group: 'column-manager',
+  forceFallback: true,
+};
 const ManageableList: React.FC<ManageableListProps> = ({
   className,
   onItemAdd,
@@ -71,6 +39,7 @@ const ManageableList: React.FC<ManageableListProps> = ({
   placeholder,
   selectedItemId,
   searchQuery,
+  expanderDisabled,
   texts: {
     addItemLabel = <FormattedMessage id="DS.MANAGABLE-LIST.ADD-ITEM" />,
     showMoreLabel = <FormattedMessage id="DS.MANAGABLE-LIST.SHOW-MORE" />,
@@ -172,6 +141,10 @@ const ManageableList: React.FC<ManageableListProps> = ({
         selected={Boolean(item.id === selectedItemId)}
         texts={itemTexts}
         searchQuery={searchQuery}
+        onExpand={(id, isExpanded): void => {
+          console.log(`Element with id ${id} has changed its expanded state to:`, isExpanded);
+        }}
+        expanderDisabled={expanderDisabled}
       />
     ),
     [
@@ -186,12 +159,13 @@ const ManageableList: React.FC<ManageableListProps> = ({
       selectedItemId,
       itemTexts,
       searchQuery,
+      expanderDisabled,
     ]
   );
 
   const renderList = React.useCallback(() => {
     return onChangeOrder && !changeOrderDisabled ? (
-      <ReactSortable list={items} setList={onChangeOrder}>
+      <ReactSortable {...SORTABLE_CONFIG} list={items} setList={onChangeOrder}>
         {visibleItems.map(getItem)}
       </ReactSortable>
     ) : (
