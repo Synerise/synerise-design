@@ -3,6 +3,7 @@ import { VariableSizeGrid as Grid } from 'react-window';
 import ResizeObserver from 'rc-resize-observer';
 import classNames from 'classnames';
 import Checkbox from '@synerise/ds-checkbox';
+import Scrollbar from '@synerise/ds-scrollbar';
 import DSTable from '../Table';
 import { DSTableProps } from '../Table.types';
 
@@ -131,11 +132,20 @@ function VirtualTable<T extends object = any>(props: Props<T>): React.ReactEleme
     }
   };
 
+  const CustomScrollbar = React.useCallback(({ onScroll, children }): React.ReactElement => {
+    return (
+      <Scrollbar onScroll={onScroll} absolute maxHeight={scroll.y}>
+        {children}
+      </Scrollbar>
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   React.useEffect(() => resetVirtualGrid, []);
   React.useEffect(() => resetVirtualGrid, [tableWidth]);
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const renderVirtualList = (rawData: T[], { scrollbarSize, ref, onScroll }: any): React.ReactNode => {
+  const renderVirtualList = (rawData: T[], { ref, onScroll }: any): React.ReactNode => {
     // eslint-disable-next-line no-param-reassign
     ref.current = connectObject;
     return (
@@ -147,7 +157,7 @@ function VirtualTable<T extends object = any>(props: Props<T>): React.ReactEleme
         columnCount={mergedColumns.length}
         columnWidth={(index: number): number => {
           const { width } = mergedColumns[index];
-          const columnWidth = index === mergedColumns.length - 1 ? width - scrollbarSize - 1 : width;
+          const columnWidth = index === mergedColumns.length - 1 ? width - 1 : width;
           return columnWidth;
         }}
         height={scroll.y}
@@ -157,6 +167,7 @@ function VirtualTable<T extends object = any>(props: Props<T>): React.ReactEleme
         onScroll={({ scrollLeft }: { scrollLeft: number }): void => {
           onScroll({ scrollLeft });
         }}
+        outerElementType={CustomScrollbar}
       >
         {/* eslint-disable-next-line @typescript-eslint/explicit-function-return-type */}
         {({ columnIndex, rowIndex, style }: { columnIndex: number; rowIndex: number; style: object }) => (
