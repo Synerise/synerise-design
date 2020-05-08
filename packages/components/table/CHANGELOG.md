@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.9.6...@synerise/ds-table@0.10.0) (2020-05-08)
+
+
+### Bug Fixes
+
+* **table:** fix fixed columns stlyes ([720e9bb](https://github.com/synerise/synerise-design/commit/720e9bb2ffd1088eb122446a294c34665315f14b))
+* **table:** fix imports ([7405e77](https://github.com/synerise/synerise-design/commit/7405e77d1ca5292f5ebc66c91af7ca5f4fdd6c34))
+* **table:** fix row selection styles ([4dc77e0](https://github.com/synerise/synerise-design/commit/4dc77e025eb64d36a96dbf4351811d608655e636))
+* **table:** fix styles ([c539407](https://github.com/synerise/synerise-design/commit/c539407f51548964afb3aa8029e46d6d83a6a38e))
+* **table:** fix table styles ([474fc63](https://github.com/synerise/synerise-design/commit/474fc631d54aee0eb31d796b10dc3887a9eef7c7))
+* **table:** fix table trigger styles ([c3106e9](https://github.com/synerise/synerise-design/commit/c3106e90fdc99664df4cf01534d3aaa49bd203bf))
+* **table:** fix table virtualization ([2c54e9b](https://github.com/synerise/synerise-design/commit/2c54e9b1867f695e037562571862436c3b24548b))
+* **table:** fix types ([888a210](https://github.com/synerise/synerise-design/commit/888a21044f735776bd51b6a492019e8b37f7a960))
+* **table:** remove duplicated onChange method ([a92daaf](https://github.com/synerise/synerise-design/commit/a92daaf10286dee7299bca03c6eee3b30a04a2c8))
+* **table:** update stories ([d821b8b](https://github.com/synerise/synerise-design/commit/d821b8b22fc3679abe380c5a9a770974ba959b8e))
+
+
+### Features
+
+* **table:** add ds-scrollbar to VirtualTable ([b510eac](https://github.com/synerise/synerise-design/commit/b510eac18a2abcc2ab9946941354688c1a19b581))
+
+
+
+
+
 ## [0.9.6](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.9.5...@synerise/ds-table@0.9.6) (2020-05-05)
 
 **Note:** Version bump only for package @synerise/ds-table

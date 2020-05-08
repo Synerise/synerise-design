@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-column-manager@0.3.6...@synerise/ds-column-manager@0.4.0) (2020-05-08)
+
+
+### Bug Fixes
+
+* **column-manager:** fix column-manager drag&drop styles ([c391d71](https://github.com/Synerise/synerise-design/commit/c391d71d8ffc635bd0df4790ef2431367b0d73bc))
+* **column-manager:** fix scrollbar ([714856a](https://github.com/Synerise/synerise-design/commit/714856a6ba7b9bc9b39700039f2f38b631ce6ed7))
+* **manageable-list:** styles update - outline style added ([f94d29e](https://github.com/Synerise/synerise-design/commit/f94d29ed1d512f0e6dd67376f7df3fc5837adeaf))
+
+
+### Features
+
+* **column-manager:** add tooltip to column visibility switch ([de48cdc](https://github.com/Synerise/synerise-design/commit/de48cdce27c7d9573e63da4703f51836c55ed533))
+* **column-manager:** hide empty list of hidden columns ([0051e62](https://github.com/Synerise/synerise-design/commit/0051e624a588176a167dcbf2815bfd45228e280a))
+
+
+
+
+
 ## [0.3.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-column-manager@0.3.5...@synerise/ds-column-manager@0.3.6) (2020-05-05)
 
 

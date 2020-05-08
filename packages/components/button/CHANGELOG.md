@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.6](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.12.5...@synerise/ds-button@0.12.6) (2020-05-08)
+
+
+### Bug Fixes
+
+* **button:** remove state from Button.expander ([2d398da](https://github.com/synerise/synerise-design/commit/2d398da89805fa3e94544116af10a9b85efe8ebf))
+
+
+
+
+
 ## [0.12.5](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.12.4...@synerise/ds-button@0.12.5) (2020-05-05)
 
 **Note:** Version bump only for package @synerise/ds-button

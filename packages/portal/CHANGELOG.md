@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.60.0](https://github.com/synerise/synerise-design/compare/portal@0.59.7...portal@0.60.0) (2020-05-08)
+
+
+### Bug Fixes
+
+* **button:** remove state from Button.expander ([2d398da](https://github.com/synerise/synerise-design/commit/2d398da89805fa3e94544116af10a9b85efe8ebf))
+* **manageable-list:** styles update - outline style added ([f94d29e](https://github.com/synerise/synerise-design/commit/f94d29ed1d512f0e6dd67376f7df3fc5837adeaf))
+* **table:** fix imports ([7405e77](https://github.com/synerise/synerise-design/commit/7405e77d1ca5292f5ebc66c91af7ca5f4fdd6c34))
+* **table:** fix stories ([667d3eb](https://github.com/synerise/synerise-design/commit/667d3ebd2da1ca5cb0d985a89ab313c6e386693d))
+* **table:** fix styles ([c539407](https://github.com/synerise/synerise-design/commit/c539407f51548964afb3aa8029e46d6d83a6a38e))
+* **table:** fix table virtualization ([2c54e9b](https://github.com/synerise/synerise-design/commit/2c54e9b1867f695e037562571862436c3b24548b))
+* **table:** fix types ([888a210](https://github.com/synerise/synerise-design/commit/888a21044f735776bd51b6a492019e8b37f7a960))
+* **table:** update stories ([d821b8b](https://github.com/synerise/synerise-design/commit/d821b8b22fc3679abe380c5a9a770974ba959b8e))
+
+
+### Features
+
+* **table:** add ds-scrollbar to VirtualTable ([b510eac](https://github.com/synerise/synerise-design/commit/b510eac18a2abcc2ab9946941354688c1a19b581))
+* **table:** add story with fixed columns ([1681d23](https://github.com/synerise/synerise-design/commit/1681d2326ef6370af4d8be5c6c0f480016e06a8c))
+* **table:** expand on row click example ([8bbe78e](https://github.com/synerise/synerise-design/commit/8bbe78e95af56ed885a7bd88048556adef18a7f9))
+
+
+
+
+
 ## [0.59.7](https://github.com/synerise/synerise-design/compare/portal@0.59.6...portal@0.59.7) (2020-05-04)
 
 

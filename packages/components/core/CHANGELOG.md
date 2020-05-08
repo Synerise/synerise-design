@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.14.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.13.1...@synerise/ds-core@0.14.0) (2020-05-08)
+
+
+### Features
+
+* **column-manager:** add tooltip to column visibility switch ([de48cdc](https://github.com/synerise/synerise-design/commit/de48cdce27c7d9573e63da4703f51836c55ed533))
+
+
+
+
+
 ## [0.13.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.13.0...@synerise/ds-core@0.13.1) (2020-04-30)
 
 

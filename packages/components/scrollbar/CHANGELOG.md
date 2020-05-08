@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-scrollbar@0.0.16...@synerise/ds-scrollbar@0.1.0) (2020-05-08)
+
+
+### Features
+
+* **scrollbar:** set minScrollbar length ([8582370](https://github.com/Synerise/synerise-design/commit/85823701a72e04e628083ca3e962187ac4a4d8a0))
+
+
+
+
+
 ## [0.0.16](https://github.com/Synerise/synerise-design/compare/@synerise/ds-scrollbar@0.0.15...@synerise/ds-scrollbar@0.0.16) (2020-05-05)
 
 **Note:** Version bump only for package @synerise/ds-scrollbar

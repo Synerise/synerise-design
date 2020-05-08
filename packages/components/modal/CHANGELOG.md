@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.26](https://github.com/synerise/synerise-design/compare/@synerise/ds-modal@0.11.25...@synerise/ds-modal@0.11.26) (2020-05-08)
+
+
+### Bug Fixes
+
+* **modal:** fix modal header padding ([71a96df](https://github.com/synerise/synerise-design/commit/71a96dfef6b9a4fa177994f84ec8228b31786943))
+
+
+
+
+
 ## [0.11.25](https://github.com/synerise/synerise-design/compare/@synerise/ds-modal@0.11.24...@synerise/ds-modal@0.11.25) (2020-05-05)
 
 **Note:** Version bump only for package @synerise/ds-modal
