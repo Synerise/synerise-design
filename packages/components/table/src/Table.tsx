@@ -13,7 +13,6 @@ import { DSTableProps } from './Table.types';
 import TableHeader from './TableHeader/TableHeader';
 
 export const SELECTION_ALL = 'SELECTION_ALL';
-export const SELECTION_VISIBLE = 'SELECTION_VISIBLE';
 export const SELECTION_INVERT = 'SELECTION_INVERT';
 
 const ITEM_RENDER_TYPE = {
@@ -95,16 +94,17 @@ function DSTable<T extends object = any>(props: DSTableProps<T>): React.ReactEle
   const toggleRowSelection = React.useCallback(
     (checked, record) => {
       const key = getRowKey(record);
-      if (selection?.selectedRowKeys && selection.setRowSelection && key) {
-        const { setRowSelection, selectedRowKeys } = selection;
-        if (checked) {
-          setRowSelection([...selectedRowKeys, key]);
-        } else {
-          setRowSelection(selectedRowKeys.filter(k => k !== key));
-        }
+      if (selection?.selectedRowKeys && selection.onChange && key) {
+        const { onChange, selectedRowKeys } = selection;
+        const selectedKeys = checked ? [...selectedRowKeys, key] : selectedRowKeys.filter(k => k !== key);
+        const selectedRows =
+          selectedKeys.map(selectedKey => dataSource?.find(row => getRowKey(row) === selectedKey)) || [];
+        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+        // @ts-ignore
+        onChange(selectedKeys, selectedRows);
       }
     },
-    [selection, getRowKey]
+    [selection, getRowKey, dataSource]
   );
 
   return (
@@ -141,7 +141,6 @@ function DSTable<T extends object = any>(props: DSTableProps<T>): React.ReactEle
 }
 
 DSTable.SELECTION_ALL = SELECTION_ALL;
-DSTable.SELECTION_VISIBLE = SELECTION_VISIBLE;
 DSTable.SELECTION_INVERT = SELECTION_INVERT;
 
 export default DSTable;

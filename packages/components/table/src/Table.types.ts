@@ -9,14 +9,13 @@ export type Selection = {
   onClick: () => void;
 };
 
-export type SelectionItem = 'SELECTION_ALL' | 'SELECTION_VISIBLE' | 'SELECTION_INVERT';
+export type SelectionItem = 'SELECTION_ALL' | 'SELECTION_INVERT';
 
 export interface RowSelection<T> {
   fixed?: boolean;
   selectedRowKeys: React.ReactText[];
-  selections?: [SelectionItem, Selection];
+  selections?: ('SELECTION_ALL' | 'SELECTION_INVERT' | Selection)[];
   onChange: (selectedRowKeys: React.ReactText[], selectedRows: T[]) => void;
-  setRowSelection: (keys: React.ReactText[]) => void;
 }
 
 export interface Filter {
