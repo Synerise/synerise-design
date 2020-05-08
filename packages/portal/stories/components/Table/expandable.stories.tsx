@@ -77,20 +77,20 @@ const stories = {
           expandIconColumnIndex: -1,
           expandedRowKeys: expandedRows,
         }}
+        rowKey={row => row.key}
         selection={
           boolean('Enable row selection', false) && {
             onChange: handleSelectRow,
             selectedRowKeys: selectedRows,
             selections: [
               Table.SELECTION_ALL,
-              Table.SELECTION_VISIBLE,
               Table.SELECTION_INVERT,
               {
+                key: 'select_custom',
                 onClick: action('select_custom'),
                 label: 'Select custom',
               },
-            ],
-            setRowSelection: handleSelectRow,
+            ]
           }
         }
         onSearch={console.log}

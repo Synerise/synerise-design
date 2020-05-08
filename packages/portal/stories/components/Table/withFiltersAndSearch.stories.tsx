@@ -291,7 +291,6 @@ const stories = {
             selectedRowKeys: selectedRows,
             selections: [
               Table.SELECTION_ALL,
-              Table.SELECTION_VISIBLE,
               Table.SELECTION_INVERT,
               {
                 key: 'custom',
@@ -299,7 +298,6 @@ const stories = {
                 label: 'Select custom',
               }
             ],
-            setRowSelection: handleSelectRow
           }}
           itemsMenu={
             <ItemsMenu>
