@@ -34,7 +34,7 @@ export const ListWrapper = styled.div`
     .ant-menu {
       .items-roll-list-item {
         padding-left: 12px;
-        
+
         :hover {
           svg {
             fill: ${({ theme }): string => theme.palette['blue-600']};
@@ -86,6 +86,7 @@ export const ListWrapper = styled.div`
 export const Bold = styled.span`
   color: ${({ theme }): string => theme.palette['grey-800']};
   font-weight: 500;
+  margin-left: 2px;
 `;
 
 export const ChangeSelection = styled(Button)`
