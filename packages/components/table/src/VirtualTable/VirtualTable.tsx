@@ -48,7 +48,7 @@ function VirtualTable<T extends object = any>(props: Props<T>): React.ReactEleme
     if (selection) {
       return [
         {
-          width: 64,
+          width: 72,
           key: 'key',
           dataIndex: 'key',
           render: (key: string, record: T): React.ReactNode => {
