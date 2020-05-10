@@ -20,7 +20,7 @@ type Props = {
     [k: string]: string | React.ReactNode;
   };
   onExpand: (id: string, isExpanded: boolean) => void;
-  expanderDisabled?: boolean;
+  hideExpander?: boolean;
 };
 
 export type ItemProps = {
@@ -43,6 +43,7 @@ export type ItemProps = {
   };
   created?: string;
   dropdown?: React.ReactElement;
+  disableExpanding?: boolean;
 };
 
 const Item: React.FC<Props> = ({
@@ -59,7 +60,7 @@ const Item: React.FC<Props> = ({
   texts,
   searchQuery,
   onExpand,
-  expanderDisabled,
+  hideExpander,
 }) => {
   switch (listType) {
     case ListType.content:
@@ -73,7 +74,7 @@ const Item: React.FC<Props> = ({
           changeOrderDisabled={changeOrderDisabled}
           draggable={draggable}
           onExpand={onExpand}
-          expanderDisabled={expanderDisabled}
+          hideExpander={hideExpander}
           texts={texts}
         />
       );

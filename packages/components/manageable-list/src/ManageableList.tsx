@@ -145,7 +145,7 @@ const ManageableList: React.FC<ManageableListProps> = ({
         onExpand={(id, isExpanded): void => {
           onExpand && onExpand(id, isExpanded);
         }}
-        expanderDisabled={expanderDisabled}
+        hideExpander={expanderDisabled}
       />
     ),
     [

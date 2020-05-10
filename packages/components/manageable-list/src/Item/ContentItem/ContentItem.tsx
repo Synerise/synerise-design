@@ -22,8 +22,8 @@ export type ContentItemProps = {
   texts: {
     [k: string]: string | React.ReactNode;
   };
-  onExpand: (id: string, isExpanded: boolean) => void;
-  expanderDisabled?: boolean;
+  onExpand?: (id: string, isExpanded: boolean) => void;
+  hideExpander?: boolean;
 };
 
 const ContentItem: React.FC<ContentItemProps> = ({
@@ -37,7 +37,7 @@ const ContentItem: React.FC<ContentItemProps> = ({
   theme,
   texts,
   onExpand,
-  expanderDisabled,
+  hideExpander,
 }): React.ReactElement => {
   const [contentVisible, setContentVisible] = React.useState(item.showContentOnMount);
   const [editMode, setEditMode] = React.useState(false);
@@ -62,7 +62,7 @@ const ContentItem: React.FC<ContentItemProps> = ({
   }, []);
   return (
     <S.ItemContainer
-      opened={contentVisible}
+      opened={Boolean(contentVisible)}
       greyBackground={greyBackground}
       key={item.id}
       data-testid="item-with-content"
@@ -70,10 +70,10 @@ const ContentItem: React.FC<ContentItemProps> = ({
       <S.ItemHeader
         hasPrefix={Boolean(draggable || item.tag || item.icon)}
         onDoubleClick={(): void => {
-          toggleContentVisibility(false);
+          !item.disableExpanding && toggleContentVisibility(false);
         }}
         onClick={(): void => {
-          !contentVisible && toggleContentVisibility(true);
+          !item.disableExpanding && !contentVisible && toggleContentVisibility(true);
         }}
       >
         <S.ItemHeaderPrefix>
@@ -100,12 +100,13 @@ const ContentItem: React.FC<ContentItemProps> = ({
             editAction={enterEditMode}
             editActionTooltip={texts.itemActionRenameTooltip}
           />{' '}
-          {item.content && !expanderDisabled && (
+          {item.content && !hideExpander && (
             <S.ToggleContentWrapper data-testid="item-toggle-content-wrapper">
               <Button.Expander
+                disabled={item.disableExpanding}
                 onClick={(e: React.MouseEvent<HTMLButtonElement>): void => {
                   e.stopPropagation();
-                  toggleContentVisibility(!contentVisible);
+                  !item.disableExpanding && toggleContentVisibility(!contentVisible);
                 }}
                 expanded={contentVisible}
               />

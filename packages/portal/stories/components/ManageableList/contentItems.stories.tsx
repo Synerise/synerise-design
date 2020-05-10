@@ -74,7 +74,6 @@ const stories = {
         onUpdate={item => {
           editItem(item, store);
         }}
-        onSelect={action('onItemSelect')}
         onDuplicate={action('onItemSelect')}
         texts={getTexts()}
       />
@@ -99,7 +98,6 @@ const stories = {
         onUpdate={item => {
           editItem(item, store);
         }}
-        onSelect={action('onItemSelect')}
         onDuplicate={action('onItemSelect')}
         texts={getTexts()}
       />
@@ -117,7 +115,6 @@ const stories = {
         onUpdate={item => {
           editItem(item, store);
         }}
-        onSelect={action('onItemSelect')}
         onDuplicate={action('onItemSelect')}
         texts={getTexts()}
       />
@@ -135,7 +132,6 @@ const stories = {
         onUpdate={item => {
           editItem(item, store);
         }}
-        onSelect={action('onItemSelect')}
         onDuplicate={action('onItemSelect')}
         texts={getTexts()}
       />
@@ -153,7 +149,6 @@ const stories = {
         onUpdate={item => {
           editItem(item, store);
         }}
-        onSelect={action('onItemSelect')}
         onDuplicate={action('onItemSelect')}
         texts={getTexts()}
       />
