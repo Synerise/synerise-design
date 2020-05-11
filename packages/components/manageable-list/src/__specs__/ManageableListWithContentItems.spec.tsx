@@ -14,6 +14,7 @@ const CONTENT_ITEMS: any = [
     canDelete: false,
     tag: <Tag name={"A"} shape={TagShape.SINGLE_CHARACTER_ROUND} color={"red"} />,
     content: <div>content</div>,
+    expanded: true,
   },
   {
     id: "00000000-0000-0000-0000-000000000002",
@@ -138,7 +139,7 @@ describe('ManageableList with content items', () => {
       />);
 
     // ASSERT
-    expect(queryAllByTestId('item-content-wrapper').length).toBe(2);
+    expect(queryAllByTestId('item-content-wrapper').length).toBe(1);
     expect(queryAllByTestId('item-toggle-content-wrapper').length).toBe(2);
   });
 
