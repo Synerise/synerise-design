@@ -30,6 +30,10 @@ export const ListWithGrabber = styled(props => (
     margin: 0;
   }
   margin-bottom: 16px;
+  
+  & > .ant-list{
+    height:48px;
+  }
 `;
 
 const NOOP = () => {};
