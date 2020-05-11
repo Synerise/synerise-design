@@ -39,16 +39,7 @@ const ContentItem: React.FC<ContentItemProps> = ({
   onExpand,
   hideExpander,
 }): React.ReactElement => {
-  const [contentVisible, setContentVisible] = React.useState(item.showContentOnMount);
   const [editMode, setEditMode] = React.useState(false);
-
-  const toggleContentVisibility = React.useCallback(
-    (visibility: boolean): void => {
-      setContentVisible(visibility);
-      item && item.id && onExpand && onExpand(item.id, visibility);
-    },
-    [setContentVisible, item, onExpand]
-  );
 
   const updateName = React.useCallback(
     (updateParams): void => {
@@ -60,9 +51,12 @@ const ContentItem: React.FC<ContentItemProps> = ({
   const enterEditMode = React.useCallback((): void => {
     setEditMode(true);
   }, []);
+  const stopPropagationHandler = React.useCallback((e: React.MouseEvent<HTMLElement>) => {
+    e.stopPropagation();
+  }, []);
   return (
     <S.ItemContainer
-      opened={Boolean(contentVisible)}
+      opened={!!item.expanded}
       greyBackground={greyBackground}
       key={item.id}
       data-testid="item-with-content"
@@ -70,10 +64,10 @@ const ContentItem: React.FC<ContentItemProps> = ({
       <S.ItemHeader
         hasPrefix={Boolean(draggable || item.tag || item.icon)}
         onDoubleClick={(): void => {
-          !item.disableExpanding && toggleContentVisibility(false);
+          !item.disableExpanding && onExpand && onExpand(item.id, false);
         }}
         onClick={(): void => {
-          !item.disableExpanding && !contentVisible && toggleContentVisibility(true);
+          !item.disableExpanding && !item.expanded && onExpand && onExpand(item.id, true);
         }}
       >
         <S.ItemHeaderPrefix>
@@ -90,7 +84,7 @@ const ContentItem: React.FC<ContentItemProps> = ({
           )}
         </S.ItemHeaderPrefix>
         <ItemName item={item} editMode={editMode} onUpdate={updateName} />
-        <S.ItemHeaderSuffix>
+        <S.ItemHeaderSuffix onClick={stopPropagationHandler}>
           <ItemActions
             item={item}
             duplicateAction={onDuplicate}
@@ -106,20 +100,15 @@ const ContentItem: React.FC<ContentItemProps> = ({
                 disabled={item.disableExpanding}
                 onClick={(e: React.MouseEvent<HTMLButtonElement>): void => {
                   e.stopPropagation();
-                  !item.disableExpanding && toggleContentVisibility(!contentVisible);
+                  !item.disableExpanding && onExpand && onExpand(item.id, !item.expanded);
                 }}
-                expanded={contentVisible}
+                expanded={item.expanded}
               />
             </S.ToggleContentWrapper>
           )}
           {item.dropdown && (
             <Dropdown trigger={['click']} overlay={item.dropdown}>
-              <S.DropdownTrigger
-                className="ds-dropdown-trigger"
-                onClick={(e: React.MouseEvent<HTMLSpanElement>): void => {
-                  e.stopPropagation();
-                }}
-              >
+              <S.DropdownTrigger className="ds-dropdown-trigger" onClick={stopPropagationHandler}>
                 <Icon component={<OptionHorizontalM />} color={theme.palette['grey-600']} />
               </S.DropdownTrigger>
             </Dropdown>

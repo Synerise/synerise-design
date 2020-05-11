@@ -1,6 +1,18 @@
 import * as React from 'react';
 import { ItemProps } from './Item/Item';
 
+export enum ExpansionBehaviour {
+  DEFAULT = 'default',
+  ACCORDION = 'accordion',
+  CUSTOM = 'custom',
+}
+
+export enum ListType {
+  DEFAULT = 'default',
+  CONTENT = 'content',
+  FILTER = 'filter',
+}
+
 export interface ManageableListProps {
   className?: string;
   maxToShowItems: number;
@@ -41,4 +53,5 @@ export interface ManageableListProps {
     itemActionDelete?: string | React.ReactNode;
     itemActionDeleteTooltip?: string | React.ReactNode;
   };
+  expansionBehaviour?: string;
 }

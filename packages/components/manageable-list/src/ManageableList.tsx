@@ -6,13 +6,7 @@ import * as S from './ManageableList.styles';
 import Item, { ItemProps } from './Item/Item';
 import AddItemWithName from './AddItemWithName/AddItemWithName';
 import AddItem from './AddItem/AddItem';
-import { ManageableListProps } from './ManageableList.types';
-
-export enum ListType {
-  default = 'default',
-  content = 'content',
-  filter = 'filter',
-}
+import { ExpansionBehaviour, ManageableListProps, ListType } from './ManageableList.types';
 
 const SORTABLE_CONFIG = {
   ghostClass: 'sortable-list-ghost-element',
@@ -32,7 +26,7 @@ const ManageableList: React.FC<ManageableListProps> = ({
   items,
   maxToShowItems = 5,
   loading,
-  type = ListType.default,
+  type = ListType.DEFAULT,
   addButtonDisabled = false,
   changeOrderDisabled = false,
   greyBackground = false,
@@ -41,6 +35,7 @@ const ManageableList: React.FC<ManageableListProps> = ({
   searchQuery,
   expanderDisabled,
   onExpand,
+  expansionBehaviour = ExpansionBehaviour.DEFAULT,
   texts: {
     addItemLabel = <FormattedMessage id="DS.MANAGABLE-LIST.ADD-ITEM" />,
     showMoreLabel = <FormattedMessage id="DS.MANAGABLE-LIST.SHOW-MORE" />,
@@ -63,7 +58,11 @@ const ManageableList: React.FC<ManageableListProps> = ({
   },
 }) => {
   const [allItemsVisible, setAllItemsVisible] = React.useState(false);
+  const [itemsToRender, setItemsToRender] = React.useState(items);
 
+  React.useEffect(() => {
+    setItemsToRender(items);
+  }, [items]);
   const itemTexts = {
     activateItemTitle,
     activate,
@@ -85,8 +84,34 @@ const ManageableList: React.FC<ManageableListProps> = ({
   }, [items, maxToShowItems]);
 
   const visibleItems = React.useMemo((): ItemProps[] => {
-    return allItemsVisible ? items : items.slice(0, maxToShowItems);
-  }, [items, allItemsVisible, maxToShowItems]);
+    return allItemsVisible ? itemsToRender : itemsToRender.slice(0, maxToShowItems);
+  }, [allItemsVisible, maxToShowItems, itemsToRender]);
+
+  const defaultExpansionCallback = React.useCallback(
+    (id: string, isExpanded: boolean) => {
+      const newItemsToRender = itemsToRender.map(item => {
+        if (item.id === id) {
+          return { ...item, expanded: isExpanded };
+        }
+        return item;
+      });
+      setItemsToRender(newItemsToRender);
+    },
+    [itemsToRender]
+  );
+
+  const accordionExpansionCallback = React.useCallback(
+    (id: string, isExpanded: boolean) => {
+      const newItemsToRender = itemsToRender.map(item => {
+        if (item.id === id) {
+          return { ...item, expanded: isExpanded };
+        }
+        return { ...item, expanded: false };
+      });
+      setItemsToRender(newItemsToRender);
+    },
+    [itemsToRender]
+  );
 
   const buttonLabel = React.useMemo(() => (allItemsVisible ? showLessLabel : showMoreLabel), [
     allItemsVisible,
@@ -143,6 +168,11 @@ const ManageableList: React.FC<ManageableListProps> = ({
         texts={itemTexts}
         searchQuery={searchQuery}
         onExpand={(id, isExpanded): void => {
+          if (expansionBehaviour === ExpansionBehaviour.DEFAULT) {
+            defaultExpansionCallback(id, isExpanded);
+          } else if (expansionBehaviour === ExpansionBehaviour.ACCORDION) {
+            accordionExpansionCallback(id, isExpanded);
+          }
           onExpand && onExpand(id, isExpanded);
         }}
         hideExpander={expanderDisabled}
@@ -162,18 +192,21 @@ const ManageableList: React.FC<ManageableListProps> = ({
       searchQuery,
       expanderDisabled,
       onExpand,
+      accordionExpansionCallback,
+      defaultExpansionCallback,
+      expansionBehaviour,
     ]
   );
 
   const renderList = React.useCallback(() => {
     return onChangeOrder && !changeOrderDisabled ? (
-      <ReactSortable {...SORTABLE_CONFIG} list={items} setList={onChangeOrder}>
-        {visibleItems.map(getItem)}
+      <ReactSortable {...SORTABLE_CONFIG} list={itemsToRender} setList={onChangeOrder}>
+        {itemsToRender.map(getItem)}
       </ReactSortable>
     ) : (
       <List loading={loading} dataSource={[visibleItems]} renderItem={getItem} />
     );
-  }, [changeOrderDisabled, items, visibleItems, onChangeOrder, loading, getItem]);
+  }, [changeOrderDisabled, visibleItems, itemsToRender, onChangeOrder, loading, getItem]);
 
   return (
     <S.ManageableListContainer
@@ -181,7 +214,7 @@ const ManageableList: React.FC<ManageableListProps> = ({
       listType={type}
       greyBackground={greyBackground}
     >
-      {type === ListType.default && Boolean(onItemAdd) && (
+      {type === ListType.DEFAULT && Boolean(onItemAdd) && (
         <AddItemWithName
           addItemLabel={addItemLabel}
           onItemAdd={onItemAdd}
@@ -191,7 +224,7 @@ const ManageableList: React.FC<ManageableListProps> = ({
       )}
       {renderList()}
       {renderShowMoreButton()}
-      {type === ListType.content && Boolean(onItemAdd) && (
+      {type === ListType.CONTENT && Boolean(onItemAdd) && (
         <AddItem addItemLabel={addItemLabel} onItemAdd={createItem} disabled={addButtonDisabled} />
       )}
     </S.ManageableListContainer>

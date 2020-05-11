@@ -132,6 +132,8 @@ const stories = {
         }}
         onDuplicate={action('onItemSelect')}
         texts={getTexts()}
+        onExpand={(id, isExpanded)=>{store.set({item: {...store.state.item, expanded: isExpanded}})}}
+
       />
     );
   }),
@@ -166,6 +168,8 @@ const stories = {
         }}
         onDuplicate={action('onItemSelect')}
         texts={getTexts()}
+        onExpand={(id, isExpanded)=>{store.set({item: {...store.state.item, expanded: isExpanded}})}}
+
       />
     );
   }),

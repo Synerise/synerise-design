@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ListType } from '../ManageableList';
+import { ListType } from '../ManageableList.types';
 import ContentItem from './ContentItem/ContentItem';
 import SimpleItem from './SimpleItem/SimpleItem';
 import FilterItem from './FilterItem/FilterItem';
@@ -33,7 +33,6 @@ export type ItemProps = {
   tag?: React.ReactElement;
   icon?: React.ReactNode;
   content?: () => React.ReactNode;
-  showContentOnMount?: boolean;
   changeOrderDisabled?: boolean;
   user?: {
     avatar_url?: string;
@@ -44,6 +43,7 @@ export type ItemProps = {
   created?: string;
   dropdown?: React.ReactElement;
   disableExpanding?: boolean;
+  expanded?: boolean;
 };
 
 const Item: React.FC<Props> = ({
@@ -63,7 +63,7 @@ const Item: React.FC<Props> = ({
   hideExpander,
 }) => {
   switch (listType) {
-    case ListType.content:
+    case ListType.CONTENT:
       return (
         <ContentItem
           item={item}
@@ -78,7 +78,7 @@ const Item: React.FC<Props> = ({
           texts={texts}
         />
       );
-    case ListType.filter:
+    case ListType.FILTER:
       return (
         <FilterItem
           item={item}
