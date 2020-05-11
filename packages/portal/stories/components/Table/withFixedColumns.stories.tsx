@@ -4,6 +4,7 @@ import { action } from '@storybook/addon-actions';
 import { boolean, select } from '@storybook/addon-knobs';
 import Table from '@synerise/ds-table';
 import { COLUMNS } from './content/withFixedColumns.data';
+import { withState } from '@dump247/storybook-state';
 
 const decorator = (storyFn) => (
   <div style={{ padding: 20, width: '100vw', minWidth: '100%' }}>
@@ -28,23 +29,45 @@ const CELL_SIZES = {
 };
 
 const stories = {
-  fixedColumns: () => ({
-    title: `${dataSource.length} records`,
-    dataSource,
-    columns: COLUMNS,
-    loading: boolean('Set loading state', false),
-    roundedHeader: boolean('Rounded header', false),
-    pagination: {
-      showSizeChanger: boolean('Show size changer', true),
-      showQuickJumper: boolean('Show quick jumper', true),
-      onChange: action('pageChanged'),
-    },
-    scroll: {
-      x: false,
-    },
-    onSearch: action('onSearch'),
-    cellSize: select('Set cells size', CELL_SIZES, CELL_SIZES.default)
-  }),
+  fixedColumns: withState({
+    selectedRows: [],
+  })(({ store }) => {
+    const handleSelectRow = (selectedRowKeys) => {
+      store.set({ selectedRows: selectedRowKeys });
+    };
+
+    return (
+      <Table
+        title={`${dataSource.length} records`}
+        dataSource={dataSource}
+        layout={'fixed'}
+        columns={COLUMNS}
+        loading={boolean('Set loading state', false)}
+        roundedHeader={boolean('Rounded header', false)}
+        pagination={{
+          showSizeChanger: boolean('Show size changer', true),
+          showQuickJumper: boolean('Show quick jumper', true),
+          onChange: action('pageChanged')
+        }}
+        rowKey={(row) => row.key}
+        selection={boolean('Enable row selection', true) && {
+          onChange: handleSelectRow,
+          selectedRowKeys: store.state.selectedRows,
+          selections: [
+            Table.SELECTION_ALL,
+            Table.SELECTION_INVERT,
+            {
+              key: 'custom',
+              onClick: action('select_custom'),
+              label: 'Select custom',
+            }
+          ],
+        }}
+        onSearch={action('onSearch')}
+        cellSize={select('Set cells size', CELL_SIZES, CELL_SIZES.default)}
+      />
+    )
+  })
 };
 
 export default {
