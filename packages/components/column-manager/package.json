@@ -30,6 +30,7 @@
     "@synerise/ds-result": "^0.4.39",
     "@synerise/ds-scrollbar": "^0.1.0",
     "@synerise/ds-search-bar": "^0.2.40",
+    "@synerise/ds-tooltip": "^0.7.1",
     "@synerise/ds-typography": "*",
     "@synerise/ds-utils": "^0.8.22",
     "react-final-form": "^6.3.5",

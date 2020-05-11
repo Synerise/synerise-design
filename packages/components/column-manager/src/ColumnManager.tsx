@@ -124,6 +124,8 @@ class ColumnManager extends React.Component<ColumnManagerProps, State> {
   };
 
   hideItemFilter = (): void => {
+    const { hideSavedViews } = this.props;
+    hideSavedViews && hideSavedViews();
     this.setState({
       itemFilterVisible: false,
     });
@@ -157,7 +159,7 @@ class ColumnManager extends React.Component<ColumnManagerProps, State> {
   };
 
   render(): React.ReactElement {
-    const { visible, hide, itemFilterConfig } = this.props;
+    const { visible, hide, itemFilterConfig, savedViewsVisible } = this.props;
     const { visibleList, hiddenList, searchQuery, itemFilterVisible } = this.state;
 
     const searchResults = [...visibleList, ...hiddenList].filter(column =>
@@ -165,7 +167,7 @@ class ColumnManager extends React.Component<ColumnManagerProps, State> {
     );
 
     return (
-      <S.ColumnManager visible={visible} width={338} onClose={hide}>
+      <S.ColumnManager visible={visible || savedViewsVisible} width={338} onClose={hide}>
         <Drawer.DrawerHeader>
           <Drawer.DrawerHeaderBar>
             <Typography.Title style={{ flex: 1, margin: 0 }} level={4}>
@@ -216,7 +218,11 @@ class ColumnManager extends React.Component<ColumnManagerProps, State> {
 
         <ColumnManagerActions onSave={this.handleSave} onApply={this.handleApply} onCancel={hide} texts={this.texts} />
         {itemFilterConfig && (
-          <ItemFilter {...itemFilterConfig} visible={itemFilterVisible} hide={this.hideItemFilter} />
+          <ItemFilter
+            {...itemFilterConfig}
+            visible={itemFilterVisible || Boolean(savedViewsVisible)}
+            hide={this.hideItemFilter}
+          />
         )}
       </S.ColumnManager>
     );
