@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.61.1](https://github.com/synerise/synerise-design/compare/portal@0.61.0...portal@0.61.1) (2020-05-11)
+
+
+### Bug Fixes
+
+* **manageable-list:** fixed expansion bug ([e58d5e5](https://github.com/synerise/synerise-design/commit/e58d5e5c77e2b61d0d8c486ed476f2a48857b2e3))
+
+
+
+
+
 # [0.61.0](https://github.com/synerise/synerise-design/compare/portal@0.60.0...portal@0.61.0) (2020-05-11)
 
 
