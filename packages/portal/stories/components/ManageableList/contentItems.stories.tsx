@@ -14,13 +14,25 @@ import {
 } from './contentItems.data';
 import Tag, { TagShape } from '@synerise/ds-tags/dist/Tag/Tag';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import styled from 'styled-components';
 
 const decorator = storyFn => (
   <div style={{ width: '520px' }}>
     <div style={{ background: '#fff', width: '520px' }}>{storyFn()}</div>
   </div>
 );
-const NOOP = ()=>{};
+export const ListWithGrabber = styled(props => (
+  // eslint-disable-next-line react/jsx-props-no-spreading
+  <ManageableList {...props} />
+))`
+  padding: 0;
+  .sortable-list > div {
+    margin: 0;
+  }
+  margin-bottom: 16px;
+`;
+
+const NOOP = () => {};
 const editItem = (item, store): void => {
   const updatedItem = store.state.item;
   updatedItem.name = item.name;
@@ -56,7 +68,6 @@ const stories = {
         onUpdate={item => {
           editItem(item, store);
         }}
-        onSelect={action('onItemSelect')}
         onDuplicate={action('onItemSelect')}
         texts={getTexts()}
       />
@@ -160,12 +171,12 @@ const stories = {
     const crud = boolean('Set CRUD', false);
 
     return (
-      <ManageableList
+      <ListWithGrabber
         onItemSelect={NOOP}
         maxToShowItems={1}
         onChangeOrder={NOOP}
         type="content"
-        items={[attachCrudKnobs(store.state.item,crud)]}
+        items={[attachCrudKnobs(store.state.item, crud)]}
         loading={false}
         changeOrderDisabled={boolean('Disable change order', false)}
         greyBackground={boolean('Set grey background', false)}
