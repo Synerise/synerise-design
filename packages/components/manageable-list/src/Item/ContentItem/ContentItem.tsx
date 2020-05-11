@@ -84,7 +84,7 @@ const ContentItem: React.FC<ContentItemProps> = ({
           )}
         </S.ItemHeaderPrefix>
         <ItemName item={item} editMode={editMode} onUpdate={updateName} />
-        <S.ItemHeaderSuffix onClick={stopPropagationHandler}>
+        <S.ItemHeaderSuffix>
           <ItemActions
             item={item}
             duplicateAction={onDuplicate}
@@ -107,15 +107,19 @@ const ContentItem: React.FC<ContentItemProps> = ({
             </S.ToggleContentWrapper>
           )}
           {item.dropdown && (
-            <Dropdown trigger={['click']} overlay={item.dropdown}>
-              <S.DropdownTrigger className="ds-dropdown-trigger" onClick={stopPropagationHandler}>
-                <Icon component={<OptionHorizontalM />} color={theme.palette['grey-600']} />
-              </S.DropdownTrigger>
-            </Dropdown>
+            <S.DropdownWrapper onClick={stopPropagationHandler}>
+              <Dropdown trigger={['click']} overlay={item.dropdown}>
+                <S.DropdownTrigger className="ds-dropdown-trigger" onClick={stopPropagationHandler}>
+                  <Icon component={<OptionHorizontalM />} color={theme.palette['grey-600']} />
+                </S.DropdownTrigger>
+              </Dropdown>
+            </S.DropdownWrapper>
           )}
         </S.ItemHeaderSuffix>
       </S.ItemHeader>
-      {Boolean(item.content) && <S.ContentWrapper data-testid="item-content-wrapper">{item.content}</S.ContentWrapper>}
+      {Boolean(item.content) && Boolean(item.expanded) && (
+        <S.ContentWrapper data-testid="item-content-wrapper">{item.content}</S.ContentWrapper>
+      )}
     </S.ItemContainer>
   );
 };

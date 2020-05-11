@@ -25,6 +25,16 @@ export const ManageableListContainer = styled.div<ManageableListProps>`
   .ant-spin-nested-loading {
     width: 100%;
   }
+  .sortable-chosen {
+    cursor: grabbing;
+    background-color: ${(props): string => props.theme.palette.white};
+    opacity: 1;
+  }
+
+  .sortable-drag {
+    opacity: 1 !important;
+    box-shadow: 0 16px 32px 0 rgba(35, 41, 54, 0.1);
+  }
   .sortable-list-ghost-element {
     background-color: ${(props): string => props.theme.palette['blue-050']};
     &:hover {

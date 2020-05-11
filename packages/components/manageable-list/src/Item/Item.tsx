@@ -32,7 +32,7 @@ export type ItemProps = {
   description?: string;
   tag?: React.ReactElement;
   icon?: React.ReactNode;
-  content?: () => React.ReactNode;
+  content?: React.ReactNode;
   changeOrderDisabled?: boolean;
   user?: {
     avatar_url?: string;

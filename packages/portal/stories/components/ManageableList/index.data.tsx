@@ -2,11 +2,6 @@ import FolderM from '@synerise/ds-icon/dist/icons/FolderM';
 import Tag, { TagShape } from '@synerise/ds-tags/dist/Tag/Tag';
 import FileM from '@synerise/ds-icon/dist/icons/FileM';
 import * as React from 'react';
-import { TextArea, Input } from '@synerise/ds-input';
-import { boolean, number, text } from '@storybook/addon-knobs';
-import { DropdownMenu, DropdownMenuItem } from '@synerise/ds-manageable-list/dist/Item/FilterItem/FilterItem.styles';
-import Icon from '@synerise/ds-icon';
-import { DuplicateM, EditM, ShowAddM, TrashM } from '@synerise/ds-icon/dist/icons';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 
 export const ITEMS: any = [

@@ -159,7 +159,7 @@ const stories = {
           ...store.state.items,
           {
             ...itemForDuplication,
-            id: Date.now(),
+            id: String(Date.now()),
 
           },
         ],
