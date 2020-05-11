@@ -137,3 +137,4 @@ export const ToggleContentWrapper = styled.div`
 export const DropdownTrigger = styled.span`
   margin-left: 12px;
 `;
+export const DropdownWrapper = styled.div``;
