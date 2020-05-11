@@ -6,53 +6,15 @@ import * as S from './ManageableList.styles';
 import Item, { ItemProps } from './Item/Item';
 import AddItemWithName from './AddItemWithName/AddItemWithName';
 import AddItem from './AddItem/AddItem';
+import { ExpansionBehaviour, ManageableListProps, ListType } from './ManageableList.types';
 
-export enum ListType {
-  default = 'default',
-  content = 'content',
-  filter = 'filter',
-}
-
-export interface ManageableListProps {
-  className?: string;
-  maxToShowItems: number;
-  onItemAdd?: (addParams?: { name: string }) => void;
-  onItemRemove?: (removeParams: { id: string }) => void;
-  onItemEdit?: (editParams: { id: string; name: string }) => void;
-  onItemSelect: (selectParams: { id: string }) => void;
-  onItemDuplicate?: (duplicateParams: { id: string }) => void;
-  onChangeOrder?: (newOrder: ItemProps[]) => void;
-  items: ItemProps[];
-  loading: boolean;
-  type?: string;
-  addButtonDisabled?: boolean;
-  changeOrderDisabled?: boolean;
-  greyBackground?: boolean;
-  placeholder?: string;
-  selectedItemId?: string;
-  searchQuery?: string;
-  texts: {
-    addItemLabel?: string | React.ReactNode;
-    showMoreLabel?: string | React.ReactNode;
-    showLessLabel?: string | React.ReactNode;
-    more?: string | React.ReactNode;
-    less?: string | React.ReactNode;
-    activateItemTitle?: string | React.ReactNode;
-    activate?: string | React.ReactNode;
-    cancel?: string | React.ReactNode;
-    deleteConfirmationTitle?: string | React.ReactNode;
-    deleteConfirmationDescription?: string | React.ReactNode;
-    deleteConfirmationYes?: string | React.ReactNode;
-    deleteConfirmationNo?: string | React.ReactNode;
-    itemActionRename?: string | React.ReactNode;
-    itemActionRenameTooltip?: string | React.ReactNode;
-    itemActionDuplicate?: string | React.ReactNode;
-    itemActionDuplicateTooltip?: string | React.ReactNode;
-    itemActionDelete?: string | React.ReactNode;
-    itemActionDeleteTooltip?: string | React.ReactNode;
-  };
-}
-
+const SORTABLE_CONFIG = {
+  ghostClass: 'sortable-list-ghost-element',
+  className: 'sortable-list',
+  animation: 150,
+  group: 'column-manager',
+  forceFallback: true,
+};
 const ManageableList: React.FC<ManageableListProps> = ({
   className,
   onItemAdd,
@@ -64,13 +26,16 @@ const ManageableList: React.FC<ManageableListProps> = ({
   items,
   maxToShowItems = 5,
   loading,
-  type = ListType.default,
+  type = ListType.DEFAULT,
   addButtonDisabled = false,
   changeOrderDisabled = false,
   greyBackground = false,
   placeholder,
   selectedItemId,
   searchQuery,
+  expanderDisabled,
+  onExpand,
+  expansionBehaviour = ExpansionBehaviour.DEFAULT,
   texts: {
     addItemLabel = <FormattedMessage id="DS.MANAGABLE-LIST.ADD-ITEM" />,
     showMoreLabel = <FormattedMessage id="DS.MANAGABLE-LIST.SHOW-MORE" />,
@@ -93,7 +58,11 @@ const ManageableList: React.FC<ManageableListProps> = ({
   },
 }) => {
   const [allItemsVisible, setAllItemsVisible] = React.useState(false);
+  const [itemsToRender, setItemsToRender] = React.useState(items);
 
+  React.useEffect(() => {
+    setItemsToRender(items);
+  }, [items]);
   const itemTexts = {
     activateItemTitle,
     activate,
@@ -115,8 +84,34 @@ const ManageableList: React.FC<ManageableListProps> = ({
   }, [items, maxToShowItems]);
 
   const visibleItems = React.useMemo((): ItemProps[] => {
-    return allItemsVisible ? items : items.slice(0, maxToShowItems);
-  }, [items, allItemsVisible, maxToShowItems]);
+    return allItemsVisible ? itemsToRender : itemsToRender.slice(0, maxToShowItems);
+  }, [allItemsVisible, maxToShowItems, itemsToRender]);
+
+  const defaultExpansionCallback = React.useCallback(
+    (id: string, isExpanded: boolean) => {
+      const newItemsToRender = itemsToRender.map(item => {
+        if (item.id === id) {
+          return { ...item, expanded: isExpanded };
+        }
+        return item;
+      });
+      setItemsToRender(newItemsToRender);
+    },
+    [itemsToRender]
+  );
+
+  const accordionExpansionCallback = React.useCallback(
+    (id: string, isExpanded: boolean) => {
+      const newItemsToRender = itemsToRender.map(item => {
+        if (item.id === id) {
+          return { ...item, expanded: isExpanded };
+        }
+        return { ...item, expanded: false };
+      });
+      setItemsToRender(newItemsToRender);
+    },
+    [itemsToRender]
+  );
 
   const buttonLabel = React.useMemo(() => (allItemsVisible ? showLessLabel : showMoreLabel), [
     allItemsVisible,
@@ -172,6 +167,15 @@ const ManageableList: React.FC<ManageableListProps> = ({
         selected={Boolean(item.id === selectedItemId)}
         texts={itemTexts}
         searchQuery={searchQuery}
+        onExpand={(id, isExpanded): void => {
+          if (expansionBehaviour === ExpansionBehaviour.DEFAULT) {
+            defaultExpansionCallback(id, isExpanded);
+          } else if (expansionBehaviour === ExpansionBehaviour.ACCORDION) {
+            accordionExpansionCallback(id, isExpanded);
+          }
+          onExpand && onExpand(id, isExpanded);
+        }}
+        hideExpander={expanderDisabled}
       />
     ),
     [
@@ -186,18 +190,23 @@ const ManageableList: React.FC<ManageableListProps> = ({
       selectedItemId,
       itemTexts,
       searchQuery,
+      expanderDisabled,
+      onExpand,
+      accordionExpansionCallback,
+      defaultExpansionCallback,
+      expansionBehaviour,
     ]
   );
 
   const renderList = React.useCallback(() => {
     return onChangeOrder && !changeOrderDisabled ? (
-      <ReactSortable list={items} setList={onChangeOrder}>
-        {visibleItems.map(getItem)}
+      <ReactSortable {...SORTABLE_CONFIG} list={itemsToRender} setList={onChangeOrder}>
+        {itemsToRender.map(getItem)}
       </ReactSortable>
     ) : (
       <List loading={loading} dataSource={[visibleItems]} renderItem={getItem} />
     );
-  }, [changeOrderDisabled, items, visibleItems, onChangeOrder, loading, getItem]);
+  }, [changeOrderDisabled, visibleItems, itemsToRender, onChangeOrder, loading, getItem]);
 
   return (
     <S.ManageableListContainer
@@ -205,7 +214,7 @@ const ManageableList: React.FC<ManageableListProps> = ({
       listType={type}
       greyBackground={greyBackground}
     >
-      {type === ListType.default && Boolean(onItemAdd) && (
+      {type === ListType.DEFAULT && Boolean(onItemAdd) && (
         <AddItemWithName
           addItemLabel={addItemLabel}
           onItemAdd={onItemAdd}
@@ -215,7 +224,7 @@ const ManageableList: React.FC<ManageableListProps> = ({
       )}
       {renderList()}
       {renderShowMoreButton()}
-      {type === ListType.content && Boolean(onItemAdd) && (
+      {type === ListType.CONTENT && Boolean(onItemAdd) && (
         <AddItem addItemLabel={addItemLabel} onItemAdd={createItem} disabled={addButtonDisabled} />
       )}
     </S.ManageableListContainer>

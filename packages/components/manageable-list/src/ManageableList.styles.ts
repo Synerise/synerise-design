@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { ListType } from './ManageableList';
+import { ListType } from './ManageableList.types';
 
 type ManageableListProps = {
   listType: string;
@@ -11,7 +11,7 @@ export const ManageableListContainer = styled.div<ManageableListProps>`
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  padding: ${({ listType }): string => (listType === ListType.content ? '24px' : '12px')};
+  padding: ${({ listType }): string => (listType === ListType.CONTENT ? '24px' : '12px')};
   background-color: ${({ theme, greyBackground }): string =>
     greyBackground ? theme.palette['grey-050'] : theme.palette.white};
   & > div {
@@ -25,6 +25,17 @@ export const ManageableListContainer = styled.div<ManageableListProps>`
   .ant-spin-nested-loading {
     width: 100%;
   }
+  .sortable-list-ghost-element {
+    background-color: ${(props): string => props.theme.palette['blue-050']};
+    &:hover {
+      background-color: ${(props): string => props.theme.palette['blue-050']};
+    }
+    opacity: 1;
+    cursor: grabbing;
+    * {
+      visibility: hidden;
+    }
+  }
 `;
 
 export const ShowMoreButton = styled.div`
@@ -34,6 +45,9 @@ export const ShowMoreButton = styled.div`
   && {
     padding: 16px 8px;
     margin: 0;
+  }
+  &: hover {
+    color: ${(props): string => props.theme.palette['blue-600']};
   }
   strong {
     font-weight: 500;

@@ -7,6 +7,7 @@ import { boolean, number, text } from '@storybook/addon-knobs';
 import { DropdownMenu, DropdownMenuItem } from '@synerise/ds-manageable-list/dist/Item/FilterItem/FilterItem.styles';
 import Icon from '@synerise/ds-icon';
 import { DuplicateM, EditM, ShowAddM, TrashM } from '@synerise/ds-icon/dist/icons';
+import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 
 export const ITEMS: any = [
   {
@@ -83,8 +84,10 @@ export const CONTENT_ITEMS: any = [
     canAdd: true,
     canUpdate: false,
     canDelete: false,
-    tag: <Tag name={'A'} shape={TagShape.SINGLE_CHARACTER_ROUND} color={'red'} />,
+    tag: <Tag name={'A'} shape={TagShape.SINGLE_CHARACTER_SQUARE} color={theme.palette['grey-200']} textColor={theme.palette['grey-500']} />,
     content: <div>content</div>,
+    expanded: true,
+    disableExpander:true
   },
   {
     id: '00000000-0000-0000-0000-000000000002',
@@ -92,8 +95,9 @@ export const CONTENT_ITEMS: any = [
     canAdd: true,
     canUpdate: true,
     canDelete: true,
-    tag: <Tag name={'1'} shape={TagShape.SINGLE_CHARACTER_SQUARE} color={'#f3f5f6'} textColor={'#949ea6'} />,
+    tag: <Tag name={'1'} shape={TagShape.SINGLE_CHARACTER_ROUND} color={theme.palette['grey-200']} textColor={theme.palette['grey-500']} />,
     content: <div>content</div>,
+
   },
   {
     id: '00000000-0000-0000-0000-000000000001',
@@ -112,7 +116,7 @@ export const EMPTY_CONTENT_ITEM = {
   canAdd: true,
   canUpdate: true,
   canDelete: true,
-  tag: <Tag name={'A'} shape={TagShape.SINGLE_CHARACTER_ROUND} color={'red'} />,
+  tag: <Tag name={'A'} shape={TagShape.SINGLE_CHARACTER_SQUARE} color={theme.palette['grey-200']} textColor={theme.palette['grey-500']} />,
   content: <div>content</div>,
 };
 
@@ -143,65 +147,33 @@ export const FILTER_LIST_ITEMS = [
     created: '2020-02-12T08:50:05+00:00',
   },
 ];
-
-export const SOLID_LIST_ITEMS: any = [
+export const ACCORDION_ITEMS: any = [
   {
     id: '00000000-0000-0000-0000-000000000000',
     name: 'Position 0',
-    canUpdate: false,
-    canDelete: false,
+    tag: <Tag name={'A'} shape={TagShape.SINGLE_CHARACTER_SQUARE} color={theme.palette['grey-200']} textColor={theme.palette['grey-500']} />,
     content: <div>content</div>,
-  },
-  {
-    id: '00000000-0000-0000-0000-000000000002',
-    name: 'Position 1',
-    canUpdate: true,
-    canDelete: true,
-    content: <Input label={'Label'} placeholder={'Placeholder'} style={{ width: '520px' }} resetMargin />,
-    tag: <Tag name={'A'} shape={TagShape.SINGLE_CHARACTER_SQUARE} color={'orange'} />,
-  },
-  {
-    id: '00000000-0000-0000-0000-000000000002',
-    name: 'Position with circle tag',
-    canUpdate: true,
-    canDelete: true,
-    content: <Input label={'Label'} placeholder={'Placeholder'} style={{ width: '520px' }} resetMargin />,
-    tag: <Tag name={'1'} shape={TagShape.SINGLE_CHARACTER_ROUND} color={'grey'} />,
+    expanded: true,
+    disableExpander:true
   },
   {
     id: '00000000-0000-0000-0000-000000000001',
-    name: 'Position 2',
-    canUpdate: true,
-    canDuplicate: true,
-    canDelete: true,
-    icon: <FolderM />,
-  },
-  {
-    id: '00000000-0000-0000-0000-000000000004',
-    name: 'Position with dropdown',
-    icon: <ShowAddM />,
-    dropdown: (
-      <DropdownMenu>
-        <DropdownMenuItem> Option 1</DropdownMenuItem>
-        <DropdownMenuItem> Option 2 </DropdownMenuItem>
-        <DropdownMenuItem> Option 3 </DropdownMenuItem>
-      </DropdownMenu>
-    ),
-  },
-  {
-    id: '00000000-0000-0000-0000-000000000005',
-    name: 'Position with dropdown and content',
-    icon: <ShowAddM />,
-    dropdown: (
-      <DropdownMenu>
-        <DropdownMenuItem> Option 1</DropdownMenuItem>
-        <DropdownMenuItem> Option 2 </DropdownMenuItem>
-        <DropdownMenuItem> Option 3 </DropdownMenuItem>
-      </DropdownMenu>
-    ),
+    name: 'Position 1',
+    tag: <Tag name={'1'} shape={TagShape.SINGLE_CHARACTER_ROUND} color={theme.palette['grey-200']} textColor={theme.palette['grey-500']} />,
     content: <div>content</div>,
-    canUpdate: true,
-    canDuplicate: true,
-    canDelete: true,
+
+  },
+  {
+    id: '00000000-0000-0000-0000-000000000002',
+    name: 'Position 2',
+    icon: <FileM />,
+    content: <div>content</div>,
+  },
+  {
+    id: '00000000-0000-0000-0000-000000000003',
+    name: 'Position 3',
+    icon: <FileM />,
+    content: <div>content</div>,
   },
 ];
+

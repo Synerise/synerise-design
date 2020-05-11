@@ -16,14 +16,14 @@ export type ContentItemProps = {
   onRemove?: (removeParams: { id: string }) => void;
   onDuplicate?: (duplicateParams: { id: string }) => void;
   onUpdate?: (updateParams: { id: string; name: string }) => void;
-  onSelect: (selectParams: { id: string }) => void;
   greyBackground?: boolean;
   theme: { [k: string]: string };
   changeOrderDisabled?: boolean;
-  outline?: boolean;
   texts: {
     [k: string]: string | React.ReactNode;
   };
+  onExpand?: (id: string, isExpanded: boolean) => void;
+  hideExpander?: boolean;
 };
 
 const ContentItem: React.FC<ContentItemProps> = ({
@@ -35,15 +35,11 @@ const ContentItem: React.FC<ContentItemProps> = ({
   greyBackground = false,
   changeOrderDisabled,
   theme,
-  outline,
   texts,
+  onExpand,
+  hideExpander,
 }): React.ReactElement => {
-  const [contentVisible, setContentVisible] = React.useState(false);
   const [editMode, setEditMode] = React.useState(false);
-
-  const toggleContentVisibility = React.useCallback((): void => {
-    setContentVisible(!contentVisible);
-  }, [setContentVisible, contentVisible]);
 
   const updateName = React.useCallback(
     (updateParams): void => {
@@ -55,15 +51,25 @@ const ContentItem: React.FC<ContentItemProps> = ({
   const enterEditMode = React.useCallback((): void => {
     setEditMode(true);
   }, []);
+  const stopPropagationHandler = React.useCallback((e: React.MouseEvent<HTMLElement>) => {
+    e.stopPropagation();
+  }, []);
   return (
     <S.ItemContainer
-      opened={contentVisible}
+      opened={!!item.expanded}
       greyBackground={greyBackground}
       key={item.id}
       data-testid="item-with-content"
-      outline={!greyBackground && outline}
     >
-      <S.ItemHeader hasPrefix={Boolean(draggable || item.tag || item.icon)}>
+      <S.ItemHeader
+        hasPrefix={Boolean(draggable || item.tag || item.icon)}
+        onDoubleClick={(): void => {
+          !item.disableExpanding && onExpand && onExpand(item.id, false);
+        }}
+        onClick={(): void => {
+          !item.disableExpanding && !item.expanded && onExpand && onExpand(item.id, true);
+        }}
+      >
         <S.ItemHeaderPrefix>
           {draggable && (
             <S.DraggerWrapper disabled={Boolean(changeOrderDisabled)}>
@@ -78,7 +84,7 @@ const ContentItem: React.FC<ContentItemProps> = ({
           )}
         </S.ItemHeaderPrefix>
         <ItemName item={item} editMode={editMode} onUpdate={updateName} />
-        <S.ItemHeaderSuffix>
+        <S.ItemHeaderSuffix onClick={stopPropagationHandler}>
           <ItemActions
             item={item}
             duplicateAction={onDuplicate}
@@ -88,14 +94,21 @@ const ContentItem: React.FC<ContentItemProps> = ({
             editAction={enterEditMode}
             editActionTooltip={texts.itemActionRenameTooltip}
           />{' '}
-          {item.content && (
+          {item.content && !hideExpander && (
             <S.ToggleContentWrapper data-testid="item-toggle-content-wrapper">
-              <Button.Expander onClick={toggleContentVisibility} expanded={contentVisible} />
+              <Button.Expander
+                disabled={item.disableExpanding}
+                onClick={(e: React.MouseEvent<HTMLButtonElement>): void => {
+                  e.stopPropagation();
+                  !item.disableExpanding && onExpand && onExpand(item.id, !item.expanded);
+                }}
+                expanded={item.expanded}
+              />
             </S.ToggleContentWrapper>
           )}
           {item.dropdown && (
             <Dropdown trigger={['click']} overlay={item.dropdown}>
-              <S.DropdownTrigger className="ds-dropdown-trigger">
+              <S.DropdownTrigger className="ds-dropdown-trigger" onClick={stopPropagationHandler}>
                 <Icon component={<OptionHorizontalM />} color={theme.palette['grey-600']} />
               </S.DropdownTrigger>
             </Dropdown>

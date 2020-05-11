@@ -7,7 +7,6 @@ import { ItemMeta } from '../ItemMeta/ItemMeta.styles';
 type ItemContainerProps = {
   opened: boolean;
   greyBackground: boolean | undefined;
-  outline?: boolean;
 };
 
 type DraggerWrapperProps = {
@@ -63,6 +62,7 @@ export const ItemHeader = styled.div<ItemHeaderProps>`
   justify-content: stretch;
   width: 100%;
   padding: 12px;
+  cursor: pointer;
   ${(props): string | false => !props.hasPrefix && `padding-left:16px;`}
   ${Tag} {
     margin: 0 12px 0 0;
@@ -100,7 +100,7 @@ export const ItemHeader = styled.div<ItemHeaderProps>`
 `;
 
 export const ContentWrapper = styled.div`
-  padding: 16px 16px 24px;
+  padding: 16px 24px 24px;
   width: 100%;
   border-top: 1px solid ${({ theme }): string => theme.palette['grey-200']};
 `;
