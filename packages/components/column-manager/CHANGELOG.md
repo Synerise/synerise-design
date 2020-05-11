@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-column-manager@0.4.1...@synerise/ds-column-manager@0.5.0) (2020-05-11)
+
+
+### Features
+
+* **manageable-list:** updated stories, added expand on click ([c7d3666](https://github.com/Synerise/synerise-design/commit/c7d36666ffc10ae7bccfa076240d3a1218da9954))
+
+
+
+
+
 ## [0.4.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-column-manager@0.4.0...@synerise/ds-column-manager@0.4.1) (2020-05-08)
 
 **Note:** Version bump only for package @synerise/ds-column-manager

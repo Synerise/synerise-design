@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.10.37...@synerise/ds-manageable-list@0.11.0) (2020-05-11)
+
+
+### Bug Fixes
+
+* **manageable-list:** added expand on mount prop ([9f854a2](https://github.com/Synerise/synerise-design/commit/9f854a2112117a933033204ad7431b430ef9b116))
+* **manageable-list:** added option to disable expander ([033964a](https://github.com/Synerise/synerise-design/commit/033964af05ff81fd221ca9bdf59d4465b2ff591f))
+* **manageable-list:** took out the onExpand callback ([2ff751d](https://github.com/Synerise/synerise-design/commit/2ff751d7e725040ca06bd0122656691093f62629))
+
+
+### Features
+
+* **manageable-list:** removed internal state for expandned items ([3e4cd20](https://github.com/Synerise/synerise-design/commit/3e4cd20e2af9d50020cd3ca8ce9d4c54e16a16af))
+* **manageable-list:** updated stories, added expand on click ([c7d3666](https://github.com/Synerise/synerise-design/commit/c7d36666ffc10ae7bccfa076240d3a1218da9954))
+
+
+
+
+
 ## [0.10.37](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.10.36...@synerise/ds-manageable-list@0.10.37) (2020-05-08)
 
 **Note:** Version bump only for package @synerise/ds-manageable-list
