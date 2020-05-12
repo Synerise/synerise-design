@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.10.1...@synerise/ds-table@0.10.2) (2020-05-12)
+
+
+### Bug Fixes
+
+* **table:** expanded row styles ([ccd891e](https://github.com/synerise/synerise-design/commit/ccd891e1f9a649bab8c5963152f140e258a4eb17))
+* **table:** fix selection columns styles ([23f218b](https://github.com/synerise/synerise-design/commit/23f218b0d160cda77797d5cb1c207bafb1bd594f))
+* **table:** fix selection types ([6a67483](https://github.com/synerise/synerise-design/commit/6a67483bb963337150a7df779c06054acf0dfcc5))
+* **table:** fix table styles ([740764e](https://github.com/synerise/synerise-design/commit/740764e20b77b4cffef3dbf88c1250b4b0a34eb6))
+
+
+
+
+
 ## [0.10.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.10.0...@synerise/ds-table@0.10.1) (2020-05-08)
 
 **Note:** Version bump only for package @synerise/ds-table

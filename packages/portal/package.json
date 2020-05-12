@@ -1,6 +1,6 @@
 {
   "name": "portal",
-  "version": "0.61.1",
+  "version": "0.62.0",
   "private": true,
   "homepage": "./",
   "repository": "synerise/synerise-design",
@@ -19,13 +19,13 @@
   },
   "dependencies": {
     "final-form": "4.18.7",
+    "moment": "^2.25.3",
     "ramda": "0.27.0",
     "react": "16.13.0",
     "react-dom": "16.13.0",
     "react-final-form": "6.3.5",
     "react-scripts": "3.4.0",
-    "uuid": "7.0.2",
-    "moment": "^2.25.3"
+    "uuid": "7.0.2"
   },
   "devDependencies": {
     "@babel/cli": "7.8.4",

@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.62.0](https://github.com/synerise/synerise-design/compare/portal@0.61.1...portal@0.62.0) (2020-05-12)
+
+
+### Bug Fixes
+
+* **page-header:** removed knobs that leaked to other components ([3b7bd06](https://github.com/synerise/synerise-design/commit/3b7bd06e63003690d6907d6de206cfccb37803fa))
+* **table:** expanded row styles ([ccd891e](https://github.com/synerise/synerise-design/commit/ccd891e1f9a649bab8c5963152f140e258a4eb17))
+* **table:** fix selection columns styles ([23f218b](https://github.com/synerise/synerise-design/commit/23f218b0d160cda77797d5cb1c207bafb1bd594f))
+
+
+### Features
+
+* **column-manager:** update stories ([3daaf22](https://github.com/synerise/synerise-design/commit/3daaf22ac9900ca6a510828fdf2c7f54aa7dba07))
+* **item-filter:** update stories ([ae411f9](https://github.com/synerise/synerise-design/commit/ae411f9f0d94663141d09d78d60b025dc257ba64))
+* **table:** add column with checkbox ([9358018](https://github.com/synerise/synerise-design/commit/9358018cb5113fc345dac8c24d5b49f1aa420423))
+* **table:** update stories ([504caaa](https://github.com/synerise/synerise-design/commit/504caaacf145f40996ebca875fdd5440fd72cc1f))
+* **utils:** randomDate helper ([425619f](https://github.com/synerise/synerise-design/commit/425619f162e371ba98864a6bd35f0c55c9656b59))
+
+
+
+
+
 ## [0.61.1](https://github.com/synerise/synerise-design/compare/portal@0.61.0...portal@0.61.1) (2020-05-11)
 
 

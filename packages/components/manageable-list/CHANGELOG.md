@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.11.1...@synerise/ds-manageable-list@0.11.2) (2020-05-12)
+
+
+### Bug Fixes
+
+* **manageable-list:** safari bug fix and dropdown placement ([ea85d28](https://github.com/Synerise/synerise-design/commit/ea85d28d1a94126f2fe1a81cd36c6c3e625cf369))
+
+
+
+
+
 ## [0.11.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.11.0...@synerise/ds-manageable-list@0.11.1) (2020-05-11)
 
 

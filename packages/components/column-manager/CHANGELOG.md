@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-column-manager@0.5.1...@synerise/ds-column-manager@0.6.0) (2020-05-12)
+
+
+### Features
+
+* **column-manager:** manage savedViews ([0f22cf3](https://github.com/Synerise/synerise-design/commit/0f22cf3fdeb5f3e64d9845bca514906101ae1cea))
+
+
+
+
+
 ## [0.5.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-column-manager@0.5.0...@synerise/ds-column-manager@0.5.1) (2020-05-11)
 
 **Note:** Version bump only for package @synerise/ds-column-manager

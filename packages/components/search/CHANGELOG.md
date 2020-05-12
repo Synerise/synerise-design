@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.1.10...@synerise/ds-search@0.1.11) (2020-05-12)
+
+
+### Bug Fixes
+
+* **search:** fix search input styles ([a78cd6a](https://github.com/Synerise/synerise-design/commit/a78cd6ae67ef55dd32ce3ba93529c852f0975cd1))
+
+
+
+
+
 ## [0.1.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.1.9...@synerise/ds-search@0.1.10) (2020-05-08)
 
 **Note:** Version bump only for package @synerise/ds-search
