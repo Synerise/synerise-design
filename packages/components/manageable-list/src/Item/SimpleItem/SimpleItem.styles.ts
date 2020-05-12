@@ -14,6 +14,7 @@ export const ItemLabel = styled.span`
   overflow: hidden;
   line-height: 24px;
   max-width: 100%;
+  user-select: none;
 
   .search-highlight {
     font-weight: 500;

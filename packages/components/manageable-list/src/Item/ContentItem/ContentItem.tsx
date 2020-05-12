@@ -108,7 +108,7 @@ const ContentItem: React.FC<ContentItemProps> = ({
           )}
           {item.dropdown && (
             <S.DropdownWrapper onClick={stopPropagationHandler}>
-              <Dropdown trigger={['click']} overlay={item.dropdown}>
+              <Dropdown trigger={['click']} overlay={item.dropdown} placement="bottomRight">
                 <S.DropdownTrigger className="ds-dropdown-trigger" onClick={stopPropagationHandler}>
                   <Icon component={<OptionHorizontalM />} color={theme.palette['grey-600']} />
                 </S.DropdownTrigger>
