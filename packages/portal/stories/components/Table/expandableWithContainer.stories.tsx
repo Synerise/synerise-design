@@ -3,11 +3,11 @@ import { action } from '@storybook/addon-actions';
 import { withState } from '@dump247/storybook-state';
 import { ItemsMenu, TableCell } from '@synerise/ds-table';
 import Icon from '@synerise/ds-icon';
-import { AngleDownS, EditM, FileDownloadM, TrashM } from '@synerise/ds-icon/dist/icons';
+import { EditM, FileDownloadM, TrashM } from '@synerise/ds-icon/dist/icons';
 import Table from '@synerise/ds-table';
 import Button from '@synerise/ds-button';
 import * as React from 'react';
-import { dataSource } from './content/expandable.data';
+import { dataSource } from './content/expandableWithContainer.data';
 
 const decorator = storyFn => <div style={{ padding: 20, width: '100vw', minWidth: '100%' }}>{storyFn()}</div>;
 
@@ -43,10 +43,11 @@ const stories = {
           key: 'name',
         },
         {
-          dataIndex: 'children',
-          key: 'children',
-          render: (children, record) => {
-            if(children !== undefined) {
+          dataIndex: 'more',
+          key: 'more',
+          render: (more, record) => {
+            if(more !== undefined) {
+              console.log(expandedRows.indexOf(record.key) >= 0, record);
               return (
                 <TableCell.ActionCell>
                   <Button.Expander expanded={expandedRows.indexOf(record.key) >= 0} onClick={() => {handleExpandRow(record.key)}} />
@@ -72,8 +73,11 @@ const stories = {
           onChange: action('pageChanged'),
         }}
         expandable={{
-          expandIconColumnIndex: -1,
           expandedRowKeys: expandedRows,
+          expandedRowRender: (record) => {
+            console.log(record);
+            return record.more.text;
+          },
         }}
         rowKey={row => row.key}
         selection={
@@ -119,7 +123,7 @@ const stories = {
 };
 
 export default {
-  name: 'Table|Expandable table',
+  name: 'Table|Expandable table with container',
   decorator,
   stories,
   Component: Table,
