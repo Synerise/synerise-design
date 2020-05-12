@@ -44,6 +44,7 @@ const dataSource = [...new Array(55)].map((i, k) => ({
   },
   enabled: faker.random.boolean(),
   editable: faker.name.findName(),
+  checked: faker.random.boolean(),
 }));
 
 const CELL_SIZES = {

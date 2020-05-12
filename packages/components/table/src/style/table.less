@@ -34,6 +34,16 @@
     overflow: auto !important;
   }
 
+  .@{table-prefix-cls}-row-expand-icon-cell {
+    display: none;
+  }
+
+  .@{table-prefix-cls}-cell {
+    &:not(.ant-table-selection-column) {
+      min-width: 120px;
+    }
+  }
+
   .@{table-prefix-cls} {
     .@{table-prefix-cls}-selection-column {
       padding: 0 24px;
@@ -155,6 +165,20 @@
       }
       &.@{table-prefix-cls}-measure-row > td {
         padding: 0 24px;
+      }
+      &.@{table-prefix-cls}-expanded-row {
+        td {
+          padding: 24px;
+          &:before {
+            position: absolute;
+            width: 2px;
+            height: 100%;
+            left: 0;
+            top: 0;
+            background-color: @grey-600;
+            content: '';
+          }
+        }
       }
       &.@{table-prefix-cls}-row-level-1,
       &.@{table-prefix-cls}-row-level-2 {

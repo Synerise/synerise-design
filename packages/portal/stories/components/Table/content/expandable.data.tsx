@@ -40,16 +40,6 @@ export const dataSource = [
       {
         key: '9',
         name: 'John Doe',
-        children: [
-          {
-            key: '10',
-            name: 'John Doe',
-          },
-          {
-            key: '11',
-            name: 'John Doe',
-          }
-        ]
       }
     ]
   },
