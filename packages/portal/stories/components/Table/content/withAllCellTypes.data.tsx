@@ -145,7 +145,7 @@ export const COLUMNS = [
     width: 254,
     textWrap: 'word-break',
     ellipsis: true,
-    render: (enabled) => <Switch onChange={action('Status change')} checked={enabled} label='' />
+    render: (enabled) => <Tooltip title={enabled ? 'Switch off' : 'Switch on'} placement={'topLeft'}><Switch onChange={action('Status change')} checked={enabled} label='' /></Tooltip>
   },
   {
     title: 'Editable row',

@@ -33,8 +33,8 @@ const stories = {
       return !store.state.searchValue
         ? dataSource
         : dataSource.filter(record => {
-            return record.name.toLowerCase().includes(store.state.searchValue.toLowerCase());
-          });
+          return record.name.toLowerCase().includes(store.state.searchValue.toLowerCase());
+        });
     };
 
     const handleSelectRow = (selectedRowKeys) => {
@@ -42,7 +42,7 @@ const stories = {
     };
 
     return (
-      <div style={{width: 792}}>
+      <Modal size='medium' visible title={"Table"} bodyStyle={{padding: 0}}>
         <VirtualTable
           scroll={{ y: 500, x: 0 }}
           initialWidth={792}
@@ -86,13 +86,13 @@ const stories = {
             />
           }
         />
-      </div>
+      </Modal>
     );
   }),
 };
 
 export default {
-  name: 'Table|Table with virtualization',
+  name: 'Table|Table on modal',
   decorator,
   stories,
   Component: Table,

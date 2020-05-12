@@ -23,7 +23,7 @@ export const SearchInputWrapper = styled.div<{ width?: number }>`
   position: relative;
   direction: rtl;
   overflow-x: hidden;
-  height: 34px;
+  height: 32px;
 `;
 
 export const SearchWrapper = styled.div<{ width?: number; inputOpen?: boolean }>`
@@ -138,6 +138,7 @@ export const SearchInputContent = styled.div<{ offset: number; filterLabel: Filt
   width: 0;
   input {
     opacity: 0;
+    height: 32px;
   }
   input.ant-input {
     transition: padding-left 0.1s ease-in-out !important;
@@ -151,10 +152,6 @@ export const SearchInputContent = styled.div<{ offset: number; filterLabel: Filt
         props.filterLabel && props.offset ? `${Math.round(props.offset + LABEL_LEFT_OFFSET)}px` : '12px'};
       padding-right: 30px;
       opacity: 1;
-      line-height: 18px;
-    }
-    input::placeholder {
-      line-height: 18px;
     }
   }
 `;

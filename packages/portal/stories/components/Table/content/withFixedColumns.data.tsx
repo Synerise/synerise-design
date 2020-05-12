@@ -2,10 +2,9 @@ export const COLUMNS = [
   {
     title: 'Name',
     dataIndex: 'name',
-    fixed: 'left',
     width: 254,
-    textWrap: 'word-break',
     ellipsis: true,
+    fixed: 'left',
     key: 'name',
   },
   {
@@ -35,10 +34,10 @@ export const COLUMNS = [
   {
     title: 'Age',
     dataIndex: 'age',
-    fixed: 'right',
     width: 254,
     textWrap: 'word-break',
     ellipsis: true,
+    fixed: 'right',
     key: 'age',
   },
 ];

@@ -24,7 +24,8 @@
     "react-dom": "16.13.0",
     "react-final-form": "6.3.5",
     "react-scripts": "3.4.0",
-    "uuid": "7.0.2"
+    "uuid": "7.0.2",
+    "moment": "^2.25.3"
   },
   "devDependencies": {
     "@babel/cli": "7.8.4",

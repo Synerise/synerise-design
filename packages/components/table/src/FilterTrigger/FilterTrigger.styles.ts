@@ -53,7 +53,7 @@ export const ClearButton = styled(Button)`
 
 export const ListButton = styled(Button)`
   &&& {
-    &:after {
+    &:before {
       content: '';
       display: flex;
       position: absolute;

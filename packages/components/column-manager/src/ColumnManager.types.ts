@@ -35,6 +35,8 @@ export type ColumnManagerProps = {
     [k in Texts]: string | React.ReactNode;
   };
   itemFilterConfig?: Omit<ItemFilterProps, 'visible' | 'hide' | 'theme'>;
+  savedViewsVisible?: boolean;
+  hideSavedViews?: () => void;
   intl: IntlFormatters;
 };
 

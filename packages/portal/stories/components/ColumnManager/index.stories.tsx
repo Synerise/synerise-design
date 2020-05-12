@@ -7,6 +7,7 @@ import { text } from '@storybook/addon-knobs';
 import Button from '@synerise/ds-button';
 import { withState } from '@dump247/storybook-state';
 import { SavedView } from '@synerise/ds-column-manager/dist/ColumnManager';
+import randomDate from '../../utils/randomDate';
 
 const COLUMNS: Column[] = [
   {
@@ -72,7 +73,7 @@ const FILTERS = [
     id: '0000',
     name: 'Filter #1',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do elit',
-    created: '01-05-2020 12:02',
+    created: randomDate(),
     canUpdate: true,
     canDelete: true,
     canDuplicate: true,
@@ -87,7 +88,7 @@ const FILTERS = [
     id: '0001',
     name: 'Filter #2',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do elit',
-    created: '01-12-2019 12:02',
+    created: randomDate(),
     canUpdate: false,
     canDelete: false,
     canDuplicate: true,
@@ -101,7 +102,7 @@ const FILTERS = [
   {
     id: '0002',
     name: 'Filter #3',
-    created: '01-12-2019 12:02',
+    created: randomDate(),
     canUpdate: false,
     canDelete: false,
     canDuplicate: true,
@@ -118,7 +119,7 @@ const FILTERS = [
 const EMPTY_FILTER = {
   id: '0002',
   name: '',
-  created: '01-12-2019 12:02',
+  created: randomDate(),
   canUpdate: true,
   canDelete: true,
   canDuplicate: true,
@@ -176,7 +177,7 @@ const saveFilter = (savedView: SavedView, store) => {
         description: savedView.meta.description,
         columns: [...savedView.columns],
         id: id,
-        created: moment().format('MM-DD-YYYY HH:mm:ss'),
+        created: moment(),
       }
     ],
     columns: [...savedView.columns],

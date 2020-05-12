@@ -123,6 +123,7 @@ function DSTable<T extends object = any>(props: DSTableProps<T>): React.ReactEle
         rowSelection={
           selection && {
             ...selection,
+            columnWidth: 72,
             renderCell: (checked: boolean, record: T): React.ReactNode => {
               return (
                 <Checkbox
