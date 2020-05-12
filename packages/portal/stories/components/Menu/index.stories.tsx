@@ -58,7 +58,7 @@ const stories = {
   withLabel: () => {
     const defaultProps = getDefaultProps();
     const props = {
-      dataSource: [attachKnobsToDataSource(simpleText)],
+      dataSource: attachKnobsToDataSource(simpleText),
       suffixel: getSuffixElement(),
       ...defaultProps,
     } as object;
@@ -68,7 +68,7 @@ const stories = {
     const defaultProps = getDefaultProps();
     const singleIcon = select('Set prefix type', iconPrefixType, iconPrefixType.singleIcon);
     const props = {
-      dataSource: [attachKnobsToDataSource(textWithIcon)],
+      dataSource: attachKnobsToDataSource(textWithIcon),
       prefixel: renderPrefixIcon(singleIcon),
       suffixel: getSuffixElement(),
       ...defaultProps,
@@ -79,7 +79,7 @@ const stories = {
     const defaultProps = getDefaultProps();
     const [isChecked, setChecked] = React.useState(false);
     const props = {
-      dataSource: [attachKnobsToDataSource(withCheckBox)],
+      dataSource: attachKnobsToDataSource(withCheckBox),
       suffixel: getSuffixElement(),
       prefixel: <Checkbox checked={isChecked} onChange={() => setChecked(!isChecked)} />,
       onClick: () => setChecked(!isChecked),
@@ -90,7 +90,7 @@ const stories = {
   withOrderedList: () => {
     const defaultProps = getDefaultProps();
     const props = {
-      dataSource: [attachKnobsToDataSource(ordered)],
+      dataSource: attachKnobsToDataSource(ordered),
       ordered: true,
       ...defaultProps,
     } as object;
@@ -99,7 +99,7 @@ const stories = {
   withLargeList: () => {
     const defaultProps = getDefaultProps();
     const props = {
-      dataSource: [attachKnobsToDataSource(largeList)],
+      dataSource: attachKnobsToDataSource(largeList),
       ordered: true,
       ...defaultProps,
     } as object;
@@ -108,7 +108,7 @@ const stories = {
   withParent: () => {
     const defaultProps = getDefaultProps();
     const props = {
-      dataSource: [attachKnobsToDataSource(parent)],
+      dataSource: attachKnobsToDataSource(parent),
       ...defaultProps,
     } as object;
     return decorator(props);
@@ -116,7 +116,7 @@ const stories = {
   withSquareAvatar: () => {
     const defaultProps = getDefaultProps();
     const props = {
-      dataSource: [attachKnobsToDataSource(avatar)],
+      dataSource: attachKnobsToDataSource(avatar),
       suffixel: getSuffixElement(),
       ...defaultProps,
     } as object;
@@ -125,7 +125,7 @@ const stories = {
   withSmallAvatar: () => {
     const defaultProps = getDefaultProps();
     const props = {
-      dataSource: [attachKnobsToDataSource(avatarSmall)],
+      dataSource: attachKnobsToDataSource(avatarSmall),
       ...defaultProps,
     } as object;
     return decorator(props);
@@ -133,7 +133,7 @@ const stories = {
   withMediumAvatar: () => {
     const defaultProps = getDefaultProps();
     const props = {
-      dataSource: [attachKnobsToDataSource(avatarMedium)],
+      dataSource: attachKnobsToDataSource(avatarMedium),
       ...defaultProps,
     } as object;
     return decorator(props);
@@ -141,7 +141,7 @@ const stories = {
   withDelete: () => {
     const defaultProps = getDefaultProps();
     const props = {
-      dataSource: [attachKnobsToDataSource(deleteState)],
+      dataSource: attachKnobsToDataSource(deleteState),
       ...defaultProps,
     } as object;
     return decorator(props);
@@ -153,7 +153,7 @@ const stories = {
       <ExtendedAntdSwitchComponent id={'toggle'} checked={isChecked} onChange={() => setChecked(!isChecked)} />
     );
     const props = {
-      dataSource: [attachKnobsToDataSource(simpleText)],
+      dataSource: attachKnobsToDataSource(simpleText),
       prefixel,
       onClick: () => setChecked(!isChecked),
       ...defaultProps,
@@ -164,7 +164,7 @@ const stories = {
     const defaultProps = getDefaultProps();
     const knobs = attachKnobsToDataSource(withCopyable);
     const props = {
-      dataSource: [remapCopyValueFromText(knobs)],
+      dataSource: remapCopyValueFromText(knobs),
       ...defaultProps,
     } as object;
     return (
@@ -195,7 +195,7 @@ const stories = {
   withHighlighting: () => {
     const defaultProps = getDefaultProps();
     const props = {
-      dataSource: [attachKnobsToDataSource(simpleText)],
+      dataSource: attachKnobsToDataSource(simpleText),
       highlight: text('Set text to be highlighted', 'Opt'),
       ...defaultProps,
     } as object;

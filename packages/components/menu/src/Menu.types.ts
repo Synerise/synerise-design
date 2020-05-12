@@ -3,7 +3,7 @@ import * as React from 'react';
 import { MenuItemProps } from './Elements/Item/MenuItem.types';
 
 export interface AntdMenuProps extends Omit<MenuProps, 'dataSource' | 'footer'> {
-  dataSource?: MenuItemProps[][];
+  dataSource?: MenuItemProps[];
   radio?: boolean;
   dashed?: boolean;
   prefixel?: React.ReactNode;
@@ -11,4 +11,8 @@ export interface AntdMenuProps extends Omit<MenuProps, 'dataSource' | 'footer'> 
   ordered?: boolean | undefined;
   copyable?: boolean;
   copyHint?: string;
+}
+export enum VisibilityTrigger {
+  NONE = 'none',
+  HOVER = 'hover',
 }

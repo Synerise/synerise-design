@@ -1,5 +1,6 @@
 import { MenuProps } from 'antd/lib/menu';
 import * as React from 'react';
+import { VisibilityTrigger } from 'Menu.types';
 import { SubMenuProps } from '../SubMenu/SubMenu.types';
 
 export interface MenuItemProps extends Omit<MenuProps, 'dataSource' | 'footer'> {
@@ -18,4 +19,6 @@ export interface MenuItemProps extends Omit<MenuProps, 'dataSource' | 'footer'> 
   copyHint?: string;
   copyValue?: string;
   highlight?: string;
+  suffixVisibilityTrigger?: VisibilityTrigger;
+  prefixVisibilityTrigger?: VisibilityTrigger;
 }

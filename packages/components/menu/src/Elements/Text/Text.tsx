@@ -6,6 +6,7 @@ import * as copy from 'copy-to-clipboard';
 import { ClickParam, SelectParam } from 'antd/lib/menu';
 import { escapeRegEx } from '@synerise/ds-utils';
 import * as S from './Text.styles';
+import { VisibilityTrigger } from '../../Menu.types';
 
 interface Props {
   className?: string;
@@ -24,6 +25,8 @@ interface Props {
   highlight?: string;
   style?: React.CSSProperties;
   onItemHover?: (e: MouseEvent) => void;
+  suffixVisibilityTrigger?: VisibilityTrigger;
+  prefixVisibilityTrigger?: VisibilityTrigger;
 }
 const Text: React.FC<Props> = ({
   parent,
@@ -38,11 +41,16 @@ const Text: React.FC<Props> = ({
   copyValue,
   highlight,
   style,
+  prefixVisibilityTrigger,
+  suffixVisibilityTrigger,
   ...rest
 }) => {
   const [pressed, setPressed] = React.useState(false);
   const [hovered, setHovered] = React.useState(false);
   const canCopyToClipboard = copyable && copyHint && copyValue && !disabled;
+  const showSuffixOnHover = suffixVisibilityTrigger === VisibilityTrigger.HOVER;
+  const showPrefixOnHover = prefixVisibilityTrigger === VisibilityTrigger.HOVER;
+  const shouldListenToHoverEvents = canCopyToClipboard || showSuffixOnHover || showPrefixOnHover;
 
   const renderChildren = (): React.ReactNode => {
     if (highlight && typeof children === 'string') {
@@ -64,17 +72,28 @@ const Text: React.FC<Props> = ({
     }
     return children;
   };
-
+  const shouldRenderSuffix = (): boolean => {
+    if (showSuffixOnHover) {
+      return !!suffixel && hovered;
+    }
+    return !!suffixel;
+  };
+  const shouldRenderPrefix = (): boolean => {
+    if (showPrefixOnHover) {
+      return !!prefixel && hovered;
+    }
+    return !!prefixel;
+  };
   return (
     // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
     // @ts-ignore
     // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
     <S.Wrapper
       onMouseOver={(): void => {
-        canCopyToClipboard && setHovered(true);
+        shouldListenToHoverEvents && setHovered(true);
       }}
       onMouseLeave={(): void => {
-        canCopyToClipboard && setHovered(false);
+        shouldListenToHoverEvents && setHovered(false);
       }}
       onMouseDown={(): void => {
         setPressed(true);
@@ -92,9 +111,9 @@ const Text: React.FC<Props> = ({
       style={style}
       {...rest}
     >
-      <S.Inner prefixel={!!prefixel}>
-        <S.ContentWrapper prefixel={!!prefixel}>
-          {prefixel && (
+      <S.Inner>
+        <S.ContentWrapper>
+          {shouldRenderPrefix() && (
             <S.PrefixelWrapper className="ds-menu-prefix" pressed={pressed} disabled={disabled}>
               {prefixel}
             </S.PrefixelWrapper>
@@ -108,7 +127,7 @@ const Text: React.FC<Props> = ({
               </S.ArrowRight>
             )}
           </S.Content>
-          {!!suffixel && <S.SuffixWraper disabled={disabled}>{suffixel}</S.SuffixWraper>}
+          {shouldRenderSuffix() && <S.SuffixWraper disabled={disabled}>{suffixel}</S.SuffixWraper>}
         </S.ContentWrapper>
       </S.Inner>
     </S.Wrapper>

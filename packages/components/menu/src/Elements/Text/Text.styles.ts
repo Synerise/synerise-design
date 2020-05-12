@@ -273,15 +273,15 @@ export const SuffixWraper = styled.div<{ disabled?: boolean }>`
   }
 `;
 
-export const ContentWrapper = styled.div<{ prefixel?: React.ReactNode; suffixel?: React.ReactNode }>`
+export const ContentWrapper = styled.div`
   padding: 7px 0;
   width: 100%;
   display: flex;
   align-items: center;
-  flex-wrap: ${(props): string => (props.suffixel ? 'wrap' : 'nowrap')};
+  flex-wrap: nowrap;
 `;
 
-export const Inner = styled.div<{ prefixel?: React.ReactNode }>`
+export const Inner = styled.div`
   width: 100%;
   display: flex;
 `;
