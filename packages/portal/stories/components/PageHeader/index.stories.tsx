@@ -70,9 +70,12 @@ const stories = {
       }
     />
   )),
-  isolated: {
-    title: "Nav can be isolated from header's wrapper",
-    isolated: boolean('Isolated', true),
+  isolated:() => {
+    const isolated = boolean('Isolated', true);
+    return (<PageHeader
+    title="Nav can be isolated from header's wrapper"
+    isolated={isolated}
+    />)
   },
   backButton: {
     title: 'Main page header witch back button',
