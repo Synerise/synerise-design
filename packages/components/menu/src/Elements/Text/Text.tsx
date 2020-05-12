@@ -25,8 +25,8 @@ interface Props {
   highlight?: string;
   style?: React.CSSProperties;
   onItemHover?: (e: MouseEvent) => void;
-  suffixVisibilityTrigger?: VisibilityTrigger;
-  prefixVisibilityTrigger?: VisibilityTrigger;
+  suffixVisibilityTrigger?: string;
+  prefixVisibilityTrigger?: string;
 }
 const Text: React.FC<Props> = ({
   parent,

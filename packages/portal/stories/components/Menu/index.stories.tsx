@@ -3,30 +3,30 @@ import { boolean, select, text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import Checkbox from '@synerise/ds-checkbox';
 import Icon from '@synerise/ds-icon';
-import { FileM } from '@synerise/ds-icon/dist/icons';
+import { DeleteM, FileM } from '@synerise/ds-icon/dist/icons';
 import Menu from '@synerise/ds-menu';
 import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
 
 import {
-  TEXT_PLACEHOLDER,
-  DESCRIPTION_PLACEHOLDER,
-  iconPrefixType,
-  ordered,
-  avatarMedium,
-  withCheckBox,
-  textWithIcon,
   avatar,
-  remapCopyValueFromText,
+  avatarMedium,
   avatarSmall,
-  simpleText,
-  largeList,
-  withCopyable,
-  renderPrefixIcon,
   deleteState,
+  DESCRIPTION_PLACEHOLDER,
   ExtendedAntdSwitchComponent,
-  suffixType,
-  renderSuffix,
+  iconPrefixType,
+  largeList,
+  ordered,
   parent,
+  remapCopyValueFromText,
+  renderPrefixIcon,
+  renderSuffix,
+  simpleText,
+  suffixType,
+  TEXT_PLACEHOLDER,
+  textWithIcon,
+  withCheckBox,
+  withCopyable,
 } from './dataset';
 
 const decorator = props => (
