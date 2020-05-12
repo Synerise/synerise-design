@@ -40,7 +40,7 @@ const stories = {
       <Table
         title={`${dataSource.length} records`}
         dataSource={dataSource}
-        layout={'fixed'}
+        layout='fixed'
         columns={COLUMNS}
         loading={boolean('Set loading state', false)}
         roundedHeader={boolean('Rounded header', false)}
@@ -50,6 +50,7 @@ const stories = {
           onChange: action('pageChanged')
         }}
         rowKey={(row) => row.key}
+        scroll={{x: 0}}
         selection={boolean('Enable row selection', true) && {
           onChange: handleSelectRow,
           selectedRowKeys: store.state.selectedRows,

@@ -37,6 +37,7 @@ export const COLUMNS = [
     width: 254,
     textWrap: 'word-break',
     ellipsis: true,
+    fixed: 'right',
     key: 'age',
   },
 ];
