@@ -45,24 +45,24 @@ const logoSrc = 'https://synerise.com/synerise/assets/svg/logos/logo-white.png';
 const avatarSrc = 'https://hsto.org/web/77c/061/c05/77c061c0550f4acd98380bf554eb8886.png';
 
 const stories = {
-  default: {
-    description: 'Module name',
-    logo: logoSrc,
-    color: select('Background color', backgroundColors, '#0b68ff'),
-    additionalNodes: [<div>some text</div>, <div>some other text</div>],
-    actions: (
-      <>
-        <Button onClick={action('onClick')} type="ghost-white" mode="single-icon">
-          <Icon component={<DashboardM />} color={'#ffffff'} />
-        </Button>
-        <Button onClick={action('onClick')} type="ghost-white" mode="single-icon">
-          <Icon component={<CalendarM />} color={'#ffffff'} />
-        </Button>
-        <Button onClick={action('onClick')} type="ghost-white" mode="single-icon">
-          <Icon component={<NotificationsPlayM />} color={'#ffffff'} />
-        </Button>
-      </>
-    ),
+  default:() => {
+    return <Navbar
+    description={'Module name'}
+    logo={logoSrc}
+    color={select('Background color', backgroundColors, '#0b68ff')}
+    additionalNodes={[<div>some text</div>, <div>some other text</div>]}
+    actions={<>
+      <Button onClick={action('onClick')} type="ghost-white" mode="single-icon">
+        <Icon component={<DashboardM />} color={'#ffffff'} />
+      </Button>
+      <Button onClick={action('onClick')} type="ghost-white" mode="single-icon">
+        <Icon component={<CalendarM />} color={'#ffffff'} />
+      </Button>
+      <Button onClick={action('onClick')} type="ghost-white" mode="single-icon">
+        <Icon component={<NotificationsPlayM />} color={'#ffffff'} />
+      </Button>
+    </>}
+    />},
     children: (
       <>
         <S.NavbarDivider />
@@ -96,7 +96,6 @@ const stories = {
         <Avatar src={avatarSrc} shape={'circle'} size={32} />
       </>
     ),
-  },
 };
 
 export default {
