@@ -9,6 +9,7 @@ import Avatar from '@synerise/ds-avatar';
 import Switch from '@synerise/ds-switch/dist/Switch';
 import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
 import * as React from 'react';
+import Checkbox from '@synerise/ds-checkbox/dist';
 
 export const COLUMNS = [
   {
@@ -164,6 +165,13 @@ export const COLUMNS = [
     textWrap: 'word-break',
     ellipsis: true,
     render: (editable) => <TableCell.CopyableCell value={editable} confirmMessage="Copied to clipboard!" />
+  },
+  {
+    title: 'Checkbox',
+    key: 'checked',
+    dataIndex: 'checked',
+    width: 120,
+    render: (checked) => <Checkbox checked={checked} />
   },
   {
     title: 'Icon with tooltip',
