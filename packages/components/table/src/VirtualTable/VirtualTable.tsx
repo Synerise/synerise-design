@@ -11,7 +11,7 @@ interface Props<T> extends DSTableProps<T> {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   columns: any[];
   scroll: {
-    x: number;
+    x?: number;
     y: number;
   };
   onRowClick?: (row: T) => void;
