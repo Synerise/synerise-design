@@ -3,7 +3,7 @@ import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import SubMenu from 'antd/lib/menu/SubMenu';
 import { Menu } from 'antd';
-import { Inner, SuffixWraper } from './Elements/Text/Text.styles';
+import { Inner, SuffixWraper } from './Elements/Item/Text/Text.styles';
 
 type SubMenuProps = {
   ordered?: boolean | undefined;

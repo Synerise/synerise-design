@@ -15,4 +15,5 @@ export interface AntdMenuProps extends Omit<MenuProps, 'dataSource' | 'footer'> 
 export enum VisibilityTrigger {
   NONE = 'none',
   HOVER = 'hover',
+  CLICK = 'click',
 }

@@ -3,20 +3,20 @@ import '@synerise/ds-core/dist/js/style';
 import './style/index.less';
 import * as S from './Menu.styles';
 
-import { TextItem } from './Elements';
 import SubMenuItem from './Elements/SubMenu/SubMenu';
 import { AntdMenuProps } from './Menu.types';
 import MenuItem from './Elements/Item/MenuItem';
 import { MenuItemProps } from './Elements/Item/MenuItem.types';
+import Select from './Elements/Item/Select/Select';
 
 class Menu extends React.Component<AntdMenuProps> {
-  static Item: typeof TextItem = TextItem;
+  static Item: typeof MenuItem = MenuItem;
+  static Select: typeof Select = Select;
   static ItemGroup = S.AntdMenu.ItemGroup;
   static SubMenu = S.AntdMenu.SubMenu;
 
   render(): React.ReactNode {
     const { dataSource, ordered, children, ...rest } = this.props;
-
     return (
       <S.AntdMenu ordered={ordered} mode="inline" inlineIndent={24} {...rest}>
         {children ||
@@ -42,7 +42,6 @@ class Menu extends React.Component<AntdMenuProps> {
             ) : (
               <MenuItem
                 parent={item.parent}
-                danger={item.danger}
                 prefixel={item.prefixel}
                 suffixel={item.suffixel}
                 disabled={item.disabled}
@@ -55,6 +54,7 @@ class Menu extends React.Component<AntdMenuProps> {
                 copyHint={item.copyHint}
                 copyValue={item.copyValue}
                 highlight={item.highlight}
+                type={item.type}
                 key={`${item.text}${index}`} // eslint-disable-line react/no-array-index-key
                 {...rest}
               />

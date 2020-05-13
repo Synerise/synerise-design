@@ -1,59 +1,22 @@
-import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
-import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import styled from 'styled-components';
 import * as React from 'react';
 import MenuItem from 'antd/lib/menu/MenuItem';
 import { IconContainer } from '@synerise/ds-icon/dist/Icon.styles';
 
 type WrapperProps = {
   disabled?: boolean;
-  danger?: boolean;
   prefixel?: React.ReactNode;
-  pressed: boolean;
   description?: string | React.ReactNode;
   copyable?: boolean;
 };
 
-function colorOnFocus(props: WrapperProps & ThemeProps): string {
-  const { pressed, disabled, danger } = props;
-  if (danger) {
-    return `${props.theme.palette['red-600']}`;
-  }
-  if (pressed && !disabled) {
-    return `${props.theme.palette['blue-600']}`;
-  }
-  return `${props.theme.palette['grey-700']}`;
-}
-function backgroundColorOnFocus(props: WrapperProps & ThemeProps): string {
-  const { description, danger } = props;
-  if (description) {
-    return props.theme.palette.white;
-  }
-  if (danger) {
-    return props.theme.palette['red-050'];
-  }
-  return props.theme.palette['grey-050'];
-}
-function iconFillOnFocus(props: WrapperProps & ThemeProps): string {
-  const { danger } = props;
-  if (danger) {
-    return `${props.theme.palette['red-600']}`;
-  }
-  return `${props.theme.palette['grey-700']}`;
-}
-function backgroundColorOnPressed(props: WrapperProps & ThemeProps): string {
-  const { danger } = props;
-  if (danger) {
-    return `${props.theme.palette['red-100']}`;
-  }
-  return `${props.theme.palette['grey-100']}`;
-}
 
-export const ArrowRight = styled.div`
+export const ArrowRight = styled.div<{ disabled?: boolean }>`
   transition: all 0.3s ease-out;
-  opacity: 0;
+  opacity: ${(props): string => (props.disabled ? '1' : '0')};
 `;
 
-export const PrefixelWrapper = styled.div<{ disabled?: boolean; pressed?: boolean }>`
+export const PrefixelWrapper = styled.div<{ disabled?: boolean }>`
   display: flex;
   margin-top: -7px;
   margin-bottom: -7px;
@@ -67,11 +30,10 @@ export const PrefixelWrapper = styled.div<{ disabled?: boolean; pressed?: boolea
 
 export const Wrapper = styled(MenuItem)<WrapperProps>`
   &&& {
-    color: ${(props): string => (props.danger ? props.theme.palette['red-600'] : props.theme.palette['grey-700'])};
+    color: ${(props): string => props.theme.palette['grey-700']};
     opacity: ${(props): string => (props.disabled ? '0.4' : '1')};
     cursor: ${(props): string => (props.disabled ? 'not-allowed' : 'pointer')};
-    background: ${(props): string =>
-      props.pressed && !props.disabled ? `${backgroundColorOnPressed(props)} !important` : ''};
+
     padding-right: 12px;
     padding-left: ${(props): string => (props.prefixel ? '8px' : '12px')};
     font-weight: 500;
@@ -106,14 +68,6 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
     &.ant-menu-item-disabled,
     &.ant-menu-submenu-disabled {
       color: ${(props): string => props.theme.palette['grey-600']} !important;
-      ${(props: WrapperProps & ThemeProps): FlattenSimpleInterpolation | false =>
-        props.danger !== undefined &&
-        css`
-          color: ${props.danger && props.theme.palette['red-600']} !important;
-          svg {
-            fill: ${props.danger && props.theme.palette['red-600']} !important;
-          }
-        `}
     }
     & .ds-menu-prefix > * > .ant-avatar::after {
       content: '';
@@ -128,14 +82,6 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
     }
     &:active {
       background: none;
-
-      ${ArrowRight} {
-        opacity: 1;
-
-        svg {
-          fill: ${(props): string => props.theme.palette['blue-600']};
-        }
-      }
     }
     & .ds-checkbox {
       padding: 0px;
@@ -144,23 +90,19 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
       padding: 0px;
     }
     &:focus:not(:active) {
-      box-shadow: ${(props): string =>
-        props.pressed && !props.disabled ? 'none' : `inset 0 0 0 2px ${props.theme.palette['blue-600']} !important`};
-      color: ${(props): string => colorOnFocus(props)};
-      background: ${(props): string => backgroundColorOnFocus(props)};
+      box-shadow: ${(props): string | false =>
+        !props.disabled && `inset 0 0 0 2px ${props.theme.palette['blue-600']} `};
+      color: ${(props): string => props.theme.palette['grey-700']}
+      background: ${(props): string =>
+        props.description ? props.theme.palette.white : props.theme.palette['grey-050']};
       .ds-menu-prefix > ${IconContainer} > svg {
-        fill: ${(props): string => iconFillOnFocus(props)};
+        fill: ${(props): string => props.theme.palette['grey-700']};
       }
     }
+    &:focus:active{
+        background: ${(props): string => `${props.theme.palette['grey-100']}`};
+        color: ${(props): string => props.theme.palette['blue-600']}
 
-    &:focus:active {
-      ${ArrowRight} {
-        opacity: 1;
-
-        svg {
-          fill: ${(props): string => props.theme.palette['blue-600']};
-        }
-      }
     }
 
     & {
@@ -170,18 +112,24 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
         align-items: center;
       }
     }
-
     ${PrefixelWrapper} {
       svg {
         ${(props): string | false =>
           !props.disabled &&
           `
-          fill: ${props.danger ? props.theme.palette['red-600'] : props.theme.palette['grey-600']};
+          fill: ${props.theme.palette['grey-600']};
         `}
       }
     }
     &:focus {
       color: ${(props): string => (props.description ? `${props.theme.palette['blue-600']} !important` : 'inherit')};
+      ${ArrowRight} {
+        opacity: 1;
+        svg {
+          fill: ${(props): string =>
+            props.disabled ? props.theme.palette['grey-700'] : props.theme.palette['blue-600']};
+        }
+      }
     }
     &:hover {
       & .ds-menu-prefix > * > .ant-avatar::before,
@@ -194,7 +142,7 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
         width: 100%;
         height: 100%;
         background-color: transparent;
-        border: 2px solid ${(props): string => props.theme.palette.white};
+        box-shadow: inset 0 0 0 2px ${(props): string => props.theme.palette['blue-600']}
         opacity: 0.3;
         border-radius: inherit;
         box-sizing: border-box;
@@ -206,26 +154,25 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
       }
       ${ArrowRight} {
         opacity: 1;
-
         svg {
-          fill: ${(props): string => props.theme.palette['blue-600']};
+          fill: ${(props): string =>
+            props.disabled ? props.theme.palette['grey-600'] : props.theme.palette['blue-600']};
         }
       }
       ${(props): string | false =>
         !props.disabled &&
         `
         .ds-menu-prefix > ${IconContainer} > svg {
-          fill: ${props.danger ? props.theme.palette['red-600'] : props.theme.palette['blue-600']} !important;
+          fill: ${props.theme.palette['blue-600']} !important;
         }
-        color: ${props.danger ? props.theme.palette['red-600'] : props.theme.palette['blue-600']} !important;
-        background: ${props.danger ? props.theme.palette['red-050'] : props.theme.palette['grey-050']};
+        color: ${props.theme.palette['blue-600']} !important;
+        background: ${props.theme.palette['grey-050']};
       `}
     }
   }
 `;
 
 export const Content = styled.div<{ highlight?: boolean }>`
-  flex: 1;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
@@ -284,4 +231,7 @@ export const ContentWrapper = styled.div`
 export const Inner = styled.div`
   width: 100%;
   display: flex;
+`;
+export const ContentDivider = styled.div`
+  flex: 1;
 `;

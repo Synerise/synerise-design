@@ -18,6 +18,7 @@ import {
   largeList,
   ordered,
   parent,
+  parentWithIcon,
   remapCopyValueFromText,
   renderPrefixIcon,
   renderSuffix,
@@ -26,8 +27,9 @@ import {
   TEXT_PLACEHOLDER,
   textWithIcon,
   withCheckBox,
-  withCopyable,
+  withCopyable, withParent,
 } from './dataset';
+import Label from '@synerise/ds-input/dist/Label/Label';
 
 const decorator = props => (
   <div style={{ width: '200px' }}>
@@ -105,10 +107,18 @@ const stories = {
     } as object;
     return decorator(props);
   },
-  withParent: () => {
+  withSubmenu: () => {
     const defaultProps = getDefaultProps();
     const props = {
       dataSource: attachKnobsToDataSource(parent),
+      ...defaultProps,
+    } as object;
+    return decorator(props);
+  },
+  withSubmenuAndIcon: () => {
+    const defaultProps = getDefaultProps();
+    const props = {
+      dataSource: parentWithIcon,
       ...defaultProps,
     } as object;
     return decorator(props);
@@ -191,6 +201,14 @@ const stories = {
         </Menu>
       </div>
     );
+  },
+  withParent: () => {
+    const defaultProps = getDefaultProps();
+    const props = {
+      dataSource: attachKnobsToDataSource(withParent),
+      ...defaultProps,
+    } as object;
+    return decorator(props);
   },
   withHighlighting: () => {
     const defaultProps = getDefaultProps();

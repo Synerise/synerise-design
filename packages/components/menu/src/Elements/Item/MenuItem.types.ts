@@ -3,6 +3,11 @@ import * as React from 'react';
 import { VisibilityTrigger } from 'Menu.types';
 import { SubMenuProps } from '../SubMenu/SubMenu.types';
 
+export enum ItemType {
+  DEFAULT = 'default',
+  SELECT = 'select',
+  DANGER = 'danger',
+}
 export interface MenuItemProps extends Omit<MenuProps, 'dataSource' | 'footer'> {
   text: string | React.ReactNode;
   parent?: boolean;
@@ -21,4 +26,6 @@ export interface MenuItemProps extends Omit<MenuProps, 'dataSource' | 'footer'> 
   highlight?: string;
   suffixVisibilityTrigger?: VisibilityTrigger;
   prefixVisibilityTrigger?: VisibilityTrigger;
+  children?: React.ReactNode;
+  type?: string;
 }

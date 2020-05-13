@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import { fireEvent } from '@testing-library/dom';
-import Menu from '../Menu';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { CloseS } from '@synerise/ds-icon/dist/icons';
 import Icon from '@synerise/ds-icon';
 import { RenderResult } from '@testing-library/react';
+
+import Menu from '../Menu';
 import { MenuItemProps } from '../Elements/Item/MenuItem.types';
 
 describe('Simple menu', () => {
@@ -18,13 +19,16 @@ describe('Simple menu', () => {
       disabled: true,
     },
     {
-      text: 'Danger',
-      danger: true,
+      text: 'Delete',
+      type: 'danger',
+      disabled:false,
     },
   ];
+  let container: HTMLElement;
   let items: NodeListOf<HTMLLIElement>;
   beforeEach(() => {
-    const { container } = renderWithProvider(<Menu dataSource={data} />);
+    const render = renderWithProvider(<Menu dataSource={data} />);
+    container = render.container;
     items = container.querySelectorAll('li');
   });
 
@@ -39,9 +43,9 @@ describe('Simple menu', () => {
     expect(disabledItem).toHaveStyle(`color: ${theme.palette['grey-600']}`);
   });
   it('should display danger item text with proper color', () => {
-    const dangerItem = items[2];
+    const dangerItemContent = container.querySelectorAll('.ds-menu-content-wrapper')[2];
     // ARRANGE
-    expect(dangerItem).toHaveStyle(`color: ${theme.palette['red-600']}`);
+    expect(dangerItemContent).toHaveStyle(`color: ${theme.palette['red-600']}`);
   });
 });
 
