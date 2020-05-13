@@ -10,6 +10,7 @@ import * as S from './Select.styles';
 
 interface Props<T = SelectValue> extends SelectProps<T> {
   errorText?: React.ReactNode;
+  error?: boolean;
   label?: React.ReactNode;
   description?: React.ReactNode;
   tooltip?: React.ReactNode;
@@ -21,7 +22,7 @@ class Select extends React.Component<Props> {
   static OptGroup = S.AntdSelectOptGroup;
 
   render(): React.ReactNode {
-    const { label, description, errorText, tooltip, clearTooltip, ...antdProps } = this.props;
+    const { label, description, errorText, error, tooltip, clearTooltip, ...antdProps } = this.props;
 
     return (
       <>
@@ -36,7 +37,7 @@ class Select extends React.Component<Props> {
             </Tooltip>
           }
           removeIcon={<Icon component={<CloseS />} />}
-          className={errorText ? 'error' : undefined}
+          className={errorText || error ? 'error' : undefined}
         />
         {errorText && (
           <S.ErrorWrapper>

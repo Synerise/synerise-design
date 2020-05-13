@@ -162,10 +162,12 @@
   font-size: 13px;
   line-height: 18px;
   font-weight: 400;
-}
 
-.@{ant-prefix}-select-selector {
-  padding: 0 12px;
+  &.@{ant-prefix}-select-single {
+    .@{ant-prefix}-select-selector {
+      padding: 0 12px;
+    }
+  }
 }
 
 .@{ant-prefix}-select-focused .@{ant-prefix}-select-selector,
@@ -198,6 +200,10 @@
   .@{ant-prefix}-select-selection-item {
     padding: 0 0 0 8px;
     border: 0;
+  }
+
+  .@{ant-prefix}-select-selector {
+    padding: 1px 4px;
   }
 
   .@{ant-prefix}-select-selection-item-remove {

@@ -27,6 +27,7 @@ Input UI Component
 | description    | input description                                                                                                                                                  | string           | -         |
 | disabled       | Whether the input is disabled.                                                                                                                                     | boolean          | false     |
 | errorText      | error message, if provided input will be set in error state                                                                                                        | string           | -         |
+| error          | if provided input will be set in error state, without error message                                                                                                | boolean          | -         |
 | handleInputRef | The callback function that is triggered when Component is mounted.                                                                                                 | function(ref)    | -         |
 | id             | The ID for input                                                                                                                                                   | string           |           |
 | label          | input label                                                                                                                                                        | string           | -         |
