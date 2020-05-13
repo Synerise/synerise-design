@@ -65,6 +65,7 @@ class ColumnManager extends React.Component<ColumnManagerProps, State> {
       apply: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.APPLY' }),
       fixedLeft: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.FIXED-LEFT' }),
       fixedRight: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.FIXED-RIGHT' }),
+      group: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.GROUP' }),
       clear: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.CLEAR' }),
       viewName: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.VIEW-NAME' }),
       viewDescription: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.VIEW-DESCRIPTION' }),
@@ -251,7 +252,11 @@ class ColumnManager extends React.Component<ColumnManagerProps, State> {
             texts={this.texts}
           />
           {itemFilterConfig && (
-            <ItemFilter {...itemFilterConfig} visible={itemFilterVisible || Boolean(savedViewsVisible)} hide={this.hideItemFilter} />
+            <ItemFilter
+              {...itemFilterConfig}
+              visible={itemFilterVisible || Boolean(savedViewsVisible)}
+              hide={this.hideItemFilter}
+            />
           )}
         </S.ColumnManager>
         <ColumnManagerGroupSettings

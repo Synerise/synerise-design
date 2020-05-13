@@ -16,6 +16,7 @@ export type Texts =
   | 'apply'
   | 'fixedLeft'
   | 'fixedRight'
+  | 'group'
   | 'clear'
   | 'viewName'
   | 'viewDescription'
