@@ -8,7 +8,7 @@ export interface SubMenuProps extends Omit<MenuProps, 'dataSource' | 'footer'> {
   disabled?: boolean;
   danger?: boolean;
   index?: number;
-  text: string | React.ReactNode;
+  text?: string | React.ReactNode;
   description?: string | React.ReactNode;
   ordered?: boolean | undefined;
   subMenu?: SubMenuProps[] | string[];

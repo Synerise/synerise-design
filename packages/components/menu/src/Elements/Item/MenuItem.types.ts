@@ -9,7 +9,7 @@ export enum ItemType {
   DANGER = 'danger',
 }
 export interface MenuItemProps extends Omit<MenuProps, 'dataSource' | 'footer'> {
-  text: string | React.ReactNode;
+  text?: string | React.ReactNode;
   parent?: boolean;
   prefixel?: React.ReactNode;
   suffixel?: React.ReactNode;
@@ -26,6 +26,7 @@ export interface MenuItemProps extends Omit<MenuProps, 'dataSource' | 'footer'> 
   highlight?: string;
   suffixVisibilityTrigger?: VisibilityTrigger;
   prefixVisibilityTrigger?: VisibilityTrigger;
+  onItemHover?: (e: MouseEvent) => void;
   children?: React.ReactNode;
   type?: string;
 }

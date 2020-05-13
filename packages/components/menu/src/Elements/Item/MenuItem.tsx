@@ -9,7 +9,7 @@ import Text from './Text/Text';
 import Select from './Select/Select';
 import Danger from './Danger/Danger';
 
-const MenuItem: React.FC<SubMenuProps & MenuItemProps> = (props: SubMenuProps & MenuItemProps) => {
+const MenuItem: React.FC<SubMenuProps & MenuItemProps> = props => {
   const {
     onSelect,
     prefixel,
@@ -26,21 +26,23 @@ const MenuItem: React.FC<SubMenuProps & MenuItemProps> = (props: SubMenuProps & 
     type,
     ...rest
   } = props;
-  if(subMenu || nestedMenu){
-    return <SubMenuItem
-      prefixel={prefixel}
-      suffixel={suffixel}
-      ordered={ordered}
-      disabled={disabled}
-      danger={danger}
-      index={index}
-      text={text}
-      description={description}
-      subMenu={nestedMenu || subMenu}
-      {...rest}
-    />
+  if (subMenu || nestedMenu) {
+    return (
+      <SubMenuItem
+        prefixel={prefixel}
+        suffixel={suffixel}
+        ordered={ordered}
+        disabled={disabled}
+        danger={danger}
+        index={index}
+        text={text}
+        description={description}
+        subMenu={nestedMenu || subMenu}
+        {...rest}
+      />
+    );
   }
-  switch(type) {
+  switch (type) {
     case ItemType.SELECT:
       return (
         <Select
@@ -54,7 +56,7 @@ const MenuItem: React.FC<SubMenuProps & MenuItemProps> = (props: SubMenuProps & 
         >
           {text || children}
         </Select>
-      )
+      );
     case ItemType.DANGER:
       return (
         <Danger
@@ -68,22 +70,23 @@ const MenuItem: React.FC<SubMenuProps & MenuItemProps> = (props: SubMenuProps & 
         >
           {text || children}
         </Danger>
-      )
+      );
     default:
-    return (<Text
-      onSelect={onSelect}
-      prefixel={prefixel}
-      suffixel={suffixel}
-      key={uuid()}
-      disabled={disabled}
-      danger={danger}
-      description={description}
-      {...rest}
-    >
-      {text || children}
-    </Text>)
+      return (
+        <Text
+          onSelect={onSelect}
+          prefixel={prefixel}
+          suffixel={suffixel}
+          key={uuid()}
+          disabled={disabled}
+          danger={danger}
+          description={description}
+          {...rest}
+        >
+          {text || children}
+        </Text>
+      );
   }
-
 };
 
 export default MenuItem;
