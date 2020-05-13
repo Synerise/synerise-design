@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.8](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.11.7...@synerise/ds-select@0.11.8) (2020-05-13)
+
+
+### Bug Fixes
+
+* **select:** search input styles ([86e3843](https://github.com/synerise/synerise-design/commit/86e38430473583fa3d7893a32816b0279837c24f))
+
+
+
+
+
 ## [0.11.7](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.11.6...@synerise/ds-select@0.11.7) (2020-05-13)
 
 
