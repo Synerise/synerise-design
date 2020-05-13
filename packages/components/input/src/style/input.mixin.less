@@ -29,6 +29,30 @@ textarea.@{ant-prefix}-input {
   }
 }
 
+.ant-input-group {
+  .ant-select {
+    &.error,
+    &.ant-select-focused {
+      z-index: 2 !important;
+    }
+    &.error {
+      &:hover {
+        .ant-select-selector {
+          border-color: @red-600;
+        }
+      }
+    }
+  }
+  .error {
+    & + :not(.error) {
+      border-right-width: 2px;
+    }
+    & + .error {
+      border-left-width: 0 !important;
+    }
+  }
+}
+
 // size mixins for input
 .input-lg() {
   padding: @input-padding-vertical-lg @input-padding-horizontal-lg;

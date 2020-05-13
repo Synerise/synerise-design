@@ -93,6 +93,7 @@ export const AntdInput = styled(
 
   && {
     color: ${(props): string => props.theme.palette['grey-700']};
+    z-index: 1;
   }
 `;
 
