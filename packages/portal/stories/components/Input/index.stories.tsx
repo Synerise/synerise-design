@@ -36,6 +36,7 @@ const stories = {
         onChange={action('OnChange')}
         style={{ width: '50%' }}
         defaultValue="post"
+        error={boolean('Set select error', false)}
       >
         <Select.Option value="post">POST</Select.Option>
         <Select.Option value="get">GET</Select.Option>
@@ -48,6 +49,7 @@ const stories = {
         disabled={boolean('disabled', false)}
         onChange={e => setValue(e.target.value)}
         value={value}
+        error={boolean('Set input error', false)}
         style={{ width: '50%' }}
       />
     );
