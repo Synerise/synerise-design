@@ -22,11 +22,12 @@ import * as moment from 'moment';
 import ItemFilter from '@synerise/ds-item-filter/dist/ItemFilter';
 import Result from '@synerise/ds-result';
 import ModalProxy from '@synerise/ds-modal';
-import { COLUMNS, EMPTY_FILTER, FILTERS, VIEWS } from './content/withFiltersAndSearch.data';
+import { COLUMNS, EMPTY_VIEW, FILTERS, VIEWS } from './content/withFiltersAndSearch.data';
 import { FilterElement } from '@synerise/ds-search/dist/Search.types';
 import Divider from '@synerise/ds-divider';
 import Search from '@synerise/ds-search';
 import VarTypeStringM from '@synerise/ds-icon/dist/icons/VarTypeStringM';
+import Tooltip from '@synerise/ds-tooltip';
 
 const decorator = (storyFn) => (
   <div style={{ padding: 20, width: '100vw', minWidth: '100%', position: 'absolute', top: 0, left: 0}}>
@@ -46,10 +47,10 @@ const saveFilter = (savedView: SavedView, store) => {
   const id = moment().format('MM-DD-YYYY_HH:mm:ss');
   store.set({
     selectedView: id,
-    filters: [
-      ...store.state.filters,
+    savedViews: [
+      ...store.state.savedViews,
       {
-        ...EMPTY_FILTER,
+        ...EMPTY_VIEW,
         name: savedView.meta.name,
         description: savedView.meta.description,
         columns: [...savedView.columns],
@@ -78,8 +79,14 @@ const editItem = (props, store): void => {
   })
 };
 
+const setSelectedFilter = (props, store): void => {
+  store.set({
+    selectedFilter: props.id,
+    columns: store.state.savedViews.filter(filter => filter.id === props.id)[0].columns,
+  });
+};
 
-const setSelectedItem = (props, store): void => {
+const setSelectedView = (props, store): void => {
   store.set({
     selectedView: props.id,
     columns: store.state.filters.filter(filter => filter.id === props.id)[0].columns,
@@ -164,7 +171,7 @@ const stories = {
               ...column,
               title: column.name,
               dataIndex: column.key,
-              render: (active) => <Switch onChange={action('Status change')} checked={active} label='' />
+              render: (active) => <Tooltip title={active ? 'Switch off' : 'Switch on'} placement="topLeft"><Switch onChange={action('Status change')} checked={active} label='' /></Tooltip>
             }
           }
           case 'country': {
@@ -268,7 +275,7 @@ const stories = {
                 showList: () => store.set({savedViewsVisible: true}),
                 show: () => store.set({columnManagerVisible: true}),
                 handleClear: () => store.set({selectedView: undefined}),
-                selected: store.state.filters.find(filter => filter.id === store.state.selectedView),
+                selected: store.state.savedViews.find(filter => filter.id === store.state.selectedView),
               },
               {
                 key: 'filter',
@@ -277,8 +284,8 @@ const stories = {
                 openedLabel: 'Define',
                 showList: () => store.set({itemFilterVisible: true}),
                 show: () => store.set({modalVisible: true}),
-                handleClear: action('clear filter'),
-                selected: undefined,
+                handleClear: () => store.set({selectedFilter: undefined}),
+                selected: store.state.filters.find(filter => filter.id === store.state.selectedFilter),
               }
             ]
           }
@@ -386,7 +393,7 @@ const stories = {
           itemFilterConfig={{
             removeItem: (params) => removeItem(params, store),
             editItem: (params) => editItem(params, store),
-            selectItem: (params) => setSelectedItem(params, store),
+            selectItem: (params) => setSelectedView(params, store),
             duplicateItem: action('duplicate item'),
             selectedItemId: store.state.selectedView,
             categories: [{label: 'All views'}, {label: 'My views'}],
@@ -410,7 +417,7 @@ const stories = {
           hide={toggleItemFilterVisible}
           removeItem={props => removeItem(props, store)}
           editItem={props => editItem(props, store)}
-          selectItem={props => setSelectedItem(props, store)}
+          selectItem={props => setSelectedFilter(props, store)}
           duplicateItem={props => duplicateItem(props)}
           selectedItemId={store.state.selectedFilter}
           categories={[{label: 'All filters'}, {label: 'My filters'}]}
