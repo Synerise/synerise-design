@@ -13,11 +13,10 @@ type WrapperProps = {
 };
 
 const INDENT_LEVEL_STEP = 16;
-const DEFAULT_LEFT_PADDING = 12;
 
 const calculateIndent = (indentLevel: number | undefined): number => {
   const indentLevelPadding = indentLevel && Number(indentLevel) > 0 ? indentLevel * INDENT_LEVEL_STEP : 0;
-  return DEFAULT_LEFT_PADDING + indentLevelPadding;
+  return indentLevelPadding;
 };
 export const ArrowRight = styled.div<{ disabled?: boolean }>`
   transition: all 0.3s ease-out;
@@ -42,7 +41,7 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
     opacity: ${(props): string => (props.disabled ? '0.4' : '1')};
     cursor: ${(props): string => (props.disabled ? 'not-allowed' : 'pointer')};
     padding-right: 12px;
-    padding-left: ${(props): string => `${calculateIndent(props.indentLevel)}px !important`};
+    margin-left: ${(props): string => `${calculateIndent(props.indentLevel)}px !important`};
     font-weight: 500;
     border-radius: 3px;
     display: flex;
