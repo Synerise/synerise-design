@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+  <style>
+    .chart-combo-st0{fill:none;stroke:#0b68ff;stroke-linecap:round;stroke-linejoin:round;stroke-width:2px}
+    .chart-combo-st1{fill:#d9eeff}
+    .chart-combo-st2{fill:#fff;opacity:0}
+  </style>
+  <rect width="48" height="48" class="chart-combo-st2"/>
+  <rect x="10.4374" y="19.4857" width="6.5364" height="17.9559" rx="3.2682" ry="3.2682" class="chart-combo-st1"/>
+  <rect x="23.6686" y="25.7631" width="6.5364" height="11.6785" rx="3.2682" ry="3.2682" class="chart-combo-st1"/>
+  <rect x="36.7414" y="9.8005" width="6.5364" height="27.6411" rx="3.2682" ry="3.2682" class="chart-combo-st1"/>
+  <line x1="7.5433" y1="41.0935" x2="41.0339" y2="41.0935" class="chart-combo-st0"/>
+  <rect x="7.5433" y="16.5916" width="6.5364" height="17.9559" rx="3.2682" ry="3.2682" class="chart-combo-st0"/>
+  <path d="M1173.2924,831.127v6.1144a3.2682,3.2682,0,0,0,3.2682,3.2682h0a3.2682,3.2682,0,0,0,3.2682-3.2682V831.127"
+        transform="translate(-1139.4451 -805.9621)" class="chart-combo-st0"/>
+  <path d="M1179.8288,820.2046v-4.0679a3.2682,3.2682,0,0,0-3.2682-3.2682h0a3.2682,3.2682,0,0,0-3.2682,3.2682v4.0679"
+        transform="translate(-1139.4451 -805.9621)" class="chart-combo-st0"/>
+  <rect x="21.0262" y="22.0129" width="6.5364" height="12.5347" rx="3.2682" ry="3.2682" class="chart-combo-st0"/>
+  <path d="M1146.9884,813.51h7.9618a4.0365,4.0365,0,0,1,2.594.9438L1169.75,824.691a4.0365,4.0365,0,0,0,2.594.9438h7.558"
+        transform="translate(-1139.4451 -805.9621)" class="chart-combo-st0"/>
+</svg>

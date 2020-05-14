@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+  <style>
+    .chart-column-st0{fill:none;stroke:#0b68ff;stroke-linecap:round;stroke-linejoin:round;stroke-width:2px}
+    .chart-column-st1{fill:#d9eeff}
+    .chart-column-st2{fill:#fff;opacity:0}
+  </style>
+<rect width="48" height="48" class="chart-column-st2"/>
+<rect x="10.4739" y="23.1221" width="6.5364" height="14.226" rx="3.2682" ry="3.2682" class="chart-column-st1"/>
+<rect x="23.7051" y="15.8544" width="6.5364" height="21.4937" rx="3.2682" ry="3.2682" class="chart-column-st1"/>
+<rect x="36.7779" y="9.8941" width="6.5364" height="27.454" rx="3.2682" ry="3.2682" class="chart-column-st1"/>
+<line x1="7.5798" y1="41" x2="41.0703" y2="41" class="chart-column-st0" />
+<rect x="7.5798" y="20.228" width="6.5364" height="14.226" rx="3.2682" ry="3.2682" class="chart-column-st0" />
+<rect x="20.811" y="12.9603" width="6.5364" height="21.4937" rx="3.2682" ry="3.2682" class="chart-column-st0" />
+<rect x="33.8838" y="7" width="6.5364" height="27.454" rx="3.2682" ry="3.2682" class="chart-column-st0" />
+</svg>

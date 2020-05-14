@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+    <title>layout-color-bg</title>
+    <rect width="48" height="48" style="fill:#f2f2f2;opacity:0"/>
+    <rect x="1529.4255" y="663.8969" width="35.1162" height="24.2068" rx="2.7557" ry="2.7557"
+          transform="translate(703.9838 -1518.9833) rotate(90)" style="fill:#d9eeff"/>
+    <rect x="1525.4591" y="659.8968" width="35.1156" height="24.2064" rx="2.7557" ry="2.7557"
+          transform="translate(-647.9831 1567.0169) rotate(-90)"
+          style="fill:none;stroke:#0b68ff;stroke-linecap:round;stroke-linejoin:round;stroke-width:2px"/>
+    <line x1="17.9653" y1="22.1643" x2="30.0685" y2="22.1643"
+          style="fill:none;stroke:#0b68ff;stroke-linecap:round;stroke-linejoin:round;stroke-width:2px"/>
+    <line x1="20.8004" y1="26.5907" x2="27.2334" y2="26.5907"
+          style="fill:none;stroke:#0b68ff;stroke-linecap:round;stroke-linejoin:round;stroke-width:2px"/>
+</svg>

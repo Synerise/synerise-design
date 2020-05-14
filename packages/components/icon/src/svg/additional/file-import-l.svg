@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48">
+    <g data-name="Group 865" transform="translate(1.695 1.559)">
+        <rect width="24.207" height="35.116" data-name="Rectangle 600" rx="2.756" transform="translate(13.522 8.442)" fill="#d9eeff"/>
+        <rect width="24.206" height="35.116" data-name="Rectangle 601" rx="2.756" transform="translate(10.305 4.442)" fill="none" stroke="#0b68ff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+        <path d="M16.357 27.164H28.46" data-name="Line 300" fill="none" stroke="#0b68ff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+        <g data-name="Group 864" fill="none" stroke="#0b68ff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+            <path d="M22.409 19.124v-6.312" data-name="Line 301"/>
+            <path d="M20.536 14.51l1.764-1.764" data-name="Line 302"/>
+        </g>
+        <path d="M19.192 31.59h6.433" data-name="Line 303" fill="none" stroke="#0b68ff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+    </g>
+</svg>

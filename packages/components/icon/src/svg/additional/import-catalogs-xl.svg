@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="82" height="82">
+  <path d="M0 0h82v82H0z" fill="transparent" />
+  <rect
+    width="21.581"
+    height="54.429"
+    data-name="Rectangle 620"
+    rx="3.891"
+    transform="rotate(90 14.512 56.703)"
+    fill="#d9eeff"
+  />
+  <rect
+    width="21.581"
+    height="54.429"
+    data-name="Rectangle 621"
+    rx="3.891"
+    transform="rotate(90 14.512 51.702)"
+    fill="none"
+    stroke="#0b68ff"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    stroke-width="2"
+  />
+  <circle cx="1.292" cy="1.292" r="1.292" data-name="Ellipse 145" transform="translate(16.045 41.231)" fill="#0b68ff" />
+  <circle cx="1.292" cy="1.292" r="1.292" data-name="Ellipse 146" transform="translate(21.212 41.231)" fill="#0b68ff" />
+  <path
+    d="M63.215 31.273H14.786"
+    data-name="Line 315"
+    fill="none"
+    stroke="#0b68ff"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    stroke-width="2"
+  />
+  <path
+    d="M57.214 19.438H20.786"
+    data-name="Line 316"
+    fill="none"
+    stroke="#0b68ff"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    stroke-width="2"
+  />
+  <path
+    d="M60.214 25.356H17.786"
+    data-name="Line 317"
+    fill="none"
+    stroke="#0b68ff"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    stroke-width="2"
+  />
+  <circle cx="1.292" cy="1.292" r="1.292" data-name="Ellipse 147" transform="translate(26.379 41.231)" fill="#0b68ff" />
+</svg>

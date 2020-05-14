@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 19.2.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 48 48" style="enable-background:new 0 0 48 48;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#FFFFFF;fill-opacity:0;}
+	.st1{fill:#D9EEFF;}
+	.st2{fill:none;stroke:#0B68FF;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+	.st3{fill:#FFFFFF;stroke:#0B68FF;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+</style>
+<title>dahboard-chart-line</title>
+<rect class="st0" width="48" height="48"/>
+<g>
+	<path class="st1" d="M10.3,34.4l9.6-9.6l6,6l16.3-16.3c0.4-0.4,1.2-0.4,1.6,0c0.2,0.2,0.3,0.5,0.3,0.8v25.4c0,0.6-0.5,1.2-1.2,1.2
+		c0,0,0,0,0,0H11.1c-0.6,0-1.2-0.5-1.2-1.2l0-5.5C9.9,34.9,10.1,34.6,10.3,34.4z"/>
+	<line class="st2" x1="6.9" y1="38.5" x2="41.1" y2="38.5"/>
+	<polyline class="st2" points="6.9,31.4 16.8,21.4 22.8,27.4 41.1,9.1 	"/>
+	<circle class="st3" cx="32.2" cy="18.6" r="3.9"/>
+</g>
+</svg>
