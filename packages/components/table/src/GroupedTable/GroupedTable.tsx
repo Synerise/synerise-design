@@ -1,8 +1,10 @@
 import * as React from 'react';
 
 import Button from '@synerise/ds-button';
+import Checkbox from '@synerise/ds-checkbox/dist';
 import { DSTableProps } from '../Table.types';
 import DSTable from '../Table';
+import * as S from './GroupedTable.styles';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function GroupedTable<T extends object = any>(props: DSTableProps<T>): React.ReactElement {
@@ -12,20 +14,29 @@ function GroupedTable<T extends object = any>(props: DSTableProps<T>): React.Rea
       <>
         <tr className={row.className}>
           <td colSpan={row.children.length}>
-            {row.children[0].props.record.value} ({row.children[0].props.record.rows.length})
-            <Button.Expander />
+            <S.GroupRow>
+              <Checkbox />
+              {row.children[0].props.record.value} ({row.children[0].props.record.rows.length})
+              <Button.Expander onClick={(): void => console.log('expand')} expanded={false} />
+            </S.GroupRow>
           </td>
         </tr>
-        {row.children[0].props.record.rows.map(record => {
-          return (
-            <tr key={record.column}>
-              <td>{record.first_name}</td>
-              <td>{record.last_name}</td>
-              <td>{record.city}</td>
-              <td>{record.age}</td>
-            </tr>
-          );
-        })}
+        {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+        {row.children[0].props.record.rows.map(
+          (record: any): React.ReactNode => {
+            return (
+              <tr key={record.column}>
+                <td>
+                  <Checkbox />
+                </td>
+                <td>{record.first_name}</td>
+                <td>{record.last_name}</td>
+                <td>{record.city}</td>
+                <td>{record.age}</td>
+              </tr>
+            );
+          }
+        )}
       </>
     );
   };
