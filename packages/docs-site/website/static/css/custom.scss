@@ -44,6 +44,45 @@ a {
 }
 
 .docMainWrapper .mainContainer {
-  width: 100% !important;
+  width: 100%;
 }
 
+.docPage_node_modules-\@docusaurus-theme-classic-src-theme-DocPage-{
+  max-width: 1170px;
+  width:  100%;
+}
+
+.sidebar_node_modules-\@docusaurus-theme-classic-src-theme-DocSidebar- {
+  .menu {
+    .menu__link {
+      color: #000000;
+      &--active {
+        color: #0b68ff;
+      }
+    }
+  }
+}
+
+.docMainContainer_node_modules-\@docusaurus-theme-classic-src-theme-DocPage- {
+  .contents__left-border {
+    .contents__link {
+      color: #000;
+      &--active{
+        color: #0b68ff;
+      }
+    }
+  }
+
+  article {
+    .markdown {
+      color: #131313;
+    }
+    table {
+      tr{
+        &:nth-child(2n){
+          background-color: #fff;
+        }
+      }
+    }
+  }
+}
