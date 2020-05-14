@@ -28,6 +28,7 @@ export interface BasicItemProps {
   onItemHover?: (e: MouseEvent) => void;
   suffixVisibilityTrigger?: string;
   prefixVisibilityTrigger?: string;
+  indentLevel?: number;
 }
 const Text: React.FC<BasicItemProps> = ({
   parent,
@@ -44,6 +45,7 @@ const Text: React.FC<BasicItemProps> = ({
   style,
   prefixVisibilityTrigger,
   suffixVisibilityTrigger,
+  indentLevel,
   ...rest
 }) => {
   const [hovered, setHovered] = React.useState(false);
@@ -77,9 +79,6 @@ const Text: React.FC<BasicItemProps> = ({
     if (showSuffixOnHover) {
       return !!suffixel && hovered;
     }
-    if (suffixVisibilityTrigger === VisibilityTrigger.CLICK) {
-      return !!suffixel && clicked;
-    }
     return !!suffixel;
   };
   const shouldRenderPrefix = (): boolean => {
@@ -104,16 +103,17 @@ const Text: React.FC<BasicItemProps> = ({
         canCopyToClipboard && copyValue && copy(copyValue);
       }}
       disabled={disabled}
-      tabIndex={!disabled ? 0 : undefined}
+      tabIndex={!disabled ? 0 : -1}
       prefixel={prefixel}
       description={description}
       style={style}
+      indentLevel={Number(indentLevel)}
       {...rest}
     >
       <S.Inner>
         <S.ContentWrapper className="ds-menu-content-wrapper">
           {shouldRenderPrefix() && (
-            <S.PrefixelWrapper className="ds-menu-prefix" disabled={disabled}>
+            <S.PrefixelWrapper className="ds-menu-prefix" visible={shouldRenderPrefix()} disabled={disabled}>
               {prefixel}
             </S.PrefixelWrapper>
           )}
@@ -127,7 +127,11 @@ const Text: React.FC<BasicItemProps> = ({
             </S.ArrowRight>
           )}
           <S.ContentDivider />
-          {shouldRenderSuffix() && <S.SuffixWraper disabled={disabled}>{suffixel}</S.SuffixWraper>}
+          {!!suffixel && (
+            <S.SuffixWraper visible={shouldRenderSuffix()} disabled={disabled}>
+              {suffixel}
+            </S.SuffixWraper>
+          )}
         </S.ContentWrapper>
       </S.Inner>
     </S.Wrapper>

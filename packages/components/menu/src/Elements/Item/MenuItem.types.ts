@@ -29,4 +29,5 @@ export interface MenuItemProps extends Omit<MenuProps, 'dataSource' | 'footer'> 
   onItemHover?: (e: MouseEvent) => void;
   children?: React.ReactNode;
   type?: string;
+  indentLevel?: number;
 }

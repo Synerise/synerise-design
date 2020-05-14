@@ -24,6 +24,7 @@ const MenuItem: React.FC<SubMenuProps & MenuItemProps> = props => {
     nestedMenu,
     children,
     type,
+    indentLevel,
     ...rest
   } = props;
   if (subMenu || nestedMenu) {
@@ -81,6 +82,7 @@ const MenuItem: React.FC<SubMenuProps & MenuItemProps> = props => {
           disabled={disabled}
           danger={danger}
           description={description}
+          indentLevel={indentLevel}
           {...rest}
         >
           {text || children}

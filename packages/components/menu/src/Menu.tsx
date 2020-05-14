@@ -18,7 +18,7 @@ class Menu extends React.Component<AntdMenuProps> {
   render(): React.ReactNode {
     const { dataSource, ordered, children, ...rest } = this.props;
     return (
-      <S.AntdMenu ordered={ordered} mode="inline" inlineIndent={24} {...rest}>
+      <S.AntdMenu ordered={ordered} mode="inline" {...rest}>
         {children ||
           dataSource?.map((item: MenuItemProps, index: number) =>
             item.subMenu ? (
@@ -36,6 +36,8 @@ class Menu extends React.Component<AntdMenuProps> {
                 copyable={item.copyable}
                 copyHint={item.copyHint}
                 copyValue={item.copyValue}
+                suffixVisibilityTrigger={item.suffixVisibilityTrigger}
+                prefixVisibilityTrigger={item.prefixVisibilityTrigger}
                 key={`${item.text}${index}`} // eslint-disable-line react/no-array-index-key
                 {...rest}
               />
@@ -54,6 +56,9 @@ class Menu extends React.Component<AntdMenuProps> {
                 copyHint={item.copyHint}
                 copyValue={item.copyValue}
                 highlight={item.highlight}
+                suffixVisibilityTrigger={item.suffixVisibilityTrigger}
+                prefixVisibilityTrigger={item.prefixVisibilityTrigger}
+                indentLevel={item.indentLevel}
                 type={item.type}
                 key={`${item.text}${index}`} // eslint-disable-line react/no-array-index-key
                 {...rest}

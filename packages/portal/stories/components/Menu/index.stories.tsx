@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { boolean, select, text } from '@storybook/addon-knobs';
+import { boolean, number, select, text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import Checkbox from '@synerise/ds-checkbox';
 import Icon from '@synerise/ds-icon';
@@ -27,7 +27,7 @@ import {
   TEXT_PLACEHOLDER,
   textWithIcon,
   withCheckBox,
-  withCopyable, withParent,
+  withCopyable, withCascader, withSelect, suffixVisibilityTrigger,
 } from './dataset';
 import Label from '@synerise/ds-input/dist/Label/Label';
 
@@ -43,6 +43,11 @@ const getSuffixElement = () => {
   const selectedSuffix = select('Set suffix type', suffixType, suffixType.none);
   return renderSuffix(selectedSuffix);
 };
+
+const getSuffixTrigger = () => {
+  const selectedSuffix = select('Set suffix visibility trigger', suffixVisibilityTrigger, suffixVisibilityTrigger.default);
+  return selectedSuffix;
+}
 
 const getDefaultProps = () => ({
   disabled: boolean('Set disabled', false),
@@ -62,6 +67,7 @@ const stories = {
     const props = {
       dataSource: attachKnobsToDataSource(simpleText),
       suffixel: getSuffixElement(),
+      suffixVisibilityTrigger: getSuffixTrigger(),
       ...defaultProps,
     } as object;
     return decorator(props);
@@ -73,6 +79,7 @@ const stories = {
       dataSource: attachKnobsToDataSource(textWithIcon),
       prefixel: renderPrefixIcon(singleIcon),
       suffixel: getSuffixElement(),
+      suffixVisibilityTrigger: getSuffixTrigger(),
       ...defaultProps,
     } as object;
     return decorator(props);
@@ -83,6 +90,7 @@ const stories = {
     const props = {
       dataSource: attachKnobsToDataSource(withCheckBox),
       suffixel: getSuffixElement(),
+      suffixVisibilityTrigger: getSuffixTrigger(),
       prefixel: <Checkbox checked={isChecked} onChange={() => setChecked(!isChecked)} />,
       onClick: () => setChecked(!isChecked),
       ...defaultProps,
@@ -128,6 +136,7 @@ const stories = {
     const props = {
       dataSource: attachKnobsToDataSource(avatar),
       suffixel: getSuffixElement(),
+      suffixVisibilityTrigger: getSuffixTrigger(),
       ...defaultProps,
     } as object;
     return decorator(props);
@@ -202,10 +211,27 @@ const stories = {
       </div>
     );
   },
-  withParent: () => {
+  withCascader: () => {
     const defaultProps = getDefaultProps();
     const props = {
-      dataSource: attachKnobsToDataSource(withParent),
+      dataSource: attachKnobsToDataSource(withCascader),
+      ...defaultProps,
+    } as object;
+    return decorator(props);
+  },
+  withSelect: () => {
+    const defaultProps = getDefaultProps();
+    const props = {
+      dataSource: attachKnobsToDataSource(withSelect),
+      ...defaultProps,
+    } as object;
+    return decorator(props);
+  },
+  withIndent: () => {
+    const defaultProps = getDefaultProps();
+    const props = {
+      dataSource: attachKnobsToDataSource(simpleText),
+      indentLevel: number('Set indent level',0,{min:0,max:10}),
       ...defaultProps,
     } as object;
     return decorator(props);

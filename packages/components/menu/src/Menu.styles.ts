@@ -56,9 +56,6 @@ export const AntdMenu = styled(Menu)<AntdMenuProps>`
     > .ant-menu-submenu-title {
       padding-left: 12px !important;
     }
-    &:not(.ant-menu-submenu) {
-      padding-left: 12px !important;
-    }
   }
 `;
 

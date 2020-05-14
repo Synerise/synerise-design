@@ -6,18 +6,26 @@ import { IconContainer } from '@synerise/ds-icon/dist/Icon.styles';
 type WrapperProps = {
   disabled?: boolean;
   prefixel?: React.ReactNode;
+  suffixel?: boolean;
   description?: string | React.ReactNode;
   copyable?: boolean;
+  indentLevel?: number;
 };
 
+const INDENT_LEVEL_STEP = 16;
+const DEFAULT_LEFT_PADDING = 12;
 
+const calculateIndent = (indentLevel: number | undefined): number => {
+  const indentLevelPadding = indentLevel && Number(indentLevel) > 0 ? indentLevel * INDENT_LEVEL_STEP : 0;
+  return DEFAULT_LEFT_PADDING + indentLevelPadding;
+};
 export const ArrowRight = styled.div<{ disabled?: boolean }>`
   transition: all 0.3s ease-out;
   opacity: ${(props): string => (props.disabled ? '1' : '0')};
 `;
 
-export const PrefixelWrapper = styled.div<{ disabled?: boolean }>`
-  display: flex;
+export const PrefixelWrapper = styled.div<{ disabled?: boolean; visible?: boolean }>`
+  display: ${(props): string | false => (props.visible ? `flex` : `none`)};
   margin-top: -7px;
   margin-bottom: -7px;
   margin-left: -4px;
@@ -33,9 +41,8 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
     color: ${(props): string => props.theme.palette['grey-700']};
     opacity: ${(props): string => (props.disabled ? '0.4' : '1')};
     cursor: ${(props): string => (props.disabled ? 'not-allowed' : 'pointer')};
-
     padding-right: 12px;
-    padding-left: ${(props): string => (props.prefixel ? '8px' : '12px')};
+    padding-left: ${(props): string => `${calculateIndent(props.indentLevel)}px !important`};
     font-weight: 500;
     border-radius: 3px;
     display: flex;
@@ -201,9 +208,9 @@ export const Description = styled.div`
   width: 100%;
 `;
 
-export const SuffixWraper = styled.div<{ disabled?: boolean }>`
+export const SuffixWraper = styled.div<{ disabled?: boolean; visible?: boolean }>`
   justify-content: flex-end;
-  display: flex;
+  display: ${(props): string | false => (props.visible ? `flex` : `none`)};
   ${(props): string | false =>
     !!props.disabled &&
     `svg {

@@ -16,7 +16,7 @@ import {
 } from '@synerise/ds-icon/dist/icons';
 import Label from '@synerise/ds-input/dist/Label/Label';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
-import Menu from '@synerise/ds-menu';
+import { VisibilityTrigger } from '@synerise/ds-menu/dist/Menu.types';
 
 export const TEXT_PLACEHOLDER = 'Option';
 export const DESCRIPTION_PLACEHOLDER = 'Description';
@@ -38,6 +38,10 @@ export const iconPrefixType = {
   twoIcons: 'twoIcons',
 };
 
+export const suffixVisibilityTrigger = {
+  default:VisibilityTrigger.NONE,
+  hover:VisibilityTrigger.HOVER,
+}
 export const ExtendedAntdSwitchComponent = (AntdSwitch as any) as React.ComponentType<SwitchProps & { id: string }>;
 
 export function renderSuffix(suffixElementType: string) {
@@ -61,7 +65,7 @@ export function renderSuffix(suffixElementType: string) {
       return (
         <Label
           label={
-            <div style={{ lineHeight: '18px'}}>
+            <div style={{ lineHeight: '18px' }}>
               <span>[key:value]</span>
             </div>
           }
@@ -197,8 +201,22 @@ export const withCopyable = [
     copyValue: 'Item',
   },
 ];
-export const withParent = [
+export const withCascader = [
   {
     parent: true,
+  },
+];
+export const withSelect = [
+  {
+    type: 'select',
+    suffixel: (
+      <Label
+        label={
+          <div style={{ lineHeight: '18px' }}>
+            <span>select</span>
+          </div>
+        }
+      />
+    ),
   },
 ];
