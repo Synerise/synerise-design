@@ -1,0 +1,32 @@
+.c-main-footer {
+  .c-main-footer__columns {
+    & > div {
+      width: 208px;
+      flex: none !important;
+    }
+    .c-main-footer__first-column {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+
+      .c-social-list {
+        padding: 0;
+      }
+    }
+    .c-links-box {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      ul {
+        padding: 0;
+         a{
+           &:hover {
+             color: inherit;
+           }
+         }
+      }
+    }
+  }
+}

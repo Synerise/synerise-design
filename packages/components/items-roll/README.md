@@ -70,7 +70,7 @@ import ItemsRoll from '@synerise/ds-items-roll'
 | group           | Define affiliation to a specific group in groups Array passed as props to ItemsRoll | string                     | -       |
 | highlight       | What part of the element text to highlight                                          | string                     | -       |
 | id              | Unique identifier for element. Used as a key in map                                 | string                     | -       |
-| index           | Index of the element                                                                | number                     | -       |
+| index           | Test of the element                                                                | number                     | -       |
 | nestedMenu      | Array of child elements or strings to nest inside element                           | SubMenuProps[] or string[] | -       |
 | ordered         | Whether item elements are ordered                                                   | boolean                    | -       |
 | parent          | ???                                                                                 | boolean                    | -       |

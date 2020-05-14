@@ -6,17 +6,26 @@
     "postinstall": "node ../../../scripts/docs/componentmd.js",
     "docs-watch": "npm run postinstall && node ../../../scripts/docs/watch.js",
     "examples": "docusaurus-examples",
-    "start": "docusaurus-start",
-    "build-docs": "docusaurus-build",
+    "start": "docusaurus start",
+    "swizzle": "docusaurus swizzle",
+    "build-docs": "docusaurus build",
     "publish-gh-pages": "docusaurus-publish",
     "write-translations": "docusaurus-write-translations",
     "rename-version": "docusaurus-rename-version"
   },
   "devDependencies": {
-    "docusaurus": "1.14.4"
+    "@docusaurus/core": "^2.0.0-alpha.48",
+    "@docusaurus/preset-classic": "^2.0.0-alpha.48"
   },
   "dependencies": {
-    "docusaurus": "1.14.4",
-    "global": "4.4.0"
+    "@docusaurus/core": "^2.0.0-alpha.48",
+    "@docusaurus/preset-classic": "^2.0.0-alpha.48",
+    "classnames": "^2.2.6",
+    "docusaurus-plugin-sass": "^0.1.8",
+    "global": "4.4.0",
+    "lodash": "^4.17.15",
+    "prop-types": "^15.7.2",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2"
   }
 }
