@@ -33,22 +33,6 @@ const pascalCaseFilename = filePath => {
   return pascalCase(filename);
 };
 
-if (!fs.existsSync(LIB_DIR)) {
-  fs.mkdirSync(LIB_DIR);
-}
-
-if (!fs.existsSync(ADDITIONAL_LIB_DIR)) {
-  fs.mkdirSync(ADDITIONAL_LIB_DIR);
-}
-
-fs.writeFile(INDEX_DIST_FILE, '', err => {
-  console.log(err);
-});
-
-fs.writeFile(ADDITIONAL_INDEX_DIST_FILE, '', err => {
-  console.log(err);
-});
-
 const buildIconsSet = (path, libDir, indexDistFile) => {
   glob(path, {}, function(er, files) {
     for (let file of files) {
@@ -73,6 +57,22 @@ const buildIconsSet = (path, libDir, indexDistFile) => {
     }
   });
 };
+
+if (!fs.existsSync(LIB_DIR)) {
+  fs.mkdirSync(LIB_DIR);
+}
+
+if (!fs.existsSync(ADDITIONAL_LIB_DIR)) {
+  fs.mkdirSync(ADDITIONAL_LIB_DIR);
+}
+
+fs.writeFile(INDEX_DIST_FILE, '', err => {
+  console.log(err);
+});
+
+fs.writeFile(ADDITIONAL_INDEX_DIST_FILE, '', err => {
+  console.log(err);
+});
 
 buildIconsSet('src/svg/*.svg', LIB_DIR, INDEX_DIST_FILE);
 buildIconsSet('src/svg/additional/*.svg', ADDITIONAL_LIB_DIR, ADDITIONAL_INDEX_DIST_FILE);
