@@ -28,7 +28,7 @@ const Navbar = (props) => {
             </a>
           </li>
           <li className="hover-action-subitem c-main-nav__item">
-            <a className="c-main-nav__item__link" title="Case studies" href="/case-studies">
+            <a className="c-main-nav__item__link" title="Case studies" href="/storybook-static/">
               <span className="c-main-nav__submenu__item__title">Storybook</span>
             </a>
           </li>

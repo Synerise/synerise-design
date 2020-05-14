@@ -1,5 +1,5 @@
 ---
-id: Tags
+id: tags
 title: Tags
 ---
 

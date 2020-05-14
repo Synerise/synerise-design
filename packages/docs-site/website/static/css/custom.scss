@@ -25,6 +25,7 @@ iframe {
 html, body {
   background-color: #f9f9f9;
   overflow-x: hidden !important;
+  font-family: 'Graphik', sans-serif;
 }
 
 a {
@@ -81,6 +82,23 @@ a {
       tr{
         &:nth-child(2n){
           background-color: #fff;
+        }
+      }
+    }
+  }
+  .pagination-nav {
+    .pagination-nav__item {
+      .pagination-nav__link--sublabel {
+        display: none;
+      }
+      .pagination-nav__link {
+        border-radius: 0;
+        background-color: #0b68ff;
+        color: #fff;
+        transition: all .3s ease;
+        &:hover {
+          background-color: #0044d9;
+          color: #fff;
         }
       }
     }

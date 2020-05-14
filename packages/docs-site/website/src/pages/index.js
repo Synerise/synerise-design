@@ -14,19 +14,19 @@ function Index() {
           <p className="ds-sub-headline">Coloid is the Synerise design system for developing the product and experiences.</p>
         </div>
         <div className="ds-intro-image-wrapper">
-          <img src={useBaseUrl('images/ds-dashboard@2x.jpg')} />
+          <img src={useBaseUrl('images/ds-dashboard@2x.jpg')} alt="Synerise Dashboard" />
         </div>
       </div>
       <div className="ds-wrapper u-bg-light-gray">
         <div className="l-grid-3">
           <div className="ds-develop">
-            <h2 className="ds-headline-2">Everythink you need to <strong>Develope Synerise</strong></h2>
+            <h2 className="ds-headline-2">Everything you need to <strong>Develop Synerise</strong></h2>
             <ul className="l-grid-3 ds-boxes">
               <li className="l-col-desktop-5 l-col-tablet-6 l-col-mobile-4 ds-box">
-                <a title="Retail" href="/retail">
+                <a title="Retail" href="/docs/palette">
                   <div className="c-industries-listing">
                     <div className="ds-box-image">
-                      <img src={useBaseUrl('images/ds-develop@2x.jpg')} />
+                      <img src={useBaseUrl('images/ds-develop@2x.jpg')} alt="Guidelines" />
                     </div>
                     <div className="c-industries-listing__content">
                       <h3 className="c-industries-listing__header u-text-center">Guidelines</h3>
@@ -40,10 +40,10 @@ function Index() {
                 </a>
               </li>
               <li className="l-col-desktop-5 l-col-tablet-6 l-col-mobile-4 ds-box">
-                <a title="Retail" href="/retail">
+                <a title="Retail" href="/storybook-static/">
                   <div className="c-industries-listing">
                     <div className="ds-box-image">
-                      <img src={useBaseUrl('images/ds-develop@2x.jpg')} />
+                      <img src={useBaseUrl('images/ds-develop@2x.jpg')} alt="Components" />
                     </div>
                     <div className="c-industries-listing__content">
                       <h3 className="c-industries-listing__header u-text-center">Components</h3>
@@ -71,7 +71,7 @@ function Index() {
                     Based on the Coloid Design language, the system consists of working code, human interface guidelines and a vibrant community contributions.
                   </p>
                   <div className="c-generic-section__buttons">
-                    <a className="c-button-filled" href="/request" target="_self">Learn more</a>
+                    <a className="c-button-filled" href="/docs/palette" target="_self">Learn more</a>
                   </div>
                 </div>
               </div>

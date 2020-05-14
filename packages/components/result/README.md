@@ -1,5 +1,5 @@
 ---
-id: Result
+id: result
 title: Result
 ---
 

@@ -1,5 +1,5 @@
 ---
-id: Popconfirm
+id: popconfirm
 title: Popconfirm
 ---
 

@@ -45,7 +45,7 @@ const About = () => {
               Synerise is more than AI company. We passionately support our customers with our constantly developed product in growing their businesses. Companies of all sizes can make use of the services we provide as Synerise is capable of managing enormous complexity.
               <br />
               <br />
-              While developing solutions for our product, either we our third parties,  want to keep and improve UI consistency and quality. It lies in our best interest to make the design and development process more efficient by establishing a shared vocabulary and providing clear guidance between designers and developers.
+              While developing solutions for our product, either we or our third parties,  want to keep and improve UI consistency and quality. It lies in our best interest to make the design and development process more efficient by establishing a shared vocabulary and providing clear guidance between designers and developers.
             </p>
             <h3>Coloid guiding principles</h3>
             <ul>
@@ -70,17 +70,17 @@ const About = () => {
           <h2>Out approach</h2>
           <div className="ds-approach-boxes">
             <div className="ds-approach-box l-col-desktop-4">
-              <img src={useBaseUrl('images/information-02-m-02-knowledge-02-04-bulb-tip-m-copy.svg')} />
+              <img src={useBaseUrl('images/information-02-m-02-knowledge-02-04-bulb-tip-m-copy.svg')} alt="Attentive" />
               <strong>Attentive</strong>
               <span>Build reliability and ensure experiences working in every nook and cranny in our app.</span>
             </div>
             <div className="ds-approach-box l-col-desktop-4">
-              <img src={useBaseUrl('images/information-02-m-02-knowledge-02-04-bulb-tip-m.svg')} />
+              <img src={useBaseUrl('images/information-02-m-02-knowledge-02-04-bulb-tip-m.svg')}  alt="Efficient" />
               <strong>Efficient</strong>
               <span>Create experiences that let customers achieve their goals fast, accurately and effortlessly.</span>
             </div>
             <div className="ds-approach-box l-col-desktop-4">
-              <img src={useBaseUrl('images/information-02-m-02-knowledge-02-04-bulb-tip-m-copy-2.svg')} />
+              <img src={useBaseUrl('images/information-02-m-02-knowledge-02-04-bulb-tip-m-copy-2.svg')} alt="Reliable" />
               <strong>Reliable</strong>
               <span>We are transparent in our actions to assure users that we’re always have their best interest in mind.</span>
             </div>

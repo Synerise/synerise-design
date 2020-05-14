@@ -54,10 +54,10 @@ function Footer() {
                   <a className="c-links-box__lnk" href="/about">About System</a>
                 </li>
                 <li>
-                  <a className="c-links-box__lnk" href="/partners">Guidelines</a>
+                  <a className="c-links-box__lnk" href="/docs/palette">Guidelines</a>
                 </li>
                 <li>
-                  <a className="c-links-box__lnk" href="/csr">Components</a>
+                  <a className="c-links-box__lnk" href="/storybook-static/">Components</a>
                 </li>
               </ul>
             </div>

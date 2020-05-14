@@ -190,6 +190,11 @@
     width: 100%;
     padding-top: 40px;
   }
+  .c-button-filled {
+    &:hover {
+      color: #fff;
+    }
+  }
   .c-generic-section__content {
     h2 {
       margin-bottom: 30px;

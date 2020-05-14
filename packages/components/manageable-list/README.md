@@ -1,5 +1,5 @@
 ---
-id: Manageable list
+id: manageable-list
 title: ManageableList
 ---
 
