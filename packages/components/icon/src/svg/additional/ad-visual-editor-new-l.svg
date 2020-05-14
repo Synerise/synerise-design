@@ -1,0 +1,40 @@
+<svg id="ad-visual-editor-l" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 82 82">
+  <defs>
+    <style>
+      .visual-editor-new-1{fill:#f2f2f2;fill-opacity:0;}.visual-editor-new-2{fill:#d9eeff;}.visual-editor-new-3{fill:#0b68ff;}.visual-editor-new-4{fill:#fff;}.visual-editor-new-5{fill:#ffb004;fill-rule:evenodd;}
+    </style>
+  </defs>
+  <title>Obszar roboczy 1</title>
+  <rect class="visual-editor-new-1" width="82" height="82"/>
+  <rect class="visual-editor-new-2" x="16.03" y="24.75" width="54.43" height="39.58" rx="3.89"/>
+  <path class="visual-editor-new-3"
+        d="M29.19,61.14H14a3.44,3.44,0,0,1-3.43-3.43h0V23.59A3.44,3.44,0,0,1,14,20.16H29.19a3.44,3.44,0,0,1,3.43,3.43V57.71A3.44,3.44,0,0,1,29.19,61.14ZM14,22.16a1.43,1.43,0,0,0-1.43,1.43h0V57.71A1.43,1.43,0,0,0,14,59.14H29.19a1.43,1.43,0,0,0,1.43-1.43h0V23.59a1.43,1.43,0,0,0-1.43-1.43H14Z"/>
+  <path class="visual-editor-new-3" d="M26.48,44.26H15.91a1,1,0,0,1,0-2H26.48a1,1,0,0,1,0,2Z"/>
+  <path class="visual-editor-new-3" d="M21.86,49.37H15.91a1,1,0,0,1,0-2h5.94a1,1,0,0,1,0,2Z"/>
+  <path class="visual-editor-new-3" d="M25.2,54.47H15.91a1,1,0,1,1,0-2H25.2a1,1,0,1,1,0,2Z"/>
+  <g id="edit">
+    <path class="visual-editor-new-4"
+          d="M21.39,16.82V32.23a1.41,1.41,0,0,0,.19.67l2.53,4,2.53-4a1.06,1.06,0,0,0,.17-.58V16.82a1.27,1.27,0,0,0-1.27-1.27H22.65A1.27,1.27,0,0,0,21.39,16.82Z"/>
+    <path class="visual-editor-new-3"
+          d="M24.1,37.85h0a1,1,0,0,1-.84-.46l-2.53-4a2.43,2.43,0,0,1-.35-1.2V16.82h0a2.27,2.27,0,0,1,2.27-2.27H25.5a2.27,2.27,0,0,1,2.27,2.27h0v15.5a2,2,0,0,1-.33,1.12l-2.53,4A1,1,0,0,1,24.1,37.85Zm-1.71-21V32.37L24.1,35l1.68-2.64V16.82a.27.27,0,0,0-.27-.27H22.65a.27.27,0,0,0-.27.27h0Z"/>
+  </g>
+  <path class="visual-editor-new-3"
+        d="M64.28,61.14h-25a3,3,0,0,1-3-3V43.54a3,3,0,0,1,3-3h25a3,3,0,0,1,3,3V58.12a3,3,0,0,1-3,3Zm-25-18.61a1,1,0,0,0-1,1V58.12a1,1,0,0,0,1,1h25a1,1,0,0,0,1-1V43.54a1,1,0,0,0-1-1Z"/>
+  <circle class="visual-editor-new-3" cx="56.96" cy="54.03" r="1.29"/>
+  <circle class="visual-editor-new-3" cx="51.79" cy="54.03" r="1.29"/>
+  <circle class="visual-editor-new-3" cx="46.63" cy="54.03" r="1.29"/>
+  <rect class="visual-editor-new-4" x="48.92" y="21.16" width="17.29" height="14.68" rx="1.38"/>
+  <path class="visual-editor-new-3"
+        d="M64.83,36.85H50.3a2.4,2.4,0,0,1-2.38-2.38V22.55a2.4,2.4,0,0,1,2.38-2.38H64.83a2.4,2.4,0,0,1,2.38,2.38V34.46A2.39,2.39,0,0,1,64.83,36.85ZM50.3,22.16a.38.38,0,0,0-.38.38h0V34.46a.38.38,0,0,0,.38.38H64.83a.38.38,0,0,0,.38-.38V22.55a.38.38,0,0,0-.38-.38Z"/>
+  <path class="visual-editor-new-3" d="M40.91,36.85a1,1,0,0,1-1-1V21.17a1,1,0,0,1,2,0V35.85A1,1,0,0,1,40.91,36.85Z"/>
+  <path class="visual-editor-new-3" d="M44.14,22.17H37.68a1,1,0,0,1,0-2h6.46a1,1,0,0,1,0,2Z"/>
+  <path class="visual-editor-new-3" d="M44.14,36.85H37.68a1,1,0,0,1,0-2h6.46a1,1,0,0,1,0,2Z"/>
+  <path class="visual-editor-new-3" d="M57.57,33a1,1,0,0,1-1-1V25.07a1,1,0,0,1,2,0V32A1,1,0,0,1,57.57,33Z"/>
+  <path class="visual-editor-new-3" d="M61,29.51H54.13a1,1,0,0,1,0-2H61a1,1,0,0,1,0,2Z"/>
+  <path class="visual-editor-new-5" d="M68.72,14.51H40.62a12,12,0,1,0,0,24h28.1a12,12,0,0,0,0-24Z"/>
+  <path class="visual-editor-new-4" d="M41.25,21.79H43.7l3.53,6.12V21.79h1.88v9.3H47l-3.87-6.62v6.62H41.25Z"/>
+  <path class="visual-editor-new-4"
+        d="M50.47,27.77v-.1A3.38,3.38,0,0,1,54,24.13a3.14,3.14,0,0,1,3.31,3.46v.52h-4.9a1.63,1.63,0,0,0,1.69,1.78c.87,0,1.3-.38,1.42-.95h1.78c-.22,1.47-1.39,2.29-3.25,2.29A3.3,3.3,0,0,1,50.47,27.77Zm5-.82c-.06-1-.58-1.52-1.48-1.52A1.56,1.56,0,0,0,52.41,27Z"/>
+  <path class="visual-editor-new-4"
+        d="M57.75,24.29h2l1.21,4.57,1.31-4.57H63.8L65,28.86l1.29-4.57h1.81l-2.15,6.8H64.09l-1.15-4.27-1.25,4.27H59.82Z"/>
+</svg>

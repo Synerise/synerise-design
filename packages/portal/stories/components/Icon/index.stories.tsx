@@ -2,9 +2,13 @@ import * as React from 'react';
 import { text, number, boolean, select } from '@storybook/addon-knobs';
 import Icon from '@synerise/ds-icon';
 
-const req = require.context('@synerise/ds-icon/dist/icons', true, /index.js/);
+const req = require.context('@synerise/ds-icon/dist/icons', false, /index.js/);
 const iconsRaw = req(req.keys()[0]);
 const iconsNames = Object.keys(iconsRaw);
+
+const additionalIconsReq = require.context('@synerise/ds-icon/dist/icons/additional', false, /index.js/);
+const additionalIconsRaw = additionalIconsReq(additionalIconsReq.keys()[0]);
+const additionalIconsNames = Object.keys(additionalIconsRaw);
 
 const listyStyles: React.CSSProperties = {
   margin: 10,
@@ -35,6 +39,18 @@ const IconComponent = Object.entries(iconsRaw).map(([key, value]) => {
   );
 });
 
+const AdditionalIconComponent = Object.entries(additionalIconsRaw).map(([key, value]) => {
+  const IconModule = value as React.ComponentType;
+  return (
+    <div style={listyStyles} key={key}>
+      <Icon component={<IconModule />} size={82} />
+      <br />
+      <br />
+      <p>{key}</p>
+    </div>
+  );
+});
+
 const stories = {
   singleIcon: () => {
     const props = getProps();
@@ -47,6 +63,9 @@ const stories = {
   },
   listIcon: () => (
     <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between' }}>{IconComponent}</div>
+  ),
+  additionalListIcon: () => (
+    <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between' }}>{AdditionalIconComponent}</div>
   ),
 };
 

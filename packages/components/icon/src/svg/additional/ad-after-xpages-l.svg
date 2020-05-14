@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 82 82" id="ad-after-xpages-l">
+  <defs>
+    <style>.cls-axp-1{fill:#f2f2f2;fill-opacity:0;}.cls-axp-2{fill:#d9eeff;}.cls-axp-3{fill:none;stroke:#0b68ff;stroke-linecap:round;stroke-linejoin:round;stroke-width:2px}.cls-axp-4{fill:#0b68ff;}</style>
+  </defs>
+  <rect id="bg" class="cls-axp-1" width="82" height="82"/>
+  <rect class="cls-axp-2" x="192.2094" y="1464.7856" width="21.5815" height="54.429" rx="3.891" ry="3.891"
+        transform="translate(1536.0003 -150.018) rotate(90)"/>
+  <rect class="cls-axp-3" x="187.2091" y="1459.7842" width="21.5815" height="54.429" rx="3.891" ry="3.891"
+        transform="translate(1525.9986 -150.0191) rotate(90)"/>
+  <circle class="cls-axp-4" cx="17.3372" cy="42.523" r="1.2917"/>
+  <circle class="cls-axp-4" cx="22.5038" cy="42.523" r="1.2917"/>
+  <line class="cls-axp-3" x1="63.2142" y1="31.2728" x2="14.7856" y2="31.2728"/>
+  <line class="cls-axp-3" x1="57.2138" y1="19.4384" x2="20.7859" y2="19.4384"/>
+  <line class="cls-axp-3" x1="60.214" y1="25.3556" x2="17.7857" y2="25.3556"/>
+  <circle class="cls-axp-4" cx="27.6705" cy="42.523" r="1.2917"/>
+</svg>

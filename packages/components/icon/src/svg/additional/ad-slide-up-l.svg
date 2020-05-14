@@ -1,0 +1,19 @@
+<svg id="Warstwa_1" data-name="Warstwa 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+    <defs>
+        <style>.cls-afi-1{opacity:0;}.cls-afi-2{fill:#f2f2f2;}.cls-afi-3{fill:#d9eeff;}.cls-afi-4{fill:#0b68ff;}</style>
+    </defs>
+    <g class="cls-afi-1">
+        <rect class="cls-afi-2" width="48" height="48"/>
+    </g>
+    <rect class="cls-afi-3" x="10.44" y="15.34" width="35.12" height="24.21" rx="2.76" ry="2.76"
+          transform="translate(0.56 55.44) rotate(-90)"/>
+    <g id="remove">
+        <path class="cls-afi-4"
+              d="M18.56,22.26a1,1,0,0,1-.71-1.71l5.44-5.44a1,1,0,1,1,1.41,1.41L19.26,22A1,1,0,0,1,18.56,22.26Z"/>
+        <path class="cls-afi-4"
+              d="M29.44,22.26a1,1,0,0,1-.71-.29l-5.44-5.44a1,1,0,1,1,1.41-1.41l5.44,5.44a1,1,0,0,1-.71,1.71Z"/>
+    </g>
+    <path class="cls-afi-4" d="M24,42a1,1,0,0,1-1-1V17.25a1,1,0,1,1,2,0V41A1,1,0,0,1,24,42Z"/>
+    <path class="cls-afi-4"
+          d="M33.35,42H30.11a1,1,0,0,1,0-2h3.24a1.76,1.76,0,0,0,1.75-1.75V8.64a1.76,1.76,0,0,0-1.75-1.76H14.65A1.76,1.76,0,0,0,12.9,8.64v29.6A1.76,1.76,0,0,0,14.65,40h3.24a1,1,0,0,1,0,2H14.65a3.76,3.76,0,0,1-3.76-3.75V8.64a3.76,3.76,0,0,1,3.76-3.76h18.7A3.76,3.76,0,0,1,37.1,8.64v29.6A3.76,3.76,0,0,1,33.35,42Z"/>
+</svg>

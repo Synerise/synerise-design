@@ -1,0 +1,11 @@
+<svg id="Warstwa_1" data-name="Warstwa 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+    <defs>
+        <style>.cls-ad-p-1{fill:#f2f2f2;opacity:0;}.cls-ad-p-2{fill:#0b68ff;}.cls-ad-p-3{fill:#d9eeff;}</style>
+    </defs>
+    <rect class="cls-ad-p-1" width="48" height="48"/>
+    <path class="cls-ad-p-2" d="M23,12.35H15.53a1,1,0,0,1,0-2H23a1,1,0,0,1,0,2Z"/>
+    <circle class="cls-ad-p-2" cx="11.17" cy="11.35" r="1"/>
+    <rect class="cls-ad-p-3" x="14.25" y="20.42" width="27.58" height="27.58" rx="3.86" ry="3.86"/>
+    <path class="cls-ad-p-2"
+          d="M33.89,44.92H14a4.87,4.87,0,0,1-4.86-4.86V20.2A4.87,4.87,0,0,1,14,15.34H33.89a4.87,4.87,0,0,1,4.86,4.86V40.05A4.87,4.87,0,0,1,33.89,44.92ZM14,17.34a2.86,2.86,0,0,0-2.86,2.86V40.05A2.86,2.86,0,0,0,14,42.92H33.89a2.86,2.86,0,0,0,2.86-2.86V20.2a2.86,2.86,0,0,0-2.86-2.86Z"/>
+</svg>
