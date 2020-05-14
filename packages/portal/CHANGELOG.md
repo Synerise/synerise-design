@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.63.0](https://github.com/synerise/synerise-design/compare/portal@0.62.1...portal@0.63.0) (2020-05-14)
+
+
+### Bug Fixes
+
+* **table:** fix stories ([e75c637](https://github.com/synerise/synerise-design/commit/e75c637ca237f6a84c58c3238f25389ad4d2a774))
+
+
+### Features
+
+* **icon:** add additional icons set ([5e18259](https://github.com/synerise/synerise-design/commit/5e182591c535489a8fc15955b7d466435078c669))
+
+
+
+
+
 ## [0.62.1](https://github.com/synerise/synerise-design/compare/portal@0.62.0...portal@0.62.1) (2020-05-13)
 
 
