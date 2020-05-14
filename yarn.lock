@@ -3471,6 +3471,11 @@
   resolved "https://registry.yarnpkg.com/@synerise/ds-icon/-/ds-icon-0.11.1.tgz#ddd8f650a2cc971920be1f46f80062ab394f7f1a"
   integrity sha512-1zFdRbdCX7Kn9oaC6yZwjRa6yJdBBHWzYM6kUWICKVN88HZVCY6KgCtBK9Y5SAMRdXRjOuxhVG+l/v9fSqS1Yw==
 
+"@synerise/ds-icon@^0.14.0", "@synerise/ds-icon@^0.14.3":
+  version "0.14.3"
+  resolved "https://registry.yarnpkg.com/@synerise/ds-icon/-/ds-icon-0.14.3.tgz#4c867acd49841ca9600bd2ce27563e292dd92fae"
+  integrity sha512-CKeFMuxxFy6T9g43tOEdrULxb6s1ryhQPFYASYrWmpMb9pDRlTjShR8oUEU1iUICFOY+AtF4q1J87QHBxMkl/w==
+
 "@synerise/ds-input@^0.10.7":
   version "0.10.7"
   resolved "https://registry.yarnpkg.com/@synerise/ds-input/-/ds-input-0.10.7.tgz#0bdc001ed7f85a45f1f2a1930521d53f2442d28d"
