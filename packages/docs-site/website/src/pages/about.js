@@ -14,21 +14,21 @@ const About = () => {
       </div>
       <div className="ds-stats">
         <div className="l-grid">
-          <div className="ds-stat l-col-desktop-4 l-col-tablet-6 l-col-mobile-4">
+          <div className="ds-stat l-col-desktop-4 l-col-tablet-4 l-col-mobile-4">
             <span className="ds-stat-value">8</span>
             <span className="ds-stat-description">
               <strong>Extensive guidelines</strong>
               <span> that describe the best design practices</span>
             </span>
           </div>
-          <div className="ds-stat l-col-desktop-4 l-col-tablet-6 l-col-mobile-4 ">
+          <div className="ds-stat l-col-desktop-4 l-col-tablet-4 l-col-mobile-4 ">
             <span className="ds-stat-value">53</span>
             <span className="ds-stat-description">
               <strong>Components for reusing,</strong>
               <span> described in detail</span>
             </span>
           </div>
-          <div className="ds-stat l-col-desktop-4 l-col-tablet-6 l-col-mobile-4 ">
+          <div className="ds-stat l-col-desktop-4 l-col-tablet-4 l-col-mobile-4 ">
             <span className="ds-stat-value">6</span>
             <span className="ds-stat-description">
               <strong>Contributors to the documentation</strong>

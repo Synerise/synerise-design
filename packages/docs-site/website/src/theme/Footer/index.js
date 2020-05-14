@@ -8,6 +8,11 @@
 import React from 'react';
 
 function Footer() {
+  const [openedLinks, setOpenedLinks] = React.useState(false);
+
+  const toggleLinks = React.useCallback(() => {
+    setOpenedLinks(!openedLinks);
+  }, [openedLinks]);
   return (
     <footer className="c-main-footer">
       <section className="c-footer-links l-section">
@@ -37,11 +42,16 @@ function Footer() {
               </li>
             </ul>
           </div>
-            <div className="c-links-box">
-              <span className="c-links-box__title" role="button">Coloid Design System</span>
+            <div className={`c-links-box ${openedLinks ? 'expanded' : ''}`}>
+              <span className="c-links-box__title" role="button"  onClick={() => toggleLinks()}>
+                Coloid Design System
+                <svg className="arrow-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                     viewBox="0 0 24 24" fill="none" stroke="#0E69FF" stroke-width="2" stroke-linecap="round"
+                     stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </span>
               <ul className="c-links-box__submenu submenu-group-0">
                 <li>
-                  <a className="c-links-box__lnk" href="/trust">About System</a>
+                  <a className="c-links-box__lnk" href="/about">About System</a>
                 </li>
                 <li>
                   <a className="c-links-box__lnk" href="/partners">Guidelines</a>

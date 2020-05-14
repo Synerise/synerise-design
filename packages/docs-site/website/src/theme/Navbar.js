@@ -1,18 +1,24 @@
 import React from 'react';
 
 const Navbar = () => {
+  const [opened, setOpened] = React.useState(false);
+
+  const toggleMenu = React.useCallback(() => {
+    setOpened(!opened);
+  }, [opened]);
+
   return (
     <header className="c-main-header">
-      <nav className="c-main-header__nav l-section">
+      <nav className={`c-main-header__nav l-section ${opened ? 'expanded' : ''}`}>
         <a className="c-main-header__logo" title="Home" href="/">
           <img src="/images/logo-synerise.svg " alt="Synerise" />
         </a>
-        <button type="button" className="c-main-header__btn" aria-label="Toggle menu">
+        <button onClick={() => toggleMenu()} type="button" className={`c-main-header__btn ${opened ? 'active' : ''}`} aria-label="Toggle menu">
           <div className="btn"><span></span><span></span><span></span></div>
         </button>
         <ul className="c-main-nav">
           <li className="hover-action-subitem c-main-nav__item">
-            <a className="c-main-nav__item__link" title="Case studies" href="/case-studies">
+            <a className="c-main-nav__item__link" title="Case studies" href="/about">
               <span className="c-main-nav__submenu__item__title">Coloid Design System</span>
             </a>
           </li>
