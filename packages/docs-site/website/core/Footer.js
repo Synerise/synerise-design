@@ -1,68 +1,53 @@
-/**
- * Copyright (c) 2017-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
+import React from 'react';
 
-const React = require('react');
-
-class Footer extends React.Component {
-  docUrl(doc, language) {
-    const {baseUrl} = this.props.config;
-    const {docsUrl} = this.props.config;
-    const docsPart = `${docsUrl ? `${docsUrl}/` : ''}`;
-    const langPart = `${language ? `${language}/` : ''}`;
-    return `${baseUrl}${docsPart}${langPart}${doc}`;
-  }
-
-  pageUrl(doc, language) {
-    const {baseUrl} = this.props.config;
-    return baseUrl + (language ? `${language}/` : '') + doc;
-  }
-
-  render() {
-    return (
-      <footer className="nav-footer" id="footer">
-        <section className="sitemap">
-          <a href={this.props.config.baseUrl} className="nav-home">
-            {this.props.config.footerIcon && (
-              <img
-                src={this.props.config.baseUrl + this.props.config.footerIcon}
-                alt={this.props.config.title}
-                width="66"
-                height="58"
-              />
-            )}
-          </a>
-          <div>
-            <h5>Docs</h5>
-            <a href="/storybook-static/">Storybook</a>
-            <a href={this.docUrl('palette', this.props.language)}>Guidelines</a>
-            <a href={this.docUrl('components/button', this.props.language)}>Components</a>
+const Footer = () => {
+  return (
+    <footer className="c-main-footer ds-footer">
+      <section className="c-footer-links l-section">
+        <div className="c-main-footer__columns">
+          <div className="c-main-footer__first-column">
+            <img className="c-main-nav__logo-image c-dynamic-image" alt="Synerise" src="https://strapi.synerise.com/uploads/7cce7cae97314cee865f977b9baf13e5.svg" />
+            <ul className="c-social-list">
+              <li>
+                <a href="https://facebook.com/synerise" aria-label="Facebook" rel="nofollow">
+                  <i className="c-dynamic-image c-dynamic-icon  icon-facebook-fill-m c-dynamic-icon__icon"></i>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.instagram.com/synerise/" aria-label="Instagram" rel="nofollow">
+                  <i className="c-dynamic-image c-dynamic-icon  icon-instagram-fill-m c-dynamic-icon__icon"></i>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.linkedin.com/company/synerise/" aria-label="LinkedIn" rel="nofollow">
+                  <i className="c-dynamic-image c-dynamic-icon   icon-linkedin-fill-m c-dynamic-icon__icon"></i>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/synerise" aria-label="Twitter" rel="nofollow">
+                  <i className="c-dynamic-image c-dynamic-icon  icon-twitter-fill-m c-dynamic-icon__icon"></i>
+                </a>
+              </li>
+            </ul>
+            <div className="c-links-box">
+              <span className="c-links-box__title" role="button">Coloid Design System</span>
+              <ul className="c-links-box__submenu submenu-group-0">
+                <li>
+                  <a className="c-links-box__lnk" href="/trust">About System</a>
+                </li>
+                <li>
+                  <a className="c-links-box__lnk" href="/partners">Guidelines</a>
+                </li>
+                <li>
+                  <a className="c-links-box__lnk" href="/csr">Components</a>
+                </li>
+              </ul>
+            </div>
           </div>
-          <div>
-            <h5>Community</h5>
-            <a href={this.pageUrl('users.html', this.props.language)}>User Showcase</a>
-            <a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">
-              Stack Overflow
-            </a>
-            <a href="https://discordapp.com/">Project Chat</a>
-            <a href="https://twitter.com/" target="_blank" rel="noreferrer noopener">
-              Twitter
-            </a>
-          </div>
-          <div>
-            <h5>More</h5>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem distinctio est excepturi itaque iure labore
-            nihil officiis repellendus rerum voluptatum. Ab architecto deserunt ea eius enim id iusto maiores sequi?
-          </div>
-        </section>
+        </div>
+      </section>
+    </footer>
+  );
+};
 
-        <section className="copyright">{this.props.config.copyright}</section>
-      </footer>
-    );
-  }
-}
-
-module.exports = Footer;
+export default Footer;

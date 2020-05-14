@@ -1,10 +1,6 @@
 {
   "docs": {
-    "Synerise DS": ["ds-intro"],
     "Guidelines": ["palette"],
     "Components": []
-  },
-  "docs-other": {
-    "First Category": ["ds-intro"]
   }
 }

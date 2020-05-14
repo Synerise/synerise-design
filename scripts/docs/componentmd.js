@@ -5,7 +5,7 @@ const glob = require('glob');
 const sidebars = require('./sidebars');
 
 const COMPONENTS = __dirname + '/../../packages/components';
-const DOCS = __dirname + '/../../packages/docs-site/docs/components';
+const DOCS = __dirname + '/../../packages/docs-site/website/docs/components';
 
 const newSidebars = sidebars;
 const omit = ['core', 'utils'];
@@ -31,5 +31,5 @@ glob(COMPONENTS + '/*/README.md', { nodir: true }, function(err, files) {
       newSidebars.docs.Components.push(`components/${dir}`);
     });
   });
-  fs.writeFileSync(path.resolve(DOCS, '../../website/sidebars.json'), JSON.stringify(newSidebars), 'utf-8');
+  fs.writeFileSync(path.resolve(DOCS, '../../sidebars.json'), JSON.stringify(newSidebars), 'utf-8');
 });
