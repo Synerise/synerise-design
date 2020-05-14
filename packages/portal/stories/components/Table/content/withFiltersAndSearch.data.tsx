@@ -1,3 +1,5 @@
+import randomDate from '../../../utils/randomDate';
+
 export const COLUMNS = [
   {
     id: '0',
@@ -38,7 +40,7 @@ export const FILTERS = [
     id: '0000',
     name: 'Filter #1',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do elit',
-    created: '01-05-2020 12:02',
+    created: randomDate(),
     canUpdate: true,
     canDelete: true,
     canDuplicate: true,
@@ -53,7 +55,7 @@ export const FILTERS = [
     id: '0001',
     name: 'Filter #2',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do elit',
-    created: '01-12-2019 12:02',
+    created: randomDate(),
     canUpdate: false,
     canDelete: false,
     canDuplicate: true,
@@ -67,7 +69,7 @@ export const FILTERS = [
   {
     id: '0002',
     name: 'Filter #3',
-    created: '01-12-2019 12:02',
+    created: randomDate(),
     canUpdate: false,
     canDelete: false,
     canDuplicate: true,
@@ -86,7 +88,7 @@ export const VIEWS = [
     id: '0000',
     name: 'My view #1',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do elit',
-    created: '01-05-2020 12:02',
+    created: randomDate(),
     canUpdate: true,
     canDelete: true,
     canDuplicate: true,
@@ -101,7 +103,7 @@ export const VIEWS = [
     id: '0001',
     name: 'View #2',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do elit',
-    created: '01-12-2019 12:02',
+    created: randomDate(),
     canUpdate: false,
     canDelete: false,
     canDuplicate: true,
@@ -115,7 +117,7 @@ export const VIEWS = [
   {
     id: '0002',
     name: 'View #3',
-    created: '01-12-2019 12:02',
+    created: randomDate(),
     canUpdate: false,
     canDelete: false,
     canDuplicate: true,
@@ -129,14 +131,14 @@ export const VIEWS = [
   }
 ];
 
-export const EMPTY_FILTER = {
+export const EMPTY_VIEW = {
   id: '0003',
   name: '',
-  created: '01-12-2019 12:02',
+  created: randomDate(),
   canUpdate: true,
   canDelete: true,
   canDuplicate: true,
-  categories: ['All filters', 'My filters'],
+  categories: ['All views', 'My views'],
   user: {
     avatar_url: 'https://www.w3schools.com/howto/img_avatar.png',
     firstname: 'Kamil',
