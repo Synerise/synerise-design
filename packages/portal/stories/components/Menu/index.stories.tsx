@@ -29,10 +29,9 @@ import {
   withCheckBox,
   withCopyable, withCascader, withSelect, suffixVisibilityTrigger,
 } from './dataset';
-import Label from '@synerise/ds-input/dist/Label/Label';
 
 const decorator = props => (
-  <div style={{ width: '200px' }}>
+  <div style={{ width: '200px', borderRadius:'3px', overflow:'hidden' }}>
     <div style={{ background: 'rgba(0,0,0,0)', width: '200px' }}>
       <Menu {...props} />
     </div>

@@ -23,6 +23,11 @@ export const ArrowRight = styled.div<{ disabled?: boolean }>`
   opacity: ${(props): string => (props.disabled ? '1' : '0')};
 `;
 
+export const Inner = styled.div`
+  width: 100%;
+  display: flex;
+`;
+
 export const PrefixelWrapper = styled.div<{ disabled?: boolean; visible?: boolean }>`
   display: ${(props): string | false => (props.visible ? `flex` : `none`)};
   margin-top: -7px;
@@ -41,7 +46,6 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
     opacity: ${(props): string => (props.disabled ? '0.4' : '1')};
     cursor: ${(props): string => (props.disabled ? 'not-allowed' : 'pointer')};
     padding-right: 12px;
-    margin-left: ${(props): string => `${calculateIndent(props.indentLevel)}px !important`};
     font-weight: 500;
     border-radius: 3px;
     display: flex;
@@ -49,6 +53,9 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
     margin: 0;
     height: auto;
     transition: background-color 0.3s ease-out;
+    ${Inner}{
+        padding-left: ${(props): string => `${calculateIndent(props.indentLevel)}px `};
+    }
     ${(props): string =>
       props.disabled
         ? `
@@ -119,6 +126,7 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
       }
     }
     ${PrefixelWrapper} {
+    
       svg {
         ${(props): string | false =>
           !props.disabled &&
@@ -234,10 +242,6 @@ export const ContentWrapper = styled.div`
   flex-wrap: nowrap;
 `;
 
-export const Inner = styled.div`
-  width: 100%;
-  display: flex;
-`;
 export const ContentDivider = styled.div`
   flex: 1;
 `;
