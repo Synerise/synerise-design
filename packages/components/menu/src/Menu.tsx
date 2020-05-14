@@ -7,11 +7,11 @@ import SubMenuItem from './Elements/SubMenu/SubMenu';
 import { AntdMenuProps } from './Menu.types';
 import MenuItem from './Elements/Item/MenuItem';
 import { MenuItemProps } from './Elements/Item/MenuItem.types';
-import Select from './Elements/Item/Select/Select';
+import Breadcrumb from './Elements/Breadcrumb/Breadcrumb';
 
 class Menu extends React.Component<AntdMenuProps> {
   static Item: typeof MenuItem = MenuItem;
-  static Select: typeof Select = Select;
+  static Breadcrumb: typeof Breadcrumb = Breadcrumb;
   static ItemGroup = S.AntdMenu.ItemGroup;
   static SubMenu = S.AntdMenu.SubMenu;
 

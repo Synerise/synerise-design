@@ -27,11 +27,14 @@ import {
   TEXT_PLACEHOLDER,
   textWithIcon,
   withCheckBox,
-  withCopyable, withCascader, withSelect, suffixVisibilityTrigger,
+  withCopyable,
+  withCascader,
+  withSelect,
+  suffixVisibilityTrigger,
 } from './dataset';
 
 const decorator = props => (
-  <div style={{ width: '200px', borderRadius:'3px', overflow:'hidden' }}>
+  <div style={{ width: '200px', borderRadius: '3px', overflow: 'hidden' }}>
     <div style={{ background: 'rgba(0,0,0,0)', width: '200px' }}>
       <Menu {...props} />
     </div>
@@ -44,9 +47,13 @@ const getSuffixElement = () => {
 };
 
 const getSuffixTrigger = () => {
-  const selectedSuffix = select('Set suffix visibility trigger', suffixVisibilityTrigger, suffixVisibilityTrigger.default);
+  const selectedSuffix = select(
+    'Set suffix visibility trigger',
+    suffixVisibilityTrigger,
+    suffixVisibilityTrigger.default
+  );
   return selectedSuffix;
-}
+};
 
 const getDefaultProps = () => ({
   disabled: boolean('Set disabled', false),
@@ -230,7 +237,7 @@ const stories = {
     const defaultProps = getDefaultProps();
     const props = {
       dataSource: attachKnobsToDataSource(simpleText),
-      indentLevel: number('Set indent level',0,{min:0,max:10}),
+      indentLevel: number('Set indent level', 0, { min: 0, max: 10 }),
       ...defaultProps,
     } as object;
     return decorator(props);
@@ -243,6 +250,38 @@ const stories = {
       ...defaultProps,
     } as object;
     return decorator(props);
+  },
+  withBreadcrumb: () => {
+    const defaultProps = getDefaultProps();
+    const routes = [
+      {
+        name: 'Computers',
+        path: 'name',
+      },
+      {
+        name: 'Laptops',
+        path: 'name',
+      },
+      {
+        name: 'Apple',
+        path: 'name',
+      },
+      {
+        name: 'Macbook',
+        path: 'name',
+      },
+      {
+        name: 'Air 2.0',
+        path: 'name',
+      },
+    ];
+    return (
+      <div style={{ background: 'rgba(0,0,0,0)', width: '200px', borderRadius:'3px', overflow:'hidden' }}>
+        <Menu>
+          <Menu.Breadcrumb routes={routes} highlight={ text('Set text to be highlighted', 'Opt')} {...defaultProps}></Menu.Breadcrumb>
+        </Menu>
+      </div>
+    );
   },
 };
 
