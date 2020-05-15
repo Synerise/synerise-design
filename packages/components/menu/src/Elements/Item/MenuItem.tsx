@@ -53,6 +53,7 @@ const MenuItem: React.FC<SubMenuProps & MenuItemProps> = props => {
           key={uuid()}
           disabled={disabled}
           description={description}
+          indentLevel={indentLevel || 0}
           {...rest}
         >
           {text || children}
@@ -67,6 +68,7 @@ const MenuItem: React.FC<SubMenuProps & MenuItemProps> = props => {
           key={uuid()}
           disabled={disabled}
           description={description}
+          indentLevel={indentLevel || 0}
           {...rest}
         >
           {text || children}
@@ -82,7 +84,7 @@ const MenuItem: React.FC<SubMenuProps & MenuItemProps> = props => {
           disabled={disabled}
           danger={danger}
           description={description}
-          indentLevel={indentLevel}
+          indentLevel={indentLevel || 0}
           {...rest}
         >
           {text || children}
