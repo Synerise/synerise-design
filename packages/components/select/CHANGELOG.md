@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.11](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.11.10...@synerise/ds-select@0.11.11) (2020-05-15)
+
+
+### Bug Fixes
+
+* **select:** moved clear button styles ([8dd73a5](https://github.com/synerise/synerise-design/commit/8dd73a595653bb4398f41ca5ce2fdaec9483a4a8))
+
+
+
+
+
 ## [0.11.10](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.11.9...@synerise/ds-select@0.11.10) (2020-05-15)
 
 
