@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.3.6...@synerise/ds-menu@0.4.0) (2020-05-15)
+
+
+
+## 0.0.1 (2020-05-15)
+
+
+### Bug Fixes
+
+* **menu:** added indent level for tree item ([873dec2](https://github.com/Synerise/synerise-design/commit/873dec21e44f128ba6dba090d41330ceb3614644))
+* **menu:** fixed indent ([744bc2a](https://github.com/Synerise/synerise-design/commit/744bc2a13d3b2ba58d5c6a5481dbc2f850baee7f))
+* **menu:** fixed types ([928afe3](https://github.com/Synerise/synerise-design/commit/928afe3751bb9a7a81d19d35138a1c560c29954a))
+* **menu:** fixing tests ([30314cd](https://github.com/Synerise/synerise-design/commit/30314cd9f88d764c2b518963db124beeaa1bbec3))
+* **menu:** indent fixes ([fc0e34d](https://github.com/Synerise/synerise-design/commit/fc0e34dc0ea2b9e3bf9a26c5dd44b58375184bf1))
+* **menu:** modified decorator ([b199516](https://github.com/Synerise/synerise-design/commit/b199516e71a8060124bfbe04d91bff9fc7e48bcc))
+* **menu:** removed redundant datasource dimension ([0f6f9d8](https://github.com/Synerise/synerise-design/commit/0f6f9d8733748a180759318afa624c986043496d))
+
+
+### Features
+
+* **menu:** added breadcrumbs beta version ([0fcdd32](https://github.com/Synerise/synerise-design/commit/0fcdd32dc822b6ae52304222d8afd3f5ef7b6dc3))
+
+
+
+
+
 ## [0.3.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.3.5...@synerise/ds-menu@0.3.6) (2020-05-14)
 
 **Note:** Version bump only for package @synerise/ds-menu

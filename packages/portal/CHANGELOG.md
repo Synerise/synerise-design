@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.64.0](https://github.com/synerise/synerise-design/compare/portal@0.63.0...portal@0.64.0) (2020-05-15)
+
+
+### Bug Fixes
+
+* **icon:** stories ([241c2c9](https://github.com/synerise/synerise-design/commit/241c2c9183820e771e7331e54a99cc1071af42b5))
+* **menu:** added indent level for tree item ([873dec2](https://github.com/synerise/synerise-design/commit/873dec21e44f128ba6dba090d41330ceb3614644))
+* **menu:** fixed types ([928afe3](https://github.com/synerise/synerise-design/commit/928afe3751bb9a7a81d19d35138a1c560c29954a))
+* **menu:** modified decorator ([b199516](https://github.com/synerise/synerise-design/commit/b199516e71a8060124bfbe04d91bff9fc7e48bcc))
+* **menu:** removed redundant datasource dimension ([0f6f9d8](https://github.com/synerise/synerise-design/commit/0f6f9d8733748a180759318afa624c986043496d))
+* **select:** fixed issues with smaller large select ([ad9b477](https://github.com/synerise/synerise-design/commit/ad9b477b73f49a48424eafc275d7a78dcb22c3af))
+
+
+### Features
+
+* **docs:** add home-page styles ([2d0dbf7](https://github.com/synerise/synerise-design/commit/2d0dbf7e1a4c4a7ec32c11f98ba4eaaf011f4c2b))
+* **menu:** added breadcrumbs beta version ([0fcdd32](https://github.com/synerise/synerise-design/commit/0fcdd32dc822b6ae52304222d8afd3f5ef7b6dc3))
+
+
+
+
+
 # [0.63.0](https://github.com/synerise/synerise-design/compare/portal@0.62.1...portal@0.63.0) (2020-05-14)
 
 

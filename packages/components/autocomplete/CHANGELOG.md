@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.17](https://github.com/Synerise/synerise-design/compare/@synerise/ds-autocomplete@0.3.16...@synerise/ds-autocomplete@0.3.17) (2020-05-15)
+
+
+### Bug Fixes
+
+* **docs:** fix docs styles, mdx errors ([5de168a](https://github.com/Synerise/synerise-design/commit/5de168acb30eafd3ff88b43654dc0c56366af1bb))
+
+
+
+
+
 ## [0.3.16](https://github.com/Synerise/synerise-design/compare/@synerise/ds-autocomplete@0.3.15...@synerise/ds-autocomplete@0.3.16) (2020-05-08)
 
 **Note:** Version bump only for package @synerise/ds-autocomplete

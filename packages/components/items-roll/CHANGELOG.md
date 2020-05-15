@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.1.15...@synerise/ds-items-roll@0.2.0) (2020-05-15)
+
+
+### Bug Fixes
+
+* **docs:** fix docs styles, mdx errors ([5de168a](https://github.com/Synerise/synerise-design/commit/5de168acb30eafd3ff88b43654dc0c56366af1bb))
+
+
+### Features
+
+* **docs:** add home-page styles ([2d0dbf7](https://github.com/Synerise/synerise-design/commit/2d0dbf7e1a4c4a7ec32c11f98ba4eaaf011f4c2b))
+
+
+
+
+
 ## [0.1.15](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.1.14...@synerise/ds-items-roll@0.1.15) (2020-05-14)
 
 **Note:** Version bump only for package @synerise/ds-items-roll

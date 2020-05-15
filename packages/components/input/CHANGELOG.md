@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.25](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.11.24...@synerise/ds-input@0.11.25) (2020-05-15)
+
+
+### Bug Fixes
+
+* **select:** fixed issues with smaller large select ([ad9b477](https://github.com/synerise/synerise-design/commit/ad9b477b73f49a48424eafc275d7a78dcb22c3af))
+
+
+
+
+
 ## [0.11.24](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.11.23...@synerise/ds-input@0.11.24) (2020-05-14)
 
 **Note:** Version bump only for package @synerise/ds-input

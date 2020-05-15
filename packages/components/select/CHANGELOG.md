@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.10](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.11.9...@synerise/ds-select@0.11.10) (2020-05-15)
+
+
+### Bug Fixes
+
+* **docs:** fix docs styles, mdx errors ([5de168a](https://github.com/synerise/synerise-design/commit/5de168acb30eafd3ff88b43654dc0c56366af1bb))
+* **select:** fixed issues with smaller large select ([ad9b477](https://github.com/synerise/synerise-design/commit/ad9b477b73f49a48424eafc275d7a78dcb22c3af))
+
+
+
+
+
 ## [0.11.9](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.11.8...@synerise/ds-select@0.11.9) (2020-05-14)
 
 **Note:** Version bump only for package @synerise/ds-select
