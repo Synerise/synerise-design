@@ -42,7 +42,7 @@ const stories = {
     onFocus: action('I am focused'),
     placeholder: text('placeholder', 'Please select value...'),
     size: select<'default' | 'small' | 'large'>('size', sizes as any, 'default'),
-    showArraow: boolean('showArrow', false),
+    showArrow: boolean('showArrow', false),
     showSearch: boolean('showSearch', false),
     onChange: action('OnChange'),
     style: { width: '100%' },
