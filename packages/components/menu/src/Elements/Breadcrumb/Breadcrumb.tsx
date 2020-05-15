@@ -10,6 +10,7 @@ export interface BreadcrumbRoutes {
   name: string;
 }
 export interface BreadcrumbProps {
+  prefixel?: React.ReactNode;
   disabled?: boolean;
   routes: BreadcrumbRoutes[];
   highlight?: string;
@@ -19,30 +20,8 @@ type RouteRefs = BreadcrumbRoutes & {
   arrowSuffix: boolean;
 };
 
-const Breadcrumb: React.FC<BreadcrumbProps> = ({ routes, disabled, highlight }) => {
+const Breadcrumb: React.FC<BreadcrumbProps> = ({ routes, disabled, highlight, ...rest }) => {
   const [routesWithRefs, setRoutesWithRefs] = React.useState<RouteRefs[]>([]);
-  const [refsUpdated, setRefsUpdated] = React.useState(false);
-  const wrapperRef = React.useRef<HTMLDivElement>(null);
-
-  const calculateOffset = (wrapper: HTMLDivElement | null, item: HTMLDivElement | null): number => {
-    if (wrapper === null || item === null) {
-      return 0;
-    }
-    return item.offsetLeft - wrapper.offsetLeft;
-  };
-
-  React.useEffect(() => {
-    const routesWithArrows = routesWithRefs.map(item => {
-      const offset = calculateOffset(wrapperRef.current, item.ref.current);
-      const showArrow = offset > 0;
-      return {
-        ...item,
-        arrowSuffix: showArrow,
-      };
-    });
-    setRoutesWithRefs(routesWithArrows);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [disabled, refsUpdated]);
 
   React.useEffect(() => {
     const newRoutes = routes.map(
@@ -50,14 +29,12 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({ routes, disabled, highlight }) 
         return {
           ...route,
           ref: React.createRef<HTMLDivElement>(),
-          arrowSuffix: false,
+          arrowSuffix: true,
         };
       }
     );
     setRoutesWithRefs(newRoutes);
-    setRefsUpdated(!refsUpdated);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [routes, wrapperRef]);
+  }, [routes]);
 
   const renderNameWithHighlight = React.useCallback(
     (name: string): React.ReactNode => {
@@ -91,11 +68,11 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({ routes, disabled, highlight }) 
     if (!nextBreadcrumb) {
       return false;
     }
-    return breadcrumbs[index + 1].arrowSuffix;
+    return breadcrumbs[index].arrowSuffix;
   };
   return (
-    <S.Breadcrumb className="ds-breadcrumb" disabled={disabled}>
-      <S.BreadcrumbContent className="breadcrumb-content" ref={wrapperRef}>
+    <S.Breadcrumb className="ds-breadcrumb" disabled={disabled} {...rest}>
+      <S.BreadcrumbContent className="breadcrumb-content">
         {routesWithRefs.map((item, index) => (
           <S.BreadcrumbRoute className="route" key={item.name} ref={item.ref}>
             <S.BreadcrumbName className="ds-breadcrumb-name">{renderNameWithHighlight(item.name)}</S.BreadcrumbName>

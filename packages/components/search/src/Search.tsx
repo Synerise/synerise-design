@@ -14,7 +14,7 @@ const MENU_WIDTH_OFFSET = 17;
 const INPUT_EXPAND_ANIMATION_DURATION = 200;
 const SCROLLBAR_HEIGHT_OFFSET = 28;
 
-class SearchClass extends React.PureComponent<SearchProps, SearchState> {
+class Search extends React.PureComponent<SearchProps, SearchState> {
   private wrapperRef = React.createRef<HTMLDivElement>();
   constructor(props: SearchProps) {
     super(props);
@@ -311,4 +311,4 @@ class SearchClass extends React.PureComponent<SearchProps, SearchState> {
     );
   }
 }
-export default onClickOutside(SearchClass);
+export default onClickOutside(Search);
