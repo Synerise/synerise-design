@@ -5,7 +5,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 function Index() {
   return (
     <Layout title="Synerise">
-      <div className="ds-wrapper u-bg-white">
+      <section className="ds-wrapper u-bg-white">
         <div className="ds-intro l-grid">
           <h1 className="ds-headline-1">
             <span>The Coloid</span>
@@ -16,8 +16,8 @@ function Index() {
         <div className="ds-intro-image-wrapper">
           <img src={useBaseUrl('images/ds-dashboard@2x.jpg')} alt="Synerise Dashboard" />
         </div>
-      </div>
-      <div className="ds-wrapper u-bg-light-gray">
+      </section>
+      <section className="ds-wrapper u-bg-light-gray">
         <div className="l-grid-3">
           <div className="ds-develop">
             <h2 className="ds-headline-2">Everything you need to <strong>Develop Synerise</strong></h2>
@@ -78,7 +78,7 @@ function Index() {
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </Layout>
   );
 }

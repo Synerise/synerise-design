@@ -51,8 +51,12 @@ a {
 
 
 #__docusaurus {
-
-
+  .main-wrapper {
+    & > div {
+      width: 100%;
+      max-width: 1170px;
+    }
+  }
   .menu {
     .menu__link {
       color: #000000;
