@@ -8,8 +8,8 @@ function Index() {
       <section className="ds-wrapper u-bg-white">
         <div className="ds-intro l-grid">
           <h1 className="ds-headline-1">
-            <span>The Colloid</span>
-            <strong>Design System</strong>
+            <strong>The Colloid</strong>
+            <span>Design System</span>
           </h1>
           <p className="ds-sub-headline">Colloid is the Synerise design system for developing the product and experiences.</p>
         </div>
