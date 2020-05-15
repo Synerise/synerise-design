@@ -30,7 +30,7 @@ const Footer = () => {
               </li>
             </ul>
             <div className="c-links-box">
-              <span className="c-links-box__title" role="button">Coloid Design System</span>
+              <span className="c-links-box__title" role="button">Colloid Design System</span>
               <ul className="c-links-box__submenu submenu-group-0">
                 <li>
                   <a className="c-links-box__lnk" href="/trust">About System</a>

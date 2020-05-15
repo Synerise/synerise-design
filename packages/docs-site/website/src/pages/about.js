@@ -8,7 +8,7 @@ const About = () => {
       <section className="ds-wrapper u-bg-white">
         <div className="ds-about l-grid">
           <h1 className="ds-headline-1">
-            <strong>About Coloid</strong>
+            <strong>About Colloid</strong>
           </h1>
         </div>
       </section>
@@ -47,10 +47,10 @@ const About = () => {
               <br />
               While developing solutions for our product, either we or our third parties,  want to keep and improve UI consistency and quality. It lies in our best interest to make the design and development process more efficient by establishing a shared vocabulary and providing clear guidance between designers and developers.
             </p>
-            <h3>Coloid guiding principles</h3>
+            <h3>Colloid guiding principles</h3>
             <ul>
               <li>
-                Coloid is open - The Synerise design system is our common effort, so all users and its makers are encouraged to contribute.
+                Colloid is open - The Synerise design system is our common effort, so all users and its makers are encouraged to contribute.
               </li>
               <li>
                 Be attentive - Without our customers there would be no „us”. When we create, develop and improve, make sure the needs and requests of our customers are heard and they resonate in our projects and finally in all features.
