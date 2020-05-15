@@ -19,7 +19,7 @@ const Navbar = (props) => {
         <ul className="c-main-nav">
           <li className="hover-action-subitem c-main-nav__item">
             <a className="c-main-nav__item__link" title="Case studies" href="/about">
-              <span className="c-main-nav__submenu__item__title">Coloid Design System</span>
+              <span className="c-main-nav__submenu__item__title">Colloid Design System</span>
             </a>
           </li>
           <li className="hover-action-subitem c-main-nav__item">

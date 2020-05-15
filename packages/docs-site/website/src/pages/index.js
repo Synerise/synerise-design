@@ -8,10 +8,10 @@ function Index() {
       <section className="ds-wrapper u-bg-white">
         <div className="ds-intro l-grid">
           <h1 className="ds-headline-1">
-            <span>The Coloid</span>
+            <span>The Colloid</span>
             <strong>Design System</strong>
           </h1>
-          <p className="ds-sub-headline">Coloid is the Synerise design system for developing the product and experiences.</p>
+          <p className="ds-sub-headline">Colloid is the Synerise design system for developing the product and experiences.</p>
         </div>
         <div className="ds-intro-image-wrapper">
           <img src={useBaseUrl('images/ds-dashboard@2x.jpg')} alt="Synerise Dashboard" />
@@ -68,7 +68,7 @@ function Index() {
                 <div className="c-generic-section__content">
                   <h2 className="c-text-header">Get familiar with...</h2>
                   <p className="c-text-paragraph-component c-text-paragraph c-generic-section__description">
-                    Based on the Coloid Design language, the system consists of working code, human interface guidelines and a vibrant community contributions.
+                    Based on the Colloid Design language, the system consists of working code, human interface guidelines and a vibrant community contributions.
                   </p>
                   <div className="c-generic-section__buttons">
                     <a className="c-button-filled" href="/docs/palette" target="_self">Learn more</a>
