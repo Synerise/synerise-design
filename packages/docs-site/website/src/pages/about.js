@@ -5,14 +5,14 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 const About = () => {
   return (
     <Layout title="Synerise">
-      <div className="ds-wrapper u-bg-white">
+      <section className="ds-wrapper u-bg-white">
         <div className="ds-about l-grid">
           <h1 className="ds-headline-1">
             <strong>About Coloid</strong>
           </h1>
         </div>
-      </div>
-      <div className="ds-stats">
+      </section>
+      <section className="ds-stats">
         <div className="l-grid">
           <div className="ds-stat l-col-desktop-4 l-col-tablet-4 l-col-mobile-4">
             <span className="ds-stat-value">8</span>
@@ -36,8 +36,8 @@ const About = () => {
             </span>
           </div>
         </div>
-      </div>
-      <div className="ds-about-copy u-bg-white">
+      </section>
+      <section className="ds-about-copy u-bg-white">
         <div className="l-grid">
           <div className="l-col-desktop-7">
             <h2>Introduction</h2>
@@ -64,8 +64,8 @@ const About = () => {
             </ul>
           </div>
         </div>
-      </div>
-      <div className="ds-our-approach u-bg-light-gray">
+      </section>
+      <section className="ds-our-approach u-bg-light-gray">
         <div className="l-grid">
           <h2>Out approach</h2>
           <div className="ds-approach-boxes">
@@ -86,7 +86,7 @@ const About = () => {
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </Layout>
   )
 };
