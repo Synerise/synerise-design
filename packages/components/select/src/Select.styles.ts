@@ -29,12 +29,8 @@ export const AntdSelect = styled((Select as unknown) as React.ComponentType<Sele
     }
     }
   `}
-  &.error {
-    .ant-select-selector {
-      ${(props): string => errorStyle(props)}
-    }
+  & {
     .ant-select-clear {
-      background-color: ${(props): string => props.theme.palette['red-050']};
       height: 18px;
       background-position: center;
       background-repeat: no-repeat;
@@ -47,6 +43,14 @@ export const AntdSelect = styled((Select as unknown) as React.ComponentType<Sele
       align-items: center;
       justify-content: center;
       margin-top: 0;
+    }
+  }
+  &.error {
+    .ant-select-selector {
+      ${(props): string => errorStyle(props)}
+    }
+    .ant-select-clear {
+      background-color: ${(props): string => props.theme.palette['red-050']};
     }
   }
 `;
