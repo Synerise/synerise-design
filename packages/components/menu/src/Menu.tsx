@@ -58,7 +58,7 @@ class Menu extends React.Component<AntdMenuProps> {
                 highlight={item.highlight}
                 suffixVisibilityTrigger={item.suffixVisibilityTrigger}
                 prefixVisibilityTrigger={item.prefixVisibilityTrigger}
-                indentLevel={item.indentLevel}
+                indentLevel={item.indentLevel || 0}
                 type={item.type}
                 key={`${item.text}${index}`} // eslint-disable-line react/no-array-index-key
                 {...rest}

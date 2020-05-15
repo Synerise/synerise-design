@@ -53,6 +53,7 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
     margin: 0;
     height: auto;
     transition: background-color 0.3s ease-out;
+    padding-left:${(props): string => (props.prefixel ? '8' : '12')}px;
     ${Inner}{
         padding-left: ${(props): string => `${calculateIndent(props.indentLevel)}px `};
     }
