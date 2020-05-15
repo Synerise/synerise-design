@@ -23,12 +23,13 @@ class Select extends React.Component<Props> {
 
   render(): React.ReactNode {
     const { label, description, errorText, error, tooltip, clearTooltip, ...antdProps } = this.props;
-
+    const { size } = antdProps;
     return (
       <>
         <S.Label label={label} tooltip={tooltip} />
         <S.AntdSelect
           {...antdProps}
+          size={size}
           clearIcon={
             <Tooltip title={clearTooltip}>
               <span>

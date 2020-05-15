@@ -4,10 +4,11 @@ import { Input, TextArea, RawInput, InputGroup } from '@synerise/ds-input';
 import Icon from '@synerise/ds-icon';
 import FileM from '@synerise/ds-icon/dist/icons/FileM';
 import Select from '@synerise/ds-select';
-import { array, boolean, number, text } from '@storybook/addon-knobs';
+import { array, boolean, number, select as knobSelect, text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 
 const decorator = storyFn => <div style={{ width: '300px' }}>{storyFn()}</div>;
+const sizes = ['default', 'large'];
 
 const stories = {
   basic: () => {
@@ -29,9 +30,11 @@ const stories = {
   },
   inputGroup: () => {
     const [value, setValue] = React.useState<string>('');
+    const size = knobSelect('Set size',sizes as any,'middle');
 
     const select = (
       <Select
+        size={size}
         tooltip={text('tooltip', 'This is example tooltip!')}
         onChange={action('OnChange')}
         style={{ width: '50%' }}
@@ -45,6 +48,7 @@ const stories = {
 
     const input = (
       <RawInput
+        size={size}
         placeholder={text('placeholder', 'Placeholder')}
         disabled={boolean('disabled', false)}
         onChange={e => setValue(e.target.value)}
@@ -56,6 +60,7 @@ const stories = {
 
     return (
       <InputGroup
+        size={size}
         tooltip={text('tooltip', 'This is example tooltip!')}
         label={text('label', 'Label')}
         description={text('description', 'Description')}

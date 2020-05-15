@@ -8,9 +8,10 @@ import * as S from './Input.styles';
 import Label from './Label/Label';
 
 export interface Props {
+  error?: boolean;
+  size?: Pick<InputProps, 'size'>;
   className?: string;
   tooltip?: React.ReactNode;
-  error?: boolean;
   errorText?: React.ReactNode | string;
   label?: React.ReactNode | string;
   description?: React.ReactNode | string;
@@ -37,6 +38,7 @@ const enhancedInput = <P extends object>(
   icon2,
   resetMargin,
   handleInputRef,
+  error,
   ...antdInputProps
 }): React.ReactElement => {
   const [charCount, setCharCount] = React.useState<number>(0);
@@ -94,7 +96,7 @@ const enhancedInput = <P extends object>(
         <WrappedComponent
           // eslint-disable-next-line react/jsx-props-no-spreading
           {...antdInputProps}
-          error={showError}
+          error={showError || error}
           onChange={handleChange}
           value={antdInputProps.value}
           id={id}
