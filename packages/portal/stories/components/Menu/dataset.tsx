@@ -16,6 +16,7 @@ import {
 } from '@synerise/ds-icon/dist/icons';
 import Label from '@synerise/ds-input/dist/Label/Label';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { VisibilityTrigger } from '@synerise/ds-menu/dist/Menu.types';
 
 export const TEXT_PLACEHOLDER = 'Option';
 export const DESCRIPTION_PLACEHOLDER = 'Description';
@@ -37,6 +38,10 @@ export const iconPrefixType = {
   twoIcons: 'twoIcons',
 };
 
+export const suffixVisibilityTrigger = {
+  default:VisibilityTrigger.NONE,
+  hover:VisibilityTrigger.HOVER,
+}
 export const ExtendedAntdSwitchComponent = (AntdSwitch as any) as React.ComponentType<SwitchProps & { id: string }>;
 
 export function renderSuffix(suffixElementType: string) {
@@ -60,7 +65,7 @@ export function renderSuffix(suffixElementType: string) {
       return (
         <Label
           label={
-            <div style={{ lineHeight: '18px', color: '#6a7580' }}>
+            <div style={{ lineHeight: '18px' }}>
               <span>[key:value]</span>
             </div>
           }
@@ -101,9 +106,9 @@ export const remapCopyValueFromText = data =>
     ...(item.copyValue && { copyValue: item.text }),
   }));
 
-export const simpleText = [[{ text: 'Option' }]];
+export const simpleText = [{ text: 'Option' }];
 
-export const textWithIcon = [[{ text: TEXT_PLACEHOLDER }]];
+export const textWithIcon = [{ text: TEXT_PLACEHOLDER }];
 
 export const ordered = [
   { text: TEXT_PLACEHOLDER },
@@ -119,6 +124,22 @@ export const parent = [
     subMenu: [{ text: 'Child 1', ordered: true }, { text: 'Child 2', ordered: true }, { text: 'Child 3' }],
   },
   { text: 'Parent 2', subMenu: [{ text: 'Child 1' }, { text: 'Child 2' }, { text: 'Child 3' }] },
+];
+
+export const parentWithIcon = [
+  {
+    text: 'Parent 1',
+    subMenu: [{ text: 'Child 1', ordered: true }, { text: 'Child 2', ordered: true }, { text: 'Child 3' }],
+  },
+  {
+    text: 'Parent 2',
+    prefixel: <Icon color={theme.palette['grey-600']} component={<UserS />} />,
+    subMenu: [
+      { text: 'Child 1', subMenu: [{ text: 'Child 1' }, { text: 'Child 2' }, { text: 'Child 3' }] },
+      { text: 'Child 2' },
+      { text: 'Child 3' },
+    ],
+  },
 ];
 
 export const avatar = [
@@ -157,7 +178,7 @@ export const avatarMedium = [
 export const deleteState = [
   {
     text: 'Delete',
-    danger: true,
+    type: 'danger',
     prefixel: (
       <Icon
         onClick={() => {
@@ -178,5 +199,24 @@ export const withCopyable = [
     copyable: true,
     copyHint: 'Copy to clipboard',
     copyValue: 'Item',
+  },
+];
+export const withCascader = [
+  {
+    parent: true,
+  },
+];
+export const withSelect = [
+  {
+    type: 'select',
+    suffixel: (
+      <Label
+        label={
+          <div style={{ lineHeight: '18px' }}>
+            <span>select</span>
+          </div>
+        }
+      />
+    ),
   },
 ];

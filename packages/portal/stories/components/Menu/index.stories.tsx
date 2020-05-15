@@ -1,36 +1,40 @@
 import * as React from 'react';
-import { boolean, select, text } from '@storybook/addon-knobs';
+import { boolean, number, select, text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import Checkbox from '@synerise/ds-checkbox';
 import Icon from '@synerise/ds-icon';
-import { FileM } from '@synerise/ds-icon/dist/icons';
+import { DeleteM, FileM } from '@synerise/ds-icon/dist/icons';
 import Menu from '@synerise/ds-menu';
 import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
 
 import {
-  TEXT_PLACEHOLDER,
-  DESCRIPTION_PLACEHOLDER,
-  iconPrefixType,
-  ordered,
-  avatarMedium,
-  withCheckBox,
-  textWithIcon,
   avatar,
-  remapCopyValueFromText,
+  avatarMedium,
   avatarSmall,
-  simpleText,
-  largeList,
-  withCopyable,
-  renderPrefixIcon,
   deleteState,
+  DESCRIPTION_PLACEHOLDER,
   ExtendedAntdSwitchComponent,
-  suffixType,
-  renderSuffix,
+  iconPrefixType,
+  largeList,
+  ordered,
   parent,
+  parentWithIcon,
+  remapCopyValueFromText,
+  renderPrefixIcon,
+  renderSuffix,
+  simpleText,
+  suffixType,
+  TEXT_PLACEHOLDER,
+  textWithIcon,
+  withCheckBox,
+  withCopyable,
+  withCascader,
+  withSelect,
+  suffixVisibilityTrigger,
 } from './dataset';
 
 const decorator = props => (
-  <div style={{ width: '200px' }}>
+  <div style={{ width: '200px', borderRadius: '3px', overflow: 'hidden' }}>
     <div style={{ background: 'rgba(0,0,0,0)', width: '200px' }}>
       <Menu {...props} />
     </div>
@@ -40,6 +44,15 @@ const decorator = props => (
 const getSuffixElement = () => {
   const selectedSuffix = select('Set suffix type', suffixType, suffixType.none);
   return renderSuffix(selectedSuffix);
+};
+
+const getSuffixTrigger = () => {
+  const selectedSuffix = select(
+    'Set suffix visibility trigger',
+    suffixVisibilityTrigger,
+    suffixVisibilityTrigger.default
+  );
+  return selectedSuffix;
 };
 
 const getDefaultProps = () => ({
@@ -58,8 +71,9 @@ const stories = {
   withLabel: () => {
     const defaultProps = getDefaultProps();
     const props = {
-      dataSource: [attachKnobsToDataSource(simpleText)],
+      dataSource: attachKnobsToDataSource(simpleText),
       suffixel: getSuffixElement(),
+      suffixVisibilityTrigger: getSuffixTrigger(),
       ...defaultProps,
     } as object;
     return decorator(props);
@@ -68,9 +82,10 @@ const stories = {
     const defaultProps = getDefaultProps();
     const singleIcon = select('Set prefix type', iconPrefixType, iconPrefixType.singleIcon);
     const props = {
-      dataSource: [attachKnobsToDataSource(textWithIcon)],
+      dataSource: attachKnobsToDataSource(textWithIcon),
       prefixel: renderPrefixIcon(singleIcon),
       suffixel: getSuffixElement(),
+      suffixVisibilityTrigger: getSuffixTrigger(),
       ...defaultProps,
     } as object;
     return decorator(props);
@@ -79,8 +94,9 @@ const stories = {
     const defaultProps = getDefaultProps();
     const [isChecked, setChecked] = React.useState(false);
     const props = {
-      dataSource: [attachKnobsToDataSource(withCheckBox)],
+      dataSource: attachKnobsToDataSource(withCheckBox),
       suffixel: getSuffixElement(),
+      suffixVisibilityTrigger: getSuffixTrigger(),
       prefixel: <Checkbox checked={isChecked} onChange={() => setChecked(!isChecked)} />,
       onClick: () => setChecked(!isChecked),
       ...defaultProps,
@@ -90,7 +106,7 @@ const stories = {
   withOrderedList: () => {
     const defaultProps = getDefaultProps();
     const props = {
-      dataSource: [attachKnobsToDataSource(ordered)],
+      dataSource: attachKnobsToDataSource(ordered),
       ordered: true,
       ...defaultProps,
     } as object;
@@ -99,16 +115,24 @@ const stories = {
   withLargeList: () => {
     const defaultProps = getDefaultProps();
     const props = {
-      dataSource: [attachKnobsToDataSource(largeList)],
+      dataSource: attachKnobsToDataSource(largeList),
       ordered: true,
       ...defaultProps,
     } as object;
     return decorator(props);
   },
-  withParent: () => {
+  withSubmenu: () => {
     const defaultProps = getDefaultProps();
     const props = {
-      dataSource: [attachKnobsToDataSource(parent)],
+      dataSource: attachKnobsToDataSource(parent),
+      ...defaultProps,
+    } as object;
+    return decorator(props);
+  },
+  withSubmenuAndIcon: () => {
+    const defaultProps = getDefaultProps();
+    const props = {
+      dataSource: parentWithIcon,
       ...defaultProps,
     } as object;
     return decorator(props);
@@ -116,8 +140,9 @@ const stories = {
   withSquareAvatar: () => {
     const defaultProps = getDefaultProps();
     const props = {
-      dataSource: [attachKnobsToDataSource(avatar)],
+      dataSource: attachKnobsToDataSource(avatar),
       suffixel: getSuffixElement(),
+      suffixVisibilityTrigger: getSuffixTrigger(),
       ...defaultProps,
     } as object;
     return decorator(props);
@@ -125,7 +150,7 @@ const stories = {
   withSmallAvatar: () => {
     const defaultProps = getDefaultProps();
     const props = {
-      dataSource: [attachKnobsToDataSource(avatarSmall)],
+      dataSource: attachKnobsToDataSource(avatarSmall),
       ...defaultProps,
     } as object;
     return decorator(props);
@@ -133,7 +158,7 @@ const stories = {
   withMediumAvatar: () => {
     const defaultProps = getDefaultProps();
     const props = {
-      dataSource: [attachKnobsToDataSource(avatarMedium)],
+      dataSource: attachKnobsToDataSource(avatarMedium),
       ...defaultProps,
     } as object;
     return decorator(props);
@@ -141,7 +166,7 @@ const stories = {
   withDelete: () => {
     const defaultProps = getDefaultProps();
     const props = {
-      dataSource: [attachKnobsToDataSource(deleteState)],
+      dataSource: attachKnobsToDataSource(deleteState),
       ...defaultProps,
     } as object;
     return decorator(props);
@@ -153,7 +178,7 @@ const stories = {
       <ExtendedAntdSwitchComponent id={'toggle'} checked={isChecked} onChange={() => setChecked(!isChecked)} />
     );
     const props = {
-      dataSource: [attachKnobsToDataSource(simpleText)],
+      dataSource: attachKnobsToDataSource(simpleText),
       prefixel,
       onClick: () => setChecked(!isChecked),
       ...defaultProps,
@@ -164,7 +189,7 @@ const stories = {
     const defaultProps = getDefaultProps();
     const knobs = attachKnobsToDataSource(withCopyable);
     const props = {
-      dataSource: [remapCopyValueFromText(knobs)],
+      dataSource: remapCopyValueFromText(knobs),
       ...defaultProps,
     } as object;
     return (
@@ -192,14 +217,71 @@ const stories = {
       </div>
     );
   },
+  withCascader: () => {
+    const defaultProps = getDefaultProps();
+    const props = {
+      dataSource: attachKnobsToDataSource(withCascader),
+      ...defaultProps,
+    } as object;
+    return decorator(props);
+  },
+  withSelect: () => {
+    const defaultProps = getDefaultProps();
+    const props = {
+      dataSource: attachKnobsToDataSource(withSelect),
+      ...defaultProps,
+    } as object;
+    return decorator(props);
+  },
+  withIndent: () => {
+    const defaultProps = getDefaultProps();
+    const props = {
+      dataSource: attachKnobsToDataSource(simpleText),
+      indentLevel: number('Set indent level', 0, { min: 0, max: 10 }),
+      ...defaultProps,
+    } as object;
+    return decorator(props);
+  },
   withHighlighting: () => {
     const defaultProps = getDefaultProps();
     const props = {
-      dataSource: [attachKnobsToDataSource(simpleText)],
+      dataSource: attachKnobsToDataSource(simpleText),
       highlight: text('Set text to be highlighted', 'Opt'),
       ...defaultProps,
     } as object;
     return decorator(props);
+  },
+  withBreadcrumb: () => {
+    const defaultProps = getDefaultProps();
+    const routes = [
+      {
+        name: 'Computers',
+        path: 'name',
+      },
+      {
+        name: 'Laptops',
+        path: 'name',
+      },
+      {
+        name: 'Apple',
+        path: 'name',
+      },
+      {
+        name: 'Macbook',
+        path: 'name',
+      },
+      {
+        name: 'Air 2.0',
+        path: 'name',
+      },
+    ];
+    return (
+      <div style={{ background: 'rgba(0,0,0,0)', width: '200px', borderRadius:'3px', overflow:'hidden' }}>
+        <Menu>
+          <Menu.Breadcrumb routes={routes} highlight={ text('Set text to be highlighted', 'Opt')} {...defaultProps}></Menu.Breadcrumb>
+        </Menu>
+      </div>
+    );
   },
 };
 

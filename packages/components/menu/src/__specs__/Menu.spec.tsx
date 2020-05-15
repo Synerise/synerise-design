@@ -1,31 +1,34 @@
 import * as React from 'react';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import { fireEvent } from '@testing-library/dom';
-import Menu from '../Menu';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { CloseS } from '@synerise/ds-icon/dist/icons';
 import Icon from '@synerise/ds-icon';
 import { RenderResult } from '@testing-library/react';
 
+import Menu from '../Menu';
+import { MenuItemProps } from '../Elements/Item/MenuItem.types';
+
 describe('Simple menu', () => {
   const data = [
-    [
-      {
-        text: 'Item 1',
-      },
-      {
-        text: 'Item 2',
-        disabled: true,
-      },
-      {
-        text: 'Danger',
-        danger: true,
-      },
-    ],
+    {
+      text: 'Item 1',
+    },
+    {
+      text: 'Item 2',
+      disabled: true,
+    },
+    {
+      text: 'Delete',
+      type: 'danger',
+      disabled:false,
+    },
   ];
+  let container: HTMLElement;
   let items: NodeListOf<HTMLLIElement>;
   beforeEach(() => {
-    const { container } = renderWithProvider(<Menu dataSource={data} />);
+    const render = renderWithProvider(<Menu dataSource={data} />);
+    container = render.container;
     items = container.querySelectorAll('li');
   });
 
@@ -40,21 +43,19 @@ describe('Simple menu', () => {
     expect(disabledItem).toHaveStyle(`color: ${theme.palette['grey-600']}`);
   });
   it('should display danger item text with proper color', () => {
-    const dangerItem = items[2];
+    const dangerItemContent = container.querySelectorAll('.ds-menu-content-wrapper')[2];
     // ARRANGE
-    expect(dangerItem).toHaveStyle(`color: ${theme.palette['red-600']}`);
+    expect(dangerItemContent).toHaveStyle(`color: ${theme.palette['red-600']}`);
   });
 });
 
 describe('Menu with nested items', () => {
   const data = [
-    [
       { text: 'Option 1' },
       { text: 'Option 2' },
       { text: 'Option 3', subMenu: [{ text: 'Child 1' }] },
       { text: 'Option 4', subMenu: [{ text: 'Child 1' }] },
-    ],
-  ];
+  ] as MenuItemProps[];
 
   it('should render basic menu list', () => {
     // ARRANGE
@@ -90,41 +91,39 @@ describe('Menu with nested items', () => {
 
 describe('Menu with prefix and suffix', () => {
   const data = [
-    [
-      {
-        text: 'Option 1',
-        suffixel: (
-          <div className={'suffix-test-wrapper'}>
-            <Icon color={theme.palette['red-600']} component={<CloseS />} />
-          </div>
-        ),
-      },
-      {
-        text: 'Option 2',
-        prefixel: (
-          <div className={'prefix-test-wrapper'}>
-            <Icon color={theme.palette['blue-600']} component={<CloseS />} />
-          </div>
-        ),
-      },
-      {
-        text: 'Disabled option',
-        disabled: true,
-        prefixel: (
-          <div className={'disabled-prefix-test-wrapper'}>
-            <Icon color={theme.palette['yellow-600']} component={<CloseS />} />
-          </div>
-        ),
-        suffixel: (
-          <div className={'disabled-suffix-test-wrapper'}>
-            <Icon color={theme.palette['yellow-100']} component={<CloseS />} />
-          </div>
-        ),
-      },
-    ],
+    {
+      text: 'Option 1',
+      suffixel: (
+        <div className={'suffix-test-wrapper'}>
+          <Icon color={theme.palette['red-600']} component={<CloseS />} />
+        </div>
+      ),
+    },
+    {
+      text: 'Option 2',
+      prefixel: (
+        <div className={'prefix-test-wrapper'}>
+          <Icon color={theme.palette['blue-600']} component={<CloseS />} />
+        </div>
+      ),
+    },
+    {
+      text: 'Disabled option',
+      disabled: true,
+      prefixel: (
+        <div className={'disabled-prefix-test-wrapper'}>
+          <Icon color={theme.palette['yellow-600']} component={<CloseS />} />
+        </div>
+      ),
+      suffixel: (
+        <div className={'disabled-suffix-test-wrapper'}>
+          <Icon color={theme.palette['yellow-100']} component={<CloseS />} />
+        </div>
+      ),
+    },
   ];
   let renderedMenu: RenderResult;
-  beforeEach( () => {
+  beforeEach(() => {
     renderedMenu = renderWithProvider(<Menu dataSource={data} />);
   });
   it('should render prefix element', () => {
@@ -157,12 +156,10 @@ describe('Menu with prefix and suffix', () => {
 });
 describe('Menu with description', () => {
   const data = [
-    [
       {
         text: 'Avatar 1',
         description: 'Description 1',
       },
-    ],
   ];
   let renderedMenu: RenderResult;
   beforeEach(() => {
@@ -177,38 +174,36 @@ describe('Menu with description', () => {
 });
 describe('Menu with copyable items', () => {
   const data = [
-    [
-      {
-        text: 'Item 1',
-        copyable: true,
-        copyHint: 'Copy to clipboard',
-        copyValue: 'Item',
-      },
-      {
-        text: 'Item 2',
-        copyable: false,
-        copyHint: 'Copy to clipboard',
-        copyValue: 'Item',
-      },
-      {
-        text: 'Item 3',
-        copyable: true,
-        copyHint: 'Copy to clipboard',
-      },
-      {
-        text: 'Disabled',
-        disabled: true,
-        copyable: true,
-        copyHint: 'Copy to clipboard',
-        copyValue: 'Item',
-      },
-    ],
+    {
+      text: 'Item 1',
+      copyable: true,
+      copyHint: 'Copy to clipboard',
+      copyValue: 'Item',
+    },
+    {
+      text: 'Item 2',
+      copyable: false,
+      copyHint: 'Copy to clipboard',
+      copyValue: 'Item',
+    },
+    {
+      text: 'Item 3',
+      copyable: true,
+      copyHint: 'Copy to clipboard',
+    },
+    {
+      text: 'Disabled',
+      disabled: true,
+      copyable: true,
+      copyHint: 'Copy to clipboard',
+      copyValue: 'Item',
+    },
   ];
   let renderedMenu: RenderResult;
   beforeEach(() => {
     renderedMenu = renderWithProvider(<Menu dataSource={data} />);
   });
-  it('should display copyHint on hover',  () => {
+  it('should display copyHint on hover', () => {
     // ARRANGE
     const { getByText } = renderedMenu;
     const element = getByText('Item 1') as HTMLElement;
@@ -216,7 +211,7 @@ describe('Menu with copyable items', () => {
     // ASSERT
     expect(element).toHaveTextContent('Copy to clipboard');
   });
-  it('should not display copyHint when copyable prop is false',  () => {
+  it('should not display copyHint when copyable prop is false', () => {
     // ARRANGE
     const { getByText } = renderedMenu;
     const element = getByText('Item 2') as HTMLElement;
@@ -224,7 +219,7 @@ describe('Menu with copyable items', () => {
     // ASSERT
     expect(element.textContent).toBe('Item 2');
   });
-  it('should not display copyHint when item is disabled',  () => {
+  it('should not display copyHint when item is disabled', () => {
     // ARRANGE
     const { getByText } = renderedMenu;
     const element = getByText('Disabled') as HTMLElement;
