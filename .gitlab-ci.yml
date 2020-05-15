@@ -49,9 +49,9 @@ docs_build:
     - yarn build
     - yarn npx:lerna run postinstall
     - yarn npx:lerna run build-docs
-    - mv packages/portal/storybook-static/ packages/docs-site/website/build/
+    - mv packages/portal/storybook-static/ packages/docs-site/website/build
     - yarn docs-build
-    - mv docs/dist/ packages/docs-site/website/build/ds-docs/styleguide
+    - mv docs/dist/ packages/docs-site/website/build/styleguide
   artifacts:
     paths:
       - packages/docs-site/website/build/*
