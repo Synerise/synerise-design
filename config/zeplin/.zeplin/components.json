@@ -1,0 +1,53 @@
+{
+    "plugins": [
+        {
+            "name": "@zeplin/cli-connect-react-plugin"
+        },
+        {
+            "name": "@zeplin/cli-connect-storybook-plugin",
+            "config": {
+                "url": "https://ds-docs.rc.snrstage.com/storybook-static/"
+            }
+        }
+    ],
+    "projects": [],
+    "styleguides": [
+        "5eb8eaeaae0b8178714afc80",
+        "5d5be75acf2df541b144a312",
+        "5ebcf79a34a4a011ee68b9c6"
+    ],
+    "components": [
+        {
+            "path": "./../../packages/components/icon/src/Icon.tsx",
+            "zeplinNames": [
+                "Analytics / 02 M / 04 Formula / 04-10-lessorequal-m"
+            ],
+            "storybookDemo": {
+                "urlPath": "components-icon--listicon"
+            },
+            "confluence": {
+                "urlPath": "projectKey=STOR&rapidView=245"
+            },
+            "storybook": {
+                "kind": "Components|Icon",
+                "stories": [
+                    "singleIcon",
+                    "listIcon",
+                    "additionalListIcon"
+                ]
+            }
+        }
+    ],
+    "links": [
+        {
+            "name": "Design System Storybook",
+            "type": "storybookDemo",
+            "url": "https://ds-docs.rc.snrstage.com/storybook-static/?path=/story"
+        },
+        {
+            "name": "Confluence Sprint Board",
+            "type": "confluence",
+            "url": "https://hgintelligence.atlassian.net/secure/RapidBoard.jspa?"
+        }
+    ]
+}
