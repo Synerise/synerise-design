@@ -24,6 +24,4 @@ export const BottomAction = styled.div`
   border-style: solid;
   margin-top: 8px;
   cursor: pointer;
-  ${IconWrapper} {
-  }
 `;
