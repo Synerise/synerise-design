@@ -78,6 +78,7 @@ const stories = {
 
     return (
       <Input
+        size={"large"}
         placeholder={text('placeholder', 'Placeholder')}
         label={text('label', 'Label')}
         description={text('description', 'Description')}

@@ -9,7 +9,6 @@ import Label from './Label/Label';
 
 export interface Props {
   error?: boolean;
-  size?: Pick<InputProps, 'size'>;
   className?: string;
   tooltip?: React.ReactNode;
   errorText?: React.ReactNode | string;
@@ -117,7 +116,7 @@ export const TextArea = enhancedInput(S.AntdTextArea, { type: 'textArea' });
 export const Input = enhancedInput(S.AntdInput, { type: 'input' });
 export { default as InputGroup } from './InputGroup';
 
-export const RawInput = (props: Props): React.ReactElement => {
+export const RawInput = (props: Props & (InputProps | TextAreaProps)): React.ReactElement => {
   const { error } = props;
   return <S.AntdInput className={error ? 'error' : ''} {...props} />;
 };
