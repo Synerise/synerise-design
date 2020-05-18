@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-scrollbar@0.1.0...@synerise/ds-scrollbar@0.1.1) (2020-05-18)
+
+
+### Bug Fixes
+
+* **scrollbar:** fix depenedencies ([e931800](https://github.com/Synerise/synerise-design/commit/e931800198e69341be78c0f0566d32f8fcf17675))
+
+
+
+
+
 # [0.1.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-scrollbar@0.0.16...@synerise/ds-scrollbar@0.1.0) (2020-05-08)
 
 

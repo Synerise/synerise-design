@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.64.2](https://github.com/synerise/synerise-design/compare/portal@0.64.1...portal@0.64.2) (2020-05-18)
+
+
+### Bug Fixes
+
+* **table:** fix column width on rerender ([d0eec73](https://github.com/synerise/synerise-design/commit/d0eec73d75ff8a39d5779e427336d93fc67da240))
+
+
+
+
+
 ## [0.64.1](https://github.com/synerise/synerise-design/compare/portal@0.64.0...portal@0.64.1) (2020-05-18)
 
 

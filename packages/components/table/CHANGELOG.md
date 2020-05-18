@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.10](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.10.9...@synerise/ds-table@0.10.10) (2020-05-18)
+
+
+### Bug Fixes
+
+* **table:** fix column name font-weight ([dd2a172](https://github.com/synerise/synerise-design/commit/dd2a1726169d3cc5123c12b754fc60f2a23954b2))
+* **table:** fix column width on rerender ([d0eec73](https://github.com/synerise/synerise-design/commit/d0eec73d75ff8a39d5779e427336d93fc67da240))
+
+
+
+
+
 ## [0.10.9](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.10.8...@synerise/ds-table@0.10.9) (2020-05-18)
 
 **Note:** Version bump only for package @synerise/ds-table
