@@ -2,6 +2,7 @@ import * as React from 'react';
 import Icon from '@synerise/ds-icon';
 import { Close3S, FolderM } from '@synerise/ds-icon/dist/icons';
 import Tooltip from '@synerise/ds-tooltip';
+import { useOnClickOutside } from '@synerise/ds-utils';
 import * as S from './FilterTrigger.styles';
 
 interface Props {
@@ -46,6 +47,12 @@ const FilterTrigger: React.FC<Props> = ({
     setOpened(true);
   }, [setOpened]);
 
+  const ref = React.useRef<HTMLDivElement>(null);
+
+  useOnClickOutside(ref, () => {
+    !selected && setOpened(false);
+  });
+
   const renderOpened = React.useMemo(
     () => (
       <>
@@ -81,7 +88,7 @@ const FilterTrigger: React.FC<Props> = ({
   );
 
   return (
-    <S.FilterTrigger data-testid={`filter-trigger-${name}`} opened={opened} selected={selected}>
+    <S.FilterTrigger ref={ref} data-testid={`filter-trigger-${name}`} opened={opened} selected={selected}>
       <S.FilterButtons>{renderOpened}</S.FilterButtons>
     </S.FilterTrigger>
   );
