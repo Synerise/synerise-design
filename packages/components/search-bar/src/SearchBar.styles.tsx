@@ -7,7 +7,7 @@ export const IconLeftWrapper = styled.div`
   display: flex;
   align-items: center;
   height: 100%;
-  z-index: 1;
+  z-index: 3;
 `;
 
 export const ClearInputWrapper = styled.div`
@@ -16,7 +16,7 @@ export const ClearInputWrapper = styled.div`
   display: flex;
   align-items: center;
   height: 100%;
-  z-index: 1;
+  z-index: 3;
   cursor: pointer;
 `;
 
