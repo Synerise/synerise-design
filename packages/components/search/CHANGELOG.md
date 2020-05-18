@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.16](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.1.15...@synerise/ds-search@0.1.16) (2020-05-18)
+
+
+### Bug Fixes
+
+* **menu:** added header, fixed breadcrumbs ([cff0a64](https://github.com/Synerise/synerise-design/commit/cff0a64f1d356a608d03243f99607814272ef482))
+
+
+
+
+
 ## [0.1.15](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.1.14...@synerise/ds-search@0.1.15) (2020-05-15)
 
 **Note:** Version bump only for package @synerise/ds-search

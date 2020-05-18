@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.4.0...@synerise/ds-menu@0.4.1) (2020-05-18)
+
+
+### Bug Fixes
+
+* **menu:** added header, fixed breadcrumbs ([cff0a64](https://github.com/Synerise/synerise-design/commit/cff0a64f1d356a608d03243f99607814272ef482))
+
+
+
+
+
 # [0.4.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.3.6...@synerise/ds-menu@0.4.0) (2020-05-15)
 
 

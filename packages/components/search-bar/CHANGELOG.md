@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.45](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search-bar@0.2.44...@synerise/ds-search-bar@0.2.45) (2020-05-18)
+
+
+### Bug Fixes
+
+* **search-bar:** increased z index ([a3828cd](https://github.com/Synerise/synerise-design/commit/a3828cd6cb95650053e37924aefa73845c892e87))
+
+
+
+
+
 ## [0.2.44](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search-bar@0.2.43...@synerise/ds-search-bar@0.2.44) (2020-05-15)
 
 **Note:** Version bump only for package @synerise/ds-search-bar

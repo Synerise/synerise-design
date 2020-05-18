@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.64.1](https://github.com/synerise/synerise-design/compare/portal@0.64.0...portal@0.64.1) (2020-05-18)
+
+
+### Bug Fixes
+
+* **input:** corrected types ([befdf18](https://github.com/synerise/synerise-design/commit/befdf182be1d72c84756220e737e887a78885af7))
+* **menu:** added header, fixed breadcrumbs ([cff0a64](https://github.com/synerise/synerise-design/commit/cff0a64f1d356a608d03243f99607814272ef482))
+
+
+
+
+
 # [0.64.0](https://github.com/synerise/synerise-design/compare/portal@0.63.0...portal@0.64.0) (2020-05-15)
 
 
