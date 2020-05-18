@@ -90,6 +90,7 @@ function VirtualTable<T extends object = any>(props: Props<T>): React.ReactEleme
 
   const mergedColumns = React.useMemo(() => {
     const widthColumnCount = virtualColumns.filter(({ width }) => !width).length;
+    const rowWidth = tableWidth || initialWidth;
     const definedWidth = virtualColumns
       .filter(({ width }) => width)
       .reduce((total: number, { width }): number => total + width, 0);
@@ -101,10 +102,10 @@ function VirtualTable<T extends object = any>(props: Props<T>): React.ReactEleme
 
       return {
         ...column,
-        width: Math.floor((tableWidth - definedWidth) / widthColumnCount),
+        width: Math.floor((rowWidth - definedWidth) / widthColumnCount),
       };
     });
-  }, [virtualColumns, tableWidth]);
+  }, [virtualColumns, tableWidth, initialWidth]);
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const gridRef = React.useRef<any>();
