@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.12](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.10.11...@synerise/ds-table@0.10.12) (2020-05-19)
+
+
+### Bug Fixes
+
+* **table:** fix eslint errors ([b3527c7](https://github.com/synerise/synerise-design/commit/b3527c75ca7f2ab8d9066c2a4e6fd2b85ed52b32))
+* **table:** fix ItemMenu types, fix row selection ([3d3605f](https://github.com/synerise/synerise-design/commit/3d3605f80020fd4efbe75f6ac14cc282f9d6d5fa))
+
+
+
+
+
 ## [0.10.11](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.10.10...@synerise/ds-table@0.10.11) (2020-05-19)
 
 
