@@ -15,7 +15,7 @@ import * as S from './Cascader.styles';
 import { filterPaths, getAllPaths } from './utlis';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
-const NOOP=(): void=>{};
+const NOOP = (): void => {};
 
 class Cascader extends React.PureComponent<CascaderProps, CascaderState> {
   static InputWrapper = S.InputWrapper;
@@ -40,17 +40,11 @@ class Cascader extends React.PureComponent<CascaderProps, CascaderState> {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  handleClickOutside = (): void => {
-
-  };
+  handleClickOutside = (): void => {};
 
   render(): React.ReactNode {
     const { itemsTitle, itemsTooltip, disabled } = this.props;
-    const {
-      searchQuery,
-      activeCategory,
-      paths,
-    } = this.state;
+    const { searchQuery, activeCategory, paths } = this.state;
     return (
       <S.Wrapper
         className="ds-cascader"
@@ -72,21 +66,18 @@ class Cascader extends React.PureComponent<CascaderProps, CascaderState> {
             {paths && searchQuery.length > 0 && (
               <>
                 {filterPaths(paths, searchQuery).map(path => (
+                  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+                  // @ts-ignore
                   <Menu.Breadcrumb path={path} key={String(path.flat())} highlight={searchQuery} />
                 ))}
               </>
             )}
             {!searchQuery && activeCategory.path && (
-              <>
-                <Menu.Breadcrumb path={activeCategory.path} prefixel={<Icon component={<HomeM />} />} />
-              </>
+              // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+              // @ts-ignore
+              <Menu.Breadcrumb path={activeCategory.path} prefixel={<Icon component={<HomeM />} />} />
             )}
-            { !searchQuery && (
-              <BackAction
-                label="Back"
-                onClick={NOOP}
-              />
-            )}
+            {!searchQuery && <BackAction label="Back" onClick={NOOP} />}
 
             {activeCategory && !searchQuery && (
               <>
