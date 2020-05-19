@@ -41,7 +41,7 @@ const TableHeader: React.FC<Props> = ({
         {title && <S.Title>{title}</S.Title>}
       </S.Left>
     );
-  }, [selectedRows, itemsMenu, title, dataSource, selection]);
+  }, [selectedRows, itemsMenu, title, dataSource, selection, rowKey]);
 
   return (
     <S.Header>

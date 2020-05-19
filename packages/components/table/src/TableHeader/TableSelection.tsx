@@ -34,7 +34,7 @@ const TableSelection: React.FC<Props> = ({ dataSource, selection, rowKey }) => {
         dataSource.map((record: Selection) => getRowKey(record)),
         dataSource
       );
-  }, [dataSource, selection]);
+  }, [dataSource, selection, getRowKey]);
 
   const unselectAll = React.useCallback(() => {
     if (selection) selection.onChange([], []);
@@ -51,7 +51,7 @@ const TableSelection: React.FC<Props> = ({ dataSource, selection, rowKey }) => {
         selected
       );
     }
-  }, [dataSource, selection]);
+  }, [dataSource, selection, getRowKey]);
 
   const allSelected = React.useMemo(() => {
     return dataSource && selection?.selectedRowKeys && dataSource.length === selection.selectedRowKeys.length;
