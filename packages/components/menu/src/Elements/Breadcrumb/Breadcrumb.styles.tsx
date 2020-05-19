@@ -29,6 +29,7 @@ export const Breadcrumb = styled(({ children, disabled, ...rest }) => (
     {children}
   </Text>
 ))`
+  min-height: 50px;
   ${BreadcrumbContent} > .route:first-child > .ds-breadcrumb-name {
     background-image: ${(props): string => `linear-gradient( to right,
     ${props.theme.palette['grey-100']},

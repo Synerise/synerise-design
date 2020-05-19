@@ -253,32 +253,14 @@ const stories = {
   },
   withBreadcrumb: () => {
     const defaultProps = getDefaultProps();
-    const routes = [
-      {
-        name: 'Computers',
-        path: 'name',
-      },
-      {
-        name: 'Laptops',
-        path: 'name',
-      },
-      {
-        name: 'Apple',
-        path: 'name',
-      },
-      {
-        name: 'Macbook',
-        path: 'name',
-      },
-      {
-        name: 'Air 2.0',
-        path: 'name',
-      },
-    ];
+    const routes = {
+      name:'Sample',
+      path: ["Sample", "Next", "Another one", "Next one"]
+    }
     return (
       <div style={{ background: 'rgba(0,0,0,0)', width: '200px', borderRadius:'3px', overflow:'hidden' }}>
         <Menu>
-          <Menu.Breadcrumb routes={routes} highlight={ text('Set text to be highlighted', 'Opt')} {...defaultProps}></Menu.Breadcrumb>
+          <Menu.Breadcrumb route={routes} highlight={ text('Set text to be highlighted', 'Opt')} {...defaultProps}></Menu.Breadcrumb>
         </Menu>
       </div>
     );

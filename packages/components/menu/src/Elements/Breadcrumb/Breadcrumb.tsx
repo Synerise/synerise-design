@@ -4,37 +4,22 @@ import AngleRightS from '@synerise/ds-icon/dist/icons/AngleRightS';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { escapeRegEx } from '@synerise/ds-utils';
 import * as S from './Breadcrumb.styles';
+import { MenuItemProps } from '../Item/MenuItem.types';
 
-export interface BreadcrumbRoutes {
-  path: string;
-  name: string;
+export interface BreadcrumbRoute {
+  id: number | string;
+  path: string[];
+  [key: string]: BreadcrumbRoute | number | string | string[];
 }
+
 export interface BreadcrumbProps {
   prefixel?: React.ReactNode;
   disabled?: boolean;
-  routes: BreadcrumbRoutes[];
+  path: string[];
   highlight?: string;
 }
-type RouteRefs = BreadcrumbRoutes & {
-  ref: React.RefObject<HTMLDivElement>;
-  arrowSuffix: boolean;
-};
 
-const Breadcrumb: React.FC<BreadcrumbProps> = ({ routes, disabled, highlight, ...rest }) => {
-  const [routesWithRefs, setRoutesWithRefs] = React.useState<RouteRefs[]>([]);
-
-  React.useEffect(() => {
-    const newRoutes = routes.map(
-      (route: BreadcrumbRoutes): RouteRefs => {
-        return {
-          ...route,
-          ref: React.createRef<HTMLDivElement>(),
-          arrowSuffix: true,
-        };
-      }
-    );
-    setRoutesWithRefs(newRoutes);
-  }, [routes]);
+const Breadcrumb: React.FC<BreadcrumbProps & MenuItemProps> = ({ path, disabled, highlight, ...rest }) => {
 
   const renderNameWithHighlight = React.useCallback(
     (name: string): React.ReactNode => {
@@ -60,23 +45,23 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({ routes, disabled, highlight, ..
     [highlight]
   );
 
-  const isArrowVisible = (breadcrumbs: RouteRefs[], index: number): boolean => {
-    if (!breadcrumbs || !breadcrumbs.length) {
+  const isArrowVisible = (breadCrumbPath: string[], index: number): boolean => {
+    if (!breadCrumbPath || !breadCrumbPath.length) {
       return false;
     }
-    const nextBreadcrumb = breadcrumbs[index + 1];
+    const nextBreadcrumb = breadCrumbPath[index + 1];
     if (!nextBreadcrumb) {
       return false;
     }
-    return breadcrumbs[index].arrowSuffix;
+    return true;
   };
   return (
     <S.Breadcrumb className="ds-breadcrumb" disabled={disabled} {...rest}>
       <S.BreadcrumbContent className="breadcrumb-content">
-        {routesWithRefs.map((item, index) => (
-          <S.BreadcrumbRoute className="route" key={item.name} ref={item.ref}>
-            <S.BreadcrumbName className="ds-breadcrumb-name">{renderNameWithHighlight(item.name)}</S.BreadcrumbName>
-            <S.ArrowRight visible={isArrowVisible(routesWithRefs, index)}>
+        {path.map((item, index) => (
+          <S.BreadcrumbRoute className="route" key={item}>
+            <S.BreadcrumbName className="ds-breadcrumb-name">{renderNameWithHighlight(item)}</S.BreadcrumbName>
+            <S.ArrowRight visible={isArrowVisible(path,index)}>
               <Icon component={<AngleRightS />} color={theme.palette['grey-600']} />
             </S.ArrowRight>
           </S.BreadcrumbRoute>

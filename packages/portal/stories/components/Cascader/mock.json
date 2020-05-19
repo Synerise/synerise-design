@@ -1,0 +1,124 @@
+{
+  "name": "Home",
+  "Phone accessories": {
+    "path": ["Phone accessories"],
+    "id": 1,
+    "name": "Phone accessories",
+    "Cables": {
+      "path": ["Phone accessories", "Cables"],
+      "name": "Cables",
+      "id": 11,
+      "USB-B 2m": {
+        "path": ["Phone accessories", "Cables", "USB-B 2m"],
+        "name": "USB-B 2m",
+        "id": 111
+      },
+      "USB-C 2m": {
+        "path": ["Phone accessories", "Cables", "USB-C 2m"],
+        "name": "USB-C 2m",
+        "id": 112
+      },
+      "Micro USB 2m": {
+        "path": ["Phone accessories", "Cables", "Micro USB 2m"],
+        "name": "Micro USB 2m",
+        "id": 113
+      },
+      "Mini USB 2m": {
+        "path": ["Phone accessories", "Cables", "Mini USB 2m"],
+        "name": "Mini USB 2m",
+        "id": 114
+      }
+    },
+    "Car mounts": {
+      "path": ["Phone accessories", "Car mounts"],
+      "name": "Car mounts",
+      "id": 12
+    },
+    "Cases": {
+      "path": ["Phone accessories", "Cases"],
+      "name": "Cases",
+      "id": 13
+    },
+    "Memory cards": {
+      "path": ["Phone accessories", "Memory cards"],
+      "name": "Memory cards",
+      "id": 14
+    },
+    "Powerbanks": {
+      "path": ["Phone accessories", "Powerbanks"],
+      "name": "Powerbanks",
+      "id": 15
+    }
+  },
+  "Smartphones": {
+    "path": ["Smartphones"],
+    "id": 2,
+    "name": "Smartphones",
+    "4-inch or less": {
+      "path": ["Smartphones", "4-inch or less"],
+      "name": "4-inch or less",
+      "id": 21
+    },
+    "4 - 5 inch": {
+      "path": ["Smartphones", "4 - 5 inch"],
+      "name": "4 - 5 inch",
+      "id": 22
+    },
+    "5 - 6 inch": {
+      "path": ["Smartphones", "5 - 6 inch"],
+      "name": "5 - 6 inch",
+      "id": 23
+    },
+    "6-inch or more": {
+      "path": ["Smartphones", "6-inch or more"],
+      "name": "6-inch or more",
+      "id": 24
+    }
+  },
+  "Smartwatches": {
+    "path": ["Smartwatches"],
+    "id": 3,
+    "name": "Smartwatches",
+
+    "Apple": {
+      "path": ["Smartwatches", "Apple"],
+      "name": "Apple",
+      "id": 31
+    },
+    "Fitbit": {
+      "path": ["Smartwatches", "Fitbit"],
+      "name": "Fitbit",
+      "id": 32
+    },
+    "Huawei": {
+      "path": ["Smartwatches", "Huawei"],
+      "name": "Huawei",
+      "id": 33
+    },
+    "Samsung": {
+      "path": ["Smartwatches", "Samsung"],
+      "name": "Samsung",
+      "id": 34
+    },
+    "Xiaomi": {
+      "path": ["Smartwatches", "Xiaomi"],
+      "name": "Xiaomi",
+      "id": 35
+    }
+  },
+  "VR Sets": {
+    "path": ["VR Sets"],
+    "id": 4,
+    "name": "VR Sets"
+  },
+  "Stationary phones": {
+    "path": ["Stationary phones"],
+    "id": 5,
+    "name": "Stationary phones"
+  },
+  "GPS Navigation": {
+    "path": ["GPS Navigation"],
+    "id": 6,
+    "name": "GPS Navigation"
+  }
+}

@@ -103,9 +103,10 @@ const Text: React.FC<BasicItemProps> = ({
         canCopyToClipboard && copyValue && copy(copyValue);
       }}
       disabled={disabled}
-      tabIndex={!disabled ? 0 : -1}
+      tabIndex={disabled ? -1 : 0}
       prefixel={prefixel}
       description={description}
+      className="ds-menu-item"
       style={style}
       indentLevel={Number(indentLevel)}
       {...rest}

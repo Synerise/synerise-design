@@ -9,6 +9,8 @@ import Text from './Text/Text';
 import Select from './Select/Select';
 import Danger from './Danger/Danger';
 
+// eslint-disable-next-line @typescript-eslint/no-empty-function
+const NOOP = (): void=>{};
 const MenuItem: React.FC<SubMenuProps & MenuItemProps> = props => {
   const {
     onSelect,
@@ -25,6 +27,7 @@ const MenuItem: React.FC<SubMenuProps & MenuItemProps> = props => {
     children,
     type,
     indentLevel,
+    onItemHover,
     ...rest
   } = props;
   if (subMenu || nestedMenu) {
@@ -38,7 +41,10 @@ const MenuItem: React.FC<SubMenuProps & MenuItemProps> = props => {
         index={index}
         text={text}
         description={description}
+        indentLevel={indentLevel || 0}
         subMenu={nestedMenu || subMenu}
+        onItemHover={onItemHover || NOOP }
+
         {...rest}
       />
     );
@@ -54,6 +60,8 @@ const MenuItem: React.FC<SubMenuProps & MenuItemProps> = props => {
           disabled={disabled}
           description={description}
           indentLevel={indentLevel || 0}
+          onItemHover={onItemHover || NOOP }
+
           {...rest}
         >
           {text || children}
@@ -69,6 +77,7 @@ const MenuItem: React.FC<SubMenuProps & MenuItemProps> = props => {
           disabled={disabled}
           description={description}
           indentLevel={indentLevel || 0}
+          onItemHover={onItemHover || NOOP }
           {...rest}
         >
           {text || children}
@@ -85,6 +94,7 @@ const MenuItem: React.FC<SubMenuProps & MenuItemProps> = props => {
           danger={danger}
           description={description}
           indentLevel={indentLevel || 0}
+          onItemHover={onItemHover || NOOP }
           {...rest}
         >
           {text || children}
