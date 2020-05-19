@@ -87,6 +87,7 @@ function DSTable<T extends object = any>(props: DSTableProps<T>): React.ReactEle
         selection={selection}
         dataSource={dataSource}
         searchComponent={searchComponent}
+        rowKey={rowKey}
       />
     );
   }, [selection, title, onSearch, dataSource, filters, itemsMenu, searchComponent]);
