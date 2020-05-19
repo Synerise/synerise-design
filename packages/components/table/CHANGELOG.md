@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.11](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.10.10...@synerise/ds-table@0.10.11) (2020-05-19)
+
+
+### Bug Fixes
+
+* **table:** close FilterTrigger on click outside ([2188e9d](https://github.com/synerise/synerise-design/commit/2188e9d7e4629e38a1cfbb235addbbc9b6d3d150))
+* **table:** remove unused dependencies ([83b0b9a](https://github.com/synerise/synerise-design/commit/83b0b9ad552e3e9a0f3a71725280453fa448ae07))
+
+
+
+
+
 ## [0.10.10](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.10.9...@synerise/ds-table@0.10.10) (2020-05-18)
 
 
