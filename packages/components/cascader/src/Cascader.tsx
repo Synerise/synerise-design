@@ -83,10 +83,8 @@ class Cascader extends React.PureComponent<CascaderProps, CascaderState> {
             )}
             { !searchQuery && (
               <BackAction
-                label={"something"}
-                onClick={(): void => {
-
-                }}
+                label="Back"
+                onClick={NOOP}
               />
             )}
 
