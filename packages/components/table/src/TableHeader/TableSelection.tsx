@@ -13,18 +13,28 @@ import { SELECTION_ALL, SELECTION_INVERT } from '../Table';
 interface Props<T extends { key: React.ReactText }> {
   selection?: RowSelection<T>;
   dataSource: T[];
+  rowKey?: Function | string;
 }
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
-const TableSelection: React.FC<Props> = ({ dataSource, selection }) => {
+const TableSelection: React.FC<Props> = ({ dataSource, selection, rowKey }) => {
+  const getRowKey = React.useCallback(
+    (row): React.ReactText | undefined => {
+      if (typeof rowKey === 'function') return rowKey(row);
+      if (typeof rowKey === 'string') return row[rowKey];
+      return undefined;
+    },
+    [rowKey]
+  );
+
   const selectAll = React.useCallback(() => {
     if (dataSource && selection)
       selection.onChange(
-        dataSource.map((record: Selection) => record.key),
+        dataSource.map((record: Selection) => getRowKey(record)),
         dataSource
       );
-  }, [dataSource, selection]);
+  }, [dataSource, selection, getRowKey]);
 
   const unselectAll = React.useCallback(() => {
     if (selection) selection.onChange([], []);
@@ -32,14 +42,16 @@ const TableSelection: React.FC<Props> = ({ dataSource, selection }) => {
 
   const selectInvert = React.useCallback(() => {
     if (dataSource && selection) {
-      const selected = dataSource.filter((record: Selection) => selection.selectedRowKeys.indexOf(record.key) < 0);
+      const selected = dataSource.filter(
+        (record: Selection) => selection.selectedRowKeys.indexOf(getRowKey(record)) < 0
+      );
 
       selection.onChange(
-        selected.map((record: Selection) => record.key),
+        selected.map((record: Selection) => getRowKey(record)),
         selected
       );
     }
-  }, [dataSource, selection]);
+  }, [dataSource, selection, getRowKey]);
 
   const allSelected = React.useMemo(() => {
     return dataSource && selection?.selectedRowKeys && dataSource.length === selection.selectedRowKeys.length;

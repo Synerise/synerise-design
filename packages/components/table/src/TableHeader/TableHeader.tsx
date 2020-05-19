@@ -12,6 +12,7 @@ interface Props<T extends { key: React.ReactText }> {
   selection?: RowSelection<T>;
   dataSource: T[];
   searchComponent?: React.ReactNode;
+  rowKey?: Function | string;
 }
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
@@ -23,11 +24,12 @@ const TableHeader: React.FC<Props> = ({
   itemsMenu,
   selection,
   dataSource,
+  rowKey,
 }) => {
   const renderLeftSide = React.useMemo(() => {
     return selectedRows && selectedRows > 0 ? (
       <S.Left>
-        {selection && <TableSelection dataSource={dataSource} selection={selection} />}
+        {selection && <TableSelection rowKey={rowKey} dataSource={dataSource} selection={selection} />}
         <S.Title>
           <strong>{selectedRows}</strong> selected
         </S.Title>
@@ -35,11 +37,11 @@ const TableHeader: React.FC<Props> = ({
       </S.Left>
     ) : (
       <S.Left>
-        {selection && <TableSelection dataSource={dataSource} selection={selection} />}
+        {selection && <TableSelection rowKey={rowKey} dataSource={dataSource} selection={selection} />}
         {title && <S.Title>{title}</S.Title>}
       </S.Left>
     );
-  }, [selectedRows, itemsMenu, title, dataSource, selection]);
+  }, [selectedRows, itemsMenu, title, dataSource, selection, rowKey]);
 
   return (
     <S.Header>
