@@ -45,7 +45,7 @@ const marks = {
     label: (
       <Tooltip
         placement="top"
-        title="To jest tylko dla przykladu zeby pokazac jak mozna rozwiazac nachodzace na siebie tooltipy"
+        title="Tooltip example"
       >
         <span>26°</span>
       </Tooltip>
@@ -60,7 +60,7 @@ const marks = {
     label: (
       <Tooltip
         placement="top"
-        title="To jest tylko dla przykladu zeby pokazac jak mozna rozwiazac nachodzace na siebie tooltipy"
+        title="Tooltip example"
       >
         <span>27°</span>
       </Tooltip>

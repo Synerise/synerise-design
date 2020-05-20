@@ -1,27 +1,27 @@
 import * as React from 'react';
-import Typograpy from '@synerise/ds-typography';
+import Typography from '@synerise/ds-typography';
 import * as S from './examples';
 
 const stories = {
-  Typograpy: () => (
+  Typography: () => (
     <div style={{ padding: 10 }}>
-      <Typograpy.Title>Headers</Typograpy.Title>
-      <Typograpy.Title level={1}>h1. Synerise DS</Typograpy.Title>
+      <Typography.Title>Headers</Typography.Title>
+      <Typography.Title level={1}>h1. Synerise DS</Typography.Title>
       <S.HeaderH1>h1. Synerise DS - Styled Component</S.HeaderH1>
-      <Typograpy.Title level={2}>h2. Synerise DS</Typograpy.Title>
-      <Typograpy.Title level={3}>h3. Synerise DS</Typograpy.Title>
-      <Typograpy.Title level={4}>h4. Synerise DS</Typograpy.Title>
-      <Typograpy.Text className="container">
+      <Typography.Title level={2}>h2. Synerise DS</Typography.Title>
+      <Typography.Title level={3}>h3. Synerise DS</Typography.Title>
+      <Typography.Title level={4}>h4. Synerise DS</Typography.Title>
+      <Typography.Text className="container">
         Text TextTextTextTextTextText TextLorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores
         aspernatur dolores eveniet impedit libero nesciunt suscipit tenetur. Accusantium alias consectetur ducimus
         excepturi, ipsam maiores necessitatibus numquam optio porro provident voluptas.
-      </Typograpy.Text>
+      </Typography.Text>
       <br />
-      <Typograpy.Paragraph className="container">
+      <Typography.Paragraph className="container">
         ParagraphParagraphParagraphParagraphParagraphParagraphParagraphParagraph orem ipsum dolor sit amet, consectetur
         adipisicing elit. Asperiores aspernatur dolores eveniet impedit libero nesciunt suscipit tenetur. Accusantium
         alias consectetur ducimus excepturi, ipsam maiores necessitatibus numquam optio porro provident voluptas.
-      </Typograpy.Paragraph>
+      </Typography.Paragraph>
       <S.Color>I am red!</S.Color>
     </div>
   ),
@@ -30,5 +30,5 @@ const stories = {
 export default {
   name: 'Intro|Core',
   stories,
-  Component: Typograpy,
+  Component: Typography,
 };

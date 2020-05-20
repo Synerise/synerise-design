@@ -18,7 +18,6 @@ const stories = {
     children: (<Button>Click</Button>),
   },
   example1: Example1,
-  withCascader: withCascader,
 };
 
 export default {
