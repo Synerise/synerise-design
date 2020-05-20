@@ -32,12 +32,62 @@
     "Car mounts": {
       "path": ["Phone accessories", "Car mounts"],
       "name": "Car mounts",
-      "id": 12
+      "id": 12,
+      "Apple": {
+        "path": ["Phone accessories", "Car mounts", "Apple"],
+        "name": "Apple",
+        "id": 121
+      },
+      "Huawei": {
+        "path": ["Phone accessories", "Car mounts", "Huawei"],
+        "name": "Huawei",
+        "id": 122
+      },
+      "LG": {
+        "path": ["Phone accessories", "Car mounts", "LG"],
+        "name": "LG",
+        "id": 123
+      },
+      "Xiaomi": {
+        "path": ["Phone accessories", "Car mounts", "Xiaomi"],
+        "name": "Xiaomi",
+        "id": 124
+      },
+      "Samsung": {
+        "path": ["Phone accessories", "Car mounts", "Samsung"],
+        "name": "Samsung",
+        "id": 125
+      }
     },
     "Cases": {
       "path": ["Phone accessories", "Cases"],
       "name": "Cases",
-      "id": 13
+      "id": 13,
+      "Apple": {
+        "path": ["Phone accessories", "Cases", "Apple"],
+        "name": "Apple",
+        "id": 131
+      },
+      "Huawei": {
+        "path": ["Phone accessories", "Cases", "Huawei"],
+        "name": "Huawei",
+        "id": 132
+      },
+      "LG": {
+        "path": ["Phone accessories", "Cases", "LG"],
+        "name": "LG",
+        "id": 133
+      },
+      "Xiaomi": {
+        "path": ["Phone accessories", "Cases", "Xiaomi"],
+        "name": "Xiaomi",
+        "id": 134
+      },
+      "Samsung": {
+        "path": ["Phone accessories", "Cases", "Samsung"],
+        "name": "Samsung",
+        "id": 135
+      }
     },
     "Memory cards": {
       "path": ["Phone accessories", "Memory cards"],
@@ -57,17 +107,93 @@
     "4-inch or less": {
       "path": ["Smartphones", "4-inch or less"],
       "name": "4-inch or less",
-      "id": 21
+      "id": 21,
+      "Apple": {
+        "path": ["Smartphones", "4-inch or less", "Apple"],
+        "name": "Apple",
+        "id": 211
+      },
+      "Huawei": {
+        "path": ["Smartphones", "4-inch or less", "Huawei"],
+        "name": "Huawei",
+        "id": 212
+      },
+      "LG": {
+        "path": ["Smartphones", "4-inch or less", "LG"],
+        "name": "LG",
+        "id": 213
+      },
+      "Xiaomi": {
+        "path": ["Smartphones", "4-inch or less", "Xiaomi"],
+        "name": "Xiaomi",
+        "id": 214
+      },
+      "Samsung": {
+        "path": ["Smartphones", "4-inch or less", "Samsung"],
+        "name": "Samsung",
+        "id": 215
+      }
     },
+
     "4 - 5 inch": {
       "path": ["Smartphones", "4 - 5 inch"],
       "name": "4 - 5 inch",
-      "id": 22
+      "id": 22,
+      "Apple": {
+        "path": ["Smartphones", "4 - 5 inch", "Apple"],
+        "name": "Apple",
+        "id": 221
+      },
+      "Huawei": {
+        "path": ["Smartphones", "4 - 5 inch", "Huawei"],
+        "name": "Huawei",
+        "id": 222
+      },
+      "LG": {
+        "path": ["Smartphones", "4 - 5 inch", "LG"],
+        "name": "LG",
+        "id": 223
+      },
+      "Xiaomi": {
+        "path": ["Smartphones", "4 - 5 inch", "Xiaomi"],
+        "name": "Xiaomi",
+        "id": 224
+      },
+      "Samsung": {
+        "path": ["Smartphones", "4 - 5 inch", "Samsung"],
+        "name": "Samsung",
+        "id": 225
+      }
     },
     "5 - 6 inch": {
       "path": ["Smartphones", "5 - 6 inch"],
       "name": "5 - 6 inch",
-      "id": 23
+      "id": 23,
+      "Apple": {
+        "path": ["Smartphones", "5 - 6 inch", "Apple"],
+        "name": "Apple",
+        "id": 221
+      },
+      "Huawei": {
+        "path": ["Smartphones", "5 - 6 inch", "Huawei"],
+        "name": "Huawei",
+        "id": 222
+      },
+      "LG": {
+        "path": ["Smartphones", "5 - 6 inch", "LG"],
+        "name": "LG",
+        "id": 223
+      },
+      "Xiaomi": {
+        "path": ["Smartphones", "5 - 6 inch", "Xiaomi"],
+        "name": "Xiaomi",
+        "id": 224
+      },
+      "Samsung": {
+        "path": ["Smartphones", "5 - 6 inch", "Samsung"],
+        "name": "Samsung",
+        "id": 225
+      }
     },
     "6-inch or more": {
       "path": ["Smartphones", "6-inch or more"],
