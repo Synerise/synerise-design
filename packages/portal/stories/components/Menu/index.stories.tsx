@@ -253,14 +253,18 @@ const stories = {
   },
   withBreadcrumb: () => {
     const defaultProps = getDefaultProps();
-    const routes = {
-      name:'Sample',
-      path: ["Sample", "Next", "Another one", "Next one"]
-    }
+    const routes = ['Sample', 'Next', 'Another one', 'Next one'];
     return (
-      <div style={{ background: 'rgba(0,0,0,0)', width: '200px', borderRadius:'3px', overflow:'hidden' }}>
+      <div style={{ background: 'rgba(0,0,0,0)', width: '200px', borderRadius: '3px', overflow: 'hidden' }}>
         <Menu>
-          <Menu.Breadcrumb route={routes} highlight={ text('Set text to be highlighted', 'Opt')} {...defaultProps}></Menu.Breadcrumb>
+          <Menu.Breadcrumb
+            onPathClick={(item)=>{console.log('Clicked',item)}}
+            description={text('Set description', 'Next')}
+            compact={boolean('Set compact', false)}
+            path={routes}
+            highlight={text('Set text to be highlighted', 'Opt')}
+            {...defaultProps}
+          ></Menu.Breadcrumb>
         </Menu>
       </div>
     );
