@@ -121,22 +121,6 @@ const stories = {
     } as object;
     return decorator(props);
   },
-  withSubmenu: () => {
-    const defaultProps = getDefaultProps();
-    const props = {
-      dataSource: attachKnobsToDataSource(parent),
-      ...defaultProps,
-    } as object;
-    return decorator(props);
-  },
-  withSubmenuAndIcon: () => {
-    const defaultProps = getDefaultProps();
-    const props = {
-      dataSource: parentWithIcon,
-      ...defaultProps,
-    } as object;
-    return decorator(props);
-  },
   withSquareAvatar: () => {
     const defaultProps = getDefaultProps();
     const props = {
@@ -216,14 +200,6 @@ const stories = {
         </Menu>
       </div>
     );
-  },
-  withCascader: () => {
-    const defaultProps = getDefaultProps();
-    const props = {
-      dataSource: attachKnobsToDataSource(withCascader),
-      ...defaultProps,
-    } as object;
-    return decorator(props);
   },
   withSelect: () => {
     const defaultProps = getDefaultProps();
