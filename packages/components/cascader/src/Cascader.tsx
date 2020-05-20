@@ -2,8 +2,6 @@ import * as React from 'react';
 import { CascaderProps, CascaderState, Category } from 'Cascader.types';
 import SearchBar from '@synerise/ds-search-bar';
 import Menu from '@synerise/ds-menu';
-import onClickOutside from 'react-onclickoutside';
-import * as hoistNonReactStatics from 'hoist-non-react-statics';
 import Icon from '@synerise/ds-icon';
 import { HomeM } from '@synerise/ds-icon/dist/icons';
 import SearchM from '@synerise/ds-icon/dist/icons/SearchM';
@@ -33,13 +31,15 @@ class Cascader extends React.PureComponent<CascaderProps, CascaderState> {
       searchQuery: '',
       activeCategory: categories,
       paths: [],
-      enteredCategories: [{ id: categories.id, name: categories.name }],
+      enteredCategories: [{ id: categories.id, name: categories.name, path: categories.path }],
     };
   }
 
   componentDidMount(): void {
     const { categories } = this.props;
-    this.setState({ paths: getAllPaths(categories) });
+    const allPaths = getAllPaths(categories,[]);
+    this.setState({ paths:  allPaths});
+    console.log('AFTER MOUNT', allPaths);
   }
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
@@ -67,15 +67,29 @@ class Cascader extends React.PureComponent<CascaderProps, CascaderState> {
         </S.InputWrapper>
         <S.Dropdown visible>
           <Menu>
-            {paths && searchQuery.length > 0 && (
+            {!!paths && searchQuery.length > 0 && (
               <BreadcrumbsList paths={filterPaths(paths, searchQuery)} highlight={searchQuery} />
             )}
             {!searchQuery && activeCategory.path && (
               // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
               // @ts-ignore
-              <Menu.Breadcrumb path={activeCategory.path} prefixel={<Icon component={<HomeM />} />} />
+              <Menu.Breadcrumb
+                path={activeCategory.path}
+                onPathClick={item => {
+                  const chosenCategory = enteredCategories.find(enteredCategory => enteredCategory.name === item);
+                  let updatedEnteredCategories;
+                  if (chosenCategory) {
+                    updatedEnteredCategories = enteredCategories.slice(0, enteredCategories.indexOf(chosenCategory));
+                  }
+                  this.setState({
+                    activeCategory: searchCategoryWithId(categories, chosenCategory.id || categories.id),
+                    enteredCategories: updatedEnteredCategories || [],
+                  });
+                }}
+                prefixel={<Icon component={<HomeM />} />}
+              />
             )}
-            {!searchQuery && previousCategory && (
+            {!searchQuery && previousCategory && previousCategory.name && enteredCategories.length > 1 && (
               <BackAction
                 label={previousCategory.name}
                 onClick={(): void => {
@@ -91,7 +105,7 @@ class Cascader extends React.PureComponent<CascaderProps, CascaderState> {
                 tooltip={itemsTooltip}
                 rootCategory={activeCategory}
                 onCategoryClick={(category: Category): void => {
-                  const entered = { id: category.id, name: category.name };
+                  const entered = { id: category.id, name: category.name, path: category.path };
                   const updatedEnteredCategories = [...enteredCategories, entered];
                   this.setState({ activeCategory: category, enteredCategories: updatedEnteredCategories });
                 }}
@@ -104,4 +118,4 @@ class Cascader extends React.PureComponent<CascaderProps, CascaderState> {
   }
 }
 
-export default hoistNonReactStatics(onClickOutside(Cascader), Cascader);
+export default Cascader;

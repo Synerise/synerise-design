@@ -5,13 +5,7 @@ import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { escapeRegEx } from '@synerise/ds-utils';
 import * as S from './Breadcrumb.styles';
 import { MenuItemProps } from '../Item/MenuItem.types';
-import { ReactNode } from 'react';
 
-export interface BreadcrumbRoute {
-  id: number | string;
-  path: string[];
-  [key: string]: BreadcrumbRoute | number | string | string[];
-}
 
 export interface BreadcrumbProps {
   prefixel?: React.ReactNode;
@@ -32,9 +26,10 @@ const Breadcrumb: React.FC<BreadcrumbProps & MenuItemProps> = ({
   compact,
   ...rest
 }) => {
-  const pathToDisplay: typeof path = compact ? path.reverse() : path;
+  const breadcrumbsArray = [...path];
+  const pathToDisplay: typeof path = compact ? breadcrumbsArray.reverse() : breadcrumbsArray;
   const renderWithHighlighting = React.useCallback(
-    (name: string | ReactNode): React.ReactNode => {
+    (name: string | React.ReactNode): React.ReactNode => {
       if (highlight && typeof name === 'string') {
         const index = name.toLocaleLowerCase().indexOf(highlight.toLocaleLowerCase());
         if (index === -1) {

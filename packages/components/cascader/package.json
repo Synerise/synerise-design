@@ -31,6 +31,7 @@
     "@synerise/ds-menu": "^0.4.1",
     "@synerise/ds-search-bar": "^0.2.46",
     "@synerise/ds-utils": "^0.8.22",
+    "debounce": "^1.2.0",
     "hoist-non-react-statics": "^3.3.2"
   },
   "peerDependencies": {

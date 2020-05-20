@@ -1,8 +1,4 @@
-
-export const searchCategoryWithId = (
-  category: { id: string | number },
-  id: string | number
-): object | undefined => {
+export const searchCategoryWithId = (category: { id: string | number }, id: string | number): object | undefined => {
   if (category.id === id) {
     return category;
   }
@@ -54,6 +50,11 @@ export const getAllPaths = (category: { path: string[] }, resultsArray?: string[
   return (results && results.length > 0) ? results : undefined;
 };
 export const filterPaths = (paths: string[][], searchQuery: string): string[][] => {
- return paths.filter(path=>path.some(p=>p.toLowerCase().includes(searchQuery.toLowerCase()) && path.indexOf(p)===(path.length-1)
- ))
+
+  const filtered = paths.filter(path =>
+    {
+       return path[path.length-1]&& (path[path.length-1].toLowerCase().indexOf(searchQuery) !== -1)
+    }
+  );
+  return filtered;
 };

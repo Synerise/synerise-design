@@ -36,27 +36,127 @@
       "Apple": {
         "path": ["Phone accessories", "Car mounts", "Apple"],
         "name": "Apple",
-        "id": 121
+        "id": 121,
+        "Apple product 1": {
+          "path": ["Phone accessories", "Car mounts", "Apple", "Apple product 1"],
+          "name": "Apple product 1",
+          "id": 1211
+        },
+        "Apple product 2": {
+          "path": ["Phone accessories", "Car mounts", "Apple", "Apple product 2"],
+          "name": "Apple product 2",
+          "id": 1212
+        },
+        "Apple product 3": {
+          "path": ["Phone accessories", "Car mounts", "Apple", "Apple product 3"],
+          "name": "Apple product 3",
+          "id": 1213
+        },
+        "Apple product 4": {
+          "path": ["Phone accessories", "Car mounts", "Apple", "Apple product 4"],
+          "name": "Apple product 4",
+          "id": 1214
+        }
       },
       "Huawei": {
         "path": ["Phone accessories", "Car mounts", "Huawei"],
         "name": "Huawei",
-        "id": 122
+        "id": 122,
+        "Huawei product 1": {
+          "path": ["Phone accessories", "Car mounts", "Huawei", "Huawei product 1"],
+          "name": "Huawei product 1",
+          "id": 1221
+        },
+        "Huawei product 2": {
+          "path": ["Phone accessories", "Car mounts", "Huawei", "Huawei product 2"],
+          "name": "Huawei product 2",
+          "id": 1222
+        },
+        "Huawei product 3": {
+          "path": ["Phone accessories", "Car mounts", "Huawei", "Huawei product 3"],
+          "name": "Huawei product 3",
+          "id": 1223
+        },
+        "Huawei product 4": {
+          "path": ["Phone accessories", "Car mounts", "Huawei", "Huawei product 4"],
+          "name": "Huawei product 4",
+          "id": 1224
+        }
       },
       "LG": {
         "path": ["Phone accessories", "Car mounts", "LG"],
         "name": "LG",
-        "id": 123
+        "id": 123,
+        "LG product 1": {
+          "path": ["Phone accessories", "Car mounts", "LG", "LG product 1"],
+          "name": "LG product 1",
+          "id": 1231
+        },
+        "LG product 2": {
+          "path": ["Phone accessories", "Car mounts", "LG", "LG product 2"],
+          "name": "LG product 2",
+          "id": 1232
+        },
+        "LG product 3": {
+          "path": ["Phone accessories", "Car mounts", "LG", "LG product 3"],
+          "name": "LG product 3",
+          "id": 1233
+        },
+        "LG product 4": {
+          "path": ["Phone accessories", "Car mounts", "LG", "LG product 4"],
+          "name": "LG product 4",
+          "id": 1234
+        }
       },
       "Xiaomi": {
         "path": ["Phone accessories", "Car mounts", "Xiaomi"],
         "name": "Xiaomi",
-        "id": 124
+        "id": 124,
+        "Xiaomi product 1": {
+          "path": ["Phone accessories", "Car mounts", "Xiaomi", "Xiaomi product 1"],
+          "name": "Xiaomi product 1",
+          "id": 1241
+        },
+        "Xiaomi product 2": {
+          "path": ["Phone accessories", "Car mounts", "Xiaomi", "Xiaomi product 2"],
+          "name": "Xiaomi product 2",
+          "id": 1242
+        },
+        "Xiaomi product 3": {
+          "path": ["Phone accessories", "Car mounts", "Xiaomi", "Xiaomi product 3"],
+          "name": "Xiaomi product 3",
+          "id": 1243
+        },
+        "Xiaomi product 4": {
+          "path": ["Phone accessories", "Car mounts", "Xiaomi", "Xiaomi product 4"],
+          "name": "Xiaomi product 4",
+          "id": 1244
+        }
       },
       "Samsung": {
         "path": ["Phone accessories", "Car mounts", "Samsung"],
         "name": "Samsung",
-        "id": 125
+        "id": 125,
+        "Samsung product 1": {
+          "path": ["Phone accessories", "Car mounts", "Samsung", "Samsung product 1"],
+          "name": "Samsung product 1",
+          "id": 1251
+        },
+        "Samsung product 2": {
+          "path": ["Phone accessories", "Car mounts", "Samsung", "Samsung product 2"],
+          "name": "Samsung product 2",
+          "id": 1252
+        },
+        "Samsung product 3": {
+          "path": ["Phone accessories", "Car mounts", "Samsung", "Samsung product 3"],
+          "name": "Samsung product 3",
+          "id": 1253
+        },
+        "Samsung product 4": {
+          "path": ["Phone accessories", "Car mounts", "Samsung", "Samsung product 4"],
+          "name": "Samsung product 4",
+          "id": 1254
+        }
       }
     },
     "Cases": {
@@ -235,7 +335,22 @@
   "VR Sets": {
     "path": ["VR Sets"],
     "id": 4,
-    "name": "VR Sets"
+    "name": "VR Sets",
+    "Awesome VR oculars": {
+      "path": ["VR Sets", "Awesome VR oculars"],
+      "id": 41,
+      "name": "Awesome VR oculars"
+    },
+    "Advanced VR set": {
+      "path": ["VR Sets", "Advanced VR set"],
+      "id": 42,
+      "name": "Advanced VR set"
+    },
+    "Cool Virtual Reality set": {
+      "path": ["VR Sets", "Cool Virtual Reality set"],
+      "id": 43,
+      "name": "Cool Virtual Reality set"
+    }
   },
   "Stationary phones": {
     "path": ["Stationary phones"],

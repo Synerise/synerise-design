@@ -12,7 +12,7 @@ const BreadcrumbsList: React.FC<BreadcrumbsListProps> = ({paths,highlight }) => 
       {paths.map(path => (
         // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
         // @ts-ignore
-        <Menu.Breadcrumb path={path} key={String(path.flat())} highlight={highlight} />
+        <Menu.Breadcrumb compact path={path} key={String(path.flat())} description={path[path.length-1]} highlight={highlight} />
       ))}
     </React.Fragment>
   );

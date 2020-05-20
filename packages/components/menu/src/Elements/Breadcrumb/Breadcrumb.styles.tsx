@@ -30,7 +30,7 @@ export const ContentWrapper = styled.div`
     content: '';
     position: absolute;
     display: block;
-    width: 100px;
+    width: 50px;
     height: 18px;
     transition: opacity 0.3s ease-in-out;
     background-image: ${(props): string => `linear-gradient( to right,
@@ -45,7 +45,7 @@ export const ContentWrapper = styled.div`
     left: 0;
     top: 0;
     display: block;
-    width: 100px;
+    width: 50px;
     height: 18px;
     transition: opacity 0.3s ease-in-out;
     background-image: ${(props): string => `linear-gradient( to right,
