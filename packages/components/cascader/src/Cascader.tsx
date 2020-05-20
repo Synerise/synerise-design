@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { CascaderProps, CascaderState } from 'Cascader.types';
+import { CascaderProps, CascaderState, Category } from 'Cascader.types';
 import SearchBar from '@synerise/ds-search-bar';
 import Menu from '@synerise/ds-menu';
 import onClickOutside from 'react-onclickoutside';
@@ -12,7 +12,9 @@ import { focusWithArrowKeys } from '@synerise/ds-utils';
 import BackAction from './Elements/BackAction/BackAction';
 import Divider from './Elements/Divider/Divider';
 import * as S from './Cascader.styles';
-import { filterPaths, getAllPaths } from './utlis';
+import { filterPaths, getAllPaths, searchCategoryWithId } from './utlis';
+import BreadcrumbsList from './Elements/BreadcrumbsList/BreadcrumbsList';
+import CategoriesList from './Elements/CategoriesList/CategoriesList';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 const NOOP = (): void => {};
@@ -31,6 +33,7 @@ class Cascader extends React.PureComponent<CascaderProps, CascaderState> {
       searchQuery: '',
       activeCategory: categories,
       paths: [],
+      enteredCategories: [{ id: categories.id, name: categories.name }],
     };
   }
 
@@ -43,8 +46,9 @@ class Cascader extends React.PureComponent<CascaderProps, CascaderState> {
   handleClickOutside = (): void => {};
 
   render(): React.ReactNode {
-    const { itemsTitle, itemsTooltip, disabled } = this.props;
-    const { searchQuery, activeCategory, paths } = this.state;
+    const { itemsTitle, itemsTooltip, disabled, categories } = this.props;
+    const { searchQuery, activeCategory, paths, enteredCategories } = this.state;
+    const previousCategory = enteredCategories[enteredCategories.length - 2];
     return (
       <S.Wrapper
         className="ds-cascader"
@@ -64,49 +68,34 @@ class Cascader extends React.PureComponent<CascaderProps, CascaderState> {
         <S.Dropdown visible>
           <Menu>
             {paths && searchQuery.length > 0 && (
-              <>
-                {filterPaths(paths, searchQuery).map(path => (
-                  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-                  // @ts-ignore
-                  <Menu.Breadcrumb path={path} key={String(path.flat())} highlight={searchQuery} />
-                ))}
-              </>
+              <BreadcrumbsList paths={filterPaths(paths, searchQuery)} highlight={searchQuery} />
             )}
             {!searchQuery && activeCategory.path && (
               // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
               // @ts-ignore
               <Menu.Breadcrumb path={activeCategory.path} prefixel={<Icon component={<HomeM />} />} />
             )}
-            {!searchQuery && <BackAction label="Back" onClick={NOOP} />}
+            {!searchQuery && previousCategory && (
+              <BackAction
+                label={previousCategory.name}
+                onClick={(): void => {
+                  enteredCategories.pop();
+                  this.setState({ activeCategory: searchCategoryWithId(categories, previousCategory.id) as Category });
+                }}
+              />
+            )}
 
-            {activeCategory && !searchQuery && (
-              <>
-                {itemsTitle && (
-                  <>
-                    <Menu.Header headerText={itemsTitle} tooltip={itemsTooltip} />
-                  </>
-                )}
-                {Object.keys(activeCategory)
-                  .filter(key => activeCategory[key]?.name)
-                  .map(
-                    (key): React.ReactNode => {
-                      const item = activeCategory[key];
-                      return (
-                        <Menu.Item
-                          text={activeCategory[key].name}
-                          type="select"
-                          key={`${activeCategory[key].id}`}
-                          suffixel={<div>select</div>}
-                          onClick={(): void => {
-                            this.setState({
-                              activeCategory: item,
-                            });
-                          }}
-                        />
-                      );
-                    }
-                  )}
-              </>
+            {!searchQuery && (
+              <CategoriesList
+                title={itemsTitle}
+                tooltip={itemsTooltip}
+                rootCategory={activeCategory}
+                onCategoryClick={(category: Category): void => {
+                  const entered = { id: category.id, name: category.name };
+                  const updatedEnteredCategories = [...enteredCategories, entered];
+                  this.setState({ activeCategory: category, enteredCategories: updatedEnteredCategories });
+                }}
+              />
             )}
           </Menu>
         </S.Dropdown>

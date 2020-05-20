@@ -17,4 +17,5 @@ export interface CascaderState {
   searchQuery: string;
   activeCategory: Category;
   paths: string[][] | undefined;
+  enteredCategories: Array<{id: number | string; name: string}>;
 }

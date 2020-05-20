@@ -1,6 +1,6 @@
 
 export const searchCategoryWithId = (
-  category: object & { id: string | number },
+  category: { id: string | number },
   id: string | number
 ): object | undefined => {
   if (category.id === id) {

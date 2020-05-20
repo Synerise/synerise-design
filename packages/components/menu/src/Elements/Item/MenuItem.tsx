@@ -61,7 +61,6 @@ const MenuItem: React.FC<SubMenuProps & MenuItemProps> = props => {
           description={description}
           indentLevel={indentLevel || 0}
           onItemHover={onItemHover || NOOP }
-
           {...rest}
         >
           {text || children}
