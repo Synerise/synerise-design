@@ -1,0 +1,365 @@
+{
+  "name": "Home",
+  "Phone accessories": {
+    "path": ["Phone accessories"],
+    "id": 1,
+    "name": "Phone accessories",
+    "Cables": {
+      "path": ["Phone accessories", "Cables"],
+      "name": "Cables",
+      "id": 11,
+      "USB-B 2m": {
+        "path": ["Phone accessories", "Cables", "USB-B 2m"],
+        "name": "USB-B 2m",
+        "id": 111
+      },
+      "USB-C 2m": {
+        "path": ["Phone accessories", "Cables", "USB-C 2m"],
+        "name": "USB-C 2m",
+        "id": 112
+      },
+      "Micro USB 2m": {
+        "path": ["Phone accessories", "Cables", "Micro USB 2m"],
+        "name": "Micro USB 2m",
+        "id": 113
+      },
+      "Mini USB 2m": {
+        "path": ["Phone accessories", "Cables", "Mini USB 2m"],
+        "name": "Mini USB 2m",
+        "id": 114
+      }
+    },
+    "Car mounts": {
+      "path": ["Phone accessories", "Car mounts"],
+      "name": "Car mounts",
+      "id": 12,
+      "Apple": {
+        "path": ["Phone accessories", "Car mounts", "Apple"],
+        "name": "Apple",
+        "id": 121,
+        "Apple product 1": {
+          "path": ["Phone accessories", "Car mounts", "Apple", "Apple product 1"],
+          "name": "Apple product 1",
+          "id": 1211
+        },
+        "Apple product 2": {
+          "path": ["Phone accessories", "Car mounts", "Apple", "Apple product 2"],
+          "name": "Apple product 2",
+          "id": 1212
+        },
+        "Apple product 3": {
+          "path": ["Phone accessories", "Car mounts", "Apple", "Apple product 3"],
+          "name": "Apple product 3",
+          "id": 1213
+        },
+        "Apple product 4": {
+          "path": ["Phone accessories", "Car mounts", "Apple", "Apple product 4"],
+          "name": "Apple product 4",
+          "id": 1214
+        }
+      },
+      "Huawei": {
+        "path": ["Phone accessories", "Car mounts", "Huawei"],
+        "name": "Huawei",
+        "id": 122,
+        "Huawei product 1": {
+          "path": ["Phone accessories", "Car mounts", "Huawei", "Huawei product 1"],
+          "name": "Huawei product 1",
+          "id": 1221
+        },
+        "Huawei product 2": {
+          "path": ["Phone accessories", "Car mounts", "Huawei", "Huawei product 2"],
+          "name": "Huawei product 2",
+          "id": 1222
+        },
+        "Huawei product 3": {
+          "path": ["Phone accessories", "Car mounts", "Huawei", "Huawei product 3"],
+          "name": "Huawei product 3",
+          "id": 1223
+        },
+        "Huawei product 4": {
+          "path": ["Phone accessories", "Car mounts", "Huawei", "Huawei product 4"],
+          "name": "Huawei product 4",
+          "id": 1224
+        }
+      },
+      "LG": {
+        "path": ["Phone accessories", "Car mounts", "LG"],
+        "name": "LG",
+        "id": 123,
+        "LG product 1": {
+          "path": ["Phone accessories", "Car mounts", "LG", "LG product 1"],
+          "name": "LG product 1",
+          "id": 1231
+        },
+        "LG product 2": {
+          "path": ["Phone accessories", "Car mounts", "LG", "LG product 2"],
+          "name": "LG product 2",
+          "id": 1232
+        },
+        "LG product 3": {
+          "path": ["Phone accessories", "Car mounts", "LG", "LG product 3"],
+          "name": "LG product 3",
+          "id": 1233
+        },
+        "LG product 4": {
+          "path": ["Phone accessories", "Car mounts", "LG", "LG product 4"],
+          "name": "LG product 4",
+          "id": 1234
+        }
+      },
+      "Xiaomi": {
+        "path": ["Phone accessories", "Car mounts", "Xiaomi"],
+        "name": "Xiaomi",
+        "id": 124,
+        "Xiaomi product 1": {
+          "path": ["Phone accessories", "Car mounts", "Xiaomi", "Xiaomi product 1"],
+          "name": "Xiaomi product 1",
+          "id": 1241
+        },
+        "Xiaomi product 2": {
+          "path": ["Phone accessories", "Car mounts", "Xiaomi", "Xiaomi product 2"],
+          "name": "Xiaomi product 2",
+          "id": 1242
+        },
+        "Xiaomi product 3": {
+          "path": ["Phone accessories", "Car mounts", "Xiaomi", "Xiaomi product 3"],
+          "name": "Xiaomi product 3",
+          "id": 1243
+        },
+        "Xiaomi product 4": {
+          "path": ["Phone accessories", "Car mounts", "Xiaomi", "Xiaomi product 4"],
+          "name": "Xiaomi product 4",
+          "id": 1244
+        }
+      },
+      "Samsung": {
+        "path": ["Phone accessories", "Car mounts", "Samsung"],
+        "name": "Samsung",
+        "id": 125,
+        "Samsung product 1": {
+          "path": ["Phone accessories", "Car mounts", "Samsung", "Samsung product 1"],
+          "name": "Samsung product 1",
+          "id": 1251
+        },
+        "Samsung product 2": {
+          "path": ["Phone accessories", "Car mounts", "Samsung", "Samsung product 2"],
+          "name": "Samsung product 2",
+          "id": 1252
+        },
+        "Samsung product 3": {
+          "path": ["Phone accessories", "Car mounts", "Samsung", "Samsung product 3"],
+          "name": "Samsung product 3",
+          "id": 1253
+        },
+        "Samsung product 4": {
+          "path": ["Phone accessories", "Car mounts", "Samsung", "Samsung product 4"],
+          "name": "Samsung product 4",
+          "id": 1254
+        }
+      }
+    },
+    "Cases": {
+      "path": ["Phone accessories", "Cases"],
+      "name": "Cases",
+      "id": 13,
+      "Apple": {
+        "path": ["Phone accessories", "Cases", "Apple"],
+        "name": "Apple",
+        "id": 131
+      },
+      "Huawei": {
+        "path": ["Phone accessories", "Cases", "Huawei"],
+        "name": "Huawei",
+        "id": 132
+      },
+      "LG": {
+        "path": ["Phone accessories", "Cases", "LG"],
+        "name": "LG",
+        "id": 133
+      },
+      "Xiaomi": {
+        "path": ["Phone accessories", "Cases", "Xiaomi"],
+        "name": "Xiaomi",
+        "id": 134
+      },
+      "Samsung": {
+        "path": ["Phone accessories", "Cases", "Samsung"],
+        "name": "Samsung",
+        "id": 135
+      }
+    },
+    "Memory cards": {
+      "path": ["Phone accessories", "Memory cards"],
+      "name": "Memory cards",
+      "id": 14
+    },
+    "Powerbanks": {
+      "path": ["Phone accessories", "Powerbanks"],
+      "name": "Powerbanks",
+      "id": 15
+    }
+  },
+  "Smartphones": {
+    "path": ["Smartphones"],
+    "id": 2,
+    "name": "Smartphones",
+    "4-inch or less": {
+      "path": ["Smartphones", "4-inch or less"],
+      "name": "4-inch or less",
+      "id": 21,
+      "Apple": {
+        "path": ["Smartphones", "4-inch or less", "Apple"],
+        "name": "Apple",
+        "id": 211
+      },
+      "Huawei": {
+        "path": ["Smartphones", "4-inch or less", "Huawei"],
+        "name": "Huawei",
+        "id": 212
+      },
+      "LG": {
+        "path": ["Smartphones", "4-inch or less", "LG"],
+        "name": "LG",
+        "id": 213
+      },
+      "Xiaomi": {
+        "path": ["Smartphones", "4-inch or less", "Xiaomi"],
+        "name": "Xiaomi",
+        "id": 214
+      },
+      "Samsung": {
+        "path": ["Smartphones", "4-inch or less", "Samsung"],
+        "name": "Samsung",
+        "id": 215
+      }
+    },
+
+    "4 - 5 inch": {
+      "path": ["Smartphones", "4 - 5 inch"],
+      "name": "4 - 5 inch",
+      "id": 22,
+      "Apple": {
+        "path": ["Smartphones", "4 - 5 inch", "Apple"],
+        "name": "Apple",
+        "id": 221
+      },
+      "Huawei": {
+        "path": ["Smartphones", "4 - 5 inch", "Huawei"],
+        "name": "Huawei",
+        "id": 222
+      },
+      "LG": {
+        "path": ["Smartphones", "4 - 5 inch", "LG"],
+        "name": "LG",
+        "id": 223
+      },
+      "Xiaomi": {
+        "path": ["Smartphones", "4 - 5 inch", "Xiaomi"],
+        "name": "Xiaomi",
+        "id": 224
+      },
+      "Samsung": {
+        "path": ["Smartphones", "4 - 5 inch", "Samsung"],
+        "name": "Samsung",
+        "id": 225
+      }
+    },
+    "5 - 6 inch": {
+      "path": ["Smartphones", "5 - 6 inch"],
+      "name": "5 - 6 inch",
+      "id": 23,
+      "Apple": {
+        "path": ["Smartphones", "5 - 6 inch", "Apple"],
+        "name": "Apple",
+        "id": 221
+      },
+      "Huawei": {
+        "path": ["Smartphones", "5 - 6 inch", "Huawei"],
+        "name": "Huawei",
+        "id": 222
+      },
+      "LG": {
+        "path": ["Smartphones", "5 - 6 inch", "LG"],
+        "name": "LG",
+        "id": 223
+      },
+      "Xiaomi": {
+        "path": ["Smartphones", "5 - 6 inch", "Xiaomi"],
+        "name": "Xiaomi",
+        "id": 224
+      },
+      "Samsung": {
+        "path": ["Smartphones", "5 - 6 inch", "Samsung"],
+        "name": "Samsung",
+        "id": 225
+      }
+    },
+    "6-inch or more": {
+      "path": ["Smartphones", "6-inch or more"],
+      "name": "6-inch or more",
+      "id": 24
+    }
+  },
+  "Smartwatches": {
+    "path": ["Smartwatches"],
+    "id": 3,
+    "name": "Smartwatches",
+
+    "Apple": {
+      "path": ["Smartwatches", "Apple"],
+      "name": "Apple",
+      "id": 31
+    },
+    "Fitbit": {
+      "path": ["Smartwatches", "Fitbit"],
+      "name": "Fitbit",
+      "id": 32
+    },
+    "Huawei": {
+      "path": ["Smartwatches", "Huawei"],
+      "name": "Huawei",
+      "id": 33
+    },
+    "Samsung": {
+      "path": ["Smartwatches", "Samsung"],
+      "name": "Samsung",
+      "id": 34
+    },
+    "Xiaomi": {
+      "path": ["Smartwatches", "Xiaomi"],
+      "name": "Xiaomi",
+      "id": 35
+    }
+  },
+  "VR Sets": {
+    "path": ["VR Sets"],
+    "id": 4,
+    "name": "VR Sets",
+    "Awesome VR oculars": {
+      "path": ["VR Sets", "Awesome VR oculars"],
+      "id": 41,
+      "name": "Awesome VR oculars"
+    },
+    "Advanced VR set": {
+      "path": ["VR Sets", "Advanced VR set"],
+      "id": 42,
+      "name": "Advanced VR set"
+    },
+    "Cool Virtual Reality set": {
+      "path": ["VR Sets", "Cool Virtual Reality set"],
+      "id": 43,
+      "name": "Cool Virtual Reality set"
+    }
+  },
+  "Stationary phones": {
+    "path": ["Stationary phones"],
+    "id": 5,
+    "name": "Stationary phones"
+  },
+  "GPS Navigation": {
+    "path": ["GPS Navigation"],
+    "id": 6,
+    "name": "GPS Navigation"
+  }
+}

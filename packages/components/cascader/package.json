@@ -1,0 +1,43 @@
+{
+  "name": "@synerise/ds-cascader",
+  "version": "0.0.1",
+  "description": "Cascader UI Component for the Synerise Design System",
+  "license": "ISC",
+  "repository": "Synerise/synerise-design",
+  "main": "dist/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "npm run build:js && npm run build:css && npm run defs",
+    "build:css": "node ../../../scripts/style/less.js",
+    "build:js": "babel --root-mode upward src --out-dir dist --extensions '.js,.ts,.tsx'",
+    "build:watch": "npm run build:js -- --watch",
+    "defs": "tsc --declaration --outDir dist/ --emitDeclarationOnly",
+    "prepublish": "npm run build",
+    "test": "jest",
+    "test:watch": "npm run test -- --watchAll",
+    "types": "tsc --noEmit"
+  },
+  "sideEffects": [
+    "dist/style/*",
+    "*.less"
+  ],
+  "types": "dist/index.d.ts",
+  "dependencies": {
+    "@synerise/ds-button": "^0.12.8",
+    "@synerise/ds-core": "^0.14.0",
+    "@synerise/ds-divider": "^0.4.16",
+    "@synerise/ds-icon": "^0.16.0",
+    "@synerise/ds-menu": "^0.4.1",
+    "@synerise/ds-search": "^0.1.18",
+    "@synerise/ds-search-bar": "^0.2.46",
+    "@synerise/ds-utils": "^0.8.22",
+    "hoist-non-react-statics": "^3.3.2"
+  },
+  "peerDependencies": {
+    "@synerise/ds-core": "*",
+    "react": ">=16.9.0 < 17.0.0"
+  },
+  "devDependencies": {}
+}

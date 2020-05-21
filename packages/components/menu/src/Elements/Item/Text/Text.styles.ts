@@ -127,7 +127,6 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
       }
     }
     ${PrefixelWrapper} {
-    
       svg {
         ${(props): string | false =>
           !props.disabled &&
@@ -177,9 +176,9 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
       ${(props): string | false =>
         !props.disabled &&
         `
-        .ds-menu-prefix > ${IconContainer} > svg {
+        .ds-menu-prefix { ${IconContainer} > svg {
           fill: ${props.theme.palette['blue-600']} !important;
-        }
+        }}
         color: ${props.theme.palette['blue-600']} !important;
         background: ${props.theme.palette['grey-050']};
       `}
