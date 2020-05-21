@@ -47,7 +47,9 @@ export const COLUMNS = [
     dataIndex: 'name',
     width: 254,
     render: (name, record) => {
-      return (<TableCell.StarCell active={record.active} onClick={action('Click start')}><TableCell.IconLabelCell label={name} icon={{component: <VarTypeStringM />, color: '#6a7580'}}/></TableCell.StarCell>)
+      return (<TableCell.StarCell active={record.active} onClick={action('Click start')}>
+        <TableCell.IconLabelCell label={name} icon={{component: <VarTypeStringM />, color: '#6a7580'}}/>
+      </TableCell.StarCell>)
     }
   },
   {
@@ -164,7 +166,7 @@ export const COLUMNS = [
     width: 254,
     textWrap: 'word-break',
     ellipsis: true,
-    render: (editable) => <TableCell.CopyableCell value={editable} confirmMessage="Copied to clipboard!" />
+    render: (editable) => <TableCell.CopyableCell value={editable} confirmMessage="Copied to clipboard!" tooltipTimeout={2000} />
   },
   {
     title: 'Checkbox',

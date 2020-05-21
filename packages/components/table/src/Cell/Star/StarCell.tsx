@@ -5,7 +5,7 @@ import Icon from '@synerise/ds-icon';
 import * as S from './StarCell.styles';
 
 interface Props {
-  children: React.ReactChildren;
+  children: React.ReactNode | React.ReactNode[];
   active?: boolean;
   onClick?: () => void;
   theme: {
