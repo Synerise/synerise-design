@@ -1,9 +1,10 @@
 import { boolean, select } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import { withState } from '@dump247/storybook-state';
-import Table, { GroupedTable } from '@synerise/ds-table';
+import Table, { GroupedTable, TableCell } from '@synerise/ds-table';
 import * as React from 'react';
 import { dataSource } from './content/groupedTable.data';
+import Avatar from '@synerise/ds-avatar';
 
 const decorator = storyFn => <div style={{ padding: 20, width: '100vw', minWidth: '100%' }}>{storyFn()}</div>;
 
@@ -17,11 +18,15 @@ const stories = {
   default: withState({
     selectedRows: [],
   })(({ store }) => {
-      const {  selectedRows } = store.state;
+      const { selectedRows } = store.state;
 
       const handleSelectRow = selectedRowKeys => {
         store.set({ selectedRows: selectedRowKeys });
       };
+
+      const itemsCount = dataSource.reduce((count, group) => {
+        return count + group.rows.length;
+      }, 0);
 
       const getColumns = () => {
         return [
@@ -29,6 +34,21 @@ const stories = {
             title: 'First name',
             dataIndex: 'first_name',
             key: 'first_name',
+            render: (firstName) => {
+              return (
+                <TableCell.AvatarLabelCell
+                  avatar={
+                    <Avatar
+                      backgroundColor='blue'
+                      backgroundColorHue='600'
+                      size='medium'
+                    >
+                      {firstName[0]}
+                    </Avatar>}
+                  title={firstName}
+                />
+              )
+            }
           },
           {
             title: 'Last name',
@@ -50,7 +70,7 @@ const stories = {
 
       return (
         <GroupedTable
-          title={`${dataSource.length} records`}
+          title={`${itemsCount} records`}
           dataSource={dataSource}
           columns={getColumns()}
           loading={boolean('Set loading state', false)}
@@ -63,7 +83,7 @@ const stories = {
           }}
           rowKey={row => row.key}
           selection={
-            boolean('Enable row selection', false) && {
+            boolean('Enable row selection', true) && {
               onChange: handleSelectRow,
               selectedRowKeys: selectedRows,
               selections: [
