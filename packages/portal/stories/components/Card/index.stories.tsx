@@ -46,6 +46,8 @@ const renderCard = props => {
         iconColor={props.iconColor}
         size={props.size}
         compactHeader={props.compactHeader}
+        onHeaderClick={()=>{console.log('Clicked header once')}}
+        onHeaderDoubleClick={()=>{console.log('Clicked header twice')}}
         headerSideChildren={props.withHeaderSide && <Button type="primary">Button</Button>}
       >
         {props.showContent && <div style={{ width: '100%', height: 300 }}>Wow so great, such content!1</div>}

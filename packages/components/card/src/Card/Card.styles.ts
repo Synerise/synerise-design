@@ -1,5 +1,6 @@
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import Typography from '@synerise/ds-typography';
+import * as React from 'react';
 
 export const Container = styled.div<{
   raised?: boolean;
@@ -38,7 +39,7 @@ export const Container = styled.div<{
     `}
 `;
 
-export const Header = styled.div<{ isContentful?: boolean }>`
+export const Header = styled.div<{ isContentful?: boolean; onClick?: React.MouseEventHandler }>`
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -49,6 +50,9 @@ export const Header = styled.div<{ isContentful?: boolean }>`
     css`
       margin: 0 0 24px;
     `};
+  &:hover {
+    ${(props): string | false => !!props.onClick && `cursor:pointer;`}
+  }
 `;
 
 export const HeaderSideChildren = styled.div`
