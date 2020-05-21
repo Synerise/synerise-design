@@ -17,7 +17,7 @@ export const IconWrapper = styled.div`
 `;
 
 export const BackActionWrapper = styled.div`
-  padding: 0 16px;
+  padding: 0 8px;
   &:hover {
     ${Label} {
       color: ${(props): string => props.theme.palette['grey-800']};

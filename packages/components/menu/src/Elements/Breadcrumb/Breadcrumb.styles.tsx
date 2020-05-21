@@ -10,7 +10,8 @@ export const ArrowRight = styled.div<{ visible: boolean }>`
   opacity: ${(props): string => (props.visible ? '1' : '0')};
 `;
 
-export const BreadcrumbContent = styled.div`
+export const BreadcrumbContent = styled.div<{ prefixel?: boolean }>`
+  ${(props): string | false => !!props.prefixel && `transform: translateX(-8px);`}
   display: flex;
 `;
 export const Description = styled.div`
@@ -23,11 +24,11 @@ export const Description = styled.div`
   text-overflow: ellipsis;
   overflow: hidden;
 `;
-export const ContentWrapper = styled.div`
+export const ContentWrapper = styled.div<{ gradientOverlap?: boolean }>`
   position: relative;
   &::before {
     pointer-events: none;
-    content: '';
+    content: ${(props): string => (props.gradientOverlap ? `''` : 'none')};
     position: absolute;
     display: block;
     width: 50px;
@@ -40,7 +41,7 @@ export const ContentWrapper = styled.div`
   }
   &::after {
     pointer-events: none;
-    content: '';
+    content: ${(props): string => (props.gradientOverlap ? `''` : 'none')};
     position: absolute;
     left: 0;
     top: 0;
@@ -73,6 +74,9 @@ export const Breadcrumb = styled(({ children, disabled, compact, ...rest }) => (
     direction: ${(props): string => (props.compact ? 'rtl' : 'ltr')};
     flex-wrap: ${(props): string => (props.compact ? 'no-wrap' : 'wrap')};
   }
+  .ds-arrow:first-child > div {
+    background: red !important;
+  }
   &:hover {
     ${ArrowRight} > .ds-icon > svg {
       fill: ${(props): string => (props.disabled ? props.theme.palette['grey-600'] : props.theme.palette['blue-600'])};
@@ -88,12 +92,6 @@ export const Breadcrumb = styled(({ children, disabled, compact, ...rest }) => (
     }
   }
   &:focus:active {
-    .route:last-child > .ds-breadcrumb-name {
-      color: ${(props): string => (props.disabled ? props.theme.palette['grey-600'] : 'inherit')};
-      background-image: unset;
-      background-clip: unset;
-      text-fill-color: unset;
-    }
     ${ContentWrapper}::before {
       background-image: ${(props): string => `linear-gradient( to right,
     ${props.theme.palette['grey-100']},

@@ -13,9 +13,7 @@ export interface CascaderProps {
   onItemClick?: (item: MenuItemProps) => void;
   categories: Category;
 }
-export interface CascaderState {
-  searchQuery: string;
-  activeCategory: Category;
-  paths: string[][] | undefined;
-  enteredCategories: Array<{id: number | string; name: string; path: string[]}>;
+export interface Path {
+  id: number | string;
+  path: string[];
 }

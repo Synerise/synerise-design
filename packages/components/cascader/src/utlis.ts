@@ -1,3 +1,5 @@
+import { Path } from 'Cascader.types';
+
 export const searchCategoryWithId = (category: { id: string | number }, id: string | number): object | undefined => {
   if (category.id === id) {
     return category;
@@ -34,27 +36,33 @@ export const searchCategoryWithText = (category: object & { path: string[] }, te
   return result;
 };
 
-export const getAllPaths = (category: { path: string[] }, resultsArray?: string[][]): string[][] | undefined => {
-  let results: string[][] | undefined = resultsArray || [];
+export const getAllPaths = (
+  category: Path,
+  resultsArray?: Path[]
+): Path[] | undefined => {
+  let results: Path[] | undefined = resultsArray || [];
   if (category.path && category.path.length > 0) {
-    results.push(category.path);
+    results.push({ path: category.path, id: category.id });
   }
   let property;
   const keys = Object.keys(category);
   for (let i = 0; i < keys.length; i += 1) {
     property = keys[i];
     if (Object.prototype.hasOwnProperty.call(category, property) && typeof category[property] === 'object') {
-      results = getAllPaths(category[property],results);
+      results = getAllPaths(category[property], results);
     }
   }
-  return (results && results.length > 0) ? results : undefined;
+  return results && results.length > 0 ? results : undefined;
 };
-export const filterPaths = (paths: string[][], searchQuery: string): string[][] => {
-
-  const filtered = paths.filter(path =>
-    {
-       return path[path.length-1]&& (path[path.length-1].toLowerCase().indexOf(searchQuery) !== -1)
-    }
-  );
+export const filterPaths = (paths: Path[], searchQuery: string): Path[]=> {
+  const pathsToBeFiltered = [...paths];
+  console.log('Filtering data...',pathsToBeFiltered)
+  console.log('Filtering with...',searchQuery)
+  const filtered = pathsToBeFiltered.filter(p => {
+    const productPath = p.path;
+    const lastElementOfPath = productPath[productPath.length-1];
+    return productPath && lastElementOfPath && lastElementOfPath.toLowerCase().includes(searchQuery);
+  });
+  console.log(filtered);
   return filtered;
 };

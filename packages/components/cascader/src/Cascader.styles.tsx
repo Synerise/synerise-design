@@ -16,3 +16,4 @@ export const Dropdown = styled.div<{ visible: boolean }>`
 export const Wrapper = styled.div`
   position: relative;
 `;
+export const BreadcrumbPrefix = styled.div``;

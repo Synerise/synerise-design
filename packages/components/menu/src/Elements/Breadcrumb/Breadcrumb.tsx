@@ -15,6 +15,8 @@ export interface BreadcrumbProps {
   description?: string | React.ReactNode;
   onPathClick?: (path: string) => void;
   compact?: boolean;
+  startWithArrow?: boolean;
+  gradientOverlap?: boolean;
 }
 
 const Breadcrumb: React.FC<BreadcrumbProps & MenuItemProps> = ({
@@ -24,8 +26,11 @@ const Breadcrumb: React.FC<BreadcrumbProps & MenuItemProps> = ({
   description,
   onPathClick,
   compact,
+  startWithArrow,
+  gradientOverlap,
   ...rest
 }) => {
+  const { prefixel } = rest;
   const breadcrumbsArray = [...path];
   const pathToDisplay: typeof path = compact ? breadcrumbsArray.reverse() : breadcrumbsArray;
   const renderWithHighlighting = React.useCallback(
@@ -52,21 +57,28 @@ const Breadcrumb: React.FC<BreadcrumbProps & MenuItemProps> = ({
     [highlight]
   );
 
-  const isArrowVisible = (breadCrumbPath: string[], index: number): boolean => {
+  const shouldRenderArrow = (breadCrumbPath: string[], index: number): boolean => {
     if (!breadCrumbPath || !breadCrumbPath.length) {
       return false;
     }
     const nextBreadcrumb = breadCrumbPath[index + 1];
     if (!nextBreadcrumb) {
-      return false;
+      return !!startWithArrow;
     }
     return true;
+  };
+  const shouldHaveArrowPlaceholder = (index: number): boolean => {
+    if (compact) {
+      return startWithArrow || (index < path.length - 1 && path.length > 1);
+    } else {
+      return startWithArrow || path.length > 1 || index > 0;
+    }
   };
   return (
     <S.Breadcrumb className="ds-breadcrumb" disabled={disabled} compact={compact} {...rest}>
       {!!description && <S.Description>{renderWithHighlighting(description)}</S.Description>}
-      <S.ContentWrapper>
-        <S.BreadcrumbContent className="breadcrumb-content">
+      <S.ContentWrapper gradientOverlap={gradientOverlap}>
+        <S.BreadcrumbContent className="breadcrumb-content" prefixel={!!prefixel}>
           {pathToDisplay.map((item, index) => (
             // eslint-disable-next-line react/no-array-index-key
             <S.BreadcrumbRoute className="route" key={`${item}-${index}`}>
@@ -78,9 +90,11 @@ const Breadcrumb: React.FC<BreadcrumbProps & MenuItemProps> = ({
               >
                 {renderWithHighlighting(item)}
               </S.BreadcrumbName>
-              <S.ArrowRight visible={isArrowVisible(path, index)}>
-                <Icon component={<AngleRightS />} color={theme.palette['grey-600']} />
-              </S.ArrowRight>
+              {shouldHaveArrowPlaceholder(index) && (
+                <S.ArrowRight className={'ds-arrow'} visible={shouldRenderArrow(path, index)}>
+                  <Icon component={<AngleRightS />} color={theme.palette['grey-600']} />
+                </S.ArrowRight>
+              )}
             </S.BreadcrumbRoute>
           ))}
         </S.BreadcrumbContent>

@@ -1,14 +1,13 @@
 import * as React from 'react';
-import { CascaderProps, CascaderState, Category } from 'Cascader.types';
+import { CascaderProps, Category, Path } from 'Cascader.types';
 import SearchBar from '@synerise/ds-search-bar';
 import Menu from '@synerise/ds-menu';
 import Icon from '@synerise/ds-icon';
 import { HomeM } from '@synerise/ds-icon/dist/icons';
 import SearchM from '@synerise/ds-icon/dist/icons/SearchM';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
-import { focusWithArrowKeys } from '@synerise/ds-utils';
+import { MenuItemProps } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.types';
 import BackAction from './Elements/BackAction/BackAction';
-import Divider from './Elements/Divider/Divider';
 import * as S from './Cascader.styles';
 import { filterPaths, getAllPaths, searchCategoryWithId } from './utlis';
 import BreadcrumbsList from './Elements/BreadcrumbsList/BreadcrumbsList';
@@ -17,105 +16,130 @@ import CategoriesList from './Elements/CategoriesList/CategoriesList';
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 const NOOP = (): void => {};
 
-class Cascader extends React.PureComponent<CascaderProps, CascaderState> {
-  static InputWrapper = S.InputWrapper;
-  static Dropdown = S.Dropdown;
-  static Wrapper = S.Wrapper;
-  static Divider: typeof Divider = Divider;
+const Cascader: React.FC<CascaderProps> = ({ categories, disabled }) => {
+  const [searchQuery, setSearchQuery] = React.useState<string>('');
+  const [activeCategory, setActiveCategory] = React.useState<Category>(categories);
+  const [paths, setPaths] = React.useState<Path[] | undefined>([]);
+  const [filteredPaths, setFilteredPaths] = React.useState<Path[] | undefined>([]);
+  const [enteredCategories, setEnteredCategories] = React.useState<Category[]>([]);
+  const [selectedIds, setSelectedIds] = React.useState<Array<string | number>>([]);
 
-  constructor(props: CascaderProps) {
-    super(props);
-    const { categories } = this.props;
-    // eslint-disable-next-line react/state-in-constructor
-    this.state = {
-      searchQuery: '',
-      activeCategory: categories,
-      paths: [],
-      enteredCategories: [{ id: categories.id, name: categories.name, path: categories.path }],
-    };
-  }
+  const previousCategory = enteredCategories[enteredCategories.length - 2];
 
-  componentDidMount(): void {
-    const { categories } = this.props;
-    const allPaths = getAllPaths(categories,[]);
-    this.setState({ paths:  allPaths});
-    console.log('AFTER MOUNT', allPaths);
-  }
+  React.useEffect(() => {
+    const allPaths = getAllPaths(categories, []);
+    setPaths(allPaths);
+  }, []);
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  handleClickOutside = (): void => {};
+  const onCategoryClick = React.useCallback(
+    (category: Category) => {
+      const entered = { id: category.id, name: category.name, path: category.path };
+      const updatedEnteredCategories = [...enteredCategories, entered];
+      setActiveCategory(category);
+      setEnteredCategories(updatedEnteredCategories);
+    },
+    [enteredCategories]
+  );
 
-  render(): React.ReactNode {
-    const { itemsTitle, itemsTooltip, disabled, categories } = this.props;
-    const { searchQuery, activeCategory, paths, enteredCategories } = this.state;
-    const previousCategory = enteredCategories[enteredCategories.length - 2];
-    return (
-      <S.Wrapper
-        className="ds-cascader"
-        onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>): void => focusWithArrowKeys(e, 'ds-menu-item', NOOP)}
-      >
-        <S.InputWrapper>
-          <SearchBar
-            onSearchChange={(value: string): void => {
-              this.setState({ searchQuery: value });
-            }}
-            disabled={disabled}
-            placeholder="Placeholder"
-            value={searchQuery}
-            iconLeft={<Icon component={<SearchM />} color={theme.palette['grey-600']} />}
-          />
-        </S.InputWrapper>
-        <S.Dropdown visible>
-          <Menu>
-            {!!paths && searchQuery.length > 0 && (
-              <BreadcrumbsList paths={filterPaths(paths, searchQuery)} highlight={searchQuery} />
-            )}
-            {!searchQuery && activeCategory.path && (
+  const onPathClick = React.useCallback(
+    item => {
+      const chosenCategory = enteredCategories.find(enteredCategory => enteredCategory.name === item);
+      let updatedEnteredCategories;
+      if (chosenCategory) {
+        updatedEnteredCategories = enteredCategories.slice(0, enteredCategories.indexOf(chosenCategory));
+      }
+      setActiveCategory(searchCategoryWithId(categories, chosenCategory.id));
+      setEnteredCategories(updatedEnteredCategories || []);
+    },
+    [categories, enteredCategories]
+  );
+
+  const onItemSelect = (item: Category) => {
+    const selected = selectedIds;
+    let newSelectedList;
+    const itemAlreadySelected = selected.indexOf(item.id) !== -1;
+    if (!itemAlreadySelected) {
+      selected.push(item.id);
+      newSelectedList = selected;
+    } else {
+      newSelectedList = selected.filter(id => id !== item.id);
+    }
+    setSelectedIds([...newSelectedList]);
+  };
+  const onBackActionClick = React.useCallback((): void => {
+    setActiveCategory(searchCategoryWithId(categories, previousCategory.id) as Category);
+  }, [enteredCategories, categories, previousCategory]);
+
+  const onHomeIconClick = React.useCallback(() => {
+    setActiveCategory(categories);
+  }, [categories]);
+
+  const filterPathsBySearchQuery = React.useCallback(
+    (value: string) => {
+      if (paths) {
+        const filtered = filterPaths(paths, value.toLowerCase());
+        setFilteredPaths(filtered);
+      } else setFilteredPaths([]);
+    },
+    [searchQuery, paths]
+  );
+
+  return (
+    <S.Wrapper className="ds-cascader">
+      <S.InputWrapper>
+        <SearchBar
+          onSearchChange={(value: string): void => {
+            setSearchQuery(value);
+            filterPathsBySearchQuery(value.toLowerCase());
+          }}
+          disabled={disabled}
+          placeholder="Placeholder"
+          value={searchQuery}
+          iconLeft={<Icon component={<SearchM />} color={theme.palette['grey-600']} />}
+        />
+      </S.InputWrapper>
+      <S.Dropdown visible>
+        <Menu>
+          {!!paths && searchQuery.length > 0 && filteredPaths && filteredPaths?.length > 0 && (
+            <BreadcrumbsList
+              paths={filteredPaths}
+              highlight={searchQuery}
+              onBreadCrumbClick={(breadcrumb: Path | MenuItemProps): void => {
+                onItemSelect(breadcrumb as Category);
+              }}
+            />
+          )}
+          {!searchQuery && activeCategory.path && (
+            <Menu.Breadcrumb
               // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
               // @ts-ignore
-              <Menu.Breadcrumb
-                path={activeCategory.path}
-                onPathClick={item => {
-                  const chosenCategory = enteredCategories.find(enteredCategory => enteredCategory.name === item);
-                  let updatedEnteredCategories;
-                  if (chosenCategory) {
-                    updatedEnteredCategories = enteredCategories.slice(0, enteredCategories.indexOf(chosenCategory));
-                  }
-                  this.setState({
-                    activeCategory: searchCategoryWithId(categories, chosenCategory.id || categories.id),
-                    enteredCategories: updatedEnteredCategories || [],
-                  });
-                }}
-                prefixel={<Icon component={<HomeM />} />}
-              />
-            )}
-            {!searchQuery && previousCategory && previousCategory.name && enteredCategories.length > 1 && (
-              <BackAction
-                label={previousCategory.name}
-                onClick={(): void => {
-                  enteredCategories.pop();
-                  this.setState({ activeCategory: searchCategoryWithId(categories, previousCategory.id) as Category });
-                }}
-              />
-            )}
-
-            {!searchQuery && (
-              <CategoriesList
-                title={itemsTitle}
-                tooltip={itemsTooltip}
-                rootCategory={activeCategory}
-                onCategoryClick={(category: Category): void => {
-                  const entered = { id: category.id, name: category.name, path: category.path };
-                  const updatedEnteredCategories = [...enteredCategories, entered];
-                  this.setState({ activeCategory: category, enteredCategories: updatedEnteredCategories });
-                }}
-              />
-            )}
-          </Menu>
-        </S.Dropdown>
-      </S.Wrapper>
-    );
-  }
-}
+              path={activeCategory.path}
+              onPathClick={onPathClick}
+              startWithArrow
+              gradientOverlap={activeCategory.path.length>1}
+              compact
+              prefixel={
+                <S.BreadcrumbPrefix onClick={onHomeIconClick}>
+                  <Icon component={<HomeM />} />
+                </S.BreadcrumbPrefix>
+              }
+            />
+          )}
+          {!searchQuery && previousCategory && previousCategory.name && enteredCategories.length > 1 && (
+            <BackAction label={previousCategory.name} onClick={onBackActionClick} />
+          )}
+          {!searchQuery && (
+            <CategoriesList
+              rootCategory={activeCategory}
+              onCategoryClick={onCategoryClick}
+              onSuffixelClick={onItemSelect}
+              selectedIds={selectedIds}
+            />
+          )}
+        </Menu>
+      </S.Dropdown>
+    </S.Wrapper>
+  );
+};
 
 export default Cascader;
