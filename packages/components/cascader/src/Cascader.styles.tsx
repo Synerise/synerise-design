@@ -8,8 +8,7 @@ export const Dropdown = styled.div<{ visible: boolean; searching?: boolean }>`
   position: absolute;
   width: 100%;
   background: ${(props): string => props.theme.palette.white};
-  border-bottom-left-radius: 3px;
-  border-bottom-right-radius: 3px;
+  border-radius: 0 3px 3px 0;
   padding: 8px;
   ${(props): string | false => !!props.searching && `padding-right:0px;`}
   box-shadow: 0 16px 32px 0 rgba(35, 41, 54, 0.05);

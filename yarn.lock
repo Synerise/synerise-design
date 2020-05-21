@@ -3972,6 +3972,16 @@
     "@synerise/ds-icon" "^0.14.0"
     "@synerise/ds-input" "^0.10.7"
 
+"@synerise/ds-dropdown@^0.11.40":
+  version "0.11.40"
+  resolved "https://registry.yarnpkg.com/@synerise/ds-dropdown/-/ds-dropdown-0.11.40.tgz#96620f0d833d2d3e23ce5575f2ae06e2272febc4"
+  integrity sha512-QngWMDJMMzS7dytd+l7O7WssjlxA+7iG5ITRZwx88Evb4OWnZxgQxCgsCpdIISps0D2mCkGkfTCvpLUEYvIg+A==
+  dependencies:
+    "@synerise/ds-divider" "^0.4.16"
+    "@synerise/ds-icon" "^0.16.0"
+    "@synerise/ds-input" "^0.11.27"
+    "@synerise/ds-search-bar" "^0.2.46"
+
 "@synerise/ds-icon@^0.11.1":
   version "0.11.1"
   resolved "https://registry.yarnpkg.com/@synerise/ds-icon/-/ds-icon-0.11.1.tgz#ddd8f650a2cc971920be1f46f80062ab394f7f1a"
@@ -4027,6 +4037,13 @@
     "@synerise/ds-card" "^0.4.17"
     "@synerise/ds-typography" "*"
 
+"@synerise/ds-scrollbar@^0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@synerise/ds-scrollbar/-/ds-scrollbar-0.1.1.tgz#b771bddd7c26a56bfa99144ae604d80b22933cc2"
+  integrity sha512-e60PFGb+qqbpf+2iOALE/YSfqQ2AdEV9Kp0SffYw/vNlLhJbKHupauR6U+ZGz3JaPdF4JhzcKFBbnjmkVmKs4w==
+  dependencies:
+    react-perfect-scrollbar "^1.5.8"
+
 "@synerise/ds-search-bar@^0.2.46":
   version "0.2.46"
   resolved "https://registry.yarnpkg.com/@synerise/ds-search-bar/-/ds-search-bar-0.2.46.tgz#2348cf2fe93ea11f8f34cd54b67bed2582441e1d"
@@ -4035,6 +4052,20 @@
     "@synerise/ds-button" "^0.12.8"
     "@synerise/ds-input" "^0.11.27"
     "@synerise/ds-typography" "^0.8.3"
+
+"@synerise/ds-search@^0.1.18":
+  version "0.1.18"
+  resolved "https://registry.yarnpkg.com/@synerise/ds-search/-/ds-search-0.1.18.tgz#3bb2d4cfa476e1eacd838febf0d75bd01bea4817"
+  integrity sha512-roZMw9caOIbxhO6uz7alB1KCdtBpCMI/AYfd5jl3ryWZlxUY/kJNc79BDO7fU6bEdbQG/lXJCcLLJyiihTiluQ==
+  dependencies:
+    "@synerise/ds-button" "^0.12.8"
+    "@synerise/ds-dropdown" "^0.11.40"
+    "@synerise/ds-scrollbar" "^0.1.1"
+    "@synerise/ds-typography" "^0.8.3"
+    "@synerise/ds-utils" "^0.8.22"
+    "@types/react-virtualized" "^9.21.9"
+    react-onclickoutside "^6.9.0"
+    react-virtualized "^9.21.2"
 
 "@synerise/ds-tooltip@^0.4.26":
   version "0.4.26"
@@ -8081,11 +8112,6 @@ dayjs@^1.8.19:
   version "1.8.23"
   resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.8.23.tgz#07b5a8e759c4d75ae07bdd0ad6977f851c01e510"
   integrity sha512-NmYHMFONftoZbeOhVz6jfiXI4zSiPN6NoVWJgC0aZQfYVwzy/ZpESPHuCcI0B8BUMpSJQ08zenHDbofOLKq8hQ==
-
-debounce@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/debounce/-/debounce-1.2.0.tgz#44a540abc0ea9943018dc0eaa95cce87f65cd131"
-  integrity sha512-mYtLl1xfZLi1m4RtQYlZgJUNQjl4ZxVnHzIR8nLLgi4q1YT8o/WM+MK/f8yfcc9s5Ir5zRaPZyZU6xs1Syoocg==
 
 debug@2.6.9, debug@^2.2.0, debug@^2.3.3, debug@^2.6.0, debug@^2.6.9:
   version "2.6.9"

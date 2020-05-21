@@ -17,7 +17,6 @@ export const IconWrapper = styled.div`
 `;
 
 export const BackActionWrapper = styled.div`
-  padding: 0 8px;
   &:hover {
     ${Label} {
       color: ${(props): string => props.theme.palette['grey-800']};
@@ -35,4 +34,15 @@ export const ContentWrapper = styled.div`
   display: flex;
   align-items: center;
   cursor: pointer;
+`;
+
+export const ButtonContentWrapper = styled.div`
+  display: flex;
+  flex: 1;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0 8px;
+`;
+export const ButtonLabelWrapper = styled.div`
+  padding-left: 16px;
 `;

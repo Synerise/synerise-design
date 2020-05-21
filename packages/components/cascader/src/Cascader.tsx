@@ -20,7 +20,7 @@ const Cascader: React.FC<CascaderProps> = ({ rootCategory, disabled }) => {
   const [paths, setPaths] = React.useState<Path[] | undefined>([]);
   const [filteredPaths, setFilteredPaths] = React.useState<Path[] | undefined>([]);
   const [enteredCategories, setEnteredCategories] = React.useState<Category[]>([]);
-  const [selectedIds, setSelectedIds] = React.useState<Array<string | number>>([]);
+  const [selectedIds, setSelectedIds] = React.useState<React.ReactText[]>([]);
 
   const previousCategory = enteredCategories[enteredCategories.length - 2];
   const isSearching = !!paths && searchQuery.length > 0;
