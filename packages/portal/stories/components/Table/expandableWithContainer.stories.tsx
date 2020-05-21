@@ -45,6 +45,7 @@ const stories = {
         {
           dataIndex: 'more',
           key: 'more',
+          width: 72,
           render: (more, record) => {
             if(more !== undefined) {
               console.log(expandedRows.indexOf(record.key) >= 0, record);

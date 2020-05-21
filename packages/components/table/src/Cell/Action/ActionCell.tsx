@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as S from './ActionCell.styles';
 
 interface Props {
-  children: React.ReactChildren;
+  children: JSX.Element;
 }
 
 const ActionCell: React.FC<Props> = ({ children }: Props) => {

@@ -208,7 +208,7 @@ const stories = {
                   </Menu.Item>
                 </Menu>
               }
-              trigger='click'>
+              trigger={['click']}>
               <Button type='ghost' mode='single-icon'>
                 <Icon component={<OptionHorizontalM/>}/>
               </Button>
