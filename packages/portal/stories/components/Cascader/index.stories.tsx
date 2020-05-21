@@ -14,6 +14,7 @@ const stories = {
     return (
       <Cascader
         rootCategory={root}
+        searchInputPlaceholder={'Search'}
       />
     );
   },

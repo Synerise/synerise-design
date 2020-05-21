@@ -14,7 +14,7 @@ export interface CategoriesListProps {
   onCategoryClick: (item: any) => void;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onSuffixelClick: (item: any) => void;
-  selectedIds: Array<number | string>;
+  selectedIds: React.ReactText[];
 }
 const CategoriesSuffix = styled.div``;
 

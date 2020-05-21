@@ -14,7 +14,7 @@ import { filterPaths, getAllPaths, hasNestedCategories, searchCategoryWithId } f
 import BreadcrumbsList from './Elements/BreadcrumbsList/BreadcrumbsList';
 import CategoriesList from './Elements/CategoriesList/CategoriesList';
 
-const Cascader: React.FC<CascaderProps> = ({ rootCategory, disabled }) => {
+const Cascader: React.FC<CascaderProps> = ({ rootCategory, disabled, searchInputPlaceholder }) => {
   const [searchQuery, setSearchQuery] = React.useState<string>('');
   const [activeCategory, setActiveCategory] = React.useState<Category>(rootCategory);
   const [paths, setPaths] = React.useState<Path[] | undefined>([]);
@@ -31,14 +31,12 @@ const Cascader: React.FC<CascaderProps> = ({ rootCategory, disabled }) => {
   }, [rootCategory]);
 
   const onItemSelect = (item: Category): void => {
-    const selected = selectedIds;
     let newSelectedList;
-    const itemAlreadySelected = selected.indexOf(item.id) !== -1;
+    const itemAlreadySelected = selectedIds.indexOf(item.id) !== -1;
     if (!itemAlreadySelected) {
-      selected.push(item.id);
-      newSelectedList = selected;
+      newSelectedList = [...selectedIds, item.id];
     } else {
-      newSelectedList = selected.filter(id => id !== item.id);
+      newSelectedList = selectedIds.filter(id => id !== item.id);
     }
     setSelectedIds([...newSelectedList]);
   };
@@ -99,7 +97,7 @@ const Cascader: React.FC<CascaderProps> = ({ rootCategory, disabled }) => {
             filterPathsBySearchQuery(value);
           }}
           disabled={disabled}
-          placeholder="Placeholder"
+          placeholder={searchInputPlaceholder}
           value={searchQuery}
           iconLeft={<Icon component={<SearchM />} color={theme.palette['grey-600']} />}
         />

@@ -18,26 +18,6 @@ export const searchCategoryWithId = (category: Category, id: string | number): C
   return result;
 };
 
-/*
-export const searchCategoryWithText = (category: object & { path: string[] }, text: string): object | undefined => {
-  if (category.path && category.path.some(p => p.toLowerCase().includes(text.toLowerCase()))) {
-    return category;
-  }
-  let result, property;
-  const keys = Object.keys(category);
-  for (let i = 0; i < keys.length; i += 1) {
-    property = keys[i];
-    if (Object.prototype.hasOwnProperty.call(category, property) && typeof category[property] === 'object') {
-      result = searchCategoryWithText(category[property], text);
-      if (result) {
-        return result;
-      }
-    }
-  }
-  return result;
-};
-*/
-
 export const getAllPaths = (category: Category, resultsArray?: Path[]): Path[] | undefined => {
   let results: Path[] | undefined = resultsArray || [];
   if (category.path && category.path.length > 0) {
