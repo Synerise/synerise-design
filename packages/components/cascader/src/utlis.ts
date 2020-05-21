@@ -1,6 +1,6 @@
-import { Path } from 'Cascader.types';
+import { Category, Path } from 'Cascader.types';
 
-export const searchCategoryWithId = (category: { id: string | number }, id: string | number): object | undefined => {
+export const searchCategoryWithId = (category: Category, id: string | number): Category | undefined => {
   if (category.id === id) {
     return category;
   }
@@ -18,6 +18,7 @@ export const searchCategoryWithId = (category: { id: string | number }, id: stri
   return result;
 };
 
+/*
 export const searchCategoryWithText = (category: object & { path: string[] }, text: string): object | undefined => {
   if (category.path && category.path.some(p => p.toLowerCase().includes(text.toLowerCase()))) {
     return category;
@@ -35,11 +36,9 @@ export const searchCategoryWithText = (category: object & { path: string[] }, te
   }
   return result;
 };
+*/
 
-export const getAllPaths = (
-  category: Path,
-  resultsArray?: Path[]
-): Path[] | undefined => {
+export const getAllPaths = (category: Category, resultsArray?: Path[]): Path[] | undefined => {
   let results: Path[] | undefined = resultsArray || [];
   if (category.path && category.path.length > 0) {
     results.push({ path: category.path, id: category.id });
@@ -54,15 +53,28 @@ export const getAllPaths = (
   }
   return results && results.length > 0 ? results : undefined;
 };
-export const filterPaths = (paths: Path[], searchQuery: string): Path[]=> {
+
+export const filterPaths = (paths: Path[], searchQuery: string): Path[] => {
   const pathsToBeFiltered = [...paths];
-  console.log('Filtering data...',pathsToBeFiltered)
-  console.log('Filtering with...',searchQuery)
   const filtered = pathsToBeFiltered.filter(p => {
     const productPath = p.path;
-    const lastElementOfPath = productPath[productPath.length-1];
+    const lastElementOfPath = productPath[productPath.length - 1];
     return productPath && lastElementOfPath && lastElementOfPath.toLowerCase().includes(searchQuery);
   });
-  console.log(filtered);
   return filtered;
+};
+export const hasNestedCategories = (category: Category): boolean => {
+  let property;
+  const keys = Object.keys(category);
+  for (let i = 0; i < keys.length; i += 1) {
+    property = keys[i];
+    if (
+      Object.prototype.hasOwnProperty.call(category, property) &&
+      typeof category[property] === 'object' &&
+      Object.prototype.toString.call(category[property]) === '[object Object]'
+    ) {
+      return true;
+    }
+  }
+  return false;
 };

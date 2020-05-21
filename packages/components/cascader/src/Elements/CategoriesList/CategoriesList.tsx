@@ -3,16 +3,20 @@ import Menu from '@synerise/ds-menu';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { CheckS } from '@synerise/ds-icon/dist/icons';
 import Icon from '@synerise/ds-icon';
+import styled from 'styled-components';
 import { Category } from '../../Cascader.types';
 
 export interface CategoriesListProps {
   title?: string;
   tooltip?: string;
   rootCategory: Category;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onCategoryClick: (item: any) => void;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onSuffixelClick: (item: any) => void;
   selectedIds: Array<number | string>;
 }
+const CategoriesSuffix = styled.div``;
 
 const CategoriesList: React.FC<CategoriesListProps> = ({
   title,
@@ -36,13 +40,13 @@ const CategoriesList: React.FC<CategoriesListProps> = ({
     [onSuffixelClick]
   );
   const renderSuffix = (item: Category): React.ReactNode => (
-    <div onClick={(e: React.MouseEvent<HTMLDivElement>): void => onSuffixelClickHandler(item, e)}>
+    <CategoriesSuffix onClick={(e: React.MouseEvent<HTMLDivElement>): void => onSuffixelClickHandler(item, e)}>
       {selectedIds.includes(item.id) ? <Icon color={theme.palette['green-600']} component={<CheckS />} /> : 'select'}
-    </div>
+    </CategoriesSuffix>
   );
 
   return (
-    <React.Fragment>
+    <>
       {title && <Menu.Header headerText={title} tooltip={tooltip} />}
       {Object.keys(rootCategory)
         .filter(key => rootCategory[key]?.name)
@@ -60,7 +64,7 @@ const CategoriesList: React.FC<CategoriesListProps> = ({
             );
           }
         )}
-    </React.Fragment>
+    </>
   );
 };
 export default CategoriesList;

@@ -6,14 +6,13 @@ import { escapeRegEx } from '@synerise/ds-utils';
 import * as S from './Breadcrumb.styles';
 import { MenuItemProps } from '../Item/MenuItem.types';
 
-
 export interface BreadcrumbProps {
   prefixel?: React.ReactNode;
   disabled?: boolean;
   path: string[];
   highlight?: string;
   description?: string | React.ReactNode;
-  onPathClick?: (path: string) => void;
+  onPathClick?: (path: string | { id: number | string }) => void;
   compact?: boolean;
   startWithArrow?: boolean;
   gradientOverlap?: boolean;
@@ -33,6 +32,7 @@ const Breadcrumb: React.FC<BreadcrumbProps & MenuItemProps> = ({
   const { prefixel } = rest;
   const breadcrumbsArray = [...path];
   const pathToDisplay: typeof path = compact ? breadcrumbsArray.reverse() : breadcrumbsArray;
+
   const renderWithHighlighting = React.useCallback(
     (name: string | React.ReactNode): React.ReactNode => {
       if (highlight && typeof name === 'string') {
@@ -70,12 +70,11 @@ const Breadcrumb: React.FC<BreadcrumbProps & MenuItemProps> = ({
   const shouldHaveArrowPlaceholder = (index: number): boolean => {
     if (compact) {
       return startWithArrow || (index < path.length - 1 && path.length > 1);
-    } else {
-      return startWithArrow || path.length > 1 || index > 0;
     }
+    return startWithArrow || path.length > 1 || index > 0;
   };
   return (
-    <S.Breadcrumb className="ds-breadcrumb" disabled={disabled} compact={compact} {...rest}>
+    <S.Breadcrumb className="ds-breadcrumb" disabled={disabled} compact={compact} onPathClick={onPathClick} {...rest}>
       {!!description && <S.Description>{renderWithHighlighting(description)}</S.Description>}
       <S.ContentWrapper gradientOverlap={gradientOverlap}>
         <S.BreadcrumbContent className="breadcrumb-content" prefixel={!!prefixel}>
@@ -91,7 +90,7 @@ const Breadcrumb: React.FC<BreadcrumbProps & MenuItemProps> = ({
                 {renderWithHighlighting(item)}
               </S.BreadcrumbName>
               {shouldHaveArrowPlaceholder(index) && (
-                <S.ArrowRight className={'ds-arrow'} visible={shouldRenderArrow(path, index)}>
+                <S.ArrowRight className="ds-arrow" visible={shouldRenderArrow(path, index)}>
                   <Icon component={<AngleRightS />} color={theme.palette['grey-600']} />
                 </S.ArrowRight>
               )}

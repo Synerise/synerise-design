@@ -1,9 +1,17 @@
 import styled from 'styled-components';
 import * as React from 'react';
+import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import Text from '../Item/Text/Text';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 const NOOP = (): void => {};
+
+export const disableDefaultClickingStyles = (props: ThemeProps): string => `
+  &, &:focus, &:hover {
+    background: ${props.theme.palette.white} !important;
+    box-shadow: inset 0 0 0 2px transparent !important;
+  } 
+`;
 
 export const ArrowRight = styled.div<{ visible: boolean }>`
   transition: opacity 0.3s ease;
@@ -11,10 +19,10 @@ export const ArrowRight = styled.div<{ visible: boolean }>`
 `;
 
 export const BreadcrumbContent = styled.div<{ prefixel?: boolean }>`
-  ${(props): string | false => !!props.prefixel && `transform: translateX(-8px);`}
   display: flex;
 `;
 export const Description = styled.div`
+  direction: ltr;
   width: 100%;
   font-weight: 400;
   color: ${(props): string => props.theme.palette['grey-600']};
@@ -56,6 +64,7 @@ export const ContentWrapper = styled.div<{ gradientOverlap?: boolean }>`
   }
 `;
 export const BreadcrumbName = styled.div`
+  direction: ltr;
   font-weight: 400;
   color: ${(props): string => props.theme.palette['grey-600']};
   .search-highlight {
@@ -63,7 +72,7 @@ export const BreadcrumbName = styled.div`
   }
 `;
 
-export const Breadcrumb = styled(({ children, disabled, compact, ...rest }) => (
+export const Breadcrumb = styled(({ children, disabled, onPathClick, compact, ...rest }) => (
   // eslint-disable-next-line react/jsx-props-no-spreading
   <Text disabled={disabled} onItemHover={NOOP} onClick={NOOP} {...rest}>
     {children}
@@ -73,9 +82,6 @@ export const Breadcrumb = styled(({ children, disabled, compact, ...rest }) => (
   ${BreadcrumbContent} {
     direction: ${(props): string => (props.compact ? 'rtl' : 'ltr')};
     flex-wrap: ${(props): string => (props.compact ? 'no-wrap' : 'wrap')};
-  }
-  .ds-arrow:first-child > div {
-    background: red !important;
   }
   &:hover {
     ${ArrowRight} > .ds-icon > svg {
@@ -99,6 +105,7 @@ export const Breadcrumb = styled(({ children, disabled, compact, ...rest }) => (
   )`};
     }
   }
+  ${(props): string | false => !!props.onPathClick &&  disableDefaultClickingStyles(props)}
 `;
 
 export const BreadcrumbRoute = styled.div`

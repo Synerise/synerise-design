@@ -10,11 +10,10 @@ const decorator = storyFn => (
 
 const stories = {
   default: () => {
-    const routes = mock.default;
+    const root = mock.default;
     return (
       <Cascader
-        itemsTitle={'Items'}
-        categories={routes}
+        rootCategory={root}
       />
     );
   },

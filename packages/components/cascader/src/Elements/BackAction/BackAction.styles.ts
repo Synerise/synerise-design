@@ -31,7 +31,7 @@ export const BackActionWrapper = styled.div`
 `;
 
 export const ContentWrapper = styled.div`
-  padding: 14px 0;
+  padding: 8px 0;
   display: flex;
   align-items: center;
   cursor: pointer;

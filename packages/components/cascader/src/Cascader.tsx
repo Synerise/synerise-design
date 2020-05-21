@@ -7,54 +7,30 @@ import { HomeM } from '@synerise/ds-icon/dist/icons';
 import SearchM from '@synerise/ds-icon/dist/icons/SearchM';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { MenuItemProps } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.types';
+import Divider from '@synerise/ds-divider';
 import BackAction from './Elements/BackAction/BackAction';
 import * as S from './Cascader.styles';
-import { filterPaths, getAllPaths, searchCategoryWithId } from './utlis';
+import { filterPaths, getAllPaths, hasNestedCategories, searchCategoryWithId } from './utlis';
 import BreadcrumbsList from './Elements/BreadcrumbsList/BreadcrumbsList';
 import CategoriesList from './Elements/CategoriesList/CategoriesList';
 
-// eslint-disable-next-line @typescript-eslint/no-empty-function
-const NOOP = (): void => {};
-
-const Cascader: React.FC<CascaderProps> = ({ categories, disabled }) => {
+const Cascader: React.FC<CascaderProps> = ({ rootCategory, disabled }) => {
   const [searchQuery, setSearchQuery] = React.useState<string>('');
-  const [activeCategory, setActiveCategory] = React.useState<Category>(categories);
+  const [activeCategory, setActiveCategory] = React.useState<Category>(rootCategory);
   const [paths, setPaths] = React.useState<Path[] | undefined>([]);
   const [filteredPaths, setFilteredPaths] = React.useState<Path[] | undefined>([]);
   const [enteredCategories, setEnteredCategories] = React.useState<Category[]>([]);
   const [selectedIds, setSelectedIds] = React.useState<Array<string | number>>([]);
 
   const previousCategory = enteredCategories[enteredCategories.length - 2];
+  const isSearching = !!paths && searchQuery.length > 0;
 
   React.useEffect(() => {
-    const allPaths = getAllPaths(categories, []);
+    const allPaths = getAllPaths(rootCategory, []);
     setPaths(allPaths);
-  }, []);
+  }, [rootCategory]);
 
-  const onCategoryClick = React.useCallback(
-    (category: Category) => {
-      const entered = { id: category.id, name: category.name, path: category.path };
-      const updatedEnteredCategories = [...enteredCategories, entered];
-      setActiveCategory(category);
-      setEnteredCategories(updatedEnteredCategories);
-    },
-    [enteredCategories]
-  );
-
-  const onPathClick = React.useCallback(
-    item => {
-      const chosenCategory = enteredCategories.find(enteredCategory => enteredCategory.name === item);
-      let updatedEnteredCategories;
-      if (chosenCategory) {
-        updatedEnteredCategories = enteredCategories.slice(0, enteredCategories.indexOf(chosenCategory));
-      }
-      setActiveCategory(searchCategoryWithId(categories, chosenCategory.id));
-      setEnteredCategories(updatedEnteredCategories || []);
-    },
-    [categories, enteredCategories]
-  );
-
-  const onItemSelect = (item: Category) => {
+  const onItemSelect = (item: Category): void => {
     const selected = selectedIds;
     let newSelectedList;
     const itemAlreadySelected = selected.indexOf(item.id) !== -1;
@@ -66,13 +42,43 @@ const Cascader: React.FC<CascaderProps> = ({ categories, disabled }) => {
     }
     setSelectedIds([...newSelectedList]);
   };
-  const onBackActionClick = React.useCallback((): void => {
-    setActiveCategory(searchCategoryWithId(categories, previousCategory.id) as Category);
-  }, [enteredCategories, categories, previousCategory]);
+
+  const onCategoryClick = (category: Category): void => {
+    const entered = { id: category.id, name: category.name, path: category.path };
+    const updatedEnteredCategories = [...enteredCategories, entered];
+    const hasMoreCategories = hasNestedCategories(category);
+    if (hasMoreCategories) {
+      setActiveCategory(category);
+      setEnteredCategories(updatedEnteredCategories);
+    } else {
+      onItemSelect(category);
+    }
+  };
+
+  const onPathClick = React.useCallback(
+    item => {
+      const chosenCategory = enteredCategories.find(enteredCategory => enteredCategory.name === item);
+      let updatedEnteredCategories;
+      if (chosenCategory) {
+        updatedEnteredCategories = enteredCategories.slice(0, enteredCategories.indexOf(chosenCategory) + 1);
+      }
+      if (chosenCategory?.id) {
+        const nextActiveCategory = searchCategoryWithId(rootCategory, chosenCategory.id);
+        if (nextActiveCategory) {
+          setActiveCategory(nextActiveCategory);
+        }
+      } else {
+        setActiveCategory(rootCategory);
+      }
+      setEnteredCategories(updatedEnteredCategories || []);
+    },
+    [rootCategory, enteredCategories]
+  );
 
   const onHomeIconClick = React.useCallback(() => {
-    setActiveCategory(categories);
-  }, [categories]);
+    setActiveCategory(rootCategory);
+    setEnteredCategories([]);
+  }, [rootCategory]);
 
   const filterPathsBySearchQuery = React.useCallback(
     (value: string) => {
@@ -81,7 +87,7 @@ const Cascader: React.FC<CascaderProps> = ({ categories, disabled }) => {
         setFilteredPaths(filtered);
       } else setFilteredPaths([]);
     },
-    [searchQuery, paths]
+    [paths]
   );
 
   return (
@@ -90,7 +96,7 @@ const Cascader: React.FC<CascaderProps> = ({ categories, disabled }) => {
         <SearchBar
           onSearchChange={(value: string): void => {
             setSearchQuery(value);
-            filterPathsBySearchQuery(value.toLowerCase());
+            filterPathsBySearchQuery(value);
           }}
           disabled={disabled}
           placeholder="Placeholder"
@@ -98,9 +104,9 @@ const Cascader: React.FC<CascaderProps> = ({ categories, disabled }) => {
           iconLeft={<Icon component={<SearchM />} color={theme.palette['grey-600']} />}
         />
       </S.InputWrapper>
-      <S.Dropdown visible>
+      <S.Dropdown visible searching={isSearching}>
         <Menu>
-          {!!paths && searchQuery.length > 0 && filteredPaths && filteredPaths?.length > 0 && (
+          {isSearching && filteredPaths && (
             <BreadcrumbsList
               paths={filteredPaths}
               highlight={searchQuery}
@@ -110,23 +116,32 @@ const Cascader: React.FC<CascaderProps> = ({ categories, disabled }) => {
             />
           )}
           {!searchQuery && activeCategory.path && (
-            <Menu.Breadcrumb
-              // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-              // @ts-ignore
-              path={activeCategory.path}
-              onPathClick={onPathClick}
-              startWithArrow
-              gradientOverlap={activeCategory.path.length>1}
-              compact
-              prefixel={
-                <S.BreadcrumbPrefix onClick={onHomeIconClick}>
-                  <Icon component={<HomeM />} />
-                </S.BreadcrumbPrefix>
-              }
-            />
+            <>
+              <Menu.Breadcrumb
+                // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+                // @ts-ignore
+                path={activeCategory.path}
+                onPathClick={onPathClick}
+                startWithArrow
+                gradientOverlap={activeCategory.path.length > 1}
+                prefixel={
+                  <S.BreadcrumbPrefix onClick={onHomeIconClick}>
+                    <Icon component={<HomeM />} />
+                  </S.BreadcrumbPrefix>
+                }
+              />
+              <S.DividerContainer>
+                <Divider dashed />
+              </S.DividerContainer>
+            </>
           )}
           {!searchQuery && previousCategory && previousCategory.name && enteredCategories.length > 1 && (
-            <BackAction label={previousCategory.name} onClick={onBackActionClick} />
+            <BackAction
+              label={previousCategory.name}
+              onClick={(): void => {
+                onPathClick(previousCategory.name);
+              }}
+            />
           )}
           {!searchQuery && (
             <CategoriesList

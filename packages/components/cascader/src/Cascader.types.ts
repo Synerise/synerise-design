@@ -11,7 +11,7 @@ export interface CascaderProps {
   itemsTitle?: string;
   itemsTooltip?: string;
   onItemClick?: (item: MenuItemProps) => void;
-  categories: Category;
+  rootCategory: Category;
 }
 export interface Path {
   id: number | string;
