@@ -5,6 +5,7 @@ import { boolean, select } from '@storybook/addon-knobs';
 import Table from '@synerise/ds-table';
 import { COLUMNS } from './content/withFixedColumns.data';
 import { withState } from '@dump247/storybook-state';
+import { Column } from '@synerise/ds-column-manager/dist/ColumnManagerItem/ColumManagerIte.types';
 
 const decorator = (storyFn) => (
   <div style={{ padding: 20, width: '100vw', minWidth: '100%' }}>

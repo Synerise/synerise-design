@@ -1,6 +1,6 @@
 import { TableProps } from 'antd/lib/table';
 import * as React from 'react';
-import { SELECTION_ALL, SELECTION_INVERT } from './Table';
+import DSTable from './Table';
 
 export type AntTableProps<T> = Omit<TableProps<T>, 'title' | 'subTitle' | 'onSearch' | 'itemsMenu' | 'search'>;
 
@@ -10,7 +10,7 @@ export type Selection = {
   onClick: () => void;
 };
 
-export type SelectionItem = typeof SELECTION_ALL | typeof SELECTION_INVERT | Selection;
+export type SelectionItem = typeof DSTable.SELECTION_ALL | typeof DSTable.SELECTION_INVERT | Selection;
 
 export interface RowSelection<T> {
   fixed?: boolean;

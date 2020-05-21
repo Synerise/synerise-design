@@ -45,6 +45,7 @@ const stories = {
         {
           dataIndex: 'children',
           key: 'children',
+          width: 72,
           render: (children, record) => {
             if(children !== undefined) {
               return (
