@@ -15,6 +15,8 @@ const stories = {
       <Cascader
         rootCategory={root}
         searchInputPlaceholder={'Search'}
+        categorySuffix={'select'}
+        onPathSelect={(item,selected)=>{console.log('Category clicked:',item,'Selected:',selected)}}
       />
     );
   },

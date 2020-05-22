@@ -105,11 +105,14 @@ export const Breadcrumb = styled(({ children, disabled, onPathClick, compact, ..
   )`};
     }
   }
-  ${(props): string | false => !!props.onPathClick &&  disableDefaultClickingStyles(props)}
+  ${(props): string | false => !!props.onPathClick && disableDefaultClickingStyles(props)}
 `;
 
 export const BreadcrumbRoute = styled.div`
   display: flex;
   padding-top:
   height: 18px;
+  .active{
+    font-weight: 500;
+  }
 `;
