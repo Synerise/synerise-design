@@ -130,7 +130,7 @@ const Cascader: React.FC<CascaderProps> = ({
         />
       </S.InputWrapper>
       <S.Dropdown
-        visible={!isSearching || filteredPaths?.length > 0}
+        visible={!isSearching || (filteredPaths && filteredPaths?.length > 0)}
         searching={isSearching}
         ref={dropdownRef as React.RefObject<HTMLDivElement>}
         style={dropdownStyle}
