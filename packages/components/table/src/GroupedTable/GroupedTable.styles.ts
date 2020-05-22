@@ -33,5 +33,5 @@ export const GroupValue = styled.div`
 
 export const SubRow = styled.td<{ selected?: boolean }>`
   background-color: ${(props): string =>
-    props.selected ? props.theme.palette['yellow-050'] : props.theme.palette['grey-050']} !important;
+    props.selected ? 'rgb(250, 248, 234)' : props.theme.palette['grey-050']} !important;
 `;

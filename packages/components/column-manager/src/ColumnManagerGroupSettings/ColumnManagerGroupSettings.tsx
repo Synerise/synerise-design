@@ -7,7 +7,7 @@ import Tooltip from '@synerise/ds-tooltip';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import Button from '@synerise/ds-button';
 import InputNumber from '@synerise/ds-input-number';
-import { GroupSettings } from '../ColumnManager.types';
+import { GroupSettings, GroupType } from '../ColumnManager.types';
 import { Column } from '../ColumnManagerItem/ColumManagerIte.types';
 import * as S from './ColumnManangerGroupSettings.styles';
 import RangesForm from './RangesForm/RangesForm';
@@ -37,7 +37,7 @@ const EMPTY_RANGE = {
 };
 
 const ColumnManagerGroupSettings: React.FC<Props> = ({ hide, visible, column, onOk }: Props) => {
-  const [groupBy, setGroupBy] = React.useState<string | undefined>(undefined);
+  const [groupBy, setGroupBy] = React.useState<GroupType | undefined>(undefined);
   const [ranges, setRanges] = React.useState<Range[]>([]);
   const [interval, setIntervalValue] = React.useState<number | undefined>(undefined);
 
@@ -47,10 +47,9 @@ const ColumnManagerGroupSettings: React.FC<Props> = ({ hide, visible, column, on
       settings: {
         type: groupBy,
         ranges: groupBy === GROUP_BY.ranges && ranges,
-        interval: groupBy === GROUP_BY.interval && interval,
+        interval: groupBy === GROUP_BY.interval && (interval as number),
       },
     };
-    console.log(settings);
     onOk(settings);
   }, [onOk, column, groupBy, ranges, interval]);
 
@@ -100,6 +99,8 @@ const ColumnManagerGroupSettings: React.FC<Props> = ({ hide, visible, column, on
   return (
     <Modal onCancel={hide} visible={visible} onOk={handleOk} size="small" title="Table content group">
       <S.ModalContent>
+        {/*
+        // @ts-ignore */}
         <Select label={selectLabel} value={groupBy} onChange={(value): void => setGroupBy(value)} placeholder="Select">
           <Select.Option value={GROUP_BY.value}>Group by value</Select.Option>
           <Select.Option value={GROUP_BY.ranges}>Group by ranges</Select.Option>

@@ -2,6 +2,7 @@ import { ItemFilterProps } from '@synerise/ds-item-filter/dist/ItemFilter';
 import * as React from 'react';
 import { IntlFormatters } from 'react-intl';
 import { Column } from './ColumnManagerItem/ColumManagerIte.types';
+import { Range } from './ColumnManagerGroupSettings/ColumnManagerGroupSettings';
 
 export type Texts =
   | 'title'
@@ -51,10 +52,14 @@ export type ViewMeta = {
   description: string;
 };
 
+export type GroupType = 'value' | 'ranges' | 'interval' | undefined;
+
 export type GroupSettings = {
   column?: Column;
   settings: {
-    [key: string]: object | React.ReactText;
+    type: GroupType;
+    ranges: Range[] | false;
+    interval: number | false;
   };
 };
 
