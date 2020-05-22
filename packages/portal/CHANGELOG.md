@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.65.0](https://github.com/synerise/synerise-design/compare/portal@0.64.2...portal@0.65.0) (2020-05-22)
+
+
+### Bug Fixes
+
+* **card:** removed redundant event listener from props ([2e2ff1c](https://github.com/synerise/synerise-design/commit/2e2ff1c8170166a2d328a4c2631faaddd01d6820))
+* **cascader:** added data to story ([d7485ed](https://github.com/synerise/synerise-design/commit/d7485ed67178ed60e634f83eef7eec14d3387413))
+* **cascader:** fixing navigation ([5e05e04](https://github.com/synerise/synerise-design/commit/5e05e040195ac1d8ac6a1ed5dc9d25a00669e483))
+* **cascader:** improved searching of the routes ([17f2ffe](https://github.com/synerise/synerise-design/commit/17f2ffe61ab12dab353f409b44e8250bedcf7ac2))
+* **cascader:** next changes after review ([826a4d1](https://github.com/synerise/synerise-design/commit/826a4d15052bc0b497c78ef2bb249a6363198f3c))
+* **menu:** breadcrumb gradient overlay ([c06c150](https://github.com/synerise/synerise-design/commit/c06c150891408c498263818839d8166f99a285e4))
+* **portal:** cleanup stories ([d9d0cc7](https://github.com/synerise/synerise-design/commit/d9d0cc7b94f8708679ec1787a6b91c96321ba1f0))
+* **table:** fix min column width, fix table prop types ([0d5a3b3](https://github.com/synerise/synerise-design/commit/0d5a3b34470e49cab1b6b14b9531d1d5c9f93ec8))
+* **table:** fix types ([5db086e](https://github.com/synerise/synerise-design/commit/5db086e08e4b7ad67f42c20e75c3b3a9fd4ccacb))
+* **utils:** added utils for handling double click ([9129c5d](https://github.com/synerise/synerise-design/commit/9129c5d9b6898a4a9ad9de9251f0911437ff94f8))
+
+
+### Features
+
+* **cascader:** added cascader component ([e0fd82e](https://github.com/synerise/synerise-design/commit/e0fd82e7f81172951e95d3cbe821f590b62254c0))
+* **cascader:** added handling of categories datatype ([342ce5a](https://github.com/synerise/synerise-design/commit/342ce5a4f9d04ae8b3d11704b5603ab5a4902539))
+
+
+
+
+
 ## [0.64.2](https://github.com/synerise/synerise-design/compare/portal@0.64.1...portal@0.64.2) (2020-05-18)
 
 

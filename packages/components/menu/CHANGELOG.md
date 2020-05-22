@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.4.2...@synerise/ds-menu@0.5.0) (2020-05-22)
+
+
+### Bug Fixes
+
+* **cascader:** fixed types and added navigation ([2bbe3da](https://github.com/Synerise/synerise-design/commit/2bbe3da374ada80b0f5ec8a94f7c3aa6b9610d72))
+* **cascader:** fixing navigation ([5e05e04](https://github.com/Synerise/synerise-design/commit/5e05e040195ac1d8ac6a1ed5dc9d25a00669e483))
+* **cascader:** improved searching of the routes ([17f2ffe](https://github.com/Synerise/synerise-design/commit/17f2ffe61ab12dab353f409b44e8250bedcf7ac2))
+* **menu:** breadcrumb gradient overlay ([c06c150](https://github.com/Synerise/synerise-design/commit/c06c150891408c498263818839d8166f99a285e4))
+
+
+### Features
+
+* **cascader:** added handling of categories datatype ([342ce5a](https://github.com/Synerise/synerise-design/commit/342ce5a4f9d04ae8b3d11704b5603ab5a4902539))
+
+
+
+
+
 ## [0.4.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.4.1...@synerise/ds-menu@0.4.2) (2020-05-19)
 
 **Note:** Version bump only for package @synerise/ds-menu

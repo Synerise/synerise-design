@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.13](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.10.12...@synerise/ds-table@0.10.13) (2020-05-22)
+
+
+### Bug Fixes
+
+* **table:** fix min column width, fix table prop types ([0d5a3b3](https://github.com/synerise/synerise-design/commit/0d5a3b34470e49cab1b6b14b9531d1d5c9f93ec8))
+* **table:** fix types ([5db086e](https://github.com/synerise/synerise-design/commit/5db086e08e4b7ad67f42c20e75c3b3a9fd4ccacb))
+
+
+
+
+
 ## [0.10.12](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.10.11...@synerise/ds-table@0.10.12) (2020-05-19)
 
 

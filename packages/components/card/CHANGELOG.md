@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.19](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.4.18...@synerise/ds-card@0.4.19) (2020-05-22)
+
+
+### Bug Fixes
+
+* **card:** fixed styles ([33229ec](https://github.com/Synerise/synerise-design/commit/33229ec2ef72164298f554ac2ddc3277942ccfff))
+* **card:** removed redundant event listener from props ([2e2ff1c](https://github.com/Synerise/synerise-design/commit/2e2ff1c8170166a2d328a4c2631faaddd01d6820))
+* **utils:** added utils for handling double click ([9129c5d](https://github.com/Synerise/synerise-design/commit/9129c5d9b6898a4a9ad9de9251f0911437ff94f8))
+
+
+
+
+
 ## [0.4.18](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.4.17...@synerise/ds-card@0.4.18) (2020-05-19)
 
 **Note:** Version bump only for package @synerise/ds-card

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.23](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@0.8.22...@synerise/ds-utils@0.8.23) (2020-05-22)
+
+
+### Bug Fixes
+
+* **utils:** added tests ([c596293](https://github.com/synerise/synerise-design/commit/c5962934ba05848d0427ab74ec10693753063497))
+* **utils:** added utils for handling double click ([9129c5d](https://github.com/synerise/synerise-design/commit/9129c5d9b6898a4a9ad9de9251f0911437ff94f8))
+
+
+
+
+
 ## [0.8.22](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@0.8.21...@synerise/ds-utils@0.8.22) (2020-05-08)
 
 **Note:** Version bump only for package @synerise/ds-utils
