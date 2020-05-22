@@ -54,7 +54,7 @@ export type ViewMeta = {
 export type GroupSettings = {
   column?: Column;
   settings: {
-    [key: string]: object;
+    [key: string]: object | React.ReactText;
   };
 };
 
