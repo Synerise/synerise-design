@@ -16,6 +16,7 @@ export interface BreadcrumbProps {
   compact?: boolean;
   startWithArrow?: boolean;
   gradientOverlap?: boolean;
+  highlightActivePath?: boolean;
 }
 
 const Breadcrumb: React.FC<BreadcrumbProps & MenuItemProps> = ({
@@ -27,6 +28,7 @@ const Breadcrumb: React.FC<BreadcrumbProps & MenuItemProps> = ({
   compact,
   startWithArrow,
   gradientOverlap,
+  highlightActivePath,
   ...rest
 }) => {
   const { prefixel } = rest;
@@ -57,6 +59,12 @@ const Breadcrumb: React.FC<BreadcrumbProps & MenuItemProps> = ({
     [highlight]
   );
 
+  const attachActiveClassName = React.useCallback(
+    (index: number): string => {
+      return !!highlightActivePath && index === 0 ? 'active' : '';
+    },
+    [highlightActivePath]
+  );
   const shouldRenderArrow = (breadCrumbPath: string[], index: number): boolean => {
     if (!breadCrumbPath || !breadCrumbPath.length) {
       return false;
@@ -82,7 +90,7 @@ const Breadcrumb: React.FC<BreadcrumbProps & MenuItemProps> = ({
             // eslint-disable-next-line react/no-array-index-key
             <S.BreadcrumbRoute className="route" key={`${item}-${index}`}>
               <S.BreadcrumbName
-                className="ds-breadcrumb-name"
+                className={`ds-breadcrumb-name ${attachActiveClassName(index)}`}
                 onClick={(): void => {
                   onPathClick && onPathClick(item);
                 }}

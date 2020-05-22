@@ -6,15 +6,27 @@ import Icon from '@synerise/ds-icon';
 import { HomeM } from '@synerise/ds-icon/dist/icons';
 import SearchM from '@synerise/ds-icon/dist/icons/SearchM';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
-import { MenuItemProps } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.types';
 import Divider from '@synerise/ds-divider';
+import { useResize } from '@synerise/ds-utils';
 import BackAction from './Elements/BackAction/BackAction';
 import * as S from './Cascader.styles';
 import { filterPaths, getAllPaths, hasNestedCategories, searchCategoryWithId } from './utlis';
 import BreadcrumbsList from './Elements/BreadcrumbsList/BreadcrumbsList';
 import CategoriesList from './Elements/CategoriesList/CategoriesList';
 
-const Cascader: React.FC<CascaderProps> = ({ rootCategory, disabled, searchInputPlaceholder }) => {
+const DROPDOWN_WIDTH_OFFSET = 18;
+const DROPDOWN_HEIGHT_OFFSET = 8;
+const BREADCRUMB_ITEM_HEIGHT = 50;
+
+const Cascader: React.FC<CascaderProps> = ({
+  rootCategory,
+  disabled,
+  searchClearTooltip,
+  searchInputPlaceholder,
+  dropdownStyle,
+  onPathSelect,
+  categorySuffix,
+}) => {
   const [searchQuery, setSearchQuery] = React.useState<string>('');
   const [activeCategory, setActiveCategory] = React.useState<Category>(rootCategory);
   const [paths, setPaths] = React.useState<Path[] | undefined>([]);
@@ -22,8 +34,19 @@ const Cascader: React.FC<CascaderProps> = ({ rootCategory, disabled, searchInput
   const [enteredCategories, setEnteredCategories] = React.useState<Category[]>([]);
   const [selectedIds, setSelectedIds] = React.useState<React.ReactText[]>([]);
 
+  const dropdownRef = React.useRef<HTMLDivElement>();
+  const { width, height } = useResize(dropdownRef);
+
   const previousCategory = enteredCategories[enteredCategories.length - 2];
   const isSearching = !!paths && searchQuery.length > 0;
+
+  const calculateWidth = React.useMemo(() => {
+    return width - DROPDOWN_WIDTH_OFFSET;
+  }, [width]);
+
+  const calculateVisibleRows = React.useMemo(() => {
+    return Math.floor((height - DROPDOWN_HEIGHT_OFFSET) / 50);
+  }, [height]);
 
   React.useEffect(() => {
     const allPaths = getAllPaths(rootCategory, []);
@@ -35,8 +58,10 @@ const Cascader: React.FC<CascaderProps> = ({ rootCategory, disabled, searchInput
     const itemAlreadySelected = selectedIds.indexOf(item.id) !== -1;
     if (!itemAlreadySelected) {
       newSelectedList = [...selectedIds, item.id];
+      onPathSelect && onPathSelect(item, true);
     } else {
       newSelectedList = selectedIds.filter(id => id !== item.id);
+      onPathSelect && onPathSelect(item, false);
     }
     setSelectedIds([...newSelectedList]);
   };
@@ -100,15 +125,25 @@ const Cascader: React.FC<CascaderProps> = ({ rootCategory, disabled, searchInput
           placeholder={searchInputPlaceholder}
           value={searchQuery}
           iconLeft={<Icon component={<SearchM />} color={theme.palette['grey-600']} />}
+          onClearInput={(): void => setSearchQuery('')}
+          clearTooltip={searchClearTooltip}
         />
       </S.InputWrapper>
-      <S.Dropdown visible searching={isSearching}>
+      <S.Dropdown
+        visible={!isSearching || filteredPaths?.length > 0}
+        searching={isSearching}
+        ref={dropdownRef as React.RefObject<HTMLDivElement>}
+        style={dropdownStyle}
+      >
         <Menu>
           {isSearching && filteredPaths && (
             <BreadcrumbsList
+              width={calculateWidth}
+              visibleRows={calculateVisibleRows}
+              rowHeight={BREADCRUMB_ITEM_HEIGHT}
               paths={filteredPaths}
               highlight={searchQuery}
-              onBreadCrumbClick={(breadcrumb: Path | MenuItemProps): void => {
+              onBreadCrumbClick={(breadcrumb: Path): void => {
                 onItemSelect(breadcrumb as Category);
               }}
             />
@@ -116,17 +151,16 @@ const Cascader: React.FC<CascaderProps> = ({ rootCategory, disabled, searchInput
           {!searchQuery && activeCategory.path && (
             <>
               <Menu.Breadcrumb
-                // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-                // @ts-ignore
                 path={activeCategory.path}
                 onPathClick={onPathClick}
-                startWithArrow
                 gradientOverlap={activeCategory.path.length > 1}
+                highlightActivePath
                 prefixel={
                   <S.BreadcrumbPrefix onClick={onHomeIconClick}>
                     <Icon component={<HomeM />} />
                   </S.BreadcrumbPrefix>
                 }
+                compact
               />
               <S.DividerContainer>
                 <Divider dashed />
@@ -145,6 +179,7 @@ const Cascader: React.FC<CascaderProps> = ({ rootCategory, disabled, searchInput
             <CategoriesList
               rootCategory={activeCategory}
               onCategoryClick={onCategoryClick}
+              suffixel={categorySuffix}
               onSuffixelClick={onItemSelect}
               selectedIds={selectedIds}
             />

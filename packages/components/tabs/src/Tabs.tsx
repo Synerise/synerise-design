@@ -5,9 +5,9 @@ import Icon from '@synerise/ds-icon';
 import FileM from '@synerise/ds-icon/dist/icons/FileM';
 import Button from '@synerise/ds-button';
 import OptionHorizontalM from '@synerise/ds-icon/dist/icons/OptionHorizontalM';
+import { useResize } from '@synerise/ds-utils';
 import * as S from './Tabs.styles';
 import Tab from './Tab/Tab';
-import useResize from './utils/useResize';
 
 export type TabsProps = {
   activeTab: number;
@@ -177,9 +177,7 @@ const Tabs: React.FC<TabsProps> = ({ activeTab, tabs, handleTabClick, configurat
     <>
       <S.TabsContainer
         className="ds-tabs"
-        /* eslint-disable-next-line @typescript-eslint/ban-ts-ignore */
-        // @ts-ignore
-        ref={containerRef}
+        ref={containerRef as React.RefObject<HTMLDivElement>}
         data-testid="tabs-container"
       >
         {renderVisibleTabs}

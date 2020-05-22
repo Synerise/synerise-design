@@ -5,3 +5,4 @@ export { default as selectColorByLetter } from './selectColorByLetter/selectColo
 export { default as focusWithArrowKeys } from './focusWithArrowKeys/focusWithArrowKeys';
 export { default as escapeRegEx } from './regex/regex';
 export { default as doubleClickListener } from './doubleClickListener/doubleClickListener';
+export { default as useResize } from './useResize/useResize';

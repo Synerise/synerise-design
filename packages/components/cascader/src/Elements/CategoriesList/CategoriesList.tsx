@@ -7,22 +7,18 @@ import styled from 'styled-components';
 import { Category } from '../../Cascader.types';
 
 export interface CategoriesListProps {
-  title?: string;
-  tooltip?: string;
   rootCategory: Category;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  onCategoryClick: (item: any) => void;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  onSuffixelClick: (item: any) => void;
+  onCategoryClick: (item: Category) => void;
+  suffixel: React.ReactNode | string;
+  onSuffixelClick: (item: Category) => void;
   selectedIds: React.ReactText[];
 }
 const CategoriesSuffix = styled.div``;
 
 const CategoriesList: React.FC<CategoriesListProps> = ({
-  title,
-  tooltip,
   rootCategory,
   onCategoryClick,
+  suffixel,
   onSuffixelClick,
   selectedIds,
 }) => {
@@ -41,13 +37,12 @@ const CategoriesList: React.FC<CategoriesListProps> = ({
   );
   const renderSuffix = (item: Category): React.ReactNode => (
     <CategoriesSuffix onClick={(e: React.MouseEvent<HTMLDivElement>): void => onSuffixelClickHandler(item, e)}>
-      {selectedIds.includes(item.id) ? <Icon color={theme.palette['green-600']} component={<CheckS />} /> : 'select'}
+      {selectedIds.includes(item.id) ? <Icon color={theme.palette['green-600']} component={<CheckS />} /> : suffixel}
     </CategoriesSuffix>
   );
 
   return (
     <>
-      {title && <Menu.Header headerText={title} tooltip={tooltip} />}
       {Object.keys(rootCategory)
         .filter(key => rootCategory[key]?.name)
         .map(
