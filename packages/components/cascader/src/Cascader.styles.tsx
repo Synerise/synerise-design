@@ -3,8 +3,8 @@ import styled from 'styled-components';
 export const InputWrapper = styled.div`
   box-shadow: 0 16px 32px 0 rgba(35, 41, 54, 0.05);
 `;
-export const Dropdown = styled.div<{ visible: boolean; searching?: boolean }>`
-  display: ${(props): string => (props.visible ? 'block' : 'none')};
+export const Dropdown = styled.div<{ visible?: boolean; searching?: boolean }>`
+  display: ${(props): string => (!props.visible ? 'none' : 'block')};
   position: absolute;
   width: 100%;
   background: ${(props): string => props.theme.palette.white};
