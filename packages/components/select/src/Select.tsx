@@ -33,7 +33,7 @@ class Select extends React.Component<Props> {
           clearIcon={
             <Tooltip title={clearTooltip}>
               <span>
-                <Icon component={<Close3M />} />
+                <Icon component={<Close3M />} size={size === 'small' ? 18 : 24} />
               </span>
             </Tooltip>
           }
