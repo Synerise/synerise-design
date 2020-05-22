@@ -74,7 +74,7 @@ const Card: React.FC<CardProps> = ({
           {headerSideChildren && <S.HeaderSideChildren>{headerSideChildren}</S.HeaderSideChildren>}
         </S.Header>
       )}
-      <S.ChildrenContainer>{children}</S.ChildrenContainer>
+      <S.ChildrenContainer hasHeader={withHeader}>{children}</S.ChildrenContainer>
     </S.Container>
   );
 };
