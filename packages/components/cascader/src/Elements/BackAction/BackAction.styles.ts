@@ -35,7 +35,4 @@ export const ContentWrapper = styled.div`
   display: flex;
   align-items: center;
   cursor: pointer;
-  &:hover {
-    color: red;
-  }
 `;
