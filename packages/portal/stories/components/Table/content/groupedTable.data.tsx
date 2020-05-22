@@ -1,20 +1,20 @@
 export const dataSource = [
   {
-    column: 'first_name',
+    column: 'last_name',
     key: 0,
-    value: 'Jan',
+    value: 'Nowak',
     rows: [
       {
         key: 0,
-        first_name: 'Jan',
+        first_name: 'Adrian',
         last_name: 'Nowak',
         city: 'Kraków',
         age: 34,
       },
       {
         key: 1,
-        first_name: 'Jan',
-        last_name: 'Kowalski',
+        first_name: 'Maciej',
+        last_name: 'Nowak',
         city: 'Warszawa',
         age: 23,
       },
@@ -28,28 +28,28 @@ export const dataSource = [
     ]
   },
   {
-    column: 'first_name',
+    column: 'last_name',
     key: 1,
-    value: 'Kamil',
+    value: 'Kowalski',
     rows: [
       {
         key: 3,
         first_name: 'Kamil',
-        last_name: 'Nowak',
+        last_name: 'Kowalski',
         city: 'Kraków',
         age: 34,
       },
       {
         key: 4,
-        first_name: 'Kamil',
+        first_name: 'Tomasz',
         last_name: 'Kowalski',
         city: 'Warszawa',
         age: 23,
       },
       {
         key: 5,
-        first_name: 'Kamil',
-        last_name: 'Nowak',
+        first_name: 'Hubert',
+        last_name: 'Kowalski',
         city: 'Kraków',
         age: 56,
       },

@@ -1,22 +1,38 @@
-import React from 'react';
+import * as React from 'react';
 
 interface Props<T extends unknown> {
   header: any;
-  activeColumnKey: string;
+  activeColumnKey?: string;
+  sortColumn: (column: T) => void;
 }
 
-function GroupTableHeader<T extends unknown>({ header, activeColumnKey }: Props<T>): React.ReactNode {
-  console.log(header);
+function GroupTableHeader<T extends unknown>({ header, activeColumnKey, sortColumn }: Props<T>): JSX.Element {
+  const clickHandle = React.useCallback(
+    (child: any): void => {
+      if (child.props.column.sorter) {
+        sortColumn(child);
+      }
+    },
+    [sortColumn]
+  );
   return (
     <tr>
       {header.children.map(
-        (child: unknown): React.ReactNode => (
-          <th
-            key={child.key}
-            {...child.props}
-            className={`${child.props.className} ${activeColumnKey === child.key ? 'ds-table-active-column' : ''}`}
-          />
-        )
+        (child: any): React.ReactNode => {
+          return (
+            // eslint-disable-next-line jsx-a11y/control-has-associated-label
+            <th
+              key={child.key}
+              rowSpan={child.props.rowspan}
+              onClick={(): void => clickHandle(child)}
+              className={`${child.props.className} ${child.props.additionalProps?.className} ${
+                activeColumnKey === child.key ? 'ds-table-active-column' : ''
+              }`}
+            >
+              {child.props.children}
+            </th>
+          );
+        }
       )}
     </tr>
   );

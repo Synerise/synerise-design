@@ -1,10 +1,13 @@
 import { boolean, select } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import { withState } from '@dump247/storybook-state';
-import Table, { GroupedTable, TableCell } from '@synerise/ds-table';
+import Table, { GroupedTable, ItemsMenu, TableCell } from '@synerise/ds-table';
 import * as React from 'react';
 import { dataSource } from './content/groupedTable.data';
 import Avatar from '@synerise/ds-avatar';
+import Button from '@synerise/ds-button';
+import Icon from '@synerise/ds-icon';
+import { EditM, FileDownloadM, TrashM } from '@synerise/ds-icon/dist/icons';
 
 const decorator = storyFn => <div style={{ padding: 20, width: '100vw', minWidth: '100%' }}>{storyFn()}</div>;
 
@@ -54,17 +57,22 @@ const stories = {
             title: 'Last name',
             dataIndex: 'last_name',
             key: 'last_name',
-            sorter: (a, b) => a.last_name < b.last_name,
           },
           {
             title: 'City',
             dataIndex: 'city',
             key: 'city',
+            sorter: (a, b) => {
+              if( a.city < b.city ) return -1;
+              if( a.city > b.city ) return 1;
+              return 0;
+            },
           },
           {
             title: 'Age',
             dataIndex: 'age',
             key: 'age',
+            sorter: (a, b) => a.age - b.age,
           },
         ];
       };
@@ -83,6 +91,22 @@ const stories = {
             onChange: action('pageChanged'),
           }}
           rowKey={row => row.key}
+          itemsMenu={
+            <ItemsMenu>
+              <Button onClick={action('Export')} type='secondary' mode='icon-label'>
+                <Icon component={<FileDownloadM/>}/>
+                Export
+              </Button>
+              <Button onClick={action('Edit')} type='secondary' mode='icon-label'>
+                <Icon component={<EditM/>}/>
+                Edit
+              </Button>
+              <Button onClick={action('Delete')} type='secondary' mode='icon-label'>
+                <Icon component={<TrashM/>}/>
+                Delete
+              </Button>
+            </ItemsMenu>
+          }
           selection={
             boolean('Enable row selection', true) && {
               onChange: handleSelectRow,

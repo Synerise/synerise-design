@@ -78,9 +78,11 @@ function GroupTableBody<T extends unknown>({
                 )}
               </S.GroupSelection>
               <S.GroupValue>
-                {activeColumn?.render
-                  ? activeColumn.render(group.children[0].props.record.value, {} as T, -1)
-                  : group.children[0].props.record.value}
+                {activeColumn?.render ? (
+                  activeColumn.render(group.children[0].props.record.value, {} as T, -1)
+                ) : (
+                  <S.GroupValueLabel>{group.children[0].props.record.value}</S.GroupValueLabel>
+                )}
                 <Status type="disabled" label={group.children[0].props.record.rows.length} />
               </S.GroupValue>
             </S.GroupRowLeft>
@@ -95,7 +97,7 @@ function GroupTableBody<T extends unknown>({
             const key = getRowKey(rowRecord);
             return (
               <tr key={rowRecord.column}>
-                <S.SubRow>
+                <S.SubRow withBorderLeft>
                   {selection && (
                     <Checkbox
                       checked={selection.selectedRowKeys.indexOf(key) >= 0}
