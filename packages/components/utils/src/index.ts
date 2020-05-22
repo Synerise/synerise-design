@@ -4,3 +4,4 @@ export { default as useOnClickOutside } from './useOnClickOutside/useOnClickOuts
 export { default as selectColorByLetter } from './selectColorByLetter/selectColorByLetter';
 export { default as focusWithArrowKeys } from './focusWithArrowKeys/focusWithArrowKeys';
 export { default as escapeRegEx } from './regex/regex';
+export { default as doubleClickListener } from './doubleClickListener/doubleClickListener';

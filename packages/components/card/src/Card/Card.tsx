@@ -17,6 +17,7 @@ export interface CardProps {
   iconColor?: string;
   size?: 'small' | 'medium' | 'large' | 'extraLarge';
   headerSideChildren?: React.ReactNode;
+  onHeaderClick?: (e: React.SyntheticEvent) => void;
 }
 
 const mapSizeToWidth = {
@@ -41,9 +42,9 @@ const Card: React.FC<CardProps> = ({
   size,
   iconColor,
   headerSideChildren,
+  onHeaderClick,
 }) => {
   const fatTitle = !description || (description && compactHeader);
-
   return (
     <S.Container
       size={size && mapSizeToWidth[size]}
@@ -54,7 +55,7 @@ const Card: React.FC<CardProps> = ({
       lively={lively}
     >
       {withHeader && (
-        <S.Header isContentful={!!children}>
+        <S.Header isContentful={!!children} onClick={onHeaderClick}>
           {icon && (
             <S.IconContainer compact={compactHeader}>
               <Icon component={icon} color={iconColor} size={30} />
@@ -73,8 +74,7 @@ const Card: React.FC<CardProps> = ({
           {headerSideChildren && <S.HeaderSideChildren>{headerSideChildren}</S.HeaderSideChildren>}
         </S.Header>
       )}
-
-      {children}
+      <S.ChildrenContainer hasHeader={withHeader}>{children}</S.ChildrenContainer>
     </S.Container>
   );
 };

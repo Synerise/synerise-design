@@ -3,6 +3,7 @@ import range from 'lodash/range';
 import { text, select, number, boolean } from '@storybook/addon-knobs';
 import Button from '@synerise/ds-button';
 import Card, { CardGroup } from '@synerise/ds-card';
+import { doubleClickListener } from '@synerise/ds-utils';
 
 const sizes = {
   None: null,
@@ -33,6 +34,14 @@ const init = () => {
 
 const renderCard = props => {
   const IconComponent = React.lazy(() => import(`@synerise/ds-icon/dist/icons/${props.withIcon}`));
+  const clickHandler = doubleClickListener(
+    () => {
+      console.log('Clicked header once');
+    },
+    () => {
+      console.log('Clicked header twice');
+    }
+  );
   return (
     <React.Suspense fallback={<div>Loading icon</div>}>
       <Card
@@ -46,7 +55,20 @@ const renderCard = props => {
         iconColor={props.iconColor}
         size={props.size}
         compactHeader={props.compactHeader}
-        headerSideChildren={props.withHeaderSide && <Button type="primary">Button</Button>}
+        onHeaderClick={clickHandler}
+        headerSideChildren={
+          props.withHeaderSide && (
+            <Button
+              type="primary"
+              onClick={e => {
+                e.stopPropagation();
+                console.log('button clicked!');
+              }}
+            >
+              Button
+            </Button>
+          )
+        }
       >
         {props.showContent && <div style={{ width: '100%', height: 300 }}>Wow so great, such content!1</div>}
       </Card>
