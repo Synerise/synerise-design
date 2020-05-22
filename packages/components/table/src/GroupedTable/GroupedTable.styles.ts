@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { StatusTag } from '@synerise/ds-status/dist/Status.styles';
+import { CheckboxWrapper } from '@synerise/ds-checkbox/dist/Checkbox.styles';
 
 export const GroupRow = styled.div`
   display: flex;
@@ -21,6 +22,9 @@ export const GroupRowLeft = styled.div`
 export const GroupSelection = styled.div`
   display: flex;
   padding: 0 24px 0 0;
+  ${CheckboxWrapper} {
+    padding: 0;
+  }
 `;
 
 export const GroupValue = styled.div`
@@ -34,4 +38,7 @@ export const GroupValue = styled.div`
 export const SubRow = styled.td<{ selected?: boolean }>`
   background-color: ${(props): string =>
     props.selected ? 'rgb(250, 248, 234)' : props.theme.palette['grey-050']} !important;
+  ${CheckboxWrapper} {
+    padding: 0;
+  }
 `;

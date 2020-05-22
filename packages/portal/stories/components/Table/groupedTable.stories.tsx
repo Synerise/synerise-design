@@ -54,6 +54,7 @@ const stories = {
             title: 'Last name',
             dataIndex: 'last_name',
             key: 'last_name',
+            sorter: (a, b) => a.last_name < b.last_name,
           },
           {
             title: 'City',

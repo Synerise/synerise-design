@@ -16,8 +16,7 @@ interface Props<T extends unknown> {
   columns?: ColumnType<T>[];
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function GroupedTableBody<T extends any>({
+function GroupTableBody<T extends unknown>({
   group,
   columns,
   rowKey,
@@ -133,4 +132,4 @@ function GroupedTableBody<T extends any>({
   );
 }
 
-export default GroupedTableBody;
+export default GroupTableBody;

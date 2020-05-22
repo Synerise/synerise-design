@@ -2,12 +2,15 @@ import * as React from 'react';
 
 import Table from 'antd/lib/table';
 import { DSTableProps } from '../Table.types';
-import GroupedTableBody from './GroupTableBody/GroupTableBody';
+import GroupTableBody from './GroupTableBody/GroupTableBody';
 import TableHeader from '../TableHeader/TableHeader';
 import '../style/index.less';
+import GroupTableHeader from './GroupTableHeader/GroupTableHeader';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-function GroupedTable<T extends { key: string; rows: T[] }>(props: DSTableProps<T>): React.ReactElement {
+function GroupedTable<T extends { key: string; rows: T[]; column: string }>(
+  props: DSTableProps<T>
+): React.ReactElement {
   const {
     selection,
     rowKey,
@@ -24,6 +27,10 @@ function GroupedTable<T extends { key: string; rows: T[] }>(props: DSTableProps<
   const [expandedGroups, setExpandedGroups] = React.useState<React.ReactText[]>(
     dataSource?.map(group => group.key) || []
   );
+
+  const activeColumn = React.useMemo(() => {
+    return dataSource && dataSource[0].column;
+  }, [dataSource]);
 
   const toggleExpand = React.useCallback(
     (groupKey: React.ReactText) => {
@@ -67,9 +74,12 @@ function GroupedTable<T extends { key: string; rows: T[] }>(props: DSTableProps<
         /* eslint-disable-next-line @typescript-eslint/ban-ts-ignore */
         // @ts-ignore
         components={{
+          header: {
+            row: (header: any): React.ReactNode => <GroupTableHeader header={header} activeColumnKey={activeColumn} />,
+          },
           body: {
             row: (record: any): React.ReactNode => (
-              <GroupedTableBody
+              <GroupTableBody
                 group={record}
                 selection={selection}
                 rowKey={rowKey}
