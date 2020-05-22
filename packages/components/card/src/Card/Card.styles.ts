@@ -11,7 +11,6 @@ export const Container = styled.div<{
   background: #fff;
   box-shadow: ${(props): string => props.theme.variable('@box-shadow-base')};
   border-radius: ${(props): string => props.theme.variable('@border-radius-base')};
-  padding: 24px;
   display: flex;
   flex-flow: column;
   transition: 0.3s ease;
@@ -40,6 +39,7 @@ export const Container = styled.div<{
 `;
 
 export const Header = styled.div<{ isContentful?: boolean; onClick?: React.MouseEventHandler }>`
+  padding: 24px 24px 0 24px;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -48,7 +48,7 @@ export const Header = styled.div<{ isContentful?: boolean; onClick?: React.Mouse
   ${(props): FlattenSimpleInterpolation | false =>
     !!props.isContentful &&
     css`
-      margin: 0 0 24px;
+      padding-bottom: 24px;
     `};
   &:hover {
     ${(props): string | false => !!props.onClick && `cursor:pointer;`}
@@ -110,4 +110,8 @@ export const IconContainer = styled.div<{ compact?: boolean }>`
   width: 24px;
   height: 24px;
   transform: translate(-5px, ${(props): string => (props.compact ? '1px' : '-5px')});
+`;
+
+export const ChildrenContainer = styled.div`
+  padding: 0 24px 24px 24px;
 `;

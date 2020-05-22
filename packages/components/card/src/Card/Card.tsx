@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Icon from '@synerise/ds-icon';
-import {doubleClickListener} from '@synerise/ds-utils';
 import * as S from './Card.styles';
 
 export interface CardProps {
@@ -19,7 +18,6 @@ export interface CardProps {
   size?: 'small' | 'medium' | 'large' | 'extraLarge';
   headerSideChildren?: React.ReactNode;
   onHeaderClick?: (e: React.SyntheticEvent) => void;
-  onHeaderDoubleClick?: (e: React.SyntheticEvent) => void;
 }
 
 const mapSizeToWidth = {
@@ -45,19 +43,8 @@ const Card: React.FC<CardProps> = ({
   iconColor,
   headerSideChildren,
   onHeaderClick,
-  onHeaderDoubleClick,
 }) => {
   const fatTitle = !description || (description && compactHeader);
-
-  const clickHandler = React.useCallback((onClick,onDblClick) => {
-    if (!!onClick && !!onDblClick) {
-      return doubleClickListener(onClick, onDblClick,200);
-    }
-    if (onClick) {
-      return onClick;
-    }
-    return null;
-  }, []);
   return (
     <S.Container
       size={size && mapSizeToWidth[size]}
@@ -68,7 +55,7 @@ const Card: React.FC<CardProps> = ({
       lively={lively}
     >
       {withHeader && (
-        <S.Header isContentful={!!children} onClick={clickHandler(onHeaderClick,onHeaderDoubleClick)}>
+        <S.Header isContentful={!!children} onClick={onHeaderClick}>
           {icon && (
             <S.IconContainer compact={compactHeader}>
               <Icon component={icon} color={iconColor} size={30} />
@@ -87,8 +74,7 @@ const Card: React.FC<CardProps> = ({
           {headerSideChildren && <S.HeaderSideChildren>{headerSideChildren}</S.HeaderSideChildren>}
         </S.Header>
       )}
-
-      {children}
+      <S.ChildrenContainer>{children}</S.ChildrenContainer>
     </S.Container>
   );
 };
