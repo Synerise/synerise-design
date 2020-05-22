@@ -4,7 +4,14 @@ import { List, ListRowProps } from 'react-virtualized';
 import Scrollbar from '@synerise/ds-scrollbar';
 import { MenuItemProps } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.types';
 import { SearchItemListProps } from './SearchItems.types';
-import { FilterElement } from '../../Search.types';
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function renderSearchList<V extends any>(
+  props: SearchItemListProps<V>,
+  children?: React.ReactNode
+): React.ReactElement<SearchItemListProps<V>> {
+  return <SearchItems {...props}>{children}</SearchItems>;
+}
 
 const rowRenderer = <T extends unknown>(
   itemRender: (item: T) => React.ReactElement,
@@ -28,7 +35,8 @@ const rowRenderer = <T extends unknown>(
   return RenderedItem;
 };
 
-const SearchItems: React.FC<SearchItemListProps<FilterElement | MenuItemProps>> = ({
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const SearchItems: React.FC<SearchItemListProps<any>> = ({
   data,
   onItemClick,
   visibleRows,
