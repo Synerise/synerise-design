@@ -90,6 +90,7 @@ const stories = {
             showQuickJumper: boolean('Show quick jumper', true),
             onChange: action('pageChanged'),
           }}
+          addItem={action('ADD item action')}
           rowKey={row => row.key}
           itemsMenu={
             <ItemsMenu>

@@ -19,6 +19,15 @@ export const GroupRowLeft = styled.div`
   }
 `;
 
+export const GroupRowRight = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  .ds-expander {
+    margin-left: 24px;
+  }
+`;
+
 export const GroupSelection = styled.div`
   display: flex;
   padding: 0 24px 0 0;
@@ -40,9 +49,14 @@ export const GroupValueLabel = styled.span`
   color: ${(props): string => props.theme.palette['grey-700']};
 `;
 
-export const SubRow = styled.td<{ selected?: boolean; withBorderLeft?: boolean }>`
-  background-color: ${(props): string =>
-    props.selected ? 'rgb(250, 248, 234)' : props.theme.palette['grey-050']} !important;
+export const SubRow = styled.td<{ selected?: boolean; withBorderLeft?: boolean; sorted?: boolean }>`
+  background-color: ${(props): string => {
+    console.log(props);
+    if (props.selected) return 'rgb(250, 248, 234) !important;';
+    if (props.sorted) return 'rgba(213, 232, 246, 0.44) !important;';
+    return `${props.theme.palette['grey-050']};`;
+  }}
+    
   position: relative;
   &:before {
     content: '';

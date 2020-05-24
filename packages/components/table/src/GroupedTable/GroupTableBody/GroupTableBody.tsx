@@ -2,9 +2,11 @@ import * as React from 'react';
 import Checkbox from '@synerise/ds-checkbox/dist';
 import Status from '@synerise/ds-status';
 import Button from '@synerise/ds-button';
-import { ColumnType } from 'antd/lib/table';
+import Icon from '@synerise/ds-icon';
+import AddS from '@synerise/ds-icon/dist/icons/AddS';
 import * as S from '../GroupedTable.styles';
 import { RowSelection } from '../../Table.types';
+import { GroupColumnsType, GroupType } from '../GroupedTable';
 
 interface Props<T extends unknown> {
   group: any;
@@ -13,7 +15,9 @@ interface Props<T extends unknown> {
   allItems: T[];
   expanded: boolean;
   expandGroup: (key: React.ReactText) => void;
-  columns?: ColumnType<T>[];
+  columns?: GroupColumnsType<T>[];
+  addItem?: (column: string, value: React.ReactText | boolean | object) => void;
+  activeGroup?: Omit<GroupType<T>, 'rows'> | undefined;
 }
 
 function GroupTableBody<T extends unknown>({
@@ -24,6 +28,8 @@ function GroupTableBody<T extends unknown>({
   allItems,
   expanded,
   expandGroup,
+  addItem,
+  activeGroup,
 }: Props<T>): JSX.Element {
   const getRowKey = React.useCallback(
     row => {
@@ -86,7 +92,21 @@ function GroupTableBody<T extends unknown>({
                 <Status type="disabled" label={group.children[0].props.record.rows.length} />
               </S.GroupValue>
             </S.GroupRowLeft>
-            <Button.Expander onClick={(): void => expandGroup(group['data-row-key'])} expanded={expanded} />
+            <S.GroupRowRight>
+              {addItem && activeGroup && (
+                <Button
+                  type="ghost"
+                  mode="icon-label"
+                  onClick={(): void => {
+                    addItem(activeGroup.column, activeGroup.value);
+                  }}
+                >
+                  <Icon component={<AddS />} />
+                  Add item
+                </Button>
+              )}
+              <Button.Expander onClick={(): void => expandGroup(group['data-row-key'])} expanded={expanded} />
+            </S.GroupRowRight>
           </S.GroupRow>
         </td>
       </tr>
@@ -116,9 +136,14 @@ function GroupTableBody<T extends unknown>({
                 </S.SubRow>
                 {columns?.map(
                   (column, index): React.ReactNode => {
+                    console.log(column);
                     return (
                       column.dataIndex && (
-                        <S.SubRow key={index} selected={column.dataIndex === group.children[0].props.record.column}>
+                        <S.SubRow
+                          key={index}
+                          selected={column.dataIndex === group.children[0].props.record.column}
+                          sorted={Boolean(column.sortOrder)}
+                        >
                           {(column.render && column.render(rowRecord[column.dataIndex as string], rowRecord, index)) ||
                             rowRecord[column.dataIndex as string]}
                         </S.SubRow>

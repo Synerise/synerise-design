@@ -7,10 +7,24 @@ import TableHeader from '../TableHeader/TableHeader';
 import '../style/index.less';
 import GroupTableHeader from './GroupTableHeader/GroupTableHeader';
 
-type SortOrderType = 'ascend' | 'descend' | false;
+type SortOrderType = 'ascend' | 'descend' | boolean;
+
+export type GroupColumnsType<T> = ColumnsType<T> & {
+  sortOrder: SortOrderType;
+  key: React.ReactText;
+  render: Function;
+  dataIndex: React.ReactText;
+};
+
+export type GroupType<T> = {
+  column: string;
+  value: React.ReactText | boolean | object;
+  key: React.ReactText;
+  rows: T[];
+};
 
 const EMPTY_COLUMN = {
-  sortOrder: null,
+  sortOrder: false,
 };
 
 const getNextSortOrder = (current: SortOrderType): SortOrderType => {
@@ -24,8 +38,8 @@ const getNextSortOrder = (current: SortOrderType): SortOrderType => {
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-function GroupedTable<T extends { key: string; rows: T[]; column: string }>(
-  props: DSTableProps<T>
+function GroupedTable<T extends GroupType<T>>(
+  props: DSTableProps<T> & { addItem?: (column: string, value: React.ReactText | boolean | object) => void }
 ): React.ReactElement {
   const {
     selection,
@@ -39,13 +53,14 @@ function GroupedTable<T extends { key: string; rows: T[]; column: string }>(
     searchComponent,
     cellSize,
     roundedHeader,
+    addItem,
   } = props;
   const [expandedGroups, setExpandedGroups] = React.useState<React.ReactText[]>(
     dataSource?.map(group => group.key) || []
   );
 
   const [data, setData] = React.useState<T[]>(dataSource || []);
-  const [tableColumns, setColumns] = React.useState<ColumnsType<T>>([]);
+  const [tableColumns, setColumns] = React.useState<GroupColumnsType<T>[]>([]);
 
   React.useEffect(() => {
     setData(dataSource || []);
@@ -56,12 +71,14 @@ function GroupedTable<T extends { key: string; rows: T[]; column: string }>(
       ...EMPTY_COLUMN,
       ...column,
     }));
+    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+    // @ts-ignore
     setColumns(normalizedColumns || []);
   }, [columns]);
 
   const activeColumn = React.useMemo(() => {
-    return dataSource && dataSource[0].column;
-  }, [dataSource]);
+    return data && data[0].column;
+  }, [data]);
 
   const toggleExpand = React.useCallback(
     (groupKey: React.ReactText) => {
@@ -79,6 +96,18 @@ function GroupedTable<T extends { key: string; rows: T[]; column: string }>(
     dataSource && dataSource.forEach(group => group.rows.forEach(row => result.push(row)));
     return result;
   }, [dataSource]);
+
+  const getActiveGroup = React.useCallback(
+    (key: React.ReactText) => {
+      const active = data.find((row: T): boolean => row.key === key);
+      if (active) {
+        const { rows, ...activeGroup } = active;
+        return activeGroup;
+      }
+      return undefined;
+    },
+    [data]
+  );
 
   const sortColumn = React.useCallback(
     column => {
@@ -102,11 +131,13 @@ function GroupedTable<T extends { key: string; rows: T[]; column: string }>(
             sortOrder: nextSortOrder,
           };
         }
-        return col;
+        return {
+          ...col,
+          sortOrder: false,
+        };
       });
-      console.log(updatedColumns, sortedColumns);
       setColumns(updatedColumns);
-      setData(sortedColumns);
+      setData(sortedColumns || []);
     },
     [dataSource, tableColumns]
   );
@@ -133,7 +164,7 @@ function GroupedTable<T extends { key: string; rows: T[]; column: string }>(
         {...props}
         // scroll={{y: 200}}
         dataSource={data}
-        columns={tableColumns}
+        columns={tableColumns as ColumnsType<T>}
         title={renderHeader}
         /* eslint-disable-next-line @typescript-eslint/ban-ts-ignore */
         // @ts-ignore
@@ -144,17 +175,22 @@ function GroupedTable<T extends { key: string; rows: T[]; column: string }>(
             ),
           },
           body: {
-            row: (record: any): JSX.Element => (
-              <GroupTableBody
-                group={record}
-                selection={selection}
-                rowKey={rowKey}
-                allItems={allItems}
-                expanded={expandedGroups.indexOf(record['data-row-key']) >= 0}
-                expandGroup={toggleExpand}
-                columns={tableColumns}
-              />
-            ),
+            row: (record: any): JSX.Element => {
+              const activeGroup = getActiveGroup(record['data-row-key']);
+              return (
+                <GroupTableBody
+                  group={record}
+                  selection={selection}
+                  rowKey={rowKey}
+                  allItems={allItems}
+                  expanded={expandedGroups.indexOf(record['data-row-key']) >= 0}
+                  expandGroup={toggleExpand}
+                  columns={tableColumns}
+                  addItem={addItem}
+                  activeGroup={activeGroup}
+                />
+              );
+            },
           },
         }}
         /* eslint-disable-next-line @typescript-eslint/ban-ts-ignore */
