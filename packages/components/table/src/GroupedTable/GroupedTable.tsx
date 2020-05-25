@@ -64,6 +64,7 @@ function GroupedTable<T extends GroupType<T>>(
 
   React.useEffect(() => {
     setData(dataSource || []);
+    setExpandedGroups(dataSource.map(group => group.key));
   }, [dataSource]);
 
   React.useEffect(() => {

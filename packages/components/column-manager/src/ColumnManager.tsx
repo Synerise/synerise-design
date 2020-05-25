@@ -170,8 +170,8 @@ class ColumnManager extends React.Component<ColumnManagerProps, State> {
 
   handleApply = (): void => {
     const { onApply } = this.props;
-    const { visibleList, hiddenList } = this.state;
-    onApply([...visibleList, ...hiddenList]);
+    const { visibleList, hiddenList, groupSettings } = this.state;
+    onApply([...visibleList, ...hiddenList], groupSettings);
   };
 
   render(): React.ReactElement {
