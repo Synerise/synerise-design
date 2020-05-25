@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.19](https://github.com/Synerise/synerise-design/compare/@synerise/ds-autocomplete@0.3.18...@synerise/ds-autocomplete@0.3.19) (2020-05-25)
+
+
+### Bug Fixes
+
+* **autocomplete:** Add error and add errorText ([42827d5](https://github.com/Synerise/synerise-design/commit/42827d57d3bf90ae18779b85d3a8720c653cfdee))
+* **autocomplete:** change paddings and add ant-select ([271c971](https://github.com/Synerise/synerise-design/commit/271c9719b0d54339404899afaa684908559c5638))
+* **autocomplete:** fix margin and fix display ([0ac36c5](https://github.com/Synerise/synerise-design/commit/0ac36c53c63fab502399fcc236b8e365c6587125))
+
+
+
+
+
 ## [0.3.18](https://github.com/Synerise/synerise-design/compare/@synerise/ds-autocomplete@0.3.17...@synerise/ds-autocomplete@0.3.18) (2020-05-22)
 
 **Note:** Version bump only for package @synerise/ds-autocomplete
