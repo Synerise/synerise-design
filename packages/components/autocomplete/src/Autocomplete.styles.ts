@@ -8,7 +8,6 @@ export const LabelWrapper = styled.div`
 
 export const ErrorWrapper = styled.div`
   margin: 8px 0px 4px 0px;
-  padding-bottom: -3px;
 `;
 
 export const DescWrapper = styled.div`
@@ -70,7 +69,6 @@ export const AutocompleteWrapper = styled.div`
       width: 16px;
       height: 16px;
       margin-top: -7px;
-      display: ;
     }
 
     &.ant-select:not(.ant-select-no-arrow) .ant-select-selection__clear {
