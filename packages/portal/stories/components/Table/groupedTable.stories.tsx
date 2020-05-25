@@ -1,9 +1,9 @@
 import { boolean, select } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import { withState } from '@dump247/storybook-state';
-import Table, { GroupedTable, ItemsMenu, TableCell } from '@synerise/ds-table';
+import Table, { ItemsMenu, TableCell } from '@synerise/ds-table';
 import * as React from 'react';
-import { COLUMNS, dataSource, groupDataSource } from './content/groupedTable.data';
+import { COLUMNS, dataSource } from './content/groupedTable.data';
 import Avatar from '@synerise/ds-avatar';
 import Button from '@synerise/ds-button';
 import Icon from '@synerise/ds-icon';
@@ -260,19 +260,57 @@ const stories = {
       })
     };
 
+    const groupByRanges = (columnSettings) => {
+      console.log(columnSettings);
+    };
+
+    const groupByInterval = (columnSettings) => {
+      const {interval} = columnSettings.settings;
+      const groups = [];
+      while (dataSource.length) {
+        groups.push(dataSource.splice(0, interval));
+      }
+      const result = groups.map((group, index) => {
+        const firstItem = index * interval + 1;
+        const lastItem = index * interval + interval;
+        return {
+          column: columnSettings.column.key,
+          key: index,
+          value: `${firstItem} - ${lastItem}`,
+          rows: group
+        }
+      });
+      store.set({
+        // @ts-ignore
+        dataSource: result,
+        grouped: true,
+      })
+    };
+
     const applyGroupSettings = (groupSettings) => {
       if(!groupSettings) {
         store.set({
           dataSource: dataSource,
           grouped: false,
         });
+        return;
       }
+      console.log(groupSettings);
       switch(groupSettings.settings.type){
         case 'Value': {
           groupByValue(groupSettings.column);
           break;
         }
+        case 'Ranges': {
+          groupByRanges(groupSettings);
+          break;
+        }
+        case 'Interval': {
+          groupByInterval(groupSettings);
+          break;
+        }
         default: {
+          console.log('dafult');
           store.set({
             dataSource: dataSource,
             grouped: false,

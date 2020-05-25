@@ -136,7 +136,6 @@ function GroupTableBody<T extends unknown>({
                 </S.SubRow>
                 {columns?.map(
                   (column, index): React.ReactNode => {
-                    console.log(column);
                     return (
                       column.dataIndex && (
                         <S.SubRow
