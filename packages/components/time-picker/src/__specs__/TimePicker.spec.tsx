@@ -144,20 +144,4 @@ describe('TimePicker', () => {
     // ASSERT
     expect(input.value).toBe('10:24:52');
   });
-
-  it('should clear value', async () => {
-    // ARRANGE
-    const handleChange = jest.fn();
-    const { getByTestId, getByPlaceholderText } = renderWithProvider(<TimePicker onChange={handleChange} placeholder="Select time" alwaysOpen value={dayjs('12-04-2020 10:24:52', 'DD-MM-YYYY HH:mm:ss').toDate()} />);
-    const inputContainer = getByTestId(CONTAINER_TESTID);
-    const input = getByPlaceholderText('Select time') as HTMLInputElement;
-    const clearIcon = inputContainer.querySelector('.ds-icon');
-
-    // ACT
-    clearIcon && fireEvent.click(clearIcon);
-
-    // ASSERT
-    expect(input.value).toBe('');
-    expect(handleChange).toBeCalledWith(undefined, '');
-  });
 });
