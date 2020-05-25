@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.65.1](https://github.com/synerise/synerise-design/compare/portal@0.65.0...portal@0.65.1) (2020-05-25)
+
+
+### Bug Fixes
+
+* **autocomplete:** add Error, Placeholder, getErrorText, change styles ([ca233e3](https://github.com/synerise/synerise-design/commit/ca233e37a318fc848a7ca3c8f1609f430574ba0c))
+* **autocomplete:** delete has before label,description and placeholder ([92d9cb1](https://github.com/synerise/synerise-design/commit/92d9cb17567c7dd043b9519fa1c2fbe6a1325211))
+* **cascader:** added width and height handling, added callbacks ([baaea36](https://github.com/synerise/synerise-design/commit/baaea368dfba6366de6e1935b8bf575738626794))
+
+
+
+
+
 # [0.65.0](https://github.com/synerise/synerise-design/compare/portal@0.64.2...portal@0.65.0) (2020-05-22)
 
 

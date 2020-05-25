@@ -3,15 +3,15 @@ import styled, { css, FlattenInterpolation } from 'styled-components';
 import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 
 export const LabelWrapper = styled.div`
-  margin: 0px 0px 8px 4px;
+  margin: 0px 0px 8px 0px;
 `;
 
 export const ErrorWrapper = styled.div`
-  margin: 8px 0px 4px 4px;
+  margin: 8px 0px 4px 0px;
 `;
 
 export const DescWrapper = styled.div`
-  margin: 4px 0px 0px 4px;
+  margin: 8px 0px 0px 0px;
 `;
 
 const active = (): FlattenInterpolation<ThemeProps> => css`
@@ -43,7 +43,7 @@ export const AutocompleteWrapper = styled.div`
     }
 
     &.error {
-      .ant-input {
+      .ant-select-selector {
         &:hover {
           ${error()}
         }
@@ -56,7 +56,7 @@ export const AutocompleteWrapper = styled.div`
     }
 
     .ant-select-selection:hover .ant-select-selection__rendered {
-      margin-right: 0;
+      margin-right: 10px;
     }
 
     &.ant-select .ant-input {

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.5.0...@synerise/ds-menu@0.5.1) (2020-05-25)
+
+
+### Bug Fixes
+
+* **cascader:** added width and height handling, added callbacks ([baaea36](https://github.com/Synerise/synerise-design/commit/baaea368dfba6366de6e1935b8bf575738626794))
+
+
+
+
+
 # [0.5.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.4.2...@synerise/ds-menu@0.5.0) (2020-05-22)
 
 
