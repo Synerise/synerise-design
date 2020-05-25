@@ -131,12 +131,7 @@ class ColumnManager extends React.Component<ColumnManagerProps, State> {
   };
 
   showGroupSettings = (column: Column): void => {
-    const { groupSettings } = this.state;
-    if (groupSettings?.column?.id !== column.id) {
-      this.setState({ activeColumn: column });
-      return;
-    }
-    this.setState({ activeColumn: undefined, groupSettings: undefined });
+    this.setState({ activeColumn: column });
   };
 
   hideItemFilter = (): void => {
@@ -266,7 +261,10 @@ class ColumnManager extends React.Component<ColumnManagerProps, State> {
           visible={activeColumn !== undefined}
           column={activeColumn}
           settings={groupSettings}
-          onOk={(settings): void => this.setState({ groupSettings: settings, activeColumn: undefined })}
+          onOk={(settings): void => {
+            console.log(settings);
+            this.setState({ groupSettings: settings, activeColumn: undefined });
+          }}
         />
       </>
     );

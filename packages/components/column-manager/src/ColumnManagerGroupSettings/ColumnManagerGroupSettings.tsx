@@ -16,11 +16,12 @@ const GROUP_BY: { [key: string]: string } = {
   value: 'Value',
   ranges: 'Ranges',
   interval: 'Interval',
+  disabled: 'Disabled',
 };
 
 interface Props {
   hide: () => void;
-  onOk: (settings: GroupSettings) => void;
+  onOk: (settings: GroupSettings | undefined) => void;
   visible: boolean;
   settings?: GroupSettings;
   column?: Column;
@@ -42,6 +43,10 @@ const ColumnManagerGroupSettings: React.FC<Props> = ({ hide, visible, column, on
   const [interval, setIntervalValue] = React.useState<number | undefined>(undefined);
 
   const handleOk = React.useCallback(() => {
+    if (groupBy === GROUP_BY.disabled) {
+      onOk(undefined);
+      return;
+    }
     const settings = {
       column,
       settings: {
@@ -105,6 +110,7 @@ const ColumnManagerGroupSettings: React.FC<Props> = ({ hide, visible, column, on
           <Select.Option value={GROUP_BY.value}>Group by value</Select.Option>
           <Select.Option value={GROUP_BY.ranges}>Group by ranges</Select.Option>
           <Select.Option value={GROUP_BY.interval}>Group by intervals</Select.Option>
+          <Select.Option value={GROUP_BY.disabled}>Group disabled</Select.Option>
         </Select>
         {renderForm()}
       </S.ModalContent>
