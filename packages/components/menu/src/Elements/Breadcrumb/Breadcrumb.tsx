@@ -12,7 +12,7 @@ export interface BreadcrumbProps {
   path: string[];
   highlight?: string;
   description?: string | React.ReactNode;
-  onPathClick?: (path: string | { id: number | string }) => void;
+  onPathClick?: (path: string & { id?: number | string }) => void;
   compact?: boolean;
   startWithArrow?: boolean;
   gradientOverlap?: boolean;
@@ -34,6 +34,8 @@ const Breadcrumb: React.FC<BreadcrumbProps & MenuItemProps> = ({
   const { prefixel } = rest;
   const breadcrumbsArray = [...path];
   const pathToDisplay: typeof path = compact ? breadcrumbsArray.reverse() : breadcrumbsArray;
+  const contentRef = React.useRef<HTMLDivElement>(null);
+  const [gradient, setGradient] = React.useState<boolean>(false);
 
   const renderWithHighlighting = React.useCallback(
     (name: string | React.ReactNode): React.ReactNode => {
@@ -81,11 +83,24 @@ const Breadcrumb: React.FC<BreadcrumbProps & MenuItemProps> = ({
     }
     return startWithArrow || path.length > 1 || index > 0;
   };
+  const isOverflown = (elementRef: React.RefObject<HTMLDivElement>): boolean => {
+    if (elementRef !== null && elementRef.current !== null) {
+      const element = elementRef.current;
+      return element.scrollWidth > element.clientWidth;
+    }
+    return false;
+  };
+
+  React.useEffect(() => {
+    const shouldRenderGradientOverlap = gradientOverlap && isOverflown(contentRef);
+    setGradient(!!shouldRenderGradientOverlap);
+  }, [path, contentRef, gradientOverlap]);
+
   return (
     <S.Breadcrumb className="ds-breadcrumb" disabled={disabled} compact={compact} onPathClick={onPathClick} {...rest}>
       {!!description && <S.Description>{renderWithHighlighting(description)}</S.Description>}
-      <S.ContentWrapper gradientOverlap={gradientOverlap}>
-        <S.BreadcrumbContent className="breadcrumb-content" prefixel={!!prefixel}>
+      <S.ContentWrapper gradientOverlap={gradient}>
+        <S.BreadcrumbContent className="breadcrumb-content" prefixel={!!prefixel} ref={contentRef}>
           {pathToDisplay.map((item, index) => (
             // eslint-disable-next-line react/no-array-index-key
             <S.BreadcrumbRoute className="route" key={`${item}-${index}`}>

@@ -5,6 +5,7 @@ import { CheckS } from '@synerise/ds-icon/dist/icons';
 import Icon from '@synerise/ds-icon';
 import styled from 'styled-components';
 import { Category } from '../../Cascader.types';
+import { hasNestedCategories } from '../../utlis';
 
 export interface CategoriesListProps {
   rootCategory: Category;
@@ -54,6 +55,7 @@ const CategoriesList: React.FC<CategoriesListProps> = ({
                 type={selectedIds && selectedIds.includes(item.id) ? '' : 'select'}
                 key={`${item.id}`}
                 suffixel={renderSuffix(item)}
+                parent={hasNestedCategories(item)}
                 onClick={(): void => onCategoryClickHandler(item)}
               />
             );

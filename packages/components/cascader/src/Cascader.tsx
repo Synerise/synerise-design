@@ -3,19 +3,17 @@ import { CascaderProps, Category, Path } from 'Cascader.types';
 import SearchBar from '@synerise/ds-search-bar';
 import Menu from '@synerise/ds-menu';
 import Icon from '@synerise/ds-icon';
-import { HomeM } from '@synerise/ds-icon/dist/icons';
 import SearchM from '@synerise/ds-icon/dist/icons/SearchM';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
-import Divider from '@synerise/ds-divider';
 import { useResize } from '@synerise/ds-utils';
-import BackAction from './Elements/BackAction/BackAction';
 import * as S from './Cascader.styles';
 import { filterPaths, getAllPaths, hasNestedCategories, searchCategoryWithId } from './utlis';
 import BreadcrumbsList from './Elements/BreadcrumbsList/BreadcrumbsList';
 import CategoriesList from './Elements/CategoriesList/CategoriesList';
+import Navigation from './Elements/Navigation/Navigation';
 
 const DROPDOWN_WIDTH_OFFSET = 18;
-const DROPDOWN_HEIGHT_OFFSET = 8;
+const VERTICAL_PADDING_OFFSET = 8;
 const BREADCRUMB_ITEM_HEIGHT = 50;
 
 const Cascader: React.FC<CascaderProps> = ({
@@ -23,9 +21,10 @@ const Cascader: React.FC<CascaderProps> = ({
   disabled,
   searchClearTooltip,
   searchInputPlaceholder,
-  dropdownStyle,
   onPathSelect,
   categorySuffix,
+  dropdownMaxHeight,
+  dropdownStyle,
 }) => {
   const [searchQuery, setSearchQuery] = React.useState<string>('');
   const [activeCategory, setActiveCategory] = React.useState<Category>(rootCategory);
@@ -44,14 +43,21 @@ const Cascader: React.FC<CascaderProps> = ({
     return width - DROPDOWN_WIDTH_OFFSET;
   }, [width]);
 
+  const calculateDropdownMaxHeight = React.useMemo(() => {
+    return dropdownMaxHeight ? dropdownMaxHeight - 2 * VERTICAL_PADDING_OFFSET : height - 2 * VERTICAL_PADDING_OFFSET;
+  }, [dropdownMaxHeight,height]);
+
   const calculateVisibleRows = React.useMemo(() => {
-    return Math.floor((height - DROPDOWN_HEIGHT_OFFSET) / 50);
+    return Math.floor((height - VERTICAL_PADDING_OFFSET) / 50);
   }, [height]);
 
   React.useEffect(() => {
     const allPaths = getAllPaths(rootCategory, []);
     setPaths(allPaths);
-  }, [rootCategory]);
+    if (activeCategory.id === rootCategory.id || !activeCategory.id) {
+      setActiveCategory(rootCategory);
+    }
+  }, [rootCategory, activeCategory.id]);
 
   const onItemSelect = (item: Category): void => {
     let newSelectedList;
@@ -79,8 +85,8 @@ const Cascader: React.FC<CascaderProps> = ({
   };
 
   const onPathClick = React.useCallback(
-    item => {
-      const chosenCategory = enteredCategories.find(enteredCategory => enteredCategory.name === item);
+    (pathName: string) => {
+      const chosenCategory = enteredCategories.find(enteredCategory => enteredCategory.name === pathName);
       let updatedEnteredCategories;
       if (chosenCategory) {
         updatedEnteredCategories = enteredCategories.slice(0, enteredCategories.indexOf(chosenCategory) + 1);
@@ -112,7 +118,6 @@ const Cascader: React.FC<CascaderProps> = ({
     },
     [paths]
   );
-
   return (
     <S.Wrapper className="ds-cascader">
       <S.InputWrapper>
@@ -131,60 +136,45 @@ const Cascader: React.FC<CascaderProps> = ({
       </S.InputWrapper>
       <S.Dropdown
         visible={!isSearching || (filteredPaths && filteredPaths?.length > 0)}
-        searching={isSearching}
         ref={dropdownRef as React.RefObject<HTMLDivElement>}
+        maxHeight={dropdownMaxHeight}
         style={dropdownStyle}
       >
-        <Menu>
-          {isSearching && filteredPaths && (
-            <BreadcrumbsList
-              width={calculateWidth}
-              visibleRows={calculateVisibleRows}
-              rowHeight={BREADCRUMB_ITEM_HEIGHT}
-              paths={filteredPaths}
-              highlight={searchQuery}
-              onBreadCrumbClick={(breadcrumb: Path): void => {
-                onItemSelect(breadcrumb as Category);
-              }}
-            />
-          )}
-          {!searchQuery && activeCategory.path && (
-            <>
-              <Menu.Breadcrumb
-                path={activeCategory.path}
-                onPathClick={onPathClick}
-                gradientOverlap={activeCategory.path.length > 1}
-                highlightActivePath
-                prefixel={
-                  <S.BreadcrumbPrefix onClick={onHomeIconClick}>
-                    <Icon component={<HomeM />} />
-                  </S.BreadcrumbPrefix>
-                }
-                compact
+        <S.DropdownScroll maxHeight={calculateDropdownMaxHeight} searching={isSearching} absolute={isSearching}>
+          <Menu>
+            {isSearching && filteredPaths && (
+              <BreadcrumbsList
+                width={calculateWidth}
+                visibleRows={calculateVisibleRows}
+                rowHeight={BREADCRUMB_ITEM_HEIGHT}
+                paths={filteredPaths}
+                highlight={searchQuery}
+                onBreadCrumbClick={(breadcrumb: Path): void => {
+                  onItemSelect(breadcrumb as Category);
+                }}
               />
-              <S.DividerContainer>
-                <Divider dashed />
-              </S.DividerContainer>
-            </>
-          )}
-          {!searchQuery && previousCategory && previousCategory.name && enteredCategories.length > 1 && (
-            <BackAction
-              label={previousCategory.name}
-              onClick={(): void => {
-                onPathClick(previousCategory.name);
-              }}
+            )}
+            <Navigation
+              backActionVisible={
+                !searchQuery && !!previousCategory && !!previousCategory.name && enteredCategories.length > 1
+              }
+              breadcrumbVisible={!searchQuery && !!activeCategory.path}
+              onPathClick={onPathClick}
+              onHomeIconClick={onHomeIconClick}
+              previousCategory={previousCategory}
+              activeCategory={activeCategory}
             />
-          )}
-          {!searchQuery && (
-            <CategoriesList
-              rootCategory={activeCategory}
-              onCategoryClick={onCategoryClick}
-              suffixel={categorySuffix}
-              onSuffixelClick={onItemSelect}
-              selectedIds={selectedIds}
-            />
-          )}
-        </Menu>
+            {!searchQuery && (
+              <CategoriesList
+                rootCategory={activeCategory}
+                onCategoryClick={onCategoryClick}
+                suffixel={categorySuffix}
+                onSuffixelClick={onItemSelect}
+                selectedIds={selectedIds}
+              />
+            )}
+          </Menu>
+        </S.DropdownScroll>
       </S.Dropdown>
     </S.Wrapper>
   );

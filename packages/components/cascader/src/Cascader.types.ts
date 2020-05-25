@@ -14,6 +14,7 @@ export interface CascaderProps {
   rootCategory: Category;
   selectedCategoriesIds: React.ReactText[];
   dropdownStyle: React.CSSProperties;
+  dropdownMaxHeight: number;
   categorySuffix: string | React.ReactNode;
 }
 export interface Path {

@@ -16,7 +16,6 @@ const Select: React.FC<BasicItemProps>  = (props) => {
         key={uuid()}
         disabled={disabled}
         {...rest}
-        parent
       >
       {children}
     </S.SelectItem>
