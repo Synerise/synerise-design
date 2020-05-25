@@ -12,7 +12,7 @@ describe('doubleClickListener', () => {
   it('should handle single click', async () => {
     // ARRANGE
     const { getByText } = await renderWithProvider(
-      <div onClick={doubleClickListener(singleClickFn, doubleClickFn, DELAY)}>{TEXT}</div>
+      <div onClick={doubleClickListener<HTMLDivElement>(singleClickFn, doubleClickFn, DELAY)}>{TEXT}</div>
     );
     const wrapper = await getByText(TEXT);
     await fireEvent.click(wrapper);
@@ -23,7 +23,7 @@ describe('doubleClickListener', () => {
   it('should handle double click', async () => {
     // ARRANGE
     const { getByText } = await renderWithProvider(
-      <div onClick={doubleClickListener(singleClickFn, doubleClickFn, DELAY)}>{TEXT}</div>
+      <div onClick={doubleClickListener<HTMLDivElement>(singleClickFn, doubleClickFn, DELAY)}>{TEXT}</div>
     );
     const wrapper =  await getByText(TEXT);
     await fireEvent.click(wrapper);
@@ -34,7 +34,7 @@ describe('doubleClickListener', () => {
   it('should handle passed delay', async () => {
     // ARRANGE
     const { getByText } = await renderWithProvider(
-      <div onClick={doubleClickListener(singleClickFn, doubleClickFn, DELAY)}>{TEXT}</div>
+      <div onClick={doubleClickListener<HTMLDivElement>(singleClickFn, doubleClickFn, DELAY)}>{TEXT}</div>
     );
     const wrapper =  await getByText(TEXT);
     await fireEvent.click(wrapper);

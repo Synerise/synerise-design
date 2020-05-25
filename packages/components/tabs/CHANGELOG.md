@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.43](https://github.com/synerise/synerise-design/compare/@synerise/ds-tabs@0.9.42...@synerise/ds-tabs@0.9.43) (2020-05-25)
+
+
+### Bug Fixes
+
+* **cascader:** added width and height handling, added callbacks ([baaea36](https://github.com/synerise/synerise-design/commit/baaea368dfba6366de6e1935b8bf575738626794))
+
+
+
+
+
 ## [0.9.42](https://github.com/synerise/synerise-design/compare/@synerise/ds-tabs@0.9.41...@synerise/ds-tabs@0.9.42) (2020-05-22)
 
 **Note:** Version bump only for package @synerise/ds-tabs

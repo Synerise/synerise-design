@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.15](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.11.14...@synerise/ds-select@0.11.15) (2020-05-25)
+
+
+### Bug Fixes
+
+* **select:** fixed icon size for small size ([09245ee](https://github.com/synerise/synerise-design/commit/09245ee7e7f33cd4971e9045f6c44be561efe199))
+
+
+
+
+
 ## [0.11.14](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.11.13...@synerise/ds-select@0.11.14) (2020-05-22)
 
 **Note:** Version bump only for package @synerise/ds-select

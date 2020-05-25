@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-cascader@0.1.0...@synerise/ds-cascader@0.1.1) (2020-05-25)
+
+
+### Bug Fixes
+
+* **cascader:** added width and height handling, added callbacks ([baaea36](https://github.com/Synerise/synerise-design/commit/baaea368dfba6366de6e1935b8bf575738626794))
+* **cascader:** fixing the build ([4a4b766](https://github.com/Synerise/synerise-design/commit/4a4b76647c59eb0f71647c5d13c187edea45cdb7))
+* **cascader:** fixing the build again ([8ac7cd7](https://github.com/Synerise/synerise-design/commit/8ac7cd77f36d279a5449cd229833baff10897fd2))
+* **cascader:** removed unused style ([dab15f8](https://github.com/Synerise/synerise-design/commit/dab15f8396285259b8a5b8f61934a6574bb609b2))
+
+
+
+
+
 # 0.1.0 (2020-05-22)
 
 

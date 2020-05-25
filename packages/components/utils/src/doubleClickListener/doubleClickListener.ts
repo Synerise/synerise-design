@@ -1,12 +1,13 @@
 import * as React from 'react';
 
-type ClickEvent = (e: React.SyntheticEvent) => void;
 const DEFAULT_DELAY = 250;
-const doubleClickListener = (
-  onClick: ClickEvent,
-  onDblClick: ClickEvent,
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function doubleClickListener<T extends any>(
+  onClick: (e: React.SyntheticEvent<T>) => void,
+  onDblClick: (e: React.SyntheticEvent<T>) => void,
   delay = DEFAULT_DELAY
-): React.ReactEventHandler<HTMLElement> => {
+): React.ReactEventHandler<T> {
   let timeout: number | null = null;
   return (event): void => {
     if (!timeout) {
@@ -20,5 +21,5 @@ const doubleClickListener = (
       onDblClick(event);
     }
   };
-};
+}
 export default doubleClickListener;
