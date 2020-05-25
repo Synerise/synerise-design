@@ -12,12 +12,8 @@ export const Dropdown = styled.div<{ visible?: boolean; maxHeight?: number }>`
   border-radius: 0 0 3px 3px;
   padding: 8px 0 8px 8px;
   box-shadow: 0 16px 32px 0 rgba(35, 41, 54, 0.05);
-  .ps__rail-y {
-    .ps__thumb-y {
-    }
-  }
-  z-index:10;
-  ${(props): string | false =>  !!props.maxHeight && `max-height:${props.maxHeight}px;`}
+  z-index: 10;
+  ${(props): string | false => !!props.maxHeight && `max-height:${props.maxHeight}px;`}
 `;
 export const DropdownScroll = styled(Scrollbar)<{ searching?: boolean }>`
   padding-right: ${(props): string => (props.searching ? `0` : '8px')};
