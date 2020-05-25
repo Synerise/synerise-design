@@ -370,7 +370,7 @@
         "Apple Memory card 3": {
           "path": ["Phone accessories", "Memory cards", "Apple", "Apple Memory card 3"],
           "name": "Apple Memory card 3",
-          "id": 1414
+          "id": 1413
         },
         "Apple Memory card 4": {
           "path": ["Phone accessories", "Memory cards", "Apple", "Apple Memory card 4"],
@@ -851,5 +851,25 @@
     "path": ["GPS Navigation"],
     "id": 6,
     "name": "GPS Navigation"
+  },
+  "Computer accesories": {
+    "path": ["Computer accesories"],
+    "id": 7,
+    "name": "Computer accesories"
+  },
+  "Tablets": {
+    "path": ["Tablets"],
+    "id": 8,
+    "name": "Tablets"
+  },
+  "Phablets": {
+    "path": ["Phablets"],
+    "id": 9,
+    "name": "Phablets"
+  },
+  "Headphones": {
+    "path": ["Headphones"],
+    "id": 10,
+    "name": "Headphones"
   }
 }

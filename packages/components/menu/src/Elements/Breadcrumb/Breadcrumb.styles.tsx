@@ -1,21 +1,18 @@
-import styled from 'styled-components';
+import styled, { FlattenSimpleInterpolation, css } from 'styled-components';
 import * as React from 'react';
 import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import Text from '../Item/Text/Text';
+import { PrefixelWrapper } from '../Item/Text/Text.styles';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 const NOOP = (): void => {};
 
-export const disableDefaultClickingStyles = (props: ThemeProps): string => `
-  &, &:focus, &:hover {
-    background: ${props.theme.palette.white} !important;
-    box-shadow: inset 0 0 0 2px transparent !important;
-  } 
-`;
-
 export const ArrowRight = styled.div<{ visible: boolean }>`
-  transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease-in-out;
   opacity: ${(props): string => (props.visible ? '1' : '0')};
+  svg {
+    transition: fill 0.3s ease-in-out;
+  }
 `;
 
 export const BreadcrumbContent = styled.div<{ prefixel?: boolean }>`
@@ -66,9 +63,41 @@ export const ContentWrapper = styled.div<{ gradientOverlap?: boolean }>`
 export const BreadcrumbName = styled.div`
   direction: ltr;
   font-weight: 400;
+  transition: color 0.3s ease-in-out;
   color: ${(props): string => props.theme.palette['grey-600']};
   .search-highlight {
     font-weight: 500;
+  }
+`;
+export const disableDefaultClickingStyles = (
+  props: ThemeProps & { disabled?: boolean }
+): FlattenSimpleInterpolation => css`
+  &, &:focus, &:hover {
+    background: ${props.theme.palette.white} !important;
+    box-shadow: inset 0 0 0 2px transparent !important;
+        ${BreadcrumbName}, ${Description} {
+      color: ${props.theme.palette['grey-600']};
+    }
+    ${ArrowRight} > .ds-icon > svg{
+       fill: ${props.theme.palette['grey-600']};
+    }
+    
+  } 
+  ${BreadcrumbName}:hover, ${Description}:hover {
+    color: ${props.disabled ? props.theme.palette['grey-600'] : props.theme.palette['blue-600']};
+  }
+  &&&:hover {
+       ${PrefixelWrapper} {
+      .ds-icon > svg{
+       fill: ${props.theme.palette['grey-600']} !important;
+      }
+    }
+  }
+  &&& {
+   ${PrefixelWrapper}:hover {
+    .ds-icon > svg{
+    fill: ${props.theme.palette['blue-600']} !important;
+   }
   }
 `;
 
@@ -105,7 +134,7 @@ export const Breadcrumb = styled(({ children, disabled, onPathClick, compact, ..
   )`};
     }
   }
-  ${(props): string | false => !!props.onPathClick && disableDefaultClickingStyles(props)}
+  ${(props): FlattenSimpleInterpolation | false => !!props.onPathClick && disableDefaultClickingStyles(props)}
 `;
 
 export const BreadcrumbRoute = styled.div`
