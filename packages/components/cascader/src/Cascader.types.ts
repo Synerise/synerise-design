@@ -9,12 +9,12 @@ export interface Category {
 export interface CascaderProps {
   disabled?: boolean;
   searchClearTooltip?: string | React.ReactNode;
-  searchInputPlaceholder: string;
+  searchInputPlaceholder?: string;
   onPathSelect?: (item: Path, selected: boolean) => void;
   rootCategory: Category;
   selectedCategoriesIds: React.ReactText[];
-  dropdownStyle: React.CSSProperties;
-  categorySuffix: string | React.ReactNode;
+  dropdownStyle?: React.CSSProperties;
+  categorySuffix?: string | React.ReactNode;
 }
 export interface Path {
   id: React.ReactText;

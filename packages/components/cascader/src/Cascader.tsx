@@ -122,7 +122,7 @@ const Cascader: React.FC<CascaderProps> = ({
             filterPathsBySearchQuery(value);
           }}
           disabled={disabled}
-          placeholder={searchInputPlaceholder}
+          placeholder={searchInputPlaceholder || ''}
           value={searchQuery}
           iconLeft={<Icon component={<SearchM />} color={theme.palette['grey-600']} />}
           onClearInput={(): void => setSearchQuery('')}
