@@ -9,11 +9,11 @@ const dataSource = ['First position', 'Second position'];
 const AutocompleteWithState: React.FC = () => {
   const [value, setValue] = React.useState<string>('');
   const [results, setResults] = React.useState<string[]>([]);
-  const hasLabel = text('Label','Label');
-  const hasDescription = text('Description','Description');
+  const label = text('Label','Label');
+  const description = text('Description','Description');
   const errorMessage = text('Error Text', 'Error' );
   const hasError = boolean('Set validation state',false);
-  const hasPlaceholder = text('Placeholder', 'Placeholder')
+  const placeholder = text('Placeholder', 'Placeholder')
 
   const handleSearch = value => {
     let result;
@@ -45,10 +45,10 @@ const AutocompleteWithState: React.FC = () => {
   return (
     <Autocomplete
       style={{ width: 200 }}
-      placeholder={hasPlaceholder}
+      placeholder={placeholder}
       onSearch={handleSearch}
-      label={hasLabel}
-      description={hasDescription}
+      label={label}
+      description={description}
       errorText={getErrorText(hasError)}
       error={hasError}
       onChange={(value: string) => setValue(extractContent(value))}
