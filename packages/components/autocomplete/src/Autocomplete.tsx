@@ -10,6 +10,7 @@ export type OverrideProps = {
   errorText?: React.ReactNode | string;
   label?: React.ReactNode | string;
   description?: React.ReactNode | string;
+  error?: boolean;
 };
 
 export type AutocompleteProps = OverrideProps & OriginalProps;
@@ -18,7 +19,7 @@ class Autocomplete extends React.PureComponent<AutocompleteProps> {
   static Option = AntdAutoComplete.Option;
 
   render(): React.ReactElement {
-    const { className, label, description, errorText, disabled } = this.props;
+    const { className, label, description, errorText, disabled, error } = this.props;
     return (
       <S.AutocompleteWrapper className={`ds-autocomplete ${className || ''}`}>
         {label && (
@@ -29,7 +30,7 @@ class Autocomplete extends React.PureComponent<AutocompleteProps> {
         <AntdAutoComplete
           // eslint-disable-next-line react/jsx-props-no-spreading
           {...this.props}
-          className={errorText ? 'error' : undefined}
+          className={!!errorText || error ? 'error' : undefined}
         />
         {errorText && (
           <S.ErrorWrapper>
