@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-cascader@0.1.1...@synerise/ds-cascader@0.1.2) (2020-05-26)
+
+
+### Bug Fixes
+
+* **cascader:** breadcrumb styles, added scrollbar ([254136f](https://github.com/Synerise/synerise-design/commit/254136f93bd3dbccbd5272b5a50f6c526e9e3f06))
+* **cascader:** changes after code review ([4bf87d0](https://github.com/Synerise/synerise-design/commit/4bf87d016a08d094896d49972b5137660da19acb))
+
+
+
+
+
 ## [0.1.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-cascader@0.1.0...@synerise/ds-cascader@0.1.1) (2020-05-25)
 
 

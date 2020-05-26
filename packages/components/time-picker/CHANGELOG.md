@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.31](https://github.com/Synerise/synerise-design/compare/@synerise/ds-time-picker@0.2.30...@synerise/ds-time-picker@0.2.31) (2020-05-26)
+
+
+### Bug Fixes
+
+* **time-picker:** removed flaky test ([7327c30](https://github.com/Synerise/synerise-design/commit/7327c30b0b716accfd590a848ddade864faac683))
+
+
+
+
+
 ## [0.2.30](https://github.com/Synerise/synerise-design/compare/@synerise/ds-time-picker@0.2.29...@synerise/ds-time-picker@0.2.30) (2020-05-25)
 
 **Note:** Version bump only for package @synerise/ds-time-picker

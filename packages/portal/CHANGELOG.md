@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.65.2](https://github.com/synerise/synerise-design/compare/portal@0.65.1...portal@0.65.2) (2020-05-26)
+
+
+### Bug Fixes
+
+* **cascader:** breadcrumb styles, added scrollbar ([254136f](https://github.com/synerise/synerise-design/commit/254136f93bd3dbccbd5272b5a50f6c526e9e3f06))
+* **table:** fix row selection types ([2f84aa9](https://github.com/synerise/synerise-design/commit/2f84aa9446e81b424b514ddb56e8c1f9197f881d))
+
+
+
+
+
 ## [0.65.1](https://github.com/synerise/synerise-design/compare/portal@0.65.0...portal@0.65.1) (2020-05-25)
 
 

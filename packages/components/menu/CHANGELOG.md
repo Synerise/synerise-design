@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.5.1...@synerise/ds-menu@0.5.2) (2020-05-26)
+
+
+### Bug Fixes
+
+* **cascader:** breadcrumb styles, added scrollbar ([254136f](https://github.com/Synerise/synerise-design/commit/254136f93bd3dbccbd5272b5a50f6c526e9e3f06))
+
+
+
+
+
 ## [0.5.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.5.0...@synerise/ds-menu@0.5.1) (2020-05-25)
 
 
