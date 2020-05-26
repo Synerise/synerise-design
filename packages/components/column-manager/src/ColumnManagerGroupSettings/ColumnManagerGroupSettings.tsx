@@ -37,17 +37,30 @@ const EMPTY_RANGE = {
   to: undefined,
 };
 
-const ColumnManagerGroupSettings: React.FC<Props> = ({ hide, visible, column, onOk }: Props) => {
+const ColumnManagerGroupSettings: React.FC<Props> = ({ hide, visible, column, onOk, settings }: Props) => {
   const [groupBy, setGroupBy] = React.useState<GroupType | undefined>(undefined);
   const [ranges, setRanges] = React.useState<Range[]>([]);
   const [interval, setIntervalValue] = React.useState<number | undefined>(undefined);
+
+  const clearState = React.useCallback(() => {
+    setRanges([]);
+    setGroupBy(undefined);
+    setIntervalValue(undefined);
+  }, []);
+
+  React.useEffect(() => {
+    console.log(settings);
+    setGroupBy(settings?.settings.type);
+    setRanges(settings?.settings.ranges || []);
+    setIntervalValue(settings?.settings.interval || undefined);
+  }, [settings, setGroupBy, setRanges, setIntervalValue]);
 
   const handleOk = React.useCallback(() => {
     if (groupBy === GROUP_BY.disabled) {
       onOk(undefined);
       return;
     }
-    const settings = {
+    const currentSettings = {
       column,
       settings: {
         type: groupBy,
@@ -55,7 +68,8 @@ const ColumnManagerGroupSettings: React.FC<Props> = ({ hide, visible, column, on
         interval: groupBy === GROUP_BY.interval && (interval as number),
       },
     };
-    onOk(settings);
+    clearState();
+    onOk(currentSettings);
   }, [onOk, column, groupBy, ranges, interval]);
 
   const selectLabel = React.useMemo(() => {
@@ -101,14 +115,29 @@ const ColumnManagerGroupSettings: React.FC<Props> = ({ hide, visible, column, on
     return null;
   }, [groupBy, ranges, column, interval]);
 
+  const handleHide = React.useCallback(() => {
+    clearState();
+    hide();
+  }, [hide]);
+
+  const groupByRangesDisabled = React.useMemo(() => {
+    const availableColumnTypes = ['text', 'number'];
+    const type = column?.type || undefined;
+    return !type || !availableColumnTypes.includes(type);
+  }, [column]);
+
+  console.log(column, settings);
+
   return (
-    <Modal onCancel={hide} visible={visible} onOk={handleOk} size="small" title="Table content group">
+    <Modal onCancel={handleHide} visible={visible} onOk={handleOk} size="small" title="Table content group">
       <S.ModalContent>
         {/*
         // @ts-ignore */}
         <Select label={selectLabel} value={groupBy} onChange={(value): void => setGroupBy(value)} placeholder="Select">
           <Select.Option value={GROUP_BY.value}>Group by value</Select.Option>
-          <Select.Option value={GROUP_BY.ranges}>Group by ranges</Select.Option>
+          <Select.Option value={GROUP_BY.ranges} disabled={groupByRangesDisabled}>
+            Group by ranges
+          </Select.Option>
           <Select.Option value={GROUP_BY.interval}>Group by intervals</Select.Option>
           <Select.Option value={GROUP_BY.disabled}>Group disabled</Select.Option>
         </Select>

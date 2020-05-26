@@ -2,6 +2,7 @@ import * as React from 'react';
 
 export type Column = {
   id: string;
+  key: React.ReactText;
   name: string;
   visible: boolean;
   type: string | 'text' | 'number' | 'date' | 'boolean' | 'list';

@@ -74,7 +74,8 @@ function DSTable<T extends object = any>(props: DSTableProps<T>): React.ReactEle
           <Icon component={<SpinnerM />} color="#6a7580" />
         </S.Spinner>
       )}
-      // @ts-ignore
+      {/*
+        // @ts-ignore */}
       {grouped ? <GroupTable<T> {...props} title={renderHeader} /> : <DefaultTable {...props} title={renderHeader} />}
     </div>
   );

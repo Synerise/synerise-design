@@ -260,9 +260,8 @@ class ColumnManager extends React.Component<ColumnManagerProps, State> {
           }}
           visible={activeColumn !== undefined}
           column={activeColumn}
-          settings={groupSettings}
+          settings={activeColumn?.key === groupSettings?.column?.key ? groupSettings : undefined}
           onOk={(settings): void => {
-            console.log(settings);
             this.setState({ groupSettings: settings, activeColumn: undefined });
           }}
         />
