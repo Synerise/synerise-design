@@ -8,7 +8,7 @@ import * as S from './Table.styles';
 import { DSTableProps } from './Table.types';
 import TableHeader from './TableHeader/TableHeader';
 import DefaultTable from './DefaultTable/DefaultTable';
-import GroupedTable from './GroupedTable/GroupedTable';
+import GroupTable from './GroupTable/GroupTable';
 
 export const SELECTION_ALL = 'SELECTION_ALL';
 export const SELECTION_INVERT = 'SELECTION_INVERT';
@@ -74,7 +74,8 @@ function DSTable<T extends object = any>(props: DSTableProps<T>): React.ReactEle
           <Icon component={<SpinnerM />} color="#6a7580" />
         </S.Spinner>
       )}
-      {grouped ? <GroupedTable {...props} title={renderHeader} /> : <DefaultTable {...props} title={renderHeader} />}
+      // @ts-ignore
+      {grouped ? <GroupTable<T> {...props} title={renderHeader} /> : <DefaultTable {...props} title={renderHeader} />}
     </div>
   );
 }

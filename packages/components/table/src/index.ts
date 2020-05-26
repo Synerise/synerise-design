@@ -1,5 +1,5 @@
 import VirtualTable from './VirtualTable/VirtualTable';
-import GroupedTable from './GroupedTable/GroupedTable';
+import GroupedTable from './GroupTable/GroupTable';
 
 import * as TableCell from './Cell';
 import ItemsMenu from './ItemsMenu/ItemsMenu';

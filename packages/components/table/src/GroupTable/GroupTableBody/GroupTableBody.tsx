@@ -4,9 +4,9 @@ import Status from '@synerise/ds-status';
 import Button from '@synerise/ds-button';
 import Icon from '@synerise/ds-icon';
 import AddS from '@synerise/ds-icon/dist/icons/AddS';
-import * as S from '../GroupedTable.styles';
+import * as S from '../GroupTable.styles';
 import { RowSelection } from '../../Table.types';
-import { GroupColumnsType, GroupType } from '../GroupedTable';
+import { GroupColumnsType, GroupType } from '../GroupTable';
 
 interface Props<T extends unknown> {
   group: any;

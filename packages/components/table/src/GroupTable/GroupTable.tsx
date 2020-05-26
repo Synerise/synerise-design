@@ -38,7 +38,7 @@ const getNextSortOrder = (current: SortOrderType): SortOrderType => {
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-function GroupedTable<T extends GroupType<T>>(
+function GroupTable<T extends GroupType<T>>(
   props: DSTableProps<T> & { addItem?: (column: string, value: React.ReactText | boolean | object) => void }
 ): React.ReactElement {
   const {
@@ -64,7 +64,7 @@ function GroupedTable<T extends GroupType<T>>(
 
   React.useEffect(() => {
     setData(dataSource || []);
-    setExpandedGroups(dataSource.map(group => group.key));
+    setExpandedGroups(dataSource?.map(group => group.key) || []);
   }, [dataSource]);
 
   React.useEffect(() => {
@@ -207,4 +207,4 @@ function GroupedTable<T extends GroupType<T>>(
   );
 }
 
-export default GroupedTable;
+export default GroupTable;

@@ -2,6 +2,8 @@ import { TableProps } from 'antd/lib/table';
 import * as React from 'react';
 import { TableRowSelection } from 'antd/lib/table/interface';
 import DSTable from './Table';
+import { SELECTION_ALL, SELECTION_INVERT } from './Table';
+import { GroupType } from './GroupTable/GroupTable';
 
 export type AntTableProps<T> = Omit<TableProps<T>, 'title' | 'subTitle' | 'onSearch' | 'itemsMenu' | 'search'>;
 
@@ -45,7 +47,7 @@ export interface Filter {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export interface DSTableProps<T extends any> extends AntTableProps<T> {
+export interface DSTableProps<T extends any & GroupType<T>> extends AntTableProps<T> {
   title?: string | React.ReactNode;
   hideTitleBar?: boolean;
   headerWithBorderTop?: boolean;
@@ -58,4 +60,5 @@ export interface DSTableProps<T extends any> extends AntTableProps<T> {
   filters?: Filter[];
   searchComponent?: React.ReactNode;
   filterComponent?: React.ReactNode;
+  grouped?: boolean;
 }
