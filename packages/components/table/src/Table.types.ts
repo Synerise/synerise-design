@@ -1,5 +1,6 @@
 import { TableProps } from 'antd/lib/table';
 import * as React from 'react';
+import { TableRowSelection } from 'antd/lib/table/interface';
 import DSTable from './Table';
 
 export type AntTableProps<T> = Omit<TableProps<T>, 'title' | 'subTitle' | 'onSearch' | 'itemsMenu' | 'search'>;
@@ -12,12 +13,12 @@ export type Selection = {
 
 export type SelectionItem = typeof DSTable.SELECTION_ALL | typeof DSTable.SELECTION_INVERT | Selection;
 
-export interface RowSelection<T> {
+export type RowSelection<T> = Omit<TableRowSelection<T>, 'selections'> & {
   fixed?: boolean;
   selectedRowKeys: React.ReactText[];
   selections?: SelectionItem[];
   onChange: (selectedRowKeys: React.ReactText[], selectedRows: T[]) => void;
-}
+};
 
 export interface Filter {
   tooltips: {
