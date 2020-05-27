@@ -21,7 +21,7 @@ describe('Simple menu', () => {
     {
       text: 'Delete',
       type: 'danger',
-      disabled:false,
+      disabled: false,
     },
   ];
   let container: HTMLElement;
@@ -51,10 +51,10 @@ describe('Simple menu', () => {
 
 describe('Menu with nested items', () => {
   const data = [
-      { text: 'Option 1' },
-      { text: 'Option 2' },
-      { text: 'Option 3', subMenu: [{ text: 'Child 1' }] },
-      { text: 'Option 4', subMenu: [{ text: 'Child 1' }] },
+    { text: 'Option 1' },
+    { text: 'Option 2' },
+    { text: 'Option 3', subMenu: [{ text: 'Child 1' }] },
+    { text: 'Option 4', subMenu: [{ text: 'Child 1' }] },
   ] as MenuItemProps[];
 
   it('should render basic menu list', () => {
@@ -76,10 +76,15 @@ describe('Menu with nested items', () => {
   });
   it('should display many children from different parents at the same time', () => {
     // ARRANGE
-    const { getAllByText, getByText } = renderWithProvider(<Menu dataSource={data} />);
-
-    const firstParent = getByText('Option 3') as HTMLElement;
-    const secondParent = getByText('Option 4') as HTMLElement;
+    const { getAllByText,queryAllByText } = renderWithProvider(
+      <Menu dataSource={data} />
+    );
+    const firstParent = queryAllByText(
+      (_, element) => element.textContent === 'Option 3' && element.className === 'ant-menu-submenu-title'
+    )[0] as HTMLElement;
+    const secondParent = queryAllByText(
+      (_, element) => element.textContent === 'Option 4' && element.className === 'ant-menu-submenu-title'
+    )[0] as HTMLElement;
     fireEvent.click(firstParent);
     fireEvent.click(secondParent);
 
@@ -156,10 +161,10 @@ describe('Menu with prefix and suffix', () => {
 });
 describe('Menu with description', () => {
   const data = [
-      {
-        text: 'Avatar 1',
-        description: 'Description 1',
-      },
+    {
+      text: 'Avatar 1',
+      description: 'Description 1',
+    },
   ];
   let renderedMenu: RenderResult;
   beforeEach(() => {

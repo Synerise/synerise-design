@@ -21,3 +21,4 @@ export interface SubMenuState {
   childrenCollapsed: boolean;
   uuidKey: string;
 }
+export type SubMenuItemProps = SubMenuProps & { onClick?: (item: SubMenuProps) => void}
