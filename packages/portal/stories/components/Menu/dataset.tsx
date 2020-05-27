@@ -17,7 +17,8 @@ import {
 import Label from '@synerise/ds-input/dist/Label/Label';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { VisibilityTrigger } from '@synerise/ds-menu/dist/Menu.types';
-
+import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
+import * as S from './stories.styles';
 export const TEXT_PLACEHOLDER = 'Option';
 export const DESCRIPTION_PLACEHOLDER = 'Description';
 const IMG_SRC = 'https://www.w3schools.com/howto/img_avatar.png';
@@ -36,12 +37,13 @@ export const suffixType = {
 export const iconPrefixType = {
   singleIcon: 'singleIcon',
   twoIcons: 'twoIcons',
+  none: 'none',
 };
 
 export const suffixVisibilityTrigger = {
-  default:VisibilityTrigger.NONE,
-  hover:VisibilityTrigger.HOVER,
-}
+  default: VisibilityTrigger.NONE,
+  hover: VisibilityTrigger.HOVER,
+};
 export const ExtendedAntdSwitchComponent = (AntdSwitch as any) as React.ComponentType<SwitchProps & { id: string }>;
 
 export function renderSuffix(suffixElementType: string) {
@@ -49,18 +51,36 @@ export function renderSuffix(suffixElementType: string) {
     case suffixType.renameAndDelete:
       return (
         <React.Fragment>
-          <Icon color={theme.palette['grey-600']} component={<EditS />} />
-          <Icon color={theme.palette['red-600']} component={<CloseS />} />
+          <Tooltip type="default" trigger={'hover'} title={'Rename'}>
+            <S.HoverableIconWrapper>
+              <Icon color={theme.palette['grey-600']} component={<EditS />} />
+            </S.HoverableIconWrapper>
+          </Tooltip>
+          <Tooltip type="default" trigger={'hover'} title={'Delete'}>
+            <div>
+              <Icon color={theme.palette['red-600']} component={<CloseS />} />
+            </div>
+          </Tooltip>
         </React.Fragment>
       );
     case suffixType.delete:
-      return <Icon color={theme.palette['red-600']} component={<CloseS />} />;
+      return (
+        <Tooltip type="default" title={'Delete'}>
+          <div>
+            <Icon color={theme.palette['red-600']} component={<CloseS />} />
+          </div>
+        </Tooltip>
+      );
     case suffixType.check:
       return <Icon color={theme.palette['green-600']} component={<CheckS />} />;
     case suffixType.warning:
       return <Icon color={theme.palette['orange-600']} component={<WarningFillS />} />;
     case suffixType.icon:
-      return <Icon color={theme.palette['grey-600']} component={<UserS />} />;
+      return (
+        <S.HoverableIconWrapper className="icon-suffix">
+          <Icon color={theme.palette['grey-600']} component={<UserS />} />
+        </S.HoverableIconWrapper>
+      );
     case suffixType.label:
       return (
         <Label
@@ -90,13 +110,24 @@ export const renderPrefixIcon = (prefixIconType: string) => {
     case iconPrefixType.twoIcons:
       return (
         <React.Fragment>
-          <Icon component={<FolderM />} />
-          <Icon style={{ marginLeft: '8px' }} component={<ShowM />} />
+          <Tooltip type="default" title={'Delete'}>
+            <div>
+              <Icon color={theme.palette['grey-700']} component={<FolderM />} />
+            </div>
+          </Tooltip>
+          <Tooltip type="default" title={'Delete'}>
+            <div>
+              <Icon color={theme.palette['grey-700']} style={{ marginLeft: '8px' }} component={<ShowM />} />
+            </div>
+          </Tooltip>
         </React.Fragment>
       );
       break;
+    case iconPrefixType.singleIcon:
+      return <Icon color={theme.palette['grey-700']} component={<ShowM />} />;
+      break;
     default:
-      return <Icon component={<ShowM />} />;
+      return null;
   }
 };
 
@@ -118,12 +149,15 @@ export const ordered = [
 ];
 export const largeList = new Array(30).fill({ text: TEXT_PLACEHOLDER });
 
-export const parent = [
+export const submenu = [
   {
     text: 'Parent 1',
     subMenu: [{ text: 'Child 1', ordered: true }, { text: 'Child 2', ordered: true }, { text: 'Child 3' }],
   },
-  { text: 'Parent 2', subMenu: [{ text: 'Child 1' }, { text: 'Child 2' }, { text: 'Child 3' }] },
+  {
+    text: 'Parent 1',
+    subMenu: [{ text: 'Child 1', ordered: true }, { text: 'Child 2', ordered: true }, { text: 'Child 3' }],
+  },
 ];
 
 export const parentWithIcon = [
@@ -133,7 +167,6 @@ export const parentWithIcon = [
   },
   {
     text: 'Parent 2',
-    prefixel: <Icon color={theme.palette['grey-600']} component={<UserS />} />,
     subMenu: [
       { text: 'Child 1', subMenu: [{ text: 'Child 1' }, { text: 'Child 2' }, { text: 'Child 3' }] },
       { text: 'Child 2' },
@@ -192,18 +225,13 @@ export const deleteState = [
 
 export const withCheckBox = [{}];
 
-export const withCopyable = [
+export const copyable = [
   {
     text: 'Item',
-    prefixel: <Icon component={<CopyClipboardM />} />,
+    prefixel: <Icon color={theme.palette['grey-700']} component={<CopyClipboardM />} />,
     copyable: true,
     copyHint: 'Copy to clipboard',
     copyValue: 'Item',
-  },
-];
-export const withCascader = [
-  {
-    parent: true,
   },
 ];
 export const withSelect = [

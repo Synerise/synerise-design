@@ -35,9 +35,7 @@ export const PrefixelWrapper = styled.div<{ disabled?: boolean; visible?: boolea
   margin-left: -4px;
   margin-right: 12px;
   align-items: center;
-  svg {
-    fill: ${(props): string => (props.disabled ? props.theme.palette['grey-600'] : 'inherit')};
-  }
+  ${(props): string|false => !!props.disabled && `svg {fill: ${props.theme.palette['grey-600']}};`}
 `;
 
 export const Wrapper = styled(MenuItem)<WrapperProps>`
@@ -156,7 +154,7 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
         width: 100%;
         height: 100%;
         background-color: transparent;
-        box-shadow: inset 0 0 0 2px ${(props): string => props.theme.palette['blue-600']}
+        box-shadow: inset 0 0 0 2px ${(props): string => props.theme.palette.white};
         opacity: 0.3;
         border-radius: inherit;
         box-sizing: border-box;
@@ -195,6 +193,8 @@ export const Content = styled.div<{ highlight?: boolean }>`
   min-height: 18px;
   align-items: center;
   flex-wrap: wrap;
+  user-select: none;
+
   ${(props): string | false =>
     !!props.highlight &&
     `
@@ -240,6 +240,8 @@ export const ContentWrapper = styled.div`
   display: flex;
   align-items: center;
   flex-wrap: nowrap;
+  user-select: none;
+
 `;
 
 export const ContentDivider = styled.div`

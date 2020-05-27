@@ -1,7 +1,12 @@
 import { KeyboardEvent } from 'react';
 
+const hasFocusableElementInside = (element: HTMLElement, query: string): boolean => {
+  return element.querySelectorAll(query).length > 0;
+};
+
 const focusWithArrowKeys = (keyDownEvent: KeyboardEvent, focusableItemClass: string, fallback: () => void): void => {
-  const focusableElementsNodeList = document.querySelectorAll(`.${focusableItemClass}`);
+  const selector = `.${focusableItemClass}`;
+  const focusableElementsNodeList = document.querySelectorAll(selector);
   const focusableElements = Array.from(focusableElementsNodeList);
   const activeElement = document.activeElement as HTMLElement;
   const activeElementIndex = focusableElements.indexOf(activeElement);
@@ -12,8 +17,11 @@ const focusWithArrowKeys = (keyDownEvent: KeyboardEvent, focusableItemClass: str
     let elementToFocusOn;
     if (isItemFocused) {
       const nextSibling = activeElement.nextElementSibling as HTMLElement;
+      const hasFocusableChildren = hasFocusableElementInside(activeElement, selector);
       elementToFocusOn =
-        nextSibling === null ? (focusableElements[activeElementIndex + 1] as HTMLElement) : nextSibling;
+        nextSibling !== null && !hasFocusableChildren
+          ? nextSibling
+          : (focusableElements[activeElementIndex + 1] as HTMLElement);
     } else {
       elementToFocusOn = document.querySelector(`.${focusableItemClass}`) as HTMLElement;
     }
@@ -26,8 +34,11 @@ const focusWithArrowKeys = (keyDownEvent: KeyboardEvent, focusableItemClass: str
     let elementToFocusOn;
     if (isItemFocused) {
       const prevSibling = activeElement.previousElementSibling as HTMLElement;
+      const hasFocusableChildren = hasFocusableElementInside(activeElement, selector);
       elementToFocusOn =
-        prevSibling === null ? (focusableElements[activeElementIndex - 1] as HTMLElement) : prevSibling;
+        prevSibling !== null && !hasFocusableChildren
+          ? prevSibling
+          : (focusableElements[activeElementIndex - 1] as HTMLElement);
     }
     !elementToFocusOn ? fallback() : elementToFocusOn.focus();
     return;
@@ -37,5 +48,4 @@ const focusWithArrowKeys = (keyDownEvent: KeyboardEvent, focusableItemClass: str
     activeElement && activeElement.click();
   }
 };
-
 export default focusWithArrowKeys;

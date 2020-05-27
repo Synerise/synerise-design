@@ -3,6 +3,7 @@ import Icon from '@synerise/ds-icon';
 import Menu from '@synerise/ds-menu';
 import { HomeM } from '@synerise/ds-icon/dist/icons';
 import Divider from '@synerise/ds-divider';
+import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import * as S from '../../Cascader.styles';
 import BackAction from '../BackAction/BackAction';
 import { Category } from '../../Cascader.types';
@@ -34,7 +35,7 @@ const Navigation: React.FC<Props> = ({
           highlightActivePath
           prefixel={
             <S.BreadcrumbPrefix onClick={onHomeIconClick}>
-              <Icon component={<HomeM />} />
+              <Icon component={<HomeM />} color={theme.palette['grey-600']} />
             </S.BreadcrumbPrefix>
           }
           compact

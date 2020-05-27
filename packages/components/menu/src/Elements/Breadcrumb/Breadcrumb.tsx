@@ -63,9 +63,12 @@ const Breadcrumb: React.FC<BreadcrumbProps & MenuItemProps> = ({
 
   const attachActiveClassName = React.useCallback(
     (index: number): string => {
-      return !!highlightActivePath && index === 0 ? 'active' : '';
+      if (compact) {
+        return !!highlightActivePath && index === 0 ? 'active' : '';
+      }
+      return !!highlightActivePath && index === path.length - 1 ? 'active' : '';
     },
-    [highlightActivePath]
+    [highlightActivePath, path, compact]
   );
   const shouldRenderArrow = (breadCrumbPath: string[], index: number): boolean => {
     if (!breadCrumbPath || !breadCrumbPath.length) {

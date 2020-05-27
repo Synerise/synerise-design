@@ -1,7 +1,6 @@
 import * as React from 'react';
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
-import SubMenu from 'antd/lib/menu/SubMenu';
 import { Menu } from 'antd';
 import { Inner, SuffixWraper } from './Elements/Item/Text/Text.styles';
 
@@ -12,6 +11,7 @@ type SubMenuProps = {
   prefixel?: React.ReactNode;
   title: string | React.ReactNode;
   childrenCollapsed?: boolean;
+  tabIndex?: number;
 };
 
 type AntdMenuProps = {
@@ -62,7 +62,7 @@ export const AntdMenu = styled(Menu)<AntdMenuProps>`
   }
 `;
 
-export const SubMenuItem = styled(SubMenu)<SubMenuProps>`
+export const SubMenuItem = styled(Menu.SubMenu)<SubMenuProps>`
   &&& {
     color: ${(props): string => props.theme.palette['grey-700']};
     opacity: ${(props): string => (props.disabled ? '0.4' : '1')};
@@ -70,8 +70,7 @@ export const SubMenuItem = styled(SubMenu)<SubMenuProps>`
     font-weight: 500;
     border-radius: 3px;
     transition: background-color 0.3s ease-out;
-
-    .ant-menu-submenu-title {
+    > .ant-menu-submenu-title {
       line-height: 1.39;
       height: auto;
       margin: 0;
@@ -91,18 +90,23 @@ export const SubMenuItem = styled(SubMenu)<SubMenuProps>`
         `}
     }
 
+    ${(props): string | false =>
+      !props.disabled &&
+      `
     &:focus {
-      border: 2px solid ${(props): string => props.theme.palette['blue-600']};
+      .ant-menu-submenu-title{
+         box-shadow: inset 0 0 0 2px ${props.theme.palette['blue-600']};
+      }
     }
-
+    `}
     i {
       right: 12px;
     }
-    .ant-menu-submenu-title:not(:hover){
+    > .ant-menu-submenu-title:not(:hover){
       color: ${(props): string =>
         props.childrenCollapsed ? props.theme.palette['grey-700'] : props.theme.palette['blue-600']};
     }
-    .ant-menu-submenu-title {
+    > .ant-menu-submenu-title {
       ${(props): string | false => !props.childrenCollapsed && `background:${props.theme.palette['grey-050']};`}
       border-radius: 3px;
       & > i.ant-menu-submenu-arrow {

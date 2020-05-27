@@ -39,9 +39,9 @@ export const ContentWrapper = styled.div<{ gradientOverlap?: boolean }>`
     width: 50px;
     height: 18px;
     transition: opacity 0.3s ease-in-out;
-    background-image: ${(props): string => `linear-gradient( to right,
-    ${props.theme.palette['grey-050']},
-    rgba(0,0,0,0) 100%
+    background-image: ${(props): string => `-webkit-linear-gradient( left,
+    ${props.theme.palette['grey-050']} 0%,
+    rgba(255,255,255,0) 100%
   )`};
   }
   &::after {
@@ -54,9 +54,9 @@ export const ContentWrapper = styled.div<{ gradientOverlap?: boolean }>`
     width: 50px;
     height: 18px;
     transition: opacity 0.3s ease-in-out;
-    background-image: ${(props): string => `linear-gradient( to right,
-    ${props.theme.palette.white},
-    rgba(0,0,0,0) 100%
+    background-image: ${(props): string => `-webkit-linear-gradient( left,
+    ${props.theme.palette.white} 0%,
+    rgba(255,255,255,0) 100%
   )`};
   }
 `;
@@ -128,9 +128,9 @@ export const Breadcrumb = styled(({ children, disabled, onPathClick, compact, ..
   }
   &:focus:active {
     ${ContentWrapper}::before {
-      background-image: ${(props): string => `linear-gradient( to right,
-    ${props.theme.palette['grey-100']},
-    rgba(0,0,0,0) 100%
+      background-image: ${(props): string => `-webkit-linear-gradient( left,
+    ${props.theme.palette['grey-100']} 0%,
+    rgba(255,255,255,0) 100%
   )`};
     }
   }
