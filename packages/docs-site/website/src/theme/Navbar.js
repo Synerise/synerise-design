@@ -2,6 +2,7 @@ import React from 'react';
 import NavbarItem from '../Components/Navbar/NavItem';
 import NavbarSubItem from '../Components/Navbar/NavSubItem';
 import NavItemExpandable from '../Components/Navbar/NavItemExpandable';
+import ClientOnly from '@docusaurus/ClientOnly';
 
 const Navbar = () => {
   const [opened, setOpened] = React.useState(false);
@@ -53,4 +54,8 @@ const Navbar = () => {
   )
 };
 
-export default Navbar;
+export default () => (
+  <ClientOnly>
+    <Navbar />
+  </ClientOnly>
+);
