@@ -1,8 +1,5 @@
 import React from 'react';
 import ClientOnly from '@docusaurus/ClientOnly';
-import NavbarItem from './Navbar/NavItem';
-import NavbarSubItem from './Navbar/NavSubItem';
-import NavItemExpandable from './Navbar/NavItemExpandable';
 
 const Navbar = () => {
   const [opened, setOpened] = React.useState(false);
@@ -33,11 +30,11 @@ const Navbar = () => {
         </button>
         <ul className="c-main-nav">
           <NavItemExpandable label="Get started">
-            <NavbarSubItem title="About" label="About" link="/about"/>
-            <NavbarSubItem title="Develop" label="Develop" link="/develop"/>
+            <NavSubItem title="About" label="About" link="/about"/>
+            <NavSubItem title="Develop" label="Develop" link="/develop"/>
           </NavItemExpandable>
-          <NavbarItem title="Guidelines" label="Guidelines" link="/docs/palette"/>
-          <NavbarItem title="Storybook" label="Storybook" link="/storybook-static/"/>
+          <NavItem title="Guidelines" label="Guidelines" link="/docs/palette"/>
+          <NavItem title="Storybook" label="Storybook" link="/storybook-static/"/>
 
           <li className="hover-action-subitem c-main-nav__item c-main-nav__item--end">
             <a className="c-read-more c-main-nav__item__link" href="https://app.synerise.com/spa/login" target="_self">
@@ -53,6 +50,50 @@ const Navbar = () => {
     </header>
   )
 };
+
+const NavItem = ({ link, label, title}) => {
+  return (
+    <li className="hover-action-subitem c-main-nav__item">
+      <a className="c-main-nav__item__link" title={title} href={link}>
+        <span className="c-main-nav__submenu__item__title">{label}</span>
+      </a>
+    </li>
+  )
+};
+
+
+const NavItemExpandable = ({children, label}) => {
+  const [expanded, setExpanded] = React.useState(false);
+
+  return (
+    <li
+      className={`c-main-nav__item--expandable ${expanded ? 'opened' : ''}`}
+      onMouseOver={() => setExpanded(true)}
+      onMouseOut={() => setExpanded(false)}
+      onClick={() => setExpanded(!expanded)}
+    >
+      <span className="c-main-nav__item__link" role="button">
+        {label}<i className="c-main-nav__item__link__icon icon-angle-down-m"></i>
+      </span>
+      <div className={`c-main-nav__submenu with-featured featured-null initialized ${expanded ? 'expanded' : ''}`}>
+        <ul className="c-main-nav__submenu__list">
+          {children}
+        </ul>
+      </div>
+    </li>
+  )
+};
+
+const NavSubItem = ({ link, label, title }) => {
+  return (
+    <li className="hover-action-subitem c-main-nav__submenu__item">
+      <a className="c-main-nav__submenu__item__link" title={title} href={link}>
+        <span className="c-main-nav__submenu__item__title">{label}</span>
+      </a>
+    </li>
+  )
+};
+
 
 export default () => (
   <ClientOnly>
