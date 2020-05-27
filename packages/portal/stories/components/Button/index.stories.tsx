@@ -19,6 +19,7 @@ const typeOptions = {
   GhostSecondaryDark: 'ghost',
   GhostSecondaryWhite: 'ghost-white',
   CustomColor: 'custom-color',
+  CustomColorGhost: 'custom-color-ghost',
 };
 
 const splitTypeOptions = {
@@ -27,6 +28,7 @@ const splitTypeOptions = {
   TertiaryDark: 'tertiary',
   TertiaryWhite: 'tertiary-white',
   CustomColor: 'custom-color',
+  CustomColorGhost: 'custom-color-ghost',
 };
 
 const customColorOptions = {
@@ -43,6 +45,8 @@ const customColorOptions = {
   purple: 'purple',
   violet: 'violet',
 };
+
+
 
 const buttonSizes = {
   default: 'default',
@@ -63,7 +67,7 @@ const CREATOR_TYPE = {
 const getDefaultProps = (isSplit = false) => ({
   label: text('Label', 'Button'),
   type: select('Set type', !isSplit ? typeOptions : splitTypeOptions, 'primary'),
-  color: select('Set custom color', customColorOptions, customColorOptions.red),
+  color: select('Set custom color', customColorOptions, customColorOptions.red,),
   size: select('Set size', buttonSizes, 'default'),
   leftIconSize: select('Set size of left icon', iconSizes, 'S'),
   rightIconSize: select('Set size of right icon', iconSizes, 'S'),

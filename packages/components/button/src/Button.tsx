@@ -1,75 +1,13 @@
 import * as React from 'react';
-import { ButtonProps } from 'antd/lib/button';
 import '@synerise/ds-core/dist/js/style';
 import './style/index.less';
-
-import { JustifyContentProperty } from 'csstype';
 
 import Icon from '@synerise/ds-icon';
 import SpinnerM from '@synerise/ds-icon/dist/icons/SpinnerM';
 import Creator, { CreatorProps } from './Creator/Creator';
-import AntdButton, * as S from './Button.styles';
+import * as S from './Button.styles';
 import Expander, { ExpanderProps } from './Expander/Expander';
-
-export type Props = Omit<ButtonProps, 'type'> & {
-  /**
-   * Defines the type of the button. It affects the button color
-   *
-   * @default secondary
-   */
-  type?:
-    | string
-    | 'primary'
-    | 'secondary'
-    | 'tertiary'
-    | 'tertiary-white'
-    | 'ghost-primary'
-    | 'ghost'
-    | 'ghost-white'
-    | 'custom-color';
-  /**
-   * Defines the type of the button content. It affects content inside the button
-   *
-   * @default simple
-   */
-  mode?: string;
-  /**
-   * Defines color of `custom-color` button.
-   *
-   * @default red
-   */
-  color?:
-    | string
-    | 'blue'
-    | 'grey'
-    | 'red'
-    | 'green'
-    | 'yellow'
-    | 'pink'
-    | 'mars'
-    | 'orange'
-    | 'fern'
-    | 'cyan'
-    | 'purple'
-    | 'violet';
-  /**
-   * Defines shape of the button.
-   */
-  groupVariant?: string | 'left-rounded' | 'squared' | 'right-rounded';
-  /**
-   * Defines justify of content in button.
-   */
-  justifyContent?: JustifyContentProperty;
-  /**
-   * Set the loading status of button
-   * @default false
-   */
-  loading?: boolean | { delay?: number };
-  /**
-   * Sets the handler to handle `click` event
-   */
-  onClick?: (event: React.MouseEvent<HTMLElement>) => void;
-};
+import { Props } from './Button.types';
 
 const RIPPLE_ANIMATION_OFFSET = 50;
 
@@ -114,7 +52,7 @@ const Button: React.FC<Props> & {
   };
 
   return (
-    <AntdButton
+    <S.AntdButton
       justifyContent={justifyContent}
       type={type}
       mode={mode}
@@ -134,7 +72,7 @@ const Button: React.FC<Props> & {
         </S.Spinner>
       )}
       <S.ButtonFocus className="btn-focus" />
-    </AntdButton>
+    </S.AntdButton>
   );
 };
 Button.Expander = (props: ExpanderProps): React.ReactElement => Expander(props) as React.ReactElement;
