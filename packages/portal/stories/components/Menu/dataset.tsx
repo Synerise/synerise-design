@@ -17,7 +17,7 @@ import {
 import Label from '@synerise/ds-input/dist/Label/Label';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { VisibilityTrigger } from '@synerise/ds-menu/dist/Menu.types';
-import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
+import Tooltip from '@synerise/ds-tooltip';
 import * as S from './stories.styles';
 export const TEXT_PLACEHOLDER = 'Option';
 export const DESCRIPTION_PLACEHOLDER = 'Description';
@@ -51,12 +51,12 @@ export function renderSuffix(suffixElementType: string) {
     case suffixType.renameAndDelete:
       return (
         <React.Fragment>
-          <Tooltip type="default" trigger={'hover'} title={'Rename'}>
+          <Tooltip type="default" trigger='hover' title={'Rename'}>
             <S.HoverableIconWrapper>
               <Icon color={theme.palette['grey-600']} component={<EditS />} />
             </S.HoverableIconWrapper>
           </Tooltip>
-          <Tooltip type="default" trigger={'hover'} title={'Delete'}>
+          <Tooltip type="default" trigger='hover' title={'Delete'}>
             <div>
               <Icon color={theme.palette['red-600']} component={<CloseS />} />
             </div>

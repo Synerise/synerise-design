@@ -116,7 +116,7 @@ export default styled(({ backgroundColorHue, backgroundColor, hasStatus, pressed
         width: 100%;
         height: 100%;
         background-color: transparent;
-        border: 2px solid ${({ theme }): string => theme.palette.white};
+        box-shadow: inset 0 0 0 2px ${(props): string => props.theme.palette.white};
         opacity: 0.3;
         border-radius: inherit;
         box-sizing: border-box;
