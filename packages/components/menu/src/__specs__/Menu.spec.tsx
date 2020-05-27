@@ -4,7 +4,7 @@ import { fireEvent } from '@testing-library/dom';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { CloseS } from '@synerise/ds-icon/dist/icons';
 import Icon from '@synerise/ds-icon';
-import { RenderResult, wait } from '@testing-library/react';
+import { RenderResult } from '@testing-library/react';
 
 import Menu from '../Menu';
 import { MenuItemProps } from '../Elements/Item/MenuItem.types';
@@ -78,7 +78,7 @@ describe('Menu with nested items', () => {
     // ARRANGE
     const { getAllByText,queryAllByText } = renderWithProvider(
       <Menu dataSource={data} />
-    ); 
+    );
     const firstParent = queryAllByText(
       (_, element) => element.textContent === 'Option 3' && element.className === 'ant-menu-submenu-title'
     )[0] as HTMLElement;
