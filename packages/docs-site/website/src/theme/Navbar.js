@@ -1,8 +1,8 @@
 import React from 'react';
 import ClientOnly from '@docusaurus/ClientOnly';
-import NavbarItem from './../Components/Navbar/NavItem';
-import NavbarSubItem from './../Components/Navbar/NavSubItem';
-import NavItemExpandable from './../Components/Navbar/NavItemExpandable';
+import NavbarItem from './Navbar/NavItem';
+import NavbarSubItem from './Navbar/NavSubItem';
+import NavItemExpandable from './Navbar/NavItemExpandable';
 
 const Navbar = () => {
   const [opened, setOpened] = React.useState(false);
