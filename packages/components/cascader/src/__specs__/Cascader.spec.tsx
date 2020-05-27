@@ -1,24 +1,28 @@
+import { Category } from '../Cascader.types';
+import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
+import Cascader from '../Cascader';
+import * as React from 'react';
 const mock = {
   id: 0,
   name: 'Home',
   path: ['Home'],
   phone: {
-    path: ['Phone'],
+    path: ['Home', 'Phone'],
     id: 1,
     name: 'Phone',
     Cables: {
-      path: ['Phone', 'Cables'],
+      path: ['Home', 'Phone', 'Cables'],
       name: 'Cables',
       id: 11,
     },
   },
 };
 describe('Cascader', () => {
-  it('should pass the test which will be written later', async () => {
-    // ARRANGE
-    // const { getByText } = renderWithProvider(<Cascader rootCategory={mock as Category}/>);
-    expect(mock).toBeTruthy();
-    // ASSERT
-    // expect(getByText('Nasted')).toBeTruthy();
+  it('Should render nested categories', () => {
+    const { getByText } = renderWithProvider(
+      <Cascader categorySuffix={<div>select</div>} rootCategory={mock as Category} selectedCategoriesIds={[]} />
+    );
+    // ACT & ASSERT
+    expect(getByText('Phone')).toBeTruthy();
   });
 });

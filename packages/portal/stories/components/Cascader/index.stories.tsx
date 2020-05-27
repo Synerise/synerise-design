@@ -19,7 +19,7 @@ const stories = {
         rootCategory={limitCategories(root,categoryLimit)}
         searchInputPlaceholder={'Search'}
         categorySuffix={'select'}
-        onPathSelect={(item, selected) => {
+        onCategorySelect={(item, selected) => {
           console.log('Category clicked:', item, 'Selected:', selected);
         }}
         dropdownMaxHeight={302}

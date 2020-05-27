@@ -18,10 +18,9 @@ const BREADCRUMB_ITEM_HEIGHT = 50;
 
 const Cascader: React.FC<CascaderProps> = ({
   rootCategory,
-  disabled,
   searchClearTooltip,
   searchInputPlaceholder,
-  onPathSelect,
+  onCategorySelect,
   categorySuffix,
   dropdownMaxHeight,
   dropdownStyle,
@@ -45,7 +44,7 @@ const Cascader: React.FC<CascaderProps> = ({
 
   const calculateDropdownMaxHeight = React.useMemo(() => {
     return dropdownMaxHeight ? dropdownMaxHeight - 2 * VERTICAL_PADDING_OFFSET : height - 2 * VERTICAL_PADDING_OFFSET;
-  }, [dropdownMaxHeight,height]);
+  }, [dropdownMaxHeight, height]);
 
   const calculateVisibleRows = React.useMemo(() => {
     return Math.floor((height - VERTICAL_PADDING_OFFSET) / 50);
@@ -64,10 +63,10 @@ const Cascader: React.FC<CascaderProps> = ({
     const itemAlreadySelected = selectedIds.indexOf(item.id) !== -1;
     if (!itemAlreadySelected) {
       newSelectedList = [...selectedIds, item.id];
-      onPathSelect && onPathSelect(item, true);
+      onCategorySelect && onCategorySelect(item, true);
     } else {
       newSelectedList = selectedIds.filter(id => id !== item.id);
-      onPathSelect && onPathSelect(item, false);
+      onCategorySelect && onCategorySelect(item, false);
     }
     setSelectedIds([...newSelectedList]);
   };
@@ -126,8 +125,7 @@ const Cascader: React.FC<CascaderProps> = ({
             setSearchQuery(value);
             filterPathsBySearchQuery(value);
           }}
-          disabled={disabled}
-          placeholder={searchInputPlaceholder}
+          placeholder={searchInputPlaceholder || ''}
           value={searchQuery}
           iconLeft={<Icon component={<SearchM />} color={theme.palette['grey-600']} />}
           onClearInput={(): void => setSearchQuery('')}
