@@ -1,90 +1,97 @@
 import React from 'react';
 import Layout from '@theme/Layout';
-import useBaseUrl from '@docusaurus/useBaseUrl';
 import Breadcrumbs from '../Components/Breadcrumbs';
+
+const LINKS = [
+  {
+    href: '/',
+    label: 'Home'
+  }, {
+    href: false,
+    label: 'Get started / Develop'
+  }
+];
 
 const Develop = () => {
   return (
     <Layout title="Synerise">
-      <Breadcrumbs />
-      <section className="ds-wrapper u-bg-white">
-        <div className="ds-about l-grid">
-          <h1 className="ds-headline-1">
-            <strong>About Colloid</strong>
-          </h1>
-        </div>
-      </section>
-      <section className="ds-stats">
-        <div className="l-grid">
-          <div className="ds-stat l-col-desktop-4 l-col-tablet-4 l-col-mobile-4">
-            <span className="ds-stat-value">8</span>
-            <span className="ds-stat-description">
-              <strong>Extensive guidelines</strong>
-              <span> that describe the best design practices</span>
-            </span>
-          </div>
-          <div className="ds-stat l-col-desktop-4 l-col-tablet-4 l-col-mobile-4 ">
-            <span className="ds-stat-value">53</span>
-            <span className="ds-stat-description">
-              <strong>Components for reusing,</strong>
-              <span> described in detail</span>
-            </span>
-          </div>
-          <div className="ds-stat l-col-desktop-4 l-col-tablet-4 l-col-mobile-4 ">
-            <span className="ds-stat-value">6</span>
-            <span className="ds-stat-description">
-              <strong>Contributors to the documentation</strong>
-              <span> that include designers, tech writers and developers</span>
-            </span>
-          </div>
-        </div>
-      </section>
-      <section className="ds-about-copy u-bg-white">
+      <Breadcrumbs links={LINKS} />
+      <section className="ds-develop u-bg-white">
         <div className="l-grid">
           <div className="l-col-desktop-7">
-            <h2>Introduction</h2>
+            <h2>Develop</h2>
             <p>
-              Synerise is more than AI company. We passionately support our customers with our constantly developed product in growing their businesses. Companies of all sizes can make use of the services we provide as Synerise is capable of managing enormous complexity.
-              <br />
-              <br />
-              While developing solutions for our product, either we or our third parties,  want to keep and improve UI consistency and quality. It lies in our best interest to make the design and development process more efficient by establishing a shared vocabulary and providing clear guidance between designers and developers.
+              We have put interface elements together to create a collection of reusable components inside the Synerise application.<br />
+              Every person that contributes by building products for Synerise can refer to the library of components to combine them and create coherent designs for merchants.<br />
+              This way, instead of making over the interface elements, we can stay concentrated on finding solutions to unique challenges.
             </p>
-            <h3>Colloid guiding principles</h3>
+            <h3>Getting started</h3>
+            <p className="small-margin">React UI component library, inspired by Ant Design was introduced to support developers in implementing the best experience for Synerise merchants.</p>
             <ul>
               <li>
-                Colloid is open - The Synerise design system is our common effort, so all users and its makers are encouraged to contribute.
+                Components are written in TypeScript with predictable static types.
               </li>
               <li>
-                Be attentive - Without our customers there would be no „us”. When we create, develop and improve, make sure the needs and requests of our customers are heard and they resonate in our projects and finally in all features.
+                Internationalization by react-intl
               </li>
               <li>
-                Be consistent - By consistent use of the design patterns, we can educate the users about the meaning and scope of actions to be performed on the interface. Disobedience of the rules may cause incorrect identification of features.
-              </li>
-              <li>
-                Modularity and flexibility - Maximum flexibility of the application is ensured by modularity. The components are designed to suit the needs of users in any combination and most of all,
+                Each component contains its own styles passed by styled-component library, so there is no need to import any additional styles
               </li>
             </ul>
+            <h3>How to use</h3>
+            <p>
+              Each component is installed separately. If you want to use one of them you have to use DSProvider first.
+              <br /><br />
+              DSProvider is located in @synerise/ds-core package. DSProvider serves the functions of ThemeProvider (<a target="_blank" href="https://styled-components.com/docs/advanced#theming">https://styled-components.com/docs/advanced#theming</a>) and IntlProvider (<a target="_blank" href="https://formatjs.io/docs/react-intl/components#intlprovider">https://formatjs.io/docs/react-intl/components#intlprovider</a>).
+              <br /><br />
+              It provides a theme with all variables, colors and so on, which are required for proper working of all components, and passes the configuration of internationalization. DSProvider is required by all components.
+            </p>
           </div>
-        </div>
-      </section>
-      <section className="ds-our-approach u-bg-light-gray">
-        <div className="l-grid">
-          <h2>Out approach</h2>
-          <div className="ds-approach-boxes">
-            <div className="ds-approach-box l-col-desktop-4">
-              <img src={useBaseUrl('images/information-02-m-02-knowledge-02-04-bulb-tip-m-copy.svg')} alt="Attentive" />
-              <strong>Attentive</strong>
-              <span>Build reliability and ensure experiences working in every nook and cranny in our app.</span>
+          <div className="l-col-desktop-12">
+            <h3>Installation</h3>
+            <p className="small-margin">
+              Example with the Button component:
+            </p>
+            <ul className="no-margin">
+              <li>
+                for yarn
+              </li>
+            </ul>
+            <code class="ds-code">
+              yarn add @synerise/ds-core @synerise/ds-button
+            </code>
+            <ul className="no-margin">
+              <li>
+                for npm
+              </li>
+            </ul>
+            <code className="ds-code">
+              npm install @synerise/ds-core @synerise/ds-button —-save
+            </code>
+            <div className="l-col-desktop-12">
+              <h3>Usage</h3>
+              <code className="ds-code">
+                {`import { DSProvider } from "@synerise/ds-core";`}<br />
+                {`import Button from "@synerise/ds-button";`}<br />
+                {`<DSProvider>`}<br />
+                &nbsp;&nbsp;{`<Button>Click me!</Button>`}<br />
+                {`</DSProvider>`}
+              </code>
             </div>
-            <div className="ds-approach-box l-col-desktop-4">
-              <img src={useBaseUrl('images/information-02-m-02-knowledge-02-04-bulb-tip-m.svg')}  alt="Efficient" />
-              <strong>Efficient</strong>
-              <span>Create experiences that let customers achieve their goals fast, accurately and effortlessly.</span>
-            </div>
-            <div className="ds-approach-box l-col-desktop-4">
-              <img src={useBaseUrl('images/information-02-m-02-knowledge-02-04-bulb-tip-m-copy-2.svg')} alt="Reliable" />
-              <strong>Reliable</strong>
-              <span>We are transparent in our actions to assure users that we’re always have their best interest in mind.</span>
+          </div>
+          <div className="l-col-desktop-4 ds-troubleshooting">
+            <div className="c-measure-success__tile u-bg-cod-dark">
+              <h3 className="c-measure-success__tile__title u-title-with-underline">Troubleshooting</h3>
+              <div className="c-measure-success__tile__paragaph">
+                <p className="no-margin">
+                  In case of any issues you encounter while working with the Colloid Design System, visit our <a target="_blank" href="https://github.com/Synerise/synerise-design">Github</a> repo for guidelines and support.<br />
+                  <br />
+                  If the issue you experienced hasn't been reported yet, please create one.
+                </p>
+              </div>
+              <a className="c-button-filled  c-measure-success__tile__button" href="https://github.com/Synerise/synerise-design/issues/new" target="_blank">
+                Create an issue
+              </a>
             </div>
           </div>
         </div>

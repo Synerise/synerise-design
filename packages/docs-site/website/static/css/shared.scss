@@ -88,24 +88,27 @@
 	'./components/careers-values',
 	'./components/case-study',
 	'./components/header';
+//
+//@import
+//	'./pages/blog',
+//	'./pages/contact',
+//	'./pages/case-study',
+//	'./pages/event',
+//	'./pages/home',
+//	'./pages/login',
+//	'./pages/pircing',
+//	'./pages/request',
+//   './pages/user-profile';
 
 @import
-	'./pages/blog',
-	'./pages/contact',
-	'./pages/case-study',
-	'./pages/event',
-	'./pages/home',
-	'./pages/login',
-	'./pages/pircing',
-	'./pages/request',
-   './pages/user-profile';
+	'./ds/pages/home',
+	'./ds/pages/about',
+	'./ds/pages/develop',
+	'./ds/common/navbar',
+	'./ds/common/footer',
+	'./ds/components/breadcrumbs',
+	'./ds/components/code';
 
-@import
-	'./ds/home',
-	'./ds/about',
-	'./ds/navbar',
-	'./ds/breadcrumbs',
-	'./ds/footer';
 
 /* EVERYTHING BELOW THIS LINE SHOULD BE MOVED TO PROPER COMPONENTS */
 

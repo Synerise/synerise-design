@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Breadcrumbs = () => {
+const Breadcrumbs = ({links}) => {
   return (
     <div className="c-main-breadcrumbs">
       <div className="c-main-header__bottom-bar">
@@ -8,8 +8,13 @@ const Breadcrumbs = () => {
           <div className="c-main-header__bottom-bar__columns l-grid">
             <div className="c-breadcrumb">
               <ul className="c-breadcrumb__list">
-                <li><a className="c-breadcrumb__lnk" href="/">Synerise</a></li>
-                <li><span className="c-breadcrumb__label">Industries - Retail</span></li>
+                {links.map(link => {
+                  return link.href ? (
+                    <li><a className="c-breadcrumb__lnk" href={link.href}>{link.label}</a></li>
+                  ) : (
+                    <li><span className="c-breadcrumb__label">{link.label}</span></li>
+                  )
+                })}
               </ul>
             </div>
           </div>
