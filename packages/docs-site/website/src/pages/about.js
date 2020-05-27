@@ -1,10 +1,22 @@
 import React from 'react';
 import Layout from '@theme/Layout';
 import useBaseUrl from '@docusaurus/useBaseUrl';
+import Breadcrumbs from '../Components/Breadcrumbs';
+
+const LINKS = [
+  {
+    href: '/',
+    label: 'Home'
+  }, {
+    href: false,
+    label: 'Get started / About'
+  }
+];
 
 const About = () => {
   return (
     <Layout title="Synerise">
+      <Breadcrumbs links={LINKS} />
       <section className="ds-wrapper u-bg-white">
         <div className="ds-about l-grid">
           <h1 className="ds-headline-1">
