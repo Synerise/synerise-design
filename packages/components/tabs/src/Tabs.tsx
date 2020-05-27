@@ -1,11 +1,10 @@
 import * as React from 'react';
 import Dropdown from '@synerise/ds-dropdown';
-import List from '@synerise/ds-list';
 import Icon from '@synerise/ds-icon';
-import FileM from '@synerise/ds-icon/dist/icons/FileM';
 import Button from '@synerise/ds-button';
 import OptionHorizontalM from '@synerise/ds-icon/dist/icons/OptionHorizontalM';
 import { useResize } from '@synerise/ds-utils';
+import Menu from '@synerise/ds-menu';
 import * as S from './Tabs.styles';
 import Tab from './Tab/Tab';
 
@@ -15,6 +14,7 @@ export type TabsProps = {
   handleTabClick: (index: number) => void;
   configuration?: Configuration;
   underscore?: boolean;
+  block?: boolean;
 };
 
 type Configuration = {
@@ -37,7 +37,7 @@ const NOOP = (): void => {};
 const MARGIN_BETWEEN_TABS = 24;
 const DROPDOWN_TRIGGER_SIZE = 32;
 
-const Tabs: React.FC<TabsProps> = ({ activeTab, tabs, handleTabClick, configuration, underscore }) => {
+const Tabs: React.FC<TabsProps> = ({ activeTab, tabs, handleTabClick, configuration, underscore, block }) => {
   const containerRef = React.useRef<HTMLDivElement>();
   const { width } = useResize(containerRef);
   const [renderHelperTabs, setRenderHelperTabs] = React.useState(true);
@@ -91,18 +91,18 @@ const Tabs: React.FC<TabsProps> = ({ activeTab, tabs, handleTabClick, configurat
     return (
       <S.TabsDropdownContainer data-testid="tabs-dropdown-container">
         {hiddenTabs.length > 0 && (
-          <List
-            dataSource={[hiddenTabs]}
-            renderItem={(item: TabWithRef, index: number): React.ReactNode => (
-              <List.Item
+          <Menu>
+            {hiddenTabs.map((item, index) => (
+              <Menu.Item
+                // eslint-disable-next-line react/no-array-index-key
+                key={`${item.label}-dropdown-${index}`}
                 onSelect={(): void => handleTabClick(visibleTabs.length + index)}
                 disabled={item.disabled}
-                icon={<Icon component={<FileM />} />}
               >
                 {item.label}
-              </List.Item>
-            )}
-          />
+              </Menu.Item>
+            ))}
+          </Menu>
         )}
         {hiddenTabs.length > 0 && configuration && <S.TabsDropdownDivider />}
         {configuration && (
@@ -144,12 +144,13 @@ const Tabs: React.FC<TabsProps> = ({ activeTab, tabs, handleTabClick, configurat
               onClick={handleTabClick}
               isActive={index === activeTab}
               disabled={tab.disabled}
+              block={block}
             />
           );
         })}
       </>
     );
-  }, [visibleTabs, activeTab, handleTabClick, underscore]);
+  }, [visibleTabs, activeTab, handleTabClick, underscore, block]);
 
   const renderHelpers = React.useMemo(() => {
     return (
@@ -166,12 +167,13 @@ const Tabs: React.FC<TabsProps> = ({ activeTab, tabs, handleTabClick, configurat
               onClick={NOOP}
               label={tab.label}
               icon={tab.icon}
+              block={block}
             />
           );
         })}
       </S.HiddenTabs>
     );
-  }, [items, underscore]);
+  }, [items, underscore, block]);
 
   return (
     <>
@@ -179,6 +181,7 @@ const Tabs: React.FC<TabsProps> = ({ activeTab, tabs, handleTabClick, configurat
         className="ds-tabs"
         ref={containerRef as React.RefObject<HTMLDivElement>}
         data-testid="tabs-container"
+        block={block}
       >
         {renderVisibleTabs}
         {renderDropdown()}

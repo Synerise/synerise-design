@@ -16,7 +16,7 @@ const tabs = [
     icon: <SearchM />
   },
   {
-    label: 'Tab #2',
+    label: 'Tab #2 Lorem ispum dolor sit amet ore et labore',
   },
   {
     label: 'Tab #3',
@@ -54,6 +54,7 @@ const stories = {
     <Tabs
       {...props()}
       tabs={getTabs(number('Number of tabs', 12))}
+      block
       activeTab={store.state.activeTab}
       handleTabClick={(index: number) => store.set({activeTab: index})}
     />
@@ -66,6 +67,7 @@ const stories = {
       tabs={tabs}
       activeTab={store.state.activeTab}
       handleTabClick={(index: number) => store.set({activeTab: index})}
+      block
       configuration={{
         label: 'Manage dashboards',
         action: action('Manage dashboards click'),
