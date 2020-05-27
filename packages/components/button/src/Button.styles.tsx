@@ -100,11 +100,11 @@ export const ButtonFocus = styled.div`
 `;
 
 // eslint-disable-next-line react/jsx-props-no-spreading
-export default styled(
-  ({ mode, type, loading, justifyContent, groupVariant, customColor, rightIconSize, leftIconSize, ...rest }) => (
+export const AntdButton = styled(
+  ({ mode, type, loading, justifyContent, groupVariant, customColor, rightIconSize, leftIconSize, ...rest }) => {
     // eslint-disable-next-line react/jsx-props-no-spreading
-    <Button type={type} {...rest} />
-  )
+    return <Button type={type === 'custom-color-ghost' ? 'ghost-primary' : type} {...rest} />;
+  }
 )`  
   && {
     -webkit-mask-image: -webkit-radial-gradient(white, black);
@@ -258,7 +258,7 @@ export default styled(
           border-radius: 0 3px 3px 0;
         }
       `}
-       
+
     ${(props): FlattenSimpleInterpolation | false =>
       props.type === 'custom-color' &&
       css`
@@ -314,5 +314,22 @@ export default styled(
           }
         }
       `}
+      ${(props): FlattenSimpleInterpolation | false =>
+        props.type === 'custom-color-ghost' &&
+        css`
+          color: ${props.theme.palette[`${props.customColor}-600`]};
+          .ds-icon > svg {
+            fill: ${props.theme.palette[`${props.customColor}-600`]};
+          }
+          &:hover:not(:disabled):not(:focus) {
+            color: ${props.theme.palette[`${props.customColor}-500`]};
+            span {
+              color: ${props.theme.palette[`${props.customColor}-500`]};
+            }
+            svg {
+              fill: ${props.theme.palette[`${props.customColor}-500`]} !important;
+            }
+          }
+        `}
   }
 `;
