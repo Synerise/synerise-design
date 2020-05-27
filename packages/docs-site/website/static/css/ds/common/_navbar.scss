@@ -51,5 +51,18 @@
       }
     }
 
+    @media screen and (max-width: $grid-mobile-breakpoint) {
+      position: relative;
+      height: auto;
+      max-height: 0;
+      top: 0;
+      &.expanded {
+        max-height: 400px;
+      }
+      &:before {
+        display: none;
+      }
+    }
+
   }
 }
