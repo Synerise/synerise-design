@@ -23,7 +23,7 @@ class SubMenuItem extends React.PureComponent<SubMenuProps & MenuItemProps, SubM
     return (
       <S.SubMenuItem
         title={
-          <SubmenuText key={uuid()} onClick={onClickHandler} prefixel={prefixel}>
+          <SubmenuText key={`${uuidKey}-title`} onClick={onClickHandler} prefixel={prefixel}>
             {text}
           </SubmenuText>
         }
@@ -40,7 +40,7 @@ class SubMenuItem extends React.PureComponent<SubMenuProps & MenuItemProps, SubM
         {Boolean(subMenu) &&
           // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
           // @ts-ignore */
-          subMenu.map((subItem: SubMenuItemProps & {}) => (
+          subMenu.map((subItem: SubMenuItemProps) => (
             <MenuItem
               parent={subItem.parent}
               prefixel={subItem.prefixel}
@@ -56,7 +56,7 @@ class SubMenuItem extends React.PureComponent<SubMenuProps & MenuItemProps, SubM
               onClick={(): void => {
                 subItem.onClick && subItem.onClick(subItem);
               }}
-              key={`${subItem.text}-${subItem.index}`} // eslint-disable-line react/no-array-index-key
+              key={`${uuidKey}-${subItem.index}`} // eslint-disable-line react/no-array-index-key
             />
           ))}
       </S.SubMenuItem>
