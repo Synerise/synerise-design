@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.45](https://github.com/Synerise/synerise-design/compare/@synerise/ds-result@0.4.44...@synerise/ds-result@0.4.45) (2020-05-28)
+
+
+### Bug Fixes
+
+* **button:** add custom color ghost ([04c994e](https://github.com/Synerise/synerise-design/commit/04c994e013df96ef20a32bf3a78d515e42b08e88))
+
+
+
+
+
 ## [0.4.44](https://github.com/Synerise/synerise-design/compare/@synerise/ds-result@0.4.43...@synerise/ds-result@0.4.44) (2020-05-25)
 
 **Note:** Version bump only for package @synerise/ds-result

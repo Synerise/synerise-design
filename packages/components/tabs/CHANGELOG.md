@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-tabs@0.9.43...@synerise/ds-tabs@0.10.0) (2020-05-28)
+
+
+### Features
+
+* **tabs:** added block type for tabs ([6cf1486](https://github.com/synerise/synerise-design/commit/6cf1486e2b5bce6574adbcbcc0ccd16063e08d13))
+
+
+
+
+
 ## [0.9.43](https://github.com/synerise/synerise-design/compare/@synerise/ds-tabs@0.9.42...@synerise/ds-tabs@0.9.43) (2020-05-25)
 
 

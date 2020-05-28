@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.5.2...@synerise/ds-menu@0.5.3) (2020-05-28)
+
+
+### Bug Fixes
+
+* **menu:** fixing test, used box shadow instead border in avatar ([fbadbfa](https://github.com/Synerise/synerise-design/commit/fbadbfa7ec997258f1c7e8bd5f949a036f2eb129))
+* **menu:** refactored stories, added focusing with arrow keys ([5af2fe4](https://github.com/Synerise/synerise-design/commit/5af2fe42c01ba58a0211efd0ca3f1670e564d164))
+* **menu:** removed redundant statements ([1cb95aa](https://github.com/Synerise/synerise-design/commit/1cb95aaa93e735d9b529292003d409bd8a0eb11e))
+* **menu:** removed unused import ([9e9af08](https://github.com/Synerise/synerise-design/commit/9e9af08402c052830e70dc0325753bb2b6f4a6ae))
+
+
+
+
+
 ## [0.5.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.5.1...@synerise/ds-menu@0.5.2) (2020-05-26)
 
 

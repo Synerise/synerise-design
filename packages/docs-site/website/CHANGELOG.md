@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.2.0...docs@0.3.0) (2020-05-28)
+
+
+### Bug Fixes
+
+* **docs:** fix build ([6f7f805](https://gitlab.synerise.com/Frontend/synerise-design/commit/6f7f805023e2650df636da9b3f2639f1a5567874))
+* **docs:** fix mobile menu ([67a5b32](https://gitlab.synerise.com/Frontend/synerise-design/commit/67a5b32afb6d9f78eff031bd968b0b15eb96cfb6))
+* **docs:** fix navbar items path ([49911e0](https://gitlab.synerise.com/Frontend/synerise-design/commit/49911e0e7cf4f2a35552028c6ec0a3702e22fc75))
+* **docs:** fix SSR ([a58a97d](https://gitlab.synerise.com/Frontend/synerise-design/commit/a58a97da1614ab9451a95ae13ec6be043ca796b2))
+* **docs:** navbar path ([d2a652f](https://gitlab.synerise.com/Frontend/synerise-design/commit/d2a652fdade2026fbe6c33cea0fbd7ee5d872fb9))
+
+
+### Features
+
+* **docs:** add breadcrumbs, submenu, sticked navbar styles ([84ee3a9](https://gitlab.synerise.com/Frontend/synerise-design/commit/84ee3a90b205545980e554b21760343133e3ba1c))
+* **docs:** add develop page ([5c1526d](https://gitlab.synerise.com/Frontend/synerise-design/commit/5c1526d46346e6ea522c69d5042e0ccd23d92ad0))
+
+
+
+
+
 # [0.2.0](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.1.4...docs@0.2.0) (2020-05-15)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.25](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@0.8.24...@synerise/ds-utils@0.8.25) (2020-05-28)
+
+
+### Bug Fixes
+
+* **menu:** refactored stories, added focusing with arrow keys ([5af2fe4](https://github.com/synerise/synerise-design/commit/5af2fe42c01ba58a0211efd0ca3f1670e564d164))
+
+
+
+
+
 ## [0.8.24](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@0.8.23...@synerise/ds-utils@0.8.24) (2020-05-25)
 
 

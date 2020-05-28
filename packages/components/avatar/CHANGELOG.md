@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.15](https://github.com/synerise/synerise-design/compare/@synerise/ds-avatar@0.8.14...@synerise/ds-avatar@0.8.15) (2020-05-28)
+
+
+### Bug Fixes
+
+* **menu:** fixing test, used box shadow instead border in avatar ([fbadbfa](https://github.com/synerise/synerise-design/commit/fbadbfa7ec997258f1c7e8bd5f949a036f2eb129))
+
+
+
+
+
 ## [0.8.14](https://github.com/synerise/synerise-design/compare/@synerise/ds-avatar@0.8.13...@synerise/ds-avatar@0.8.14) (2020-05-25)
 
 **Note:** Version bump only for package @synerise/ds-avatar

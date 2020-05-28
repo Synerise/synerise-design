@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.66.0](https://github.com/synerise/synerise-design/compare/portal@0.65.2...portal@0.66.0) (2020-05-28)
+
+
+### Bug Fixes
+
+* **button:** add custom color ghost ([04c994e](https://github.com/synerise/synerise-design/commit/04c994e013df96ef20a32bf3a78d515e42b08e88))
+* **cascader:** moved cascader story into seperate view ([24b56e6](https://github.com/synerise/synerise-design/commit/24b56e6be13be377102b18910c48f6f4abda976e))
+* **menu:** fixing test, used box shadow instead border in avatar ([fbadbfa](https://github.com/synerise/synerise-design/commit/fbadbfa7ec997258f1c7e8bd5f949a036f2eb129))
+* **menu:** refactored stories, added focusing with arrow keys ([5af2fe4](https://github.com/synerise/synerise-design/commit/5af2fe42c01ba58a0211efd0ca3f1670e564d164))
+
+
+### Features
+
+* **tabs:** added block type for tabs ([6cf1486](https://github.com/synerise/synerise-design/commit/6cf1486e2b5bce6574adbcbcc0ccd16063e08d13))
+
+
+
+
+
 ## [0.65.2](https://github.com/synerise/synerise-design/compare/portal@0.65.1...portal@0.65.2) (2020-05-26)
 
 

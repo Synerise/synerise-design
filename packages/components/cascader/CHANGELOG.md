@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-cascader@0.1.2...@synerise/ds-cascader@0.1.3) (2020-05-28)
+
+
+### Bug Fixes
+
+* **menu:** refactored stories, added focusing with arrow keys ([5af2fe4](https://github.com/Synerise/synerise-design/commit/5af2fe42c01ba58a0211efd0ca3f1670e564d164))
+
+
+
+
+
 ## [0.1.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-cascader@0.1.1...@synerise/ds-cascader@0.1.2) (2020-05-26)
 
 

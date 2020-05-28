@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.16](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.10.15...@synerise/ds-table@0.10.16) (2020-05-28)
+
+
+### Bug Fixes
+
+* **table:** filterComponent as separate prop ([ebb09dc](https://github.com/synerise/synerise-design/commit/ebb09dc6ff9cb05b7e4457fd97f1f84a7b9cfa51))
+* **table:** fix hook dependencies ([7591f11](https://github.com/synerise/synerise-design/commit/7591f11975c4b1de941e7eb87aa310ba5b6adbd6))
+
+
+
+
+
 ## [0.10.15](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.10.14...@synerise/ds-table@0.10.15) (2020-05-26)
 
 
