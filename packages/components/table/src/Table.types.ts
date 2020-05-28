@@ -49,4 +49,5 @@ export interface DSTableProps<T extends any> extends AntTableProps<T> {
   selection?: RowSelection<T>;
   filters?: Filter[];
   searchComponent?: React.ReactNode;
+  filterComponent?: React.ReactNode;
 }
