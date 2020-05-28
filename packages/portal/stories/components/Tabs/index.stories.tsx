@@ -3,60 +3,104 @@ import SearchM from '@synerise/ds-icon/dist/icons/SearchM';
 import Tabs from '@synerise/ds-tabs';
 import { withState } from '@dump247/storybook-state';
 import { action } from '@storybook/addon-actions';
-import { boolean, number } from '@storybook/addon-knobs';
+import { array, boolean, number } from '@storybook/addon-knobs';
+import { BooleanM, CalendarM, HashM, ListM, TextM } from '@synerise/ds-icon/dist/icons';
 
-const decorator = (storyFn) => (
-  <div style={{ width: '100%', position: 'absolute', left: 0, maxWidth: '100%', padding: '24px', background: '#fff' }}>
+const decorator = storyFn => (
+  <div
+    style={{ width: '50%', position: 'absolute', left: '25%', maxWidth: '50%', padding: '24px', background: '#fff' }}
+  >
     {storyFn()}
   </div>
 );
 
 const tabs = [
   {
-    icon: <SearchM />
+    icon: <SearchM />,
   },
   {
-    label: 'Tab #2 Lorem ispum dolor sit amet ore et labore',
-  },
-  {
-    label: 'Tab #3',
-    icon: <SearchM />
-  },
-  {
-    label: 'Tab #1',
+    label: 'Tab #2',
   },
   {
     label: 'Tab #3',
-    icon: <SearchM />
+    icon: <SearchM />,
   },
   {
-    label: 'Tab #4',
+    label: 'Disabled tab',
     icon: <SearchM />,
     disabled: true,
-  }
+  },
+];
+
+const icons = [
+  {
+    icon: <CalendarM />,
+  },
+  {
+    icon: <TextM />,
+  },
+  {
+    icon: <HashM />,
+  },
+  {
+    icon: <BooleanM />,
+  },
+  {
+    icon: <ListM />,
+  },
 ];
 
 const props = () => ({
-  underscore: boolean('underscore', false)
+  underscore: boolean('underline', false),
 });
 
-const getTabs = (count) => {
-  const tabs = new Array(count).fill(count);
-  return tabs.map((i, index) => ({
-    label: `Tab #${index}`,
+const getTabs = array => {
+  return array.map(tabLabel => ({
+    label: tabLabel,
   }));
 };
-
+const defaultTabsArray = ['Tab first', 'Tab second', 'Tab third', 'Tab fourth', 'Tab fifth'];
 const stories = {
   default: withState({
     activeTab: 0,
   })(({ store }) => (
     <Tabs
-      {...props()}
-      tabs={getTabs(number('Number of tabs', 12))}
-      block
+      underscore={false}
+      tabs={getTabs(array('Tab labels', defaultTabsArray))}
       activeTab={store.state.activeTab}
-      handleTabClick={(index: number) => store.set({activeTab: index})}
+      handleTabClick={(index: number) => store.set({ activeTab: index })}
+    />
+  )),
+  withUnderline: withState({
+    activeTab: 0,
+  })(({ store }) => (
+    <Tabs
+      underscore
+      tabs={getTabs(array('Tab labels', defaultTabsArray))}
+      activeTab={store.state.activeTab}
+      handleTabClick={(index: number) => store.set({ activeTab: index })}
+    />
+  )),
+  withBlockTabs: withState({
+    activeTab: 0,
+  })(({ store }) => (
+    <Tabs
+      tabs={getTabs(array('Tab labels', defaultTabsArray.slice(0, 2)))}
+      activeTab={store.state.activeTab}
+      handleTabClick={(index: number) => store.set({ activeTab: index })}
+      block
+      underscore
+    />
+  )),
+  withBlockIconTabs: withState({
+    activeTab: 0,
+  })(({ store }) => (
+    <Tabs
+      tabs={icons}
+      activeTab={store.state.activeTab}
+      handleTabClick={(index: number) => store.set({ activeTab: index })}
+      block
+      underscore
     />
   )),
   withConfigurationButton: withState({
@@ -66,46 +110,17 @@ const stories = {
       {...props()}
       tabs={tabs}
       activeTab={store.state.activeTab}
-      handleTabClick={(index: number) => store.set({activeTab: index})}
-      block
+      handleTabClick={(index: number) => store.set({ activeTab: index })}
       configuration={{
         label: 'Manage dashboards',
         action: action('Manage dashboards click'),
       }}
     />
   )),
-  withLabelAsNodes: {
-    tabs: [
-      {
-        icon: <SearchM />
-      },
-      {
-        label: (<React.Fragment>Tab #2</React.Fragment>),
-      },
-      {
-        label: (<React.Fragment>Tab #3</React.Fragment>),
-        icon: <SearchM />
-      },
-      {
-        label: (<React.Fragment>Tab #4</React.Fragment>),
-      },
-      {
-        label: <span style={{ color: 'red' }}>Tab #3</span>,
-        icon: <SearchM />
-      },
-      {
-        label: (<span>Test</span>),
-        icon: <SearchM />,
-        disabled: true,
-      }
-    ],
-    activeTab: 1,
-    handleTabClick: action('handleTabClick'),
-  },
 };
 
 export default {
-  name: 'Components|Tabs',
+  name: 'Tabs|Tabs',
   decorator,
   stories,
   Component: Tabs,

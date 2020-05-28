@@ -187,7 +187,7 @@ const Tabs: React.FC<TabsProps> = ({ activeTab, tabs, handleTabClick, configurat
         {renderDropdown()}
       </S.TabsContainer>
       {/* rendering hidden tabs to measure their width */}
-      {renderHelperTabs && renderHelpers}
+      {!block && renderHelperTabs && renderHelpers}
     </>
   );
 };
