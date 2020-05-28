@@ -12,6 +12,7 @@ interface Props<T extends { key: React.ReactText }> {
   selection?: RowSelection<T>;
   dataSource: T[];
   searchComponent?: React.ReactNode;
+  filterComponent?: React.ReactNode;
   rowKey?: Function | string;
 }
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
@@ -20,6 +21,7 @@ const TableHeader: React.FC<Props> = ({
   title,
   filters,
   searchComponent,
+  filterComponent,
   selectedRows,
   itemsMenu,
   selection,
@@ -61,6 +63,7 @@ const TableHeader: React.FC<Props> = ({
             selected={filter.selected}
           />
         ))}
+        {filterComponent}
         {searchComponent}
       </S.Right>
     </S.Header>
