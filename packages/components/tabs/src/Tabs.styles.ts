@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 import Button from '@synerise/ds-button';
 
-export const TabsContainer = styled.div`
+export const TabsContainer = styled.div<{ block?: boolean }>`
   padding-top: 5px;
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
+  align-items: ${(props): string | false => (props.block ? `center` : `flex-end`)};
   justify-content: flex-start;
   max-width: 100%;
   overflow-x: hidden;

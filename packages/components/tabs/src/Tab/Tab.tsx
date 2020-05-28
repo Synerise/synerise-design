@@ -13,6 +13,7 @@ export type TabProps = {
   className?: string;
   onClick: (index: number) => void;
   forwardedRef: React.RefObject<HTMLButtonElement>;
+  block?: boolean;
 };
 
 const Tab: React.FC<TabProps> = ({
@@ -25,6 +26,7 @@ const Tab: React.FC<TabProps> = ({
   forwardedRef,
   underscore,
   className,
+  block,
 }: TabProps) => {
   const [isPressed, setPressed] = React.useState(false);
   const handleClick = (): void => {
@@ -57,11 +59,14 @@ const Tab: React.FC<TabProps> = ({
       ref={forwardedRef}
       type="button"
       data-testid="tab-container"
+      block={block}
     >
-      <S.TabContent>
-        {icon && <Icon component={icon} size={24} />}
-        {label && <S.TabLabel>{label}</S.TabLabel>}
-      </S.TabContent>
+      <S.BlockContentWrapper block={block}>
+        <S.TabContent className="tab-content">
+          {icon && <Icon component={icon} size={24} />}
+          {label && <S.TabLabel>{label}</S.TabLabel>}
+        </S.TabContent>
+      </S.BlockContentWrapper>
     </S.TabContainer>
   );
 };
