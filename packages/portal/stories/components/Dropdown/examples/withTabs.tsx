@@ -71,14 +71,6 @@ const withTabs = () => {
           />
         </S.TabsWrapper>
         <S.ContentPlaceholder></S.ContentPlaceholder>
-        <Dropdown.BottomAction
-          onClickAction={() => {
-            alert('Bottom action button clicked!');
-          }}
-          icon={<Add3M />}
-        >
-          Button
-        </Dropdown.BottomAction>
       </Dropdown.Wrapper>
     ),
     children: (
