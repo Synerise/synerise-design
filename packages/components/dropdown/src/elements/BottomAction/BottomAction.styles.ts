@@ -24,4 +24,12 @@ export const BottomAction = styled.div`
   border-style: solid;
   margin-top: 8px;
   cursor: pointer;
+  &:hover {
+    color: ${(props): string => props.theme.palette['blue-600']};
+    ${IconWrapper} {
+      svg {
+        fill: ${(props): string => props.theme.palette['blue-600']};
+      }
+    }
+  }
 `;

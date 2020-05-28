@@ -2,7 +2,7 @@ import * as React from 'react';
 import Dropdown from '@synerise/ds-dropdown';
 import Button from '@synerise/ds-button';
 import Example1 from './examples/Example1';
-import withCascader from './examples/withCascader';
+import withTabs from './examples/withTabs';
 
 const decorator = storyFn => (
   <div style={{ width: '100vw', position: 'absolute', left: '0', top: '20vh' }}>
@@ -18,6 +18,7 @@ const stories = {
     children: (<Button>Click</Button>),
   },
   example1: Example1,
+  withTabs: withTabs,
 };
 
 export default {
