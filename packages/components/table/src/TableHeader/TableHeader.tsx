@@ -61,6 +61,7 @@ const TableHeader: React.FC<Props> = ({
             show={filter.show}
             showList={filter.showList}
             selected={filter.selected}
+            disabled={filter.disabled}
           />
         ))}
         {filterComponent}

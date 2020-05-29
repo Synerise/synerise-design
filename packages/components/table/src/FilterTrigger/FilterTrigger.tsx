@@ -21,6 +21,7 @@ interface Props {
   handleClear: () => void;
   showList: () => void;
   show: () => void;
+  disabled?: boolean;
 }
 
 const FilterTrigger: React.FC<Props> = ({
@@ -37,6 +38,7 @@ const FilterTrigger: React.FC<Props> = ({
   handleClear,
   showList,
   show,
+  disabled
 }) => {
   const [opened, setOpened] = React.useState<boolean>(false);
   React.useEffect(() => {
@@ -63,6 +65,7 @@ const FilterTrigger: React.FC<Props> = ({
             type="ghost"
             onClick={opened ? show : handleOpen}
             data-testid="show-filter-button"
+            disabled={disabled}
           >
             <Icon component={iconComponent} />
             <S.FilterButtonLabel>{selected?.name || openedLabel}</S.FilterButtonLabel>
