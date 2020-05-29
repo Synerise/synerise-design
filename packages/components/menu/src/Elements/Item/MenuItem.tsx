@@ -10,10 +10,9 @@ import Select from './Select/Select';
 import Danger from './Danger/Danger';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
-const NOOP = (): void=>{};
+const NOOP = (): void => {};
 const MenuItem: React.FC<SubMenuProps & MenuItemProps> = props => {
   const {
-    onSelect,
     prefixel,
     suffixel,
     ordered,
@@ -28,6 +27,7 @@ const MenuItem: React.FC<SubMenuProps & MenuItemProps> = props => {
     type,
     indentLevel,
     onItemHover,
+    onClick,
     ...rest
   } = props;
   if (subMenu || nestedMenu) {
@@ -43,8 +43,8 @@ const MenuItem: React.FC<SubMenuProps & MenuItemProps> = props => {
         description={description}
         indentLevel={indentLevel || 0}
         subMenu={nestedMenu || subMenu}
-        onItemHover={onItemHover || NOOP }
-
+        onItemHover={onItemHover || NOOP}
+        onClick={onClick || NOOP}
         {...rest}
       />
     );
@@ -53,14 +53,14 @@ const MenuItem: React.FC<SubMenuProps & MenuItemProps> = props => {
     case ItemType.SELECT:
       return (
         <Select
-          onSelect={onSelect}
           prefixel={prefixel}
           suffixel={suffixel}
           key={uuid()}
           disabled={disabled}
           description={description}
           indentLevel={indentLevel || 0}
-          onItemHover={onItemHover || NOOP }
+          onItemHover={onItemHover || NOOP}
+          onClick={onClick || NOOP}
           {...rest}
         >
           {text || children}
@@ -69,14 +69,14 @@ const MenuItem: React.FC<SubMenuProps & MenuItemProps> = props => {
     case ItemType.DANGER:
       return (
         <Danger
-          onSelect={onSelect}
           prefixel={prefixel}
           suffixel={suffixel}
           key={uuid()}
           disabled={disabled}
           description={description}
           indentLevel={indentLevel || 0}
-          onItemHover={onItemHover || NOOP }
+          onItemHover={onItemHover || NOOP}
+          onClick={onClick || NOOP}
           {...rest}
         >
           {text || children}
@@ -85,7 +85,6 @@ const MenuItem: React.FC<SubMenuProps & MenuItemProps> = props => {
     default:
       return (
         <Text
-          onSelect={onSelect}
           prefixel={prefixel}
           suffixel={suffixel}
           key={uuid()}
@@ -93,7 +92,8 @@ const MenuItem: React.FC<SubMenuProps & MenuItemProps> = props => {
           danger={danger}
           description={description}
           indentLevel={indentLevel || 0}
-          onItemHover={onItemHover || NOOP }
+          onItemHover={onItemHover || NOOP}
+          onClick={onClick || NOOP}
           {...rest}
         >
           {text || children}

@@ -6,7 +6,7 @@ export interface AntdMenuProps extends Omit<MenuProps, 'dataSource' | 'footer'> 
   radio?: boolean;
   dashed?: boolean;
   subMenu?: string[];
-  ordered?: boolean | undefined;
+  ordered?: boolean;
 }
 export enum VisibilityTrigger {
   DEFAULT = 'default',

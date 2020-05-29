@@ -2,7 +2,7 @@ import * as React from 'react';
 import AngleRightS from '@synerise/ds-icon/dist/icons/AngleRightS';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import * as copy from 'copy-to-clipboard';
-import { ClickParam, SelectParam } from 'antd/lib/menu';
+import { ClickParam } from 'antd/lib/menu';
 import { escapeRegEx } from '@synerise/ds-utils';
 import Icon from '@synerise/ds-icon';
 
@@ -17,7 +17,6 @@ export interface BasicItemProps {
   suffixel?: React.ReactNode;
   danger?: boolean;
   actions?: React.ReactNode;
-  onSelect?: (props: SelectParam) => void;
   onClick?: (props: ClickParam) => void;
   description?: string | React.ReactNode;
   copyable?: boolean;

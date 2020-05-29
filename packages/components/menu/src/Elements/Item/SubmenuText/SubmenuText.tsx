@@ -5,20 +5,20 @@ import '@synerise/ds-core/dist/js/style';
 import * as S from './SubmenuText.styles';
 import { BasicItemProps } from '../Text/Text';
 
-const SubmenuText: React.FC<BasicItemProps>  = (props) => {
-  const {
-    disabled,
-    children,
-    prefixel,
-  } = props;
+const SubmenuText: React.FC<BasicItemProps> = props => {
+  const { disabled, children, prefixel, suffixel } = props;
   return (
-    <S.SubmenuText
-      key={uuid()}
-      disabled={disabled}
-      prefixel={prefixel}
-    >
-      {children}
-    </S.SubmenuText>
+    <S.SubtitleItemWrapper className="ds-submenu-title-wrapper">
+      <S.SubmenuText
+        key={uuid()}
+        disabled={disabled}
+        prefixel={prefixel}
+        suffixel={suffixel}
+        className="ds-submenu-title"
+      >
+        {children}
+      </S.SubmenuText>
+    </S.SubtitleItemWrapper>
   );
 };
 
