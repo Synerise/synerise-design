@@ -87,7 +87,7 @@ const FilterTrigger: React.FC<Props> = ({
         )}
       </>
     ),
-    [opened, tooltips, selected, handleClear, show, showList, handleOpen, iconComponent, openedLabel]
+    [opened, tooltips, selected, handleClear, show, showList, handleOpen, iconComponent, openedLabel, disabled]
   );
 
   return (
