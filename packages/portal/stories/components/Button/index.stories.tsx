@@ -274,9 +274,7 @@ const stories = {
         <Button.Creator
           {...props}
           label={'Add position'}
-          onClick={() => {
-            console.log('Button clicked!');
-          }}
+          onClick={action("Creator Click")}
         ></Button.Creator>
       </div>
     );
@@ -289,7 +287,6 @@ const stories = {
         margin: 4,
       },
     } as object;
-    console.log(crudProps);
     return (
       <div>
         <Button.Cruds
@@ -298,47 +295,35 @@ const stories = {
 
           onAdd={
             crudProps.type === 'Add' || crudProps.type === 'Multiple'
-              ? () => {
-                  console.log('Button clicked!');
-                }
+              ? action("onAdd event triggered")
               : null
           }
           addTooltip="Add"
           onDelete={
             crudProps.type === 'Delete' || crudProps.type === 'Multiple'
-              ? () => {
-                  console.log('Button clicked!');
-                }
+              ? action("onDelete event triggered")
               : null
           }
           deleteTooltip="Delete"
           onDuplicate={
             crudProps.type === 'Duplicate' || crudProps.type === 'Multiple'
-              ? () => {
-                console.log('Button clicked!');
-              }
+              ? action("onDuplicate event triggered")
               : null
           }
           duplicateTooltip="Duplicate"
           onEdit={
             crudProps.type === 'Edit' || crudProps.type === 'Multiple'
-              ? () => {
-                  console.log('Button clicked!');
-                }
+              ? action("onEdit event triggered")
               : null
           }
           editTooltip="Edit"
           onMove={
-            crudProps.type === 'Move' ? () => {
-                console.log('Button clicked!');
-              }
+            crudProps.type === 'Move' ? action("onMove event triggered")
               : null
           }
           moveTooltip="Move"
           onRemove={
-            crudProps.type === 'Remove' ? () => {
-                console.log('Button clicked!');
-              }
+            crudProps.type === 'Remove' ? action("onRemove event triggered")
               : null
           }
           removeTooltip="Remove"

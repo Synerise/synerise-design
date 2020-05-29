@@ -1,12 +1,10 @@
 import * as React from 'react';
 import { AddS, CloseS, DragHandleM, DuplicateS, EditS, TrashS } from '@synerise/ds-icon/dist/icons';
-import Icon from '@synerise/ds-icon';
-import Tooltip from '@synerise/ds-tooltip';
 import * as S from './Cruds.styles';
+import SingleCrud from './Singlecrud';
 
 export interface Action {
   icon: React.ReactNode;
-  onClick: () => void;
   tooltip?: React.ReactNode | string;
 }
 export interface CrudsProps {
@@ -18,7 +16,6 @@ export interface CrudsProps {
   deleteTooltip: React.ReactNode | string;
   disabled?: boolean;
   onDelete: () => void;
-  onClick: () => void;
   onAdd: () => void;
   onEdit: () => void;
   onDuplicate: () => void;
@@ -28,7 +25,6 @@ export interface CrudsProps {
 
 const Cruds: React.FC<CrudsProps> = ({
   onDelete,
-  onClick,
   onAdd,
   onEdit,
   onDuplicate,
@@ -42,49 +38,16 @@ const Cruds: React.FC<CrudsProps> = ({
   deleteTooltip,
 }) => {
   return (
-    <S.CrudsContainer onClick={onClick} className="ds-cruds">
-      {onAdd && (
-        <Tooltip title={addTooltip}>
-          <S.IconWrapper className="add" onClick={onAdd}>
-            <Icon component={<AddS />} />
-          </S.IconWrapper>
-        </Tooltip>
-      )}
-      {onEdit && (
-        <Tooltip title={editTooltip}>
-          <S.IconWrapper className="edit" onClick={onEdit}>
-            <Icon component={<EditS />} />
-          </S.IconWrapper>
-        </Tooltip>
-      )}
+    <S.CrudsContainer className="ds-cruds">
+      {onAdd && <SingleCrud title={addTooltip} className="add" onClick={onAdd} icon={<AddS />} />}
+
+      {onEdit && <SingleCrud title={editTooltip} className="edit" onClick={onEdit} icon={<EditS />} />}
       {onDuplicate && (
-        <Tooltip title={duplicateTooltip}>
-          <S.IconWrapper className="duplicate" onClick={onDuplicate}>
-            <Icon component={<DuplicateS />} />
-          </S.IconWrapper>
-        </Tooltip>
+        <SingleCrud title={duplicateTooltip} className="duplicate" onClick={onDuplicate} icon={<DuplicateS />} />
       )}
-      {onDelete && (
-        <Tooltip title={deleteTooltip}>
-          <S.IconWrapper className="delete" onClick={onDelete}>
-            <Icon component={<TrashS />} />
-          </S.IconWrapper>
-        </Tooltip>
-      )}
-      {onMove && (
-        <Tooltip title={moveTooltip}>
-          <S.IconWrapper className="move" onClick={onMove}>
-            <Icon component={<DragHandleM />} />
-          </S.IconWrapper>
-        </Tooltip>
-      )}
-      {onRemove && (
-        <Tooltip title={removeTooltip}>
-          <S.IconWrapper className="remove" onClick={onRemove}>
-            <Icon component={<CloseS />} />
-          </S.IconWrapper>
-        </Tooltip>
-      )}
+      {onDelete && <SingleCrud title={deleteTooltip} className="delete" onClick={onDelete} icon={<TrashS />} />}
+      {onMove && <SingleCrud title={moveTooltip} className="move" onClick={onMove} icon={<DragHandleM />} />}
+      {onRemove && <SingleCrud title={removeTooltip} className="remove" onClick={onRemove} icon={<CloseS />} />}
     </S.CrudsContainer>
   );
 };

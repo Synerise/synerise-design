@@ -8,57 +8,25 @@ export const CrudsContainer = styled.div`
     cursor: pointer;
   }
 
-  .add {
-    svg {
-      fill: ${(props): string => props.theme.palette['grey-600']};
-    }
-  }
-
-  .add:hover {
-    svg {
-      fill: ${(props): string => props.theme.palette['blue-500']};
-    }
-  }
-
-  .duplicate {
-    svg {
-      fill: ${(props): string => props.theme.palette['grey-600']};
-    }
-  }
-  .duplicate:hover {
-    svg {
-      fill: ${(props): string => props.theme.palette['blue-500']};
-    }
-  }
-  .edit {
-    svg {
-      fill: ${(props): string => props.theme.palette['grey-600']};
-    }
-  }
-
-  .edit:hover {
-    svg {
-      fill: ${(props): string => props.theme.palette['blue-500']};
-    }
-  }
+  .add,
+  .duplicate,
+  .edit,
   .move {
     svg {
       fill: ${(props): string => props.theme.palette['grey-600']};
     }
   }
 
+  .add:hover,
+  .duplicate:hover,
+  .edit:hover,
   .move:hover {
     svg {
       fill: ${(props): string => props.theme.palette['blue-500']};
     }
   }
 
-  .delete {
-    svg {
-      fill: ${(props): string => props.theme.palette['red-600']};
-    }
-  }
-
+  .delete,
   .remove {
     svg {
       fill: ${(props): string => props.theme.palette['red-600']};
