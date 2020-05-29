@@ -186,18 +186,21 @@ const ITEMS = [
   },
 ];
 
+const NOOP = () => {}
+
 const ITEM_FILTER = (visible: boolean, hide: () => void, selectedItemId?: string) => (
   <ItemFilter
     visible={visible}
     hide={hide}
     texts={TEXTS}
-    removeItem={() => {}}
-    editItem={() => {}}
-    selectItem={() => {}}
-    duplicateItem={() => {}}
+    removeItem={NOOP}
+    editItem={NOOP}
+    selectItem={NOOP}
+    duplicateItem={NOOP}
     selectedItemId={selectedItemId}
     categories={CATEGORIES}
     items={ITEMS}
+    fetchData={NOOP}
   />
 );
 

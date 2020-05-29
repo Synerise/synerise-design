@@ -2,8 +2,10 @@ import styled from 'styled-components';
 import { ManageableListContainer } from '@synerise/ds-manageable-list/dist/ManageableList.styles';
 
 export const FiltersList = styled.div`
+  height: 100%;
   ${ManageableListContainer} {
-    padding: 0;
+    padding: 24px;
+    height: 100%;
   }
 
   .ds-result {

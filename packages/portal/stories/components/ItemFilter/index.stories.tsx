@@ -1,4 +1,5 @@
 import * as React from 'react';
+import faker from 'faker';
 import ItemFilter from '@synerise/ds-item-filter';
 import { text } from '@storybook/addon-knobs';
 import { withState } from '@dump247/storybook-state';
@@ -227,6 +228,7 @@ const stories = {
     items: ITEMS,
     selectedItemId: undefined,
     itemFilterVisible: false,
+    loading: false,
   })(({ store }) => {
     const duplicateItem = (props): void => {
       const itemForDuplication = store.state.items.find(item => item.id === props.id);
@@ -247,6 +249,32 @@ const stories = {
       });
     };
 
+    const addItems = (category) => {
+      store.set({loading: true});
+      setTimeout(() => {
+        const nextItemsArray = new Array(10);
+        const nextItems = [...nextItemsArray].map((item, index) => {
+          const myItem = category.label === 'My filters';
+          return ({
+            id: faker.random.uuid(),
+            name: faker.random.word(),
+            description: faker.lorem.sentence(),
+            created: randomDate(),
+            canUpdate: myItem,
+            canDelete: myItem,
+            canDuplicate: true,
+            categories: [`${category.label}`],
+            user: {
+              firstname: faker.name.firstName(),
+              lastname: faker.name.lastName(),
+              email: faker.internet.email(),
+            },
+          })
+        });
+        store.set({items:[...store.state.items, ...nextItems], loading: false});
+      }, 2000);
+    };
+
     const toggleItemFilterVisible = (): void => {
       store.set({ itemFilterVisible: !store.state.itemFilterVisible });
     };
@@ -257,6 +285,9 @@ const stories = {
           Show item filter
         </Button>
         <ItemFilter
+          fetchData={addItems}
+          loading={store.state.loading}
+          hasMore={store.state.items.length < 100}
           visible={store.state.itemFilterVisible}
           hide={toggleItemFilterVisible}
           texts={getTexts()}

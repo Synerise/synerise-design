@@ -12,6 +12,7 @@ import { ItemProps } from '@synerise/ds-manageable-list/dist/Item/Item';
 import { withTheme } from 'styled-components';
 import { IntlFormatters, injectIntl } from 'react-intl';
 import SearchBar from '@synerise/ds-search-bar';
+import Scrollbar from '@synerise/ds-scrollbar';
 import * as S from './ItemFIlter.styles';
 
 type Category = {
@@ -25,6 +26,9 @@ interface Item extends ItemProps {
 export type ItemFilterProps = {
   visible: boolean;
   hide: () => void;
+  fetchData: (category: Category) => void;
+  loading?: boolean;
+  hasMore?: boolean;
   removeItem?: (removeParams: { id: string }) => void;
   editItem?: (editParams: { id: string; name: string }) => void;
   duplicateItem?: (duplicateParams: { id: string }) => void;
@@ -70,6 +74,9 @@ const ItemFilter: React.FC<ItemFilterProps> = ({
   maxToShowItems = 200,
   categories,
   theme,
+  fetchData,
+  loading,
+  hasMore,
 }) => {
   const [activeTab, setActiveTab] = React.useState(0);
   const [searchQuery, setSearchQuery] = React.useState('');
@@ -83,6 +90,10 @@ const ItemFilter: React.FC<ItemFilterProps> = ({
 
     return filterd.sort((a, b) => (a.id === selectedItemId && b.id !== selectedItemId ? -1 : 1));
   }, [activeTab, items, categories, searchQuery, selectedItemId]);
+
+  const activeCategory = React.useMemo(() => {
+    return categories[activeTab];
+  }, [categories, activeTab]);
 
   return (
     <Drawer visible={visible} placement="right" width={676} onClose={hide}>
@@ -107,23 +118,31 @@ const ItemFilter: React.FC<ItemFilterProps> = ({
           iconLeft={<Icon component={<SearchM />} color={theme.palette['grey-600']} />}
         />
       </Drawer.DrawerHeaderWithoutPadding>
-      <Drawer.DrawerBody>
-        <Drawer.DrawerContent>
+      <Drawer.DrawerBody style={{overflowY: 'hidden'}}>
+        <Drawer.DrawerContent style={{height: '100%', padding: 0}}>
           <S.FiltersList>
             {filteredItems.length ? (
-              <ManageableList
-                maxToShowItems={maxToShowItems}
-                onItemRemove={removeItem}
-                onItemEdit={editItem}
-                onItemSelect={selectItem}
-                onItemDuplicate={duplicateItem}
-                type="filter"
-                items={filteredItems}
-                loading={false}
-                selectedItemId={selectedItemId}
-                texts={texts}
-                searchQuery={searchQuery}
-              />
+              <Scrollbar
+                maxHeight='100%'
+                absolute
+                loading={loading}
+                hasMore={hasMore}
+                fetchData={(): void => fetchData(activeCategory)}
+              >
+                <ManageableList
+                  maxToShowItems={maxToShowItems}
+                  onItemRemove={removeItem}
+                  onItemEdit={editItem}
+                  onItemSelect={selectItem}
+                  onItemDuplicate={duplicateItem}
+                  type="filter"
+                  items={filteredItems}
+                  loading={false}
+                  selectedItemId={selectedItemId}
+                  texts={texts}
+                  searchQuery={searchQuery}
+                />
+              </Scrollbar>
             ) : (
               <Result type="no-results" noSearchResults description={texts.noResults} />
             )}
