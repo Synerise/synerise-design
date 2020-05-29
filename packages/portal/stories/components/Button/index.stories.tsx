@@ -296,7 +296,6 @@ const stories = {
 
           {...props}
 
-
           onAdd={
             crudProps.type === 'Add' || crudProps.type === 'Multiple'
               ? () => {
@@ -304,6 +303,7 @@ const stories = {
                 }
               : null
           }
+          addTooltip="Add"
           onDelete={
             crudProps.type === 'Delete' || crudProps.type === 'Multiple'
               ? () => {
@@ -311,6 +311,7 @@ const stories = {
                 }
               : null
           }
+          deleteTooltip="Delete"
           onDuplicate={
             crudProps.type === 'Duplicate' || crudProps.type === 'Multiple'
               ? () => {
@@ -318,6 +319,7 @@ const stories = {
               }
               : null
           }
+          duplicateTooltip="Duplicate"
           onEdit={
             crudProps.type === 'Edit' || crudProps.type === 'Multiple'
               ? () => {
@@ -325,25 +327,22 @@ const stories = {
                 }
               : null
           }
+          editTooltip="Edit"
           onMove={
             crudProps.type === 'Move' ? () => {
                 console.log('Button clicked!');
               }
               : null
           }
+          moveTooltip="Move"
           onRemove={
             crudProps.type === 'Remove' ? () => {
                 console.log('Button clicked!');
               }
               : null
           }
-
-
-
-
-
-
-        ></Button.Cruds>
+          removeTooltip="Remove"
+        />
       </div>
     );
   },

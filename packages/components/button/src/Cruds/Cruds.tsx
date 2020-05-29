@@ -10,6 +10,12 @@ export interface Action {
   tooltip?: React.ReactNode | string;
 }
 export interface CrudsProps {
+  addTooltip: React.ReactNode | string;
+  editTooltip: React.ReactNode | string;
+  duplicateTooltip: React.ReactNode | string;
+  removeTooltip: React.ReactNode | string;
+  moveTooltip: React.ReactNode | string;
+  deleteTooltip: React.ReactNode | string;
   disabled?: boolean;
   onDelete: () => void;
   onClick: () => void;
@@ -20,46 +26,60 @@ export interface CrudsProps {
   onRemove: () => void;
 }
 
-const Cruds: React.FC<CrudsProps> = ({ onDelete, onClick, onAdd, onEdit, onDuplicate, onMove, onRemove }) => {
+const Cruds: React.FC<CrudsProps> = ({
+  onDelete,
+  onClick,
+  onAdd,
+  onEdit,
+  onDuplicate,
+  onMove,
+  onRemove,
+  addTooltip,
+  editTooltip,
+  duplicateTooltip,
+  removeTooltip,
+  moveTooltip,
+  deleteTooltip,
+}) => {
   return (
     <S.CrudsContainer onClick={onClick} className="ds-cruds">
       {onAdd && (
-        <Tooltip title="Add">
+        <Tooltip title={addTooltip}>
           <S.IconWrapper className="add" onClick={onAdd}>
             <Icon component={<AddS />} />
           </S.IconWrapper>
         </Tooltip>
       )}
       {onEdit && (
-        <Tooltip title="Edit">
+        <Tooltip title={editTooltip}>
           <S.IconWrapper className="edit" onClick={onEdit}>
             <Icon component={<EditS />} />
           </S.IconWrapper>
         </Tooltip>
       )}
       {onDuplicate && (
-        <Tooltip title="Duplicate">
+        <Tooltip title={duplicateTooltip}>
           <S.IconWrapper className="duplicate" onClick={onDuplicate}>
             <Icon component={<DuplicateS />} />
           </S.IconWrapper>
         </Tooltip>
       )}
       {onDelete && (
-        <Tooltip title="Delete">
+        <Tooltip title={deleteTooltip}>
           <S.IconWrapper className="delete" onClick={onDelete}>
             <Icon component={<TrashS />} />
           </S.IconWrapper>
         </Tooltip>
       )}
       {onMove && (
-        <Tooltip title="Move">
+        <Tooltip title={moveTooltip}>
           <S.IconWrapper className="move" onClick={onMove}>
             <Icon component={<DragHandleM />} />
           </S.IconWrapper>
         </Tooltip>
       )}
       {onRemove && (
-        <Tooltip title="Remove">
+        <Tooltip title={removeTooltip}>
           <S.IconWrapper className="remove" onClick={onRemove}>
             <Icon component={<CloseS />} />
           </S.IconWrapper>
