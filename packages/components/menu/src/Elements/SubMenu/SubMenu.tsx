@@ -12,7 +12,7 @@ class SubMenuItem extends React.PureComponent<SubMenuProps & MenuItemProps, SubM
   state = { childrenCollapsed: true, uuidKey: uuid() };
 
   render(): React.ReactNode {
-    const { text, prefixel, subMenu, disabled, danger, ordered, ...rest } = this.props;
+    const { text, prefixel, suffixel, subMenu, disabled, danger, ordered, ...rest } = this.props;
     const { childrenCollapsed, uuidKey } = this.state;
     const onClickHandler = (): void => {
       this.setState(prevState => ({
@@ -23,7 +23,7 @@ class SubMenuItem extends React.PureComponent<SubMenuProps & MenuItemProps, SubM
     return (
       <S.SubMenuItem
         title={
-          <SubmenuText key={`${uuidKey}-title`} onClick={onClickHandler} prefixel={prefixel}>
+          <SubmenuText key={`${uuidKey}-title`} onClick={onClickHandler} prefixel={prefixel} suffixel={suffixel}>
             {text}
           </SubmenuText>
         }
@@ -31,16 +31,16 @@ class SubMenuItem extends React.PureComponent<SubMenuProps & MenuItemProps, SubM
         danger={danger}
         ordered={ordered}
         disabled={disabled}
-        className="ds-menu-item"
         tabIndex={!disabled ? 0 : -1}
         {...rest}
+        className="ds-menu-item"
         onTitleClick={onClickHandler}
         childrenCollapsed={childrenCollapsed}
       >
         {Boolean(subMenu) &&
           // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
           // @ts-ignore */
-          subMenu.map((subItem: SubMenuItemProps) => (
+          subMenu.map((subItem: SubMenuItemProps, index: number) => (
             <MenuItem
               parent={subItem.parent}
               prefixel={subItem.prefixel}
@@ -56,7 +56,7 @@ class SubMenuItem extends React.PureComponent<SubMenuProps & MenuItemProps, SubM
               onClick={(): void => {
                 subItem.onClick && subItem.onClick(subItem);
               }}
-              key={`${uuidKey}-${subItem.index}`} // eslint-disable-line react/no-array-index-key
+              key={`${uuidKey}-${index}`} // eslint-disable-line react/no-array-index-key
             />
           ))}
       </S.SubMenuItem>

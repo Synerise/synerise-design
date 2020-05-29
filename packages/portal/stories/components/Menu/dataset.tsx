@@ -34,7 +34,7 @@ export const suffixType = {
   none: 'none',
 };
 
-export const iconPrefixType = {
+export const prefixType = {
   singleIcon: 'singleIcon',
   twoIcons: 'twoIcons',
   none: 'none',
@@ -107,7 +107,7 @@ export function renderSuffix(suffixElementType: string) {
 
 export const renderPrefixIcon = (prefixIconType: string) => {
   switch (prefixIconType) {
-    case iconPrefixType.twoIcons:
+    case prefixType.twoIcons:
       return (
         <React.Fragment>
           <Tooltip type="default" title={'Delete'}>
@@ -123,7 +123,7 @@ export const renderPrefixIcon = (prefixIconType: string) => {
         </React.Fragment>
       );
       break;
-    case iconPrefixType.singleIcon:
+    case prefixType.singleIcon:
       return <Icon color={theme.palette['grey-700']} component={<ShowM />} />;
       break;
     default:
@@ -157,21 +157,6 @@ export const submenu = [
   {
     text: 'Parent 1',
     subMenu: [{ text: 'Child 1', ordered: true }, { text: 'Child 2', ordered: true }, { text: 'Child 3' }],
-  },
-];
-
-export const parentWithIcon = [
-  {
-    text: 'Parent 1',
-    subMenu: [{ text: 'Child 1', ordered: true }, { text: 'Child 2', ordered: true }, { text: 'Child 3' }],
-  },
-  {
-    text: 'Parent 2',
-    subMenu: [
-      { text: 'Child 1', subMenu: [{ text: 'Child 1' }, { text: 'Child 2' }, { text: 'Child 3' }] },
-      { text: 'Child 2' },
-      { text: 'Child 3' },
-    ],
   },
 ];
 

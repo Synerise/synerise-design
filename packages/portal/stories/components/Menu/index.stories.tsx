@@ -28,20 +28,26 @@ import withHighlighting from './withHighlighting/withHighlighting';
 import withBreadcrumb from './withBreadcrumb/withBreadcrumb';
 import withSelection from './withSelection/withSelection';
 import * as S from './stories.styles';
-export const decorator = props => (
-  <div
-    style={{ width: '200px', borderRadius: '3px', overflow: 'hidden' }}
-    onKeyDown={e => focusWithArrowKeys(e, 'ds-menu-item', () => {})}
-  >
-    <div style={{ background: 'rgba(0,0,0,0)', width: '200px' }}>
-      <Menu {...props}>
-        {props.dataSource.map(item => (
-          <S.StyledMenuItem {...props} {...item} />
-        ))}
-      </Menu>
+import { v4 as uuid } from 'uuid';
+
+export const decorator = props => {
+  console.log(props);
+  const { dataSource, ...rest } = props;
+  return (
+    <div
+      style={{ width: '200px', borderRadius: '3px', overflow: 'hidden' }}
+      onKeyDown={e => focusWithArrowKeys(e, 'ds-menu-item', () => {})}
+    >
+      <div style={{ background: 'rgba(0,0,0,0)', width: '200px' }}>
+        <Menu {...props}>
+          {props.dataSource.map(item => (
+            <S.StyledMenuItem {...rest} {...item} key={uuid()} className="ds-menu-item" />
+          ))}
+        </Menu>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export const getSuffixElement = () => {
   const selectedSuffix = select('Set suffix type', suffixType, suffixType.none);
