@@ -1,9 +1,9 @@
 import * as React from 'react';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import './style/index.less';
-import * as S from './Scrollbar.styles';
 import SpinnerM from '@synerise/ds-icon/dist/icons/SpinnerM';
 import Icon from '@synerise/ds-icon';
+import * as S from './Scrollbar.styles';
 
 export type ScrollbarProps = {
   children: React.ReactNode | string;
