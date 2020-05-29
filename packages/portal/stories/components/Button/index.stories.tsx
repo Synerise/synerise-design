@@ -3,15 +3,10 @@ import { text, select, boolean } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 
 import {
-  AddM,
   AngleDownM,
   AngleDownS,
   CheckM,
   CheckS,
-  DuplicateS,
-  EditS,
-  FormulaMultiplierS,
-  TrashS,
 } from '@synerise/ds-icon/dist/icons';
 import Icon from '@synerise/ds-icon';
 import Button from '@synerise/ds-button';
@@ -116,9 +111,8 @@ const getBackgroundStyles = type => {
     justifyContent: 'center',
   };
 };
-const getCrudsKnobs = (isSplit = false) => ({
+const getCrudsKnobs = () => ({
   type: select('Set type', crudsoptions, 'Multiple'),
-  disabled: boolean('Disabled', false),
 });
 
 console.log('V:', version);

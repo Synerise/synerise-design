@@ -3,24 +3,19 @@ import { AddS, CloseS, DragHandleM, DuplicateS, EditS, TrashS } from '@synerise/
 import * as S from './Cruds.styles';
 import SingleCrud from './Singlecrud';
 
-export interface Action {
-  icon: React.ReactNode;
-  tooltip?: React.ReactNode | string;
-}
 export interface CrudsProps {
-  addTooltip: React.ReactNode | string;
-  editTooltip: React.ReactNode | string;
-  duplicateTooltip: React.ReactNode | string;
-  removeTooltip: React.ReactNode | string;
-  moveTooltip: React.ReactNode | string;
-  deleteTooltip: React.ReactNode | string;
-  disabled?: boolean;
-  onDelete: () => void;
-  onAdd: () => void;
-  onEdit: () => void;
-  onDuplicate: () => void;
-  onMove: () => void;
-  onRemove: () => void;
+  addTooltip?: React.ReactNode | string;
+  editTooltip?: React.ReactNode | string;
+  duplicateTooltip?: React.ReactNode | string;
+  removeTooltip?: React.ReactNode | string;
+  moveTooltip?: React.ReactNode | string;
+  deleteTooltip?: React.ReactNode | string;
+  onDelete?: () => void;
+  onAdd?: () => void;
+  onEdit?: () => void;
+  onDuplicate?: () => void;
+  onMove?: () => void;
+  onRemove?: () => void;
 }
 
 const Cruds: React.FC<CrudsProps> = ({
