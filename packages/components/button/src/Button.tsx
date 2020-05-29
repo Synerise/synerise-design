@@ -8,12 +8,14 @@ import Creator, { CreatorProps } from './Creator/Creator';
 import * as S from './Button.styles';
 import Expander, { ExpanderProps } from './Expander/Expander';
 import { Props } from './Button.types';
+import Cruds, { CrudsProps } from './Cruds/Cruds';
 
 const RIPPLE_ANIMATION_OFFSET = 50;
 
 const Button: React.FC<Props> & {
   Expander: React.ElementType;
   Creator: React.ElementType;
+  Cruds: React.ElementType;
 } = ({
   type = 'secondary',
   mode,
@@ -77,5 +79,6 @@ const Button: React.FC<Props> & {
 };
 Button.Expander = (props: ExpanderProps): React.ReactElement => Expander(props) as React.ReactElement;
 Button.Creator = (props: CreatorProps): React.ReactElement => Creator(props) as React.ReactElement;
+Button.Cruds = (props: CrudsProps): React.ReactElement => Cruds(props) as React.ReactElement;
 
 export default Button;
