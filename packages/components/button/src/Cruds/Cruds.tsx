@@ -11,13 +11,13 @@ export interface Action {
 }
 export interface CrudsProps {
   disabled?: boolean;
-  onDelete: any;
+  onDelete: () => void;
   onClick: () => void;
-  onAdd: any;
-  onEdit: any;
-  onDuplicate: any;
-  onMove: any;
-  onRemove: any;
+  onAdd: () => void;
+  onEdit: () => void;
+  onDuplicate: () => void;
+  onMove: () => void;
+  onRemove: () => void;
 }
 
 const Cruds: React.FC<CrudsProps> = ({ onDelete, onClick, onAdd, onEdit, onDuplicate, onMove, onRemove }) => {
