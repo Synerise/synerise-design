@@ -2,7 +2,17 @@ import * as React from 'react';
 import { text, select, boolean } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 
-import { AngleDownM, AngleDownS, CheckM, CheckS } from '@synerise/ds-icon/dist/icons';
+import {
+  AddM,
+  AngleDownM,
+  AngleDownS,
+  CheckM,
+  CheckS,
+  DuplicateS,
+  EditS,
+  FormulaMultiplierS,
+  TrashS,
+} from '@synerise/ds-icon/dist/icons';
 import Icon from '@synerise/ds-icon';
 import Button from '@synerise/ds-button';
 import markdown from '@/button/README.md';
@@ -46,8 +56,6 @@ const customColorOptions = {
   violet: 'violet',
 };
 
-
-
 const buttonSizes = {
   default: 'default',
   large: 'large',
@@ -64,10 +72,20 @@ const CREATOR_TYPE = {
   validated: CreatorStatus.Error,
 };
 
+const crudsoptions = {
+  Multiple: 'Multiple',
+  Add: 'Add',
+  Edit: 'Edit',
+  Duplicate: 'Duplicate',
+  Delete: 'Delete',
+  Remove: 'Remove',
+  Move: 'Move'
+};
+
 const getDefaultProps = (isSplit = false) => ({
   label: text('Label', 'Button'),
   type: select('Set type', !isSplit ? typeOptions : splitTypeOptions, 'primary'),
-  color: select('Set custom color', customColorOptions, customColorOptions.red,),
+  color: select('Set custom color', customColorOptions, customColorOptions.red),
   size: select('Set size', buttonSizes, 'default'),
   leftIconSize: select('Set size of left icon', iconSizes, 'S'),
   rightIconSize: select('Set size of right icon', iconSizes, 'S'),
@@ -82,12 +100,26 @@ const getExpanderProps = (isSplit = false) => ({
 });
 const getCreatorKnobs = (isSplit = false) => ({
   disabled: boolean('Disabled', false),
-  status: select('Set creator mode',CREATOR_TYPE,CREATOR_TYPE.default)
+  status: select('Set creator mode', CREATOR_TYPE, CREATOR_TYPE.default),
 });
-const getBackgroundStyles = (type) => {
+const getBackgroundStyles = type => {
   const darkBg = ['tertiary-white', 'ghost-white'].includes(type);
-  return {background:`${darkBg ? '#384350' : '#fff'}`, display: 'flex', position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center'}
+  return {
+    background: `${darkBg ? '#384350' : '#fff'}`,
+    display: 'flex',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+  };
 };
+const getCrudsKnobs = (isSplit = false) => ({
+  type: select('Set type', crudsoptions, 'Multiple'),
+  disabled: boolean('Disabled', false),
+});
 
 console.log('V:', version);
 
@@ -102,7 +134,7 @@ const stories = {
     } as object;
     return (
       <div style={getBackgroundStyles(props.type)}>
-        <Button {...props} mode='simple'>
+        <Button {...props} mode="simple">
           {props.label}
         </Button>
       </div>
@@ -118,7 +150,7 @@ const stories = {
     } as object;
     return (
       <div style={getBackgroundStyles(props.type)}>
-        <Button {...props} mode='split'>
+        <Button {...props} mode="split">
           {props.label}
           <Icon component={defaultProps.rightIconSize === 'M' ? <AngleDownM /> : <AngleDownS />} />
         </Button>
@@ -135,7 +167,7 @@ const stories = {
     } as object;
     return (
       <div style={getBackgroundStyles(props.type)}>
-        <Button {...props} mode='two-icons'>
+        <Button {...props} mode="two-icons">
           <Icon component={defaultProps.leftIconSize === 'M' ? <CheckM /> : <CheckS />} />
           {props.label}
           <Icon component={defaultProps.rightIconSize === 'M' ? <AngleDownM /> : <AngleDownS />} />
@@ -153,7 +185,7 @@ const stories = {
     } as object;
     return (
       <div style={getBackgroundStyles(props.type)}>
-        <Button {...props} mode='icon-label'>
+        <Button {...props} mode="icon-label">
           <Icon component={defaultProps.leftIconSize === 'M' ? <CheckM /> : <CheckS />} />
           {props.label}
         </Button>
@@ -170,7 +202,7 @@ const stories = {
     } as object;
     return (
       <div style={getBackgroundStyles(props.type)}>
-        <Button {...props} mode='label-icon'>
+        <Button {...props} mode="label-icon">
           {props.label}
           <Icon component={defaultProps.rightIconSize === 'M' ? <AngleDownM /> : <AngleDownS />} />
         </Button>
@@ -187,7 +219,7 @@ const stories = {
     } as object;
     return (
       <div style={getBackgroundStyles(props.type)}>
-        <Button {...props} mode='single-icon'>
+        <Button {...props} mode="single-icon">
           <Icon component={defaultProps.leftIconSize === 'M' ? <AngleDownM /> : <AngleDownS />} />
         </Button>
       </div>
@@ -197,7 +229,7 @@ const stories = {
     expanded: false,
   })(({ store }) => {
     const handleClick = () => {
-      store.set({expanded: !store.state.expanded});
+      store.set({ expanded: !store.state.expanded });
     };
     const expanderProps = getExpanderProps();
     const props = {
@@ -208,10 +240,7 @@ const stories = {
     } as object;
     return (
       <div style={getBackgroundStyles(props.type)}>
-        <Button.Expander
-          {...expanderProps}
-          onClick={handleClick}
-          expanded={store.state.expanded} />
+        <Button.Expander {...expanderProps} onClick={handleClick} expanded={store.state.expanded} />
       </div>
     );
   }),
@@ -224,8 +253,12 @@ const stories = {
       },
     } as object;
     return (
-        <Button.Creator {...props} onClick={()=>{console.log('Button clicked!')}} >
-        </Button.Creator>
+      <Button.Creator
+        {...props}
+        onClick={() => {
+          console.log('Button clicked!');
+        }}
+      ></Button.Creator>
     );
   },
   creatorWithLabel: () => {
@@ -236,11 +269,83 @@ const stories = {
         margin: 4,
       },
     } as object;
-    return (<div>
-        <Button.Creator {...props} label={"Add position"} onClick={()=>{console.log('Button clicked!')}}  >
-        </Button.Creator>
+    return (
+      <div>
+        <Button.Creator
+          {...props}
+          label={'Add position'}
+          onClick={() => {
+            console.log('Button clicked!');
+          }}
+        ></Button.Creator>
       </div>
-      );
+    );
+  },
+  cruds: () => {
+    const crudProps = getCrudsKnobs();
+    const props = {
+      ...crudProps,
+      style: {
+        margin: 4,
+      },
+    } as object;
+    console.log(crudProps);
+    return (
+      <div>
+        <Button.Cruds
+
+          {...props}
+
+
+          onAdd={
+            crudProps.type === 'Add' || crudProps.type === 'Multiple'
+              ? () => {
+                  console.log('Button clicked!');
+                }
+              : null
+          }
+          onDelete={
+            crudProps.type === 'Delete' || crudProps.type === 'Multiple'
+              ? () => {
+                  console.log('Button clicked!');
+                }
+              : null
+          }
+          onDuplicate={
+            crudProps.type === 'Duplicate' || crudProps.type === 'Multiple'
+              ? () => {
+                console.log('Button clicked!');
+              }
+              : null
+          }
+          onEdit={
+            crudProps.type === 'Edit' || crudProps.type === 'Multiple'
+              ? () => {
+                  console.log('Button clicked!');
+                }
+              : null
+          }
+          onMove={
+            crudProps.type === 'Move' ? () => {
+                console.log('Button clicked!');
+              }
+              : null
+          }
+          onRemove={
+            crudProps.type === 'Remove' ? () => {
+                console.log('Button clicked!');
+              }
+              : null
+          }
+
+
+
+
+
+
+        ></Button.Cruds>
+      </div>
+    );
   },
 };
 
