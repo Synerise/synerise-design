@@ -34,7 +34,8 @@
     "@synerise/ds-search-bar": "^0.2.50",
     "@synerise/ds-tabs": "^0.10.1",
     "@synerise/ds-scrollbar": "^0.1.4",
-    "@synerise/ds-typography": "^0.8.3"
+    "@synerise/ds-typography": "^0.8.3",
+    "react-window": "^1.8.5"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

@@ -27,7 +27,7 @@ const stories = {
     const fetchData = () => {
       store.set({loading: true});
       setTimeout(() => {
-        const nextData = [...new Array(10)].map(item => {
+        const nextData = [...new Array(50)].map(item => {
           return {
             name: faker.name.findName()
           }
@@ -43,11 +43,10 @@ const stories = {
     return (
       <Scrollbar
         maxHeight={250}
-        absolute={boolean('Scrollbar over text', false)}
+        absolute={boolean('Scrollbar over text', true)}
         loading={loading}
-        hasMore={100 > store.state.data.length}
+        hasMore={1000 > store.state.data.length}
         fetchData={fetchData}
-
       >
         <List renderItem={getItem} dataSource={[store.state.data]}></List>
       </Scrollbar>

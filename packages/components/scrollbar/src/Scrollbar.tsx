@@ -14,53 +14,52 @@ export type ScrollbarProps = {
   loading?: boolean;
   hasMore?: boolean;
   fetchData?: () => void;
+  style?: React.CSSProperties;
 };
 
-const Scrollbar: React.FC<ScrollbarProps> = ({ loading, hasMore, fetchData,children, classes, maxHeight, absolute = false, onScroll }) => {
-  // eslint-disable-next-line no-undef
-  const observer = React.useRef(new IntersectionObserver(entries => {
-      const first = entries[0];
-      if (first.isIntersecting && fetchData) {
-        fetchData();
-      }
-    },
-    { threshold: 1 }
-    )
-  );
+const Scrollbar: React.FC<ScrollbarProps> = ({
+  loading,
+  hasMore,
+  fetchData,
+  children,
+  classes,
+  maxHeight,
+  absolute = false,
+  onScroll,
+  style,
+}) => {
+  const scrollRef = React.useRef();
+  const [lastScrollTop, setLastScrollTop] = React.useState(true);
 
-  const [element, setElement] = React.useState(null);
-
-  React.useEffect(() => {
-    const currentElement = element;
-    const currentObserver = observer.current;
-
-    if (currentElement) {
-      currentObserver.observe(currentElement);
+  const handleReachEnd = React.useCallback(() => {
+    if (!loading && hasMore && scrollRef.current.scrollTop !== lastScrollTop && fetchData) {
+      setLastScrollTop(scrollRef.current.scrollTop);
+      fetchData();
     }
-
-    return (): void => {
-      if (currentElement) {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-        // @ts-ignore
-        currentObserver.unobserve(currentElement);
-      }
-    };
-  }, [element]);
+  }, [loading, hasMore, lastScrollTop, fetchData]);
 
   return (
-    <PerfectScrollbar onScroll={onScroll} options={{ minScrollbarLength: 48 }}>
-      <S.ScrollbarContent className={classes} style={{ maxHeight }}>
-        <S.ScrollbarWrapper absolute={absolute} loading={loading}>
-          {children}
-          {!loading && hasMore && (
-            <S.LoadTrigger ref={setElement as React.Ref<HTMLSpanElement>} />
-          )}
-        </S.ScrollbarWrapper>
-      </S.ScrollbarContent>
-      <S.Loader loading={loading}>
-        <Icon component={<SpinnerM />} color="#6a7580" />
-      </S.Loader>
-    </PerfectScrollbar>
+    <S.ScrollbarContainer>
+      <PerfectScrollbar
+        containerRef={(ref): void => {
+          scrollRef.current = ref;
+        }} // workaround: https://github.com/goldenyz/react-perfect-scrollbar/issues/94#issuecomment-619131257
+        onScroll={onScroll}
+        options={{ minScrollbarLength: 48 }}
+        onYReachEnd={handleReachEnd}
+      >
+        <S.ScrollbarContent className={classes} style={{ maxHeight }}>
+          <S.ScrollbarWrapper absolute={absolute} loading={loading} style={style}>
+            {children}
+          </S.ScrollbarWrapper>
+        </S.ScrollbarContent>
+      </PerfectScrollbar>
+      {loading && (
+        <S.Loader loading={loading}>
+          <Icon component={<SpinnerM />} color="#6a7580" />
+        </S.Loader>
+      )}
+    </S.ScrollbarContainer>
   );
 };
 export default Scrollbar;
