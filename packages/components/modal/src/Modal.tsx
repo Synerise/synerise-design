@@ -10,10 +10,10 @@ import '@synerise/ds-core/dist/js/style';
 import './style/index.less';
 import * as S from './Modal.styles';
 
-interface Props extends ModalProps {
+export interface Props extends ModalProps {
   description?: string;
   headerActions?: React.ReactNode;
-  size?: 'small' | 'medium' | 'large' | 'extraLarge';
+  size?: 'small' | 'medium' | 'large' | 'extraLarge' | 'fullSize';
   bodyBackground?: 'white' | 'grey';
   blank?: boolean;
   texts?: {
@@ -27,6 +27,7 @@ const mapSizeToWidth = {
   medium: 792,
   large: 1044,
   extraLarge: 1280,
+  fullSize: '100%',
 };
 
 class ModalProxy extends React.Component<Props> {
@@ -112,7 +113,7 @@ class ModalProxy extends React.Component<Props> {
     );
 
     return (
-      <Modal
+      <S.AntdModal
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...antModalProps}
         className={className}

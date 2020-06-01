@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import Typography from '@synerise/ds-typography';
+import { ModalProps } from 'antd/lib/modal';
+import Modal from 'antd/lib/modal/Modal';
 
 export const TitleContainer = styled.div`
   display: flex;
@@ -62,3 +64,4 @@ export const FooterContainer = styled.div`
   align-items: center;
   justify-content: flex-end;
 `;
+export const AntdModal = styled(Modal)<ModalProps>``;
