@@ -33,8 +33,7 @@
     "@synerise/ds-scrollbar": "^0.1.4",
     "@synerise/ds-search": "^0.1.21",
     "@synerise/ds-search-bar": "^0.2.49",
-    "@synerise/ds-utils": "^0.8.25",
-    "hoist-non-react-statics": "^3.3.2"
+    "@synerise/ds-utils": "^0.8.25"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
