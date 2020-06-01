@@ -2,7 +2,7 @@ import * as React from 'react';
 import { FilterElement } from '../../Search.types';
 
 export type SearchInputProps = {
-  clearTooltip: string | React.ReactNode;
+  clearTooltip?: string | React.ReactNode;
   onChange: (value: string) => void;
   onClear: () => void;
   value: string;

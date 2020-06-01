@@ -3,7 +3,6 @@ import Search from '@synerise/ds-search';
 import VarTypeStringM from '@synerise/ds-icon/dist/icons/VarTypeStringM';
 import { number, text } from '@storybook/addon-knobs';
 import { VarTypeListM, VarTypeNumberM } from '@synerise/ds-icon/dist/icons';
-import { SearchInput } from '@synerise/ds-search/dist/Elements';
 import { FilterElement } from '@synerise/ds-search/dist/Search.types';
 import Menu from '@synerise/ds-menu';
 import Icon from '@synerise/ds-icon';
@@ -47,7 +46,7 @@ const stories = {
   default: () => {
     const [value, setValue] = React.useState<string>('');
     return (
-      <SearchInput
+      <Search.Input
         clearTooltip="Clear"
         placeholder="Search"
         onChange={value => {
@@ -66,7 +65,7 @@ console.log('Clear value');
   expanded: () => {
     const [value, setValue] = React.useState<string>('');
     return (
-      <SearchInput
+      <Search.Input
         clearTooltip="Clear"
         placeholder="Search"
         onChange={value => {
