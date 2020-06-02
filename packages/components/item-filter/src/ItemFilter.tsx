@@ -87,9 +87,9 @@ const ItemFilter: React.FC<ItemFilterProps> = ({
   loading,
   search,
 }) => {
-  const filterListRef = React.useRef();
   const listRef = React.createRef();
 
+  const [listHeight, setListHeight] = React.useState(0);
   const [activeTab, setActiveTab] = React.useState(0);
   const listStyle: React.CSSProperties = { overflowX: 'unset', overflowY: 'unset' };
 
@@ -160,7 +160,11 @@ const ItemFilter: React.FC<ItemFilterProps> = ({
       </Drawer.DrawerHeaderWithoutPadding>
       <Drawer.DrawerBody style={{ overflowY: 'hidden', flex: 1 }}>
         <Drawer.DrawerContent style={{ height: '100%', padding: 0 }}>
-          <S.FiltersList ref={filterListRef}>
+          <S.FiltersList
+            ref={(el): void => {
+              el && setListHeight(el.offsetHeight);
+            }}
+          >
             {activeCategory.items.length ? (
               <Scrollbar
                 absolute
@@ -172,7 +176,7 @@ const ItemFilter: React.FC<ItemFilterProps> = ({
               >
                 <List
                   width={DRAWER_WIDTH - 2 * FILTER_LIST_PADDING}
-                  height={filterListRef?.current?.offsetHeight || 0}
+                  height={listHeight}
                   itemCount={activeCategory.items.length}
                   itemSize={FILTER_ITEM_HEIGHT + FILTER_ITEM_MARGIN_BOTTOM}
                   style={listStyle}
