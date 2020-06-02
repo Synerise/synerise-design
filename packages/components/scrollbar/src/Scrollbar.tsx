@@ -38,8 +38,8 @@ const Scrollbar: React.FC<ScrollbarProps> = ({
     }
   }, [loading, hasMore, lastScrollTop, fetchData]);
 
-  return (
-    <S.ScrollbarContainer>
+  const renderScrollbar = React.useMemo(() => {
+    return (
       <PerfectScrollbar
         containerRef={(ref): void => {
           scrollRef.current = ref;
@@ -54,12 +54,20 @@ const Scrollbar: React.FC<ScrollbarProps> = ({
           </S.ScrollbarWrapper>
         </S.ScrollbarContent>
       </PerfectScrollbar>
+    );
+  }, [scrollRef, onScroll, handleReachEnd, classes, maxHeight, absolute, loading, style, children]);
+
+  return fetchData ? (
+    <S.ScrollbarContainer>
+      {renderScrollbar}
       {loading && (
         <S.Loader loading={loading}>
           <Icon component={<SpinnerM />} color="#6a7580" />
         </S.Loader>
       )}
     </S.ScrollbarContainer>
+  ) : (
+    renderScrollbar
   );
 };
 export default Scrollbar;
