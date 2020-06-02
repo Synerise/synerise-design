@@ -272,16 +272,7 @@ describe('Drawer component', () => {
 
     // ASSERT
     expect(items[0].querySelector('.selected-item-icon')).toBeTruthy();
-  });
-
-  it('should render all filters', () => {
-    // ARRANGE
-    const { queryAllByTestId } = renderWithProvider(ITEM_FILTER(true, () => {}));
-    const items = queryAllByTestId('filter-item');
-
-    // ASSERT
-    expect(items.length).toBe(11);
-  });
+  }); 
 
   it('should render title from props', () => {
     // ARRANGE
