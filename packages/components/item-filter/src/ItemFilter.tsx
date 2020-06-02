@@ -12,7 +12,7 @@ import { withTheme } from 'styled-components';
 import { IntlFormatters, injectIntl } from 'react-intl';
 import SearchBar from '@synerise/ds-search-bar';
 import Scrollbar from '@synerise/ds-scrollbar';
-import { FixedSizeList as List, FixedSizeListProps, ListChildComponentProps } from 'react-window';
+import { FixedSizeList, FixedSizeList as List, FixedSizeListProps, ListChildComponentProps } from 'react-window';
 import FilterItem from '@synerise/ds-manageable-list/dist/Item/FilterItem/FilterItem';
 import * as S from './ItemFIlter.styles';
 
@@ -87,7 +87,7 @@ const ItemFilter: React.FC<ItemFilterProps> = ({
   loading,
   search,
 }) => {
-  const listRef = React.createRef();
+  const listRef = React.createRef<FixedSizeList>();
 
   const [listHeight, setListHeight] = React.useState(0);
   const [activeTab, setActiveTab] = React.useState(0);
@@ -126,9 +126,9 @@ const ItemFilter: React.FC<ItemFilterProps> = ({
 
   const handleScroll = ({ currentTarget }: React.SyntheticEvent<HTMLElement>): void => {
     const { scrollTop } = currentTarget;
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-    // @ts-ignore
-    listRef.current.scrollTo(scrollTop);
+    if (listRef.current !== null) {
+      listRef.current.scrollTo(scrollTop);
+    }
   };
 
   return (
@@ -169,11 +169,15 @@ const ItemFilter: React.FC<ItemFilterProps> = ({
               <Scrollbar
                 absolute
                 loading={loading}
+                // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+                // @ts-ignore
                 onScroll={handleScroll}
                 hasMore={!search?.value && activeCategory.hasMore}
                 fetchData={(): void => fetchData(activeCategory)}
                 style={{ padding: '0px 24px' }}
               >
+                {/*
+                    //@ts-ignore */}
                 <List
                   width={DRAWER_WIDTH - 2 * FILTER_LIST_PADDING}
                   height={listHeight}

@@ -28,12 +28,12 @@ const Scrollbar: React.FC<ScrollbarProps> = ({
   onScroll,
   style,
 }) => {
-  const scrollRef = React.useRef();
-  const [lastScrollTop, setLastScrollTop] = React.useState(true);
+  const scrollRef = React.useRef<HTMLElement>();
+  const [lastScrollTop, setLastScrollTop] = React.useState(0);
 
   const handleReachEnd = React.useCallback(() => {
-    if (!loading && hasMore && scrollRef.current.scrollTop !== lastScrollTop && fetchData) {
-      setLastScrollTop(scrollRef.current.scrollTop);
+    if (!loading && hasMore && scrollRef?.current?.scrollTop !== lastScrollTop && fetchData) {
+      scrollRef.current && setLastScrollTop(scrollRef.current.scrollTop);
       fetchData();
     }
   }, [loading, hasMore, lastScrollTop, fetchData]);
