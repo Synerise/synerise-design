@@ -22,7 +22,7 @@ import * as moment from 'moment';
 import ItemFilter from '@synerise/ds-item-filter/dist/ItemFilter';
 import Result from '@synerise/ds-result';
 import ModalProxy from '@synerise/ds-modal';
-import { COLUMNS, EMPTY_VIEW, FILTERS, VIEWS } from './content/withFiltersAndSearch.data';
+import { COLUMNS, EMPTY_VIEW, CATEGORIES, VIEWS } from './content/withFiltersAndSearch.data';
 import { FilterElement } from '@synerise/ds-search/dist/Search.types';
 import Divider from '@synerise/ds-divider';
 import Search from '@synerise/ds-search';
@@ -45,37 +45,43 @@ const dataSource = [...new Array(55)].map((i, k) => ({
 
 const saveFilter = (savedView: SavedView, store) => {
   const id = moment().format('MM-DD-YYYY_HH:mm:ss');
+  const newViews = [...store.state.savedViews];
+  newViews[0].items = [...newViews[0].items, {
+    ...EMPTY_VIEW,
+    name: savedView.meta.name,
+    description: savedView.meta.description,
+    columns: [...savedView.columns],
+    id: id,
+    created: moment().format('MM-DD-YYYY HH:mm:ss'),
+  }];
+
   store.set({
     selectedView: id,
-    savedViews: [
-      ...store.state.savedViews,
-      {
-        ...EMPTY_VIEW,
-        name: savedView.meta.name,
-        description: savedView.meta.description,
-        columns: [...savedView.columns],
-        id: id,
-        created: moment().format('MM-DD-YYYY HH:mm:ss'),
-      }
-    ],
+    savedViews: newViews,
     columns: [...savedView.columns],
   })
 };
 
 const removeItem = (props, store): void => {
   store.set({
-    items: store.state.items.filter(item => item.id !== props.id),
+    categories: store.state.categories.map(category => ({
+      ...category,
+      items: category.items.filter(item => item.id !== props.id),
+    }))
   });
 };
 
 const editItem = (props, store): void => {
   store.set({
-    items: store.state.items.map(item => {
-      if(item.id === props.id) {
-        item.name = props.name;
-      }
-      return item;
-    })
+    categories: store.state.categories.map(category => ({
+      ...category,
+      items: category.items.map(item => {
+        if(item.id === props.id) {
+          item.name = props.name;
+        }
+        return item;
+      }),
+    }))
   })
 };
 
@@ -144,7 +150,7 @@ const getSuggestions = (value) => {
 const stories = {
   default: withState({
     selectedRows: [],
-    filters: FILTERS,
+    categories: CATEGORIES,
     savedViews: VIEWS,
     columns: COLUMNS,
     selectedView: undefined,
@@ -217,27 +223,24 @@ const stories = {
         }
       ]};
 
-    const duplicateItem = (props): void => {
-      const itemForDuplication = store.state.filters.find(item => item.id === props.id);
-      store.set({
-        // @ts-ignore
-        filters: [
-          ...store.state.filters,
-          {
-            ...itemForDuplication,
-            id: Date.now(),
-            categories: ['My filters', 'All filters'],
-            canUpdate: true,
-            canDelete: true,
-            canDuplicate: true,
-            name: `${itemForDuplication.name} - copy`,
-          },
-        ],
-      });
-    };
-
     const toggleItemFilterVisible = (): void => {
       store.set({ itemFilterVisible: !store.state.itemFilterVisible });
+    };
+
+    const selectedView = () => {
+      let allItems = [];
+      store.state.savedViews.forEach(cat => {
+        allItems = [...allItems, ...cat.items];
+      });
+      return allItems.find(filter => filter.id === store.state.selectedView);
+    };
+
+    const selectedFilter = () => {
+      let allItems = [];
+      store.state.categories.forEach(cat => {
+        allItems = [...allItems, ...cat.items];
+      });
+      return allItems.find(filter => filter.id === store.state.selectedFilter);
     };
 
     const filteredDataSource = () => {
@@ -275,7 +278,7 @@ const stories = {
                 showList: () => store.set({savedViewsVisible: true}),
                 show: () => store.set({columnManagerVisible: true}),
                 handleClear: () => store.set({selectedView: undefined}),
-                selected: store.state.savedViews.find(filter => filter.id === store.state.selectedView),
+                selected: selectedView(),
               },
               {
                 key: 'filter',
@@ -285,7 +288,7 @@ const stories = {
                 showList: () => store.set({itemFilterVisible: true}),
                 show: () => store.set({modalVisible: true}),
                 handleClear: () => store.set({selectedFilter: undefined}),
-                selected: store.state.filters.find(filter => filter.id === store.state.selectedFilter),
+                selected: selectedFilter(),
               }
             ]
           }
@@ -395,8 +398,7 @@ const stories = {
             selectItem: (params) => setSelectedView(params, store),
             duplicateItem: action('duplicate item'),
             selectedItemId: store.state.selectedView,
-            categories: [{label: 'All views'}, {label: 'My views'}],
-            items: store.state.savedViews,
+            categories: store.state.savedViews,
             texts: {
               activateItemTitle: 'By activating this view, you will cancel your unsaved view settings',
               activate:  'Activate',
@@ -417,10 +419,9 @@ const stories = {
           removeItem={props => removeItem(props, store)}
           editItem={props => editItem(props, store)}
           selectItem={props => setSelectedFilter(props, store)}
-          duplicateItem={props => duplicateItem(props)}
+          duplicateItem={action('duplicate item')}
           selectedItemId={store.state.selectedFilter}
-          categories={[{label: 'All filters'}, {label: 'My filters'}]}
-          items={store.state.filters}
+          categories={store.state.categories}
         />
         <ModalProxy blank closable onCancel={() => store.set({modalVisible: false})} visible={store.state.modalVisible} size={'small'} footer={null}>
           <Result type='info' title='Inplace of this modal you can implement any filter component.' description='This is just an example of filter trigger.' />
