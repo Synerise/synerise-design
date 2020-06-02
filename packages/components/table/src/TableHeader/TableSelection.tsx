@@ -57,11 +57,16 @@ const TableSelection: React.FC<Props> = ({ dataSource, selection, rowKey }) => {
     return dataSource && selection?.selectedRowKeys && dataSource.length === selection.selectedRowKeys.length;
   }, [dataSource, selection]);
 
+  const isEmpty = React.useMemo(() => {
+    return dataSource.length === 0;
+  }, [dataSource]);
+
   const { selectedRowKeys, selections } = selection;
 
   return selectedRowKeys ? (
     <S.Selection>
       <Checkbox
+        disabled={isEmpty}
         checked={allSelected}
         onChange={(event: CheckboxChangeEvent): void => {
           if (event.target.checked) {
@@ -74,6 +79,7 @@ const TableSelection: React.FC<Props> = ({ dataSource, selection, rowKey }) => {
       />
       {selections && (
         <Dropdown
+          disabled={isEmpty}
           trigger={['click']}
           overlay={
             <S.SelectionMenu>
