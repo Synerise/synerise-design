@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-filter@0.3.20...@synerise/ds-item-filter@0.4.0) (2020-06-02)
+
+
+### Bug Fixes
+
+* **item-filter:** fix docs, update storties ([8f4912e](https://github.com/Synerise/synerise-design/commit/8f4912e3fd931d99d7f9245c278d7954a0e7def1))
+* **item-filter:** fix eslint errors ([9cfc800](https://github.com/Synerise/synerise-design/commit/9cfc800295ac0e72cdeae4b2fdb92c180164c611))
+* **item-filter:** fix initial height ([2b24f40](https://github.com/Synerise/synerise-design/commit/2b24f4073d913088adf958a077ec6c7dd529aa67))
+* **item-filter:** fix test ([3611e4d](https://github.com/Synerise/synerise-design/commit/3611e4d1e5520694f321ca5c7cc04a75cd0a58e3))
+* **item-filter:** update stories ([f6cafd3](https://github.com/Synerise/synerise-design/commit/f6cafd32ea3074ba839e48728db6bad349a8eb06))
+
+
+### Features
+
+* **item-filter:** custom scrollbar + infinitescroll + virtualization ([a213e4f](https://github.com/Synerise/synerise-design/commit/a213e4fe50f114f95aa713c3951cfa856d211c24))
+* **item-filter:** use ds-scrollbar with infinite scroll mode ([728c32c](https://github.com/Synerise/synerise-design/commit/728c32cee085fdd1138dd1b7f88574c40a70cc26))
+* **scrollbar:** add custom styles for scrollbar wrapper, update story ([0f17aae](https://github.com/Synerise/synerise-design/commit/0f17aae25cc6d91cf57515543b6a24b6dd54fe3e))
+
+
+
+
+
 ## [0.3.20](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-filter@0.3.19...@synerise/ds-item-filter@0.3.20) (2020-06-02)
 
 **Note:** Version bump only for package @synerise/ds-item-filter

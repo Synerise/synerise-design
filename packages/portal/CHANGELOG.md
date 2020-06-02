@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.67.0](https://github.com/synerise/synerise-design/compare/portal@0.66.1...portal@0.67.0) (2020-06-02)
+
+
+### Bug Fixes
+
+* **item-filter:** fix docs, update storties ([8f4912e](https://github.com/synerise/synerise-design/commit/8f4912e3fd931d99d7f9245c278d7954a0e7def1))
+* **item-filter:** update stories ([f6cafd3](https://github.com/synerise/synerise-design/commit/f6cafd32ea3074ba839e48728db6bad349a8eb06))
+* **item-filter:** update stories ([310c9d0](https://github.com/synerise/synerise-design/commit/310c9d04763179ba86f3524130eb088863fa3fec))
+* **table:** fix expandable row styles ([7804306](https://github.com/synerise/synerise-design/commit/7804306f99d5423d825164609ae833e2d9e14df5))
+
+
+### Features
+
+* **item-filter:** custom scrollbar + infinitescroll + virtualization ([a213e4f](https://github.com/synerise/synerise-design/commit/a213e4fe50f114f95aa713c3951cfa856d211c24))
+* **item-filter:** use ds-scrollbar with infinite scroll mode ([728c32c](https://github.com/synerise/synerise-design/commit/728c32cee085fdd1138dd1b7f88574c40a70cc26))
+* **scrollbar:** add custom styles for scrollbar wrapper, update story ([0f17aae](https://github.com/synerise/synerise-design/commit/0f17aae25cc6d91cf57515543b6a24b6dd54fe3e))
+* **scrollbar:** add inifinite scroll ([d2e8ef2](https://github.com/synerise/synerise-design/commit/d2e8ef27fde732697d525d81c7ac3861a2efb2af))
+* **table:** disable filter trigger ([d779c35](https://github.com/synerise/synerise-design/commit/d779c35fde07b19075a60c98b63c093afbe572a8))
+
+
+
+
+
 ## [0.66.1](https://github.com/synerise/synerise-design/compare/portal@0.66.0...portal@0.66.1) (2020-06-02)
 
 

@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-scrollbar@0.1.5...@synerise/ds-scrollbar@0.2.0) (2020-06-02)
+
+
+### Bug Fixes
+
+* **item-filter:** fix eslint errors ([9cfc800](https://github.com/Synerise/synerise-design/commit/9cfc800295ac0e72cdeae4b2fdb92c180164c611))
+* **scrollbar:** fix eslint error ([3267efc](https://github.com/Synerise/synerise-design/commit/3267efcf3f4e63359bedb37927fba06d918373c5))
+* **scrollbar:** split render for infinite and non-infinite mode ([0ede630](https://github.com/Synerise/synerise-design/commit/0ede630c4c3f6fb6e68804bff252d309fe85acba))
+
+
+### Features
+
+* **scrollbar:** add custom styles for scrollbar wrapper, update story ([0f17aae](https://github.com/Synerise/synerise-design/commit/0f17aae25cc6d91cf57515543b6a24b6dd54fe3e))
+* **scrollbar:** add inifinite scroll ([d2e8ef2](https://github.com/Synerise/synerise-design/commit/d2e8ef27fde732697d525d81c7ac3861a2efb2af))
+* **scrollbar:** update package dependencies ([85911a9](https://github.com/Synerise/synerise-design/commit/85911a9113d5e0dc44ebafd24ff79a3212be9d49))
+* **scrollbar:** update package dependencies ([275e980](https://github.com/Synerise/synerise-design/commit/275e980aa8e5939dd46d023dc1b600878ce799d8))
+
+
+
+
+
 ## [0.1.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-scrollbar@0.1.4...@synerise/ds-scrollbar@0.1.5) (2020-06-02)
 
 **Note:** Version bump only for package @synerise/ds-scrollbar

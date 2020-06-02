@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.12.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.11.12...@synerise/ds-manageable-list@0.12.0) (2020-06-02)
+
+
+### Bug Fixes
+
+* **item-filter:** update stories ([9660193](https://github.com/Synerise/synerise-design/commit/96601936c28dc9296976d075f4463ac74701bbdf))
+* **item-filter:** update stories ([f6cafd3](https://github.com/Synerise/synerise-design/commit/f6cafd32ea3074ba839e48728db6bad349a8eb06))
+
+
+### Features
+
+* **manageable-list:** add custom styles for FilterItem ([c061337](https://github.com/Synerise/synerise-design/commit/c061337c6a3085249346d2c639e4b7cb6d383f2d))
+* **manageable-list:** user as non-require prop ([1232853](https://github.com/Synerise/synerise-design/commit/1232853d7eaa6694bd56566c0d6cbc543c6c05a4))
+
+
+
+
+
 ## [0.11.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.11.11...@synerise/ds-manageable-list@0.11.12) (2020-06-02)
 
 **Note:** Version bump only for package @synerise/ds-manageable-list

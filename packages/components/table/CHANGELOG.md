@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.10.17...@synerise/ds-table@0.11.0) (2020-06-02)
+
+
+### Bug Fixes
+
+* **filter-trigger:** fix eslint error ([d903120](https://github.com/synerise/synerise-design/commit/d903120cc4c285285f4b621e9d857d49fe618b8c))
+* **table:** fix expandable row styles ([7804306](https://github.com/synerise/synerise-design/commit/7804306f99d5423d825164609ae833e2d9e14df5))
+
+
+### Features
+
+* **table:** disable filter trigger ([d779c35](https://github.com/synerise/synerise-design/commit/d779c35fde07b19075a60c98b63c093afbe572a8))
+
+
+
+
+
 ## [0.10.17](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.10.16...@synerise/ds-table@0.10.17) (2020-06-02)
 
 **Note:** Version bump only for package @synerise/ds-table

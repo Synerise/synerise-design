@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-list@0.4.20...@synerise/ds-list@0.5.0) (2020-06-02)
+
+
+### Features
+
+* **item-filter:** use ds-scrollbar with infinite scroll mode ([728c32c](https://github.com/Synerise/synerise-design/commit/728c32cee085fdd1138dd1b7f88574c40a70cc26))
+
+
+
+
+
 ## [0.4.20](https://github.com/Synerise/synerise-design/compare/@synerise/ds-list@0.4.19...@synerise/ds-list@0.4.20) (2020-06-02)
 
 **Note:** Version bump only for package @synerise/ds-list
