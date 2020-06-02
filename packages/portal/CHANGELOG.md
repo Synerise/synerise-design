@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.66.1](https://github.com/synerise/synerise-design/compare/portal@0.66.0...portal@0.66.1) (2020-06-02)
+
+
+### Bug Fixes
+
+* **button:** create cruds styles and cruds add tooltip in package json ([f976488](https://github.com/synerise/synerise-design/commit/f97648872adb1a894b967007135e15944f203411))
+* **button:** fix in the build ([9e93889](https://github.com/synerise/synerise-design/commit/9e9388920d763b48619c6df3ff272c021c57c925))
+* **button:** fix in the build and add Singlecrud component ([ef5b1c5](https://github.com/synerise/synerise-design/commit/ef5b1c56e1a3b5e60b966787ff17ec364b92f2de))
+* **button:** remove disabled and made props optional ([5a2e832](https://github.com/synerise/synerise-design/commit/5a2e8324ec706b5c153150b9469ef69a432d9b39))
+* **menu:** nested items style fixes ([0324e6e](https://github.com/synerise/synerise-design/commit/0324e6ea3bac44a07e431ee6551642617f384e9a))
+* **search:** made tooltip optional, moved to static field ([ca8cbc9](https://github.com/synerise/synerise-design/commit/ca8cbc92e8b103b5269ab80503d89e40f6efe176))
+* **search:** removed deps ([0393973](https://github.com/synerise/synerise-design/commit/0393973102ba9c5328c4518377dbae44822a9d92))
+* dropdown ([4364c4c](https://github.com/synerise/synerise-design/commit/4364c4ca522daad1863ee48844f1a73459854aaa))
+* dropdown: added story ([75b5c8c](https://github.com/synerise/synerise-design/commit/75b5c8c2173b9cecdfced729d82b4a1fd7e224c4))
+
+
+
+
+
 # [0.66.0](https://github.com/synerise/synerise-design/compare/portal@0.65.2...portal@0.66.0) (2020-05-28)
 
 

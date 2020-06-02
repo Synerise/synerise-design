@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.5.3...@synerise/ds-menu@0.5.4) (2020-06-02)
+
+
+### Bug Fixes
+
+* **menu:** made select item focusable ([23502db](https://github.com/Synerise/synerise-design/commit/23502db71002be155483907f3823af7fd566359f))
+* **menu:** nested items style fixes ([0324e6e](https://github.com/Synerise/synerise-design/commit/0324e6ea3bac44a07e431ee6551642617f384e9a))
+
+
+
+
+
 ## [0.5.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.5.2...@synerise/ds-menu@0.5.3) (2020-05-28)
 
 

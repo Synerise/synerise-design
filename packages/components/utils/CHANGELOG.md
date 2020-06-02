@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.26](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@0.8.25...@synerise/ds-utils@0.8.26) (2020-06-02)
+
+
+### Bug Fixes
+
+* **utils:** improved focusing with arrows inside nested items ([b409396](https://github.com/synerise/synerise-design/commit/b40939633eea8af8284c29a5c043512cc8543203))
+
+
+
+
+
 ## [0.8.25](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@0.8.24...@synerise/ds-utils@0.8.25) (2020-05-28)
 
 
