@@ -54,12 +54,24 @@ import ItemFilter from '@synerise/ds-item-filter'
 | selectedItemId | Id of selected item                                                             | string                                 | undefined |
 | texts          | Object contains texts for buttons, title, confirms etc.                         | Texts                                  | -         |
 | maxToShowItems | Shows x first items, rest are hidden under `show more` button                   | number                                 | 200       |
+| search | Whether the search input is availabla                   | number                                 | 200       |
+
+#### Search
+
+| Property       | Description                                                                     | Type                                   | Default   | 
+| -------------- | ------------------------------------------------------------------------------- | -------------------------------------- | --------- | 
+| onChange       | Callback called, when value of search input changes                             | (value: string) => void)               | -         | 
+| onClear        | Callback called, when user click on clear search icon                           | () => void                             | -         | 
+| value          | Current value of search input                                                   | string                                 | -         | 
+    
 
 #### Category
 
-| Property | Description      | Type   | Default |
-| -------- | ---------------- | ------ | ------- |
-| label    | Name of category | string | ''      |
+| Property | Description                             | Type    | Default |
+| -------- | ----------------                        | ------  | ------- |
+| label    | Name of category                        | string  | ''      |
+| hasMore  | Whether the category contain more items | boolean | -       |
+| items    | Array of list items                     | Item[]  | []      |
 
 #### Item
 
