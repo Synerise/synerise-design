@@ -3,12 +3,12 @@ import Search from '@synerise/ds-search';
 import VarTypeStringM from '@synerise/ds-icon/dist/icons/VarTypeStringM';
 import { number, text } from '@storybook/addon-knobs';
 import { VarTypeListM, VarTypeNumberM } from '@synerise/ds-icon/dist/icons';
-import { SearchInput } from '@synerise/ds-search/dist/Elements';
 import { FilterElement } from '@synerise/ds-search/dist/Search.types';
 import Menu from '@synerise/ds-menu';
 import Icon from '@synerise/ds-icon';
 import { getItemsWithAvatar, getSuggestions } from './dataPopulator';
 import Divider from '@synerise/ds-divider';
+import { SearchInput } from '@synerise/ds-search/dist/Elements';
 
 const decorator = storyFn => (
   <div style={{ width: '100vw', position: 'absolute', left: '0', top: '20vh' }}>
