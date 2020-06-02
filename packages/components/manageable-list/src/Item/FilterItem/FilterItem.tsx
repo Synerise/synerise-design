@@ -107,7 +107,7 @@ const FilterItem: React.FC<FilterItemProps> = ({
           </S.ItemHeaderPrefix>
           <ItemName item={item} editMode={editMode} onUpdate={updateName} searchQuery={searchQuery} />
           <S.ItemHeaderSuffix>
-            {item.user && item.created && <ItemMeta user={item.user} created={item.created} />}
+            {(item.user || item.created) && <ItemMeta user={item.user} created={item.created} />}
             <Dropdown
               trigger={['click']}
               placement="bottomRight"
