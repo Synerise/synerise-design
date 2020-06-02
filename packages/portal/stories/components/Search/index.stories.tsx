@@ -8,6 +8,7 @@ import Menu from '@synerise/ds-menu';
 import Icon from '@synerise/ds-icon';
 import { getItemsWithAvatar, getSuggestions } from './dataPopulator';
 import Divider from '@synerise/ds-divider';
+import { SearchInput } from '@synerise/ds-search/dist/Elements';
 
 const decorator = storyFn => (
   <div style={{ width: '100vw', position: 'absolute', left: '0', top: '20vh' }}>
@@ -46,7 +47,7 @@ const stories = {
   default: () => {
     const [value, setValue] = React.useState<string>('');
     return (
-      <Search.Input
+      <SearchInput
         clearTooltip="Clear"
         placeholder="Search"
         onChange={value => {
@@ -65,7 +66,7 @@ console.log('Clear value');
   expanded: () => {
     const [value, setValue] = React.useState<string>('');
     return (
-      <Search.Input
+      <SearchInput
         clearTooltip="Clear"
         placeholder="Search"
         onChange={value => {

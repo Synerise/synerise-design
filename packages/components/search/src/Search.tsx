@@ -3,7 +3,6 @@ import { focusWithArrowKeys } from '@synerise/ds-utils';
 import { MenuItemProps } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.types';
 import onClickOutside from 'react-onclickoutside';
 import Scrollbar from '@synerise/ds-scrollbar';
-import * as hoistNonReactStatics from 'hoist-non-react-statics';
 import { hasSomeElement, getAllElementsFiltered, hasSomeElementFiltered } from './Elements/utils/searchUtils';
 import * as S from './Search.styles';
 import { FilterElement, SearchProps, SearchState } from './Search.types';
@@ -15,7 +14,6 @@ const INPUT_EXPAND_ANIMATION_DURATION = 200;
 const SCROLLBAR_HEIGHT_OFFSET = 28;
 
 class Search extends React.PureComponent<SearchProps, SearchState> {
-  static Input: typeof SearchInput = SearchInput;
   private wrapperRef = React.createRef<HTMLDivElement>();
   constructor(props: SearchProps) {
     super(props);
@@ -312,4 +310,4 @@ class Search extends React.PureComponent<SearchProps, SearchState> {
     );
   }
 }
-export default hoistNonReactStatics(Search,onClickOutside(Search));
+export default onClickOutside(Search);
