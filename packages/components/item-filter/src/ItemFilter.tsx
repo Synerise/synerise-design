@@ -12,7 +12,7 @@ import { withTheme } from 'styled-components';
 import { IntlFormatters, injectIntl } from 'react-intl';
 import SearchBar from '@synerise/ds-search-bar';
 import Scrollbar from '@synerise/ds-scrollbar';
-import { FixedSizeList, FixedSizeList as List, FixedSizeListProps, ListChildComponentProps } from 'react-window';
+import { FixedSizeList, FixedSizeList as List, ListChildComponentProps } from 'react-window';
 import FilterItem from '@synerise/ds-manageable-list/dist/Item/FilterItem/FilterItem';
 import * as S from './ItemFIlter.styles';
 
@@ -104,7 +104,7 @@ const ItemFilter: React.FC<ItemFilterProps> = ({
     };
   }, [categories, activeTab, selectedItemId]);
 
-  const renderRow = ({ index, style }: ListChildComponentProps): React.ReactNode => {
+  const RenderRow = ({ index, style }: ListChildComponentProps): React.ReactNode => {
     const item = activeCategory.items[index];
     return (
       <FilterItem
@@ -180,7 +180,7 @@ const ItemFilter: React.FC<ItemFilterProps> = ({
                 style={{ padding: '0px 24px' }}
               >
                 {/*
-                    //@ts-ignore */}
+                  //@ts-ignore */}
                 <List
                   width={DRAWER_WIDTH - 2 * FILTER_LIST_PADDING}
                   height={listHeight}
@@ -191,7 +191,7 @@ const ItemFilter: React.FC<ItemFilterProps> = ({
                 >
                   {/*
                     //@ts-ignore */}
-                  {(props: FixedSizeListProps): React.ReactNode => renderRow(props)}
+                  {RenderRow}
                 </List>
               </Scrollbar>
             ) : (

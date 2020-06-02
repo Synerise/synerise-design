@@ -310,41 +310,26 @@ const stories = {
   })(({ store }) => {
     const duplicateItem = (props): void => {
       action('duplicate Item');
-      // const itemForDuplication = store.state.items.find(item => item.id === props.id);
-      // store.set({
-      //   // @ts-ignore
-      //   items: [
-      //     ...store.state.items,
-      //     {
-      //       ...itemForDuplication,
-      //       id: Date.now(),
-      //       categories: ['My filters', 'All filters'],
-      //       canUpdate: true,
-      //       canDelete: true,
-      //       canDuplicate: true,
-      //       name: `${itemForDuplication.name} - copy`,
-      //     },
-      //   ],
-      // });
     };
 
     const addItems = (category) => {
-      console.log('ADD ITEMS');
       store.set({loading: true});
       setTimeout(() => {
         const nextItemsArray = new Array(20);
         const nextItems = [...nextItemsArray].map((item, index) => {
           const myItem = category.label === 'My filters';
+          const withDescription = faker.random.boolean();
+          const withUser = faker.random.boolean();
           return ({
             id: faker.random.uuid(),
             name: faker.random.word(),
-            description: faker.lorem.sentence(),
+            description: withDescription && faker.lorem.sentence(),
             created: randomDate(),
             canUpdate: myItem,
             canDelete: myItem,
             canDuplicate: true,
             categories: [`${category.label}`],
-            user: {
+            user: withUser && {
               firstname: faker.name.firstName(),
               lastname: faker.name.lastName(),
               email: faker.internet.email(),

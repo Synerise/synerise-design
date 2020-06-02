@@ -69,8 +69,9 @@ import ItemFilter from '@synerise/ds-item-filter'
 
 | Property | Description                             | Type    | Default |
 | -------- | ----------------                        | ------  | ------- |
-| label    | Name of category                        | string  | ''      |
-| hasMore  | Whether the category contain more items | boolean | -       |
+| label    | Name of category                        | string
+  | ''      |
+| hasMore  | Whether the category contains more items | boolean | -       |
 | items    | Array of list items                     | Item[]  | []      |
 
 #### Item
