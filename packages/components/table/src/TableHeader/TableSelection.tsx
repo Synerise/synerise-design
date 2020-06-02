@@ -62,6 +62,7 @@ const TableSelection: React.FC<Props> = ({ dataSource, selection, rowKey }) => {
   return selectedRowKeys ? (
     <S.Selection>
       <Checkbox
+        disabled={dataSource.length === 0}
         checked={allSelected}
         onChange={(event: CheckboxChangeEvent): void => {
           if (event.target.checked) {
@@ -74,6 +75,7 @@ const TableSelection: React.FC<Props> = ({ dataSource, selection, rowKey }) => {
       />
       {selections && (
         <Dropdown
+          disabled={dataSource.length === 0}
           trigger={['click']}
           overlay={
             <S.SelectionMenu>
