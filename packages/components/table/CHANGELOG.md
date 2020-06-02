@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.11.0...@synerise/ds-table@0.11.1) (2020-06-02)
+
+
+### Bug Fixes
+
+* **table:** add isEmpty flag in TableSelection ([7c7d80c](https://github.com/synerise/synerise-design/commit/7c7d80c07e2690797383111d3c0cb3e54f8992ca))
+* **table:** disable TableSelection if datasource is empty ([a3fd912](https://github.com/synerise/synerise-design/commit/a3fd91279601699ff7c9b1ea774b99bba9387606))
+
+
+
+
+
 # [0.11.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.10.17...@synerise/ds-table@0.11.0) (2020-06-02)
 
 

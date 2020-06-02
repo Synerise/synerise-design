@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.1](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.3.0...docs@0.3.1) (2020-06-02)
+
+
+### Bug Fixes
+
+* **docs:** add missing md files ([e35132c](https://gitlab.synerise.com/Frontend/synerise-design/commit/e35132c0210adbbc2913421f60cb5c3d48ec7e27))
+* **docs:** fix homepage styles ([c5edd70](https://gitlab.synerise.com/Frontend/synerise-design/commit/c5edd707c15b01c1dc54e7eb58e4a20c094bc53e))
+* **docs:** fix submenu width ([c9f3afe](https://gitlab.synerise.com/Frontend/synerise-design/commit/c9f3afee0516067d1b243ba4c28cbca09a7e8dd5))
+* **docs:** increase styleguide content width ([92adccc](https://gitlab.synerise.com/Frontend/synerise-design/commit/92adccced49886f66647142363fdda884a9c4502))
+* **docs:** move svg path to const ([da4dba7](https://gitlab.synerise.com/Frontend/synerise-design/commit/da4dba7d293ba9102aaec1e41eb0cdddcfad271f))
+
+
+
+
+
 # [0.3.0](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.2.0...docs@0.3.0) (2020-05-28)
 
 
