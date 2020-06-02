@@ -8,6 +8,7 @@ import Button from '@synerise/ds-button';
 import { withState } from '@dump247/storybook-state';
 import { SavedView } from '@synerise/ds-column-manager/dist/ColumnManager';
 import randomDate from '../../utils/randomDate';
+import { EMPTY_VIEW } from '../Table/content/withFiltersAndSearch.data';
 
 const COLUMNS: Column[] = [
   {
@@ -68,52 +69,103 @@ const COLUMNS: Column[] = [
   },
 ];
 
-const FILTERS = [
+const CATEGORIES = [
   {
-    id: '0000',
-    name: 'Filter #1',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do elit',
-    created: randomDate(),
-    canUpdate: true,
-    canDelete: true,
-    canDuplicate: true,
-    categories: ['My filters', 'All filters'],
-    user: {
-      firstname: 'Jan',
-      lastname: 'Nowak',
-    },
-    columns: COLUMNS,
+    label: 'All filters',
+    hasMore: false,
+    items: [
+      {
+        id: '0000',
+        name: 'Filter #1',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do elit',
+        created: randomDate(),
+        canUpdate: true,
+        canDelete: true,
+        canDuplicate: true,
+        user: {
+          firstname: 'Jan',
+          lastname: 'Nowak',
+        },
+        columns: COLUMNS,
+      },
+      {
+        id: '0001',
+        name: 'Filter #2',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do elit',
+        created: randomDate(),
+        canUpdate: false,
+        canDelete: false,
+        canDuplicate: true,
+        user: {
+          firstname: 'Kamil',
+          lastname: 'Kowalski',
+        },
+        columns: COLUMNS,
+      },
+      {
+        id: '0002',
+        name: 'Filter #3',
+        created: randomDate(),
+        canUpdate: false,
+        canDelete: false,
+        canDuplicate: true,
+        user: {
+          avatar_url: 'https://www.w3schools.com/howto/img_avatar.png',
+          firstname: 'Kamil',
+          lastname: 'Kowalski',
+        },
+        columns: [],
+      }
+    ],
   },
   {
-    id: '0001',
-    name: 'Filter #2',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do elit',
-    created: randomDate(),
-    canUpdate: false,
-    canDelete: false,
-    canDuplicate: true,
-    categories: ['All filters'],
-    user: {
-      firstname: 'Kamil',
-      lastname: 'Kowalski',
-    },
-    columns: COLUMNS,
+    label: 'My filters',
+    hasMore: false,
+    items: [
+      {
+        id: '0004',
+        name: 'Filter #1',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do elit',
+        created: randomDate(),
+        canUpdate: true,
+        canDelete: true,
+        canDuplicate: true,
+        user: {
+          firstname: 'Jan',
+          lastname: 'Nowak',
+        },
+        columns: COLUMNS,
+      },
+      {
+        id: '0005',
+        name: 'Filter #2',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do elit',
+        created: randomDate(),
+        canUpdate: false,
+        canDelete: false,
+        canDuplicate: true,
+        user: {
+          firstname: 'Kamil',
+          lastname: 'Kowalski',
+        },
+        columns: COLUMNS,
+      },
+      {
+        id: '0006',
+        name: 'Filter #3',
+        created: randomDate(),
+        canUpdate: false,
+        canDelete: false,
+        canDuplicate: true,
+        user: {
+          avatar_url: 'https://www.w3schools.com/howto/img_avatar.png',
+          firstname: 'Kamil',
+          lastname: 'Kowalski',
+        },
+        columns: [],
+      }
+    ],
   },
-  {
-    id: '0002',
-    name: 'Filter #3',
-    created: randomDate(),
-    canUpdate: false,
-    canDelete: false,
-    canDuplicate: true,
-    categories: ['All filters'],
-    user: {
-      avatar_url: 'https://www.w3schools.com/howto/img_avatar.png',
-      firstname: 'Kamil',
-      lastname: 'Kowalski',
-    },
-    columns: [],
-  }
 ];
 
 const EMPTY_FILTER = {
@@ -138,11 +190,16 @@ const getTexts = () => ({
   cancel: text('Cancel', 'Cancel'),
   deleteConfirmationTitle: text('Delete confirmation title', 'Delete filter'),
   deleteConfirmationDescription: text('Delete confirmation description', 'Deleting this filter will permanently remove it from templates library. All tables using this filter will be reset.'),
+  deleteConfirmationYes: text('Delete confirmation yes', 'Yes'),
+  deleteConfirmationNo: text('Delete confirmation no', 'No'),
   deleteLabel: text('Delete', 'Delete'),
   noResults: text('No results', 'No results'),
   searchPlaceholder: text('Search placeholder', 'Search'),
   searchClearTooltip: text('Clear tooltip', 'Clear'),
   title: text('Drawer title', 'Filter'),
+  itemActionRename: text('Rename filter label', 'Rename'),
+  itemActionDuplicate: text('Duplicate filter label', 'Duplicate'),
+  itemActionDelete: text('Delete filter label', 'Delete'),
 });
 
 const getColumnManagerTexts = () => ({
@@ -167,38 +224,44 @@ const getColumnManagerTexts = () => ({
 
 const saveFilter = (savedView: SavedView, store) => {
   const id = moment().format('MM-DD-YYYY_HH:mm:ss');
+  const newCategories = [...store.state.categories];
+  newCategories[0].items = [...newCategories[0].items, {
+    ...EMPTY_FILTER,
+    name: savedView.meta.name,
+    description: savedView.meta.description,
+    columns: [...savedView.columns],
+    id: id,
+    created: moment(),
+  }];
+
   store.set({
     selectedItemId: id,
-    filters: [
-      ...store.state.filters,
-      {
-        ...EMPTY_FILTER,
-        name: savedView.meta.name,
-        description: savedView.meta.description,
-        columns: [...savedView.columns],
-        id: id,
-        created: moment(),
-      }
-    ],
+    categories: newCategories,
     columns: [...savedView.columns],
   })
 };
 
 const removeItem = (props, store): void => {
   store.set({
-    items: store.state.items.filter(item => item.id !== props.id),
+    categories: store.state.categories.map((category) => ({
+      ...category,
+      items: category.items.filter(item => item.id !== props.id)
+    }))
   });
 };
 
 const editItem = (props, store): void => {
   store.set({
-    items: store.state.items.map(item => {
-      if(item.id === props.id) {
-        item.name = props.name;
-      }
-      return item;
-    })
-  })
+    categories: store.state.categories.map(category => ({
+      ...category,
+      items: category.items.map(item => {
+        if(item.id === props.id) {
+          item.name = props.name;
+        }
+        return item;
+      }),
+    }))
+  });
 };
 
 const setSelectedItem = (props, store): void => {
@@ -210,8 +273,8 @@ const setSelectedItem = (props, store): void => {
 
 const stories = {
   default: withState({
-    filters: FILTERS,
     columns: COLUMNS,
+    categories: CATEGORIES,
     selectedItemId: undefined,
     columnManagerVisible: false,
   })(({ store }) => {
@@ -234,8 +297,7 @@ const stories = {
             selectItem: (params) => setSelectedItem(params, store),
             duplicateItem: action('duplicate item'),
             selectedItemId: store.state.selectedItemId,
-            categories: [{label: 'All filters'}, {label: 'My filters'}],
-            items: store.state.filters,
+            categories: store.state.categories,
             texts: getTexts(),
           }}
         />

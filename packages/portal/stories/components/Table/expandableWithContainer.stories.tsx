@@ -48,7 +48,6 @@ const stories = {
           width: 72,
           render: (more, record) => {
             if(more !== undefined) {
-              console.log(expandedRows.indexOf(record.key) >= 0, record);
               return (
                 <TableCell.ActionCell>
                   <Button.Expander expanded={expandedRows.indexOf(record.key) >= 0} onClick={() => {handleExpandRow(record.key)}} />
@@ -74,9 +73,9 @@ const stories = {
           onChange: action('pageChanged'),
         }}
         expandable={{
+          expandIconColumnIndex: -1,
           expandedRowKeys: expandedRows,
           expandedRowRender: (record) => {
-            console.log(record);
             return record.more.text;
           },
         }}

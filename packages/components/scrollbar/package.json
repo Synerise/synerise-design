@@ -25,6 +25,7 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
+    "@synerise/ds-icon": "^0.16.0",
     "react-perfect-scrollbar": "^1.5.8"
   },
   "peerDependencies": {

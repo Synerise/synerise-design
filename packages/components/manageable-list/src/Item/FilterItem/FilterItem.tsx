@@ -15,6 +15,7 @@ import ModalProxy from '@synerise/ds-modal';
 import Result from '@synerise/ds-result';
 import Button from '@synerise/ds-button';
 import Dropdown from '@synerise/ds-dropdown';
+import { CSSProperties } from 'react';
 import * as S from '../ContentItem/ContentItem.styles';
 import { SelectFilterItem, ItemHeader, DropdownMenu, DropdownMenuItem } from './FilterItem.styles';
 import ItemName from '../ItemName/ItemName';
@@ -34,6 +35,7 @@ interface FilterItemProps {
   };
   theme: { [k: string]: string };
   searchQuery?: string;
+  style?: CSSProperties;
 }
 
 const FilterItem: React.FC<FilterItemProps> = ({
@@ -47,6 +49,7 @@ const FilterItem: React.FC<FilterItemProps> = ({
   texts,
   theme,
   searchQuery,
+  style,
 }: FilterItemProps) => {
   const [editMode, setEditMode] = React.useState(false);
   const [confirmDeleteVisible, setConfirmDeleteVisible] = React.useState(false);
@@ -73,7 +76,13 @@ const FilterItem: React.FC<FilterItemProps> = ({
 
   return (
     <>
-      <S.ItemContainer opened={false} greyBackground={greyBackground} key={item.id} data-testid="filter-item">
+      <S.ItemContainer
+        opened={false}
+        greyBackground={greyBackground}
+        key={item.id}
+        data-testid="filter-item"
+        style={style}
+      >
         <ItemHeader>
           <S.ItemHeaderPrefix>
             <SelectFilterItem data-testid={selected && 'filter-item-selected'}>
@@ -98,7 +107,7 @@ const FilterItem: React.FC<FilterItemProps> = ({
           </S.ItemHeaderPrefix>
           <ItemName item={item} editMode={editMode} onUpdate={updateName} searchQuery={searchQuery} />
           <S.ItemHeaderSuffix>
-            {item.user && item.created && <ItemMeta user={item.user} created={item.created} />}
+            {(item.user || item.created) && <ItemMeta user={item.user} created={item.created} />}
             <Dropdown
               trigger={['click']}
               placement="bottomRight"

@@ -8,7 +8,7 @@ import './style/index.less';
 
 import { TextItem, ListDivider, ItemWrapper } from './Elements';
 
-interface Props<T> extends Omit<ListProps<T>, 'dataSource' | 'footer'> {
+export interface ListPropsType<T> extends Omit<ListProps<T>, 'dataSource' | 'footer'> {
   dataSource: T[][];
   radio?: boolean;
   options?: RadioGroupProps;
@@ -20,7 +20,7 @@ const RadioGroupWrapper: React.FC<{ options?: RadioGroupProps }> = ({ children, 
   <Radio.Group {...options}>{children}</Radio.Group>
 );
 
-class List<T> extends React.Component<Props<T>> {
+class List<T> extends React.Component<ListPropsType<T>> {
   static ItemWrapper: typeof ItemWrapper = ItemWrapper;
   static Item: typeof TextItem = TextItem;
   static Divider: typeof ListDivider = ListDivider;

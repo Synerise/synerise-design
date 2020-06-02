@@ -107,7 +107,75 @@ const FILTERS = [
   },
 ];
 
-const CATEGORIES = [{label: 'All filters'}, {label: 'My filters'}];
+const CATEGORIES = [
+  {
+    label: 'All filters',
+    hasMore: false,
+    items: [
+      {
+        id: '0000',
+        name: 'Filter #1',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do elit',
+        created: '01-05-2020 12:02',
+        canUpdate: true,
+        canDelete: true,
+        canDuplicate: true,
+        user: {
+          firstname: 'Jan',
+          lastname: 'Nowak',
+        },
+        columns: COLUMNS,
+      },
+      {
+        id: '0001',
+        name: 'Filter #2',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do elit',
+        created: '01-12-2019 12:02',
+        canUpdate: false,
+        canDelete: false,
+        canDuplicate: true,
+        user: {
+          firstname: 'Kamil',
+          lastname: 'Kowalski',
+        },
+        columns: COLUMNS,
+      },
+    ]
+  }, {
+    label: 'My filters',
+    hasMore: false,
+    items: [
+      {
+        id: '0002',
+        name: 'Filter #3',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do elit',
+        created: '01-05-2020 12:02',
+        canUpdate: true,
+        canDelete: true,
+        canDuplicate: true,
+        user: {
+          firstname: 'Jan',
+          lastname: 'Nowak',
+        },
+        columns: COLUMNS,
+      },
+      {
+        id: '0003',
+        name: 'Filter #4',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do elit',
+        created: '01-12-2019 12:02',
+        canUpdate: false,
+        canDelete: false,
+        canDuplicate: true,
+        user: {
+          firstname: 'Kamil',
+          lastname: 'Kowalski',
+        },
+        columns: COLUMNS,
+      },
+    ]
+  }
+];
 
 const COLUMN_MANAGER = (visible: boolean = true, hide: () => void = () => {}, onSave: (currentView: View) => void = () => {}, onApply = () => {}, selectedFilter = '') => (
   <ColumnManager
