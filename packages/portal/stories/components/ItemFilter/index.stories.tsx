@@ -40,11 +40,7 @@ const CATEGORIES = [
         canUpdate: true,
         canDelete: true,
         canDuplicate: true,
-        categories: ['My filters', 'All filters'],
-        user: {
-          firstname: 'Jan',
-          lastname: 'Nowak',
-        },
+        categories: ['All filters'],
       },
       {
         id: '0001',
