@@ -74,8 +74,6 @@ const FilterItem: React.FC<FilterItemProps> = ({
     return onDuplicate && onDuplicate({ id: item.id });
   }, [item.id, onDuplicate]);
 
-  console.log(texts);
-
   return (
     <>
       <S.ItemContainer
