@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Button from '@synerise/ds-button';
+import { Props as ButtonProps} from '@synerise/ds-button/dist/Button.types';
 
 export const TabsContainer = styled.div<{ block?: boolean }>`
   padding-top: 5px;
@@ -42,7 +43,7 @@ export const TabsDropdownDivider = styled.div`
   background-repeat: repeat-x;
 `;
 
-export const TabsShowHiddenTabsButton = styled(Button)`
+export const TabsShowHiddenTabsButton = styled(Button)<ButtonProps>`
   margin-top: -5px;
 `;
 

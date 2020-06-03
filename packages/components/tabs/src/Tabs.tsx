@@ -20,6 +20,7 @@ export type TabsProps = {
 type Configuration = {
   action: () => void;
   label: string;
+  disabled?: boolean;
 };
 
 export type TabItem = {
@@ -106,7 +107,7 @@ const Tabs: React.FC<TabsProps> = ({ activeTab, tabs, handleTabClick, configurat
         )}
         {hiddenTabs.length > 0 && configuration && <S.TabsDropdownDivider />}
         {configuration && (
-          <Button type="ghost" onClick={handleConfigurationAction}>
+          <Button type="ghost" onClick={handleConfigurationAction} disabled={!!configuration?.disabled}>
             {configuration.label}
           </Button>
         )}
@@ -118,8 +119,8 @@ const Tabs: React.FC<TabsProps> = ({ activeTab, tabs, handleTabClick, configurat
     return (
       <>
         {(hiddenTabs.length || configuration) && (
-          <Dropdown trigger={['click']} data-testid="tabs-dropdown" overlay={renderHiddenTabs}>
-            <S.TabsShowHiddenTabsButton type="ghost" mode="single-icon">
+          <Dropdown trigger={['click']} data-testid="tabs-dropdown" overlay={renderHiddenTabs} disabled={!!configuration?.disabled}>
+            <S.TabsShowHiddenTabsButton  type="ghost" mode="single-icon" disabled={!!configuration?.disabled}>
               <Icon component={<OptionHorizontalM />} />
             </S.TabsShowHiddenTabsButton>
           </Dropdown>

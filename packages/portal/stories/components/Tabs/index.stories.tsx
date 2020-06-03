@@ -14,21 +14,18 @@ const decorator = storyFn => (
   </div>
 );
 
-const tabs = [
+const labelsAndIcons = [
   {
     icon: <SearchM />,
+    label: 'Tab first',
   },
   {
-    label: 'Tab #2',
-  },
-  {
-    label: 'Tab #3',
     icon: <SearchM />,
+    label: 'Tab second',
   },
   {
-    label: 'Disabled tab',
     icon: <SearchM />,
-    disabled: true,
+    label: 'Tab third',
   },
 ];
 
@@ -51,12 +48,15 @@ const icons = [
 ];
 
 const props = () => ({
-  underscore: boolean('underline', false),
+  disabled: boolean('Set disabled', false),
 });
-
-const getTabs = array => {
+const getHardcodedTabs = (array, disabled) => {
+  return array.map(item => ({ ...item, disabled: disabled }));
+};
+const getTabsFromUserInput = (array, disabled) => {
   return array.map(tabLabel => ({
     label: tabLabel,
+    disabled: disabled,
   }));
 };
 const defaultTabsArray = ['Tab first', 'Tab second', 'Tab third', 'Tab fourth', 'Tab fifth'];
@@ -66,7 +66,7 @@ const stories = {
   })(({ store }) => (
     <Tabs
       underscore={false}
-      tabs={getTabs(array('Tab labels', defaultTabsArray))}
+      tabs={getTabsFromUserInput(array('Tab labels', defaultTabsArray), props().disabled)}
       activeTab={store.state.activeTab}
       handleTabClick={(index: number) => store.set({ activeTab: index })}
     />
@@ -76,7 +76,7 @@ const stories = {
   })(({ store }) => (
     <Tabs
       underscore
-      tabs={getTabs(array('Tab labels', defaultTabsArray))}
+      tabs={getTabsFromUserInput(array('Tab labels', defaultTabsArray), props().disabled)}
       activeTab={store.state.activeTab}
       handleTabClick={(index: number) => store.set({ activeTab: index })}
     />
@@ -85,7 +85,7 @@ const stories = {
     activeTab: 0,
   })(({ store }) => (
     <Tabs
-      tabs={getTabs(array('Tab labels', defaultTabsArray.slice(0, 2)))}
+      tabs={getTabsFromUserInput(array('Tab labels', defaultTabsArray.slice(0, 2)), props().disabled)}
       activeTab={store.state.activeTab}
       handleTabClick={(index: number) => store.set({ activeTab: index })}
       block
@@ -96,24 +96,25 @@ const stories = {
     activeTab: 0,
   })(({ store }) => (
     <Tabs
-      tabs={icons}
+      tabs={getHardcodedTabs(icons, props().disabled)}
       activeTab={store.state.activeTab}
       handleTabClick={(index: number) => store.set({ activeTab: index })}
       block
       underscore
     />
   )),
-  withConfigurationButton: withState({
+  withMenu: withState({
     activeTab: 0,
   })(({ store }) => (
     <Tabs
-      {...props()}
-      tabs={tabs}
+      underscore
+      tabs={getHardcodedTabs(labelsAndIcons, props().disabled)}
       activeTab={store.state.activeTab}
       handleTabClick={(index: number) => store.set({ activeTab: index })}
       configuration={{
         label: 'Manage dashboards',
         action: action('Manage dashboards click'),
+        disabled: props().disabled,
       }}
     />
   )),
