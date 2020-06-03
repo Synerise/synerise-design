@@ -95,7 +95,7 @@ export const TabContainer = styled.button<{ block?: boolean }>`
     position: absolute;
     transition: background-color 0.15s ease-in-out;
     bottom: 0;
-    left: 0;
+    left: 1px;
     width: 100%;
     height: 1px;
     background-color: transparent;
