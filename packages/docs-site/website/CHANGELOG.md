@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.2](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.3.1...docs@0.3.2) (2020-06-03)
+
+
+### Bug Fixes
+
+* **docs:** add missing md files ([42a7636](https://gitlab.synerise.com/Frontend/synerise-design/commit/42a7636182598ceb4063f4dc2d6b74bb85231059))
+
+
+
+
+
 ## [0.3.1](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.3.0...docs@0.3.1) (2020-06-02)
 
 
