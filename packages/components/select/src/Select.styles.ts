@@ -21,8 +21,12 @@ export const AntdSelect = styled((Select as unknown) as React.ComponentType<Sele
     &&& {
     height:48px;
     .ant-select-selector, .ant-select-selection-search-input{
-    height:48px !important;
+    height:28px !important;
     }
+    
+    
+  
+    
 
     .ant-select-selection-item, .ant-select-selection-placeholder{
       line-height:46px !important;
