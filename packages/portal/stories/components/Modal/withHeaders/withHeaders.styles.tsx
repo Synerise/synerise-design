@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import DsModal from '@synerise/ds-modal';
 import { ModalProps } from 'antd/lib/modal';
+import { TitleContainer } from '@synerise/ds-modal/dist/Modal.styles';
 
 export const HeaderWrapper = styled.div`
   display: flex;
@@ -20,12 +21,14 @@ export const HeaderPlaceholder = styled.div`
 
 export const TabsContainer = styled.div`
   width: 100%;
-  padding-bottom:1px;
+  padding-bottom: 1px;
 `;
 
-export const Modal = styled(DsModal)<ModalProps & {withTabs?: boolean}>`
+export const Modal = styled(DsModal)<ModalProps & { withTabs?: boolean }>`
   .ant-modal-header {
-      ${(props)=>!!props.withTabs && `padding-bottom: 0px;` }
+    ${props => !!props.withTabs && `padding-bottom: 0px;`}
   }
-
-`
+  ${TitleContainer} {
+    ${props => !!props.withTabs && `padding-bottom: 0px;`}
+  }
+`;
