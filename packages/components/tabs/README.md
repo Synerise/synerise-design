@@ -49,7 +49,8 @@ import Tabs from '@synerise/ds-tabs'
 
 #### Configuration
 
-| Property | Description                                                 | Type   | Default |
-| -------- | ----------------------------------------------------------- | ------ | ------- |
-| label    | Label of configuration button                               | string | -       |
-| action   | Callback fired when user clicks on the configuration button | Icon   | -       |
+| Property | Description                                                 | Type    | Default |
+| -------- | ----------------------------------------------------------- | ------- | ------- |
+| label    | Label of configuration button                               | string  | -       |
+| action   | Callback fired when user clicks on the configuration button | Icon    | -       |
+| disabled | Flag of disabled configuration button                       | boolean | -       |
