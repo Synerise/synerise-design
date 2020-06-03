@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.33](https://github.com/synerise/synerise-design/compare/@synerise/ds-modal@0.11.32...@synerise/ds-modal@0.11.33) (2020-06-03)
+
+
+### Bug Fixes
+
+* **modal:** added headers to the story ([80279fc](https://github.com/synerise/synerise-design/commit/80279fcf23e4bc1ce0fccf3128d2ffdee55807f7))
+
+
+
+
+
 ## [0.11.32](https://github.com/synerise/synerise-design/compare/@synerise/ds-modal@0.11.31...@synerise/ds-modal@0.11.32) (2020-06-02)
 
 **Note:** Version bump only for package @synerise/ds-modal

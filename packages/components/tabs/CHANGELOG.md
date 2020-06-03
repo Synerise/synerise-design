@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-tabs@0.10.1...@synerise/ds-tabs@0.10.2) (2020-06-03)
+
+
+### Bug Fixes
+
+* **tabs:** added option to disable config button ([e62a22c](https://github.com/synerise/synerise-design/commit/e62a22cb0d766a424c9a9baeecc1d7ed2de88c5b))
+
+
+
+
+
 ## [0.10.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-tabs@0.10.0...@synerise/ds-tabs@0.10.1) (2020-06-02)
 
 **Note:** Version bump only for package @synerise/ds-tabs

@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.67.1](https://github.com/synerise/synerise-design/compare/portal@0.67.0...portal@0.67.1) (2020-06-03)
+
+
+### Bug Fixes
+
+* **dropdown:** stories update ([2ac4030](https://github.com/synerise/synerise-design/commit/2ac403035e15e839436e35e49d304a1d37a02548))
+* **modal:** added a new story, refactored stories ([214ee49](https://github.com/synerise/synerise-design/commit/214ee499ca52ee9c0cb2193a067033836bc43012))
+* **modal:** added headers to the story ([80279fc](https://github.com/synerise/synerise-design/commit/80279fcf23e4bc1ce0fccf3128d2ffdee55807f7))
+* **tabs:** added option to disable config button ([e62a22c](https://github.com/synerise/synerise-design/commit/e62a22cb0d766a424c9a9baeecc1d7ed2de88c5b))
+
+
+
+
+
 # [0.67.0](https://github.com/synerise/synerise-design/compare/portal@0.66.1...portal@0.67.0) (2020-06-02)
 
 
