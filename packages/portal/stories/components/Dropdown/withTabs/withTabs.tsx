@@ -4,10 +4,39 @@ import Dropdown from '@synerise/ds-dropdown';
 import Icon from '@synerise/ds-icon';
 import SearchM from '@synerise/ds-icon/dist/icons/SearchM';
 import Tabs from '@synerise/ds-tabs';
-import { Add3M, AddM, BooleanM, CalendarM, HashM, ListM, TextM } from '@synerise/ds-icon/dist/icons';
+import { BooleanM, CalendarM, HashM, ListM, TextM } from '@synerise/ds-icon/dist/icons';
 import * as S from './withTabs.styles';
-import { DropdownMenu } from '@synerise/ds-manageable-list/dist/Item/FilterItem/FilterItem.styles';
-import ArrowRightCircleM from '@synerise/ds-icon/dist/icons/ArrowRightCircleM';
+import { select } from '@storybook/addon-knobs';
+
+const tabsWithIcons = [
+  {
+    icon: <CalendarM />,
+  },
+  {
+    icon: <TextM />,
+  },
+  {
+    icon: <HashM />,
+  },
+  {
+    icon: <BooleanM />,
+  },
+  {
+    icon: <ListM />,
+  },
+];
+const tabsWithLabels = [
+  {
+    label: 'Tab first',
+  },
+  {
+    label: 'Tab second',
+  },
+  {
+    label: 'Tab third',
+  },
+];
+
 const withTabs = () => {
   const data = [{ text: 'Item 1' }, { text: 'Item 2' }, { text: 'Item 3' }, { text: 'Item 4' }];
   const [activeTab, setActiveTab] = React.useState(0);
@@ -31,24 +60,13 @@ const withTabs = () => {
     setFilteredData(data);
   };
 
-  const icons = [
-    {
-      icon: <CalendarM />,
-    },
-    {
-      icon: <TextM />,
-    },
-    {
-      icon: <HashM />,
-    },
-    {
-      icon: <BooleanM />,
-    },
-    {
-      icon: <ListM />,
-    },
-  ];
+  const tabsType = {
+    icons: 'icons',
+    labels: 'labels',
+  };
+
   const [dropdownVisible, setDropdownVisible] = React.useState(false);
+  const selectedTabs = select('Set tabs type', tabsType, tabsType.icons);
   return {
     visible: dropdownVisible,
     overlay: (
@@ -63,7 +81,7 @@ const withTabs = () => {
         <S.TabsWrapper>
           <Tabs
             block
-            tabs={icons}
+            tabs={selectedTabs === tabsType.icons ? tabsWithIcons : tabsWithLabels}
             activeTab={activeTab}
             handleTabClick={(index: number) => {
               setActiveTab(index);

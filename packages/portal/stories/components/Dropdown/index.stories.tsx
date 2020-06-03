@@ -2,7 +2,7 @@ import * as React from 'react';
 import Dropdown from '@synerise/ds-dropdown';
 import Button from '@synerise/ds-button';
 import Example1 from './examples/Example1';
-import withTabs from './examples/withTabs';
+import withTabs from './withTabs/withTabs';
 
 const decorator = storyFn => (
   <div style={{ width: '100vw', position: 'absolute', left: '0', top: '20vh' }}>
@@ -22,7 +22,7 @@ const stories = {
 };
 
 export default {
-  name: 'Components|Dropdown',
+  name: 'Dropdown|Dropdown',
   stories,
   Component: Dropdown,
   decorator,
