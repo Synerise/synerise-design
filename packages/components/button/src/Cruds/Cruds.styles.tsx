@@ -22,7 +22,7 @@ export const CrudsContainer = styled.div`
   .edit:hover,
   .move:hover {
     svg {
-      fill: ${(props): string => props.theme.palette['blue-500']};
+      fill: ${(props): string => props.theme.palette['blue-600']};
     }
   }
 
