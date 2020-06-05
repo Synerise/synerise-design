@@ -25,7 +25,7 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-button": "^0.12.12",
+    "@synerise/ds-icon": "^0.16.0",
     "@synerise/ds-tooltip": "^0.7.3",
     "@synerise/ds-typography": "*"
   },
