@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.3](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.3.2...docs@0.3.3) (2020-06-05)
+
+
+### Bug Fixes
+
+* **menu:** copyable tooltip refactor, updated docs ([4e06d10](https://gitlab.synerise.com/Frontend/synerise-design/commit/4e06d10419e8384518ef7c91a3b22586b9d4312e))
+
+
+
+
+
 ## [0.3.2](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.3.1...docs@0.3.2) (2020-06-03)
 
 

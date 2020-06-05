@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.5.5...@synerise/ds-menu@0.5.6) (2020-06-05)
+
+
+### Bug Fixes
+
+* **menu:** copyable tooltip refactor, updated docs ([4e06d10](https://github.com/Synerise/synerise-design/commit/4e06d10419e8384518ef7c91a3b22586b9d4312e))
+
+
+
+
+
 ## [0.5.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.5.4...@synerise/ds-menu@0.5.5) (2020-06-05)
 
 **Note:** Version bump only for package @synerise/ds-menu

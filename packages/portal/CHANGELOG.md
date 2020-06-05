@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.68.1](https://github.com/synerise/synerise-design/compare/portal@0.68.0...portal@0.68.1) (2020-06-05)
+
+
+### Bug Fixes
+
+* **menu:** copyable tooltip refactor, updated docs ([4e06d10](https://github.com/synerise/synerise-design/commit/4e06d10419e8384518ef7c91a3b22586b9d4312e))
+
+
+
+
+
 # [0.68.0](https://github.com/synerise/synerise-design/compare/portal@0.67.1...portal@0.68.0) (2020-06-03)
 
 
