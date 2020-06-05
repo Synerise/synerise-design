@@ -49,7 +49,7 @@ export const IconsWrapper = styled.div<{ disabled?: boolean }>`
   position: absolute;
   right: 8px;
   top: 0;
-  z-index: 1;
+  z-index: 2;
   height: 100%;
 
   .icon {

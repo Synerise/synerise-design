@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.68.0](https://github.com/synerise/synerise-design/compare/portal@0.67.1...portal@0.68.0) (2020-06-03)
+
+
+### Features
+
+* **alert:** add examples in storybook ([fd75cf4](https://github.com/synerise/synerise-design/commit/fd75cf4a7f0ffe02be86e194ca3dbf6b72eab4a4))
+* **alert:** bootstrap component ([6ef3099](https://github.com/synerise/synerise-design/commit/6ef3099679957e16795007de463217b0ee73bae9))
+
+
+
+
+
 ## [0.67.1](https://github.com/synerise/synerise-design/compare/portal@0.67.0...portal@0.67.1) (2020-06-03)
 
 
