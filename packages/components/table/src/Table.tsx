@@ -122,9 +122,8 @@ function DSTable<T extends object = any>(props: DSTableProps<T>): React.ReactEle
       <Table<T>
         {...props}
         locale={{
-          // eslint-disable-next-line react/destructuring-assignment
           ...locale,
-          emptyText: <Result description={'No data' || locale?.emptyText} type="no-results" noSearchResults />,
+          emptyText: <Result description={locale?.emptyText || 'No data'} type="no-results" noSearchResults />,
         }}
         pagination={dataSource?.length && pagination ? footerPagination : false}
         title={renderHeader}
