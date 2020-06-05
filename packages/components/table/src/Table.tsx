@@ -8,6 +8,7 @@ import { AngleLeftS, AngleRightS } from '@synerise/ds-icon/dist/icons';
 import Button from '@synerise/ds-button';
 import SpinnerM from '@synerise/ds-icon/dist/icons/SpinnerM';
 import Checkbox from '@synerise/ds-checkbox';
+import Result from '@synerise/ds-result';
 import * as S from './Table.styles';
 import { DSTableProps } from './Table.types';
 import TableHeader from './TableHeader/TableHeader';
@@ -36,6 +37,7 @@ function DSTable<T extends object = any>(props: DSTableProps<T>): React.ReactEle
     searchComponent,
     filterComponent,
     rowKey,
+    locale,
   } = props;
 
   const getRowKey = React.useCallback(
@@ -119,6 +121,11 @@ function DSTable<T extends object = any>(props: DSTableProps<T>): React.ReactEle
       )}
       <Table<T>
         {...props}
+        locale={{
+          // eslint-disable-next-line react/destructuring-assignment
+          ...locale,
+          emptyText: <Result description={'No data' || locale?.emptyText} type="no-results" noSearchResults />,
+        }}
         pagination={dataSource?.length && pagination ? footerPagination : false}
         title={renderHeader}
         /* eslint-disable-next-line @typescript-eslint/ban-ts-ignore */
