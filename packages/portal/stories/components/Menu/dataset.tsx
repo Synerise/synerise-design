@@ -217,6 +217,7 @@ export const copyable = [
     copyable: true,
     copyHint: 'Copy to clipboard',
     copyValue: 'Item',
+    copyTooltip: 'Copied!'
   },
 ];
 export const withSelect = [

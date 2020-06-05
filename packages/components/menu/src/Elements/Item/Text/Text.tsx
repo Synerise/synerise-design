@@ -5,6 +5,7 @@ import * as copy from 'copy-to-clipboard';
 import { ClickParam } from 'antd/lib/menu';
 import { escapeRegEx } from '@synerise/ds-utils';
 import Icon from '@synerise/ds-icon';
+import Tooltip from '@synerise/ds-tooltip';
 
 import * as S from './Text.styles';
 import { VisibilityTrigger } from '../../../Menu.types';
@@ -22,6 +23,7 @@ export interface BasicItemProps {
   copyable?: boolean;
   copyHint?: string;
   copyValue?: string;
+  copyTooltip?: string | React.ReactNode;
   highlight?: string;
   style?: React.CSSProperties;
   onItemHover?: (e: MouseEvent) => void;
@@ -40,6 +42,7 @@ const Text: React.FC<BasicItemProps> = ({
   copyable,
   copyHint,
   copyValue,
+  copyTooltip,
   highlight,
   style,
   prefixVisibilityTrigger,
@@ -110,30 +113,32 @@ const Text: React.FC<BasicItemProps> = ({
       indentLevel={Number(indentLevel)}
       {...rest}
     >
-      <S.Inner>
-        <S.ContentWrapper className="ds-menu-content-wrapper">
-          {shouldRenderPrefix() && (
-            <S.PrefixelWrapper className="ds-menu-prefix" visible={shouldRenderPrefix()} disabled={disabled}>
-              {prefixel}
-            </S.PrefixelWrapper>
-          )}
-          <S.Content highlight={!!highlight}>
-            {canCopyToClipboard && hovered ? copyHint : renderChildren()}
-            {!!description && <S.Description>{description}</S.Description>}
-          </S.Content>
-          {parent && (
-            <S.ArrowRight disabled={disabled}>
-              <Icon component={<AngleRightS />} color={theme.palette['grey-600']} />
-            </S.ArrowRight>
-          )}
-          <S.ContentDivider />
-          {!!suffixel && (
-            <S.SuffixWraper visible={shouldRenderSuffix()} disabled={disabled}>
-              {suffixel}
-            </S.SuffixWraper>
-          )}
-        </S.ContentWrapper>
-      </S.Inner>
+      <Tooltip type="default" trigger="click" title={copyTooltip}>
+        <S.Inner>
+          <S.ContentWrapper className="ds-menu-content-wrapper">
+            {shouldRenderPrefix() && (
+              <S.PrefixelWrapper className="ds-menu-prefix" visible={shouldRenderPrefix()} disabled={disabled}>
+                {prefixel}
+              </S.PrefixelWrapper>
+            )}
+            <S.Content highlight={!!highlight}>
+              {canCopyToClipboard && hovered ? copyHint : renderChildren()}
+              {!!description && <S.Description>{description}</S.Description>}
+            </S.Content>
+            {parent && (
+              <S.ArrowRight disabled={disabled}>
+                <Icon component={<AngleRightS />} color={theme.palette['grey-600']} />
+              </S.ArrowRight>
+            )}
+            <S.ContentDivider />
+            {!!suffixel && (
+              <S.SuffixWraper visible={shouldRenderSuffix()} disabled={disabled}>
+                {suffixel}
+              </S.SuffixWraper>
+            )}
+          </S.ContentWrapper>
+        </S.Inner>
+      </Tooltip>
     </S.Wrapper>
   );
 };

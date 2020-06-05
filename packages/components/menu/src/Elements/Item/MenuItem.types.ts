@@ -14,20 +14,18 @@ export interface MenuItemProps extends Omit<MenuProps, 'dataSource' | 'footer'> 
   prefixel?: React.ReactNode;
   suffixel?: React.ReactNode;
   disabled?: boolean;
-  danger?: boolean;
-  index?: number;
-  nestedMenu?: SubMenuProps[] | undefined | string[];
   ordered?: boolean | undefined;
   description?: string | React.ReactNode;
-  subMenu?: SubMenuProps[] | string[];
+  subMenu?: SubMenuProps[];
   copyable?: boolean;
   copyHint?: string;
   copyValue?: string;
+  copyTooltip?: string | React.ReactNode;
   highlight?: string;
   suffixVisibilityTrigger?: VisibilityTrigger;
   prefixVisibilityTrigger?: VisibilityTrigger;
   onItemHover?: (e: MouseEvent) => void;
   children?: React.ReactNode;
-  type?: string;
+  type?: 'default' | 'select' | 'danger' | string;
   indentLevel?: number;
 }

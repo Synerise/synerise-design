@@ -31,7 +31,6 @@ import * as S from './stories.styles';
 import { v4 as uuid } from 'uuid';
 
 export const decorator = props => {
-  console.log(props);
   const { dataSource, ...rest } = props;
   return (
     <div
