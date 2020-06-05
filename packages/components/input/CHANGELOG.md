@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.32](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.11.31...@synerise/ds-input@0.11.32) (2020-06-05)
+
+
+### Bug Fixes
+
+* **input:** fix invisible icons in input ([d49613d](https://github.com/synerise/synerise-design/commit/d49613d08985cdcaa89a8107746eef87ad44a78b))
+
+
+
+
+
 ## [0.11.31](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.11.30...@synerise/ds-input@0.11.31) (2020-06-02)
 
 **Note:** Version bump only for package @synerise/ds-input

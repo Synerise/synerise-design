@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.13](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.12.12...@synerise/ds-button@0.12.13) (2020-06-05)
+
+
+### Bug Fixes
+
+* **button:** change color blue ([6aff656](https://github.com/synerise/synerise-design/commit/6aff656afa3bc827092f128fe2029fe3339605a9))
+
+
+
+
+
 ## [0.12.12](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.12.11...@synerise/ds-button@0.12.12) (2020-06-02)
 
 
