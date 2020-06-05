@@ -29,6 +29,6 @@ export const Modal = styled(DsModal)<ModalProps & { withTabs?: boolean }>`
     ${props => !!props.withTabs && `padding-bottom: 0px;`}
   }
   ${TitleContainer} {
-    ${props => !!props.withTabs && `padding-bottom: 0px;`}
+    ${props => !!props.withTabs && `align-items:flex-start`}
   }
 `;

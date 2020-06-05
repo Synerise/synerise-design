@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon from '@synerise/ds-icon';
-import Button from '@synerise/ds-button';
 import OptionHorizontalM from '@synerise/ds-icon/dist/icons/OptionHorizontalM';
 import { useResize } from '@synerise/ds-utils';
 import Menu from '@synerise/ds-menu';
@@ -107,9 +106,9 @@ const Tabs: React.FC<TabsProps> = ({ activeTab, tabs, handleTabClick, configurat
         )}
         {hiddenTabs.length > 0 && configuration && <S.TabsDropdownDivider />}
         {configuration && (
-          <Button type="ghost" onClick={handleConfigurationAction} disabled={!!configuration?.disabled}>
+          <S.ConfigurationButton type="ghost" onClick={handleConfigurationAction} disabled={!!configuration?.disabled}>
             {configuration.label}
-          </Button>
+          </S.ConfigurationButton>
         )}
       </S.TabsDropdownContainer>
     );
