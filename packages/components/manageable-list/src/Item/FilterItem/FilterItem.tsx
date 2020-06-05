@@ -16,8 +16,10 @@ import Result from '@synerise/ds-result';
 import Button from '@synerise/ds-button';
 import Dropdown from '@synerise/ds-dropdown';
 import { CSSProperties } from 'react';
+import { ItemType } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.types';
+import Menu from '@synerise/ds-menu';
 import * as S from '../ContentItem/ContentItem.styles';
-import { SelectFilterItem, ItemHeader, DropdownMenu, DropdownMenuItem } from './FilterItem.styles';
+import { SelectFilterItem, ItemHeader, DropdownMenu } from './FilterItem.styles';
 import ItemName from '../ItemName/ItemName';
 import { ItemProps } from '../Item';
 import ItemMeta from '../ItemMeta/ItemMeta';
@@ -114,19 +116,24 @@ const FilterItem: React.FC<FilterItemProps> = ({
               overlay={
                 <DropdownMenu>
                   {item.canUpdate && (
-                    <DropdownMenuItem onClick={enterEditMode} prefixel={<Icon component={<EditM />} />}>
+                    <Menu.Item onClick={enterEditMode} prefixel={<Icon component={<EditM />} />}>
                       {texts.itemActionRename}
-                    </DropdownMenuItem>
+                    </Menu.Item>
                   )}
                   {item.canDuplicate && (
-                    <DropdownMenuItem onClick={handleDuplicate} prefixel={<Icon component={<DuplicateM />} />}>
+                    <Menu.Item onClick={handleDuplicate} prefixel={<Icon component={<DuplicateM />} />}>
                       {texts.itemActionDuplicate}
-                    </DropdownMenuItem>
+                    </Menu.Item>
                   )}
                   {item.canDelete && (
-                    <DropdownMenuItem danger onClick={handleRemove} prefixel={<Icon component={<TrashM />} />}>
+                    <Menu.Item
+                      type={ItemType.DANGER}
+                      danger
+                      onClick={handleRemove}
+                      prefixel={<Icon component={<TrashM />} />}
+                    >
                       {texts.itemActionDelete}
-                    </DropdownMenuItem>
+                    </Menu.Item>
                   )}
                 </DropdownMenu>
               }
