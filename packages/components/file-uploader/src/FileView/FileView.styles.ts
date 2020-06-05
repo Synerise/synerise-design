@@ -4,6 +4,7 @@ import { IconContainer } from '@synerise/ds-icon/dist/Icon.styles';
 
 export const PreviewImage = styled.div<{ source: string }>`
   background: url('${(props): string => props.source}') 50% 50% no-repeat;
+  background-size: cover;
   min-width: 32px;
   min-height: 32px;
   width: 32px;
