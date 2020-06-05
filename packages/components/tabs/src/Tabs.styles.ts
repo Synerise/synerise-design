@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Button from '@synerise/ds-button';
-import { Props as ButtonProps} from '@synerise/ds-button/dist/Button.types';
+import { Props as ButtonProps } from '@synerise/ds-button/dist/Button.types';
 
 export const TabsContainer = styled.div<{ block?: boolean }>`
   padding-top: 5px;
@@ -51,4 +51,10 @@ export const HiddenTabs = styled.div`
   position: absolute;
   width: 0;
   visibility: hidden;
+`;
+
+export const ConfigurationButton = styled(Button)<ButtonProps>`
+  &&&:hover {
+    background: ${(props): string => props.theme.palette['grey-050']};
+  }
 `;
