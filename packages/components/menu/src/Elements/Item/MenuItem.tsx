@@ -18,11 +18,9 @@ const MenuItem: React.FC<SubMenuProps & MenuItemProps> = props => {
     ordered,
     disabled,
     danger,
-    index,
     text,
     description,
     subMenu,
-    nestedMenu,
     children,
     type,
     indentLevel,
@@ -30,7 +28,7 @@ const MenuItem: React.FC<SubMenuProps & MenuItemProps> = props => {
     onClick,
     ...rest
   } = props;
-  if (subMenu || nestedMenu) {
+  if (subMenu) {
     return (
       <SubMenuItem
         prefixel={prefixel}
@@ -38,11 +36,10 @@ const MenuItem: React.FC<SubMenuProps & MenuItemProps> = props => {
         ordered={ordered}
         disabled={disabled}
         danger={danger}
-        index={index}
         text={text}
         description={description}
         indentLevel={indentLevel || 0}
-        subMenu={nestedMenu || subMenu}
+        subMenu={subMenu}
         onItemHover={onItemHover || NOOP}
         onClick={onClick || NOOP}
         {...rest}

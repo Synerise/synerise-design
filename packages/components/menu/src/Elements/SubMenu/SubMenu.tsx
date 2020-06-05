@@ -46,10 +46,9 @@ class SubMenuItem extends React.PureComponent<SubMenuProps & MenuItemProps, SubM
               prefixel={subItem.prefixel}
               suffixel={subItem.suffixel}
               disabled={subItem.disabled}
-              index={subItem.index}
               text={subItem.text}
               danger={subItem.danger}
-              nestedMenu={subItem.subMenu}
+              subMenu={subItem.subMenu}
               ordered={ordered}
               description={subItem.description}
               // eslint-disable-next-line react/jsx-handler-names

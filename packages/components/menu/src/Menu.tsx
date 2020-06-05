@@ -26,11 +26,9 @@ class Menu extends React.Component<AntdMenuProps> {
             item.subMenu ? (
               <SubMenuItem
                 parent={item.parent}
-                danger={item.danger}
                 prefixel={item.prefixel}
                 suffixel={item.suffixel}
                 disabled={item.disabled}
-                index={item.index}
                 text={item.text}
                 description={item.description}
                 subMenu={item.subMenu}
@@ -50,7 +48,6 @@ class Menu extends React.Component<AntdMenuProps> {
                 prefixel={item.prefixel}
                 suffixel={item.suffixel}
                 disabled={item.disabled}
-                index={item.index}
                 text={item.text}
                 description={item.description}
                 subMenu={item.subMenu}
