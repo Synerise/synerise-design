@@ -73,7 +73,7 @@ describe('Table', () => {
 
   it('should render "no data"', () => {
     // ARRANGE
-    const { getByText } = renderWithProvider(<Table columns={props.columns} />);
+    const { getByText } = renderWithProvider(<Table columns={props.columns} locale={{emptyText: 'No Data'}} />);
 
     // ASSERT
     expect(getByText('No Data')).toBeTruthy();
@@ -213,5 +213,5 @@ describe('Table', () => {
     expect(handleShowFilter).toBeCalled();
     expect(handleShowList).toBeCalled();
   });
-  
+
 });
