@@ -9,7 +9,7 @@ export const AntdAlert = styled(({ type, mode, color, ...rest }: Props) => (
   <Alert {...rest} type={type !== 'custom' ? type : DEFAULT_ALERT_TYPE} />
 ))`
   ${(props): FlattenInterpolation<ThemeProps<Props>> | false =>
-    props.type === 'custom' &&
+    Boolean(props.color) &&
     css`
       &&& {
         box-shadow: 0 0 0 1px ${props.theme.palette[`${props.color}-600`]};
