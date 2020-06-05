@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.4](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.11.3...@synerise/ds-table@0.11.4) (2020-06-05)
+
+
+### Bug Fixes
+
+* **table:** fix cursor on sortable headers ([23007b3](https://github.com/synerise/synerise-design/commit/23007b3abf8b490c0e3a3248fd98e2c7d13f07e7))
+* **table:** fix table ([b3e9138](https://github.com/synerise/synerise-design/commit/b3e91387adf3c0ba0a6244cb46bfc077fa8c0f2f))
+* **table:** fix table styles ([8cb2ab2](https://github.com/synerise/synerise-design/commit/8cb2ab20770889445179c04c474432e3046e9887))
+
+
+
+
+
 ## [0.11.3](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.11.2...@synerise/ds-table@0.11.3) (2020-06-05)
 
 **Note:** Version bump only for package @synerise/ds-table

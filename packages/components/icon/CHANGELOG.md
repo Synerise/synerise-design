@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.17.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.16.0...@synerise/ds-icon@0.17.0) (2020-06-05)
+
+
+### Features
+
+* **icon:** add equalToM icon ([ed4b960](https://github.com/Synerise/synerise-design/commit/ed4b960145018b9e64d7ad9e806ca442a4aed2c3))
+
+
+
+
+
 # [0.16.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.15.0...@synerise/ds-icon@0.16.0) (2020-05-19)
 
 

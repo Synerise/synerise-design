@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.7](https://github.com/synerise/synerise-design/compare/@synerise/ds-pagination@0.6.6...@synerise/ds-pagination@0.6.7) (2020-06-05)
+
+
+### Bug Fixes
+
+* **pagination:** fix disabled arrow opacity ([85d33ae](https://github.com/synerise/synerise-design/commit/85d33aec92e29108ea4dccf3a943ce237187c5e0))
+
+
+
+
+
 ## [0.6.6](https://github.com/synerise/synerise-design/compare/@synerise/ds-pagination@0.6.5...@synerise/ds-pagination@0.6.6) (2020-05-19)
 
 **Note:** Version bump only for package @synerise/ds-pagination

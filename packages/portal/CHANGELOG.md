@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.69.0](https://github.com/synerise/synerise-design/compare/portal@0.68.1...portal@0.69.0) (2020-06-05)
+
+
+### Bug Fixes
+
+* **modal:** updated story with headers ([00608bc](https://github.com/synerise/synerise-design/commit/00608bc862db9feddff4bbd87d51d6619b7d1479))
+
+
+### Features
+
+* **table:** add empty table example ([a89cccb](https://github.com/synerise/synerise-design/commit/a89cccbddb50422ab05eab9ec13a3c8fd2575844))
+
+
+
+
+
 ## [0.68.1](https://github.com/synerise/synerise-design/compare/portal@0.68.0...portal@0.68.1) (2020-06-05)
 
 

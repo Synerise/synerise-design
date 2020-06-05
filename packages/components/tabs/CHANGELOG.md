@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.5](https://github.com/synerise/synerise-design/compare/@synerise/ds-tabs@0.10.4...@synerise/ds-tabs@0.10.5) (2020-06-05)
+
+
+### Bug Fixes
+
+* **tabs:** hover styles fixes on tabs ([ecb4e7c](https://github.com/synerise/synerise-design/commit/ecb4e7c8e891cd840f3c044a9cf3cd3171340052))
+
+
+
+
+
 ## [0.10.4](https://github.com/synerise/synerise-design/compare/@synerise/ds-tabs@0.10.3...@synerise/ds-tabs@0.10.4) (2020-06-05)
 
 **Note:** Version bump only for package @synerise/ds-tabs
