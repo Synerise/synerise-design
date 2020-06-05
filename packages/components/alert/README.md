@@ -43,7 +43,7 @@ import Alert from '@synerise/ds-alert'
 | icon        | Custom icon, effective when `showIcon` is `true`                               | ReactNode               | -         | 
 | message     | Content of Alert                                                               | string\                 | ReactNode | - |
 | showIcon    | Whether to show icon                                                           | boolean                 | false     | 
-| type        | Type of Alert styles, options: `success`, `info`, `warning`, `error`, `custom` | string                  | `info`    | 
+| type        | Type of Alert styles, options: `success`, `info`, `warning`, `error` | string                  | `info`    | 
 | onClose     | Callback when Alert is closed                                                  | (e: MouseEvent) => void | -         |
 | mode     | Whether to render alert with outline, background, or transparent, options: `background`, `background-outline`, `outline`, `clear`                                                  | string | `background`         |
-| color     | Set the color of alert if type is equal `custom`, options: `blue`, `grey`, `green`, `yellow`, `red`, `pink`, `mars`, `orange`, `fern`, `cyan`, `purple`, `violet` | string |``         | 
+| color     | Set the color that overrides the standard color of alert, options: `blue`, `grey`, `green`, `yellow`, `red`, `pink`, `mars`, `orange`, `fern`, `cyan`, `purple`, `violet` | string |``         | 
