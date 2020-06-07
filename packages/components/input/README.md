@@ -13,6 +13,10 @@ Input UI Component
 
 <iframe src="/storybook-static/iframe.html?id=components-input--textarea"></iframe>
 
+## MaskedInput
+
+<iframe src="/storybook-static/iframe.html?id=components-input--maskedinput"></iframe>
+
 ## API
 
 #### Input
@@ -40,6 +44,16 @@ Input UI Component
 | tooltip        | Tooltip content                                                                                                                                                    | ReactNode        | -         |
 | type           | The type of input, see: [MDN](https://developer.mozilla.org/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types)(use `Input.TextArea` instead of `type="textarea"`) | string           | `text`    |
 | value          | The input content value                                                                                                                                            | string           |           |
+
+#### MaskedInput
+
+Same as Input api with additional props:
+
+| Property         | Description                                                                                                                                                        | Type                                                              | Default   |
+| --------------   | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------                                                  | --------- |
+| mask             | Pattern of masked value                                                                                                                                            | string                                                            | -         |
+| placeholderChar  | Customised placeholder character used to fill in editable parts of the pattern.                                                                                    | string                                                            | '_'       |
+| formatCharacters | Customised format character definitions for use in the pattern.                                                                                                    | Object (https://github.com/insin/inputmask-core#formatcharacters) | -         |
 
 #### InputGroup
 
