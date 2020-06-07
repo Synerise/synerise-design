@@ -6,6 +6,7 @@ import FileM from '@synerise/ds-icon/dist/icons/FileM';
 import Select from '@synerise/ds-select';
 import { array, boolean, number, select as knobSelect, text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
+import { MaskedInput } from '@synerise/ds-input/dist/Input';
 
 const decorator = storyFn => <div style={{ width: '300px' }}>{storyFn()}</div>;
 const sizes = ['default', 'large'];
@@ -72,6 +73,17 @@ const stories = {
         {input}
       </InputGroup>
     );
+  },
+  maskedInput: () => {
+    const [value, setValue] = React.useState<string>('');
+    console.log(value);
+    return (
+      <MaskedInput
+        value={value}
+        onChange={e => setValue(e.target.value)}
+        mask="11/11/1111"
+      />
+    )
   },
   inputWithIcons: () => {
     const [value, setValue] = React.useState<string>('');

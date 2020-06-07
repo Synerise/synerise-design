@@ -3,6 +3,7 @@ import BaseAntInput from 'antd/lib/input';
 import TextArea from 'antd/lib/input/TextArea';
 import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import * as React from 'react';
+import MaskedInput from 'antd-mask-input';
 
 const errorInputStyle = (props: ThemeProps): string => `
   && {
@@ -94,6 +95,28 @@ export const AntdInput = styled(
   && {
     color: ${(props): string => props.theme.palette['grey-700']};
     z-index: 1;
+  }
+`;
+
+export const AntdMaskedInput = styled(
+  React.forwardRef<MaskedInput, { error?: boolean; mask: string }>(
+    // eslint-disable-next-line
+    ({ error, mask, ...props }, ref) => (
+      // eslint-disable-next-line
+      <MaskedInput {...props} ref={ref} mask={mask} />
+    )
+  )
+)<{ error?: boolean }>`
+  ${(props): string => (props.error ? errorInputStyle(props) : '')};
+
+  && {
+    color: ${(props): string => props.theme.palette['grey-700']};
+    z-index: 1;
+
+    &::placeholder {
+      letter-spacing: 1.8px;
+      color: ${(props): string => props.theme.palette['grey-700']};
+    }
   }
 `;
 

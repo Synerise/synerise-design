@@ -29,6 +29,7 @@
     "@synerise/ds-tooltip": "^0.7.4",
     "@synerise/ds-typography": "^0.8.3",
     "@synerise/ds-utils": "^0.8.26",
+    "antd-mask-input": "^0.1.13",
     "uuid": "^7.0.2"
   },
   "peerDependencies": {

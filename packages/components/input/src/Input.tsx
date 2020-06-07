@@ -4,6 +4,7 @@ import { v4 as uuid } from 'uuid';
 import { InputProps, TextAreaProps } from 'antd/lib/input';
 import './style/index.less';
 import { StyledComponent } from 'styled-components';
+import { MaskedInputProps } from 'antd-mask-input/build/main/lib/MaskedInput';
 import * as S from './Input.styles';
 import Label from './Label/Label';
 
@@ -24,7 +25,10 @@ export interface Props {
 type EnhancedProps = Props & (InputProps | TextAreaProps);
 
 const enhancedInput = <P extends object>(
-  WrappedComponent: StyledComponent<React.ComponentType<InputProps | TextAreaProps>, { error?: string }>,
+  WrappedComponent: StyledComponent<
+    React.ComponentType<InputProps | TextAreaProps | MaskedInputProps>,
+    { error?: string }
+  >,
   { type }: { type: string }
 ): React.ComponentType<P & EnhancedProps> => ({
   className,
@@ -114,6 +118,7 @@ const enhancedInput = <P extends object>(
 
 export const TextArea = enhancedInput(S.AntdTextArea, { type: 'textArea' });
 export const Input = enhancedInput(S.AntdInput, { type: 'input' });
+export const MaskedInput = enhancedInput(S.AntdMaskedInput, { type: 'input' });
 export { default as InputGroup } from './InputGroup';
 
 export const RawInput = (props: Props & (InputProps | TextAreaProps)): React.ReactElement => {
