@@ -76,7 +76,7 @@ const stories = {
   },
   maskedInput: () => {
     const [value, setValue] = React.useState<string>('');
-    console.log(value);
+    
     return (
       <MaskedInput
         value={value}
