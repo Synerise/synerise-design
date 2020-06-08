@@ -50,7 +50,26 @@ const Develop = () => {
           <div className="l-col-desktop-12">
             <h3>Installation</h3>
             <p className="small-margin">
-              Example with the Button component:
+              Before the component installation, you must  add react-intl, styled-components and antd packages.
+            </p>
+            <ul className="no-margin">
+              <li>
+                for yarn
+              </li>
+            </ul>
+            <code className="ds-code">
+              yarn add react-intl styled-components antd
+            </code>
+            <ul className="no-margin">
+              <li>
+                for npm
+              </li>
+            </ul>
+            <code className="ds-code">
+              npm install react-intl styled-components antd --save
+            </code>
+            <p className="small-margin">
+              And then, you can install a component (example with the Button component):
             </p>
             <ul className="no-margin">
               <li>
