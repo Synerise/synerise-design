@@ -6,7 +6,7 @@ import Icon from '@synerise/ds-icon';
 import * as S from './Alert.styles';
 
 export interface Props extends Omit<AlertProps, 'type'> {
-  type: 'success' | 'warning' | 'error' | 'info' | 'custom';
+  type: 'success' | 'warning' | 'error' | 'info';
   color?:
     | 'blue'
     | 'grey'
