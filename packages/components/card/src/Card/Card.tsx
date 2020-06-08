@@ -18,6 +18,7 @@ export interface CardProps {
   size?: 'small' | 'medium' | 'large' | 'extraLarge';
   headerSideChildren?: React.ReactNode;
   onHeaderClick?: (e: React.SyntheticEvent) => void;
+  withoutPadding?: boolean;
 }
 
 const mapSizeToWidth = {
@@ -43,6 +44,7 @@ const Card: React.FC<CardProps> = ({
   iconColor,
   headerSideChildren,
   onHeaderClick,
+  withoutPadding,
 }) => {
   const fatTitle = !description || (description && compactHeader);
   return (
@@ -74,7 +76,9 @@ const Card: React.FC<CardProps> = ({
           {headerSideChildren && <S.HeaderSideChildren>{headerSideChildren}</S.HeaderSideChildren>}
         </S.Header>
       )}
-      <S.ChildrenContainer hasHeader={withHeader}>{children}</S.ChildrenContainer>
+      <S.ChildrenContainer withoutPadding={withoutPadding} hasHeader={withHeader}>
+        {children}
+      </S.ChildrenContainer>
     </S.Container>
   );
 };

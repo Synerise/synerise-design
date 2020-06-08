@@ -86,3 +86,4 @@ yarn add @synerise/ds-card
 | headerSideChildren | Defines if the container includes a button (in the header)                                                            | React.ReactNode                                                              | -       |
 | children           | Defines if the button casts a shadow when the cursor is hovered over                                                  | React.ReactNode                                                              | -       |
 | size               | Defines the width of the container (the container width is set to 100% when this property is not passed).             | `small` (472px) / `medium` (588px) / `large` (966px) / `extraLarge` (1232px) | -       |
+| withoutPadding     | Reset padding of ContentContainer                                                                                     | boolean                                                                      | false   |
