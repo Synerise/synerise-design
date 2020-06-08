@@ -30,7 +30,7 @@ const stories = {
   },
   inputGroup: () => {
     const [value, setValue] = React.useState<string>('');
-    const size = knobSelect('Set size',sizes as any,'middle');
+    const size = knobSelect('Set size',sizes as any,'default');
 
     const select = (
       <Select
