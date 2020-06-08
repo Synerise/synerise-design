@@ -78,6 +78,9 @@ export const AutocompleteWrapper = styled.div`
         color: ${(props): string => props.theme.palette['grey-700']};
       }
     }
+    .ant-select-selection-placeholder {
+      padding-left: 2px;
+    }
 
     .ant-select-dropdown {
       padding: 8px;
