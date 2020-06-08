@@ -93,7 +93,7 @@ const TableSelection: React.FC<Props> = ({ dataSource, selection, rowKey }) => {
                 <Menu.Item onClick={unselectAll}>Unselect all</Menu.Item>
               )}
               {selections
-                .filter((sel: Selection | SelectionItem): sel is Selection => sel !== null && sel !== undefined)
+                .filter(Boolean)
                 .filter(
                   (sel: Selection | SelectionItem): sel is Selection => typeof (sel as Selection).key === 'string'
                 )
