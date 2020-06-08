@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.3.3...docs@0.4.0) (2020-06-08)
+
+
+### Bug Fixes
+
+* **docs:** add /docs to .gitignore ([df6d144](https://gitlab.synerise.com/Frontend/synerise-design/commit/df6d144831767724a89d2ba80b7f3fb47f8bd861))
+* **docs:** fix input doc ([febc232](https://gitlab.synerise.com/Frontend/synerise-design/commit/febc232b92cc9c3d02b4a6b9f72c03b913e42344))
+* **docs:** fix missing docs ([849ce67](https://gitlab.synerise.com/Frontend/synerise-design/commit/849ce6776acbfdd0331685002598c194bd5dc7f0))
+
+
+### Features
+
+* **input:** update examples ([96a1c0c](https://gitlab.synerise.com/Frontend/synerise-design/commit/96a1c0cc390cb4692e851b370ae585f724c9839a))
+
+
+
+
+
 ## [0.3.3](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.3.2...docs@0.3.3) (2020-06-05)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.22](https://github.com/Synerise/synerise-design/compare/@synerise/ds-autocomplete@0.3.21...@synerise/ds-autocomplete@0.3.22) (2020-06-08)
+
+
+### Bug Fixes
+
+* **autocomplete:** change placeholder position ([ce31641](https://github.com/Synerise/synerise-design/commit/ce316419aa6bebc8f5167eaef5fb9c306562cd39))
+
+
+
+
+
 ## [0.3.21](https://github.com/Synerise/synerise-design/compare/@synerise/ds-autocomplete@0.3.20...@synerise/ds-autocomplete@0.3.21) (2020-06-02)
 
 **Note:** Version bump only for package @synerise/ds-autocomplete

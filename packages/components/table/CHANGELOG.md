@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.5](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.11.4...@synerise/ds-table@0.11.5) (2020-06-08)
+
+
+### Bug Fixes
+
+* **table:** allow to pass null/undefined as selection type ([fdb1efa](https://github.com/synerise/synerise-design/commit/fdb1efae028fff9bd35fb9537fb1508d151bc967))
+* **table:** refactor ([9df1b3b](https://github.com/synerise/synerise-design/commit/9df1b3ba278f9a5b2f19d58d18089bfa9023689b))
+
+
+
+
+
 ## [0.11.4](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.11.3...@synerise/ds-table@0.11.4) (2020-06-05)
 
 

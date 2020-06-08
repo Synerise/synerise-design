@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.12.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.11.33...@synerise/ds-input@0.12.0) (2020-06-08)
+
+
+### Bug Fixes
+
+* **input:** add missing export, fix stories ([7baaac3](https://github.com/synerise/synerise-design/commit/7baaac3d69b175bf6bd28a8baa59e7fdf261262e))
+* **input:** fix input docs ([4306ea0](https://github.com/synerise/synerise-design/commit/4306ea05fdb9ee03430ad9f122c744f39a21f9b4))
+
+
+### Features
+
+* **input:** add MaskedInput ([c2532b1](https://github.com/synerise/synerise-design/commit/c2532b186ad7136d057d24f8c5513c3074a4287f))
+* **input:** set letter-spacing for MaskedInput ([8cdde8c](https://github.com/synerise/synerise-design/commit/8cdde8c4a98c2f711ab7775b71bc90f735cb7fe9))
+
+
+
+
+
 ## [0.11.33](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.11.32...@synerise/ds-input@0.11.33) (2020-06-05)
 
 **Note:** Version bump only for package @synerise/ds-input

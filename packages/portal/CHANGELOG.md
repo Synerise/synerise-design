@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.70.0](https://github.com/synerise/synerise-design/compare/portal@0.69.0...portal@0.70.0) (2020-06-08)
+
+
+### Bug Fixes
+
+* **alert:** fix styles, stories ([bacd1e8](https://github.com/synerise/synerise-design/commit/bacd1e8931a1775b0850f5b3e33a2087fb0c3fb9))
+* **input:** add missing export, fix stories ([7baaac3](https://github.com/synerise/synerise-design/commit/7baaac3d69b175bf6bd28a8baa59e7fdf261262e))
+* **input:** remove console.log from input stories ([1252a2d](https://github.com/synerise/synerise-design/commit/1252a2da540f630922cc917d7ccd5ed3b6c34a68))
+* **item-filter:** invalid date format in storybook examples ([b1cfb16](https://github.com/synerise/synerise-design/commit/b1cfb162a1abb66bbf8ffef790a3f07f9b908084))
+* **table:** allow to pass null/undefined as selection type ([fdb1efa](https://github.com/synerise/synerise-design/commit/fdb1efae028fff9bd35fb9537fb1508d151bc967))
+
+
+### Features
+
+* **input:** add MaskedInput ([c2532b1](https://github.com/synerise/synerise-design/commit/c2532b186ad7136d057d24f8c5513c3074a4287f))
+* **input:** set letter-spacing for MaskedInput ([8cdde8c](https://github.com/synerise/synerise-design/commit/8cdde8c4a98c2f711ab7775b71bc90f735cb7fe9))
+* **input:** update examples ([96a1c0c](https://github.com/synerise/synerise-design/commit/96a1c0cc390cb4692e851b370ae585f724c9839a))
+
+
+
+
+
 # [0.69.0](https://github.com/synerise/synerise-design/compare/portal@0.68.1...portal@0.69.0) (2020-06-05)
 
 

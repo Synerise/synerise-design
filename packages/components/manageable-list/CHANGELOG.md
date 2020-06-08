@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.12.2...@synerise/ds-manageable-list@0.12.3) (2020-06-08)
+
+
+### Bug Fixes
+
+* **manageable-list:** add ds-menu as dependency ([7dc50db](https://github.com/Synerise/synerise-design/commit/7dc50dbfc75ad199603883298969722efe82dfe7))
+* **manageable-list:** use Menu.Item in FilterItem ([49e14b5](https://github.com/Synerise/synerise-design/commit/49e14b5654782061f9ae3170b39ee22b1de65f96))
+
+
+
+
+
 ## [0.12.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.12.1...@synerise/ds-manageable-list@0.12.2) (2020-06-05)
 
 **Note:** Version bump only for package @synerise/ds-manageable-list

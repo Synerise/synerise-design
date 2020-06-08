@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.19](https://github.com/Synerise/synerise-design/compare/@synerise/ds-file-uploader@0.4.18...@synerise/ds-file-uploader@0.4.19) (2020-06-08)
+
+
+### Bug Fixes
+
+* **file-uploader:** resize of the image fix ([b17c12c](https://github.com/Synerise/synerise-design/commit/b17c12ca4eb87da601f68523db650c1045e884c1))
+
+
+
+
+
 ## [0.4.18](https://github.com/Synerise/synerise-design/compare/@synerise/ds-file-uploader@0.4.17...@synerise/ds-file-uploader@0.4.18) (2020-06-05)
 
 **Note:** Version bump only for package @synerise/ds-file-uploader
