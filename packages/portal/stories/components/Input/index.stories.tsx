@@ -74,15 +74,34 @@ const stories = {
       </InputGroup>
     );
   },
-  maskedInput: () => {
-    const [value, setValue] = React.useState<string>('');
-    
+  inputWithMask: () => {
+    const [creditCardvalue, setCreditCardvalue] = React.useState<string>('');
+    const [dateValue, setDateValue] = React.useState<string>('');
+    const [phoneValue, setPhoneValue] = React.useState<string>('');
     return (
-      <MaskedInput
-        value={value}
-        onChange={e => setValue(e.target.value)}
-        mask="11/11/1111"
-      />
+      <div style={{display: 'flex', flexDirection: 'column', width: 400}}>
+        <MaskedInput
+          style={{width: '100%'}}
+          label="Credit card"
+          value={creditCardvalue}
+          onChange={e => setCreditCardvalue(e.target.value)}
+          mask="1111-1111-1111-1111"
+        />
+        <MaskedInput
+          style={{width: '100%'}}
+          label="Date"
+          value={dateValue}
+          onChange={e => setDateValue(e.target.value)}
+          mask="11/11/1111"
+        />
+        <MaskedInput
+          style={{width: '100%'}}
+          label="Phone number"
+          value={phoneValue}
+          onChange={e => setPhoneValue(e.target.value)}
+          mask="(11) 111-11-11"
+        />
+      </div>
     )
   },
   inputWithIcons: () => {

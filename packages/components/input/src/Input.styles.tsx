@@ -112,7 +112,7 @@ export const AntdMaskedInput = styled(
   && {
     color: ${(props): string => props.theme.palette['grey-700']};
     z-index: 1;
-
+    letter-spacing: 1.8px;
     &::placeholder {
       letter-spacing: 1.8px;
       color: ${(props): string => props.theme.palette['grey-700']};
