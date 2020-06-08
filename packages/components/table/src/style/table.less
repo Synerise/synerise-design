@@ -10,6 +10,25 @@
 
 .@{ds-table-prefix-cls} {
   position: relative;
+  .ds-tree-table {
+    .ant-table-expander {
+      display: inline-flex;
+      align-items: center;
+      justify-content: flex-start;
+      width: 24px;
+      margin-right: 24px;
+    }
+    .ant-table-row-level-1 {
+      .td {
+        &:first-of-type {
+          &:before {
+            left: 36px;
+            background-color: @yellow-600;
+          }
+        }
+      }
+    }
+  }
 
   .virtual-table {
     colgroup {
