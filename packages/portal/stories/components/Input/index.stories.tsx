@@ -76,27 +76,49 @@ const stories = {
   inputWithMask: () => {
     const [creditCardvalue, setCreditCardvalue] = React.useState<string>('');
     const [dateValue, setDateValue] = React.useState<string>('');
+    const [birthdateValue, setBirthdateValue] = React.useState<string>('');
     const [phoneValue, setPhoneValue] = React.useState<string>('');
+    const [phonePrefixValue, setPhonePrefixValue] = React.useState<string>('');
+
     return (
       <div style={{display: 'flex', flexDirection: 'column', width: 400}}>
+
+        <MaskedInput
+          label="Phone number"
+          value={phoneValue}
+          onChange={e => setPhoneValue(e.target.value)}
+          mask="11 111-11-11"
+        />
+
+        <MaskedInput
+          label="Phone number with prefix"
+          value={phonePrefixValue}
+          onChange={e => setPhonePrefixValue(e.target.value)}
+          mask="(11) 111-11-11"
+        />
+
+        <MaskedInput
+          label="Date"
+          value={dateValue}
+          onChange={e => setDateValue(e.target.value)}
+          mask="11-11-1111"
+        />
+
+        <MaskedInput
+          label="Birthdate"
+          value={birthdateValue}
+          onChange={e => setBirthdateValue(e.target.value)}
+          mask="11/11/1111"
+        />
+
+
         <MaskedInput
           label="Credit card"
           value={creditCardvalue}
           onChange={e => setCreditCardvalue(e.target.value)}
           mask="1111-1111-1111-1111"
         />
-        <MaskedInput
-          label="Date"
-          value={dateValue}
-          onChange={e => setDateValue(e.target.value)}
-          mask="11/11/1111"
-        />
-        <MaskedInput
-          label="Phone number"
-          value={phoneValue}
-          onChange={e => setPhoneValue(e.target.value)}
-          mask="(11) 111-11-11"
-        />
+
       </div>
     )
   },
