@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Input, TextArea, RawInput, InputGroup } from '@synerise/ds-input';
+import { Input, TextArea, RawInput, InputGroup, MaskedInput } from '@synerise/ds-input';
 
 import Icon from '@synerise/ds-icon';
 import FileM from '@synerise/ds-icon/dist/icons/FileM';
@@ -72,6 +72,33 @@ const stories = {
         {input}
       </InputGroup>
     );
+  },
+  inputWithMask: () => {
+    const [creditCardvalue, setCreditCardvalue] = React.useState<string>('');
+    const [dateValue, setDateValue] = React.useState<string>('');
+    const [phoneValue, setPhoneValue] = React.useState<string>('');
+    return (
+      <div style={{display: 'flex', flexDirection: 'column', width: 400}}>
+        <MaskedInput
+          label="Credit card"
+          value={creditCardvalue}
+          onChange={e => setCreditCardvalue(e.target.value)}
+          mask="1111-1111-1111-1111"
+        />
+        <MaskedInput
+          label="Date"
+          value={dateValue}
+          onChange={e => setDateValue(e.target.value)}
+          mask="11/11/1111"
+        />
+        <MaskedInput
+          label="Phone number"
+          value={phoneValue}
+          onChange={e => setPhoneValue(e.target.value)}
+          mask="(11) 111-11-11"
+        />
+      </div>
+    )
   },
   inputWithIcons: () => {
     const [value, setValue] = React.useState<string>('');
