@@ -34,7 +34,7 @@ const Navbar = () => {
             <NavSubItem title="Develop" label="Develop" link="/develop"/>
           </NavItemExpandable>
           <NavItem title="Guidelines" label="Guidelines" link="/docs/palette"/>
-          <NavItem title="Storybook" label="Storybook" link="/storybook-static/"/>
+          <NavItem title="Components" label="Components" link="/storybook-static/"/>
 
           <li className="hover-action-subitem c-main-nav__item c-main-nav__item--end">
             <a className="c-read-more c-main-nav__item__link" href="https://app.synerise.com/spa/login" target="_self">
