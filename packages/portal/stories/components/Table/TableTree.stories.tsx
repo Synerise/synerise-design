@@ -1,7 +1,7 @@
 import { boolean, select } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import { withState } from '@dump247/storybook-state';
-import { ItemsMenu, TableCell, TreeTable } from '@synerise/ds-table';
+import { ItemsMenu, TreeTable } from '@synerise/ds-table';
 import Icon from '@synerise/ds-icon';
 import { ChildRowLeftDownM, EditM, FileDownloadM, TrashM } from '@synerise/ds-icon/dist/icons';
 import Table from '@synerise/ds-table';
@@ -42,34 +42,39 @@ const stories = {
             title: 'Name',
             dataIndex: 'name',
             key: 'name',
+            render: (name) => {
+              return (
+                <span style={{fontWeight: 500, color: '#576116', fontSize: '13px', lineHeight: '18px'}}>{name}</span>
+              )
+            }
           },
           {
             title: 'Create',
             dataIndex: 'create',
             key: 'create',
             width: 120,
-            render: (value) => <Checkbox checked={value} />
+            render: (value) => <Checkbox withoutPadding checked={value} />
           },
           {
             title: 'Read',
             dataIndex: 'read',
             key: 'read',
             width: 120,
-            render: (value) => <Checkbox checked={value} />
+            render: (value) => <Checkbox withoutPadding checked={value} />
           },
           {
             title: 'Edit',
             dataIndex: 'edit',
             key: 'edit',
             width: 120,
-            render: (value) => <Checkbox checked={value} />
+            render: (value) => <Checkbox withoutPadding checked={value} />
           },
           {
             title: 'Delete',
             dataIndex: 'delete',
             key: 'delete',
             width: 120,
-            render: (value) => <Checkbox checked={value} />
+            render: (value) => <Checkbox withoutPadding checked={value} />
           }
         ];
       };
