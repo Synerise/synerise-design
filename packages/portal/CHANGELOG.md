@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.71.0](https://github.com/synerise/synerise-design/compare/portal@0.70.0...portal@0.71.0) (2020-06-08)
+
+
+### Bug Fixes
+
+* **input:** add missing stories ([3d01f26](https://github.com/synerise/synerise-design/commit/3d01f266f69069569a0aa9de9a61780cf3c0f300))
+
+
+### Features
+
+* **item-filter:** rename ItemFilter storybook example to ItemManager ([37bb17a](https://github.com/synerise/synerise-design/commit/37bb17a38ae3abc6c7277144ce49a569f3108a3b))
+* **table:** add TreeTable ([cf1a829](https://github.com/synerise/synerise-design/commit/cf1a829de5cf16b302cbd14fb7c0d6acdd10e678))
+* **table:** add TreeTable stories ([744c040](https://github.com/synerise/synerise-design/commit/744c0407f25988258a1233f62e35f7990042141f))
+
+
+
+
+
 # [0.70.0](https://github.com/synerise/synerise-design/compare/portal@0.69.0...portal@0.70.0) (2020-06-08)
 
 

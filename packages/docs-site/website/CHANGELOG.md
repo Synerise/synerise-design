@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.1](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.4.0...docs@0.4.1) (2020-06-08)
+
+
+### Bug Fixes
+
+* **docs:** change link in NavBar from Storybook to Components ([63f39d9](https://gitlab.synerise.com/Frontend/synerise-design/commit/63f39d951a542640508f089734cccf8c6bec74e6))
+* **docs:** update content of Installation section ([207c5f0](https://gitlab.synerise.com/Frontend/synerise-design/commit/207c5f069152825f0a2ebd0499f6c036b1c72971))
+
+
+
+
+
 # [0.4.0](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.3.3...docs@0.4.0) (2020-06-08)
 
 

@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.12.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.11.5...@synerise/ds-table@0.12.0) (2020-06-08)
+
+
+### Features
+
+* **table:** add TreeTable ([cf1a829](https://github.com/synerise/synerise-design/commit/cf1a829de5cf16b302cbd14fb7c0d6acdd10e678))
+* **table:** bump ds-button ([306f961](https://github.com/synerise/synerise-design/commit/306f9614f63532ba35133a5e8630947214a62772))
+* **table:** render indents in TreeTable rows ([6f7cf14](https://github.com/synerise/synerise-design/commit/6f7cf14eca84fb330ace7b82d02ca07fb6a51fc3))
+* **table:** TreeTable component styles ([0354ead](https://github.com/synerise/synerise-design/commit/0354ead7e64c8231e7a328c9e2a8e1622996597b))
+
+
+
+
+
 ## [0.11.5](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.11.4...@synerise/ds-table@0.11.5) (2020-06-08)
 
 

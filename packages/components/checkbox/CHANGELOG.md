@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-checkbox@0.8.21...@synerise/ds-checkbox@0.9.0) (2020-06-08)
+
+
+### Features
+
+* **checkbox:** add withoutPadding prop ([f8a2058](https://github.com/synerise/synerise-design/commit/f8a20582700c80f962ea7425dfeec35542d64a71))
+
+
+
+
+
 ## [0.8.21](https://github.com/synerise/synerise-design/compare/@synerise/ds-checkbox@0.8.20...@synerise/ds-checkbox@0.8.21) (2020-06-02)
 
 **Note:** Version bump only for package @synerise/ds-checkbox
