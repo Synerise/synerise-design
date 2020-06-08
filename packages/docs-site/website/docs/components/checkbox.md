@@ -37,6 +37,7 @@ Based on [Ant Design Checkbox](https://ant.design/components/checkbox/)
 | disabled       | Disable checkbox                                                      | boolean           | false   |
 | indeterminate  | indeterminate checked state of checkbox                               | boolean           | false   |
 | onChange       | The callback function that is triggered when the state changes.       | Function(e:Event) | -       |
+| withoutPadding | Reset padding of CheckboxWrapper                                      | boolean           | false   |
 
 #### Checkbox Group
 

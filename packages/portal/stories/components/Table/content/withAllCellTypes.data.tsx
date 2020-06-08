@@ -173,7 +173,7 @@ export const COLUMNS = [
     key: 'checked',
     dataIndex: 'checked',
     width: 120,
-    render: (checked) => <Checkbox checked={checked} />
+    render: (checked) => <Checkbox withoutPadding checked={checked} />
   },
   {
     title: 'Icon with tooltip',

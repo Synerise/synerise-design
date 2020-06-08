@@ -10,6 +10,54 @@
 
 .@{ds-table-prefix-cls} {
   position: relative;
+  .ds-tree-table {
+    &.ds-tree-table-with-selection {
+      thead > tr {
+        th {
+          &:nth-of-type(2) {
+            padding-left: 0 !important;
+          }
+        }
+      }
+      tbody > tr {
+        &.ant-table-row {
+          td {
+            &.ant-table-cell-with-append {
+              padding-left: 0 !important;
+            }
+          }
+        }
+      }
+    }
+    tbody > tr {
+      &:not(.ant-table-placeholder):not(.ant-table-row-level-0) td {
+        background-color: @white;
+      }
+      &.ant-table-row {
+        td {
+          background-color: @white !important;
+          padding-left: 24px !important;
+          &.ant-table-cell-with-append {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+          }
+        }
+        &:hover {
+          td {
+            background-color: @grey-050 !important;
+          }
+        }
+      }
+    }
+    .ant-table-row {
+      td {
+        &:before {
+          display: none !important;
+        }
+      }
+    }
+  }
 
   .virtual-table {
     colgroup {

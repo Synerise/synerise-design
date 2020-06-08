@@ -1,0 +1,288 @@
+export const dataSource = [
+  {
+    key: '2',
+    name: 'John Doe',
+    description: 'This feature is present in several places. If you turning it on here it will be turn on everywhere.',
+    create: false,
+    read: false,
+    edit: true,
+    delete: false,
+    children: [
+      {
+        key: '3',
+        name: 'John Doe',
+        description: 'This feature is present in several places. If you turning it on here it will be turn on everywhere.',
+        create: false,
+        read: false,
+        edit: true,
+        delete: false,
+      },
+      {
+        key: '4',
+        name: 'John Doe',
+        description: 'This feature is present in several places. If you turning it on here it will be turn on everywhere.',
+        create: false,
+        read: false,
+        edit: false,
+        delete: true,
+        children: [
+          {
+            key: '20',
+            name: 'John Doe',
+            description: 'This feature is present in several places. If you turning it on here it will be turn on everywhere.',
+            create: true,
+            read: false,
+            edit: false,
+            delete: false,
+          },
+          {
+            key: '21',
+            name: 'John Doe',
+            description: 'This feature is present in several places. If you turning it on here it will be turn on everywhere.',
+            create: false,
+            read: true,
+            edit: false,
+            delete: false,
+          },
+          {
+            key: '22',
+            name: 'John Doe',
+            description: 'This feature is present in several places. If you turning it on here it will be turn on everywhere.',
+            create: false,
+            read: true,
+            edit: false,
+            delete: false,
+          },
+          {
+            key: '23',
+            name: 'John Doe',
+            description: 'This feature is present in several places. If you turning it on here it will be turn on everywhere.',
+            create: false,
+            read: false,
+            edit: true,
+            delete: false,
+            children: [
+              {
+                key: '30',
+                name: 'John Doe',
+                description: 'This feature is present in several places. If you turning it on here it will be turn on everywhere.',
+                create: false,
+                read: true,
+                edit: false,
+                delete: false,
+              },
+              {
+                key: '31',
+                name: 'John Doe',
+                description: 'This feature is present in several places. If you turning it on here it will be turn on everywhere.',
+                create: false,
+                read: true,
+                edit: false,
+                delete: false,
+              },
+              {
+                key: '32',
+                name: 'John Doe',
+                description: 'This feature is present in several places. If you turning it on here it will be turn on everywhere.',
+                create: false,
+                read: true,
+                edit: false,
+                delete: false,
+              },
+              {
+                key: '33',
+                name: 'John Doe',
+                description: 'This feature is present in several places. If you turning it on here it will be turn on everywhere.',
+                create: false,
+                read: true,
+                edit: false,
+                delete: false,
+                children: [
+                  {
+                    key: '40',
+                    name: 'John Doe',
+                    description: 'This feature is present in several places. If you turning it on here it will be turn on everywhere.',
+                    create: false,
+                    read: true,
+                    edit: false,
+                    delete: false,
+                  },
+                  {
+                    key: '41',
+                    name: 'John Doe',
+                    description: 'This feature is present in several places. If you turning it on here it will be turn on everywhere.',
+                    create: false,
+                    read: true,
+                    edit: false,
+                    delete: false,
+                  },
+                  {
+                    key: '42',
+                    name: 'John Doe',
+                    description: 'This feature is present in several places. If you turning it on here it will be turn on everywhere.',
+                    create: false,
+                    read: true,
+                    edit: false,
+                    delete: false,
+                  },
+                  {
+                    key: '43',
+                    name: 'John Doe',
+                    description: 'This feature is present in several places. If you turning it on here it will be turn on everywhere.',
+                    create: false,
+                    read: true,
+                    edit: false,
+                    delete: false,
+                    children: [
+                      {
+                        key: '50',
+                        name: 'John Doe',
+                        description: 'This feature is present in several places. If you turning it on here it will be turn on everywhere.',
+                        create: false,
+                        read: true,
+                        edit: false,
+                        delete: false,
+                      },
+                      {
+                        key: '51',
+                        name: 'John Doe',
+                        description: 'This feature is present in several places. If you turning it on here it will be turn on everywhere.',
+                        create: false,
+                        read: true,
+                        edit: false,
+                        delete: false,
+                      },
+                      {
+                        key: '52',
+                        name: 'John Doe',
+                        description: 'This feature is present in several places. If you turning it on here it will be turn on everywhere.',
+                        create: false,
+                        read: true,
+                        edit: false,
+                        delete: false,
+                      },
+                      {
+                        key: '53',
+                        name: 'John Doe',
+                        description: 'This feature is present in several places. If you turning it on here it will be turn on everywhere.',
+                        create: false,
+                        read: true,
+                        edit: false,
+                        delete: false,
+                        children: [
+                          {
+                            key: '60',
+                            name: 'John Doe',
+                            description: 'This feature is present in several places. If you turning it on here it will be turn on everywhere.',
+                            create: false,
+                            read: true,
+                            edit: false,
+                            delete: false,
+                          },
+                          {
+                            key: '61',
+                            name: 'John Doe',
+                            description: 'This feature is present in several places. If you turning it on here it will be turn on everywhere.',
+                            create: false,
+                            read: true,
+                            edit: false,
+                            delete: false,
+                          },
+                          {
+                            key: '62',
+                            name: 'John Doe',
+                            description: 'This feature is present in several places. If you turning it on here it will be turn on everywhere.',
+                            create: false,
+                            read: true,
+                            edit: false,
+                            delete: false,
+                          },
+                          {
+                            key: '63',
+                            name: 'John Doe',
+                            description: 'This feature is present in several places. If you turning it on here it will be turn on everywhere.',
+                            create: false,
+                            read: true,
+                            edit: false,
+                            delete: false,
+                            children: [
+                              {
+                                key: '70',
+                                name: 'John Doe',
+                                description: 'This feature is present in several places. If you turning it on here it will be turn on everywhere.',
+                                create: false,
+                                read: true,
+                                edit: false,
+                                delete: false,
+                              },
+                              {
+                                key: '71',
+                                name: 'John Doe',
+                                description: 'This feature is present in several places. If you turning it on here it will be turn on everywhere.',
+                                create: false,
+                                read: true,
+                                edit: false,
+                                delete: false,
+                              },
+                              {
+                                key: '72',
+                                name: 'John Doe',
+                                description: 'This feature is present in several places. If you turning it on here it will be turn on everywhere.',
+                                create: false,
+                                read: true,
+                                edit: false,
+                                delete: false,
+                              },
+                              {
+                                key: '73',
+                                name: 'John Doe',
+                                description: 'This feature is present in several places. If you turning it on here it will be turn on everywhere.',
+                                create: false,
+                                read: true,
+                                edit: false,
+                                delete: false,
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+        ]
+      }
+    ]
+  },
+  {
+    key: '7',
+    name: 'John Doe',
+    description: 'This feature is present in several places. If you turning it on here it will be turn on everywhere.',
+    create: true,
+    read: false,
+    edit: false,
+    delete: false,
+    children: [
+      {
+        key: '8',
+        name: 'John Doe',
+        description: 'This feature is present in several places. If you turning it on here it will be turn on everywhere.',
+        create: false,
+        read: false,
+        edit: false,
+        delete: true,
+      },
+      {
+        key: '9',
+        name: 'John Doe',
+        description: 'This feature is present in several places. If you turning it on here it will be turn on everywhere.',
+        create: false,
+        read: true,
+        edit: false,
+        delete: false,
+      }
+    ]
+  }
+];

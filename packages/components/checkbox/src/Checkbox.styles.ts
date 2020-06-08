@@ -32,7 +32,7 @@ export const AntdCheckbox = styled(BaseAntCheckbox)<Props & ThemeProps>`
     box-shadow: inset 0 0 0 1px ${(props: ThemeProps): string => props.theme.palette['blue-600']};
   }
   && > .ant-checkbox-checked > span.ant-checkbox-inner {
-    background-color: none;
+    background-color: transparent;
     background-image: ${(props: ThemeProps): string => `url("${checkSvgWithCustomColor(props.theme.palette.white)}")`};
 
     ::after {
@@ -49,8 +49,8 @@ export const AdditionalData = styled.div`
   margin: 2px 12px 0px 28px;
 `;
 
-export const CheckboxWrapper = styled.div`
+export const CheckboxWrapper = styled.div<{ withoutPadding: boolean }>`
   display: flex;
-  padding: 4px 12px 8px 8px;
+  padding: ${(props): string => (props.withoutPadding ? '0' : '4px 12px 8px 8px')};
   flex-direction: column;
 `;
