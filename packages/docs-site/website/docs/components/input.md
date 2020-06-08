@@ -51,7 +51,7 @@ Same as Input api with additional props:
 
 | Property         | Description                                                                                                                                                        | Type                                                              | Default   |
 | --------------   | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------                                                  | --------- |
-| mask             | The masking pattern to be applied to the <input>                                                                                                                   | string (https://github.com/insin/inputmask-core#pattern)          | -         |
+| mask             | The masking pattern to be applied to the input                                                                                                                     | string (https://github.com/insin/inputmask-core#pattern)          | -         |
 | placeholderChar  | Customized placeholder character used to fill in editable parts of the pattern.                                                                                    | string                                                            | '_'       |
 | formatCharacters | Customized format character definitions for use in the pattern.                                                                                                    | Object (https://github.com/insin/inputmask-core#formatcharacters) | -         |
 
