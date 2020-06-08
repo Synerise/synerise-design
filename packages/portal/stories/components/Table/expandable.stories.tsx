@@ -83,6 +83,8 @@ const stories = {
             selectedRowKeys: selectedRows,
             selections: [
               Table.SELECTION_ALL,
+              undefined,
+              null,
               Table.SELECTION_INVERT,
               {
                 key: 'select_custom',

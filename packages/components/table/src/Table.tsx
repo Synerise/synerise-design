@@ -132,6 +132,7 @@ function DSTable<T extends object = any>(props: DSTableProps<T>): React.ReactEle
         rowSelection={
           selection && {
             ...selection,
+            selections: selection?.selections?.filter(Boolean),
             columnWidth: 72,
             renderCell: (checked: boolean, record: T): React.ReactNode => {
               return (

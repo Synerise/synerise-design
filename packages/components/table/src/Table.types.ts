@@ -11,7 +11,12 @@ export type Selection = {
   onClick: () => void;
 };
 
-export type SelectionItem = typeof DSTable.SELECTION_ALL | typeof DSTable.SELECTION_INVERT | Selection;
+export type SelectionItem =
+  | typeof DSTable.SELECTION_ALL
+  | typeof DSTable.SELECTION_INVERT
+  | Selection
+  | null
+  | undefined;
 
 export type RowSelection<T> = Omit<TableRowSelection<T>, 'selections'> & {
   fixed?: boolean;
