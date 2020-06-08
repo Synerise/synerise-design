@@ -6,7 +6,7 @@ import FileM from '@synerise/ds-icon/dist/icons/FileM';
 import Select from '@synerise/ds-select';
 import { array, boolean, number, select as knobSelect, text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
-import { MaskedInput } from '@synerise/ds-input/dist/Input';
+import { MaskedInput } from '@synerise/ds-input';
 
 const decorator = storyFn => <div style={{ width: '300px' }}>{storyFn()}</div>;
 const sizes = ['default', 'large'];
@@ -81,21 +81,18 @@ const stories = {
     return (
       <div style={{display: 'flex', flexDirection: 'column', width: 400}}>
         <MaskedInput
-          style={{width: '100%'}}
           label="Credit card"
           value={creditCardvalue}
           onChange={e => setCreditCardvalue(e.target.value)}
           mask="1111-1111-1111-1111"
         />
         <MaskedInput
-          style={{width: '100%'}}
           label="Date"
           value={dateValue}
           onChange={e => setDateValue(e.target.value)}
           mask="11/11/1111"
         />
         <MaskedInput
-          style={{width: '100%'}}
           label="Phone number"
           value={phoneValue}
           onChange={e => setPhoneValue(e.target.value)}
