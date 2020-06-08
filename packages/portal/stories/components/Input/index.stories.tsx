@@ -1,12 +1,11 @@
 import * as React from 'react';
-import { Input, TextArea, RawInput, InputGroup } from '@synerise/ds-input';
+import { Input, TextArea, RawInput, InputGroup, MaskedInput } from '@synerise/ds-input';
 
 import Icon from '@synerise/ds-icon';
 import FileM from '@synerise/ds-icon/dist/icons/FileM';
 import Select from '@synerise/ds-select';
 import { array, boolean, number, select as knobSelect, text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
-import { MaskedInput } from '@synerise/ds-input';
 
 const decorator = storyFn => <div style={{ width: '300px' }}>{storyFn()}</div>;
 const sizes = ['default', 'large'];
