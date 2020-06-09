@@ -18,12 +18,43 @@ const CELL_SIZES = {
   small: 'small',
 };
 
+const updateChildren = (label: string, newValue: boolean, children: any[]) => {
+  return children.map(child => {
+    if(!child.children) {
+      return {
+        ...child,
+        [label]: newValue
+      }
+    }
+    return {
+      ...child,
+      [label]: newValue,
+      children: updateChildren(label, newValue, child.children),
+    }
+  });
+};
+
+const updateParents = (data: any[], label: string) => {
+  return data.map(record => {
+    if(!record.children) {
+      return {
+        ...record
+      }
+    }
+    return {
+      ...record,
+      [label]: updateParents(record.children, label).filter(child => child[label] === false).length === 0,
+    }
+  });
+};
+
 const stories = {
   default: withState({
+    data: dataSource,
     expandedRows: [],
     selectedRows: [],
   })(({ store }) => {
-      const { expandedRows, selectedRows } = store.state;
+      const { expandedRows, selectedRows, data } = store.state;
       const handleExpandRow = (key: string): void => {
         if (expandedRows.indexOf(key) < 0) {
           store.set({ expandedRows: [...expandedRows, key] });
@@ -34,6 +65,39 @@ const stories = {
 
       const handleSelectRow = selectedRowKeys => {
         store.set({ selectedRows: selectedRowKeys });
+      };
+
+      const setValue = (newValue: boolean, record: any, label: string) => {
+        const setChildrenValue = (data) => {
+          return data.map((rec) => {
+            if(rec.key === record.key) {
+              if(!rec.children) {
+                return {
+                  ...rec,
+                  [label]: newValue,
+                }
+              }
+              return {
+                ...rec,
+                [label]: newValue,
+                children: updateChildren(label, newValue, rec.children),
+              }
+            } else {
+              if(!rec.children) {
+                return {
+                  ...rec
+                }
+              }
+              return {
+                ...rec,
+                children: setChildrenValue(rec.children)
+              }
+            }
+          });
+        };
+
+        const updatedChilds = setChildrenValue(data);
+        store.set({data: updateParents(updatedChilds, label)});
       };
 
       const getColumns = () => {
@@ -50,39 +114,39 @@ const stories = {
           },
           {
             title: 'Create',
-            dataIndex: 'create',
-            key: 'create',
+            dataIndex: 'create_permission',
+            key: 'create_permission',
             width: 120,
-            render: (value) => <Checkbox withoutPadding checked={value} />
+            render: (value, record) => <Checkbox withoutPadding checked={value} onChange={(e) => setValue(e.target.checked, record, 'create_permission')} />
           },
           {
             title: 'Read',
-            dataIndex: 'read',
-            key: 'read',
+            dataIndex: 'read_permission',
+            key: 'read_permission',
             width: 120,
-            render: (value) => <Checkbox withoutPadding checked={value} />
+            render: (value, record) => <Checkbox withoutPadding checked={value} onChange={(e) => setValue(e.target.checked, record, 'read_permission')} />
           },
           {
             title: 'Edit',
-            dataIndex: 'edit',
-            key: 'edit',
+            dataIndex: 'edit_permission',
+            key: 'edit_permission',
             width: 120,
-            render: (value) => <Checkbox withoutPadding checked={value} />
+            render: (value, record) => <Checkbox withoutPadding checked={value} onChange={(e) => setValue(e.target.checked, record, 'edit_permission')} />
           },
           {
             title: 'Delete',
-            dataIndex: 'delete',
-            key: 'delete',
+            dataIndex: 'delete_permission',
+            key: 'delete_permission',
             width: 120,
-            render: (value) => <Checkbox withoutPadding checked={value} />
+            render: (value, record) => <Checkbox withoutPadding checked={value} onChange={(e) => setValue(e.target.checked, record, 'delete_permission')} />
           }
         ];
       };
 
       return (
         <TreeTable
-          title={`${dataSource.length} records`}
-          dataSource={dataSource}
+          title={`${data.length} records`}
+          dataSource={data}
           columns={getColumns()}
           loading={boolean('Set loading state', false)}
           roundedHeader={boolean('Rounded header', false)}
