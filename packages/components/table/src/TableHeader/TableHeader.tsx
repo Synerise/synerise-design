@@ -14,6 +14,7 @@ interface Props<T extends { key: React.ReactText }> {
   searchComponent?: React.ReactNode;
   filterComponent?: React.ReactNode;
   rowKey?: Function | string;
+  withBorderTop?: boolean;
 }
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
@@ -27,6 +28,7 @@ const TableHeader: React.FC<Props> = ({
   selection,
   dataSource,
   rowKey,
+  withBorderTop,
 }) => {
   const renderLeftSide = React.useMemo(() => {
     return selectedRows && selectedRows > 0 ? (
@@ -46,7 +48,7 @@ const TableHeader: React.FC<Props> = ({
   }, [selectedRows, itemsMenu, title, dataSource, selection, rowKey]);
 
   return (
-    <S.Header>
+    <S.Header withBorderTop={withBorderTop}>
       {renderLeftSide}
       <S.Right>
         {filters?.map((filter: Filter) => (

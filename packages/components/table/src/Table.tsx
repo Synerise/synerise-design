@@ -38,6 +38,7 @@ function DSTable<T extends object = any>(props: DSTableProps<T>): React.ReactEle
     filterComponent,
     rowKey,
     locale,
+    headerWithBorderTop,
   } = props;
 
   const getRowKey = React.useCallback(
@@ -82,6 +83,7 @@ function DSTable<T extends object = any>(props: DSTableProps<T>): React.ReactEle
     const size = selection && selection?.selectedRowKeys && selection?.selectedRowKeys.length;
     return (
       <TableHeader
+        withBorderTop={headerWithBorderTop}
         selectedRows={size}
         title={title}
         onSearch={onSearch}

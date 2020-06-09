@@ -47,6 +47,7 @@ export interface Filter {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export interface DSTableProps<T extends any> extends AntTableProps<T> {
   title?: string | React.ReactNode;
+  headerWithBorderTop?: boolean;
   onSearch?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   itemsMenu?: string | React.ReactNode;
   search?: string;
