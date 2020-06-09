@@ -51,7 +51,7 @@ function Footer() {
               </span>
               <ul className="c-links-box__submenu submenu-group-0">
                 <li>
-                  <a className="c-links-box__lnk" href="/about">About System</a>
+                  <a className="c-links-box__lnk" href="/about">About</a>
                 </li>
                 <li>
                   <a className="c-links-box__lnk" href="/develop">Develop</a>
