@@ -44,7 +44,7 @@ function Footer() {
           </div>
             <div className={`c-links-box ${openedLinks ? 'expanded' : ''}`}>
               <span className="c-links-box__title" role="button"  onClick={() => toggleLinks()}>
-                Colloid DS
+                Colloid Design System
                 <svg className="arrow-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                      viewBox="0 0 24 24" fill="none" stroke="#0E69FF" stroke-width="2" stroke-linecap="round"
                      stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
@@ -52,6 +52,9 @@ function Footer() {
               <ul className="c-links-box__submenu submenu-group-0">
                 <li>
                   <a className="c-links-box__lnk" href="/about">About System</a>
+                </li>
+                <li>
+                  <a className="c-links-box__lnk" href="/develop">Develop</a>
                 </li>
                 <li>
                   <a className="c-links-box__lnk" href="/docs/palette">Guidelines</a>
