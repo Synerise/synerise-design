@@ -336,6 +336,9 @@ export const AntdButton = styled(
             .ds-icon > svg {
               fill: ${props.theme.palette[`${props.customColor}-600`]};
             }
+            svg {
+              fill: ${props.theme.palette[`${props.customColor}-600`]} !important;
+            }
           }
         `}
   }
