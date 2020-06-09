@@ -436,7 +436,7 @@ const stories = {
           categories={store.state.categories}
         />
         <ModalProxy blank closable onCancel={() => store.set({modalVisible: false})} visible={store.state.modalVisible} size={'small'} footer={null}>
-          <Result type='info' title='Inplace of this modal you can implement any filter component.' description='This is just an example of filter trigger.' />
+          <Result type='info' title='In place of this modal you can implement any filter component.' description='This is just an example of filter trigger.' />
         </ModalProxy>
       </>
     )
