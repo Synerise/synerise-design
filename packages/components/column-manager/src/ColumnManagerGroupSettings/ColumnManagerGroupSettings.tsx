@@ -49,7 +49,6 @@ const ColumnManagerGroupSettings: React.FC<Props> = ({ hide, visible, column, on
   }, []);
 
   React.useEffect(() => {
-    console.log(settings);
     setGroupBy(settings?.settings.type);
     setRanges(settings?.settings.ranges || []);
     setIntervalValue(settings?.settings.interval || undefined);
@@ -93,7 +92,7 @@ const ColumnManagerGroupSettings: React.FC<Props> = ({ hide, visible, column, on
     if (groupBy === GROUP_BY.ranges) {
       return (
         <>
-          <RangesForm setRanges={setRanges} ranges={ranges} />
+          <RangesForm setRanges={setRanges} ranges={ranges} type={column?.type || ''} />
           <Button onClick={addRow} type="ghost-primary" mode="icon-label">
             <Icon component={<Add3M />} />
             Add more
@@ -121,12 +120,10 @@ const ColumnManagerGroupSettings: React.FC<Props> = ({ hide, visible, column, on
   }, [hide]);
 
   const groupByRangesDisabled = React.useMemo(() => {
-    const availableColumnTypes = ['text', 'number'];
+    const availableColumnTypes = ['text', 'number', 'date'];
     const type = column?.type || undefined;
     return !type || !availableColumnTypes.includes(type);
   }, [column]);
-
-  console.log(column, settings);
 
   return (
     <Modal onCancel={handleHide} visible={visible} onOk={handleOk} size="small" title="Table content group">

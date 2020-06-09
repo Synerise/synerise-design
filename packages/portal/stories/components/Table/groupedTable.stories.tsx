@@ -17,7 +17,7 @@ import {
   VarTypeNumberM,
 } from '@synerise/ds-icon/dist/icons';
 import DSTable from '@synerise/ds-table';
-import { EMPTY_VIEW, FILTERS, VIEWS } from './content/withFiltersAndSearch.data';
+import { EMPTY_VIEW, CATEGORIES, VIEWS } from './content/withFiltersAndSearch.data';
 import ColumnManager, { SavedView } from '@synerise/ds-column-manager/dist/ColumnManager';
 import * as moment from 'moment';
 import VarTypeStringM from '@synerise/ds-icon/dist/icons/VarTypeStringM';
@@ -76,19 +76,23 @@ const getSuggestions = (value) => {
 
 const saveFilter = (savedView: SavedView, store) => {
   const id = moment().format('MM-DD-YYYY_HH:mm:ss');
+  console.log('SAVED:', savedView, store, id);
+  const savedViews = store.state.savedViews;
+  savedViews[0].items = [
+    ...savedViews[0].items,
+    {
+      ...EMPTY_VIEW,
+      name: savedView.meta.name,
+      description: savedView.meta.description,
+      columns: [...savedView.columns],
+      id: id,
+      created: moment().format('MM-DD-YYYY HH:mm:ss'),
+    }
+  ];
+
   store.set({
     selectedView: id,
-    savedViews: [
-      ...store.state.savedViews,
-      {
-        ...EMPTY_VIEW,
-        name: savedView.meta.name,
-        description: savedView.meta.description,
-        columns: [...savedView.columns],
-        id: id,
-        created: moment().format('MM-DD-YYYY HH:mm:ss'),
-      }
-    ],
+    savedViews,
     columns: [...savedView.columns],
   })
 };
@@ -111,16 +115,26 @@ const editItem = (props, store): void => {
 };
 
 const setSelectedFilter = (props, store): void => {
+  let filters = [];
+  store.state.categories.forEach(cat => {
+    filters = [...filters, ...cat.items];
+  });
   store.set({
     selectedFilter: props.id,
-    columns: store.state.savedViews.filter(filter => filter.id === props.id)[0].columns,
+    columns: filters.filter(filter => filter.id === props.id)[0].columns,
   });
 };
 
 const setSelectedView = (props, store): void => {
+  let savedViews = [];
+  store.state.savedViews.forEach(view => {
+    savedViews = [...savedViews, ...view.items];
+  });
+  console.log(savedViews, props);
+
   store.set({
     selectedView: props.id,
-    columns: store.state.filters.filter(filter => filter.id === props.id)[0].columns,
+    columns: savedViews.filter(view => view.id === props.id)[0].columns,
   });
 };
 
@@ -129,7 +143,7 @@ const stories = {
   default: withState({
     selectedRows: [],
     dataSource: dataSource,
-    filters: FILTERS,
+    categories: CATEGORIES,
     savedViews: VIEWS,
     columns: COLUMNS,
     selectedView: undefined,
@@ -144,8 +158,6 @@ const stories = {
     grouped: false,
   })(({ store }) => {
     const { selectedRows, columns } = store.state;
-
-    console.log(store.state);
 
     const handleSelectRow = selectedRowKeys => {
       store.set({ selectedRows: selectedRowKeys });
@@ -217,22 +229,23 @@ const stories = {
     };
 
     const duplicateItem = (props): void => {
-      const itemForDuplication = store.state.filters.find(item => item.id === props.id);
-      store.set({
-        // @ts-ignore
-        filters: [
-          ...store.state.filters,
-          {
-            ...itemForDuplication,
-            id: Date.now(),
-            categories: ['My filters', 'All filters'],
-            canUpdate: true,
-            canDelete: true,
-            canDuplicate: true,
-            name: `${itemForDuplication.name} - copy`,
-          },
-        ],
-      });
+      action('Duplicate item');
+      // const itemForDuplication = store.state.categories.find(item => item.id === props.id);
+      // store.set({
+      //   // @ts-ignore
+      //   filters: [
+      //     ...store.state.filters,
+      //     {
+      //       ...itemForDuplication,
+      //       id: Date.now(),
+      //       categories: ['My filters', 'All filters'],
+      //       canUpdate: true,
+      //       canDelete: true,
+      //       canDuplicate: true,
+      //       name: `${itemForDuplication.name} - copy`,
+      //     },
+      //   ],
+      // });
     };
 
     const toggleItemFilterVisible = (): void => {
@@ -310,13 +323,32 @@ const stories = {
           break;
         }
         default: {
-          console.log('dafult');
           store.set({
             dataSource: dataSource,
             grouped: false,
           });
         }
       }
+    };
+
+    const getSelectedSavedView = () => {
+      let savedViews = [];
+      store.state.savedViews.forEach(view => {
+        console.log(view);
+        savedViews = [...savedViews, ...view.items];
+      });
+
+      return savedViews.find(view => view.id === store.state.selectedView)
+    };
+
+
+    const getSelectedCategory = () => {
+      let categories = [];
+      store.state.categories.forEach(cat => {
+        categories = [...categories, ...cat.items];
+      });
+
+      return categories.find(filter => filter.id === store.state.selectedFilter);
     };
 
     return (
@@ -339,7 +371,7 @@ const stories = {
                 showList: () => store.set({savedViewsVisible: true}),
                 show: () => store.set({columnManagerVisible: true}),
                 handleClear: () => store.set({selectedView: undefined}),
-                selected: store.state.savedViews.find(filter => filter.id === store.state.selectedView),
+                selected: getSelectedSavedView(),
               },
               {
                 key: 'filter',
@@ -349,7 +381,7 @@ const stories = {
                 showList: () => store.set({itemFilterVisible: true}),
                 show: () => store.set({modalVisible: true}),
                 handleClear: () => store.set({selectedFilter: undefined}),
-                selected: store.state.filters.find(filter => filter.id === store.state.selectedFilter),
+                selected: getSelectedCategory(),
               }
             ]
           }
@@ -409,8 +441,7 @@ const stories = {
               selectItem: (params) => setSelectedView(params, store),
               duplicateItem: action('duplicate item'),
               selectedItemId: store.state.selectedView,
-              categories: [{label: 'All views'}, {label: 'My views'}],
-              items: store.state.savedViews,
+              categories: store.state.savedViews,
               texts: {
                 activateItemTitle: 'By activating this view, you will cancel your unsaved view settings',
                 activate:  'Activate',
@@ -422,6 +453,9 @@ const stories = {
                 searchPlaceholder: 'Search',
                 searchClearTooltip: 'Clear',
                 title: 'Views',
+                itemActionRename: 'Rename',
+                itemActionDuplicate: 'Duplicate',
+                itemActionDelete: 'Delete',
               }
             }}
           />
@@ -433,8 +467,7 @@ const stories = {
             selectItem={props => setSelectedFilter(props, store)}
             duplicateItem={props => duplicateItem(props)}
             selectedItemId={store.state.selectedFilter}
-            categories={[{label: 'All filters'}, {label: 'My filters'}]}
-            items={store.state.filters}
+            categories={store.state.categories}
           />
       </>)
     }

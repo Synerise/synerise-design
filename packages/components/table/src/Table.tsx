@@ -3,7 +3,6 @@ import '@synerise/ds-core/dist/js/style';
 import './style/index.less';
 import Icon from '@synerise/ds-icon';
 import SpinnerM from '@synerise/ds-icon/dist/icons/SpinnerM';
-import Checkbox from '@synerise/ds-checkbox';
 import * as S from './Table.styles';
 import { DSTableProps } from './Table.types';
 import TableHeader from './TableHeader/TableHeader';
@@ -28,7 +27,6 @@ function DSTable<T extends object = any>(props: DSTableProps<T>): React.ReactEle
     searchComponent,
     filterComponent,
     rowKey,
-    locale,
     headerWithBorderTop,
     hideTitleBar,
     grouped,

@@ -2,7 +2,6 @@ import { TableProps } from 'antd/lib/table';
 import * as React from 'react';
 import { TableRowSelection } from 'antd/lib/table/interface';
 import DSTable from './Table';
-import { SELECTION_ALL, SELECTION_INVERT } from './Table';
 import { GroupType } from './GroupTable/GroupTable';
 
 export type AntTableProps<T> = Omit<TableProps<T>, 'title' | 'subTitle' | 'onSearch' | 'itemsMenu' | 'search'>;
