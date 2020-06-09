@@ -112,7 +112,7 @@ export const IconContainer = styled.div<{ compact?: boolean }>`
   transform: translate(-5px, ${(props): string => (props.compact ? '1px' : '-5px')});
 `;
 
-export const ChildrenContainer = styled.div<{ hasHeader?: boolean }>`
-  padding: 24px;
+export const ChildrenContainer = styled.div<{ hasHeader?: boolean; withoutPadding?: boolean }>`
+  padding: ${(props): string => (props.withoutPadding ? '0' : '24px')};
   ${(props): string | false => !!props.hasHeader && `padding-top:0;`}
 `;
