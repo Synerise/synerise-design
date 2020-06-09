@@ -28,6 +28,7 @@ import Divider from '@synerise/ds-divider';
 import Search from '@synerise/ds-search';
 import VarTypeStringM from '@synerise/ds-icon/dist/icons/VarTypeStringM';
 import Tooltip from '@synerise/ds-tooltip';
+import { ItemType } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.types';
 
 const decorator = (storyFn) => (
   <div style={{ padding: 20, width: '100vw', minWidth: '100%', position: 'absolute', top: 0, left: 0}}>
@@ -86,16 +87,24 @@ const editItem = (props, store): void => {
 };
 
 const setSelectedFilter = (props, store): void => {
+  let categories = [];
+  store.state.categories.forEach(cat => {
+    categories = [...categories, ...cat.items];
+  });
   store.set({
     selectedFilter: props.id,
-    columns: store.state.savedViews.filter(filter => filter.id === props.id)[0].columns,
+    columns: categories.filter(filter => filter.id === props.id)[0].columns,
   });
 };
 
 const setSelectedView = (props, store): void => {
+  let savedViews = [];
+  store.state.savedViews.forEach(cat => {
+    savedViews = [...savedViews, ...cat.items];
+  });
   store.set({
     selectedView: props.id,
-    columns: store.state.filters.filter(filter => filter.id === props.id)[0].columns,
+    columns: savedViews.filter(filter => filter.id === props.id)[0].columns,
   });
 };
 
@@ -209,7 +218,7 @@ const stories = {
                   <Menu.Item onClick={action('Duplicate')} prefixel={<Icon component={<DuplicateM />} />}>
                     Duplicate
                   </Menu.Item>
-                  <Menu.Item onClick={action('Delete')} danger prefixel={<Icon component={<TrashM />} />}>
+                  <Menu.Item onClick={action('Delete')} type={ItemType.DANGER} prefixel={<Icon component={<TrashM />} />}>
                     Delete
                   </Menu.Item>
                 </Menu>
@@ -410,6 +419,9 @@ const stories = {
               searchPlaceholder: 'Search',
               searchClearTooltip: 'Clear',
               title: 'Views',
+              itemActionRename: 'Rename',
+              itemActionDuplicate: 'Duplicate',
+              itemActionDelete: 'Delete',
             }
           }}
         />
@@ -424,7 +436,7 @@ const stories = {
           categories={store.state.categories}
         />
         <ModalProxy blank closable onCancel={() => store.set({modalVisible: false})} visible={store.state.modalVisible} size={'small'} footer={null}>
-          <Result type='info' title='Inplace of this modal you can implement any filter component.' description='This is just an example of filter trigger.' />
+          <Result type='info' title='In place of this modal you can implement any filter component.' description='This is just an example of filter trigger.' />
         </ModalProxy>
       </>
     )

@@ -28,6 +28,7 @@ import Divider from '@synerise/ds-divider';
 import Search from '@synerise/ds-search';
 import VarTypeStringM from '@synerise/ds-icon/dist/icons/VarTypeStringM';
 import Tooltip from '@synerise/ds-tooltip';
+import { ItemType } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.types';
 import Card from '@synerise/ds-card';
 
 const decorator = (storyFn) => (
@@ -87,16 +88,24 @@ const editItem = (props, store): void => {
 };
 
 const setSelectedFilter = (props, store): void => {
+  let categories = [];
+  store.state.categories.forEach(cat => {
+    categories = [...categories, ...cat.items];
+  });
   store.set({
     selectedFilter: props.id,
-    columns: store.state.savedViews.filter(filter => filter.id === props.id)[0].columns,
+    columns: categories.filter(filter => filter.id === props.id)[0].columns,
   });
 };
 
 const setSelectedView = (props, store): void => {
+  let savedViews = [];
+  store.state.savedViews.forEach(cat => {
+    savedViews = [...savedViews, ...cat.items];
+  });
   store.set({
     selectedView: props.id,
-    columns: store.state.filters.filter(filter => filter.id === props.id)[0].columns,
+    columns: savedViews.filter(filter => filter.id === props.id)[0].columns,
   });
 };
 
@@ -210,7 +219,7 @@ const stories = {
                   <Menu.Item onClick={action('Duplicate')} prefixel={<Icon component={<DuplicateM />} />}>
                     Duplicate
                   </Menu.Item>
-                  <Menu.Item onClick={action('Delete')} danger prefixel={<Icon component={<TrashM />} />}>
+                  <Menu.Item onClick={action('Delete')} type={ItemType.DANGER} prefixel={<Icon component={<TrashM />} />}>
                     Delete
                   </Menu.Item>
                 </Menu>
@@ -262,177 +271,180 @@ const stories = {
     };
 
     return (
-      <Card
-        withHeader={true}
-        title={text('Set card title', 'Table on card')}
-        withoutPadding
-        size={select('Select card size', ['small', 'medium', 'large', 'extraLarge'], 'extraLarge')}
-      >
-        <Table
-          title={`${filteredDataSource().length} ${text('Set name of table items', 'records')}`}
-          headerWithBorderTop={true}
-          dataSource={filteredDataSource()}
-          columns={getColumns()}
-          loading={boolean('Set loading state', false)}
-          cellSize={select('Set cells size', CELL_SIZES, CELL_SIZES.default)}
-          filters={
-            [
-              {
-                key: 'view',
-                icon: <Grid2M />,
-                tooltips: { default: 'Table view', clear: 'Clear view', define: 'Define view', list: 'Saved views' },
-                openedLabel: 'Define',
-                showList: () => store.set({savedViewsVisible: true}),
-                show: () => store.set({columnManagerVisible: true}),
-                handleClear: () => store.set({selectedView: undefined}),
-                selected: selectedView(),
-              },
-              {
-                key: 'filter',
-                icon: <FilterM />,
-                tooltips: { default: 'Filter', clear: 'Clear filter', define: 'Define filter', list: 'Saved filters' },
-                openedLabel: 'Define',
-                showList: () => store.set({itemFilterVisible: true}),
-                show: () => store.set({modalVisible: true}),
-                handleClear: () => store.set({selectedFilter: undefined}),
-                selected: selectedFilter(),
-              }
-            ]
-          }
-          pagination={{
-            showSizeChanger: boolean('Show size changer', true),
-            showQuickJumper: boolean('Show quick jumper', true),
-            onChange: action('pageChanged'),
-          }}
-          rowKey={row => row.key}
-          selection={boolean('Enable row selection', false) && {
-            onChange: handleSelectRow,
-            selectedRowKeys: selectedRows,
-            selections: [
-              Table.SELECTION_ALL,
-              {
-                key: 'custom',
-                onClick: action('select_custom'),
-                label: 'Select custom',
-              }
-            ],
-          }}
-          itemsMenu={
-            <ItemsMenu>
-              <Button onClick={action('Export')} type='secondary' mode='icon-label'>
-                <Icon component={<FileDownloadM/>}/>
-                Export
-              </Button>
-              <Button onClick={action('Edit')} type='secondary' mode='icon-label'>
-                <Icon component={<EditM/>}/>
-                Edit
-              </Button>
-              <Button onClick={action('Delete')} type='secondary' mode='icon-label'>
-                <Icon component={<TrashM/>}/>
-                Delete
-              </Button>
-            </ItemsMenu>
-          }
-          searchComponent={
-            <Search
-              clearTooltip= 'Clear'
-              placeholder= 'Search'
-              width={300}
-              parameters={parameters.slice(0, number('Parameters count', 5))}
-              recent={recent.slice(0, number('Recent count', 5))}
-              suggestions={store.state.searchSuggestions}
-              value={store.state.searchValue}
-              parameterValue={store.state.searchFilterValue}
-              onValueChange={value => {
-                store.set({searchValue: value});
-              }}
-              onParameterValueChange={value => {
-                store.set({
-                  searchFilterValue: value,
-                  searchSuggestions: getSuggestions(value),
-                });
-
-              }}
-              recentDisplayProps={{
-                tooltip: 'Recent',
-                title: 'Recent',
-                rowHeight: 32,
-                visibleRows: 3,
-                itemRender: (item: FilterElement) => <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>,
-                divider: (
-                  <div style={{ padding: '12px', paddingBottom: '0px' }}>
-                    {' '}
-                    <Divider dashed={true} />{' '}
-                  </div>
-                ),
-              }}
-              parametersDisplayProps={{
-                tooltip: 'Parameters',
-                title: 'Parameters',
-                rowHeight: 32,
-                visibleRows: 6,
-                itemRender: (item: FilterElement) => (
-                  <Menu.Item
-                    highlight={store.state.searchValue}
-                    onItemHover={(): void => {}}
-                    prefixel={item && <Icon component={item && item.icon} />}
-                  >
-                    {item && item.text}
-                  </Menu.Item>
-                ),
-              }}
-              suggestionsDisplayProps={{
-                tooltip: 'Suggestions',
-                title: 'Suggestions',
-                rowHeight: 32,
-                visibleRows: 6,
-                itemRender: (item: FilterElement) => <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>,
-              }}
-            />
-          }
-        />
-        <ColumnManager
-          hide={() => store.set({columnManagerVisible: false})}
-          visible={store.state.columnManagerVisible}
-          savedViewsVisible={store.state.savedViewsVisible}
-          hideSavedViews={() => store.set({savedViewsVisible: false})}
-          columns={store.state.columns}
-          onApply={(columns) => store.set({columns: columns, columnManagerVisible: false})}
-          onSave={(savedView) => saveFilter(savedView, store)}
-          itemFilterConfig={{
-            removeItem: (params) => removeItem(params, store),
-            editItem: (params) => editItem(params, store),
-            selectItem: (params) => setSelectedView(params, store),
-            duplicateItem: action('duplicate item'),
-            selectedItemId: store.state.selectedView,
-            categories: store.state.savedViews,
-            texts: {
-              activateItemTitle: 'By activating this view, you will cancel your unsaved view settings',
-              activate:  'Activate',
-              cancel: 'Cancel',
-              deleteConfirmationTitle: 'Delete view',
-              deleteConfirmationDescription: 'Deleting this view will permanently remove it from templates library. All tables using this view will be reset.',
-              deleteLabel: 'Delete',
-              noResults: 'No results',
-              searchPlaceholder: 'Search',
-              searchClearTooltip: 'Clear',
-              title: 'Views',
+        <Card
+          withHeader={true}
+          title={text('Set card title', 'Table on card')}
+          withoutPadding
+          size={select('Select card size', ['small', 'medium', 'large', 'extraLarge'], 'extraLarge')}
+        >
+          <Table
+            title={`${filteredDataSource().length} ${text('Set name of table items', 'records')}`}
+            headerWithBorderTop
+            dataSource={filteredDataSource()}
+            columns={getColumns()}
+            loading={boolean('Set loading state', false)}
+            cellSize={select('Set cells size', CELL_SIZES, CELL_SIZES.default)}
+            filters={
+              [
+                {
+                  key: 'view',
+                  icon: <Grid2M />,
+                  tooltips: { default: 'Table view', clear: 'Clear view', define: 'Define view', list: 'Saved views' },
+                  openedLabel: 'Define',
+                  showList: () => store.set({savedViewsVisible: true}),
+                  show: () => store.set({columnManagerVisible: true}),
+                  handleClear: () => store.set({selectedView: undefined}),
+                  selected: selectedView(),
+                },
+                {
+                  key: 'filter',
+                  icon: <FilterM />,
+                  tooltips: { default: 'Filter', clear: 'Clear filter', define: 'Define filter', list: 'Saved filters' },
+                  openedLabel: 'Define',
+                  showList: () => store.set({itemFilterVisible: true}),
+                  show: () => store.set({modalVisible: true}),
+                  handleClear: () => store.set({selectedFilter: undefined}),
+                  selected: selectedFilter(),
+                }
+              ]
             }
-          }}
-        />
-        <ItemFilter
-          visible={store.state.itemFilterVisible}
-          hide={toggleItemFilterVisible}
-          removeItem={props => removeItem(props, store)}
-          editItem={props => editItem(props, store)}
-          selectItem={props => setSelectedFilter(props, store)}
-          duplicateItem={action('duplicate item')}
-          selectedItemId={store.state.selectedFilter}
-          categories={store.state.categories}
-        />
-        <ModalProxy blank closable onCancel={() => store.set({modalVisible: false})} visible={store.state.modalVisible} size={'small'} footer={null}>
-          <Result type='info' title='Inplace of this modal you can implement any filter component.' description='This is just an example of filter trigger.' />
-        </ModalProxy>
+            pagination={{
+              showSizeChanger: boolean('Show size changer', true),
+              showQuickJumper: boolean('Show quick jumper', true),
+              onChange: action('pageChanged'),
+            }}
+            rowKey={row => row.key}
+            selection={boolean('Enable row selection', false) && {
+              onChange: handleSelectRow,
+              selectedRowKeys: selectedRows,
+              selections: [
+                Table.SELECTION_ALL,
+                {
+                  key: 'custom',
+                  onClick: action('select_custom'),
+                  label: 'Select custom',
+                }
+              ],
+            }}
+            itemsMenu={
+              <ItemsMenu>
+                <Button onClick={action('Export')} type='secondary' mode='icon-label'>
+                  <Icon component={<FileDownloadM/>}/>
+                  Export
+                </Button>
+                <Button onClick={action('Edit')} type='secondary' mode='icon-label'>
+                  <Icon component={<EditM/>}/>
+                  Edit
+                </Button>
+                <Button onClick={action('Delete')} type='secondary' mode='icon-label'>
+                  <Icon component={<TrashM/>}/>
+                  Delete
+                </Button>
+              </ItemsMenu>
+            }
+            searchComponent={
+              <Search
+                clearTooltip= 'Clear'
+                placeholder= 'Search'
+                width={300}
+                parameters={parameters.slice(0, number('Parameters count', 5))}
+                recent={recent.slice(0, number('Recent count', 5))}
+                suggestions={store.state.searchSuggestions}
+                value={store.state.searchValue}
+                parameterValue={store.state.searchFilterValue}
+                onValueChange={value => {
+                  store.set({searchValue: value});
+                }}
+                onParameterValueChange={value => {
+                  store.set({
+                    searchFilterValue: value,
+                    searchSuggestions: getSuggestions(value),
+                  });
+
+                }}
+                recentDisplayProps={{
+                  tooltip: 'Recent',
+                  title: 'Recent',
+                  rowHeight: 32,
+                  visibleRows: 3,
+                  itemRender: (item: FilterElement) => <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>,
+                  divider: (
+                    <div style={{ padding: '12px', paddingBottom: '0px' }}>
+                      {' '}
+                      <Divider dashed={true} />{' '}
+                    </div>
+                  ),
+                }}
+                parametersDisplayProps={{
+                  tooltip: 'Parameters',
+                  title: 'Parameters',
+                  rowHeight: 32,
+                  visibleRows: 6,
+                  itemRender: (item: FilterElement) => (
+                    <Menu.Item
+                      highlight={store.state.searchValue}
+                      onItemHover={(): void => {}}
+                      prefixel={item && <Icon component={item && item.icon} />}
+                    >
+                      {item && item.text}
+                    </Menu.Item>
+                  ),
+                }}
+                suggestionsDisplayProps={{
+                  tooltip: 'Suggestions',
+                  title: 'Suggestions',
+                  rowHeight: 32,
+                  visibleRows: 6,
+                  itemRender: (item: FilterElement) => <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>,
+                }}
+              />
+            }
+          />
+          <ColumnManager
+            hide={() => store.set({columnManagerVisible: false})}
+            visible={store.state.columnManagerVisible}
+            savedViewsVisible={store.state.savedViewsVisible}
+            hideSavedViews={() => store.set({savedViewsVisible: false})}
+            columns={store.state.columns}
+            onApply={(columns) => store.set({columns: columns, columnManagerVisible: false})}
+            onSave={(savedView) => saveFilter(savedView, store)}
+            itemFilterConfig={{
+              removeItem: (params) => removeItem(params, store),
+              editItem: (params) => editItem(params, store),
+              selectItem: (params) => setSelectedView(params, store),
+              duplicateItem: action('duplicate item'),
+              selectedItemId: store.state.selectedView,
+              categories: store.state.savedViews,
+              texts: {
+                activateItemTitle: 'By activating this view, you will cancel your unsaved view settings',
+                activate:  'Activate',
+                cancel: 'Cancel',
+                deleteConfirmationTitle: 'Delete view',
+                deleteConfirmationDescription: 'Deleting this view will permanently remove it from templates library. All tables using this view will be reset.',
+                deleteLabel: 'Delete',
+                noResults: 'No results',
+                searchPlaceholder: 'Search',
+                searchClearTooltip: 'Clear',
+                title: 'Views',
+                itemActionRename: 'Rename',
+                itemActionDuplicate: 'Duplicate',
+                itemActionDelete: 'Delete',
+              }
+            }}
+          />
+          <ItemFilter
+            visible={store.state.itemFilterVisible}
+            hide={toggleItemFilterVisible}
+            removeItem={props => removeItem(props, store)}
+            editItem={props => editItem(props, store)}
+            selectItem={props => setSelectedFilter(props, store)}
+            duplicateItem={action('duplicate item')}
+            selectedItemId={store.state.selectedFilter}
+            categories={store.state.categories}
+          />
+          <ModalProxy blank closable onCancel={() => store.set({modalVisible: false})} visible={store.state.modalVisible} size={'small'} footer={null}>
+            <Result type='info' title='In place of this modal you can implement any filter component.' description='This is just an example of filter trigger.' />
+          </ModalProxy>
       </Card>
     )
   }),
