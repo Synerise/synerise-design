@@ -39,6 +39,7 @@ function DSTable<T extends object = any>(props: DSTableProps<T>): React.ReactEle
     rowKey,
     locale,
     headerWithBorderTop,
+    hideTitleBar,
   } = props;
 
   const getRowKey = React.useCallback(
@@ -82,7 +83,7 @@ function DSTable<T extends object = any>(props: DSTableProps<T>): React.ReactEle
   const renderHeader = React.useCallback((): React.ReactNode => {
     const size = selection && selection?.selectedRowKeys && selection?.selectedRowKeys.length;
     return (
-      title && (
+      !hideTitleBar && (
         <TableHeader
           withBorderTop={headerWithBorderTop}
           selectedRows={size}

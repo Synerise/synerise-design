@@ -55,7 +55,8 @@ const CELL_SIZES = {
 
 const stories = {
   default: () => ({
-    title: boolean('Show title', true) && `${dataSource.length} records`,
+    title: `${dataSource.length} records`,
+    hideTitleBar: boolean('Hide title bar', false),
     dataSource,
     columns: COLUMNS,
     loading: boolean('Set loading state', false),
