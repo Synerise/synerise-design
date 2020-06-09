@@ -79,7 +79,7 @@ const About = () => {
       </section>
       <section className="ds-our-approach u-bg-light-gray">
         <div className="l-grid">
-          <h2>Out approach</h2>
+          <h2>Our approach</h2>
           <div className="ds-approach-boxes">
             <div className="ds-approach-box l-col-desktop-4">
               <img src={useBaseUrl('images/information-02-m-02-knowledge-02-04-bulb-tip-m-copy.svg')} alt="Attentive" />
