@@ -96,7 +96,18 @@ function DSTable<T extends object = any>(props: DSTableProps<T>): React.ReactEle
         rowKey={rowKey}
       />
     );
-  }, [selection, title, onSearch, dataSource, filters, itemsMenu, searchComponent, filterComponent, rowKey]);
+  }, [
+    selection,
+    title,
+    onSearch,
+    dataSource,
+    filters,
+    itemsMenu,
+    searchComponent,
+    filterComponent,
+    rowKey,
+    headerWithBorderTop,
+  ]);
 
   const toggleRowSelection = React.useCallback(
     (checked, record) => {
