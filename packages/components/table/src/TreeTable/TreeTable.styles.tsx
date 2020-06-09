@@ -32,7 +32,7 @@ export const Indent = styled.span<{ width: number; active: boolean; level: numbe
     background-color: ${(props): string =>
       props.level >= 0
         ? props.theme.palette[`${LEVELS[props.level % LEVELS.length]}-${getColor(props.active, props.level)}`]
-        : props.theme.palette['grey-500']};
+        : props.theme.palette['grey-600']};
   }
 `;
 
