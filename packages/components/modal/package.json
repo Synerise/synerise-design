@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-modal",
-  "version": "0.11.35",
+  "version": "0.11.36",
   "description": "Modal UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "synerise/synerise-design",
@@ -25,7 +25,7 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-button": "^0.12.14",
+    "@synerise/ds-button": "^0.12.15",
     "@synerise/ds-icon": "^0.17.0",
     "@synerise/ds-typography": "^0.8.3"
   },

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.4.23...@synerise/ds-card@0.5.0) (2020-06-09)
+
+
+### Features
+
+* **card:** add withoutPadding prop ([e5c6895](https://github.com/Synerise/synerise-design/commit/e5c68957161f774372b74776087ee27181384370))
+
+
+
+
+
 ## [0.4.23](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.4.22...@synerise/ds-card@0.4.23) (2020-06-05)
 
 **Note:** Version bump only for package @synerise/ds-card

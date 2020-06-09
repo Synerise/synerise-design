@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.72.0](https://github.com/synerise/synerise-design/compare/portal@0.71.0...portal@0.72.0) (2020-06-09)
+
+
+### Bug Fixes
+
+* **column-manager:** fix selected filter in storybook ([5667b0d](https://github.com/synerise/synerise-design/commit/5667b0daa24f5b7565501ade224ca5579acb2c75))
+* **table:** add hideTitlebar props ([23dad8b](https://github.com/synerise/synerise-design/commit/23dad8bbf365e0b9ff80641355257db15327972d))
+* **table:** fix tree table example ([d7d30d4](https://github.com/synerise/synerise-design/commit/d7d30d41f4207cfd2f62a110b28cd15e847ebdbf))
+
+
+### Features
+
+* **table:** add CardHeader in example with Card ([518ddd1](https://github.com/synerise/synerise-design/commit/518ddd18054e4cc02da4a408df9411a3a5a07547))
+* **table:** add Table on card example ([404cd46](https://github.com/synerise/synerise-design/commit/404cd466599e95560cc28cee3588cf30d254bb37))
+* **table:** doesnt render TableTitle when title prop is not set ([31f0a52](https://github.com/synerise/synerise-design/commit/31f0a529809f507a2ba1a3cb78a54da47028477c))
+
+
+
+
+
 # [0.71.0](https://github.com/synerise/synerise-design/compare/portal@0.70.0...portal@0.71.0) (2020-06-08)
 
 

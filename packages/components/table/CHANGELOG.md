@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.13.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.12.0...@synerise/ds-table@0.13.0) (2020-06-09)
+
+
+### Bug Fixes
+
+* **table:** add hideTitlebar props ([6c6c8d3](https://github.com/synerise/synerise-design/commit/6c6c8d35c6a41137a4aaaf92ae50c23c9f1f7f99))
+* **table:** add hideTitlebar props ([23dad8b](https://github.com/synerise/synerise-design/commit/23dad8bbf365e0b9ff80641355257db15327972d))
+* **table:** fix eslint errors ([b133f94](https://github.com/synerise/synerise-design/commit/b133f9445fb80b3003ed5b7314653c4bd4b14611))
+* **table:** fix tree table indent colors ([a967301](https://github.com/synerise/synerise-design/commit/a96730113a6150b840388928a72a6c4414f4aea1))
+* **table:** fix tree table indent colors ([7f51fd9](https://github.com/synerise/synerise-design/commit/7f51fd90c3f1d3e2fe69243532bf8e6712875026))
+* **table:** refactor ([2fd19e7](https://github.com/synerise/synerise-design/commit/2fd19e74cdca013f88fb983e0c7bdb7989bf5a32))
+
+
+### Features
+
+* **table:** add props for line above table header ([1e8b431](https://github.com/synerise/synerise-design/commit/1e8b4312d67b2bce691721a6cf7cc0630ca0b21f))
+* **table:** doesnt render TableTitle when title prop is not set ([31f0a52](https://github.com/synerise/synerise-design/commit/31f0a529809f507a2ba1a3cb78a54da47028477c))
+
+
+
+
+
 # [0.12.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.11.5...@synerise/ds-table@0.12.0) (2020-06-08)
 
 

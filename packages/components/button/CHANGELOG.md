@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.15](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.12.14...@synerise/ds-button@0.12.15) (2020-06-09)
+
+
+### Bug Fixes
+
+* **button:** fix disabled button custom color ghost ([684b41b](https://github.com/synerise/synerise-design/commit/684b41b1d73551d3a1afb508900a7046c19adbdd))
+* **button:** fix disabled button custom color ghost ([3aecf40](https://github.com/synerise/synerise-design/commit/3aecf40d2523d451ad261ea44763c498869ea455))
+* **button:** fix disabled button custom color ghost ([8f53c14](https://github.com/synerise/synerise-design/commit/8f53c14f170fb7e989aba90c9631844308072331))
+* **button:** fix disabled button custom color ghost ([8193f57](https://github.com/synerise/synerise-design/commit/8193f5759a1c62e21dabbf93ba612643fe815f1c))
+
+
+
+
+
 ## [0.12.14](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.12.13...@synerise/ds-button@0.12.14) (2020-06-05)
 
 **Note:** Version bump only for package @synerise/ds-button

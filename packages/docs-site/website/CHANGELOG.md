@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.2](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.4.1...docs@0.4.2) (2020-06-09)
+
+
+### Bug Fixes
+
+* **docs:** fix card docs ([0b66d4e](https://gitlab.synerise.com/Frontend/synerise-design/commit/0b66d4e3be9470fdaf591cb39688112bc89b3b7d))
+* **docs:** fix copy in footer navigation ([1656f6c](https://gitlab.synerise.com/Frontend/synerise-design/commit/1656f6c40715d271fe046048afbb80b950eae6e3))
+* **docs:** update dosc copy ([ae5c056](https://gitlab.synerise.com/Frontend/synerise-design/commit/ae5c0561eb80dfde35a56aa534d7907f5373b728))
+
+
+
+
+
 ## [0.4.1](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.4.0...docs@0.4.1) (2020-06-08)
 
 
