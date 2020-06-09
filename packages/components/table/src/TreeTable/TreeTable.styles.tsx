@@ -1,6 +1,11 @@
 import styled from 'styled-components';
 
-const LEVELS = ['yellow', 'green', 'blue', 'pink', 'violet', 'orange', 'purple', 'red', 'grey'];
+const LEVELS = ['yellow', 'green', 'cyan', 'violet', 'orange', 'purple', 'blue', 'grey'];
+
+const getColor = (active: boolean, level: number): string => {
+  if (level === LEVELS.indexOf('cyan') && active) return '500';
+  return active ? '600' : '200';
+};
 
 export const Indents = styled.div<{ width: number; withSelection: boolean }>`
   position: absolute;
@@ -26,8 +31,8 @@ export const Indent = styled.span<{ width: number; active: boolean; level: numbe
     width: 2px;
     background-color: ${(props): string =>
       props.level >= 0
-        ? props.theme.palette[`${LEVELS[props.level % LEVELS.length]}-${props.active ? '400' : '200'}`]
-        : props.theme.palette['grey-400']};
+        ? props.theme.palette[`${LEVELS[props.level % LEVELS.length]}-${getColor(props.active, props.level)}`]
+        : props.theme.palette['grey-600']};
   }
 `;
 
