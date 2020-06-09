@@ -32,7 +32,6 @@ export const AntdCheckbox = styled(BaseAntCheckbox)<Props & ThemeProps>`
     box-shadow: inset 0 0 0 1px ${(props: ThemeProps): string => props.theme.palette['blue-600']};
   }
   && > .ant-checkbox-checked > span.ant-checkbox-inner {
-    background-color: transparent;
     background-image: ${(props: ThemeProps): string => `url("${checkSvgWithCustomColor(props.theme.palette.white)}")`};
 
     ::after {
