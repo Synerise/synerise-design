@@ -262,9 +262,15 @@ const stories = {
     };
 
     return (
-      <Card withoutPadding size={select('Select card size', ['small', 'medium', 'large', 'extraLarge'], 'extraLarge')}>
+      <Card
+        withHeader={true}
+        title={text('Set card title', 'Table on card')}
+        withoutPadding
+        size={select('Select card size', ['small', 'medium', 'large', 'extraLarge'], 'extraLarge')}
+      >
         <Table
           title={`${filteredDataSource().length} ${text('Set name of table items', 'records')}`}
+          headerWithBorderTop={true}
           dataSource={filteredDataSource()}
           columns={getColumns()}
           loading={boolean('Set loading state', false)}
