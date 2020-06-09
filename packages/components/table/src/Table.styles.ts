@@ -10,6 +10,7 @@ export const Header = styled.div<{ withBorderTop?: boolean }>`
   display: flex;
   justify-content: space-between;
   border-top: ${(props): string => (props.withBorderTop ? `1px solid ${props.theme.palette['grey-200']}` : '0')};
+  border-bottom: 1px solid ${(props): string => props.theme.palette['grey-200']};
 `;
 
 export const Size = styled.div`

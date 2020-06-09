@@ -82,19 +82,21 @@ function DSTable<T extends object = any>(props: DSTableProps<T>): React.ReactEle
   const renderHeader = React.useCallback((): React.ReactNode => {
     const size = selection && selection?.selectedRowKeys && selection?.selectedRowKeys.length;
     return (
-      <TableHeader
-        withBorderTop={headerWithBorderTop}
-        selectedRows={size}
-        title={title}
-        onSearch={onSearch}
-        filters={filters}
-        itemsMenu={itemsMenu}
-        selection={selection}
-        dataSource={dataSource}
-        searchComponent={searchComponent}
-        filterComponent={filterComponent}
-        rowKey={rowKey}
-      />
+      title && (
+        <TableHeader
+          withBorderTop={headerWithBorderTop}
+          selectedRows={size}
+          title={title}
+          onSearch={onSearch}
+          filters={filters}
+          itemsMenu={itemsMenu}
+          selection={selection}
+          dataSource={dataSource}
+          searchComponent={searchComponent}
+          filterComponent={filterComponent}
+          rowKey={rowKey}
+        />
+      )
     );
   }, [
     selection,
