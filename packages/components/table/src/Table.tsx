@@ -110,6 +110,7 @@ function DSTable<T extends object = any>(props: DSTableProps<T>): React.ReactEle
     filterComponent,
     rowKey,
     headerWithBorderTop,
+    hideTitleBar,
   ]);
 
   const toggleRowSelection = React.useCallback(
