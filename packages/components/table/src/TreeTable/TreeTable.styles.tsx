@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const LEVELS = ['yellow', 'green', 'cyan', 'violet', 'orange', 'purple', 'blue', 'grey'];
 
 const getColor = (active: boolean, level: number): string => {
-  if (level === 2 && active) return '500';
+  if (level === LEVELS.indexOf('cyan') && active) return '500';
   return active ? '600' : '200';
 };
 
