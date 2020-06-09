@@ -4,11 +4,12 @@ import { CheckboxWrapper } from '@synerise/ds-checkbox/dist/Checkbox.styles';
 import Menu from '@synerise/ds-menu';
 import { IconContainer } from '@synerise/ds-icon/dist/Icon.styles';
 
-export const Header = styled.div`
+export const Header = styled.div<{ withBorderTop?: boolean }>`
   background: #ffffff;
   padding: 20px 24px;
   display: flex;
   justify-content: space-between;
+  border-top: ${(props): string => (props.withBorderTop ? `1px solid ${props.theme.palette['grey-200']}` : '0')};
 `;
 
 export const Size = styled.div`
