@@ -123,7 +123,7 @@ const CATEGORIES = [
     hasMore: false,
     items: [
       {
-        id: '0004',
+        id: '0000',
         name: 'Filter #1',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do elit',
         created: randomDate(),
@@ -137,7 +137,7 @@ const CATEGORIES = [
         columns: COLUMNS,
       },
       {
-        id: '0005',
+        id: '0001',
         name: 'Filter #2',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do elit',
         created: randomDate(),
@@ -149,20 +149,6 @@ const CATEGORIES = [
           lastname: 'Kowalski',
         },
         columns: COLUMNS,
-      },
-      {
-        id: '0006',
-        name: 'Filter #3',
-        created: randomDate(),
-        canUpdate: false,
-        canDelete: false,
-        canDuplicate: true,
-        user: {
-          avatar_url: 'https://www.w3schools.com/howto/img_avatar.png',
-          firstname: 'Kamil',
-          lastname: 'Kowalski',
-        },
-        columns: [],
       }
     ],
   },
@@ -265,9 +251,13 @@ const editItem = (props, store): void => {
 };
 
 const setSelectedItem = (props, store): void => {
+  let categories = [];
+  store.state.categories.forEach(cat => {
+    categories = [...categories, ...cat.items];
+  });
   store.set({
     selectedItemId: props.id,
-    columns: store.state.filters.filter(filter => filter.id === props.id)[0].columns,
+    columns: categories.filter(filter => filter.id === props.id)[0].columns,
   });
 };
 
@@ -278,7 +268,6 @@ const stories = {
     selectedItemId: undefined,
     columnManagerVisible: false,
   })(({ store }) => {
-
     return (
       <>
         <Button type="primary" mode="simple" onClick={() => store.set({columnManagerVisible: true})}>
