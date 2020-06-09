@@ -87,16 +87,24 @@ const editItem = (props, store): void => {
 };
 
 const setSelectedFilter = (props, store): void => {
+  let categories = [];
+  store.state.categories.forEach(cat => {
+    categories = [...categories, ...cat.items];
+  });
   store.set({
     selectedFilter: props.id,
-    columns: store.state.savedViews.filter(filter => filter.id === props.id)[0].columns,
+    columns: categories.filter(filter => filter.id === props.id)[0].columns,
   });
 };
 
 const setSelectedView = (props, store): void => {
+  let savedViews = [];
+  store.state.savedViews.forEach(cat => {
+    savedViews = [...savedViews, ...cat.items];
+  });
   store.set({
     selectedView: props.id,
-    columns: store.state.filters.filter(filter => filter.id === props.id)[0].columns,
+    columns: savedViews.filter(filter => filter.id === props.id)[0].columns,
   });
 };
 
@@ -411,6 +419,9 @@ const stories = {
               searchPlaceholder: 'Search',
               searchClearTooltip: 'Clear',
               title: 'Views',
+              itemActionRename: 'Rename',
+              itemActionDuplicate: 'Duplicate',
+              itemActionDelete: 'Delete',
             }
           }}
         />
