@@ -330,6 +330,13 @@ export const AntdButton = styled(
               fill: ${props.theme.palette[`${props.customColor}-500`]} !important;
             }
           }
+          &:disabled {
+            opacity: 0.4;
+            color: ${props.theme.palette[`${props.customColor}-600`]};
+            .ds-icon > svg {
+              fill: ${props.theme.palette[`${props.customColor}-600`]};
+            }
+          }
         `}
   }
 `;
