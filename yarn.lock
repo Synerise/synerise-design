@@ -3951,6 +3951,15 @@
   dependencies:
     "@synerise/ds-icon" "^0.14.3"
 
+"@synerise/ds-card@^0.4.11":
+  version "0.4.23"
+  resolved "https://registry.yarnpkg.com/@synerise/ds-card/-/ds-card-0.4.23.tgz#28e85395f7d31efef541c4ad1e8c1b4c8f2ed23e"
+  integrity sha512-L0/nKJCWovsnlxSKZxbVtGY1Hsh4BixxNLztCjqyvoE4dhx4izwisBKwSAQ7apUb2jFS+OsZo2X5anPKv5OuTw==
+  dependencies:
+    "@synerise/ds-icon" "^0.17.0"
+    "@synerise/ds-typography" "^0.8.3"
+    "@synerise/ds-utils" "^0.8.26"
+
 "@synerise/ds-divider@^0.3.14":
   version "0.3.14"
   resolved "https://registry.yarnpkg.com/@synerise/ds-divider/-/ds-divider-0.3.14.tgz#704f5e0edec6d9d7540c48ba451befef40660ca0"

@@ -29,6 +29,7 @@ import Search from '@synerise/ds-search';
 import VarTypeStringM from '@synerise/ds-icon/dist/icons/VarTypeStringM';
 import Tooltip from '@synerise/ds-tooltip';
 import Card from '@synerise/ds-card';
+import { ItemType } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.types';
 
 const decorator = (storyFn) => (
   <div style={{ padding: 20, width: '100vw', minWidth: '100%', position: 'absolute', top: 0, left: 0}}>
@@ -210,7 +211,7 @@ const stories = {
                   <Menu.Item onClick={action('Duplicate')} prefixel={<Icon component={<DuplicateM />} />}>
                     Duplicate
                   </Menu.Item>
-                  <Menu.Item onClick={action('Delete')} danger prefixel={<Icon component={<TrashM />} />}>
+                  <Menu.Item onClick={action('Delete')} type={ItemType.DANGER} prefixel={<Icon component={<TrashM />} />}>
                     Delete
                   </Menu.Item>
                 </Menu>
