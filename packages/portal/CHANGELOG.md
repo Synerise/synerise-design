@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.72.1](https://github.com/synerise/synerise-design/compare/portal@0.72.0...portal@0.72.1) (2020-06-10)
+
+
+### Bug Fixes
+
+* **table:** fix column-manager in table stories ([73dc9d1](https://github.com/synerise/synerise-design/commit/73dc9d137a129c207b3e257f46c7f19cc8321224))
+* **table:** typo in stories ([fa1500d](https://github.com/synerise/synerise-design/commit/fa1500d9eb0af8cbc65ff4e118dc14bf5bc17e45))
+* **table:** use MenuItemType=danger instead of danger prop in stories ([55580ae](https://github.com/synerise/synerise-design/commit/55580ae98621a4de62eeb8350b604586c5e44329))
+
+
+
+
+
 # [0.72.0](https://github.com/synerise/synerise-design/compare/portal@0.71.0...portal@0.72.0) (2020-06-09)
 
 
