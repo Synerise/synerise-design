@@ -34,3 +34,7 @@ export const Label = styled.span`
   font-weight: 400;
   margin-top: 4px;
 `;
+
+export const Icon = styled.div`
+  margin-right: 8px;
+`;

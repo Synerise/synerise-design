@@ -10,6 +10,7 @@ import Switch from '@synerise/ds-switch/dist/Switch';
 import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
 import * as React from 'react';
 import Checkbox from '@synerise/ds-checkbox/dist';
+import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 
 export const COLUMNS = [
   {
@@ -122,6 +123,15 @@ export const COLUMNS = [
     textWrap: 'word-break',
     ellipsis: true,
     render: (avatar) => <Avatar backgroundColor='red' backgroundColorHue='050' size='medium' iconComponent={<Icon component={avatar.icon} color='red' />}>{avatar.initials}</Avatar>
+  },
+  {
+    title: 'Icon Avatar Label',
+    dataIndex: 'avatar',
+    key: 'avatar',
+    width: 320,
+    textWrap: 'word-break',
+    ellipsis: true,
+    render: (avatar) => <TableCell.AvatarLabelCell icon={<Icon component={<LockM />} color={theme.palette['grey-500']} />} avatar={<Avatar backgroundColor='green' backgroundColorHue='400' size='medium' shape={'square'}>{avatar.initials}</Avatar>} title={avatar.title}/>
   },
   {
     title: 'Avatar with title',
