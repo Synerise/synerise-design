@@ -106,7 +106,7 @@ class SearchInput extends React.Component<SearchInputProps, SearchInputState> {
     return (
       <S.SearchInputWrapper>
         <S.SearchInputContent
-          className={isInputOpen ? 'is-open' : 'search-input-wrapper'}
+          className={isInputOpen || !!value || !!filterLabel ? 'is-open search-input-wrapper' : 'search-input-wrapper'}
           offset={inputOffset}
           filterLabel={filterLabel}
           onClick={this.handleSearchInputContentClick}
