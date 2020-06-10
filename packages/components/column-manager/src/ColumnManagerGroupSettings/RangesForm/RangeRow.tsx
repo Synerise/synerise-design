@@ -23,7 +23,7 @@ const RangeRow: React.FC<Props> = ({ range, setRange, index, first, type }: Prop
   const inputMask = React.useMemo(() => {
     switch (type) {
       case 'number':
-        return '111111111111';
+        return 'D11111111111';
       case 'text':
         return 'B';
       default:
@@ -34,23 +34,30 @@ const RangeRow: React.FC<Props> = ({ range, setRange, index, first, type }: Prop
   return (
     <S.RangeRow>
       <MaskedInput
+        /* eslint-disable-next-line @typescript-eslint/ban-ts-ignore */
+        // @ts-ignore
         mask={inputMask}
-        label={first ? 'From' : null}
+        placeholderChar=" "
         formatCharacters={{
           B: {
             validate: (char: string): boolean => /\*|[a-z]|[A-Z]/.test(char),
+            transform: (char: string): string => char.toUpperCase(),
           },
           D: {
             validate: (char: string): boolean => /\*|\d/.test(char),
           },
         }}
+        label={first ? 'From' : null}
         resetMargin
         value={from}
         onChange={(event: React.ChangeEvent<HTMLInputElement>): void => setFrom(event.target.value)}
         onBlur={handleBlur}
       />
       <MaskedInput
+        /* eslint-disable-next-line @typescript-eslint/ban-ts-ignore */
+        // @ts-ignore
         mask={inputMask}
+        placeholderChar=" "
         formatCharacters={{
           B: {
             validate: (char: string): boolean => /\*|[a-z]|[A-Z]/.test(char),
