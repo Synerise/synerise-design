@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.73.0](https://github.com/synerise/synerise-design/compare/portal@0.72.1...portal@0.73.0) (2020-06-10)
+
+
+### Features
+
+* **table:** add icon to AvatarLabel cell type ([14c2918](https://github.com/synerise/synerise-design/commit/14c29182cb25f3ed13047b7d7ae2c8ba9ce8ac89))
+
+
+
+
+
 ## [0.72.1](https://github.com/synerise/synerise-design/compare/portal@0.72.0...portal@0.72.1) (2020-06-10)
 
 

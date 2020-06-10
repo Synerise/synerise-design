@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.14.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.13.1...@synerise/ds-table@0.14.0) (2020-06-10)
+
+
+### Features
+
+* **table:** add icon to AvatarLabel cell type ([14c2918](https://github.com/synerise/synerise-design/commit/14c29182cb25f3ed13047b7d7ae2c8ba9ce8ac89))
+
+
+
+
+
 ## [0.13.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.13.0...@synerise/ds-table@0.13.1) (2020-06-10)
 
 **Note:** Version bump only for package @synerise/ds-table
