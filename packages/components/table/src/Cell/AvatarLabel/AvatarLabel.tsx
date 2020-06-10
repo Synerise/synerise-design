@@ -5,11 +5,13 @@ type Props = {
   avatar: React.ReactElement;
   title: string | React.ReactNode;
   labels?: (string | React.ReactNode)[];
+  icon?: React.ReactElement;
 };
 
-const AvatarLabel: React.FC<Props> = ({ avatar, title, labels }) => {
+const AvatarLabel: React.FC<Props> = ({ avatar, title, labels, icon }) => {
   return (
     <S.AvatarLabel>
+      {icon && <S.Icon>{icon}</S.Icon>}
       <S.Avatar>{avatar}</S.Avatar>
       <S.Description>
         <S.Title withLabels={Boolean(labels?.length)}>{title}</S.Title>
