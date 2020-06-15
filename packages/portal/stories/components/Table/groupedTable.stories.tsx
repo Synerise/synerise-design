@@ -3,7 +3,7 @@ import { action } from '@storybook/addon-actions';
 import { withState } from '@dump247/storybook-state';
 import Table, { ItemsMenu, TableCell } from '@synerise/ds-table';
 import * as React from 'react';
-import { COLUMNS, dataSource } from './content/groupedTable.data';
+import { COLUMNS, DATA_SOURCE } from './content/groupedTable.data';
 import Avatar from '@synerise/ds-avatar';
 import Button from '@synerise/ds-button';
 import Icon from '@synerise/ds-icon';
@@ -12,16 +12,14 @@ import {
   FileDownloadM,
   FilterM,
   Grid2M,
-  TrashM, VarTypeBooleanM, VarTypeDateM,
-  VarTypeListM,
-  VarTypeNumberM,
+  TrashM
 } from '@synerise/ds-icon/dist/icons';
 import DSTable from '@synerise/ds-table';
 import { EMPTY_VIEW, CATEGORIES, VIEWS } from './content/withFiltersAndSearch.data';
 import ColumnManager, { SavedView } from '@synerise/ds-column-manager/dist/ColumnManager';
 import * as moment from 'moment';
-import VarTypeStringM from '@synerise/ds-icon/dist/icons/VarTypeStringM';
 import ItemFilter from '@synerise/ds-item-filter/dist/ItemFilter';
+import { GROUP_BY } from '@synerise/ds-column-manager/dist/ColumnManagerGroupSettings/ColumnManagerGroupSettings';
 
 const decorator = storyFn => <div style={{ padding: 20, width: '100vw', minWidth: '100%' }}>{storyFn()}</div>;
 
@@ -31,52 +29,9 @@ const CELL_SIZES = {
   small: 'small',
 };
 
-const COLUMN_ICONS = {
-  text: <VarTypeStringM />,
-  number: <VarTypeNumberM />,
-  list: <VarTypeListM />,
-  boolean: <VarTypeBooleanM />,
-  date: <VarTypeDateM />
-};
-
-const parameters = COLUMNS.map((column) => ({
-  text: column.name,
-  icon: COLUMN_ICONS[column.type]
-}));
-
-const recent = dataSource.map(record => ({
-  text: record.name,
-  filter: 'name',
-}));
-
-const getSuggestions = (value) => {
-  if(value) {
-    const paramName = value.toLowerCase();
-    const allSuggestions = dataSource.map(record => {
-      const value = {
-        first_name: record.first_name,
-        last_name: record.last_name,
-        age: record.age,
-        city: record.city
-      };
-
-      return {
-        text: value[paramName],
-        filter: paramName
-      }
-    });
-    return allSuggestions.reduce((unique, item) => {
-      const exist = unique.find((record) => record.text === item.text);
-      return exist ? unique : [...unique, item];
-    }, []);
-  }
-  return [];
-};
-
-
 const saveFilter = (savedView: SavedView, store) => {
   const id = moment().format('MM-DD-YYYY_HH:mm:ss');
-  console.log('SAVED:', savedView, store, id);
+  // console.log('SAVED:', savedView, store, id);
   const savedViews = store.state.savedViews;
   savedViews[0].items = [
     ...savedViews[0].items,
@@ -130,7 +85,6 @@ const setSelectedView = (props, store): void => {
   store.state.savedViews.forEach(view => {
     savedViews = [...savedViews, ...view.items];
   });
-  console.log(savedViews, props);
 
   store.set({
     selectedView: props.id,
@@ -142,7 +96,7 @@ const setSelectedView = (props, store): void => {
 const stories = {
   default: withState({
     selectedRows: [],
-    dataSource: dataSource,
+    dataSource: DATA_SOURCE,
     categories: CATEGORIES,
     savedViews: VIEWS,
     columns: COLUMNS,
@@ -218,6 +172,14 @@ const stories = {
               sorter: (a, b) => a.age - b.age,
             }
           }
+          case 'last_activity': {
+            return {
+              title: 'Last activity',
+              dataIndex: 'last_activity',
+              key: 'last_activity',
+              render: (last_activity) => moment(last_activity).format('DD/MM/YYYY HH:mm')
+            }
+          }
           default:
             return {
               ...column,
@@ -252,19 +214,20 @@ const stories = {
       store.set({ itemFilterVisible: !store.state.itemFilterVisible });
     };
 
-    const groupByValue = (columnSettings) => {
+    const groupByValue = (groupSettings) => {
       const result = [];
-      const columnValues = dataSource.map(column => {
-        return column[columnSettings.key];
+      const columnValues = DATA_SOURCE.map(column => {
+        return column[groupSettings.key];
       });
       const uniqueValues = new Set(columnValues);
       uniqueValues.forEach((uniqueValue, index) => {
-        const group = dataSource.filter(row => row[columnSettings.key] === uniqueValue);
+        const group = DATA_SOURCE.filter(row => row[groupSettings.key] === uniqueValue);
         result.push({
-          column: columnSettings.key,
+          column: groupSettings.key,
           key: index,
           value: uniqueValue,
-          rows: group
+          rows: group,
+          groupType: GROUP_BY.value,
         });
       });
       store.set({
@@ -273,24 +236,77 @@ const stories = {
       })
     };
 
-    const groupByRanges = (columnSettings) => {
-      console.log(columnSettings);
+    const getRange = (range, column): any[] => {
+      const compare = (value) => {
+        let val = value;
+        if (column.type === 'text') {
+          val = value[0].toUpperCase();
+        }
+        if( range.from.value && range.to.value) {
+          return range.from.value <= val && val <= range.to.value;
+        }
+
+        if( range.from.value && (range.to.value === undefined || range.to.value === '')) {
+          console.log(range.from.value <= val, range.from.value, val);
+          return range.from.value <= val;
+        }
+
+        if( (range.from.value === undefined || range.from.value === '') && range.to.value) {
+          return val <= range.to.value
+        }
+
+      };
+
+      return DATA_SOURCE.filter(row => {
+        return compare(row[column.key]);
+      });
     };
 
-    const groupByInterval = (columnSettings) => {
-      const {interval} = columnSettings.settings;
+    const groupByRanges = (groupSettings) => {
+      const { settings, column } = groupSettings;
+      let groupedRows = [];
+      const groups = settings.ranges.map((range, index) => {
+        const rangeRows = getRange(range, column);
+        groupedRows = [...groupedRows, ...rangeRows];
+        return {
+          column: column.key,
+          key: index,
+          value: `${range.from.value || ''} - ${range.to.value || ''}`,
+          rows: rangeRows,
+          groupType: GROUP_BY.ranges,
+        }
+      });
+      const rest = DATA_SOURCE.filter(row => groupedRows.indexOf(row) === -1);
+      if(rest.length) {
+        groups.push({
+          column: column.key,
+          key: groups.length,
+          value: `Others`,
+          rows: rest
+        })
+      }
+      store.set({
+        dataSource: groups,
+        grouped: true,
+      })
+    };
+
+    const groupByInterval = (groupSettings) => {
+      const {interval} = groupSettings.settings;
       const groups = [];
-      while (dataSource.length) {
-        groups.push(dataSource.splice(0, interval));
+      const data = [...DATA_SOURCE];
+      while (data.length) {
+        groups.push(data.splice(0, interval));
       }
       const result = groups.map((group, index) => {
         const firstItem = index * interval + 1;
         const lastItem = index * interval + interval;
         return {
-          column: columnSettings.column.key,
+          column: groupSettings.column.key,
           key: index,
           value: `${firstItem} - ${lastItem}`,
-          rows: group
+          rows: group,
+          groupType: GROUP_BY.interval,
         }
       });
       store.set({
@@ -303,28 +319,27 @@ const stories = {
     const applyGroupSettings = (groupSettings) => {
       if(!groupSettings) {
         store.set({
-          dataSource: dataSource,
+          dataSource: DATA_SOURCE,
           grouped: false,
         });
         return;
       }
-      console.log(groupSettings);
       switch(groupSettings.settings.type){
-        case 'Value': {
+        case GROUP_BY.value: {
           groupByValue(groupSettings.column);
           break;
         }
-        case 'Ranges': {
+        case GROUP_BY.ranges: {
           groupByRanges(groupSettings);
           break;
         }
-        case 'Interval': {
+        case GROUP_BY.interval: {
           groupByInterval(groupSettings);
           break;
         }
         default: {
           store.set({
-            dataSource: dataSource,
+            dataSource: DATA_SOURCE,
             grouped: false,
           });
         }
@@ -334,7 +349,6 @@ const stories = {
     const getSelectedSavedView = () => {
       let savedViews = [];
       store.state.savedViews.forEach(view => {
-        console.log(view);
         savedViews = [...savedViews, ...view.items];
       });
 
@@ -350,6 +364,8 @@ const stories = {
 
       return categories.find(filter => filter.id === store.state.selectedFilter);
     };
+
+    console.log(store.state, DATA_SOURCE);
 
     return (
         <>

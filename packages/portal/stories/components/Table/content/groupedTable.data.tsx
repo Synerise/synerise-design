@@ -1,3 +1,5 @@
+import randomDate from '../../../utils/randomDate';
+
 export const COLUMNS = [
   {
     id: '0',
@@ -31,15 +33,25 @@ export const COLUMNS = [
     type: 'number',
     fixed: undefined
   },
+  {
+    id: '4',
+    name: 'Last activity',
+    key: 'last_activity',
+    dataIndex: 'last_activity',
+    type: 'date',
+    visible: true,
+    fixed: undefined,
+  }
 ];
 
-export const dataSource = [
+export const DATA_SOURCE = [
   {
     key: 0,
     first_name: 'Adrian',
     last_name: 'Nowak',
     city: 'Kraków',
     age: 34,
+    last_activity: randomDate(),
   },
   {
     key: 1,
@@ -47,6 +59,7 @@ export const dataSource = [
     last_name: 'Nowak',
     city: 'Warszawa',
     age: 23,
+    last_activity: randomDate(),
   },
   {
     key: 2,
@@ -54,6 +67,7 @@ export const dataSource = [
     last_name: 'Nowak',
     city: 'Kraków',
     age: 56,
+    last_activity: randomDate(),
   },
   {
     key: 3,
@@ -61,6 +75,7 @@ export const dataSource = [
     last_name: 'Kowalski',
     city: 'Kraków',
     age: 34,
+    last_activity: randomDate(),
   },
   {
     key: 4,
@@ -68,6 +83,7 @@ export const dataSource = [
     last_name: 'Kowalski',
     city: 'Warszawa',
     age: 23,
+    last_activity: randomDate(),
   },
   {
     key: 5,
@@ -75,6 +91,7 @@ export const dataSource = [
     last_name: 'Kowalski',
     city: 'Kraków',
     age: 56,
+    last_activity: randomDate(),
   },
 ];
 
