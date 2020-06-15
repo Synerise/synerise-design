@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import Table, { ColumnsType } from 'antd/lib/table';
+import { GroupType as GroupByType } from '@synerise/ds-column-manager/dist/ColumnManager';
 import { DSTableProps } from '../Table.types';
 import GroupTableBody from './GroupTableBody/GroupTableBody';
 import TableHeader from '../TableHeader/TableHeader';
@@ -21,6 +22,7 @@ export type GroupType<T> = {
   value: React.ReactText | boolean | object;
   key: React.ReactText;
   rows: T[];
+  groupType: GroupByType;
 };
 
 const EMPTY_COLUMN = {

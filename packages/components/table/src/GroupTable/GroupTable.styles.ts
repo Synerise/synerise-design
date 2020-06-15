@@ -51,7 +51,6 @@ export const GroupValueLabel = styled.span`
 
 export const SubRow = styled.td<{ selected?: boolean; withBorderLeft?: boolean; sorted?: boolean }>`
   background-color: ${(props): string => {
-    console.log(props);
     if (props.selected) return 'rgb(250, 248, 234) !important;';
     if (props.sorted) return 'rgba(213, 232, 246, 0.44) !important;';
     return `${props.theme.palette['grey-050']};`;
