@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.73.1](https://github.com/synerise/synerise-design/compare/portal@0.73.0...portal@0.73.1) (2020-06-15)
+
+
+### Bug Fixes
+
+* **cascader:** added use effect to refresh selectedIds ([990c317](https://github.com/synerise/synerise-design/commit/990c3176ae7c4cbdf62cfaa804da7278a08c3831))
+* **table:** fix font color in TreeTable example ([0ad0302](https://github.com/synerise/synerise-design/commit/0ad030206b286bda88819da7dd025670582d898f))
+
+
+
+
+
 # [0.73.0](https://github.com/synerise/synerise-design/compare/portal@0.72.1...portal@0.73.0) (2020-06-10)
 
 

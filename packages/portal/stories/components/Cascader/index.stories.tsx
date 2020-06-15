@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Cascader from '@synerise/ds-cascader';
 import * as mock from './mock.json';
-import { boolean, number } from '@storybook/addon-knobs';
+import {  number } from '@storybook/addon-knobs';
 import { limitCategories } from './utils';
 
 const decorator = storyFn => (
@@ -22,6 +22,7 @@ const stories = {
         onCategorySelect={(item, selected) => {
           console.log('Category clicked:', item, 'Selected:', selected);
         }}
+        selectedCategoriesIds={[]}
         dropdownMaxHeight={302}
 
       />
