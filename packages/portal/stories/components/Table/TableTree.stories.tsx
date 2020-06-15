@@ -108,7 +108,7 @@ const stories = {
             key: 'name',
             render: (name) => {
               return (
-                <span style={{fontWeight: 500, color: '#576116', fontSize: '13px', lineHeight: '18px'}}>{name}</span>
+                <span style={{fontWeight: 500, fontSize: '13px', lineHeight: '18px'}}>{name}</span>
               )
             }
           },
