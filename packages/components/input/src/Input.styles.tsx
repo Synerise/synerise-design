@@ -10,6 +10,7 @@ const errorInputStyle = (props: ThemeProps): string => `
     border-color: ${props.theme.palette['red-600']};
     box-shadow: inset 0 0 0 1px ${props.theme.palette['red-600']};
     background: ${props.theme.palette['red-050']};
+    border-radius: 4px;
   }
 `;
 
@@ -163,4 +164,15 @@ export const ContentAbove = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 8px;
+`;
+
+export const PrefixWrapper = styled.div`
+  background: ${(props): string => props.theme.palette['grey-050']};
+  flex: 1;
+  height: 100%;
+`;
+export const SuffixWrapper = styled.div`
+  background: ${(props): string => props.theme.palette['grey-050']};
+  flex: 1;
+  height: 100%;
 `;

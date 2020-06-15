@@ -20,6 +20,8 @@ export interface Props {
   icon2?: React.ReactElement;
   resetMargin?: boolean;
   handleInputRef?: (ref: React.MutableRefObject<HTMLInputElement | HTMLTextAreaElement | undefined>) => void;
+  prefixel?: React.ReactNode | string;
+  suffixel?: React.ReactNode | string;
 }
 
 type EnhancedProps = Props & (InputProps | TextAreaProps);
@@ -41,6 +43,8 @@ const enhancedInput = <P extends object>(
   icon2,
   resetMargin,
   handleInputRef,
+  prefixel,
+  suffixel,
   error,
   ...antdInputProps
 }): React.ReactElement => {
@@ -99,6 +103,8 @@ const enhancedInput = <P extends object>(
         <WrappedComponent
           // eslint-disable-next-line react/jsx-props-no-spreading
           {...antdInputProps}
+          addonBefore={!!prefixel && <S.PrefixWrapper>{prefixel}</S.PrefixWrapper>}
+          addonAfter={!!suffixel && <S.SuffixWrapper>{suffixel}</S.SuffixWrapper>}
           error={showError || error}
           onChange={handleChange}
           value={antdInputProps.value}
