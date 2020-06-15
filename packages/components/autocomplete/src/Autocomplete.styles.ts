@@ -79,7 +79,7 @@ export const AutocompleteWrapper = styled.div`
       }
     }
     .ant-select-selection-placeholder {
-      padding-left: 4px;
+      padding-left: 3px;
     }
 
     .ant-select-dropdown {
@@ -98,4 +98,6 @@ export const AutocompleteWrapper = styled.div`
       font-weight: 500;
     }
   }
+  .ant-select-selection-search-input{
+  padding: 0 0 0 0px;
 `;
