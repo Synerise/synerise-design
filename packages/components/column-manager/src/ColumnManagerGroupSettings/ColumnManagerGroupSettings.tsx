@@ -7,12 +7,13 @@ import Tooltip from '@synerise/ds-tooltip';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import Button from '@synerise/ds-button';
 import InputNumber from '@synerise/ds-input-number';
-import { GroupSettings, GroupType } from '../ColumnManager.types';
-import { Column } from '../ColumnManagerItem/ColumManagerIte.types';
+import Alert from '@synerise/ds-alert';
+import { GroupSettings, GroupType, Texts } from '../ColumnManager.types';
+import { Column } from '../ColumnManagerItem/ColumManagerItem.types';
 import * as S from './ColumnManangerGroupSettings.styles';
 import RangesForm from './RangesForm/RangesForm';
 
-const GROUP_BY: { [key: string]: string } = {
+export const GROUP_BY: { [key: string]: string } = {
   value: 'Value',
   ranges: 'Ranges',
   interval: 'Interval',
@@ -25,25 +26,66 @@ interface Props {
   visible: boolean;
   settings?: GroupSettings;
   column?: Column;
+  texts: {
+    [k in Texts]: string | React.ReactNode;
+  };
 }
 
 export interface Range {
-  from: React.ReactText | undefined;
-  to: React.ReactText | undefined;
+  from: {
+    value: React.ReactText | undefined;
+    error: React.ReactNode | undefined;
+  };
+  to: {
+    value: React.ReactText | undefined;
+    error: React.ReactNode | undefined;
+  };
 }
 
 const EMPTY_RANGE = {
-  from: undefined,
-  to: undefined,
+  from: {
+    value: undefined,
+    error: undefined,
+  },
+  to: {
+    value: undefined,
+    error: undefined,
+  },
 };
 
-const ColumnManagerGroupSettings: React.FC<Props> = ({ hide, visible, column, onOk, settings }: Props) => {
+const validateRange = (range: Range, index: number, ranges: Range[]): Range => {
+  const validRange = { ...range };
+  if (
+    (range.from.value === undefined || range.from.value === '') &&
+    (range.to.value === undefined || range.to.value === '')
+  ) {
+    validRange.from.error = 'You should fill on of these fields';
+    validRange.to.error = 'You should fill on of these fields';
+  } else {
+    if ((range.from.value === undefined || range.from.value === '') && index > 0) {
+      validRange.from.error = 'Only first From input can be set as empty';
+    } else {
+      validRange.from.error = undefined;
+    }
+    if ((range.to.value === undefined || range.from.value === '') && index < ranges.length - 1) {
+      validRange.to.error = 'Only last To input can be set as empty';
+    } else {
+      validRange.to.error = undefined;
+    }
+  }
+
+  return validRange;
+};
+
+const ColumnManagerGroupSettings: React.FC<Props> = ({ hide, visible, column, onOk, settings, texts }: Props) => {
   const [groupBy, setGroupBy] = React.useState<GroupType | undefined>(undefined);
-  const [ranges, setRanges] = React.useState<Range[]>([]);
+  const [ranges, setRanges] = React.useState<Range[]>([EMPTY_RANGE]);
   const [interval, setIntervalValue] = React.useState<number | undefined>(undefined);
+  const [error, setError] = React.useState<string | undefined>(undefined);
 
   const clearState = React.useCallback(() => {
     setRanges([]);
+    setError(undefined);
     setGroupBy(undefined);
     setIntervalValue(undefined);
   }, []);
@@ -52,30 +94,64 @@ const ColumnManagerGroupSettings: React.FC<Props> = ({ hide, visible, column, on
     setGroupBy(settings?.settings.type);
     setRanges(settings?.settings.ranges || []);
     setIntervalValue(settings?.settings.interval || undefined);
+
+    return (): void => {
+      clearState();
+    };
   }, [settings, setGroupBy, setRanges, setIntervalValue]);
+
+  const validate = React.useCallback((): boolean => {
+    if (groupBy === GROUP_BY.value) return true;
+    if (groupBy === undefined) {
+      setError('Error - Choose type of grouping');
+      return false;
+    }
+    if (groupBy === GROUP_BY.interval) {
+      if (!interval) {
+        setError('Error - Provide correct interval value');
+      } else {
+        setError(undefined);
+      }
+      return Boolean(interval);
+    }
+    if (groupBy === GROUP_BY.ranges) {
+      const validatedRanges = ranges.map(validateRange);
+      const hasErrors = validatedRanges.filter(range => range.from.error || range.to.error);
+
+      setRanges(validatedRanges);
+      if (hasErrors.length) {
+        setError('Error - Provide correct value');
+        return false;
+      }
+    }
+    setError(undefined);
+    return true;
+  }, [groupBy, ranges, interval]);
 
   const handleOk = React.useCallback(() => {
     if (groupBy === GROUP_BY.disabled) {
       onOk(undefined);
       return;
     }
-    const currentSettings = {
-      column,
-      settings: {
-        type: groupBy,
-        ranges: groupBy === GROUP_BY.ranges && ranges,
-        interval: groupBy === GROUP_BY.interval && (interval as number),
-      },
-    };
-    clearState();
-    onOk(currentSettings);
+    if (validate()) {
+      const currentSettings = {
+        column,
+        settings: {
+          type: groupBy,
+          ranges: groupBy === GROUP_BY.ranges && ranges.map(range => ({ from: range.from, to: range.to })),
+          interval: groupBy === GROUP_BY.interval && (interval as number),
+        },
+      };
+      clearState();
+      onOk(currentSettings);
+    }
   }, [onOk, column, groupBy, ranges, interval]);
 
   const selectLabel = React.useMemo(() => {
     return (
       <S.Title>
-        Set grouping type
-        <Tooltip title="More info about grouping types..." trigger={['hover']}>
+        {texts.groupingType}
+        <Tooltip title={texts.groupingTypeTooltip} trigger={['hover']}>
           <S.IconWrapper>
             <Icon component={<InfoFillS />} color={theme.palette['grey-600']} />
           </S.IconWrapper>
@@ -92,10 +168,10 @@ const ColumnManagerGroupSettings: React.FC<Props> = ({ hide, visible, column, on
     if (groupBy === GROUP_BY.ranges) {
       return (
         <>
-          <RangesForm setRanges={setRanges} ranges={ranges} type={column?.type || ''} />
+          <RangesForm setRanges={setRanges} ranges={ranges} type={column?.type || ''} texts={texts} />
           <Button onClick={addRow} type="ghost-primary" mode="icon-label">
             <Icon component={<Add3M />} />
-            Add more
+            {texts.addRange}
           </Button>
         </>
       );
@@ -103,11 +179,7 @@ const ColumnManagerGroupSettings: React.FC<Props> = ({ hide, visible, column, on
     if (groupBy === GROUP_BY.interval) {
       return (
         <S.IntervalInput>
-          <InputNumber
-            label="Set interval"
-            value={interval}
-            onChange={(value?: number): void => setIntervalValue(value)}
-          />
+          <InputNumber min={1} label={texts.intervalPlaceholder} value={interval} onChange={setIntervalValue} />
         </S.IntervalInput>
       );
     }
@@ -126,18 +198,19 @@ const ColumnManagerGroupSettings: React.FC<Props> = ({ hide, visible, column, on
   }, [column]);
 
   return (
-    <Modal onCancel={handleHide} visible={visible} onOk={handleOk} size="small" title="Table content group">
+    <Modal onCancel={handleHide} visible={visible} onOk={handleOk} size="small" title={texts.groupTitle}>
       <S.ModalContent>
         {/*
         // @ts-ignore */}
-        <Select label={selectLabel} value={groupBy} onChange={(value): void => setGroupBy(value)} placeholder="Select">
-          <Select.Option value={GROUP_BY.value}>Group by value</Select.Option>
+        <Select label={selectLabel} value={groupBy} onChange={setGroupBy} placeholder={texts.selectPlaceholder}>
+          <Select.Option value={GROUP_BY.value}>{texts.groupByValue}</Select.Option>
           <Select.Option value={GROUP_BY.ranges} disabled={groupByRangesDisabled}>
-            Group by ranges
+            {texts.groupByRanges}
           </Select.Option>
-          <Select.Option value={GROUP_BY.interval}>Group by intervals</Select.Option>
-          <Select.Option value={GROUP_BY.disabled}>Group disabled</Select.Option>
+          <Select.Option value={GROUP_BY.interval}>{texts.groupByIntervals}</Select.Option>
+          <Select.Option value={GROUP_BY.disabled}>{texts.groupDisabled}</Select.Option>
         </Select>
+        {error && <Alert type="error" description={error} message="" showIcon />}
         {renderForm()}
       </S.ModalContent>
     </Modal>

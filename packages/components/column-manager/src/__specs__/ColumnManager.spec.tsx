@@ -3,7 +3,7 @@ import { fireEvent, wait } from '@testing-library/react';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import { ViewMeta } from '../ColumnManager.types';
 import ColumnManager from '../ColumnManager';
-import { Column } from '../ColumnManagerItem/ColumManagerIte.types';
+import { Column } from '../ColumnManagerItem/ColumManagerItem.types';
 
 interface View {
   meta: ViewMeta;

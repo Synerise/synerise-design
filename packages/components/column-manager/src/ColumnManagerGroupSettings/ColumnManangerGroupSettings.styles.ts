@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { AntdSelect } from '@synerise/ds-select/dist/Select.styles';
+import { AntdAlert } from '@synerise/ds-alert/dist/Alert.styles';
 
 export const Title = styled.span`
   display: flex;
@@ -15,6 +16,10 @@ export const ModalContent = styled.div`
   align-items: flex-start;
   justify-content: flex-start;
   min-height: 250px;
+
+  ${AntdAlert} {
+    margin-bottom: 20px;
+  }
 
   ${AntdSelect} {
     width: 100%;

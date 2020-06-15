@@ -1,7 +1,7 @@
 import { ItemFilterProps } from '@synerise/ds-item-filter/dist/ItemFilter';
 import * as React from 'react';
 import { IntlFormatters } from 'react-intl';
-import { Column } from './ColumnManagerItem/ColumManagerIte.types';
+import { Column } from './ColumnManagerItem/ColumManagerItem.types';
 import { Range } from './ColumnManagerGroupSettings/ColumnManagerGroupSettings';
 
 export type Texts =
@@ -25,7 +25,20 @@ export type Texts =
   | 'viewDescriptionPlaceholder'
   | 'switchOn'
   | 'switchOff'
-  | 'mustNotBeEmpty';
+  | 'mustNotBeEmpty'
+  | 'groupByValue'
+  | 'groupByRanges'
+  | 'groupByIntervals'
+  | 'groupDisabled'
+  | 'groupTitle'
+  | 'selectPlaceholder'
+  | 'intervalPlaceholder'
+  | 'groupingType'
+  | 'groupingTypeTooltip'
+  | 'from'
+  | 'to'
+  | 'remove'
+  | 'addRange';
 
 export type ColumnManagerProps = {
   hide: () => void;

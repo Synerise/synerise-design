@@ -11,7 +11,7 @@ import SearchBar from '@synerise/ds-search-bar';
 import ColumnManagerActions from './ColumnManagerActions/ColumnManagerActions';
 import ColumnManagerList from './ColumnManagerList/ColumnManagerList';
 import { ColumnManagerProps, State, Texts } from './ColumnManager.types';
-import { Column } from './ColumnManagerItem/ColumManagerIte.types';
+import { Column } from './ColumnManagerItem/ColumManagerItem.types';
 import * as S from './styles/ColumnManager.styles';
 import ColumnManagerGroupSettings from './ColumnManagerGroupSettings/ColumnManagerGroupSettings';
 
@@ -74,6 +74,19 @@ class ColumnManager extends React.Component<ColumnManagerProps, State> {
       mustNotBeEmpty: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.MUST-NOT-BE-EMPTY' }),
       switchOn: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.SWITCH-ON' }),
       switchOff: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.SWITCH-OFF' }),
+      groupByValue: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.GROUP_BY_VALUE' }),
+      groupByRanges: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.GROUP_BY_RANGERS' }),
+      groupByIntervals: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.GROUP_BY_INTERVALS' }),
+      groupDisabled: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.GROUP_DISABLED' }),
+      groupTitle: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.GROUP_TITLE' }),
+      selectPlaceholder: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.SELECT_PLACEHOLDER' }),
+      intervalPlaceholder: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.INTERVAL_PLACEHOLDER' }),
+      groupingType: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.SET_GROUPING_TYPE' }),
+      groupingTypeTooltip: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.GROUPING_TYPE_TOOLTIP' }),
+      from: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.FROM' }),
+      to: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.TO' }),
+      remove: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.REMOVE' }),
+      addRange: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.ADD_RANGE' }),
       ...texts,
     };
   }
@@ -255,6 +268,7 @@ class ColumnManager extends React.Component<ColumnManagerProps, State> {
           )}
         </S.ColumnManager>
         <ColumnManagerGroupSettings
+          texts={this.texts}
           hide={(): void => {
             this.setState({ activeColumn: undefined });
           }}

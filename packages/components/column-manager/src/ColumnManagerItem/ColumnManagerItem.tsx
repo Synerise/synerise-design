@@ -23,7 +23,7 @@ import { escapeRegEx } from '@synerise/ds-utils';
 
 import Tooltip from '@synerise/ds-tooltip';
 import * as S from './ColumnManagerItem.styles';
-import { ColumnProps } from './ColumManagerIte.types';
+import { ColumnProps } from './ColumManagerItem.types';
 
 const FIXED_TYPES = {
   left: 'left',

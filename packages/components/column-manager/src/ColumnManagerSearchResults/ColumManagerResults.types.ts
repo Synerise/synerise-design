@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Column } from '../ColumnManagerItem/ColumManagerIte.types';
+import { Column } from '../ColumnManagerItem/ColumManagerItem.types';
 
 export type Props = {
   searchResults: Column[];

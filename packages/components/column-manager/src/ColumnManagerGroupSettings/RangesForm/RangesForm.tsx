@@ -2,15 +2,19 @@ import * as React from 'react';
 import { Range } from '../ColumnManagerGroupSettings';
 import * as S from './RangesForm.styles';
 import RangeRow from './RangeRow';
-import { ColumnType } from '../../ColumnManagerItem/ColumManagerIte.types';
+import { ColumnType } from '../../ColumnManagerItem/ColumManagerItem.types';
+import { Texts } from '../../ColumnManager.types';
 
 interface Props {
   ranges: Range[];
   setRanges: (ranges: Range[]) => void;
   type: ColumnType;
+  texts: {
+    [k in Texts]: string | React.ReactNode;
+  };
 }
 
-const RangesForm: React.FC<Props> = ({ ranges, setRanges, type }: Props): JSX.Element => {
+const RangesForm: React.FC<Props> = ({ ranges, setRanges, type, texts }: Props): JSX.Element => {
   const setRange = React.useCallback(
     (range: Range, index: number): void => {
       const updatedRanges = ranges.map((currentRange: Range, i: number) => {
@@ -20,23 +24,29 @@ const RangesForm: React.FC<Props> = ({ ranges, setRanges, type }: Props): JSX.El
         return currentRange;
       });
 
-      console.log(updatedRanges);
+      // console.log(updatedRanges);
       setRanges(updatedRanges);
     },
     [setRanges, ranges]
   );
 
+  const remove = (rangeIndex: number): void => {
+    setRanges(ranges.filter((range, index) => index !== rangeIndex));
+  };
   return (
     <S.RangesForm>
       {ranges.map(
         (range: Range, index: number): JSX.Element => (
           <RangeRow
-            key={JSON.stringify(range)}
+            // eslint-disable-next-line react/no-array-index-key
+            key={index}
             first={index === 0}
             range={range}
             setRange={setRange}
             index={index}
             type={type}
+            remove={remove}
+            texts={texts}
           />
         )
       )}
