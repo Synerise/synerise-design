@@ -12,6 +12,7 @@ const ITEM_RENDER_TYPE = {
   next: 'next',
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function DefaultTable<T extends object = any>(props: DSTableProps<T>): React.ReactElement {
   const { title, selection, pagination, dataSource, rowKey, locale } = props;
 

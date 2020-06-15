@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 interface Props<T extends unknown> {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   header: any;
   activeColumnKey?: string;
   sortColumn: (column: T) => void;
@@ -8,6 +9,7 @@ interface Props<T extends unknown> {
 
 function GroupTableHeader<T extends unknown>({ header, activeColumnKey, sortColumn }: Props<T>): JSX.Element {
   const clickHandle = React.useCallback(
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (child: any): void => {
       if (child.props.column.sorter) {
         sortColumn(child);
@@ -18,6 +20,7 @@ function GroupTableHeader<T extends unknown>({ header, activeColumnKey, sortColu
   return (
     <tr>
       {header.children.map(
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (child: any): React.ReactNode => {
           return (
             // eslint-disable-next-line jsx-a11y/control-has-associated-label

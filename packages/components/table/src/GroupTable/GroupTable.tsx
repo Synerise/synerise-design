@@ -159,7 +159,7 @@ function GroupTable<T extends GroupType<T>>(
         searchComponent={searchComponent}
       />
     );
-  }, [selection, title, onSearch, dataSource, filters, itemsMenu, searchComponent]);
+  }, [selection, title, onSearch, dataSource, filters, itemsMenu, searchComponent, allItems]);
 
   return (
     <div className={`ds-table ds-table-cell-size-${cellSize} ${roundedHeader ? 'ds-table-rounded' : ''}`}>
@@ -173,11 +173,13 @@ function GroupTable<T extends GroupType<T>>(
         // @ts-ignore
         components={{
           header: {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             row: (header: any): JSX.Element => (
               <GroupTableHeader header={header} activeColumnKey={activeColumn} sortColumn={sortColumn} />
             ),
           },
           body: {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             row: (record: any): JSX.Element => {
               const activeGroup = getActiveGroup(record['data-row-key']);
               return (

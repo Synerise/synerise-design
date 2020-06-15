@@ -10,6 +10,7 @@ import { RowSelection } from '../../Table.types';
 import { GroupColumnsType, GroupType } from '../GroupTable';
 
 interface Props<T extends unknown> {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   group: any;
   rowKey: string | Function | undefined;
   selection?: RowSelection<T>;
@@ -112,9 +113,9 @@ function GroupTableBody<T extends unknown>({
           </S.GroupRow>
         </td>
       </tr>
-      {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
       {expanded &&
         group.children[0].props.record.rows.map(
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           (rowRecord: any): React.ReactNode => {
             const key = getRowKey(rowRecord);
             return (
