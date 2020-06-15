@@ -244,20 +244,22 @@ const stories = {
         if (column.type === 'text') {
           val = value[0].toUpperCase();
         }
+
         if(column.type === 'date') {
-          val = moment(value).format('DD/MM/YYYY').valueOf();
-          from = moment(from).format('DD/MM/YYYY').valueOf();
-          to = moment(to).format('DD/MM/YYYY').valueOf();
+          val = moment(value, 'DD/MM/YYYY').format('x');
+          from = moment(from, 'DD/MM/YYYY').format('x');
+          to = moment(to, 'DD/MM/YYYY').format('x');
         }
-        if( from && to) {
+
+        if(from && to) {
           return from <= val && val <= to;
         }
 
-        if( from && (to === undefined || to === '')) {
+        if(from && (to === undefined || to === '')) {
           return from <= val;
         }
 
-        if( (from === undefined || from === '') && to) {
+        if((from === undefined || from === '') && to) {
           return val <= to
         }
 
