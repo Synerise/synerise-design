@@ -239,20 +239,26 @@ const stories = {
     const getRange = (range, column): any[] => {
       const compare = (value) => {
         let val = value;
+        let from = range.from.value;
+        let to = range.to.value;
         if (column.type === 'text') {
           val = value[0].toUpperCase();
         }
-        if( range.from.value && range.to.value) {
-          return range.from.value <= val && val <= range.to.value;
+        if(column.type === 'date') {
+          val = moment(value).format('DD/MM/YYYY').valueOf();
+          from = moment(from).format('DD/MM/YYYY').valueOf();
+          to = moment(to).format('DD/MM/YYYY').valueOf();
+        }
+        if( from && to) {
+          return from <= val && val <= to;
         }
 
-        if( range.from.value && (range.to.value === undefined || range.to.value === '')) {
-          console.log(range.from.value <= val, range.from.value, val);
-          return range.from.value <= val;
+        if( from && (to === undefined || to === '')) {
+          return from <= val;
         }
 
-        if( (range.from.value === undefined || range.from.value === '') && range.to.value) {
-          return val <= range.to.value
+        if( (from === undefined || from === '') && to) {
+          return val <= to
         }
 
       };
