@@ -24,14 +24,11 @@ export interface Props {
   suffixel?: React.ReactNode;
 }
 
-type EnhancedProps = Props & (InputProps | TextAreaProps);
+type EnhancedProps = Props & (InputProps | TextAreaProps | MaskedInputProps);
 const VERTICAL_BORDER_OFFSET = 2;
 
 const enhancedInput = <P extends object>(
-  WrappedComponent: StyledComponent<
-    React.ComponentType<InputProps | TextAreaProps | MaskedInputProps>,
-    { error?: string }
-  >,
+  WrappedComponent: StyledComponent<React.ComponentType<InputProps | TextAreaProps>, { error?: string }>,
   { type }: { type: string }
 ): React.ComponentType<P & EnhancedProps> => ({
   className,
