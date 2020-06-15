@@ -79,7 +79,7 @@ export const AutocompleteWrapper = styled.div`
       }
     }
     .ant-select-selection-placeholder {
-      padding-left: 2px;
+      padding-left: 4px;
     }
 
     .ant-select-dropdown {
