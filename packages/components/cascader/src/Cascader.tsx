@@ -24,13 +24,14 @@ const Cascader: React.FC<CascaderProps> = ({
   categorySuffix,
   dropdownMaxHeight,
   dropdownStyle,
+  selectedCategoriesIds,
 }) => {
   const [searchQuery, setSearchQuery] = React.useState<string>('');
   const [activeCategory, setActiveCategory] = React.useState<Category>(rootCategory);
   const [paths, setPaths] = React.useState<Path[] | undefined>([]);
   const [filteredPaths, setFilteredPaths] = React.useState<Path[] | undefined>([]);
   const [enteredCategories, setEnteredCategories] = React.useState<Category[]>([]);
-  const [selectedIds, setSelectedIds] = React.useState<React.ReactText[]>([]);
+  const [selectedIds, setSelectedIds] = React.useState<React.ReactText[]>(selectedCategoriesIds || []);
 
   const dropdownRef = React.useRef<HTMLDivElement>();
   const { width, height } = useResize(dropdownRef);
@@ -57,6 +58,10 @@ const Cascader: React.FC<CascaderProps> = ({
       setActiveCategory(rootCategory);
     }
   }, [rootCategory, activeCategory.id]);
+
+  React.useEffect(() => {
+    setSelectedIds(selectedCategoriesIds);
+  }, [selectedCategoriesIds]);
 
   const onItemSelect = (item: Category): void => {
     let newSelectedList;
