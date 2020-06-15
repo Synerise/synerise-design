@@ -98,7 +98,7 @@ const ColumnManagerGroupSettings: React.FC<Props> = ({ hide, visible, column, on
     return (): void => {
       clearState();
     };
-  }, [settings, setGroupBy, setRanges, setIntervalValue]);
+  }, [settings, setGroupBy, setRanges, clearState, setIntervalValue]);
 
   const validate = React.useCallback((): boolean => {
     if (groupBy === GROUP_BY.value) return true;
@@ -126,7 +126,7 @@ const ColumnManagerGroupSettings: React.FC<Props> = ({ hide, visible, column, on
     }
     setError(undefined);
     return true;
-  }, [groupBy, ranges, interval]);
+  }, [groupBy, ranges, interval, setError, setRanges]);
 
   const handleOk = React.useCallback(() => {
     if (groupBy === GROUP_BY.disabled) {
@@ -145,7 +145,7 @@ const ColumnManagerGroupSettings: React.FC<Props> = ({ hide, visible, column, on
       clearState();
       onOk(currentSettings);
     }
-  }, [onOk, column, groupBy, ranges, interval]);
+  }, [onOk, column, groupBy, ranges, interval, clearState, validate]);
 
   const selectLabel = React.useMemo(() => {
     return (
@@ -158,7 +158,7 @@ const ColumnManagerGroupSettings: React.FC<Props> = ({ hide, visible, column, on
         </Tooltip>
       </S.Title>
     );
-  }, []);
+  }, [texts]);
 
   const addRow = React.useCallback(() => {
     setRanges([...ranges, EMPTY_RANGE]);
@@ -184,12 +184,12 @@ const ColumnManagerGroupSettings: React.FC<Props> = ({ hide, visible, column, on
       );
     }
     return null;
-  }, [groupBy, ranges, column, interval]);
+  }, [groupBy, ranges, column, interval, addRow, texts]);
 
   const handleHide = React.useCallback(() => {
     clearState();
     hide();
-  }, [hide]);
+  }, [hide, clearState]);
 
   const groupByRangesDisabled = React.useMemo(() => {
     const availableColumnTypes = ['text', 'number', 'date'];

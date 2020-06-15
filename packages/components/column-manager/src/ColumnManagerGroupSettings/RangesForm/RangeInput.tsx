@@ -5,12 +5,13 @@ import { Props } from '@synerise/ds-input/dist/Input';
 import { Props as NumberInputProps } from '@synerise/ds-input-number/dist/InputNumber';
 import * as S from './RangesForm.styles';
 
-type RangeInputProps = Props &
-  NumberInputProps & {
-    onChange: (value: React.ReactText) => void;
+type RangeInputProps = Omit<Props, 'value' | 'onChange'> &
+  Omit<NumberInputProps, 'value' | 'onChange'> & {
+    value: React.ReactText | undefined;
+    onChange: (value: number | string | undefined) => void;
   };
 
-const RangeInput: React.FC<RangeInputProps> = ({ type, onChange, error, ...inputProps }): JSX.Element => {
+const RangeInput: React.FC<RangeInputProps> = ({ type, onChange, ...inputProps }): JSX.Element => {
   const inputMask = React.useMemo(() => {
     switch (type) {
       case 'text':
@@ -24,7 +25,9 @@ const RangeInput: React.FC<RangeInputProps> = ({ type, onChange, error, ...input
 
   return type === 'number' ? (
     <S.InputNumberWrapper>
-      <InputNumber {...inputProps} onChange={(value): void => onChange(value)} errorText={error} resetMargin />
+      {/*
+      // @ts-ignore */}
+      <InputNumber {...inputProps} onChange={(value): void => onChange(value)} />
     </S.InputNumberWrapper>
   ) : (
     <MaskedInput
@@ -33,7 +36,6 @@ const RangeInput: React.FC<RangeInputProps> = ({ type, onChange, error, ...input
       placeholderChar="_"
       resetMargin
       onChange={(event: React.ChangeEvent<HTMLInputElement>): void => onChange(event.target.value)}
-      errorText={error}
     />
   );
 };

@@ -39,7 +39,7 @@ const RangeRow: React.FC<Props> = ({ range, setRange, index, first, type, remove
       },
       index
     );
-  }, [from, to, setRange, index]);
+  }, [from, to, setRange, index, range]);
 
   const handleRemove = React.useCallback((): void => {
     remove(index);
@@ -52,16 +52,16 @@ const RangeRow: React.FC<Props> = ({ range, setRange, index, first, type, remove
           type={type}
           label={first ? texts.from : null}
           value={from}
-          error={range.from.error}
-          onChange={(value: React.ReactText): void => setFrom(value)}
+          errorText={range.from.error}
+          onChange={(value: React.ReactText | undefined): void => setFrom(value)}
           onBlur={handleBlur}
         />
         <RangeInput
           type={type}
           label={first ? texts.to : null}
           value={to}
-          error={range.to.error}
-          onChange={(value: React.ReactText): void => setTo(value)}
+          errorText={range.to.error}
+          onChange={(value: React.ReactText | undefined): void => setTo(value)}
           onBlur={handleBlur}
         />
       </S.RangeRowInputs>
