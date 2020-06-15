@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import Table, { ColumnsType } from 'antd/lib/table';
-import { GroupType as GroupByType } from '@synerise/ds-column-manager/dist/ColumnManager';
+import { GroupType as GroupByType } from '@synerise/ds-column-manager/dist/ColumnManager.types';
 import { DSTableProps } from '../Table.types';
 import GroupTableBody from './GroupTableBody/GroupTableBody';
 import TableHeader from '../TableHeader/TableHeader';
