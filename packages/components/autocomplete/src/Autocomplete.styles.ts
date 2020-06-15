@@ -99,5 +99,5 @@ export const AutocompleteWrapper = styled.div`
     }
   }
   .ant-select-selection-search-input{
-  padding: 0 0 0 0px;
+  padding: 0;
 `;
