@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.74.0](https://github.com/synerise/synerise-design/compare/portal@0.73.1...portal@0.74.0) (2020-06-16)
+
+
+### Bug Fixes
+
+* **autocomplete:** fix focus on validation state and fix cursor ([bb3eb9f](https://github.com/synerise/synerise-design/commit/bb3eb9f7a620d6b5b0dcaa76b907354e4d292c4d))
+* **autocomplete:** fixes for default story ([b67434f](https://github.com/synerise/synerise-design/commit/b67434f9553eee173c0f8217a129be416303afc0))
+* **autocomplete:** hide errors on focus ([72ab72b](https://github.com/synerise/synerise-design/commit/72ab72bb76a4ae03a0dc001cf173bbba032679ee))
+* **input:** fixed error styles for prefix and suffix ([34540f7](https://github.com/synerise/synerise-design/commit/34540f7b121bc64b92afdb62363c79c8b7f4c180))
+* **select:** added changes after code  review ([c951991](https://github.com/synerise/synerise-design/commit/c951991e809b84d322a80ff5b1b5f0fe76d38899))
+* **select:** added stories ([b1248b0](https://github.com/synerise/synerise-design/commit/b1248b04287118792ec6f20757449ce0ee3fcf2e))
+
+
+### Features
+
+* **input:** added prefix and suffix ([df157e2](https://github.com/synerise/synerise-design/commit/df157e2af0999c16f36a5acb2e8e3805617568d0))
+* **input:** added prefixel and suffixel props ([8bc48fe](https://github.com/synerise/synerise-design/commit/8bc48fe8a90d2f1202fc126e9c1e0a3c3d517a5c))
+* **select:** added prefix and suffix ([501ea11](https://github.com/synerise/synerise-design/commit/501ea11cae63f7bdf1881a637e30be902e49465b))
+
+
+
+
+
 ## [0.73.1](https://github.com/synerise/synerise-design/compare/portal@0.73.0...portal@0.73.1) (2020-06-15)
 
 

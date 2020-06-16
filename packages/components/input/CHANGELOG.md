@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.13.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.12.0...@synerise/ds-input@0.13.0) (2020-06-16)
+
+
+### Bug Fixes
+
+* **input:** code review changes ([7db813f](https://github.com/synerise/synerise-design/commit/7db813fe5e28dafef2c6cff5c54a24d4b7fad781))
+* **input:** fixed error styles for prefix and suffix ([34540f7](https://github.com/synerise/synerise-design/commit/34540f7b121bc64b92afdb62363c79c8b7f4c180))
+* **input:** fixing the build ([cc600f8](https://github.com/synerise/synerise-design/commit/cc600f86770de07d1779e0c2fe34da32737d1cd7))
+
+
+### Features
+
+* **input:** added prefix and suffix ([df157e2](https://github.com/synerise/synerise-design/commit/df157e2af0999c16f36a5acb2e8e3805617568d0))
+* **input:** added prefixel and suffixel props ([8bc48fe](https://github.com/synerise/synerise-design/commit/8bc48fe8a90d2f1202fc126e9c1e0a3c3d517a5c))
+
+
+
+
+
 # [0.12.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.11.33...@synerise/ds-input@0.12.0) (2020-06-08)
 
 

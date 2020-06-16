@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-cascader@0.1.12...@synerise/ds-cascader@0.1.13) (2020-06-16)
+
+
+### Bug Fixes
+
+* **cascader:** removed absolute positioning of the categories ([f0ca412](https://github.com/Synerise/synerise-design/commit/f0ca412f9d70193e1ad036fe212073935735fbd0))
+* **cascader:** renamed styled components names ([2c8bbe6](https://github.com/Synerise/synerise-design/commit/2c8bbe69395af953b648ae639bef190dbf6750b7))
+
+
+
+
+
 ## [0.1.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-cascader@0.1.11...@synerise/ds-cascader@0.1.12) (2020-06-15)
 
 

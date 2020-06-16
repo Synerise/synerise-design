@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.12.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.11.20...@synerise/ds-select@0.12.0) (2020-06-16)
+
+
+### Bug Fixes
+
+* **select:** added changes after code  review ([c951991](https://github.com/synerise/synerise-design/commit/c951991e809b84d322a80ff5b1b5f0fe76d38899))
+* **select:** fixing the imports ([5eaffe2](https://github.com/synerise/synerise-design/commit/5eaffe2d7e49de00021dda10651ffad3fbef80c5))
+
+
+### Features
+
+* **select:** added prefix and suffix ([501ea11](https://github.com/synerise/synerise-design/commit/501ea11cae63f7bdf1881a637e30be902e49465b))
+
+
+
+
+
 ## [0.11.20](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.11.19...@synerise/ds-select@0.11.20) (2020-06-08)
 
 **Note:** Version bump only for package @synerise/ds-select

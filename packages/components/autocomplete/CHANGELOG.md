@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.23](https://github.com/Synerise/synerise-design/compare/@synerise/ds-autocomplete@0.3.22...@synerise/ds-autocomplete@0.3.23) (2020-06-16)
+
+
+### Bug Fixes
+
+* **autocomplete:** fix cursor ([8d7fee8](https://github.com/Synerise/synerise-design/commit/8d7fee85b6686b0651c31a80220b429184690702))
+* **autocomplete:** fix cursor ([c4f01ed](https://github.com/Synerise/synerise-design/commit/c4f01ed448546bbbf411c22398c2314af2adb1cf))
+* **autocomplete:** fix focus on validation state and fix cursor ([bb3eb9f](https://github.com/Synerise/synerise-design/commit/bb3eb9f7a620d6b5b0dcaa76b907354e4d292c4d))
+
+
+
+
+
 ## [0.3.22](https://github.com/Synerise/synerise-design/compare/@synerise/ds-autocomplete@0.3.21...@synerise/ds-autocomplete@0.3.22) (2020-06-08)
 
 
