@@ -8,39 +8,10 @@ import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import Button from '@synerise/ds-button';
 import InputNumber from '@synerise/ds-input-number';
 import Alert from '@synerise/ds-alert';
-import { GroupSettings, GroupType, Texts } from '../ColumnManager.types';
-import { Column } from '../ColumnManagerItem/ColumManagerItem.types';
+import { GroupType } from '../ColumnManager.types';
 import * as S from './ColumnManangerGroupSettings.styles';
 import RangesForm from './RangesForm/RangesForm';
-
-export const GROUP_BY: { [key: string]: string } = {
-  value: 'Value',
-  ranges: 'Ranges',
-  interval: 'Interval',
-  disabled: 'Disabled',
-};
-
-interface Props {
-  hide: () => void;
-  onOk: (settings: GroupSettings | undefined) => void;
-  visible: boolean;
-  settings?: GroupSettings;
-  column?: Column;
-  texts: {
-    [k in Texts]: string | React.ReactNode;
-  };
-}
-
-export interface Range {
-  from: {
-    value: React.ReactText | undefined;
-    error: React.ReactNode | undefined;
-  };
-  to: {
-    value: React.ReactText | undefined;
-    error: React.ReactNode | undefined;
-  };
-}
+import { GROUP_BY, GroupSettingsProps, Range } from './ColumnManagerGroupSettings.types';
 
 const EMPTY_RANGE = {
   from: {
@@ -77,7 +48,14 @@ const validateRange = (range: Range, index: number, ranges: Range[]): Range => {
   return validRange;
 };
 
-const ColumnManagerGroupSettings: React.FC<Props> = ({ hide, visible, column, onOk, settings, texts }: Props) => {
+const ColumnManagerGroupSettings: React.FC<GroupSettingsProps> = ({
+  hide,
+  visible,
+  column,
+  onOk,
+  settings,
+  texts,
+}: GroupSettingsProps) => {
   const [groupBy, setGroupBy] = React.useState<GroupType | undefined>(undefined);
   const [ranges, setRanges] = React.useState<Range[]>([EMPTY_RANGE]);
   const [interval, setIntervalValue] = React.useState<number | undefined>(undefined);

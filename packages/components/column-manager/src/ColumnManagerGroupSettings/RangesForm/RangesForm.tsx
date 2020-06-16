@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { Range } from '../ColumnManagerGroupSettings';
+import { Range } from '../ColumnManagerGroupSettings.types';
 import * as S from './RangesForm.styles';
 import RangeRow from './RangeRow';
 import { ColumnType } from '../../ColumnManagerItem/ColumManagerItem.types';
 import { Texts } from '../../ColumnManager.types';
 
-interface Props {
+interface RangeFormProps {
   ranges: Range[];
   setRanges: (ranges: Range[]) => void;
   type: ColumnType;
@@ -14,7 +14,7 @@ interface Props {
   };
 }
 
-const RangesForm: React.FC<Props> = ({ ranges, setRanges, type, texts }: Props): JSX.Element => {
+const RangesForm: React.FC<RangeFormProps> = ({ ranges, setRanges, type, texts }: RangeFormProps): JSX.Element => {
   const setRange = React.useCallback(
     (range: Range, index: number): void => {
       const updatedRanges = ranges.map((currentRange: Range, i: number) => {

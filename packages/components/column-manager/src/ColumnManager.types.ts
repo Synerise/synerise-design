@@ -2,7 +2,7 @@ import { ItemFilterProps } from '@synerise/ds-item-filter/dist/ItemFilter';
 import * as React from 'react';
 import { IntlFormatters } from 'react-intl';
 import { Column } from './ColumnManagerItem/ColumManagerItem.types';
-import { Range } from './ColumnManagerGroupSettings/ColumnManagerGroupSettings';
+import { Range } from './ColumnManagerGroupSettings/ColumnManagerGroupSettings.types';
 
 export type Texts =
   | 'title'

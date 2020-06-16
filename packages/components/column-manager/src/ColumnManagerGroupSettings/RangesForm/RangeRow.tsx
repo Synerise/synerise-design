@@ -5,11 +5,11 @@ import Icon from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 import { ColumnType } from '../../ColumnManagerItem/ColumManagerItem.types';
 import * as S from './RangesForm.styles';
-import { Range } from '../ColumnManagerGroupSettings';
+import { Range } from '../ColumnManagerGroupSettings.types';
 import { Texts } from '../../ColumnManager.types';
 import RangeInput from './RangeInput';
 
-interface Props {
+interface RangeRowProps {
   index: number;
   range: Range;
   first: boolean;
@@ -21,7 +21,7 @@ interface Props {
   };
 }
 
-const RangeRow: React.FC<Props> = ({ range, setRange, index, first, type, remove, texts }: Props) => {
+const RangeRow: React.FC<RangeRowProps> = ({ range, setRange, index, first, type, remove, texts }: RangeRowProps) => {
   const [from, setFrom] = React.useState<React.ReactText | undefined>(range.from.value);
   const [to, setTo] = React.useState<React.ReactText | undefined>(range.to.value);
 
