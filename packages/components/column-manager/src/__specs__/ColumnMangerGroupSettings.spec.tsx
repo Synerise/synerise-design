@@ -229,8 +229,8 @@ describe('ColumnManagerGroupSettings component', () => {
     // ARRANGE
     const hide = jest.fn();
     const onOk = jest.fn();
-    const { getAllByTestId, findByText } = renderWithProvider(<COLUMN_MANAGER_GROUP_SETTINGS hide={hide} onOk={onOk} settings={{
-      column: COLUMN,
+    const { getAllByTestId } = renderWithProvider(<COLUMN_MANAGER_GROUP_SETTINGS hide={hide} onOk={onOk} settings={{
+      column: COLUMN ,
       settings: {
         type: GROUP_BY.ranges,
         ranges: false,
