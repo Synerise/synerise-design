@@ -189,7 +189,7 @@ const ColumnManagerGroupSettings: React.FC<GroupSettingsProps> = ({
           label={selectLabel}
           value={groupBy}
           onChange={(value): void => {
-            setGroupBy(value);
+            setGroupBy(value as GroupType);
             setError(undefined);
           }}
           placeholder={texts.selectPlaceholder}
