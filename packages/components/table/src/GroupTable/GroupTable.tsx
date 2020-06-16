@@ -159,7 +159,7 @@ function GroupTable<T extends GroupType<T>>(
         searchComponent={searchComponent}
       />
     );
-  }, [selection, title, onSearch, dataSource, filters, itemsMenu, searchComponent, allItems]);
+  }, [selection, title, onSearch, filters, itemsMenu, searchComponent, allItems]);
 
   return (
     <div className={`ds-table ds-table-cell-size-${cellSize} ${roundedHeader ? 'ds-table-rounded' : ''}`}>

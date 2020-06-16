@@ -373,8 +373,6 @@ const stories = {
       return categories.find(filter => filter.id === store.state.selectedFilter);
     };
 
-    console.log(store.state, DATA_SOURCE);
-
     return (
         <>
         <DSTable
