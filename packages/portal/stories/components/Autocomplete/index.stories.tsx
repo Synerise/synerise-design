@@ -1,19 +1,21 @@
 import * as React from 'react';
-
 import { text, boolean } from '@storybook/addon-knobs';
 import Autocomplete from '@synerise/ds-autocomplete';
 import { escapeRegEx } from '@synerise/ds-utils';
+import { action } from '@storybook/addon-actions';
 
 const dataSource = ['First position', 'Second position'];
 
 const AutocompleteWithState: React.FC = () => {
   const [value, setValue] = React.useState<string>('');
   const [results, setResults] = React.useState<string[]>([]);
-  const label = text('Label', 'Label');
-  const description = text('Description', 'Description');
-  const errorMessage = text('Error Text', 'Error');
-  const hasError = boolean('Set validation state', false);
-  const placeholder = text('Placeholder', 'Placeholder');
+  const label = text('Label','Label');
+  const description = text('Description','Description');
+  const errorMessage = text('Error Text', 'Error' );
+  const hasError = boolean('Set validation state',false);
+  const placeholder = text('Placeholder', 'Placeholder')
+  const [isFocus, setFocus] = React.useState(false)
+
 
   const renderWithHighlightedText = (highlight, item): React.ReactNode => {
     if (highlight && typeof item === 'string') {
@@ -66,13 +68,15 @@ const AutocompleteWithState: React.FC = () => {
       placeholder={placeholder}
       onSearch={handleSearch}
       label={label}
-      description={description}
-      errorText={getErrorText(hasError)}
-      error={hasError}
+      errorText={!isFocus && getErrorText(hasError)}
+      error={!isFocus && hasError}
+      onBlur={()=>{action ('I am blurred'); setFocus(false)}}
+      onFocus={()=>{action('I am focused'); setFocus(true)}}
       onChange={(value: string) => {
         setValue(extractContent(value));
         handleSearch(extractContent(value));
       }}
+      description={description}
       value={value === 'undefined' ? '' : value}
     >
       {results.map(result => (
