@@ -30,17 +30,18 @@ import ColumnManager from '@synerise/ds-column-manager'
 
 #### ColumnManager
 
-| Property          | Description                                                                             | Type                            | Default |
-| ----------------  | --------------------------------------------------------------------------------------- | ------------------------------- | ------- |
-| hide              | Specify a callback that will be called when a user clicks mask, close or cancel button. | Function                        | -       |
-| visible           | Whether the ColumnManager is visible or not.                                            | boolean                         | false   |
-| onSave            | Specify a callback that will be called when a user saves new view                       | (savedView: SavedView) => void; | -       |
-| onApply           | Specify a callback that will be called when a user clicks on `Apply` button             | (columns: Column[]) => void     | -       |
-| columns           | Current columns configuration                                                           | Column[]                        | []      |
-| texts             | Object contains texts for buttons, title, confirms etc.                                 | Texts                           | -       |
-| itemFilterConfig  | ItemFilter config                                                                       | ItemFilter                      | -       |
-| savedViewsVisible | Whether the ItemFilter with saved views is visible                                      | boolean                         | -       |
-| hideSavedViews    | Hide ItemFilter with saved views                                                        | ItemFilter                      | -       |
+| Property          | Description                                                                             | Type                                                      | Default   |
+| ----------------  | --------------------------------------------------------------------------------------- | -------------------------------                           | -------   |
+| hide              | Specify a callback that will be called when a user clicks mask, close or cancel button. | Function                                                  | -         |
+| visible           | Whether the ColumnManager is visible or not.                                            | boolean                                                   | false     |
+| onSave            | Specify a callback that will be called when a user saves new view                       | (savedView: SavedView) => void;                           | -         |
+| onApply           | Specify a callback that will be called when a user clicks on `Apply` button             | (columns: Column[], groupSettings: GroupSettings) => void | -         |
+| columns           | Current columns configuration                                                           | Column[]                                                  | []        |
+| texts             | Object contains texts for buttons, title, confirms etc.                                 | Texts                                                     | -         |
+| itemFilterConfig  | ItemFilter config                                                                       | ItemFilter                                                | -         |
+| savedViewsVisible | Whether the ItemFilter with saved views is visible                                      | boolean                                                   | -         |
+| hideSavedViews    | Hide ItemFilter with saved views                                                        | ItemFilter                                                | -         |
+| groupSettings     | Configuration of grouped data                                                           | GroupSettings or undefined                                | undefined |
 
 #### Column
 
@@ -53,6 +54,38 @@ import ColumnManager from '@synerise/ds-column-manager'
 | type     | Type of data in column                                     | 'text', 'number', 'date', 'boolean', 'list' | -       |
 | fixed    | Whether the column has fixed position or not in table view | 'left' , 'right', undefined                 | -       |
 | group    | Whether the column has been grouped                        | boolean                                     | -       |
+
+
+#### SavedView
+
+| Property      | Description                                                | Type                                        | Default   |
+| --------      | ---------------------------------------------------------- | ------------------------------------------- | -------   |
+| meta          | Name and description of saved view                         | {name: string; description: string}         | {}        |
+| groupSettings | Configuration of grouped data                              | GroupSettings                               | undefined |
+| columns       | Current columns configuration                              | Column[]                                    | []        |
+
+
+#### GroupSettings
+
+| Property | Description                                                | Type                                        | Default |
+| -------- | ---------------------------------------------------------- | ------------------------------------------- | ------- |
+| column   | Column data                                                | Column                                      | -       |
+| settings | Grouping configuration                                     | Settings                                    | -       |
+
+#### Settings
+
+| Property | Description                                                         | Type                                                 | Default | 
+| -------- | ----------------------------------------------------------          | -------------------------------------------          | ------- | 
+| type     | Type of grouping                                                    | 'value', 'ranges', 'interval', 'disabled', undefined | -       | 
+| ranges   | Array of ranges if grouping by ranges is selected                   | Range[]                                              | false   | 
+| interval | Number of items in single group if grouping by interval is selected | number, false                                        | false   |
+
+#### Range
+
+| Property | Description                                                | Type                                        | Default | 
+| -------- | ---------------------------------------------------------- | ------------------------------------------- | ------- | 
+| from     | Lower boundary of range                                    | {value: React.ReactText, error: string }    | -       | 
+| to       | Upper boundary of range                                    | {value: React.ReactText, error: string }    | -       |  
 
 
 #### Texts
