@@ -4,13 +4,54 @@ import { Input, TextArea, RawInput, InputGroup, MaskedInput } from '@synerise/ds
 import Icon from '@synerise/ds-icon';
 import FileM from '@synerise/ds-icon/dist/icons/FileM';
 import Select from '@synerise/ds-select';
-import { array, boolean, number, select as knobSelect, text } from '@storybook/addon-knobs';
+import { array, boolean, number, select, select as knobSelect, text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import { FlagLabelCell } from '@synerise/ds-table/dist/Cell';
+import * as S from '../Select/stories.styles';
+import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { LaptopM } from '@synerise/ds-icon/dist/icons';
+import { TagShape } from '@synerise/ds-tags';
 
 const decorator = storyFn => <div style={{ width: '300px' }}>{storyFn()}</div>;
 const sizes = ['default', 'large'];
+const addonType = {
+  icon: 'icon',
+  tag: 'tag',
+  avatar: 'avatar',
+  label: 'label',
+  none: 'none',
+};
 
+function renderAddonComponent(suffixElementType: string) {
+  switch (suffixElementType) {
+    case addonType.icon:
+      return (
+        <S.IconWrapper>
+          <Icon color={theme.palette['grey-600']} component={<LaptopM />} />
+        </S.IconWrapper>
+      );
+    case addonType.label:
+      return <S.Label>Label</S.Label>;
+    case addonType.avatar:
+      return (
+        <S.AvatarWithMargin size="small" backgroundColor="green" backgroundColorHue="400" shape="square">
+          AK
+        </S.AvatarWithMargin>
+      );
+    case addonType.tag:
+      return (
+        <S.TagAddon
+          name="A"
+          shape={TagShape.SINGLE_CHARACTER_SQUARE}
+          color={theme.palette['cyan-200']}
+          textColor={theme.palette['cyan-600']}
+        />
+      );
+    default:
+      return null;
+      break;
+  }
+}
 const stories = {
   basic: () => {
     const [value, setValue] = React.useState<string>('');
@@ -88,14 +129,14 @@ const stories = {
         error={boolean('Set select error', false)}
       >
         <Select.Option value="es">
-            <FlagLabelCell countryCode={'ES'} label={'+34'} />
-          </Select.Option>
-          <Select.Option value="pl">
-            <FlagLabelCell countryCode={'PL'} label={'+48'} />
-          </Select.Option>{' '}
-          <Select.Option value="gb">
-            <FlagLabelCell countryCode={'GB'} label={'+44'} />
-          </Select.Option>
+          <FlagLabelCell countryCode={'ES'} label={'+34'} />
+        </Select.Option>
+        <Select.Option value="pl">
+          <FlagLabelCell countryCode={'PL'} label={'+48'} />
+        </Select.Option>{' '}
+        <Select.Option value="gb">
+          <FlagLabelCell countryCode={'GB'} label={'+44'} />
+        </Select.Option>
       </Select>
     );
 
@@ -189,6 +230,8 @@ const stories = {
   inputWithPrefix: () => {
     const [value, setValue] = React.useState<string>('');
 
+    const suffixType = select('Set suffix type', addonType, addonType.none);
+    const prefixType = select('Set prefix type', addonType, addonType.none);
     return (
       <Input
         size={'default'}
@@ -198,9 +241,8 @@ const stories = {
         disabled={boolean('disabled', false)}
         onChange={e => setValue(e.target.value)}
         value={value}
-        suffixel={text('Suffixel', 'Placeholder')}
-        prefixel={text('Prefixel', 'Placeholder')}
-
+        prefixel={renderAddonComponent(prefixType)}
+        suffixel={renderAddonComponent(suffixType)}
       />
     );
   },
