@@ -57,9 +57,7 @@ describe('ColumnManagerGroupSettings component', () => {
     expect(getByText(TEXTS.groupingType)).toBeTruthy();
     expect(getByText(TEXTS.selectPlaceholder)).toBeTruthy();
   });
-});
 
-describe('ColumnManagerGroupSettings component', () => {
   it('should render with selected Grouping by values' , async () => {
     // ARRANGE
     const hide = jest.fn();
@@ -76,9 +74,7 @@ describe('ColumnManagerGroupSettings component', () => {
     // ASSERT
     expect(getByText(TEXTS.groupByValue)).toBeTruthy();
   });
-});
 
-describe('ColumnManagerGroupSettings component', () => {
   it('should render with selected Grouping by interval' , async () => {
     // ARRANGE
     const hide = jest.fn();
@@ -95,9 +91,7 @@ describe('ColumnManagerGroupSettings component', () => {
     // ASSERT
     expect(getByText(TEXTS.groupByIntervals)).toBeTruthy();
   });
-});
 
-describe('ColumnManagerGroupSettings component', () => {
   it('should render with selected Grouping by ranges' , async () => {
     // ARRANGE
     const hide = jest.fn();
@@ -114,9 +108,7 @@ describe('ColumnManagerGroupSettings component', () => {
     // ASSERT
     expect(getByText(TEXTS.groupByRanges)).toBeTruthy();
   });
-});
 
-describe('ColumnManagerGroupSettings component', () => {
   it('should render with selected Grouping disabled' , async () => {
     // ARRANGE
     const hide = jest.fn();
@@ -133,9 +125,7 @@ describe('ColumnManagerGroupSettings component', () => {
     // ASSERT
     expect(getByText(TEXTS.groupDisabled)).toBeTruthy();
   });
-});
 
-describe('ColumnManagerGroupSettings component', () => {
   it('should show errorChooseGrouping' , async () => {
     // ARRANGE
     const hide = jest.fn();
@@ -150,9 +140,7 @@ describe('ColumnManagerGroupSettings component', () => {
     expect(errorMsg).toBeTruthy();
     expect(onOk).not.toBeCalled();
   });
-});
 
-describe('ColumnManagerGroupSettings component', () => {
   it('should show errorInterval' , async () => {
     // ARRANGE
     const hide = jest.fn();
@@ -174,9 +162,7 @@ describe('ColumnManagerGroupSettings component', () => {
     expect(errorMsg).toBeTruthy();
     expect(onOk).not.toBeCalled();
   });
-});
 
-describe('ColumnManagerGroupSettings component', () => {
   it('should set group by interval' , async () => {
     // ARRANGE
     const INTERVAL_VALUE = 2;
@@ -199,9 +185,7 @@ describe('ColumnManagerGroupSettings component', () => {
     // ASSERT
     expect(onOk).toBeCalledWith({column: COLUMN, settings: {type: GROUP_BY.interval, ranges: false, interval: INTERVAL_VALUE}});
   });
-});
 
-describe('ColumnManagerGroupSettings component', () => {
   it('should show errorRange' , async () => {
     // ARRANGE
     const hide = jest.fn();
@@ -222,9 +206,7 @@ describe('ColumnManagerGroupSettings component', () => {
     expect(errorMsg).toBeTruthy();
     expect(onOk).not.toBeCalled();
   });
-});
 
-describe('ColumnManagerGroupSettings component', () => {
   it('should render with 1 range row' , async () => {
     // ARRANGE
     const hide = jest.fn();
@@ -243,9 +225,7 @@ describe('ColumnManagerGroupSettings component', () => {
     // ASSERT
     expect(rows.length).toBe(1);
   });
-});
 
-describe('ColumnManagerGroupSettings component', () => {
   it('should add second range row' , async () => {
     // ARRANGE
     const hide = jest.fn();
@@ -266,9 +246,7 @@ describe('ColumnManagerGroupSettings component', () => {
     // ASSERT
     expect(rows.length).toBe(2);
   });
-});
 
-describe('ColumnManagerGroupSettings component', () => {
   it('should render with filled range row inputs' , async () => {
     // ARRANGE
     const hide = jest.fn();
@@ -286,15 +264,11 @@ describe('ColumnManagerGroupSettings component', () => {
     expect(getByDisplayValue('A')).toBeTruthy();
     expect(getByDisplayValue('B')).toBeTruthy();
   });
-});
 
-
-describe('ColumnManagerGroupSettings component', () => {
   it('should set group with ranges' , async () => {
     // ARRANGE
     const hide = jest.fn();
     const onOk = jest.fn();
-    const alphabet = "abcdefghijklmnopqrstuvwxyz";
     const { getAllByTestId, getByText } = renderWithProvider(<COLUMN_MANAGER_GROUP_SETTINGS hide={hide} onOk={onOk} settings={{
       column: COLUMN,
       settings: {
@@ -306,20 +280,17 @@ describe('ColumnManagerGroupSettings component', () => {
 
     // ACT
     const rows = getAllByTestId('group-range-row');
-    let allInputs: HTMLInputElement[] = [];
-    rows.forEach(row => {
-      const inputs = row.querySelectorAll('input');
-      allInputs = [...allInputs, ...inputs];
-    });
 
-    [...allInputs].forEach((input, index) => {
-      fireEvent.change(input, {target: {value: alphabet[index]}});
-      fireEvent.blur(input);
-    });
+    // @ts-ignore
+    const input: HTMLInputElement = rows[0].querySelector('input');
+
+    fireEvent.change(input, {target: {value: 'a'}});
+    fireEvent.blur(input);
 
     fireEvent.click(getByText('Apply'));
     // ASSERT
-    expect(onOk).toBeCalledWith({column: COLUMN, settings: { type: GROUP_BY.ranges, interval: false, ranges:[{ from: {value: 'A', error: undefined}, to: {value: 'B', error: undefined}}]}})
+    expect(onOk).toBeCalledWith({column: COLUMN, settings: { type: GROUP_BY.ranges, interval: false, ranges:[{ from: {value: 'A', error: undefined}, to: {value: undefined, error: undefined}}]}})
   });
 });
+
 
