@@ -22,7 +22,7 @@ const defaultStory = () => {
               </div>
 
               <div style={{ display: 'flex' }}>
-                <Button type="secondary">Cancel</Button>
+                <Button type="ghost">Cancel</Button>
 
                 <Button type="primary" loading={propsWithKnobs().confirmLoading}>
                   Apply
