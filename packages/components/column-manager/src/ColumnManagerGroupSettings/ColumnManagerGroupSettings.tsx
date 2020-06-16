@@ -99,10 +99,10 @@ const ColumnManagerGroupSettings: React.FC<GroupSettingsProps> = ({
     }
     if (groupBy === GROUP_BY.ranges) {
       const validatedRanges = ranges.map((range, index, allRanges) => validateRange(range, index, allRanges, texts));
-      const hasErrors = validatedRanges.filter(range => range.from.error || range.to.error);
+      const errors = validatedRanges.filter(range => range.from.error || range.to.error);
 
       setRanges(validatedRanges);
-      if (hasErrors.length) {
+      if (errors.length) {
         setError(texts.errorRange);
         return false;
       }
@@ -186,18 +186,21 @@ const ColumnManagerGroupSettings: React.FC<GroupSettingsProps> = ({
     return !type || !availableColumnTypes.includes(type);
   }, [column]);
 
+  const handleGroupTypeChange = React.useCallback(
+    (value): void => {
+      setGroupBy(value);
+      setError(undefined);
+    },
+    [setGroupBy, setError]
+  );
+
   return (
     <Modal onCancel={handleHide} visible={visible} onOk={handleOk} size="small" title={texts.groupTitle}>
       <S.ModalContent>
-        {/*
-        // @ts-ignore */}
         <Select
           label={selectLabel}
           value={groupBy}
-          onChange={(value): void => {
-            setGroupBy(value as GroupType);
-            setError(undefined);
-          }}
+          onChange={handleGroupTypeChange}
           placeholder={texts.selectPlaceholder}
         >
           <Select.Option value={GROUP_BY.value}>{texts.groupByValue}</Select.Option>

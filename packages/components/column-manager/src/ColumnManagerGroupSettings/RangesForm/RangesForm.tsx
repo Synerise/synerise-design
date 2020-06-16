@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { v4 as uuid } from 'uuid';
 import { GroupSettingsTexts, Range } from '../ColumnManagerGroupSettings.types';
 import * as S from './RangesForm.styles';
 import RangeRow from './RangeRow';
@@ -23,7 +24,6 @@ const RangesForm: React.FC<RangeFormProps> = ({ ranges, setRanges, type, texts }
         return currentRange;
       });
 
-      // console.log(updatedRanges);
       setRanges(updatedRanges);
     },
     [setRanges, ranges]
@@ -37,8 +37,7 @@ const RangesForm: React.FC<RangeFormProps> = ({ ranges, setRanges, type, texts }
       {ranges.map(
         (range: Range, index: number): JSX.Element => (
           <RangeRow
-            // eslint-disable-next-line react/no-array-index-key
-            key={index}
+            key={uuid()}
             first={index === 0}
             range={range}
             setRange={setRange}

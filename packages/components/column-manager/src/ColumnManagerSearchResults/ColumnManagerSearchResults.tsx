@@ -22,7 +22,6 @@ const ColumnManagerSearchResults: React.FC<Props> = ({
             (column): React.ReactNode => (
               <ColumnManagerItem
                 key={column.id}
-                // eslint-disable-next-line react/jsx-props-no-spreading
                 item={column}
                 setFixed={setFixed}
                 showGroupSettings={showGroupSettings}
