@@ -65,7 +65,7 @@ const stories = {
         tooltip={text('tooltip', 'This is example tooltip!')}
         label={text('label', 'Label')}
         description={text('description', 'Description')}
-        errors={array('errors', ['First error', 'Second error'])}
+        errors={array('errors', [])}
         resetMargin={boolean('resetMargin', false)}
         compact
       >
@@ -117,7 +117,7 @@ const stories = {
         tooltip={text('tooltip', 'This is example tooltip!')}
         label={text('label', 'Label')}
         description={text('description', 'Description')}
-        errors={array('errors', ['First error', 'Second error'])}
+        errors={array('errors', [])}
         resetMargin={boolean('resetMargin', false)}
         compact
       >

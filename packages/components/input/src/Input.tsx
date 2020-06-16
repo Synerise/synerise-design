@@ -54,6 +54,7 @@ const enhancedInput = <P extends object>(
   const id = React.useMemo(() => uuid(), []);
 
   const inputRef = React.useRef<HTMLInputElement | HTMLTextAreaElement>();
+  const [inputAddonHeight, setInputAddonHeight] = React.useState<number>(0);
 
   React.useEffect(() => {
     handleInputRef && handleInputRef(inputRef);
@@ -80,6 +81,9 @@ const enhancedInput = <P extends object>(
     setCharCount(antdInputProps.value ? antdInputProps.value.toString().length : 0);
   }, [antdInputProps.value, counterLimit]);
 
+  React.useEffect(() => {
+    setInputAddonHeight(inputRef?.current?.input?.offsetHeight);
+  }, [inputRef]);
   return (
     <S.OuterWrapper className={className} resetMargin={resetMargin}>
       {(label || counterLimit) && (
@@ -103,8 +107,8 @@ const enhancedInput = <P extends object>(
         <WrappedComponent
           // eslint-disable-next-line react/jsx-props-no-spreading
           {...antdInputProps}
-          addonBefore={!!prefixel && <S.PrefixWrapper>{prefixel}</S.PrefixWrapper>}
-          addonAfter={!!suffixel && <S.SuffixWrapper>{suffixel}</S.SuffixWrapper>}
+          addonBefore={!!prefixel && <S.AddonWrapper height={inputAddonHeight}>{prefixel}</S.AddonWrapper>}
+          addonAfter={!!suffixel && <S.AddonWrapper height={inputAddonHeight}>{suffixel}</S.AddonWrapper>}
           error={showError || error}
           onChange={handleChange}
           value={antdInputProps.value}

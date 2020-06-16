@@ -5,6 +5,7 @@ import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/t
 import * as React from 'react';
 import MaskedInput from 'antd-mask-input';
 
+const VERTICAL_BORDER_OFFSET = 2;
 const errorInputStyle = (props: ThemeProps): string => `
   && {
     border-color: ${props.theme.palette['red-600']};
@@ -44,6 +45,9 @@ export const InputWrapper = styled.div<InputWrapperProps>`
       if (props.icon1 || props.icon2) return '36px;';
       return '12px';
     }};
+  }
+  .ant-input-group-addon {
+    height: 100%;
   }
 `;
 
@@ -165,14 +169,9 @@ export const ContentAbove = styled.div`
   justify-content: space-between;
   margin-bottom: 8px;
 `;
-
-export const PrefixWrapper = styled.div`
+export const AddonWrapper = styled.div<{ height: number }>`
   background: ${(props): string => props.theme.palette['grey-050']};
-  flex: 1;
-  height: 100%;
-`;
-export const SuffixWrapper = styled.div`
-  background: ${(props): string => props.theme.palette['grey-050']};
-  flex: 1;
-  height: 100%;
+  display: flex;
+  align-items: center;
+  height: ${(props): string => `${props.height - VERTICAL_BORDER_OFFSET}px` || '32px'};
 `;
