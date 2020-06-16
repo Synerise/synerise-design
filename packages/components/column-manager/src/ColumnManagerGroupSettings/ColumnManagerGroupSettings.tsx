@@ -8,7 +8,7 @@ import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import Button from '@synerise/ds-button';
 import InputNumber from '@synerise/ds-input-number';
 import Alert from '@synerise/ds-alert';
-import { GroupType } from '../ColumnManager.types';
+import { GroupType, Texts } from '../ColumnManager.types';
 import * as S from './ColumnManangerGroupSettings.styles';
 import RangesForm from './RangesForm/RangesForm';
 import { GROUP_BY, GroupSettingsProps, Range } from './ColumnManagerGroupSettings.types';
@@ -24,22 +24,27 @@ const EMPTY_RANGE = {
   },
 };
 
-const validateRange = (range: Range, index: number, ranges: Range[]): Range => {
+const validateRange = (
+  range: Range,
+  index: number,
+  ranges: Range[],
+  texts: { [k in Texts]: string | React.ReactNode }
+): Range => {
   const validRange = { ...range };
   if (
     (range.from.value === undefined || range.from.value === '') &&
     (range.to.value === undefined || range.to.value === '')
   ) {
-    validRange.from.error = 'You should fill on of these fields';
-    validRange.to.error = 'You should fill on of these fields';
+    validRange.from.error = texts.errorEmptyRange;
+    validRange.to.error = texts.errorEmptyRange;
   } else {
     if ((range.from.value === undefined || range.from.value === '') && index > 0) {
-      validRange.from.error = 'Only first From input can be set as empty';
+      validRange.from.error = texts.errorEmptyFromField;
     } else {
       validRange.from.error = undefined;
     }
     if ((range.to.value === undefined || range.from.value === '') && index < ranges.length - 1) {
-      validRange.to.error = 'Only last To input can be set as empty';
+      validRange.to.error = texts.errorEmptyToField;
     } else {
       validRange.to.error = undefined;
     }
@@ -59,10 +64,10 @@ const ColumnManagerGroupSettings: React.FC<GroupSettingsProps> = ({
   const [groupBy, setGroupBy] = React.useState<GroupType | undefined>(undefined);
   const [ranges, setRanges] = React.useState<Range[]>([EMPTY_RANGE]);
   const [interval, setIntervalValue] = React.useState<number | undefined>(undefined);
-  const [error, setError] = React.useState<string | undefined>(undefined);
+  const [error, setError] = React.useState<React.ReactNode | undefined>(undefined);
 
   const clearState = React.useCallback(() => {
-    setRanges([]);
+    setRanges([EMPTY_RANGE]);
     setError(undefined);
     setGroupBy(undefined);
     setIntervalValue(undefined);
@@ -70,7 +75,7 @@ const ColumnManagerGroupSettings: React.FC<GroupSettingsProps> = ({
 
   React.useEffect(() => {
     setGroupBy(settings?.settings.type);
-    setRanges(settings?.settings.ranges || []);
+    setRanges(settings?.settings.ranges || [EMPTY_RANGE]);
     setIntervalValue(settings?.settings.interval || undefined);
 
     return (): void => {
@@ -81,24 +86,24 @@ const ColumnManagerGroupSettings: React.FC<GroupSettingsProps> = ({
   const validate = React.useCallback((): boolean => {
     if (groupBy === GROUP_BY.value) return true;
     if (groupBy === undefined) {
-      setError('Error - Choose type of grouping');
+      setError(texts.errorChooseGrouping);
       return false;
     }
     if (groupBy === GROUP_BY.interval) {
       if (!interval) {
-        setError('Error - Provide correct interval value');
+        setError(texts.errorInterval);
       } else {
         setError(undefined);
       }
       return Boolean(interval);
     }
     if (groupBy === GROUP_BY.ranges) {
-      const validatedRanges = ranges.map(validateRange);
+      const validatedRanges = ranges.map((range, index, allRanges) => validateRange(range, index, allRanges, texts));
       const hasErrors = validatedRanges.filter(range => range.from.error || range.to.error);
 
       setRanges(validatedRanges);
       if (hasErrors.length) {
-        setError('Error - Provide correct value');
+        setError(texts.errorRange);
         return false;
       }
     }
@@ -123,7 +128,7 @@ const ColumnManagerGroupSettings: React.FC<GroupSettingsProps> = ({
       clearState();
       onOk(currentSettings);
     }
-  }, [onOk, column, groupBy, ranges, interval, clearState, validate]);
+  }, [onOk, column, groupBy, ranges, interval, clearState, validate, texts]);
 
   const selectLabel = React.useMemo(() => {
     return (
@@ -180,7 +185,15 @@ const ColumnManagerGroupSettings: React.FC<GroupSettingsProps> = ({
       <S.ModalContent>
         {/*
         // @ts-ignore */}
-        <Select label={selectLabel} value={groupBy} onChange={setGroupBy} placeholder={texts.selectPlaceholder}>
+        <Select
+          label={selectLabel}
+          value={groupBy}
+          onChange={(value): void => {
+            setGroupBy(value);
+            setError(undefined);
+          }}
+          placeholder={texts.selectPlaceholder}
+        >
           <Select.Option value={GROUP_BY.value}>{texts.groupByValue}</Select.Option>
           <Select.Option value={GROUP_BY.ranges} disabled={groupByRangesDisabled}>
             {texts.groupByRanges}

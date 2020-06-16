@@ -4,7 +4,7 @@ import Status from '@synerise/ds-status';
 import Button from '@synerise/ds-button';
 import Icon from '@synerise/ds-icon';
 import AddS from '@synerise/ds-icon/dist/icons/AddS';
-import { GROUP_BY } from '@synerise/ds-column-manager/dist/ColumnManagerGroupSettings/ColumnManagerGroupSettings';
+import { GROUP_BY } from '@synerise/ds-column-manager/dist/ColumnManagerGroupSettings/ColumnManagerGroupSettings.types';
 import * as S from '../GroupTable.styles';
 import { RowSelection } from '../../Table.types';
 import { GroupColumnsType, GroupType } from '../GroupTable';

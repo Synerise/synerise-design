@@ -65,7 +65,13 @@
       "TO": "To",
       "REMOVE": "Remove",
       "ADD_RANGE": "Add more",
-      "NO_RESULTS": "No results"
+      "NO_RESULTS": "No results",
+      "ERROR_EMPTY_RANGE": "You should fill one of these fields",
+      "ERROR_EMPTY_FROM_FIELD": "Only the \"From\" field in the first range can be left blank",
+      "ERROR_EMPTY_TO_FIELD": "Only the \"To\" field in the last range can be left blank",
+      "ERROR_CHOOSE_GROUPING": "Error - Choose type of grouping",
+      "ERROR_INTERVAL": "Error - Provide correct interval value",
+      "ERROR_RANGE": "Error - Provide correct value"
     },
     "ICON-PICKER": {
       "NO-RESULTS": "No results"

@@ -38,7 +38,13 @@ export type Texts =
   | 'from'
   | 'to'
   | 'remove'
-  | 'addRange';
+  | 'addRange'
+  | 'errorEmptyRange'
+  | 'errorEmptyFromField'
+  | 'errorEmptyToField'
+  | 'errorChooseGrouping'
+  | 'errorInterval'
+  | 'errorRange';
 
 export type ColumnManagerProps = {
   hide: () => void;

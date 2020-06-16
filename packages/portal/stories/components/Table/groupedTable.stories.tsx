@@ -19,7 +19,7 @@ import { EMPTY_VIEW, CATEGORIES, VIEWS } from './content/withFiltersAndSearch.da
 import ColumnManager, { SavedView } from '@synerise/ds-column-manager/dist/ColumnManager';
 import * as moment from 'moment';
 import ItemFilter from '@synerise/ds-item-filter/dist/ItemFilter';
-import { GROUP_BY } from '@synerise/ds-column-manager/dist/ColumnManagerGroupSettings/ColumnManagerGroupSettings';
+import { GROUP_BY } from '@synerise/ds-column-manager/dist/ColumnManagerGroupSettings/ColumnManagerGroupSettings.types';
 
 const decorator = storyFn => <div style={{ padding: 20, width: '100vw', minWidth: '100%' }}>{storyFn()}</div>;
 

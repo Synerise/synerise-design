@@ -87,6 +87,12 @@ class ColumnManager extends React.Component<ColumnManagerProps, State> {
       to: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.TO' }),
       remove: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.REMOVE' }),
       addRange: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.ADD_RANGE' }),
+      errorEmptyRange: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.ERROR_EMPTY_RANGE' }),
+      errorEmptyFromField: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.ERROR_EMPTY_FROM_FIELD' }),
+      errorEmptyToField: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.ERROR_EMPTY_TO_FIELD' }),
+      errorChooseGrouping: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.ERROR_CHOOSE_GROUPING' }),
+      errorInterval: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.ERROR_INTERVAL' }),
+      errorRange: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.ERROR_RANGE' }),
       ...texts,
     };
   }
