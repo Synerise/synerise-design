@@ -90,7 +90,7 @@ export const AntdInput = styled(
     // eslint-disable-next-line
     ({ error, ...props }, ref) => (
       // eslint-disable-next-line
-      <BaseAntInput {...props} ref={ref} />
+      <BaseAntInput autoComplete="off" {...props} ref={ref} />
     )
   )
 )<{ error?: boolean }>`
@@ -116,7 +116,7 @@ export const AntdMaskedInput = styled(
     // eslint-disable-next-line
     ({ error, mask, ...props }, ref) => (
       // eslint-disable-next-line
-      <MaskedInput {...props} ref={ref} mask={mask} />
+      <MaskedInput autoComplete="off" {...props} ref={ref} mask={mask} />
     )
   )
 )<{ error?: boolean }>`
@@ -138,7 +138,7 @@ export const AntdTextArea = styled(
     // eslint-disable-next-line
     ({ error, ...props }, ref) => (
       // eslint-disable-next-line
-      <BaseAntInput.TextArea {...props} ref={ref} />
+      <BaseAntInput.TextArea autoComplete="off" {...props} ref={ref} />
     )
   )
 )<{ error?: boolean }>`

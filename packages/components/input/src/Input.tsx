@@ -128,6 +128,7 @@ const enhancedInput = <P extends object>(
           value={antdInputProps.value}
           id={id}
           ref={inputRef}
+          autoComplete="off"
         />
       </S.InputWrapper>
       {(showError || description) && (
