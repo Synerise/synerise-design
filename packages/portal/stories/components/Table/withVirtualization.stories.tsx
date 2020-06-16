@@ -6,7 +6,6 @@ import { SearchInput } from '@synerise/ds-search/dist/Elements';
 import { withState } from '@dump247/storybook-state';
 import { text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
-import Modal from '@synerise/ds-modal';
 
 const decorator = storyFn => <div style={{ padding: 20, width: '100vw', minWidth: '100%' }}>{storyFn()}</div>;
 

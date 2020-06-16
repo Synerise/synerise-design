@@ -1,4 +1,5 @@
 import randomDate from '../../../utils/randomDate';
+import { GROUP_BY } from '@synerise/ds-column-manager/dist/ColumnManagerGroupSettings/ColumnManagerGroupSettings.types';
 
 export const COLUMNS = [
   {
@@ -96,61 +97,115 @@ export const DATA_SOURCE = [
 ];
 
 
-export const groupDataSource = [
+
+export const VIEWS = [
   {
-    column: 'last_name',
-    key: 0,
-    value: 'Nowak',
-    rows: [
+    label: 'All filters',
+    hasMore: false,
+    items: [
       {
-        key: 0,
-        first_name: 'Adrian',
-        last_name: 'Nowak',
-        city: 'Kraków',
-        age: 34,
+        id: '0000',
+        name: 'My view #1',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do elit',
+        created: randomDate(),
+        canUpdate: true,
+        canDelete: true,
+        canDuplicate: true,
+        user: {
+          firstname: 'Jan',
+          lastname: 'Nowak',
+        },
+        columns: COLUMNS,
+        groupSettings: {
+          column: COLUMNS[0],
+          settings: {
+            type: GROUP_BY.value,
+            interval: false,
+            ranges: false,
+          }
+        }
       },
       {
-        key: 1,
-        first_name: 'Maciej',
-        last_name: 'Nowak',
-        city: 'Warszawa',
-        age: 23,
+        id: '0001',
+        name: 'View #2',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do elit',
+        created: randomDate(),
+        canUpdate: true,
+        canDelete: true,
+        canDuplicate: true,
+        user: {
+          firstname: 'Kamil',
+          lastname: 'Kowalski',
+        },
+        columns: COLUMNS,
+        groupSettings: {
+          column: COLUMNS[3],
+          settings: {
+            type: GROUP_BY.interval,
+            interval: 3,
+            ranges: false,
+          }
+        }
       },
       {
-        key: 2,
-        first_name: 'Jan',
-        last_name: 'Nowak',
-        city: 'Kraków',
-        age: 56,
-      },
+        id: '0002',
+        name: 'View #3',
+        created: randomDate(),
+        canUpdate: true,
+        canDelete: true,
+        canDuplicate: true,
+        user: {
+          avatar_url: 'https://www.w3schools.com/howto/img_avatar.png',
+          firstname: 'Kamil',
+          lastname: 'Kowalski',
+        },
+        columns: COLUMNS,
+        groupSettings: {
+          column: COLUMNS[2],
+          settings: {
+            type: GROUP_BY.ranges,
+            interval: false,
+            ranges: [
+              {
+                from: {
+                  value: 'A',
+                  error: undefined,
+                },
+                to: {
+                  value: 'K',
+                  error: undefined,
+                }
+              },
+              {
+                from: {
+                  value: 'L',
+                  error: undefined,
+                },
+                to: {
+                  value: 'R',
+                  error: undefined,
+                }
+              },
+            ],
+          }
+        }
+      }
     ]
-  },
-  {
-    column: 'last_name',
-    key: 1,
-    value: 'Kowalski',
-    rows: [
-      {
-        key: 3,
-        first_name: 'Kamil',
-        last_name: 'Kowalski',
-        city: 'Kraków',
-        age: 34,
-      },
-      {
-        key: 4,
-        first_name: 'Tomasz',
-        last_name: 'Kowalski',
-        city: 'Warszawa',
-        age: 23,
-      },
-      {
-        key: 5,
-        first_name: 'Hubert',
-        last_name: 'Kowalski',
-        city: 'Kraków',
-        age: 56,
-      },
-    ]
-  },
+  }
 ];
+
+export const EMPTY_VIEW = {
+  id: '0003',
+  name: '',
+  created: randomDate(),
+  canUpdate: true,
+  canDelete: true,
+  canDuplicate: true,
+  categories: ['All views', 'My views'],
+  user: {
+    avatar_url: 'https://www.w3schools.com/howto/img_avatar.png',
+    firstname: 'Kamil',
+    lastname: 'Kowalski',
+  },
+  columns: COLUMNS,
+};

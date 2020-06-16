@@ -3,7 +3,7 @@ import { action } from '@storybook/addon-actions';
 import { withState } from '@dump247/storybook-state';
 import Table, { ItemsMenu, TableCell } from '@synerise/ds-table';
 import * as React from 'react';
-import { COLUMNS, DATA_SOURCE } from './content/groupedTable.data';
+import { COLUMNS, DATA_SOURCE, EMPTY_VIEW, VIEWS } from './content/groupedTable.data';
 import Avatar from '@synerise/ds-avatar';
 import Button from '@synerise/ds-button';
 import Icon from '@synerise/ds-icon';
@@ -15,7 +15,7 @@ import {
   TrashM
 } from '@synerise/ds-icon/dist/icons';
 import DSTable from '@synerise/ds-table';
-import { EMPTY_VIEW, CATEGORIES, VIEWS } from './content/withFiltersAndSearch.data';
+import { CATEGORIES } from './content/withFiltersAndSearch.data';
 import ColumnManager, { SavedView } from '@synerise/ds-column-manager/dist/ColumnManager';
 import * as moment from 'moment';
 import ItemFilter from '@synerise/ds-item-filter/dist/ItemFilter';
@@ -28,70 +28,6 @@ const CELL_SIZES = {
   medium: 'medium',
   small: 'small',
 };
-
-const saveFilter = (savedView: SavedView, store) => {
-  const id = moment().format('MM-DD-YYYY_HH:mm:ss');
-  // console.log('SAVED:', savedView, store, id);
-  const savedViews = store.state.savedViews;
-  savedViews[0].items = [
-    ...savedViews[0].items,
-    {
-      ...EMPTY_VIEW,
-      name: savedView.meta.name,
-      description: savedView.meta.description,
-      columns: [...savedView.columns],
-      id: id,
-      created: moment().format('MM-DD-YYYY HH:mm:ss'),
-    }
-  ];
-
-  store.set({
-    selectedView: id,
-    savedViews,
-    columns: [...savedView.columns],
-  })
-};
-
-const removeItem = (props, store): void => {
-  store.set({
-    items: store.state.items.filter(item => item.id !== props.id),
-  });
-};
-
-const editItem = (props, store): void => {
-  store.set({
-    items: store.state.items.map(item => {
-      if(item.id === props.id) {
-        item.name = props.name;
-      }
-      return item;
-    })
-  })
-};
-
-const setSelectedFilter = (props, store): void => {
-  let filters = [];
-  store.state.categories.forEach(cat => {
-    filters = [...filters, ...cat.items];
-  });
-  store.set({
-    selectedFilter: props.id,
-    columns: filters.filter(filter => filter.id === props.id)[0].columns,
-  });
-};
-
-const setSelectedView = (props, store): void => {
-  let savedViews = [];
-  store.state.savedViews.forEach(view => {
-    savedViews = [...savedViews, ...view.items];
-  });
-
-  store.set({
-    selectedView: props.id,
-    columns: savedViews.filter(view => view.id === props.id)[0].columns,
-  });
-};
-
 
 const stories = {
   default: withState({
@@ -109,9 +45,76 @@ const stories = {
     searchValue: '',
     searchFilterValue: '',
     searchSuggestions: [],
-    grouped: false,
+    groupSettings: undefined,
   })(({ store }) => {
     const { selectedRows, columns } = store.state;
+
+    const saveFilter = (savedView: SavedView) => {
+      const id = moment().format('MM-DD-YYYY_HH:mm:ss');
+      // console.log('SAVED:', savedView, store, id);
+      const savedViews = store.state.savedViews;
+      savedViews[0].items = [
+        ...savedViews[0].items,
+        {
+          ...EMPTY_VIEW,
+          name: savedView.meta.name,
+          description: savedView.meta.description,
+          columns: [...savedView.columns],
+          id: id,
+          created: moment().format('MM-DD-YYYY HH:mm:ss'),
+        }
+      ];
+
+      store.set({
+        selectedView: id,
+        savedViews,
+        columns: [...savedView.columns],
+      });
+
+      applyGroupSettings(savedView.groupSettings);
+    };
+
+    const removeItem = (props): void => {
+      store.set({
+        items: store.state.items.filter(item => item.id !== props.id),
+      });
+    };
+
+    const editItem = (props): void => {
+      store.set({
+        items: store.state.items.map(item => {
+          if(item.id === props.id) {
+            item.name = props.name;
+          }
+          return item;
+        })
+      })
+    };
+
+    const setSelectedFilter = (props): void => {
+      let filters = [];
+      store.state.categories.forEach(cat => {
+        filters = [...filters, ...cat.items];
+      });
+      store.set({
+        selectedFilter: props.id,
+        columns: filters.filter(filter => filter.id === props.id)[0].columns,
+      });
+    };
+
+    const setSelectedView = (props): void => {
+      let savedViews = [];
+      store.state.savedViews.forEach(view => {
+        savedViews = [...savedViews, ...view.items];
+      });
+
+      store.set({
+        selectedView: props.id,
+        columns: savedViews.filter(view => view.id === props.id)[0].columns,
+      });
+      applyGroupSettings(savedViews.filter(filter => filter.id === props.id)[0].groupSettings);
+    };
+
 
     const handleSelectRow = selectedRowKeys => {
       store.set({ selectedRows: selectedRowKeys });
@@ -192,22 +195,6 @@ const stories = {
 
     const duplicateItem = (props): void => {
       action('Duplicate item');
-      // const itemForDuplication = store.state.categories.find(item => item.id === props.id);
-      // store.set({
-      //   // @ts-ignore
-      //   filters: [
-      //     ...store.state.filters,
-      //     {
-      //       ...itemForDuplication,
-      //       id: Date.now(),
-      //       categories: ['My filters', 'All filters'],
-      //       canUpdate: true,
-      //       canDelete: true,
-      //       canDuplicate: true,
-      //       name: `${itemForDuplication.name} - copy`,
-      //     },
-      //   ],
-      // });
     };
 
     const toggleItemFilterVisible = (): void => {
@@ -215,15 +202,16 @@ const stories = {
     };
 
     const groupByValue = (groupSettings) => {
+      const {key} = groupSettings.column;
       const result = [];
       const columnValues = DATA_SOURCE.map(column => {
-        return column[groupSettings.key];
+        return column[key];
       });
       const uniqueValues = new Set(columnValues);
       uniqueValues.forEach((uniqueValue, index) => {
-        const group = DATA_SOURCE.filter(row => row[groupSettings.key] === uniqueValue);
+        const group = DATA_SOURCE.filter(row => row[key] === uniqueValue);
         result.push({
-          column: groupSettings.key,
+          column: key,
           key: index,
           value: uniqueValue,
           rows: group,
@@ -232,7 +220,7 @@ const stories = {
       });
       store.set({
         dataSource: result,
-        grouped: true,
+        groupSettings: groupSettings
       })
     };
 
@@ -295,7 +283,7 @@ const stories = {
       }
       store.set({
         dataSource: groups,
-        grouped: true,
+        groupSettings: groupSettings,
       })
     };
 
@@ -320,7 +308,7 @@ const stories = {
       store.set({
         // @ts-ignore
         dataSource: result,
-        grouped: true,
+        groupSettings: groupSettings
       })
     };
 
@@ -328,13 +316,13 @@ const stories = {
       if(!groupSettings) {
         store.set({
           dataSource: DATA_SOURCE,
-          grouped: false,
+          groupSettings: undefined
         });
         return;
       }
       switch(groupSettings.settings.type){
         case GROUP_BY.value: {
-          groupByValue(groupSettings.column);
+          groupByValue(groupSettings);
           break;
         }
         case GROUP_BY.ranges: {
@@ -348,7 +336,7 @@ const stories = {
         default: {
           store.set({
             dataSource: DATA_SOURCE,
-            grouped: false,
+            groupSettings: undefined
           });
         }
       }
@@ -373,10 +361,12 @@ const stories = {
       return categories.find(filter => filter.id === store.state.selectedFilter);
     };
 
+    console.log(store.state);
+
     return (
         <>
         <DSTable
-          grouped={store.state.grouped}
+          grouped={Boolean(store.state.groupSettings)}
           title={`${itemsCount()} records`}
           dataSource={store.state.dataSource}
           columns={getColumns()}
@@ -456,6 +446,7 @@ const stories = {
               applyGroupSettings(groupSettings);
               store.set({columns: columns, columnManagerVisible: false})
             }}
+            groupSettings={store.state.groupSettings}
             onSave={(savedView) => saveFilter(savedView, store)}
             itemFilterConfig={{
               removeItem: (params) => removeItem(params, store),
