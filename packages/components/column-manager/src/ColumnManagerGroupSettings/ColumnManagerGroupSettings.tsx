@@ -109,7 +109,7 @@ const ColumnManagerGroupSettings: React.FC<GroupSettingsProps> = ({
     }
     setError(undefined);
     return true;
-  }, [groupBy, ranges, interval, setError, setRanges]);
+  }, [groupBy, ranges, interval, setError, setRanges, texts]);
 
   const handleOk = React.useCallback(() => {
     if (groupBy === GROUP_BY.disabled) {
@@ -128,7 +128,7 @@ const ColumnManagerGroupSettings: React.FC<GroupSettingsProps> = ({
       clearState();
       onOk(currentSettings);
     }
-  }, [onOk, column, groupBy, ranges, interval, clearState, validate, texts]);
+  }, [onOk, column, groupBy, ranges, interval, clearState, validate]);
 
   const selectLabel = React.useMemo(() => {
     return (
