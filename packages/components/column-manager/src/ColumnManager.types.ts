@@ -32,7 +32,7 @@ export type ColumnManagerProps = {
   hide: () => void;
   visible: boolean;
   onSave: (savedView: SavedView) => void;
-  onApply: (columns: Column[], groupSettings: GroupSettings | undefined) => void;
+  onApply: (columns: Column[], groupSettings?: GroupSettings | undefined) => void;
   columns: Column[];
   texts?: {
     [k in Texts]: string | React.ReactNode;
@@ -41,10 +41,12 @@ export type ColumnManagerProps = {
   savedViewsVisible?: boolean;
   hideSavedViews?: () => void;
   intl: IntlFormatters;
+  groupSettings?: GroupSettings;
 };
 
 export type SavedView = {
   meta: ViewMeta;
+  groupSettings?: GroupSettings;
   columns: Column[];
 };
 
@@ -53,7 +55,7 @@ export type ViewMeta = {
   description: string;
 };
 
-export type GroupType = 'value' | 'ranges' | 'interval' | undefined;
+export type GroupType = 'value' | 'ranges' | 'interval' | string | undefined;
 
 export type GroupSettings = {
   column?: Column;

@@ -31,6 +31,7 @@ class ColumnManager extends React.Component<ColumnManagerProps, State> {
     // eslint-disable-next-line react/state-in-constructor
     this.state = {
       ...DEFAULT_STATE,
+      groupSettings: props.groupSettings || undefined,
       visibleList: props.columns.filter((column: Column) => column.visible),
       hiddenList: props.columns.filter((column: Column) => !column.visible),
       selectedFilterId: props.itemFilterConfig && props.itemFilterConfig.selectedItemId,
@@ -45,6 +46,7 @@ class ColumnManager extends React.Component<ColumnManagerProps, State> {
         visibleList: visible,
         hiddenList: hidden,
         selectedFilterId: (props.itemFilterConfig && props.itemFilterConfig.selectedItemId) || undefined,
+        groupSettings: props.groupSettings,
       };
     }
     return null;
@@ -175,9 +177,10 @@ class ColumnManager extends React.Component<ColumnManagerProps, State> {
 
   handleSave = (viewMeta: { name: string; description: string }): void => {
     const { onSave } = this.props;
-    const { visibleList, hiddenList } = this.state;
+    const { visibleList, hiddenList, groupSettings } = this.state;
     onSave({
       meta: viewMeta,
+      groupSettings,
       columns: [...visibleList, ...hiddenList],
     });
   };

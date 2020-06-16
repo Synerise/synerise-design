@@ -24,10 +24,10 @@ export type GroupSettingsTexts =
   | 'errorRange';
 
 export const GROUP_BY: { [key: string]: string } = {
-  value: 'Value',
-  ranges: 'Ranges',
-  interval: 'Interval',
-  disabled: 'Disabled',
+  value: 'value',
+  ranges: 'ranges',
+  interval: 'interval',
+  disabled: 'disabled',
 };
 
 export interface GroupSettingsProps {
