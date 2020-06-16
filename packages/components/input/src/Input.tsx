@@ -83,7 +83,9 @@ const enhancedInput = <P extends object>(
   }, [antdInputProps.value, counterLimit]);
 
   React.useEffect(() => {
-    setInputAddonHeight(inputRef?.current?.input?.offsetHeight);
+    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+    // @ts-ignore
+    inputRef.current && setInputAddonHeight(inputRef?.current?.input?.offsetHeight);
   }, [inputRef]);
   return (
     <S.OuterWrapper className={className} resetMargin={resetMargin}>
