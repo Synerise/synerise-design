@@ -226,7 +226,7 @@ describe('ColumnManager', () => {
     expect(hide).toBeCalledTimes(2);
   });
 
-  it('should close call onApply function with current columns configuration', () => {
+  it('should call onApply function with current columns configuration', () => {
     // ARRANGE
     const hide = jest.fn();
     const apply = jest.fn();
@@ -236,7 +236,7 @@ describe('ColumnManager', () => {
     fireEvent.click(getByTestId('ds-column-manager-apply'));
 
     // ASSERT
-    expect(apply).toBeCalledWith(COLUMNS);
+    expect(apply).toBeCalledWith(COLUMNS, undefined);
   });
 
   it('should save new filter', async () => {
