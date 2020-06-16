@@ -28,6 +28,7 @@ const InputNumber: React.FC<Props> = ({ label, description, errorText, ...antdPr
         id={id}
         error={showError}
         className={showError ? 'error' : undefined}
+        autoComplete="off"
       />
       {(showError || description) && (
         <S.ContentBelow>
