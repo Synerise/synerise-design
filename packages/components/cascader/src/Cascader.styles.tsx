@@ -6,7 +6,6 @@ export const InputWrapper = styled.div`
 `;
 export const Dropdown = styled.div<{ visible?: boolean; maxHeight?: number }>`
   display: ${(props): string => (!props.visible ? 'none' : 'block')};
-  position: absolute;
   width: 100%;
   background: ${(props): string => props.theme.palette.white};
   border-radius: 0 0 3px 3px;
@@ -19,7 +18,6 @@ export const DropdownScroll = styled(Scrollbar)<{ searching?: boolean }>`
   padding-right: ${(props): string => (props.searching ? `0` : '8px')};
 `;
 export const Wrapper = styled.div`
-  position: relative;
 `;
 export const BreadcrumbPrefix = styled.div``;
 export const DividerContainer = styled.div`
