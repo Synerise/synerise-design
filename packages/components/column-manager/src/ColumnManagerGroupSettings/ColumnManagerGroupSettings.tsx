@@ -8,10 +8,10 @@ import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import Button from '@synerise/ds-button';
 import InputNumber from '@synerise/ds-input-number';
 import Alert from '@synerise/ds-alert';
-import { GroupType, Texts } from '../ColumnManager.types';
+import { GroupType } from '../ColumnManager.types';
 import * as S from './ColumnManangerGroupSettings.styles';
 import RangesForm from './RangesForm/RangesForm';
-import { GROUP_BY, GroupSettingsProps, Range } from './ColumnManagerGroupSettings.types';
+import { GROUP_BY, GroupSettingsProps, GroupSettingsTexts, Range } from './ColumnManagerGroupSettings.types';
 
 const EMPTY_RANGE = {
   from: {
@@ -28,7 +28,7 @@ const validateRange = (
   range: Range,
   index: number,
   ranges: Range[],
-  texts: { [k in Texts]: string | React.ReactNode }
+  texts: { [k in GroupSettingsTexts]: string | React.ReactNode }
 ): Range => {
   const validRange = { ...range };
   if (
@@ -162,7 +162,13 @@ const ColumnManagerGroupSettings: React.FC<GroupSettingsProps> = ({
     if (groupBy === GROUP_BY.interval) {
       return (
         <S.IntervalInput>
-          <InputNumber min={1} label={texts.intervalPlaceholder} value={interval} onChange={setIntervalValue} />
+          <InputNumber
+            data-testid="group-by-interval"
+            min={1}
+            label={texts.intervalPlaceholder}
+            value={interval}
+            onChange={setIntervalValue}
+          />
         </S.IntervalInput>
       );
     }

@@ -5,8 +5,7 @@ import Icon from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 import { ColumnType } from '../../ColumnManagerItem/ColumManagerItem.types';
 import * as S from './RangesForm.styles';
-import { Range } from '../ColumnManagerGroupSettings.types';
-import { Texts } from '../../ColumnManager.types';
+import { GroupSettingsTexts, Range } from '../ColumnManagerGroupSettings.types';
 import RangeInput from './RangeInput';
 
 interface RangeRowProps {
@@ -17,7 +16,7 @@ interface RangeRowProps {
   type: ColumnType;
   remove: (index: number) => void;
   texts: {
-    [k in Texts]: string | React.ReactNode;
+    [k in GroupSettingsTexts]: string | React.ReactNode;
   };
 }
 
@@ -46,7 +45,7 @@ const RangeRow: React.FC<RangeRowProps> = ({ range, setRange, index, first, type
   }, [remove, index]);
 
   return (
-    <S.RangeRow first={first}>
+    <S.RangeRow first={first} data-testid="group-range-row">
       <S.RangeRowInputs>
         <RangeInput
           type={type}

@@ -1,6 +1,27 @@
 import * as React from 'react';
-import { GroupSettings, Texts } from '../ColumnManager.types';
+import { GroupSettings } from '../ColumnManager.types';
 import { Column } from '../ColumnManagerItem/ColumManagerItem.types';
+
+export type GroupSettingsTexts =
+  | 'groupByValue'
+  | 'groupByRanges'
+  | 'groupByIntervals'
+  | 'groupDisabled'
+  | 'groupTitle'
+  | 'selectPlaceholder'
+  | 'intervalPlaceholder'
+  | 'groupingType'
+  | 'groupingTypeTooltip'
+  | 'from'
+  | 'to'
+  | 'remove'
+  | 'addRange'
+  | 'errorEmptyRange'
+  | 'errorEmptyFromField'
+  | 'errorEmptyToField'
+  | 'errorChooseGrouping'
+  | 'errorInterval'
+  | 'errorRange';
 
 export const GROUP_BY: { [key: string]: string } = {
   value: 'Value',
@@ -16,7 +37,7 @@ export interface GroupSettingsProps {
   settings?: GroupSettings;
   column?: Column;
   texts: {
-    [k in Texts]: string | React.ReactNode;
+    [k in GroupSettingsTexts]: string | React.ReactNode;
   };
 }
 

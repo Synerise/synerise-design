@@ -1,16 +1,15 @@
 import * as React from 'react';
-import { Range } from '../ColumnManagerGroupSettings.types';
+import { GroupSettingsTexts, Range } from '../ColumnManagerGroupSettings.types';
 import * as S from './RangesForm.styles';
 import RangeRow from './RangeRow';
 import { ColumnType } from '../../ColumnManagerItem/ColumManagerItem.types';
-import { Texts } from '../../ColumnManager.types';
 
 interface RangeFormProps {
   ranges: Range[];
   setRanges: (ranges: Range[]) => void;
   type: ColumnType;
   texts: {
-    [k in Texts]: string | React.ReactNode;
+    [k in GroupSettingsTexts]: string | React.ReactNode;
   };
 }
 
