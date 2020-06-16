@@ -15,6 +15,8 @@ interface Props<T = SelectValue> extends SelectProps<T> {
   description?: React.ReactNode;
   tooltip?: React.ReactNode;
   clearTooltip?: string;
+  prefixel?: React.ReactNode;
+  suffixel?: React.ReactNode;
 }
 
 class Select extends React.Component<Props> {
@@ -22,24 +24,42 @@ class Select extends React.Component<Props> {
   static OptGroup = S.AntdSelectOptGroup;
 
   render(): React.ReactNode {
-    const { label, description, errorText, error, tooltip, clearTooltip, ...antdProps } = this.props;
+    const {
+      label,
+      description,
+      errorText,
+      error,
+      tooltip,
+      clearTooltip,
+      prefixel,
+      suffixel,
+      style,
+      ...antdProps
+    } = this.props;
     const { size } = antdProps;
     return (
       <>
         <S.Label label={label} tooltip={tooltip} />
-        <S.AntdSelect
-          {...antdProps}
-          size={size}
-          clearIcon={
-            <Tooltip title={clearTooltip}>
-              <span>
-                <Icon component={<Close3M />} size={size === 'small' ? 18 : 24} />
-              </span>
-            </Tooltip>
-          }
-          removeIcon={<Icon component={<CloseS />} />}
-          className={errorText || error ? 'error' : undefined}
-        />
+        <S.SelectWrapper className={errorText || error ? 'error ds-select-wrapper' : 'ds-select-wrapper'} style={style}>
+          {!!prefixel && <S.PrefixWrapper>{prefixel}</S.PrefixWrapper>}
+          <S.AntdSelect
+            {...antdProps}
+            size={size}
+            prefixel={!!prefixel}
+            suffixel={!!suffixel}
+            clearIcon={
+              <Tooltip title={clearTooltip}>
+                <span>
+                  <Icon component={<Close3M />} size={size === 'small' ? 18 : 24} />
+                </span>
+              </Tooltip>
+            }
+            removeIcon={<Icon component={<CloseS />} />}
+            className={errorText || error ? 'error' : undefined}
+          />
+          {!!suffixel && <S.SuffixWrapper>{suffixel}</S.SuffixWrapper>}
+        </S.SelectWrapper>
+
         {errorText && (
           <S.ErrorWrapper>
             <ErrorText>{errorText}</ErrorText>

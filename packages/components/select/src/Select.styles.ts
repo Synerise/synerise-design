@@ -12,8 +12,29 @@ box-shadow: inset 0 0 0 1px ${props.theme.palette['red-600']};
 background: ${props.theme.palette['red-050']};
 `;
 
+const withPrefixStyles = (): string => `
+  border-top-left-radius:0;
+  border-bottom-left-radius:0;
+`;
+const withSuffixStyles = (): string => `
+  border-top-right-radius:0;
+  border-bottom-right-radius:0;
+`;
+
+const addonStyles = (props: ThemeProps): string => `
+  display: flex;
+  align-items: center;
+  background: ${props.theme.palette['grey-050']};
+  box-shadow: inset 0 0 0 1px ${props.theme.palette['grey-300']};
+  color: ${props.theme.palette['grey-500']};
+  font-size:13px;
+  line-height: 1.39;
+ `;
+
 export const AntdSelect = styled((Select as unknown) as React.ComponentType<SelectProps<SelectValue>>)<{
   size?: string;
+  prefixel?: boolean;
+  suffixel?: boolean;
 }>`
   ${(props): string | false =>
     props.size === 'large' &&
@@ -29,7 +50,8 @@ export const AntdSelect = styled((Select as unknown) as React.ComponentType<Sele
     }
     }
   `}
-  & {
+  &&& {
+    width: 100%;
     .ant-select-clear {
       height: 18px;
       background-position: center;
@@ -44,7 +66,12 @@ export const AntdSelect = styled((Select as unknown) as React.ComponentType<Sele
       justify-content: center;
       margin-top: 0;
     }
+    .ant-select-selector {
+      ${(props): string | false => !!props.prefixel && withPrefixStyles()}
+      ${(props): string | false => !!props.suffixel && withSuffixStyles()}
+    }
   }
+
   &.error {
     .ant-select-selector {
       ${(props): string => errorStyle(props)}
@@ -73,4 +100,18 @@ export const DescWrapper = styled.div<{ withError: boolean }>`
 
 export const Label = styled(DSLabel)`
   margin-bottom: 8px;
+`;
+export const SelectWrapper = styled.div`
+  display: flex;
+`;
+export const PrefixWrapper = styled.div`
+  border-radius: 3px 0 0 3px;
+  margin-right: -2px;
+  ${(props): string => addonStyles(props)};
+`;
+
+export const SuffixWrapper = styled.div`
+  border-radius: 0 3px 3px 0;
+  margin-left: -1px;
+  ${(props): string => addonStyles(props)};
 `;
