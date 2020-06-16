@@ -202,6 +202,7 @@ const ColumnManagerGroupSettings: React.FC<GroupSettingsProps> = ({
           value={groupBy}
           onChange={handleGroupTypeChange}
           placeholder={texts.selectPlaceholder}
+          style={{ width: '100%' }}
         >
           <Select.Option value={GROUP_BY.value}>{texts.groupByValue}</Select.Option>
           <Select.Option value={GROUP_BY.ranges} disabled={groupByRangesDisabled}>
