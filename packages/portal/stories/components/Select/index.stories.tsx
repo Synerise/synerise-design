@@ -22,7 +22,11 @@ for (let i = 10; i < 36; i++) {
 }
 
 const modes = ['default', 'multiple', 'tags'];
-const sizes = ['default', 'large', 'small'];
+const sizes = {
+  small:'small',
+  default:'default',
+  large:'large,'
+}
 const values = ['Option A', 'Option B', 'Option C'];
 const dropdownMenuStyles = {};
 const dropdownStyles = {};
@@ -34,7 +38,7 @@ export const addonType = {
   label: 'label',
   none: 'none',
 };
-
+type SizeType = 'default' | 'small' | 'large';
 export function renderAddonComponent(suffixElementType: string) {
   switch (suffixElementType) {
     case addonType.icon:
@@ -73,7 +77,7 @@ const stories = {
     onBlur: action('I am blurred'),
     onFocus: action('I am focused'),
     placeholder: text('placeholder', 'Please select value...'),
-    size: select<'default' | 'small' | 'large'>('size', sizes as any, 'default'),
+    size: select<'default' | 'small' | 'large'>('size', sizes, 'default'),
     showArrow: boolean('showArrow', false),
     showSearch: boolean('showSearch', false),
     onChange: action('OnChange'),
@@ -103,7 +107,7 @@ const stories = {
       disabled: boolean('disabled', false),
       onBlur: action('I am blurred'),
       onFocus: action('I am focused'),
-      size: select<'default' | 'small' | 'large'>('size', sizes as any, 'default'),
+      size: select<'default' | 'small' | 'large'>('size', sizes , 'default'),
       onChange: action('OnChange'),
       style: { width: '100%' },
       children: values.map(opt => <Option value={opt}>{opt}</Option>),

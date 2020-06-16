@@ -6,6 +6,7 @@ import './style/index.less';
 import { Close3M, CloseS } from '@synerise/ds-icon/dist/icons';
 import Icon from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
+import * as classNames from 'classnames';
 import * as S from './Select.styles';
 
 interface Props<T = SelectValue> extends SelectProps<T> {
@@ -40,7 +41,7 @@ class Select extends React.Component<Props> {
     return (
       <>
         <S.Label label={label} tooltip={tooltip} />
-        <S.SelectWrapper className={errorText || error ? 'error ds-select-wrapper' : 'ds-select-wrapper'} style={style}>
+        <S.SelectWrapper className={classNames('ds-select-wrapper', { error: errorText || error })} style={style}>
           {!!prefixel && <S.PrefixWrapper>{prefixel}</S.PrefixWrapper>}
           <S.AntdSelect
             {...antdProps}
@@ -55,7 +56,7 @@ class Select extends React.Component<Props> {
               </Tooltip>
             }
             removeIcon={<Icon component={<CloseS />} />}
-            className={errorText || error ? 'error' : undefined}
+            className={classNames({ error: errorText || error })}
           />
           {!!suffixel && <S.SuffixWrapper>{suffixel}</S.SuffixWrapper>}
         </S.SelectWrapper>
