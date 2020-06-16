@@ -108,7 +108,6 @@ const enhancedInput = <P extends object>(
           </S.IconsFlexContainer>
         </S.IconsWrapper>
         <WrappedComponent
-          // eslint-disable-next-line react/jsx-props-no-spreading
           {...antdInputProps}
           addonBefore={
             !!prefixel && (
