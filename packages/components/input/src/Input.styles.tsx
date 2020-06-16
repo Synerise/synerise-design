@@ -6,10 +6,11 @@ import * as React from 'react';
 import MaskedInput from 'antd-mask-input';
 
 const errorInputStyle = (props: ThemeProps): string => `
-  && {
+  &&, .ant-input {
     border-color: ${props.theme.palette['red-600']};
     box-shadow: inset 0 0 0 1px ${props.theme.palette['red-600']};
     background: ${props.theme.palette['red-050']};
+    border-radius: 4px;
   }
 `;
 
@@ -43,6 +44,9 @@ export const InputWrapper = styled.div<InputWrapperProps>`
       if (props.icon1 || props.icon2) return '36px;';
       return '12px';
     }};
+  }
+  .ant-input-group-addon {
+    height: 100%;
   }
 `;
 
@@ -95,6 +99,15 @@ export const AntdInput = styled(
   && {
     color: ${(props): string => props.theme.palette['grey-700']};
     z-index: 1;
+
+    .ds-input-prefix {
+      border-top-left-radius: 3px;
+      border-bottom-left-radius: 3px;
+    }
+    .ds-input-suffix {
+      border-top-right-radius: 3px;
+      border-bottom-right-radius: 3px;
+    }
   }
 `;
 
@@ -163,4 +176,10 @@ export const ContentAbove = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 8px;
+`;
+export const AddonWrapper = styled.div<{ height: number }>`
+  background: ${(props): string => props.theme.palette['grey-050']};
+  display: flex;
+  align-items: center;
+  height: ${(props): string => `${props.height}px` || '30px'};
 `;

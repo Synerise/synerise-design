@@ -20,9 +20,12 @@ export interface Props {
   icon2?: React.ReactElement;
   resetMargin?: boolean;
   handleInputRef?: (ref: React.MutableRefObject<HTMLInputElement | HTMLTextAreaElement | undefined>) => void;
+  prefixel?: React.ReactNode;
+  suffixel?: React.ReactNode;
 }
 
 type EnhancedProps = Props & (InputProps | TextAreaProps);
+const VERTICAL_BORDER_OFFSET = 2;
 
 const enhancedInput = <P extends object>(
   WrappedComponent: StyledComponent<
@@ -41,6 +44,8 @@ const enhancedInput = <P extends object>(
   icon2,
   resetMargin,
   handleInputRef,
+  prefixel,
+  suffixel,
   error,
   ...antdInputProps
 }): React.ReactElement => {
@@ -50,6 +55,7 @@ const enhancedInput = <P extends object>(
   const id = React.useMemo(() => uuid(), []);
 
   const inputRef = React.useRef<HTMLInputElement | HTMLTextAreaElement>();
+  const [inputAddonHeight, setInputAddonHeight] = React.useState<number>(0);
 
   React.useEffect(() => {
     handleInputRef && handleInputRef(inputRef);
@@ -76,6 +82,11 @@ const enhancedInput = <P extends object>(
     setCharCount(antdInputProps.value ? antdInputProps.value.toString().length : 0);
   }, [antdInputProps.value, counterLimit]);
 
+  React.useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+    // @ts-ignore
+    inputRef.current && setInputAddonHeight(inputRef?.current?.input?.offsetHeight);
+  }, [inputRef]);
   return (
     <S.OuterWrapper className={className} resetMargin={resetMargin}>
       {(label || counterLimit) && (
@@ -97,8 +108,21 @@ const enhancedInput = <P extends object>(
           </S.IconsFlexContainer>
         </S.IconsWrapper>
         <WrappedComponent
-          // eslint-disable-next-line react/jsx-props-no-spreading
           {...antdInputProps}
+          addonBefore={
+            !!prefixel && (
+              <S.AddonWrapper className="ds-input-prefix" height={inputAddonHeight - VERTICAL_BORDER_OFFSET}>
+                {prefixel}
+              </S.AddonWrapper>
+            )
+          }
+          addonAfter={
+            !!suffixel && (
+              <S.AddonWrapper className="ds-input-suffix" height={inputAddonHeight - VERTICAL_BORDER_OFFSET}>
+                {suffixel}
+              </S.AddonWrapper>
+            )
+          }
           error={showError || error}
           onChange={handleChange}
           value={antdInputProps.value}
