@@ -219,7 +219,7 @@ const getColumnManagerTexts = () => ({
 const saveFilter = (savedView: SavedView, store) => {
   const id = moment().format('MM-DD-YYYY_HH:mm:ss');
   const newCategories = [...store.state.categories];
-  console.log(savedView, store);
+
   newCategories[0].items = [...newCategories[0].items, {
     ...EMPTY_FILTER,
     name: savedView.meta.name,
@@ -262,7 +262,7 @@ const editItem = (props, store): void => {
 };
 
 const setSelectedItem = (props, store): void => {
-  console.log(props, store);
+
   let categories = [];
   store.state.categories.forEach(cat => {
     categories = [...categories, ...cat.items];

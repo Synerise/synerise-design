@@ -28,7 +28,7 @@ function GroupTableHeader<T extends unknown>({ header, activeColumnKey, sortColu
               key={child.key}
               rowSpan={child.props.rowspan}
               onClick={(): void => clickHandle(child)}
-              className={`${child.props.className} ${child.props.additionalProps?.className} ${
+              className={`${child.props.className} ${child.props.additionalProps?.className || ''} ${
                 activeColumnKey === child.key ? 'ds-table-active-column' : ''
               }`}
             >
