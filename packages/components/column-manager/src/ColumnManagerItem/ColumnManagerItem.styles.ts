@@ -66,20 +66,23 @@ export const ColumnManagerItem = styled.div`
     ${Icons} {
       display: none;
     }
-    .ds-button {
-      visibility: visible;
-      opacity: 1;
+    && {
+      .ds-button {
+        visibility: visible;
+        opacity: 1;
+      }
     }
   }
-
-  .ds-button {
-    position: absolute;
-    right: 36px;
-    top: 12px;
-    display: flex;
-    visibility: hidden;
-    opacity: 0;
-    transition: all 0s;
+  && {
+    .ds-button {
+      position: absolute;
+      right: 36px;
+      top: 12px;
+      display: flex;
+      visibility: hidden;
+      opacity: 0;
+      transition: all 0s;
+    }
   }
 `;
 
