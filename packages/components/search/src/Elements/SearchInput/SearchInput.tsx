@@ -133,6 +133,7 @@ class SearchInput extends React.Component<SearchInputProps, SearchInputState> {
                 this.setState({ isInputFocused: false });
               }}
               autoFocus
+              autoComplete="off"
             />
           </S.SearchInner>
         </S.SearchInputContent>
