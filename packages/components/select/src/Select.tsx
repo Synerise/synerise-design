@@ -6,7 +6,7 @@ import './style/index.less';
 import { Close3M, CloseS } from '@synerise/ds-icon/dist/icons';
 import Icon from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
-import * as classNames from 'classnames';
+import classNames from 'classnames';
 import * as S from './Select.styles';
 
 interface Props<T = SelectValue> extends SelectProps<T> {
