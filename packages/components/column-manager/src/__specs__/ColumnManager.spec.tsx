@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { fireEvent, wait } from '@testing-library/react';
-import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
+import renderWithProvider from '@synerise/ds-utils/dist/testing/renderWithProvider/renderWithProvider';
 import { ViewMeta } from '../ColumnManager.types';
 import ColumnManager from '../ColumnManager';
 import { Column } from '../ColumnManagerItem/ColumManagerItem.types';
