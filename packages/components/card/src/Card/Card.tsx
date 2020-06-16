@@ -60,7 +60,7 @@ const Card: React.FC<CardProps> = ({
         <S.Header isContentful={!!children} onClick={onHeaderClick}>
           {icon && (
             <S.IconContainer compact={compactHeader}>
-              <Icon component={icon} color={iconColor} size={30} />
+              <Icon component={icon} color={iconColor} size={24} />
             </S.IconContainer>
           )}
 
