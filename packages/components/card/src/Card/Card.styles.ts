@@ -36,7 +36,7 @@ export const Container = styled.div<{
   disabled?: boolean;
   lively?: boolean;
   size?: number;
-  background?: Backgrounds;
+  background: Backgrounds;
 }>`
   background-color: ${(props): string => (props.background ? backgroundColor(props) : props.theme.palette.transparent)};
   box-shadow: ${(props): string => (props.background ? boxShadow(props) : 'none')};
