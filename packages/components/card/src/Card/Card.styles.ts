@@ -147,5 +147,4 @@ export const HeaderContent = styled.div<{ compact?: boolean; hasIcon: boolean }>
 
 export const ChildrenContainer = styled.div<{ hasHeader?: boolean; withoutPadding?: boolean; isContentful?: boolean }>`
   padding: ${(props): string => (props.withoutPadding || !props.isContentful ? '0' : '24px')};
-   //${(props): string | false => !!props.hasHeader && `padding-top:0;`}
 `;
