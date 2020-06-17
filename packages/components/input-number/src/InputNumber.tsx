@@ -9,6 +9,7 @@ export interface Props extends InputNumberProps {
   errorText?: React.ReactNode | string;
   label?: React.ReactNode | string;
   description?: React.ReactNode | string;
+  error?: boolean;
 }
 
 const InputNumber: React.FC<Props> = ({ label, description, errorText, ...antdProps }) => {
