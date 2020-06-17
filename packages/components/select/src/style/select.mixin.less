@@ -207,8 +207,10 @@
 .@{ant-prefix}-select {
   .@{ant-prefix}-select-selector {
     .@{ant-prefix}-select-selection-search {
-      left: 12px;
-      right: 12px;
+      .@{ant-prefix}-select-selection-search-input {
+        left: 12px;
+        right: 12px;
+      }
     }
   }
 }
@@ -218,9 +220,12 @@
     padding: 0 0 0 8px;
     border: 0;
   }
+  .@{ant-prefix}-select-selection-item {
+    margin-left: 2px;
+  }
 
   .@{ant-prefix}-select-selector {
-    padding: 1px 4px;
+    padding: 1px 10px 1px 1px;
   }
 
   .@{ant-prefix}-select-selection-item-remove {

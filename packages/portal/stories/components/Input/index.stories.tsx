@@ -14,6 +14,13 @@ import { TagShape } from '@synerise/ds-tags';
 
 const decorator = storyFn => <div style={{ width: '300px' }}>{storyFn()}</div>;
 const sizes = ['default', 'large'];
+const getErrorText = (error: boolean, errorText: string): string => {
+  if (error) {
+    return errorText;
+  } else {
+    return '';
+  }
+};
 const addonType = {
   icon: 'icon',
   tag: 'tag',
@@ -53,8 +60,11 @@ function renderAddonComponent(suffixElementType: string) {
   }
 }
 const stories = {
-  basic: () => {
+  default: () => {
     const [value, setValue] = React.useState<string>('');
+    const validationState = boolean('Set validation state', false);
+    const message = text('Error Text', 'Error');
+    const [isFocus, setFocus] = React.useState(false);
 
     return (
       <Input
@@ -62,11 +72,20 @@ const stories = {
         placeholder={text('placeholder', 'Placeholder')}
         label={text('label', 'Label')}
         description={text('description', 'Description')}
-        errorText={text('errorText', 'Error message')}
+        errorText={!isFocus && getErrorText(validationState, message)}
         counterLimit={number('counterLimit', 10)}
+        error={!isFocus && validationState}
         disabled={boolean('disabled', false)}
         onChange={e => setValue(e.target.value)}
         value={value}
+        onBlur={() => {
+          action('I am blurred');
+          setFocus(false);
+        }}
+        onFocus={() => {
+          action('I am focused');
+          setFocus(true);
+        }}
       />
     );
   },
@@ -199,31 +218,75 @@ const stories = {
           mask="11/11/1111"
         />
 
+
         <MaskedInput
           label="Credit card"
           value={creditCardvalue}
           onChange={e => setCreditCardvalue(e.target.value)}
           mask="1111-1111-1111-1111"
         />
+
       </div>
     );
   },
   inputWithIcons: () => {
     const [value, setValue] = React.useState<string>('');
+    const size = knobSelect('Set size', sizes as any, 'default');
+    const hasDescription = boolean('Set Description', false);
+    const hasCounter = boolean('Set Counter', false);
+    const counterLimitWords = number('counterLimit', 10);
+    const hasIconTooltip = boolean('Set Icon Tooltip', false);
+    const descriptionMessage = text('Description', 'Description');
+    const errorMessage = text('Error Text', 'Error');
+    const hasError = boolean('Set validation state', false);
+    const [isFocus, setFocus] = React.useState(false);
+    const getCounter = (hasCounter: boolean): number | null => {
+        if (hasCounter) {
+          return counterLimitWords ;
+        } else {
+          return null;
+        }}
+    const getDescription = (hasDescription: boolean): string => {
+      if (hasDescription) {
+        return descriptionMessage ;
+      } else {
+        return '';
+      }
+    };
+
+    const getErrorText = (hasError: boolean): string => {
+      if (hasError) {
+        return errorMessage;
+      } else {
+        return '';
+      }
+    };
 
     return (
       <Input
-        size={'large'}
+        size={size}
         placeholder={text('placeholder', 'Placeholder')}
         label={text('label', 'Label')}
-        description={text('description', 'Description')}
-        errorText={text('errorText', 'Error message')}
-        counterLimit={number('counterLimit', 10)}
+        description={descriptionMessage && getDescription(hasDescription)}
+        errorText={!isFocus && getErrorText(hasError)}
+        error={!isFocus && hasError}
+        counterLimit={counterLimitWords && getCounter(hasCounter)}
         disabled={boolean('disabled', false)}
         onChange={e => setValue(e.target.value)}
+        onBlur={() => {
+          action('I am blurred');
+          setFocus(false);
+        }}
+        onFocus={() => {
+          action('I am focused');
+          setFocus(true);
+        }}
         value={value}
         icon1={<Icon component={<FileM />} />}
+        icon1Tooltip={hasIconTooltip && <span>icon1</span>}
         icon2={<Icon component={<FileM />} />}
+        icon2Tooltip={hasIconTooltip && <span>icon2</span>}
+
       />
     );
   },
@@ -248,6 +311,16 @@ const stories = {
   },
   textarea: () => {
     const [value, setValue] = React.useState<string>('');
+    const errorMessage = text('Error Text', 'Error');
+    const hasError = boolean('Set validation state', false);
+    const [isFocus, setFocus] = React.useState(false);
+    const getErrorText = (hasError: boolean): string => {
+      if (hasError) {
+        return errorMessage;
+      } else {
+        return '';
+      }
+    };
 
     return (
       <TextArea
@@ -255,9 +328,18 @@ const stories = {
         placeholder={text('placeholder', 'Placeholder')}
         label={text('label', 'Label')}
         description={text('description', 'Description')}
-        errorText={text('errorText', 'Error message')}
+        errorText={!isFocus && getErrorText(hasError)}
+        error={!isFocus && hasError}
         counterLimit={number('counterLimit', 10)}
         disabled={boolean('disabled', false)}
+        onBlur={() => {
+          action('I am blurred');
+          setFocus(false);
+        }}
+        onFocus={() => {
+          action('I am focused');
+          setFocus(true);
+        }}
         onChange={e => setValue(e.target.value)}
         value={value}
       />
@@ -265,6 +347,17 @@ const stories = {
   },
   textareaWithIcons: () => {
     const [value, setValue] = React.useState<string>('');
+    const errorMessage = text('Error Text', 'Error');
+    const hasError = boolean('Set validation state', false);
+    const [isFocus, setFocus] = React.useState(false);
+    const hasIconTooltip = boolean('Set Icon Tooltip', false);
+    const getErrorText = (hasError: boolean): string => {
+      if (hasError) {
+        return errorMessage;
+      } else {
+        return '';
+      }
+    };
 
     return (
       <TextArea
@@ -272,13 +365,24 @@ const stories = {
         placeholder={text('placeholder', 'Placeholder')}
         label={text('label', 'Label')}
         description={text('description', 'Description')}
-        errorText={text('errorText', 'Error message')}
+        errorText={!isFocus && getErrorText(hasError)}
+        error={!isFocus && hasError}
         counterLimit={number('counterLimit', 10)}
         disabled={boolean('disabled', false)}
         onChange={e => setValue(e.target.value)}
         value={value}
+        onBlur={() => {
+          action('I am blurred');
+          setFocus(false);
+        }}
+        onFocus={() => {
+          action('I am focused');
+          setFocus(true);
+        }}
         icon1={<Icon component={<FileM />} />}
+        icon1Tooltip={hasIconTooltip && <span>icon1</span>}
         icon2={<Icon component={<FileM />} />}
+        icon2Tooltip={hasIconTooltip && <span>icon2</span>}
       />
     );
   },
