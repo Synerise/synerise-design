@@ -1,15 +1,15 @@
 import * as React from 'react';
 import Alert from 'antd/lib/alert';
 import styled, { css, FlattenInterpolation, ThemeProps } from 'styled-components';
-import { ThemeProviderProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/ThemeProvider';
+import { ThemePropsVars } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { Props } from './Alert';
 
 const DARKER_COLORS = ['green', 'yellow'];
 
-const getColor = (props: Props & ThemeProviderProps): string => {
+const getColor = (props: Props & { theme: ThemePropsVars }): string => {
   const { color, theme } = props;
   const hue = DARKER_COLORS.includes(color as string) ? '700' : '600';
-  return theme!.palette[`${color}-${hue}`];
+  return theme.palette[`${color}-${hue}`];
 };
 
 export const AntdAlert = styled((props: Props) => <Alert {...props} />)`
