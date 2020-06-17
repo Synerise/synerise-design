@@ -84,6 +84,14 @@ export const IconsFlexContainer = styled.div<{ type: string }>`
     `;
   }}
 `;
+export const IconWrapper = styled.div`
+  .icon:hover {
+    svg {
+      fill: ${(props): string => props.theme.palette['blue-600']};
+      cursor: pointer;
+    }
+  }
+`;
 
 export const AntdInput = styled(
   React.forwardRef<BaseAntInput, { error?: boolean }>(

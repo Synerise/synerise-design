@@ -5,6 +5,7 @@ import { InputProps, TextAreaProps } from 'antd/lib/input';
 import './style/index.less';
 import { StyledComponent } from 'styled-components';
 import { MaskedInputProps } from 'antd-mask-input/build/main/lib/MaskedInput';
+import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
 import * as S from './Input.styles';
 import Label from './Label/Label';
 
@@ -17,7 +18,9 @@ export interface Props {
   description?: React.ReactNode | string;
   counterLimit?: number;
   icon1?: React.ReactElement;
+  icon1Tooltip?: React.ReactElement;
   icon2?: React.ReactElement;
+  icon2Tooltip?: React.ReactElement;
   resetMargin?: boolean;
   handleInputRef?: (ref: React.MutableRefObject<HTMLInputElement | HTMLTextAreaElement | undefined>) => void;
   prefixel?: React.ReactNode;
@@ -41,7 +44,9 @@ const enhancedInput = <P extends object>(
   counterLimit,
   tooltip,
   icon1,
+  icon1Tooltip,
   icon2,
+  icon2Tooltip,
   resetMargin,
   handleInputRef,
   prefixel,
@@ -102,9 +107,20 @@ const enhancedInput = <P extends object>(
       <S.InputWrapper icon1={Boolean(icon1)} icon2={Boolean(icon2)}>
         <S.IconsWrapper onClick={handleIconsClick} disabled={antdInputProps.disabled}>
           <S.IconsFlexContainer type={type}>
-            {icon1 &&
-              React.cloneElement(icon1, { className: 'icon icon1', ...(icon2 && { style: { marginRight: '4px' } }) })}
-            {icon2 && React.cloneElement(icon2, { className: 'icon icon2' })}
+            <Tooltip title={icon1Tooltip}>
+              <S.IconWrapper className={className}>
+                {icon1 &&
+                  React.cloneElement(icon1, {
+                    className: 'icon icon1',
+                    ...(icon2 && { style: { marginRight: '4px' } }),
+                  })}
+              </S.IconWrapper>
+            </Tooltip>
+            <Tooltip title={icon2Tooltip}>
+              <S.IconWrapper className={className}>
+                {icon2 && React.cloneElement(icon2, { className: 'icon icon2' })}
+              </S.IconWrapper>
+            </Tooltip>
           </S.IconsFlexContainer>
         </S.IconsWrapper>
         <WrappedComponent
