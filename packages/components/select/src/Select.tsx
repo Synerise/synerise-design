@@ -9,7 +9,7 @@ import Tooltip from '@synerise/ds-tooltip';
 import * as S from './Select.styles';
 
 interface Props<T = SelectValue> extends SelectProps<T> {
-  errorText?: React.ReactNode;
+  errorText?: React.ReactNode | string;
   error?: boolean;
   label?: React.ReactNode;
   description?: React.ReactNode;
