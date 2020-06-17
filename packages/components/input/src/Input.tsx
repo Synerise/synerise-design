@@ -24,7 +24,7 @@ export interface Props {
   suffixel?: React.ReactNode;
 }
 
-type EnhancedProps = Props & (InputProps | TextAreaProps);
+type EnhancedProps = Props & (InputProps | TextAreaProps | MaskedInputProps);
 const VERTICAL_BORDER_OFFSET = 2;
 
 const enhancedInput = <P extends object>(

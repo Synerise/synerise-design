@@ -16,7 +16,6 @@ export const COLUMNS = [
   {
     title: 'Name',
     dataIndex: 'name',
-    defaultSortOrder: 'descend',
     width: 254,
     textWrap: 'word-break',
     ellipsis: true,
@@ -28,6 +27,7 @@ export const COLUMNS = [
     key: 'country',
     dataIndex: 'country',
     width: 254,
+    sorter: (a,b) => a.country < b.country,
     render: (country, record) => {
       return (<TableCell.FlagLabelCell countryCode={country} label={record.name} />)
     }

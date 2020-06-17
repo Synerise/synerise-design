@@ -5,7 +5,14 @@ import { SearchResults } from './ColumnMangerSearchResults.styles';
 import ColumnManagerItem from '../ColumnManagerItem/ColumnManagerItem';
 import { Props } from './ColumManagerResults.types';
 
-const ColumnManagerSearchResults: React.FC<Props> = ({ searchResults, searchQuery, setFixed, switchAction, texts }) => {
+const ColumnManagerSearchResults: React.FC<Props> = ({
+  searchResults,
+  searchQuery,
+  setFixed,
+  switchAction,
+  texts,
+  showGroupSettings,
+}) => {
   return (
     <SearchResults>
       {searchResults.length ? (
@@ -15,9 +22,9 @@ const ColumnManagerSearchResults: React.FC<Props> = ({ searchResults, searchQuer
             (column): React.ReactNode => (
               <ColumnManagerItem
                 key={column.id}
-                // eslint-disable-next-line react/jsx-props-no-spreading
-                {...column}
+                item={column}
                 setFixed={setFixed}
+                showGroupSettings={showGroupSettings}
                 switchAction={(): void => switchAction(column.id, column.visible)}
                 searchQuery={searchQuery}
                 data-testid="ds-column-manager-filtered-item"

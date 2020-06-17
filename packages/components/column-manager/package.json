@@ -26,6 +26,7 @@
     "@synerise/ds-drawer": "^0.4.22",
     "@synerise/ds-dropdown": "^0.10.10",
     "@synerise/ds-icon": "^0.11.1",
+    "@synerise/ds-input": "^0.13.0",
     "@synerise/ds-item-filter": "^0.4.7",
     "@synerise/ds-result": "^0.4.49",
     "@synerise/ds-scrollbar": "^0.2.1",
@@ -35,7 +36,8 @@
     "@synerise/ds-utils": "^0.8.26",
     "react-final-form": "^6.3.5",
     "react-sortablejs": "^2.0.11",
-    "react-sortablejs-typescript": "^2.0.15"
+    "react-sortablejs-typescript": "^2.0.15",
+    "uuid": "^8.1.0"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

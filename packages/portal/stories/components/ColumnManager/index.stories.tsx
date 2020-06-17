@@ -2,17 +2,17 @@ import * as React from 'react';
 import * as moment from 'moment';
 import ColumnManager from '@synerise/ds-column-manager';
 import { action } from '@storybook/addon-actions';
-import { Column } from '@synerise/ds-column-manager/dist/ColumnManagerItem/ColumnManagerItem';
+import { Column } from '@synerise/ds-column-manager/dist/ColumnManagerItem/ColumManagerItem.types';
 import { text } from '@storybook/addon-knobs';
 import Button from '@synerise/ds-button';
 import { withState } from '@dump247/storybook-state';
-import { SavedView } from '@synerise/ds-column-manager/dist/ColumnManager';
+import { SavedView } from '@synerise/ds-column-manager/dist/ColumnManager.types';
 import randomDate from '../../utils/randomDate';
-import { EMPTY_VIEW } from '../Table/content/withFiltersAndSearch.data';
 
 const COLUMNS: Column[] = [
   {
     id: '0',
+    key: 'user_name',
     name: 'User name',
     visible: true,
     type: 'text',
@@ -20,6 +20,7 @@ const COLUMNS: Column[] = [
   },
   {
     id: '1',
+    key: 'city',
     name: 'City',
     visible: true,
     type: 'text',
@@ -27,6 +28,7 @@ const COLUMNS: Column[] = [
   },
   {
     id: '2',
+    key: 'language',
     name: 'Language',
     visible: true,
     type: 'text',
@@ -34,6 +36,7 @@ const COLUMNS: Column[] = [
   },
   {
     id: '3',
+    key: 'clients_number',
     name: 'Clients numbers',
     visible: false,
     type: 'number',
@@ -41,6 +44,7 @@ const COLUMNS: Column[] = [
   },
   {
     id: '4',
+    key: 'clients',
     name: 'Clients - last 3 years dasdad dasdas dasdad as',
     visible: false,
     type: 'list',
@@ -48,6 +52,7 @@ const COLUMNS: Column[] = [
   },
   {
     id: '5',
+    key: 'clients',
     name: 'Client - last week',
     visible: false,
     type: 'list',
@@ -55,6 +60,7 @@ const COLUMNS: Column[] = [
   },
   {
     id: '6',
+    key: 'clients',
     name: 'Client - all time',
     visible: false,
     type: 'list',
@@ -62,6 +68,7 @@ const COLUMNS: Column[] = [
   },
   {
     id: '7',
+    key: 'clients',
     name: 'Active',
     visible: false,
     type: 'boolean',
@@ -199,6 +206,7 @@ const getColumnManagerTexts = () => ({
   apply: text('Column manager - apply', 'Apply'),
   fixedLeft: text('Column manager - fixed left', 'Fixed left'),
   fixedRight: text('Column manager - fixed right', 'Fixed right'),
+  group: text('Group', 'Group'),
   clear: text('Column manager - clear', 'Clear'),
   viewName: text('Column manager - view name', 'View name'),
   viewDescription: text('Column manager - view description', 'Description'),
@@ -211,6 +219,7 @@ const getColumnManagerTexts = () => ({
 const saveFilter = (savedView: SavedView, store) => {
   const id = moment().format('MM-DD-YYYY_HH:mm:ss');
   const newCategories = [...store.state.categories];
+
   newCategories[0].items = [...newCategories[0].items, {
     ...EMPTY_FILTER,
     name: savedView.meta.name,
@@ -218,12 +227,14 @@ const saveFilter = (savedView: SavedView, store) => {
     columns: [...savedView.columns],
     id: id,
     created: moment(),
+    groupSettings: savedView.groupSettings,
   }];
 
   store.set({
     selectedItemId: id,
     categories: newCategories,
     columns: [...savedView.columns],
+    groupSettings: savedView.groupSettings,
   })
 };
 
@@ -251,12 +262,14 @@ const editItem = (props, store): void => {
 };
 
 const setSelectedItem = (props, store): void => {
+
   let categories = [];
   store.state.categories.forEach(cat => {
     categories = [...categories, ...cat.items];
   });
   store.set({
     selectedItemId: props.id,
+    groupSettings: categories.filter(filter => filter.id === props.id)[0].groupSettings || undefined,
     columns: categories.filter(filter => filter.id === props.id)[0].columns,
   });
 };
@@ -267,6 +280,7 @@ const stories = {
     categories: CATEGORIES,
     selectedItemId: undefined,
     columnManagerVisible: false,
+    groupSettings: undefined,
   })(({ store }) => {
     return (
       <>
@@ -280,6 +294,7 @@ const stories = {
           onApply={action('onApply')}
           onSave={(savedView) => saveFilter(savedView, store)}
           texts={getColumnManagerTexts()}
+          groupSettings={store.state.groupSettings}
           itemFilterConfig={{
             removeItem: (params) => removeItem(params, store),
             editItem: (params) => editItem(params, store),

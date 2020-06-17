@@ -124,7 +124,7 @@ export const AntdButton = styled(
     > *:not(.btn-focus) {
       position: relative;
     }
-    > .icon {
+    > .ds-icon {
       display: flex;
       align-items: center;
       justify-content: center;
@@ -176,7 +176,7 @@ export const AntdButton = styled(
               transition: all 0.3s ease;
             }
           }
-          > ${IconContainer}, > .icon {
+          > ${IconContainer}, > .ds-icon {
             margin: 0 4px 0 3px;
           }
         }
@@ -186,11 +186,11 @@ export const AntdButton = styled(
       css`
         &.ant-btn {
           padding: 0;
-          > ${IconContainer}:first-of-type, > .icon:first-of-type {
+          > ${IconContainer}:first-of-type, > .ds-icon:first-of-type {
             margin: ${leftIcon};
           }
           > ${IconContainer}:nth-of-type(2),
-          > .icon:nth-of-type(2) {
+          > .ds-icon:nth-of-type(2) {
             margin: ${rightIcon};
           }
         }
@@ -200,7 +200,7 @@ export const AntdButton = styled(
       css`
         &.ant-btn {
           padding-right: 0;
-          > ${IconContainer}, > .icon {
+          > ${IconContainer}, > .ds-icon {
             margin: ${rightIcon};
           }
         }
@@ -210,7 +210,7 @@ export const AntdButton = styled(
       css`
         &.ant-btn {
           padding-left: 0;
-          > ${IconContainer}, > .icon {
+          > ${IconContainer}, > .ds-icon {
             margin: ${leftIcon};
           }
         }
@@ -224,7 +224,7 @@ export const AntdButton = styled(
           justify-content: center;
           padding: 0;
           width: 32px;
-          > ${IconContainer}, > .icon {
+          > ${IconContainer}, > .ds-icon {
             margin: 0 4px 0 4px;
           }
         }

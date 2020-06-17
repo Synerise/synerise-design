@@ -11,8 +11,9 @@ import SearchBar from '@synerise/ds-search-bar';
 import ColumnManagerActions from './ColumnManagerActions/ColumnManagerActions';
 import ColumnManagerList from './ColumnManagerList/ColumnManagerList';
 import { ColumnManagerProps, State, Texts } from './ColumnManager.types';
-import { Column } from './ColumnManagerItem/ColumManagerIte.types';
+import { Column } from './ColumnManagerItem/ColumManagerItem.types';
 import * as S from './styles/ColumnManager.styles';
+import ColumnManagerGroupSettings from './ColumnManagerGroupSettings/ColumnManagerGroupSettings';
 
 const DEFAULT_STATE: State = {
   searchQuery: '',
@@ -20,6 +21,8 @@ const DEFAULT_STATE: State = {
   hiddenList: [],
   itemFilterVisible: false,
   selectedFilterId: undefined,
+  activeColumn: undefined,
+  groupSettings: undefined,
 };
 
 class ColumnManager extends React.Component<ColumnManagerProps, State> {
@@ -28,6 +31,7 @@ class ColumnManager extends React.Component<ColumnManagerProps, State> {
     // eslint-disable-next-line react/state-in-constructor
     this.state = {
       ...DEFAULT_STATE,
+      groupSettings: props.groupSettings || undefined,
       visibleList: props.columns.filter((column: Column) => column.visible),
       hiddenList: props.columns.filter((column: Column) => !column.visible),
       selectedFilterId: props.itemFilterConfig && props.itemFilterConfig.selectedItemId,
@@ -42,6 +46,7 @@ class ColumnManager extends React.Component<ColumnManagerProps, State> {
         visibleList: visible,
         hiddenList: hidden,
         selectedFilterId: (props.itemFilterConfig && props.itemFilterConfig.selectedItemId) || undefined,
+        groupSettings: props.groupSettings,
       };
     }
     return null;
@@ -62,6 +67,7 @@ class ColumnManager extends React.Component<ColumnManagerProps, State> {
       apply: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.APPLY' }),
       fixedLeft: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.FIXED-LEFT' }),
       fixedRight: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.FIXED-RIGHT' }),
+      group: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.GROUP' }),
       clear: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.CLEAR' }),
       viewName: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.VIEW-NAME' }),
       viewDescription: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.VIEW-DESCRIPTION' }),
@@ -70,6 +76,25 @@ class ColumnManager extends React.Component<ColumnManagerProps, State> {
       mustNotBeEmpty: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.MUST-NOT-BE-EMPTY' }),
       switchOn: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.SWITCH-ON' }),
       switchOff: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.SWITCH-OFF' }),
+      groupByValue: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.GROUP_BY_VALUE' }),
+      groupByRanges: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.GROUP_BY_RANGERS' }),
+      groupByIntervals: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.GROUP_BY_INTERVALS' }),
+      groupDisabled: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.GROUP_DISABLED' }),
+      groupTitle: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.GROUP_TITLE' }),
+      selectPlaceholder: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.SELECT_PLACEHOLDER' }),
+      intervalPlaceholder: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.INTERVAL_PLACEHOLDER' }),
+      groupingType: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.SET_GROUPING_TYPE' }),
+      groupingTypeTooltip: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.GROUPING_TYPE_TOOLTIP' }),
+      from: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.FROM' }),
+      to: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.TO' }),
+      remove: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.REMOVE' }),
+      addRange: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.ADD_RANGE' }),
+      errorEmptyRange: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.ERROR_EMPTY_RANGE' }),
+      errorEmptyFromField: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.ERROR_EMPTY_FROM_FIELD' }),
+      errorEmptyToField: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.ERROR_EMPTY_TO_FIELD' }),
+      errorChooseGrouping: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.ERROR_CHOOSE_GROUPING' }),
+      errorInterval: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.ERROR_INTERVAL' }),
+      errorRange: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.ERROR_RANGE' }),
       ...texts,
     };
   }
@@ -117,10 +142,17 @@ class ColumnManager extends React.Component<ColumnManagerProps, State> {
   setFixed = (id: string, fixed?: string): void => {
     const { visibleList } = this.state;
     this.setState({
-      visibleList: visibleList.map(visibleColumn =>
-        visibleColumn.id === id ? { ...visibleColumn, fixed } : visibleColumn
-      ),
+      visibleList: visibleList.map(visibleColumn => {
+        if (visibleColumn.id === id) {
+          return visibleColumn.fixed === fixed ? { ...visibleColumn, fixed: undefined } : { ...visibleColumn, fixed };
+        }
+        return visibleColumn;
+      }),
     });
+  };
+
+  showGroupSettings = (column: Column): void => {
+    this.setState({ activeColumn: column });
   };
 
   hideItemFilter = (): void => {
@@ -145,86 +177,118 @@ class ColumnManager extends React.Component<ColumnManagerProps, State> {
 
   handleSave = (viewMeta: { name: string; description: string }): void => {
     const { onSave } = this.props;
-    const { visibleList, hiddenList } = this.state;
+    const { visibleList, hiddenList, groupSettings } = this.state;
     onSave({
       meta: viewMeta,
+      groupSettings,
       columns: [...visibleList, ...hiddenList],
     });
   };
 
   handleApply = (): void => {
     const { onApply } = this.props;
-    const { visibleList, hiddenList } = this.state;
-    onApply([...visibleList, ...hiddenList]);
+    const { visibleList, hiddenList, groupSettings } = this.state;
+    onApply([...visibleList, ...hiddenList], groupSettings);
   };
 
   render(): React.ReactElement {
     const { visible, hide, itemFilterConfig, savedViewsVisible } = this.props;
-    const { visibleList, hiddenList, searchQuery, itemFilterVisible } = this.state;
+    const { visibleList, hiddenList, searchQuery, itemFilterVisible, activeColumn, groupSettings } = this.state;
 
     const searchResults = [...visibleList, ...hiddenList].filter(column =>
       column.name.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
-    return (
-      <S.ColumnManager visible={visible || savedViewsVisible} width={338} onClose={hide}>
-        <Drawer.DrawerHeader>
-          <Drawer.DrawerHeaderBar>
-            <Typography.Title style={{ flex: 1, margin: 0 }} level={4}>
-              {this.texts.title}
-            </Typography.Title>
-            <Button
-              data-testid="ds-column-manager-show-filters"
-              type="ghost"
-              mode="single-icon"
-              onClick={this.handleShowItemFilter}
-            >
-              <Icon component={<FolderM />} />
-            </Button>
-            <Button
-              data-testid="ds-column-manager-close"
-              style={{ marginLeft: '8px' }}
-              mode="single-icon"
-              type="ghost"
-              onClick={hide}
-            >
-              <Icon component={<CloseM />} />
-            </Button>
-          </Drawer.DrawerHeaderBar>
-        </Drawer.DrawerHeader>
-        <SearchBar
-          onSearchChange={this.handleSearchChange}
-          placeholder={this.texts.searchPlaceholder as string}
-          value={searchQuery}
-          onClearInput={(): void => this.handleSearchChange('')}
-          iconLeft={<Icon component={<SearchM />} />}
-          clearTooltip={(this.texts.searchClearTooltip as string) || ''}
-        />
-        <Scrollbar absolute>
-          <Drawer.DrawerContent style={{ padding: '0 0 80px' }}>
-            <ColumnManagerList
-              texts={this.texts}
-              searchQuery={searchQuery}
-              searchResults={searchResults}
-              visibleList={visibleList}
-              hiddenList={hiddenList}
-              setFixed={this.setFixed}
-              toggleColumn={this.toggleColumn}
-              updateVisibleList={this.updateVisibleColumns}
-              updateHiddenList={this.updateHiddenColumns}
-            />
-          </Drawer.DrawerContent>
-        </Scrollbar>
+    const visibleListWithGroup = visibleList.map(column => {
+      if (column.id === groupSettings?.column?.id) {
+        return {
+          ...column,
+          group: true,
+        };
+      }
+      return column;
+    });
 
-        <ColumnManagerActions onSave={this.handleSave} onApply={this.handleApply} onCancel={hide} texts={this.texts} />
-        {itemFilterConfig && (
-          <ItemFilter
-            {...itemFilterConfig}
-            visible={itemFilterVisible || Boolean(savedViewsVisible)}
-            hide={this.hideItemFilter}
+    return (
+      <>
+        <S.ColumnManager visible={visible || savedViewsVisible} width={338} onClose={hide}>
+          <Drawer.DrawerHeader>
+            <Drawer.DrawerHeaderBar>
+              <Typography.Title style={{ flex: 1, margin: 0 }} level={4}>
+                {this.texts.title}
+              </Typography.Title>
+              <Button
+                data-testid="ds-column-manager-show-filters"
+                type="ghost"
+                mode="single-icon"
+                onClick={this.handleShowItemFilter}
+              >
+                <Icon component={<FolderM />} />
+              </Button>
+              <Button
+                data-testid="ds-column-manager-close"
+                style={{ marginLeft: '8px' }}
+                mode="single-icon"
+                type="ghost"
+                onClick={hide}
+              >
+                <Icon component={<CloseM />} />
+              </Button>
+            </Drawer.DrawerHeaderBar>
+          </Drawer.DrawerHeader>
+          <SearchBar
+            onSearchChange={this.handleSearchChange}
+            placeholder={this.texts.searchPlaceholder as string}
+            value={searchQuery}
+            onClearInput={(): void => this.handleSearchChange('')}
+            iconLeft={<Icon component={<SearchM />} />}
+            clearTooltip={(this.texts.searchClearTooltip as string) || ''}
           />
-        )}
-      </S.ColumnManager>
+          <Scrollbar absolute>
+            <Drawer.DrawerContent style={{ padding: '0 0 80px' }}>
+              <ColumnManagerList
+                texts={this.texts}
+                searchQuery={searchQuery}
+                searchResults={searchResults}
+                visibleList={visibleListWithGroup}
+                hiddenList={hiddenList}
+                setFixed={this.setFixed}
+                showGroupSettings={this.showGroupSettings}
+                groupSettings={groupSettings}
+                toggleColumn={this.toggleColumn}
+                updateVisibleList={this.updateVisibleColumns}
+                updateHiddenList={this.updateHiddenColumns}
+              />
+            </Drawer.DrawerContent>
+          </Scrollbar>
+
+          <ColumnManagerActions
+            onSave={this.handleSave}
+            onApply={this.handleApply}
+            onCancel={hide}
+            texts={this.texts}
+          />
+          {itemFilterConfig && (
+            <ItemFilter
+              {...itemFilterConfig}
+              visible={itemFilterVisible || Boolean(savedViewsVisible)}
+              hide={this.hideItemFilter}
+            />
+          )}
+        </S.ColumnManager>
+        <ColumnManagerGroupSettings
+          texts={this.texts}
+          hide={(): void => {
+            this.setState({ activeColumn: undefined });
+          }}
+          visible={activeColumn !== undefined}
+          column={activeColumn}
+          settings={activeColumn?.key === groupSettings?.column?.key ? groupSettings : undefined}
+          onOk={(settings): void => {
+            this.setState({ groupSettings: settings, activeColumn: undefined });
+          }}
+        />
+      </>
     );
   }
 }

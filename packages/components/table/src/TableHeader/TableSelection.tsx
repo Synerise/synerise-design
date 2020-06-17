@@ -29,12 +29,12 @@ const TableSelection: React.FC<Props> = ({ dataSource, selection, rowKey }) => {
   );
 
   const selectAll = React.useCallback(() => {
-    if (dataSource && selection)
+    if (dataSource && selection) {
       selection.onChange(
         dataSource.map((record: Selection) => getRowKey(record)),
         dataSource
       );
-  }, [dataSource, selection, getRowKey]);
+  }}, [dataSource, selection, getRowKey]);
 
   const unselectAll = React.useCallback(() => {
     if (selection) selection.onChange([], []);
