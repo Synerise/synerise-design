@@ -6,7 +6,7 @@ import { IconContainer } from '@synerise/ds-icon/dist/Icon.styles';
 export const DragHandler = styled(Icon)`
   position: absolute;
   top: 16px;
-  left: 0;
+  left: -24px;
   opacity: 0;
 `;
 
