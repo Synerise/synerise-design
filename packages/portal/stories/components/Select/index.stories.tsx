@@ -30,6 +30,14 @@ const sizes = {
 const values = ['Option A', 'Option B', 'Option C'];
 const dropdownMenuStyles = {};
 const dropdownStyles = {};
+const getErrorText = (error: boolean, errorText: string): string => {
+  if (error) {
+    return errorText;
+  } else {
+    return '';
+  }
+};
+
 
 export const addonType = {
   icon: 'icon',
@@ -61,31 +69,36 @@ export function renderAddonComponent(suffixElementType: string) {
 
 const stories = {
   default: () => {
-    const [isFocused, setFocused] = React.useState<boolean>(false);
+    const validationState = boolean('Set validation state', false)
+    const message = 'Error'
+    const [isFocus, setFocus] = React.useState(false)
     return {
-    tooltip: text('tooltip', 'This is example tooltip!'),
-    description: text('description', 'Description'),
-    errorText: !isFocused && text('errorText', ''),
-    label: text('label', 'Label'),
-    allowClear: false,
-    defaultActiveFirstOption: boolean('defaultActiveFirstOption', true),
-    defaultValue: text('defaultValue', 'Option A'),
-    disabled: boolean('disabled', false),
-    dropdownMatchSelectWidth: boolean('dropdownMatchSelectWidth', true),
-    dropdownStyle: object('dropdownStyle', dropdownMenuStyles),
-    dropdownMenuStyle: object('dropdownMenuStyle', dropdownStyles),
-    loading: boolean('loading', false),
-    mode: select('mode', modes, 'default'),
-    onBlur: ()=>{action('I am blurred'); setFocused(false)},
-    onFocus: ()=>{action('I am focused'); setFocused(true)},
-    placeholder: text('placeholder', 'Please select value...'),
-    size: select<'default' | 'small' | 'large'>('size', sizes, 'default'),
-    showArrow: boolean('showArrow', false),
-    showSearch: boolean('showSearch', false),
-    onChange: action('OnChange'),
-    style: { width: '100%' },
-    children: values.map(opt => <Option value={opt}>{opt}</Option>),
-  }},
+      tooltip: text('tooltip', 'This is example tooltip!'),
+      clearTooltip: text('Clear tooltip', 'Clear'),
+      description: text('description', 'Description'),
+      errorText:!isFocus && getErrorText(validationState,message),
+      error:!isFocus && validationState,
+      label: text('label', 'Label'),
+      allowClear: boolean('allowClear', true),
+      defaultActiveFirstOption: boolean('defaultActiveFirstOption', true),
+      defaultValue: text('defaultValue', 'Option A'),
+      disabled: boolean('disabled', false),
+      dropdownMatchSelectWidth: boolean('dropdownMatchSelectWidth', true),
+      dropdownStyle: object('dropdownStyle', dropdownMenuStyles),
+      dropdownMenuStyle: object('dropdownMenuStyle', dropdownStyles),
+      loading: boolean('loading', false),
+      mode: select('mode', modes, 'default'),
+      onBlur:()=>{ action ('I am blurred'); setFocus(false) },
+      onFocus: ()=>{ action('I am focused'); setFocus(true)},
+      placeholder: text('placeholder', 'Please select value...'),
+      size: select<'default' | 'small' | 'large'>('size', sizes as any, 'default'),
+      showArrow: boolean('showArrow', false),
+      showSearch: boolean('showSearch', false),
+      onChange: action('OnChange'),
+      style: { width: '100%' },
+      children: values.map(opt => <Option value={opt}>{opt}</Option>),
+    };
+  },
 
   multipleMode: {
     style: {
