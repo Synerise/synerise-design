@@ -57,7 +57,7 @@ function DefaultTable<T extends object = any>(props: DSTableProps<T>): React.Rea
   const toggleRowSelection = React.useCallback(
     (checked, record) => {
       const key = getRowKey(record);
-      if (selection?.selectedRowKeys && selection.onChange && key) {
+      if (selection?.selectedRowKeys && selection.onChange && key !== undefined) {
         const { onChange, selectedRowKeys } = selection;
         const selectedKeys = checked ? [...selectedRowKeys, key] : selectedRowKeys.filter(k => k !== key);
         const selectedRows =
