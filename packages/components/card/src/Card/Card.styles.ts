@@ -1,19 +1,50 @@
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import Typography from '@synerise/ds-typography';
 import * as React from 'react';
+import { ThemePropsVars } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { Backgrounds } from './Card';
+
+const whiteBg = ['white', 'white-shadow'];
+const greyBg = ['grey', 'grey-shadow'];
+const withBoxShadow = ['white-shadow', 'grey-shadow'];
+const withOutline = ['outline'];
+
+const backgroundColor = (props: { background: Backgrounds; theme: ThemePropsVars }): string => {
+  if (whiteBg.includes(props.background)) return props.theme.palette.white;
+  if (greyBg.includes(props.background)) return props.theme.palette['grey-050'];
+  return props.theme.palette.transparent;
+};
+
+const boxShadow = (props: { background: Backgrounds; theme: ThemePropsVars }): string => {
+  if (withBoxShadow.includes(props.background)) return props.theme.variable('@box-shadow-base') as string;
+  if (withOutline.includes(props.background)) return `${props.theme.palette['grey-200']} 0px 0px 0px 1px inset`;
+  return 'none';
+};
+
+export const HeaderSideChildren = styled.div`
+  position: relative;
+  padding-left: 24px;
+`;
+
+export const IconContainer = styled.div<{ compact?: boolean }>`
+  width: 24px;
+  height: 24px;
+`;
 
 export const Container = styled.div<{
   raised?: boolean;
   disabled?: boolean;
   lively?: boolean;
   size?: number;
+  background: Backgrounds;
 }>`
-  background: #fff;
-  box-shadow: ${(props): string => props.theme.variable('@box-shadow-base')};
+  background-color: ${(props): string => (props.background ? backgroundColor(props) : props.theme.palette.transparent)};
+  box-shadow: ${(props): string => (props.background ? boxShadow(props) : 'none')};
   border-radius: ${(props): string => props.theme.variable('@border-radius-base')};
   display: flex;
   flex-flow: column;
   transition: 0.3s ease;
+  width: 100%;
   max-width: ${(props): string => (props.size ? `${props.size}px` : '100%')};
 
   ${(props): FlattenSimpleInterpolation | false =>
@@ -26,7 +57,13 @@ export const Container = styled.div<{
     !!props.disabled &&
     css`
       pointer-events: none;
-      opacity: 0.5;
+      opacity: 0.4;
+      ${HeaderSideChildren} {
+        opacity: 0.16;
+      }
+      ${IconContainer} {
+        opacity: 0.4;
+      }
     `};
 
   ${(props): FlattenSimpleInterpolation | false =>
@@ -38,25 +75,26 @@ export const Container = styled.div<{
     `}
 `;
 
-export const Header = styled.div<{ isContentful?: boolean; onClick?: React.MouseEventHandler }>`
-  padding: 24px 24px 0 24px;
+export const Header = styled.div<{ onClick?: React.MouseEventHandler; headerBorderBottom?: boolean }>`
+  padding: 24px 24px 24px 24px;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   align-items: flex-start;
-
-  ${(props): FlattenSimpleInterpolation | false =>
-    !!props.isContentful &&
-    css`
-      padding-bottom: 24px;
-    `};
+  position: relative;
+  &:after {
+    position: absolute;
+    bottom: 0;
+    left: 24px;
+    right: 24px;
+    height: 1px;
+    content: '';
+    display: ${(props): string => (props.headerBorderBottom ? 'block' : 'none')};
+    background-color: ${(props): string => props.theme.palette['grey-100']};
+  }
   &:hover {
     ${(props): string | false => !!props.onClick && `cursor:pointer;`}
   }
-`;
-
-export const HeaderSideChildren = styled.div`
-  padding-left: 24px;
 `;
 
 export const Title = styled(Typography.Title)<{ fat: boolean }>`
@@ -75,7 +113,8 @@ export const Description = styled.p`
 `;
 
 export const HeaderContent = styled.div<{ compact?: boolean; hasIcon: boolean }>`
-  width: 100%;
+  max-width: 100%;
+  flex: 1;
 
   ${(props): FlattenSimpleInterpolation | false =>
     props.hasIcon &&
@@ -106,13 +145,6 @@ export const HeaderContent = styled.div<{ compact?: boolean; hasIcon: boolean }>
     `}
 `;
 
-export const IconContainer = styled.div<{ compact?: boolean }>`
-  width: 24px;
-  height: 24px;
-  transform: translate(-5px, ${(props): string => (props.compact ? '1px' : '-5px')});
-`;
-
-export const ChildrenContainer = styled.div<{ hasHeader?: boolean; withoutPadding?: boolean }>`
-  padding: ${(props): string => (props.withoutPadding ? '0' : '24px')};
-  ${(props): string | false => !!props.hasHeader && `padding-top:0;`}
+export const ChildrenContainer = styled.div<{ hasHeader?: boolean; withoutPadding?: boolean; isContentful?: boolean }>`
+  padding: ${(props): string => (props.withoutPadding || !props.isContentful ? '0' : '24px')};
 `;

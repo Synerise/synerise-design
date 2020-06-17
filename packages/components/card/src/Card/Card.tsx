@@ -2,6 +2,8 @@ import * as React from 'react';
 import Icon from '@synerise/ds-icon';
 import * as S from './Card.styles';
 
+export type Backgrounds = 'white' | 'white-shadow' | 'grey' | 'grey-shadow' | 'outline';
+
 export interface CardProps {
   raised?: boolean;
   disabled?: boolean;
@@ -19,6 +21,8 @@ export interface CardProps {
   headerSideChildren?: React.ReactNode;
   onHeaderClick?: (e: React.SyntheticEvent) => void;
   withoutPadding?: boolean;
+  headerBorderBottom?: boolean;
+  background?: Backgrounds;
 }
 
 const mapSizeToWidth = {
@@ -45,6 +49,8 @@ const Card: React.FC<CardProps> = ({
   headerSideChildren,
   onHeaderClick,
   withoutPadding,
+  headerBorderBottom,
+  background = 'white',
 }) => {
   const fatTitle = !description || (description && compactHeader);
   return (
@@ -55,12 +61,13 @@ const Card: React.FC<CardProps> = ({
       style={style}
       className={`ds-card ${className || ''}`}
       lively={lively}
+      background={background}
     >
       {withHeader && (
-        <S.Header isContentful={!!children} onClick={onHeaderClick}>
+        <S.Header onClick={onHeaderClick} headerBorderBottom={headerBorderBottom}>
           {icon && (
             <S.IconContainer compact={compactHeader}>
-              <Icon component={icon} color={iconColor} size={30} />
+              <Icon component={icon} color={iconColor} />
             </S.IconContainer>
           )}
 
@@ -76,7 +83,7 @@ const Card: React.FC<CardProps> = ({
           {headerSideChildren && <S.HeaderSideChildren>{headerSideChildren}</S.HeaderSideChildren>}
         </S.Header>
       )}
-      <S.ChildrenContainer withoutPadding={withoutPadding} hasHeader={withHeader}>
+      <S.ChildrenContainer isContentful={!!children} withoutPadding={withoutPadding} hasHeader={withHeader}>
         {children}
       </S.ChildrenContainer>
     </S.Container>
