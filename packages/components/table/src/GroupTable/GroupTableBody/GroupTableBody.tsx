@@ -56,7 +56,7 @@ function GroupTableBody<T extends unknown>({
 
   return (
     <>
-      <tr className={group.className}>
+      <tr className={`${group.className} ds-group-row`}>
         <td colSpan={group.children.length + 1}>
           <S.GroupRow>
             <S.GroupRowLeft>
