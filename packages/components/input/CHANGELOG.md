@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.13.0...@synerise/ds-input@0.13.1) (2020-06-17)
+
+
+### Bug Fixes
+
+* **input:** disabled browser autocomplete ([1182c1a](https://github.com/synerise/synerise-design/commit/1182c1aa7cc599db195a1a300a3b4ee58ef0e0d8))
+* **input:** fix MaskInput propstype ([0b76ce6](https://github.com/synerise/synerise-design/commit/0b76ce660abd418bcb2225cf8cfdddea50afea86))
+* **input:** fix proptypes for MaskedInput ([cf4f7b5](https://github.com/synerise/synerise-design/commit/cf4f7b549778e53e393604ae702ae9eada0f0f66))
+
+
+
+
+
 # [0.13.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.12.0...@synerise/ds-input@0.13.0) (2020-06-16)
 
 

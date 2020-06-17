@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.31](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.1.30...@synerise/ds-search@0.1.31) (2020-06-17)
+
+
+### Bug Fixes
+
+* **search:** disabled browser autocomplete ([6566cdf](https://github.com/Synerise/synerise-design/commit/6566cdf16ef18bd28d1321e9dd1fd873be3bf79b))
+
+
+
+
+
 ## [0.1.30](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.1.29...@synerise/ds-search@0.1.30) (2020-06-16)
 
 **Note:** Version bump only for package @synerise/ds-search

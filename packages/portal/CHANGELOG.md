@@ -3,6 +3,38 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.75.0](https://github.com/synerise/synerise-design/compare/portal@0.74.0...portal@0.75.0) (2020-06-17)
+
+
+### Bug Fixes
+
+* **modal:** changed button type in story ([334ff11](https://github.com/synerise/synerise-design/commit/334ff11070443cd4bc4a20938bc4491220199d9e))
+* **select:** changed story ([8644686](https://github.com/synerise/synerise-design/commit/86446864c04533b6dcf7dceda1d6ff0282c2971d))
+* **table:** fix eslint issues ([65b0701](https://github.com/synerise/synerise-design/commit/65b07018c540f25e9b54b5e005ae6094e45e0dbb))
+* **table:** remove console.log from example ([9b0f4d0](https://github.com/synerise/synerise-design/commit/9b0f4d00bfbd6134b0cda27ddd46ad737676ecd1))
+
+
+### Features
+
+* **column-manager:** add support for group columns ([dceb5c4](https://github.com/synerise/synerise-design/commit/dceb5c474527a57d59cddb174eb3bb4133f83974))
+* **column-manager:** update ColumnManager stories ([f5ec4ae](https://github.com/synerise/synerise-design/commit/f5ec4aef56d9ca9b4effefde97dc94226fb946b7))
+* **column-manager:** update translations ([be156fc](https://github.com/synerise/synerise-design/commit/be156fc41965ec2bfed0ea4654a9fb10d4fe74a6))
+* **table:** add example of grouping by value and interval ([612ede2](https://github.com/synerise/synerise-design/commit/612ede2454f4c3c44d1c3d9758f0d40eeecd2f59))
+* **table:** add item from group, fix types ([bc140f2](https://github.com/synerise/synerise-design/commit/bc140f2246e8d2cc1601b7c2615255df63b4c9b7))
+* **table:** adjcust GroupTable to current Table version ([54ad069](https://github.com/synerise/synerise-design/commit/54ad0691eda76a311ae0b5ecc856e38b118790a3))
+* **table:** custom header ([17a6d1a](https://github.com/synerise/synerise-design/commit/17a6d1ae9413b91c62396ac7b2f8d12317cbf34b))
+* **table:** group by date ([a4aa7d0](https://github.com/synerise/synerise-design/commit/a4aa7d0d76a0430e506b3db08257cf14ba6995c6))
+* **table:** grouped rows selection ([896ff36](https://github.com/synerise/synerise-design/commit/896ff366873ddc63c3a8f8b54a958dcd3185196b))
+* **table:** grouped table ([75a3b22](https://github.com/synerise/synerise-design/commit/75a3b22cf11255a677e19ba5dea95b232e4c58b3))
+* **table:** sort subrows by column ([57dad0c](https://github.com/synerise/synerise-design/commit/57dad0c7822105009f08b8f037c7f24eba091809))
+* **table:** update example of GroupTable ([ec8dc36](https://github.com/synerise/synerise-design/commit/ec8dc366b7bbb1129443cb3f457b3025e9c37f85))
+* **table:** update stories with data grouping ([ccc84d5](https://github.com/synerise/synerise-design/commit/ccc84d5a3c7c950d851a63483b329851d33cbe82))
+* **table:** use Table as common component to DefaultTable & GroupTable ([e8aa1af](https://github.com/synerise/synerise-design/commit/e8aa1af66e4d80a14d0c50235f502e3a70f96763))
+
+
+
+
+
 # [0.74.0](https://github.com/synerise/synerise-design/compare/portal@0.73.1...portal@0.74.0) (2020-06-16)
 
 

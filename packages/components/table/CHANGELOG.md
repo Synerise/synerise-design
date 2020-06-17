@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.15.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.14.1...@synerise/ds-table@0.15.0) (2020-06-17)
+
+
+### Bug Fixes
+
+* **table:** fix eslint ([5f5b5da](https://github.com/synerise/synerise-design/commit/5f5b5da859e2684baa6d50d7c41c3c4051895b19))
+* **table:** fix eslint issues ([ae12e78](https://github.com/synerise/synerise-design/commit/ae12e784b2d80343232b44fe8f6e86a484799c51))
+* **table:** fix minor issues of group table ([adfb50d](https://github.com/synerise/synerise-design/commit/adfb50d43315299003a68d7981a0d96085ef05a6))
+* **table:** remove console.log from example ([9b0f4d0](https://github.com/synerise/synerise-design/commit/9b0f4d00bfbd6134b0cda27ddd46ad737676ecd1))
+
+
+### Features
+
+* **column-manager:** update translations ([be156fc](https://github.com/synerise/synerise-design/commit/be156fc41965ec2bfed0ea4654a9fb10d4fe74a6))
+* **table:** add example of grouping by value and interval ([612ede2](https://github.com/synerise/synerise-design/commit/612ede2454f4c3c44d1c3d9758f0d40eeecd2f59))
+* **table:** add item from group, fix types ([bc140f2](https://github.com/synerise/synerise-design/commit/bc140f2246e8d2cc1601b7c2615255df63b4c9b7))
+* **table:** add row selection ([ac95d43](https://github.com/synerise/synerise-design/commit/ac95d438ed8d1be83065bd3e1c866ecf05eebbad))
+* **table:** adjcust GroupTable to current Table version ([54ad069](https://github.com/synerise/synerise-design/commit/54ad0691eda76a311ae0b5ecc856e38b118790a3))
+* **table:** clear state of group settings modal ([33127c2](https://github.com/synerise/synerise-design/commit/33127c266beb6e93cbd9e7f74e0fe883c11c8df0))
+* **table:** custom header ([17a6d1a](https://github.com/synerise/synerise-design/commit/17a6d1ae9413b91c62396ac7b2f8d12317cbf34b))
+* **table:** fix eslint ([0ef9839](https://github.com/synerise/synerise-design/commit/0ef9839e4aba6625d43cf9b31a87c5a08bd23c71))
+* **table:** group by date ([a4aa7d0](https://github.com/synerise/synerise-design/commit/a4aa7d0d76a0430e506b3db08257cf14ba6995c6))
+* **table:** group table styles ([920d32d](https://github.com/synerise/synerise-design/commit/920d32d0a0441c3c985ce298b44a537f1a84bfbe))
+* **table:** grouped rows selection ([896ff36](https://github.com/synerise/synerise-design/commit/896ff366873ddc63c3a8f8b54a958dcd3185196b))
+* **table:** grouped table ([75a3b22](https://github.com/synerise/synerise-design/commit/75a3b22cf11255a677e19ba5dea95b232e4c58b3))
+* **table:** sort subrows by column ([57dad0c](https://github.com/synerise/synerise-design/commit/57dad0c7822105009f08b8f037c7f24eba091809))
+* **table:** update GroupRow, fix styles ([28342d9](https://github.com/synerise/synerise-design/commit/28342d95a8cdf980beec1717c206f8386149b53b))
+* **table:** use Table as common component to DefaultTable & GroupTable ([e8aa1af](https://github.com/synerise/synerise-design/commit/e8aa1af66e4d80a14d0c50235f502e3a70f96763))
+
+
+
+
+
 ## [0.14.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.14.0...@synerise/ds-table@0.14.1) (2020-06-16)
 
 **Note:** Version bump only for package @synerise/ds-table

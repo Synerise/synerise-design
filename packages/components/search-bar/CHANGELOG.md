@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.56](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search-bar@0.2.55...@synerise/ds-search-bar@0.2.56) (2020-06-17)
+
+
+### Bug Fixes
+
+* **search-bar:** disabled browser autocomplete ([0a8a273](https://github.com/Synerise/synerise-design/commit/0a8a2733d3108b04776478d7b703bf92da1e66ba))
+
+
+
+
+
 ## [0.2.55](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search-bar@0.2.54...@synerise/ds-search-bar@0.2.55) (2020-06-16)
 
 **Note:** Version bump only for package @synerise/ds-search-bar
