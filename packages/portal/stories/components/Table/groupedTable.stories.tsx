@@ -138,6 +138,11 @@ const stories = {
               title: 'First name',
               dataIndex: 'first_name',
               key: 'first_name',
+              sorter: (a, b) => {
+                if (a.first_name < b.first_name) return -1;
+                if (a.first_name > b.first_name) return 1;
+                return 0;
+              },
               render: (firstName) => {
                 return (
                   <TableCell.AvatarLabelCell
@@ -180,7 +185,8 @@ const stories = {
               title: 'Last activity',
               dataIndex: 'last_activity',
               key: 'last_activity',
-              render: (last_activity) => moment(last_activity).format('DD/MM/YYYY HH:mm')
+              render: (last_activity) => moment(last_activity).format('DD/MM/YYYY HH:mm'),
+              sorter: (a, b) => moment(a.last_activity).isBefore(moment(b.last_activity)) ? -1 : 1,
             }
           }
           default:
@@ -188,6 +194,11 @@ const stories = {
               ...column,
               title: column.name,
               dataIndex: column.key,
+              sorter: (a, b) => {
+                if (a[column.key] < b[column.key]) return -1;
+                if (a[column.key] > b[column.key]) return 1;
+                return 0;
+              },
             };
         }
       })
