@@ -393,7 +393,10 @@ const stories = {
                 openedLabel: 'Define',
                 showList: () => store.set({savedViewsVisible: true}),
                 show: () => store.set({columnManagerVisible: true}),
-                handleClear: () => store.set({selectedView: undefined}),
+                handleClear: () => {
+                  store.set({selectedView: undefined})
+                  applyGroupSettings(undefined);
+                },
                 selected: getSelectedSavedView(),
               },
               {
