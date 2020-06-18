@@ -43,10 +43,10 @@ function DSTable<T extends object = any>(props: DSTableProps<T>): React.ReactEle
 
   const renderHeader = React.useCallback((): React.ReactNode => {
     const size = selection && selection?.selectedRowKeys && selection?.selectedRowKeys.length;
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-    // @ts-ignore
     const data = grouped
-      ? dataSource?.reduce((items: T[], group: GroupType<T>) => {
+      ? // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+        // @ts-ignore
+        dataSource?.reduce((items: T[], group: GroupType<T>) => {
           if (group.rows) {
             return [...items, ...group.rows];
           }
@@ -122,9 +122,9 @@ function DSTable<T extends object = any>(props: DSTableProps<T>): React.ReactEle
           <Icon component={<SpinnerM />} color="#6a7580" />
         </S.Spinner>
       )}
-      {/*
-        // @ts-ignore */}
-      {grouped && dataSource.length ? (
+      {grouped && dataSource?.length ? (
+        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+        // @ts-ignore
         <GroupTable<T>
           {...props}
           title={renderHeader}
