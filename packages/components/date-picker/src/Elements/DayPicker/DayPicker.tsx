@@ -8,10 +8,11 @@ import fnsFormat from '../../format';
 import Navbar from '../Navbar/Navbar';
 import { DayPicker } from './DayPicker.styles';
 import { Link } from '../Navbar/Navbar.styles';
+import { DayPickerProps } from './DayPicker.types';
 
 const captionElement = (): null => null;
 
-const Picker = (props): React.ReactNode => {
+const Picker = (props: DayPickerProps): React.ReactNode => {
   const { month, onMonthChange, onMonthNameClick, onYearNameClick, hidePrev, hideNext, intl, ...rest } = props;
   return [
     <Navbar

@@ -1,19 +1,18 @@
-import styled, { css } from 'styled-components';
+import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import { borderStyle } from '../../../DatePicker.styles';
 
-
 const selectedStyle = css`
-  background: ${props => props.theme.variable('@gray-color-lighter-8')};
+  background: ${(props): string => props.theme.variable('@gray-color-lighter-8')};
   font-weight: 500;
   outline: ${borderStyle} !important;
 
   &:hover {
-    background: ${props => props.theme.variable('@gray-color-lighter-8')};
+    background: ${(props): string => props.theme.variable('@gray-color-lighter-8')};
   }
 `;
 
 const disabledStyle = css`
-  color: ${props => props.theme.variable('@btn-disable-color')};
+  color: ${(props): string => props.theme.variable('@btn-disable-color')};
 
   &:hover {
     background: transparent;
@@ -43,7 +42,7 @@ export const Item = styled.li`
   transition: background 0.3s;
 
   &:hover {
-    background: ${props => props.theme.variable('@item-hover-bg')};
+    background: ${(props): string => props.theme.variable('@item-hover-bg')};
   }
 
   ${props => props.selected && selectedStyle} ${props => props.disabled && disabledStyle};
