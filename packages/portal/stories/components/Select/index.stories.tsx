@@ -79,7 +79,7 @@ const stories = {
       errorText:!isFocus && getErrorText(validationState,message),
       error:!isFocus && validationState,
       label: text('label', 'Label'),
-      allowClear: boolean('allowClear', true),
+      allowClear: false,
       defaultActiveFirstOption: boolean('defaultActiveFirstOption', true),
       defaultValue: text('defaultValue', 'Option A'),
       disabled: boolean('disabled', false),
@@ -97,6 +97,8 @@ const stories = {
       onChange: action('OnChange'),
       style: { width: '100%' },
       children: values.map(opt => <Option value={opt}>{opt}</Option>),
+      notFoundContent: <Result type="no-results" noSearchResults description={'No results'} />,
+
     };
   },
 
@@ -155,7 +157,7 @@ const stories = {
 };
 
 export default {
-  name: 'Components|Select|Basic',
+  name: 'Components|Select',
   decorator,
   stories,
   Component: Select,
