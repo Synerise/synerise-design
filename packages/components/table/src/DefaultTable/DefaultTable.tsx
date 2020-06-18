@@ -1,20 +1,12 @@
 import * as React from 'react';
 import Table from 'antd/lib/table';
-import Button from '@synerise/ds-button';
 import Result from '@synerise/ds-result';
-import Icon from '@synerise/ds-icon';
-import { AngleLeftS, AngleRightS } from '@synerise/ds-icon/dist/icons';
 import Checkbox from '@synerise/ds-checkbox';
 import { DSTableProps } from '../Table.types';
 
-const ITEM_RENDER_TYPE = {
-  prev: 'prev',
-  next: 'next',
-};
-
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function DefaultTable<T extends object = any>(props: DSTableProps<T>): React.ReactElement {
-  const { title, selection, pagination, dataSource, rowKey, locale } = props;
+  const { title, selection, dataSource, rowKey, locale } = props;
 
   const getRowKey = React.useCallback(
     (row: T): React.ReactText | undefined => {
@@ -24,35 +16,6 @@ function DefaultTable<T extends object = any>(props: DSTableProps<T>): React.Rea
     },
     [rowKey]
   );
-
-  const footerPagination = React.useMemo((): object => {
-    return {
-      showTotal: (total: number, range: number[]): React.ReactNode => (
-        <span>
-          <strong>{range[0]}</strong>-<strong>{range[1]}</strong> of <strong>{total}</strong> items
-        </span>
-      ),
-      columnWidth: 72,
-      itemRender: (page: number, type: string, originalElement: React.ReactNode): React.ReactNode => {
-        if (type === ITEM_RENDER_TYPE.prev) {
-          return (
-            <Button mode="single-icon" type="ghost">
-              <Icon component={<AngleLeftS />} />
-            </Button>
-          );
-        }
-        if (type === ITEM_RENDER_TYPE.next) {
-          return (
-            <Button mode="single-icon" type="ghost">
-              <Icon component={<AngleRightS />} />
-            </Button>
-          );
-        }
-        return originalElement;
-      },
-      ...pagination,
-    };
-  }, [pagination]);
 
   const toggleRowSelection = React.useCallback(
     (checked, record) => {
@@ -77,7 +40,6 @@ function DefaultTable<T extends object = any>(props: DSTableProps<T>): React.Rea
         ...locale,
         emptyText: <Result description={locale?.emptyText || 'No data'} type="no-results" noSearchResults />,
       }}
-      pagination={dataSource?.length && pagination ? footerPagination : false}
       /* eslint-disable-next-line @typescript-eslint/ban-ts-ignore */
       // @ts-ignore
       title={title}

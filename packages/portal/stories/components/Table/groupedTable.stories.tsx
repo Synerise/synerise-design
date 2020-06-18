@@ -51,7 +51,6 @@ const stories = {
 
     const saveFilter = (savedView: SavedView) => {
       const id = moment().format('MM-DD-YYYY_HH:mm:ss');
-      // console.log('SAVED:', savedView, store, id);
       const savedViews = store.state.savedViews;
       savedViews[0].items = [
         ...savedViews[0].items,
@@ -121,7 +120,7 @@ const stories = {
     };
 
     const itemsCount = () => {
-      if(store.state.grouped) {
+      if(Boolean(store.state.groupSettings)) {
         return store.state.dataSource.reduce((count, group) => {
           return count + group.rows.length;
         }, 0);
@@ -384,6 +383,7 @@ const stories = {
           loading={boolean('Set loading state', false)}
           roundedHeader={boolean('Rounded header', false)}
           cellSize={select('Set cells size', CELL_SIZES, CELL_SIZES.default)}
+          locale={{pagination: {items: 'items', groups: 'groups'}}}
           filters={
             [
               {
