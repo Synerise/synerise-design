@@ -113,7 +113,7 @@ function DSTable<T extends object = any>(props: DSTableProps<T>): React.ReactEle
       },
       ...pagination,
     };
-  }, [pagination, grouped]);
+  }, [pagination, grouped, locale]);
 
   return (
     <div className={`ds-table ds-table-cell-size-${cellSize} ${roundedHeader ? 'ds-table-rounded' : ''}`}>
