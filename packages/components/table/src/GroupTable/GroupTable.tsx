@@ -4,7 +4,6 @@ import Table, { ColumnsType } from 'antd/lib/table';
 import { GroupType as GroupByType } from '@synerise/ds-column-manager/dist/ColumnManager.types';
 import { DSTableProps } from '../Table.types';
 import GroupTableBody from './GroupTableBody/GroupTableBody';
-import TableHeader from '../TableHeader/TableHeader';
 import '../style/index.less';
 import GroupTableHeader from './GroupTableHeader/GroupTableHeader';
 
@@ -43,20 +42,7 @@ const getNextSortOrder = (current: SortOrderType): SortOrderType => {
 function GroupTable<T extends GroupType<T>>(
   props: DSTableProps<T> & { addItem?: (column: string, value: React.ReactText | boolean | object) => void }
 ): React.ReactElement {
-  const {
-    selection,
-    rowKey,
-    dataSource,
-    columns,
-    title,
-    onSearch,
-    filters,
-    itemsMenu,
-    searchComponent,
-    cellSize,
-    roundedHeader,
-    addItem,
-  } = props;
+  const { selection, rowKey, dataSource, columns, cellSize, roundedHeader, addItem } = props;
   const [expandedGroups, setExpandedGroups] = React.useState<React.ReactText[]>(
     dataSource?.map(group => group.key) || []
   );
@@ -80,7 +66,7 @@ function GroupTable<T extends GroupType<T>>(
   }, [columns]);
 
   const activeColumn = React.useMemo(() => {
-    return data && data[0].column;
+    return data?.length ? data[0].column : undefined;
   }, [data]);
 
   const toggleExpand = React.useCallback(
@@ -145,30 +131,12 @@ function GroupTable<T extends GroupType<T>>(
     [dataSource, tableColumns]
   );
 
-  const renderHeader = React.useCallback((): React.ReactNode => {
-    const size = selection && selection?.selectedRowKeys && selection?.selectedRowKeys.length;
-    return (
-      <TableHeader
-        selectedRows={size}
-        title={title}
-        onSearch={onSearch}
-        filters={filters}
-        itemsMenu={itemsMenu}
-        selection={selection}
-        dataSource={allItems}
-        searchComponent={searchComponent}
-      />
-    );
-  }, [selection, title, onSearch, filters, itemsMenu, searchComponent, allItems]);
-
   return (
     <div className={`ds-table ds-table-cell-size-${cellSize} ${roundedHeader ? 'ds-table-rounded' : ''}`}>
       <Table<T>
         {...props}
-        // scroll={{y: 200}}
         dataSource={data}
         columns={tableColumns as ColumnsType<T>}
-        title={renderHeader}
         /* eslint-disable-next-line @typescript-eslint/ban-ts-ignore */
         // @ts-ignore
         components={{

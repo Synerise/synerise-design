@@ -43,7 +43,7 @@ function GroupTableBody<T extends unknown>({
   );
 
   const allRowKeys = React.useMemo(() => {
-    return group.children[0].props.record.rows.map((row: T) => getRowKey(row));
+    return group.children.length ? group.children[0].props.record.rows.map((row: T) => getRowKey(row)) : [];
   }, [group, getRowKey]);
 
   const selectedRowsNumber = React.useMemo(() => {
@@ -51,12 +51,14 @@ function GroupTableBody<T extends unknown>({
   }, [allRowKeys, selection]);
 
   const activeColumn = React.useMemo(() => {
-    return columns?.find(column => column.dataIndex === group.children[0].props.record.column);
+    return group.children.length
+      ? columns?.find(column => column.dataIndex === group.children[0].props.record.column)
+      : undefined;
   }, [columns, group]);
 
   return (
     <>
-      <tr className={group.className}>
+      <tr className={`${group.className} ds-group-row`}>
         <td colSpan={group.children.length + 1}>
           <S.GroupRow>
             <S.GroupRowLeft>

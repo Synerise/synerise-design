@@ -1,4 +1,4 @@
-import { boolean, select } from '@storybook/addon-knobs';
+import { boolean, number, select } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import { withState } from '@dump247/storybook-state';
 import Table, { ItemsMenu, TableCell } from '@synerise/ds-table';
@@ -12,7 +12,7 @@ import {
   FileDownloadM,
   FilterM,
   Grid2M,
-  TrashM
+  TrashM, VarTypeBooleanM, VarTypeDateM, VarTypeListM, VarTypeNumberM,
 } from '@synerise/ds-icon/dist/icons';
 import DSTable from '@synerise/ds-table';
 import { CATEGORIES } from './content/withFiltersAndSearch.data';
@@ -20,6 +20,11 @@ import ColumnManager, { SavedView } from '@synerise/ds-column-manager/dist/Colum
 import * as moment from 'moment';
 import ItemFilter from '@synerise/ds-item-filter/dist/ItemFilter';
 import { GROUP_BY } from '@synerise/ds-column-manager/dist/ColumnManagerGroupSettings/ColumnManagerGroupSettings.types';
+import Search from '@synerise/ds-search/dist/Search';
+import { FilterElement } from '@synerise/ds-search/dist/Search.types';
+import Menu from '@synerise/ds-menu';
+import Divider from '@synerise/ds-divider';
+import VarTypeStringM from '@synerise/ds-icon/dist/icons/VarTypeStringM';
 
 const decorator = storyFn => <div style={{ padding: 20, width: '100vw', minWidth: '100%' }}>{storyFn()}</div>;
 
@@ -27,6 +32,14 @@ const CELL_SIZES = {
   default: 'default',
   medium: 'medium',
   small: 'small',
+};
+
+const COLUMN_ICONS = {
+  text: <VarTypeStringM />,
+  number: <VarTypeNumberM />,
+  list: <VarTypeListM />,
+  boolean: <VarTypeBooleanM />,
+  date: <VarTypeDateM />
 };
 
 const stories = {
@@ -51,7 +64,6 @@ const stories = {
 
     const saveFilter = (savedView: SavedView) => {
       const id = moment().format('MM-DD-YYYY_HH:mm:ss');
-      // console.log('SAVED:', savedView, store, id);
       const savedViews = store.state.savedViews;
       savedViews[0].items = [
         ...savedViews[0].items,
@@ -121,7 +133,7 @@ const stories = {
     };
 
     const itemsCount = () => {
-      if(store.state.grouped) {
+      if(Boolean(store.state.groupSettings)) {
         return store.state.dataSource.reduce((count, group) => {
           return count + group.rows.length;
         }, 0);
@@ -138,6 +150,11 @@ const stories = {
               title: 'First name',
               dataIndex: 'first_name',
               key: 'first_name',
+              sorter: (a, b) => {
+                if (a.first_name < b.first_name) return -1;
+                if (a.first_name > b.first_name) return 1;
+                return 0;
+              },
               render: (firstName) => {
                 return (
                   <TableCell.AvatarLabelCell
@@ -180,7 +197,8 @@ const stories = {
               title: 'Last activity',
               dataIndex: 'last_activity',
               key: 'last_activity',
-              render: (last_activity) => moment(last_activity).format('DD/MM/YYYY HH:mm')
+              render: (last_activity) => moment(last_activity).format('DD/MM/YYYY HH:mm'),
+              sorter: (a, b) => moment(a.last_activity).isBefore(moment(b.last_activity)) ? -1 : 1,
             }
           }
           default:
@@ -188,6 +206,11 @@ const stories = {
               ...column,
               title: column.name,
               dataIndex: column.key,
+              sorter: (a, b) => {
+                if (a[column.key] < b[column.key]) return -1;
+                if (a[column.key] > b[column.key]) return 1;
+                return 0;
+              },
             };
         }
       })
@@ -361,18 +384,72 @@ const stories = {
       return categories.find(filter => filter.id === store.state.selectedFilter);
     };
 
-    console.log(store.state);
+    const getSuggestions = (value) => {
+      if(value) {
+        const paramName = value.split(' ').join('_').toLowerCase();
+        const data = store.state.groupSettings ? store.state.dataSource?.reduce((items, group) => {
+          if (group.rows) {
+            return [...items, ...group.rows];
+          }
+          return [...items];
+        }, []) : store.state.dataSource;
+
+        const allSuggestions = data.map(record => {
+          return {
+            text: record[paramName],
+            filter: paramName
+          }
+        });
+        return allSuggestions.reduce((unique, item) => {
+          const exist = unique.find((record) => record.text === item.text);
+          return exist ? unique : [...unique, item];
+        }, []);
+      }
+      return [];
+    };
+
+    const parameters = COLUMNS.map((column) => ({
+      text: column.name,
+      icon: COLUMN_ICONS[column.type]
+    }));
+
+    const recent = [];
+
+    const filteredDataSource = () => {
+      if(store.state.searchValue) {
+        const param = store.state.searchFilterValue !== '' ? store.state.searchFilterValue : 'first_name';
+        let result = [];
+        if(store.state.groupSettings === undefined){
+          result = store.state.dataSource.filter(record => {
+            return record[param.toLowerCase()]?.includes(store.state.searchValue)
+          })
+        } else {
+          const groupsWithSearchValues = store.state.dataSource.map(group => ({
+            ...group,
+            rows: group.rows.filter(row => {
+              return row[param.toLowerCase()]?.includes(store.state.searchValue);
+            })
+          }));
+          result = groupsWithSearchValues.filter(group => group.rows.length > 0);
+        }
+        return result;
+      }
+
+      return store.state.dataSource;
+
+    };
 
     return (
         <>
         <DSTable
           grouped={Boolean(store.state.groupSettings)}
           title={`${itemsCount()} records`}
-          dataSource={store.state.dataSource}
+          dataSource={filteredDataSource()}
           columns={getColumns()}
           loading={boolean('Set loading state', false)}
           roundedHeader={boolean('Rounded header', false)}
           cellSize={select('Set cells size', CELL_SIZES, CELL_SIZES.default)}
+          locale={{pagination: {items: 'items', groups: 'groups'}}}
           filters={
             [
               {
@@ -382,7 +459,10 @@ const stories = {
                 openedLabel: 'Define',
                 showList: () => store.set({savedViewsVisible: true}),
                 show: () => store.set({columnManagerVisible: true}),
-                handleClear: () => store.set({selectedView: undefined}),
+                handleClear: () => {
+                  store.set({selectedView: undefined})
+                  applyGroupSettings(undefined);
+                },
                 selected: getSelectedSavedView(),
               },
               {
@@ -434,6 +514,63 @@ const stories = {
                 },
               ]
             }
+          }
+          searchComponent={
+            <Search
+              clearTooltip= 'Clear'
+              placeholder= 'Search'
+              width={300}
+              parameters={parameters.slice(0, number('Parameters count', 5))}
+              recent={recent.slice(0, number('Recent count', 5))}
+              suggestions={store.state.searchSuggestions}
+              value={store.state.searchValue}
+              parameterValue={store.state.searchFilterValue}
+              onValueChange={value => {
+                store.set({searchValue: value});
+              }}
+              onParameterValueChange={value => {
+                store.set({
+                  searchFilterValue: value,
+                  searchSuggestions: getSuggestions(value),
+                });
+
+              }}
+              recentDisplayProps={{
+                tooltip: 'Recent',
+                title: 'Recent',
+                rowHeight: 32,
+                visibleRows: 3,
+                itemRender: (item: FilterElement) => <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>,
+                divider: (
+                  <div style={{ padding: '12px', paddingBottom: '0px' }}>
+                    {' '}
+                    <Divider dashed={true} />{' '}
+                  </div>
+                ),
+              }}
+              parametersDisplayProps={{
+                tooltip: 'Parameters',
+                title: 'Parameters',
+                rowHeight: 32,
+                visibleRows: 6,
+                itemRender: (item: FilterElement) => (
+                  <Menu.Item
+                    highlight={store.state.searchValue}
+                    onItemHover={(): void => {}}
+                    prefixel={item && <Icon component={item && item.icon} />}
+                  >
+                    {item && item.text}
+                  </Menu.Item>
+                ),
+              }}
+              suggestionsDisplayProps={{
+                tooltip: 'Suggestions',
+                title: 'Suggestions',
+                rowHeight: 32,
+                visibleRows: 6,
+                itemRender: (item: FilterElement) => <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>,
+              }}
+            />
           }
         />
           <ColumnManager
