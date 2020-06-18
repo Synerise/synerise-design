@@ -124,7 +124,7 @@ function DSTable<T extends object = any>(props: DSTableProps<T>): React.ReactEle
       )}
       {/*
         // @ts-ignore */}
-      {grouped ? (
+      {grouped && dataSource.length ? (
         <GroupTable<T>
           {...props}
           title={renderHeader}

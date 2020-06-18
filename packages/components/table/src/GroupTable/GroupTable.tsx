@@ -66,7 +66,7 @@ function GroupTable<T extends GroupType<T>>(
   }, [columns]);
 
   const activeColumn = React.useMemo(() => {
-    return data && data[0].column;
+    return data?.length && data[0].column;
   }, [data]);
 
   const toggleExpand = React.useCallback(
