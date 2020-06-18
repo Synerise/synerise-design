@@ -7,7 +7,7 @@ import { Container, Text, Actions, LinkButton } from './Footer.styles';
 import { Props, State } from './Footer.types';
 
 class Footer extends React.Component<Props, State> {
-  render() {
+  render(): React.ReactElement {
     const { text, canApply, onApply, intl, canSwitchMode, onSwitchMode, mode, dateOnly, message, ...rest } = this.props;
     return (
       <Container {...rest}>

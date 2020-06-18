@@ -2,9 +2,9 @@
 export type Props = {
   format?: string;
   showTime?: boolean;
-  value?: Date;
+  value?: Date | null;
   onApply?: () => void;
-  disabledDate?: () => void;
+  disabledDate?: (day: Date) => void;
   disabledHours: () => void;
   disabledMinutes: () => void;
   disabledSeconds: () => void;

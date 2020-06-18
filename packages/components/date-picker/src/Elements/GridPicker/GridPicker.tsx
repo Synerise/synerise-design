@@ -1,15 +1,16 @@
 import * as React from 'react';
 
-import { Container } from './GridPicker.styles';
+import { Cell, GridPickerProps } from './GridPicker.types';
+import * as S from './GridPicker.styles';
 
-export default class GridPicker extends React.PureComponent {
-  handleCellClick = cell => {
+export default class GridPicker extends React.PureComponent<GridPickerProps> {
+  handleCellClick = (cell: Cell): void => {
     if (cell.disabled) return;
     const { onCellClick } = this.props;
     onCellClick && onCellClick(cell.key);
   };
 
-  renderCell = cell => {
+  renderCell = (cell: Cell): React.ReactNode => {
     const { selectedKey } = this.props;
     const { key, text, disabled, outside } = cell;
     const classNames = [
@@ -19,17 +20,22 @@ export default class GridPicker extends React.PureComponent {
       outside ? 'cell--outside' : null,
     ];
     return (
-      <div className={classNames.join(' ')} onClick={() => this.handleCellClick(cell)} data-attr={key} key={key}>
+      <S.CellContainer
+        className={classNames.join(' ')}
+        onClick={(): void => this.handleCellClick(cell)}
+        data-attr={key}
+        key={key}
+      >
         <div className="cell-content">{text}</div>
-      </div>
+      </S.CellContainer>
     );
   };
 
-  render() {
+  render(): React.ReactNode {
     const { cells } = this.props;
     return (
       <React.Fragment>
-        <Container>{cells.map(this.renderCell)}</Container>
+        <S.GridContainer>{cells.map(this.renderCell)}</S.GridContainer>
       </React.Fragment>
     );
   }

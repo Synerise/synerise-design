@@ -7,59 +7,70 @@ import * as fnsAddYears from 'date-fns/add_years';
 import GridPicker from '../GridPicker/GridPicker';
 import Navbar from '../Navbar/Navbar';
 import { getDecadeRange } from '../YearPicker/YearPicker';
+import { Cell } from '../GridPicker/GridPicker.types';
+import { DecadePickerProps, DecadePickerState } from './DecadePicker.types';
 
-function getInitialState(props): object {
+function getInitialState(props: DecadePickerProps): DecadePickerState {
   return {
     cursor: props.value || new Date(),
   };
 }
 
-function getCenturyRange(cursor): number[] {
+function getCenturyRange(cursor: Date): number[] {
   const startYear = Math.floor(fnsGetYear(cursor) / 100) * 100;
   const endYear = startYear + 99;
   return [startYear, endYear];
 }
 
-function getCells(cursor): object[] {
+function getCells(cursor: Date): Cell[] {
   const startYear = getCenturyRange(cursor)[0];
   return range(0, 10).map(index => {
     const date = fnsAddYears(fnsSetYear(cursor, startYear), index * 10);
     return {
       key: date.toISOString(),
       text: getDecadeRange(date).join('-'),
-    };
+    } as Cell;
   });
 }
 
-export default class DecadePicker extends React.PureComponent {
-  constructor(props) {
+export default class DecadePicker extends React.PureComponent<DecadePickerProps, DecadePickerState> {
+  constructor(props: DecadePickerProps) {
     super(props);
     this.state = getInitialState(props);
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.value !== this.props.value) {
+  componentWillReceiveProps(nextProps: DecadePickerProps): void {
+    const { value } = this.props;
+    if (nextProps.value !== value) {
       this.setState(getInitialState(nextProps));
     }
   }
 
-  handleLongPrev = () => this.setState({ cursor: fnsAddYears(this.state.cursor, -100) });
+  handleLongPrev = (): void => this.setState({ cursor: fnsAddYears(this.state.cursor, -100) });
 
-  handleLongNext = () => this.setState({ cursor: fnsAddYears(this.state.cursor, 100) });
+  handleLongNext = (): void => this.setState({ cursor: fnsAddYears(this.state.cursor, 100) });
 
-  handleCellClick = isoDate => {
-    if (isoDate === -1) return this.handleLongPrev();
-    if (isoDate === 1) return this.handleLongNext();
-    this.props.onChange && this.props.onChange(new Date(isoDate));
+  handleCellClick = (isoDate: React.ReactText): void => {
+    const { onChange } = this.props;
+    if (isoDate === -1) {
+      this.handleLongPrev();
+      return;
+    }
+
+    if (isoDate === 1) {
+      this.handleLongNext();
+      return;
+    }
+    onChange && onChange(new Date(isoDate));
   };
 
-  render() {
+  render(): React.ReactNode {
     const { cursor } = this.state;
     const { value, onTitleClick } = this.props;
-    const range = getCenturyRange(cursor);
+    const centuryRange = getCenturyRange(cursor);
     let cells = getCells(cursor);
     const valueCell = value
-      ? cells.find(cell => {
+      ? cells.find((cell: Cell) => {
           const valueYear = fnsGetYear(value);
           const minYear = fnsGetYear(cell.key);
           const maxYear = minYear + 10;
@@ -68,13 +79,13 @@ export default class DecadePicker extends React.PureComponent {
       : null;
     const selectedKey = valueCell ? valueCell.key : null;
     cells = [
-      { key: -1, text: `${range[0] - 10}-${range[0] - 1}`, outside: true },
+      { key: -1, text: `${centuryRange[0] - 10}-${centuryRange[0] - 1}`, outside: true },
       ...cells,
-      { key: 1, text: `${range[1] + 1}-${range[1] + 10}`, outside: true },
+      { key: 1, text: `${centuryRange[1] + 1}-${centuryRange[1] + 10}`, outside: true },
     ];
     return [
       <Navbar
-        title={range.join('-')}
+        title={centuryRange.join('-')}
         onTitleClick={onTitleClick}
         onLongPrev={this.handleLongPrev}
         onLongNext={this.handleLongNext}

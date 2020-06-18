@@ -5,12 +5,11 @@ import { getPopupContainer } from '@synerise/ds-utils';
 import { Input } from '@synerise/ds-input';
 import Icon from '@synerise/ds-icon';
 
-import { Moment } from 'moment';
+import { SizeType } from 'antd/lib/config-provider/SizeContext';
 import { Props, State } from './PickerInput.types';
 import { Container, Popover, InputWrapper, Pair, IconWrapper } from './PickerInput.styles';
 
 class PickerInput extends React.Component<Props, State> {
-
   static defaultProps = {
     allowClear: true,
   };
@@ -23,12 +22,13 @@ class PickerInput extends React.Component<Props, State> {
     };
   }
 
-  handleVisibleChange = (visible: boolean) => {
-    document.activeElement && document.activeElement.blur();
+  handleVisibleChange = (visible: boolean): void => {
+    const activeElement = document.activeElement as HTMLElement;
+    activeElement && activeElement.blur();
     this.setState({ visible });
   };
 
-  handleClear = (e: MouseEvent): void => {
+  handleClear = (e: React.MouseEvent<HTMLDivElement>): void => {
     e.stopPropagation();
     this.handleApply(null);
   };
@@ -40,7 +40,7 @@ class PickerInput extends React.Component<Props, State> {
     onChange(value ? moment(value) : null, this.getText());
   };
 
-  getText = (): Moment | string => {
+  getText = (): string => {
     const { showTime, format } = this.props;
     let { value } = this.props;
     if (!value) return '';
@@ -55,7 +55,7 @@ class PickerInput extends React.Component<Props, State> {
     return false;
   };
 
-  render() {
+  render(): React.ReactNode {
     const {
       disabledDate,
       onChange,
@@ -68,10 +68,18 @@ class PickerInput extends React.Component<Props, State> {
       ...rest
     } = this.props;
     let { value } = this.props;
+    const { visible } = this.state;
     if (typeof value === 'string') value = moment(value);
     const input = (
       <InputWrapper style={style}>
-        <Input resetMargin readOnly type="text" size={size} disabled={disabled} value={this.getText() || placeholder} />
+        <Input
+          resetMargin
+          readOnly
+          type="text"
+          size={size as SizeType}
+          disabled={disabled}
+          value={this.getText() || placeholder}
+        />
         <IconWrapper>
           {allowClear && value && !disabled ? (
             <Pair onClick={this.handleClear}>
@@ -85,13 +93,14 @@ class PickerInput extends React.Component<Props, State> {
       </InputWrapper>
     );
     if (disabled) return input;
+
     return (
       <Container>
         <Popover
           content={
             <ContentComponent
               {...rest}
-              key={this.state.visible ? 1 : 0}
+              key={visible ? 1 : 0}
               value={value ? value.toDate() : null}
               onApply={this.handleApply}
               disabledDate={disabledDate ? this.disabledDate : undefined}
@@ -100,7 +109,7 @@ class PickerInput extends React.Component<Props, State> {
           getPopupContainer={getPopupContainer}
           trigger={['click']}
           onVisibleChange={this.handleVisibleChange}
-          visible={this.state.visible}
+          visible={visible}
           placement="bottomRight"
         >
           {input}

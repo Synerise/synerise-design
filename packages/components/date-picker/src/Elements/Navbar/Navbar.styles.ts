@@ -24,7 +24,7 @@ export const Link = styled.span`
   transition: 0.3s;
 
   &:hover {
-    color: ${(props: ThemeProps): string => props.theme.palette['blue-300']};
+    color: ${(props: ThemeProps): string => props.theme.palette['blue-600']};
   }
 
   &:active {

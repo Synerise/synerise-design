@@ -94,18 +94,18 @@ export const DayPicker = styled(DayPickerBase)`
     &--today:not(.DayPicker-Day--selected) {
       & > .DayPicker-Day-Text {
         border-radius: 50%;
-        background-color: ${props => props.theme.variable('@orange-color-lighter-6')};
-        color: ${props => props.theme.variable('@orange-color-lighter-2')};
+        background-color: ${(props): string => props.theme.palette['yellow-100']};
+        color: ${(props): string => props.theme.palette['yellow-600']};
       }
 
       & > .DayPicker-Day-FG {
         border-radius: 50%;
-        border: 2px solid ${props => props.theme.variable('@orange-color-lighter-2')};
+        border: 2px solid ${(props): string => props.theme.palette['yellow-600']};
       }
     }
 
     &--entered > .DayPicker-Day-BG {
-      background-color: ${props => props.theme.variable('@primary-color-lighter-6')};
+      background-color: ${(props): string => props.theme.palette['grey-100']};
     }
 
     &--entered-start:not(.DayPicker-Day--selected) > .DayPicker-Day-BG {
@@ -120,7 +120,7 @@ export const DayPicker = styled(DayPickerBase)`
 
     &--outside {
       & > .DayPicker-Day-Text {
-        color: ${props => props.theme.variable('@gray-color-lighter-5')};
+        color: ${(props): string => props.theme.palette['grey-050']};
       }
     }
 
@@ -128,14 +128,14 @@ export const DayPicker = styled(DayPickerBase)`
       cursor: default;
 
       & > .DayPicker-Day-Text {
-        color: ${props => props.theme.variable('@gray-color-lighter-5')};
+        color: ${(props): string => props.theme.palette['grey-400']};
       }
     }
   }
 
   .DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside) {
     & > .DayPicker-Day-BG {
-      background-color: ${props => props.theme.variable('@primary-color')};
+      background-color: ${(props): string => props.theme.palette['blue-600']};
     }
 
     & > .DayPicker-Day-Text {
@@ -144,7 +144,7 @@ export const DayPicker = styled(DayPickerBase)`
 
     &.DayPicker-Day--ghost {
       & > .DayPicker-Day-BG {
-        background-color: ${props => props.theme.variable('@primary-color-lighter-6')};
+        background-color: ${(props): string => props.theme.palette['blue-600']};
       }
 
       & > .DayPicker-Day-Text {
@@ -155,14 +155,14 @@ export const DayPicker = styled(DayPickerBase)`
 
   .DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside):hover {
     & > .DayPicker-Day-BG {
-      background-color: ${props => props.theme.variable('@primary-color-lighter-1')};
+      background-color: ${(props): string => props.theme.palette['blue-600']};
     }
   }
 
   &.relative {
     .DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside) {
       & > .DayPicker-Day-BG {
-        background-color: ${props => props.theme.variable('@primary-color-lighter-6')};
+        background-color: ${(props): string => props.theme.palette['blue-600']};
       }
 
       & > .DayPicker-Day-Text {

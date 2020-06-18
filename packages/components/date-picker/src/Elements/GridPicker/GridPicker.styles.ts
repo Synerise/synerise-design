@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const GridContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   font-size: 12px;
@@ -26,7 +26,8 @@ export const Container = styled.div`
       border-radius: 16px;
 
       &:hover {
-        background-color: ${props => props.theme.variable('@primary-color-lighter-6')};
+        background-color: ${(props): string => props.theme.palette['grey-050']};
+        color: ${(props): string => props.theme.palette['blue-600']};
       }
     }
 
@@ -35,23 +36,24 @@ export const Container = styled.div`
     }
 
     &--outside {
-      color: ${props => props.theme.variable('@gray-color-lighter-5')};
+      color: ${(props): string => props.theme.palette['grey-400']};
     }
 
     &--disabled {
       cursor: default;
-      color: ${props => props.theme.variable('@gray-color-lighter-5')};
+      color: ${(props): string => props.theme.palette['grey-400']};
     }
   }
 
   .cell--selected:not(.cell--disabled):not(.cell--outside) {
     > div {
-      background-color: ${props => props.theme.variable('@primary-color')};
+      background-color: ${(props): string => props.theme.palette['blue-600']};
       color: white;
 
       &:hover {
-        background-color: ${props => props.theme.variable('@primary-color-lighter-1')};
+        background-color: ${(props): string => props.theme.palette['blue-600']};
       }
     }
   }
 `;
+export const CellContainer = styled.div``;

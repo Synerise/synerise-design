@@ -1,19 +1,21 @@
 import { ComponentType } from 'react';
-import Moment from 'moment';
+import * as moment from 'moment';
 
+import * as React from 'react';
 import { Props as ContentComponentProps } from '../../DatePicker.types';
 
+type MomentDateType = ReturnType<typeof moment>;
 export type Props = {
-  size?: string;
+  size?: 'large' | 'default' | 'small';
   format?: string;
   showTime?: boolean;
   allowClear?: boolean;
-  value?: Moment;
-  onChange?: () => void;
-  style?: Object;
+  value?: MomentDateType;
+  onChange?: (a: MomentDateType | null, b: MomentDateType | string) => void;
+  style?: React.CSSProperties;
   placeholder?: string;
   disabled?: boolean;
-  disabledDate?: (currentDate: Moment) => boolean;
+  disabledDate?: (currentDate: MomentDateType) => boolean;
   disabledHours: () => void;
   disabledMinutes: () => void;
   disabledSeconds: () => void;
