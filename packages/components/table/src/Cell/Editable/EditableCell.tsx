@@ -13,7 +13,7 @@ interface Props {
 
 const EditableCell: React.FC<Props> = ({ value, onChange, placeholder }: Props) => {
   const [editMode, setEditMode] = React.useState(false);
-  const [editValue, setEditValue] = React.useState(value);
+  const [editValue, setEditValue] = React.useState(value || '');
 
   const enterEditMode = React.useCallback(() => {
     setEditMode(true);
@@ -35,7 +35,7 @@ const EditableCell: React.FC<Props> = ({ value, onChange, placeholder }: Props) 
       />
     ) : (
       <>
-        <S.Value placeholder={!value}>{value || placeholder}</S.Value>
+        <S.Value asPlaceholder={!value}>{value || placeholder}</S.Value>
         <Icon onClick={enterEditMode} component={<EditNolineS />} />
       </>
     );
