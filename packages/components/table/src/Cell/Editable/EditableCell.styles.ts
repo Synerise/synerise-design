@@ -19,3 +19,7 @@ export const EditableCell = styled.div`
     visibility: hidden;
   }
 `;
+
+export const Value = styled.span<{ placeholder: boolean }>`
+  color: ${(props): string => (props.placeholder ? props.theme.palette['grey-400'] : 'inherit')};
+`;

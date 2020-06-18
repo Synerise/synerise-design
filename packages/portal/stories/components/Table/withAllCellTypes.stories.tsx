@@ -43,7 +43,7 @@ const dataSource = [...new Array(55)].map((i, k) => ({
     shape: TagShape.STATUS_NEUTRAL,
   },
   enabled: faker.random.boolean(),
-  editable: faker.name.findName(),
+  editable: faker.random.boolean() ? faker.name.findName() : undefined,
   checked: faker.random.boolean(),
 }));
 

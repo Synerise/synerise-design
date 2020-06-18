@@ -167,16 +167,16 @@ export const COLUMNS = [
     width: 254,
     textWrap: 'word-break',
     ellipsis: true,
-    render: (editable) => <TableCell.EditableCell value={editable} onChange={console.log} />
+    render: (editable) => <TableCell.EditableCell value={editable} placeholder={"No data"} onChange={console.log} />
   },
   {
     title: 'Copyable',
-    dataIndex: 'editable',
-    key: 'editable',
+    dataIndex: 'name',
+    key: 'name',
     width: 254,
     textWrap: 'word-break',
     ellipsis: true,
-    render: (editable) => <TableCell.CopyableCell value={editable} confirmMessage="Copied to clipboard!" tooltipTimeout={2000} />
+    render: (name) => <TableCell.CopyableCell value={name} confirmMessage="Copied to clipboard!" tooltipTimeout={2000} />
   },
   {
     title: 'Checkbox',
