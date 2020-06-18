@@ -82,6 +82,7 @@ function DSTable<T extends object = any>(props: DSTableProps<T>): React.ReactEle
     rowKey,
     headerWithBorderTop,
     hideTitleBar,
+    grouped,
   ]);
 
   const footerPagination = React.useMemo((): object => {
@@ -112,7 +113,7 @@ function DSTable<T extends object = any>(props: DSTableProps<T>): React.ReactEle
       },
       ...pagination,
     };
-  }, [pagination]);
+  }, [pagination, grouped]);
 
   return (
     <div className={`ds-table ds-table-cell-size-${cellSize} ${roundedHeader ? 'ds-table-rounded' : ''}`}>
