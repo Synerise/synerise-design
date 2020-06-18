@@ -76,9 +76,6 @@ export const AntdSelect = styled((Select as unknown) as React.ComponentType<Sele
       ${(props): string | false => !!props.prefixel && withPrefixStyles()}
       ${(props): string | false => !!props.suffixel && withSuffixStyles()}
     }
-    input::placeholder {
-      color: red !important;
-    }
     span[aria-label='search'] {
       svg {
         display: none;
