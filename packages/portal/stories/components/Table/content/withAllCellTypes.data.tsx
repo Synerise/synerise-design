@@ -194,8 +194,16 @@ export const COLUMNS = [
   },
   {
     width: 254,
+    title: 'Multiple buttons',
+    render: () => <TableCell.ActionCell gapSize={8} contentAlign={'left'}>
+      <Button onClick={action('click')} type='custom-color' color="green">Accept</Button>
+      <Button onClick={action('click')} type='secondary' >Decline</Button>
+    </TableCell.ActionCell>
+  },
+  {
+    width: 254,
     render: () => <TableCell.ActionCell>
       <Button onClick={action('click')} type='secondary' mode='split'>Edit rule</Button>
     </TableCell.ActionCell>
-  }
+  },
 ];
