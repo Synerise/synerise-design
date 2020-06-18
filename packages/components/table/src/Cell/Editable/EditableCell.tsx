@@ -39,7 +39,7 @@ const EditableCell: React.FC<Props> = ({ value, onChange, placeholder }: Props) 
         <Icon onClick={enterEditMode} component={<EditNolineS />} />
       </>
     );
-  }, [editMode, value, enterEditMode, editValue, setEditValue, onChange]);
+  }, [editMode, value, enterEditMode, editValue, setEditValue, onChange, placeholder]);
 
   return <S.EditableCell>{render}</S.EditableCell>;
 };
