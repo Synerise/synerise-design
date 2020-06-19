@@ -1,82 +1,101 @@
 import * as React from 'react';
-import range from 'ramda/src/range';
-import fnsAddYears from 'date-fns/add_years';
-import fnsSetYear from 'date-fns/set_year';
-import fnsGetYear from 'date-fns/get_year';
-import fnsIsSameYear from 'date-fns/is_same_year';
-import fnsFormat from "../../format";
+import * as fnsAddYears from 'date-fns/add_years';
+import * as fnsSetYear from 'date-fns/set_year';
+import * as fnsIsSameYear from 'date-fns/is_same_year';
+import fnsFormat from '../../format';
 
 // eslint-disable-next-line import/no-cycle
 import DecadePicker from '../DecadePicker/DecadePicker';
 import GridPicker from '../GridPicker/GridPicker';
 import Navbar from '../Navbar/Navbar';
+import { YearPickerProps, YearPickerState } from './YearPicker.types';
+import { Cell } from '../GridPicker/GridPicker.types';
+import { getDecadeRange, range } from '../../utils';
 
-function getInitialState(props) {
+function getInitialState(props: YearPickerProps): YearPickerState {
   return {
     cursor: props.value || new Date(),
     decadeMode: false,
   };
 }
 
-export function getDecadeRange(cursor) {
-  const startYear = Math.floor(fnsGetYear(cursor) / 10) * 10;
-  const endYear = startYear + 9;
-  return [startYear, endYear];
-}
-
-function getCells(cursor) {
+function getCells(cursor: Date): Cell[] {
   const startYear = getDecadeRange(cursor)[0];
-  return range(0, 10).map(index => {
+  return range(0, 10).map((index: number) => {
     const date = fnsAddYears(fnsSetYear(cursor, startYear), index);
     return {
       key: date.toISOString(),
       text: fnsFormat(date, 'YYYY'),
-    };
+    } as Cell;
   });
 }
 
-export default class YearPicker extends React.PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = getInitialState(props);
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.value !== this.props.value) {
+export default class YearPicker extends React.PureComponent<YearPickerProps, YearPickerState> {
+  state = getInitialState(this.props);
+  // eslint-disable-next-line react/no-deprecated
+  componentWillReceiveProps(nextProps: YearPickerProps): void {
+    const { value } = this.props;
+    if (nextProps.value !== value) {
       this.setState(getInitialState(nextProps));
     }
   }
 
-  handleLongPrev = () => this.setState({ cursor: fnsAddYears(this.state.cursor, -10) });
+  handleLongPrev = (): void => {
+    const { cursor } = this.state;
 
-  handleLongNext = () => this.setState({ cursor: fnsAddYears(this.state.cursor, 10) });
-
-  handleCellClick = isoDate => {
-    if (isoDate === -1) return this.handleLongPrev();
-    if (isoDate === 1) return this.handleLongNext();
-    this.props.onChange && this.props.onChange(new Date(isoDate));
+    this.setState({ cursor: fnsAddYears(cursor, -10) });
   };
 
-  render() {
+  handleLongNext = (): void => {
+    const { cursor } = this.state;
+    this.setState({ cursor: fnsAddYears(cursor, 10) });
+  };
+
+  handleCellClick = (isoDate: React.ReactText): void => {
+    const { onChange } = this.props;
+    if (isoDate === -1) {
+      this.handleLongPrev();
+      return;
+    }
+
+    if (isoDate === 1) {
+      this.handleLongNext();
+      return;
+    }
+    onChange && onChange(new Date(isoDate));
+  };
+
+  render(): React.ReactNode {
     const { cursor, decadeMode } = this.state;
     const { value } = this.props;
-    const range = getDecadeRange(cursor);
+    const decadeRange = getDecadeRange(cursor);
     let cells = getCells(cursor);
-    const valueCell = value ? cells.find(cell => fnsIsSameYear(value, cell.key)) : null;
+    const valueCell = value ? cells.find((cell: Cell): boolean => fnsIsSameYear(value, cell.key)) : null;
     const selectedKey = valueCell ? valueCell.key : null;
-    cells = [{ key: -1, text: range[0] - 1, outside: true }, ...cells, { key: 1, text: range[1] + 1, outside: true }];
-    if (decadeMode) {
-      return <DecadePicker value={cursor} onChange={cursor => this.setState({ cursor, decadeMode: false })} />;
-    }
-    return [
-      <Navbar
-        onTitleClick={() => this.setState({ decadeMode: true })}
-        title={range.join('-')}
-        onLongPrev={this.handleLongPrev}
-        onLongNext={this.handleLongNext}
-        key="head"
-      />,
-      <GridPicker selectedKey={selectedKey} cells={cells} onCellClick={this.handleCellClick} key="body" />,
+    cells = [
+      { key: -1, text: decadeRange[0] - 1, outside: true },
+      ...cells,
+      { key: 1, text: decadeRange[1] + 1, outside: true },
     ];
+    if (decadeMode) {
+      return (
+        <DecadePicker
+          value={cursor}
+          onChange={(selectedDecade): void => this.setState({ cursor: selectedDecade, decadeMode: false })}
+        />
+      );
+    }
+    return (
+      <>
+        <Navbar
+          onTitleClick={(): void => this.setState({ decadeMode: true })}
+          title={decadeRange.join('-')}
+          onLongPrev={this.handleLongPrev}
+          onLongNext={this.handleLongNext}
+          key="head"
+        />
+        <GridPicker selectedKey={selectedKey} cells={cells} onCellClick={this.handleCellClick} key="body" />,
+      </>
+    );
   }
 }

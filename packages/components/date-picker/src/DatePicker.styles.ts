@@ -1,11 +1,10 @@
 import styled, { css } from 'styled-components';
 
 export const borderStyle = css`
-  ${props => props.theme.variable('@border-width-base')}
-  ${props => props.theme.variable('@border-style-base')}
-  ${props => props.theme.variable('@border-color-base')}
+  ${(props): string => props.theme.variable('@border-width-base')}
+  ${(props): string => props.theme.variable('@border-style-base')}
+  ${(props): string => props.theme.variable('@border-color-base')}
 `;
-
 
 export const Container = styled.div`
   background-color: white;
@@ -19,4 +18,3 @@ export const Container = styled.div`
     border-bottom: ${borderStyle};
   }
 `;
-

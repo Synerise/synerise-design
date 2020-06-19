@@ -6,20 +6,14 @@ import * as fnsAddYears from 'date-fns/add_years';
 
 import GridPicker from '../GridPicker/GridPicker';
 import Navbar from '../Navbar/Navbar';
-import { getDecadeRange } from '../YearPicker/YearPicker';
 import { Cell } from '../GridPicker/GridPicker.types';
 import { DecadePickerProps, DecadePickerState } from './DecadePicker.types';
+import { getDecadeRange, getCenturyRange } from '../../utils';
 
 function getInitialState(props: DecadePickerProps): DecadePickerState {
   return {
     cursor: props.value || new Date(),
   };
-}
-
-function getCenturyRange(cursor: Date): number[] {
-  const startYear = Math.floor(fnsGetYear(cursor) / 100) * 100;
-  const endYear = startYear + 99;
-  return [startYear, endYear];
 }
 
 function getCells(cursor: Date): Cell[] {
@@ -34,11 +28,8 @@ function getCells(cursor: Date): Cell[] {
 }
 
 export default class DecadePicker extends React.PureComponent<DecadePickerProps, DecadePickerState> {
-  constructor(props: DecadePickerProps) {
-    super(props);
-    this.state = getInitialState(props);
-  }
-
+  state = getInitialState(this.props);
+  // eslint-disable-next-line react/no-deprecated
   componentWillReceiveProps(nextProps: DecadePickerProps): void {
     const { value } = this.props;
     if (nextProps.value !== value) {
@@ -46,9 +37,15 @@ export default class DecadePicker extends React.PureComponent<DecadePickerProps,
     }
   }
 
-  handleLongPrev = (): void => this.setState({ cursor: fnsAddYears(this.state.cursor, -100) });
+  handleLongPrev = (): void => {
+    const { cursor } = this.state;
+    this.setState({ cursor: fnsAddYears(cursor, -100) });
+  };
 
-  handleLongNext = (): void => this.setState({ cursor: fnsAddYears(this.state.cursor, 100) });
+  handleLongNext = (): void => {
+    const { cursor } = this.state;
+    this.setState({ cursor: fnsAddYears(cursor, 100) });
+  };
 
   handleCellClick = (isoDate: React.ReactText): void => {
     const { onChange } = this.props;

@@ -1,3 +1,5 @@
+import * as React from 'react';
+
 const WEEKDAYS_LONG = {
   en: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
   pl: ['Niedziela', 'PoniedziaĹek', 'Wtorek', 'Ĺroda', 'Czwartek', 'PiÄtek', 'obota'],
@@ -18,23 +20,23 @@ const FIRST_DAY = {
   pl: 1,
 };
 
-function formatDay(d, locale = 'en') {
+function formatDay(d: Date, locale = 'en'): string {
   return `${WEEKDAYS_LONG[locale][d.getDay()]}, ${d.getDate()} ${MONTHS[locale][d.getMonth()]} ${d.getFullYear()}`;
 }
 
-function formatMonthTitle(d, locale = 'en') {
+function formatMonthTitle(d: Date, locale = 'en'): string {
   return `${MONTHS[locale][d.getMonth()]} ${d.getFullYear()}`;
 }
 
-function formatWeekdayShort(i, locale) {
+function formatWeekdayShort(i: React.ReactText, locale: React.ReactText): string {
   return WEEKDAYS_SHORT[locale][i];
 }
 
-function formatWeekdayLong(i, locale) {
+function formatWeekdayLong(i: React.ReactText, locale: React.ReactText): string {
   return WEEKDAYS_SHORT[locale][i];
 }
 
-function getFirstDayOfWeek(locale) {
+function getFirstDayOfWeek(locale: React.ReactText): string {
   return FIRST_DAY[locale];
 }
 

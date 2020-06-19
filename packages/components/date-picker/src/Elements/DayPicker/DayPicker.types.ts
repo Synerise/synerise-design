@@ -1,3 +1,5 @@
+import { IntlShape } from 'react-intl';
+
 export type DayPickerProps = {
   month: Date;
   onMonthChange: (month: Date) => void;
@@ -5,5 +7,10 @@ export type DayPickerProps = {
   onYearNameClick: () => void;
   hidePrev?: boolean;
   hideNext?: boolean;
-  intl?: any;
+  intl: IntlShape;
+  fixedWeeks?: boolean;
+  showOutsideDays?: boolean;
+  canChangeMonth?: boolean;
+  disabledDays?: (day?: Date) => boolean;
+  selectedDays?: (day?: Date) => boolean;
 };

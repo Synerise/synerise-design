@@ -120,7 +120,7 @@ export const DayPicker = styled(DayPickerBase)`
 
     &--outside {
       & > .DayPicker-Day-Text {
-        color: ${(props): string => props.theme.palette['grey-050']};
+        color: ${(props): string => props.theme.palette['grey-400']};
       }
     }
 

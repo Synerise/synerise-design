@@ -2,12 +2,12 @@
 export type Props = {
   format?: string;
   showTime?: boolean;
-  value?: Date | null;
-  onApply?: () => void;
-  disabledDate?: (day: Date) => void;
-  disabledHours: () => void;
-  disabledMinutes: () => void;
-  disabledSeconds: () => void;
+  value?: Date;
+  onApply?: (date?: Date) => void;
+  disabledDate?: (day?: Date) => boolean;
+  disabledHours: number[];
+  disabledMinutes: number[];
+  disabledSeconds: number[];
   useStartOfDay?: boolean;
   useEndOfDay?: boolean;
 };
@@ -19,3 +19,7 @@ export type State = {
   value?: Date;
   enteredTo?: Date;
 };
+
+export type Modifier = {
+  disabled: boolean;
+}

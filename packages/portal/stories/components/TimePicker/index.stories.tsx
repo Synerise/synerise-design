@@ -48,6 +48,7 @@ const stories = {
           clearTooltip={clearTooltip}
           placement={placement}
           onChange={onChange}
+          raw={boolean('Raw',false)}
         />
       </div>
     )

@@ -31,6 +31,7 @@ export type TimePickerProps = TimePickerDisabledUnits & {
   onChange?: (value: Date | undefined, timeString: string) => void;
   clearTooltip?: string | React.ReactNode;
   intl: IntlShape;
+  raw?: boolean;
 };
 
 const defaultUnits = ['hour', 'minute', 'second'] as dayjs.UnitType[];
@@ -53,7 +54,8 @@ const TimePicker: React.FC<TimePickerProps> = ({
   overlayClassName,
   className,
   clearTooltip = <FormattedMessage id="DS.TIME-PICKER.CLEAR" />,
-  intl
+  raw,
+  intl,
 }) => {
   const [open, setOpen] = React.useState<boolean>(defaultOpen || false);
   const [localValue, setLocalValue] = React.useState<Date | undefined>(value);
@@ -143,30 +145,35 @@ const TimePicker: React.FC<TimePickerProps> = ({
   }, [open, dateString, clear, clearTooltip, alwaysOpen]);
 
   const placeholderValue = React.useMemo((): string => {
-    return placeholder || intl.formatMessage({id: 'DS.TIME-PICKER.PLACEHOLDER'});
+    return placeholder || intl.formatMessage({ id: 'DS.TIME-PICKER.PLACEHOLDER' });
   }, [placeholder, intl]);
-
-  return (
-    <S.Container className={`ds-time-picker ${className || ''}`} data-testid="tp-container">
-      <Dropdown
-        trigger={trigger}
-        visible={alwaysOpen || open}
-        onVisibleChange={onVisibleChange}
-        placement={placement}
-        overlay={overlay}
-        disabled={disabled}
-      >
-        <S.TimePickerInput
-          className={`${alwaysOpen || open ? 'active' : ''}`}
-          data-testid="tp-input"
-          value={dateString}
-          placeholder={placeholderValue}
-          readOnly
-          icon1={timePickerIcon}
-        />
-      </Dropdown>
-    </S.Container>
-  );
+  if (raw) {
+    return (
+      overlay
+    );
+  } 
+    return (
+      <S.Container className={`ds-time-picker ${className || ''}`} data-testid="tp-container">
+        <Dropdown
+          trigger={trigger}
+          visible={alwaysOpen || open}
+          onVisibleChange={onVisibleChange}
+          placement={placement}
+          overlay={overlay}
+          disabled={disabled}
+        >
+          <S.TimePickerInput
+            className={`${alwaysOpen || open ? 'active' : ''}`}
+            data-testid="tp-input"
+            value={dateString}
+            placeholder={placeholderValue}
+            readOnly
+            icon1={timePickerIcon}
+          />
+        </Dropdown>
+      </S.Container>
+    );
+  
 };
 
 TimePicker.defaultProps = {

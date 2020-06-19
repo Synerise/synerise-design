@@ -34,9 +34,9 @@ export default class GridPicker extends React.PureComponent<GridPickerProps> {
   render(): React.ReactNode {
     const { cells } = this.props;
     return (
-      <React.Fragment>
+      <>
         <S.GridContainer>{cells.map(this.renderCell)}</S.GridContainer>
-      </React.Fragment>
+      </>
     );
   }
 }

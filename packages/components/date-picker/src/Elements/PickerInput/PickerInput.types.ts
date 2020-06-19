@@ -16,9 +16,9 @@ export type Props = {
   placeholder?: string;
   disabled?: boolean;
   disabledDate?: (currentDate: MomentDateType) => boolean;
-  disabledHours: () => void;
-  disabledMinutes: () => void;
-  disabledSeconds: () => void;
+  disabledHours: number[];
+  disabledMinutes: number[];
+  disabledSeconds: number[];
   content: ComponentType<ContentComponentProps>;
 };
 

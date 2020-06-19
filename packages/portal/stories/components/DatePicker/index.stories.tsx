@@ -4,7 +4,7 @@ import { DatePicker } from '@synerise/ds-date-picker/dist/DatePicker';
 
 const stories = {
   default: () => {
-    return <DatePicker showTime={false} onApply={value => console.log(value)} />;
+    return <DatePicker showTime={true} onApply={value => console.log(value)} />;
   }
 };
 
