@@ -7,39 +7,50 @@ import fnsFormat from '../../format';
 
 import Navbar from '../Navbar/Navbar';
 import { DayPicker } from './DayPicker.styles';
-import { Link } from '../Navbar/Navbar.styles';
+import * as S from '../Navbar/Navbar.styles';
 import { DayPickerProps } from './DayPicker.types';
 
 const captionElement = (): null => null;
 
-const Picker = (props: DayPickerProps): React.ReactNode => {
-  const { month, onMonthChange, onMonthNameClick, onYearNameClick, hidePrev, hideNext, intl, ...rest } = props;
-  return [
-    <Navbar
-      title={
-        <React.Fragment>
-          <Link onClick={onMonthNameClick}>{fnsFormat(month, 'MMM', intl.locale)}</Link>{' '}
-          <Link onClick={onYearNameClick}>{fnsFormat(month, 'YYYY', intl.locale)}</Link>
-        </React.Fragment>
-      }
-      onLongPrev={(): void => onMonthChange(fnsAddYears(month, -1))}
-      onShortPrev={(): void => onMonthChange(fnsAddMonths(month, -1))}
-      onLongNext={(): void => onMonthChange(fnsAddYears(month, 1))}
-      onShortNext={(): void => onMonthChange(fnsAddMonths(month, 1))}
-      hidePrev={hidePrev}
-      hideNext={hideNext}
-      key="head"
-    />,
-    <DayPicker
-      month={month}
-      firstDayOfWeek={1}
-      {...rest}
-      captionElement={captionElement}
-      key="body"
-      localeUtils={MomentLocaleUtils}
-      locale={intl.locale}
-    />,
-  ];
+const Picker: React.FC<DayPickerProps> = ({
+  month,
+  onMonthChange,
+  onMonthNameClick,
+  onYearNameClick,
+  hidePrev,
+  hideNext,
+  intl,
+  ...rest
+}) => {
+  return (
+    <>
+      <Navbar
+        title={
+          <>
+            <S.Link onClick={onMonthNameClick}>{fnsFormat(month, 'MMM', intl.locale)}</S.Link>{' '}
+            <S.Link onClick={onYearNameClick}>{fnsFormat(month, 'YYYY', intl.locale)}</S.Link>
+          </>
+        }
+        onLongPrev={(): void => onMonthChange(fnsAddYears(month, -1))}
+        onShortPrev={(): void => onMonthChange(fnsAddMonths(month, -1))}
+        onLongNext={(): void => onMonthChange(fnsAddYears(month, 1))}
+        onShortNext={(): void => onMonthChange(fnsAddMonths(month, 1))}
+        hidePrev={hidePrev}
+        hideNext={hideNext}
+        key="head"
+      />
+      <DayPicker
+        month={month}
+        firstDayOfWeek={1}
+        {...rest}
+        captionElement={captionElement}
+        key="body"
+        localeUtils={MomentLocaleUtils}
+        locale={intl.locale}
+      />
+    </>
+  );
 };
-
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore
 export default injectIntl(Picker);

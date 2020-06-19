@@ -8,7 +8,5 @@ export type Props = {
   canSwitchMode?: boolean;
   onApply?: () => void;
   onSwitchMode?: () => void;
-  message: React.ReactNode | string;
+  message?: React.ReactNode | string;
 } & WrappedComponentProps;
-
-export type State = {};

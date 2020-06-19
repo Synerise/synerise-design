@@ -1,11 +1,11 @@
 import * as React from 'react';
 import * as moment from 'moment';
 
-import { getPopupContainer } from '@synerise/ds-utils';
 import { Input } from '@synerise/ds-input';
 import Icon from '@synerise/ds-icon';
 
 import { SizeType } from 'antd/lib/config-provider/SizeContext';
+import { getPopupContainer } from '../../utils';
 import { Props, State } from './PickerInput.types';
 import { Container, Popover, InputWrapper, Pair, IconWrapper } from './PickerInput.styles';
 
@@ -14,13 +14,9 @@ class PickerInput extends React.Component<Props, State> {
     allowClear: true,
   };
 
-  constructor(props: Props) {
-    super(props);
-
-    this.state = {
-      visible: false,
-    };
-  }
+  state = {
+    visible: false,
+  };
 
   handleVisibleChange = (visible: boolean): void => {
     const activeElement = document.activeElement as HTMLElement;
@@ -49,7 +45,7 @@ class PickerInput extends React.Component<Props, State> {
     return value.format(format || showTime ? 'MMM D, YYYY, HH:mm' : 'MMM D, YYYY');
   };
 
-  disabledDate = (day: Date): boolean => {
+  disabledDate = (day: Date | undefined): boolean => {
     const { disabledDate } = this.props;
     if (disabledDate) return disabledDate(moment(day));
     return false;
@@ -101,7 +97,7 @@ class PickerInput extends React.Component<Props, State> {
             <ContentComponent
               {...rest}
               key={visible ? 1 : 0}
-              value={value ? value.toDate() : null}
+              value={value ? value.toDate() : undefined}
               onApply={this.handleApply}
               disabledDate={disabledDate ? this.disabledDate : undefined}
             />
