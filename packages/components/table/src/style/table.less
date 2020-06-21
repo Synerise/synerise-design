@@ -166,17 +166,8 @@
       &.@{table-prefix-cls}-cell-fix-right {
         display: table-cell;
       }
-    }
-    .@{table-prefix-cls}-column-has-sorters {
-      cursor: pointer;
-      &:hover {
-        background-color: rgba(233 237 238, 0.3);
-      }
-    }
-    .@{table-prefix-cls}-column-sort {
-      background-color: rgba(213, 232, 246, 0.44);
-      &:hover {
-        background-color: rgba(202, 229, 250, 0.58);
+      &.@{table-prefix-cls}-column-sort {
+        background-color: rgba(213, 232, 246, 0.44);
       }
     }
 
@@ -187,6 +178,18 @@
       padding: 0 24px;
       color: @gray-color-lighter-1;
       border-bottom: 1px solid @gray-color-lighter-6;
+      &.@{table-prefix-cls}-column-has-sorters {
+        cursor: pointer;
+        &:hover {
+          background-color: rgba(233 237 238, 0.3);
+        }
+      }
+      &.@{table-prefix-cls}-column-sort {
+        background-color: rgba(213, 232, 246, 0.44);
+        &:hover {
+          background-color: rgba(202, 229, 250, 0.58);
+        }
+      }
       &.ds-table-active-column {
         background-color: rgb(251, 246, 217);
       }
