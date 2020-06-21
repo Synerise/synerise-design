@@ -23,7 +23,6 @@ function GroupTableHeader<T extends unknown>({ header, activeColumnKey, sortColu
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (child: any): React.ReactNode => {
           return (
-            // eslint-disable-next-line jsx-a11y/control-has-associated-label
             <th
               key={child.key}
               rowSpan={child.props.rowspan}
