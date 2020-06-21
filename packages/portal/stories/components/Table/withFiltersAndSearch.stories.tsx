@@ -312,11 +312,7 @@ const stories = {
             selectedRowKeys: selectedRows,
             selections: [
               Table.SELECTION_ALL,
-              {
-                key: 'custom',
-                onClick: action('select_custom'),
-                label: 'Select custom',
-              }
+              Table.SELECTION_INVERT
             ],
           }}
           itemsMenu={

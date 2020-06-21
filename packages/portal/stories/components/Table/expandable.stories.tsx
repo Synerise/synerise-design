@@ -86,11 +86,6 @@ const stories = {
               undefined,
               null,
               Table.SELECTION_INVERT,
-              {
-                key: 'select_custom',
-                onClick: action('select_custom'),
-                label: 'Select custom',
-              },
             ]
           }
         }

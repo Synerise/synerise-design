@@ -57,11 +57,6 @@ const stories = {
           selections: [
             Table.SELECTION_ALL,
             Table.SELECTION_INVERT,
-            {
-              key: 'custom',
-              onClick: action('select_custom'),
-              label: 'Select custom',
-            }
           ],
         }}
         onSearch={action('onSearch')}

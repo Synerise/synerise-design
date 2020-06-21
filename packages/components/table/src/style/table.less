@@ -158,13 +158,27 @@
         left: 0px;
       }
     }
-    thead > tr > td,
+    thead > tr > th,
     tbody > tr > td,
     tfoot > tr > th {
       padding: 16px 24px;
       &.@{table-prefix-cls}-cell-fix-left,
       &.@{table-prefix-cls}-cell-fix-right {
         display: table-cell;
+        &.@{table-prefix-cls}-column-sort {
+          background-color: @white;
+          &:before {
+            display: block;
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(213, 232, 246, 0.44);
+            z-index: -1;
+          }
+        }
       }
       &.@{table-prefix-cls}-column-sort {
         background-color: rgba(213, 232, 246, 0.44);
@@ -178,16 +192,19 @@
       padding: 0 24px;
       color: @gray-color-lighter-1;
       border-bottom: 1px solid @gray-color-lighter-6;
+      &.@{table-prefix-cls}-column-sort {
+        background-color: rgba(213, 232, 246, 0.44);
+        &:before {
+          background-color: rgba(213, 232, 246, 0.44);
+        }
+      }
       &.@{table-prefix-cls}-column-has-sorters {
         cursor: pointer;
         &:hover {
-          background-color: rgba(233 237 238, 0.3);
-        }
-      }
-      &.@{table-prefix-cls}-column-sort {
-        background-color: rgba(213, 232, 246, 0.44);
-        &:hover {
           background-color: rgba(202, 229, 250, 0.58);
+          &:before {
+            background-color: rgba(202, 229, 250, 0.58);
+          }
         }
       }
       &.ds-table-active-column {
@@ -197,6 +214,15 @@
       &.@{table-prefix-cls}-cell-fix-right {
         display: table-cell;
         background-color: @gray-color-lighter-8;
+        &.@{table-prefix-cls}-column-has-sorters {
+          cursor: pointer;
+          &:hover {
+            background-color: @gray-color-lighter-8;
+            &:before {
+              background-color: rgba(202, 229, 250, 0.58);
+            }
+          }
+        }
       }
 
       .@{table-prefix-cls}-selection {
@@ -460,7 +486,6 @@
   tbody > tr > td,
   tfoot > tr > th {
     text-overflow: ellipsis;
-    overflow: hidden;
 
     &:last-child {
       padding-right: 24px;
