@@ -8,6 +8,7 @@ import Table from '@synerise/ds-table';
 import Button from '@synerise/ds-button';
 import * as React from 'react';
 import { dataSource } from './content/expandable.data';
+import Card from '@synerise/ds-card';
 
 const decorator = storyFn => <div style={{ padding: 20, width: '100vw', minWidth: '100%' }}>{storyFn()}</div>;
 
@@ -46,6 +47,11 @@ const stories = {
           title: 'Name',
           dataIndex: 'name',
           key: 'name',
+        },
+        {
+          title: 'Age',
+          dataIndex: 'age',
+          key: 'age',
         },
         {
           dataIndex: 'children',
@@ -104,30 +110,30 @@ const stories = {
               }
             ]
           }
-        }
-        onSearch={console.log}
-        onRow={(record, index: number) => ({
-          onClick: event => {
-            boolean('Expand on row click', false) && handleExpandRow(record.key)
-          },
-        })}
-        itemsMenu={
-          <ItemsMenu>
-            <Button onClick={action('Export')} type='secondary' mode='icon-label'>
-              <Icon component={<FileDownloadM/>}/>
-              Export
-            </Button>
-            <Button onClick={action('Edit')} type='secondary' mode='icon-label'>
-              <Icon component={<EditM/>}/>
-              Edit
-            </Button>
-            <Button onClick={action('Delete')} type='secondary' mode='icon-label'>
-              <Icon component={<TrashM/>}/>
-              Delete
-            </Button>
-          </ItemsMenu>
-        }
-      />)
+          onSearch={console.log}
+          onRow={(record, index: number) => ({
+            onClick: event => {
+              boolean('Expand on row click', false) && handleExpandRow(record.key)
+            },
+          })}
+          itemsMenu={
+            <ItemsMenu>
+              <Button onClick={action('Export')} type='secondary' mode='icon-label'>
+                <Icon component={<FileDownloadM/>}/>
+                Export
+              </Button>
+              <Button onClick={action('Edit')} type='secondary' mode='icon-label'>
+                <Icon component={<EditM/>}/>
+                Edit
+              </Button>
+              <Button onClick={action('Delete')} type='secondary' mode='icon-label'>
+                <Icon component={<TrashM/>}/>
+                Delete
+              </Button>
+            </ItemsMenu>
+          }
+        />
+      </Card>)
     }
   ),
 };

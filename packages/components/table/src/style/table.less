@@ -68,7 +68,27 @@
 
   .virtual-table {
     colgroup {
-      display: none;
+      height: 0;
+      visibility: hidden;
+      opacity: 0;
+    }
+    .ds-expanded-row {
+      background-color: @grey-050;
+    }
+    .ds-expanded-row-first {
+      &:before {
+        content: '';
+        display: flex;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 2px;
+        height: 100%;
+        background-color: @grey-500;
+      }
+    }
+    .ds-expanded-row-data {
+      padding-left: 48px;
     }
   }
   .virtual-table-cell {

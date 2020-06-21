@@ -7,6 +7,8 @@ import Scrollbar from '@synerise/ds-scrollbar';
 import DSTable from '../Table';
 import { DSTableProps } from '../Table.types';
 
+const EXPANDED_ROW_PROPERTY = 'expanendChild';
+
 interface Props<T> extends DSTableProps<T> {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   columns: any[];
@@ -20,7 +22,9 @@ interface Props<T> extends DSTableProps<T> {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-function VirtualTable<T extends object = any>(props: Props<T>): React.ReactElement {
+function VirtualTable<T extends object = { children?: []; [EXPANDED_ROW_PROPERTY]?: boolean }>(
+  props: Props<T>
+): React.ReactElement {
   const {
     columns,
     scroll,
@@ -31,6 +35,7 @@ function VirtualTable<T extends object = any>(props: Props<T>): React.ReactEleme
     rowKey,
     initialWidth = 0,
     dataSource,
+    expandable,
   } = props;
 
   const [tableWidth, setTableWidth] = React.useState(initialWidth);
@@ -55,7 +60,7 @@ function VirtualTable<T extends object = any>(props: Props<T>): React.ReactEleme
           render: (key: string, record: T): React.ReactNode => {
             const recordKey = getRowKey(record);
             return (
-              recordKey && (
+              recordKey !== undefined && (
                 <Checkbox
                   checked={selection.selectedRowKeys && selection.selectedRowKeys.indexOf(recordKey) >= 0}
                   onChange={(event): void => {
@@ -177,6 +182,11 @@ function VirtualTable<T extends object = any>(props: Props<T>): React.ReactEleme
             className={classNames('virtual-table-cell', {
               'virtual-table-cell-last': columnIndex === mergedColumns.length - 1,
               'ant-table-selection-column': columnIndex === 0 && selection,
+              'ds-expanded-row': rawData[rowIndex][EXPANDED_ROW_PROPERTY],
+              'ds-expanded-row-data':
+                rawData[rowIndex][EXPANDED_ROW_PROPERTY] &&
+                ((columnIndex === 1 && selection) || (columnIndex === 0 && !selection)),
+              'ds-expanded-row-first': rawData[rowIndex][EXPANDED_ROW_PROPERTY] && columnIndex === 0,
             })}
             onClick={(): void => onRowClick && onRowClick(rawData[rowIndex])}
             style={style}
@@ -193,6 +203,31 @@ function VirtualTable<T extends object = any>(props: Props<T>): React.ReactEleme
     );
   };
 
+  const renderBody = React.useCallback(
+    (rawData, meta): React.ReactNode => {
+      if (expandable?.expandedRowKeys?.length) {
+        const expandedRows = rawData.reduce((result: T[], currentRow: T) => {
+          const key = getRowKey(currentRow);
+          // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+          // @ts-ignore
+          if (key !== undefined && expandable?.expandedRowKeys?.includes(key) && currentRow.children.length) {
+            // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+            // @ts-ignore
+            return [
+              ...result,
+              currentRow,
+              ...currentRow.children.map((child: T) => ({ ...child, [EXPANDED_ROW_PROPERTY]: true })),
+            ];
+          }
+          return [...result, currentRow];
+        }, []);
+        return renderVirtualList(expandedRows, meta);
+      }
+      return renderVirtualList(rawData, meta);
+    },
+    [expandable, getRowKey, renderVirtualList]
+  );
+
   return (
     <ResizeObserver
       onResize={({ width }): void => {
@@ -207,7 +242,7 @@ function VirtualTable<T extends object = any>(props: Props<T>): React.ReactEleme
         /* eslint-disable-next-line @typescript-eslint/ban-ts-ignore */
         // @ts-ignore
         components={{
-          body: renderVirtualList,
+          body: renderBody,
         }}
       />
     </ResizeObserver>
