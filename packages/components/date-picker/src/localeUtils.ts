@@ -40,10 +40,19 @@ function getFirstDayOfWeek(locale: React.ReactText): string {
   return FIRST_DAY[locale];
 }
 
-export default {
+export type LocaleUtils = {
+  formatDay: (d: Date, locale: string) => string;
+  formatMonthTitle: (d: Date, locale: string) => string;
+  formatWeekdayShort: (i: string, locale: string) => string;
+  formatWeekdayLong: (i: string, locale: string) => string;
+  getFirstDayOfWeek: (locale: string) => string;
+};
+
+const localeUtils: LocaleUtils = {
   formatDay,
   formatMonthTitle,
   formatWeekdayShort,
   formatWeekdayLong,
   getFirstDayOfWeek,
 };
+export default localeUtils;

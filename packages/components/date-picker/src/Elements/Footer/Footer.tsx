@@ -3,7 +3,9 @@ import { injectIntl } from 'react-intl';
 
 import Button from '@synerise/ds-button';
 import Tooltip from '@synerise/ds-tooltip';
-import { Container, Text, Actions, LinkButton } from './Footer.styles';
+import { CalendarM, ClockM } from '@synerise/ds-icon/dist/icons';
+import Icon from '@synerise/ds-icon';
+import * as S from './Footer.styles';
 import { Props } from './Footer.types';
 
 const Footer: React.FC<Props> = ({
@@ -16,24 +18,25 @@ const Footer: React.FC<Props> = ({
   mode,
   dateOnly,
   message,
+  texts,
   ...rest
 }) => {
   return (
-    <Container {...rest}>
-      <Text>{text}</Text>
-      <Actions>
+    <S.Container {...rest}>
+      <S.Actions>
         {!dateOnly && (
-          <LinkButton disabled={!canSwitchMode} onClick={onSwitchMode}>
-            {intl.formatMessage({ id: mode === 'time' ? 'SNRS.DATE.SELECT_DATE' : 'SNRS.DATE.SELECT_TIME' })}
-          </LinkButton>
+          <Button type='ghost' mode='label-icon' disabled={!canSwitchMode} onClick={onSwitchMode}>
+            {mode === 'time' ? texts.selectDate : texts.selectTime }
+            <Icon component ={mode === 'time' ? <CalendarM/> : <ClockM/> } />
+          </Button>
         )}
         <Tooltip title={message}>
           <Button disabled={!canApply} type="primary" onClick={onApply}>
-            {intl.formatMessage({ id: 'SNRS.ACTIONS.APPLY' })}
+            {texts.apply}
           </Button>
         </Tooltip>
-      </Actions>
-    </Container>
+      </S.Actions>
+    </S.Container>
   );
 };
 

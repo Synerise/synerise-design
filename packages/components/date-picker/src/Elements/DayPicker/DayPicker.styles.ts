@@ -40,6 +40,7 @@ export const DayPicker = styled(DayPickerBase)`
     vertical-align: middle;
     text-align: center;
     font-weight: 500;
+    border: 3px solid transparent;
   }
 
   .DayPicker-Weekday abbr[title] {
@@ -65,7 +66,7 @@ export const DayPicker = styled(DayPickerBase)`
     display: table-cell;
     cursor: pointer;
     position: relative;
-
+    border:3px solid rgba(0,0,0,0);
     > div {
       position: absolute;
       top: 0;
@@ -133,7 +134,7 @@ export const DayPicker = styled(DayPickerBase)`
     }
   }
 
-  .DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside) {
+  .DayPicker-Day--selected:not(.DayPicker-Day--disabled) {
     & > .DayPicker-Day-BG {
       background-color: ${(props): string => props.theme.palette['blue-600']};
     }
@@ -153,7 +154,7 @@ export const DayPicker = styled(DayPickerBase)`
     }
   }
 
-  .DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside):hover {
+  .DayPicker-Day--selected:not(.DayPicker-Day--disabled):hover {
     & > .DayPicker-Day-BG {
       background-color: ${(props): string => props.theme.palette['blue-600']};
     }

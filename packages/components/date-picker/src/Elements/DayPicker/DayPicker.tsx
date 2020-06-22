@@ -39,14 +39,17 @@ const Picker: React.FC<DayPickerProps> = ({
         hideNext={hideNext}
         key="head"
       />
+      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+      // @ts-ignore
       <DayPicker
         month={month}
         firstDayOfWeek={1}
-        {...rest}
         captionElement={captionElement}
         key="body"
-        localeUtils={MomentLocaleUtils}
         locale={intl.locale}
+        localeUtils={MomentLocaleUtils}
+        {...rest}
+
       />
     </>
   );

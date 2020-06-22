@@ -10,14 +10,18 @@ const stories = {
     value: undefined,
   })(({ store }) => {
     const timeFormat = text('Set timeFormat', undefined);
-    const placement = select('Set placement of timepicker', {
-      topLeft: 'topLeft',
-      topCenter: 'topCenter',
-      topRight: 'topRight',
-      bottomLeft: 'bottomLeft',
-      bottomCenter: 'bottomCenter',
-      bottomRight: 'bottomRight',
-    }, undefined);
+    const placement = select(
+      'Set placement of timepicker',
+      {
+        topLeft: 'topLeft',
+        topCenter: 'topCenter',
+        topRight: 'topRight',
+        bottomLeft: 'bottomLeft',
+        bottomCenter: 'bottomCenter',
+        bottomRight: 'bottomRight',
+      },
+      undefined
+    );
     const disabled = boolean('Disabled', false);
     const alwaysOpen = boolean('Always open', false);
     const disabledHours = array('Disabled hours', [], ',').map(Number);
@@ -28,13 +32,14 @@ const stories = {
     const clearTooltip = text('Set clear tooltip', 'Clear');
 
     const onChange = (newValue: Date) => {
+      console.log('On change', newValue);
       store.set({
         value: newValue,
-      })
+      });
     };
 
     return (
-      <div style={{width: number('Width', 200, {min: 104, max: 208})}}>
+      <div style={{ width: number('Width', 200, { min: 104, max: 208 }) }}>
         <TimePicker
           alwaysOpen={alwaysOpen}
           units={units as any[]}
@@ -48,10 +53,10 @@ const stories = {
           clearTooltip={clearTooltip}
           placement={placement}
           onChange={onChange}
-          raw={boolean('Raw',false)}
+          raw={boolean('Raw', false)}
         />
       </div>
-    )
+    );
   }),
 };
 
@@ -60,4 +65,4 @@ export default {
   config: {},
   stories,
   Component: TimePicker,
-}
+};

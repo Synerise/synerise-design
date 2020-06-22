@@ -1,4 +1,5 @@
 import { WrappedComponentProps } from 'react-intl';
+import { Texts } from '../../DatePicker.types';
 
 export type Props = {
   text: string;
@@ -9,4 +10,5 @@ export type Props = {
   onApply?: () => void;
   onSwitchMode?: () => void;
   message?: React.ReactNode | string;
+  texts: Texts;
 } & WrappedComponentProps;
