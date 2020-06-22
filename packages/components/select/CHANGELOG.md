@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.3](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.12.2...@synerise/ds-select@0.12.3) (2020-06-22)
+
+
+### Bug Fixes
+
+* **select:** moved tooltip icon 2px to the top ([af3b873](https://github.com/synerise/synerise-design/commit/af3b8738f021331ca95400b64005fad9dda60a18))
+
+
+
+
+
 ## [0.12.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.12.1...@synerise/ds-select@0.12.2) (2020-06-22)
 
 
