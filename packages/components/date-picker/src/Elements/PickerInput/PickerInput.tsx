@@ -99,7 +99,7 @@ class PickerInput extends React.Component<Props, State> {
               key={visible ? 1 : 0}
               value={value ? value.toDate() : undefined}
               onApply={this.handleApply}
-              disabledDate={disabledDate ? this.disabledDate : undefined}
+              dateValidator={disabledDate ? this.disabledDate : undefined}
             />
           }
           getPopupContainer={getPopupContainer}

@@ -1,10 +1,6 @@
 import styled, { css } from 'styled-components';
 
-export const borderStyle = css`
-  ${(props): string => props.theme.variable('@border-width-base')}
-  ${(props): string => props.theme.variable('@border-style-base')}
-  ${(props): string => props.theme.variable('@border-color-base')}
-`;
+export const borderStyle = css``;
 
 export const Container = styled.div`
   background-color: white;
@@ -13,8 +9,8 @@ export const Container = styled.div`
   grid-template-rows: 48px 240px 1fr;
   align-items: stretch;
   justify-content: stretch;
-
+  min-width:280px;
   > *:not(:last-child) {
-    border-bottom: ${borderStyle};
+    border-bottom: 1px solid ${(props): string => props.theme.palette['grey-200']};
   }
 `;

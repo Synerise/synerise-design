@@ -6,9 +6,10 @@ import * as fnsSetYear from 'date-fns/set_year';
 import * as fnsStartOfDay from 'date-fns/start_of_day';
 import * as fnsEndOfDay from 'date-fns/end_of_day';
 
-import { Modifier, Props, State } from 'DatePicker.types';
+import { Props, State } from 'DatePicker.types';
+import * as moment from 'moment';
 import Footer from './Elements/Footer/Footer';
-import { Container } from './DatePicker.styles';
+import * as S from './DatePicker.styles';
 import DayPicker from './Elements/DayPicker/DayPicker';
 import MonthPicker from './Elements/MonthPicker/MonthPicker';
 import YearPicker from './Elements/YearPicker/YearPicker';
@@ -51,13 +52,16 @@ export class DatePicker extends React.Component<Props, State> {
     }
   }
 
-  handleChange = (value: Date | undefined): void => this.setState({ value, changed: true });
+  handleChange = (value: Date | undefined): void => {
+    console.log('Selected is...', value);
+    this.setState({ value, changed: true });
+  };
 
   handleDayMouseEnter = (day: Date): void => this.setState({ enteredTo: day });
 
   handleDayMouseLeave = (): void => this.setState({ enteredTo: undefined });
 
-  handleDayClick = (day: Date, modifiers: Modifier): void => {
+  handleDayClick = (day: Date, modifiers: {disabled: boolean}): void => {
     const { changed: isChanged, value } = this.state;
     const { useStartOfDay, useEndOfDay } = this.props;
 
@@ -102,19 +106,27 @@ export class DatePicker extends React.Component<Props, State> {
 
   renderYearPicker = (): React.ReactNode => {
     const { month } = this.state;
-    return <YearPicker value={month} onChange={(changedMonth): void => changedMonth && this.handleMonthChange(changedMonth, 'date')} />;
+    return (
+      <YearPicker
+        value={month}
+        onChange={(changedMonth): void => changedMonth && this.handleMonthChange(changedMonth, 'date')}
+      />
+    );
   };
 
   renderMonthPicker = (): React.ReactNode => {
     const { month } = this.state;
     return (
-      <MonthPicker value={month} onChange={(changedMonth): void =>  changedMonth && this.handleMonthChange(changedMonth, 'date')} />
+      <MonthPicker
+        value={month}
+        onChange={(changedMonth): void => changedMonth && this.handleMonthChange(changedMonth, 'date')}
+      />
     );
   };
 
-  renderDatePicker = (): React.ReactNode => {
+  renderDayPicker = (): React.ReactNode => {
     const { value, enteredTo } = this.state;
-    const { disabledDate } = this.props;
+    const { dateValidator, } = this.props;
     const modifiers = {
       start: value,
       end: value,
@@ -122,19 +134,15 @@ export class DatePicker extends React.Component<Props, State> {
       'entered-start': enteredTo,
       'entered-end': enteredTo,
     };
-    const selectedDays = [value];
+    const selectedDays = value ? [value] : [];
     const { month } = this.state;
     return (
       <DayPicker
         fixedWeeks
         showOutsideDays
         canChangeMonth={false}
-        disabledDays={disabledDate}
-        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-        // @ts-ignore
+        disabledDays={dateValidator}
         selectedDays={selectedDays}
-        modifiers={modifiers}
-        localeUtils={localeUtils}
         month={month}
         title={fnsFormat(month, 'MMM YYYY')}
         renderDay={this.renderDay}
@@ -144,6 +152,12 @@ export class DatePicker extends React.Component<Props, State> {
         onMonthNameClick={(): void => this.handleModeSwitch('month')}
         onYearNameClick={(): void => this.handleModeSwitch('year')}
         onMonthChange={(selectedMonth: Date): void => this.handleMonthChange(selectedMonth, 'date')}
+        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+        // @ts-ignore
+        modifiers={modifiers}
+        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+        // @ts-ignore
+        localeUtils={localeUtils}
       />
     );
   };
@@ -165,7 +179,7 @@ export class DatePicker extends React.Component<Props, State> {
 
   render(): React.ReactNode {
     const { mode, changed, value } = this.state;
-    const { showTime } = this.props;
+    const { showTime, texts } = this.props;
 
     const isValid = !!value;
 
@@ -175,7 +189,7 @@ export class DatePicker extends React.Component<Props, State> {
         picker = this.renderTimePicker();
         break;
       case 'date':
-        picker = this.renderDatePicker();
+        picker = this.renderDayPicker();
         break;
       case 'month':
         picker = this.renderMonthPicker();
@@ -189,7 +203,7 @@ export class DatePicker extends React.Component<Props, State> {
     }
 
     return (
-      <Container style={{ width: 300 }}>
+      <S.Container>
         {picker}
         <Footer
           text=""
@@ -199,14 +213,13 @@ export class DatePicker extends React.Component<Props, State> {
           mode={mode}
           canSwitchMode={isValid}
           onSwitchMode={(): void => this.handleModeSwitch(mode === 'time' ? 'date' : 'time')}
+          texts={texts}
         />
-      </Container>
+      </S.Container>
     );
   }
 }
 
-export const DatePickerInput = ({ value, format, ...rest }: Props): React.ReactNode => {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-  // @ts-ignore
-  return <PickerInput value={value} format={format} {...rest} content={DatePicker} />;
+export const DatePickerInput = ({ value, format, ...rest }: Props): JSX.Element => {
+  return <PickerInput value={moment(value)} format={format} content={DatePicker} {...rest} />;
 };

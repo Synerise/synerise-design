@@ -4,12 +4,16 @@ import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/t
 export const Container = styled.div`
   display: flex;
   align-items: center;
-  padding: 0 8px;
+  margin: 0 25px;
 `;
 
 export const ArrowContainer = styled.div`
   display: flex;
   align-items: center;
+
+  .ds-icon > svg {
+    fill: ${(props): string => props.theme.palette['grey-600']};
+  }
 `;
 
 export const Text = styled.div`

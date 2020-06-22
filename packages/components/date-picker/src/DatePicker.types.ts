@@ -1,15 +1,15 @@
-
 export type Props = {
   format?: string;
   showTime?: boolean;
   value?: Date;
   onApply?: (date?: Date) => void;
-  disabledDate?: (day?: Date) => boolean;
+  dateValidator?: (date?: Date) => boolean;
   disabledHours: number[];
   disabledMinutes: number[];
   disabledSeconds: number[];
   useStartOfDay?: boolean;
   useEndOfDay?: boolean;
+  texts: Texts;
 };
 
 export type State = {
@@ -21,5 +21,15 @@ export type State = {
 };
 
 export type Modifier = {
+  start?: Date;
+  end?: Date;
+  entered?: Date;
+  'entered-start'?: Date;
+  'entered-end'?: Date;
   disabled: boolean;
-}
+};
+export type Texts = {
+  apply: string;
+  selectTime: string;
+  selectDate: string;
+};
