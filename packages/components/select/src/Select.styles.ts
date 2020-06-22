@@ -116,6 +116,9 @@ export const DescWrapper = styled.div<{ withError: boolean }>`
 
 export const Label = styled(DSLabel)`
   margin-bottom: 8px;
+  .ds-icon > svg {
+    margin-top:-2px;
+  }
 `;
 export const SelectWrapper = styled.div`
   display: flex;
