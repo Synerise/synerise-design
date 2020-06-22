@@ -9,7 +9,7 @@ import Tooltip from '@synerise/ds-tooltip';
 import classNames from 'classnames';
 import * as S from './Select.styles';
 
-interface Props<T = SelectValue> extends SelectProps<T> {
+export interface Props<T = SelectValue> extends Omit<SelectProps<T>,'listHeight'> {
   errorText?: React.ReactNode | string;
   error?: boolean;
   label?: React.ReactNode;
@@ -18,6 +18,7 @@ interface Props<T = SelectValue> extends SelectProps<T> {
   clearTooltip?: string;
   prefixel?: React.ReactNode;
   suffixel?: React.ReactNode;
+  listHeight?: React.ReactText;
 }
 
 class Select extends React.Component<Props> {
@@ -35,6 +36,7 @@ class Select extends React.Component<Props> {
       prefixel,
       suffixel,
       style,
+      listHeight,
       ...antdProps
     } = this.props;
     const { size } = antdProps;
@@ -45,6 +47,7 @@ class Select extends React.Component<Props> {
           {!!prefixel && <S.PrefixWrapper>{prefixel}</S.PrefixWrapper>}
           <S.AntdSelect
             {...antdProps}
+            listHeight={listHeight}
             size={size}
             prefixel={!!prefixel}
             suffixel={!!suffixel}
