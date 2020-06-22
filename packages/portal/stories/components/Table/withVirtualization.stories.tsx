@@ -40,6 +40,12 @@ const stories = {
       store.set({ selectedRows: selectedRowKeys });
     };
 
+    const selectEven = () => {
+      const evenRows = filteredDataSource().map(row => row.key).filter((key, index) => index % 2);
+      store.set({selectedRows: evenRows});
+    };
+
+
     return (
       <div style={{width: 792}}>
         <VirtualTable
@@ -56,6 +62,11 @@ const stories = {
             selections: [
               Table.SELECTION_ALL,
               Table.SELECTION_INVERT,
+              {
+                key: 'even',
+                label: 'Select even',
+                onClick: selectEven,
+              }
             ],
           }}
           onRowClick={record => {

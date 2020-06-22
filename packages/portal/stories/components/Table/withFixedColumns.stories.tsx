@@ -36,6 +36,12 @@ const stories = {
       store.set({ selectedRows: selectedRowKeys });
     };
 
+    const selectEven = () => {
+      const evenRows = dataSource.map(row => row.key).filter((key, index) => index % 2);
+      store.set({selectedRows: evenRows});
+    };
+
+
     return (
       <Table
         title={`${dataSource.length} records`}
@@ -57,6 +63,11 @@ const stories = {
           selections: [
             Table.SELECTION_ALL,
             Table.SELECTION_INVERT,
+            {
+              key: 'even',
+              label: 'Select even',
+              onClick: selectEven,
+            }
           ],
         }}
         onSearch={action('onSearch')}
