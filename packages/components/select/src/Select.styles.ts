@@ -1,8 +1,9 @@
 import styled from 'styled-components';
-import Select, { SelectProps, SelectValue } from 'antd/lib/select';
+import Select from 'antd/lib/select';
 import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import * as React from 'react';
 import { Label as DSLabel } from '@synerise/ds-input';
+import { Props } from './Select';
 
 const { OptGroup, Option } = Select;
 
@@ -37,7 +38,7 @@ const addonStyles = (props: ThemeProps): string => `
   line-height: 1.39;
  `;
 
-export const AntdSelect = styled((Select as unknown) as React.ComponentType<SelectProps<SelectValue>>)<{
+export const AntdSelect = styled((Select as unknown) as React.ComponentType<Props>)<{
   size?: string;
   prefixel?: boolean;
   suffixel?: boolean;
@@ -116,8 +117,9 @@ export const DescWrapper = styled.div<{ withError: boolean }>`
 
 export const Label = styled(DSLabel)`
   margin-bottom: 8px;
-  .ds-icon > svg {
-    margin-top:-2px;
+  overflow:visible;
+  span > .ds-icon > svg {
+    margin-top:-1px;
   }
 `;
 export const SelectWrapper = styled.div`
