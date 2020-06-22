@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.5.1...@synerise/ds-card@0.6.0) (2020-06-22)
+
+
+### Bug Fixes
+
+* **card:** fix types ([28ebeef](https://github.com/Synerise/synerise-design/commit/28ebeef10f81e71b2be11753a4dc34858b7e4e29))
+* **card:** header icons size ([af05cf6](https://github.com/Synerise/synerise-design/commit/af05cf655f7db68c49a0e72258447235638ed5ab))
+* **card:** remove commented code ([8540c38](https://github.com/Synerise/synerise-design/commit/8540c38cf87981dfbf4717a471783b6a698b4d37))
+
+
+### Features
+
+* **card:** add background of Card, border below header, fix styles ([0d0cf57](https://github.com/Synerise/synerise-design/commit/0d0cf57fdca89bdc213b4a2ac59bfe8bfe839868))
+* **card:** add CardBadge component ([8646aea](https://github.com/Synerise/synerise-design/commit/8646aea0286ba748e29ddffa1166cbb99a6c5abe))
+
+
+
+
+
 ## [0.5.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.5.0...@synerise/ds-card@0.5.1) (2020-06-17)
 
 **Note:** Version bump only for package @synerise/ds-card

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-alert@0.1.3...@synerise/ds-alert@0.1.4) (2020-06-22)
+
+
+### Bug Fixes
+
+* **alert:** add missing type in styles ([121ece7](https://github.com/Synerise/synerise-design/commit/121ece74b5faa624dd4397c430a9f9e903df7588))
+* **alert:** change hue of text from 700 to 600 except success and warn ([6db002f](https://github.com/Synerise/synerise-design/commit/6db002fe7397be14be7694d0a01001ef69d8b6e2))
+
+
+
+
+
 ## [0.1.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-alert@0.1.2...@synerise/ds-alert@0.1.3) (2020-06-17)
 
 **Note:** Version bump only for package @synerise/ds-alert

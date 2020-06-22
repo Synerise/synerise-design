@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-column-manager@0.7.0...@synerise/ds-column-manager@0.7.1) (2020-06-22)
+
+
+### Bug Fixes
+
+* **column-manager:** drag handler position ([e84e2c5](https://github.com/Synerise/synerise-design/commit/e84e2c5dd34470b98f44be044c58bdb8ed5d1da3))
+
+
+
+
+
 # [0.7.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-column-manager@0.6.19...@synerise/ds-column-manager@0.7.0) (2020-06-17)
 
 

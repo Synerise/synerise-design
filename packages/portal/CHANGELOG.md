@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.76.0](https://github.com/synerise/synerise-design/compare/portal@0.75.0...portal@0.76.0) (2020-06-22)
+
+
+### Bug Fixes
+
+* **alert:** change hue of text from 700 to 600 except success and warn ([6db002f](https://github.com/synerise/synerise-design/commit/6db002fe7397be14be7694d0a01001ef69d8b6e2))
+* **input:** fix styles and add validation with knobs and focus to inputs ([88b80a1](https://github.com/synerise/synerise-design/commit/88b80a11eeb5331909309fb5f6d30d1ea7725e25))
+* **input-number:** fix styles, add validation with knobs,focus to inputs ([5be868c](https://github.com/synerise/synerise-design/commit/5be868cbff030feede33d1e6626b359abe414688))
+* **select:** add placeholder and change width of input ([f33685f](https://github.com/synerise/synerise-design/commit/f33685fb8a53ce1373d9fde4dd43d27ecbfb1f14))
+* **select:** add validation with knobs and focus, fix input styles ([6881b24](https://github.com/synerise/synerise-design/commit/6881b249dd23ad111984d3c4d6ed4d9f6dcaf04d))
+* **select:** added custom search icon ([987484f](https://github.com/synerise/synerise-design/commit/987484f58e67baa3ec12319f9af8917bd41bb63d))
+* **table:** add posibility to sort every column in group table  example ([e5ef822](https://github.com/synerise/synerise-design/commit/e5ef822fff1319a5f57a05e341be177ac5aae3e2))
+* **table:** clear groupSettings with clear filer selection ([169c7bb](https://github.com/synerise/synerise-design/commit/169c7bbbec36e26f65711747904424b3c1214d1a))
+* **table:** items number in title bar, pagination ([15d2f43](https://github.com/synerise/synerise-design/commit/15d2f43e859668a922c39eabc49aab32f1ff072c))
+
+
+### Features
+
+* **card:** update Card stories ([d0b1206](https://github.com/synerise/synerise-design/commit/d0b12062d959012aeed0d733bf7b8cb482d29c1a))
+* **flag:** add DSFlag component ([80e2d0e](https://github.com/synerise/synerise-design/commit/80e2d0e6f6fb2d3a9750bd57566c250f79684b7e))
+* **table:** add placeholder to EditableCell ([5f8c4d5](https://github.com/synerise/synerise-design/commit/5f8c4d53855e5318691f3ef7efc2d5896d5b89f2))
+* **table:** add props gapSize, contentAlign for ActionCell ([8a24a3a](https://github.com/synerise/synerise-design/commit/8a24a3a9fe9bf3f3231b8d518320d8e265a9832f))
+* **table:** add search to GroupTable example ([78bb7d2](https://github.com/synerise/synerise-design/commit/78bb7d2ab9fc63aa8b9467c92472c0abec5bb86a))
+
+
+
+
+
 # [0.75.0](https://github.com/synerise/synerise-design/compare/portal@0.74.0...portal@0.75.0) (2020-06-17)
 
 

@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.12.1...@synerise/ds-select@0.12.2) (2020-06-22)
+
+
+### Bug Fixes
+
+* **select:** add validation with knobs and focus, fix input styles ([6881b24](https://github.com/synerise/synerise-design/commit/6881b249dd23ad111984d3c4d6ed4d9f6dcaf04d))
+* **select:** added custom search icon ([987484f](https://github.com/synerise/synerise-design/commit/987484f58e67baa3ec12319f9af8917bd41bb63d))
+* **select:** unused styles removed ([86675e2](https://github.com/synerise/synerise-design/commit/86675e2adcd59c1d93b33fb3a1b625f3b8d41c74))
+
+
+
+
+
 ## [0.12.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.12.0...@synerise/ds-select@0.12.1) (2020-06-17)
 
 **Note:** Version bump only for package @synerise/ds-select

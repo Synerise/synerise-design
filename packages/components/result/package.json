@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-result",
-  "version": "0.4.50",
+  "version": "0.4.51",
   "description": "Result UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -25,8 +25,8 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-button": "^0.12.16",
-    "@synerise/ds-icon": "^0.17.0",
+    "@synerise/ds-button": "^0.12.17",
+    "@synerise/ds-icon": "^0.18.0",
     "@synerise/ds-typography": "^0.8.3"
   },
   "peerDependencies": {

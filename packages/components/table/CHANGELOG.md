@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.16.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.15.0...@synerise/ds-table@0.16.0) (2020-06-22)
+
+
+### Bug Fixes
+
+* **table:** add missing dependecies in hooks ([fd526bd](https://github.com/synerise/synerise-design/commit/fd526bd19d0ba5567f44442bcf51305c5de2fb52))
+* **table:** add missing dependecies in hooks ([df05f4e](https://github.com/synerise/synerise-design/commit/df05f4eb49b0273cb95883de9ec1c36627b403b2))
+* **table:** add missing dependecies in hooks) ([f3cd6c8](https://github.com/synerise/synerise-design/commit/f3cd6c844225df432953863ae74a92aef1eebaf6))
+* **table:** change placeholder prop into asPlacehodler ([9bba1a2](https://github.com/synerise/synerise-design/commit/9bba1a2219a75e07f7d110f6f5febf59141a262b))
+* **table:** eslint errors ([50ba7dd](https://github.com/synerise/synerise-design/commit/50ba7dd0a441b6b66ea0fe362639a5706257afd1))
+* **table:** GroupRow hover styles ([5651de3](https://github.com/synerise/synerise-design/commit/5651de3275a5322f79a07935c21b06f084a2ba0a))
+* **table:** issue with selection row which has key equal to 0 ([49d5fa1](https://github.com/synerise/synerise-design/commit/49d5fa1d93f64b550b60a961bcf632a892c1fbd1))
+* **table:** items number in title bar, pagination ([15d2f43](https://github.com/synerise/synerise-design/commit/15d2f43e859668a922c39eabc49aab32f1ff072c))
+* **table:** order of selection options ([1c69dbf](https://github.com/synerise/synerise-design/commit/1c69dbf39e1def7e91a3058cfe75be5a7ec8b0dc))
+
+
+### Features
+
+* **table:** add placeholder to EditableCell ([5f8c4d5](https://github.com/synerise/synerise-design/commit/5f8c4d53855e5318691f3ef7efc2d5896d5b89f2))
+* **table:** add props gapSize, contentAlign for ActionCell ([8a24a3a](https://github.com/synerise/synerise-design/commit/8a24a3a9fe9bf3f3231b8d518320d8e265a9832f))
+* **table:** add search to GroupTable example ([78bb7d2](https://github.com/synerise/synerise-design/commit/78bb7d2ab9fc63aa8b9467c92472c0abec5bb86a))
+
+
+
+
+
 # [0.15.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.14.1...@synerise/ds-table@0.15.0) (2020-06-17)
 
 
