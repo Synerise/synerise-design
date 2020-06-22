@@ -241,14 +241,16 @@
         background-color: @gray-color-lighter-8;
         &.@{table-prefix-cls}-column-sort {
           background-color: @grey-050;
+          &:hover {
+            &:before {
+              background-color: @column-sort-hover-color;
+            }
+          }
         }
         &.@{table-prefix-cls}-column-has-sorters {
           cursor: pointer;
           &:hover {
             background-color: @grey-050;
-            &:before {
-              background-color: @column-sort-hover-color;
-            }
           }
         }
       }
