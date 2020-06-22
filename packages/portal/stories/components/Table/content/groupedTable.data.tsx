@@ -305,3 +305,50 @@ export const EMPTY_VIEW = {
   },
   columns: COLUMNS,
 };
+
+export const CATEGORIES = [
+  {
+    label: 'All filters',
+    hasMore: false,
+    items: [
+      {
+        id: '0000',
+        name: 'Filter #1',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do elit',
+        created: randomDate(),
+        canUpdate: true,
+        canDelete: true,
+        canDuplicate: true,
+        user: {
+          firstname: 'Jan',
+          lastname: 'Nowak',
+        },
+        columns: COLUMNS,
+      },
+      {
+        id: '0001',
+        name: 'Filter #2',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do elit',
+        created: randomDate(),
+        canUpdate: true,
+        canDelete: true,
+        canDuplicate: true,
+        columns: COLUMNS,
+      },
+      {
+        id: '0002',
+        name: 'Filter #3',
+        created: randomDate(),
+        canUpdate: true,
+        canDelete: true,
+        canDuplicate: true,
+        user: {
+          avatar_url: 'https://www.w3schools.com/howto/img_avatar.png',
+          firstname: 'Kamil',
+          lastname: 'Kowalski',
+        },
+        columns: COLUMNS,
+      }
+    ]
+  }
+];

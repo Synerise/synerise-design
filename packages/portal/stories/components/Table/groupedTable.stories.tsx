@@ -3,7 +3,7 @@ import { action } from '@storybook/addon-actions';
 import { withState } from '@dump247/storybook-state';
 import Table, { ItemsMenu, TableCell } from '@synerise/ds-table';
 import * as React from 'react';
-import { COLUMNS, DATA_SOURCE, EMPTY_VIEW, VIEWS } from './content/groupedTable.data';
+import { COLUMNS, DATA_SOURCE, EMPTY_VIEW, VIEWS, CATEGORIES } from './content/groupedTable.data';
 import Avatar from '@synerise/ds-avatar';
 import Button from '@synerise/ds-button';
 import Icon from '@synerise/ds-icon';
@@ -15,7 +15,6 @@ import {
   TrashM, VarTypeBooleanM, VarTypeDateM, VarTypeListM, VarTypeNumberM,
 } from '@synerise/ds-icon/dist/icons';
 import DSTable from '@synerise/ds-table';
-import { CATEGORIES } from './content/withFiltersAndSearch.data';
 import ColumnManager, { SavedView } from '@synerise/ds-column-manager/dist/ColumnManager';
 import * as moment from 'moment';
 import ItemFilter from '@synerise/ds-item-filter/dist/ItemFilter';
@@ -439,6 +438,11 @@ const stories = {
 
     };
 
+    const selectEven = () => {
+      const evenRows = store.state.dataSource.map(row => row.key).filter((key, index) => index % 2);
+      store.set({selectedRows: evenRows});
+    };
+
     return (
         <>
         <DSTable
@@ -508,10 +512,10 @@ const stories = {
                 Table.SELECTION_ALL,
                 Table.SELECTION_INVERT,
                 {
-                  key: 'select_custom',
-                  onClick: action('select_custom'),
-                  label: 'Select custom',
-                },
+                  key: 'even',
+                  label: 'Select even',
+                  onClick: selectEven,
+                }
               ]
             }
           }

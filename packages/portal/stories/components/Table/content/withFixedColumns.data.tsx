@@ -3,9 +3,11 @@ export const COLUMNS = [
     title: 'Name',
     dataIndex: 'name',
     width: 254,
-    ellipsis: true,
     fixed: 'left',
     key: 'name',
+    sorter: (a, b) => {
+      return a.name - b.name ? -1 : 1;
+    }
   },
   {
     title: 'City',
@@ -14,6 +16,9 @@ export const COLUMNS = [
     textWrap: 'word-break',
     ellipsis: true,
     key: 'city',
+    sorter: (a, b) => {
+      return a.city - b.city ? -1 : 1;
+    }
   },
   {
     title: 'System',
@@ -39,5 +44,8 @@ export const COLUMNS = [
     ellipsis: true,
     fixed: 'right',
     key: 'age',
+    sorter: (a, b) => {
+      return a.age - b.age ? -1 : 1;
+    }
   },
 ];

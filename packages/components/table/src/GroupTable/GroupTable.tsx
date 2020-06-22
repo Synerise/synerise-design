@@ -137,8 +137,6 @@ function GroupTable<T extends GroupType<T>>(
         {...props}
         dataSource={data}
         columns={tableColumns as ColumnsType<T>}
-        /* eslint-disable-next-line @typescript-eslint/ban-ts-ignore */
-        // @ts-ignore
         components={{
           header: {
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
