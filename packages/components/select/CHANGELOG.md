@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.4](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.12.3...@synerise/ds-select@0.12.4) (2020-06-22)
+
+
+### Bug Fixes
+
+* **select:** added listheight props ([a62d05e](https://github.com/synerise/synerise-design/commit/a62d05e05d602babdb65914d20d12db279a12441))
+* **select:** removed redundant style ([7f94e38](https://github.com/synerise/synerise-design/commit/7f94e3840161480f67b27fb6291efcebddecb815))
+
+
+
+
+
 ## [0.12.3](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.12.2...@synerise/ds-select@0.12.3) (2020-06-22)
 
 

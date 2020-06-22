@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.77.0](https://github.com/synerise/synerise-design/compare/portal@0.76.0...portal@0.77.0) (2020-06-22)
+
+
+### Bug Fixes
+
+* **table:** fix filter in grouped example ([3165ddf](https://github.com/synerise/synerise-design/commit/3165ddf3348eba305d4d99034c3024e23fedd535))
+* **table:** fix style of sorted & fixed columns ([50ddc44](https://github.com/synerise/synerise-design/commit/50ddc449a4451924db6a9219003aba2c2be0c186))
+
+
+### Features
+
+* **table:** add example of custom selection to all stories ([ba09d78](https://github.com/synerise/synerise-design/commit/ba09d781db1a632b86affd4ea2515596bf2a189c))
+
+
+
+
+
 # [0.76.0](https://github.com/synerise/synerise-design/compare/portal@0.75.0...portal@0.76.0) (2020-06-22)
 
 
