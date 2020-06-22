@@ -117,7 +117,6 @@ export const DescWrapper = styled.div<{ withError: boolean }>`
 
 export const Label = styled(DSLabel)`
   margin-bottom: 8px;
-  overflow:visible;
   span > .ds-icon > svg {
     margin-top:-1px;
   }
