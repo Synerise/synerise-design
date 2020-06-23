@@ -17,6 +17,7 @@ import PickerInput from './Elements/PickerInput/PickerInput';
 import fnsFormat from './format';
 import TimePicker from './Elements/TimePicker/TimePicker';
 import localeUtils from './localeUtils';
+import { DayBackground, DayText, DayForeground } from './Elements/DayPicker/DayPicker.styles';
 
 export class DatePicker extends React.Component<Props, State> {
   static defaultProps = {
@@ -95,11 +96,9 @@ export class DatePicker extends React.Component<Props, State> {
     const text = day.getDate();
     return (
       <>
-        <div className="DayPicker-Day-BG" />
-        <div className="DayPicker-Day-Text" data-attr={text}>
-          {text}
-        </div>
-        <div className="DayPicker-Day-FG" />
+        <DayBackground />
+        <DayText data-attr={text}>{text}</DayText>
+        <DayForeground />
       </>
     );
   };
