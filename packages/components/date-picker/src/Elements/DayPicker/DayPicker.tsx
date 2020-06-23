@@ -22,6 +22,7 @@ const Picker: React.FC<DayPickerProps> = ({
   intl,
   ...rest
 }) => {
+
   return (
     <>
       <Navbar

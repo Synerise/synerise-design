@@ -61,7 +61,7 @@ export class DatePicker extends React.Component<Props, State> {
 
   handleDayMouseLeave = (): void => this.setState({ enteredTo: undefined });
 
-  handleDayClick = (day: Date, modifiers: {disabled: boolean}): void => {
+  handleDayClick = (day: Date, modifiers: { disabled: boolean }): void => {
     const { changed: isChanged, value } = this.state;
     const { useStartOfDay, useEndOfDay } = this.props;
 
@@ -126,7 +126,7 @@ export class DatePicker extends React.Component<Props, State> {
 
   renderDayPicker = (): React.ReactNode => {
     const { value, enteredTo } = this.state;
-    const { dateValidator, } = this.props;
+    const { dateValidator } = this.props;
     const modifiers = {
       start: value,
       end: value,

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Icon from '@synerise/ds-icon';
 
-import { AngleLeftS, AngleRightS, ArrowLeftS, ArrowRightS } from '@synerise/ds-icon/dist/icons';
+import { AngleLeftS, AngleRightS, DoubleAngleLeftM, DoubleAngleRightM } from '@synerise/ds-icon/dist/icons';
 import * as S from './Navbar.styles';
 import { NavbarProps } from './Navbar.types';
 
@@ -12,13 +12,23 @@ const Navbar: React.FC<NavbarProps> = (props: NavbarProps) => {
   return (
     <S.Container>
       <S.ArrowContainer style={hidePrev ? hiddenStyle : undefined}>
-        <Icon component={<ArrowLeftS />} style={!onLongPrev ? hiddenStyle : undefined} onClick={onLongPrev} />
+        <Icon
+          component={<DoubleAngleLeftM />}
+          size={14}
+          style={!onLongPrev ? hiddenStyle : undefined}
+          onClick={onLongPrev}
+        />
         <Icon component={<AngleLeftS />} style={!onShortPrev ? hiddenStyle : undefined} onClick={onShortPrev} />
       </S.ArrowContainer>
       <S.Text>{onTitleClick ? <S.Link onClick={onTitleClick}>{title}</S.Link> : title}</S.Text>
       <S.ArrowContainer style={hideNext ? hiddenStyle : undefined}>
         <Icon component={<AngleRightS />} style={!onShortNext ? hiddenStyle : undefined} onClick={onShortNext} />
-        <Icon component={<ArrowRightS />} style={!onLongNext ? hiddenStyle : undefined} onClick={onLongNext} />
+        <Icon
+          component={<DoubleAngleRightM />}
+          size={14}
+          style={!onLongNext ? hiddenStyle : undefined}
+          onClick={onLongNext}
+        />
       </S.ArrowContainer>
     </S.Container>
   );
