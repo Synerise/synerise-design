@@ -1,9 +1,9 @@
-import { boolean, select } from '@storybook/addon-knobs';
+import { boolean, select, text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import { withState } from '@dump247/storybook-state';
-import { ItemsMenu, TableCell } from '@synerise/ds-table';
+import { ItemsMenu, TableCell, VirtualTable } from '@synerise/ds-table';
 import Icon from '@synerise/ds-icon';
-import { EditM, FileDownloadM, TrashM } from '@synerise/ds-icon/dist/icons';
+import { AddM, EditM, FileDownloadM, TrashM } from '@synerise/ds-icon/dist/icons';
 import Table from '@synerise/ds-table';
 import Button from '@synerise/ds-button';
 import * as React from 'react';
@@ -72,6 +72,12 @@ const stories = {
         loading={boolean('Set loading state', false)}
         roundedHeader={boolean('Rounded header', false)}
         cellSize={select('Set cells size', CELL_SIZES, CELL_SIZES.default)}
+        headerButton={boolean('Show header button', false) && (
+          <Button type="ghost" mode="icon-label" onClick={action('Header button action')}>
+            <Icon component={<AddM />} />
+            {text('Header button label', 'Add row')}
+          </Button>
+        )}
         pagination={{
           showSizeChanger: boolean('Show size changer', true),
           showQuickJumper: boolean('Show quick jumper', true),

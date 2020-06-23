@@ -1,10 +1,13 @@
 import * as React from 'react';
 import faker from 'faker';
 import { action } from '@storybook/addon-actions';
-import { boolean, select } from '@storybook/addon-knobs';
-import Table from '@synerise/ds-table';
+import { boolean, select, text } from '@storybook/addon-knobs';
+import Table, { VirtualTable } from '@synerise/ds-table';
 import { COLUMNS } from './content/withFixedColumns.data';
 import { withState } from '@dump247/storybook-state';
+import Button from '@synerise/ds-button';
+import Icon from '@synerise/ds-icon';
+import { AddM } from '@synerise/ds-icon/dist/icons';
 
 const decorator = (storyFn) => (
   <div style={{ padding: 20, width: '100vw', minWidth: '100%' }}>
@@ -55,6 +58,12 @@ const stories = {
           showQuickJumper: boolean('Show quick jumper', true),
           onChange: action('pageChanged')
         }}
+        headerButton={boolean('Show header button', false) && (
+          <Button type="ghost" mode="icon-label" onClick={action('Header button action')}>
+            <Icon component={<AddM />} />
+            {text('Header button label', 'Add row')}
+          </Button>
+        )}
         rowKey={(row) => row.key}
         scroll={{x: 0}}
         selection={boolean('Enable row selection', true) && {
