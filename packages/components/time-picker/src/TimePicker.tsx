@@ -106,7 +106,9 @@ const TimePicker: React.FC<TimePickerProps> = ({
         newDateObject = dayjs(newDateObject).set(u, 0);
       });
     }
-    setLocalValue(newDateObject.toDate());
+    const newDate = newDateObject.toDate();
+    setLocalValue(newDate);
+    onChange && onChange(newDate as Date, getTimeString(newDate as Date));
   };
 
   const overlay = (
@@ -148,32 +150,29 @@ const TimePicker: React.FC<TimePickerProps> = ({
     return placeholder || intl.formatMessage({ id: 'DS.TIME-PICKER.PLACEHOLDER' });
   }, [placeholder, intl]);
   if (raw) {
-    return (
-      overlay
-    );
-  } 
-    return (
-      <S.Container className={`ds-time-picker ${className || ''}`} data-testid="tp-container">
-        <Dropdown
-          trigger={trigger}
-          visible={alwaysOpen || open}
-          onVisibleChange={onVisibleChange}
-          placement={placement}
-          overlay={overlay}
-          disabled={disabled}
-        >
-          <S.TimePickerInput
-            className={`${alwaysOpen || open ? 'active' : ''}`}
-            data-testid="tp-input"
-            value={dateString}
-            placeholder={placeholderValue}
-            readOnly
-            icon1={timePickerIcon}
-          />
-        </Dropdown>
-      </S.Container>
-    );
-  
+    return overlay;
+  }
+  return (
+    <S.Container className={`ds-time-picker ${className || ''}`} data-testid="tp-container">
+      <Dropdown
+        trigger={trigger}
+        visible={alwaysOpen || open}
+        onVisibleChange={onVisibleChange}
+        placement={placement}
+        overlay={overlay}
+        disabled={disabled}
+      >
+        <S.TimePickerInput
+          className={`${alwaysOpen || open ? 'active' : ''}`}
+          data-testid="tp-input"
+          value={dateString}
+          placeholder={placeholderValue}
+          readOnly
+          icon1={timePickerIcon}
+        />
+      </Dropdown>
+    </S.Container>
+  );
 };
 
 TimePicker.defaultProps = {
