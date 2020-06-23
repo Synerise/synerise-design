@@ -15,8 +15,8 @@ import MonthPicker from './Elements/MonthPicker/MonthPicker';
 import YearPicker from './Elements/YearPicker/YearPicker';
 import PickerInput from './Elements/PickerInput/PickerInput';
 import fnsFormat from './format';
-import localeUtils from './localeUtils';
 import TimePicker from './Elements/TimePicker/TimePicker';
+import localeUtils from './localeUtils';
 
 export class DatePicker extends React.Component<Props, State> {
   static defaultProps = {
