@@ -21,15 +21,19 @@ const Footer: React.FC<Props> = ({
   texts,
   ...rest
 }) => {
+  const SwitchModeButton = React.useMemo(
+    () => (
+      <Button type="ghost" mode="label-icon" disabled={!canSwitchMode} onClick={onSwitchMode}>
+        {mode === 'time' ? texts.selectDate : texts.selectTime}
+        <Icon component={mode === 'time' ? <CalendarM /> : <ClockM />} />
+      </Button>
+    ),
+    [mode, texts, onSwitchMode, canSwitchMode]
+  );
   return (
     <S.Container {...rest}>
       <S.Actions>
-        {!dateOnly && (
-          <Button type='ghost' mode='label-icon' disabled={!canSwitchMode} onClick={onSwitchMode}>
-            {mode === 'time' ? texts.selectDate : texts.selectTime }
-            <Icon component ={mode === 'time' ? <CalendarM/> : <ClockM/> } />
-          </Button>
-        )}
+        {!dateOnly && SwitchModeButton}
         <Tooltip title={message}>
           <Button disabled={!canApply} type="primary" onClick={onApply}>
             {texts.apply}
