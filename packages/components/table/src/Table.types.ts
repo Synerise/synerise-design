@@ -64,6 +64,8 @@ export interface DSTableProps<T extends any & GroupType<T>> extends AntTableProp
   filterComponent?: React.ReactNode;
   headerButton?: React.ReactNode;
   grouped?: boolean;
+  hideGroupExpander?: boolean;
+  initialGroupsCollapsed?: boolean;
   locale?: TableLocale & {
     pagination?: {
       items?: string;

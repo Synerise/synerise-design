@@ -1,8 +1,7 @@
 import { boolean, number, select, text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import { withState } from '@dump247/storybook-state';
-import { ItemsMenu, TableCell, VirtualTable } from '@synerise/ds-table';
-import faker from 'faker';
+import { ItemsMenu, TableCell } from '@synerise/ds-table';
 import Icon from '@synerise/ds-icon';
 import {
   AddM,

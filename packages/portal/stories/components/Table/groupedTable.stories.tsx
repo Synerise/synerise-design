@@ -448,6 +448,8 @@ const stories = {
         <>
         <DSTable
           grouped={Boolean(store.state.groupSettings)}
+          hideGroupExpander={boolean('Hide group expander', false)}
+          initialGroupsCollapsed={boolean('Initial groups collapsed?', false)}
           title={`${itemsCount()} records`}
           dataSource={filteredDataSource()}
           columns={getColumns()}
@@ -546,6 +548,7 @@ const stories = {
                 });
 
               }}
+
               recentDisplayProps={{
                 tooltip: 'Recent',
                 title: 'Recent',
