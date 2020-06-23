@@ -32,11 +32,10 @@ function getCells(cursor: Date): Cell[] {
 
 export default class YearPicker extends React.PureComponent<YearPickerProps, YearPickerState> {
   state = getInitialState(this.props);
-  // eslint-disable-next-line react/no-deprecated
-  componentWillReceiveProps(nextProps: YearPickerProps): void {
+  getSnapshotBeforeUpdate(prevProps: Readonly<YearPickerProps>): any | null {
     const { value } = this.props;
-    if (nextProps.value !== value) {
-      this.setState(getInitialState(nextProps));
+    if (value && prevProps?.value !== value) {
+      this.setState(getInitialState(this.props));
     }
   }
 

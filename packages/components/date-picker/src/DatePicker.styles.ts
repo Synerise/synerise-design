@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 export const borderStyle = css``;
 
 export const Container = styled.div`
-  background-color: white;
+  background-color: ${(props): string => props.theme.palette.white};
   user-select: none;
   display: grid;
   grid-template-rows: 48px 240px 1fr;

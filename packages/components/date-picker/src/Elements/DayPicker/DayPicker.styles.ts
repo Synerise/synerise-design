@@ -67,7 +67,7 @@ export const DayPicker = styled(DayPickerBase)`
     display: table-cell;
     cursor: pointer;
     position: relative;
-    border: 2px solid rgba(0, 0, 0, 0);
+    border: 2px solid transparent;
     box-sizing: content-box;
     > div {
       position: absolute;
@@ -142,7 +142,7 @@ export const DayPicker = styled(DayPickerBase)`
     }
 
     & > ${DayText} {
-      color: white;
+      color: ${(props): string => props.theme.palette.white};
     }
 
     &.DayPicker-Day--ghost {

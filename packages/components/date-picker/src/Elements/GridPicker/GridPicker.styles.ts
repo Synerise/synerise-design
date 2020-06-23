@@ -48,7 +48,7 @@ export const GridContainer = styled.div`
   .cell--selected:not(.cell--disabled):not(.cell--outside) {
     > div {
       background-color: ${(props): string => props.theme.palette['blue-600']};
-      color: white;
+      color: ${(props): string => props.theme.palette.white};
 
       &:hover {
         background-color: ${(props): string => props.theme.palette['blue-600']};

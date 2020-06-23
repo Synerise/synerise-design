@@ -40,17 +40,17 @@ export class DatePicker extends React.Component<Props, State> {
     };
   }
 
-  // eslint-disable-next-line react/no-deprecated
-  componentWillReceiveProps(nextProps: Props): void {
+  getSnapshotBeforeUpdate(prevProps: Readonly<Props>): null {
     const { value } = this.props;
-    if (nextProps.value !== value) {
+    if (prevProps?.value !== value) {
       this.setState({
         mode: 'date',
-        value: nextProps.value,
-        month: fnsStartOfMonth(nextProps.value || new Date()),
+        value,
+        month: fnsStartOfMonth(value || new Date()),
         changed: false,
       });
     }
+    return null;
   }
 
   handleChange = (value: Date | undefined): void => {

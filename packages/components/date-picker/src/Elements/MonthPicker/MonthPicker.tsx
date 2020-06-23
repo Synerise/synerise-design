@@ -37,12 +37,13 @@ function getCells(cursor: Date, min?: Date, max?: Date): Cell[] {
 
 export default class MonthPicker extends React.PureComponent<MonthPickerProps, MonthPickerState> {
   state = getInitialState(this.props);
-  // eslint-disable-next-line react/no-deprecated
-  componentWillReceiveProps(nextProps: MonthPickerProps): void {
+
+  getSnapshotBeforeUpdate(prevProps: Readonly<MonthPickerProps>): null {
     const { value } = this.props;
-    if (nextProps.value !== value) {
-      this.setState(getInitialState(nextProps));
+    if (prevProps?.value !== value) {
+      this.setState(getInitialState(this.props));
     }
+    return null;
   }
 
   handleLongPrev = (): void => {

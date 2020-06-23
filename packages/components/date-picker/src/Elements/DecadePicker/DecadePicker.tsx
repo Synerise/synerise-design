@@ -29,12 +29,13 @@ function getCells(cursor: Date): Cell[] {
 
 export default class DecadePicker extends React.PureComponent<DecadePickerProps, DecadePickerState> {
   state = getInitialState(this.props);
-  // eslint-disable-next-line react/no-deprecated
-  componentWillReceiveProps(nextProps: DecadePickerProps): void {
+
+  getSnapshotBeforeUpdate(prevProps: Readonly<DecadePickerProps>): null {
     const { value } = this.props;
-    if (nextProps.value !== value) {
-      this.setState(getInitialState(nextProps));
+    if (prevProps?.value !== value) {
+      this.setState(getInitialState(this.props));
     }
+    return null;
   }
 
   handleLongPrev = (): void => {

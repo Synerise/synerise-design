@@ -20,21 +20,6 @@ const TimePicker: React.FC<TimePickerProps> = ({
   disabledSeconds = [],
   onChange,
 }: TimePickerProps) => {
-  /*
-  static defaultProps = {
-    value: new Date(),
-    format: '',
-    showHour: true,
-    showMinute: true,
-    showSecond: true,
-    hourOptions: TIME_OPTIONS.HOURS,
-    minuteOptions: TIME_OPTIONS.MINUTES,
-    secondOptions: TIME_OPTIONS.SECONDS,
-    use12Hours: false,
-    isAM: false,
-  };
-*/
-
   return (
     <>
       <Navbar title={fnsFormat(value, 'ddd D, YYYY')} key="head" />
