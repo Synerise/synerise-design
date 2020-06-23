@@ -60,13 +60,13 @@ const stories = {
           render: (children, record) => {
             if(children !== undefined) {
               return (
-                <TableCell.ActionCell>
+                <TableCell.ActionCell key={record.key}>
                   <Button.Expander expanded={expandedRows.indexOf(record.key) >= 0} onClick={() => {handleExpandRow(record.key)}} />
                 </TableCell.ActionCell>
               );
             }
           },
-        },
+        }
       ];
     };
 
