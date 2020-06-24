@@ -86,7 +86,7 @@ const stories = {
     return (
       <div style={{ padding: 24, marginBottom: 24, width: '100%', position: 'absolute', height: '100%', top: 0, left: 0 }}>
         <h3>Single card</h3>
-        <div style={{ paddingTop: 12, width: '100%' }}>{renderCard(props)}</div>
+        <div style={{ paddingTop: 12, width: '100%' }}>{renderCard({...props, icon: <CardBadge icon={<CheckS />} status="success" />,})}</div>
       </div>
     );
   },
@@ -129,6 +129,22 @@ const stories = {
         compactHeader: true,
         showContent: false,
         headerBorderBottom: false,
+        headerSideChildren: (
+          <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gridColumnGap: '8px'}}>
+            <Button type="ghost" mode="single-icon"><Icon component={<FilterM />} /> </Button>
+            <Button type="ghost" mode="single-icon"><Icon component={<SearchM />} /> </Button>
+          </div>
+        )
+      })}</div>
+
+      <div style={{ paddingTop: 12, width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>{renderCard({
+        ...props,
+        lively: true,
+        withIcon: false,
+        compactHeader: true,
+        showContent: false,
+        headerBorderBottom: false,
+        icon: <CardBadge icon={<CheckS />} status="success" />,
         headerSideChildren: (
           <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gridColumnGap: '8px'}}>
             <Button type="ghost" mode="single-icon"><Icon component={<FilterM />} /> </Button>
@@ -195,7 +211,7 @@ const stories = {
         ...props,
         lively: true,
         compactHeader: false,
-        icon: <CardBadge icon={<CheckS />} status="success"/>,
+        icon: <CardBadge icon={<CheckS />} status="success" />,
         showContent: false,
         headerBorderBottom: false,
         headerSideChildren: (
@@ -248,7 +264,7 @@ const stories = {
         <div style={{ paddingTop: 12, width: '100%' }}>
           <CardGroup columns={rowItems}>
             {range(1, itemsInGroup).map(i => (
-              <React.Fragment key={i}>{renderCard(props)}</React.Fragment>
+              <React.Fragment key={i}>{renderCard({...props, icon: <CardBadge icon={<CheckS />} />,})}</React.Fragment>
             ))}
           </CardGroup>
         </div>
