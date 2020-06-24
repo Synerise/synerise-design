@@ -54,7 +54,6 @@ export class DatePicker extends React.Component<Props, State> {
   }
 
   handleChange = (value: Date | undefined): void => {
-    console.log('Selected is...', value);
     this.setState({ value, changed: true });
   };
 
@@ -84,7 +83,7 @@ export class DatePicker extends React.Component<Props, State> {
 
   handleModeSwitch = (mode: string): void => this.setState({ mode });
 
-  handleApply = (date: Date): void => {
+  handleApply = (date: Date | undefined): void => {
     const { onApply } = this.props;
     if (!onApply) return;
     const { value } = this.state;

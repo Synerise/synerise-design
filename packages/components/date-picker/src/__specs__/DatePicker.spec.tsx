@@ -12,6 +12,7 @@ describe('ColumnManager', () => {
           selectTime: 'Select time',
           selectDate: 'Select date',
           apply: 'Apply',
+          now: 'Now',
         }}
       />
     );

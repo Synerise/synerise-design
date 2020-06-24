@@ -32,11 +32,12 @@ function getCells(cursor: Date): Cell[] {
 
 export default class YearPicker extends React.PureComponent<YearPickerProps, YearPickerState> {
   state = getInitialState(this.props);
-  getSnapshotBeforeUpdate(prevProps: Readonly<YearPickerProps>): any | null {
+  getSnapshotBeforeUpdate(prevProps: Readonly<YearPickerProps>): null {
     const { value } = this.props;
     if (value && prevProps?.value !== value) {
       this.setState(getInitialState(this.props));
     }
+    return null;
   }
 
   handleLongPrev = (): void => {

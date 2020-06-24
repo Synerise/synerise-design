@@ -20,8 +20,10 @@ const Picker: React.FC<DayPickerProps> = ({
   hidePrev,
   hideNext,
   intl,
+  modifiers,
   ...rest
 }) => {
+
 
   return (
     <>
@@ -46,8 +48,11 @@ const Picker: React.FC<DayPickerProps> = ({
         captionElement={captionElement}
         key="body"
         locale={intl.locale}
-        {...rest}
         localeUtils={MomentLocaleUtils}
+        {...rest}
+        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+        // @ts-ignore
+        modifiers={modifiers}
       />
     </>
   );
