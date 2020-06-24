@@ -15,7 +15,8 @@ export const Label = styled.label`
   span {
     display: inline-block;
   }
-  svg {
+  .ds-icon > svg {
+    margin-top: -1px;
     fill: ${(props): string => props.theme.palette['grey-400']};
   }
 `;
