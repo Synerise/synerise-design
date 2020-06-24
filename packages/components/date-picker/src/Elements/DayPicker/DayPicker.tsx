@@ -23,8 +23,6 @@ const Picker: React.FC<DayPickerProps> = ({
   modifiers,
   ...rest
 }) => {
-
-
   return (
     <>
       <Navbar
@@ -57,6 +55,4 @@ const Picker: React.FC<DayPickerProps> = ({
     </>
   );
 };
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore
 export default injectIntl(Picker);

@@ -2,7 +2,7 @@ import { ComponentType } from 'react';
 import * as moment from 'moment';
 
 import * as React from 'react';
-import { Props as ContentComponentProps, Texts } from '../../DatePicker.types';
+import { Props as ContentComponentProps } from '../../DatePicker.types';
 
 type MomentDateType = ReturnType<typeof moment>;
 export type Props = {
@@ -16,11 +16,10 @@ export type Props = {
   placeholder?: string;
   disabled?: boolean;
   disabledDate?: (currentDate: MomentDateType) => boolean;
-  disabledHours: number[];
-  disabledMinutes: number[];
-  disabledSeconds: number[];
-  content: ComponentType<ContentComponentProps>;
-  texts: Texts;
+  disabledHours?: number[];
+  disabledMinutes?: number[];
+  disabledSeconds?: number[];
+  content?: ComponentType<ContentComponentProps>;
 };
 
 export type State = {

@@ -18,6 +18,7 @@ export type State = {
   changed: boolean;
   value?: Date;
   enteredTo?: Date;
+  visible?: boolean;
 };
 
 export type Modifier = {

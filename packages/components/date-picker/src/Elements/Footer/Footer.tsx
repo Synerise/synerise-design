@@ -33,6 +33,7 @@ const Footer: React.FC<Props> = ({
   return (
     <S.Container {...rest}>
       <S.Range
+        data-testid="range-now"
         type="tertiary-dark"
         disabled={!canApply}
         onClick={(): void => {

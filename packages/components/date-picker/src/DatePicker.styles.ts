@@ -9,8 +9,11 @@ export const Container = styled.div`
   grid-template-rows: 48px 240px 1fr;
   align-items: stretch;
   justify-content: stretch;
-  min-width:280px;
+  min-width: 280px;
   > *:not(:last-child) {
     border-bottom: 1px solid ${(props): string => props.theme.palette['grey-200']};
   }
 `;
+
+export const OverlayContainer = styled.div``;
+export const InputWrapper = styled.div``;

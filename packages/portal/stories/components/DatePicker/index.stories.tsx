@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DatePicker, DatePickerInput } from '@synerise/ds-date-picker/dist/DatePicker';
+import DatePicker from '@synerise/ds-date-picker/dist/DatePicker';
 import * as moment from 'moment';
 
 const stories = {
@@ -19,14 +19,6 @@ const stories = {
             apply: 'Apply',
             now: 'Now',
           }}
-        />
-        <DatePickerInput
-          format={'YYYY-MM-HH'}
-          disabledHours={[]}
-          disabledMinutes={[]}
-          disabledSeconds={[]}
-          value={moment(value)}
-          allowClear
         />
       </div>
     );
