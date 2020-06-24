@@ -127,6 +127,8 @@ export const SelectWrapper = styled.div`
 export const PrefixWrapper = styled.div`
   border-radius: 3px 0 0 3px;
   margin-right: -2px;
+  padding-right:1px;
+
   ${(props): string => addonStyles(props)};
 `;
 
