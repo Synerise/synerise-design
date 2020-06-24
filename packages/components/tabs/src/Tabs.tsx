@@ -118,8 +118,13 @@ const Tabs: React.FC<TabsProps> = ({ activeTab, tabs, handleTabClick, configurat
     return (
       <>
         {(hiddenTabs.length || configuration) && (
-          <Dropdown trigger={['click']} data-testid="tabs-dropdown" overlay={renderHiddenTabs} disabled={!!configuration?.disabled}>
-            <S.TabsShowHiddenTabsButton  type="ghost" mode="single-icon" disabled={!!configuration?.disabled}>
+          <Dropdown
+            trigger={['click']}
+            data-testid="tabs-dropdown"
+            overlay={renderHiddenTabs}
+            disabled={!!configuration?.disabled}
+          >
+            <S.TabsShowHiddenTabsButton type="ghost" mode="single-icon" disabled={!!configuration?.disabled}>
               <Icon component={<OptionHorizontalM />} />
             </S.TabsShowHiddenTabsButton>
           </Dropdown>
@@ -156,7 +161,7 @@ const Tabs: React.FC<TabsProps> = ({ activeTab, tabs, handleTabClick, configurat
     return (
       <S.HiddenTabs className="ds-hidden-helper">
         {items.map((tab, index) => {
-          const key = `tabs-tab-${tab.label}`;
+          const key = `tabs-tab-helper-${index}`;
           return (
             <Tab
               className="hidden"

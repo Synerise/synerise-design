@@ -17,11 +17,11 @@ const decorator = storyFn => (
 const labelsAndIcons = [
   {
     icon: <SearchM />,
-    label: 'Tab first',
+    label: <span>Tab first</span>,
   },
   {
     icon: <SearchM />,
-    label: 'Tab second',
+    label: <span>Tab second</span>,
   },
   {
     icon: <SearchM />,

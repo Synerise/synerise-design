@@ -29,6 +29,7 @@ export const HeaderSideChildren = styled.div`
 export const IconContainer = styled.div<{ compact?: boolean }>`
   width: 24px;
   height: 24px;
+  margin-top: ${(props): string => (props.compact ? '4px' : '0px')};
 `;
 
 export const Container = styled.div<{
