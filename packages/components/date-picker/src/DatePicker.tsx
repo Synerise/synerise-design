@@ -1,10 +1,22 @@
 import * as React from 'react';
-import * as fnsStartOfMonth from 'date-fns/start_of_month';
-import * as fnsSetDate from 'date-fns/set_date';
-import * as fnsSetMonth from 'date-fns/set_month';
-import * as fnsSetYear from 'date-fns/set_year';
-import * as fnsStartOfDay from 'date-fns/start_of_day';
-import * as fnsEndOfDay from 'date-fns/end_of_day';
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore
+import fnsStartOfMonth from 'date-fns/start_of_month';
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore
+import fnsSetDate from 'date-fns/set_date';
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore
+import fnsSetMonth from 'date-fns/set_month';
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore
+import fnsSetYear from 'date-fns/set_year';
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore
+import fnsStartOfDay from 'date-fns/start_of_day';
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore
+import fnsEndOfDay from 'date-fns/end_of_day';
 
 import { Props, State } from 'DatePicker.types';
 import * as moment from 'moment';
@@ -16,7 +28,7 @@ import YearPicker from './Elements/YearPicker/YearPicker';
 import PickerInput from './Elements/PickerInput/PickerInput';
 import fnsFormat from './format';
 import TimePicker from './Elements/TimePicker/TimePicker';
-import localeUtils from './localeUtils';
+
 import { DayBackground, DayText, DayForeground } from './Elements/DayPicker/DayPicker.styles';
 
 export class DatePicker extends React.Component<Props, State> {
@@ -160,9 +172,6 @@ export class DatePicker extends React.Component<Props, State> {
         // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
         // @ts-ignore
         modifiers={modifiers}
-        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-        // @ts-ignore
-        localeUtils={localeUtils}
       />
     );
   };

@@ -17,7 +17,7 @@ export type DayPickerProps = {
   disabledDays?: (day?: Date) => boolean;
   selectedDays?: Date[];
   modifiers?: Modifier;
-  localeUtils: MomentLocaleUtils;
+  localeUtils?: MomentLocaleUtils;
   title?: string;
   renderDay: (day: Date) => React.ReactNode;
   onDayClick: (day: Date, modifiers: { disabled: boolean }) => void;
