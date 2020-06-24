@@ -137,6 +137,7 @@ const stories = {
       width: '100%',
     },
     defaultValue: 'lucy',
+    mode: 'multiple',
     onChange: action('OnChange'),
     children: [
       <OptGroup label="Manager">
