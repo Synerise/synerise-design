@@ -58,7 +58,7 @@ function GroupTable<T extends GroupType<T>>(
     initialGroupsCollapsed,
   } = props;
   const [expandedGroups, setExpandedGroups] = React.useState<React.ReactText[]>(
-    initialGroupsCollapsed || !dataSource ? [] : dataSource!.map(group => group.key)
+    initialGroupsCollapsed || !dataSource ? [] : dataSource.map(group => group.key)
   );
 
   const [data, setData] = React.useState<T[]>(dataSource || []);
@@ -66,8 +66,8 @@ function GroupTable<T extends GroupType<T>>(
 
   React.useEffect(() => {
     setData(dataSource || []);
-    setExpandedGroups(initialGroupsCollapsed || !dataSource ? [] : dataSource!.map(group => group.key));
-  }, [dataSource]);
+    setExpandedGroups(initialGroupsCollapsed || !dataSource ? [] : dataSource.map(group => group.key));
+  }, [dataSource, initialGroupsCollapsed]);
 
   React.useEffect(() => {
     const normalizedColumns = columns?.map(column => ({

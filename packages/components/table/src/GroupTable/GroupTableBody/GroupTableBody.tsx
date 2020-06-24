@@ -59,13 +59,12 @@ function GroupTableBody<T extends unknown>({
   }, [columns, group]);
 
   const groupExpander = React.useMemo(() => {
-    console.log(expanded, hideGroupExpander);
     return (
       !hideGroupExpander && (
         <Button.Expander onClick={(): void => expandGroup(group['data-row-key'])} expanded={expanded} />
       )
     );
-  }, [expanded, expandGroup, hideGroupExpander]);
+  }, [expanded, expandGroup, hideGroupExpander, group]);
 
   return (
     <>

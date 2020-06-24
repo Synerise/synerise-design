@@ -85,6 +85,7 @@ function DSTable<T extends object = any>(props: DSTableProps<T>): React.ReactEle
     headerWithBorderTop,
     hideTitleBar,
     grouped,
+    headerButton,
   ]);
 
   const footerPagination = React.useMemo((): object => {
