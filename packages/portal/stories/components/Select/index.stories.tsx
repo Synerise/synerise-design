@@ -124,7 +124,6 @@ const stories = {
       disabled: boolean('disabled', false),
       onBlur: action('I am blurred'),
       onFocus: action('I am focused'),
-      size: select<'default' | 'small' | 'large'>('size', sizes , 'default'),
       onChange: action('OnChange'),
       style: { width: '100%' },
       children: values.map(opt => <Option value={opt}>{opt}</Option>),
@@ -138,6 +137,7 @@ const stories = {
       width: '100%',
     },
     defaultValue: 'lucy',
+    mode: 'multiple',
     onChange: action('OnChange'),
     children: [
       <OptGroup label="Manager">
