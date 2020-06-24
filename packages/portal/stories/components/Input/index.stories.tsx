@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { Input, TextArea, RawInput, InputGroup, MaskedInput } from '@synerise/ds-input';
+import { Input, TextArea, RawInput, InputGroup, MaskedInput, InputMultivalue } from '@synerise/ds-input';
 
 import Icon from '@synerise/ds-icon';
 import FileM from '@synerise/ds-icon/dist/icons/FileM';
 import Select from '@synerise/ds-select';
-import { array, boolean, number, select, select as knobSelect, text } from '@storybook/addon-knobs';
+import { array, boolean, number, object, select, select as knobSelect, text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import { FlagLabelCell } from '@synerise/ds-table/dist/Cell';
 import * as S from '../Select/stories.styles';
@@ -386,7 +386,43 @@ const stories = {
       />
     );
   },
+
+  InputMultivalue:() =>{
+    const values = ['Option A', 'Option B', 'Option C'] ;
+    const errorMessage = text('Error Text', 'Error');
+    const hasError = boolean('Set validation state', false);
+    const [isFocus, setFocus] = React.useState(false);
+
+    const getErrorText = (hasError: boolean): string => {
+      if (hasError) {
+        return errorMessage;
+      } else {
+        return '';
+      }
+    };
+
+    return(
+      <InputMultivalue
+        label={text('Label', 'Label')}
+        description={text('Description', 'Description')}
+        errorText={!isFocus && getErrorText(hasError)}
+        error={!isFocus && hasError}
+        disabled={boolean('disabled', false)}
+        values={values}
+        onBlur={() => {
+          action('I am blurred');
+          setFocus(false);
+        }}
+        onFocus={() => {
+          action('I am focused');
+          setFocus(true);
+        }}
+        />
+    )
+  }
 };
+
+
 
 export default {
   name: 'Components|Input',

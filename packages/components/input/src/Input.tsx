@@ -167,3 +167,4 @@ export const RawInput = (props: Props & (InputProps | TextAreaProps)): React.Rea
   return <S.AntdInput className={error ? 'error' : ''} {...props} />;
 };
 export const RawTextArea = S.AntdTextArea;
+export { default as InputMultivalue } from './InputMultivalue/InputMultivalue';
