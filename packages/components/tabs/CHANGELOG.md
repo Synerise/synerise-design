@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.11](https://github.com/synerise/synerise-design/compare/@synerise/ds-tabs@0.10.10...@synerise/ds-tabs@0.10.11) (2020-06-24)
+
+
+### Bug Fixes
+
+* **tabs:** fix uniqe keys for hidden tabs ([ea01761](https://github.com/synerise/synerise-design/commit/ea01761af0292c9eb2950bbc0b407abf8525603c))
+
+
+
+
+
 ## [0.10.10](https://github.com/synerise/synerise-design/compare/@synerise/ds-tabs@0.10.9...@synerise/ds-tabs@0.10.10) (2020-06-22)
 
 **Note:** Version bump only for package @synerise/ds-tabs

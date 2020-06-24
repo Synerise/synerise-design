@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.6.0...@synerise/ds-card@0.6.1) (2020-06-24)
+
+
+### Bug Fixes
+
+* **card:** icon position in compact header ([2f27275](https://github.com/Synerise/synerise-design/commit/2f27275b7cbef9f53e2b682e0af1fd80197e9ea4))
+
+
+
+
+
 # [0.6.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.5.1...@synerise/ds-card@0.6.0) (2020-06-22)
 
 

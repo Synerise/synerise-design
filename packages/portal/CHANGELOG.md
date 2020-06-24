@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.77.1](https://github.com/synerise/synerise-design/compare/portal@0.77.0...portal@0.77.1) (2020-06-24)
+
+
+### Bug Fixes
+
+* **card:** icon position in compact header ([2f27275](https://github.com/synerise/synerise-design/commit/2f27275b7cbef9f53e2b682e0af1fd80197e9ea4))
+* **card:** remove unused import ([06a1c9c](https://github.com/synerise/synerise-design/commit/06a1c9ca8f9c8bdf6f230ec8df9f96f6c3524216))
+* **select:** added padding for prefix addon ([426e097](https://github.com/synerise/synerise-design/commit/426e097b62d30d27371bb0fba76cecdd2e0f01ee))
+* **select:** changed multiselect story ([05da2d9](https://github.com/synerise/synerise-design/commit/05da2d93a2d7db18d45a6999697424746f548703))
+* **tabs:** fix uniqe keys for hidden tabs ([ea01761](https://github.com/synerise/synerise-design/commit/ea01761af0292c9eb2950bbc0b407abf8525603c))
+
+
+
+
+
 # [0.77.0](https://github.com/synerise/synerise-design/compare/portal@0.76.0...portal@0.77.0) (2020-06-22)
 
 
