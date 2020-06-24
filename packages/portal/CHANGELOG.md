@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.77.2](https://github.com/synerise/synerise-design/compare/portal@0.77.1...portal@0.77.2) (2020-06-24)
+
+
+### Bug Fixes
+
+* **input:** added component input multivalue ([5a4c202](https://github.com/synerise/synerise-design/commit/5a4c2024c7ef9d9cb1e9e3cbc3f8faa6e3874ac4))
+
+
+
+
+
 ## [0.77.1](https://github.com/synerise/synerise-design/compare/portal@0.77.0...portal@0.77.1) (2020-06-24)
 
 

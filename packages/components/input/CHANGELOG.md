@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.4](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.13.3...@synerise/ds-input@0.13.4) (2020-06-24)
+
+
+### Bug Fixes
+
+* **input:** added component input multivalue ([5a4c202](https://github.com/synerise/synerise-design/commit/5a4c2024c7ef9d9cb1e9e3cbc3f8faa6e3874ac4))
+
+
+
+
+
 ## [0.13.3](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.13.2...@synerise/ds-input@0.13.3) (2020-06-24)
 
 **Note:** Version bump only for package @synerise/ds-input
