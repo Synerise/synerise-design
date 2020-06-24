@@ -5,9 +5,10 @@ import { Input } from '@synerise/ds-input';
 import Icon from '@synerise/ds-icon';
 
 import { SizeType } from 'antd/lib/config-provider/SizeContext';
+import { CalendarM } from '@synerise/ds-icon/dist/icons';
 import { getPopupContainer } from '../../utils';
 import { Props, State } from './PickerInput.types';
-import { Container, Popover, InputWrapper, Pair, IconWrapper } from './PickerInput.styles';
+import { Container, Popover, InputWrapper} from './PickerInput.styles';
 
 class PickerInput extends React.Component<Props, State> {
   static defaultProps = {
@@ -75,17 +76,8 @@ class PickerInput extends React.Component<Props, State> {
           size={size as SizeType}
           disabled={disabled}
           value={this.getText() || placeholder}
+          icon1={<Icon component={<CalendarM />} />}
         />
-        <IconWrapper>
-          {allowClear && value && !disabled ? (
-            <Pair onClick={this.handleClear}>
-              <Icon name="calendar-m" />
-              <Icon name="clear-s" />
-            </Pair>
-          ) : (
-            <Icon name="calendar-m" />
-          )}
-        </IconWrapper>
       </InputWrapper>
     );
     if (disabled) return input;

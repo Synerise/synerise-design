@@ -7,7 +7,7 @@ export type Props = {
   dateOnly?: boolean;
   canApply?: boolean;
   canSwitchMode?: boolean;
-  onApply?: () => void;
+  onApply?: (date?: Date | undefined) => void;
   onSwitchMode?: () => void;
   message?: React.ReactNode | string;
   texts: Texts;

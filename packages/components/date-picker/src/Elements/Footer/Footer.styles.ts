@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Button from '@synerise/ds-button';
 
 export const Container = styled.div`
   display: flex;
@@ -14,5 +15,19 @@ export const Actions = styled.div`
 
   > *:not(:last-child) {
     margin-right: 16px;
+  }
+`;
+export const Range = styled(Button)`
+  && {
+    height: auto;
+    line-height: 22px;
+    padding: 0 10px;
+    font-size: 12px;
+    border-radius: 12px !important;
+    margin: 4px 0;
+
+    &:not(:last-child) {
+      margin-right: 8px;
+    }
   }
 `;

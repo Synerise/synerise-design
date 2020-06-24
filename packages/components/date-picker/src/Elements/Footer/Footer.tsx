@@ -32,10 +32,25 @@ const Footer: React.FC<Props> = ({
   );
   return (
     <S.Container {...rest}>
+      <S.Range
+        type="tertiary-dark"
+        disabled={!canApply}
+        onClick={(): void => {
+          onApply && onApply(new Date());
+        }}
+      >
+        {texts.now}
+      </S.Range>
       <S.Actions>
         {!dateOnly && SwitchModeButton}
         <Tooltip title={message}>
-          <Button disabled={!canApply} type="primary" onClick={onApply}>
+          <Button
+            disabled={!canApply}
+            type="primary"
+            onClick={(): void => {
+              onApply && onApply();
+            }}
+          >
             {texts.apply}
           </Button>
         </Tooltip>

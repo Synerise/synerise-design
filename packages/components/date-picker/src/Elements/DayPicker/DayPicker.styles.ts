@@ -41,7 +41,6 @@ export const DayPicker = styled(DayPickerBase)`
     vertical-align: middle;
     text-align: center;
     font-weight: 500;
-    border: 2px solid transparent;
   }
 
   .DayPicker-Weekday abbr[title] {
@@ -67,8 +66,6 @@ export const DayPicker = styled(DayPickerBase)`
     display: table-cell;
     cursor: pointer;
     position: relative;
-    border: 2px solid transparent;
-    box-sizing: content-box;
     > div {
       position: absolute;
       top: 0;

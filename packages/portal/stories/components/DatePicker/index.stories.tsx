@@ -17,6 +17,7 @@ const stories = {
             selectTime: 'Select time',
             selectDate: 'Select date',
             apply: 'Apply',
+            now: 'Now',
           }}
         />
         <DatePickerInput
@@ -25,6 +26,7 @@ const stories = {
           disabledMinutes={[]}
           disabledSeconds={[]}
           value={moment(value)}
+          allowClear
         />
       </div>
     );

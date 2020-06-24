@@ -32,4 +32,5 @@ export type Texts = {
   apply: string;
   selectTime: string;
   selectDate: string;
+  now: string;
 };

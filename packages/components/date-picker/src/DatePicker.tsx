@@ -84,10 +84,17 @@ export class DatePicker extends React.Component<Props, State> {
 
   handleModeSwitch = (mode: string): void => this.setState({ mode });
 
-  handleApply = (): void => {
+  handleApply = (date: Date): void => {
     const { onApply } = this.props;
+    if (!onApply) return;
     const { value } = this.state;
-    onApply && onApply(value);
+
+    if (date instanceof Date) {
+      onApply(date);
+      this.setState({ value: date });
+    } else {
+      onApply(value);
+    }
   };
 
   handleMonthChange = (month: Date, mode: string): void => this.setState({ month, mode });
