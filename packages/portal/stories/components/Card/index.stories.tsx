@@ -5,7 +5,7 @@ import Button from '@synerise/ds-button';
 import Card, { CardGroup, CardBadge } from '@synerise/ds-card';
 import { doubleClickListener } from '@synerise/ds-utils';
 import Icon from '@synerise/ds-icon';
-import { CheckM, CheckS, FilterM, SearchM } from '@synerise/ds-icon/dist/icons';
+import { CheckS, FilterM, SearchM } from '@synerise/ds-icon/dist/icons';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 
 const sizes = {
