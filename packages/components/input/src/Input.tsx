@@ -5,6 +5,7 @@ import { InputProps, TextAreaProps } from 'antd/lib/input';
 import './style/index.less';
 import { StyledComponent } from 'styled-components';
 import { MaskedInputProps } from 'antd-mask-input/build/main/lib/MaskedInput';
+import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
 import * as S from './Input.styles';
 import Label from './Label/Label';
 
@@ -17,12 +18,17 @@ export interface Props {
   description?: React.ReactNode | string;
   counterLimit?: number;
   icon1?: React.ReactElement;
+  icon1Tooltip?: React.ReactElement;
   icon2?: React.ReactElement;
+  icon2Tooltip?: React.ReactElement;
   resetMargin?: boolean;
   handleInputRef?: (ref: React.MutableRefObject<HTMLInputElement | HTMLTextAreaElement | undefined>) => void;
+  prefixel?: React.ReactNode;
+  suffixel?: React.ReactNode;
 }
 
-type EnhancedProps = Props & (InputProps | TextAreaProps);
+type EnhancedProps = Props & (InputProps | TextAreaProps | MaskedInputProps);
+const VERTICAL_BORDER_OFFSET = 2;
 
 const enhancedInput = <P extends object>(
   WrappedComponent: StyledComponent<
@@ -38,9 +44,13 @@ const enhancedInput = <P extends object>(
   counterLimit,
   tooltip,
   icon1,
+  icon1Tooltip,
   icon2,
+  icon2Tooltip,
   resetMargin,
   handleInputRef,
+  prefixel,
+  suffixel,
   error,
   ...antdInputProps
 }): React.ReactElement => {
@@ -50,6 +60,7 @@ const enhancedInput = <P extends object>(
   const id = React.useMemo(() => uuid(), []);
 
   const inputRef = React.useRef<HTMLInputElement | HTMLTextAreaElement>();
+  const [inputAddonHeight, setInputAddonHeight] = React.useState<number>(0);
 
   React.useEffect(() => {
     handleInputRef && handleInputRef(inputRef);
@@ -76,6 +87,11 @@ const enhancedInput = <P extends object>(
     setCharCount(antdInputProps.value ? antdInputProps.value.toString().length : 0);
   }, [antdInputProps.value, counterLimit]);
 
+  React.useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+    // @ts-ignore
+    inputRef.current && setInputAddonHeight(inputRef?.current?.input?.offsetHeight);
+  }, [inputRef]);
   return (
     <S.OuterWrapper className={className} resetMargin={resetMargin}>
       {(label || counterLimit) && (
@@ -91,19 +107,44 @@ const enhancedInput = <P extends object>(
       <S.InputWrapper icon1={Boolean(icon1)} icon2={Boolean(icon2)}>
         <S.IconsWrapper onClick={handleIconsClick} disabled={antdInputProps.disabled}>
           <S.IconsFlexContainer type={type}>
-            {icon1 &&
-              React.cloneElement(icon1, { className: 'icon icon1', ...(icon2 && { style: { marginRight: '4px' } }) })}
-            {icon2 && React.cloneElement(icon2, { className: 'icon icon2' })}
+            <Tooltip title={icon1Tooltip}>
+              <S.IconWrapper className={className}>
+                {icon1 &&
+                  React.cloneElement(icon1, {
+                    className: 'icon icon1',
+                    ...(icon2 && { style: { marginRight: '4px' } }),
+                  })}
+              </S.IconWrapper>
+            </Tooltip>
+            <Tooltip title={icon2Tooltip}>
+              <S.IconWrapper className={className}>
+                {icon2 && React.cloneElement(icon2, { className: 'icon icon2' })}
+              </S.IconWrapper>
+            </Tooltip>
           </S.IconsFlexContainer>
         </S.IconsWrapper>
         <WrappedComponent
-          // eslint-disable-next-line react/jsx-props-no-spreading
           {...antdInputProps}
+          addonBefore={
+            !!prefixel && (
+              <S.AddonWrapper className="ds-input-prefix" height={inputAddonHeight - VERTICAL_BORDER_OFFSET}>
+                {prefixel}
+              </S.AddonWrapper>
+            )
+          }
+          addonAfter={
+            !!suffixel && (
+              <S.AddonWrapper className="ds-input-suffix" height={inputAddonHeight - VERTICAL_BORDER_OFFSET}>
+                {suffixel}
+              </S.AddonWrapper>
+            )
+          }
           error={showError || error}
           onChange={handleChange}
           value={antdInputProps.value}
           id={id}
           ref={inputRef}
+          autoComplete="off"
         />
       </S.InputWrapper>
       {(showError || description) && (
@@ -126,3 +167,4 @@ export const RawInput = (props: Props & (InputProps | TextAreaProps)): React.Rea
   return <S.AntdInput className={error ? 'error' : ''} {...props} />;
 };
 export const RawTextArea = S.AntdTextArea;
+export { default as InputMultivalue } from './InputMultivalue/InputMultivalue';

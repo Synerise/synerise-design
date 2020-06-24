@@ -1,18 +1,30 @@
 import styled from 'styled-components';
 import Icon from '@synerise/ds-icon';
 import Menu from '@synerise/ds-menu';
+import { IconContainer } from '@synerise/ds-icon/dist/Icon.styles';
 
 export const DragHandler = styled(Icon)`
   position: absolute;
   top: 16px;
-  left: 0;
+  left: -24px;
   opacity: 0;
+`;
+
+export const Icons = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  ${IconContainer} {
+    margin-left: 8px;
+  }
 `;
 
 export const ItemPart = styled.div<{ align: string }>`
   display: flex;
   flex-direction: row;
   align-items: center;
+  position: relative;
+  height: 56px;
   justify-content: ${(props): string => (props.align === 'left' ? 'flex-start' : 'flex-end')};
   flex: ${(props): string => (props.align === 'left' ? '1' : 'auto')};
   max-width: ${(props): string => (props.align === 'left' ? 'calc(100% - 80px)' : '68px')};
@@ -39,19 +51,38 @@ export const ColumnManagerItem = styled.div`
 
   &:hover {
     background-color: ${(props): string => props.theme.palette['grey-050']};
+    &:before {
+      width: 2px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      background-color: ${(props): string => props.theme.palette['blue-600']};
+      content: '';
+    }
     ${DragHandler} {
       opacity: 1;
     }
-    .ds-column-manager-item-non-fixed {
-      display: flex;
-      opacity: 1;
+    ${Icons} {
+      display: none;
+    }
+    && {
+      .ds-button {
+        visibility: visible;
+        opacity: 1;
+      }
     }
   }
-
-  .ds-column-manager-item-non-fixed {
-    display: none;
-    opacity: 0;
-    transition: all 0.3s ease;
+  && {
+    .ds-button {
+      position: absolute;
+      right: 36px;
+      top: 12px;
+      display: flex;
+      visibility: hidden;
+      opacity: 0;
+      transition: all 0s;
+    }
   }
 `;
 

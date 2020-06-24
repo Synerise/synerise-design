@@ -20,6 +20,7 @@ const ColumnManagerList: React.FC<Props> = ({
   updateVisibleList,
   updateHiddenList,
   setFixed,
+  showGroupSettings,
   toggleColumn,
   searchResults,
   texts,
@@ -34,8 +35,9 @@ const ColumnManagerList: React.FC<Props> = ({
               <ColumnManagerItem
                 data-testid="ds-column-manager-visible-item"
                 key={item.id}
-                {...item}
+                item={item}
                 setFixed={setFixed}
+                showGroupSettings={showGroupSettings}
                 switchAction={toggleColumn}
                 draggable
                 texts={texts}
@@ -50,9 +52,10 @@ const ColumnManagerList: React.FC<Props> = ({
                   <ColumnManagerItem
                     data-testid="ds-column-manager-hidden-item"
                     key={item.id}
-                    {...item}
+                    item={item}
                     setFixed={setFixed}
                     switchAction={toggleColumn}
+                    showGroupSettings={showGroupSettings}
                     draggable
                     texts={texts}
                   />
@@ -65,6 +68,7 @@ const ColumnManagerList: React.FC<Props> = ({
         <ColumnManagerSearchResults
           texts={texts}
           searchResults={searchResults}
+          showGroupSettings={showGroupSettings}
           searchQuery={searchQuery}
           setFixed={setFixed}
           switchAction={toggleColumn}

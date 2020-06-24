@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.23](https://github.com/Synerise/synerise-design/compare/@synerise/ds-input-number@0.3.22...@synerise/ds-input-number@0.3.23) (2020-06-22)
+
+
+### Bug Fixes
+
+* **input-number:** fix styles, add validation with knobs,focus to inputs ([5be868c](https://github.com/Synerise/synerise-design/commit/5be868cbff030feede33d1e6626b359abe414688))
+* **select:** add placeholder and change width of input ([f33685f](https://github.com/Synerise/synerise-design/commit/f33685fb8a53ce1373d9fde4dd43d27ecbfb1f14))
+
+
+
+
+
+## [0.3.22](https://github.com/Synerise/synerise-design/compare/@synerise/ds-input-number@0.3.21...@synerise/ds-input-number@0.3.22) (2020-06-17)
+
+
+### Bug Fixes
+
+* **input-number:** disabled browser autocomplete ([4dbb6cc](https://github.com/Synerise/synerise-design/commit/4dbb6cc19a47a36e2a59954493c6d5585891873a))
+
+
+
+
+
 ## [0.3.21](https://github.com/Synerise/synerise-design/compare/@synerise/ds-input-number@0.3.20...@synerise/ds-input-number@0.3.21) (2020-06-02)
 
 **Note:** Version bump only for package @synerise/ds-input-number

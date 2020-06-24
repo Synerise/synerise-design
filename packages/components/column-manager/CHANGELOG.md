@@ -3,6 +3,76 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-column-manager@0.7.2...@synerise/ds-column-manager@0.7.3) (2020-06-24)
+
+**Note:** Version bump only for package @synerise/ds-column-manager
+
+
+
+
+
+## [0.7.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-column-manager@0.7.1...@synerise/ds-column-manager@0.7.2) (2020-06-24)
+
+**Note:** Version bump only for package @synerise/ds-column-manager
+
+
+
+
+
+## [0.7.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-column-manager@0.7.0...@synerise/ds-column-manager@0.7.1) (2020-06-22)
+
+
+### Bug Fixes
+
+* **column-manager:** drag handler position ([e84e2c5](https://github.com/Synerise/synerise-design/commit/e84e2c5dd34470b98f44be044c58bdb8ed5d1da3))
+
+
+
+
+
+# [0.7.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-column-manager@0.6.19...@synerise/ds-column-manager@0.7.0) (2020-06-17)
+
+
+### Bug Fixes
+
+* **column-manager:** fix eslint ([6a9d081](https://github.com/Synerise/synerise-design/commit/6a9d0815086d138888221f597e304469392648de))
+* **column-manager:** fix eslint ([803f165](https://github.com/Synerise/synerise-design/commit/803f165022d444df621e1047e6ee833409ebc76f))
+* **column-manager:** fix eslint issues ([cad4733](https://github.com/Synerise/synerise-design/commit/cad4733cfd68620ecb707ab0501e722506b863fe))
+* **column-manager:** fix select group type width, bump ds-input ([8cc9b86](https://github.com/Synerise/synerise-design/commit/8cc9b8631d6b44d5ffdff5364d503b709441aa1d))
+* **column-manager:** fix styles ([0e1d7eb](https://github.com/Synerise/synerise-design/commit/0e1d7eb27352b18a7607e1576b569e9a029a1b1a))
+* **column-manager:** refacor types ([409b3d8](https://github.com/Synerise/synerise-design/commit/409b3d88bc96c8ec98be8ce8ec44a744f4b1ea78))
+* **table:** fix types issue ([8e9d534](https://github.com/Synerise/synerise-design/commit/8e9d534195eb24c9122dc4ca9b9bae9ea6f09db1))
+
+
+### Features
+
+* **column-manager:** add support for group columns ([dceb5c4](https://github.com/Synerise/synerise-design/commit/dceb5c474527a57d59cddb174eb3bb4133f83974))
+* **column-manager:** group settings form ([78859d7](https://github.com/Synerise/synerise-design/commit/78859d70099ffbc84e5f21b36664bc31249c20a9))
+* **column-manager:** group settings valiadation, update styles ([57271fb](https://github.com/Synerise/synerise-design/commit/57271fb5b00f0cd829b25d3ce210da7d348d5cec))
+* **column-manager:** GroupSettings tests ([4309bc8](https://github.com/Synerise/synerise-design/commit/4309bc82833be6d3d27d3ea177f7e178ae3882fb))
+* **column-manager:** move group settings inputs to RangeInput component ([d45b889](https://github.com/Synerise/synerise-design/commit/d45b8892c76b30f8b017a64e43f6c1917e78c7f5))
+* **column-manager:** update GroupSettings type ([41b38ec](https://github.com/Synerise/synerise-design/commit/41b38ec9856bfd14917210cd0b5b714e1d9cd858))
+* **column-manager:** update translations ([be156fc](https://github.com/Synerise/synerise-design/commit/be156fc41965ec2bfed0ea4654a9fb10d4fe74a6))
+* **table:** adjcust GroupTable to current Table version ([54ad069](https://github.com/Synerise/synerise-design/commit/54ad0691eda76a311ae0b5ecc856e38b118790a3))
+* **table:** clear state of group settings modal ([33127c2](https://github.com/Synerise/synerise-design/commit/33127c266beb6e93cbd9e7f74e0fe883c11c8df0))
+* **table:** group table styles ([920d32d](https://github.com/Synerise/synerise-design/commit/920d32d0a0441c3c985ce298b44a537f1a84bfbe))
+* **table:** grouped table ([75a3b22](https://github.com/Synerise/synerise-design/commit/75a3b22cf11255a677e19ba5dea95b232e4c58b3))
+* **table:** reset group settings ([014d6dc](https://github.com/Synerise/synerise-design/commit/014d6dcdcfce7f83bb10e53b724ad6ea4d8d04c4))
+* **table:** use MaskInputs in RangeForm ([50ac0c6](https://github.com/Synerise/synerise-design/commit/50ac0c68cc316d58b12845b556ab9a7fae9293c2))
+* **table:** use Table as common component to DefaultTable & GroupTable ([e8aa1af](https://github.com/Synerise/synerise-design/commit/e8aa1af66e4d80a14d0c50235f502e3a70f96763))
+
+
+
+
+
+## [0.6.19](https://github.com/Synerise/synerise-design/compare/@synerise/ds-column-manager@0.6.18...@synerise/ds-column-manager@0.6.19) (2020-06-16)
+
+**Note:** Version bump only for package @synerise/ds-column-manager
+
+
+
+
+
 ## [0.6.18](https://github.com/Synerise/synerise-design/compare/@synerise/ds-column-manager@0.6.17...@synerise/ds-column-manager@0.6.18) (2020-06-09)
 
 **Note:** Version bump only for package @synerise/ds-column-manager

@@ -69,6 +69,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
         resetMargin
         handleInputRef={focus}
         disabled={disabled}
+        autoComplete="off"
       />
     </S.SearchBarWrapper>
   );

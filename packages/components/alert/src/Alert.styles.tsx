@@ -1,7 +1,16 @@
 import * as React from 'react';
 import Alert from 'antd/lib/alert';
 import styled, { css, FlattenInterpolation, ThemeProps } from 'styled-components';
+import { ThemePropsVars } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { Props } from './Alert';
+
+const DARKER_COLORS = ['green', 'yellow'];
+
+const getColor = (props: Props & { theme: ThemePropsVars }): string => {
+  const { color, theme } = props;
+  const hue = DARKER_COLORS.includes(color as string) ? '700' : '600';
+  return theme.palette[`${color}-${hue}`];
+};
 
 export const AntdAlert = styled((props: Props) => <Alert {...props} />)`
   ${(props): FlattenInterpolation<ThemeProps<Props>> | false =>
@@ -10,11 +19,11 @@ export const AntdAlert = styled((props: Props) => <Alert {...props} />)`
       &&& {
         box-shadow: 0 0 0 1px ${props.theme.palette[`${props.color}-600`]};
         background-color: ${props.theme.palette[`${props.color}-050`]};
-        color: ${props.theme.palette[`${props.color}-700`]};
+        color: ${getColor(props)};
         .ant-alert-icon {
           svg {
-            color: ${props.theme.palette[`${props.color}-700`]};
-            fill: ${props.theme.palette[`${props.color}-700`]};
+            color: ${getColor(props)};
+            fill: ${getColor(props)};
           }
         }
       }

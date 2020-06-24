@@ -16,7 +16,6 @@ export const COLUMNS = [
   {
     title: 'Name',
     dataIndex: 'name',
-    defaultSortOrder: 'descend',
     width: 254,
     textWrap: 'word-break',
     ellipsis: true,
@@ -28,6 +27,7 @@ export const COLUMNS = [
     key: 'country',
     dataIndex: 'country',
     width: 254,
+    sorter: (a,b) => a.country < b.country,
     render: (country, record) => {
       return (<TableCell.FlagLabelCell countryCode={country} label={record.name} />)
     }
@@ -167,16 +167,16 @@ export const COLUMNS = [
     width: 254,
     textWrap: 'word-break',
     ellipsis: true,
-    render: (editable) => <TableCell.EditableCell value={editable} onChange={console.log} />
+    render: (editable) => <TableCell.EditableCell value={editable} placeholder={"No data"} onChange={console.log} />
   },
   {
     title: 'Copyable',
-    dataIndex: 'editable',
-    key: 'editable',
+    dataIndex: 'name',
+    key: 'name',
     width: 254,
     textWrap: 'word-break',
     ellipsis: true,
-    render: (editable) => <TableCell.CopyableCell value={editable} confirmMessage="Copied to clipboard!" tooltipTimeout={2000} />
+    render: (name) => <TableCell.CopyableCell value={name} confirmMessage="Copied to clipboard!" tooltipTimeout={2000} />
   },
   {
     title: 'Checkbox',
@@ -194,8 +194,16 @@ export const COLUMNS = [
   },
   {
     width: 254,
+    title: 'Multiple buttons',
+    render: () => <TableCell.ActionCell gapSize={8} contentAlign={'left'}>
+      <Button onClick={action('click')} type='custom-color' color="green">Accept</Button>
+      <Button onClick={action('click')} type='secondary' >Decline</Button>
+    </TableCell.ActionCell>
+  },
+  {
+    width: 254,
     render: () => <TableCell.ActionCell>
       <Button onClick={action('click')} type='secondary' mode='split'>Edit rule</Button>
     </TableCell.ActionCell>
-  }
+  },
 ];

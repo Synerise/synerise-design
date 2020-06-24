@@ -29,11 +29,12 @@ const TableSelection: React.FC<Props> = ({ dataSource, selection, rowKey }) => {
   );
 
   const selectAll = React.useCallback(() => {
-    if (dataSource && selection)
+    if (dataSource && selection) {
       selection.onChange(
         dataSource.map((record: Selection) => getRowKey(record)),
         dataSource
       );
+    }
   }, [dataSource, selection, getRowKey]);
 
   const unselectAll = React.useCallback(() => {
@@ -86,11 +87,11 @@ const TableSelection: React.FC<Props> = ({ dataSource, selection, rowKey }) => {
               {selections.indexOf(SELECTION_ALL) >= 0 && !allSelected && (
                 <Menu.Item onClick={selectAll}>Select all</Menu.Item>
               )}
-              {selections.indexOf(SELECTION_INVERT) >= 0 && (
-                <Menu.Item onClick={selectInvert}>Invert selection</Menu.Item>
-              )}
               {selections.indexOf(SELECTION_ALL) >= 0 && allSelected && (
                 <Menu.Item onClick={unselectAll}>Unselect all</Menu.Item>
+              )}
+              {selections.indexOf(SELECTION_INVERT) >= 0 && (
+                <Menu.Item onClick={selectInvert}>Invert selection</Menu.Item>
               )}
               {selections
                 .filter(Boolean)

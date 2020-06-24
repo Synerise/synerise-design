@@ -3,6 +3,118 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.16.4](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.16.3...@synerise/ds-table@0.16.4) (2020-06-24)
+
+
+### Bug Fixes
+
+* **table:** fix headers with sorters ([410708c](https://github.com/synerise/synerise-design/commit/410708c0f9fcf4dc73708b08dd4d6703ad6fe1d0))
+
+
+
+
+
+## [0.16.3](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.16.2...@synerise/ds-table@0.16.3) (2020-06-24)
+
+
+### Bug Fixes
+
+* **table:** fix fixed column styles ([896ac92](https://github.com/synerise/synerise-design/commit/896ac922904367adcb1a72f6a240619115bdb7a5))
+
+
+
+
+
+## [0.16.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.16.1...@synerise/ds-table@0.16.2) (2020-06-22)
+
+
+### Bug Fixes
+
+* **table:** fix filter in grouped example ([3165ddf](https://github.com/synerise/synerise-design/commit/3165ddf3348eba305d4d99034c3024e23fedd535))
+* **table:** fix style of sorted & fixed columns ([50ddc44](https://github.com/synerise/synerise-design/commit/50ddc449a4451924db6a9219003aba2c2be0c186))
+* **table:** styles of sorted columns ([be2c82e](https://github.com/synerise/synerise-design/commit/be2c82e71a7ef67516355c6fae2a7507998df922))
+* **table:** styles of sorted columns ([6196213](https://github.com/synerise/synerise-design/commit/6196213609626f9cadd6207b3cd376d6e0690e7f))
+* **table:** styles of table header on hover ([ab5bbe5](https://github.com/synerise/synerise-design/commit/ab5bbe5fcf7da0573993b71cf8f3997b1dfb88fc))
+
+
+
+
+
+## [0.16.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.16.0...@synerise/ds-table@0.16.1) (2020-06-22)
+
+**Note:** Version bump only for package @synerise/ds-table
+
+
+
+
+
+# [0.16.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.15.0...@synerise/ds-table@0.16.0) (2020-06-22)
+
+
+### Bug Fixes
+
+* **table:** add missing dependecies in hooks ([fd526bd](https://github.com/synerise/synerise-design/commit/fd526bd19d0ba5567f44442bcf51305c5de2fb52))
+* **table:** add missing dependecies in hooks ([df05f4e](https://github.com/synerise/synerise-design/commit/df05f4eb49b0273cb95883de9ec1c36627b403b2))
+* **table:** add missing dependecies in hooks) ([f3cd6c8](https://github.com/synerise/synerise-design/commit/f3cd6c844225df432953863ae74a92aef1eebaf6))
+* **table:** change placeholder prop into asPlacehodler ([9bba1a2](https://github.com/synerise/synerise-design/commit/9bba1a2219a75e07f7d110f6f5febf59141a262b))
+* **table:** eslint errors ([50ba7dd](https://github.com/synerise/synerise-design/commit/50ba7dd0a441b6b66ea0fe362639a5706257afd1))
+* **table:** GroupRow hover styles ([5651de3](https://github.com/synerise/synerise-design/commit/5651de3275a5322f79a07935c21b06f084a2ba0a))
+* **table:** issue with selection row which has key equal to 0 ([49d5fa1](https://github.com/synerise/synerise-design/commit/49d5fa1d93f64b550b60a961bcf632a892c1fbd1))
+* **table:** items number in title bar, pagination ([15d2f43](https://github.com/synerise/synerise-design/commit/15d2f43e859668a922c39eabc49aab32f1ff072c))
+* **table:** order of selection options ([1c69dbf](https://github.com/synerise/synerise-design/commit/1c69dbf39e1def7e91a3058cfe75be5a7ec8b0dc))
+
+
+### Features
+
+* **table:** add placeholder to EditableCell ([5f8c4d5](https://github.com/synerise/synerise-design/commit/5f8c4d53855e5318691f3ef7efc2d5896d5b89f2))
+* **table:** add props gapSize, contentAlign for ActionCell ([8a24a3a](https://github.com/synerise/synerise-design/commit/8a24a3a9fe9bf3f3231b8d518320d8e265a9832f))
+* **table:** add search to GroupTable example ([78bb7d2](https://github.com/synerise/synerise-design/commit/78bb7d2ab9fc63aa8b9467c92472c0abec5bb86a))
+
+
+
+
+
+# [0.15.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.14.1...@synerise/ds-table@0.15.0) (2020-06-17)
+
+
+### Bug Fixes
+
+* **table:** fix eslint ([5f5b5da](https://github.com/synerise/synerise-design/commit/5f5b5da859e2684baa6d50d7c41c3c4051895b19))
+* **table:** fix eslint issues ([ae12e78](https://github.com/synerise/synerise-design/commit/ae12e784b2d80343232b44fe8f6e86a484799c51))
+* **table:** fix minor issues of group table ([adfb50d](https://github.com/synerise/synerise-design/commit/adfb50d43315299003a68d7981a0d96085ef05a6))
+* **table:** remove console.log from example ([9b0f4d0](https://github.com/synerise/synerise-design/commit/9b0f4d00bfbd6134b0cda27ddd46ad737676ecd1))
+
+
+### Features
+
+* **column-manager:** update translations ([be156fc](https://github.com/synerise/synerise-design/commit/be156fc41965ec2bfed0ea4654a9fb10d4fe74a6))
+* **table:** add example of grouping by value and interval ([612ede2](https://github.com/synerise/synerise-design/commit/612ede2454f4c3c44d1c3d9758f0d40eeecd2f59))
+* **table:** add item from group, fix types ([bc140f2](https://github.com/synerise/synerise-design/commit/bc140f2246e8d2cc1601b7c2615255df63b4c9b7))
+* **table:** add row selection ([ac95d43](https://github.com/synerise/synerise-design/commit/ac95d438ed8d1be83065bd3e1c866ecf05eebbad))
+* **table:** adjcust GroupTable to current Table version ([54ad069](https://github.com/synerise/synerise-design/commit/54ad0691eda76a311ae0b5ecc856e38b118790a3))
+* **table:** clear state of group settings modal ([33127c2](https://github.com/synerise/synerise-design/commit/33127c266beb6e93cbd9e7f74e0fe883c11c8df0))
+* **table:** custom header ([17a6d1a](https://github.com/synerise/synerise-design/commit/17a6d1ae9413b91c62396ac7b2f8d12317cbf34b))
+* **table:** fix eslint ([0ef9839](https://github.com/synerise/synerise-design/commit/0ef9839e4aba6625d43cf9b31a87c5a08bd23c71))
+* **table:** group by date ([a4aa7d0](https://github.com/synerise/synerise-design/commit/a4aa7d0d76a0430e506b3db08257cf14ba6995c6))
+* **table:** group table styles ([920d32d](https://github.com/synerise/synerise-design/commit/920d32d0a0441c3c985ce298b44a537f1a84bfbe))
+* **table:** grouped rows selection ([896ff36](https://github.com/synerise/synerise-design/commit/896ff366873ddc63c3a8f8b54a958dcd3185196b))
+* **table:** grouped table ([75a3b22](https://github.com/synerise/synerise-design/commit/75a3b22cf11255a677e19ba5dea95b232e4c58b3))
+* **table:** sort subrows by column ([57dad0c](https://github.com/synerise/synerise-design/commit/57dad0c7822105009f08b8f037c7f24eba091809))
+* **table:** update GroupRow, fix styles ([28342d9](https://github.com/synerise/synerise-design/commit/28342d95a8cdf980beec1717c206f8386149b53b))
+* **table:** use Table as common component to DefaultTable & GroupTable ([e8aa1af](https://github.com/synerise/synerise-design/commit/e8aa1af66e4d80a14d0c50235f502e3a70f96763))
+
+
+
+
+
+## [0.14.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.14.0...@synerise/ds-table@0.14.1) (2020-06-16)
+
+**Note:** Version bump only for package @synerise/ds-table
+
+
+
+
+
 # [0.14.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.13.1...@synerise/ds-table@0.14.0) (2020-06-10)
 
 

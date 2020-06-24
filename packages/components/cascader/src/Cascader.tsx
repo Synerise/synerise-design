@@ -137,13 +137,13 @@ const Cascader: React.FC<CascaderProps> = ({
           clearTooltip={searchClearTooltip}
         />
       </S.InputWrapper>
-      <S.Dropdown
+      <S.CategoriesContainer
         visible={!isSearching || (filteredPaths && filteredPaths?.length > 0)}
         ref={dropdownRef as React.RefObject<HTMLDivElement>}
         maxHeight={dropdownMaxHeight}
         style={dropdownStyle}
       >
-        <S.DropdownScroll maxHeight={calculateDropdownMaxHeight} searching={isSearching} absolute={isSearching}>
+        <S.CategoriesScroll maxHeight={calculateDropdownMaxHeight} searching={isSearching} absolute={isSearching}>
           <Menu>
             {isSearching && filteredPaths && (
               <BreadcrumbsList
@@ -177,8 +177,8 @@ const Cascader: React.FC<CascaderProps> = ({
               />
             )}
           </Menu>
-        </S.DropdownScroll>
-      </S.Dropdown>
+        </S.CategoriesScroll>
+      </S.CategoriesContainer>
     </S.Wrapper>
   );
 };

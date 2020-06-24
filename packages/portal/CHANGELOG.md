@@ -3,6 +3,132 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.77.2](https://github.com/synerise/synerise-design/compare/portal@0.77.1...portal@0.77.2) (2020-06-24)
+
+
+### Bug Fixes
+
+* **input:** added component input multivalue ([5a4c202](https://github.com/synerise/synerise-design/commit/5a4c2024c7ef9d9cb1e9e3cbc3f8faa6e3874ac4))
+
+
+
+
+
+## [0.77.1](https://github.com/synerise/synerise-design/compare/portal@0.77.0...portal@0.77.1) (2020-06-24)
+
+
+### Bug Fixes
+
+* **card:** icon position in compact header ([2f27275](https://github.com/synerise/synerise-design/commit/2f27275b7cbef9f53e2b682e0af1fd80197e9ea4))
+* **card:** remove unused import ([06a1c9c](https://github.com/synerise/synerise-design/commit/06a1c9ca8f9c8bdf6f230ec8df9f96f6c3524216))
+* **select:** added padding for prefix addon ([426e097](https://github.com/synerise/synerise-design/commit/426e097b62d30d27371bb0fba76cecdd2e0f01ee))
+* **select:** changed multiselect story ([05da2d9](https://github.com/synerise/synerise-design/commit/05da2d93a2d7db18d45a6999697424746f548703))
+* **tabs:** fix uniqe keys for hidden tabs ([ea01761](https://github.com/synerise/synerise-design/commit/ea01761af0292c9eb2950bbc0b407abf8525603c))
+
+
+
+
+
+# [0.77.0](https://github.com/synerise/synerise-design/compare/portal@0.76.0...portal@0.77.0) (2020-06-22)
+
+
+### Bug Fixes
+
+* **table:** fix filter in grouped example ([3165ddf](https://github.com/synerise/synerise-design/commit/3165ddf3348eba305d4d99034c3024e23fedd535))
+* **table:** fix style of sorted & fixed columns ([50ddc44](https://github.com/synerise/synerise-design/commit/50ddc449a4451924db6a9219003aba2c2be0c186))
+
+
+### Features
+
+* **table:** add example of custom selection to all stories ([ba09d78](https://github.com/synerise/synerise-design/commit/ba09d781db1a632b86affd4ea2515596bf2a189c))
+
+
+
+
+
+# [0.76.0](https://github.com/synerise/synerise-design/compare/portal@0.75.0...portal@0.76.0) (2020-06-22)
+
+
+### Bug Fixes
+
+* **alert:** change hue of text from 700 to 600 except success and warn ([6db002f](https://github.com/synerise/synerise-design/commit/6db002fe7397be14be7694d0a01001ef69d8b6e2))
+* **input:** fix styles and add validation with knobs and focus to inputs ([88b80a1](https://github.com/synerise/synerise-design/commit/88b80a11eeb5331909309fb5f6d30d1ea7725e25))
+* **input-number:** fix styles, add validation with knobs,focus to inputs ([5be868c](https://github.com/synerise/synerise-design/commit/5be868cbff030feede33d1e6626b359abe414688))
+* **select:** add placeholder and change width of input ([f33685f](https://github.com/synerise/synerise-design/commit/f33685fb8a53ce1373d9fde4dd43d27ecbfb1f14))
+* **select:** add validation with knobs and focus, fix input styles ([6881b24](https://github.com/synerise/synerise-design/commit/6881b249dd23ad111984d3c4d6ed4d9f6dcaf04d))
+* **select:** added custom search icon ([987484f](https://github.com/synerise/synerise-design/commit/987484f58e67baa3ec12319f9af8917bd41bb63d))
+* **table:** add posibility to sort every column in group table  example ([e5ef822](https://github.com/synerise/synerise-design/commit/e5ef822fff1319a5f57a05e341be177ac5aae3e2))
+* **table:** clear groupSettings with clear filer selection ([169c7bb](https://github.com/synerise/synerise-design/commit/169c7bbbec36e26f65711747904424b3c1214d1a))
+* **table:** items number in title bar, pagination ([15d2f43](https://github.com/synerise/synerise-design/commit/15d2f43e859668a922c39eabc49aab32f1ff072c))
+
+
+### Features
+
+* **card:** update Card stories ([d0b1206](https://github.com/synerise/synerise-design/commit/d0b12062d959012aeed0d733bf7b8cb482d29c1a))
+* **flag:** add DSFlag component ([80e2d0e](https://github.com/synerise/synerise-design/commit/80e2d0e6f6fb2d3a9750bd57566c250f79684b7e))
+* **table:** add placeholder to EditableCell ([5f8c4d5](https://github.com/synerise/synerise-design/commit/5f8c4d53855e5318691f3ef7efc2d5896d5b89f2))
+* **table:** add props gapSize, contentAlign for ActionCell ([8a24a3a](https://github.com/synerise/synerise-design/commit/8a24a3a9fe9bf3f3231b8d518320d8e265a9832f))
+* **table:** add search to GroupTable example ([78bb7d2](https://github.com/synerise/synerise-design/commit/78bb7d2ab9fc63aa8b9467c92472c0abec5bb86a))
+
+
+
+
+
+# [0.75.0](https://github.com/synerise/synerise-design/compare/portal@0.74.0...portal@0.75.0) (2020-06-17)
+
+
+### Bug Fixes
+
+* **modal:** changed button type in story ([334ff11](https://github.com/synerise/synerise-design/commit/334ff11070443cd4bc4a20938bc4491220199d9e))
+* **select:** changed story ([8644686](https://github.com/synerise/synerise-design/commit/86446864c04533b6dcf7dceda1d6ff0282c2971d))
+* **table:** fix eslint issues ([65b0701](https://github.com/synerise/synerise-design/commit/65b07018c540f25e9b54b5e005ae6094e45e0dbb))
+* **table:** remove console.log from example ([9b0f4d0](https://github.com/synerise/synerise-design/commit/9b0f4d00bfbd6134b0cda27ddd46ad737676ecd1))
+
+
+### Features
+
+* **column-manager:** add support for group columns ([dceb5c4](https://github.com/synerise/synerise-design/commit/dceb5c474527a57d59cddb174eb3bb4133f83974))
+* **column-manager:** update ColumnManager stories ([f5ec4ae](https://github.com/synerise/synerise-design/commit/f5ec4aef56d9ca9b4effefde97dc94226fb946b7))
+* **column-manager:** update translations ([be156fc](https://github.com/synerise/synerise-design/commit/be156fc41965ec2bfed0ea4654a9fb10d4fe74a6))
+* **table:** add example of grouping by value and interval ([612ede2](https://github.com/synerise/synerise-design/commit/612ede2454f4c3c44d1c3d9758f0d40eeecd2f59))
+* **table:** add item from group, fix types ([bc140f2](https://github.com/synerise/synerise-design/commit/bc140f2246e8d2cc1601b7c2615255df63b4c9b7))
+* **table:** adjcust GroupTable to current Table version ([54ad069](https://github.com/synerise/synerise-design/commit/54ad0691eda76a311ae0b5ecc856e38b118790a3))
+* **table:** custom header ([17a6d1a](https://github.com/synerise/synerise-design/commit/17a6d1ae9413b91c62396ac7b2f8d12317cbf34b))
+* **table:** group by date ([a4aa7d0](https://github.com/synerise/synerise-design/commit/a4aa7d0d76a0430e506b3db08257cf14ba6995c6))
+* **table:** grouped rows selection ([896ff36](https://github.com/synerise/synerise-design/commit/896ff366873ddc63c3a8f8b54a958dcd3185196b))
+* **table:** grouped table ([75a3b22](https://github.com/synerise/synerise-design/commit/75a3b22cf11255a677e19ba5dea95b232e4c58b3))
+* **table:** sort subrows by column ([57dad0c](https://github.com/synerise/synerise-design/commit/57dad0c7822105009f08b8f037c7f24eba091809))
+* **table:** update example of GroupTable ([ec8dc36](https://github.com/synerise/synerise-design/commit/ec8dc366b7bbb1129443cb3f457b3025e9c37f85))
+* **table:** update stories with data grouping ([ccc84d5](https://github.com/synerise/synerise-design/commit/ccc84d5a3c7c950d851a63483b329851d33cbe82))
+* **table:** use Table as common component to DefaultTable & GroupTable ([e8aa1af](https://github.com/synerise/synerise-design/commit/e8aa1af66e4d80a14d0c50235f502e3a70f96763))
+
+
+
+
+
+# [0.74.0](https://github.com/synerise/synerise-design/compare/portal@0.73.1...portal@0.74.0) (2020-06-16)
+
+
+### Bug Fixes
+
+* **autocomplete:** fix focus on validation state and fix cursor ([bb3eb9f](https://github.com/synerise/synerise-design/commit/bb3eb9f7a620d6b5b0dcaa76b907354e4d292c4d))
+* **autocomplete:** fixes for default story ([b67434f](https://github.com/synerise/synerise-design/commit/b67434f9553eee173c0f8217a129be416303afc0))
+* **autocomplete:** hide errors on focus ([72ab72b](https://github.com/synerise/synerise-design/commit/72ab72bb76a4ae03a0dc001cf173bbba032679ee))
+* **input:** fixed error styles for prefix and suffix ([34540f7](https://github.com/synerise/synerise-design/commit/34540f7b121bc64b92afdb62363c79c8b7f4c180))
+* **select:** added changes after code  review ([c951991](https://github.com/synerise/synerise-design/commit/c951991e809b84d322a80ff5b1b5f0fe76d38899))
+* **select:** added stories ([b1248b0](https://github.com/synerise/synerise-design/commit/b1248b04287118792ec6f20757449ce0ee3fcf2e))
+
+
+### Features
+
+* **input:** added prefix and suffix ([df157e2](https://github.com/synerise/synerise-design/commit/df157e2af0999c16f36a5acb2e8e3805617568d0))
+* **input:** added prefixel and suffixel props ([8bc48fe](https://github.com/synerise/synerise-design/commit/8bc48fe8a90d2f1202fc126e9c1e0a3c3d517a5c))
+* **select:** added prefix and suffix ([501ea11](https://github.com/synerise/synerise-design/commit/501ea11cae63f7bdf1881a637e30be902e49465b))
+
+
+
+
+
 ## [0.73.1](https://github.com/synerise/synerise-design/compare/portal@0.73.0...portal@0.73.1) (2020-06-15)
 
 

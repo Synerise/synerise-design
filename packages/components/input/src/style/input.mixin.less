@@ -75,3 +75,14 @@ textarea.@{ant-prefix}-input {
     font-size: @input-font-size-base;
   }
 }
+.ant-input-group.ant-input-group-compact > .ds-select-wrapper > .ant-select > .ant-select-selector {
+  border-radius: 0;
+}
+.ant-input-group.ant-input-group-compact > *:first-child.ds-select-wrapper > .ant-select > .ant-select-selector {
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+.ant-input-group.ant-input-group-compact > *:last-child.ds-select-wrapper > .ant-select > .ant-select-selector {
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}

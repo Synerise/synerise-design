@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { IconContainer } from '@synerise/ds-icon/dist/Icon.styles';
 
-// eslint-disable-next-line import/prefer-default-export
 export const EditableCell = styled.div`
   display: flex;
   align-items: center;
@@ -18,4 +17,8 @@ export const EditableCell = styled.div`
     opacity: 0;
     visibility: hidden;
   }
+`;
+
+export const Value = styled.span<{ asPlaceholder: boolean }>`
+  color: ${(props): string => (props.asPlaceholder ? props.theme.palette['grey-400'] : 'inherit')};
 `;

@@ -3,6 +3,86 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.6](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.12.5...@synerise/ds-select@0.12.6) (2020-06-24)
+
+**Note:** Version bump only for package @synerise/ds-select
+
+
+
+
+
+## [0.12.5](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.12.4...@synerise/ds-select@0.12.5) (2020-06-24)
+
+
+### Bug Fixes
+
+* **select:** added padding for prefix addon ([426e097](https://github.com/synerise/synerise-design/commit/426e097b62d30d27371bb0fba76cecdd2e0f01ee))
+
+
+
+
+
+## [0.12.4](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.12.3...@synerise/ds-select@0.12.4) (2020-06-22)
+
+
+### Bug Fixes
+
+* **select:** added listheight props ([a62d05e](https://github.com/synerise/synerise-design/commit/a62d05e05d602babdb65914d20d12db279a12441))
+* **select:** removed redundant style ([7f94e38](https://github.com/synerise/synerise-design/commit/7f94e3840161480f67b27fb6291efcebddecb815))
+
+
+
+
+
+## [0.12.3](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.12.2...@synerise/ds-select@0.12.3) (2020-06-22)
+
+
+### Bug Fixes
+
+* **select:** moved tooltip icon 2px to the top ([af3b873](https://github.com/synerise/synerise-design/commit/af3b8738f021331ca95400b64005fad9dda60a18))
+
+
+
+
+
+## [0.12.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.12.1...@synerise/ds-select@0.12.2) (2020-06-22)
+
+
+### Bug Fixes
+
+* **select:** add validation with knobs and focus, fix input styles ([6881b24](https://github.com/synerise/synerise-design/commit/6881b249dd23ad111984d3c4d6ed4d9f6dcaf04d))
+* **select:** added custom search icon ([987484f](https://github.com/synerise/synerise-design/commit/987484f58e67baa3ec12319f9af8917bd41bb63d))
+* **select:** unused styles removed ([86675e2](https://github.com/synerise/synerise-design/commit/86675e2adcd59c1d93b33fb3a1b625f3b8d41c74))
+
+
+
+
+
+## [0.12.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.12.0...@synerise/ds-select@0.12.1) (2020-06-17)
+
+**Note:** Version bump only for package @synerise/ds-select
+
+
+
+
+
+# [0.12.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.11.20...@synerise/ds-select@0.12.0) (2020-06-16)
+
+
+### Bug Fixes
+
+* **select:** added changes after code  review ([c951991](https://github.com/synerise/synerise-design/commit/c951991e809b84d322a80ff5b1b5f0fe76d38899))
+* **select:** fixing the imports ([5eaffe2](https://github.com/synerise/synerise-design/commit/5eaffe2d7e49de00021dda10651ffad3fbef80c5))
+
+
+### Features
+
+* **select:** added prefix and suffix ([501ea11](https://github.com/synerise/synerise-design/commit/501ea11cae63f7bdf1881a637e30be902e49465b))
+
+
+
+
+
 ## [0.11.20](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.11.19...@synerise/ds-select@0.11.20) (2020-06-08)
 
 **Note:** Version bump only for package @synerise/ds-select

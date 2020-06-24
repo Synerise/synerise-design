@@ -1,17 +1,15 @@
 import * as React from 'react';
 import '@synerise/ds-core/dist/js/style';
-import Table from 'antd/lib/table';
-
 import './style/index.less';
 import Icon from '@synerise/ds-icon';
+import SpinnerM from '@synerise/ds-icon/dist/icons/SpinnerM';
 import { AngleLeftS, AngleRightS } from '@synerise/ds-icon/dist/icons';
 import Button from '@synerise/ds-button';
-import SpinnerM from '@synerise/ds-icon/dist/icons/SpinnerM';
-import Checkbox from '@synerise/ds-checkbox';
-import Result from '@synerise/ds-result';
 import * as S from './Table.styles';
 import { DSTableProps } from './Table.types';
 import TableHeader from './TableHeader/TableHeader';
+import DefaultTable from './DefaultTable/DefaultTable';
+import GroupTable, { GroupType } from './GroupTable/GroupTable';
 
 export const SELECTION_ALL = 'SELECTION_ALL';
 export const SELECTION_INVERT = 'SELECTION_INVERT';
@@ -30,32 +28,69 @@ function DSTable<T extends object = any>(props: DSTableProps<T>): React.ReactEle
     selection,
     itemsMenu,
     cellSize,
-    pagination,
     dataSource,
     roundedHeader,
     filters,
     searchComponent,
     filterComponent,
     rowKey,
-    locale,
     headerWithBorderTop,
     hideTitleBar,
+    grouped,
+    pagination,
+    locale,
   } = props;
 
-  const getRowKey = React.useCallback(
-    (row: T): React.ReactText | undefined => {
-      if (typeof rowKey === 'function') return rowKey(row);
-      if (typeof rowKey === 'string') return row[rowKey];
-      return undefined;
-    },
-    [rowKey]
-  );
+  const renderHeader = React.useCallback((): React.ReactNode => {
+    const size = selection && selection?.selectedRowKeys && selection?.selectedRowKeys.length;
+    const data = grouped
+      ? // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+        // @ts-ignore
+        dataSource?.reduce((items: T[], group: GroupType<T>) => {
+          if (group.rows) {
+            return [...items, ...group.rows];
+          }
+          return [...items];
+        }, [])
+      : dataSource;
+    return (
+      !hideTitleBar && (
+        <TableHeader
+          withBorderTop={headerWithBorderTop}
+          selectedRows={size}
+          title={title}
+          onSearch={onSearch}
+          filters={filters}
+          itemsMenu={itemsMenu}
+          selection={selection}
+          dataSource={data}
+          searchComponent={searchComponent}
+          filterComponent={filterComponent}
+          rowKey={rowKey}
+        />
+      )
+    );
+  }, [
+    selection,
+    title,
+    onSearch,
+    dataSource,
+    filters,
+    itemsMenu,
+    searchComponent,
+    filterComponent,
+    rowKey,
+    headerWithBorderTop,
+    hideTitleBar,
+    grouped,
+  ]);
 
   const footerPagination = React.useMemo((): object => {
     return {
       showTotal: (total: number, range: number[]): React.ReactNode => (
         <span>
-          <strong>{range[0]}</strong>-<strong>{range[1]}</strong> of <strong>{total}</strong> items
+          <strong>{range[0]}</strong>-<strong>{range[1]}</strong> of <strong>{total}</strong>{' '}
+          {grouped ? locale?.pagination?.groups : locale?.pagination?.items}
         </span>
       ),
       columnWidth: 72,
@@ -78,56 +113,7 @@ function DSTable<T extends object = any>(props: DSTableProps<T>): React.ReactEle
       },
       ...pagination,
     };
-  }, [pagination]);
-
-  const renderHeader = React.useCallback((): React.ReactNode => {
-    const size = selection && selection?.selectedRowKeys && selection?.selectedRowKeys.length;
-    return (
-      !hideTitleBar && (
-        <TableHeader
-          withBorderTop={headerWithBorderTop}
-          selectedRows={size}
-          title={title}
-          onSearch={onSearch}
-          filters={filters}
-          itemsMenu={itemsMenu}
-          selection={selection}
-          dataSource={dataSource}
-          searchComponent={searchComponent}
-          filterComponent={filterComponent}
-          rowKey={rowKey}
-        />
-      )
-    );
-  }, [
-    selection,
-    title,
-    onSearch,
-    dataSource,
-    filters,
-    itemsMenu,
-    searchComponent,
-    filterComponent,
-    rowKey,
-    headerWithBorderTop,
-    hideTitleBar,
-  ]);
-
-  const toggleRowSelection = React.useCallback(
-    (checked, record) => {
-      const key = getRowKey(record);
-      if (selection?.selectedRowKeys && selection.onChange && key) {
-        const { onChange, selectedRowKeys } = selection;
-        const selectedKeys = checked ? [...selectedRowKeys, key] : selectedRowKeys.filter(k => k !== key);
-        const selectedRows =
-          selectedKeys.map(selectedKey => dataSource?.find(row => getRowKey(row) === selectedKey)) || [];
-        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-        // @ts-ignore
-        onChange(selectedKeys, selectedRows);
-      }
-    },
-    [selection, getRowKey, dataSource]
-  );
+  }, [pagination, grouped, locale]);
 
   return (
     <div className={`ds-table ds-table-cell-size-${cellSize} ${roundedHeader ? 'ds-table-rounded' : ''}`}>
@@ -136,34 +122,21 @@ function DSTable<T extends object = any>(props: DSTableProps<T>): React.ReactEle
           <Icon component={<SpinnerM />} color="#6a7580" />
         </S.Spinner>
       )}
-      <Table<T>
-        {...props}
-        locale={{
-          ...locale,
-          emptyText: <Result description={locale?.emptyText || 'No data'} type="no-results" noSearchResults />,
-        }}
-        pagination={dataSource?.length && pagination ? footerPagination : false}
-        title={renderHeader}
-        /* eslint-disable-next-line @typescript-eslint/ban-ts-ignore */
+      {grouped && dataSource?.length ? (
+        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
         // @ts-ignore
-        rowSelection={
-          selection && {
-            ...selection,
-            selections: selection?.selections?.filter(Boolean),
-            columnWidth: 72,
-            renderCell: (checked: boolean, record: T): React.ReactNode => {
-              return (
-                <Checkbox
-                  checked={checked}
-                  onChange={(event): void => {
-                    toggleRowSelection(event.target.checked, record);
-                  }}
-                />
-              );
-            },
-          }
-        }
-      />
+        <GroupTable<T>
+          {...props}
+          title={renderHeader}
+          pagination={dataSource?.length && pagination ? footerPagination : false}
+        />
+      ) : (
+        <DefaultTable
+          {...props}
+          title={renderHeader}
+          pagination={dataSource?.length && pagination ? footerPagination : false}
+        />
+      )}
     </div>
   );
 }

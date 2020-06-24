@@ -3,6 +3,69 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.4](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.13.3...@synerise/ds-input@0.13.4) (2020-06-24)
+
+
+### Bug Fixes
+
+* **input:** added component input multivalue ([5a4c202](https://github.com/synerise/synerise-design/commit/5a4c2024c7ef9d9cb1e9e3cbc3f8faa6e3874ac4))
+
+
+
+
+
+## [0.13.3](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.13.2...@synerise/ds-input@0.13.3) (2020-06-24)
+
+**Note:** Version bump only for package @synerise/ds-input
+
+
+
+
+
+## [0.13.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.13.1...@synerise/ds-input@0.13.2) (2020-06-22)
+
+
+### Bug Fixes
+
+* **input:** fix styles and add validation with knobs and focus to inputs ([88b80a1](https://github.com/synerise/synerise-design/commit/88b80a11eeb5331909309fb5f6d30d1ea7725e25))
+* **select:** change width of label ([ec3301b](https://github.com/synerise/synerise-design/commit/ec3301bd81b8e15e1ea56cc7ec5b841bc1c38e25))
+
+
+
+
+
+## [0.13.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.13.0...@synerise/ds-input@0.13.1) (2020-06-17)
+
+
+### Bug Fixes
+
+* **input:** disabled browser autocomplete ([1182c1a](https://github.com/synerise/synerise-design/commit/1182c1aa7cc599db195a1a300a3b4ee58ef0e0d8))
+* **input:** fix MaskInput propstype ([0b76ce6](https://github.com/synerise/synerise-design/commit/0b76ce660abd418bcb2225cf8cfdddea50afea86))
+* **input:** fix proptypes for MaskedInput ([cf4f7b5](https://github.com/synerise/synerise-design/commit/cf4f7b549778e53e393604ae702ae9eada0f0f66))
+
+
+
+
+
+# [0.13.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.12.0...@synerise/ds-input@0.13.0) (2020-06-16)
+
+
+### Bug Fixes
+
+* **input:** code review changes ([7db813f](https://github.com/synerise/synerise-design/commit/7db813fe5e28dafef2c6cff5c54a24d4b7fad781))
+* **input:** fixed error styles for prefix and suffix ([34540f7](https://github.com/synerise/synerise-design/commit/34540f7b121bc64b92afdb62363c79c8b7f4c180))
+* **input:** fixing the build ([cc600f8](https://github.com/synerise/synerise-design/commit/cc600f86770de07d1779e0c2fe34da32737d1cd7))
+
+
+### Features
+
+* **input:** added prefix and suffix ([df157e2](https://github.com/synerise/synerise-design/commit/df157e2af0999c16f36a5acb2e8e3805617568d0))
+* **input:** added prefixel and suffixel props ([8bc48fe](https://github.com/synerise/synerise-design/commit/8bc48fe8a90d2f1202fc126e9c1e0a3c3d517a5c))
+
+
+
+
+
 # [0.12.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.11.33...@synerise/ds-input@0.12.0) (2020-06-08)
 
 

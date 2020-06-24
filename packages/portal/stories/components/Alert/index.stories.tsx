@@ -82,7 +82,7 @@ const stories = {
           message={text('Message', 'Success!')}
           type={select('Set type', ALERT_TYPES, 'success')}
           mode="background"
-          color={select('Set custom color', CUSTOM_COLORS, 'green')}
+          color={select('Set custom color', CUSTOM_COLORS, '')}
           showMoreLabel={text('Show more', 'Show more')}
           onShowMore={boolean('Enable show more', true) && action('Show more')}
         />
@@ -93,7 +93,7 @@ const stories = {
           message={text('Message', 'Success!')}
           type={select('Set type', ALERT_TYPES, 'success')}
           mode="background"
-          color={select('Set custom color', CUSTOM_COLORS, 'green')}
+          color={select('Set custom color', CUSTOM_COLORS, '')}
         />
         <br />
         <Alert
@@ -101,7 +101,7 @@ const stories = {
           description={text('Description', 'This simple modal alert description')}
           type={select('Set type', ALERT_TYPES, 'success')}
           mode="background"
-          color={select('Set custom color', CUSTOM_COLORS, 'green')}
+          color={select('Set custom color', CUSTOM_COLORS, '')}
         />
       </div>
     )
@@ -115,7 +115,7 @@ const stories = {
           message={text('Message', 'Success!')}
           type={select('Set type', ALERT_TYPES, 'success')}
           mode="background"
-          color={select('Set custom color', CUSTOM_COLORS, 'green')}
+          color={select('Set custom color', CUSTOM_COLORS, '')}
           showMoreLabel={text('Show more', 'Show more')}
           onShowMore={boolean('Enable show more', true) && action('Show more')}
         />
@@ -126,7 +126,7 @@ const stories = {
           message={text('Message', 'Success!')}
           type={select('Set type', ALERT_TYPES, 'success')}
           mode="background-outline"
-          color={select('Set custom color', CUSTOM_COLORS, 'green')}
+          color={select('Set custom color', CUSTOM_COLORS, '')}
           showMoreLabel={text('Show more', 'Show more')}
           onShowMore={boolean('Enable show more', true) && action('Show more')}
         />
@@ -137,7 +137,7 @@ const stories = {
           message={text('Message', 'Success!')}
           type={select('Set type', ALERT_TYPES, 'success')}
           mode="outline"
-          color={select('Set custom color', CUSTOM_COLORS, 'green')}
+          color={select('Set custom color', CUSTOM_COLORS, '')}
           showMoreLabel={text('Show more', 'Show more')}
           onShowMore={boolean('Enable show more', true) && action('Show more')}
         />
@@ -148,7 +148,7 @@ const stories = {
           message={text('Message', 'Success!')}
           type={select('Set type', ALERT_TYPES, 'success')}
           mode="clear"
-          color={select('Set custom color', CUSTOM_COLORS, 'green')}
+          color={select('Set custom color', CUSTOM_COLORS, '')}
           showMoreLabel={text('Show more', 'Show more')}
           onShowMore={boolean('Enable show more', true) && action('Show more')}
         />

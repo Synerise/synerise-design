@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.15.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.14.0...@synerise/ds-core@0.15.0) (2020-06-17)
+
+
+### Features
+
+* **column-manager:** add support for group columns ([dceb5c4](https://github.com/synerise/synerise-design/commit/dceb5c474527a57d59cddb174eb3bb4133f83974))
+* **column-manager:** update translations ([be156fc](https://github.com/synerise/synerise-design/commit/be156fc41965ec2bfed0ea4654a9fb10d4fe74a6))
+* **core:** update ColumnManager translations ([66dfd29](https://github.com/synerise/synerise-design/commit/66dfd29d6f43ae027778e6e687f8ada2f7331db2))
+
+
+
+
+
 # [0.14.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.13.1...@synerise/ds-core@0.14.0) (2020-05-08)
 
 

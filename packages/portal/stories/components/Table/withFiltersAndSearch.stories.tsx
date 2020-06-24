@@ -269,6 +269,12 @@ const stories = {
       });
     };
 
+    const selectEven = () => {
+      const evenRows = filteredDataSource().map(row => row.key).filter((key, index) => index % 2);
+      store.set({selectedRows: evenRows});
+    };
+
+
     return (
       <>
         <Table
@@ -312,10 +318,11 @@ const stories = {
             selectedRowKeys: selectedRows,
             selections: [
               Table.SELECTION_ALL,
+              Table.SELECTION_INVERT,
               {
-                key: 'custom',
-                onClick: action('select_custom'),
-                label: 'Select custom',
+                key: 'even',
+                label: 'Select even',
+                onClick: selectEven,
               }
             ],
           }}
