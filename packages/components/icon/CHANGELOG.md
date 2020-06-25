@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.19.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.18.0...@synerise/ds-icon@0.19.0) (2020-06-25)
+
+
+### Features
+
+* **icon:** pass rest of props to the contaienr ([ce5c91e](https://github.com/Synerise/synerise-design/commit/ce5c91ede509d13b08c503d79311ccb165b39565))
+
+
+
+
+
 # [0.18.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.17.0...@synerise/ds-icon@0.18.0) (2020-06-22)
 
 

@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.78.0](https://github.com/synerise/synerise-design/compare/portal@0.77.2...portal@0.78.0) (2020-06-25)
+
+
+### Bug Fixes
+
+* **date-picker:** added input to the story ([69b3e19](https://github.com/synerise/synerise-design/commit/69b3e1945f06e377295d75fbe4aae8334fab784f))
+* **date-picker:** added shortcut button for setting the current date ([5eee270](https://github.com/synerise/synerise-design/commit/5eee270e6902c3e15ca08d70c2f848d6e07ca632))
+* **date-picker:** added typing for most of the elements ([6f345c7](https://github.com/synerise/synerise-design/commit/6f345c774d17b277266be257cffed009935279c7))
+* **date-picker:** next types resolved ([4d5a6b0](https://github.com/synerise/synerise-design/commit/4d5a6b0a3b1f19e58cf71ff8150fa9e93245568b))
+* **date-picker:** put picker into dropdown ([1b86143](https://github.com/synerise/synerise-design/commit/1b86143840f92485e6d48fa2d6ad720abc766b7b))
+
+
+### Features
+
+* **card:** change default background type ([cccf491](https://github.com/synerise/synerise-design/commit/cccf491877fe8d004c36c472bf5cdc58bc6b407a))
+* **date-picker:** moved components from snrs-components ([06283ba](https://github.com/synerise/synerise-design/commit/06283ba3b8d61bd363126420a21b40ade15a547e))
+* **table:** add headerButton to pass button in TableHeader ([1bb613a](https://github.com/synerise/synerise-design/commit/1bb613a3c674b5238d8d87bd9a4040a2aca6ef40))
+* **table:** add hideGroupExpander & initialGroupsCollapsed props ([b57243b](https://github.com/synerise/synerise-design/commit/b57243bbb9f184a808221ee405f75b3e309d9f5e))
+
+
+
+
+
 ## [0.77.2](https://github.com/synerise/synerise-design/compare/portal@0.77.1...portal@0.77.2) (2020-06-24)
 
 

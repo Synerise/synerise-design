@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.17.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.16.7...@synerise/ds-table@0.17.0) (2020-06-25)
+
+
+### Bug Fixes
+
+* **table:** fix build errors ([55919ae](https://github.com/synerise/synerise-design/commit/55919aea8631b9afe35609c4500292ec9f9db42a))
+
+
+### Features
+
+* **table:** add headerButton to pass button in TableHeader ([1bb613a](https://github.com/synerise/synerise-design/commit/1bb613a3c674b5238d8d87bd9a4040a2aca6ef40))
+* **table:** add hideGroupExpander & initialGroupsCollapsed props ([b57243b](https://github.com/synerise/synerise-design/commit/b57243bbb9f184a808221ee405f75b3e309d9f5e))
+
+
+
+
+
 ## [0.16.7](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.16.6...@synerise/ds-table@0.16.7) (2020-06-25)
 
 

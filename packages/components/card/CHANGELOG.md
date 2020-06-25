@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.6.1...@synerise/ds-card@0.7.0) (2020-06-25)
+
+
+### Features
+
+* **card:** change default background type ([cccf491](https://github.com/Synerise/synerise-design/commit/cccf491877fe8d004c36c472bf5cdc58bc6b407a))
+
+
+
+
+
 ## [0.6.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.6.0...@synerise/ds-card@0.6.1) (2020-06-24)
 
 

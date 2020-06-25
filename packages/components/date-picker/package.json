@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-date-picker",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "DatePicker UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -15,9 +15,9 @@
     "build:watch": "npm run build:js -- --watch",
     "defs": "tsc --declaration --outDir dist/ --emitDeclarationOnly",
     "prepublish": "npm run build",
-    "types": "tsc --noEmit",
     "test": "jest",
-    "test:watch": "npm run test -- --watchAll"
+    "test:watch": "npm run test -- --watchAll",
+    "types": "tsc --noEmit"
   },
   "sideEffects": [
     "dist/style/*",
@@ -25,11 +25,11 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-button": "^0.12.16",
-    "@synerise/ds-core": "^0.15.0",
-    "@synerise/ds-icon": "^0.18.0",
-    "@synerise/ds-time-picker": "^0.2.39",
-    "@synerise/ds-tooltip": "^0.7.4",
+    "@synerise/ds-button": "^0.12.18",
+    "@synerise/ds-core": "^0.15.1",
+    "@synerise/ds-icon": "^0.19.0",
+    "@synerise/ds-time-picker": "^0.2.43",
+    "@synerise/ds-tooltip": "^0.7.6",
     "classnames": "^2.2.6",
     "date-fns": "1.30.1",
     "moment": "^2.26.0",
@@ -41,6 +41,5 @@
   "peerDependencies": {
     "@synerise/ds-core": "*",
     "react": ">=16.9.0 < 17.0.0"
-  },
-  "devDependencies": {}
+  }
 }

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.15.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.15.0...@synerise/ds-core@0.15.1) (2020-06-25)
+
+
+### Bug Fixes
+
+* **core:** added texts ([c13aa4e](https://github.com/synerise/synerise-design/commit/c13aa4e64b8f6c8451d1eba3d32f15863baf7d02))
+
+
+
+
+
 # [0.15.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.14.0...@synerise/ds-core@0.15.0) (2020-06-17)
 
 
