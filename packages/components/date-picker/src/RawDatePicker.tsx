@@ -1,23 +1,4 @@
 import * as React from 'react';
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore
-import fnsStartOfMonth from 'date-fns/start_of_month';
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore
-import fnsSetDate from 'date-fns/set_date';
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore
-import fnsSetMonth from 'date-fns/set_month';
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore
-import fnsSetYear from 'date-fns/set_year';
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore
-import fnsStartOfDay from 'date-fns/start_of_day';
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore
-import fnsEndOfDay from 'date-fns/end_of_day';
-
 import { Props, State } from 'DatePicker.types';
 import Footer from './Elements/Footer/Footer';
 import * as S from './DatePicker.styles';
@@ -28,6 +9,7 @@ import fnsFormat from './format';
 import TimePicker from './Elements/TimePicker/TimePicker';
 
 import { DayBackground, DayText, DayForeground } from './Elements/DayPicker/DayPicker.styles';
+import { fnsStartOfMonth, fnsSetYear, fnsSetMonth, fnsSetDate, fnsStartOfDay, fnsEndOfDay } from './fns';
 
 class RawDatePicker extends React.Component<Props, State> {
   static defaultProps = {

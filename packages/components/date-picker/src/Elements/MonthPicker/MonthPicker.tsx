@@ -1,12 +1,6 @@
 import * as React from 'react';
 import { range } from 'lodash';
-import * as fnsAddYears from 'date-fns/add_years';
-import * as fnsSetMonth from 'date-fns/set_month';
-import * as fnsStartOfMonth from 'date-fns/start_of_month';
-import * as fnsEndOfMonth from 'date-fns/end_of_month';
-import * as fnsIsSameMonth from 'date-fns/is_same_month';
-import * as fnsIsBefore from 'date-fns/is_before';
-import * as fnsIsAfter from 'date-fns/is_after';
+import { fnsStartOfMonth, fnsEndOfMonth, fnsSetMonth, fnsIsBefore, fnsAddYears, fnsIsAfter, fnsIsSameMonth } from "../../fns";
 import fnsFormat from '../../format';
 
 import YearPicker from '../YearPicker/YearPicker';

@@ -1,16 +1,14 @@
 import * as React from 'react';
-import * as fnsAddYears from 'date-fns/add_years';
-import * as fnsSetYear from 'date-fns/set_year';
-import * as fnsIsSameYear from 'date-fns/is_same_year';
+
 import fnsFormat from '../../format';
 
-// eslint-disable-next-line import/no-cycle
 import DecadePicker from '../DecadePicker/DecadePicker';
 import GridPicker from '../GridPicker/GridPicker';
 import Navbar from '../Navbar/Navbar';
 import { YearPickerProps, YearPickerState } from './YearPicker.types';
 import { Cell } from '../GridPicker/GridPicker.types';
 import { getDecadeRange, range } from '../../utils';
+import { fnsAddYears, fnsSetYear, fnsIsSameYear } from '../../fns';
 
 function getInitialState(props: YearPickerProps): YearPickerState {
   return {

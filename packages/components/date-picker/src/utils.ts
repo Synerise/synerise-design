@@ -1,4 +1,5 @@
-import * as fnsGetYear from 'date-fns/get_year';
+import { fnsGetYear } from './fns';
+
 
 export const range = (start: number, end: number): number[] => {
   if (end <= start) {
@@ -20,14 +21,3 @@ export function getCenturyRange(cursor: Date): number[] {
   return [startYear, endYear];
 }
 
-const getClosest = function getClosestFn(e: Element, selector: string): Element | null {
-  let elem = e;
-  for (; elem && elem.parentElement !== null; elem = elem.parentElement) {
-    if (elem.matches(selector)) return elem;
-  }
-  return null;
-};
-
-export const getPopupContainer = (trigger: HTMLElement): Element | null => {
-  return getClosest(trigger, '[data-popup-container]') || document.body;
-};

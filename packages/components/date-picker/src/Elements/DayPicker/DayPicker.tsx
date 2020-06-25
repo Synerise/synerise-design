@@ -1,7 +1,5 @@
 import * as React from 'react';
 import MomentLocaleUtils from 'react-day-picker/moment';
-import * as fnsAddMonths from 'date-fns/add_months';
-import * as fnsAddYears from 'date-fns/add_years';
 import { injectIntl } from 'react-intl';
 import fnsFormat from '../../format';
 
@@ -9,6 +7,7 @@ import Navbar from '../Navbar/Navbar';
 import { DayPicker } from './DayPicker.styles';
 import * as S from '../Navbar/Navbar.styles';
 import { DayPickerProps } from './DayPicker.types';
+import { fnsAddYears, fnsAddMonths } from "../../fns";
 
 const captionElement = (): null => null;
 

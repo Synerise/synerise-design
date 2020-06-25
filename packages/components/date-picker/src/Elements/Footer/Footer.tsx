@@ -35,13 +35,13 @@ const Footer: React.FC<Props> = ({
       <S.Range
         data-testid="range-now"
         type="tertiary-dark"
-        disabled={!canApply}
         onClick={(): void => {
           onApply && onApply(new Date());
         }}
       >
         {texts.now}
       </S.Range>
+      <S.ActionsPlaceholer/>
       <S.Actions>
         {!dateOnly && SwitchModeButton}
         <Tooltip title={message}>

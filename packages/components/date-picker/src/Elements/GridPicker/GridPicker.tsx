@@ -1,5 +1,5 @@
 import * as React from 'react';
-
+import classNames from 'classnames';
 import { Cell, GridPickerProps } from './GridPicker.types';
 import * as S from './GridPicker.styles';
 
@@ -13,15 +13,13 @@ export default class GridPicker extends React.PureComponent<GridPickerProps> {
   renderCell = (cell: Cell): React.ReactNode => {
     const { selectedKey } = this.props;
     const { key, text, disabled, outside } = cell;
-    const classNames = [
-      'cell',
-      selectedKey === key ? 'cell--selected' : null,
-      disabled ? 'cell--disabled' : null,
-      outside ? 'cell--outside' : null,
-    ];
     return (
       <S.CellContainer
-        className={classNames.join(' ')}
+        className={classNames('cell',{
+          'cell--selected': selectedKey === key,
+          'cell--disabled': disabled,
+          'cell--outside': outside,
+        })}
         onClick={(): void => this.handleCellClick(cell)}
         data-attr={key}
         key={key}

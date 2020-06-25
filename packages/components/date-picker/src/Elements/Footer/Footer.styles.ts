@@ -12,9 +12,8 @@ export const Actions = styled.div`
   display: flex;
   align-items: center;
   white-space: nowrap;
-
   > *:not(:last-child) {
-    margin-right: 16px;
+    margin-right: 8px;
   }
 `;
 export const Range = styled(Button)`
@@ -31,3 +30,7 @@ export const Range = styled(Button)`
     }
   }
 `;
+export const ActionsPlaceholer = styled.div`
+  display:flex;
+  flex:1;
+`

@@ -1,14 +1,12 @@
 import * as React from 'react';
 import { range } from 'lodash';
-import * as fnsSetYear from 'date-fns/set_year';
-import * as fnsGetYear from 'date-fns/get_year';
-import * as fnsAddYears from 'date-fns/add_years';
 
 import GridPicker from '../GridPicker/GridPicker';
 import Navbar from '../Navbar/Navbar';
 import { Cell } from '../GridPicker/GridPicker.types';
 import { DecadePickerProps, DecadePickerState } from './DecadePicker.types';
 import { getDecadeRange, getCenturyRange } from '../../utils';
+import { fnsAddYears, fnsSetYear, fnsGetYear } from '../../fns';
 
 function getInitialState(props: DecadePickerProps): DecadePickerState {
   return {
