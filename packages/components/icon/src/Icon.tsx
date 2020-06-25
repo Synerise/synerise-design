@@ -14,7 +14,7 @@ export type IconProps = {
 };
 
 const Icon: React.FC<IconProps> = props => {
-  const { color, name, size, stroke, onClick, component, className, style } = props;
+  const { color, name, size, stroke, onClick, component, className, style, ...rest } = props;
 
   return (
     <S.IconContainer
@@ -25,6 +25,7 @@ const Icon: React.FC<IconProps> = props => {
       size={size}
       stroke={stroke}
       onClick={onClick}
+      {...rest}
     >
       {component}
     </S.IconContainer>
