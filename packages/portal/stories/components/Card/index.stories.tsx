@@ -39,7 +39,7 @@ const init = () => {
     compactHeader: boolean('Compact header', false),
     headerBorderBottom: boolean('Header with border bottom', false),
     content: text('Content', 'Example of card content'),
-    background: select('Background style', backgrounds, 'white'),
+    background: select('Background style', backgrounds, 'white-shadow'),
   };
 
   return { props };
