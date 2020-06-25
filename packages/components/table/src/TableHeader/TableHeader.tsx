@@ -15,6 +15,7 @@ interface Props<T extends { key: React.ReactText }> {
   filterComponent?: React.ReactNode;
   rowKey?: Function | string;
   withBorderTop?: boolean;
+  headerButton?: React.ReactNode;
 }
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
@@ -29,6 +30,7 @@ const TableHeader: React.FC<Props> = ({
   dataSource,
   rowKey,
   withBorderTop,
+  headerButton,
 }) => {
   const renderLeftSide = React.useMemo(() => {
     return selectedRows && selectedRows > 0 ? (
@@ -51,6 +53,7 @@ const TableHeader: React.FC<Props> = ({
     <S.Header withBorderTop={withBorderTop}>
       {renderLeftSide}
       <S.Right>
+        {headerButton}
         {filters?.map((filter: Filter) => (
           <FilterTrigger
             key={filter.key}

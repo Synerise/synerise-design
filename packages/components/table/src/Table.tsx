@@ -39,6 +39,7 @@ function DSTable<T extends object = any>(props: DSTableProps<T>): React.ReactEle
     grouped,
     pagination,
     locale,
+    headerButton,
   } = props;
 
   const renderHeader = React.useCallback((): React.ReactNode => {
@@ -66,6 +67,7 @@ function DSTable<T extends object = any>(props: DSTableProps<T>): React.ReactEle
           dataSource={data}
           searchComponent={searchComponent}
           filterComponent={filterComponent}
+          headerButton={headerButton}
           rowKey={rowKey}
         />
       )
@@ -83,6 +85,7 @@ function DSTable<T extends object = any>(props: DSTableProps<T>): React.ReactEle
     headerWithBorderTop,
     hideTitleBar,
     grouped,
+    headerButton,
   ]);
 
   const footerPagination = React.useMemo((): object => {

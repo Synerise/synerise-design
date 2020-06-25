@@ -20,6 +20,7 @@ interface Props<T extends unknown> {
   columns?: GroupColumnsType<T>[];
   addItem?: (column: string, value: React.ReactText | boolean | object) => void;
   activeGroup?: Omit<GroupType<T>, 'rows'> | undefined;
+  hideGroupExpander?: boolean;
 }
 
 function GroupTableBody<T extends unknown>({
@@ -32,6 +33,7 @@ function GroupTableBody<T extends unknown>({
   expandGroup,
   addItem,
   activeGroup,
+  hideGroupExpander,
 }: Props<T>): JSX.Element {
   const getRowKey = React.useCallback(
     row => {
@@ -55,6 +57,14 @@ function GroupTableBody<T extends unknown>({
       ? columns?.find(column => column.dataIndex === group.children[0].props.record.column)
       : undefined;
   }, [columns, group]);
+
+  const groupExpander = React.useMemo(() => {
+    return (
+      !hideGroupExpander && (
+        <Button.Expander onClick={(): void => expandGroup(group['data-row-key'])} expanded={expanded} />
+      )
+    );
+  }, [expanded, expandGroup, hideGroupExpander, group]);
 
   return (
     <>
@@ -110,7 +120,7 @@ function GroupTableBody<T extends unknown>({
                   Add item
                 </Button>
               )}
-              <Button.Expander onClick={(): void => expandGroup(group['data-row-key'])} expanded={expanded} />
+              {groupExpander}
             </S.GroupRowRight>
           </S.GroupRow>
         </td>
