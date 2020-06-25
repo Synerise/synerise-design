@@ -222,7 +222,18 @@ function VirtualTable<T extends object = { children?: []; [EXPANDED_ROW_PROPERTY
       }
       return renderVirtualList(rawData, meta);
     },
-    [expandable, getRowKey]
+    [
+      expandable,
+      getRowKey,
+      mergedColumns,
+      onRowClick,
+      scroll,
+      selection,
+      tableWidth,
+      CustomScrollbar,
+      cellHeight,
+      connectObject,
+    ]
   );
 
   return (
