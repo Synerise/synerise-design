@@ -7,8 +7,10 @@
 
 @select-prefix-cls: ~'@{ant-prefix}-select';
 @sorter-btn-size: 24px;
-@column-sort-color: rgba(188, 225, 255, 0.2);
-@column-sort-hover-color: rgba(202, 229, 250, 0.58);
+@sort-background: #f2f9ff;
+@with-sorter-hover: #f3f5f6;
+@sort-hover: #dcf0ff;
+@active-column: #fff7d0;
 
 .@{ds-table-prefix-cls} {
   position: relative;
@@ -166,29 +168,11 @@
     tfoot > tr > th {
       padding: 16px 24px;
       &.@{table-prefix-cls}-column-sort {
-        background-color: @column-sort-color;
+        background-color: @sort-background;
       }
       &.@{table-prefix-cls}-cell-fix-left,
       &.@{table-prefix-cls}-cell-fix-right {
         display: table-cell;
-
-        &:before {
-          display: block;
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          z-index: 0;
-        }
-        &.@{table-prefix-cls}-column-sort {
-          background-color: @white;
-          &:before {
-            z-index: -1;
-            background-color: @column-sort-color;
-          }
-        }
       }
     }
 
@@ -200,17 +184,6 @@
       padding: 0 24px;
       color: @gray-color-lighter-1;
       border-bottom: 1px solid @gray-color-lighter-6;
-
-      &:before {
-        display: block;
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 0;
-      }
       &.@{table-prefix-cls}-column-has-sorters {
         cursor: pointer;
         position: relative;
@@ -218,21 +191,17 @@
           position: relative;
         }
         &:hover {
-          background-color: @grey-050;
-          &:before {
-            background-color: rgba(233, 237, 238, 0.3);
-          }
+          background-color: @with-sorter-hover;
         }
       }
       &.@{table-prefix-cls}-column-sort {
+        background-color: @sort-background;
         &:hover {
-          &:before {
-            background-color: @column-sort-hover-color;
-          }
+          background-color: @sort-hover;
         }
       }
       &.ds-table-active-column {
-        background-color: rgb(251, 246, 217);
+        background-color: @active-column;
         pointer-events: none;
         .ant-table-column-sorter {
           display: none;
@@ -241,21 +210,6 @@
       &.@{table-prefix-cls}-cell-fix-left,
       &.@{table-prefix-cls}-cell-fix-right {
         display: table-cell;
-        background-color: @gray-color-lighter-8;
-        &.@{table-prefix-cls}-column-sort {
-          background-color: @grey-050;
-          &:hover {
-            &:before {
-              background-color: @column-sort-hover-color;
-            }
-          }
-        }
-        &.@{table-prefix-cls}-column-has-sorters {
-          cursor: pointer;
-          &:hover {
-            background-color: @grey-050;
-          }
-        }
       }
       & > div {
         position: relative;
