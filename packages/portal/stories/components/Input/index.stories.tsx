@@ -65,6 +65,7 @@ const stories = {
     const validationState = boolean('Set validation state', false);
     const message = text('Error Text', 'Error');
     const [isFocus, setFocus] = React.useState(false);
+    const size = knobSelect('Set size', sizes as any, 'default');
 
     return (
       <Input
@@ -78,6 +79,7 @@ const stories = {
         disabled={boolean('disabled', false)}
         onChange={e => setValue(e.target.value)}
         value={value}
+        size={size}
         onBlur={() => {
           action('I am blurred');
           setFocus(false);
@@ -292,9 +294,9 @@ const stories = {
   },
   inputWithPrefix: () => {
     const [value, setValue] = React.useState<string>('');
-
-    const suffixType = select('Set suffix type', addonType, addonType.none);
     const prefixType = select('Set prefix type', addonType, addonType.none);
+    const suffixType = select('Set suffix type', addonType, addonType.none);
+
     return (
       <Input
         size={'default'}
