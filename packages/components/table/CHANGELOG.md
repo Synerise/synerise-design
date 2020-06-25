@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.16.7](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.16.6...@synerise/ds-table@0.16.7) (2020-06-25)
+
+
+### Bug Fixes
+
+* **table:** chnage column, cells colors to solid ([a97cb07](https://github.com/synerise/synerise-design/commit/a97cb07b9d7871cd25f8f3df42e8e7ea1b2521ce))
+* **table:** update colors ([f9cbba0](https://github.com/synerise/synerise-design/commit/f9cbba0b2dd6badb90a4dc3d6e177a4affa9b5e4))
+* **table:** update colors ([42e1af0](https://github.com/synerise/synerise-design/commit/42e1af0926d5d178c8d5811205e9a0e9fd7682b6))
+
+
+
+
+
 ## [0.16.6](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.16.5...@synerise/ds-table@0.16.6) (2020-06-25)
 
 
