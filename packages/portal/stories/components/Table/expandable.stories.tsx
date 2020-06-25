@@ -104,7 +104,7 @@ const stories = {
                 onClick: selectEven,
               }
             ]
-          }
+          }}
           onSearch={console.log}
           onRow={(record, index: number) => ({
             onClick: event => {
@@ -128,7 +128,7 @@ const stories = {
             </ItemsMenu>
           }
         />
-      </Card>)
+      )
     }
   ),
 };
