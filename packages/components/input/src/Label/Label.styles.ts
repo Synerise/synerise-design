@@ -8,7 +8,7 @@ export const Label = styled.label`
   display: block;
   align-items: center;
   cursor: pointer;
-  max-width: 160px;
+  max-width: 200px;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
