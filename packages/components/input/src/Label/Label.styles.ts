@@ -5,12 +5,9 @@ import { macro } from '@synerise/ds-typography';
 export const Label = styled.label`
   ${macro.heading};
   height: 17px;
-  display: block;
+  display: flex;
   align-items: center;
   cursor: pointer;
-  max-width: 160px;
-  text-overflow: ellipsis;
-  overflow: hidden;
   white-space: nowrap;
   span {
     display: inline-block;
