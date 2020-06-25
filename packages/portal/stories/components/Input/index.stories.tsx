@@ -29,6 +29,9 @@ const addonType = {
   none: 'none',
 };
 
+const renderLabel = (text:string)=>{
+  return (<div style={{maxWidth:'50px', textOverflow: 'ellipsis', overflow:'hidden'}}>{text}</div>)
+}
 function renderAddonComponent(suffixElementType: string) {
   switch (suffixElementType) {
     case addonType.icon:
@@ -71,7 +74,7 @@ const stories = {
       <Input
         tooltip={text('tooltip', 'This is example tooltip!')}
         placeholder={text('placeholder', 'Placeholder')}
-        label={text('label', 'Label')}
+        label={renderLabel(text('label', 'Label'))}
         description={text('description', 'Description')}
         errorText={!isFocus && getErrorText(validationState, message)}
         counterLimit={number('counterLimit', 10)}
@@ -125,7 +128,7 @@ const stories = {
       <InputGroup
         size={size}
         tooltip={text('tooltip', 'This is example tooltip!')}
-        label={text('label', 'Label')}
+        label={renderLabel(text('label', 'Label'))}
         description={text('description', 'Description')}
         errors={array('errors', [])}
         resetMargin={boolean('resetMargin', false)}
@@ -177,7 +180,7 @@ const stories = {
       <InputGroup
         size={size}
         tooltip={text('tooltip', 'This is example tooltip!')}
-        label={text('label', 'Label')}
+        label={renderLabel(text('label', 'Label'))}
         description={text('description', 'Description')}
         errors={array('errors', [])}
         resetMargin={boolean('resetMargin', false)}
@@ -268,7 +271,7 @@ const stories = {
       <Input
         size={size}
         placeholder={text('placeholder', 'Placeholder')}
-        label={text('label', 'Label')}
+        label={renderLabel(text('label', 'Label'))}
         description={descriptionMessage && getDescription(hasDescription)}
         errorText={!isFocus && getErrorText(hasError)}
         error={!isFocus && hasError}
@@ -301,7 +304,7 @@ const stories = {
       <Input
         size={'default'}
         placeholder={text('placeholder', 'Placeholder')}
-        label={text('label', 'Label')}
+        label={renderLabel(text('label', 'Label'))}
         errorText={text('errorText', '')}
         disabled={boolean('disabled', false)}
         onChange={e => setValue(e.target.value)}
@@ -328,7 +331,7 @@ const stories = {
       <TextArea
         rows={number('rows', 4)}
         placeholder={text('placeholder', 'Placeholder')}
-        label={text('label', 'Label')}
+        label={renderLabel(text('label', 'Label'))}
         description={text('description', 'Description')}
         errorText={!isFocus && getErrorText(hasError)}
         error={!isFocus && hasError}
@@ -365,7 +368,7 @@ const stories = {
       <TextArea
         rows={number('rows', 4)}
         placeholder={text('placeholder', 'Placeholder')}
-        label={text('label', 'Label')}
+        label={renderLabel(text('label', 'Label'))}
         description={text('description', 'Description')}
         errorText={!isFocus && getErrorText(hasError)}
         error={!isFocus && hasError}
@@ -405,7 +408,7 @@ const stories = {
 
     return(
       <InputMultivalue
-        label={text('Label', 'Label')}
+        label={renderLabel(text('label', 'Label'))}
         description={text('Description', 'Description')}
         errorText={!isFocus && getErrorText(hasError)}
         error={!isFocus && hasError}
