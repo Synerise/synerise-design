@@ -8,7 +8,7 @@ import DSTable from '../Table';
 import { DSTableProps } from '../Table.types';
 import VirtualTableRow from './VirtualTableRow';
 
-export const EXPANDED_ROW_PROPERTY = 'expanendChild';
+export const EXPANDED_ROW_PROPERTY = 'expandedChild';
 
 interface Props<T> extends DSTableProps<T> {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
