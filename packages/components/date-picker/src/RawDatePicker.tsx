@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { Props, State } from 'DatePicker.types';
+import { Props, State, Texts } from 'DatePicker.types';
+import { FormattedMessage } from 'react-intl';
 import Footer from './Elements/Footer/Footer';
 import * as S from './DatePicker.styles';
 import DayPicker from './Elements/DayPicker/DayPicker';
@@ -29,7 +30,19 @@ class RawDatePicker extends React.Component<Props, State> {
       value: props.value,
       changed: false,
       enteredTo: undefined,
+      texts: this.getTexts(),
     };
+  }
+
+  getTexts(): Texts {
+    const { texts } = this.props;
+    const updatedTexts: Texts = {
+      apply: texts?.apply || <FormattedMessage id="DS.DATE-PICKER.APPLY" />,
+      selectTime: texts?.selectTime || <FormattedMessage id="DS.DATE-PICKER.SELECT-TIME" />,
+      selectDate: texts?.selectDate || <FormattedMessage id="DS.DATE-PICKER.SELECT-DATE" />,
+      now: texts?.now || <FormattedMessage id="DS.DATE-PICKER.NOW" />,
+    };
+    return updatedTexts;
   }
 
   getSnapshotBeforeUpdate(prevProps: Readonly<Props>): null {
@@ -123,7 +136,7 @@ class RawDatePicker extends React.Component<Props, State> {
 
   renderDayPicker = (): React.ReactNode => {
     const { value, enteredTo } = this.state;
-    const { dateValidator } = this.props;
+    const { disabledDates } = this.props;
     const modifiers = {
       start: value,
       end: value,
@@ -138,7 +151,7 @@ class RawDatePicker extends React.Component<Props, State> {
         fixedWeeks
         showOutsideDays
         canChangeMonth={false}
-        disabledDays={dateValidator}
+        disabledDays={disabledDates}
         selectedDays={selectedDays}
         month={month}
         title={fnsFormat(month, 'MMM YYYY')}
@@ -172,8 +185,8 @@ class RawDatePicker extends React.Component<Props, State> {
   };
 
   render(): React.ReactNode {
-    const { mode, changed, value } = this.state;
-    const { showTime, texts } = this.props;
+    const { mode, changed, value, texts } = this.state;
+    const { showTime } = this.props;
 
     const isValid = !!value;
 
@@ -200,7 +213,6 @@ class RawDatePicker extends React.Component<Props, State> {
       <S.Container>
         {picker}
         <Footer
-          text=""
           canApply={isValid && changed}
           onApply={this.handleApply}
           dateOnly={!showTime}

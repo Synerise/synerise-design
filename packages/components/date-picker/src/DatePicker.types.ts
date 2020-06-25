@@ -1,9 +1,10 @@
+import * as React from 'react';
+
 export type Props = {
-  format?: string;
   showTime?: boolean;
   value?: Date;
   onApply?: (date?: Date) => void;
-  dateValidator?: (date?: Date) => boolean;
+  disabledDates?: (date?: Date) => boolean;
   disabledHours: number[];
   disabledMinutes: number[];
   disabledSeconds: number[];
@@ -19,6 +20,7 @@ export type State = {
   value?: Date;
   enteredTo?: Date;
   visible?: boolean;
+  texts: Texts;
 };
 
 export type Modifier = {
@@ -30,8 +32,8 @@ export type Modifier = {
   disabled: boolean;
 };
 export type Texts = {
-  apply: string;
-  selectTime: string;
-  selectDate: string;
-  now: string;
+  apply: string | React.ReactNode;
+  selectTime: string | React.ReactNode;
+  selectDate: string | React.ReactNode;
+  now: string | React.ReactNode;
 };

@@ -2,7 +2,7 @@ import { WrappedComponentProps } from 'react-intl';
 import { Texts } from '../../DatePicker.types';
 
 export type Props = {
-  text: string;
+  text?: string;
   mode: string;
   dateOnly?: boolean;
   canApply?: boolean;

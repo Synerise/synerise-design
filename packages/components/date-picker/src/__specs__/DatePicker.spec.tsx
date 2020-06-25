@@ -37,13 +37,12 @@ describe('RawDatePicker', () => {
         disabledHours={[]}
         disabledMinutes={[]}
         disabledSeconds={[]}
-        dateValidator={validator}
+        disabledDates={validator}
       />
     );
     expect(validator).toBeCalledTimes(ROWS * WEEKDAYS);
   });
   it('should proceed to MonthPicker when clicked on month', async () => {
-    const validator = jest.fn(() => true);
     const { getByText } = renderWithProvider(
       <RawDatePicker
         showTime={true}
@@ -57,7 +56,6 @@ describe('RawDatePicker', () => {
         disabledHours={[]}
         disabledMinutes={[]}
         disabledSeconds={[]}
-        dateValidator={validator}
       />
     );
     await fireEvent.click(await getByText('Oct'));
@@ -66,7 +64,6 @@ describe('RawDatePicker', () => {
     expect(await getByText('Feb')).toBeTruthy();
   });
   it('should proceed to YearPicker when clicked on year', async () => {
-    const validator = jest.fn(() => true);
     const { getByText } = renderWithProvider(
       <RawDatePicker
         showTime={true}
@@ -80,7 +77,6 @@ describe('RawDatePicker', () => {
         disabledHours={[]}
         disabledMinutes={[]}
         disabledSeconds={[]}
-        dateValidator={validator}
       />
     );
     await fireEvent.click(await getByText('1996'));
@@ -89,7 +85,6 @@ describe('RawDatePicker', () => {
     expect(await getByText('2000')).toBeTruthy();
   });
   it('should proceed to DecadePicker when clicked on year range', async () => {
-    const validator = jest.fn(() => true);
     const { getByText } = renderWithProvider(
       <RawDatePicker
         showTime={true}
@@ -103,7 +98,6 @@ describe('RawDatePicker', () => {
         disabledHours={[]}
         disabledMinutes={[]}
         disabledSeconds={[]}
-        dateValidator={validator}
       />
     );
     await fireEvent.click(await getByText('1996'));
@@ -113,7 +107,6 @@ describe('RawDatePicker', () => {
     expect(await getByText('2000-2009')).toBeTruthy();
   });
   it('should proceed to TimePicker when clicked on select time', async () => {
-    const validator = jest.fn(() => true);
     const { getByText, container, getByTestId } = renderWithProvider(
       <RawDatePicker
         showTime={true}
@@ -127,7 +120,6 @@ describe('RawDatePicker', () => {
         disabledHours={[]}
         disabledMinutes={[]}
         disabledSeconds={[]}
-        dateValidator={validator}
       />
     );
     const dayOne = container.querySelector('[data-attr="1"]') as HTMLElement;
@@ -136,7 +128,6 @@ describe('RawDatePicker', () => {
     expect(await getByTestId('tp-overlay-container')).toBeTruthy();
   });
   it('should show previous year on left arrow click', async () => {
-    const validator = jest.fn(() => true);
     const { getByText, container } = renderWithProvider(
       <RawDatePicker
         showTime={true}
@@ -150,7 +141,6 @@ describe('RawDatePicker', () => {
         disabledHours={[]}
         disabledMinutes={[]}
         disabledSeconds={[]}
-        dateValidator={validator}
       />
     );
     const navigationArrows = container.querySelectorAll('.ds-icon[role="button"]');
@@ -160,7 +150,6 @@ describe('RawDatePicker', () => {
     expect(screen.queryByText('1996')).not.toBeInTheDocument();
   });
   it('should show previous month on left arrow click', async () => {
-    const validator = jest.fn(() => true);
     const { getByText, container } = renderWithProvider(
       <RawDatePicker
         showTime={true}
@@ -174,7 +163,6 @@ describe('RawDatePicker', () => {
         disabledHours={[]}
         disabledMinutes={[]}
         disabledSeconds={[]}
-        dateValidator={validator}
       />
     );
     const navigationArrows = container.querySelectorAll('.ds-icon[role="button"]');
@@ -184,7 +172,6 @@ describe('RawDatePicker', () => {
     expect(screen.queryByText('Oct')).not.toBeInTheDocument();
   });
   it('should show next month on right arrow click', async () => {
-    const validator = jest.fn(() => true);
     const { getByText, container } = renderWithProvider(
       <RawDatePicker
         showTime={true}
@@ -198,7 +185,6 @@ describe('RawDatePicker', () => {
         disabledHours={[]}
         disabledMinutes={[]}
         disabledSeconds={[]}
-        dateValidator={validator}
       />
     );
     const navigationArrows = container.querySelectorAll('.ds-icon[role="button"]');
@@ -208,7 +194,6 @@ describe('RawDatePicker', () => {
     expect(screen.queryByText('Oct')).not.toBeInTheDocument();
   });
   it('should show next year on right arrow click', async () => {
-    const validator = jest.fn(() => true);
     const { getByText, container } = renderWithProvider(
       <RawDatePicker
         showTime={true}
@@ -222,7 +207,6 @@ describe('RawDatePicker', () => {
         disabledHours={[]}
         disabledMinutes={[]}
         disabledSeconds={[]}
-        dateValidator={validator}
       />
     );
     const navigationArrows = container.querySelectorAll('.ds-icon[role="button"]');

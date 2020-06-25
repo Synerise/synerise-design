@@ -28,3 +28,22 @@ import DatePicker from '@synerise/ds-date-picker'
 
 | Property | Description | Type | Default |
 | --- | --- | --- | --- |
+|showTime|Boolean value to enable user to choose particular hour | boolean | false 
+|value|Value of the picker | Date | new Date() 
+|onApply|Callback executed after applying changes | (date:Date)=>void |-  | 
+|disabledDates|Function to specify if particular dates are disabled or not  | (date:Date)=>boolean | - | 
+|disabledHours|Disabled hours for time picker  | number[]| [] | 
+|disabledMinutes|Disabled minutes for time picker  | number[]| [] | 
+|disabledSeconds|Disabled seconds for time picker  | number[]| [] | 
+|useStartOfDay|Boolean value to set hours to the start of the day | boolean | false 
+|useEndOfDay|Boolean value to set hours to the start of the day | boolean | false 
+|texts|Object containing texts | object | {} 
+
+
+### Texts
+| Property | Description | Type | Default |
+| --- | --- | --- | --- |
+| apply | Text for apply button | string | "Apply" |
+| selectTime | Text for select time button | string | "Select time" |
+| selectDate | Text for select date button | string | "Select date" |
+| now | Text for select "now" button | string | "Now" |

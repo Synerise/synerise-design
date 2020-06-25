@@ -20,6 +20,7 @@ const DatePicker: React.FC<Props> = props => {
       overlay={
         <S.OverlayContainer ref={ref}>
           <RawDatePicker
+            {...props}
             showTime={showTime}
             texts={texts}
             onApply={(val: Date | undefined): void => {
