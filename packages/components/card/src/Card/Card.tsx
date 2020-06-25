@@ -50,7 +50,7 @@ const Card: React.FC<CardProps> = ({
   onHeaderClick,
   withoutPadding,
   headerBorderBottom,
-  background = 'white',
+  background = 'white-shadow',
 }) => {
   const fatTitle = !description || (description && compactHeader);
   return (
