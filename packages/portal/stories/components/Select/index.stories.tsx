@@ -27,6 +27,9 @@ const sizes = {
   default:'default',
   large:'large,'
 }
+const renderLabel = (text:string)=>{
+  return (<div style={{maxWidth:'200px', textOverflow: 'ellipsis', overflow:'hidden'}}>{text}</div>)
+}
 const values = ['Option A', 'Option B', 'Option C'];
 const dropdownMenuStyles = {};
 const dropdownStyles = {};
@@ -78,7 +81,7 @@ const stories = {
       description: text('description', 'Description'),
       errorText:!isFocus && getErrorText(validationState,message),
       error:!isFocus && validationState,
-      label: text('label', 'Label'),
+      label: renderLabel(text('Label', 'Label')),
       allowClear: false,
       defaultActiveFirstOption: boolean('defaultActiveFirstOption', true),
       defaultValue: text('defaultValue', 'Option A'),
@@ -115,8 +118,8 @@ const stories = {
     children,
   },
   withPrefixAndSuffix: () => {
-    const suffixType = select('Set suffix type', addonType, addonType.none);
     const prefixType = select('Set prefix type', addonType, addonType.none);
+    const suffixType = select('Set suffix type', addonType, addonType.none);
     return {
       allowClear: false,
       defaultActiveFirstOption: true,

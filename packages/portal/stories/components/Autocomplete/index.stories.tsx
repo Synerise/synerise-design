@@ -5,11 +5,13 @@ import { escapeRegEx } from '@synerise/ds-utils';
 import { action } from '@storybook/addon-actions';
 
 const dataSource = ['First position', 'Second position'];
+const renderLabel = (text:string)=>{
+  return (<div style={{maxWidth:'200px', textOverflow: 'ellipsis', overflow:'hidden'}}>{text}</div>)
+}
 
 const AutocompleteWithState: React.FC = () => {
   const [value, setValue] = React.useState<string>('');
   const [results, setResults] = React.useState<string[]>([]);
-  const label = text('Label','Label');
   const description = text('Description','Description');
   const errorMessage = text('Error Text', 'Error' );
   const hasError = boolean('Set validation state',false);
@@ -67,7 +69,7 @@ const AutocompleteWithState: React.FC = () => {
       style={{ width: 200 }}
       placeholder={placeholder}
       onSearch={handleSearch}
-      label={label}
+      label={renderLabel(text('Label', 'Label'))}
       errorText={!isFocus && getErrorText(hasError)}
       error={!isFocus && hasError}
       onBlur={()=>{action ('I am blurred'); setFocus(false)}}
