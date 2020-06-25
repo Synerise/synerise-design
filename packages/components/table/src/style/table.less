@@ -7,10 +7,11 @@
 
 @select-prefix-cls: ~'@{ant-prefix}-select';
 @sorter-btn-size: 24px;
-@sort-background: #f2f9ff;
-@with-sorter-hover: #f3f5f6;
-@sort-hover: #dcf0ff;
-@active-column: #fff7d0;
+@sort-column-background: #f1f8fe;
+@has-sorters-hover: #f3f5f6;
+@sort-hover: #d5ebfc;
+@group-column: #fffdeb;
+@group-header: #fcf4cf;
 
 .@{ds-table-prefix-cls} {
   position: relative;
@@ -168,11 +169,14 @@
     tfoot > tr > th {
       padding: 16px 24px;
       &.@{table-prefix-cls}-column-sort {
-        background-color: @sort-background;
+        background-color: @sort-column-background;
       }
       &.@{table-prefix-cls}-cell-fix-left,
       &.@{table-prefix-cls}-cell-fix-right {
         display: table-cell;
+      }
+      &.ds-table-active-column {
+        background-color: @group-column;
       }
     }
 
@@ -191,17 +195,17 @@
           position: relative;
         }
         &:hover {
-          background-color: @with-sorter-hover;
+          background-color: @has-sorters-hover;
         }
       }
       &.@{table-prefix-cls}-column-sort {
-        background-color: @sort-background;
+        background-color: #eaf5fc;
         &:hover {
           background-color: @sort-hover;
         }
       }
       &.ds-table-active-column {
-        background-color: @active-column;
+        background-color: @group-header;
         pointer-events: none;
         .ant-table-column-sorter {
           display: none;
