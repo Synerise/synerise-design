@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 import { AngleLeftS, AngleRightS, DoubleAngleLeftM, DoubleAngleRightM } from '@synerise/ds-icon/dist/icons';
 import Icon from '@synerise/ds-icon';
 import * as S from './Navbar.styles';
@@ -12,6 +13,8 @@ const Navbar: React.FC<NavbarProps> = (props: NavbarProps) => {
     <S.Container>
       <S.ArrowContainer style={hidePrev ? hiddenStyle : undefined}>
         <Icon
+          // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+          // @ts-ignore
           role="button"
           component={<DoubleAngleLeftM />}
           size={14}
@@ -19,6 +22,8 @@ const Navbar: React.FC<NavbarProps> = (props: NavbarProps) => {
           onClick={onLongPrev}
         />
         <Icon
+          // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+          // @ts-ignore
           role="button"
           component={<AngleLeftS />}
           style={!onShortPrev ? hiddenStyle : undefined}
@@ -28,12 +33,16 @@ const Navbar: React.FC<NavbarProps> = (props: NavbarProps) => {
       <S.Text>{onTitleClick ? <S.Link onClick={onTitleClick}>{title}</S.Link> : title}</S.Text>
       <S.ArrowContainer style={hideNext ? hiddenStyle : undefined}>
         <Icon
+          // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+          // @ts-ignore
           role="button"
           component={<AngleRightS />}
           style={!onShortNext ? hiddenStyle : undefined}
           onClick={onShortNext}
         />
         <Icon
+          // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+          // @ts-ignore
           role="button"
           component={<DoubleAngleRightM />}
           size={14}
