@@ -16,7 +16,7 @@ const focusStyle = (props: ThemeProps): string => `
     background: ${props.theme.palette['blue-050']};
   }
 `;
-const contentFocusStyle = (): FlattenSimpleInterpolation => css`
+const contentShrinkStyle = (): FlattenSimpleInterpolation => css`
   && {
     max-width: 52px;
     text-overflow: ellipsis;
@@ -84,7 +84,7 @@ export const InputWrapper = styled.div<{ error?: boolean; focus?: boolean; disab
   width: 100%;
   border-radius: 3px;
   display: flex;
-  padding: 2px 12px 2px 12px;
+  padding: 2px 12px ;
   min-height: 32px;
   flex-wrap:wrap;
   transition: 0.3s all;
@@ -126,7 +126,7 @@ export const BorderLessInput = styled.input<{ disabled?: boolean }>`
   width: 100%;
   display: flex;
   flex: 1;
-  margin: -8px;
+  margin-left: -8px;
   && {
     background-color: rgba(255, 255, 255, 0);
   }
@@ -135,5 +135,5 @@ export const BorderLessInput = styled.input<{ disabled?: boolean }>`
 export const ValueText = styled.div<{ shrink?: boolean; disabled?: boolean }>`
   line-height: 13px;
   padding: 3px 8px;
-  ${(props): FlattenSimpleInterpolation | false => !!props.shrink && !props.disabled && contentFocusStyle()}
+  ${(props): FlattenSimpleInterpolation | false => !!props.shrink && !props.disabled && contentShrinkStyle()}
 `;
