@@ -1,6 +1,5 @@
 import styled from 'styled-components';
-// eslint-disable-next-line import/no-named-default
-import { default as DayPickerBase } from 'react-day-picker';
+import DayPickerBase from 'react-day-picker';
 
 export const DayBackground = styled.div``;
 export const DayForeground = styled.div``;

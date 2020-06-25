@@ -14,5 +14,5 @@ export const IconWrapper = styled.div`
   margin: auto 4px;
   display: flex;
   align-items: center;
-  color: #b5bdc3;
+  color: ${(props): string => props.theme.palette['grey-400']};
 `;
