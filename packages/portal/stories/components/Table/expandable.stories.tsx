@@ -49,11 +49,6 @@ const stories = {
           key: 'name',
         },
         {
-          title: 'Age',
-          dataIndex: 'age',
-          key: 'age',
-        },
-        {
           dataIndex: 'children',
           key: 'children',
           width: 72,
