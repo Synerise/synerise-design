@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.79.0](https://github.com/synerise/synerise-design/compare/portal@0.78.0...portal@0.79.0) (2020-06-25)
+
+
+### Bug Fixes
+
+* **input:** added component Value and add improvments to inputs ([95d12b0](https://github.com/synerise/synerise-design/commit/95d12b00862aa384b16f2ff25a6e49eacf9b4bae))
+* **input:** change styles of label in select, autocomplete ([5d17d08](https://github.com/synerise/synerise-design/commit/5d17d081b069e51bd8ff3ec721f92e5b1b1e64ae))
+* **input:** change styles of labels ([ff97fd5](https://github.com/synerise/synerise-design/commit/ff97fd5a7953c9f625dcd51542201ca0c0154af4))
+* **input:** change styles of labels ([7bc789f](https://github.com/synerise/synerise-design/commit/7bc789f03fe427eb0c4723ac06ef3d91dedea5b3))
+* **input:** changed prefix rendering in stories ([cedd8aa](https://github.com/synerise/synerise-design/commit/cedd8aa3c5330935786bbe9df8c84c279191838d))
+* **select:** resolving conflicts ([fe70f69](https://github.com/synerise/synerise-design/commit/fe70f69121e91bd871887aac395ae4ac5fdb8d24))
+* **table:** fix example with expandable table ([35ecd57](https://github.com/synerise/synerise-design/commit/35ecd57614444a1082a0ddd238291890d6184d66))
+
+
+### Features
+
+* **table:** add support for expandable rows in virtualtable ([0a71ec9](https://github.com/synerise/synerise-design/commit/0a71ec9e3180446d2c91e66db783b8a51c2f8c7f))
+* **table:** expandable row in virtual table ([b8ee297](https://github.com/synerise/synerise-design/commit/b8ee2970b88a15281198f08e9f6c6949e42c6b1f))
+* **table:** expandable vitrualized table ([189a0d8](https://github.com/synerise/synerise-design/commit/189a0d8aaddef5e2ffc6bc7d1c487a90e7371943))
+
+
+
+
+
 # [0.78.0](https://github.com/synerise/synerise-design/compare/portal@0.77.2...portal@0.78.0) (2020-06-25)
 
 

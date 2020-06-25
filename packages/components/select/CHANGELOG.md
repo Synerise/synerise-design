@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.8](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.12.7...@synerise/ds-select@0.12.8) (2020-06-25)
+
+
+### Bug Fixes
+
+* **input:** change margin ([a3d69cf](https://github.com/synerise/synerise-design/commit/a3d69cf368ac5a0b3e01060446dacee9d07cf450))
+* **select:** resolving conflicts ([fe70f69](https://github.com/synerise/synerise-design/commit/fe70f69121e91bd871887aac395ae4ac5fdb8d24))
+
+
+
+
+
 ## [0.12.7](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.12.6...@synerise/ds-select@0.12.7) (2020-06-25)
 
 **Note:** Version bump only for package @synerise/ds-select

@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.18.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.17.0...@synerise/ds-table@0.18.0) (2020-06-25)
+
+
+### Bug Fixes
+
+* **table:** add missing deps in hook ([9a2635d](https://github.com/synerise/synerise-design/commit/9a2635d6514812f3c92f33ccb16ac33abaea2c6c))
+* **table:** typo ([f7c5c52](https://github.com/synerise/synerise-design/commit/f7c5c52aac3c95bf614718f1d4ed4dff763ec7e5))
+
+
+### Features
+
+* **table:** add support for expandable rows in virtualtable ([0a71ec9](https://github.com/synerise/synerise-design/commit/0a71ec9e3180446d2c91e66db783b8a51c2f8c7f))
+* **table:** expandable row in virtual table ([b8ee297](https://github.com/synerise/synerise-design/commit/b8ee2970b88a15281198f08e9f6c6949e42c6b1f))
+
+
+
+
+
 # [0.17.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.16.7...@synerise/ds-table@0.17.0) (2020-06-25)
 
 
