@@ -96,6 +96,12 @@
       "REMOVE-TOOLTIP": "Remove",
       "SHOW": "Show",
       "SHOW-LESS": "Show less"
+    },
+    "DATE-PICKER": {
+      "APPLY": "Apply",
+      "SELECT-DATE": "Select date",
+      "SELECT-TIME": "Select time",
+      "NOW": "Now"
     }
   }
 }
