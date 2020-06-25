@@ -28,11 +28,10 @@ const addonType = {
   label: 'label',
   none: 'none',
 };
-
 const renderLabel = (text:string)=>{
   return (<div style={{maxWidth:'200px', textOverflow: 'ellipsis', overflow:'hidden'}}>{text}</div>)
 }
-function renderAddonComponent(suffixElementType: string) {
+function renderAddonComponent(suffixElementType: string, labelText?: string) {
   switch (suffixElementType) {
     case addonType.icon:
       return (
@@ -41,7 +40,7 @@ function renderAddonComponent(suffixElementType: string) {
         </S.IconWrapper>
       );
     case addonType.label:
-      return <S.Label>Label</S.Label>;
+      return <S.Label>{labelText}</S.Label>;
     case addonType.avatar:
       return (
         <S.AvatarWithMargin size="small" backgroundColor="green" backgroundColorHue="400" shape="square">
@@ -246,14 +245,15 @@ const stories = {
     const hasError = boolean('Set validation state', false);
     const [isFocus, setFocus] = React.useState(false);
     const getCounter = (hasCounter: boolean): number | null => {
-        if (hasCounter) {
-          return counterLimitWords ;
-        } else {
-          return null;
-        }}
+      if (hasCounter) {
+        return counterLimitWords;
+      } else {
+        return null;
+      }
+    };
     const getDescription = (hasDescription: boolean): string => {
       if (hasDescription) {
-        return descriptionMessage ;
+        return descriptionMessage;
       } else {
         return '';
       }
@@ -295,10 +295,12 @@ const stories = {
       />
     );
   },
-  inputWithPrefix: () => {
+  inputWithPrefixAndSuffix: () => {
     const [value, setValue] = React.useState<string>('');
     const prefixType = select('Set prefix type', addonType, addonType.none);
+    const prefixLabelText = text('Set prefix label text', 'Prefix');
     const suffixType = select('Set suffix type', addonType, addonType.none);
+    const suffixLabelText = text('Set suffix label text', 'Prefix');
 
     return (
       <Input
@@ -309,8 +311,8 @@ const stories = {
         disabled={boolean('disabled', false)}
         onChange={e => setValue(e.target.value)}
         value={value}
-        prefixel={renderAddonComponent(prefixType)}
-        suffixel={renderAddonComponent(suffixType)}
+        prefixel={renderAddonComponent(prefixType, prefixLabelText)}
+        suffixel={renderAddonComponent(suffixType, suffixLabelText)}
       />
     );
   },
@@ -392,8 +394,8 @@ const stories = {
     );
   },
 
-  InputMultivalue:() =>{
-    const values = ['Option A', 'Option B', 'Option C'] ;
+  InputMultivalue: () => {
+    const values = ['Option A', 'Option B', 'Option C'];
     const errorMessage = text('Error Text', 'Error');
     const hasError = boolean('Set validation state', false);
     const [isFocus, setFocus] = React.useState(false);
@@ -406,7 +408,7 @@ const stories = {
       }
     };
 
-    return(
+    return (
       <InputMultivalue
         label={renderLabel(text('label', 'Label'))}
         description={text('Description', 'Description')}
@@ -422,9 +424,9 @@ const stories = {
           action('I am focused');
           setFocus(true);
         }}
-        />
-    )
-  }
+      />
+    );
+  },
 };
 
 
