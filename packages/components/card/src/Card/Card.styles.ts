@@ -102,7 +102,7 @@ export const Title = styled(Typography.Title)<{ fat: boolean }>`
   && {
     display: flex;
     align-items: center;
-    height: ${(props): string => (props.fat ? '32px' : '20px')};
+    min-height: ${(props): string => (props.fat ? '32px' : '20px')};
     margin: 0;
   }
 `;
