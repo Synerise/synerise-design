@@ -16,4 +16,4 @@ const ActionCell: React.FC<Props> = ({ children, gapSize = 24, contentAlign = 'r
   );
 };
 
-export default ActionCell;
+export default React.memo(ActionCell);

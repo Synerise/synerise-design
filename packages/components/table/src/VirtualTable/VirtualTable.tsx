@@ -6,6 +6,9 @@ import Checkbox from '@synerise/ds-checkbox';
 import Scrollbar from '@synerise/ds-scrollbar';
 import DSTable from '../Table';
 import { DSTableProps } from '../Table.types';
+import VirtualTableRow from './VirtualTableRow';
+
+export const EXPANDED_ROW_PROPERTY = 'expandedChild';
 
 interface Props<T> extends DSTableProps<T> {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -20,7 +23,9 @@ interface Props<T> extends DSTableProps<T> {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-function VirtualTable<T extends object = any>(props: Props<T>): React.ReactElement {
+function VirtualTable<T extends object = { children?: []; [EXPANDED_ROW_PROPERTY]?: boolean }>(
+  props: Props<T>
+): React.ReactElement {
   const {
     columns,
     scroll,
@@ -31,6 +36,7 @@ function VirtualTable<T extends object = any>(props: Props<T>): React.ReactEleme
     rowKey,
     initialWidth = 0,
     dataSource,
+    expandable,
   } = props;
 
   const [tableWidth, setTableWidth] = React.useState(initialWidth);
@@ -55,7 +61,7 @@ function VirtualTable<T extends object = any>(props: Props<T>): React.ReactEleme
           render: (key: string, record: T): React.ReactNode => {
             const recordKey = getRowKey(record);
             return (
-              recordKey && (
+              recordKey !== undefined && (
                 <Checkbox
                   checked={selection.selectedRowKeys && selection.selectedRowKeys.indexOf(recordKey) >= 0}
                   onChange={(event): void => {
@@ -145,53 +151,90 @@ function VirtualTable<T extends object = any>(props: Props<T>): React.ReactEleme
   React.useEffect(() => resetVirtualGrid, []);
   React.useEffect(() => resetVirtualGrid, [tableWidth]);
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const renderVirtualList = (rawData: T[], { ref, onScroll }: any): React.ReactNode => {
-    // eslint-disable-next-line no-param-reassign
-    ref.current = connectObject;
-    return (
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-      // @ts-ignore
-      <Grid
-        ref={gridRef}
-        className="virtual-grid"
-        columnCount={mergedColumns.length}
-        columnWidth={(index: number): number => {
-          const { width } = mergedColumns[index];
-          const columnWidth = index === mergedColumns.length - 1 ? width - 1 : width;
-          return columnWidth;
-        }}
-        height={scroll.y}
-        rowCount={rawData.length}
-        rowHeight={(): number => cellHeight}
-        width={tableWidth}
-        onScroll={({ scrollLeft }: { scrollLeft: number }): void => {
-          onScroll({ scrollLeft });
-        }}
-        outerElementType={CustomScrollbar}
-      >
-        {/* eslint-disable-next-line @typescript-eslint/explicit-function-return-type */}
-        {({ columnIndex, rowIndex, style }: { columnIndex: number; rowIndex: number; style: object }) => (
-          // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
-          <div
-            className={classNames('virtual-table-cell', {
-              'virtual-table-cell-last': columnIndex === mergedColumns.length - 1,
-              'ant-table-selection-column': columnIndex === 0 && selection,
-            })}
-            onClick={(): void => onRowClick && onRowClick(rawData[rowIndex])}
-            style={style}
+  const renderBody = React.useCallback(
+    (rawData, meta): React.ReactNode => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const renderVirtualList = (data: T[], { ref, onScroll }: any): React.ReactNode => {
+        // eslint-disable-next-line no-param-reassign
+        ref.current = connectObject;
+        return (
+          // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+          // @ts-ignore
+          <Grid
+            ref={gridRef}
+            className="virtual-grid"
+            columnCount={mergedColumns.length}
+            columnWidth={(index: number): number => {
+              const { width } = mergedColumns[index];
+              const columnWidth = index === mergedColumns.length - 1 ? width - 1 : width;
+              return columnWidth;
+            }}
+            height={scroll.y}
+            rowCount={data.length}
+            rowHeight={(): number => cellHeight}
+            width={tableWidth}
+            onScroll={({ scrollLeft }: { scrollLeft: number }): void => {
+              onScroll({ scrollLeft });
+            }}
+            outerElementType={CustomScrollbar}
           >
-            {mergedColumns[columnIndex].render
-              ? mergedColumns[columnIndex].render(
-                  rawData[rowIndex][mergedColumns[columnIndex].dataIndex],
-                  rawData[rowIndex]
-                )
-              : rawData[rowIndex][mergedColumns[columnIndex].dataIndex]}
-          </div>
-        )}
-      </Grid>
-    );
-  };
+            {/* eslint-disable-next-line @typescript-eslint/explicit-function-return-type */}
+            {({
+              columnIndex,
+              rowIndex,
+              style,
+            }: {
+              columnIndex: number;
+              rowIndex: number;
+              style: object;
+            }): React.ReactNode => (
+              <VirtualTableRow<T>
+                columnIndex={columnIndex}
+                rowIndex={rowIndex}
+                style={style}
+                mergedColumns={mergedColumns}
+                data={data}
+                selection={selection}
+                onRowClick={onRowClick}
+              />
+            )}
+          </Grid>
+        );
+      };
+
+      if (expandable?.expandedRowKeys?.length) {
+        const expandedRows = rawData.reduce((result: T[], currentRow: T) => {
+          const key = getRowKey(currentRow);
+          // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+          // @ts-ignore
+          if (key !== undefined && expandable?.expandedRowKeys?.includes(key) && currentRow.children.length) {
+            return [
+              ...result,
+              currentRow,
+              // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+              // @ts-ignore
+              ...currentRow.children.map((child: T) => ({ ...child, [EXPANDED_ROW_PROPERTY]: true })),
+            ];
+          }
+          return [...result, currentRow];
+        }, []);
+        return renderVirtualList(expandedRows, meta);
+      }
+      return renderVirtualList(rawData, meta);
+    },
+    [
+      expandable,
+      getRowKey,
+      mergedColumns,
+      onRowClick,
+      scroll,
+      selection,
+      tableWidth,
+      CustomScrollbar,
+      cellHeight,
+      connectObject,
+    ]
+  );
 
   return (
     <ResizeObserver
@@ -207,7 +250,7 @@ function VirtualTable<T extends object = any>(props: Props<T>): React.ReactEleme
         /* eslint-disable-next-line @typescript-eslint/ban-ts-ignore */
         // @ts-ignore
         components={{
-          body: renderVirtualList,
+          body: renderBody,
         }}
       />
     </ResizeObserver>
