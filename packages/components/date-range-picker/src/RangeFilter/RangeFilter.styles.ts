@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components';
 
-
 const borderStyle = css``;
 export const Container = styled.div``;
 
@@ -23,7 +22,7 @@ export const Footer = styled.div`
   justify-content: flex-end;
   border-top: ${borderStyle};
   padding: 12px 24px;
-  background-color: ${props => props.theme.variable('@gray-color-lighter-8')};
+  background-color: ${(props): string => props.theme.palette['grey-800']};
 
   > *:not(:last-child) {
     margin-right: 16px;
@@ -32,7 +31,7 @@ export const Footer = styled.div`
 
 export const Title = styled.div`
   font-size: 18px;
-  line-height: ${props => props.theme.variable('@modal-title-line-height')};
+  line-height: ${(props): string => props.theme.palette['grey-600']};
   font-weight: 500;
-  color: ${props => props.theme.variable('@heading-color')};
+  color: ${(props): string => props.theme.palette['grey-600']};
 `;
