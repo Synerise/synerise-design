@@ -1,0 +1,9 @@
+// @flow
+
+export type Day = {|
+  day: number,
+  start: string,
+  stop: string,
+  inverted: boolean,
+  restricted?: boolean,
+|};
