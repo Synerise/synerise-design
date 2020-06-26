@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.19.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.18.0...@synerise/ds-table@0.19.0) (2020-06-26)
+
+
+### Bug Fixes
+
+* **flag:** fix styles ([1eef439](https://github.com/synerise/synerise-design/commit/1eef439e9fc1d9d2455e5507d6a98e28e20be618))
+
+
+### Features
+
+* **table:** use DSFlag in FlagLabelCEll ([14d4998](https://github.com/synerise/synerise-design/commit/14d4998a64206237b78a70e2a32a9412641a42b0))
+
+
+
+
+
 # [0.18.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.17.0...@synerise/ds-table@0.18.0) (2020-06-25)
 
 
