@@ -1,7 +1,7 @@
 import isEqual from 'lodash/isEqual';
 import { RELATIVE_PRESETS, RELATIVE, ABSOLUTE } from '../constants';
 
-const getValueForRelativeRange = range => {
+const getValueForRelativeRange = (range) => {
   const relativeResult =
     range.type === RELATIVE &&
     RELATIVE_PRESETS.find(item => isEqual(item.offset, range.offset) && isEqual(item.duration, range.duration));

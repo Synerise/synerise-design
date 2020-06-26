@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-  border-bottom: 1px dotted ${props => props.theme.variable('@gray-color-lighter-5')};
+  border-bottom: 1px dotted ${(props): string => props.theme.palette['grey-500']};
   padding-bottom: 15px;
   margin-top: -15px;
 `;
@@ -10,10 +10,10 @@ export const DropdownLabel = styled.span`
   vertical-align: middle;
   font-weight: 500;
   margin: 8px 0;
-  color: ${props => props.theme.variable('@gray-color-lighter-2')};
+  color: ${(props): string => props.theme.palette['grey-300']};
 
   b {
-    color: ${props => props.theme.variable('@gray-color')};
+    color: ${(props): string => props.theme.palette['grey-600']};
     font-weight: 500;
     margin-right: 1em;
     display: inline-block;
@@ -42,7 +42,7 @@ export const DropdownHeader = styled.div`
   position: relative;
   font-size: 13px;
   width: 100%;
-  border-top: 1px dashed ${props => props.theme.variable('@gray-color-lighter-6')};
+  border-top: 1px dashed ${(props): string => props.theme.palette['grey-400']};
   margin-top: -1px;
   padding: 15px 0;
   display: flex;
@@ -70,17 +70,17 @@ export const DropdownDeleteBtn = styled.div`
     .icon {
       transition: 0.2s ease-in-out;
       display: block;
-      color: ${props => props.theme.variable('@gray-color-lighter-4')};
+      color: ${(props): string => props.theme.palette['grey-400']};
     }
     &:hover .icon {
-      color: ${props => props.theme.variable('@red-color')};
+      color: ${(props): string => props.theme.palette['red-600']};
     }
   }
 `;
 
 export const AddContainer = styled.div`
   padding-top: 10px;
-  border-top: 1px dashed ${props => props.theme.variable('@gray-color-lighter-6')};
+  border-top: 1px dashed ${(props): string => props.theme.palette['grey-400']};
   margin-top: -1px;
 `;
 
@@ -91,7 +91,7 @@ export const AddButton = styled.div`
   transition: 0.2s ease-in-out;
   cursor: pointer;
   &:hover {
-    color: ${props => props.theme.variable('@primary-color')};
+    color: ${(props): string => props.theme.palette['blue-600']};
   }
   span {
     display: inline-block;

@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { FormattedDate, FormattedTime } from 'react-intl';
 
 export const ParsedDate = props => (
