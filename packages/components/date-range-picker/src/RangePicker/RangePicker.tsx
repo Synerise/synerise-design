@@ -8,6 +8,8 @@ import fnsMin from 'date-fns/min';
 import fnsMax from 'date-fns/max';
 // @ts-ignore
 import fnsIsWithinRange from 'date-fns/is_within_range';
+import fnsStartOfDay from 'date-fns/start_of_day';
+import fnsEndOfDay from 'date-fns/end_of_day';
 
 import MonthPicker from '@synerise/ds-date-picker/dist/Elements/MonthPicker/MonthPicker';
 import DayPicker from '@synerise/ds-date-picker/dist/Elements/DayPicker/DayPicker';
@@ -23,6 +25,7 @@ import {
 import { fnsStartOfMonth, fnsStartOfDay, fnsEndOfDay, fnsIsSameMonth, fnsIsAfter } from '../fns';
 import { Side, Sides } from './RangePicker.styles';
 import { ABSOLUTE, TIME_OPTIONS } from '../constants';
+import TimePicker from '@synerise/ds-time-picker';
 
 import GET from '../dateUtils/get';
 import SET from '../dateUtils/set';
@@ -30,6 +33,13 @@ import ADD from '../dateUtils/add';
 import format from '../dateUtils/format';
 import { DateRange } from '../date.types';
 import { Limit, Props, State } from './RangePicker.types';
+import { DateRange } from '../date.types';
+import YearPicker from '@synerise/ds-date-picker/dist/Elements/YearPicker/YearPicker';
+import {
+  DayBackground,
+  DayForeground,
+  DayText,
+} from '@synerise/ds-date-picker/dist/Elements/DayPicker/DayPicker.styles';
 
 const getDisabledTimeOptions = (
   day: string | Date | undefined,
@@ -60,6 +70,27 @@ const getSidesState = (value: DateRange): State => {
     },
   };
 };
+
+interface Props {
+  value: DateRange;
+  onChange: (value: DateRange) => {};
+  mode: string;
+  disabledDate: (value: DateRange) => {};
+}
+
+interface State {
+  enteredTo: Date | null;
+  left: {
+    month: Date | string;
+    monthTitle: string;
+    mode: string;
+  };
+  right: {
+    month: Date | string;
+    monthTitle: string;
+    mode: string;
+  };
+}
 
 export default class RangePicker extends React.PureComponent<Props, State> {
   constructor(props: Props) {
@@ -163,8 +194,6 @@ export default class RangePicker extends React.PureComponent<Props, State> {
 
   renderDatePicker = (side: 'left' | 'right'): React.ReactNode => {
     const { value, disabledDate } = this.props;
-    console.log('RagenPickerProps', this.props);
-    console.log('RagenPickerState', this.state);
     const { enteredTo, left, right } = this.state;
     const { from, to, type } = value;
     const isSelecting = from && !to && enteredTo;
@@ -264,8 +293,6 @@ export default class RangePicker extends React.PureComponent<Props, State> {
 
   render(): React.ReactNode {
     const { mode } = this.props;
-    console.log('RangePicker state', this.state);
-    console.log('RangePicker props', this.props);
     return (
       <Sides bordered={mode === 'time'}>
         <Side>{this.renderSide('left')}</Side>
