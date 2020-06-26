@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { injectIntl, WrappedComponentProps } from 'react-intl';
+import TimeWindow from '../../TimeWindow/TimeWindow';
 
 interface Props extends WrappedComponentProps {
   value: string;
@@ -12,10 +13,7 @@ class DailyFilter extends React.PureComponent<Props> {
   render() {
     const { value } = this.props;
     return (
-      <div>
-        Time window
-      </div>
-/*      <TimeWindow
+      <TimeWindow
         style={{ marginTop: 32 }}
         invertibleTime
         numberOfDays={0}
@@ -23,7 +21,7 @@ class DailyFilter extends React.PureComponent<Props> {
         days={[value]}
         onChange={this.onChange}
         timeMarks={{}}
-      />*/
+      />
     );
   }
 }

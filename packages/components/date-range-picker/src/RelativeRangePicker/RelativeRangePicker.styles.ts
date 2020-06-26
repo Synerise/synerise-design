@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Button from '@synerise/ds-button';
+
 export const Container = styled.div``;
 
 export const Header = styled.div`
@@ -14,7 +15,7 @@ export const Title = styled.div`
 
 export const Help = styled.div`
   flex: 0;
-  color: ${props => props.theme.variable('@gray-color-lighter-4')};
+  color: ${(props): string => props.theme.palette['grey-400']};
 `;
 
 export const Ranges = styled.div`

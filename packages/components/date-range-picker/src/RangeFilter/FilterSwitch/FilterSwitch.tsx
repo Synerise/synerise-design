@@ -5,7 +5,7 @@ import attributes from './attributes';
 
 import { Container, Icon, OpenModalButton, RemoveFilterButton, Status } from './FilterSwitch.styles';
 
-const FilterSwitch = props => {
+const FilterSwitch = (props) => {
   const { isOn, statusInnerHtml, popConfirmProps, onOpenModalButtonClick, onRemoveFilterButtonClick, intl } = props;
   const translations = props.translations || {};
   let removeFilterButton = null;
