@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.20.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.19.0...@synerise/ds-table@0.20.0) (2020-06-26)
+
+
+### Features
+
+* **table:** keep order of selection menu items ([a236e3a](https://github.com/synerise/synerise-design/commit/a236e3ae57d3daf84be8c7ffbfb5370a5d857f52))
+
+
+
+
+
 # [0.19.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.18.0...@synerise/ds-table@0.19.0) (2020-06-26)
 
 
