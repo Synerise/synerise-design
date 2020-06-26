@@ -3,9 +3,10 @@ import * as S from './Flag.styles';
 import * as Flags from './icons';
 import { FlagProps } from './Flag.types';
 
-const FLAG_SIZE_RATIO = 15 / 21;
+export const FLAG_SIZE_RATIO = 15 / 21;
+const DEFAULT_SIZE = 24;
 
-const DSFlag: React.FC<FlagProps> = ({ country, size = 24 }) => {
+const DSFlag: React.FC<FlagProps> = ({ country, size = DEFAULT_SIZE }) => {
   const code = String(country).replace('-', '').toUpperCase();
   const Flag = Flags[code];
   return (

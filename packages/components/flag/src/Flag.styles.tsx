@@ -1,18 +1,18 @@
 import styled, { css, SimpleInterpolation } from 'styled-components';
 import * as React from 'react';
-
-export const defaultSize = 24;
+import { FLAG_SIZE_RATIO } from './Flag';
 
 type Props = {
-  size?: string | number;
+  size: number;
   onClick?: React.MouseEventHandler;
 };
 
+// eslint-disable-next-line import/prefer-default-export
 export const FlagContainer = styled.div<Props>`
   ${(props): SimpleInterpolation => css`
     vertical-align: middle;
     display: inline-block;
-    width: ${props.size || defaultSize}px;
-    height: ${props.size || defaultSize}px;
+    width: ${props.size}px;
+    height: ${FLAG_SIZE_RATIO * props.size}px;
   `}
 `;
