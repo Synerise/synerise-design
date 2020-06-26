@@ -84,28 +84,31 @@ const TableSelection: React.FC<Props> = ({ dataSource, selection, rowKey }) => {
           trigger={['click']}
           overlay={
             <S.SelectionMenu>
-              {selections.indexOf(SELECTION_ALL) >= 0 && !allSelected && (
-                <Menu.Item onClick={selectAll}>Select all</Menu.Item>
+              {selections.filter(Boolean).map(
+                (selectionMenuElement: Selection | SelectionItem): React.ReactNode => {
+                  switch (selectionMenuElement) {
+                    case SELECTION_ALL: {
+                      return !allSelected ? (
+                        <Menu.Item onClick={selectAll}>Select all</Menu.Item>
+                      ) : (
+                        <Menu.Item onClick={unselectAll}>Unselect all</Menu.Item>
+                      );
+                    }
+                    case SELECTION_INVERT: {
+                      return <Menu.Item onClick={selectInvert}>Invert selection</Menu.Item>;
+                    }
+                    default: {
+                      const sel = selectionMenuElement as Selection;
+                      return (
+                        // eslint-disable-next-line react/jsx-handler-names
+                        <Menu.Item key={sel.key} onClick={sel.onClick}>
+                          {sel.label}
+                        </Menu.Item>
+                      );
+                    }
+                  }
+                }
               )}
-              {selections.indexOf(SELECTION_ALL) >= 0 && allSelected && (
-                <Menu.Item onClick={unselectAll}>Unselect all</Menu.Item>
-              )}
-              {selections.indexOf(SELECTION_INVERT) >= 0 && (
-                <Menu.Item onClick={selectInvert}>Invert selection</Menu.Item>
-              )}
-              {selections
-                .filter(Boolean)
-                .filter(
-                  (sel: Selection | SelectionItem): sel is Selection => typeof (sel as Selection).key === 'string'
-                )
-                .map(
-                  (sel: Selection): React.ReactNode => (
-                    // eslint-disable-next-line react/jsx-handler-names
-                    <Menu.Item key={sel.key} onClick={sel.onClick}>
-                      {sel.label}
-                    </Menu.Item>
-                  )
-                )}
             </S.SelectionMenu>
           }
         >
