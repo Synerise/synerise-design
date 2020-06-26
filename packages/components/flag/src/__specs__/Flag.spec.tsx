@@ -5,9 +5,9 @@ import DSFlag from '../Flag';
 describe('Flag', () => {
   it('should render', () => {
     // ARRANGE
-    const { getByAltText } = render(<DSFlag country={'PL'}/>);
+    const { container } = render(<DSFlag country={'PL'}/>);
 
     // ASSERT
-    expect(getByAltText('PL Flag')).toBeTruthy();
+    expect(container.getElementsByClassName('ds-flag-PL')).toBeTruthy();
   });
 });

@@ -11,7 +11,7 @@ const DSFlag: React.FC<FlagProps> = ({ country, size = DEFAULT_SIZE }) => {
   const Flag = Flags[code];
   return (
     <S.FlagContainer className={`ds-flag ds-flag-${country}`} size={size}>
-      <Flag width={size} height={FLAG_SIZE_RATIO * size} alt={`${country} Flag`} />
+      <Flag width={size} height={FLAG_SIZE_RATIO * size} />
     </S.FlagContainer>
   );
 };
