@@ -519,6 +519,7 @@ const stories = {
               selectedRowKeys: selectedRows,
               selections: [
                 Table.SELECTION_ALL,
+                null,
                 Table.SELECTION_INVERT,
                 {
                   key: 'even',
