@@ -1,3 +1,4 @@
+import * as moment from 'moment';
 const defaultShortDistance = {
   future: 'in %s',
   past: '%s ',
@@ -15,11 +16,12 @@ const defaultShortDistance = {
   yy: '%dy',
 };
 
-export const shortDistances = moment => {
-  moment.updateLocale('en', {
+const shortDistances = (m: typeof moment): void => {
+  m.updateLocale('en', {
     relativeTime: defaultShortDistance,
   });
-  moment.updateLocale('pl', {
+  m.updateLocale('pl', {
     relativeTime: defaultShortDistance,
   });
 };
+export default shortDistances;

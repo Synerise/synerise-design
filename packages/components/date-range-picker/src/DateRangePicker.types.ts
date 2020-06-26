@@ -1,5 +1,5 @@
 import { WrappedComponentProps } from 'react-intl';
-import { DateRange } from '../../types/Dates';
+import { DateRange } from 'date.types';
 
 export interface Props extends WrappedComponentProps {
   showRelativePicker: boolean;

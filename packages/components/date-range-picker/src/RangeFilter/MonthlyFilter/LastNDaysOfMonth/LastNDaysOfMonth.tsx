@@ -5,7 +5,8 @@ import Icon from '@synerise/ds-icon';
 import Dropdown from '@synerise/ds-dropdown';
 import Day from '../../../TimeWindow/Day/Day';
 import { injectIntl } from 'react-intl';
-
+import { Props } from './LastNDaysOfMonth.types';
+import { CloseS, CheckS, AngleDownS } from '@synerise/ds-icon/dist/icons';
 export const LastNDaysOfMonthComponent = ({
   value,
   label: labelText,
@@ -15,15 +16,15 @@ export const LastNDaysOfMonthComponent = ({
   restricted,
   intl,
   ...rest
-}) => {
-  const label = (hovered: boolean) => (
+}: Props) => {
+  const label = (hovered: boolean): React.ReactNode => (
     <React.Fragment>
-      <Icon name={!restricted || (active && hovered) ? 'close-s' : 'check-s'} size="20" />
+      <Icon component={!restricted || (active && hovered) ? <CloseS /> : <CheckS />} size={20} />
       <span>{labelText}</span>
-      <Icon name="angle-down-s" style={{ float: 'right', marginTop: 2 }} />
+      <Icon component={<AngleDownS />} style={{ float: 'right', marginTop: 2 }} />
     </React.Fragment>
   );
-  let day = (
+  const day: React.ReactNode = (
     <div style={{ gridColumnEnd: 'span 4' }}>
       <Day
         {...rest}
