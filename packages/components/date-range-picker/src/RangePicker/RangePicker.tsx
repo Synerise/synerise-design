@@ -24,8 +24,14 @@ import GET from '../dateUtils/get';
 import SET from '../dateUtils/set';
 import ADD from '../dateUtils/add';
 import format from '../dateUtils/format';
+import { DateRange } from '../date.types';
+import YearPicker from '@synerise/ds-date-picker/dist/Elements/YearPicker/YearPicker';
+import {
+  DayBackground,
+  DayForeground,
+  DayText,
+} from '@synerise/ds-date-picker/dist/Elements/DayPicker/DayPicker.styles';
 
-type DateRange = {};
 const getDisabledTimeOptions = (day, granularity, lowerLimit = null, upperLimit = null) => {
   lowerLimit = lowerLimit || fnsStartOfDay(day);
   upperLimit = upperLimit || fnsEndOfDay(day);
@@ -61,14 +67,14 @@ interface Props {
 interface State {
   enteredTo: Date | null;
   left: {
-    month: Date | string,
-    monthTitle: string,
-    mode: string,
+    month: Date | string;
+    monthTitle: string;
+    mode: string;
   };
   right: {
-    month: Date | string,
-    monthTitle: string,
-    mode: string,
+    month: Date | string;
+    monthTitle: string;
+    mode: string;
   };
 }
 
@@ -131,11 +137,11 @@ export default class RangePicker extends React.PureComponent<Props, State> {
     const text = day.getDate();
     return (
       <React.Fragment>
-        <div className="DayPicker-Day-BG" />
-        <div className="DayPicker-Day-Text" data-attr={text}>
+        <DayBackground className="DayPicker-Day-BG" />
+        <DayText className="DayPicker-Day-Text" data-attr={text}>
           {text}
-        </div>
-        <div className="DayPicker-Day-FG" />
+        </DayText>
+        <DayForeground className="DayPicker-Day-FG" />
       </React.Fragment>
     );
   };
@@ -254,7 +260,7 @@ export default class RangePicker extends React.PureComponent<Props, State> {
     }
   };
 
-  render() {
+  render(): React.ReactNode {
     const { mode } = this.props;
     return (
       <Sides bordered={mode === 'time'}>

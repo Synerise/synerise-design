@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 
 const borderStyle = css``;
 const borderedSidesStyle = css`
@@ -9,11 +9,11 @@ const borderedSidesStyle = css`
   }
 `;
 
-export const Sides = styled.div`
+export const Sides = styled.div<{ bordered?: boolean }>`
   display: grid;
   grid-template-columns: 1fr 1fr;
 
-  ${props => (props.bordered ? borderedSidesStyle : null)};
+  ${(props): FlattenSimpleInterpolation | null => (props.bordered ? borderedSidesStyle : null)};
 `;
 
 export const Side = styled.div`

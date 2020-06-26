@@ -8,7 +8,8 @@ import { injectIntl } from 'react-intl';
 
 import Button from '@synerise/ds-button';
 import { MONTHLY_TYPES, TYPES, TYPES_DATA } from './constants';
-import { Body, Container, Footer, Header, Title } from './RangeFilter.styles';
+import * as S from './RangeFilter.styles';
+import { DateRange } from '../date.types';
 
 /*
  * Map field from components to datefilter schema
@@ -16,7 +17,7 @@ import { Body, Container, Footer, Header, Title } from './RangeFilter.styles';
  * stop => to
  * 0-based => 1-based indexed days
  * */
-const mapTimeSchema = item => {
+const mapTimeSchema = (item): DateRange => {
   const { start, stop, day, ...rest } = item;
   return { from: start, to: stop, day: Number.isNaN(+day) ? undefined : +day + 1, ...rest };
 };
@@ -27,7 +28,7 @@ const mapTimeSchema = item => {
  * to => stop
  * 1-based => 0-based indexed days
  * */
-const denormMapTimeSchema = item => {
+const denormMapTimeSchema = (item): DateRange => {
   const { from, to, day, ...rest } = item;
   return { start: from, stop: to, day: Number.isNaN(+day) ? undefined : +day - 1, ...rest };
 };
@@ -154,11 +155,11 @@ class RangeFilter extends React.PureComponent {
     const { intl } = this.props;
 
     return (
-      <Container>
-        <Header>
-          <Title>{intl.formatMessage({ id: 'SNRS.DATE.DATES_FILTER' })}</Title>
-        </Header>
-        <Body>
+      <S.Container>
+        <S.Header>
+          <S.Title>{intl.formatMessage({ id: 'SNRS.DATE.DATES_FILTER' })}</S.Title>
+        </S.Header>
+        <S.Body>
           <ButtonGroup fullWidth style={{ marginBottom: 16 }} size="large">
             {Object.values(TYPES).map(key => (
               <Button
@@ -173,14 +174,14 @@ class RangeFilter extends React.PureComponent {
           {Component && (
             <Component value={definition} onChange={definition => this.setValue({ ...value, definition })} />
           )}
-        </Body>
-        <Footer>
+        </S.Body>
+        <S.Footer>
           <Button onClick={this.handleCancel}>{intl.formatMessage({ id: 'SNRS.ACTIONS.CANCEL' })}</Button>
           <Button type="primary" disabled={!isValidValue(value)} onClick={this.handleApply}>
             {intl.formatMessage({ id: 'SNRS.ACTIONS.APPLY' })}
           </Button>
-        </Footer>
-      </Container>
+        </S.Footer>
+      </S.Container>
     );
   }
 }
