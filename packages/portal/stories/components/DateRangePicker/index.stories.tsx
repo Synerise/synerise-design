@@ -5,7 +5,7 @@ import DateRangePicker from '@synerise/ds-date-range-picker';
 const stories = {
   default: () => {
     return (
-      <DateRangePicker onApply={console.log}/>
+      <DateRangePicker showTime={true} onApply={console.log}/>
     );
   },
 };

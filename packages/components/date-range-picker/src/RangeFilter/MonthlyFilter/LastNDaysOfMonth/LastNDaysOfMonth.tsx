@@ -17,8 +17,8 @@ export const LastNDaysOfMonthComponent: React.FC<Props> = ({
   restricted,
   intl,
   ...rest
-}: Props) => {
-  const label = (hovered: boolean): React.ReactNode => (
+}) => {
+  const label = (hovered: boolean) => (
     <React.Fragment>
       <Icon component={!restricted || (active && hovered) ? <CloseS /> : <CheckS />} size={20} />
       <span>{labelText}</span>

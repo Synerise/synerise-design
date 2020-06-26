@@ -1,7 +1,10 @@
 import * as React from 'react';
-import { injectIntl } from 'react-intl';
-import TimeWindow from '../../TimeWindow/TimeWindow';
-import { Props } from './DailyFilter.types';
+import { injectIntl, WrappedComponentProps } from 'react-intl';
+
+interface Props extends WrappedComponentProps {
+  value: string;
+  onChange: (v: string) => {};
+}
 
 class DailyFilter extends React.PureComponent<Props> {
 
@@ -13,7 +16,10 @@ class DailyFilter extends React.PureComponent<Props> {
   render(): JSX.Element {
     const { value } = this.props;
     return (
-      <TimeWindow
+      <div>
+        Time window
+      </div>
+/*      <TimeWindow
         style={{ marginTop: 32 }}
         invertibleTime
         numberOfDays={0}
@@ -21,7 +27,7 @@ class DailyFilter extends React.PureComponent<Props> {
         days={[value]}
         onChange={this.handleOnChange}
         timeMarks={{}}
-      />
+      />*/
     );
   }
 }
