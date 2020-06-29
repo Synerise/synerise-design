@@ -36,7 +36,6 @@ export const Container = styled.div<{
   raised?: boolean;
   disabled?: boolean;
   lively?: boolean;
-  size?: number;
   background: Backgrounds;
 }>`
   background-color: ${(props): string => (props.background ? backgroundColor(props) : props.theme.palette.transparent)};
@@ -46,7 +45,6 @@ export const Container = styled.div<{
   flex-flow: column;
   transition: 0.3s ease;
   width: 100%;
-  max-width: ${(props): string => (props.size ? `${props.size}px` : '100%')};
 
   ${(props): FlattenSimpleInterpolation | false =>
     !!props.raised &&
