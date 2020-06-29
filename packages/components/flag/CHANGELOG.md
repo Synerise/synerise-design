@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-flag@0.2.0...@synerise/ds-flag@0.2.1) (2020-06-29)
+
+
+### Bug Fixes
+
+* **flag:** fix display property of FlagContainer ([595e08c](https://github.com/Synerise/synerise-design/commit/595e08c35485c5806e7f8637b7f3c420eec9f756))
+
+
+
+
+
 # [0.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-flag@0.1.0...@synerise/ds-flag@0.2.0) (2020-06-26)
 
 
