@@ -11,7 +11,7 @@ type Props = {
 export const FlagContainer = styled.div<Props>`
   ${(props): SimpleInterpolation => css`
     vertical-align: middle;
-    display: inline-block;
+    display: flex;
     width: ${props.size}px;
     height: ${FLAG_SIZE_RATIO * props.size}px;
   `}
