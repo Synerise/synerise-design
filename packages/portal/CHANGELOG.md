@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.82.0](https://github.com/synerise/synerise-design/compare/portal@0.81.0...portal@0.82.0) (2020-06-29)
+
+
+### Bug Fixes
+
+* **card:** remove size prop, fix header styles ([2bc7e75](https://github.com/synerise/synerise-design/commit/2bc7e758df5531fc76d12937be62c2cc9b31e8ef))
+
+
+### Features
+
+* **table:** remove unused selection type ([522d874](https://github.com/synerise/synerise-design/commit/522d8742108b80c13e507e9fbe66e9c7e93830fc))
+
+
+
+
+
 # [0.81.0](https://github.com/synerise/synerise-design/compare/portal@0.80.0...portal@0.81.0) (2020-06-26)
 
 
