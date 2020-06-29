@@ -144,7 +144,6 @@ function GroupTable<T extends GroupType<T>>(
     },
     [dataSource, tableColumns]
   );
-
   return (
     <div className={`ds-table ds-table-cell-size-${cellSize} ${roundedHeader ? 'ds-table-rounded' : ''}`}>
       <Table<T>
