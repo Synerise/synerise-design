@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-flag@0.2.1...@synerise/ds-flag@0.2.2) (2020-06-29)
+
+
+### Bug Fixes
+
+* **flag:** remove non-country flags ([2a1e92c](https://github.com/Synerise/synerise-design/commit/2a1e92c99b6ae713e7cbb86a8f359f94571e1074))
+
+
+
+
+
 ## [0.2.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-flag@0.2.0...@synerise/ds-flag@0.2.1) (2020-06-29)
 
 
