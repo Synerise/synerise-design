@@ -8,14 +8,6 @@ import Icon from '@synerise/ds-icon';
 import { CheckS, FilterM, SearchM } from '@synerise/ds-icon/dist/icons';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 
-const sizes = {
-  None: null,
-  Small: 'small',
-  Medium: 'medium',
-  Large: 'large',
-  'Extra Large': 'extraLarge',
-};
-
 const backgrounds = {
   'White': 'white',
   'White with shadow': 'white-shadow',
@@ -28,7 +20,6 @@ const init = () => {
   const props = {
     title: text('Title', 'Card header'),
     description: text('Description', 'Description'),
-    size: select('Size', sizes, null),
     raised: boolean('Active', false),
     disabled: boolean('Disabled', false),
     lively: boolean('Hover enabled', true),
@@ -66,7 +57,6 @@ const renderCard = props => {
         description={props.description}
         icon={props.icon || props.withIcon && <IconComponent />}
         iconColor={props.iconColor}
-        size={props.size}
         compactHeader={props.compactHeader}
         onHeaderClick={clickHandler}
         headerSideChildren={props.headerSideChildren}
@@ -259,11 +249,11 @@ const stories = {
     const rowItems = number('Items per row', 3);
 
     return (
-      <div style={{ margin: 24 }}>
+      <div style={{ padding: 24, width: "100%", position: 'absolute', top: 0, left: 0, height: '100%' }}>
         <h3>Card Group</h3>
-        <div style={{ paddingTop: 12, width: '100%' }}>
+        <div style={{ padding: '12px 0', width: '100%' }}>
           <CardGroup columns={rowItems}>
-            {range(1, itemsInGroup).map(i => (
+            {range(0, itemsInGroup).map(i => (
               <React.Fragment key={i}>{renderCard({...props, icon: <CardBadge icon={<CheckS />} />,})}</React.Fragment>
             ))}
           </CardGroup>
@@ -274,7 +264,7 @@ const stories = {
 };
 
 export default {
-  name: 'Components|Card',
+  name: 'Card|Card',
   stories,
   Component: Card,
 };
