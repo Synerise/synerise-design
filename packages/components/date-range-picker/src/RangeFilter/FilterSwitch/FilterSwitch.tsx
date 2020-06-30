@@ -1,18 +1,26 @@
-import React from 'react';
+import * as React from 'react';
 import { injectIntl } from 'react-intl';
 
 import attributes from './attributes';
 
 import { Container, Icon, OpenModalButton, RemoveFilterButton, Status } from './FilterSwitch.styles';
+import { Props } from './FilterSwitch.types';
 
-const FilterSwitch = (props) => {
-  const { isOn, statusInnerHtml, popConfirmProps, onOpenModalButtonClick, onRemoveFilterButtonClick, intl } = props;
-  const translations = props.translations || {};
+const FilterSwitch = (props: Props): JSX.Element => {
+  const {
+    isOn,
+    statusInnerHtml,
+    popConfirmProps,
+    onOpenModalButtonClick,
+    onRemoveFilterButtonClick,
+    intl,
+    translations,
+  } = props;
   let removeFilterButton = null;
   if (isOn) {
     removeFilterButton = (
       <RemoveFilterButton onClick={onRemoveFilterButtonClick}>
-        {translations.clearFilter || intl.formatMessage({ id: 'SNRS.FILTER-SWITCH.CLEAR_FILTER' })}
+        {translations?.clearFilter || intl.formatMessage({ id: 'SNRS.FILTER-SWITCH.CLEAR_FILTER' })}
       </RemoveFilterButton>
     );
     if (popConfirmProps) {
@@ -26,8 +34,8 @@ const FilterSwitch = (props) => {
       {removeFilterButton}
       <OpenModalButton onClick={onOpenModalButtonClick} {...attributes.buttonOpenModalFilter}>
         {isOn
-          ? translations.changeConditions || intl.formatMessage({ id: 'SNRS.FILTER-SWITCH.CHANGE_CONDITIONS' })
-          : translations.enableFilter || intl.formatMessage({ id: 'SNRS.FILTER-SWITCH.ENABLE_FILTER' })}
+          ? translations?.changeConditions || intl.formatMessage({ id: 'SNRS.FILTER-SWITCH.CHANGE_CONDITIONS' })
+          : translations?.enableFilter || intl.formatMessage({ id: 'SNRS.FILTER-SWITCH.ENABLE_FILTER' })}
       </OpenModalButton>
     </Container>
   );

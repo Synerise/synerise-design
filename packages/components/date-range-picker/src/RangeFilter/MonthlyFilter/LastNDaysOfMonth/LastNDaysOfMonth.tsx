@@ -3,11 +3,12 @@ import { range } from 'lodash';
 import Menu from '@synerise/ds-menu';
 import Icon from '@synerise/ds-icon';
 import Dropdown from '@synerise/ds-dropdown';
-import Day from '../../../TimeWindow/Day/Day';
 import { injectIntl } from 'react-intl';
-import { Props } from './LastNDaysOfMonth.types';
 import { CloseS, CheckS, AngleDownS } from '@synerise/ds-icon/dist/icons';
-export const LastNDaysOfMonthComponent = ({
+import Day from '../../../TimeWindow/Day/Day';
+import { Props } from './LastNDaysOfMonth.types';
+
+export const LastNDaysOfMonthComponent: React.FC<Props> = ({
   value,
   label: labelText,
   onChange,
@@ -36,8 +37,8 @@ export const LastNDaysOfMonthComponent = ({
       />
     </div>
   );
-  const onClick = days => {
-    onChange({ days });
+  const onClick = (days): void => {
+    onChange && onChange({ days });
     if (!active) setTimeout(onToggle);
   };
   return (
@@ -49,7 +50,7 @@ export const LastNDaysOfMonthComponent = ({
           selectedKeys={[String(value.days)]}
           onClick={({ key }) => onClick(parseInt(key))}
         >
-          {range(0, 30).map(index => (
+          {range(0, 30).map((index: number) => (
             <Menu.Item key={index}>{intl.formatMessage({ id: 'SNRS.DATE.N_DAYS' }, { n: index + 1 })}</Menu.Item>
           ))}
         </Menu>
