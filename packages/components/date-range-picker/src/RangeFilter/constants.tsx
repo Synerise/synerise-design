@@ -1,12 +1,13 @@
-import React from 'react';
+import * as React from 'react';
 import { range } from 'lodash';
-import fnsAddDays from 'date-fns/add_days';
+
 import { FormattedMessage } from 'react-intl';
 
 import fnsFormat from '../dateUtils/format';
 import MonthlyFilter from './MonthlyFilter/MonthlyFilter';
 import WeeklyFilter from './WeeklyFilter/WeeklyFilter';
 import DailyFilter from './DailyFilter/DailyFilter';
+import { fnsAddDays } from "../fns";
 
 const LONG_MONTH = new Date(0, 0, 1);
 

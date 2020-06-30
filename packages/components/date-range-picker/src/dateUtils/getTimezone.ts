@@ -7,7 +7,8 @@ const setItem = item => localStorage.setItem(bp_timezone, item);
 
 localStorage.removeItem(bp_timezone);
 
-const getEndpoint = () => `${getEnvironmentVar('REACT_APP_TIMEZONE_API')}/authenticated/settings/business-profile`;
+const getEndpoint = (): string =>
+  `${getEnvironmentVar('REACT_APP_TIMEZONE_API')}/authenticated/settings/business-profile`;
 const Timezone = {
   fetch: null,
   defaultTimezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
