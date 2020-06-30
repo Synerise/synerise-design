@@ -450,13 +450,13 @@ const stories = {
           grouped={Boolean(store.state.groupSettings)}
           hideGroupExpander={boolean('Hide group expander', false)}
           initialGroupsCollapsed={boolean('Initial groups collapsed?', false)}
-          title={`${itemsCount()} records`}
+          title={`${itemsCount()} results`}
           dataSource={filteredDataSource()}
           columns={getColumns()}
           loading={boolean('Set loading state', false)}
           roundedHeader={boolean('Rounded header', false)}
           cellSize={select('Set cells size', CELL_SIZES, CELL_SIZES.default)}
-          locale={{pagination: {items: 'items', groups: 'groups'}}}
+          locale={{pagination: {items: 'results', groups: 'groups'}}}
           filters={
             [
               {

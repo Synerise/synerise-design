@@ -67,7 +67,7 @@ const stories = {
 
     return (
       <Table
-        title={`${dataSource.length} records`}
+        title={`${dataSource.length} results`}
         dataSource={dataSource}
         columns={getColumns()}
         loading={boolean('Set loading state', false)}
@@ -77,6 +77,11 @@ const stories = {
           showSizeChanger: boolean('Show size changer', true),
           showQuickJumper: boolean('Show quick jumper', true),
           onChange: action('pageChanged'),
+        }}
+        locale={{
+          pagination: {
+            items: 'results',
+          }
         }}
         expandable={{
           expandIconColumnIndex: -1,

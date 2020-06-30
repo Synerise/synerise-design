@@ -66,7 +66,7 @@ const stories = {
 
     return (
       <Table
-        title={`${dataSource.length} records`}
+        title={`${dataSource.length} results`}
         dataSource={dataSource}
         columns={getColumns()}
         loading={boolean('Set loading state', false)}
@@ -78,6 +78,11 @@ const stories = {
             {text('Header button label', 'Add row')}
           </Button>
         )}
+        locale={{
+          pagination: {
+            items: 'results',
+          }
+        }}
         pagination={{
           showSizeChanger: boolean('Show size changer', true),
           showQuickJumper: boolean('Show quick jumper', true),

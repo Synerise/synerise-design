@@ -150,7 +150,7 @@ const stories = {
 
     return (
         <TreeTable
-          title={`${data.length} records`}
+          title={`${data.length} results`}
           dataSource={data}
           columns={getColumns()}
           loading={boolean('Set loading state', false)}
@@ -166,6 +166,11 @@ const stories = {
             showSizeChanger: boolean('Show size changer', true),
             showQuickJumper: boolean('Show quick jumper', true),
             onChange: action('pageChanged'),
+          }}
+          locale={{
+            pagination: {
+              items: 'results',
+            }
           }}
           expandIcon={(props) => {
             const { expandable, expanded, onExpand, record } = props;
