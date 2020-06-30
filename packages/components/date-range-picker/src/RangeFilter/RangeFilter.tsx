@@ -43,13 +43,13 @@ const normalizeValue = ({ type, definition }: FilterValue) => {
     case TYPES.WEEKLY:
       days = Object.values(definition)
         .filter((day: Day) => day.restricted)
-        .map((item: Object) => mapTimeSchema(item));
+        .map((item: Day) => mapTimeSchema(item));
       break;
     case TYPES.MONTHLY:
       const rules = [];
       definition.map((def) => {
         days = Object.values(def.definition)
-          .filter((day: Object) => day.restricted)
+          .filter((day: Day) => day.restricted)
           .map(({ restricted, display, ...rest }) => mapTimeSchema(rest));
 
         if (def.period === MONTHLY_TYPES.DAY_OF_WEEK) {

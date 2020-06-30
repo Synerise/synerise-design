@@ -98,12 +98,12 @@ export default class RangePicker extends React.PureComponent<Props, State> {
     onChange && onChange({ type: ABSOLUTE, from, to });
   };
 
-  handleFromTimeChange = (from: string | Date): void => {
+  handleFromTimeChange = (from: string | Date | undefined): void => {
     const { onChange, value } = this.props;
     onChange({ type: ABSOLUTE, from, to: value.to });
   };
 
-  handleToTimeChange = (to: string): void => {
+  handleToTimeChange = (to: string | Date | undefined): void => {
     const { onChange, value } = this.props;
     onChange({ type: ABSOLUTE, from: value.from, to });
   };
@@ -160,6 +160,10 @@ export default class RangePicker extends React.PureComponent<Props, State> {
       />
     );
   };
+  getDate(date: Date | string) {
+    if (typeof date === 'string') return new Date(date);
+    return date;
+  }
 
   renderDatePicker = (side: 'left' | 'right'): React.ReactNode => {
     const { value, disabledDate } = this.props;
@@ -170,7 +174,9 @@ export default class RangePicker extends React.PureComponent<Props, State> {
     const isSelecting = from && !to && enteredTo;
     const enteredStart = isSelecting ? fnsMin(from, enteredTo) : enteredTo;
     const enteredEnd = isSelecting ? fnsMax(from, enteredTo) : enteredTo;
-    const entered = isSelecting ? (day) => fnsIsWithinRange(day, enteredStart, enteredEnd) : enteredTo;
+    const entered = isSelecting
+      ? (day: Date | string | number): boolean => fnsIsWithinRange(day, enteredStart, enteredEnd)
+      : enteredTo;
     const modifiers = {
       start: isSelecting && !!enteredTo && !!from && enteredTo < from ? undefined : from,
       end: isSelecting && !!enteredTo && !!from && enteredTo < from ? from : to,
@@ -189,7 +195,7 @@ export default class RangePicker extends React.PureComponent<Props, State> {
         selectedDays={selectedDays}
         modifiers={modifiers}
         localeUtils={MomentLocaleUtils}
-        month={this.state[side].month}
+        month={this.getDate(this.state[side].month)}
         title={this.state[side].monthTitle}
         hideNext={side === 'left' && sidesAreAdjacent}
         hidePrev={side === 'right' && sidesAreAdjacent}

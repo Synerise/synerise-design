@@ -1,4 +1,6 @@
 import { IntlShape } from 'react-intl';
+import * as React from 'react';
+import { Texts } from '@synerise/ds-items-roll/dist/ItemsRoll.types';
 
 export type Props = {
   value: FilterValue;
@@ -10,9 +12,14 @@ export type Props = {
 export type State = {
   value: FilterValue;
 };
+type Definition = {
+  [key: string]: Day;
+};
 export type FilterValue = {
   type: string;
-  definition: Day;
+  definition: {
+    [key: string]: Day;
+  };
 };
 export type Day = {
   day?: number;
