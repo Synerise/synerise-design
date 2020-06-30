@@ -55,9 +55,6 @@ export const Label = styled.label`
   color: ${(props): string => props.theme.palette['grey-800']};
   font-weight: 500;
   display: block;
-  max-width: 160px;
-  text-overflow: ellipsis;
-  overflow: hidden;
   white-space: nowrap;
 `;
 
@@ -88,6 +85,7 @@ export const InputWrapper = styled.div<{ error?: boolean; focus?: boolean; disab
   min-height: 32px;
   flex-wrap:wrap;
   transition: 0.3s all;
+  word-break: break-all;
   
 
   
@@ -127,6 +125,7 @@ export const BorderLessInput = styled.input<{ disabled?: boolean }>`
   display: flex;
   flex: 1;
   margin-left: -8px;
+  word-break: break-all;
   && {
     background-color: rgba(255, 255, 255, 0);
   }
