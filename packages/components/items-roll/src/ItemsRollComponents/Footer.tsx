@@ -107,18 +107,18 @@ const Footer: React.FC<FooterProps> = ({
       <S.ContainerSpaceBetween data-testid="items-roll-footer">
         {itemsCount > maxToShowItems && buttonsConfiguration}
         {onClearAll && (
-         <Popconfirm
-          onConfirm={onClearAll}
-          icon={<S.WarningIcon component={<WarningFillM />} />}
-          cancelText={allTexts.popconfirmNoLabel}
-          okText={allTexts.popconfirmYesLabel}
-          title={allTexts.popconfirmTitleLabel}
-         >
-           <S.ClearButton type="ghost" mode="icon-label">
-             <Icon component={<CloseS />} size={22} />
-             {allTexts.clearAllLabel}
-           </S.ClearButton>
-         </Popconfirm>
+          <Popconfirm
+            onConfirm={onClearAll}
+            icon={<S.WarningIcon component={<WarningFillM />} />}
+            cancelText={allTexts.popconfirmNoLabel}
+            okText={allTexts.popconfirmYesLabel}
+            title={allTexts.popconfirmTitleLabel}
+          >
+            <S.ClearButton type="custom-color-ghost" color="red" mode="icon-label">
+              <Icon component={<CloseS />} size={22} />
+              {allTexts.clearAllLabel}
+            </S.ClearButton>
+          </Popconfirm>
         )}
       </S.ContainerSpaceBetween>
     </>
