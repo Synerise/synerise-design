@@ -257,7 +257,7 @@ const stories = {
     return (
       <>
         <Table
-          title={`${filteredDataSource().length} ${text('Set name of table items', 'records')}`}
+          title={`${filteredDataSource().length} ${text('Set name of table items', 'results')}`}
           dataSource={filteredDataSource()}
           columns={getColumns()}
           loading={boolean('Set loading state', false)}
@@ -290,6 +290,11 @@ const stories = {
             showSizeChanger: boolean('Show size changer', true),
             showQuickJumper: boolean('Show quick jumper', true),
             onChange: action('pageChanged'),
+          }}
+          locale={{
+            pagination: {
+              items: 'results',
+            }
           }}
           rowKey={row => row.key}
           selection={boolean('Enable row selection', false) && {

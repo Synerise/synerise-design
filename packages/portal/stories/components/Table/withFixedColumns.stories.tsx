@@ -47,7 +47,7 @@ const stories = {
 
     return (
       <Table
-        title={`${dataSource.length} records`}
+        title={`${dataSource.length} results`}
         dataSource={dataSource}
         layout='fixed'
         columns={COLUMNS}
@@ -57,6 +57,11 @@ const stories = {
           showSizeChanger: boolean('Show size changer', true),
           showQuickJumper: boolean('Show quick jumper', true),
           onChange: action('pageChanged')
+        }}
+        locale={{
+          pagination: {
+            items: 'results',
+          }
         }}
         headerButton={boolean('Show header button', false) && (
           <Button type="ghost" mode="icon-label" onClick={action('Header button action')}>

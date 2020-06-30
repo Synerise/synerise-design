@@ -69,7 +69,7 @@ const stories = {
           <VirtualTable
             scroll={{ y: 500, x: 0 }}
             initialWidth={792}
-            title={`${filteredDataSource().length} ${text('Set name of table items', 'records')}`}
+            title={`${filteredDataSource().length} ${text('Set name of table items', 'results')}`}
             dataSource={filteredDataSource()}
             columns={columns}
             cellHeight={50}

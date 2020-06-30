@@ -58,7 +58,7 @@ const CELL_SIZES = {
 
 const stories = {
   default: () => ({
-    title: `${dataSource.length} records`,
+    title: `${dataSource.length} results`,
     hideTitleBar: boolean('Hide title bar', false),
     dataSource,
     columns: COLUMNS,
@@ -68,6 +68,11 @@ const stories = {
       showSizeChanger: boolean('Show size changer', true),
       showQuickJumper: boolean('Show quick jumper', true),
       onChange: action('pageChanged'),
+    },
+    locale:{
+      pagination: {
+        items: 'results',
+      }
     },
     scroll: {
       x: false,
