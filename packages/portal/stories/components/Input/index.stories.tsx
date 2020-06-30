@@ -416,6 +416,7 @@ const stories = {
         error={!isFocus && hasError}
         disabled={boolean('disabled', false)}
         values={values}
+        maxLength={10}
         onBlur={() => {
           action('I am blurred');
           setFocus(false);
