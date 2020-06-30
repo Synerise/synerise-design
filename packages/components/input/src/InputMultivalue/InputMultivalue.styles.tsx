@@ -55,7 +55,7 @@ export const Label = styled.label`
   color: ${(props): string => props.theme.palette['grey-800']};
   font-weight: 500;
   display: block;
-  max-width: 160px;
+  max-width: 200px;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
