@@ -27,6 +27,7 @@ import withIndent from './withIndent/withIndent';
 import withHighlighting from './withHighlighting/withHighlighting';
 import withBreadcrumb from './withBreadcrumb/withBreadcrumb';
 import withSelection from './withSelection/withSelection';
+import withFlag from './withFlag/withFlag';
 import * as S from './stories.styles';
 import { v4 as uuid } from 'uuid';
 
@@ -93,6 +94,7 @@ const stories = {
   withHighlighting,
   withBreadcrumb,
   withSelection,
+  withFlag,
 };
 
 export default {
