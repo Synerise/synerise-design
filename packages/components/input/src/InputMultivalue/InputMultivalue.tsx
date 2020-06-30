@@ -76,6 +76,7 @@ const InputMultivalue: React.FC<Props> = props => {
           }}
           onFocus={onFocus}
           disabled={disabled}
+          maxLength={10}
         />
       </S.InputWrapper>
       {(showError || description) && (
