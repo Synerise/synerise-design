@@ -121,7 +121,7 @@ export const ValueWrapper = styled.div<{ disabled?: boolean; shrink?: boolean }>
 export const BorderLessInput = styled.input<{ disabled?: boolean }>`
   box-shadow: none;
   border: none;
-  width: 100%;
+  min-width: 0;
   display: flex;
   flex: 1;
   margin-left: -8px;
