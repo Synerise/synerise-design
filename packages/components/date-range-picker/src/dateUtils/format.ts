@@ -19,7 +19,7 @@ const locales = {
 
 const defaultLocale = 'en';
 
-const format = (date: Date, formatStr: string, locale: string = defaultLocale): void => {
+const format = (date: Date, formatStr: string, locale: string = defaultLocale): string => {
   return fnsFormat(date, formatStr, {
     locale: locales[locale.substring(0, 2)],
   });

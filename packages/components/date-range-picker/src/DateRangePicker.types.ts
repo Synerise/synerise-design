@@ -8,7 +8,7 @@ export interface Props extends WrappedComponentProps {
   relativeFuture: boolean;
   relativePast: boolean;
   onApply: (value: DateRange) => void;
-  disabledDate: () => {};
+  disabledDate: () => boolean;
   validate: (value: DateRange) => { valid: boolean; message?: string };
   format: string;
   ranges: DateRange[];

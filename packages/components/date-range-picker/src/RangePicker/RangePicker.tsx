@@ -1,46 +1,50 @@
 import * as React from 'react';
-import * as PropTypes from 'prop-types';
-import { DateUtils } from 'react-day-picker';
-import fnsStartOfMonth from 'date-fns/start_of_month';
-import fnsIsSameMonth from 'date-fns/is_same_month';
+import { DateUtils, RangeModifier } from 'react-day-picker';
+// @ts-ignore
 import fnsIsSameDay from 'date-fns/is_same_day';
+// @ts-ignore
 import fnsMin from 'date-fns/min';
+// @ts-ignore
 import fnsMax from 'date-fns/max';
-import fnsIsAfter from 'date-fns/is_after';
+// @ts-ignore
 import fnsIsWithinRange from 'date-fns/is_within_range';
-import fnsStartOfDay from 'date-fns/start_of_day';
-import fnsEndOfDay from 'date-fns/end_of_day';
 
 import MonthPicker from '@synerise/ds-date-picker/dist/Elements/MonthPicker/MonthPicker';
 import DayPicker from '@synerise/ds-date-picker/dist/Elements/DayPicker/DayPicker';
-//import localeUtils from '@synerise/ds-date-picker/dist/localeUtils';
 import MomentLocaleUtils from 'react-day-picker/moment';
 
-import { Side, Sides } from './RangePicker.styles';
-import { ABSOLUTE, TIME_OPTIONS } from '../constants';
 import TimePicker from '@synerise/ds-time-picker';
-
-import GET from '../dateUtils/get';
-import SET from '../dateUtils/set';
-import ADD from '../dateUtils/add';
-import format from '../dateUtils/format';
-import { DateRange } from '../date.types';
 import YearPicker from '@synerise/ds-date-picker/dist/Elements/YearPicker/YearPicker';
 import {
   DayBackground,
   DayForeground,
   DayText,
 } from '@synerise/ds-date-picker/dist/Elements/DayPicker/DayPicker.styles';
+import { fnsStartOfMonth, fnsStartOfDay, fnsEndOfDay, fnsIsSameMonth, fnsIsAfter } from '../fns';
+import { Side, Sides } from './RangePicker.styles';
+import { ABSOLUTE, TIME_OPTIONS } from '../constants';
 
-const getDisabledTimeOptions = (day, granularity, lowerLimit = null, upperLimit = null) => {
-  lowerLimit = lowerLimit || fnsStartOfDay(day);
-  upperLimit = upperLimit || fnsEndOfDay(day);
-  const options = TIME_OPTIONS[granularity].map(a => SET[granularity](day, a));
-  return options.filter(a => !fnsIsWithinRange(a, lowerLimit, upperLimit)).map(a => GET[granularity](a));
+import GET from '../dateUtils/get';
+import SET from '../dateUtils/set';
+import ADD from '../dateUtils/add';
+import format from '../dateUtils/format';
+import { DateRange } from '../date.types';
+import { Limit, Props, State } from './RangePicker.types';
+
+const getDisabledTimeOptions = (
+  day: string | Date | undefined,
+  granularity: string,
+  lowerLimit: Limit = null,
+  upperLimit: Limit = null
+): [] => {
+  const lowLimit = lowerLimit || fnsStartOfDay(day);
+  const upLimit = upperLimit || fnsEndOfDay(day);
+  const options = TIME_OPTIONS[granularity].map((a: number) => SET[granularity](day, a));
+  return options.filter((a: number) => !fnsIsWithinRange(a, lowLimit, upLimit)).map((a: number) => GET[granularity](a));
 };
 
-const getSidesState = (value: DateRange) => {
-  let from = fnsStartOfMonth(value.from || new Date());
+const getSidesState = (value: DateRange): State => {
+  const from = fnsStartOfMonth(value.from || new Date());
   let to = fnsStartOfMonth(value.to || new Date());
   if (fnsIsSameMonth(from, to)) to = ADD.MONTHS(to, 1);
   return {
@@ -57,35 +61,7 @@ const getSidesState = (value: DateRange) => {
   };
 };
 
-interface Props {
-  value: DateRange;
-  onChange: (value: DateRange) => {};
-  mode: string;
-  disabledDate: (value: DateRange) => {};
-}
-
-interface State {
-  enteredTo: Date | null;
-  left: {
-    month: Date | string;
-    monthTitle: string;
-    mode: string;
-  };
-  right: {
-    month: Date | string;
-    monthTitle: string;
-    mode: string;
-  };
-}
-
 export default class RangePicker extends React.PureComponent<Props, State> {
-  static propTypes = {
-    value: PropTypes.object,
-    onChange: PropTypes.func,
-    mode: PropTypes.string,
-    disabledDate: PropTypes.func,
-  };
-
   constructor(props: Props) {
     super(props);
     this.state = {
@@ -94,18 +70,23 @@ export default class RangePicker extends React.PureComponent<Props, State> {
     };
   }
 
-  componentWillReceiveProps({ value }: Props) {
-    if (value !== this.props.value) this.setState(getSidesState(value));
+  componentWillReceiveProps({ value: newValue }: Props): void {
+    const { value } = this.props;
+    if (value !== newValue) this.setState(getSidesState(value));
   }
 
-  handleDayMouseEnter = (day: Date) => this.setState({ enteredTo: day });
+  handleDayMouseEnter = (day: Date): void => {
+    this.setState({ enteredTo: day });
+  };
 
-  handleDayMouseLeave = () => this.setState({ enteredTo: null });
+  handleDayMouseLeave = (): void => {
+    this.setState({ enteredTo: null });
+  };
 
-  handleDayClick = (day: Date, modifiers: { disabled: boolean }) => {
+  handleDayClick = (day: Date, modifiers: { disabled: boolean }): void => {
+    const { value, onChange } = this.props;
     if (modifiers.disabled) return;
-    // @ts-ignore
-    let { from, to } = DateUtils.addDayToRange(day, this.props.value);
+    let { from, to } = DateUtils.addDayToRange(day, value as RangeModifier);
     from = from ? fnsStartOfDay(from) : from;
     to = to ? fnsEndOfDay(to) : to;
     if (to) {
@@ -114,72 +95,85 @@ export default class RangePicker extends React.PureComponent<Props, State> {
         to = now;
       }
     }
-    this.props.onChange({ type: ABSOLUTE, from, to });
+    onChange && onChange({ type: ABSOLUTE, from, to });
   };
 
-  handleFromTimeChange = (from: string | Date) =>
-    this.props.onChange({ type: ABSOLUTE, from, to: this.props.value.to });
+  handleFromTimeChange = (from: string | Date): void => {
+    const { onChange, value } = this.props;
+    onChange({ type: ABSOLUTE, from, to: value.to });
+  };
 
-  handleToTimeChange = to => this.props.onChange({ type: ABSOLUTE, from: this.props.value.from, to });
+  handleToTimeChange = (to: string): void => {
+    const { onChange, value } = this.props;
+    onChange({ type: ABSOLUTE, from: value.from, to });
+  };
 
-  handleSideMonthChange = (side: 'left' | 'right', month: number, mode: string) => {
+  handleSideMonthChange = (side: 'left' | 'right', month: Date, mode: string) => {
     const opposite = side === 'left' ? 'right' : 'left';
-    if (fnsIsSameMonth(month, this.state[opposite])) {
-      const dir = fnsIsAfter(month, this.state[side].month) ? 1 : -1;
+    const { state } = this;
+    if (fnsIsSameMonth(month, state[opposite])) {
+      const dir = fnsIsAfter(month, state[side].month) ? 1 : -1;
       month = ADD.MONTHS(month, dir);
     }
-    this.setState({ [side]: { ...this.state[side], month, mode } });
+    this.setState((prevState) => ({ ...prevState, [side]: { ...state[side], month, mode } }));
   };
 
-  handleSideModeChange = (side, mode) => this.setState({ [side]: { ...this.state[side], mode } });
+  handleSideModeChange = (side: string, mode: string): void => {
+    this.setState((prevState) => ({ ...prevState, [side]: { ...prevState[side], mode } }));
+  };
 
-  renderDay = (day: Date) => {
+  renderDay = (day: Date): React.ReactNode => {
     const text = day.getDate();
     return (
-      <React.Fragment>
+      <>
         <DayBackground className="DayPicker-Day-BG" />
         <DayText className="DayPicker-Day-Text" data-attr={text}>
           {text}
         </DayText>
         <DayForeground className="DayPicker-Day-FG" />
-      </React.Fragment>
+      </>
     );
   };
 
-  renderYearPicker = (side: 'left' | 'right') => {
+  renderYearPicker = (side: 'left' | 'right'): React.ReactNode => {
+    const { [side]: currentSide } = this.state;
+    const { month } = currentSide;
     return (
       <YearPicker
         key={`year_picker_${side}`}
-        value={this.state[side].month}
-        onChange={month => this.handleSideMonthChange(side, month, 'date')}
+        value={month instanceof Date ? month : new Date(month)}
+        onChange={(m): void => this.handleSideMonthChange(side, m, 'date')}
       />
     );
   };
 
-  renderMonthPicker = (side: 'left' | 'right') => {
+  renderMonthPicker = (side: 'left' | 'right'): React.ReactNode => {
     const opposite = side === 'left' ? 'right' : 'left';
+    const { [side]: currentSide, [opposite]: oppositeSide } = this.state;
     return (
       <MonthPicker
         key={`month_picker_${opposite}`}
-        max={side === 'left' ? ADD.MONTHS(this.state[opposite].month, -1) : undefined}
-        min={side === 'right' ? ADD.MONTHS(this.state[opposite].month, 1) : undefined}
-        value={this.state[side].month}
-        onChange={month => this.handleSideMonthChange(side, month, 'date')}
+        max={side === 'left' ? ADD.MONTHS(oppositeSide.month, -1) : undefined}
+        min={side === 'right' ? ADD.MONTHS(oppositeSide.month, 1) : undefined}
+        value={currentSide.month instanceof Date ? currentSide.month : new Date(currentSide.month)}
+        onChange={(month): void => this.handleSideMonthChange(side, month, 'date')}
       />
     );
   };
 
-  renderDatePicker = (side: 'left' | 'right') => {
+  renderDatePicker = (side: 'left' | 'right'): React.ReactNode => {
     const { value, disabledDate } = this.props;
+    console.log('RagenPickerProps', this.props);
+    console.log('RagenPickerState', this.state);
     const { enteredTo, left, right } = this.state;
     const { from, to, type } = value;
     const isSelecting = from && !to && enteredTo;
     const enteredStart = isSelecting ? fnsMin(from, enteredTo) : enteredTo;
     const enteredEnd = isSelecting ? fnsMax(from, enteredTo) : enteredTo;
-    const entered = isSelecting ? day => fnsIsWithinRange(day, enteredStart, enteredEnd) : enteredTo;
+    const entered = isSelecting ? (day) => fnsIsWithinRange(day, enteredStart, enteredEnd) : enteredTo;
     const modifiers = {
-      start: isSelecting && enteredTo < from ? undefined : from,
-      end: isSelecting && enteredTo < from ? from : to,
+      start: isSelecting && !!enteredTo && !!from && enteredTo < from ? undefined : from,
+      end: isSelecting && !!enteredTo && !!from && enteredTo < from ? from : to,
       entered,
       'entered-start': enteredStart,
       'entered-end': enteredEnd,
@@ -190,8 +184,6 @@ export default class RangePicker extends React.PureComponent<Props, State> {
       <DayPicker
         key={`day_picker_${side}`}
         className={type.toLowerCase()}
-        fixedWeeks={true}
-        showOutsideDays={true}
         canChangeMonth={false}
         disabledDays={disabledDate}
         selectedDays={selectedDays}
@@ -205,14 +197,23 @@ export default class RangePicker extends React.PureComponent<Props, State> {
         onDayClick={this.handleDayClick}
         onDayMouseEnter={this.handleDayMouseEnter}
         onDayMouseLeave={this.handleDayMouseLeave}
-        onMonthNameClick={() => this.handleSideModeChange(side, 'month')}
-        onYearNameClick={() => this.handleSideModeChange(side, 'year')}
-        onMonthChange={month => this.handleSideMonthChange(side, month, 'date')}
+        onMonthNameClick={(): void => this.handleSideModeChange(side, 'month')}
+        onYearNameClick={(): void => this.handleSideModeChange(side, 'year')}
+        onMonthChange={(month): void => this.handleSideMonthChange(side, month, 'date')}
+        fixedWeeks
+        showOutsideDay
       />
     );
   };
 
-  renderTimePicker = (side: 'left' | 'right') => {
+  getRangeEndValue = (value: string | Date | undefined): Date | undefined => {
+    if (typeof value === 'string') {
+      return new Date(value);
+    }
+    return value;
+  };
+
+  renderTimePicker = (side: 'left' | 'right'): React.ReactNode => {
     const { value } = this.props;
     const { from, to } = value;
     switch (side) {
@@ -220,11 +221,11 @@ export default class RangePicker extends React.PureComponent<Props, State> {
         return (
           <TimePicker
             key={`left_time_${side}`}
-            value={from}
+            value={this.getRangeEndValue(from)}
             onChange={this.handleFromTimeChange}
-            disabledHours={() => getDisabledTimeOptions(from, 'HOURS', null, to)}
-            disabledMinutes={() => getDisabledTimeOptions(from, 'MINUTES', null, to)}
-            disabledSeconds={() => getDisabledTimeOptions(from, 'SECONDS', null, to)}
+            disabledHours={getDisabledTimeOptions(from, 'HOURS', null, to)}
+            disabledMinutes={getDisabledTimeOptions(from, 'MINUTES', null, to)}
+            disabledSeconds={getDisabledTimeOptions(from, 'SECONDS', null, to)}
           />
         );
       }
@@ -232,11 +233,11 @@ export default class RangePicker extends React.PureComponent<Props, State> {
         return (
           <TimePicker
             key={`right_time_${side}`}
-            value={to}
+            value={this.getRangeEndValue(to)}
             onChange={this.handleToTimeChange}
-            disabledHours={() => getDisabledTimeOptions(to, 'HOURS', from, null)}
-            disabledMinutes={() => getDisabledTimeOptions(to, 'MINUTES', from, null)}
-            disabledSeconds={() => getDisabledTimeOptions(to, 'SECONDS', from, null)}
+            disabledHours={getDisabledTimeOptions(to, 'HOURS', from, null)}
+            disabledMinutes={getDisabledTimeOptions(to, 'MINUTES', from, null)}
+            disabledSeconds={getDisabledTimeOptions(to, 'SECONDS', from, null)}
           />
         );
       }
@@ -245,10 +246,11 @@ export default class RangePicker extends React.PureComponent<Props, State> {
     }
   };
 
-  renderSide = (side: 'left' | 'right') => {
+  renderSide = (side: 'left' | 'right'): React.ReactNode | null => {
     const { mode } = this.props;
+    const { state } = this;
     if (mode === 'time') return this.renderTimePicker(side);
-    switch (this.state[side].mode) {
+    switch (state[side].mode) {
       case 'date':
         return this.renderDatePicker(side);
       case 'month':
@@ -262,6 +264,8 @@ export default class RangePicker extends React.PureComponent<Props, State> {
 
   render(): React.ReactNode {
     const { mode } = this.props;
+    console.log('RangePicker state', this.state);
+    console.log('RangePicker props', this.props);
     return (
       <Sides bordered={mode === 'time'}>
         <Side>{this.renderSide('left')}</Side>

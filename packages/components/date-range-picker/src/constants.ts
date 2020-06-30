@@ -1,3 +1,4 @@
+import { TIME_OPTIONS } from '@synerise/ds-date-picker/dist/Elements/TimePicker/TimePicker';
 export const SECONDS = 'SECONDS';
 export const MINUTES = 'MINUTES';
 export const HOURS = 'HOURS';
@@ -178,8 +179,5 @@ export const RELATIVE_PRESETS = [
     duration: { type: YEARS, value: 1 },
   },
 ];
-export const TIME_OPTIONS = {
-  HOURS: [0,1,2,3,4],
-  MINUTES: [0,1,2,3,4],
-  SECONDS: [0,1,2,3,4],
-};
+
+export { TIME_OPTIONS };

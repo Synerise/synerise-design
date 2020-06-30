@@ -1,27 +1,18 @@
-// @flow
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore
+import fnsMax from 'date-fns/max';
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore
+import fnsMin from 'date-fns/min';
 import ADD from './add';
 import START_OF from './startOf';
 import END_OF from './endOf';
-import fnsMin from 'date-fns/min';
-import fnsMax from 'date-fns/max';
+import { RelativeDateRange, DateFilter } from '../date.types';
 
 export type Relative = 'SECONDS' | 'MINUTES' | 'HOURS' | 'DAYS' | 'WEEKS' | 'MONTHS' | 'YEARS';
 
-export interface Datefilter {
-  type: 'ABSOLUTE' | 'RELATIVE';
-  from?: string | Date;
-  to?: string | Date;
-  duration?: {
-    type: Relative,
-    value: number,
-  };
-  offset?: {
-    type: Relative,
-    value: number,
-  };
-}
 
-const relativeToAbsolute = (range: Object): Datefilter => {
+const relativeToAbsolute = (range: RelativeDateRange): DateFilter => {
   const { future, offset, duration } = range;
   const now = new Date();
   let left;
