@@ -13,18 +13,19 @@ import RelativeRangePicker from './RelativeRangePicker/RelativeRangePicker';
 import FilterSwitch from './RangeFilter/FilterSwitch/FilterSwitch';
 import RangePicker from './RangePicker/RangePicker';
 import { RELATIVE, ABSOLUTE } from './constants';
-import ADD from './dateUtils/add'
+import ADD from './dateUtils/add';
 import START_OF from './dateUtils/startOf';
 import END_OF from './dateUtils/endOf';
 import fnsFormat from './dateUtils/format';
 import relativeToAbsolute from './dateUtils/relativeToAbsolute';
 import { Props, State } from './DateRangePicker.types';
-import { DateRange, DateFilter } from '../../types/Dates';
+import { DateFilter, DateRange } from './date.types';
 
 export const normalizeRange = (range: DateRange): DateRange => {
   if (!range || !range.type) {
     return { type: ABSOLUTE, from: fnsStartOfDay(new Date()), to: new Date() };
-  } else if (range.type === RELATIVE) {
+  }
+  if (range.type === RELATIVE) {
     const { future, offset, duration } = range;
     const now = new Date();
     let left;
@@ -55,7 +56,7 @@ class DateRangePicker extends React.PureComponent<Props, State> {
     showRelativePicker: true,
     showFilter: false,
     showTime: false,
-    validate: () => ({ valid: true }),
+    validate: (): { valid: boolean } => ({ valid: true }),
   };
 
   constructor(props: Props) {
@@ -67,25 +68,29 @@ class DateRangePicker extends React.PureComponent<Props, State> {
     };
   }
 
-  componentWillReceiveProps({ value }: Props) {
-    if (value !== this.props.value) this.setState({ mode: 'date', value: normalizeRange(value), changed: false });
+  componentWillReceiveProps({ value: newValue }: Props): void {
+    const { value } = this.props;
+    if (newValue !== value) this.setState({ mode: 'date', value: normalizeRange(newValue), changed: false });
   }
 
-  handleFilterCancel = () => this.setState({ mode: 'date' });
+  handleFilterCancel = (): void => {
+    this.setState({ mode: 'date' });
+  };
 
-  handleFilterApply = (filter?: DateFilter) =>
-    this.setState({ mode: 'date', value: { ...this.state.value, filter }, changed: true });
-
-  handleRangeChange = (range: DateRange) =>
-    this.setState({ value: normalizeRange({ ...range, filter: this.state.value.filter }), changed: true });
-
-  handleModeSwitch = (mode: string) => this.setState({ mode });
-
-  handleApply = () => {
+  handleFilterApply = (filter?: DateFilter): void => {
     const { value } = this.state;
-    const { forceAbsolute } = this.props;
-    this.props.onApply &&
-      this.props.onApply(
+    this.setState({ mode: 'date', value: { ...value, filter }, changed: true });
+  };
+
+  handleRangeChange = (range: DateRange): void => {
+    const { value } = this.state;
+    this.setState({ value: normalizeRange({ ...range, filter: value.filter }), changed: true });
+  };
+
+  handleApply = (): void => {
+    const { value } = this.state;
+    const { forceAbsolute, onApply } = this.props;
+    onApply && onApply(
         forceAbsolute && value.type === RELATIVE
           ? {
               ...value,
@@ -101,13 +106,21 @@ class DateRangePicker extends React.PureComponent<Props, State> {
       );
   };
 
-  onOpenModalButtonClick = () => this.handleModeSwitch('filter');
+  handleModalOpenClick = (): void => {
+    this.setState({ mode: 'filter' });
+  };
 
-  onRemoveFilterButtonClick = () => this.handleFilterApply(undefined);
+  handleRemoveFilterClick = (): void => {
+    this.handleFilterApply(undefined);
+  };
 
-  onSwitchMode = () => this.handleModeSwitch(this.state.mode === 'time' ? 'date' : 'time');
+  handleSwitchMode = (): void => {
+    const { mode } = this.state;
+    const updatedMode = mode === 'time' ? 'date' : 'time';
+    this.setState({ mode: updatedMode });
+  };
 
-  render() {
+  render(): JSX.Element {
     const {
       showRelativePicker,
       showFilter,
@@ -152,10 +165,10 @@ class DateRangePicker extends React.PureComponent<Props, State> {
     if (showFilter)
       addons.push(
         <FilterSwitch
-          isOn={filter}
+          isOn={!!filter}
           translations={{ enableFilter: intl.formatMessage({ id: 'SNRS.DATE.ENABLE_FILTER' }) }}
-          onOpenModalButtonClick={this.onOpenModalButtonClick}
-          onRemoveFilterButtonClick={this.onRemoveFilterButtonClick}
+          onOpenModalButtonClick={this.handleModalOpenClick}
+          onRemoveFilterButtonClick={this.handleRemoveFilterClick}
           statusInnerHtml={{ __html: intl.formatMessage({ id: 'SNRS.FILTER-SWITCH.FILTER_IS_ON' }) }}
         />
       );
@@ -163,9 +176,12 @@ class DateRangePicker extends React.PureComponent<Props, State> {
       <Container>
         <RangePicker value={value} onChange={this.handleRangeChange} mode={mode} disabledDate={disabledDate} />
         {addons.length > 0 && mode !== 'time' && <Separator />}
-        {addons.map((addon, index) => (
-          <Addon key={index}>{addon}</Addon>
-        ))}
+        {addons.map(
+          (addon, index: number): React.ReactNode => (
+            // eslint-disable-next-line react/no-array-index-key
+            <Addon key={index}>{addon}</Addon>
+          )
+        )}
         <Footer
           text={footerText}
           canApply={isValid && changed}
@@ -174,11 +190,8 @@ class DateRangePicker extends React.PureComponent<Props, State> {
           mode={mode}
           canSwitchMode={isValid}
           message={!validator.valid ? validator.message : null}
-          onSwitchMode={this.onSwitchMode}
-          texts ={{selectTime:'Select time',
-          selectDate:'Select date',
-          apply:'Apply',
-          now:'now'}}
+          onSwitchMode={this.handleSwitchMode}
+          texts={{ selectTime: 'Select time', selectDate: 'Select date', apply: 'Apply', now: 'now' }}
         />
       </Container>
     );

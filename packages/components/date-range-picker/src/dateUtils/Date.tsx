@@ -1,10 +1,14 @@
 import * as React from 'react';
 import { FormattedDate, FormattedTime } from 'react-intl';
 
-export const ParsedDate = props => (
-  <>
-    <FormattedDate value={props.date} year="numeric" month="short" day="numeric" />
-    &nbsp;
-    <FormattedTime value={props.date} day="numeric" hour="numeric" minute="numeric" />
-  </>
-);
+const ParsedDate: React.FC<{ date: Date }> = (props: { date: Date }) => {
+  const { date } = props;
+  return (
+    <>
+      <FormattedDate value={date} year="numeric" month="short" day="numeric" />
+      &nbsp;
+      <FormattedTime value={date} day="numeric" hour="numeric" minute="numeric" />
+    </>
+  );
+};
+export default ParsedDate;

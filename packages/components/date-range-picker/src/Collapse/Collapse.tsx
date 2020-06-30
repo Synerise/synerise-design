@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import { Collapse as CollapseWrapper } from 'react-collapse';
 
 import AngleDownS from '@synerise/ds-icon/dist/icons/AngleDownS';
@@ -8,11 +8,8 @@ import Icon from '@synerise/ds-icon';
 import { Flex, Box } from '@rebass/grid';
 import { CollapseContainer, CollapseHeader, CollapseContent, IconWrapper } from './Collapse.styles';
 import { Props, State } from './Collapse.types';
-
-export default class Collapse extends Component<Props, State> {
-  props: Props;
-  state: State;
-
+const NOOP = () => {};
+export default class Collapse extends React.Component<Props, State> {
   static defaultProps = {
     hideArrow: false,
   };
@@ -24,13 +21,15 @@ export default class Collapse extends Component<Props, State> {
       collapsed: props.defaultCollapsed || false,
     };
   }
-  handleClick = () => {
-    this.setState({ collapsed: !this.state.collapsed });
-    if (this.props.onCollapseChange) {
-      this.props.onCollapseChange();
-    }
+
+  handleClick = (): void => {
+    const { collapsed } = this.state;
+    const { onCollapseChange } = this.props;
+    this.setState({ collapsed: !collapsed });
+    onCollapseChange && onCollapseChange();
   };
-  render() {
+
+  render(): JSX.Element {
     const {
       className,
       iconHandle,
@@ -47,23 +46,33 @@ export default class Collapse extends Component<Props, State> {
 
     return (
       <CollapseContainer>
-        <CollapseHeader className={className} iconHandle={iconHandle} onClick={!iconHandle && this.handleClick}>
+        <CollapseHeader
+          className={String(className)}
+          iconHandle={!!iconHandle}
+          onClick={!iconHandle ? this.handleClick : NOOP}
+        >
           <Flex alignItems="center" flex="100%">
             <Box flex="auto">{header}</Box>
             <Box>
               <Flex>
                 {optionalHeaderComponent && <Box>{optionalHeaderComponent}</Box>}
                 <Box>
-                  <IconWrapper iconHandle={iconHandle} onClick={iconHandle && this.handleClick}>
+                  <IconWrapper iconHandle={!!iconHandle} onClick={iconHandle ? this.handleClick : NOOP}>
                     {!hideArrow &&
-                    (customIcon || <Icon component={componentCollapsed ? <AngleDownS /> : <AngleUpS />} size="24" />)}
+                      (customIcon || <Icon component={componentCollapsed ? <AngleDownS /> : <AngleUpS />} size="24" />)}
                   </IconWrapper>
                 </Box>
               </Flex>
             </Box>
           </Flex>
         </CollapseHeader>
-        <CollapseWrapper isOpened={!componentCollapsed} hasNestedCollapse>
+
+        <CollapseWrapper
+          isOpened={!componentCollapsed}
+          // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+          // @ts-ignore
+          hasNestedCollapse
+        >
           <CollapseContent className={className}>{children}</CollapseContent>
         </CollapseWrapper>
       </CollapseContainer>

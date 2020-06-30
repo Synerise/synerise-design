@@ -1,14 +1,10 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import { injectIntl } from 'react-intl';
 import TimeWindow from '../../TimeWindow/TimeWindow';
-class WeeklyFilter extends React.PureComponent {
-  static propTypes = {
-    value: PropTypes.object,
-    onChange: PropTypes.func,
-  };
+import { Props } from './WeeklyFilter.types';
 
-  render() {
+class WeeklyFilter extends React.PureComponent<Props> {
+  render(): JSX.Element {
     const { value, onChange, intl } = this.props;
     return (
       <TimeWindow
@@ -16,9 +12,9 @@ class WeeklyFilter extends React.PureComponent {
         title={intl.formatMessage({ id: 'SNRS.DATE.SELECT_DAY' })}
         showSelectAll
         invertibleTime
-        dayTemplate={dayOfWeek => ({ day: dayOfWeek })}
+        dayTemplate={(dayOfWeek) => ({ day: dayOfWeek })}
         days={value}
-        onChange={value => onChange(value)}
+        onChange={(val): void => onChange(val)}
         timeMarks={{}}
       />
     );

@@ -4,9 +4,9 @@ import { IntlShape } from 'react-intl';
 export type Props = {
   value: Date;
   label: string | React.ReactNode;
-  onChange:
-  onToggle,
-  active,
+  onChange: () => void;
+  onToggle: () => void;
+  active: boolean;
   restricted: boolean;
-  intl: IntlShape
-}
+  intl: IntlShape;
+};

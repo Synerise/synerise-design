@@ -1,16 +1,16 @@
 import * as React from 'react';
-import { injectIntl, WrappedComponentProps } from 'react-intl';
+import { injectIntl } from 'react-intl';
 import TimeWindow from '../../TimeWindow/TimeWindow';
-
-interface Props extends WrappedComponentProps {
-  value: string;
-  onChange: (v: string) => {};
-}
+import { Props } from './DailyFilter.types';
 
 class DailyFilter extends React.PureComponent<Props> {
-  onChange = (value: string) => this.props.onChange(value[0]);
 
-  render() {
+  handleOnChange = (value: string): void => {
+    const { onChange } = this.props;
+    onChange && onChange(value[0]);
+  };
+
+  render(): JSX.Element {
     const { value } = this.props;
     return (
       <TimeWindow
@@ -19,7 +19,7 @@ class DailyFilter extends React.PureComponent<Props> {
         numberOfDays={0}
         customDays={{ 0: { label: this.props.intl.formatMessage({ id: 'SNRS.DATE.EVERY_DAY' }) } }}
         days={[value]}
-        onChange={this.onChange}
+        onChange={this.handleOnChange}
         timeMarks={{}}
       />
     );
