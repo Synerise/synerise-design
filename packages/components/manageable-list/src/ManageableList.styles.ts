@@ -56,7 +56,7 @@ export const ShowMoreButton = styled.div`
     padding: 16px 8px;
     margin: 0;
   }
-  &: hover {
+  &:hover {
     color: ${(props): string => props.theme.palette['blue-600']};
   }
   strong {
