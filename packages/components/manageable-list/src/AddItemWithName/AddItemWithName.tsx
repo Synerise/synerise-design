@@ -45,6 +45,7 @@ const AddItemWithName: React.FC<Props> = ({ onItemAdd, addItemLabel, disabled, p
       </Button>
       {active && (
         <Input
+          resetMargin
           autoFocus
           value={name}
           onBlur={handleClickOutside}
