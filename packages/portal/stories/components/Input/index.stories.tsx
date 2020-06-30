@@ -410,12 +410,13 @@ const stories = {
 
     return (
       <InputMultivalue
-        label={renderLabel(text('label', 'Label'))}
+        label={renderLabel(text('Label', 'Label'))}
         description={text('Description', 'Description')}
         errorText={!isFocus && getErrorText(hasError)}
         error={!isFocus && hasError}
-        disabled={boolean('disabled', false)}
+        disabled={boolean('Disabled', false)}
         values={values}
+        maxLength={number('Value Length', 10)}
         onBlur={() => {
           action('I am blurred');
           setFocus(false);

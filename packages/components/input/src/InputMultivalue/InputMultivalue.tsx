@@ -12,10 +12,22 @@ export interface Props {
   disabled?: boolean;
   onBlur?: () => void;
   onFocus?: () => void;
+  maxLength?: number;
 }
 const emptyValue = '';
 const InputMultivalue: React.FC<Props> = props => {
-  const { className, errorText, label, description, values, onBlur, onFocus, disabled, ...antdProps } = props;
+  const {
+    className,
+    errorText,
+    label,
+    description,
+    values,
+    onBlur,
+    onFocus,
+    disabled,
+    maxLength,
+    ...antdProps
+  } = props;
   const showError = Boolean(errorText);
   const [value, setValue] = React.useState(emptyValue);
 
@@ -76,6 +88,7 @@ const InputMultivalue: React.FC<Props> = props => {
           }}
           onFocus={onFocus}
           disabled={disabled}
+          maxLength={maxLength}
         />
       </S.InputWrapper>
       {(showError || description) && (
