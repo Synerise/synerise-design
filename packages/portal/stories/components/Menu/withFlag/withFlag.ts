@@ -1,12 +1,12 @@
-import { avatarSmall } from '../dataset';
+import { withFlag as data } from '../dataset';
 import { attachKnobsToDataSource, decorator, getDefaultProps } from '../index.stories';
 
-const withSmallAvatar = () => {
+const withFlag = () => {
   const defaultProps = getDefaultProps();
   const props = {
-    dataSource: attachKnobsToDataSource(avatarSmall),
+    dataSource: attachKnobsToDataSource(data),
     ...defaultProps,
   } as object;
   return decorator(props);
 };
-export default withSmallAvatar;
+export default withFlag;
