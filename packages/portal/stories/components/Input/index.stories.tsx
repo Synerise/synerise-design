@@ -152,13 +152,13 @@ const stories = {
         error={boolean('Set select error', false)}
       >
         <Select.Option value="es">
-          <FlagLabelCell countryCode={'ES'} label={'+34'} />
+          <FlagLabelCell countryCode={'ES'} label={'(+34)'} />
         </Select.Option>
         <Select.Option value="pl">
-          <FlagLabelCell countryCode={'PL'} label={'+48'} />
+          <FlagLabelCell countryCode={'PL'} label={'(+48)'} />
         </Select.Option>{' '}
         <Select.Option value="gb">
-          <FlagLabelCell countryCode={'GB'} label={'+44'} />
+          <FlagLabelCell countryCode={'GB'} label={'(+44)'} />
         </Select.Option>
       </Select>
     );
