@@ -8,7 +8,9 @@ import Icon from '@synerise/ds-icon';
 import { Flex, Box } from '@rebass/grid';
 import { CollapseContainer, CollapseHeader, CollapseContent, IconWrapper } from './Collapse.styles';
 import { Props, State } from './Collapse.types';
-const NOOP = () => {};
+
+const NOOP = (): void => {};
+
 export default class Collapse extends React.Component<Props, State> {
   static defaultProps = {
     hideArrow: false,

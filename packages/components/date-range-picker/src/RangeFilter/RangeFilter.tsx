@@ -1,7 +1,15 @@
 import * as React from 'react';
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore
 import range from 'lodash/range';
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore
 import groupBy from 'lodash/groupBy';
-import omit from 'lodash/omit';
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore
+import  omit from 'lodash/omit';
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore
 import cloneDeep from 'lodash/cloneDeep';
 import ButtonGroup from '@synerise/ds-button-group';
 import { injectIntl } from 'react-intl';
@@ -10,7 +18,7 @@ import Button from '@synerise/ds-button';
 import { MONTHLY_TYPES, TYPES, TYPES_DATA } from './constants';
 import * as S from './RangeFilter.styles';
 import { DateRange } from '../date.types';
-import { State, Props, Day, FilterValue } from './RangeFilter.types';
+import { State, Props, Day, FilterValue, Rule } from './RangeFilter.types';
 
 /*
  * Map field from components to datefilter schema
@@ -94,14 +102,14 @@ const createMonthlyWeekDayRange = (rules) =>
     return day ? { ...acc, [i]: { ...day, restricted: true, display: true } } : acc;
   }, {});
 
-const createMonthlyDayRange = (rules: { days: Day[] }) =>
+const createMonthlyDayRange = (rules: Rule) =>
   range(0, 32).reduce((acc: Day, i: number) => {
     const day = rules.days.find((d: Day) => d.day === i);
     return day ? { ...acc, [i - 1]: { ...denormMapTimeSchema(day), restricted: true, display: true } } : acc;
   }, {});
 
 const denormalizers = {
-  [TYPES.DAILY]: (values) => denormMapTimeSchema(values),
+  [TYPES.DAILY]: (values: DateRange & { day: number | undefined }) => denormMapTimeSchema(values),
   [TYPES.WEEKLY]: (values) => createWeeklyRange(values.days),
   [TYPES.MONTHLY]: (values) => {
     const monthlyDenormalizers = {
