@@ -12,6 +12,7 @@ import { LaptopM } from '@synerise/ds-icon/dist/icons';
 import { TagShape } from '@synerise/ds-tags';
 import DSFlag from '@synerise/ds-flag';
 import { FlagContainer } from './stories.styles';
+import Tooltip from '@synerise/ds-tooltip';
 
 const decorator = (storyFn) => <div style={{ width: '300px' }}>{storyFn()}</div>;
 const sizes = ['default', 'large'];
@@ -41,7 +42,11 @@ function renderAddonComponent(suffixElementType: string, labelText?: string) {
         </S.IconWrapper>
       );
     case addonType.label:
-      return <S.Label>{labelText}</S.Label>;
+      return (
+        <Tooltip title={labelText}>
+          <S.Label>{labelText}</S.Label>
+        </Tooltip>
+      );
     case addonType.avatar:
       return (
         <S.AvatarWithMargin size="small" backgroundColor="green" backgroundColorHue="400" shape="square">
@@ -307,7 +312,7 @@ const stories = {
     const prefixType = select('Set prefix type', addonType, addonType.none);
     const prefixLabelText = text('Set prefix label text', 'Prefix');
     const suffixType = select('Set suffix type', addonType, addonType.none);
-    const suffixLabelText = text('Set suffix label text', 'Prefix');
+    const suffixLabelText = text('Set suffix label text', 'Suffix');
 
     return (
       <Input
