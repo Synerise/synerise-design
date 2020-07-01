@@ -9,8 +9,9 @@ import { LaptopM } from '@synerise/ds-icon/dist/icons';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { TagShape } from '@synerise/ds-tags';
 import * as S from './stories.styles';
+import Tooltip from '@synerise/ds-tooltip';
 
-const decorator = storyFn => <div style={{ padding: '20px', width: '322px' }}>{storyFn()}</div>;
+const decorator = (storyFn) => <div style={{ padding: '20px', width: '322px' }}>{storyFn()}</div>;
 
 const { Option, OptGroup } = Select;
 
@@ -23,13 +24,13 @@ for (let i = 10; i < 36; i++) {
 
 const modes = ['default', 'multiple', 'tags'];
 const sizes = {
-  small:'small',
-  default:'default',
-  large:'large,'
-}
-const renderLabel = (text:string)=>{
-  return (<div style={{maxWidth:'200px', textOverflow: 'ellipsis', overflow:'hidden'}}>{text}</div>)
-}
+  small: 'small',
+  default: 'default',
+  large: 'large,',
+};
+const renderLabel = (text: string) => {
+  return <div style={{ maxWidth: '200px', textOverflow: 'ellipsis', overflow: 'hidden' }}>{text}</div>;
+};
 const values = ['Option A', 'Option B', 'Option C'];
 const dropdownMenuStyles = {};
 const dropdownStyles = {};
@@ -40,7 +41,6 @@ const getErrorText = (error: boolean, errorText: string): string => {
     return '';
   }
 };
-
 
 export const addonType = {
   icon: 'icon',
@@ -59,7 +59,12 @@ export function renderAddonComponent(suffixElementType: string, labelText: strin
         </S.IconWrapper>
       );
     case addonType.label:
-      return <S.Label>{labelText}</S.Label>;
+      return (
+        <Tooltip title={labelText}>
+          <S.Label>{labelText}</S.Label>
+        </Tooltip>
+      );
+
     case addonType.avatar:
       return (
         <S.AvatarWithMargin size="small" backgroundColor="green" backgroundColorHue="400" shape="square">
@@ -90,8 +95,8 @@ const stories = {
       tooltip: text('tooltip', 'This is example tooltip!'),
       clearTooltip: text('Clear tooltip', 'Clear'),
       description: text('description', 'Description'),
-      errorText:!isFocus && getErrorText(validationState,message),
-      error:!isFocus && validationState,
+      errorText: !isFocus && getErrorText(validationState, message),
+      error: !isFocus && validationState,
       label: renderLabel(text('Label', 'Label')),
       allowClear: false,
       defaultActiveFirstOption: boolean('defaultActiveFirstOption', true),
@@ -116,9 +121,8 @@ const stories = {
       showSearch: boolean('showSearch', false),
       onChange: action('OnChange'),
       style: { width: '100%' },
-      children: values.map(opt => <Option value={opt}>{opt}</Option>),
+      children: values.map((opt) => <Option value={opt}>{opt}</Option>),
       notFoundContent: <Result type="no-results" noSearchResults description={'No results'} />,
-
     };
   },
 
@@ -129,7 +133,7 @@ const stories = {
     mode: 'multiple',
     defaultValue: 'a10',
     onChange: action('OnChange'),
-    dropdownRender: menu => <Scrollbar maxHeight={256}>{menu}</Scrollbar>,
+    dropdownRender: (menu) => <Scrollbar maxHeight={256}>{menu}</Scrollbar>,
     dropdownStyle: { paddingRight: '0' },
     notFoundContent: <Result type="no-results" noSearchResults description={'No results'} />,
     listHeight: '100%',
@@ -139,7 +143,7 @@ const stories = {
     const prefixType = select('Set prefix type', addonType, addonType.none);
     const prefixLabelText = text('Set prefix label text', 'Prefix');
     const suffixType = select('Set suffix type', addonType, addonType.none);
-    const suffixLabelText = text('Set suffix label text', 'Prefix');
+    const suffixLabelText = text('Set suffix label text', 'Suffix');
 
     return {
       allowClear: false,
@@ -150,9 +154,9 @@ const stories = {
       onFocus: action('I am focused'),
       onChange: action('OnChange'),
       style: { width: '100%' },
-      children: values.map(opt => <Option value={opt}>{opt}</Option>),
-      prefixel: renderAddonComponent(prefixType,prefixLabelText),
-      suffixel: renderAddonComponent(suffixType,suffixLabelText),
+      children: values.map((opt) => <Option value={opt}>{opt}</Option>),
+      prefixel: renderAddonComponent(prefixType, prefixLabelText),
+      suffixel: renderAddonComponent(suffixType, suffixLabelText),
       notFoundContent: <Result type="no-results" noSearchResults description={'No results'} />,
     };
   },
