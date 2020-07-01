@@ -15,7 +15,7 @@ export interface DateFilter {
     value: number;
   };
 }
-interface DateRangeBase {
+export interface DateRangeBase {
   key?: string;
   future?: boolean;
   filter?: DateFilter;
