@@ -1,8 +1,13 @@
 import * as React from 'react';
-import { ReactElement } from 'react';
 import { injectIntl } from 'react-intl';
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore
 import fnsMin from 'date-fns/min';
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore
 import fnsMax from 'date-fns/max';
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore
 import fnsStartOfDay from 'date-fns/start_of_day';
 import { omitBy, isUndefined } from 'lodash';
 
@@ -90,7 +95,8 @@ class DateRangePicker extends React.PureComponent<Props, State> {
   handleApply = (): void => {
     const { value } = this.state;
     const { forceAbsolute, onApply } = this.props;
-    onApply && onApply(
+    onApply &&
+      onApply(
         forceAbsolute && value.type === RELATIVE
           ? {
               ...value,
@@ -151,7 +157,7 @@ class DateRangePicker extends React.PureComponent<Props, State> {
     }
     const validator = validate(value);
     const isValid = (!!(from && to) || key === 'ALL_TIME') && validator.valid;
-    const addons: ReactElement[] = [];
+    const addons: React.ReactElement[] = [];
     if (showRelativePicker)
       addons.push(
         <RelativeRangePicker

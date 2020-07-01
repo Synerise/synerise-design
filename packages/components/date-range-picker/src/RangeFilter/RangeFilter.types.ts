@@ -1,6 +1,4 @@
 import { IntlShape } from 'react-intl';
-import * as React from 'react';
-import { Texts } from '@synerise/ds-items-roll/dist/ItemsRoll.types';
 
 export type Props = {
   value: FilterValue;
@@ -28,3 +26,9 @@ export type Day = {
   inverted?: boolean;
   restricted?: boolean;
 };
+
+export type Rule = {
+  days: Day[];
+  inverted?: boolean;
+  type: string;
+}
