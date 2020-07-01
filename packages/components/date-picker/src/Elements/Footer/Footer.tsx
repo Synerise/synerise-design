@@ -23,8 +23,7 @@ const Footer: React.FC<Props> = ({
 }) => {
   const SwitchModeButton = React.useMemo(
     () => (
-      <Button type="ghost" mode="label-icon" disabled={!canSwitchMode} onClick={onSwitchMode}>
-        {mode === 'time' ? texts.selectDate : texts.selectTime}
+      <Button type="ghost" mode="single-icon" disabled={!canSwitchMode} onClick={onSwitchMode}>
         <Icon component={mode === 'time' ? <CalendarM /> : <ClockM />} />
       </Button>
     ),
@@ -34,7 +33,7 @@ const Footer: React.FC<Props> = ({
     <S.Container {...rest}>
       <S.Range
         data-testid="range-now"
-        type="tertiary-dark"
+        type="tertiary"
         onClick={(): void => {
           onApply && onApply(new Date());
         }}

@@ -19,10 +19,12 @@ const TimePicker: React.FC<TimePickerProps> = ({
   disabledMinutes = [],
   disabledSeconds = [],
   onChange,
+  onShortNext,
+  onShortPrev,
 }: TimePickerProps) => {
   return (
     <>
-      <Navbar title={fnsFormat(value, 'ddd D, YYYY')} key="head" />
+      <Navbar title={fnsFormat(value, 'ddd D, YYYY')} key="head" onShortNext={onShortNext} onShortPrev={onShortPrev} />
       <Container key="body">
         <DSTimePicker
           value={value}
@@ -30,8 +32,6 @@ const TimePicker: React.FC<TimePickerProps> = ({
           disabledHours={disabledHours}
           disabledMinutes={disabledMinutes}
           disabledSeconds={disabledSeconds}
-          // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-          // @ts-ignore
           raw
         />
       </Container>

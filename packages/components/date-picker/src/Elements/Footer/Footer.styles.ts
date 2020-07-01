@@ -18,13 +18,7 @@ export const Actions = styled.div`
 `;
 export const Range = styled(Button)`
   && {
-    height: auto;
-    line-height: 22px;
-    padding: 0 10px;
-    font-size: 12px;
-    border-radius: 12px !important;
     margin: 4px 0;
-
     &:not(:last-child) {
       margin-right: 8px;
     }

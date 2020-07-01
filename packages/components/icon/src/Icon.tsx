@@ -11,7 +11,7 @@ export type IconProps = {
   component?: React.ReactNode;
   className?: string;
   style?: React.CSSProperties;
-};
+} & React.HTMLAttributes<HTMLDivElement>;
 
 const Icon: React.FC<IconProps> = props => {
   const { color, name, size, stroke, onClick, component, className, style, ...rest } = props;

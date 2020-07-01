@@ -10,7 +10,8 @@ import fnsFormat from './format';
 import TimePicker from './Elements/TimePicker/TimePicker';
 
 import { DayBackground, DayText, DayForeground } from './Elements/DayPicker/DayPicker.styles';
-import { fnsStartOfMonth, fnsSetYear, fnsSetMonth, fnsSetDate, fnsStartOfDay, fnsEndOfDay } from './fns';
+import { fnsStartOfMonth, fnsSetYear, fnsSetMonth, fnsSetDate, fnsStartOfDay, fnsEndOfDay, fnsAddMonths } from './fns';
+import { fnsAddDays } from '../../date-range-picker/dist/fns';
 
 class RawDatePicker extends React.Component<Props, State> {
   static defaultProps = {
@@ -38,8 +39,6 @@ class RawDatePicker extends React.Component<Props, State> {
     const { texts } = this.props;
     const updatedTexts: Texts = {
       apply: texts?.apply || <FormattedMessage id="DS.DATE-PICKER.APPLY" />,
-      selectTime: texts?.selectTime || <FormattedMessage id="DS.DATE-PICKER.SELECT-TIME" />,
-      selectDate: texts?.selectDate || <FormattedMessage id="DS.DATE-PICKER.SELECT-DATE" />,
       now: texts?.now || <FormattedMessage id="DS.DATE-PICKER.NOW" />,
     };
     return updatedTexts;
@@ -84,6 +83,7 @@ class RawDatePicker extends React.Component<Props, State> {
     } else {
       this.handleChange(nextDateWithCurrentTime);
     }
+    this.handleModeSwitch('time');
   };
 
   handleModeSwitch = (mode: string): void => this.setState({ mode });
@@ -99,6 +99,7 @@ class RawDatePicker extends React.Component<Props, State> {
     } else {
       onApply(value);
     }
+    this.handleModeSwitch('date');
   };
 
   handleMonthChange = (month: Date, mode: string): void => this.setState({ month, mode });
@@ -180,6 +181,8 @@ class RawDatePicker extends React.Component<Props, State> {
         disabledHours={disabledHours}
         disabledMinutes={disabledMinutes}
         disabledSeconds={disabledSeconds}
+        onShortNext={(): void => this.handleDayClick(fnsAddDays(value, -1),'time')}
+        onShortPrev={(): void => this.handleDayClick(fnsAddDays(value, 1),'time')}
       />
     );
   };
