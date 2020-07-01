@@ -5,16 +5,16 @@ import Button from '@synerise/ds-button';
 import Card, { CardGroup, CardBadge } from '@synerise/ds-card';
 import { doubleClickListener } from '@synerise/ds-utils';
 import Icon from '@synerise/ds-icon';
-import { CheckS, FilterM, SearchM } from '@synerise/ds-icon/dist/icons';
+import { CheckS, FilterM, SearchM, WarningFillM } from '@synerise/ds-icon/dist/icons';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 
 const backgrounds = {
-  'White': 'white',
+  White: 'white',
   'White with shadow': 'white-shadow',
-  'Grey': 'grey',
+  Grey: 'grey',
   'Grey with shadow': 'grey-shadow',
-  'Outlined': 'outline'
-}
+  Outlined: 'outline',
+};
 
 const init = () => {
   const props = {
@@ -36,7 +36,7 @@ const init = () => {
   return { props };
 };
 
-const renderCard = props => {
+const renderCard = (props) => {
   const IconComponent = React.lazy(() => import(`@synerise/ds-icon/dist/icons/${props.withIcon}`));
   const clickHandler = doubleClickListener(
     () => {
@@ -55,7 +55,7 @@ const renderCard = props => {
         withHeader={props.withHeader}
         title={props.title}
         description={props.description}
-        icon={props.icon || props.withIcon && <IconComponent />}
+        icon={props.icon || (props.withIcon && <IconComponent />)}
         iconColor={props.iconColor}
         compactHeader={props.compactHeader}
         onHeaderClick={clickHandler}
@@ -74,187 +74,295 @@ const stories = {
     const { props } = init();
 
     return (
-      <div style={{ padding: 24, marginBottom: 24, width: '100%', position: 'absolute', height: '100%', top: 0, left: 0 }}>
+      <div
+        style={{
+          padding: 24,
+          marginBottom: '24px',
+          width: '100%',
+          position: 'absolute',
+          height: '100%',
+          top: 0,
+          left: 0,
+        }}
+      >
         <h3>Single card</h3>
-        <div style={{ paddingTop: 12, width: '100%' }}>{renderCard({...props, icon: <CardBadge icon={<CheckS />} status="success" />,})}</div>
+        <div style={{ paddingTop: 12, width: '100%' }}>
+          {renderCard({ ...props, icon: <CardBadge icon={<CheckS />} status="success" /> })}
+        </div>
       </div>
     );
   },
   headers: () => {
     const { props } = init();
     return (
-    <div style={{ padding: 24, marginBottom: 24, width: '100%', position: 'absolute', height: '100%', top: 0, left: 0 }}>
-      <h3>Variants of card header</h3>
-      <div style={{ paddingTop: 12, width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>{renderCard({
-        ...props,
-        lively: true,
-        description: null,
-        withIcon: false,
-        headerSideChildren: null,
-        compactHeader: false,
-        showContent: false,
-        headerBorderBottom: false,
-      })}</div>
-
-      <div style={{ paddingTop: 12, width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>{renderCard({
-        ...props,
-        lively: true,
-        description: null,
-        withIcon: false,
-        compactHeader: false,
-        showContent: false,
-        headerBorderBottom: false,
-        headerSideChildren: (
-          <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gridColumnGap: '8px'}}>
-            <Button type="ghost">Cancel</Button>
-            <Button type="primary">Apply</Button>
+      <div
+        style={{
+          marginBottom: '48px',
+          width: '100%',
+          position: 'absolute',
+          height: '100%',
+          top: 0,
+          left: 0,
+        }}
+      >
+        <div style={{ padding: '24px' }}>
+          <h3>Variants of card header</h3>
+          <div
+            style={{ paddingTop: 12, width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+          >
+            {renderCard({
+              ...props,
+              lively: true,
+              description: null,
+              withIcon: false,
+              headerSideChildren: null,
+              compactHeader: false,
+              showContent: false,
+              headerBorderBottom: false,
+            })}
           </div>
-        )
-      })}</div>
 
-      <div style={{ paddingTop: 12, width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>{renderCard({
-        ...props,
-        lively: true,
-        withIcon: false,
-        compactHeader: true,
-        showContent: false,
-        headerBorderBottom: false,
-        headerSideChildren: (
-          <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gridColumnGap: '8px'}}>
-            <Button type="ghost" mode="single-icon"><Icon component={<FilterM />} /> </Button>
-            <Button type="ghost" mode="single-icon"><Icon component={<SearchM />} /> </Button>
+          <div
+            style={{ paddingTop: 12, width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+          >
+            {renderCard({
+              ...props,
+              lively: true,
+              description: null,
+              withIcon: false,
+              compactHeader: false,
+              showContent: false,
+              headerBorderBottom: false,
+              headerSideChildren: (
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gridColumnGap: '8px' }}>
+                  <Button type="ghost">Cancel</Button>
+                  <Button type="primary">Apply</Button>
+                </div>
+              ),
+            })}
           </div>
-        )
-      })}</div>
 
-      <div style={{ paddingTop: 12, width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>{renderCard({
-        ...props,
-        lively: true,
-        withIcon: false,
-        compactHeader: true,
-        showContent: false,
-        headerBorderBottom: false,
-        icon: <CardBadge icon={<CheckS />} status="success" />,
-        headerSideChildren: (
-          <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gridColumnGap: '8px'}}>
-            <Button type="ghost" mode="single-icon"><Icon component={<FilterM />} /> </Button>
-            <Button type="ghost" mode="single-icon"><Icon component={<SearchM />} /> </Button>
+          <div
+            style={{ paddingTop: 12, width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+          >
+            {renderCard({
+              ...props,
+              lively: true,
+              withIcon: false,
+              compactHeader: true,
+              showContent: false,
+              headerBorderBottom: false,
+              headerSideChildren: (
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gridColumnGap: '8px' }}>
+                  <Button type="ghost" mode="single-icon">
+                    <Icon component={<FilterM />} />{' '}
+                  </Button>
+                  <Button type="ghost" mode="single-icon">
+                    <Icon component={<SearchM />} />{' '}
+                  </Button>
+                </div>
+              ),
+            })}
           </div>
-        )
-      })}</div>
 
-      <div style={{ paddingTop: 12, width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>{renderCard({
-        ...props,
-        lively: true,
-        withIcon: false,
-        description: null,
-        compactHeader: true,
-        showContent: false,
-        headerBorderBottom: true,
-      })}</div>
-
-      <div style={{ paddingTop: 12, width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>{renderCard({
-        ...props,
-        lively: true,
-        compactHeader: false,
-        icon: <CardBadge icon={<CheckS />} />,
-        showContent: false,
-        headerBorderBottom: false,
-        headerSideChildren: (
-          <div>
-            <Button>Define</Button>
+          <div
+            style={{ paddingTop: 12, width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+          >
+            {renderCard({
+              ...props,
+              lively: true,
+              withIcon: false,
+              compactHeader: true,
+              showContent: false,
+              headerBorderBottom: false,
+              icon: <CardBadge icon={<CheckS />} status="success" />,
+              headerSideChildren: (
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gridColumnGap: '8px' }}>
+                  <Button type="ghost" mode="single-icon">
+                    <Icon component={<FilterM />} />{' '}
+                  </Button>
+                  <Button type="ghost" mode="single-icon">
+                    <Icon component={<SearchM />} />{' '}
+                  </Button>
+                </div>
+              ),
+            })}
           </div>
-        )
-      })}</div>
 
-      <div style={{ paddingTop: 12, width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>{renderCard({
-        ...props,
-        lively: true,
-        compactHeader: false,
-        icon: <CardBadge icon={<CheckS />} />,
-        showContent: false,
-        headerBorderBottom: false,
-        headerSideChildren: (
-          <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gridColumnGap: 8 }}>
-            <Button type="ghost">Cancel</Button>
-            <Button type="custom-color" color="green">Apply</Button>
+          <div
+            style={{ paddingTop: 12, width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+          >
+            {renderCard({
+              ...props,
+              lively: true,
+              withIcon: false,
+              description: null,
+              compactHeader: true,
+              showContent: false,
+              headerBorderBottom: true,
+            })}
           </div>
-        )
-      })}</div>
 
-      <div style={{ paddingTop: 12, width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>{renderCard({
-        ...props,
-        lively: true,
-        compactHeader: false,
-        icon: <CardBadge icon={<CheckS />} />,
-        showContent: false,
-        headerBorderBottom: false,
-        headerSideChildren: (
-          <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gridColumnGap: 8 }}>
-            <Button type="custom-color" color={"yellow"}>Skip step</Button>
-            <Button>Define</Button>
+          <div
+            style={{ paddingTop: 12, width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+          >
+            {renderCard({
+              ...props,
+              lively: true,
+              compactHeader: false,
+              icon: <CardBadge icon={<CheckS />} />,
+              showContent: false,
+              headerBorderBottom: false,
+              headerSideChildren: (
+                <div>
+                  <Button>Define</Button>
+                </div>
+              ),
+            })}
           </div>
-        )
-      })}</div>
 
-      <div style={{ paddingTop: 12, width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>{renderCard({
-        ...props,
-        lively: true,
-        compactHeader: false,
-        icon: <CardBadge icon={<CheckS />} status="success" />,
-        showContent: false,
-        headerBorderBottom: false,
-        headerSideChildren: (
-          <div style={{display: 'grid', gridTemplateColumns: '1fr', gridColumnGap: 8 }}>
-            <Button>Change</Button>
+          <div
+            style={{ paddingTop: 12, width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+          >
+            {renderCard({
+              ...props,
+              lively: true,
+              compactHeader: false,
+              icon: <CardBadge icon={<CheckS />} />,
+              showContent: false,
+              headerBorderBottom: false,
+              headerSideChildren: (
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gridColumnGap: 8 }}>
+                  <Button type="ghost">Cancel</Button>
+                  <Button type="custom-color" color="green">
+                    Apply
+                  </Button>
+                </div>
+              ),
+            })}
           </div>
-        )
-      })}</div>
 
-      <div style={{ paddingTop: 12, width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>{renderCard({
-        ...props,
-        lively: true,
-        compactHeader: false,
-        disabled: true,
-        icon: <CardBadge icon={<CheckS />} />,
-        showContent: false,
-        headerBorderBottom: false,
-        headerSideChildren: (
-          <div style={{display: 'grid', gridTemplateColumns: '1fr', gridColumnGap: 8 }}>
-            <Button>Change</Button>
+          <div
+            style={{ paddingTop: 12, width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+          >
+            {renderCard({
+              ...props,
+              lively: true,
+              compactHeader: false,
+              icon: <CardBadge icon={<CheckS />} />,
+              showContent: false,
+              headerBorderBottom: false,
+              headerSideChildren: (
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gridColumnGap: 8 }}>
+                  <Button type="custom-color" color={'yellow'}>
+                    Skip step
+                  </Button>
+                  <Button>Define</Button>
+                </div>
+              ),
+            })}
           </div>
-        )
-      })}</div>
 
-
-      <div style={{ paddingTop: 12, width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>{renderCard({
-        ...props,
-        lively: true,
-        compactHeader: false,
-        withIcon: "UserM",
-        iconColor: theme.palette['grey-400'],
-        showContent: false,
-        headerBorderBottom: false,
-        headerSideChildren: (
-          <div style={{display: 'grid', gridTemplateColumns: '1fr', gridColumnGap: 8 }}>
-            <Button>Change</Button>
+          <div
+            style={{ paddingTop: 12, width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+          >
+            {renderCard({
+              ...props,
+              lively: true,
+              compactHeader: false,
+              icon: <CardBadge icon={<CheckS />} status="success" />,
+              showContent: false,
+              headerBorderBottom: false,
+              headerSideChildren: (
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr', gridColumnGap: 8 }}>
+                  <Button>Change</Button>
+                </div>
+              ),
+            })}
           </div>
-        )
-      })}</div>
-    </div>
-  )},
+
+          <div
+            style={{ paddingTop: 12, width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+          >
+            {renderCard({
+              ...props,
+              lively: true,
+              compactHeader: false,
+              disabled: true,
+              icon: <CardBadge icon={<CheckS />} />,
+              showContent: false,
+              headerBorderBottom: false,
+              headerSideChildren: (
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr', gridColumnGap: 8 }}>
+                  <Button>Change</Button>
+                </div>
+              ),
+            })}
+          </div>
+
+          <div
+            style={{ paddingTop: 12, width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+          >
+            {renderCard({
+              ...props,
+              lively: true,
+              compactHeader: false,
+              withIcon: 'UserM',
+              iconColor: theme.palette['grey-400'],
+              showContent: false,
+              headerBorderBottom: false,
+              headerSideChildren: (
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr', gridColumnGap: 8 }}>
+                  <Button>Change</Button>
+                </div>
+              ),
+            })}
+          </div>
+          <div
+            style={{ paddingTop: 12, width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+          >
+            {renderCard({
+              ...props,
+              lively: false,
+              raised: false,
+              compactHeader: false,
+              withIcon: 'UserM',
+              iconColor: theme.palette['grey-400'],
+              showContent: false,
+              headerBorderBottom: false,
+              headerSideChildren: (
+                <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gridColumnGap: 8 }}>
+                  <div style={{ display: 'flex', alignItems: 'center' }}>
+                    <Icon
+                      component={<WarningFillM />}
+                      color={theme.palette['yellow-600']}
+                      style={{ marginRight: '4px' }}
+                    />
+                    <span style={{ fontWeight: 500, color: theme.palette['yellow-600'] }}>Uncompleted</span>
+                  </div>
+                  <Button type="custom-color" color="green" disabled>
+                    Apply
+                  </Button>
+                </div>
+              ),
+            })}
+          </div>
+        </div>
+      </div>
+    );
+  },
   group: () => {
     const { props } = init();
     const itemsInGroup = number('Number of cards rendered', 9);
     const rowItems = number('Items per row', 3);
 
     return (
-      <div style={{ padding: 24, width: "100%", position: 'absolute', top: 0, left: 0, height: '100%' }}>
+      <div style={{ padding: 24, width: '100%', position: 'absolute', top: 0, left: 0, height: '100%' }}>
         <h3>Card Group</h3>
         <div style={{ padding: '12px 0', width: '100%' }}>
           <CardGroup columns={rowItems}>
-            {range(0, itemsInGroup).map(i => (
-              <React.Fragment key={i}>{renderCard({...props, icon: <CardBadge icon={<CheckS />} />,})}</React.Fragment>
+            {range(0, itemsInGroup).map((i) => (
+              <React.Fragment key={i}>{renderCard({ ...props, icon: <CardBadge icon={<CheckS />} /> })}</React.Fragment>
             ))}
           </CardGroup>
         </div>
