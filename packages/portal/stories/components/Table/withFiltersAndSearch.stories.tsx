@@ -187,6 +187,7 @@ const stories = {
               ...column,
               title: column.name,
               dataIndex: column.key,
+              width: 254,
               render: (active) => <Tooltip title={active ? 'Switch off' : 'Switch on'} placement="topLeft"><Switch onChange={action('Status change')} checked={active} label='' /></Tooltip>
             }
           }
@@ -195,6 +196,7 @@ const stories = {
               ...column,
               title: column.name,
               dataIndex: column.key,
+              width: 254,
               render: (country) => <TableCell.FlagLabelCell countryCode={country.code} label={country.name} />
             }
           }
@@ -203,6 +205,7 @@ const stories = {
               ...column,
               title: column.name,
               dataIndex: column.key,
+              width: 254,
             };
         }
       });
@@ -328,6 +331,7 @@ const stories = {
           selection={boolean('Enable row selection', false) && {
             onChange: handleSelectRow,
             selectedRowKeys: selectedRows,
+            fixed: true,
             selections: [
               Table.SELECTION_ALL,
               Table.SELECTION_INVERT,
