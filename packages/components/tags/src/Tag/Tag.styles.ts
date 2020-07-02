@@ -27,13 +27,13 @@ type InsertShapeStyles = {
 
 const getWidthOnHover = (props): string => {
   if ((props.suffixel && props.preffixel) || props.hasImage) {
-    return 'calc(100% - 40px)';
+    return 'calc(100% - 43px)';
   }
   if (props.preffixel) {
     return 'calc(100% - 30px)';
   }
   if (props.suffixel) {
-    return 'calc(100% - 20px)';
+    return 'calc(100% - 23px)';
   }
   return 'calc(100% - 16px)';
 };
@@ -145,7 +145,6 @@ const insertShapeStyles = (props: InsertShapeStyles): FlattenSimpleInterpolation
                   position: absolute;
                   left: -3px;
                   top: -3px;
-                  padding: 0 10px 10px 0;
                 }
               }
             }
@@ -348,7 +347,7 @@ export const SuffixWrapper = styled.div`
   height: 50%;
   padding: 0 3px;
   border-color: white;
-  margin-right: 6px;
+  margin-right: 9px;
   font-size: 9px;
   line-height: 10px;
   text-align: center;
