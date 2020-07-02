@@ -8,13 +8,15 @@ interface Props {
   onChange: (item: MenuItemProps) => void;
   placeholder: string;
   dataSource: MenuItemProps[];
+  closeDropdown: () => void;
 }
 
-const ItemPickerDropdown: React.FC<Props> = ({ onChange, placeholder, dataSource }) => {
+const ItemPickerDropdown: React.FC<Props> = ({ onChange, placeholder, dataSource, closeDropdown }) => {
   const [searchQuery, setSearchQuery] = React.useState<string>('');
 
   const handleChange = React.useCallback(
     (item: MenuItemProps) => {
+      closeDropdown();
       onChange(item);
     },
     [onChange]

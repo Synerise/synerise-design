@@ -44,25 +44,40 @@ const ItemPicker: React.FC<ItemPickerProps> = ({
 }) => {
   const [dropdownOpened, setDropdownOpened] = React.useState<boolean>(false);
 
+  const openDropdown = React.useCallback(() => {
+    setDropdownOpened(true);
+  }, [dropdownOpened]);
+
+  const closeDropdown = React.useCallback(() => {
+    setDropdownOpened(false);
+  }, [dropdownOpened]);
+
   const dropdownOverlay = React.useMemo(
-    () => <ItemPickerDropdown onChange={onChange} dataSource={dataSource} placeholder={searchPlaceholder} />,
+    () => (
+      <ItemPickerDropdown
+        onChange={onChange}
+        dataSource={dataSource}
+        placeholder={searchPlaceholder}
+        closeDropdown={closeDropdown}
+      />
+    ),
     [dataSource, searchPlaceholder, onChange]
   );
 
   const renderTrigger = React.useMemo(
     () => (
-      <span>
-        <Trigger
-          clear={clear}
-          selected={selectedItem}
-          onClear={onClear}
-          opened={dropdownOpened}
-          placeholder={placeholder}
-          placeholderIcon={placeholderIcon}
-          error={error}
-          disabled={disabled}
-        />
-      </span>
+      <Trigger
+        clear={clear}
+        selected={selectedItem}
+        onClear={onClear}
+        opened={dropdownOpened}
+        placeholder={placeholder}
+        placeholderIcon={placeholderIcon}
+        error={error}
+        disabled={disabled}
+        openDropdown={openDropdown}
+        closeDropdown={closeDropdown}
+      />
     ),
     [clear, selectedItem, onClear, dropdownOpened, error, disabled]
   );
@@ -70,7 +85,13 @@ const ItemPicker: React.FC<ItemPickerProps> = ({
   return (
     <S.ItemPickerWrapper className="ds-items-picker" disabled={disabled}>
       {label && <Label label={label} tooltip={tooltip} />}
-      <Dropdown disabled={disabled} trigger={['click']} overlay={dropdownOverlay} onVisibleChange={setDropdownOpened}>
+      <Dropdown
+        visible={dropdownOpened}
+        disabled={disabled}
+        trigger={['click']}
+        overlay={dropdownOverlay}
+        onVisibleChange={setDropdownOpened}
+      >
         {renderTrigger}
       </Dropdown>
       {error && errorMessage && <S.Error>{errorMessage}</S.Error>}

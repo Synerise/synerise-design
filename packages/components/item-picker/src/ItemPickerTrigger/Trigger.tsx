@@ -14,6 +14,8 @@ interface Props {
   placeholderIcon?: React.ReactNode;
   error?: boolean;
   disabled?: boolean;
+  openDropdown: () => void;
+  closeDropdown: () => void;
 }
 
 const Trigger: React.FC<Props> = ({
@@ -25,17 +27,20 @@ const Trigger: React.FC<Props> = ({
   placeholderIcon,
   error,
   disabled,
+  openDropdown,
+  closeDropdown,
 }) => {
   const handleClear = React.useCallback(
     (event: React.MouseEvent<HTMLDivElement>): void => {
       event.stopPropagation();
+      closeDropdown();
       onClear();
     },
-    [onClear]
+    [onClear, closeDropdown]
   );
 
   return (
-    <S.TriggerWrapper tabIndex={0} opened={opened} disabled={disabled} error={error}>
+    <S.TriggerWrapper tabIndex={0} opened={opened} disabled={disabled} error={error} onClick={openDropdown}>
       <S.SmallTrigger>
         {selected ? (
           <S.Value>
