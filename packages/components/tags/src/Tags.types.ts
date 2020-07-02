@@ -25,6 +25,8 @@ export interface Props {
   removable?: boolean;
   creatable?: boolean;
   disabled?: boolean;
+  prefixel?: boolean;
+  suffixel?: boolean;
   manageLink?: string;
   texts?: TagsTexts;
   theme: { [k: string]: string };

@@ -12,4 +12,6 @@ export interface Props {
   disabled?: boolean;
   onClick?: () => void;
   onRemove?: (tag: string | number) => void;
+  prefixel?: boolean;
+  suffixel?: boolean;
 }

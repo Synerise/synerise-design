@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Icon from '@synerise/ds-icon';
-import CloseM from '@synerise/ds-icon/dist/icons/CloseM';
-
+import { Add3S, CloseS } from '@synerise/ds-icon/dist/icons';
 import { Props } from './Tag.types';
 import * as S from './Tag.styles';
 
@@ -30,16 +29,16 @@ const Tag: React.FC<Props> = ({
   textColor,
   onRemove,
   onClick,
+  prefixel,
+  suffixel,
 }: Props) => {
   const isDefaultType = shape && [TagShape.DEFAULT_ROUND, TagShape.DEFAULT_SQUARE].includes(shape);
   const isDefaultRound = shape === TagShape.DEFAULT_ROUND;
-  const isStatusShape = shape && [
-    TagShape.STATUS_ERROR,
-    TagShape.STATUS_NEUTRAL,
-    TagShape.STATUS_SUCCESS,
-    TagShape.STATUS_WARNING,
-  ].includes(shape);
-  const isRemovable = removable && isDefaultRound;
+  const isDefaultSquare = shape === TagShape.DEFAULT_SQUARE;
+  const isStatusShape =
+    shape &&
+    [TagShape.STATUS_ERROR, TagShape.STATUS_NEUTRAL, TagShape.STATUS_SUCCESS, TagShape.STATUS_WARNING].includes(shape);
+  const isRemovable = removable && [isDefaultRound, isDefaultSquare];
   const isActionable = !disabled && isRemovable;
 
   const onRemoveCall = (): void | false => !!onRemove && !!id && onRemove(id);
@@ -56,24 +55,27 @@ const Tag: React.FC<Props> = ({
       isActionable={isActionable}
       onClick={onClick}
       data-testid={typeof id !== 'undefined' ? `tag-${id}` : 'tag'}
+      preffixel={prefixel}
+      suffixel={suffixel}
+      hasImage={!!image}
     >
-      <div className="content">
-        {image && isDefaultType && <img src={image} alt="" />}
-        <span>{name}</span>
+      <S.Content>
+        {image && isDefaultType && <Icon className="icon1" component={<Add3S />} size={24} color="#fff" />}
+        {!!prefixel && <S.PrefixWrapper>{prefixel}</S.PrefixWrapper>}
+        <S.TagName>{name}</S.TagName>
+        {!!suffixel && <S.SuffixWrapper>{suffixel}</S.SuffixWrapper>}
         {isRemovable && (
-          <button type="button" onClick={onRemoveCall} data-testid="remove-btn">
-            <div className="icon">
-              <Icon component={<CloseM />} size={16} color="#fff" />
-            </div>
-          </button>
+          <S.RemoveButton type="button" onClick={onRemoveCall} data-testid="remove-btn">
+            <Icon className="icon" component={<CloseS />} size={24} color="#fff" />
+          </S.RemoveButton>
         )}
-      </div>
+      </S.Content>
     </S.Tag>
   );
 };
 
 Tag.defaultProps = {
-  shape: TagShape.DEFAULT_ROUND,
+  shape: TagShape.DEFAULT_ROUND && TagShape.DEFAULT_SQUARE,
 };
 
 export default Tag;
