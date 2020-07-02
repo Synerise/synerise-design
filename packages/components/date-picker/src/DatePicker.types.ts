@@ -33,7 +33,5 @@ export type Modifier = {
 };
 export type Texts = {
   apply: string | React.ReactNode;
-  selectTime: string | React.ReactNode;
-  selectDate: string | React.ReactNode;
   now: string | React.ReactNode;
 };

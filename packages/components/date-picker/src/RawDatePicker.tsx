@@ -10,7 +10,7 @@ import fnsFormat from './format';
 import TimePicker from './Elements/TimePicker/TimePicker';
 
 import { DayBackground, DayText, DayForeground } from './Elements/DayPicker/DayPicker.styles';
-import { fnsStartOfMonth, fnsSetYear, fnsSetMonth, fnsSetDate, fnsStartOfDay, fnsEndOfDay } from './fns';
+import { fnsStartOfMonth, fnsSetYear, fnsSetMonth, fnsSetDate, fnsStartOfDay, fnsEndOfDay, fnsAddDays } from './fns';
 
 class RawDatePicker extends React.Component<Props, State> {
   static defaultProps = {
@@ -38,8 +38,6 @@ class RawDatePicker extends React.Component<Props, State> {
     const { texts } = this.props;
     const updatedTexts: Texts = {
       apply: texts?.apply || <FormattedMessage id="DS.DATE-PICKER.APPLY" />,
-      selectTime: texts?.selectTime || <FormattedMessage id="DS.DATE-PICKER.SELECT-TIME" />,
-      selectDate: texts?.selectDate || <FormattedMessage id="DS.DATE-PICKER.SELECT-DATE" />,
       now: texts?.now || <FormattedMessage id="DS.DATE-PICKER.NOW" />,
     };
     return updatedTexts;
@@ -84,6 +82,7 @@ class RawDatePicker extends React.Component<Props, State> {
     } else {
       this.handleChange(nextDateWithCurrentTime);
     }
+    this.handleModeSwitch('time');
   };
 
   handleModeSwitch = (mode: string): void => this.setState({ mode });
@@ -99,6 +98,7 @@ class RawDatePicker extends React.Component<Props, State> {
     } else {
       onApply(value);
     }
+    this.handleModeSwitch('date');
   };
 
   handleMonthChange = (month: Date, mode: string): void => this.setState({ month, mode });
@@ -169,10 +169,14 @@ class RawDatePicker extends React.Component<Props, State> {
     );
   };
 
+  handleDaySwitch = (day: Date): void => {
+    const { disabledDates } = this.props;
+    this.handleDayClick(day, { disabled: disabledDates ? disabledDates(day) : false });
+  };
+
   renderTimePicker = (): React.ReactNode => {
     const { value } = this.state;
     const { disabledHours, disabledMinutes, disabledSeconds } = this.props;
-
     return (
       <TimePicker
         value={value}
@@ -180,6 +184,8 @@ class RawDatePicker extends React.Component<Props, State> {
         disabledHours={disabledHours}
         disabledMinutes={disabledMinutes}
         disabledSeconds={disabledSeconds}
+        onShortNext={(): void => this.handleDaySwitch(fnsAddDays(value, 1))}
+        onShortPrev={(): void => this.handleDaySwitch(fnsAddDays(value, -1))}
       />
     );
   };

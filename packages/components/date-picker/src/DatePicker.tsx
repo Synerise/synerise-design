@@ -7,8 +7,8 @@ import RawDatePicker from './RawDatePicker';
 import PickerInput from './Elements/PickerInput/PickerInput';
 import * as S from './DatePicker.styles';
 
-const DatePicker: React.FC<Props> = props => {
-  const { disabledSeconds, disabledMinutes, disabledHours, texts, value, onApply, showTime } = props;
+const DatePicker: React.FC<Props> = (props) => {
+  const { texts, value, onApply, showTime } = props;
   const [dropVisible, setDropVisible] = React.useState(false);
   const [selectedDate, setSelectedDate] = React.useState(value);
   const ref = React.useRef<HTMLDivElement>(null);
@@ -33,19 +33,17 @@ const DatePicker: React.FC<Props> = props => {
       }
       visible={!!dropVisible}
     >
-      <S.InputWrapper
+      <PickerInput
+        value={selectedDate ? moment(selectedDate) : selectedDate}
+        showTime={showTime}
         onClick={(): void => {
           setDropVisible(!dropVisible);
         }}
-      >
-        <PickerInput
-          disabledSeconds={disabledSeconds}
-          disabledHours={disabledHours}
-          disabledMinutes={disabledMinutes}
-          value={moment(selectedDate)}
-          showTime={showTime}
-        />
-      </S.InputWrapper>
+        onClear={(): void => {
+          setDropVisible(false);
+          setSelectedDate(undefined)
+        }}
+      />
     </Dropdown>
   );
 };

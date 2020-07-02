@@ -43,6 +43,9 @@ import fnsIsSameYear from 'date-fns/is_same_year';
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
 import fnsGetYear from 'date-fns/get_year';
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore
+import fnsAddDays from 'date-fns/add_days';
 
 export {fnsStartOfMonth};
 export {fnsSetDate};
@@ -59,3 +62,4 @@ export {fnsAddMonths}
 export {fnsFormat};
 export {fnsIsSameYear};
 export {fnsGetYear};
+export {fnsAddDays};

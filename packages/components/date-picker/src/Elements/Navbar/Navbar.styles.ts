@@ -1,5 +1,6 @@
-import styled from 'styled-components';
+import styled, { FlattenSimpleInterpolation, css } from 'styled-components';
 import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import Button from '@synerise/ds-button';
 
 export const Container = styled.div`
   display: flex;
@@ -7,13 +8,15 @@ export const Container = styled.div`
   margin: 0 25px;
 `;
 
-export const ArrowContainer = styled.div`
+export const ArrowContainer = styled.div<{ hidden?: boolean }>`
   display: flex;
   align-items: center;
 
-  .ds-icon > svg {
-    fill: ${(props): string => props.theme.palette['grey-600']};
-  }
+  ${(props): FlattenSimpleInterpolation | false =>
+    !!props.hidden &&
+    css`
+      display: none;
+    `}
 `;
 
 export const Text = styled.div`
@@ -33,5 +36,15 @@ export const Link = styled.span`
 
   &:active {
     color: ${(props: ThemeProps): string => props.theme.palette['blue-600']};
+  }
+`;
+export const NavButton = styled(Button)<{ hidden?: boolean }>`
+  ${(props): FlattenSimpleInterpolation | false =>
+    !!props.hidden &&
+    css`
+      display: none;
+    `}
+  .ds-icon > svg {
+    fill: ${(props): string => props.theme.palette['grey-600']};
   }
 `;

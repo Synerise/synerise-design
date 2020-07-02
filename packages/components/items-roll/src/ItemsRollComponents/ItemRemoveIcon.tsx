@@ -17,7 +17,7 @@ export const RemoveIcon: React.FC<RemoveIconProps> = ({ id, handleRemove, toolti
     <RemoveIconWrapper>
       <Icon
         className="element-remove-icon"
-        onClick={(e): void => {
+        onClick={(e: React.MouseEvent<HTMLDivElement>): void => {
           e.stopPropagation();
           handleRemove(id);
         }}

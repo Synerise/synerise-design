@@ -1,17 +1,18 @@
 import styled from 'styled-components';
-import { borderStyle } from '../../DatePicker.styles';
+import DSTimePicker from '@synerise/ds-time-picker';
 
-
-// eslint-disable-next-line import/prefer-default-export
 export const Container = styled.div`
   display: grid;
   grid-auto-columns: 1fr;
-
   > * {
     grid-row: 1;
-
-    &:not(:last-child) {
-      border-right: ${borderStyle};
+  }
+  && {
+    & > div > div {
+      height: calc(100% - 18px);
     }
   }
+  padding: 0 24px;
 `;
+
+export const Picker = styled(DSTimePicker)``;

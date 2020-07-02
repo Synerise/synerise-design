@@ -5,56 +5,83 @@ import { Input } from '@synerise/ds-input';
 import Icon from '@synerise/ds-icon';
 
 import { SizeType } from 'antd/lib/config-provider/SizeContext';
-import { CalendarM } from '@synerise/ds-icon/dist/icons';
-import { Props, State } from './PickerInput.types';
+import { CalendarM, Close3M } from '@synerise/ds-icon/dist/icons';
+import { Props } from './PickerInput.types';
+import * as S from './PickerInput.styles';
 
-class PickerInput extends React.Component<Props, State> {
-  static defaultProps = {
-    allowClear: true,
-  };
+const PickerInput: React.FC<Props> = ({
+  size,
+  disabled,
+  value,
+  format,
+  onChange,
+  showTime,
+  style,
+  placeholder,
+  onClear,
+  onClick,
+  ...rest
+}: Props) => {
+  const [hovered, setHovered] = React.useState<boolean>(false);
 
-  handleClear = (e: React.MouseEvent<HTMLDivElement>): void => {
-    e.stopPropagation();
-    this.handleApply(null);
-  };
-
-  handleApply = (value?: Date | null): void => {
-    const { onChange } = this.props;
-    if (!onChange) return;
-    onChange(value ? moment(value) : null, this.getText());
-  };
-
-  getText = (): string => {
-    const { showTime, format } = this.props;
-    let { value } = this.props;
+  const getText = React.useCallback((): string => {
     if (!value) return '';
-    if (typeof value === 'string') value = moment(value);
+    let dateValue = value;
+    if (typeof value === 'string') dateValue = moment(value);
+    return dateValue.format(format || showTime ? 'MMM D, YYYY, HH:mm' : 'MMM D, YYYY');
+  }, [value, format, showTime]);
 
-    return value.format(format || showTime ? 'MMM D, YYYY, HH:mm' : 'MMM D, YYYY');
-  };
+  const handleApply = React.useCallback(
+    (date?: Date | null): void => {
+      if (!onChange) return;
+      onChange(date ? moment(date) : null, getText());
+    },
+    [onChange, getText]
+  );
 
-  disabledDate = (day: Date | undefined): boolean => {
-    const { disabledDate } = this.props;
-    if (disabledDate) return disabledDate(moment(day));
-    return false;
-  };
+  const handleIconClick = React.useCallback(
+    (e: React.MouseEvent<HTMLDivElement>): void => {
+      e.stopPropagation();
+      onClear && onClear();
+      handleApply(null);
+    },
+    [onClear, handleApply]
+  );
 
-  render(): React.ReactNode {
-    const { size, disabled, placeholder } = this.props;
-    let { value } = this.props;
-    if (typeof value === 'string') value = moment(value);
-    return (
+  const handleInputClick = React.useCallback(
+    (e: React.MouseEvent<HTMLDivElement>): void => {
+      e.stopPropagation();
+      onClick && onClick();
+    },
+    [onClick]
+  );
+  return (
+    <S.Container
+      onMouseEnter={(): void => setHovered(true)}
+      onMouseLeave={(): void => setHovered(false)}
+      onClick={handleInputClick}
+    >
       <Input
         resetMargin
         readOnly
         type="text"
         size={size as SizeType}
         disabled={disabled}
-        value={this.getText() || placeholder}
-        icon1={<Icon component={<CalendarM />} />}
+        value={getText() || placeholder}
+        icon1={
+          hovered && !!value ? (
+            <S.ClearIconWrapper>
+              <Icon component={<Close3M />} onClick={handleIconClick} />
+            </S.ClearIconWrapper>
+          ) : (
+            <Icon component={<CalendarM />} />
+          )
+        }
+        style={style}
+        {...rest}
       />
-    );
-  }
-}
+    </S.Container>
+  );
+};
 
 export default PickerInput;
