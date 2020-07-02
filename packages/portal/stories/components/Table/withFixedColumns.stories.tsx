@@ -70,7 +70,6 @@ const stories = {
           </Button>
         )}
         rowKey={(row) => row.key}
-        scroll={{x: 0}}
         selection={boolean('Enable row selection', true) && {
           onChange: handleSelectRow,
           selectedRowKeys: store.state.selectedRows,

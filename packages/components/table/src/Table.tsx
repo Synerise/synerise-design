@@ -135,6 +135,7 @@ function DSTable<T extends object = any>(props: DSTableProps<T>): React.ReactEle
         />
       ) : (
         <DefaultTable
+          scroll={{ x: 0 }}
           {...props}
           title={renderHeader}
           pagination={dataSource?.length && pagination ? footerPagination : false}
