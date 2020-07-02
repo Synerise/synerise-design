@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.21.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.21.0...@synerise/ds-table@0.21.1) (2020-07-02)
+
+
+### Bug Fixes
+
+* **table:** fixed columns scrollable ([96a1712](https://github.com/synerise/synerise-design/commit/96a1712a02b9d3398f7986c64fcd9a06afee98ff))
+
+
+
+
+
 # [0.21.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.20.2...@synerise/ds-table@0.21.0) (2020-06-29)
 
 

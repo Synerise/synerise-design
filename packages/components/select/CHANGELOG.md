@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.9](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.12.8...@synerise/ds-select@0.12.9) (2020-07-02)
+
+
+### Bug Fixes
+
+* **select:** prefix and suffix stories fix ([32df241](https://github.com/synerise/synerise-design/commit/32df241c6127a8377e82ce5d763bec8bcebc68a8))
+
+
+
+
+
 ## [0.12.8](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.12.7...@synerise/ds-select@0.12.8) (2020-06-25)
 
 

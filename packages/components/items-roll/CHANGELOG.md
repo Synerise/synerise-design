@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.23](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.2.22...@synerise/ds-items-roll@0.2.23) (2020-07-02)
+
+
+### Bug Fixes
+
+* **items-roll:** fix visibility of clear icon ([fb37080](https://github.com/Synerise/synerise-design/commit/fb37080aa1978819801c0fc74ad395e45b4dd432))
+* **items-roll:** update clear button ([46c6d33](https://github.com/Synerise/synerise-design/commit/46c6d3349dc2528a433082e134112a70a4468fcf))
+
+
+
+
+
 ## [0.2.22](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.2.21...@synerise/ds-items-roll@0.2.22) (2020-06-25)
 
 **Note:** Version bump only for package @synerise/ds-items-roll

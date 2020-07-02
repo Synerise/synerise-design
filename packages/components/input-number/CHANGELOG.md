@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.25](https://github.com/Synerise/synerise-design/compare/@synerise/ds-input-number@0.3.24...@synerise/ds-input-number@0.3.25) (2020-07-02)
+
+
+### Bug Fixes
+
+* **input:** change labels styles ([4ce402d](https://github.com/Synerise/synerise-design/commit/4ce402d9cd4756882fa35f98a047f05e82e2cf44))
+* **input:** change styles of labels ([0095789](https://github.com/Synerise/synerise-design/commit/00957892877a5ba243a522c9faebf400fd740c33))
+
+
+
+
+
 ## [0.3.24](https://github.com/Synerise/synerise-design/compare/@synerise/ds-input-number@0.3.23...@synerise/ds-input-number@0.3.24) (2020-06-25)
 
 **Note:** Version bump only for package @synerise/ds-input-number

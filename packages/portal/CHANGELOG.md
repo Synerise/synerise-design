@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.83.0](https://github.com/synerise/synerise-design/compare/portal@0.82.0...portal@0.83.0) (2020-07-02)
+
+
+### Bug Fixes
+
+* **input:** change styles of labels ([0095789](https://github.com/synerise/synerise-design/commit/00957892877a5ba243a522c9faebf400fd740c33))
+* **input:** changed story with prefixes ([48f90e8](https://github.com/synerise/synerise-design/commit/48f90e83ae5890b5a46edcc5b37428056e7270c1))
+* **input:** set max length ([fd96438](https://github.com/synerise/synerise-design/commit/fd96438b60781c5d1321b61dcf827c3256931277))
+* **input:** set max length and add knobs ([8467443](https://github.com/synerise/synerise-design/commit/8467443c453d99f0fc7227d0b5e603920bbf375d))
+* **items-roll:** move examples to ItemsRoll section ([064250b](https://github.com/synerise/synerise-design/commit/064250b545b0ae3dd9c77a26b0b2e920068d4520))
+* **menu:** added new story - with flags ([81622d5](https://github.com/synerise/synerise-design/commit/81622d59d19f34e30c4d1f33e199d885bd2ae626))
+* **select:** changed texts ([28521e0](https://github.com/synerise/synerise-design/commit/28521e01fed7054f0baebcac76b3cdbcf9b06cd7))
+* **select:** prefix and suffix stories fix ([32df241](https://github.com/synerise/synerise-design/commit/32df241c6127a8377e82ce5d763bec8bcebc68a8))
+* **table:** fixed columns scrollable ([96a1712](https://github.com/synerise/synerise-design/commit/96a1712a02b9d3398f7986c64fcd9a06afee98ff))
+* **table:** remove unused knobs from expandableVirtualTable ([6a886bb](https://github.com/synerise/synerise-design/commit/6a886bb0c6d89935a27a3edf48257c78b33be41e))
+* **tags:** add changes to tags ([1d40b1f](https://github.com/synerise/synerise-design/commit/1d40b1fc37fb62d308007b567e58442a1170ff5f))
+* **tags:** change tags into separate components and improve tags ([c319f5c](https://github.com/synerise/synerise-design/commit/c319f5c41eb05dffcefa4764d3d98b67d53f40f4))
+
+
+### Features
+
+* **table:** update default texts ([4fdb1b0](https://github.com/synerise/synerise-design/commit/4fdb1b0252f9445a12872cc7b16b0c3844238bd8))
+
+
+
+
+
 # [0.82.0](https://github.com/synerise/synerise-design/compare/portal@0.81.0...portal@0.82.0) (2020-06-29)
 
 

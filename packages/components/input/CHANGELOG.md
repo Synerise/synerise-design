@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.7](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.13.6...@synerise/ds-input@0.13.7) (2020-07-02)
+
+
+### Bug Fixes
+
+* **input:** change labels styles ([4ce402d](https://github.com/synerise/synerise-design/commit/4ce402d9cd4756882fa35f98a047f05e82e2cf44))
+* **input:** change styles of labels ([0095789](https://github.com/synerise/synerise-design/commit/00957892877a5ba243a522c9faebf400fd740c33))
+* **input:** change width of input ([6b7fc1b](https://github.com/synerise/synerise-design/commit/6b7fc1bee6b75b0479495152a8a0000bbce95703))
+* **input:** set max length ([fd96438](https://github.com/synerise/synerise-design/commit/fd96438b60781c5d1321b61dcf827c3256931277))
+* **input:** set max length and improve styles ([6aac19e](https://github.com/synerise/synerise-design/commit/6aac19e65aea79464eba9c07c22a8026551ce0e8))
+
+
+
+
+
 ## [0.13.6](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.13.5...@synerise/ds-input@0.13.6) (2020-06-25)
 
 
