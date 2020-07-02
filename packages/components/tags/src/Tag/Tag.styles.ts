@@ -20,7 +20,77 @@ type InsertShapeStyles = {
   color?: string;
   removable?: boolean;
   isActionable?: boolean;
+  preffixel?: boolean;
+  suffixel?: boolean;
+  hasImage?: boolean;
 } & ThemeProps;
+
+const getWidthOnHover = (props: InsertShapeStyles): string => {
+  if ((props.suffixel && props.preffixel) || props.hasImage) {
+    return 'calc(100% - 43px)';
+  }
+  if (props.preffixel) {
+    return 'calc(100% - 30px)';
+  }
+  if (props.suffixel) {
+    return 'calc(100% - 23px)';
+  }
+  return 'calc(100% - 16px)';
+};
+const addonStyles = (props: ThemeProps): string => `
+  border: 1px solid;
+  border-radius: 10px;
+  height: 50%;
+  padding: 0 3px;
+  border-color: ${props.theme.palette.white};
+  font-size: 9px;
+  line-height: 10px;
+  text-align: center;
+`;
+
+export const TagName = styled.span`
+  display: flex;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
+export const RemoveButton = styled.div`
+  color: #fff;
+  height: 18px;
+  width: 18px;
+  border-radius: 10px;
+  padding: 0;
+  border: none;
+  outline: none;
+  margin: 3px 3px 3px 0;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  display: none;
+  opacity: 0.8;
+
+  &:before {
+    background-color: ${(props): string => props.color || props.theme.palette['grey-900']};
+    filter: brightness(70%);
+    opacity: 0.3;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  &:hover:before {
+    filter: brightness(70%);
+  }
+  .icon {
+    && {
+      transform: translate(1px, -3px);
+    }
+  }
+`;
 
 const insertShapeStyles = (props: InsertShapeStyles): FlattenSimpleInterpolation => {
   switch (props.shape) {
@@ -59,21 +129,33 @@ const insertShapeStyles = (props: InsertShapeStyles): FlattenSimpleInterpolation
 
         padding: ${props.removable ? '0' : '0 12px'};
 
-        span {
+        ${TagName} {
           padding: ${props.removable ? '0 12px' : '0'};
+          padding-left: ${props.removable && props.preffixel && '4px'};
+          padding-right: ${props.removable && props.suffixel && '4px'};
         }
 
         ${props.isActionable &&
           css`
             &:hover {
-              span {
-                padding: ${props.removable ? '0 7px 0 12px' : '0'};
-                width: calc(100% - 16px);
-              }
+              padding-right: ${props.removable && props.suffixel && '15px'};
 
-              button {
-                margin-left: -16px;
-                left: 10px;
+              ${TagName} {
+                display: inline-block;
+                padding: ${props.removable ? '0 7px 0 12px' : '0'};
+                padding-left: ${props.removable && props.preffixel && '4px'};
+                padding-right: ${props.removable && props.suffixel && '4px'};
+                width: ${getWidthOnHover(props)};
+              }
+              padding-right: ${!props.suffixel && '5px'};
+
+              ${RemoveButton} {
+                margin-left: 0px;
+                .icon {
+                  position: absolute;
+                  left: -3px;
+                  top: -3px;
+                }
               }
             }
           `}
@@ -86,7 +168,38 @@ const insertShapeStyles = (props: InsertShapeStyles): FlattenSimpleInterpolation
         font-size: 13px;
         height: 24px;
         line-height: 24px;
-        padding: 0 8px;
+        padding: ${props.removable ? '0' : '0 12px'};
+
+        ${TagName} {
+          padding: ${props.removable ? '0 12px' : '0'};
+          padding-left: ${props.removable && props.preffixel && '4px'};
+          padding-right: ${props.removable && props.suffixel && '4px'};
+        }
+
+        ${props.isActionable &&
+          css`
+            &:hover {
+              padding-right: ${props.removable && props.suffixel && '15px'};
+
+              ${TagName} {
+                display: inline-block;
+                padding: ${props.removable ? '0 7px 0 12px' : '0'};
+                padding-left: ${props.removable && props.preffixel && '4px'};
+                padding-right: ${props.removable && props.suffixel && '4px'};
+                width: ${getWidthOnHover(props)};
+              }
+              padding-right: ${!props.suffixel && '5px'};
+
+              ${RemoveButton} {
+                margin-left: 0px;
+                .icon {
+                  position: absolute;
+                  left: -3px;
+                  top: -3px;
+                }
+              }
+            }
+          `}
       `;
 
     case TagShape.SINGLE_CHARACTER_ROUND:
@@ -152,7 +265,18 @@ type TagProps = {
   removable?: boolean;
   disabled?: boolean;
   isActionable?: boolean;
+  suffixel?: boolean;
+  preffixel?: boolean;
+  hasImage?: boolean;
 } & ThemeProps;
+
+export const Content = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-grow: 0;
+  flex-shrink: 1;
+`;
 
 export const Tag = styled.div<TagProps>`
   position: relative;
@@ -191,76 +315,19 @@ export const Tag = styled.div<TagProps>`
         `};
     `}
 
-  div.content {
-    position: relative;
-    display: flex;
-    align-items: center;
-    flex-grow: 0;
-    flex-shrink: 1;
-  }
 
-  img {
-    width: 18px;
-    height: 18px;
-    margin: 0 4px 0 0;
-  }
-
-  span {
-    display: inline-block;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  button {
-    color: #fff;
-    height: 18px;
-    width: 18px;
-    border-radius: 10px;
-    padding: 0;
-    border: none;
-    outline: none;
-    margin: 3px 3px 3px 0;
-    text-align: center;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    display: none;
-
-    > div {
-      position: relative;
-      line-height: 16px;
-      width: 100%;
-      height: 100%;
-    }
-
-    &:before {
-      background-color: ${(props): string => props.color || props.theme.palette['grey-500']};
-      filter: brightness(70%);
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-    }
-
-    &:hover:before {
-      filter: brightness(60%);
-    }
-  }
-
-  .icon {
-    && {
-      transform: translate(1px, -3px);
-    }
+  .icon1 {
+    margin: ${(props): string => (props.removable ? '0 -6px 0 5px' : '0 -2px 0 -7px')};
   }
 
   ${(props): FlattenSimpleInterpolation | false =>
     !!props.isActionable &&
     css`
       &:hover {
-        button {
+        ${RemoveButton} {
+          position: absolute;
+          top: 0;
+          right: ${props.removable && props.suffixel ? '-15px' : '0'};
           display: inline-block;
         }
       }
@@ -269,6 +336,15 @@ export const Tag = styled.div<TagProps>`
   &:last-of-type {
     margin-right: 0;
   }
+`;
+export const PrefixWrapper = styled.div`
+  margin-left: 6px;
+  ${(props): string => addonStyles(props)};
+`;
+
+export const SuffixWrapper = styled.div`
+  margin-right: 9px;
+  ${(props): string => addonStyles(props)};
 `;
 
 export const DeleteButton = styled.div``;
