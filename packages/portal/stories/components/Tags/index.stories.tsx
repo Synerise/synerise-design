@@ -158,7 +158,7 @@ const stories = {
       id: 0,
       name: 'Lamborghini',
       color: colors,
-      prefixel: <Icon className="icon1" component={<Add3S />} size={24} color="#fff" />,
+      prefixel: <Icon className="icon1" component={<Add3S />} size={20} color="#fff" />,
     }];
 
     return (
