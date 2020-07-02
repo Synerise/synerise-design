@@ -277,6 +277,13 @@ export const Content = styled.div`
   flex-grow: 0;
   flex-shrink: 1;
 `;
+export const PrefixWrapper = styled.div`
+  margin: 0 4px 0 0;
+  ${(props): string => addonStyles(props)};
+`;
+export const SuffixWrapper = styled.div`
+  ${(props): string => addonStyles(props)};
+`;
 
 export const Tag = styled.div<TagProps>`
   position: relative;
@@ -336,15 +343,12 @@ export const Tag = styled.div<TagProps>`
   &:last-of-type {
     margin-right: 0;
   }
-`;
-export const PrefixWrapper = styled.div`
-  margin-left: 6px;
-  ${(props): string => addonStyles(props)};
-`;
-
-export const SuffixWrapper = styled.div`
-  margin-right: 9px;
-  ${(props): string => addonStyles(props)};
+  ${SuffixWrapper} {
+    margin: ${(props): string => (!props.removable && props.suffixel ? '0px -7px 0px 4px' : '0 5px 0 1px')};
+  }
+  ${PrefixWrapper} {
+    margin: ${(props): string => (!props.removable && props.preffixel ? '0px 6px 0px -7px' : '0 2px 0 4px')};
+  }
 `;
 
 export const DeleteButton = styled.div``;
