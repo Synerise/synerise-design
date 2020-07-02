@@ -37,6 +37,16 @@ const getWidthOnHover = (props): string => {
   }
   return 'calc(100% - 16px)';
 };
+const addonStyles = (props: ThemeProps): string => `
+  border: 1px solid;
+  border-radius: 10px;
+  height: 50%;
+  padding: 0 3px;
+  border-color: ${props.theme.palette.white};
+  font-size: 9px;
+  line-height: 10px;
+  text-align: center;
+`;
 
 export const TagName = styled.span`
   display: flex;
@@ -158,8 +168,6 @@ const insertShapeStyles = (props: InsertShapeStyles): FlattenSimpleInterpolation
         font-size: 13px;
         height: 24px;
         line-height: 24px;
-        padding: 0 8px;
-
         padding: ${props.removable ? '0' : '0 12px'};
 
         ${TagName} {
@@ -329,27 +337,13 @@ export const Tag = styled.div<TagProps>`
   }
 `;
 export const PrefixWrapper = styled.div`
-  border: 1px solid;
-  border-radius: 10px;
-  height: 50%;
-  padding: 0 3px;
-  border-color: white;
   margin-left: 6px;
-  font-size: 9px;
-  line-height: 10px;
-  text-align: center;
+  ${(props): string => addonStyles(props)};
 `;
 
 export const SuffixWrapper = styled.div`
-  border: 1px solid;
-  border-radius: 10px;
-  height: 50%;
-  padding: 0 3px;
-  border-color: white;
   margin-right: 9px;
-  font-size: 9px;
-  line-height: 10px;
-  text-align: center;
+  ${(props): string => addonStyles(props)};
 `;
 
 export const DeleteButton = styled.div``;
