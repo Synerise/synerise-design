@@ -10,8 +10,7 @@ import fnsFormat from './format';
 import TimePicker from './Elements/TimePicker/TimePicker';
 
 import { DayBackground, DayText, DayForeground } from './Elements/DayPicker/DayPicker.styles';
-import { fnsStartOfMonth, fnsSetYear, fnsSetMonth, fnsSetDate, fnsStartOfDay, fnsEndOfDay } from './fns';
-import { fnsAddDays } from '../../date-range-picker/dist/fns';
+import { fnsStartOfMonth, fnsSetYear, fnsSetMonth, fnsSetDate, fnsStartOfDay, fnsEndOfDay, fnsAddDays } from './fns';
 
 class RawDatePicker extends React.Component<Props, State> {
   static defaultProps = {
