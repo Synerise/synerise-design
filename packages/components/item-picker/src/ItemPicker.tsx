@@ -7,23 +7,27 @@ import * as S from './ItemPicker.styles';
 import ItemPickerDropdown from './ItemPickerDropdown/ItemPickerDropdown';
 import Trigger from './ItemPickerTrigger/Trigger';
 
+export type ItemPickerSize = 'small' | 'large';
+
 export type ItemPickerProps = {
   dataSource: MenuItemProps[];
-  selectedItem?: MenuItemProps | undefined;
-  size?: 'small' | 'large';
-  withChange?: boolean;
-  label?: string | React.ReactNode;
-  description?: string | React.ReactNode;
   placeholder: string;
-  placeholderIcon?: React.ReactNode;
-  error?: boolean;
-  errorMessage?: string;
   clear: string;
-  tooltip?: string;
-  disabled?: boolean;
   searchPlaceholder: string;
   onClear: () => void;
   onChange: (item: MenuItemProps) => void;
+  selectedItem?: MenuItemProps | undefined;
+  size?: ItemPickerSize;
+  label?: string | React.ReactNode;
+  description?: string | React.ReactNode;
+  placeholderIcon?: React.ReactNode;
+  error?: boolean;
+  errorMessage?: string;
+  tooltip?: string;
+  disabled?: boolean;
+  withChangeButton?: boolean;
+  changeButtonLabel?: string;
+  onChangeButtonClick?: () => void;
 };
 
 const ItemPicker: React.FC<ItemPickerProps> = ({
@@ -41,6 +45,9 @@ const ItemPicker: React.FC<ItemPickerProps> = ({
   searchPlaceholder,
   clear,
   selectedItem,
+  size = 'small',
+  changeButtonLabel,
+  onChangeButtonClick,
 }) => {
   const [dropdownOpened, setDropdownOpened] = React.useState<boolean>(false);
 
@@ -77,6 +84,9 @@ const ItemPicker: React.FC<ItemPickerProps> = ({
         disabled={disabled}
         openDropdown={openDropdown}
         closeDropdown={closeDropdown}
+        size={size}
+        changeButtonLabel={changeButtonLabel}
+        onChangeButtonClick={onChangeButtonClick}
       />
     ),
     [clear, selectedItem, onClear, dropdownOpened, error, disabled]

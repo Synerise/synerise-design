@@ -3,10 +3,15 @@ import { AngleDownS, Close3S } from '@synerise/ds-icon/dist/icons';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import Icon from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
+import { MenuItemProps } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.types';
+import Button from '@synerise/ds-button';
 import * as S from './Trigger.styles';
+import { ItemPickerSize } from '../ItemPicker';
 
 interface Props {
-  selected?: any;
+  openDropdown: () => void;
+  closeDropdown: () => void;
+  size: ItemPickerSize;
   clear: string;
   onClear: () => void;
   opened: boolean;
@@ -14,8 +19,9 @@ interface Props {
   placeholderIcon?: React.ReactNode;
   error?: boolean;
   disabled?: boolean;
-  openDropdown: () => void;
-  closeDropdown: () => void;
+  selected?: MenuItemProps;
+  changeButtonLabel?: string;
+  onChangeButtonClick?: () => void;
 }
 
 const Trigger: React.FC<Props> = ({
@@ -29,6 +35,9 @@ const Trigger: React.FC<Props> = ({
   disabled,
   openDropdown,
   closeDropdown,
+  size,
+  changeButtonLabel,
+  onChangeButtonClick,
 }) => {
   const handleClear = React.useCallback(
     (event: React.MouseEvent<HTMLDivElement>): void => {
@@ -39,14 +48,62 @@ const Trigger: React.FC<Props> = ({
     [onClear, closeDropdown]
   );
 
+  const renderClear = React.useMemo(() => {
+    return (
+      selected && (
+        <S.ClearWrapper onClick={handleClear}>
+          <Tooltip title={clear}>
+            <Icon component={<Close3S />} color={theme.palette['red-600']} />
+          </Tooltip>
+        </S.ClearWrapper>
+      )
+    );
+  }, [selected, handleClear, clear]);
+
+  const renderAngleIcon = React.useMemo(() => {
+    return !selected && size === 'small' && <Icon component={<AngleDownS />} />;
+  }, [size, selected]);
+
+  const handleChangeButtonClick = React.useCallback(
+    (event: React.MouseEvent) => {
+      event.stopPropagation();
+      onChangeButtonClick ? onChangeButtonClick() : openDropdown();
+    },
+    [onChangeButtonClick]
+  );
+
+  const renderChangeButton = React.useMemo(() => {
+    return (
+      size === 'large' &&
+      onChangeButtonClick && (
+        <S.ChangeButtonWrapper>
+          <Button type="ghost" onClick={handleChangeButtonClick}>
+            {changeButtonLabel}
+          </Button>
+        </S.ChangeButtonWrapper>
+      )
+    );
+  }, [onChangeButtonClick, changeButtonLabel, size]);
+
   return (
-    <S.TriggerWrapper tabIndex={0} opened={opened} disabled={disabled} error={error} onClick={openDropdown}>
-      <S.SmallTrigger>
+    <S.TriggerWrapper
+      tabIndex={0}
+      size={size}
+      opened={opened}
+      disabled={disabled}
+      error={error}
+      onClick={openDropdown}
+      selected={Boolean(selected)}
+    >
+      <S.Trigger size={size}>
         {selected ? (
-          <S.Value>
-            {selected.prefixel && <S.Prefix>{selected.prefixel}</S.Prefix>}
-            {selected.text}
-          </S.Value>
+          <>
+            <S.Value>
+              {selected.prefixel && <S.Prefix>{selected.prefixel}</S.Prefix>}
+              <S.ValueText>{selected.text}</S.ValueText>
+            </S.Value>
+            {renderChangeButton}
+          </>
         ) : (
           <S.Placeholder>
             {placeholderIcon && (
@@ -57,17 +114,10 @@ const Trigger: React.FC<Props> = ({
             {placeholder}
           </S.Placeholder>
         )}
-      </S.SmallTrigger>
-      <S.IconWrapper>
-        {selected ? (
-          <S.ClearWrapper onClick={handleClear}>
-            <Tooltip title={clear}>
-              <Icon component={<Close3S />} color={theme.palette['red-600']} />
-            </Tooltip>
-          </S.ClearWrapper>
-        ) : (
-          <Icon component={<AngleDownS />} />
-        )}
+      </S.Trigger>
+      <S.IconWrapper size={size}>
+        {renderClear}
+        {renderAngleIcon}
       </S.IconWrapper>
     </S.TriggerWrapper>
   );
