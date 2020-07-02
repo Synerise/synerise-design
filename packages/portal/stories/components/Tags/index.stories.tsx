@@ -5,6 +5,8 @@ import { v4 as uuid } from 'uuid';
 
 import Tags, { Tag, TagShape } from '@synerise/ds-tags';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import Icon from '@synerise/ds-icon';
+import { Add3S } from '@synerise/ds-icon/dist/icons';
 
 const customColorOptions = {
   blue: theme.palette['blue-600'],
@@ -156,7 +158,7 @@ const stories = {
       id: 0,
       name: 'Lamborghini',
       color: colors,
-      image: IMAGE_URL,
+      prefixel: <Icon className="icon1" component={<Add3S />} size={24} color="#fff" />,
     }];
 
     return (

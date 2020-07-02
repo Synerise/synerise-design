@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Icon from '@synerise/ds-icon';
-import { Add3S, CloseS } from '@synerise/ds-icon/dist/icons';
+import { CloseS } from '@synerise/ds-icon/dist/icons';
 import { Props } from './Tag.types';
 import * as S from './Tag.styles';
 
@@ -38,10 +38,22 @@ const Tag: React.FC<Props> = ({
   const isStatusShape =
     shape &&
     [TagShape.STATUS_ERROR, TagShape.STATUS_NEUTRAL, TagShape.STATUS_SUCCESS, TagShape.STATUS_WARNING].includes(shape);
-  const isRemovable = removable && [isDefaultRound, isDefaultSquare];
+  const isRemovable = removable && (isDefaultRound || isDefaultSquare);
   const isActionable = !disabled && isRemovable;
 
   const onRemoveCall = (): void | false => !!onRemove && !!id && onRemove(id);
+  const renderPrefixel = (): React.ReactNode => {
+    if (typeof prefixel === 'string' || typeof prefixel === 'number') {
+      return <S.PrefixWrapper>{prefixel}</S.PrefixWrapper>;
+    }
+    return prefixel;
+  };
+  const renderSuffixel = (): React.ReactNode => {
+    if (typeof suffixel === 'string' || typeof suffixel === 'number') {
+      return <S.SuffixWrapper>{suffixel}</S.SuffixWrapper>;
+    }
+    return suffixel;
+  };
 
   return (
     <S.Tag
@@ -55,17 +67,17 @@ const Tag: React.FC<Props> = ({
       isActionable={isActionable}
       onClick={onClick}
       data-testid={typeof id !== 'undefined' ? `tag-${id}` : 'tag'}
-      preffixel={prefixel}
-      suffixel={suffixel}
+      preffixel={!!prefixel}
+      suffixel={!!suffixel}
       hasImage={!!image}
     >
       <S.Content>
-        {image && isDefaultType && <Icon className="icon1" component={<Add3S />} size={24} color="#fff" />}
-        {!!prefixel && <S.PrefixWrapper>{prefixel}</S.PrefixWrapper>}
+        {image && isDefaultType && <img src={image} alt="" />}
+        {!!prefixel && renderPrefixel()}
         <S.TagName>{name}</S.TagName>
-        {!!suffixel && <S.SuffixWrapper>{suffixel}</S.SuffixWrapper>}
+        {!!suffixel && renderSuffixel()}
         {isRemovable && (
-          <S.RemoveButton type="button" onClick={onRemoveCall} data-testid="remove-btn">
+          <S.RemoveButton onClick={onRemoveCall} data-testid="remove-btn">
             <Icon className="icon" component={<CloseS />} size={24} color="#fff" />
           </S.RemoveButton>
         )}

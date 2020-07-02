@@ -12,6 +12,6 @@ export interface Props {
   disabled?: boolean;
   onClick?: () => void;
   onRemove?: (tag: string | number) => void;
-  prefixel?: boolean;
-  suffixel?: boolean;
+  prefixel?: React.ReactNode | React.ReactText;
+  suffixel?: React.ReactNode | React.ReactText;
 }

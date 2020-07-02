@@ -25,7 +25,7 @@ type InsertShapeStyles = {
   hasImage?: boolean;
 } & ThemeProps;
 
-const getWidthOnHover = (props): string => {
+const getWidthOnHover = (props: InsertShapeStyles): string => {
   if ((props.suffixel && props.preffixel) || props.hasImage) {
     return 'calc(100% - 43px)';
   }
@@ -267,6 +267,7 @@ type TagProps = {
   isActionable?: boolean;
   suffixel?: boolean;
   preffixel?: boolean;
+  hasImage?: boolean;
 } & ThemeProps;
 
 export const Content = styled.div`
@@ -316,7 +317,7 @@ export const Tag = styled.div<TagProps>`
 
 
   .icon1 {
-    margin: ${(props): string => (props.removable ? '0 -11px 0 5px' : '0 1px 0 -7px')};
+    margin: ${(props): string => (props.removable ? '0 -6px 0 5px' : '0 -2px 0 -7px')};
   }
 
   ${(props): FlattenSimpleInterpolation | false =>
