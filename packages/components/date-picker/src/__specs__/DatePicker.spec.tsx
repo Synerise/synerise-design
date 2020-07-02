@@ -2,19 +2,17 @@ import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import * as React from 'react';
 import RawDatePicker from '../RawDatePicker';
 import { fireEvent, screen } from '@testing-library/react';
-import '@testing-library/jest-dom/extend-expect'
+import '@testing-library/jest-dom/extend-expect';
 
 const ROWS = 6;
 const WEEKDAYS = 7;
-
+const NAVBAR_ITEM_SELECTOR = '.ds-date-picker-nav  > div > button';
 describe('RawDatePicker', () => {
   it('should render', () => {
     const element = renderWithProvider(
       <RawDatePicker
         showTime={true}
         texts={{
-          selectTime: 'Select time',
-          selectDate: 'Select date',
           apply: 'Apply',
           now: 'Now',
         }}
@@ -28,8 +26,6 @@ describe('RawDatePicker', () => {
       <RawDatePicker
         showTime={true}
         texts={{
-          selectTime: 'Select time',
-          selectDate: 'Select date',
           apply: 'Apply',
           now: 'Now',
         }}
@@ -47,8 +43,6 @@ describe('RawDatePicker', () => {
       <RawDatePicker
         showTime={true}
         texts={{
-          selectTime: 'Select time',
-          selectDate: 'Select date',
           apply: 'Apply',
           now: 'Now',
         }}
@@ -68,8 +62,6 @@ describe('RawDatePicker', () => {
       <RawDatePicker
         showTime={true}
         texts={{
-          selectTime: 'Select time',
-          selectDate: 'Select date',
           apply: 'Apply',
           now: 'Now',
         }}
@@ -89,8 +81,6 @@ describe('RawDatePicker', () => {
       <RawDatePicker
         showTime={true}
         texts={{
-          selectTime: 'Select time',
-          selectDate: 'Select date',
           apply: 'Apply',
           now: 'Now',
         }}
@@ -106,13 +96,11 @@ describe('RawDatePicker', () => {
     expect(await getByText('1930-1939')).toBeTruthy();
     expect(await getByText('2000-2009')).toBeTruthy();
   });
-  it('should proceed to TimePicker when clicked on select time', async () => {
-    const { getByText, container, getByTestId } = renderWithProvider(
+  it('should proceed to TimePicker after choosing the day', async () => {
+    const { container, getByTestId } = renderWithProvider(
       <RawDatePicker
         showTime={true}
         texts={{
-          selectTime: 'Select time',
-          selectDate: 'Select date',
           apply: 'Apply',
           now: 'Now',
         }}
@@ -122,9 +110,8 @@ describe('RawDatePicker', () => {
         disabledSeconds={[]}
       />
     );
-    const dayOne = container.querySelector('[data-attr="1"]') as HTMLElement;
-    await fireEvent.click(dayOne);
-    await fireEvent.click(await getByText('Select time'));
+    const dayOne = await container.querySelector('[data-attr="1"]') as HTMLElement;
+    await dayOne.click();
     expect(await getByTestId('tp-overlay-container')).toBeTruthy();
   });
   it('should show previous year on left arrow click', async () => {
@@ -132,8 +119,6 @@ describe('RawDatePicker', () => {
       <RawDatePicker
         showTime={true}
         texts={{
-          selectTime: 'Select time',
-          selectDate: 'Select date',
           apply: 'Apply',
           now: 'Now',
         }}
@@ -143,7 +128,7 @@ describe('RawDatePicker', () => {
         disabledSeconds={[]}
       />
     );
-    const navigationArrows = container.querySelectorAll('.ds-icon[role="button"]');
+    const navigationArrows = container.querySelectorAll(NAVBAR_ITEM_SELECTOR);
     const toPreviousYear = navigationArrows[0];
     await fireEvent.click(toPreviousYear as HTMLElement);
     expect(await getByText('1995')).toBeTruthy();
@@ -154,8 +139,6 @@ describe('RawDatePicker', () => {
       <RawDatePicker
         showTime={true}
         texts={{
-          selectTime: 'Select time',
-          selectDate: 'Select date',
           apply: 'Apply',
           now: 'Now',
         }}
@@ -165,7 +148,7 @@ describe('RawDatePicker', () => {
         disabledSeconds={[]}
       />
     );
-    const navigationArrows = container.querySelectorAll('.ds-icon[role="button"]');
+    const navigationArrows = container.querySelectorAll(NAVBAR_ITEM_SELECTOR);
     const toPreviousMonth = navigationArrows[1];
     await fireEvent.click(toPreviousMonth as HTMLElement);
     expect(await getByText('Sep')).toBeTruthy();
@@ -176,8 +159,6 @@ describe('RawDatePicker', () => {
       <RawDatePicker
         showTime={true}
         texts={{
-          selectTime: 'Select time',
-          selectDate: 'Select date',
           apply: 'Apply',
           now: 'Now',
         }}
@@ -187,7 +168,7 @@ describe('RawDatePicker', () => {
         disabledSeconds={[]}
       />
     );
-    const navigationArrows = container.querySelectorAll('.ds-icon[role="button"]');
+    const navigationArrows = container.querySelectorAll(NAVBAR_ITEM_SELECTOR);
     const toNextMonth = navigationArrows[2];
     await fireEvent.click(toNextMonth as HTMLElement);
     expect(await getByText('Nov')).toBeTruthy();
@@ -198,8 +179,6 @@ describe('RawDatePicker', () => {
       <RawDatePicker
         showTime={true}
         texts={{
-          selectTime: 'Select time',
-          selectDate: 'Select date',
           apply: 'Apply',
           now: 'Now',
         }}
@@ -209,7 +188,7 @@ describe('RawDatePicker', () => {
         disabledSeconds={[]}
       />
     );
-    const navigationArrows = container.querySelectorAll('.ds-icon[role="button"]');
+    const navigationArrows = container.querySelectorAll(NAVBAR_ITEM_SELECTOR);
     const toNextYear = navigationArrows[3];
     await fireEvent.click(toNextYear as HTMLElement);
     expect(await getByText('1997')).toBeTruthy();

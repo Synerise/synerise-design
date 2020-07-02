@@ -7,7 +7,7 @@ import Navbar from '../Navbar/Navbar';
 import { DayPicker } from './DayPicker.styles';
 import * as S from '../Navbar/Navbar.styles';
 import { DayPickerProps } from './DayPicker.types';
-import { fnsAddYears, fnsAddMonths } from "../../fns";
+import { fnsAddYears, fnsAddMonths } from '../../fns';
 
 const captionElement = (): null => null;
 
@@ -27,7 +27,8 @@ const Picker: React.FC<DayPickerProps> = ({
       <Navbar
         title={
           <>
-            <S.Link onClick={onMonthNameClick}>{fnsFormat(month, 'MMM', intl.locale)}</S.Link>{' '}
+            <S.Link onClick={onMonthNameClick}>{fnsFormat(month, 'MMM', intl.locale)}</S.Link>
+            {'  '}
             <S.Link onClick={onYearNameClick}>{fnsFormat(month, 'YYYY', intl.locale)}</S.Link>
           </>
         }

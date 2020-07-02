@@ -10,7 +10,7 @@ import fnsFormat from './format';
 import TimePicker from './Elements/TimePicker/TimePicker';
 
 import { DayBackground, DayText, DayForeground } from './Elements/DayPicker/DayPicker.styles';
-import { fnsStartOfMonth, fnsSetYear, fnsSetMonth, fnsSetDate, fnsStartOfDay, fnsEndOfDay, fnsAddMonths } from './fns';
+import { fnsStartOfMonth, fnsSetYear, fnsSetMonth, fnsSetDate, fnsStartOfDay, fnsEndOfDay } from './fns';
 import { fnsAddDays } from '../../date-range-picker/dist/fns';
 
 class RawDatePicker extends React.Component<Props, State> {
@@ -170,10 +170,14 @@ class RawDatePicker extends React.Component<Props, State> {
     );
   };
 
+  handleDaySwitch = (day: Date): void => {
+    const { disabledDates } = this.props;
+    this.handleDayClick(day, { disabled: disabledDates ? disabledDates(day) : false });
+  };
+
   renderTimePicker = (): React.ReactNode => {
     const { value } = this.state;
     const { disabledHours, disabledMinutes, disabledSeconds } = this.props;
-
     return (
       <TimePicker
         value={value}
@@ -181,8 +185,8 @@ class RawDatePicker extends React.Component<Props, State> {
         disabledHours={disabledHours}
         disabledMinutes={disabledMinutes}
         disabledSeconds={disabledSeconds}
-        onShortNext={(): void => this.handleDayClick(fnsAddDays(value, -1),'time')}
-        onShortPrev={(): void => this.handleDayClick(fnsAddDays(value, 1),'time')}
+        onShortNext={(): void => this.handleDaySwitch(fnsAddDays(value, 1))}
+        onShortPrev={(): void => this.handleDaySwitch(fnsAddDays(value, -1))}
       />
     );
   };

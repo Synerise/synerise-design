@@ -1,18 +1,15 @@
 import styled from 'styled-components';
 
+// eslint-disable-next-line import/prefer-default-export
 export const Container = styled.div``;
 
-export const InputWrapper = styled.div`
-  position: relative;
-`;
-
-export const IconWrapper = styled.div`
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  margin: auto 4px;
-  display: flex;
-  align-items: center;
-  color: ${(props): string => props.theme.palette['grey-400']};
+export const ClearIconWrapper = styled.div`
+  .ds-icon svg {
+    fill: ${(props): string => props.theme.palette['red-600']};
+  }
+  &&:hover {
+    .ds-icon svg {
+      fill: ${(props): string => props.theme.palette['red-600']};
+    }
+  }
 `;

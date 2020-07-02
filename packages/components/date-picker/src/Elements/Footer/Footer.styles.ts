@@ -4,7 +4,7 @@ import Button from '@synerise/ds-button';
 export const Container = styled.div`
   display: flex;
   align-items: center;
-  padding: 12px 16px;
+  padding: 12px 24px;
 `;
 
 export const Actions = styled.div`
@@ -24,7 +24,7 @@ export const Range = styled(Button)`
     }
   }
 `;
-export const ActionsPlaceholer = styled.div`
+export const ActionsPlaceholder = styled.div`
   display:flex;
   flex:1;
 `

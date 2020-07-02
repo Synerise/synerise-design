@@ -60,11 +60,12 @@ export const DayPicker = styled(DayPickerBase)`
   }
 
   .DayPicker-Day {
-    width: 32px;
-    height: 32px;
+    width: 36px;
+    height: 36px;
     display: table-cell;
     cursor: pointer;
     position: relative;
+    border:4px solid transparent;
     > div {
       position: absolute;
       top: 0;

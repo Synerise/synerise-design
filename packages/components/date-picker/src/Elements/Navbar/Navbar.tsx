@@ -8,7 +8,7 @@ import { NavbarProps } from './Navbar.types';
 const Navbar: React.FC<NavbarProps> = (props: NavbarProps) => {
   const { title, onTitleClick, hidePrev, hideNext, onLongPrev, onLongNext, onShortPrev, onShortNext } = props;
   return (
-    <S.Container>
+    <S.Container className="ds-date-picker-nav">
       <S.ArrowContainer hidden={hidePrev}>
         <S.NavButton mode="single-icon" role="button" type="ghost" hidden={!onLongPrev} onClick={onLongPrev}>
           <Icon component={<DoubleAngleLeftM />} size={14} />

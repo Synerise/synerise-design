@@ -23,14 +23,14 @@ const Footer: React.FC<Props> = ({
 }) => {
   const SwitchModeButton = React.useMemo(
     () => (
-      <Button type="ghost" mode="single-icon" disabled={!canSwitchMode} onClick={onSwitchMode}>
+      <Button type="ghost" mode="single-icon" disabled={!canSwitchMode} onClick={onSwitchMode} className="ds-date-time-switch" >
         <Icon component={mode === 'time' ? <CalendarM /> : <ClockM />} />
       </Button>
     ),
     [mode, texts, onSwitchMode, canSwitchMode]
   );
   return (
-    <S.Container {...rest}>
+    <S.Container className="ds-date-picker-footer" {...rest} >
       <S.Range
         data-testid="range-now"
         type="tertiary"
@@ -40,7 +40,7 @@ const Footer: React.FC<Props> = ({
       >
         {texts.now}
       </S.Range>
-      <S.ActionsPlaceholer/>
+      <S.ActionsPlaceholder/>
       <S.Actions>
         {!dateOnly && SwitchModeButton}
         <Tooltip title={message}>
