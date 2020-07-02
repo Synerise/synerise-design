@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Icon from '@synerise/ds-icon';
 import { CloseS } from '@synerise/ds-icon/dist/icons';
+import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { Props } from './Tag.types';
 import * as S from './Tag.styles';
 
@@ -78,7 +79,7 @@ const Tag: React.FC<Props> = ({
         {!!suffixel && renderSuffixel()}
         {isRemovable && (
           <S.RemoveButton onClick={onRemoveCall} data-testid="remove-btn">
-            <Icon className="icon" component={<CloseS />} size={24} color="theme.palette.white" />
+            <Icon className="icon" component={<CloseS />} size={24} color={theme.palette.white} />
           </S.RemoveButton>
         )}
       </S.Content>
