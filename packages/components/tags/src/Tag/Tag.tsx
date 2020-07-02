@@ -78,7 +78,7 @@ const Tag: React.FC<Props> = ({
         {!!suffixel && renderSuffixel()}
         {isRemovable && (
           <S.RemoveButton onClick={onRemoveCall} data-testid="remove-btn">
-            <Icon className="icon" component={<CloseS />} size={24} color="#fff" />
+            <Icon className="icon" component={<CloseS />} size={24} color="theme.palette.white" />
           </S.RemoveButton>
         )}
       </S.Content>
