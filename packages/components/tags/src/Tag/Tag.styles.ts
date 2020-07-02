@@ -278,7 +278,6 @@ export const Content = styled.div`
   flex-shrink: 1;
 `;
 export const PrefixWrapper = styled.div`
-  margin: 0 4px 0 0;
   ${(props): string => addonStyles(props)};
 `;
 export const SuffixWrapper = styled.div`
