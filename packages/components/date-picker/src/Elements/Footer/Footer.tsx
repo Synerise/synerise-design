@@ -27,7 +27,7 @@ const Footer: React.FC<Props> = ({
         <Icon component={mode === 'time' ? <CalendarM /> : <ClockM />} />
       </Button>
     ),
-    [mode, texts, onSwitchMode, canSwitchMode]
+    [mode, onSwitchMode, canSwitchMode]
   );
   return (
     <S.Container className="ds-date-picker-footer" {...rest} >

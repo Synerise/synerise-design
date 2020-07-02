@@ -12,7 +12,6 @@ const DatePicker: React.FC<Props> = (props) => {
   const [dropVisible, setDropVisible] = React.useState(false);
   const [selectedDate, setSelectedDate] = React.useState(value);
   const ref = React.useRef<HTMLDivElement>(null);
-  console.log('selectedDate',selectedDate);
   useOnClickOutside(ref, () => {
     !!dropVisible && setDropVisible(false);
   });

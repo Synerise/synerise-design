@@ -24,17 +24,20 @@ const PickerInput: React.FC<Props> = ({
 }: Props) => {
   const [hovered, setHovered] = React.useState<boolean>(false);
 
-  const getText = (): string => {
+  const getText = React.useCallback((): string => {
     if (!value) return '';
     let dateValue = value;
     if (typeof value === 'string') dateValue = moment(value);
     return dateValue.format(format || showTime ? 'MMM D, YYYY, HH:mm' : 'MMM D, YYYY');
-  };
+  }, [value, format, showTime]);
 
-  const handleApply = (date?: Date | null): void => {
-    if (!onChange) return;
-    onChange(date ? moment(date) : null, getText());
-  };
+  const handleApply = React.useCallback(
+    (date?: Date | null): void => {
+      if (!onChange) return;
+      onChange(date ? moment(date) : null, getText());
+    },
+    [onChange, getText]
+  );
 
   const handleIconClick = React.useCallback(
     (e: React.MouseEvent<HTMLDivElement>): void => {
@@ -42,7 +45,7 @@ const PickerInput: React.FC<Props> = ({
       onClear && onClear();
       handleApply(null);
     },
-    [onClear]
+    [onClear, handleApply]
   );
 
   const handleInputClick = React.useCallback(
@@ -66,7 +69,7 @@ const PickerInput: React.FC<Props> = ({
         disabled={disabled}
         value={getText() || placeholder}
         icon1={
-          (hovered && !!value) ? (
+          hovered && !!value ? (
             <S.ClearIconWrapper>
               <Icon component={<Close3M />} onClick={handleIconClick} />
             </S.ClearIconWrapper>
