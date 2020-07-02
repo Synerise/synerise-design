@@ -188,7 +188,6 @@ const insertShapeStyles = (props: InsertShapeStyles): FlattenSimpleInterpolation
                   position: absolute;
                   left: -3px;
                   top: -3px;
-                  padding: 0 10px 10px 0;
                 }
               }
             }
