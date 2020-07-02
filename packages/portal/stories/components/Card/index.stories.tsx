@@ -5,9 +5,9 @@ import Button from '@synerise/ds-button';
 import Card, { CardGroup, CardBadge } from '@synerise/ds-card';
 import { doubleClickListener } from '@synerise/ds-utils';
 import Icon from '@synerise/ds-icon';
-import { CheckS, FilterM, SearchM, WarningFillM } from '@synerise/ds-icon/dist/icons';
+import { CheckS, FilterM, SearchM, UserM, WarningFillM } from '@synerise/ds-icon/dist/icons';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
-
+import * as S from './stories.styles';
 const backgrounds = {
   White: 'white',
   'White with shadow': 'white-shadow',
@@ -107,9 +107,7 @@ const stories = {
       >
         <div style={{ padding: '24px' }}>
           <h3>Variants of card header</h3>
-          <div
-            style={{ paddingTop: 12, width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}
-          >
+          <S.HeaderWrapper>
             {renderCard({
               ...props,
               lively: true,
@@ -120,11 +118,8 @@ const stories = {
               showContent: false,
               headerBorderBottom: false,
             })}
-          </div>
-
-          <div
-            style={{ paddingTop: 12, width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}
-          >
+          </S.HeaderWrapper>
+          <S.HeaderWrapper>
             {renderCard({
               ...props,
               lively: true,
@@ -140,11 +135,9 @@ const stories = {
                 </div>
               ),
             })}
-          </div>
+          </S.HeaderWrapper>
 
-          <div
-            style={{ paddingTop: 12, width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}
-          >
+          <S.HeaderWrapper>
             {renderCard({
               ...props,
               lively: true,
@@ -163,11 +156,9 @@ const stories = {
                 </div>
               ),
             })}
-          </div>
+          </S.HeaderWrapper>
 
-          <div
-            style={{ paddingTop: 12, width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}
-          >
+          <S.HeaderWrapper>
             {renderCard({
               ...props,
               lively: true,
@@ -187,11 +178,9 @@ const stories = {
                 </div>
               ),
             })}
-          </div>
+          </S.HeaderWrapper>
 
-          <div
-            style={{ paddingTop: 12, width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}
-          >
+          <S.HeaderWrapper>
             {renderCard({
               ...props,
               lively: true,
@@ -201,11 +190,9 @@ const stories = {
               showContent: false,
               headerBorderBottom: true,
             })}
-          </div>
+          </S.HeaderWrapper>
 
-          <div
-            style={{ paddingTop: 12, width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}
-          >
+          <S.HeaderWrapper>
             {renderCard({
               ...props,
               lively: true,
@@ -219,11 +206,8 @@ const stories = {
                 </div>
               ),
             })}
-          </div>
-
-          <div
-            style={{ paddingTop: 12, width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}
-          >
+          </S.HeaderWrapper>
+          <S.HeaderWrapper>
             {renderCard({
               ...props,
               lively: true,
@@ -240,11 +224,8 @@ const stories = {
                 </div>
               ),
             })}
-          </div>
-
-          <div
-            style={{ paddingTop: 12, width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}
-          >
+          </S.HeaderWrapper>
+          <S.HeaderWrapper>
             {renderCard({
               ...props,
               lively: true,
@@ -261,11 +242,9 @@ const stories = {
                 </div>
               ),
             })}
-          </div>
+          </S.HeaderWrapper>
 
-          <div
-            style={{ paddingTop: 12, width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}
-          >
+          <S.HeaderWrapper>
             {renderCard({
               ...props,
               lively: true,
@@ -279,11 +258,8 @@ const stories = {
                 </div>
               ),
             })}
-          </div>
-
-          <div
-            style={{ paddingTop: 12, width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}
-          >
+          </S.HeaderWrapper>
+          <S.HeaderWrapper>
             {renderCard({
               ...props,
               lively: true,
@@ -298,11 +274,9 @@ const stories = {
                 </div>
               ),
             })}
-          </div>
+          </S.HeaderWrapper>
 
-          <div
-            style={{ paddingTop: 12, width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}
-          >
+          <S.HeaderWrapper>
             {renderCard({
               ...props,
               lively: true,
@@ -317,10 +291,8 @@ const stories = {
                 </div>
               ),
             })}
-          </div>
-          <div
-            style={{ paddingTop: 12, width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}
-          >
+          </S.HeaderWrapper>
+          <S.HeaderWrapper>
             {renderCard({
               ...props,
               lively: false,
@@ -346,7 +318,36 @@ const stories = {
                 </div>
               ),
             })}
-          </div>
+          </S.HeaderWrapper>
+          <S.HeaderWrapper>
+            {renderCard({
+              ...props,
+              lively: false,
+              raised: false,
+              description: null,
+              compactHeader: false,
+              icon: <Icon component={<UserM />}  style={{marginTop:'3px'}}/>,
+
+              iconColor: theme.palette['grey-400'],
+              showContent: false,
+              headerBorderBottom: false,
+              headerSideChildren: (
+                <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gridColumnGap: 8 }}>
+                  <div style={{ display: 'flex', alignItems: 'center' }}>
+                    <Icon
+                      component={<WarningFillM />}
+                      color={theme.palette['yellow-600']}
+                      style={{ marginRight: '4px'}}
+                    />
+                    <span style={{ fontWeight: 500, color: theme.palette['yellow-600'] }}>Uncompleted</span>
+                  </div>
+                  <Button type="custom-color" color="green" disabled>
+                    Apply
+                  </Button>
+                </div>
+              ),
+            })}
+          </S.HeaderWrapper>
         </div>
       </div>
     );
