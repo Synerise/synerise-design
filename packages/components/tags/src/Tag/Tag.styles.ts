@@ -27,13 +27,13 @@ type InsertShapeStyles = {
 
 const getWidthOnHover = (props: InsertShapeStyles): string => {
   if ((props.suffixel && props.preffixel) || props.hasImage) {
-    return 'calc(100% - 43px)';
+    return 'calc(100% - 50px)';
   }
   if (props.preffixel) {
-    return 'calc(100% - 30px)';
+    return 'calc(100% - 35px)';
   }
   if (props.suffixel) {
-    return 'calc(100% - 23px)';
+    return 'calc(100% - 28px)';
   }
   return 'calc(100% - 16px)';
 };
@@ -323,7 +323,7 @@ export const Tag = styled.div<TagProps>`
 
 
   .icon1 {
-    margin: ${(props): string => (props.removable ? '0 -6px 0 5px' : '0 -2px 0 -7px')};
+    margin: ${(props): string => (props.removable ? '0 -2px 0 5px' : '0 2px 0 -7px')};
   }
 
   ${(props): FlattenSimpleInterpolation | false =>
