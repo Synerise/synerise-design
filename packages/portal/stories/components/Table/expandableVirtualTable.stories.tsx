@@ -82,19 +82,12 @@ const stories = {
             columns={getColumns()}
             loading={boolean('Set loading state', false)}
             roundedHeader={boolean('Rounded header', false)}
-            cellSize={select('Set cells size', CELL_SIZES, CELL_SIZES.default)}
-            pagination={boolean('Enable pagination', false) && {
-              showSizeChanger: boolean('Show size changer', true),
-              showQuickJumper: boolean('Show quick jumper', true),
-              onChange: action('pageChanged'),
-            }}
             expandable={{
               expandIconColumnIndex: -1,
               expandedRowKeys: expandedRows,
             }}
             rowKey={row => row.key}
-            selection={
-              boolean('Enable row selection', true) && {
+            selection={{
                 onChange: handleSelectRow,
                 selectedRowKeys: selectedRows,
                 selections: [
