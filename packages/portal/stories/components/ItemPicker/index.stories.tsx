@@ -1,11 +1,14 @@
 import * as React from 'react';
 import ItemPicker from '@synerise/ds-item-picker';
-import { boolean, text } from '@storybook/addon-knobs';
-import Menu from '@synerise/ds-menu';
-import { MobileM, UserM } from '@synerise/ds-icon/dist/icons';
+import { boolean, select, text } from '@storybook/addon-knobs';
+import { UserM } from '@synerise/ds-icon/dist/icons';
 import Icon from '@synerise/ds-icon';
 import { dataSource } from './dataset';
 import { withState } from '@dump247/storybook-state';
+import { ItemPickerSize } from '@synerise/ds-item-picker/dist/ItemPicker';
+import { action } from '@storybook/addon-actions';
+
+const SIZES = ['small', 'large'];
 
 const stories = {
   default: withState({selected: null})(({ store }) => {
@@ -13,9 +16,12 @@ const stories = {
       store.set({selected: item});
     };
 
+    const handleClear = () => {
+      store.set({selected: null});
+    };
+
     return (<ItemPicker
       dataSource={dataSource}
-      renderMenuItem={(item) => <Menu.Item prefixel={<Icon component={<MobileM/>}/>}>{item.name}</Menu.Item>}
       searchPlaceholder={text('Set search placeholder', 'Search')}
       label={text('Set label', 'Label')}
       description={text('Set description', 'Description')}
@@ -25,10 +31,13 @@ const stories = {
       selectedItem={store.state.selected}
       onChange={handleChange}
       clear={text('Set clear tooltip', 'Remove')}
-      onClear={() => store.set({selected: null})}
+      onClear={handleClear}
       disabled={boolean('Disabled', false)}
       error={boolean('Has error?', false)}
       errorMessage={text('Error message', 'Error')}
+      size={select('Select size', SIZES, 'small') as ItemPickerSize}
+      changeButtonLabel="Change"
+      onChangeButtonClick={boolean('With change button', false) && action('Change button custom action')}
     />)
     }
   ),
