@@ -2,9 +2,9 @@ import * as React from 'react';
 import { IntlShape } from 'react-intl';
 
 export type Props = {
-  value: Date;
+  value: { days: number };
   label: string | React.ReactNode;
-  onChange: () => void;
+  onChange: ({ days }: { days: number }) => void;
   onToggle: () => void;
   active: boolean;
   restricted: boolean;

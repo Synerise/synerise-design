@@ -47,11 +47,10 @@ export const normalizeRange = (range: DateRange): DateRange => {
     const from = fnsMin(left, right);
     const to = fnsMax(left, right);
     return { ...range, type: RELATIVE, from, to, offset, duration, future };
-  } else {
-    const from = range.from ? (typeof range.from === 'string' ? new Date(range.from) : range.from) : undefined;
-    const to = range.to ? (typeof range.to === 'string' ? new Date(range.to) : range.to) : undefined;
-    return { ...range, type: ABSOLUTE, from, to };
   }
+  const from = range.from ? (typeof range.from === 'string' ? new Date(range.from) : range.from) : undefined;
+  const to = range.to ? (typeof range.to === 'string' ? new Date(range.to) : range.to) : undefined;
+  return { ...range, type: ABSOLUTE, from, to };
 };
 
 class DateRangePicker extends React.PureComponent<Props, State> {
@@ -101,6 +100,7 @@ class DateRangePicker extends React.PureComponent<Props, State> {
           ? {
               ...value,
               ...relativeToAbsolute(value),
+              type: value.type,
             }
           : value.key === 'ALL_TIME'
           ? omitBy(value, isUndefined)
@@ -108,6 +108,7 @@ class DateRangePicker extends React.PureComponent<Props, State> {
               ...value,
               from: value.type === ABSOLUTE ? value.from instanceof Date && value.from.toISOString() : null,
               to: value.type === ABSOLUTE ? value.to instanceof Date && value.to.toISOString() : null,
+              type: value.type,
             }
       );
   };
@@ -126,6 +127,7 @@ class DateRangePicker extends React.PureComponent<Props, State> {
     this.setState({ mode: updatedMode });
   };
 
+  getDate = (date: Date | string): Date => (date instanceof Date ? date : new Date(date));
   render(): JSX.Element {
     const {
       showRelativePicker,
@@ -150,10 +152,10 @@ class DateRangePicker extends React.PureComponent<Props, State> {
     const footerFormat = format || (showTime ? 'MMM D, YYYY, HH:mm' : 'MMM D, YYYY');
     let footerText = '';
     if (from) {
-      footerText += fnsFormat(from, footerFormat, intl.locale);
+      footerText += fnsFormat(this.getDate(from), footerFormat, intl.locale);
     }
     if (to) {
-      footerText += ' - ' + fnsFormat(to, footerFormat, intl.locale);
+      footerText += ` - ${fnsFormat(this.getDate(to), footerFormat, intl.locale)}`;
     }
     const validator = validate(value);
     const isValid = (!!(from && to) || key === 'ALL_TIME') && validator.valid;
