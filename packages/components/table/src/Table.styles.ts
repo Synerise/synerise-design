@@ -135,3 +135,11 @@ export const Spinner = styled.div`
     }
   }
 `;
+
+export const TableWrapper = styled.div<{ hideColumnNames?: boolean }>`
+  table {
+    .ant-table-thead {
+      ${(props): string => (props.hideColumnNames ? 'display: none' : '')};
+    }
+  }
+`;
