@@ -13,7 +13,7 @@ const attrItem = [
   'selectorExpressionAttribute',
 ];
 type Attributes = {
-  [key: string]: any;
+  [key: string]: string;
 };
 const attribute: Attributes = attrItem.reduce((obj, item) => {
   // eslint-disable-next-line no-param-reassign

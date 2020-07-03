@@ -4,7 +4,7 @@ import { DateRange, RelativeDateRange } from '../date.types';
 export type Props = {
   ranges: RelativeDateRange[];
   value: DateRange;
-  onChange: any;
+  onChange: (range: DateRange | undefined) => void;
   future: boolean;
   past: boolean;
   intl: IntlShape;
@@ -21,4 +21,3 @@ export type State = {
   currentRange: RelativeDateRange;
   groupedRanges?: GroupRange;
 };
-

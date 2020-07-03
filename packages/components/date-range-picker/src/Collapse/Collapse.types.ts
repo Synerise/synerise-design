@@ -13,7 +13,7 @@ type PropsControlled = {
   hideArrow?: boolean;
   collapsed?: boolean;
   controlled?: boolean;
-  onCollapseChange?: any;
+  onCollapseChange?: () => void;
 } & CommonProps;
 
 type PropsNotControlled = {
