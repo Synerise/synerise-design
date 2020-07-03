@@ -19,11 +19,11 @@ export const LastNDaysOfMonthComponent: React.FC<Props> = ({
   ...rest
 }: Props) => {
   const label = (hovered: boolean): React.ReactNode => (
-    <React.Fragment>
+    <>
       <Icon component={!restricted || (active && hovered) ? <CloseS /> : <CheckS />} size={20} />
       <span>{labelText}</span>
       <Icon component={<AngleDownS />} style={{ float: 'right', marginTop: 2 }} />
-    </React.Fragment>
+    </>
   );
   const day: React.ReactNode = (
     <div style={{ gridColumnEnd: 'span 4' }}>
@@ -37,7 +37,7 @@ export const LastNDaysOfMonthComponent: React.FC<Props> = ({
       />
     </div>
   );
-  const onClick = (days): void => {
+  const onClick = (days: number): void => {
     onChange && onChange({ days });
     if (!active) setTimeout(onToggle);
   };
@@ -48,7 +48,7 @@ export const LastNDaysOfMonthComponent: React.FC<Props> = ({
         <Menu
           style={{ maxHeight: 200, overflow: 'auto' }}
           selectedKeys={[String(value.days)]}
-          onClick={({ key }) => onClick(parseInt(key))}
+          onClick={({ key }): void => onClick(parseInt(key, 10))}
         >
           {range(0, 30).map((index: number) => (
             <Menu.Item key={index}>{intl.formatMessage({ id: 'SNRS.DATE.N_DAYS' }, { n: index + 1 })}</Menu.Item>

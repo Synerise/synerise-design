@@ -8,5 +8,12 @@ export type Props = {
   onRemoveFilterButtonClick?: () => void;
   onOpenModalButtonClick?: () => void;
   intl: IntlShape;
-  translations?: object;
+  translations?: Texts;
 };
+
+export type Texts = {
+  clearFilter?: string;
+  changeConditions?: string;
+  enableFilter?: string;
+
+}

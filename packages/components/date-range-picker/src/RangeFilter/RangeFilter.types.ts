@@ -2,17 +2,16 @@ import { IntlShape } from 'react-intl';
 
 export type Props = {
   value: FilterValue;
-  onChange: () => void;
+  onChange: (value: NormalizedRange) => void;
   onCancel: () => void;
-  onApply: () => void;
+  onApply: (value: NormalizedRange) => void;
   intl: IntlShape;
 };
 export type State = {
   value: FilterValue;
 };
-type Definition = {
-  [key: string]: Day;
-};
+
+export type Rule = { weeks?: { week: number; days: Day[] }[]; type?: any; inverted?: boolean; days?: Day[] };
 export type FilterValue = {
   type: string;
   definition: {
@@ -21,14 +20,11 @@ export type FilterValue = {
 };
 export type Day = {
   day?: number;
+  week?: number;
   start?: string | Date;
   stop?: string | Date;
   inverted?: boolean;
   restricted?: boolean;
 };
 
-export type Rule = {
-  days: Day[];
-  inverted?: boolean;
-  type: string;
-}
+export type NormalizedRange = { type: string; nestingType: string; days?: Day[]; rules?: Rule[] };
