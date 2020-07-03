@@ -46,10 +46,8 @@ const Picker: React.FC<DayPickerProps> = ({
         key="body"
         locale={intl.locale}
         localeUtils={MomentLocaleUtils}
-        {...rest}
-        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-        // @ts-ignore
         modifiers={modifiers}
+        {...rest}
       />
     </>
   );
