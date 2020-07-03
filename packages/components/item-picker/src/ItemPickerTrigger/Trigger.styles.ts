@@ -95,7 +95,7 @@ export const Trigger = styled.div<{ size: ItemPickerSize }>`
   font-weight: ${(props): string => (props.size === 'small' ? '400' : '500')};
 `;
 
-export const TriggerWrapper = styled.div<{ TriggerWrapperProps }>`
+export const TriggerWrapper = styled.div<TriggerWrapperProps>`
   width: 282px;
   display: flex;
   cursor: ${(props): string => (props.disabled ? 'not-allowed' : 'pointer')};
