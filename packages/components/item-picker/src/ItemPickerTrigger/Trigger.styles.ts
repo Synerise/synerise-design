@@ -2,6 +2,34 @@ import styled, { css, FlattenInterpolation } from 'styled-components';
 import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { ItemPickerSize } from '../ItemPicker';
 
+type TriggerWrapperProps = {
+  opened: boolean;
+  disabled?: boolean;
+  error?: boolean;
+  size: ItemPickerSize;
+  selected: boolean;
+};
+
+const getDefaultStyles = (props: ThemeProps & TriggerWrapperProps): string => {
+  if (props.size === 'small') return `box-shadow: 0 0 0 1px ${props.theme.palette['grey-300']};`;
+  return `border: 1px dashed ${props.theme.palette['grey-300']};`;
+};
+
+const getHoverStyles = (props: ThemeProps & TriggerWrapperProps): string => {
+  if (props.size === 'small') return `box-shadow: 0 0 0 1px ${props.theme.palette['grey-400']};`;
+  return `border: 1px dashed ${props.theme.palette['grey-400']};`;
+};
+
+const getErrorStyles = (props: ThemeProps & TriggerWrapperProps): string => {
+  if (props.size === 'small') return `box-shadow: 0 0 0 1px ${props.theme.palette['red-600']};`;
+  return `border: 1px dashed ${props.theme.palette['red-600']};`;
+};
+
+const getFocusStyles = (props: ThemeProps & TriggerWrapperProps): string => {
+  if (props.size === 'small') return `box-shadow: 0 0 0 2px ${props.theme.palette['blue-600']};`;
+  return `border: 1px dashed ${props.theme.palette['blue-600']};`;
+};
+
 export const ClearWrapper = styled.div`
   position: relative;
   display: flex;
@@ -67,13 +95,7 @@ export const Trigger = styled.div<{ size: ItemPickerSize }>`
   font-weight: ${(props): string => (props.size === 'small' ? '400' : '500')};
 `;
 
-export const TriggerWrapper = styled.div<{
-  opened: boolean;
-  disabled?: boolean;
-  error?: boolean;
-  size: ItemPickerSize;
-  selected: boolean;
-}>`
+export const TriggerWrapper = styled.div<{ TriggerWrapperProps }>`
   width: 282px;
   display: flex;
   cursor: ${(props): string => (props.disabled ? 'not-allowed' : 'pointer')};
@@ -90,36 +112,14 @@ export const TriggerWrapper = styled.div<{
     return props.theme.palette.white;
   }};
   
-  ${(props): FlattenInterpolation<ThemeProps> | false =>
-    props.size === 'small'
-      ? css`
-          box-shadow: 0 0 0 1px ${props.theme.palette['grey-300']};
-        `
-      : css`
-          border: 1px dashed ${props.theme.palette['grey-300']};
-        `}
-
+  ${(props): string => getDefaultStyles(props)}
   &:hover {
-    ${(props): FlattenInterpolation<ThemeProps> | false =>
-      props.size === 'small'
-        ? css`
-            box-shadow: 0 0 0 1px ${props.theme.palette['grey-400']};
-          `
-        : css`
-            border: 1px dashed ${props.theme.palette['grey-400']};
-          `}
+    ${(props): string => getHoverStyles(props)};
   }
 
   &:focus {
     background-color: ${(props): string => props.theme.palette['blue-050']};
-    ${(props): FlattenInterpolation<ThemeProps> | false =>
-      props.size === 'small'
-        ? css`
-            box-shadow: 0 0 0 2px ${props.theme.palette['blue-600']};
-          `
-        : css`
-            border: 1px dashed ${props.theme.palette['blue-600']};
-          `}
+    ${(props): string => getFocusStyles(props)};
   }
 
   && {
@@ -135,26 +135,13 @@ export const TriggerWrapper = styled.div<{
       !props.error &&
       css`
         background-color: ${props.theme.palette['blue-050']};
-        ${props.size === 'small'
-          ? css`
-              box-shadow: 0 0 0 2px ${props.theme.palette['blue-600']};
-            `
-          : css`
-              border: 1px dashed ${props.theme.palette['blue-600']};
-            `}
-      `};
-
+        ${getFocusStyles(props)};
+      `}
     ${(props): FlattenInterpolation<ThemeProps> | false =>
       Boolean(props.error) &&
       css`
         background-color: ${props.theme.palette['red-050']};
-        ${props.size === 'small'
-          ? css`
-              box-shadow: 0 0 0 1px ${props.theme.palette['red-600']};
-            `
-          : css`
-              border: 1px dashed ${props.theme.palette['red-600']};
-            `}
+        ${getErrorStyles(props)}
       `};
 
     ${(props): FlattenInterpolation<ThemeProps> | false =>
