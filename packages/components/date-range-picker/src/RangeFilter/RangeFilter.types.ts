@@ -11,6 +11,7 @@ export type State = {
   value: FilterValue;
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type Rule = { weeks?: { week: number; days: Day[] }[]; type?: any; inverted?: boolean; days?: Day[] };
 export type FilterValue = {
   type: string;

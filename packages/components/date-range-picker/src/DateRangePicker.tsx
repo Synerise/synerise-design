@@ -25,6 +25,7 @@ import fnsFormat from './dateUtils/format';
 import relativeToAbsolute from './dateUtils/relativeToAbsolute';
 import { Props, State } from './DateRangePicker.types';
 import { DateFilter, DateRange } from './date.types';
+import getDateFromString from './dateUtils/getDateFromString';
 
 export const normalizeRange = (range: DateRange): DateRange => {
   if (!range || !range.type) {
@@ -48,8 +49,8 @@ export const normalizeRange = (range: DateRange): DateRange => {
     const to = fnsMax(left, right);
     return { ...range, type: RELATIVE, from, to, offset, duration, future };
   }
-  const from = range.from ? (typeof range.from === 'string' ? new Date(range.from) : range.from) : undefined;
-  const to = range.to ? (typeof range.to === 'string' ? new Date(range.to) : range.to) : undefined;
+  const from = range.from ? getDateFromString(range.from) : undefined;
+  const to = range.to ? getDateFromString(range.to) : undefined;
   return { ...range, type: ABSOLUTE, from, to };
 };
 
@@ -65,6 +66,7 @@ class DateRangePicker extends React.PureComponent<Props, State> {
 
   constructor(props: Props) {
     super(props);
+    // eslint-disable-next-line react/state-in-constructor
     this.state = {
       mode: 'date',
       value: normalizeRange(props.value),
@@ -72,9 +74,10 @@ class DateRangePicker extends React.PureComponent<Props, State> {
     };
   }
 
-  componentWillReceiveProps({ value: newValue }: Props): void {
+  getSnapshotBeforeUpdate(prevProps: Readonly<Props>): null {
     const { value } = this.props;
-    if (newValue !== value) this.setState({ mode: 'date', value: normalizeRange(newValue), changed: false });
+    if (prevProps.value !== value) this.setState({ mode: 'date', value: normalizeRange(value), changed: false });
+    return null;
   }
 
   handleFilterCancel = (): void => {
@@ -94,23 +97,27 @@ class DateRangePicker extends React.PureComponent<Props, State> {
   handleApply = (): void => {
     const { value } = this.state;
     const { forceAbsolute, onApply } = this.props;
+    if (forceAbsolute && value.type === RELATIVE) {
+      onApply &&
+        onApply({
+          ...value,
+          ...relativeToAbsolute(value),
+          type: value.type,
+        });
+      return;
+    }
+    if (value.key === 'ALL_TIME') {
+      onApply && onApply(omitBy(value, isUndefined));
+      return;
+    }
+
     onApply &&
-      onApply(
-        forceAbsolute && value.type === RELATIVE
-          ? {
-              ...value,
-              ...relativeToAbsolute(value),
-              type: value.type,
-            }
-          : value.key === 'ALL_TIME'
-          ? omitBy(value, isUndefined)
-          : {
-              ...value,
-              from: value.type === ABSOLUTE ? value.from instanceof Date && value.from.toISOString() : null,
-              to: value.type === ABSOLUTE ? value.to instanceof Date && value.to.toISOString() : null,
-              type: value.type,
-            }
-      );
+      onApply({
+        ...value,
+        from: value.type === ABSOLUTE && value.from instanceof Date ? value.from.toISOString() : undefined,
+        to: value.type === ABSOLUTE && value.to instanceof Date ? value.to.toISOString() : undefined,
+        type: value.type,
+      });
   };
 
   handleModalOpenClick = (): void => {
@@ -127,7 +134,6 @@ class DateRangePicker extends React.PureComponent<Props, State> {
     this.setState({ mode: updatedMode });
   };
 
-  getDate = (date: Date | string): Date => (date instanceof Date ? date : new Date(date));
   render(): JSX.Element {
     const {
       showRelativePicker,
@@ -152,10 +158,10 @@ class DateRangePicker extends React.PureComponent<Props, State> {
     const footerFormat = format || (showTime ? 'MMM D, YYYY, HH:mm' : 'MMM D, YYYY');
     let footerText = '';
     if (from) {
-      footerText += fnsFormat(this.getDate(from), footerFormat, intl.locale);
+      footerText += fnsFormat(getDateFromString(from), footerFormat, intl.locale);
     }
     if (to) {
-      footerText += ` - ${fnsFormat(this.getDate(to), footerFormat, intl.locale)}`;
+      footerText += ` - ${fnsFormat(getDateFromString(to), footerFormat, intl.locale)}`;
     }
     const validator = validate(value);
     const isValid = (!!(from && to) || key === 'ALL_TIME') && validator.valid;

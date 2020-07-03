@@ -9,16 +9,14 @@ import { Flex, Box } from '@rebass/grid';
 import { CollapseContainer, CollapseHeader, CollapseContent, IconWrapper } from './Collapse.styles';
 import { Props, State } from './Collapse.types';
 
+// eslint-disable-next-line @typescript-eslint/no-empty-function
 const NOOP = (): void => {};
 
 export default class Collapse extends React.Component<Props, State> {
-  static defaultProps = {
-    hideArrow: false,
-  };
-
   constructor(props: Props) {
     super(props);
 
+    // eslint-disable-next-line react/state-in-constructor
     this.state = {
       collapsed: props.defaultCollapsed || false,
     };
@@ -43,8 +41,8 @@ export default class Collapse extends React.Component<Props, State> {
       children,
       header,
     } = this.props;
-
-    const componentCollapsed = controlled ? collapsed : this.state.collapsed;
+    const { collapsed: collapsedState } = this.state;
+    const componentCollapsed = controlled ? collapsed : collapsedState;
 
     return (
       <CollapseContainer>

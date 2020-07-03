@@ -123,7 +123,7 @@ const createMonthlyWeekDayRange = (rules: Rule): object =>
     return day ? { ...acc, [i]: { ...day, restricted: true, display: true } } : acc;
   }, {});
 
-const createMonthlyDayRange = (rules: Rule) =>
+const createMonthlyDayRange = (rules: Rule): Day =>
   range(0, 32).reduce((acc: Day, i: number) => {
     const day = rules && rules.days && rules.days.find((d: Day) => d.day === i);
     return day ? { ...acc, [i - 1]: { ...denormMapTimeSchema(day), restricted: true, display: true } } : acc;
@@ -156,7 +156,7 @@ const denormalizeValue = (values: FilterValue): FilterValue => ({
 });
 
 const isValidValue = (value: FilterValue): boolean =>
-  !value.definition.hasOwnProperty('type') || !!value.definition.type;
+  !Object.prototype.hasOwnProperty.call(value.definition, 'type') || !!value.definition.type;
 
 class RangeFilter extends React.PureComponent<Props, State> {
   static defaultProps = {
@@ -165,12 +165,11 @@ class RangeFilter extends React.PureComponent<Props, State> {
 
   constructor(props: Props) {
     super(props);
+    // eslint-disable-next-line react/state-in-constructor
     this.state = { value: denormalizeValue(props.value) };
   }
 
-  componentWillReceiveProps(props: Props): void {
-    this.setState({ value: denormalizeValue(props.value) });
-  }
+  static getDerivedStateFromProps = (props: Props): State => ({ value: denormalizeValue(props.value) });
 
   setValue = (value: FilterValue): void => this.setState({ value });
 
