@@ -1,4 +1,5 @@
 import { TIME_OPTIONS } from '@synerise/ds-date-picker/dist/Elements/TimePicker/TimePicker';
+
 export const SECONDS = 'SECONDS';
 export const MINUTES = 'MINUTES';
 export const HOURS = 'HOURS';

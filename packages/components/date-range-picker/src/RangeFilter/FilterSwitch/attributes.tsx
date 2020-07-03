@@ -12,12 +12,14 @@ const attrItem = [
   'selectorActionValue',
   'selectorExpressionAttribute',
 ];
-
-const attribute = attrItem.reduce((obj, item) => {
+type Attributes = {
+  [key: string]: any;
+};
+const attribute: Attributes = attrItem.reduce((obj, item) => {
+  // eslint-disable-next-line no-param-reassign
   obj[item] = {
     'data-attr': item,
   };
-
   return obj;
 }, {});
 

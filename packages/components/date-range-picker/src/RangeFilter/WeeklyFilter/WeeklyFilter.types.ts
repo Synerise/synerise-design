@@ -2,6 +2,6 @@ import { IntlShape } from 'react-intl';
 
 export type Props = {
   value: object;
-  onChange: () => void;
+  onChange: (value: any) => void;
   intl: IntlShape;
 };

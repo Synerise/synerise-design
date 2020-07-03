@@ -99,7 +99,7 @@ class RelativeRangePicker extends React.PureComponent<Props, State> {
     const futureOrPastChanged = future !== prevState.future || past !== prevState.past;
     return {
       showCustomForm: prevState.showCustomForm,
-      currentRange: newRange,
+      currentRange: newRange as RelativeDateRange,
       groupedRanges: newGroupedRanges,
       currentGroup: getCurrentGroupFromProps(nextProps),
       future: futureOrPastChanged ? prevState.future : nextProps.future,
