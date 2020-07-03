@@ -1,5 +1,5 @@
-import { DateRange, RelativeDateRange } from '../date.types';
 import { IntlShape } from 'react-intl';
+import { DateRange, RelativeDateRange } from '../date.types';
 
 export type Props = {
   ranges: RelativeDateRange[];

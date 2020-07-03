@@ -4,7 +4,7 @@ export interface Props {
   value: DateRange;
   onChange: (value: DateRange) => void;
   mode: string;
-  disabledDate: (value: DateRange) => boolean;
+  disabledDate: (date?: Date) => boolean;
 }
 
 export interface State {

@@ -1,4 +1,5 @@
 import * as moment from 'moment';
+
 const defaultShortDistance = {
   future: 'in %s',
   past: '%s ',

@@ -3,6 +3,7 @@ import { injectIntl, FormattedMessage } from 'react-intl';
 
 import Icon from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
+import { Days } from 'date.types';
 import TimeWindow from '../../TimeWindow/TimeWindow';
 import InlineDropdown from '../../InlineCollapse/InlineCollapse';
 import Collapse from '../../Collapse/Collapse';
@@ -17,7 +18,6 @@ import {
 } from './MonthlyFilter.styles';
 import { MONTHLY_TYPES, MONTH_DAYS, PERIODS, PERIODS_TYPE, MAX_RULES_ALLOWED, defaultId } from '../constants';
 import { State, Props, Period } from './MonthlyFilter.types';
-import { Days } from 'date.types';
 
 class MonthlyFilter extends React.PureComponent<Props, State> {
   state = {
@@ -38,7 +38,7 @@ class MonthlyFilter extends React.PureComponent<Props, State> {
 
   handleAddRow = (): void => {
     const id = Math.random();
-    const {value} = this.props;
+    const { value } = this.props;
     this.setData([
       ...value,
       { period: MONTHLY_TYPES.DAY_OF_MONTH, periodType: PERIODS_TYPE[0].value, definition: {}, id },
@@ -114,7 +114,7 @@ class MonthlyFilter extends React.PureComponent<Props, State> {
     return { week: weekStartIndex, day: index - weekStartIndex * 7 };
   };
 
-  getTimeWindowSettings = (item) => {
+  getTimeWindowSettings = (item: Period): object => {
     const { intl } = this.props;
     const settings = {
       [MONTHLY_TYPES.DAY_OF_MONTH]: {
@@ -141,13 +141,14 @@ class MonthlyFilter extends React.PureComponent<Props, State> {
   };
 
   handleCollapse = (id: React.ReactText): void => {
-    const visible = {};
-    for (const i in this.state.visible) {
-      visible[i.id] = !this.state.visible[i];
+    const updatedVisible = {};
+    const { visible } = this.state;
+    for (const i in visible) {
+      updatedVisible[i] = !visible[i];
     }
-    visible[id] = true;
+    updatedVisible[id] = true;
     this.setState({
-      visible,
+      visible: updatedVisible,
     });
   };
 
@@ -181,7 +182,7 @@ class MonthlyFilter extends React.PureComponent<Props, State> {
                     </DropdownLabel>
                     <InlineDropdown
                       options={PERIODS}
-                      onChange={({ value }:any):void => this.handleTypeChange(value, key)}
+                      onChange={({ value }: any): void => this.handleTypeChange(value, key)}
                       value={item.period}
                     />
                     <DropdownLabel>
@@ -189,7 +190,7 @@ class MonthlyFilter extends React.PureComponent<Props, State> {
                     </DropdownLabel>
                     <InlineDropdown
                       options={PERIODS_TYPE}
-                      onChange={({ value }: any):void => this.handlePeriodTypeChange(value, key)}
+                      onChange={({ value }: any): void => this.handlePeriodTypeChange(value, key)}
                       value={item.periodType}
                     />
                   </>

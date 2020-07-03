@@ -1,5 +1,5 @@
 import { WrappedComponentProps } from 'react-intl';
-import { DateRange } from 'date.types';
+import { DateFilter, DateRange } from 'date.types';
 
 export interface Props extends WrappedComponentProps {
   showRelativePicker: boolean;
@@ -7,7 +7,7 @@ export interface Props extends WrappedComponentProps {
   showTime: boolean;
   relativeFuture: boolean;
   relativePast: boolean;
-  onApply: (value: DateRange) => void;
+  onApply: (value: Partial<DateFilter>) => void;
   disabledDate: () => boolean;
   validate: (value: DateRange) => { valid: boolean; message?: string };
   format: string;

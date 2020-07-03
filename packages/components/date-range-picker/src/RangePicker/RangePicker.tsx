@@ -1,16 +1,19 @@
 import * as React from 'react';
-import { DateUtils, RangeModifier } from 'react-day-picker';
+import { DateUtils, RangeModifier, DayModifiers } from 'react-day-picker';
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
 import fnsIsSameDay from 'date-fns/is_same_day';
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
 import fnsMin from 'date-fns/min';
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
 import fnsMax from 'date-fns/max';
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
 import fnsIsWithinRange from 'date-fns/is_within_range';
 
 import MonthPicker from '@synerise/ds-date-picker/dist/Elements/MonthPicker/MonthPicker';
-import DayPicker from '@synerise/ds-date-picker/dist/Elements/DayPicker/DayPicker';
 import MomentLocaleUtils from 'react-day-picker/moment';
 
 import TimePicker from '@synerise/ds-time-picker';
@@ -20,6 +23,7 @@ import {
   DayForeground,
   DayText,
 } from '@synerise/ds-date-picker/dist/Elements/DayPicker/DayPicker.styles';
+import DayPicker from '@synerise/ds-date-picker/dist/Elements/DayPicker/DayPicker';
 import { fnsStartOfMonth, fnsStartOfDay, fnsEndOfDay, fnsIsSameMonth, fnsIsAfter } from '../fns';
 import { Side, Sides } from './RangePicker.styles';
 import { ABSOLUTE, TIME_OPTIONS } from '../constants';
@@ -28,8 +32,9 @@ import GET from '../dateUtils/get';
 import SET from '../dateUtils/set';
 import ADD from '../dateUtils/add';
 import format from '../dateUtils/format';
-import { DateRange } from '../date.types';
+import { DateFilter, DateRange } from '../date.types';
 import { Limit, Props, State } from './RangePicker.types';
+//import { Modifier } from '@synerise/ds-date-picker/dist/DatePicker.types';
 
 const getDisabledTimeOptions = (
   day: string | Date | undefined,
@@ -70,9 +75,10 @@ export default class RangePicker extends React.PureComponent<Props, State> {
     };
   }
 
-  componentWillReceiveProps({ value: newValue }: Props): void {
+  getSnapshotBeforeUpdate(prevProps: Readonly<Props>): null {
     const { value } = this.props;
-    if (value !== newValue) this.setState(getSidesState(value));
+    if (value !== prevProps.value) this.setState(getSidesState(value));
+    return null;
   }
 
   handleDayMouseEnter = (day: Date): void => {
@@ -83,7 +89,7 @@ export default class RangePicker extends React.PureComponent<Props, State> {
     this.setState({ enteredTo: null });
   };
 
-  handleDayClick = (day: Date, modifiers: { disabled: boolean }): void => {
+  handleDayClick = (day: Date, modifiers: DayModifiers, e: React.MouseEvent<HTMLDivElement>): void => {
     const { value, onChange } = this.props;
     if (modifiers.disabled) return;
     let { from, to } = DateUtils.addDayToRange(day, value as RangeModifier);
@@ -160,6 +166,7 @@ export default class RangePicker extends React.PureComponent<Props, State> {
       />
     );
   };
+
   getDate(date: Date | string) {
     if (typeof date === 'string') return new Date(date);
     return date;
@@ -184,7 +191,7 @@ export default class RangePicker extends React.PureComponent<Props, State> {
       'entered-start': enteredStart,
       'entered-end': enteredEnd,
     };
-    const selectedDays = [from, { from, to }];
+    const selectedDays = [from, { from, to } as DateFilter];
     const sidesAreAdjacent = fnsIsSameMonth(ADD.MONTHS(left.month, 1), right.month);
     return (
       <DayPicker
@@ -192,8 +199,6 @@ export default class RangePicker extends React.PureComponent<Props, State> {
         className={type.toLowerCase()}
         canChangeMonth={false}
         disabledDays={disabledDate}
-        selectedDays={selectedDays}
-        modifiers={modifiers}
         localeUtils={MomentLocaleUtils}
         month={this.getDate(this.state[side].month)}
         title={this.state[side].monthTitle}
@@ -208,6 +213,12 @@ export default class RangePicker extends React.PureComponent<Props, State> {
         onMonthChange={(month): void => this.handleSideMonthChange(side, month, 'date')}
         fixedWeeks
         showOutsideDay
+        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+        // @ts-ignore
+        selectedDays={selectedDays}
+        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+        // @ts-ignore
+        modifiers={modifiers}
       />
     );
   };
@@ -268,7 +279,7 @@ export default class RangePicker extends React.PureComponent<Props, State> {
     }
   };
 
-  render(): React.ReactNode {
+  render(): JSX.Element {
     const { mode } = this.props;
     console.log('RangePicker state', this.state);
     console.log('RangePicker props', this.props);
