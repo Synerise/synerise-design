@@ -127,7 +127,7 @@ const stories = {
 };
 
 export default {
-  name: 'Components|Avatar',
+  name: 'Avatar|Avatar',
   withoutCenter: true,
   decorator,
   stories,
