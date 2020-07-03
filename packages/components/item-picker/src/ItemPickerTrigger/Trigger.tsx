@@ -69,7 +69,7 @@ const Trigger: React.FC<Props> = ({
       event.stopPropagation();
       onChangeButtonClick ? onChangeButtonClick() : openDropdown();
     },
-    [onChangeButtonClick]
+    [onChangeButtonClick, openDropdown]
   );
 
   const renderChangeButton = React.useMemo(() => {
@@ -83,7 +83,7 @@ const Trigger: React.FC<Props> = ({
         </S.ChangeButtonWrapper>
       )
     );
-  }, [onChangeButtonClick, changeButtonLabel, size]);
+  }, [onChangeButtonClick, changeButtonLabel, size, handleChangeButtonClick]);
 
   return (
     <S.TriggerWrapper

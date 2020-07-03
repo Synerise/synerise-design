@@ -53,11 +53,11 @@ const ItemPicker: React.FC<ItemPickerProps> = ({
 
   const openDropdown = React.useCallback(() => {
     setDropdownOpened(true);
-  }, [dropdownOpened]);
+  }, [setDropdownOpened]);
 
   const closeDropdown = React.useCallback(() => {
     setDropdownOpened(false);
-  }, [dropdownOpened]);
+  }, [setDropdownOpened]);
 
   const dropdownOverlay = React.useMemo(
     () => (
@@ -68,7 +68,7 @@ const ItemPicker: React.FC<ItemPickerProps> = ({
         closeDropdown={closeDropdown}
       />
     ),
-    [dataSource, searchPlaceholder, onChange]
+    [dataSource, searchPlaceholder, onChange, closeDropdown]
   );
 
   const renderTrigger = React.useMemo(
@@ -89,7 +89,21 @@ const ItemPicker: React.FC<ItemPickerProps> = ({
         onChangeButtonClick={onChangeButtonClick}
       />
     ),
-    [clear, selectedItem, onClear, dropdownOpened, error, disabled]
+    [
+      clear,
+      selectedItem,
+      onClear,
+      dropdownOpened,
+      error,
+      disabled,
+      placeholderIcon,
+      placeholder,
+      openDropdown,
+      closeDropdown,
+      size,
+      changeButtonLabel,
+      onChangeButtonClick,
+    ]
   );
 
   return (

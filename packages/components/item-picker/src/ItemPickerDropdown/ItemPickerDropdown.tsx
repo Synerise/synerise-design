@@ -19,7 +19,7 @@ const ItemPickerDropdown: React.FC<Props> = ({ onChange, placeholder, dataSource
       closeDropdown();
       onChange(item);
     },
-    [onChange]
+    [onChange, closeDropdown]
   );
 
   const filteredDataSource = React.useMemo(() => {
