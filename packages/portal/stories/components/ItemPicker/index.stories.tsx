@@ -36,7 +36,7 @@ const stories = {
       error={boolean('Has error?', false)}
       errorMessage={text('Error message', 'Error')}
       size={select('Select size', SIZES, 'small') as ItemPickerSize}
-      changeButtonLabel="Change"
+      changeButtonLabel={text('Set change button label', 'Change')}
       onChangeButtonClick={boolean('With change button', false) && action('Change button custom action')}
     />)
     }
