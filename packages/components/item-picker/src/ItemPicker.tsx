@@ -11,8 +11,8 @@ export type ItemPickerSize = 'small' | 'large';
 
 export type ItemPickerProps = {
   dataSource: MenuItemProps[];
-  placeholder: string;
-  clear: string;
+  placeholder: string | React.ReactNode;
+  clear: string | React.ReactNode;
   searchPlaceholder: string;
   onClear: () => void;
   onChange: (item: MenuItemProps) => void;
@@ -22,11 +22,11 @@ export type ItemPickerProps = {
   description?: string | React.ReactNode;
   placeholderIcon?: React.ReactNode;
   error?: boolean;
-  errorMessage?: string;
-  tooltip?: string;
+  errorMessage?: string | React.ReactNode;
+  tooltip?: string | React.ReactNode;
   disabled?: boolean;
   withChangeButton?: boolean;
-  changeButtonLabel?: string;
+  changeButtonLabel?: string | React.ReactNode;
   onChangeButtonClick?: () => void;
 };
 

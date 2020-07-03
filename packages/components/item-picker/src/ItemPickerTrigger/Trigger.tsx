@@ -12,15 +12,15 @@ interface Props {
   openDropdown: () => void;
   closeDropdown: () => void;
   size: ItemPickerSize;
-  clear: string;
+  clear: string | React.ReactNode;
   onClear: () => void;
   opened: boolean;
-  placeholder: string;
+  placeholder: string | React.ReactNode;
   placeholderIcon?: React.ReactNode;
   error?: boolean;
   disabled?: boolean;
   selected?: MenuItemProps;
-  changeButtonLabel?: string;
+  changeButtonLabel?: string | React.ReactNode;
   onChangeButtonClick?: () => void;
 }
 
