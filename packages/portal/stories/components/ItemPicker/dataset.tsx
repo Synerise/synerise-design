@@ -26,5 +26,8 @@ export const dataSource = [
   {
     text: 'Macbook Pro 15',
     prefixel: <Icon component={<LaptopM />} />,
+  },
+  {
+    text: 'iPad Air 3'
   }
 ];

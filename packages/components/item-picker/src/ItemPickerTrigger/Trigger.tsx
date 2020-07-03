@@ -51,7 +51,7 @@ const Trigger: React.FC<Props> = ({
   const renderClear = React.useMemo(() => {
     return (
       selected && (
-        <S.ClearWrapper onClick={handleClear}>
+        <S.ClearWrapper onClick={handleClear} data-testid="clear-icon">
           <Tooltip title={clear}>
             <Icon component={<Close3S />} color={theme.palette['red-600']} />
           </Tooltip>
@@ -61,7 +61,7 @@ const Trigger: React.FC<Props> = ({
   }, [selected, handleClear, clear]);
 
   const renderAngleIcon = React.useMemo(() => {
-    return !selected && size === 'small' && <Icon component={<AngleDownS />} />;
+    return !selected && size === 'small' && <Icon data-testid="angle-icon" component={<AngleDownS />} />;
   }, [size, selected]);
 
   const handleChangeButtonClick = React.useCallback(
@@ -99,7 +99,7 @@ const Trigger: React.FC<Props> = ({
         {selected ? (
           <>
             <S.Value>
-              {selected.prefixel && <S.Prefix>{selected.prefixel}</S.Prefix>}
+              {selected.prefixel && <S.Prefix data-testid="value-prefixel">{selected.prefixel}</S.Prefix>}
               <S.ValueText>{selected.text}</S.ValueText>
             </S.Value>
             {renderChangeButton}
@@ -107,7 +107,7 @@ const Trigger: React.FC<Props> = ({
         ) : (
           <S.Placeholder>
             {placeholderIcon && (
-              <S.Prefix>
+              <S.Prefix data-testid="placeholder-icon">
                 <Icon component={placeholderIcon} />
               </S.Prefix>
             )}
