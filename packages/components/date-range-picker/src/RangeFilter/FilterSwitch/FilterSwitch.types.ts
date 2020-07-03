@@ -3,7 +3,7 @@ import { IntlShape } from 'react-intl';
 export type Props = {
   isOn: boolean;
   statusInnerHtml?: { __html: string };
-  popConfirmProps?: any;
+  popConfirmProps?: object;
   onModalButtonClick?: () => void;
   onRemoveFilterButtonClick?: () => void;
   onOpenModalButtonClick?: () => void;

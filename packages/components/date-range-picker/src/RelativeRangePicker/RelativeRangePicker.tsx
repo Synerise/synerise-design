@@ -24,17 +24,21 @@ import { GroupRange, Props, State } from './RelativeRangePicker.types';
 import { DateRange, RelativeDateRange } from '../date.types';
 
 const setOffsetType = set(lensPath(['offset', 'type']));
-const setOffsetValue = (value: number | string, currentRange: RelativeDateRange): RelativeDateRange =>
-  set(lensPath(['offset', 'value']))(
-    value === '' ? null : typeof value === 'number' && value >= 0 ? Math.round(value) : 0,
+const setOffsetValue = (value: number | string, currentRange: RelativeDateRange): RelativeDateRange => {
+  const updatedValue = value === '' ? null : value;
+  return set(lensPath(['offset', 'value']))(
+    typeof updatedValue === 'number' && updatedValue >= 0 ? Math.round(updatedValue) : 0,
     currentRange
   );
+};
 const setDurationType = set(lensPath(['duration', 'type']));
-const setDurationValue = (value: number | string, currentRange: RelativeDateRange): RelativeDateRange =>
-  set(lensPath(['duration', 'value']))(
-    value === '' ? null : typeof value === 'number' && value >= 1 ? Math.round(value) : 1,
+const setDurationValue = (value: number | string, currentRange: RelativeDateRange): RelativeDateRange => {
+  const updatedValue = value === '' ? null : value;
+  return set(lensPath(['duration', 'value']))(
+    typeof updatedValue === 'number' && updatedValue >= 1 ? Math.round(updatedValue) : 1,
     currentRange
   );
+};
 const setFuture = set(lensPath(['future']));
 
 const GROUPS = {
@@ -72,6 +76,7 @@ class RelativeRangePicker extends React.PureComponent<Props, State> {
     super(props);
     // eslint-disable-next-line
     // @ts-ignore
+    // eslint-disable-next-line
     this.state = {
       currentGroup: getCurrentGroupFromProps(props),
       future: props.future || false,
@@ -112,7 +117,7 @@ class RelativeRangePicker extends React.PureComponent<Props, State> {
     const { currentRange, currentGroup } = this.state;
     this.setState({ currentGroup: currentGroup === GROUPS.PAST ? GROUPS.FUTURE : GROUPS.PAST }, () => {
       if (currentRange) {
-        onChange({ ...currentRange, key: undefined, future: this.state.currentGroup === GROUPS.FUTURE });
+        onChange({ ...currentRange, key: undefined, future: currentGroup === GROUPS.FUTURE });
       }
     });
   };

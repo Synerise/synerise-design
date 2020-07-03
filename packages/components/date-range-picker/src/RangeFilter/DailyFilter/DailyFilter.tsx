@@ -7,14 +7,13 @@ interface Props extends WrappedComponentProps {
 }
 
 class DailyFilter extends React.PureComponent<Props> {
-
   handleOnChange = (value: string): void => {
     const { onChange } = this.props;
     onChange && onChange(value[0]);
   };
 
   render(): JSX.Element {
-    const { value } = this.props;
+    const { value, intl } = this.props;
     return (
       <div>
         Time window
@@ -23,7 +22,7 @@ class DailyFilter extends React.PureComponent<Props> {
         style={{ marginTop: 32 }}
         invertibleTime
         numberOfDays={0}
-        customDays={{ 0: { label: this.props.intl.formatMessage({ id: 'SNRS.DATE.EVERY_DAY' }) } }}
+        customDays={{ 0: { label: intl.formatMessage({ id: 'SNRS.DATE.EVERY_DAY' }) } }}
         days={[value]}
         onChange={this.handleOnChange}
         timeMarks={{}}

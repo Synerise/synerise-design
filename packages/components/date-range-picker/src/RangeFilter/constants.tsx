@@ -7,11 +7,12 @@ import fnsFormat from '../dateUtils/format';
 import MonthlyFilter from './MonthlyFilter/MonthlyFilter';
 import WeeklyFilter from './WeeklyFilter/WeeklyFilter';
 import DailyFilter from './DailyFilter/DailyFilter';
-import { fnsAddDays } from "../fns";
+import { fnsAddDays } from '../fns';
 
 const LONG_MONTH = new Date(0, 0, 1);
 
-export const MONTH_DAYS = (locale: string) =>
+export const MONTH_DAYS = (locale: string): React.ReactText[] =>
+  // eslint-disable-next-line
   range(0, 31).map((i: number) => (locale === 'pl' ? `${++i}.` : fnsFormat(fnsAddDays(LONG_MONTH, i), 'Do')));
 
 export const MONTHLY_TYPES = {
