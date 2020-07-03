@@ -74,7 +74,7 @@ const AvatarGroup: React.FC<AvatarGroupProps> = ({
         </Tooltip>
       )
     );
-  }, [dataSource, numberOfVisibleUsers, size, moreInfoTooltip]);
+  }, [dataSource, numberOfVisibleUsers, size, moreInfoTooltip, showModal]);
 
   const renderGroupModal = React.useMemo(() => {
     if (!groupModal) return null;
@@ -87,7 +87,7 @@ const AvatarGroup: React.FC<AvatarGroupProps> = ({
         showStatus={Boolean(hasStatus)}
       />
     );
-  }, [dataSource, groupModal, modalVisible]);
+  }, [dataSource, groupModal, modalVisible, hideModal, hasStatus]);
   return (
     <S.Group size={size} className="ds-avatar-group">
       {dataSourceWithKeys.slice(0, numberOfVisibleUsers).map(avatar => (
