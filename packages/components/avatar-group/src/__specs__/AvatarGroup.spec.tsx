@@ -69,7 +69,7 @@ describe('AvatarGroup', () => {
       size={'medium'}
       hasStatus={true}
       numberOfVisibleUsers={5}
-      avatars={groupAvatars}
+      dataSource={groupAvatars}
       moreInfoTooltip={'more users'}
     />);
 
@@ -81,7 +81,7 @@ describe('AvatarGroup', () => {
       size={'medium'}
       hasStatus={true}
       numberOfVisibleUsers={5}
-      avatars={groupAvatars}
+      dataSource={groupAvatars}
       moreInfoTooltip={'more users'}
     />);
 
@@ -93,7 +93,7 @@ describe('AvatarGroup', () => {
       size={'medium'}
       hasStatus={true}
       numberOfVisibleUsers={5}
-      avatars={groupAvatars}
+      dataSource={groupAvatars}
       moreInfoTooltip={'more users'}
     />);
 
