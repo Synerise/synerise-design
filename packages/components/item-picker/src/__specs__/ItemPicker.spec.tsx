@@ -39,7 +39,6 @@ const DATA_SOURCE =  [
 const SEARCH_PLACEHOLDER = 'Search';
 const LABEL = 'Label';
 const DESCRIPTION = 'Description';
-const TOOLTIP = 'More details';
 const PLACEHOLDER = 'Set customer';
 const REMOVE = 'Remove';
 const ERROR_MESSAGE = 'Error';
