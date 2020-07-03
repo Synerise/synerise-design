@@ -40,6 +40,7 @@ function DSTable<T extends object = any>(props: DSTableProps<T>): React.ReactEle
     pagination,
     locale,
     headerButton,
+    hideColumnNames,
   } = props;
 
   const renderHeader = React.useCallback((): React.ReactNode => {
@@ -119,7 +120,10 @@ function DSTable<T extends object = any>(props: DSTableProps<T>): React.ReactEle
   }, [pagination, grouped, locale]);
 
   return (
-    <div className={`ds-table ds-table-cell-size-${cellSize} ${roundedHeader ? 'ds-table-rounded' : ''}`}>
+    <S.TableWrapper
+      className={`ds-table ds-table-cell-size-${cellSize} ${roundedHeader ? 'ds-table-rounded' : ''}`}
+      hideColumnNames={hideColumnNames}
+    >
       {loading && (
         <S.Spinner className="spinner">
           <Icon component={<SpinnerM />} color="#6a7580" />
@@ -141,7 +145,7 @@ function DSTable<T extends object = any>(props: DSTableProps<T>): React.ReactEle
           pagination={dataSource?.length && pagination ? footerPagination : false}
         />
       )}
-    </div>
+    </S.TableWrapper>
   );
 }
 

@@ -66,6 +66,7 @@ export interface DSTableProps<T extends any & GroupType<T>> extends AntTableProp
   grouped?: boolean;
   hideGroupExpander?: boolean;
   initialGroupsCollapsed?: boolean;
+  hideColumnNames?: boolean;
   locale?: TableLocale & {
     pagination?: {
       items?: string;
