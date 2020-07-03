@@ -36,7 +36,7 @@ export type AvatarGroupProps = {
   size?: Size;
   dataSource: DataSource[];
   moreInfoTooltip: string;
-  groupModal: GroupModalSettings;
+  groupModal?: GroupModalSettings;
 };
 
 const AvatarGroup: React.FC<AvatarGroupProps> = ({
