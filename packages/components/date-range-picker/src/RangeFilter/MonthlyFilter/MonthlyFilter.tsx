@@ -56,10 +56,11 @@ class MonthlyFilter extends React.PureComponent<Props, State> {
 
   handleRemoveRowCollapse = (deletedId: React.ReactText): void => {
     const { value: items } = this.props;
+    const { visible } = this.state;
     const itemKey = items.findIndex((item) => item.id === deletedId);
     const next = items[itemKey + 1];
     const prev = items[itemKey - 1];
-    this.state.visible[deletedId] && (next || prev) && this.handleCollapse(next ? next.id : prev.id);
+    visible[deletedId] && (next || prev) && this.handleCollapse(next ? next.id : prev.id);
   };
 
   handleTypeChange = (newValue: string, index: React.ReactText): void => {
@@ -143,8 +144,9 @@ class MonthlyFilter extends React.PureComponent<Props, State> {
   handleCollapse = (id: React.ReactText): void => {
     const updatedVisible = {};
     const { visible } = this.state;
-    for (const i in visible) {
-      updatedVisible[i] = !visible[i];
+    const keys = Object.keys(visible);
+    for (let i = 0; i < keys.length; i += 1) {
+      updatedVisible[keys[i]] = !visible[keys[i]];
     }
     updatedVisible[id] = true;
     this.setState({
@@ -182,7 +184,7 @@ class MonthlyFilter extends React.PureComponent<Props, State> {
                     </DropdownLabel>
                     <InlineDropdown
                       options={PERIODS}
-                      onChange={({ value }: any): void => this.handleTypeChange(value, key)}
+                      onChange={({ value: val }: { value: string }): void => this.handleTypeChange(val, key)}
                       value={item.period}
                     />
                     <DropdownLabel>
@@ -190,7 +192,7 @@ class MonthlyFilter extends React.PureComponent<Props, State> {
                     </DropdownLabel>
                     <InlineDropdown
                       options={PERIODS_TYPE}
-                      onChange={({ value }: any): void => this.handlePeriodTypeChange(value, key)}
+                      onChange={({ value: val }: { value: string }): void => this.handlePeriodTypeChange(val, key)}
                       value={item.periodType}
                     />
                   </>

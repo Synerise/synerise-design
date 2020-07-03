@@ -12,9 +12,9 @@ class WeeklyFilter extends React.PureComponent<Props> {
         title={intl.formatMessage({ id: 'SNRS.DATE.SELECT_DAY' })}
         showSelectAll
         invertibleTime
-        dayTemplate={(dayOfWeek: any): any => ({ day: dayOfWeek })}
+        dayTemplate={(dayOfWeek: React.ReactText): { day: React.ReactText } => ({ day: dayOfWeek })}
         days={value}
-        onChange={(val: any): void => onChange(val)}
+        onChange={(val: string): void => onChange(val)}
         timeMarks={{}}
       />
     );
