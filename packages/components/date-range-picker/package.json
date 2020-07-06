@@ -26,9 +26,12 @@
   "types": "dist/index.d.ts",
   "dependencies": {
     "@rebass/grid": "^6.1.0",
+    "@synerise/ds-time-picker": "^0.2.45",
     "@types/ramda": "^0.27.6",
     "@types/react-collapse": "^5.0.0",
     "@types/rebass__grid": "^6.0.5",
+    "lodash": "^4.17.15",
+    "ramda": "^0.27.0",
     "react-collapse": "^5.0.1"
   },
   "peerDependencies": {
