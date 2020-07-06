@@ -4,7 +4,7 @@ import { injectIntl, FormattedMessage } from 'react-intl';
 import Icon from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 import { Days } from 'date.types';
-import TimeWindow from '../../TimeWindow/TimeWindow';
+import { TimeWindow } from '../../TimeWindow/TimeWindow';
 import InlineDropdown from '../../InlineCollapse/InlineCollapse';
 import Collapse from '../../Collapse/Collapse';
 import {
