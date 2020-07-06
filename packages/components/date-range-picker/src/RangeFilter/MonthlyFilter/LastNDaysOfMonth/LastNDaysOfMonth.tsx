@@ -34,6 +34,7 @@ export const LastNDaysOfMonthComponent: React.FC<Props> = ({
         active={active}
         restricted={restricted}
         onToggle={onToggle}
+        intl={intl}
       />
     </div>
   );

@@ -26,6 +26,7 @@ export type Day = {
   stop?: string | Date;
   inverted?: boolean;
   restricted?: boolean;
+  display?: boolean;
 };
 
 export type NormalizedRange = { type: string; nestingType: string; days?: Day[]; rules?: Rule[] };

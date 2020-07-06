@@ -9,4 +9,5 @@ export type Props = {
   active: boolean;
   restricted: boolean;
   intl: IntlShape;
+  style?: React.CSSProperties;
 };
