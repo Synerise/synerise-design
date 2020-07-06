@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { injectIntl } from 'react-intl';
-import TimeWindow from '../../TimeWindow/TimeWindow';
+import { TimeWindow } from '../../TimeWindow/TimeWindow';
 import { Props } from './WeeklyFilter.types';
 
 class WeeklyFilter extends React.PureComponent<Props> {
