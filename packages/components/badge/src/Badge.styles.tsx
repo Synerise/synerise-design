@@ -45,7 +45,7 @@ export default styled(({ flag, outlined, ...rest }) => <Badge {...rest} />)`
       ${props.outlined &&
         css`
           .ant-badge-count {
-            box-shadow: 0 0 0 2px ${props.theme.palette.white};
+            box-shadow: 0 0 0 1px ${props.theme.palette.white};
           }
         `}
       ${props.flag &&
