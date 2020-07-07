@@ -21,6 +21,8 @@ export default styled(({ flag, outlined, ...rest }) => <Badge {...rest} />)`
     padding: 0 5px;
     line-height: 18px;
     min-width: 18px;
+    font-size:13px;
+    font-weight: 500;
   }
   ${(props): FlattenSimpleInterpolation | false =>
     css`
@@ -42,30 +44,36 @@ export default styled(({ flag, outlined, ...rest }) => <Badge {...rest} />)`
             background-color: ${props.theme.palette['red-600']};
           }
         `}
+        ${props.status === 'processing' &&
+          css`
+            .ant-badge-status-processing {
+              background-color: ${props.theme.palette['blue-600']};
+            }
+          `}
       ${props.outlined &&
         css`
           .ant-badge-count {
             box-shadow: 0 0 0 1px ${props.theme.palette.white};
           }
         `}
-      ${props.flag &&
+      ${(!!props.flag || !!props.status) &&
         css`
           .ant-badge-dot {
             box-shadow: none;
             &.ant-badge-status-processing {
-              width: 6px;
-              height: 6px;
               display: inline-block;
               position: absolute;
-              border: 0;
             }
           }
           .ant-badge-dot,
           .ant-badge-status-dot {
             overflow: visible;
+            border: ${props.flag ? '0' : '2px solid white'};
+            width: ${props.flag ? '6px' : '10px'};
+            height: ${props.flag ? '6px' : '10px'};
             &::before {
               display: flex;
-              content: '';
+              content: ${props.flag ? '""' : 'none'};
               position: absolute;
               top: 0;
               left: 0;
@@ -78,7 +86,7 @@ export default styled(({ flag, outlined, ...rest }) => <Badge {...rest} />)`
             }
             &::after {
               display: flex;
-              content: '';
+              content: ${props.flag ? '""' : 'none'};
               position: absolute;
               top: 0;
               left: 0;

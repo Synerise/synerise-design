@@ -21,7 +21,7 @@ const stories = {
       <React.Fragment>
         <div
           style={{
-            display:"flex",
+            display: 'flex',
             background: isOutline ? theme.palette['grey-200'] : 'transparent',
             alignItems: 'center',
             justifyContent: 'center',
@@ -91,15 +91,18 @@ const stories = {
               offset={[0, 0]}
               outlined={isOutline}
               overflowCount={number('overflowCount', 99)}
-              style={{...{boxShadow:isOutline ? `0 0 0 1px ${theme.palette['grey-500']}`: null},...object('style5', {
-                minWidth: '17px',
-                minHeight: '17px',
-                margin: '8px 8px 8px 8px',
-                backgroundColor: theme.palette['white'],
-                color: theme.palette['grey-500'],
-                alignItems: 'center',
-                justifyContent: 'center',
-              })}}
+              style={{
+                ...{ boxShadow: isOutline ? `0 0 0 1px ${theme.palette['grey-500']}` : null },
+                ...object('style5', {
+                  minWidth: '17px',
+                  minHeight: '17px',
+                  margin: '8px 8px 8px 8px',
+                  backgroundColor: theme.palette['white'],
+                  color: theme.palette['grey-500'],
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }),
+              }}
             />
           </div>
         </div>
@@ -169,19 +172,32 @@ const stories = {
     text: text('text', 'Success'),
   }),
 
+  statusWithAvatar: () => (
+    <>
+      <Badge status={select('status', statuses, 'active')}  >
+        <Avatar
+          size={select('avatar size', avatarSize, 'extraLarge')}
+          shape={select('avatar shape', avatarShape, 'square')}
+          src={'https://www.w3schools.com/howto/img_avatar.png'}
+          hasStatus
+        />
+      </Badge>
+    </>
+  ),
+
   flagDefault: () => (
     <>
       <Badge status={select('status', statuses, 'active')} flag={true} />
       <div style={{ width: '50px', height: '50px' }} />
-      </>
+    </>
   ),
   flagWithLabel: () => (
     <>
       <Badge status={select('status', statuses, 'active')} text={text('text', 'Success')} flag={true} />
       <div style={{ width: '50px', height: '50px' }} />
-      </>
+    </>
   ),
-  flagWithElement:() => (
+  flagWithElement: () => (
     <>
       <Badge status={select('status', statuses, 'active')} flag={true}>
         <div
@@ -194,17 +210,17 @@ const stories = {
         />
       </Badge>
       <div style={{ width: '50px', height: '50px' }} />
-      </>
+    </>
   ),
-  flagWithIcon: () =>(
+  flagWithIcon: () => (
     <>
       <Badge status={select('status', statuses, 'active')} flag={true}>
         <Icon color={text('IconColor', '#6a7580')} size={number('IconSize', 24)} component={<FileM />} />
       </Badge>
       <div style={{ width: '50px', height: '50px' }} />
-      </>
+    </>
   ),
-  flagWithAvatar: () =>(
+  flagWithAvatar: () => (
     <>
       <Badge status={select('status', statuses, 'active')} flag={true}>
         <Avatar

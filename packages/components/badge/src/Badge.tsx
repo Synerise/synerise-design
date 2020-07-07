@@ -4,7 +4,7 @@ import './style/index.less';
 import { BadgeProps as AntBadgeProps } from 'antd/lib/badge';
 import AntdBadge from './Badge.styles';
 
-export type Status = 'active' | 'inactive' | 'blocked' | undefined;
+export type Status = 'active' | 'inactive' | 'blocked' | 'processing' | undefined;
 
 export interface BadgeProps extends Omit<AntBadgeProps, 'status'> {
   flag?: boolean;
