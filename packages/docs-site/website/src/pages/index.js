@@ -58,10 +58,7 @@ function Index() {
             </ul>
             <div className="l-grid c-generic-section__columns ds-get-familiar">
               <div className="c-generic-section__image c-advantage__image l-col-desktop-5">
-                <img className=" c-dynamic-image c-dynamic-image--lazy c-dynamic-image--lazy--loaded" alt="app"
-                     src={useBaseUrl('images/ds-get-familiar.png')}
-                     srcSet={`${useBaseUrl('images/ds-get-familiar.png')} 1x, ${useBaseUrl('images/ds-get-familiar.png')} 2x`}
-                />
+                <img className=" c-dynamic-image c-dynamic-image--lazy c-dynamic-image--lazy--loaded" alt="app" src={useBaseUrl('images/ds-get-familiar.png')} />
               </div>
               <div className="l-col-desktop-5 ds-get-familiar-text">
                 <div className="c-generic-section__content">
