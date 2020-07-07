@@ -18,6 +18,7 @@ export type PageHeaderProps = {
   description?: React.ReactNode | string;
   more?: React.ReactNode;
   onGoBack?: () => void;
+  goBackIcon?: React.ReactNode;
   onClose?: () => void;
   isolated?: boolean;
   inlineEdit?: {
@@ -38,7 +39,7 @@ export type PageHeaderProps = {
   };
 };
 
-const PageHeader: React.FC<PageHeaderProps> = props => {
+const PageHeader: React.FC<PageHeaderProps> = (props) => {
   const {
     className,
     onGoBack,
@@ -53,7 +54,12 @@ const PageHeader: React.FC<PageHeaderProps> = props => {
     inlineEdit,
     more,
     avatar,
+    goBackIcon,
   } = props;
+
+  const backIcon = goBackIcon || (
+    <Icon className="page-header__back" color={theme.palette['grey-600']} component={<ArrowLeftM />} size={24} />
+  );
 
   return (
     <S.MainContainer isolated={isolated} className={`${className || ''} ds-page-header`}>
@@ -61,12 +67,7 @@ const PageHeader: React.FC<PageHeaderProps> = props => {
         {onGoBack && (
           <S.PageHeaderBack>
             <Button type="ghost" mode="single-icon" onClick={onGoBack}>
-              <Icon
-                className="page-header__back"
-                color={theme.palette['grey-600']}
-                component={<ArrowLeftM />}
-                size={24}
-              />
+              {backIcon}
             </Button>
           </S.PageHeaderBack>
         )}
