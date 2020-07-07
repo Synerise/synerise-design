@@ -2,31 +2,27 @@ import Navbar from '@synerise/ds-navbar';
 
 import * as React from 'react';
 import { select } from '@storybook/addon-knobs';
-import Avatar from '@synerise/ds-avatar/dist/Avatar';
 import Button from '@synerise/ds-button/dist/Button';
-import Dropdown from '@synerise/ds-dropdown/dist/Dropdown';
 import Icon from '@synerise/ds-icon';
-import { AngleDownS, NotificationsPlayM, CalendarM, DashboardM } from '@synerise/ds-icon/dist/icons';
-import List from '@synerise/ds-list/dist/List';
+import { NotificationsPlayM, CalendarM, DashboardM } from '@synerise/ds-icon/dist/icons';
 import { action } from '@storybook/addon-actions';
-import FileM from '@synerise/ds-icon/dist/icons/FileM';
-import * as S from '@synerise/ds-navbar/dist/Navbar.styles';
+import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 
-const backgroundColors = [
-  'red',
-  'green',
-  'grey',
-  'yellow',
-  'blue',
-  'pink',
-  'mars',
-  'orange',
-  'fern',
-  'cyan',
-  'purple',
-  'violet',
-  '#0b68ff',
-] as const;
+const backgroundColors = {
+  blue: theme.palette['blue-600'],
+  grey: theme.palette['grey-600'],
+  red: theme.palette['red-600'],
+  green: theme.palette['green-600'],
+  yellow: theme.palette['yellow-600'],
+  pink: theme.palette['pink-600'],
+  mars: theme.palette['mars-600'],
+  orange: theme.palette['orange-600'],
+  fern: theme.palette['fern-600'],
+  cyan: theme.palette['cyan-600'],
+  purple: theme.palette['purple-600'],
+  violet: theme.palette['violet-600'],
+
+}
 
 const buttonStyle = {
   color: '#ffffff',
@@ -63,39 +59,6 @@ const stories = {
       </Button>
     </>}
     />},
-    children: (
-      <>
-        <S.NavbarDivider />
-        <Dropdown
-          trigger={['click']}
-          overlay={
-            <div style={{ background: '#fff', width: '300px' }}>
-              <List
-                header="Folders"
-                dataSource={dataSingle}
-                renderItem={item => (
-                  <List.Item
-                    onSelect={action('onSelect')}
-                    icon={<Icon component={<FileM />} />}
-                    disabled={item.disabled}
-                    danger={item.danger}
-                  >
-                    {item.text}
-                  </List.Item>
-                )}
-              />
-            </div>
-          }
-        >
-          <Button mode='label-icon' type='ghost-white'>
-            Profile Name
-            <Icon component={<AngleDownS />} />
-          </Button>
-        </Dropdown>
-        <S.NavbarDivider />
-        <Avatar src={avatarSrc} shape={'circle'} size={32} />
-      </>
-    ),
 };
 
 export default {
