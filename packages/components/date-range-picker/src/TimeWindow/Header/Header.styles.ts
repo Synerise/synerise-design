@@ -5,7 +5,11 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.div`
-  flex: 1;
+  && {
+    font-size: 16px;
+    flex: 1;
+    color: ${(props): string => props.theme.palette['grey-800']};
+  }
 `;
 
 export const Actions = styled.div`

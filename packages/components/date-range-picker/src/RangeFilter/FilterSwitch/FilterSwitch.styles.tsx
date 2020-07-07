@@ -58,19 +58,3 @@ export const Status = styled.span`
   }
 `;
 
-export const Container = styled.div<{ on: boolean }>`
-margin: 0 0 8px;
-padding: 16px;
-border-radius: 3px;
-border: ${(props): string => (props.on ? '1px solid transparent' : '1px dashed #d9eeff')};
-color: ${(props): string => (props.on ? props.theme.variable('@gray-color-lighter-3') : 'inherit')};
-background-color: ${(props): string => (props.on ? props.theme.variable('@yellow-color-lighter-6') : 'inherit')};
-display: grid;
-grid-template-areas: "${(props): string => (props.on ? 'icon status removeButton button' : 'icon button')}";
-grid-template-columns: ${(props): string =>
-  props.on ? 'min-content auto max-content max-content' : 'min-content auto'};
-justify-content: ${(props): string => (props.on ? 'stretch' : 'left')};
-align-items: center;
-grid-gap: 8px;
-text-align: left;
-`;
