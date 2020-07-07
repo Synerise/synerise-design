@@ -280,10 +280,7 @@ class RelativeRangePicker extends React.PureComponent<Props, State> {
 
     return (
       <Container>
-        <Header>
-          <Title>{intl.formatMessage({ id: 'SNRS.DATE.RELATIVE_DATE_RANGE' })}</Title>
-          <Help>{/* <Tooltip title={I18n.t('date.help')}>{I18n.t('date.help')}</Tooltip> */}</Help>
-        </Header>
+
         <Ranges>
           {future && past && (
             <Range key="TOGGLE" onClick={this.handleTogglingPastRanges} style={{ width: 40 }}>

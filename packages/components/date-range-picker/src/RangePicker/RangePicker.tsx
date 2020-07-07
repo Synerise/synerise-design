@@ -16,8 +16,8 @@ import fnsIsWithinRange from 'date-fns/is_within_range';
 import MonthPicker from '@synerise/ds-date-picker/dist/Elements/MonthPicker/MonthPicker';
 import MomentLocaleUtils from 'react-day-picker/moment';
 
-import TimePicker from '@synerise/ds-time-picker';
 import YearPicker from '@synerise/ds-date-picker/dist/Elements/YearPicker/YearPicker';
+import TimePicker from '@synerise/ds-date-picker/dist/Elements/TimePicker/TimePicker';
 import {
   DayBackground,
   DayForeground,
@@ -239,6 +239,7 @@ export default class RangePicker extends React.PureComponent<Props, State> {
             disabledHours={getDisabledTimeOptions(from, 'HOURS', null, to)}
             disabledMinutes={getDisabledTimeOptions(from, 'MINUTES', null, to)}
             disabledSeconds={getDisabledTimeOptions(from, 'SECONDS', null, to)}
+            raw
           />
         );
       }
@@ -251,6 +252,7 @@ export default class RangePicker extends React.PureComponent<Props, State> {
             disabledHours={getDisabledTimeOptions(to, 'HOURS', from, null)}
             disabledMinutes={getDisabledTimeOptions(to, 'MINUTES', from, null)}
             disabledSeconds={getDisabledTimeOptions(to, 'SECONDS', from, null)}
+            raw
           />
         );
       }

@@ -169,9 +169,13 @@ class RangeFilter extends React.PureComponent<Props, State> {
     this.state = { value: denormalizeValue(props.value) };
   }
 
-  static getDerivedStateFromProps = (props: Props): State => ({ value: denormalizeValue(props.value) });
+  componentWillReceiveProps(props: Props) {
+    this.setValue(denormalizeValue(props.value));
+  }
 
-  setValue = (value: FilterValue): void => this.setState({ value });
+  setValue = (value: FilterValue): void => {
+    this.setState({ value });
+  };
 
   handleApply = (): void => {
     const { onApply } = this.props;
@@ -189,7 +193,13 @@ class RangeFilter extends React.PureComponent<Props, State> {
   };
 
   render(): JSX.Element {
+    console.log('render', this.state);
+
     const { value } = this.state;
+    if (value.type === 'DAILY') {
+      console.log('Daily');
+      //this.setState({ value: { ...value, type: 'MONTHLY' } });
+    }
     const { type, definition } = value;
     const Component = type && TYPES_DATA[type] && TYPES_DATA[type].component;
     const { intl } = this.props;
