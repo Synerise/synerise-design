@@ -68,7 +68,7 @@ export default styled(({ flag, outlined, ...rest }) => <Badge {...rest} />)`
           .ant-badge-dot,
           .ant-badge-status-dot {
             overflow: visible;
-            border: ${props.flag ? '0' : '2px solid white'};
+            border: ${props.flag ? '0' : '2px solid props.theme.palette.white'};
             width: ${props.flag ? '6px' : '10px'};
             height: ${props.flag ? '6px' : '10px'};
             &::before {
