@@ -1,4 +1,4 @@
-import { TableProps } from 'antd/lib/table';
+import { ColumnType, TableProps } from 'antd/lib/table';
 import * as React from 'react';
 import { TableLocale, TableRowSelection } from 'antd/lib/table/interface';
 import DSTable from './Table';
@@ -6,7 +6,7 @@ import { GroupType } from './GroupTable/GroupTable';
 
 export type AntTableProps<T> = Omit<
   TableProps<T>,
-  'title' | 'subTitle' | 'onSearch' | 'itemsMenu' | 'search' | 'locale'
+  'title' | 'subTitle' | 'onSearch' | 'itemsMenu' | 'search' | 'locale' | 'columns'
 >;
 
 export type Selection = {
@@ -67,6 +67,9 @@ export interface DSTableProps<T extends any & GroupType<T>> extends AntTableProp
   hideGroupExpander?: boolean;
   initialGroupsCollapsed?: boolean;
   hideColumnNames?: boolean;
+  columns?: (Omit<ColumnType<T>, 'fixed'> & {
+    fixed?: 'left' | 'right' | string;
+  })[];
   locale?: TableLocale & {
     pagination?: {
       items?: string;
