@@ -23,19 +23,7 @@ const columns = [
     title: 'User name',
     key: 'name',
     dataIndex: 'name',
-  },{
-    title: 'User name',
-    key: 'name',
-    dataIndex: 'name',
-  },{
-    title: 'User name',
-    key: 'name',
-    dataIndex: 'name',
-  },{
-    title: 'User name',
-    key: 'name',
-    dataIndex: 'name',
-  },
+  }
 ];
 
 const stories = {
