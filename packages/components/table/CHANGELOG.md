@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.22.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.22.0...@synerise/ds-table@0.22.1) (2020-07-07)
+
+
+### Bug Fixes
+
+* **table:** fix columns prop types, add default layoutType ([568f9c2](https://github.com/synerise/synerise-design/commit/568f9c2aa77369f12170b50c30d2dd5a4352235b))
+
+
+
+
+
 # [0.22.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.21.1...@synerise/ds-table@0.22.0) (2020-07-07)
 
 

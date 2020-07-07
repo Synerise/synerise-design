@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.4.4...docs@0.5.0) (2020-07-07)
+
+
+### Features
+
+* **docs:** update images ([0e72568](https://gitlab.synerise.com/Frontend/synerise-design/commit/0e72568f7a875b533979c6ede757df75ac6ebe32))
+* **docs:** update images at homepage ([2389371](https://gitlab.synerise.com/Frontend/synerise-design/commit/2389371b261602c7d58857ff24b20c25be05d3f1))
+
+
+
+
+
 ## [0.4.4](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.4.3...docs@0.4.4) (2020-06-22)
 
 **Note:** Version bump only for package docs
