@@ -31,6 +31,7 @@ import { Day as DayType } from '../RangeFilter/RangeFilter.types';
 import { DayKey, Props, State } from './TimeWindow.types';
 import * as S from './TimeWindow.styles';
 import { formatTime } from './utils';
+import FilterItem from '../RangeFilter/FilterItem/FilterItem';
 
 class TimeWindowBase extends React.Component<Props, State> {
   static defaultProps = {
@@ -86,6 +87,7 @@ class TimeWindowBase extends React.Component<Props, State> {
 
   handleDayChange = (dayKey: DayKey, dayChanges: DayType): void => {
     const { onChange, days } = this.props;
+    console.log('DayKey', dayKey);
     onChange({
       ...days,
       [dayKey]: {
@@ -119,12 +121,13 @@ class TimeWindowBase extends React.Component<Props, State> {
     onUncheckDay && onUncheckDay(dayKey);
   };
 
-  handleDayTimeChange = (value: SliderValue, dayKey: DayKey): void =>
+  handleDayTimeChange = (value: SliderValue, dayKey: DayKey): void => {
     this.handleDayChange(dayKey, {
       restricted: true,
       start: this.parseValueToTime(value[0], 'HH:mm:ss.SSS'),
       stop: this.parseValueToTime(value[1], 'HH:mm:ss.SSS'),
     });
+  };
 
   clearSelected = (): void => {
     const { onUnselectAll, onChange } = this.props;
@@ -257,7 +260,6 @@ class TimeWindowBase extends React.Component<Props, State> {
         // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
         // @ts-ignore
         value={this.getDayValue(dayKey)}
-
       />
     );
   };
@@ -344,12 +346,13 @@ class TimeWindowBase extends React.Component<Props, State> {
         max={24}
         step={0.25}
         marks={timeMarks}
-        onChange={(value: SliderValue): void => this.handleDayTimeChange(value, dayKey)}
+        onChange={(value: SliderValue): void => {
+          this.handleDayTimeChange(value, dayKey);
+        }}
         tooltipVisible
         // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
         // @ts-ignore
         tipFormatter={this.tooltipFormatter}
-
       />
     );
     if (!invertibleTime) return slider;
@@ -380,8 +383,8 @@ class TimeWindowBase extends React.Component<Props, State> {
     const sliderKey = singleMode ? keys[0] : activeDay;
     return (
       <S.TimeWindowContainer style={style}>
+        {sliderKey !== null && <FilterItem />}
         {!singleMode && this.renderGrid(keys)}
-        {sliderKey !== null && this.renderSlider(sliderKey, singleMode)}
       </S.TimeWindowContainer>
     );
   }

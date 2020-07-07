@@ -13,4 +13,5 @@ export const Separator = styled.div`
 
 export const Addon = styled.div`
   margin: 16px;
+ 
 `;

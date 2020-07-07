@@ -43,9 +43,9 @@ class DayComponent extends React.Component<InnerProps> {
     const overlayStyle = joinedValues ? { width: 86 } : {};
     const readOnlyStyles = readOnly ? { opacity: 0.6, cursor: 'default', width: '100%' } : { width: '100%' };
     const tooltipText = joinedValues || (!readOnly ? tooltip : '');
-    const handleButtonClick = React.useCallback(() => {
+    const handleButtonClick = (): void => {
       onToggle && onToggle();
-    }, [onToggle]);
+    };
     return (
       <S.Container>
         <Tooltip overlayStyle={overlayStyle} title={tooltipText}>
