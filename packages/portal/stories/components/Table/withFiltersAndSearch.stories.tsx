@@ -284,6 +284,8 @@ const stories = {
         <Table
           title={`${filteredDataSource().length} ${text('Set name of table items', 'results')}`}
           dataSource={filteredDataSource()}
+          tableLayout='fixed'
+          scroll={{x: 1200}}
           columns={getColumns()}
           loading={boolean('Set loading state', false)}
           cellSize={select('Set cells size', CELL_SIZES, CELL_SIZES.default)}

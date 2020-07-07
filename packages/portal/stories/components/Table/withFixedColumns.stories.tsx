@@ -49,8 +49,8 @@ const stories = {
       <Table
         title={`${dataSource.length} results`}
         dataSource={dataSource}
-        layout='fixed'
         columns={COLUMNS}
+        scroll={{x: 1200}}
         loading={boolean('Set loading state', false)}
         roundedHeader={boolean('Rounded header', false)}
         pagination={{
