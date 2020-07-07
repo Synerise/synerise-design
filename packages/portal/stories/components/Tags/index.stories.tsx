@@ -26,7 +26,7 @@ const customColorOptions = {
 
 
 const stories = {
-  default: () => {
+  defaultTag: () => {
     const shapes = {
       'Default Round': TagShape.DEFAULT_ROUND,
       'Default Square': TagShape.DEFAULT_SQUARE,
@@ -38,7 +38,7 @@ const stories = {
 
     const thisTag = [{
       id: 0,
-      name: 'Aston Martin',
+      name: 'Tag name',
       color: colors,
     }];
 
@@ -70,7 +70,7 @@ const stories = {
 
     const thisTag = [{
       id: 12,
-      name: 'Testowany',
+      name: 'Tag name 2',
       color: colors,
       prefixel: hasPrefix && (number('preffixNumber',5)),
       suffixel: hasSufix && (number('suffixNumber',5)),
@@ -89,7 +89,7 @@ const stories = {
       </React.Fragment>
     );
   },
-  singleTag: () => {
+  tagSingle: () => {
     const shapes = {
       'Default Round': TagShape.SINGLE_CHARACTER_ROUND,
       'Default Square': TagShape.SINGLE_CHARACTER_SQUARE,
@@ -116,7 +116,7 @@ const stories = {
       </React.Fragment>
     );
   },
-  smallTag: () => {
+  tagSmall: () => {
     const shapes = {
       'Default Round': TagShape.SMALL_ROUND,
       'Default Square': TagShape.SMALL_SQUARE,
@@ -127,7 +127,7 @@ const stories = {
 
     const thisTag = [{
       id: 0,
-      name: 'Polonez',
+      name: 'Tag name 3',
       color: colors,
     }];
 
@@ -143,7 +143,7 @@ const stories = {
       </React.Fragment>
     );
   },
-  singleTagWithIcon: () => {
+  tagWithIcon: () => {
     const IMAGE_URL = 'https://cdn4.iconfinder.com/data/icons/social-messaging-ui-color-shapes-2-free/128/social-reddit-square2-512.png';
     const shapes = {
       'Default Round': TagShape.DEFAULT_ROUND,
@@ -156,7 +156,7 @@ const stories = {
 
     const thisTag = [{
       id: 0,
-      name: 'Lamborghini',
+      name: 'Tag name 4',
       color: colors,
       prefixel: <Icon className="icon1" component={<Add3S />} size={20} color="#fff" />,
     }];
@@ -205,47 +205,47 @@ const stories = {
 
     const allTags = [{
       id: 0,
-      name: 'Aston Martin',
+      name: 'Tag Name 1',
       color: '#ffc300',
     },{
       id: 1,
-      name: 'Ferrari',
+      name: 'Tag Name 2',
       color: '#13c2bc',
     },{
       id: 2,
-      name: 'Polonez',
+      name: 'Tag Name 3',
       color: '#76dc25',
     }, {
       id: 3,
-      name: 'Mazda',
+      name: 'Tag Name 4',
       color: '#6d2dd3',
     }, {
       id: 4,
-      name: 'Honda',
+      name: 'Tag Name 5',
       color: '#ff4d67',
     }, {
       id: 5,
-      name: 'Pagani',
+      name: 'Tag Name 6',
       color: '#fd9f05',
     }, {
       id: 6,
-      name: 'BMW',
+      name: 'Tag Name 7',
       color: '#2b71cb',
     }, {
       id: 7,
-      name: 'Porsche',
+      name: 'Tag Name 8',
       color: '#61b71e',
     }, {
       id: 8,
-      name: 'Lancia',
+      name: 'Tag Name 9',
       color: '#e62425',
     }, {
       id: 9,
-      name: 'Fiat',
+      name: 'Tag Name 10',
       color: '#f551a9',
     }, {
       id: 10,
-      name: 'Alfa Romeo',
+      name: 'Tag Name 11',
       color: '#04bdff',
     }];
 
