@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.84.0](https://github.com/synerise/synerise-design/compare/portal@0.83.0...portal@0.84.0) (2020-07-07)
+
+
+### Bug Fixes
+
+* **badge:** add status with avatar and change styles in status ([16fff63](https://github.com/synerise/synerise-design/commit/16fff635890d7a7874f62a1d168f63d292f00bb9))
+* **badge:** separate components flag with and add changes to badge ([1e0fabb](https://github.com/synerise/synerise-design/commit/1e0fabbeb4092106c7f7572ac159bc90cf620c39))
+* **date-picker:** imporvements after ux review ([14caed8](https://github.com/synerise/synerise-design/commit/14caed88e2fdfba5380cd2319f12214a7a661550))
+* **navbar:** change colors to pallet 600 and delete children navbar ([5fd7287](https://github.com/synerise/synerise-design/commit/5fd7287f0940040fd9b7a1dc5aaf6e5f01d17dc8))
+* **navbar:** change colors to pallet 600 and delete children navbar ([7dce5ec](https://github.com/synerise/synerise-design/commit/7dce5ece862493a14c7182f64d7f53ea1fc8c8b8))
+* **tags:** change names ([38e067c](https://github.com/synerise/synerise-design/commit/38e067c22fe2232359f782d02ebca6ce2dc2be60))
+* **tags:** change size and margin of image ([89ba1d2](https://github.com/synerise/synerise-design/commit/89ba1d2556be269217a63c00c6a1a9b39376d332))
+
+
+### Features
+
+* **avatar-group:** add Modal with details about users ([4846398](https://github.com/synerise/synerise-design/commit/48463982030f2910bc8f841efd6482c456997241))
+* **item-picker:** ItemPicker example in Storybook ([cbd7ecd](https://github.com/synerise/synerise-design/commit/cbd7ecdd9f724bf2a0798b18d937ab4854771d2d))
+* **item-picker:** update ItemPicker example ([abfc753](https://github.com/synerise/synerise-design/commit/abfc753f6884dccca953d2eeffcf67cfe6618345))
+* **item-picker:** update storybook example ([cf242e4](https://github.com/synerise/synerise-design/commit/cf242e49783099f0dd3864e4691da8af96fda3a2))
+
+
+
+
+
 # [0.83.0](https://github.com/synerise/synerise-design/compare/portal@0.82.0...portal@0.83.0) (2020-07-02)
 
 

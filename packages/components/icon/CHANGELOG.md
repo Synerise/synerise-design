@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.19.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.19.0...@synerise/ds-icon@0.19.1) (2020-07-07)
+
+
+### Bug Fixes
+
+* **date-picker:** imporvements after ux review ([14caed8](https://github.com/Synerise/synerise-design/commit/14caed88e2fdfba5380cd2319f12214a7a661550))
+
+
+
+
+
 # [0.19.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.18.0...@synerise/ds-icon@0.19.0) (2020-06-25)
 
 

@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@0.1.2...@synerise/ds-date-picker@0.1.3) (2020-07-07)
+
+
+### Bug Fixes
+
+* **date-picker:** fixing linter errors ([de7b1fb](https://github.com/Synerise/synerise-design/commit/de7b1fbd2269630163189eebbe7676e419aecec6))
+* **date-picker:** imporvements after ux review ([14caed8](https://github.com/Synerise/synerise-design/commit/14caed88e2fdfba5380cd2319f12214a7a661550))
+* **date-picker:** proceed to time picker after choosing day ([b345144](https://github.com/Synerise/synerise-design/commit/b345144c9f90419eeb8615a96a38bea760cea0c3))
+* **date-picker:** removed local dist deps ([a0dd264](https://github.com/Synerise/synerise-design/commit/a0dd264920139277a18424513184ba7ceff95d0a))
+
+
+
+
+
 ## [0.1.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@0.1.1...@synerise/ds-date-picker@0.1.2) (2020-07-02)
 
 **Note:** Version bump only for package @synerise/ds-date-picker

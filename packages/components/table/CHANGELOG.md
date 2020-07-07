@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.22.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.21.1...@synerise/ds-table@0.22.0) (2020-07-07)
+
+
+### Features
+
+* **table:** hide column names ([94126bb](https://github.com/synerise/synerise-design/commit/94126bb9e93c041a285320cab9a182a90d0e8f36))
+
+
+
+
+
 ## [0.21.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.21.0...@synerise/ds-table@0.21.1) (2020-07-02)
 
 

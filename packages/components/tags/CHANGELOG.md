@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.90](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@0.2.89...@synerise/ds-tags@0.2.90) (2020-07-07)
+
+
+### Bug Fixes
+
+* **tags:** add changes to margins of suffix and preffix ([964319a](https://github.com/Synerise/synerise-design/commit/964319a4ded7267cb322883bbe53767a58e08d19))
+* **tags:** add changes to margins of suffix and preffix ([88558f1](https://github.com/Synerise/synerise-design/commit/88558f15807b1d6c1fc824f2183f2d321211629a))
+* **tags:** change size and margin of image ([89ba1d2](https://github.com/Synerise/synerise-design/commit/89ba1d2556be269217a63c00c6a1a9b39376d332))
+
+
+
+
+
 ## [0.2.89](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@0.2.88...@synerise/ds-tags@0.2.89) (2020-07-02)
 
 
