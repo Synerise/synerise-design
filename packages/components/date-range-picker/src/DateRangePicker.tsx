@@ -26,6 +26,7 @@ import relativeToAbsolute from './dateUtils/relativeToAbsolute';
 import { Props, State } from './DateRangePicker.types';
 import { DateFilter, DateRange } from './date.types';
 import getDateFromString from './dateUtils/getDateFromString';
+import AddonCollapse from './AddonCollapse/AddonCollapse';
 
 export const normalizeRange = (range: DateRange): DateRange => {
   if (!range || !range.type) {
@@ -73,12 +74,15 @@ class DateRangePicker extends React.PureComponent<Props, State> {
       changed: true,
     };
   }
+  componentWillReceiveProps({ value }: Props) {
+    if (value !== this.props.value) this.setState({ mode: 'date', value: normalizeRange(value), changed: false });
+  }
 
-  getSnapshotBeforeUpdate(prevProps: Readonly<Props>): null {
+  /*  getSnapshotBeforeUpdate(prevProps: Readonly<Props>): null {
     const { value } = this.props;
     if (prevProps.value !== value) this.setState({ mode: 'date', value: normalizeRange(value), changed: false });
     return null;
-  }
+  }*/
 
   handleFilterCancel = (): void => {
     this.setState({ mode: 'date' });
@@ -168,22 +172,34 @@ class DateRangePicker extends React.PureComponent<Props, State> {
     const addons: React.ReactElement[] = [];
     if (showRelativePicker)
       addons.push(
-        <RelativeRangePicker
-          future={relativeFuture}
-          past={relativePast}
-          ranges={ranges}
-          value={value}
-          onChange={this.handleRangeChange}
+        <AddonCollapse
+          content={
+            <RelativeRangePicker
+              future={relativeFuture}
+              past={relativePast}
+              ranges={ranges}
+              value={value}
+              onChange={this.handleRangeChange}
+            />
+          }
+          title={intl.formatMessage({ id: 'SNRS.DATE.RELATIVE_DATE_RANGE' })}
+          expanded
         />
       );
     if (showFilter)
       addons.push(
-        <FilterSwitch
-          isOn={!!filter}
-          translations={{ enableFilter: intl.formatMessage({ id: 'SNRS.DATE.ENABLE_FILTER' }) }}
-          onOpenModalButtonClick={this.handleModalOpenClick}
-          onRemoveFilterButtonClick={this.handleRemoveFilterClick}
-          statusInnerHtml={{ __html: intl.formatMessage({ id: 'SNRS.FILTER-SWITCH.FILTER_IS_ON' }) }}
+        <AddonCollapse
+          content={
+            <FilterSwitch
+              isOn={!!filter}
+              translations={{ enableFilter: intl.formatMessage({ id: 'SNRS.DATE.ENABLE_FILTER' }) }}
+              onOpenModalButtonClick={this.handleModalOpenClick}
+              onRemoveFilterButtonClick={this.handleRemoveFilterClick}
+              statusInnerHtml={{ __html: intl.formatMessage({ id: 'SNRS.FILTER-SWITCH.FILTER_IS_ON' }) }}
+            />
+          }
+          title={'Filter'}
+          expanded
         />
       );
     return (
