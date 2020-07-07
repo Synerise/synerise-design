@@ -13,7 +13,7 @@ function Index() {
           <p className="ds-sub-headline">Colloid is the Synerise design system for developing the product and experiences.</p>
         </div>
         <div className="ds-intro-image-wrapper">
-          <img src={useBaseUrl('images/ds-dashboard@2x.jpg')} alt="Synerise Dashboard" />
+          <img src={useBaseUrl('images/ds-dashboard.png')} alt="Synerise Dashboard" />
         </div>
       </section>
       <section className="ds-wrapper u-bg-light-gray">
@@ -58,10 +58,7 @@ function Index() {
             </ul>
             <div className="l-grid c-generic-section__columns ds-get-familiar">
               <div className="c-generic-section__image c-advantage__image l-col-desktop-5">
-                <img className=" c-dynamic-image c-dynamic-image--lazy c-dynamic-image--lazy--loaded" alt="app"
-                     src={useBaseUrl('images/ds-get-familiar@2x.jpg')}
-                     srcSet={`${useBaseUrl('images/ds-get-familiar@2x.jpg')} 1x, ${useBaseUrl('images/ds-get-familiar@3x.jpg')} 2x`}
-                />
+                <img className=" c-dynamic-image c-dynamic-image--lazy c-dynamic-image--lazy--loaded" alt="app" src={useBaseUrl('images/ds-get-familiar.png')} />
               </div>
               <div className="l-col-desktop-5 ds-get-familiar-text">
                 <div className="c-generic-section__content">
