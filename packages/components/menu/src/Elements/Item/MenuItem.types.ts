@@ -9,6 +9,7 @@ export enum ItemType {
   DANGER = 'danger',
 }
 export interface MenuItemProps extends Omit<MenuProps, 'dataSource' | 'footer'> {
+  key?: React.ReactText;
   text?: string | React.ReactNode;
   parent?: boolean;
   prefixel?: React.ReactNode;

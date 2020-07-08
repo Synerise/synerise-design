@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import * as React from 'react';
 import MenuItem from 'antd/lib/menu/MenuItem';
 import { IconContainer } from '@synerise/ds-icon/dist/Icon.styles';
@@ -10,6 +10,7 @@ type WrapperProps = {
   description?: string | React.ReactNode;
   copyable?: boolean;
   indentLevel?: number;
+  ordered?: boolean;
 };
 
 const INDENT_LEVEL_STEP = 16;
@@ -35,11 +36,17 @@ export const PrefixelWrapper = styled.div<{ disabled?: boolean; visible?: boolea
   margin-left: -4px;
   margin-right: 12px;
   align-items: center;
-  ${(props): string|false => !!props.disabled && `svg {fill: ${props.theme.palette['grey-600']}};`}
+  ${(props): string | false => !!props.disabled && `svg {fill: ${props.theme.palette['grey-600']}};`}
 `;
 
+const disableOrdering = ():FlattenSimpleInterpolation => css`
+  &::before {
+    content: none;
+  }
+`;
 export const Wrapper = styled(MenuItem)<WrapperProps>`
   &&& {
+    ${(props): string | FlattenSimpleInterpolation => (props.ordered ? '' : disableOrdering())};
     color: ${(props): string => props.theme.palette['grey-700']};
     opacity: ${(props): string => (props.disabled ? '0.4' : '1')};
     cursor: ${(props): string => (props.disabled ? 'not-allowed' : 'pointer')};
@@ -241,7 +248,6 @@ export const ContentWrapper = styled.div`
   align-items: center;
   flex-wrap: nowrap;
   user-select: none;
-
 `;
 
 export const ContentDivider = styled.div`

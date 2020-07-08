@@ -30,6 +30,7 @@ export interface BasicItemProps {
   suffixVisibilityTrigger?: string;
   prefixVisibilityTrigger?: string;
   indentLevel?: number;
+  ordered?: boolean;
 }
 const Text: React.FC<BasicItemProps> = ({
   parent,
@@ -48,6 +49,7 @@ const Text: React.FC<BasicItemProps> = ({
   prefixVisibilityTrigger,
   suffixVisibilityTrigger,
   indentLevel,
+  ordered,
   ...rest
 }) => {
   const [hovered, setHovered] = React.useState(false);
@@ -111,6 +113,7 @@ const Text: React.FC<BasicItemProps> = ({
       className="ds-menu-item"
       style={style}
       indentLevel={Number(indentLevel)}
+      ordered={ordered}
       {...rest}
     >
       <Tooltip type="default" trigger="click" title={copyTooltip}>
