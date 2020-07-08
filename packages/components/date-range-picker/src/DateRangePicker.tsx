@@ -13,7 +13,6 @@ import { omitBy, isUndefined } from 'lodash';
 
 import Footer from '@synerise/ds-date-picker/dist/Elements/Footer/Footer';
 import { Container, Separator, Addon } from './DateRangePicker.styles';
-import RangeFilter from './RangeFilter/RangeFilter';
 import RangePicker from './RangePicker/RangePicker';
 import { RELATIVE, ABSOLUTE } from './constants';
 import ADD from './dateUtils/add';
@@ -136,11 +135,11 @@ class DateRangePicker extends React.PureComponent<Props, State> {
   render(): JSX.Element {
     const { showRelativePicker, showFilter, showTime, format, disabledDate, intl, validate } = this.props;
     const { value, mode, changed } = this.state;
-    const { from, to, filter, key } = value;
+    const { from, to, key } = value;
     if (mode === 'filter')
       return (
         <Container>
-          <RangeFilter value={filter} onCancel={this.handleFilterCancel} onApply={this.handleFilterApply} />
+          <div>RangeFilter placeholder</div>
         </Container>
       );
     const footerFormat = format || (showTime ? 'MMM D, YYYY, HH:mm' : 'MMM D, YYYY');
