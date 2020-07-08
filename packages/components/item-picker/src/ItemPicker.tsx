@@ -54,9 +54,9 @@ const ItemPicker: React.FC<ItemPickerProps> = ({
   size = 'small',
   changeButtonLabel = intl.formatMessage({ id: 'DS.ITEM-PICKER.CHANGE' }),
   withChangeButton,
-  clearConfirmTitle = intl!.formatMessage({ id: 'DS.ITEM-PICKER.CLEAR-CONFIRM' }),
-  yesText = intl!.formatMessage({ id: 'DS.ITEM-PICKER.YES-TEXT' }),
-  noText = intl!.formatMessage({ id: 'DS.ITEM-PICKER.NO-TEXT' }),
+  clearConfirmTitle = intl.formatMessage({ id: 'DS.ITEM-PICKER.CLEAR-CONFIRM' }),
+  yesText = intl.formatMessage({ id: 'DS.ITEM-PICKER.YES-TEXT' }),
+  noText = intl.formatMessage({ id: 'DS.ITEM-PICKER.NO-TEXT' }),
   withClearConfirmation,
 }) => {
   const [dropdownOpened, setDropdownOpened] = React.useState<boolean>(false);
