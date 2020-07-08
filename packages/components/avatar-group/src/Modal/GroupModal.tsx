@@ -3,7 +3,7 @@ import ModalProxy from '@synerise/ds-modal';
 import { VirtualTable, TableCell } from '@synerise/ds-table';
 import Avatar from '@synerise/ds-avatar';
 import Dropdown from '@synerise/ds-dropdown';
-import { OptionVerticalM } from '@synerise/ds-icon/dist/icons';
+import { OptionHorizontalM } from '@synerise/ds-icon/dist/icons';
 import Button from '@synerise/ds-button';
 import Icon from '@synerise/ds-icon';
 import { AvatarProps } from '@synerise/ds-avatar/dist/Avatar';
@@ -47,6 +47,7 @@ const GroupModal: React.FC<GroupModalProps> = ({
                   </Avatar>
                 </Badge>
               }
+              textSize="small"
               title={`${record.firstname} ${record.lastname}`}
               labels={[record.email]}
             />
@@ -61,7 +62,7 @@ const GroupModal: React.FC<GroupModalProps> = ({
           <TableCell.ActionCell contentAlign="right">
             <Dropdown overlay={renderRowMenu(record)} trigger={['click']}>
               <Button type="ghost" mode="single-icon">
-                <Icon component={<OptionVerticalM />} />
+                <Icon component={<OptionHorizontalM />} />
               </Button>
             </Dropdown>
           </TableCell.ActionCell>
