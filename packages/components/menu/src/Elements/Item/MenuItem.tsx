@@ -50,6 +50,7 @@ const MenuItem: React.FC<SubMenuProps & MenuItemProps> = props => {
     case ItemType.SELECT:
       return (
         <Select
+          ordered={ordered}
           prefixel={prefixel}
           suffixel={suffixel}
           key={uuid()}
@@ -66,6 +67,7 @@ const MenuItem: React.FC<SubMenuProps & MenuItemProps> = props => {
     case ItemType.DANGER:
       return (
         <Danger
+          ordered={ordered}
           prefixel={prefixel}
           suffixel={suffixel}
           key={uuid()}
@@ -82,6 +84,7 @@ const MenuItem: React.FC<SubMenuProps & MenuItemProps> = props => {
     default:
       return (
         <Text
+          ordered={ordered}
           prefixel={prefixel}
           suffixel={suffixel}
           key={uuid()}

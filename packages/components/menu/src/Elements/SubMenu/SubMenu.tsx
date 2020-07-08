@@ -12,7 +12,7 @@ class SubMenuItem extends React.PureComponent<SubMenuProps & MenuItemProps, SubM
   state = { childrenCollapsed: true, uuidKey: uuid() };
 
   render(): React.ReactNode {
-    const { text, prefixel, suffixel, subMenu, disabled, danger, ordered, ...rest } = this.props;
+    const { text, prefixel, suffixel, subMenu, disabled, danger, ordered,key, ...rest } = this.props;
     const { childrenCollapsed, uuidKey } = this.state;
     const onClickHandler = (): void => {
       this.setState(prevState => ({
@@ -23,11 +23,11 @@ class SubMenuItem extends React.PureComponent<SubMenuProps & MenuItemProps, SubM
     return (
       <S.SubMenuItem
         title={
-          <SubmenuText key={`${uuidKey}-title`} onClick={onClickHandler} prefixel={prefixel} suffixel={suffixel}>
+          <SubmenuText key={`${key || uuidKey}-title`} onClick={onClickHandler} prefixel={prefixel} suffixel={suffixel}>
             {text}
           </SubmenuText>
         }
-        key={uuidKey}
+        key={key || uuidKey}
         danger={danger}
         ordered={ordered}
         disabled={disabled}
@@ -41,23 +41,24 @@ class SubMenuItem extends React.PureComponent<SubMenuProps & MenuItemProps, SubM
           // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
           // @ts-ignore */
           subMenu.map((subItem: SubMenuItemProps, index: number) => (
-            <MenuItem
-              parent={subItem.parent}
-              prefixel={subItem.prefixel}
-              suffixel={subItem.suffixel}
-              disabled={subItem.disabled}
-              text={subItem.text}
-              danger={subItem.danger}
-              subMenu={subItem.subMenu}
-              ordered={ordered}
-              description={subItem.description}
-              // eslint-disable-next-line react/jsx-handler-names
-              onClick={(): void => {
-                subItem.onClick && subItem.onClick(subItem);
-              }}
-              key={`${uuidKey}-${index}`} // eslint-disable-line react/no-array-index-key
-            />
-          ))}
+              <MenuItem
+                parent={subItem.parent}
+                prefixel={subItem.prefixel}
+                suffixel={subItem.suffixel}
+                disabled={subItem.disabled}
+                text={subItem.text}
+                danger={subItem.danger}
+                subMenu={subItem.subMenu}
+                ordered={subItem.ordered===undefined ? ordered : subItem.ordered}
+                description={subItem.description}
+                // eslint-disable-next-line react/jsx-handler-names
+                onClick={(): void => {
+                  subItem.onClick && subItem.onClick(subItem);
+                }}
+                key={subItem.key || `${uuidKey}-${index}`} // eslint-disable-line react/no-array-index-key
+              />
+            )
+          )}
       </S.SubMenuItem>
     );
   }
