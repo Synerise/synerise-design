@@ -1,13 +1,27 @@
 import Navbar from '@synerise/ds-navbar';
 
 import * as React from 'react';
-import { select } from '@storybook/addon-knobs';
+import { boolean, number, select } from '@storybook/addon-knobs';
 import Button from '@synerise/ds-button/dist/Button';
 import Icon from '@synerise/ds-icon';
-import { NotificationsPlayM, CalendarM, DashboardM } from '@synerise/ds-icon/dist/icons';
+import { Add3M, AngleDownS, HelpM, NotificationsActiveM, BookM } from '@synerise/ds-icon/dist/icons';
 import { action } from '@storybook/addon-actions';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import Avatar from '@synerise/ds-avatar';
 
+const addonType = { avatar: 'avatar', none: 'none' };
+function renderAddonComponent(suffixElementType: string) {
+  switch (suffixElementType) {
+    case addonType.avatar:
+      return (
+        <Avatar size="medium" backgroundColor="green" backgroundColorHue="400" shape="circle">
+          AK
+        </Avatar>
+      );
+    default:
+      return null;
+  }
+}
 const backgroundColors = {
   blue: theme.palette['blue-600'],
   grey: theme.palette['grey-600'],
@@ -21,43 +35,64 @@ const backgroundColors = {
   cyan: theme.palette['cyan-600'],
   purple: theme.palette['purple-600'],
   violet: theme.palette['violet-600'],
-
-}
-
-const buttonStyle = {
-  color: '#ffffff',
+};
+const backgroundButtonColors = {
+  blue: 'blue',
+  grey: 'grey',
+  red: 'red',
+  green: 'green',
+  yellow: 'yellow',
+  pink: 'pink',
+  mars: 'mars',
+  orange: 'orange',
+  fern: 'fern',
+  cyan: 'cyan',
+  purple: 'purple',
+  violet: 'violet',
 };
 
-const dataSingle = [
-  [
-    { text: 'Item 1', disabled: true },
-    { text: 'Item 2', disabled: false },
-    { text: 'Item 3', disabled: true },
-    { text: 'Item 4', disabled: false, danger: true },
-  ],
-];
-
-const logoSrc = 'https://synerise.com/synerise/assets/svg/logos/logo-white.png';
+const logoSrc = 'https://app.portal.rc.snrstage.com/spa/assets/images/logo.svg';
 
 const stories = {
-  default:() => {
-    return <Navbar
-    description={'Module name'}
-    logo={logoSrc}
-    color={select('Background color', backgroundColors, '#0b68ff')}
-    additionalNodes={[<div>some text</div>, <div>some other text</div>]}
-    actions={<>
-      <Button onClick={action('onClick')} type="ghost-white" mode="single-icon">
-        <Icon component={<DashboardM />} color={'#ffffff'} />
-      </Button>
-      <Button onClick={action('onClick')} type="ghost-white" mode="single-icon">
-        <Icon component={<CalendarM />} color={'#ffffff'} />
-      </Button>
-      <Button onClick={action('onClick')} type="ghost-white" mode="single-icon">
-        <Icon component={<NotificationsPlayM />} color={'#ffffff'} />
-      </Button>
-    </>}
-    />},
+  default: () => {
+    const suffixType = select('Set suffix type', addonType, addonType.none);
+    const colorAll = select('Background color', backgroundColors, '#0b68ff');
+    const colorButton = select('Button color', backgroundButtonColors, 'blue');
+    const hasButton = boolean('Set button', false);
+
+    return (
+      <Navbar
+        description={'Module name'}
+        logo={logoSrc}
+        color={colorAll}
+        additionalNodes={[
+          <>
+            <Button onClick={action('onClick')} type="ghost-white" mode="single-icon">
+              <Icon component={<Add3M />} color={'#ffffff'} />
+            </Button>
+            <Button onClick={action('onClick')} type="ghost-white" mode="single-icon">
+              <Icon component={<BookM />} color={'#ffffff'} />
+            </Button>
+            <Button onClick={action('onClick')} type="ghost-white" mode="single-icon">
+              <Icon component={<HelpM />} color={'#ffffff'} />
+            </Button>
+            <Button onClick={action('onClick')} type="ghost-white" mode="single-icon">
+              <Icon component={<NotificationsActiveM />} color={'#ffffff'} />
+            </Button>
+          </>,
+          <div>
+            {hasButton && (
+              <Button mode="label-icon" type="custom-color" color={colorButton}>
+                Button
+                <Icon component={<AngleDownS />} />
+              </Button>
+            )}
+          </div>,
+        ]}
+        actions={renderAddonComponent(suffixType)}
+      />
+    );
+  },
 };
 
 export default {
