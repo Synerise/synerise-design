@@ -3,14 +3,14 @@ import Icon from '@synerise/ds-icon';
 import { CloseS } from '@synerise/ds-icon/dist/icons';
 import * as S from '../InputMultivalue.styles';
 
-export interface CreatorProps {
+export interface Props {
   disabled?: boolean;
   key?: string;
   onRemoveClick: () => void;
   value: React.ReactText;
   focused?: boolean;
 }
-const Value: React.FC<CreatorProps> = ({ disabled, key, onRemoveClick, value, focused }) => {
+const Value: React.FC<Props> = ({ disabled, key, onRemoveClick, value, focused }) => {
   const [pressed, setPressed] = React.useState(false);
   return (
     <S.ValueWrapper
