@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.84.2](https://github.com/synerise/synerise-design/compare/portal@0.84.1...portal@0.84.2) (2020-07-08)
+
+
+### Bug Fixes
+
+* **menu:** added option to disable ordering within submenu ([db6e97c](https://github.com/synerise/synerise-design/commit/db6e97c3803e8c6f9c9fa57185d74ab39ffb5c1b))
+
+
+
+
+
 ## [0.84.1](https://github.com/synerise/synerise-design/compare/portal@0.84.0...portal@0.84.1) (2020-07-07)
 
 

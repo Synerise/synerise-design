@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.23.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.22.1...@synerise/ds-table@0.23.0) (2020-07-08)
+
+
+### Features
+
+* **table:** add textSize prop to AvatarLabelCell ([f652548](https://github.com/synerise/synerise-design/commit/f652548750a92230bb9ec136b310cba44d938b31))
+
+
+
+
+
 ## [0.22.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.22.0...@synerise/ds-table@0.22.1) (2020-07-07)
 
 

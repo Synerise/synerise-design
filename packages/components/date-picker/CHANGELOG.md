@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@0.1.3...@synerise/ds-date-picker@0.1.4) (2020-07-08)
+
+
+### Bug Fixes
+
+* **date-picker:** changed padding of the day and changed icon ([9abcfee](https://github.com/Synerise/synerise-design/commit/9abcfeef6e4d32c1a357a6658f07e20d50a71f62))
+
+
+
+
+
 ## [0.1.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@0.1.2...@synerise/ds-date-picker@0.1.3) (2020-07-07)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-slider",
-  "version": "0.7.30",
+  "version": "0.7.31",
   "description": "Slider UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -25,7 +25,7 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-tooltip": "^0.7.7",
+    "@synerise/ds-tooltip": "^0.7.8",
     "@synerise/ds-typography": "^0.8.3"
   },
   "peerDependencies": {
