@@ -5,7 +5,6 @@ import Avatar from '@synerise/ds-avatar';
 import DSFlag from '@synerise/ds-flag';
 import ItemPicker, { ItemPickerProps, ItemPickerSize } from '../ItemPicker';
 import renderWithProvider from '@synerise/ds-utils/dist/testing/renderWithProvider/renderWithProvider';
-import { fireEvent } from '@testing-library/react';
 
 const imgSrc = 'https://www.w3schools.com/howto/img_avatar.png';
 
@@ -48,13 +47,16 @@ const CLEAR_TEST_ID = 'clear-icon';
 const ANGLE_DOWN_TEST_ID = 'angle-icon';
 const PREFIXEL_TEST_ID = 'value-prefixel';
 
-const ITEM_PICKER = (props: Omit<ItemPickerProps, 'dataSource' | 'placeholder' | 'clear' | 'searchPlaceholder'> & {size?: ItemPickerSize}) => {
+const ITEM_PICKER = (props: Omit<ItemPickerProps, 'dataSource' | 'placeholder' | 'clear' | 'searchPlaceholder' | 'clearConfirmTitle' | 'yesText' | 'noText' | 'intl'> & {size?: ItemPickerSize}) => {
   return <ItemPicker
     dataSource={DATA_SOURCE}
     size={'small'}
     placeholder={PLACEHOLDER}
     clear={REMOVE}
     searchPlaceholder={SEARCH_PLACEHOLDER}
+    clearConfirmTitle={'Are you sure to remove this selection?'}
+    yesText={'Yes'}
+    noText={'No'}
     {...props}
   />
 };
@@ -168,17 +170,6 @@ describe('ItemPicker component', () => {
     expect(getByTestId(CLEAR_TEST_ID)).toBeTruthy();
   });
 
-  it('should fire onClear', () => {
-    const handleClear = jest.fn();
-    const handleChange = jest.fn();
-
-    const { getByTestId } = renderWithProvider(<ITEM_PICKER onClear={handleClear} onChange={handleChange} description={DESCRIPTION} selectedItem={DATA_SOURCE[0]} />);
-
-    fireEvent.click(getByTestId(CLEAR_TEST_ID));
-
-    expect(handleClear).toBeCalled();
-  });
-
   it('should render without custom change button', () => {
     const handleClear = jest.fn();
     const handleChange = jest.fn();
@@ -191,23 +182,10 @@ describe('ItemPicker component', () => {
   it('should render with custom change button', () => {
     const handleClear = jest.fn();
     const handleChange = jest.fn();
-    const handleChangeButtonClick = jest.fn();
 
-    const { getByText } = renderWithProvider(<ITEM_PICKER onClear={handleClear} onChange={handleChange} description={DESCRIPTION} selectedItem={DATA_SOURCE[0]} size='large' onChangeButtonClick={handleChangeButtonClick} changeButtonLabel={CHANGE_BUTTON_LABEL} />);
+    const { getByText } = renderWithProvider(<ITEM_PICKER onClear={handleClear} onChange={handleChange} description={DESCRIPTION} selectedItem={DATA_SOURCE[0]} size='large' withChangeButton changeButtonLabel={CHANGE_BUTTON_LABEL} />);
 
     expect(getByText(CHANGE_BUTTON_LABEL)).toBeTruthy();
-  });
-
-  it('should fire onChangeButtonClick', () => {
-    const handleClear = jest.fn();
-    const handleChange = jest.fn();
-    const handleChangeButtonClick = jest.fn();
-
-    const { getByText } = renderWithProvider(<ITEM_PICKER onClear={handleClear} onChange={handleChange} description={DESCRIPTION} selectedItem={DATA_SOURCE[0]} size='large' onChangeButtonClick={handleChangeButtonClick} changeButtonLabel={CHANGE_BUTTON_LABEL} />);
-
-    fireEvent.click(getByText(CHANGE_BUTTON_LABEL));
-
-    expect(handleChangeButtonClick).toBeCalled();
   });
 
 });
