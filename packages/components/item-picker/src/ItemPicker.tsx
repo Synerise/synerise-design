@@ -117,6 +117,10 @@ const ItemPicker: React.FC<ItemPickerProps> = ({
       size,
       changeButtonLabel,
       withChangeButton,
+      clearConfirmTitle,
+      yesText,
+      noText,
+      withClearConfirmation,
     ]
   );
 

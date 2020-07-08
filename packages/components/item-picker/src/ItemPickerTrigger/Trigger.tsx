@@ -77,17 +77,16 @@ const Trigger: React.FC<Props> = ({
             {tooltip}
           </Popconfirm>
         );
-      } 
-        return (
-          <S.ClearWrapper onClick={handleClear} data-testid="clear-icon">
-            {tooltip}
-          </S.ClearWrapper>
-        );
-      
+      }
+      return (
+        <S.ClearWrapper onClick={handleClear} data-testid="clear-icon">
+          {tooltip}
+        </S.ClearWrapper>
+      );
     }
 
     return null;
-  }, [selected, handleClear, clear, withClearConfirmation]);
+  }, [selected, handleClear, clear, withClearConfirmation, clearConfirmTitle, noText, yesText]);
 
   const renderAngleIcon = React.useMemo(() => {
     return (
@@ -108,7 +107,7 @@ const Trigger: React.FC<Props> = ({
     if (!selected) {
       openDropdown();
     }
-  }, [size, selected, openDropdown]);
+  }, [selected, openDropdown]);
 
   const renderChangeButton = React.useMemo(() => {
     return (
