@@ -19,8 +19,9 @@ const stories = {
   },
   relative: () => {
     const showTime = boolean('showTime', true);
-    const forceAbsolute = boolean('forceAbsolute', false);
     const value = RELATIVE_PRESETS[0];
+    const forceAbsolute = boolean('forceAbsolute', false);
+
     return (
       <DateRangePicker
         showTime={showTime}
