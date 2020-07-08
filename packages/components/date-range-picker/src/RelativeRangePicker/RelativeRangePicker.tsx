@@ -10,9 +10,7 @@ import Menu from '@synerise/ds-menu';
 import InputNumber from '@synerise/ds-input-number';
 import {
   Container,
-  Header,
   Title,
-  Help,
   Ranges,
   Range,
   CustomForm,
