@@ -3,6 +3,7 @@ import Label from '@synerise/ds-input/dist/Label/Label';
 import { Description } from '@synerise/ds-typography';
 import Dropdown from '@synerise/ds-dropdown';
 import { MenuItemProps } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.types';
+import { injectIntl, IntlShape } from 'react-intl';
 import * as S from './ItemPicker.styles';
 import ItemPickerDropdown from './ItemPickerDropdown/ItemPickerDropdown';
 import Trigger from './ItemPickerTrigger/Trigger';
@@ -10,13 +11,14 @@ import Trigger from './ItemPickerTrigger/Trigger';
 export type ItemPickerSize = 'small' | 'large';
 
 export type ItemPickerProps = {
+  intl: IntlShape;
   dataSource: MenuItemProps[];
   placeholder: string | React.ReactNode;
-  clear: string | React.ReactNode;
-  searchPlaceholder: string;
   onClear: () => void;
   onChange: (item: MenuItemProps) => void;
   selectedItem?: MenuItemProps | undefined;
+  clear?: string | React.ReactNode;
+  searchPlaceholder?: string;
   size?: ItemPickerSize;
   label?: string | React.ReactNode;
   description?: string | React.ReactNode;
@@ -25,12 +27,16 @@ export type ItemPickerProps = {
   errorMessage?: string | React.ReactNode;
   tooltip?: string | React.ReactNode;
   disabled?: boolean;
-  withChangeButton?: boolean;
   changeButtonLabel?: string | React.ReactNode;
-  onChangeButtonClick?: () => void;
+  withChangeButton?: boolean;
+  withClearConfirmation?: boolean;
+  clearConfirmTitle?: string;
+  yesText?: string;
+  noText?: string;
 };
 
 const ItemPicker: React.FC<ItemPickerProps> = ({
+  intl,
   label,
   tooltip,
   onChange,
@@ -42,12 +48,16 @@ const ItemPicker: React.FC<ItemPickerProps> = ({
   error,
   errorMessage,
   description,
-  searchPlaceholder,
-  clear,
+  searchPlaceholder = intl.formatMessage({ id: 'DS.ITEM-PICKER.SEARCH' }),
+  clear = intl.formatMessage({ id: 'DS.ITEM-PICKER.CLEAR' }),
   selectedItem,
   size = 'small',
-  changeButtonLabel,
-  onChangeButtonClick,
+  changeButtonLabel = intl.formatMessage({ id: 'DS.ITEM-PICKER.CHANGE' }),
+  withChangeButton,
+  clearConfirmTitle = intl!.formatMessage({ id: 'DS.ITEM-PICKER.CLEAR-CONFIRM' }),
+  yesText = intl!.formatMessage({ id: 'DS.ITEM-PICKER.YES-TEXT' }),
+  noText = intl!.formatMessage({ id: 'DS.ITEM-PICKER.NO-TEXT' }),
+  withClearConfirmation,
 }) => {
   const [dropdownOpened, setDropdownOpened] = React.useState<boolean>(false);
 
@@ -86,7 +96,11 @@ const ItemPicker: React.FC<ItemPickerProps> = ({
         closeDropdown={closeDropdown}
         size={size}
         changeButtonLabel={changeButtonLabel}
-        onChangeButtonClick={onChangeButtonClick}
+        withChangeButton={withChangeButton}
+        clearConfirmTitle={clearConfirmTitle}
+        yesText={yesText}
+        noText={noText}
+        withClearConfirmation={Boolean(withClearConfirmation)}
       />
     ),
     [
@@ -102,7 +116,7 @@ const ItemPicker: React.FC<ItemPickerProps> = ({
       closeDropdown,
       size,
       changeButtonLabel,
-      onChangeButtonClick,
+      withChangeButton,
     ]
   );
 
@@ -123,4 +137,4 @@ const ItemPicker: React.FC<ItemPickerProps> = ({
     </S.ItemPickerWrapper>
   );
 };
-export default ItemPicker;
+export default injectIntl(ItemPicker);
