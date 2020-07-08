@@ -14,8 +14,6 @@ import { omitBy, isUndefined } from 'lodash';
 import Footer from '@synerise/ds-date-picker/dist/Elements/Footer/Footer';
 import { Container, Separator, Addon } from './DateRangePicker.styles';
 import RangeFilter from './RangeFilter/RangeFilter';
-import RelativeRangePicker from './RelativeRangePicker/RelativeRangePicker';
-import FilterSwitch from './RangeFilter/FilterSwitch/FilterSwitch';
 import RangePicker from './RangePicker/RangePicker';
 import { RELATIVE, ABSOLUTE } from './constants';
 import ADD from './dateUtils/add';
@@ -74,15 +72,12 @@ class DateRangePicker extends React.PureComponent<Props, State> {
       changed: true,
     };
   }
-  componentWillReceiveProps({ value }: Props) {
-    if (value !== this.props.value) this.setState({ mode: 'date', value: normalizeRange(value), changed: false });
-  }
 
-  /*  getSnapshotBeforeUpdate(prevProps: Readonly<Props>): null {
+  // eslint-disable-next-line react/no-deprecated
+  componentWillReceiveProps({ newValue }: Props): void {
     const { value } = this.props;
-    if (prevProps.value !== value) this.setState({ mode: 'date', value: normalizeRange(value), changed: false });
-    return null;
-  }*/
+    if (newValue !== value) this.setState({ mode: 'date', value: normalizeRange(newValue), changed: false });
+  }
 
   handleFilterCancel = (): void => {
     this.setState({ mode: 'date' });
@@ -139,18 +134,7 @@ class DateRangePicker extends React.PureComponent<Props, State> {
   };
 
   render(): JSX.Element {
-    const {
-      showRelativePicker,
-      showFilter,
-      showTime,
-      format,
-      ranges,
-      disabledDate,
-      relativeFuture,
-      relativePast,
-      intl,
-      validate,
-    } = this.props;
+    const { showRelativePicker, showFilter, showTime, format, disabledDate, intl, validate } = this.props;
     const { value, mode, changed } = this.state;
     const { from, to, filter, key } = value;
     if (mode === 'filter')
@@ -173,35 +157,13 @@ class DateRangePicker extends React.PureComponent<Props, State> {
     if (showRelativePicker)
       addons.push(
         <AddonCollapse
-          content={
-            <RelativeRangePicker
-              future={relativeFuture}
-              past={relativePast}
-              ranges={ranges}
-              value={value}
-              onChange={this.handleRangeChange}
-            />
-          }
+          content={<div>FilterSwitch Placholder</div>}
           title={intl.formatMessage({ id: 'SNRS.DATE.RELATIVE_DATE_RANGE' })}
           expanded
         />
       );
     if (showFilter)
-      addons.push(
-        <AddonCollapse
-          content={
-            <FilterSwitch
-              isOn={!!filter}
-              translations={{ enableFilter: intl.formatMessage({ id: 'SNRS.DATE.ENABLE_FILTER' }) }}
-              onOpenModalButtonClick={this.handleModalOpenClick}
-              onRemoveFilterButtonClick={this.handleRemoveFilterClick}
-              statusInnerHtml={{ __html: intl.formatMessage({ id: 'SNRS.FILTER-SWITCH.FILTER_IS_ON' }) }}
-            />
-          }
-          title={'Filter'}
-          expanded
-        />
-      );
+      addons.push(<AddonCollapse content={<div>FilterSwitch Placholder</div>} title="Filter" expanded />);
     return (
       <Container>
         <RangePicker value={value} onChange={this.handleRangeChange} mode={mode} disabledDate={disabledDate} />
