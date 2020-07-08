@@ -105,6 +105,7 @@ export const TriggerWrapper = styled.div<TriggerWrapperProps>`
   justify-content: space-between;
   position: relative;
   border-radius: 3px;
+  transition: all 0.3s ease;
   padding ${(props): string => (props.size === 'small' ? '0 8px' : '0 12px')};
   background-color: ${(props): string => {
     if (props.disabled) return props.theme.palette['grey-050'];
@@ -128,7 +129,18 @@ export const TriggerWrapper = styled.div<TriggerWrapperProps>`
       props.size === 'large' &&
       css`
         border: 1px solid ${props.theme.palette['grey-300']};
+        &:hover {
+          border: 1px solid ${props.theme.palette['grey-400']};
+        }
       `};
+    ${Value} {
+      ${(props): FlattenInterpolation<ThemeProps> | false =>
+        props.selected &&
+        Boolean(props.disabled) &&
+        css`
+          color: ${props.theme.palette['grey-500']};
+        `};
+      }
     
     ${(props): FlattenInterpolation<ThemeProps> | false =>
       props.opened &&

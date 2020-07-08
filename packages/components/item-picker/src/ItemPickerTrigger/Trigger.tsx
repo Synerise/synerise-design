@@ -1,10 +1,11 @@
 import * as React from 'react';
-import { AngleDownS, Close3S } from '@synerise/ds-icon/dist/icons';
+import { AngleDownS, Close3S, WarningFillM } from '@synerise/ds-icon/dist/icons';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import Icon from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 import { MenuItemProps } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.types';
 import Button from '@synerise/ds-button';
+import Popconfirm from '@synerise/ds-popconfirm';
 import * as S from './Trigger.styles';
 import { ItemPickerSize } from '../ItemPicker';
 
@@ -21,7 +22,11 @@ interface Props {
   disabled?: boolean;
   selected?: MenuItemProps;
   changeButtonLabel?: string | React.ReactNode;
-  onChangeButtonClick?: () => void;
+  withChangeButton?: boolean;
+  clearConfirmTitle: string;
+  yesText: string;
+  noText: string;
+  withClearConfirmation: boolean;
 }
 
 const Trigger: React.FC<Props> = ({
@@ -37,7 +42,11 @@ const Trigger: React.FC<Props> = ({
   closeDropdown,
   size,
   changeButtonLabel,
-  onChangeButtonClick,
+  withChangeButton,
+  clearConfirmTitle,
+  yesText,
+  noText,
+  withClearConfirmation,
 }) => {
   const handleClear = React.useCallback(
     (event: React.MouseEvent<HTMLDivElement>): void => {
@@ -49,33 +58,61 @@ const Trigger: React.FC<Props> = ({
   );
 
   const renderClear = React.useMemo(() => {
-    return (
-      selected && (
-        <S.ClearWrapper onClick={handleClear} data-testid="clear-icon">
-          <Tooltip title={clear}>
-            <Icon component={<Close3S />} color={theme.palette['red-600']} />
-          </Tooltip>
-        </S.ClearWrapper>
-      )
+    const tooltip = (
+      <Tooltip title={clear}>
+        <Icon component={<Close3S />} color={theme.palette['red-600']} />
+      </Tooltip>
     );
-  }, [selected, handleClear, clear]);
+
+    if (selected) {
+      if (withClearConfirmation) {
+        return (
+          <Popconfirm
+            title={clearConfirmTitle}
+            okButtonProps={{ onClick: handleClear }}
+            okText={yesText}
+            cancelText={noText}
+            icon={<Icon component={<WarningFillM />} color="#ffc300" />}
+          >
+            {tooltip}
+          </Popconfirm>
+        );
+      }
+      return (
+        <S.ClearWrapper onClick={handleClear} data-testid="clear-icon">
+          {tooltip}
+        </S.ClearWrapper>
+      );
+    }
+
+    return null;
+  }, [selected, handleClear, clear, withClearConfirmation, clearConfirmTitle, noText, yesText]);
 
   const renderAngleIcon = React.useMemo(() => {
-    return !selected && size === 'small' && <Icon data-testid="angle-icon" component={<AngleDownS />} />;
+    return (
+      !selected &&
+      size === 'small' && <Icon data-testid="angle-icon" component={<AngleDownS />} color={theme.palette['grey-600']} />
+    );
   }, [size, selected]);
 
   const handleChangeButtonClick = React.useCallback(
     (event: React.MouseEvent) => {
       event.stopPropagation();
-      onChangeButtonClick ? onChangeButtonClick() : openDropdown();
+      withChangeButton && openDropdown();
     },
-    [onChangeButtonClick, openDropdown]
+    [withChangeButton, openDropdown]
   );
+
+  const handleOpen = React.useCallback(() => {
+    if (!selected) {
+      openDropdown();
+    }
+  }, [selected, openDropdown]);
 
   const renderChangeButton = React.useMemo(() => {
     return (
       size === 'large' &&
-      onChangeButtonClick && (
+      withChangeButton && (
         <S.ChangeButtonWrapper>
           <Button type="ghost" onClick={handleChangeButtonClick}>
             {changeButtonLabel}
@@ -83,7 +120,7 @@ const Trigger: React.FC<Props> = ({
         </S.ChangeButtonWrapper>
       )
     );
-  }, [onChangeButtonClick, changeButtonLabel, size, handleChangeButtonClick]);
+  }, [withChangeButton, changeButtonLabel, size, handleChangeButtonClick]);
 
   return (
     <S.TriggerWrapper
@@ -92,7 +129,7 @@ const Trigger: React.FC<Props> = ({
       opened={opened}
       disabled={disabled}
       error={error}
-      onClick={openDropdown}
+      onClick={handleOpen}
       selected={Boolean(selected)}
     >
       <S.Trigger size={size}>
