@@ -31,6 +31,14 @@
         "SEARCH-CLEAR": "Clear",
         "TITLE": "Filter"
     },
+    "ITEM-PICKER": {
+      "CLEAR-CONFIRM": "Are you sure to remove this selection?",
+      "YES-TEXT": "Yes",
+      "NO-TEXT": "No",
+      "CHANGE-BUTTON": "Change",
+      "CLEAR": "Remove",
+      "SEARCH": "Search"
+    },
     "COLUMN-MANAGER": {
       "TITLE": "Manage columns",
       "SEARCH-PLACEHOLDER": "Search",
