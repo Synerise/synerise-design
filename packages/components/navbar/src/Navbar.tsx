@@ -9,11 +9,10 @@ export type NavbarProps = {
   children?: React.ReactNode;
   actions?: React.ReactNode;
   additionalNodes?: React.ReactNode[];
-  suffixel?: React.ReactNode;
 };
 
 const Navbar: React.FC<NavbarProps> & { Divider: typeof S.NavbarDivider } = props => {
-  const { className, color, logo, description, children, actions, additionalNodes, suffixel } = props;
+  const { className, color, logo, description, children, actions, additionalNodes } = props;
 
   return (
     <S.Navbar className={`ds-navbar ${className || ''}`} color={color}>
@@ -33,9 +32,6 @@ const Navbar: React.FC<NavbarProps> & { Divider: typeof S.NavbarDivider } = prop
         </div>
         {children}
       </S.NavbarActions>
-      <S.WrappedComponent
-        addonAfter={!!suffixel && <S.AddonWrapper className="ds-input-suffix">{suffixel}</S.AddonWrapper>}
-      />
     </S.Navbar>
   );
 };

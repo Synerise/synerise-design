@@ -55,5 +55,3 @@ export const NavbarActionsWrapper = styled.div`
     margin: 0 4px;
   }
 `;
-export const WrappedComponent = styled.div``;
-export const AddonWrapper = styled.div``;
