@@ -39,7 +39,7 @@ export const PrefixelWrapper = styled.div<{ disabled?: boolean; visible?: boolea
   ${(props): string | false => !!props.disabled && `svg {fill: ${props.theme.palette['grey-600']}};`}
 `;
 
-const disableOrdering = ():FlattenSimpleInterpolation => css`
+const disableOrdering = (): FlattenSimpleInterpolation => css`
   &::before {
     content: none;
   }
