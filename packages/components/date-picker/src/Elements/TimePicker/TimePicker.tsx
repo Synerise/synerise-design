@@ -30,8 +30,6 @@ const TimePicker: React.FC<TimePickerProps> = ({
           disabledHours={disabledHours}
           disabledMinutes={disabledMinutes}
           disabledSeconds={disabledSeconds}
-          // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-          // @ts-ignore
           raw
         />
       </Container>
