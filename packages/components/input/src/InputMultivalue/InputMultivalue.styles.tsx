@@ -16,7 +16,7 @@ const focusStyle = (props: ThemeProps): string => `
     background: ${props.theme.palette['blue-050']};
   }
 `;
-const contentFocusStyle = (): FlattenSimpleInterpolation => css`
+const contentShrinkStyle = (): FlattenSimpleInterpolation => css`
   && {
     max-width: 52px;
     text-overflow: ellipsis;
@@ -55,6 +55,7 @@ export const Label = styled.label`
   color: ${(props): string => props.theme.palette['grey-800']};
   font-weight: 500;
   display: block;
+  white-space: nowrap;
 `;
 
 export const Description = styled.div`
@@ -80,11 +81,12 @@ export const InputWrapper = styled.div<{ error?: boolean; focus?: boolean; disab
   width: 100%;
   border-radius: 3px;
   display: flex;
-  padding: 0px 12px;
+  padding: 2px 12px ;
   min-height: 32px;
   flex-wrap:wrap;
   transition: 0.3s all;
-  ${(props): string | false => !props.focus && `${IconWrapper}{display:none;}`}
+  
+  
 
   
   ${(props): FlattenSimpleInterpolation | false => !props.disabled && hoverStyle(props)}
@@ -94,20 +96,23 @@ export const InputWrapper = styled.div<{ error?: boolean; focus?: boolean; disab
   
 `;
 
-export const ValueWrapper = styled.div<{ disabled?: boolean }>`
+export const ValueWrapper = styled.div<{ disabled?: boolean; shrink?: boolean }>`
   display: flex;
   height: 24px;
   & {
     background-color: ${(props): string =>
       props.disabled ? props.theme.palette['grey-200'] : props.theme.palette['grey-100']};
   }
-  border-radius: 5px;
+  border-radius: 3px;
   border: none;
-  margin: 4px 9px 4px -6px;
+  margin: 2px;
   white-space: nowrap;
   justify-content: center;
   align-items: center;
-  &&:hover {
+  position: relative;
+  right: 8px;
+  ${(props): string | false => !props.shrink && `${IconWrapper}{display:none;}`}
+  &:hover {
     background-color: ${(props): string => props.theme.palette['grey-200']};
     cursor: pointer;
   }
@@ -116,16 +121,17 @@ export const ValueWrapper = styled.div<{ disabled?: boolean }>`
 export const BorderLessInput = styled.input<{ disabled?: boolean }>`
   box-shadow: none;
   border: none;
-  width: 100%;
+  min-width: 0;
   display: flex;
   flex: 1;
+  margin-left: -8px;
   && {
     background-color: rgba(255, 255, 255, 0);
   }
   ${(props): FlattenSimpleInterpolation | false => !!props.disabled && disabledStyled(props)}
 `;
-export const ValueText = styled.div<{ focus?: boolean; disabled?: boolean }>`
+export const ValueText = styled.div<{ shrink?: boolean; disabled?: boolean }>`
   line-height: 13px;
   padding: 3px 8px;
-  ${(props): FlattenSimpleInterpolation | false => !!props.focus && !props.disabled && contentFocusStyle()}
+  ${(props): FlattenSimpleInterpolation | false => !!props.shrink && !props.disabled && contentShrinkStyle()}
 `;

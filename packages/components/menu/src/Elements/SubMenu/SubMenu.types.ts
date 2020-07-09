@@ -2,6 +2,7 @@ import { MenuProps } from 'antd/lib/menu';
 import * as React from 'react';
 
 export interface SubMenuProps extends Omit<MenuProps, 'dataSource' | 'footer'> {
+  key?: React.ReactText;
   danger?: boolean;
   disabled?: boolean;
   parent?: boolean;

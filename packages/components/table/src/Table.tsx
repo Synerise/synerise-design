@@ -39,6 +39,8 @@ function DSTable<T extends object = any>(props: DSTableProps<T>): React.ReactEle
     grouped,
     pagination,
     locale,
+    headerButton,
+    hideColumnNames,
   } = props;
 
   const renderHeader = React.useCallback((): React.ReactNode => {
@@ -66,6 +68,7 @@ function DSTable<T extends object = any>(props: DSTableProps<T>): React.ReactEle
           dataSource={data}
           searchComponent={searchComponent}
           filterComponent={filterComponent}
+          headerButton={headerButton}
           rowKey={rowKey}
         />
       )
@@ -83,6 +86,7 @@ function DSTable<T extends object = any>(props: DSTableProps<T>): React.ReactEle
     headerWithBorderTop,
     hideTitleBar,
     grouped,
+    headerButton,
   ]);
 
   const footerPagination = React.useMemo((): object => {
@@ -116,7 +120,10 @@ function DSTable<T extends object = any>(props: DSTableProps<T>): React.ReactEle
   }, [pagination, grouped, locale]);
 
   return (
-    <div className={`ds-table ds-table-cell-size-${cellSize} ${roundedHeader ? 'ds-table-rounded' : ''}`}>
+    <S.TableWrapper
+      className={`ds-table ds-table-cell-size-${cellSize} ${roundedHeader ? 'ds-table-rounded' : ''}`}
+      hideColumnNames={hideColumnNames}
+    >
       {loading && (
         <S.Spinner className="spinner">
           <Icon component={<SpinnerM />} color="#6a7580" />
@@ -132,12 +139,14 @@ function DSTable<T extends object = any>(props: DSTableProps<T>): React.ReactEle
         />
       ) : (
         <DefaultTable
+          scroll={{ x: 'auto' }}
+          tableLayout="auto"
           {...props}
           title={renderHeader}
           pagination={dataSource?.length && pagination ? footerPagination : false}
         />
       )}
-    </div>
+    </S.TableWrapper>
   );
 }
 

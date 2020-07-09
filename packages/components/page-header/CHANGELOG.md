@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.44](https://github.com/synerise/synerise-design/compare/@synerise/ds-page-header@0.9.43...@synerise/ds-page-header@0.9.44) (2020-07-09)
+
+**Note:** Version bump only for package @synerise/ds-page-header
+
+
+
+
+
+## [0.9.43](https://github.com/synerise/synerise-design/compare/@synerise/ds-page-header@0.9.42...@synerise/ds-page-header@0.9.43) (2020-07-08)
+
+**Note:** Version bump only for package @synerise/ds-page-header
+
+
+
+
+
+## [0.9.42](https://github.com/synerise/synerise-design/compare/@synerise/ds-page-header@0.9.41...@synerise/ds-page-header@0.9.42) (2020-07-07)
+
+
+### Bug Fixes
+
+* **page-header:** added customizable back icon ([92c11d9](https://github.com/synerise/synerise-design/commit/92c11d9bff67279a52b607decd0e81ebf271b42b))
+
+
+
+
+
+## [0.9.41](https://github.com/synerise/synerise-design/compare/@synerise/ds-page-header@0.9.40...@synerise/ds-page-header@0.9.41) (2020-06-25)
+
+**Note:** Version bump only for package @synerise/ds-page-header
+
+
+
+
+
 ## [0.9.40](https://github.com/synerise/synerise-design/compare/@synerise/ds-page-header@0.9.39...@synerise/ds-page-header@0.9.40) (2020-06-22)
 
 **Note:** Version bump only for package @synerise/ds-page-header

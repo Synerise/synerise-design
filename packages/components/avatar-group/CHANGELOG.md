@@ -3,6 +3,58 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-avatar-group@0.2.2...@synerise/ds-avatar-group@0.2.3) (2020-07-09)
+
+**Note:** Version bump only for package @synerise/ds-avatar-group
+
+
+
+
+
+## [0.2.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-avatar-group@0.2.1...@synerise/ds-avatar-group@0.2.2) (2020-07-08)
+
+
+### Bug Fixes
+
+* **avatar-group:** fix styles ([63b15a2](https://github.com/Synerise/synerise-design/commit/63b15a2a04b460cc4dc6eb3368be99ac8b7eddfe))
+
+
+
+
+
+## [0.2.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-avatar-group@0.2.0...@synerise/ds-avatar-group@0.2.1) (2020-07-07)
+
+**Note:** Version bump only for package @synerise/ds-avatar-group
+
+
+
+
+
+# [0.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-avatar-group@0.1.38...@synerise/ds-avatar-group@0.2.0) (2020-07-07)
+
+
+### Bug Fixes
+
+* **avatar-group:** fix eslint errors ([881d4e0](https://github.com/Synerise/synerise-design/commit/881d4e073f624206d66d50c4a3b2ba9f52ceb677))
+
+
+### Features
+
+* **avatar-group:** add missing dependencies in package.json ([65e9896](https://github.com/Synerise/synerise-design/commit/65e9896956c165f5b4d26074991e8fe2b7d1b783))
+* **avatar-group:** add Modal with details about users ([4846398](https://github.com/Synerise/synerise-design/commit/48463982030f2910bc8f841efd6482c456997241))
+
+
+
+
+
+## [0.1.38](https://github.com/Synerise/synerise-design/compare/@synerise/ds-avatar-group@0.1.37...@synerise/ds-avatar-group@0.1.38) (2020-06-25)
+
+**Note:** Version bump only for package @synerise/ds-avatar-group
+
+
+
+
+
 ## [0.1.37](https://github.com/Synerise/synerise-design/compare/@synerise/ds-avatar-group@0.1.36...@synerise/ds-avatar-group@0.1.37) (2020-06-22)
 
 **Note:** Version bump only for package @synerise/ds-avatar-group

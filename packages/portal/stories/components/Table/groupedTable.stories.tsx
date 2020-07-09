@@ -1,13 +1,14 @@
-import { boolean, number, select } from '@storybook/addon-knobs';
+import { boolean, number, select, text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import { withState } from '@dump247/storybook-state';
-import Table, { ItemsMenu, TableCell } from '@synerise/ds-table';
+import Table, { ItemsMenu, TableCell, VirtualTable } from '@synerise/ds-table';
 import * as React from 'react';
 import { COLUMNS, DATA_SOURCE, EMPTY_VIEW, VIEWS, CATEGORIES } from './content/groupedTable.data';
 import Avatar from '@synerise/ds-avatar';
 import Button from '@synerise/ds-button';
 import Icon from '@synerise/ds-icon';
 import {
+  AddM,
   EditM,
   FileDownloadM,
   FilterM,
@@ -447,13 +448,15 @@ const stories = {
         <>
         <DSTable
           grouped={Boolean(store.state.groupSettings)}
-          title={`${itemsCount()} records`}
+          hideGroupExpander={boolean('Hide group expander', false)}
+          initialGroupsCollapsed={boolean('Initial groups collapsed?', false)}
+          title={`${itemsCount()} results`}
           dataSource={filteredDataSource()}
           columns={getColumns()}
           loading={boolean('Set loading state', false)}
           roundedHeader={boolean('Rounded header', false)}
           cellSize={select('Set cells size', CELL_SIZES, CELL_SIZES.default)}
-          locale={{pagination: {items: 'items', groups: 'groups'}}}
+          locale={{pagination: {items: 'results', groups: 'groups'}}}
           filters={
             [
               {
@@ -488,6 +491,12 @@ const stories = {
           }}
           addItem={action('ADD item action')}
           rowKey={row => row.key}
+          headerButton={boolean('Show header button', false) && (
+            <Button type="ghost" mode="icon-label" onClick={action('Header button action')}>
+              <Icon component={<AddM />} />
+              {text('Header button label', 'Add row')}
+            </Button>
+          )}
           itemsMenu={
             <ItemsMenu>
               <Button onClick={action('Export')} type='secondary' mode='icon-label'>
@@ -539,6 +548,7 @@ const stories = {
                 });
 
               }}
+
               recentDisplayProps={{
                 tooltip: 'Recent',
                 title: 'Recent',

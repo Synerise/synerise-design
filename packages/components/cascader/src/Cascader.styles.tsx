@@ -18,6 +18,11 @@ export const CategoriesScroll = styled(Scrollbar)<{ searching?: boolean }>`
   padding-right: ${(props): string => (props.searching ? `0` : '8px')};
 `;
 export const Wrapper = styled.div`
+  && {
+    .ant-menu-inline {
+      border-right: none;
+    }
+  }
 `;
 export const BreadcrumbPrefix = styled.div``;
 export const DividerContainer = styled.div`

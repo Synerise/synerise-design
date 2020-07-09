@@ -83,6 +83,6 @@ describe('Bagde', () => {
     />);
     const badgeDot = container.querySelector('.ant-badge-count');
 
-    expect(badgeDot).toHaveStyle('box-shadow: 0 0 0 2px #ffffff;');
+    expect(badgeDot).toHaveStyle('box-shadow: 0 0 0 1px #ffffff;');
   });
 });

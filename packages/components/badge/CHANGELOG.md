@@ -3,6 +3,37 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.25](https://github.com/Synerise/synerise-design/compare/@synerise/ds-badge@0.4.24...@synerise/ds-badge@0.4.25) (2020-07-09)
+
+**Note:** Version bump only for package @synerise/ds-badge
+
+
+
+
+
+## [0.4.24](https://github.com/Synerise/synerise-design/compare/@synerise/ds-badge@0.4.23...@synerise/ds-badge@0.4.24) (2020-07-07)
+
+
+### Bug Fixes
+
+* **badge:** add status with avatar and change styles in status ([16fff63](https://github.com/Synerise/synerise-design/commit/16fff635890d7a7874f62a1d168f63d292f00bb9))
+* **badge:** change color ([3b37d10](https://github.com/Synerise/synerise-design/commit/3b37d104084ab1948443b714f3a61d395737aaa3))
+* **badge:** change color ([86fdd9e](https://github.com/Synerise/synerise-design/commit/86fdd9ebc5e7ada0c1526e7c5853c370cddb7a4b))
+* **badge:** change outline styles ([9e9177d](https://github.com/Synerise/synerise-design/commit/9e9177de716702e26b1e8aab60c2f7a8df87b19d))
+* **badge:** change outline styles in spec.tsx ([4dec970](https://github.com/Synerise/synerise-design/commit/4dec9705c78864ff7cd205a4c0d780ab1aa626d0))
+
+
+
+
+
+## [0.4.23](https://github.com/Synerise/synerise-design/compare/@synerise/ds-badge@0.4.22...@synerise/ds-badge@0.4.23) (2020-06-25)
+
+**Note:** Version bump only for package @synerise/ds-badge
+
+
+
+
+
 ## [0.4.22](https://github.com/Synerise/synerise-design/compare/@synerise/ds-badge@0.4.21...@synerise/ds-badge@0.4.22) (2020-06-17)
 
 **Note:** Version bump only for package @synerise/ds-badge

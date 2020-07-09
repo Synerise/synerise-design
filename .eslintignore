@@ -10,6 +10,7 @@ config/
 **/core/build/*.js
 **/core/**/variables.js
 **/icon/build/*.js
+**/flag/build/*.js
 packages/portal
 packages/docs-site
 __specs__

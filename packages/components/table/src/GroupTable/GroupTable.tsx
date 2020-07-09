@@ -40,11 +40,25 @@ const getNextSortOrder = (current: SortOrderType): SortOrderType => {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function GroupTable<T extends GroupType<T>>(
-  props: DSTableProps<T> & { addItem?: (column: string, value: React.ReactText | boolean | object) => void }
+  props: DSTableProps<T> & {
+    addItem?: (column: string, value: React.ReactText | boolean | object) => void;
+    hideGroupExpander?: boolean;
+    initialGroupsCollapsed?: boolean;
+  }
 ): React.ReactElement {
-  const { selection, rowKey, dataSource, columns, cellSize, roundedHeader, addItem } = props;
+  const {
+    selection,
+    rowKey,
+    dataSource,
+    columns,
+    cellSize,
+    roundedHeader,
+    addItem,
+    hideGroupExpander,
+    initialGroupsCollapsed,
+  } = props;
   const [expandedGroups, setExpandedGroups] = React.useState<React.ReactText[]>(
-    dataSource?.map(group => group.key) || []
+    initialGroupsCollapsed || !dataSource ? [] : dataSource.map(group => group.key)
   );
 
   const [data, setData] = React.useState<T[]>(dataSource || []);
@@ -52,8 +66,8 @@ function GroupTable<T extends GroupType<T>>(
 
   React.useEffect(() => {
     setData(dataSource || []);
-    setExpandedGroups(dataSource?.map(group => group.key) || []);
-  }, [dataSource]);
+    setExpandedGroups(initialGroupsCollapsed || !dataSource ? [] : dataSource.map(group => group.key));
+  }, [dataSource, initialGroupsCollapsed]);
 
   React.useEffect(() => {
     const normalizedColumns = columns?.map(column => ({
@@ -130,7 +144,6 @@ function GroupTable<T extends GroupType<T>>(
     },
     [dataSource, tableColumns]
   );
-
   return (
     <div className={`ds-table ds-table-cell-size-${cellSize} ${roundedHeader ? 'ds-table-rounded' : ''}`}>
       <Table<T>
@@ -159,6 +172,7 @@ function GroupTable<T extends GroupType<T>>(
                   columns={tableColumns}
                   addItem={addItem}
                   activeGroup={activeGroup}
+                  hideGroupExpander={hideGroupExpander}
                 />
               );
             },

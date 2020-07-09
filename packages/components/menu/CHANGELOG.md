@@ -3,6 +3,42 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.5.11...@synerise/ds-menu@0.5.12) (2020-07-09)
+
+**Note:** Version bump only for package @synerise/ds-menu
+
+
+
+
+
+## [0.5.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.5.10...@synerise/ds-menu@0.5.11) (2020-07-08)
+
+
+### Bug Fixes
+
+* **menu:** added option to disable ordering within submenu ([db6e97c](https://github.com/Synerise/synerise-design/commit/db6e97c3803e8c6f9c9fa57185d74ab39ffb5c1b))
+* **menu:** fixing the build ([f88e9cd](https://github.com/Synerise/synerise-design/commit/f88e9cd4dc1cc7537367742398654ef7ce5d57a4))
+
+
+
+
+
+## [0.5.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.5.9...@synerise/ds-menu@0.5.10) (2020-07-07)
+
+**Note:** Version bump only for package @synerise/ds-menu
+
+
+
+
+
+## [0.5.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.5.8...@synerise/ds-menu@0.5.9) (2020-06-25)
+
+**Note:** Version bump only for package @synerise/ds-menu
+
+
+
+
+
 ## [0.5.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.5.7...@synerise/ds-menu@0.5.8) (2020-06-22)
 
 **Note:** Version bump only for package @synerise/ds-menu

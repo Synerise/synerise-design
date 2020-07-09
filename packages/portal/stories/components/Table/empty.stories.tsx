@@ -2,9 +2,9 @@ import { boolean, number, select, text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import { withState } from '@dump247/storybook-state';
 import { ItemsMenu, TableCell } from '@synerise/ds-table';
-import faker from 'faker';
 import Icon from '@synerise/ds-icon';
 import {
+  AddM,
   DuplicateM,
   EditM,
   FileDownloadM, FilterM, Grid2M,
@@ -257,7 +257,7 @@ const stories = {
     return (
       <>
         <Table
-          title={`${filteredDataSource().length} ${text('Set name of table items', 'records')}`}
+          title={`${filteredDataSource().length} ${text('Set name of table items', 'results')}`}
           dataSource={filteredDataSource()}
           columns={getColumns()}
           loading={boolean('Set loading state', false)}
@@ -291,6 +291,11 @@ const stories = {
             showQuickJumper: boolean('Show quick jumper', true),
             onChange: action('pageChanged'),
           }}
+          locale={{
+            pagination: {
+              items: 'results',
+            }
+          }}
           rowKey={row => row.key}
           selection={boolean('Enable row selection', false) && {
             onChange: handleSelectRow,
@@ -316,6 +321,12 @@ const stories = {
               </Button>
             </ItemsMenu>
           }
+          headerButton={boolean('Show header button', false) && (
+            <Button type="ghost" mode="icon-label" onClick={action('Header button action')}>
+              <Icon component={<AddM />} />
+              {text('Header button label', 'Add row')}
+            </Button>
+          )}
           searchComponent={
             <Search
               clearTooltip= 'Clear'

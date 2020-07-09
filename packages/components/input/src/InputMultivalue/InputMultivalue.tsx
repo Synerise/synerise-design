@@ -1,7 +1,6 @@
 import * as React from 'react';
-import Icon from '@synerise/ds-icon';
-import { CloseS } from '@synerise/ds-icon/dist/icons';
 import * as S from './InputMultivalue.styles';
+import Value from './Elements/Value';
 
 export interface Props {
   error?: boolean;
@@ -13,10 +12,22 @@ export interface Props {
   disabled?: boolean;
   onBlur?: () => void;
   onFocus?: () => void;
+  maxLength?: number;
 }
 const emptyValue = '';
 const InputMultivalue: React.FC<Props> = props => {
-  const { className, errorText, label, description, values, onBlur, onFocus, disabled, ...antdProps } = props;
+  const {
+    className,
+    errorText,
+    label,
+    description,
+    values,
+    onBlur,
+    onFocus,
+    disabled,
+    maxLength,
+    ...antdProps
+  } = props;
   const showError = Boolean(errorText);
   const [value, setValue] = React.useState(emptyValue);
 
@@ -29,7 +40,6 @@ const InputMultivalue: React.FC<Props> = props => {
       setValue(emptyValue);
     }
   };
-
   return (
     <>
       {label && (
@@ -52,20 +62,17 @@ const InputMultivalue: React.FC<Props> = props => {
         disabled={disabled}
       >
         {selectedValues.map((val, index) => (
-          // eslint-disable-next-line react/no-array-index-key
-          <S.ValueWrapper disabled={disabled} key={`${val}-${index}`}>
-            <S.ValueText focus={isFocused} disabled={disabled}>
-              {val}
-            </S.ValueText>
-            <S.IconWrapper
-              onClick={(): void => {
-                const filteredValues = selectedValues.filter(v => v !== val);
-                setSelectedValues(filteredValues);
-              }}
-            >
-              <Icon className="remove" component={<CloseS />} />
-            </S.IconWrapper>
-          </S.ValueWrapper>
+          <Value
+            disabled={disabled}
+            // eslint-disable-next-line react/no-array-index-key
+            key={`${val}-${index}`}
+            onRemoveClick={(): void => {
+              const filteredValues = selectedValues.filter(v => v !== val);
+              setSelectedValues(filteredValues);
+            }}
+            value={val}
+            focused={isFocused}
+          />
         ))}
         <S.BorderLessInput
           value={value}
@@ -81,6 +88,7 @@ const InputMultivalue: React.FC<Props> = props => {
           }}
           onFocus={onFocus}
           disabled={disabled}
+          maxLength={maxLength}
         />
       </S.InputWrapper>
       {(showError || description) && (

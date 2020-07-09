@@ -3,6 +3,57 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.13.2...@synerise/ds-manageable-list@0.13.3) (2020-07-09)
+
+**Note:** Version bump only for package @synerise/ds-manageable-list
+
+
+
+
+
+## [0.13.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.13.1...@synerise/ds-manageable-list@0.13.2) (2020-07-08)
+
+**Note:** Version bump only for package @synerise/ds-manageable-list
+
+
+
+
+
+## [0.13.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.13.0...@synerise/ds-manageable-list@0.13.1) (2020-07-07)
+
+**Note:** Version bump only for package @synerise/ds-manageable-list
+
+
+
+
+
+# [0.13.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.12.11...@synerise/ds-manageable-list@0.13.0) (2020-07-02)
+
+
+### Features
+
+* **manageable-list:** fix AddItem styles ([267c651](https://github.com/Synerise/synerise-design/commit/267c651c4237bf84fbc38c3b38ffbe5626ee791a))
+
+
+
+
+
+## [0.12.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.12.10...@synerise/ds-manageable-list@0.12.11) (2020-06-25)
+
+**Note:** Version bump only for package @synerise/ds-manageable-list
+
+
+
+
+
+## [0.12.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.12.9...@synerise/ds-manageable-list@0.12.10) (2020-06-25)
+
+**Note:** Version bump only for package @synerise/ds-manageable-list
+
+
+
+
+
 ## [0.12.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.12.8...@synerise/ds-manageable-list@0.12.9) (2020-06-24)
 
 **Note:** Version bump only for package @synerise/ds-manageable-list

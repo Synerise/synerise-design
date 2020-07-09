@@ -1,10 +1,11 @@
 import { boolean, number, select, text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import { withState } from '@dump247/storybook-state';
-import { ItemsMenu, TableCell } from '@synerise/ds-table';
+import { ItemsMenu, TableCell, VirtualTable } from '@synerise/ds-table';
 import faker from 'faker';
 import Icon from '@synerise/ds-icon';
 import {
+  AddM,
   DuplicateM,
   EditM,
   FileDownloadM, FilterM, Grid2M,
@@ -284,12 +285,23 @@ const stories = {
           size={select('Select card size', ['small', 'medium', 'large', 'extraLarge'], 'extraLarge')}
         >
           <Table
-            title={`${filteredDataSource().length} ${text('Set name of table items', 'records')}`}
+            title={`${filteredDataSource().length} ${text('Set name of table items', 'results')}`}
             headerWithBorderTop
             dataSource={filteredDataSource()}
             columns={getColumns()}
             loading={boolean('Set loading state', false)}
             cellSize={select('Set cells size', CELL_SIZES, CELL_SIZES.default)}
+            locale={{
+              pagination: {
+                items: 'results',
+              }
+            }}
+            headerButton={boolean('Show header button', false) && (
+              <Button type="ghost" mode="icon-label" onClick={action('Header button action')}>
+                <Icon component={<AddM />} />
+                {text('Header button label', 'Add row')}
+              </Button>
+            )}
             filters={
               [
                 {

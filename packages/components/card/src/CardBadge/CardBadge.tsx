@@ -6,7 +6,7 @@ export type BadgeStatus = 'checked' | 'warning' | 'error' | 'default';
 
 type CardBadgeProps = {
   icon: React.ReactNode;
-  status: BadgeStatus;
+  status?: BadgeStatus;
 };
 
 const CardBadge: React.FC<CardBadgeProps> = ({ icon, status = 'default' }) => {

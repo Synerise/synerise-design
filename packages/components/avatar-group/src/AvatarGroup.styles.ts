@@ -85,7 +85,7 @@ export const MoreInfo = styled.div<{ size: Size }>`
   align-items: center;
   justify-content: center;
   line-height: 1.45;
-  cursor: default;
+  cursor: pointer;
   position: relative;
   &:after {
     content: '';

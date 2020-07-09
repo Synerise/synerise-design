@@ -3,6 +3,50 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.20.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.20.0...@synerise/ds-icon@0.20.1) (2020-07-09)
+
+
+### Bug Fixes
+
+* **icon:** replaced double arrow icon ([d796f23](https://github.com/Synerise/synerise-design/commit/d796f23348fae68ecc5f9ebfa2152a04983728eb))
+
+
+
+
+
+# [0.20.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.19.1...@synerise/ds-icon@0.20.0) (2020-07-08)
+
+
+### Features
+
+* **icon:** added new svg ([6767324](https://github.com/Synerise/synerise-design/commit/67673245f2a4b912ceed3a21bb2ec0f73f4b89d2))
+
+
+
+
+
+## [0.19.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.19.0...@synerise/ds-icon@0.19.1) (2020-07-07)
+
+
+### Bug Fixes
+
+* **date-picker:** imporvements after ux review ([14caed8](https://github.com/Synerise/synerise-design/commit/14caed88e2fdfba5380cd2319f12214a7a661550))
+
+
+
+
+
+# [0.19.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.18.0...@synerise/ds-icon@0.19.0) (2020-06-25)
+
+
+### Features
+
+* **icon:** pass rest of props to the contaienr ([ce5c91e](https://github.com/Synerise/synerise-design/commit/ce5c91ede509d13b08c503d79311ccb165b39565))
+
+
+
+
+
 # [0.18.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.17.0...@synerise/ds-icon@0.18.0) (2020-06-22)
 
 

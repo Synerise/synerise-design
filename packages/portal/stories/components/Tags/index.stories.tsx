@@ -1,23 +1,184 @@
 import * as React from 'react';
-import { select, boolean } from '@storybook/addon-knobs';
+import { select, boolean, text, number } from '@storybook/addon-knobs';
 import sample from 'lodash/sample';
 import { v4 as uuid } from 'uuid';
 
 import Tags, { Tag, TagShape } from '@synerise/ds-tags';
+import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import Icon from '@synerise/ds-icon';
+import { Add3S } from '@synerise/ds-icon/dist/icons';
+
+const customColorOptions = {
+  blue: theme.palette['blue-600'],
+  grey: theme.palette['grey-600'],
+  red: theme.palette['red-600'],
+  green: theme.palette['green-600'],
+  yellow: theme.palette['yellow-600'],
+  pink: theme.palette['pink-600'],
+  mars: theme.palette['mars-600'],
+  orange: theme.palette['orange-600'],
+  fern: theme.palette['fern-600'],
+  cyan: theme.palette['cyan-600'],
+  purple: theme.palette['purple-600'],
+  violet: theme.palette['violet-600'],
+};
+
+
 
 const stories = {
-  default: () => {
+  defaultTag: () => {
+    const shapes = {
+      'Default Round': TagShape.DEFAULT_ROUND,
+      'Default Square': TagShape.DEFAULT_SQUARE,
+    };
+    const shape = select('Shape', shapes, shapes['Default Round']);
+    const removable = boolean('Ability to remove', true);
+    const colors = select('Set custom color', customColorOptions, customColorOptions.blue);
+    const disabled = boolean('Disable ', false);
+
+    const thisTag = [{
+      id: 0,
+      name: 'Tag name',
+      color: colors,
+    }];
+
+    return (
+      <React.Fragment>
+        <div style={{padding: 24}}>
+          <Tags
+            tagShape={shape}
+            selected={thisTag}
+            removable={removable}
+            disabled={disabled}
+          />
+        </div>
+      </React.Fragment>
+    );
+  },
+  tagWithPreffixAndSuffix: () => {
+    const shapes = {
+      'Default Round': TagShape.DEFAULT_ROUND,
+      'Default Square': TagShape.DEFAULT_SQUARE,
+    };
+    const shape = select('Shape', shapes, shapes['Default Round']);
+    const removable = boolean('Ability to remove', true);
+    const colors = select('Set custom color', customColorOptions, customColorOptions.blue);
+    const hasPrefix = boolean('setPrefix',false)
+    const hasSufix = boolean('setSufix',false)
+    const disabled = boolean('Disable', false);
+
+
+    const thisTag = [{
+      id: 12,
+      name: 'Tag name 2',
+      color: colors,
+      prefixel: hasPrefix && (number('preffixNumber',5)),
+      suffixel: hasSufix && (number('suffixNumber',5)),
+    }];
+
+    return (
+      <React.Fragment>
+        <div style={{padding: 24}}>
+          <Tags
+            tagShape={shape}
+            selected={thisTag}
+            removable={removable}
+            disabled={disabled}
+          />
+        </div>
+      </React.Fragment>
+    );
+  },
+  tagSingle: () => {
+    const shapes = {
+      'Default Round': TagShape.SINGLE_CHARACTER_ROUND,
+      'Default Square': TagShape.SINGLE_CHARACTER_SQUARE,
+    };
+    const shape = select('Shape', shapes, shapes['Default Round']);
+    const colors = select('Set custom color', customColorOptions, customColorOptions.blue);
+    const disabled = boolean('Disable', false);
+
+    const thisTag = [{
+      id: 0,
+      name: 'A',
+      color: colors,
+    }];
+
+    return (
+      <React.Fragment>
+        <div style={{padding: 24}}>
+          <Tags
+            tagShape={shape}
+            selected={thisTag}
+            disabled={disabled}
+          />
+        </div>
+      </React.Fragment>
+    );
+  },
+  tagSmall: () => {
+    const shapes = {
+      'Default Round': TagShape.SMALL_ROUND,
+      'Default Square': TagShape.SMALL_SQUARE,
+    };
+    const shape = select('Shape', shapes, shapes['Default Round']);
+    const colors = select('Set custom color', customColorOptions, customColorOptions.blue);
+    const disabled = boolean('Disable', false);
+
+    const thisTag = [{
+      id: 0,
+      name: 'Tag name 3',
+      color: colors,
+    }];
+
+    return (
+      <React.Fragment>
+        <div style={{padding: 24}}>
+          <Tags
+            tagShape={shape}
+            selected={thisTag}
+            disabled={disabled}
+          />
+        </div>
+      </React.Fragment>
+    );
+  },
+  tagWithIcon: () => {
     const IMAGE_URL = 'https://cdn4.iconfinder.com/data/icons/social-messaging-ui-color-shapes-2-free/128/social-reddit-square2-512.png';
+    const shapes = {
+      'Default Round': TagShape.DEFAULT_ROUND,
+      'Default Square': TagShape.DEFAULT_SQUARE,
+    };
+    const shape = select('Shape', shapes, shapes['Default Round']);
+    const removable = boolean('Ability to remove', true);
+    const colors = select('Set custom color', customColorOptions, customColorOptions.blue);
+    const disabled = boolean('Disable', false);
+
+    const thisTag = [{
+      id: 0,
+      name: 'Tag name 4',
+      color: colors,
+      prefixel: <Icon className="icon1" component={<Add3S />} size={20} color="#fff" />,
+    }];
+
+    return (
+      <React.Fragment>
+        <div style={{padding: 24}}>
+          <Tags
+            tagShape={shape}
+            selected={thisTag}
+            removable={removable}
+            disabled={disabled}
+          />
+        </div>
+      </React.Fragment>
+    );
+  },
+  tagGroup: () => {
 
     const shapes = {
       'Default Round': TagShape.DEFAULT_ROUND,
       'Default Square': TagShape.DEFAULT_SQUARE,
-      'Small Round': TagShape.SMALL_ROUND,
-      'Small Square': TagShape.SMALL_SQUARE,
-      'Status Neutral': TagShape.STATUS_NEUTRAL,
-      'Status Success': TagShape.STATUS_SUCCESS,
-      'Status Error': TagShape.STATUS_ERROR,
-      'Status Warning': TagShape.STATUS_WARNING,
     };
 
     const shape = select('Shape', shapes, shapes['Default Round']);
@@ -44,47 +205,47 @@ const stories = {
 
     const allTags = [{
       id: 0,
-      name: 'Aston Martin',
+      name: 'Tag Name 1',
       color: '#ffc300',
-    }, {
+    },{
       id: 1,
-      name: 'Ferrari',
+      name: 'Tag Name 2',
       color: '#13c2bc',
-    }, {
+    },{
       id: 2,
-      name: 'Polonez',
+      name: 'Tag Name 3',
       color: '#76dc25',
     }, {
       id: 3,
-      name: 'Mazda',
+      name: 'Tag Name 4',
       color: '#6d2dd3',
     }, {
       id: 4,
-      name: 'Honda',
+      name: 'Tag Name 5',
       color: '#ff4d67',
     }, {
       id: 5,
-      name: 'Pagani',
+      name: 'Tag Name 6',
       color: '#fd9f05',
     }, {
       id: 6,
-      name: 'BMW',
+      name: 'Tag Name 7',
       color: '#2b71cb',
     }, {
       id: 7,
-      name: 'Porsche',
+      name: 'Tag Name 8',
       color: '#61b71e',
     }, {
       id: 8,
-      name: 'Lancia',
+      name: 'Tag Name 9',
       color: '#e62425',
     }, {
       id: 9,
-      name: 'Fiat',
+      name: 'Tag Name 10',
       color: '#f551a9',
     }, {
       id: 10,
-      name: 'Alfa Romeo',
+      name: 'Tag Name 11',
       color: '#04bdff',
     }];
 
@@ -128,28 +289,6 @@ const stories = {
             }}
             manageLink={withManageLink && 'https://en.wikipedia.org/wiki/San_Escobar'}
           />
-        </div>
-
-        <div style={{padding: 24}}>
-          <h4>Tag shapes</h4>
-          <div style={{display: 'flex', alignItems: 'flex-start', flexWrap: 'wrap', height: 40}}>
-            <Tag name="Default Square" shape={TagShape.DEFAULT_SQUARE} />
-            <Tag name="Default Round" shape={TagShape.DEFAULT_ROUND} />
-
-            <Tag name="Default Square w/ image" shape={TagShape.DEFAULT_SQUARE} image={IMAGE_URL} />
-            <Tag name="Default Round w/ image" shape={TagShape.DEFAULT_ROUND} image={IMAGE_URL} />
-
-            <Tag name="A" shape={TagShape.SINGLE_CHARACTER_SQUARE} />
-            <Tag name="A" shape={TagShape.SINGLE_CHARACTER_ROUND} />
-
-            <Tag name="Small Square" shape={TagShape.SMALL_SQUARE} />
-            <Tag name="Small Round" shape={TagShape.SMALL_ROUND} />
-
-            <Tag name="Status Neutral" shape={TagShape.STATUS_NEUTRAL} />
-            <Tag name="Status Success" shape={TagShape.STATUS_SUCCESS} />
-            <Tag name="Status Warning" shape={TagShape.STATUS_WARNING} />
-            <Tag name="Status Error" shape={TagShape.STATUS_ERROR} />
-          </div>
         </div>
       </React.Fragment>
     );

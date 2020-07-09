@@ -3,6 +3,61 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.12](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.12.11...@synerise/ds-select@0.12.12) (2020-07-09)
+
+**Note:** Version bump only for package @synerise/ds-select
+
+
+
+
+
+## [0.12.11](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.12.10...@synerise/ds-select@0.12.11) (2020-07-08)
+
+**Note:** Version bump only for package @synerise/ds-select
+
+
+
+
+
+## [0.12.10](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.12.9...@synerise/ds-select@0.12.10) (2020-07-07)
+
+**Note:** Version bump only for package @synerise/ds-select
+
+
+
+
+
+## [0.12.9](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.12.8...@synerise/ds-select@0.12.9) (2020-07-02)
+
+
+### Bug Fixes
+
+* **select:** prefix and suffix stories fix ([32df241](https://github.com/synerise/synerise-design/commit/32df241c6127a8377e82ce5d763bec8bcebc68a8))
+
+
+
+
+
+## [0.12.8](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.12.7...@synerise/ds-select@0.12.8) (2020-06-25)
+
+
+### Bug Fixes
+
+* **input:** change margin ([a3d69cf](https://github.com/synerise/synerise-design/commit/a3d69cf368ac5a0b3e01060446dacee9d07cf450))
+* **select:** resolving conflicts ([fe70f69](https://github.com/synerise/synerise-design/commit/fe70f69121e91bd871887aac395ae4ac5fdb8d24))
+
+
+
+
+
+## [0.12.7](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.12.6...@synerise/ds-select@0.12.7) (2020-06-25)
+
+**Note:** Version bump only for package @synerise/ds-select
+
+
+
+
+
 ## [0.12.6](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.12.5...@synerise/ds-select@0.12.6) (2020-06-24)
 
 **Note:** Version bump only for package @synerise/ds-select

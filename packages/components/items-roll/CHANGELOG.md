@@ -3,6 +3,61 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.26](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.2.25...@synerise/ds-items-roll@0.2.26) (2020-07-09)
+
+**Note:** Version bump only for package @synerise/ds-items-roll
+
+
+
+
+
+## [0.2.25](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.2.24...@synerise/ds-items-roll@0.2.25) (2020-07-08)
+
+**Note:** Version bump only for package @synerise/ds-items-roll
+
+
+
+
+
+## [0.2.24](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.2.23...@synerise/ds-items-roll@0.2.24) (2020-07-07)
+
+
+### Bug Fixes
+
+* **items-roll:** added missing type ([6ce0c9d](https://github.com/Synerise/synerise-design/commit/6ce0c9d112a5c504733919deb488801724914cf0))
+
+
+
+
+
+## [0.2.23](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.2.22...@synerise/ds-items-roll@0.2.23) (2020-07-02)
+
+
+### Bug Fixes
+
+* **items-roll:** fix visibility of clear icon ([fb37080](https://github.com/Synerise/synerise-design/commit/fb37080aa1978819801c0fc74ad395e45b4dd432))
+* **items-roll:** update clear button ([46c6d33](https://github.com/Synerise/synerise-design/commit/46c6d3349dc2528a433082e134112a70a4468fcf))
+
+
+
+
+
+## [0.2.22](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.2.21...@synerise/ds-items-roll@0.2.22) (2020-06-25)
+
+**Note:** Version bump only for package @synerise/ds-items-roll
+
+
+
+
+
+## [0.2.21](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.2.20...@synerise/ds-items-roll@0.2.21) (2020-06-25)
+
+**Note:** Version bump only for package @synerise/ds-items-roll
+
+
+
+
+
 ## [0.2.20](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.2.19...@synerise/ds-items-roll@0.2.20) (2020-06-24)
 
 **Note:** Version bump only for package @synerise/ds-items-roll

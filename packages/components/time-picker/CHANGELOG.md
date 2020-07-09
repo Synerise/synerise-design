@@ -3,6 +3,58 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.48](https://github.com/Synerise/synerise-design/compare/@synerise/ds-time-picker@0.2.47...@synerise/ds-time-picker@0.2.48) (2020-07-09)
+
+**Note:** Version bump only for package @synerise/ds-time-picker
+
+
+
+
+
+## [0.2.47](https://github.com/Synerise/synerise-design/compare/@synerise/ds-time-picker@0.2.46...@synerise/ds-time-picker@0.2.47) (2020-07-08)
+
+**Note:** Version bump only for package @synerise/ds-time-picker
+
+
+
+
+
+## [0.2.46](https://github.com/Synerise/synerise-design/compare/@synerise/ds-time-picker@0.2.45...@synerise/ds-time-picker@0.2.46) (2020-07-07)
+
+**Note:** Version bump only for package @synerise/ds-time-picker
+
+
+
+
+
+## [0.2.45](https://github.com/Synerise/synerise-design/compare/@synerise/ds-time-picker@0.2.44...@synerise/ds-time-picker@0.2.45) (2020-07-02)
+
+**Note:** Version bump only for package @synerise/ds-time-picker
+
+
+
+
+
+## [0.2.44](https://github.com/Synerise/synerise-design/compare/@synerise/ds-time-picker@0.2.43...@synerise/ds-time-picker@0.2.44) (2020-06-25)
+
+**Note:** Version bump only for package @synerise/ds-time-picker
+
+
+
+
+
+## [0.2.43](https://github.com/Synerise/synerise-design/compare/@synerise/ds-time-picker@0.2.42...@synerise/ds-time-picker@0.2.43) (2020-06-25)
+
+
+### Bug Fixes
+
+* **date-picker:** added typing for most of the elements ([6f345c7](https://github.com/Synerise/synerise-design/commit/6f345c774d17b277266be257cffed009935279c7))
+* **time-picker:** trigger onChange after each unit click ([af6b201](https://github.com/Synerise/synerise-design/commit/af6b20142b794186a9ee818473717c4fff4fa943))
+
+
+
+
+
 ## [0.2.42](https://github.com/Synerise/synerise-design/compare/@synerise/ds-time-picker@0.2.41...@synerise/ds-time-picker@0.2.42) (2020-06-24)
 
 **Note:** Version bump only for package @synerise/ds-time-picker

@@ -29,5 +29,4 @@ import Flag from '@synerise/ds-flag'
 | Property | Description                                             | Type   | Default | 
 | ---      | ---                                                     | ---    | ---     | 
 | country  | The country code (ISO 3166-1 alfa-2) for the image path | string | -       | 
-| role     | The a11y role type for the <img /> tag                  | string | -       | 
 | size     | The size of the image                                   | number | -       | 

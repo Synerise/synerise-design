@@ -1,10 +1,7 @@
-import { boolean, select } from '@storybook/addon-knobs';
+import {  select } from '@storybook/addon-knobs';
 import { prefixType, renderPrefixIcon, renderSuffix, submenu, suffixType } from '../dataset';
-import { attachKnobsToDataSource, decorator, getDefaultProps } from '../index.stories';
-import Icon from '@synerise/ds-icon';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
-import { CheckS, FolderM } from '@synerise/ds-icon/dist/icons';
-import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
+import {  decorator, getDefaultProps } from '../index.stories';
+
 import * as React from 'react';
 
 const withSubmenu = () => {

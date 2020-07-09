@@ -7,7 +7,8 @@ export const COLUMNS = [
     key: 'name',
     visible: true,
     type: 'text',
-    fixed: undefined
+    fixed: undefined,
+    width: 254,
   },
   {
     id: '1',
@@ -15,7 +16,8 @@ export const COLUMNS = [
     key: 'active',
     visible: true,
     type: 'boolean',
-    fixed: undefined
+    fixed: undefined,
+    width: 254,
   },
   {
     id: '2',
@@ -23,7 +25,8 @@ export const COLUMNS = [
     key: 'country',
     visible: true,
     type: 'text',
-    fixed: undefined
+    fixed: undefined,
+    width: 254,
   },
   {
     id: '3',

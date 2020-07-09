@@ -1,13 +1,16 @@
 import * as React from 'react';
 import faker from 'faker';
 import { action } from '@storybook/addon-actions';
-import { boolean, select } from '@storybook/addon-knobs';
-import Table from '@synerise/ds-table';
+import { boolean, select, text } from '@storybook/addon-knobs';
+import Table, { VirtualTable } from '@synerise/ds-table';
 import {
+  AddM,
   MailM,
 } from '@synerise/ds-icon/dist/icons';
 import { TagShape } from '@synerise/ds-tags';
 import { COLUMNS } from './content/withAllCellTypes.data';
+import Button from '@synerise/ds-button';
+import Icon from '@synerise/ds-icon';
 
 
 const decorator = (storyFn) => (
@@ -55,7 +58,7 @@ const CELL_SIZES = {
 
 const stories = {
   default: () => ({
-    title: `${dataSource.length} records`,
+    title: `${dataSource.length} results`,
     hideTitleBar: boolean('Hide title bar', false),
     dataSource,
     columns: COLUMNS,
@@ -66,11 +69,22 @@ const stories = {
       showQuickJumper: boolean('Show quick jumper', true),
       onChange: action('pageChanged'),
     },
+    locale:{
+      pagination: {
+        items: 'results',
+      }
+    },
     scroll: {
       x: false,
     },
     onSearch: action('onSearch'),
-    cellSize: select('Set cells size', CELL_SIZES, CELL_SIZES.default)
+    cellSize: select('Set cells size', CELL_SIZES, CELL_SIZES.default),
+    headerButton: boolean('Show header button', false) && (
+      <Button type="ghost" mode="icon-label" onClick={action('Header button action')}>
+        <Icon component={<AddM />} />
+        {text('Header button label', 'Add row')}
+      </Button>
+    )
   }),
 };
 

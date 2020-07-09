@@ -3,6 +3,68 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.92](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@0.2.91...@synerise/ds-tags@0.2.92) (2020-07-09)
+
+**Note:** Version bump only for package @synerise/ds-tags
+
+
+
+
+
+## [0.2.91](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@0.2.90...@synerise/ds-tags@0.2.91) (2020-07-08)
+
+**Note:** Version bump only for package @synerise/ds-tags
+
+
+
+
+
+## [0.2.90](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@0.2.89...@synerise/ds-tags@0.2.90) (2020-07-07)
+
+
+### Bug Fixes
+
+* **tags:** add changes to margins of suffix and preffix ([964319a](https://github.com/Synerise/synerise-design/commit/964319a4ded7267cb322883bbe53767a58e08d19))
+* **tags:** add changes to margins of suffix and preffix ([88558f1](https://github.com/Synerise/synerise-design/commit/88558f15807b1d6c1fc824f2183f2d321211629a))
+* **tags:** change size and margin of image ([89ba1d2](https://github.com/Synerise/synerise-design/commit/89ba1d2556be269217a63c00c6a1a9b39376d332))
+
+
+
+
+
+## [0.2.89](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@0.2.88...@synerise/ds-tags@0.2.89) (2020-07-02)
+
+
+### Bug Fixes
+
+* **tags:** add changes to color of Icon ([cee007d](https://github.com/Synerise/synerise-design/commit/cee007dabbdf2df583a1101b13824379dc24150e))
+* **tags:** add changes to styles ([7d3b36d](https://github.com/Synerise/synerise-design/commit/7d3b36d145d9a7a29920d12ab47ace37b9351e04))
+* **tags:** add changes to tags ([1d40b1f](https://github.com/Synerise/synerise-design/commit/1d40b1fc37fb62d308007b567e58442a1170ff5f))
+* **tags:** change tags into separate components and improve tags ([c319f5c](https://github.com/Synerise/synerise-design/commit/c319f5c41eb05dffcefa4764d3d98b67d53f40f4))
+* **tags:** change tags styles ([06a29e8](https://github.com/Synerise/synerise-design/commit/06a29e864ec92bd19c54fa48949d70c14a280e24))
+* **tags:** change tags styles ([ffb40cf](https://github.com/Synerise/synerise-design/commit/ffb40cf19f12aabf358274e34aa95a71ecfb1355))
+* **tags:** changes in tags styles ([7e2d231](https://github.com/Synerise/synerise-design/commit/7e2d2316a4b345099d1e63cd316dd7880c2c7a90))
+
+
+
+
+
+## [0.2.88](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@0.2.87...@synerise/ds-tags@0.2.88) (2020-06-25)
+
+**Note:** Version bump only for package @synerise/ds-tags
+
+
+
+
+
+## [0.2.87](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@0.2.86...@synerise/ds-tags@0.2.87) (2020-06-25)
+
+**Note:** Version bump only for package @synerise/ds-tags
+
+
+
+
+
 ## [0.2.86](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@0.2.85...@synerise/ds-tags@0.2.86) (2020-06-24)
 
 **Note:** Version bump only for package @synerise/ds-tags

@@ -3,6 +3,160 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.23.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.23.0...@synerise/ds-table@0.23.1) (2020-07-09)
+
+**Note:** Version bump only for package @synerise/ds-table
+
+
+
+
+
+# [0.23.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.22.1...@synerise/ds-table@0.23.0) (2020-07-08)
+
+
+### Features
+
+* **table:** add textSize prop to AvatarLabelCell ([f652548](https://github.com/synerise/synerise-design/commit/f652548750a92230bb9ec136b310cba44d938b31))
+
+
+
+
+
+## [0.22.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.22.0...@synerise/ds-table@0.22.1) (2020-07-07)
+
+
+### Bug Fixes
+
+* **table:** fix columns prop types, add default layoutType ([568f9c2](https://github.com/synerise/synerise-design/commit/568f9c2aa77369f12170b50c30d2dd5a4352235b))
+
+
+
+
+
+# [0.22.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.21.1...@synerise/ds-table@0.22.0) (2020-07-07)
+
+
+### Features
+
+* **table:** hide column names ([94126bb](https://github.com/synerise/synerise-design/commit/94126bb9e93c041a285320cab9a182a90d0e8f36))
+
+
+
+
+
+## [0.21.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.21.0...@synerise/ds-table@0.21.1) (2020-07-02)
+
+
+### Bug Fixes
+
+* **table:** fixed columns scrollable ([96a1712](https://github.com/synerise/synerise-design/commit/96a1712a02b9d3398f7986c64fcd9a06afee98ff))
+
+
+
+
+
+# [0.21.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.20.2...@synerise/ds-table@0.21.0) (2020-06-29)
+
+
+### Features
+
+* **table:** remove unused selection type ([522d874](https://github.com/synerise/synerise-design/commit/522d8742108b80c13e507e9fbe66e9c7e93830fc))
+
+
+
+
+
+## [0.20.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.20.1...@synerise/ds-table@0.20.2) (2020-06-29)
+
+**Note:** Version bump only for package @synerise/ds-table
+
+
+
+
+
+## [0.20.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.20.0...@synerise/ds-table@0.20.1) (2020-06-29)
+
+**Note:** Version bump only for package @synerise/ds-table
+
+
+
+
+
+# [0.20.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.19.0...@synerise/ds-table@0.20.0) (2020-06-26)
+
+
+### Features
+
+* **table:** keep order of selection menu items ([a236e3a](https://github.com/synerise/synerise-design/commit/a236e3ae57d3daf84be8c7ffbfb5370a5d857f52))
+
+
+
+
+
+# [0.19.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.18.0...@synerise/ds-table@0.19.0) (2020-06-26)
+
+
+### Bug Fixes
+
+* **flag:** fix styles ([1eef439](https://github.com/synerise/synerise-design/commit/1eef439e9fc1d9d2455e5507d6a98e28e20be618))
+
+
+### Features
+
+* **table:** use DSFlag in FlagLabelCEll ([14d4998](https://github.com/synerise/synerise-design/commit/14d4998a64206237b78a70e2a32a9412641a42b0))
+
+
+
+
+
+# [0.18.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.17.0...@synerise/ds-table@0.18.0) (2020-06-25)
+
+
+### Bug Fixes
+
+* **table:** add missing deps in hook ([9a2635d](https://github.com/synerise/synerise-design/commit/9a2635d6514812f3c92f33ccb16ac33abaea2c6c))
+* **table:** typo ([f7c5c52](https://github.com/synerise/synerise-design/commit/f7c5c52aac3c95bf614718f1d4ed4dff763ec7e5))
+
+
+### Features
+
+* **table:** add support for expandable rows in virtualtable ([0a71ec9](https://github.com/synerise/synerise-design/commit/0a71ec9e3180446d2c91e66db783b8a51c2f8c7f))
+* **table:** expandable row in virtual table ([b8ee297](https://github.com/synerise/synerise-design/commit/b8ee2970b88a15281198f08e9f6c6949e42c6b1f))
+
+
+
+
+
+# [0.17.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.16.7...@synerise/ds-table@0.17.0) (2020-06-25)
+
+
+### Bug Fixes
+
+* **table:** fix build errors ([55919ae](https://github.com/synerise/synerise-design/commit/55919aea8631b9afe35609c4500292ec9f9db42a))
+
+
+### Features
+
+* **table:** add headerButton to pass button in TableHeader ([1bb613a](https://github.com/synerise/synerise-design/commit/1bb613a3c674b5238d8d87bd9a4040a2aca6ef40))
+* **table:** add hideGroupExpander & initialGroupsCollapsed props ([b57243b](https://github.com/synerise/synerise-design/commit/b57243bbb9f184a808221ee405f75b3e309d9f5e))
+
+
+
+
+
+## [0.16.7](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.16.6...@synerise/ds-table@0.16.7) (2020-06-25)
+
+
+### Bug Fixes
+
+* **table:** chnage column, cells colors to solid ([a97cb07](https://github.com/synerise/synerise-design/commit/a97cb07b9d7871cd25f8f3df42e8e7ea1b2521ce))
+* **table:** update colors ([f9cbba0](https://github.com/synerise/synerise-design/commit/f9cbba0b2dd6badb90a4dc3d6e177a4affa9b5e4))
+* **table:** update colors ([42e1af0](https://github.com/synerise/synerise-design/commit/42e1af0926d5d178c8d5811205e9a0e9fd7682b6))
+
+
+
+
+
 ## [0.16.6](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.16.5...@synerise/ds-table@0.16.6) (2020-06-25)
 
 

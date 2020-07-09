@@ -118,7 +118,7 @@ export const DescWrapper = styled.div<{ withError: boolean }>`
 export const Label = styled(DSLabel)`
   margin-bottom: 8px;
   span > .ds-icon > svg {
-    margin-top:-1px;
+    margin-top: -1px;
   }
 `;
 export const SelectWrapper = styled.div`
@@ -127,8 +127,7 @@ export const SelectWrapper = styled.div`
 export const PrefixWrapper = styled.div`
   border-radius: 3px 0 0 3px;
   margin-right: -2px;
-  padding-right:1px;
-
+  padding-right: 1px;
   ${(props): string => addonStyles(props)};
 `;
 

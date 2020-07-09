@@ -17,20 +17,12 @@ export interface CardProps {
   description?: React.ReactNode;
   icon?: React.ReactNode;
   iconColor?: string;
-  size?: 'small' | 'medium' | 'large' | 'extraLarge';
   headerSideChildren?: React.ReactNode;
   onHeaderClick?: (e: React.SyntheticEvent) => void;
   withoutPadding?: boolean;
   headerBorderBottom?: boolean;
   background?: Backgrounds;
 }
-
-const mapSizeToWidth = {
-  small: 472,
-  medium: 588,
-  large: 996,
-  extraLarge: 1232,
-};
 
 const Card: React.FC<CardProps> = ({
   children,
@@ -44,18 +36,16 @@ const Card: React.FC<CardProps> = ({
   description,
   compactHeader,
   icon,
-  size,
   iconColor,
   headerSideChildren,
   onHeaderClick,
   withoutPadding,
   headerBorderBottom,
-  background = 'white',
+  background = 'white-shadow',
 }) => {
   const fatTitle = !description || (description && compactHeader);
   return (
     <S.Container
-      size={size && mapSizeToWidth[size]}
       raised={raised}
       disabled={disabled}
       style={style}

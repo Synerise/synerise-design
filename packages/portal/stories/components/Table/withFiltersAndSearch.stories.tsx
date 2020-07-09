@@ -1,10 +1,11 @@
 import { boolean, number, select, text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import { withState } from '@dump247/storybook-state';
-import { ItemsMenu, TableCell } from '@synerise/ds-table';
+import { ItemsMenu, TableCell, VirtualTable } from '@synerise/ds-table';
 import faker from 'faker';
 import Icon from '@synerise/ds-icon';
 import {
+  AddM,
   DuplicateM,
   EditM,
   FileDownloadM, FilterM, Grid2M,
@@ -186,6 +187,7 @@ const stories = {
               ...column,
               title: column.name,
               dataIndex: column.key,
+              width: 254,
               render: (active) => <Tooltip title={active ? 'Switch off' : 'Switch on'} placement="topLeft"><Switch onChange={action('Status change')} checked={active} label='' /></Tooltip>
             }
           }
@@ -194,6 +196,7 @@ const stories = {
               ...column,
               title: column.name,
               dataIndex: column.key,
+              width: 254,
               render: (country) => <TableCell.FlagLabelCell countryCode={country.code} label={country.name} />
             }
           }
@@ -202,6 +205,7 @@ const stories = {
               ...column,
               title: column.name,
               dataIndex: column.key,
+              width: 254,
             };
         }
       });
@@ -278,11 +282,19 @@ const stories = {
     return (
       <>
         <Table
-          title={`${filteredDataSource().length} ${text('Set name of table items', 'records')}`}
+          title={`${filteredDataSource().length} ${text('Set name of table items', 'results')}`}
           dataSource={filteredDataSource()}
+          tableLayout='fixed'
+          scroll={{x: 1200}}
           columns={getColumns()}
           loading={boolean('Set loading state', false)}
           cellSize={select('Set cells size', CELL_SIZES, CELL_SIZES.default)}
+          headerButton={boolean('Show header button', false) && (
+            <Button type="ghost" mode="icon-label" onClick={action('Header button action')}>
+              <Icon component={<AddM />} />
+              {text('Header button label', 'Add row')}
+            </Button>
+          )}
           filters={
             [
               {
@@ -312,10 +324,16 @@ const stories = {
             showQuickJumper: boolean('Show quick jumper', true),
             onChange: action('pageChanged'),
           }}
+          locale={{
+            pagination: {
+              items: 'results',
+            }
+          }}
           rowKey={row => row.key}
           selection={boolean('Enable row selection', false) && {
             onChange: handleSelectRow,
             selectedRowKeys: selectedRows,
+            fixed: true,
             selections: [
               Table.SELECTION_ALL,
               Table.SELECTION_INVERT,

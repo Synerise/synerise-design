@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Icon from '@synerise/ds-icon';
-import CloseM from '@synerise/ds-icon/dist/icons/CloseM';
-
+import { CloseS } from '@synerise/ds-icon/dist/icons';
+import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { Props } from './Tag.types';
 import * as S from './Tag.styles';
 
@@ -30,19 +30,31 @@ const Tag: React.FC<Props> = ({
   textColor,
   onRemove,
   onClick,
+  prefixel,
+  suffixel,
 }: Props) => {
   const isDefaultType = shape && [TagShape.DEFAULT_ROUND, TagShape.DEFAULT_SQUARE].includes(shape);
   const isDefaultRound = shape === TagShape.DEFAULT_ROUND;
-  const isStatusShape = shape && [
-    TagShape.STATUS_ERROR,
-    TagShape.STATUS_NEUTRAL,
-    TagShape.STATUS_SUCCESS,
-    TagShape.STATUS_WARNING,
-  ].includes(shape);
-  const isRemovable = removable && isDefaultRound;
+  const isDefaultSquare = shape === TagShape.DEFAULT_SQUARE;
+  const isStatusShape =
+    shape &&
+    [TagShape.STATUS_ERROR, TagShape.STATUS_NEUTRAL, TagShape.STATUS_SUCCESS, TagShape.STATUS_WARNING].includes(shape);
+  const isRemovable = removable && (isDefaultRound || isDefaultSquare);
   const isActionable = !disabled && isRemovable;
 
   const onRemoveCall = (): void | false => !!onRemove && !!id && onRemove(id);
+  const renderPrefixel = (): React.ReactNode => {
+    if (typeof prefixel === 'string' || typeof prefixel === 'number') {
+      return <S.PrefixWrapper>{prefixel}</S.PrefixWrapper>;
+    }
+    return prefixel;
+  };
+  const renderSuffixel = (): React.ReactNode => {
+    if (typeof suffixel === 'string' || typeof suffixel === 'number') {
+      return <S.SuffixWrapper>{suffixel}</S.SuffixWrapper>;
+    }
+    return suffixel;
+  };
 
   return (
     <S.Tag
@@ -56,24 +68,27 @@ const Tag: React.FC<Props> = ({
       isActionable={isActionable}
       onClick={onClick}
       data-testid={typeof id !== 'undefined' ? `tag-${id}` : 'tag'}
+      preffixel={!!prefixel}
+      suffixel={!!suffixel}
+      hasImage={!!image}
     >
-      <div className="content">
+      <S.Content>
         {image && isDefaultType && <img src={image} alt="" />}
-        <span>{name}</span>
+        {!!prefixel && renderPrefixel()}
+        <S.TagName>{name}</S.TagName>
+        {!!suffixel && renderSuffixel()}
         {isRemovable && (
-          <button type="button" onClick={onRemoveCall} data-testid="remove-btn">
-            <div className="icon">
-              <Icon component={<CloseM />} size={16} color="#fff" />
-            </div>
-          </button>
+          <S.RemoveButton onClick={onRemoveCall} data-testid="remove-btn">
+            <Icon className="icon" component={<CloseS />} size={24} color={theme.palette.white} />
+          </S.RemoveButton>
         )}
-      </div>
+      </S.Content>
     </S.Tag>
   );
 };
 
 Tag.defaultProps = {
-  shape: TagShape.DEFAULT_ROUND,
+  shape: TagShape.DEFAULT_ROUND && TagShape.DEFAULT_SQUARE,
 };
 
 export default Tag;

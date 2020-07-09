@@ -19,6 +19,7 @@ import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { VisibilityTrigger } from '@synerise/ds-menu/dist/Menu.types';
 import Tooltip from '@synerise/ds-tooltip';
 import * as S from './stories.styles';
+import DSFlag from '@synerise/ds-flag';
 export const TEXT_PLACEHOLDER = 'Option';
 export const DESCRIPTION_PLACEHOLDER = 'Description';
 const IMG_SRC = 'https://www.w3schools.com/howto/img_avatar.png';
@@ -147,7 +148,6 @@ export const ordered = [
   { text: TEXT_PLACEHOLDER },
   { text: TEXT_PLACEHOLDER },
 ];
-export const largeList = new Array(30).fill({ text: TEXT_PLACEHOLDER });
 
 export const submenu = [
   {
@@ -220,17 +220,12 @@ export const copyable = [
     copyTooltip: 'Copied!'
   },
 ];
-export const withSelect = [
+
+export const withFlag = [
   {
-    type: 'select',
-    suffixel: (
-      <Label
-        label={
-          <div style={{ lineHeight: '18px' }}>
-            <span>select</span>
-          </div>
-        }
-      />
+    text: TEXT_PLACEHOLDER,
+    prefixel: (
+      <DSFlag country={'pl'}/>
     ),
   },
 ];
