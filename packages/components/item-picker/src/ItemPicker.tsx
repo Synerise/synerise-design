@@ -81,7 +81,7 @@ const ItemPicker: React.FC<ItemPickerProps> = ({
         noResults={noResults}
       />
     ),
-    [dataSource, searchPlaceholder, onChange, closeDropdown]
+    [dataSource, searchPlaceholder, onChange, closeDropdown, noResults]
   );
 
   const renderTrigger = React.useMemo(
