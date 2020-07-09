@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@0.1.1...@synerise/ds-item-picker@0.1.2) (2020-07-09)
+
+
+### Bug Fixes
+
+* **item-picker:** fix eslint errors ([992cca0](https://github.com/Synerise/synerise-design/commit/992cca032fab96c85499ab7f45d561826391a1c1))
+* **item-picker:** fix eslint errors ([0458d3f](https://github.com/Synerise/synerise-design/commit/0458d3fcc487a631b9d1f1976119f207f8d22415))
+* **item-picker:** remove unused tests ([9c7181b](https://github.com/Synerise/synerise-design/commit/9c7181bdb7d9f6e6bbde1091543484b8ccb65d13))
+* **item-picker:** use Intl for default texts, updade props, fix styles ([6d7bb55](https://github.com/Synerise/synerise-design/commit/6d7bb55511ae1a229f686fa001c5d4bf9aa824e1))
+
+
+
+
+
 ## [0.1.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@0.1.0...@synerise/ds-item-picker@0.1.1) (2020-07-08)
 
 **Note:** Version bump only for package @synerise/ds-item-picker

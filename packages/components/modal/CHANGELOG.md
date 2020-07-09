@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.42](https://github.com/synerise/synerise-design/compare/@synerise/ds-modal@0.11.41...@synerise/ds-modal@0.11.42) (2020-07-09)
+
+**Note:** Version bump only for package @synerise/ds-modal
+
+
+
+
+
 ## [0.11.41](https://github.com/synerise/synerise-design/compare/@synerise/ds-modal@0.11.40...@synerise/ds-modal@0.11.41) (2020-07-08)
 
 **Note:** Version bump only for package @synerise/ds-modal

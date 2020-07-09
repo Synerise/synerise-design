@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.84.3](https://github.com/synerise/synerise-design/compare/portal@0.84.2...portal@0.84.3) (2020-07-09)
+
+
+### Bug Fixes
+
+* **item-picker:** update example in storybook ([e1039a6](https://github.com/synerise/synerise-design/commit/e1039a60cdaf21ea352c7ab6cf26ec980323f4c4))
+* **navbar:** add changes to suffixel ([7292a86](https://github.com/synerise/synerise-design/commit/7292a867cec0d834d0b2aff822eed99c0ae22527))
+* **navbar:** add logo,button,avatar and changed icons ([412fc35](https://github.com/synerise/synerise-design/commit/412fc35d0330e9d060beec381cd5329a4ea0094f))
+
+
+
+
+
 ## [0.84.2](https://github.com/synerise/synerise-design/compare/portal@0.84.1...portal@0.84.2) (2020-07-08)
 
 

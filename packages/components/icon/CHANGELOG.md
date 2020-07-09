@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.20.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.20.0...@synerise/ds-icon@0.20.1) (2020-07-09)
+
+
+### Bug Fixes
+
+* **icon:** replaced double arrow icon ([d796f23](https://github.com/Synerise/synerise-design/commit/d796f23348fae68ecc5f9ebfa2152a04983728eb))
+
+
+
+
+
 # [0.20.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.19.1...@synerise/ds-icon@0.20.0) (2020-07-08)
 
 

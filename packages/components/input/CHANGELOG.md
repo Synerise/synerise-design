@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.10](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.13.9...@synerise/ds-input@0.13.10) (2020-07-09)
+
+
+### Bug Fixes
+
+* **input:** add change to name props ([f88b758](https://github.com/synerise/synerise-design/commit/f88b758117f1a1c4ab43a5dddfbfa9447295d046))
+
+
+
+
+
 ## [0.13.9](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.13.8...@synerise/ds-input@0.13.9) (2020-07-08)
 
 **Note:** Version bump only for package @synerise/ds-input
