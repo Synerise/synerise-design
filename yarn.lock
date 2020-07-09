@@ -4197,15 +4197,15 @@
     "@synerise/ds-icon" "^0.14.0"
     "@synerise/ds-input" "^0.10.7"
 
-"@synerise/ds-dropdown@^0.11.56":
-  version "0.11.56"
-  resolved "https://registry.yarnpkg.com/@synerise/ds-dropdown/-/ds-dropdown-0.11.56.tgz#0627f905a87fff4215b78a1cca5151c265ab187d"
-  integrity sha512-9Dp6Ogd+k2PpCIi/92eNp+ilLnMLRf4JxeHK8BeSq4P0UXPLw5H4dwQePmkyqmnkH3E50c0YUqft/asH1tpswA==
+"@synerise/ds-dropdown@^0.11.58":
+  version "0.11.58"
+  resolved "https://registry.yarnpkg.com/@synerise/ds-dropdown/-/ds-dropdown-0.11.58.tgz#39cfe15df1049dd7d281ebf6b948c1fa5f01c8b2"
+  integrity sha512-4Wj70QL6BONSjTmTloz1tkXaulNXLtZMfE26zEGfkOm4pDjbPUyZ9b4KLWPXYl8WqKquYmHb6o62R/wrwAeVrA==
   dependencies:
     "@synerise/ds-divider" "^0.4.22"
-    "@synerise/ds-icon" "^0.19.0"
-    "@synerise/ds-input" "^0.13.7"
-    "@synerise/ds-search-bar" "^0.2.62"
+    "@synerise/ds-icon" "^0.20.0"
+    "@synerise/ds-input" "^0.13.9"
+    "@synerise/ds-search-bar" "^0.2.64"
 
 "@synerise/ds-icon@^0.11.1":
   version "0.11.1"
@@ -4238,13 +4238,13 @@
     "@synerise/ds-utils" "^0.8.5"
     uuid "^3.3.3"
 
-"@synerise/ds-input@^0.13.7":
-  version "0.13.7"
-  resolved "https://registry.yarnpkg.com/@synerise/ds-input/-/ds-input-0.13.7.tgz#f86d6fc813d8f59e3fe11c2b22db2a340d546320"
-  integrity sha512-lIlZxsiq6ssHJ/XF6HTYzS8nCAf/ZcBTyj55shDI1dd6fXuQuKheE+sRA/PJgMgSpUz8G9BH23sAWcHpse2Dhw==
+"@synerise/ds-input@^0.13.9":
+  version "0.13.9"
+  resolved "https://registry.yarnpkg.com/@synerise/ds-input/-/ds-input-0.13.9.tgz#926cd21c6e15e4b7d7be9e90699b9f31ded721b7"
+  integrity sha512-owVtlrzGPXcBFJ4UC/PkrZV8PV6CMMIbwg4a/g3kNUbxBqANlO5XM1yYC/DHp/K+X31IYLKp4kwj2GlSzBwR/Q==
   dependencies:
-    "@synerise/ds-icon" "^0.19.0"
-    "@synerise/ds-tooltip" "^0.7.6"
+    "@synerise/ds-icon" "^0.20.0"
+    "@synerise/ds-tooltip" "^0.7.8"
     "@synerise/ds-typography" "^0.8.3"
     "@synerise/ds-utils" "^0.8.28"
     antd-mask-input "^0.1.13"
@@ -4259,24 +4259,24 @@
     "@synerise/ds-card" "^0.4.11"
     "@synerise/ds-typography" "*"
 
-"@synerise/ds-search-bar@^0.2.62":
-  version "0.2.62"
-  resolved "https://registry.yarnpkg.com/@synerise/ds-search-bar/-/ds-search-bar-0.2.62.tgz#ec8add0204ea767663ad754aa50d5a98f49cfd45"
-  integrity sha512-CTwTdBYx9Jt1NFyvuCJglAqB9Ae6+o/Xm1XuQXCgxqtsOzkDbPoAPTnhFd5o4Bri248AAwtBgASyJ7FEDiNyiw==
+"@synerise/ds-search-bar@^0.2.64":
+  version "0.2.64"
+  resolved "https://registry.yarnpkg.com/@synerise/ds-search-bar/-/ds-search-bar-0.2.64.tgz#02b9defb7191796a3de1e7a912d15f2294730a8f"
+  integrity sha512-JivX0zNVPzHxVOlX79lFlDM7lvPMFg6vA91xSLucrolEan+i9VpYW5y0JT0TLX/3URNxt0cHExnr+26xFFt8Cw==
   dependencies:
-    "@synerise/ds-button" "^0.12.18"
-    "@synerise/ds-input" "^0.13.7"
+    "@synerise/ds-button" "^0.12.20"
+    "@synerise/ds-input" "^0.13.9"
     "@synerise/ds-typography" "^0.8.3"
 
-"@synerise/ds-time-picker@^0.2.45":
-  version "0.2.45"
-  resolved "https://registry.yarnpkg.com/@synerise/ds-time-picker/-/ds-time-picker-0.2.45.tgz#ae79947ca2ed05128b242291dbdc616ebe7ce272"
-  integrity sha512-evm/6Rp/b4iuyOgoXxR2hxMoGBoSyeIG64aIypQlwZllN27WYuZ75kemB7TK4JZ7LFK3Io07Xm0gFd8g4vd9WQ==
+"@synerise/ds-time-picker@^0.2.47":
+  version "0.2.47"
+  resolved "https://registry.yarnpkg.com/@synerise/ds-time-picker/-/ds-time-picker-0.2.47.tgz#bc8243f634117fc033051ab2f59568ff94fc488f"
+  integrity sha512-eqf7dX0vDI7UEBQInchk5WpDO3yKAYirFA7QE+Cy6NkM1fInvJasT+TGjfGClYqiHe387VSxJml2DvLI/iFbVQ==
   dependencies:
-    "@synerise/ds-dropdown" "^0.11.56"
-    "@synerise/ds-icon" "^0.19.0"
-    "@synerise/ds-input" "^0.13.7"
-    "@synerise/ds-search-bar" "^0.2.62"
+    "@synerise/ds-dropdown" "^0.11.58"
+    "@synerise/ds-icon" "^0.20.0"
+    "@synerise/ds-input" "^0.13.9"
+    "@synerise/ds-search-bar" "^0.2.64"
     "@synerise/ds-typography" "^0.8.3"
     dayjs "^1.8.19"
 
