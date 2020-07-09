@@ -11,7 +11,6 @@ import {
 import Icon from '@synerise/ds-icon';
 import Button from '@synerise/ds-button';
 import markdown from '@/button/README.md';
-import { version } from '@/button/package.json';
 import { CreatorStatus } from '@synerise/ds-button/dist/Creator/Creator';
 import { withState } from '@dump247/storybook-state';
 
@@ -114,8 +113,6 @@ const getBackgroundStyles = type => {
 const getCrudsKnobs = () => ({
   type: select('Set type', crudsoptions, 'Multiple'),
 });
-
-console.log('V:', version);
 
 const stories = {
   simple: () => {
