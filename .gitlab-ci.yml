@@ -44,7 +44,7 @@ docs_build:
   only:
     refs:
       - master
-      - rc
+      - dev
   script:
     - yarn --frozen-lockfile
     - yarn build
@@ -64,7 +64,7 @@ docs_deploy:
   only:
     refs:
       - master
-      - rc
+      - dev
   allow_failure: true
   script:
     - SANITY_BRANCH=$CI_COMMIT_REF_SLUG
