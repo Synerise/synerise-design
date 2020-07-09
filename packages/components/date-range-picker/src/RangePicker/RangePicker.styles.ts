@@ -17,8 +17,9 @@ export const Sides = styled.div<{ bordered?: boolean }>`
 `;
 
 export const Side = styled.div`
+  padding: 15px 15px 0 15px;
   display: grid;
-  grid-template-rows: 48px 240px;
+  grid-template-rows: 48px 290px;
   align-items: stretch;
   justify-content: stretch;
 
