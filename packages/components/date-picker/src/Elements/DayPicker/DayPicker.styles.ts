@@ -65,7 +65,8 @@ export const DayPicker = styled(DayPickerBase)`
     display: table-cell;
     cursor: pointer;
     position: relative;
-    border: 8px solid transparent;
+    box-sizing: border-box;
+
     > div {
       position: absolute;
       top: 0;
@@ -75,6 +76,7 @@ export const DayPicker = styled(DayPickerBase)`
       display: flex;
       align-items: center;
       justify-content: center;
+      margin: 4px;
     }
 
     &--start > ${DayBackground} {
@@ -134,12 +136,19 @@ export const DayPicker = styled(DayPickerBase)`
   }
 
   .DayPicker-Day--selected:not(.DayPicker-Day--disabled) {
+    & > div {
+      padding-left: 4px;
+      margin-left: 0;
+      padding-right: 4px;
+      margin-right: 0;
+    }
+
     & > ${DayBackground} {
-      background-color: ${(props): string => props.theme.palette['blue-600']};
+      background-color: ${(props): string => props.theme.palette['blue-100']};
     }
 
     & > ${DayText} {
-      color: ${(props): string => props.theme.palette.white};
+      color: ${(props): string => props.theme.palette['blue-600']};
     }
 
     &.DayPicker-Day--ghost {
@@ -152,11 +161,43 @@ export const DayPicker = styled(DayPickerBase)`
       }
     }
   }
+  .DayPicker-Day--start:not(.DayPicker-Day--disabled) {
+    & > ${DayText} {
+      border-radius: 50%;
+      color: ${(props): string => props.theme.palette.white};
+      background-color: ${(props): string => props.theme.palette['blue-600']};
+      margin-right: 4px;
+      padding-left: 4px;
+    }
+    & > ${DayBackground} {
+      background-color: ${(props): string => props.theme.palette['blue-100']};
+    }
+    & > div {
+      padding-left: 0px;
+      margin-left: 4px;
+    }
+  }
+  .DayPicker-Day--end:not(.DayPicker-Day--disabled) {
+    & > ${DayText} {
+      border-radius: 50%;
+      background-color: ${(props): string => props.theme.palette['blue-600']};
+      color: ${(props): string => props.theme.palette.white};
+      margin-left: 4px;
+      padding-left: 4px;
+    }
+    & > div {
+      padding-right: 4px;
+      margin-right: 4px;
+    }
+  }
+  .DayPicker-Day--end.DayPicker-Day--start:not(.DayPicker-Day--disabled) {
+    & > div {
+      padding-right:4px;
+    }
+  }
 
   .DayPicker-Day--selected:not(.DayPicker-Day--disabled):hover {
-    & > ${DayBackground} {
-      background-color: ${(props): string => props.theme.palette['blue-600']};
-    }
+    
   }
 
   &.relative {
