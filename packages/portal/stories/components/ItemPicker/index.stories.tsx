@@ -6,6 +6,8 @@ import Icon from '@synerise/ds-icon';
 import { dataSource } from './dataset';
 import { withState } from '@dump247/storybook-state';
 import { ItemPickerSize } from '@synerise/ds-item-picker/dist/ItemPicker';
+import { version } from '@/item-picker/package.json';
+
 
 const SIZES = ['small', 'large'];
 const PLACEHOLDER_ICONS = ['none', 'user', 'add', 'file'];
@@ -16,8 +18,11 @@ const ICONS = {
   'file': (<Icon component={<FileM />}/>)
 };
 
+console.log(`version: ${version}`);
+
 const stories = {
   default: withState({selected: null})(({ store }) => {
+
     const handleChange = (item) => {
       store.set({selected: item});
     };
