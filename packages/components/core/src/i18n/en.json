@@ -37,7 +37,8 @@
       "NO-TEXT": "No",
       "CHANGE-BUTTON": "Change",
       "CLEAR": "Remove",
-      "SEARCH": "Search"
+      "SEARCH": "Search",
+      "NO-RESULTS": "No results"
     },
     "COLUMN-MANAGER": {
       "TITLE": "Manage columns",

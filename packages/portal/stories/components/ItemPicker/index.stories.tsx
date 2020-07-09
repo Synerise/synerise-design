@@ -56,6 +56,7 @@ const stories = {
       withClearConfirmation={boolean('With clear confirmation', false)}
       yesText={text('Yes button label', 'Yes')}
       noText={text('No button label', 'No')}
+      noResults={text('No search results info', 'No results')}
       clearConfirmTitle={text('Clear confirm title', 'Are you sure to remove this selection?')}
     />)
     }
