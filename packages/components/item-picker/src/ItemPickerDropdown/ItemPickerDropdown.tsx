@@ -2,6 +2,7 @@ import * as React from 'react';
 import SearchBar from '@synerise/ds-search-bar';
 import Menu from '@synerise/ds-menu';
 import { MenuItemProps } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.types';
+import Result from '@synerise/ds-result';
 import * as S from './ItemPickerDropdown.style';
 
 interface Props {
@@ -9,9 +10,10 @@ interface Props {
   placeholder: string;
   dataSource: MenuItemProps[];
   closeDropdown: () => void;
+  noResults: string;
 }
 
-const ItemPickerDropdown: React.FC<Props> = ({ onChange, placeholder, dataSource, closeDropdown }) => {
+const ItemPickerDropdown: React.FC<Props> = ({ onChange, placeholder, dataSource, closeDropdown, noResults }) => {
   const [searchQuery, setSearchQuery] = React.useState<string>('');
 
   const handleChange = React.useCallback(
@@ -45,6 +47,7 @@ const ItemPickerDropdown: React.FC<Props> = ({ onChange, placeholder, dataSource
       />
       <Menu>
         <S.Menu>
+          {filteredDataSource.length === 0 && <Result type="no-results" description={noResults} />}
           {filteredDataSource.map(item => (
             <Menu.Item
               key={JSON.stringify(item)}
