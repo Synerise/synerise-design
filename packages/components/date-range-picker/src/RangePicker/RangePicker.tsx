@@ -201,7 +201,6 @@ export default class RangePicker extends React.PureComponent<Props, State> {
         hideNext={side === 'left' && sidesAreAdjacent}
         hidePrev={side === 'right' && sidesAreAdjacent}
         renderDay={this.renderDay}
-        onDayClick={this.handleDayClick}
         onDayMouseEnter={this.handleDayMouseEnter}
         onDayMouseLeave={this.handleDayMouseLeave}
         onMonthNameClick={(): void => this.handleSideModeChange(side, 'month')}
@@ -209,6 +208,9 @@ export default class RangePicker extends React.PureComponent<Props, State> {
         onMonthChange={(month): void => this.handleSideMonthChange(side, month, 'date')}
         fixedWeeks
         showOutsideDay
+        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+        // @ts-ignore
+        onDayClick={this.handleDayClick}
         // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
         // @ts-ignore
         selectedDays={selectedDays}
@@ -239,7 +241,6 @@ export default class RangePicker extends React.PureComponent<Props, State> {
             disabledHours={getDisabledTimeOptions(from, 'HOURS', null, to)}
             disabledMinutes={getDisabledTimeOptions(from, 'MINUTES', null, to)}
             disabledSeconds={getDisabledTimeOptions(from, 'SECONDS', null, to)}
-            raw
           />
         );
       }
@@ -252,7 +253,6 @@ export default class RangePicker extends React.PureComponent<Props, State> {
             disabledHours={getDisabledTimeOptions(to, 'HOURS', from, null)}
             disabledMinutes={getDisabledTimeOptions(to, 'MINUTES', from, null)}
             disabledSeconds={getDisabledTimeOptions(to, 'SECONDS', from, null)}
-            raw
           />
         );
       }

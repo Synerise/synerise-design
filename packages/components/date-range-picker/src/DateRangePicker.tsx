@@ -73,7 +73,7 @@ class DateRangePicker extends React.PureComponent<Props, State> {
   }
 
   // eslint-disable-next-line react/no-deprecated
-  componentWillReceiveProps({ newValue }: Props): void {
+  componentWillReceiveProps({ value:newValue }: Props): void {
     const { value } = this.props;
     if (newValue !== value) this.setState({ mode: 'date', value: normalizeRange(newValue), changed: false });
   }
@@ -182,7 +182,7 @@ class DateRangePicker extends React.PureComponent<Props, State> {
           canSwitchMode={isValid}
           message={!validator.valid ? validator.message : null}
           onSwitchMode={this.handleSwitchMode}
-          texts={{ selectTime: 'Select time', selectDate: 'Select date', apply: 'Apply', now: 'now' }}
+          texts={{ apply: 'Apply', now: 'now' }}
         />
       </Container>
     );

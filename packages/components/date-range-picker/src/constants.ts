@@ -1,4 +1,4 @@
-import { TIME_OPTIONS } from '@synerise/ds-date-picker/dist/Elements/TimePicker/TimePicker';
+import { range } from '@synerise/ds-date-picker/dist/utils';
 
 export const SECONDS = 'SECONDS';
 export const MINUTES = 'MINUTES';
@@ -181,4 +181,8 @@ export const RELATIVE_PRESETS = [
   },
 ];
 
-export { TIME_OPTIONS };
+export const TIME_OPTIONS = {
+  HOURS: range(0, 24),
+  MINUTES: range(0, 60),
+  SECONDS: range(0, 60),
+};
