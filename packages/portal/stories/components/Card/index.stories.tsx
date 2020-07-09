@@ -36,16 +36,10 @@ const init = () => {
   return { props };
 };
 
-const renderCard = (props) => {
+const renderCard = (props,showContentInitial= true) => {
   const IconComponent = React.lazy(() => import(`@synerise/ds-icon/dist/icons/${props.withIcon}`));
-  const clickHandler = doubleClickListener(
-    () => {
-      console.log('Clicked header once');
-    },
-    () => {
-      console.log('Clicked header twice');
-    }
-  );
+  const [showContent,setShowContent] = React.useState(showContentInitial)
+
   return (
     <React.Suspense fallback={<div>Loading icon</div>}>
       <Card
@@ -58,12 +52,12 @@ const renderCard = (props) => {
         icon={props.icon || (props.withIcon && <IconComponent />)}
         iconColor={props.iconColor}
         compactHeader={props.compactHeader}
-        onHeaderClick={clickHandler}
+        onHeaderClick={()=>{setShowContent(!showContent)}}
         headerSideChildren={props.headerSideChildren}
         headerBorderBottom={props.headerBorderBottom}
         background={props.background}
       >
-        {props.showContent && <div style={{ width: '100%', height: 300 }}>{props.content}</div>}
+        {props.showContent && showContent && <div style={{ width: '100%', height: 300 }}>{props.content}</div>}
       </Card>
     </React.Suspense>
   );
@@ -94,6 +88,8 @@ const stories = {
   },
   headers: () => {
     const { props } = init();
+
+
     return (
       <div
         style={{
@@ -115,9 +111,8 @@ const stories = {
               withIcon: false,
               headerSideChildren: null,
               compactHeader: false,
-              showContent: false,
               headerBorderBottom: false,
-            })}
+            },false)}
           </S.HeaderWrapper>
           <S.HeaderWrapper>
             {renderCard({
@@ -126,7 +121,6 @@ const stories = {
               description: null,
               withIcon: false,
               compactHeader: false,
-              showContent: false,
               headerBorderBottom: false,
               headerSideChildren: (
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gridColumnGap: '8px' }}>
@@ -134,7 +128,7 @@ const stories = {
                   <Button type="primary">Apply</Button>
                 </div>
               ),
-            })}
+            },false)}
           </S.HeaderWrapper>
 
           <S.HeaderWrapper>
@@ -143,7 +137,6 @@ const stories = {
               lively: true,
               withIcon: false,
               compactHeader: true,
-              showContent: false,
               headerBorderBottom: false,
               headerSideChildren: (
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gridColumnGap: '8px' }}>
@@ -155,7 +148,7 @@ const stories = {
                   </Button>
                 </div>
               ),
-            })}
+            },false)}
           </S.HeaderWrapper>
 
           <S.HeaderWrapper>
@@ -164,7 +157,6 @@ const stories = {
               lively: true,
               withIcon: false,
               compactHeader: true,
-              showContent: false,
               headerBorderBottom: false,
               icon: <CardBadge icon={<CheckS />} status="success" />,
               headerSideChildren: (
@@ -177,7 +169,7 @@ const stories = {
                   </Button>
                 </div>
               ),
-            })}
+            },false)}
           </S.HeaderWrapper>
 
           <S.HeaderWrapper>
@@ -187,9 +179,8 @@ const stories = {
               withIcon: false,
               description: null,
               compactHeader: true,
-              showContent: false,
               headerBorderBottom: true,
-            })}
+            },false)}
           </S.HeaderWrapper>
 
           <S.HeaderWrapper>
@@ -198,14 +189,13 @@ const stories = {
               lively: true,
               compactHeader: false,
               icon: <CardBadge icon={<CheckS />} />,
-              showContent: false,
               headerBorderBottom: false,
               headerSideChildren: (
                 <div>
                   <Button>Define</Button>
                 </div>
               ),
-            })}
+            },false)}
           </S.HeaderWrapper>
           <S.HeaderWrapper>
             {renderCard({
@@ -213,7 +203,6 @@ const stories = {
               lively: true,
               compactHeader: false,
               icon: <CardBadge icon={<CheckS />} />,
-              showContent: false,
               headerBorderBottom: false,
               headerSideChildren: (
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gridColumnGap: 8 }}>
@@ -223,7 +212,7 @@ const stories = {
                   </Button>
                 </div>
               ),
-            })}
+            },false)}
           </S.HeaderWrapper>
           <S.HeaderWrapper>
             {renderCard({
@@ -231,7 +220,6 @@ const stories = {
               lively: true,
               compactHeader: false,
               icon: <CardBadge icon={<CheckS />} />,
-              showContent: false,
               headerBorderBottom: false,
               headerSideChildren: (
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gridColumnGap: 8 }}>
@@ -241,7 +229,7 @@ const stories = {
                   <Button>Define</Button>
                 </div>
               ),
-            })}
+            },false)}
           </S.HeaderWrapper>
 
           <S.HeaderWrapper>
@@ -250,14 +238,13 @@ const stories = {
               lively: true,
               compactHeader: false,
               icon: <CardBadge icon={<CheckS />} status="success" />,
-              showContent: false,
               headerBorderBottom: false,
               headerSideChildren: (
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr', gridColumnGap: 8 }}>
                   <Button>Change</Button>
                 </div>
               ),
-            })}
+            },false)}
           </S.HeaderWrapper>
           <S.HeaderWrapper>
             {renderCard({
@@ -266,14 +253,13 @@ const stories = {
               compactHeader: false,
               disabled: true,
               icon: <CardBadge icon={<CheckS />} />,
-              showContent: false,
               headerBorderBottom: false,
               headerSideChildren: (
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr', gridColumnGap: 8 }}>
                   <Button>Change</Button>
                 </div>
               ),
-            })}
+            },false)}
           </S.HeaderWrapper>
 
           <S.HeaderWrapper>
@@ -283,14 +269,13 @@ const stories = {
               compactHeader: false,
               withIcon: 'UserM',
               iconColor: theme.palette['grey-400'],
-              showContent: false,
               headerBorderBottom: false,
               headerSideChildren: (
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr', gridColumnGap: 8 }}>
                   <Button>Change</Button>
                 </div>
               ),
-            })}
+            },false)}
           </S.HeaderWrapper>
           <S.HeaderWrapper>
             {renderCard({
@@ -300,7 +285,6 @@ const stories = {
               compactHeader: false,
               withIcon: 'UserM',
               iconColor: theme.palette['grey-400'],
-              showContent: false,
               headerBorderBottom: false,
               headerSideChildren: (
                 <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gridColumnGap: 8 }}>
@@ -317,7 +301,7 @@ const stories = {
                   </Button>
                 </div>
               ),
-            })}
+            } ,false)}
           </S.HeaderWrapper>
           <S.HeaderWrapper>
             {renderCard({
@@ -327,9 +311,7 @@ const stories = {
               description: null,
               compactHeader: false,
               icon: <Icon component={<UserM />}  style={{marginTop:'3px'}}/>,
-
               iconColor: theme.palette['grey-400'],
-              showContent: false,
               headerBorderBottom: false,
               headerSideChildren: (
                 <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gridColumnGap: 8 }}>
@@ -346,7 +328,7 @@ const stories = {
                   </Button>
                 </div>
               ),
-            })}
+            }, false)}
           </S.HeaderWrapper>
         </div>
       </div>
