@@ -136,7 +136,6 @@ const ItemPicker: React.FC<ItemPickerProps> = ({
         trigger={['click']}
         overlay={dropdownOverlay}
         onVisibleChange={setDropdownOpened}
-        overlayStyle={{ top: '20px' }}
       >
         {renderTrigger}
       </Dropdown>
