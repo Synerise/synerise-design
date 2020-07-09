@@ -241,7 +241,6 @@ export default class RangePicker extends React.PureComponent<Props, State> {
             disabledHours={getDisabledTimeOptions(from, 'HOURS', null, to)}
             disabledMinutes={getDisabledTimeOptions(from, 'MINUTES', null, to)}
             disabledSeconds={getDisabledTimeOptions(from, 'SECONDS', null, to)}
-            raw
           />
         );
       }
@@ -254,7 +253,6 @@ export default class RangePicker extends React.PureComponent<Props, State> {
             disabledHours={getDisabledTimeOptions(to, 'HOURS', from, null)}
             disabledMinutes={getDisabledTimeOptions(to, 'MINUTES', from, null)}
             disabledSeconds={getDisabledTimeOptions(to, 'SECONDS', from, null)}
-            raw
           />
         );
       }
