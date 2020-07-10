@@ -25,14 +25,14 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
+    "@synerise/ds-avatar": "^0.8.23",
+    "@synerise/ds-button": "^0.12.21",
+    "@synerise/ds-icon": "^0.20.1",
+    "@synerise/ds-tooltip": "^0.7.9",
     "@synerise/ds-typography": "*"
   },
   "peerDependencies": {
-    "@synerise/ds-avatar": "^0.8.23",
-    "@synerise/ds-button": "^0.12.21",
     "@synerise/ds-core": "*",
-    "@synerise/ds-icon": "^0.20.1",
-    "@synerise/ds-tooltip": "^0.7.9",
     "copy-to-clipboard": "^3.3.1",
     "react": ">=16.9.0 < 17.0.0"
   },
