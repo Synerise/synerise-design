@@ -11,7 +11,7 @@ const Navbar: React.FC<NavbarProps> = (props: NavbarProps) => {
     <S.Container className="ds-date-picker-nav">
       <S.ArrowContainer hidden={hidePrev}>
         <S.NavButton mode="single-icon" role="button" type="ghost" hidden={!onLongPrev} onClick={onLongPrev}>
-          <Icon component={<DoubleAngleLeftS />} size={18} />
+          <Icon component={<DoubleAngleLeftS />} />
         </S.NavButton>
         <S.NavButton mode="single-icon" role="button" type="ghost" hidden={!onShortPrev} onClick={onShortPrev}>
           <Icon component={<AngleLeftS />} />
@@ -23,7 +23,7 @@ const Navbar: React.FC<NavbarProps> = (props: NavbarProps) => {
           <Icon component={<AngleRightS />} />
         </S.NavButton>
         <S.NavButton mode="single-icon" role="button" type="ghost" hidden={!onLongNext} onClick={onLongNext}>
-          <Icon component={<DoubleAngleRightS />} size={18} />
+          <Icon component={<DoubleAngleRightS />} />
         </S.NavButton>
       </S.ArrowContainer>
     </S.Container>

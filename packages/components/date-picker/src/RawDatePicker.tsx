@@ -35,10 +35,11 @@ class RawDatePicker extends React.Component<Props, State> {
   }
 
   getTexts(): Texts {
-    const { texts } = this.props;
+    const { texts, intl } = this.props;
     const updatedTexts: Texts = {
       apply: texts?.apply || <FormattedMessage id="DS.DATE-PICKER.APPLY" />,
       now: texts?.now || <FormattedMessage id="DS.DATE-PICKER.NOW" />,
+      inputPlaceholder: texts?.inputPlaceholder || intl.formatMessage({ id: 'DS.DATE-PICKER.SELECT-DATE' }),
     };
     return updatedTexts;
   }
