@@ -11,7 +11,6 @@ import fnsMax from 'date-fns/max';
 import fnsStartOfDay from 'date-fns/start_of_day';
 import { omitBy, isUndefined } from 'lodash';
 
-import Footer from '@synerise/ds-date-picker/dist/Elements/Footer/Footer';
 import { Container, Separator, Addon } from './DateRangePicker.styles';
 import RangePicker from './RangePicker/RangePicker';
 import { RELATIVE, ABSOLUTE } from './constants';
@@ -25,6 +24,7 @@ import { DateFilter, DateRange } from './date.types';
 import getDateFromString from './dateUtils/getDateFromString';
 import AddonCollapse from './AddonCollapse/AddonCollapse';
 import RelativeRangePicker from './RelativeRangePicker/RelativeRangePicker';
+import Footer from './Footer/Footer';
 
 export const normalizeRange = (range: DateRange): DateRange => {
   if (!range || !range.type) {
@@ -177,7 +177,7 @@ class DateRangePicker extends React.PureComponent<Props, State> {
               onChange={this.handleRangeChange}
             />
           }
-          title={intl.formatMessage({ id: 'SNRS.DATE.RELATIVE_DATE_RANGE' })}
+          title={intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.RELATIVE_DATE_RANGE' })}
           expanded
         />
       );
@@ -201,7 +201,7 @@ class DateRangePicker extends React.PureComponent<Props, State> {
           canSwitchMode={isValid}
           message={!validator.valid ? validator.message : null}
           onSwitchMode={this.handleSwitchMode}
-          texts={{ apply: 'Apply', now: 'now' }}
+          texts={{ apply: 'Apply' }}
         />
       </Container>
     );

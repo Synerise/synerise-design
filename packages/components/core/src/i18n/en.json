@@ -115,6 +115,37 @@
       "SELECT-DATE": "Select date",
       "SELECT-TIME": "Select time",
       "NOW": "Now"
+    },
+    "DATE-RANGE-PICKER": {
+      "TODAY": "Today",
+      "YESTERDAY": "Yesterday",
+      "LAST_7_DAYS": "Last 7 days",
+      "THIS_WEEK": "This week",
+      "LAST_WEEK": "Last week",
+      "THIS_MONTH": "This month",
+      "LAST_MONTH": "Last month",
+      "LAST_3_MONTHS": "Last 3 months",
+      "LAST_6_MONTHS": "Last 6 months",
+      "LAST_YEAR": "Last year",
+      "ALL_TIME": "Lifetime",
+      "TOMORROW": "Tomorrow",
+      "NEXT_7_DAYS": "Next 7 days",
+      "NEXT_MONTH": "Next month",
+      "NEXT_3_MONTHS": "Next 3 months",
+      "NEXT_6_MONTHS": "Next 6 months",
+      "NEXT_YEAR": "Next year",
+      "CUSTOM": "Custom",
+      "MORE": "More",
+      "RELATIVE_DATE_RANGE": "Relative",
+      "LAST": "Last",
+      "BEFORE": "Before",
+      "SECONDS": "Seconds",
+      "MINUTES": "Minutes",
+      "HOURS": "Hours",
+      "DAYS": "Days",
+      "WEEKS": "Weeks",
+      "MONTHS": "Months",
+      "YEARS": "Years"
     }
   }
 }

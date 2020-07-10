@@ -22,7 +22,8 @@ export interface State {
   changed: boolean;
 }
 export interface Texts {
-  custom: string;
-  today: string;
-  yesterday: string;
+  custom?: string;
+  today?: string;
+  yesterday?: string;
+  apply?: string;
 }
