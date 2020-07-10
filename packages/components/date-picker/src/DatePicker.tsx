@@ -7,7 +7,7 @@ import RawDatePicker from './RawDatePicker';
 import PickerInput from './Elements/PickerInput/PickerInput';
 import * as S from './DatePicker.styles';
 
-const DatePicker: React.FC<Props> = (props) => {
+const DatePicker: React.FC<Props> = props => {
   const { texts, value, onApply, showTime } = props;
   const [dropVisible, setDropVisible] = React.useState(false);
   const [selectedDate, setSelectedDate] = React.useState(value);
@@ -41,8 +41,9 @@ const DatePicker: React.FC<Props> = (props) => {
         }}
         onClear={(): void => {
           setDropVisible(false);
-          setSelectedDate(undefined)
+          setSelectedDate(undefined);
         }}
+        placeholder={texts.inputPlaceholder}
       />
     </Dropdown>
   );
