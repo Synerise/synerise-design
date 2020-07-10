@@ -41,7 +41,7 @@ export const decorator = props => {
       <div style={{ background: 'rgba(0,0,0,0)', width: '200px' }}>
         <Menu {...props}>
           {props.dataSource.map(item => (
-            <S.StyledMenuItem {...rest} {...item} key={uuid()} className="ds-menu-item" />
+            <S.StyledMenuItem {...rest} {...item} key={!!item.key ? item.key :  uuid()} className="ds-menu-item" />
           ))}
         </Menu>
       </div>

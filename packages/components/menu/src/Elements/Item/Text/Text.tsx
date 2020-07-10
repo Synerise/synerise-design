@@ -31,6 +31,7 @@ export interface BasicItemProps {
   prefixVisibilityTrigger?: string;
   indentLevel?: number;
   ordered?: boolean;
+  key?: React.ReactText;
 }
 const Text: React.FC<BasicItemProps> = ({
   parent,

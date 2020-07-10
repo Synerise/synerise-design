@@ -58,9 +58,9 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
     margin: 0;
     height: auto;
     transition: background-color 0.3s ease-out;
-    padding-left:${(props): string => (props.prefixel ? '8' : '12')}px;
-    ${Inner}{
-        padding-left: ${(props): string => `${calculateIndent(props.indentLevel)}px `};
+    padding-left: ${(props): string => (props.prefixel ? '8' : '12')}px;
+    ${Inner} {
+      padding-left: ${(props): string => `${calculateIndent(props.indentLevel)}px `};
     }
     ${(props): string =>
       props.disabled
@@ -74,7 +74,11 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
     }
     &.ant-menu-item-selected {
       background: none;
+      color: ${(props): string => props.theme.palette['blue-600']};
 
+      &::before {
+        color: ${(props): string => props.theme.palette['blue-600']};
+      }
       &:focus,
       &:active {
         background: ${(props): string => props.theme.palette['grey-050']};
@@ -111,17 +115,16 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
     &:focus:not(:active) {
       box-shadow: ${(props): string | false =>
         !props.disabled && `inset 0 0 0 2px ${props.theme.palette['blue-600']} `};
-      color: ${(props): string => props.theme.palette['grey-700']}
+      color: ${(props): string => props.theme.palette['grey-700']};
       background: ${(props): string =>
         props.description ? props.theme.palette.white : props.theme.palette['grey-050']};
       .ds-menu-prefix > ${IconContainer} > svg {
         fill: ${(props): string => props.theme.palette['grey-700']};
       }
     }
-    &:focus:active{
-        background: ${(props): string => `${props.theme.palette['grey-100']}`};
-        color: ${(props): string => props.theme.palette['blue-600']}
-
+    &:focus:active {
+      background: ${(props): string => `${props.theme.palette['grey-100']}`};
+      color: ${(props): string => props.theme.palette['blue-600']};
     }
 
     & {

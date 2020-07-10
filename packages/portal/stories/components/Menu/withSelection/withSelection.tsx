@@ -18,7 +18,7 @@ const withSelection = () => {
   );
   return (
     <div style={{ background: 'rgba(0,0,0,0)', width: '200px', borderRadius: '3px', overflow: 'hidden' }}>
-      <Menu>
+      <Menu selectable={false}>
         <Menu.Item
           onClick={() => {
             setSelected(!isSelected);
