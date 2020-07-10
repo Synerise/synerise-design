@@ -76,6 +76,7 @@ export default class RangePicker extends React.PureComponent<Props, State> {
     };
   }
 
+  // eslint-disable-next-line react/no-deprecated
   componentWillReceiveProps({ value: newValue }: Props): void {
     const { value } = this.props;
     if (value !== newValue) this.setState(getSidesState(value));
@@ -121,14 +122,14 @@ export default class RangePicker extends React.PureComponent<Props, State> {
     if (fnsIsSameMonth(month, state[opposite])) {
       const dir = fnsIsAfter(month, state[side].month) ? 1 : -1;
       const adjacentMonth = ADD.MONTHS(month, dir);
-      this.setState((prevState) => ({ ...prevState, [side]: { ...state[side], adjacentMonth, mode } }));
+      this.setState(prevState => ({ ...prevState, [side]: { ...state[side], adjacentMonth, mode } }));
       return;
     }
-    this.setState((prevState) => ({ ...prevState, [side]: { ...state[side], month, mode } }));
+    this.setState(prevState => ({ ...prevState, [side]: { ...state[side], month, mode } }));
   };
 
   handleSideModeChange = (side: string, mode: string): void => {
-    this.setState((prevState) => ({ ...prevState, [side]: { ...prevState[side], mode } }));
+    this.setState(prevState => ({ ...prevState, [side]: { ...prevState[side], mode } }));
   };
 
   renderDay = (day: Date): React.ReactNode => {
@@ -279,8 +280,8 @@ export default class RangePicker extends React.PureComponent<Props, State> {
 
   render(): JSX.Element {
     const { mode } = this.props;
-    console.log('RangePicker state', this.state);
-    console.log('RangePicker props', this.props);
+    /*    console.log('RangePicker state', this.state);
+    console.log('RangePicker props', this.props); */
     return (
       <Sides bordered={mode === 'time'}>
         <Side>{this.renderSide('left')}</Side>

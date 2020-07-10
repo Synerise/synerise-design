@@ -8,14 +8,7 @@ import Select from '@synerise/ds-select';
 import Dropdown from '@synerise/ds-dropdown';
 import Menu from '@synerise/ds-menu';
 import InputNumber from '@synerise/ds-input-number';
-import {
-  Container,
-  Title,
-  Ranges,
-  Range,
-  CustomForm,
-  InputSelectGroup,
-} from './RelativeRangePicker.styles';
+import * as S from './RelativeRangePicker.styles';
 import * as CONST from '../constants';
 import getValueForRelativeRange from '../dateUtils/getValueForRelativeRange';
 import { GroupRange, Props, State } from './RelativeRangePicker.types';
@@ -137,8 +130,8 @@ class RelativeRangePicker extends React.PureComponent<Props, State> {
     if (!ranges || ranges.length === 0) return null;
     const { currentRange } = this.state;
     const { onChange, intl, value } = this.props;
-    return ranges.map((range) => (
-      <Range
+    return ranges.map(range => (
+      <S.Range
         key={range.key || range.id}
         onClick={(): void => {
           onChange(range);
@@ -151,7 +144,7 @@ class RelativeRangePicker extends React.PureComponent<Props, State> {
         }
       >
         {range.translationKey ? intl.formatMessage({ id: range.translationKey }) : range.key}
-      </Range>
+      </S.Range>
     ));
   };
 
@@ -159,15 +152,15 @@ class RelativeRangePicker extends React.PureComponent<Props, State> {
     if (!ranges || ranges.length === 0) return null;
     const { currentRange } = this.state;
     const { onChange, intl } = this.props;
-    const containsCurrentRange = currentRange && !!find((range) => range.key === currentRange.key, ranges);
+    const containsCurrentRange = currentRange && !!find(range => range.key === currentRange.key, ranges);
     const overlay = (
       <Menu
         // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
         // @ts-ignore
         selectedKeys={currentRange ? [currentRange.key] : []}
-        onClick={({ key }): void => onChange(find((range) => range.key === key, ranges))}
+        onClick={({ key }): void => onChange(find(range => range.key === key, ranges))}
       >
-        {ranges.map((range) => (
+        {ranges.map(range => (
           <Menu.Item key={range.key || range.id}>
             {range.translationKey ? intl.formatMessage({ id: range.translationKey }) : range.key}
           </Menu.Item>
@@ -176,14 +169,14 @@ class RelativeRangePicker extends React.PureComponent<Props, State> {
     );
     return (
       <Dropdown overlay={overlay}>
-        <Range
+        <S.Range
           type={containsCurrentRange ? 'primary' : undefined}
           style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}
         >
           {currentRange &&
             intl.formatMessage({ id: containsCurrentRange ? currentRange.translationKey : 'SNRS.DATE.MORE' })}
           <Icon name="angle-down-s" style={{ margin: '-2px -8px -2px 0' }} />
-        </Range>
+        </S.Range>
       </Dropdown>
     );
   };
@@ -203,12 +196,12 @@ class RelativeRangePicker extends React.PureComponent<Props, State> {
     const { currentRange, currentGroup } = this.state;
     const { offset, duration } = currentRange;
     return (
-      <CustomForm>
+      <S.CustomForm>
         <div>
-          <Title>
+          <S.Title>
             {intl.formatMessage({ id: currentGroup === GROUPS.PAST ? 'SNRS.DATE.LAST' : 'SNRS.DATE.NEXT' })}
-          </Title>
-          <InputSelectGroup>
+          </S.Title>
+          <S.InputSelectGroup>
             <InputNumber
               min={1}
               max={CONST.RELATIVE_DURATION_MAX}
@@ -224,19 +217,19 @@ class RelativeRangePicker extends React.PureComponent<Props, State> {
               value={duration.type}
               onChange={(type): void => this.handleChange(setDurationType(type, currentRange))}
             >
-              {CONST.RELATIVE_TYPES.map((type) => (
+              {CONST.RELATIVE_TYPES.map(type => (
                 <Select.Option key={type} value={type}>
                   {intl.formatMessage({ id: `SNRS.DATE.${type.toUpperCase()}` })}
                 </Select.Option>
               ))}
             </Select>
-          </InputSelectGroup>
+          </S.InputSelectGroup>
         </div>
         <div>
-          <Title>
+          <S.Title>
             {intl.formatMessage({ id: currentGroup === GROUPS.PAST ? 'SNRS.DATE.BEFORE' : 'SNRS.DATE.AFTER' })}
-          </Title>
-          <InputSelectGroup>
+          </S.Title>
+          <S.InputSelectGroup>
             <InputNumber
               min={0}
               max={CONST.RELATIVE_OFFSET_MAX}
@@ -249,15 +242,15 @@ class RelativeRangePicker extends React.PureComponent<Props, State> {
               onChange={this.handleOffsetValueChange}
             />
             <Select value={offset.type} onChange={(type): void => this.handleChange(setOffsetType(type, currentRange))}>
-              {CONST.RELATIVE_TYPES.map((type) => (
+              {CONST.RELATIVE_TYPES.map(type => (
                 <Select.Option key={type} value={type}>
                   {intl.formatMessage({ id: `SNRS.DATE.${type.toUpperCase()}` })}
                 </Select.Option>
               ))}
             </Select>
-          </InputSelectGroup>
+          </S.InputSelectGroup>
         </div>
-      </CustomForm>
+      </S.CustomForm>
     );
   };
 
@@ -277,11 +270,10 @@ class RelativeRangePicker extends React.PureComponent<Props, State> {
         : [];
 
     return (
-      <Container>
-
-        <Ranges>
+      <S.Container>
+        <S.Ranges>
           {future && past && (
-            <Range key="TOGGLE" onClick={this.handleTogglingPastRanges} style={{ width: 40 }}>
+            <S.Range key="TOGGLE" onClick={this.handleTogglingPastRanges} style={{ width: 40 }}>
               <Icon
                 name={currentGroup === GROUPS.PAST ? 'arrow-left-m' : 'arrow-right-m'}
                 style={{
@@ -293,20 +285,20 @@ class RelativeRangePicker extends React.PureComponent<Props, State> {
                   right: 0,
                 }}
               />
-            </Range>
+            </S.Range>
           )}
-          <Range
+          <S.Range
             key="CUSTOM"
             onClick={this.handleCustomClick}
             type={currentRange && !currentRange.key ? 'primary' : undefined}
           >
             {intl.formatMessage({ id: 'SNRS.DATE.CUSTOM' })}
-          </Range>
+          </S.Range>
           {this.renderRanges(ranges.visible)}
           {this.renderRangesDropdown(ranges.hidden)}
-        </Ranges>
+        </S.Ranges>
         {showCustomForm && currentRange && !isAbsolute(currentRange) && this.renderCustomRangeForm()}
-      </Container>
+      </S.Container>
     );
   }
 }

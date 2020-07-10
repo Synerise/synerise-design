@@ -164,6 +164,7 @@ export const DayPicker = styled(DayPickerBase)`
   .DayPicker-Day--start:not(.DayPicker-Day--disabled) {
     & > ${DayText} {
       border-radius: 50%;
+      font-weight:500;
       color: ${(props): string => props.theme.palette.white};
       background-color: ${(props): string => props.theme.palette['blue-600']};
       margin-right: 4px;
@@ -180,6 +181,8 @@ export const DayPicker = styled(DayPickerBase)`
   .DayPicker-Day--end:not(.DayPicker-Day--disabled) {
     & > ${DayText} {
       border-radius: 50%;
+            font-weight:500;
+
       background-color: ${(props): string => props.theme.palette['blue-600']};
       color: ${(props): string => props.theme.palette.white};
       margin-left: 4px;
@@ -201,13 +204,17 @@ export const DayPicker = styled(DayPickerBase)`
   }
 
   &.relative {
+      .DayPicker-Day--start.DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside) {
+      & > ${DayText} {
+        font-weight: 500;
+      }
     .DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside) {
       & > ${DayBackground} {
-        background-color: ${(props): string => props.theme.palette['blue-600']};
+        background-color: ${(props): string => props.theme.palette['blue-100']};
       }
 
       & > ${DayText} {
-        color: inherit;
+      color: ${(props): string => props.theme.palette['blue-600']};
       }
     }
   }
