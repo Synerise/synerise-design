@@ -11,6 +11,7 @@ import SubmenuText from '../Item/SubmenuText/SubmenuText';
 class SubMenuItem extends React.PureComponent<SubMenuProps & MenuItemProps, SubMenuState> {
   constructor(props: SubMenuProps & MenuItemProps) {
     super(props);
+    // eslint-disable-next-line react/state-in-constructor
     this.state = {
       uuidKey: uuid(),
     };
