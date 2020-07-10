@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { v4 as uuid } from 'uuid';
 import '@synerise/ds-core/dist/js/style';
 
 import { ItemType, MenuItemProps } from './MenuItem.types';
@@ -53,7 +52,6 @@ const MenuItem: React.FC<SubMenuProps & MenuItemProps> = props => {
           ordered={ordered}
           prefixel={prefixel}
           suffixel={suffixel}
-          key={uuid()}
           disabled={disabled}
           description={description}
           indentLevel={indentLevel || 0}
@@ -70,7 +68,6 @@ const MenuItem: React.FC<SubMenuProps & MenuItemProps> = props => {
           ordered={ordered}
           prefixel={prefixel}
           suffixel={suffixel}
-          key={uuid()}
           disabled={disabled}
           description={description}
           indentLevel={indentLevel || 0}
@@ -87,7 +84,6 @@ const MenuItem: React.FC<SubMenuProps & MenuItemProps> = props => {
           ordered={ordered}
           prefixel={prefixel}
           suffixel={suffixel}
-          key={uuid()}
           disabled={disabled}
           danger={danger}
           description={description}

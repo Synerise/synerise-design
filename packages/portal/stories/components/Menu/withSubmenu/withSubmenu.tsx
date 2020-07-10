@@ -15,9 +15,11 @@ const withSubmenu = () => {
         text: 'Parent 1',
         suffixel: renderSuffix(suffixKnob),
         prefixel: renderPrefixIcon(prefixKnob),
+        key:'Parent 1',
         subMenu: [
           {
             text: 'Child 1',
+            key: 'Child 1',
             suffixel: renderSuffix(suffixKnob),
             prefixel: renderPrefixIcon(prefixKnob)
           },
