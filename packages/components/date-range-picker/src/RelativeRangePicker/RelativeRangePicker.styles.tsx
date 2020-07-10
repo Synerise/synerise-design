@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Button from '@synerise/ds-button';
+import * as React from 'react';
 
 export const Container = styled.div``;
 
@@ -23,21 +24,6 @@ export const Ranges = styled.div`
   display: inline-flex;
   flex-wrap: wrap;
   width: 100%;
-`;
-
-export const Range = styled(Button)`
-  && {
-    height: auto;
-    line-height: 22px;
-    padding: 0 10px;
-    font-size: 12px;
-    border-radius: 12px !important;
-    margin: 4px 0;
-
-    &:not(:last-child) {
-      margin-right: 8px;
-    }
-  }
 `;
 
 export const CustomForm = styled.div`
@@ -69,5 +55,18 @@ export const InputSelectGroup = styled.div`
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
     font-weight: 500;
+  }
+`;
+export const Range = styled(({ children, ...rest }) => (
+  // eslint-disable-next-line react/jsx-props-no-spreading
+  <Button {...rest} type="tertiary">
+    {children}
+  </Button>
+))`
+  && {
+    margin: 4px 0;
+    &:not(:last-child) {
+      margin-right: 8px;
+    }
   }
 `;

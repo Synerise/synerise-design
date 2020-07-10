@@ -21,3 +21,8 @@ export interface State {
   value: DateRange;
   changed: boolean;
 }
+export interface Texts {
+  custom: string;
+  today: string;
+  yesterday: string;
+}

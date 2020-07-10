@@ -24,6 +24,7 @@ import { Props, State } from './DateRangePicker.types';
 import { DateFilter, DateRange } from './date.types';
 import getDateFromString from './dateUtils/getDateFromString';
 import AddonCollapse from './AddonCollapse/AddonCollapse';
+import RelativeRangePicker from './RelativeRangePicker/RelativeRangePicker';
 
 export const normalizeRange = (range: DateRange): DateRange => {
   if (!range || !range.type) {
@@ -73,7 +74,7 @@ class DateRangePicker extends React.PureComponent<Props, State> {
   }
 
   // eslint-disable-next-line react/no-deprecated
-  componentWillReceiveProps({ value:newValue }: Props): void {
+  componentWillReceiveProps({ value: newValue }: Props): void {
     const { value } = this.props;
     if (newValue !== value) this.setState({ mode: 'date', value: normalizeRange(newValue), changed: false });
   }
@@ -133,7 +134,18 @@ class DateRangePicker extends React.PureComponent<Props, State> {
   };
 
   render(): JSX.Element {
-    const { showRelativePicker, showFilter, showTime, format, disabledDate, intl, validate } = this.props;
+    const {
+      showRelativePicker,
+      showFilter,
+      showTime,
+      format,
+      disabledDate,
+      intl,
+      validate,
+      relativeFuture,
+      relativePast,
+      ranges,
+    } = this.props;
     const { value, mode, changed } = this.state;
     const { from, to, key } = value;
     if (mode === 'filter')
@@ -156,13 +168,20 @@ class DateRangePicker extends React.PureComponent<Props, State> {
     if (showRelativePicker)
       addons.push(
         <AddonCollapse
-          content={<div>FilterSwitch Placholder</div>}
+          content={
+            <RelativeRangePicker
+              future={relativeFuture}
+              past={relativePast}
+              ranges={ranges}
+              value={value}
+              onChange={this.handleRangeChange}
+            />
+          }
           title={intl.formatMessage({ id: 'SNRS.DATE.RELATIVE_DATE_RANGE' })}
           expanded
         />
       );
-    if (showFilter)
-      addons.push(<AddonCollapse content={<div>FilterSwitch Placholder</div>} title="Filter" expanded />);
+    if (showFilter) addons.push(<AddonCollapse content={<div>FilterSwitch Placholder</div>} title="Filter" expanded />);
     return (
       <Container>
         <RangePicker value={value} onChange={this.handleRangeChange} mode={mode} disabledDate={disabledDate} />
