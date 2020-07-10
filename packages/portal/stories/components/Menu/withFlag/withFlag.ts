@@ -5,6 +5,7 @@ const withFlag = () => {
   const defaultProps = getDefaultProps();
   const props = {
     dataSource: attachKnobsToDataSource(data),
+    selectable: false,
     ...defaultProps,
   } as object;
   return decorator(props);

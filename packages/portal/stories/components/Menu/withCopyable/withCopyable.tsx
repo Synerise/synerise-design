@@ -7,6 +7,7 @@ const withCopyable = () => {
   const knobs = attachKnobsToDataSource(copyable);
   const props = {
     dataSource: remapCopyValueFromText(knobs),
+    selectable: false,
     ...defaultProps,
   } as object;
   return (

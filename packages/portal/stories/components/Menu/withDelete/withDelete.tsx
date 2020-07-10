@@ -5,6 +5,7 @@ const withDelete = () => {
   const defaultProps = getDefaultProps();
   const props = {
     dataSource: attachKnobsToDataSource(deleteState),
+    selectable: false,
     ...defaultProps,
   } as object;
   return decorator(props);

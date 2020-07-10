@@ -7,6 +7,7 @@ const withParent  = () => {
     dataSource: attachKnobsToDataSource(simpleText),
     suffixel: getSuffixElement(),
     parent: true,
+    selectable: false,
     ...defaultProps,
   } as object;
   return decorator(props);
