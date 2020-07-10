@@ -27,12 +27,12 @@ const Copy: React.FC<CopyProps> = ({
       setTooltipTitle(copiedTooltip);
       setTooltipVisible(true);
     }
-  }, [copyValue, setTooltipTitle, setTooltipVisible]);
+  }, [copyValue, setTooltipTitle, setTooltipVisible, copiedTooltip]);
 
   const handleMouseEnter = React.useCallback(() => {
     setTooltipVisible(true);
     setTooltipTitle(copyTooltip);
-  }, [setTooltipTitle, setTooltipVisible]);
+  }, [setTooltipTitle, setTooltipVisible, copyTooltip]);
 
   const handleMouseLeave = React.useCallback(() => {
     setTooltipVisible(false);
