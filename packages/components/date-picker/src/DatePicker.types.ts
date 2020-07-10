@@ -12,7 +12,7 @@ export type Props = {
   useStartOfDay?: boolean;
   useEndOfDay?: boolean;
   texts: Texts;
-  intl: IntlShape;
+  intl?: IntlShape;
 };
 
 export type State = {
