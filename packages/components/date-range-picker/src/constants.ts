@@ -13,10 +13,11 @@ export const RELATIVE_OFFSET_MAX = 999999;
 export const RELATIVE_DURATION_MAX = 999999;
 export const RELATIVE_TYPES = [SECONDS, MINUTES, HOURS, DAYS, WEEKS, MONTHS, YEARS];
 export const ALL_TIME_DURATION = { type: YEARS, value: 1000 };
+
 export const RELATIVE_PRESETS = [
   {
     key: 'TODAY',
-    translationKey: 'SNRS.DATE.TODAY',
+    translationKey: 'DS.DATE-RANGE-PICKER.TODAY',
     type: RELATIVE,
     from: null,
     to: null,
@@ -26,7 +27,7 @@ export const RELATIVE_PRESETS = [
   },
   {
     key: 'YESTERDAY',
-    translationKey: 'SNRS.DATE.YESTERDAY',
+    translationKey: 'DS.DATE-RANGE-PICKER.YESTERDAY',
     type: RELATIVE,
     from: null,
     to: null,
@@ -36,7 +37,7 @@ export const RELATIVE_PRESETS = [
   },
   {
     key: 'LAST_7_DAYS',
-    translationKey: 'SNRS.DATE.LAST_7_DAYS',
+    translationKey: 'DS.DATE-RANGE-PICKER.LAST_7_DAYS',
     type: RELATIVE,
     from: null,
     to: null,
@@ -46,7 +47,7 @@ export const RELATIVE_PRESETS = [
   },
   {
     key: 'THIS_WEEK',
-    translationKey: 'SNRS.DATE.THIS_WEEK',
+    translationKey: 'DS.DATE-RANGE-PICKER.THIS_WEEK',
     type: RELATIVE,
     from: null,
     to: null,
@@ -56,7 +57,7 @@ export const RELATIVE_PRESETS = [
   },
   {
     key: 'LAST_WEEK',
-    translationKey: 'SNRS.DATE.LAST_WEEK',
+    translationKey: 'DS.DATE-RANGE-PICKER.LAST_WEEK',
     type: RELATIVE,
     from: null,
     to: null,
@@ -66,7 +67,7 @@ export const RELATIVE_PRESETS = [
   },
   {
     key: 'THIS_MONTH',
-    translationKey: 'SNRS.DATE.THIS_MONTH',
+    translationKey: 'DS.DATE-RANGE-PICKER.THIS_MONTH',
     type: RELATIVE,
     from: null,
     to: null,
@@ -76,7 +77,7 @@ export const RELATIVE_PRESETS = [
   },
   {
     key: 'LAST_MONTH',
-    translationKey: 'SNRS.DATE.LAST_MONTH',
+    translationKey: 'DS.DATE-RANGE-PICKER.LAST_MONTH',
     type: RELATIVE,
     from: null,
     to: null,
@@ -86,7 +87,7 @@ export const RELATIVE_PRESETS = [
   },
   {
     key: 'LAST_3_MONTHS',
-    translationKey: 'SNRS.DATE.LAST_3_MONTHS',
+    translationKey: 'DS.DATE-RANGE-PICKER.LAST_3_MONTHS',
     type: RELATIVE,
     from: null,
     to: null,
@@ -96,7 +97,7 @@ export const RELATIVE_PRESETS = [
   },
   {
     key: 'LAST_6_MONTHS',
-    translationKey: 'SNRS.DATE.LAST_6_MONTHS',
+    translationKey: 'DS.DATE-RANGE-PICKER.LAST_6_MONTHS',
     type: RELATIVE,
     from: null,
     to: null,
@@ -106,7 +107,7 @@ export const RELATIVE_PRESETS = [
   },
   {
     key: 'LAST_YEAR',
-    translationKey: 'SNRS.DATE.LAST_YEAR',
+    translationKey: 'DS.DATE-RANGE-PICKER.LAST_YEAR',
     type: RELATIVE,
     from: null,
     to: null,
@@ -116,12 +117,12 @@ export const RELATIVE_PRESETS = [
   },
   {
     key: 'ALL_TIME',
-    translationKey: 'SNRS.DATE.ALL_TIME',
+    translationKey: 'DS.DATE-RANGE-PICKER.ALL_TIME',
     type: ABSOLUTE,
   },
   {
     key: 'TOMORROW',
-    translationKey: 'SNRS.DATE.TOMORROW',
+    translationKey: 'DS.DATE-RANGE-PICKER.TOMORROW',
     type: RELATIVE,
     from: null,
     to: null,
@@ -131,7 +132,7 @@ export const RELATIVE_PRESETS = [
   },
   {
     key: 'NEXT_7_DAYS',
-    translationKey: 'SNRS.DATE.NEXT_7_DAYS',
+    translationKey: 'DS.DATE-RANGE-PICKER.NEXT_7_DAYS',
     type: RELATIVE,
     from: null,
     to: null,
@@ -141,7 +142,7 @@ export const RELATIVE_PRESETS = [
   },
   {
     key: 'NEXT_MONTH',
-    translationKey: 'SNRS.DATE.NEXT_MONTH',
+    translationKey: 'DS.DATE-RANGE-PICKER.NEXT_MONTH',
     type: RELATIVE,
     from: null,
     to: null,
@@ -151,7 +152,7 @@ export const RELATIVE_PRESETS = [
   },
   {
     key: 'NEXT_3_MONTHS',
-    translationKey: 'SNRS.DATE.NEXT_3_MONTHS',
+    translationKey: 'DS.DATE-RANGE-PICKER.NEXT_3_MONTHS',
     type: RELATIVE,
     from: null,
     to: null,
@@ -161,7 +162,7 @@ export const RELATIVE_PRESETS = [
   },
   {
     key: 'NEXT_6_MONTHS',
-    translationKey: 'SNRS.DATE.NEXT_6_MONTHS',
+    translationKey: 'DS.DATE-RANGE-PICKER.NEXT_6_MONTHS',
     type: RELATIVE,
     from: null,
     to: null,
@@ -171,7 +172,7 @@ export const RELATIVE_PRESETS = [
   },
   {
     key: 'NEXT_YEAR',
-    translationKey: 'SNRS.DATE.NEXT_YEAR',
+    translationKey: 'DS.DATE-RANGE-PICKER.NEXT_YEAR',
     type: RELATIVE,
     from: null,
     to: null,

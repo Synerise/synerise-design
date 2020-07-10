@@ -24,47 +24,15 @@ import {
   DayText,
 } from '@synerise/ds-date-picker/dist/Elements/DayPicker/DayPicker.styles';
 import DayPicker from '@synerise/ds-date-picker/dist/Elements/DayPicker/DayPicker';
-import { fnsStartOfMonth, fnsStartOfDay, fnsEndOfDay, fnsIsSameMonth, fnsIsAfter } from '../fns';
+import { fnsStartOfDay, fnsEndOfDay, fnsIsSameMonth, fnsIsAfter } from '../fns';
 import { Side, Sides } from './RangePicker.styles';
-import { ABSOLUTE, TIME_OPTIONS } from '../constants';
+import { ABSOLUTE } from '../constants';
 
-import GET from '../dateUtils/get';
-import SET from '../dateUtils/set';
 import ADD from '../dateUtils/add';
-import format from '../dateUtils/format';
-import { DateFilter, DateRange } from '../date.types';
-import { Limit, Props, State } from './RangePicker.types';
+import { DateFilter } from '../date.types';
+import { Props, State } from './RangePicker.types';
 import getDateFromString from '../dateUtils/getDateFromString';
-
-const getDisabledTimeOptions = (
-  day: string | Date | undefined,
-  granularity: string,
-  lowerLimit: Limit = null,
-  upperLimit: Limit = null
-): [] => {
-  const lowLimit = lowerLimit || fnsStartOfDay(day);
-  const upLimit = upperLimit || fnsEndOfDay(day);
-  const options = TIME_OPTIONS[granularity].map((a: number) => SET[granularity](day, a));
-  return options.filter((a: number) => !fnsIsWithinRange(a, lowLimit, upLimit)).map((a: number) => GET[granularity](a));
-};
-
-const getSidesState = (value: DateRange): State => {
-  const from = fnsStartOfMonth(value.from || new Date());
-  let to = fnsStartOfMonth(value.to || new Date());
-  if (fnsIsSameMonth(from, to)) to = ADD.MONTHS(to, 1);
-  return {
-    left: {
-      month: from,
-      monthTitle: format(from, 'MMM YYYY'),
-      mode: 'date',
-    },
-    right: {
-      month: to,
-      monthTitle: format(to, 'MMM YYYY'),
-      mode: 'date',
-    },
-  };
-};
+import { getSidesState, getDisabledTimeOptions } from './utils';
 
 export default class RangePicker extends React.PureComponent<Props, State> {
   constructor(props: Props) {
@@ -222,13 +190,6 @@ export default class RangePicker extends React.PureComponent<Props, State> {
     );
   };
 
-  getRangeEndValue = (value: string | Date | undefined): Date | undefined => {
-    if (typeof value === 'string') {
-      return new Date(value);
-    }
-    return value;
-  };
-
   renderTimePicker = (side: 'left' | 'right'): React.ReactNode => {
     const { value } = this.props;
     const { from, to } = value;
@@ -237,7 +198,7 @@ export default class RangePicker extends React.PureComponent<Props, State> {
         return (
           <TimePicker
             key={`left_time_${side}`}
-            value={this.getRangeEndValue(from)}
+            value={getDateFromString(from)}
             onChange={this.handleFromTimeChange}
             disabledHours={getDisabledTimeOptions(from, 'HOURS', null, to)}
             disabledMinutes={getDisabledTimeOptions(from, 'MINUTES', null, to)}
@@ -249,7 +210,7 @@ export default class RangePicker extends React.PureComponent<Props, State> {
         return (
           <TimePicker
             key={`right_time_${side}`}
-            value={this.getRangeEndValue(to)}
+            value={getDateFromString(to)}
             onChange={this.handleToTimeChange}
             disabledHours={getDisabledTimeOptions(to, 'HOURS', from, null)}
             disabledMinutes={getDisabledTimeOptions(to, 'MINUTES', from, null)}

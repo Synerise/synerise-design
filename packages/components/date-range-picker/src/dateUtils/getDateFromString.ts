@@ -1,2 +1,3 @@
-const getDateFromString = (date: Date | string): Date => (date instanceof Date ? date : new Date(date));
+const getDateFromString = (dateOrString: Date | string | undefined): Date =>
+  dateOrString instanceof Date ? dateOrString : new Date(dateOrString as string);
 export default getDateFromString;
