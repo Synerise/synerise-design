@@ -13,6 +13,7 @@ const withLabel = () => {
     dataSource: attachKnobsToDataSource(simpleText),
     suffixel: getSuffixElement(),
     suffixVisibilityTrigger: getSuffixTrigger(),
+    selectable: false,
     ...defaultProps,
   } as object;
   return decorator(props);

@@ -7,6 +7,7 @@ const withHighlighting = () => {
   const props = {
     dataSource: attachKnobsToDataSource(simpleText),
     highlight: text('Set text to be highlighted', 'Opt'),
+    selectable: false,
     ...defaultProps,
   } as object;
   return decorator(props);

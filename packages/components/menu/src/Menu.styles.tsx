@@ -129,7 +129,7 @@ export const SubMenuItem = styled(Menu.SubMenu)<SubMenuProps>`
     > .ant-menu-submenu-title:hover {
       color: ${(props): string => props.theme.palette['blue-600']};
     }
-    &&&.ant-menu-submenu-open > .ant-menu-submenu-title {
+    &&.ant-menu-submenu-open > .ant-menu-submenu-title {
       &:not(:hover) {
         color: ${(props): string => props.theme.palette['grey-700']};
       }

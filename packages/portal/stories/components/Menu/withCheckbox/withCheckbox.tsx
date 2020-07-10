@@ -18,6 +18,7 @@ const withCheckbox = () => {
     suffixVisibilityTrigger: getSuffixTrigger(),
     prefixel: <Checkbox checked={isChecked} onChange={() => setChecked(!isChecked)} />,
     onClick: () => setChecked(!isChecked),
+    selectable: false,
     ...defaultProps,
   };
   return decorator(props);

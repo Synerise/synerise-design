@@ -16,6 +16,7 @@ const withIconAndLabel = () => {
     prefixel: renderPrefixIcon(prefixKnob),
     suffixel: getSuffixElement(),
     suffixVisibilityTrigger: getSuffixTrigger(),
+    selectable: false,
     ...defaultProps,
   } as object;
   return decorator(props);
