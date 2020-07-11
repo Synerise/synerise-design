@@ -3,19 +3,20 @@ import { injectIntl } from 'react-intl';
 import * as S from './RelativeRangePicker.styles';
 import * as CONST from '../constants';
 import getValueForRelativeRange from '../dateUtils/getValueForRelativeRange';
-import { GroupRange, Props, State } from './RelativeRangePicker.types';
+import { Props, State } from './RelativeRangePicker.types';
 import { DateRange, RelativeDateRange } from '../date.types';
 import RangeButtons from './Elements/RangeButtons/RangeButtons';
 import RangeDropdown from './Elements/RangeDropdown/RangeDropdown';
 import CustomRangeForm from './Elements/CustomRangeForm/CustomRangeForm';
 import {
   getCurrentGroupFromProps,
-  GROUPS,
+  RANGES_MODE,
   isAbsolute,
   getDefaultCustomRange,
   setFuture,
   setOffsetValue,
   setDurationValue,
+  GROUPS,
 } from './utils';
 
 class RelativeRangePicker extends React.PureComponent<Props, State> {
@@ -38,11 +39,11 @@ class RelativeRangePicker extends React.PureComponent<Props, State> {
 
   static getDerivedStateFromProps(nextProps: Props, prevState: State): State {
     const { ranges, value, future, past } = nextProps;
-
+    const state = prevState;
     const currentRange =
       value && (value.type === CONST.RELATIVE || isAbsolute(value)) ? getValueForRelativeRange(value) : ranges[0];
-    const newRange = currentRange;
-    const newGroupedRanges: GroupRange = ranges.reduce(
+    state.currentRange = currentRange as RelativeDateRange;
+    state.groupedRanges = ranges.reduce(
       (acc, range: RelativeDateRange) => {
         // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
         // @ts-ignore
@@ -51,24 +52,21 @@ class RelativeRangePicker extends React.PureComponent<Props, State> {
       },
       { [GROUPS.PAST]: [], [GROUPS.FUTURE]: [] }
     );
-
-    const futureOrPastChanged = future !== prevState.future || past !== prevState.past;
-    return {
-      showCustomForm: prevState.showCustomForm,
-      currentRange: newRange as RelativeDateRange,
-      groupedRanges: newGroupedRanges,
-      currentGroup: getCurrentGroupFromProps(nextProps),
-      future: futureOrPastChanged ? prevState.future : nextProps.future,
-      past: futureOrPastChanged ? prevState.past : nextProps.past,
-    };
+    if (future !== prevState.future || past !== prevState.past) {
+      state.currentGroup = getCurrentGroupFromProps(nextProps);
+      state.future = prevState.future;
+      state.past = prevState.past;
+    }
+    return state;
   }
 
-  handleTogglingPastRanges = (): void => {
+  handleTogglingPastRanges = (mode: string | null): void => {
     const { onChange } = this.props;
-    const { currentRange, currentGroup } = this.state;
-    this.setState({ currentGroup: currentGroup === GROUPS.PAST ? GROUPS.FUTURE : GROUPS.PAST }, () => {
+    const { currentRange } = this.state;
+
+    this.setState({ currentGroup: mode }, () => {
       if (currentRange) {
-        onChange({ ...currentRange, key: undefined, future: currentGroup === GROUPS.FUTURE });
+        onChange({ ...currentRange, key: undefined, future: mode === RANGES_MODE.FUTURE });
       }
     });
   };
@@ -83,7 +81,7 @@ class RelativeRangePicker extends React.PureComponent<Props, State> {
   handleChange = (value: RelativeDateRange): void => {
     const { currentGroup } = this.state;
     const { onChange } = this.props;
-    onChange({ ...setFuture(currentGroup === GROUPS.FUTURE, value), key: undefined });
+    onChange({ ...setFuture(currentGroup === RANGES_MODE.FUTURE, value), key: undefined });
   };
 
   renderRanges = (ranges: DateRange[]): React.ReactNode => {
@@ -114,6 +112,8 @@ class RelativeRangePicker extends React.PureComponent<Props, State> {
     const { ranges, intl, value } = this.props;
     return (
       <CustomRangeForm
+        // eslint-disable-next-line react/jsx-handler-names
+        handleModeChange={this.handleTogglingPastRanges}
         ranges={ranges}
         currentRange={currentRange}
         currentGroup={currentGroup}
@@ -143,17 +143,18 @@ class RelativeRangePicker extends React.PureComponent<Props, State> {
             { visible: [], hidden: [] }
           )
         : [];
-
     return (
       <S.Container>
         <S.Ranges>
-          <S.Range
-            key="CUSTOM"
-            onClick={this.handleCustomClick}
-            type={currentRange && !currentRange.key ? 'primary' : undefined}
-          >
-            {intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.CUSTOM' })}
-          </S.Range>
+          {(currentGroup === RANGES_MODE.PAST || currentGroup === RANGES_MODE.FUTURE) && (
+            <S.Range
+              key="CUSTOM"
+              onClick={this.handleCustomClick}
+              type={currentRange && !currentRange.key ? 'primary' : undefined}
+            >
+              {intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.CUSTOM' })}
+            </S.Range>
+          )}
           {this.renderRanges(ranges.visible)}
           {this.renderRangesDropdown(ranges.hidden)}
         </S.Ranges>

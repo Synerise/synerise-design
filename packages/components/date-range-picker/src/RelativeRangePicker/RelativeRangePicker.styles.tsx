@@ -9,9 +9,9 @@ export const Header = styled.div`
 `;
 
 export const Title = styled.div`
-  flex: 1;
   font-weight: 500;
-  margin-bottom: 12px;
+  margin-right: 12px;
+  margin-left: 12px;
 `;
 
 export const Help = styled.div`
@@ -28,16 +28,15 @@ export const Ranges = styled.div`
 
 export const CustomForm = styled.div`
   margin-top: 16px;
-  display: grid;
-  grid-gap: 32px;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  justify-content: space-around;
 `;
 
 export const InputSelectGroup = styled.div`
   display: flex;
 
   .ant-input-number {
-    flex: 1 1 auto;
+    width: 50%;
   }
 
   .ant-input-number-input {
@@ -46,10 +45,13 @@ export const InputSelectGroup = styled.div`
   }
 
   .ant-select {
-    flex: 0 0 100px;
     margin-left: -1px;
   }
 
+  .ds-select-wrapper {
+    display: flex;
+    flex: 1;
+  }
   .ant-select-selection {
     background: #f9fafb;
     border-top-left-radius: 0;
@@ -69,4 +71,9 @@ export const Range = styled(({ children, ...rest }) => (
       margin-right: 8px;
     }
   }
+`;
+
+export const RangeFormRow = styled.div`
+  display: flex;
+  align-items: center;
 `;

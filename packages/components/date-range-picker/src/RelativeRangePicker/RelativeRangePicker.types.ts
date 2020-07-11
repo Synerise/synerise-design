@@ -7,6 +7,7 @@ export type Props = {
   onChange: (range: DateRange | undefined) => void;
   future: boolean;
   past: boolean;
+  since: boolean;
   intl: IntlShape;
 };
 export type GroupRange = {
@@ -17,6 +18,7 @@ export type State = {
   currentGroup: string | null;
   future: boolean;
   past: boolean;
+  since: boolean;
   showCustomForm: boolean;
   currentRange: RelativeDateRange;
   groupedRanges?: GroupRange;
