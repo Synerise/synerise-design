@@ -163,13 +163,15 @@ class RawDatePicker extends React.Component<Props, State> {
         onMonthNameClick={(): void => this.handleModeSwitch('month')}
         onYearNameClick={(): void => this.handleModeSwitch('year')}
         onMonthChange={(selectedMonth: Date): void => this.handleMonthChange(selectedMonth, 'date')}
-        modifiers={modifiers as unknown as Modifiers}
+        modifiers={(modifiers as unknown) as Modifiers}
       />
     );
   };
 
   handleDaySwitch = (day: Date): void => {
     const { disabledDates } = this.props;
+    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+    // @ts-ignore
     this.handleDayClick(day, { disabled: disabledDates ? disabledDates(day) : false });
   };
 
