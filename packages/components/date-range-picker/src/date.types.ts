@@ -3,7 +3,7 @@ import * as React from 'react';
 export type Relative = 'SECONDS' | 'MINUTES' | 'HOURS' | 'DAYS' | 'WEEKS' | 'MONTHS' | 'YEARS';
 
 export interface DateFilter {
-  type: 'ABSOLUTE' | 'RELATIVE';
+  type: 'ABSOLUTE' | 'RELATIVE' | 'SINCE';
   from?: string | Date;
   to?: string | Date;
   duration?: {
@@ -21,6 +21,7 @@ export interface DateRangeBase {
   filter?: DateFilter;
   translationKey?: string;
   id?: React.ReactText;
+  timestamp?: Date;
 }
 
 export interface AbsoluteDateRange extends DateRangeBase {
@@ -30,7 +31,7 @@ export interface AbsoluteDateRange extends DateRangeBase {
 }
 
 export interface RelativeDateRange extends DateRangeBase {
-  type: 'RELATIVE';
+  type: 'RELATIVE' | 'SINCE';
   offset: {
     type: Relative;
     value: number;

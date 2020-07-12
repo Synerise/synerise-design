@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Menu from '@synerise/ds-menu';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon from '@synerise/ds-icon';
 import { CheckS } from '@synerise/ds-icon/dist/icons';
@@ -8,29 +7,38 @@ import * as S from '../../RelativeRangePicker.styles';
 import { RANGES_ICON, RANGES_MODE } from '../../utils';
 import { Props } from './ModeDropdown.types';
 
-const ModeDrop: React.FC<Props> = ({ currentRange, currentGroup, onModeChange }: Props) => {
+const MODE_TRANSLATION_KEYS = {
+  PAST: 'LAST',
+  FUTURE: 'NEXT',
+  SINCE: 'SINCE',
+};
+const ModeDrop: React.FC<Props> = ({ currentRange, currentGroup, onModeChange, intl }: Props) => {
   const modes = Object.values(RANGES_MODE);
   const overlay = (
-    <Menu
+    <S.DropMenu
       // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
       // @ts-ignore
       selectedKeys={currentRange ? [currentRange.key] : []}
     >
       {modes.map(mode => (
-        <Menu.Item
+        <S.DropMenuItem
           key={mode}
           onClick={(): void => onModeChange && onModeChange(mode)}
           prefixel={<Icon component={RANGES_ICON[mode]} />}
           suffixel={mode === currentGroup ? <Icon component={<CheckS />} color={theme.palette['green-600']} /> : null}
         >
-          {mode}
-        </Menu.Item>
+          {intl.formatMessage({
+            id: `DS.DATE-RANGE-PICKER.${MODE_TRANSLATION_KEYS[mode]}`,
+          })}
+        </S.DropMenuItem>
       ))}
-    </Menu>
+    </S.DropMenu>
   );
   return (
-    <Dropdown overlay={overlay}>
-      <S.Range key="TOGGLE" mode="single-icon">
+    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+    // @ts-ignore
+    <Dropdown overlay={overlay} trigger={'click' as const}>
+      <S.Range key="TOGGLE" mode="single-icon" type="secondary">
         {!!currentGroup && <Icon component={[RANGES_ICON[currentGroup]]} />}
       </S.Range>
     </Dropdown>

@@ -4,7 +4,7 @@ import Button from '@synerise/ds-button';
 export const Container = styled.div`
   display: flex;
   align-items: center;
-  padding: 12px 24px;
+  padding: 24px 24px;
   background: ${(props): string => props.theme.palette['grey-050']};
 `;
 
@@ -28,4 +28,13 @@ export const Range = styled(Button)`
 export const ActionsPlaceholder = styled.div`
   display: flex;
   flex: 1;
+`;
+export const ChosenRange = styled.div`
+  font-weight: 500;
+  line-height: 24px;
+  color: ${(props): string => props.theme.palette['grey-800']};
+
+  .ds-icon svg {
+    fill: ${(props): string => props.theme.palette['grey-400']};
+  }
 `;

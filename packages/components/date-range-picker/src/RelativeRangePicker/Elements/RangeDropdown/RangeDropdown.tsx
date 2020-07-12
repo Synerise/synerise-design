@@ -1,6 +1,5 @@
 import * as React from 'react';
 import find from 'ramda/src/find';
-import Menu from '@synerise/ds-menu';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon from '@synerise/ds-icon';
 import { AngleDownS } from '@synerise/ds-icon/dist/icons';
@@ -11,23 +10,23 @@ const RangeDropdown: React.FC<Props> = ({ ranges, currentRange, intl, onChange }
   if (!ranges || ranges.length === 0) return null;
   const containsCurrentRange = currentRange && !!find(range => range.key === currentRange.key, ranges);
   const overlay = (
-    <Menu
+    <S.DropMenu
       // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
       // @ts-ignore
       selectedKeys={currentRange ? [currentRange.key] : []}
       onClick={({ key }): void => onChange(find(range => range.key === key, ranges))}
     >
       {ranges.map(range => (
-        <Menu.Item key={range.key || range.id}>
+        <S.DropMenuItem key={range.key || range.id}>
           {range.translationKey ? intl.formatMessage({ id: range.translationKey }) : range.key}
-        </Menu.Item>
+        </S.DropMenuItem>
       ))}
-    </Menu>
+    </S.DropMenu>
   );
   return (
     <Dropdown overlay={overlay}>
       <S.Range
-        type={containsCurrentRange ? 'primary' : undefined}
+        type={containsCurrentRange ? 'primary' : 'tertiary'}
         style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}
       >
         {currentRange &&

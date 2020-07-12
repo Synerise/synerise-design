@@ -3,9 +3,9 @@ import Select from '@synerise/ds-select';
 import InputNumber from '@synerise/ds-input-number';
 import set from 'ramda/src/set';
 import lensPath from 'ramda/src/lensPath';
-import * as S from '../../RelativeRangePicker.styles';
-import { GROUPS } from '../../utils';
-import * as CONST from '../../../constants';
+import * as S from '../../../RelativeRangePicker.styles';
+import { GROUPS } from '../../../utils';
+import * as CONST from '../../../../constants';
 import { Props } from './DurationField.types';
 
 export const setDurationType = set(lensPath(['duration', 'type']));
@@ -23,7 +23,7 @@ const DurationField: React.FC<Props> = ({
     <>
       <S.Title>
         {intl.formatMessage({
-          id: currentGroup === GROUPS.PAST ? 'DS.DATE-RANGE-PICKER.LAST' : 'DS.DATE-RANGE-PICKER.NEXT',
+          id: currentGroup === GROUPS.PAST ? 'DS.DATE-RANGE-PICKER.BEFORE' : 'DS.DATE-RANGE-PICKER.AFTER',
         })}
       </S.Title>
       <S.InputSelectGroup>

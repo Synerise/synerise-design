@@ -15,9 +15,9 @@ const RangeButtons: React.FC<Props> = ({ ranges, currentRange, value, intl, onCh
           }}
           type={
             (currentRange && currentRange.key === range.key && value.type === CONST.RELATIVE) ||
-            (isAbsolute(currentRange) && range.key === 'ALL_TIME')
+            (isAbsolute(currentRange) && range.key !== 'ALL_TIME')
               ? 'primary'
-              : undefined
+              : 'tertiary'
           }
         >
           {range.translationKey ? intl.formatMessage({ id: range.translationKey }) : range.key}

@@ -1,27 +1,15 @@
 import * as React from 'react';
 import Select from '@synerise/ds-select';
 import InputNumber from '@synerise/ds-input-number';
-import * as S from '../../RelativeRangePicker.styles';
-import { GROUPS } from '../../utils';
-import * as CONST from '../../../constants';
-import { setOffsetType } from '../CustomRangeForm/CustomRangeForm';
+import * as S from '../../../RelativeRangePicker.styles';
+import * as CONST from '../../../../constants';
+import { setOffsetType } from '../CustomRangeForm';
 import { Props } from './OffsetField.types';
 
-const OffsetField: React.FC<Props> = ({
-  currentGroup,
-  handleOffsetValueChange,
-  handleChange,
-  currentRange,
-  intl,
-}: Props) => {
+const OffsetField: React.FC<Props> = ({ handleOffsetValueChange, handleChange, currentRange, intl }: Props) => {
   const { offset } = currentRange;
   return (
     <>
-      <S.Title>
-        {intl.formatMessage({
-          id: currentGroup === GROUPS.PAST ? 'DS.DATE-RANGE-PICKER.BEFORE' : 'DS.DATE-RANGE-PICKER.AFTER',
-        })}
-      </S.Title>
       <S.InputSelectGroup>
         <InputNumber
           min={0}
