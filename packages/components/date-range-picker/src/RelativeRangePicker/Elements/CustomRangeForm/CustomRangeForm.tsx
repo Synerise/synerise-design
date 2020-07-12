@@ -4,8 +4,10 @@ import lensPath from 'ramda/src/lensPath';
 import { Props } from './CustomRangeForm.types';
 import * as S from '../../RelativeRangePicker.styles';
 import ModeDropdown from '../ModeDropdown/ModeDropdown';
-import DurationField from '../DurationField/DurationField';
-import OffsetField from '../OffsetField/OffsetField';
+import DurationField from './DurationField/DurationField';
+import OffsetField from './OffsetField/OffsetField';
+import { RANGES_MODE, TIMESTAMP_MODE } from '../../utils';
+import TimestampRange from '../TimestampRange/TimestampRange';
 
 export const setOffsetType = set(lensPath(['offset', 'type']));
 
@@ -21,7 +23,7 @@ const CustomRangeForm: React.FC<Props> = ({
 }: Props) => {
   const renderOffsetColumn = (): React.ReactNode => {
     return (
-      <S.RangeFormRow>
+      <S.RangeFormColumn>
         <OffsetField
           currentRange={currentRange}
           currentGroup={currentGroup}
@@ -29,12 +31,12 @@ const CustomRangeForm: React.FC<Props> = ({
           handleOffsetValueChange={handleOffsetValueChange}
           intl={intl}
         />
-      </S.RangeFormRow>
+      </S.RangeFormColumn>
     );
   };
   const renderDurationColumn = (): React.ReactNode => {
     return (
-      <S.RangeFormRow>
+      <S.RangeFormColumn>
         <DurationField
           currentRange={currentRange}
           currentGroup={currentGroup}
@@ -42,22 +44,40 @@ const CustomRangeForm: React.FC<Props> = ({
           handleDurationValueChange={handleDurationValueChange}
           intl={intl}
         />
-      </S.RangeFormRow>
+      </S.RangeFormColumn>
     );
   };
 
+  const renderTimestmapRange = (): React.ReactNode => {
+    return (
+      <S.RangeFormColumn>
+        <TimestampRange
+          handleModeChange={handleModeChange}
+          currentRange={currentRange}
+          currentGroup={currentGroup}
+          handleChange={handleChange}
+          handleDurationValueChange={handleDurationValueChange}
+          handleOffsetValueChange={handleOffsetValueChange}
+          intl={intl}
+        />
+      </S.RangeFormColumn>
+    );
+  };
+  const isSinceModeEnable =
+    currentGroup === RANGES_MODE.SINCE || currentGroup === TIMESTAMP_MODE.NEXT || currentGroup === TIMESTAMP_MODE.LAST;
   return (
     <S.CustomForm>
-      <S.RangeFormRow>
+      <S.RangeFormColumn>
         <ModeDropdown
           ranges={ranges}
           currentGroup={currentGroup}
           currentRange={currentRange}
           onModeChange={handleModeChange}
+          intl={intl}
         />
-      </S.RangeFormRow>
-      {renderOffsetColumn()}
-      {renderDurationColumn()}
+      </S.RangeFormColumn>
+      {isSinceModeEnable ? renderTimestmapRange() : renderOffsetColumn()}
+      {!isSinceModeEnable && renderDurationColumn()}
     </S.CustomForm>
   );
 };

@@ -138,8 +138,8 @@
       "MORE": "More",
       "RELATIVE_DATE_RANGE": "Relative",
       "LAST": "Last",
-      "BEFORE": "Before",
-      "AFTER": "After",
+      "BEFORE": "before",
+      "AFTER": "after",
       "SINCE": "Since",
       "NEXT": "Next",
       "SECONDS": "Seconds",
@@ -148,7 +148,10 @@
       "DAYS": "Days",
       "WEEKS": "Weeks",
       "MONTHS": "Months",
-      "YEARS": "Years"
+      "YEARS": "Years",
+      "TIMESTAMP_LAST": "Last",
+      "TIMESTAMP_NEXT": "Next",
+      "TIMESTAMP_TILL": "till"
     }
   }
 }

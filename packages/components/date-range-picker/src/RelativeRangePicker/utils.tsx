@@ -30,6 +30,10 @@ export const RANGES_MODE = {
   FUTURE: 'FUTURE',
   SINCE: 'SINCE',
 };
+export const TIMESTAMP_MODE = {
+  LAST: 'TIMESTAMP_LAST',
+  NEXT: 'TIMESTAMP_NEXT',
+};
 export const RANGES_ICON = {
   PAST: <ArrowLeftM />,
   FUTURE: <ArrowRightM />,
@@ -41,7 +45,7 @@ export const getDefaultCustomRange = (currentGroup: string | null): RelativeDate
   to: undefined,
   future: currentGroup === GROUPS.FUTURE,
   offset: { type: 'DAYS', value: 0 },
-  duration: { type: 'DAYS', value: 30 },
+  duration: { type: 'DAYS', value: 0 },
 });
 
 export const isAbsolute = (value: DateRange): boolean => value.type === CONST.ABSOLUTE && !value.from && !value.to;

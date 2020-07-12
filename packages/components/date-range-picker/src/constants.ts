@@ -14,6 +14,10 @@ export const RELATIVE_DURATION_MAX = 999999;
 export const RELATIVE_TYPES = [SECONDS, MINUTES, HOURS, DAYS, WEEKS, MONTHS, YEARS];
 export const ALL_TIME_DURATION = { type: YEARS, value: 1000 };
 
+export const DURATION_MODIFIERS = {
+  LAST: 'TIMESTAMP_LAST',
+  NEXT: 'TIMESTAMP_NEXT',
+};
 export const RELATIVE_PRESETS = [
   {
     key: 'TODAY',

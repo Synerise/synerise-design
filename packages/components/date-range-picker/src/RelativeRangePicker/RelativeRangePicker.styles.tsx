@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import Button from '@synerise/ds-button';
 import * as React from 'react';
+import Menu from '@synerise/ds-menu';
 
 export const Container = styled.div``;
 
@@ -47,7 +48,9 @@ export const InputSelectGroup = styled.div`
   .ant-select {
     margin-left: -1px;
   }
-
+  .ant-input-number {
+    margin-left: -2px;
+  }
   .ds-select-wrapper {
     display: flex;
     flex: 1;
@@ -61,7 +64,7 @@ export const InputSelectGroup = styled.div`
 `;
 export const Range = styled(({ children, ...rest }) => (
   // eslint-disable-next-line react/jsx-props-no-spreading
-  <Button {...rest} type="tertiary">
+  <Button type="tertiary" {...rest}>
     {children}
   </Button>
 ))`
@@ -73,7 +76,17 @@ export const Range = styled(({ children, ...rest }) => (
   }
 `;
 
-export const RangeFormRow = styled.div`
+export const RangeFormColumn = styled.div`
   display: flex;
   align-items: center;
+`;
+
+export const DatePickerWrapper = styled.div`
+  margin-top: 0px;
+`;
+export const DropMenu = styled(Menu)`
+  padding: 8px;
+`;
+export const DropMenuItem = styled(Menu.Item)`
+  max-height: 32px;
 `;

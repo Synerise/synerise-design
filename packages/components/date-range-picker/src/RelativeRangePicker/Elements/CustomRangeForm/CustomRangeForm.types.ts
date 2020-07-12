@@ -7,7 +7,7 @@ export type Props = {
   currentGroup: string | null;
   value: DateRange;
   intl: IntlShape;
-  handleChange: (value: RelativeDateRange) => void;
+  handleChange: (value: DateRange) => void;
   handleDurationValueChange: (value?: number) => void;
   handleOffsetValueChange: (value?: number) => void;
   handleModeChange: (mode: string | null) => void;
