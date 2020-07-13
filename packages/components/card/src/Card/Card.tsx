@@ -70,7 +70,11 @@ const Card: React.FC<CardProps> = ({
             {description && <S.Description>{description}</S.Description>}
           </S.HeaderContent>
 
-          {headerSideChildren && <S.HeaderSideChildren>{headerSideChildren}</S.HeaderSideChildren>}
+          {headerSideChildren && (
+            <S.HeaderSideChildren onClick={(event): void => event.stopPropagation()}>
+              {headerSideChildren}
+            </S.HeaderSideChildren>
+          )}
         </S.Header>
       )}
       <S.ChildrenContainer isContentful={!!children} withoutPadding={withoutPadding} hasHeader={withHeader}>
