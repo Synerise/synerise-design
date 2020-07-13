@@ -399,8 +399,12 @@ const stories = {
           searchComponent={
             <Search
               clearTooltip="Clear"
-              elementTextLookupKey="text"
-              elementFilterLookupKey="filter"
+              textLookupConfig={{
+                parameters: 'text',
+                recent: 'text',
+                suggestions: 'text',
+              }}
+              filterLookupKey="filter"
               placeholder="Search"
               width={300}
               parameters={parameters.slice(0, number('Parameters count', 5))}

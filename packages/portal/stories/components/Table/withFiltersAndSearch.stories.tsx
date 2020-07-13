@@ -175,19 +175,19 @@ const getSuggestions = value => {
 
 const stories = {
   default: withState({
-    selectedRows: [],
     categories: CATEGORIES,
-    savedViews: VIEWS,
     columns: COLUMNS,
-    selectedView: undefined,
-    selectedFilter: undefined,
-    savedViewsVisible: false,
     columnManagerVisible: false,
     itemFilterVisible: false,
     modalVisible: false,
-    searchValue: '',
+    savedViews: VIEWS,
+    savedViewsVisible: false,
     searchFilterValue: '',
     searchSuggestions: [],
+    searchValue: '',
+    selectedFilter: undefined,
+    selectedRows: [],
+    selectedView: undefined,
   })(({ store }) => {
     const { selectedRows, columns } = store.state;
 
@@ -398,8 +398,12 @@ const stories = {
           searchComponent={
             <Search
               clearTooltip="Clear"
-              elementTextLookupKey="text"
-              elementFilterLookupKey="filter"
+              textLookupConfig={{
+                parameters: 'text',
+                recent: 'text',
+                suggestions: 'text',
+              }}
+              filterLookupKey="filter"
               onParameterValueChange={value => {
                 store.set({
                   searchFilterValue: value,

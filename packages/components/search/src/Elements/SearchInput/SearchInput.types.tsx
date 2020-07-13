@@ -5,8 +5,8 @@ export type SearchInputProps = {
   alwaysHighlight?: boolean;
   clearTooltip?: string | React.ReactNode;
   closeOnClickOutside?: boolean;
-  elementTextLookupKey?: string;
-  elementFilterLookupKey?: string;
+  textLookupKey?: string;
+  filterLookupKey?: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   filterLabel?: { icon?: React.ReactNode; [key: string]: any } | null;
   focusTrigger?: boolean;

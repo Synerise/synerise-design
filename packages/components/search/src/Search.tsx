@@ -6,7 +6,7 @@ import { MenuItemProps } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.typ
 
 import { hasSomeElement, getAllElementsFiltered, hasSomeElementFiltered } from './Elements/utils/searchUtils';
 import * as S from './Search.styles';
-import { FilterElement, SearchProps, SearchState } from './Search.types';
+import { FilterElement, SearchProps, SearchState, SelectResultDataKeys } from './Search.types';
 import { SearchInput } from './Elements';
 import SearchItemsContainer from './Elements/SearchItemsContainer/SearchItemsContainer';
 
@@ -34,15 +34,15 @@ class Search extends React.PureComponent<SearchProps<{}>, SearchState<{}>> {
   }
 
   getSnapshotBeforeUpdate(prevProps: Readonly<SearchProps<{}>>): null {
-    const { recent, suggestions, parameters, value, elementTextLookupKey } = this.props;
+    const { recent, suggestions, parameters, value, textLookupConfig } = this.props;
     if (prevProps.recent !== recent) {
-      this.setState({ filteredRecent: getAllElementsFiltered(recent, value, elementTextLookupKey) });
+      this.setState({ filteredRecent: getAllElementsFiltered(recent, value, textLookupConfig.recent) });
     }
     if (prevProps.parameters !== parameters) {
-      this.setState({ filteredParameters: getAllElementsFiltered(parameters, value, elementTextLookupKey) });
+      this.setState({ filteredParameters: getAllElementsFiltered(parameters, value, textLookupConfig.parameters) });
     }
     if (prevProps.suggestions !== suggestions) {
-      this.setState({ filteredSuggestions: getAllElementsFiltered(suggestions, value, elementTextLookupKey) });
+      this.setState({ filteredSuggestions: getAllElementsFiltered(suggestions, value, textLookupConfig.suggestions) });
     }
     return null;
   }
@@ -97,18 +97,18 @@ class Search extends React.PureComponent<SearchProps<{}>, SearchState<{}>> {
   };
 
   handleChange(currentValue: string): void {
-    const { parameterValue, recent, suggestions, parameters, onValueChange, elementTextLookupKey } = this.props;
+    const { parameterValue, recent, suggestions, parameters, onValueChange, textLookupConfig } = this.props;
     let isAnythingToShow;
 
     onValueChange(currentValue);
 
     if (parameterValue) {
-      const matchingSuggestions = getAllElementsFiltered(suggestions, currentValue, elementTextLookupKey);
+      const matchingSuggestions = getAllElementsFiltered(suggestions, currentValue, textLookupConfig.suggestions);
       this.setState({ filteredSuggestions: matchingSuggestions });
       isAnythingToShow = matchingSuggestions.length > 0;
     } else {
-      const matchingRecent = getAllElementsFiltered(recent, currentValue, elementTextLookupKey);
-      const matchingParameters = getAllElementsFiltered(parameters, currentValue, elementTextLookupKey);
+      const matchingRecent = getAllElementsFiltered(recent, currentValue, textLookupConfig.recent);
+      const matchingParameters = getAllElementsFiltered(parameters, currentValue, textLookupConfig.parameters);
       this.setState({ filteredParameters: matchingParameters, filteredRecent: matchingRecent });
       isAnythingToShow = matchingRecent.length > 0 || matchingParameters.length > 0;
     }
@@ -134,42 +134,42 @@ class Search extends React.PureComponent<SearchProps<{}>, SearchState<{}>> {
   }
 
   isListItemRendered(): boolean {
-    const { suggestions, recent, parameters, value, parameterValue, elementTextLookupKey } = this.props;
+    const { suggestions, recent, parameters, value, parameterValue, textLookupConfig } = this.props;
     let isAnythingToShow;
 
     if (parameterValue) {
-      isAnythingToShow = hasSomeElementFiltered(suggestions, value, elementTextLookupKey);
+      isAnythingToShow = hasSomeElementFiltered(suggestions, value, textLookupConfig.suggestions);
     } else {
-      const anyRecentItem = hasSomeElementFiltered(recent, value, elementTextLookupKey);
-      const anyFilter = hasSomeElementFiltered(parameters, value, elementTextLookupKey);
+      const anyRecentItem = hasSomeElementFiltered(recent, value, textLookupConfig.recent);
+      const anyFilter = hasSomeElementFiltered(parameters, value, textLookupConfig.parameters);
       isAnythingToShow = anyFilter || anyRecentItem;
     }
 
     return isAnythingToShow;
   }
 
-  selectResult(item: object): void {
-    const { onValueChange, elementTextLookupKey } = this.props;
+  selectResult(item: object, dataKey: SelectResultDataKeys): void {
+    const { onValueChange, textLookupConfig } = this.props;
 
     this.setState({
       isResultChosen: true,
     });
 
-    onValueChange(item[elementTextLookupKey]);
+    onValueChange(item[textLookupConfig[dataKey]]);
   }
 
   selectFilter(item: object): void {
-    const { onValueChange, onParameterValueChange, elementFilterLookupKey, elementTextLookupKey } = this.props;
+    const { onValueChange, onParameterValueChange, filterLookupKey, textLookupConfig } = this.props;
 
     onValueChange('');
     this.setState({ label: item });
 
-    if (elementFilterLookupKey && item[elementFilterLookupKey]) {
-      onValueChange(item[elementTextLookupKey]);
-      onParameterValueChange(item[elementFilterLookupKey]);
+    if (filterLookupKey && item[filterLookupKey]) {
+      onValueChange(item[textLookupConfig.parameters]);
+      onParameterValueChange(item[filterLookupKey]);
       this.setState({ isResultChosen: true });
     } else {
-      onParameterValueChange(item[elementTextLookupKey]);
+      onParameterValueChange(item[textLookupConfig.parameters]);
     }
   }
 
@@ -185,7 +185,11 @@ class Search extends React.PureComponent<SearchProps<{}>, SearchState<{}>> {
       hasSomeElement(filteredRecent) && (
         <SearchItemsContainer
           displayProps={recentDisplayProps}
-          onItemClick={((item: object): void => this.selectResult(item)) as (e: MenuItemProps | FilterElement) => void}
+          onItemClick={
+            ((item: object): void => this.selectResult(item, SelectResultDataKeys.RECENT)) as (
+              e: MenuItemProps | FilterElement
+            ) => void
+          }
           highlight={value}
           data={filteredRecent}
           width={itemsListWidth}
@@ -230,7 +234,11 @@ class Search extends React.PureComponent<SearchProps<{}>, SearchState<{}>> {
       hasSomeElement(filteredSuggestions) && (
         <SearchItemsContainer
           displayProps={suggestionsDisplayProps}
-          onItemClick={((item: object): void => this.selectResult(item)) as (e: MenuItemProps | FilterElement) => void}
+          onItemClick={
+            ((item: object): void => this.selectResult(item, SelectResultDataKeys.SUGGESTIONS)) as (
+              e: MenuItemProps | FilterElement
+            ) => void
+          }
           highlight={value}
           data={filteredSuggestions}
           width={itemsListWidth}
@@ -240,15 +248,15 @@ class Search extends React.PureComponent<SearchProps<{}>, SearchState<{}>> {
   }
 
   renderInputWrapper(): React.ReactNode {
-    const { placeholder, clearTooltip, value, elementTextLookupKey, elementFilterLookupKey } = this.props;
+    const { placeholder, clearTooltip, value, textLookupConfig, filterLookupKey } = this.props;
     const { label, focusInputTrigger, toggleInputTrigger } = this.state;
 
     return (
       <SearchInput
         alwaysHighlight
         clearTooltip={clearTooltip}
-        elementFilterLookupKey={elementFilterLookupKey}
-        elementTextLookupKey={elementTextLookupKey}
+        filterLookupKey={filterLookupKey}
+        textLookupKey={textLookupConfig.parameters}
         filterLabel={label}
         focusTrigger={focusInputTrigger}
         onButtonClick={(): void => {

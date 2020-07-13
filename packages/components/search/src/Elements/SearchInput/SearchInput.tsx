@@ -105,11 +105,11 @@ class SearchInput extends React.Component<SearchInputProps, SearchInputState> {
       alwaysExpanded,
       alwaysHighlight,
       clearTooltip,
-      elementFilterLookupKey,
-      elementTextLookupKey,
       filterLabel,
+      filterLookupKey,
       onKeyDown,
       placeholder,
+      textLookupKey,
       value,
     } = this.props;
     const { isInputOpen, inputOffset, isResultChosen, isInputFocused } = this.state;
@@ -126,7 +126,7 @@ class SearchInput extends React.Component<SearchInputProps, SearchInputState> {
             {filterLabel && (
               <S.Filter ref={this.handleOffsetWithFilter}>
                 {filterLabel.icon && !isResultChosen && <Icon component={filterLabel.icon} />}
-                <span>{filterLabel[elementFilterLookupKey || ''] || filterLabel[elementTextLookupKey || '']}</span>
+                <span>{filterLabel[filterLookupKey || ''] || filterLabel[textLookupKey || '']}</span>
               </S.Filter>
             )}
           </S.LeftSide>

@@ -108,8 +108,7 @@ const stories = {
           </div>
         }
         dropdownMaxHeight={400}
-        elementTextLookupKey="text"
-        elementFilterLookupKey="filter"
+        filterLookupKey="filter"
         onParameterValueChange={value => {
           setParameterValue(value);
           const fakeApiResponse = getSuggestions(value);
@@ -153,6 +152,11 @@ const stories = {
           visibleRows: 6,
           itemRender: (item: FilterElement) => <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>,
         }}
+        textLookupConfig={{
+          parameters: 'text',
+          recent: 'text',
+          suggestions: 'text',
+        }}
         value={value}
       />
     );
@@ -181,8 +185,7 @@ const stories = {
           </div>
         }
         dropdownMaxHeight={400}
-        elementTextLookupKey="text"
-        elementFilterLookupKey="filter"
+        filterLookupKey="filter"
         onParameterValueChange={(value): void => {
           setParameterValue(value);
           const fakeApiResponse = getSuggestions(value);
@@ -228,6 +231,11 @@ const stories = {
           rowHeight: 32,
           visibleRows: 6,
           itemRender: (item: FilterElement) => <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>,
+        }}
+        textLookupConfig={{
+          parameters: 'text',
+          recent: 'text',
+          suggestions: 'text',
         }}
         value={value}
       />

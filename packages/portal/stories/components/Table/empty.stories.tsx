@@ -350,8 +350,12 @@ const stories = {
           searchComponent={
             <Search
               clearTooltip="Clear"
-              elementTextLookupKey="text"
-              elementFilterLookupKey="filter"
+              textLookupConfig={{
+                parameters: 'text',
+                recent: 'text',
+                suggestions: 'text',
+              }}
+              filterLookupKey="filter"
               onParameterValueChange={value => {
                 store.set({
                   searchFilterValue: value,

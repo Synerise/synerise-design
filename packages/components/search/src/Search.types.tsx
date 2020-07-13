@@ -14,12 +14,17 @@ export type DataSetProps = {
   itemRender: (item: FilterElement) => React.ReactElement;
 };
 
+export type SearchLookupConfig = {
+  parameters: string;
+  recent: string;
+  suggestions: string;
+};
+
 export type SearchProps<T extends {}> = {
   clearTooltip: string;
   divider?: React.ReactNode;
   dropdownMaxHeight?: number;
-  elementTextLookupKey: string;
-  elementFilterLookupKey?: string;
+  filterLookupKey?: string;
   onParameterValueChange: (parameterValue: string) => void;
   onValueChange: (value: string) => void;
   parameters: T[];
@@ -29,8 +34,9 @@ export type SearchProps<T extends {}> = {
   recent: T[];
   recentDisplayProps: DataSetProps;
   style?: React.CSSProperties;
-  suggestions?: T[];
-  suggestionsDisplayProps?: DataSetProps;
+  suggestions?: T[] | null;
+  suggestionsDisplayProps?: DataSetProps | null;
+  textLookupConfig: SearchLookupConfig;
   value: string;
   width?: number;
 };
@@ -40,10 +46,15 @@ export type SearchState<T extends {}> = {
   label: T | null;
   filteredParameters: T[];
   filteredRecent: T[];
-  filteredSuggestions?: T[];
+  filteredSuggestions?: T[] | null;
   isListVisible: boolean;
   focusInputTrigger: boolean;
   toggleInputTrigger: boolean;
   isResultChosen: boolean;
   itemsListWidth: number;
 };
+
+export enum SelectResultDataKeys {
+  RECENT = 'recent',
+  SUGGESTIONS = 'suggestions',
+}
