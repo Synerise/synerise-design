@@ -5,6 +5,7 @@ export type FilterElement = {
   filter?: string;
   icon?: React.ReactNode;
 };
+
 export type DataSetProps = {
   title: string;
   tooltip: string;
@@ -12,33 +13,37 @@ export type DataSetProps = {
   visibleRows: number;
   itemRender: (item: FilterElement) => React.ReactElement;
 };
-export type SearchProps = {
-  placeholder: string;
+
+export type SearchProps<T extends {}> = {
   clearTooltip: string;
-  parameters: FilterElement[];
-  recent: FilterElement[];
-  suggestions: FilterElement[];
-  onValueChange: (value: string) => void;
-  value: string;
-  parameterValue: string;
-  onParameterValueChange: (parameterValue: string) => void;
-  width?: number;
-  dropdownMaxHeight?: number;
-  recentDisplayProps: DataSetProps;
-  suggestionsDisplayProps: DataSetProps;
-  parametersDisplayProps: DataSetProps;
   divider?: React.ReactNode;
+  dropdownMaxHeight?: number;
+  elementTextLookupKey: string;
+  elementFilterLookupKey?: string;
+  onParameterValueChange: (parameterValue: string) => void;
+  onValueChange: (value: string) => void;
+  parameters: T[];
+  parametersDisplayProps: DataSetProps;
+  parameterValue: string;
+  placeholder: string;
+  recent: T[];
+  recentDisplayProps: DataSetProps;
   style?: React.CSSProperties;
+  suggestions?: T[];
+  suggestionsDisplayProps?: DataSetProps;
+  value: string;
+  width?: number;
 };
-export type SearchState = {
+
+export type SearchState<T extends {}> = {
   isInputOpen: boolean;
-  label: FilterElement | null;
-  filteredParameters: FilterElement[];
-  filteredRecent: FilterElement[];
-  filteredSuggestions: FilterElement[];
+  label: T | null;
+  filteredParameters: T[];
+  filteredRecent: T[];
+  filteredSuggestions?: T[];
   isListVisible: boolean;
   focusInputTrigger: boolean;
   toggleInputTrigger: boolean;
-  isResultChoosed: boolean;
+  isResultChosen: boolean;
   itemsListWidth: number;
-}
+};

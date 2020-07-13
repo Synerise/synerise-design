@@ -1,9 +1,20 @@
-import { FilterElement } from '../../Search.types';
+export const getAllElementsFiltered = (
+  data: object[] | undefined,
+  value: string,
+  elementTextLookupKey: string
+): object[] => {
+  return (data && data.filter(el => el[elementTextLookupKey].toLowerCase().includes(value.toLocaleLowerCase()))) || [];
+};
 
-export const getAllElementsFiltered = (data: FilterElement[] | undefined, value: string): FilterElement[] => {
-  return (data && data.filter(el => el.text.toLowerCase().includes(value.toLocaleLowerCase()))) || [];
+export const hasSomeElementFiltered = (
+  data: object[] | undefined,
+  currentValue: string,
+  elementTextLookupKey: string
+): boolean => {
+  return (
+    (!!data && data.some(el => el[elementTextLookupKey].toLowerCase().includes(currentValue.toLocaleLowerCase()))) ||
+    false
+  );
 };
-export const hasSomeElementFiltered = (data: FilterElement[] | undefined, currentValue: string): boolean => {
-  return (!!data && data.some(el => el.text.toLowerCase().includes(currentValue.toLocaleLowerCase()))) || false;
-};
-export const hasSomeElement = (data: FilterElement[] | undefined): boolean => !!data && data.length > 0;
+
+export const hasSomeElement = (data: object[] | undefined): boolean => !!data && data.length > 0;

@@ -49,7 +49,8 @@ describe('Search with dropdown', () => {
     // ARRANGE
     const { getByPlaceholderText } = renderWithProvider(
       <Search
-        clearTooltip={'clear'}
+        clearTooltip="clear"
+        elementTextLookupKey="text"
         parameters={parametersList}
         placeholder={PLACEHOLDER}
         recent={recent}
@@ -74,6 +75,7 @@ describe('Search with dropdown', () => {
     const { getByPlaceholderText } = renderWithProvider(
       <Search
         clearTooltip={'clear'}
+        elementTextLookupKey="text"
         parameters={parametersList}
         placeholder={PLACEHOLDER}
         recent={recent}
@@ -103,6 +105,7 @@ describe('Search with dropdown', () => {
     const { getByTestId, getByText } = renderWithProvider(
       <Search
         clearTooltip={'clear'}
+        elementTextLookupKey="text"
         parameters={parametersList}
         placeholder={PLACEHOLDER}
         recent={recent}
@@ -135,6 +138,7 @@ describe('Search with dropdown', () => {
     const { getByTestId, getByDisplayValue } = renderWithProvider(
       <Search
         clearTooltip={'clear'}
+        elementTextLookupKey="text"
         parameters={parametersList}
         placeholder={PLACEHOLDER}
         recent={recent}
@@ -164,6 +168,7 @@ describe('Search with dropdown', () => {
         <button>differentElement</button>
         <Search
           clearTooltip={'clear'}
+          elementTextLookupKey="text"
           parameters={parametersList}
           placeholder={PLACEHOLDER}
           recent={recent}
@@ -194,6 +199,7 @@ describe('Search with dropdown', () => {
         <button>differentElement</button>
         <Search
           clearTooltip={'clear'}
+          elementTextLookupKey="text"
           parameters={parametersList}
           placeholder={PLACEHOLDER}
           recent={recent}
@@ -224,6 +230,7 @@ describe('Search with dropdown', () => {
         <button>differentElement</button>
         <Search
           clearTooltip={'clear'}
+          elementTextLookupKey="text"
           parameters={parametersList}
           placeholder={PLACEHOLDER}
           recent={recent}
