@@ -13,14 +13,17 @@ import fnsMax from 'date-fns/max';
 // @ts-ignore
 import fnsIsWithinRange from 'date-fns/is_within_range';
 
-import { MonthPicker, YearPicker, TimePicker, DayPicker } from '@synerise/ds-date-picker';
+import MonthPicker from '@synerise/ds-date-picker/dist/Elements/MonthPicker/MonthPicker';
 import MomentLocaleUtils from 'react-day-picker/moment';
+
+import YearPicker from '@synerise/ds-date-picker/dist/Elements/YearPicker/YearPicker';
+import TimePicker from '@synerise/ds-date-picker/dist/Elements/TimePicker/TimePicker';
 import {
   DayBackground,
   DayForeground,
   DayText,
 } from '@synerise/ds-date-picker/dist/Elements/DayPicker/DayPicker.styles';
-
+import DayPicker from '@synerise/ds-date-picker/dist/Elements/DayPicker/DayPicker';
 import { fnsStartOfDay, fnsEndOfDay, fnsIsSameMonth, fnsIsAfter } from '../fns';
 import { Side, Sides } from './RangePicker.styles';
 import { ABSOLUTE } from '../constants';
