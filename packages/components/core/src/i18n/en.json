@@ -1,5 +1,9 @@
 {
   "DS": {
+    "DESCRIPTION": {
+      "COPY-VALUE": "Copy value",
+      "COPIED": "Copied"
+    },
     "MANAGABLE-LIST": {
         "LESS": "less",
         "MORE": "more",
