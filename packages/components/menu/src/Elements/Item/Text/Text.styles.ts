@@ -76,9 +76,15 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
       background: none;
       color: ${(props): string => props.theme.palette['blue-600']};
 
+      &::before {
+        color: ${(props): string => props.theme.palette['blue-600']};
+      }
       &:focus,
       &:active {
         background: ${(props): string => props.theme.palette['grey-050']};
+        &::before {
+        color: ${(props): string => props.theme.palette['grey-600']};
+      }
       }
 
       &::after {

@@ -30,21 +30,54 @@ import withSelection from './withSelection/withSelection';
 import withFlag from './withFlag/withFlag';
 import * as S from './stories.styles';
 import { v4 as uuid } from 'uuid';
+import { useOnClickOutside } from '@synerise/ds-utils';
 
-export const decorator = props => {
+export const decorator = (props) => {
   const { dataSource, ...rest } = props;
+  const wrapperRef = React.useRef(null);
+  const [selectable, setSelectable] = React.useState(props.selectable || true);
+
+  const [selectedKeys, setSelectedKeys] = React.useState([]);
+  console.log('selected', selectedKeys);
+  const itemsWithListeners = props.dataSource.map((item) => {
+    const newItem = item;
+    newItem.subMenu = item.subMenu.map((sub) => ({ ...sub, onClick: () => onClickHandler(sub) }));
+    return newItem;
+  });
+  const [items, setItems] = React.useState(itemsWithListeners);
+
+  const onClickHandler = (item) => {
+    console.log('item.key', item.key);
+    if (selectedKeys.length === 0) {
+      setSelectedKeys([item.key]);
+      setItems([...items])
+      return;
+    }
+    selectedKeys.includes(item.key) ? setSelectedKeys([]) : setSelectedKeys([item.key]);
+  };
   return (
     <div
       style={{ width: '200px', borderRadius: '3px', overflow: 'hidden' }}
-      onKeyDown={e => focusWithArrowKeys(e, 'ds-menu-item', () => {})}
+      onKeyDown={(e) => focusWithArrowKeys(e, 'ds-menu-item', () => {})}
     >
-      <div style={{ background: 'rgba(0,0,0,0)', width: '200px' }}>
-        <Menu {...props}>
-          {props.dataSource.map(item => (
-            <S.StyledMenuItem {...rest} {...item} key={!!item.key ? item.key :  uuid()} className="ds-menu-item" />
+      <S.MenuWrapper style={{ background: 'rgba(0,0,0,0)', width: '200px' }} ref={wrapperRef}>
+        <Menu {...props} selectable selectedKeys={selectedKeys}>
+          {items.map((item) => (
+            <S.StyledMenuItem
+              {...rest}
+              {...item}
+              menuItemKey={item.key}
+              onTitleClick={(e) => {
+                onClickHandler(item);
+                setItems([...items])
+              }}
+              key={!!item.key ? item.key : uuid()}
+              className="ds-menu-item"
+              selected
+            />
           ))}
         </Menu>
-      </div>
+      </S.MenuWrapper>
     </div>
   );
 };
@@ -67,8 +100,8 @@ export const getDefaultProps = () => ({
   disabled: boolean('Set disabled', false),
 });
 
-export const attachKnobsToDataSource = data =>
-  data.map(item => ({
+export const attachKnobsToDataSource = (data) =>
+  data.map((item) => ({
     ...item,
     text: text('Set text', TEXT_PLACEHOLDER),
     disabled: boolean('Set disabled', false),

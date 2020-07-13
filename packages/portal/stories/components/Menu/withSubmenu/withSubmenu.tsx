@@ -1,6 +1,6 @@
-import {  select } from '@storybook/addon-knobs';
+import { boolean, select } from '@storybook/addon-knobs';
 import { prefixType, renderPrefixIcon, renderSuffix, submenu, suffixType } from '../dataset';
-import {  decorator, getDefaultProps } from '../index.stories';
+import { decorator, getDefaultProps } from '../index.stories';
 
 import * as React from 'react';
 
@@ -13,31 +13,44 @@ const withSubmenu = () => {
     dataSource: [
       {
         text: 'Parent 1',
+        key: 'Parent 1',
         suffixel: renderSuffix(suffixKnob),
         prefixel: renderPrefixIcon(prefixKnob),
-        key:'Parent 1',
         subMenu: [
           {
             text: 'Child 1',
-            key: 'Child 1',
+            key: 'p1-Child 1',
             suffixel: renderSuffix(suffixKnob),
-            prefixel: renderPrefixIcon(prefixKnob)
+            prefixel: renderPrefixIcon(prefixKnob),
           },
-          { text: 'Child 2', suffixel: renderSuffix(suffixKnob), prefixel: renderPrefixIcon(prefixKnob) },
-          { text: 'Child 3', suffixel: renderSuffix(suffixKnob), prefixel: renderPrefixIcon(prefixKnob) },
+          {
+            text: 'Child 2',
+            key: 'p1-Child 2',
+            suffixel: renderSuffix(suffixKnob),
+            prefixel: renderPrefixIcon(prefixKnob),
+          },
+          {
+            text: 'Child 3',
+            key: 'p1-Child 3',
+            suffixel: renderSuffix(suffixKnob),
+            prefixel: renderPrefixIcon(prefixKnob),
+          },
         ],
-      },      {
+      },
+      {
         text: 'Parent 2',
+        key: 'Parent 2',
         suffixel: renderSuffix(suffixKnob),
         prefixel: renderPrefixIcon(prefixKnob),
         subMenu: [
           {
             text: 'Child 1',
+            key: 'p2-Child 1',
             suffixel: renderSuffix(suffixKnob),
-            prefixel: renderPrefixIcon(prefixKnob)
+            prefixel: renderPrefixIcon(prefixKnob),
           },
-          { text: 'Child 2', suffixel: renderSuffix(suffixKnob), prefixel: renderPrefixIcon(prefixKnob) },
-          { text: 'Child 3', suffixel: renderSuffix(suffixKnob), prefixel: renderPrefixIcon(prefixKnob) },
+          { text: 'Child 2',key: 'p2-Child 2', suffixel: renderSuffix(suffixKnob), prefixel: renderPrefixIcon(prefixKnob) },
+          { text: 'Child 3',key: 'p2-Child 3', suffixel: renderSuffix(suffixKnob), prefixel: renderPrefixIcon(prefixKnob) },
         ],
       },
     ],

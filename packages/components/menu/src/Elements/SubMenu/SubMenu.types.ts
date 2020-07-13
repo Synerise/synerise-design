@@ -1,5 +1,6 @@
 import { MenuProps } from 'antd/lib/menu';
 import * as React from 'react';
+import { BasicItemProps } from '../Item/Text/Text';
 
 export interface SubMenuProps extends Omit<MenuProps, 'dataSource' | 'footer'> {
   key?: React.ReactText;

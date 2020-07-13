@@ -18,7 +18,18 @@ class SubMenuItem extends React.PureComponent<SubMenuProps & MenuItemProps, SubM
   }
 
   render(): React.ReactNode {
-    const { text, prefixel, suffixel, subMenu, disabled, danger, ordered, menuItemKey, ...rest } = this.props;
+    const {
+      text,
+      prefixel,
+      suffixel,
+      subMenu,
+      disabled,
+      danger,
+      ordered,
+      menuItemKey,
+      selectedKeys,
+      ...rest
+    } = this.props;
     const { uuidKey } = this.state;
     return (
       <S.SubMenuItem
@@ -33,7 +44,11 @@ class SubMenuItem extends React.PureComponent<SubMenuProps & MenuItemProps, SubM
         disabled={disabled}
         tabIndex={!disabled ? 0 : -1}
         {...rest}
-        className="ds-menu-item"
+        className={
+          !!menuItemKey && selectedKeys.includes(menuItemKey as string)
+            ? 'ds-menu-item ant-menu-item-selected '
+            : 'ds-menu-item '
+        }
       >
         {Boolean(subMenu) &&
           // eslint-disable-next-line @typescript-eslint/ban-ts-ignore

@@ -25,6 +25,7 @@ const MenuItem: React.FC<SubMenuProps & MenuItemProps> = props => {
     indentLevel,
     onItemHover,
     onClick,
+    menuItemKey,
     ...rest
   } = props;
   if (subMenu) {
@@ -41,6 +42,7 @@ const MenuItem: React.FC<SubMenuProps & MenuItemProps> = props => {
         subMenu={subMenu}
         onItemHover={onItemHover || NOOP}
         onClick={onClick || NOOP}
+        menuItemKey={menuItemKey}
         {...rest}
       />
     );
