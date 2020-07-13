@@ -38,6 +38,7 @@ import Description, {DescriptionRow} from '@synerise/ds-description';
 | Property  | Description                                            | Type                    | Default |
 | ---       | ---                                                    | ---                     | ---     |
 | label     | Label of description row                               | string                  | -       |
+| labelIcon | Icon visible before row label                         | React.ReactNode         | -       |
 | value     | Value of description row                               | string, React.ReactNode | -       |
 | prefixEl  | Element rendered before value                          | string, React.ReactNode | -       |
 | suffixEl  | Element rendered after value                           | string, React.ReactNode | -       |
