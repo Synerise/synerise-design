@@ -1,5 +1,3 @@
-import { range } from '@synerise/ds-date-picker/dist/utils';
-
 export const SECONDS = 'SECONDS';
 export const MINUTES = 'MINUTES';
 export const HOURS = 'HOURS';
@@ -13,6 +11,14 @@ export const RELATIVE_OFFSET_MAX = 999999;
 export const RELATIVE_DURATION_MAX = 999999;
 export const RELATIVE_TYPES = [SECONDS, MINUTES, HOURS, DAYS, WEEKS, MONTHS, YEARS];
 export const ALL_TIME_DURATION = { type: YEARS, value: 1000 };
+
+export const range = (start: number, end: number): number[] => {
+  if (end <= start) {
+    return [];
+  }
+  const size = end - start;
+  return [...Array(size).keys()].map(i => i + start);
+};
 
 export const DURATION_MODIFIERS = {
   LAST: 'TIMESTAMP_LAST',
