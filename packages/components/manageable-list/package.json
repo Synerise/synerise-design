@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-manageable-list",
-  "version": "0.13.2",
+  "version": "0.13.3",
   "description": "ManageableList UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -25,15 +25,15 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-button": "^0.12.20",
-    "@synerise/ds-icon": "^0.20.0",
-    "@synerise/ds-list": "^0.5.2",
-    "@synerise/ds-menu": "^0.5.11",
-    "@synerise/ds-popconfirm": "^0.4.22",
-    "@synerise/ds-tags": "^0.2.91",
-    "@synerise/ds-tooltip": "^0.7.8",
+    "@synerise/ds-button": "^0.12.21",
+    "@synerise/ds-icon": "^0.20.1",
+    "@synerise/ds-list": "^0.5.3",
+    "@synerise/ds-menu": "^0.5.12",
+    "@synerise/ds-popconfirm": "^0.4.23",
+    "@synerise/ds-tags": "^0.2.92",
+    "@synerise/ds-tooltip": "^0.7.9",
     "@synerise/ds-typography": "^0.8.3",
-    "@synerise/ds-utils": "^0.8.28"
+    "@synerise/ds-utils": "^0.8.29"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

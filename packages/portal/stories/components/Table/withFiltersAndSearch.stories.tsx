@@ -8,9 +8,15 @@ import {
   AddM,
   DuplicateM,
   EditM,
-  FileDownloadM, FilterM, Grid2M,
+  FileDownloadM,
+  FilterM,
+  Grid2M,
   OptionHorizontalM,
-  TrashM, VarTypeBooleanM, VarTypeDateM, VarTypeListM, VarTypeNumberM,
+  TrashM,
+  VarTypeBooleanM,
+  VarTypeDateM,
+  VarTypeListM,
+  VarTypeNumberM,
 } from '@synerise/ds-icon/dist/icons';
 import Table from '@synerise/ds-table';
 import Button from '@synerise/ds-button';
@@ -31,8 +37,8 @@ import VarTypeStringM from '@synerise/ds-icon/dist/icons/VarTypeStringM';
 import Tooltip from '@synerise/ds-tooltip';
 import { ItemType } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.types';
 
-const decorator = (storyFn) => (
-  <div style={{ padding: 20, width: '100vw', minWidth: '100%', position: 'absolute', top: 0, left: 0}}>
+const decorator = storyFn => (
+  <div style={{ padding: 20, width: '100vw', minWidth: '100%', position: 'absolute', top: 0, left: 0 }}>
     {storyFn()}
   </div>
 );
@@ -41,27 +47,37 @@ const dataSource = [...new Array(55)].map((i, k) => ({
   key: k + 1,
   name: faker.name.findName(),
   active: faker.random.boolean(),
-  country: faker.random.arrayElement([{code: 'us', name: 'USA'}, {code: 'pl', name: 'Poland'}, {code:'de', name: 'Germany'}, {code:'it', name: 'Italy'}, {code: 'es', name: 'Spain'}, {code: 'ru', name: 'Russia'}]),
+  country: faker.random.arrayElement([
+    { code: 'us', name: 'USA' },
+    { code: 'pl', name: 'Poland' },
+    { code: 'de', name: 'Germany' },
+    { code: 'it', name: 'Italy' },
+    { code: 'es', name: 'Spain' },
+    { code: 'ru', name: 'Russia' },
+  ]),
   age: (Math.random() * 50 + 10).toFixed(0),
 }));
 
 const saveFilter = (savedView: SavedView, store) => {
   const id = moment().format('MM-DD-YYYY_HH:mm:ss');
   const newViews = [...store.state.savedViews];
-  newViews[0].items = [...newViews[0].items, {
-    ...EMPTY_VIEW,
-    name: savedView.meta.name,
-    description: savedView.meta.description,
-    columns: [...savedView.columns],
-    id: id,
-    created: moment().format('MM-DD-YYYY HH:mm:ss'),
-  }];
+  newViews[0].items = [
+    ...newViews[0].items,
+    {
+      ...EMPTY_VIEW,
+      name: savedView.meta.name,
+      description: savedView.meta.description,
+      columns: [...savedView.columns],
+      id: id,
+      created: moment().format('MM-DD-YYYY HH:mm:ss'),
+    },
+  ];
 
   store.set({
     selectedView: id,
     savedViews: newViews,
     columns: [...savedView.columns],
-  })
+  });
 };
 
 const removeItem = (props, store): void => {
@@ -69,7 +85,7 @@ const removeItem = (props, store): void => {
     categories: store.state.categories.map(category => ({
       ...category,
       items: category.items.filter(item => item.id !== props.id),
-    }))
+    })),
   });
 };
 
@@ -78,13 +94,13 @@ const editItem = (props, store): void => {
     categories: store.state.categories.map(category => ({
       ...category,
       items: category.items.map(item => {
-        if(item.id === props.id) {
+        if (item.id === props.id) {
           item.name = props.name;
         }
         return item;
       }),
-    }))
-  })
+    })),
+  });
 };
 
 const setSelectedFilter = (props, store): void => {
@@ -120,12 +136,12 @@ const COLUMN_ICONS = {
   number: <VarTypeNumberM />,
   list: <VarTypeListM />,
   boolean: <VarTypeBooleanM />,
-  date: <VarTypeDateM />
+  date: <VarTypeDateM />,
 };
 
-const parameters = COLUMNS.map((column) => ({
+const parameters = COLUMNS.map(column => ({
   text: column.name,
-  icon: COLUMN_ICONS[column.type]
+  icon: COLUMN_ICONS[column.type],
 }));
 
 const recent = dataSource.map(record => ({
@@ -133,24 +149,24 @@ const recent = dataSource.map(record => ({
   filter: 'name',
 }));
 
-const getSuggestions = (value) => {
-  if(value) {
+const getSuggestions = value => {
+  if (value) {
     const paramName = value.toLowerCase();
     const allSuggestions = dataSource.map(record => {
       const value = {
         name: record.name,
         age: record.age,
         status: record.active.toString(),
-        country: record.country.name
+        country: record.country.name,
       };
 
       return {
         text: value[paramName],
-        filter: paramName
-      }
+        filter: paramName,
+      };
     });
     return allSuggestions.reduce((unique, item) => {
-      const exist = unique.find((record) => record.text === item.text);
+      const exist = unique.find(record => record.text === item.text);
       return exist ? unique : [...unique, item];
     }, []);
   }
@@ -159,82 +175,96 @@ const getSuggestions = (value) => {
 
 const stories = {
   default: withState({
-    selectedRows: [],
     categories: CATEGORIES,
-    savedViews: VIEWS,
     columns: COLUMNS,
-    selectedView: undefined,
-    selectedFilter: undefined,
-    savedViewsVisible: false,
     columnManagerVisible: false,
     itemFilterVisible: false,
     modalVisible: false,
-    searchValue: '',
+    savedViews: VIEWS,
+    savedViewsVisible: false,
     searchFilterValue: '',
-    searchSuggestions: []
-  })(({store}) => {
+    searchSuggestions: [],
+    searchValue: '',
+    selectedFilter: undefined,
+    selectedRows: [],
+    selectedView: undefined,
+  })(({ store }) => {
     const { selectedRows, columns } = store.state;
 
-    const handleSelectRow = (selectedRowKeys) => {
-      store.set({selectedRows: selectedRowKeys});
+    const handleSelectRow = selectedRowKeys => {
+      store.set({ selectedRows: selectedRowKeys });
     };
 
     const getColumns = () => {
-      const mappedColumns = columns.filter(column => column.visible).map(column => {
-        switch(column.key){
-          case 'active': {
-            return {
-              ...column,
-              title: column.name,
-              dataIndex: column.key,
-              width: 254,
-              render: (active) => <Tooltip title={active ? 'Switch off' : 'Switch on'} placement="topLeft"><Switch onChange={action('Status change')} checked={active} label='' /></Tooltip>
+      const mappedColumns = columns
+        .filter(column => column.visible)
+        .map(column => {
+          switch (column.key) {
+            case 'active': {
+              return {
+                ...column,
+                title: column.name,
+                dataIndex: column.key,
+                width: 254,
+                render: active => (
+                  <Tooltip title={active ? 'Switch off' : 'Switch on'} placement="topLeft">
+                    <Switch onChange={action('Status change')} checked={active} label="" />
+                  </Tooltip>
+                ),
+              };
             }
-          }
-          case 'country': {
-            return {
-              ...column,
-              title: column.name,
-              dataIndex: column.key,
-              width: 254,
-              render: (country) => <TableCell.FlagLabelCell countryCode={country.code} label={country.name} />
+            case 'country': {
+              return {
+                ...column,
+                title: column.name,
+                dataIndex: column.key,
+                width: 254,
+                render: country => <TableCell.FlagLabelCell countryCode={country.code} label={country.name} />,
+              };
             }
+            default:
+              return {
+                ...column,
+                title: column.name,
+                dataIndex: column.key,
+                width: 254,
+              };
           }
-          default:
-            return {
-              ...column,
-              title: column.name,
-              dataIndex: column.key,
-              width: 254,
-            };
-        }
-      });
+        });
       return [
         ...mappedColumns,
         {
-          render: () => <TableCell.ActionCell>
-            <Dropdown
-              overlay={
-                <Menu style={{padding: 8}}>
-                  <Menu.Item onClick={action('Edit')} prefixel={<Icon component={<EditM />} />}>
-                    Edit
-                  </Menu.Item>
-                  <Menu.Item onClick={action('Duplicate')} prefixel={<Icon component={<DuplicateM />} />}>
-                    Duplicate
-                  </Menu.Item>
-                  <Menu.Item onClick={action('Delete')} type={ItemType.DANGER} prefixel={<Icon component={<TrashM />} />}>
-                    Delete
-                  </Menu.Item>
-                </Menu>
-              }
-              trigger={['click']}>
-              <Button type='ghost' mode='single-icon'>
-                <Icon component={<OptionHorizontalM/>}/>
-              </Button>
-            </Dropdown>
-          </TableCell.ActionCell>
-        }
-      ]};
+          render: () => (
+            <TableCell.ActionCell>
+              <Dropdown
+                overlay={
+                  <Menu style={{ padding: 8 }}>
+                    <Menu.Item onClick={action('Edit')} prefixel={<Icon component={<EditM />} />}>
+                      Edit
+                    </Menu.Item>
+                    <Menu.Item onClick={action('Duplicate')} prefixel={<Icon component={<DuplicateM />} />}>
+                      Duplicate
+                    </Menu.Item>
+                    <Menu.Item
+                      onClick={action('Delete')}
+                      type={ItemType.DANGER}
+                      prefixel={<Icon component={<TrashM />} />}
+                    >
+                      Delete
+                    </Menu.Item>
+                  </Menu>
+                }
+                trigger={['click']}
+              >
+                <Button type="ghost" mode="single-icon">
+                  <Icon component={<OptionHorizontalM />} />
+                </Button>
+              </Dropdown>
+            </TableCell.ActionCell>
+          ),
+        },
+      ];
+    };
 
     const toggleItemFilterVisible = (): void => {
       store.set({ itemFilterVisible: !store.state.itemFilterVisible });
@@ -257,68 +287,71 @@ const stories = {
     };
 
     const filteredDataSource = () => {
-      if(store.state.searchFilterValue && store.state.searchValue) {
+      if (store.state.searchFilterValue && store.state.searchValue) {
         return dataSource.filter(record => {
           const value = {
             name: record.name,
             age: record.age,
             status: record.active.toString(),
-            country: record.country.name
+            country: record.country.name,
           };
           return value[store.state.searchFilterValue.toLowerCase()].includes(store.state.searchValue);
         });
       }
-      return !store.state.searchValue ? dataSource : dataSource.filter(record => {
-        return record.name.toLowerCase().includes(store.state.searchValue.toLowerCase());
-      });
+      return !store.state.searchValue
+        ? dataSource
+        : dataSource.filter(record => {
+            return record.name.toLowerCase().includes(store.state.searchValue.toLowerCase());
+          });
     };
 
     const selectEven = () => {
-      const evenRows = filteredDataSource().map(row => row.key).filter((key, index) => index % 2);
-      store.set({selectedRows: evenRows});
+      const evenRows = filteredDataSource()
+        .map(row => row.key)
+        .filter((key, index) => index % 2);
+      store.set({ selectedRows: evenRows });
     };
-
 
     return (
       <>
         <Table
           title={`${filteredDataSource().length} ${text('Set name of table items', 'results')}`}
           dataSource={filteredDataSource()}
-          tableLayout='fixed'
-          scroll={{x: 1200}}
+          tableLayout="fixed"
+          scroll={{ x: 1200 }}
           columns={getColumns()}
           loading={boolean('Set loading state', false)}
           cellSize={select('Set cells size', CELL_SIZES, CELL_SIZES.default)}
-          headerButton={boolean('Show header button', false) && (
-            <Button type="ghost" mode="icon-label" onClick={action('Header button action')}>
-              <Icon component={<AddM />} />
-              {text('Header button label', 'Add row')}
-            </Button>
-          )}
-          filters={
-            [
-              {
-                key: 'view',
-                icon: <Grid2M />,
-                tooltips: { default: 'Table view', clear: 'Clear view', define: 'Define view', list: 'Saved views' },
-                openedLabel: 'Define',
-                showList: () => store.set({savedViewsVisible: true}),
-                show: () => store.set({columnManagerVisible: true}),
-                handleClear: () => store.set({selectedView: undefined}),
-                selected: selectedView(),
-              },
-              {
-                key: 'filter',
-                icon: <FilterM />,
-                tooltips: { default: 'Filter', clear: 'Clear filter', define: 'Define filter', list: 'Saved filters' },
-                openedLabel: 'Define',
-                showList: () => store.set({itemFilterVisible: true}),
-                show: () => store.set({modalVisible: true}),
-                handleClear: () => store.set({selectedFilter: undefined}),
-                selected: selectedFilter(),
-              }
-            ]
+          headerButton={
+            boolean('Show header button', false) && (
+              <Button type="ghost" mode="icon-label" onClick={action('Header button action')}>
+                <Icon component={<AddM />} />
+                {text('Header button label', 'Add row')}
+              </Button>
+            )
           }
+          filters={[
+            {
+              key: 'view',
+              icon: <Grid2M />,
+              tooltips: { default: 'Table view', clear: 'Clear view', define: 'Define view', list: 'Saved views' },
+              openedLabel: 'Define',
+              showList: () => store.set({ savedViewsVisible: true }),
+              show: () => store.set({ columnManagerVisible: true }),
+              handleClear: () => store.set({ selectedView: undefined }),
+              selected: selectedView(),
+            },
+            {
+              key: 'filter',
+              icon: <FilterM />,
+              tooltips: { default: 'Filter', clear: 'Clear filter', define: 'Define filter', list: 'Saved filters' },
+              openedLabel: 'Define',
+              showList: () => store.set({ itemFilterVisible: true }),
+              show: () => store.set({ modalVisible: true }),
+              handleClear: () => store.set({ selectedFilter: undefined }),
+              selected: selectedFilter(),
+            },
+          ]}
           pagination={{
             showSizeChanger: boolean('Show size changer', true),
             showQuickJumper: boolean('Show quick jumper', true),
@@ -327,72 +360,60 @@ const stories = {
           locale={{
             pagination: {
               items: 'results',
-            }
+            },
           }}
           rowKey={row => row.key}
-          selection={boolean('Enable row selection', false) && {
-            onChange: handleSelectRow,
-            selectedRowKeys: selectedRows,
-            fixed: true,
-            selections: [
-              Table.SELECTION_ALL,
-              Table.SELECTION_INVERT,
-              {
-                key: 'even',
-                label: 'Select even',
-                onClick: selectEven,
-              }
-            ],
-          }}
+          selection={
+            boolean('Enable row selection', false) && {
+              onChange: handleSelectRow,
+              selectedRowKeys: selectedRows,
+              fixed: true,
+              selections: [
+                Table.SELECTION_ALL,
+                Table.SELECTION_INVERT,
+                {
+                  key: 'even',
+                  label: 'Select even',
+                  onClick: selectEven,
+                },
+              ],
+            }
+          }
           itemsMenu={
             <ItemsMenu>
-              <Button onClick={action('Export')} type='secondary' mode='icon-label'>
-                <Icon component={<FileDownloadM/>}/>
+              <Button onClick={action('Export')} type="secondary" mode="icon-label">
+                <Icon component={<FileDownloadM />} />
                 Export
               </Button>
-              <Button onClick={action('Edit')} type='secondary' mode='icon-label'>
-                <Icon component={<EditM/>}/>
+              <Button onClick={action('Edit')} type="secondary" mode="icon-label">
+                <Icon component={<EditM />} />
                 Edit
               </Button>
-              <Button onClick={action('Delete')} type='secondary' mode='icon-label'>
-                <Icon component={<TrashM/>}/>
+              <Button onClick={action('Delete')} type="secondary" mode="icon-label">
+                <Icon component={<TrashM />} />
                 Delete
               </Button>
             </ItemsMenu>
           }
           searchComponent={
             <Search
-              clearTooltip= 'Clear'
-              placeholder= 'Search'
-              width={300}
-              parameters={parameters.slice(0, number('Parameters count', 5))}
-              recent={recent.slice(0, number('Recent count', 5))}
-              suggestions={store.state.searchSuggestions}
-              value={store.state.searchValue}
-              parameterValue={store.state.searchFilterValue}
-              onValueChange={value => {
-                store.set({searchValue: value});
+              clearTooltip="Clear"
+              textLookupConfig={{
+                parameters: 'text',
+                recent: 'text',
+                suggestions: 'text',
               }}
+              filterLookupKey="filter"
               onParameterValueChange={value => {
                 store.set({
                   searchFilterValue: value,
                   searchSuggestions: getSuggestions(value),
                 });
-
               }}
-              recentDisplayProps={{
-                tooltip: 'Recent',
-                title: 'Recent',
-                rowHeight: 32,
-                visibleRows: 3,
-                itemRender: (item: FilterElement) => <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>,
-                divider: (
-                  <div style={{ padding: '12px', paddingBottom: '0px' }}>
-                    {' '}
-                    <Divider dashed={true} />{' '}
-                  </div>
-                ),
+              onValueChange={value => {
+                store.set({ searchValue: value });
               }}
+              parameters={parameters.slice(0, number('Parameters count', 5))}
               parametersDisplayProps={{
                 tooltip: 'Parameters',
                 title: 'Parameters',
@@ -408,37 +429,61 @@ const stories = {
                   </Menu.Item>
                 ),
               }}
+              parameterValue={store.state.searchFilterValue}
+              placeholder="Search"
+              recent={recent.slice(0, number('Recent count', 5))}
+              recentDisplayProps={{
+                tooltip: 'Recent',
+                title: 'Recent',
+                rowHeight: 32,
+                visibleRows: 3,
+                itemRender: (item: FilterElement) => (
+                  <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>
+                ),
+                divider: (
+                  <div style={{ padding: '12px', paddingBottom: '0px' }}>
+                    {' '}
+                    <Divider dashed={true} />{' '}
+                  </div>
+                ),
+              }}
+              suggestions={store.state.searchSuggestions}
               suggestionsDisplayProps={{
                 tooltip: 'Suggestions',
                 title: 'Suggestions',
                 rowHeight: 32,
                 visibleRows: 6,
-                itemRender: (item: FilterElement) => <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>,
+                itemRender: (item: FilterElement) => (
+                  <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>
+                ),
               }}
+              value={store.state.searchValue}
+              width={300}
             />
           }
         />
         <ColumnManager
-          hide={() => store.set({columnManagerVisible: false})}
+          hide={() => store.set({ columnManagerVisible: false })}
           visible={store.state.columnManagerVisible}
           savedViewsVisible={store.state.savedViewsVisible}
-          hideSavedViews={() => store.set({savedViewsVisible: false})}
+          hideSavedViews={() => store.set({ savedViewsVisible: false })}
           columns={store.state.columns}
-          onApply={(columns) => store.set({columns: columns, columnManagerVisible: false})}
-          onSave={(savedView) => saveFilter(savedView, store)}
+          onApply={columns => store.set({ columns: columns, columnManagerVisible: false })}
+          onSave={savedView => saveFilter(savedView, store)}
           itemFilterConfig={{
-            removeItem: (params) => removeItem(params, store),
-            editItem: (params) => editItem(params, store),
-            selectItem: (params) => setSelectedView(params, store),
+            removeItem: params => removeItem(params, store),
+            editItem: params => editItem(params, store),
+            selectItem: params => setSelectedView(params, store),
             duplicateItem: action('duplicate item'),
             selectedItemId: store.state.selectedView,
             categories: store.state.savedViews,
             texts: {
               activateItemTitle: 'By activating this view, you will cancel your unsaved view settings',
-              activate:  'Activate',
+              activate: 'Activate',
               cancel: 'Cancel',
               deleteConfirmationTitle: 'Delete view',
-              deleteConfirmationDescription: 'Deleting this view will permanently remove it from templates library. All tables using this view will be reset.',
+              deleteConfirmationDescription:
+                'Deleting this view will permanently remove it from templates library. All tables using this view will be reset.',
               deleteLabel: 'Delete',
               noResults: 'No results',
               searchPlaceholder: 'Search',
@@ -447,7 +492,7 @@ const stories = {
               itemActionRename: 'Rename',
               itemActionDuplicate: 'Duplicate',
               itemActionDelete: 'Delete',
-            }
+            },
           }}
         />
         <ItemFilter
@@ -460,11 +505,22 @@ const stories = {
           selectedItemId={store.state.selectedFilter}
           categories={store.state.categories}
         />
-        <ModalProxy blank closable onCancel={() => store.set({modalVisible: false})} visible={store.state.modalVisible} size={'small'} footer={null}>
-          <Result type='info' title='In place of this modal you can implement any filter component.' description='This is just an example of filter trigger.' />
+        <ModalProxy
+          blank
+          closable
+          onCancel={() => store.set({ modalVisible: false })}
+          visible={store.state.modalVisible}
+          size={'small'}
+          footer={null}
+        >
+          <Result
+            type="info"
+            title="In place of this modal you can implement any filter component."
+            description="This is just an example of filter trigger."
+          />
         </ModalProxy>
       </>
-    )
+    );
   }),
 };
 
