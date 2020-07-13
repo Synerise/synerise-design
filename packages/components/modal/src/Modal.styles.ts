@@ -26,7 +26,7 @@ export const Title = styled(Typography.Title)`
   }
 `;
 
-export const Description = styled(Typography.Text)`
+export const Description = styled.div`
   font-weight: normal;
   display: block;
   padding: 12px 0 0;

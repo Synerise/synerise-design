@@ -5,6 +5,7 @@ import Copy from './Copy';
 
 export interface DescriptionRowProps {
   label: string | React.ReactNode;
+  labelIcon?: React.ReactNode;
   value: React.ReactNode;
   prefixEl?: string | React.ReactNode;
   suffixEl?: string | React.ReactNode;
@@ -18,6 +19,7 @@ export interface DescriptionRowProps {
 
 const DescriptionRow: React.FC<DescriptionRowProps> = ({
   label,
+  labelIcon,
   value,
   prefixEl,
   suffixEl,
@@ -27,7 +29,10 @@ const DescriptionRow: React.FC<DescriptionRowProps> = ({
 }) => {
   return (
     <S.RowWrapper copyable={Boolean(copyValue)}>
-      <S.RowLabel className="ds-description-label">{label}</S.RowLabel>
+      <S.RowLabel className="ds-description-label">
+        {labelIcon}
+        {label}
+      </S.RowLabel>
       <S.RowValue>
         {starType !== undefined && <Star starType={starType} hasPrefixEl={Boolean(prefixEl)} />}
         {prefixEl && <S.PrefixWrapper className="ds-description-prefix">{prefixEl}</S.PrefixWrapper>}

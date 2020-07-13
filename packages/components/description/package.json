@@ -30,7 +30,8 @@
     "@synerise/ds-core": "^0.15.2",
     "@synerise/ds-icon": "^0.20.1",
     "@synerise/ds-tooltip": "^0.7.9",
-    "@synerise/ds-typography": "*"
+    "@synerise/ds-typography": "*",
+    "classnames": "^2.2.6"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

@@ -1,4 +1,5 @@
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
+import { IconContainer } from '@synerise/ds-icon/dist/Icon.styles';
 
 export const RowLabel = styled.span`
   display: flex;
@@ -9,6 +10,13 @@ export const RowLabel = styled.span`
   line-height: 1.38;
   color: ${(props): string => props.theme.palette['grey-600']};
   font-weight: normal;
+  ${IconContainer} {
+    margin-right: 4px;
+    svg {
+      color: ${(props): string => props.theme.palette['grey-600']};
+      fill: ${(props): string => props.theme.palette['grey-600']};
+    }
+  }
 `;
 
 export const RowValue = styled.div`
@@ -21,6 +29,9 @@ export const RowValue = styled.div`
   color: ${(props): string => props.theme.palette['grey-700']};
   font-weight: 500;
   overflow-x: hidden;
+  .ds-status {
+    margin: 0;
+  }
 `;
 
 export const Copyable = styled.div`
@@ -41,7 +52,6 @@ export const Copyable = styled.div`
 `;
 
 export const RowWrapper = styled.div<{ copyable: boolean }>`
-  padding: 7px 0;
   width: 100%;
   ${Copyable} {
     ${(props): FlattenSimpleInterpolation | false => {
@@ -85,6 +95,7 @@ export const ValueWrapper = styled.span`
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow-x: hidden;
+  width: 100%;
 `;
 
 export const StarWrapper = styled.div<{ hasPrefixEl: boolean }>`

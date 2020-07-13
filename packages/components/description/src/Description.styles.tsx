@@ -1,6 +1,6 @@
 import styled, { FlattenSimpleInterpolation, css } from 'styled-components';
 import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
-import { RowLabel, RowWrapper } from './Row/DescriptionRow.styles';
+import { PrefixWrapper, RowLabel, RowWrapper, SuffixWrapper, ValueWrapper } from './Row/DescriptionRow.styles';
 import { DescriptionRatio, DescriptionType } from './Description';
 
 const getColumnsWidth = (ratio: DescriptionRatio | null = null): string | false => {
@@ -18,11 +18,17 @@ const getColumnsWidth = (ratio: DescriptionRatio | null = null): string | false 
 };
 
 // eslint-disable-next-line import/prefer-default-export
-export const Description = styled.div<{ type: DescriptionType; ratio?: DescriptionRatio }>`
+export const Description = styled.div<{ type: DescriptionType; ratio?: DescriptionRatio; singleRow: boolean }>`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
+  ${PrefixWrapper},
+  ${SuffixWrapper},
+  ${ValueWrapper},
+  ${RowLabel}{
+    padding: ${(props): string => (props.singleRow ? '0' : '7px 0')};
+  }
   ${RowWrapper} {
     ${(props: ThemeProps & { type: DescriptionType; ratio?: DescriptionRatio }): FlattenSimpleInterpolation | false => {
       return props.type === 'table'
