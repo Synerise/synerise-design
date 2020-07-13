@@ -3,7 +3,7 @@ import * as React from 'react';
 import Description, { DescriptionRow } from '@synerise/ds-description';
 import Status from '@synerise/ds-status';
 import { select } from '@storybook/addon-knobs';
-import { AddM, LockM, PlayM, UserM, VarTypeStringM } from '@synerise/ds-icon/dist/icons';
+import { AddM, DuplicateS, LockM, PlayM, UserM, VarTypeStringM } from '@synerise/ds-icon/dist/icons';
 import Icon from '@synerise/ds-icon';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import Avatar from '@synerise/ds-avatar';
@@ -24,27 +24,37 @@ const stories = {
       <div style={{width: 400}}>
         <Description type={select('Select description type', SELECT, 'table')} ratio={select('Select ratio', RATIO, '30-70')}>
           <DescriptionRow label="Label" value={'Value'} />
-          <DescriptionRow label="Author" prefixEl={<Icon component={<UserM />} color={theme.palette['grey-600']} />} value={'James Giles Peterson'} />
-          <DescriptionRow label="User" prefixEl={<Avatar src={imgSrc} size='small' shape='circle' />} value={'James Giles Peterson'} />
-          <DescriptionRow label="Avatar" value={<Badge status='active'><Avatar src={imgSrc} size='small' shape='circle' hasStatus /></Badge>} />
-          <DescriptionRow label="Status" prefixEl={<Badge status='active' outlined dot />} value='Active' />
-          <DescriptionRow label="Country" prefixEl={<DSFlag country={'BR'} />} value={'Brazil'} />
-          <DescriptionRow label="Status" value={<Status label='Draft' type='disabled'/>} />
+          <DescriptionRow label="Author" prefixEl={<Avatar src={imgSrc} size='small' shape='circle' />} value={'James Giles Peterson'} />
+          <DescriptionRow label="Tag" value={<Status label='Draft' type='disabled'/>} />
+          <DescriptionRow label="Author" prefixEl={<Icon component={<UserM />} color={theme.palette['grey-600']} />} value={'James Giles Peterson'} suffixEl={<Button type='ghost' mode='icon-label' onClick={action('Button click')}><Icon component={<AddM />} />Add type</Button>}  />
+          <DescriptionRow label="Label" prefixEl={<Icon component={<UserM />} color={theme.palette['grey-600']} />} value={'James Giles Peterson'} />
+          <DescriptionRow label="Label" value='Value' starType='active' />
+          <DescriptionRow label="Label" value='Value' prefixEl={<Icon component={<VarTypeStringM />} color={theme.palette['grey-600']} />} starType='active' />
           <DescriptionRow label="Action" value={<Switch label={''} checked />} />
+          <DescriptionRow label="Label" value={<Badge status='active'><Avatar iconComponent={<Icon component={<DuplicateS />} color={theme.palette['mars-600']} />} backgroundColor="mars" backgroundColorHue="100" size='small' shape='circle' hasStatus /></Badge>} />
+          <DescriptionRow label="Label" value={<Badge status='active' outlined dot text="Active" />} />
+          <DescriptionRow label="Label" prefixEl={<DSFlag country={'BR'} />} value={'Brazil'} />
           <DescriptionRow label="Status" prefixEl={<Status label='Draft' type='disabled'/>} value={<Icon component={<LockM />} color={theme.palette['grey-500']} />} />
-          <DescriptionRow label="Status" value={<Icon component={<PlayM />} color={theme.palette['green-600']} />} />
-          <DescriptionRow label="Link" prefix={<Icon component={<PlayM />} color={theme.palette['green-600']} />} value={'James Giles Peterson'} suffixEl={<Button type='ghost' mode='icon-label' onClick={action('Button click')}><Icon component={<AddM />} />Add type</Button>} />
+          <DescriptionRow label="Label" value={<Icon component={<PlayM />} color={theme.palette['green-600']} />} />
+          <DescriptionRow label="Label" value={<a href="https://design.synerise.com/" target="_blank">Link</a>} />
           <DescriptionRow label="Copy" prefixEl={<Avatar src={imgSrc} size='small' shape='circle' />} value={'James Giles Peterson'} copyValue={'James Giles Peterson'} texts={{copyTooltip: 'Copy value', copiedTooltip: 'Copied!'}} />
-          <DescriptionRow label="Link" value={<a href="https://design.synerise.com/" target="_blank">Link</a>} />
-          <DescriptionRow label="Star" value='Value' starType='active' />
-          <DescriptionRow label="Star" value='Value' prefixEl={<Icon component={<VarTypeStringM />} color={theme.palette['grey-600']} />} starType='active' />
+        </Description>
+      </div>
+    )
+  },
+  labels: () => {
+    return (
+      <div style={{width: 400}}>
+        <Description type={select('Select description type', SELECT, 'table')} ratio={select('Select ratio', RATIO, '30-70')}>
+          <DescriptionRow label="Label" value={'Value'} />
+          <DescriptionRow label="Label" labelIcon={<Icon component={<UserM />} />} value={'Value'} />
         </Description>
       </div>
     )
   },
   onModal: () => {
     return (
-      <ModalProxy visible title={'Modal header'} closable size={'large'} description={<div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
+      <ModalProxy  visible title={'Modal header'} closable size={'large'} description={<div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
         <div style={{width: '50%', display: 'flex', alignItems: 'center', justifyContent: 'flex-start'}}>
           <Description type='inline'>
             <DescriptionRow label="Performed by:" prefixEl={<Avatar src={imgSrc} size='small' shape='circle' />} value="James Peterson" />
