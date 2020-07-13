@@ -37,11 +37,26 @@
   .@{checkbox-prefix-cls}-inner {
     border-color: @red-600 !important;
     border-width: 2px;
+    box-shadow: 0 2px 4px 0 rgba(181, 189, 195, 0.2);
   }
 
-  .ant-checkbox-checked {
-    .ant-checkbox-inner {
-      background: @red-600 !important;
+  .@{checkbox-prefix-cls}-input:focus + .@{checkbox-prefix-cls}-inner {
+    box-shadow: 0 0 0 1px @red-600;
+  }
+
+  .@{checkbox-prefix-cls}-checked {
+    .@{checkbox-prefix-cls}-inner {
+      border-color: @blue-600 !important;
+    }
+    .@{checkbox-prefix-cls}-input:hover + .@{checkbox-prefix-cls}-inner {
+      border-color: @blue-500;
+      background-color: @blue-500;
+    }
+
+    .@{checkbox-prefix-cls}-input:focus + .@{checkbox-prefix-cls}-inner {
+      border-color: @blue-600;
+      background-color: @blue-500;
+      box-shadow: 0 0 0 1px @blue-600;
 
       &:after {
         left: 20%;
