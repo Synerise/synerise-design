@@ -15,7 +15,6 @@ export interface Props extends WrappedComponentProps {
   value: DateRange;
   forceAbsolute: boolean;
 }
-
 export interface State {
   mode: string;
   value: DateRange;

@@ -64,7 +64,6 @@ class RelativeRangePicker extends React.PureComponent<Props, State> {
   handleTogglingPastRanges = (mode: string | null): void => {
     const { onChange } = this.props;
     const { currentRange } = this.state;
-    // console.log('Mode changes to', mode);
 
     this.setState({ currentGroup: mode }, () => {
       if (currentRange) {
@@ -89,13 +88,11 @@ class RelativeRangePicker extends React.PureComponent<Props, State> {
   handleChange = (value: DateRange): void => {
     const { currentGroup } = this.state;
     const { onChange } = this.props;
-    // console.log('HANDLING CHANGE WITH GROUP', currentGroup);
     const isFuture = value.timestamp && fnsIsAfter(value.timestamp, new Date());
     const changes = {
       ...setFuture(currentGroup === RANGES_MODE.FUTURE || isFuture, value),
       key: undefined,
     };
-    // console.log('CHANGES ARE...', normalizeRange(changes));
     onChange(normalizeRange(changes));
   };
 
@@ -154,7 +151,6 @@ class RelativeRangePicker extends React.PureComponent<Props, State> {
   render(): React.ReactNode {
     const { intl } = this.props;
     const { groupedRanges, currentGroup, currentRange } = this.state;
-    const showCustomForm = currentRange?.key === undefined || currentGroup === 'SINCE';
     if (!currentGroup) return null;
     const ranges =
       groupedRanges && groupedRanges[currentGroup]
@@ -179,7 +175,7 @@ class RelativeRangePicker extends React.PureComponent<Props, State> {
           {this.renderRanges(ranges.visible)}
           {this.renderRangesDropdown(ranges.hidden)}
         </S.Ranges>
-        {showCustomForm && currentRange && !isAbsolute(currentRange) && this.renderCustomRangeForm()}
+        {this.renderCustomRangeForm()}
       </S.Container>
     );
   }

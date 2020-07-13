@@ -3,7 +3,7 @@ import { injectIntl } from 'react-intl';
 import { omitBy, isUndefined } from 'lodash';
 import { Container, Separator, Addon } from './DateRangePicker.styles';
 import RangePicker from './RangePicker/RangePicker';
-import { RELATIVE, ABSOLUTE } from './constants';
+import { RELATIVE, ABSOLUTE, MODES } from './constants';
 import fnsFormat from './dateUtils/format';
 import relativeToAbsolute from './dateUtils/relativeToAbsolute';
 import { Props, State } from './DateRangePicker.types';
@@ -28,32 +28,24 @@ class DateRangePicker extends React.PureComponent<Props, State> {
     super(props);
     // eslint-disable-next-line react/state-in-constructor
     this.state = {
-      mode: 'date',
+      mode: MODES.DATE,
       value: normalizeRange(props.value),
       changed: true,
     };
   }
 
-  getSnapshotBeforeUpdate(prevProps: Readonly<Props>): null {
-    const { value } = this.props;
-    if (prevProps.value !== value) this.setState({ mode: 'date', value: normalizeRange(value), changed: false });
-    return null;
-  }
-
   handleFilterCancel = (): void => {
-    this.setState({ mode: 'date' });
+    this.setState({ mode: MODES.DATE });
   };
 
   handleFilterApply = (filter?: DateFilter): void => {
     const { value } = this.state;
-    this.setState({ mode: 'date', value: { ...value, filter }, changed: true });
+    this.setState({ mode: MODES.DATE, value: { ...value, filter }, changed: true });
   };
 
   handleRangeChange = (range: DateRange): void => {
     const { value } = this.state;
-    // console.log('Incoming range',range);
     const newValue = normalizeRange({ ...range, filter: value.filter });
-    // console.log('New value:...',newValue)
     this.setState({ value: newValue, changed: true });
   };
 
@@ -84,7 +76,7 @@ class DateRangePicker extends React.PureComponent<Props, State> {
   };
 
   handleModalOpenClick = (): void => {
-    this.setState({ mode: 'filter' });
+    this.setState({ mode: MODES.FILTER });
   };
 
   handleRemoveFilterClick = (): void => {
@@ -93,7 +85,7 @@ class DateRangePicker extends React.PureComponent<Props, State> {
 
   handleSwitchMode = (): void => {
     const { mode } = this.state;
-    const updatedMode = mode === 'time' ? 'date' : 'time';
+    const updatedMode = mode === MODES.TIME ? MODES.DATE : MODES.TIME;
     this.setState({ mode: updatedMode });
   };
 
@@ -112,7 +104,7 @@ class DateRangePicker extends React.PureComponent<Props, State> {
     } = this.props;
     const { value, mode, changed } = this.state;
     const { from, to, key } = value;
-    if (mode === 'filter')
+    if (mode === MODES.FILTER)
       return (
         <Container>
           <div>RangeFilter placeholder</div>
@@ -145,11 +137,18 @@ class DateRangePicker extends React.PureComponent<Props, State> {
           expanded
         />
       );
-    if (showFilter) addons.push(<AddonCollapse content={<div>FilterSwitch Placholder</div>} title="Filter" expanded />);
+    if (showFilter)
+      addons.push(
+        <AddonCollapse
+          content={<div>FilterSwitch Placholder</div>}
+          title={intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.FILTER' })}
+          expanded
+        />
+      );
     return (
       <Container className="ds-date-range-picker">
         <RangePicker value={value} onChange={this.handleRangeChange} mode={mode} disabledDate={disabledDate} />
-        {addons.length > 0 && mode !== 'time' && <Separator />}
+        {addons.length > 0 && mode !== MODES.TIME && <Separator />}
         {addons.map(
           (addon, index: number): React.ReactNode => (
             // eslint-disable-next-line react/no-array-index-key
@@ -165,7 +164,7 @@ class DateRangePicker extends React.PureComponent<Props, State> {
           canSwitchMode={isValid}
           message={!validator.valid ? validator.message : null}
           onSwitchMode={this.handleSwitchMode}
-          texts={{ apply: 'Apply' }}
+          texts={{ apply: intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.APPLY' }) }}
           value={value}
         />
       </Container>

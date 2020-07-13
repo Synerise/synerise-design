@@ -197,3 +197,13 @@ export const TIME_OPTIONS = {
   MINUTES: range(0, 60),
   SECONDS: range(0, 60),
 };
+
+export const MODES = {
+  DATE:'date',
+  TIME:'time',
+  FILTER:'filter',
+}
+export const COLUMNS = {
+  LEFT:'left',
+  RIGHT:'right',
+}
