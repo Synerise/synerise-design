@@ -99,9 +99,9 @@ return (
 | ----------------------- | ------------------------------------------------------------------------------------- | --------------- | ------- |
 | placeholder             | Input placeholder                                                                     | string          | -       |
 | clearTooltip            | Clear button tooltip text                                                             | string          | -       |
-| parameters              | Parameters items data diplayed in search dropdown                                     | FilterElement[] | -       |
-| recent                  | Recent items data diplayed in search dropdown                                         | FilterElement[] | -       |
-| suggestions             | Suggestions items data diplayed after picking particular parameter in search dropdown | FilterElement[] | -       |
+| parameters              | Parameters items data displayed in search dropdown                                     | object          | -       |
+| recent                  | Recent items data displayed in search dropdown                                         | object          | -       |
+| suggestions             | Suggestions items data displayed after picking particular parameter in search dropdown | object or undefined or null         | -       |
 | onValueChange           | Callback when input changes                                                           | function        | -       |
 | value                   | The input content value                                                               | string          | -       |
 | parameterValue          | Chosen parameter type                                                                 | string          | -       |
@@ -109,7 +109,9 @@ return (
 | width                   | Width of the search input when expanded                                               | number          | -       |
 | parametersDisplayProps  | An object containing the details of how parameters list should render                 | DataSetProps    | -       |
 | recentDisplayProps      | An object containing the details of how recent items list should render               | DataSetProps    | -       |
-| suggestionsDisplayProps | An object containing the details of how suggestions list should render                | DataSetProps    | -       |
+| suggestionsDisplayProps | An object containing the details of how suggestions list should render                | DataSetProps or undefined or null    | -       |
+| filterLookupKey         | key in parameter item object for displaying parameter label in input                  | string          | -       |
+| textLookupConfig        | config of keys for lookup in different datasets                                       | { parameters: string; recent: string; suggestions: string}    | -       |
 
 ### DataSetProps
 
@@ -119,16 +121,8 @@ return (
 | tooltip     | Tooltip of the item list, displayed when hovering on the icon next to the title | string       | -       |
 | rowHeight   | Height of item in the list                                                      | number       | -       |
 | visibleRows | Number of rows visible in the list                                              | string       | -       |
-| itemRender  | Function rendering single item of the list                                      | function     | -       |
+| itemRender  | Function rendering single item of the list                                      | (item: object) => JSX.Element     | -       |
 | divider     | ReactElement displayed at the bottom of the list                                | ReactElement | -       |
-
-### FilterElement
-
-| Property | Description                                              | Type   | Default |
-| -------- | -------------------------------------------------------- | ------ | ------- |
-| text     | Text value of the filter - e.g. "Bangkok"                | string | -       |
-| filter   | Key used for filtering data - e.g. "City"                | string | -       |
-| icon     | Icon displayed in the search input when filter is chosen | string | -       |
 
 ## Search usage
 

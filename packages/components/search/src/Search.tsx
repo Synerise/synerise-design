@@ -6,7 +6,7 @@ import { MenuItemProps } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.typ
 
 import { hasSomeElement, getAllElementsFiltered, hasSomeElementFiltered } from './Elements/utils/searchUtils';
 import * as S from './Search.styles';
-import { FilterElement, SearchProps, SearchState, SelectResultDataKeys } from './Search.types';
+import { SearchProps, SearchState, SelectResultDataKeys } from './Search.types';
 import { SearchInput } from './Elements';
 import SearchItemsContainer from './Elements/SearchItemsContainer/SearchItemsContainer';
 
@@ -187,7 +187,7 @@ class Search extends React.PureComponent<SearchProps<{}>, SearchState<{}>> {
           displayProps={recentDisplayProps}
           onItemClick={
             ((item: object): void => this.selectResult(item, SelectResultDataKeys.RECENT)) as (
-              e: MenuItemProps | FilterElement
+              e: MenuItemProps | object
             ) => void
           }
           highlight={value}
@@ -211,11 +211,10 @@ class Search extends React.PureComponent<SearchProps<{}>, SearchState<{}>> {
       hasSomeElement(filteredParameters) && (
         <SearchItemsContainer
           displayProps={parametersDisplayProps}
-          onItemClick={((item: object): void => this.selectFilter(item)) as (e: MenuItemProps | FilterElement) => void}
+          onItemClick={((item: object): void => this.selectFilter(item)) as (e: MenuItemProps | object) => void}
           highlight={value}
           data={filteredParameters}
           width={itemsListWidth}
-          listProps={{ autoHeight: true }}
         />
       )
     );
@@ -236,7 +235,7 @@ class Search extends React.PureComponent<SearchProps<{}>, SearchState<{}>> {
           displayProps={suggestionsDisplayProps}
           onItemClick={
             ((item: object): void => this.selectResult(item, SelectResultDataKeys.SUGGESTIONS)) as (
-              e: MenuItemProps | FilterElement
+              e: MenuItemProps | object
             ) => void
           }
           highlight={value}
