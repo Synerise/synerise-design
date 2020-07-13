@@ -17,6 +17,11 @@ const PARAMETERS_TITLE = 'parameters';
 const RECENT_TITLE = 'recent';
 const INPUT_VALUE = 'input value';
 const FILTER_VALUE = 'input value';
+const textLookupConfig = {
+  parameters: 'text',
+  recent: 'text',
+  suggestions: 'text',
+};
 
 const parametersDisplayProps = {
   tooltip: 'Parameters',
@@ -49,7 +54,7 @@ describe('Search with dropdown', () => {
     // ARRANGE
     const { getByPlaceholderText } = renderWithProvider(
       <Search
-        clearTooltip={'clear'}
+        clearTooltip="clear"
         parameters={parametersList}
         placeholder={PLACEHOLDER}
         recent={recent}
@@ -61,6 +66,7 @@ describe('Search with dropdown', () => {
         parametersDisplayProps={parametersDisplayProps}
         recentDisplayProps={recentDisplayProps}
         suggestionsDisplayProps={suggestionsDisplayProps}
+        textLookupConfig={textLookupConfig}
         width={200}
       />
     );
@@ -85,6 +91,7 @@ describe('Search with dropdown', () => {
         parametersDisplayProps={parametersDisplayProps}
         recentDisplayProps={recentDisplayProps}
         suggestionsDisplayProps={suggestionsDisplayProps}
+        textLookupConfig={textLookupConfig}
         width={200}
       />
     );
@@ -114,6 +121,7 @@ describe('Search with dropdown', () => {
         parametersDisplayProps={parametersDisplayProps}
         recentDisplayProps={recentDisplayProps}
         suggestionsDisplayProps={suggestionsDisplayProps}
+        textLookupConfig={textLookupConfig}
         width={200}
       />
     );
@@ -146,6 +154,7 @@ describe('Search with dropdown', () => {
         parametersDisplayProps={parametersDisplayProps}
         recentDisplayProps={recentDisplayProps}
         suggestionsDisplayProps={suggestionsDisplayProps}
+        textLookupConfig={textLookupConfig}
         width={200}
       />
     );
@@ -175,6 +184,7 @@ describe('Search with dropdown', () => {
           parametersDisplayProps={parametersDisplayProps}
           recentDisplayProps={recentDisplayProps}
           suggestionsDisplayProps={suggestionsDisplayProps}
+          textLookupConfig={textLookupConfig}
           width={200}
         />
       </div>
@@ -205,6 +215,7 @@ describe('Search with dropdown', () => {
           parametersDisplayProps={parametersDisplayProps}
           recentDisplayProps={recentDisplayProps}
           suggestionsDisplayProps={suggestionsDisplayProps}
+          textLookupConfig={textLookupConfig}
           width={200}
         />
       </div>
@@ -235,6 +246,7 @@ describe('Search with dropdown', () => {
           parametersDisplayProps={parametersDisplayProps}
           recentDisplayProps={recentDisplayProps}
           suggestionsDisplayProps={suggestionsDisplayProps}
+          textLookupConfig={textLookupConfig}
           width={200}
         />
       </div>
