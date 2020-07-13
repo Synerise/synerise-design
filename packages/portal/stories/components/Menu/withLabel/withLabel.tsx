@@ -16,5 +16,5 @@ const withLabel = () => {
     ...defaultProps,
   } as object;
   return decorator(props);
-}
+};
 export default withLabel;

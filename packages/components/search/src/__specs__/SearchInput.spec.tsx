@@ -24,13 +24,14 @@ describe('SearchInput component', () => {
         onKeyDown={onKeyDown}
         onClick={onClick}
         onToggle={onToggle}
-      />);
+      />
+    );
     // ASSERT
     expect(getByPlaceholderText(PLACEHOLDER)).toBeTruthy();
   });
   it('should set value', () => {
     // ARRANGE
-    const { getByPlaceholderText,getByTestId } = renderWithProvider(
+    const { getByPlaceholderText, getByTestId } = renderWithProvider(
       <SearchInput
         clearTooltip={'clear'}
         placeholder={PLACEHOLDER}
@@ -40,7 +41,8 @@ describe('SearchInput component', () => {
         onKeyDown={onKeyDown}
         onClick={onClick}
         onToggle={onToggle}
-      />);
+      />
+    );
     // ASSERT
     const btn = getByTestId('btn') as HTMLElement;
     // ACT
@@ -63,7 +65,8 @@ describe('SearchInput component', () => {
         onKeyDown={onKeyDown}
         onClick={onClick}
         onToggle={onToggle}
-      />);
+      />
+    );
     // ASSERT
     const btn = getByTestId('btn') as HTMLElement;
     // ACT
@@ -87,7 +90,8 @@ describe('SearchInput component', () => {
         onKeyDown={onKeyDown}
         onClick={onClick}
         onToggle={onToggle}
-      />);
+      />
+    );
     // ASSERT
     const input = getByPlaceholderText(PLACEHOLDER) as HTMLInputElement;
     // ACT
@@ -98,7 +102,7 @@ describe('SearchInput component', () => {
 
   it('should have onClear callback', () => {
     // ARRANGE
-    const { getByPlaceholderText,getByTestId } = renderWithProvider(
+    const { getByPlaceholderText, getByTestId } = renderWithProvider(
       <SearchInput
         clearTooltip={'clear'}
         placeholder={PLACEHOLDER}
@@ -108,7 +112,8 @@ describe('SearchInput component', () => {
         onKeyDown={onKeyDown}
         onClick={onClick}
         onToggle={onToggle}
-      />);
+      />
+    );
     const btn = getByTestId('btn') as HTMLInputElement;
     const input = getByPlaceholderText(PLACEHOLDER) as HTMLInputElement;
     // ACT
@@ -120,7 +125,7 @@ describe('SearchInput component', () => {
   });
   it('should close when clicked outside', () => {
     // ARRANGE
-    const { getByTestId,getByText } = renderWithProvider(
+    const { getByTestId, getByText } = renderWithProvider(
       <div>
         <button>outside</button>
         <SearchInput
@@ -134,7 +139,8 @@ describe('SearchInput component', () => {
           onToggle={onToggle}
           closeOnClickOutside={true}
         />
-      </div>);
+      </div>
+    );
     const btn = getByTestId('btn') as HTMLInputElement;
     // ACT
     btn.click();

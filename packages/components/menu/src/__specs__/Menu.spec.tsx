@@ -76,9 +76,7 @@ describe('Menu with nested items', () => {
   });
   it('should display many children from different parents at the same time', () => {
     // ARRANGE
-    const { getAllByText,queryAllByText } = renderWithProvider(
-      <Menu dataSource={data} />
-    );
+    const { getAllByText, queryAllByText } = renderWithProvider(<Menu dataSource={data} />);
     const firstParent = queryAllByText(
       (_, element) => element.textContent === 'Option 3' && element.className === 'ant-menu-submenu-title'
     )[0] as HTMLElement;

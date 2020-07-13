@@ -30,7 +30,6 @@ const stories = {
     searchValue: '',
     selectedRows: [],
   })(({ store }) => {
-
     const filteredDataSource = () => {
       return !store.state.searchValue
         ? dataSource
@@ -39,18 +38,19 @@ const stories = {
           });
     };
 
-    const handleSelectRow = (selectedRowKeys) => {
+    const handleSelectRow = selectedRowKeys => {
       store.set({ selectedRows: selectedRowKeys });
     };
 
     const selectEven = () => {
-      const evenRows = filteredDataSource().map(row => row.key).filter((key, index) => index % 2);
-      store.set({selectedRows: evenRows});
+      const evenRows = filteredDataSource()
+        .map(row => row.key)
+        .filter((key, index) => index % 2);
+      store.set({ selectedRows: evenRows });
     };
 
-
     return (
-      <div style={{width: 792}}>
+      <div style={{ width: 792 }}>
         <VirtualTable
           scroll={{ y: 500, x: 0 }}
           initialWidth={792}
@@ -59,12 +59,14 @@ const stories = {
           columns={columns}
           cellHeight={50}
           rowKey={row => row.key}
-          headerButton={boolean('Show header button', false) && (
-            <Button type="ghost" mode="icon-label" onClick={action('Header button action')}>
-              <Icon component={<AddM />} />
-              {text('Header button label', 'Add row')}
-            </Button>
-          )}
+          headerButton={
+            boolean('Show header button', false) && (
+              <Button type="ghost" mode="icon-label" onClick={action('Header button action')}>
+                <Icon component={<AddM />} />
+                {text('Header button label', 'Add row')}
+              </Button>
+            )
+          }
           selection={{
             onChange: handleSelectRow,
             selectedRowKeys: store.state.selectedRows,
@@ -75,7 +77,7 @@ const stories = {
                 key: 'even',
                 label: 'Select even',
                 onClick: selectEven,
-              }
+              },
             ],
           }}
           onRowClick={record => {
@@ -85,11 +87,11 @@ const stories = {
           }}
           searchComponent={
             <SearchInput
-              placeholder='Search'
-              clearTooltip='Clear'
+              placeholder="Search"
+              clearTooltip="Clear"
               onChange={value => {
                 console.log('value', value);
-                store.set({searchValue: value});
+                store.set({ searchValue: value });
               }}
               value={store.state.searchValue}
               onClear={() => {

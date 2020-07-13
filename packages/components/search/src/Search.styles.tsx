@@ -1,5 +1,4 @@
 import styled, { keyframes } from 'styled-components';
-import { FilterElement } from './Search.types';
 
 const LABEL_LEFT_OFFSET = 7;
 const INPUT_EXPAND_ANIMATION_DURATION = 0.2;
@@ -131,7 +130,7 @@ export const SearchInner = styled.div<{ hasValue: boolean; alwaysHighlight?: boo
   `}
 `;
 
-export const SearchInputContent = styled.div<{ offset: number; filterLabel: FilterElement | null | undefined }>`
+export const SearchInputContent = styled.div<{ offset: number; filterLabel: object | null | undefined }>`
   overflow: hidden;
   direction: rtl;
   transition: width ${INPUT_EXPAND_ANIMATION_DURATION}s ease-in-out;
