@@ -146,7 +146,9 @@
       "YEARS": "Years",
       "TIMESTAMP_LAST": "Last",
       "TIMESTAMP_NEXT": "Next",
-      "TIMESTAMP_TILL": "till"
+      "TIMESTAMP_TILL": "till",
+      "APPLY": "Apply",
+      "NOW": "Now"
     }
   }
 }
