@@ -7,7 +7,7 @@ import Avatar from '@synerise/ds-avatar';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 
 const decorator = storyFn => (
-  <div style={{ display: 'flex', width: '167px', height: '34px', alignItems: 'center' }}>{storyFn()}</div>
+  <div style={{ display: 'flex', width: '192px', height: '34px', alignItems: 'center' }}>{storyFn()}</div>
 );
 
 const statuses = ['active', 'inactive', 'blocked', 'processing', 'warning'] as const;
@@ -70,7 +70,7 @@ const stories = {
             overflowCount={number('overflowCount', 99)}
             outlined={isOutline}
             style={object('style4', {
-              margin: '0 6px 0 6px',
+              margin: '0 4px 0 6px',
               backgroundColor: theme.palette['grey-500'],
               color: theme.palette['white'],
               alignItems: 'center',
@@ -105,6 +105,18 @@ const stories = {
               }}
             />
           </div>
+          <Badge
+            count={number('count', 1)}
+            overflowCount={number('overflowCount', 99)}
+            outlined={isOutline}
+            style={object('style6', {
+              margin: '0 11px 0 4px',
+              backgroundColor: 'transparent',
+              color: theme.palette['white'],
+              alignItems: 'center',
+            })}
+          />
+          <br />
         </div>
       </React.Fragment>
     );
