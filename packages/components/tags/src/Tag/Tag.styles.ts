@@ -27,15 +27,15 @@ type InsertShapeStyles = {
 
 const getWidthOnHover = (props: InsertShapeStyles): string => {
   if ((props.suffixel && props.preffixel) || props.hasImage) {
-    return 'calc(100% - 50px)';
+    return 'calc(100% - 23px)';
   }
   if (props.preffixel) {
     return 'calc(100% - 35px)';
   }
   if (props.suffixel) {
-    return 'calc(100% - 28px)';
+    return 'calc(100% - 4px)';
   }
-  return 'calc(100% - 16px)';
+  return 'calc(100% - 10px)';
 };
 const addonStyles = (props: ThemeProps): string => `
   border: 1px solid;
@@ -62,7 +62,7 @@ export const RemoveButton = styled.div`
   padding: 0;
   border: none;
   outline: none;
-  margin: 3px 3px 3px 0;
+  margin: 3px 3px 3px 5px;
   text-align: center;
   cursor: pointer;
   position: relative;
@@ -138,13 +138,13 @@ const insertShapeStyles = (props: InsertShapeStyles): FlattenSimpleInterpolation
         ${props.isActionable &&
           css`
             &:hover {
-              padding-right: ${props.removable && props.suffixel && '15px'};
+              padding: ${props.removable && props.suffixel && '0 15px 0 0px'};
 
               ${TagName} {
                 display: inline-block;
                 padding: ${props.removable ? '0 7px 0 12px' : '0'};
                 padding-left: ${props.removable && props.preffixel && '4px'};
-                padding-right: ${props.removable && props.suffixel && '4px'};
+                padding-right: ${props.removable && props.suffixel && '11px'};
                 width: ${getWidthOnHover(props)};
               }
               padding-right: ${!props.suffixel && '5px'};
@@ -283,6 +283,8 @@ export const PrefixWrapper = styled.div`
 export const SuffixWrapper = styled.div`
   ${(props): string => addonStyles(props)};
 `;
+export const DefaultSuffixWrapper = styled.div``;
+export const DefaultPrefixWrapper = styled.div``;
 
 export const Tag = styled.div<TagProps>`
   position: relative;
@@ -330,6 +332,9 @@ export const Tag = styled.div<TagProps>`
     !!props.isActionable &&
     css`
       &:hover {
+      ${SuffixWrapper},${DefaultSuffixWrapper}{
+      display:none;
+      }
         ${RemoveButton} {
           position: absolute;
           top: 0;
@@ -342,11 +347,12 @@ export const Tag = styled.div<TagProps>`
   &:last-of-type {
     margin-right: 0;
   }
-  ${SuffixWrapper} {
-    margin: ${(props): string => (!props.removable && props.suffixel ? '0px -7px 0px 4px' : '0 5px 0 1px')};
+  ${SuffixWrapper},${DefaultSuffixWrapper} {
+    margin: ${(props): string => (!props.removable && props.suffixel ? '0px -9px 3px 5px' : '0 3px 3px 1px')};
+    
   }
-  ${PrefixWrapper} {
-    margin: ${(props): string => (!props.removable && props.preffixel ? '0px 6px 0px -7px' : '0 2px 0 4px')};
+  ${PrefixWrapper},${DefaultPrefixWrapper} {
+    margin: ${(props): string => (!props.removable && props.preffixel ? '0px 5px 3px -9px' : '0 1px 3px 3px')};
   }
 `;
 

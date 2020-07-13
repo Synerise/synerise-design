@@ -47,13 +47,13 @@ const Tag: React.FC<Props> = ({
     if (typeof prefixel === 'string' || typeof prefixel === 'number') {
       return <S.PrefixWrapper>{prefixel}</S.PrefixWrapper>;
     }
-    return prefixel;
+    return <S.DefaultPrefixWrapper>{prefixel}</S.DefaultPrefixWrapper>;
   };
   const renderSuffixel = (): React.ReactNode => {
     if (typeof suffixel === 'string' || typeof suffixel === 'number') {
       return <S.SuffixWrapper>{suffixel}</S.SuffixWrapper>;
     }
-    return suffixel;
+    return <S.DefaultSuffixWrapper>{suffixel}</S.DefaultSuffixWrapper>;
   };
 
   return (
