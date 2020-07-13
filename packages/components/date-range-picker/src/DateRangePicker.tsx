@@ -34,10 +34,10 @@ class DateRangePicker extends React.PureComponent<Props, State> {
     };
   }
 
-  // eslint-disable-next-line react/no-deprecated
-  componentWillReceiveProps({ value: newValue }: Props): void {
+  getSnapshotBeforeUpdate(prevProps: Readonly<Props>): null {
     const { value } = this.props;
-    if (newValue !== value) this.setState({ mode: 'date', value: normalizeRange(newValue), changed: false });
+    if (prevProps.value !== value) this.setState({ mode: 'date', value: normalizeRange(value), changed: false });
+    return null;
   }
 
   handleFilterCancel = (): void => {
