@@ -25,6 +25,7 @@ const stories = {
     >
       <Checkbox
         disabled={boolean('Disabled', false)}
+        hasError={boolean('Has error', false)}
         indeterminate={boolean('Set indeterminate state of checkbox', false)}
         description={text('Set description', 'Description')}
         errorText={text('Set error message', '')}
@@ -34,6 +35,7 @@ const stories = {
       </Checkbox>
       <Checkbox
         disabled={boolean('Disabled', false)}
+        hasError={boolean('Has error', false)}
         indeterminate={boolean('Set indeterminate state of checkbox', false)}
         description={text('Set description', 'Description')}
         errorText={text('Set error message', '')}
