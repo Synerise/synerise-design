@@ -13,17 +13,14 @@ import fnsMax from 'date-fns/max';
 // @ts-ignore
 import fnsIsWithinRange from 'date-fns/is_within_range';
 
-import MonthPicker from '@synerise/ds-date-picker/dist/Elements/MonthPicker/MonthPicker';
+import { MonthPicker, YearPicker, TimePicker, DayPicker } from '@synerise/ds-date-picker';
 import MomentLocaleUtils from 'react-day-picker/moment';
-
-import YearPicker from '@synerise/ds-date-picker/dist/Elements/YearPicker/YearPicker';
-import TimePicker from '@synerise/ds-date-picker/dist/Elements/TimePicker/TimePicker';
 import {
   DayBackground,
   DayForeground,
   DayText,
 } from '@synerise/ds-date-picker/dist/Elements/DayPicker/DayPicker.styles';
-import DayPicker from '@synerise/ds-date-picker/dist/Elements/DayPicker/DayPicker';
+
 import { fnsStartOfDay, fnsEndOfDay, fnsIsSameMonth, fnsIsAfter } from '../fns';
 import { Side, Sides } from './RangePicker.styles';
 import { ABSOLUTE } from '../constants';
@@ -44,10 +41,10 @@ export default class RangePicker extends React.PureComponent<Props, State> {
     };
   }
 
-  // eslint-disable-next-line react/no-deprecated
-  componentWillReceiveProps({ value: newValue }: Props): void {
+  getSnapshotBeforeUpdate(prevProps: Readonly<Props>): null {
     const { value } = this.props;
-    if (value !== newValue) this.setState(getSidesState(value));
+    if (value !== prevProps.value) this.setState(getSidesState(value));
+    return null;
   }
 
   handleDayMouseEnter = (day: Date): void => {
@@ -120,7 +117,7 @@ export default class RangePicker extends React.PureComponent<Props, State> {
       <YearPicker
         key={`year_picker_${side}`}
         value={month instanceof Date ? month : new Date(month)}
-        onChange={(m): void => this.handleSideMonthChange(side, m, 'date')}
+        onChange={(m: Date): void => this.handleSideMonthChange(side, m, 'date')}
       />
     );
   };
@@ -134,7 +131,7 @@ export default class RangePicker extends React.PureComponent<Props, State> {
         max={side === 'left' ? ADD.MONTHS(oppositeSide.month, -1) : undefined}
         min={side === 'right' ? ADD.MONTHS(oppositeSide.month, 1) : undefined}
         value={currentSide.month instanceof Date ? currentSide.month : new Date(currentSide.month)}
-        onChange={(month): void => this.handleSideMonthChange(side, month, 'date')}
+        onChange={(month: Date): void => this.handleSideMonthChange(side, month, 'date')}
       />
     );
   };
@@ -174,7 +171,7 @@ export default class RangePicker extends React.PureComponent<Props, State> {
         onDayMouseLeave={this.handleDayMouseLeave}
         onMonthNameClick={(): void => this.handleSideModeChange(side, 'month')}
         onYearNameClick={(): void => this.handleSideModeChange(side, 'year')}
-        onMonthChange={(month): void => this.handleSideMonthChange(side, month, 'date')}
+        onMonthChange={(month: Date): void => this.handleSideMonthChange(side, month, 'date')}
         fixedWeeks
         showOutsideDay
         // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
