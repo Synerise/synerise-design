@@ -4,7 +4,6 @@ import Search from './../Search';
 import { fireEvent } from '@testing-library/dom';
 import VarTypeStringM from '@synerise/ds-icon/dist/icons/VarTypeStringM';
 import Menu from '@synerise/ds-menu';
-import { FilterElement } from '../Search.types';
 
 const parametersList = [{ text: 'City', icon: <VarTypeStringM /> }];
 
@@ -28,21 +27,27 @@ const parametersDisplayProps = {
   title: PARAMETERS_TITLE,
   rowHeight: 32,
   visibleRows: 3,
-  itemRender: (item: FilterElement) => <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>,
+  itemRender: (item: object) => (
+    <Menu.Item onItemHover={(): void => {}}>{item && (item as { text: string }).text}</Menu.Item>
+  ),
 };
 const suggestionsDisplayProps = {
   tooltip: 'Suggest',
   title: SUGGESTIONS_TITLE,
   rowHeight: 32,
   visibleRows: 3,
-  itemRender: (item: FilterElement) => <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>,
+  itemRender: (item: object) => (
+    <Menu.Item onItemHover={(): void => {}}>{item && (item as { text: string }).text}</Menu.Item>
+  ),
 };
 const recentDisplayProps = {
   tooltip: 'Recent',
   title: RECENT_TITLE,
   rowHeight: 32,
   visibleRows: 3,
-  itemRender: (item: FilterElement) => <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>,
+  itemRender: (item: object) => (
+    <Menu.Item onItemHover={(): void => {}}>{item && (item as { text: string }).text}</Menu.Item>
+  ),
 };
 const INPUT_EXPAND_ANIMATION_DURATION = 200;
 const waitForDropdownToExpand = () => new Promise(r => setTimeout(r, INPUT_EXPAND_ANIMATION_DURATION));

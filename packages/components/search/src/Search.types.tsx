@@ -1,17 +1,11 @@
 import * as React from 'react';
 
-export type FilterElement = {
-  text: string;
-  filter?: string;
-  icon?: React.ReactNode;
-};
-
 export type DataSetProps = {
   title: string;
   tooltip: string;
   rowHeight: number;
   visibleRows: number;
-  itemRender: (item: FilterElement) => React.ReactElement;
+  itemRender: (item: object) => JSX.Element;
 };
 
 export type SearchLookupConfig = {
