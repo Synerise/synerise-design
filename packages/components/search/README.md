@@ -111,7 +111,7 @@ return (
 | recentDisplayProps      | An object containing the details of how recent items list should render               | DataSetProps    | -       |
 | suggestionsDisplayProps | An object containing the details of how suggestions list should render                | DataSetProps or undefined or null    | -       |
 | filterLookupKey         | key in parameter item object for displaying parameter label in input                  | string          | -       |
-| textLookupConfig        | config of keys for lookup in different datasets                                       | { parameters: string; recent: string; suggestions: string}    | -       |
+| textLookupConfig        | config of keys for lookup in parameters, recent and suggestions datasets                                      | { parameters: string; recent: string; suggestions: string}    | -       |
 
 ### DataSetProps
 
