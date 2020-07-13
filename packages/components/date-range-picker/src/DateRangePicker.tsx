@@ -147,7 +147,7 @@ class DateRangePicker extends React.PureComponent<Props, State> {
       );
     if (showFilter) addons.push(<AddonCollapse content={<div>FilterSwitch Placholder</div>} title="Filter" expanded />);
     return (
-      <Container>
+      <Container className="ds-date-range-picker">
         <RangePicker value={value} onChange={this.handleRangeChange} mode={mode} disabledDate={disabledDate} />
         {addons.length > 0 && mode !== 'time' && <Separator />}
         {addons.map(

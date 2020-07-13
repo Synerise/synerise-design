@@ -5,7 +5,7 @@ import Button from '@synerise/ds-button';
 import Tooltip from '@synerise/ds-tooltip';
 import { ArrowRightS, CalendarM, ClockM } from '@synerise/ds-icon/dist/icons';
 import Icon from '@synerise/ds-icon';
-import * as moment from 'moment';
+import moment from 'moment';
 import * as S from './Footer.styles';
 import { Props } from './Footer.types';
 
