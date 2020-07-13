@@ -17,7 +17,6 @@ import {
   setOffsetValue,
   setDurationValue,
   GROUPS,
-  TIMESTAMP_MODE,
 } from './utils';
 import { fnsIsAfter } from '../fns';
 import { normalizeRange } from '../utils';
@@ -66,12 +65,13 @@ class RelativeRangePicker extends React.PureComponent<Props, State> {
     const { onChange } = this.props;
     const { currentRange } = this.state;
     // console.log('Mode changes to', mode);
+
     this.setState({ currentGroup: mode }, () => {
       if (currentRange) {
         onChange({
           ...currentRange,
           key: undefined,
-          future: mode === RANGES_MODE.FUTURE || mode === TIMESTAMP_MODE.NEXT,
+          future: mode === RANGES_MODE.FUTURE,
         });
       }
     });
@@ -80,8 +80,10 @@ class RelativeRangePicker extends React.PureComponent<Props, State> {
   handleCustomClick = (): void => {
     const { onChange } = this.props;
     const { currentGroup } = this.state;
-    const sourceRange = getDefaultCustomRange(currentGroup);
-    onChange({ ...sourceRange, key: undefined });
+    if (currentGroup !== RANGES_MODE.SINCE) {
+      const sourceRange = getDefaultCustomRange(currentGroup);
+      onChange({ ...sourceRange, key: undefined });
+    }
   };
 
   handleChange = (value: DateRange): void => {
@@ -112,7 +114,11 @@ class RelativeRangePicker extends React.PureComponent<Props, State> {
 
   handleOffsetValueChange = (value: number | undefined): void => {
     const { currentRange } = this.state;
-    currentRange && value && this.handleChange(setOffsetValue(value, currentRange));
+    if(value) {
+      const changes = setOffsetValue(value, currentRange)
+      currentRange && value && this.handleChange(changes);
+    }
+
   };
 
   handleDurationValueChange = (value: number | undefined): void => {

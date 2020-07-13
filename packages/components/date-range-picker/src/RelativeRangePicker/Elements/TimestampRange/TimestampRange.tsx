@@ -5,71 +5,66 @@ import TimestampDuration from './TimestampDuration/TimestampDuration';
 import { Props } from './TimestampRange.types';
 import ADD from '../../../dateUtils/add';
 import DIFFERENCE from '../../../dateUtils/difference';
-import START_OF from '../../../dateUtils/startOf';
 import { DURATION_MODIFIERS } from '../../../constants';
+import { Relative, Duration } from '../../../date.types';
+import { fnsIsAfter } from '../../../fns';
 
-const TimestampRange: React.FC<Props> = ({
-  currentRange,
-  currentGroup,
-  handleChange,
-  handleDurationValueChange,
-  intl,
-}: Props) => {
-  const [durationModifier, setDurationModifier] = React.useState(DURATION_MODIFIERS.LAST);
-  const { duration } = currentRange;
+const TimestampRange: React.FC<Props> = ({ currentRange, currentGroup, handleChange, intl }: Props) => {
+  const [timestamp, setTimestamp] = React.useState<Date>(new Date());
+  const [durationModifier, setDurationModifier] = React.useState<string>(DURATION_MODIFIERS.LAST);
+  const [durationValue, setDurationValue] = React.useState<number>(1);
+  const [durationUnit, setDurationUnit] = React.useState<string>(currentRange.duration.type);
 
-  const handleRangeChange = (date: Date): void => {
+  const handleRangeChange =(date: Date, duration: Duration): void => {
     const NOW = new Date();
-    let rangeStart, rangeEnd, newOffset, offsetToTimestamp;
+    let rangeStart, newOffset, offsetToTimestamp;
+    const future = fnsIsAfter(date, NOW);
+
     if (durationModifier === DURATION_MODIFIERS.NEXT) {
-      const next = ADD[duration.type](date, 1);
-      rangeStart = date;
-      rangeEnd = ADD[duration.type](START_OF[duration.type](next), 0);
-      newOffset = DIFFERENCE[duration.type](START_OF[duration.type](rangeEnd), NOW);
+      rangeStart = ADD[duration.type](date, Number(future));
+      newOffset = DIFFERENCE[duration.type](NOW, rangeStart);
       offsetToTimestamp = {
         ...currentRange,
-        offset: { type: duration.type, value: newOffset },
+        duration: { type: duration.type, value: duration.value },
+        offset: { type: duration.type, value: newOffset - duration.value },
+        key: undefined,
       };
     }
     if (durationModifier === DURATION_MODIFIERS.LAST) {
-      const next = ADD[duration.type](date, 1);
-      rangeStart = ADD[duration.type](START_OF[duration.type](next), 0);
-      newOffset = DIFFERENCE[duration.type](START_OF[duration.type](rangeStart), NOW);
+      rangeStart = ADD[duration.type](date, Number(future));
+      newOffset = DIFFERENCE[duration.type](NOW, rangeStart);
       offsetToTimestamp = {
         ...currentRange,
-        offset: { type: duration.type, value: -newOffset },
+        duration: { type: duration.type, value: duration.value },
+        offset: { type: duration.type, value: newOffset },
+        key: undefined,
       };
     }
-    // console.log('newOffset', newOffset);
-    // console.log('newOne', offsetToTimestamp);
-    // setModifiedDate(newOne);
     offsetToTimestamp && handleChange(offsetToTimestamp);
   };
-  const getTimestamp = (): Date => {
-    const { from, to } = currentRange;
-    if (durationModifier === DURATION_MODIFIERS.NEXT) {
-      return from === null || from === undefined ? new Date() : (from as Date);
-    }
-    if (durationModifier === DURATION_MODIFIERS.LAST) {
-      return to === null || to === undefined ? new Date() : (to as Date);
-    }
-    return new Date();
-  };
+
+  React.useEffect((): void => {
+    const duration: Duration = { type: durationUnit as Relative, value: durationValue };
+    handleRangeChange(timestamp, duration);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [durationValue, durationModifier, durationUnit, timestamp]);
+
   const renderDatePicker = (): React.ReactNode => {
     return (
       <S.DatePickerWrapper>
         <DatePicker
-          value={getTimestamp()}
+          value={timestamp}
           onApply={(date): void => {
-            date && handleRangeChange(date);
+            date && setTimestamp(date);
           }}
           disabledSeconds={[]}
           disabledHours={[]}
           disabledMinutes={[]}
           texts={{
-            apply: 'Apply',
-            now: 'Now',
+            apply: intl.formatMessage({id:'DS.DATE-RANGE-PICKER.APPLY'}),
+            now: intl.formatMessage({id:'DS.DATE-RANGE-PICKER.NOW'})
           }}
+          showTime
         />
       </S.DatePickerWrapper>
     );
@@ -80,8 +75,14 @@ const TimestampRange: React.FC<Props> = ({
       <TimestampDuration
         currentRange={currentRange}
         currentGroup={currentGroup}
-        handleChange={handleChange}
-        handleDurationValueChange={handleDurationValueChange}
+        value={durationValue}
+        handleDurationValueChange={(val): void => {
+          val && setDurationValue(val);
+        }}
+        onDurationUnitChange={(unit): void => {
+          unit && setDurationUnit(unit as Relative);
+        }}
+        unit={durationUnit}
         intl={intl}
         durationModifier={durationModifier}
         onDurationModifierChange={(modifier): void => {

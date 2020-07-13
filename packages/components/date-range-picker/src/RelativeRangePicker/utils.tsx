@@ -30,10 +30,7 @@ export const RANGES_MODE = {
   FUTURE: 'FUTURE',
   SINCE: 'SINCE',
 };
-export const TIMESTAMP_MODE = {
-  LAST: 'TIMESTAMP_LAST',
-  NEXT: 'TIMESTAMP_NEXT',
-};
+
 export const RANGES_ICON = {
   PAST: <ArrowLeftM />,
   FUTURE: <ArrowRightM />,

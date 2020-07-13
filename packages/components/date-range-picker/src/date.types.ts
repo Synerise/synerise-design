@@ -30,16 +30,18 @@ export interface AbsoluteDateRange extends DateRangeBase {
   type: 'ABSOLUTE';
 }
 
+export interface Duration {
+  type: Relative;
+  value: number;
+}
+
 export interface RelativeDateRange extends DateRangeBase {
   type: 'RELATIVE' | 'SINCE';
   offset: {
     type: Relative;
     value: number;
   };
-  duration: {
-    type: Relative;
-    value: number;
-  };
+  duration: Duration;
   from?: string | Date;
   to?: string | Date;
 }
