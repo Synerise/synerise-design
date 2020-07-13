@@ -27,13 +27,13 @@ const RangeDropdown: React.FC<Props> = ({ ranges, currentRange, intl, onChange }
     <Dropdown overlay={overlay}>
       <S.Range
         type={containsCurrentRange ? 'primary' : 'tertiary'}
-        style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}
+        mode='label-icon'
       >
         {currentRange &&
           intl.formatMessage({
             id: containsCurrentRange ? currentRange.translationKey : 'DS.DATE-RANGE-PICKER.MORE',
           })}
-        <Icon component={<AngleDownS />} style={{ margin: '-2px -8px -2px 0' }} />
+        <Icon component={<AngleDownS />}/>
       </S.Range>
     </Dropdown>
   );
