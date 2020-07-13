@@ -17,7 +17,7 @@ const TimestampDuration: React.FC<Props> = ({
   onDurationModifierChange,
   value,
   onDurationUnitChange,
-  unit
+  unit,
 }) => {
   const durationModiferValues = Object.values(DURATION_MODIFIERS);
   return (
@@ -53,7 +53,7 @@ const TimestampDuration: React.FC<Props> = ({
         <Select
           value={unit}
           dropdownStyle={{ minWidth: '125px' }}
-          onChange={(type): void => onDurationUnitChange(type) }
+          onChange={(type): void => onDurationUnitChange(type as string)}
         >
           {CONST.RELATIVE_TYPES.map(type => (
             <Select.Option key={type} value={type}>

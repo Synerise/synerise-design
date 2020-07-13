@@ -56,7 +56,7 @@ export const InputSelectGroup = styled.div`
     flex: 1;
   }
   .ant-select-selection {
-    background: #f9fafb;
+    background: ${(props): string => props.theme.palette['grey-050']};
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
     font-weight: 500;

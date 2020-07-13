@@ -26,11 +26,11 @@ import {
 import DayPicker from '@synerise/ds-date-picker/dist/Elements/DayPicker/DayPicker';
 import { fnsStartOfDay, fnsEndOfDay, fnsIsSameMonth, fnsIsAfter } from '../fns';
 import { Side, Sides } from './RangePicker.styles';
-import { ABSOLUTE } from '../constants';
+import { ABSOLUTE, COLUMNS, MODES } from '../constants';
 
 import ADD from '../dateUtils/add';
 import { DateFilter } from '../date.types';
-import { Props, State } from './RangePicker.types';
+import { Props, State, Side as SideType } from './RangePicker.types';
 import getDateFromString from '../dateUtils/getDateFromString';
 import { getSidesState, getDisabledTimeOptions } from './utils';
 
@@ -84,7 +84,7 @@ export default class RangePicker extends React.PureComponent<Props, State> {
   };
 
   handleSideMonthChange = (side: 'left' | 'right', month: Date, mode: string): void => {
-    const opposite = side === 'left' ? 'right' : 'left';
+    const opposite = side === COLUMNS.LEFT ? COLUMNS.RIGHT : COLUMNS.LEFT;
     const { state } = this;
     if (fnsIsSameMonth(month, state[opposite])) {
       const dir = fnsIsAfter(month, state[side].month) ? 1 : -1;
@@ -112,7 +112,7 @@ export default class RangePicker extends React.PureComponent<Props, State> {
     );
   };
 
-  renderYearPicker = (side: 'left' | 'right'): React.ReactNode => {
+  renderYearPicker = (side: SideType): React.ReactNode => {
     const { [side]: currentSide } = this.state;
     const { month } = currentSide;
     return (
@@ -124,21 +124,21 @@ export default class RangePicker extends React.PureComponent<Props, State> {
     );
   };
 
-  renderMonthPicker = (side: 'left' | 'right'): React.ReactNode => {
-    const opposite = side === 'left' ? 'right' : 'left';
+  renderMonthPicker = (side: SideType): React.ReactNode => {
+    const opposite: SideType = side === COLUMNS.LEFT ? (COLUMNS.RIGHT as SideType) : (COLUMNS.LEFT as SideType);
     const { [side]: currentSide, [opposite]: oppositeSide } = this.state;
     return (
       <MonthPicker
         key={`month_picker_${opposite}`}
-        max={side === 'left' ? ADD.MONTHS(oppositeSide.month, -1) : undefined}
-        min={side === 'right' ? ADD.MONTHS(oppositeSide.month, 1) : undefined}
+        max={side === COLUMNS.LEFT ? ADD.MONTHS(oppositeSide.month, -1) : undefined}
+        min={side === COLUMNS.RIGHT ? ADD.MONTHS(oppositeSide.month, 1) : undefined}
         value={currentSide.month instanceof Date ? currentSide.month : new Date(currentSide.month)}
         onChange={(month): void => this.handleSideMonthChange(side, month, 'date')}
       />
     );
   };
 
-  renderDatePicker = (side: 'left' | 'right'): React.ReactNode => {
+  renderDatePicker = (side: SideType): React.ReactNode => {
     const { value, disabledDate } = this.props;
     const { enteredTo, left, right, [side]: sideState } = this.state;
     const { from, to, type } = value;
@@ -166,8 +166,8 @@ export default class RangePicker extends React.PureComponent<Props, State> {
         localeUtils={MomentLocaleUtils}
         month={getDateFromString(sideState.month)}
         title={sideState.monthTitle}
-        hideNext={side === 'left' && sidesAreAdjacent}
-        hidePrev={side === 'right' && sidesAreAdjacent}
+        hideNext={side === COLUMNS.LEFT && sidesAreAdjacent}
+        hidePrev={side === COLUMNS.RIGHT && sidesAreAdjacent}
         renderDay={this.renderDay}
         onDayMouseEnter={this.handleDayMouseEnter}
         onDayMouseLeave={this.handleDayMouseLeave}
@@ -189,14 +189,14 @@ export default class RangePicker extends React.PureComponent<Props, State> {
     );
   };
 
-  renderTimePicker = (side: 'left' | 'right'): React.ReactNode => {
+  renderTimePicker = (side: SideType): React.ReactNode => {
     const { value } = this.props;
     const { from, to } = value;
     switch (side) {
-      case 'left': {
+      case COLUMNS.LEFT: {
         return (
           <TimePicker
-            key={`left_time_${side}`}
+            key={`time-picker-${side}`}
             value={getDateFromString(from)}
             onChange={this.handleFromTimeChange}
             disabledHours={getDisabledTimeOptions(from, 'HOURS', null, to)}
@@ -205,10 +205,10 @@ export default class RangePicker extends React.PureComponent<Props, State> {
           />
         );
       }
-      case 'right': {
+      case COLUMNS.RIGHT: {
         return (
           <TimePicker
-            key={`right_time_${side}`}
+            key={`time-picker-${side}`}
             value={getDateFromString(to)}
             onChange={this.handleToTimeChange}
             disabledHours={getDisabledTimeOptions(to, 'HOURS', from, null)}
@@ -222,10 +222,10 @@ export default class RangePicker extends React.PureComponent<Props, State> {
     }
   };
 
-  renderSide = (side: 'left' | 'right'): React.ReactNode | null => {
+  renderSide = (side: SideType): React.ReactNode | null => {
     const { mode } = this.props;
     const { [side]: sideState } = this.state;
-    if (mode === 'time') return this.renderTimePicker(side);
+    if (mode === MODES.TIME) return this.renderTimePicker(side);
     switch (sideState.mode) {
       case 'date':
         return this.renderDatePicker(side);
@@ -241,9 +241,9 @@ export default class RangePicker extends React.PureComponent<Props, State> {
   render(): JSX.Element {
     const { mode } = this.props;
     return (
-      <Sides bordered={mode === 'time'}>
-        <Side>{this.renderSide('left')}</Side>
-        <Side>{this.renderSide('right')}</Side>
+      <Sides bordered={mode === MODES.TIME}>
+        <Side>{this.renderSide(COLUMNS.LEFT as SideType)}</Side>
+        <Side>{this.renderSide(COLUMNS.RIGHT as SideType)}</Side>
       </Sides>
     );
   }
