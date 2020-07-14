@@ -1,9 +1,9 @@
 import * as React from 'react';
 
 import DateRangePicker from '@synerise/ds-date-range-picker';
-import { ABSOLUTE, RELATIVE_PRESETS } from '@synerise/ds-date-range-picker/dist/constants';
+import { ABSOLUTE, DAYS, RELATIVE, RELATIVE_PRESETS } from '@synerise/ds-date-range-picker/dist/constants';
 import { boolean } from '@storybook/addon-knobs';
-
+import { RelativeDateRange } from '@synerise/ds-date-range-picker/dist/date.types';
 const stories = {
   default: () => {
     return <DateRangePicker onApply={console.log} forceAbsolute />;
@@ -27,6 +27,7 @@ const stories = {
         onApply={() => {}}
         relativeFuture
         forceAbsolute
+
       />
     );
   },

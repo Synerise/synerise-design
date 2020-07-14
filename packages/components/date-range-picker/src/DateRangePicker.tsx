@@ -55,7 +55,6 @@ class DateRangePicker extends React.PureComponent<Props, State> {
         onApply({
           ...value,
           ...relativeToAbsolute(value),
-          type: value.type,
         });
       return;
     }
@@ -110,7 +109,7 @@ class DateRangePicker extends React.PureComponent<Props, State> {
         </Container>
       );
 
-    const validator = validate(value);
+    const validator = validate ? validate(value) : { valid: true };
     const isValid = (!!(from && to) || key === 'ALL_TIME') && validator.valid;
     const addons: React.ReactElement[] = [];
     if (showRelativePicker)
