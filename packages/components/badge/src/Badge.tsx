@@ -16,7 +16,8 @@ type color =
   | 'fern'
   | 'cyan'
   | 'purple'
-  | 'violet';
+  | 'violet'
+  | string;
 
 type colorHue = '900' | '800' | '700' | '600' | '500' | '400' | '300' | '200' | '100' | '050';
 
