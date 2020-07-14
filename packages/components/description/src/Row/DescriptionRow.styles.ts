@@ -3,13 +3,14 @@ import { IconContainer } from '@synerise/ds-icon/dist/Icon.styles';
 
 export const RowLabel = styled.span`
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
   font-size: 13px;
   line-height: 1.38;
   color: ${(props): string => props.theme.palette['grey-600']};
   font-weight: normal;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  overflow-x: hidden;
   ${IconContainer} {
     margin-right: 4px;
     svg {
@@ -17,6 +18,14 @@ export const RowLabel = styled.span`
       fill: ${(props): string => props.theme.palette['grey-600']};
     }
   }
+`;
+
+export const Label = styled.span`
+  width: 100%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: inline;
+  overflow-x: hidden;
 `;
 
 export const RowValue = styled.div`

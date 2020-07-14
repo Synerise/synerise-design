@@ -82,3 +82,7 @@ import Badge from '@synerise/ds-badge'
 | title         | Text shown when a cursor is hovered over the badge                 | string                                                                           | count   |
 | flag          | Show the badge as a flag                                           | boolean                                                                          | false   |
 | outlined      | Add outline to the badge counter                                   | boolean                                                                          | false   |
+| backgroundColor | Customize the badge color                                        | string                                                                           | -       |
+| backgroundColorHue| Customize brightness of color                                                               | string                                                                           | -       |
+| textColor     | Customize text color in badge                                      | string                                                                           | -       |
+| textColorHue  |  Customize brightness of color                                                            | string                                                                           | -       |          

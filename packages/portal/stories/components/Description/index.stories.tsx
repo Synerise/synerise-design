@@ -2,8 +2,8 @@ import * as React from 'react';
 
 import Description, { DescriptionRow } from '@synerise/ds-description';
 import Status from '@synerise/ds-status';
-import { select } from '@storybook/addon-knobs';
-import { AddM, DuplicateS, LockM, PlayM, UserM, VarTypeStringM } from '@synerise/ds-icon/dist/icons';
+import { select, text } from '@storybook/addon-knobs';
+import { AddM, DuplicateS, LockM, MailM, PlayM, SearchM, UserM, VarTypeStringM } from '@synerise/ds-icon/dist/icons';
 import Icon from '@synerise/ds-icon';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import Avatar from '@synerise/ds-avatar';
@@ -46,15 +46,37 @@ const stories = {
     return (
       <div style={{width: 400}}>
         <Description type={select('Select description type', SELECT, 'table')} ratio={select('Select ratio', RATIO, '30-70')}>
-          <DescriptionRow label="Label" value={'Value'} />
-          <DescriptionRow label="Label" labelIcon={<Icon component={<UserM />} />} value={'Value'} />
+          <DescriptionRow label={text('Set label', 'Label')} value={text('Set value', 'Value')} />
+          <DescriptionRow label={text('Set label', 'Label')} labelIcon={<Icon component={<UserM />} />} value={text('Set value', 'Value')} />
         </Description>
       </div>
     )
   },
   onModal: () => {
     return (
-      <ModalProxy  visible title={'Modal header'} closable size={'large'} description={<div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
+      <ModalProxy
+        visible
+        title={(
+          <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start',}}>
+            <Badge status="active">
+              <Avatar size={'medium'} shape={'circle'} backgroundColor={'red'} backgroundColorHue={'100'} hasStatus>
+                <Icon component={<MailM />} color={theme.palette['red-500']} />{' '}
+              </Avatar>
+            </Badge>
+            <span style={{marginLeft: 12}}>Modal header</span>
+          </div>
+        )}
+        closable
+        size={'large'}
+        footer={null}
+        headerActions={(
+          <div>
+            <Button mode="single-icon" type="ghost" onClick={action('Additional header button clicked')}>
+              <Icon component={<SearchM />} color={theme.palette['grey-600']} />
+            </Button>
+          </div>
+        )}
+        description={<div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
         <div style={{width: '50%', display: 'flex', alignItems: 'center', justifyContent: 'flex-start'}}>
           <Description type='inline'>
             <DescriptionRow label="Performed by:" prefixEl={<Avatar src={imgSrc} size='small' shape='circle' />} value="James Peterson" />
