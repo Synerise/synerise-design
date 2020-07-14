@@ -7,7 +7,7 @@ import Avatar from '@synerise/ds-avatar';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 
 const decorator = storyFn => (
-  <div style={{ display: 'flex', width: '167px', height: '34px', alignItems: 'center' }}>{storyFn()}</div>
+  <div style={{ display: 'flex', width: '192px', height: '34px', alignItems: 'center' }}>{storyFn()}</div>
 );
 
 const statuses = ['active', 'inactive', 'blocked', 'processing', 'warning'] as const;
@@ -43,10 +43,11 @@ const stories = {
             count={number('count', 1)}
             overflowCount={number('overflowCount', 99)}
             outlined={isOutline}
+            backgroundColor={'yellow'}
+            backgroundColorHue={600}
+            textColor={'white'}
             style={object('style2', {
               margin: '0 6px 0 6px',
-              backgroundColor: theme.palette['yellow-600'],
-              color: theme.palette['white'],
               alignItems: 'center',
             })}
           />
@@ -56,10 +57,11 @@ const stories = {
             offset={[0, 0]}
             overflowCount={number('overflowCount', 99)}
             outlined={isOutline}
+            backgroundColor={'green'}
+            backgroundColorHue={600}
+            textColor={'white'}
             style={object('style3', {
               margin: '0 6px 0 6px',
-              backgroundColor: theme.palette['green-600'],
-              color: theme.palette['white'],
               alignItems: 'center',
             })}
           />
@@ -69,10 +71,11 @@ const stories = {
             offset={[0, 0]}
             overflowCount={number('overflowCount', 99)}
             outlined={isOutline}
+            backgroundColor={'grey'}
+            backgroundColorHue={500}
+            textColor={'white'}
             style={object('style4', {
-              margin: '0 6px 0 6px',
-              backgroundColor: theme.palette['grey-500'],
-              color: theme.palette['white'],
+              margin: '0 4px 0 6px',
               alignItems: 'center',
             })}
           />
@@ -91,20 +94,32 @@ const stories = {
               offset={[0, 0]}
               outlined={isOutline}
               overflowCount={number('overflowCount', 99)}
+              backgroundColor={'white'}
+              textColor={'grey'}
+              textColorHue={500}
               style={{
                 ...{ boxShadow: isOutline ? `0 0 0 1px ${theme.palette['grey-500']}` : null },
                 ...object('style5', {
                   minWidth: '17px',
                   minHeight: '17px',
                   margin: '8px 8px 8px 8px',
-                  backgroundColor: theme.palette['white'],
-                  color: theme.palette['grey-500'],
                   alignItems: 'center',
-                  justifyContent: 'center',
                 }),
               }}
             />
           </div>
+          <Badge
+            count={number('count', 1)}
+            overflowCount={number('overflowCount', 99)}
+            outlined={isOutline}
+            backgroundColor={'transparent'}
+            textColor={'white'}
+            style={object('style6', {
+              margin: '0 11px 0 4px',
+              alignItems: 'center',
+            })}
+          />
+          <br />
         </div>
       </React.Fragment>
     );

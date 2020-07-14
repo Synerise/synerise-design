@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { select, boolean, text, number } from '@storybook/addon-knobs';
+import { select, boolean, text, number, object } from '@storybook/addon-knobs';
 import sample from 'lodash/sample';
 import { v4 as uuid } from 'uuid';
 
@@ -7,6 +7,7 @@ import Tags, { Tag, TagShape } from '@synerise/ds-tags';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import Icon from '@synerise/ds-icon';
 import { Add3S } from '@synerise/ds-icon/dist/icons';
+import Badge from '@synerise/ds-badge';
 
 const customColorOptions = {
   blue: theme.palette['blue-600'],
@@ -70,10 +71,30 @@ const stories = {
 
     const thisTag = [{
       id: 12,
-      name: 'Tag name 2',
+      name: 'Tag name',
       color: colors,
-      prefixel: hasPrefix && (number('preffixNumber',5)),
-      suffixel: hasSufix && (number('suffixNumber',5)),
+      prefixel: hasPrefix && (<Badge
+        count={number('count', 1)}
+        overflowCount={number('overflowCount', 99)}
+        outlined={true}
+        style={object('style1', {
+          backgroundColor: 'transparent',
+          color: theme.palette['white'],
+          alignItems: 'center',
+          margin: '0px',
+        })}
+      />),
+      suffixel: hasSufix && (<Badge
+        count={number('count', 1)}
+        overflowCount={number('overflowCount', 99)}
+        outlined={true}
+        style={object('style2', {
+          margin: '0px',
+          backgroundColor: 'transparent',
+          color: theme.palette['white'],
+          alignItems: 'center',
+        })}
+      />),
     }];
 
     return (
