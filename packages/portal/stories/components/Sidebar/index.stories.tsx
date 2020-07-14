@@ -2,6 +2,10 @@ import * as React from 'react';
 
 import Sidebar from '@synerise/ds-sidebar';
 import {withState} from "@dump247/storybook-state";
+import Block from '@synerise/ds-block';
+import Icon from '@synerise/ds-icon';
+import { EditM } from '@synerise/ds-icon/dist/icons';
+import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 
 const wrapperStyles = {
   width: '340px',
@@ -52,7 +56,27 @@ const stories = {
         </Sidebar.Panel>
       </Sidebar>
     </div>
-  ))
+  )),
+  blockWithSidebar: () => (
+    <div style={wrapperStyles}>
+      <Sidebar defaultActiveKey={['0']}>
+        <Sidebar.Panel header={'Collapse title'} id={'first'}>
+          <Block isDragging={false} icon={<Icon component={<EditM />} size={24} color={theme.palette['grey-600']}/>}>
+            Block name
+          </Block>
+          <Block isDragging={false} icon={<Icon component={<EditM />} size={24} color={theme.palette['grey-600']}/>}>
+            Block name
+          </Block>
+          <Block isDragging={false} icon={<Icon component={<EditM />} size={24} color={theme.palette['grey-600']}/>}>
+            Block name
+          </Block>
+          <Block isDragging={false} icon={<Icon component={<EditM />} size={24} color={theme.palette['grey-600']}/>}>
+            Block name
+          </Block>
+        </Sidebar.Panel>
+      </Sidebar>
+    </div>
+  ),
 };
 
 export default {
