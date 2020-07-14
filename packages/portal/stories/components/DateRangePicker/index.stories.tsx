@@ -6,28 +6,15 @@ import { boolean } from '@storybook/addon-knobs';
 import { RelativeDateRange } from '@synerise/ds-date-range-picker/dist/date.types';
 const stories = {
   default: () => {
-    return <DateRangePicker onApply={console.log} forceAbsolute />;
-  },
-  absolute: () => {
-    const showTime = boolean('showTime', true);
-    const value = {
-      type: ABSOLUTE,
-      from: '2018-11-08T00:00:00+01:00',
-      to: '2018-11-08T23:59:59+01:00',
-    };
-    return <DateRangePicker showTime={showTime} value={value} onApply={() => {}} />;
-  },
-  relative: () => {
-    const showTime = boolean('showTime', true);
     const value = RELATIVE_PRESETS[0];
+    const showTime = boolean('Set showTime', true);
     return (
       <DateRangePicker
+        onApply={console.log}
         showTime={showTime}
         value={value}
-        onApply={() => {}}
         relativeFuture
         forceAbsolute
-
       />
     );
   },
