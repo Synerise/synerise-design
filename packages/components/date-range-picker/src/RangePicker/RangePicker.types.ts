@@ -5,7 +5,7 @@ export interface Props {
   value: DateRange;
   onChange: (value: DateRange) => void;
   mode: string;
-  disabledDate: (date?: Date) => boolean;
+  disabledDate?: (date?: Date) => boolean;
   dateOnly?: boolean;
   canSwitchMode?: boolean;
   onSwitchMode?: () => void;

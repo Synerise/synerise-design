@@ -1,6 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
-import * as isEqual from 'lodash/isEqual';
+import isEqual from 'lodash/isEqual';
 import { RELATIVE_PRESETS, RELATIVE, ABSOLUTE } from '../constants';
 import { DateRange } from '../date.types';
 
