@@ -1,0 +1,43 @@
+{
+  "name": "@synerise/ds-date-range-picker",
+  "version": "0.0.1",
+  "description": "Date-Range-Picker UI Component for the Synerise Design System",
+  "license": "ISC",
+  "repository": "Synerise/synerise-design",
+  "main": "dist/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "npm run build:js && npm run build:css && npm run defs",
+    "build:css": "node ../../../scripts/style/less.js",
+    "build:js": "babel --root-mode upward src --out-dir dist --extensions '.js,.ts,.tsx'",
+    "build:watch": "npm run build:js -- --watch",
+    "defs": "tsc --declaration --outDir dist/ --emitDeclarationOnly",
+    "prepublish": "npm run build",
+    "types": "tsc --noEmit",
+    "test": "jest",
+    "test:watch": "npm run test -- --watchAll"
+  },
+  "sideEffects": [
+    "dist/style/*",
+    "*.less"
+  ],
+  "types": "dist/index.d.ts",
+  "dependencies": {
+    "@rebass/grid": "^6.1.0",
+    "@synerise/ds-date-picker": "^0.1.5",
+    "@synerise/ds-time-picker": "^0.2.47",
+    "@types/ramda": "^0.27.10",
+    "@types/react-collapse": "^5.0.0",
+    "@types/rebass__grid": "^6.0.5",
+    "lodash": "^4.17.15",
+    "ramda": "^0.27.0",
+    "react-collapse": "^5.0.1"
+  },
+  "peerDependencies": {
+    "@synerise/ds-core": "*",
+    "react": ">=16.9.0 < 17.0.0"
+  },
+  "devDependencies": {}
+}

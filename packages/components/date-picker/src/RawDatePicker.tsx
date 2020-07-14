@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Props, State, Texts } from 'DatePicker.types';
 import { FormattedMessage } from 'react-intl';
+import { DayModifiers, Modifiers } from 'react-day-picker';
 import Footer from './Elements/Footer/Footer';
 import * as S from './DatePicker.styles';
 import DayPicker from './Elements/DayPicker/DayPicker';
@@ -65,7 +66,7 @@ class RawDatePicker extends React.Component<Props, State> {
 
   handleDayMouseLeave = (): void => this.setState({ enteredTo: undefined });
 
-  handleDayClick = (day: Date, modifiers: { disabled: boolean }): void => {
+  handleDayClick = (day: Date, modifiers: DayModifiers): void => {
     const { changed: isChanged, value } = this.state;
     const { useStartOfDay, useEndOfDay } = this.props;
 
@@ -163,15 +164,15 @@ class RawDatePicker extends React.Component<Props, State> {
         onMonthNameClick={(): void => this.handleModeSwitch('month')}
         onYearNameClick={(): void => this.handleModeSwitch('year')}
         onMonthChange={(selectedMonth: Date): void => this.handleMonthChange(selectedMonth, 'date')}
-        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-        // @ts-ignore
-        modifiers={modifiers}
+        modifiers={(modifiers as unknown) as Modifiers}
       />
     );
   };
 
   handleDaySwitch = (day: Date): void => {
     const { disabledDates } = this.props;
+    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+    // @ts-ignore
     this.handleDayClick(day, { disabled: disabledDates ? disabledDates(day) : false });
   };
 
