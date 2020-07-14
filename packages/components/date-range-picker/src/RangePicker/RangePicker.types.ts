@@ -1,3 +1,4 @@
+import { IntlShape } from 'react-intl';
 import { DateRange } from '../date.types';
 
 export interface Props {
@@ -5,6 +6,10 @@ export interface Props {
   onChange: (value: DateRange) => void;
   mode: string;
   disabledDate: (date?: Date) => boolean;
+  dateOnly?: boolean;
+  canSwitchMode?: boolean;
+  onSwitchMode?: () => void;
+  intl: IntlShape;
 }
 
 export interface State {

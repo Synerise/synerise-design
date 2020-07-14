@@ -10,7 +10,6 @@ export const RELATIVE = 'RELATIVE';
 export const RELATIVE_OFFSET_MAX = 999999;
 export const RELATIVE_DURATION_MAX = 999999;
 export const RELATIVE_TYPES = [SECONDS, MINUTES, HOURS, DAYS, WEEKS, MONTHS, YEARS];
-export const ALL_TIME_DURATION = { type: YEARS, value: 1000 };
 
 export const range = (start: number, end: number): number[] => {
   if (end <= start) {
@@ -115,7 +114,7 @@ export const RELATIVE_PRESETS = [
     offset: { type: MONTHS, value: 1 },
     duration: { type: MONTHS, value: 6 },
   },
-  {
+ /* {
     key: 'LAST_YEAR',
     translationKey: 'DS.DATE-RANGE-PICKER.LAST_YEAR',
     type: RELATIVE,
@@ -124,11 +123,13 @@ export const RELATIVE_PRESETS = [
     future: false,
     offset: { type: YEARS, value: 1 },
     duration: { type: YEARS, value: 1 },
-  },
+  }, */
   {
     key: 'ALL_TIME',
     translationKey: 'DS.DATE-RANGE-PICKER.ALL_TIME',
-    type: ABSOLUTE,
+    type: RELATIVE,
+    offset: { type: SECONDS, value: 1 },
+    duration: { type: YEARS, value: 100 },
   },
   {
     key: 'TOMORROW',

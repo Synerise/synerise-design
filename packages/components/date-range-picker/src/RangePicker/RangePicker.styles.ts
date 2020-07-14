@@ -27,3 +27,12 @@ export const Side = styled.div`
     border-bottom: ${borderStyle};
   }
 `;
+
+export const PickerFooter = styled.div`
+  padding: 16px 16px 0 16px;
+  display:flex;
+`
+export const FooterSeparator = styled.div`
+  display:flex;
+  flex: 1;
+`

@@ -15,17 +15,20 @@ import fnsIsWithinRange from 'date-fns/is_within_range';
 
 import MonthPicker from '@synerise/ds-date-picker/dist/Elements/MonthPicker/MonthPicker';
 import MomentLocaleUtils from 'react-day-picker/moment';
-
-import YearPicker from '@synerise/ds-date-picker/dist/Elements/YearPicker/YearPicker';
 import TimePicker from '@synerise/ds-date-picker/dist/Elements/TimePicker/TimePicker';
 import {
   DayBackground,
   DayForeground,
   DayText,
 } from '@synerise/ds-date-picker/dist/Elements/DayPicker/DayPicker.styles';
+import Button from '@synerise/ds-button';
+import YearPicker from '@synerise/ds-date-picker/dist/Elements/YearPicker/YearPicker';
 import DayPicker from '@synerise/ds-date-picker/dist/Elements/DayPicker/DayPicker';
+import Icon from '@synerise/ds-icon';
+import { CalendarM, ClockM } from '@synerise/ds-icon/dist/icons';
+import { Range } from '../RelativeRangePicker/RelativeRangePicker.styles';
 import { fnsStartOfDay, fnsEndOfDay, fnsIsSameMonth, fnsIsAfter } from '../fns';
-import { Side, Sides } from './RangePicker.styles';
+import * as S from './RangePicker.styles';
 import { ABSOLUTE, COLUMNS, MODES } from '../constants';
 
 import ADD from '../dateUtils/add';
@@ -240,14 +243,38 @@ export default class RangePicker extends React.PureComponent<Props, State> {
   };
 
   render(): JSX.Element {
-    const { mode } = this.props;
-    // console.log('RangePicker state', this.state);
-    // console.log('RangePicker props', this.props); */
+    const { mode, onChange, value, canSwitchMode, dateOnly, onSwitchMode, intl } = this.props;
     return (
-      <Sides bordered={mode === MODES.TIME}>
-        <Side>{this.renderSide(COLUMNS.LEFT as SideType)}</Side>
-        <Side>{this.renderSide(COLUMNS.RIGHT as SideType)}</Side>
-      </Sides>
+      <>
+        <S.Sides bordered={mode === MODES.TIME}>
+          <S.Side>{this.renderSide(COLUMNS.LEFT as SideType)}</S.Side>
+          <S.Side>{this.renderSide(COLUMNS.RIGHT as SideType)}</S.Side>
+        </S.Sides>
+        <S.PickerFooter>
+          <Range
+            onClick={(): void => {
+              onChange({ ...value, type: 'ABSOLUTE', to: new Date(), from: new Date() });
+            }}
+          >
+            Now
+          </Range>
+          <S.FooterSeparator />
+          {!dateOnly && (
+            <Button
+              type="ghost"
+              mode="label-icon"
+              disabled={!canSwitchMode}
+              onClick={onSwitchMode}
+              className="ds-date-time-switch"
+            >
+              {intl.formatMessage({
+                id: mode === MODES.TIME ? `DS.DATE-RANGE-PICKER.SELECT-DATE` : `DS.DATE-RANGE-PICKER.SELECT-TIME`,
+              })}
+              <Icon component={mode === MODES.TIME ? <CalendarM /> : <ClockM />} />
+            </Button>
+          )}
+        </S.PickerFooter>
+      </>
     );
   }
 }

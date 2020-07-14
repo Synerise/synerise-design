@@ -131,7 +131,7 @@
       "NEXT_YEAR": "Next year",
       "CUSTOM": "Custom",
       "MORE": "More",
-      "RELATIVE_DATE_RANGE": "Relative",
+      "RELATIVE_DATE_RANGE": "Relative date range",
       "LAST": "Last",
       "BEFORE": "before",
       "AFTER": "after",
@@ -148,7 +148,10 @@
       "TIMESTAMP_NEXT": "Next",
       "TIMESTAMP_TILL": "till",
       "APPLY": "Apply",
-      "NOW": "Now"
+      "NOW": "Now",
+      "FILTER": "Filter",
+      "SELECT-DATE": "Select date",
+      "SELECT-TIME": "Select time"
     }
   }
 }
