@@ -16,22 +16,27 @@ const SCROLLBAR_HEIGHT_OFFSET = 28;
 
 class Search extends React.PureComponent<SearchProps<{}>, SearchState<{}>> {
   private wrapperRef = React.createRef<HTMLDivElement>();
-  constructor(props: SearchProps<{}>) {
-    super(props);
-    // eslint-disable-next-line react/state-in-constructor
-    this.state = {
-      isInputOpen: false,
-      label: null,
-      filteredParameters: props.parameters,
-      filteredRecent: props.recent,
-      filteredSuggestions: props.suggestions,
-      isListVisible: false,
-      isResultChosen: false,
-      itemsListWidth: 0,
-      toggleInputTrigger: false,
-      focusInputTrigger: false,
-    };
-  }
+
+  state = {
+    // eslint-disable-next-line react/destructuring-assignment
+    isInputOpen: !!this.props.value,
+    // eslint-disable-next-line react/destructuring-assignment
+    label: this.props.parameterValue
+      ? // eslint-disable-next-line react/destructuring-assignment
+        this.props.parameters.find(p => p[this.props.textLookupConfig.parameters] === this.props.parameterValue)
+      : null,
+    // eslint-disable-next-line react/destructuring-assignment
+    filteredParameters: this.props.parameters,
+    // eslint-disable-next-line react/destructuring-assignment
+    filteredRecent: this.props.recent,
+    // eslint-disable-next-line react/destructuring-assignment
+    filteredSuggestions: this.props.suggestions,
+    isListVisible: false,
+    isResultChosen: false,
+    itemsListWidth: 0,
+    toggleInputTrigger: false,
+    focusInputTrigger: false,
+  };
 
   getSnapshotBeforeUpdate(prevProps: Readonly<SearchProps<{}>>): null {
     const { recent, suggestions, parameters, value, textLookupConfig } = this.props;
@@ -87,9 +92,11 @@ class Search extends React.PureComponent<SearchProps<{}>, SearchState<{}>> {
     return 0;
   }
 
+  // This handler is used for onClickOutside HOC
   handleClickOutside = (): void => {
     const { isInputOpen, label, toggleInputTrigger } = this.state;
     const { value } = this.props;
+
     if (isInputOpen && !value && !label) {
       this.setState({ toggleInputTrigger: !toggleInputTrigger });
     }
