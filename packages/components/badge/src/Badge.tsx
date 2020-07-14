@@ -10,12 +10,32 @@ export interface BadgeProps extends Omit<AntBadgeProps, 'status'> {
   flag?: boolean;
   status?: Status;
   outlined?: boolean;
+  backgroundColor?: string;
+  textColor?: string;
+  backgroundColorHue?: string;
+  textColorHue?: string;
 }
 
-const Badge: React.FC<BadgeProps> = ({ flag, outlined, ...antdProps }) => {
+const Badge: React.FC<BadgeProps> = ({
+  flag,
+  outlined,
+  backgroundColor,
+  textColor,
+  backgroundColorHue,
+  textColorHue,
+  ...antdProps
+}) => {
   return (
     // eslint-disable-next-line react/jsx-props-no-spreading
-    <AntdBadge flag={flag} outlined={outlined} {...antdProps} />
+    <AntdBadge
+      flag={flag}
+      outlined={outlined}
+      backgroundColor={backgroundColor}
+      textColor={textColor}
+      backgroundColorHue={backgroundColorHue}
+      textColorHue={textColorHue}
+      {...antdProps}
+    />
   );
 };
 
