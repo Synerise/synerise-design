@@ -1,17 +1,17 @@
 import * as React from 'react';
 
-export type Relative = 'SECONDS' | 'MINUTES' | 'HOURS' | 'DAYS' | 'WEEKS' | 'MONTHS' | 'YEARS';
+export type RelativeUnits = 'SECONDS' | 'MINUTES' | 'HOURS' | 'DAYS' | 'WEEKS' | 'MONTHS' | 'YEARS';
 
 export interface DateFilter {
   type: 'ABSOLUTE' | 'RELATIVE' | 'SINCE';
   from?: string | Date;
   to?: string | Date;
   duration?: {
-    type: Relative;
+    type: RelativeUnits;
     value: number;
   };
   offset?: {
-    type: Relative;
+    type: RelativeUnits;
     value: number;
   };
 }
@@ -31,14 +31,14 @@ export interface AbsoluteDateRange extends DateRangeBase {
 }
 
 export interface Duration {
-  type: Relative;
+  type: RelativeUnits;
   value: number;
 }
 
 export interface RelativeDateRange extends DateRangeBase {
   type: 'RELATIVE' | 'SINCE';
   offset: {
-    type: Relative;
+    type: RelativeUnits;
     value: number;
   };
   duration: Duration;

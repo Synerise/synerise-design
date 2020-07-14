@@ -2,9 +2,8 @@ import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import * as React from 'react';
 import '@testing-library/jest-dom/extend-expect';
 import DateRangePicker from '../DateRangePicker';
-import { ABSOLUTE } from '../../dist/constants';
 import { DateRange, RelativeDateRange } from '../date.types';
-import { DAYS, RELATIVE, RELATIVE_PRESETS } from '../constants';
+import { DAYS, RELATIVE, RELATIVE_PRESETS, ABSOLUTE } from '../constants';
 
 const ABSOLUTE_VALUE = {
   type: ABSOLUTE,

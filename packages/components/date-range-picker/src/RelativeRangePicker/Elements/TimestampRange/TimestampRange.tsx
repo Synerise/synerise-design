@@ -6,7 +6,7 @@ import { Props } from './TimestampRange.types';
 import ADD from '../../../dateUtils/add';
 import DIFFERENCE from '../../../dateUtils/difference';
 import { DURATION_MODIFIERS } from '../../../constants';
-import { Relative, Duration } from '../../../date.types';
+import { RelativeUnits, Duration } from '../../../date.types';
 import { fnsIsAfter } from '../../../fns';
 
 const TimestampRange: React.FC<Props> = ({ currentRange, currentGroup, handleChange, intl }: Props) => {
@@ -44,7 +44,7 @@ const TimestampRange: React.FC<Props> = ({ currentRange, currentGroup, handleCha
   };
 
   React.useEffect((): void => {
-    const duration: Duration = { type: durationUnit as Relative, value: durationValue };
+    const duration: Duration = { type: durationUnit as RelativeUnits, value: durationValue };
     handleRangeChange(timestamp, duration);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [durationValue, durationModifier, durationUnit, timestamp]);
@@ -80,7 +80,7 @@ const TimestampRange: React.FC<Props> = ({ currentRange, currentGroup, handleCha
           val && setDurationValue(val);
         }}
         onDurationUnitChange={(unit): void => {
-          unit && setDurationUnit(unit as Relative);
+          unit && setDurationUnit(unit as RelativeUnits);
         }}
         unit={durationUnit}
         intl={intl}
