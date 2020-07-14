@@ -47,10 +47,11 @@ export default class RangePicker extends React.PureComponent<Props, State> {
     };
   }
 
-  getSnapshotBeforeUpdate(prevProps: Readonly<Props>): null {
-    const { value } = this.props;
-    if (value !== prevProps.value) this.setState(getSidesState(value));
-    return null;
+  static getDerivedStateFromProps(nextProps: Props, prevState: State): State {
+    return {
+      ...prevState,
+      ...getSidesState(nextProps.value),
+    };
   }
 
   handleDayMouseEnter = (day: Date): void => {
