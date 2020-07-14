@@ -3,7 +3,6 @@ import { Texts } from 'DateRangePicker.types';
 import { DateRange } from '../date.types';
 
 export type Props = {
-  text?: string;
   mode: string;
   dateOnly?: boolean;
   value?: DateRange;
@@ -13,4 +12,6 @@ export type Props = {
   onSwitchMode?: () => void;
   message?: React.ReactNode | string;
   texts: Texts;
+  format?: string;
+  showTime?: boolean;
 } & WrappedComponentProps;

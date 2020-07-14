@@ -11,9 +11,7 @@ const RangeDropdown: React.FC<Props> = ({ ranges, currentRange, intl, onChange }
   const containsCurrentRange = currentRange && !!find(range => range.key === currentRange.key, ranges);
   const overlay = (
     <S.DropMenu
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-      // @ts-ignore
-      selectedKeys={currentRange ? [currentRange.key] : []}
+      selectedKeys={currentRange?.key ? [currentRange.key] : []}
       onClick={({ key }): void => onChange(find(range => range.key === key, ranges))}
     >
       {ranges.map(range => (

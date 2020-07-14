@@ -4,11 +4,9 @@ import { omitBy, isUndefined } from 'lodash';
 import { Container, Separator, Addon } from './DateRangePicker.styles';
 import RangePicker from './RangePicker/RangePicker';
 import { RELATIVE, ABSOLUTE, MODES } from './constants';
-import fnsFormat from './dateUtils/format';
 import relativeToAbsolute from './dateUtils/relativeToAbsolute';
 import { Props, State } from './DateRangePicker.types';
 import { DateFilter, DateRange } from './date.types';
-import getDateFromString from './dateUtils/getDateFromString';
 import AddonCollapse from './AddonCollapse/AddonCollapse';
 import RelativeRangePicker from './RelativeRangePicker/RelativeRangePicker';
 import Footer from './Footer/Footer';
@@ -104,20 +102,14 @@ class DateRangePicker extends React.PureComponent<Props, State> {
     } = this.props;
     const { value, mode, changed } = this.state;
     const { from, to, key } = value;
+
     if (mode === MODES.FILTER)
       return (
         <Container>
           <div>RangeFilter placeholder</div>
         </Container>
       );
-    const footerFormat = format || (showTime ? 'MMM D, YYYY, HH:mm' : 'MMM D, YYYY');
-    let footerText = '';
-    if (from) {
-      footerText += fnsFormat(getDateFromString(from), footerFormat, intl.locale);
-    }
-    if (to) {
-      footerText += ` - ${fnsFormat(getDateFromString(to), footerFormat, intl.locale)}`;
-    }
+
     const validator = validate(value);
     const isValid = (!!(from && to) || key === 'ALL_TIME') && validator.valid;
     const addons: React.ReactElement[] = [];
@@ -147,8 +139,17 @@ class DateRangePicker extends React.PureComponent<Props, State> {
       );
     return (
       <Container className="ds-date-range-picker">
-        <RangePicker value={value} onChange={this.handleRangeChange} mode={mode} disabledDate={disabledDate} />
-        {addons.length > 0 && mode !== MODES.TIME && <Separator />}
+        <RangePicker
+          value={value}
+          onChange={this.handleRangeChange}
+          mode={mode}
+          disabledDate={disabledDate}
+          onSwitchMode={this.handleSwitchMode}
+          dateOnly={!showTime}
+          canSwitchMode={isValid}
+          intl={intl}
+        />
+        {addons.length > 0 && <Separator />}
         {addons.map(
           (addon, index: number): React.ReactNode => (
             // eslint-disable-next-line react/no-array-index-key
@@ -156,7 +157,6 @@ class DateRangePicker extends React.PureComponent<Props, State> {
           )
         )}
         <Footer
-          text={footerText}
           canApply={isValid && changed}
           onApply={this.handleApply}
           dateOnly={!showTime}
@@ -166,6 +166,8 @@ class DateRangePicker extends React.PureComponent<Props, State> {
           onSwitchMode={this.handleSwitchMode}
           texts={{ apply: intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.APPLY' }) }}
           value={value}
+          showTime={showTime}
+          format={format}
         />
       </Container>
     );

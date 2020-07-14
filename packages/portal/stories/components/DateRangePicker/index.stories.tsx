@@ -6,7 +6,7 @@ import { boolean } from '@storybook/addon-knobs';
 
 const stories = {
   default: () => {
-    return <DateRangePicker onApply={console.log} />;
+    return <DateRangePicker onApply={console.log} forceAbsolute />;
   },
   absolute: () => {
     const showTime = boolean('showTime', true);
@@ -19,7 +19,6 @@ const stories = {
   },
   relative: () => {
     const showTime = boolean('showTime', true);
-    const forceAbsolute = boolean('forceAbsolute', false);
     const value = RELATIVE_PRESETS[0];
     return (
       <DateRangePicker
@@ -27,14 +26,9 @@ const stories = {
         value={value}
         onApply={() => {}}
         relativeFuture
-        forceAbsolute={forceAbsolute}
+        forceAbsolute
       />
     );
-  },
-  withFilter: () => {
-    const showTime = boolean('showTime', true);
-    //const value = RELATIVE_PRESETS[0];
-    return <DateRangePicker showTime={showTime} showFilter onApply={() => {}} relativeFuture />;
   },
 };
 
