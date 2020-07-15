@@ -9,7 +9,7 @@ import './style/index.less';
 import { TextItem, ListDivider, ItemWrapper } from './Elements';
 
 export interface ListPropsType<T> extends Omit<ListProps<T>, 'dataSource' | 'footer'> {
-  dataSource: T[][];
+  dataSource: T[] |  T[][];
   radio?: boolean;
   options?: RadioGroupProps;
   dashed?: boolean;
@@ -20,35 +20,56 @@ const RadioGroupWrapper: React.FC<{ options?: RadioGroupProps }> = ({ children, 
   <Radio.Group {...options}>{children}</Radio.Group>
 );
 
-class List<T> extends React.Component<ListPropsType<T>> {
+export const isNestedArray = <V extends any>(array: V[] | V[][]): boolean => {
+  return array instanceof Array && !!array.length && array[0] instanceof Array;
+};
+
+class List<T> extends React.PureComponent<ListPropsType<T>> {
   static ItemWrapper: typeof ItemWrapper = ItemWrapper;
   static Item: typeof TextItem = TextItem;
   static Divider: typeof ListDivider = ListDivider;
+  private uuidKey: string;
+  constructor(props: ListPropsType<T>) {
+    super(props);
+    this.uuidKey = uuid();
+  }
 
   render(): React.ReactNode {
     const { dataSource, radio, options, dashed, ...rest } = this.props;
+    let ReadyList;
 
-    const ReadyList = dataSource.map((singleDataSource, index) => {
-      const isLastItem = dataSource.length === index + 1;
+    if (isNestedArray(dataSource)) {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+      // @ts-ignore
+      ReadyList = !!dataSource && dataSource.map((singleDataSource: T[] | undefined, index: number) => {
+        const isLastItem = dataSource.length === index + 1;
 
-      if (index === 0) {
+        if (index === 0) {
+          return (
+            <React.Fragment key={uuid()}>
+              {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+              <AntdList {...rest} dataSource={singleDataSource} />
+              {!isLastItem && <ListDivider dashed={!!dashed} data-testid="divider" />}
+            </React.Fragment>
+          );
+        }
+
         return (
           <React.Fragment key={uuid()}>
             {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-            <AntdList {...rest} dataSource={singleDataSource} />
+            <AntdList {...rest} header={null} dataSource={singleDataSource} />
             {!isLastItem && <ListDivider dashed={!!dashed} data-testid="divider" />}
           </React.Fragment>
         );
-      }
-
-      return (
-        <React.Fragment key={uuid()}>
-          {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-          <AntdList {...rest} header={null} dataSource={singleDataSource} />
-          {!isLastItem && <ListDivider dashed={!!dashed} data-testid="divider" />}
+      });
+    } else {
+      ReadyList = (
+        <React.Fragment key={this.uuidKey || uuid()}>
+          {/*  // @ts-ignore eslint-disable-next-line @typescript-eslint/ban-ts-ignore */}
+          <AntdList {...rest} dataSource={dataSource as T[]} />
         </React.Fragment>
       );
-    });
+    }
 
     return <>{radio ? <RadioGroupWrapper options={options}>{ReadyList}</RadioGroupWrapper> : ReadyList}</>;
   }
