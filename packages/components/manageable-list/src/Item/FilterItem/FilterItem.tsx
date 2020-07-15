@@ -138,9 +138,9 @@ const FilterItem: React.FC<FilterItemProps> = ({
                 </DropdownMenu>
               }
             >
-              <span className="ds-dropdown-trigger">
+              <S.FilterDropdownTrigger className="ds-dropdown-trigger" mode="single-icon" type="ghost" size="small">
                 <Icon component={<OptionHorizontalM />} color={theme.palette['grey-600']} />
-              </span>
+              </S.FilterDropdownTrigger>
             </Dropdown>
           </S.ItemHeaderSuffix>
         </ItemHeader>
