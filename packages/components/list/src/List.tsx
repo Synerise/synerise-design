@@ -20,6 +20,7 @@ const RadioGroupWrapper: React.FC<{ options?: RadioGroupProps }> = ({ children, 
   <Radio.Group {...options}>{children}</Radio.Group>
 );
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const isNestedArray = <V extends any>(array: V[] | V[][]): boolean => {
   return array instanceof Array && !!array.length && array[0] instanceof Array;
 };
