@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.84.6](https://github.com/synerise/synerise-design/compare/portal@0.84.5...portal@0.84.6) (2020-07-15)
+
+
+### Bug Fixes
+
+* **search:** update width of input and update tests ([0305e65](https://github.com/synerise/synerise-design/commit/0305e65143caf5d6ea7ae256916d1d5e849f7d8f))
+
+
+
+
+
 ## [0.84.5](https://github.com/synerise/synerise-design/compare/portal@0.84.4...portal@0.84.5) (2020-07-13)
 
 

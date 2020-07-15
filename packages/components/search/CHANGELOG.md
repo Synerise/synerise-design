@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.44](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.1.43...@synerise/ds-search@0.1.44) (2020-07-15)
+
+
+### Bug Fixes
+
+* **search:** render opened menu on mount if value or label present ([031db85](https://github.com/Synerise/synerise-design/commit/031db85a3859a368562651d9f8f94a4d3ca9874d))
+* **search:** update width of input and update tests ([0305e65](https://github.com/Synerise/synerise-design/commit/0305e65143caf5d6ea7ae256916d1d5e849f7d8f))
+
+
+
+
+
 ## [0.1.43](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.1.42...@synerise/ds-search@0.1.43) (2020-07-13)
 
 **Note:** Version bump only for package @synerise/ds-search
