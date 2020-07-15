@@ -6,7 +6,7 @@ import { DSTableProps, RowType } from '../Table.types';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function DefaultTable<T extends any & RowType<T>>(props: DSTableProps<T>): React.ReactElement {
-  const { title, selection, dataSource, rowKey, locale } = props;
+  const { title, selection, dataSource, rowKey, locale, expandable } = props;
 
   const getRowKey = React.useCallback(
     (row: T): React.ReactText | undefined => {
@@ -61,6 +61,10 @@ function DefaultTable<T extends any & RowType<T>>(props: DSTableProps<T>): React
     // @ts-ignore
     <Table<T>
       {...props}
+      expandable={{
+        expandIconColumnIndex: -1,
+        ...expandable,
+      }}
       locale={{
         ...locale,
         emptyText: <Result description={locale?.emptyText || 'No data'} type="no-results" noSearchResults />,

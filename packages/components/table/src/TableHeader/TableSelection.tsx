@@ -7,7 +7,7 @@ import { AngleDownS } from '@synerise/ds-icon/dist/icons';
 import Checkbox from '@synerise/ds-checkbox';
 import { CheckboxChangeEvent } from 'antd/lib/checkbox';
 import * as S from '../Table.styles';
-import { RowSelection, RowType, Selection, SelectionItem } from '../Table.types';
+import { RowSelection, Selection, SelectionItem } from '../Table.types';
 import { SELECTION_ALL, SELECTION_INVERT } from '../Table';
 
 interface Props<T extends { key: React.ReactText }> {
@@ -18,11 +18,11 @@ interface Props<T extends { key: React.ReactText }> {
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
-function TableSelection<T extends any & Props & RowType<T>>({
+function TableSelection<T extends { key: React.ReactText; children?: T[] }>({
   dataSource,
   selection,
   rowKey,
-}): React.ReactElement | null {
+}: Props<T>): React.ReactElement | null {
   const getRowKey = React.useCallback(
     (row): React.ReactText | undefined => {
       if (typeof rowKey === 'function') return rowKey(row);
@@ -38,7 +38,7 @@ function TableSelection<T extends any & Props & RowType<T>>({
       let rows: T[] = [];
       dataSource.forEach((record: T) => {
         if (record.children !== undefined && Array.isArray(record.children)) {
-          keys = [...keys, ...record.children.map((child: T) => getRowKey(child))];
+          keys = [...keys, ...record.children.map((child: T) => getRowKey(child) as React.ReactText)];
           rows = [...rows, ...record.children];
         } else {
           const key = getRowKey(record);
@@ -60,18 +60,19 @@ function TableSelection<T extends any & Props & RowType<T>>({
       dataSource.forEach((record: T): void => {
         const hasChilds = record.children !== undefined && Array.isArray(record.children);
         if (hasChilds) {
-          record.children.forEach((child: T) => {
-            if (selection.selectedRowKeys.indexOf(getRowKey(child)) < 0) {
-              selected = [...selected, child];
-            }
-          });
-        } else if (selection.selectedRowKeys.indexOf(getRowKey(record)) < 0) {
+          record.children &&
+            record.children.forEach((child: T) => {
+              if (selection?.selectedRowKeys.indexOf(getRowKey(child) as React.ReactText) < 0) {
+                selected = [...selected, child];
+              }
+            });
+        } else if (selection?.selectedRowKeys.indexOf(getRowKey(record) as React.ReactText) < 0) {
           selected = [...selected, record];
         }
       });
 
       selection.onChange(
-        selected.map((record: T) => getRowKey(record)),
+        selected.map((record: T) => getRowKey(record) as React.ReactText),
         selected
       );
     }
@@ -88,9 +89,7 @@ function TableSelection<T extends any & Props & RowType<T>>({
     return dataSource.length === 0;
   }, [dataSource]);
 
-  const { selectedRowKeys, selections } = selection;
-
-  return selectedRowKeys ? (
+  return selection?.selectedRowKeys ? (
     <S.Selection>
       <Checkbox
         disabled={isEmpty}
@@ -102,15 +101,15 @@ function TableSelection<T extends any & Props & RowType<T>>({
             unselectAll();
           }
         }}
-        indeterminate={selectedRowKeys.length > 0 && !allSelected}
+        indeterminate={selection?.selectedRowKeys.length > 0 && !allSelected}
       />
-      {selections && (
+      {selection?.selections && (
         <Dropdown
           disabled={isEmpty}
           trigger={['click']}
           overlay={
             <S.SelectionMenu>
-              {selections.filter(Boolean).map(
+              {selection?.selections.filter(Boolean).map(
                 (selectionMenuElement: Selection | SelectionItem): React.ReactNode => {
                   switch (selectionMenuElement) {
                     case SELECTION_ALL: {
