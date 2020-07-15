@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 import { Tag } from '@synerise/ds-tags/dist/Tag/Tag.styles';
+import Button from '@synerise/ds-button';
 import { ItemLabel } from '../SimpleItem/SimpleItem.styles';
 import { ItemActionsWrapper } from '../ItemActions/ItemActions.styles';
 import { ItemMeta } from '../ItemMeta/ItemMeta.styles';
-import Button from '@synerise/ds-button';
 
 type ItemContainerProps = {
   opened: boolean;
