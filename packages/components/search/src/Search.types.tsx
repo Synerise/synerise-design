@@ -37,7 +37,7 @@ export type SearchProps<T extends {}> = {
 
 export type SearchState<T extends {}> = {
   isInputOpen: boolean;
-  label: T | null;
+  label: T | null | undefined;
   filteredParameters: T[];
   filteredRecent: T[];
   filteredSuggestions?: T[] | null;

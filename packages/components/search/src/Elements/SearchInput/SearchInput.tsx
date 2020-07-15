@@ -20,7 +20,7 @@ class SearchInput extends React.Component<SearchInputProps, SearchInputState> {
     // eslint-disable-next-line react/state-in-constructor
     this.state = {
       inputOffset: 0,
-      isInputOpen: props.alwaysExpanded || false,
+      isInputOpen: props.alwaysExpanded || !!props.value || !!props.filterLabel,
       isInputFocused: true,
       isResultChosen: false,
     };
@@ -91,6 +91,7 @@ class SearchInput extends React.Component<SearchInputProps, SearchInputState> {
     ref && this.setState({ inputOffset: ref.getBoundingClientRect().width });
   };
 
+  // This handler is used for onClickOutside HOC
   handleClickOutside = (): void => {
     const { closeOnClickOutside, value } = this.props;
     if (closeOnClickOutside && !value) {

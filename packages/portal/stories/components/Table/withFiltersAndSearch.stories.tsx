@@ -419,15 +419,17 @@ const stories = {
                 title: 'Parameters',
                 rowHeight: 32,
                 visibleRows: 6,
-                itemRender: (item: FilterElement) => (
-                  <Menu.Item
-                    highlight={store.state.searchValue}
-                    onItemHover={(): void => {}}
-                    prefixel={item && <Icon component={item && item.icon} />}
-                  >
-                    {item && item.text}
-                  </Menu.Item>
-                ),
+                itemRender: (item: FilterElement) => {
+                  return (
+                    <Menu.Item
+                      highlight={store.state.searchValue}
+                      onItemHover={(): void => {}}
+                      prefixel={item && <Icon component={item && item.icon} />}
+                    >
+                      {item && item.text}
+                    </Menu.Item>
+                  );
+                },
               }}
               parameterValue={store.state.searchFilterValue}
               placeholder="Search"

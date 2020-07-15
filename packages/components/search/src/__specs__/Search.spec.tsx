@@ -1,11 +1,17 @@
 import * as React from 'react';
+import { screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
-import Search from './../Search';
 import { fireEvent } from '@testing-library/dom';
-import VarTypeStringM from '@synerise/ds-icon/dist/icons/VarTypeStringM';
 import Menu from '@synerise/ds-menu';
+import VarTypeStringM from '@synerise/ds-icon/dist/icons/VarTypeStringM';
 
-const parametersList = [{ text: 'City', icon: <VarTypeStringM /> }];
+import Search from './../Search';
+
+const parametersList = [
+  { text: 'City', icon: <VarTypeStringM /> },
+  { text: 'Country', icon: <VarTypeStringM /> },
+];
 
 const recent = [{ text: 'Chicago', filter: 'City', icon: <VarTypeStringM /> }];
 
@@ -57,7 +63,7 @@ describe('Search with dropdown', () => {
 
   it('should render', () => {
     // ARRANGE
-    const { getByPlaceholderText } = renderWithProvider(
+    renderWithProvider(
       <Search
         clearTooltip="clear"
         parameters={parametersList}
@@ -77,12 +83,12 @@ describe('Search with dropdown', () => {
     );
 
     // ASSERT
-    expect(getByPlaceholderText(PLACEHOLDER)).toBeTruthy();
+    expect(screen.getByPlaceholderText(PLACEHOLDER)).toBeTruthy();
   });
 
   it('should change value', () => {
     // ARRANGE
-    const { getByPlaceholderText } = renderWithProvider(
+    renderWithProvider(
       <Search
         clearTooltip={'clear'}
         parameters={parametersList}
@@ -101,7 +107,7 @@ describe('Search with dropdown', () => {
       />
     );
 
-    const input = getByPlaceholderText(PLACEHOLDER) as HTMLInputElement;
+    const input = screen.getByPlaceholderText(PLACEHOLDER) as HTMLInputElement;
 
     // ACT
     fireEvent.change(input, { target: { value: INPUT_VALUE } });
@@ -112,7 +118,7 @@ describe('Search with dropdown', () => {
 
   it('should set filter', async () => {
     // ARRANGE
-    const { getByTestId, getByText } = renderWithProvider(
+    renderWithProvider(
       <Search
         clearTooltip={'clear'}
         parameters={parametersList}
@@ -131,21 +137,22 @@ describe('Search with dropdown', () => {
       />
     );
 
-    const btn = getByTestId('btn') as HTMLInputElement;
+    const btn = screen.getByTestId('btn') as HTMLInputElement;
 
     // ACT
     await btn.click();
     await waitForDropdownToExpand();
-    const parameter = getByText('City') as HTMLInputElement;
+    const parameter = screen.getByText('City') as HTMLInputElement;
 
     await parameter.click();
 
     // ASSERT
     expect(onParameterValueChange).toBeCalledWith('City');
   });
+
   it('should render input with value', async () => {
     // ARRANGE
-    const { getByTestId, getByDisplayValue } = renderWithProvider(
+    renderWithProvider(
       <Search
         clearTooltip={'clear'}
         parameters={parametersList}
@@ -164,60 +171,63 @@ describe('Search with dropdown', () => {
       />
     );
 
-    const btn = getByTestId('btn') as HTMLInputElement;
+    const btn = screen.getByTestId('btn') as HTMLInputElement;
     // ACT
     btn.click();
-    const inputWithValue = getByDisplayValue('TestValue') as HTMLInputElement;
+    const inputWithValue = screen.getByDisplayValue('TestValue') as HTMLInputElement;
     // ASSERT
     expect(inputWithValue).toBeTruthy();
   });
+
   it('should render suggestions with title', async () => {
     // ARRANGE
-    const { getByTestId, getByText } = renderWithProvider(
+    renderWithProvider(
       <div>
         <button>differentElement</button>
         <Search
-          clearTooltip={'clear'}
+          clearTooltip="clear"
+          onParameterValueChange={onParameterValueChange}
+          onValueChange={onChange}
           parameters={parametersList}
+          parametersDisplayProps={parametersDisplayProps}
+          parameterValue="City"
           placeholder={PLACEHOLDER}
           recent={recent}
-          suggestions={suggestions}
-          value={'TestValue'}
-          parameterValue={FILTER_VALUE}
-          onValueChange={onChange}
-          onParameterValueChange={onParameterValueChange}
-          parametersDisplayProps={parametersDisplayProps}
           recentDisplayProps={recentDisplayProps}
+          suggestions={suggestions}
           suggestionsDisplayProps={suggestionsDisplayProps}
           textLookupConfig={textLookupConfig}
+          value=""
           width={200}
         />
       </div>
     );
 
-    const btn = getByTestId('btn') as HTMLInputElement;
+    const btn = screen.getByTestId('btn') as HTMLButtonElement;
     // ACT
-    btn.click();
+    userEvent.click(btn);
+    userEvent.click(screen.getByText(/City/i));
 
-    const title = getByText(SUGGESTIONS_TITLE);
+    const title = screen.getByText(SUGGESTIONS_TITLE);
     expect(title).toBeTruthy();
   });
+
   it('should render parameters with title', async () => {
     // ARRANGE
-    const { getByTestId, getByText } = renderWithProvider(
+    renderWithProvider(
       <div>
         <button>differentElement</button>
         <Search
           clearTooltip={'clear'}
-          parameters={parametersList}
           placeholder={PLACEHOLDER}
           recent={recent}
           suggestions={suggestions}
-          value={'TestValue'}
-          parameterValue={FILTER_VALUE}
+          value=""
           onValueChange={onChange}
           onParameterValueChange={onParameterValueChange}
+          parameters={parametersList}
           parametersDisplayProps={parametersDisplayProps}
+          parameterValue=""
           recentDisplayProps={recentDisplayProps}
           suggestionsDisplayProps={suggestionsDisplayProps}
           textLookupConfig={textLookupConfig}
@@ -226,16 +236,17 @@ describe('Search with dropdown', () => {
       </div>
     );
 
-    const btn = getByTestId('btn') as HTMLInputElement;
+    const btn = screen.getByTestId('btn') as HTMLInputElement;
     // ACT
-    btn.click();
+    userEvent.click(btn);
 
-    const title = getByText(PARAMETERS_TITLE) as HTMLElement;
+    const title = screen.getByText(PARAMETERS_TITLE) as HTMLElement;
     expect(title).toBeTruthy();
   });
+
   it('should render recent with title', async () => {
     // ARRANGE
-    const { getByTestId, getByText } = renderWithProvider(
+    renderWithProvider(
       <div>
         <button>differentElement</button>
         <Search
@@ -244,8 +255,8 @@ describe('Search with dropdown', () => {
           placeholder={PLACEHOLDER}
           recent={recent}
           suggestions={suggestions}
-          value={'TestValue'}
-          parameterValue={FILTER_VALUE}
+          value=""
+          parameterValue=""
           onValueChange={onChange}
           onParameterValueChange={onParameterValueChange}
           parametersDisplayProps={parametersDisplayProps}
@@ -257,10 +268,10 @@ describe('Search with dropdown', () => {
       </div>
     );
 
-    const btn = getByTestId('btn') as HTMLInputElement;
+    const btn = screen.getByTestId('btn') as HTMLInputElement;
     // ACT
     btn.click();
-    const title = getByText(RECENT_TITLE) as HTMLElement;
+    const title = screen.getByText(RECENT_TITLE) as HTMLElement;
     expect(title).toBeTruthy();
   });
 });
