@@ -31,7 +31,7 @@ const DescriptionRow: React.FC<DescriptionRowProps> = ({
     <S.RowWrapper copyable={Boolean(copyValue)}>
       <S.RowLabel className="ds-description-label">
         {labelIcon}
-        {label}
+        <S.Label title={typeof label === 'string' ? label : undefined}>{label}</S.Label>
       </S.RowLabel>
       <S.RowValue>
         {starType !== undefined && <Star starType={starType} hasPrefixEl={Boolean(prefixEl)} />}
