@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.13.4...@synerise/ds-manageable-list@0.13.5) (2020-07-15)
+
+
+### Bug Fixes
+
+* **manageable-list:** added tooltips for stories ([c31911b](https://github.com/Synerise/synerise-design/commit/c31911bc9e57863981a32a9949a6ee4f9df23523))
+* **manageable-list:** lint the code ([5937fa8](https://github.com/Synerise/synerise-design/commit/5937fa89a427e5081f01ff5cea2ed70fd489257e))
+* **manageable-list:** prevent from remounting items ([a3680b8](https://github.com/Synerise/synerise-design/commit/a3680b8bafdd7f344eea2f828b5a974f51ef004f))
+
+
+
+
+
 ## [0.13.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.13.3...@synerise/ds-manageable-list@0.13.4) (2020-07-13)
 
 **Note:** Version bump only for package @synerise/ds-manageable-list

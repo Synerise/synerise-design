@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.5.13...@synerise/ds-menu@0.5.14) (2020-07-15)
+
+
+### Bug Fixes
+
+* **menu:** added highlight of selected items, fixed rotating arrow ([60ff840](https://github.com/Synerise/synerise-design/commit/60ff840d00a995c646d673cb3650ebe4737d983c))
+* **menu:** changed styles of stories to disable selectable ([17cc250](https://github.com/Synerise/synerise-design/commit/17cc250ce66d82be5ce72c7e3c26de40d9a8eae1))
+* **menu:** fixed linter errors ([11fa892](https://github.com/Synerise/synerise-design/commit/11fa892d0c9a775f746bba51cb57a596fa781ddb))
+
+
+
+
+
 ## [0.5.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.5.12...@synerise/ds-menu@0.5.13) (2020-07-13)
 
 **Note:** Version bump only for package @synerise/ds-menu
