@@ -1,5 +1,6 @@
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import { IconContainer } from '@synerise/ds-icon/dist/Icon.styles';
+import { copyable } from '../../../../portal/stories/components/Menu/dataset';
 
 export const RowLabel = styled.span`
   display: flex;
@@ -28,7 +29,7 @@ export const Label = styled.span`
   overflow-x: hidden;
 `;
 
-export const RowValue = styled.div`
+export const RowValue = styled.div<{ copyable: boolean }>`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -38,6 +39,7 @@ export const RowValue = styled.div`
   color: ${(props): string => props.theme.palette['grey-700']};
   font-weight: 500;
   overflow-x: hidden;
+  cursor: ${copyable ? 'pointer' : 'default'};
   .ds-status {
     margin: 0;
   }

@@ -1,9 +1,12 @@
 import * as React from 'react';
+import * as copy from 'copy-to-clipboard';
+import { injectIntl, IntlShape } from 'react-intl';
 import * as S from './DescriptionRow.styles';
 import Star from './Star';
 import Copy from './Copy';
 
 export interface DescriptionRowProps {
+  intl: IntlShape;
   label: string | React.ReactNode;
   labelIcon?: React.ReactNode;
   value: React.ReactNode;
@@ -18,6 +21,7 @@ export interface DescriptionRowProps {
 }
 
 const DescriptionRow: React.FC<DescriptionRowProps> = ({
+  intl,
   label,
   labelIcon,
   value,
@@ -25,15 +29,42 @@ const DescriptionRow: React.FC<DescriptionRowProps> = ({
   suffixEl,
   copyValue,
   starType,
-  texts,
+  texts = {
+    copiedTooltip: intl.formatMessage({ id: 'DS.DESCRIPTION.COPIED' }),
+    copyTooltip: intl.formatMessage({ id: 'DS.DESCRIPTION.COPY-VALUE' }),
+  },
 }) => {
+  const [tooltipVisible, setTooltipVisible] = React.useState<boolean>(false);
+  const [tooltipTitle, setTooltipTitle] = React.useState<string>(texts.copyTooltip);
+
+  const handleCopy = React.useCallback(() => {
+    if (copyValue && copy(copyValue)) {
+      setTooltipTitle(texts.copiedTooltip);
+      setTooltipVisible(true);
+    }
+  }, [copyValue, setTooltipTitle, setTooltipVisible, texts.copiedTooltip]);
+
+  const handleMouseEnter = React.useCallback(() => {
+    setTooltipVisible(true);
+    setTooltipTitle(texts.copyTooltip);
+  }, [setTooltipTitle, setTooltipVisible, texts.copyTooltip]);
+
+  const handleMouseLeave = React.useCallback(() => {
+    setTooltipVisible(false);
+  }, [setTooltipVisible]);
+
   return (
     <S.RowWrapper copyable={Boolean(copyValue)}>
       <S.RowLabel className="ds-description-label">
         {labelIcon}
         <S.Label title={typeof label === 'string' ? label : undefined}>{label}</S.Label>
       </S.RowLabel>
-      <S.RowValue>
+      <S.RowValue
+        copyable={typeof copyValue === 'string'}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        onClick={handleCopy}
+      >
         {starType !== undefined && <Star starType={starType} hasPrefixEl={Boolean(prefixEl)} />}
         {prefixEl && <S.PrefixWrapper className="ds-description-prefix">{prefixEl}</S.PrefixWrapper>}
         {value && (
@@ -42,10 +73,12 @@ const DescriptionRow: React.FC<DescriptionRowProps> = ({
           </S.ValueWrapper>
         )}
         {suffixEl && <S.SuffixWrapper className="ds-description-suffix">{suffixEl}</S.SuffixWrapper>}
-        {typeof copyValue === 'string' && <Copy copyValue={copyValue} {...texts} />}
+        {typeof copyValue === 'string' && (
+          <Copy tooltipVisible={tooltipVisible} tooltipTitle={tooltipTitle} {...texts} />
+        )}
       </S.RowValue>
     </S.RowWrapper>
   );
 };
 
-export default DescriptionRow;
+export default injectIntl(DescriptionRow);
