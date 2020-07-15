@@ -1,6 +1,5 @@
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import { IconContainer } from '@synerise/ds-icon/dist/Icon.styles';
-import { copyable } from '../../../../portal/stories/components/Menu/dataset';
 
 export const RowLabel = styled.span`
   display: flex;
@@ -39,7 +38,7 @@ export const RowValue = styled.div<{ copyable: boolean }>`
   color: ${(props): string => props.theme.palette['grey-700']};
   font-weight: 500;
   overflow-x: hidden;
-  cursor: ${copyable ? 'pointer' : 'default'};
+  cursor: ${(props): string => (props.copyable ? 'pointer' : 'default')};
   .ds-status {
     margin: 0;
   }

@@ -12,7 +12,7 @@ interface CopyProps {
 const Copy: React.FC<CopyProps> = ({ tooltipVisible, tooltipTitle }) => {
   return (
     <Tooltip title={tooltipTitle} visible={tooltipVisible}>
-      <S.Copyable className="ds-descrip">
+      <S.Copyable className="ds-description-copy">
         <Icon component={<DuplicateM />} />
       </S.Copyable>
     </Tooltip>

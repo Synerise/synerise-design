@@ -35,7 +35,7 @@ const DescriptionRow: React.FC<DescriptionRowProps> = ({
   },
 }) => {
   const [tooltipVisible, setTooltipVisible] = React.useState<boolean>(false);
-  const [tooltipTitle, setTooltipTitle] = React.useState<string>(texts.copyTooltip);
+  const [tooltipTitle, setTooltipTitle] = React.useState(texts.copyTooltip);
 
   const handleCopy = React.useCallback(() => {
     if (copyValue && copy(copyValue)) {
@@ -74,7 +74,7 @@ const DescriptionRow: React.FC<DescriptionRowProps> = ({
         )}
         {suffixEl && <S.SuffixWrapper className="ds-description-suffix">{suffixEl}</S.SuffixWrapper>}
         {typeof copyValue === 'string' && (
-          <Copy tooltipVisible={tooltipVisible} tooltipTitle={tooltipTitle} {...texts} />
+          <Copy tooltipVisible={tooltipVisible} tooltipTitle={tooltipTitle as string} {...texts} />
         )}
       </S.RowValue>
     </S.RowWrapper>
