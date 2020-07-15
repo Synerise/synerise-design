@@ -11,9 +11,12 @@ type Props = {
   onRemove?: (removeParams: { id: string }) => void;
   onSelect: (selectParams: { id: string }) => void;
   onUpdate?: (updateParams: { id: string; name: string }) => void;
+  texts?: {
+    [k: string]: string | React.ReactNode;
+  };
 };
 
-const SimpleItem: React.FC<Props> = ({ item, onRemove, onSelect, onUpdate }) => {
+const SimpleItem: React.FC<Props> = ({ item, onRemove, onSelect, onUpdate, texts }) => {
   const [editMode, setEditMode] = React.useState(false);
 
   const updateName = React.useCallback(
@@ -37,7 +40,16 @@ const SimpleItem: React.FC<Props> = ({ item, onRemove, onSelect, onUpdate }) => 
       <List.Item
         icon={<Icon className="ds-manageable-list-item-icon" component={item.icon} size={24} />}
         onSelect={handleSelect}
-        actions={<ItemActions item={item} editAction={enterEditMode} removeAction={onRemove} />}
+        actions={
+          <ItemActions
+            item={item}
+            editAction={enterEditMode}
+            removeAction={onRemove}
+            editActionTooltip={texts?.itemActionRenameTooltip || undefined}
+            duplicateActionTooltip={texts?.itemActionDuplicateTooltip || undefined}
+            removeActionTooltip={texts?.itemActionDeleteTooltip || undefined}
+          />
+        }
       >
         <ItemName item={item} editMode={editMode} onUpdate={updateName} />
       </List.Item>
