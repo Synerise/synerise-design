@@ -7,8 +7,9 @@ import { EditM, FileDownloadM, TrashM } from '@synerise/ds-icon/dist/icons';
 import Table from '@synerise/ds-table';
 import Button from '@synerise/ds-button';
 import * as React from 'react';
-import { dataSourceForVirtualTable } from './content/expandable.data';
+import { dataSource, dataSourceForVirtualTable } from './content/expandable.data';
 import Card from '@synerise/ds-card';
+import ModalProxy from '@synerise/ds-modal';
 
 const decorator = storyFn => <div style={{ padding: 20, width: '100vw', minWidth: '100%' }}>{storyFn()}</div>;
 
@@ -70,14 +71,20 @@ const stories = {
         ];
       };
 
-      return (
-        <Card size="extraLarge" title="VirtualTable with expandable rows" withHeader withoutPadding>
+    const countRecords = () => {
+      const result = dataSourceForVirtualTable.reduce((count, record) => {
+        return record.hasOwnProperty('children') && record.children !== undefined ? count + record.children.length : count + 1;
+      }, 0);
+      return result;
+    };
+
+    return (
+        <ModalProxy visible size="medium" title="VirtualTable with expandable rows" bodyStyle={{padding: 0}}>
           <VirtualTable
-            headerWithBorderTop
             scroll={{y: 600}}
-            initialWidth={1232}
+            initialWidth={792}
             cellHeight={50}
-            title={`${dataSourceForVirtualTable.length} results`}
+            title={`${countRecords()} results`}
             dataSource={dataSourceForVirtualTable}
             columns={getColumns()}
             loading={boolean('Set loading state', false)}
@@ -95,11 +102,6 @@ const stories = {
                   undefined,
                   null,
                   Table.SELECTION_INVERT,
-                  {
-                    key: 'even',
-                    label: 'Select even',
-                    onClick: selectEven,
-                  }
                 ]
               }
             }
@@ -126,7 +128,7 @@ const stories = {
               </ItemsMenu>
             }
           />
-        </Card>)
+        </ModalProxy>)
     }
   ),
 };

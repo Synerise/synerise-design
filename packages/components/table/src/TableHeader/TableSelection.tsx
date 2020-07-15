@@ -7,7 +7,7 @@ import { AngleDownS } from '@synerise/ds-icon/dist/icons';
 import Checkbox from '@synerise/ds-checkbox';
 import { CheckboxChangeEvent } from 'antd/lib/checkbox';
 import * as S from '../Table.styles';
-import { RowSelection, Selection, SelectionItem } from '../Table.types';
+import { RowSelection, RowType, Selection, SelectionItem } from '../Table.types';
 import { SELECTION_ALL, SELECTION_INVERT } from '../Table';
 
 interface Props<T extends { key: React.ReactText }> {
@@ -18,7 +18,11 @@ interface Props<T extends { key: React.ReactText }> {
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
-const TableSelection: React.FC<Props> = ({ dataSource, selection, rowKey }) => {
+function TableSelection<T extends any & Props & RowType<T>>({
+  dataSource,
+  selection,
+  rowKey,
+}): React.ReactElement | null {
   const getRowKey = React.useCallback(
     (row): React.ReactText | undefined => {
       if (typeof rowKey === 'function') return rowKey(row);
@@ -30,10 +34,19 @@ const TableSelection: React.FC<Props> = ({ dataSource, selection, rowKey }) => {
 
   const selectAll = React.useCallback(() => {
     if (dataSource && selection) {
-      selection.onChange(
-        dataSource.map((record: Selection) => getRowKey(record)),
-        dataSource
-      );
+      let keys: React.ReactText[] = [];
+      let rows: T[] = [];
+      dataSource.forEach((record: T) => {
+        if (record.children !== undefined && Array.isArray(record.children)) {
+          keys = [...keys, ...record.children.map((child: T) => getRowKey(child))];
+          rows = [...rows, ...record.children];
+        } else {
+          const key = getRowKey(record);
+          keys = key ? [...keys, key] : [...keys];
+          rows = [...rows, record];
+        }
+      });
+      selection.onChange(keys, rows);
     }
   }, [dataSource, selection, getRowKey]);
 
@@ -43,19 +56,32 @@ const TableSelection: React.FC<Props> = ({ dataSource, selection, rowKey }) => {
 
   const selectInvert = React.useCallback(() => {
     if (dataSource && selection) {
-      const selected = dataSource.filter(
-        (record: Selection) => selection.selectedRowKeys.indexOf(getRowKey(record)) < 0
-      );
+      let selected: T[] = [];
+      dataSource.forEach((record: T): void => {
+        const hasChilds = record.children !== undefined && Array.isArray(record.children);
+        if (hasChilds) {
+          record.children.forEach((child: T) => {
+            if (selection.selectedRowKeys.indexOf(getRowKey(child)) < 0) {
+              selected = [...selected, child];
+            }
+          });
+        } else if (selection.selectedRowKeys.indexOf(getRowKey(record)) < 0) {
+          selected = [...selected, record];
+        }
+      });
 
       selection.onChange(
-        selected.map((record: Selection) => getRowKey(record)),
+        selected.map((record: T) => getRowKey(record)),
         selected
       );
     }
   }, [dataSource, selection, getRowKey]);
 
   const allSelected = React.useMemo(() => {
-    return dataSource && selection?.selectedRowKeys && dataSource.length === selection.selectedRowKeys.length;
+    const allRecords = dataSource.reduce((count: number, record: T) => {
+      return record.children !== undefined ? count + record.children.length : count + 1;
+    }, 0);
+    return dataSource && selection?.selectedRowKeys && allRecords === selection.selectedRowKeys.length;
   }, [dataSource, selection]);
 
   const isEmpty = React.useMemo(() => {
@@ -119,6 +145,6 @@ const TableSelection: React.FC<Props> = ({ dataSource, selection, rowKey }) => {
       )}
     </S.Selection>
   ) : null;
-};
+}
 
 export default TableSelection;

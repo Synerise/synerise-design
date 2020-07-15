@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import Checkbox from '@synerise/ds-checkbox';
 import Scrollbar from '@synerise/ds-scrollbar';
 import DSTable from '../Table';
-import { DSTableProps } from '../Table.types';
+import { DSTableProps, RowType } from '../Table.types';
 import VirtualTableRow from './VirtualTableRow';
 
 export const EXPANDED_ROW_PROPERTY = 'expandedChild';
@@ -23,7 +23,7 @@ interface Props<T> extends DSTableProps<T> {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-function VirtualTable<T extends object = { children?: []; [EXPANDED_ROW_PROPERTY]?: boolean }>(
+function VirtualTable<T extends any & RowType<T> & { [EXPANDED_ROW_PROPERTY]?: boolean }>(
   props: Props<T>
 ): React.ReactElement {
   const {
@@ -60,18 +60,44 @@ function VirtualTable<T extends object = { children?: []; [EXPANDED_ROW_PROPERTY
           dataIndex: 'key',
           render: (key: string, record: T): React.ReactNode => {
             const recordKey = getRowKey(record);
+            const hasChilds = record.children !== undefined && Array.isArray(record.children);
+            const allChildsChecked =
+              hasChilds &&
+              record.children?.filter((child: T) => {
+                const childKey = getRowKey(child);
+                return childKey && selection?.selectedRowKeys.indexOf(childKey) < 0;
+              }).length === 0;
+            const checkedChilds =
+              record.children?.filter((child: T) => {
+                const childKey = getRowKey(child);
+                return childKey && selection?.selectedRowKeys.indexOf(childKey) >= 0;
+              }) || [];
+            const isIndeterminate =
+              hasChilds && checkedChilds.length > 0 && checkedChilds.length < record.children.length;
             return (
               recordKey !== undefined && (
                 <Checkbox
-                  checked={selection.selectedRowKeys && selection.selectedRowKeys.indexOf(recordKey) >= 0}
+                  checked={
+                    (selection.selectedRowKeys && selection.selectedRowKeys.indexOf(recordKey) >= 0) || allChildsChecked
+                  }
+                  indeterminate={isIndeterminate}
                   onChange={(event): void => {
                     const { selectedRowKeys, onChange } = selection;
                     let selectedKeys = selectedRowKeys || [];
                     if (event.target.checked) {
-                      selectedKeys = [...selectedKeys, recordKey];
-                    } else {
-                      selectedKeys = selectedKeys.filter(k => k !== recordKey);
-                    }
+                      if (hasChilds) {
+                        const childsKeys = record.children.map((child: T) => getRowKey(child));
+                        selectedKeys = [...selectedKeys, ...childsKeys];
+                      } else {
+                        selectedKeys = [...selectedKeys, recordKey];
+                      }
+                    } else if (hasChilds) {
+                        const childsKeys = record.children.map((child: T) => getRowKey(child));
+                        selectedKeys = selectedKeys.filter(k => childsKeys.indexOf(k) < 0);
+                      } else {
+                        selectedKeys = selectedKeys.filter(k => k !== recordKey);
+                      }
+                    selectedKeys = [...new Set(selectedKeys)];
                     onChange &&
                       onChange(
                         selectedKeys,

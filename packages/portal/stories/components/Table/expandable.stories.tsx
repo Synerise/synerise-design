@@ -65,9 +65,16 @@ const stories = {
       ];
     };
 
+    const countRecords = () => {
+      const result = dataSource.reduce((count, record) => {
+        return record.hasOwnProperty('children') && record.children !== undefined ? count + record.children.length : count + 1;
+      }, 0);
+      return result;
+    };
+
     return (
       <Table
-        title={`${dataSource.length} results`}
+        title={`${countRecords()} results`}
         dataSource={dataSource}
         columns={getColumns()}
         loading={boolean('Set loading state', false)}
