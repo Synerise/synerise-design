@@ -254,7 +254,7 @@ class Search extends React.PureComponent<SearchProps<{}>, SearchState<{}>> {
   }
 
   renderInputWrapper(): React.ReactNode {
-    const { placeholder, clearTooltip, value, textLookupConfig, filterLookupKey } = this.props;
+    const { placeholder, clearTooltip, value, textLookupConfig, filterLookupKey, hideLabel } = this.props;
     const { label, focusInputTrigger, toggleInputTrigger } = this.state;
 
     return (
@@ -263,7 +263,7 @@ class Search extends React.PureComponent<SearchProps<{}>, SearchState<{}>> {
         clearTooltip={clearTooltip}
         filterLookupKey={filterLookupKey}
         textLookupKey={textLookupConfig.parameters}
-        filterLabel={label}
+        filterLabel={hideLabel ? null : label}
         focusTrigger={focusInputTrigger}
         onButtonClick={(): void => this.setState({ focusInputTrigger: !focusInputTrigger })}
         onChange={(newValue: string): void => this.handleChange(newValue)}

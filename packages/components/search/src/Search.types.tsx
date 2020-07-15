@@ -33,6 +33,7 @@ export type SearchProps<T extends {}> = {
   textLookupConfig: SearchLookupConfig;
   value: string;
   width?: number;
+  hideLabel?: boolean;
 };
 
 export type SearchState<T extends {}> = {
