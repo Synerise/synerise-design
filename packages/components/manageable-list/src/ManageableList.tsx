@@ -204,7 +204,7 @@ const ManageableList: React.FC<ManageableListProps> = ({
         {itemsToRender.map(getItem)}
       </ReactSortable>
     ) : (
-      <List loading={loading} dataSource={[visibleItems]} renderItem={getItem} />
+      <List loading={loading} dataSource={visibleItems} renderItem={getItem} />
     );
   }, [changeOrderDisabled, visibleItems, itemsToRender, onChangeOrder, loading, getItem]);
 

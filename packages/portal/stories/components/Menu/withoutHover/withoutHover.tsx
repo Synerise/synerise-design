@@ -8,7 +8,7 @@ const withoutHover = () => {
   const knobs = attachKnobsToDataSource(simpleText);
   return (
     <div style={{ background: 'rgba(0,0,0,0)', width: '200px' }}>
-      <Menu>
+      <Menu selectable={false}>
         {remapCopyValueFromText(knobs).map(item => (
           <ItemWithoutHover {...item} />
         ))}

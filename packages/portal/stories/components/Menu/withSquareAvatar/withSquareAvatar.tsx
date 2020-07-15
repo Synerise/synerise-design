@@ -13,6 +13,8 @@ const withSquareAvatar = () => {
     dataSource: attachKnobsToDataSource(avatar),
     suffixel: getSuffixElement(),
     suffixVisibilityTrigger: getSuffixTrigger(),
+    selectable: false,
+
     ...defaultProps,
   } as object;
   return decorator(props);

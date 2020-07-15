@@ -7,6 +7,7 @@ const withIndent = () => {
   const props = {
     dataSource: attachKnobsToDataSource(simpleText),
     indentLevel: number('Set indent level', 0, { min: 0, max: 10 }),
+    selectable: false,
     ...defaultProps,
   } as object;
   return decorator(props);

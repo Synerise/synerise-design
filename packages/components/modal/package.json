@@ -27,7 +27,8 @@
   "dependencies": {
     "@synerise/ds-button": "^0.12.22",
     "@synerise/ds-icon": "^0.20.2",
-    "@synerise/ds-typography": "^0.8.3"
+    "@synerise/ds-typography": "^0.8.3",
+    "classnames": "^2.2.6"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

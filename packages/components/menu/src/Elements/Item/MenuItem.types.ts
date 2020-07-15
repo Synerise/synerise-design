@@ -29,4 +29,5 @@ export interface MenuItemProps extends Omit<MenuProps, 'dataSource' | 'footer'> 
   children?: React.ReactNode;
   type?: 'default' | 'select' | 'danger' | string;
   indentLevel?: number;
+  menuItemKey?: React.ReactText;
 }

@@ -9,7 +9,6 @@ type SubMenuProps = {
   danger?: boolean | undefined;
   prefixel?: React.ReactNode;
   title: string | React.ReactNode;
-  childrenCollapsed?: boolean;
   tabIndex?: number;
 };
 
@@ -72,7 +71,13 @@ export const SubMenuItem = styled(Menu.SubMenu)<SubMenuProps>`
     font-weight: 500;
     border-radius: 3px;
     transition: background-color 0.3s ease-out;
-    .ant-menu-submenu-title:hover {
+    && .ant-menu-submenu-title:hover {
+      && > i.ant-menu-submenu-arrow {
+         background-image: url("${(props): string =>
+           props.disabled
+             ? arrowDownSvgWithCustomColor(props.theme.palette['grey-400'])
+             : arrowDownSvgWithCustomColor(props.theme.palette['blue-600'])}");
+      }
         .ds-submenu-title-wrapper > .ds-submenu-title {
             color: ${(props): string => props.theme.palette['blue-600']};
             .ds-menu-prefix {
@@ -89,6 +94,11 @@ export const SubMenuItem = styled(Menu.SubMenu)<SubMenuProps>`
       padding-bottom: 7px;
       padding-top: 7px;
       max-width: 100%;
+
+      .ds-submenu-title-wrapper > .ds-submenu-title:focus:not(:active) {
+         box-shadow: inset 0 0 0 2px transparent;
+         background: transparent;
+      }
 
       ${(props: SubMenuProps & ThemeProps): FlattenSimpleInterpolation | false =>
         !!props.ordered &&
@@ -116,23 +126,31 @@ export const SubMenuItem = styled(Menu.SubMenu)<SubMenuProps>`
     i {
       right: 12px;
     }
-    > .ant-menu-submenu-title:not(:hover){
-      color: ${(props): string =>
-        props.childrenCollapsed ? props.theme.palette['grey-700'] : props.theme.palette['blue-600']};
+    > .ant-menu-submenu-title:hover {
+      color: ${(props): string => props.theme.palette['blue-600']};
+    }
+    &&.ant-menu-submenu-open > .ant-menu-submenu-title {
+      &:not(:hover) {
+        color: ${(props): string => props.theme.palette['grey-700']};
+      }
+      background:${(props): string => props.theme.palette['grey-050']};
+      
+      & > i.ant-menu-submenu-arrow {
+         transform: rotate(180deg);
+         background-image: url("${(props): string =>
+           props.disabled
+             ? arrowDownSvgWithCustomColor(props.theme.palette['grey-400'])
+             : arrowDownSvgWithCustomColor(props.theme.palette['grey-500'])}");
+      }
     }
     > .ant-menu-submenu-title {
-      ${(props): string | false => !props.childrenCollapsed && `background:${props.theme.palette['grey-050']};`}
       border-radius: 3px;
       & > i.ant-menu-submenu-arrow {
-          transform: ${(props): string => (props.childrenCollapsed ? `rotate(0deg)` : `rotate(180deg)`)};
+          transform: rotate(0deg);
           top:5px;
           right:5px;
           height:24px;
           width:24px;
-          background-image: url("${(props): string =>
-            props.childrenCollapsed || props.disabled
-              ? arrowDownSvgWithCustomColor(props.theme.palette['grey-400'])
-              : arrowDownSvgWithCustomColor(props.theme.palette['blue-600'])}");
       }
       & > i.ant-menu-submenu-arrow::after,
       & > i.ant-menu-submenu-arrow::before {
@@ -148,11 +166,18 @@ export const SubMenuItem = styled(Menu.SubMenu)<SubMenuProps>`
         color: ${(props): string => props.theme.palette['blue-600']};
         background: ${(props): string => props.theme.palette['grey-050']};
       }
+      & > i.ant-menu-submenu-arrow{
+        background-image: url("${(props): string => arrowDownSvgWithCustomColor(props.theme.palette['grey-400'])}");
+      }
       &:hover > i.ant-menu-submenu-arrow{
         background-image: url("${(props): string => arrowDownSvgWithCustomColor(props.theme.palette['blue-600'])}");
-
       }
     }
+     &&.ant-menu-submenu-open > .ant-menu-submenu-title:hover {
+      & > i.ant-menu-submenu-arrow{
+        background-image: url("${(props): string => arrowDownSvgWithCustomColor(props.theme.palette['blue-600'])}");
+      }
+     }
 
     > li.ant-menu-submenu {
       &:hover {

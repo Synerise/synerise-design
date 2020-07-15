@@ -8,6 +8,7 @@ import * as S from './Checkbox.styles';
 export interface CheckboxProps extends AntCheckboxProps {
   description?: string;
   errorText?: string;
+  hasError?: boolean;
   withoutPadding?: boolean;
 }
 
@@ -15,14 +16,13 @@ class Checkbox extends React.Component<CheckboxProps> {
   static Group = S.AntdCheckbox.Group;
 
   render(): React.ReactNode {
-    const { description, errorText, children, withoutPadding, ...antdCheckboxProps } = this.props;
+    const { description, errorText, children, withoutPadding, hasError, ...antdCheckboxProps } = this.props;
 
     return (
       <S.CheckboxWrapper className="ds-checkbox" withoutPadding={Boolean(withoutPadding)}>
         <S.AntdCheckbox
-          // eslint-disable-next-line react/jsx-props-no-spreading
           {...antdCheckboxProps}
-          className={errorText ? 'error' : undefined}
+          className={hasError || errorText ? 'error' : undefined}
           solo={!children && !errorText && !description}
         >
           {children}

@@ -16,7 +16,6 @@ const SCROLLBAR_HEIGHT_OFFSET = 28;
 
 class Search extends React.PureComponent<SearchProps<{}>, SearchState<{}>> {
   private wrapperRef = React.createRef<HTMLDivElement>();
-
   constructor(props: SearchProps<{}>) {
     super(props);
 

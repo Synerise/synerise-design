@@ -33,6 +33,7 @@ export type ItemPickerProps = {
   clearConfirmTitle?: string;
   yesText?: string;
   noText?: string;
+  noResults?: string;
 };
 
 const ItemPicker: React.FC<ItemPickerProps> = ({
@@ -57,6 +58,7 @@ const ItemPicker: React.FC<ItemPickerProps> = ({
   clearConfirmTitle = intl.formatMessage({ id: 'DS.ITEM-PICKER.CLEAR-CONFIRM' }),
   yesText = intl.formatMessage({ id: 'DS.ITEM-PICKER.YES-TEXT' }),
   noText = intl.formatMessage({ id: 'DS.ITEM-PICKER.NO-TEXT' }),
+  noResults = intl.formatMessage({ id: 'DS.ITEM-PICKER.NO-RESULTS' }),
   withClearConfirmation,
 }) => {
   const [dropdownOpened, setDropdownOpened] = React.useState<boolean>(false);
@@ -76,9 +78,10 @@ const ItemPicker: React.FC<ItemPickerProps> = ({
         dataSource={dataSource}
         placeholder={searchPlaceholder}
         closeDropdown={closeDropdown}
+        noResults={noResults}
       />
     ),
-    [dataSource, searchPlaceholder, onChange, closeDropdown]
+    [dataSource, searchPlaceholder, onChange, closeDropdown, noResults]
   );
 
   const renderTrigger = React.useMemo(

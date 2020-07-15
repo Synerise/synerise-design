@@ -32,13 +32,14 @@ class Menu extends React.Component<AntdMenuProps> {
                 text={item.text}
                 description={item.description}
                 subMenu={item.subMenu}
-                ordered={item.ordered===undefined ? ordered : item.ordered}
+                ordered={item.ordered === undefined ? ordered : item.ordered}
                 copyable={item.copyable}
                 copyHint={item.copyHint}
                 copyValue={item.copyValue}
                 suffixVisibilityTrigger={item.suffixVisibilityTrigger}
                 prefixVisibilityTrigger={item.prefixVisibilityTrigger}
                 key={item.key || `${item.text}${index}`} // eslint-disable-line react/no-array-index-key
+                menuItemKey={item.key || `${item.text}${index}`}
                 {...rest}
               />
             ) : (
@@ -51,7 +52,7 @@ class Menu extends React.Component<AntdMenuProps> {
                 text={item.text}
                 description={item.description}
                 subMenu={item.subMenu}
-                ordered={item.ordered===undefined ? ordered : item.ordered}
+                ordered={item.ordered === undefined ? ordered : item.ordered}
                 copyable={item.copyable}
                 copyHint={item.copyHint}
                 copyValue={item.copyValue}
@@ -61,6 +62,7 @@ class Menu extends React.Component<AntdMenuProps> {
                 indentLevel={item.indentLevel || 0}
                 type={item.type}
                 key={item.key || `${item.text}${index}`} // eslint-disable-line react/no-array-index-key
+                menuItemKey={item.key || `${item.text}${index}`}
                 {...rest}
               />
             )

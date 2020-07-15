@@ -11,6 +11,11 @@ const stories = {
           onApply={value => {
             action('Selected', value);
           }}
+          texts={{
+            apply:'Apply',
+            inputPlaceholder: 'Select date',
+
+          }}
           useStartOfDay
         />
       </div>

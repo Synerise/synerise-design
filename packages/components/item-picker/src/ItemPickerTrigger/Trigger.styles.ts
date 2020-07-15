@@ -11,22 +11,22 @@ type TriggerWrapperProps = {
 };
 
 const getDefaultStyles = (props: ThemeProps & TriggerWrapperProps): string => {
-  if (props.size === 'small') return `box-shadow: 0 0 0 1px ${props.theme.palette['grey-300']};`;
+  if (props.size === 'small') return `box-shadow: inset 0 0 0 1px ${props.theme.palette['grey-300']};`;
   return `border: 1px dashed ${props.theme.palette['grey-300']};`;
 };
 
 const getHoverStyles = (props: ThemeProps & TriggerWrapperProps): string => {
-  if (props.size === 'small') return `box-shadow: 0 0 0 1px ${props.theme.palette['grey-400']};`;
+  if (props.size === 'small') return `box-shadow: inset 0 0 0 1px ${props.theme.palette['grey-400']};`;
   return `border: 1px dashed ${props.theme.palette['grey-400']};`;
 };
 
 const getErrorStyles = (props: ThemeProps & TriggerWrapperProps): string => {
-  if (props.size === 'small') return `box-shadow: 0 0 0 1px ${props.theme.palette['red-600']};`;
+  if (props.size === 'small') return `box-shadow: inset 0 0 0 1px ${props.theme.palette['red-600']};`;
   return `border: 1px dashed ${props.theme.palette['red-600']};`;
 };
 
 const getFocusStyles = (props: ThemeProps & TriggerWrapperProps): string => {
-  if (props.size === 'small') return `box-shadow: 0 0 0 2px ${props.theme.palette['blue-600']};`;
+  if (props.size === 'small') return `box-shadow: inset 0 0 0 2px ${props.theme.palette['blue-600']};`;
   return `border: 1px dashed ${props.theme.palette['blue-600']};`;
 };
 

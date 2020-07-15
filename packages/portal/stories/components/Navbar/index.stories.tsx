@@ -36,20 +36,7 @@ const backgroundColors = {
   purple: theme.palette['purple-600'],
   violet: theme.palette['violet-600'],
 };
-const backgroundButtonColors = {
-  blue: 'blue',
-  grey: 'grey',
-  red: 'red',
-  green: 'green',
-  yellow: 'yellow',
-  pink: 'pink',
-  mars: 'mars',
-  orange: 'orange',
-  fern: 'fern',
-  cyan: 'cyan',
-  purple: 'purple',
-  violet: 'violet',
-};
+
 
 const logoSrc = 'https://app.portal.rc.snrstage.com/spa/assets/images/logo.svg';
 
@@ -57,7 +44,6 @@ const stories = {
   default: () => {
     const suffixType = select('Set suffix type', addonType, addonType.none);
     const colorAll = select('Background color', backgroundColors, '#0b68ff');
-    const colorButton = select('Button color', backgroundButtonColors, 'blue');
     const hasButton = boolean('Set button', false);
 
     return (
@@ -82,7 +68,7 @@ const stories = {
           </>,
           <div>
             {hasButton && (
-              <Button mode="label-icon" type="custom-color" color={colorButton}>
+              <Button mode="label-icon" type="ghost-white" >
                 Button
                 <Icon component={<AngleDownS />} />
               </Button>

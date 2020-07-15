@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Tag } from '@synerise/ds-tags/dist/Tag/Tag.styles';
+import Button from '@synerise/ds-button';
 import { ItemLabel } from '../SimpleItem/SimpleItem.styles';
 import { ItemActionsWrapper } from '../ItemActions/ItemActions.styles';
 import { ItemMeta } from '../ItemMeta/ItemMeta.styles';
@@ -63,6 +64,8 @@ export const ItemHeader = styled.div<ItemHeaderProps>`
   width: 100%;
   padding: 12px;
   cursor: pointer;
+  max-height: 48px;
+
   ${(props): string | false => !props.hasPrefix && `padding-left:16px;`}
   ${Tag} {
     margin: 0 12px 0 0;
@@ -134,7 +137,10 @@ export const ItemContainer = styled.div<ItemContainerProps>`
 export const ToggleContentWrapper = styled.div`
   margin-left: 12px;
 `;
-export const DropdownTrigger = styled.span`
+export const DropdownTrigger = styled(Button)`
   margin-left: 12px;
+`;
+export const FilterDropdownTrigger = styled(Button)`
+  margin-left: 0px;
 `;
 export const DropdownWrapper = styled.div``;

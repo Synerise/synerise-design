@@ -94,7 +94,7 @@ const Item: React.FC<Props> = ({
       );
 
     default:
-      return <SimpleItem item={item} onSelect={onSelect} onUpdate={onUpdate} onRemove={onRemove} />;
+      return <SimpleItem item={item} onSelect={onSelect} onUpdate={onUpdate} onRemove={onRemove} texts={texts} />;
   }
 };
 

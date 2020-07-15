@@ -5,6 +5,7 @@ const withSmallAvatar = () => {
   const defaultProps = getDefaultProps();
   const props = {
     dataSource: attachKnobsToDataSource(avatarSmall),
+    selectable: false,
     ...defaultProps,
   } as object;
   return decorator(props);

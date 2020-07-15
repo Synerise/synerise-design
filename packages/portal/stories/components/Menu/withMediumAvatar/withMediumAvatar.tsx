@@ -5,6 +5,7 @@ const withMediumAvatar = () => {
   const defaultProps = getDefaultProps();
   const props = {
     dataSource: attachKnobsToDataSource(avatarMedium),
+    selectable: false,
     ...defaultProps,
   } as object;
   return decorator(props);
