@@ -83,30 +83,42 @@ function VirtualTable<T extends any & RowType<T> & { [EXPANDED_ROW_PROPERTY]?: b
                   indeterminate={isIndeterminate}
                   onChange={(event): void => {
                     const { selectedRowKeys, onChange } = selection;
-                    let selectedKeys = selectedRowKeys || [];
+                    let selectedRows: T[] = [];
+                    dataSource &&
+                      dataSource.forEach((row: T): void => {
+                        if (row.children !== undefined && Array.isArray(row.children)) {
+                          row.children.forEach((child: T) => {
+                            const k = getRowKey(child);
+                            if (k && selectedRowKeys.indexOf(k) >= 0) {
+                              selectedRows = [...selectedRows, child];
+                            }
+                          });
+                        } else {
+                          const k = getRowKey(row);
+                          if (k && selectedRowKeys.indexOf(k) >= 0) {
+                            selectedRows = [...selectedRows, row];
+                          }
+                        }
+                      });
                     if (event.target.checked) {
                       if (hasChilds) {
-                        const childsKeys = record.children.map((child: T) => getRowKey(child));
-                        selectedKeys = [...selectedKeys, ...childsKeys];
+                        selectedRows = [...selectedRows, ...record.children];
                       } else {
-                        selectedKeys = [...selectedKeys, recordKey];
+                        selectedRows = [...selectedRows, record];
                       }
                     } else if (hasChilds) {
-                        const childsKeys = record.children.map((child: T) => getRowKey(child));
-                        selectedKeys = selectedKeys.filter(k => childsKeys.indexOf(k) < 0);
-                      } else {
-                        selectedKeys = selectedKeys.filter(k => k !== recordKey);
-                      }
-                    selectedKeys = [...new Set(selectedKeys)];
+                      const childsKeys = record.children.map((child: T) => getRowKey(child));
+                      selectedRows = selectedRows.filter(child => childsKeys.indexOf(getRowKey(child)) < 0);
+                    } else {
+                      selectedRows = selectedRows.filter(row => getRowKey(row) !== recordKey);
+                    }
+
+                    selectedRows = [...new Set(selectedRows)];
+
                     onChange &&
                       onChange(
-                        selectedKeys,
-                        (dataSource &&
-                          dataSource.filter(row => {
-                            const dataSourceRowKey = getRowKey(row);
-                            return dataSourceRowKey && selectedKeys.includes(dataSourceRowKey);
-                          })) ||
-                          []
+                        selectedRows.map(selected => getRowKey(selected) as React.ReactText),
+                        selectedRows
                       );
                   }}
                 />

@@ -37,7 +37,7 @@ const stories = {
       store.set({selectedRows: evenRows});
     };
 
-    const handleSelectRow = selectedRowKeys => {
+    const handleSelectRow = (selectedRowKeys) => {
       store.set({ selectedRows: selectedRowKeys });
     };
 
@@ -110,11 +110,6 @@ const stories = {
               undefined,
               null,
               Table.SELECTION_INVERT,
-              {
-                key: 'even',
-                label: 'Select even',
-                onClick: selectEven,
-              }
             ]
           }}
           onSearch={console.log}

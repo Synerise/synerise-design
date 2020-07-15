@@ -38,7 +38,7 @@ const stories = {
         store.set({selectedRows: evenRows});
       };
 
-      const handleSelectRow = selectedRowKeys => {
+      const handleSelectRow = (selectedRowKeys) => {
         store.set({ selectedRows: selectedRowKeys });
       };
 
