@@ -20,7 +20,7 @@ class SearchInput extends React.Component<SearchInputProps, SearchInputState> {
     // eslint-disable-next-line react/state-in-constructor
     this.state = {
       inputOffset: 0,
-      isInputOpen: props.alwaysExpanded || !!props.value,
+      isInputOpen: props.alwaysExpanded || !!props.value || !!props.filterLabel,
       isInputFocused: true,
       isResultChosen: false,
     };

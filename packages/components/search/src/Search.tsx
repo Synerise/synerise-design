@@ -17,26 +17,25 @@ const SCROLLBAR_HEIGHT_OFFSET = 28;
 class Search extends React.PureComponent<SearchProps<{}>, SearchState<{}>> {
   private wrapperRef = React.createRef<HTMLDivElement>();
 
-  state = {
-    // eslint-disable-next-line react/destructuring-assignment
-    isInputOpen: !!this.props.value,
-    // eslint-disable-next-line react/destructuring-assignment
-    label: this.props.parameterValue
-      ? // eslint-disable-next-line react/destructuring-assignment
-        this.props.parameters.find(p => p[this.props.textLookupConfig.parameters] === this.props.parameterValue)
-      : null,
-    // eslint-disable-next-line react/destructuring-assignment
-    filteredParameters: this.props.parameters,
-    // eslint-disable-next-line react/destructuring-assignment
-    filteredRecent: this.props.recent,
-    // eslint-disable-next-line react/destructuring-assignment
-    filteredSuggestions: this.props.suggestions,
-    isListVisible: false,
-    isResultChosen: false,
-    itemsListWidth: 0,
-    toggleInputTrigger: false,
-    focusInputTrigger: false,
-  };
+  constructor(props: SearchProps<{}>) {
+    super(props);
+
+    // eslint-disable-next-line react/state-in-constructor
+    this.state = {
+      isInputOpen: !!props.value || !!props.parameterValue,
+      label: props.parameterValue
+        ? props.parameters.find(param => param[props.textLookupConfig.parameters] === props.parameterValue)
+        : null,
+      filteredParameters: props.parameters,
+      filteredRecent: props.recent,
+      filteredSuggestions: props.suggestions,
+      isListVisible: false,
+      isResultChosen: false,
+      itemsListWidth: props.width ? props.width - MENU_WIDTH_OFFSET : 0,
+      toggleInputTrigger: false,
+      focusInputTrigger: false,
+    };
+  }
 
   getSnapshotBeforeUpdate(prevProps: Readonly<SearchProps<{}>>): null {
     const { recent, suggestions, parameters, value, textLookupConfig } = this.props;
@@ -82,6 +81,7 @@ class Search extends React.PureComponent<SearchProps<{}>, SearchState<{}>> {
     if (width) {
       return width - MENU_WIDTH_OFFSET;
     }
+
     if (
       this.wrapperRef !== null &&
       this.wrapperRef.current &&
@@ -89,6 +89,7 @@ class Search extends React.PureComponent<SearchProps<{}>, SearchState<{}>> {
     ) {
       return this.wrapperRef.current.clientWidth - MENU_WIDTH_OFFSET;
     }
+
     return 0;
   }
 
@@ -265,12 +266,10 @@ class Search extends React.PureComponent<SearchProps<{}>, SearchState<{}>> {
         textLookupKey={textLookupConfig.parameters}
         filterLabel={label}
         focusTrigger={focusInputTrigger}
-        onButtonClick={(): void => {
-          this.setState({ focusInputTrigger: !focusInputTrigger });
-        }}
+        onButtonClick={(): void => this.setState({ focusInputTrigger: !focusInputTrigger })}
         onChange={(newValue: string): void => this.handleChange(newValue)}
         onClear={(): void => this.clearValue()}
-        onClick={(): void => this.setState({ isListVisible: true })}
+        onClick={(): void => this.setState({ isListVisible: true, itemsListWidth: this.getSearchWrapperWidth() })}
         onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>): void => this.onKeyDown(e)}
         onToggle={(toggle: boolean): void => {
           this.setState({ isListVisible: toggle, isInputOpen: toggle });
