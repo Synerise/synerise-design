@@ -20,7 +20,7 @@ const ITEM_RENDER_TYPE = {
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-function DSTable<T extends object = any>(props: DSTableProps<T>): React.ReactElement {
+function DSTable<T extends any>(props: DSTableProps<T>): React.ReactElement {
   const {
     title,
     onSearch,
@@ -138,7 +138,7 @@ function DSTable<T extends object = any>(props: DSTableProps<T>): React.ReactEle
           pagination={dataSource?.length && pagination ? footerPagination : false}
         />
       ) : (
-        <DefaultTable
+        <DefaultTable<T>
           scroll={{ x: 'auto' }}
           tableLayout="auto"
           {...props}
