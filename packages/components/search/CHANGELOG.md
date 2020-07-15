@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.46](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.1.45...@synerise/ds-search@0.1.46) (2020-07-15)
+
+
+### Bug Fixes
+
+* **search:** add hideLabel prop ([5d81d7a](https://github.com/Synerise/synerise-design/commit/5d81d7ac6d4dc81b07de52a2343641ea34c2431b))
+
+
+
+
+
 ## [0.1.45](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.1.44...@synerise/ds-search@0.1.45) (2020-07-15)
 
 
