@@ -6,7 +6,7 @@ import { MenuItemProps } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.typ
 
 import { hasSomeElement, getAllElementsFiltered, hasSomeElementFiltered } from './Elements/utils/searchUtils';
 import * as S from './Search.styles';
-import { FilterElement, SearchProps, SearchState, SelectResultDataKeys } from './Search.types';
+import { SearchProps, SearchState, SelectResultDataKeys } from './Search.types';
 import { SearchInput } from './Elements';
 import SearchItemsContainer from './Elements/SearchItemsContainer/SearchItemsContainer';
 
@@ -18,16 +18,19 @@ class Search extends React.PureComponent<SearchProps<{}>, SearchState<{}>> {
   private wrapperRef = React.createRef<HTMLDivElement>();
   constructor(props: SearchProps<{}>) {
     super(props);
+
     // eslint-disable-next-line react/state-in-constructor
     this.state = {
-      isInputOpen: false,
-      label: null,
+      isInputOpen: !!props.value || !!props.parameterValue,
+      label: props.parameterValue
+        ? props.parameters.find(param => param[props.textLookupConfig.parameters] === props.parameterValue)
+        : null,
       filteredParameters: props.parameters,
       filteredRecent: props.recent,
       filteredSuggestions: props.suggestions,
       isListVisible: false,
       isResultChosen: false,
-      itemsListWidth: 0,
+      itemsListWidth: props.width ? props.width - MENU_WIDTH_OFFSET : 0,
       toggleInputTrigger: false,
       focusInputTrigger: false,
     };
@@ -77,6 +80,7 @@ class Search extends React.PureComponent<SearchProps<{}>, SearchState<{}>> {
     if (width) {
       return width - MENU_WIDTH_OFFSET;
     }
+
     if (
       this.wrapperRef !== null &&
       this.wrapperRef.current &&
@@ -84,12 +88,15 @@ class Search extends React.PureComponent<SearchProps<{}>, SearchState<{}>> {
     ) {
       return this.wrapperRef.current.clientWidth - MENU_WIDTH_OFFSET;
     }
+
     return 0;
   }
 
+  // This handler is used for onClickOutside HOC
   handleClickOutside = (): void => {
     const { isInputOpen, label, toggleInputTrigger } = this.state;
     const { value } = this.props;
+
     if (isInputOpen && !value && !label) {
       this.setState({ toggleInputTrigger: !toggleInputTrigger });
     }
@@ -187,7 +194,7 @@ class Search extends React.PureComponent<SearchProps<{}>, SearchState<{}>> {
           displayProps={recentDisplayProps}
           onItemClick={
             ((item: object): void => this.selectResult(item, SelectResultDataKeys.RECENT)) as (
-              e: MenuItemProps | FilterElement
+              e: MenuItemProps | object
             ) => void
           }
           highlight={value}
@@ -211,11 +218,10 @@ class Search extends React.PureComponent<SearchProps<{}>, SearchState<{}>> {
       hasSomeElement(filteredParameters) && (
         <SearchItemsContainer
           displayProps={parametersDisplayProps}
-          onItemClick={((item: object): void => this.selectFilter(item)) as (e: MenuItemProps | FilterElement) => void}
+          onItemClick={((item: object): void => this.selectFilter(item)) as (e: MenuItemProps | object) => void}
           highlight={value}
           data={filteredParameters}
           width={itemsListWidth}
-          listProps={{ autoHeight: true }}
         />
       )
     );
@@ -236,7 +242,7 @@ class Search extends React.PureComponent<SearchProps<{}>, SearchState<{}>> {
           displayProps={suggestionsDisplayProps}
           onItemClick={
             ((item: object): void => this.selectResult(item, SelectResultDataKeys.SUGGESTIONS)) as (
-              e: MenuItemProps | FilterElement
+              e: MenuItemProps | object
             ) => void
           }
           highlight={value}
@@ -259,12 +265,10 @@ class Search extends React.PureComponent<SearchProps<{}>, SearchState<{}>> {
         textLookupKey={textLookupConfig.parameters}
         filterLabel={label}
         focusTrigger={focusInputTrigger}
-        onButtonClick={(): void => {
-          this.setState({ focusInputTrigger: !focusInputTrigger });
-        }}
+        onButtonClick={(): void => this.setState({ focusInputTrigger: !focusInputTrigger })}
         onChange={(newValue: string): void => this.handleChange(newValue)}
         onClear={(): void => this.clearValue()}
-        onClick={(): void => this.setState({ isListVisible: true })}
+        onClick={(): void => this.setState({ isListVisible: true, itemsListWidth: this.getSearchWrapperWidth() })}
         onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>): void => this.onKeyDown(e)}
         onToggle={(toggle: boolean): void => {
           this.setState({ isListVisible: toggle, isInputOpen: toggle });

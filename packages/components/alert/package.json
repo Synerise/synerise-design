@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-alert",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "Alert UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -25,7 +25,7 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-icon": "^0.20.1",
+    "@synerise/ds-icon": "^0.20.2",
     "@synerise/ds-typography": "*"
   },
   "peerDependencies": {
@@ -33,6 +33,6 @@
     "react": ">=16.9.0 < 17.0.0"
   },
   "devDependencies": {
-    "@synerise/ds-utils": "^0.8.29"
+    "@synerise/ds-utils": "^0.8.30"
   }
 }

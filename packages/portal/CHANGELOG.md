@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.84.5](https://github.com/synerise/synerise-design/compare/portal@0.84.4...portal@0.84.5) (2020-07-13)
+
+
+### Bug Fixes
+
+* **search:** add minor fixes ([c7bbfd4](https://github.com/synerise/synerise-design/commit/c7bbfd491e70b652710ac91fb5f0999a94370717))
+
+
+
+
+
+## [0.84.4](https://github.com/synerise/synerise-design/compare/portal@0.84.3...portal@0.84.4) (2020-07-13)
+
+**Note:** Version bump only for package portal
+
+
+
+
+
 ## [0.84.3](https://github.com/synerise/synerise-design/compare/portal@0.84.2...portal@0.84.3) (2020-07-09)
 
 

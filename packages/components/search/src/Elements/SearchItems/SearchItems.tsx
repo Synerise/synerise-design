@@ -24,7 +24,8 @@ const rowRenderer = <T extends unknown>(
   const rendererCustomStyles =
     (itemReturnedFromRenderer && itemReturnedFromRenderer.props && itemReturnedFromRenderer.props.style) || {};
   const mergedStyles = { ...rendererCustomStyles, ...style };
-  const RenderedItem = React.cloneElement(itemReturnedFromRenderer, {
+
+  return React.cloneElement(itemReturnedFromRenderer, {
     key,
     ...itemReturnedFromRenderer.props,
     style: mergedStyles,
@@ -32,7 +33,6 @@ const rowRenderer = <T extends unknown>(
     onClick: () => onItemClick && onItemClick(item),
     className: 'ds-search-item',
   });
-  return RenderedItem;
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

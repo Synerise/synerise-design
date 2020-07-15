@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.3](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.5.2...docs@0.5.3) (2020-07-13)
+
+
+### Bug Fixes
+
+* **search:** run docs build ([92e2df5](https://gitlab.synerise.com/Frontend/synerise-design/commit/92e2df509f691cf75abb7eb7c9eb014ee71aac5b))
+
+
+
+
+
+## [0.5.2](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.5.1...docs@0.5.2) (2020-07-13)
+
+**Note:** Version bump only for package docs
+
+
+
+
+
 ## [0.5.1](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.5.0...docs@0.5.1) (2020-07-09)
 
 **Note:** Version bump only for package docs

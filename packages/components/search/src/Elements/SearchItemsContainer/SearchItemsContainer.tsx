@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { MenuItemProps } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.types';
 
-import { DataSetProps, FilterElement } from '../../Search.types';
+import { DataSetProps } from '../../Search.types';
 import { SearchHeader } from '../index';
 import { renderSearchList } from '../SearchItems/SearchItems';
 
@@ -14,7 +14,7 @@ export type SearchItemsContainerProps<T extends unknown> = {
   listProps?: object;
 };
 const DEFAULT_VISIBLE_ROWS = 5;
-const SearchItemsContainer: React.FC<SearchItemsContainerProps<FilterElement | MenuItemProps>> = ({
+const SearchItemsContainer: React.FC<SearchItemsContainerProps<object | MenuItemProps>> = ({
   displayProps,
   data,
   width,
@@ -24,7 +24,7 @@ const SearchItemsContainer: React.FC<SearchItemsContainerProps<FilterElement | M
 }) => (
   <>
     {!!displayProps.title && <SearchHeader headerText={displayProps.title} tooltip={displayProps.tooltip} />}
-    {renderSearchList<FilterElement | MenuItemProps>({
+    {renderSearchList<object | MenuItemProps>({
       data,
       width,
       highlight,
@@ -32,7 +32,7 @@ const SearchItemsContainer: React.FC<SearchItemsContainerProps<FilterElement | M
       listProps,
       visibleRows: displayProps.visibleRows || DEFAULT_VISIBLE_ROWS,
       rowHeight: displayProps.rowHeight,
-      itemRender: displayProps.itemRender as (item: FilterElement | MenuItemProps) => React.ReactElement,
+      itemRender: displayProps.itemRender as (item: object | MenuItemProps) => React.ReactElement,
     })}
   </>
 );

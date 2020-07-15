@@ -72,11 +72,11 @@ describe('SearchInput component', () => {
     // ACT
     btn.click();
     // ASSERT
-    expect(onToggle).toBeCalledWith(true);
+    expect(onToggle).toBeCalledWith(false);
     // ACT
     btn.click();
     // ASSERT
-    expect(onToggle).toBeCalledWith(false);
+    expect(onToggle).toBeCalledWith(true);
   });
   it('should have onClick callback', () => {
     // ARRANGE
