@@ -216,6 +216,31 @@ const stories = {
       </div>
     );
   },
+  withCustomLabel: () => {
+    const defaultProps = getDefaultProps();
+    const props = {
+      ...defaultProps,
+      style: {
+        margin: 4,
+      },
+    } as object;
+    return (
+      <div style={getBackgroundStyles(props.type)}>
+        <Button {...props} mode="icon-label">
+          <Icon component={<CheckM />} />
+          <span style={{ fontWeight: 400}}>
+            <span style={{display: 'inline'}}>
+              Show
+            </span>
+            {' '}
+            <strong style={{display: 'inline', fontWeight: 500}}>10</strong>
+            {' '}
+            <span style={{display: 'inline'}}>more</span>
+          </span>
+        </Button>
+      </div>
+    );
+  },
   expander: withState({
     expanded: false,
   })(({ store }) => {
