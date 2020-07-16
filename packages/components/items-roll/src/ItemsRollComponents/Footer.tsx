@@ -70,7 +70,7 @@ const Footer: React.FC<FooterProps> = ({
 
   const showDivider = React.useMemo(() => {
     return !searchMode || (searchMode && itemsCount > maxToShowItems);
-  }, [searchMode, visibleItemsCount, maxToShowItems, itemsCount]);
+  }, [searchMode, maxToShowItems, itemsCount]);
 
   const buttonsConfiguration = React.useMemo((): React.ReactElement => {
     if (visibleItemsCount === itemsCount)
