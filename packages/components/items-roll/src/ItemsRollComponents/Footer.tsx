@@ -81,7 +81,7 @@ const Footer: React.FC<FooterProps> = ({
       );
 
     return (
-      <>
+      <S.ShowButtonsWrapper>
         <ShowMoreButton
           getShowMoreNumber={getShowMoreNumber}
           moreLabel={allTexts.moreLabel}
@@ -89,7 +89,7 @@ const Footer: React.FC<FooterProps> = ({
           showAdditionalItems={showAdditionalItems}
         />
         <ShowLessButton showLessLabel={allTexts.showLessLabel} showDefaultItemsAmount={showDefaultItemsAmount} />
-      </>
+      </S.ShowButtonsWrapper>
     );
   }, [
     itemsCount,

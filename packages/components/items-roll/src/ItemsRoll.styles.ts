@@ -29,6 +29,12 @@ export const HeaderLeft = styled.div`
   align-items: center;
 `;
 
+export const ShowButtonsWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+`;
+
 export const ListWrapper = styled.div`
   && {
     .ant-menu {
