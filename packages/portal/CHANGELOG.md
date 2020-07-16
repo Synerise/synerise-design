@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.85.1](https://github.com/synerise/synerise-design/compare/portal@0.85.0...portal@0.85.1) (2020-07-15)
+
+
+### Bug Fixes
+
+* **search:** add hideLabel prop ([5d81d7a](https://github.com/synerise/synerise-design/commit/5d81d7ac6d4dc81b07de52a2343641ea34c2431b))
+
+
+
+
+
 # [0.85.0](https://github.com/synerise/synerise-design/compare/portal@0.84.6...portal@0.85.0) (2020-07-15)
 
 
