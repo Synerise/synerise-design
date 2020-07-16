@@ -155,6 +155,7 @@ const ManageableList: React.FC<ManageableListProps> = ({
   const getItem = React.useCallback(
     (item: ItemProps): React.ReactNode => (
       <Item
+        key={item.id}
         listType={type}
         onSelect={onItemSelect}
         onUpdate={onItemEdit}
@@ -198,7 +199,7 @@ const ManageableList: React.FC<ManageableListProps> = ({
     ]
   );
 
-  const renderList = React.useCallback(() => {
+  const renderList = React.useM(() => {
     return onChangeOrder && !changeOrderDisabled ? (
       <ReactSortable {...SORTABLE_CONFIG} list={itemsToRender} setList={onChangeOrder}>
         {itemsToRender.map(getItem)}
