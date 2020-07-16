@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Search from '@synerise/ds-search';
 import VarTypeStringM from '@synerise/ds-icon/dist/icons/VarTypeStringM';
-import { number, text } from '@storybook/addon-knobs';
+import { number, text, boolean } from '@storybook/addon-knobs';
 import { VarTypeListM, VarTypeNumberM } from '@synerise/ds-icon/dist/icons';
 import { FilterElement } from '@synerise/ds-search/dist/Search.types';
 import Menu from '@synerise/ds-menu';
@@ -168,6 +168,7 @@ const stories = {
 
     const suggestionsTitle = text('Set suggestions title', 'Suggest');
     const suggestionsTooltip = text('Set suggestions tooltip', 'Suggest');
+    const hideLabel = boolean('hideLabel', false);
 
     return (
       <Search
@@ -228,6 +229,7 @@ const stories = {
           suggestions: 'text',
         }}
         value={value}
+        hideLabel={hideLabel}
       />
     );
   },

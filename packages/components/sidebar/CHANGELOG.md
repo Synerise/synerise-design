@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.43](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar@0.2.42...@synerise/ds-sidebar@0.2.43) (2020-07-15)
+
+
+### Bug Fixes
+
+* **sidebar:** add changes to styles ([2fd93ff](https://github.com/Synerise/synerise-design/commit/2fd93ffd44fd710e2fc0664834bc3dc8a1e742ed))
+* **sidebar:** change styles and add block to sidebar component ([354b2f0](https://github.com/Synerise/synerise-design/commit/354b2f0a47cb143181935bb51ed91bc1daac2105))
+
+
+
+
+
 ## [0.2.42](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar@0.2.41...@synerise/ds-sidebar@0.2.42) (2020-07-13)
 
 **Note:** Version bump only for package @synerise/ds-sidebar

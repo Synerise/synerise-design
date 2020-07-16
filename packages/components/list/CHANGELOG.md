@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-list@0.5.4...@synerise/ds-list@0.5.5) (2020-07-15)
+
+
+### Bug Fixes
+
+* **list:** added handling flat datasource ([f849f32](https://github.com/Synerise/synerise-design/commit/f849f3271be090c856f14c800bc363a3b0a14eb1))
+* **manageable-list:** fixed linter errors ([1d5d247](https://github.com/Synerise/synerise-design/commit/1d5d247f9ae09105917b24057c661702d27ca6de))
+
+
+
+
+
 ## [0.5.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-list@0.5.3...@synerise/ds-list@0.5.4) (2020-07-13)
 
 **Note:** Version bump only for package @synerise/ds-list

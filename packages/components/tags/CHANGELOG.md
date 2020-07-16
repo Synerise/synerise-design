@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.94](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@0.2.93...@synerise/ds-tags@0.2.94) (2020-07-15)
+
+
+### Bug Fixes
+
+* **tags:** add badge to preffix and suffix to tags ([83c0a30](https://github.com/Synerise/synerise-design/commit/83c0a302a8947c8f81642a7463d1eaf0f81e428b))
+
+
+
+
+
 ## [0.2.93](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@0.2.92...@synerise/ds-tags@0.2.93) (2020-07-13)
 
 **Note:** Version bump only for package @synerise/ds-tags

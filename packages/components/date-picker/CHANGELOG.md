@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@0.1.6...@synerise/ds-date-picker@0.1.7) (2020-07-15)
+
+
+### Bug Fixes
+
+* **date-picker:** changed icons, added placeholder ([b0bfd4a](https://github.com/Synerise/synerise-design/commit/b0bfd4ab421634cb73eca4efc0701979a76029d3))
+* **date-picker:** fixing the build ([47f0db0](https://github.com/Synerise/synerise-design/commit/47f0db06e710ed2c4345cc18621d588699b19fc0))
+* **date-picker:** fixing the build ([33d22cc](https://github.com/Synerise/synerise-design/commit/33d22cc91fdf8de40668a090950f889490b8060f))
+* **date-range-picker:** changed importing to pass the build ([b8116e7](https://github.com/Synerise/synerise-design/commit/b8116e771b12685d53f8428b005b46e4edee6910))
+
+
+
+
+
 ## [0.1.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@0.1.5...@synerise/ds-date-picker@0.1.6) (2020-07-13)
 
 **Note:** Version bump only for package @synerise/ds-date-picker

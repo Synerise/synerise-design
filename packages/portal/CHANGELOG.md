@@ -3,6 +3,54 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.85.0](https://github.com/synerise/synerise-design/compare/portal@0.84.6...portal@0.85.0) (2020-07-15)
+
+
+### Bug Fixes
+
+* **badge:** add badge only with outline white ([e7a6a72](https://github.com/synerise/synerise-design/commit/e7a6a7234a8643bd5bfa416ba68c8155c2a912d4))
+* **badge:** chande styles of badge ([6dcb6c0](https://github.com/synerise/synerise-design/commit/6dcb6c0672b9ef8eb486e5b133136d0d2a073651))
+* **card:** add option to show content of header ([dd7f20b](https://github.com/synerise/synerise-design/commit/dd7f20b5d38fe7ac9f37caf9a4fc4a35a8b4a2c1))
+* **checkbox:** add `hasError` knob in group example ([69b5ee3](https://github.com/synerise/synerise-design/commit/69b5ee320f5dc6f32e168f3598f7d0e515aa562d))
+* **checkbox:** fix styles ([ffcf6bc](https://github.com/synerise/synerise-design/commit/ffcf6bc7f3aa408c08e2fa319b358209baafa091))
+* **date-picker:** changed icons, added placeholder ([b0bfd4a](https://github.com/synerise/synerise-design/commit/b0bfd4ab421634cb73eca4efc0701979a76029d3))
+* **date-range-picker:** added missing components ([0c843ed](https://github.com/synerise/synerise-design/commit/0c843edca3cc9b94cc81d14e9ef60265408bb938))
+* **date-range-picker:** added next chunk of types ([a7768ab](https://github.com/synerise/synerise-design/commit/a7768abbc706838f0643bd9ef8eb654d6d269ab4))
+* **date-range-picker:** added partial types ([8de6c4f](https://github.com/synerise/synerise-design/commit/8de6c4ffe2e9de9dfc2c825e94158e0941c8c048))
+* **date-range-picker:** added partial types ([bc9baa8](https://github.com/synerise/synerise-design/commit/bc9baa876c551429570674f581a269f849d4332e))
+* **description:** update exmples ([7f85231](https://github.com/synerise/synerise-design/commit/7f85231036c33a41749de719b7580ca5f10e06f2))
+* **description:** update stories, fix styles ([ebd1294](https://github.com/synerise/synerise-design/commit/ebd129411b6023fc940ed207f6a3da5e0cc32c17))
+* **item-picker:** update example in storybook ([6cb8541](https://github.com/synerise/synerise-design/commit/6cb85415ac92a5c1e944ecbf01e6adcd7739d4b1))
+* **menu:** added highlight of selected items, fixed rotating arrow ([60ff840](https://github.com/synerise/synerise-design/commit/60ff840d00a995c646d673cb3650ebe4737d983c))
+* **menu:** changed styles of stories to disable selectable ([17cc250](https://github.com/synerise/synerise-design/commit/17cc250ce66d82be5ce72c7e3c26de40d9a8eae1))
+* **navbar:** change to ghost white button ([7ff3f89](https://github.com/synerise/synerise-design/commit/7ff3f89a0d904bf26111032ac7d18e93747fc645))
+* **search:** add text and filter dynamic keys for search objects ([8780b1e](https://github.com/synerise/synerise-design/commit/8780b1e49183f878d227d074134e80726010a845))
+* **search:** add text config for lookup keys ([53ee393](https://github.com/synerise/synerise-design/commit/53ee393c1c39ba4a6f33c84f46276b8f24af3b9b))
+* **sidebar:** change styles and add block to sidebar component ([354b2f0](https://github.com/synerise/synerise-design/commit/354b2f0a47cb143181935bb51ed91bc1daac2105))
+* **tags:** add badge to preffix and suffix to tags ([83c0a30](https://github.com/synerise/synerise-design/commit/83c0a302a8947c8f81642a7463d1eaf0f81e428b))
+
+
+### Features
+
+* **date-range-picker:** added footer to the top picker ([aed4748](https://github.com/synerise/synerise-design/commit/aed4748cbac71bd8cc2e34f075e2acdb0771f10c))
+* **date-range-picker:** resolved storybook start issues ([1a4a45e](https://github.com/synerise/synerise-design/commit/1a4a45ea3a08556dfcc3a01710b267ee916a59d0))
+* **description:** add Description component ([6b91fde](https://github.com/synerise/synerise-design/commit/6b91fdefe64632c57378c1391ca7ceacb74404ea))
+
+
+
+
+
+## [0.84.6](https://github.com/synerise/synerise-design/compare/portal@0.84.5...portal@0.84.6) (2020-07-15)
+
+
+### Bug Fixes
+
+* **search:** update width of input and update tests ([0305e65](https://github.com/synerise/synerise-design/commit/0305e65143caf5d6ea7ae256916d1d5e849f7d8f))
+
+
+
+
+
 ## [0.84.5](https://github.com/synerise/synerise-design/compare/portal@0.84.4...portal@0.84.5) (2020-07-13)
 
 

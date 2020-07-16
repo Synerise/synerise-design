@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.16.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.15.3...@synerise/ds-core@0.16.0) (2020-07-15)
+
+
+### Bug Fixes
+
+* **date-range-picker:** fixed past and future relative picekr ([7fe7689](https://github.com/synerise/synerise-design/commit/7fe7689a117cd67c07f342d8b9006256c08e192f))
+* **date-range-picker:** fixed since mode ([294e838](https://github.com/synerise/synerise-design/commit/294e838ffd18f5cad7e61c75d974bf53e91f2ae7))
+
+
+### Features
+
+* **core:** update translation file ([6ab5d94](https://github.com/synerise/synerise-design/commit/6ab5d94f8956af42b64fb09b975c5f5f3056789e))
+* **date-range-picker:** added footer to the top picker ([aed4748](https://github.com/synerise/synerise-design/commit/aed4748cbac71bd8cc2e34f075e2acdb0771f10c))
+* **description:** add Description component ([6b91fde](https://github.com/synerise/synerise-design/commit/6b91fdefe64632c57378c1391ca7ceacb74404ea))
+
+
+
+
+
 ## [0.15.3](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.15.2...@synerise/ds-core@0.15.3) (2020-07-13)
 
 **Note:** Version bump only for package @synerise/ds-core
