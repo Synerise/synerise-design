@@ -143,7 +143,7 @@ export const DATA_SOURCE = [
     last_activity: randomDate(),
   },
   {
-    key: 10,
+    key: 20,
     first_name: 'Kazimierz',
     last_name: 'Jonak',
     city: 'Poznań',
