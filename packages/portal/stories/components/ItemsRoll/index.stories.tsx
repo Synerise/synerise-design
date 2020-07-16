@@ -29,6 +29,7 @@ const decorator = storyFn => (
 const onSearchClear = store => {
   store.set({
     searchValue: '',
+    items: ITEMS_100,
   });
 };
 
