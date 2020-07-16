@@ -132,6 +132,14 @@ export const AntdButton = styled(
       width: 24px;
       height: 24px;
     }
+    &&.ant-btn-secondary{
+      &:active{
+        color: ${(props): string => props.theme.palette['blue-600']};
+        svg {
+          fill: ${(props): string => props.theme.palette['blue-600']}; !important;
+        }
+      }
+    }
     ${(props): FlattenInterpolation<ThemeProps> | false =>
       props.loading &&
       css`
