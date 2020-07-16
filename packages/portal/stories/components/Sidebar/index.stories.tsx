@@ -57,7 +57,7 @@ const stories = {
       </Sidebar>
     </div>
   )),
-  blockWithSidebar: () => (
+  sidebarWithBlock: () => (
     <div style={wrapperStyles}>
       <Sidebar defaultActiveKey={['0']}>
         <Sidebar.Panel header={'Collapse title'} id={'first'}>
