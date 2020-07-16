@@ -184,21 +184,6 @@ const stories = {
             )
           }}
           rowKey={row => row.key}
-          selection={
-            boolean('Enable row selection', false) && {
-              onChange: handleSelectRow,
-              selectedRowKeys: selectedRows,
-              selections: [
-                Table.SELECTION_ALL,
-                Table.SELECTION_INVERT,
-                {
-                  key: 'even',
-                  label: 'Select even',
-                  onClick: selectEven,
-                }
-              ]
-            }
-          }
           onSearch={console.log}
           onRow={(record, index: number) => ({
             onClick: event => {
