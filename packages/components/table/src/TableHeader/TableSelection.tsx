@@ -42,7 +42,7 @@ function TableSelection<T extends { key: React.ReactText; children?: T[] }>({
           rows = [...rows, ...record.children];
         } else {
           const key = getRowKey(record);
-          keys = key ? [...keys, key] : [...keys];
+          keys = key !== undefined ? [...keys, key] : [...keys];
           rows = [...rows, record];
         }
       });
