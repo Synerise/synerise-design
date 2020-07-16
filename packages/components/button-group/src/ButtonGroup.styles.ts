@@ -10,6 +10,7 @@ export const Container = styled.div<{
   options?: boolean;
   fullWidth?: boolean;
   buttonsPosition: string | 'left' | 'center' | 'right';
+  disabled?: boolean;
 }>`
   width: 100%;
   .ant-btn-group {
