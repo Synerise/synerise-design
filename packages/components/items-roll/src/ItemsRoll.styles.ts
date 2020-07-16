@@ -29,6 +29,12 @@ export const HeaderLeft = styled.div`
   align-items: center;
 `;
 
+export const ShowButtonsWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+`;
+
 export const ListWrapper = styled.div`
   && {
     .ant-menu {
@@ -115,8 +121,6 @@ export const SearchWrapper = styled.div`
 `;
 
 export const ShowButton = styled(Button)`
-  display: flex;
-  align-items: center;
   margin-right: 8px;
 
   span {
@@ -126,15 +130,11 @@ export const ShowButton = styled(Button)`
 
   .bold-label {
     font-weight: 500;
-
-    span {
-      font-weight: 500;
-    }
   }
+`;
 
-  .ds-icon {
-    margin: -2px 4px 0 8px;
-  }
+export const ShowButtonLabel = styled.span`
+  font-weight: 400;
 `;
 
 export const ClearButton = styled(Button)`

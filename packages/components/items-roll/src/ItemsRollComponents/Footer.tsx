@@ -12,6 +12,7 @@ type FooterProps = Pick<ItemsRollProps, 'onClearAll' | 'maxToShowItems' | 'showM
   showAdditionalItems: () => void;
   showDefaultItemsAmount: () => void;
   visibleItemsCount: number;
+  searchMode: boolean;
 };
 
 type ShowLessButtonProps = {
@@ -40,14 +41,14 @@ const ShowMoreButton: React.FC<ShowMoreButtonProps> = ({
   getShowMoreNumber,
 }) => (
   <S.ShowButton type="ghost" mode="icon-label" onClick={showAdditionalItems}>
-    <span>
-      <S.ArrowIcon component={<ArrowDownCircleM />} size={20} />
+    <S.ArrowIcon component={<ArrowDownCircleM />} size={20} />
+    <S.ShowButtonLabel>
       {showLabel}
       {` `}
       <span className="bold-label">{getShowMoreNumber}</span>
       {` `}
       {moreLabel}
-    </span>
+    </S.ShowButtonLabel>
   </S.ShowButton>
 );
 
@@ -60,11 +61,16 @@ const Footer: React.FC<FooterProps> = ({
   showDefaultItemsAmount,
   showMoreStep = 10,
   visibleItemsCount,
+  searchMode,
 }) => {
   const getShowMoreNumber = React.useMemo(
     () => (visibleItemsCount + showMoreStep < itemsCount ? showMoreStep : itemsCount - visibleItemsCount),
     [itemsCount, showMoreStep, visibleItemsCount]
   );
+
+  const showDivider = React.useMemo(() => {
+    return !searchMode || (searchMode && itemsCount > maxToShowItems);
+  }, [searchMode, maxToShowItems, itemsCount]);
 
   const buttonsConfiguration = React.useMemo((): React.ReactElement => {
     if (visibleItemsCount === itemsCount)
@@ -81,7 +87,7 @@ const Footer: React.FC<FooterProps> = ({
       );
 
     return (
-      <>
+      <S.ShowButtonsWrapper>
         <ShowMoreButton
           getShowMoreNumber={getShowMoreNumber}
           moreLabel={allTexts.moreLabel}
@@ -89,7 +95,7 @@ const Footer: React.FC<FooterProps> = ({
           showAdditionalItems={showAdditionalItems}
         />
         <ShowLessButton showLessLabel={allTexts.showLessLabel} showDefaultItemsAmount={showDefaultItemsAmount} />
-      </>
+      </S.ShowButtonsWrapper>
     );
   }, [
     itemsCount,
@@ -103,10 +109,10 @@ const Footer: React.FC<FooterProps> = ({
 
   return visibleItemsCount !== 0 ? (
     <>
-      <S.Divider dashed footer />
+      {showDivider && <S.Divider dashed footer />}
       <S.ContainerSpaceBetween data-testid="items-roll-footer">
         {itemsCount > maxToShowItems && buttonsConfiguration}
-        {onClearAll && (
+        {onClearAll && !searchMode && (
           <Popconfirm
             onConfirm={onClearAll}
             icon={<S.WarningIcon component={<WarningFillM />} />}
