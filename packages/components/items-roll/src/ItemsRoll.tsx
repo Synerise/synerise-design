@@ -38,9 +38,9 @@ const ItemsRoll: React.FC<ItemsRollProps> = ({
     itemsLabel: intl.formatMessage({ id: 'DS.ITEMS-ROLL.ITEMS' }),
     moreLabel: intl.formatMessage({ id: 'DS.ITEMS-ROLL.MORE' }),
     noResultsLabel: intl.formatMessage({ id: 'DS.ITEMS-ROLL.NO-RESULTS' }),
-    popconfirmNoLabel: intl.formatMessage({ id: 'DS.ITEMS-ROLL.CONFIRM-NO'}),
-    popconfirmTitleLabel: intl.formatMessage({ id: 'DS.ITEMS-ROLL.CONFIRM-TITLE'}),
-    popconfirmYesLabel: intl.formatMessage({ id: 'DS.ITEMS-ROLL.CONFIRM-YES'}),
+    popconfirmNoLabel: intl.formatMessage({ id: 'DS.ITEMS-ROLL.CONFIRM-NO' }),
+    popconfirmTitleLabel: intl.formatMessage({ id: 'DS.ITEMS-ROLL.CONFIRM-TITLE' }),
+    popconfirmYesLabel: intl.formatMessage({ id: 'DS.ITEMS-ROLL.CONFIRM-YES' }),
     removeTooltipLabel: intl.formatMessage({ id: 'DS.ITEMS-ROLL.REMOVE-TOOLTIP' }),
     showLabel: intl.formatMessage({ id: 'DS.ITEMS-ROLL.SHOW' }),
     showLessLabel: intl.formatMessage({ id: 'DS.ITEMS-ROLL.SHOW-LESS' }),
@@ -105,6 +105,7 @@ const ItemsRoll: React.FC<ItemsRollProps> = ({
       />
       {useFooter && (
         <Footer
+          searchMode={Boolean(searchValue)}
           allTexts={allTexts}
           itemsCount={items.length}
           maxToShowItems={maxToShowItems}
