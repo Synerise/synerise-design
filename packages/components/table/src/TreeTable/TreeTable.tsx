@@ -52,6 +52,9 @@ function TreeTable<T extends object = any>(props: DSTableProps<T>): React.ReactE
           cell: RenderCell,
         },
       }}
+      expandable={{
+        expandIconColumnIndex: 0,
+      }}
       expandIcon={(expandIconProps): React.ReactNode => {
         const { expandable, expanded, onExpand, record } = expandIconProps;
         return expandable ? (
