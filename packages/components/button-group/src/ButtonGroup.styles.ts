@@ -13,7 +13,6 @@ export const Container = styled.div<{
   disabled?: boolean;
 }>`
   width: 100%;
-  items-align: center;
   .ant-btn-group {
     width: 100%;
     display: flex;
