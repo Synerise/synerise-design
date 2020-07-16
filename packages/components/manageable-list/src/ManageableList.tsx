@@ -59,7 +59,6 @@ const ManageableList: React.FC<ManageableListProps> = ({
 }) => {
   const [allItemsVisible, setAllItemsVisible] = React.useState(false);
   const [itemsToRender, setItemsToRender] = React.useState(items);
-
   React.useEffect(() => {
     setItemsToRender(items);
   }, [items]);
@@ -155,6 +154,7 @@ const ManageableList: React.FC<ManageableListProps> = ({
   const getItem = React.useCallback(
     (item: ItemProps): React.ReactNode => (
       <Item
+        key={item.id}
         listType={type}
         onSelect={onItemSelect}
         onUpdate={onItemEdit}

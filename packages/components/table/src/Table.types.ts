@@ -48,6 +48,10 @@ export interface Filter {
   disabled?: boolean;
 }
 
+export type RowType<T> = {
+  children?: T[];
+};
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export interface DSTableProps<T extends any & GroupType<T>> extends AntTableProps<T> {
   title?: string | React.ReactNode;

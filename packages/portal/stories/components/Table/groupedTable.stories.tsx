@@ -524,12 +524,7 @@ const stories = {
               selections: [
                 Table.SELECTION_ALL,
                 Table.SELECTION_INVERT,
-                {
-                  key: 'even',
-                  label: 'Select even',
-                  onClick: selectEven,
-                },
-              ],
+              ]
             }
           }
           searchComponent={

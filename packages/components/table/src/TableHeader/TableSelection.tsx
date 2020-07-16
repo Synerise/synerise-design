@@ -18,7 +18,11 @@ interface Props<T extends { key: React.ReactText }> {
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
-const TableSelection: React.FC<Props> = ({ dataSource, selection, rowKey }) => {
+function TableSelection<T extends { key: React.ReactText; children?: T[] }>({
+  dataSource,
+  selection,
+  rowKey,
+}: Props<T>): React.ReactElement | null {
   const getRowKey = React.useCallback(
     (row): React.ReactText | undefined => {
       if (typeof rowKey === 'function') return rowKey(row);
@@ -30,10 +34,19 @@ const TableSelection: React.FC<Props> = ({ dataSource, selection, rowKey }) => {
 
   const selectAll = React.useCallback(() => {
     if (dataSource && selection) {
-      selection.onChange(
-        dataSource.map((record: Selection) => getRowKey(record)),
-        dataSource
-      );
+      let keys: React.ReactText[] = [];
+      let rows: T[] = [];
+      dataSource.forEach((record: T) => {
+        if (record.children !== undefined && Array.isArray(record.children)) {
+          keys = [...keys, ...record.children.map((child: T) => getRowKey(child) as React.ReactText)];
+          rows = [...rows, ...record.children];
+        } else {
+          const key = getRowKey(record);
+          keys = key !== undefined ? [...keys, key] : [...keys];
+          rows = [...rows, record];
+        }
+      });
+      selection.onChange(keys, rows);
     }
   }, [dataSource, selection, getRowKey]);
 
@@ -43,28 +56,40 @@ const TableSelection: React.FC<Props> = ({ dataSource, selection, rowKey }) => {
 
   const selectInvert = React.useCallback(() => {
     if (dataSource && selection) {
-      const selected = dataSource.filter(
-        (record: Selection) => selection.selectedRowKeys.indexOf(getRowKey(record)) < 0
-      );
+      let selected: T[] = [];
+      dataSource.forEach((record: T): void => {
+        const hasChilds = record.children !== undefined && Array.isArray(record.children);
+        if (hasChilds) {
+          record.children &&
+            record.children.forEach((child: T) => {
+              if (selection?.selectedRowKeys.indexOf(getRowKey(child) as React.ReactText) < 0) {
+                selected = [...selected, child];
+              }
+            });
+        } else if (selection?.selectedRowKeys.indexOf(getRowKey(record) as React.ReactText) < 0) {
+          selected = [...selected, record];
+        }
+      });
 
       selection.onChange(
-        selected.map((record: Selection) => getRowKey(record)),
+        selected.map((record: T) => getRowKey(record) as React.ReactText),
         selected
       );
     }
   }, [dataSource, selection, getRowKey]);
 
   const allSelected = React.useMemo(() => {
-    return dataSource && selection?.selectedRowKeys && dataSource.length === selection.selectedRowKeys.length;
+    const allRecords = dataSource.reduce((count: number, record: T) => {
+      return record.children !== undefined ? count + record.children.length : count + 1;
+    }, 0);
+    return dataSource && selection?.selectedRowKeys && allRecords === selection.selectedRowKeys.length;
   }, [dataSource, selection]);
 
   const isEmpty = React.useMemo(() => {
     return dataSource.length === 0;
   }, [dataSource]);
 
-  const { selectedRowKeys, selections } = selection;
-
-  return selectedRowKeys ? (
+  return selection?.selectedRowKeys ? (
     <S.Selection>
       <Checkbox
         disabled={isEmpty}
@@ -76,15 +101,15 @@ const TableSelection: React.FC<Props> = ({ dataSource, selection, rowKey }) => {
             unselectAll();
           }
         }}
-        indeterminate={selectedRowKeys.length > 0 && !allSelected}
+        indeterminate={selection?.selectedRowKeys.length > 0 && !allSelected}
       />
-      {selections && (
+      {selection?.selections && (
         <Dropdown
           disabled={isEmpty}
           trigger={['click']}
           overlay={
             <S.SelectionMenu>
-              {selections.filter(Boolean).map(
+              {selection?.selections.filter(Boolean).map(
                 (selectionMenuElement: Selection | SelectionItem): React.ReactNode => {
                   switch (selectionMenuElement) {
                     case SELECTION_ALL: {
@@ -119,6 +144,6 @@ const TableSelection: React.FC<Props> = ({ dataSource, selection, rowKey }) => {
       )}
     </S.Selection>
   ) : null;
-};
+}
 
 export default TableSelection;

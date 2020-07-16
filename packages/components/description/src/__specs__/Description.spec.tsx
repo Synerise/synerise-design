@@ -4,7 +4,7 @@ import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import { DescriptionRow } from '../index';
 import { DescriptionRowProps } from '../Row/DescriptionRow';
 
-const DESCRIPTION = (props?: Omit<DescriptionRowProps, 'label' | 'value' >) => (
+const DESCRIPTION = (props?: Omit<DescriptionRowProps, 'label' | 'value' | 'intl' >) => (
   <Description type='inline'>
     <DescriptionRow label="Name" value="John Kowalski" {...props} />
   </Description>

@@ -257,6 +257,11 @@
     }
 
     tbody > tr {
+      &.ant-table-row-selected {
+        td {
+          border-bottom-color: @border-color-split;
+        }
+      }
       &:not(.@{table-prefix-cls}-placeholder) {
         &:not(.@{table-prefix-cls}-row-level-0) {
           td {
