@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-description@0.1.0...@synerise/ds-description@0.1.1) (2020-07-16)
+
+
+### Bug Fixes
+
+* **description:** fix copyable row ([1ac8575](https://github.com/Synerise/synerise-design/commit/1ac85759a58176d264cb272a33ce5a0e89eb687f))
+* **description:** fix styles ([7e6c900](https://github.com/Synerise/synerise-design/commit/7e6c900a55f9aa7af08ed73388cea11888bf9e93))
+* **description:** fix tests ([c05b7e7](https://github.com/Synerise/synerise-design/commit/c05b7e7896cf99830bd81ed77d5ef38ff3a9e359))
+
+
+
+
+
 # 0.1.0 (2020-07-15)
 
 
