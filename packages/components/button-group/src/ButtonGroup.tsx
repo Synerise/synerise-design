@@ -8,6 +8,7 @@ export interface ButtonGroupProps extends AntButtonGroupProps {
   description?: string;
   fullWidth?: boolean;
   buttonsPosition?: string | 'left' | 'center' | 'right';
+  disabled?: boolean;
 }
 
 const ButtonGroup: React.FC<ButtonGroupProps> = ({
@@ -18,8 +19,14 @@ const ButtonGroup: React.FC<ButtonGroupProps> = ({
   size,
   fullWidth,
   buttonsPosition = 'center',
+  disabled,
 }) => (
-  <S.Container className={`ds-button-group ${className || ''}`} fullWidth={fullWidth} buttonsPosition={buttonsPosition}>
+  <S.Container
+    className={`ds-button-group ${className || ''}`}
+    fullWidth={fullWidth}
+    buttonsPosition={buttonsPosition}
+    disabled={disabled}
+  >
     {title && <S.Title>{title}</S.Title>}
     <Button.Group size={size}>{children}</Button.Group>
     {description && <S.Description>{description}</S.Description>}
