@@ -66,6 +66,7 @@ const Item: React.FC<Props> = ({
     case ListType.CONTENT:
       return (
         <ContentItem
+          key={`item-${item.id}`}
           item={item}
           onDuplicate={onDuplicate}
           onUpdate={onUpdate}
@@ -81,6 +82,7 @@ const Item: React.FC<Props> = ({
     case ListType.FILTER:
       return (
         <FilterItem
+          key={`item-${item.id}`}
           item={item}
           greyBackground={greyBackground}
           onSelect={onSelect}
@@ -94,7 +96,16 @@ const Item: React.FC<Props> = ({
       );
 
     default:
-      return <SimpleItem item={item} onSelect={onSelect} onUpdate={onUpdate} onRemove={onRemove} texts={texts} />;
+      return (
+        <SimpleItem
+          key={`item-${item.id}`}
+          item={item}
+          onSelect={onSelect}
+          onUpdate={onUpdate}
+          onRemove={onRemove}
+          texts={texts}
+        />
+      );
   }
 };
 
