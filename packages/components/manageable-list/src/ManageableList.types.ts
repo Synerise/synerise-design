@@ -54,4 +54,5 @@ export interface ManageableListProps {
     itemActionDeleteTooltip?: string | React.ReactNode;
   };
   expansionBehaviour?: string;
+  expandedIds?: string[];
 }

@@ -21,6 +21,7 @@ type Props = {
   };
   onExpand: (id: string, isExpanded: boolean) => void;
   hideExpander?: boolean;
+  expanded?:boolean;
 };
 
 export type ItemProps = {
@@ -60,6 +61,8 @@ const Item: React.FC<Props> = ({
   texts,
   searchQuery,
   hideExpander,
+  expanded,
+  onExpand
 }) => {
   switch (listType) {
     case ListType.CONTENT:
@@ -75,6 +78,8 @@ const Item: React.FC<Props> = ({
           draggable={draggable}
           hideExpander={hideExpander}
           texts={texts}
+          expanded={expanded}
+          onExpand={onExpand}
         />
       );
     case ListType.FILTER:

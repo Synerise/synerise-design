@@ -71,48 +71,83 @@ const onSubmit = (values: any) => {
   console.log({ values });
 };
 
-const item = {
-  id: '00000000-0000-0000-0000-000000000002',
-  name: 'Name',
-  canUpdate: true,
-  canDelete: true,
-  expanded: true,
-  content: (
-    <Field
-      name="age"
-      render={({ input, meta }) => (
-        <InputNumber {...input} label="Age" description="Your age" errorText={meta.touched && meta.error} />
-      )}
-    />
-  ),
-};
 
-const nextItems = {
-  id: '00000000-0000-0000-0000-000000000001',
-  name: 'Description',
-  canUpdate: true,
-  canDelete: true,
-  expanded: false,
-  content: (
-    <Field
-      name="description"
-      render={({ input, meta }) => (
-        <TextArea
-          {...input}
-          label="Description"
-          description="Describe your issue"
-          counterLimit={100}
-          rows={5}
-          errorText={meta.touched && meta.error}
-        />
-      )}
-    />
-  ),
-};
+const formNames = [
+  {
+    id: '00000000-0000-0000-0000-000000000002',
+    name: 'Name',
+    canUpdate: true,
+    canDelete: true,
+    expanded: true,
+    content: (
+      <Field
+        name="age"
+        render={({ input, meta }) => (
+          <InputNumber {...input} label="Age" description="Your age" errorText={meta.touched && meta.error} />
+        )}
+      />
+    ),
+  },
+  {
+    id: '00000000-0000-0000-0000-000000000001',
+    name: 'Description',
+    canUpdate: true,
+    canDelete: true,
+    expanded: false,
+    content: (
+      <Field
+        name="description"
+        render={({ input, meta }) => (
+          <TextArea
+            {...input}
+            label="Description"
+            description="Describe your issue"
+            counterLimit={100}
+            rows={5}
+            errorText={meta.touched && meta.error}
+          />
+        )}
+      />
+    ),
+  },
+  {
+    id: '00000000-0000-0000-0000-000000000003',
+    name: 'Sex',
+    canUpdate: true,
+    canDelete: true,
+    expanded: false,
+    content: (
+      <Field
+        name="sex"
+        render={({ input, meta }) => (
+          <div>
+            <Radio.Group buttonStyle="solid" onChange={input.onChange}>
+              <Radio.Button value="male">Male</Radio.Button>
+              <Radio.Button value="female">Female</Radio.Button>
+              <Radio.Button value="other">Other</Radio.Button>
+            </Radio.Group>
+            {meta.touched && meta.error && <div style={{ color: 'red' }}>Mandatory field</div>}
+          </div>
+        )}
+      />
+    ),
+  }
+]
+
 const FormExample = () => {
-  const [items, setItems] = React.useState([item, nextItems]);
+  const [items, setItems] = React.useState(formNames);
   const texts = getTexts();
   const onAdd = action('onItemAdd');
+  const [expandedIds,setExpandedIds] = React.useState([]);
+  const expandCallback = React.useCallback((id, isExp) => {
+    if(expandedIds.includes(id)){
+        setExpandedIds([...expandedIds])
+    }
+    else {
+      setExpandedIds([...expandedIds,'00000000-0000-0000-0000-000000000001'])
+    }
+  }, [expandedIds]);
+
   return (
     <FinalForm
       onSubmit={onSubmit}
@@ -122,6 +157,8 @@ const FormExample = () => {
         return (
           <form onSubmit={handleSubmit}>
             <ManageableList
+              onExpand={expandCallback}
+              expandedIds={expandedIds}
               type="content"
               maxToShowItems={5}
               onItemEdit={onAdd}

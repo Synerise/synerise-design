@@ -23,6 +23,8 @@ export type ContentItemProps = {
     [k: string]: string | React.ReactNode;
   };
   hideExpander?: boolean;
+  expanded?: boolean;
+  onExpand?: any;
 };
 
 const ContentItem: React.FC<ContentItemProps> = ({
@@ -36,12 +38,19 @@ const ContentItem: React.FC<ContentItemProps> = ({
   theme,
   texts,
   hideExpander,
+  expanded,
+  onExpand,
 }): React.ReactElement => {
-  ContentItem.whyDidYouRender = true;
-  console.log('Rerender',item.name);
-
+  //ContentItem.whyDidYouRender = true;
+  console.log('Rerender', item.name);
+  const [isExpanded, setExpanded] = React.useState(expanded);
   const [editMode, setEditMode] = React.useState(false);
-  const [expanded, setExpanded] = React.useState(item.expanded);
+
+  React.useEffect(() => {
+    if (isExpanded !== expanded) {
+      setExpanded(expanded);
+    }
+  }, [expanded]);
 
   const updateName = React.useCallback(
     (updateParams): void => {
@@ -58,7 +67,7 @@ const ContentItem: React.FC<ContentItemProps> = ({
   }, []);
   return (
     <S.ItemContainer
-      opened={!!expanded}
+      opened={!!isExpanded}
       greyBackground={greyBackground}
       key={item.id}
       data-testid="item-with-content"
@@ -66,10 +75,10 @@ const ContentItem: React.FC<ContentItemProps> = ({
       <S.ItemHeader
         hasPrefix={Boolean(draggable || item.tag || item.icon)}
         onDoubleClick={(): void => {
-          !item.disableExpanding && setExpanded(false);
+          !item.disableExpanding && onExpand && onExpand(item.id, false) && setExpanded(false);
         }}
         onClick={(): void => {
-          !item.disableExpanding && setExpanded(true);
+          !item.disableExpanding && onExpand && onExpand(item.id, true) && setExpanded(true);
         }}
       >
         <S.ItemHeaderPrefix>
@@ -102,16 +111,23 @@ const ContentItem: React.FC<ContentItemProps> = ({
                 disabled={item.disableExpanding}
                 onClick={(e: React.MouseEvent<HTMLButtonElement>): void => {
                   e.stopPropagation();
-                  !item.disableExpanding &&  setExpanded(!expanded);
+                  !item.disableExpanding && setExpanded(!isExpanded);
+                  onExpand && onExpand(item.id, !isExpanded);
                 }}
-                expanded={expanded}
+                expanded={isExpanded}
               />
             </S.ToggleContentWrapper>
           )}
           {item.dropdown && (
             <S.DropdownWrapper onClick={stopPropagationHandler}>
               <Dropdown trigger={['click']} overlay={item.dropdown} placement="bottomRight">
-                <S.DropdownTrigger className="ds-dropdown-trigger" mode="single-icon" type="ghost" size="small" onClick={stopPropagationHandler}>
+                <S.DropdownTrigger
+                  className="ds-dropdown-trigger"
+                  mode="single-icon"
+                  type="ghost"
+                  size="small"
+                  onClick={stopPropagationHandler}
+                >
                   <Icon component={<OptionHorizontalM />} color={theme.palette['grey-600']} />
                 </S.DropdownTrigger>
               </Dropdown>
@@ -119,7 +135,7 @@ const ContentItem: React.FC<ContentItemProps> = ({
           )}
         </S.ItemHeaderSuffix>
       </S.ItemHeader>
-      {Boolean(item.content) && Boolean(expanded) && (
+      {Boolean(item.content) && Boolean(isExpanded) && (
         <S.ContentWrapper data-testid="item-content-wrapper">{item.content}</S.ContentWrapper>
       )}
     </S.ItemContainer>
