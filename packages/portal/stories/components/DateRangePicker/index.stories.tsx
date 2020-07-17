@@ -21,7 +21,7 @@ const stories = {
 };
 
 export default {
-  name: 'Components|DateRangePicker',
+  name: 'Pickers|DateRangePicker',
   config: {},
   stories,
 };
