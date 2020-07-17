@@ -308,7 +308,7 @@ const stories = {
               console.log('Selected tags change', tags, 'with action', actionTaken);
               setSelected(tags);
             }}
-            manageLink={withManageLink && 'https://en.wikipedia.org/wiki/San_Escobar'}
+            manageLink={withManageLink}
           />
         </div>
       </React.Fragment>
