@@ -15,6 +15,13 @@ const SORTABLE_CONFIG = {
   group: 'column-manager',
   forceFallback: true,
 };
+
+const compareArrays = (array1, array2) => {
+  const sorted1 = array1.sort();
+  const sorted2 = array2.sort();
+  return sorted1.length === sorted2.length && sorted1.every((value, index) => value === sorted2[index]);
+};
+
 const ManageableList: React.FC<ManageableListProps> = ({
   className,
   onItemAdd,
@@ -34,15 +41,27 @@ const ManageableList: React.FC<ManageableListProps> = ({
   selectedItemId,
   searchQuery,
   expanderDisabled,
+  onExpand,
+  expandedIds,
   texts,
 }) => {
   //ManageableList.whyDidYouRender = true;
+  console.log('ExpandedIds = ', expandedIds);
+  const [stateExpandedIds, setExpandedIds] = React.useState(expandedIds);
   const [allItemsVisible, setAllItemsVisible] = React.useState(false);
   const [itemsToRender, setItemsToRender] = React.useState(items);
-  const onEdit = React.useCallback(()=>{onItemEdit()},[onItemEdit])
+  const onEdit = React.useCallback(() => {
+    onItemEdit();
+  }, [onItemEdit]);
   React.useEffect(() => {
     setItemsToRender(items);
   }, [items]);
+  React.useEffect(() => {
+    if (!compareArrays(expandedIds, stateExpandedIds)) {
+      setExpandedIds(expandedIds);
+    }
+  }, [expandedIds]);
+
   const getTexts = React.useCallback(
     (): object => ({
       addItemLabel: <FormattedMessage id="DS.MANAGABLE-LIST.ADD-ITEM" />,
@@ -77,7 +96,6 @@ const ManageableList: React.FC<ManageableListProps> = ({
   const visibleItems = React.useMemo((): ItemProps[] => {
     return allItemsVisible ? itemsToRender : itemsToRender.slice(0, maxToShowItems);
   }, [allItemsVisible, maxToShowItems, itemsToRender]);
-
 
   const buttonLabel = React.useMemo(() => (allItemsVisible ? itemTexts.showLessLabel : itemTexts.showMoreLabel), [
     allItemsVisible,
@@ -119,28 +137,35 @@ const ManageableList: React.FC<ManageableListProps> = ({
   }, [onItemAdd]);
 
   const getItem = React.useCallback(
-    (item: ItemProps): React.ReactNode => (
-      <Item
-        key={item.id}
-        listType={type}
-        onSelect={onItemSelect}
-        onUpdate={onEdit}
-        onRemove={onItemRemove}
-        onDuplicate={onItemDuplicate}
-        item={item}
-        draggable={Boolean(onChangeOrder)}
-        changeOrderDisabled={changeOrderDisabled}
-        greyBackground={greyBackground}
-        selected={Boolean(item.id === selectedItemId)}
-        texts={itemTexts}
-        searchQuery={searchQuery}
-        hideExpander={expanderDisabled}
-      />
-    ),
+    (item: ItemProps): React.ReactNode => {
+      console.log('Expanded', item.id, !!stateExpandedIds && stateExpandedIds.indexOf(item.id) !== -1);
+      return (
+        <Item
+          key={item.id}
+          listType={type}
+          onSelect={onItemSelect}
+          onUpdate={onEdit}
+          onRemove={onItemRemove}
+          onDuplicate={onItemDuplicate}
+          onExpand={onExpand}
+          item={item}
+          draggable={Boolean(onChangeOrder)}
+          changeOrderDisabled={changeOrderDisabled}
+          greyBackground={greyBackground}
+          selected={Boolean(item.id === selectedItemId)}
+          texts={itemTexts}
+          searchQuery={searchQuery}
+          hideExpander={expanderDisabled}
+          expanded={!!stateExpandedIds && stateExpandedIds.indexOf(item.id) !== -1}
+        />
+      );
+    },
     [
+      onEdit,
+      onExpand,
+      stateExpandedIds,
       type,
       onItemSelect,
-      onItemEdit,
       onItemRemove,
       onItemDuplicate,
       onChangeOrder,
