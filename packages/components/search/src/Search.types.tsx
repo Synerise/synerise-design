@@ -1,11 +1,15 @@
 import * as React from 'react';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type AnyObject = Record<string, any>;
+
 export type DataSetProps = {
-  title: string;
-  tooltip: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  itemRender: (item: any) => JSX.Element;
   rowHeight: number;
-  visibleRows: number;
-  itemRender: (item: object) => JSX.Element;
+  title: string;
+  tooltip?: string;
+  visibleRows?: number;
 };
 
 export type SearchLookupConfig = {
@@ -14,10 +18,10 @@ export type SearchLookupConfig = {
   suggestions: string;
 };
 
-export type SearchProps<T extends {}> = {
+export type SearchProps<T extends AnyObject> = {
   clearTooltip: string;
   divider?: React.ReactNode;
-  dropdownMaxHeight?: number;
+  dropdownMaxHeight: number;
   filterLookupKey?: string;
   onParameterValueChange: (parameterValue: string) => void;
   onValueChange: (value: string) => void;
@@ -36,7 +40,7 @@ export type SearchProps<T extends {}> = {
   hideLabel?: boolean;
 };
 
-export type SearchState<T extends {}> = {
+export type SearchState<T extends AnyObject> = {
   isInputOpen: boolean;
   label: T | null | undefined;
   filteredParameters: T[];
