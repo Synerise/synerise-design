@@ -107,7 +107,11 @@ export const DayPicker = styled(DayPickerBase)`
     }
 
     &--entered > ${DayBackground} {
-      background-color: ${(props): string => props.theme.palette['grey-100']};
+      background-color: ${(props): string => props.theme.palette['grey-050']};
+    }
+
+    &--entered > ${DayText} {
+      color: ${(props): string => props.theme.palette['blue-600']};
     }
 
     &--entered-start:not(.DayPicker-Day--selected) > ${DayBackground} {

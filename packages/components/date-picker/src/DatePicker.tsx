@@ -44,6 +44,7 @@ const DatePicker: React.FC<Props> = props => {
           setSelectedDate(undefined);
         }}
         placeholder={texts.inputPlaceholder}
+        clearTooltip={texts.clearTooltip}
       />
     </Dropdown>
   );

@@ -1,12 +1,14 @@
-import { fnsGetYear } from './fns';
-
-
+import { fnsDifferenceInSeconds, fnsGetYear } from './fns';
+import { differenceInCalendarDays, differenceInDays } from 'date-fns';
+import { fnsAddSeconds } from '@synerise/ds-date-range-picker/dist/fns';
+import getUnixTime from 'date-fns/getUnixTime'
+import getTime from 'date-fns/getTime'
 export const range = (start: number, end: number): number[] => {
   if (end <= start) {
     return [];
   }
   const size = end - start;
-  return [...Array(size).keys()].map(i => i + start);
+  return [...Array(size).keys()].map((i) => i + start);
 };
 
 export function getDecadeRange(cursor: Date): number[] {
@@ -21,3 +23,9 @@ export function getCenturyRange(cursor: Date): number[] {
   return [startYear, endYear];
 }
 
+export function changeDayWithHoursPreserved(oldDate: Date, chosenDate: Date): Date {
+  const dayDifferenceInSeconds = differenceInCalendarDays(oldDate, chosenDate) * 24 * 60 * 60;
+  const difference = fnsDifferenceInSeconds(oldDate, chosenDate) -  dayDifferenceInSeconds ;
+  const dateToBeUpdated = fnsAddSeconds(chosenDate, difference);
+  return dateToBeUpdated;
+}

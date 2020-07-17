@@ -1,11 +1,11 @@
 import * as React from 'react';
 import * as moment from 'moment';
-
+import Tooltip from '@synerise/ds-tooltip';
 import { Input } from '@synerise/ds-input';
 import Icon from '@synerise/ds-icon';
 
 import { SizeType } from 'antd/lib/config-provider/SizeContext';
-import { CalendarM, Close3M } from '@synerise/ds-icon/dist/icons';
+import { CalendarM, Close3S } from '@synerise/ds-icon/dist/icons';
 import { Props } from './PickerInput.types';
 import * as S from './PickerInput.styles';
 
@@ -20,6 +20,7 @@ const PickerInput: React.FC<Props> = ({
   placeholder,
   onClear,
   onClick,
+  clearTooltip,
   ...rest
 }: Props) => {
   const [hovered, setHovered] = React.useState<boolean>(false);
@@ -67,14 +68,19 @@ const PickerInput: React.FC<Props> = ({
         type="text"
         size={size as SizeType}
         disabled={disabled}
-        value={getText() || placeholder}
+        placeholder={placeholder}
+        value={getText()}
         icon1={
           hovered && !!value ? (
-            <S.ClearIconWrapper>
-              <Icon component={<Close3M />} onClick={handleIconClick} />
-            </S.ClearIconWrapper>
+            <Tooltip title={clearTooltip}>
+              <S.ClearIconWrapper>
+                <Icon component={<Close3S />} onClick={handleIconClick} />
+              </S.ClearIconWrapper>
+            </Tooltip>
           ) : (
-            <Icon component={<CalendarM />} />
+            <S.DefaultIconWrapper>
+              <Icon component={<CalendarM />} />
+            </S.DefaultIconWrapper>
           )
         }
         style={style}
