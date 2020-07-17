@@ -36,6 +36,8 @@ export const CreateTagDropdownButton = styled(Button)<{ marginless: boolean }>`
   display: flex;
   align-items: center;
   margin: 0 8px 8px;
+  position: absolute;
+  right: 32px;
 
   && {
     font-weight: 400;
@@ -59,7 +61,7 @@ export const ManageLink = styled.a<{ onlyChild: boolean }>`
   margin: ${(props): string => (props.onlyChild ? '0' : '8px 0 0')};
   height: 32px;
   line-height: 32px;
-  padding: 0 16px;
+  padding: 0 20px;
   color: ${(props): string => props.theme.palette['grey-700']};
 `;
 
