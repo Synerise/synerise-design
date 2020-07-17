@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.85.2](https://github.com/synerise/synerise-design/compare/portal@0.85.1...portal@0.85.2) (2020-07-16)
+
+
+### Bug Fixes
+
+* **button:** add example with custom label ([30c8147](https://github.com/synerise/synerise-design/commit/30c81479e35928ac3bc0e3d34cc41c978bb23788))
+* **description:** add missing ':' in example labels ([c37c268](https://github.com/synerise/synerise-design/commit/c37c268e0e578e4b005f2e3202699a60ec128a34))
+* **items-roll:** fix searchClear ([024327d](https://github.com/synerise/synerise-design/commit/024327dd71b0907aa9348a64fc04c3d18aab7c05))
+* **table:** fix expandable rows selecetion ([4c1c045](https://github.com/synerise/synerise-design/commit/4c1c0454fb89350c387ecaf28afae51d2ee1f783))
+* **table:** on change selection callback ([0eabab4](https://github.com/synerise/synerise-design/commit/0eabab4ffc29893a3b8dd552ea7af619431fdc73))
+
+
+
+
+
 ## [0.85.1](https://github.com/synerise/synerise-design/compare/portal@0.85.0...portal@0.85.1) (2020-07-15)
 
 

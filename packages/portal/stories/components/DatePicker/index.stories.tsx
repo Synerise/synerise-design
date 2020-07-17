@@ -12,9 +12,8 @@ const stories = {
             action('Selected', value);
           }}
           texts={{
-            apply:'Apply',
+            apply: 'Apply',
             inputPlaceholder: 'Select date',
-
           }}
           useStartOfDay
         />

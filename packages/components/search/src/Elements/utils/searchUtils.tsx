@@ -30,4 +30,4 @@ export const hasSomeElementFiltered = (
   );
 };
 
-export const hasSomeElement = (data: object[] | undefined): boolean => !!data && data.length > 0;
+export const hasSomeElement = (data: Record<string, unknown>[] | undefined): boolean => !!data && data.length > 0;
