@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.47](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.1.46...@synerise/ds-search@0.1.47) (2020-07-17)
+
+
+### Bug Fixes
+
+* **search:** add single scroll for dropdown list ([f5e6700](https://github.com/Synerise/synerise-design/commit/f5e67006052931166bfd3684c2d49128f9b3ac5c))
+
+
+
+
+
 ## [0.1.46](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.1.45...@synerise/ds-search@0.1.46) (2020-07-15)
 
 
