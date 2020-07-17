@@ -45,8 +45,16 @@ import fnsIsSameYear from 'date-fns/is_same_year';
 import fnsGetYear from 'date-fns/get_year';
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
+import fnsGetSeconds from 'date-fns/get_seconds';
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore
 import fnsAddDays from 'date-fns/add_days';
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore
+import fnsDifferenceInSeconds from 'date-fns/difference_in_seconds'
 
+export {fnsGetSeconds};
+export {fnsDifferenceInSeconds};
 export {fnsStartOfMonth};
 export {fnsSetDate};
 export {fnsSetMonth};

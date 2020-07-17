@@ -15,4 +15,5 @@ export type Props = {
   disabled?: boolean;
   onClick?: () => void;
   onClear?: () => void;
+  clearTooltip?: string | React.ReactNode;
 };

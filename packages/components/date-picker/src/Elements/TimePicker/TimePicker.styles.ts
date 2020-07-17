@@ -12,7 +12,8 @@ export const Container = styled.div`
       height: calc(100% - 18px);
     }
   }
-  padding: 0 24px;
+  padding: 16px 24px 0 24px;
 `;
 
-export const Picker = styled(DSTimePicker)``;
+export const Picker = styled(DSTimePicker)`
+`;

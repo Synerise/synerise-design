@@ -11,7 +11,22 @@ import fnsFormat from './format';
 import TimePicker from './Elements/TimePicker/TimePicker';
 
 import { DayBackground, DayText, DayForeground } from './Elements/DayPicker/DayPicker.styles';
-import { fnsStartOfMonth, fnsSetYear, fnsSetMonth, fnsSetDate, fnsStartOfDay, fnsEndOfDay, fnsAddDays } from './fns';
+import {
+  fnsStartOfMonth,
+  fnsSetYear,
+  fnsSetMonth,
+  fnsSetDate,
+  fnsStartOfDay,
+  fnsEndOfDay,
+  fnsAddDays,
+  fnsIsAfter,
+  fnsDifferenceInSeconds,
+  fnsGetYear,
+  fnsGetSeconds,
+} from './fns';
+import { fnsAddSeconds } from '@synerise/ds-date-range-picker/dist/fns';
+import { differenceInDays } from 'date-fns';
+import { changeDayWithHoursPreserved } from './utils';
 
 class RawDatePicker extends React.Component<Props, State> {
   static defaultProps = {
@@ -59,7 +74,13 @@ class RawDatePicker extends React.Component<Props, State> {
   }
 
   handleChange = (value: Date | undefined): void => {
-    this.setState({ value, changed: true });
+    const { mode, value: valueFromState } = this.state;
+    if (mode === 'date' && !!valueFromState && !!value) {
+      const dateToBeUpdated = changeDayWithHoursPreserved(valueFromState, value);
+      this.setState({ value: dateToBeUpdated, changed: true });
+    } else {
+      this.setState({ value, changed: true });
+    }
   };
 
   handleDayMouseEnter = (day: Date): void => this.setState({ enteredTo: day });
@@ -68,7 +89,7 @@ class RawDatePicker extends React.Component<Props, State> {
 
   handleDayClick = (day: Date, modifiers: DayModifiers): void => {
     const { changed: isChanged, value } = this.state;
-    const { useStartOfDay, useEndOfDay } = this.props;
+    const { useStartOfDay, useEndOfDay, showTime } = this.props;
 
     if (modifiers.disabled) return;
 
@@ -84,7 +105,7 @@ class RawDatePicker extends React.Component<Props, State> {
     } else {
       this.handleChange(nextDateWithCurrentTime);
     }
-    this.handleModeSwitch('time');
+    !!showTime && this.handleModeSwitch('time');
   };
 
   handleModeSwitch = (mode: string): void => this.setState({ mode });

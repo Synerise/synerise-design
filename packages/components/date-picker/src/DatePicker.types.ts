@@ -37,4 +37,5 @@ export type Texts = {
   apply: string | React.ReactNode;
   now: string | React.ReactNode;
   inputPlaceholder?: string;
+  clearTooltip?: string | React.ReactNode;
 };
