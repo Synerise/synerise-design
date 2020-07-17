@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { screen } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import { fireEvent } from '@testing-library/dom';
@@ -55,8 +55,7 @@ const recentDisplayProps = {
     <Menu.Item onItemHover={(): void => {}}>{item && (item as { text: string }).text}</Menu.Item>
   ),
 };
-const INPUT_EXPAND_ANIMATION_DURATION = 200;
-const waitForDropdownToExpand = () => new Promise(r => setTimeout(r, INPUT_EXPAND_ANIMATION_DURATION));
+
 describe('Search with dropdown', () => {
   const onChange = jest.fn();
   const onParameterValueChange = jest.fn();
@@ -141,13 +140,17 @@ describe('Search with dropdown', () => {
 
     // ACT
     await btn.click();
-    await waitForDropdownToExpand();
-    const parameter = screen.getByText('City') as HTMLInputElement;
-
-    await parameter.click();
-
-    // ASSERT
-    expect(onParameterValueChange).toBeCalledWith('City');
+    await waitFor(
+      () => {
+        const parameter = screen.getByText('City') as HTMLInputElement;
+        parameter.click();
+        // ASSERT
+        expect(onParameterValueChange).toBeCalledWith('City');
+      },
+      {
+        timeout: 1000,
+      }
+    );
   });
 
   it('should render input with value', async () => {
