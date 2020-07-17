@@ -24,7 +24,7 @@ const stories = {
 };
 
 export default {
-  name: 'Components|DatePicker',
+  name: 'Pickers|DatePicker',
   config: {},
   stories,
 };
