@@ -27,76 +27,6 @@ const parameters = [
   { text: 'Discount', icon: <VarTypeListM /> },
   { text: 'Products bought', icon: <VarTypeListM /> },
   { text: 'Loyalty points', icon: <VarTypeListM /> },
-  { text: 'First Name1', icon: <VarTypeStringM /> },
-  { text: 'Last Name1', icon: <VarTypeStringM /> },
-  { text: 'Sex1', icon: <VarTypeStringM /> },
-  { text: 'City1', icon: <VarTypeStringM /> },
-  { text: 'Transactions1', icon: <VarTypeNumberM /> },
-  { text: 'IP1', icon: <VarTypeStringM /> },
-  { text: 'Price1', icon: <VarTypeListM /> },
-  { text: 'Discount1', icon: <VarTypeListM /> },
-  { text: 'Products bought1', icon: <VarTypeListM /> },
-  { text: 'Loyalty points1', icon: <VarTypeListM /> },
-  { text: 'First Name2', icon: <VarTypeStringM /> },
-  { text: 'Last Name2', icon: <VarTypeStringM /> },
-  { text: 'Sex2', icon: <VarTypeStringM /> },
-  { text: 'City2', icon: <VarTypeStringM /> },
-  { text: 'Transactions2', icon: <VarTypeNumberM /> },
-  { text: 'IP2', icon: <VarTypeStringM /> },
-  { text: 'Price2', icon: <VarTypeListM /> },
-  { text: 'Discount2', icon: <VarTypeListM /> },
-  { text: 'Products bought2', icon: <VarTypeListM /> },
-  { text: 'Loyalty points2', icon: <VarTypeListM /> },
-  { text: 'First Name3', icon: <VarTypeStringM /> },
-  { text: 'Last Name3', icon: <VarTypeStringM /> },
-  { text: 'Sex3', icon: <VarTypeStringM /> },
-  { text: 'City3', icon: <VarTypeStringM /> },
-  { text: 'Transactions3', icon: <VarTypeNumberM /> },
-  { text: 'IP3', icon: <VarTypeStringM /> },
-  { text: 'Price3', icon: <VarTypeListM /> },
-  { text: 'Discount3', icon: <VarTypeListM /> },
-  { text: 'Products bought3', icon: <VarTypeListM /> },
-  { text: 'Loyalty points3', icon: <VarTypeListM /> },
-  { text: 'First Name4', icon: <VarTypeStringM /> },
-  { text: 'Last Name4', icon: <VarTypeStringM /> },
-  { text: 'Sex4', icon: <VarTypeStringM /> },
-  { text: 'City4', icon: <VarTypeStringM /> },
-  { text: 'Transactions4', icon: <VarTypeNumberM /> },
-  { text: 'IP4', icon: <VarTypeStringM /> },
-  { text: 'Price4', icon: <VarTypeListM /> },
-  { text: 'Discount4', icon: <VarTypeListM /> },
-  { text: 'Products bought4', icon: <VarTypeListM /> },
-  { text: 'Loyalty points4', icon: <VarTypeListM /> },
-  { text: 'First Name5', icon: <VarTypeStringM /> },
-  { text: 'Last Name5', icon: <VarTypeStringM /> },
-  { text: 'Sex5', icon: <VarTypeStringM /> },
-  { text: 'City5', icon: <VarTypeStringM /> },
-  { text: 'Transactions5', icon: <VarTypeNumberM /> },
-  { text: 'IP5', icon: <VarTypeStringM /> },
-  { text: 'Price5', icon: <VarTypeListM /> },
-  { text: 'Discount5', icon: <VarTypeListM /> },
-  { text: 'Products bought5', icon: <VarTypeListM /> },
-  { text: 'Loyalty points5', icon: <VarTypeListM /> },
-  { text: 'First Name6', icon: <VarTypeStringM /> },
-  { text: 'Last Name6', icon: <VarTypeStringM /> },
-  { text: 'Sex6', icon: <VarTypeStringM /> },
-  { text: 'City6', icon: <VarTypeStringM /> },
-  { text: 'Transactions6', icon: <VarTypeNumberM /> },
-  { text: 'IP6', icon: <VarTypeStringM /> },
-  { text: 'Price6', icon: <VarTypeListM /> },
-  { text: 'Discount6', icon: <VarTypeListM /> },
-  { text: 'Products bought6', icon: <VarTypeListM /> },
-  { text: 'Loyalty points6', icon: <VarTypeListM /> },
-  { text: 'First Name7', icon: <VarTypeStringM /> },
-  { text: 'Last Name7', icon: <VarTypeStringM /> },
-  { text: 'Sex7', icon: <VarTypeStringM /> },
-  { text: 'City7', icon: <VarTypeStringM /> },
-  { text: 'Transactions7', icon: <VarTypeNumberM /> },
-  { text: 'IP7', icon: <VarTypeStringM /> },
-  { text: 'Price7', icon: <VarTypeListM /> },
-  { text: 'Discount7', icon: <VarTypeListM /> },
-  { text: 'Products bought7', icon: <VarTypeListM /> },
-  { text: 'Loyalty points7', icon: <VarTypeListM /> },
 ];
 
 const recent = [
@@ -155,8 +85,8 @@ const stories = {
   },
   withDropdown: () => {
     const [value, setValue] = React.useState<string>('');
-    const [parameterValue, setParameterValue] = React.useState<string>('');
-    const [suggestions, setSuggestions] = React.useState([]);
+    const [parameterValue, setParameterValue] = React.useState('');
+    const [suggestions, setSuggestions] = React.useState<any[] | null>(null);
 
     const recentTitle = text('Set recent title', 'Recent');
     const recentTooltip = text('Set recent tooltip', 'Recent');
@@ -164,11 +94,10 @@ const stories = {
 
     const parametersTitle = text('Set search in title', 'Search in');
     const parametersTooltip = text('Set search in tooltip', 'Search in');
-    const parametersCount = number('Set search in count', 6, { min: 1, max: parameters.length });
+    const parametersCount = number('Set search in count', 6, { min: 1, max: 10 });
 
     const suggestionsTitle = text('Set suggestions title', 'Suggest');
     const suggestionsTooltip = text('Set suggestions tooltip', 'Suggest');
-    const hideLabel = boolean('hideLabel', false);
 
     return (
       <Search
@@ -178,7 +107,7 @@ const stories = {
             <Divider dashed />
           </div>
         }
-        dropdownMaxHeight={400}
+        dropdownMaxHeight={parameterValue ? 210 : 400}
         filterLookupKey="filter"
         onParameterValueChange={value => {
           setParameterValue(value);
@@ -193,7 +122,6 @@ const stories = {
           tooltip: parametersTooltip,
           title: parametersTitle,
           rowHeight: 32,
-          visibleRows: 6,
           itemRender: (item: FilterElement) => (
             <Menu.Item
               highlight={value}
@@ -212,7 +140,6 @@ const stories = {
           tooltip: recentTooltip,
           title: recentTitle,
           rowHeight: 32,
-          visibleRows: 3,
           itemRender: (item: FilterElement) => <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>,
         }}
         suggestions={suggestions}
@@ -220,7 +147,6 @@ const stories = {
           tooltip: suggestionsTooltip,
           title: suggestionsTitle,
           rowHeight: 32,
-          visibleRows: 6,
           itemRender: (item: FilterElement) => <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>,
         }}
         textLookupConfig={{
@@ -229,7 +155,6 @@ const stories = {
           suggestions: 'text',
         }}
         value={value}
-        hideLabel={hideLabel}
       />
     );
   },
@@ -244,7 +169,7 @@ const stories = {
 
     const parametersTitle = text('Set search in title', 'Search in');
     const parametersTooltip = text('Set search in tooltip', 'Search in');
-    const parametersCount = number('Set search in count', 6, { min: 1, max: parameters.length });
+    const parametersCount = number('Set search in count', 6, { min: 1, max: 10 });
 
     const suggestionsTitle = text('Set suggestions title', 'Suggest');
     const suggestionsTooltip = text('Set suggestions tooltip', 'Suggest');
@@ -256,7 +181,7 @@ const stories = {
             <Divider dashed />
           </div>
         }
-        dropdownMaxHeight={400}
+        dropdownMaxHeight={380}
         filterLookupKey="filter"
         onParameterValueChange={(value): void => {
           setParameterValue(value);
@@ -271,7 +196,6 @@ const stories = {
           tooltip: parametersTooltip,
           title: parametersTitle,
           rowHeight: 32,
-          visibleRows: 6,
           itemRender: (item: FilterElement) => (
             <Menu.Item
               style={{ paddingLeft: '12px' }}
@@ -289,7 +213,6 @@ const stories = {
           tooltip: recentTooltip,
           title: recentTitle,
           rowHeight: 50,
-          visibleRows: 3,
           itemRender: (item: FilterElement) => (
             <Menu.Item onItemHover={(): void => {}} {...item} style={{ paddingLeft: '12px' }}>
               {item.text}
@@ -301,7 +224,6 @@ const stories = {
           tooltip: suggestionsTooltip,
           title: suggestionsTitle,
           rowHeight: 32,
-          visibleRows: 6,
           itemRender: (item: FilterElement) => <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>,
         }}
         textLookupConfig={{

@@ -167,7 +167,7 @@ export const ClearButton = styled.div`
   padding: 0 10px 0 10px;
 `;
 
-export const SearchDropdownContent = styled.div<{ isOpen?: boolean; maxHeight?: number }>`
+export const SearchDropdownContent = styled.div<{ isOpen?: boolean; maxHeight: number }>`
   position: absolute;
   top: 40px;
   background: ${(props): string => props.theme.palette.white};

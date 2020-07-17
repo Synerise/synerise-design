@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.33](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.2.32...@synerise/ds-items-roll@0.2.33) (2020-07-16)
+
+
+### Bug Fixes
+
+* **items-roll:** fix hooks dependecies ([d1fee05](https://github.com/Synerise/synerise-design/commit/d1fee05c046cf8e946e964ccaa7c23e35010282c))
+* **items-roll:** fix position of show less button ([07112af](https://github.com/Synerise/synerise-design/commit/07112afa799c4940050437fbff119718e21a0cde))
+* **items-roll:** fix styles ([81d3729](https://github.com/Synerise/synerise-design/commit/81d3729818d0c96e574d6e459cf07170441540d0))
+* **items-roll:** remove border-bottom on search results ([c8e937d](https://github.com/Synerise/synerise-design/commit/c8e937dad4dd2f88508cf69bf96d311e5d536e06))
+
+
+
+
+
 ## [0.2.32](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.2.31...@synerise/ds-items-roll@0.2.32) (2020-07-15)
 
 **Note:** Version bump only for package @synerise/ds-items-roll
