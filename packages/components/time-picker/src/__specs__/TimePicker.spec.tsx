@@ -85,7 +85,6 @@ describe('TimePicker', () => {
     );
   });
 
-
   it('should render open on focus and show buttons for hours, minutes and seconds', async () => {
     // ARRANGE
     const { findByTestId, getByPlaceholderText } = renderWithProvider(<TimePicker placeholder="Select time" />);
