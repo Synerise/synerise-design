@@ -2,11 +2,10 @@ import * as React from 'react';
 import onClickOutside from 'react-onclickoutside';
 import Scrollbar from '@synerise/ds-scrollbar';
 import { focusWithArrowKeys } from '@synerise/ds-utils';
-import { MenuItemProps } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.types';
 
 import { hasSomeElement, getAllElementsFiltered, hasSomeElementFiltered } from './Elements/utils/searchUtils';
 import * as S from './Search.styles';
-import { SearchProps, SearchState, SelectResultDataKeys } from './Search.types';
+import { SearchProps, SearchState, SelectResultDataKeys, AnyObject } from './Search.types';
 import { SearchInput } from './Elements';
 import SearchItemsContainer from './Elements/SearchItemsContainer/SearchItemsContainer';
 
@@ -14,9 +13,9 @@ const MENU_WIDTH_OFFSET = 17;
 const INPUT_EXPAND_ANIMATION_DURATION = 200;
 const SCROLLBAR_HEIGHT_OFFSET = 28;
 
-class Search extends React.PureComponent<SearchProps<{}>, SearchState<{}>> {
+class Search extends React.PureComponent<SearchProps<AnyObject>, SearchState<AnyObject>> {
   private wrapperRef = React.createRef<HTMLDivElement>();
-  constructor(props: SearchProps<{}>) {
+  constructor(props: SearchProps<AnyObject>) {
     super(props);
 
     // eslint-disable-next-line react/state-in-constructor
@@ -36,18 +35,23 @@ class Search extends React.PureComponent<SearchProps<{}>, SearchState<{}>> {
     };
   }
 
-  getSnapshotBeforeUpdate(prevProps: Readonly<SearchProps<{}>>): null {
+  componentDidUpdate(prevProps: SearchProps<AnyObject>): void {
     const { recent, suggestions, parameters, value, textLookupConfig } = this.props;
-    if (prevProps.recent !== recent) {
+
+    if (prevProps.recent.length !== recent.length) {
+      // eslint-disable-next-line react/no-did-update-set-state
       this.setState({ filteredRecent: getAllElementsFiltered(recent, value, textLookupConfig.recent) });
     }
-    if (prevProps.parameters !== parameters) {
+
+    if (prevProps.parameters.length !== parameters.length) {
+      // eslint-disable-next-line react/no-did-update-set-state
       this.setState({ filteredParameters: getAllElementsFiltered(parameters, value, textLookupConfig.parameters) });
     }
-    if (prevProps.suggestions !== suggestions) {
+
+    if (suggestions && prevProps.suggestions?.length !== suggestions.length) {
+      // eslint-disable-next-line react/no-did-update-set-state
       this.setState({ filteredSuggestions: getAllElementsFiltered(suggestions, value, textLookupConfig.suggestions) });
     }
-    return null;
   }
 
   onKeyDown(e: React.KeyboardEvent<HTMLInputElement>): void {
@@ -191,16 +195,11 @@ class Search extends React.PureComponent<SearchProps<{}>, SearchState<{}>> {
       filteredRecent &&
       hasSomeElement(filteredRecent) && (
         <SearchItemsContainer
-          displayProps={recentDisplayProps}
-          onItemClick={
-            ((item: object): void => this.selectResult(item, SelectResultDataKeys.RECENT)) as (
-              e: MenuItemProps | object
-            ) => void
-          }
-          highlight={value}
           data={filteredRecent}
+          displayProps={recentDisplayProps}
+          highlight={value}
+          onItemClick={(item: AnyObject): void => this.selectResult(item, SelectResultDataKeys.RECENT)}
           width={itemsListWidth}
-          listProps={{ autoHeight: true }}
         />
       )
     );
@@ -217,10 +216,10 @@ class Search extends React.PureComponent<SearchProps<{}>, SearchState<{}>> {
       filteredParameters &&
       hasSomeElement(filteredParameters) && (
         <SearchItemsContainer
-          displayProps={parametersDisplayProps}
-          onItemClick={((item: object): void => this.selectFilter(item)) as (e: MenuItemProps | object) => void}
-          highlight={value}
           data={filteredParameters}
+          displayProps={parametersDisplayProps}
+          highlight={value}
+          onItemClick={(item: AnyObject): void => this.selectFilter(item)}
           width={itemsListWidth}
         />
       )
@@ -240,11 +239,7 @@ class Search extends React.PureComponent<SearchProps<{}>, SearchState<{}>> {
       hasSomeElement(filteredSuggestions) && (
         <SearchItemsContainer
           displayProps={suggestionsDisplayProps}
-          onItemClick={
-            ((item: object): void => this.selectResult(item, SelectResultDataKeys.SUGGESTIONS)) as (
-              e: MenuItemProps | object
-            ) => void
-          }
+          onItemClick={(item: AnyObject): void => this.selectResult(item, SelectResultDataKeys.SUGGESTIONS)}
           highlight={value}
           data={filteredSuggestions}
           width={itemsListWidth}
@@ -321,7 +316,7 @@ class Search extends React.PureComponent<SearchProps<{}>, SearchState<{}>> {
                 isInputOpen && !isResultChosen && isListVisible && this.isListItemRendered() ? 'search-list-open' : ''
               }
             >
-              <Scrollbar absolute maxHeight={dropdownMaxHeight && Number(dropdownMaxHeight - SCROLLBAR_HEIGHT_OFFSET)}>
+              <Scrollbar absolute maxHeight={dropdownMaxHeight - SCROLLBAR_HEIGHT_OFFSET}>
                 {this.renderRecentItems()}
                 {!!filteredParameters?.length && !!filteredRecent?.length && !label && divider}
                 {this.renderParameters()}
