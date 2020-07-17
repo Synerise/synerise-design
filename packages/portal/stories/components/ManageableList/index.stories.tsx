@@ -4,6 +4,7 @@ import { withState } from '@dump247/storybook-state';
 import { action } from '@storybook/addon-actions';
 import { boolean, text } from '@storybook/addon-knobs';
 import { EMPTY_CONTENT_ITEM, CONTENT_ITEMS, EMPTY_ITEM, FILTER_LIST_ITEMS, ITEMS, ACCORDION_ITEMS } from './index.data';
+import FormExample from './finalForm';
 
 const decorator = storyFn => (
   <div style={{ width: '600px' }}>
@@ -82,6 +83,7 @@ const stories = {
       />
     );
   }),
+  formExample: FormExample,
   emptyList: () => {
     const texts = getTexts();
     return (
@@ -129,12 +131,15 @@ const stories = {
       });
     };
 
+    const onRemove = props => removeItem(props, store)
+    const onEdit = props => editItem(props, store)
+    const texts = getTexts();
     return (
       <ManageableList
         maxToShowItems={5}
         onItemAdd={addItem}
-        onItemRemove={props => removeItem(props, store)}
-        onItemEdit={props => editItem(props, store)}
+        onItemRemove={onRemove}
+        onItemEdit={onEdit}
         onItemSelect={action('onItemSelect')}
         onItemDuplicate={duplicateItem}
         onChangeOrder={boolean('Change order available', false) ? handleChangeOrder : null}
@@ -144,7 +149,7 @@ const stories = {
         addButtonDisabled={boolean('Disable add item button', false)}
         changeOrderDisabled={boolean('Disable change order', false)}
         greyBackground={boolean('Grey background', false)}
-        texts={getTexts()}
+        texts={texts}
       />
     );
   }),

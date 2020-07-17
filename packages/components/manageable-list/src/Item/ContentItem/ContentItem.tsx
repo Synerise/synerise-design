@@ -22,7 +22,6 @@ export type ContentItemProps = {
   texts: {
     [k: string]: string | React.ReactNode;
   };
-  onExpand?: (id: string, isExpanded: boolean) => void;
   hideExpander?: boolean;
 };
 
@@ -36,10 +35,13 @@ const ContentItem: React.FC<ContentItemProps> = ({
   changeOrderDisabled,
   theme,
   texts,
-  onExpand,
   hideExpander,
 }): React.ReactElement => {
+  ContentItem.whyDidYouRender = true;
+  console.log('Rerender',item.name);
+
   const [editMode, setEditMode] = React.useState(false);
+  const [expanded, setExpanded] = React.useState(item.expanded);
 
   const updateName = React.useCallback(
     (updateParams): void => {
@@ -56,7 +58,7 @@ const ContentItem: React.FC<ContentItemProps> = ({
   }, []);
   return (
     <S.ItemContainer
-      opened={!!item.expanded}
+      opened={!!expanded}
       greyBackground={greyBackground}
       key={item.id}
       data-testid="item-with-content"
@@ -64,10 +66,10 @@ const ContentItem: React.FC<ContentItemProps> = ({
       <S.ItemHeader
         hasPrefix={Boolean(draggable || item.tag || item.icon)}
         onDoubleClick={(): void => {
-          !item.disableExpanding && onExpand && onExpand(item.id, false);
+          !item.disableExpanding && setExpanded(false);
         }}
         onClick={(): void => {
-          !item.disableExpanding && !item.expanded && onExpand && onExpand(item.id, true);
+          !item.disableExpanding && setExpanded(true);
         }}
       >
         <S.ItemHeaderPrefix>
@@ -100,9 +102,9 @@ const ContentItem: React.FC<ContentItemProps> = ({
                 disabled={item.disableExpanding}
                 onClick={(e: React.MouseEvent<HTMLButtonElement>): void => {
                   e.stopPropagation();
-                  !item.disableExpanding && onExpand && onExpand(item.id, !item.expanded);
+                  !item.disableExpanding &&  setExpanded(!expanded);
                 }}
-                expanded={item.expanded}
+                expanded={expanded}
               />
             </S.ToggleContentWrapper>
           )}
@@ -117,7 +119,7 @@ const ContentItem: React.FC<ContentItemProps> = ({
           )}
         </S.ItemHeaderSuffix>
       </S.ItemHeader>
-      {Boolean(item.content) && Boolean(item.expanded) && (
+      {Boolean(item.content) && Boolean(expanded) && (
         <S.ContentWrapper data-testid="item-content-wrapper">{item.content}</S.ContentWrapper>
       )}
     </S.ItemContainer>
