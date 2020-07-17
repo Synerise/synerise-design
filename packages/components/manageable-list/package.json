@@ -33,7 +33,8 @@
     "@synerise/ds-tags": "^0.2.94",
     "@synerise/ds-tooltip": "^0.7.11",
     "@synerise/ds-typography": "^0.8.3",
-    "@synerise/ds-utils": "^0.8.31"
+    "@synerise/ds-utils": "^0.8.31",
+    "@welldone-software/why-did-you-render": "^4.2.5"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

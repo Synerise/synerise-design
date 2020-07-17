@@ -59,7 +59,6 @@ const Item: React.FC<Props> = ({
   selected,
   texts,
   searchQuery,
-  onExpand,
   hideExpander,
 }) => {
   switch (listType) {
@@ -74,7 +73,6 @@ const Item: React.FC<Props> = ({
           greyBackground={greyBackground}
           changeOrderDisabled={changeOrderDisabled}
           draggable={draggable}
-          onExpand={onExpand}
           hideExpander={hideExpander}
           texts={texts}
         />

@@ -10,6 +10,13 @@ import './style/index.css';
 import '@synerise/ds-core/dist/js/style';
 const req = require.context('../stories', true, /\.stories.tsx$/);
 
+
+const whyDidYouRender = require('@welldone-software/why-did-you-render');
+whyDidYouRender(React, {
+  trackAllPureComponents: false,
+});
+
+
 const withDSProvider = (storyFn) => React.createElement(DSProvider, {
   code: 'en_GB',
 } as object, storyFn());
@@ -24,6 +31,7 @@ interface storyConfig {
   config?: object,
   withoutCenter?: boolean,
 }
+
 
 function loadStories() {
   req.keys().forEach(filename => {
