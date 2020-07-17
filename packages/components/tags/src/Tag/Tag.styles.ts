@@ -325,7 +325,7 @@ export const Tag = styled.div<TagProps>`
 
 
   .icon1 {
-    margin: ${(props): string => (props.removable ? '0 -2px 0 5px' : '0 2px 0 -7px')};
+    margin: margin: 0 -2px 0 5px;
   }
 
   ${(props): FlattenSimpleInterpolation | false =>
