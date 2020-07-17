@@ -118,7 +118,7 @@ const stories = {
 };
 
 export default {
-  name: 'Components|IconPicker',
+  name: 'Pickers|IconPicker',
   config: {},
   withoutCenter: true,
   decorator,
