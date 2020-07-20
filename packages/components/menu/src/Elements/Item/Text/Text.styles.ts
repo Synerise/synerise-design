@@ -234,11 +234,7 @@ export const SuffixWraper = styled.div<{ disabled?: boolean; visible?: boolean }
   svg {
     margin-right: -4px;
   }
-  &:hover {
-    svg {
-      fill: currentColor !important;
-    }
-  }
+
 `;
 
 export const ContentWrapper = styled.div`

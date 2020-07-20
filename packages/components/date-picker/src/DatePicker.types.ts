@@ -5,6 +5,7 @@ export type Props = {
   showTime?: boolean;
   value?: Date;
   onApply?: (date?: Date) => void;
+  onValueChange?: (date?: Date) => void;
   disabledDates?: (date?: Date) => boolean;
   disabledHours: number[];
   disabledMinutes: number[];
@@ -37,4 +38,5 @@ export type Texts = {
   apply: string | React.ReactNode;
   now: string | React.ReactNode;
   inputPlaceholder?: string;
+  clearTooltip?: string | React.ReactNode;
 };

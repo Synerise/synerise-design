@@ -3,7 +3,9 @@ import DayPickerBase from 'react-day-picker';
 
 export const DayBackground = styled.div``;
 export const DayForeground = styled.div``;
-export const DayText = styled.div``;
+export const DayText = styled.div`
+  color: ${(props): string => props.theme.palette['grey-700']};
+`;
 export const DayPicker = styled(DayPickerBase)`
   display: inline-block;
   font-size: 12px;
@@ -107,7 +109,11 @@ export const DayPicker = styled(DayPickerBase)`
     }
 
     &--entered > ${DayBackground} {
-      background-color: ${(props): string => props.theme.palette['grey-100']};
+      background-color: ${(props): string => props.theme.palette['grey-050']};
+    }
+
+    &--entered > ${DayText} {
+      color: ${(props): string => props.theme.palette['blue-600']};
     }
 
     &--entered-start:not(.DayPicker-Day--selected) > ${DayBackground} {
