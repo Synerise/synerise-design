@@ -1,5 +1,6 @@
 import * as React from 'react';
 import List from '@synerise/ds-list';
+import * as _ from 'lodash';
 import { ReactSortable } from 'react-sortablejs-typescript';
 import { FormattedMessage } from 'react-intl';
 import * as S from './ManageableList.styles';
@@ -7,6 +8,7 @@ import Item, { ItemProps } from './Item/Item';
 import AddItemWithName from './AddItemWithName/AddItemWithName';
 import AddItem from './AddItem/AddItem';
 import { ManageableListProps, ListType, Texts } from './ManageableList.types';
+
 
 const SORTABLE_CONFIG = {
   ghostClass: 'sortable-list-ghost-element',
@@ -16,11 +18,6 @@ const SORTABLE_CONFIG = {
   forceFallback: true,
 };
 
-const areArraysEqual = (array1: string[], array2: string[]): boolean => {
-  const sorted1 = array1.sort();
-  const sorted2 = array2.sort();
-  return sorted1.length === sorted2.length && sorted1.every((value: string, index: number) => value === sorted2[index]);
-};
 
 const ManageableList: React.FC<ManageableListProps> = ({
   className,
@@ -53,7 +50,7 @@ const ManageableList: React.FC<ManageableListProps> = ({
   }, [items]);
 
   React.useEffect(() => {
-    if (expandedIds && stateExpandedIds && !areArraysEqual(expandedIds, stateExpandedIds)) {
+    if (expandedIds && stateExpandedIds && !_.isEqual(expandedIds, stateExpandedIds)) {
       setExpandedIds(expandedIds);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -152,7 +149,7 @@ const ManageableList: React.FC<ManageableListProps> = ({
           texts={itemTexts}
           searchQuery={searchQuery}
           hideExpander={expanderDisabled}
-          expanded={!!stateExpandedIds && stateExpandedIds.indexOf(item.id) !== -1}
+          expanded={!!stateExpandedIds && stateExpandedIds.includes(item.id)}
         />
       );
     },
@@ -174,7 +171,7 @@ const ManageableList: React.FC<ManageableListProps> = ({
     ]
   );
 
-  const renderList = React.useMemo(() => {
+  const itemList = React.useMemo(() => {
     return onChangeOrder && !changeOrderDisabled ? (
       <ReactSortable {...SORTABLE_CONFIG} list={itemsToRender} setList={onChangeOrder}>
         {itemsToRender.map(getItem)}
@@ -198,7 +195,7 @@ const ManageableList: React.FC<ManageableListProps> = ({
           placeholder={placeholder}
         />
       )}
-      {renderList}
+      {itemList}
       {renderShowMoreButton()}
       {type === ListType.CONTENT && Boolean(onItemAdd) && (
         <AddItem addItemLabel={itemTexts.addItemLabel} onItemAdd={createItem} disabled={addButtonDisabled} />
