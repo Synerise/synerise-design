@@ -28,7 +28,6 @@ export type ItemPickerProps = {
   tooltip?: string | React.ReactNode;
   disabled?: boolean;
   changeButtonLabel?: string | React.ReactNode;
-  withChangeButton?: boolean;
   withClearConfirmation?: boolean;
   clearConfirmTitle?: string;
   yesText?: string;
@@ -54,7 +53,6 @@ const ItemPicker: React.FC<ItemPickerProps> = ({
   selectedItem,
   size = 'small',
   changeButtonLabel = intl.formatMessage({ id: 'DS.ITEM-PICKER.CHANGE' }),
-  withChangeButton,
   clearConfirmTitle = intl.formatMessage({ id: 'DS.ITEM-PICKER.CLEAR-CONFIRM' }),
   yesText = intl.formatMessage({ id: 'DS.ITEM-PICKER.YES-TEXT' }),
   noText = intl.formatMessage({ id: 'DS.ITEM-PICKER.NO-TEXT' }),
@@ -99,7 +97,7 @@ const ItemPicker: React.FC<ItemPickerProps> = ({
         closeDropdown={closeDropdown}
         size={size}
         changeButtonLabel={changeButtonLabel}
-        withChangeButton={withChangeButton}
+        withChangeButton={!withClearConfirmation}
         clearConfirmTitle={clearConfirmTitle}
         yesText={yesText}
         noText={noText}
@@ -119,7 +117,6 @@ const ItemPicker: React.FC<ItemPickerProps> = ({
       closeDropdown,
       size,
       changeButtonLabel,
-      withChangeButton,
       clearConfirmTitle,
       yesText,
       noText,
