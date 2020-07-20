@@ -1,6 +1,5 @@
 import { differenceInCalendarDays } from 'date-fns';
-import { fnsAddSeconds } from '@synerise/ds-date-range-picker/dist/fns';
-import { fnsDifferenceInSeconds, fnsGetYear } from './fns';
+import { fnsAddSeconds, fnsDifferenceInSeconds, fnsGetYear } from './fns';
 
 export const range = (start: number, end: number): number[] => {
   if (end <= start) {
