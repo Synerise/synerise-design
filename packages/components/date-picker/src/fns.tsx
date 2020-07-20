@@ -52,6 +52,9 @@ import fnsAddDays from 'date-fns/add_days';
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
 import fnsDifferenceInSeconds from 'date-fns/difference_in_seconds'
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore
+import fnsAddSeconds from 'date-fns/add_seconds';
 
 export {fnsGetSeconds};
 export {fnsDifferenceInSeconds};
@@ -71,3 +74,4 @@ export {fnsFormat};
 export {fnsIsSameYear};
 export {fnsGetYear};
 export {fnsAddDays};
+export {fnsAddSeconds}
