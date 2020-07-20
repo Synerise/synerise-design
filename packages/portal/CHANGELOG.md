@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.86.1](https://github.com/synerise/synerise-design/compare/portal@0.86.0...portal@0.86.1) (2020-07-20)
+
+
+### Bug Fixes
+
+* **search:** add onClear prop and update tests and stories ([c11b557](https://github.com/synerise/synerise-design/commit/c11b5578ef72ec5928f90416be09b74e7036e889))
+
+
+
+
+
 # [0.86.0](https://github.com/synerise/synerise-design/compare/portal@0.85.3...portal@0.86.0) (2020-07-20)
 
 
