@@ -1,18 +1,15 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 19.2.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 48 48" style="enable-background:new 0 0 48 48;" xml:space="preserve">
-<style type="text/css">
-	.st0{fill:#FFFFFF;fill-opacity:0;}
-	.st1{fill:#D9EEFF;}
-	.st2{fill:none;stroke:#0B68FF;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
-</style>
-<title>dahboard-pie</title>
-<rect class="st0" width="48" height="48"/>
-<circle class="st1" cx="27" cy="27" r="17.4"/>
-<g>
-	<circle class="st2" cx="24" cy="24" r="17.4"/>
-	<line class="st2" x1="11.7" y1="36.2" x2="24" y2="23.9"/>
-	<polyline class="st2" points="41.4,24 24,24 24,6.6 	"/>
-</g>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="48px" height="48px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 64 (93537) - https://sketch.com -->
+    <title>chart-pie-l</title>
+    <desc>Created with Sketch.</desc>
+    <g id="chart-pie-l" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="Group" transform="translate(9.000000, 9.000000)" stroke="#384350" stroke-width="1.5">
+            <path d="M15.0000001,1.87499971e-08 C14.98343,1.87499971e-08 14.96749,0.00241001876 14.95092,0.00241001876 L14.95092,15.0491001 L29.9976201,15.0491001 C29.9976201,15.0325301 29.9999301,15.0165901 29.9999301,15.0000201 C29.9999301,11.021774 28.4196263,7.20645694 25.60659,4.39340377 C22.7935537,1.5803506 18.9782461,1.87499971e-08 15.0000001,1.87499971e-08 L15.0000001,1.87499971e-08 Z" id="Path"></path>
+            <line x1="4.65661003" y1="25.3434001" x2="15.1851901" y2="14.81483" id="Path"></line>
+            <line x1="15.1074001" y1="9.92842004" x2="29.1202301" y2="9.92842004" id="Path"></line>
+            <line x1="15.1851901" y1="4.96422003" x2="25.6103501" y2="4.96422003" id="Path"></line>
+            <circle id="Oval" cx="15" cy="15.0000201" r="15"></circle>
+        </g>
+    </g>
 </svg>
