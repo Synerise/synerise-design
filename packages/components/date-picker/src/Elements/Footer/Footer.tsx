@@ -30,7 +30,7 @@ const Footer: React.FC<Props> = ({
     [mode, onSwitchMode, canSwitchMode]
   );
   return (
-    <S.Container className="ds-date-picker-footer" {...rest} >
+    <S.Container className="ds-date-picker-footer" key="date-picker-footer" {...rest}>
       <S.Range
         data-testid="range-now"
         type="tertiary"
@@ -40,7 +40,7 @@ const Footer: React.FC<Props> = ({
       >
         {texts.now}
       </S.Range>
-      <S.ActionsPlaceholder/>
+      <S.ActionsPlaceholder />
       <S.Actions>
         {!dateOnly && SwitchModeButton}
         <Tooltip title={message}>

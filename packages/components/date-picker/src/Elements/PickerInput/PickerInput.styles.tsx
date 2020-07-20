@@ -12,3 +12,11 @@ export const ClearIconWrapper = styled.div`
     }
   }
 `;
+
+export const DefaultIconWrapper = styled.div`
+  &&:hover {
+    .ds-icon svg {
+      fill: ${(props): string => props.theme.palette['grey-600']};
+    }
+  }
+`;

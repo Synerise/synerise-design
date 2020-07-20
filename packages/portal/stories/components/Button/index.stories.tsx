@@ -2,12 +2,7 @@ import * as React from 'react';
 import { text, select, boolean } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 
-import {
-  AngleDownM,
-  AngleDownS,
-  CheckM,
-  CheckS,
-} from '@synerise/ds-icon/dist/icons';
+import { AngleDownM, AngleDownS, CheckM, CheckS } from '@synerise/ds-icon/dist/icons';
 import Icon from '@synerise/ds-icon';
 import Button from '@synerise/ds-button';
 import markdown from '@/button/README.md';
@@ -73,7 +68,7 @@ const crudsoptions = {
   Duplicate: 'Duplicate',
   Delete: 'Delete',
   Remove: 'Remove',
-  Move: 'Move'
+  Move: 'Move',
 };
 
 const getDefaultProps = (isSplit = false) => ({
@@ -228,14 +223,10 @@ const stories = {
       <div style={getBackgroundStyles(props.type)}>
         <Button {...props} mode="icon-label">
           <Icon component={<CheckM />} />
-          <span style={{ fontWeight: 400}}>
-            <span style={{display: 'inline'}}>
-              Show
-            </span>
-            {' '}
-            <strong style={{display: 'inline', fontWeight: 500}}>10</strong>
-            {' '}
-            <span style={{display: 'inline'}}>more</span>
+          <span style={{ fontWeight: 400 }}>
+            <span style={{ display: 'inline' }}>Show</span>{' '}
+            <strong style={{ display: 'inline', fontWeight: 500 }}>10</strong>{' '}
+            <span style={{ display: 'inline' }}>more</span>
           </span>
         </Button>
       </div>
@@ -287,11 +278,7 @@ const stories = {
     } as object;
     return (
       <div>
-        <Button.Creator
-          {...props}
-          label={'Add position'}
-          onClick={action("Creator Click")}
-        ></Button.Creator>
+        <Button.Creator {...props} label={'Add position'} onClick={action('Creator Click')}></Button.Creator>
       </div>
     );
   },
@@ -306,42 +293,24 @@ const stories = {
     return (
       <div>
         <Button.Cruds
-
           {...props}
-
-          onAdd={
-            crudProps.type === 'Add' || crudProps.type === 'Multiple'
-              ? action("onAdd event triggered")
-              : null
-          }
+          onAdd={crudProps.type === 'Add' || crudProps.type === 'Multiple' ? action('onAdd event triggered') : null}
           addTooltip="Add"
           onDelete={
-            crudProps.type === 'Delete' || crudProps.type === 'Multiple'
-              ? action("onDelete event triggered")
-              : null
+            crudProps.type === 'Delete' || crudProps.type === 'Multiple' ? action('onDelete event triggered') : null
           }
           deleteTooltip="Delete"
           onDuplicate={
             crudProps.type === 'Duplicate' || crudProps.type === 'Multiple'
-              ? action("onDuplicate event triggered")
+              ? action('onDuplicate event triggered')
               : null
           }
           duplicateTooltip="Duplicate"
-          onEdit={
-            crudProps.type === 'Edit' || crudProps.type === 'Multiple'
-              ? action("onEdit event triggered")
-              : null
-          }
+          onEdit={crudProps.type === 'Edit' || crudProps.type === 'Multiple' ? action('onEdit event triggered') : null}
           editTooltip="Edit"
-          onMove={
-            crudProps.type === 'Move' ? action("onMove event triggered")
-              : null
-          }
+          onMove={crudProps.type === 'Move' ? action('onMove event triggered') : null}
           moveTooltip="Move"
-          onRemove={
-            crudProps.type === 'Remove' ? action("onRemove event triggered")
-              : null
-          }
+          onRemove={crudProps.type === 'Remove' ? action('onRemove event triggered') : null}
           removeTooltip="Remove"
         />
       </div>
@@ -350,7 +319,7 @@ const stories = {
 };
 
 export default {
-  name: 'Components|Button',
+  name: 'Button|Button',
   config: {
     notes: {
       markdown,

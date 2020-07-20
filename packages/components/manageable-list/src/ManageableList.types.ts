@@ -33,25 +33,27 @@ export interface ManageableListProps {
   searchQuery?: string;
   expanderDisabled?: boolean;
   onExpand?: (id: string, isExpanded: boolean) => void;
-  texts: {
-    addItemLabel?: string | React.ReactNode;
-    showMoreLabel?: string | React.ReactNode;
-    showLessLabel?: string | React.ReactNode;
-    more?: string | React.ReactNode;
-    less?: string | React.ReactNode;
-    activateItemTitle?: string | React.ReactNode;
-    activate?: string | React.ReactNode;
-    cancel?: string | React.ReactNode;
-    deleteConfirmationTitle?: string | React.ReactNode;
-    deleteConfirmationDescription?: string | React.ReactNode;
-    deleteConfirmationYes?: string | React.ReactNode;
-    deleteConfirmationNo?: string | React.ReactNode;
-    itemActionRename?: string | React.ReactNode;
-    itemActionRenameTooltip?: string | React.ReactNode;
-    itemActionDuplicate?: string | React.ReactNode;
-    itemActionDuplicateTooltip?: string | React.ReactNode;
-    itemActionDelete?: string | React.ReactNode;
-    itemActionDeleteTooltip?: string | React.ReactNode;
-  };
+  texts: Texts;
   expansionBehaviour?: string;
+  expandedIds?: string[];
 }
+export type Texts = {
+  addItemLabel?: string | React.ReactNode;
+  showMoreLabel?: string | React.ReactNode;
+  showLessLabel?: string | React.ReactNode;
+  more?: string | React.ReactNode;
+  less?: string | React.ReactNode;
+  activateItemTitle?: string | React.ReactNode;
+  activate?: string | React.ReactNode;
+  cancel?: string | React.ReactNode;
+  deleteConfirmationTitle?: string | React.ReactNode;
+  deleteConfirmationDescription?: string | React.ReactNode;
+  deleteConfirmationYes?: string | React.ReactNode;
+  deleteConfirmationNo?: string | React.ReactNode;
+  itemActionRename?: string | React.ReactNode;
+  itemActionRenameTooltip?: string | React.ReactNode;
+  itemActionDuplicate?: string | React.ReactNode;
+  itemActionDuplicateTooltip?: string | React.ReactNode;
+  itemActionDelete?: string | React.ReactNode;
+  itemActionDeleteTooltip?: string | React.ReactNode;
+};

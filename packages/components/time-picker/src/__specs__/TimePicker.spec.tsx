@@ -11,9 +11,7 @@ describe('TimePicker', () => {
 
   it('should render without any props', () => {
     // ARRANGE
-    const { getByTestId } = renderWithProvider(
-      <TimePicker />
-    );
+    const { getByTestId } = renderWithProvider(<TimePicker />);
 
     // ASSERT
     expect(getByTestId(CONTAINER_TESTID)).toBeTruthy();
@@ -21,9 +19,7 @@ describe('TimePicker', () => {
 
   it('should render opened by default', () => {
     // ARRANGE
-    const { getByTestId } = renderWithProvider(
-      <TimePicker defaultOpen={true} />
-    );
+    const { getByTestId } = renderWithProvider(<TimePicker defaultOpen={true} />);
 
     // ASSERT
     expect(getByTestId(OVERLAY_CONTAINER_TESTID)).toBeTruthy();
@@ -31,9 +27,7 @@ describe('TimePicker', () => {
 
   it('should render overlay after clicking on input', () => {
     // ARRANGE
-    const { queryByTestId, getByTestId } = renderWithProvider(
-      <TimePicker />
-    );
+    const { queryByTestId, getByTestId } = renderWithProvider(<TimePicker />);
 
     // ACT
     const input = getByTestId(INPUT_TESTID);
@@ -45,9 +39,7 @@ describe('TimePicker', () => {
 
   it('should not open overlay if disabled', () => {
     // ARRANGE
-    const { queryByTestId, getByTestId } = renderWithProvider(
-      <TimePicker disabled />
-    );
+    const { queryByTestId, getByTestId } = renderWithProvider(<TimePicker disabled />);
 
     // ACT
     const input = getByTestId(INPUT_TESTID);
@@ -59,9 +51,7 @@ describe('TimePicker', () => {
 
   it('should overlay close on blur', () => {
     // ARRANGE
-    const { queryByTestId, getByTestId } = renderWithProvider(
-      <TimePicker disabled />
-    );
+    const { queryByTestId, getByTestId } = renderWithProvider(<TimePicker disabled />);
 
     // ACT
     const input = getByTestId(INPUT_TESTID);
@@ -71,41 +61,28 @@ describe('TimePicker', () => {
     expect(queryByTestId(OVERLAY_CONTAINER_TESTID)).toBeFalsy();
   });
 
-  it('should overlay stay open on blur if alwaysOpen is passed', () => {
+  it('should overlay stay open on blur if alwaysOpen is passed', async () => {
     // ARRANGE
-    const { queryByTestId, getByTestId } = renderWithProvider(
-      <TimePicker alwaysOpen />
-    );
+    const { queryByTestId, getByTestId } = await renderWithProvider(<TimePicker alwaysOpen />);
 
     // ACT
-    const input = getByTestId(INPUT_TESTID);
-    fireEvent.click(input);
+    const input = await getByTestId(INPUT_TESTID);
+    await fireEvent.click(input);
 
-    // ASSERT
-    setTimeout(() => {
-      expect(queryByTestId(OVERLAY_CONTAINER_TESTID)).toBeTruthy();
-      fireEvent.blur(input);
-      expect(queryByTestId(OVERLAY_CONTAINER_TESTID)).toBeTruthy();
-    }, 1000)
-  });
-
-  it('should onChange fire after overlay closed', async () => {
-    // ARRANGE
-    const onChange = jest.fn();
-
-    const { getByTestId } = renderWithProvider(
-      <TimePicker onChange={onChange} />
+    await waitFor(
+      () => {
+        expect(queryByTestId(OVERLAY_CONTAINER_TESTID)).toBeTruthy();
+      },
+      { timeout: 1000 }
     );
-
-    // ACT
-    const input = getByTestId(INPUT_TESTID);
-    fireEvent.click(input);
-
+    await fireEvent.blur(input);
     // ASSERT
-    setTimeout(() => {
-      fireEvent.blur(input);
-      expect(onChange).toHaveBeenCalled();
-    }, 1000);
+    await waitFor(
+      () => {
+        expect(queryByTestId(OVERLAY_CONTAINER_TESTID)).toBeTruthy();
+      },
+      { timeout: 1000 }
+    );
   });
 
   it('should render open on focus and show buttons for hours, minutes and seconds', async () => {
@@ -121,15 +98,15 @@ describe('TimePicker', () => {
 
     // ASSERT
     await waitFor(() => {
-      findByTestId('ds-time-picker-unit-hour').then((result) => {
+      findByTestId('ds-time-picker-unit-hour').then(result => {
         hours = result?.querySelectorAll('button');
         expect(hours.length).toBe(24);
       });
-      findByTestId('ds-time-picker-unit-minute').then((result) => {
+      findByTestId('ds-time-picker-unit-minute').then(result => {
         minutes = result?.querySelectorAll('button');
         expect(minutes.length).toBe(60);
       });
-      findByTestId('ds-time-picker-unit-second').then((result) => {
+      findByTestId('ds-time-picker-unit-second').then(result => {
         seconds = result?.querySelectorAll('button');
         expect(seconds.length).toBe(60);
       });
@@ -138,7 +115,13 @@ describe('TimePicker', () => {
 
   it('should render with value', async () => {
     // ARRANGE
-    const { getByPlaceholderText } = renderWithProvider(<TimePicker placeholder="Select time" alwaysOpen value={dayjs('12-04-2020 10:24:52', 'DD-MM-YYYY HH:mm:ss').toDate()} />);
+    const { getByPlaceholderText } = renderWithProvider(
+      <TimePicker
+        placeholder="Select time"
+        alwaysOpen
+        value={dayjs('12-04-2020 10:24:52', 'DD-MM-YYYY HH:mm:ss').toDate()}
+      />
+    );
     const input = getByPlaceholderText('Select time') as HTMLInputElement;
 
     // ASSERT
