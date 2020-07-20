@@ -129,12 +129,15 @@ const stories = {
       });
     };
 
+    const onRemove = props => removeItem(props, store);
+    const onEdit = props => editItem(props, store);
+    const texts = getTexts();
     return (
       <ManageableList
         maxToShowItems={5}
         onItemAdd={addItem}
-        onItemRemove={props => removeItem(props, store)}
-        onItemEdit={props => editItem(props, store)}
+        onItemRemove={onRemove}
+        onItemEdit={onEdit}
         onItemSelect={action('onItemSelect')}
         onItemDuplicate={duplicateItem}
         onChangeOrder={boolean('Change order available', false) ? handleChangeOrder : null}
@@ -144,7 +147,7 @@ const stories = {
         addButtonDisabled={boolean('Disable add item button', false)}
         changeOrderDisabled={boolean('Disable change order', false)}
         greyBackground={boolean('Grey background', false)}
-        texts={getTexts()}
+        texts={texts}
       />
     );
   }),
@@ -160,7 +163,6 @@ const stories = {
           {
             ...itemForDuplication,
             id: String(Date.now()),
-
           },
         ],
       });
@@ -187,6 +189,7 @@ const stories = {
   }),
   accordion: withState({
     items: ACCORDION_ITEMS,
+    expandedIds: [],
   })(({ store }) => {
     const handleChangeOrder = newOrder => {
       store.set({ items: newOrder });
@@ -216,7 +219,17 @@ const stories = {
         ],
       });
     };
-
+    const onExpand = (id, isExp) => {
+      if (store.state.expandedIds.includes(id)) {
+        store.set({
+          expandedIds: [],
+        });
+      } else {
+        store.set({
+          expandedIds: [id],
+        });
+      }
+    };
     return (
       <ManageableList
         maxToShowItems={5}
@@ -232,7 +245,8 @@ const stories = {
         changeOrderDisabled={boolean('Disable change order', false)}
         greyBackground={boolean('Grey background', false)}
         texts={getTexts()}
-        expansionBehaviour={'accordion'}
+        expandedIds={store.state.expandedIds}
+        onExpand={onExpand}
       />
     );
   }),

@@ -55,6 +55,9 @@ const recentDisplayProps = {
     <Menu.Item onItemHover={(): void => {}}>{item && (item as { text: string }).text}</Menu.Item>
   ),
 };
+// const INPUT_EXPAND_ANIMATION_DURATION = 200;
+// const waitForDropdownToExpand = () => new Promise(r => setTimeout(r, INPUT_EXPAND_ANIMATION_DURATION));
+const dropdownMaxHeight = 400;
 
 describe('Search with dropdown', () => {
   const onChange = jest.fn();
@@ -65,6 +68,7 @@ describe('Search with dropdown', () => {
     renderWithProvider(
       <Search
         clearTooltip="clear"
+        dropdownMaxHeight={dropdownMaxHeight}
         parameters={parametersList}
         placeholder={PLACEHOLDER}
         recent={recent}
@@ -90,6 +94,7 @@ describe('Search with dropdown', () => {
     renderWithProvider(
       <Search
         clearTooltip={'clear'}
+        dropdownMaxHeight={dropdownMaxHeight}
         parameters={parametersList}
         placeholder={PLACEHOLDER}
         recent={recent}
@@ -120,6 +125,7 @@ describe('Search with dropdown', () => {
     renderWithProvider(
       <Search
         clearTooltip={'clear'}
+        dropdownMaxHeight={dropdownMaxHeight}
         parameters={parametersList}
         placeholder={PLACEHOLDER}
         recent={recent}
@@ -158,6 +164,7 @@ describe('Search with dropdown', () => {
     renderWithProvider(
       <Search
         clearTooltip={'clear'}
+        dropdownMaxHeight={dropdownMaxHeight}
         parameters={parametersList}
         placeholder={PLACEHOLDER}
         recent={recent}
@@ -189,6 +196,7 @@ describe('Search with dropdown', () => {
         <button>differentElement</button>
         <Search
           clearTooltip="clear"
+          dropdownMaxHeight={dropdownMaxHeight}
           onParameterValueChange={onParameterValueChange}
           onValueChange={onChange}
           parameters={parametersList}
@@ -222,6 +230,7 @@ describe('Search with dropdown', () => {
         <button>differentElement</button>
         <Search
           clearTooltip={'clear'}
+          dropdownMaxHeight={dropdownMaxHeight}
           placeholder={PLACEHOLDER}
           recent={recent}
           suggestions={suggestions}
@@ -254,6 +263,7 @@ describe('Search with dropdown', () => {
         <button>differentElement</button>
         <Search
           clearTooltip={'clear'}
+          dropdownMaxHeight={dropdownMaxHeight}
           parameters={parametersList}
           placeholder={PLACEHOLDER}
           recent={recent}

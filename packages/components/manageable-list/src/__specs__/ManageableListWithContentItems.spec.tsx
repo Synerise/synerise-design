@@ -14,7 +14,6 @@ const CONTENT_ITEMS: any = [
     canDelete: false,
     tag: <Tag name={"A"} shape={TagShape.SINGLE_CHARACTER_ROUND} color={"red"} />,
     content: <div>content</div>,
-    expanded: true,
   },
   {
     id: "00000000-0000-0000-0000-000000000002",
@@ -122,11 +121,12 @@ describe('ManageableList with content items', () => {
     expect(onItemAdd).toBeCalled();
   });
 
-  it('should render with toggle content button', () => {
+  it('should render handle expandedIds props', () => {
     // ARRANGE
     const { queryAllByTestId } = renderWithProvider(
       <ManageableList
         items={CONTENT_ITEMS}
+        expandedIds={['00000000-0000-0000-0000-000000000000']}
         loading={false}
         maxToShowItems={5}
         onItemAdd={() => {}}
