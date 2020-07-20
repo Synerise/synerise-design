@@ -24,7 +24,7 @@ export type ContentItemProps = {
   };
   hideExpander?: boolean;
   expanded?: boolean;
-  onExpand?: any;
+  onExpand?: (id: string, isExpanded: boolean) => void;
 };
 
 const ContentItem: React.FC<ContentItemProps> = ({
@@ -41,15 +41,14 @@ const ContentItem: React.FC<ContentItemProps> = ({
   expanded,
   onExpand,
 }): React.ReactElement => {
-  //ContentItem.whyDidYouRender = true;
-  console.log('Rerender', item.name);
-  const [isExpanded, setExpanded] = React.useState(expanded);
+  const [expandedState, setExpanded] = React.useState(expanded);
   const [editMode, setEditMode] = React.useState(false);
 
   React.useEffect(() => {
-    if (isExpanded !== expanded) {
+    if (expandedState !== expanded) {
       setExpanded(expanded);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [expanded]);
 
   const updateName = React.useCallback(
@@ -67,7 +66,7 @@ const ContentItem: React.FC<ContentItemProps> = ({
   }, []);
   return (
     <S.ItemContainer
-      opened={!!isExpanded}
+      opened={!!expandedState}
       greyBackground={greyBackground}
       key={item.id}
       data-testid="item-with-content"
@@ -75,10 +74,12 @@ const ContentItem: React.FC<ContentItemProps> = ({
       <S.ItemHeader
         hasPrefix={Boolean(draggable || item.tag || item.icon)}
         onDoubleClick={(): void => {
-          !item.disableExpanding && onExpand && onExpand(item.id, false) && setExpanded(false);
+          !item.disableExpanding && setExpanded(false);
+          !item.disableExpanding && onExpand && onExpand(item.id, false);
         }}
         onClick={(): void => {
-          !item.disableExpanding && onExpand && onExpand(item.id, true) && setExpanded(true);
+          !item.disableExpanding && setExpanded(true);
+          !item.disableExpanding && onExpand && onExpand(item.id, true);
         }}
       >
         <S.ItemHeaderPrefix>
@@ -111,10 +112,10 @@ const ContentItem: React.FC<ContentItemProps> = ({
                 disabled={item.disableExpanding}
                 onClick={(e: React.MouseEvent<HTMLButtonElement>): void => {
                   e.stopPropagation();
-                  !item.disableExpanding && setExpanded(!isExpanded);
-                  onExpand && onExpand(item.id, !isExpanded);
+                  !item.disableExpanding && setExpanded(!expandedState);
+                  !item.disableExpanding && onExpand && onExpand(item.id, !expandedState);
                 }}
-                expanded={isExpanded}
+                expanded={expandedState}
               />
             </S.ToggleContentWrapper>
           )}
@@ -135,7 +136,7 @@ const ContentItem: React.FC<ContentItemProps> = ({
           )}
         </S.ItemHeaderSuffix>
       </S.ItemHeader>
-      {Boolean(item.content) && Boolean(isExpanded) && (
+      {Boolean(item.content) && Boolean(!item.disableExpanding && expandedState) && (
         <S.ContentWrapper data-testid="item-content-wrapper">{item.content}</S.ContentWrapper>
       )}
     </S.ItemContainer>

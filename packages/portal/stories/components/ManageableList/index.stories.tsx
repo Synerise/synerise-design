@@ -4,7 +4,6 @@ import { withState } from '@dump247/storybook-state';
 import { action } from '@storybook/addon-actions';
 import { boolean, text } from '@storybook/addon-knobs';
 import { EMPTY_CONTENT_ITEM, CONTENT_ITEMS, EMPTY_ITEM, FILTER_LIST_ITEMS, ITEMS, ACCORDION_ITEMS } from './index.data';
-import FormExample from './finalForm';
 
 const decorator = storyFn => (
   <div style={{ width: '600px' }}>
@@ -83,7 +82,6 @@ const stories = {
       />
     );
   }),
-  formExample: FormExample,
   emptyList: () => {
     const texts = getTexts();
     return (
@@ -131,8 +129,8 @@ const stories = {
       });
     };
 
-    const onRemove = props => removeItem(props, store)
-    const onEdit = props => editItem(props, store)
+    const onRemove = props => removeItem(props, store);
+    const onEdit = props => editItem(props, store);
     const texts = getTexts();
     return (
       <ManageableList
@@ -165,7 +163,6 @@ const stories = {
           {
             ...itemForDuplication,
             id: String(Date.now()),
-
           },
         ],
       });
@@ -192,6 +189,7 @@ const stories = {
   }),
   accordion: withState({
     items: ACCORDION_ITEMS,
+    expandedIds: [],
   })(({ store }) => {
     const handleChangeOrder = newOrder => {
       store.set({ items: newOrder });
@@ -221,7 +219,17 @@ const stories = {
         ],
       });
     };
-
+    const onExpand = (id, isExp) => {
+      if (store.state.expandedIds.includes(id)) {
+        store.set({
+          expandedIds: [],
+        });
+      } else {
+        store.set({
+          expandedIds: [id],
+        });
+      }
+    };
     return (
       <ManageableList
         maxToShowItems={5}
@@ -237,7 +245,8 @@ const stories = {
         changeOrderDisabled={boolean('Disable change order', false)}
         greyBackground={boolean('Grey background', false)}
         texts={getTexts()}
-        expansionBehaviour={'accordion'}
+        expandedIds={store.state.expandedIds}
+        onExpand={onExpand}
       />
     );
   }),
