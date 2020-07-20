@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@0.1.8...@synerise/ds-date-picker@0.1.9) (2020-07-20)
+
+
+### Bug Fixes
+
+* **search:** add onClear prop and update tests and stories ([c11b557](https://github.com/Synerise/synerise-design/commit/c11b5578ef72ec5928f90416be09b74e7036e889))
+
+
+
+
+
 ## [0.1.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@0.1.7...@synerise/ds-date-picker@0.1.8) (2020-07-20)
 
 

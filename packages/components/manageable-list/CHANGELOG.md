@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.13.7...@synerise/ds-manageable-list@0.13.8) (2020-07-20)
+
+
+### Bug Fixes
+
+* **search:** add onClear prop and update tests and stories ([c11b557](https://github.com/Synerise/synerise-design/commit/c11b5578ef72ec5928f90416be09b74e7036e889))
+
+
+
+
+
 ## [0.13.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.13.6...@synerise/ds-manageable-list@0.13.7) (2020-07-20)
 
 
