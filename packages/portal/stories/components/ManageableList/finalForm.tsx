@@ -74,21 +74,6 @@ const onSubmit = (values: any) => {
 
 const formNames = [
   {
-    id: '00000000-0000-0000-0000-000000000002',
-    name: 'Name',
-    canUpdate: true,
-    canDelete: true,
-    expanded: true,
-    content: (
-      <Field
-        name="age"
-        render={({ input, meta }) => (
-          <InputNumber {...input} label="Age" description="Your age" errorText={meta.touched && meta.error} />
-        )}
-      />
-    ),
-  },
-  {
     id: '00000000-0000-0000-0000-000000000001',
     name: 'Description',
     canUpdate: true,
@@ -110,6 +95,22 @@ const formNames = [
       />
     ),
   },
+  {
+    id: '00000000-0000-0000-0000-000000000002',
+    name: 'Name',
+    canUpdate: true,
+    canDelete: true,
+    expanded: true,
+    content: (
+      <Field
+        name="age"
+        render={({ input, meta }) => (
+          <InputNumber {...input} label="Age" description="Your age" errorText={meta.touched && meta.error} />
+        )}
+      />
+    ),
+  },
+
   {
     id: '00000000-0000-0000-0000-000000000003',
     name: 'Sex',
@@ -138,13 +139,13 @@ const FormExample = () => {
   const [items, setItems] = React.useState(formNames);
   const texts = getTexts();
   const onAdd = action('onItemAdd');
-  const [expandedIds,setExpandedIds] = React.useState([]);
+  const [expandedIds,setExpandedIds] = React.useState(['00000000-0000-0000-0000-000000000001']);
   const expandCallback = React.useCallback((id, isExp) => {
     if(expandedIds.includes(id)){
-        setExpandedIds([...expandedIds])
+        setExpandedIds([])
     }
     else {
-      setExpandedIds([...expandedIds,'00000000-0000-0000-0000-000000000001'])
+      setExpandedIds([id])
     }
   }, [expandedIds]);
 

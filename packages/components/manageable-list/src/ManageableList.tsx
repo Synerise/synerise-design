@@ -6,7 +6,7 @@ import * as S from './ManageableList.styles';
 import Item, { ItemProps } from './Item/Item';
 import AddItemWithName from './AddItemWithName/AddItemWithName';
 import AddItem from './AddItem/AddItem';
-import { ExpansionBehaviour, ManageableListProps, ListType } from './ManageableList.types';
+import { ManageableListProps, ListType, Texts } from './ManageableList.types';
 
 const SORTABLE_CONFIG = {
   ghostClass: 'sortable-list-ghost-element',
@@ -16,10 +16,10 @@ const SORTABLE_CONFIG = {
   forceFallback: true,
 };
 
-const compareArrays = (array1, array2) => {
+const areArraysEqual = (array1: string[], array2: string[]): boolean => {
   const sorted1 = array1.sort();
   const sorted2 = array2.sort();
-  return sorted1.length === sorted2.length && sorted1.every((value, index) => value === sorted2[index]);
+  return sorted1.length === sorted2.length && sorted1.every((value: string, index: number) => value === sorted2[index]);
 };
 
 const ManageableList: React.FC<ManageableListProps> = ({
@@ -45,25 +45,22 @@ const ManageableList: React.FC<ManageableListProps> = ({
   expandedIds,
   texts,
 }) => {
-  //ManageableList.whyDidYouRender = true;
-  console.log('ExpandedIds = ', expandedIds);
   const [stateExpandedIds, setExpandedIds] = React.useState(expandedIds);
   const [allItemsVisible, setAllItemsVisible] = React.useState(false);
   const [itemsToRender, setItemsToRender] = React.useState(items);
-  const onEdit = React.useCallback(() => {
-    onItemEdit();
-  }, [onItemEdit]);
   React.useEffect(() => {
     setItemsToRender(items);
   }, [items]);
+
   React.useEffect(() => {
-    if (!compareArrays(expandedIds, stateExpandedIds)) {
+    if (expandedIds && stateExpandedIds && !areArraysEqual(expandedIds, stateExpandedIds)) {
       setExpandedIds(expandedIds);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [expandedIds]);
 
   const getTexts = React.useCallback(
-    (): object => ({
+    (): Texts => ({
       addItemLabel: <FormattedMessage id="DS.MANAGABLE-LIST.ADD-ITEM" />,
       showMoreLabel: <FormattedMessage id="DS.MANAGABLE-LIST.SHOW-MORE" />,
       showLessLabel: <FormattedMessage id="DS.MANAGABLE-LIST.SHOW-LESS" />,
@@ -138,13 +135,12 @@ const ManageableList: React.FC<ManageableListProps> = ({
 
   const getItem = React.useCallback(
     (item: ItemProps): React.ReactNode => {
-      console.log('Expanded', item.id, !!stateExpandedIds && stateExpandedIds.indexOf(item.id) !== -1);
       return (
         <Item
           key={item.id}
           listType={type}
           onSelect={onItemSelect}
-          onUpdate={onEdit}
+          onUpdate={onItemEdit}
           onRemove={onItemRemove}
           onDuplicate={onItemDuplicate}
           onExpand={onExpand}
@@ -161,7 +157,7 @@ const ManageableList: React.FC<ManageableListProps> = ({
       );
     },
     [
-      onEdit,
+      onItemEdit,
       onExpand,
       stateExpandedIds,
       type,
