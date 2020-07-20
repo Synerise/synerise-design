@@ -23,7 +23,13 @@ const Footer: React.FC<Props> = ({
 }) => {
   const SwitchModeButton = React.useMemo(
     () => (
-      <Button type="ghost" mode="single-icon" disabled={!canSwitchMode} onClick={onSwitchMode} className="ds-date-time-switch" >
+      <Button
+        type="ghost"
+        mode="single-icon"
+        disabled={!canSwitchMode}
+        onClick={onSwitchMode}
+        className="ds-date-time-switch"
+      >
         <Icon component={mode === 'time' ? <CalendarM /> : <ClockM />} />
       </Button>
     ),

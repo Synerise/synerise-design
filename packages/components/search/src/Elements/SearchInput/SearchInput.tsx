@@ -156,8 +156,9 @@ class SearchInput extends React.Component<SearchInputProps, SearchInputState> {
           clickable={!alwaysExpanded}
           onClick={this.handleSearchButtonClick}
         />
-        <S.ClearButton hidden={!value && !filterLabel} data-testid="clear">
+        <S.ClearButton hidden={!value && !filterLabel}>
           <Icon
+            data-testid="clear"
             onClick={this.handleClearValue}
             component={
               <Tooltip title={clearTooltip}>

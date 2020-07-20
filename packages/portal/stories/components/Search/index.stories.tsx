@@ -16,6 +16,8 @@ const decorator = storyFn => (
   </div>
 );
 
+const NOOP = (): void => {};
+
 const parameters = [
   { text: 'First Name', icon: <VarTypeStringM /> },
   { text: 'Last Name', icon: <VarTypeStringM /> },
@@ -107,16 +109,18 @@ const stories = {
             <Divider dashed />
           </div>
         }
-        dropdownMaxHeight={parameterValue ? 210 : 400}
+        dropdownMaxHeight={400}
         filterLookupKey="filter"
+        onClear={() => {
+          setParameterValue('');
+          setValue('');
+        }}
         onParameterValueChange={value => {
           setParameterValue(value);
           const fakeApiResponse = getSuggestions(value);
           setSuggestions(fakeApiResponse);
         }}
-        onValueChange={value => {
-          setValue(value);
-        }}
+        onValueChange={value => setValue(value)}
         parameters={parameters.slice(0, parametersCount)}
         parametersDisplayProps={{
           tooltip: parametersTooltip,
@@ -126,7 +130,7 @@ const stories = {
             <Menu.Item
               highlight={value}
               style={{ paddingLeft: '12px' }}
-              onItemHover={(): void => {}}
+              onItemHover={NOOP}
               prefixel={item && <Icon component={item && item.icon} />}
             >
               {item && item.text}
@@ -140,14 +144,14 @@ const stories = {
           tooltip: recentTooltip,
           title: recentTitle,
           rowHeight: 32,
-          itemRender: (item: FilterElement) => <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>,
+          itemRender: (item: FilterElement) => <Menu.Item onItemHover={NOOP}>{item && item.text}</Menu.Item>,
         }}
         suggestions={suggestions}
         suggestionsDisplayProps={{
           tooltip: suggestionsTooltip,
           title: suggestionsTitle,
           rowHeight: 32,
-          itemRender: (item: FilterElement) => <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>,
+          itemRender: (item: FilterElement) => <Menu.Item onItemHover={NOOP}>{item && item.text}</Menu.Item>,
         }}
         textLookupConfig={{
           parameters: 'text',
@@ -173,6 +177,7 @@ const stories = {
 
     const suggestionsTitle = text('Set suggestions title', 'Suggest');
     const suggestionsTooltip = text('Set suggestions tooltip', 'Suggest');
+
     return (
       <Search
         clearTooltip="Clear"
@@ -183,14 +188,16 @@ const stories = {
         }
         dropdownMaxHeight={380}
         filterLookupKey="filter"
+        onClear={() => {
+          setParameterValue('');
+          setValue('');
+        }}
         onParameterValueChange={(value): void => {
           setParameterValue(value);
           const fakeApiResponse = getSuggestions(value);
           setSuggestions(fakeApiResponse);
         }}
-        onValueChange={(value): void => {
-          setValue(value);
-        }}
+        onValueChange={(value): void => setValue(value)}
         parameters={parameters.slice(0, parametersCount)}
         parametersDisplayProps={{
           tooltip: parametersTooltip,
@@ -199,7 +206,7 @@ const stories = {
           itemRender: (item: FilterElement) => (
             <Menu.Item
               style={{ paddingLeft: '12px' }}
-              onItemHover={(): void => {}}
+              onItemHover={NOOP}
               prefixel={item && <Icon component={item && item.icon} />}
             >
               {item && item.text}
@@ -214,7 +221,7 @@ const stories = {
           title: recentTitle,
           rowHeight: 50,
           itemRender: (item: FilterElement) => (
-            <Menu.Item onItemHover={(): void => {}} {...item} style={{ paddingLeft: '12px' }}>
+            <Menu.Item onItemHover={NOOP} {...item} style={{ paddingLeft: '12px' }}>
               {item.text}
             </Menu.Item>
           ),
@@ -224,7 +231,7 @@ const stories = {
           tooltip: suggestionsTooltip,
           title: suggestionsTitle,
           rowHeight: 32,
-          itemRender: (item: FilterElement) => <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>,
+          itemRender: (item: FilterElement) => <Menu.Item onItemHover={NOOP}>{item && item.text}</Menu.Item>,
         }}
         textLookupConfig={{
           parameters: 'text',

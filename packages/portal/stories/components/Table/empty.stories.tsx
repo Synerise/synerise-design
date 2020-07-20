@@ -351,18 +351,20 @@ const stories = {
             <Search
               clearTooltip="Clear"
               dropdownMaxHeight={400}
-              textLookupConfig={{
-                parameters: 'text',
-                recent: 'text',
-                suggestions: 'text',
-              }}
               filterLookupKey="filter"
+              onClear={() => {
+                store.set({
+                  searchValue: '',
+                  searchFilterValue: '',
+                });
+              }}
               onParameterValueChange={value => {
                 store.set({
                   searchFilterValue: value,
                   searchSuggestions: getSuggestions(value),
                 });
               }}
+              onValueChange={value => store.set({ searchValue: value })}
               parameters={parameters.slice(0, number('Parameters count', 5))}
               parametersDisplayProps={{
                 tooltip: 'Parameters',
@@ -404,11 +406,13 @@ const stories = {
                   <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>
                 ),
               }}
+              textLookupConfig={{
+                parameters: 'text',
+                recent: 'text',
+                suggestions: 'text',
+              }}
               value={store.state.searchValue}
               width={300}
-              onValueChange={value => {
-                store.set({ searchValue: value });
-              }}
             />
           }
         />

@@ -23,6 +23,7 @@ export type SearchProps<T extends AnyObject> = {
   divider?: React.ReactNode;
   dropdownMaxHeight: number;
   filterLookupKey?: string;
+  onClear: () => void;
   onParameterValueChange: (parameterValue: string) => void;
   onValueChange: (value: string) => void;
   parameters: T[];
