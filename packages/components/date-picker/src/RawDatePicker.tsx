@@ -59,7 +59,7 @@ class RawDatePicker extends React.Component<Props, State> {
   }
 
   handleChange = (value: Date | undefined): void => {
-    const {onValueChange} = this.props;
+    const { onValueChange } = this.props;
     const { mode, value: valueFromState } = this.state;
     if (mode === 'date' && !!valueFromState && !!value) {
       const dateToBeUpdated = changeDayWithHoursPreserved(valueFromState, value);
