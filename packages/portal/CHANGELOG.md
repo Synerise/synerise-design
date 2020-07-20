@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.85.3](https://github.com/synerise/synerise-design/compare/portal@0.85.2...portal@0.85.3) (2020-07-17)
+
+
+### Bug Fixes
+
+* **search:** add single scroll for dropdown list ([f5e6700](https://github.com/synerise/synerise-design/commit/f5e67006052931166bfd3684c2d49128f9b3ac5c))
+
+
+
+
+
 ## [0.85.2](https://github.com/synerise/synerise-design/compare/portal@0.85.1...portal@0.85.2) (2020-07-16)
 
 

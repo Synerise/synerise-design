@@ -55,10 +55,7 @@ const recentDisplayProps = {
     <Menu.Item onItemHover={(): void => {}}>{item && (item as { text: string }).text}</Menu.Item>
   ),
 };
-// const INPUT_EXPAND_ANIMATION_DURATION = 200;
-// const waitForDropdownToExpand = () => new Promise(r => setTimeout(r, INPUT_EXPAND_ANIMATION_DURATION));
 const dropdownMaxHeight = 400;
-
 describe('Search with dropdown', () => {
   const onChange = jest.fn();
   const onParameterValueChange = jest.fn();
