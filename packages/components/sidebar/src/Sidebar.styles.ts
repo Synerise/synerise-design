@@ -34,7 +34,7 @@ export const SidebarHeader = styled.div`
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const AntdCollapse = styled((Collapse as any) as React.ComponentType<CollapseProps>)`
   &.ant-collapse {
-    background-color: rgba(11, 104, 255, 0.04);
+    background-color: rgba(11, 104, 255, 0.07);
     border: none;
     box-shadow: 1px
 
