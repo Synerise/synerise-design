@@ -8,7 +8,6 @@ import Icon from '@synerise/ds-icon';
 import * as S from './Footer.styles';
 import { Props } from './Footer.types';
 
-
 const Footer: React.FC<Props> = ({
   text,
   canApply,
