@@ -400,21 +400,12 @@ const stories = {
             <Search
               clearTooltip="Clear"
               dropdownMaxHeight={400}
-              textLookupConfig={{
-                parameters: 'text',
-                recent: 'text',
-                suggestions: 'text',
-              }}
               filterLookupKey="filter"
-              placeholder="Search"
-              width={300}
-              parameters={parameters.slice(0, number('Parameters count', 5))}
-              recent={recent.slice(0, number('Recent count', 5))}
-              suggestions={store.state.searchSuggestions}
-              value={store.state.searchValue}
-              parameterValue={store.state.searchFilterValue}
-              onValueChange={value => {
-                store.set({ searchValue: value });
+              onClear={() => {
+                store.set({
+                  searchFilterValue: '',
+                  searchValue: '',
+                });
               }}
               onParameterValueChange={value => {
                 store.set({
@@ -422,20 +413,8 @@ const stories = {
                   searchSuggestions: getSuggestions(value),
                 });
               }}
-              recentDisplayProps={{
-                tooltip: 'Recent',
-                title: 'Recent',
-                rowHeight: 32,
-                itemRender: (item: FilterElement) => (
-                  <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>
-                ),
-                divider: (
-                  <div style={{ padding: '12px', paddingBottom: '0px' }}>
-                    {' '}
-                    <Divider dashed={true} />{' '}
-                  </div>
-                ),
-              }}
+              onValueChange={value => store.set({ searchValue: value })}
+              parameters={parameters.slice(0, number('Parameters count', 5))}
               parametersDisplayProps={{
                 tooltip: 'Parameters',
                 title: 'Parameters',
@@ -450,6 +429,24 @@ const stories = {
                   </Menu.Item>
                 ),
               }}
+              parameterValue={store.state.searchFilterValue}
+              placeholder="Search"
+              recent={recent.slice(0, number('Recent count', 5))}
+              recentDisplayProps={{
+                tooltip: 'Recent',
+                title: 'Recent',
+                rowHeight: 32,
+                itemRender: (item: FilterElement) => (
+                  <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>
+                ),
+                divider: (
+                  <div style={{ padding: '12px', paddingBottom: '0px' }}>
+                    {' '}
+                    <Divider dashed={true} />{' '}
+                  </div>
+                ),
+              }}
+              suggestions={store.state.searchSuggestions}
               suggestionsDisplayProps={{
                 tooltip: 'Suggestions',
                 title: 'Suggestions',
@@ -458,6 +455,13 @@ const stories = {
                   <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>
                 ),
               }}
+              textLookupConfig={{
+                parameters: 'text',
+                recent: 'text',
+                suggestions: 'text',
+              }}
+              value={store.state.searchValue}
+              width={300}
             />
           }
         />

@@ -234,7 +234,6 @@ export const SuffixWraper = styled.div<{ disabled?: boolean; visible?: boolean }
   svg {
     margin-right: -4px;
   }
-
 `;
 
 export const ContentWrapper = styled.div`
