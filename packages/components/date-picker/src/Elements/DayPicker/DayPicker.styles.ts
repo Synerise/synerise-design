@@ -3,7 +3,9 @@ import DayPickerBase from 'react-day-picker';
 
 export const DayBackground = styled.div``;
 export const DayForeground = styled.div``;
-export const DayText = styled.div``;
+export const DayText = styled.div`
+  color: ${(props): string => props.theme.palette['grey-700']};
+`;
 export const DayPicker = styled(DayPickerBase)`
   display: inline-block;
   font-size: 12px;
