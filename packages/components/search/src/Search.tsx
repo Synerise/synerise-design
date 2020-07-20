@@ -107,6 +107,20 @@ class Search extends React.PureComponent<SearchProps<AnyObject>, SearchState<Any
     this.setState({ isListVisible: false });
   };
 
+  handleClearValue = (): void => {
+    const { parameters, recent, suggestions, onClear } = this.props;
+
+    onClear();
+
+    this.setState({
+      label: null,
+      filteredRecent: recent,
+      filteredParameters: parameters,
+      filteredSuggestions: suggestions,
+      isResultChosen: false,
+    });
+  };
+
   handleChange(currentValue: string): void {
     const { parameterValue, recent, suggestions, parameters, onValueChange, textLookupConfig } = this.props;
     let isAnythingToShow;
@@ -127,20 +141,6 @@ class Search extends React.PureComponent<SearchProps<AnyObject>, SearchState<Any
     this.setState({
       isResultChosen: false,
       isListVisible: isAnythingToShow,
-    });
-  }
-
-  clearValue(): void {
-    const { onValueChange, parameters, recent, suggestions, onParameterValueChange } = this.props;
-    onValueChange('');
-    onParameterValueChange('');
-
-    this.setState({
-      label: null,
-      filteredRecent: recent,
-      filteredParameters: parameters,
-      filteredSuggestions: suggestions,
-      isResultChosen: false,
     });
   }
 
@@ -262,7 +262,7 @@ class Search extends React.PureComponent<SearchProps<AnyObject>, SearchState<Any
         focusTrigger={focusInputTrigger}
         onButtonClick={(): void => this.setState({ focusInputTrigger: !focusInputTrigger })}
         onChange={(newValue: string): void => this.handleChange(newValue)}
-        onClear={(): void => this.clearValue()}
+        onClear={this.handleClearValue}
         onClick={(): void => this.setState({ isListVisible: true, itemsListWidth: this.getSearchWrapperWidth() })}
         onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>): void => this.onKeyDown(e)}
         onToggle={(toggle: boolean): void => {

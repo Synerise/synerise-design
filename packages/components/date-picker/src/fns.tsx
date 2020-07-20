@@ -51,27 +51,27 @@ import fnsGetSeconds from 'date-fns/get_seconds';
 import fnsAddDays from 'date-fns/add_days';
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
-import fnsDifferenceInSeconds from 'date-fns/difference_in_seconds'
+import fnsDifferenceInSeconds from 'date-fns/difference_in_seconds';
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
 import fnsAddSeconds from 'date-fns/add_seconds';
 
-export {fnsGetSeconds};
-export {fnsDifferenceInSeconds};
-export {fnsStartOfMonth};
-export {fnsSetDate};
-export {fnsSetMonth};
-export {fnsSetYear};
-export {fnsStartOfDay};
-export {fnsEndOfDay};
-export {fnsAddYears};
-export {fnsEndOfMonth};
-export {fnsIsSameMonth};
-export {fnsIsBefore};
-export {fnsIsAfter};
-export {fnsAddMonths}
-export {fnsFormat};
-export {fnsIsSameYear};
-export {fnsGetYear};
-export {fnsAddDays};
-export {fnsAddSeconds}
+export { fnsGetSeconds };
+export { fnsDifferenceInSeconds };
+export { fnsStartOfMonth };
+export { fnsSetDate };
+export { fnsSetMonth };
+export { fnsSetYear };
+export { fnsStartOfDay };
+export { fnsEndOfDay };
+export { fnsAddYears };
+export { fnsEndOfMonth };
+export { fnsIsSameMonth };
+export { fnsIsBefore };
+export { fnsIsAfter };
+export { fnsAddMonths };
+export { fnsFormat };
+export { fnsIsSameYear };
+export { fnsGetYear };
+export { fnsAddDays };
+export { fnsAddSeconds };

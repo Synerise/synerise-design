@@ -15,5 +15,4 @@ export const Container = styled.div`
   padding: 16px 24px 0 24px;
 `;
 
-export const Picker = styled(DSTimePicker)`
-`;
+export const Picker = styled(DSTimePicker)``;

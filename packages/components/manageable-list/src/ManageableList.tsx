@@ -9,7 +9,6 @@ import AddItemWithName from './AddItemWithName/AddItemWithName';
 import AddItem from './AddItem/AddItem';
 import { ManageableListProps, ListType, Texts } from './ManageableList.types';
 
-
 const SORTABLE_CONFIG = {
   ghostClass: 'sortable-list-ghost-element',
   className: 'sortable-list',
@@ -17,7 +16,6 @@ const SORTABLE_CONFIG = {
   group: 'column-manager',
   forceFallback: true,
 };
-
 
 const ManageableList: React.FC<ManageableListProps> = ({
   className,
