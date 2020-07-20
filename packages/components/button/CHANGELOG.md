@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.24](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.12.23...@synerise/ds-button@0.12.24) (2020-07-20)
+
+
+### Bug Fixes
+
+* **button:** add styles to secondary button and move to button component ([b62da4c](https://github.com/synerise/synerise-design/commit/b62da4ce88727f370b5c0cb051828386fabb55d1))
+
+
+
+
+
 ## [0.12.23](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.12.22...@synerise/ds-button@0.12.23) (2020-07-15)
 
 **Note:** Version bump only for package @synerise/ds-button

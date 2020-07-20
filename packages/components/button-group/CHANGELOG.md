@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.41](https://github.com/Synerise/synerise-design/compare/@synerise/ds-button-group@0.5.40...@synerise/ds-button-group@0.5.41) (2020-07-20)
+
+
+### Bug Fixes
+
+* **button-group:** add option and contentbuttons add to button component ([e54559e](https://github.com/Synerise/synerise-design/commit/e54559eda6d5f569d643b5e97ea218d9a36c99bc))
+* **button-group:** delete wrong styles ([0eb7d69](https://github.com/Synerise/synerise-design/commit/0eb7d69cfcbd2c57b5820a8fb81fe4894958c706))
+
+
+
+
+
 ## [0.5.40](https://github.com/Synerise/synerise-design/compare/@synerise/ds-button-group@0.5.39...@synerise/ds-button-group@0.5.40) (2020-07-15)
 
 **Note:** Version bump only for package @synerise/ds-button-group
