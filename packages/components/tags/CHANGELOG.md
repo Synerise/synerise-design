@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.95](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@0.2.94...@synerise/ds-tags@0.2.95) (2020-07-20)
+
+
+### Bug Fixes
+
+* **tags:** changes in styles and add SearchM Icon to dropdown ([e15d3ba](https://github.com/Synerise/synerise-design/commit/e15d3baf2de61940bdae8ed27d1894e107d8c80e))
+
+
+
+
+
 ## [0.2.94](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@0.2.93...@synerise/ds-tags@0.2.94) (2020-07-15)
 
 

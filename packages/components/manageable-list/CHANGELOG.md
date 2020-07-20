@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.13.6...@synerise/ds-manageable-list@0.13.7) (2020-07-20)
+
+
+### Bug Fixes
+
+* **manageable-list:** code review changes ([2e9fbd2](https://github.com/Synerise/synerise-design/commit/2e9fbd2a25c26051159b75821421c3a13b6b3f1d))
+* **manageable-list:** fixing the build ([f3aae83](https://github.com/Synerise/synerise-design/commit/f3aae83f478557d49a858049b9830d950a27ff82))
+* **manageable-list:** trying to steer expanded items from outside ([b55f888](https://github.com/Synerise/synerise-design/commit/b55f888a45cf7564f13e966dac2c77f5959aecf0))
+
+
+### Performance Improvements
+
+* **manageable-list:** prevent often rerender ([4272aa8](https://github.com/Synerise/synerise-design/commit/4272aa80ca0f1cd5505ad297f9a0f69461955057))
+
+
+
+
+
 ## [0.13.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.13.5...@synerise/ds-manageable-list@0.13.6) (2020-07-16)
 
 

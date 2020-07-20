@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.22.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.21.0...@synerise/ds-icon@0.22.0) (2020-07-20)
+
+
+### Features
+
+* **icon:** add a/b-test and chart-pie icons ([a68a934](https://github.com/Synerise/synerise-design/commit/a68a934ee82d85ae6bae5a417df3e54cb02e719d))
+
+
+
+
+
 # [0.21.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.20.2...@synerise/ds-icon@0.21.0) (2020-07-15)
 
 

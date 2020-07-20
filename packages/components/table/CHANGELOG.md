@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.23.10](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.23.9...@synerise/ds-table@0.23.10) (2020-07-20)
+
+
+### Bug Fixes
+
+* **table:** fix TreeTable expandIcon position ([768eb5c](https://github.com/synerise/synerise-design/commit/768eb5cb885f0895473a0685d6557da294f3a2d6))
+* **table:** VirtualTable improvements ([e20a17c](https://github.com/synerise/synerise-design/commit/e20a17cd95751d3f5d091a6d5f84c3be671a5a5a))
+
+
+
+
+
 ## [0.23.9](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.23.8...@synerise/ds-table@0.23.9) (2020-07-17)
 
 **Note:** Version bump only for package @synerise/ds-table
