@@ -9,8 +9,20 @@ import ArrowDownCircleM from '@synerise/ds-icon/dist/icons/ArrowDownCircleM';
 import InfoFillS from '@synerise/ds-icon/dist/icons/InfoFillS';
 
 import FileView from './FileView/FileView';
-import { FileUploaderProps } from './FileUploader.types';
+import { FileContent, FileUploaderProps } from './FileUploader.types';
 import * as S from './FileUploader.styles';
+
+function readAsText(file: File): Promise<FileContent> {
+  return new Promise(resolve => {
+    // eslint-disable-next-line no-undef
+    const reader = new FileReader();
+    file.type !== 'text/plain' && resolve(null);
+    reader.onerror = (): void => resolve(null);
+    reader.onload = (): void => resolve(reader.result);
+
+    reader.readAsText(file);
+  });
+}
 
 const FileUploader: React.FC<FileUploaderProps> = ({
   className,
@@ -35,6 +47,23 @@ const FileUploader: React.FC<FileUploaderProps> = ({
 }) => {
   const [uploadSuccess, setUploadSuccess] = React.useState(true);
 
+  const readFilesContent = React.useCallback(
+    (addedFiles: File[]) => {
+      const readerPromises = addedFiles.map(
+        (file): Promise<FileContent> => {
+          return readAsText(file);
+        }
+      );
+      Promise.all(readerPromises).then((filesContent: FileContent[]): void => {
+        const filesWithContent = addedFiles.map((file, index) => {
+          return Object.assign(file, { content: filesContent[index] });
+        });
+        onUpload && onUpload(filesWithContent);
+      });
+    },
+    [onUpload]
+  );
+
   const onDrop = React.useCallback(
     (acceptedFiles: File[]) => {
       let possibleUpload = 0;
@@ -45,7 +74,7 @@ const FileUploader: React.FC<FileUploaderProps> = ({
         setUploadSuccess(false);
       } else {
         setUploadSuccess(true);
-        onUpload && onUpload(acceptedFiles);
+        readFilesContent(acceptedFiles);
       }
     },
     [onUpload, filesAmount, files, setUploadSuccess]
