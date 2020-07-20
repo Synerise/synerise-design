@@ -11,21 +11,7 @@ import fnsFormat from './format';
 import TimePicker from './Elements/TimePicker/TimePicker';
 
 import { DayBackground, DayText, DayForeground } from './Elements/DayPicker/DayPicker.styles';
-import {
-  fnsStartOfMonth,
-  fnsSetYear,
-  fnsSetMonth,
-  fnsSetDate,
-  fnsStartOfDay,
-  fnsEndOfDay,
-  fnsAddDays,
-  fnsIsAfter,
-  fnsDifferenceInSeconds,
-  fnsGetYear,
-  fnsGetSeconds,
-} from './fns';
-import { fnsAddSeconds } from '@synerise/ds-date-range-picker/dist/fns';
-import { differenceInDays } from 'date-fns';
+import { fnsStartOfMonth, fnsSetYear, fnsSetMonth, fnsSetDate, fnsStartOfDay, fnsEndOfDay, fnsAddDays } from './fns';
 import { changeDayWithHoursPreserved } from './utils';
 
 class RawDatePicker extends React.Component<Props, State> {
@@ -64,22 +50,24 @@ class RawDatePicker extends React.Component<Props, State> {
     const { value } = this.props;
     if (prevProps?.value !== value) {
       this.setState({
-        mode: 'date',
         value,
         month: fnsStartOfMonth(value || new Date()),
-        changed: false,
+        changed: true,
       });
     }
     return null;
   }
 
   handleChange = (value: Date | undefined): void => {
+    const {onValueChange} = this.props;
     const { mode, value: valueFromState } = this.state;
     if (mode === 'date' && !!valueFromState && !!value) {
       const dateToBeUpdated = changeDayWithHoursPreserved(valueFromState, value);
       this.setState({ value: dateToBeUpdated, changed: true });
+      onValueChange && onValueChange(dateToBeUpdated);
     } else {
       this.setState({ value, changed: true });
+      onValueChange && onValueChange(value);
     }
   };
 
