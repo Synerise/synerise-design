@@ -1,12 +1,14 @@
 import * as React from 'react';
 import List from '@synerise/ds-list';
+import * as _ from 'lodash';
 import { ReactSortable } from 'react-sortablejs-typescript';
 import { FormattedMessage } from 'react-intl';
 import * as S from './ManageableList.styles';
 import Item, { ItemProps } from './Item/Item';
 import AddItemWithName from './AddItemWithName/AddItemWithName';
 import AddItem from './AddItem/AddItem';
-import { ExpansionBehaviour, ManageableListProps, ListType } from './ManageableList.types';
+import { ManageableListProps, ListType, Texts } from './ManageableList.types';
+
 
 const SORTABLE_CONFIG = {
   ghostClass: 'sortable-list-ghost-element',
@@ -15,6 +17,8 @@ const SORTABLE_CONFIG = {
   group: 'column-manager',
   forceFallback: true,
 };
+
+
 const ManageableList: React.FC<ManageableListProps> = ({
   className,
   onItemAdd,
@@ -35,48 +39,49 @@ const ManageableList: React.FC<ManageableListProps> = ({
   searchQuery,
   expanderDisabled,
   onExpand,
-  expansionBehaviour = ExpansionBehaviour.DEFAULT,
-  texts: {
-    addItemLabel = <FormattedMessage id="DS.MANAGABLE-LIST.ADD-ITEM" />,
-    showMoreLabel = <FormattedMessage id="DS.MANAGABLE-LIST.SHOW-MORE" />,
-    showLessLabel = <FormattedMessage id="DS.MANAGABLE-LIST.SHOW-LESS" />,
-    more = <FormattedMessage id="DS.MANAGABLE-LIST.MORE" />,
-    less = <FormattedMessage id="DS.MANAGABLE-LIST.LESS" />,
-    activateItemTitle = <FormattedMessage id="DS.MANAGABLE-LIST.ACTIVATE-ITEM" />,
-    activate = <FormattedMessage id="DS.MANAGABLE-LIST.ACTIVATE" />,
-    cancel = <FormattedMessage id="DS.MANAGABLE-LIST.CANCEL" />,
-    deleteConfirmationTitle = <FormattedMessage id="DS.MANAGABLE-LIST.DELETE-ITEM-TITLE" />,
-    deleteConfirmationDescription = <FormattedMessage id="DS.MANAGABLE-LIST.DELETE-ITEM-DESCRIPTION" />,
-    deleteConfirmationYes = <FormattedMessage id="DS.MANAGABLE-LIST.DELETE" />,
-    deleteConfirmationNo = <FormattedMessage id="DS.MANAGABLE-LIST.CANCEL" />,
-    itemActionRename = <FormattedMessage id="DS.MANAGABLE-LIST.ITEM-RENAME" />,
-    itemActionRenameTooltip = <FormattedMessage id="DS.MANAGABLE-LIST.ITEM-RENAME" />,
-    itemActionDuplicate = <FormattedMessage id="DS.MANAGABLE-LIST.ITEM-DUPLICATE" />,
-    itemActionDuplicateTooltip = <FormattedMessage id="DS.MANAGABLE-LIST.ITEM-DUPLICATE" />,
-    itemActionDelete = <FormattedMessage id="DS.MANAGABLE-LIST.ITEM-DELETE" />,
-    itemActionDeleteTooltip = <FormattedMessage id="DS.MANAGABLE-LIST.ITEM-DELETE" />,
-  },
+  expandedIds,
+  texts,
 }) => {
+  const [stateExpandedIds, setExpandedIds] = React.useState(expandedIds);
   const [allItemsVisible, setAllItemsVisible] = React.useState(false);
   const [itemsToRender, setItemsToRender] = React.useState(items);
   React.useEffect(() => {
     setItemsToRender(items);
   }, [items]);
-  const itemTexts = {
-    activateItemTitle,
-    activate,
-    cancel,
-    deleteConfirmationDescription,
-    deleteConfirmationTitle,
-    deleteConfirmationYes,
-    deleteConfirmationNo,
-    itemActionRename,
-    itemActionRenameTooltip,
-    itemActionDuplicate,
-    itemActionDuplicateTooltip,
-    itemActionDelete,
-    itemActionDeleteTooltip,
-  };
+
+  React.useEffect(() => {
+    if (expandedIds && stateExpandedIds && !_.isEqual(expandedIds, stateExpandedIds)) {
+      setExpandedIds(expandedIds);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [expandedIds]);
+
+  const getTexts = React.useCallback(
+    (): Texts => ({
+      addItemLabel: <FormattedMessage id="DS.MANAGABLE-LIST.ADD-ITEM" />,
+      showMoreLabel: <FormattedMessage id="DS.MANAGABLE-LIST.SHOW-MORE" />,
+      showLessLabel: <FormattedMessage id="DS.MANAGABLE-LIST.SHOW-LESS" />,
+      more: <FormattedMessage id="DS.MANAGABLE-LIST.MORE" />,
+      less: <FormattedMessage id="DS.MANAGABLE-LIST.LESS" />,
+      activateItemTitle: <FormattedMessage id="DS.MANAGABLE-LIST.ACTIVATE-ITEM" />,
+      activate: <FormattedMessage id="DS.MANAGABLE-LIST.ACTIVATE" />,
+      cancel: <FormattedMessage id="DS.MANAGABLE-LIST.CANCEL" />,
+      deleteConfirmationTitle: <FormattedMessage id="DS.MANAGABLE-LIST.DELETE-ITEM-TITLE" />,
+      deleteConfirmationDescription: <FormattedMessage id="DS.MANAGABLE-LIST.DELETE-ITEM-DESCRIPTION" />,
+      deleteConfirmationYes: <FormattedMessage id="DS.MANAGABLE-LIST.DELETE" />,
+      deleteConfirmationNo: <FormattedMessage id="DS.MANAGABLE-LIST.CANCEL" />,
+      itemActionRename: <FormattedMessage id="DS.MANAGABLE-LIST.ITEM-RENAME" />,
+      itemActionRenameTooltip: <FormattedMessage id="DS.MANAGABLE-LIST.ITEM-RENAME" />,
+      itemActionDuplicate: <FormattedMessage id="DS.MANAGABLE-LIST.ITEM-DUPLICATE" />,
+      itemActionDuplicateTooltip: <FormattedMessage id="DS.MANAGABLE-LIST.ITEM-DUPLICATE" />,
+      itemActionDelete: <FormattedMessage id="DS.MANAGABLE-LIST.ITEM-DELETE" />,
+      itemActionDeleteTooltip: <FormattedMessage id="DS.MANAGABLE-LIST.ITEM-DELETE" />,
+      ...texts,
+    }),
+    [texts]
+  );
+
+  const itemTexts = React.useMemo(() => getTexts(), [getTexts]);
 
   const getItemsOverLimit = React.useMemo((): number => {
     return items.length - maxToShowItems;
@@ -86,50 +91,24 @@ const ManageableList: React.FC<ManageableListProps> = ({
     return allItemsVisible ? itemsToRender : itemsToRender.slice(0, maxToShowItems);
   }, [allItemsVisible, maxToShowItems, itemsToRender]);
 
-  const defaultExpansionCallback = React.useCallback(
-    (id: string, isExpanded: boolean) => {
-      const newItemsToRender = itemsToRender.map(item => {
-        if (item.id === id) {
-          return { ...item, expanded: isExpanded };
-        }
-        return item;
-      });
-      setItemsToRender(newItemsToRender);
-    },
-    [itemsToRender]
-  );
-
-  const accordionExpansionCallback = React.useCallback(
-    (id: string, isExpanded: boolean) => {
-      const newItemsToRender = itemsToRender.map(item => {
-        if (item.id === id) {
-          return { ...item, expanded: isExpanded };
-        }
-        return { ...item, expanded: false };
-      });
-      setItemsToRender(newItemsToRender);
-    },
-    [itemsToRender]
-  );
-
-  const buttonLabel = React.useMemo(() => (allItemsVisible ? showLessLabel : showMoreLabel), [
+  const buttonLabel = React.useMemo(() => (allItemsVisible ? itemTexts.showLessLabel : itemTexts.showMoreLabel), [
     allItemsVisible,
-    showLessLabel,
-    showMoreLabel,
+    itemTexts.showLessLabel,
+    itemTexts.showMoreLabel,
   ]);
 
   const buttonLabelDiff = React.useMemo(
     () =>
       allItemsVisible ? (
         <>
-          - {getItemsOverLimit} {less}{' '}
+          - {getItemsOverLimit} {itemTexts.less}{' '}
         </>
       ) : (
         <>
-          + {getItemsOverLimit} {more}{' '}
+          + {getItemsOverLimit} {itemTexts.more}{' '}
         </>
       ),
-    [allItemsVisible, getItemsOverLimit, less, more]
+    [allItemsVisible, getItemsOverLimit, itemTexts.less, itemTexts.more]
   );
 
   const toggleAllItems = React.useCallback((): void => {
@@ -152,36 +131,34 @@ const ManageableList: React.FC<ManageableListProps> = ({
   }, [onItemAdd]);
 
   const getItem = React.useCallback(
-    (item: ItemProps): React.ReactNode => (
-      <Item
-        key={item.id}
-        listType={type}
-        onSelect={onItemSelect}
-        onUpdate={onItemEdit}
-        onRemove={onItemRemove}
-        onDuplicate={onItemDuplicate}
-        item={item}
-        draggable={Boolean(onChangeOrder)}
-        changeOrderDisabled={changeOrderDisabled}
-        greyBackground={greyBackground}
-        selected={Boolean(item.id === selectedItemId)}
-        texts={itemTexts}
-        searchQuery={searchQuery}
-        onExpand={(id, isExpanded): void => {
-          if (expansionBehaviour === ExpansionBehaviour.DEFAULT) {
-            defaultExpansionCallback(id, isExpanded);
-          } else if (expansionBehaviour === ExpansionBehaviour.ACCORDION) {
-            accordionExpansionCallback(id, isExpanded);
-          }
-          onExpand && onExpand(id, isExpanded);
-        }}
-        hideExpander={expanderDisabled}
-      />
-    ),
+    (item: ItemProps): React.ReactNode => {
+      return (
+        <Item
+          key={item.id}
+          listType={type}
+          onSelect={onItemSelect}
+          onUpdate={onItemEdit}
+          onRemove={onItemRemove}
+          onDuplicate={onItemDuplicate}
+          onExpand={onExpand}
+          item={item}
+          draggable={Boolean(onChangeOrder)}
+          changeOrderDisabled={changeOrderDisabled}
+          greyBackground={greyBackground}
+          selected={Boolean(item.id === selectedItemId)}
+          texts={itemTexts}
+          searchQuery={searchQuery}
+          hideExpander={expanderDisabled}
+          expanded={!!stateExpandedIds && stateExpandedIds.includes(item.id)}
+        />
+      );
+    },
     [
+      onItemEdit,
+      onExpand,
+      stateExpandedIds,
       type,
       onItemSelect,
-      onItemEdit,
       onItemRemove,
       onItemDuplicate,
       onChangeOrder,
@@ -191,14 +168,10 @@ const ManageableList: React.FC<ManageableListProps> = ({
       itemTexts,
       searchQuery,
       expanderDisabled,
-      onExpand,
-      accordionExpansionCallback,
-      defaultExpansionCallback,
-      expansionBehaviour,
     ]
   );
 
-  const renderList = React.useCallback(() => {
+  const itemList = React.useMemo(() => {
     return onChangeOrder && !changeOrderDisabled ? (
       <ReactSortable {...SORTABLE_CONFIG} list={itemsToRender} setList={onChangeOrder}>
         {itemsToRender.map(getItem)}
@@ -216,16 +189,16 @@ const ManageableList: React.FC<ManageableListProps> = ({
     >
       {type === ListType.DEFAULT && Boolean(onItemAdd) && (
         <AddItemWithName
-          addItemLabel={addItemLabel}
+          addItemLabel={itemTexts.addItemLabel}
           onItemAdd={onItemAdd}
           disabled={addButtonDisabled}
           placeholder={placeholder}
         />
       )}
-      {renderList()}
+      {itemList}
       {renderShowMoreButton()}
       {type === ListType.CONTENT && Boolean(onItemAdd) && (
-        <AddItem addItemLabel={addItemLabel} onItemAdd={createItem} disabled={addButtonDisabled} />
+        <AddItem addItemLabel={itemTexts.addItemLabel} onItemAdd={createItem} disabled={addButtonDisabled} />
       )}
     </S.ManageableListContainer>
   );
