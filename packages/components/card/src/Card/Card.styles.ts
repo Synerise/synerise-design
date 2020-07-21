@@ -2,6 +2,7 @@ import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import Typography from '@synerise/ds-typography';
 import * as React from 'react';
 import { ThemePropsVars } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+// import TweenOne, { IProps } from 'rc-tween-one';
 import { Backgrounds } from './Card';
 
 const whiteBg = ['white', 'white-shadow'];
@@ -144,6 +145,9 @@ export const HeaderContent = styled.div<{ compact?: boolean; hasIcon: boolean }>
     `}
 `;
 
-export const ChildrenContainer = styled.div<{ hasHeader?: boolean; withoutPadding?: boolean; isContentful?: boolean }>`
-  padding: ${(props): string => (props.withoutPadding || !props.isContentful ? '0' : '24px')};
+export const ChildrenContainer = styled.div``;
+
+export const PaddingWrapper = styled.div<{ withoutPadding?: boolean }>`
+  padding: ${(props): string => (props.withoutPadding ? '0' : '24px')};
+  ${(props): string => (props.withoutPadding || !props.isContentful ? '0' : '24px')};
 `;
