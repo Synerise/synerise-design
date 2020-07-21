@@ -77,7 +77,7 @@ const FileUploader: React.FC<FileUploaderProps> = ({
         readFilesContent(acceptedFiles);
       }
     },
-    [onUpload, filesAmount, files, setUploadSuccess, readFilesContent]
+    [filesAmount, files, setUploadSuccess, readFilesContent]
   );
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
