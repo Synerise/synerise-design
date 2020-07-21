@@ -125,6 +125,8 @@ export const FILTER_LIST_ITEMS = [
     canDelete: true,
     canDuplicate: true,
     user: {
+      firstname: 'Jan',
+      lastname: 'Nowak',
       avatar_url: 'https://www.w3schools.com/howto/img_avatar.png',
     },
     created: '2020-02-14T08:50:05+00:00',
