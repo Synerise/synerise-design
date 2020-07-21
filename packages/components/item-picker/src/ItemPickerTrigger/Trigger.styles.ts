@@ -57,6 +57,7 @@ export const Placeholder = styled.div`
   justify-content: flex-start;
   flex: 1;
   color: ${(props): string => props.theme.palette['grey-500']};
+  padding: 0 0 0 4px;
   ${Prefix} {
     svg {
       fill: ${(props): string => props.theme.palette['grey-500']};

@@ -104,7 +104,7 @@ const Trigger: React.FC<Props> = ({
   );
 
   const handleOpen = React.useCallback(() => {
-    if (!selected) {
+    if (!selected || (selected && size === 'small' && !withClearConfirmation)) {
       openDropdown();
     }
   }, [selected, openDropdown]);
