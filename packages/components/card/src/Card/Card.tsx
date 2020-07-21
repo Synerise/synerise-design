@@ -22,6 +22,7 @@ export interface CardProps {
   withoutPadding?: boolean;
   headerBorderBottom?: boolean;
   background?: Backgrounds;
+  showContent?: boolean;
 }
 
 const Card: React.FC<CardProps> = ({
@@ -42,6 +43,7 @@ const Card: React.FC<CardProps> = ({
   withoutPadding,
   headerBorderBottom,
   background = 'white-shadow',
+  showContent,
 }) => {
   const fatTitle = !description || (description && compactHeader);
   return (
@@ -77,8 +79,12 @@ const Card: React.FC<CardProps> = ({
           )}
         </S.Header>
       )}
-      <S.ChildrenContainer isContentful={!!children} withoutPadding={withoutPadding} hasHeader={withHeader}>
-        {children}
+      <S.ChildrenContainer
+        isContentful={!!children && showContent}
+        withoutPadding={withoutPadding}
+        hasHeader={withHeader}
+      >
+        {showContent && children}
       </S.ChildrenContainer>
     </S.Container>
   );

@@ -56,8 +56,9 @@ const renderCard = (props,showContentInitial= true) => {
         headerSideChildren={props.headerSideChildren}
         headerBorderBottom={props.headerBorderBottom}
         background={props.background}
+        showContent={props.showContent && showContent}
       >
-        {props.showContent && showContent && <div style={{ width: '100%', height: 300 }}>{props.content}</div>}
+        <div style={{ width: '100%', height: 300 }}>{props.content}</div>
       </Card>
     </React.Suspense>
   );
