@@ -107,7 +107,7 @@ const Trigger: React.FC<Props> = ({
     if (!selected || (selected && size === 'small' && !withClearConfirmation)) {
       openDropdown();
     }
-  }, [selected, openDropdown]);
+  }, [selected, openDropdown, size, withClearConfirmation]);
 
   const renderChangeButton = React.useMemo(() => {
     return (
