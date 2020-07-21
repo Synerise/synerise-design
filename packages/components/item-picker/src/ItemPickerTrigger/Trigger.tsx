@@ -98,9 +98,9 @@ const Trigger: React.FC<Props> = ({
   const handleChangeButtonClick = React.useCallback(
     (event: React.MouseEvent) => {
       event.stopPropagation();
-      withChangeButton && openDropdown();
+      openDropdown();
     },
-    [withChangeButton, openDropdown]
+    [openDropdown]
   );
 
   const handleOpen = React.useCallback(() => {
@@ -124,7 +124,7 @@ const Trigger: React.FC<Props> = ({
 
   return (
     <S.TriggerWrapper
-      tabIndex={0}
+      tabIndex={selected ? undefined : 0}
       size={size}
       opened={opened}
       disabled={disabled}

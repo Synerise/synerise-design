@@ -174,7 +174,7 @@ describe('ItemPicker component', () => {
     const handleClear = jest.fn();
     const handleChange = jest.fn();
 
-    const { queryByTestId } = renderWithProvider(<ITEM_PICKER onClear={handleClear} onChange={handleChange} description={DESCRIPTION} selectedItem={DATA_SOURCE[0]} size='large' changeButtonLabel={CHANGE_BUTTON_LABEL} />);
+    const { queryByTestId } = renderWithProvider(<ITEM_PICKER onClear={handleClear} onChange={handleChange} description={DESCRIPTION} selectedItem={DATA_SOURCE[0]} size='large' changeButtonLabel={CHANGE_BUTTON_LABEL} withClearConfirmation />);
 
     expect(queryByTestId(CHANGE_BUTTON_LABEL)).toBeFalsy();
   });
@@ -183,7 +183,7 @@ describe('ItemPicker component', () => {
     const handleClear = jest.fn();
     const handleChange = jest.fn();
 
-    const { getByText } = renderWithProvider(<ITEM_PICKER onClear={handleClear} onChange={handleChange} description={DESCRIPTION} selectedItem={DATA_SOURCE[0]} size='large' withChangeButton changeButtonLabel={CHANGE_BUTTON_LABEL} />);
+    const { getByText } = renderWithProvider(<ITEM_PICKER onClear={handleClear} onChange={handleChange} description={DESCRIPTION} selectedItem={DATA_SOURCE[0]} size='large' changeButtonLabel={CHANGE_BUTTON_LABEL} />);
 
     expect(getByText(CHANGE_BUTTON_LABEL)).toBeTruthy();
   });

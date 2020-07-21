@@ -21,7 +21,7 @@ const getDefaultProps = () => ({
   disabled: boolean('Disabled', false),
   removable: boolean('Allow to remove uploaded files', true),
   error: text('Error message', undefined),
-  accept: array('Accepted mime types (comma separated)', ['image/png, image/svg+xml']),
+  accept: array('Accepted mime types (comma separated)', ['image/png, image/svg+xml, text/plain']),
   testFileError: boolean('Display preview error example', false),
   testFileDisable: boolean('Display disabled preview example', false),
   testFileProgress: boolean('Display upload progress bar example', false),
@@ -51,7 +51,6 @@ const stories = {
       if (testFileProgress) {
         return files.map(f => ({ ...f, progress: random(0, 100) }));
       }
-
       return files;
     };
 
@@ -61,7 +60,9 @@ const stories = {
           {...rest}
           files={getFiles()}
           texts={texts}
-          onUpload={newFiles => setFiles([...files, ...newFiles.map(file => ({ file }))])}
+          onUpload={(newFiles) => {
+            setFiles([...files, ...newFiles.map((file, index) => ({ file }))]);
+          }}
           onRemove={(rf, rfi) => setFiles(files.filter((f, i) => i !== rfi))}
         />
       </div>
