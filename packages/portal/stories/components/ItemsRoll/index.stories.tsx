@@ -168,13 +168,22 @@ const stories = {
 
       if (value === '') {
         store.set({
-          items: GROUPED_ITEMS.items,
+          searchValue: '',
+          items: lookupItems,
         });
       }
     };
 
+    const onSearchClear = (store) => {
+      store.set({
+        searchValue: '',
+        items: GROUPED_ITEMS.items,
+      });
+    };
+
     const props = {
       ...generateProps(store, { onClearAllOptions }),
+      onSearchClear: () => onSearchClear(store),
       groups: select('withGroups', groupOptions, groupOptions.yes),
       onSearch: value => onSearchGrouped(value, store),
     };
