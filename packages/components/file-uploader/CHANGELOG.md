@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-file-uploader@0.4.29...@synerise/ds-file-uploader@0.5.0) (2020-07-21)
+
+
+### Bug Fixes
+
+* **file-uploader:** fix eslint error ([cfed3e6](https://github.com/Synerise/synerise-design/commit/cfed3e6a8da606bdda4e0871d3db3e56a73acef3))
+* **file-uploader:** fix eslint error ([2656b43](https://github.com/Synerise/synerise-design/commit/2656b4316bf99e67fdab273513e1c8043b7d8574))
+
+
+### Features
+
+* **file-uploader:** read and return content of .txt files ([465fae1](https://github.com/Synerise/synerise-design/commit/465fae1b1c8590d654b9fc1c78b3afc49b130f7f))
+
+
+
+
+
 ## [0.4.29](https://github.com/Synerise/synerise-design/compare/@synerise/ds-file-uploader@0.4.28...@synerise/ds-file-uploader@0.4.29) (2020-07-20)
 
 **Note:** Version bump only for package @synerise/ds-file-uploader
