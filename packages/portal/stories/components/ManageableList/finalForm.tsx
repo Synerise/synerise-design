@@ -11,7 +11,7 @@ import Checkbox from '@synerise/ds-checkbox/dist';
 import ManageableList from '@synerise/ds-manageable-list';
 import { action } from '@storybook/addon-actions';
 
-const decorator = (storyFn) => <div style={{ width: '400px', padding: '16px', background: '#fff' }}>{storyFn()}</div>;
+const decorator = storyFn => <div style={{ width: '400px', padding: '16px', background: '#fff' }}>{storyFn()}</div>;
 
 const getTexts = () => ({
   addItemLabel: text('Add item label', 'Add position'),
@@ -70,7 +70,6 @@ const validate = (values: FormValues) => {
 const onSubmit = (values: any) => {
   console.log({ values });
 };
-
 
 const formNames = [
   {
@@ -132,22 +131,24 @@ const formNames = [
         )}
       />
     ),
-  }
-]
+  },
+];
 
 const FormExample = () => {
   const [items, setItems] = React.useState(formNames);
   const texts = getTexts();
   const onAdd = action('onItemAdd');
-  const [expandedIds,setExpandedIds] = React.useState(['00000000-0000-0000-0000-000000000001']);
-  const expandCallback = React.useCallback((id, isExp) => {
-    if(expandedIds.includes(id)){
-        setExpandedIds([])
-    }
-    else {
-      setExpandedIds([id])
-    }
-  }, [expandedIds]);
+  const [expandedIds, setExpandedIds] = React.useState(['00000000-0000-0000-0000-000000000001']);
+  const expandCallback = React.useCallback(
+    (id, isExp) => {
+      if (expandedIds.includes(id)) {
+        setExpandedIds([]);
+      } else {
+        setExpandedIds([id]);
+      }
+    },
+    [expandedIds]
+  );
 
   return (
     <FinalForm
