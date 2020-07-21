@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.87.0](https://github.com/synerise/synerise-design/compare/portal@0.86.1...portal@0.87.0) (2020-07-21)
+
+
+### Bug Fixes
+
+* **item-picker:** fix withChangeConfirmation prop ([5f92aba](https://github.com/synerise/synerise-design/commit/5f92aba4e3f094bbfde70f5afe128f090dd13c6a))
+* **manageable-list:** changed a story ([30e6374](https://github.com/synerise/synerise-design/commit/30e6374a4073c462bbc65f2a929b7ec763c88c02))
+* **search:** add onClear prop and update tests and stories ([ded5385](https://github.com/synerise/synerise-design/commit/ded53857c3c55cd87e06c2038ccf1f6926b12b28))
+* **sidebar:** change background styles ([e62be74](https://github.com/synerise/synerise-design/commit/e62be74c0657bacfc049c96419c6f1a2cdd24471))
+
+
+### Features
+
+* **file-uploader:** read and return content of .txt files ([465fae1](https://github.com/synerise/synerise-design/commit/465fae1b1c8590d654b9fc1c78b3afc49b130f7f))
+
+
+
+
+
 ## [0.86.1](https://github.com/synerise/synerise-design/compare/portal@0.86.0...portal@0.86.1) (2020-07-20)
 
 
