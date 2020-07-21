@@ -5,7 +5,7 @@ import { boolean } from '@storybook/addon-knobs';
 
 const stories = {
   default: () => {
-    const showTime = boolean('Show time',true);
+    const showTime = boolean('Show time', true);
     return (
       <div>
         <DatePicker

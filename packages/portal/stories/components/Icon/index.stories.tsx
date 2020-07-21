@@ -21,7 +21,7 @@ const listyStyles: React.CSSProperties = {
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-  justifyContent: 'space-between'
+  justifyContent: 'space-between',
 };
 
 const getProps = () => ({
