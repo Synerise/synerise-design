@@ -61,6 +61,7 @@ export const Container = styled.div<
   border-color: ${getVar('white')};
   position: relative;
   padding: ${(props): string => (props.size === 'small' ? '24px 16px 12px' : '24px')};
+  cursor: pointer;
 
   ${is('stretchToFit')`
     height: 100%;
@@ -161,6 +162,7 @@ export const Title = styled.div<{ hasIcon: boolean; size?: string }>`
   font-weight: 500;
   font-size: ${sizeCondition('10px', '14px')};
   margin: ${(props): string => (!props.hasIcon ? '0 16px' : '0')};
+  width: 176px;
 
   ${(props): FlattenSimpleInterpolation | false =>
     props.size === 'small' &&
@@ -174,6 +176,7 @@ export const Description = styled.div<{ hasTitle?: boolean; hasIcon?: boolean; s
   font-size: 12px;
   text-align: center;
   margin: ${(props): string => (!props.hasIcon ? '0 16px' : '0')};
+  width: 176px;
 
   ${(props): FlattenSimpleInterpolation | undefined | false =>
     props.hasTitle &&

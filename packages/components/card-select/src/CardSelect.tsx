@@ -2,6 +2,7 @@ import * as React from 'react';
 import { withTheme } from 'styled-components';
 import Icon from '@synerise/ds-icon';
 import Check3M from '@synerise/ds-icon/dist/icons/Check3M';
+import { AdAfterScrollL } from '@synerise/ds-icon/dist/icons/additional';
 import * as S from './CardSelect.styles';
 
 export interface CardSelectProps {
@@ -78,7 +79,7 @@ const CardSelect: React.FC<CardSelectProps> = ({
       <S.Main size={size} disabled={disabled} hasTick={tickVisible || customTickVisible}>
         {icon && (
           <S.IconWrapper size={size}>
-            <Icon size={realIconSize} component={icon} />
+            <Icon className="icon" component={<AdAfterScrollL />} size={realIconSize} />
           </S.IconWrapper>
         )}
 
