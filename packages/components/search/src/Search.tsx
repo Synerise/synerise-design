@@ -13,7 +13,15 @@ const INPUT_EXPAND_ANIMATION_DURATION = 200;
 const SCROLLBAR_HEIGHT_OFFSET = 28;
 const LIST_HEADER_HEIGHT = 42;
 
-const getParametersScrollTop = ({ scrollTop, rowHeight, recent, }: { scrollTop: number; rowHeight: number; recent: AnyObject[]}): number => scrollTop - LIST_HEADER_HEIGHT - (hasSomeElement(recent) ? recent.length * rowHeight : 0);
+const getParametersScrollTop = ({
+  scrollTop,
+  rowHeight,
+  recent,
+}: {
+  scrollTop: number;
+  rowHeight: number;
+  recent: AnyObject[];
+}): number => scrollTop - LIST_HEADER_HEIGHT - (hasSomeElement(recent) ? recent.length * rowHeight : 0);
 
 class Search extends React.PureComponent<SearchProps<AnyObject>, SearchState<AnyObject>> {
   private wrapperRef = React.createRef<HTMLDivElement>();
@@ -107,7 +115,7 @@ class Search extends React.PureComponent<SearchProps<AnyObject>, SearchState<Any
     if (isInputOpen && !value && !label) {
       this.setState({ toggleInputTrigger: !toggleInputTrigger });
     }
-    this.setState({ isListVisible: false });
+    this.setState({ isListVisible: false, scrollbarScrollTop: 0 });
   };
 
   handleClearValue = (): void => {
@@ -121,6 +129,7 @@ class Search extends React.PureComponent<SearchProps<AnyObject>, SearchState<Any
       filteredParameters: parameters,
       filteredSuggestions: suggestions,
       isResultChosen: false,
+      scrollbarScrollTop: 0,
     });
   };
 
@@ -167,6 +176,7 @@ class Search extends React.PureComponent<SearchProps<AnyObject>, SearchState<Any
 
     this.setState({
       isResultChosen: true,
+      scrollbarScrollTop: 0,
     });
 
     onValueChange(item[textLookupConfig[dataKey]]);
@@ -176,7 +186,7 @@ class Search extends React.PureComponent<SearchProps<AnyObject>, SearchState<Any
     const { onValueChange, onParameterValueChange, filterLookupKey, textLookupConfig } = this.props;
 
     onValueChange('');
-    this.setState({ label: item });
+    this.setState({ label: item, scrollbarScrollTop: 0 });
 
     if (filterLookupKey && item[filterLookupKey]) {
       onValueChange(item[textLookupConfig.parameters]);

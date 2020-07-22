@@ -9,6 +9,7 @@ import Icon from '@synerise/ds-icon';
 import { getItemsWithAvatar, getSuggestions } from './dataPopulator';
 import Divider from '@synerise/ds-divider';
 import { SearchInput } from '@synerise/ds-search/dist/Elements';
+import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 
 const decorator = storyFn => (
   <div style={{ width: '100vw', position: 'absolute', left: '0', top: '20vh' }}>
@@ -131,7 +132,7 @@ const stories = {
               highlight={value}
               style={{ paddingLeft: '12px' }}
               onItemHover={NOOP}
-              prefixel={item && <Icon component={item && item.icon} />}
+              prefixel={item && <Icon component={item && item.icon} color={theme.palette['grey-600']} />}
             >
               {item && item.text}
             </Menu.Item>
@@ -207,7 +208,7 @@ const stories = {
             <Menu.Item
               style={{ paddingLeft: '12px' }}
               onItemHover={NOOP}
-              prefixel={item && <Icon component={item && item.icon} />}
+              prefixel={item && <Icon component={item && item.icon}  color={theme.palette['grey-600']} />}
             >
               {item && item.text}
             </Menu.Item>
