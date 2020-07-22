@@ -208,7 +208,7 @@ const stories = {
             <Menu.Item
               style={{ paddingLeft: '12px' }}
               onItemHover={NOOP}
-              prefixel={item && <Icon component={item && item.icon}  color={theme.palette['grey-600']} />}
+              prefixel={item && <Icon component={item && item.icon} color={theme.palette['grey-600']} />}
             >
               {item && item.text}
             </Menu.Item>
