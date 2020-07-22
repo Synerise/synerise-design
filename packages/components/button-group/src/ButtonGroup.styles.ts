@@ -23,11 +23,12 @@ export const Container = styled.div<{
     .ant-btn {
       width: auto;
       flex: ${(props): string => (props.fullWidth ? '1' : 'none')};
-      &:focus {
-      &:focus:not(:active) {
-        z-index: 99999;
-        .btn-focus {
-          box-shadow: 0 0 0 2px transparent;
+      &.ant-btn-primary {
+        &:focus {
+          z-index: 99999;
+          .btn-focus {
+            box-shadow: 0 0 0 2px transparent;
+          }
         }
       }
     }
