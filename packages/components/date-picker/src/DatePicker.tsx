@@ -58,6 +58,7 @@ const DatePicker: React.FC<Props> = props => {
         }}
         placeholder={texts.inputPlaceholder}
         clearTooltip={texts.clearTooltip}
+        highlight={!!dropVisible}
       />
     </Dropdown>
   );
