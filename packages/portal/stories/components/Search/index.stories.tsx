@@ -9,6 +9,7 @@ import Icon from '@synerise/ds-icon';
 import { getItemsWithAvatar, getSuggestions } from './dataPopulator';
 import Divider from '@synerise/ds-divider';
 import { SearchInput } from '@synerise/ds-search/dist/Elements';
+import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 
 const decorator = storyFn => (
   <div style={{ width: '100vw', position: 'absolute', left: '0', top: '20vh' }}>
@@ -19,29 +20,25 @@ const decorator = storyFn => (
 const NOOP = (): void => {};
 
 const parameters = [
-  { text: 'First Name', icon: <VarTypeStringM /> },
-  { text: 'Last Name', icon: <VarTypeStringM /> },
-  { text: 'Sex', icon: <VarTypeStringM /> },
-  { text: 'City', icon: <VarTypeStringM /> },
-  { text: 'Transactions', icon: <VarTypeNumberM /> },
-  { text: 'IP', icon: <VarTypeStringM /> },
-  { text: 'Price', icon: <VarTypeListM /> },
-  { text: 'Discount', icon: <VarTypeListM /> },
-  { text: 'Products bought', icon: <VarTypeListM /> },
-  { text: 'Loyalty points', icon: <VarTypeListM /> },
+  { text: 'First Name', icon: <Icon component={<VarTypeStringM />} color={theme.palette['grey-600']} /> },
+  { text: 'Last Name', icon: <Icon component={<VarTypeStringM />} color={theme.palette['grey-600']} /> },
+  { text: 'Sex', icon: <Icon component={<VarTypeStringM />} color={theme.palette['grey-600']} /> },
+  { text: 'City', icon: <Icon component={<VarTypeStringM />} color={theme.palette['grey-600']} /> },
+  { text: 'Transactions', icon: <Icon component={<VarTypeNumberM />} color={theme.palette['grey-600']} /> },
+  { text: 'IP', icon: <Icon component={<VarTypeStringM />} color={theme.palette['grey-600']} /> },
+  { text: 'Price', icon: <Icon component={<VarTypeListM />} color={theme.palette['grey-600']} /> },
+  { text: 'Discount', icon: <Icon component={<VarTypeListM />} color={theme.palette['grey-600']} /> },
+  { text: 'Products bought', icon: <Icon component={<VarTypeListM />} color={theme.palette['grey-600']} /> },
+  { text: 'Loyalty points', icon: <Icon component={<VarTypeListM />} color={theme.palette['grey-600']} /> },
 ];
 
 const recent = [
-  { text: 'Bangkok', filter: 'City', icon: <VarTypeStringM /> },
-  { text: 'Frank', filter: 'Last Name', icon: <VarTypeStringM /> },
-  { text: 'Basel', filter: 'City', icon: <VarTypeStringM /> },
-  { text: 'Chicago', filter: 'City', icon: <VarTypeStringM /> },
-  { text: 'London', filter: 'City', icon: <VarTypeStringM /> },
-  { text: 'Brandon', filter: 'Last Name', icon: <VarTypeStringM /> },
-  { text: 'Male', filter: 'Sex', icon: <VarTypeStringM /> },
-  { text: 'Brandon', filter: 'Last Name', icon: <VarTypeStringM /> },
-  { text: 'Rogers', filter: 'Last Name', icon: <VarTypeStringM /> },
-  { text: 'Richards', filter: 'Last Name', icon: <VarTypeStringM /> },
+  { text: 'Bangkok', filter: 'City', icon: <Icon component={<VarTypeStringM />} color={theme.palette['grey-600']}/> },
+  { text: 'Frank', filter: 'Last Name', icon: <Icon component={<VarTypeStringM />} color={theme.palette['grey-600']}/>},
+  { text: 'Basel', filter: 'City', icon: <Icon component={<VarTypeStringM />} color={theme.palette['grey-600']}/> },
+  { text: 'Chicago', filter: 'City', icon: <Icon component={<VarTypeStringM />} color={theme.palette['grey-600']}/> },
+  { text: 'London', filter: 'City', icon: <Icon component={<VarTypeStringM />} color={theme.palette['grey-600']}/>},
+  { text: 'Brandon', filter: 'Last Name', icon: <Icon component={<VarTypeStringM />} color={theme.palette['grey-600']}/> },
 ];
 const recentWithAvatars = getItemsWithAvatar(20);
 
