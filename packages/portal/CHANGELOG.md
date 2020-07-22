@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.88.0](https://github.com/synerise/synerise-design/compare/portal@0.87.0...portal@0.88.0) (2020-07-22)
+
+
+### Bug Fixes
+
+* **button-group:** change styles of focused button ([152b78d](https://github.com/synerise/synerise-design/commit/152b78db8beda2b2b6c6ba3057d8d2bc39ab63e8))
+* **card:** add animation to cards openning ([e6d541c](https://github.com/synerise/synerise-design/commit/e6d541cfda8b5fac256b45e9b7e28ba5d1f87272))
+* **items-roll:** fix search clear on grouped example ([250592f](https://github.com/synerise/synerise-design/commit/250592f30f62760993c0a5dbe043663b9b636d95))
+* **search:** code review changes ([03c7c7e](https://github.com/synerise/synerise-design/commit/03c7c7e2bd81886070b7d36f44e921ccd1c45bb2))
+* **search:** reset scrollTop after clear and select ([827fa73](https://github.com/synerise/synerise-design/commit/827fa73b5dc8f1c6f81ba4df18d61f6b95e694f3))
+* **search:** wIP: search performance ([5939748](https://github.com/synerise/synerise-design/commit/593974890d25feca19028387a2565cf11ba3447b))
+
+
+### Features
+
+* **avatar:** add ProductAvatar component ([8a49086](https://github.com/synerise/synerise-design/commit/8a49086f03c12fe3a86cd1c490b77de6517dddc0))
+
+
+
+
+
 # [0.87.0](https://github.com/synerise/synerise-design/compare/portal@0.86.1...portal@0.87.0) (2020-07-21)
 
 

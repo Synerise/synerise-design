@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.42](https://github.com/Synerise/synerise-design/compare/@synerise/ds-button-group@0.5.41...@synerise/ds-button-group@0.5.42) (2020-07-22)
+
+
+### Bug Fixes
+
+* **button-group:** change styles of focused button ([152b78d](https://github.com/Synerise/synerise-design/commit/152b78db8beda2b2b6c6ba3057d8d2bc39ab63e8))
+
+
+
+
+
 ## [0.5.41](https://github.com/Synerise/synerise-design/compare/@synerise/ds-button-group@0.5.40...@synerise/ds-button-group@0.5.41) (2020-07-20)
 
 
