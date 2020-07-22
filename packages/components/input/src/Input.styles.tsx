@@ -108,6 +108,10 @@ export const AntdInput = styled(
     color: ${(props): string => props.theme.palette['grey-700']};
     z-index: 1;
 
+    &::placeholder {
+      color: ${(props): string => props.theme.palette['grey-500']};
+    }
+
     .ds-input-prefix {
       border-top-left-radius: 3px;
       border-bottom-left-radius: 3px;

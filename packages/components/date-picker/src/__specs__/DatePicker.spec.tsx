@@ -8,6 +8,9 @@ const ROWS = 6;
 const WEEKDAYS = 7;
 const NAVBAR_ITEM_SELECTOR = '.ds-date-picker-nav  > div > button';
 describe('RawDatePicker', () => {
+  beforeEach(()=>{
+    Element.prototype.scrollTo = jest.fn();
+  })
   it('should render', () => {
     const element = renderWithProvider(
       <RawDatePicker

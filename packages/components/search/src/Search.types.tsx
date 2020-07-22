@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ListProps } from 'react-virtualized';
+import { ListProps } from 'react-window';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type AnyObject = Record<string, any>;
