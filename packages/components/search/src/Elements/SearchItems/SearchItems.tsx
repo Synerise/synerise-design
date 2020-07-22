@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Menu from '@synerise/ds-menu';
-import { List, ListRowProps } from 'react-virtualized';
+import { FixedSizeList as List, ListChildComponentProps } from 'react-window';
 import { MenuItemProps } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.types';
 
 import { SearchItemListProps } from './SearchItems.types';
@@ -15,24 +15,29 @@ export function renderSearchList<V extends any>(
   return <SearchItems {...props}>{children}</SearchItems>;
 }
 
-const rowRenderer = <T extends unknown>(
-  itemRender: (item: T) => React.ReactElement,
-  onItemClick: undefined | ((e: T) => void),
-  data: T[],
-  highlight: Pick<MenuItemProps, 'highlight'> | string | undefined
-) => ({ key, index, style }: ListRowProps): React.ReactElement => {
-  const item = data && data[index];
-  const itemReturnedFromRenderer = itemRender(item);
+type ItemData<T extends unknown> = {
+  itemRender: (item: T) => React.ReactElement;
+  onItemClick: undefined | ((e: T) => void);
+  items: T[];
+  highlight: Pick<MenuItemProps, 'highlight'> | string | undefined;
+};
+
+const rowRenderer = ({
+  index,
+  style,
+  data,
+}: Omit<ListChildComponentProps, 'data'> & { data: ItemData<Record<string, unknown>> }): React.ReactElement => {
+  const item = data && data.items[index];
+  const itemReturnedFromRenderer = data.itemRender(item);
   const rendererCustomStyles =
     (itemReturnedFromRenderer && itemReturnedFromRenderer.props && itemReturnedFromRenderer.props.style) || {};
   const mergedStyles = { ...rendererCustomStyles, ...style };
 
   return React.cloneElement(itemReturnedFromRenderer, {
-    key,
     ...itemReturnedFromRenderer.props,
     style: mergedStyles,
-    highlight,
-    onClick: () => onItemClick && onItemClick(item),
+    highlight: data.highlight,
+    onClick: () => data.onItemClick && data.onItemClick(item),
     className: 'ds-search-item',
   });
 };
@@ -49,6 +54,8 @@ const SearchItems: React.FC<SearchItemListProps<any>> = ({
   visibleRows,
   width,
 }) => {
+  const listRef = React.useRef<List>(null);
+
   const getHeight = React.useCallback((): number => {
     if (data) {
       const dataHeight = data.length * rowHeight;
@@ -66,18 +73,32 @@ const SearchItems: React.FC<SearchItemListProps<any>> = ({
     return 0;
   }, [data, height, rowHeight, visibleRows]);
 
+  React.useEffect(() => {
+    if (listRef.current && listProps) {
+      listRef.current.scrollTo(Math.max(0, listProps.scrollTop || 0));
+    }
+  }, [listProps]);
+
   return (
     <Menu>
       {data && (
         <List
           height={getHeight()}
-          width={width}
+          itemCount={data.length}
+          itemData={{
+            highlight,
+            itemRender,
+            items: data,
+            onItemClick,
+          }}
+          itemSize={rowHeight}
+          ref={listRef}
           style={listStyle}
-          rowHeight={rowHeight}
-          rowRenderer={rowRenderer(itemRender, onItemClick, data, highlight)}
-          rowCount={data.length}
+          width={width}
           {...listProps}
-        />
+        >
+          {rowRenderer}
+        </List>
       )}
     </Menu>
   );

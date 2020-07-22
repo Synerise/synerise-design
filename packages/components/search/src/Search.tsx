@@ -81,12 +81,14 @@ class Search extends React.PureComponent<SearchProps<AnyObject>, SearchState<Any
     if (e.key === 'Enter' && isInputOpen) {
       const narrowedParameters = filteredParameters && filteredParameters.length;
       const narrowedRecent = filteredRecent && filteredRecent.length;
+
       if (narrowedParameters === 1 && narrowedRecent === 0 && !parameterValue) {
         this.selectFilter(filteredParameters[0]);
         this.setState({ filteredParameters: parameters });
         return;
       }
-      this.setState({ isResultChosen: true });
+
+      this.setState({ isResultChosen: !!value });
     }
   }
 
@@ -129,7 +131,6 @@ class Search extends React.PureComponent<SearchProps<AnyObject>, SearchState<Any
       filteredParameters: parameters,
       filteredSuggestions: suggestions,
       isResultChosen: false,
-      scrollbarScrollTop: 0,
     });
   };
 
@@ -176,7 +177,6 @@ class Search extends React.PureComponent<SearchProps<AnyObject>, SearchState<Any
 
     this.setState({
       isResultChosen: true,
-      scrollbarScrollTop: 0,
     });
 
     onValueChange(item[textLookupConfig[dataKey]]);
@@ -186,7 +186,9 @@ class Search extends React.PureComponent<SearchProps<AnyObject>, SearchState<Any
     const { onValueChange, onParameterValueChange, filterLookupKey, textLookupConfig } = this.props;
 
     onValueChange('');
-    this.setState({ label: item, scrollbarScrollTop: 0 });
+    this.setState({
+      label: item,
+    });
 
     if (filterLookupKey && item[filterLookupKey]) {
       onValueChange(item[textLookupConfig.parameters]);
