@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@0.1.7...@synerise/ds-item-picker@0.1.8) (2020-07-22)
+
+
+### Bug Fixes
+
+* **item-picker:** fix styles ([869589f](https://github.com/Synerise/synerise-design/commit/869589ffcd1e8b11d15db289ab269f897a5218f6))
+* **item-picker:** fix trigger without clear confirmation ([54a3e79](https://github.com/Synerise/synerise-design/commit/54a3e7961fd2148db1927a64cac39479d365427e))
+
+
+
+
+
 ## [0.1.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@0.1.6...@synerise/ds-item-picker@0.1.7) (2020-07-21)
 
 
