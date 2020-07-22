@@ -98,16 +98,16 @@ const Trigger: React.FC<Props> = ({
   const handleChangeButtonClick = React.useCallback(
     (event: React.MouseEvent) => {
       event.stopPropagation();
-      withChangeButton && openDropdown();
+      openDropdown();
     },
-    [withChangeButton, openDropdown]
+    [openDropdown]
   );
 
   const handleOpen = React.useCallback(() => {
-    if (!selected) {
+    if (!selected || (selected && size === 'small' && !withClearConfirmation)) {
       openDropdown();
     }
-  }, [selected, openDropdown]);
+  }, [selected, openDropdown, size, withClearConfirmation]);
 
   const renderChangeButton = React.useMemo(() => {
     return (
@@ -124,7 +124,7 @@ const Trigger: React.FC<Props> = ({
 
   return (
     <S.TriggerWrapper
-      tabIndex={0}
+      tabIndex={selected ? undefined : 0}
       size={size}
       opened={opened}
       disabled={disabled}

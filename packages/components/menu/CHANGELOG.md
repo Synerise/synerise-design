@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.17](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.5.16...@synerise/ds-menu@0.5.17) (2020-07-21)
+
+
+### Bug Fixes
+
+* **menu:** removed styles responsible for styling icon prefix ([78c869b](https://github.com/Synerise/synerise-design/commit/78c869bf64efa0461509229147f16e8a4cccd060))
+* **search:** add onClear prop and update tests and stories ([ded5385](https://github.com/Synerise/synerise-design/commit/ded53857c3c55cd87e06c2038ccf1f6926b12b28))
+
+
+
+
+
 ## [0.5.16](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.5.15...@synerise/ds-menu@0.5.16) (2020-07-20)
 
 

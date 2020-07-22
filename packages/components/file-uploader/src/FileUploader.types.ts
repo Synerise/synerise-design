@@ -1,11 +1,17 @@
 import { FileViewTexts } from './FileView/FileView';
 
 export interface ExtendedFile {
-  file: File;
+  file: FileWithContent;
   error?: string;
   disabled?: boolean;
   progress?: number;
 }
+
+export interface FileWithContent extends File {
+  content?: FileContent;
+}
+
+export type FileContent = string | ArrayBuffer | null;
 
 type FileUploaderTexts = FileViewTexts & {
   buttonLabel: string | React.ReactNode;
@@ -25,7 +31,6 @@ export interface FileUploaderProps {
   texts: FileUploaderTexts;
   files: ExtendedFile[];
   accept?: string[];
-
-  onRemove?: (file: File, index: number) => void;
-  onUpload?: (files: File[]) => void;
+  onRemove?: (file: FileWithContent, index: number) => void;
+  onUpload?: (files: FileWithContent[]) => void;
 }

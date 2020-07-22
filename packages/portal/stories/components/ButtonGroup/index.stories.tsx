@@ -17,15 +17,11 @@ const positionOfButtons = {
 };
 
 const stories = {
-  buttonGroup: () => {
+  groupButtons: () => {
     // ButtonGroup props
-    const withTitle = boolean('With title', true);
-    const title = text('Title', 'Some title');
-    const withDescription = boolean('With description', true);
-    const description = text('Description', 'Some description');
     const size = select('Button size', buttonSizes, 'default');
     const fullWidth = boolean('Full width', false);
-    const buttonsPosition = select('Horizontal position of buttons', positionOfButtons, positionOfButtons.left);
+    const buttonsPosition = select('Horizontal position of buttons', positionOfButtons, positionOfButtons.center);
 
     // Button props
     const buttonTypes = {
@@ -60,8 +56,6 @@ const stories = {
       >
         <ButtonGroup
           size={size}
-          title={withTitle && title}
-          description={withDescription && description}
           fullWidth={fullWidth}
           buttonsPosition={buttonsPosition}
         >
@@ -121,9 +115,7 @@ const stories = {
           padding: '16px',
           display: 'flex',
           width: '331px',
-          position: 'absolute',
-          top: 0,
-          left: 237,
+          margin: 'auto',
           height: '100%',
           justifyContent: 'center',
           alignItems: 'center',
