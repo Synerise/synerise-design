@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.43](https://github.com/Synerise/synerise-design/compare/@synerise/ds-button-group@0.5.42...@synerise/ds-button-group@0.5.43) (2020-07-22)
+
+
+### Bug Fixes
+
+* **time-picker:** added a scroll to selected functionality ([9b326ad](https://github.com/Synerise/synerise-design/commit/9b326ad6af56485710ab810db679ac45e857b34d))
+
+
+
+
+
 ## [0.5.42](https://github.com/Synerise/synerise-design/compare/@synerise/ds-button-group@0.5.41...@synerise/ds-button-group@0.5.42) (2020-07-22)
 
 

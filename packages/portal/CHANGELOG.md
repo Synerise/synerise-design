@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.88.1](https://github.com/synerise/synerise-design/compare/portal@0.88.0...portal@0.88.1) (2020-07-22)
+
+
+### Bug Fixes
+
+* **time-picker:** added a scroll to selected functionality ([9b326ad](https://github.com/synerise/synerise-design/commit/9b326ad6af56485710ab810db679ac45e857b34d))
+
+
+
+
+
 # [0.88.0](https://github.com/synerise/synerise-design/compare/portal@0.87.0...portal@0.88.0) (2020-07-22)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@0.1.9...@synerise/ds-date-picker@0.1.10) (2020-07-22)
+
+
+### Bug Fixes
+
+* **time-picker:** added a scroll to selected functionality ([9b326ad](https://github.com/Synerise/synerise-design/commit/9b326ad6af56485710ab810db679ac45e857b34d))
+
+
+
+
+
 ## [0.1.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@0.1.8...@synerise/ds-date-picker@0.1.9) (2020-07-20)
 
 
