@@ -10,6 +10,7 @@ import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 const wrapperStyles = {
   width: '340px',
   background: 'white',
+  paddingBottom: '24px',
 };
 
 const stories = {
