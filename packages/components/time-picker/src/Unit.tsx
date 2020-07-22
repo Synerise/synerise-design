@@ -39,7 +39,7 @@ const Unit: React.FC<UnitProps> = ({ options, disabled, value, unit, onSelect })
         unitContainerRef.current.scrollTo({ top: offsetToParent, behavior: scrollBehaviour });
       setContainerHeight(unitContainerRef.current.offsetHeight);
     }
-  }, [selectedCellRef, unitContainerRef, isFirstRender, forceUpdate]);
+  }, [selectedCellRef, unitContainerRef, isFirstRender, forceUpdate, containerHeight]);
   return (
     <S.Unit data-testid={`ds-time-picker-unit-${unit}`} ref={unitContainerRef}>
       {options.map((option: number) => {
