@@ -20,25 +20,29 @@ const decorator = storyFn => (
 const NOOP = (): void => {};
 
 const parameters = [
-  { text: 'First Name', icon: <Icon component={<VarTypeStringM />} color={theme.palette['grey-600']} /> },
-  { text: 'Last Name', icon: <Icon component={<VarTypeStringM />} color={theme.palette['grey-600']} /> },
-  { text: 'Sex', icon: <Icon component={<VarTypeStringM />} color={theme.palette['grey-600']} /> },
-  { text: 'City', icon: <Icon component={<VarTypeStringM />} color={theme.palette['grey-600']} /> },
-  { text: 'Transactions', icon: <Icon component={<VarTypeNumberM />} color={theme.palette['grey-600']} /> },
-  { text: 'IP', icon: <Icon component={<VarTypeStringM />} color={theme.palette['grey-600']} /> },
-  { text: 'Price', icon: <Icon component={<VarTypeListM />} color={theme.palette['grey-600']} /> },
-  { text: 'Discount', icon: <Icon component={<VarTypeListM />} color={theme.palette['grey-600']} /> },
-  { text: 'Products bought', icon: <Icon component={<VarTypeListM />} color={theme.palette['grey-600']} /> },
-  { text: 'Loyalty points', icon: <Icon component={<VarTypeListM />} color={theme.palette['grey-600']} /> },
+  { text: 'First Name', icon: <VarTypeStringM /> },
+  { text: 'Last Name', icon: <VarTypeStringM /> },
+  { text: 'Sex', icon: <VarTypeStringM /> },
+  { text: 'City', icon: <VarTypeStringM /> },
+  { text: 'Transactions', icon: <VarTypeNumberM /> },
+  { text: 'IP', icon: <VarTypeStringM /> },
+  { text: 'Price', icon: <VarTypeListM /> },
+  { text: 'Discount', icon: <VarTypeListM /> },
+  { text: 'Products bought', icon: <VarTypeListM /> },
+  { text: 'Loyalty points', icon: <VarTypeListM /> },
 ];
 
 const recent = [
-  { text: 'Bangkok', filter: 'City', icon: <Icon component={<VarTypeStringM />} color={theme.palette['grey-600']}/> },
-  { text: 'Frank', filter: 'Last Name', icon: <Icon component={<VarTypeStringM />} color={theme.palette['grey-600']}/>},
-  { text: 'Basel', filter: 'City', icon: <Icon component={<VarTypeStringM />} color={theme.palette['grey-600']}/> },
-  { text: 'Chicago', filter: 'City', icon: <Icon component={<VarTypeStringM />} color={theme.palette['grey-600']}/> },
-  { text: 'London', filter: 'City', icon: <Icon component={<VarTypeStringM />} color={theme.palette['grey-600']}/>},
-  { text: 'Brandon', filter: 'Last Name', icon: <Icon component={<VarTypeStringM />} color={theme.palette['grey-600']}/> },
+  { text: 'Bangkok', filter: 'City', icon: <VarTypeStringM /> },
+  { text: 'Frank', filter: 'Last Name', icon: <VarTypeStringM /> },
+  { text: 'Basel', filter: 'City', icon: <VarTypeStringM /> },
+  { text: 'Chicago', filter: 'City', icon: <VarTypeStringM /> },
+  { text: 'London', filter: 'City', icon: <VarTypeStringM /> },
+  { text: 'Brandon', filter: 'Last Name', icon: <VarTypeStringM /> },
+  { text: 'Male', filter: 'Sex', icon: <VarTypeStringM /> },
+  { text: 'Brandon', filter: 'Last Name', icon: <VarTypeStringM /> },
+  { text: 'Rogers', filter: 'Last Name', icon: <VarTypeStringM /> },
+  { text: 'Richards', filter: 'Last Name', icon: <VarTypeStringM /> },
 ];
 const recentWithAvatars = getItemsWithAvatar(20);
 
@@ -128,7 +132,7 @@ const stories = {
               highlight={value}
               style={{ paddingLeft: '12px' }}
               onItemHover={NOOP}
-              prefixel={item && <Icon component={item && item.icon} />}
+              prefixel={item && <Icon component={item && item.icon} color={theme.palette['grey-600']} />}
             >
               {item && item.text}
             </Menu.Item>
@@ -204,7 +208,7 @@ const stories = {
             <Menu.Item
               style={{ paddingLeft: '12px' }}
               onItemHover={NOOP}
-              prefixel={item && <Icon component={item && item.icon} />}
+              prefixel={item && <Icon component={item && item.icon}  color={theme.palette['grey-600']} />}
             >
               {item && item.text}
             </Menu.Item>
