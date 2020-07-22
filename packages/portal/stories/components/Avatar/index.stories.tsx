@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {text, select, boolean} from '@storybook/addon-knobs';
-import Avatar from '@synerise/ds-avatar';
+import Avatar, { ProductAvatar } from '@synerise/ds-avatar';
 import Badge from '@synerise/ds-badge';
 import Icon from '@synerise/ds-icon';
 import theme from "@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme";
@@ -8,12 +8,17 @@ import MailS from "@synerise/ds-icon/dist/icons/MailS";
 import MailM from "@synerise/ds-icon/dist/icons/MailM";
 
 const wrapperStyles = {
-  padding: '40px',
-  width: '80%',
-  margin: '0 auto',
+  position: 'fixed',
+  top: 0,
+  left: 0,
+  bottom: 0,
+  right: 0,
   display: 'flex',
-  justifyContent: 'space-around',
   alignItems: 'center',
+  justifyContent: 'center',
+  overflow: 'auto',
+  width: '100%',
+  height: '100%',
 };
 
 const decorator = storyFn => <div style={wrapperStyles}>{storyFn()}</div>;
@@ -76,7 +81,6 @@ const getIconSize = (size) => {
 
 const stories = {
   withPhoto: () => (
-    <div style={{paddingTop: 200}}>
       <Badge status={select('Set status', statuses, 'blocked')}>
         <Avatar
           size={select('Set size', sizes, 'large')}
@@ -87,10 +91,8 @@ const stories = {
           disabled={boolean('Disabled', false)}
         >JJ</Avatar>
       </Badge>
-    </div>
   ),
   withInitals: () => (
-    <div style={{paddingTop: 200}}>
       <Badge status={select('Set status', statuses, 'active')}>
         <Avatar
           backgroundColor={select('Set background color', backgroundColors, 'green')}
@@ -104,10 +106,8 @@ const stories = {
           {text('Set initals', 'DS')}
         </Avatar>
       </Badge>
-    </div>
   ),
   withIcon: () => (
-    <div style={{paddingTop: 200}}>
       <Badge status={select('Set status', statuses, 'blocked')}>
         <Avatar
           backgroundColor={select('Set background color', backgroundColors, 'blue')}
@@ -122,6 +122,13 @@ const stories = {
           disabled={boolean('Disabled', false)}
         />
       </Badge>
+  ),
+  productAvatar: () => (
+    <div style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+      <ProductAvatar
+        size={select('Set size', sizes, 'medium')}
+        src={boolean('With image', false) && imgSrc}
+      />
     </div>
   ),
 };
