@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { injectIntl } from 'react-intl';
-
+import { v4 as uuid } from 'uuid';
 import Button from '@synerise/ds-button';
 import Tooltip from '@synerise/ds-tooltip';
 import { CalendarM, ClockM } from '@synerise/ds-icon/dist/icons';
 import Icon from '@synerise/ds-icon';
 import * as S from './Footer.styles';
 import { Props } from './Footer.types';
+
 
 const Footer: React.FC<Props> = ({
   text,
@@ -28,6 +29,7 @@ const Footer: React.FC<Props> = ({
         mode="single-icon"
         disabled={!canSwitchMode}
         onClick={onSwitchMode}
+        key={uuid()}
         className="ds-date-time-switch"
       >
         <Icon component={mode === 'time' ? <CalendarM /> : <ClockM />} />
