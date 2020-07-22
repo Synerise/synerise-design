@@ -6,18 +6,28 @@ import { focusWithArrowKeys } from '@synerise/ds-utils';
 import { hasSomeElement, getAllElementsFiltered, hasSomeElementFiltered } from './Elements/utils/searchUtils';
 import * as S from './Search.styles';
 import { SearchProps, SearchState, SelectResultDataKeys, AnyObject } from './Search.types';
-import { SearchInput } from './Elements';
-import SearchItemsContainer from './Elements/SearchItemsContainer/SearchItemsContainer';
+import { SearchHeader, SearchInput, SearchItems } from './Elements';
 
 const MENU_WIDTH_OFFSET = 17;
 const INPUT_EXPAND_ANIMATION_DURATION = 200;
 const SCROLLBAR_HEIGHT_OFFSET = 28;
+const LIST_HEADER_HEIGHT = 42;
+
+const getParametersScrollTop = ({
+  scrollTop,
+  rowHeight,
+  recent,
+}: {
+  scrollTop: number;
+  rowHeight: number;
+  recent: AnyObject[];
+}): number => scrollTop - LIST_HEADER_HEIGHT - (hasSomeElement(recent) ? recent.length * rowHeight : 0);
 
 class Search extends React.PureComponent<SearchProps<AnyObject>, SearchState<AnyObject>> {
   private wrapperRef = React.createRef<HTMLDivElement>();
+
   constructor(props: SearchProps<AnyObject>) {
     super(props);
-
     // eslint-disable-next-line react/state-in-constructor
     this.state = {
       isInputOpen: !!props.value || !!props.parameterValue,
@@ -32,6 +42,7 @@ class Search extends React.PureComponent<SearchProps<AnyObject>, SearchState<Any
       itemsListWidth: props.width ? props.width - MENU_WIDTH_OFFSET : 0,
       toggleInputTrigger: false,
       focusInputTrigger: false,
+      scrollbarScrollTop: 0,
     };
   }
 
@@ -104,7 +115,7 @@ class Search extends React.PureComponent<SearchProps<AnyObject>, SearchState<Any
     if (isInputOpen && !value && !label) {
       this.setState({ toggleInputTrigger: !toggleInputTrigger });
     }
-    this.setState({ isListVisible: false });
+    this.setState({ isListVisible: false, scrollbarScrollTop: 0 });
   };
 
   handleClearValue = (): void => {
@@ -118,6 +129,7 @@ class Search extends React.PureComponent<SearchProps<AnyObject>, SearchState<Any
       filteredParameters: parameters,
       filteredSuggestions: suggestions,
       isResultChosen: false,
+      scrollbarScrollTop: 0,
     });
   };
 
@@ -164,6 +176,7 @@ class Search extends React.PureComponent<SearchProps<AnyObject>, SearchState<Any
 
     this.setState({
       isResultChosen: true,
+      scrollbarScrollTop: 0,
     });
 
     onValueChange(item[textLookupConfig[dataKey]]);
@@ -173,7 +186,7 @@ class Search extends React.PureComponent<SearchProps<AnyObject>, SearchState<Any
     const { onValueChange, onParameterValueChange, filterLookupKey, textLookupConfig } = this.props;
 
     onValueChange('');
-    this.setState({ label: item });
+    this.setState({ label: item, scrollbarScrollTop: 0 });
 
     if (filterLookupKey && item[filterLookupKey]) {
       onValueChange(item[textLookupConfig.parameters]);
@@ -187,48 +200,63 @@ class Search extends React.PureComponent<SearchProps<AnyObject>, SearchState<Any
   renderRecentItems(): React.ReactNode | false {
     const { recent, recentDisplayProps, value } = this.props;
     const { label, filteredRecent, itemsListWidth } = this.state;
+    const { title, tooltip, rowHeight, itemRender } = recentDisplayProps;
 
     return (
       recent &&
-      recentDisplayProps &&
       !label &&
-      filteredRecent &&
       hasSomeElement(filteredRecent) && (
-        <SearchItemsContainer
-          data={filteredRecent}
-          displayProps={recentDisplayProps}
-          highlight={value}
-          onItemClick={(item: AnyObject): void => this.selectResult(item, SelectResultDataKeys.RECENT)}
-          width={itemsListWidth}
-        />
+        <>
+          {!!title && <SearchHeader headerText={title} tooltip={tooltip} />}
+          <SearchItems
+            data={filteredRecent}
+            highlight={value}
+            itemRender={itemRender}
+            onItemClick={(item: AnyObject): void => this.selectResult(item, SelectResultDataKeys.RECENT)}
+            rowHeight={rowHeight}
+            width={itemsListWidth}
+          />
+        </>
       )
     );
   }
 
   renderParameters(): React.ReactNode | false {
-    const { parameters, parametersDisplayProps, value } = this.props;
-    const { label, filteredParameters, itemsListWidth } = this.state;
+    const { parameters, parametersDisplayProps, value, dropdownMaxHeight, recentDisplayProps } = this.props;
+    const { label, filteredParameters, itemsListWidth, scrollbarScrollTop, filteredRecent } = this.state;
+    const { title, tooltip, rowHeight, itemRender, listProps } = parametersDisplayProps;
 
     return (
       parameters &&
-      parametersDisplayProps &&
       !label &&
-      filteredParameters &&
       hasSomeElement(filteredParameters) && (
-        <SearchItemsContainer
-          data={filteredParameters}
-          displayProps={parametersDisplayProps}
-          highlight={value}
-          onItemClick={(item: AnyObject): void => this.selectFilter(item)}
-          width={itemsListWidth}
-        />
+        <>
+          {!!title && <SearchHeader headerText={title} tooltip={tooltip} />}
+          <SearchItems
+            data={filteredParameters}
+            height={dropdownMaxHeight}
+            highlight={value}
+            itemRender={itemRender}
+            onItemClick={(item: AnyObject): void => this.selectFilter(item)}
+            rowHeight={rowHeight}
+            width={itemsListWidth}
+            listProps={{
+              scrollTop: getParametersScrollTop({
+                scrollTop: scrollbarScrollTop,
+                recent: filteredRecent,
+                rowHeight: recentDisplayProps.rowHeight,
+              }),
+              ...(listProps || {}),
+            }}
+          />
+        </>
       )
     );
   }
 
   renderSuggestions(): React.ReactNode | false {
-    const { suggestions, parameterValue, suggestionsDisplayProps, value } = this.props;
-    const { isResultChosen, itemsListWidth, filteredSuggestions } = this.state;
+    const { suggestions, parameterValue, suggestionsDisplayProps, value, dropdownMaxHeight } = this.props;
+    const { isResultChosen, itemsListWidth, filteredSuggestions, scrollbarScrollTop } = this.state;
 
     return (
       suggestions &&
@@ -237,13 +265,24 @@ class Search extends React.PureComponent<SearchProps<AnyObject>, SearchState<Any
       !isResultChosen &&
       filteredSuggestions &&
       hasSomeElement(filteredSuggestions) && (
-        <SearchItemsContainer
-          displayProps={suggestionsDisplayProps}
-          onItemClick={(item: AnyObject): void => this.selectResult(item, SelectResultDataKeys.SUGGESTIONS)}
-          highlight={value}
-          data={filteredSuggestions}
-          width={itemsListWidth}
-        />
+        <>
+          {!!suggestionsDisplayProps.title && (
+            <SearchHeader headerText={suggestionsDisplayProps.title} tooltip={suggestionsDisplayProps.tooltip} />
+          )}
+          <SearchItems
+            data={filteredSuggestions}
+            height={dropdownMaxHeight}
+            highlight={value}
+            itemRender={suggestionsDisplayProps.itemRender}
+            onItemClick={(item: AnyObject): void => this.selectResult(item, SelectResultDataKeys.SUGGESTIONS)}
+            rowHeight={suggestionsDisplayProps.rowHeight}
+            width={itemsListWidth}
+            listProps={{
+              scrollTop: scrollbarScrollTop,
+              ...(suggestionsDisplayProps.listProps || {}),
+            }}
+          />
+        </>
       )
     );
   }
@@ -316,7 +355,15 @@ class Search extends React.PureComponent<SearchProps<AnyObject>, SearchState<Any
                 isInputOpen && !isResultChosen && isListVisible && this.isListItemRendered() ? 'search-list-open' : ''
               }
             >
-              <Scrollbar absolute maxHeight={dropdownMaxHeight - SCROLLBAR_HEIGHT_OFFSET}>
+              <Scrollbar
+                absolute
+                maxHeight={dropdownMaxHeight - SCROLLBAR_HEIGHT_OFFSET}
+                onScroll={({ currentTarget }: React.SyntheticEvent): void => {
+                  this.setState({
+                    scrollbarScrollTop: currentTarget.scrollTop,
+                  });
+                }}
+              >
                 {this.renderRecentItems()}
                 {!!filteredParameters?.length && !!filteredRecent?.length && !label && divider}
                 {this.renderParameters()}

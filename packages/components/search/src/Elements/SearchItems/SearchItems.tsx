@@ -40,26 +40,37 @@ const rowRenderer = <T extends unknown>(
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const SearchItems: React.FC<SearchItemListProps<any>> = ({
   data,
-  onItemClick,
-  rowHeight,
-  width,
+  height,
   highlight,
   itemRender,
   listProps,
+  onItemClick,
+  rowHeight,
   visibleRows,
+  width,
 }) => {
   const getHeight = React.useCallback((): number => {
-    if (data && visibleRows) {
-      return data.length > visibleRows ? visibleRows * rowHeight : data.length * rowHeight;
+    if (data) {
+      const dataHeight = data.length * rowHeight;
+
+      if (visibleRows) {
+        return visibleRows > data.length ? visibleRows * rowHeight : dataHeight;
+      }
+
+      if (height) {
+        return dataHeight > height ? height : dataHeight;
+      }
+
+      return dataHeight;
     }
     return 0;
-  }, [visibleRows, data, rowHeight]);
+  }, [data, height, rowHeight, visibleRows]);
 
   return (
     <Menu>
       {data && (
         <List
-          height={visibleRows ? getHeight() : data.length * rowHeight}
+          height={getHeight()}
           width={width}
           style={listStyle}
           rowHeight={rowHeight}

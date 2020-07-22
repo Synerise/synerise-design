@@ -144,6 +144,9 @@ export const HeaderContent = styled.div<{ compact?: boolean; hasIcon: boolean }>
     `}
 `;
 
-export const ChildrenContainer = styled.div<{ hasHeader?: boolean; withoutPadding?: boolean; isContentful?: boolean }>`
-  padding: ${(props): string => (props.withoutPadding || !props.isContentful ? '0' : '24px')};
+export const ChildrenContainer = styled.div<{ hasHeader?: boolean }>``;
+
+export const PaddingWrapper = styled.div<{ isContentful?: string; withoutPadding?: boolean }>`
+  padding: ${(props): string => (props.withoutPadding ? '0' : '24px')};
+  ${(props): string => (props.withoutPadding || !props.isContentful ? '0' : '24px')};
 `;
