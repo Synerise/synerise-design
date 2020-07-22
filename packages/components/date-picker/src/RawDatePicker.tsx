@@ -48,11 +48,13 @@ class RawDatePicker extends React.Component<Props, State> {
 
   getSnapshotBeforeUpdate(prevProps: Readonly<Props>): null {
     const { value } = this.props;
+    const { mode } = this.state;
     if (prevProps?.value !== value) {
       this.setState({
         value,
         month: fnsStartOfMonth(value || new Date()),
         changed: true,
+        mode: value === undefined ? 'date' : mode,
       });
     }
     return null;
