@@ -27,7 +27,10 @@
   "dependencies": {
     "@synerise/ds-icon": "^0.21.0",
     "@synerise/ds-typography": "^0.8.3",
-    "@synerise/ds-utils": "^0.8.31"
+    "@synerise/ds-utils": "^0.8.31",
+    "rc-animate": "^3.1.0",
+    "rc-tween-one": "^2.7.3",
+    "velocity-animate": "^1.5.2"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
