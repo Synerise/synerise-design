@@ -16,7 +16,8 @@ export type UnitProps = UnitConfig & {
 };
 
 const Unit: React.FC<UnitProps> = ({ options, disabled, value, unit, onSelect }) => {
-  const [selected, setSelected] = React.useState(value && dayjs(value).get(unit));
+  const selected = value && dayjs(value).get(unit);
+  const [forceUpdate, setForceUpdate] = React.useState<boolean>(false);
   const selectedCellRef = React.useRef<HTMLButtonElement>(null);
   const unitContainerRef = React.useRef<HTMLDivElement>(null);
   const [isFirstRender, setFirstRender] = React.useState<boolean>(true);
@@ -31,9 +32,9 @@ const Unit: React.FC<UnitProps> = ({ options, disabled, value, unit, onSelect })
     if (selectedCellRef.current && unitContainerRef.current) {
       const offsetToParent = selectedCellRef.current.offsetTop - unitContainerRef.current.offsetTop;
       const scrollBehaviour = isFirstRender ? 'auto' : 'smooth';
-      unitContainerRef.current.scrollTo({ top: offsetToParent, behavior: scrollBehaviour });
+      unitContainerRef && unitContainerRef.current && unitContainerRef.current.scrollTo({ top: offsetToParent, behavior: scrollBehaviour });
     }
-  }, [selectedCellRef, selectedCellRef.current, unitContainerRef, unitContainerRef.current, selected]);
+  }, [selectedCellRef, unitContainerRef, isFirstRender, forceUpdate]);
 
   return (
     <S.Unit data-testid={`ds-time-picker-unit-${unit}`} ref={unitContainerRef}>
@@ -47,7 +48,7 @@ const Unit: React.FC<UnitProps> = ({ options, disabled, value, unit, onSelect })
             disabled={isDisabled}
             onClick={(): void => {
               onSelect(option);
-              setSelected(option);
+              setForceUpdate(!forceUpdate);
             }}
             active={isSelected}
             ref={isSelected ? selectedCellRef : null}
