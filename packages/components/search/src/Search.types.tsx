@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { ListProps } from 'react-virtualized';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type AnyObject = Record<string, any>;
@@ -10,6 +11,7 @@ export type DataSetProps = {
   title: string;
   tooltip?: string;
   visibleRows?: number;
+  listProps?: Partial<ListProps>;
 };
 
 export type SearchLookupConfig = {
@@ -52,6 +54,7 @@ export type SearchState<T extends AnyObject> = {
   toggleInputTrigger: boolean;
   isResultChosen: boolean;
   itemsListWidth: number;
+  scrollbarScrollTop: number;
 };
 
 export enum SelectResultDataKeys {

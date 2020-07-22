@@ -7,4 +7,5 @@ export type SearchItemListProps<T> = {
   rowHeight: number;
   width: number;
   visibleRows?: number;
+  height?: number;
 };

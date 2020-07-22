@@ -186,7 +186,7 @@ const stories = {
             <Divider dashed />
           </div>
         }
-        dropdownMaxHeight={380}
+        dropdownMaxHeight={460}
         filterLookupKey="filter"
         onClear={() => {
           setParameterValue('');
