@@ -115,7 +115,7 @@ describe('TimePicker', () => {
 
   it('should render with value', async () => {
     // scrollTo doesn't exist in the JSDOM, so we mock it by attaching the empty function to all the elements.
-    Element.prototype.scrollTo = () => {};
+    Element.prototype.scrollTo = jest.fn();
     // ARRANGE
     const { getByPlaceholderText } = renderWithProvider(
       <TimePicker
