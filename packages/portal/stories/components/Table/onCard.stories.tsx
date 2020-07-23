@@ -316,6 +316,7 @@ const stories = {
         title={text('Set card title', 'Table on card')}
         withoutPadding
         size={select('Select card size', ['small', 'medium', 'large', 'extraLarge'], 'extraLarge')}
+        showContent
       >
         <Table
           title={`${filteredDataSource().length} ${text('Set name of table items', 'results')}`}
