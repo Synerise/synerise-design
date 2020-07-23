@@ -13,6 +13,7 @@ import { TagShape } from '@synerise/ds-tags';
 import DSFlag from '@synerise/ds-flag';
 import { FlagContainer } from './stories.styles';
 import Tooltip from '@synerise/ds-tooltip';
+import InputNumber from '@synerise/ds-input-number';
 
 const decorator = (storyFn) => <div style={{ width: '300px' }}>{storyFn()}</div>;
 const sizes = ['default', 'large'];
@@ -100,9 +101,14 @@ const stories = {
     );
   },
   inputGroup: () => {
-    const [value, setValue] = React.useState<string>('');
-    const size = knobSelect('Set size', sizes as any, 'default');
+    const secondInputType = {
+      TextInput:'Text Input',
+      NumericInput:'Numeric Input',
 
+    }
+    const inputType = knobSelect('Set second input type',secondInputType, secondInputType.TextInput)
+    const [value, setValue] = React.useState<string | number>('');
+    const size = knobSelect('Set size', sizes as any, 'default');
     const select = (
       <Select
         size={size}
@@ -129,6 +135,17 @@ const stories = {
       />
     );
 
+    const inputNumber = (
+      <InputNumber
+        raw
+        placeholder={text('placeholder', 'Placeholder')}
+        disabled={boolean('disabled', false)}
+        onChange={(value) => setValue(value)}
+        value={value as number}
+        error={boolean('Set input error', false)}
+        style={{ width: '50%' }}
+      />
+    )
     return (
       <InputGroup
         size={size}
@@ -140,7 +157,7 @@ const stories = {
         compact
       >
         {select}
-        {input}
+        {inputType===secondInputType.TextInput ? input : inputNumber}
       </InputGroup>
     );
   },
