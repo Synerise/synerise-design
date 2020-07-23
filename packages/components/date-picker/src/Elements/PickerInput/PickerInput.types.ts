@@ -16,4 +16,5 @@ export type Props = {
   onClick?: () => void;
   onClear?: () => void;
   clearTooltip?: string | React.ReactNode;
+  highlight?: boolean;
 };
