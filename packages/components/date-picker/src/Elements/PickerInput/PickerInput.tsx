@@ -1,8 +1,7 @@
 import * as React from 'react';
 import * as moment from 'moment';
-import Tooltip from '@synerise/ds-tooltip';
-import { Input } from '@synerise/ds-input';
 import Icon from '@synerise/ds-icon';
+import Tooltip from '@synerise/ds-tooltip';
 
 import { SizeType } from 'antd/lib/config-provider/SizeContext';
 import { CalendarM, Close3S } from '@synerise/ds-icon/dist/icons';
@@ -21,6 +20,7 @@ const PickerInput: React.FC<Props> = ({
   onClear,
   onClick,
   clearTooltip,
+  highlight,
   ...rest
 }: Props) => {
   const [hovered, setHovered] = React.useState<boolean>(false);
@@ -62,7 +62,8 @@ const PickerInput: React.FC<Props> = ({
       onMouseLeave={(): void => setHovered(false)}
       onClick={handleInputClick}
     >
-      <Input
+      <S.Input
+        active={!!highlight}
         resetMargin
         readOnly
         type="text"

@@ -123,3 +123,11 @@ export const TimePickerInput = styled(Input)`
     }
   }
 `;
+
+export const PlaceholderWrapper = styled.div` 
+  width:100%:
+  position:relative;
+`;
+export const Placeholder = styled.div<{ height: number }>`
+  height: ${(props): number => props.height}px;
+`;

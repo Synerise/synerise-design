@@ -47,7 +47,7 @@ class Search extends React.PureComponent<SearchProps<AnyObject>, SearchState<Any
   }
 
   componentDidUpdate(prevProps: SearchProps<AnyObject>): void {
-    const { recent, suggestions, parameters, value, textLookupConfig } = this.props;
+    const { recent, suggestions, parameters, value, textLookupConfig, hideLabel } = this.props;
 
     if (prevProps.recent.length !== recent.length) {
       // eslint-disable-next-line react/no-did-update-set-state
@@ -62,6 +62,14 @@ class Search extends React.PureComponent<SearchProps<AnyObject>, SearchState<Any
     if (suggestions && prevProps.suggestions?.length !== suggestions.length) {
       // eslint-disable-next-line react/no-did-update-set-state
       this.setState({ filteredSuggestions: getAllElementsFiltered(suggestions, value, textLookupConfig.suggestions) });
+    }
+
+    if (hideLabel && prevProps.hideLabel !== hideLabel) {
+      // eslint-disable-next-line react/no-did-update-set-state
+      this.setState({
+        label: null,
+        isResultChosen: false,
+      });
     }
   }
 
@@ -290,7 +298,7 @@ class Search extends React.PureComponent<SearchProps<AnyObject>, SearchState<Any
   }
 
   renderInputWrapper(): React.ReactNode {
-    const { placeholder, clearTooltip, value, textLookupConfig, filterLookupKey, hideLabel } = this.props;
+    const { placeholder, clearTooltip, value, textLookupConfig, filterLookupKey } = this.props;
     const { label, focusInputTrigger, toggleInputTrigger } = this.state;
 
     return (
@@ -299,7 +307,7 @@ class Search extends React.PureComponent<SearchProps<AnyObject>, SearchState<Any
         clearTooltip={clearTooltip}
         filterLookupKey={filterLookupKey}
         textLookupKey={textLookupConfig.parameters}
-        filterLabel={hideLabel ? null : label}
+        filterLabel={label}
         focusTrigger={focusInputTrigger}
         onButtonClick={(): void => this.setState({ focusInputTrigger: !focusInputTrigger })}
         onChange={(newValue: string): void => this.handleChange(newValue)}
@@ -353,9 +361,7 @@ class Search extends React.PureComponent<SearchProps<AnyObject>, SearchState<Any
           >
             <S.SearchDropdownContent
               maxHeight={dropdownMaxHeight}
-              className={
-                isInputOpen && !isResultChosen && isListVisible && this.isListItemRendered() ? 'search-list-open' : ''
-              }
+              className={isInputOpen && !isResultChosen && this.isListItemRendered() ? 'search-list-open' : ''}
             >
               <Scrollbar
                 absolute
