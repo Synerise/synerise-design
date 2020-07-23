@@ -23,7 +23,7 @@ const OffsetField: React.FC<Props> = ({
           id: currentGroup === GROUPS.PAST ? 'DS.DATE-RANGE-PICKER.BEFORE' : 'DS.DATE-RANGE-PICKER.AFTER',
         })}
       </S.Title>
-      <S.InputSelectGroup>
+      <S.InputSelectGroup compact>
         <InputNumber
           min={1}
           max={CONST.RELATIVE_OFFSET_MAX}
