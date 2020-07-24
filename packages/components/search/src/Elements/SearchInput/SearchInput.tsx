@@ -49,7 +49,7 @@ class SearchInput extends React.Component<SearchInputProps, SearchInputState> {
     const { onToggle } = this.props;
     const { isInputOpen } = this.state;
     onToggle && onToggle(!isInputOpen);
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       isInputOpen: !prevState.isInputOpen,
     }));
   };
@@ -125,7 +125,7 @@ class SearchInput extends React.Component<SearchInputProps, SearchInputState> {
         >
           <S.LeftSide isOpen={isInputOpen}>
             {filterLabel && (
-              <S.Filter ref={this.handleOffsetWithFilter}>
+              <S.Filter ref={this.handleOffsetWithFilter} offset={inputOffset}>
                 {filterLabel.icon && !isResultChosen && <Icon component={filterLabel.icon} />}
                 <span>{filterLabel[filterLookupKey || ''] || filterLabel[textLookupKey || '']}</span>
               </S.Filter>
