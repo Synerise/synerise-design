@@ -55,6 +55,7 @@ export const Filter = styled.div<{ offset: number }>`
   position: relative;
   padding-right: ${(props): string => (props.offset >= MAX_FILTER_WIDTH ? '2px' : '4px')};
   span {
+    margin-left: 4px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
