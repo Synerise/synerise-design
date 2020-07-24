@@ -4,7 +4,7 @@ import { GroupProps } from 'antd/es/input';
 import * as InputStyles from './Input.styles';
 import Label from './Label/Label';
 
-interface Props extends GroupProps {
+export interface Props extends GroupProps {
   label?: React.ReactNode;
   errors?: string[];
   description?: React.ReactNode;
