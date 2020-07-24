@@ -3,6 +3,7 @@ import Button from '@synerise/ds-button';
 import * as React from 'react';
 import Menu from '@synerise/ds-menu';
 import { InputGroup } from '@synerise/ds-input';
+import { Props as InputGroupProps } from '@synerise/ds-input/dist/InputGroup';
 
 export const Container = styled.div``;
 
@@ -32,9 +33,7 @@ export const CustomForm = styled.div`
   display: flex;
 `;
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore
-export const InputSelectGroup = styled(InputGroup)`
+export const InputSelectGroup = styled(InputGroup)<InputGroupProps>`
   && {
     display: flex;
     align-items: center;
