@@ -7,6 +7,7 @@ export interface Props extends WrappedComponentProps {
   showTime?: boolean;
   relativeFuture?: boolean;
   relativePast?: boolean;
+  onValueChange?: (value: Partial<DateFilter>) => void;
   onApply: (value: Partial<DateFilter>) => void;
   disabledDate?: (date?: Date) => boolean;
   validate?: (value: DateRange) => { valid: boolean; message?: string };

@@ -8,7 +8,7 @@ const stories = {
   default: () => {
     const value = RELATIVE_PRESETS[0];
     const showTime = boolean('Set showTime', true);
-    return <DateRangePicker onApply={console.log} showTime={showTime} value={value} relativeFuture forceAbsolute />;
+    return <DateRangePicker onApply={console.log} showTime={showTime} value={value} relativeFuture forceAbsolute texts={{}} />;
   },
 };
 
