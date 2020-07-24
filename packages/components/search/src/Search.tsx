@@ -32,7 +32,7 @@ class Search extends React.PureComponent<SearchProps<AnyObject>, SearchState<Any
     this.state = {
       isInputOpen: !!props.value || !!props.parameterValue,
       label: props.parameterValue
-        ? props.parameters.find(param => param[props.textLookupConfig.parameters] === props.parameterValue)
+        ? props.parameters.find((param) => param[props.textLookupConfig.parameters] === props.parameterValue)
         : null,
       filteredParameters: props.parameters,
       filteredRecent: props.recent,
@@ -43,14 +43,17 @@ class Search extends React.PureComponent<SearchProps<AnyObject>, SearchState<Any
       toggleInputTrigger: false,
       focusInputTrigger: false,
       scrollbarScrollTop: 0,
+      moveCursorToEnd: true,
     };
   }
 
   componentDidUpdate(prevProps: SearchProps<AnyObject>): void {
     const { recent, suggestions, parameters, value, textLookupConfig, hideLabel } = this.props;
 
-    if (prevProps.value !== value && !value ) {
-      this.handleChange(value)
+    if (prevProps.value !== value && !value) {
+      this.handleChange(value);
+      // eslint-disable-next-line react/no-did-update-set-state
+      this.setState({ scrollbarScrollTop: 0, isResultChosen: false });
     }
 
     if (prevProps.recent.length !== recent.length) {
@@ -93,6 +96,7 @@ class Search extends React.PureComponent<SearchProps<AnyObject>, SearchState<Any
     if (e.key === 'Enter' && isInputOpen) {
       this.setState({ isResultChosen: !!value });
     }
+    this.setState({ moveCursorToEnd: false });
   }
 
   getSearchWrapperWidth(): number {
@@ -179,6 +183,7 @@ class Search extends React.PureComponent<SearchProps<AnyObject>, SearchState<Any
 
     this.setState({
       isResultChosen: true,
+      moveCursorToEnd: true,
     });
 
     onValueChange(item[textLookupConfig[dataKey]]);
@@ -190,6 +195,7 @@ class Search extends React.PureComponent<SearchProps<AnyObject>, SearchState<Any
     onValueChange('');
     this.setState({
       label: item,
+      moveCursorToEnd: true,
     });
 
     if (filterLookupKey && item[filterLookupKey]) {
@@ -293,7 +299,7 @@ class Search extends React.PureComponent<SearchProps<AnyObject>, SearchState<Any
 
   renderInputWrapper(): React.ReactNode {
     const { placeholder, clearTooltip, value, textLookupConfig, filterLookupKey } = this.props;
-    const { label, focusInputTrigger, toggleInputTrigger } = this.state;
+    const { label, focusInputTrigger, toggleInputTrigger, moveCursorToEnd } = this.state;
 
     return (
       <SearchInput
@@ -317,6 +323,7 @@ class Search extends React.PureComponent<SearchProps<AnyObject>, SearchState<Any
         placeholder={placeholder}
         toggleTrigger={toggleInputTrigger}
         value={value}
+        moveCursorToEnd={moveCursorToEnd}
       />
     );
   }

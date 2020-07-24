@@ -55,6 +55,7 @@ export type SearchState<T extends AnyObject> = {
   isResultChosen: boolean;
   itemsListWidth: number;
   scrollbarScrollTop: number;
+  moveCursorToEnd: boolean;
 };
 
 export enum SelectResultDataKeys {
