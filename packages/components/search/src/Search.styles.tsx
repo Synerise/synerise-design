@@ -1,8 +1,9 @@
 import styled, { keyframes } from 'styled-components';
+import { INPUT_EXPAND_ANIMATION_DURATION } from './Search';
 
 const LABEL_LEFT_OFFSET = 7;
-const INPUT_EXPAND_ANIMATION_DURATION = 0.2;
-
+const ANIMATION_DURATION = INPUT_EXPAND_ANIMATION_DURATION / 1000;
+const MAX_FILTER_WIDTH = 120;
 export const openDropdownAnimation = keyframes`
   0% {
     opacity:0;
@@ -44,26 +45,27 @@ export const LeftSide = styled.span<{ isOpen: boolean }>`
   left: 4px;
 `;
 
-export const Filter = styled.div`
+export const Filter = styled.div<{ offset: number }>`
   display: flex;
   align-items: center;
   color: ${(props): string => props.theme.palette['blue-600']};
   font-weight: 500;
-  max-width: 120px;
+  max-width: ${MAX_FILTER_WIDTH}px;
   direction: ltr;
-
+  position: relative;
+  padding-right: ${(props): string => (props.offset >= MAX_FILTER_WIDTH ? '2px' : '4px')};
   span {
+    margin-left: 4px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    margin-left: 4px;
     user-select: none;
-
-    &::after {
-      content: ':';
-    }
   }
-
+  &::after {
+    position: absolute;
+    right: ${(props): string => (props.offset >= MAX_FILTER_WIDTH ? '4px' : '0')};
+    content: ':';
+  }
   .ds-icon {
     margin-left: 4px;
   }
@@ -133,14 +135,14 @@ export const SearchInner = styled.div<{ hasValue: boolean; alwaysHighlight?: boo
 export const SearchInputContent = styled.div<{ offset: number; filterLabel: object | null | undefined }>`
   overflow: hidden;
   direction: rtl;
-  transition: width ${INPUT_EXPAND_ANIMATION_DURATION}s ease-in-out;
+  transition: width ${ANIMATION_DURATION}s ease-in-out;
   width: 0;
   input {
     opacity: 0;
     height: 32px;
   }
   input.ant-input {
-    transition: padding-left 0.1s ease-in-out !important;
+    transition: padding-left 0s ease-in-out !important;
   }
   &.is-open {
     width: 100%;

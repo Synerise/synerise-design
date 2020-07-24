@@ -19,6 +19,7 @@ export type SearchInputProps = {
   placeholder?: string;
   toggleTrigger?: boolean;
   value: string;
+  moveCursorToEnd?: boolean;
 };
 
 export type SearchInputState = {

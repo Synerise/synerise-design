@@ -10,8 +10,6 @@ import * as S from '../../Search.styles';
 import { SearchInputProps, SearchInputState } from './SearchInput.types';
 import SearchButton from '../SearchButton/SearchButton';
 
-// eslint-disable-next-line @typescript-eslint/no-empty-function
-const NOOP = (): void => {};
 class SearchInput extends React.Component<SearchInputProps, SearchInputState> {
   private inputRef = React.createRef<Input>();
 
@@ -39,7 +37,14 @@ class SearchInput extends React.Component<SearchInputProps, SearchInputState> {
     return null;
   }
 
-  componentDidUpdate = NOOP;
+  componentDidUpdate = (): void => {
+    const { moveCursorToEnd, value } = this.props;
+    const input = this.inputRef;
+    if (moveCursorToEnd && input && input.current) {
+      input.current.input.selectionStart = value.length || 0;
+      input.current.input.selectionEnd = value.length || 0;
+    }
+  };
 
   focusInput = (): void => {
     this.inputRef.current && this.inputRef.current.focus();
@@ -125,7 +130,7 @@ class SearchInput extends React.Component<SearchInputProps, SearchInputState> {
         >
           <S.LeftSide isOpen={isInputOpen}>
             {filterLabel && (
-              <S.Filter ref={this.handleOffsetWithFilter}>
+              <S.Filter ref={this.handleOffsetWithFilter} offset={inputOffset}>
                 {filterLabel.icon && !isResultChosen && <Icon component={filterLabel.icon} />}
                 <span>{filterLabel[filterLookupKey || ''] || filterLabel[textLookupKey || '']}</span>
               </S.Filter>
