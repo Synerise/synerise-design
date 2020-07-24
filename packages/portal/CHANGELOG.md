@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.88.2](https://github.com/synerise/synerise-design/compare/portal@0.88.1...portal@0.88.2) (2020-07-24)
+
+
+### Bug Fixes
+
+* **card:** change react fragment to div ([62f4dc0](https://github.com/synerise/synerise-design/commit/62f4dc08d127e816c3cb16115b8ef5a93b25ce25))
+* **search:** fix blank list while scrolling ([b2ac6c1](https://github.com/synerise/synerise-design/commit/b2ac6c1c8f67aa18332a4b61cceca1ffedf1c393))
+* **sidebar:** add padding ([e1491d0](https://github.com/synerise/synerise-design/commit/e1491d0fcfef8cb7c4d4e23a8e6fdaf881362eb1))
+* **table:** fix example on card ([691eaf4](https://github.com/synerise/synerise-design/commit/691eaf4115e132a4749e2831c068472f39745953))
+
+
+
+
+
 ## [0.88.1](https://github.com/synerise/synerise-design/compare/portal@0.88.0...portal@0.88.1) (2020-07-22)
 
 
