@@ -40,7 +40,7 @@ class SearchInput extends React.Component<SearchInputProps, SearchInputState> {
   componentDidUpdate = (): void => {
     const { moveCursorToEnd, value } = this.props;
     const input = this.inputRef;
-    if (!!moveCursorToEnd && !!input && !!input.current) {
+    if (moveCursorToEnd && input && input.current) {
       input.current.input.selectionStart = value.length || 0;
       input.current.input.selectionEnd = value.length || 0;
     }

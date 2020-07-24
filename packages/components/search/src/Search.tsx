@@ -32,7 +32,7 @@ class Search extends React.PureComponent<SearchProps<AnyObject>, SearchState<Any
     this.state = {
       isInputOpen: !!props.value || !!props.parameterValue,
       label: props.parameterValue
-        ? props.parameters.find((param) => param[props.textLookupConfig.parameters] === props.parameterValue)
+        ? props.parameters.find(param => param[props.textLookupConfig.parameters] === props.parameterValue)
         : null,
       filteredParameters: props.parameters,
       filteredRecent: props.recent,
@@ -53,7 +53,7 @@ class Search extends React.PureComponent<SearchProps<AnyObject>, SearchState<Any
     if (prevProps.value !== value && !value) {
       this.handleChange(value);
       // eslint-disable-next-line react/no-did-update-set-state
-      this.setState({ scrollbarScrollTop: 0, isResultChosen: false });
+      this.setState({ isResultChosen: false });
     }
 
     if (prevProps.recent.length !== recent.length) {
