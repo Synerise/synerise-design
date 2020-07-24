@@ -15,3 +15,4 @@ export const Addon = styled.div`
   margin: 16px;
 
 `;
+export const OverlayContainer = styled.div``;
