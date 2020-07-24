@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.23.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.22.0...@synerise/ds-icon@0.23.0) (2020-07-24)
+
+
+### Features
+
+* **icon:** add ai-search-icons ([180a224](https://github.com/Synerise/synerise-design/commit/180a224b3372e6c0115ded00c3050d261799e01d))
+
+
+
+
+
 # [0.22.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.21.0...@synerise/ds-icon@0.22.0) (2020-07-20)
 
 

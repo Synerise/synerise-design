@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@0.1.10...@synerise/ds-item-picker@0.1.11) (2020-07-24)
+
+
+### Bug Fixes
+
+* **item-picker:** add missing icon to dropdown overlay ([8ebee2d](https://github.com/Synerise/synerise-design/commit/8ebee2d850545b8fac9c0b2c6021da6170a0885f))
+* **item-picker:** change type of Change button ([84236d5](https://github.com/Synerise/synerise-design/commit/84236d5ca14fefdaf0710bbd48d284468396339a))
+
+
+
+
+
 ## [0.1.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@0.1.9...@synerise/ds-item-picker@0.1.10) (2020-07-24)
 
 **Note:** Version bump only for package @synerise/ds-item-picker
