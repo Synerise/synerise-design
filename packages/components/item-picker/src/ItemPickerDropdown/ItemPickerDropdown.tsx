@@ -3,6 +3,8 @@ import SearchBar from '@synerise/ds-search-bar';
 import Menu from '@synerise/ds-menu';
 import { MenuItemProps } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.types';
 import Result from '@synerise/ds-result';
+import { SearchM } from '@synerise/ds-icon/dist/icons';
+import Icon from '@synerise/ds-icon';
 import * as S from './ItemPickerDropdown.style';
 
 interface Props {
@@ -39,6 +41,7 @@ const ItemPickerDropdown: React.FC<Props> = ({ onChange, placeholder, dataSource
   return (
     <S.DropdownWrapper>
       <SearchBar
+        iconLeft={<Icon component={<SearchM />} />}
         onSearchChange={setSearchQuery}
         placeholder={placeholder}
         value={searchQuery}

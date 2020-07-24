@@ -2,33 +2,35 @@ import * as React from 'react';
 
 import AppMenu from '@synerise/ds-app-menu';
 import Icon from '@synerise/ds-icon';
-import { 
-  AnalyticsColorM, 
-  AnalyticsGreyM, 
-  AssetsColorM, 
-  AssetsGreyM, 
-  AutomationColorM, 
-  AutomationGreyM, 
-  CampaignsColorM, 
+import {
+  AnalyticsColorM,
+  AnalyticsGreyM,
+  AssetsColorM,
+  AssetsGreyM,
+  AutomationColorM,
+  AutomationGreyM,
+  CampaignsColorM,
   CampaignsGreyM,
-  ChatColorM, 
+  ChatColorM,
   ChatGreyM,
-  CustomersColorM, 
+  CustomersColorM,
   CustomersGreyM,
-  DashboardColorM, 
+  DashboardColorM,
   DashboardGreyM,
-  SettingsColorM, 
-  SettingsGreyM, 
-  Add3M
+  SettingsColorM,
+  SettingsGreyM,
+  Add3M,
+  AiSearchColorM,
+  AiSearchGreyM,
 } from '@synerise/ds-icon/dist/icons';
 
 const stories = {
   default: () => ({
     activeItem: 'campaigns',
     footer: (
-      <AppMenu.Item 
-        name="Settings" 
-        id="settings" 
+      <AppMenu.Item
+        name="Settings"
+        id="settings"
         subMenu={(
           <AppMenu.SubMenu>
             <AppMenu.SubMenu.Title>Settings</AppMenu.SubMenu.Title>
@@ -73,17 +75,17 @@ const stories = {
       </AppMenu.Item>
     ),
     children: ([
-      <AppMenu.Item 
-        key="dashboards" 
-        id="dashboards" 
-        name="Dashboards" 
+      <AppMenu.Item
+        key="dashboards"
+        id="dashboards"
+        name="Dashboards"
       >
         <AppMenu.Item.Icon active={<DashboardColorM />} inActive={<DashboardGreyM />}/>
       </AppMenu.Item>,
-      <AppMenu.Item 
-        key="customers" 
-        id="customers" 
-        name="CRM" 
+      <AppMenu.Item
+        key="customers"
+        id="customers"
+        name="CRM"
         subMenu={(
           <AppMenu.SubMenu>
             <AppMenu.SubMenu.Title>CRM</AppMenu.SubMenu.Title>
@@ -95,10 +97,10 @@ const stories = {
       >
         <AppMenu.Item.Icon active={<CustomersColorM />} inActive={<CustomersGreyM />}/>
       </AppMenu.Item>,
-      <AppMenu.Item 
-       key="campaigns" 
-       name="Campaigns" 
-       id="campaigns" 
+      <AppMenu.Item
+       key="campaigns"
+       name="Campaigns"
+       id="campaigns"
        subMenu={(
         <AppMenu.SubMenu>
           <AppMenu.SubMenu.Title>Campaigns</AppMenu.SubMenu.Title>
@@ -130,9 +132,9 @@ const stories = {
       <AppMenu.Item  key="automation" name="Automation" id="automation">
         <AppMenu.Item.Icon active={<AutomationColorM />} inActive={<AutomationGreyM />}/>
       </AppMenu.Item>,
-      <AppMenu.Item 
-        key="analytics"  
-        name="Analytics" 
+      <AppMenu.Item
+        key="analytics"
+        name="Analytics"
         id="analytics"
         subMenu={(
           <AppMenu.SubMenu>
@@ -159,9 +161,24 @@ const stories = {
       >
         <AppMenu.Item.Icon active={<AnalyticsColorM />} inActive={<AnalyticsGreyM />}/>
       </AppMenu.Item>,
-      <AppMenu.Item 
-      key="assets" 
-      name="Data management" 
+      <AppMenu.Item
+        key="ai-search"
+        name="AI Search"
+        id="ai-search"
+        subMenu={(
+          <AppMenu.SubMenu>
+            <AppMenu.SubMenu.Title>AI Search</AppMenu.SubMenu.Title>
+            <AppMenu.SubMenu.Item>Indexes</AppMenu.SubMenu.Item>
+            <AppMenu.SubMenu.Item>Suggestions</AppMenu.SubMenu.Item>
+            <AppMenu.SubMenu.Item>A/B Tests</AppMenu.SubMenu.Item>
+          </AppMenu.SubMenu>
+        )}
+      >
+        <AppMenu.Item.Icon active={<AiSearchColorM />} inActive={<AiSearchGreyM />}/>
+      </AppMenu.Item>,
+      <AppMenu.Item
+      key="assets"
+      name="Data management"
       id="assets"
       subMenu={(
         <AppMenu.SubMenu>

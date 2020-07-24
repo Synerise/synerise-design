@@ -114,7 +114,7 @@ const Trigger: React.FC<Props> = ({
       size === 'large' &&
       withChangeButton && (
         <S.ChangeButtonWrapper>
-          <Button type="ghost" onClick={handleChangeButtonClick}>
+          <Button type="ghost-primary" onClick={handleChangeButtonClick}>
             {changeButtonLabel}
           </Button>
         </S.ChangeButtonWrapper>
