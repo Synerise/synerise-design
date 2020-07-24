@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.23.16](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.23.15...@synerise/ds-table@0.23.16) (2020-07-24)
+
+
+### Bug Fixes
+
+* **table:** use uniq as key of AvatarLabelsCell ([0dc759e](https://github.com/synerise/synerise-design/commit/0dc759ead23148ead5ac144d99a35c5c75ebc72c))
+
+
+
+
+
 ## [0.23.15](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.23.14...@synerise/ds-table@0.23.15) (2020-07-23)
 
 **Note:** Version bump only for package @synerise/ds-table
