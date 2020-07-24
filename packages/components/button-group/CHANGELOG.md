@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.45](https://github.com/Synerise/synerise-design/compare/@synerise/ds-button-group@0.5.44...@synerise/ds-button-group@0.5.45) (2020-07-24)
+
+
+### Bug Fixes
+
+* **button-group:** fix styles ([157de87](https://github.com/Synerise/synerise-design/commit/157de874f2736d60a3c8d2c917fdc2a12f3d28b1))
+
+
+
+
+
 ## [0.5.44](https://github.com/Synerise/synerise-design/compare/@synerise/ds-button-group@0.5.43...@synerise/ds-button-group@0.5.44) (2020-07-24)
 
 **Note:** Version bump only for package @synerise/ds-button-group

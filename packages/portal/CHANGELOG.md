@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.89.0](https://github.com/synerise/synerise-design/compare/portal@0.88.2...portal@0.89.0) (2020-07-24)
+
+
+### Features
+
+* **app-menu:** add AI Search to example menu ([6f5fcc5](https://github.com/synerise/synerise-design/commit/6f5fcc552358d207bde3179bafa338c4721e3501))
+
+
+
+
+
 ## [0.88.2](https://github.com/synerise/synerise-design/compare/portal@0.88.1...portal@0.88.2) (2020-07-24)
 
 
