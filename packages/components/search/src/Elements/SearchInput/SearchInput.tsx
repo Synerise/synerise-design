@@ -54,7 +54,7 @@ class SearchInput extends React.Component<SearchInputProps, SearchInputState> {
     const { onToggle } = this.props;
     const { isInputOpen } = this.state;
     onToggle && onToggle(!isInputOpen);
-    this.setState((prevState) => ({
+    this.setState(prevState => ({
       isInputOpen: !prevState.isInputOpen,
     }));
   };
