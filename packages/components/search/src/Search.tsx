@@ -317,7 +317,6 @@ class Search extends React.PureComponent<SearchProps<AnyObject>, SearchState<Any
         placeholder={placeholder}
         toggleTrigger={toggleInputTrigger}
         value={value}
-        moveCursorToEnd={this.state.moveToEnd}
       />
     );
   }
