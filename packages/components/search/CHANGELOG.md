@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.56](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.1.55...@synerise/ds-search@0.1.56) (2020-07-27)
+
+
+### Bug Fixes
+
+* **search:** changed the animation duration ([5b645a0](https://github.com/Synerise/synerise-design/commit/5b645a00a409d57beb6b1d76d419b6ed55a50abe))
+* **search:** code review fixes ([cfaeac9](https://github.com/Synerise/synerise-design/commit/cfaeac91bfc420dd9293953d50e7625b1a90ac2f))
+* **search:** fixing the build ([66317f9](https://github.com/Synerise/synerise-design/commit/66317f9917ca52b6e4ef8cc828d343d9a8d7dedb))
+* **search:** move cursor to the end when clicked on item ([13290ef](https://github.com/Synerise/synerise-design/commit/13290ef76b5b8209714faacec362d7b990ace024))
+
+
+
+
+
 ## [0.1.55](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.1.54...@synerise/ds-search@0.1.55) (2020-07-24)
 
 **Note:** Version bump only for package @synerise/ds-search
