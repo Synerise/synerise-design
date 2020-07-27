@@ -1,11 +1,5 @@
 import * as React from 'react';
 import Icon from '@synerise/ds-icon';
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore
-import Animate from 'rc-animate';
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore
-import velocity from 'velocity-animate';
 
 import * as S from './Card.styles';
 
@@ -53,19 +47,6 @@ const Card: React.FC<CardProps> = ({
   showContent,
 }) => {
   const fatTitle = !description || (description && compactHeader);
-  const enterAnimation = React.useCallback((node, done) => {
-    velocity(node, 'slideDown', {
-      duration: 200,
-      complete: () => done(),
-    });
-  }, []);
-
-  const leaveAnimation = React.useCallback((node, done) => {
-    velocity(node, 'slideUp', {
-      duration: 200,
-      complete: () => done(),
-    });
-  }, []);
 
   return (
     <S.Container
@@ -100,10 +81,10 @@ const Card: React.FC<CardProps> = ({
           )}
         </S.Header>
       )}
-      <S.ChildrenContainer hasHeader={withHeader}>
-        <Animate animation={{ enter: enterAnimation, leave: leaveAnimation }}>
-          {showContent && <S.PaddingWrapper withoutPadding={withoutPadding}>{children}</S.PaddingWrapper>}
-        </Animate>
+      <S.ChildrenContainer className={showContent ? 'contentContainerOpen' : 'contentContainerClosed'}>
+        <S.PaddingWrapper withoutPadding={withoutPadding}>
+          <div className={showContent ? 'content' : 'content-closed'}>{children}</div>
+        </S.PaddingWrapper>
       </S.ChildrenContainer>
     </S.Container>
   );
