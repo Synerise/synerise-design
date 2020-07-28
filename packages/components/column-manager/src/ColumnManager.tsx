@@ -8,13 +8,13 @@ import ItemFilter from '@synerise/ds-item-filter';
 import { CloseM, FolderM, SearchM } from '@synerise/ds-icon/dist/icons';
 import Scrollbar from '@synerise/ds-scrollbar';
 import SearchBar from '@synerise/ds-search-bar';
+import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import ColumnManagerActions from './ColumnManagerActions/ColumnManagerActions';
 import ColumnManagerList from './ColumnManagerList/ColumnManagerList';
 import { ColumnManagerProps, State, Texts } from './ColumnManager.types';
 import { Column } from './ColumnManagerItem/ColumManagerItem.types';
 import * as S from './styles/ColumnManager.styles';
 import ColumnManagerGroupSettings from './ColumnManagerGroupSettings/ColumnManagerGroupSettings';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 
 const DEFAULT_STATE: State = {
   searchQuery: '',
