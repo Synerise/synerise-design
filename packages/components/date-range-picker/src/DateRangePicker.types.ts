@@ -1,6 +1,7 @@
 import { WrappedComponentProps } from 'react-intl';
 import { DateFilter, DateRange } from 'date.types';
 
+
 export interface Props extends WrappedComponentProps {
   showRelativePicker?: boolean;
   showFilter?: boolean;
@@ -15,6 +16,7 @@ export interface Props extends WrappedComponentProps {
   ranges?: DateRange[];
   value: DateRange;
   forceAbsolute?: boolean;
+  texts?: Texts;
 }
 export interface State {
   mode: string;
@@ -26,4 +28,6 @@ export interface Texts {
   today?: string;
   yesterday?: string;
   apply?: string;
+  endDatePlaceholder?: string;
+  startDatePlaceholder?: string;
 }
