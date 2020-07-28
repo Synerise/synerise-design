@@ -301,7 +301,7 @@ export const DayPicker = styled(DayPickerBase)`
       height: 24px;
         position: absolute;
         top: -30px;
-        margin-left: -50%;
+        margin-left: calc(-50% + 16px);
         display:block;
         white-space: nowrap;
         background-color: rgba(56, 67, 80, 0.9);
