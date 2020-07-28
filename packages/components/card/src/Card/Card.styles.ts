@@ -1,6 +1,8 @@
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import Typography from '@synerise/ds-typography';
 import * as React from 'react';
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore
 import { ThemePropsVars } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { Backgrounds } from './Card';
 
