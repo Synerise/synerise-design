@@ -140,20 +140,6 @@ class Search extends React.PureComponent<SearchProps<AnyObject>, SearchState<Any
     });
   };
 
-  handleClearValue = (): void => {
-    const { parameters, recent, suggestions, onClear } = this.props;
-
-    onClear();
-
-    this.setState({
-      label: null,
-      filteredRecent: recent,
-      filteredParameters: parameters,
-      filteredSuggestions: suggestions,
-      isResultChosen: false,
-    });
-  };
-
   handleChange(currentValue: string): void {
     const { parameterValue, recent, suggestions, parameters, onValueChange, textLookupConfig } = this.props;
     let isAnythingToShow;
