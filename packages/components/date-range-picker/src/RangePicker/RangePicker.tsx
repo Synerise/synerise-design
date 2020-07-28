@@ -12,7 +12,6 @@ import fnsMax from 'date-fns/max';
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
 import fnsIsWithinRange from 'date-fns/is_within_range';
-import moment from 'moment';
 
 import MonthPicker from '@synerise/ds-date-picker/dist/Elements/MonthPicker/MonthPicker';
 import MomentLocaleUtils from 'react-day-picker/moment';
@@ -21,7 +20,7 @@ import {
   DayBackground,
   DayForeground,
   DayText,
-  DayTooltip
+  DayTooltip,
 } from '@synerise/ds-date-picker/dist/Elements/DayPicker/DayPicker.styles';
 import Button from '@synerise/ds-button';
 import YearPicker from '@synerise/ds-date-picker/dist/Elements/YearPicker/YearPicker';
@@ -29,7 +28,7 @@ import DayPicker from '@synerise/ds-date-picker/dist/Elements/DayPicker/DayPicke
 import Icon from '@synerise/ds-icon';
 import { CalendarM, ClockM } from '@synerise/ds-icon/dist/icons';
 import { Range } from '../RelativeRangePicker/RelativeRangePicker.styles';
-import { fnsStartOfDay, fnsEndOfDay, fnsIsSameMonth, fnsIsAfter } from '../fns';
+import { fnsStartOfDay, fnsEndOfDay, fnsIsSameMonth, fnsIsAfter, fnsFormat } from '../fns';
 import * as S from './RangePicker.styles';
 import { ABSOLUTE, COLUMNS, MODES } from '../constants';
 
@@ -89,26 +88,27 @@ export default class RangePicker extends React.PureComponent<Props, State> {
     if (fnsIsSameMonth(month, state[opposite])) {
       const dir = fnsIsAfter(month, state[side].month) ? 1 : -1;
       const adjacentMonth = ADD.MONTHS(month, dir);
-      this.setState((prevState) => ({ ...prevState, [side]: { ...state[side], adjacentMonth, mode } }));
+      this.setState(prevState => ({ ...prevState, [side]: { ...state[side], adjacentMonth, mode } }));
       return;
     }
-    this.setState((prevState) => ({ ...prevState, [side]: { ...state[side], month, mode } }));
+    this.setState(prevState => ({ ...prevState, [side]: { ...state[side], month, mode } }));
   };
 
   handleSideModeChange = (side: string, mode: string): void => {
-    this.setState((prevState) => ({ ...prevState, [side]: { ...prevState[side], mode } }));
+    this.setState(prevState => ({ ...prevState, [side]: { ...prevState[side], mode } }));
   };
 
   renderDay = (day: Date): React.ReactNode => {
     const text = day.getDate();
-    const { value } = this.props;
+    const { value, intl } = this.props;
     return (
       <>
         <DayBackground className="DayPicker-Day-BG" />
         <DayText className="DayPicker-Day-Text" data-attr={text}>
           {value.to && value.from && (
             <DayTooltip>
-              {moment(value.from).format('MM-DD-YYYY HH:mm')} , {moment(value.to).format('MM-DD-YYYY HH:mm')}
+              {fnsFormat(value.from, 'DD-MM-YYYY HH:mm', intl.locale)} -{' '}
+              {fnsFormat(value.to, 'DD-MM-YYYY HH:mm', intl.locale)}
             </DayTooltip>
           )}
           {text}

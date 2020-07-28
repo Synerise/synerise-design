@@ -1,38 +1,34 @@
 import * as React from 'react';
 import Icon from '@synerise/ds-icon';
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore
 import moment from 'moment';
 
 import { ArrowRightS, CalendarM, Close3S } from '@synerise/ds-icon/dist/icons';
+import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import Tooltip from '@synerise/ds-tooltip';
 import { Props } from './RangePickerInput.types';
 import * as S from './RangePickerInput.styles';
 
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { normalizeRange } from '../utils';
-import relativeToAbsolute from '../dateUtils/relativeToAbsolute';
 import { DateRange } from '../date.types';
 
-const RangePickerInput: React.FC<Props> = ({
-  size,
-  disabled,
-  value,
-  format,
-  onChange,
-  showTime,
-  style,
-  placeholder,
-  onClear,
-  onClick,
-  clearTooltip,
-  highlight,
-  texts,
-  ...rest
-}: Props) => {
-  const [hovered, setHovered] = React.useState<boolean>(false);
-  const [focused, setFocused] = React.useState<boolean>(false);
-  const absoluteRange = normalizeRange(value as DateRange);
-  const handleApply = React.useCallback(() => {}, []);
+const RangePickerInput: React.FC<Props> = ({ value, format, showTime, onChange, onClick, highlight, texts }: Props) => {
+  const dateRangeValue = value ? normalizeRange(value as DateRange) : value;
 
-  const handleIconClick = React.useCallback((e: React.MouseEvent<HTMLDivElement>): void => {}, [onClear, handleApply]);
+  const [focused, setFocused] = React.useState<boolean>(false);
+  const [hovered, setHovered] = React.useState<boolean>(false);
+
+  const handleIconMouseEnter = React.useCallback(() => setHovered(true), []);
+  const handleIconMouseLeave = React.useCallback(() => setHovered(false), []);
+
+  const handleClear = React.useCallback(
+    (e: React.MouseEvent) => {
+      e.stopPropagation();
+      onChange && onChange(undefined);
+    },
+    [onChange]
+  );
 
   const handleInputClick = React.useCallback(() => {
     onClick && onClick();
@@ -46,37 +42,51 @@ const RangePickerInput: React.FC<Props> = ({
       if (typeof dateToDisplay === 'string') dateValue = moment(dateToDisplay);
       return moment(dateValue).format(format || showTime ? 'MMM D, YYYY, HH:mm' : 'MMM D, YYYY');
     },
-    [absoluteRange, format, showTime]
+    [format, showTime]
   );
 
   const renderFromDate = React.useCallback(() => {
-    const isFromDateDefined = absoluteRange && absoluteRange.from;
-    const text = isFromDateDefined ? (
-      <S.DateValue>{getText(absoluteRange.from)}</S.DateValue>
-    ) : (
-      texts?.startDatePlaceholder
-    );
+    const isFromDateDefined = dateRangeValue && dateRangeValue.from;
+    const text =
+      dateRangeValue && isFromDateDefined ? (
+        <S.DateValue>{getText(dateRangeValue.from)}</S.DateValue>
+      ) : (
+        texts?.startDatePlaceholder
+      );
     return <S.DateWrapper highlight={focused && !isFromDateDefined}>{text}</S.DateWrapper>;
-  }, [absoluteRange, texts]);
+  }, [dateRangeValue, getText, focused, texts]);
 
   const renderEndDate = React.useCallback(() => {
-    const isEndDateDefined = absoluteRange && absoluteRange.to;
-    const isFromDateDefined = absoluteRange && absoluteRange.from;
+    const isEndDateDefined = dateRangeValue && dateRangeValue.to;
+    const isFromDateDefined = dateRangeValue && dateRangeValue.from;
 
-    const text = isEndDateDefined ? <S.DateValue>{getText(absoluteRange.to)}</S.DateValue> : texts?.endDatePlaceholder;
+    const text =
+      isEndDateDefined && dateRangeValue ? (
+        <S.DateValue>{getText(dateRangeValue.to)}</S.DateValue>
+      ) : (
+        texts?.endDatePlaceholder
+      );
     return <S.DateWrapper highlight={focused && !!isFromDateDefined && !isEndDateDefined}>{text}</S.DateWrapper>;
-  }, [absoluteRange, texts]);
+  }, [dateRangeValue, getText, focused, texts]);
 
   return (
-    <S.Container
-      onMouseEnter={(): void => setHovered(true)}
-      onMouseLeave={(): void => setHovered(false)}
-      onClick={handleInputClick}
-    >
+    <S.Container onClick={handleInputClick} onMouseEnter={handleIconMouseEnter} onMouseLeave={handleIconMouseLeave}>
       <S.RangeInputWrapper active={!!highlight} tabIndex={0} focus={focused}>
         {renderFromDate()}
         <Icon component={<ArrowRightS />} color={theme.palette['grey-400']} />
         {renderEndDate()}
+        <S.IconSeparator />
+        {hovered && !!value ? (
+          <Tooltip title={texts?.clear}>
+            <S.ClearIconWrapper>
+              <Icon component={<Close3S />} onClick={handleClear} />
+            </S.ClearIconWrapper>
+          </Tooltip>
+        ) : (
+          <S.DefaultIconWrapper>
+            <Icon component={<CalendarM />} color={theme.palette['grey-600']} />
+          </S.DefaultIconWrapper>
+        )}
       </S.RangeInputWrapper>
     </S.Container>
   );

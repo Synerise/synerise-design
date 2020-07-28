@@ -6,27 +6,28 @@ import { Props } from './DateRangePicker.types';
 import RangePickerInput from './RangePickerInput/RangePickerInput';
 import { DateFilter, DateRange } from './date.types';
 
-const DateRangePicker: React.FC<Props> = (props) => {
+const DateRangePicker: React.FC<Props> = props => {
   const { value, onApply, showTime, onValueChange, texts } = props;
   const [dropVisible, setDropVisible] = React.useState(false);
   const [selectedDate, setSelectedDate] = React.useState(value);
   const ref = React.useRef<HTMLDivElement>(null);
 
   const onValueChangeCallback = React.useCallback(
-    (val: Partial<DateFilter>): void => {
+    (val: Partial<DateFilter> | undefined): void => {
       onValueChange && onValueChange(val);
       setSelectedDate(val as DateRange);
     },
     [onValueChange]
   );
   const onApplyCallback = React.useCallback(
-    (val: Partial<DateFilter>): void => {
+    (val: Partial<DateFilter> | undefined): void => {
       onApply && onApply(val);
       setSelectedDate(val as DateRange);
       setDropVisible(false);
     },
     [onApply]
   );
+  const onInputClick = React.useCallback((): void => setDropVisible(!dropVisible), [dropVisible]);
   return (
     <Dropdown
       overlayStyle={{
@@ -45,7 +46,13 @@ const DateRangePicker: React.FC<Props> = (props) => {
       }
       visible={!!dropVisible}
     >
-      <RangePickerInput onClick={(): void => setDropVisible(!dropVisible)} value={selectedDate} showTime={showTime} texts={texts}/>
+      <RangePickerInput
+        onClick={onInputClick}
+        value={selectedDate}
+        showTime={showTime}
+        texts={texts}
+        onChange={onValueChangeCallback}
+      />
     </Dropdown>
   );
 };

@@ -1,15 +1,14 @@
 import { WrappedComponentProps } from 'react-intl';
 import { DateFilter, DateRange } from 'date.types';
 
-
 export interface Props extends WrappedComponentProps {
   showRelativePicker?: boolean;
   showFilter?: boolean;
   showTime?: boolean;
   relativeFuture?: boolean;
   relativePast?: boolean;
-  onValueChange?: (value: Partial<DateFilter>) => void;
-  onApply: (value: Partial<DateFilter>) => void;
+  onValueChange?: (value: Partial<DateFilter> | undefined) => void;
+  onApply: (value: Partial<DateFilter> | undefined) => void;
   disabledDate?: (date?: Date) => boolean;
   validate?: (value: DateRange) => { valid: boolean; message?: string };
   format?: string;
@@ -30,4 +29,5 @@ export interface Texts {
   apply?: string;
   endDatePlaceholder?: string;
   startDatePlaceholder?: string;
+  clear?: string;
 }

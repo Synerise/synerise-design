@@ -1,18 +1,15 @@
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
-import { Input as DSInput } from '@synerise/ds-input';
-import { Props as DSInputProps } from '@synerise/ds-input/dist/Input';
-import { InputProps as AntdInputProps } from 'antd/lib/input';
 import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { InputWrapper } from '@synerise/ds-input/dist/InputMultivalue/InputMultivalue.styles';
 
 export const Container = styled.div``;
 
 export const ClearIconWrapper = styled.div`
-  .ds-icon svg {
+  .ds-icon > svg {
     fill: ${(props): string => props.theme.palette['red-600']};
   }
-  &&:hover {
-    .ds-icon svg {
+  &:hover {
+    .ds-icon > svg {
       fill: ${(props): string => props.theme.palette['red-600']};
     }
   }
@@ -20,7 +17,7 @@ export const ClearIconWrapper = styled.div`
 
 export const DefaultIconWrapper = styled.div`
   &&:hover {
-    .ds-icon svg {
+    .ds-icon > svg {
       fill: ${(props): string => props.theme.palette['grey-600']};
     }
   }
@@ -47,9 +44,14 @@ export const RangeInputWrapper = styled(InputWrapper)<{
     }
   }
 `;
-export const DateWrapper = styled.div<{highlight?: boolean}>`
-  color: ${(props): string => props.highlight ? props.theme.palette['blue-600'] : props.theme.palette['grey-400']};
+export const DateWrapper = styled.div<{ highlight?: boolean }>`
+  color: ${(props): string => (props.highlight ? props.theme.palette['blue-600'] : props.theme.palette['grey-400'])};
 `;
 export const DateValue = styled.div`
   color: ${(props): string => props.theme.palette['grey-600']};
 `;
+export const IconSeparator = styled.div`
+  display: flex;
+  flex: 1;
+`;
+export const SuffixWrapper = styled.div``;

@@ -32,6 +32,13 @@ class RawDateRangePicker extends React.PureComponent<Props, State> {
     };
   }
 
+  componentDidUpdate(prevProps: Readonly<Props>): void {
+    const { value } = this.props;
+    if (prevProps.value !== value && !value) {
+      this.handleRangeChange(value);
+    }
+  }
+
   handleFilterCancel = (): void => {
     this.setState({ mode: MODES.DATE });
   };
@@ -42,7 +49,7 @@ class RawDateRangePicker extends React.PureComponent<Props, State> {
   };
 
   handleRangeChange = (range: DateRange): void => {
-    const {onValueChange} = this.props;
+    const { onValueChange } = this.props;
     const { value } = this.state;
     const newValue = normalizeRange({ ...range, filter: value.filter });
     this.setState({ value: newValue, changed: true });
@@ -54,10 +61,10 @@ class RawDateRangePicker extends React.PureComponent<Props, State> {
     const { forceAbsolute, onApply } = this.props;
     if (forceAbsolute && value.type === RELATIVE) {
       onApply &&
-      onApply({
-        ...value,
-        ...relativeToAbsolute(value),
-      });
+        onApply({
+          ...value,
+          ...relativeToAbsolute(value),
+        });
       return;
     }
     if (value.key === 'ALL_TIME') {
@@ -66,12 +73,12 @@ class RawDateRangePicker extends React.PureComponent<Props, State> {
     }
 
     onApply &&
-    onApply({
-      ...value,
-      from: value.type === ABSOLUTE && value.from instanceof Date ? value.from.toISOString() : undefined,
-      to: value.type === ABSOLUTE && value.to instanceof Date ? value.to.toISOString() : undefined,
-      type: value.type,
-    });
+      onApply({
+        ...value,
+        from: value.type === ABSOLUTE && value.from instanceof Date ? value.from.toISOString() : undefined,
+        to: value.type === ABSOLUTE && value.to instanceof Date ? value.to.toISOString() : undefined,
+        type: value.type,
+      });
   };
 
   handleModalOpenClick = (): void => {
@@ -165,7 +172,11 @@ class RawDateRangePicker extends React.PureComponent<Props, State> {
           canSwitchMode={isValid}
           message={!validator.valid ? validator.message : null}
           onSwitchMode={this.handleSwitchMode}
-          texts={{ apply: intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.APPLY' }) }}
+          texts={{
+            apply: intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.APPLY' }),
+            startDatePlaceholder: intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.START-DATE' }),
+            endDatePlaceholder: intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.END-DATE' }),
+          }}
           value={value}
           showTime={showTime}
           format={format}

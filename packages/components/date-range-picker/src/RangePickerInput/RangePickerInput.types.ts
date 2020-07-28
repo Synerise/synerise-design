@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DateRange } from '../date.types';
+import { DateFilter, DateRange } from '../date.types';
 import { Texts } from '../DateRangePicker.types';
 
 export type Props = {
@@ -8,7 +8,7 @@ export type Props = {
   showTime?: boolean;
   allowClear?: boolean;
   value?: Pick<DateRange, 'from'> & Pick<DateRange, 'to'>;
-  onChange?: (value: DateRange | null) => void;
+  onChange?: (value: Partial<DateFilter> | undefined) => void;
   style?: React.CSSProperties;
   placeholder?: string;
   disabled?: boolean;
