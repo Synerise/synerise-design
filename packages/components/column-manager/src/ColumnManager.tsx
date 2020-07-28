@@ -14,6 +14,7 @@ import { ColumnManagerProps, State, Texts } from './ColumnManager.types';
 import { Column } from './ColumnManagerItem/ColumManagerItem.types';
 import * as S from './styles/ColumnManager.styles';
 import ColumnManagerGroupSettings from './ColumnManagerGroupSettings/ColumnManagerGroupSettings';
+import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 
 const DEFAULT_STATE: State = {
   searchQuery: '',
@@ -241,7 +242,7 @@ class ColumnManager extends React.Component<ColumnManagerProps, State> {
             placeholder={this.texts.searchPlaceholder as string}
             value={searchQuery}
             onClearInput={(): void => this.handleSearchChange('')}
-            iconLeft={<Icon component={<SearchM />} />}
+            iconLeft={<Icon component={<SearchM />} color={theme.palette['grey-600']} />}
             clearTooltip={(this.texts.searchClearTooltip as string) || ''}
           />
           <Scrollbar absolute>
