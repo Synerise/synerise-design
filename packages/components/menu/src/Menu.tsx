@@ -20,7 +20,7 @@ class Menu extends React.Component<AntdMenuProps> {
   render(): React.ReactNode {
     const { dataSource, ordered, children, ...rest } = this.props;
     return (
-      <S.AntdMenu ordered={ordered} mode="inline" inlineIndent={ordered ? 18 : 18} {...rest}>
+      <S.AntdMenu ordered={ordered} mode="inline" inlineIndent={ordered ? 20 : 18} {...rest}>
         {children ||
           dataSource?.map((item: MenuItemProps, index: number) =>
             item.subMenu ? (
