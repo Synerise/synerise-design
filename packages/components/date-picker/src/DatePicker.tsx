@@ -7,7 +7,7 @@ import RawDatePicker from './RawDatePicker';
 import PickerInput from './Elements/PickerInput/PickerInput';
 import * as S from './DatePicker.styles';
 
-const DatePicker: React.FC<Props> = props => {
+const DatePicker: React.FC<Props> = (props) => {
   const { texts, value, onApply, showTime, onValueChange } = props;
   const [dropVisible, setDropVisible] = React.useState(false);
   const [selectedDate, setSelectedDate] = React.useState(value);
