@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.89.1](https://github.com/synerise/synerise-design/compare/portal@0.89.0...portal@0.89.1) (2020-07-28)
+
+
+### Bug Fixes
+
+* **date-picker:** use start of the day in story ([979b7db](https://github.com/synerise/synerise-design/commit/979b7db6834efe87cbc60098a8ad7b002a9a9908))
+* **search:** add onClear prop and update tests and stories ([4de9259](https://github.com/synerise/synerise-design/commit/4de9259b245a49d7821036b3bb05918559c1b900))
+
+
+
+
+
 # [0.89.0](https://github.com/synerise/synerise-design/compare/portal@0.88.2...portal@0.89.0) (2020-07-24)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.13.12...@synerise/ds-manageable-list@0.13.13) (2020-07-28)
+
+
+### Bug Fixes
+
+* **manageable-list:** added default color icon ([d1e2aeb](https://github.com/Synerise/synerise-design/commit/d1e2aeb669bdf031be8eafcd2cd4a2c96366bac6))
+
+
+
+
+
 ## [0.13.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.13.11...@synerise/ds-manageable-list@0.13.12) (2020-07-24)
 
 **Note:** Version bump only for package @synerise/ds-manageable-list

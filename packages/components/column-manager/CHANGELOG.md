@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.19](https://github.com/Synerise/synerise-design/compare/@synerise/ds-column-manager@0.7.18...@synerise/ds-column-manager@0.7.19) (2020-07-28)
+
+
+### Bug Fixes
+
+* **column-manager:** added color to the search icon ([6df8509](https://github.com/Synerise/synerise-design/commit/6df85098b383eee04a21352befa1aaef8fcc646d))
+* **column-manager:** linter errros fixed ([b7bbdc4](https://github.com/Synerise/synerise-design/commit/b7bbdc47a502130d97af80db23ae8d28b44e777f))
+
+
+
+
+
 ## [0.7.18](https://github.com/Synerise/synerise-design/compare/@synerise/ds-column-manager@0.7.17...@synerise/ds-column-manager@0.7.18) (2020-07-24)
 
 **Note:** Version bump only for package @synerise/ds-column-manager
