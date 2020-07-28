@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { DateRange } from '../date.types';
+import { Texts } from '../DateRangePicker.types';
 
 export type Props = {
   size?: 'large' | 'default' | 'small';
@@ -15,4 +16,5 @@ export type Props = {
   onClear?: () => void;
   clearTooltip?: string | React.ReactNode;
   highlight?: boolean;
+  texts?: Texts;
 };

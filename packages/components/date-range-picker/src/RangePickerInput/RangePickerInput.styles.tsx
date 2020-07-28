@@ -3,6 +3,7 @@ import { Input as DSInput } from '@synerise/ds-input';
 import { Props as DSInputProps } from '@synerise/ds-input/dist/Input';
 import { InputProps as AntdInputProps } from 'antd/lib/input';
 import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { InputWrapper } from '@synerise/ds-input/dist/InputMultivalue/InputMultivalue.styles';
 
 export const Container = styled.div``;
 
@@ -31,10 +32,24 @@ const activeStyle = (props: ThemeProps): FlattenSimpleInterpolation => css`
   background: ${props.theme.palette['blue-050']};
 `;
 
-export const Input = styled(DSInput)<DSInputProps & AntdInputProps & { active: boolean }>`
+export const RangeInputWrapper = styled(InputWrapper)<{
+  error?: boolean;
+  focus?: boolean;
+  disabled?: boolean;
+  hover?: boolean;
+  active?: boolean;
+}>`
+  display: flex;
+  align-items: center;
   & {
     .ant-input {
       ${(props): false | FlattenSimpleInterpolation => !!props.active && activeStyle(props)}
     }
   }
+`;
+export const DateWrapper = styled.div<{highlight?: boolean}>`
+  color: ${(props): string => props.highlight ? props.theme.palette['blue-600'] : props.theme.palette['grey-400']};
+`;
+export const DateValue = styled.div`
+  color: ${(props): string => props.theme.palette['grey-600']};
 `;

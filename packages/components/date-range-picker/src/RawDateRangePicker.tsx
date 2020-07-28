@@ -42,9 +42,11 @@ class RawDateRangePicker extends React.PureComponent<Props, State> {
   };
 
   handleRangeChange = (range: DateRange): void => {
+    const {onValueChange} = this.props;
     const { value } = this.state;
     const newValue = normalizeRange({ ...range, filter: value.filter });
     this.setState({ value: newValue, changed: true });
+    onValueChange && onValueChange(newValue);
   };
 
   handleApply = (): void => {
