@@ -156,7 +156,10 @@
       "NOW": "Now",
       "FILTER": "Filter",
       "SELECT-DATE": "Select date",
-      "SELECT-TIME": "Select time"
+      "SELECT-TIME": "Select time",
+      "START-DATE": "Start date",
+      "END-DATE": "End date",
+      "CLEAR": "Clear"
     }
   }
 }
