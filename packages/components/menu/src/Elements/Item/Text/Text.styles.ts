@@ -115,6 +115,9 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
       color: ${(props): string => props.theme.palette['grey-700']};
       background: ${(props): string =>
         props.description ? props.theme.palette.white : props.theme.palette['grey-050']};
+      ${PrefixelWrapper} > .ds-icon > svg {
+        fill: ${(props): string => props.theme.palette['grey-700']};
+      }
     }
     &:focus:active {
       background: ${(props): string => `${props.theme.palette['grey-100']}`};
@@ -127,6 +130,13 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
         display: flex;
         align-items: center;
       }
+    }
+    ${PrefixelWrapper} > .ds-icon > svg {
+      ${(props): string | false =>
+        !props.disabled &&
+        `
+          fill: ${props.theme.palette['grey-600']};
+        `}
     }
 
     &:focus {
