@@ -2,8 +2,14 @@ import * as React from 'react';
 import { text, select, number, boolean } from '@storybook/addon-knobs';
 import CardSelect from '@synerise/ds-card-select';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
-import { AdAfterScrollL } from '@synerise/ds-icon/dist/icons/additional';
-import Icon from '@synerise/ds-icon';
+import { AbTestXl, ChartPieL } from '@synerise/ds-icon/dist/icons/additional';
+
+
+const positionOfElements = {
+  left: 'left',
+  center: 'center',
+  right: 'right',
+};
 
 const stories = {
   default: () => {
@@ -25,7 +31,7 @@ const stories = {
       size,
       raised,
       tickVisible,
-      icon: <IconComponent />,
+      icon: <AbTestXl/>,
       iconSize,
       stretchToFit,
     };
@@ -38,8 +44,8 @@ const stories = {
           <div style={{ marginLeft: 12, marginRight: 12 }}>
             <CardSelect
               {...commonProps}
-              title={`Cross-sell`}
-              description={`Suspendisse a pellentesque duim maecenas malesuad.`}
+              title={`Selectable card`}
+              description={`With description`}
               value={store === 0}
               onChange={() => store !== 0 && setStore(0)}
             />
@@ -48,7 +54,7 @@ const stories = {
           <div style={{ marginLeft: 12, marginRight: 12 }}>
             <CardSelect
               {...commonProps}
-              title={`Cross-sell`}
+              title={`No description`}
               value={store === 1}
               onChange={() => store !== 1 && setStore(1)}
             />
@@ -58,8 +64,8 @@ const stories = {
             <CardSelect
               {...commonProps}
               tickVisible={false}
-              title={`Cross-sell`}
-              description={`Suspendisse a pellentesque duim maecenas malesuad.`}
+              title={`Clickable example`}
+              description={`No tick or value`}
               onClick={() => window.alert('Hello world!')}
             />
           </div>
@@ -67,8 +73,8 @@ const stories = {
           <div style={{ marginLeft: 12, marginRight: 12 }}>
             <CardSelect
               {...commonProps}
-              title={`Cross-sell`}
-              description={`Suspendisse a pellentesque duim maecenas malesuad.`}
+              title={`Disabled card`}
+              description={`Description of disabled card`}
               disabled={true}
             />
           </div>
@@ -79,7 +85,7 @@ const stories = {
                 <CardSelect
                   {...commonProps}
                   icon={undefined}
-                  title={`Cross-sell`}
+                  title={`No Icon with only title`}
                   value={store === 2}
                   onChange={() => store !== 2 && setStore(2)}
                 />
@@ -89,7 +95,7 @@ const stories = {
                 <CardSelect
                   {...commonProps}
                   icon={undefined}
-                  description={`Suspendisse a pellentesque duim maecenas malesuad.`}
+                  description={`No Icon with only description`}
                   value={store === 3}
                   onChange={() => store !== 3 && setStore(3)}
                 />
@@ -101,7 +107,7 @@ const stories = {
     );
   },
   cardWithNoIcon:() =>{
-    const [store, setStore] = React.useState<number | null>(null);
+    const [selected, setSelected] = React.useState<boolean>(false);
 
     const raised = boolean('Raised', false);
     const tickVisible = boolean('With tick', true);
@@ -131,26 +137,28 @@ const stories = {
           <div style={{ marginLeft: 12, marginRight: 12 }}>
             <CardSelect
               {...commonProps}
-              title={`Cross-sell`}
+              title={`A/B Tests`}
               description={descriptionMessage && getDescription(hasDescription)}
               disabled={boolean('disabled', false)}
-              value={store === 0}
-              onChange={() => store !== 0 && setStore(0)}
+              value={selected}
+              onChange={()=> setSelected(!selected)}
             />
           </div>
-      </React.Suspense>
-  </div>
-  );
+        </React.Suspense>
+      </div>
+    );
 
   },
   cardWithIcon:() =>{
-    const [store, setStore] = React.useState<number | null>(null);
+    const [selected, setSelected] = React.useState<boolean>(false);
     const raised = boolean('Raised', false);
     const tickVisible = boolean('With tick', true);
     const iconSize = number('Custom Icon component size', 0);
     const hasDescription = boolean('Set Description', true);
     const descriptionMessage = text('Description', 'Suspendisse a pellentesque duim maecenas malesuad.');
     const isOutline = boolean('outline', false);
+    const elementsPosition = select('Position of elements', positionOfElements, positionOfElements.center);
+    const isFocus = React.useState(false);
     const getDescription = (hasDescription: boolean): string => {
       if (hasDescription) {
         return descriptionMessage;
@@ -162,7 +170,7 @@ const stories = {
     const commonProps = {
       raised,
       tickVisible,
-      icon: <Icon className="icon" component={<AdAfterScrollL />} />,
+      icon: <AbTestXl/>,
       iconSize,
     };
 
@@ -174,11 +182,13 @@ const stories = {
           <div style={{ marginLeft: 12, marginRight: 12 }}>
             <CardSelect
               {...commonProps}
-              title={`Cross-sell`}
+              title={`A/B Tests`}
               description={descriptionMessage && getDescription(hasDescription)}
-              value={store === 0}
-              onChange={() => store !== 0 && setStore(0)}
+              value={selected}
+              onChange={() => setSelected(!selected)}
               disabled={boolean('disabled', false)}
+              elementsPosition={elementsPosition}
+              onFocus={isFocus}
             />
           </div>
         </React.Suspense>
@@ -186,17 +196,20 @@ const stories = {
     );
   },
   smallCardWithIcon:() =>{
-    const [store, setStore] = React.useState<number | null>(null);
+    const [selected, setSelected] = React.useState<boolean>(false);
     const raised = boolean('Raised', false);
     const tickVisible = boolean('With tick', true);
     const iconSize = number('Custom Icon component size', 0);
     const isOutline = boolean('outline', false);
+    const size = select('Size', { small: 'small', medium: 'medium' }, 'small');
+
 
     const commonProps = {
       raised,
       tickVisible,
-      icon: <Icon className="icon" component={<AdAfterScrollL />}  />,
+      icon: <ChartPieL/>,
       iconSize,
+      size,
     };
 
     return (
@@ -208,9 +221,10 @@ const stories = {
             <CardSelect
               {...commonProps}
               title={`Column`}
-              value={store === 0}
-              onChange={() => store !== 0 && setStore(0)}
+              value={selected}
+              onChange={()=> setSelected(!selected)}
               disabled={boolean('disabled', false)}
+              size={'small'}
 
             />
           </div>
@@ -218,7 +232,6 @@ const stories = {
       </div>
     );
   },
-
 
 };
 
