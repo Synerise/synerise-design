@@ -14,6 +14,7 @@ import {
 import { text } from '@storybook/addon-knobs';
 import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
 import { action } from '@storybook/addon-actions';
+import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 
 export const SEARCH_PLACEHOLDER = 'Search...';
 
@@ -106,13 +107,13 @@ export const ACTIONS = [
     id: uuid(),
     onClick: action('OnImportClick'),
     text: 'Import',
-    prefixel: <Icon component={<FileTypeTableM />} />,
+    prefixel: <Icon component={<FileTypeTableM />}  color={theme.palette['grey-600']} />,
   },
   {
     id: uuid(),
     onClick: action('OnExportClick'),
     text: 'Export',
-    prefixel: <Icon component={<FileDownloadM />} />,
+    prefixel: <Icon component={<FileDownloadM  color={theme.palette['grey-600']} />} />,
   },
 ];
 

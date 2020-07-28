@@ -34,6 +34,7 @@ import Divider from '@synerise/ds-divider';
 import Search from '@synerise/ds-search';
 import VarTypeStringM from '@synerise/ds-icon/dist/icons/VarTypeStringM';
 import Tooltip from '@synerise/ds-tooltip';
+import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 
 const decorator = storyFn => (
   <div style={{ padding: 20, width: '100vw', minWidth: '100%', position: 'absolute', top: 0, left: 0 }}>
@@ -213,10 +214,10 @@ const stories = {
               <Dropdown
                 overlay={
                   <Menu style={{ padding: 8 }}>
-                    <Menu.Item onClick={action('Edit')} prefixel={<Icon component={<EditM />} />}>
+                    <Menu.Item onClick={action('Edit')} prefixel={<Icon component={<EditM />}  color={theme.palette['grey-600']}/>}>
                       Edit
                     </Menu.Item>
-                    <Menu.Item onClick={action('Duplicate')} prefixel={<Icon component={<DuplicateM />} />}>
+                    <Menu.Item onClick={action('Duplicate')} prefixel={<Icon component={<DuplicateM />} color={theme.palette['grey-600']} />}>
                       Duplicate
                     </Menu.Item>
                     <Menu.Item onClick={action('Delete')} danger prefixel={<Icon component={<TrashM />} />}>
