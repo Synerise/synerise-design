@@ -1,6 +1,8 @@
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import Typography from '@synerise/ds-typography';
 import * as React from 'react';
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore
 import { ThemePropsVars } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { Backgrounds } from './Card';
 
@@ -43,8 +45,18 @@ export const Container = styled.div<{
   border-radius: ${(props): string => props.theme.variable('@border-radius-base')};
   display: flex;
   flex-flow: column;
-  transition: 0.3s ease;
+  transition: all 0.3s ease;
   width: 100%;
+
+  .contentContainerOpen {
+    transition: all 0.3s ease-in-out;
+    max-height: 1000px;
+  }
+  .contentContainerClosed {
+    animation-direction: reverse;
+    transition: all 0.2s ease-in-out;
+    max-height: 0;
+  }
 
   ${(props): FlattenSimpleInterpolation | false =>
     !!props.raised &&
@@ -144,9 +156,18 @@ export const HeaderContent = styled.div<{ compact?: boolean; hasIcon: boolean }>
     `}
 `;
 
-export const ChildrenContainer = styled.div<{ hasHeader?: boolean }>``;
+export const ChildrenContainer = styled.div<{ showContent?: true }>`
+  overflow: hidden;
+  .content {
+    transition: opacity 0.3s ease-in-out;
+    opacity: 1;
+  }
+  .content-closed {
+    transition: opacity 0.2s ease-in-out;
+    opacity: 0;
+  }
+`;
 
-export const PaddingWrapper = styled.div<{ isContentful?: string; withoutPadding?: boolean }>`
+export const PaddingWrapper = styled.div<{ withoutPadding?: boolean }>`
   padding: ${(props): string => (props.withoutPadding ? '0' : '24px')};
-  ${(props): string => (props.withoutPadding || !props.isContentful ? '0' : '24px')};
 `;

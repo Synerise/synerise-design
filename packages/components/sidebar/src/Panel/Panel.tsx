@@ -62,23 +62,24 @@ export const Panel: React.FC<PanelProps> = ({ header, children, id, ...props }) 
   drag(drop(ref));
 
   return (
-    <S.AntdPanel
-      style={{ opacity: isDragging ? '0' : '1' }}
-      header={
-        <S.SidebarHeader>
-          <span>{header}</span>
-          {isDragDrop && (
-            <S.SidebarHandle ref={ref}>
-              <Icon color={theme.palette['grey-400']} component={<DragHandleM />} />
-            </S.SidebarHandle>
-          )}
-        </S.SidebarHeader>
-      }
-      key={id}
-      {...props} // eslint-disable-line
-    >
-      <S.SidebarContentWrapper>{children}</S.SidebarContentWrapper>
-    </S.AntdPanel>
+    <S.PanelWrapper ref={ref} style={{ opacity: isDragging ? '0' : '1' }}>
+      <S.AntdPanel
+        header={
+          <S.SidebarHeader>
+            <span>{header}</span>
+            {isDragDrop && (
+              <S.SidebarHandle>
+                <Icon color={theme.palette['grey-400']} component={<DragHandleM />} />
+              </S.SidebarHandle>
+            )}
+          </S.SidebarHeader>
+        }
+        key={id}
+        {...props} // eslint-disable-line
+      >
+        <S.SidebarContentWrapper>{children}</S.SidebarContentWrapper>
+      </S.AntdPanel>
+    </S.PanelWrapper>
   );
 };
 

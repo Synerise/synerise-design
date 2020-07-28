@@ -190,8 +190,8 @@ const stories = {
           renderRowMenu: (user) => {
             return (
             <Menu style={{padding: '8px'}}>
-              <Menu.Item onClick={action(`Show user permissions ${user.id}`)} prefixel={<Icon component={<LockM />} />}>User permission</Menu.Item>
-              <Menu.Item onClick={action(`Remove user ${user.id}`)} type='danger' prefixel={<Icon component={<UserRemoveM />} />}>Remove user</Menu.Item>
+              <Menu.Item onClick={action(`Show user permissions ${user.id}`)} prefixel={<Icon component={<LockM />}  color={theme.palette['grey-600']} />}>User permission</Menu.Item>
+              <Menu.Item onClick={action(`Remove user ${user.id}`)} type='danger' prefixel={<Icon component={<UserRemoveM  />} />}>Remove user</Menu.Item>
             </Menu>
           )}
         }}

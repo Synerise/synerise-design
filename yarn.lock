@@ -4164,6 +4164,18 @@
     "@synerise/ds-typography" "^0.8.3"
     "@synerise/ds-utils" "^0.8.26"
 
+"@synerise/ds-card@^0.7.11":
+  version "0.7.11"
+  resolved "https://registry.yarnpkg.com/@synerise/ds-card/-/ds-card-0.7.11.tgz#b10174498d18d864566c78e7c0b7854a9faf3983"
+  integrity sha512-Fu56/74niZ81Ewq12FnSNEo04XQVgrHWLAEZiDJQ1t6lS9NWnCYRgWSJJKP112Zlzzm8WNXHcey0bNmIwsxoYA==
+  dependencies:
+    "@synerise/ds-icon" "^0.23.0"
+    "@synerise/ds-typography" "^0.8.3"
+    "@synerise/ds-utils" "^0.9.0"
+    rc-animate "^3.1.0"
+    rc-tween-one "^2.7.3"
+    velocity-animate "^1.5.2"
+
 "@synerise/ds-divider@^0.3.14":
   version "0.3.14"
   resolved "https://registry.yarnpkg.com/@synerise/ds-divider/-/ds-divider-0.3.14.tgz#704f5e0edec6d9d7540c48ba451befef40660ca0"
@@ -4192,6 +4204,11 @@
   version "0.17.0"
   resolved "https://registry.yarnpkg.com/@synerise/ds-icon/-/ds-icon-0.17.0.tgz#543c802405c28ba5fc31bee7c82da86d10ff4f2d"
   integrity sha512-5XEmCEMreu41CY8qg64Js0AEDc/KYsKMG4EOFO4ZBv+yMbERPtX31+kdJV7X0DtBHz+MGF1qzHUoNyYcPcwW5g==
+
+"@synerise/ds-icon@^0.21.0":
+  version "0.21.0"
+  resolved "https://registry.yarnpkg.com/@synerise/ds-icon/-/ds-icon-0.21.0.tgz#65f2830bce46069f7d9167da9acd4744bed47404"
+  integrity sha512-g7iTWhunRDAdN9sOJs0f6uvSuUxdAs8bguxPYVpYv4O1P3GfFa+zGfw6w7Z+0o99RmOz7tnrIoUzUJZvrQqLOw==
 
 "@synerise/ds-input@^0.10.7":
   version "0.10.7"
@@ -4224,6 +4241,11 @@
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/@synerise/ds-typography/-/ds-typography-0.7.0.tgz#42ec6d4adee553ba23c7b1406f20af7b2b1b2232"
   integrity sha512-YqC3ZZlloh0dRpdY0CHRG/RpJTmhMzybkle0Oh3ym1Kw+Q4GR8Jo+b/W5lfxIcSjzEEzPTORrwZClNPA3H/xrw==
+
+"@synerise/ds-utils@^0.8.26", "@synerise/ds-utils@^0.8.31", "@synerise/ds-utils@^0.8.5":
+  version "0.8.31"
+  resolved "https://registry.yarnpkg.com/@synerise/ds-utils/-/ds-utils-0.8.31.tgz#f0ca7de48c80e6d7c45708f76577747dfe176543"
+  integrity sha512-tRL+iGny90Vt5W/m5cRMQrHt53HKx9YRG2whSKSv+TYijZEv2FfCrL073ASW20CK+m9MvKhrq5nFh9INUZWsSA==
 
 "@testing-library/dom@^7.0.2":
   version "7.2.1"
@@ -17726,9 +17748,9 @@ rc-util@^4.3.0:
     shallowequal "^1.1.0"
 
 rc-util@^5.0.1:
-  version "5.0.5"
-  resolved "https://registry.yarnpkg.com/rc-util/-/rc-util-5.0.5.tgz#d29d626edc931fbf8b45b4aa48fb9e44ce2300bd"
-  integrity sha512-zLIdNm6qz+hQbB5T1fmzHFFgPuRl3uB2eS2iLR/mewUWvgC3l7NzRYRVlHoCEEFVUkKEEsHuJXG1J52FInl5lA==
+  version "5.0.6"
+  resolved "https://registry.yarnpkg.com/rc-util/-/rc-util-5.0.6.tgz#2b828bc87a818a66384b813f76a561ad4609e9b0"
+  integrity sha512-uLGxF9WjbpJSjd6iDnIjl8ZeMUglpcuh1DwO26aaXh++yAmlB6eIAJMUwwJCuqJvo4quCvsDPg1VkqHILc4U0A==
   dependencies:
     react-is "^16.12.0"
     shallowequal "^1.1.0"

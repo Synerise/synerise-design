@@ -31,25 +31,30 @@ export const SidebarHeader = styled.div`
   }
 `;
 
+export const PanelWrapper = styled.div`
+  position: relative;
+`;
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const AntdCollapse = styled((Collapse as any) as React.ComponentType<CollapseProps>)`
   &.ant-collapse {
     background-color: rgba(11, 104, 255, 0.07);
     border: none;
-    box-shadow: 1px
-
 
     &,
     *:not(${BlockContent}) {
       border-radius: 0 !important;
     }
 
-    > .ant-collapse-item > .ant-collapse-header {
+    > ${PanelWrapper} > .ant-collapse-item > .ant-collapse-header {
       color: ${(props): string => props.theme.palette['grey-700']};
       font-size: 14px;
       font-weight: 500;
       line-height: 20px;
       transition: 0.2s ease-in-out;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
 
       &:hover {
         color: ${(props): string => props.theme.palette['grey-800']};
@@ -81,7 +86,6 @@ export const AntdCollapse = styled((Collapse as any) as React.ComponentType<Coll
       background-color: #fff;
       border-top: solid 1px ${(props): string => props.theme.palette['grey-200']};
       border-bottom: none;
-
     }
   }
 
@@ -91,16 +95,17 @@ export const AntdCollapse = styled((Collapse as any) as React.ComponentType<Coll
     }
   }
 
-  &.ant-collapse-icon-position-right > .ant-collapse-item > .ant-collapse-header {
+  &.ant-collapse-icon-position-right > ${PanelWrapper} > .ant-collapse-item > .ant-collapse-header {
     padding: 18px 24px;
     user-select: none;
 
     .ant-collapse-arrow {
       right: 24px;
+      position: absolute;
     }
   }
 
-  &.ant-collapse-icon-position-right.is-drag-drop > .ant-collapse-item > .ant-collapse-header {
+  &.ant-collapse-icon-position-right.is-drag-drop > ${PanelWrapper} > .ant-collapse-item > .ant-collapse-header {
     padding: 18px 24px 18px 0;
   }
 `;
