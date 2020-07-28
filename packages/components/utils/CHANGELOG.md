@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@0.8.31...@synerise/ds-utils@0.9.0) (2020-07-24)
+
+
+### Features
+
+* **utils:** update colorByLetter to works witch Avatar ([8f603a0](https://github.com/synerise/synerise-design/commit/8f603a09e8e0e16b3380189606e0b256bc9347bf))
+
+
+
+
+
 ## [0.8.31](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@0.8.30...@synerise/ds-utils@0.8.31) (2020-07-15)
 
 **Note:** Version bump only for package @synerise/ds-utils

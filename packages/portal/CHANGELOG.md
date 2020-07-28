@@ -3,6 +3,142 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.89.0](https://github.com/synerise/synerise-design/compare/portal@0.88.2...portal@0.89.0) (2020-07-24)
+
+
+### Features
+
+* **app-menu:** add AI Search to example menu ([6f5fcc5](https://github.com/synerise/synerise-design/commit/6f5fcc552358d207bde3179bafa338c4721e3501))
+
+
+
+
+
+## [0.88.2](https://github.com/synerise/synerise-design/compare/portal@0.88.1...portal@0.88.2) (2020-07-24)
+
+
+### Bug Fixes
+
+* **card:** change react fragment to div ([62f4dc0](https://github.com/synerise/synerise-design/commit/62f4dc08d127e816c3cb16115b8ef5a93b25ce25))
+* **search:** fix blank list while scrolling ([b2ac6c1](https://github.com/synerise/synerise-design/commit/b2ac6c1c8f67aa18332a4b61cceca1ffedf1c393))
+* **sidebar:** add padding ([e1491d0](https://github.com/synerise/synerise-design/commit/e1491d0fcfef8cb7c4d4e23a8e6fdaf881362eb1))
+* **table:** fix example on card ([691eaf4](https://github.com/synerise/synerise-design/commit/691eaf4115e132a4749e2831c068472f39745953))
+
+
+
+
+
+## [0.88.1](https://github.com/synerise/synerise-design/compare/portal@0.88.0...portal@0.88.1) (2020-07-22)
+
+
+### Bug Fixes
+
+* **time-picker:** added a scroll to selected functionality ([9b326ad](https://github.com/synerise/synerise-design/commit/9b326ad6af56485710ab810db679ac45e857b34d))
+
+
+
+
+
+# [0.88.0](https://github.com/synerise/synerise-design/compare/portal@0.87.0...portal@0.88.0) (2020-07-22)
+
+
+### Bug Fixes
+
+* **button-group:** change styles of focused button ([152b78d](https://github.com/synerise/synerise-design/commit/152b78db8beda2b2b6c6ba3057d8d2bc39ab63e8))
+* **card:** add animation to cards openning ([e6d541c](https://github.com/synerise/synerise-design/commit/e6d541cfda8b5fac256b45e9b7e28ba5d1f87272))
+* **items-roll:** fix search clear on grouped example ([250592f](https://github.com/synerise/synerise-design/commit/250592f30f62760993c0a5dbe043663b9b636d95))
+* **search:** code review changes ([03c7c7e](https://github.com/synerise/synerise-design/commit/03c7c7e2bd81886070b7d36f44e921ccd1c45bb2))
+* **search:** reset scrollTop after clear and select ([827fa73](https://github.com/synerise/synerise-design/commit/827fa73b5dc8f1c6f81ba4df18d61f6b95e694f3))
+* **search:** wIP: search performance ([5939748](https://github.com/synerise/synerise-design/commit/593974890d25feca19028387a2565cf11ba3447b))
+
+
+### Features
+
+* **avatar:** add ProductAvatar component ([8a49086](https://github.com/synerise/synerise-design/commit/8a49086f03c12fe3a86cd1c490b77de6517dddc0))
+
+
+
+
+
+# [0.87.0](https://github.com/synerise/synerise-design/compare/portal@0.86.1...portal@0.87.0) (2020-07-21)
+
+
+### Bug Fixes
+
+* **item-picker:** fix withChangeConfirmation prop ([5f92aba](https://github.com/synerise/synerise-design/commit/5f92aba4e3f094bbfde70f5afe128f090dd13c6a))
+* **manageable-list:** changed a story ([30e6374](https://github.com/synerise/synerise-design/commit/30e6374a4073c462bbc65f2a929b7ec763c88c02))
+* **search:** add onClear prop and update tests and stories ([ded5385](https://github.com/synerise/synerise-design/commit/ded53857c3c55cd87e06c2038ccf1f6926b12b28))
+* **sidebar:** change background styles ([e62be74](https://github.com/synerise/synerise-design/commit/e62be74c0657bacfc049c96419c6f1a2cdd24471))
+
+
+### Features
+
+* **file-uploader:** read and return content of .txt files ([465fae1](https://github.com/synerise/synerise-design/commit/465fae1b1c8590d654b9fc1c78b3afc49b130f7f))
+
+
+
+
+
+## [0.86.1](https://github.com/synerise/synerise-design/compare/portal@0.86.0...portal@0.86.1) (2020-07-20)
+
+
+### Bug Fixes
+
+* **search:** add onClear prop and update tests and stories ([c11b557](https://github.com/synerise/synerise-design/commit/c11b5578ef72ec5928f90416be09b74e7036e889))
+
+
+
+
+
+# [0.86.0](https://github.com/synerise/synerise-design/compare/portal@0.85.3...portal@0.86.0) (2020-07-20)
+
+
+### Bug Fixes
+
+* **button:** add styles to secondary button and move to button component ([efdea0b](https://github.com/synerise/synerise-design/commit/efdea0bd18d1089370632a282aba72aafe29d037))
+* **button:** add styles to secondary button and move to button component ([b62da4c](https://github.com/synerise/synerise-design/commit/b62da4ce88727f370b5c0cb051828386fabb55d1))
+* **button-group:** add option and contentbuttons add to button component ([2cc2aad](https://github.com/synerise/synerise-design/commit/2cc2aadead2b4bbe8931b8d6f61933e4ec464e9b))
+* **button-group:** add option and contentbuttons add to button component ([e54559e](https://github.com/synerise/synerise-design/commit/e54559eda6d5f569d643b5e97ea218d9a36c99bc))
+* **date-picker:** changes after ux review ([eecf99b](https://github.com/synerise/synerise-design/commit/eecf99b492e5f9fc8fa20e1d060e04240aa11704))
+* **date-picker:** changes after ux review ([ac339ae](https://github.com/synerise/synerise-design/commit/ac339ae930e4367df55d79b14847a8c95958b349))
+* **manageable-list:** fixing the build ([99c8182](https://github.com/synerise/synerise-design/commit/99c81829a6ec6571d20f7f0a6aa3c7ec20fd4637))
+* **manageable-list:** fixing the build ([f3aae83](https://github.com/synerise/synerise-design/commit/f3aae83f478557d49a858049b9830d950a27ff82))
+* **manageable-list:** trying to steer expanded items from outside ([828b296](https://github.com/synerise/synerise-design/commit/828b296af9fe0460b2ba5f400086b5db1bc606f4))
+* **manageable-list:** trying to steer expanded items from outside ([b55f888](https://github.com/synerise/synerise-design/commit/b55f888a45cf7564f13e966dac2c77f5959aecf0))
+* **sidebar:** change name ([3c7a85a](https://github.com/synerise/synerise-design/commit/3c7a85aec218562bb66a7c25812b7c8a664e9786))
+* **sidebar:** change name ([540d31c](https://github.com/synerise/synerise-design/commit/540d31c3a85d2477b1dae4eadb554280c108c499))
+* **table:** grouped table data ([509f751](https://github.com/synerise/synerise-design/commit/509f7512ebe4cadc7030a2466a58d2d7f9c11724))
+* **table:** grouped table data ([6bcf5dc](https://github.com/synerise/synerise-design/commit/6bcf5dcac8916c668b6f53071a920bf517165653))
+* **table:** VirtualTable improvements ([e20a17c](https://github.com/synerise/synerise-design/commit/e20a17cd95751d3f5d091a6d5f84c3be671a5a5a))
+* **table:** VirtualTable improvements ([3a2c3cd](https://github.com/synerise/synerise-design/commit/3a2c3cd02f5057201d6ce62d34cfe7cc29e07a3d))
+* **tags:** changes in styles and add SearchM Icon to dropdown ([b219a65](https://github.com/synerise/synerise-design/commit/b219a65d14331dda3ca76056fdcbfba673c09449))
+* **tags:** changes in styles and add SearchM Icon to dropdown ([e15d3ba](https://github.com/synerise/synerise-design/commit/e15d3baf2de61940bdae8ed27d1894e107d8c80e))
+
+
+### Features
+
+* **date-picker:** move story to pickers category ([5717e34](https://github.com/synerise/synerise-design/commit/5717e34c70e90646e1787a420155178c2584e62b))
+* **date-picker:** move story to pickers category ([03aea34](https://github.com/synerise/synerise-design/commit/03aea34df3260b7592fc57622627dbd412609861))
+* **date-range-picker:** move story to pickers category ([9214f6a](https://github.com/synerise/synerise-design/commit/9214f6a931549cf439cba91faf6398999a6ce7f8))
+* **date-range-picker:** move story to pickers category ([8ea6f2a](https://github.com/synerise/synerise-design/commit/8ea6f2ab0cc82dc56c43020f101ca58124934a26))
+* **icon:** add a/b-test and chart-pie icons ([a68a934](https://github.com/synerise/synerise-design/commit/a68a934ee82d85ae6bae5a417df3e54cb02e719d))
+* **icon-picker:** move story to pickers category ([5d78149](https://github.com/synerise/synerise-design/commit/5d7814910d430804756223bcd8021234c38ce13d))
+* **icon-picker:** move story to pickers category ([f60750e](https://github.com/synerise/synerise-design/commit/f60750e8e1a47d1fb9364f54d2a4e58d899b000c))
+* **item-picker:** move story to pickers category ([a4823bd](https://github.com/synerise/synerise-design/commit/a4823bd10fa18da6945ad58b4c051a9b2892802f))
+* **item-picker:** move story to pickers category ([894162a](https://github.com/synerise/synerise-design/commit/894162af2a3110e2becd0435c48db63b7f119116))
+* **time-picker:** move story to pickers category ([9873a50](https://github.com/synerise/synerise-design/commit/9873a50b827f888844bdcd568ab0cb96ab62340e))
+* **time-picker:** move story to pickers category ([5129305](https://github.com/synerise/synerise-design/commit/51293056ab972ed756009192b447d2f3554253be))
+
+
+### Performance Improvements
+
+* **manageable-list:** prevent often rerender ([2917107](https://github.com/synerise/synerise-design/commit/2917107b104f05d0d4430898bb1b82a22a91a9b9))
+* **manageable-list:** prevent often rerender ([4272aa8](https://github.com/synerise/synerise-design/commit/4272aa80ca0f1cd5505ad297f9a0f69461955057))
+
+
+
+
+
 ## [0.85.3](https://github.com/synerise/synerise-design/compare/portal@0.85.2...portal@0.85.3) (2020-07-17)
 
 

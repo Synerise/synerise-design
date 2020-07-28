@@ -121,7 +121,9 @@ const stories = {
           const fakeApiResponse = getSuggestions(value);
           setSuggestions(fakeApiResponse);
         }}
-        onValueChange={value => setValue(value)}
+        onValueChange={value => {
+          setValue(value);
+        }}
         parameters={parameters.slice(0, parametersCount)}
         parametersDisplayProps={{
           tooltip: parametersTooltip,
@@ -145,7 +147,7 @@ const stories = {
           tooltip: recentTooltip,
           title: recentTitle,
           rowHeight: 32,
-          itemRender: (item: FilterElement) => <Menu.Item onItemHover={NOOP}>{item && item.text}</Menu.Item>,
+          itemRender: (item: FilterElement) => <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>,
         }}
         suggestions={suggestions}
         suggestionsDisplayProps={{

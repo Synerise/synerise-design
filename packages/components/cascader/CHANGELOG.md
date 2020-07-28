@@ -3,6 +3,78 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.40](https://github.com/Synerise/synerise-design/compare/@synerise/ds-cascader@0.1.39...@synerise/ds-cascader@0.1.40) (2020-07-27)
+
+**Note:** Version bump only for package @synerise/ds-cascader
+
+
+
+
+
+## [0.1.39](https://github.com/Synerise/synerise-design/compare/@synerise/ds-cascader@0.1.38...@synerise/ds-cascader@0.1.39) (2020-07-24)
+
+**Note:** Version bump only for package @synerise/ds-cascader
+
+
+
+
+
+## [0.1.38](https://github.com/Synerise/synerise-design/compare/@synerise/ds-cascader@0.1.37...@synerise/ds-cascader@0.1.38) (2020-07-24)
+
+**Note:** Version bump only for package @synerise/ds-cascader
+
+
+
+
+
+## [0.1.37](https://github.com/Synerise/synerise-design/compare/@synerise/ds-cascader@0.1.36...@synerise/ds-cascader@0.1.37) (2020-07-23)
+
+**Note:** Version bump only for package @synerise/ds-cascader
+
+
+
+
+
+## [0.1.36](https://github.com/Synerise/synerise-design/compare/@synerise/ds-cascader@0.1.35...@synerise/ds-cascader@0.1.36) (2020-07-22)
+
+**Note:** Version bump only for package @synerise/ds-cascader
+
+
+
+
+
+## [0.1.35](https://github.com/Synerise/synerise-design/compare/@synerise/ds-cascader@0.1.34...@synerise/ds-cascader@0.1.35) (2020-07-22)
+
+**Note:** Version bump only for package @synerise/ds-cascader
+
+
+
+
+
+## [0.1.34](https://github.com/Synerise/synerise-design/compare/@synerise/ds-cascader@0.1.33...@synerise/ds-cascader@0.1.34) (2020-07-21)
+
+**Note:** Version bump only for package @synerise/ds-cascader
+
+
+
+
+
+## [0.1.33](https://github.com/Synerise/synerise-design/compare/@synerise/ds-cascader@0.1.32...@synerise/ds-cascader@0.1.33) (2020-07-20)
+
+**Note:** Version bump only for package @synerise/ds-cascader
+
+
+
+
+
+## [0.1.32](https://github.com/Synerise/synerise-design/compare/@synerise/ds-cascader@0.1.31...@synerise/ds-cascader@0.1.32) (2020-07-20)
+
+**Note:** Version bump only for package @synerise/ds-cascader
+
+
+
+
+
 ## [0.1.31](https://github.com/Synerise/synerise-design/compare/@synerise/ds-cascader@0.1.30...@synerise/ds-cascader@0.1.31) (2020-07-17)
 
 **Note:** Version bump only for package @synerise/ds-cascader

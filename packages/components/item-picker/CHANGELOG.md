@@ -3,6 +3,74 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@0.1.10...@synerise/ds-item-picker@0.1.11) (2020-07-24)
+
+
+### Bug Fixes
+
+* **item-picker:** add missing icon to dropdown overlay ([8ebee2d](https://github.com/Synerise/synerise-design/commit/8ebee2d850545b8fac9c0b2c6021da6170a0885f))
+* **item-picker:** change type of Change button ([84236d5](https://github.com/Synerise/synerise-design/commit/84236d5ca14fefdaf0710bbd48d284468396339a))
+
+
+
+
+
+## [0.1.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@0.1.9...@synerise/ds-item-picker@0.1.10) (2020-07-24)
+
+**Note:** Version bump only for package @synerise/ds-item-picker
+
+
+
+
+
+## [0.1.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@0.1.8...@synerise/ds-item-picker@0.1.9) (2020-07-22)
+
+**Note:** Version bump only for package @synerise/ds-item-picker
+
+
+
+
+
+## [0.1.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@0.1.7...@synerise/ds-item-picker@0.1.8) (2020-07-22)
+
+
+### Bug Fixes
+
+* **item-picker:** fix styles ([869589f](https://github.com/Synerise/synerise-design/commit/869589ffcd1e8b11d15db289ab269f897a5218f6))
+* **item-picker:** fix trigger without clear confirmation ([54a3e79](https://github.com/Synerise/synerise-design/commit/54a3e7961fd2148db1927a64cac39479d365427e))
+
+
+
+
+
+## [0.1.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@0.1.6...@synerise/ds-item-picker@0.1.7) (2020-07-21)
+
+
+### Bug Fixes
+
+* **item-picker:** fix tests ([08a2a5a](https://github.com/Synerise/synerise-design/commit/08a2a5a790b303bbec2820b81c40817cf204c53e))
+* **item-picker:** fix withChangeConfirmation prop ([5f92aba](https://github.com/Synerise/synerise-design/commit/5f92aba4e3f094bbfde70f5afe128f090dd13c6a))
+
+
+
+
+
+## [0.1.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@0.1.5...@synerise/ds-item-picker@0.1.6) (2020-07-20)
+
+**Note:** Version bump only for package @synerise/ds-item-picker
+
+
+
+
+
+## [0.1.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@0.1.4...@synerise/ds-item-picker@0.1.5) (2020-07-20)
+
+**Note:** Version bump only for package @synerise/ds-item-picker
+
+
+
+
+
 ## [0.1.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@0.1.3...@synerise/ds-item-picker@0.1.4) (2020-07-15)
 
 

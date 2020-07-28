@@ -55,7 +55,6 @@ const recentDisplayProps = {
 // const INPUT_EXPAND_ANIMATION_DURATION = 200;
 // const waitForDropdownToExpand = () => new Promise(r => setTimeout(r, INPUT_EXPAND_ANIMATION_DURATION));
 const dropdownMaxHeight = 400;
-
 describe('Search with dropdown', () => {
   it('should render', () => {
     const onChange = jest.fn();

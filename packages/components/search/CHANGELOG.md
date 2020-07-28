@@ -3,6 +3,97 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.56](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.1.55...@synerise/ds-search@0.1.56) (2020-07-27)
+
+
+### Bug Fixes
+
+* **search:** changed the animation duration ([5b645a0](https://github.com/Synerise/synerise-design/commit/5b645a00a409d57beb6b1d76d419b6ed55a50abe))
+* **search:** code review fixes ([cfaeac9](https://github.com/Synerise/synerise-design/commit/cfaeac91bfc420dd9293953d50e7625b1a90ac2f))
+* **search:** fixing the build ([66317f9](https://github.com/Synerise/synerise-design/commit/66317f9917ca52b6e4ef8cc828d343d9a8d7dedb))
+* **search:** move cursor to the end when clicked on item ([13290ef](https://github.com/Synerise/synerise-design/commit/13290ef76b5b8209714faacec362d7b990ace024))
+
+
+
+
+
+## [0.1.55](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.1.54...@synerise/ds-search@0.1.55) (2020-07-24)
+
+**Note:** Version bump only for package @synerise/ds-search
+
+
+
+
+
+## [0.1.54](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.1.53...@synerise/ds-search@0.1.54) (2020-07-24)
+
+**Note:** Version bump only for package @synerise/ds-search
+
+
+
+
+
+## [0.1.53](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.1.52...@synerise/ds-search@0.1.53) (2020-07-23)
+
+
+### Bug Fixes
+
+* **time-picker:** added a scroll to selected functionality ([998ffc3](https://github.com/Synerise/synerise-design/commit/998ffc32cbbb4ff792bbbf882efa9371f3cdf0d3))
+
+
+
+
+
+## [0.1.52](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.1.51...@synerise/ds-search@0.1.52) (2020-07-22)
+
+
+### Bug Fixes
+
+* **time-picker:** added a scroll to selected functionality ([9b326ad](https://github.com/Synerise/synerise-design/commit/9b326ad6af56485710ab810db679ac45e857b34d))
+
+
+
+
+
+## [0.1.51](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.1.50...@synerise/ds-search@0.1.51) (2020-07-22)
+
+
+### Bug Fixes
+
+* **search:** reset scrollTop after clear and select ([827fa73](https://github.com/Synerise/synerise-design/commit/827fa73b5dc8f1c6f81ba4df18d61f6b95e694f3))
+* **search:** wIP: search performance ([5939748](https://github.com/Synerise/synerise-design/commit/593974890d25feca19028387a2565cf11ba3447b))
+
+
+
+
+
+## [0.1.50](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.1.49...@synerise/ds-search@0.1.50) (2020-07-21)
+
+**Note:** Version bump only for package @synerise/ds-search
+
+
+
+
+
+## [0.1.49](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.1.48...@synerise/ds-search@0.1.49) (2020-07-20)
+
+
+### Bug Fixes
+
+* **search:** add onClear prop and update tests and stories ([c11b557](https://github.com/Synerise/synerise-design/commit/c11b5578ef72ec5928f90416be09b74e7036e889))
+
+
+
+
+
+## [0.1.48](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.1.47...@synerise/ds-search@0.1.48) (2020-07-20)
+
+**Note:** Version bump only for package @synerise/ds-search
+
+
+
+
+
 ## [0.1.47](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.1.46...@synerise/ds-search@0.1.47) (2020-07-17)
 
 
