@@ -45,17 +45,16 @@ export const Container = styled.div<{
   border-radius: ${(props): string => props.theme.variable('@border-radius-base')};
   display: flex;
   flex-flow: column;
-  transition: all 0.3s ease;
   width: 100%;
 
-  .contentContainerOpen {
-    transition: all 0.3s ease-in-out;
-    max-height: 1000px;
-  }
-  .contentContainerClosed {
-    animation-direction: reverse;
+  .contentContainer {
     transition: all 0.2s ease-in-out;
+    opacity: 1;
+    max-height: 1000px;
+    &.closed {
+    opacity: 0;
     max-height: 0;
+  }
   }
 
   ${(props): FlattenSimpleInterpolation | false =>
@@ -158,14 +157,7 @@ export const HeaderContent = styled.div<{ compact?: boolean; hasIcon: boolean }>
 
 export const ChildrenContainer = styled.div<{ showContent?: true }>`
   overflow: hidden;
-  .content {
-    transition: opacity 0.3s ease-in-out;
-    opacity: 1;
-  }
-  .content-closed {
-    transition: opacity 0.2s ease-in-out;
-    opacity: 0;
-  }
+  
 `;
 
 export const PaddingWrapper = styled.div<{ withoutPadding?: boolean }>`
