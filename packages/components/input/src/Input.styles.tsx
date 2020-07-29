@@ -45,8 +45,8 @@ export const InputWrapper = styled.div<InputWrapperProps>`
       return '12px';
     }};
     ::placeholder {
-  padding-top: 2px;
-  }
+      line-height:1.29;
+    }
   }
   .ant-input-group-addon {
     height: 100%;
