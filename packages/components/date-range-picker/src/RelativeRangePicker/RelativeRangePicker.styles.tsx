@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import Button from '@synerise/ds-button';
 import * as React from 'react';
 import Menu from '@synerise/ds-menu';
+import { InputGroup } from '@synerise/ds-input';
+import { Props as InputGroupProps } from '@synerise/ds-input/dist/InputGroup';
 
 export const Container = styled.div``;
 
@@ -28,40 +30,36 @@ export const Ranges = styled.div`
 `;
 
 export const CustomForm = styled.div`
-  margin-top: 16px;
   display: flex;
-  justify-content: space-around;
 `;
 
-export const InputSelectGroup = styled.div`
-  display: flex;
-
-  .ant-input-number {
-    width: 50%;
-  }
-
-  .ant-input-number-input {
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-  }
-
-  .ant-select {
-    margin-left: -1px;
-  }
-  .ant-input-number {
-    margin-left: -2px;
-  }
-  .ds-select-wrapper {
+export const InputSelectGroup = styled(InputGroup)<InputGroupProps>`
+  && {
     display: flex;
-    flex: 1;
-  }
-  .ant-select-selection {
-    background: ${(props): string => props.theme.palette['grey-050']};
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-    font-weight: 500;
+    align-items: center;
+    .ant-input-number {
+      display: flex;
+      flex: 1;
+    }
+    .ds-select-wrapper {
+      width: 122px;
+    }
+    margin-top: 24px;
+    height: 32px;
   }
 `;
+
+export const ModeDropdownTrigger = styled(({ children, ...rest }) => (
+  // eslint-disable-next-line react/jsx-props-no-spreading
+  <Button type="tertiary" {...rest}>
+    {children}
+  </Button>
+))`
+  && {
+    margin-right: 8px;
+  }
+`;
+
 export const Range = styled(({ children, ...rest }) => (
   // eslint-disable-next-line react/jsx-props-no-spreading
   <Button type="tertiary" {...rest}>
@@ -76,12 +74,14 @@ export const Range = styled(({ children, ...rest }) => (
   }
 `;
 
-export const RangeFormColumn = styled.div`
+export const RangeFormColumn = styled.div<{ noMargin?: boolean }>`
   display: flex;
   align-items: center;
+  margin-bottom: ${(props): string => (props.noMargin ? '0px' : '-16px')};
 `;
 
 export const DatePickerWrapper = styled.div`
+  width: 224px;
   margin-top: 0px;
 `;
 export const DropMenu = styled(Menu)`

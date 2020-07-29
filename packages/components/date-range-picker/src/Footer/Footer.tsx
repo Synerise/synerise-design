@@ -29,12 +29,16 @@ const Footer: React.FC<Props> = ({
   const ChosenRange = React.useMemo(
     () => (
       <S.ChosenRange className="ds-date-range-picker-value">
-        {fnsFormat(getDateFromString(value?.from), footerFormat, intl.locale)}
+        {!!value && !!value.from
+          ? fnsFormat(getDateFromString(value?.from), footerFormat, intl.locale)
+          : texts.startDatePlaceholder}
         <Icon component={<ArrowRightS />} />
-        {fnsFormat(getDateFromString(value?.to), footerFormat, intl.locale)}
+        {!!value && !!value.to
+          ? fnsFormat(getDateFromString(value?.to), footerFormat, intl.locale)
+          : texts.endDatePlaceholder}
       </S.ChosenRange>
     ),
-    [value, footerFormat, intl.locale]
+    [value, footerFormat, intl.locale, texts]
   );
   return (
     <S.Container className="ds-date-range-picker-footer" {...rest}>

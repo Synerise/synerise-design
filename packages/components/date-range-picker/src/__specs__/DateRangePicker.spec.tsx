@@ -1,7 +1,7 @@
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import * as React from 'react';
 import '@testing-library/jest-dom/extend-expect';
-import DateRangePicker from '../DateRangePicker';
+import RawDateRangePicker from '../RawDateRangePicker';
 import { DateRange, RelativeDateRange } from '../date.types';
 import { DAYS, RELATIVE, RELATIVE_PRESETS, ABSOLUTE } from '../constants';
 
@@ -30,7 +30,7 @@ describe('DateRangePicker', () => {
   it('should render', async () => {
     const onApply = jest.fn();
     const { container } = renderWithProvider(
-      <DateRangePicker
+      <RawDateRangePicker
         showTime
         onApply={onApply}
         showFilter={false}
@@ -44,7 +44,7 @@ describe('DateRangePicker', () => {
   it('should display passed range', async () => {
     const onApply = jest.fn();
     const { getByText } = renderWithProvider(
-      <DateRangePicker
+      <RawDateRangePicker
         showTime
         onApply={onApply}
         showFilter={false}
@@ -61,7 +61,7 @@ describe('DateRangePicker', () => {
   it('should convert date to absolute when forceAbsolute mode is enabled', async () => {
     const onApply = jest.fn();
     const { container } = renderWithProvider(
-      <DateRangePicker
+      <RawDateRangePicker
         showTime
         onApply={onApply}
         showFilter={false}
@@ -78,7 +78,7 @@ describe('DateRangePicker', () => {
   it('should not convert date to absolute by default', async () => {
     const onApply = jest.fn();
     const { container } = renderWithProvider(
-      <DateRangePicker
+      <RawDateRangePicker
         showTime
         onApply={onApply}
         showFilter={false}
@@ -95,7 +95,7 @@ describe('DateRangePicker', () => {
   it('should render custom ranges', async () => {
     const onApply = jest.fn();
     const { getByText } = renderWithProvider(
-      <DateRangePicker
+      <RawDateRangePicker
         showTime
         onApply={onApply}
         showFilter={false}
@@ -110,7 +110,7 @@ describe('DateRangePicker', () => {
   it('should update displayed range after selecting dates', async () => {
     const onApply = jest.fn();
     const { container } = renderWithProvider(
-      <DateRangePicker
+      <RawDateRangePicker
         showTime
         onApply={onApply}
         showFilter={false}
@@ -130,7 +130,7 @@ describe('DateRangePicker', () => {
   it('should update return absolute value when set custom date range', async () => {
     const onApply = jest.fn();
     const { container } = renderWithProvider(
-      <DateRangePicker
+      <RawDateRangePicker
         showTime
         onApply={onApply}
         showFilter={false}
@@ -153,7 +153,7 @@ describe('DateRangePicker', () => {
   it('should change format when showTime is false', async () => {
     const onApply = jest.fn();
     const { container } = renderWithProvider(
-      <DateRangePicker
+      <RawDateRangePicker
         showTime={false}
         onApply={onApply}
         showFilter={false}

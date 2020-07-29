@@ -38,9 +38,9 @@ const ModeDrop: React.FC<Props> = ({ currentRange, currentGroup, onModeChange, i
     // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
     // @ts-ignore
     <Dropdown overlay={overlay} trigger={'click' as const}>
-      <S.Range key="TOGGLE" mode="single-icon" type="secondary">
+      <S.ModeDropdownTrigger key="TOGGLE" mode="single-icon" type="secondary">
         {!!currentGroup && <Icon component={[RANGES_ICON[currentGroup]]} />}
-      </S.Range>
+      </S.ModeDropdownTrigger>
     </Dropdown>
   );
 };
