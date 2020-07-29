@@ -62,8 +62,6 @@ export const Filter = styled.div<{ offset: number }>`
     user-select: none;
   }
   &::after {
-    position: absolute;
-    right: ${(props): string => (props.offset >= MAX_FILTER_WIDTH ? '4px' : '0')};
     content: ':';
   }
   .ds-icon {
