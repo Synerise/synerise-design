@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.89.2](https://github.com/synerise/synerise-design/compare/portal@0.89.1...portal@0.89.2) (2020-07-29)
+
+
+### Bug Fixes
+
+* **date-range-picker:** added dropdown ([76f5360](https://github.com/synerise/synerise-design/commit/76f53602c65e2278add32d04bf31aaaca9259a3a))
+* **date-range-picker:** added handling undefined values ([65c6241](https://github.com/synerise/synerise-design/commit/65c6241df9274c7457e9891683dab725f16427ad))
+* **date-range-picker:** added input component ([f13bd69](https://github.com/synerise/synerise-design/commit/f13bd69d8bfde0b95fca14e09c568f6d6fbbc178))
+* **input-number:** added 'raw' props in order to use inputgroup ([6b8a8cc](https://github.com/synerise/synerise-design/commit/6b8a8ccd32ab771cdd015e7572948a403be39c71))
+* **pagination:** fix pagination component ([a563e0d](https://github.com/synerise/synerise-design/commit/a563e0d00f107ab0a6bd8edb712cb9217a3c48b2))
+
+
+
+
+
 ## [0.89.1](https://github.com/synerise/synerise-design/compare/portal@0.89.0...portal@0.89.1) (2020-07-28)
 
 

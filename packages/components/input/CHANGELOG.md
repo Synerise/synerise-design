@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.17](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.13.16...@synerise/ds-input@0.13.17) (2020-07-29)
+
+
+### Bug Fixes
+
+* **input:** change styles of placeholder ([ff6f6e2](https://github.com/synerise/synerise-design/commit/ff6f6e2b0fec03c4ee2cfb0dceaf9cc9d9847188))
+* **input:** exported inputGroup props ([330f98a](https://github.com/synerise/synerise-design/commit/330f98a733ab67bfcbc155236d2ebcdc776fd44e))
+* **input:** fix problem with placeholder on Safari ([ebd190e](https://github.com/synerise/synerise-design/commit/ebd190e9f438bf900acd6e5d7c211d15b9bb30aa))
+* **input:** safari placeholder line height ([14b87bb](https://github.com/synerise/synerise-design/commit/14b87bbe6b3e04ac1188febe5a05cf93cc266215))
+
+
+
+
+
 ## [0.13.16](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.13.15...@synerise/ds-input@0.13.16) (2020-07-24)
 
 **Note:** Version bump only for package @synerise/ds-input

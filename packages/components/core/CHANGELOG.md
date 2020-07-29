@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.17.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.16.0...@synerise/ds-core@0.17.0) (2020-07-29)
+
+
+### Features
+
+* **core:** added keys for date range picker ([529b632](https://github.com/synerise/synerise-design/commit/529b63259209705d30cd513e50da7c89ece67cec))
+
+
+
+
+
 # [0.16.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.15.3...@synerise/ds-core@0.16.0) (2020-07-15)
 
 
