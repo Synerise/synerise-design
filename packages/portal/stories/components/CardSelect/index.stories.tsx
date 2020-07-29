@@ -114,7 +114,7 @@ const stories = {
     const iconSize = number('Custom Icon component size', 0);
     const hasDescription = boolean('Set Description', true);
     const descriptionMessage = text('Description', 'Suspendisse a pellentesque duim maecenas malesuad.');
-    const isOutline = boolean('outline', false);
+    const isOutline = boolean('Outline', false);
     const getDescription = (hasDescription: boolean): string => {
       if (hasDescription) {
         return descriptionMessage;
@@ -156,7 +156,7 @@ const stories = {
     const iconSize = number('Custom Icon component size', 0);
     const hasDescription = boolean('Set Description', true);
     const descriptionMessage = text('Description', 'Suspendisse a pellentesque duim maecenas malesuad.');
-    const isOutline = boolean('outline', false);
+    const isOutline = boolean('Outline', false);
     const elementsPosition = select('Position of elements', positionOfElements, positionOfElements.center);
     const isFocus = React.useState(false);
     const getDescription = (hasDescription: boolean): string => {
@@ -200,7 +200,7 @@ const stories = {
     const raised = boolean('Raised', false);
     const tickVisible = boolean('With tick', true);
     const iconSize = number('Custom Icon component size', 0);
-    const isOutline = boolean('outline', false);
+    const isOutline = boolean('Outline', false);
     const size = select('Size', { small: 'small', medium: 'medium' }, 'small');
 
 
@@ -227,6 +227,127 @@ const stories = {
               size={'small'}
 
             />
+          </div>
+        </React.Suspense>
+      </div>
+    );
+  },
+  groupOfCards:() =>{
+    const [selected, setSelected] = React.useState<boolean>(false);
+    const raised = boolean('Raised', false);
+    const tickVisible = boolean('With tick', true);
+    const iconSize = number('Custom Icon component size', 0);
+    const hasDescription = boolean('Set Description', true);
+    const descriptionMessage = text('Description', 'Suspendisse a pellentesque duim maecenas malesuad.');
+    const isOutline = boolean('Outline', true);
+    const elementsPosition = select('Position of elements', positionOfElements, positionOfElements.center);
+    const isFocus = React.useState(false);
+    const getDescription = (hasDescription: boolean): string => {
+      if (hasDescription) {
+        return descriptionMessage;
+      } else {
+        return '';
+      }
+    };
+
+    const commonProps = {
+      raised,
+      tickVisible,
+      icon: <AbTestXl/>,
+      iconSize,
+    };
+
+    return (
+      <div style={{width: "100%", background: isOutline ? theme.palette['grey-200'] : 'transparent',justifyContent:"center",textAlign:"center", padding: '24px', display: 'flex' }}>
+        <React.Suspense
+          fallback={<div>Loading icons... (or perhaps you've entered an icon that couldn't be found)</div>}
+        >
+          <div style={{ width: "588px",height:"304px", justifyContent:"center",backgroundColor: 'white', padding: '24px 0', display: 'flex' }}>
+          <div style={{ marginLeft: 12, marginRight: 12 }}>
+            <CardSelect
+              {...commonProps}
+              title={`A/B Tests`}
+              description={descriptionMessage && getDescription(hasDescription)}
+              value={selected}
+              onChange={() => setSelected(!selected)}
+              disabled={boolean('disabled', false)}
+              elementsPosition={elementsPosition}
+              onFocus={isFocus}
+            />
+          </div>
+          <div style={{ marginLeft: 12, marginRight: 12 }}>
+            <CardSelect
+              {...commonProps}
+              title={`A/B Tests`}
+              description={descriptionMessage && getDescription(hasDescription)}
+              value={selected}
+              onChange={() => setSelected(!selected)}
+              disabled={boolean('disabled', false)}
+              elementsPosition={elementsPosition}
+              onFocus={isFocus}
+            />
+          </div>
+          </div>
+        </React.Suspense>
+      </div>
+    );
+  },
+  groupOfSmallCards:() =>{
+    const [selected, setSelected] = React.useState<boolean>(false);
+    const raised = boolean('Raised', false);
+    const tickVisible = boolean('With tick', true);
+    const iconSize = number('Custom Icon component size', 0);
+    const isOutline = boolean('Outline', true);
+    const size = select('Size', { small: 'small', medium: 'medium' }, 'small');
+
+
+    const commonProps = {
+      raised,
+      tickVisible,
+      icon: <ChartPieL/>,
+      iconSize,
+      size,
+    };
+
+    return (
+      <div style={{ width: "100%", background: isOutline ? theme.palette['grey-200'] : 'transparent',justifyContent:"center",textAlign:"center", padding: '24px', display: 'flex' }}>
+        <React.Suspense
+          fallback={<div>Loading icons... (or perhaps you've entered an icon that couldn't be found)</div>}
+        >
+          <div style={{ width: "338px",height:"284px", justifyContent:"center",backgroundColor: 'white', padding: '24px', display: 'flex' }}>
+          <div style={{ marginLeft: 12, marginRight: 8, }}>
+            <CardSelect
+              {...commonProps}
+              title={`Column`}
+              value={selected}
+              onChange={()=> setSelected(!selected)}
+              disabled={boolean('disabled', false)}
+              size={'small'}
+
+            />
+          </div>
+          <div style={{ marginLeft: 8, marginRight: 8 }}>
+            <CardSelect
+              {...commonProps}
+              title={`Column`}
+              value={selected}
+              onChange={()=> setSelected(!selected)}
+              disabled={boolean('disabled', false)}
+              size={'small'}
+
+            />
+          </div>
+          <div style={{ marginLeft: 8, marginRight: 12 }}>
+            <CardSelect
+              {...commonProps}
+              title={`Column`}
+              value={selected}
+              onChange={()=> setSelected(!selected)}
+              disabled={boolean('disabled', false)}
+              size={'small'}
+
+            />
+          </div>
           </div>
         </React.Suspense>
       </div>

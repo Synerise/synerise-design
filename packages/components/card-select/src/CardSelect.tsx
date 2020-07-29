@@ -88,7 +88,7 @@ const CardSelect: React.FC<CardSelectProps> = ({
       <S.Main size={size} disabled={disabled} hasTick={tickVisible || customTickVisible}>
         {icon && (
           <S.IconWrapper size={size}>
-            <Icon className="icon" component={<AdAfterScrollL />} size={realIconSize} />
+            <Icon className="icon" component={icon} size={realIconSize} />
           </S.IconWrapper>
         )}
 
