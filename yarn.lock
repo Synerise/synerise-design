@@ -4150,6 +4150,14 @@
   dependencies:
     "@synerise/ds-icon" "^0.14.3"
 
+"@synerise/ds-button@^0.12.26":
+  version "0.12.26"
+  resolved "https://registry.yarnpkg.com/@synerise/ds-button/-/ds-button-0.12.26.tgz#ed5ecc93e9a918e0ac5421634a54cdc1d76b87a5"
+  integrity sha512-wNbdAXXqNeSuXVNCPyMBTnCjLagkT6bVLgAP7hB1uRwlmVsMREFXHg70+aAk9+doM4PKIgmR8YVd4WF+20+YkA==
+  dependencies:
+    "@synerise/ds-icon" "^0.23.0"
+    "@synerise/ds-tooltip" "^0.7.13"
+
 "@synerise/ds-card@^0.4.11":
   version "0.4.23"
   resolved "https://registry.yarnpkg.com/@synerise/ds-card/-/ds-card-0.4.23.tgz#28e85395f7d31efef541c4ad1e8c1b4c8f2ed23e"
@@ -4188,10 +4196,10 @@
   resolved "https://registry.yarnpkg.com/@synerise/ds-icon/-/ds-icon-0.17.0.tgz#543c802405c28ba5fc31bee7c82da86d10ff4f2d"
   integrity sha512-5XEmCEMreu41CY8qg64Js0AEDc/KYsKMG4EOFO4ZBv+yMbERPtX31+kdJV7X0DtBHz+MGF1qzHUoNyYcPcwW5g==
 
-"@synerise/ds-icon@^0.21.0":
-  version "0.21.0"
-  resolved "https://registry.yarnpkg.com/@synerise/ds-icon/-/ds-icon-0.21.0.tgz#65f2830bce46069f7d9167da9acd4744bed47404"
-  integrity sha512-g7iTWhunRDAdN9sOJs0f6uvSuUxdAs8bguxPYVpYv4O1P3GfFa+zGfw6w7Z+0o99RmOz7tnrIoUzUJZvrQqLOw==
+"@synerise/ds-icon@^0.23.0":
+  version "0.23.0"
+  resolved "https://registry.yarnpkg.com/@synerise/ds-icon/-/ds-icon-0.23.0.tgz#52b23bcaa9c0e3afad5c217a632f264baf25ee45"
+  integrity sha512-0DPhNtFJaOklwPtgSmSQA9DakzSThietiQgnpVVQM8QBdtd0q6LoLRnQyCQjS+wD4mf6kH8ZdC9p72yIYHSfbQ==
 
 "@synerise/ds-input@^0.10.7":
   version "0.10.7"
@@ -4219,6 +4227,13 @@
   integrity sha512-DbVrIBjfzbL7KNDdIhnUR1e7DWLbN0BXl4RfihmfXcBwruiaFrJ25Foqh+IlbLnN9JtlHYWBtPph3xmgfYO72A==
   dependencies:
     "@synerise/ds-icon" "^0.14.0"
+
+"@synerise/ds-tooltip@^0.7.13":
+  version "0.7.13"
+  resolved "https://registry.yarnpkg.com/@synerise/ds-tooltip/-/ds-tooltip-0.7.13.tgz#089b095f606e21b7b9bc4a490978fe0b5e1cfb4d"
+  integrity sha512-RICkYUnlq9nhR1kpNKqFP3LsBftRNmy9ynWynjOJUWN+y+zJQQGkpKfSX6QjhSNNiGKDMU0umAgPUyjvmt4Osw==
+  dependencies:
+    "@synerise/ds-icon" "^0.23.0"
 
 "@synerise/ds-typography@^0.7.0":
   version "0.7.0"
