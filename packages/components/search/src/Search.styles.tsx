@@ -45,7 +45,7 @@ export const LeftSide = styled.span<{ isOpen: boolean }>`
   left: 4px;
 `;
 
-export const Filter = styled.div<{ offset: number }>`
+export const Filter = styled.div`
   display: flex;
   align-items: center;
   color: ${(props): string => props.theme.palette['blue-600']};
@@ -53,7 +53,7 @@ export const Filter = styled.div<{ offset: number }>`
   max-width: ${MAX_FILTER_WIDTH}px;
   direction: ltr;
   position: relative;
-  padding-right: ${(props): string => (props.offset >= MAX_FILTER_WIDTH ? '2px' : '4px')};
+  padding-right: 2px;
   span {
     margin-left: 4px;
     white-space: nowrap;
@@ -62,8 +62,6 @@ export const Filter = styled.div<{ offset: number }>`
     user-select: none;
   }
   &::after {
-    position: absolute;
-    right: ${(props): string => (props.offset >= MAX_FILTER_WIDTH ? '4px' : '0')};
     content: ':';
   }
   .ds-icon {
