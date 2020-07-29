@@ -8,7 +8,7 @@ type CardTabContainerProps = {
   color: string;
   disabled: boolean;
   edited: boolean;
-}
+};
 
 const getColor = (isActive: boolean, activeColor: string, defaultColor: string): string => {
   if (isActive) return activeColor;
@@ -87,7 +87,7 @@ export const CardTabContainer = styled.div<CardTabContainerProps>`
     return getColor(active, theme.palette[color], theme.palette['grey-050']);
   }};
   border-style: solid;
-  pointerEvents: ${({ disabled }): string => (disabled ? 'none' : 'all')};
+  pointer-events: ${({ disabled }): string => (disabled ? 'none' : 'all')};
   
   &:hover {
     cursor: pointer;

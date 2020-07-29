@@ -11,6 +11,12 @@ export enum prefixType {
   ICON,
 }
 
+export type CardTabTexts = {
+  changeNameTooltip?: string | React.ReactNode;
+  removeTooltip?: string | React.ReactNode;
+  duplicateTooltip?: string | React.ReactNode;
+};
+
 export interface CardTabProps {
   id: number;
   index: number;
@@ -28,6 +34,7 @@ export interface CardTabProps {
   onChangeName?: (id: number, name: string) => void;
   onDuplicateTab?: (id: number) => void;
   onRemoveTab?: (id: number) => void;
+  texts?: CardTabTexts;
 }
 
 const CardTab: React.FC<CardTabProps> = ({
@@ -47,6 +54,7 @@ const CardTab: React.FC<CardTabProps> = ({
   onSelectTab,
   onDuplicateTab,
   onRemoveTab,
+  texts,
 }) => {
   const [edited, setEdited] = React.useState(false);
   const [editedName, setEditedName] = React.useState(name);
@@ -144,6 +152,7 @@ const CardTab: React.FC<CardTabProps> = ({
           changeNameAvailable={Boolean(onChangeName)}
           onDuplicateTab={handleDuplicate}
           onRemoveTab={handleRemove}
+          texts={texts}
         />
       )}
       {suffixIcon && <Icon className="ds-card-tabs__suffix-icon" component={suffixIcon} />}
