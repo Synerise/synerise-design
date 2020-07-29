@@ -18,7 +18,6 @@ export type State = {
   currentGroup: string | null;
   future: boolean;
   past: boolean;
-  since: boolean;
   showCustomForm: boolean;
   currentRange: RelativeDateRange;
   groupedRanges?: GroupRange;

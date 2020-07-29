@@ -61,18 +61,23 @@ class RelativeRangePicker extends React.PureComponent<Props, State> {
     return state;
   }
 
-  handleTogglingPastRanges = (mode: string | null): void => {
-    const { onChange } = this.props;
+  onModeChange = (mode: string | null): void => {
     const { currentRange } = this.state;
-
     this.setState({ currentGroup: mode }, () => {
-      if (currentRange) {
-        onChange({
-          ...currentRange,
-          key: undefined,
-          future: mode === RANGES_MODE.FUTURE,
-        });
-      }
+      const updatedState = {
+        ...currentRange,
+        duration: {
+          ...currentRange.duration,
+          value: currentRange.duration.value > 1 ? currentRange.duration.value : 1,
+        },
+        offset: {
+          ...currentRange.offset,
+          value: currentRange.offset.value > 1 ? currentRange.offset.value : 1,
+        },
+        key: undefined,
+        future: mode === RANGES_MODE.FUTURE,
+      };
+      this.onChange(updatedState);
     });
   };
 
@@ -85,7 +90,7 @@ class RelativeRangePicker extends React.PureComponent<Props, State> {
     }
   };
 
-  handleChange = (value: DateRange): void => {
+  onChange = (value: DateRange): void => {
     const { currentGroup } = this.state;
     const { onChange } = this.props;
     const isFuture = value.timestamp && fnsIsAfter(value.timestamp, new Date());
@@ -109,41 +114,35 @@ class RelativeRangePicker extends React.PureComponent<Props, State> {
     return <RangeDropdown ranges={ranges} currentRange={currentRange} intl={intl} onChange={onChange} />;
   };
 
-  handleOffsetValueChange = (value: number | undefined): void => {
+  onOffsetValueChange = (value: number | undefined): void => {
     const { currentRange } = this.state;
-    if(value) {
-      const changes = setOffsetValue(value, currentRange)
-      currentRange && value && this.handleChange(changes);
+    if (value && currentRange) {
+      const changes = setOffsetValue(value, currentRange);
+      this.onChange(changes);
     }
-
   };
 
-  handleDurationValueChange = (value: number | undefined): void => {
+  onDurationValueChange = (value: number | undefined): void => {
     const { currentRange } = this.state;
-    if (value) {
+    if (value && currentRange) {
       const changes = setDurationValue(value, currentRange);
-      currentRange && value && this.handleChange(changes);
+      this.onChange(changes);
     }
   };
 
   renderCustomRangeForm = (): React.ReactNode => {
     const { currentRange, currentGroup } = this.state;
-    const { ranges, intl, value } = this.props;
+    const { ranges, intl } = this.props;
     return (
       <CustomRangeForm
-        // eslint-disable-next-line react/jsx-handler-names
-        handleModeChange={this.handleTogglingPastRanges}
+        handleModeChange={this.onModeChange}
         ranges={ranges}
         currentRange={currentRange}
         currentGroup={currentGroup}
-        value={value}
         intl={intl}
-        // eslint-disable-next-line react/jsx-handler-names
-        handleChange={this.handleChange}
-        // eslint-disable-next-line react/jsx-handler-names
-        handleDurationValueChange={this.handleDurationValueChange}
-        // eslint-disable-next-line react/jsx-handler-names
-        handleOffsetValueChange={this.handleOffsetValueChange}
+        handleChange={this.onChange}
+        handleDurationValueChange={this.onDurationValueChange}
+        handleOffsetValueChange={this.onOffsetValueChange}
       />
     );
   };

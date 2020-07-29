@@ -14,4 +14,6 @@ export const Container = styled.div`
   }
 `;
 
-export const OverlayContainer = styled.div``;
+export const OverlayContainer = styled.div`
+  overflow: visible;
+`;

@@ -7,13 +7,15 @@ export interface Props extends WrappedComponentProps {
   showTime?: boolean;
   relativeFuture?: boolean;
   relativePast?: boolean;
-  onApply: (value: Partial<DateFilter>) => void;
+  onValueChange?: (value: Partial<DateFilter> | undefined) => void;
+  onApply: (value: Partial<DateFilter> | undefined) => void;
   disabledDate?: (date?: Date) => boolean;
   validate?: (value: DateRange) => { valid: boolean; message?: string };
   format?: string;
   ranges?: DateRange[];
   value: DateRange;
   forceAbsolute?: boolean;
+  texts?: Texts;
 }
 export interface State {
   mode: string;
@@ -25,4 +27,7 @@ export interface Texts {
   today?: string;
   yesterday?: string;
   apply?: string;
+  endDatePlaceholder?: string;
+  startDatePlaceholder?: string;
+  clear?: string;
 }

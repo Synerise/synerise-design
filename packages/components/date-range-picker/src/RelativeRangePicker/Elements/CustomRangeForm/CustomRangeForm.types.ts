@@ -5,7 +5,6 @@ export type Props = {
   ranges: DateRange[];
   currentRange: RelativeDateRange;
   currentGroup: string | null;
-  value: DateRange;
   intl: IntlShape;
   handleChange: (value: DateRange) => void;
   handleDurationValueChange: (value?: number) => void;

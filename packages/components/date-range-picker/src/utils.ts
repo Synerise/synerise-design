@@ -6,7 +6,6 @@ import fnsMin from 'date-fns/min';
 import fnsMax from 'date-fns/max';
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
-import fnsStartOfDay from 'date-fns/start_of_day';
 import { DateRange } from './date.types';
 import { ABSOLUTE, RELATIVE } from './constants';
 import ADD from './dateUtils/add';
@@ -17,7 +16,7 @@ import getDateFromString from './dateUtils/getDateFromString';
 // eslint-disable-next-line import/prefer-default-export
 export const normalizeRange = (range: DateRange): DateRange => {
   if (!range || !range.type) {
-    return { type: ABSOLUTE, from: fnsStartOfDay(new Date()), to: new Date() };
+    return { type: ABSOLUTE, from: undefined, to: undefined };
   }
   if (range.type === RELATIVE) {
     const { future, offset, duration } = range;

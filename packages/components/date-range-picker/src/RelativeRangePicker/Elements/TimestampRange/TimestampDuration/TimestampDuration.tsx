@@ -27,7 +27,7 @@ const TimestampDuration: React.FC<Props> = ({
           id: 'DS.DATE-RANGE-PICKER.TIMESTAMP_TILL',
         })}
       </S.Title>
-      <S.InputSelectGroup>
+      <S.InputSelectGroup compact>
         <Select
           className="ds-select-duration-type"
           value={durationModifier}
