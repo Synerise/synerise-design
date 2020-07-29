@@ -96,3 +96,12 @@ import CardTabs from '@synerise/ds-card-tabs'
 | onRemoveTab    | Callback fired when user clicks on the remove tab icon                          | (id: number) => {}            | -       |
 | onDuplicateTab | Callback fired when user clicks on the duplicate tab icon                       | (id: number) => {}            | -       |
 | onChangeName   | Callback fired when the edit name input blur                                    | (id: number, newName: string) | -       |
+| texts          | Translations of CrudButtons tooltips                                            | CardTabTexts                  | -       |
+
+#### CardTabTexts
+
+| Property          | Description                                                                     | Type                          | Default         | 
+| --------------    | ------------------------------------------------------------------------------- | ----------------------------- | -------         | 
+| changeNameTooltip | Rename tooltip                                                                  | string                        | React.ReactNode | 'Rename'   |
+| duplicateTooltip  | Duplicate tooltip                                                               | string                        | React.ReactNode | 'Duplicate |
+| removeTooltip     | Remove tooltip                                                                  | string                        | React.ReactNode | 'Remove'   |
