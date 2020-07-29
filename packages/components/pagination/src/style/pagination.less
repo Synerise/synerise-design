@@ -4,6 +4,38 @@
   * {
     font-family: 'Graphik LCG Web', sans-serif;
   }
+
+  &-prev,
+  &-jump-prev,
+  &-jump-next {
+    margin-right: 8px;
+  }
+
+  &-next,
+  &-jump-next,
+  &-jump-prev {
+    margin-left: 8px;
+  }
+
+  &-jump-prev,
+  &-jump-next {
+    && {
+      .ds-button {
+        .hover-icon {
+          display: none;
+        }
+        &:hover {
+          .default-icon {
+            display: none;
+          }
+          .hover-icon {
+            display: flex;
+          }
+        }
+      }
+    }
+  }
+
   &-prev,
   &-next {
     background-size: 24px;
@@ -51,8 +83,8 @@
   &-item {
     border: @border-width-base @border-style-base transparent;
     background-color: transparent;
-    border-radius: 50%;
-    margin-right: 0;
+    border-radius: 16px;
+    margin: 0 2px;
 
     &:focus,
     &:hover {
@@ -65,7 +97,6 @@
 
       a {
         color: #fff;
-        padding: 0;
       }
 
       &:focus,
