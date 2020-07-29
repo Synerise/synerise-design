@@ -132,7 +132,7 @@ const CardTab: React.FC<CardTabProps> = ({
             className="ds-card-tabs__edit-name"
             size="small"
             hideIcon
-            style={{ maxWidth: 46 }}
+            // style={{ maxWidth: 46 }}
             autoFocus
             input={{
               value: editedName,
