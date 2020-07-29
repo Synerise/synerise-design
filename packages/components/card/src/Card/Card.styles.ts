@@ -157,14 +157,7 @@ export const HeaderContent = styled.div<{ compact?: boolean; hasIcon: boolean }>
 
 export const ChildrenContainer = styled.div<{ showContent?: true }>`
   overflow: hidden;
-  // .content {
-  //   transition: opacity 0.3s ease-in-out;
-  //   opacity: 1;
-  // }
-  // .content-closed {
-  //   transition: opacity 0.2s ease-in-out;
-  //   opacity: 0;
-  // }
+  
 `;
 
 export const PaddingWrapper = styled.div<{ withoutPadding?: boolean }>`
