@@ -130,7 +130,7 @@ class SearchInput extends React.Component<SearchInputProps, SearchInputState> {
         >
           <S.LeftSide isOpen={isInputOpen}>
             {filterLabel && (
-              <S.Filter ref={this.handleOffsetWithFilter} offset={inputOffset}>
+              <S.Filter ref={this.handleOffsetWithFilter}>
                 {filterLabel.icon && !isResultChosen && <Icon component={filterLabel.icon} />}
                 <span>{filterLabel[filterLookupKey || ''] || filterLabel[textLookupKey || '']}</span>
               </S.Filter>
