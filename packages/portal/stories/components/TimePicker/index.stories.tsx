@@ -53,6 +53,7 @@ const stories = {
           clearTooltip={clearTooltip}
           placement={placement}
           onChange={onChange}
+          use12HourClock={boolean('Set AM/PM format', false)}
           raw={boolean('Raw', false)}
         />
       </div>

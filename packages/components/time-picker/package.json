@@ -30,10 +30,14 @@
     "@synerise/ds-input": "^0.13.16",
     "@synerise/ds-search-bar": "^0.2.71",
     "@synerise/ds-typography": "^0.8.3",
-    "dayjs": "^1.8.19"
+    "dayjs": "^1.8.19",
+    "debounce": "^1.2.0"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
     "react": ">=16.9.0 < 17.0.0"
+  },
+  "devDependencies": {
+    "@types/debounce": "^1.2.0"
   }
 }

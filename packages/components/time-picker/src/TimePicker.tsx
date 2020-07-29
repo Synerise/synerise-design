@@ -32,10 +32,14 @@ export type TimePickerProps = TimePickerDisabledUnits & {
   clearTooltip?: string | React.ReactNode;
   intl: IntlShape;
   raw?: boolean;
+  defaultAM?: boolean;
 };
 
 const defaultUnits = ['hour', 'minute', 'second'] as dayjs.UnitType[];
-
+const CLOCK_MODES = {
+  AM: 'AM',
+  PM: 'PM',
+};
 const TimePicker: React.FC<TimePickerProps> = ({
   placement,
   placeholder,
@@ -43,6 +47,7 @@ const TimePicker: React.FC<TimePickerProps> = ({
   value,
   units,
   defaultOpen,
+  defaultAM,
   onChange,
   timeFormat,
   use12HourClock,
@@ -59,15 +64,23 @@ const TimePicker: React.FC<TimePickerProps> = ({
 }) => {
   const [open, setOpen] = React.useState<boolean>(defaultOpen || false);
   const [localValue, setLocalValue] = React.useState<Date | undefined>(value);
-
+  const [clockMode, setClockMode] = React.useState<string>(defaultAM ? CLOCK_MODES.AM : CLOCK_MODES.PM);
   React.useEffect(() => {
     setLocalValue(value);
   }, [value]);
-
+  const getHourRange = () => {
+    if (!use12HourClock) {
+      return [...Array(24).keys()];
+    }
+    if (clockMode === CLOCK_MODES.AM) {
+      return [...Array(12).keys()];
+    }
+    return [...Array(13).keys()].slice(1);
+  };
   const unitConfig: UnitConfig[] = [
     {
       unit: 'hour',
-      options: [...Array(use12HourClock ? 12 : 24).keys()],
+      options: getHourRange(),
       disabled: disabledHours,
       insertSeperator: true,
     },
@@ -81,6 +94,7 @@ const TimePicker: React.FC<TimePickerProps> = ({
       unit: 'second',
       options: [...Array(60).keys()],
       disabled: disabledSeconds,
+      insertSeperator: use12HourClock,
     },
   ];
 
@@ -111,6 +125,18 @@ const TimePicker: React.FC<TimePickerProps> = ({
     onChange && onChange(newDate as Date, getTimeString(newDate as Date));
   };
 
+  const renderClockSwitch = (): React.ReactNode => {
+    return (
+      <S.Unit>
+        {Object.values(CLOCK_MODES).map(mode => (
+          <S.Cell key={mode} active={clockMode === mode} onClick={(): void => setClockMode(mode)}>
+            <S.CellText>{mode}</S.CellText>
+          </S.Cell>
+        ))}
+      </S.Unit>
+    );
+  };
+
   const overlay = (
     <S.OverlayContainer data-testid="tp-overlay-container" className={overlayClassName}>
       {unitsToRender.map((u, index) => (
@@ -120,6 +146,7 @@ const TimePicker: React.FC<TimePickerProps> = ({
           {index !== unitsToRender.length - 1 && <S.UnitSeperator />}
         </React.Fragment>
       ))}
+      {use12HourClock && renderClockSwitch()}
     </S.OverlayContainer>
   );
 
