@@ -22,9 +22,7 @@ const CardTabs: React.FC<CardTabsProps> = ({ className, onChangeOrder, onAddTab,
     onChangeOrder &&
       onChangeOrder(
         newOrder.map(item => ({
-          id: item.props.id,
-          name: item.props.name,
-          tag: item.props.tag,
+          ...item.props,
         }))
       );
   };
