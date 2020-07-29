@@ -79,24 +79,25 @@ import CardTabs from '@synerise/ds-card-tabs'
 
 ### CardTab Component
 
-| Property       | Description                                                                     | Type                          | Default |
-| -------------- | ------------------------------------------------------------------------------- | ----------------------------- | ------- |
-| id             | Id of tab                                                                       | number                        | -       |
-| index          | Position of tab                                                                 | number                        | -       |
-| name           | Name of tab                                                                     | string                        | -       |
-| tag            | Single letter (tag) of tab                                                      | string                        | -       |
-| active         | Flag of active tab                                                              | boolean                       | false   |
-| greyBackground | Change default color of tabs, use when background will be different then white  | boolean                       | false   |
-| prefixIcon     | Icon visible on the left side of the tab                                        | SVG Icon                      | null    |
-| suffixIcon     | Icon visible on the right side of the tab, when set action icons will be hidden | SVG Icon                      | null    |
-| disabled       | Flag of disabled tabs                                                           | boolean                       | false   |
-| invalid        | Flag of tabs with some errors                                                   | boolean                       | false   |
-| draggable      | Shows drag handler on the left side of tab                                      | boolean                       | false   |
-| onSelectTab    | Callback fired when user clicks on the tab                                      | (id: number) => {}            | -       |
-| onRemoveTab    | Callback fired when user clicks on the remove tab icon                          | (id: number) => {}            | -       |
-| onDuplicateTab | Callback fired when user clicks on the duplicate tab icon                       | (id: number) => {}            | -       |
-| onChangeName   | Callback fired when the edit name input blur                                    | (id: number, newName: string) | -       |
-| texts          | Translations of CrudButtons tooltips                                            | CardTabTexts                  | -       |
+| Property       | Description                                                                     | Type                                                                                                   | Default  |
+| -------------- | ------------------------------------------------------------------------------- | -----------------------------                                                                          | -------  |
+| id             | Id of tab                                                                       | number                                                                                                 | -        |
+| index          | Position of tab                                                                 | number                                                                                                 | -        |
+| name           | Name of tab                                                                     | string                                                                                                 | -        |
+| tag            | Single letter (tag) of tab                                                      | string                                                                                                 | -        |
+| active         | Flag of active tab                                                              | boolean                                                                                                | false    |
+| greyBackground | Change default color of tabs, use when background will be different then white  | boolean                                                                                                | false    |
+| prefixIcon     | Icon visible on the left side of the tab                                        | SVG Icon                                                                                               | null     |
+| suffixIcon     | Icon visible on the right side of the tab, when set action icons will be hidden | SVG Icon                                                                                               | null     |
+| disabled       | Flag of disabled tabs                                                           | boolean                                                                                                | false    |
+| invalid        | Flag of tabs with some errors                                                   | boolean                                                                                                | false    |
+| draggable      | Shows drag handler on the left side of tab                                      | boolean                                                                                                | false    |
+| onSelectTab    | Callback fired when user clicks on the tab                                      | (id: number) => {}                                                                                     | -        |
+| onRemoveTab    | Callback fired when user clicks on the remove tab icon                          | (id: number) => {}                                                                                     | -        |
+| onDuplicateTab | Callback fired when user clicks on the duplicate tab icon                       | (id: number) => {}                                                                                     | -        |
+| onChangeName   | Callback fired when the edit name input blur                                    | (id: number, newName: string)                                                                          | -        |
+| texts          | Translations of CrudButtons tooltips                                            | CardTabTexts                                                                                           | -        |
+| color          | Color of CardTab                                                                | `red`, `green`, `grey`, `yellow`, `blue`, `pink`, `mars`, `orange`, `fern`, `cyan`, `purple`, `violet` | `yellow` | 
 
 #### CardTabTexts
 

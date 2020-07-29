@@ -8,6 +8,8 @@ import { CardTabsItem } from '@synerise/ds-card-tabs/dist/CardTabs';
 import { action } from '@storybook/addon-actions';
 import { ShowM, FileM} from '@synerise/ds-icon/dist/icons';
 
+const COLORS = ['yellow', 'green', 'blue', 'pink', 'purple', 'mars', 'grey', 'orange', 'fern', 'cyan', 'red', 'violet'];
+
 const stories = {
   default: withState({
     name: 'Example',
@@ -57,6 +59,7 @@ const stories = {
         id: i,
         name: `Variant ${String.fromCharCode(65 + i).toUpperCase()}`,
         tag: String.fromCharCode(65 + i).toUpperCase(),
+        color: COLORS[i % COLORS.length],
       }
     )),
     activeTab: 0,
@@ -123,13 +126,13 @@ const stories = {
           onChangeOrder={draggable ? handleChangeOrder : null}
           onAddTab={handleAddItem}
         >
-          {store.state.items.map((item, index) => (
+          {store.state.items.map((item) => (
             <CardTab
               id={item.id}
-              index={index}
               name={item.name}
               tag={item.tag}
               active={item.id === store.state.activeTab}
+              color={item.color}
               greyBackground={!bg}
               prefixIcon={<ShowM />}
               suffixIcon={suffixIcon ? <FileM /> : null}

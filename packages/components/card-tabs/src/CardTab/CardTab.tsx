@@ -2,7 +2,6 @@ import * as React from 'react';
 import Icon from '@synerise/ds-icon';
 import InlineEdit from '@synerise/ds-inline-edit/dist/InlineEdit';
 import { injectIntl, IntlShape } from 'react-intl';
-import getColorByIndex from '../utils/getColorByIndex';
 import * as S from './CardTab.styles';
 import CardTabPrefix from './CardTabPrefix/CardTabPrefix';
 import CardTabActions from './CardTabActions/CardTabActions';
@@ -11,6 +10,20 @@ export enum prefixType {
   TAG,
   ICON,
 }
+
+export type Color =
+  | 'red'
+  | 'green'
+  | 'grey'
+  | 'yellow'
+  | 'blue'
+  | 'pink'
+  | 'mars'
+  | 'orange'
+  | 'fern'
+  | 'cyan'
+  | 'purple'
+  | 'violet';
 
 export type CardTabTexts = {
   changeNameTooltip?: string | React.ReactNode;
@@ -21,10 +34,10 @@ export type CardTabTexts = {
 export interface CardTabProps {
   intl: IntlShape;
   id: number;
-  index: number;
   name: string;
   tag: string;
   prefix: prefixType;
+  color?: Color;
   active?: boolean;
   draggable?: boolean;
   prefixIcon?: React.ReactNode;
@@ -43,7 +56,6 @@ const CardTab: React.FC<CardTabProps> = ({
   intl,
   id,
   name,
-  index,
   tag,
   prefix,
   prefixIcon,
@@ -58,6 +70,7 @@ const CardTab: React.FC<CardTabProps> = ({
   onDuplicateTab,
   onRemoveTab,
   texts,
+  color = 'yellow',
 }) => {
   const [edited, setEdited] = React.useState(false);
   const [editedName, setEditedName] = React.useState(name);
@@ -128,7 +141,7 @@ const CardTab: React.FC<CardTabProps> = ({
       active={Boolean(active)}
       invalid={Boolean(invalid)}
       disabled={!active && Boolean(disabled)}
-      color={getColorByIndex(index)}
+      color={color}
       onClick={handleSelect}
       onMouseDown={(): void => setPressed(true)}
       onMouseLeave={(): void => setPressed(false)}
