@@ -2,13 +2,48 @@ import * as React from 'react';
 import range from 'lodash/range';
 import CardTabs from '@synerise/ds-card-tabs';
 import { withState } from '@dump247/storybook-state';
-import { boolean, number, select  } from '@storybook/addon-knobs';
+import { boolean, number, select, text } from '@storybook/addon-knobs';
 import CardTab, { prefixType } from '@synerise/ds-card-tabs/dist/CardTab/CardTab';
 import FileM from '@synerise/ds-icon/dist/icons/FileM';
 import { CardTabsItem } from '@synerise/ds-card-tabs/dist/CardTabs';
+import { action } from '@storybook/addon-actions';
 
 const stories = {
-  default: withState({
+  default: () => {
+    const bg = boolean('White background', true);
+    const suffixIcon = boolean('Show suffix icon', false);
+    const disabled = boolean('Disabled tabs', false);
+    const draggable = boolean('Enable change order of tabs', false);
+    const invalid = boolean('Invalid tabs', false);
+    const prefix = select('Prefix type', {'tag': prefixType.TAG, 'icon': prefixType.ICON}, prefixType.TAG);
+    return (
+      <div style={{background: bg ? '#fff' : '#f9fafb', padding: '24px'}}>
+        <CardTab
+          id={1}
+          index={1}
+          name={text('Set name', 'Example')}
+          tag={select('Select tag', ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'], 'A')}
+          active={boolean('Is active', false)}
+          greyBackground={!bg}
+          prefixIcon={<FileM />}
+          suffixIcon={suffixIcon ? <FileM /> : null}
+          disabled={disabled}
+          prefix={prefix}
+          onChangeName={action('Change name')}
+          onRemoveTab={action('Remove tab')}
+          onDuplicateTab={action('Duplicate')}
+          texts={{
+            changeNameTooltip: text('Set rename tooltip', 'Rename'),
+            removeTooltip: text('Set remove tooltip', 'Remove'),
+            duplicateTooltip: text('Set duplicate tooltip', 'Duplicate'),
+          }}
+          invalid={invalid}
+          draggable={draggable}
+        />
+      </div>
+    )
+  },
+  group: withState({
     items: range(3).map((i: number) => ({
         id: i,
         name: `Variant ${String.fromCharCode(65 + i).toUpperCase()}`,
@@ -95,6 +130,11 @@ const stories = {
               onChangeName={handleChangeName}
               onRemoveTab={handleRemove}
               onDuplicateTab={handleDuplicate}
+              texts={{
+                changeNameTooltip: "Rename",
+                removeTooltip: "Remove",
+                duplicateTooltip:"Duplicate",
+              }}
               invalid={invalid}
               draggable={draggable}
             />
