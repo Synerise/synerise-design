@@ -81,9 +81,9 @@ const Card: React.FC<CardProps> = ({
           )}
         </S.Header>
       )}
-      <S.ChildrenContainer className={showContent ? 'contentContainerOpen' : 'contentContainerClosed'}>
+      <S.ChildrenContainer className={`contentContainer ${!showContent ? 'closed' : ''}`}>
         <S.PaddingWrapper withoutPadding={withoutPadding}>
-          <div className={showContent ? 'content' : 'content-closed'}>{children}</div>
+          <div className='content'>{children}</div>
         </S.PaddingWrapper>
       </S.ChildrenContainer>
     </S.Container>
