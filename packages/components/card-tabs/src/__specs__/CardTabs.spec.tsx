@@ -128,15 +128,14 @@ describe('Card Tabs', () => {
   it('should call removeTab function', () => {
     // ARRANGE
     const onRemove = jest.fn();
-    const { queryAllByTestId } = renderWithProvider(<CardTabs maxTabsCount={3}>
+    const { container } = renderWithProvider(<CardTabs maxTabsCount={3}>
       { ITEMS.map((item: CardTabsItem, index: number) => <CardTab key={index} id={item.id} index={index} name={item.name} tag={item.tag} prefix={prefixType.TAG} onRemoveTab={onRemove} />) }
     </CardTabs>);
-    const suffix = queryAllByTestId('card-tab-suffix')[0];
-    const suffixRemoveIcon = suffix.querySelector('.ds-card-tabs__remove-icon');
+    const suffix = container.querySelector('.ds-cruds .delete');
 
     //ACT
-    if(suffixRemoveIcon) {
-      fireEvent.click(suffixRemoveIcon);
+    if(suffix) {
+      fireEvent.click(suffix);
     }
 
     // ASSERT
@@ -146,15 +145,14 @@ describe('Card Tabs', () => {
   it('should call onDuplicate function', () => {
     // ARRANGE
     const onDuplicate = jest.fn();
-    const { queryAllByTestId } = renderWithProvider(<CardTabs maxTabsCount={3}>
+    const { container } = renderWithProvider(<CardTabs maxTabsCount={3}>
       { ITEMS.map((item: CardTabsItem, index: number) => <CardTab key={index} id={item.id} index={index} name={item.name} tag={item.tag} prefix={prefixType.TAG} onDuplicateTab={onDuplicate} />) }
     </CardTabs>);
-    const suffix = queryAllByTestId('card-tab-suffix')[0];
-    const suffixDuplicateIcon = suffix.querySelector('.ds-card-tabs__duplicate-icon');
+    const suffix = container.querySelector('.ds-cruds .duplicate');
 
     // ACT
-    if(suffixDuplicateIcon) {
-      fireEvent.click(suffixDuplicateIcon);
+    if(suffix) {
+      fireEvent.click(suffix);
     }
 
     // ASSERT
@@ -164,15 +162,14 @@ describe('Card Tabs', () => {
   it('should call onChangeName function', () => {
     // ARRANGE
     const onChangeName = jest.fn();
-    const { queryAllByTestId } = renderWithProvider(<CardTabs maxTabsCount={3}>
+    const { container, queryAllByTestId } = renderWithProvider(<CardTabs maxTabsCount={3}>
       { ITEMS.map((item: CardTabsItem, index: number) => <CardTab key={index} id={item.id} index={index} name={item.name} tag={item.tag} prefix={prefixType.TAG} onChangeName={onChangeName} />) }
     </CardTabs>);
-    const suffix = queryAllByTestId('card-tab-suffix')[0];
-    const suffixChangeNameIcon = suffix.querySelector('.ds-card-tabs__change-name-icon');
+    const suffix = container.querySelector('.ds-cruds .edit');
 
     // ACT
-    if(suffixChangeNameIcon){
-      fireEvent.click(suffixChangeNameIcon);
+    if(suffix){
+      fireEvent.click(suffix);
     }
 
     // ASSERT
