@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Icon from '@synerise/ds-icon';
 import InlineEdit from '@synerise/ds-inline-edit/dist/InlineEdit';
+import { injectIntl, IntlShape } from 'react-intl';
 import getColorByIndex from '../utils/getColorByIndex';
 import * as S from './CardTab.styles';
 import CardTabPrefix from './CardTabPrefix/CardTabPrefix';
@@ -18,6 +19,7 @@ export type CardTabTexts = {
 };
 
 export interface CardTabProps {
+  intl: IntlShape;
   id: number;
   index: number;
   name: string;
@@ -38,6 +40,7 @@ export interface CardTabProps {
 }
 
 const CardTab: React.FC<CardTabProps> = ({
+  intl,
   id,
   name,
   index,
@@ -59,6 +62,15 @@ const CardTab: React.FC<CardTabProps> = ({
   const [edited, setEdited] = React.useState(false);
   const [editedName, setEditedName] = React.useState(name);
   const [pressed, setPressed] = React.useState(false);
+
+  const getTexts = React.useMemo(() => {
+    return {
+      changeNameTooltip: intl.formatMessage({ id: 'DS.CARD-TAB.RENAME' }),
+      removeTooltip: intl.formatMessage({ id: 'DS.CARD-TAB.REMOVE' }),
+      duplicateTooltip: intl.formatMessage({ id: 'DS.CARD-TAB.DUPLICATE' }),
+      ...texts,
+    };
+  }, [texts, intl]);
 
   const handleEditName = React.useCallback(
     (event: React.MouseEvent<HTMLElement>): void => {
@@ -152,7 +164,7 @@ const CardTab: React.FC<CardTabProps> = ({
           changeNameAvailable={Boolean(onChangeName)}
           onDuplicateTab={handleDuplicate}
           onRemoveTab={handleRemove}
-          texts={texts}
+          texts={getTexts}
         />
       )}
       {suffixIcon && <Icon className="ds-card-tabs__suffix-icon" component={suffixIcon} />}
@@ -160,4 +172,4 @@ const CardTab: React.FC<CardTabProps> = ({
   );
 };
 
-export default CardTab;
+export default injectIntl(CardTab);
