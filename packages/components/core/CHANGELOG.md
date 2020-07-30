@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.17.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.17.0...@synerise/ds-core@0.17.1) (2020-07-30)
+
+
+### Bug Fixes
+
+* **card-tabs:** add default texts for crud buttons ([e1a8ae8](https://github.com/synerise/synerise-design/commit/e1a8ae8161983944830ac1893ba9766b81b8eb53))
+
+
+
+
+
 # [0.17.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.16.0...@synerise/ds-core@0.17.0) (2020-07-29)
 
 

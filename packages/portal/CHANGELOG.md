@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.89.3](https://github.com/synerise/synerise-design/compare/portal@0.89.2...portal@0.89.3) (2020-07-30)
+
+
+### Bug Fixes
+
+* **card-tabs:** add colors props for cards ([fa30e77](https://github.com/synerise/synerise-design/commit/fa30e773832ad9cd3c342d4fd4aca8d9b326e2b4))
+* **card-tabs:** add storybook example with single card-tab ([6e4b9e0](https://github.com/synerise/synerise-design/commit/6e4b9e042063f3164148836a827877dddf195294))
+* **card-tabs:** fix styles ([59c4d02](https://github.com/synerise/synerise-design/commit/59c4d0242417982ff1eaacbef1e8d784b64ce01f))
+
+
+
+
+
 ## [0.89.2](https://github.com/synerise/synerise-design/compare/portal@0.89.1...portal@0.89.2) (2020-07-29)
 
 

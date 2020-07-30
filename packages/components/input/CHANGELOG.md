@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.18](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.13.17...@synerise/ds-input@0.13.18) (2020-07-30)
+
+
+### Bug Fixes
+
+* **input:** add styles to placeholder of input group ([f3c4858](https://github.com/synerise/synerise-design/commit/f3c4858ee544c635891f8793b00c863f31c641d5))
+
+
+
+
+
 ## [0.13.17](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.13.16...@synerise/ds-input@0.13.17) (2020-07-29)
 
 

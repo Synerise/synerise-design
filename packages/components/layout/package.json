@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-layout",
-  "version": "0.5.37",
+  "version": "0.5.38",
   "description": "Layout UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "synerise/synerise-design",
@@ -25,7 +25,7 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-utils": "^0.9.1"
+    "@synerise/ds-utils": "^0.9.2"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
