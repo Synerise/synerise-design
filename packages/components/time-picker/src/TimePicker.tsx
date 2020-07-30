@@ -68,19 +68,10 @@ const TimePicker: React.FC<TimePickerProps> = ({
   React.useEffect(() => {
     setLocalValue(value);
   }, [value]);
-  const getHourRange = () => {
-    if (!use12HourClock) {
-      return [...Array(24).keys()];
-    }
-    if (clockMode === CLOCK_MODES.AM) {
-      return [...Array(12).keys()];
-    }
-    return [...Array(13).keys()].slice(1);
-  };
   const unitConfig: UnitConfig[] = [
     {
       unit: 'hour',
-      options: getHourRange(),
+      options: use12HourClock ? [...Array(12).keys()] : [...Array(24).keys()],
       disabled: disabledHours,
       insertSeperator: true,
     },
