@@ -3,6 +3,7 @@ import { text, select, number, boolean } from '@storybook/addon-knobs';
 import CardSelect from '@synerise/ds-card-select';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { AbTestXl, ChartPieL } from '@synerise/ds-icon/dist/icons/additional';
+import CardSelectGroup from '@synerise/ds-card-select/dist/CardSelectGroup/CardSelectGroup';
 
 
 const positionOfElements = {
@@ -158,7 +159,6 @@ const stories = {
     const descriptionMessage = text('Description', 'Suspendisse a pellentesque duim maecenas malesuad.');
     const isOutline = boolean('Outline', false);
     const elementsPosition = select('Position of elements', positionOfElements, positionOfElements.center);
-    const isFocus = React.useState(false);
     const getDescription = (hasDescription: boolean): string => {
       if (hasDescription) {
         return descriptionMessage;
@@ -188,7 +188,6 @@ const stories = {
               onChange={() => setSelected(!selected)}
               disabled={boolean('disabled', false)}
               elementsPosition={elementsPosition}
-              onFocus={isFocus}
             />
           </div>
         </React.Suspense>
@@ -241,7 +240,7 @@ const stories = {
     const descriptionMessage = text('Description', 'Suspendisse a pellentesque duim maecenas malesuad.');
     const isOutline = boolean('Outline', true);
     const elementsPosition = select('Position of elements', positionOfElements, positionOfElements.center);
-    const isFocus = React.useState(false);
+    const itemsInGroup = number('Number of cards rendered',2,{min:2, max:3});
     const getDescription = (hasDescription: boolean): string => {
       if (hasDescription) {
         return descriptionMessage;
@@ -262,31 +261,18 @@ const stories = {
         <React.Suspense
           fallback={<div>Loading icons... (or perhaps you've entered an icon that couldn't be found)</div>}
         >
-          <div style={{ width: "588px",height:"304px", justifyContent:"center",backgroundColor: 'white', padding: '24px 0', display: 'flex' }}>
-          <div style={{ marginLeft: 12, marginRight: 12 }}>
-            <CardSelect
+          <div style={{ width: "588px",height:"304px", justifyContent:"center",backgroundColor: 'white', padding: '24px', display: 'flex' }}>
+            {[...Array(itemsInGroup).keys()].map(key=>(<div style={{ marginLeft: 12, marginRight: 8,display: 'flex', alignItems: 'center' }}>
+              <CardSelect
               {...commonProps}
+              key={key}
               title={`A/B Tests`}
               description={descriptionMessage && getDescription(hasDescription)}
               value={selected}
               onChange={() => setSelected(!selected)}
               disabled={boolean('disabled', false)}
               elementsPosition={elementsPosition}
-              onFocus={isFocus}
-            />
-          </div>
-          <div style={{ marginLeft: 12, marginRight: 12 }}>
-            <CardSelect
-              {...commonProps}
-              title={`A/B Tests`}
-              description={descriptionMessage && getDescription(hasDescription)}
-              value={selected}
-              onChange={() => setSelected(!selected)}
-              disabled={boolean('disabled', false)}
-              elementsPosition={elementsPosition}
-              onFocus={isFocus}
-            />
-          </div>
+            /></div>))}
           </div>
         </React.Suspense>
       </div>
@@ -299,6 +285,7 @@ const stories = {
     const iconSize = number('Custom Icon component size', 0);
     const isOutline = boolean('Outline', true);
     const size = select('Size', { small: 'small', medium: 'medium' }, 'small');
+    const itemsInGroup = number('Number of cards rendered',2,{min:2, max:3});
 
 
     const commonProps = {
@@ -310,44 +297,20 @@ const stories = {
     };
 
     return (
-      <div style={{ width: "100%", background: isOutline ? theme.palette['grey-200'] : 'transparent',justifyContent:"center",textAlign:"center", padding: '24px', display: 'flex' }}>
+      <div style={{ width: "100%", background: isOutline ? theme.palette['grey-200'] : 'transparent',justifyContent:"center", padding: '24px', display: 'flex' }}>
         <React.Suspense
           fallback={<div>Loading icons... (or perhaps you've entered an icon that couldn't be found)</div>}
         >
           <div style={{ width: "338px",height:"284px", justifyContent:"center",backgroundColor: 'white', padding: '24px', display: 'flex' }}>
-          <div style={{ marginLeft: 12, marginRight: 8, }}>
-            <CardSelect
+            {[...Array(itemsInGroup).keys()].map(key=>(<div style={{ marginLeft: 12, marginRight: 8,display: 'flex', alignItems: 'center' }}>
+              <CardSelect
               {...commonProps}
               title={`Column`}
               value={selected}
               onChange={()=> setSelected(!selected)}
               disabled={boolean('disabled', false)}
               size={'small'}
-
-            />
-          </div>
-          <div style={{ marginLeft: 8, marginRight: 8 }}>
-            <CardSelect
-              {...commonProps}
-              title={`Column`}
-              value={selected}
-              onChange={()=> setSelected(!selected)}
-              disabled={boolean('disabled', false)}
-              size={'small'}
-
-            />
-          </div>
-          <div style={{ marginLeft: 8, marginRight: 12 }}>
-            <CardSelect
-              {...commonProps}
-              title={`Column`}
-              value={selected}
-              onChange={()=> setSelected(!selected)}
-              disabled={boolean('disabled', false)}
-              size={'small'}
-
-            />
-          </div>
+              /></div>))}
           </div>
         </React.Suspense>
       </div>
