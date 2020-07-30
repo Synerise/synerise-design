@@ -4,7 +4,7 @@ import dayjs from 'dayjs';
 import Icon from '@synerise/ds-icon';
 import Dropdown from '@synerise/ds-dropdown';
 import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
-import { ClockM, Close3M } from '@synerise/ds-icon/dist/icons';
+import { ClockM, Close3S } from '@synerise/ds-icon/dist/icons';
 import { FormattedMessage, injectIntl } from 'react-intl';
 import Unit, { UnitConfig } from './Unit';
 import * as S from './TimePicker.styles';
@@ -137,7 +137,7 @@ const TimePicker: React.FC<TimePickerProps> = ({
       <S.ClearIcon
         component={
           <Tooltip title={clearTooltip}>
-            <Close3M />
+            <Close3S />
           </Tooltip>
         }
         onClick={clear}
@@ -166,7 +166,7 @@ const TimePicker: React.FC<TimePickerProps> = ({
         <S.TimePickerInput
           className={`${alwaysOpen || open ? 'active' : ''}`}
           data-testid="tp-input"
-          value={dateString}
+          value={use12HourClock ? `${dateString} ${clockMode}` : dateString}
           placeholder={placeholderValue}
           readOnly
           icon1={timePickerIcon}
