@@ -55,6 +55,9 @@ const stories = {
           onChange={onChange}
           use12HourClock={boolean('Set AM/PM format', false)}
           raw={boolean('Raw', false)}
+          onClockModeChange={(mode)=>{
+            console.log('On clock mode change', mode);
+          }}
         />
       </div>
     );

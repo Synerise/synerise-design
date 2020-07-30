@@ -5,35 +5,10 @@ import Icon from '@synerise/ds-icon';
 import Dropdown from '@synerise/ds-dropdown';
 import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
 import { ClockM, Close3M } from '@synerise/ds-icon/dist/icons';
-import { FormattedMessage, injectIntl, IntlShape } from 'react-intl';
+import { FormattedMessage, injectIntl } from 'react-intl';
 import Unit, { UnitConfig } from './Unit';
 import * as S from './TimePicker.styles';
-
-export type TimePickerDisabledUnits = {
-  disabledSeconds?: number[];
-  disabledMinutes?: number[];
-  disabledHours?: number[];
-};
-
-export type TimePickerProps = TimePickerDisabledUnits & {
-  placement?: 'topLeft' | 'topCenter' | 'topRight' | 'bottomLeft' | 'bottomCenter' | 'bottomRight';
-  placeholder?: string;
-  value?: Date;
-  defaultOpen?: boolean;
-  alwaysOpen?: boolean;
-  timeFormat?: string;
-  use12HourClock?: boolean;
-  trigger?: ('click' | 'hover' | 'contextMenu')[];
-  disabled?: boolean;
-  overlayClassName?: string;
-  className?: string;
-  units?: dayjs.UnitType[];
-  onChange?: (value: Date | undefined, timeString: string) => void;
-  clearTooltip?: string | React.ReactNode;
-  intl: IntlShape;
-  raw?: boolean;
-  defaultAM?: boolean;
-};
+import { TimePickerProps } from './TimePicker.types';
 
 const defaultUnits = ['hour', 'minute', 'second'] as dayjs.UnitType[];
 const CLOCK_MODES = {
@@ -60,6 +35,7 @@ const TimePicker: React.FC<TimePickerProps> = ({
   className,
   clearTooltip = <FormattedMessage id="DS.TIME-PICKER.CLEAR" />,
   raw,
+  onClockModeChange,
   intl,
 }) => {
   const [open, setOpen] = React.useState<boolean>(defaultOpen || false);
@@ -71,7 +47,7 @@ const TimePicker: React.FC<TimePickerProps> = ({
   const unitConfig: UnitConfig[] = [
     {
       unit: 'hour',
-      options: use12HourClock ? [...Array(12).keys()] : [...Array(24).keys()],
+      options: use12HourClock ? [...Array(13).keys()] : [...Array(24).keys()],
       disabled: disabledHours,
       insertSeperator: true,
     },
@@ -85,7 +61,7 @@ const TimePicker: React.FC<TimePickerProps> = ({
       unit: 'second',
       options: [...Array(60).keys()],
       disabled: disabledSeconds,
-      insertSeperator: use12HourClock,
+      insertSeperator: !!use12HourClock,
     },
   ];
 
@@ -120,7 +96,14 @@ const TimePicker: React.FC<TimePickerProps> = ({
     return (
       <S.Unit>
         {Object.values(CLOCK_MODES).map(mode => (
-          <S.Cell key={mode} active={clockMode === mode} onClick={(): void => setClockMode(mode)}>
+          <S.Cell
+            key={mode}
+            active={clockMode === mode}
+            onClick={(): void => {
+              setClockMode(mode);
+              onClockModeChange && onClockModeChange(mode);
+            }}
+          >
             <S.CellText>{mode}</S.CellText>
           </S.Cell>
         ))}
@@ -134,7 +117,7 @@ const TimePicker: React.FC<TimePickerProps> = ({
         <React.Fragment key={u.unit}>
           {/* eslint-disable-next-line react/jsx-props-no-spreading */}
           <Unit {...u} value={localValue} onSelect={(newValue): void => handleChange(u.unit, newValue)} />
-          {index !== unitsToRender.length - 1 && <S.UnitSeperator />}
+          {(index !== unitsToRender.length - 1 || !!use12HourClock) && <S.UnitSeperator />}
         </React.Fragment>
       ))}
       {use12HourClock && renderClockSwitch()}
