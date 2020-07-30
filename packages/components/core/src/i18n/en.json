@@ -160,6 +160,11 @@
       "START-DATE": "Start date",
       "END-DATE": "End date",
       "CLEAR": "Clear"
+    },
+    "CARD-TAB": {
+      "REMOVE": "Remove",
+      "RENAME": "Rename",
+      "DUPLICATE": "Duplicate"
     }
   }
 }

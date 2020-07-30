@@ -8,7 +8,7 @@ type CardTabContainerProps = {
   color: string;
   disabled: boolean;
   edited: boolean;
-}
+};
 
 const getColor = (isActive: boolean, activeColor: string, defaultColor: string): string => {
   if (isActive) return activeColor;
@@ -22,13 +22,13 @@ export const CardTabSuffix = styled.div`
   height: 24px;
   display: none;
   svg {
-    color: ${({ theme }): string => theme.palette['grey-500']}
-    fill: ${({ theme }): string => theme.palette['grey-500']} 
+    color: ${({ theme }): string => theme.palette['grey-500']};
+    fill: ${({ theme }): string => theme.palette['grey-500']};
   }
   .ds-card-tabs__remove-icon {
     svg {
-      color: ${({ theme }): string => theme.palette['red-600']}
-      fill: ${({ theme }): string => theme.palette['red-600']} 
+      color: ${({ theme }): string => theme.palette['red-600']};
+      fill: ${({ theme }): string => theme.palette['red-600']};
     }
   }
 `;
@@ -75,7 +75,7 @@ export const CardTabContainer = styled.div<CardTabContainerProps>`
   user-select: none;
   background-color: ${({ theme, active, invalid, color, greyBackground }): string => {
     if (invalid && active) return theme.palette['red-600'];
-    if (active) return theme.palette[color];
+    if (active) return theme.palette[`${color}-600`];
     if (greyBackground) return theme.palette.white;
     return theme.palette['grey-050'];
   }};
@@ -84,23 +84,30 @@ export const CardTabContainer = styled.div<CardTabContainerProps>`
   border-width: 1px;
   border-color: ${({ theme, active, invalid, color }): string => {
     if (invalid) return theme.palette['red-600'];
-    return getColor(active, theme.palette[color], theme.palette['grey-050']);
+    return getColor(active, theme.palette[`${color}-600`], theme.palette['grey-050']);
   }};
   border-style: solid;
-  pointerEvents: ${({ disabled }): string => (disabled ? 'none' : 'all')};
-  
+  pointer-events: ${({ disabled }): string => (disabled ? 'none' : 'all')};
+
+  ${CardTabTag} {
+    background-color: ${({ theme, active, color }): string =>
+      getColor(active, theme.palette.white, theme.palette[`${color}-600`])};
+    color: ${({ theme, active, color }): string =>
+      getColor(active, theme.palette[`${color}-600`], theme.palette.white)};
+  }
+
   &:hover {
     cursor: pointer;
     background-color: ${({ theme, greyBackground }): string =>
       greyBackground ? theme.palette.white : theme.palette['grey-050']};
     ${CardTabSuffix} {
-      display: flex; 
+      display: ${({ edited }): string => (edited ? 'none' : 'flex')};
     }
     ${CardTabLabel} {
       color: ${({ theme }): string => theme.palette['grey-800']};
     }
     ${CardTabTag} {
-      background-color: ${({ theme, color }): string => theme.palette[color]}
+      background-color: ${({ theme, color }): string => theme.palette[`${color}-600`]};
       color: ${({ theme }): string => theme.palette.white};
     }
     ${CardTabPrefix} {
@@ -111,27 +118,22 @@ export const CardTabContainer = styled.div<CardTabContainerProps>`
     }
     .ds-card-tabs__suffix-icon {
       svg {
-        color: ${({ theme }): string => theme.palette['grey-600']}
-        fill: ${({ theme }): string => theme.palette['grey-600']} 
+        color: ${({ theme }): string => theme.palette['grey-600']};
+        fill: ${({ theme }): string => theme.palette['grey-600']};
       }
     }
   }
-  
+
   &.pressed {
-    background-color: ${({ theme }): string => theme.palette['grey-100']};
+    background-color: ${({ theme, greyBackground }): string =>
+      !greyBackground ? theme.palette['grey-100'] : theme.palette.white};
   }
-  
-  ${CardTabTag} {
-    background-color: ${({ theme, active, color }): string =>
-      getColor(active, theme.palette.white, theme.palette[color])};
-    color: ${({ theme, active, color }): string => getColor(active, theme.palette[color], theme.palette.white)};
-  }
-  
-  ${CardTabLabel} { 
+
+  ${CardTabLabel} {
     color: ${({ theme, active }): string => (active ? theme.palette.white : theme.palette['grey-600'])};
     opacity: ${({ disabled }): number => (disabled ? 0.4 : 1)};
   }
-  
+
   .ds-card-tabs__suffix-icon {
     svg {
       color: ${({ theme, active }): string => getColor(active, theme.palette.white, theme.palette['grey-600'])};
@@ -139,7 +141,7 @@ export const CardTabContainer = styled.div<CardTabContainerProps>`
     }
     opacity: ${({ disabled }): number => (disabled ? 0.4 : 1)};
   }
-  
+
   ${CardTabPrefix} {
     opacity: ${({ disabled }): number => (disabled ? 0.4 : 1)};
     .ds-card-tabs__handle-icon {
@@ -149,10 +151,10 @@ export const CardTabContainer = styled.div<CardTabContainerProps>`
       }
     }
     svg {
-      color: ${({ theme, active }): string => getColor(active, theme.palette.white, theme.palette['grey-600'])}
+      color: ${({ theme, active }): string => getColor(active, theme.palette.white, theme.palette['grey-600'])};
       fill: ${({ theme, active }): string => getColor(active, theme.palette.white, theme.palette['grey-600'])};
     }
-    
+
     ${CardTabSuffix} {
       opacity: ${({ disabled }): number => (disabled ? 0.4 : 1)};
     }

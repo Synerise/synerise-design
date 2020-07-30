@@ -23,7 +23,7 @@ export const DangerItem = styled(({ children, disabled, ...rest }) => (
       color: ${(props): string => props.theme.palette['red-600']};
     }
     ${PrefixelWrapper} {
-      svg {
+      .ds-icon > svg {
         ${(props): string =>
           `
           fill: ${props.theme.palette['red-600']};
