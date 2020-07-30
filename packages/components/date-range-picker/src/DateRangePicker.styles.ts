@@ -13,6 +13,10 @@ export const Separator = styled.div`
 
 export const Addon = styled.div`
   margin: 16px;
-
 `;
-export const OverlayContainer = styled.div``;
+export const PickerWrapper = styled.div`
+  position: relative;
+`;
+export const OverlayContainer = styled.div<{ visible?: boolean }>`
+  display: ${(props): string => (props.visible ? 'flex' : 'none')};
+`;
