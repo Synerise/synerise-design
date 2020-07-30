@@ -166,7 +166,7 @@ const TimePicker: React.FC<TimePickerProps> = ({
         <S.TimePickerInput
           className={`${alwaysOpen || open ? 'active' : ''}`}
           data-testid="tp-input"
-          value={use12HourClock ? `${dateString} ${clockMode}` : dateString}
+          value={use12HourClock && !!dateString ? `${dateString} ${clockMode}` : dateString}
           placeholder={placeholderValue}
           readOnly
           icon1={timePickerIcon}
