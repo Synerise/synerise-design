@@ -89,20 +89,23 @@
     &:focus,
     &:hover {
       border-color: transparent;
+      background-color: rgba(@gray-color-lighter-4, 0.4);
     }
 
     &-active {
-      border-color: @gray-color-lighter-2;
-      background-color: @gray-color-lighter-2;
+      && {
+        border-color: @gray-color-lighter-2;
+        background-color: @gray-color-lighter-2;
 
-      a {
-        color: #fff;
-      }
-
-      &:focus,
-      &:hover {
         a {
           color: #fff;
+        }
+
+        &:focus,
+        &:hover {
+          a {
+            color: #fff;
+          }
         }
       }
     }
