@@ -1,9 +1,11 @@
 import styled from 'styled-components';
 import { macro } from '@synerise/ds-typography';
+import { InPlaceEditableInputContainer } from '@synerise/ds-inline-edit/dist/InlineEdit.styles';
 
 type CardTabContainerProps = {
   active: boolean;
   invalid: boolean;
+  invalidName: boolean;
   greyBackground: boolean;
   color: string;
   disabled: boolean;
@@ -21,27 +23,75 @@ export const CardTabSuffix = styled.div`
   justify-content: flex-end;
   height: 24px;
   display: none;
-  svg {
-    color: ${({ theme }): string => theme.palette['grey-500']};
-    fill: ${({ theme }): string => theme.palette['grey-500']};
-  }
-  .ds-card-tabs__remove-icon {
+  && {
     svg {
-      color: ${({ theme }): string => theme.palette['red-600']};
-      fill: ${({ theme }): string => theme.palette['red-600']};
+      color: ${({ theme }): string => theme.palette['grey-500']};
+      fill: ${({ theme }): string => theme.palette['grey-500']};
+    }
+    .remove {
+      svg {
+        color: ${({ theme }): string => theme.palette['red-600']};
+        fill: ${({ theme }): string => theme.palette['red-600']};
+      }
     }
   }
 `;
 
-export const CardTabLabel = styled.span`
+export const CardTabName = styled.span`
+  max-width: 100%;
+  display: inline-block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+`;
+
+export const CardTabLabel = styled.span<{ invalidName: boolean }>`
   ${macro.h300};
-  color: ${({ theme }): string => theme.palette['grey-600']};
+  color: ${(props): string => props.theme.palette['grey-600']};
   line-height: 20px;
+  position: relative;
   font-size: 14px;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
   flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  &&& {
+    ${CardTabName} {
+      background-color: transparent;
+      background-position: bottom left;
+      background-size: 5px 1px;
+      background-repeat: repeat-x;
+      background-image: ${(props): string =>
+        props.invalidName
+          ? `linear-gradient(
+        to right,
+        ${props.invalidName ? props.theme.palette['red-600'] : props.theme.palette['blue-600']} 0%,
+        ${props.invalidName ? props.theme.palette['red-600'] : props.theme.palette['blue-600']} 33%,
+        rgba(255, 255, 255, 0) 34%,
+        rgba(255, 255, 255, 0) 100%
+      );`
+          : 'none'};
+    }
+  }
+  ${InPlaceEditableInputContainer} {
+    input {
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 20px;
+      color: ${(props): string =>
+        props.invalidName ? props.theme.palette['red-600'] : props.theme.palette['grey-800']};
+      background-image: linear-gradient(
+        to right,
+        ${(props): string => (props.invalidName ? props.theme.palette['red-600'] : props.theme.palette['blue-600'])} 0%,
+        ${(props): string => (props.invalidName ? props.theme.palette['red-600'] : props.theme.palette['blue-600'])} 33%,
+        rgba(255, 255, 255, 0) 34%,
+        rgba(255, 255, 255, 0) 100%
+      );
+    }
+  }
 `;
 
 export const CardTabTag = styled.div`
@@ -73,27 +123,27 @@ export const CardTabContainer = styled.div<CardTabContainerProps>`
   width: 180px;
   height: 48px;
   user-select: none;
-  background-color: ${({ theme, active, invalid, color, greyBackground }): string => {
+  background-color: ${({ theme, active, invalid, color, greyBackground, edited }): string => {
     if (invalid && active) return theme.palette['red-600'];
-    if (active) return theme.palette[`${color}-600`];
+    if (active && !edited) return theme.palette[`${color}-600`];
     if (greyBackground) return theme.palette.white;
     return theme.palette['grey-050'];
   }};
   box-shadow: ${({ greyBackground }): string => (greyBackground ? '0 4px 12px 0 rgba(35, 41, 54, 0.04)' : '0')};
   border-radius: 3px;
   border-width: 1px;
-  border-color: ${({ theme, active, invalid, color }): string => {
+  border-color: ${({ theme, active, invalid, color, edited }): string => {
     if (invalid) return theme.palette['red-600'];
-    return getColor(active, theme.palette[`${color}-600`], theme.palette['grey-050']);
+    return getColor(active && !edited, theme.palette[`${color}-600`], theme.palette['grey-050']);
   }};
   border-style: solid;
   pointer-events: ${({ disabled }): string => (disabled ? 'none' : 'all')};
 
   ${CardTabTag} {
-    background-color: ${({ theme, active, color }): string =>
-      getColor(active, theme.palette.white, theme.palette[`${color}-600`])};
-    color: ${({ theme, active, color }): string =>
-      getColor(active, theme.palette[`${color}-600`], theme.palette.white)};
+    background-color: ${({ theme, active, color, edited }): string =>
+      getColor(active && !edited, theme.palette.white, theme.palette[`${color}-600`])};
+    color: ${({ theme, active, color, edited }): string =>
+      getColor(active && !edited, theme.palette[`${color}-600`], theme.palette.white)};
   }
 
   &:hover {
@@ -104,7 +154,8 @@ export const CardTabContainer = styled.div<CardTabContainerProps>`
       display: ${({ edited }): string => (edited ? 'none' : 'flex')};
     }
     ${CardTabLabel} {
-      color: ${({ theme }): string => theme.palette['grey-800']};
+      color: ${({ theme, invalidName }): string =>
+        invalidName ? theme.palette['red-600'] : theme.palette['grey-800']};
     }
     ${CardTabTag} {
       background-color: ${({ theme, color }): string => theme.palette[`${color}-600`]};
@@ -130,7 +181,11 @@ export const CardTabContainer = styled.div<CardTabContainerProps>`
   }
 
   ${CardTabLabel} {
-    color: ${({ theme, active }): string => (active ? theme.palette.white : theme.palette['grey-600'])};
+    color: ${({ theme, active, invalidName }): string => {
+      if (invalidName) return theme.palette['red-600'];
+      if (active) return theme.palette.white;
+      return theme.palette['grey-600'];
+    }};
     opacity: ${({ disabled }): number => (disabled ? 0.4 : 1)};
   }
 

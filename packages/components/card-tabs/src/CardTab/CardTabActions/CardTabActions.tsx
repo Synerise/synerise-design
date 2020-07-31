@@ -25,8 +25,8 @@ const CardTabActions: React.FC<Props> = ({
         editTooltip={texts?.changeNameTooltip}
         onDuplicate={onDuplicateTab}
         duplicateTooltip={texts?.duplicateTooltip}
-        onDelete={onRemoveTab}
-        deleteTooltip={texts?.removeTooltip}
+        onRemove={onRemoveTab}
+        removeTooltip={texts?.removeTooltip}
       />
     </S.CardTabSuffix>
   );
