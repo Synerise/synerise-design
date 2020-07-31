@@ -1,6 +1,8 @@
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import is, { isNot } from 'styled-is';
 import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { ReactText } from 'react';
+import * as React from 'react';
 
 const getVar = (name: string) => (props: ThemeProps): string => props.theme.palette[name];
 
@@ -36,7 +38,7 @@ const sizeCondition = (
   props: {
     size?: string;
   }
-) => (props.size === 'small' ? smallValue : mediumValue);
+): React.ReactText => (props.size === 'small' ? smallValue : mediumValue);
 
 export const RadioShape = styled.div<{ size?: string }>`
   ${transition};
@@ -202,7 +204,7 @@ export const Main = styled.div<{ disabled?: boolean; size?: string; hasTick?: bo
   `}
 `;
 
-export const TickIcon = styled.div<{ size?: string; disabled?: boolean; selected?: boolean; elementsPosition: string | 'left' | 'center' | 'right'; }>`
+export const TickIcon = styled.div<{ size?: string; disabled?: boolean; selected?: boolean; elementsPosition: string | 'left' | 'center' | 'right'}>`
   ${is('selected')`
     transform: ${(props): string => props.elementsPosition === 'left' ? 'translate(4px,-4px)':'translate( -4px, -4px)'}; 
   `}
