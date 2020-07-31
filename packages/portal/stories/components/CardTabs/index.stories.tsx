@@ -19,6 +19,7 @@ const stories = {
     const disabled = boolean('Disabled tabs', false);
     const draggable = boolean('Enable change order of tabs', false);
     const invalid = boolean('Invalid tabs', false);
+    const invalidName = boolean('Invalid tab name', false);
     const prefix = select('Prefix type', {'tag': prefixType.TAG, 'icon': prefixType.ICON}, prefixType.TAG);
 
     const handleChangeName = (id, name) => {
@@ -49,6 +50,7 @@ const stories = {
             duplicateTooltip: text('Set duplicate tooltip', 'Duplicate'),
           }}
           invalid={invalid}
+          invalidName={invalidName}
           draggable={draggable}
         />
       </div>
@@ -70,6 +72,7 @@ const stories = {
     const disabled = boolean('Disabled tabs', false);
     const draggable = boolean('Enable change order of tabs', false);
     const invalid = boolean('Invalid tabs', false);
+    const invalidName = boolean('Invalid names', false);
     const maxTabCount = number('Max number of tabs', 4);
     const prefix = select('Prefix type', {'tag': prefixType.TAG, 'icon': prefixType.ICON}, prefixType.TAG);
     const handleChangeName = (id, name) => {
@@ -148,6 +151,7 @@ const stories = {
                 duplicateTooltip:"Duplicate",
               }}
               invalid={invalid}
+              invalidName={invalidName}
               draggable={draggable}
             />
           ))}

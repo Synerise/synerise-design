@@ -131,7 +131,7 @@ describe('Card Tabs', () => {
     const { container } = renderWithProvider(<CardTabs maxTabsCount={3}>
       { ITEMS.map((item: CardTabsItem, index: number) => <CardTab key={index} id={item.id} name={item.name} tag={item.tag} prefix={prefixType.TAG} onRemoveTab={onRemove} />) }
     </CardTabs>);
-    const suffix = container.querySelector('.ds-cruds .delete');
+    const suffix = container.querySelector('.ds-cruds .remove');
 
     //ACT
     if(suffix) {

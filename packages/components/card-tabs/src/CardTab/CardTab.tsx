@@ -44,6 +44,7 @@ export interface CardTabProps {
   suffixIcon?: React.ReactNode;
   disabled?: boolean;
   invalid?: boolean;
+  invalidName?: boolean;
   greyBackground?: boolean;
   onSelectTab?: (id: number) => void;
   onChangeName?: (id: number, name: string) => void;
@@ -64,6 +65,7 @@ const CardTab: React.FC<CardTabProps> = ({
   draggable,
   disabled,
   invalid,
+  invalidName,
   greyBackground,
   onChangeName,
   onSelectTab,
@@ -140,6 +142,7 @@ const CardTab: React.FC<CardTabProps> = ({
       edited={edited}
       active={Boolean(active)}
       invalid={Boolean(invalid)}
+      invalidName={Boolean(invalidName) && !invalid}
       disabled={!active && Boolean(disabled)}
       color={color}
       onClick={handleSelect}
@@ -151,13 +154,12 @@ const CardTab: React.FC<CardTabProps> = ({
       data-testid="card-tab-container"
     >
       <CardTabPrefix draggable={draggable} prefixIcon={prefixIcon} prefix={prefix} tag={tag} />
-      <S.CardTabLabel data-testid="card-tab-label">
+      <S.CardTabLabel data-testid="card-tab-label" invalidName={Boolean(invalidName) && !invalid}>
         {edited ? (
           <InlineEdit
             className="ds-card-tabs__edit-name"
             size="small"
             hideIcon
-            // style={{ maxWidth: 46 }}
             autoFocus
             input={{
               value: editedName,
@@ -168,7 +170,7 @@ const CardTab: React.FC<CardTabProps> = ({
             data-testid="card-tab-edit-input"
           />
         ) : (
-          <span data-testid="card-tab-name">{name}</span>
+          <S.CardTabName data-testid="card-tab-name">{name}</S.CardTabName>
         )}
       </S.CardTabLabel>
       {showCardActions() && (
