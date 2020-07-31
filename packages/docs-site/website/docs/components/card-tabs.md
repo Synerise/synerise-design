@@ -91,6 +91,7 @@ import CardTabs from '@synerise/ds-card-tabs'
 | suffixIcon     | Icon visible on the right side of the tab, when set action icons will be hidden | SVG Icon                                                                                               | null     |
 | disabled       | Flag of disabled tabs                                                           | boolean                                                                                                | false    |
 | invalid        | Flag of tabs with some errors                                                   | boolean                                                                                                | false    |
+| invalidName    | Flag of tabs with invalid name                                                  | boolean                                                                                                | false    |
 | draggable      | Shows drag handler on the left side of tab                                      | boolean                                                                                                | false    |
 | onSelectTab    | Callback fired when user clicks on the tab                                      | (id: number) => {}                                                                                     | -        |
 | onRemoveTab    | Callback fired when user clicks on the remove tab icon                          | (id: number) => {}                                                                                     | -        |
