@@ -10,15 +10,16 @@ export interface Props extends InputNumberProps {
   label?: React.ReactNode | string;
   description?: React.ReactNode | string;
   error?: boolean;
+  raw?: boolean;
 }
 
-const InputNumber: React.FC<Props> = ({ label, description, errorText, ...antdProps }) => {
+const InputNumber: React.FC<Props> = ({ label, description, errorText, raw, ...antdProps }) => {
   const id = uuid();
   const showError = Boolean(errorText);
 
   return (
     <>
-      {label && (
+      {label && !raw && (
         <S.ContentAbove>
           <S.Label htmlFor={id}>{label}</S.Label>
         </S.ContentAbove>
@@ -31,7 +32,7 @@ const InputNumber: React.FC<Props> = ({ label, description, errorText, ...antdPr
         className={showError ? 'error' : undefined}
         autoComplete="off"
       />
-      {(showError || description) && (
+      {(showError || description) && !raw && (
         <S.ContentBelow>
           {showError && <S.ErrorText>{errorText}</S.ErrorText>}
           {description && <S.Description>{description}</S.Description>}

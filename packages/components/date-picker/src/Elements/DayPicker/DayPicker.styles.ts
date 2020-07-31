@@ -2,8 +2,17 @@ import styled from 'styled-components';
 import DayPickerBase from 'react-day-picker';
 
 export const DayBackground = styled.div``;
-export const DayForeground = styled.div``;
-export const DayText = styled.div``;
+export const DayForeground = styled.div`
+  border-radius: 50%;
+`;
+export const DayText = styled.div`
+  color: ${(props): string => props.theme.palette['grey-700']};
+  border-radius: 50%;
+`;
+
+export const DayTooltip = styled.div`
+  display: none;
+`;
 export const DayPicker = styled(DayPickerBase)`
   display: inline-block;
   font-size: 12px;
@@ -78,6 +87,7 @@ export const DayPicker = styled(DayPickerBase)`
       justify-content: center;
       margin: 4px;
     }
+    
 
     &--start > ${DayBackground} {
       border-top-left-radius: 50%;
@@ -92,22 +102,81 @@ export const DayPicker = styled(DayPickerBase)`
     &--today {
       font-weight: 500;
     }
+    
+    &--today.DayPicker-Day--selected {
+      & > ${DayText} {
+          font-weight: 400;
+      }
+    }
+      &--entered.DayPicker-Day--entered-start:not(.DayPicker-Day--entered-end){
+
+      & > ${DayForeground} {
+        border-color: ${(props): string => props.theme.palette['blue-300']};
+        margin-right: 0;
+        margin-left: 4px;
+      }
+
+      & > ${DayBackground} {
+        margin-right: 0;
+        background-color: ${(props): string => props.theme.palette['blue-100']};
+      }
+    }
+    
+    
+    &--entered.DayPicker-Day--entered-end:not(.DayPicker-Day--entered-start){
+
+      & > ${DayForeground} {
+        border-color: ${(props): string => props.theme.palette['blue-300']};
+        margin-right: 4px;
+        margin-left: 4px;
+      }
+      & > ${DayBackground} {
+        margin-right: 4px;
+        background-color: ${(props): string => props.theme.palette['blue-100']};
+      }
+    }
+    
+    &--entered:not(.DayPicker-Day--entered-start):not(.DayPicker-Day--entered-end){
+      & > ${DayBackground} {
+        background-color: ${(props): string => props.theme.palette['blue-100']};
+      }
+    }
+    &--today.DayPicker-Day--entered-start.DayPicker-Day--entered-end:not(.DayPicker-Day--selected) {
+      & >  ${DayBackground} {
+        background-color: ${(props): string => props.theme.palette['grey-050']};
+      }
+    }
+    &--today.DayPicker-Day--entered:not(.DayPicker-Day--selected) {
+      & > ${DayText} {
+        background-color: transparent;
+        font-weight: 400;
+        color: ${(props): string => props.theme.palette['blue-600']};
+      }
+      & >  ${DayBackground} {
+        background-color: ${(props): string => props.theme.palette['blue-100']};
+      }
+      & > ${DayForeground} {
+        border: 2px solid transparent;
+      }
+    }
 
     &--today:not(.DayPicker-Day--selected) {
       & > ${DayText} {
-        border-radius: 50%;
         background-color: ${(props): string => props.theme.palette['yellow-100']};
         color: ${(props): string => props.theme.palette['yellow-600']};
       }
 
       & > ${DayForeground} {
-        border-radius: 50%;
         border: 2px solid ${(props): string => props.theme.palette['yellow-600']};
       }
     }
 
     &--entered > ${DayBackground} {
-      background-color: ${(props): string => props.theme.palette['grey-100']};
+      background-color: ${(props): string => props.theme.palette['grey-050']};
+    }
+
+    &--entered > ${DayText} {
+      color: ${(props): string => props.theme.palette['blue-600']};
     }
 
     &--entered-start:not(.DayPicker-Day--selected) > ${DayBackground} {
@@ -161,6 +230,33 @@ export const DayPicker = styled(DayPickerBase)`
       }
     }
   }
+    .DayPicker-Day--entered:not(.DayPicker-Day--disabled):not(.DayPicker-Day--entered-start) {
+    & > div {
+      padding-left: 4px;
+      margin-left: 0;
+      padding-right: 4px;
+      margin-right: 0;
+    }
+
+    && > ${DayBackground} {
+      background-color: ${(props): string => props.theme.palette['grey-050']};
+    }
+
+    && > ${DayText} {
+      color: ${(props): string => props.theme.palette['blue-600']};
+    }
+
+    &.DayPicker-Day--ghost {
+      && > ${DayBackground} {
+        background-color: ${(props): string => props.theme.palette['blue-600']};
+      }
+
+      && > ${DayText} {
+        color: inherit;
+      }
+    }
+  }
+ 
   .DayPicker-Day--start:not(.DayPicker-Day--disabled) {
     & > ${DayText} {
       border-radius: 50%;
@@ -200,7 +296,21 @@ export const DayPicker = styled(DayPickerBase)`
   }
 
   .DayPicker-Day--selected:not(.DayPicker-Day--disabled):hover {
-    
+      position:relative;
+      ${DayTooltip} {
+      height: 24px;
+        position: absolute;
+        top: -30px;
+        margin-left: calc(-50% + 16px);
+        display:block;
+        white-space: nowrap;
+        background-color: rgba(56, 67, 80, 0.9);
+        padding:3px 8px;
+        border-radius: 3px;
+        z-index: 9;
+        font-weight: 400;
+        color: ${(props): string => props.theme.palette.white};
+      }
   }
 
   &.relative {

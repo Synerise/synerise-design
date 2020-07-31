@@ -15,7 +15,7 @@ const TimestampRange: React.FC<Props> = ({ currentRange, currentGroup, handleCha
   const [durationValue, setDurationValue] = React.useState<number>(1);
   const [durationUnit, setDurationUnit] = React.useState<string>(currentRange.duration.type);
 
-  const handleRangeChange =(date: Date, duration: Duration): void => {
+  const handleRangeChange = (date: Date, duration: Duration): void => {
     const NOW = new Date();
     let rangeStart, newOffset, offsetToTimestamp;
     const future = fnsIsAfter(date, NOW);
@@ -61,8 +61,8 @@ const TimestampRange: React.FC<Props> = ({ currentRange, currentGroup, handleCha
           disabledHours={[]}
           disabledMinutes={[]}
           texts={{
-            apply: intl.formatMessage({id:'DS.DATE-RANGE-PICKER.APPLY'}),
-            now: intl.formatMessage({id:'DS.DATE-RANGE-PICKER.NOW'})
+            apply: intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.APPLY' }),
+            now: intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.NOW' }),
           }}
           showTime
         />
@@ -70,7 +70,7 @@ const TimestampRange: React.FC<Props> = ({ currentRange, currentGroup, handleCha
     );
   };
   return (
-    <S.RangeFormColumn>
+    <S.RangeFormColumn noMargin>
       {renderDatePicker()}
       <TimestampDuration
         currentRange={currentRange}

@@ -3,7 +3,6 @@ import range from 'lodash/range';
 import { text, select, number, boolean } from '@storybook/addon-knobs';
 import Button from '@synerise/ds-button';
 import Card, { CardGroup, CardBadge } from '@synerise/ds-card';
-import { doubleClickListener } from '@synerise/ds-utils';
 import Icon from '@synerise/ds-icon';
 import { CheckS, FilterM, SearchM, UserM, WarningFillM } from '@synerise/ds-icon/dist/icons';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
@@ -32,7 +31,6 @@ const init = () => {
     content: text('Content', 'Example of card content'),
     background: select('Background style', backgrounds, 'white-shadow'),
   };
-
   return { props };
 };
 
@@ -58,7 +56,7 @@ const renderCard = (props,showContentInitial= true) => {
         background={props.background}
         showContent={props.showContent && showContent}
       >
-        <div style={{ width: '100%', height: 300 }}>{props.content}</div>
+         <div style={{ width: '100%', height: 300 }}>{props.content}</div>
       </Card>
     </React.Suspense>
   );
@@ -346,7 +344,7 @@ const stories = {
         <div style={{ padding: '12px 0', width: '100%' }}>
           <CardGroup columns={rowItems}>
             {range(0, itemsInGroup).map((i) => (
-              <React.Fragment key={i}>{renderCard({ ...props, icon: <CardBadge icon={<CheckS />} /> })}</React.Fragment>
+              <div key={i}>{renderCard({ ...props, icon: <CardBadge icon={<CheckS />} /> })}</div>
             ))}
           </CardGroup>
         </div>

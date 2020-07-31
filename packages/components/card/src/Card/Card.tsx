@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Icon from '@synerise/ds-icon';
+
 import * as S from './Card.styles';
 
 export type Backgrounds = 'white' | 'white-shadow' | 'grey' | 'grey-shadow' | 'outline';
@@ -46,6 +47,7 @@ const Card: React.FC<CardProps> = ({
   showContent,
 }) => {
   const fatTitle = !description || (description && compactHeader);
+
   return (
     <S.Container
       raised={raised}
@@ -79,12 +81,10 @@ const Card: React.FC<CardProps> = ({
           )}
         </S.Header>
       )}
-      <S.ChildrenContainer
-        isContentful={!!children && showContent}
-        withoutPadding={withoutPadding}
-        hasHeader={withHeader}
-      >
-        {showContent && children}
+      <S.ChildrenContainer className={`contentContainer ${!showContent ? 'closed' : ''}`}>
+        <S.PaddingWrapper withoutPadding={withoutPadding}>
+          <div className='content'>{children}</div>
+        </S.PaddingWrapper>
       </S.ChildrenContainer>
     </S.Container>
   );

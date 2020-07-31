@@ -44,7 +44,14 @@ export const InputWrapper = styled.div<InputWrapperProps>`
       if (props.icon1 || props.icon2) return '36px;';
       return '12px';
     }};
+    ::placeholder {
+      line-height:1.29;
+    }
   }
+  .ant-input::placeholder {
+    line-height: 1.39;
+  }
+  
   .ant-input-group-addon {
     height: 100%;
   }
@@ -107,6 +114,10 @@ export const AntdInput = styled(
   && {
     color: ${(props): string => props.theme.palette['grey-700']};
     z-index: 1;
+
+    &::placeholder {
+      color: ${(props): string => props.theme.palette['grey-500']};
+    }
 
     .ds-input-prefix {
       border-top-left-radius: 3px;

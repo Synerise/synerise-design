@@ -9,17 +9,12 @@ import { Props } from './DurationField.types';
 
 export const setDurationType = set(lensPath(['duration', 'type']));
 
-const DurationField: React.FC<Props> = ({
-  currentRange,
-  handleChange,
-  handleDurationValueChange,
-  intl,
-}) => {
+const DurationField: React.FC<Props> = ({ currentRange, handleChange, handleDurationValueChange, intl }) => {
   const { duration } = currentRange;
 
   return (
     <>
-      <S.InputSelectGroup>
+      <S.InputSelectGroup compact>
         <InputNumber
           min={1}
           max={CONST.RELATIVE_DURATION_MAX}
@@ -30,6 +25,7 @@ const DurationField: React.FC<Props> = ({
             !value && handleDurationValueChange(1);
           }}
           onChange={handleDurationValueChange}
+          raw
         />
         <Select value={duration.type} onChange={(type): void => handleChange(setDurationType(type, currentRange))}>
           {CONST.RELATIVE_TYPES.map(type => (

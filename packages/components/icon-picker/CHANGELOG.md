@@ -3,6 +3,38 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.66](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon-picker@0.1.65...@synerise/ds-icon-picker@0.1.66) (2020-07-24)
+
+**Note:** Version bump only for package @synerise/ds-icon-picker
+
+
+
+
+
+## [0.1.65](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon-picker@0.1.64...@synerise/ds-icon-picker@0.1.65) (2020-07-24)
+
+**Note:** Version bump only for package @synerise/ds-icon-picker
+
+
+
+
+
+## [0.1.64](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon-picker@0.1.63...@synerise/ds-icon-picker@0.1.64) (2020-07-22)
+
+**Note:** Version bump only for package @synerise/ds-icon-picker
+
+
+
+
+
+## [0.1.63](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon-picker@0.1.62...@synerise/ds-icon-picker@0.1.63) (2020-07-20)
+
+**Note:** Version bump only for package @synerise/ds-icon-picker
+
+
+
+
+
 ## [0.1.62](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon-picker@0.1.61...@synerise/ds-icon-picker@0.1.62) (2020-07-15)
 
 **Note:** Version bump only for package @synerise/ds-icon-picker

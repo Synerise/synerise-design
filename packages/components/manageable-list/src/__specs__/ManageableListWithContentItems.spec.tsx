@@ -7,33 +7,32 @@ import { fireEvent } from '@testing-library/react';
 
 const CONTENT_ITEMS: any = [
   {
-    id: "00000000-0000-0000-0000-000000000000",
-    name: "Position 0",
+    id: '00000000-0000-0000-0000-000000000000',
+    name: 'Position 0',
     canAdd: true,
     canUpdate: false,
     canDelete: false,
-    tag: <Tag name={"A"} shape={TagShape.SINGLE_CHARACTER_ROUND} color={"red"} />,
+    tag: <Tag name={'A'} shape={TagShape.SINGLE_CHARACTER_ROUND} color={'red'} />,
     content: <div>content</div>,
-    expanded: true,
   },
   {
-    id: "00000000-0000-0000-0000-000000000002",
-    name: "Position 1",
+    id: '00000000-0000-0000-0000-000000000002',
+    name: 'Position 1',
     canAdd: true,
     canUpdate: true,
     canDelete: true,
-    tag: <Tag name={"1"} shape={TagShape.SINGLE_CHARACTER_SQUARE} color={"#f3f5f6"} textColor={"#949ea6"} />,
+    tag: <Tag name={'1'} shape={TagShape.SINGLE_CHARACTER_SQUARE} color={'#f3f5f6'} textColor={'#949ea6'} />,
     content: <div>content</div>,
   },
   {
-    id: "00000000-0000-0000-0000-000000000001",
-    name: "Position 2",
+    id: '00000000-0000-0000-0000-000000000001',
+    name: 'Position 2',
     canAdd: true,
     canUpdate: true,
     canDuplicate: true,
     canDelete: true,
     icon: <FileM />,
-  }
+  },
 ];
 
 const texts = {
@@ -46,7 +45,8 @@ const texts = {
   activate: 'Activate',
   cancel: 'Cancel',
   deleteConfirmationTitle: 'Delete filter',
-  deleteConfirmationDescription: 'Deleting this filter will permanently remove it from templates library. All tables using this filter will be reset.',
+  deleteConfirmationDescription:
+    'Deleting this filter will permanently remove it from templates library. All tables using this filter will be reset.',
   deleteLabel: 'Delete',
 };
 
@@ -62,9 +62,10 @@ describe('ManageableList with content items', () => {
         onItemEdit={() => {}}
         onItemSelect={() => {}}
         onItemRemove={() => {}}
-        type='content'
+        type="content"
         texts={texts}
-      />);
+      />
+    );
 
     // ASSERT
     expect(getByTestId('add-item-button')).toBeTruthy();
@@ -84,9 +85,10 @@ describe('ManageableList with content items', () => {
         onItemSelect={() => {}}
         onItemRemove={() => {}}
         onItemDuplicate={() => {}}
-        type='content'
+        type="content"
         texts={texts}
-      />);
+      />
+    );
 
     // ASSERT
     expect(getByTestId('add-item-button')).toBeTruthy();
@@ -107,9 +109,10 @@ describe('ManageableList with content items', () => {
         onItemSelect={() => {}}
         onItemRemove={() => {}}
         onItemDuplicate={() => {}}
-        type='content'
+        type="content"
         texts={texts}
-      />);
+      />
+    );
     const addItemButton = getByTestId('add-item-button').querySelector('button');
 
     // ASSERT
@@ -122,11 +125,12 @@ describe('ManageableList with content items', () => {
     expect(onItemAdd).toBeCalled();
   });
 
-  it('should render with toggle content button', () => {
+  it('should render handle expandedIds props', () => {
     // ARRANGE
     const { queryAllByTestId } = renderWithProvider(
       <ManageableList
         items={CONTENT_ITEMS}
+        expandedIds={['00000000-0000-0000-0000-000000000000']}
         loading={false}
         maxToShowItems={5}
         onItemAdd={() => {}}
@@ -134,9 +138,10 @@ describe('ManageableList with content items', () => {
         onItemSelect={() => {}}
         onItemRemove={() => {}}
         onItemDuplicate={() => {}}
-        type='content'
+        type="content"
         texts={texts}
-      />);
+      />
+    );
 
     // ASSERT
     expect(queryAllByTestId('item-content-wrapper').length).toBe(1);
@@ -157,9 +162,10 @@ describe('ManageableList with content items', () => {
         onItemSelect={() => {}}
         onItemRemove={onItemRemove}
         onItemDuplicate={onItemDuplicate}
-        type='content'
+        type="content"
         texts={texts}
-      />);
+      />
+    );
 
     const removeIcon = queryAllByTestId('list-item-remove')[0].querySelector('svg');
     const duplicateIcon = queryAllByTestId('list-item-duplicate')[0].querySelector('svg');
@@ -175,5 +181,4 @@ describe('ManageableList with content items', () => {
     expect(queryAllByTestId('list-item-edit').length).toBe(2);
     expect(queryAllByTestId('list-item-duplicate').length).toBe(1);
   });
-
 });

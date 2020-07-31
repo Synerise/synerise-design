@@ -1,12 +1,17 @@
-import * as React from 'react';
+import { ListProps } from 'react-window';
+
+type ListPropsEnhanced = Partial<ListProps> & {
+  scrollTop?: number;
+};
 
 export type SearchItemListProps<T> = {
   data: T[] | undefined;
-  width: number;
-  rowHeight: number;
-  visibleRows: number;
-  onItemClick?: (e: T) => void;
   highlight?: string;
-  itemRender: (item: T) => React.ReactElement;
-  listProps?: object;
+  itemRender: (item: T) => JSX.Element;
+  listProps?: ListPropsEnhanced;
+  onItemClick?: (e: T) => void;
+  rowHeight: number;
+  width: number;
+  visibleRows?: number;
+  height?: number;
 };

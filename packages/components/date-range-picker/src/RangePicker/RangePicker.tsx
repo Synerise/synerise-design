@@ -20,6 +20,7 @@ import {
   DayBackground,
   DayForeground,
   DayText,
+  DayTooltip,
 } from '@synerise/ds-date-picker/dist/Elements/DayPicker/DayPicker.styles';
 import Button from '@synerise/ds-button';
 import YearPicker from '@synerise/ds-date-picker/dist/Elements/YearPicker/YearPicker';
@@ -27,7 +28,7 @@ import DayPicker from '@synerise/ds-date-picker/dist/Elements/DayPicker/DayPicke
 import Icon from '@synerise/ds-icon';
 import { CalendarM, ClockM } from '@synerise/ds-icon/dist/icons';
 import { Range } from '../RelativeRangePicker/RelativeRangePicker.styles';
-import { fnsStartOfDay, fnsEndOfDay, fnsIsSameMonth, fnsIsAfter } from '../fns';
+import { fnsStartOfDay, fnsEndOfDay, fnsIsSameMonth, fnsIsAfter, fnsFormat } from '../fns';
 import * as S from './RangePicker.styles';
 import { ABSOLUTE, COLUMNS, MODES } from '../constants';
 
@@ -44,13 +45,6 @@ export default class RangePicker extends React.PureComponent<Props, State> {
     this.state = {
       enteredTo: null,
       ...getSidesState(props.value),
-    };
-  }
-
-  static getDerivedStateFromProps(nextProps: Props, prevState: State): State {
-    return {
-      ...prevState,
-      ...getSidesState(nextProps.value),
     };
   }
 
@@ -106,10 +100,17 @@ export default class RangePicker extends React.PureComponent<Props, State> {
 
   renderDay = (day: Date): React.ReactNode => {
     const text = day.getDate();
+    const { value, intl } = this.props;
     return (
       <>
         <DayBackground className="DayPicker-Day-BG" />
         <DayText className="DayPicker-Day-Text" data-attr={text}>
+          {value.to && value.from && (
+            <DayTooltip>
+              {fnsFormat(value.from, 'DD-MM-YYYY HH:mm', intl.locale)} -{' '}
+              {fnsFormat(value.to, 'DD-MM-YYYY HH:mm', intl.locale)}
+            </DayTooltip>
+          )}
           {text}
         </DayText>
         <DayForeground className="DayPicker-Day-FG" />

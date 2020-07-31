@@ -1,11 +1,17 @@
 import * as React from 'react';
+import { ListProps } from 'react-window';
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type AnyObject = Record<string, any>;
 
 export type DataSetProps = {
-  title: string;
-  tooltip: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  itemRender: (item: any) => JSX.Element;
   rowHeight: number;
-  visibleRows: number;
-  itemRender: (item: object) => JSX.Element;
+  title: string;
+  tooltip?: string;
+  visibleRows?: number;
+  listProps?: Partial<ListProps>;
 };
 
 export type SearchLookupConfig = {
@@ -14,11 +20,12 @@ export type SearchLookupConfig = {
   suggestions: string;
 };
 
-export type SearchProps<T extends {}> = {
+export type SearchProps<T extends AnyObject> = {
   clearTooltip: string;
   divider?: React.ReactNode;
-  dropdownMaxHeight?: number;
+  dropdownMaxHeight: number;
   filterLookupKey?: string;
+  onClear: () => void;
   onParameterValueChange: (parameterValue: string) => void;
   onValueChange: (value: string) => void;
   parameters: T[];
@@ -36,7 +43,7 @@ export type SearchProps<T extends {}> = {
   hideLabel?: boolean;
 };
 
-export type SearchState<T extends {}> = {
+export type SearchState<T extends AnyObject> = {
   isInputOpen: boolean;
   label: T | null | undefined;
   filteredParameters: T[];
@@ -47,6 +54,8 @@ export type SearchState<T extends {}> = {
   toggleInputTrigger: boolean;
   isResultChosen: boolean;
   itemsListWidth: number;
+  scrollbarScrollTop: number;
+  moveCursorToEnd: boolean;
 };
 
 export enum SelectResultDataKeys {

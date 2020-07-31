@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Icon from '@synerise/ds-icon';
 import InlineEdit from '@synerise/ds-inline-edit/dist/InlineEdit';
-import getColorByIndex from '../utils/getColorByIndex';
+import { injectIntl, IntlShape } from 'react-intl';
 import * as S from './CardTab.styles';
 import CardTabPrefix from './CardTabPrefix/CardTabPrefix';
 import CardTabActions from './CardTabActions/CardTabActions';
@@ -11,29 +11,52 @@ export enum prefixType {
   ICON,
 }
 
+export type Color =
+  | 'red'
+  | 'green'
+  | 'grey'
+  | 'yellow'
+  | 'blue'
+  | 'pink'
+  | 'mars'
+  | 'orange'
+  | 'fern'
+  | 'cyan'
+  | 'purple'
+  | 'violet';
+
+export type CardTabTexts = {
+  changeNameTooltip?: string | React.ReactNode;
+  removeTooltip?: string | React.ReactNode;
+  duplicateTooltip?: string | React.ReactNode;
+};
+
 export interface CardTabProps {
+  intl: IntlShape;
   id: number;
-  index: number;
   name: string;
   tag: string;
   prefix: prefixType;
+  color?: Color;
   active?: boolean;
   draggable?: boolean;
   prefixIcon?: React.ReactNode;
   suffixIcon?: React.ReactNode;
   disabled?: boolean;
   invalid?: boolean;
+  invalidName?: boolean;
   greyBackground?: boolean;
   onSelectTab?: (id: number) => void;
   onChangeName?: (id: number, name: string) => void;
   onDuplicateTab?: (id: number) => void;
   onRemoveTab?: (id: number) => void;
+  texts?: CardTabTexts;
 }
 
 const CardTab: React.FC<CardTabProps> = ({
+  intl,
   id,
   name,
-  index,
   tag,
   prefix,
   prefixIcon,
@@ -42,15 +65,27 @@ const CardTab: React.FC<CardTabProps> = ({
   draggable,
   disabled,
   invalid,
+  invalidName,
   greyBackground,
   onChangeName,
   onSelectTab,
   onDuplicateTab,
   onRemoveTab,
+  texts,
+  color = 'yellow',
 }) => {
   const [edited, setEdited] = React.useState(false);
   const [editedName, setEditedName] = React.useState(name);
   const [pressed, setPressed] = React.useState(false);
+
+  const getTexts = React.useMemo(() => {
+    return {
+      changeNameTooltip: intl.formatMessage({ id: 'DS.CARD-TAB.RENAME' }),
+      removeTooltip: intl.formatMessage({ id: 'DS.CARD-TAB.REMOVE' }),
+      duplicateTooltip: intl.formatMessage({ id: 'DS.CARD-TAB.DUPLICATE' }),
+      ...texts,
+    };
+  }, [texts, intl]);
 
   const handleEditName = React.useCallback(
     (event: React.MouseEvent<HTMLElement>): void => {
@@ -107,8 +142,9 @@ const CardTab: React.FC<CardTabProps> = ({
       edited={edited}
       active={Boolean(active)}
       invalid={Boolean(invalid)}
+      invalidName={Boolean(invalidName) && !invalid}
       disabled={!active && Boolean(disabled)}
-      color={getColorByIndex(index)}
+      color={color}
       onClick={handleSelect}
       onMouseDown={(): void => setPressed(true)}
       onMouseLeave={(): void => setPressed(false)}
@@ -118,13 +154,12 @@ const CardTab: React.FC<CardTabProps> = ({
       data-testid="card-tab-container"
     >
       <CardTabPrefix draggable={draggable} prefixIcon={prefixIcon} prefix={prefix} tag={tag} />
-      <S.CardTabLabel data-testid="card-tab-label">
+      <S.CardTabLabel data-testid="card-tab-label" invalidName={Boolean(invalidName) && !invalid}>
         {edited ? (
           <InlineEdit
             className="ds-card-tabs__edit-name"
             size="small"
             hideIcon
-            style={{ maxWidth: 46 }}
             autoFocus
             input={{
               value: editedName,
@@ -135,7 +170,7 @@ const CardTab: React.FC<CardTabProps> = ({
             data-testid="card-tab-edit-input"
           />
         ) : (
-          <span data-testid="card-tab-name">{name}</span>
+          <S.CardTabName data-testid="card-tab-name">{name}</S.CardTabName>
         )}
       </S.CardTabLabel>
       {showCardActions() && (
@@ -144,6 +179,7 @@ const CardTab: React.FC<CardTabProps> = ({
           changeNameAvailable={Boolean(onChangeName)}
           onDuplicateTab={handleDuplicate}
           onRemoveTab={handleRemove}
+          texts={getTexts}
         />
       )}
       {suffixIcon && <Icon className="ds-card-tabs__suffix-icon" component={suffixIcon} />}
@@ -151,4 +187,4 @@ const CardTab: React.FC<CardTabProps> = ({
   );
 };
 
-export default CardTab;
+export default injectIntl(CardTab);

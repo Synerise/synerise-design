@@ -521,36 +521,32 @@ const stories = {
             boolean('Enable row selection', true) && {
               onChange: handleSelectRow,
               selectedRowKeys: selectedRows,
-              selections: [
-                Table.SELECTION_ALL,
-                Table.SELECTION_INVERT,
-              ]
+              selections: [Table.SELECTION_ALL, Table.SELECTION_INVERT],
             }
           }
           searchComponent={
             <Search
               clearTooltip="Clear"
-              textLookupConfig={{
-                parameters: 'text',
-                recent: 'text',
-                suggestions: 'text',
-              }}
+              dropdownMaxHeight={400}
               filterLookupKey="filter"
+              onClear={() => {
+                store.set({
+                  searchFilterValue: '',
+                  searchValue: '',
+                });
+              }}
               onParameterValueChange={value => {
                 store.set({
                   searchFilterValue: value,
                   searchSuggestions: getSuggestions(value),
                 });
               }}
-              onValueChange={value => {
-                store.set({ searchValue: value });
-              }}
+              onValueChange={value => store.set({ searchValue: value })}
               parameters={parameters.slice(0, number('Parameters count', 5))}
               parametersDisplayProps={{
                 tooltip: 'Parameters',
                 title: 'Parameters',
                 rowHeight: 32,
-                visibleRows: 6,
                 itemRender: (item: FilterElement) => (
                   <Menu.Item
                     highlight={store.state.searchValue}
@@ -568,7 +564,6 @@ const stories = {
                 tooltip: 'Recent',
                 title: 'Recent',
                 rowHeight: 32,
-                visibleRows: 3,
                 itemRender: (item: FilterElement) => (
                   <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>
                 ),
@@ -584,10 +579,14 @@ const stories = {
                 tooltip: 'Suggestions',
                 title: 'Suggestions',
                 rowHeight: 32,
-                visibleRows: 6,
                 itemRender: (item: FilterElement) => (
                   <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>
                 ),
+              }}
+              textLookupConfig={{
+                parameters: 'text',
+                recent: 'text',
+                suggestions: 'text',
               }}
               value={store.state.searchValue}
               width={300}

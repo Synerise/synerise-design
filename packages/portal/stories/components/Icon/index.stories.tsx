@@ -18,6 +18,10 @@ const listyStyles: React.CSSProperties = {
   border: 1,
   borderStyle: 'solid',
   borderColor: '#e0e0e0',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'space-between',
 };
 
 const getProps = () => ({
@@ -40,10 +44,11 @@ const IconComponent = Object.entries(iconsRaw).map(([key, value]) => {
 });
 
 const AdditionalIconComponent = Object.entries(additionalIconsRaw).map(([key, value]) => {
+  const size = key.substr(-2) === 'Xl' ? 96 : 48;
   const IconModule = value as React.ComponentType;
   return (
     <div style={listyStyles} key={key}>
-      <Icon component={<IconModule />} size={82} />
+      <Icon component={<IconModule />} size={size} />
       <br />
       <br />
       <p>{key}</p>

@@ -36,6 +36,7 @@ import Search from '@synerise/ds-search';
 import VarTypeStringM from '@synerise/ds-icon/dist/icons/VarTypeStringM';
 import Tooltip from '@synerise/ds-tooltip';
 import { ItemType } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.types';
+import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 
 const decorator = storyFn => (
   <div style={{ padding: 20, width: '100vw', minWidth: '100%', position: 'absolute', top: 0, left: 0 }}>
@@ -239,10 +240,16 @@ const stories = {
               <Dropdown
                 overlay={
                   <Menu style={{ padding: 8 }}>
-                    <Menu.Item onClick={action('Edit')} prefixel={<Icon component={<EditM />} />}>
+                    <Menu.Item
+                      onClick={action('Edit')}
+                      prefixel={<Icon component={<EditM />} color={theme.palette['grey-600']} />}
+                    >
                       Edit
                     </Menu.Item>
-                    <Menu.Item onClick={action('Duplicate')} prefixel={<Icon component={<DuplicateM />} />}>
+                    <Menu.Item
+                      onClick={action('Duplicate')}
+                      prefixel={<Icon component={<DuplicateM />} color={theme.palette['grey-600']} />}
+                    >
                       Duplicate
                     </Menu.Item>
                     <Menu.Item
@@ -257,7 +264,7 @@ const stories = {
                 trigger={['click']}
               >
                 <Button type="ghost" mode="single-icon">
-                  <Icon component={<OptionHorizontalM />} />
+                  <Icon component={<OptionHorizontalM  />} />
                 </Button>
               </Dropdown>
             </TableCell.ActionCell>
@@ -398,33 +405,32 @@ const stories = {
           searchComponent={
             <Search
               clearTooltip="Clear"
-              textLookupConfig={{
-                parameters: 'text',
-                recent: 'text',
-                suggestions: 'text',
-              }}
+              dropdownMaxHeight={400}
               filterLookupKey="filter"
+              onClear={() => {
+                store.set({
+                  searchValue: '',
+                  searchFilterValue: '',
+                });
+              }}
               onParameterValueChange={value => {
                 store.set({
                   searchFilterValue: value,
                   searchSuggestions: getSuggestions(value),
                 });
               }}
-              onValueChange={value => {
-                store.set({ searchValue: value });
-              }}
+              onValueChange={value => store.set({ searchValue: value })}
               parameters={parameters.slice(0, number('Parameters count', 5))}
               parametersDisplayProps={{
                 tooltip: 'Parameters',
                 title: 'Parameters',
                 rowHeight: 32,
-                visibleRows: 6,
                 itemRender: (item: FilterElement) => {
                   return (
                     <Menu.Item
                       highlight={store.state.searchValue}
                       onItemHover={(): void => {}}
-                      prefixel={item && <Icon component={item && item.icon} />}
+                      prefixel={item && <Icon component={item && item.icon} color={theme.palette['grey-600']} />}
                     >
                       {item && item.text}
                     </Menu.Item>
@@ -438,15 +444,8 @@ const stories = {
                 tooltip: 'Recent',
                 title: 'Recent',
                 rowHeight: 32,
-                visibleRows: 3,
                 itemRender: (item: FilterElement) => (
                   <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>
-                ),
-                divider: (
-                  <div style={{ padding: '12px', paddingBottom: '0px' }}>
-                    {' '}
-                    <Divider dashed={true} />{' '}
-                  </div>
                 ),
               }}
               suggestions={store.state.searchSuggestions}
@@ -454,10 +453,14 @@ const stories = {
                 tooltip: 'Suggestions',
                 title: 'Suggestions',
                 rowHeight: 32,
-                visibleRows: 6,
                 itemRender: (item: FilterElement) => (
                   <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>
                 ),
+              }}
+              textLookupConfig={{
+                parameters: 'text',
+                recent: 'text',
+                suggestions: 'text',
               }}
               value={store.state.searchValue}
               width={300}

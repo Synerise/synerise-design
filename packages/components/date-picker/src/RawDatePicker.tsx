@@ -12,6 +12,7 @@ import TimePicker from './Elements/TimePicker/TimePicker';
 
 import { DayBackground, DayText, DayForeground } from './Elements/DayPicker/DayPicker.styles';
 import { fnsStartOfMonth, fnsSetYear, fnsSetMonth, fnsSetDate, fnsStartOfDay, fnsEndOfDay, fnsAddDays } from './fns';
+import { changeDayWithHoursPreserved } from './utils';
 
 class RawDatePicker extends React.Component<Props, State> {
   static defaultProps = {
@@ -47,19 +48,29 @@ class RawDatePicker extends React.Component<Props, State> {
 
   getSnapshotBeforeUpdate(prevProps: Readonly<Props>): null {
     const { value } = this.props;
+    const { mode } = this.state;
     if (prevProps?.value !== value) {
       this.setState({
-        mode: 'date',
         value,
         month: fnsStartOfMonth(value || new Date()),
-        changed: false,
+        changed: true,
+        mode: value === undefined ? 'date' : mode,
       });
     }
     return null;
   }
 
   handleChange = (value: Date | undefined): void => {
-    this.setState({ value, changed: true });
+    const { onValueChange } = this.props;
+    const { mode, value: valueFromState } = this.state;
+    if (mode === 'date' && !!valueFromState && !!value) {
+      const dateToBeUpdated = changeDayWithHoursPreserved(valueFromState, value);
+      this.setState({ value: dateToBeUpdated, changed: true });
+      onValueChange && onValueChange(dateToBeUpdated);
+    } else {
+      this.setState({ value, changed: true });
+      onValueChange && onValueChange(value);
+    }
   };
 
   handleDayMouseEnter = (day: Date): void => this.setState({ enteredTo: day });
@@ -68,7 +79,7 @@ class RawDatePicker extends React.Component<Props, State> {
 
   handleDayClick = (day: Date, modifiers: DayModifiers): void => {
     const { changed: isChanged, value } = this.state;
-    const { useStartOfDay, useEndOfDay } = this.props;
+    const { useStartOfDay, useEndOfDay, showTime } = this.props;
 
     if (modifiers.disabled) return;
 
@@ -84,7 +95,7 @@ class RawDatePicker extends React.Component<Props, State> {
     } else {
       this.handleChange(nextDateWithCurrentTime);
     }
-    this.handleModeSwitch('time');
+    !!showTime && this.handleModeSwitch('time');
   };
 
   handleModeSwitch = (mode: string): void => this.setState({ mode });

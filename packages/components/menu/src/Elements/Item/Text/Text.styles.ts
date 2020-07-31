@@ -115,7 +115,7 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
       color: ${(props): string => props.theme.palette['grey-700']};
       background: ${(props): string =>
         props.description ? props.theme.palette.white : props.theme.palette['grey-050']};
-      .ds-menu-prefix > ${IconContainer} > svg {
+      ${PrefixelWrapper} > .ds-icon > svg {
         fill: ${(props): string => props.theme.palette['grey-700']};
       }
     }
@@ -131,15 +131,14 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
         align-items: center;
       }
     }
-    ${PrefixelWrapper} {
-      svg {
-        ${(props): string | false =>
-          !props.disabled &&
-          `
+    ${PrefixelWrapper} > .ds-icon > svg {
+      ${(props): string | false =>
+        !props.disabled &&
+        `
           fill: ${props.theme.palette['grey-600']};
         `}
-      }
     }
+
     &:focus {
       color: ${(props): string => (props.description ? `${props.theme.palette['blue-600']} !important` : 'inherit')};
       ${ArrowRight} {
@@ -233,11 +232,6 @@ export const SuffixWraper = styled.div<{ disabled?: boolean; visible?: boolean }
   `};
   svg {
     margin-right: -4px;
-  }
-  &:hover {
-    svg {
-      fill: currentColor !important;
-    }
   }
 `;
 

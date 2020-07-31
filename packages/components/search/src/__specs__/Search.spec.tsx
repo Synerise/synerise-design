@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { screen } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import { fireEvent } from '@testing-library/dom';
@@ -28,56 +28,57 @@ const textLookupConfig = {
   suggestions: 'text',
 };
 
+const NOOP = () => {};
+
 const parametersDisplayProps = {
   tooltip: 'Parameters',
   title: PARAMETERS_TITLE,
   rowHeight: 32,
   visibleRows: 3,
-  itemRender: (item: object) => (
-    <Menu.Item onItemHover={(): void => {}}>{item && (item as { text: string }).text}</Menu.Item>
-  ),
+  itemRender: (item: object) => <Menu.Item onItemHover={NOOP}>{item && (item as { text: string }).text}</Menu.Item>,
 };
 const suggestionsDisplayProps = {
   tooltip: 'Suggest',
   title: SUGGESTIONS_TITLE,
   rowHeight: 32,
   visibleRows: 3,
-  itemRender: (item: object) => (
-    <Menu.Item onItemHover={(): void => {}}>{item && (item as { text: string }).text}</Menu.Item>
-  ),
+  itemRender: (item: object) => <Menu.Item onItemHover={NOOP}>{item && (item as { text: string }).text}</Menu.Item>,
 };
 const recentDisplayProps = {
   tooltip: 'Recent',
   title: RECENT_TITLE,
   rowHeight: 32,
   visibleRows: 3,
-  itemRender: (item: object) => (
-    <Menu.Item onItemHover={(): void => {}}>{item && (item as { text: string }).text}</Menu.Item>
-  ),
+  itemRender: (item: object) => <Menu.Item onItemHover={NOOP}>{item && (item as { text: string }).text}</Menu.Item>,
 };
-const INPUT_EXPAND_ANIMATION_DURATION = 200;
-const waitForDropdownToExpand = () => new Promise(r => setTimeout(r, INPUT_EXPAND_ANIMATION_DURATION));
-describe('Search with dropdown', () => {
-  const onChange = jest.fn();
-  const onParameterValueChange = jest.fn();
 
+// const INPUT_EXPAND_ANIMATION_DURATION = 200;
+// const waitForDropdownToExpand = () => new Promise(r => setTimeout(r, INPUT_EXPAND_ANIMATION_DURATION));
+const dropdownMaxHeight = 400;
+describe('Search with dropdown', () => {
   it('should render', () => {
+    const onChange = jest.fn();
+    const onParameterValueChange = jest.fn();
+    const onClear = jest.fn();
+
     // ARRANGE
     renderWithProvider(
       <Search
         clearTooltip="clear"
+        dropdownMaxHeight={dropdownMaxHeight}
+        onClear={onClear}
+        onParameterValueChange={onParameterValueChange}
+        onValueChange={onChange}
         parameters={parametersList}
+        parametersDisplayProps={parametersDisplayProps}
+        parameterValue={FILTER_VALUE}
         placeholder={PLACEHOLDER}
         recent={recent}
-        suggestions={suggestions}
-        value={INPUT_VALUE}
-        parameterValue={FILTER_VALUE}
-        onValueChange={onChange}
-        onParameterValueChange={onChange}
-        parametersDisplayProps={parametersDisplayProps}
         recentDisplayProps={recentDisplayProps}
+        suggestions={suggestions}
         suggestionsDisplayProps={suggestionsDisplayProps}
         textLookupConfig={textLookupConfig}
+        value={INPUT_VALUE}
         width={200}
       />
     );
@@ -87,22 +88,28 @@ describe('Search with dropdown', () => {
   });
 
   it('should change value', () => {
+    const onChange = jest.fn();
+    const onParameterValueChange = jest.fn();
+    const onClear = jest.fn();
+
     // ARRANGE
     renderWithProvider(
       <Search
         clearTooltip={'clear'}
+        dropdownMaxHeight={dropdownMaxHeight}
+        onClear={onClear}
+        onParameterValueChange={onParameterValueChange}
+        onValueChange={onChange}
         parameters={parametersList}
+        parametersDisplayProps={parametersDisplayProps}
+        parameterValue={FILTER_VALUE}
         placeholder={PLACEHOLDER}
         recent={recent}
-        suggestions={suggestions}
-        value={''}
-        parameterValue={FILTER_VALUE}
-        onValueChange={onChange}
-        onParameterValueChange={onParameterValueChange}
-        parametersDisplayProps={parametersDisplayProps}
         recentDisplayProps={recentDisplayProps}
+        suggestions={suggestions}
         suggestionsDisplayProps={suggestionsDisplayProps}
         textLookupConfig={textLookupConfig}
+        value={''}
         width={200}
       />
     );
@@ -117,22 +124,28 @@ describe('Search with dropdown', () => {
   });
 
   it('should set filter', async () => {
+    const onChange = jest.fn();
+    const onParameterValueChange = jest.fn();
+    const onClear = jest.fn();
+
     // ARRANGE
     renderWithProvider(
       <Search
         clearTooltip={'clear'}
+        dropdownMaxHeight={dropdownMaxHeight}
+        onClear={onClear}
+        onParameterValueChange={onParameterValueChange}
+        onValueChange={onChange}
         parameters={parametersList}
+        parametersDisplayProps={parametersDisplayProps}
+        parameterValue={FILTER_VALUE}
         placeholder={PLACEHOLDER}
         recent={recent}
-        suggestions={suggestions}
-        value={''}
-        parameterValue={FILTER_VALUE}
-        onValueChange={onChange}
-        onParameterValueChange={onParameterValueChange}
-        parametersDisplayProps={parametersDisplayProps}
         recentDisplayProps={recentDisplayProps}
+        suggestions={suggestions}
         suggestionsDisplayProps={suggestionsDisplayProps}
         textLookupConfig={textLookupConfig}
+        value={''}
         width={200}
       />
     );
@@ -141,32 +154,42 @@ describe('Search with dropdown', () => {
 
     // ACT
     await btn.click();
-    await waitForDropdownToExpand();
-    const parameter = screen.getByText('City') as HTMLInputElement;
-
-    await parameter.click();
-
-    // ASSERT
-    expect(onParameterValueChange).toBeCalledWith('City');
+    await waitFor(
+      () => {
+        const parameter = screen.getByText('City') as HTMLInputElement;
+        parameter.click();
+        // ASSERT
+        expect(onParameterValueChange).toBeCalledWith('City');
+      },
+      {
+        timeout: 1000,
+      }
+    );
   });
 
   it('should render input with value', async () => {
+    const onChange = jest.fn();
+    const onParameterValueChange = jest.fn();
+    const onClear = jest.fn();
+
     // ARRANGE
     renderWithProvider(
       <Search
         clearTooltip={'clear'}
+        dropdownMaxHeight={dropdownMaxHeight}
+        onClear={onClear}
+        onParameterValueChange={onParameterValueChange}
+        onValueChange={onChange}
         parameters={parametersList}
+        parametersDisplayProps={parametersDisplayProps}
+        parameterValue={FILTER_VALUE}
         placeholder={PLACEHOLDER}
         recent={recent}
-        suggestions={suggestions}
-        value={'TestValue'}
-        parameterValue={FILTER_VALUE}
-        onValueChange={onChange}
-        onParameterValueChange={onParameterValueChange}
-        parametersDisplayProps={parametersDisplayProps}
         recentDisplayProps={recentDisplayProps}
+        suggestions={suggestions}
         suggestionsDisplayProps={suggestionsDisplayProps}
         textLookupConfig={textLookupConfig}
+        value={'TestValue'}
         width={200}
       />
     );
@@ -180,12 +203,18 @@ describe('Search with dropdown', () => {
   });
 
   it('should render suggestions with title', async () => {
+    const onChange = jest.fn();
+    const onParameterValueChange = jest.fn();
+    const onClear = jest.fn();
+
     // ARRANGE
     renderWithProvider(
       <div>
         <button>differentElement</button>
         <Search
           clearTooltip="clear"
+          dropdownMaxHeight={dropdownMaxHeight}
+          onClear={onClear}
           onParameterValueChange={onParameterValueChange}
           onValueChange={onChange}
           parameters={parametersList}
@@ -213,24 +242,30 @@ describe('Search with dropdown', () => {
   });
 
   it('should render parameters with title', async () => {
+    const onChange = jest.fn();
+    const onParameterValueChange = jest.fn();
+    const onClear = jest.fn();
+
     // ARRANGE
     renderWithProvider(
       <div>
         <button>differentElement</button>
         <Search
           clearTooltip={'clear'}
-          placeholder={PLACEHOLDER}
-          recent={recent}
-          suggestions={suggestions}
-          value=""
-          onValueChange={onChange}
+          dropdownMaxHeight={dropdownMaxHeight}
+          onClear={onClear}
           onParameterValueChange={onParameterValueChange}
+          onValueChange={onChange}
           parameters={parametersList}
           parametersDisplayProps={parametersDisplayProps}
           parameterValue=""
+          placeholder={PLACEHOLDER}
           recentDisplayProps={recentDisplayProps}
+          recent={recent}
+          suggestions={suggestions}
           suggestionsDisplayProps={suggestionsDisplayProps}
           textLookupConfig={textLookupConfig}
+          value=""
           width={200}
         />
       </div>
@@ -245,24 +280,30 @@ describe('Search with dropdown', () => {
   });
 
   it('should render recent with title', async () => {
+    const onChange = jest.fn();
+    const onParameterValueChange = jest.fn();
+    const onClear = jest.fn();
+
     // ARRANGE
     renderWithProvider(
       <div>
         <button>differentElement</button>
         <Search
           clearTooltip={'clear'}
+          dropdownMaxHeight={dropdownMaxHeight}
+          onClear={onClear}
+          onParameterValueChange={onParameterValueChange}
+          onValueChange={onChange}
           parameters={parametersList}
+          parametersDisplayProps={parametersDisplayProps}
+          parameterValue=""
           placeholder={PLACEHOLDER}
           recent={recent}
-          suggestions={suggestions}
-          value=""
-          parameterValue=""
-          onValueChange={onChange}
-          onParameterValueChange={onParameterValueChange}
-          parametersDisplayProps={parametersDisplayProps}
           recentDisplayProps={recentDisplayProps}
+          suggestions={suggestions}
           suggestionsDisplayProps={suggestionsDisplayProps}
           textLookupConfig={textLookupConfig}
+          value=""
           width={200}
         />
       </div>
@@ -273,5 +314,36 @@ describe('Search with dropdown', () => {
     btn.click();
     const title = screen.getByText(RECENT_TITLE) as HTMLElement;
     expect(title).toBeTruthy();
+  });
+
+  it('should call onClear when click on clear btn', async () => {
+    const onChange = jest.fn();
+    const onParameterValueChange = jest.fn();
+    const onClear = jest.fn();
+
+    // ARRANGE
+    renderWithProvider(
+      <Search
+        clearTooltip={'clear'}
+        dropdownMaxHeight={dropdownMaxHeight}
+        onClear={onClear}
+        onParameterValueChange={onParameterValueChange}
+        onValueChange={onChange}
+        parameters={parametersList}
+        parametersDisplayProps={parametersDisplayProps}
+        parameterValue="city"
+        placeholder={PLACEHOLDER}
+        recent={recent}
+        recentDisplayProps={recentDisplayProps}
+        suggestions={suggestions}
+        suggestionsDisplayProps={suggestionsDisplayProps}
+        textLookupConfig={textLookupConfig}
+        value="Chicago"
+        width={200}
+      />
+    );
+    userEvent.click(screen.getByTestId('clear'));
+
+    expect(onClear).toHaveBeenCalledTimes(1);
   });
 });

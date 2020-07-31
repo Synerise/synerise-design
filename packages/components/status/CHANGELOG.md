@@ -3,6 +3,38 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.98](https://github.com/Synerise/synerise-design/compare/@synerise/ds-status@0.1.97...@synerise/ds-status@0.1.98) (2020-07-24)
+
+**Note:** Version bump only for package @synerise/ds-status
+
+
+
+
+
+## [0.1.97](https://github.com/Synerise/synerise-design/compare/@synerise/ds-status@0.1.96...@synerise/ds-status@0.1.97) (2020-07-24)
+
+**Note:** Version bump only for package @synerise/ds-status
+
+
+
+
+
+## [0.1.96](https://github.com/Synerise/synerise-design/compare/@synerise/ds-status@0.1.95...@synerise/ds-status@0.1.96) (2020-07-22)
+
+**Note:** Version bump only for package @synerise/ds-status
+
+
+
+
+
+## [0.1.95](https://github.com/Synerise/synerise-design/compare/@synerise/ds-status@0.1.94...@synerise/ds-status@0.1.95) (2020-07-20)
+
+**Note:** Version bump only for package @synerise/ds-status
+
+
+
+
+
 ## [0.1.94](https://github.com/Synerise/synerise-design/compare/@synerise/ds-status@0.1.93...@synerise/ds-status@0.1.94) (2020-07-15)
 
 **Note:** Version bump only for package @synerise/ds-status

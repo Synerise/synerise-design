@@ -1,61 +1,71 @@
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 
-const selectColorByLetter = (letter?: string): string => {
+export type Color = string | {color: string; hue: string};
+
+const getColor = (colorString: string, forAvatar: boolean): Color => {
+  if(!forAvatar) return theme.palette[colorString];
+  return {
+    color: colorString.split('-')[0],
+    hue: colorString.split('-')[1],
+  }
+};
+
+const selectColorByLetter = (letter?: string, forAvatar = false): Color => {
   if (typeof letter !== 'string' || !/^[a-z]$/i.test(letter)) {
-    return theme.palette['orange-700'];
+    return getColor('orange-700', forAvatar);
   }
 
   switch (letter.toUpperCase()) {
     case 'A':
-      return theme.palette['pink-700'];
+      return getColor('pink-700', forAvatar);
     case 'B':
-      return theme.palette['pink-600'];
+      return getColor('pink-600', forAvatar);
     case 'C':
-      return theme.palette['violet-600'];
+      return getColor('violet-600', forAvatar);
     case 'D':
-      return theme.palette['violet-500'];
+      return getColor('violet-500', forAvatar);
     case 'E':
-      return theme.palette['blue-700'];
+      return getColor('blue-700', forAvatar);
     case 'F':
-      return theme.palette['blue-600'];
+      return getColor('blue-600', forAvatar);
     case 'G':
-      return theme.palette['blue-400'];
+      return getColor('blue-400', forAvatar);
     case 'H':
-      return theme.palette['blue-300'];
+      return getColor('blue-300', forAvatar);
     case 'I':
-      return theme.palette['cyan-700'];
+      return getColor('cyan-700', forAvatar);
     case 'J':
-      return theme.palette['fern-600'];
+      return getColor('fern-600', forAvatar);
     case 'K':
-      return theme.palette['fern-500'];
+      return getColor('fern-500', forAvatar);
     case 'L':
-      return theme.palette['yellow-600'];
+      return getColor('yellow-600', forAvatar);
     case 'M':
-      return theme.palette['orange-400'];
+      return getColor('orange-400', forAvatar);
     case 'N':
-      return theme.palette['yellow-500'];
+      return getColor('yellow-500', forAvatar);
     case 'O':
-      return theme.palette['orange-600'];
+      return getColor('orange-600', forAvatar);
     case 'P':
-      return theme.palette['red-800'];
+      return getColor('red-800', forAvatar);
     case 'R':
-      return theme.palette['grey-600'];
+      return getColor('grey-600', forAvatar);
     case 'S':
-      return theme.palette['grey-700'];
+      return getColor('grey-700', forAvatar);
     case 'T':
-      return theme.palette['pink-400'];
+      return getColor('pink-400', forAvatar);
     case 'U':
-      return theme.palette['fern-400'];
+      return getColor('fern-400', forAvatar);
     case 'V':
-      return theme.palette['blue-400'];
+      return getColor('blue-400', forAvatar);
     case 'W':
-      return theme.palette['pink-500'];
+      return getColor('pink-500', forAvatar);
     case 'X':
-      return theme.palette['orange-300'];
+      return getColor('orange-300', forAvatar);
     case 'Y':
-      return theme.palette['fern-200'];
+      return getColor('fern-200', forAvatar);
     default:
-      return theme.palette['orange-700'];
+      return getColor('orange-700', forAvatar);
   }
 };
 

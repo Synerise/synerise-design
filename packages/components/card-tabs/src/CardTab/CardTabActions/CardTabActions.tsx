@@ -1,27 +1,33 @@
 import * as React from 'react';
-import Icon from '@synerise/ds-icon';
-import DuplicateS from '@synerise/ds-icon/dist/icons/DuplicateS';
-import CloseS from '@synerise/ds-icon/dist/icons/CloseS';
-import EditS from '@synerise/ds-icon/dist/icons/EditS';
+import Button from '@synerise/ds-button';
 import * as S from '../CardTab.styles';
+import { CardTabTexts } from '../CardTab';
 
 interface Props {
   changeNameAvailable: boolean;
   enterEditNameMode: (event: React.MouseEvent<HTMLElement>) => void;
   onDuplicateTab?: (event: React.MouseEvent<HTMLElement>) => void;
   onRemoveTab?: (event: React.MouseEvent<HTMLElement>) => void;
+  texts?: CardTabTexts;
 }
 
-const CardTabActions: React.FC<Props> = ({ changeNameAvailable, enterEditNameMode, onDuplicateTab, onRemoveTab }) => {
+const CardTabActions: React.FC<Props> = ({
+  changeNameAvailable,
+  enterEditNameMode,
+  onDuplicateTab,
+  onRemoveTab,
+  texts,
+}) => {
   return (
     <S.CardTabSuffix data-testid="card-tab-suffix">
-      {changeNameAvailable && (
-        <Icon className="ds-card-tabs__change-name-icon" component={<EditS />} onClick={enterEditNameMode} />
-      )}
-      {onDuplicateTab && (
-        <Icon className="ds-card-tabs__duplicate-icon" component={<DuplicateS />} onClick={onDuplicateTab} />
-      )}
-      {onRemoveTab && <Icon className="ds-card-tabs__remove-icon" component={<CloseS />} onClick={onRemoveTab} />}
+      <Button.Cruds
+        onEdit={changeNameAvailable && enterEditNameMode}
+        editTooltip={texts?.changeNameTooltip}
+        onDuplicate={onDuplicateTab}
+        duplicateTooltip={texts?.duplicateTooltip}
+        onRemove={onRemoveTab}
+        removeTooltip={texts?.removeTooltip}
+      />
     </S.CardTabSuffix>
   );
 };
