@@ -58,7 +58,7 @@ export const Title = styled.div<{ hasIcon: boolean; size?: string }>`
   font-weight: 500;
   font-size: ${(props): string | number => sizeCondition('10px', '14px', props)};
   margin: ${(props): string => (!props.hasIcon ? '0 16px' : '0')};
-  //min-width: ${(props): string | number => sizeCondition('48px', '176px', props)};
+  
 
   ${(props): FlattenSimpleInterpolation | false =>
   props.size === 'small' &&
@@ -70,8 +70,7 @@ export const Title = styled.div<{ hasIcon: boolean; size?: string }>`
 export const Description = styled.div<{ hasTitle?: boolean; hasIcon?: boolean; size?: string }>`
   font-size: 12px;
   text-align: center;
-  margin: ${(props): string => (!props.hasIcon ? '0 16px' : '0')};
-  //max-width: 176px;
+  max-width: 100%;
 
   ${(props): FlattenSimpleInterpolation | undefined | false =>
   props.hasTitle &&
@@ -101,21 +100,31 @@ export const Container = styled.div<
     size?: string;
     stretchToFit?: boolean;
     elementsPosition: string | 'left' | 'center' | 'right';
+    selected?: boolean;
+
   } & ThemeProps
 >`
+min-width: ${(props): string | number => sizeCondition('48px', '224px', props)};
+max-width: 224px;
+
   ${transition};
   background-color: ${getVar('white')};
   border-radius: ${(props): string => props.theme.variable('@border-radius-base')};
   display: flex;
+  flex:1;
   justify-content: ${(props): string => mapElementsPosition[props.elementsPosition]};
   border-color: ${getVar('white')};
   position: relative;
   padding: ${(props): string => (props.size === 'small' ? '24px 16px 12px' : '24px')};
   cursor: pointer;
   &&&:focus {
-  border: 2px solid ;
-  border-color: ${(props): string => props.theme.palette['blue-600']};
+  border: ${(props): string => props.disabled ? '1px solid': '2px solid'};
+  border-color: ${(props): string => props.disabled ? props.theme.palette.white : props.theme.palette['blue-600']};
   }
+  ${is('value')`
+  border: 2px solid;
+  border-color: ${(props): string=> props.theme.palette['blue-600']};
+  `}
   
   ${Title}, ${Description}, ${IconWrapper} {
   text-align: ${(props): string => props.elementsPosition};
@@ -137,7 +146,7 @@ export const Container = styled.div<
   `}
 
   ${isNot('disabled')`
-    cursor: cursor;
+    
 
     &:hover {
       ${RadioShape} {
@@ -193,12 +202,13 @@ export const Main = styled.div<{ disabled?: boolean; size?: string; hasTick?: bo
   `}
 `;
 
-export const TickIcon = styled.div<{ size?: string; disabled?: boolean; selected?: boolean }>`
+export const TickIcon = styled.div<{ size?: string; disabled?: boolean; selected?: boolean; elementsPosition: string | 'left' | 'center' | 'right'; }>`
   ${is('selected')`
-    transform: translate(-4px, -4px);
+    transform: ${(props): string => props.elementsPosition === 'left' ? 'translate(4px,-4px)':'translate( -4px, -4px)'}; 
   `}
 
   ${is('disabled')`
+  pointer-events: none;
     ${RadioShape} {
       background-color: ${getVar('grey-050')};
       border-color: ${getVar('grey-200')};

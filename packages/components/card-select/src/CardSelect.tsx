@@ -70,7 +70,7 @@ const CardSelect: React.FC<CardSelectProps> = ({
     >
       <S.Aside size={size} >
         {tickVisible && (
-          <S.TickIcon disabled={disabled} selected={value} size={size} onClick={handleClick}>
+          <S.TickIcon disabled={disabled} elementsPosition={elementsPosition} selected={value} size={size} onClick={handleClick}>
             {value ? (
               <Icon
                 size={realThickSize}
