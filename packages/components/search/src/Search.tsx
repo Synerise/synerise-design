@@ -48,7 +48,7 @@ class Search extends React.PureComponent<SearchProps<AnyObject>, SearchState<Any
   }
 
   componentDidUpdate(prevProps: SearchProps<AnyObject>): void {
-    const { recent, suggestions, parameters, value, textLookupConfig, hideLabel } = this.props;
+    const { recent, suggestions, parameters, value, textLookupConfig, hideLabel, parameterValue } = this.props;
 
     if (prevProps.value !== value && !value) {
       this.handleChange(value);
@@ -63,7 +63,11 @@ class Search extends React.PureComponent<SearchProps<AnyObject>, SearchState<Any
 
     if (prevProps.parameters.length !== parameters.length) {
       // eslint-disable-next-line react/no-did-update-set-state
-      this.setState({ filteredParameters: getAllElementsFiltered(parameters, value, textLookupConfig.parameters) });
+      this.setState({
+        filteredParameters: parameterValue
+          ? parameters
+          : getAllElementsFiltered(parameters, value, textLookupConfig.parameters),
+      });
     }
 
     if (suggestions && prevProps.suggestions?.length !== suggestions.length) {
