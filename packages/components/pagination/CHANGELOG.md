@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.19](https://github.com/synerise/synerise-design/compare/@synerise/ds-pagination@0.6.18...@synerise/ds-pagination@0.6.19) (2020-07-31)
+
+
+### Bug Fixes
+
+* **pagination:** add hover styles on pagination item ([c3d0125](https://github.com/synerise/synerise-design/commit/c3d012527f3319abf8c2b95eea3e274a2fc0f4dc))
+
+
+
+
+
 ## [0.6.18](https://github.com/synerise/synerise-design/compare/@synerise/ds-pagination@0.6.17...@synerise/ds-pagination@0.6.18) (2020-07-30)
 
 **Note:** Version bump only for package @synerise/ds-pagination

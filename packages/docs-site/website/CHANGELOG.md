@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.8](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.5.7...docs@0.5.8) (2020-07-31)
+
+
+### Bug Fixes
+
+* **docs:** add missing card-tabs.md ([4e17931](https://gitlab.synerise.com/Frontend/synerise-design/commit/4e1793103ee7fef53d76f326b91fe39285164e51))
+
+
+
+
+
 ## [0.5.7](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.5.6...docs@0.5.7) (2020-07-22)
 
 **Note:** Version bump only for package docs

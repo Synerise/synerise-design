@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.90.0](https://github.com/synerise/synerise-design/compare/portal@0.89.3...portal@0.90.0) (2020-07-31)
+
+
+### Bug Fixes
+
+* **card-tabs:** fix issues from ux review ([92b0ea5](https://github.com/synerise/synerise-design/commit/92b0ea5d5288c272830c543e54d253c2c94decd6))
+
+
+### Features
+
+* **time-picker:** added seperators when using am pm mode ([609f237](https://github.com/synerise/synerise-design/commit/609f23795b4708e4fe6797a8743ad501caa8f4fc))
+* **time-picker:** added support for am pm clock modes ([0c79bb0](https://github.com/synerise/synerise-design/commit/0c79bb018f3615569449fe958a94eafcc5065a4e))
+
+
+
+
+
 ## [0.89.3](https://github.com/synerise/synerise-design/compare/portal@0.89.2...portal@0.89.3) (2020-07-30)
 
 
