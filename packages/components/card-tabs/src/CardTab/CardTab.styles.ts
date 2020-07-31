@@ -123,27 +123,27 @@ export const CardTabContainer = styled.div<CardTabContainerProps>`
   width: 180px;
   height: 48px;
   user-select: none;
-  background-color: ${({ theme, active, invalid, color, greyBackground }): string => {
+  background-color: ${({ theme, active, invalid, color, greyBackground, edited }): string => {
     if (invalid && active) return theme.palette['red-600'];
-    if (active) return theme.palette[`${color}-600`];
+    if (active && !edited) return theme.palette[`${color}-600`];
     if (greyBackground) return theme.palette.white;
     return theme.palette['grey-050'];
   }};
   box-shadow: ${({ greyBackground }): string => (greyBackground ? '0 4px 12px 0 rgba(35, 41, 54, 0.04)' : '0')};
   border-radius: 3px;
   border-width: 1px;
-  border-color: ${({ theme, active, invalid, color }): string => {
+  border-color: ${({ theme, active, invalid, color, edited }): string => {
     if (invalid) return theme.palette['red-600'];
-    return getColor(active, theme.palette[`${color}-600`], theme.palette['grey-050']);
+    return getColor(active && !edited, theme.palette[`${color}-600`], theme.palette['grey-050']);
   }};
   border-style: solid;
   pointer-events: ${({ disabled }): string => (disabled ? 'none' : 'all')};
 
   ${CardTabTag} {
-    background-color: ${({ theme, active, color }): string =>
-      getColor(active, theme.palette.white, theme.palette[`${color}-600`])};
-    color: ${({ theme, active, color }): string =>
-      getColor(active, theme.palette[`${color}-600`], theme.palette.white)};
+    background-color: ${({ theme, active, color, edited }): string =>
+      getColor(active && !edited, theme.palette.white, theme.palette[`${color}-600`])};
+    color: ${({ theme, active, color, edited }): string =>
+      getColor(active && !edited, theme.palette[`${color}-600`], theme.palette.white)};
   }
 
   &:hover {
