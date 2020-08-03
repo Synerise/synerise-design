@@ -366,7 +366,7 @@ const stories = {
         description={text('description', 'Description')}
         errorText={!isFocus && getErrorText(hasError)}
         error={!isFocus && hasError}
-        counterLimit={number('counterLimit', 10)}
+        counterLimit={number('counterLimit', 100)}
         disabled={boolean('disabled', false)}
         onBlur={() => {
           action('I am blurred');
