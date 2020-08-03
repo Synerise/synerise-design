@@ -1,7 +1,6 @@
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import is, { isNot } from 'styled-is';
 import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
-import { ReactText } from 'react';
 import * as React from 'react';
 
 const getVar = (name: string) => (props: ThemeProps): string => props.theme.palette[name];
@@ -81,11 +80,11 @@ export const Description = styled.div<{ hasTitle?: boolean; hasIcon?: boolean; s
     `};
 `;
 
-export const IconWrapper = styled.div`
+export const IconWrapper = styled.div<{size?: string}>`
   margin-bottom: ${(props): string | number => sizeCondition(0, mainPadding, props)}px;
   text-align: center;
 `;
-export const Aside = styled.div`
+export const Aside = styled.div<{size?: string}>`
   display: flex;
   padding: 0;
   justify-content: center;
