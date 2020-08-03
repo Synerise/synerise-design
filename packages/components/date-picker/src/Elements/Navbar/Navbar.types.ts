@@ -9,4 +9,5 @@ export type NavbarProps = {
   onLongNext?: () => void;
   onShortPrev?: () => void;
   onShortNext?: () => void;
+  smallMargin?: boolean;
 };
