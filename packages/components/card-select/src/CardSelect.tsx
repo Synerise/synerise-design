@@ -22,7 +22,7 @@ export interface CardSelectProps {
   theme: { [k: string]: string };
   onChange?: (value: boolean) => void;
   onClick?: () => void;
-  elementsPosition: string | 'left' | 'center' | 'right';
+  elementsPosition?: string | 'left' | 'center' | 'right';
 }
 
 const CardSelect: React.FC<CardSelectProps> = ({

@@ -124,7 +124,7 @@ max-width: 224px;
   }
   ${is('value')`
   border: 2px solid;
-  border-color: ${(props): string=> props.theme.palette['blue-600']};
+  border-color: ${(props: ThemeProps): string=> props.theme.palette['blue-600']};
   `}
   
   ${Title}, ${Description}, ${IconWrapper} {
@@ -205,7 +205,7 @@ export const Main = styled.div<{ disabled?: boolean; size?: string; hasTick?: bo
 
 export const TickIcon = styled.div<{ size?: string; disabled?: boolean; selected?: boolean; elementsPosition: string | 'left' | 'center' | 'right'}>`
   ${is('selected')`
-    transform: ${(props): string => props.elementsPosition === 'left' ? 'translate(4px,-4px)':'translate( -4px, -4px)'}; 
+    transform: ${(props: ThemeProps & {elementsPosition: string}): string => props.elementsPosition === 'left' ? 'translate(4px,-4px)':'translate( -4px, -4px)'}; 
   `}
 
   ${is('disabled')`
