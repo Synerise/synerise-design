@@ -8,9 +8,14 @@ import { DateFilter, DateRange } from './date.types';
 
 const DateRangePicker: React.FC<Props> = props => {
   const { value, onApply, showTime, onValueChange, texts } = props;
-
+  const [popupVisible, setPopupVisible] = React.useState<false | undefined>(undefined);
   const [selectedDate, setSelectedDate] = React.useState(value);
-  const ref = React.useRef<HTMLDivElement>(null);
+
+  React.useEffect(() => {
+    if (popupVisible !== undefined) {
+      setPopupVisible(undefined);
+    }
+  });
 
   const onValueChangeCallback = React.useCallback(
     (val: Partial<DateFilter> | undefined): void => {
@@ -23,28 +28,37 @@ const DateRangePicker: React.FC<Props> = props => {
     (val: Partial<DateFilter> | undefined): void => {
       onApply && onApply(val);
       setSelectedDate(val as DateRange);
+      setPopupVisible(false);
     },
     [onApply]
   );
 
+  const conditionalVisibilityProps = {
+    ...(popupVisible === false && { visible: false }),
+  };
   return (
     <S.PickerWrapper>
       <Popover
         content={
           <RawDateRangePicker
             {...props}
-            ref={ref}
             showTime={showTime}
             onApply={onApplyCallback}
             onValueChange={onValueChangeCallback}
             value={selectedDate}
           />
         }
-        overlayStyle={{ maxWidth: '700px', fontWeight: 'unset' }}
         trigger="click"
-        arrowPointAtCenter
+        overlayStyle={{ maxWidth: '700px', fontWeight: 'unset' }}
+        {...conditionalVisibilityProps}
       >
-        <RangePickerInput value={selectedDate} showTime={showTime} texts={texts} onChange={onValueChangeCallback} />{' '}
+        <RangePickerInput
+          onClick={(): void => setPopupVisible(undefined)}
+          value={selectedDate}
+          showTime={showTime}
+          texts={texts}
+          onChange={onValueChangeCallback}
+        />{' '}
       </Popover>
     </S.PickerWrapper>
   );

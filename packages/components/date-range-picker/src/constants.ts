@@ -114,16 +114,6 @@ export const RELATIVE_PRESETS = [
     offset: { type: MONTHS, value: 1 },
     duration: { type: MONTHS, value: 6 },
   },
- /* {
-    key: 'LAST_YEAR',
-    translationKey: 'DS.DATE-RANGE-PICKER.LAST_YEAR',
-    type: RELATIVE,
-    from: null,
-    to: null,
-    future: false,
-    offset: { type: YEARS, value: 1 },
-    duration: { type: YEARS, value: 1 },
-  }, */
   {
     key: 'ALL_TIME',
     translationKey: 'DS.DATE-RANGE-PICKER.ALL_TIME',

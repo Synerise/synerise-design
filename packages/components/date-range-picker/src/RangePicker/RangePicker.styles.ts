@@ -1,4 +1,6 @@
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
+import Button from '@synerise/ds-button';
+import { Props as ButtonProps } from '@synerise/ds-button/dist/Button.types';
 
 const borderStyle = css``;
 const borderedSidesStyle = css`
@@ -12,8 +14,10 @@ const borderedSidesStyle = css`
 export const Sides = styled.div<{ bordered?: boolean }>`
   display: grid;
   grid-template-columns: 1fr 1fr;
-
   ${(props): FlattenSimpleInterpolation | null => (props.bordered ? borderedSidesStyle : null)};
+  && .ds-date-picker-nav {
+    margin: 0 15px;
+  }
 `;
 
 export const Side = styled.div`
@@ -30,9 +34,12 @@ export const Side = styled.div`
 
 export const PickerFooter = styled.div`
   padding: 16px 16px 0 16px;
-  display:flex;
-`
+  display: flex;
+`;
 export const FooterSeparator = styled.div`
-  display:flex;
+  display: flex;
   flex: 1;
-`
+`;
+export const DateTimeModeSwitch = styled(Button)<ButtonProps>`
+  margin: 4px 0;
+`;

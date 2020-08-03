@@ -1,8 +1,9 @@
 import * as React from 'react';
 import find from 'ramda/src/find';
 import Icon from '@synerise/ds-icon';
-import { AngleDownS } from '@synerise/ds-icon/dist/icons';
+import { AngleDownS, CheckS } from '@synerise/ds-icon/dist/icons';
 import { useOnClickOutside } from '@synerise/ds-utils';
+import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import * as S from '../../RelativeRangePicker.styles';
 import { Props } from './RangeDropdown.types';
 
@@ -23,12 +24,18 @@ const RangeDropdown: React.FC<Props> = ({ ranges, currentRange, intl, onChange }
   );
 
   if (!ranges || ranges.length === 0) return null;
-  const containsCurrentRange = currentRange && !!find(range => range.key === currentRange.key, ranges);
+  const containsCurrentRange = currentRange && find(range => range.key === currentRange.key, ranges);
   const overlay = (
     <S.OverlayWrapper visible={dropVisible} ref={overlayRef} width={160}>
-      <S.DropMenu selectedKeys={currentRange?.key ? [currentRange.key] : []} onClick={onMenuItemClick}>
+      <S.DropMenu onClick={onMenuItemClick} selectedKeys={[]}>
         {ranges.map(range => (
-          <S.DropMenuItem key={range.key || range.id}>
+          <S.DropMenuItem
+            key={range.key || range.id}
+
+            suffixel={
+              currentRange?.key === range.key && <Icon component={<CheckS />} color={theme.palette['green-600']} />
+            }
+          >
             {range.translationKey ? intl.formatMessage({ id: range.translationKey }) : range.key}
           </S.DropMenuItem>
         ))}

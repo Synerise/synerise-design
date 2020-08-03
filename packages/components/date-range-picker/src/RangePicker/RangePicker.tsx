@@ -22,13 +22,12 @@ import {
   DayText,
   DayTooltip,
 } from '@synerise/ds-date-picker/dist/Elements/DayPicker/DayPicker.styles';
-import Button from '@synerise/ds-button';
 import YearPicker from '@synerise/ds-date-picker/dist/Elements/YearPicker/YearPicker';
 import DayPicker from '@synerise/ds-date-picker/dist/Elements/DayPicker/DayPicker';
 import Icon from '@synerise/ds-icon';
 import { CalendarM, ClockM } from '@synerise/ds-icon/dist/icons';
 import { Range } from '../RelativeRangePicker/RelativeRangePicker.styles';
-import { fnsStartOfDay, fnsEndOfDay, fnsIsSameMonth, fnsIsAfter, fnsFormat } from '../fns';
+import { fnsStartOfDay, fnsEndOfDay, fnsIsSameMonth, fnsIsAfter, fnsFormat, fnsAddMinutes } from '../fns';
 import * as S from './RangePicker.styles';
 import { ABSOLUTE, COLUMNS, MODES } from '../constants';
 
@@ -255,14 +254,14 @@ export default class RangePicker extends React.PureComponent<Props, State> {
         <S.PickerFooter>
           <Range
             onClick={(): void => {
-              onChange({ ...value, type: 'ABSOLUTE', to: new Date(), from: new Date() });
+              onChange({ ...value, type: 'ABSOLUTE', to: fnsAddMinutes(new Date(), 1), from: new Date() });
             }}
           >
-            Now
+            {intl.formatMessage({ id: `DS.DATE-RANGE-PICKER.NOW` })}
           </Range>
           <S.FooterSeparator />
           {!dateOnly && (
-            <Button
+            <S.DateTimeModeSwitch
               type="ghost"
               mode="label-icon"
               disabled={!canSwitchMode}
@@ -273,7 +272,7 @@ export default class RangePicker extends React.PureComponent<Props, State> {
                 id: mode === MODES.TIME ? `DS.DATE-RANGE-PICKER.SELECT-DATE` : `DS.DATE-RANGE-PICKER.SELECT-TIME`,
               })}
               <Icon component={mode === MODES.TIME ? <CalendarM /> : <ClockM />} />
-            </Button>
+            </S.DateTimeModeSwitch>
           )}
         </S.PickerFooter>
       </>

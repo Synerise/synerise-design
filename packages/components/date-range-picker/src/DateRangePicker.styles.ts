@@ -4,6 +4,7 @@ export const Container = styled.div`
   width: 660px;
   background-color: ${(props): string => props.theme.palette.white};
   user-select: none;
+  margin: -16px;
 `;
 
 export const Separator = styled.div`
