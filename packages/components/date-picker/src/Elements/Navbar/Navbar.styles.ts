@@ -22,7 +22,7 @@ export const NavButton = styled(Button)<{ hidden?: boolean }>`
 export const ArrowContainer = styled.div<{ hidden?: boolean }>`
   display: flex;
   align-items: center;
-  ${NavButton}:first-of-type, ${ArrowPlaceholder}:first-of-type {
+  ${NavButton}, ${ArrowPlaceholder}{
     margin-right: 8px;
   }
 `;

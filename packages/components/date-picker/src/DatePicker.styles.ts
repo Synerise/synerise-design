@@ -12,6 +12,12 @@ export const Container = styled.div`
   > *:not(:last-child) {
     border-bottom: 1px solid ${(props): string => props.theme.palette['grey-200']};
   }
+  .ds-date-picker-nav {
+    .long-prev,
+    .long-next {
+      display: none;
+    }
+  }
 `;
 
 export const OverlayContainer = styled.div`
