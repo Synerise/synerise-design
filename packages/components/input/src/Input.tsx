@@ -8,6 +8,7 @@ import { MaskedInputProps } from 'antd-mask-input/build/main/lib/MaskedInput';
 import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
 import * as S from './Input.styles';
 import Label from './Label/Label';
+import Textarea from './Textarea/Textarea';
 
 export interface Props {
   error?: boolean;
@@ -31,10 +32,9 @@ type EnhancedProps = Props & (InputProps | TextAreaProps | MaskedInputProps);
 const VERTICAL_BORDER_OFFSET = 2;
 
 const enhancedInput = <P extends object>(
-  WrappedComponent: StyledComponent<
-    React.ComponentType<InputProps | TextAreaProps | MaskedInputProps>,
-    { error?: string }
-  >,
+  WrappedComponent:
+    | React.FunctionComponent
+    | StyledComponent<React.ComponentType<InputProps | TextAreaProps | MaskedInputProps>, { error?: string }>,
   { type }: { type: string }
 ): React.ComponentType<P & EnhancedProps> => ({
   className,
@@ -157,7 +157,7 @@ const enhancedInput = <P extends object>(
   );
 };
 
-export const TextArea = enhancedInput(S.AntdTextArea, { type: 'textArea' });
+export const TextArea = enhancedInput(Textarea, { type: 'textArea' });
 export const Input = enhancedInput(S.AntdInput, { type: 'input' });
 export const MaskedInput = enhancedInput(S.AntdMaskedInput, { type: 'input' });
 export { default as InputGroup } from './InputGroup';
