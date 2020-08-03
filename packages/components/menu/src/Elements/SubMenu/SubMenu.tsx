@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { v4 as uuid } from 'uuid';
+import classNames from 'classnames';
 import '@synerise/ds-core/dist/js/style';
 import * as S from '../../Menu.styles';
 
@@ -44,11 +45,9 @@ class SubMenuItem extends React.PureComponent<SubMenuProps & MenuItemProps, SubM
         disabled={disabled}
         tabIndex={!disabled ? 0 : -1}
         {...rest}
-        className={
-          !!menuItemKey && !!selectedKeys && selectedKeys.includes(menuItemKey as string)
-            ? 'ds-menu-item ant-menu-item-selected '
-            : 'ds-menu-item '
-        }
+        className={classNames('ds-menu-item', {
+          'ant-menu-item-selected': !!menuItemKey && !!selectedKeys && selectedKeys.includes(menuItemKey as string),
+        })}
       >
         {Boolean(subMenu) &&
           // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
