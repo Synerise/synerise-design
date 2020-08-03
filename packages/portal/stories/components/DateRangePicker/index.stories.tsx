@@ -14,6 +14,7 @@ const stories = {
   default: () => {
     const value = undefined;
     const showTime = boolean('Set showTime', true);
+    const showRelativePicker = boolean('Set relative filter', true);
     return (
       <DateRangePicker
         onApply={console.log}
@@ -21,6 +22,7 @@ const stories = {
         value={value}
         relativeFuture
         forceAbsolute
+        showRelativePicker={showRelativePicker}
         texts={{
           startDatePlaceholder: 'Start date',
           endDatePlaceholder: 'End date',

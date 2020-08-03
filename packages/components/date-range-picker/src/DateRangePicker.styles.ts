@@ -8,7 +8,7 @@ export const Container = styled.div`
 `;
 
 export const Separator = styled.div`
-  margin: 16px 0;
+  margin: 0;
   border-top: 1px solid ${(props): string => props.theme.palette['grey-200']};
 `;
 

@@ -37,7 +37,7 @@ const RangePickerInput: React.FC<Props> = ({ value, format, showTime, onChange, 
 
   const handleOnBlur = React.useCallback(()=>{
     setFocused(false);
-  })
+  },[]);
   const getText = React.useCallback(
     (dateToDisplay): string => {
       if (!dateToDisplay) return '';
@@ -85,7 +85,7 @@ const RangePickerInput: React.FC<Props> = ({ value, format, showTime, onChange, 
         <Icon component={<ArrowRightS />} color={theme.palette['grey-400']} />
         {renderEndDate()}
         <S.IconSeparator />
-        {hovered && !!value ? (
+        {hovered && !!value && !!value.to && !!value.from ? (
           <Tooltip title={texts?.clear}>
             <S.ClearIconWrapper>
               <Icon component={<Close3S />} onClick={handleClear} />
