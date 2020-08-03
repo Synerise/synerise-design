@@ -15,7 +15,7 @@ export interface CardSelectProps {
   size?: 'small' | 'medium';
   className?: string;
   iconSize?: number;
-  thickSize?: number;
+  tickSize?: number;
   stretchToFit?: boolean;
   customTickVisible?: boolean;
   customTickVisibleComponent?: React.ReactNode;
@@ -39,7 +39,7 @@ const CardSelect: React.FC<CardSelectProps> = ({
   onChange,
   icon,
   iconSize,
-  thickSize,
+  tickSize,
   elementsPosition='center',
   className,
   onClick,
@@ -51,9 +51,9 @@ const CardSelect: React.FC<CardSelectProps> = ({
   if (!realIconSize) {
     realIconSize = size === 'small' ? 48 : 96;
   }
-  let realThickSize = thickSize;
-  if(!realThickSize) {
-    realThickSize = size ==='small' ? 24 : 30;
+  let realTickSize = tickSize;
+  if(!realTickSize) {
+    realTickSize = size ==='small' ? 24 : 30;
   }
 
   return (
@@ -65,15 +65,14 @@ const CardSelect: React.FC<CardSelectProps> = ({
       size={size}
       stretchToFit={stretchToFit}
       className={`ds-card-select ${className || ''}`}
-      data-testid="test-id"
       elementsPosition={elementsPosition}
     >
       <S.Aside size={size} >
         {tickVisible && (
-          <S.TickIcon disabled={disabled} elementsPosition={elementsPosition} selected={value} size={size} onClick={handleClick}>
+          <S.TickIcon className='ds-card-select-tick' disabled={disabled} elementsPosition={elementsPosition} selected={value} size={size} onClick={handleClick}>
             {value ? (
               <Icon
-                size={realThickSize}
+                size={realTickSize}
                 color={value ? theme.palette['green-600'] : theme.palette['grey-400']}
                 component={<Check3M />}
               />
