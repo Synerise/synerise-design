@@ -45,7 +45,7 @@ class SubMenuItem extends React.PureComponent<SubMenuProps & MenuItemProps, SubM
         tabIndex={!disabled ? 0 : -1}
         {...rest}
         className={
-          !!menuItemKey && selectedKeys.includes(menuItemKey as string)
+          !!menuItemKey && !!selectedKeys && selectedKeys.includes(menuItemKey as string)
             ? 'ds-menu-item ant-menu-item-selected '
             : 'ds-menu-item '
         }
