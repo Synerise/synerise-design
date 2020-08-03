@@ -5,7 +5,7 @@ import Button from '@synerise/ds-button';
 export const Container = styled.div<{ smallMargin?: boolean }>`
   display: flex;
   align-items: center;
-  margin: ${(props): string => (props.smallMargin ? '0 12px' : '0 24px')};
+  margin: 0 24px;
 `;
 
 export const ArrowPlaceholder = styled.div`

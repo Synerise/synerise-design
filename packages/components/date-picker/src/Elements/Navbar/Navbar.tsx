@@ -7,19 +7,9 @@ import * as S from './Navbar.styles';
 import { NavbarProps } from './Navbar.types';
 
 const Navbar: React.FC<NavbarProps> = (props: NavbarProps) => {
-  const {
-    title,
-    onTitleClick,
-    hidePrev,
-    hideNext,
-    onLongPrev,
-    onLongNext,
-    onShortPrev,
-    onShortNext,
-    smallMargin,
-  } = props;
+  const { title, onTitleClick, hidePrev, hideNext, onLongPrev, onLongNext, onShortPrev, onShortNext } = props;
   return (
-    <S.Container className="ds-date-picker-nav" smallMargin={smallMargin}>
+    <S.Container className="ds-date-picker-nav">
       <S.ArrowContainer>
         {/* regenerating keys after every render to prevent from render lags on Chrome 84 */}
         {onLongPrev && !hidePrev ? (
