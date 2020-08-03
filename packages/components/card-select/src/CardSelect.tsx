@@ -15,12 +15,14 @@ export interface CardSelectProps {
   size?: 'small' | 'medium';
   className?: string;
   iconSize?: number;
+  tickSize?: number;
   stretchToFit?: boolean;
   customTickVisible?: boolean;
   customTickVisibleComponent?: React.ReactNode;
   theme: { [k: string]: string };
   onChange?: (value: boolean) => void;
   onClick?: () => void;
+  elementsPosition?: string | 'left' | 'center' | 'right';
 }
 
 const CardSelect: React.FC<CardSelectProps> = ({
@@ -37,6 +39,8 @@ const CardSelect: React.FC<CardSelectProps> = ({
   onChange,
   icon,
   iconSize,
+  tickSize,
+  elementsPosition='center',
   className,
   onClick,
   theme,
@@ -45,31 +49,35 @@ const CardSelect: React.FC<CardSelectProps> = ({
   let realIconSize = iconSize;
 
   if (!realIconSize) {
-    realIconSize = size === 'small' ? 48 : 82;
+    realIconSize = size === 'small' ? 48 : 96;
+  }
+  let realTickSize = tickSize;
+  if(!realTickSize) {
+    realTickSize = size ==='small' ? 24 : 30;
   }
 
   return (
     <S.Container
+      tabIndex={0}
       raised={raised}
       disabled={disabled}
       value={value}
       size={size}
       stretchToFit={stretchToFit}
-      onClick={handleClick}
       className={`ds-card-select ${className || ''}`}
-      data-testid="test-id"
+      elementsPosition={elementsPosition}
     >
-      <S.Aside size={size}>
+      <S.Aside size={size} >
         {tickVisible && (
-          <S.TickIcon disabled={disabled} selected={value} size={size}>
+          <S.TickIcon className='ds-card-select-tick' disabled={disabled} elementsPosition={elementsPosition} selected={value} size={size} onClick={handleClick}>
             {value ? (
               <Icon
-                size={30}
+                size={realTickSize}
                 color={value ? theme.palette['green-600'] : theme.palette['grey-400']}
                 component={<Check3M />}
               />
             ) : (
-              <S.RadioShape />
+              <S.RadioShape size={size} />
             )}
           </S.TickIcon>
         )}
@@ -78,7 +86,7 @@ const CardSelect: React.FC<CardSelectProps> = ({
       <S.Main size={size} disabled={disabled} hasTick={tickVisible || customTickVisible}>
         {icon && (
           <S.IconWrapper size={size}>
-            <Icon size={realIconSize} component={icon} />
+            <Icon  component={icon} size={realIconSize} />
           </S.IconWrapper>
         )}
 

@@ -1,10 +1,22 @@
-import styled from 'styled-components';
+import styled, { keyframes, Keyframes } from 'styled-components';
+import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 
 const mapButtonsPosition = {
   left: 'flex-start',
   right: 'flex-end',
   center: 'center',
 };
+export const focusAnimation = ({ theme }: ThemeProps): Keyframes => keyframes`
+  0% {
+      box-shadow: inset 0 0 0 1px inherit;
+  }
+  50% {
+     box-shadow: inset 0 0 0 1px ${theme.palette['blue-600']};
+  }
+  100% {
+     box-shadow: inset 0 0 0 1px inherit;
+  }
+`;
 
 export const Container = styled.div<{
   options?: boolean;
