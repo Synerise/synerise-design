@@ -2,10 +2,10 @@ import styled from 'styled-components';
 import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import Button from '@synerise/ds-button';
 
-export const Container = styled.div`
+export const Container = styled.div<{ smallMargin?: boolean }>`
   display: flex;
   align-items: center;
-  margin: 0 12px;
+  margin: ${(props): string => (props.smallMargin ? '0 12px' : '0 24px')};
 `;
 
 export const ArrowPlaceholder = styled.div`
