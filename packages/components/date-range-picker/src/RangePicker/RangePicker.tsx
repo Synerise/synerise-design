@@ -247,7 +247,7 @@ export default class RangePicker extends React.PureComponent<Props, State> {
     const { mode, onChange, value, canSwitchMode, dateOnly, onSwitchMode, intl } = this.props;
     return (
       <>
-        <S.Sides bordered={mode === MODES.TIME}>
+        <S.Sides>
           <S.Side>{this.renderSide(COLUMNS.LEFT as SideType)}</S.Side>
           <S.Side>{this.renderSide(COLUMNS.RIGHT as SideType)}</S.Side>
         </S.Sides>

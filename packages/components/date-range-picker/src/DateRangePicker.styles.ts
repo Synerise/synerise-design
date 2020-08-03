@@ -8,12 +8,12 @@ export const Container = styled.div`
 `;
 
 export const Separator = styled.div`
-  margin: 16px;
+  margin: 16px 0;
   border-top: 1px solid ${(props): string => props.theme.palette['grey-200']};
 `;
 
 export const Addon = styled.div`
-  margin: 16px;
+  margin: 16px 24px;
 `;
 export const PickerWrapper = styled.div`
   position: relative;

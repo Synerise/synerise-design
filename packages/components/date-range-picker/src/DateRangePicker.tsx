@@ -15,7 +15,7 @@ const DateRangePicker: React.FC<Props> = props => {
     if (popupVisible !== undefined) {
       setPopupVisible(undefined);
     }
-  });
+  },[popupVisible]);
 
   const onValueChangeCallback = React.useCallback(
     (val: Partial<DateFilter> | undefined): void => {
