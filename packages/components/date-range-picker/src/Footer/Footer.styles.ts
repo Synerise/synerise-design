@@ -35,6 +35,7 @@ export const ChosenRange = styled.div`
   color: ${(props): string => props.theme.palette['grey-800']};
 
   .ds-icon svg {
+    margin-top: -2px;
     fill: ${(props): string => props.theme.palette['grey-400']};
   }
 `;

@@ -1,39 +1,63 @@
 import * as React from 'react';
 import find from 'ramda/src/find';
-import Dropdown from '@synerise/ds-dropdown';
 import Icon from '@synerise/ds-icon';
-import { AngleDownS } from '@synerise/ds-icon/dist/icons';
+import { AngleDownS, CheckS } from '@synerise/ds-icon/dist/icons';
+import { useOnClickOutside } from '@synerise/ds-utils';
+import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import * as S from '../../RelativeRangePicker.styles';
 import { Props } from './RangeDropdown.types';
 
 const RangeDropdown: React.FC<Props> = ({ ranges, currentRange, intl, onChange }: Props) => {
+  const [dropVisible, setDropVisible] = React.useState<boolean>(false);
+  const overlayRef = React.useRef<HTMLDivElement>(null);
+
+  useOnClickOutside(overlayRef, () => {
+    setDropVisible(false);
+  });
+
+  const onMenuItemClick = React.useCallback(
+    ({ key }): void => {
+      onChange(find(range => range.key === key, ranges));
+      setDropVisible(false);
+    },
+    [onChange, ranges]
+  );
+
   if (!ranges || ranges.length === 0) return null;
-  const containsCurrentRange = currentRange && !!find(range => range.key === currentRange.key, ranges);
+  const containsCurrentRange = currentRange && find(range => range.key === currentRange.key, ranges);
   const overlay = (
-    <S.DropMenu
-      selectedKeys={currentRange?.key ? [currentRange.key] : []}
-      onClick={({ key }): void => onChange(find(range => range.key === key, ranges))}
-    >
-      {ranges.map(range => (
-        <S.DropMenuItem key={range.key || range.id}>
-          {range.translationKey ? intl.formatMessage({ id: range.translationKey }) : range.key}
-        </S.DropMenuItem>
-      ))}
-    </S.DropMenu>
+    <S.OverlayWrapper visible={dropVisible} ref={overlayRef} width={160}>
+      <S.DropMenu onClick={onMenuItemClick} selectedKeys={[]}>
+        {ranges.map(range => (
+          <S.DropMenuItem
+            key={range.key || range.id}
+
+            suffixel={
+              currentRange?.key === range.key && <Icon component={<CheckS />} color={theme.palette['green-600']} />
+            }
+          >
+            {range.translationKey ? intl.formatMessage({ id: range.translationKey }) : range.key}
+          </S.DropMenuItem>
+        ))}
+      </S.DropMenu>
+    </S.OverlayWrapper>
   );
   return (
-    <Dropdown overlay={overlay}>
+    <S.DropdownContainer>
       <S.Range
         type={containsCurrentRange ? 'primary' : 'tertiary'}
-        mode='label-icon'
+        mode="label-icon"
+        onClick={(): void => setDropVisible(!dropVisible)}
       >
         {currentRange &&
           intl.formatMessage({
             id: containsCurrentRange ? currentRange.translationKey : 'DS.DATE-RANGE-PICKER.MORE',
           })}
-        <Icon component={<AngleDownS />}/>
+
+        <Icon component={<AngleDownS />} />
       </S.Range>
-    </Dropdown>
+      {overlay}
+    </S.DropdownContainer>
   );
 };
 

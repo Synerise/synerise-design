@@ -24,6 +24,8 @@ const types = {
   'no-results': 'no-results',
 };
 
+const MODAL_SIZES = ['small', 'medium', 'large', 'extraLarge', 'fullSize'];
+
 const buttonSetExample = (
   <>
     <Button type="default" onClick={action('onClick: Cancel')}>
@@ -59,11 +61,10 @@ const listExample = (
 );
 
 const getDefaultProps = () => ({
-  type: select('type', types, 'success'),
+  type: select('Select type', types, 'success'),
   customIcon: boolean('Custom icon', false),
   title: text('Title', 'File upload is in progress…'),
   description: text('Description', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sodales elit ut justo tristique hendrerit.'),
-  // panel: boolean('Show panel', true) && panelExample,
 });
 
 const exampleAvatar = <Avatar
@@ -95,7 +96,7 @@ const stories = {
   withList: () => {
     const props = getDefaultProps();
     return (
-      <ModalProxy blank closable onCancel={action('onClick: Cancel')} visible size={'small'} footer={null}>
+      <ModalProxy blank closable onCancel={action('onClick: Cancel')} visible size={select('Select modal size', MODAL_SIZES, 'small')} footer={null}>
         <Result {...props} customIcon={props.customIcon ? exampleAvatar : null} buttons={buttonSetExample} panel={listExample} />
       </ModalProxy>
     )
@@ -103,7 +104,7 @@ const stories = {
   withModal: () => {
     const props = getDefaultProps();
     return (
-      <ModalProxy blank closable onCancel={action('onClick: Cancel')} visible size={'small'} footer={null}>
+      <ModalProxy blank closable onCancel={action('onClick: Cancel')} visible size={select('Select modal size', MODAL_SIZES, 'small')} footer={null}>
         <Result {...props} customIcon={props.customIcon ? exampleAvatar : null} buttons={
           <Button type="default" onClick={action('onClick: Close')}>
             Close

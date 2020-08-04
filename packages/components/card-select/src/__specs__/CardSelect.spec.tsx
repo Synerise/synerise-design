@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { fireEvent } from '@testing-library/react';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import CardSelect from '../index';
 
+const tickIconSelector = '.ds-card-select .ds-card-select-tick';
 describe('CardSelect', () => {
   it('should render', function() {
     // ARRANGE
@@ -24,9 +24,8 @@ describe('CardSelect', () => {
   it('should onChange be called', function() {
     // ARRANGE
     const onChange = jest.fn();
-    const TEST_ID = 'test-id';
 
-    const { getByTestId } = renderWithProvider(
+    const { container } = renderWithProvider(
       <CardSelect
         icon="ad-simple-push-l"
         iconSize={32}
@@ -35,9 +34,9 @@ describe('CardSelect', () => {
         onChange={onChange}
       />
     );
-
+const renderedTickIcon = container.querySelector(tickIconSelector) as HTMLElement;
     // ACT
-    fireEvent.click(getByTestId(TEST_ID));
+    renderedTickIcon.click()
 
     // ASSERT
     expect(onChange).toBeCalled();
@@ -46,9 +45,8 @@ describe('CardSelect', () => {
   it('should onChange be called if disabled', function() {
     // ARRANGE
     const onChange = jest.fn();
-    const TEST_ID = 'test-id';
 
-    const { getByTestId } = renderWithProvider(
+    const { container } = renderWithProvider(
       <CardSelect
         icon="ad-simple-push-l"
         iconSize={32}
@@ -57,9 +55,9 @@ describe('CardSelect', () => {
         onChange={onChange}
       />
     );
-
+    const renderedTickIcon = container.querySelector(tickIconSelector) as HTMLElement;
     // ACT
-    fireEvent.click(getByTestId(TEST_ID));
+    renderedTickIcon.click()
 
     // ASSERT
     expect(onChange).toBeCalled();
@@ -69,9 +67,8 @@ describe('CardSelect', () => {
     // ARRANGE
     const onChange = jest.fn();
     const onClick = jest.fn();
-    const TEST_ID = 'test-id';
 
-    const { getByTestId } = renderWithProvider(
+    const { container } = renderWithProvider(
       <CardSelect
         icon="ad-simple-push-l"
         iconSize={32}
@@ -80,9 +77,9 @@ describe('CardSelect', () => {
         onClick={onClick}
       />
     );
-
+    const renderedTickIcon = container.querySelector(tickIconSelector) as HTMLElement;
     // ACT
-    fireEvent.click(getByTestId(TEST_ID));
+    renderedTickIcon.click()
 
     // ASSERT
     expect(onChange).toBeCalledTimes(0);

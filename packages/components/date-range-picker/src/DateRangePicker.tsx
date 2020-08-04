@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Dropdown from '@synerise/ds-dropdown';
+import { Popover } from 'antd';
 import RawDateRangePicker from './RawDateRangePicker';
 import * as S from './DateRangePicker.styles';
 import { Props } from './DateRangePicker.types';
@@ -8,9 +8,14 @@ import { DateFilter, DateRange } from './date.types';
 
 const DateRangePicker: React.FC<Props> = props => {
   const { value, onApply, showTime, onValueChange, texts } = props;
-  const [dropVisible, setDropVisible] = React.useState(false);
+  const [popupVisible, setPopupVisible] = React.useState<false | undefined>(undefined);
   const [selectedDate, setSelectedDate] = React.useState(value);
-  const ref = React.useRef<HTMLDivElement>(null);
+
+  React.useEffect(() => {
+    if (popupVisible !== undefined) {
+      setPopupVisible(undefined);
+    }
+  },[popupVisible]);
 
   const onValueChangeCallback = React.useCallback(
     (val: Partial<DateFilter> | undefined): void => {
@@ -23,18 +28,18 @@ const DateRangePicker: React.FC<Props> = props => {
     (val: Partial<DateFilter> | undefined): void => {
       onApply && onApply(val);
       setSelectedDate(val as DateRange);
-      setDropVisible(false);
+      setPopupVisible(false);
     },
     [onApply]
   );
-  const onInputClick = React.useCallback((): void => setDropVisible(!dropVisible), [dropVisible]);
+
+  const conditionalVisibilityProps = {
+    ...(popupVisible === false && { visible: false }),
+  };
   return (
-    <Dropdown
-      overlayStyle={{
-        overflow: 'visible',
-      }}
-      overlay={
-        <S.OverlayContainer ref={ref}>
+    <S.PickerWrapper>
+      <Popover
+        content={
           <RawDateRangePicker
             {...props}
             showTime={showTime}
@@ -42,18 +47,20 @@ const DateRangePicker: React.FC<Props> = props => {
             onValueChange={onValueChangeCallback}
             value={selectedDate}
           />
-        </S.OverlayContainer>
-      }
-      visible={!!dropVisible}
-    >
-      <RangePickerInput
-        onClick={onInputClick}
-        value={selectedDate}
-        showTime={showTime}
-        texts={texts}
-        onChange={onValueChangeCallback}
-      />
-    </Dropdown>
+        }
+        trigger="click"
+        overlayStyle={{ maxWidth: '700px', fontWeight: 'unset' }}
+        {...conditionalVisibilityProps}
+      >
+        <RangePickerInput
+          onClick={(): void => setPopupVisible(undefined)}
+          value={selectedDate}
+          showTime={showTime}
+          texts={texts}
+          onChange={onValueChangeCallback}
+        />{' '}
+      </Popover>
+    </S.PickerWrapper>
   );
 };
 

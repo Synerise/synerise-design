@@ -19,8 +19,8 @@ export const getDisabledTimeOptions = (
 ): [] => {
   const lowLimit = lowerLimit || fnsStartOfDay(day);
   const upLimit = upperLimit || fnsEndOfDay(day);
-  const options = TIME_OPTIONS[granularity].map((a: number) => SET[granularity](day, a));
-  return options.filter((a: number) => !fnsIsWithinRange(a, lowLimit, upLimit)).map((a: number) => GET[granularity](a));
+  const options = TIME_OPTIONS[granularity].map((option: number) => SET[granularity](day, option));
+  return options.filter((a: number) => !fnsIsWithinRange(a, lowLimit, upLimit)).map((option: number) => GET[granularity](option));
 };
 
 export const getSidesState = (value: DateRange): State => {

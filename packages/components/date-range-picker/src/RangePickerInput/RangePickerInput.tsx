@@ -35,6 +35,9 @@ const RangePickerInput: React.FC<Props> = ({ value, format, showTime, onChange, 
     setFocused(true);
   }, [onClick]);
 
+  const handleOnBlur = React.useCallback(()=>{
+    setFocused(false);
+  },[]);
   const getText = React.useCallback(
     (dateToDisplay): string => {
       if (!dateToDisplay) return '';
@@ -70,13 +73,19 @@ const RangePickerInput: React.FC<Props> = ({ value, format, showTime, onChange, 
   }, [dateRangeValue, getText, focused, texts]);
 
   return (
-    <S.Container onClick={handleInputClick} onMouseEnter={handleIconMouseEnter} onMouseLeave={handleIconMouseLeave}>
+    <S.Container
+      tabIndex={0}
+      onFocus={handleInputClick}
+      onBlur={handleOnBlur}
+      onMouseEnter={handleIconMouseEnter}
+      onMouseLeave={handleIconMouseLeave}
+    >
       <S.RangeInputWrapper active={!!highlight} tabIndex={0} focus={focused}>
         {renderFromDate()}
         <Icon component={<ArrowRightS />} color={theme.palette['grey-400']} />
         {renderEndDate()}
         <S.IconSeparator />
-        {hovered && !!value ? (
+        {hovered && !!value && !!value.to && !!value.from ? (
           <Tooltip title={texts?.clear}>
             <S.ClearIconWrapper>
               <Icon component={<Close3S />} onClick={handleClear} />
