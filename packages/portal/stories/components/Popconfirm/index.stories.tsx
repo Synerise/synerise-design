@@ -32,7 +32,7 @@ const getDefaultProps = () => ({
   cancelText: text('cancelText', 'No'),
   okText: text('okText', 'Yes'),
   okType: select('Set type', typeOptions, 'primary'),
-  title: text('title', 'Are you sure to delete this item and move to the next category'),
+  title: text('Set title', 'Are you sure to delete this item and move to the next category'),
   onCancel: action('onCancel Clicked'),
   onConfirm: action('onConfirm Clicked'),
   disabled: boolean('disabled', false),
@@ -50,6 +50,33 @@ const stories = {
         <Popconfirm
           {...getDefaultProps()}
           icon={<Icon component={<WarningFillM />} color='#ffc300' />}
+        >
+          <Button>Click me</Button>
+        </Popconfirm>
+      </>
+    );
+  },
+  withDescription: () => {
+    return (
+      <>
+        <Popconfirm
+          {...getDefaultProps()}
+          description={text('Set description', 'This is popconfirm modal example with simple body text here')}
+          icon={<Icon component={<WarningFillM />} color='#ffc300' />}
+        >
+          <Button>Click me</Button>
+        </Popconfirm>
+      </>
+    );
+  },
+  withImages: () => {
+    return (
+      <>
+        <Popconfirm
+          {...getDefaultProps()}
+          description={text('Set description', 'This is popconfirm modal example with simple body text here')}
+          icon={<Icon component={<WarningFillM />} color='#ffc300' />}
+          images={['https://cdn.pixabay.com/photo/2013/11/28/10/36/road-220058_960_720.jpg', 'https://cdn.pixabay.com/photo/2015/07/09/22/45/tree-838667_960_720.jpg', 'https://cdn.pixabay.com/photo/2015/07/05/10/18/tree-832079_960_720.jpg']}
         >
           <Button>Click me</Button>
         </Popconfirm>
