@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.1.9...@synerise/ds-date-range-picker@0.1.10) (2020-08-04)
+
+
+### Bug Fixes
+
+* **date-range-picker:** adjusting styles to the zeplin preview ([a9068b4](https://github.com/Synerise/synerise-design/commit/a9068b4069ebce86eab0dc2a01b368a9e0c7215a))
+* **date-range-picker:** changed a way of displaying dropdowns ([7f5050d](https://github.com/Synerise/synerise-design/commit/7f5050d81b38524bdf3a8b77f5adf9357715daa5))
+* **date-range-picker:** fixed highlingthing the current range button ([a7f9c0b](https://github.com/Synerise/synerise-design/commit/a7f9c0b45c2cf06dab832cbb9d5f7f1ed4569f32))
+* **date-range-picker:** styles and margin fixes ([8a5bd6b](https://github.com/Synerise/synerise-design/commit/8a5bd6b2285b17b35525a23b7854271de61d2896))
+
+
+
+
+
 ## [0.1.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.1.8...@synerise/ds-date-range-picker@0.1.9) (2020-07-31)
 
 **Note:** Version bump only for package @synerise/ds-date-range-picker

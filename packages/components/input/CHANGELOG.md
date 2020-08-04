@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.14.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.13.18...@synerise/ds-input@0.14.0) (2020-08-04)
+
+
+### Features
+
+* **input:** add ds-scrollbar into textarea ([3cf7e6e](https://github.com/synerise/synerise-design/commit/3cf7e6e1aa0d11846c3db296ce081f2bef4948b0))
+
+
+
+
+
 ## [0.13.18](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.13.17...@synerise/ds-input@0.13.18) (2020-07-30)
 
 

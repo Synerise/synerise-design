@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.9](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.5.8...docs@0.5.9) (2020-08-04)
+
+
+### Bug Fixes
+
+* **docs:** add missing card-select doc ([78b11dc](https://gitlab.synerise.com/Frontend/synerise-design/commit/78b11dc9cf0444820393fef97050573bfd0dfac5))
+* change in md file ([e0416ad](https://gitlab.synerise.com/Frontend/synerise-design/commit/e0416adf78f26fde67dbc050f07b771f7f278f7b))
+
+
+
+
+
 ## [0.5.8](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.5.7...docs@0.5.8) (2020-07-31)
 
 

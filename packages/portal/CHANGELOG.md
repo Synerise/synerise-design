@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.91.0](https://github.com/synerise/synerise-design/compare/portal@0.90.0...portal@0.91.0) (2020-08-04)
+
+
+### Bug Fixes
+
+* **card:** add prop and add some fixes ([eeb2a77](https://github.com/synerise/synerise-design/commit/eeb2a77ed0a7edd892955b1f9bec6257d1038079))
+* **card-select:** add cards and add group of cards ([28a6875](https://github.com/synerise/synerise-design/commit/28a687531cf3d3b35892acbf83308b923f034a1f))
+* **card-select:** add cards and add improvments to them ([0e7412c](https://github.com/synerise/synerise-design/commit/0e7412cc91001d3be98ecbed3067db13bdd55cfb))
+* **card-select:** add group of cards and group of small cards ([c5b82af](https://github.com/synerise/synerise-design/commit/c5b82af8b416935431909507d0611f8778455097))
+* **card-select:** add group of cards and group of small cards ([8b8547c](https://github.com/synerise/synerise-design/commit/8b8547cabbca6b5e05ff16e35d196e9f9eedc3f5))
+* **card-select:** add smallcard and with no icon card ([b1fdd41](https://github.com/synerise/synerise-design/commit/b1fdd4185d89d86dcbecbc32ee241201fd5afefb))
+* **date-range-picker:** adjusting styles to the zeplin preview ([a9068b4](https://github.com/synerise/synerise-design/commit/a9068b4069ebce86eab0dc2a01b368a9e0c7215a))
+* **result:** fix modal sizes ([95fc999](https://github.com/synerise/synerise-design/commit/95fc999826bff83c7f0d9ff12fd00f6720c96a97))
+* **sidebar:** change width to 338px ([666de42](https://github.com/synerise/synerise-design/commit/666de42b4fce670e573d40651cb66c4311204510))
+
+
+### Features
+
+* **input:** add ds-scrollbar into textarea ([3cf7e6e](https://github.com/synerise/synerise-design/commit/3cf7e6e1aa0d11846c3db296ce081f2bef4948b0))
+
+
+
+
+
 # [0.90.0](https://github.com/synerise/synerise-design/compare/portal@0.89.3...portal@0.90.0) (2020-07-31)
 
 

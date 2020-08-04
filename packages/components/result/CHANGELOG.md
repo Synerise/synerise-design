@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.63](https://github.com/Synerise/synerise-design/compare/@synerise/ds-result@0.4.62...@synerise/ds-result@0.4.63) (2020-08-04)
+
+
+### Bug Fixes
+
+* **card-tabs:** max-width of result title ([b9ff727](https://github.com/Synerise/synerise-design/commit/b9ff72743cc8b13e0977d5fc43d9e0072e94221b))
+
+
+
+
+
 ## [0.4.62](https://github.com/Synerise/synerise-design/compare/@synerise/ds-result@0.4.61...@synerise/ds-result@0.4.62) (2020-07-30)
 
 **Note:** Version bump only for package @synerise/ds-result

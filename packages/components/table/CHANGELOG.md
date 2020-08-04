@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.23.25](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.23.24...@synerise/ds-table@0.23.25) (2020-08-04)
+
+
+### Bug Fixes
+
+* **table:** pagination overlapping the search dropdown ([aae80d3](https://github.com/synerise/synerise-design/commit/aae80d3155ceadc9b09b772162975b937385b302))
+
+
+
+
+
 ## [0.23.24](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.23.23...@synerise/ds-table@0.23.24) (2020-07-31)
 
 **Note:** Version bump only for package @synerise/ds-table

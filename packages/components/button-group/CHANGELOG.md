@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.48](https://github.com/Synerise/synerise-design/compare/@synerise/ds-button-group@0.5.47...@synerise/ds-button-group@0.5.48) (2020-08-04)
+
+
+### Bug Fixes
+
+* **card-select:** add smallcard and with no icon card ([b1fdd41](https://github.com/Synerise/synerise-design/commit/b1fdd4185d89d86dcbecbc32ee241201fd5afefb))
+
+
+
+
+
 ## [0.5.47](https://github.com/Synerise/synerise-design/compare/@synerise/ds-button-group@0.5.46...@synerise/ds-button-group@0.5.47) (2020-07-30)
 
 **Note:** Version bump only for package @synerise/ds-button-group
