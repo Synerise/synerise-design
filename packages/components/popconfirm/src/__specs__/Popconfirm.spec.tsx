@@ -6,8 +6,10 @@ import Popconfirm from '../Popconfirm';
 
 const TEXT = 'Click me';
 const TITLE = 'Title';
+const DESCRIPTION = 'Description';
 const CANCEL = 'Cancel';
 const OK = 'OK';
+const IMAGES = ['https://cdn.pixabay.com/photo/2013/11/28/10/36/road-220058_960_720.jpg', 'https://cdn.pixabay.com/photo/2015/07/09/22/45/tree-838667_960_720.jpg', 'https://cdn.pixabay.com/photo/2015/07/05/10/18/tree-832079_960_720.jpg'];
 
 describe('Popconfirm', () => {
   it('should render', () => {
@@ -124,5 +126,51 @@ describe('Popconfirm', () => {
 
     //ASSERT
     expect(document.querySelectorAll('button').length).toBe(1);
+  });
+
+  it('should have proper title', () => {
+    // ARRANGE
+    const { getByText } = renderWithProvider(
+      <Popconfirm title={TITLE} okText="okText" cancelText="cancelText">
+        <button>{TEXT}</button>
+      </Popconfirm>
+    );
+
+    // ACT
+    fireEvent.click(getByText(TEXT));
+
+    //ASSERT
+    expect(getByText(TITLE)).toBeInTheDocument();
+  });
+
+  it('should have proper description', () => {
+    // ARRANGE
+    const { getByText } = renderWithProvider(
+      <Popconfirm title={TITLE} description={DESCRIPTION} okText="okText" cancelText="cancelText">
+        <button>{TEXT}</button>
+      </Popconfirm>
+    );
+
+    // ACT
+    fireEvent.click(getByText(TEXT));
+
+    //ASSERT
+    expect(getByText(DESCRIPTION)).toBeInTheDocument();
+  });
+
+  it('should have 3 slides in image carousel', () => {
+    // ARRANGE
+    const { getByText } = renderWithProvider(
+      <Popconfirm title={TITLE} images={IMAGES} description={DESCRIPTION} okText="okText" cancelText="cancelText">
+        <button>{TEXT}</button>
+      </Popconfirm>
+    );
+
+    // ACT
+    fireEvent.click(getByText(TEXT));
+
+    //ASSERT
+    expect(document.querySelectorAll('.slick-slide').length).toBe(3);
+    expect(document.querySelectorAll('.slick-dots li').length).toBe(3);
   });
 });
