@@ -76,6 +76,8 @@ const stories = {
           {...getDefaultProps()}
           description={text('Set description', 'This is popconfirm modal example with simple body text here')}
           icon={<Icon component={<WarningFillM />} color='#ffc300' />}
+          imagesAutoplay={boolean('Enable autoplay', true)}
+          imagesAutoplaySpeed={number('Set speed of autoplay (ms)', 1000)}
           images={['https://cdn.pixabay.com/photo/2013/11/28/10/36/road-220058_960_720.jpg', 'https://cdn.pixabay.com/photo/2015/07/09/22/45/tree-838667_960_720.jpg', 'https://cdn.pixabay.com/photo/2015/07/05/10/18/tree-832079_960_720.jpg']}
         >
           <Button>Click me</Button>
