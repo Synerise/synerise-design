@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-time-picker@0.2.57...@synerise/ds-time-picker@0.3.0) (2020-07-31)
+
+
+### Bug Fixes
+
+* **time-picker:** changed resolving hour ranges ([0cc6b54](https://github.com/Synerise/synerise-design/commit/0cc6b54d64f228701771f22b7ae4d8650742ff36))
+* **time-picker:** prevent from displaying strigified undefined ([cde73b3](https://github.com/Synerise/synerise-design/commit/cde73b3e6344380a454e284c7dd5bc2088d5c32f))
+
+
+### Features
+
+* **time-picker:** added displaying current format on the input ([ac32536](https://github.com/Synerise/synerise-design/commit/ac32536e7838ceb3c00a1fb96dec5a26c24119d3))
+* **time-picker:** added seperators when using am pm mode ([609f237](https://github.com/Synerise/synerise-design/commit/609f23795b4708e4fe6797a8743ad501caa8f4fc))
+* **time-picker:** added support for am pm clock modes ([0c79bb0](https://github.com/Synerise/synerise-design/commit/0c79bb018f3615569449fe958a94eafcc5065a4e))
+
+
+
+
+
+## [0.2.57](https://github.com/Synerise/synerise-design/compare/@synerise/ds-time-picker@0.2.56...@synerise/ds-time-picker@0.2.57) (2020-07-30)
+
+**Note:** Version bump only for package @synerise/ds-time-picker
+
+
+
+
+
+## [0.2.56](https://github.com/Synerise/synerise-design/compare/@synerise/ds-time-picker@0.2.55...@synerise/ds-time-picker@0.2.56) (2020-07-29)
+
+**Note:** Version bump only for package @synerise/ds-time-picker
+
+
+
+
+
 ## [0.2.55](https://github.com/Synerise/synerise-design/compare/@synerise/ds-time-picker@0.2.54...@synerise/ds-time-picker@0.2.55) (2020-07-24)
 
 **Note:** Version bump only for package @synerise/ds-time-picker

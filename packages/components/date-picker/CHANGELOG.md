@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.16](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@0.1.15...@synerise/ds-date-picker@0.1.16) (2020-07-31)
+
+**Note:** Version bump only for package @synerise/ds-date-picker
+
+
+
+
+
+## [0.1.15](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@0.1.14...@synerise/ds-date-picker@0.1.15) (2020-07-30)
+
+**Note:** Version bump only for package @synerise/ds-date-picker
+
+
+
+
+
+## [0.1.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@0.1.13...@synerise/ds-date-picker@0.1.14) (2020-07-29)
+
+
+### Bug Fixes
+
+* **date-picker:** fixed styles of date picker ([5eae4e6](https://github.com/Synerise/synerise-design/commit/5eae4e6e079cfb03b19d765830bbc4b1ea896192))
+* **date-range-picker:** added dropdown ([76f5360](https://github.com/Synerise/synerise-design/commit/76f53602c65e2278add32d04bf31aaaca9259a3a))
+* **search:** add onClear prop and update tests and stories ([4de9259](https://github.com/Synerise/synerise-design/commit/4de9259b245a49d7821036b3bb05918559c1b900))
+* **time-picker:** added a scroll to selected functionality ([3eb3e39](https://github.com/Synerise/synerise-design/commit/3eb3e39404c7220e58fc6d5ef0bc12089610ec69))
+
+
+
+
+
 ## [0.1.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@0.1.12...@synerise/ds-date-picker@0.1.13) (2020-07-24)
 
 **Note:** Version bump only for package @synerise/ds-date-picker

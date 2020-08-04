@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.7.12...@synerise/ds-card@0.7.13) (2020-07-30)
+
+
+### Bug Fixes
+
+* **card:** change styles of animation to work on safari ([93effde](https://github.com/Synerise/synerise-design/commit/93effde8a3fa26840cb039f1b1aff65a765b910e))
+* **card:** delete styles which are not needed ([c65c2e8](https://github.com/Synerise/synerise-design/commit/c65c2e81490ef839d82a5318e9d863e40b88cf5f))
+
+
+
+
+
+## [0.7.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.7.11...@synerise/ds-card@0.7.12) (2020-07-28)
+
+
+### Bug Fixes
+
+* **card:** add animation of opening and closing card ([50e377e](https://github.com/Synerise/synerise-design/commit/50e377ea94c8802afea91a88c04b172a82da9695))
+* **card:** change styles animations of opening and closing card ([0286b21](https://github.com/Synerise/synerise-design/commit/0286b210bef6498084fa4a2ca42135e14244fc18))
+* **card:** change styles animations of opening and closing card ([2d5b2f6](https://github.com/Synerise/synerise-design/commit/2d5b2f62d6566a51ea493c56661cd2a0063b6bbe))
+* **card:** fixing the build ([c13e5b8](https://github.com/Synerise/synerise-design/commit/c13e5b884fbdea9e898bc2ea2ec1cd96347102b6))
+
+
+
+
+
 ## [0.7.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.7.10...@synerise/ds-card@0.7.11) (2020-07-24)
 
 **Note:** Version bump only for package @synerise/ds-card

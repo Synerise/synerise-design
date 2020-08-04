@@ -3,6 +3,42 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.51](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-tabs@0.6.50...@synerise/ds-card-tabs@0.6.51) (2020-07-31)
+
+
+### Bug Fixes
+
+* **card-tabs:** fix active & edited styles ([aa18fca](https://github.com/Synerise/synerise-design/commit/aa18fcad3ec23232ac3cc1ba86dab55b52df46ad))
+* **card-tabs:** fix issues from ux review ([92b0ea5](https://github.com/Synerise/synerise-design/commit/92b0ea5d5288c272830c543e54d253c2c94decd6))
+* **card-tabs:** fix tests ([0b22c6b](https://github.com/Synerise/synerise-design/commit/0b22c6b0590b236337160f89bb6e04e96d999999))
+
+
+
+
+
+## [0.6.50](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-tabs@0.6.49...@synerise/ds-card-tabs@0.6.50) (2020-07-30)
+
+
+### Bug Fixes
+
+* **card-tabs:** add colors props for cards ([fa30e77](https://github.com/Synerise/synerise-design/commit/fa30e773832ad9cd3c342d4fd4aca8d9b326e2b4))
+* **card-tabs:** add default texts for crud buttons ([e1a8ae8](https://github.com/Synerise/synerise-design/commit/e1a8ae8161983944830ac1893ba9766b81b8eb53))
+* **card-tabs:** fix styles ([59c4d02](https://github.com/Synerise/synerise-design/commit/59c4d0242417982ff1eaacbef1e8d784b64ce01f))
+* **card-tabs:** fix tests ([5fad48b](https://github.com/Synerise/synerise-design/commit/5fad48b109b470169e9a7ddba11c3dc8e896e52d))
+* **card-tabs:** use crud buttons, fix color of prefix icon ([d782393](https://github.com/Synerise/synerise-design/commit/d782393697668dc780bff3d561d4c363aab75798))
+
+
+
+
+
+## [0.6.49](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-tabs@0.6.48...@synerise/ds-card-tabs@0.6.49) (2020-07-29)
+
+**Note:** Version bump only for package @synerise/ds-card-tabs
+
+
+
+
+
 ## [0.6.48](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-tabs@0.6.47...@synerise/ds-card-tabs@0.6.48) (2020-07-24)
 
 **Note:** Version bump only for package @synerise/ds-card-tabs

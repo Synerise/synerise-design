@@ -75,6 +75,10 @@ yarn add @synerise/ds-card-select
 | customTickVisibleComponent | Custom checkbox component                                            | ReactNode          | -                                               |
 | stretchToFit               | Aligns the height of each card                                       | boolean            | -                                               |
 | clearTooltip               | Defines the title of clear icon tooltip                              | string             | -                                               |
+| thickSize                  | The size of the thick                                                | `small` / `medium` | `medium`                                        |
+| theme                      | Palette of colors                                                    | string             | -                                               |
+| elementsPosition           | Defines the position of the elements on the card                     | string             | `center`                                        |
+| width                      | Defines the width of Group of cards                                  | `large` / `small`  | `large`                                         |
 
 ### Methods
 

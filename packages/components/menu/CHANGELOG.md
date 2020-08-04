@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.22](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.5.21...@synerise/ds-menu@0.5.22) (2020-07-30)
+
+**Note:** Version bump only for package @synerise/ds-menu
+
+
+
+
+
+## [0.5.21](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.5.20...@synerise/ds-menu@0.5.21) (2020-07-28)
+
+**Note:** Version bump only for package @synerise/ds-menu
+
+
+
+
+
+## [0.5.20](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.5.19...@synerise/ds-menu@0.5.20) (2020-07-28)
+
+
+### Bug Fixes
+
+* **menu:** apply grey color to the icon on the default level ([86ed827](https://github.com/Synerise/synerise-design/commit/86ed8278195353418802a87afcec4088b851f03e))
+
+
+
+
+
 ## [0.5.19](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.5.18...@synerise/ds-menu@0.5.19) (2020-07-24)
 
 **Note:** Version bump only for package @synerise/ds-menu

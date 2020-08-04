@@ -3,6 +3,63 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.90.0](https://github.com/synerise/synerise-design/compare/portal@0.89.3...portal@0.90.0) (2020-07-31)
+
+
+### Bug Fixes
+
+* **card-tabs:** fix issues from ux review ([92b0ea5](https://github.com/synerise/synerise-design/commit/92b0ea5d5288c272830c543e54d253c2c94decd6))
+
+
+### Features
+
+* **time-picker:** added seperators when using am pm mode ([609f237](https://github.com/synerise/synerise-design/commit/609f23795b4708e4fe6797a8743ad501caa8f4fc))
+* **time-picker:** added support for am pm clock modes ([0c79bb0](https://github.com/synerise/synerise-design/commit/0c79bb018f3615569449fe958a94eafcc5065a4e))
+
+
+
+
+
+## [0.89.3](https://github.com/synerise/synerise-design/compare/portal@0.89.2...portal@0.89.3) (2020-07-30)
+
+
+### Bug Fixes
+
+* **card-tabs:** add colors props for cards ([fa30e77](https://github.com/synerise/synerise-design/commit/fa30e773832ad9cd3c342d4fd4aca8d9b326e2b4))
+* **card-tabs:** add storybook example with single card-tab ([6e4b9e0](https://github.com/synerise/synerise-design/commit/6e4b9e042063f3164148836a827877dddf195294))
+* **card-tabs:** fix styles ([59c4d02](https://github.com/synerise/synerise-design/commit/59c4d0242417982ff1eaacbef1e8d784b64ce01f))
+
+
+
+
+
+## [0.89.2](https://github.com/synerise/synerise-design/compare/portal@0.89.1...portal@0.89.2) (2020-07-29)
+
+
+### Bug Fixes
+
+* **date-range-picker:** added dropdown ([76f5360](https://github.com/synerise/synerise-design/commit/76f53602c65e2278add32d04bf31aaaca9259a3a))
+* **date-range-picker:** added handling undefined values ([65c6241](https://github.com/synerise/synerise-design/commit/65c6241df9274c7457e9891683dab725f16427ad))
+* **date-range-picker:** added input component ([f13bd69](https://github.com/synerise/synerise-design/commit/f13bd69d8bfde0b95fca14e09c568f6d6fbbc178))
+* **input-number:** added 'raw' props in order to use inputgroup ([6b8a8cc](https://github.com/synerise/synerise-design/commit/6b8a8ccd32ab771cdd015e7572948a403be39c71))
+* **pagination:** fix pagination component ([a563e0d](https://github.com/synerise/synerise-design/commit/a563e0d00f107ab0a6bd8edb712cb9217a3c48b2))
+
+
+
+
+
+## [0.89.1](https://github.com/synerise/synerise-design/compare/portal@0.89.0...portal@0.89.1) (2020-07-28)
+
+
+### Bug Fixes
+
+* **date-picker:** use start of the day in story ([979b7db](https://github.com/synerise/synerise-design/commit/979b7db6834efe87cbc60098a8ad7b002a9a9908))
+* **search:** add onClear prop and update tests and stories ([4de9259](https://github.com/synerise/synerise-design/commit/4de9259b245a49d7821036b3bb05918559c1b900))
+
+
+
+
+
 # [0.89.0](https://github.com/synerise/synerise-design/compare/portal@0.88.2...portal@0.89.0) (2020-07-24)
 
 

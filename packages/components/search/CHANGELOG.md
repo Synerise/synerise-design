@@ -3,6 +3,57 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.62](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.1.61...@synerise/ds-search@0.1.62) (2020-07-31)
+
+
+### Bug Fixes
+
+* **search:** update parameters filter logic for crm search ([bea45cc](https://github.com/Synerise/synerise-design/commit/bea45cc021cdbcbbd3787bb107f530716c407cc2))
+
+
+
+
+
+## [0.1.61](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.1.60...@synerise/ds-search@0.1.61) (2020-07-30)
+
+**Note:** Version bump only for package @synerise/ds-search
+
+
+
+
+
+## [0.1.60](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.1.59...@synerise/ds-search@0.1.60) (2020-07-29)
+
+**Note:** Version bump only for package @synerise/ds-search
+
+
+
+
+
+## [0.1.59](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.1.58...@synerise/ds-search@0.1.59) (2020-07-29)
+
+**Note:** Version bump only for package @synerise/ds-search
+
+
+
+
+
+## [0.1.58](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.1.57...@synerise/ds-search@0.1.58) (2020-07-28)
+
+**Note:** Version bump only for package @synerise/ds-search
+
+
+
+
+
+## [0.1.57](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.1.56...@synerise/ds-search@0.1.57) (2020-07-28)
+
+**Note:** Version bump only for package @synerise/ds-search
+
+
+
+
+
 ## [0.1.56](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.1.55...@synerise/ds-search@0.1.56) (2020-07-27)
 
 

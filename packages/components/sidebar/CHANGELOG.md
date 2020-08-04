@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.52](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar@0.2.51...@synerise/ds-sidebar@0.2.52) (2020-07-30)
+
+**Note:** Version bump only for package @synerise/ds-sidebar
+
+
+
+
+
+## [0.2.51](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar@0.2.50...@synerise/ds-sidebar@0.2.51) (2020-07-29)
+
+**Note:** Version bump only for package @synerise/ds-sidebar
+
+
+
+
+
+## [0.2.50](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar@0.2.49...@synerise/ds-sidebar@0.2.50) (2020-07-28)
+
+
+### Bug Fixes
+
+* **sidebar:** fix issue with dnd on safari and ff ([cc0add2](https://github.com/Synerise/synerise-design/commit/cc0add2747f1533ca3c43157035af2ecf33a77ea))
+
+
+
+
+
 ## [0.2.49](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar@0.2.48...@synerise/ds-sidebar@0.2.49) (2020-07-24)
 
 **Note:** Version bump only for package @synerise/ds-sidebar
