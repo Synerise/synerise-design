@@ -8,8 +8,10 @@ export type DayPickerProps = {
   onMonthChange: (month: Date) => void;
   onMonthNameClick: () => void;
   onYearNameClick: () => void;
-  hidePrev?: boolean;
-  hideNext?: boolean;
+  hideLongPrev?: boolean;
+  hideShortPrev?: boolean;
+  hideShortNext?: boolean;
+  hideLongNext?: boolean;
   intl: IntlShape;
   fixedWeeks?: boolean;
   showOutsideDays?: boolean;

@@ -77,6 +77,7 @@ export const Range = styled(({ children, ...rest }) => (
 export const RangeFormColumn = styled.div<{ noMargin?: boolean }>`
   display: flex;
   align-items: center;
+  position: relative;
   margin-bottom: ${(props): string => (props.noMargin ? '0px' : '-16px')};
 `;
 
@@ -89,4 +90,14 @@ export const DropMenu = styled(Menu)`
 `;
 export const DropMenuItem = styled(Menu.Item)`
   max-height: 32px;
+`;
+export const OverlayWrapper = styled.div<{ visible?: boolean; width?: number }>`
+  position: absolute;
+  display: ${(props): string => (props.visible ? 'flex' : 'none')};
+  z-index: 15;
+  box-shadow: 0 4px 12px 0 rgba(35, 41, 54, 0.04);
+  ${(props): false | string => !!props.width && `width:${props.width}px;`}
+`;
+export const DropdownContainer = styled.div`
+  position: relative;
 `;

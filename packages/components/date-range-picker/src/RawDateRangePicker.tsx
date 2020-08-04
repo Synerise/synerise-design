@@ -108,7 +108,7 @@ class RawDateRangePicker extends React.PureComponent<Props, State> {
       relativePast,
       ranges,
     } = this.props;
-    const { value, mode, changed } = this.state;
+    const { value, mode, changed, } = this.state;
     const { from, to, key } = value;
 
     if (mode === MODES.FILTER)
