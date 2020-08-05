@@ -178,6 +178,7 @@ const stories = {
         loading={boolean('Set loading state', false)}
         roundedHeader={boolean('Rounded header', false)}
         cellSize={select('Set cells size', CELL_SIZES, CELL_SIZES.default)}
+        defaultExpandAllRows={boolean('Default expand all rows', true)}
         headerButton={
           boolean('Show header button', false) && (
             <Button type="ghost" mode="icon-label" onClick={action('Header button action')}>

@@ -7,6 +7,7 @@ import Button from '@synerise/ds-button';
 import Icon from '@synerise/ds-icon';
 import { ChildRowLeftDownM } from '@synerise/ds-icon/dist/icons';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { v4 as uuid } from 'uuid';
 import DSTable from '../Table';
 import * as S from './TreeTable.styles';
 
@@ -16,32 +17,35 @@ const INDENT_SIZE = 42;
 function TreeTable<T extends object = any>(props: DSTableProps<T>): React.ReactElement {
   const { className, selection } = props;
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const RenderCell = (cell: any): JSX.Element => {
-    const indentLevel = cell.children[0]?.props?.children[0]?.props?.className
-      .split(' ')
-      .find((value: string) => value.includes('indent-level-'))
-      ?.split('-')
-      .pop();
+  const RenderCell = React.useCallback(
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (cell: any): JSX.Element => {
+      const indentLevel = cell.children[0]?.props?.children[0]?.props?.className
+        .split(' ')
+        .find((value: string) => value.includes('indent-level-'))
+        ?.split('-')
+        .pop();
 
-    if (indentLevel === undefined) {
-      return <td className={cell.className}>{cell.children}</td>;
-    }
+      if (indentLevel === undefined) {
+        return <td className={cell.className}>{cell.children}</td>;
+      }
 
-    const maxIndent = parseInt(indentLevel, 10);
-    const indents = [...new Array(maxIndent)].map((indentElement, index) => (
-      <S.Indent key={cell} width={INDENT_SIZE} level={index} active={index + 1 === maxIndent} />
-    ));
+      const maxIndent = parseInt(indentLevel, 10);
+      const indents = [...new Array(maxIndent)].map((indentElement, index) => (
+        <S.Indent key={uuid()} width={INDENT_SIZE} level={index} active={index + 1 === maxIndent} />
+      ));
 
-    return (
-      <td className={cell.className}>
-        <S.Indents width={indents.length * INDENT_SIZE} withSelection={Boolean(selection)}>
-          {indents}
-        </S.Indents>
-        {cell.children}
-      </td>
-    );
-  };
+      return (
+        <td className={cell.className}>
+          <S.Indents width={indents.length * INDENT_SIZE} withSelection={Boolean(selection)}>
+            {indents}
+          </S.Indents>
+          {cell.children}
+        </td>
+      );
+    },
+    [selection]
+  );
 
   return (
     <DSTable
