@@ -257,6 +257,15 @@ export const dataSource = [
     ]
   },
   {
+    key: '17',
+    name: 'John Doe',
+    description: 'This feature is present in several places. If you turning it on here it will be turn on everywhere.',
+    create_permission: true,
+    read_permission: false,
+    edit_permission: false,
+    delete_permission: false,
+  },
+  {
     key: '7',
     name: 'John Doe',
     description: 'This feature is present in several places. If you turning it on here it will be turn on everywhere.',
