@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.23](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.5.22...@synerise/ds-menu@0.5.23) (2020-08-05)
+
+
+### Bug Fixes
+
+* **menu:** overwrite global styles in portal spa ([0e71482](https://github.com/Synerise/synerise-design/commit/0e71482dc1739cec527ffb79e87f5b6cd7f59668))
+
+
+
+
+
 ## [0.5.22](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.5.21...@synerise/ds-menu@0.5.22) (2020-07-30)
 
 **Note:** Version bump only for package @synerise/ds-menu

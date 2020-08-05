@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.92.0](https://github.com/synerise/synerise-design/compare/portal@0.91.0...portal@0.92.0) (2020-08-05)
+
+
+### Bug Fixes
+
+* **input-number:** added input number into input group story ([ff27946](https://github.com/synerise/synerise-design/commit/ff27946fc328fd401f24b45f9ed99dec523a4734))
+* **menu:** changed the submenu story - ordered knobs ([e1d57af](https://github.com/synerise/synerise-design/commit/e1d57afab4b4e0498534abcb7d4dcff713e77808))
+* **table:** improve TreeTable performance ([59e58a2](https://github.com/synerise/synerise-design/commit/59e58a234c3a9cb3505da65aaaf9d1313105f023))
+
+
+### Features
+
+* **popconfirm:** add examples of withDescription and withImages ([03a7a64](https://github.com/synerise/synerise-design/commit/03a7a64f8340cef5bc755876afe661fa7e326860))
+* **popconfirm:** add new types of popconfirm ([0f20892](https://github.com/synerise/synerise-design/commit/0f20892afde63b81644ff24e94d22d1fb8c8bbd3))
+
+
+
+
+
 # [0.91.0](https://github.com/synerise/synerise-design/compare/portal@0.90.0...portal@0.91.0) (2020-08-04)
 
 

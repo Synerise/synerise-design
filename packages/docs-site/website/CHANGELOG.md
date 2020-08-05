@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.5.9...docs@0.6.0) (2020-08-05)
+
+
+### Features
+
+* **docs:** update docs of popconfirm ([cd19f77](https://gitlab.synerise.com/Frontend/synerise-design/commit/cd19f779c1d8d0256fef8eaa69dcf8581a1c94e2))
+
+
+
+
+
 ## [0.5.9](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.5.8...docs@0.5.9) (2020-08-04)
 
 

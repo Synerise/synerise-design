@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.23.26](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.23.25...@synerise/ds-table@0.23.26) (2020-08-05)
+
+
+### Bug Fixes
+
+* **table:** fix eslint error ([1250e49](https://github.com/synerise/synerise-design/commit/1250e49d907d940bd96f558b75e880eccd910b6d))
+* **table:** improve TreeTable performance ([59e58a2](https://github.com/synerise/synerise-design/commit/59e58a234c3a9cb3505da65aaaf9d1313105f023))
+
+
+
+
+
 ## [0.23.25](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.23.24...@synerise/ds-table@0.23.25) (2020-08-04)
 
 
