@@ -32,6 +32,7 @@ class SubMenuItem extends React.PureComponent<SubMenuProps & MenuItemProps, SubM
       ...rest
     } = this.props;
     const { uuidKey } = this.state;
+    console.log(menuItemKey);
     return (
       <S.SubMenuItem
         title={

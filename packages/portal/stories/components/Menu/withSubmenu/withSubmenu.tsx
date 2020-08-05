@@ -4,6 +4,7 @@ import { getDefaultProps } from '../index.stories';
 
 import * as React from 'react';
 import Menu from '@synerise/ds-menu';
+import { useOnClickOutside } from '@synerise/ds-utils';
 
 const withSubmenu = () => {
   const defaultProps = getDefaultProps();
@@ -18,9 +19,7 @@ const withSubmenu = () => {
         key: 'Parent 1',
         suffixel: renderSuffix(suffixKnob),
         prefixel: renderPrefixIcon(prefixKnob),
-        key: 'Parent 1',
         ordered: orderedParents,
-
         subMenu: [
           {
             text: 'Child 1',
@@ -31,12 +30,14 @@ const withSubmenu = () => {
           },
           {
             text: 'Child 2',
+            key: 'p2-Child 2',
             suffixel: renderSuffix(suffixKnob),
             prefixel: renderPrefixIcon(prefixKnob),
             ordered: orderedChildren,
           },
           {
             text: 'Child 3',
+            key: 'p1-Child 3',
             suffixel: renderSuffix(suffixKnob),
             prefixel: renderPrefixIcon(prefixKnob),
             ordered: orderedChildren,
@@ -59,12 +60,14 @@ const withSubmenu = () => {
           },
           {
             text: 'Child 2',
+            key: 'p2-Child 2',
             suffixel: renderSuffix(suffixKnob),
             prefixel: renderPrefixIcon(prefixKnob),
             ordered: orderedChildren,
           },
           {
             text: 'Child 3',
+            key: 'p2-Child 3',
             suffixel: renderSuffix(suffixKnob),
             prefixel: renderPrefixIcon(prefixKnob),
             ordered: orderedChildren,
@@ -73,9 +76,31 @@ const withSubmenu = () => {
       },
     ],
   } as object;
+  const [selectedKeys, setSelectedKeys] = React.useState([]);
+  const wrapperRef = React.useRef();
+
+  useOnClickOutside(wrapperRef,()=>{
+  })
+  const onClickCallback = (clickedKey: string) => {
+    if (selectedKeys.indexOf(clickedKey) !== -1) {
+      setSelectedKeys([]);
+      return;
+    }
+    setSelectedKeys([clickedKey]);
+  };
+  const itemsWithOnClick = props.dataSource.map(item =>
+    {
+      let newItem = item;
+      newItem.onTitleClick = ()=>{onClickCallback(item.key)}
+      newItem.subMenu = item.subMenu.map(submenuItem => ({ ...submenuItem, onClick: () => {onClickCallback(submenuItem.key)} }))
+      return newItem;
+    }
+  );
+  console.log(itemsWithOnClick);
+  console.log('Selected',selectedKeys)
   return (
-    <div style={{ width: '200px' }}>
-      <Menu {...defaultProps} dataSource={props.dataSource} ordered />
+    <div style={{ width: '200px' }} ref={wrapperRef}>
+      <Menu {...defaultProps} dataSource={itemsWithOnClick} selectable selectedKeys={selectedKeys} ordered />
     </div>
   );
 };

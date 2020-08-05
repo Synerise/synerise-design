@@ -75,7 +75,9 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
     &.ant-menu-item-selected {
       background: none;
       color: ${(props): string => props.theme.palette['blue-600']};
-
+      .ds-menu-prefix > .ds-icon > svg {
+        fill: ${(props): string => props.theme.palette['blue-600']};
+      }
       &::before {
         color: ${(props): string => props.theme.palette['blue-600']};
       }
@@ -83,8 +85,8 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
       &:active {
         background: ${(props): string => props.theme.palette['grey-050']};
         &::before {
-        color: ${(props): string => props.theme.palette['grey-600']};
-      }
+          color: ${(props): string => props.theme.palette['grey-600']};
+        }
       }
 
       &::after {
