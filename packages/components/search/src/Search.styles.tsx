@@ -128,6 +128,9 @@ export const SearchInner = styled.div<{ hasValue: boolean; alwaysHighlight?: boo
    }
    
   `}
+  input::placeholder {
+    line-height: 1.29;
+  }
 `;
 
 export const SearchInputContent = styled.div<{ offset: number; filterLabel: object | null | undefined }>`
