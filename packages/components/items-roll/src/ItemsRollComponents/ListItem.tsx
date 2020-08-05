@@ -14,7 +14,6 @@ type ItemElementProps = {
   onItemClick?: (id: string) => void;
   onItemRemove?: (id: string) => void;
   removeTooltipLabel: string | React.ReactNode;
-  suffixel?: React.ReactNode;
 };
 
 const ItemElement: React.FC<ItemElementProps> = ({
@@ -23,7 +22,6 @@ const ItemElement: React.FC<ItemElementProps> = ({
   onItemClick,
   onItemRemove,
   removeTooltipLabel,
-  suffixel,
 }) => {
   const onClick = React.useCallback(() => onItemClick && onItemClick(item.id), [onItemClick, item.id]);
 
@@ -36,7 +34,7 @@ const ItemElement: React.FC<ItemElementProps> = ({
         onItemHover={NOOP}
         suffixel={
           <S.SuffixelWrapper>
-            {suffixel}
+            {item.suffixel}
             {onItemRemove && <RemoveIcon id={item.id} handleRemove={onItemRemove} tooltipLabel={removeTooltipLabel} />}
           </S.SuffixelWrapper>
         }
