@@ -34,7 +34,10 @@ const ItemRenderer = ({ highlight, onItemClick, onItemRemove, tooltipLabel }: It
         onClick={onClick}
         style={style}
         suffixel={
-          onItemRemove ? <RemoveIcon id={item.id} handleRemove={onItemRemove} tooltipLabel={tooltipLabel} /> : null
+          <S.SuffixelWrapper>
+            {suffixel}
+            {!!onItemRemove && <RemoveIcon id={item.id} handleRemove={onItemRemove} tooltipLabel={tooltipLabel} />}
+          </S.SuffixelWrapper>
         }
       >
         {item.text}

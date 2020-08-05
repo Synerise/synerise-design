@@ -98,6 +98,7 @@ const List: React.FC<ListProps> = ({
                   onItemClick={onItemClick}
                   onItemRemove={onItemRemove}
                   removeTooltipLabel={removeTooltipLabel}
+                  suffixel={item.suffixel}
                 />
               ))}
         </Menu>
