@@ -33,9 +33,10 @@ const ItemElement: React.FC<ItemElementProps> = ({
         highlight={highlight}
         onItemHover={NOOP}
         suffixel={
-          onItemRemove ? (
-            <RemoveIcon id={item.id} handleRemove={onItemRemove} tooltipLabel={removeTooltipLabel} />
-          ) : null
+          <S.SuffixelWrapper>
+            {item.suffixel}
+            {onItemRemove && <RemoveIcon id={item.id} handleRemove={onItemRemove} tooltipLabel={removeTooltipLabel} />}
+          </S.SuffixelWrapper>
         }
         onClick={onClick}
       >

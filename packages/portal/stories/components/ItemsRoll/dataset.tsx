@@ -26,25 +26,11 @@ export const thousandItems = Array.from(Array(1000).keys());
 export const ITEMS_100 = hundredItems.map(key => ({
   id: uuid(),
   text: `${TEXT}-${key}`,
-  suffixel: (
-    <Tooltip title="Prefixel">
-      <div>
-        <Icon onClick={() => alert('Item deleted')} component={<ParamsBadgeM />} size={20} color="#f52922" />
-      </div>
-    </Tooltip>
-  ),
 }));
 
 export const ITEMS_1000 = thousandItems.map(key => ({
   id: uuid(),
   text: `${TEXT}-${key}`,
-  suffixel: (
-    <Tooltip title="Remove">
-      <div>
-        <Icon onClick={() => alert('Item deleted')} component={<CloseS />} size={20} color="#f52922" />
-      </div>
-    </Tooltip>
-  ),
 }));
 
 const tenParams = Array.from(Array(13).keys()).map(key => ({
@@ -176,3 +162,4 @@ export const DEFAULT_GROUPED_STATE = {
   componentVisible: true,
   items: GROUPED_ITEMS.items,
 };
+
