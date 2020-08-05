@@ -13,9 +13,9 @@ export interface Props extends InputNumberProps {
   raw?: boolean;
 }
 
-const InputNumber: React.FC<Props> = ({ label, description, errorText, raw, ...antdProps }) => {
+const InputNumber: React.FC<Props> = ({ label, description, errorText, raw, error, ...antdProps }) => {
   const id = uuid();
-  const showError = Boolean(errorText);
+  const showError = Boolean(error || errorText);
 
   return (
     <>
