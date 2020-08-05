@@ -17,8 +17,8 @@ const INDENT_SIZE = 42;
 function TreeTable<T extends object = any>(props: DSTableProps<T>): React.ReactElement {
   const { className, selection } = props;
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const RenderCell = React.useCallback(
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (cell: any): JSX.Element => {
       const indentLevel = cell.children[0]?.props?.children[0]?.props?.className
         .split(' ')
