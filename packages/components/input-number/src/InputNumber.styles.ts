@@ -5,22 +5,14 @@ import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/t
 export const AntdInputNumber = styled(BaseAntInputNumber)`
   color: ${(props): string => props.theme.palette['grey-700']};
 
-  input {
-    ${(props: { error: boolean } & ThemeProps): string =>
-      props.error
-        ? `
+  input,
+  input:focus {
+    ${(props: { error: boolean } & ThemeProps): string | false =>
+      !!props.error &&
+      `
       background: ${props.theme.palette['red-050']};
       border: 0;
-    `
-        : ''};
-  }
-  .ant-input-number-handler-wrap {
-    width: 25px;
-  }
-
-  .ant-input-number-handler ant-input-number-handler-up {
-    width: 25px;
-    height: 25px;
+    `};
   }
 `;
 

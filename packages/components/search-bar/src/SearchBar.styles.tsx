@@ -25,7 +25,9 @@ export const SearchBar = styled(Input)`
     position: relative;
     height: 52px;
     padding: 0;
-
+    input::-moz-placeholder {
+      line-height: 52px;
+    }
     input {
       position: absolute;
       top: 0;

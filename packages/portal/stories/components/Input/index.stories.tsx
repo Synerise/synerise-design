@@ -15,7 +15,7 @@ import { FlagContainer } from './stories.styles';
 import Tooltip from '@synerise/ds-tooltip';
 import InputNumber from '@synerise/ds-input-number';
 
-const decorator = (storyFn) => <div style={{ width: '300px' }}>{storyFn()}</div>;
+const decorator = storyFn => <div style={{ width: '300px' }}>{storyFn()}</div>;
 const sizes = ['default', 'large'];
 const getErrorText = (error: boolean, errorText: string): string => {
   if (error) {
@@ -78,15 +78,15 @@ const stories = {
 
     return (
       <Input
-        tooltip={text('tooltip', 'This is example tooltip!')}
-        placeholder={text('placeholder', 'Placeholder')}
-        label={renderLabel(text('label', 'Label'))}
-        description={text('description', 'Description')}
+        tooltip={text('Tooltip', 'This is example tooltip!')}
+        placeholder={text('Placeholder', 'Placeholder')}
+        label={renderLabel(text('Label', 'Label'))}
+        description={text('Description', 'Description')}
         errorText={!isFocus && getErrorText(validationState, message)}
-        counterLimit={number('counterLimit', 10)}
+        counterLimit={number('CounterLimit', 10)}
         error={!isFocus && validationState}
-        disabled={boolean('disabled', false)}
-        onChange={(e) => setValue(e.target.value)}
+        disabled={boolean('Disabled', false)}
+        onChange={e => setValue(e.target.value)}
         value={value}
         size={size}
         onBlur={() => {
@@ -101,19 +101,11 @@ const stories = {
     );
   },
   inputGroup: () => {
-    const secondInputType = {
-      TextInput:'Text Input',
-      NumericInput:'Numeric Input',
-
-    }
-    const inputType = knobSelect('Set second input type',secondInputType, secondInputType.TextInput)
-    const [value, setValue] = React.useState<string | number>('');
     const size = knobSelect('Set size', sizes as any, 'default');
     const select = (
       <Select
         size={size}
-        tooltip={text('tooltip', 'This is example tooltip!')}
-        onChange={action('OnChange')}
+        tooltip={text('Tooltip', 'This is example tooltip!')}
         style={{ width: '50%' }}
         defaultValue="post"
         error={boolean('Set select error', false)}
@@ -126,38 +118,50 @@ const stories = {
     const input = (
       <RawInput
         size={size}
-        placeholder={text('placeholder', 'Placeholder')}
-        disabled={boolean('disabled', false)}
-        onChange={(e) => setValue(e.target.value)}
-        value={value}
+        placeholder={text('Placeholder', 'Placeholder')}
+        disabled={boolean('Disabled', false)}
         error={boolean('Set input error', false)}
         style={{ width: '50%' }}
       />
     );
-
     const inputNumber = (
       <InputNumber
-        raw
-        placeholder={text('placeholder', 'Placeholder')}
-        disabled={boolean('disabled', false)}
-        onChange={(value) => setValue(value)}
-        value={value as number}
+        size={size}
+        placeholder={text('Placeholder', 'Placeholder')}
+        disabled={boolean('Disabled', false)}
         error={boolean('Set input error', false)}
         style={{ width: '50%' }}
+        raw
       />
-    )
+    );
+    const inputGroupElements = {
+      Input: input,
+      InputNumber: inputNumber,
+      Select: select,
+    };
+    const leftSideComponent = knobSelect(
+      'Set left-side component',
+      Object.keys(inputGroupElements),
+      Object.keys(inputGroupElements)[2]
+    );
+    const rightSideComponent = knobSelect(
+      'Set right-side component',
+      Object.keys(inputGroupElements),
+      Object.keys(inputGroupElements)[0]
+    );
+
     return (
       <InputGroup
         size={size}
-        tooltip={text('tooltip', 'This is example tooltip!')}
-        label={renderLabel(text('label', 'Label'))}
-        description={text('description', 'Description')}
-        errors={array('errors', [])}
-        resetMargin={boolean('resetMargin', false)}
+        tooltip={text('Tooltip', 'This is example tooltip!')}
+        label={renderLabel(text('Label', 'Label'))}
+        description={text('Description', 'Description')}
+        errors={array('Errors', [])}
+        resetMargin={boolean('ResetMargin', false)}
         compact
       >
-        {select}
-        {inputType===secondInputType.TextInput ? input : inputNumber}
+        {inputGroupElements[leftSideComponent]}
+        {inputGroupElements[rightSideComponent]}
       </InputGroup>
     );
   },
@@ -168,7 +172,7 @@ const stories = {
     const select = (
       <Select
         size={size}
-        tooltip={text('tooltip', 'This is example tooltip!')}
+        tooltip={text('Tooltip', 'This is example tooltip!')}
         onChange={action('OnChange')}
         style={{ width: '120px' }}
         defaultValue="es"
@@ -198,9 +202,9 @@ const stories = {
     const input = (
       <RawInput
         size={size}
-        placeholder={text('placeholder', 'Placeholder')}
-        disabled={boolean('disabled', false)}
-        onChange={(e) => setValue(e.target.value)}
+        placeholder={text('Placeholder', 'Placeholder')}
+        disabled={boolean('Disabled', false)}
+        onChange={e => setValue(e.target.value)}
         value={value}
         error={boolean('Set input error', false)}
         style={{ width: '50%' }}
@@ -210,11 +214,11 @@ const stories = {
     return (
       <InputGroup
         size={size}
-        tooltip={text('tooltip', 'This is example tooltip!')}
-        label={renderLabel(text('label', 'Label'))}
-        description={text('description', 'Description')}
-        errors={array('errors', [])}
-        resetMargin={boolean('resetMargin', false)}
+        tooltip={text('Tooltip', 'This is example tooltip!')}
+        label={renderLabel(text('Label', 'Label'))}
+        description={text('Description', 'Description')}
+        errors={array('Errors', [])}
+        resetMargin={boolean('ResetMargin', false)}
         compact
       >
         {select}
@@ -234,30 +238,30 @@ const stories = {
         <MaskedInput
           label="Phone number"
           value={phoneValue}
-          onChange={(e) => setPhoneValue(e.target.value)}
+          onChange={e => setPhoneValue(e.target.value)}
           mask="11 111-11-11"
         />
 
         <MaskedInput
           label="Phone number with prefix"
           value={phonePrefixValue}
-          onChange={(e) => setPhonePrefixValue(e.target.value)}
+          onChange={e => setPhonePrefixValue(e.target.value)}
           mask="(11) 111-11-11"
         />
 
-        <MaskedInput label="Date" value={dateValue} onChange={(e) => setDateValue(e.target.value)} mask="11-11-1111" />
+        <MaskedInput label="Date" value={dateValue} onChange={e => setDateValue(e.target.value)} mask="11-11-1111" />
 
         <MaskedInput
           label="Birthdate"
           value={birthdateValue}
-          onChange={(e) => setBirthdateValue(e.target.value)}
+          onChange={e => setBirthdateValue(e.target.value)}
           mask="11/11/1111"
         />
 
         <MaskedInput
           label="Credit card"
           value={creditCardvalue}
-          onChange={(e) => setCreditCardvalue(e.target.value)}
+          onChange={e => setCreditCardvalue(e.target.value)}
           mask="1111-1111-1111-1111"
         />
       </div>
@@ -300,14 +304,14 @@ const stories = {
     return (
       <Input
         size={size}
-        placeholder={text('placeholder', 'Placeholder')}
-        label={renderLabel(text('label', 'Label'))}
+        placeholder={text('Placeholder', 'Placeholder')}
+        label={renderLabel(text('Label', 'Label'))}
         description={descriptionMessage && getDescription(hasDescription)}
         errorText={!isFocus && getErrorText(hasError)}
         error={!isFocus && hasError}
         counterLimit={counterLimitWords && getCounter(hasCounter)}
-        disabled={boolean('disabled', false)}
-        onChange={(e) => setValue(e.target.value)}
+        disabled={boolean('Disabled', false)}
+        onChange={e => setValue(e.target.value)}
         onBlur={() => {
           action('I am blurred');
           setFocus(false);
@@ -334,11 +338,11 @@ const stories = {
     return (
       <Input
         size={'default'}
-        placeholder={text('placeholder', 'Placeholder')}
-        label={renderLabel(text('label', 'Label'))}
-        errorText={text('errorText', '')}
-        disabled={boolean('disabled', false)}
-        onChange={(e) => setValue(e.target.value)}
+        placeholder={text('Placeholder', 'Placeholder')}
+        label={renderLabel(text('Label', 'Label'))}
+        errorText={text('ErrorText', '')}
+        disabled={boolean('Disabled', false)}
+        onChange={e => setValue(e.target.value)}
         value={value}
         prefixel={renderAddonComponent(prefixType, prefixLabelText)}
         suffixel={renderAddonComponent(suffixType, suffixLabelText)}
@@ -361,13 +365,13 @@ const stories = {
     return (
       <TextArea
         rows={number('rows', 4)}
-        placeholder={text('placeholder', 'Placeholder')}
-        label={renderLabel(text('label', 'Label'))}
-        description={text('description', 'Description')}
+        placeholder={text('Placeholder', 'Placeholder')}
+        label={renderLabel(text('Label', 'Label'))}
+        description={text('Description', 'Description')}
         errorText={!isFocus && getErrorText(hasError)}
         error={!isFocus && hasError}
-        counterLimit={number('counterLimit', 100)}
-        disabled={boolean('disabled', false)}
+        counterLimit={number('CounterLimit', 100)}
+        disabled={boolean('Disabled', false)}
         onBlur={() => {
           action('I am blurred');
           setFocus(false);
@@ -376,7 +380,7 @@ const stories = {
           action('I am focused');
           setFocus(true);
         }}
-        onChange={(e) => setValue(e.target.value)}
+        onChange={e => setValue(e.target.value)}
         value={value}
       />
     );
@@ -398,14 +402,14 @@ const stories = {
     return (
       <TextArea
         rows={number('rows', 4)}
-        placeholder={text('placeholder', 'Placeholder')}
-        label={renderLabel(text('label', 'Label'))}
-        description={text('description', 'Description')}
+        placeholder={text('Placeholder', 'Placeholder')}
+        label={renderLabel(text('Label', 'Label'))}
+        description={text('Description', 'Description')}
         errorText={!isFocus && getErrorText(hasError)}
         error={!isFocus && hasError}
-        counterLimit={number('counterLimit', 10)}
-        disabled={boolean('disabled', false)}
-        onChange={(e) => setValue(e.target.value)}
+        counterLimit={number('CounterLimit', 10)}
+        disabled={boolean('Disabled', false)}
+        onChange={e => setValue(e.target.value)}
         value={value}
         onBlur={() => {
           action('I am blurred');
