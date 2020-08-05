@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { VariableSizeGrid as Grid } from 'react-window';
+import { FixedSizeList as List } from 'react-window';
 import ResizeObserver from 'rc-resize-observer';
 import classNames from 'classnames';
 import Checkbox from '@synerise/ds-checkbox';
 import Scrollbar from '@synerise/ds-scrollbar';
 import DSTable from '../Table';
-import { DSTableProps } from '../Table.types';
+import { DSTableProps, RowType } from '../Table.types';
 import VirtualTableRow from './VirtualTableRow';
 
 export const EXPANDED_ROW_PROPERTY = 'expandedChild';
@@ -23,7 +23,7 @@ interface Props<T> extends DSTableProps<T> {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-function VirtualTable<T extends object = { children?: []; [EXPANDED_ROW_PROPERTY]?: boolean }>(
+function VirtualTable<T extends any & RowType<T> & { [EXPANDED_ROW_PROPERTY]?: boolean }>(
   props: Props<T>
 ): React.ReactElement {
   const {
@@ -60,27 +60,66 @@ function VirtualTable<T extends object = { children?: []; [EXPANDED_ROW_PROPERTY
           dataIndex: 'key',
           render: (key: string, record: T): React.ReactNode => {
             const recordKey = getRowKey(record);
+            const hasChilds = record.children !== undefined && Array.isArray(record.children);
+            const allChildsChecked =
+              hasChilds &&
+              record.children?.filter((child: T) => {
+                const childKey = getRowKey(child);
+                return childKey && selection?.selectedRowKeys.indexOf(childKey) < 0;
+              }).length === 0;
+            const checkedChilds =
+              record.children?.filter((child: T) => {
+                const childKey = getRowKey(child);
+                return childKey && selection?.selectedRowKeys.indexOf(childKey) >= 0;
+              }) || [];
+            const isIndeterminate =
+              hasChilds && checkedChilds.length > 0 && checkedChilds.length < record.children.length;
             return (
               recordKey !== undefined && (
                 <Checkbox
-                  checked={selection.selectedRowKeys && selection.selectedRowKeys.indexOf(recordKey) >= 0}
+                  key={`checkbox-${recordKey}`}
+                  checked={
+                    (selection.selectedRowKeys && selection.selectedRowKeys.indexOf(recordKey) >= 0) || allChildsChecked
+                  }
+                  indeterminate={isIndeterminate}
                   onChange={(event): void => {
                     const { selectedRowKeys, onChange } = selection;
-                    let selectedKeys = selectedRowKeys || [];
+                    let selectedRows: T[] = [];
+                    dataSource &&
+                      dataSource.forEach((row: T): void => {
+                        if (row.children !== undefined && Array.isArray(row.children)) {
+                          row.children.forEach((child: T) => {
+                            const k = getRowKey(child);
+                            if (k && selectedRowKeys.indexOf(k) >= 0) {
+                              selectedRows = [...selectedRows, child];
+                            }
+                          });
+                        } else {
+                          const k = getRowKey(row);
+                          if (k && selectedRowKeys.indexOf(k) >= 0) {
+                            selectedRows = [...selectedRows, row];
+                          }
+                        }
+                      });
                     if (event.target.checked) {
-                      selectedKeys = [...selectedKeys, recordKey];
+                      if (hasChilds) {
+                        selectedRows = [...selectedRows, ...record.children];
+                      } else {
+                        selectedRows = [...selectedRows, record];
+                      }
+                    } else if (hasChilds) {
+                      const childsKeys = record.children.map((child: T) => getRowKey(child));
+                      selectedRows = selectedRows.filter(child => childsKeys.indexOf(getRowKey(child)) < 0);
                     } else {
-                      selectedKeys = selectedKeys.filter(k => k !== recordKey);
+                      selectedRows = selectedRows.filter(row => getRowKey(row) !== recordKey);
                     }
+
+                    selectedRows = [...new Set(selectedRows)];
+
                     onChange &&
                       onChange(
-                        selectedKeys,
-                        (dataSource &&
-                          dataSource.filter(row => {
-                            const dataSourceRowKey = getRowKey(row);
-                            return dataSourceRowKey && selectedKeys.includes(dataSourceRowKey);
-                          })) ||
-                          []
+                        selectedRows.map(selected => getRowKey(selected) as React.ReactText),
+                        selectedRows
                       );
                   }}
                 />
@@ -114,30 +153,21 @@ function VirtualTable<T extends object = { children?: []; [EXPANDED_ROW_PROPERTY
   }, [virtualColumns, tableWidth, initialWidth]);
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const gridRef = React.useRef<any>();
+  const listRef = React.useRef<any>();
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [connectObject] = React.useState<any>(() => {
     const obj = {};
     Object.defineProperty(obj, 'scrollLeft', {
       get: () => null,
       set: (scrollLeft: number) => {
-        if (gridRef.current) {
-          gridRef.current.scrollTo({ scrollLeft });
+        if (listRef.current) {
+          listRef.current.scrollTo({ scrollLeft });
         }
       },
     });
 
     return obj;
   });
-
-  const resetVirtualGrid = (): void => {
-    if (gridRef.current) {
-      gridRef.current.resetAfterIndices({
-        columnIndex: 0,
-        shouldForceUpdate: false,
-      });
-    }
-  };
 
   const CustomScrollbar = React.useCallback(({ onScroll, children }): React.ReactElement => {
     return (
@@ -148,71 +178,38 @@ function VirtualTable<T extends object = { children?: []; [EXPANDED_ROW_PROPERTY
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  React.useEffect(() => resetVirtualGrid, []);
-  React.useEffect(() => resetVirtualGrid, [tableWidth]);
-
   const renderBody = React.useCallback(
     (rawData, meta): React.ReactNode => {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const renderVirtualList = (data: T[], { ref, onScroll }: any): React.ReactNode => {
+      const renderVirtualList = (data: T[], { ref }: any): React.ReactNode => {
         // eslint-disable-next-line no-param-reassign
         ref.current = connectObject;
         return (
-          // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-          // @ts-ignore
-          <Grid
-            ref={gridRef}
+          <List
+            ref={listRef}
             className="virtual-grid"
-            columnCount={mergedColumns.length}
-            columnWidth={(index: number): number => {
-              const { width } = mergedColumns[index];
-              const columnWidth = index === mergedColumns.length - 1 ? width - 1 : width;
-              return columnWidth;
-            }}
             height={scroll.y}
-            rowCount={data.length}
-            rowHeight={(): number => cellHeight}
+            itemCount={data.length}
+            itemSize={cellHeight}
             width={tableWidth}
-            onScroll={({ scrollLeft }: { scrollLeft: number }): void => {
-              onScroll({ scrollLeft });
+            itemData={{ mergedColumns, selection, onRowClick, dataSource: data }}
+            itemKey={(index): string => {
+              return String(getRowKey(data[index]));
             }}
             outerElementType={CustomScrollbar}
           >
-            {/* eslint-disable-next-line @typescript-eslint/explicit-function-return-type */}
-            {({
-              columnIndex,
-              rowIndex,
-              style,
-            }: {
-              columnIndex: number;
-              rowIndex: number;
-              style: object;
-            }): React.ReactNode => (
-              <VirtualTableRow<T>
-                columnIndex={columnIndex}
-                rowIndex={rowIndex}
-                style={style}
-                mergedColumns={mergedColumns}
-                data={data}
-                selection={selection}
-                onRowClick={onRowClick}
-              />
-            )}
-          </Grid>
+            {VirtualTableRow}
+          </List>
         );
       };
 
       if (expandable?.expandedRowKeys?.length) {
         const expandedRows = rawData.reduce((result: T[], currentRow: T) => {
           const key = getRowKey(currentRow);
-          // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-          // @ts-ignore
           if (key !== undefined && expandable?.expandedRowKeys?.includes(key) && currentRow.children.length) {
             return [
               ...result,
               currentRow,
-              // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-              // @ts-ignore
               ...currentRow.children.map((child: T) => ({ ...child, [EXPANDED_ROW_PROPERTY]: true })),
             ];
           }
@@ -247,8 +244,6 @@ function VirtualTable<T extends object = { children?: []; [EXPANDED_ROW_PROPERTY
         className={classNames(className, 'virtual-table')}
         columns={selection ? mergedColumns.slice(1) : mergedColumns}
         pagination={false}
-        /* eslint-disable-next-line @typescript-eslint/ban-ts-ignore */
-        // @ts-ignore
         components={{
           body: renderBody,
         }}

@@ -6,38 +6,42 @@ import Checkbox from '@synerise/ds-checkbox';
 const stories = {
   default: () => ({
     onChange: action('changed'),
-    disabled: boolean('disabled', false),
-    indeterminate: boolean('indeterminate', false),
-    description: text('description', ''),
-    errorText: text('errorText', ''),
-    children: text('children', 'Option'),
+    disabled: boolean('Disabled', false),
+    indeterminate: boolean('Set indeterminate state of checkbox', false),
+    description: text('Set description', ''),
+    errorText: text('Set error message', ''),
+    hasError: boolean('Has error', false),
+    children: text('Set checkbox label', 'Label'),
   }),
   solo: () => ({
     onChange: action('changed'),
-    disabled: boolean('disabled', false),
-    indeterminate: boolean('indeterminate', false),
+    disabled: boolean('Disabled', false),
+    hasError: boolean('Has error', false),
+    indeterminate: boolean('Set indeterminate state of checkbox', false),
   }),
   group: () => (
     <Checkbox.Group
       onChange={values => console.log('Checked values', values)}
     >
       <Checkbox
-        disabled={boolean('disabled', false)}
-        indeterminate={boolean('indeterminate', false)}
-        description={text('description', '123')}
-        errorText={text('errorText', '')}
+        disabled={boolean('Disabled', false)}
+        hasError={boolean('Has error', false)}
+        indeterminate={boolean('Set indeterminate state of checkbox', false)}
+        description={text('Set description', 'Description')}
+        errorText={text('Set error message', '')}
         value="A"
       >
-        {text('children', 'Option')}
+        {text('children', 'Label')}
       </Checkbox>
       <Checkbox
-        disabled={boolean('disabled', false)}
-        indeterminate={boolean('indeterminate', false)}
-        description={text('description', '123')}
-        errorText={text('errorText', '')}
+        disabled={boolean('Disabled', false)}
+        hasError={boolean('Has error', false)}
+        indeterminate={boolean('Set indeterminate state of checkbox', false)}
+        description={text('Set description', 'Description')}
+        errorText={text('Set error message', '')}
         value="B"
       >
-        {text('children', 'Option')}
+        {text('Set checkbox label', 'Label')}
       </Checkbox>
     </Checkbox.Group>
   ),

@@ -109,6 +109,7 @@ const stories = {
       tooltipPlacement={select('Placement', placements, 'top')}
       useColorPalette={boolean('useColorPalette', false)}
       getTooltipPopupContainer={() => document.body}
+      tooltipVisible
     />
   ),
   withVisibleLabels: () => (

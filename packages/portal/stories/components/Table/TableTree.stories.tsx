@@ -20,31 +20,31 @@ const CELL_SIZES = {
 
 const updateChildren = (label: string, newValue: boolean, children: any[]) => {
   return children.map(child => {
-    if(!child.children) {
+    if (!child.children) {
       return {
         ...child,
-        [label]: newValue
-      }
+        [label]: newValue,
+      };
     }
     return {
       ...child,
       [label]: newValue,
       children: updateChildren(label, newValue, child.children),
-    }
+    };
   });
 };
 
 const updateParents = (data: any[], label: string) => {
   return data.map(record => {
-    if(!record.children) {
+    if (!record.children) {
       return {
-        ...record
-      }
+        ...record,
+      };
     }
     return {
       ...record,
       [label]: updateParents(record.children, label).filter(child => child[label] === false).length === 0,
-    }
+    };
   });
 };
 
@@ -54,176 +54,185 @@ const stories = {
     expandedRows: [],
     selectedRows: [],
   })(({ store }) => {
-      const { expandedRows, selectedRows, data } = store.state;
-      const handleExpandRow = (key: string): void => {
-        if (expandedRows.indexOf(key) < 0) {
-          store.set({ expandedRows: [...expandedRows, key] });
-        } else {
-          store.set({ expandedRows: expandedRows.filter(k => k !== key) });
-        }
-      };
+    const { expandedRows, selectedRows, data } = store.state;
+    const handleExpandRow = (key: string): void => {
+      if (expandedRows.indexOf(key) < 0) {
+        store.set({ expandedRows: [...expandedRows, key] });
+      } else {
+        store.set({ expandedRows: expandedRows.filter(k => k !== key) });
+      }
+    };
 
-      const handleSelectRow = selectedRowKeys => {
-        store.set({ selectedRows: selectedRowKeys });
-      };
+    const handleSelectRow = selectedRowKeys => {
+      store.set({ selectedRows: selectedRowKeys });
+    };
 
-      const setValue = (newValue: boolean, record: any, label: string) => {
-        const setChildrenValue = (data) => {
-          return data.map((rec) => {
-            if(rec.key === record.key) {
-              if(!rec.children) {
-                return {
-                  ...rec,
-                  [label]: newValue,
-                }
-              }
+    const setValue = (newValue: boolean, record: any, label: string) => {
+      const setChildrenValue = data => {
+        return data.map(rec => {
+          if (rec.key === record.key) {
+            if (!rec.children) {
               return {
                 ...rec,
                 [label]: newValue,
-                children: updateChildren(label, newValue, rec.children),
-              }
-            } else {
-              if(!rec.children) {
-                return {
-                  ...rec
-                }
-              }
+              };
+            }
+            return {
+              ...rec,
+              [label]: newValue,
+              children: updateChildren(label, newValue, rec.children),
+            };
+          } else {
+            if (!rec.children) {
               return {
                 ...rec,
-                children: setChildrenValue(rec.children)
-              }
+              };
             }
-          });
-        };
-
-        const updatedChilds = setChildrenValue(data);
-        store.set({data: updateParents(updatedChilds, label)});
-      };
-
-      const getColumns = () => {
-        return [
-          {
-            title: 'Name',
-            dataIndex: 'name',
-            key: 'name',
-            render: (name) => {
-              return (
-                <span style={{fontWeight: 500, fontSize: '13px', lineHeight: '18px'}}>{name}</span>
-              )
-            }
-          },
-          {
-            title: 'Create',
-            dataIndex: 'create_permission',
-            key: 'create_permission',
-            width: 120,
-            render: (value, record) => <Checkbox withoutPadding checked={value} onChange={(e) => setValue(e.target.checked, record, 'create_permission')} />
-          },
-          {
-            title: 'Read',
-            dataIndex: 'read_permission',
-            key: 'read_permission',
-            width: 120,
-            render: (value, record) => <Checkbox withoutPadding checked={value} onChange={(e) => setValue(e.target.checked, record, 'read_permission')} />
-          },
-          {
-            title: 'Edit',
-            dataIndex: 'edit_permission',
-            key: 'edit_permission',
-            width: 120,
-            render: (value, record) => <Checkbox withoutPadding checked={value} onChange={(e) => setValue(e.target.checked, record, 'edit_permission')} />
-          },
-          {
-            title: 'Delete',
-            dataIndex: 'delete_permission',
-            key: 'delete_permission',
-            width: 120,
-            render: (value, record) => <Checkbox withoutPadding checked={value} onChange={(e) => setValue(e.target.checked, record, 'delete_permission')} />
+            return {
+              ...rec,
+              children: setChildrenValue(rec.children),
+            };
           }
-        ];
+        });
       };
+
+      const updatedChilds = setChildrenValue(data);
+      store.set({ data: updateParents(updatedChilds, label) });
+    };
+
+    const getColumns = () => {
+      return [
+        {
+          title: 'Name',
+          dataIndex: 'name',
+          key: 'name',
+          render: name => {
+            return <span style={{ fontWeight: 500, fontSize: '13px', lineHeight: '18px' }}>{name}</span>;
+          },
+        },
+        {
+          title: 'Create',
+          dataIndex: 'create_permission',
+          key: 'create_permission',
+          width: 120,
+          render: (value, record) => (
+            <Checkbox
+              withoutPadding
+              checked={value}
+              onChange={e => setValue(e.target.checked, record, 'create_permission')}
+            />
+          ),
+        },
+        {
+          title: 'Read',
+          dataIndex: 'read_permission',
+          key: 'read_permission',
+          width: 120,
+          render: (value, record) => (
+            <Checkbox
+              withoutPadding
+              checked={value}
+              onChange={e => setValue(e.target.checked, record, 'read_permission')}
+            />
+          ),
+        },
+        {
+          title: 'Edit',
+          dataIndex: 'edit_permission',
+          key: 'edit_permission',
+          width: 120,
+          render: (value, record) => (
+            <Checkbox
+              withoutPadding
+              checked={value}
+              onChange={e => setValue(e.target.checked, record, 'edit_permission')}
+            />
+          ),
+        },
+        {
+          title: 'Delete',
+          dataIndex: 'delete_permission',
+          key: 'delete_permission',
+          width: 120,
+          render: (value, record) => (
+            <Checkbox
+              withoutPadding
+              checked={value}
+              onChange={e => setValue(e.target.checked, record, 'delete_permission')}
+            />
+          ),
+        },
+      ];
+    };
 
     const selectEven = () => {
       const evenRows = data.map(row => row.key).filter((key, index) => index % 2);
-      store.set({selectedRows: evenRows});
+      store.set({ selectedRows: evenRows });
     };
 
     return (
-        <TreeTable
-          title={`${data.length} results`}
-          dataSource={data}
-          columns={getColumns()}
-          loading={boolean('Set loading state', false)}
-          roundedHeader={boolean('Rounded header', false)}
-          cellSize={select('Set cells size', CELL_SIZES, CELL_SIZES.default)}
-          headerButton={boolean('Show header button', false) && (
+      <TreeTable
+        title={`${data.length} results`}
+        dataSource={data}
+        columns={getColumns()}
+        loading={boolean('Set loading state', false)}
+        roundedHeader={boolean('Rounded header', false)}
+        cellSize={select('Set cells size', CELL_SIZES, CELL_SIZES.default)}
+        headerButton={
+          boolean('Show header button', false) && (
             <Button type="ghost" mode="icon-label" onClick={action('Header button action')}>
               <Icon component={<AddM />} />
               {text('Header button label', 'Add row')}
             </Button>
-          )}
-          pagination={{
-            showSizeChanger: boolean('Show size changer', true),
-            showQuickJumper: boolean('Show quick jumper', true),
-            onChange: action('pageChanged'),
-          }}
-          locale={{
-            pagination: {
-              items: 'results',
-            }
-          }}
-          expandIcon={(props) => {
-            const { expandable, expanded, onExpand, record } = props;
+          )
+        }
+        pagination={{
+          showSizeChanger: boolean('Show size changer', true),
+          showQuickJumper: boolean('Show quick jumper', true),
+          onChange: action('pageChanged'),
+        }}
+        locale={{
+          pagination: {
+            items: 'results',
+          },
+        }}
+        expandIcon={props => {
+          const { expandable, expanded, onExpand, record } = props;
 
-            return expandable ? (
-              <td className="ant-table-cell">
-                <Button.Expander expanded={expanded} onClick={(e) => onExpand(record, e)} />
-              </td>
-            ) : (
-              <Icon component={<ChildRowLeftDownM />} />
-            )
-          }}
-          rowKey={row => row.key}
-          selection={
-            boolean('Enable row selection', false) && {
-              onChange: handleSelectRow,
-              selectedRowKeys: selectedRows,
-              selections: [
-                Table.SELECTION_ALL,
-                Table.SELECTION_INVERT,
-                {
-                  key: 'even',
-                  label: 'Select even',
-                  onClick: selectEven,
-                }
-              ]
-            }
-          }
-          onSearch={console.log}
-          onRow={(record, index: number) => ({
-            onClick: event => {
-              boolean('Expand on row click', false) && handleExpandRow(record.key)
-            },
-          })}
-          itemsMenu={
-            <ItemsMenu>
-              <Button onClick={action('Export')} type='secondary' mode='icon-label'>
-                <Icon component={<FileDownloadM/>}/>
-                Export
-              </Button>
-              <Button onClick={action('Edit')} type='secondary' mode='icon-label'>
-                <Icon component={<EditM/>}/>
-                Edit
-              </Button>
-              <Button onClick={action('Delete')} type='secondary' mode='icon-label'>
-                <Icon component={<TrashM/>}/>
-                Delete
-              </Button>
-            </ItemsMenu>
-          }
-        />)
-    }
-  ),
+          return expandable ? (
+            <td className="ant-table-cell">
+              <Button.Expander expanded={expanded} onClick={e => onExpand(record, e)} />
+            </td>
+          ) : (
+            <Icon component={<ChildRowLeftDownM />} />
+          );
+        }}
+        rowKey={row => row.key}
+        onSearch={console.log}
+        onRow={(record, index: number) => ({
+          onClick: event => {
+            boolean('Expand on row click', false) && handleExpandRow(record.key);
+          },
+        })}
+        itemsMenu={
+          <ItemsMenu>
+            <Button onClick={action('Export')} type="secondary" mode="icon-label">
+              <Icon component={<FileDownloadM />} />
+              Export
+            </Button>
+            <Button onClick={action('Edit')} type="secondary" mode="icon-label">
+              <Icon component={<EditM />} />
+              Edit
+            </Button>
+            <Button onClick={action('Delete')} type="secondary" mode="icon-label">
+              <Icon component={<TrashM />} />
+              Delete
+            </Button>
+          </ItemsMenu>
+        }
+      />
+    );
+  }),
 };
 
 export default {

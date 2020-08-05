@@ -2,9 +2,19 @@ import * as React from 'react';
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import Badge from 'antd/lib/badge';
 import { macro } from '@synerise/ds-typography';
+import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { BadgeProps } from './Badge';
+
+const getBackgroundColor = (props: ThemeProps & Pick<BadgeProps, 'backgroundColor' | 'backgroundColorHue'>): string => {
+  if (props.backgroundColor === 'transparent') return 'transparent';
+  if (props.backgroundColor === 'white') return props.theme.palette.white;
+  return props.theme.palette[`${props.backgroundColor}-${props.backgroundColorHue}`];
+};
 
 // eslint-disable-next-line react/jsx-props-no-spreading
-export default styled(({ flag, outlined, ...rest }) => <Badge {...rest} />)`
+export default styled(({ flag, outlined, backgroundColor, textColor, backgroundColorHue, textColorHue, ...rest }) => (
+  <Badge {...rest} />
+))`
 && {
   .ant-scroll-number-only{
     height: 18px;
@@ -23,6 +33,8 @@ export default styled(({ flag, outlined, ...rest }) => <Badge {...rest} />)`
     min-width: 18px;
     font-size:13px;
     font-weight: 500;
+    background-color: ${(props): string => getBackgroundColor(props)};
+    color: ${(props): string => props.theme.palette[`${props.textColor}-${props.textColorHue}`]};
   }
   ${(props): FlattenSimpleInterpolation | false =>
     css`

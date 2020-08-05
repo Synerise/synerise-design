@@ -1,9 +1,9 @@
 import styled, { keyframes } from 'styled-components';
-import { FilterElement } from './Search.types';
+import { INPUT_EXPAND_ANIMATION_DURATION } from './Search';
 
 const LABEL_LEFT_OFFSET = 7;
-const INPUT_EXPAND_ANIMATION_DURATION = 0.2;
-
+const ANIMATION_DURATION = INPUT_EXPAND_ANIMATION_DURATION / 1000;
+const MAX_FILTER_WIDTH = 120;
 export const openDropdownAnimation = keyframes`
   0% {
     opacity:0;
@@ -50,21 +50,20 @@ export const Filter = styled.div`
   align-items: center;
   color: ${(props): string => props.theme.palette['blue-600']};
   font-weight: 500;
-  max-width: 120px;
+  max-width: ${MAX_FILTER_WIDTH}px;
   direction: ltr;
-
+  position: relative;
+  padding-right: 2px;
   span {
+    margin-left: 4px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    margin-left: 4px;
     user-select: none;
-
-    &::after {
-      content: ':';
-    }
   }
-
+  &::after {
+    content: ':';
+  }
   .ds-icon {
     margin-left: 4px;
   }
@@ -129,19 +128,22 @@ export const SearchInner = styled.div<{ hasValue: boolean; alwaysHighlight?: boo
    }
    
   `}
+  input::placeholder {
+    line-height: 1.29;
+  }
 `;
 
-export const SearchInputContent = styled.div<{ offset: number; filterLabel: FilterElement | null | undefined }>`
+export const SearchInputContent = styled.div<{ offset: number; filterLabel: object | null | undefined }>`
   overflow: hidden;
   direction: rtl;
-  transition: width ${INPUT_EXPAND_ANIMATION_DURATION}s ease-in-out;
+  transition: width ${ANIMATION_DURATION}s ease-in-out;
   width: 0;
   input {
     opacity: 0;
     height: 32px;
   }
   input.ant-input {
-    transition: padding-left 0.1s ease-in-out !important;
+    transition: padding-left 0s ease-in-out !important;
   }
   &.is-open {
     width: 100%;
@@ -168,7 +170,7 @@ export const ClearButton = styled.div`
   padding: 0 10px 0 10px;
 `;
 
-export const SearchDropdownContent = styled.div<{ isOpen?: boolean; maxHeight?: number }>`
+export const SearchDropdownContent = styled.div<{ isOpen?: boolean; maxHeight: number }>`
   position: absolute;
   top: 40px;
   background: ${(props): string => props.theme.palette.white};

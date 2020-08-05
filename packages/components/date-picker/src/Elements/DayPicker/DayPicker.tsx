@@ -16,8 +16,10 @@ const Picker: React.FC<DayPickerProps> = ({
   onMonthChange,
   onMonthNameClick,
   onYearNameClick,
-  hidePrev,
-  hideNext,
+  hideLongNext,
+  hideLongPrev,
+  hideShortNext,
+  hideShortPrev,
   intl,
   modifiers,
   ...rest
@@ -32,12 +34,10 @@ const Picker: React.FC<DayPickerProps> = ({
             <S.Link onClick={onYearNameClick}>{fnsFormat(month, 'YYYY', intl.locale)}</S.Link>
           </>
         }
-        onLongPrev={(): void => onMonthChange(fnsAddYears(month, -1))}
-        onShortPrev={(): void => onMonthChange(fnsAddMonths(month, -1))}
-        onLongNext={(): void => onMonthChange(fnsAddYears(month, 1))}
-        onShortNext={(): void => onMonthChange(fnsAddMonths(month, 1))}
-        hidePrev={hidePrev}
-        hideNext={hideNext}
+        onLongPrev={hideLongPrev ? undefined : (): void => onMonthChange(fnsAddYears(month, -1))}
+        onShortPrev={hideShortPrev ? undefined : (): void => onMonthChange(fnsAddMonths(month, -1))}
+        onLongNext={hideLongNext ? undefined : (): void => onMonthChange(fnsAddYears(month, 1))}
+        onShortNext={hideShortNext ? undefined : (): void => onMonthChange(fnsAddMonths(month, 1))}
         key="head"
       />
       <DayPicker
@@ -47,10 +47,8 @@ const Picker: React.FC<DayPickerProps> = ({
         key="body"
         locale={intl.locale}
         localeUtils={MomentLocaleUtils}
-        {...rest}
-        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-        // @ts-ignore
         modifiers={modifiers}
+        {...rest}
       />
     </>
   );

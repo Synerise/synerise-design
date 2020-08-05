@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Search from '@synerise/ds-search';
 import VarTypeStringM from '@synerise/ds-icon/dist/icons/VarTypeStringM';
-import { number, text } from '@storybook/addon-knobs';
+import { number, text, boolean } from '@storybook/addon-knobs';
 import { VarTypeListM, VarTypeNumberM } from '@synerise/ds-icon/dist/icons';
 import { FilterElement } from '@synerise/ds-search/dist/Search.types';
 import Menu from '@synerise/ds-menu';
@@ -9,12 +9,15 @@ import Icon from '@synerise/ds-icon';
 import { getItemsWithAvatar, getSuggestions } from './dataPopulator';
 import Divider from '@synerise/ds-divider';
 import { SearchInput } from '@synerise/ds-search/dist/Elements';
+import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 
 const decorator = storyFn => (
   <div style={{ width: '100vw', position: 'absolute', left: '0', top: '20vh' }}>
     <div style={{ width: '300px', margin: 'auto' }}>{storyFn()}</div>
   </div>
 );
+
+const NOOP = (): void => {};
 
 const parameters = [
   { text: 'First Name', icon: <VarTypeStringM /> },
@@ -56,8 +59,8 @@ const stories = {
         }}
         value={value}
         onClear={() => {
-console.log('Clear value');
-          setValue('')
+          console.log('Clear value');
+          setValue('');
         }}
         closeOnClickOutside
       />
@@ -75,8 +78,8 @@ console.log('Clear value');
         }}
         value={value}
         onClear={() => {
-          console.log('Clear value')
-          setValue('')
+          console.log('Clear value');
+          setValue('');
         }}
         closeOnClickOutside={false}
         alwaysExpanded
@@ -85,8 +88,8 @@ console.log('Clear value');
   },
   withDropdown: () => {
     const [value, setValue] = React.useState<string>('');
-    const [parameterValue, setParameterValue] = React.useState<string>('');
-    const [suggestions, setSuggestions] = React.useState([]);
+    const [parameterValue, setParameterValue] = React.useState('');
+    const [suggestions, setSuggestions] = React.useState<any[] | null>(null);
 
     const recentTitle = text('Set recent title', 'Recent');
     const recentTooltip = text('Set recent tooltip', 'Recent');
@@ -94,7 +97,7 @@ console.log('Clear value');
 
     const parametersTitle = text('Set search in title', 'Search in');
     const parametersTooltip = text('Set search in tooltip', 'Search in');
-    const parametersCount = number('Set search in count', 6, { min: 1, max: parameters.length });
+    const parametersCount = number('Set search in count', 6, { min: 1, max: 10 });
 
     const suggestionsTitle = text('Set suggestions title', 'Suggest');
     const suggestionsTooltip = text('Set suggestions tooltip', 'Suggest');
@@ -102,56 +105,63 @@ console.log('Clear value');
     return (
       <Search
         clearTooltip="Clear"
-        placeholder="Search"
-        parameters={parameters.slice(0, parametersCount)}
-        recent={recent.slice(0, recentCount)}
-        suggestions={suggestions}
-        value={value}
-        parameterValue={parameterValue}
-        onValueChange={value => {
-          setValue(value);
+        divider={
+          <div style={{ padding: '12px', paddingBottom: '0px', paddingRight: '20px' }}>
+            <Divider dashed />
+          </div>
+        }
+        dropdownMaxHeight={400}
+        filterLookupKey="filter"
+        onClear={() => {
+          setParameterValue('');
+          setValue('');
         }}
         onParameterValueChange={value => {
           setParameterValue(value);
           const fakeApiResponse = getSuggestions(value);
           setSuggestions(fakeApiResponse);
         }}
-        divider={
-          <div style={{ padding: '12px', paddingBottom: '0px', paddingRight:'20px' }}>
-            <Divider dashed/>
-          </div>
-        }
-        recentDisplayProps={{
-          tooltip: recentTooltip,
-          title: recentTitle,
-          rowHeight: 32,
-          visibleRows: 3,
-          itemRender: (item: FilterElement) => <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>,
+        onValueChange={value => {
+          setValue(value);
         }}
+        parameters={parameters.slice(0, parametersCount)}
         parametersDisplayProps={{
           tooltip: parametersTooltip,
           title: parametersTitle,
           rowHeight: 32,
-          visibleRows: 6,
           itemRender: (item: FilterElement) => (
             <Menu.Item
               highlight={value}
               style={{ paddingLeft: '12px' }}
-              onItemHover={(): void => {}}
-              prefixel={item && <Icon component={item && item.icon} />}
+              onItemHover={NOOP}
+              prefixel={item && <Icon component={item && item.icon} color={theme.palette['grey-600']} />}
             >
               {item && item.text}
             </Menu.Item>
           ),
         }}
+        parameterValue={parameterValue}
+        placeholder="Search"
+        recent={recent.slice(0, recentCount)}
+        recentDisplayProps={{
+          tooltip: recentTooltip,
+          title: recentTitle,
+          rowHeight: 32,
+          itemRender: (item: FilterElement) => <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>,
+        }}
+        suggestions={suggestions}
         suggestionsDisplayProps={{
           tooltip: suggestionsTooltip,
           title: suggestionsTitle,
           rowHeight: 32,
-          visibleRows: 6,
-          itemRender: (item: FilterElement) => <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>,
+          itemRender: (item: FilterElement) => <Menu.Item onItemHover={NOOP}>{item && item.text}</Menu.Item>,
         }}
-        dropdownMaxHeight={400}
+        textLookupConfig={{
+          parameters: 'text',
+          recent: 'text',
+          suggestions: 'text',
+        }}
+        value={value}
       />
     );
   },
@@ -166,62 +176,72 @@ console.log('Clear value');
 
     const parametersTitle = text('Set search in title', 'Search in');
     const parametersTooltip = text('Set search in tooltip', 'Search in');
-    const parametersCount = number('Set search in count', 6, { min: 1, max: parameters.length });
+    const parametersCount = number('Set search in count', 6, { min: 1, max: 10 });
 
     const suggestionsTitle = text('Set suggestions title', 'Suggest');
     const suggestionsTooltip = text('Set suggestions tooltip', 'Suggest');
+
     return (
       <Search
         clearTooltip="Clear"
-        placeholder="Search"
-        parameters={parameters.slice(0, parametersCount)}
-        recent={recentWithAvatars.slice(0, recentCount)}
-        suggestions={suggestions}
-        value={value}
-        parameterValue={parameterValue}
-        onValueChange={(value):void => {
-          setValue(value);
+        divider={
+          <div style={{ padding: '12px', paddingBottom: '0px', paddingRight: '20px' }}>
+            <Divider dashed />
+          </div>
+        }
+        dropdownMaxHeight={460}
+        filterLookupKey="filter"
+        onClear={() => {
+          setParameterValue('');
+          setValue('');
         }}
-        onParameterValueChange={(value):void => {
+        onParameterValueChange={(value): void => {
           setParameterValue(value);
           const fakeApiResponse = getSuggestions(value);
           setSuggestions(fakeApiResponse);
         }}
-        recentDisplayProps={{
-          tooltip: recentTooltip,
-          title: recentTitle,
-          rowHeight: 50,
-          visibleRows: 3,
-          itemRender: (item: FilterElement) => (
-            <Menu.Item onItemHover={(): void => {}} {...item} style={{ paddingLeft: '12px' }}>
-              {item.text}
-            </Menu.Item>
-          ),
-        }}
+        onValueChange={(value): void => setValue(value)}
+        parameters={parameters.slice(0, parametersCount)}
         parametersDisplayProps={{
           tooltip: parametersTooltip,
           title: parametersTitle,
           rowHeight: 32,
-          visibleRows: 6,
           itemRender: (item: FilterElement) => (
-            <Menu.Item style={{ paddingLeft: '12px' }} onItemHover={(): void => {}} prefixel={item && <Icon component={item && item.icon} />}>
+            <Menu.Item
+              style={{ paddingLeft: '12px' }}
+              onItemHover={NOOP}
+              prefixel={item && <Icon component={item && item.icon} color={theme.palette['grey-600']} />}
+            >
               {item && item.text}
             </Menu.Item>
           ),
         }}
+        parameterValue={parameterValue}
+        placeholder="Search"
+        recent={recentWithAvatars.slice(0, recentCount)}
+        recentDisplayProps={{
+          tooltip: recentTooltip,
+          title: recentTitle,
+          rowHeight: 50,
+          itemRender: (item: FilterElement) => (
+            <Menu.Item onItemHover={NOOP} {...item} style={{ paddingLeft: '12px' }}>
+              {item.text}
+            </Menu.Item>
+          ),
+        }}
+        suggestions={suggestions}
         suggestionsDisplayProps={{
           tooltip: suggestionsTooltip,
           title: suggestionsTitle,
           rowHeight: 32,
-          visibleRows: 6,
-          itemRender: (item: FilterElement) => <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>,
+          itemRender: (item: FilterElement) => <Menu.Item onItemHover={NOOP}>{item && item.text}</Menu.Item>,
         }}
-        divider={
-          <div style={{ padding: '12px', paddingBottom: '0px', paddingRight:'20px' }}>
-            <Divider dashed/>
-          </div>
-        }
-        dropdownMaxHeight={400}
+        textLookupConfig={{
+          parameters: 'text',
+          recent: 'text',
+          suggestions: 'text',
+        }}
+        value={value}
       />
     );
   },

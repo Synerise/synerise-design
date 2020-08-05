@@ -3,6 +3,57 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.31](https://github.com/Synerise/synerise-design/compare/@synerise/ds-input-number@0.3.30...@synerise/ds-input-number@0.3.31) (2020-07-30)
+
+**Note:** Version bump only for package @synerise/ds-input-number
+
+
+
+
+
+## [0.3.30](https://github.com/Synerise/synerise-design/compare/@synerise/ds-input-number@0.3.29...@synerise/ds-input-number@0.3.30) (2020-07-29)
+
+
+### Bug Fixes
+
+* **input-number:** added 'raw' props in order to use inputgroup ([6b8a8cc](https://github.com/Synerise/synerise-design/commit/6b8a8ccd32ab771cdd015e7572948a403be39c71))
+
+
+
+
+
+## [0.3.29](https://github.com/Synerise/synerise-design/compare/@synerise/ds-input-number@0.3.28...@synerise/ds-input-number@0.3.29) (2020-07-24)
+
+**Note:** Version bump only for package @synerise/ds-input-number
+
+
+
+
+
+## [0.3.28](https://github.com/Synerise/synerise-design/compare/@synerise/ds-input-number@0.3.27...@synerise/ds-input-number@0.3.28) (2020-07-15)
+
+**Note:** Version bump only for package @synerise/ds-input-number
+
+
+
+
+
+## [0.3.27](https://github.com/Synerise/synerise-design/compare/@synerise/ds-input-number@0.3.26...@synerise/ds-input-number@0.3.27) (2020-07-13)
+
+**Note:** Version bump only for package @synerise/ds-input-number
+
+
+
+
+
+## [0.3.26](https://github.com/Synerise/synerise-design/compare/@synerise/ds-input-number@0.3.25...@synerise/ds-input-number@0.3.26) (2020-07-09)
+
+**Note:** Version bump only for package @synerise/ds-input-number
+
+
+
+
+
 ## [0.3.25](https://github.com/Synerise/synerise-design/compare/@synerise/ds-input-number@0.3.24...@synerise/ds-input-number@0.3.25) (2020-07-02)
 
 

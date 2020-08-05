@@ -26,11 +26,11 @@ export const Title = styled(Typography.Title)`
   }
 `;
 
-export const Description = styled(Typography.Text)`
+export const Description = styled.div`
   font-weight: normal;
   display: block;
   padding: 12px 0 0;
-  margin: 8px 0 0;
+  margin: 14px 0 0;
 
   background-image: linear-gradient(
     to right,

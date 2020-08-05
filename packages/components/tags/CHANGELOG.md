@@ -3,6 +3,84 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.100](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@0.2.99...@synerise/ds-tags@0.2.100) (2020-07-30)
+
+**Note:** Version bump only for package @synerise/ds-tags
+
+
+
+
+
+## [0.2.99](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@0.2.98...@synerise/ds-tags@0.2.99) (2020-07-29)
+
+**Note:** Version bump only for package @synerise/ds-tags
+
+
+
+
+
+## [0.2.98](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@0.2.97...@synerise/ds-tags@0.2.98) (2020-07-24)
+
+**Note:** Version bump only for package @synerise/ds-tags
+
+
+
+
+
+## [0.2.97](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@0.2.96...@synerise/ds-tags@0.2.97) (2020-07-24)
+
+**Note:** Version bump only for package @synerise/ds-tags
+
+
+
+
+
+## [0.2.96](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@0.2.95...@synerise/ds-tags@0.2.96) (2020-07-22)
+
+**Note:** Version bump only for package @synerise/ds-tags
+
+
+
+
+
+## [0.2.95](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@0.2.94...@synerise/ds-tags@0.2.95) (2020-07-20)
+
+
+### Bug Fixes
+
+* **tags:** changes in styles and add SearchM Icon to dropdown ([e15d3ba](https://github.com/Synerise/synerise-design/commit/e15d3baf2de61940bdae8ed27d1894e107d8c80e))
+
+
+
+
+
+## [0.2.94](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@0.2.93...@synerise/ds-tags@0.2.94) (2020-07-15)
+
+
+### Bug Fixes
+
+* **tags:** add badge to preffix and suffix to tags ([83c0a30](https://github.com/Synerise/synerise-design/commit/83c0a302a8947c8f81642a7463d1eaf0f81e428b))
+
+
+
+
+
+## [0.2.93](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@0.2.92...@synerise/ds-tags@0.2.93) (2020-07-13)
+
+**Note:** Version bump only for package @synerise/ds-tags
+
+
+
+
+
+## [0.2.92](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@0.2.91...@synerise/ds-tags@0.2.92) (2020-07-09)
+
+**Note:** Version bump only for package @synerise/ds-tags
+
+
+
+
+
 ## [0.2.91](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@0.2.90...@synerise/ds-tags@0.2.91) (2020-07-08)
 
 **Note:** Version bump only for package @synerise/ds-tags

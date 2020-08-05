@@ -29,16 +29,20 @@ import Popconfirm from '@synerise/ds-popconfirm';
 
 ## API
 
-| Property   | Description                                    | Type                | Default                            |
-|------------|------------------------------------------------|---------------------|--------
-| cancelText | text of the Cancel button                      | string              | Cancel                             |
-| okText     | text of the Confirm button                     | string              | OK                                 |
-| okType     | Button type of the Confirm button              | string              | primary                            |
-| title      | title of the confirmation box                  | string or ReactNode |                                    |
-| onCancel   | callback of cancel                             | function(e)         | -                                  |
-| onConfirm  | callback of confirmation                       | function(e)         | -                                  |
-| icon       | customize icon of confirmation                 | ReactNode           | <Icon type="exclamation-circle" /> |
-| disabled   | is show popconfirm when click its childrenNode | boolean             | false                              |
+| Property            | Description                                      | Type                  | Default                            |
+| ------------        | ------------------------------------------------ | --------------------- | --------
+| cancelText          | text of the Cancel button                        | string                | Cancel                             |
+| okText              | text of the Confirm button                       | string                | OK                                 |
+| okType              | Button type of the Confirm button                | string                | primary                            |
+| title               | title of the confirmation box                    | string or ReactNode   |                                    |
+| description         | description of the confirmation box              | string or ReactNode   |                                    |
+| images              | urls of images displayed as a carousel           | string[]              | []                                 |
+| imagesAutoplay      | Whether to autoplay images                       | boolean               | false                              |
+| imagesAutoplaySpeed | speed of autoplay [ms]                           | number                | 5000                               |
+| onCancel            | callback of cancel                               | function(e)           | -                                  |
+| onConfirm           | callback of confirmation                         | function(e)           | -                                  |
+| icon                | customize icon of confirmation                   | ReactNode             | <Icon type="exclamation-circle" /> |
+| disabled            | is show popconfirm when click its childrenNode   | boolean               | false                              |
 
 
 # Popcofirm.ConfirmMessage

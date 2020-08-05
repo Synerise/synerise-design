@@ -2,7 +2,7 @@ import * as React from 'react';
 import { withTheme } from 'styled-components';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon from '@synerise/ds-icon';
-import Add3M from '@synerise/ds-icon/dist/icons/Add3M';
+import { Add3M, SearchM } from '@synerise/ds-icon/dist/icons';
 
 import { Props } from './Tags.types';
 import * as S from './Tags.styles';
@@ -91,6 +91,7 @@ const Tags: React.FC<Props> = ({
         value={searchQuery}
         onSearchChange={setSearchQuery}
         placeholder={(texts && texts.searchPlaceholder) || ''}
+        iconLeft={<Icon component={<SearchM />} color={theme.palette['grey-600']} />}
       />
       <S.DropdownContainer data-testid="dropdown">
         {isCreatable && (

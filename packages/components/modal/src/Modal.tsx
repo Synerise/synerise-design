@@ -8,6 +8,7 @@ import Button from '@synerise/ds-button';
 import '@synerise/ds-core/dist/js/style';
 
 import './style/index.less';
+import classnames from 'classnames';
 import * as S from './Modal.styles';
 
 export interface Props extends ModalProps {
@@ -59,7 +60,12 @@ class ModalProxy extends React.Component<Props> {
       ...antModalProps
     } = this.props;
     const handleOnClose = antModalProps.onCancel;
-    const className = `bodybg-${bodyBackground} ${antModalProps.className || ''} ${blank && 'modal-blank'}`;
+    const className = classnames(
+      `bodybg-${bodyBackground}`,
+      antModalProps.className,
+      { 'modal-blank': Boolean(blank) },
+      { 'with-description': Boolean(description) }
+    );
 
     const titleContainer = (
       <>

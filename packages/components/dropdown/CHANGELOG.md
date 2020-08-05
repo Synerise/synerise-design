@@ -3,6 +3,81 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.67](https://github.com/synerise/synerise-design/compare/@synerise/ds-dropdown@0.11.66...@synerise/ds-dropdown@0.11.67) (2020-07-30)
+
+**Note:** Version bump only for package @synerise/ds-dropdown
+
+
+
+
+
+## [0.11.66](https://github.com/synerise/synerise-design/compare/@synerise/ds-dropdown@0.11.65...@synerise/ds-dropdown@0.11.66) (2020-07-29)
+
+**Note:** Version bump only for package @synerise/ds-dropdown
+
+
+
+
+
+## [0.11.65](https://github.com/synerise/synerise-design/compare/@synerise/ds-dropdown@0.11.64...@synerise/ds-dropdown@0.11.65) (2020-07-24)
+
+**Note:** Version bump only for package @synerise/ds-dropdown
+
+
+
+
+
+## [0.11.64](https://github.com/synerise/synerise-design/compare/@synerise/ds-dropdown@0.11.63...@synerise/ds-dropdown@0.11.64) (2020-07-24)
+
+**Note:** Version bump only for package @synerise/ds-dropdown
+
+
+
+
+
+## [0.11.63](https://github.com/synerise/synerise-design/compare/@synerise/ds-dropdown@0.11.62...@synerise/ds-dropdown@0.11.63) (2020-07-22)
+
+**Note:** Version bump only for package @synerise/ds-dropdown
+
+
+
+
+
+## [0.11.62](https://github.com/synerise/synerise-design/compare/@synerise/ds-dropdown@0.11.61...@synerise/ds-dropdown@0.11.62) (2020-07-20)
+
+**Note:** Version bump only for package @synerise/ds-dropdown
+
+
+
+
+
+## [0.11.61](https://github.com/synerise/synerise-design/compare/@synerise/ds-dropdown@0.11.60...@synerise/ds-dropdown@0.11.61) (2020-07-15)
+
+
+### Bug Fixes
+
+* **dropdown:** fix dropdown position ([47c11b1](https://github.com/synerise/synerise-design/commit/47c11b1738a7bf24c992b76e6eb4e15962f1c111))
+
+
+
+
+
+## [0.11.60](https://github.com/synerise/synerise-design/compare/@synerise/ds-dropdown@0.11.59...@synerise/ds-dropdown@0.11.60) (2020-07-13)
+
+**Note:** Version bump only for package @synerise/ds-dropdown
+
+
+
+
+
+## [0.11.59](https://github.com/synerise/synerise-design/compare/@synerise/ds-dropdown@0.11.58...@synerise/ds-dropdown@0.11.59) (2020-07-09)
+
+**Note:** Version bump only for package @synerise/ds-dropdown
+
+
+
+
+
 ## [0.11.58](https://github.com/synerise/synerise-design/compare/@synerise/ds-dropdown@0.11.57...@synerise/ds-dropdown@0.11.58) (2020-07-08)
 
 **Note:** Version bump only for package @synerise/ds-dropdown

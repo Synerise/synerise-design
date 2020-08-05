@@ -116,12 +116,18 @@ const FilterItem: React.FC<FilterItemProps> = ({
               overlay={
                 <DropdownMenu>
                   {item.canUpdate && (
-                    <Menu.Item onClick={enterEditMode} prefixel={<Icon component={<EditM />} />}>
+                    <Menu.Item
+                      onClick={enterEditMode}
+                      prefixel={<Icon component={<EditM />} color={theme.palette['grey-600']} />}
+                    >
                       {texts.itemActionRename}
                     </Menu.Item>
                   )}
                   {item.canDuplicate && (
-                    <Menu.Item onClick={handleDuplicate} prefixel={<Icon component={<DuplicateM />} />}>
+                    <Menu.Item
+                      onClick={handleDuplicate}
+                      prefixel={<Icon component={<DuplicateM />} color={theme.palette['grey-600']} />}
+                    >
                       {texts.itemActionDuplicate}
                     </Menu.Item>
                   )}
@@ -138,9 +144,9 @@ const FilterItem: React.FC<FilterItemProps> = ({
                 </DropdownMenu>
               }
             >
-              <span className="ds-dropdown-trigger">
+              <S.FilterDropdownTrigger className="ds-dropdown-trigger" mode="single-icon" type="ghost" size="small">
                 <Icon component={<OptionHorizontalM />} color={theme.palette['grey-600']} />
-              </span>
+              </S.FilterDropdownTrigger>
             </Dropdown>
           </S.ItemHeaderSuffix>
         </ItemHeader>

@@ -8,7 +8,7 @@ export const COLUMNS = [
     key: 'first_name',
     visible: true,
     type: 'text',
-    fixed: undefined
+    fixed: undefined,
   },
   {
     id: '1',
@@ -16,7 +16,7 @@ export const COLUMNS = [
     key: 'last_name',
     visible: true,
     type: 'boolean',
-    fixed: undefined
+    fixed: undefined,
   },
   {
     id: '2',
@@ -24,7 +24,7 @@ export const COLUMNS = [
     key: 'city',
     visible: true,
     type: 'text',
-    fixed: undefined
+    fixed: undefined,
   },
   {
     id: '3',
@@ -32,7 +32,7 @@ export const COLUMNS = [
     key: 'age',
     visible: true,
     type: 'number',
-    fixed: undefined
+    fixed: undefined,
   },
   {
     id: '4',
@@ -42,7 +42,7 @@ export const COLUMNS = [
     type: 'date',
     visible: true,
     fixed: undefined,
-  }
+  },
 ];
 
 export const DATA_SOURCE = [
@@ -143,7 +143,7 @@ export const DATA_SOURCE = [
     last_activity: randomDate(),
   },
   {
-    key: 10,
+    key: 20,
     first_name: 'Kazimierz',
     last_name: 'Jonak',
     city: 'Poznań',
@@ -192,8 +192,6 @@ export const DATA_SOURCE = [
   },
 ];
 
-
-
 export const VIEWS = [
   {
     label: 'All filters',
@@ -218,8 +216,8 @@ export const VIEWS = [
             type: GROUP_BY.value,
             interval: false,
             ranges: false,
-          }
-        }
+          },
+        },
       },
       {
         id: '0001',
@@ -240,8 +238,8 @@ export const VIEWS = [
             type: GROUP_BY.interval,
             interval: 3,
             ranges: false,
-          }
-        }
+          },
+        },
       },
       {
         id: '0002',
@@ -270,7 +268,7 @@ export const VIEWS = [
                 to: {
                   value: 'K',
                   error: undefined,
-                }
+                },
               },
               {
                 from: {
@@ -280,14 +278,14 @@ export const VIEWS = [
                 to: {
                   value: 'R',
                   error: undefined,
-                }
+                },
               },
             ],
-          }
-        }
-      }
-    ]
-  }
+          },
+        },
+      },
+    ],
+  },
 ];
 
 export const EMPTY_VIEW = {
@@ -348,7 +346,7 @@ export const CATEGORIES = [
           lastname: 'Kowalski',
         },
         columns: COLUMNS,
-      }
-    ]
-  }
+      },
+    ],
+  },
 ];

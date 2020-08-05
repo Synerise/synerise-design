@@ -142,4 +142,7 @@ export const TableWrapper = styled.div<{ hideColumnNames?: boolean }>`
       ${(props): string => (props.hideColumnNames ? 'display: none' : '')};
     }
   }
+  .ant-table-wrapper .ant-table {
+    z-index: 1;
+  }
 `;

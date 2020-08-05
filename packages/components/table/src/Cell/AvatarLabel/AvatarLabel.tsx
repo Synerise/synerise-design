@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { v4 as uuid } from 'uuid';
 import * as S from './AvatarLabel.styles';
 
 type Props = {
@@ -20,7 +21,7 @@ const AvatarLabel: React.FC<Props> = ({ avatar, title, labels, icon, textSize = 
         </S.Title>
         {labels?.map(
           (label: string | React.ReactNode): React.ReactElement => (
-            <S.Label key={label as string} textSize={textSize}>
+            <S.Label key={uuid()} textSize={textSize}>
               {label}
             </S.Label>
           )

@@ -10,8 +10,6 @@ import * as S from '../../Search.styles';
 import { SearchInputProps, SearchInputState } from './SearchInput.types';
 import SearchButton from '../SearchButton/SearchButton';
 
-// eslint-disable-next-line @typescript-eslint/no-empty-function
-const NOOP = (): void => {};
 class SearchInput extends React.Component<SearchInputProps, SearchInputState> {
   private inputRef = React.createRef<Input>();
 
@@ -20,7 +18,7 @@ class SearchInput extends React.Component<SearchInputProps, SearchInputState> {
     // eslint-disable-next-line react/state-in-constructor
     this.state = {
       inputOffset: 0,
-      isInputOpen: props.alwaysExpanded || false,
+      isInputOpen: props.alwaysExpanded || !!props.value || !!props.filterLabel,
       isInputFocused: true,
       isResultChosen: false,
     };
@@ -39,7 +37,14 @@ class SearchInput extends React.Component<SearchInputProps, SearchInputState> {
     return null;
   }
 
-  componentDidUpdate = NOOP;
+  componentDidUpdate = (): void => {
+    const { moveCursorToEnd, value } = this.props;
+    const input = this.inputRef;
+    if (moveCursorToEnd && input && input.current) {
+      input.current.input.selectionStart = value.length || 0;
+      input.current.input.selectionEnd = value.length || 0;
+    }
+  };
 
   focusInput = (): void => {
     this.inputRef.current && this.inputRef.current.focus();
@@ -91,6 +96,7 @@ class SearchInput extends React.Component<SearchInputProps, SearchInputState> {
     ref && this.setState({ inputOffset: ref.getBoundingClientRect().width });
   };
 
+  // This handler is used for onClickOutside HOC
   handleClickOutside = (): void => {
     const { closeOnClickOutside, value } = this.props;
     if (closeOnClickOutside && !value) {
@@ -101,8 +107,19 @@ class SearchInput extends React.Component<SearchInputProps, SearchInputState> {
   };
 
   render(): React.ReactElement {
-    const { filterLabel, value, alwaysHighlight, placeholder, onKeyDown, alwaysExpanded, clearTooltip } = this.props;
+    const {
+      alwaysExpanded,
+      alwaysHighlight,
+      clearTooltip,
+      filterLabel,
+      filterLookupKey,
+      onKeyDown,
+      placeholder,
+      textLookupKey,
+      value,
+    } = this.props;
     const { isInputOpen, inputOffset, isResultChosen, isInputFocused } = this.state;
+
     return (
       <S.SearchInputWrapper>
         <S.SearchInputContent
@@ -115,7 +132,7 @@ class SearchInput extends React.Component<SearchInputProps, SearchInputState> {
             {filterLabel && (
               <S.Filter ref={this.handleOffsetWithFilter}>
                 {filterLabel.icon && !isResultChosen && <Icon component={filterLabel.icon} />}
-                <span>{filterLabel.filter || filterLabel.text}</span>
+                <span>{filterLabel[filterLookupKey || ''] || filterLabel[textLookupKey || '']}</span>
               </S.Filter>
             )}
           </S.LeftSide>
@@ -144,8 +161,9 @@ class SearchInput extends React.Component<SearchInputProps, SearchInputState> {
           clickable={!alwaysExpanded}
           onClick={this.handleSearchButtonClick}
         />
-        <S.ClearButton hidden={!value && !filterLabel} data-testid="clear">
+        <S.ClearButton hidden={!value && !filterLabel}>
           <Icon
+            data-testid="clear"
             onClick={this.handleClearValue}
             component={
               <Tooltip title={clearTooltip}>

@@ -19,6 +19,56 @@
 
 textarea.@{ant-prefix}-input {
   padding: 8px 12px 8px 12px;
+
+  &::-webkit-scrollbar {
+    width: 11px;
+    height: 11px;
+    cursor: default;
+  }
+  &::-webkit-scrollbar-button {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+  &::-webkit-scrollbar-track {
+    border-radius: 3px;
+    background-color: white;
+    border: 4px solid white;
+  }
+  &::-webkit-scrollbar-corner {
+    background: transparent;
+    display: none;
+    border: 0;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #e1e3e6;
+    border-radius: 8px;
+    border: 4px solid white;
+    &:hover,
+    &:active {
+      background-color: #a6acb3;
+    }
+  }
+  &:focus {
+    &::-webkit-scrollbar-track {
+      border-radius: 0;
+      background-color: @blue-050;
+      border: 4px solid @blue-050;
+    }
+    &::-webkit-scrollbar-thumb {
+      border: 4px solid @blue-050;
+    }
+  }
+  &:disabled {
+    &::-webkit-scrollbar-track {
+      border-radius: 0;
+      background-color: @grey-050;
+      border: 4px solid @grey-050;
+    }
+    &::-webkit-scrollbar-thumb {
+      border: 4px solid @grey-050;
+    }
+  }
 }
 
 .@{ant-prefix}-input-group-addon {
@@ -30,6 +80,9 @@ textarea.@{ant-prefix}-input {
 }
 
 .ant-input-group {
+  ::placeholder {
+    line-height: 1.29;
+  }
   .ant-select {
     &.error,
     &.ant-select-focused {

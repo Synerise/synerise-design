@@ -4,38 +4,17 @@ import dayjs from 'dayjs';
 import Icon from '@synerise/ds-icon';
 import Dropdown from '@synerise/ds-dropdown';
 import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
-import { ClockM, Close3M } from '@synerise/ds-icon/dist/icons';
-import { FormattedMessage, injectIntl, IntlShape } from 'react-intl';
+import { ClockM, Close3S } from '@synerise/ds-icon/dist/icons';
+import { FormattedMessage, injectIntl } from 'react-intl';
 import Unit, { UnitConfig } from './Unit';
 import * as S from './TimePicker.styles';
-
-export type TimePickerDisabledUnits = {
-  disabledSeconds?: number[];
-  disabledMinutes?: number[];
-  disabledHours?: number[];
-};
-
-export type TimePickerProps = TimePickerDisabledUnits & {
-  placement?: 'topLeft' | 'topCenter' | 'topRight' | 'bottomLeft' | 'bottomCenter' | 'bottomRight';
-  placeholder?: string;
-  value?: Date;
-  defaultOpen?: boolean;
-  alwaysOpen?: boolean;
-  timeFormat?: string;
-  use12HourClock?: boolean;
-  trigger?: ('click' | 'hover' | 'contextMenu')[];
-  disabled?: boolean;
-  overlayClassName?: string;
-  className?: string;
-  units?: dayjs.UnitType[];
-  onChange?: (value: Date | undefined, timeString: string) => void;
-  clearTooltip?: string | React.ReactNode;
-  intl: IntlShape;
-  raw?: boolean;
-};
+import { TimePickerProps } from './TimePicker.types';
 
 const defaultUnits = ['hour', 'minute', 'second'] as dayjs.UnitType[];
-
+const CLOCK_MODES = {
+  AM: 'AM',
+  PM: 'PM',
+};
 const TimePicker: React.FC<TimePickerProps> = ({
   placement,
   placeholder,
@@ -43,6 +22,7 @@ const TimePicker: React.FC<TimePickerProps> = ({
   value,
   units,
   defaultOpen,
+  defaultAM,
   onChange,
   timeFormat,
   use12HourClock,
@@ -55,19 +35,19 @@ const TimePicker: React.FC<TimePickerProps> = ({
   className,
   clearTooltip = <FormattedMessage id="DS.TIME-PICKER.CLEAR" />,
   raw,
+  onClockModeChange,
   intl,
 }) => {
   const [open, setOpen] = React.useState<boolean>(defaultOpen || false);
   const [localValue, setLocalValue] = React.useState<Date | undefined>(value);
-
+  const [clockMode, setClockMode] = React.useState<string>(defaultAM ? CLOCK_MODES.AM : CLOCK_MODES.PM);
   React.useEffect(() => {
     setLocalValue(value);
   }, [value]);
-
   const unitConfig: UnitConfig[] = [
     {
       unit: 'hour',
-      options: [...Array(use12HourClock ? 12 : 24).keys()],
+      options: use12HourClock ? [...Array(13).keys()] : [...Array(24).keys()],
       disabled: disabledHours,
       insertSeperator: true,
     },
@@ -81,6 +61,7 @@ const TimePicker: React.FC<TimePickerProps> = ({
       unit: 'second',
       options: [...Array(60).keys()],
       disabled: disabledSeconds,
+      insertSeperator: !!use12HourClock,
     },
   ];
 
@@ -111,15 +92,35 @@ const TimePicker: React.FC<TimePickerProps> = ({
     onChange && onChange(newDate as Date, getTimeString(newDate as Date));
   };
 
+  const renderClockSwitch = (): React.ReactNode => {
+    return (
+      <S.Unit>
+        {Object.values(CLOCK_MODES).map(mode => (
+          <S.Cell
+            key={mode}
+            active={clockMode === mode}
+            onClick={(): void => {
+              setClockMode(mode);
+              onClockModeChange && onClockModeChange(mode);
+            }}
+          >
+            <S.CellText>{mode}</S.CellText>
+          </S.Cell>
+        ))}
+      </S.Unit>
+    );
+  };
+
   const overlay = (
     <S.OverlayContainer data-testid="tp-overlay-container" className={overlayClassName}>
       {unitsToRender.map((u, index) => (
         <React.Fragment key={u.unit}>
           {/* eslint-disable-next-line react/jsx-props-no-spreading */}
           <Unit {...u} value={localValue} onSelect={(newValue): void => handleChange(u.unit, newValue)} />
-          {index !== unitsToRender.length - 1 && <S.UnitSeperator />}
+          {(index !== unitsToRender.length - 1 || !!use12HourClock) && <S.UnitSeperator />}
         </React.Fragment>
       ))}
+      {use12HourClock && renderClockSwitch()}
     </S.OverlayContainer>
   );
 
@@ -136,7 +137,7 @@ const TimePicker: React.FC<TimePickerProps> = ({
       <S.ClearIcon
         component={
           <Tooltip title={clearTooltip}>
-            <Close3M />
+            <Close3S />
           </Tooltip>
         }
         onClick={clear}
@@ -165,7 +166,7 @@ const TimePicker: React.FC<TimePickerProps> = ({
         <S.TimePickerInput
           className={`${alwaysOpen || open ? 'active' : ''}`}
           data-testid="tp-input"
-          value={dateString}
+          value={use12HourClock && !!dateString ? `${dateString} ${clockMode}` : dateString}
           placeholder={placeholderValue}
           readOnly
           icon1={timePickerIcon}

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import Card from '../index';
+import { waitFor } from '@testing-library/react';
 
 describe('Card', () => {
   it('should render', function() {
@@ -18,19 +19,20 @@ describe('Card', () => {
     expect(getByText('Card description')).toBeTruthy();
   });
 
-  it('should render with content', function() {
+  it('should render with content', async function() {
     // ARRANGE
     const TEST_ID = 'test_id';
     const { getByTestId } = renderWithProvider(
-      <Card>
+      <Card showContent={true} >
         <div data-testid={TEST_ID}>
           Content
         </div>
       </Card>
     );
-
     // ASSERT
-    expect(getByTestId(TEST_ID)).toBeTruthy();
+    await waitFor(async ()=>{
+      await expect(getByTestId(TEST_ID)).toBeTruthy();
+    },{timeout:500})
   });
 
   it('should not render header', function() {

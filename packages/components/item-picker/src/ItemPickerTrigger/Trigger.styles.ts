@@ -33,6 +33,7 @@ const getFocusStyles = (props: ThemeProps & TriggerWrapperProps): string => {
 export const ClearWrapper = styled.div`
   position: relative;
   display: flex;
+  cursor: pointer;
 `;
 
 export const IconWrapper = styled.div<{ size: ItemPickerSize }>`
@@ -56,6 +57,7 @@ export const Placeholder = styled.div`
   justify-content: flex-start;
   flex: 1;
   color: ${(props): string => props.theme.palette['grey-500']};
+  padding: 0 0 0 4px;
   ${Prefix} {
     svg {
       fill: ${(props): string => props.theme.palette['grey-500']};
@@ -98,7 +100,11 @@ export const Trigger = styled.div<{ size: ItemPickerSize }>`
 export const TriggerWrapper = styled.div<TriggerWrapperProps>`
   width: 282px;
   display: flex;
-  cursor: ${(props): string => (props.disabled ? 'not-allowed' : 'pointer')};
+  cursor: ${(props): string => {
+    if (props.disabled) return 'not-allowed';
+    if (props.selected) return 'default';
+    return 'pointer';
+  }};
   pointer-events: ${(props): string => (props.disabled ? 'none' : 'all')};
   flex-direction: row;
   align-items: center;

@@ -3,6 +3,93 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.18](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.13.17...@synerise/ds-input@0.13.18) (2020-07-30)
+
+
+### Bug Fixes
+
+* **input:** add styles to placeholder of input group ([f3c4858](https://github.com/synerise/synerise-design/commit/f3c4858ee544c635891f8793b00c863f31c641d5))
+
+
+
+
+
+## [0.13.17](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.13.16...@synerise/ds-input@0.13.17) (2020-07-29)
+
+
+### Bug Fixes
+
+* **input:** change styles of placeholder ([ff6f6e2](https://github.com/synerise/synerise-design/commit/ff6f6e2b0fec03c4ee2cfb0dceaf9cc9d9847188))
+* **input:** exported inputGroup props ([330f98a](https://github.com/synerise/synerise-design/commit/330f98a733ab67bfcbc155236d2ebcdc776fd44e))
+* **input:** fix problem with placeholder on Safari ([ebd190e](https://github.com/synerise/synerise-design/commit/ebd190e9f438bf900acd6e5d7c211d15b9bb30aa))
+* **input:** safari placeholder line height ([14b87bb](https://github.com/synerise/synerise-design/commit/14b87bbe6b3e04ac1188febe5a05cf93cc266215))
+
+
+
+
+
+## [0.13.16](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.13.15...@synerise/ds-input@0.13.16) (2020-07-24)
+
+**Note:** Version bump only for package @synerise/ds-input
+
+
+
+
+
+## [0.13.15](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.13.14...@synerise/ds-input@0.13.15) (2020-07-24)
+
+**Note:** Version bump only for package @synerise/ds-input
+
+
+
+
+
+## [0.13.14](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.13.13...@synerise/ds-input@0.13.14) (2020-07-22)
+
+
+### Bug Fixes
+
+* **time-picker:** added a scroll to selected functionality ([9b326ad](https://github.com/synerise/synerise-design/commit/9b326ad6af56485710ab810db679ac45e857b34d))
+
+
+
+
+
+## [0.13.13](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.13.12...@synerise/ds-input@0.13.13) (2020-07-20)
+
+**Note:** Version bump only for package @synerise/ds-input
+
+
+
+
+
+## [0.13.12](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.13.11...@synerise/ds-input@0.13.12) (2020-07-15)
+
+**Note:** Version bump only for package @synerise/ds-input
+
+
+
+
+
+## [0.13.11](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.13.10...@synerise/ds-input@0.13.11) (2020-07-13)
+
+**Note:** Version bump only for package @synerise/ds-input
+
+
+
+
+
+## [0.13.10](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.13.9...@synerise/ds-input@0.13.10) (2020-07-09)
+
+
+### Bug Fixes
+
+* **input:** add change to name props ([f88b758](https://github.com/synerise/synerise-design/commit/f88b758117f1a1c4ab43a5dddfbfa9447295d046))
+
+
+
+
+
 ## [0.13.9](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.13.8...@synerise/ds-input@0.13.9) (2020-07-08)
 
 **Note:** Version bump only for package @synerise/ds-input

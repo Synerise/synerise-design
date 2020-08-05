@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { select, boolean, text, number } from '@storybook/addon-knobs';
+import { select, boolean, text, number, object } from '@storybook/addon-knobs';
 import sample from 'lodash/sample';
 import { v4 as uuid } from 'uuid';
 
@@ -7,6 +7,7 @@ import Tags, { Tag, TagShape } from '@synerise/ds-tags';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import Icon from '@synerise/ds-icon';
 import { Add3S } from '@synerise/ds-icon/dist/icons';
+import Badge from '@synerise/ds-badge';
 
 const customColorOptions = {
   blue: theme.palette['blue-600'],
@@ -23,8 +24,6 @@ const customColorOptions = {
   violet: theme.palette['violet-600'],
 };
 
-
-
 const stories = {
   defaultTag: () => {
     const shapes = {
@@ -36,21 +35,18 @@ const stories = {
     const colors = select('Set custom color', customColorOptions, customColorOptions.blue);
     const disabled = boolean('Disable ', false);
 
-    const thisTag = [{
-      id: 0,
-      name: 'Tag name',
-      color: colors,
-    }];
+    const thisTag = [
+      {
+        id: 0,
+        name: 'Tag name',
+        color: colors,
+      },
+    ];
 
     return (
       <React.Fragment>
-        <div style={{padding: 24}}>
-          <Tags
-            tagShape={shape}
-            selected={thisTag}
-            removable={removable}
-            disabled={disabled}
-          />
+        <div style={{ padding: 24 }}>
+          <Tags tagShape={shape} selected={thisTag} removable={removable} disabled={disabled} />
         </div>
       </React.Fragment>
     );
@@ -63,28 +59,48 @@ const stories = {
     const shape = select('Shape', shapes, shapes['Default Round']);
     const removable = boolean('Ability to remove', true);
     const colors = select('Set custom color', customColorOptions, customColorOptions.blue);
-    const hasPrefix = boolean('setPrefix',false)
-    const hasSufix = boolean('setSufix',false)
+    const hasPrefix = boolean('setPrefix', false);
+    const hasSufix = boolean('setSufix', false);
     const disabled = boolean('Disable', false);
 
-
-    const thisTag = [{
-      id: 12,
-      name: 'Tag name 2',
-      color: colors,
-      prefixel: hasPrefix && (number('preffixNumber',5)),
-      suffixel: hasSufix && (number('suffixNumber',5)),
-    }];
+    const thisTag = [
+      {
+        id: 12,
+        name: 'Tag name',
+        color: colors,
+        prefixel: hasPrefix && (
+          <Badge
+            count={number('count', 1)}
+            overflowCount={number('overflowCount', 99)}
+            outlined={true}
+            style={object('style1', {
+              backgroundColor: 'transparent',
+              color: theme.palette['white'],
+              alignItems: 'center',
+              margin: '0px',
+            })}
+          />
+        ),
+        suffixel: hasSufix && (
+          <Badge
+            count={number('count', 1)}
+            overflowCount={number('overflowCount', 99)}
+            outlined={true}
+            style={object('style2', {
+              margin: '0px',
+              backgroundColor: 'transparent',
+              color: theme.palette['white'],
+              alignItems: 'center',
+            })}
+          />
+        ),
+      },
+    ];
 
     return (
       <React.Fragment>
-        <div style={{padding: 24}}>
-          <Tags
-            tagShape={shape}
-            selected={thisTag}
-            removable={removable}
-            disabled={disabled}
-          />
+        <div style={{ padding: 24 }}>
+          <Tags tagShape={shape} selected={thisTag} removable={removable} disabled={disabled} />
         </div>
       </React.Fragment>
     );
@@ -98,20 +114,18 @@ const stories = {
     const colors = select('Set custom color', customColorOptions, customColorOptions.blue);
     const disabled = boolean('Disable', false);
 
-    const thisTag = [{
-      id: 0,
-      name: 'A',
-      color: colors,
-    }];
+    const thisTag = [
+      {
+        id: 0,
+        name: 'A',
+        color: colors,
+      },
+    ];
 
     return (
       <React.Fragment>
-        <div style={{padding: 24}}>
-          <Tags
-            tagShape={shape}
-            selected={thisTag}
-            disabled={disabled}
-          />
+        <div style={{ padding: 24 }}>
+          <Tags tagShape={shape} selected={thisTag} disabled={disabled} />
         </div>
       </React.Fragment>
     );
@@ -125,26 +139,25 @@ const stories = {
     const colors = select('Set custom color', customColorOptions, customColorOptions.blue);
     const disabled = boolean('Disable', false);
 
-    const thisTag = [{
-      id: 0,
-      name: 'Tag name 3',
-      color: colors,
-    }];
+    const thisTag = [
+      {
+        id: 0,
+        name: 'Tag name 3',
+        color: colors,
+      },
+    ];
 
     return (
       <React.Fragment>
-        <div style={{padding: 24}}>
-          <Tags
-            tagShape={shape}
-            selected={thisTag}
-            disabled={disabled}
-          />
+        <div style={{ padding: 24 }}>
+          <Tags tagShape={shape} selected={thisTag} disabled={disabled} />
         </div>
       </React.Fragment>
     );
   },
   tagWithIcon: () => {
-    const IMAGE_URL = 'https://cdn4.iconfinder.com/data/icons/social-messaging-ui-color-shapes-2-free/128/social-reddit-square2-512.png';
+    const IMAGE_URL =
+      'https://cdn4.iconfinder.com/data/icons/social-messaging-ui-color-shapes-2-free/128/social-reddit-square2-512.png';
     const shapes = {
       'Default Round': TagShape.DEFAULT_ROUND,
       'Default Square': TagShape.DEFAULT_SQUARE,
@@ -154,28 +167,24 @@ const stories = {
     const colors = select('Set custom color', customColorOptions, customColorOptions.blue);
     const disabled = boolean('Disable', false);
 
-    const thisTag = [{
-      id: 0,
-      name: 'Tag name 4',
-      color: colors,
-      prefixel: <Icon className="icon1" component={<Add3S />} size={20} color="#fff" />,
-    }];
+    const thisTag = [
+      {
+        id: 0,
+        name: 'Tag name 4',
+        color: colors,
+        prefixel: <Icon className="icon1" component={<Add3S />} size={20} color="#fff" />,
+      },
+    ];
 
     return (
       <React.Fragment>
-        <div style={{padding: 24}}>
-          <Tags
-            tagShape={shape}
-            selected={thisTag}
-            removable={removable}
-            disabled={disabled}
-          />
+        <div style={{ padding: 24 }}>
+          <Tags tagShape={shape} selected={thisTag} removable={removable} disabled={disabled} />
         </div>
       </React.Fragment>
     );
   },
   tagGroup: () => {
-
     const shapes = {
       'Default Round': TagShape.DEFAULT_ROUND,
       'Default Square': TagShape.DEFAULT_SQUARE,
@@ -203,58 +212,70 @@ const stories = {
       '#0db790',
     ];
 
-    const allTags = [{
-      id: 0,
-      name: 'Tag Name 1',
-      color: '#ffc300',
-    },{
-      id: 1,
-      name: 'Tag Name 2',
-      color: '#13c2bc',
-    },{
-      id: 2,
-      name: 'Tag Name 3',
-      color: '#76dc25',
-    }, {
-      id: 3,
-      name: 'Tag Name 4',
-      color: '#6d2dd3',
-    }, {
-      id: 4,
-      name: 'Tag Name 5',
-      color: '#ff4d67',
-    }, {
-      id: 5,
-      name: 'Tag Name 6',
-      color: '#fd9f05',
-    }, {
-      id: 6,
-      name: 'Tag Name 7',
-      color: '#2b71cb',
-    }, {
-      id: 7,
-      name: 'Tag Name 8',
-      color: '#61b71e',
-    }, {
-      id: 8,
-      name: 'Tag Name 9',
-      color: '#e62425',
-    }, {
-      id: 9,
-      name: 'Tag Name 10',
-      color: '#f551a9',
-    }, {
-      id: 10,
-      name: 'Tag Name 11',
-      color: '#04bdff',
-    }];
+    const allTags = [
+      {
+        id: 0,
+        name: 'Tag Name 1',
+        color: '#ffc300',
+      },
+      {
+        id: 1,
+        name: 'Tag Name 2',
+        color: '#13c2bc',
+      },
+      {
+        id: 2,
+        name: 'Tag Name 3',
+        color: '#76dc25',
+      },
+      {
+        id: 3,
+        name: 'Tag Name 4',
+        color: '#6d2dd3',
+      },
+      {
+        id: 4,
+        name: 'Tag Name 5',
+        color: '#ff4d67',
+      },
+      {
+        id: 5,
+        name: 'Tag Name 6',
+        color: '#fd9f05',
+      },
+      {
+        id: 6,
+        name: 'Tag Name 7',
+        color: '#2b71cb',
+      },
+      {
+        id: 7,
+        name: 'Tag Name 8',
+        color: '#61b71e',
+      },
+      {
+        id: 8,
+        name: 'Tag Name 9',
+        color: '#e62425',
+      },
+      {
+        id: 9,
+        name: 'Tag Name 10',
+        color: '#f551a9',
+      },
+      {
+        id: 10,
+        name: 'Tag Name 11',
+        color: '#04bdff',
+      },
+    ];
 
     const [tags, setTags] = React.useState<Array<any>>(allTags);
     const [selected, setSelected] = React.useState<Array<any>>(allTags.slice(0, 6));
 
     return (
       <React.Fragment>
-        <div style={{padding: 24}}>
+        <div style={{ padding: 24 }}>
           <h4>Tag group</h4>
           <Tags
             data={tags}
@@ -287,7 +308,7 @@ const stories = {
               console.log('Selected tags change', tags, 'with action', actionTaken);
               setSelected(tags);
             }}
-            manageLink={withManageLink && 'https://en.wikipedia.org/wiki/San_Escobar'}
+            manageLink={withManageLink}
           />
         </div>
       </React.Fragment>

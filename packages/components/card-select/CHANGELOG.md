@@ -3,6 +3,70 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.37](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-select@0.3.36...@synerise/ds-card-select@0.3.37) (2020-07-30)
+
+**Note:** Version bump only for package @synerise/ds-card-select
+
+
+
+
+
+## [0.3.36](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-select@0.3.35...@synerise/ds-card-select@0.3.36) (2020-07-29)
+
+**Note:** Version bump only for package @synerise/ds-card-select
+
+
+
+
+
+## [0.3.35](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-select@0.3.34...@synerise/ds-card-select@0.3.35) (2020-07-24)
+
+**Note:** Version bump only for package @synerise/ds-card-select
+
+
+
+
+
+## [0.3.34](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-select@0.3.33...@synerise/ds-card-select@0.3.34) (2020-07-24)
+
+**Note:** Version bump only for package @synerise/ds-card-select
+
+
+
+
+
+## [0.3.33](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-select@0.3.32...@synerise/ds-card-select@0.3.33) (2020-07-20)
+
+**Note:** Version bump only for package @synerise/ds-card-select
+
+
+
+
+
+## [0.3.32](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-select@0.3.31...@synerise/ds-card-select@0.3.32) (2020-07-15)
+
+**Note:** Version bump only for package @synerise/ds-card-select
+
+
+
+
+
+## [0.3.31](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-select@0.3.30...@synerise/ds-card-select@0.3.31) (2020-07-13)
+
+**Note:** Version bump only for package @synerise/ds-card-select
+
+
+
+
+
+## [0.3.30](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-select@0.3.29...@synerise/ds-card-select@0.3.30) (2020-07-09)
+
+**Note:** Version bump only for package @synerise/ds-card-select
+
+
+
+
+
 ## [0.3.29](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-select@0.3.28...@synerise/ds-card-select@0.3.29) (2020-07-08)
 
 **Note:** Version bump only for package @synerise/ds-card-select

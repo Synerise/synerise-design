@@ -3,6 +3,204 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.49](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.2.48...@synerise/ds-items-roll@0.2.49) (2020-07-31)
+
+**Note:** Version bump only for package @synerise/ds-items-roll
+
+
+
+
+
+## [0.2.48](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.2.47...@synerise/ds-items-roll@0.2.48) (2020-07-30)
+
+**Note:** Version bump only for package @synerise/ds-items-roll
+
+
+
+
+
+## [0.2.47](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.2.46...@synerise/ds-items-roll@0.2.47) (2020-07-29)
+
+**Note:** Version bump only for package @synerise/ds-items-roll
+
+
+
+
+
+## [0.2.46](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.2.45...@synerise/ds-items-roll@0.2.46) (2020-07-29)
+
+**Note:** Version bump only for package @synerise/ds-items-roll
+
+
+
+
+
+## [0.2.45](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.2.44...@synerise/ds-items-roll@0.2.45) (2020-07-28)
+
+**Note:** Version bump only for package @synerise/ds-items-roll
+
+
+
+
+
+## [0.2.44](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.2.43...@synerise/ds-items-roll@0.2.44) (2020-07-28)
+
+**Note:** Version bump only for package @synerise/ds-items-roll
+
+
+
+
+
+## [0.2.43](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.2.42...@synerise/ds-items-roll@0.2.43) (2020-07-27)
+
+**Note:** Version bump only for package @synerise/ds-items-roll
+
+
+
+
+
+## [0.2.42](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.2.41...@synerise/ds-items-roll@0.2.42) (2020-07-24)
+
+**Note:** Version bump only for package @synerise/ds-items-roll
+
+
+
+
+
+## [0.2.41](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.2.40...@synerise/ds-items-roll@0.2.41) (2020-07-24)
+
+**Note:** Version bump only for package @synerise/ds-items-roll
+
+
+
+
+
+## [0.2.40](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.2.39...@synerise/ds-items-roll@0.2.40) (2020-07-23)
+
+**Note:** Version bump only for package @synerise/ds-items-roll
+
+
+
+
+
+## [0.2.39](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.2.38...@synerise/ds-items-roll@0.2.39) (2020-07-22)
+
+**Note:** Version bump only for package @synerise/ds-items-roll
+
+
+
+
+
+## [0.2.38](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.2.37...@synerise/ds-items-roll@0.2.38) (2020-07-22)
+
+**Note:** Version bump only for package @synerise/ds-items-roll
+
+
+
+
+
+## [0.2.37](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.2.36...@synerise/ds-items-roll@0.2.37) (2020-07-21)
+
+**Note:** Version bump only for package @synerise/ds-items-roll
+
+
+
+
+
+## [0.2.36](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.2.35...@synerise/ds-items-roll@0.2.36) (2020-07-20)
+
+**Note:** Version bump only for package @synerise/ds-items-roll
+
+
+
+
+
+## [0.2.35](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.2.34...@synerise/ds-items-roll@0.2.35) (2020-07-20)
+
+**Note:** Version bump only for package @synerise/ds-items-roll
+
+
+
+
+
+## [0.2.34](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.2.33...@synerise/ds-items-roll@0.2.34) (2020-07-17)
+
+**Note:** Version bump only for package @synerise/ds-items-roll
+
+
+
+
+
+## [0.2.33](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.2.32...@synerise/ds-items-roll@0.2.33) (2020-07-16)
+
+
+### Bug Fixes
+
+* **items-roll:** fix hooks dependecies ([d1fee05](https://github.com/Synerise/synerise-design/commit/d1fee05c046cf8e946e964ccaa7c23e35010282c))
+* **items-roll:** fix position of show less button ([07112af](https://github.com/Synerise/synerise-design/commit/07112afa799c4940050437fbff119718e21a0cde))
+* **items-roll:** fix styles ([81d3729](https://github.com/Synerise/synerise-design/commit/81d3729818d0c96e574d6e459cf07170441540d0))
+* **items-roll:** remove border-bottom on search results ([c8e937d](https://github.com/Synerise/synerise-design/commit/c8e937dad4dd2f88508cf69bf96d311e5d536e06))
+
+
+
+
+
+## [0.2.32](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.2.31...@synerise/ds-items-roll@0.2.32) (2020-07-15)
+
+**Note:** Version bump only for package @synerise/ds-items-roll
+
+
+
+
+
+## [0.2.31](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.2.30...@synerise/ds-items-roll@0.2.31) (2020-07-15)
+
+**Note:** Version bump only for package @synerise/ds-items-roll
+
+
+
+
+
+## [0.2.30](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.2.29...@synerise/ds-items-roll@0.2.30) (2020-07-15)
+
+**Note:** Version bump only for package @synerise/ds-items-roll
+
+
+
+
+
+## [0.2.29](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.2.28...@synerise/ds-items-roll@0.2.29) (2020-07-13)
+
+**Note:** Version bump only for package @synerise/ds-items-roll
+
+
+
+
+
+## [0.2.28](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.2.27...@synerise/ds-items-roll@0.2.28) (2020-07-13)
+
+**Note:** Version bump only for package @synerise/ds-items-roll
+
+
+
+
+
+## [0.2.27](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.2.26...@synerise/ds-items-roll@0.2.27) (2020-07-13)
+
+**Note:** Version bump only for package @synerise/ds-items-roll
+
+
+
+
+
+## [0.2.26](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.2.25...@synerise/ds-items-roll@0.2.26) (2020-07-09)
+
+**Note:** Version bump only for package @synerise/ds-items-roll
+
+
+
+
+
 ## [0.2.25](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.2.24...@synerise/ds-items-roll@0.2.25) (2020-07-08)
 
 **Note:** Version bump only for package @synerise/ds-items-roll

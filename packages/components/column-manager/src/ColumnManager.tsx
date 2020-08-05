@@ -8,6 +8,7 @@ import ItemFilter from '@synerise/ds-item-filter';
 import { CloseM, FolderM, SearchM } from '@synerise/ds-icon/dist/icons';
 import Scrollbar from '@synerise/ds-scrollbar';
 import SearchBar from '@synerise/ds-search-bar';
+import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import ColumnManagerActions from './ColumnManagerActions/ColumnManagerActions';
 import ColumnManagerList from './ColumnManagerList/ColumnManagerList';
 import { ColumnManagerProps, State, Texts } from './ColumnManager.types';
@@ -241,7 +242,7 @@ class ColumnManager extends React.Component<ColumnManagerProps, State> {
             placeholder={this.texts.searchPlaceholder as string}
             value={searchQuery}
             onClearInput={(): void => this.handleSearchChange('')}
-            iconLeft={<Icon component={<SearchM />} />}
+            iconLeft={<Icon component={<SearchM />} color={theme.palette['grey-600']} />}
             clearTooltip={(this.texts.searchClearTooltip as string) || ''}
           />
           <Scrollbar absolute>

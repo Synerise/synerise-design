@@ -13,7 +13,11 @@ import {
   FileDownloadM,
   FilterM,
   Grid2M,
-  TrashM, VarTypeBooleanM, VarTypeDateM, VarTypeListM, VarTypeNumberM,
+  TrashM,
+  VarTypeBooleanM,
+  VarTypeDateM,
+  VarTypeListM,
+  VarTypeNumberM,
 } from '@synerise/ds-icon/dist/icons';
 import DSTable from '@synerise/ds-table';
 import ColumnManager, { SavedView } from '@synerise/ds-column-manager/dist/ColumnManager';
@@ -39,7 +43,7 @@ const COLUMN_ICONS = {
   number: <VarTypeNumberM />,
   list: <VarTypeListM />,
   boolean: <VarTypeBooleanM />,
-  date: <VarTypeDateM />
+  date: <VarTypeDateM />,
 };
 
 const stories = {
@@ -74,7 +78,7 @@ const stories = {
           columns: [...savedView.columns],
           id: id,
           created: moment().format('MM-DD-YYYY HH:mm:ss'),
-        }
+        },
       ];
 
       store.set({
@@ -95,12 +99,12 @@ const stories = {
     const editItem = (props): void => {
       store.set({
         items: store.state.items.map(item => {
-          if(item.id === props.id) {
+          if (item.id === props.id) {
             item.name = props.name;
           }
           return item;
-        })
-      })
+        }),
+      });
     };
 
     const setSelectedFilter = (props): void => {
@@ -127,13 +131,12 @@ const stories = {
       applyGroupSettings(savedViews.filter(filter => filter.id === props.id)[0].groupSettings);
     };
 
-
     const handleSelectRow = selectedRowKeys => {
       store.set({ selectedRows: selectedRowKeys });
     };
 
     const itemsCount = () => {
-      if(Boolean(store.state.groupSettings)) {
+      if (Boolean(store.state.groupSettings)) {
         return store.state.dataSource.reduce((count, group) => {
           return count + group.rows.length;
         }, 0);
@@ -143,77 +146,76 @@ const stories = {
     };
 
     const getColumns = () => {
-      return columns.filter(column => column.visible).map(column => {
-        switch (column.key) {
-          case 'first_name': {
-            return {
-              title: 'First name',
-              dataIndex: 'first_name',
-              key: 'first_name',
-              sorter: (a, b) => {
-                if (a.first_name < b.first_name) return -1;
-                if (a.first_name > b.first_name) return 1;
-                return 0;
-              },
-              render: (firstName) => {
-                return (
-                  <TableCell.AvatarLabelCell
-                    avatar={
-                      <Avatar
-                        backgroundColor='blue'
-                        backgroundColorHue='600'
-                        size='medium'
-                      >
-                        {firstName[0]}
-                      </Avatar>}
-                    title={firstName}
-                  />
-                )
-              }
+      return columns
+        .filter(column => column.visible)
+        .map(column => {
+          switch (column.key) {
+            case 'first_name': {
+              return {
+                title: 'First name',
+                dataIndex: 'first_name',
+                key: 'first_name',
+                sorter: (a, b) => {
+                  if (a.first_name < b.first_name) return -1;
+                  if (a.first_name > b.first_name) return 1;
+                  return 0;
+                },
+                render: firstName => {
+                  return (
+                    <TableCell.AvatarLabelCell
+                      avatar={
+                        <Avatar backgroundColor="blue" backgroundColorHue="600" size="medium">
+                          {firstName[0]}
+                        </Avatar>
+                      }
+                      title={firstName}
+                    />
+                  );
+                },
+              };
             }
-          }
-          case 'city': {
-            return {
-              title: 'City',
-              dataIndex: 'city',
-              key: 'city',
-              sorter: (a, b) => {
-                if (a.city < b.city) return -1;
-                if (a.city > b.city) return 1;
-                return 0;
-              },
+            case 'city': {
+              return {
+                title: 'City',
+                dataIndex: 'city',
+                key: 'city',
+                sorter: (a, b) => {
+                  if (a.city < b.city) return -1;
+                  if (a.city > b.city) return 1;
+                  return 0;
+                },
+              };
             }
-          }
-          case 'age': {
-            return {
-              title: 'Age',
-              dataIndex: 'age',
-              key: 'age',
-              sorter: (a, b) => a.age - b.age,
+            case 'age': {
+              return {
+                title: 'Age',
+                dataIndex: 'age',
+                key: 'age',
+                sorter: (a, b) => a.age - b.age,
+              };
             }
-          }
-          case 'last_activity': {
-            return {
-              title: 'Last activity',
-              dataIndex: 'last_activity',
-              key: 'last_activity',
-              render: (last_activity) => moment(last_activity).format('DD/MM/YYYY HH:mm'),
-              sorter: (a, b) => moment(a.last_activity).isBefore(moment(b.last_activity)) ? -1 : 1,
+            case 'last_activity': {
+              return {
+                title: 'Last activity',
+                dataIndex: 'last_activity',
+                key: 'last_activity',
+                render: last_activity => moment(last_activity).format('DD/MM/YYYY HH:mm'),
+                sorter: (a, b) => (moment(a.last_activity).isBefore(moment(b.last_activity)) ? -1 : 1),
+              };
             }
+            default:
+              return {
+                ...column,
+                title: column.name,
+                dataIndex: column.key,
+                sorter: (a, b) => {
+                  if (a[column.key] < b[column.key]) return -1;
+                  if (a[column.key] > b[column.key]) return 1;
+                  return 0;
+                },
+              };
           }
-          default:
-            return {
-              ...column,
-              title: column.name,
-              dataIndex: column.key,
-              sorter: (a, b) => {
-                if (a[column.key] < b[column.key]) return -1;
-                if (a[column.key] > b[column.key]) return 1;
-                return 0;
-              },
-            };
-        }
-      })
+        });
     };
 
     const duplicateItem = (props): void => {
@@ -224,8 +226,8 @@ const stories = {
       store.set({ itemFilterVisible: !store.state.itemFilterVisible });
     };
 
-    const groupByValue = (groupSettings) => {
-      const {key} = groupSettings.column;
+    const groupByValue = groupSettings => {
+      const { key } = groupSettings.column;
       const result = [];
       const columnValues = DATA_SOURCE.map(column => {
         return column[key];
@@ -243,12 +245,12 @@ const stories = {
       });
       store.set({
         dataSource: result,
-        groupSettings: groupSettings
-      })
+        groupSettings: groupSettings,
+      });
     };
 
     const getRange = (range, column): any[] => {
-      const compare = (value) => {
+      const compare = value => {
         let val = value;
         let from = range.from.value;
         let to = range.to.value;
@@ -256,24 +258,23 @@ const stories = {
           val = value[0].toUpperCase();
         }
 
-        if(column.type === 'date') {
+        if (column.type === 'date') {
           val = moment(value, 'DD/MM/YYYY').format('x');
           from = moment(from, 'DD/MM/YYYY').format('x');
           to = moment(to, 'DD/MM/YYYY').format('x');
         }
 
-        if(from && to) {
+        if (from && to) {
           return from <= val && val <= to;
         }
 
-        if(from && (to === undefined || to === '')) {
+        if (from && (to === undefined || to === '')) {
           return from <= val;
         }
 
-        if((from === undefined || from === '') && to) {
-          return val <= to
+        if ((from === undefined || from === '') && to) {
+          return val <= to;
         }
-
       };
 
       return DATA_SOURCE.filter(row => {
@@ -281,7 +282,7 @@ const stories = {
       });
     };
 
-    const groupByRanges = (groupSettings) => {
+    const groupByRanges = groupSettings => {
       const { settings, column } = groupSettings;
       let groupedRows = [];
       const groups = settings.ranges.map((range, index) => {
@@ -293,25 +294,25 @@ const stories = {
           value: `${range.from.value || ''} - ${range.to.value || ''}`,
           rows: rangeRows,
           groupType: GROUP_BY.ranges,
-        }
+        };
       });
       const rest = DATA_SOURCE.filter(row => groupedRows.indexOf(row) === -1);
-      if(rest.length) {
+      if (rest.length) {
         groups.push({
           column: column.key,
           key: groups.length,
           value: `Others`,
-          rows: rest
-        })
+          rows: rest,
+        });
       }
       store.set({
         dataSource: groups,
         groupSettings: groupSettings,
-      })
+      });
     };
 
-    const groupByInterval = (groupSettings) => {
-      const {interval} = groupSettings.settings;
+    const groupByInterval = groupSettings => {
+      const { interval } = groupSettings.settings;
       const groups = [];
       const data = [...DATA_SOURCE];
       while (data.length) {
@@ -326,24 +327,24 @@ const stories = {
           value: `${firstItem} - ${lastItem}`,
           rows: group,
           groupType: GROUP_BY.interval,
-        }
+        };
       });
       store.set({
         // @ts-ignore
         dataSource: result,
-        groupSettings: groupSettings
-      })
+        groupSettings: groupSettings,
+      });
     };
 
-    const applyGroupSettings = (groupSettings) => {
-      if(!groupSettings) {
+    const applyGroupSettings = groupSettings => {
+      if (!groupSettings) {
         store.set({
           dataSource: DATA_SOURCE,
-          groupSettings: undefined
+          groupSettings: undefined,
         });
         return;
       }
-      switch(groupSettings.settings.type){
+      switch (groupSettings.settings.type) {
         case GROUP_BY.value: {
           groupByValue(groupSettings);
           break;
@@ -359,7 +360,7 @@ const stories = {
         default: {
           store.set({
             dataSource: DATA_SOURCE,
-            groupSettings: undefined
+            groupSettings: undefined,
           });
         }
       }
@@ -371,9 +372,8 @@ const stories = {
         savedViews = [...savedViews, ...view.items];
       });
 
-      return savedViews.find(view => view.id === store.state.selectedView)
+      return savedViews.find(view => view.id === store.state.selectedView);
     };
-
 
     const getSelectedCategory = () => {
       let categories = [];
@@ -384,51 +384,56 @@ const stories = {
       return categories.find(filter => filter.id === store.state.selectedFilter);
     };
 
-    const getSuggestions = (value) => {
-      if(value) {
-        const paramName = value.split(' ').join('_').toLowerCase();
-        const data = store.state.groupSettings ? store.state.dataSource?.reduce((items, group) => {
-          if (group.rows) {
-            return [...items, ...group.rows];
-          }
-          return [...items];
-        }, []) : store.state.dataSource;
+    const getSuggestions = value => {
+      if (value) {
+        const paramName = value
+          .split(' ')
+          .join('_')
+          .toLowerCase();
+        const data = store.state.groupSettings
+          ? store.state.dataSource?.reduce((items, group) => {
+              if (group.rows) {
+                return [...items, ...group.rows];
+              }
+              return [...items];
+            }, [])
+          : store.state.dataSource;
 
         const allSuggestions = data.map(record => {
           return {
             text: record[paramName],
-            filter: paramName
-          }
+            filter: paramName,
+          };
         });
         return allSuggestions.reduce((unique, item) => {
-          const exist = unique.find((record) => record.text === item.text);
+          const exist = unique.find(record => record.text === item.text);
           return exist ? unique : [...unique, item];
         }, []);
       }
       return [];
     };
 
-    const parameters = COLUMNS.map((column) => ({
+    const parameters = COLUMNS.map(column => ({
       text: column.name,
-      icon: COLUMN_ICONS[column.type]
+      icon: COLUMN_ICONS[column.type],
     }));
 
     const recent = [];
 
     const filteredDataSource = () => {
-      if(store.state.searchValue) {
+      if (store.state.searchValue) {
         const param = store.state.searchFilterValue !== '' ? store.state.searchFilterValue : 'first_name';
         let result = [];
-        if(store.state.groupSettings === undefined){
+        if (store.state.groupSettings === undefined) {
           result = store.state.dataSource.filter(record => {
-            return record[param.toLowerCase()]?.includes(store.state.searchValue)
-          })
+            return record[param.toLowerCase()]?.includes(store.state.searchValue);
+          });
         } else {
           const groupsWithSearchValues = store.state.dataSource.map(group => ({
             ...group,
             rows: group.rows.filter(row => {
               return row[param.toLowerCase()]?.includes(store.state.searchValue);
-            })
+            }),
           }));
           result = groupsWithSearchValues.filter(group => group.rows.length > 0);
         }
@@ -436,16 +441,15 @@ const stories = {
       }
 
       return store.state.dataSource;
-
     };
 
     const selectEven = () => {
       const evenRows = store.state.dataSource.map(row => row.key).filter((key, index) => index % 2);
-      store.set({selectedRows: evenRows});
+      store.set({ selectedRows: evenRows });
     };
 
     return (
-        <>
+      <>
         <DSTable
           grouped={Boolean(store.state.groupSettings)}
           hideGroupExpander={boolean('Hide group expander', false)}
@@ -456,34 +460,32 @@ const stories = {
           loading={boolean('Set loading state', false)}
           roundedHeader={boolean('Rounded header', false)}
           cellSize={select('Set cells size', CELL_SIZES, CELL_SIZES.default)}
-          locale={{pagination: {items: 'results', groups: 'groups'}}}
-          filters={
-            [
-              {
-                key: 'view',
-                icon: <Grid2M />,
-                tooltips: { default: 'Table view', clear: 'Clear view', define: 'Define view', list: 'Saved views' },
-                openedLabel: 'Define',
-                showList: () => store.set({savedViewsVisible: true}),
-                show: () => store.set({columnManagerVisible: true}),
-                handleClear: () => {
-                  store.set({selectedView: undefined})
-                  applyGroupSettings(undefined);
-                },
-                selected: getSelectedSavedView(),
+          locale={{ pagination: { items: 'results', groups: 'groups' } }}
+          filters={[
+            {
+              key: 'view',
+              icon: <Grid2M />,
+              tooltips: { default: 'Table view', clear: 'Clear view', define: 'Define view', list: 'Saved views' },
+              openedLabel: 'Define',
+              showList: () => store.set({ savedViewsVisible: true }),
+              show: () => store.set({ columnManagerVisible: true }),
+              handleClear: () => {
+                store.set({ selectedView: undefined });
+                applyGroupSettings(undefined);
               },
-              {
-                key: 'filter',
-                icon: <FilterM />,
-                tooltips: { default: 'Filter', clear: 'Clear filter', define: 'Define filter', list: 'Saved filters' },
-                openedLabel: 'Define',
-                showList: () => store.set({itemFilterVisible: true}),
-                show: () => store.set({modalVisible: true}),
-                handleClear: () => store.set({selectedFilter: undefined}),
-                selected: getSelectedCategory(),
-              }
-            ]
-          }
+              selected: getSelectedSavedView(),
+            },
+            {
+              key: 'filter',
+              icon: <FilterM />,
+              tooltips: { default: 'Filter', clear: 'Clear filter', define: 'Define filter', list: 'Saved filters' },
+              openedLabel: 'Define',
+              showList: () => store.set({ itemFilterVisible: true }),
+              show: () => store.set({ modalVisible: true }),
+              handleClear: () => store.set({ selectedFilter: undefined }),
+              selected: getSelectedCategory(),
+            },
+          ]}
           pagination={{
             showSizeChanger: boolean('Show size changer', true),
             showQuickJumper: boolean('Show quick jumper', true),
@@ -491,24 +493,26 @@ const stories = {
           }}
           addItem={action('ADD item action')}
           rowKey={row => row.key}
-          headerButton={boolean('Show header button', false) && (
-            <Button type="ghost" mode="icon-label" onClick={action('Header button action')}>
-              <Icon component={<AddM />} />
-              {text('Header button label', 'Add row')}
-            </Button>
-          )}
+          headerButton={
+            boolean('Show header button', false) && (
+              <Button type="ghost" mode="icon-label" onClick={action('Header button action')}>
+                <Icon component={<AddM />} />
+                {text('Header button label', 'Add row')}
+              </Button>
+            )
+          }
           itemsMenu={
             <ItemsMenu>
-              <Button onClick={action('Export')} type='secondary' mode='icon-label'>
-                <Icon component={<FileDownloadM/>}/>
+              <Button onClick={action('Export')} type="secondary" mode="icon-label">
+                <Icon component={<FileDownloadM />} />
                 Export
               </Button>
-              <Button onClick={action('Edit')} type='secondary' mode='icon-label'>
-                <Icon component={<EditM/>}/>
+              <Button onClick={action('Edit')} type="secondary" mode="icon-label">
+                <Icon component={<EditM />} />
                 Edit
               </Button>
-              <Button onClick={action('Delete')} type='secondary' mode='icon-label'>
-                <Icon component={<TrashM/>}/>
+              <Button onClick={action('Delete')} type="secondary" mode="icon-label">
+                <Icon component={<TrashM />} />
                 Delete
               </Button>
             </ItemsMenu>
@@ -517,56 +521,32 @@ const stories = {
             boolean('Enable row selection', true) && {
               onChange: handleSelectRow,
               selectedRowKeys: selectedRows,
-              selections: [
-                Table.SELECTION_ALL,
-                Table.SELECTION_INVERT,
-                {
-                  key: 'even',
-                  label: 'Select even',
-                  onClick: selectEven,
-                }
-              ]
+              selections: [Table.SELECTION_ALL, Table.SELECTION_INVERT],
             }
           }
           searchComponent={
             <Search
-              clearTooltip= 'Clear'
-              placeholder= 'Search'
-              width={300}
-              parameters={parameters.slice(0, number('Parameters count', 5))}
-              recent={recent.slice(0, number('Recent count', 5))}
-              suggestions={store.state.searchSuggestions}
-              value={store.state.searchValue}
-              parameterValue={store.state.searchFilterValue}
-              onValueChange={value => {
-                store.set({searchValue: value});
+              clearTooltip="Clear"
+              dropdownMaxHeight={400}
+              filterLookupKey="filter"
+              onClear={() => {
+                store.set({
+                  searchFilterValue: '',
+                  searchValue: '',
+                });
               }}
               onParameterValueChange={value => {
                 store.set({
                   searchFilterValue: value,
                   searchSuggestions: getSuggestions(value),
                 });
-
               }}
-
-              recentDisplayProps={{
-                tooltip: 'Recent',
-                title: 'Recent',
-                rowHeight: 32,
-                visibleRows: 3,
-                itemRender: (item: FilterElement) => <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>,
-                divider: (
-                  <div style={{ padding: '12px', paddingBottom: '0px' }}>
-                    {' '}
-                    <Divider dashed={true} />{' '}
-                  </div>
-                ),
-              }}
+              onValueChange={value => store.set({ searchValue: value })}
+              parameters={parameters.slice(0, number('Parameters count', 5))}
               parametersDisplayProps={{
                 tooltip: 'Parameters',
                 title: 'Parameters',
                 rowHeight: 32,
-                visibleRows: 6,
                 itemRender: (item: FilterElement) => (
                   <Menu.Item
                     highlight={store.state.searchValue}
@@ -577,65 +557,92 @@ const stories = {
                   </Menu.Item>
                 ),
               }}
+              parameterValue={store.state.searchFilterValue}
+              placeholder="Search"
+              recent={recent.slice(0, number('Recent count', 5))}
+              recentDisplayProps={{
+                tooltip: 'Recent',
+                title: 'Recent',
+                rowHeight: 32,
+                itemRender: (item: FilterElement) => (
+                  <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>
+                ),
+                divider: (
+                  <div style={{ padding: '12px', paddingBottom: '0px' }}>
+                    {' '}
+                    <Divider dashed={true} />{' '}
+                  </div>
+                ),
+              }}
+              suggestions={store.state.searchSuggestions}
               suggestionsDisplayProps={{
                 tooltip: 'Suggestions',
                 title: 'Suggestions',
                 rowHeight: 32,
-                visibleRows: 6,
-                itemRender: (item: FilterElement) => <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>,
+                itemRender: (item: FilterElement) => (
+                  <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>
+                ),
               }}
+              textLookupConfig={{
+                parameters: 'text',
+                recent: 'text',
+                suggestions: 'text',
+              }}
+              value={store.state.searchValue}
+              width={300}
             />
           }
         />
-          <ColumnManager
-            hide={() => store.set({columnManagerVisible: false})}
-            visible={store.state.columnManagerVisible}
-            savedViewsVisible={store.state.savedViewsVisible}
-            hideSavedViews={() => store.set({savedViewsVisible: false})}
-            columns={store.state.columns}
-            onApply={(columns, groupSettings) => {
-              applyGroupSettings(groupSettings);
-              store.set({columns: columns, columnManagerVisible: false})
-            }}
-            groupSettings={store.state.groupSettings}
-            onSave={(savedView) => saveFilter(savedView, store)}
-            itemFilterConfig={{
-              removeItem: (params) => removeItem(params, store),
-              editItem: (params) => editItem(params, store),
-              selectItem: (params) => setSelectedView(params, store),
-              duplicateItem: action('duplicate item'),
-              selectedItemId: store.state.selectedView,
-              categories: store.state.savedViews,
-              texts: {
-                activateItemTitle: 'By activating this view, you will cancel your unsaved view settings',
-                activate:  'Activate',
-                cancel: 'Cancel',
-                deleteConfirmationTitle: 'Delete view',
-                deleteConfirmationDescription: 'Deleting this view will permanently remove it from templates library. All tables using this view will be reset.',
-                deleteLabel: 'Delete',
-                noResults: 'No results',
-                searchPlaceholder: 'Search',
-                searchClearTooltip: 'Clear',
-                title: 'Views',
-                itemActionRename: 'Rename',
-                itemActionDuplicate: 'Duplicate',
-                itemActionDelete: 'Delete',
-              }
-            }}
-          />
-          <ItemFilter
-            visible={store.state.itemFilterVisible}
-            hide={toggleItemFilterVisible}
-            removeItem={props => removeItem(props, store)}
-            editItem={props => editItem(props, store)}
-            selectItem={props => setSelectedFilter(props, store)}
-            duplicateItem={props => duplicateItem(props)}
-            selectedItemId={store.state.selectedFilter}
-            categories={store.state.categories}
-          />
-      </>)
-    }
-  ),
+        <ColumnManager
+          hide={() => store.set({ columnManagerVisible: false })}
+          visible={store.state.columnManagerVisible}
+          savedViewsVisible={store.state.savedViewsVisible}
+          hideSavedViews={() => store.set({ savedViewsVisible: false })}
+          columns={store.state.columns}
+          onApply={(columns, groupSettings) => {
+            applyGroupSettings(groupSettings);
+            store.set({ columns: columns, columnManagerVisible: false });
+          }}
+          groupSettings={store.state.groupSettings}
+          onSave={savedView => saveFilter(savedView, store)}
+          itemFilterConfig={{
+            removeItem: params => removeItem(params, store),
+            editItem: params => editItem(params, store),
+            selectItem: params => setSelectedView(params, store),
+            duplicateItem: action('duplicate item'),
+            selectedItemId: store.state.selectedView,
+            categories: store.state.savedViews,
+            texts: {
+              activateItemTitle: 'By activating this view, you will cancel your unsaved view settings',
+              activate: 'Activate',
+              cancel: 'Cancel',
+              deleteConfirmationTitle: 'Delete view',
+              deleteConfirmationDescription:
+                'Deleting this view will permanently remove it from templates library. All tables using this view will be reset.',
+              deleteLabel: 'Delete',
+              noResults: 'No results',
+              searchPlaceholder: 'Search',
+              searchClearTooltip: 'Clear',
+              title: 'Views',
+              itemActionRename: 'Rename',
+              itemActionDuplicate: 'Duplicate',
+              itemActionDelete: 'Delete',
+            },
+          }}
+        />
+        <ItemFilter
+          visible={store.state.itemFilterVisible}
+          hide={toggleItemFilterVisible}
+          removeItem={props => removeItem(props, store)}
+          editItem={props => editItem(props, store)}
+          selectItem={props => setSelectedFilter(props, store)}
+          duplicateItem={props => duplicateItem(props)}
+          selectedItemId={store.state.selectedFilter}
+          categories={store.state.categories}
+        />
+      </>
+    );
+  }),
 };
 
 export default {

@@ -3,6 +3,94 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.50](https://github.com/Synerise/synerise-design/compare/@synerise/ds-block@0.3.49...@synerise/ds-block@0.3.50) (2020-07-30)
+
+**Note:** Version bump only for package @synerise/ds-block
+
+
+
+
+
+## [0.3.49](https://github.com/Synerise/synerise-design/compare/@synerise/ds-block@0.3.48...@synerise/ds-block@0.3.49) (2020-07-29)
+
+**Note:** Version bump only for package @synerise/ds-block
+
+
+
+
+
+## [0.3.48](https://github.com/Synerise/synerise-design/compare/@synerise/ds-block@0.3.47...@synerise/ds-block@0.3.48) (2020-07-28)
+
+**Note:** Version bump only for package @synerise/ds-block
+
+
+
+
+
+## [0.3.47](https://github.com/Synerise/synerise-design/compare/@synerise/ds-block@0.3.46...@synerise/ds-block@0.3.47) (2020-07-24)
+
+**Note:** Version bump only for package @synerise/ds-block
+
+
+
+
+
+## [0.3.46](https://github.com/Synerise/synerise-design/compare/@synerise/ds-block@0.3.45...@synerise/ds-block@0.3.46) (2020-07-24)
+
+**Note:** Version bump only for package @synerise/ds-block
+
+
+
+
+
+## [0.3.45](https://github.com/Synerise/synerise-design/compare/@synerise/ds-block@0.3.44...@synerise/ds-block@0.3.45) (2020-07-22)
+
+**Note:** Version bump only for package @synerise/ds-block
+
+
+
+
+
+## [0.3.44](https://github.com/Synerise/synerise-design/compare/@synerise/ds-block@0.3.43...@synerise/ds-block@0.3.44) (2020-07-22)
+
+**Note:** Version bump only for package @synerise/ds-block
+
+
+
+
+
+## [0.3.43](https://github.com/Synerise/synerise-design/compare/@synerise/ds-block@0.3.42...@synerise/ds-block@0.3.43) (2020-07-20)
+
+**Note:** Version bump only for package @synerise/ds-block
+
+
+
+
+
+## [0.3.42](https://github.com/Synerise/synerise-design/compare/@synerise/ds-block@0.3.41...@synerise/ds-block@0.3.42) (2020-07-15)
+
+**Note:** Version bump only for package @synerise/ds-block
+
+
+
+
+
+## [0.3.41](https://github.com/Synerise/synerise-design/compare/@synerise/ds-block@0.3.40...@synerise/ds-block@0.3.41) (2020-07-13)
+
+**Note:** Version bump only for package @synerise/ds-block
+
+
+
+
+
+## [0.3.40](https://github.com/Synerise/synerise-design/compare/@synerise/ds-block@0.3.39...@synerise/ds-block@0.3.40) (2020-07-09)
+
+**Note:** Version bump only for package @synerise/ds-block
+
+
+
+
+
 ## [0.3.39](https://github.com/Synerise/synerise-design/compare/@synerise/ds-block@0.3.38...@synerise/ds-block@0.3.39) (2020-07-08)
 
 **Note:** Version bump only for package @synerise/ds-block

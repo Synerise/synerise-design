@@ -2,11 +2,11 @@ import * as React from 'react';
 import Table from 'antd/lib/table';
 import Result from '@synerise/ds-result';
 import Checkbox from '@synerise/ds-checkbox';
-import { DSTableProps } from '../Table.types';
+import { DSTableProps, RowType } from '../Table.types';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-function DefaultTable<T extends object = any>(props: DSTableProps<T>): React.ReactElement {
-  const { title, selection, dataSource, rowKey, locale } = props;
+function DefaultTable<T extends any & RowType<T>>(props: DSTableProps<T>): React.ReactElement {
+  const { title, selection, dataSource, rowKey, locale, expandable } = props;
 
   const getRowKey = React.useCallback(
     (row: T): React.ReactText | undefined => {
@@ -22,11 +22,34 @@ function DefaultTable<T extends object = any>(props: DSTableProps<T>): React.Rea
       const key = getRowKey(record);
       if (selection?.selectedRowKeys && selection.onChange && key !== undefined) {
         const { onChange, selectedRowKeys } = selection;
-        const selectedKeys = checked ? [...selectedRowKeys, key] : selectedRowKeys.filter(k => k !== key);
-        const selectedRows =
-          selectedKeys.map(selectedKey => dataSource?.find(row => getRowKey(row) === selectedKey)) || [];
-        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-        // @ts-ignore
+        let selectedKeys = [...selectedRowKeys];
+        const selectedRows: T[] = [];
+        if (record.children !== undefined && Array.isArray(record.children)) {
+          record.children.forEach((child: T): void => {
+            const childKey = getRowKey(child);
+            selectedKeys = checked && childKey ? [...selectedKeys, childKey] : selectedKeys.filter(k => k !== childKey);
+          });
+        } else {
+          selectedKeys = checked ? [...selectedRowKeys, key] : selectedRowKeys.filter(k => k !== key);
+        }
+
+        selectedKeys = [...new Set(selectedKeys)];
+        if (dataSource) {
+          dataSource.forEach(row => {
+            const dataRowKey = getRowKey(row);
+            if (row.children !== undefined && Array.isArray(row.children)) {
+              row.children.forEach((child: T) => {
+                const childKey = getRowKey(child);
+                if (childKey && selectedKeys.indexOf(childKey) >= 0) {
+                  selectedRows.push(child);
+                }
+              });
+            } else if (dataRowKey && selectedKeys.indexOf(dataRowKey) >= 0) {
+              selectedRows.push(row);
+            }
+          });
+        }
+
         onChange(selectedKeys, selectedRows);
       }
     },
@@ -34,8 +57,14 @@ function DefaultTable<T extends object = any>(props: DSTableProps<T>): React.Rea
   );
 
   return (
+    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+    // @ts-ignore
     <Table<T>
       {...props}
+      expandable={{
+        expandIconColumnIndex: -1,
+        ...expandable,
+      }}
       locale={{
         ...locale,
         emptyText: <Result description={locale?.emptyText || 'No data'} type="no-results" noSearchResults />,
@@ -51,9 +80,25 @@ function DefaultTable<T extends object = any>(props: DSTableProps<T>): React.Rea
           selections: selection?.selections?.filter(Boolean),
           columnWidth: 72,
           renderCell: (checked: boolean, record: T): React.ReactNode => {
+            const hasChilds = record.children !== undefined && Array.isArray(record.children);
+            const allChildsChecked =
+              (hasChilds &&
+                record.children?.filter((child: T) => {
+                  const childKey = getRowKey(child);
+                  return childKey && selection?.selectedRowKeys.indexOf(childKey) < 0;
+                }).length === 0) ||
+              false;
+            const checkedChilds =
+              record.children?.filter((child: T) => {
+                const childKey = getRowKey(child);
+                return childKey && selection?.selectedRowKeys.indexOf(childKey) >= 0;
+              }) || [];
+            const isIndeterminate =
+              hasChilds && checkedChilds.length > 0 && checkedChilds.length < record.children.length;
             return (
               <Checkbox
-                checked={checked}
+                checked={checked || allChildsChecked}
+                indeterminate={isIndeterminate}
                 onChange={(event): void => {
                   toggleRowSelection(event.target.checked, record);
                 }}

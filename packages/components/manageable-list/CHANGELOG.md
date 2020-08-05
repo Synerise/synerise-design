@@ -3,6 +3,143 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.16](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.13.15...@synerise/ds-manageable-list@0.13.16) (2020-07-30)
+
+**Note:** Version bump only for package @synerise/ds-manageable-list
+
+
+
+
+
+## [0.13.15](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.13.14...@synerise/ds-manageable-list@0.13.15) (2020-07-29)
+
+**Note:** Version bump only for package @synerise/ds-manageable-list
+
+
+
+
+
+## [0.13.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.13.13...@synerise/ds-manageable-list@0.13.14) (2020-07-28)
+
+**Note:** Version bump only for package @synerise/ds-manageable-list
+
+
+
+
+
+## [0.13.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.13.12...@synerise/ds-manageable-list@0.13.13) (2020-07-28)
+
+
+### Bug Fixes
+
+* **manageable-list:** added default color icon ([d1e2aeb](https://github.com/Synerise/synerise-design/commit/d1e2aeb669bdf031be8eafcd2cd4a2c96366bac6))
+
+
+
+
+
+## [0.13.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.13.11...@synerise/ds-manageable-list@0.13.12) (2020-07-24)
+
+**Note:** Version bump only for package @synerise/ds-manageable-list
+
+
+
+
+
+## [0.13.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.13.10...@synerise/ds-manageable-list@0.13.11) (2020-07-24)
+
+**Note:** Version bump only for package @synerise/ds-manageable-list
+
+
+
+
+
+## [0.13.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.13.9...@synerise/ds-manageable-list@0.13.10) (2020-07-22)
+
+**Note:** Version bump only for package @synerise/ds-manageable-list
+
+
+
+
+
+## [0.13.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.13.8...@synerise/ds-manageable-list@0.13.9) (2020-07-21)
+
+**Note:** Version bump only for package @synerise/ds-manageable-list
+
+
+
+
+
+## [0.13.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.13.7...@synerise/ds-manageable-list@0.13.8) (2020-07-20)
+
+
+### Bug Fixes
+
+* **search:** add onClear prop and update tests and stories ([c11b557](https://github.com/Synerise/synerise-design/commit/c11b5578ef72ec5928f90416be09b74e7036e889))
+
+
+
+
+
+## [0.13.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.13.6...@synerise/ds-manageable-list@0.13.7) (2020-07-20)
+
+
+### Bug Fixes
+
+* **manageable-list:** code review changes ([2e9fbd2](https://github.com/Synerise/synerise-design/commit/2e9fbd2a25c26051159b75821421c3a13b6b3f1d))
+* **manageable-list:** fixing the build ([f3aae83](https://github.com/Synerise/synerise-design/commit/f3aae83f478557d49a858049b9830d950a27ff82))
+* **manageable-list:** trying to steer expanded items from outside ([b55f888](https://github.com/Synerise/synerise-design/commit/b55f888a45cf7564f13e966dac2c77f5959aecf0))
+
+
+### Performance Improvements
+
+* **manageable-list:** prevent often rerender ([4272aa8](https://github.com/Synerise/synerise-design/commit/4272aa80ca0f1cd5505ad297f9a0f69461955057))
+
+
+
+
+
+## [0.13.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.13.5...@synerise/ds-manageable-list@0.13.6) (2020-07-16)
+
+
+### Bug Fixes
+
+* **manageable-list:** linter ([cbba911](https://github.com/Synerise/synerise-design/commit/cbba911e0a54b77e5fa614e916ebf7da98e2783e))
+* **manageable-list:** passed a key: ([ebafa8e](https://github.com/Synerise/synerise-design/commit/ebafa8ee9c6b16053b3a87c5b99d62bbfe93f3c3))
+
+
+
+
+
+## [0.13.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.13.4...@synerise/ds-manageable-list@0.13.5) (2020-07-15)
+
+
+### Bug Fixes
+
+* **manageable-list:** added tooltips for stories ([c31911b](https://github.com/Synerise/synerise-design/commit/c31911bc9e57863981a32a9949a6ee4f9df23523))
+* **manageable-list:** lint the code ([5937fa8](https://github.com/Synerise/synerise-design/commit/5937fa89a427e5081f01ff5cea2ed70fd489257e))
+* **manageable-list:** prevent from remounting items ([a3680b8](https://github.com/Synerise/synerise-design/commit/a3680b8bafdd7f344eea2f828b5a974f51ef004f))
+
+
+
+
+
+## [0.13.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.13.3...@synerise/ds-manageable-list@0.13.4) (2020-07-13)
+
+**Note:** Version bump only for package @synerise/ds-manageable-list
+
+
+
+
+
+## [0.13.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.13.2...@synerise/ds-manageable-list@0.13.3) (2020-07-09)
+
+**Note:** Version bump only for package @synerise/ds-manageable-list
+
+
+
+
+
 ## [0.13.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.13.1...@synerise/ds-manageable-list@0.13.2) (2020-07-08)
 
 **Note:** Version bump only for package @synerise/ds-manageable-list

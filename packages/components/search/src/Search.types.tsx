@@ -1,44 +1,64 @@
 import * as React from 'react';
+import { ListProps } from 'react-window';
 
-export type FilterElement = {
-  text: string;
-  filter?: string;
-  icon?: React.ReactNode;
-};
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type AnyObject = Record<string, any>;
+
 export type DataSetProps = {
-  title: string;
-  tooltip: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  itemRender: (item: any) => JSX.Element;
   rowHeight: number;
-  visibleRows: number;
-  itemRender: (item: FilterElement) => React.ReactElement;
+  title: string;
+  tooltip?: string;
+  visibleRows?: number;
+  listProps?: Partial<ListProps>;
 };
-export type SearchProps = {
-  placeholder: string;
+
+export type SearchLookupConfig = {
+  parameters: string;
+  recent: string;
+  suggestions: string;
+};
+
+export type SearchProps<T extends AnyObject> = {
   clearTooltip: string;
-  parameters: FilterElement[];
-  recent: FilterElement[];
-  suggestions: FilterElement[];
-  onValueChange: (value: string) => void;
-  value: string;
-  parameterValue: string;
-  onParameterValueChange: (parameterValue: string) => void;
-  width?: number;
-  dropdownMaxHeight?: number;
-  recentDisplayProps: DataSetProps;
-  suggestionsDisplayProps: DataSetProps;
-  parametersDisplayProps: DataSetProps;
   divider?: React.ReactNode;
+  dropdownMaxHeight: number;
+  filterLookupKey?: string;
+  onClear: () => void;
+  onParameterValueChange: (parameterValue: string) => void;
+  onValueChange: (value: string) => void;
+  parameters: T[];
+  parametersDisplayProps: DataSetProps;
+  parameterValue: string;
+  placeholder: string;
+  recent: T[];
+  recentDisplayProps: DataSetProps;
   style?: React.CSSProperties;
+  suggestions?: T[] | null;
+  suggestionsDisplayProps?: DataSetProps | null;
+  textLookupConfig: SearchLookupConfig;
+  value: string;
+  width?: number;
+  hideLabel?: boolean;
 };
-export type SearchState = {
+
+export type SearchState<T extends AnyObject> = {
   isInputOpen: boolean;
-  label: FilterElement | null;
-  filteredParameters: FilterElement[];
-  filteredRecent: FilterElement[];
-  filteredSuggestions: FilterElement[];
+  label: T | null | undefined;
+  filteredParameters: T[];
+  filteredRecent: T[];
+  filteredSuggestions?: T[] | null;
   isListVisible: boolean;
   focusInputTrigger: boolean;
   toggleInputTrigger: boolean;
-  isResultChoosed: boolean;
+  isResultChosen: boolean;
   itemsListWidth: number;
+  scrollbarScrollTop: number;
+  moveCursorToEnd: boolean;
+};
+
+export enum SelectResultDataKeys {
+  RECENT = 'recent',
+  SUGGESTIONS = 'suggestions',
 }

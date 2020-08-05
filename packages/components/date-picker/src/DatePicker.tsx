@@ -8,13 +8,28 @@ import PickerInput from './Elements/PickerInput/PickerInput';
 import * as S from './DatePicker.styles';
 
 const DatePicker: React.FC<Props> = (props) => {
-  const { texts, value, onApply, showTime } = props;
+  const { texts, value, onApply, showTime, onValueChange } = props;
   const [dropVisible, setDropVisible] = React.useState(false);
   const [selectedDate, setSelectedDate] = React.useState(value);
   const ref = React.useRef<HTMLDivElement>(null);
   useOnClickOutside(ref, () => {
     !!dropVisible && setDropVisible(false);
   });
+  const onValueChangeCallback = React.useCallback(
+    (val: Date | undefined): void => {
+      onValueChange && onValueChange(val);
+      setSelectedDate(val);
+    },
+    [onValueChange]
+  );
+  const onApplyCallback = React.useCallback(
+    (val: Date | undefined): void => {
+      onApply && onApply(val);
+      setSelectedDate(val);
+      setDropVisible(false);
+    },
+    [onApply]
+  );
   return (
     <Dropdown
       overlay={
@@ -23,11 +38,9 @@ const DatePicker: React.FC<Props> = (props) => {
             {...props}
             showTime={showTime}
             texts={texts}
-            onApply={(val: Date | undefined): void => {
-              onApply && onApply(val);
-              setSelectedDate(val);
-              setDropVisible(false);
-            }}
+            onApply={onApplyCallback}
+            onValueChange={onValueChangeCallback}
+            value={selectedDate}
           />
         </S.OverlayContainer>
       }
@@ -41,8 +54,11 @@ const DatePicker: React.FC<Props> = (props) => {
         }}
         onClear={(): void => {
           setDropVisible(false);
-          setSelectedDate(undefined)
+          setSelectedDate(undefined);
         }}
+        placeholder={texts.inputPlaceholder}
+        clearTooltip={texts.clearTooltip}
+        highlight={!!dropVisible}
       />
     </Dropdown>
   );

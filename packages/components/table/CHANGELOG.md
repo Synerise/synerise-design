@@ -3,6 +3,211 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.23.24](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.23.23...@synerise/ds-table@0.23.24) (2020-07-31)
+
+**Note:** Version bump only for package @synerise/ds-table
+
+
+
+
+
+## [0.23.23](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.23.22...@synerise/ds-table@0.23.23) (2020-07-30)
+
+**Note:** Version bump only for package @synerise/ds-table
+
+
+
+
+
+## [0.23.22](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.23.21...@synerise/ds-table@0.23.22) (2020-07-29)
+
+**Note:** Version bump only for package @synerise/ds-table
+
+
+
+
+
+## [0.23.21](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.23.20...@synerise/ds-table@0.23.21) (2020-07-29)
+
+**Note:** Version bump only for package @synerise/ds-table
+
+
+
+
+
+## [0.23.20](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.23.19...@synerise/ds-table@0.23.20) (2020-07-28)
+
+**Note:** Version bump only for package @synerise/ds-table
+
+
+
+
+
+## [0.23.19](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.23.18...@synerise/ds-table@0.23.19) (2020-07-28)
+
+**Note:** Version bump only for package @synerise/ds-table
+
+
+
+
+
+## [0.23.18](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.23.17...@synerise/ds-table@0.23.18) (2020-07-27)
+
+**Note:** Version bump only for package @synerise/ds-table
+
+
+
+
+
+## [0.23.17](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.23.16...@synerise/ds-table@0.23.17) (2020-07-24)
+
+**Note:** Version bump only for package @synerise/ds-table
+
+
+
+
+
+## [0.23.16](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.23.15...@synerise/ds-table@0.23.16) (2020-07-24)
+
+
+### Bug Fixes
+
+* **table:** use uniq as key of AvatarLabelsCell ([0dc759e](https://github.com/synerise/synerise-design/commit/0dc759ead23148ead5ac144d99a35c5c75ebc72c))
+
+
+
+
+
+## [0.23.15](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.23.14...@synerise/ds-table@0.23.15) (2020-07-23)
+
+**Note:** Version bump only for package @synerise/ds-table
+
+
+
+
+
+## [0.23.14](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.23.13...@synerise/ds-table@0.23.14) (2020-07-22)
+
+**Note:** Version bump only for package @synerise/ds-table
+
+
+
+
+
+## [0.23.13](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.23.12...@synerise/ds-table@0.23.13) (2020-07-22)
+
+**Note:** Version bump only for package @synerise/ds-table
+
+
+
+
+
+## [0.23.12](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.23.11...@synerise/ds-table@0.23.12) (2020-07-21)
+
+**Note:** Version bump only for package @synerise/ds-table
+
+
+
+
+
+## [0.23.11](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.23.10...@synerise/ds-table@0.23.11) (2020-07-20)
+
+**Note:** Version bump only for package @synerise/ds-table
+
+
+
+
+
+## [0.23.10](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.23.9...@synerise/ds-table@0.23.10) (2020-07-20)
+
+
+### Bug Fixes
+
+* **table:** fix TreeTable expandIcon position ([768eb5c](https://github.com/synerise/synerise-design/commit/768eb5cb885f0895473a0685d6557da294f3a2d6))
+* **table:** VirtualTable improvements ([e20a17c](https://github.com/synerise/synerise-design/commit/e20a17cd95751d3f5d091a6d5f84c3be671a5a5a))
+
+
+
+
+
+## [0.23.9](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.23.8...@synerise/ds-table@0.23.9) (2020-07-17)
+
+**Note:** Version bump only for package @synerise/ds-table
+
+
+
+
+
+## [0.23.8](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.23.7...@synerise/ds-table@0.23.8) (2020-07-16)
+
+
+### Bug Fixes
+
+* **table:** fix expandable rows selecetion ([4c1c045](https://github.com/synerise/synerise-design/commit/4c1c0454fb89350c387ecaf28afae51d2ee1f783))
+* **table:** fix types ([32589e8](https://github.com/synerise/synerise-design/commit/32589e84b3ced8b70f32c9db079b1e9f290de37a))
+* **table:** on change selection callback ([0eabab4](https://github.com/synerise/synerise-design/commit/0eabab4ffc29893a3b8dd552ea7af619431fdc73))
+* **table:** table selection for rows with key = 0 ([8166b19](https://github.com/synerise/synerise-design/commit/8166b192ab8263be1e5b9de493f52633e4b14040))
+
+
+
+
+
+## [0.23.7](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.23.6...@synerise/ds-table@0.23.7) (2020-07-15)
+
+**Note:** Version bump only for package @synerise/ds-table
+
+
+
+
+
+## [0.23.6](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.23.5...@synerise/ds-table@0.23.6) (2020-07-15)
+
+**Note:** Version bump only for package @synerise/ds-table
+
+
+
+
+
+## [0.23.5](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.23.4...@synerise/ds-table@0.23.5) (2020-07-15)
+
+**Note:** Version bump only for package @synerise/ds-table
+
+
+
+
+
+## [0.23.4](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.23.3...@synerise/ds-table@0.23.4) (2020-07-13)
+
+**Note:** Version bump only for package @synerise/ds-table
+
+
+
+
+
+## [0.23.3](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.23.2...@synerise/ds-table@0.23.3) (2020-07-13)
+
+**Note:** Version bump only for package @synerise/ds-table
+
+
+
+
+
+## [0.23.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.23.1...@synerise/ds-table@0.23.2) (2020-07-13)
+
+**Note:** Version bump only for package @synerise/ds-table
+
+
+
+
+
+## [0.23.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.23.0...@synerise/ds-table@0.23.1) (2020-07-09)
+
+**Note:** Version bump only for package @synerise/ds-table
+
+
+
+
+
 # [0.23.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.22.1...@synerise/ds-table@0.23.0) (2020-07-08)
 
 

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Icon from '@synerise/ds-icon';
+
 import * as S from './Card.styles';
 
 export type Backgrounds = 'white' | 'white-shadow' | 'grey' | 'grey-shadow' | 'outline';
@@ -22,6 +23,7 @@ export interface CardProps {
   withoutPadding?: boolean;
   headerBorderBottom?: boolean;
   background?: Backgrounds;
+  showContent?: boolean;
 }
 
 const Card: React.FC<CardProps> = ({
@@ -42,8 +44,10 @@ const Card: React.FC<CardProps> = ({
   withoutPadding,
   headerBorderBottom,
   background = 'white-shadow',
+  showContent,
 }) => {
   const fatTitle = !description || (description && compactHeader);
+
   return (
     <S.Container
       raised={raised}
@@ -70,11 +74,17 @@ const Card: React.FC<CardProps> = ({
             {description && <S.Description>{description}</S.Description>}
           </S.HeaderContent>
 
-          {headerSideChildren && <S.HeaderSideChildren>{headerSideChildren}</S.HeaderSideChildren>}
+          {headerSideChildren && (
+            <S.HeaderSideChildren onClick={(event): void => event.stopPropagation()}>
+              {headerSideChildren}
+            </S.HeaderSideChildren>
+          )}
         </S.Header>
       )}
-      <S.ChildrenContainer isContentful={!!children} withoutPadding={withoutPadding} hasHeader={withHeader}>
-        {children}
+      <S.ChildrenContainer className={`contentContainer ${!showContent ? 'closed' : ''}`}>
+        <S.PaddingWrapper withoutPadding={withoutPadding}>
+          <div className='content'>{children}</div>
+        </S.PaddingWrapper>
       </S.ChildrenContainer>
     </S.Container>
   );

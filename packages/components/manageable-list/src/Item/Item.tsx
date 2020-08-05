@@ -19,8 +19,9 @@ type Props = {
   texts: {
     [k: string]: string | React.ReactNode;
   };
-  onExpand: (id: string, isExpanded: boolean) => void;
+  onExpand?: (id: string, isExpanded: boolean) => void;
   hideExpander?: boolean;
+  expanded?: boolean;
 };
 
 export type ItemProps = {
@@ -59,13 +60,15 @@ const Item: React.FC<Props> = ({
   selected,
   texts,
   searchQuery,
-  onExpand,
   hideExpander,
+  expanded,
+  onExpand,
 }) => {
   switch (listType) {
     case ListType.CONTENT:
       return (
         <ContentItem
+          key={`item-${item.id}`}
           item={item}
           onDuplicate={onDuplicate}
           onUpdate={onUpdate}
@@ -73,14 +76,16 @@ const Item: React.FC<Props> = ({
           greyBackground={greyBackground}
           changeOrderDisabled={changeOrderDisabled}
           draggable={draggable}
-          onExpand={onExpand}
           hideExpander={hideExpander}
           texts={texts}
+          expanded={expanded}
+          onExpand={onExpand}
         />
       );
     case ListType.FILTER:
       return (
         <FilterItem
+          key={`item-${item.id}`}
           item={item}
           greyBackground={greyBackground}
           onSelect={onSelect}
@@ -94,7 +99,16 @@ const Item: React.FC<Props> = ({
       );
 
     default:
-      return <SimpleItem item={item} onSelect={onSelect} onUpdate={onUpdate} onRemove={onRemove} />;
+      return (
+        <SimpleItem
+          key={`item-${item.id}`}
+          item={item}
+          onSelect={onSelect}
+          onUpdate={onUpdate}
+          onRemove={onRemove}
+          texts={texts}
+        />
+      );
   }
 };
 

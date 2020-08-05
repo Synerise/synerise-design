@@ -4,6 +4,7 @@ import Radio from '@synerise/ds-radio';
 import { fireEvent } from '@testing-library/react';
 
 import List from '../index';
+import { isNestedArray } from '../List';
 
 describe('List', () => {
   const defaultData = [['Option A', 'Option B']];
@@ -103,7 +104,9 @@ describe('List', () => {
         dataSource={data}
         radio
         options={{ defaultValue: 'A' }}
-        renderItem={(item): React.ReactNode => <Radio value={item.value}>{item.label}</Radio>}
+        renderItem={(item: { value: string; label: string | React.ReactNode }): React.ReactNode => (
+          <Radio value={item.value}>{item.label}</Radio>
+        )}
       />
     );
 
@@ -122,5 +125,25 @@ describe('List', () => {
 
     // ASSERT
     expect(container.querySelector('.ant-list-items > li')).toHaveStyle('padding: 12px 12px 12px 16px');
+  });
+  it('should recognize if dataSource is nested or not', () => {
+    // ARRANGE
+    const nested = [
+      [
+        { label: 'Country', value: 'country' },
+        { label: 'Address', value: 'address' },
+      ],
+    ];
+    const flat = [
+      { label: 'Country', value: 'country' },
+      { label: 'Address', value: 'address' },
+    ];
+    const nestedEmpty = [[]];
+    const flatEmpty: object[] = [];
+    // ACT & ASSERT
+    expect(isNestedArray(nested)).toBe(true);
+    expect(isNestedArray(flat)).toBe(false);
+    expect(isNestedArray(nestedEmpty)).toBe(true);
+    expect(isNestedArray(flatEmpty)).toBe(false);
   });
 });

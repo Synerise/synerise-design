@@ -3,6 +3,73 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.28](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.12.27...@synerise/ds-button@0.12.28) (2020-07-30)
+
+**Note:** Version bump only for package @synerise/ds-button
+
+
+
+
+
+## [0.12.27](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.12.26...@synerise/ds-button@0.12.27) (2020-07-29)
+
+**Note:** Version bump only for package @synerise/ds-button
+
+
+
+
+
+## [0.12.26](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.12.25...@synerise/ds-button@0.12.26) (2020-07-24)
+
+**Note:** Version bump only for package @synerise/ds-button
+
+
+
+
+
+## [0.12.25](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.12.24...@synerise/ds-button@0.12.25) (2020-07-24)
+
+**Note:** Version bump only for package @synerise/ds-button
+
+
+
+
+
+## [0.12.24](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.12.23...@synerise/ds-button@0.12.24) (2020-07-20)
+
+
+### Bug Fixes
+
+* **button:** add styles to secondary button and move to button component ([b62da4c](https://github.com/synerise/synerise-design/commit/b62da4ce88727f370b5c0cb051828386fabb55d1))
+
+
+
+
+
+## [0.12.23](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.12.22...@synerise/ds-button@0.12.23) (2020-07-15)
+
+**Note:** Version bump only for package @synerise/ds-button
+
+
+
+
+
+## [0.12.22](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.12.21...@synerise/ds-button@0.12.22) (2020-07-13)
+
+**Note:** Version bump only for package @synerise/ds-button
+
+
+
+
+
+## [0.12.21](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.12.20...@synerise/ds-button@0.12.21) (2020-07-09)
+
+**Note:** Version bump only for package @synerise/ds-button
+
+
+
+
+
 ## [0.12.20](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.12.19...@synerise/ds-button@0.12.20) (2020-07-08)
 
 **Note:** Version bump only for package @synerise/ds-button

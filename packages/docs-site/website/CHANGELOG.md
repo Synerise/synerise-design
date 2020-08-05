@@ -3,6 +3,82 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.8](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.5.7...docs@0.5.8) (2020-07-31)
+
+
+### Bug Fixes
+
+* **docs:** add missing card-tabs.md ([4e17931](https://gitlab.synerise.com/Frontend/synerise-design/commit/4e1793103ee7fef53d76f326b91fe39285164e51))
+
+
+
+
+
+## [0.5.7](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.5.6...docs@0.5.7) (2020-07-22)
+
+**Note:** Version bump only for package docs
+
+
+
+
+
+## [0.5.6](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.5.5...docs@0.5.6) (2020-07-21)
+
+
+### Bug Fixes
+
+* **docs:** add missing docs file ([6cc599e](https://gitlab.synerise.com/Frontend/synerise-design/commit/6cc599e0e9f70ec4026cd312376c88478c546e40))
+
+
+
+
+
+## [0.5.5](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.5.4...docs@0.5.5) (2020-07-15)
+
+**Note:** Version bump only for package docs
+
+
+
+
+
+## [0.5.4](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.5.3...docs@0.5.4) (2020-07-15)
+
+
+### Bug Fixes
+
+* **description:** update stories, fix styles ([ebd1294](https://gitlab.synerise.com/Frontend/synerise-design/commit/ebd129411b6023fc940ed207f6a3da5e0cc32c17))
+
+
+
+
+
+## [0.5.3](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.5.2...docs@0.5.3) (2020-07-13)
+
+
+### Bug Fixes
+
+* **search:** run docs build ([92e2df5](https://gitlab.synerise.com/Frontend/synerise-design/commit/92e2df509f691cf75abb7eb7c9eb014ee71aac5b))
+
+
+
+
+
+## [0.5.2](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.5.1...docs@0.5.2) (2020-07-13)
+
+**Note:** Version bump only for package docs
+
+
+
+
+
+## [0.5.1](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.5.0...docs@0.5.1) (2020-07-09)
+
+**Note:** Version bump only for package docs
+
+
+
+
+
 # [0.5.0](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.4.4...docs@0.5.0) (2020-07-07)
 
 

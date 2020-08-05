@@ -25,7 +25,7 @@ describe('Card Tabs', () => {
   it('should render CardTabs with 3 CardTabs', () => {
     // ARRANGE
     const { queryAllByTestId } = renderWithProvider(<CardTabs>
-      { ITEMS.map((item: CardTabsItem, index: number) => <CardTab key={index} id={item.id} index={index} name={item.name} tag={item.tag} prefix={prefixType.TAG} />) }
+      { ITEMS.map((item: CardTabsItem, index: number) => <CardTab key={index} id={item.id} name={item.name} tag={item.tag} prefix={prefixType.TAG} />) }
     </CardTabs>)
 
     // ASSERT
@@ -60,7 +60,7 @@ describe('Card Tabs', () => {
     // ARRANGE
     const onAddTab = jest.fn();
     const { getByTestId } = renderWithProvider(<CardTabs onAddTab={onAddTab} maxTabsCount={3}>
-      { ITEMS.map((item: CardTabsItem, index: number) => <CardTab key={index} id={item.id} index={index} name={item.name} tag={item.tag} prefix={prefixType.TAG} />) }
+      { ITEMS.map((item: CardTabsItem, index: number) => <CardTab key={index} id={item.id} name={item.name} tag={item.tag} prefix={prefixType.TAG} />) }
     </CardTabs>);
     const addButton = getByTestId('card-tabs-add-button').querySelector('button');
     // ASSERT
@@ -71,7 +71,7 @@ describe('Card Tabs', () => {
     // ARRANGE
     const onSelect = jest.fn();
     const { queryAllByTestId } = renderWithProvider(<CardTabs maxTabsCount={3}>
-      { ITEMS.map((item: CardTabsItem, index: number) => <CardTab onSelectTab={onSelect} key={index} id={item.id} index={index} name={item.name} tag={item.tag} prefix={prefixType.TAG} />) }
+      { ITEMS.map((item: CardTabsItem, index: number) => <CardTab onSelectTab={onSelect} key={index} id={item.id} name={item.name} tag={item.tag} prefix={prefixType.TAG} />) }
     </CardTabs>);
 
     // ACT
@@ -85,7 +85,7 @@ describe('Card Tabs', () => {
   it('should render CardTab with tag', () => {
     // ARRANGE
     const { queryAllByTestId } = renderWithProvider(<CardTabs maxTabsCount={3}>
-      { ITEMS.map((item: CardTabsItem, index: number) => <CardTab key={index} id={item.id} index={index} name={item.name} tag={item.tag} prefix={prefixType.TAG} />) }
+      { ITEMS.map((item: CardTabsItem, index: number) => <CardTab key={index} id={item.id} name={item.name} tag={item.tag} prefix={prefixType.TAG} />) }
     </CardTabs>);
 
     // ASSERT
@@ -95,7 +95,7 @@ describe('Card Tabs', () => {
   it('should render CardTab with prefix icon', () => {
     // ARRANGE
     const { queryAllByTestId } = renderWithProvider(<CardTabs maxTabsCount={3}>
-      { ITEMS.map((item: CardTabsItem, index: number) => <CardTab key={index} id={item.id} index={index} name={item.name} tag={item.tag} prefix={prefixType.ICON} prefixIcon={<FileM />} />) }
+      { ITEMS.map((item: CardTabsItem, index: number) => <CardTab key={index} id={item.id} name={item.name} tag={item.tag} prefix={prefixType.ICON} prefixIcon={<FileM />} />) }
     </CardTabs>);
     const prefix = queryAllByTestId('card-tab-prefix')[0];
 
@@ -106,7 +106,7 @@ describe('Card Tabs', () => {
   it('should render CardTab with suffix icon', () => {
     // ARRANGE
     const { queryAllByTestId } = renderWithProvider(<CardTabs maxTabsCount={3}>
-      { ITEMS.map((item: CardTabsItem, index: number) => <CardTab key={index} id={item.id} index={index} name={item.name} tag={item.tag} prefix={prefixType.TAG} suffixIcon={<FileM />} />) }
+      { ITEMS.map((item: CardTabsItem, index: number) => <CardTab key={index} id={item.id} name={item.name} tag={item.tag} prefix={prefixType.TAG} suffixIcon={<FileM />} />) }
     </CardTabs>);
     const firsTab = queryAllByTestId('card-tab-container')[0];
 
@@ -118,7 +118,7 @@ describe('Card Tabs', () => {
     // ARRANGE
     const onChangeOrder = jest.fn();
     const { getByTestId } = renderWithProvider(<CardTabs maxTabsCount={3} onChangeOrder={onChangeOrder}>
-      { ITEMS.map((item: CardTabsItem, index: number) => <CardTab key={index} id={item.id} index={index} name={item.name} tag={item.tag} prefix={prefixType.TAG} suffixIcon={<FileM />} />) }
+      { ITEMS.map((item: CardTabsItem, index: number) => <CardTab key={index} id={item.id} name={item.name} tag={item.tag} prefix={prefixType.TAG} suffixIcon={<FileM />} />) }
     </CardTabs>);
 
     // ASSERT
@@ -128,15 +128,14 @@ describe('Card Tabs', () => {
   it('should call removeTab function', () => {
     // ARRANGE
     const onRemove = jest.fn();
-    const { queryAllByTestId } = renderWithProvider(<CardTabs maxTabsCount={3}>
-      { ITEMS.map((item: CardTabsItem, index: number) => <CardTab key={index} id={item.id} index={index} name={item.name} tag={item.tag} prefix={prefixType.TAG} onRemoveTab={onRemove} />) }
+    const { container } = renderWithProvider(<CardTabs maxTabsCount={3}>
+      { ITEMS.map((item: CardTabsItem, index: number) => <CardTab key={index} id={item.id} name={item.name} tag={item.tag} prefix={prefixType.TAG} onRemoveTab={onRemove} />) }
     </CardTabs>);
-    const suffix = queryAllByTestId('card-tab-suffix')[0];
-    const suffixRemoveIcon = suffix.querySelector('.ds-card-tabs__remove-icon');
+    const suffix = container.querySelector('.ds-cruds .remove');
 
     //ACT
-    if(suffixRemoveIcon) {
-      fireEvent.click(suffixRemoveIcon);
+    if(suffix) {
+      fireEvent.click(suffix);
     }
 
     // ASSERT
@@ -146,15 +145,14 @@ describe('Card Tabs', () => {
   it('should call onDuplicate function', () => {
     // ARRANGE
     const onDuplicate = jest.fn();
-    const { queryAllByTestId } = renderWithProvider(<CardTabs maxTabsCount={3}>
-      { ITEMS.map((item: CardTabsItem, index: number) => <CardTab key={index} id={item.id} index={index} name={item.name} tag={item.tag} prefix={prefixType.TAG} onDuplicateTab={onDuplicate} />) }
+    const { container } = renderWithProvider(<CardTabs maxTabsCount={3}>
+      { ITEMS.map((item: CardTabsItem, index: number) => <CardTab key={index} id={item.id} name={item.name} tag={item.tag} prefix={prefixType.TAG} onDuplicateTab={onDuplicate} />) }
     </CardTabs>);
-    const suffix = queryAllByTestId('card-tab-suffix')[0];
-    const suffixDuplicateIcon = suffix.querySelector('.ds-card-tabs__duplicate-icon');
+    const suffix = container.querySelector('.ds-cruds .duplicate');
 
     // ACT
-    if(suffixDuplicateIcon) {
-      fireEvent.click(suffixDuplicateIcon);
+    if(suffix) {
+      fireEvent.click(suffix);
     }
 
     // ASSERT
@@ -164,15 +162,14 @@ describe('Card Tabs', () => {
   it('should call onChangeName function', () => {
     // ARRANGE
     const onChangeName = jest.fn();
-    const { queryAllByTestId } = renderWithProvider(<CardTabs maxTabsCount={3}>
-      { ITEMS.map((item: CardTabsItem, index: number) => <CardTab key={index} id={item.id} index={index} name={item.name} tag={item.tag} prefix={prefixType.TAG} onChangeName={onChangeName} />) }
+    const { container, queryAllByTestId } = renderWithProvider(<CardTabs maxTabsCount={3}>
+      { ITEMS.map((item: CardTabsItem, index: number) => <CardTab key={index} id={item.id} name={item.name} tag={item.tag} prefix={prefixType.TAG} onChangeName={onChangeName} />) }
     </CardTabs>);
-    const suffix = queryAllByTestId('card-tab-suffix')[0];
-    const suffixChangeNameIcon = suffix.querySelector('.ds-card-tabs__change-name-icon');
+    const suffix = container.querySelector('.ds-cruds .edit');
 
     // ACT
-    if(suffixChangeNameIcon){
-      fireEvent.click(suffixChangeNameIcon);
+    if(suffix){
+      fireEvent.click(suffix);
     }
 
     // ASSERT
@@ -192,7 +189,7 @@ describe('Card Tabs', () => {
   it('should render disabled tabs', () => {
     // ARRANGE
     const { queryAllByTestId } = renderWithProvider(<CardTabs maxTabsCount={3}>
-      { ITEMS.map((item: CardTabsItem, index: number) => <CardTab key={index} id={item.id} index={index} name={item.name} tag={item.tag} prefix={prefixType.TAG} disabled={true} />) }
+      { ITEMS.map((item: CardTabsItem, index: number) => <CardTab key={index} id={item.id} name={item.name} tag={item.tag} prefix={prefixType.TAG} disabled={true} />) }
     </CardTabs>);
     const firstTab = queryAllByTestId('card-tab-container')[0];
 

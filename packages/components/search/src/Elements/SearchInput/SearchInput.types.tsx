@@ -1,22 +1,25 @@
 import * as React from 'react';
-import { FilterElement } from '../../Search.types';
 
 export type SearchInputProps = {
-  clearTooltip?: string | React.ReactNode;
-  onChange: (value: string) => void;
-  onClear: () => void;
-  value: string;
   alwaysExpanded?: boolean;
   alwaysHighlight?: boolean;
+  clearTooltip?: string | React.ReactNode;
   closeOnClickOutside?: boolean;
-  filterLabel?: FilterElement | null;
+  textLookupKey?: string;
+  filterLookupKey?: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  filterLabel?: { icon?: React.ReactNode; [key: string]: any } | null;
   focusTrigger?: boolean;
   onButtonClick?: () => void;
+  onChange: (value: string) => void;
+  onClear: () => void;
   onClick?: () => void;
   onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   onToggle?: (isOpen: boolean) => void;
   placeholder?: string;
   toggleTrigger?: boolean;
+  value: string;
+  moveCursorToEnd?: boolean;
 };
 
 export type SearchInputState = {
@@ -24,4 +27,4 @@ export type SearchInputState = {
   isInputOpen: boolean;
   isResultChosen: boolean;
   isInputFocused: boolean;
-}
+};

@@ -6,6 +6,11 @@
 @modal-footer-padding-y: 24px;
 
 .@{dialog-prefix-cls} {
+  &.with-description {
+    .ant-modal-header {
+      padding: @modal-header-padding-y @modal-header-padding-x 12px;
+    }
+  }
   &-title {
     margin: 0;
     font-size: 18px;

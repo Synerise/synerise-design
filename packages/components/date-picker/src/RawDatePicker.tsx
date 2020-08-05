@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Props, State, Texts } from 'DatePicker.types';
 import { FormattedMessage } from 'react-intl';
+import { DayModifiers, Modifiers } from 'react-day-picker';
 import Footer from './Elements/Footer/Footer';
 import * as S from './DatePicker.styles';
 import DayPicker from './Elements/DayPicker/DayPicker';
@@ -11,6 +12,7 @@ import TimePicker from './Elements/TimePicker/TimePicker';
 
 import { DayBackground, DayText, DayForeground } from './Elements/DayPicker/DayPicker.styles';
 import { fnsStartOfMonth, fnsSetYear, fnsSetMonth, fnsSetDate, fnsStartOfDay, fnsEndOfDay, fnsAddDays } from './fns';
+import { changeDayWithHoursPreserved } from './utils';
 
 class RawDatePicker extends React.Component<Props, State> {
   static defaultProps = {
@@ -35,38 +37,49 @@ class RawDatePicker extends React.Component<Props, State> {
   }
 
   getTexts(): Texts {
-    const { texts } = this.props;
+    const { texts, intl } = this.props;
     const updatedTexts: Texts = {
       apply: texts?.apply || <FormattedMessage id="DS.DATE-PICKER.APPLY" />,
       now: texts?.now || <FormattedMessage id="DS.DATE-PICKER.NOW" />,
+      inputPlaceholder: texts?.inputPlaceholder || intl?.formatMessage({ id: 'DS.DATE-PICKER.SELECT-DATE' }) || '',
     };
     return updatedTexts;
   }
 
   getSnapshotBeforeUpdate(prevProps: Readonly<Props>): null {
     const { value } = this.props;
+    const { mode } = this.state;
     if (prevProps?.value !== value) {
       this.setState({
-        mode: 'date',
         value,
         month: fnsStartOfMonth(value || new Date()),
-        changed: false,
+        changed: true,
+        mode: value === undefined ? 'date' : mode,
       });
     }
     return null;
   }
 
   handleChange = (value: Date | undefined): void => {
-    this.setState({ value, changed: true });
+    const { onValueChange } = this.props;
+    const { mode, value: valueFromState } = this.state;
+    if (mode === 'date' && !!valueFromState && !!value) {
+      const dateToBeUpdated = changeDayWithHoursPreserved(valueFromState, value);
+      this.setState({ value: dateToBeUpdated, changed: true });
+      onValueChange && onValueChange(dateToBeUpdated);
+    } else {
+      this.setState({ value, changed: true });
+      onValueChange && onValueChange(value);
+    }
   };
 
   handleDayMouseEnter = (day: Date): void => this.setState({ enteredTo: day });
 
   handleDayMouseLeave = (): void => this.setState({ enteredTo: undefined });
 
-  handleDayClick = (day: Date, modifiers: { disabled: boolean }): void => {
+  handleDayClick = (day: Date, modifiers: DayModifiers): void => {
     const { changed: isChanged, value } = this.state;
-    const { useStartOfDay, useEndOfDay } = this.props;
+    const { useStartOfDay, useEndOfDay, showTime } = this.props;
 
     if (modifiers.disabled) return;
 
@@ -82,7 +95,7 @@ class RawDatePicker extends React.Component<Props, State> {
     } else {
       this.handleChange(nextDateWithCurrentTime);
     }
-    this.handleModeSwitch('time');
+    !!showTime && this.handleModeSwitch('time');
   };
 
   handleModeSwitch = (mode: string): void => this.setState({ mode });
@@ -162,15 +175,15 @@ class RawDatePicker extends React.Component<Props, State> {
         onMonthNameClick={(): void => this.handleModeSwitch('month')}
         onYearNameClick={(): void => this.handleModeSwitch('year')}
         onMonthChange={(selectedMonth: Date): void => this.handleMonthChange(selectedMonth, 'date')}
-        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-        // @ts-ignore
-        modifiers={modifiers}
+        modifiers={(modifiers as unknown) as Modifiers}
       />
     );
   };
 
   handleDaySwitch = (day: Date): void => {
     const { disabledDates } = this.props;
+    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+    // @ts-ignore
     this.handleDayClick(day, { disabled: disabledDates ? disabledDates(day) : false });
   };
 

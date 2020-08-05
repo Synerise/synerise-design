@@ -26,6 +26,10 @@
 .ant-input-number {
   border: 0;
   && {
+    input::placeholder {
+      color: @grey-500;
+      text-indent: -1px;
+    }
     line-height: 1.38;
     height: 32px;
     box-shadow: inset 0px 0px 0px 1px @grey-300;
@@ -33,6 +37,12 @@
     &.ant-input-number-focused {
       box-shadow: inset 0px 0px 0px 2px @blue-600;
       border: 0 !important;
+    }
+    &.ant-input-number-lg {
+      height: 48px;
+      .ant-input-number-input-wrap {
+        height: 44px;
+      }
     }
   }
 
@@ -48,6 +58,17 @@
       height: 28px;
       top: 2px;
       right: 2px;
+    }
+  }
+  &&.ant-input-number-lg.ant-input-number-focused {
+    .ant-input-number-handler-wrap {
+      height: 44px;
+    }
+  }
+  &&.ant-input-number-lg {
+    .ant-input-number-handler-wrap {
+      width: 24px;
+      height: 44px;
     }
   }
 
@@ -108,4 +129,10 @@
       right: 2px;
     }
   }
+}
+.ant-input-group.ant-input-group-compact > *:not(:first-child).ant-input-number.error {
+  margin-left: -2px;
+}
+.ant-input-group.ant-input-group-compact > *:not(:last-child).ant-input-number.error {
+  margin-right: -2px;
 }

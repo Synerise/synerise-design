@@ -3,6 +3,70 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.58](https://github.com/Synerise/synerise-design/compare/@synerise/ds-add-button@0.1.57...@synerise/ds-add-button@0.1.58) (2020-07-30)
+
+**Note:** Version bump only for package @synerise/ds-add-button
+
+
+
+
+
+## [0.1.57](https://github.com/Synerise/synerise-design/compare/@synerise/ds-add-button@0.1.56...@synerise/ds-add-button@0.1.57) (2020-07-29)
+
+**Note:** Version bump only for package @synerise/ds-add-button
+
+
+
+
+
+## [0.1.56](https://github.com/Synerise/synerise-design/compare/@synerise/ds-add-button@0.1.55...@synerise/ds-add-button@0.1.56) (2020-07-24)
+
+**Note:** Version bump only for package @synerise/ds-add-button
+
+
+
+
+
+## [0.1.55](https://github.com/Synerise/synerise-design/compare/@synerise/ds-add-button@0.1.54...@synerise/ds-add-button@0.1.55) (2020-07-24)
+
+**Note:** Version bump only for package @synerise/ds-add-button
+
+
+
+
+
+## [0.1.54](https://github.com/Synerise/synerise-design/compare/@synerise/ds-add-button@0.1.53...@synerise/ds-add-button@0.1.54) (2020-07-20)
+
+**Note:** Version bump only for package @synerise/ds-add-button
+
+
+
+
+
+## [0.1.53](https://github.com/Synerise/synerise-design/compare/@synerise/ds-add-button@0.1.52...@synerise/ds-add-button@0.1.53) (2020-07-15)
+
+**Note:** Version bump only for package @synerise/ds-add-button
+
+
+
+
+
+## [0.1.52](https://github.com/Synerise/synerise-design/compare/@synerise/ds-add-button@0.1.51...@synerise/ds-add-button@0.1.52) (2020-07-13)
+
+**Note:** Version bump only for package @synerise/ds-add-button
+
+
+
+
+
+## [0.1.51](https://github.com/Synerise/synerise-design/compare/@synerise/ds-add-button@0.1.50...@synerise/ds-add-button@0.1.51) (2020-07-09)
+
+**Note:** Version bump only for package @synerise/ds-add-button
+
+
+
+
+
 ## [0.1.50](https://github.com/Synerise/synerise-design/compare/@synerise/ds-add-button@0.1.49...@synerise/ds-add-button@0.1.50) (2020-07-08)
 
 **Note:** Version bump only for package @synerise/ds-add-button

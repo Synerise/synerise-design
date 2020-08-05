@@ -3,6 +3,59 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.30](https://github.com/Synerise/synerise-design/compare/@synerise/ds-badge@0.4.29...@synerise/ds-badge@0.4.30) (2020-07-30)
+
+**Note:** Version bump only for package @synerise/ds-badge
+
+
+
+
+
+## [0.4.29](https://github.com/Synerise/synerise-design/compare/@synerise/ds-badge@0.4.28...@synerise/ds-badge@0.4.29) (2020-07-29)
+
+**Note:** Version bump only for package @synerise/ds-badge
+
+
+
+
+
+## [0.4.28](https://github.com/Synerise/synerise-design/compare/@synerise/ds-badge@0.4.27...@synerise/ds-badge@0.4.28) (2020-07-24)
+
+**Note:** Version bump only for package @synerise/ds-badge
+
+
+
+
+
+## [0.4.27](https://github.com/Synerise/synerise-design/compare/@synerise/ds-badge@0.4.26...@synerise/ds-badge@0.4.27) (2020-07-15)
+
+
+### Bug Fixes
+
+* **badge:** add one type ([46246cb](https://github.com/Synerise/synerise-design/commit/46246cb3000869928e9c1cd96c177ea6f7754627))
+* **badge:** add props to readme and add types ([66e3b6c](https://github.com/Synerise/synerise-design/commit/66e3b6c17db8f88440da334f0db8577c86b184b8))
+* **badge:** chande styles of badge ([6dcb6c0](https://github.com/Synerise/synerise-design/commit/6dcb6c0672b9ef8eb486e5b133136d0d2a073651))
+
+
+
+
+
+## [0.4.26](https://github.com/Synerise/synerise-design/compare/@synerise/ds-badge@0.4.25...@synerise/ds-badge@0.4.26) (2020-07-13)
+
+**Note:** Version bump only for package @synerise/ds-badge
+
+
+
+
+
+## [0.4.25](https://github.com/Synerise/synerise-design/compare/@synerise/ds-badge@0.4.24...@synerise/ds-badge@0.4.25) (2020-07-09)
+
+**Note:** Version bump only for package @synerise/ds-badge
+
+
+
+
+
 ## [0.4.24](https://github.com/Synerise/synerise-design/compare/@synerise/ds-badge@0.4.23...@synerise/ds-badge@0.4.24) (2020-07-07)
 
 

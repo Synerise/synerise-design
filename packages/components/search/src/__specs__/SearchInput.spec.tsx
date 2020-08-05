@@ -1,20 +1,23 @@
-import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
-import { SearchInput } from '../Elements';
-import { fireEvent } from '@testing-library/dom';
 import * as React from 'react';
+import userEvent from '@testing-library/user-event';
+import { screen } from '@testing-library/react';
+import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
+
+import { SearchInput } from '../Elements';
 
 describe('SearchInput component', () => {
   const PLACEHOLDER = 'placeholder';
   const INPUT_VALUE = 'input value';
-  const onChange = jest.fn();
-  const onClear = jest.fn();
-  const onKeyDown = jest.fn();
-  const onClick = jest.fn();
-  const onToggle = jest.fn();
 
   it('should render', () => {
+    const onChange = jest.fn();
+    const onClear = jest.fn();
+    const onKeyDown = jest.fn();
+    const onClick = jest.fn();
+    const onToggle = jest.fn();
+
     // ARRANGE
-    const { getByPlaceholderText } = renderWithProvider(
+    renderWithProvider(
       <SearchInput
         clearTooltip={'clear'}
         placeholder={PLACEHOLDER}
@@ -24,13 +27,22 @@ describe('SearchInput component', () => {
         onKeyDown={onKeyDown}
         onClick={onClick}
         onToggle={onToggle}
-      />);
+      />
+    );
+
     // ASSERT
-    expect(getByPlaceholderText(PLACEHOLDER)).toBeTruthy();
+    expect(screen.getByPlaceholderText(PLACEHOLDER)).toBeTruthy();
   });
+
   it('should set value', () => {
+    const onChange = jest.fn();
+    const onClear = jest.fn();
+    const onKeyDown = jest.fn();
+    const onClick = jest.fn();
+    const onToggle = jest.fn();
+
     // ARRANGE
-    const { getByPlaceholderText,getByTestId } = renderWithProvider(
+    renderWithProvider(
       <SearchInput
         clearTooltip={'clear'}
         placeholder={PLACEHOLDER}
@@ -40,20 +52,31 @@ describe('SearchInput component', () => {
         onKeyDown={onKeyDown}
         onClick={onClick}
         onToggle={onToggle}
-      />);
-    // ASSERT
-    const btn = getByTestId('btn') as HTMLElement;
+      />
+    );
+
     // ACT
-    btn.click();
-    const input = getByPlaceholderText(PLACEHOLDER) as HTMLInputElement;
+    userEvent.click(screen.getByTestId('btn') as HTMLElement);
+
+    const input = screen.getByPlaceholderText(PLACEHOLDER) as HTMLInputElement;
+
     // ACT
-    fireEvent.change(input, { target: { value: INPUT_VALUE } });
+    userEvent.type(input, INPUT_VALUE);
+
     // ASSERT
-    // expect(onChange).toBeCalled()
+    expect(onChange).toHaveBeenCalledTimes(11);
+    expect(screen.getByRole('textbox').getAttribute('value')).toBe(INPUT_VALUE);
   });
+
   it('should have onToggle callback', () => {
+    const onChange = jest.fn();
+    const onClear = jest.fn();
+    const onKeyDown = jest.fn();
+    const onClick = jest.fn();
+    const onToggle = jest.fn();
+
     // ARRANGE
-    const { getByTestId } = renderWithProvider(
+    renderWithProvider(
       <SearchInput
         clearTooltip={'clear'}
         placeholder={PLACEHOLDER}
@@ -63,21 +86,34 @@ describe('SearchInput component', () => {
         onKeyDown={onKeyDown}
         onClick={onClick}
         onToggle={onToggle}
-      />);
+      />
+    );
+
     // ASSERT
-    const btn = getByTestId('btn') as HTMLElement;
+    const btn = screen.getByTestId('btn') as HTMLElement;
+
     // ACT
-    btn.click();
-    // ASSERT
-    expect(onToggle).toBeCalledWith(true);
-    // ACT
-    btn.click();
+    userEvent.click(btn);
+
     // ASSERT
     expect(onToggle).toBeCalledWith(false);
+
+    // ACT
+    userEvent.click(btn);
+
+    // ASSERT
+    expect(onToggle).toBeCalledWith(true);
   });
+
   it('should have onClick callback', () => {
+    const onChange = jest.fn();
+    const onClear = jest.fn();
+    const onKeyDown = jest.fn();
+    const onClick = jest.fn();
+    const onToggle = jest.fn();
+
     // ARRANGE
-    const { getByPlaceholderText } = renderWithProvider(
+    renderWithProvider(
       <SearchInput
         clearTooltip={'clear'}
         placeholder={PLACEHOLDER}
@@ -87,18 +123,25 @@ describe('SearchInput component', () => {
         onKeyDown={onKeyDown}
         onClick={onClick}
         onToggle={onToggle}
-      />);
-    // ASSERT
-    const input = getByPlaceholderText(PLACEHOLDER) as HTMLInputElement;
+      />
+    );
+
     // ACT
-    input.click();
+    userEvent.click(screen.getByPlaceholderText(PLACEHOLDER) as HTMLInputElement);
+
     // ASSERT
     expect(onClick).toBeCalled();
   });
 
   it('should have onClear callback', () => {
+    const onChange = jest.fn();
+    const onClear = jest.fn();
+    const onKeyDown = jest.fn();
+    const onClick = jest.fn();
+    const onToggle = jest.fn();
+
     // ARRANGE
-    const { getByPlaceholderText,getByTestId } = renderWithProvider(
+    renderWithProvider(
       <SearchInput
         clearTooltip={'clear'}
         placeholder={PLACEHOLDER}
@@ -108,19 +151,26 @@ describe('SearchInput component', () => {
         onKeyDown={onKeyDown}
         onClick={onClick}
         onToggle={onToggle}
-      />);
-    const btn = getByTestId('btn') as HTMLInputElement;
-    const input = getByPlaceholderText(PLACEHOLDER) as HTMLInputElement;
+      />
+    );
+
     // ACT
-    btn.click();
-    fireEvent.change(input, { target: { value: INPUT_VALUE } });
-    const clearButton = getByTestId('clear');
-    clearButton.click();
-    // expect(onClear).toBeCalled();
+    userEvent.click(screen.getByTestId('btn') as HTMLInputElement);
+    userEvent.type(screen.getByPlaceholderText(PLACEHOLDER) as HTMLDivElement, INPUT_VALUE);
+    userEvent.click(screen.getByTestId('clear'));
+
+    expect(onClear).toBeCalledTimes(1);
   });
+
   it('should close when clicked outside', () => {
+    const onChange = jest.fn();
+    const onClear = jest.fn();
+    const onKeyDown = jest.fn();
+    const onClick = jest.fn();
+    const onToggle = jest.fn();
+
     // ARRANGE
-    const { getByTestId,getByText } = renderWithProvider(
+    renderWithProvider(
       <div>
         <button>outside</button>
         <SearchInput
@@ -132,14 +182,15 @@ describe('SearchInput component', () => {
           onKeyDown={onKeyDown}
           onClick={onClick}
           onToggle={onToggle}
-          closeOnClickOutside={true}
+          closeOnClickOutside
         />
-      </div>);
-    const btn = getByTestId('btn') as HTMLInputElement;
+      </div>
+    );
+
     // ACT
-    btn.click();
-    const outside = getByText('outside');
-    outside.click();
+    userEvent.click(screen.getByTestId('btn') as HTMLInputElement);
+    userEvent.click(screen.getByText('outside'));
+
     expect(onToggle).toBeCalledWith(false);
   });
 });

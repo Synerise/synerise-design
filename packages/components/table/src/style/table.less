@@ -74,6 +74,9 @@
     }
     .ds-expanded-row {
       background-color: @grey-050;
+      &:hover {
+        background-color: @grey-100;
+      }
     }
     .ds-expanded-row-first {
       &:before {
@@ -91,9 +94,15 @@
       padding-left: 48px;
     }
   }
+  .virtual-table-row {
+    border-bottom: 1px solid @gray-color-lighter-6;
+    transition: background 0.3s;
+    &:hover {
+      background-color: @grey-050;
+    }
+  }
   .virtual-table-cell {
     padding: 16px 24px;
-    border-bottom: 1px solid @gray-color-lighter-6;
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -257,6 +266,16 @@
     }
 
     tbody > tr {
+      &.ant-table-placeholder {
+        td {
+          padding: 16px 0;
+        }
+      }
+      &.ant-table-row-selected {
+        td {
+          border-bottom-color: @border-color-split;
+        }
+      }
       &:not(.@{table-prefix-cls}-placeholder) {
         &:not(.@{table-prefix-cls}-row-level-0) {
           td {
