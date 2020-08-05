@@ -61,6 +61,13 @@ export const AntdMenu = styled(Menu)<AntdMenuProps>`
   .ant-menu-submenu-title {
     display: flex;
   }
+  && {
+    .ant-menu-inline,
+    .ant-menu-vertical,
+    .ant-menu-vertical-left {
+      border-right-width: 0px;
+    }
+  }
 `;
 
 export const SubMenuItem = styled(Menu.SubMenu)<SubMenuProps>`
