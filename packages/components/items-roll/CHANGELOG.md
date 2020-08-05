@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.52](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.2.51...@synerise/ds-items-roll@0.2.52) (2020-08-05)
+
+
+### Bug Fixes
+
+* **items-roll:** allow to render suffixel passed from items ([5dcdec6](https://github.com/Synerise/synerise-design/commit/5dcdec6691c93ed880f8a7f9ad51114d9c5f920a))
+* **items-roll:** removed redundant prop ([5b8814e](https://github.com/Synerise/synerise-design/commit/5b8814e88ad6bbc2f56060b85cf5bcea764a6046))
+
+
+
+
+
 ## [0.2.51](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.2.50...@synerise/ds-items-roll@0.2.51) (2020-08-05)
 
 **Note:** Version bump only for package @synerise/ds-items-roll

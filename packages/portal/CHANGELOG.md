@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.92.1](https://github.com/synerise/synerise-design/compare/portal@0.92.0...portal@0.92.1) (2020-08-05)
+
+
+### Bug Fixes
+
+* **items-roll:** allow to render suffixel passed from items ([5dcdec6](https://github.com/synerise/synerise-design/commit/5dcdec6691c93ed880f8a7f9ad51114d9c5f920a))
+
+
+
+
+
 # [0.92.0](https://github.com/synerise/synerise-design/compare/portal@0.91.0...portal@0.92.0) (2020-08-05)
 
 
