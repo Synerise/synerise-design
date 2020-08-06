@@ -4209,6 +4209,18 @@
     "@synerise/ds-utils" "^0.8.5"
     uuid "^3.3.3"
 
+"@synerise/ds-input@^0.14.0":
+  version "0.14.0"
+  resolved "https://registry.yarnpkg.com/@synerise/ds-input/-/ds-input-0.14.0.tgz#44956a394f0e71ff3bbb46ab041d93902b3ec04a"
+  integrity sha512-k90nuDctFX0wSnN3rTDKwySXRHehNMx6FtUSjpfDcmvJhXG3/McQqbBw0T5T8FBT8Q5X74qyi0xFt+uqvkpQBg==
+  dependencies:
+    "@synerise/ds-icon" "^0.23.0"
+    "@synerise/ds-tooltip" "^0.7.13"
+    "@synerise/ds-typography" "^0.8.3"
+    "@synerise/ds-utils" "^0.9.2"
+    antd-mask-input "^0.1.13"
+    uuid "^7.0.2"
+
 "@synerise/ds-menu@^0.1.4":
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/@synerise/ds-menu/-/ds-menu-0.1.4.tgz#49137f5d94f9dd0c7f2258ad8c4687a31dc1d507"

@@ -26,9 +26,10 @@ const InputMultivalue: React.FC<Props> = props => {
     onFocus,
     disabled,
     maxLength,
+    error,
     ...antdProps
   } = props;
-  const showError = Boolean(errorText);
+  const showError =  error || !!errorText;
   const [value, setValue] = React.useState(emptyValue);
 
   const [isFocused, setFocused] = React.useState(false);

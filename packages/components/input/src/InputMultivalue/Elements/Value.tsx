@@ -14,6 +14,7 @@ const Value: React.FC<Props> = ({ disabled, key, onRemoveClick, value, focused }
   const [pressed, setPressed] = React.useState(false);
   return (
     <S.ValueWrapper
+      className='ds-input-value-wrapper'
       onMouseEnter={(): void => {
         focused && setPressed(true);
       }}
