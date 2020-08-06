@@ -77,10 +77,7 @@ const withSubmenu = () => {
     ],
   } as object;
   const [selectedKeys, setSelectedKeys] = React.useState([]);
-  const wrapperRef = React.useRef();
 
-  useOnClickOutside(wrapperRef,()=>{
-  })
   const onClickCallback = (clickedKey: string) => {
     if (selectedKeys.indexOf(clickedKey) !== -1) {
       setSelectedKeys([]);
@@ -91,15 +88,13 @@ const withSubmenu = () => {
   const itemsWithOnClick = props.dataSource.map(item =>
     {
       let newItem = item;
-      newItem.onTitleClick = ()=>{console.log('Clicked on title!');onClickCallback(item.key)}
+      newItem.onTitleClick = ()=>{onClickCallback(item.key)}
       newItem.subMenu = item.subMenu.map(submenuItem => ({ ...submenuItem, onClick: () => {onClickCallback(submenuItem.key)} }))
       return newItem;
     }
   );
-  console.log(itemsWithOnClick);
-  console.log('Selected',selectedKeys)
   return (
-    <div style={{ width: '200px' }} ref={wrapperRef}>
+    <div style={{ width: '200px' }}>
       <Menu {...defaultProps} dataSource={itemsWithOnClick} selectable selectedKeys={selectedKeys} ordered />
     </div>
   );

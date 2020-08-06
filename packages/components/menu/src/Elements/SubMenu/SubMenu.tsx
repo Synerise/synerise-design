@@ -46,9 +46,7 @@ class SubMenuItem extends React.PureComponent<SubMenuProps & MenuItemProps, SubM
           </SubmenuText>
         }
         key={menuItemKey || uuidKey}
-        onTitleClick={(): void => {
-          onTitleClick && onTitleClick();
-        }}
+        onTitleClick={onTitleClick}
         danger={danger}
         ordered={ordered}
         disabled={disabled}
