@@ -5,6 +5,5 @@ export type MultivalueProps = {
 export type ProgressValue = {
   percent: number;
   color: string;
-  amount?: number;
 
 }

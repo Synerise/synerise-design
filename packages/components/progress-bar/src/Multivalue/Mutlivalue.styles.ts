@@ -5,7 +5,6 @@ background: ${(props): string => props.color};
 width:${(props): number => props.percent}%;
 height: 6px;
 border-radius: 6px;
-text-indent: 100%;
 overflow: hidden;
 margin-top: -6px;
 

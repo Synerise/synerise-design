@@ -33,7 +33,6 @@ const stories = {
   },
 
   soloBarWithLabelAndDescription: () => {
-    const colors = select('Set custom color', customColorOptions, customColorOptions.blue);
     return (
       <ProgressBar
         amount={60}
