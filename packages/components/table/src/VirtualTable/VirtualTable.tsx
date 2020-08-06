@@ -235,8 +235,8 @@ function VirtualTable<T extends any & RowType<T> & { [EXPANDED_ROW_PROPERTY]?: b
 
   return (
     <ResizeObserver
-      onResize={({ width }): void => {
-        setTableWidth(width);
+      onResize={({ offsetWidth }): void => {
+        setTableWidth(offsetWidth);
       }}
     >
       <DSTable
