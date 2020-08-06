@@ -26,11 +26,6 @@ export const StyledMenuItem = styled(Menu.Item)<{ selected: boolean }>`
       }
     }
   }
-  &&&& {
-    .ds-menu-item .ds-menu-content-wrapper {
-      color: red !important;
-    }
-  }
 `;
 export const MenuWrapper = styled.div`
   .ant-menu {
