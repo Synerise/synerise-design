@@ -30,7 +30,7 @@ const withSubmenu = () => {
           },
           {
             text: 'Child 2',
-            key: 'p2-Child 2',
+            key: 'p1-Child 2',
             suffixel: renderSuffix(suffixKnob),
             prefixel: renderPrefixIcon(prefixKnob),
             ordered: orderedChildren,
@@ -91,7 +91,7 @@ const withSubmenu = () => {
   const itemsWithOnClick = props.dataSource.map(item =>
     {
       let newItem = item;
-      newItem.onTitleClick = ()=>{onClickCallback(item.key)}
+      newItem.onTitleClick = ()=>{console.log('Clicked on title!');onClickCallback(item.key)}
       newItem.subMenu = item.subMenu.map(submenuItem => ({ ...submenuItem, onClick: () => {onClickCallback(submenuItem.key)} }))
       return newItem;
     }

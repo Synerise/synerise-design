@@ -27,20 +27,28 @@ class SubMenuItem extends React.PureComponent<SubMenuProps & MenuItemProps, SubM
       disabled,
       danger,
       ordered,
+      onTitleClick,
       menuItemKey,
       selectedKeys,
       ...rest
     } = this.props;
     const { uuidKey } = this.state;
-    console.log(menuItemKey);
     return (
       <S.SubMenuItem
         title={
-          <SubmenuText key={`${menuItemKey || uuidKey}-title`} prefixel={prefixel} suffixel={suffixel}>
+          <SubmenuText
+            key={`${menuItemKey || uuidKey}-title`}
+            prefixel={prefixel}
+            suffixel={suffixel}
+            onClick={onTitleClick}
+          >
             {text}
           </SubmenuText>
         }
         key={menuItemKey || uuidKey}
+        onTitleClick={(): void => {
+          onTitleClick && onTitleClick();
+        }}
         danger={danger}
         ordered={ordered}
         disabled={disabled}
@@ -70,6 +78,7 @@ class SubMenuItem extends React.PureComponent<SubMenuProps & MenuItemProps, SubM
               }}
               key={subItem.key || `${uuidKey}-${index}`} // eslint-disable-line react/no-array-index-key
               menuItemKey={subItem.key || `${uuidKey}-${index}`}
+              selectedKeys={selectedKeys}
             />
           ))}
       </S.SubMenuItem>
