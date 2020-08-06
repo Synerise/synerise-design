@@ -11,7 +11,7 @@ const Multivalue: React.FC<MultivalueProps> = (props: MultivalueProps) => {
   return (
     <S.Container>
       {sortedByPercent.map(val => (
-        <S.Multivalue key={uuid()} color={val.color}  percent={val.percent}></S.Multivalue>
+        <S.Multivalue key={uuid()} color={val.color}  percent={val.percent} />
       ))}
     </S.Container>
   );
