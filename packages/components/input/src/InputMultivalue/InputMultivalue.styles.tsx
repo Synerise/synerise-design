@@ -1,6 +1,8 @@
 import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 
+export type InputWrapperProps = { error?: boolean; focus?: boolean; disabled?: boolean };
+
 const errorInputStyle = (props: ThemeProps): string => `
   &&, .ant-input {
     border-color: ${props.theme.palette['red-600']};
@@ -75,7 +77,7 @@ export const IconWrapper = styled.div`
     }
   }
 `;
-export const InputWrapper = styled.div<{ error?: boolean; focus?: boolean; disabled?: boolean; hover?: boolean }>`
+export const InputWrapper = styled.div<InputWrapperProps>`
   box-shadow: inset 0 0 0 1px ${(props): string => props.theme.palette['grey-300']};
   background-color: ${(props): string => props.theme.palette.white};
   width: 100%;
@@ -85,10 +87,6 @@ export const InputWrapper = styled.div<{ error?: boolean; focus?: boolean; disab
   min-height: 32px;
   flex-wrap:wrap;
   transition: 0.3s all;
-  
-  
-
-  
   ${(props): FlattenSimpleInterpolation | false => !props.disabled && hoverStyle(props)}
   ${(props): string => (props.focus && !props.disabled ? focusStyle(props) : '')}
   ${(props): string => (props.error ? errorInputStyle(props) : '')}
