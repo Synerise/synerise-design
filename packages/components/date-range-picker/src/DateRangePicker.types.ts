@@ -16,6 +16,7 @@ export interface Props extends WrappedComponentProps {
   value: DateRange;
   forceAbsolute?: boolean;
   texts?: Texts;
+  popoverPlacement?: 'top' | 'left' | 'right' | 'bottom' | 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight' | 'leftTop' | 'leftBottom' | 'rightTop' | 'rightBottom';
 }
 export interface State {
   mode: string;

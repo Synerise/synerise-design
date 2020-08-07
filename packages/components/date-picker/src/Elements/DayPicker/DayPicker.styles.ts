@@ -43,7 +43,7 @@ export const DayPicker = styled(DayPickerBase)`
   }
 
   .DayPicker-Weekday {
-    width: 32px;
+    min-width: 40px;
     height: 32px;
     display: table-cell;
     vertical-align: middle;
@@ -86,6 +86,7 @@ export const DayPicker = styled(DayPickerBase)`
       align-items: center;
       justify-content: center;
       margin: 4px;
+      min-width:32px;
     }
     
 
@@ -102,6 +103,7 @@ export const DayPicker = styled(DayPickerBase)`
     &--today {
       font-weight: 500;
     }
+    
     
     &--today.DayPicker-Day--selected {
       & > ${DayText} {
@@ -204,6 +206,22 @@ export const DayPicker = styled(DayPickerBase)`
     }
   }
 
+.DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--end):not(.DayPicker-Day--start),
+.DayPicker-Day--entered:not(.DayPicker-Day--disabled):not(.DayPicker-Day--end):not(.DayPicker-Day--start){
+    &:last-child  > ${DayBackground} {
+            border-top-right-radius: 50%;
+            border-bottom-right-radius: 50%;
+            margin-right: 4px;
+            padding-right:0;
+      }
+      &:first-child  > ${DayBackground} {
+            border-top-left-radius: 50%;
+            border-bottom-left-radius: 50%;
+            margin-left: 4px;
+            padding-left:0;
+      }
+    }
+
   .DayPicker-Day--selected:not(.DayPicker-Day--disabled) {
     & > div {
       padding-left: 4px;
@@ -236,6 +254,7 @@ export const DayPicker = styled(DayPickerBase)`
       margin-left: 0;
       padding-right: 4px;
       margin-right: 0;
+      text-align:center;
     }
 
     && > ${DayBackground} {
@@ -274,6 +293,17 @@ export const DayPicker = styled(DayPickerBase)`
       margin-left: 4px;
     }
   }
+  .DayPicker-Day--start:not(.DayPicker-Day--disabled):last-child,
+   .DayPicker-Day--end:not(.DayPicker-Day--disabled):first-child {
+      & > div {
+         margin-right: 4px;
+      
+      }
+      & > ${DayBackground} {
+          background-color: ${(props): string => props.theme.palette.white};
+      }
+  }
+  
   .DayPicker-Day--end:not(.DayPicker-Day--disabled) {
     & > ${DayText} {
       border-radius: 50%;

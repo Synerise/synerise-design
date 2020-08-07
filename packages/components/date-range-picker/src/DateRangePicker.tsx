@@ -5,17 +5,18 @@ import * as S from './DateRangePicker.styles';
 import { Props } from './DateRangePicker.types';
 import RangePickerInput from './RangePickerInput/RangePickerInput';
 import { DateFilter, DateRange } from './date.types';
+import './style.less';
 
 const DateRangePicker: React.FC<Props> = props => {
-  const { value, onApply, showTime, onValueChange, texts } = props;
-  const [popupVisible, setPopupVisible] = React.useState<false | undefined>(undefined);
+  const { value, onApply, showTime, onValueChange, texts, popoverPlacement } = props;
+  const [popupVisible, setPopupVisible] = React.useState<boolean | undefined>(undefined);
   const [selectedDate, setSelectedDate] = React.useState(value);
-
+  const [inputActive, setInputActive] = React.useState<boolean>();
   React.useEffect(() => {
     if (popupVisible !== undefined) {
       setPopupVisible(undefined);
     }
-  },[popupVisible]);
+  }, [popupVisible]);
 
   const onValueChangeCallback = React.useCallback(
     (val: Partial<DateFilter> | undefined): void => {
@@ -29,6 +30,7 @@ const DateRangePicker: React.FC<Props> = props => {
       onApply && onApply(val);
       setSelectedDate(val as DateRange);
       setPopupVisible(false);
+      setInputActive(false);
     },
     [onApply]
   );
@@ -50,6 +52,11 @@ const DateRangePicker: React.FC<Props> = props => {
         }
         trigger="click"
         overlayStyle={{ maxWidth: '700px', fontWeight: 'unset' }}
+        overlayClassName="ds-date-range-popover"
+        onVisibleChange={(visibility: boolean): void => {
+          setInputActive(visibility);
+        }}
+        placement={popoverPlacement}
         {...conditionalVisibilityProps}
       >
         <RangePickerInput
@@ -58,6 +65,7 @@ const DateRangePicker: React.FC<Props> = props => {
           showTime={showTime}
           texts={texts}
           onChange={onValueChangeCallback}
+          active={!!inputActive}
         />{' '}
       </Popover>
     </S.PickerWrapper>
