@@ -6,10 +6,17 @@ const path = require('path');
 const tpl = require('./template.js');
 
 const LIB_DIR = 'src/icons';
-const INDEX_DIST_FILE = `${LIB_DIR}/index.ts`;
-
 const ADDITIONAL_LIB_DIR = 'src/icons/additional';
-const ADDITIONAL_INDEX_DIST_FILE = `${LIB_DIR}/additional/index.ts`;
+const L_LIB_DIR = 'src/icons/L';
+const XL_LIB_DIR = 'src/icons/XL';
+
+const INDEX_DIST_FILE = `${LIB_DIR}/index.ts`;
+const ADDITIONAL_INDEX_DIST_FILE = `${ADDITIONAL_LIB_DIR}/index.ts`;
+const L_INDEX_DIST_FILE = `${L_LIB_DIR}/index.ts`;
+const XL_INDEX_DIST_FILE = `${XL_LIB_DIR}/index.ts`;
+
+const LIB_DIRS = [LIB_DIR, ADDITIONAL_LIB_DIR, L_LIB_DIR, XL_LIB_DIR];
+const DIST_FILES = [INDEX_DIST_FILE, ADDITIONAL_INDEX_DIST_FILE, L_INDEX_DIST_FILE, XL_INDEX_DIST_FILE];
 
 const titlecase = input => input[0].toLocaleUpperCase() + input.slice(1);
 
@@ -68,23 +75,20 @@ const buildIconsSet = (path, libDir, indexDistFile) => {
   });
 };
 
-if (!fs.existsSync(LIB_DIR)) {
-  fs.mkdirSync(LIB_DIR);
-}
-
-if (!fs.existsSync(ADDITIONAL_LIB_DIR)) {
-  fs.mkdirSync(ADDITIONAL_LIB_DIR);
-}
-
-fs.writeFile(INDEX_DIST_FILE, '', err => {
-  console.log(err);
+LIB_DIRS.forEach(DIR => {
+  if (!fs.existsSync(DIR)) {
+    fs.mkdirSync(DIR);
+  }
 });
 
-fs.writeFile(ADDITIONAL_INDEX_DIST_FILE, '', err => {
-  console.log(err);
+DIST_FILES.forEach(FILE => {
+  fs.writeFile(FILE, '', err => {
+    console.log(err);
+  });
 });
-
 
 buildIconsSet('src/svg/*.svg', LIB_DIR, INDEX_DIST_FILE);
 buildIconsSet('src/svg/additional/*.svg', ADDITIONAL_LIB_DIR, ADDITIONAL_INDEX_DIST_FILE);
+buildIconsSet('src/svg/L/*.svg', L_LIB_DIR, L_INDEX_DIST_FILE);
+buildIconsSet('src/svg/XL/*.svg', XL_LIB_DIR, XL_INDEX_DIST_FILE);
 

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="48px" height="48px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 64 (93537) - https://sketch.com -->
+    <title>Analytics / 03 L / 03-combo-l</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Analytics-/-03-L-/-03-combo-l" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round">
+        <g id="Group" transform="translate(7.000000, 8.000000)" stroke="#384350" stroke-width="1.5">
+            <path d="M0,26 L0,13.9974239 C0,12.8928544 0.8954305,11.9974239 2,11.9974239 L6,11.9974239 C7.1045695,11.9974239 8,12.8928544 8,13.9974239 L8,26" id="Path"></path>
+            <path d="M0,7 L7.08086914,7 C8.67483081,7 10.2178628,7.5487749 11.4391251,8.55000636 L22.2949463,17.4499687 C23.7687774,18.4619027 25.5268208,19.0033314 27.3279177,19 L34,19" id="Path" stroke-linejoin="round"></path>
+            <line x1="0" y1="30.96268" x2="34" y2="30.96268" id="Path" stroke-linejoin="round"></line>
+            <path d="M13,26 C13,20.2521528 13,17.122334 13,14.6105436" id="Path"></path>
+            <path d="M13,5.04056579 C13,4.58596181 13,3.90405584 13,2.99484787 C13,1.89027837 13.8954305,0.994847874 15,0.994847874 L19,0.994847874 C20.1045695,0.994847874 21,1.89027837 21,2.99484787 C21,6.72409854 21,9.38716322 21,10.9840419" id="Path"></path>
+            <path d="M21,21.0405681 C21,22.3648863 21,23.3513636 21,26" id="Path"></path>
+            <path d="M26,26 C26,23.7999794 26,24.1200246 26,23.0200142" id="Path"></path>
+            <path d="M26,15 C26,13.1309098 26,7.48089434 26,3 C26,1.8954305 26.8954305,1 28,1 L32,1 C33.1045695,1 34,1.8954305 34,3 C34,8.33333333 34,12.3333333 34,15" id="Path"></path>
+            <path d="M34,23.0200142 C34,24.1973967 34,23.1773825 34,26" id="Path"></path>
+        </g>
+    </g>
+</svg>

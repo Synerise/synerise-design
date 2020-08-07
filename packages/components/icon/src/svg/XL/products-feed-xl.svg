@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="96px" height="96px" viewBox="0 0 96 96" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 64 (93537) - https://sketch.com -->
+    <title>Ecommerce / 04 XL / 07-products-feed-xl</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Ecommerce-/-04-XL-/-07-products-feed-xl" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="Group" transform="translate(23.000000, 22.000000)" stroke="#384350" stroke-width="1.5">
+            <line x1="48.13948" y1="3.5" x2="18" y2="3.5" id="Path"></line>
+            <line x1="32.61226" y1="8.74439" x2="18.02324" y2="8.74439" id="Path"></line>
+            <line x1="48.13948" y1="23.5" x2="18" y2="23.5" id="Path-Copy"></line>
+            <line x1="32.61226" y1="28.74439" x2="18.02324" y2="28.74439" id="Path-Copy-2"></line>
+            <line x1="48.13948" y1="44.5" x2="18" y2="44.5" id="Path-Copy-3"></line>
+            <line x1="32.61226" y1="49.74439" x2="18.02324" y2="49.74439" id="Path-Copy-4"></line>
+            <rect id="Rectangle" x="0.865695" y="41" width="12" height="12" rx="2"></rect>
+            <circle id="Oval" cx="6.5" cy="26.5" r="6.5"></circle>
+            <path d="M6.5,12 L1.81328868,12 C1.16546641,12 0.566852177,11.6468697 0.242938114,11.0736209 C-0.0809759491,10.5003721 -0.0809796005,9.79409831 0.242928535,9.22084602 L2.5863555,5.07362925 L4.92964825,0.926429614 C5.25354893,0.353155775 5.85217158,0 6.5,0 C7.14784519,0 7.74646785,0.353155775 8.07036853,0.926429614 L10.4137284,5.07362925 L12.7570715,9.22084602 C13.0809796,9.79409831 13.0809759,10.5003721 12.7570619,11.0736209 C12.4331478,11.6468697 11.8345336,12 11.1867113,12 L6.5,12 Z" id="Path"></path>
+        </g>
+    </g>
+</svg>

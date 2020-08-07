@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="96px" height="96px" viewBox="0 0 96 96" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 64 (93537) - https://sketch.com -->
+    <title>Campaigns / 04 XL / 05-mobile-steps-xl</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Campaigns-/-04-XL-/-05-mobile-steps-xl" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group" transform="translate(18.000000, 18.000000)" stroke="#384350" stroke-width="1.5">
+            <circle id="Oval" stroke-linecap="round" stroke-linejoin="round" cx="29.98913" cy="51.88437" r="1.88437"></circle>
+            <circle id="Oval" stroke-linecap="round" stroke-linejoin="round" cx="37.1995" cy="51.88437" r="1.88437"></circle>
+            <circle id="Oval" stroke-linecap="round" stroke-linejoin="round" cx="22.8005" cy="51.88437" r="2"></circle>
+            <path d="M51.62675,48.4350586 L51.62675,55.86638 C51.6200608,58.1465505 49.7732705,59.9933273 47.4931,60 L12.5069,60 C10.2267178,59.9933273 8.37992274,58.1465322 8.37325,55.86635 L8.37325,47.4316406" id="Path" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M8.37325,49.5722922 L8.37325,4.13365 C8.37992274,1.8534678 10.2267178,0.00667274218 12.5069,-3.55271368e-15 L47.4931,-3.55271368e-15 C49.7732822,0.00667274218 51.6200773,1.8534678 51.62675,4.13365 L51.62675,49.5722922" id="Path" stroke-linecap="round" stroke-linejoin="round"></path>
+            <line x1="39.4509704" y1="33.5" x2="21" y2="33.5" id="Path" stroke-linecap="round" stroke-linejoin="round"></line>
+            <line x1="36" y1="38.5" x2="25" y2="38.5" id="Path" stroke-linecap="round" stroke-linejoin="round"></line>
+            <path d="M8.37325,53.97786 L4.13365,53.97786 C1.8534678,53.9711873 0.00667274218,52.1243922 2.80664381e-13,49.84421 L2.80664381e-13,18.39193 L2.80664381e-13,10.13365 C0.00667274218,7.8534678 1.8534678,6.00667274 4.13365,6 L8.37325,6" id="Path" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M60.37325,53.97786 L56.13365,53.97786 C53.8534678,53.9711873 52.0066727,52.1243922 52,49.84421 L52,18.39193 L52,10.13365 C52.0066727,7.8534678 53.8534678,6.00667274 56.13365,6 L60.37325,6" id="Path" stroke-linecap="round" stroke-linejoin="round" transform="translate(56.186625, 29.988930) scale(-1, 1) translate(-56.186625, -29.988930) "></path>
+            <circle id="Oval" cx="30" cy="18" r="8"></circle>
+        </g>
+    </g>
+</svg>
