@@ -93,13 +93,15 @@ export const DropAreaButton = styled.button<{ isDropping?: boolean; hasError?: b
     }
   }
 
-  &:active,
+  
   &:disabled {
     background-color: ${(props): string => props.theme.palette['grey-050']};
   }
 
-  &:active {
+  &&:active {
+    color:${(props): string => props.theme.palette['red-400']};
     border-color: ${(props): string => props.theme.palette['grey-400']};
+    background-color: ${(props): string => props.theme.palette['grey-050']};
   }
 
   &:focus:not(:active):not(:disabled) {
