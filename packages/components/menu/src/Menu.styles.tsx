@@ -121,6 +121,35 @@ export const SubMenuItem = styled(Menu.SubMenu)<SubMenuProps>`
     .ant-menu-item {
       padding-right:5px;
     }
+    
+    &.ant-menu-item-selected {
+      background:inherit;
+      .ant-menu-submenu-title {
+          &::before {
+            color: ${(props): string => props.theme.palette['blue-600']};
+          }
+          .ds-submenu-title {
+            color: ${(props): string => props.theme.palette['blue-600']};
+          .ds-menu-prefix {
+            svg {
+               fill: ${(props): string => props.theme.palette['blue-600']};
+            }
+          }
+          &:focus,
+          &:active {
+            background: ${(props): string => props.theme.palette['grey-050']};
+            &::before {
+            color: ${(props): string => props.theme.palette['grey-600']};
+          }
+          }
+    
+          &::after {
+            content: none;
+          } 
+        }
+      }
+    }
+    
     ${(props): string | false =>
       !props.disabled &&
       `

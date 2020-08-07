@@ -7,6 +7,7 @@ const withOrderedList = () => {
   const props = {
     dataSource: attachKnobsToDataSource(ordered),
     ordered: boolean('Set ordered',true),
+    selectable: true,
     ...defaultProps,
   } as object;
   return decorator(props);

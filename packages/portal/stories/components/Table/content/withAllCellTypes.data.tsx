@@ -128,7 +128,7 @@ export const COLUMNS = [
     title: 'Icon Avatar Label',
     dataIndex: 'avatar',
     key: 'avatar',
-    width: 320,
+    width: 120,
     textWrap: 'word-break',
     ellipsis: true,
     render: (avatar) => <TableCell.AvatarLabelCell icon={<Icon component={<LockM />} color={theme.palette['grey-500']} />} avatar={<Avatar backgroundColor='green' backgroundColorHue='400' size='medium' shape={'square'}>{avatar.initials}</Avatar>} title={avatar.title}/>
@@ -140,7 +140,7 @@ export const COLUMNS = [
     width: 254,
     textWrap: 'word-break',
     ellipsis: true,
-    render: (avatar) => <TableCell.AvatarLabelCell avatar={<Avatar backgroundColor='red' backgroundColorHue='050' size='medium' iconComponent={<Icon component={avatar.icon} color='red' />}>{avatar.initials}</Avatar>} title={avatar.title}/>
+    render: (avatar) => <TableCell.AvatarLabelCell ellipsis={true} maxWidth={120} avatarAction={action('Avatar Action')}  avatar={<Avatar backgroundColor='red' backgroundColorHue='050' size='medium' iconComponent={<Icon component={avatar.icon} color='red' />}>{avatar.initials}</Avatar>} title={avatar.title}/>
   },
   {
     title: 'Avatar with title and meta',

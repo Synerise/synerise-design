@@ -16,6 +16,7 @@ export interface SubMenuProps extends Omit<MenuProps, 'dataSource' | 'footer'> {
   copyHint?: string;
   copyValue?: string;
   childrenCollapsed?: boolean;
+  onTitleClick?: () => void;
 }
 export interface SubMenuState {
   uuidKey: string;

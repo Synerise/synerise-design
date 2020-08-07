@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { v4 as uuid } from 'uuid';
+import classNames from 'classnames';
 import '@synerise/ds-core/dist/js/style';
 import * as S from '../../Menu.styles';
 
@@ -18,22 +19,42 @@ class SubMenuItem extends React.PureComponent<SubMenuProps & MenuItemProps, SubM
   }
 
   render(): React.ReactNode {
-    const { text, prefixel, suffixel, subMenu, disabled, danger, ordered, menuItemKey, ...rest } = this.props;
+    const {
+      text,
+      prefixel,
+      suffixel,
+      subMenu,
+      disabled,
+      danger,
+      ordered,
+      onTitleClick,
+      menuItemKey,
+      selectedKeys,
+      ...rest
+    } = this.props;
     const { uuidKey } = this.state;
     return (
       <S.SubMenuItem
         title={
-          <SubmenuText key={`${menuItemKey || uuidKey}-title`} prefixel={prefixel} suffixel={suffixel}>
+          <SubmenuText
+            key={`${menuItemKey || uuidKey}-title`}
+            prefixel={prefixel}
+            suffixel={suffixel}
+            onClick={onTitleClick}
+          >
             {text}
           </SubmenuText>
         }
         key={menuItemKey || uuidKey}
+        onTitleClick={onTitleClick}
         danger={danger}
         ordered={ordered}
         disabled={disabled}
         tabIndex={!disabled ? 0 : -1}
         {...rest}
-        className="ds-menu-item"
+        className={classNames('ds-menu-item', {
+          'ant-menu-item-selected': !!menuItemKey && !!selectedKeys && selectedKeys.includes(menuItemKey as string),
+        })}
       >
         {Boolean(subMenu) &&
           // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
@@ -55,6 +76,7 @@ class SubMenuItem extends React.PureComponent<SubMenuProps & MenuItemProps, SubM
               }}
               key={subItem.key || `${uuidKey}-${index}`} // eslint-disable-line react/no-array-index-key
               menuItemKey={subItem.key || `${uuidKey}-${index}`}
+              selectedKeys={selectedKeys}
             />
           ))}
       </S.SubMenuItem>

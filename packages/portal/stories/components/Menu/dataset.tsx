@@ -52,12 +52,12 @@ export function renderSuffix(suffixElementType: string) {
     case suffixType.renameAndDelete:
       return (
         <React.Fragment>
-          <Tooltip type="default" trigger='hover' title={'Rename'}>
+          <Tooltip type="default" trigger="hover" title={'Rename'}>
             <S.HoverableIconWrapper>
               <Icon color={theme.palette['grey-600']} component={<EditS />} />
             </S.HoverableIconWrapper>
           </Tooltip>
-          <Tooltip type="default" trigger='hover' title={'Delete'}>
+          <Tooltip type="default" trigger="hover" title={'Delete'}>
             <div>
               <Icon color={theme.palette['red-600']} component={<CloseS />} />
             </div>
@@ -132,8 +132,8 @@ export const renderPrefixIcon = (prefixIconType: string) => {
   }
 };
 
-export const remapCopyValueFromText = data =>
-  data.map(item => ({
+export const remapCopyValueFromText = (data) =>
+  data.map((item) => ({
     ...item,
     ...(item.copyValue && { copyValue: item.text }),
   }));
@@ -143,10 +143,10 @@ export const simpleText = [{ text: 'Option' }];
 export const textWithIcon = [{ text: TEXT_PLACEHOLDER }];
 
 export const ordered = [
-  { text: TEXT_PLACEHOLDER },
-  { text: TEXT_PLACEHOLDER },
-  { text: TEXT_PLACEHOLDER },
-  { text: TEXT_PLACEHOLDER },
+  { text: TEXT_PLACEHOLDER, key: '1' },
+  { text: TEXT_PLACEHOLDER, key: '2' },
+  { text: TEXT_PLACEHOLDER, key: '3' },
+  { text: TEXT_PLACEHOLDER, key: '4' },
 ];
 
 export const submenu = [
@@ -217,15 +217,13 @@ export const copyable = [
     copyable: true,
     copyHint: 'Copy to clipboard',
     copyValue: 'Item',
-    copyTooltip: 'Copied!'
+    copyTooltip: 'Copied!',
   },
 ];
 
 export const withFlag = [
   {
     text: TEXT_PLACEHOLDER,
-    prefixel: (
-      <DSFlag country={'pl'}/>
-    ),
+    prefixel: <DSFlag country={'pl'} />,
   },
 ];

@@ -13,7 +13,6 @@ const stories = {
     const [isFocus, setFocus] = React.useState(false);
     const placeholder = text('Placeholder', 'Placeholder');
     return {
-      size: 'large',
       min: number('min', 1),
       max: number('max', 10),
       onChange: action('onChange'),

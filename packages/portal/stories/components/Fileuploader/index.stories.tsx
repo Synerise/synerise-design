@@ -28,7 +28,7 @@ const getDefaultProps = () => ({
 });
 
 const stories = {
-  single: () => {
+  Uploader: () => {
     const [files, setFiles] = React.useState([]);
     const { testFileError, testFileProgress, testFileDisable, uploading, buttonLabel, buttonDescription, size, ...rest } = getDefaultProps();
 
@@ -55,7 +55,7 @@ const stories = {
     };
 
     return (
-      <div style={{ margin: 24, width: 340 }}>
+      <div style={{ margin: 24, width: 340, padding: 24, backgroundColor: 'white' }}>
         <FileUploader
           {...rest}
           files={getFiles()}
@@ -71,7 +71,7 @@ const stories = {
 };
 
 export default {
-  name: 'Components|FileUploader',
+  name: 'Uploader|Uploader',
   stories,
   Component: FileUploader,
 };
