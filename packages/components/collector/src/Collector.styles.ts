@@ -26,11 +26,12 @@ export const MainContent = styled.div`
   padding: 4px;
   .ds-input-value-wrapper {
     margin: 0;
-    &:not(:first-child) {
-      margin-left: 8px;
+    margin-left: 12px;
+    &:first-child {
+      margin-left: 2px;
     }
     &:last-of-type {
-      margin-right: 8px;
+      margin-right: 12px;
     }
     right: 0;
     background: ${(props): string => props.theme.palette['grey-200']};
