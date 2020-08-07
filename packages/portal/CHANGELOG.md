@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.92.2](https://github.com/synerise/synerise-design/compare/portal@0.92.1...portal@0.92.2) (2020-08-07)
+
+
+### Bug Fixes
+
+* **file-uploader:** change name,background color to white,add active state to uploader ([67e6a4b](https://github.com/synerise/synerise-design/commit/67e6a4b6e52ea3f751dc7dd7b09c78dc5a7c79df))
+* **input-number:** changed story ([6eff009](https://github.com/synerise/synerise-design/commit/6eff009b156926cb0236cabb436ace52efc1c7c5))
+* **menu:** added an option to highlight selected item ([394904d](https://github.com/synerise/synerise-design/commit/394904db36366ce6f3d966b61c80a09c1b7c7834))
+* **menu:** changes in stories ([35d069c](https://github.com/synerise/synerise-design/commit/35d069c463d4396b98cc24085af05e0a53d7cc0e))
+* **menu:** code review changes ([54fe83e](https://github.com/synerise/synerise-design/commit/54fe83e2e5809efd1ef3c1dea677aa744aca0c62))
+* **menu:** removed unused code from story ([3f46f85](https://github.com/synerise/synerise-design/commit/3f46f85abf7771791cadd7afebbfbe910ccf345b))
+* **menu:** reverted the way of displaying stories ([ec622d7](https://github.com/synerise/synerise-design/commit/ec622d71d161efaf58e44ae68b1213be7802a315))
+* **menu:** started preparing a story ([62caecc](https://github.com/synerise/synerise-design/commit/62caecca3dd7de635178292a5d6bc4a6cde8c847))
+* **progress-bar:** add component multivalue Bar and add option to change colors ([2e6bb48](https://github.com/synerise/synerise-design/commit/2e6bb48ca9cf1b8b0c5edfa61f9282e5968a88a1))
+* **progress-bar:** delete text indent and text showing percent of bar ([0a76c18](https://github.com/synerise/synerise-design/commit/0a76c18d8436d81bfdaffa1766738333f7c2d56b))
+* **table:** add avatarAction, ellipsis and maxWidth props to AvatarLabel ([c542292](https://github.com/synerise/synerise-design/commit/c5422927b7b88b6eff7c73a53a2bb5187ca601b5))
+
+
+
+
+
 ## [0.92.1](https://github.com/synerise/synerise-design/compare/portal@0.92.0...portal@0.92.1) (2020-08-05)
 
 

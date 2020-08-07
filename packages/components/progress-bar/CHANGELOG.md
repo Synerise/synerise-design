@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.29](https://github.com/Synerise/synerise-design/compare/@synerise/ds-progress-bar@0.4.28...@synerise/ds-progress-bar@0.4.29) (2020-08-07)
+
+
+### Bug Fixes
+
+* **progress-bar:** add component multivalue Bar and add option to change colors ([2e6bb48](https://github.com/Synerise/synerise-design/commit/2e6bb48ca9cf1b8b0c5edfa61f9282e5968a88a1))
+* **progress-bar:** delete div ([68817c7](https://github.com/Synerise/synerise-design/commit/68817c7f74ed9cb4b249f3e00270771d990a5a26))
+* **progress-bar:** delete text indent and text showing percent of bar ([0a76c18](https://github.com/Synerise/synerise-design/commit/0a76c18d8436d81bfdaffa1766738333f7c2d56b))
+
+
+
+
+
 ## [0.4.28](https://github.com/Synerise/synerise-design/compare/@synerise/ds-progress-bar@0.4.27...@synerise/ds-progress-bar@0.4.28) (2020-07-30)
 
 **Note:** Version bump only for package @synerise/ds-progress-bar

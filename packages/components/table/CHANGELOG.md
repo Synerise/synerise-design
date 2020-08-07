@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.23.27](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.23.26...@synerise/ds-table@0.23.27) (2020-08-07)
+
+
+### Bug Fixes
+
+* **table:** add avatarAction, ellipsis and maxWidth props to AvatarLabel ([c542292](https://github.com/synerise/synerise-design/commit/c5422927b7b88b6eff7c73a53a2bb5187ca601b5))
+* **table:** fix virtualTable width ([b909ebb](https://github.com/synerise/synerise-design/commit/b909ebb075fb9d585076d15013d3cc305d538ea7))
+
+
+
+
+
 ## [0.23.26](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.23.25...@synerise/ds-table@0.23.26) (2020-08-05)
 
 

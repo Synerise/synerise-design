@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.24](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.5.23...@synerise/ds-menu@0.5.24) (2020-08-07)
+
+
+### Bug Fixes
+
+* **menu:** added an option to highlight selected item ([394904d](https://github.com/Synerise/synerise-design/commit/394904db36366ce6f3d966b61c80a09c1b7c7834))
+* **menu:** changes in stories ([35d069c](https://github.com/Synerise/synerise-design/commit/35d069c463d4396b98cc24085af05e0a53d7cc0e))
+* **menu:** fixing the build ([1975af8](https://github.com/Synerise/synerise-design/commit/1975af80b778d1783b22e7cab9073a6c6a12859d))
+* **menu:** removed unused code from story ([3f46f85](https://github.com/Synerise/synerise-design/commit/3f46f85abf7771791cadd7afebbfbe910ccf345b))
+* **menu:** started preparing a story ([62caecc](https://github.com/Synerise/synerise-design/commit/62caecca3dd7de635178292a5d6bc4a6cde8c847))
+
+
+
+
+
 ## [0.5.23](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.5.22...@synerise/ds-menu@0.5.23) (2020-08-05)
 
 
