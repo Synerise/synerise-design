@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="96px" height="96px" viewBox="0 0 96 96" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 64 (93537) - https://sketch.com -->
+    <title>Analytics / 04 XL / 01-function-xl</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Analytics-/-04-XL-/-01-function-xl" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round">
+        <g id="Group" transform="translate(21.524414, 21.000000)" stroke="#384350" stroke-width="1.5">
+            <path d="M48.3658159,51.61641 C53.8455081,45.5994382 53.8455081,36.4005618 48.3658159,30.38359" id="Path" stroke-linejoin="round"></path>
+            <path d="M30.5853659,30.38359 C25.105655,36.4005545 25.105655,45.5994455 30.5853659,51.61641" id="Path" stroke-linejoin="round"></path>
+            <line x1="43.3715059" y1="37.10409" x2="35.5796759" y2="44.89592" id="Path" stroke-linejoin="round"></line>
+            <line x1="43.3715059" y1="44.89592" x2="35.5796759" y2="37.10409" id="Path" stroke-linejoin="round"></line>
+            <path d="M-6.39488462e-14,54 L2.38544664,54 C8.42091412,54 13.5172536,49.5172962 14.2873601,43.5311619 L18.5407746,10.4688381 C19.3108812,4.48270378 24.4072206,4.66141107e-15 30.4426881,0 L39.4755909,0 L39.4755909,0" id="Path-7"></path>
+            <line x1="7.47558594" y1="19" x2="29.4755859" y2="19" id="Path-7-Copy"></line>
+        </g>
+    </g>
+</svg>

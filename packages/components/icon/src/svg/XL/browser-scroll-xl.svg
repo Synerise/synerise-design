@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="96px" height="96px" viewBox="0 0 96 96" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 64 (93537) - https://sketch.com -->
+    <title>Internet / 04 XL / 01-browser-scroll-xl</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Internet-/-04-XL-/-01-browser-scroll-xl" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-2" transform="translate(14.500000, 24.000000)" stroke="#384350" stroke-width="1.5">
+            <circle id="Oval" stroke-linecap="round" stroke-linejoin="round" cx="11.5" cy="8.00000001" r="2"></circle>
+            <circle id="Oval" stroke-linecap="round" stroke-linejoin="round" cx="25.5" cy="8.00000001" r="2"></circle>
+            <circle id="Oval" stroke-linecap="round" stroke-linejoin="round" cx="18.5" cy="8.00000001" r="2"></circle>
+            <path d="M3.49999997,36 C3.49999997,38.5829507 3.49999997,37.5943439 3.49999997,44 C3.49999997,46.209139 5.29086097,48 7.49999997,48 L59.5,48 C61.709139,48 63.5,46.209139 63.5,44 C63.5,40.5321181 63.5,37.733941 63.5,36" id="Path" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M63.5,24 L63.5,4 C63.5,1.790861 61.709139,-1.42108547e-14 59.5,-1.42108547e-14 L7.49999997,-1.42108547e-14 C5.29086097,-1.42108547e-14 3.49999997,1.790861 3.49999997,4 C3.49999997,11.2293837 3.49999997,20.6514215 3.49999997,24.2661133" id="Path" stroke-linecap="round" stroke-linejoin="round"></path>
+            <line x1="0" y1="30" x2="36.5166016" y2="30" id="Path" stroke-linecap="round" stroke-linejoin="round"></line>
+            <line x1="56.7021484" y1="30" x2="68" y2="30" id="Path" stroke-linecap="round" stroke-linejoin="round"></line>
+            <rect id="Rectangle" stroke-linecap="round" stroke-linejoin="round" x="36.5" y="8.00000003" width="20" height="32" rx="10"></rect>
+            <rect id="Rectangle" x="44" y="13" width="5" height="8" rx="2.5"></rect>
+            <line x1="46.5" y1="13" x2="46.5" y2="8.00000003" id="Path-4-Copy-2"></line>
+        </g>
+    </g>
+</svg>

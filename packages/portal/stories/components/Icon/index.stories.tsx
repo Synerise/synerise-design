@@ -7,8 +7,11 @@ const iconsRaw = req(req.keys()[0]);
 const iconsNames = Object.keys(iconsRaw);
 
 const additionalIconsReq = require.context('@synerise/ds-icon/dist/icons/additional', false, /index.js/);
+const lIconsReq = require.context('@synerise/ds-icon/dist/icons/L', false, /index.js/);
+const xlIconsReq = require.context('@synerise/ds-icon/dist/icons/XL', false, /index.js/);
 const additionalIconsRaw = additionalIconsReq(additionalIconsReq.keys()[0]);
-const additionalIconsNames = Object.keys(additionalIconsRaw);
+const lIconsRaw = lIconsReq(lIconsReq.keys()[0]);
+const xlIconsRaw = xlIconsReq(xlIconsReq.keys()[0]);
 
 const listyStyles: React.CSSProperties = {
   margin: 10,
@@ -22,6 +25,7 @@ const listyStyles: React.CSSProperties = {
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'space-between',
+  flexWrap: 'wrap'
 };
 
 const getProps = () => ({
@@ -31,30 +35,34 @@ const getProps = () => ({
   stroke: boolean('Set stroke', false),
 });
 
-const IconComponent = Object.entries(iconsRaw).map(([key, value]) => {
-  const IconModule = value as React.ComponentType;
-  return (
-    <div style={listyStyles} key={key}>
-      <Icon component={<IconModule />} />
-      <br />
-      <br />
-      <p>{key}</p>
-    </div>
-  );
-});
+const IconComponent = ({color}) => {
+  return Object.entries(iconsRaw).map(([key, value]) => {
+    const IconModule = value as React.ComponentType;
+    return (
+      <div style={listyStyles} key={key}>
+        <Icon component={<IconModule />} color={color} />
+        <br />
+        <br />
+        <p>{key}</p>
+      </div>
+    );
+  });
+}
 
-const AdditionalIconComponent = Object.entries(additionalIconsRaw).map(([key, value]) => {
-  const size = key.substr(-2) === 'Xl' ? 96 : 48;
-  const IconModule = value as React.ComponentType;
-  return (
-    <div style={listyStyles} key={key}>
-      <Icon component={<IconModule />} size={size} />
-      <br />
-      <br />
-      <p>{key}</p>
-    </div>
-  );
-});
+const AdditionalIconComponent = (icons) => {
+  return Object.entries(icons).map(([key, value]) => {
+    const size = key.substr(-2) === 'Xl' ? 96 : 48;
+    const IconModule = value as React.ComponentType;
+    return (
+      <div style={listyStyles} key={key}>
+        <Icon component={<IconModule />} size={size} />
+        <br />
+        <br />
+        <p>{key}</p>
+      </div>
+    );
+  });
+}
 
 const stories = {
   singleIcon: () => {
@@ -67,10 +75,18 @@ const stories = {
     };
   },
   listIcon: () => (
-    <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between' }}>{IconComponent}</div>
+    <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between' }}>{IconComponent({
+      color: text('Set custom color', '')
+    })}</div>
   ),
   additionalListIcon: () => (
-    <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between' }}>{AdditionalIconComponent}</div>
+    <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between' }}>{AdditionalIconComponent(additionalIconsRaw)}</div>
+  ),
+  L: () => (
+    <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between' }}>{AdditionalIconComponent(lIconsRaw)}</div>
+  ),
+  XL: () => (
+    <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between' }}>{AdditionalIconComponent(xlIconsRaw)}</div>
   ),
 };
 

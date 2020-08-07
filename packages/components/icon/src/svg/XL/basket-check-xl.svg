@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="96px" height="96px" viewBox="0 0 96 96" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 64 (93537) - https://sketch.com -->
+    <title>Ecommerce / 04 XL / 01-basket-check-xl</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M58.5838271,23.9083169 C57.8830955,27.2221212 57.0736169,31.0716864 55.9575705,36.3495415" id="path-1"></path>
+        <path d="M39.2835601,53 C33.1885052,53 24.0459229,53 11.8558133,53 C9.58444071,53 7.61951506,51.3639022 7.13412984,49.0684844 C4.7894892,37.9805287 3.03100872,29.6645619 1.8586884,24.120584" id="path-2"></path>
+    </defs>
+    <g id="Ecommerce-/-04-XL-/-01-basket-check-xl" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round">
+        <g id="Group" transform="translate(17.801185, 21.000000)">
+            <line x1="8.32465891" y1="15.9199762" x2="15.2526507" y2="-4.4408921e-15" id="Path" stroke="#384350" stroke-width="1.5" stroke-linejoin="round"></line>
+            <line x1="51.5043962" y1="15.9199762" x2="44.5764044" y2="-4.4408921e-15" id="Path" stroke="#384350" stroke-width="1.5" stroke-linejoin="round"></line>
+            <line x1="29.9540611" y1="30.4077487" x2="29.9540611" y2="44.765505" id="Path" stroke="#384350" stroke-width="1.5" stroke-linejoin="round"></line>
+            <line x1="47.194724" y1="30.4077487" x2="46.1526563" y2="37.1923285" id="Path" stroke="#384350" stroke-width="1.5" stroke-linejoin="round"></line>
+            <line x1="12.5579369" y1="30.4077487" x2="14.7632089" y2="44.765505" id="Path" stroke="#384350" stroke-width="1.5" stroke-linejoin="round"></line>
+            <rect id="Rectangle" stroke="#384350" stroke-width="1.5" stroke-linejoin="round" x="2.13162821e-14" y="15.92505" width="60.1544624" height="8.24527125" rx="3.66456"></rect>
+            <circle id="Oval" stroke="#384350" stroke-width="1.5" stroke-linejoin="round" cx="51.8681149" cy="49" r="13"></circle>
+            <g id="Path">
+                <use stroke="#979797" stroke-width="1" xlink:href="#path-1"></use>
+                <use stroke="#384350" stroke-width="1.5" xlink:href="#path-1"></use>
+            </g>
+            <g id="Path">
+                <use stroke="#979797" stroke-width="1" xlink:href="#path-2"></use>
+                <use stroke="#384350" stroke-width="1.5" xlink:href="#path-2"></use>
+            </g>
+            <polyline id="Path" stroke="#384350" stroke-width="1.5" stroke-linejoin="round" points="47.5618149 49.999 50.7548149 53.192 58.1748149 45.772"></polyline>
+        </g>
+    </g>
+</svg>

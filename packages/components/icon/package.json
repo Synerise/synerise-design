@@ -37,6 +37,7 @@
     "@svgr/plugin-prettier": "5.0.1",
     "@svgr/plugin-svgo": "5.2.0",
     "fs-extra": "8.1.0",
-    "glob": "7.1.6"
+    "glob": "7.1.6",
+    "string-hash": "^1.1.3"
   }
 }

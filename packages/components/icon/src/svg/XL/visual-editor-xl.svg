@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="96px" height="96px" viewBox="0 0 96 96" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 64 (93537) - https://sketch.com -->
+    <title>Edit / 04 XL / 01-visual-editor-xl</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Edit-/-04-XL-/-01-visual-editor-xl" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="Group" transform="translate(18.000000, 13.000000)" stroke="#384350" stroke-width="1.5">
+            <rect id="Rectangle" x="0.75000002" y="5.75000002" width="23.5" height="58.5000001" rx="4"></rect>
+            <rect id="Rectangle" x="30.2500001" y="35.2500001" width="29" height="29" rx="4"></rect>
+            <rect id="Rectangle" x="42.7291201" y="5.75000002" width="16.52088" height="23.74111" rx="4"></rect>
+            <path d="M18.499997,3.75023002 L18.499997,22.85434 C18.499997,23.3621023 18.3068632,23.8508547 17.95978,24.22147 L15.59788,26.74347 C15.59788,26.74347 13.98578,25.14182 13.08745,24.24882 C12.7105717,23.8741268 12.4990704,23.3643528 12.499997,22.83291 L12.499997,3.75021227 C12.499997,2.0960216 13.8389959,0.753975045 15.49319,0.750212274 L15.49319,0.750212274 C16.2900205,0.748411204 17.0548344,1.0636844 17.6189176,1.62649187 C18.1830008,2.18929934 18.499997,2.9533975 18.499997,3.75023002 Z" id="Path"></path>
+            <line x1="6.50000003" y1="43.9831901" x2="18.5" y2="43.9831901" id="Path"></line>
+            <line x1="6.50000003" y1="55.5168101" x2="18.5" y2="55.5168101" id="Path"></line>
+            <line x1="6.50000003" y1="49.7500001" x2="12.5" y2="49.7500001" id="Path"></line>
+            <circle id="Oval" cx="37.7291201" cy="55.5559701" r="2"></circle>
+            <circle id="Oval" cx="51.7291201" cy="55.5559701" r="2"></circle>
+            <circle id="Oval" cx="44.7291201" cy="55.5559701" r="2"></circle>
+            <line x1="50.9895601" y1="14.79964" x2="50.9895601" y2="20.29964" id="Path"></line>
+            <line x1="48.2395601" y1="17.54964" x2="53.7395601" y2="17.54964" id="Path"></line>
+            <line x1="34.2500001" y1="5.75000002" x2="34.2500001" y2="29.40843" id="Path"></line>
+            <line x1="30.2500001" y1="5.75000002" x2="38.2500001" y2="5.75000002" id="Path"></line>
+            <line x1="30.2500001" y1="29.40843" x2="38.2500001" y2="29.40843" id="Path"></line>
+        </g>
+    </g>
+</svg>

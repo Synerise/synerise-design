@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="96px" height="96px" viewBox="0 0 96 96" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 64 (93537) - https://sketch.com -->
+    <title>Campaigns / 04 XL / 08-message-xl</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Campaigns-/-04-XL-/-08-message-xl" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="Group" transform="translate(13.685690, 19.298900)" stroke="#384350" stroke-width="1.5">
+            <path d="M24.5,10.2462 L59.56431,10.2462 C61.7734491,10.2462 63.56431,12.037061 63.56431,14.2462 L63.56431,41.15529 C63.56431,43.364429 61.7734491,45.15529 59.56431,45.15529 L48.7030201,45.15529 C47.6345782,45.15529 46.6105431,45.5827406 45.85918,46.34236 L35.5066,56.8086701 C35.1309185,57.1884798 34.618901,57.4022052 34.08468,57.4022052 C33.5504591,57.4022052 33.0384416,57.1884798 32.66276,56.8086701 L22.31018,46.34236 C21.5588096,45.5827333 20.5347623,45.155282 19.46631,45.15529 L9.06431001,45.15529 C6.85517101,45.15529 5.06431001,43.364429 5.06431001,41.15529 L5.06431001,22.61516" id="Path"></path>
+            <line x1="22.31431" y1="28.20739" x2="46.31431" y2="28.20739" id="Path"></line>
+            <line x1="22.31431" y1="33.9742" x2="34.31431" y2="33.9742" id="Path"></line>
+            <circle id="Oval" cx="12.25" cy="12.25" r="12.25"></circle>
+            <line x1="12.30276" y1="6.70110003" x2="12.30276" y2="16.66252" id="Path"></line>
+            <line x1="10.18961" y1="16.66252" x2="14.41591" y2="16.66252" id="Path"></line>
+            <line x1="9.31431004" y1="8.68954003" x2="12.30276" y2="6.70110003" id="Path"></line>
+        </g>
+    </g>
+</svg>
