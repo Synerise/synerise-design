@@ -1,4 +1,5 @@
 const svgr = require('@svgr/core').default;
+const hash = require('string-hash');
 const glob = require('glob');
 const fs = require('fs');
 const path = require('path');
@@ -43,6 +44,15 @@ const buildIconsSet = (path, libDir, indexDistFile) => {
           {
             template: tpl,
             plugins: ['@svgr/plugin-svgo', '@svgr/plugin-jsx', '@svgr/plugin-prettier'],
+            svgoConfig: {
+              "plugins": [{
+                cleanupIDs: {
+                  prefix: `svg-${hash(file)}`,
+                },
+                removeViewBox: false,
+                removeDimensions: true,
+              }]
+            }
           },
           { componentName }
         ).then(jsCode => {
@@ -74,5 +84,7 @@ fs.writeFile(ADDITIONAL_INDEX_DIST_FILE, '', err => {
   console.log(err);
 });
 
+
 buildIconsSet('src/svg/*.svg', LIB_DIR, INDEX_DIST_FILE);
 buildIconsSet('src/svg/additional/*.svg', ADDITIONAL_LIB_DIR, ADDITIONAL_INDEX_DIST_FILE);
+

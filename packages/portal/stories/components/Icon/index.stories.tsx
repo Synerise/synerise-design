@@ -8,7 +8,6 @@ const iconsNames = Object.keys(iconsRaw);
 
 const additionalIconsReq = require.context('@synerise/ds-icon/dist/icons/additional', false, /index.js/);
 const additionalIconsRaw = additionalIconsReq(additionalIconsReq.keys()[0]);
-const additionalIconsNames = Object.keys(additionalIconsRaw);
 
 const listyStyles: React.CSSProperties = {
   margin: 10,
@@ -31,17 +30,19 @@ const getProps = () => ({
   stroke: boolean('Set stroke', false),
 });
 
-const IconComponent = Object.entries(iconsRaw).map(([key, value]) => {
-  const IconModule = value as React.ComponentType;
-  return (
-    <div style={listyStyles} key={key}>
-      <Icon component={<IconModule />} />
-      <br />
-      <br />
-      <p>{key}</p>
-    </div>
-  );
-});
+const IconComponent = ({color}) => {
+  return Object.entries(iconsRaw).map(([key, value]) => {
+    const IconModule = value as React.ComponentType;
+    return (
+      <div style={listyStyles} key={key}>
+        <Icon component={<IconModule />} color={color} />
+        <br />
+        <br />
+        <p>{key}</p>
+      </div>
+    );
+  });
+}
 
 const AdditionalIconComponent = Object.entries(additionalIconsRaw).map(([key, value]) => {
   const size = key.substr(-2) === 'Xl' ? 96 : 48;
@@ -67,7 +68,9 @@ const stories = {
     };
   },
   listIcon: () => (
-    <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between' }}>{IconComponent}</div>
+    <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between' }}>{IconComponent({
+      color: text('Set custom color', '')
+    })}</div>
   ),
   additionalListIcon: () => (
     <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between' }}>{AdditionalIconComponent}</div>
