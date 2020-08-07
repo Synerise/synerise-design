@@ -118,8 +118,8 @@ export default class RangePicker extends React.PureComponent<Props, State> {
         <DayText className="DayPicker-Day-Text" data-attr={text}>
           {value.to && value.from && (
             <DayTooltip>
-              {fnsFormat(value.from, 'DD-MM-YYYY HH:mm', intl.locale)} -{' '}
-              {fnsFormat(value.to, 'DD-MM-YYYY HH:mm', intl.locale)}
+              {fnsFormat(value.from, 'DD MMM YYYY, HH:mm', intl.locale)} -{' '}
+              {fnsFormat(value.to, 'DD MMM YYYY, HH:mm', intl.locale)}
             </DayTooltip>
           )}
           {text}

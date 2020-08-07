@@ -5,9 +5,10 @@ import { Props as ButtonProps } from '@synerise/ds-button/dist/Button.types';
 export const Sides = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
+  height: 370px;
   margin: 0 8px;
   && .ds-date-picker-nav {
-    margin: 0 15px;
+    margin: 0 12px;
   }
 `;
 

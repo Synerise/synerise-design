@@ -13,6 +13,12 @@ const decorator = storyFn => (
 const stories = {
   default: () => {
     const value = undefined;
+    const secondVlaue = {
+      filter: undefined,
+      from: '2020-08-18T22:00:00.000Z',
+      to: '2020-08-29T21:59:59.999Z',
+      type: 'ABSOLUTE',
+    };
     const showTime = boolean('Set showTime', true);
     const showRelativePicker = boolean('Set relative filter', true);
     return (
@@ -28,6 +34,59 @@ const stories = {
           endDatePlaceholder: 'End date',
           clear: 'Clear',
         }}
+        popoverPlacement="bottomLeft"
+      />
+    );
+  },
+  withStartDate: () => {
+    const value = {
+      filter: undefined,
+      from: '2020-08-18T22:00:00.000Z',
+      to: undefined,
+      type: 'ABSOLUTE',
+    };
+    const showTime = boolean('Set showTime', true);
+    const showRelativePicker = boolean('Set relative filter', true);
+    return (
+      <DateRangePicker
+        onApply={console.log}
+        showTime={showTime}
+        value={value}
+        relativeFuture
+        forceAbsolute
+        showRelativePicker={showRelativePicker}
+        texts={{
+          startDatePlaceholder: 'Start date',
+          endDatePlaceholder: 'End date',
+          clear: 'Clear',
+        }}
+        popoverPlacement="bottomLeft"
+      />
+    );
+  },
+  withEndDate: () => {
+    const value = {
+      filter: undefined,
+      from: undefined,
+      to: '2020-08-18T22:00:00.000Z',
+      type: 'ABSOLUTE',
+    };
+    const showTime = boolean('Set showTime', true);
+    const showRelativePicker = boolean('Set relative filter', true);
+    return (
+      <DateRangePicker
+        onApply={console.log}
+        showTime={showTime}
+        value={value}
+        relativeFuture
+        forceAbsolute
+        showRelativePicker={showRelativePicker}
+        texts={{
+          startDatePlaceholder: 'Start date',
+          endDatePlaceholder: 'End date',
+          clear: 'Clear',
+        }}
+        popoverPlacement="bottomLeft"
       />
     );
   },

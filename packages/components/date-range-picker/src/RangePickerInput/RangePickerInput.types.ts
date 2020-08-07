@@ -17,4 +17,5 @@ export type Props = {
   clearTooltip?: string | React.ReactNode;
   highlight?: boolean;
   texts?: Texts;
+  active?: boolean;
 };
