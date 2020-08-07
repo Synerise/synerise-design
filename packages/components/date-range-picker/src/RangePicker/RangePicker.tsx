@@ -38,6 +38,7 @@ import { Props, State, Side as SideType } from './RangePicker.types';
 import getDateFromString from '../dateUtils/getDateFromString';
 import { getSidesState, getDisabledTimeOptions } from './utils';
 
+const TOOLTIP_FORMAT = "D MMM YYYY, H:mm";
 export default class RangePicker extends React.PureComponent<Props, State> {
   constructor(props: Props) {
     super(props);
@@ -118,8 +119,8 @@ export default class RangePicker extends React.PureComponent<Props, State> {
         <DayText className="DayPicker-Day-Text" data-attr={text}>
           {value.to && value.from && (
             <DayTooltip>
-              {fnsFormat(value.from, 'DD MMM YYYY, HH:mm', intl.locale)} -{' '}
-              {fnsFormat(value.to, 'DD MMM YYYY, HH:mm', intl.locale)}
+              {fnsFormat(value.from, TOOLTIP_FORMAT, intl.locale)} -{' '}
+              {fnsFormat(value.to, TOOLTIP_FORMAT, intl.locale)}
             </DayTooltip>
           )}
           {text}
