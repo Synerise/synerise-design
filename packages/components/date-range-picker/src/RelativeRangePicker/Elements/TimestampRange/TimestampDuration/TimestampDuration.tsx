@@ -20,7 +20,7 @@ const TimestampDuration: React.FC<Props> = ({
   unit,
 }) => {
   const durationModiferValues = Object.values(DURATION_MODIFIERS);
-  const getSelectDropdownOffset = React.useCallback(
+  const selectDropdownOffset = React.useMemo(
     () =>
       durationModiferValues && durationModiferValues.length
         ? -(durationModiferValues.length * SELECT_OPTION_HEIGHT + DROPDOWN_PADDING + SELECT_DROPDOWN_OFFSET + SELECT_HEIGHT)
@@ -42,7 +42,7 @@ const TimestampDuration: React.FC<Props> = ({
             onDurationModifierChange(modifier as string);
           }}
           dropdownStyle={{ minWidth: '125px' }}
-          dropdownAlign={{ offset: [0, getSelectDropdownOffset()] }}
+          dropdownAlign={{ offset: [0, selectDropdownOffset] }}
         >
           {durationModiferValues.map(modifier => (
             <Select.Option key={modifier} value={modifier}>

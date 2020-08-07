@@ -1,8 +1,9 @@
 import * as React from 'react';
 
 import DateRangePicker from '@synerise/ds-date-range-picker';
-import { ABSOLUTE, DAYS, RELATIVE, RELATIVE_PRESETS } from '@synerise/ds-date-range-picker/dist/constants';
+import { ABSOLUTE } from '@synerise/ds-date-range-picker/dist/constants';
 import { boolean } from '@storybook/addon-knobs';
+import { action } from '@storybook/addon-actions';
 
 const decorator = storyFn => (
   <div style={{ width: '100vw', position: 'absolute', left: '0', top: '5vh' }}>
@@ -13,17 +14,11 @@ const decorator = storyFn => (
 const stories = {
   default: () => {
     const value = undefined;
-    const secondVlaue = {
-      filter: undefined,
-      from: '2020-08-18T22:00:00.000Z',
-      to: '2020-08-29T21:59:59.999Z',
-      type: 'ABSOLUTE',
-    };
     const showTime = boolean('Set showTime', true);
     const showRelativePicker = boolean('Set relative filter', true);
     return (
       <DateRangePicker
-        onApply={console.log}
+        onApply={action('OnApply')}
         showTime={showTime}
         value={value}
         relativeFuture
@@ -49,7 +44,7 @@ const stories = {
     const showRelativePicker = boolean('Set relative filter', true);
     return (
       <DateRangePicker
-        onApply={console.log}
+        onApply={action('OnApply')}
         showTime={showTime}
         value={value}
         relativeFuture
@@ -75,7 +70,7 @@ const stories = {
     const showRelativePicker = boolean('Set relative filter', true);
     return (
       <DateRangePicker
-        onApply={console.log}
+        onApply={action('OnApply')}
         showTime={showTime}
         value={value}
         relativeFuture
