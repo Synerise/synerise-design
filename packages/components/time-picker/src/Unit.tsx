@@ -1,6 +1,5 @@
 import * as React from 'react';
 import dayjs from 'dayjs';
-import { debounce } from 'debounce';
 
 import * as S from './TimePicker.styles';
 
@@ -17,7 +16,6 @@ export type UnitProps = UnitConfig & {
 };
 
 const CELL_HEIGHT = 32;
-const DEBOUNCE_DELAY = 150;
 
 const Unit: React.FC<UnitProps> = ({ options, disabled, value, unit, onSelect }) => {
   const selected = value && dayjs(value).get(unit);
@@ -30,21 +28,11 @@ const Unit: React.FC<UnitProps> = ({ options, disabled, value, unit, onSelect })
   React.useEffect(() => {
     if (isFirstRender) {
       setFirstRender(false);
+      if (unitContainerRef.current) {
+        setContainerHeight(unitContainerRef.current.offsetHeight);
+      }
     }
-  }, [isFirstRender]);
-
-  const scrollHandler = React.useCallback(() => {
-    if (!!unitContainerRef && !!unitContainerRef.current) {
-      const pixelsScrolled = unitContainerRef.current.scrollTop;
-      const isScrollBetweenTwoCells = pixelsScrolled % CELL_HEIGHT !== 0;
-      pixelsScrolled !== 0 &&
-        isScrollBetweenTwoCells &&
-        unitContainerRef.current.scrollTo({
-          top: Math.round(pixelsScrolled / CELL_HEIGHT) * CELL_HEIGHT,
-          behavior: 'smooth',
-        });
-    }
-  }, [unitContainerRef]);
+  }, [isFirstRender, unitContainerRef]);
 
   React.useEffect(() => {
     if (selectedCellRef.current && unitContainerRef.current) {
@@ -56,11 +44,7 @@ const Unit: React.FC<UnitProps> = ({ options, disabled, value, unit, onSelect })
     }
   }, [selectedCellRef, unitContainerRef, isFirstRender, forceUpdate, containerHeight]);
   return (
-    <S.Unit
-      data-testid={`ds-time-picker-unit-${unit}`}
-      ref={unitContainerRef}
-      onScroll={debounce(scrollHandler, DEBOUNCE_DELAY)}
-    >
+    <S.Unit data-testid={`ds-time-picker-unit-${unit}`} ref={unitContainerRef}>
       {options.map((option: number) => {
         const normalizedStringValue = option < 10 ? `0${option}` : option.toString();
         const isDisabled = disabled && disabled.includes(option);
