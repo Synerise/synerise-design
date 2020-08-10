@@ -36,7 +36,6 @@ const stories = {
         onChange={action('onChange')}
         defaultChecked={true}
         errorText={getErrorText(hasError)}
-        error={hasError}
       />
     );
   },

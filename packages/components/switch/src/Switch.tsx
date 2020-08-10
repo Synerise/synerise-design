@@ -9,13 +9,12 @@ export interface Props extends SwitchProps {
   errorText?: string | React.ReactNode;
   label: string | React.ReactNode;
   description?: string | React.ReactNode;
-  error?: boolean | React.ReactNode;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const ExtendedAntdSwitchComponent = (AntdSwitch as any) as React.ComponentType<SwitchProps & { id: string }>;
 
-export const Switch: React.FC<Props> = ({ errorText, label, description,error, ...antdSwitchProps }) => {
+export const Switch: React.FC<Props> = ({ errorText, label, description, ...antdSwitchProps }) => {
   const id = uuid();
 
   return (
