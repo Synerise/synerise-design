@@ -1,7 +1,6 @@
 import * as React from 'react';
 
 import DateRangePicker from '@synerise/ds-date-range-picker';
-import { ABSOLUTE } from '@synerise/ds-date-range-picker/dist/constants';
 import { boolean } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 
@@ -90,6 +89,7 @@ const stories = {
 export default {
   name: 'Pickers|DateRangePicker',
   config: {},
+  component: DateRangePicker,
   stories,
   decorator,
 };
