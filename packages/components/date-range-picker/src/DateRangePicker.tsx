@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { Popover } from 'antd';
+import './style/index.less';
 import RawDateRangePicker from './RawDateRangePicker';
 import * as S from './DateRangePicker.styles';
 import { Props } from './DateRangePicker.types';
 import RangePickerInput from './RangePickerInput/RangePickerInput';
 import { DateFilter, DateRange } from './date.types';
-import './style.less';
 
 const DateRangePicker: React.FC<Props> = props => {
   const { value, onApply, showTime, onValueChange, texts, popoverPlacement } = props;
