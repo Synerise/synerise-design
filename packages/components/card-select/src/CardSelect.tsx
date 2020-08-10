@@ -63,13 +63,14 @@ const CardSelect: React.FC<CardSelectProps> = ({
       disabled={disabled}
       value={value}
       size={size}
+      onClick={handleClick}
       stretchToFit={stretchToFit}
       className={`ds-card-select ${className || ''}`}
       elementsPosition={elementsPosition}
     >
       <S.Aside size={size} >
         {tickVisible && (
-          <S.TickIcon className='ds-card-select-tick' disabled={disabled} elementsPosition={elementsPosition} selected={value} size={size} onClick={handleClick}>
+          <S.TickIcon className='ds-card-select-tick' disabled={disabled} elementsPosition={elementsPosition} selected={value} size={size} >
             {value ? (
               <Icon
                 size={realTickSize}
