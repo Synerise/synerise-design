@@ -151,5 +151,8 @@ export const BorderLessInput = styled.input<{ disabled?: boolean }>`
   && {
     background-color: rgba(255, 255, 255, 0);
   }
+  &::placeholder {
+    color: ${(props): string => props.theme.palette['grey-500']};
+  }
   ${(props): FlattenSimpleInterpolation | false => !!props.disabled && disabledStyled(props)}
 `;
