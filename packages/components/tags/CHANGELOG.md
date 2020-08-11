@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.103](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@0.2.102...@synerise/ds-tags@0.2.103) (2020-08-11)
+
+**Note:** Version bump only for package @synerise/ds-tags
+
+
+
+
+
 ## [0.2.102](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@0.2.101...@synerise/ds-tags@0.2.102) (2020-08-05)
 
 **Note:** Version bump only for package @synerise/ds-tags

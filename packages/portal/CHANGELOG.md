@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.93.0](https://github.com/synerise/synerise-design/compare/portal@0.92.2...portal@0.93.0) (2020-08-11)
+
+
+### Bug Fixes
+
+* **date-range-picker:** changed folder structure to pass the deploy ([b482a9f](https://github.com/synerise/synerise-design/commit/b482a9f5239c77d23aa37bb04502c9b98b61fe78))
+* **date-range-picker:** code review changes ([4af8679](https://github.com/synerise/synerise-design/commit/4af867978c0f228266224cbf52183b8e3ac4c693))
+* **date-range-picker:** ux review changes and fixes ([53c879d](https://github.com/synerise/synerise-design/commit/53c879d33da85c7399a5ba628a7a87cecba0083c))
+* **docs:** remove DataRangePicker from storybook ([54a2930](https://github.com/synerise/synerise-design/commit/54a29304b541b14f08a4bd7e8916fd458415c8a8))
+* **file-uploader:** add tooltip to remove icon ([e41fcbf](https://github.com/synerise/synerise-design/commit/e41fcbfa369071dad3ad927e81fdc5f7a57376e5))
+* **switch:** add switch with description and text ([5b8bbee](https://github.com/synerise/synerise-design/commit/5b8bbee9d988239e58ba736f96d27f21c3518f41))
+* **switch:** delete prop error ([08fd8e7](https://github.com/synerise/synerise-design/commit/08fd8e7b96aa7c2ba0d502d2f51b678e4fa376b3))
+
+
+### Features
+
+* **icon:** add folder-favourite icons, upadate config of svgr ([6eb30d3](https://github.com/synerise/synerise-design/commit/6eb30d39e38a25ec2bdb062b96037c92490b3adf))
+* **icon:** add L & XL icons ([4705eb4](https://github.com/synerise/synerise-design/commit/4705eb48318e520ff7604773a45162ce43734ee0))
+
+
+
+
+
 ## [0.92.2](https://github.com/synerise/synerise-design/compare/portal@0.92.1...portal@0.92.2) (2020-08-07)
 
 

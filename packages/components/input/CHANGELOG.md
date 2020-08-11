@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.14.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.14.0...@synerise/ds-input@0.14.1) (2020-08-11)
+
+
+### Bug Fixes
+
+* **input:** make selects grey in inpuy ([cd0428b](https://github.com/synerise/synerise-design/commit/cd0428b91e4a3e07a4fc6183f632e1c202e11dd5))
+
+
+
+
+
 # [0.14.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.13.18...@synerise/ds-input@0.14.0) (2020-08-04)
 
 

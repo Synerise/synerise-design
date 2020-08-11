@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.39](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-select@0.3.38...@synerise/ds-card-select@0.3.39) (2020-08-11)
+
+
+### Bug Fixes
+
+* **card-select:** change border to box shadow and change onClick to card ([0e7334e](https://github.com/Synerise/synerise-design/commit/0e7334e8d04b8547e4fd7cd19f678f911ce35360))
+
+
+
+
+
 ## [0.3.38](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-select@0.3.37...@synerise/ds-card-select@0.3.38) (2020-08-04)
 
 

@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.1.11...@synerise/ds-date-range-picker@0.1.12) (2020-08-11)
+
+
+### Bug Fixes
+
+* **date-range-picker:** added format variable ([e5089f9](https://github.com/Synerise/synerise-design/commit/e5089f9bcde93341dc1acf7a2c8634fdea34bfaa))
+* **date-range-picker:** changed folder structure to pass the deploy ([b482a9f](https://github.com/Synerise/synerise-design/commit/b482a9f5239c77d23aa37bb04502c9b98b61fe78))
+* **date-range-picker:** code review changes ([4af8679](https://github.com/Synerise/synerise-design/commit/4af867978c0f228266224cbf52183b8e3ac4c693))
+* **date-range-picker:** ux review changes and fixes ([53c879d](https://github.com/Synerise/synerise-design/commit/53c879d33da85c7399a5ba628a7a87cecba0083c))
+
+
+
+
+
 ## [0.1.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.1.10...@synerise/ds-date-range-picker@0.1.11) (2020-08-05)
 
 **Note:** Version bump only for package @synerise/ds-date-range-picker
