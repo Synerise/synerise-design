@@ -43,6 +43,7 @@ const FileUploader: React.FC<FileUploaderProps> = ({
     buttonDescription: <FormattedMessage id="DS.FILE-UPLOADER.BUTTON-DESC" />,
     size: <FormattedMessage id="DS.FILE-UPLOADER.SIZE" />,
     uploading: <FormattedMessage id="DS.FILE-UPLOADER.UPLOADING" />,
+    removeTooltip: <FormattedMessage id="DS.FILE-UPLOADER.REMOVE" />,
   },
 }) => {
   const [uploadSuccess, setUploadSuccess] = React.useState(true);
