@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="96px" height="96px" viewBox="0 0 96 96" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 64 (93537) - https://sketch.com -->
+    <title>Campaigns / 04 XL / 06-mobile-banner-xl</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Campaigns-/-04-XL-/-06-mobile-banner-xl" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="Group" transform="translate(21.000000, 18.011070)" stroke="#384350" stroke-width="1.5">
+            <line x1="20.70572" y1="20.23135" x2="29.70572" y2="20.23135" id="Path"></line>
+            <line x1="20.70572" y1="27.7607" x2="38.70572" y2="27.7607" id="Path"></line>
+            <path d="M48.62675,35.38709 L48.62675,55.84421 C48.6200773,58.1243922 46.7732822,59.9711873 44.4931,59.97786 L9.5069,59.97786 C7.2267178,59.9711873 5.37992274,58.1243922 5.37325,55.84421 L5.37325,35.81821" id="Path"></path>
+            <path d="M5.37325,12.23693 L5.37325,4.13365 C5.37992274,1.8534678 7.2267178,0.00667274218 9.5069,-4.4408921e-14 L44.4931,-4.4408921e-14 C46.7732822,0.00667274218 48.6200773,1.8534678 48.62675,4.13365 L48.62675,12.51593" id="Path"></path>
+            <line x1="5.59244" y1="49.36697" x2="48.62675" y2="49.36697" id="Path"></line>
+            <circle id="Oval" cx="27" cy="54.53851" r="1.88437"></circle>
+            <rect id="Rectangle" x="-2.48689958e-13" y="12.702" width="54.1315" height="22.6851" rx="2"></rect>
+            <line x1="44.49128" y1="17.26896" x2="50.49128" y2="23.26896" id="Path"></line>
+            <line x1="50.49128" y1="17.26896" x2="44.49128" y2="23.26896" id="Path"></line>
+            <rect id="Rectangle" x="6.0587" y="19.496025" width="9" height="9" rx="2"></rect>
+            <line x1="22.85018" y1="4.46946" x2="31.369" y2="4.46946" id="Path"></line>
+        </g>
+    </g>
+</svg>

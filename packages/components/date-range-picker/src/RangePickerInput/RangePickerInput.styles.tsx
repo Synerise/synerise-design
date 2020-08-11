@@ -42,10 +42,11 @@ export const RangeInputWrapper = styled(InputWrapper)<{
     .ant-input {
       ${(props): false | FlattenSimpleInterpolation => !!props.active && activeStyle(props)}
     }
+    padding: 2px 8px 2px 12px;
   }
 `;
 export const DateWrapper = styled.div<{ highlight?: boolean }>`
-  color: ${(props): string => (props.highlight ? props.theme.palette['blue-600'] : props.theme.palette['grey-400'])};
+  color: ${(props): string => (props.highlight ? props.theme.palette['blue-600'] : props.theme.palette['grey-500'])};
 `;
 export const DateValue = styled.div`
   color: ${(props): string => props.theme.palette['grey-600']};

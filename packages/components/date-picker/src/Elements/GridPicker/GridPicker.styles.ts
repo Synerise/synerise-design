@@ -5,7 +5,6 @@ export const GridContainer = styled.div`
   grid-template-columns: 1fr 1fr 1fr;
   font-size: 12px;
   padding: 0 8px;
-
   .cell {
     height: 32px;
     margin: auto 8px;

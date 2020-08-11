@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="48px" height="48px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 64 (93537) - https://sketch.com -->
+    <title>Analytics / 03 L / 05-multiline-l</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Analytics-/-03-L-/-05-multiline-l" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="Group" transform="translate(7.000000, 9.000000)" stroke="#384350" stroke-width="1.5">
+            <line x1="0" y1="29.96268" x2="34" y2="29.96268" id="Path"></line>
+            <polyline id="Path" points="34.0410001 0.959000014 28.4703721 6.52962798 28.0410001 6.95900001"></polyline>
+            <path d="M0,22.77351 L8.93020002,13.84331 C9.6136171,13.159895 10.7216529,13.159895 11.40507,13.84331 L14.8664265,17.3046665 C15.6474738,18.0857163 16.9138038,18.0857163 17.6948524,17.3046677 C17.6948528,17.3046673 17.6948532,17.3046669 17.6948524,17.3046652 L21.98511,13.0144 L21.98511,13.0144 L22.39064,12.60888" id="Path"></path>
+            <line x1="28.7491001" y1="19.4987" x2="33.5" y2="17.5" id="Path"></line>
+            <path d="M0,26.4213101 L9.63328002,22.54631 C10.0916073,22.3619456 10.6065081,22.3798885 11.05089,22.59571 L15.74112,24.8735701 C16.0908122,25.0434023 16.4871006,25.0919563 16.86745,25.0115701 L21.28967,22.95975" id="Path"></path>
+            <circle id="Oval" cx="25.1238801" cy="9.69194002" r="3.99808001"></circle>
+            <circle id="Oval" cx="25.1238801" cy="21.17982" r="3.99808001"></circle>
+        </g>
+    </g>
+</svg>

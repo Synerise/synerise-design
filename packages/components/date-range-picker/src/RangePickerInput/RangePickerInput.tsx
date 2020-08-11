@@ -13,10 +13,8 @@ import * as S from './RangePickerInput.styles';
 import { normalizeRange } from '../utils';
 import { DateRange } from '../date.types';
 
-const RangePickerInput: React.FC<Props> = ({ value, format, showTime, onChange, onClick, highlight, texts }: Props) => {
+const RangePickerInput: React.FC<Props> = ({ value, format, showTime, onChange, onClick, highlight, texts, active }: Props) => {
   const dateRangeValue = value ? normalizeRange(value as DateRange) : value;
-
-  const [focused, setFocused] = React.useState<boolean>(false);
   const [hovered, setHovered] = React.useState<boolean>(false);
 
   const handleIconMouseEnter = React.useCallback(() => setHovered(true), []);
@@ -32,12 +30,8 @@ const RangePickerInput: React.FC<Props> = ({ value, format, showTime, onChange, 
 
   const handleInputClick = React.useCallback(() => {
     onClick && onClick();
-    setFocused(true);
   }, [onClick]);
 
-  const handleOnBlur = React.useCallback(()=>{
-    setFocused(false);
-  },[]);
   const getText = React.useCallback(
     (dateToDisplay): string => {
       if (!dateToDisplay) return '';
@@ -56,8 +50,8 @@ const RangePickerInput: React.FC<Props> = ({ value, format, showTime, onChange, 
       ) : (
         texts?.startDatePlaceholder
       );
-    return <S.DateWrapper highlight={focused && !isFromDateDefined}>{text}</S.DateWrapper>;
-  }, [dateRangeValue, getText, focused, texts]);
+    return <S.DateWrapper highlight={active && !isFromDateDefined}>{text}</S.DateWrapper>;
+  }, [dateRangeValue, getText, active, texts]);
 
   const renderEndDate = React.useCallback(() => {
     const isEndDateDefined = dateRangeValue && dateRangeValue.to;
@@ -69,18 +63,17 @@ const RangePickerInput: React.FC<Props> = ({ value, format, showTime, onChange, 
       ) : (
         texts?.endDatePlaceholder
       );
-    return <S.DateWrapper highlight={focused && !!isFromDateDefined && !isEndDateDefined}>{text}</S.DateWrapper>;
-  }, [dateRangeValue, getText, focused, texts]);
+    return <S.DateWrapper highlight={active && !!isFromDateDefined && !isEndDateDefined}>{text}</S.DateWrapper>;
+  }, [dateRangeValue, getText, active, texts]);
 
   return (
     <S.Container
       tabIndex={0}
       onFocus={handleInputClick}
-      onBlur={handleOnBlur}
       onMouseEnter={handleIconMouseEnter}
       onMouseLeave={handleIconMouseLeave}
     >
-      <S.RangeInputWrapper active={!!highlight} tabIndex={0} focus={focused}>
+      <S.RangeInputWrapper active={!!highlight} tabIndex={0} focus={active}>
         {renderFromDate()}
         <Icon component={<ArrowRightS />} color={theme.palette['grey-400']} />
         {renderEndDate()}

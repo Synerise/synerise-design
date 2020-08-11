@@ -119,12 +119,12 @@ max-width: 224px;
   padding: ${(props): string => (props.size === 'small' ? '24px 16px 12px' : '24px')};
   cursor: pointer;
   &&&:focus {
-  border: ${(props): string => props.disabled ? '1px solid': '2px solid'};
-  border-color: ${(props): string => props.disabled ? props.theme.palette.white : props.theme.palette['blue-600']};
+  box-shadow: ${(props): string => props.disabled ? `0px 0px 0px 1px ${props.theme.palette.white}`: `0px 0px 0px 2px ${props.theme.palette['blue-600']}`};
+ 
+  
   }
   ${is('value')`
-  border: 2px solid;
-  border-color: ${(props: ThemeProps): string=> props.theme.palette['blue-600']};
+  box-shadow: ${(props: ThemeProps & {disabled: boolean}): string => props.disabled ? `0px 0px 0px 1px ${props.theme.palette.white}`: `0px 0px 0px 2px ${props.theme.palette['blue-600']}`};
   `}
   
   ${Title}, ${Description}, ${IconWrapper} {
@@ -158,10 +158,10 @@ max-width: 224px;
     ${isNot('raised')`
 
       ${isNot('value')`
-        border: 1px solid ${getVar('grey-300')};
+       box-shadow: 0px 0px 0px 1px ${getVar('grey-300')};
         
         &:hover, &:active {
-          border: 1px solid ${getVar('grey-400')};
+          box-shadow: 0px 0px 0px 1px ${getVar('grey-400')};
         }
       `};
     `};

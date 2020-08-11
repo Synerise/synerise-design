@@ -1,15 +1,15 @@
 import * as React from 'react';
 import Select from '@synerise/ds-select';
 import InputNumber from '@synerise/ds-input-number';
-import set from 'ramda/src/set';
-import lensPath from 'ramda/src/lensPath';
 import * as S from '../../../RelativeRangePicker.styles';
 import * as CONST from '../../../../constants';
 import { DURATION_MODIFIERS } from '../../../../constants';
 import { Props } from './TimestampDuration.types';
 
-export const setDurationType = set(lensPath(['duration', 'type']));
-
+const DROPDOWN_PADDING = 16;
+const SELECT_DROPDOWN_OFFSET = 6;
+const SELECT_OPTION_HEIGHT = 32;
+const SELECT_HEIGHT = 30;
 const TimestampDuration: React.FC<Props> = ({
   handleDurationValueChange,
   intl,
@@ -20,6 +20,13 @@ const TimestampDuration: React.FC<Props> = ({
   unit,
 }) => {
   const durationModiferValues = Object.values(DURATION_MODIFIERS);
+  const selectDropdownOffset = React.useMemo(
+    () =>
+      durationModiferValues && durationModiferValues.length
+        ? -(durationModiferValues.length * SELECT_OPTION_HEIGHT + DROPDOWN_PADDING + SELECT_DROPDOWN_OFFSET + SELECT_HEIGHT)
+        : 0,
+    [durationModiferValues]
+  );
   return (
     <>
       <S.Title>
@@ -35,6 +42,7 @@ const TimestampDuration: React.FC<Props> = ({
             onDurationModifierChange(modifier as string);
           }}
           dropdownStyle={{ minWidth: '125px' }}
+          dropdownAlign={{ offset: [0, selectDropdownOffset] }}
         >
           {durationModiferValues.map(modifier => (
             <Select.Option key={modifier} value={modifier}>

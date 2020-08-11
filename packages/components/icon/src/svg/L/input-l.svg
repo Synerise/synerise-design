@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="48px" height="48px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 64 (93537) - https://sketch.com -->
+    <title>Edit / 03 L / 17-input-l</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Edit-/-03-L-/-17-input-l" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round">
+        <g id="Group" transform="translate(7.000000, 14.000000)" stroke="#384350" stroke-width="1.5">
+            <line x1="7.5" y1="4" x2="7.5" y2="16" id="Path-2"></line>
+            <line x1="4" y1="16" x2="11" y2="16" id="Path-9-Copy"></line>
+            <line x1="4" y1="4" x2="11" y2="4" id="Path-9"></line>
+            <path d="M27,14.74027 L27,25 C27,26.1045695 26.1045695,27 25,27 L9,27 C7.8954305,27 7,26.1045695 7,25 L7,-5 C7,-6.1045695 7.8954305,-7 9,-7 L25,-7 C26.1045695,-7 27,-6.1045695 27,-5 L27,5.25973 L27,14.74027 Z" id="Path" stroke-linejoin="round" transform="translate(17.000000, 10.000000) rotate(-270.000000) translate(-17.000000, -10.000000) "></path>
+        </g>
+    </g>
+</svg>

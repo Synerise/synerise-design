@@ -93,10 +93,14 @@ export const DropMenuItem = styled(Menu.Item)`
 `;
 export const OverlayWrapper = styled.div<{ visible?: boolean; width?: number }>`
   position: absolute;
+  bottom:40px;
   display: ${(props): string => (props.visible ? 'flex' : 'none')};
   z-index: 15;
-  box-shadow: 0 4px 12px 0 rgba(35, 41, 54, 0.04);
+  box-shadow: 0 4px 12px 0 rgba(35, 41, 54, 0.09);
   ${(props): false | string => !!props.width && `width:${props.width}px;`}
+  &, & > ul {
+  border-radius:3px;
+  }
 `;
 export const DropdownContainer = styled.div`
   position: relative;

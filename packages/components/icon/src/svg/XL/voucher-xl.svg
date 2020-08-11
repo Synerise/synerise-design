@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="96px" height="96px" viewBox="0 0 96 96" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 64 (93537) - https://sketch.com -->
+    <title>Campaigns / 04 XL / 10-voucher-xl</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Campaigns-/-04-XL-/-10-voucher-xl" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="Group" transform="translate(18.000000, 18.780926)" stroke="#384350" stroke-width="1.5">
+            <rect id="Rectangle" x="0" y="11.4530438" width="60" height="41.37638" rx="4"></rect>
+            <path d="M29.81879,11.4358138 C32.4067076,11.4358033 34.6719726,9.69759761 35.3417757,7.1978614 C36.0115789,4.69812518 34.9189064,2.06016172 32.6777101,0.766192437 C30.4365137,-0.527776843 27.6056306,-0.155103771 25.77568,1.67481375 L14.20224,18.3115438" id="Path"></path>
+            <path d="M9.25278,11.4358138 C6.66486366,11.4357988 4.39960246,9.69759075 3.72980254,7.19785496 C3.06000263,4.69811916 4.15267684,2.06015812 6.39387283,0.76619077 C8.63506883,-0.527776584 11.4659503,-0.155102895 13.2959,1.67481375 L24.86933,18.3115438" id="Path"></path>
+            <line x1="19.50857" y1="11.4530438" x2="19.50857" y2="52.8294238" id="Path"></line>
+            <line x1="8.83417" y1="45.8294238" x2="53.20618" y2="45.8294238" id="Path"></line>
+            <line x1="53.20618" y1="38.5117538" x2="37.02016" y2="38.5117538" id="Path"></line>
+            <circle id="Oval" cx="49.11993" cy="22.7404638" r="4.00677"></circle>
+        </g>
+    </g>
+</svg>

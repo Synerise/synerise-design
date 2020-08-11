@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { FileViewTexts } from './FileView/FileView';
 
 export interface ExtendedFile {
@@ -26,6 +27,7 @@ export interface FileUploaderProps {
   disabled?: boolean;
   removable?: boolean;
   tooltip?: string;
+  removeTooltip?: string | React.ReactNode;
   label?: string;
   error?: string;
   texts: FileUploaderTexts;

@@ -2,21 +2,16 @@ import styled from 'styled-components';
 import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import Button from '@synerise/ds-button';
 
-export const Container = styled.div<{ smallMargin?: boolean }>`
-  display: flex;
-  align-items: center;
-  margin: 0 24px;
-`;
-
-export const ArrowPlaceholder = styled.div`
-  width: 32px;
-  height: 32px;
-`;
 
 export const NavButton = styled(Button)<{ hidden?: boolean }>`
   .ds-icon > svg {
     fill: ${(props): string => props.theme.palette['grey-600']};
   }
+`;
+
+export const ArrowPlaceholder = styled.div`
+  width: 32px;
+  height: 32px;
 `;
 
 export const ArrowContainer = styled.div<{ hidden?: boolean }>`
@@ -26,6 +21,18 @@ export const ArrowContainer = styled.div<{ hidden?: boolean }>`
     margin-right: 8px;
   }
 `;
+
+
+export const Container = styled.div<{ smallMargin?: boolean }>`
+  display: flex;
+  align-items: center;
+  margin: 0 24px;
+  ${NavButton}:last-of-type {
+    margin-right: 0;
+  }
+`;
+
+
 
 export const Text = styled.div`
   flex: 1;

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="96px" height="96px" viewBox="0 0 96 96" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 64 (93537) - https://sketch.com -->
+    <title>Edit / 04 XL / 02-visual-editor-star-xl</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Edit-/-04-XL-/-02-visual-editor-star-xl" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="Group" transform="translate(-0.000000, 0.000000)" stroke="#384350" stroke-width="1.5">
+            <rect id="Rectangle" x="18.75" y="18.75" width="23.5" height="58.5000001" rx="4"></rect>
+            <rect id="Rectangle" x="48.2500001" y="48.2500001" width="29" height="29" rx="4"></rect>
+            <line x1="24.5" y1="56.9831901" x2="36.5" y2="56.9831901" id="Path"></line>
+            <line x1="24.5" y1="68.5168101" x2="36.5" y2="68.5168101" id="Path"></line>
+            <line x1="24.5" y1="62.7500001" x2="30.5" y2="62.7500001" id="Path"></line>
+            <circle id="Oval" cx="55.7291201" cy="68.5559701" r="2"></circle>
+            <circle id="Oval" cx="69.7291201" cy="68.5559701" r="2"></circle>
+            <circle id="Oval" cx="62.7291201" cy="68.5559701" r="2"></circle>
+            <polygon id="star-m" points="62.5401601 16.97527 66.3257701 24.5322 74.7903201 25.744 68.6652401 31.6263 70.1110701 39.93223 62.5401601 36.01067 54.9693301 39.93223 56.4152401 31.6263 50.2903201 25.744 58.7547801 24.53219"></polygon>
+            <path d="M36.499997,16.75023 L36.499997,35.85434 C36.499997,36.3621023 36.3068632,36.8508547 35.95978,37.22147 L33.59788,39.74347 C33.59788,39.74347 31.98578,38.14182 31.08745,37.24882 C30.7105717,36.8741268 30.4990704,36.3643528 30.499997,35.83291 L30.499997,16.7502123 C30.499997,15.0960216 31.8389959,13.753975 33.49319,13.7502123 L33.49319,13.7502123 C34.2900205,13.7484112 35.0548344,14.0636844 35.6189176,14.6264919 C36.1830008,15.1892993 36.499997,15.9533975 36.499997,16.75023 Z" id="Path"></path>
+        </g>
+    </g>
+</svg>

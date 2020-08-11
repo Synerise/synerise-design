@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="96px" height="96px" viewBox="0 0 96 96" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 64 (93537) - https://sketch.com -->
+    <title>Internet / 04 XL / 06-integration-xl</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Internet-/-04-XL-/-06-integration-xl" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round">
+        <g id="Group" transform="translate(21.000000, 21.000000)" stroke="#384350" stroke-width="1.5">
+            <path d="M10.4578,21.6711 L4.9658,27.1641 C-0.7682,32.8971 -1.6092,42.1361 3.4728,48.4531 C9.4578,55.8941 20.3738,56.3321 26.9388,49.7671 L32.7458,43.9591" id="Stroke-1" stroke-linejoin="round"></path>
+            <line x1="10.4578" y1="21.6711" x2="32.7458" y2="43.9591" id="Stroke-3" stroke-linejoin="round"></line>
+            <path d="M44.2186,33.0041 L50.0256,27.1971 C56.1806,21.0431 56.1806,11.0641 50.0256,4.9091 C43.8706,-1.2459 33.8916,-1.2459 27.7376,4.9091 L21.9296,10.7161" id="Stroke-7" stroke-linejoin="round"></path>
+            <line x1="44.2186" y1="33.0041" x2="21.6018" y2="11.0347664" id="Stroke-9" stroke-linejoin="round"></line>
+            <line x1="-2.73558953e-13" y1="54.35" x2="4.35" y2="50" id="Stroke-11" stroke-linejoin="round"></line>
+            <line x1="50" y1="4.35" x2="54.35" y2="1.0658141e-14" id="Stroke-15" stroke-linejoin="round"></line>
+            <line x1="28.5" y1="11.5" x2="33.5401" y2="6.5461" id="Path-3"></line>
+            <path d="M15,26.4010578 L19.7707149,21.8523214 C20.9616108,20.7158929 22.9131589,20.7158929 24.1056395,21.8523214 C25.2981202,22.9895055 25.2981202,24.8505583 24.1056395,25.9869868 L19.8974902,30" id="Path" stroke-linejoin="round"></path>
+            <path d="M24,34.1025098 L28.0127605,29.8943605 C29.1491175,28.7018798 31.0100531,28.7018798 32.1471656,29.8943605 C33.2842781,31.0868411 33.2842781,33.0383892 32.1471656,34.2300775 L27.5987156,39" id="Path" stroke-linejoin="round"></path>
+        </g>
+    </g>
+</svg>

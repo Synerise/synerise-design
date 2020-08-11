@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="96px" height="96px" viewBox="0 0 96 96" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 64 (93537) - https://sketch.com -->
+    <title>Files / 04 XL / 02-file-zip-xl</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Files-/-04-XL-/-02-file-zip-xl" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="Group" transform="translate(23.974140, 18.000000)" stroke="#384350" stroke-width="1.5">
+            <path d="M44.05172,60 L4,60 C1.790861,60 -2.66453526e-13,58.209139 -2.66453526e-13,56 L-2.66453526e-13,4 C-2.66453526e-13,1.790861 1.790861,0 4,0 L29.25986,0 C30.3207231,0 31.3381358,0.421427286 32.08828,1.17157 L46.88015,15.96345 C47.6302952,16.7135967 48.05172,17.7310135 48.05172,18.79188 L48.05172,56 C48.05172,58.209139 46.260859,60 44.05172,60 Z" id="Path"></path>
+            <polyline id="Path" points="13.57586 32.759 20.57086 32.759 13.57586 41.237 20.57086 41.237"></polyline>
+            <path d="M27.62049,32.75877 L32.73849,32.75877 C33.9091115,32.7613107 34.8567426,33.7110007 34.8567426,34.881625 C34.8567426,36.0522493 33.9091115,37.0019393 32.73849,37.00448 L27.62049,37.00448" id="Path"></path>
+            <line x1="48.02586" y1="50.29116" x2="-1.31450406e-13" y2="50.29116" id="Path"></line>
+            <path d="M27.91986,-3.55271368e-15 L27.91986,16.106 C27.91986,18.315139 29.710721,20.106 31.91986,20.106 L48.02586,20.106" id="Path"></path>
+            <line x1="23.77532" y1="41.25018" x2="23.77532" y2="32.75877" id="Path"></line>
+            <line x1="27.62049" y1="41.25018" x2="27.62049" y2="32.75877" id="Path"></line>
+        </g>
+    </g>
+</svg>
