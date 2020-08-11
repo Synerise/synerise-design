@@ -61,7 +61,7 @@ const SearchItems: React.FC<SearchItemListProps<any>> = ({
       const dataHeight = data.length * rowHeight;
 
       if (visibleRows) {
-        return visibleRows > data.length ? visibleRows * rowHeight : dataHeight;
+        return visibleRows < data.length ? visibleRows * rowHeight : dataHeight;
       }
 
       if (height) {
@@ -78,7 +78,6 @@ const SearchItems: React.FC<SearchItemListProps<any>> = ({
       listRef.current.scrollTo(Math.max(0, listProps.scrollTop || 0));
     }
   }, [listProps]);
-
   return (
     <Menu>
       {data && (
