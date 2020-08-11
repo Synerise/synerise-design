@@ -1,21 +1,36 @@
 import * as React from 'react';
 
 import Collector from '@synerise/ds-collector';
+import { boolean, text } from '@storybook/addon-knobs';
 
-const decorator = storyFn => (
-  <div style={{ width: '588px' }}>
-    <div style={{ background: '#fff', width: '588px' }}>{storyFn()}</div>
-  </div>
-);
-
+const decorator = storyFn => <div style={{ width: '588px' }}>{storyFn()}</div>;
+const getSuggestions = () => {
+  const result = [];
+  for (let i = 10; i < 36; i++) {
+    for (let j = 0; j < 3; j++) {
+      result.push(`Options ${i.toString(36).toUpperCase()} - ${j}`);
+    }
+  }
+  return result;
+};
 const stories = {
-  default: () => ({}),
+  default: () => {
+    return (
+      <Collector
+        values={[]}
+        label={text('Set label', 'Label')}
+        disabled={boolean('Set disabled', false)}
+        description={text('Set description', 'Description')}
+        errorText={text('Set error text', '')}
+        suggestions={getSuggestions()}
+      />
+    );
+  },
 };
 
 export default {
   name: 'Components|Collector',
   config: {},
   stories,
-  Component: Collector,
   decorator,
 };

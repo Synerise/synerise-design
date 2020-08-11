@@ -6,6 +6,8 @@ export type CollectorProps = {
   errorText?: React.ReactNode | string;
   label?: React.ReactNode | string;
   description?: React.ReactNode | string;
-  values: React.ReactText[];
+  selected: React.ReactText[];
+  suggestions: React.ReactText[];
   disabled?: boolean;
+  onConfirm: (values: React.ReactText[]) => void;
 }
