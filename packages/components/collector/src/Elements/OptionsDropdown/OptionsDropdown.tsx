@@ -7,6 +7,7 @@ import Icon from '@synerise/ds-icon';
 import Divider from '@synerise/ds-divider';
 import * as S from '../../Collector.styles';
 import { OptionsDropdownProps } from './OptionsDropdown.types';
+import NavigationHint from '../NavigationHint/NavigationHint';
 
 const OptionsDropdown: React.FC<OptionsDropdownProps> = ({
   options,
@@ -56,14 +57,13 @@ const OptionsDropdown: React.FC<OptionsDropdownProps> = ({
               highlight={value as string}
               visibleRows={6}
               onItemClick={onSelect}
-              itemRender={(val: React.ReactText): React.ReactElement => (
-                <Menu.Item key={`${val}`}>{val}</Menu.Item>
-              )}
+              itemRender={(val: React.ReactText): React.ReactElement => <Menu.Item key={`${val}`}>{val}</Menu.Item>}
               rowHeight={32}
               width={width}
               listProps={{ scrollTop }}
             />
           </Scrollbar>
+          <NavigationHint texts={texts} />
         </S.DropdownContent>
       )}
     </S.DropdownWrapper>

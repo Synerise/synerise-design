@@ -18,4 +18,6 @@ export type CollectorTexts = {
   add: string | React.ReactNode;
   cancel: string | React.ReactNode;
   placeholder: string;
+  toNavigate: string | React.ReactNode;
+  toSelect: string | React.ReactNode;
 }

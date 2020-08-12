@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ValuesProps } from './Values.types';
-import * as S from '../Collector.styles';
+import * as S from '../../Collector.styles';
 
 const Values: React.FC<ValuesProps> = ({ values, onRemove, disabled, focused }: ValuesProps) => {
   return (

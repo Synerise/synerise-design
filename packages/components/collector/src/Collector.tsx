@@ -6,7 +6,7 @@ import * as S from './Collector.styles';
 import ButtonPanel from './Elements/ButtonPanel/ButtonPanel';
 import OptionsDropdown from './Elements/OptionsDropdown/OptionsDropdown';
 import { arrayToLowerCase, filterValueSuggestions, isOverflown, scrollWithHorizontalArrow } from './utils';
-import Values from './Values/Values';
+import Values from './Elements/Values/Values';
 
 const DROPDOWN_PADDING = 2 * 8;
 

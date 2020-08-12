@@ -14,7 +14,13 @@ describe('Collector', () => {
         selected={[]}
         suggestions={SUGGESTIONS}
         onConfirm={onConfirmFn}
-        texts={{ add: 'Add', cancel: 'Cancel', placeholder: PLACEHOLDER }}
+        texts={{
+          add: 'Add',
+          cancel: 'Cancel',
+          placeholder: PLACEHOLDER,
+          toSelect: 'to select',
+          toNavigate: 'to navigate',
+        }}
       />
     );
     getByPlaceholderText(PLACEHOLDER).focus();
@@ -27,7 +33,13 @@ describe('Collector', () => {
         selected={SELECTED}
         suggestions={[]}
         onConfirm={onConfirmFn}
-        texts={{ add: 'Add', cancel: 'Cancel', placeholder: PLACEHOLDER }}
+        texts={{
+          add: 'Add',
+          cancel: 'Cancel',
+          placeholder: PLACEHOLDER,
+          toSelect: 'to select',
+          toNavigate: 'to navigate',
+        }}
       />
     );
     SELECTED.map(s => expect(getByText(s)).toBeTruthy());
@@ -40,7 +52,13 @@ describe('Collector', () => {
         selected={[]}
         suggestions={[]}
         onConfirm={onConfirmFn}
-        texts={{ add: 'Add', cancel: 'Cancel', placeholder: PLACEHOLDER }}
+        texts={{
+          add: 'Add',
+          cancel: 'Cancel',
+          placeholder: PLACEHOLDER,
+          toSelect: 'to select',
+          toNavigate: 'to navigate',
+        }}
       />
     );
     const input = getByPlaceholderText(PLACEHOLDER) as HTMLInputElement;
@@ -56,7 +74,13 @@ describe('Collector', () => {
         selected={SELECTED}
         suggestions={[]}
         onConfirm={onConfirmFn}
-        texts={{ add: 'Add', cancel: 'Cancel', placeholder: PLACEHOLDER }}
+        texts={{
+          add: 'Add',
+          cancel: 'Cancel',
+          placeholder: PLACEHOLDER,
+          toSelect: 'to select',
+          toNavigate: 'to navigate',
+        }}
       />
     );
     const addButton = getByText('Add') as HTMLElement;
@@ -74,7 +98,13 @@ describe('Collector', () => {
         suggestions={[]}
         onConfirm={onConfirmFn}
         onCancel={onCancelFn}
-        texts={{ add: 'Add', cancel: 'Cancel', placeholder: PLACEHOLDER }}
+        texts={{
+          add: 'Add',
+          cancel: 'Cancel',
+          placeholder: PLACEHOLDER,
+          toSelect: 'to select',
+          toNavigate: 'to navigate',
+        }}
       />
     );
     const cancelButton = getByText('Cancel') as HTMLElement;
