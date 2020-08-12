@@ -28,7 +28,7 @@ const Collector: React.FC<CollectorProps> = ({
   const containerRef = React.useRef<HTMLDivElement>(null);
   const mainContentRef = React.useRef<HTMLDivElement>(null);
   const [isFocused, setFocused] = React.useState(false);
-  const [showGradient, setShowGradient] = React.useState();
+  const [showGradient, setShowGradient] = React.useState<boolean>(false);
 
   const [value, setValue] = React.useState('');
   const [selectedValues, setSelectedValues] = React.useState(selected || []);
@@ -94,7 +94,7 @@ const Collector: React.FC<CollectorProps> = ({
   const onCancelCallback = React.useCallback((): void => {
     clear();
     onCancel && onCancel();
-  }, [clear]);
+  }, [onCancel, clear]);
 
   const onConfirmCallback = React.useCallback((): void => {
     clear();
