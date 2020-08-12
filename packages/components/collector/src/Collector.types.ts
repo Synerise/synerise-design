@@ -1,21 +1,21 @@
 import * as React from 'react';
 
 export type CollectorProps = {
-  error?: boolean;
   className?: string;
-  errorText?: React.ReactNode | string;
-  label?: React.ReactNode | string;
   description?: React.ReactNode | string;
-  selected: string[];
-  suggestions: string[];
   disabled?: boolean;
+  error?: boolean;
+  errorText?: React.ReactNode | string;
+  fixedHeight?: boolean;
+  label?: React.ReactNode | string;
   onConfirm: (values: string[]) => void;
   onCancel?: () => void;
-  fixedHeight?: boolean;
+  selected: string[];
+  suggestions: string[];
   texts: CollectorTexts;
 }
 export type CollectorTexts = {
-  cancel: string | React.ReactNode;
   add: string | React.ReactNode;
+  cancel: string | React.ReactNode;
   placeholder: string;
 }
