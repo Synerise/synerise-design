@@ -31,6 +31,7 @@ const Cascader: React.FC<CascaderProps> = ({
   const [paths, setPaths] = React.useState<Path[] | undefined>([]);
   const [filteredPaths, setFilteredPaths] = React.useState<Path[] | undefined>([]);
   const [enteredCategories, setEnteredCategories] = React.useState<Category[]>([]);
+  const [scrollTop, setScrollTop] = React.useState<number>(0);
   const [selectedIds, setSelectedIds] = React.useState<React.ReactText[]>(selectedCategoriesIds || []);
 
   const dropdownRef = React.useRef<HTMLDivElement>();
@@ -143,7 +144,14 @@ const Cascader: React.FC<CascaderProps> = ({
         maxHeight={dropdownMaxHeight}
         style={dropdownStyle}
       >
-        <S.CategoriesScroll maxHeight={calculateDropdownMaxHeight} searching={isSearching} absolute={isSearching}>
+        <S.CategoriesScroll
+          maxHeight={calculateDropdownMaxHeight}
+          searching={isSearching}
+          absolute={isSearching}
+          onScroll={({ currentTarget }: React.SyntheticEvent): void => {
+            setScrollTop(currentTarget.scrollTop);
+          }}
+        >
           <Menu>
             {isSearching && filteredPaths && (
               <BreadcrumbsList
@@ -155,6 +163,7 @@ const Cascader: React.FC<CascaderProps> = ({
                 onBreadCrumbClick={(breadcrumb: Path): void => {
                   onItemSelect(breadcrumb as Category);
                 }}
+                scrollTop={scrollTop}
               />
             )}
             <Navigation

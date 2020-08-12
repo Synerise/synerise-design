@@ -12,6 +12,7 @@ export interface BreadcrumbsListProps {
   visibleRows?: number;
   highlight?: string;
   onBreadCrumbClick?: (breadcrumb: Path) => void;
+  scrollTop: number;
 }
 
 const BreadcrumbsList: React.FC<BreadcrumbsListProps> = ({
@@ -21,7 +22,9 @@ const BreadcrumbsList: React.FC<BreadcrumbsListProps> = ({
   visibleRows,
   onBreadCrumbClick,
   rowHeight,
+  scrollTop,
 }) => {
+  const listPropsObject = { scrollTop };
   return renderSearchList<Path>({
     data: paths,
     visibleRows: visibleRows || DEFAULT_VISIBLE_ROWS,
@@ -39,6 +42,7 @@ const BreadcrumbsList: React.FC<BreadcrumbsListProps> = ({
         highlight={highlight}
       />
     ),
+    listProps: listPropsObject,
   });
 };
 
