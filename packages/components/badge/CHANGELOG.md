@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.31](https://github.com/Synerise/synerise-design/compare/@synerise/ds-badge@0.4.30...@synerise/ds-badge@0.4.31) (2020-08-12)
+
+
+### Bug Fixes
+
+* **badge:** change size ([45d0b05](https://github.com/Synerise/synerise-design/commit/45d0b05b3b0b2914a45cb230dd43e86907f9ee0a))
+* **badge:** change size ant font weight ([32e8053](https://github.com/Synerise/synerise-design/commit/32e8053dab8222277721c293a787e73d06838db3))
+
+
+
+
+
 ## [0.4.30](https://github.com/Synerise/synerise-design/compare/@synerise/ds-badge@0.4.29...@synerise/ds-badge@0.4.30) (2020-07-30)
 
 **Note:** Version bump only for package @synerise/ds-badge

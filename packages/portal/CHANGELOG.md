@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.94.0](https://github.com/synerise/synerise-design/compare/portal@0.93.0...portal@0.94.0) (2020-08-12)
+
+
+### Bug Fixes
+
+* **badge:** change size ant font weight ([32e8053](https://github.com/synerise/synerise-design/commit/32e8053dab8222277721c293a787e73d06838db3))
+* **collector:** added nav panel to the dropdown ([854a8ff](https://github.com/synerise/synerise-design/commit/854a8ffd01c522e2765347ca3c6398d62dbf3f2b))
+* **tags:** add props overlayStyle and maxHeight ([49eca18](https://github.com/synerise/synerise-design/commit/49eca1836299ebd2db5fd280ab693bef25a3c33b))
+* **tags:** change paddings, margins, add scrollbar and add color ([c0ad179](https://github.com/synerise/synerise-design/commit/c0ad179bf194da6940a775e14b832d19e23be563))
+
+
+### Features
+
+* **collector:** added collector ([d8419b8](https://github.com/synerise/synerise-design/commit/d8419b80cef857d27bdc424cfc2766e6778752ac))
+* **collector:** added dropdown with filtering ([1cc8d79](https://github.com/synerise/synerise-design/commit/1cc8d79c2b998ef51437a7c7e73a57d332f64cf7))
+* **collector:** added gradient overlay and suggestions filtering ([60647b5](https://github.com/synerise/synerise-design/commit/60647b545c92d693982a0758f156f0847cd3740c))
+
+
+
+
+
 # [0.93.0](https://github.com/synerise/synerise-design/compare/portal@0.92.2...portal@0.93.0) (2020-08-11)
 
 
