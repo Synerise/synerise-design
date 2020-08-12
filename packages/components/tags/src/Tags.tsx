@@ -81,7 +81,7 @@ const Tags: React.FC<Props> = ({
 
     reset();
   };
-  const overLayStyle = {width: '283px'};
+
 
   const onCreateNewTag = (): void => {
     onCreate && onCreate(searchQuery);
