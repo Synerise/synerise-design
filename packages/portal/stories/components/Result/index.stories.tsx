@@ -117,7 +117,7 @@ const stories = {
 };
 
 export default {
-  name: 'Components|Result',
+name: 'Components/Result',
   config: {},
   stories,
   decorator,

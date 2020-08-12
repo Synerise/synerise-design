@@ -121,7 +121,7 @@ const stories = {
 };
 
 export default {
-  name: 'Components|Tooltip',
+name: 'Components/Tooltip',
   decorator,
   stories,
   Component: Tooltip,

@@ -207,7 +207,7 @@ const stories = {
 };
 
 export default {
-  name: 'Button|ButtonGroup',
+  name: 'Button/ButtonGroup',
   stories,
   Component: ButtonGroup,
 };

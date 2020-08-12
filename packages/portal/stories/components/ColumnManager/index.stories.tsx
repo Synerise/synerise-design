@@ -311,7 +311,7 @@ const stories = {
 };
 
 export default {
-  name: 'Table|Column Manager',
+  name: 'Table/Column Manager',
   config: {},
   stories,
   Component: ColumnManager,

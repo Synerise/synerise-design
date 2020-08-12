@@ -170,7 +170,7 @@ const stories = {
 };
 
 export default {
-  name: 'Form|Example',
+  name: 'Form/Example',
   decorator,
   stories,
   Component: FinalForm,

@@ -38,7 +38,7 @@ const stories = {
 };
 
 export default {
-  name: 'Components|InlineEdit',
+name: 'Components/InlineEdit',
   stories,
   Component: InlineEdit,
 };

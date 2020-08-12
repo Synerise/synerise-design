@@ -253,7 +253,7 @@ const stories = {
 };
 
 export default {
-  name: 'Manageable List|Examples',
+  name: 'manageable list/Examples',
   decorator,
   stories,
   Component: ManageableList,

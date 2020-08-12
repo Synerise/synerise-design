@@ -11,7 +11,7 @@ const stories = {
 };
 
 export default {
-  name: 'Components|Pagination',
+name: 'Components/Pagination',
   stories,
   Component: Pagination,
 };

@@ -30,7 +30,7 @@ const decorator = storyFn => (
   </div>
 );
 export default {
-  name: 'Pickers|DatePicker',
+  name: 'Pickers/DatePicker',
   config: {},
   stories,
   decorator,

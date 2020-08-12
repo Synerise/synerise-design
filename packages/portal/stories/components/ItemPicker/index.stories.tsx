@@ -94,7 +94,7 @@ const stories = {
 };
 
 export default {
-  name: 'Pickers|ItemPicker',
+  name: 'Pickers/ItemPicker',
   config: {},
   stories,
   Component: ItemPicker,

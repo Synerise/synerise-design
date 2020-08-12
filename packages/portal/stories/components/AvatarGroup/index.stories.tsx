@@ -201,7 +201,7 @@ const stories = {
 };
 
 export default {
-  name: 'Avatar|Avatar group',
+  name: 'Avatar/Avatar group',
   config: {},
   stories,
   Component: AvatarGroup,

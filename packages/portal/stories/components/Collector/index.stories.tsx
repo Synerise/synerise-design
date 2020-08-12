@@ -65,7 +65,7 @@ const stories = {
 };
 
 export default {
-  name: 'Components|Collector',
+name: 'Components/Collector',
   config: {},
   stories,
   decorator,

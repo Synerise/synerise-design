@@ -19,7 +19,7 @@ const stories = {
 };
 
 export default {
-  name: 'Components|Divider',
+name: 'Components/Divider',
   decorator,
   stories,
   Component: Divider,
