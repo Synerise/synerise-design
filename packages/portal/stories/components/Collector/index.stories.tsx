@@ -23,6 +23,12 @@ const stories = {
         description={text('Set description', 'Description')}
         errorText={text('Set error text', '')}
         suggestions={getSuggestions()}
+        fixedHeight={boolean('Set fixed height', false)}
+        texts ={{
+          add: 'Add',
+          cancel: 'Cancel',
+          placeholder: 'Type value'
+        }}
       />
     );
   },

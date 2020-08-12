@@ -1,10 +1,14 @@
 import * as React from 'react';
 import classNames from 'classnames';
-import { useOnClickOutside } from '@synerise/ds-utils';
+import { focusWithArrowKeys, useOnClickOutside } from '@synerise/ds-utils';
 import { CollectorProps } from './Collector.types';
 import * as S from './Collector.styles';
 import ButtonPanel from './Elements/ButtonPanel/ButtonPanel';
 import OptionsDropdown from './Elements/OptionsDropdown/OptionsDropdown';
+import { arrayToLowerCase, filterValueSuggestions, isOverflown, scrollWithHorizontalArrow } from './utils';
+import Values from './Values/Values';
+
+const DROPDOWN_PADDING = 2 * 8;
 
 const Collector: React.FC<CollectorProps> = ({
   error,
@@ -16,44 +20,65 @@ const Collector: React.FC<CollectorProps> = ({
   label,
   errorText,
   disabled,
+  fixedHeight,
+  texts,
 }) => {
   const inputRef = React.useRef<HTMLInputElement>(null);
   const containerRef = React.useRef<HTMLDivElement>(null);
+  const mainContentRef = React.useRef<HTMLDivElement>(null);
   const [isFocused, setFocused] = React.useState(false);
+  const [showGradient, setShowGradient] = React.useState();
+
   const [value, setValue] = React.useState('');
   const [selectedValues, setSelectedValues] = React.useState(selected || []);
   const [filteredSuggestions, setFilteredSuggestions] = React.useState(suggestions || []);
 
-  const onFocusCallback = React.useCallback((): void => {
-    if (!!inputRef && !!inputRef?.current) {
-      inputRef.current.focus();
+  const lowerCaseSelected = React.useMemo(() => arrayToLowerCase(selectedValues), [selectedValues]);
+  const onFocusCallback = React.useCallback(
+    (e: Event): void => {
+      e.preventDefault();
+      if (!!inputRef && !!inputRef?.current) {
+        inputRef.current.focus({ preventScroll: true });
+      }
+      setFocused(true);
+    },
+    [inputRef]
+  );
+  const filterSuggestions = React.useCallback(
+    (val: string): void => {
+      const filtered = filterValueSuggestions(suggestions, selectedValues, val);
+      setFilteredSuggestions(filtered);
+    },
+    [suggestions, selectedValues]
+  );
+
+
+  React.useEffect((): void => {
+    if (fixedHeight) {
+      setShowGradient(isOverflown(mainContentRef));
     }
-    setFocused(true);
-  }, [inputRef]);
+  }, [selectedValues, mainContentRef, fixedHeight]);
 
-  useOnClickOutside(containerRef,()=>{
-    setFocused(false)
-  })
-
-  const filterSuggestions = (val: string): void => {
-    const filtered = suggestions.filter(s =>
-      String(s)
-        .toLowerCase()
-        .includes(val.toLowerCase())
-    );
-    setFilteredSuggestions(filtered);
-  };
+  React.useEffect((): void => {
+    filterSuggestions(value);
+  }, [value, selectedValues, filterSuggestions]);
 
   const selectValue = React.useCallback(
     val => {
       const trimmedValue = val.trim();
-      if (!!trimmedValue && selectedValues.indexOf(trimmedValue) === -1) {
+      if (!!trimmedValue && lowerCaseSelected.indexOf(trimmedValue.toLowerCase()) === -1) {
         setSelectedValues([...selectedValues, trimmedValue]);
-        setFilteredSuggestions(filteredSuggestions.filter(suggestion => suggestion !== val));
+        setFilteredSuggestions(
+          filteredSuggestions.filter(
+            suggestion =>
+              suggestion.toLowerCase() !== trimmedValue.toLowerCase() &&
+              !arrayToLowerCase(selectedValues).includes(suggestion.toLowerCase())
+          )
+        );
         setValue('');
       }
     },
-    [selectedValues, filteredSuggestions]
+    [selectedValues, filteredSuggestions, lowerCaseSelected]
   );
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>): void => {
@@ -61,12 +86,12 @@ const Collector: React.FC<CollectorProps> = ({
       selectValue(value);
     }
   };
-  const clear = React.useCallback(() => {
+  const clear = React.useCallback((): void => {
     setSelectedValues([]);
     setValue('');
   }, []);
 
-  const onCancelCallback = React.useCallback(() => {
+  const onCancelCallback = React.useCallback((): void => {
     clear();
   }, [clear]);
 
@@ -74,9 +99,28 @@ const Collector: React.FC<CollectorProps> = ({
     clear();
     onConfirm(selectedValues);
   }, [selectedValues, clear, onConfirm]);
+
+
+  const getContainerWidth = React.useCallback(
+    (): number => Number(containerRef.current?.offsetWidth) - DROPDOWN_PADDING,
+    [containerRef]
+  );
+
+  useOnClickOutside(containerRef, (): void => {
+    setFocused(false);
+  });
+
   const showError = error || !!errorText;
   return (
-    <S.Container ref={containerRef}>
+    <S.Container
+      ref={containerRef}
+      onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>): void => {
+        focusWithArrowKeys(e, 'ds-search-item', () => {
+          inputRef?.current && inputRef.current.focus();
+        });
+        !value && scrollWithHorizontalArrow(mainContentRef, e);
+      }}
+    >
       {label && (
         <S.ContentAbove>
           <S.Label>{label}</S.Label>
@@ -87,23 +131,20 @@ const Collector: React.FC<CollectorProps> = ({
         tabIndex={0}
         focus={isFocused}
         onFocus={onFocusCallback}
-        error={error}
+        error={showError}
         disabled={disabled}
+        gradientOverlap={showGradient}
       >
-        <S.MainContent>
-          {selectedValues.map((val, index) => (
-            <S.CollectorValue
-              // eslint-disable-next-line react/no-array-index-key
-              key={`${val}-${index}`}
-              onRemoveClick={(): void => {
-                const filtered = selectedValues.filter(v => v !== val);
-                setSelectedValues(filtered);
-              }}
-              value={val}
-              focused={isFocused}
-              disabled={disabled}
-            />
-          ))}
+        <S.MainContent wrap={!fixedHeight} ref={mainContentRef}>
+          <Values
+            values={selectedValues}
+            onRemove={(val: React.ReactText): void => {
+              const filtered = selectedValues.filter(v => v !== val);
+              setSelectedValues(filtered);
+            }}
+            focused={isFocused}
+            disabled={!!disabled}
+          />
           <S.Input
             onKeyDown={handleKeyDown}
             ref={inputRef}
@@ -113,7 +154,7 @@ const Collector: React.FC<CollectorProps> = ({
               filterSuggestions(e.target.value);
             }}
             disabled={disabled}
-            placeholder={selectedValues && selectedValues.length ? undefined : 'Select'}
+            placeholder={selectedValues && selectedValues.length ? undefined : texts?.placeholder}
           />
         </S.MainContent>
         <S.RightSide>
@@ -122,19 +163,22 @@ const Collector: React.FC<CollectorProps> = ({
             onConfirm={onConfirmCallback}
             disabled={!!disabled}
             showCancel={!!value || !!selectedValues?.length}
+            texts={texts}
           />
         </S.RightSide>
       </S.CollectorInput>
       <OptionsDropdown
         options={filteredSuggestions}
         value={value}
-        visible={isFocused && (filteredSuggestions.length > 0 || !!value)}
+        visible={isFocused && !disabled && (filteredSuggestions.length > 0 || !!value)}
         onSelect={selectValue}
         onClick={(): void => {
           if (inputRef?.current) {
             inputRef.current.focus();
           }
         }}
+        width={getContainerWidth()}
+        texts={texts}
       />
       {(showError || description) && (
         <S.ContentBelow>
