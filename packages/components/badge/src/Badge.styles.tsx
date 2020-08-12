@@ -17,20 +17,20 @@ export default styled(({ flag, outlined, backgroundColor, textColor, backgroundC
 ))`
 && {
   .ant-scroll-number-only{
-    height: 18px;
+    height: 16px;
     & > p {
       ${macro.h200};
       color: inherit;
-      line-height: 18px;
-      height: 18px;
+      line-height: 16px;
+      height: 16px;
     }
   }
   .ant-badge-count {
     box-shadow: none;
-    height: 18px;
-    padding: 0 5px;
-    line-height: 18px;
-    min-width: 18px;
+    height: 16px;
+    padding: 0 3px;
+    line-height: 16px;
+    min-width: 16px;
     font-size:13px;
     font-weight: 500;
     background-color: ${(props): string => getBackgroundColor(props)};
