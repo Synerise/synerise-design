@@ -10,6 +10,7 @@ export type CollectorProps = {
   suggestions: string[];
   disabled?: boolean;
   onConfirm: (values: string[]) => void;
+  onCancel?: () => void;
   fixedHeight?: boolean;
   texts: CollectorTexts;
 }

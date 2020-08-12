@@ -17,6 +17,7 @@ const Collector: React.FC<CollectorProps> = ({
   selected,
   suggestions,
   onConfirm,
+  onCancel,
   label,
   errorText,
   disabled,
@@ -92,6 +93,7 @@ const Collector: React.FC<CollectorProps> = ({
 
   const onCancelCallback = React.useCallback((): void => {
     clear();
+    onCancel && onCancel();
   }, [clear]);
 
   const onConfirmCallback = React.useCallback((): void => {
