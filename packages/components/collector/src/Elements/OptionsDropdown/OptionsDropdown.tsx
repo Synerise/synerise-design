@@ -13,7 +13,9 @@ const OptionsDropdown: React.FC<OptionsDropdownProps> = ({
   visible,
   value,
   onSelect,
-  onClick
+  onClick,
+  width,
+  texts,
 }: OptionsDropdownProps) => {
   const [scrollTop, setScrollTop] = React.useState<number>(0);
   React.useEffect(() => {
@@ -31,9 +33,15 @@ const OptionsDropdown: React.FC<OptionsDropdownProps> = ({
           >
             {!!value && (
               <S.DropdownTop>
-                <S.DropdownAddButton type="ghost" mode="icon-label">
+                <S.DropdownAddButton
+                  onClick={(): void => {
+                    onSelect && onSelect(value);
+                  }}
+                  type="ghost"
+                  mode="icon-label"
+                >
                   <Icon component={<Add3M />} />
-                  <span>Add</span>
+                  <span>{texts?.add}</span>
                   <strong>{value}</strong>
                 </S.DropdownAddButton>
                 {options?.length > 0 && (
@@ -48,9 +56,11 @@ const OptionsDropdown: React.FC<OptionsDropdownProps> = ({
               highlight={value as string}
               visibleRows={6}
               onItemClick={onSelect}
-              itemRender={(val: React.ReactText): React.ReactNode => <Menu.Item key={val as string}>{val}</Menu.Item>}
+              itemRender={(val: React.ReactText): React.ReactElement => (
+                <Menu.Item key={`${val}`}>{val}</Menu.Item>
+              )}
               rowHeight={32}
-              width={400}
+              width={width}
               listProps={{ scrollTop }}
             />
           </Scrollbar>

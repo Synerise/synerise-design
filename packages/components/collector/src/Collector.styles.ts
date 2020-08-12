@@ -9,27 +9,58 @@ import {
   ErrorText,
   ValueText,
 } from '@synerise/ds-input/dist/InputMultivalue/InputMultivalue.styles';
-import styled from 'styled-components';
+import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import { Props as DSInputProps } from '@synerise/ds-input/dist/Input';
 import { InputProps } from 'antd/lib/input';
 import Value from '@synerise/ds-input/dist/InputMultivalue/Elements/Value';
 import Button from '@synerise/ds-button';
 
-export const Container = styled.div`
-`
-export const CollectorInput = styled(InputWrapper)<InputWrapperProps>`
+export const Container = styled.div``;
+const gradientOverlayStyles = (): FlattenSimpleInterpolation => css`
+  border-redius: 3px 0 0 3px;
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  display: block;
+  pointer-events: none;
+  z-index: 2;
+  width: 100px;
+  height: 44px;
+`;
+export const CollectorInput = styled(InputWrapper)<InputWrapperProps & { gradientOverlap: boolean }>`
   width: 100%;
   min-height: 48px;
   padding: 4px 0;
   position: relative;
+  &::before {
+    content: ${(props): string => (props.gradientOverlap ? `''` : 'none')};
+    transition: opacity 0.3s ease-in-out;
+    ${gradientOverlayStyles()}
+    background-image: ${(props): string => `-webkit-linear-gradient( left,
+    ${props.focus ? props.theme.palette['blue-050'] : props.theme.palette.white} 0%,
+    rgba(255,255,255,0) 100%
+  )`};
+  }
+  }
 `;
-export const MainContent = styled.div`
+export const MainContent = styled.div<{ wrap: boolean }>`
   display: flex;
   flex: 1;
   align-items: center;
-  flex-wrap: wrap;
+  flex-wrap: ${(props): string => (props.wrap ? 'wrap' : 'nowrap')};
+  overflow-x: scroll;
+  overflow-y: hidden;
+
   padding-right: 4px;
+  scroll-snap-align: start;
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  margin-left: 2px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
   .ds-input-value-wrapper {
+    min-width: fit-content;
     margin: 4px 0 4px 12px;
     right: 0;
     background: ${(props): string => props.theme.palette['grey-200']};
@@ -44,6 +75,7 @@ export const RightSide = styled.div`
 `;
 export const Input = styled(BorderLessInput)<DSInputProps & InputProps & { disabled?: boolean }>`
   margin: 0 0 0 12px;
+  min-width: unset;
 `;
 export const CollectorValue = styled(Value)``;
 export { ContentAbove };
