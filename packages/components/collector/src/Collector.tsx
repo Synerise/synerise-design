@@ -35,7 +35,7 @@ const Collector: React.FC<CollectorProps> = ({
 
   const lowerCaseSelected = React.useMemo(() => arrayToLowerCase(selectedValues), [selectedValues]);
   const onFocusCallback = React.useCallback(
-    (e: Event): void => {
+    (e: React.FocusEvent<HTMLDivElement>): void => {
       e.preventDefault();
       if (!!inputRef && !!inputRef?.current) {
         inputRef.current.focus({ preventScroll: true });
@@ -51,7 +51,6 @@ const Collector: React.FC<CollectorProps> = ({
     },
     [suggestions, selectedValues]
   );
-
 
   React.useEffect((): void => {
     if (fixedHeight) {
@@ -100,7 +99,6 @@ const Collector: React.FC<CollectorProps> = ({
     onConfirm(selectedValues);
   }, [selectedValues, clear, onConfirm]);
 
-
   const getContainerWidth = React.useCallback(
     (): number => Number(containerRef.current?.offsetWidth) - DROPDOWN_PADDING,
     [containerRef]
@@ -116,7 +114,7 @@ const Collector: React.FC<CollectorProps> = ({
       ref={containerRef}
       onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>): void => {
         focusWithArrowKeys(e, 'ds-search-item', () => {
-          inputRef?.current && inputRef.current.focus();
+          inputRef?.current && inputRef.current.focus({ preventScroll: true });
         });
         !value && scrollWithHorizontalArrow(mainContentRef, e);
       }}
