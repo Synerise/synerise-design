@@ -24,7 +24,7 @@ const stories = {
 };
 
 export default {
-  name: 'Components|tags',
+  name: 'Components|Tags',
   decorator,
   stories,
   Component: Status,

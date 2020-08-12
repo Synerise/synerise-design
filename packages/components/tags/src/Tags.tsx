@@ -24,7 +24,8 @@ const Tags: React.FC<Props> = ({
   manageLink,
   onCreate,
   theme,
-  maxHeight
+  maxHeight,
+  overlayStyle
 }: Props) => {
   const [isAdding, setAddingState] = React.useState<boolean>(false);
   const [searchQuery, setSearchQuery] = React.useState<string>('');
@@ -96,7 +97,7 @@ const Tags: React.FC<Props> = ({
         iconLeft={<Icon component={<SearchM />} color={theme.palette['grey-600']} />}
       />
       <S.DropdownContainer data-testid="dropdown">
-        <Scrollbar maxHeight={200}>
+        <Scrollbar maxHeight={maxHeight}>
         {isCreatable && (
           <>
             <S.CreateTagDropdownButton type="ghost" onClick={onCreateNewTag} marginless={!isSeperated}>
@@ -158,7 +159,7 @@ const Tags: React.FC<Props> = ({
           visible={isAdding}
           onVisibleChange={setAddingState}
           overlay={dropdownOverlay}
-          overlayStyle={overLayStyle}
+          overlayStyle={overlayStyle}
         >
           <S.AddButton type="ghost" marginless={selected && !selected.length ? true : undefined}>
             {addIcon}
