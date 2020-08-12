@@ -65,7 +65,7 @@ const stories = {
 };
 
 export default {
-  name: 'Pickers|TimePicker',
+  name: 'Pickers/TimePicker',
   config: {},
   stories,
   Component: TimePicker,

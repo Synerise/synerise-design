@@ -98,7 +98,7 @@ const stories = {
 };
 
 export default {
-  name: 'Components|Menu',
+name: 'Components/Menu',
   stories,
   Component: Menu,
 };

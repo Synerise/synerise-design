@@ -236,7 +236,7 @@ const stories = {
 };
 
 export default {
-  name: 'Components|Drawer',
+name: 'Components/Drawer',
   config: {},
   stories,
   Component: Drawer,

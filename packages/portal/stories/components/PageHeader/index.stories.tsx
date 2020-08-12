@@ -155,7 +155,7 @@ const stories = {
 };
 
 export default {
-  name: 'Components|Page Header',
+name: 'Components/Page Header',
   withoutCenter: true,
   stories,
   Component: PageHeader,

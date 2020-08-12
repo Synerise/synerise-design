@@ -42,7 +42,7 @@ const stories = {
 };
 
 export default {
-  name: 'Components|Switch',
+name: 'Components/Switch',
   config: {
     notes: {
       markdown,

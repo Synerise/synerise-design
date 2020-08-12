@@ -94,7 +94,7 @@ const stories = {
 };
 
 export default {
-  name: 'Components|Description',
+name: 'Components/Description',
   config: {},
   stories,
   Component: Description,

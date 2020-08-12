@@ -24,7 +24,7 @@ const stories = {
 };
 
 export default {
-  name: 'Components|Flag',
+name: 'Components/Flag',
   config: {},
   stories,
 }

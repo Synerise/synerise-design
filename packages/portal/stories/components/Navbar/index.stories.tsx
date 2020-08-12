@@ -82,7 +82,7 @@ const stories = {
 };
 
 export default {
-  name: 'Components|Navbar',
+name: 'Components/Navbar',
   withoutCenter: true,
   stories,
   Component: Navbar,

@@ -237,7 +237,7 @@ const stories = {
 };
 
 export default {
-  name: 'Table|Table tree',
+  name: 'Table/Table tree',
   decorator,
   stories,
   Component: Table,

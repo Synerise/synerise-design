@@ -185,7 +185,7 @@ const stories = {
 };
 
 export default {
-  name: 'Components|Select',
+  name: 'Components/Select',
   decorator,
   stories,
   Component: Select,

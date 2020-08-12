@@ -31,7 +31,7 @@ const stories = {
 };
 
 export default {
-  name: 'Cascader|Cascader',
+  name: 'Cascader/Cascader',
   config: {},
   stories,
   decorator,

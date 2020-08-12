@@ -73,7 +73,7 @@ const stories = {
 };
 
 export default {
-  name: 'Uploader|Uploader',
+  name: 'Uploader/Uploader',
   stories,
   Component: FileUploader,
 };

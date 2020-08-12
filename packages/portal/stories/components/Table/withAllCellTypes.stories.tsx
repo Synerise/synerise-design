@@ -89,7 +89,7 @@ const stories = {
 };
 
 export default {
-  name: 'Table|Table with all types of content',
+  name: 'Table/Table with all types of content',
   decorator,
   stories,
   Component: Table,

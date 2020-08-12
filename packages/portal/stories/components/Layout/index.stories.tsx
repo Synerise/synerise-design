@@ -62,7 +62,7 @@ const stories = {
 };
 
 export default {
-  name: 'Components|Layout',
+name: 'Components/Layout',
   withoutCenter: true,
   stories,
   Component: Layout,

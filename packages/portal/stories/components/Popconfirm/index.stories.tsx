@@ -103,7 +103,7 @@ const stories = {
 };
 
 export default {
-  name: 'Components|Popconfirm',
+name: 'Components/Popconfirm',
   decorator,
   stories,
   Component: Popconfirm,
