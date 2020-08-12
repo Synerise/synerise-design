@@ -24,10 +24,12 @@ const stories = {
         errorText={text('Set error text', '')}
         suggestions={getSuggestions()}
         fixedHeight={boolean('Set fixed height', false)}
-        texts ={{
+        texts={{
           add: 'Add',
           cancel: 'Cancel',
-          placeholder: 'Type value'
+          placeholder: 'Type value',
+          toSelect: "to select",
+          toNavigate: 'to navigate',
         }}
       />
     );

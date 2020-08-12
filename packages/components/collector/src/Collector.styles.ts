@@ -81,7 +81,7 @@ export const Input = styled(BorderLessInput)<DSInputProps & InputProps & { disab
   margin: 0 0 0 12px;
   min-width: unset;
 `;
-export {Value as CollectorValue};
+export { Value as CollectorValue };
 export { ContentAbove };
 export { Label };
 export { ContentBelow };
@@ -129,4 +129,23 @@ export const DropdownTop = styled.div`
 `;
 export const DividerContainer = styled.div`
   padding: 8px 12px;
+`;
+export const NavigationWrapper = styled.div`
+  margin-top: 8px;
+  border-top: 1px solid ${(props): string => props.theme.palette['grey-100']};
+  background: ${(props): string => props.theme.palette['grey-050']};
+  padding: 12px 16px;
+  margin-left: -8px;
+  margin-bottom: -8px;
+  color: ${(props): string => props.theme.palette['grey-400']};
+  display: flex;
+  align-items: center;
+  .ds-icon > svg {
+    fill: ${(props): string => props.theme.palette['grey-400']};
+  }
+  span {
+    margin-left: 2px;
+    margin-right: 8px;
+    font-weight: 500;
+  }
 `;
