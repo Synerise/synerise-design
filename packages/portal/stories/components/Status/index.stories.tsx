@@ -17,14 +17,14 @@ const typeOptions = {
 };
 
 const stories = {
-  default: () => ({
+  status: () => ({
     type: select('Type', typeOptions, 'primary'),
     label: 'This is a status',
   }),
 };
 
 export default {
-  name: 'Components|Status',
+  name: 'Components|tags',
   decorator,
   stories,
   Component: Status,

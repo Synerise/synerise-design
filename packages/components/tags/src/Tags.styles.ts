@@ -114,3 +114,7 @@ export const DropdownSearch = styled(SearchBar)`
 export const DropdownNoTags = styled.span`
   padding: 4px;
 `;
+
+export const Overlay = styled.div`
+background-color: ${(props): string => props.theme.palette.white};
+`
