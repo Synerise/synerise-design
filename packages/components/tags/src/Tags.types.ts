@@ -30,4 +30,6 @@ export interface Props {
   theme: { [k: string]: string };
   onCreate?: (name: string) => void;
   onSelectedChange?: (tags: Array<TagProps>, action: ActionTaken) => void;
+  overlayStyle?: React.CSSProperties;
+  maxHeight?: number;
 }

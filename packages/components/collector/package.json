@@ -1,9 +1,9 @@
 {
-  "name": "@synerise/ds-layout",
-  "version": "0.5.38",
-  "description": "Layout UI Component for the Synerise Design System",
+  "name": "@synerise/ds-collector",
+  "version": "0.0.1",
+  "description": "Collector UI Component for the Synerise Design System",
   "license": "ISC",
-  "repository": "synerise/synerise-design",
+  "repository": "Synerise/synerise-design",
   "main": "dist/index.js",
   "publishConfig": {
     "access": "public"
@@ -15,9 +15,9 @@
     "build:watch": "npm run build:js -- --watch",
     "defs": "tsc --declaration --outDir dist/ --emitDeclarationOnly",
     "prepublish": "npm run build",
+    "types": "tsc --noEmit",
     "test": "jest",
-    "test:watch": "npm run test -- --watchAll",
-    "types": "tsc --noEmit"
+    "test:watch": "npm run test -- --watchAll"
   },
   "sideEffects": [
     "dist/style/*",
@@ -25,11 +25,14 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-scrollbar": "^0.2.15",
-    "@synerise/ds-utils": "^0.9.2"
+    "@synerise/ds-button": "*",
+    "@synerise/ds-input": "^0.14.0",
+    "@synerise/ds-search": "^0.1.66",
+    "classnames": "^2.2.6"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
     "react": ">=16.9.0 < 17.0.0"
-  }
+  },
+  "devDependencies": {}
 }

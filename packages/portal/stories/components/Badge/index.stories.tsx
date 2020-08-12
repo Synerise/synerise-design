@@ -100,9 +100,9 @@ const stories = {
               style={{
                 ...{ boxShadow: isOutline ? `0 0 0 1px ${theme.palette['grey-500']}` : null },
                 ...object('style5', {
-                  minWidth: '17px',
-                  minHeight: '17px',
-                  margin: '8px 8px 8px 8px',
+                  minWidth: '16px',
+                  minHeight: '16px',
+                  margin: '9px 8px 7px 8px',
                   alignItems: 'center',
                 }),
               }}

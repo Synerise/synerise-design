@@ -11,20 +11,22 @@ export interface Props {
   focused?: boolean;
 }
 const Value: React.FC<Props> = ({ disabled, key, onRemoveClick, value, focused }) => {
-  const [pressed, setPressed] = React.useState(false);
+  const [hovered, setHovered] = React.useState(false);
   return (
+    // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
     <S.ValueWrapper
-      onMouseEnter={(): void => {
-        focused && setPressed(true);
+      className='ds-input-value-wrapper'
+      onMouseOver={(): void => {
+        focused && setHovered(true);
       }}
       onMouseLeave={(): void => {
-        setPressed(false);
+        setHovered(false);
       }}
       disabled={disabled}
       key={key}
-      shrink={pressed}
+      shrink={hovered}
     >
-      <S.ValueText shrink={pressed} disabled={disabled}>
+      <S.ValueText shrink={hovered} disabled={disabled}>
         {value}
       </S.ValueText>
       <S.IconWrapper onClick={onRemoveClick}>

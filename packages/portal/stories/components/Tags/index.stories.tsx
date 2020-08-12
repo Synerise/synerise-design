@@ -285,6 +285,8 @@ const stories = {
             addable={addable}
             creatable={creatable}
             removable={removable}
+            overlayStyle={{width: '283px'}}
+            maxHeight={200}
             texts={{
               addButtonLabel: 'Add tag',
               manageLinkLabel: 'Manage tags',

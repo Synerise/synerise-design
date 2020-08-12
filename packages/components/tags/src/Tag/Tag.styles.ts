@@ -144,13 +144,14 @@ const insertShapeStyles = (props: InsertShapeStyles): FlattenSimpleInterpolation
                 display: inline-block;
                 padding: ${props.removable ? '0 7px 0 12px' : '0'};
                 padding-left: ${props.removable && props.preffixel && '4px'};
-                padding-right: ${props.removable && props.suffixel && '11px'};
+                padding-right: ${props.removable && props.suffixel && '9px'};
                 width: ${getWidthOnHover(props)};
               }
               padding-right: ${!props.suffixel && '5px'};
 
               ${RemoveButton} {
                 margin-left: 0px;
+                margin-right: ${ props.suffixel? '2px':'-2px'};
                 .icon {
                   position: absolute;
                   left: -3px;
@@ -325,7 +326,7 @@ export const Tag = styled.div<TagProps>`
 
 
   .icon1 {
-    margin: margin: 0 -2px 0 5px;
+    margin: 0 -2px 0 1px;
   }
 
   ${(props): FlattenSimpleInterpolation | false =>
@@ -348,11 +349,11 @@ export const Tag = styled.div<TagProps>`
     margin-right: 0;
   }
   ${SuffixWrapper},${DefaultSuffixWrapper} {
-    margin: ${(props): string => (!props.removable && props.suffixel ? '0px -9px 3px 5px' : '0 3px 3px 1px')};
+    margin: ${(props): string => (!props.removable && props.suffixel ? '0px -9px 3px 5px' : '0 4px 3px 1px')};
     
   }
   ${PrefixWrapper},${DefaultPrefixWrapper} {
-    margin: ${(props): string => (!props.removable && props.preffixel ? '0px 5px 3px -9px' : '0 1px 3px 3px')};
+    margin: ${(props): string => (!props.removable && props.preffixel ? '0px 5px 3px -9px' : '0 1px 3px 4px')};
   }
 `;
 

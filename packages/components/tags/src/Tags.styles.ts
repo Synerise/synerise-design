@@ -37,14 +37,14 @@ export const CreateTagDropdownButton = styled(Button)<{ marginless: boolean }>`
   align-items: center;
   margin: 0 8px 8px;
   position: absolute;
-  right: 32px;
+  right: -5px;
 
   && {
     font-weight: 400;
     text-align: left;
 
     ${AddIconWrapper} {
-      transform: translate(-10px, -2px);
+      transform: translate(-10px,0px);
     }
   }
 
@@ -85,6 +85,10 @@ export const DropdownContainer = styled.div`
   display: flex;
   flex-direction: column;
   padding: 8px 0;
+  .scrollbar-container, .scrollbar-container > div {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  }
 `;
 
 export const DropdownTagsContainer = styled.div<{ isCreatable: boolean }>`
@@ -114,3 +118,7 @@ export const DropdownSearch = styled(SearchBar)`
 export const DropdownNoTags = styled.span`
   padding: 4px;
 `;
+
+export const Overlay = styled.div`
+background-color: ${(props): string => props.theme.palette.white};
+`
