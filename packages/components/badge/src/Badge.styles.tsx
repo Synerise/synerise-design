@@ -23,6 +23,7 @@ export default styled(({ flag, outlined, backgroundColor, textColor, backgroundC
       color: inherit;
       line-height: 16px;
       height: 16px;
+      font-weight: 400;
     }
   }
   .ant-badge-count {
@@ -32,7 +33,6 @@ export default styled(({ flag, outlined, backgroundColor, textColor, backgroundC
     line-height: 16px;
     min-width: 16px;
     font-size:13px;
-    font-weight: 500;
     background-color: ${(props): string => getBackgroundColor(props)};
     color: ${(props): string => props.theme.palette[`${props.textColor}-${props.textColorHue}`]};
   }
