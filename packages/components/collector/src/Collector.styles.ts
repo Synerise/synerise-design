@@ -81,7 +81,7 @@ export const Input = styled(BorderLessInput)<DSInputProps & InputProps & { disab
   margin: 0 0 0 12px;
   min-width: unset;
 `;
-export const CollectorValue = styled(Value)``;
+export {Value as CollectorValue};
 export { ContentAbove };
 export { Label };
 export { ContentBelow };
