@@ -1,7 +1,6 @@
 import {
   InputWrapper,
   BorderLessInput,
-  InputWrapperProps,
   ContentAbove,
   Label,
   ContentBelow,
@@ -27,7 +26,12 @@ const gradientOverlayStyles = (): FlattenSimpleInterpolation => css`
   width: 100px;
   height: 44px;
 `;
-export const CollectorInput = styled(InputWrapper)<InputWrapperProps & { gradientOverlap: boolean }>`
+export const CollectorInput = styled(InputWrapper)<{
+  error?: boolean;
+  focus?: boolean;
+  disabled?: boolean;
+  gradientOverlap: boolean;
+}>`
   width: 100%;
   min-height: 48px;
   padding: 4px 0;
