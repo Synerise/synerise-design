@@ -4193,6 +4193,11 @@
   resolved "https://registry.yarnpkg.com/@synerise/ds-icon/-/ds-icon-0.21.0.tgz#65f2830bce46069f7d9167da9acd4744bed47404"
   integrity sha512-g7iTWhunRDAdN9sOJs0f6uvSuUxdAs8bguxPYVpYv4O1P3GfFa+zGfw6w7Z+0o99RmOz7tnrIoUzUJZvrQqLOw==
 
+"@synerise/ds-icon@^0.24.0":
+  version "0.24.0"
+  resolved "https://registry.yarnpkg.com/@synerise/ds-icon/-/ds-icon-0.24.0.tgz#3d2a6d0ada37dc3c7505ed1fa1bc57f5d2de5eed"
+  integrity sha512-eUU6sdecXQaMrtz8GwAPKyx3V86IHroZ3I3evdgu2biwPP/QK2c1P0uA7DPEnrWOPoaxuANJmI5ifogwcNP3aQ==
+
 "@synerise/ds-input@^0.10.7":
   version "0.10.7"
   resolved "https://registry.yarnpkg.com/@synerise/ds-input/-/ds-input-0.10.7.tgz#0bdc001ed7f85a45f1f2a1930521d53f2442d28d"
@@ -4212,6 +4217,14 @@
     "@synerise/ds-button" "^0.11.3"
     "@synerise/ds-card" "^0.4.11"
     "@synerise/ds-typography" "*"
+
+"@synerise/ds-scrollbar@^0.2.15":
+  version "0.2.15"
+  resolved "https://registry.yarnpkg.com/@synerise/ds-scrollbar/-/ds-scrollbar-0.2.15.tgz#9aeb6f5a3777d16d60dfcbc666e19883e74b738a"
+  integrity sha512-n8SQqLz6siYYKmMRCpCRZBsQ+LtEG5eMQ+33Wu933mucIx3M1kGtLB5YRgpakg4Nb3e30EH+IkN68kGdlHt2fA==
+  dependencies:
+    "@synerise/ds-icon" "^0.24.0"
+    react-perfect-scrollbar "^1.5.8"
 
 "@synerise/ds-tooltip@^0.4.26":
   version "0.4.26"

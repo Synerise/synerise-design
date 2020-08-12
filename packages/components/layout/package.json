@@ -25,6 +25,7 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
+    "@synerise/ds-scrollbar": "^0.2.15",
     "@synerise/ds-utils": "^0.9.2"
   },
   "peerDependencies": {
