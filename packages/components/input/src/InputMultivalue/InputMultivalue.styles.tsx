@@ -1,6 +1,8 @@
 import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 
+export type InputWrapperProps = { error?: boolean; focus?: boolean; disabled?: boolean };
+
 const errorInputStyle = (props: ThemeProps): string => `
   &&, .ant-input {
     border-color: ${props.theme.palette['red-600']};
@@ -18,7 +20,6 @@ const focusStyle = (props: ThemeProps): string => `
 `;
 const contentShrinkStyle = (): FlattenSimpleInterpolation => css`
   && {
-    max-width: 52px;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
@@ -69,13 +70,25 @@ export const ContentAbove = styled.div`
 `;
 export const IconWrapper = styled.div`
   overflow: hidden;
+  width: 24px;
+  margin-left: -16px;
+  display: none;
   .remove {
     svg {
       fill: ${(props): string => props.theme.palette['red-600']};
     }
   }
 `;
-export const InputWrapper = styled.div<{ error?: boolean; focus?: boolean; disabled?: boolean; hover?: boolean }>`
+export const ValueText = styled.div<{ shrink?: boolean; disabled?: boolean }>`
+  line-height: 22px;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+`;
+
+export const InputWrapper = styled.div<InputWrapperProps>`
   box-shadow: inset 0 0 0 1px ${(props): string => props.theme.palette['grey-300']};
   background-color: ${(props): string => props.theme.palette.white};
   width: 100%;
@@ -85,10 +98,6 @@ export const InputWrapper = styled.div<{ error?: boolean; focus?: boolean; disab
   min-height: 32px;
   flex-wrap:wrap;
   transition: 0.3s all;
-  
-  
-
-  
   ${(props): FlattenSimpleInterpolation | false => !props.disabled && hoverStyle(props)}
   ${(props): string => (props.focus && !props.disabled ? focusStyle(props) : '')}
   ${(props): string => (props.error ? errorInputStyle(props) : '')}
@@ -97,7 +106,7 @@ export const InputWrapper = styled.div<{ error?: boolean; focus?: boolean; disab
 `;
 
 export const ValueWrapper = styled.div<{ disabled?: boolean; shrink?: boolean }>`
-  display: flex;
+  display: grid;
   height: 24px;
   & {
     background-color: ${(props): string =>
@@ -107,14 +116,28 @@ export const ValueWrapper = styled.div<{ disabled?: boolean; shrink?: boolean }>
   border: none;
   margin: 2px;
   white-space: nowrap;
-  justify-content: center;
-  align-items: center;
   position: relative;
+  padding: 0 8px;
   right: 8px;
-  ${(props): string | false => !props.shrink && `${IconWrapper}{display:none;}`}
+  overflow: hidden;
+  grid-template-columns: calc(100%) 0px;
+  ${(props): string | false =>
+    !!props.shrink &&
+    `
+     ${ValueText} {
+       max-width: calc(100% - 16px);
+       overflow: hidden;
+white-space: nowrap;
+text-overflow: ellipsis;
+      }
+      ${IconWrapper} {
+        display:block;
+      }
+`}
   &:hover {
     background-color: ${(props): string => props.theme.palette['grey-200']};
     cursor: pointer;
+    ${(props): FlattenSimpleInterpolation | false => !!props.shrink && !props.disabled && contentShrinkStyle()}
   }
   ${(props): FlattenSimpleInterpolation | false => !!props.disabled && disabledStyled(props)}
 `;
@@ -128,10 +151,8 @@ export const BorderLessInput = styled.input<{ disabled?: boolean }>`
   && {
     background-color: rgba(255, 255, 255, 0);
   }
+  &::placeholder {
+    color: ${(props): string => props.theme.palette['grey-500']};
+  }
   ${(props): FlattenSimpleInterpolation | false => !!props.disabled && disabledStyled(props)}
-`;
-export const ValueText = styled.div<{ shrink?: boolean; disabled?: boolean }>`
-  line-height: 13px;
-  padding: 3px 8px;
-  ${(props): FlattenSimpleInterpolation | false => !!props.shrink && !props.disabled && contentShrinkStyle()}
 `;
