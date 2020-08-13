@@ -164,7 +164,7 @@ const stories = {
 };
 
 export default {
-  name: 'Components|Slider',
+name: 'Components/Slider',
   withoutCenter: true,
   decorator,
   stories,

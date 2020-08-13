@@ -93,7 +93,7 @@ const stories = {
 };
 
 export default {
-  name: 'Components|Sidebar',
+name: 'Components/Sidebar',
   withoutCenter: true,
   config: {},
   stories,

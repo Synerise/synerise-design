@@ -55,7 +55,7 @@ const stories = {
 };
 
 export default {
-  name: 'Components|Scrollbar',
+name: 'Components/Scrollbar',
   config: {},
   stories,
   decorator,

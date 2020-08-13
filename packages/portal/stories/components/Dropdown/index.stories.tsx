@@ -22,7 +22,7 @@ const stories = {
 };
 
 export default {
-  name: 'Dropdown|Dropdown',
+  name: 'Dropdown/Dropdown',
   stories,
   Component: Dropdown,
   decorator,

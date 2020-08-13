@@ -354,7 +354,7 @@ const stories = {
 };
 
 export default {
-  name: 'Card|Card',
+  name: 'Card/Card',
   stories,
   Component: Card,
 };

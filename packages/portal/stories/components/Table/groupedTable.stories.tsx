@@ -646,7 +646,7 @@ const stories = {
 };
 
 export default {
-  name: 'Table|Grouped table',
+  name: 'Table/Grouped table',
   decorator,
   stories,
   Component: Table,

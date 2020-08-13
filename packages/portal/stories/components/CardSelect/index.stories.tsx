@@ -220,7 +220,7 @@ const stories = {
 };
 
 export default {
-  name: 'Components|CardSelect',
+name: 'Components/CardSelect',
   withoutCenter: true,
   stories,
   Component: CardSelect,

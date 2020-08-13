@@ -7,7 +7,7 @@ const stories = {
 };
 
 export default {
-  name: 'Components|{{componentName}}',
+name: 'Components/{{componentName}}',
   config: {},
   stories,
   Component: {{componentName}},

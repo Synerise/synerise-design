@@ -64,7 +64,7 @@ const stories = {
 };
 
 export default {
-  name: 'Components|Progress Bar',
+name: 'Components/Progress Bar',
   decorator,
   stories,
   Component: ProgressBar,

@@ -250,7 +250,7 @@ const stories = {
 };
 
 export default {
-  name: 'Components|Badge',
+name: 'Components/Badge',
   decorator,
   stories,
   Component: Badge,

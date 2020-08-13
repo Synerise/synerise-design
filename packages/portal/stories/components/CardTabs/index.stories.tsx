@@ -161,7 +161,7 @@ const stories = {
 };
 
 export default {
-  name: 'Components|CardTabs',
+name: 'Components/CardTabs',
   stories,
   Component: CardTabs,
 };

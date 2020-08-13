@@ -87,7 +87,7 @@ const stories = {
 };
 
 export default {
-  name: 'Pickers|DateRangePicker',
+  name: 'Pickers/DateRangePicker',
   config: {},
   component: DateRangePicker,
   stories,

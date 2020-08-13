@@ -529,7 +529,7 @@ const stories = {
 };
 
 export default {
-  name: 'Table|Table on card',
+  name: 'Table/Table on card',
   decorator,
   stories,
   Component: Table,

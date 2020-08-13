@@ -42,7 +42,7 @@ const getErrorText = (error: boolean, errorText: string): string => {
 };
 
 export default {
-  name: 'Components|Input',
+name: 'Components/Input',
   stories,
   decorator,
   Component: InputNumber,
