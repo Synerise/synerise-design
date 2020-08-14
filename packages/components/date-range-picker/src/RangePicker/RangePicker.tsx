@@ -49,7 +49,7 @@ export default class RangePicker extends React.PureComponent<Props, State> {
     };
   }
 
-  getSnapshotBeforeUpdate(prevProps: Readonly<Props>): any | null {
+  getSnapshotBeforeUpdate(prevProps: Readonly<Props>): null {
     const { value, forceAdjacentMonths } = this.props;
     const { left } = this.state;
     if (
