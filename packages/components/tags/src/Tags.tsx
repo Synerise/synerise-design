@@ -88,14 +88,14 @@ const Tags: React.FC<Props> = ({
   };
 
   const dropdownOverlay = (
-    <S.Overlay>
+    <S.Overlay data-testid="dropdown">
       <S.DropdownSearch
         value={searchQuery}
         onSearchChange={setSearchQuery}
         placeholder={(texts && texts.searchPlaceholder) || ''}
         iconLeft={<Icon component={<SearchM />} color={theme.palette['grey-600']} />}
       />
-      <S.DropdownContainer data-testid="dropdown" maxHeight={maxHeight}>
+      <S.DropdownContainer maxHeight={maxHeight}>
         {isCreatable && (
           <>
             <S.CreateTagDropdownButton type="ghost" onClick={onCreateNewTag} marginless={!isSeperated}>
