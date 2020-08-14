@@ -16,14 +16,15 @@ import {
   setFuture,
   setOffsetValue,
   setDurationValue,
-  GROUPS,
 } from './utils';
 import { fnsIsAfter } from '../fns';
 import { normalizeRange } from '../utils';
+import { RelativeMode } from '../DateRangePicker.types';
 
 class RelativeRangePicker extends React.PureComponent<Props, State> {
   static defaultProps = {
     ranges: CONST.RELATIVE_PRESETS,
+    relativeModes: ['PAST', 'FUTURE'],
   };
 
   constructor(props: Props) {
@@ -35,11 +36,12 @@ class RelativeRangePicker extends React.PureComponent<Props, State> {
       currentGroup: getCurrentGroupFromProps(props),
       future: props.future || false,
       past: props.past || true,
+      sinceTimestamp: new Date(),
     };
   }
 
   static getDerivedStateFromProps(nextProps: Props, prevState: State): State {
-    const { ranges, value, future, past } = nextProps;
+    const { ranges, value, future, past, relativeModes } = nextProps;
     const state = prevState;
     const currentRange =
       value && (value.type === CONST.RELATIVE || isAbsolute(value)) ? getValueForRelativeRange(value) : ranges[0];
@@ -48,12 +50,16 @@ class RelativeRangePicker extends React.PureComponent<Props, State> {
       (acc, range: RelativeDateRange) => {
         // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
         // @ts-ignore
-        acc[range.future ? GROUPS.FUTURE : GROUPS.PAST].push(range);
+        acc[range.future ? RANGES_MODE.FUTURE : RANGES_MODE.PAST].push(range);
         return acc;
       },
-      { [GROUPS.PAST]: [], [GROUPS.FUTURE]: [] }
+      { [RANGES_MODE.PAST]: [], [RANGES_MODE.FUTURE]: [] }
     );
-    if (future !== prevState.future || past !== prevState.past) {
+    if (
+      future !== prevState.future ||
+      past !== prevState.past ||
+      (relativeModes && !relativeModes.includes(state.currentGroup as RelativeMode))
+    ) {
       state.currentGroup = getCurrentGroupFromProps(nextProps);
       state.future = prevState.future;
       state.past = prevState.past;
@@ -64,21 +70,31 @@ class RelativeRangePicker extends React.PureComponent<Props, State> {
   onModeChange = (mode: string | null): void => {
     const { currentRange } = this.state;
     this.setState({ currentGroup: mode }, () => {
-      const updatedState = {
-        ...currentRange,
-        duration: {
-          ...currentRange.duration,
-          value: currentRange.duration.value > 1 ? currentRange.duration.value : 1,
-        },
-        offset: {
-          ...currentRange.offset,
-          value: currentRange.offset.value > 1 ? currentRange.offset.value : 1,
-        },
-        key: undefined,
-        future: mode === RANGES_MODE.FUTURE,
-      };
-      this.onChange(updatedState);
+      if (mode !== RANGES_MODE.SINCE) {
+        const updatedState = {
+          ...currentRange,
+          duration: {
+            ...currentRange.duration,
+            value: currentRange.duration.value > 1 ? currentRange.duration.value : 1,
+          },
+          offset: {
+            ...currentRange.offset,
+            value: currentRange.offset.value > 1 ? currentRange.offset.value : 1,
+          },
+          key: undefined,
+          future: mode === RANGES_MODE.FUTURE,
+        };
+        this.onChange(updatedState);
+      }
     });
+  };
+
+  onTimestampChange = (timestamp: Date | undefined): void => {
+    this.setState({ sinceTimestamp: timestamp });
+    if (!timestamp) {
+      const { onChange } = this.props;
+      onChange(normalizeRange({ to: undefined, from: undefined } as RelativeDateRange));
+    }
   };
 
   handleCustomClick = (): void => {
@@ -131,8 +147,8 @@ class RelativeRangePicker extends React.PureComponent<Props, State> {
   };
 
   renderCustomRangeForm = (): React.ReactNode => {
-    const { currentRange, currentGroup } = this.state;
-    const { ranges, intl } = this.props;
+    const { currentRange, currentGroup, sinceTimestamp } = this.state;
+    const { ranges, texts, relativeModes, intl } = this.props;
     return (
       <CustomRangeForm
         handleModeChange={this.onModeChange}
@@ -143,6 +159,10 @@ class RelativeRangePicker extends React.PureComponent<Props, State> {
         handleChange={this.onChange}
         handleDurationValueChange={this.onDurationValueChange}
         handleOffsetValueChange={this.onOffsetValueChange}
+        handleTimestampChange={this.onTimestampChange}
+        timestamp={sinceTimestamp}
+        relativeModes={relativeModes || []}
+        texts={texts}
       />
     );
   };

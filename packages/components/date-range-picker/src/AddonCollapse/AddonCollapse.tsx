@@ -6,7 +6,7 @@ import { Props } from './AddonCollapse.types';
 const AddonCollapse: React.FC<Props> = ({ title, content, expanded: initialExpanded }: Props) => {
   const [expanded, setExpand] = React.useState<boolean>(initialExpanded || false);
   return (
-    <S.AddonWrapper>
+    <S.AddonWrapper expanded={expanded}>
       <S.AddonHeader>
         <S.Title>{title}</S.Title>
         <Button.Expander

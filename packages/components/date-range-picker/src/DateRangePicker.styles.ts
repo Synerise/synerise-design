@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  width: 660px;
+  width: 636px;
   background-color: ${(props): string => props.theme.palette.white};
   user-select: none;
   margin: -16px;
@@ -12,9 +12,7 @@ export const Separator = styled.div`
   border-top: 1px solid ${(props): string => props.theme.palette['grey-200']};
 `;
 
-export const Addon = styled.div`
-  margin: 16px 24px;
-`;
+export const Addon = styled.div``;
 export const PickerWrapper = styled.div`
   position: relative;
 `;

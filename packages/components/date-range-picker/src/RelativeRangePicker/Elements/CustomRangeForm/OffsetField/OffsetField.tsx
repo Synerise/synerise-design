@@ -5,8 +5,9 @@ import * as S from '../../../RelativeRangePicker.styles';
 import * as CONST from '../../../../constants';
 import { setOffsetType } from '../CustomRangeForm';
 import { Props } from './OffsetField.types';
-import { GROUPS } from '../../../utils';
+import { RANGES_MODE } from '../../../utils';
 
+const SELECT_DROPDOWN_OFFSET = -4;
 const OffsetField: React.FC<Props> = ({
   handleOffsetValueChange,
   currentGroup,
@@ -20,7 +21,7 @@ const OffsetField: React.FC<Props> = ({
       {' '}
       <S.Title>
         {intl.formatMessage({
-          id: currentGroup === GROUPS.PAST ? 'DS.DATE-RANGE-PICKER.BEFORE' : 'DS.DATE-RANGE-PICKER.AFTER',
+          id: currentGroup === RANGES_MODE.PAST ? 'DS.DATE-RANGE-PICKER.BEFORE' : 'DS.DATE-RANGE-PICKER.AFTER',
         })}
       </S.Title>
       <S.InputSelectGroup compact>
@@ -35,7 +36,11 @@ const OffsetField: React.FC<Props> = ({
           }}
           onChange={handleOffsetValueChange}
         />
-        <Select value={offset.type} onChange={(type): void => handleChange(setOffsetType(type, currentRange))}>
+        <Select
+          value={offset.type}
+          onChange={(type): void => handleChange(setOffsetType(type, currentRange))}
+          dropdownAlign={{ points: ['bl', 'tl'], offset: [0, SELECT_DROPDOWN_OFFSET] }}
+        >
           {CONST.RELATIVE_TYPES.map(type => (
             <Select.Option key={type} value={type}>
               {intl.formatMessage({ id: `DS.DATE-RANGE-PICKER.${type.toUpperCase()}` })}

@@ -20,6 +20,10 @@ const CustomRangeForm: React.FC<Props> = ({
   handleModeChange,
   handleChange,
   intl,
+  texts,
+  handleTimestampChange,
+  timestamp,
+  relativeModes,
 }: Props) => {
   const isSinceModeEnable = currentGroup === RANGES_MODE.SINCE;
   const renderOffsetColumn = (): React.ReactNode => {
@@ -57,7 +61,10 @@ const CustomRangeForm: React.FC<Props> = ({
           currentRange={currentRange}
           currentGroup={currentGroup}
           handleChange={handleChange}
+          onTimestampChange={handleTimestampChange}
+          timestamp={timestamp}
           intl={intl}
+          texts={texts}
         />
       </S.RangeFormColumn>
     );
@@ -71,6 +78,7 @@ const CustomRangeForm: React.FC<Props> = ({
           currentRange={currentRange}
           onModeChange={handleModeChange}
           intl={intl}
+          modes={relativeModes}
         />
       </S.RangeFormColumn>
       {isSinceModeEnable ? renderTimestampRange() : renderDurationColumn()}

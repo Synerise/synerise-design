@@ -8,7 +8,7 @@ import RangePickerInput from './RangePickerInput/RangePickerInput';
 import { DateFilter, DateRange } from './date.types';
 
 const DateRangePicker: React.FC<Props> = props => {
-  const { value, onApply, showTime, onValueChange, texts, popoverPlacement } = props;
+  const { value, onApply, showTime, onValueChange, texts, popoverPlacement, forceAdjacentMonths } = props;
   const [popupVisible, setPopupVisible] = React.useState<boolean | undefined>(undefined);
   const [selectedDate, setSelectedDate] = React.useState(value);
   const [inputActive, setInputActive] = React.useState<boolean>();
@@ -48,6 +48,8 @@ const DateRangePicker: React.FC<Props> = props => {
             onApply={onApplyCallback}
             onValueChange={onValueChangeCallback}
             value={selectedDate}
+            texts={texts}
+            forceAdjacentMonths={forceAdjacentMonths}
           />
         }
         trigger="click"
