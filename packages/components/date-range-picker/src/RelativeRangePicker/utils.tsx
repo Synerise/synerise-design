@@ -4,6 +4,7 @@ import { ArrowRightM, ArrowLeftM, SinceArrowRightM } from '@synerise/ds-icon/dis
 import * as React from 'react';
 import { DateRange, RelativeDateRange } from '../date.types';
 import * as CONST from '../constants';
+import { Props } from './RelativeRangePicker.types';
 
 export const setOffsetValue = (value: number | string, currentRange: RelativeDateRange): RelativeDateRange => {
   const updatedValue = value === '' ? null : value;
@@ -21,10 +22,6 @@ export const setDurationValue = (value: number | string, currentRange: RelativeD
 };
 export const setFuture = set(lensPath(['future']));
 
-export const GROUPS = {
-  PAST: 'PAST',
-  FUTURE: 'FUTURE',
-};
 export const RANGES_MODE = {
   PAST: 'PAST',
   FUTURE: 'FUTURE',
@@ -40,19 +37,17 @@ export const getDefaultCustomRange = (currentGroup: string | null): RelativeDate
   type: CONST.RELATIVE,
   from: undefined,
   to: undefined,
-  future: currentGroup === GROUPS.FUTURE,
+  future: currentGroup === RANGES_MODE.FUTURE,
   offset: { type: 'DAYS', value: 0 },
   duration: { type: 'DAYS', value: 0 },
 });
 
 export const isAbsolute = (value: DateRange): boolean => value.type === CONST.ABSOLUTE && !value.from && !value.to;
 
-export function getCurrentGroupFromProps({ future, past }: { future: boolean; past: boolean }): string | null {
-  if (past) {
-    return GROUPS.PAST;
+export function getCurrentGroupFromProps({ relativeModes }: Props): string | null {
+  if (!!relativeModes && relativeModes?.length > 0) {
+    return relativeModes[0];
   }
-  if (future) {
-    return GROUPS.FUTURE;
-  }
+
   return null;
 }

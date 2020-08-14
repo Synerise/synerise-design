@@ -107,8 +107,11 @@ class RawDateRangePicker extends React.PureComponent<Props, State> {
       relativeFuture,
       relativePast,
       ranges,
+      forceAdjacentMonths,
+      relativeModes,
+      texts,
     } = this.props;
-    const { value, mode, changed, } = this.state;
+    const { value, mode, changed } = this.state;
     const { from, to, key } = value;
 
     if (mode === MODES.FILTER)
@@ -121,7 +124,7 @@ class RawDateRangePicker extends React.PureComponent<Props, State> {
     const validator = validate ? validate(value) : { valid: true };
     const isValid = (!!(from && to) || key === 'ALL_TIME') && validator.valid;
     const addons: React.ReactElement[] = [];
-    if (showRelativePicker)
+    if (showRelativePicker && !!relativeModes && relativeModes?.length > 0)
       addons.push(
         <AddonCollapse
           content={
@@ -131,6 +134,8 @@ class RawDateRangePicker extends React.PureComponent<Props, State> {
               ranges={ranges}
               value={value}
               onChange={this.handleRangeChange}
+              relativeModes={relativeModes}
+              texts={texts}
             />
           }
           title={intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.RELATIVE_DATE_RANGE' })}
@@ -156,6 +161,8 @@ class RawDateRangePicker extends React.PureComponent<Props, State> {
           dateOnly={!showTime}
           canSwitchMode={isValid}
           intl={intl}
+          texts={texts}
+          forceAdjacentMonths={forceAdjacentMonths}
         />
         {addons.length > 0 && <Separator />}
         {addons.map(
@@ -173,9 +180,13 @@ class RawDateRangePicker extends React.PureComponent<Props, State> {
           message={!validator.valid ? validator.message : null}
           onSwitchMode={this.handleSwitchMode}
           texts={{
-            apply: intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.APPLY' }),
-            startDatePlaceholder: intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.START-DATE' }),
-            endDatePlaceholder: intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.END-DATE' }),
+            apply: texts?.apply ? texts.apply : intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.APPLY' }),
+            startDatePlaceholder: texts?.startDatePlaceholder
+              ? texts.startDatePlaceholder
+              : intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.START-DATE' }),
+            endDatePlaceholder: texts?.endDatePlaceholder
+              ? texts.endDatePlaceholder
+              : intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.END-DATE' }),
           }}
           value={value}
           showTime={showTime}

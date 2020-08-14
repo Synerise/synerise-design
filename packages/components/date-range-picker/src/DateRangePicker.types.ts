@@ -16,8 +16,23 @@ export interface Props extends WrappedComponentProps {
   value: DateRange;
   forceAbsolute?: boolean;
   texts?: Texts;
-  popoverPlacement?: 'top' | 'left' | 'right' | 'bottom' | 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight' | 'leftTop' | 'leftBottom' | 'rightTop' | 'rightBottom';
+  forceAdjacentMonths?: boolean;
+  relativeModes?: RelativeMode[];
+  popoverPlacement?:
+    | 'top'
+    | 'left'
+    | 'right'
+    | 'bottom'
+    | 'topLeft'
+    | 'topRight'
+    | 'bottomLeft'
+    | 'bottomRight'
+    | 'leftTop'
+    | 'leftBottom'
+    | 'rightTop'
+    | 'rightBottom';
 }
+export type RelativeMode = 'PAST' | 'FUTURE' | 'SINCE';
 export interface State {
   mode: string;
   value: DateRange;
@@ -31,4 +46,7 @@ export interface Texts {
   endDatePlaceholder?: string;
   startDatePlaceholder?: string;
   clear?: string;
+  now?: string;
+  selectDate?: string;
+  emptyDateError?: string;
 }

@@ -15,6 +15,7 @@ export const Title = styled.div`
   font-weight: 500;
   margin-right: 12px;
   margin-left: 12px;
+  line-height: 32px;
 `;
 
 export const Help = styled.div`
@@ -30,6 +31,7 @@ export const Ranges = styled.div`
 `;
 
 export const CustomForm = styled.div`
+  margin-top: 24px;
   display: flex;
 `;
 
@@ -44,7 +46,6 @@ export const InputSelectGroup = styled(InputGroup)<InputGroupProps>`
     .ds-select-wrapper {
       width: 122px;
     }
-    margin-top: 24px;
     height: 32px;
   }
 `;
@@ -74,32 +75,34 @@ export const Range = styled(({ children, ...rest }) => (
   }
 `;
 
-export const RangeFormColumn = styled.div<{ noMargin?: boolean }>`
+export const RangeFormColumn = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   position: relative;
-  margin-bottom: ${(props): string => (props.noMargin ? '0px' : '-16px')};
+  height: 62px;
 `;
 
-export const DatePickerWrapper = styled.div`
+export const DatePickerWrapper = styled.div<{ error: boolean }>`
   width: 224px;
-  margin-top: 0px;
 `;
 export const DropMenu = styled(Menu)`
   padding: 8px;
 `;
 export const DropMenuItem = styled(Menu.Item)`
   max-height: 32px;
+  .ds-icon {
+    margin-right: -6px;
+  }
 `;
 export const OverlayWrapper = styled.div<{ visible?: boolean; width?: number }>`
   position: absolute;
-  bottom:40px;
+  bottom: 40px;
   display: ${(props): string => (props.visible ? 'flex' : 'none')};
   z-index: 15;
   box-shadow: 0 4px 12px 0 rgba(35, 41, 54, 0.09);
   ${(props): false | string => !!props.width && `width:${props.width}px;`}
   &, & > ul {
-  border-radius:3px;
+    border-radius: 3px;
   }
 `;
 export const DropdownContainer = styled.div`
