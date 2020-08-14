@@ -106,7 +106,8 @@ export const Cell = styled.button<{ active?: boolean }>`
 `;
 
 export const ClearIcon = styled(Icon)`
-  && {
+  &&,
+  &&:hover {
     svg {
       color: ${(props): string => props.theme.palette['red-600']};
       fill: ${(props): string => props.theme.palette['red-600']};
