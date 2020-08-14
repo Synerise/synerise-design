@@ -28,7 +28,6 @@ export const Unit = styled.div`
   overflow-x: hidden;
   overflow-y: scroll;
   scrollbar-width: none;
-  scroll-snap-type: y mandatory;
 
   &::-webkit-scrollbar {
     width: 0;
@@ -54,7 +53,6 @@ export const CellText = styled(Label)`
 `;
 
 export const Cell = styled.button<{ active?: boolean }>`
-  scroll-snap-align: start;
   height: 32px;
   text-align: center;
   display: flex;
@@ -130,7 +128,6 @@ export const TimePickerInput = styled(Input)`
 export const PlaceholderWrapper = styled.div` 
   width:100%:
   position:relative;
-
 `;
 export const Placeholder = styled.div<{ height: number }>`
   height: ${(props): number => props.height}px;
