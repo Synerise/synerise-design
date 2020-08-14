@@ -32,4 +32,5 @@ export interface Props {
   onSelectedChange?: (tags: Array<TagProps>, action: ActionTaken) => void;
   overlayStyle?: React.CSSProperties;
   maxHeight?: number;
+  overlayPlacement?: 'topLeft' | 'topCenter' | 'topRight' | 'bottomLeft' | 'bottomCenter' | 'bottomRight';
 }

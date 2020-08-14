@@ -3,7 +3,6 @@ import { withTheme } from 'styled-components';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon from '@synerise/ds-icon';
 import { Add3M, SearchM } from '@synerise/ds-icon/dist/icons';
-import Scrollbar from '@synerise/ds-scrollbar';
 import { Props } from './Tags.types';
 import * as S from './Tags.styles';
 import Tag from './Tag/Tag';
@@ -25,7 +24,8 @@ const Tags: React.FC<Props> = ({
   onCreate,
   theme,
   maxHeight,
-  overlayStyle
+  overlayStyle,
+  overlayPlacement,
 }: Props) => {
   const [isAdding, setAddingState] = React.useState<boolean>(false);
   const [searchQuery, setSearchQuery] = React.useState<string>('');
@@ -82,22 +82,20 @@ const Tags: React.FC<Props> = ({
     reset();
   };
 
-
   const onCreateNewTag = (): void => {
     onCreate && onCreate(searchQuery);
     reset();
   };
 
   const dropdownOverlay = (
-    <S.Overlay>
+    <S.Overlay data-testid="dropdown">
       <S.DropdownSearch
         value={searchQuery}
         onSearchChange={setSearchQuery}
         placeholder={(texts && texts.searchPlaceholder) || ''}
         iconLeft={<Icon component={<SearchM />} color={theme.palette['grey-600']} />}
       />
-      <S.DropdownContainer data-testid="dropdown">
-        <Scrollbar maxHeight={maxHeight}>
+      <S.DropdownContainer maxHeight={maxHeight}>
         {isCreatable && (
           <>
             <S.CreateTagDropdownButton type="ghost" onClick={onCreateNewTag} marginless={!isSeperated}>
@@ -131,7 +129,6 @@ const Tags: React.FC<Props> = ({
             </S.ManageLink>
           </>
         )}
-      </Scrollbar>
       </S.DropdownContainer>
     </S.Overlay>
   );
@@ -155,7 +152,7 @@ const Tags: React.FC<Props> = ({
       {addable && (
         <Dropdown
           trigger={['click']}
-          placement="bottomLeft"
+          placement={overlayPlacement}
           visible={isAdding}
           onVisibleChange={setAddingState}
           overlay={dropdownOverlay}
