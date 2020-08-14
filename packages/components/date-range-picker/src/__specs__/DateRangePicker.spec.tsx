@@ -4,13 +4,14 @@ import '@testing-library/jest-dom/extend-expect';
 import RawDateRangePicker from '../RawDateRangePicker';
 import { DateRange, RelativeDateRange } from '../date.types';
 import { DAYS, RELATIVE, RELATIVE_PRESETS, ABSOLUTE } from '../constants';
+import { RelativeMode } from '../DateRangePicker.types';
 
 const ABSOLUTE_VALUE = {
   type: ABSOLUTE,
   from: '2018-10-09T00:00:00+02:00',
   to: '2018-12-08T23:59:59+01:00',
 };
-
+const RELATIVE_MODES = ['PAST', 'FUTURE', 'SINCE'];
 const RELATIVE_VALUE = RELATIVE_PRESETS[1];
 
 const APPLY_BUTTON_SELECTOR = '.ds-date-range-picker-footer  button';
@@ -51,6 +52,7 @@ describe('DateRangePicker', () => {
         showRelativePicker
         forceAbsolute={false}
         value={ABSOLUTE_VALUE as DateRange}
+        relativeModes={RELATIVE_MODES as RelativeMode[]}
       />
     );
     const leftSideMonth = getByText('Oct');
@@ -67,6 +69,7 @@ describe('DateRangePicker', () => {
         showFilter={false}
         showRelativePicker
         value={RELATIVE_VALUE as DateRange}
+        relativeModes={RELATIVE_MODES as RelativeMode[]}
         forceAbsolute
       />
     );
@@ -85,6 +88,7 @@ describe('DateRangePicker', () => {
         showRelativePicker
         value={RELATIVE_VALUE as DateRange}
         forceAbsolute={false}
+        relativeModes={RELATIVE_MODES as RelativeMode[]}
       />
     );
     const applyButton = container.querySelector(APPLY_BUTTON_SELECTOR) as HTMLElement;
@@ -103,6 +107,7 @@ describe('DateRangePicker', () => {
         value={RELATIVE_VALUE as DateRange}
         forceAbsolute={false}
         ranges={RANGES}
+        relativeModes={RELATIVE_MODES as RelativeMode[]}
       />
     );
     expect(getByText(RANGES[0].translationKey as string)).toBeInTheDocument();
@@ -118,6 +123,7 @@ describe('DateRangePicker', () => {
         value={ABSOLUTE_VALUE as DateRange}
         forceAbsolute={false}
         ranges={RANGES}
+        relativeModes={RELATIVE_MODES as RelativeMode[]}
       />
     );
     const valueWrapper = container.querySelector('.ds-date-range-picker-value') as HTMLElement;
@@ -138,6 +144,7 @@ describe('DateRangePicker', () => {
         value={RELATIVE_VALUE as DateRange}
         forceAbsolute={false}
         ranges={RANGES}
+        relativeModes={RELATIVE_MODES as RelativeMode[]}
       />
     );
     const selectedRangeStart = container.querySelector('[data-attr="1"]') as HTMLElement;
@@ -161,6 +168,7 @@ describe('DateRangePicker', () => {
         value={ABSOLUTE_VALUE as DateRange}
         forceAbsolute={false}
         ranges={RANGES}
+        relativeModes={RELATIVE_MODES as RelativeMode[]}
       />
     );
     const valueWrapper = container.querySelector('.ds-date-range-picker-value') as HTMLElement;
