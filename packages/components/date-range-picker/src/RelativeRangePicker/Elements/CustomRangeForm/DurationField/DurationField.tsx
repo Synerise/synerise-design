@@ -8,7 +8,7 @@ import * as CONST from '../../../../constants';
 import { Props } from './DurationField.types';
 
 export const setDurationType = set(lensPath(['duration', 'type']));
-
+const SELECT_DROPDOWN_OFFSET = -4;
 const DurationField: React.FC<Props> = ({ currentRange, handleChange, handleDurationValueChange, intl }) => {
   const { duration } = currentRange;
 
@@ -27,7 +27,11 @@ const DurationField: React.FC<Props> = ({ currentRange, handleChange, handleDura
           onChange={handleDurationValueChange}
           raw
         />
-        <Select value={duration.type} onChange={(type): void => handleChange(setDurationType(type, currentRange))}>
+        <Select
+          value={duration.type}
+          onChange={(type): void => handleChange(setDurationType(type, currentRange))}
+          dropdownAlign={{ points: ['bl', 'tl'], offset: [0, SELECT_DROPDOWN_OFFSET] }}
+        >
           {CONST.RELATIVE_TYPES.map(type => (
             <Select.Option key={type} value={type}>
               {intl.formatMessage({ id: `DS.DATE-RANGE-PICKER.${type.toUpperCase()}` })}

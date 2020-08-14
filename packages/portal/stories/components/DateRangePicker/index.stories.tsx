@@ -14,6 +14,16 @@ const stories = {
   default: () => {
     const value = undefined;
     const showTime = boolean('Set showTime', true);
+    const modesObj = {
+      PAST: boolean('Set relative past mode', true),
+      FUTURE: boolean('Set relative future mode', true),
+      SINCE: boolean('Set relative since mode', true),
+    };
+    const getRelativeModes = (modesObject: object) => {
+      const keys = Object.keys(modesObject);
+      const enabledModes = keys.filter(k => !!modesObject[k]);
+      return enabledModes;
+    };
     const showRelativePicker = boolean('Set relative filter', true);
     return (
       <DateRangePicker
@@ -27,8 +37,11 @@ const stories = {
           startDatePlaceholder: 'Start date',
           endDatePlaceholder: 'End date',
           clear: 'Clear',
+          emptyDateError: 'Date cannot be empty',
         }}
         popoverPlacement="bottomLeft"
+        forceAdjacentMonths={boolean('Set adjacent months', false)}
+        relativeModes={getRelativeModes(modesObj)}
       />
     );
   },
@@ -53,32 +66,7 @@ const stories = {
           startDatePlaceholder: 'Start date',
           endDatePlaceholder: 'End date',
           clear: 'Clear',
-        }}
-        popoverPlacement="bottomLeft"
-      />
-    );
-  },
-  withEndDate: () => {
-    const value = {
-      filter: undefined,
-      from: undefined,
-      to: '2020-08-18T22:00:00.000Z',
-      type: 'ABSOLUTE',
-    };
-    const showTime = boolean('Set showTime', true);
-    const showRelativePicker = boolean('Set relative filter', true);
-    return (
-      <DateRangePicker
-        onApply={action('OnApply')}
-        showTime={showTime}
-        value={value}
-        relativeFuture
-        forceAbsolute
-        showRelativePicker={showRelativePicker}
-        texts={{
-          startDatePlaceholder: 'Start date',
-          endDatePlaceholder: 'End date',
-          clear: 'Clear',
+          emptyDateError: 'Date cannot be empty',
         }}
         popoverPlacement="bottomLeft"
       />
