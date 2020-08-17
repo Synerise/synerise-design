@@ -1,7 +1,7 @@
 import * as React from 'react';
 import ProgressBar from '@synerise/ds-progress-bar';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
-import { select, object } from '@storybook/addon-knobs';
+import { select, object, number } from '@storybook/addon-knobs';
 import Multivalue from '@synerise/ds-progress-bar/dist/Multivalue/Multivalue';
 
 
@@ -46,20 +46,20 @@ const stories = {
   multivalueBar: () => {
     const percentArray = [
       {
-        percent: 100,
+        percent: number( "Set percent value 1: ", 100, {min:0, max:100}),
         color: customColorOptions.mars,
       },
       {
-        percent: 80,
+        percent: number( "Set percent value 2: ", 80, {min:0, max:100}),
         color: customColorOptions.yellow,
       },
       {
-        percent: 60,
+        percent: number( "Set percent value 3: ", 60, {min:0, max:100}),
         color: customColorOptions.cyan,
       },
     ];
 
-    return <Multivalue values={object('Set Percent Array',percentArray)}></Multivalue>;
+    return <Multivalue values={percentArray}></Multivalue>;
   },
 };
 
