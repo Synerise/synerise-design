@@ -56,8 +56,8 @@ export const CreateTagDropdownButton = styled(Button)<{ marginless: boolean }>`
   }
 `;
 
-export const ManageLinkButton = styled(Button)`
-  margin: 8px;
+export const ManageLinkButton = styled(Button)<{ onlyChild: boolean }>`
+  margin: ${(props): string => (props.onlyChild ? '0' : '8px ')};
 `;
 
 export const Seperator = styled.hr`
