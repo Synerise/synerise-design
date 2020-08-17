@@ -8,6 +8,7 @@ export interface TagsTexts {
   manageLinkLabel?: string;
   createTagButtonLabel?: string;
   dropdownNoTags?: string;
+  clearTooltip?: string;
 }
 
 export interface ActionTaken {
