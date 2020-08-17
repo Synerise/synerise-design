@@ -1,5 +1,6 @@
 import { IntlShape } from 'react-intl';
 import { DateRange, RelativeDateRange } from '../date.types';
+import { RelativeMode, Texts } from '../DateRangePicker.types';
 
 export type Props = {
   ranges: RelativeDateRange[];
@@ -9,6 +10,8 @@ export type Props = {
   past: boolean;
   since: boolean;
   intl: IntlShape;
+  texts?: Texts;
+  relativeModes?: RelativeMode[];
 };
 export type GroupRange = {
   PAST?: DateRange[];
@@ -21,4 +24,5 @@ export type State = {
   showCustomForm: boolean;
   currentRange: RelativeDateRange;
   groupedRanges?: GroupRange;
+  sinceTimestamp?: Date | undefined;
 };

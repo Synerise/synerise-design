@@ -17,7 +17,7 @@ const stories = {
 };
 
 export default {
-  name: 'Components|Message',
+name: 'Components/Message',
   stories,
   decorator,
   Component,

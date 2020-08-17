@@ -6,19 +6,19 @@ export const Sides = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   height: 370px;
-  margin: 0 8px;
+  margin: 0;
   && .ds-date-picker-nav {
-    margin: 0 12px;
+    margin: 0 14px;
   }
 `;
 
-export const Side = styled.div<{ mode: string}>`
-  padding: 15px 15px 0 15px;
+export const Side = styled.div<{ mode: string }>`
+  padding: 16px 12px 0 12px;
   display: grid;
   grid-template-rows: 48px 290px;
   align-items: stretch;
   justify-content: stretch;
-
+  width: 318px;
   ${(props): string | false =>
     props.mode === 'time' &&
     `.long-prev,
@@ -36,7 +36,7 @@ export const Side = styled.div<{ mode: string}>`
 
 export const PickerFooter = styled.div`
   margin: 0 8px;
-  padding: 16px;
+  padding: 6px 16px 13px;
   display: flex;
 `;
 export const FooterSeparator = styled.div`

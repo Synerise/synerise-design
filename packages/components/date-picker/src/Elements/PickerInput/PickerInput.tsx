@@ -21,6 +21,8 @@ const PickerInput: React.FC<Props> = ({
   onClick,
   clearTooltip,
   highlight,
+  error,
+  errorText,
   ...rest
 }: Props) => {
   const [hovered, setHovered] = React.useState<boolean>(false);
@@ -73,11 +75,11 @@ const PickerInput: React.FC<Props> = ({
         value={getText()}
         icon1={
           hovered && !!value ? (
-            <Tooltip title={clearTooltip}>
-              <S.ClearIconWrapper>
+            <S.ClearIconWrapper>
+              <Tooltip title={clearTooltip}>
                 <Icon component={<Close3S />} onClick={handleIconClick} />
-              </S.ClearIconWrapper>
-            </Tooltip>
+              </Tooltip>
+            </S.ClearIconWrapper>
           ) : (
             <S.DefaultIconWrapper>
               <Icon component={<CalendarM />} />
@@ -85,6 +87,8 @@ const PickerInput: React.FC<Props> = ({
           )
         }
         style={style}
+        error={error}
+        errorText={errorText}
         {...rest}
       />
     </S.Container>

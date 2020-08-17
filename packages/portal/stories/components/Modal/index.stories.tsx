@@ -49,7 +49,7 @@ const stories = {
 };
 
 export default {
-  name: 'Components|Modal',
+name: 'Components/Modal',
   stories,
   Component: Modal,
 };

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import range from 'lodash/range';
-import { boolean, number, select } from '@storybook/addon-knobs/react';
+import { boolean, number, select } from '@storybook/addon-knobs';
 
 import Layout from '@synerise/ds-layout';
 import PageHeader from '@synerise/ds-page-header';
@@ -62,7 +62,7 @@ const stories = {
 };
 
 export default {
-  name: 'Components|Layout',
+name: 'Components/Layout',
   withoutCenter: true,
   stories,
   Component: Layout,

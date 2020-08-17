@@ -35,7 +35,7 @@ const stories = {
 };
 
 export default {
-  name: 'Components|Radio',
+name: 'Components/Radio',
   config: {
     notes: {
       markdown,

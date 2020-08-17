@@ -302,7 +302,7 @@ const stories = {
 };
 
 export default {
-  name: 'Components|Alert',
+name: 'Components/Alert',
   config: {},
   decorator,
   stories,

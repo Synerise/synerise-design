@@ -464,7 +464,7 @@ const stories = {
 };
 
 export default {
-  name: 'Components|Input',
+name: 'Components/Input',
   decorator,
   stories,
   Component: Input,

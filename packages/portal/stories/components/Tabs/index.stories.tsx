@@ -121,7 +121,7 @@ const stories = {
 };
 
 export default {
-  name: 'Tabs|Tabs',
+  name: 'Tabs/Tabs',
   decorator,
   stories,
   Component: Tabs,

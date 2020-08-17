@@ -20,13 +20,17 @@ export const getDisabledTimeOptions = (
   const lowLimit = lowerLimit || fnsStartOfDay(day);
   const upLimit = upperLimit || fnsEndOfDay(day);
   const options = TIME_OPTIONS[granularity].map((option: number) => SET[granularity](day, option));
-  return options.filter((a: number) => !fnsIsWithinRange(a, lowLimit, upLimit)).map((option: number) => GET[granularity](option));
+  return options
+    .filter((a: number) => !fnsIsWithinRange(a, lowLimit, upLimit))
+    .map((option: number) => GET[granularity](option));
 };
 
-export const getSidesState = (value: DateRange): State => {
+export const getSidesState = (value: DateRange, forceAdjacentMonths?: boolean): State => {
   const from = fnsStartOfMonth(value.from || new Date());
   let to = fnsStartOfMonth(value.to || new Date());
-  if (fnsIsSameMonth(from, to)) to = ADD.MONTHS(to, 1);
+  if (fnsIsSameMonth(from, to)) {
+    to = ADD.MONTHS(to, 1);
+  }
   return {
     left: {
       month: from,
@@ -34,7 +38,7 @@ export const getSidesState = (value: DateRange): State => {
       mode: 'date',
     },
     right: {
-      month: to,
+      month: forceAdjacentMonths ? ADD.MONTHS(from, 1) : to,
       monthTitle: format(to, 'MMM YYYY'),
       mode: 'date',
     },

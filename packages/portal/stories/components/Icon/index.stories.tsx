@@ -91,7 +91,7 @@ const stories = {
 };
 
 export default {
-  name: 'Components|Icon',
+name: 'Components/Icon',
   stories,
   Component: Icon,
 };

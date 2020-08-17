@@ -319,7 +319,7 @@ const stories = {
 };
 
 export default {
-  name: 'Components|Tags',
+name: 'Components/Tags',
   stories,
   Component: Tags,
 };

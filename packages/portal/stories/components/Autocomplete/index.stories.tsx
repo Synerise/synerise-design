@@ -95,7 +95,7 @@ const stories = {
 };
 
 export default {
-  name: 'Components|Autocomplete',
+name: 'Components/Autocomplete',
   config: {},
   stories,
   Component: Autocomplete,

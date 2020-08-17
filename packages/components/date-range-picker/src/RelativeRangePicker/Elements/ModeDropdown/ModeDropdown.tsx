@@ -4,7 +4,7 @@ import { CheckS } from '@synerise/ds-icon/dist/icons';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { useOnClickOutside } from '@synerise/ds-utils';
 import * as S from '../../RelativeRangePicker.styles';
-import { RANGES_ICON, RANGES_MODE } from '../../utils';
+import { RANGES_ICON } from '../../utils';
 import { Props } from './ModeDropdown.types';
 
 const MODE_TRANSLATION_KEYS = {
@@ -12,8 +12,7 @@ const MODE_TRANSLATION_KEYS = {
   FUTURE: 'NEXT',
   SINCE: 'SINCE',
 };
-const ModeDrop: React.FC<Props> = ({ currentRange, currentGroup, onModeChange, intl }: Props) => {
-  const modes = Object.values(RANGES_MODE);
+const ModeDrop: React.FC<Props> = ({ currentRange, currentGroup, onModeChange, modes, intl }: Props) => {
   const [dropVisible, setDropVisible] = React.useState<boolean>(false);
   const overlayRef = React.useRef<HTMLDivElement>(null);
 
@@ -53,6 +52,7 @@ const ModeDrop: React.FC<Props> = ({ currentRange, currentGroup, onModeChange, i
         mode="single-icon"
         type="secondary"
         onClick={(): void => setDropVisible(true)}
+        disabled={!modes || !modes?.length || modes.length === 1}
       >
         {!!currentGroup && <Icon component={[RANGES_ICON[currentGroup]]} />}
       </S.ModeDropdownTrigger>

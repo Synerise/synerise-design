@@ -319,7 +319,7 @@ const stories = {
 };
 
 export default {
-  name: 'Button|Button',
+  name: 'Button/Button',
   config: {
     notes: {
       markdown,

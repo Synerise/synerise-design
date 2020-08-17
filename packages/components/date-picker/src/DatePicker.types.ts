@@ -14,6 +14,10 @@ export type Props = {
   useEndOfDay?: boolean;
   texts: Texts;
   intl?: IntlShape;
+  onClear?: () => void;
+  error?: boolean;
+  errorText?: string | React.ReactNode;
+  popoverPlacement?: 'topLeft' | 'topCenter' | 'topRight' | 'bottomLeft' | 'bottomCenter' | 'bottomRight';
 };
 
 export type State = {

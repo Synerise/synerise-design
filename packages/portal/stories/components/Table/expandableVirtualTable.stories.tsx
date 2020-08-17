@@ -134,7 +134,7 @@ const stories = {
 };
 
 export default {
-  name: 'Table|Expandable virtualized table',
+  name: 'Table/Expandable virtualized table',
   decorator,
   stories,
   Component: Table,

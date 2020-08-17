@@ -194,7 +194,7 @@ const stories = {
 };
 
 export default {
-  name: 'Components|List',
+name: 'Components/List',
   decorator,
   stories,
   Component: List,

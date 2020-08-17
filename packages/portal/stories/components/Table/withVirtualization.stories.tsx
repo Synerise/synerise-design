@@ -108,7 +108,7 @@ const stories = {
 };
 
 export default {
-  name: 'Table|Table with virtualization',
+  name: 'Table/Table with virtualization',
   decorator,
   stories,
   Component: Table,

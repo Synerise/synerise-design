@@ -7,8 +7,18 @@ import RawDatePicker from './RawDatePicker';
 import PickerInput from './Elements/PickerInput/PickerInput';
 import * as S from './DatePicker.styles';
 
-const DatePicker: React.FC<Props> = (props) => {
-  const { texts, value, onApply, showTime, onValueChange } = props;
+const DatePicker: React.FC<Props> = ({
+  texts,
+  value,
+  onApply,
+  showTime,
+  onValueChange,
+  onClear,
+  errorText,
+  popoverPlacement,
+  error,
+  ...rest
+}) => {
   const [dropVisible, setDropVisible] = React.useState(false);
   const [selectedDate, setSelectedDate] = React.useState(value);
   const ref = React.useRef<HTMLDivElement>(null);
@@ -35,7 +45,7 @@ const DatePicker: React.FC<Props> = (props) => {
       overlay={
         <S.OverlayContainer ref={ref}>
           <RawDatePicker
-            {...props}
+            {...rest}
             showTime={showTime}
             texts={texts}
             onApply={onApplyCallback}
@@ -44,6 +54,8 @@ const DatePicker: React.FC<Props> = (props) => {
           />
         </S.OverlayContainer>
       }
+      overlayStyle={{ boxShadow: '0 4px 12px 0 rgba(35, 41, 54, 0.07)' }}
+      placement={popoverPlacement}
       visible={!!dropVisible}
     >
       <PickerInput
@@ -55,10 +67,13 @@ const DatePicker: React.FC<Props> = (props) => {
         onClear={(): void => {
           setDropVisible(false);
           setSelectedDate(undefined);
+          onClear && onClear();
         }}
         placeholder={texts.inputPlaceholder}
         clearTooltip={texts.clearTooltip}
         highlight={!!dropVisible}
+        error={error}
+        errorText={errorText}
       />
     </Dropdown>
   );

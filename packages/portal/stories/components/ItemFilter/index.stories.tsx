@@ -405,7 +405,7 @@ const stories = {
 };
 
 export default {
-  name: 'Filter|Filter Manager',
+  name: 'Filter/Filter Manager',
   config: {},
   stories,
   Component: ItemFilter,

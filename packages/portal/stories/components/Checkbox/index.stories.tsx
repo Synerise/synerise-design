@@ -48,7 +48,7 @@ const stories = {
 };
 
 export default {
-  name: 'Components|Checkbox',
+name: 'Components/Checkbox',
   stories,
   Component: Checkbox,
 };

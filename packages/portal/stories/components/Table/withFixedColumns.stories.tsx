@@ -91,7 +91,7 @@ const stories = {
 };
 
 export default {
-  name: 'Table|Table with fixed columns',
+  name: 'Table/Table with fixed columns',
   decorator,
   stories,
   Component: Table,

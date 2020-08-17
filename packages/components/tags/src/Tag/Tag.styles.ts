@@ -144,7 +144,7 @@ const insertShapeStyles = (props: InsertShapeStyles): FlattenSimpleInterpolation
                 display: inline-block;
                 padding: ${props.removable ? '0 7px 0 12px' : '0'};
                 padding-left: ${props.removable && props.preffixel && '4px'};
-                padding-right: ${props.removable && props.suffixel && '9px'};
+                padding-right: ${props.removable && props.suffixel && '10px'};
                 width: ${getWidthOnHover(props)};
               }
               padding-right: ${!props.suffixel && '5px'};
@@ -186,13 +186,14 @@ const insertShapeStyles = (props: InsertShapeStyles): FlattenSimpleInterpolation
                 display: inline-block;
                 padding: ${props.removable ? '0 7px 0 12px' : '0'};
                 padding-left: ${props.removable && props.preffixel && '4px'};
-                padding-right: ${props.removable && props.suffixel && '4px'};
+                padding-right: ${props.removable && props.suffixel && '10px'};
                 width: ${getWidthOnHover(props)};
               }
               padding-right: ${!props.suffixel && '5px'};
 
               ${RemoveButton} {
                 margin-left: 0px;
+                margin-right: ${ props.suffixel? '2px':'-2px'};
                 .icon {
                   position: absolute;
                   left: -3px;

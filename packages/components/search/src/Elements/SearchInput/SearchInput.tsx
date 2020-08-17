@@ -1,6 +1,6 @@
 import * as React from 'react';
 import onClickOutside from 'react-onclickoutside';
-import { Input } from 'antd';
+import Input from 'antd/lib/input';
 import Close3M from '@synerise/ds-icon/dist/icons/Close3M';
 import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';

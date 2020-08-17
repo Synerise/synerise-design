@@ -43,7 +43,7 @@ export const DayPicker = styled(DayPickerBase)`
   }
 
   .DayPicker-Weekday {
-    min-width: 40px;
+    min-width: 39px;
     height: 32px;
     display: table-cell;
     vertical-align: middle;
@@ -342,7 +342,11 @@ export const DayPicker = styled(DayPickerBase)`
         color: ${(props): string => props.theme.palette.white};
       }
   }
-
+  .DayPicker-Day--initial:not(.DayPicker-Day--disabled):not(.DayPicker-Day--entered) {
+      & > ${DayBackground} {
+        background: transparent;
+      }
+  }
   &.relative {
       .DayPicker-Day--start.DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside) {
       & > ${DayText} {

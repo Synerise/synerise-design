@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import Button from '@synerise/ds-button';
 import SearchBar from '@synerise/ds-search-bar/';
+import Scrollbar from '@synerise/ds-scrollbar';
+import { ScrollbarProps } from '@synerise/ds-scrollbar/dist/Scrollbar';
 
 export const Container = styled.div`
   margin-bottom: 24px;
@@ -44,7 +46,7 @@ export const CreateTagDropdownButton = styled(Button)<{ marginless: boolean }>`
     text-align: left;
 
     ${AddIconWrapper} {
-      transform: translate(-10px,0px);
+      transform: translate(-10px, 0px);
     }
   }
 
@@ -81,14 +83,10 @@ export const Seperator = styled.hr`
   background-position: top;
 `;
 
-export const DropdownContainer = styled.div`
+export const DropdownContainer = styled(Scrollbar)<ScrollbarProps>`
   display: flex;
   flex-direction: column;
   padding: 8px 0;
-  .scrollbar-container, .scrollbar-container > div {
-  overflow-x: hidden;
-  overflow-y: scroll;
-  }
 `;
 
 export const DropdownTagsContainer = styled.div<{ isCreatable: boolean }>`
@@ -97,7 +95,7 @@ export const DropdownTagsContainer = styled.div<{ isCreatable: boolean }>`
   padding: ${(props): string => (props.isCreatable ? '8px 0 0' : '0')};
   max-height: 320px;
   overflow-y: auto;
-  padding: 0 8px;
+  padding: 12px 8px;
 
   > * {
     width: fit-content;
@@ -120,5 +118,5 @@ export const DropdownNoTags = styled.span`
 `;
 
 export const Overlay = styled.div`
-background-color: ${(props): string => props.theme.palette.white};
-`
+  background-color: ${(props): string => props.theme.palette.white};
+`;
