@@ -79,13 +79,13 @@ const stories = {
       color: text('Set custom color', '')
     })}</div>
   ),
-  additionalListIcon: () => (
+  additionalIcons: () => (
     <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between' }}>{AdditionalIconComponent(additionalIconsRaw)}</div>
   ),
-  L: () => (
+  additionalL: () => (
     <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between' }}>{AdditionalIconComponent(lIconsRaw)}</div>
   ),
-  XL: () => (
+  additionalXL: () => (
     <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between' }}>{AdditionalIconComponent(xlIconsRaw)}</div>
   ),
 };
