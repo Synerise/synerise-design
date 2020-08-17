@@ -37,7 +37,7 @@ export const CreateTagDropdownButton = styled(Button)<{ marginless: boolean }>`
   text-overflow: ellipsis;
   display: flex;
   align-items: center;
-  margin: 0 8px 8px;
+  margin: 8px 8px;
   position: absolute;
   right: -5px;
 
@@ -56,20 +56,13 @@ export const CreateTagDropdownButton = styled(Button)<{ marginless: boolean }>`
   }
 `;
 
-export const ManageLink = styled.a<{ onlyChild: boolean }>`
-  display: block;
-  font-size: 13px;
-  font-weight: 500;
-  margin: ${(props): string => (props.onlyChild ? '0' : '8px 0 0')};
-  height: 32px;
-  line-height: 32px;
-  padding: 0 20px;
-  color: ${(props): string => props.theme.palette['grey-700']};
+export const ManageLinkButton = styled(Button)<{ onlyChild: boolean }>`
+  margin: ${(props): string => (props.onlyChild ? '0' : '8px')};
 `;
 
 export const Seperator = styled.hr`
   width: auto;
-  margin: 0 4px;
+  margin: 0 10px 0 20px;
   padding: 0;
   border: 0;
   height: 1px;

@@ -288,6 +288,7 @@ const stories = {
             overlayStyle={{width: '283px'}}
             maxHeight={200}
             texts={{
+              clearTooltip: 'Clear',
               addButtonLabel: 'Add tag',
               manageLinkLabel: 'Manage tags',
               createTagButtonLabel: 'Add tag',
