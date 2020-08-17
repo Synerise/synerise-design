@@ -331,7 +331,12 @@
 
       &.@{table-prefix-cls}-row-level-1 {
         td {
-          &:not(.@{table-prefix-cls}-selection-column) {
+          &:first-of-type {
+            &:not(.@{table-prefix-cls}-selection-column) {
+              padding-left: 48px;
+            }
+          }
+          &.@{table-prefix-cls}-selection-column + td {
             padding-left: 48px;
           }
         }
@@ -339,7 +344,12 @@
 
       &.@{table-prefix-cls}-row-level-2 {
         td {
-          &:not(.@{table-prefix-cls}-selection-column) {
+          &:first-of-type {
+            &:not(.@{table-prefix-cls}-selection-column) {
+              padding-left: 64px;
+            }
+          }
+          &.@{table-prefix-cls}-selection-column + td {
             padding-left: 64px;
           }
         }
