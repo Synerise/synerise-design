@@ -3,6 +3,57 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.23.29](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.23.28...@synerise/ds-table@0.23.29) (2020-08-12)
+
+**Note:** Version bump only for package @synerise/ds-table
+
+
+
+
+
+## [0.23.28](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.23.27...@synerise/ds-table@0.23.28) (2020-08-11)
+
+**Note:** Version bump only for package @synerise/ds-table
+
+
+
+
+
+## [0.23.27](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.23.26...@synerise/ds-table@0.23.27) (2020-08-07)
+
+
+### Bug Fixes
+
+* **table:** add avatarAction, ellipsis and maxWidth props to AvatarLabel ([c542292](https://github.com/synerise/synerise-design/commit/c5422927b7b88b6eff7c73a53a2bb5187ca601b5))
+* **table:** fix virtualTable width ([b909ebb](https://github.com/synerise/synerise-design/commit/b909ebb075fb9d585076d15013d3cc305d538ea7))
+
+
+
+
+
+## [0.23.26](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.23.25...@synerise/ds-table@0.23.26) (2020-08-05)
+
+
+### Bug Fixes
+
+* **table:** fix eslint error ([1250e49](https://github.com/synerise/synerise-design/commit/1250e49d907d940bd96f558b75e880eccd910b6d))
+* **table:** improve TreeTable performance ([59e58a2](https://github.com/synerise/synerise-design/commit/59e58a234c3a9cb3505da65aaaf9d1313105f023))
+
+
+
+
+
+## [0.23.25](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.23.24...@synerise/ds-table@0.23.25) (2020-08-04)
+
+
+### Bug Fixes
+
+* **table:** pagination overlapping the search dropdown ([aae80d3](https://github.com/synerise/synerise-design/commit/aae80d3155ceadc9b09b772162975b937385b302))
+
+
+
+
+
 ## [0.23.24](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.23.23...@synerise/ds-table@0.23.24) (2020-07-31)
 
 **Note:** Version bump only for package @synerise/ds-table

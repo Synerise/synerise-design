@@ -3,6 +3,35 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-popconfirm@0.5.1...@synerise/ds-popconfirm@0.5.2) (2020-08-12)
+
+**Note:** Version bump only for package @synerise/ds-popconfirm
+
+
+
+
+
+## [0.5.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-popconfirm@0.5.0...@synerise/ds-popconfirm@0.5.1) (2020-08-11)
+
+**Note:** Version bump only for package @synerise/ds-popconfirm
+
+
+
+
+
+# [0.5.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-popconfirm@0.4.30...@synerise/ds-popconfirm@0.5.0) (2020-08-05)
+
+
+### Features
+
+* **docs:** update docs of popconfirm ([cd19f77](https://github.com/Synerise/synerise-design/commit/cd19f779c1d8d0256fef8eaa69dcf8581a1c94e2))
+* **popconfirm:** add new types of popconfirm ([0f20892](https://github.com/Synerise/synerise-design/commit/0f20892afde63b81644ff24e94d22d1fb8c8bbd3))
+* **popconfirm:** add tests form withDescripton and withImages ([f34789a](https://github.com/Synerise/synerise-design/commit/f34789a8110217a45fb14cb3d756155a6e3d941e))
+
+
+
+
+
 ## [0.4.30](https://github.com/Synerise/synerise-design/compare/@synerise/ds-popconfirm@0.4.29...@synerise/ds-popconfirm@0.4.30) (2020-07-30)
 
 **Note:** Version bump only for package @synerise/ds-popconfirm

@@ -3,6 +3,47 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.20](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@0.1.19...@synerise/ds-date-picker@0.1.20) (2020-08-12)
+
+**Note:** Version bump only for package @synerise/ds-date-picker
+
+
+
+
+
+## [0.1.19](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@0.1.18...@synerise/ds-date-picker@0.1.19) (2020-08-11)
+
+
+### Bug Fixes
+
+* **date-picker:** changes after code review ([4208ee6](https://github.com/Synerise/synerise-design/commit/4208ee69bdbfe2bbfa550dd3d3340ff310fba387))
+
+
+
+
+
+## [0.1.18](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@0.1.17...@synerise/ds-date-picker@0.1.18) (2020-08-05)
+
+**Note:** Version bump only for package @synerise/ds-date-picker
+
+
+
+
+
+## [0.1.17](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@0.1.16...@synerise/ds-date-picker@0.1.17) (2020-08-04)
+
+
+### Bug Fixes
+
+* **date-picker:** added smallMargin prop of navbar ([da551f3](https://github.com/Synerise/synerise-design/commit/da551f3409a33bb6a404e92c0582431e053877d7))
+* **date-picker:** adopted changes for range picker ([a299351](https://github.com/Synerise/synerise-design/commit/a299351f23ef922da597a13a4a0eb8c516da8091))
+* **date-picker:** navbar styles fixes ([80ff07c](https://github.com/Synerise/synerise-design/commit/80ff07c3c93112f479dc5df940e8e0ccc90c9f41))
+* **date-picker:** removed smallMargin prop ([3d1e14e](https://github.com/Synerise/synerise-design/commit/3d1e14ec5c8e2bf6bb9c17cdc0ea1b913774fb82))
+
+
+
+
+
 ## [0.1.16](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@0.1.15...@synerise/ds-date-picker@0.1.16) (2020-07-31)
 
 **Note:** Version bump only for package @synerise/ds-date-picker

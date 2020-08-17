@@ -3,6 +3,45 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.104](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@0.2.103...@synerise/ds-tags@0.2.104) (2020-08-12)
+
+
+### Bug Fixes
+
+* **tags:** add props overlayStyle and maxHeight ([49eca18](https://github.com/Synerise/synerise-design/commit/49eca1836299ebd2db5fd280ab693bef25a3c33b))
+* **tags:** change paddings, margins, add scrollbar and add color ([c0ad179](https://github.com/Synerise/synerise-design/commit/c0ad179bf194da6940a775e14b832d19e23be563))
+* **tags:** change placement of add icon ([246f3d2](https://github.com/Synerise/synerise-design/commit/246f3d22eed634fbd3040e31e13f67760013ea81))
+* **tags:** delete unecessary styles ([06d9479](https://github.com/Synerise/synerise-design/commit/06d9479f0cd78cda1a11e308bbc53d9956baa89c))
+* **tags:** optional properties ([a2fea9d](https://github.com/Synerise/synerise-design/commit/a2fea9d0f7ac45fe38ff1793bf0b6c1d521d99e0))
+
+
+
+
+
+## [0.2.103](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@0.2.102...@synerise/ds-tags@0.2.103) (2020-08-11)
+
+**Note:** Version bump only for package @synerise/ds-tags
+
+
+
+
+
+## [0.2.102](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@0.2.101...@synerise/ds-tags@0.2.102) (2020-08-05)
+
+**Note:** Version bump only for package @synerise/ds-tags
+
+
+
+
+
+## [0.2.101](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@0.2.100...@synerise/ds-tags@0.2.101) (2020-08-04)
+
+**Note:** Version bump only for package @synerise/ds-tags
+
+
+
+
+
 ## [0.2.100](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@0.2.99...@synerise/ds-tags@0.2.100) (2020-07-30)
 
 **Note:** Version bump only for package @synerise/ds-tags

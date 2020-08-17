@@ -3,6 +3,45 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.40](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-select@0.3.39...@synerise/ds-card-select@0.3.40) (2020-08-12)
+
+**Note:** Version bump only for package @synerise/ds-card-select
+
+
+
+
+
+## [0.3.39](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-select@0.3.38...@synerise/ds-card-select@0.3.39) (2020-08-11)
+
+
+### Bug Fixes
+
+* **card-select:** change border to box shadow and change onClick to card ([0e7334e](https://github.com/Synerise/synerise-design/commit/0e7334e8d04b8547e4fd7cd19f678f911ce35360))
+
+
+
+
+
+## [0.3.38](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-select@0.3.37...@synerise/ds-card-select@0.3.38) (2020-08-04)
+
+
+### Bug Fixes
+
+* **card-select:** add cards and add group of cards ([28a6875](https://github.com/Synerise/synerise-design/commit/28a687531cf3d3b35892acbf83308b923f034a1f))
+* **card-select:** add cards and add improvments to them ([0e7412c](https://github.com/Synerise/synerise-design/commit/0e7412cc91001d3be98ecbed3067db13bdd55cfb))
+* **card-select:** add group of cards and group of small cards ([c5b82af](https://github.com/Synerise/synerise-design/commit/c5b82af8b416935431909507d0611f8778455097))
+* **card-select:** add group of cards and group of small cards ([8b8547c](https://github.com/Synerise/synerise-design/commit/8b8547cabbca6b5e05ff16e35d196e9f9eedc3f5))
+* **card-select:** add reacttext ([a538715](https://github.com/Synerise/synerise-design/commit/a538715b44fb95109426859a08d366bcf65e8272))
+* **card-select:** add smallcard and with no icon card ([b1fdd41](https://github.com/Synerise/synerise-design/commit/b1fdd4185d89d86dcbecbc32ee241201fd5afefb))
+* **card-select:** add type to props ([bb1b448](https://github.com/Synerise/synerise-design/commit/bb1b4481792d8c299bec43c186e16cf2f6835185))
+* **card-select:** add types string ([ae48e58](https://github.com/Synerise/synerise-design/commit/ae48e584e7e5ae7e0d7c514c4d4b5b922b614b46))
+* **card-select:** change tests in specs and add class to TickIcon ([d0b99cd](https://github.com/Synerise/synerise-design/commit/d0b99cd415cf8fc36440163383608472e5c9e564))
+* **card-select:** delete class name in icon ([9234769](https://github.com/Synerise/synerise-design/commit/92347692b555ff4c08ea8c8cc168b9c2f6b25657))
+
+
+
+
+
 ## [0.3.37](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-select@0.3.36...@synerise/ds-card-select@0.3.37) (2020-07-30)
 
 **Note:** Version bump only for package @synerise/ds-card-select

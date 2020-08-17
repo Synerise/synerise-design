@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.77](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search-bar@0.2.76...@synerise/ds-search-bar@0.2.77) (2020-08-12)
+
+**Note:** Version bump only for package @synerise/ds-search-bar
+
+
+
+
+
+## [0.2.76](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search-bar@0.2.75...@synerise/ds-search-bar@0.2.76) (2020-08-11)
+
+**Note:** Version bump only for package @synerise/ds-search-bar
+
+
+
+
+
+## [0.2.75](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search-bar@0.2.74...@synerise/ds-search-bar@0.2.75) (2020-08-05)
+
+
+### Bug Fixes
+
+* **search-bar:** fix placeholder on firefox ([6a5b620](https://github.com/Synerise/synerise-design/commit/6a5b6208ae200f1594021149be8f6b095e68622c))
+
+
+
+
+
+## [0.2.74](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search-bar@0.2.73...@synerise/ds-search-bar@0.2.74) (2020-08-04)
+
+**Note:** Version bump only for package @synerise/ds-search-bar
+
+
+
+
+
 ## [0.2.73](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search-bar@0.2.72...@synerise/ds-search-bar@0.2.73) (2020-07-30)
 
 **Note:** Version bump only for package @synerise/ds-search-bar

@@ -3,6 +3,125 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.94.0](https://github.com/synerise/synerise-design/compare/portal@0.93.0...portal@0.94.0) (2020-08-12)
+
+
+### Bug Fixes
+
+* **badge:** change size ant font weight ([32e8053](https://github.com/synerise/synerise-design/commit/32e8053dab8222277721c293a787e73d06838db3))
+* **collector:** added nav panel to the dropdown ([854a8ff](https://github.com/synerise/synerise-design/commit/854a8ffd01c522e2765347ca3c6398d62dbf3f2b))
+* **tags:** add props overlayStyle and maxHeight ([49eca18](https://github.com/synerise/synerise-design/commit/49eca1836299ebd2db5fd280ab693bef25a3c33b))
+* **tags:** change paddings, margins, add scrollbar and add color ([c0ad179](https://github.com/synerise/synerise-design/commit/c0ad179bf194da6940a775e14b832d19e23be563))
+
+
+### Features
+
+* **collector:** added collector ([d8419b8](https://github.com/synerise/synerise-design/commit/d8419b80cef857d27bdc424cfc2766e6778752ac))
+* **collector:** added dropdown with filtering ([1cc8d79](https://github.com/synerise/synerise-design/commit/1cc8d79c2b998ef51437a7c7e73a57d332f64cf7))
+* **collector:** added gradient overlay and suggestions filtering ([60647b5](https://github.com/synerise/synerise-design/commit/60647b545c92d693982a0758f156f0847cd3740c))
+
+
+
+
+
+# [0.93.0](https://github.com/synerise/synerise-design/compare/portal@0.92.2...portal@0.93.0) (2020-08-11)
+
+
+### Bug Fixes
+
+* **date-range-picker:** changed folder structure to pass the deploy ([b482a9f](https://github.com/synerise/synerise-design/commit/b482a9f5239c77d23aa37bb04502c9b98b61fe78))
+* **date-range-picker:** code review changes ([4af8679](https://github.com/synerise/synerise-design/commit/4af867978c0f228266224cbf52183b8e3ac4c693))
+* **date-range-picker:** ux review changes and fixes ([53c879d](https://github.com/synerise/synerise-design/commit/53c879d33da85c7399a5ba628a7a87cecba0083c))
+* **docs:** remove DataRangePicker from storybook ([54a2930](https://github.com/synerise/synerise-design/commit/54a29304b541b14f08a4bd7e8916fd458415c8a8))
+* **file-uploader:** add tooltip to remove icon ([e41fcbf](https://github.com/synerise/synerise-design/commit/e41fcbfa369071dad3ad927e81fdc5f7a57376e5))
+* **switch:** add switch with description and text ([5b8bbee](https://github.com/synerise/synerise-design/commit/5b8bbee9d988239e58ba736f96d27f21c3518f41))
+* **switch:** delete prop error ([08fd8e7](https://github.com/synerise/synerise-design/commit/08fd8e7b96aa7c2ba0d502d2f51b678e4fa376b3))
+
+
+### Features
+
+* **icon:** add folder-favourite icons, upadate config of svgr ([6eb30d3](https://github.com/synerise/synerise-design/commit/6eb30d39e38a25ec2bdb062b96037c92490b3adf))
+* **icon:** add L & XL icons ([4705eb4](https://github.com/synerise/synerise-design/commit/4705eb48318e520ff7604773a45162ce43734ee0))
+
+
+
+
+
+## [0.92.2](https://github.com/synerise/synerise-design/compare/portal@0.92.1...portal@0.92.2) (2020-08-07)
+
+
+### Bug Fixes
+
+* **file-uploader:** change name,background color to white,add active state to uploader ([67e6a4b](https://github.com/synerise/synerise-design/commit/67e6a4b6e52ea3f751dc7dd7b09c78dc5a7c79df))
+* **input-number:** changed story ([6eff009](https://github.com/synerise/synerise-design/commit/6eff009b156926cb0236cabb436ace52efc1c7c5))
+* **menu:** added an option to highlight selected item ([394904d](https://github.com/synerise/synerise-design/commit/394904db36366ce6f3d966b61c80a09c1b7c7834))
+* **menu:** changes in stories ([35d069c](https://github.com/synerise/synerise-design/commit/35d069c463d4396b98cc24085af05e0a53d7cc0e))
+* **menu:** code review changes ([54fe83e](https://github.com/synerise/synerise-design/commit/54fe83e2e5809efd1ef3c1dea677aa744aca0c62))
+* **menu:** removed unused code from story ([3f46f85](https://github.com/synerise/synerise-design/commit/3f46f85abf7771791cadd7afebbfbe910ccf345b))
+* **menu:** reverted the way of displaying stories ([ec622d7](https://github.com/synerise/synerise-design/commit/ec622d71d161efaf58e44ae68b1213be7802a315))
+* **menu:** started preparing a story ([62caecc](https://github.com/synerise/synerise-design/commit/62caecca3dd7de635178292a5d6bc4a6cde8c847))
+* **progress-bar:** add component multivalue Bar and add option to change colors ([2e6bb48](https://github.com/synerise/synerise-design/commit/2e6bb48ca9cf1b8b0c5edfa61f9282e5968a88a1))
+* **progress-bar:** delete text indent and text showing percent of bar ([0a76c18](https://github.com/synerise/synerise-design/commit/0a76c18d8436d81bfdaffa1766738333f7c2d56b))
+* **table:** add avatarAction, ellipsis and maxWidth props to AvatarLabel ([c542292](https://github.com/synerise/synerise-design/commit/c5422927b7b88b6eff7c73a53a2bb5187ca601b5))
+
+
+
+
+
+## [0.92.1](https://github.com/synerise/synerise-design/compare/portal@0.92.0...portal@0.92.1) (2020-08-05)
+
+
+### Bug Fixes
+
+* **items-roll:** allow to render suffixel passed from items ([5dcdec6](https://github.com/synerise/synerise-design/commit/5dcdec6691c93ed880f8a7f9ad51114d9c5f920a))
+
+
+
+
+
+# [0.92.0](https://github.com/synerise/synerise-design/compare/portal@0.91.0...portal@0.92.0) (2020-08-05)
+
+
+### Bug Fixes
+
+* **input-number:** added input number into input group story ([ff27946](https://github.com/synerise/synerise-design/commit/ff27946fc328fd401f24b45f9ed99dec523a4734))
+* **menu:** changed the submenu story - ordered knobs ([e1d57af](https://github.com/synerise/synerise-design/commit/e1d57afab4b4e0498534abcb7d4dcff713e77808))
+* **table:** improve TreeTable performance ([59e58a2](https://github.com/synerise/synerise-design/commit/59e58a234c3a9cb3505da65aaaf9d1313105f023))
+
+
+### Features
+
+* **popconfirm:** add examples of withDescription and withImages ([03a7a64](https://github.com/synerise/synerise-design/commit/03a7a64f8340cef5bc755876afe661fa7e326860))
+* **popconfirm:** add new types of popconfirm ([0f20892](https://github.com/synerise/synerise-design/commit/0f20892afde63b81644ff24e94d22d1fb8c8bbd3))
+
+
+
+
+
+# [0.91.0](https://github.com/synerise/synerise-design/compare/portal@0.90.0...portal@0.91.0) (2020-08-04)
+
+
+### Bug Fixes
+
+* **card:** add prop and add some fixes ([eeb2a77](https://github.com/synerise/synerise-design/commit/eeb2a77ed0a7edd892955b1f9bec6257d1038079))
+* **card-select:** add cards and add group of cards ([28a6875](https://github.com/synerise/synerise-design/commit/28a687531cf3d3b35892acbf83308b923f034a1f))
+* **card-select:** add cards and add improvments to them ([0e7412c](https://github.com/synerise/synerise-design/commit/0e7412cc91001d3be98ecbed3067db13bdd55cfb))
+* **card-select:** add group of cards and group of small cards ([c5b82af](https://github.com/synerise/synerise-design/commit/c5b82af8b416935431909507d0611f8778455097))
+* **card-select:** add group of cards and group of small cards ([8b8547c](https://github.com/synerise/synerise-design/commit/8b8547cabbca6b5e05ff16e35d196e9f9eedc3f5))
+* **card-select:** add smallcard and with no icon card ([b1fdd41](https://github.com/synerise/synerise-design/commit/b1fdd4185d89d86dcbecbc32ee241201fd5afefb))
+* **date-range-picker:** adjusting styles to the zeplin preview ([a9068b4](https://github.com/synerise/synerise-design/commit/a9068b4069ebce86eab0dc2a01b368a9e0c7215a))
+* **result:** fix modal sizes ([95fc999](https://github.com/synerise/synerise-design/commit/95fc999826bff83c7f0d9ff12fd00f6720c96a97))
+* **sidebar:** change width to 338px ([666de42](https://github.com/synerise/synerise-design/commit/666de42b4fce670e573d40651cb66c4311204510))
+
+
+### Features
+
+* **input:** add ds-scrollbar into textarea ([3cf7e6e](https://github.com/synerise/synerise-design/commit/3cf7e6e1aa0d11846c3db296ce081f2bef4948b0))
+
+
+
+
+
 # [0.90.0](https://github.com/synerise/synerise-design/compare/portal@0.89.3...portal@0.90.0) (2020-07-31)
 
 

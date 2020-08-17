@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.39](https://github.com/synerise/synerise-design/compare/@synerise/ds-layout@0.5.38...@synerise/ds-layout@0.5.39) (2020-08-12)
+
+
+### Bug Fixes
+
+* **tags:** add props overlayStyle and maxHeight ([49eca18](https://github.com/synerise/synerise-design/commit/49eca1836299ebd2db5fd280ab693bef25a3c33b))
+* **tags:** updates ([5746a4e](https://github.com/synerise/synerise-design/commit/5746a4ebb24d6277c5ea6bd1a3b18f26df1d43a9))
+
+
+
+
+
 ## [0.5.38](https://github.com/synerise/synerise-design/compare/@synerise/ds-layout@0.5.37...@synerise/ds-layout@0.5.38) (2020-07-30)
 
 **Note:** Version bump only for package @synerise/ds-layout

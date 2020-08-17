@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.53](https://github.com/synerise/synerise-design/compare/@synerise/ds-page-header@0.9.52...@synerise/ds-page-header@0.9.53) (2020-08-12)
+
+**Note:** Version bump only for package @synerise/ds-page-header
+
+
+
+
+
+## [0.9.52](https://github.com/synerise/synerise-design/compare/@synerise/ds-page-header@0.9.51...@synerise/ds-page-header@0.9.52) (2020-08-11)
+
+**Note:** Version bump only for package @synerise/ds-page-header
+
+
+
+
+
 ## [0.9.51](https://github.com/synerise/synerise-design/compare/@synerise/ds-page-header@0.9.50...@synerise/ds-page-header@0.9.51) (2020-07-30)
 
 **Note:** Version bump only for package @synerise/ds-page-header

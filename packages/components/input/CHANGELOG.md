@@ -3,6 +3,47 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.15.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.14.1...@synerise/ds-input@0.15.0) (2020-08-12)
+
+
+### Bug Fixes
+
+* **input:** change hover style in mutlival ([fb89170](https://github.com/synerise/synerise-design/commit/fb8917098c73de42a258e2b4522f4a474358f7d9))
+* **input:** multivalue hovered state ([09c0fa0](https://github.com/synerise/synerise-design/commit/09c0fa0a92865e23d48f86500239e4be0ba168a6))
+* **input:** multivalue style changes ([a51179b](https://github.com/synerise/synerise-design/commit/a51179b3230d96cc9c148f8a36b091ca7307b727))
+* **input:** used mouseover instead of mouseenter ([0d62829](https://github.com/synerise/synerise-design/commit/0d62829d157b2b27b286da2ebdc7c0932b0f8025))
+
+
+### Features
+
+* **collector:** added collector component ([fad0905](https://github.com/synerise/synerise-design/commit/fad0905b874349e0ad1b9511aa27a84103f0df77))
+
+
+
+
+
+## [0.14.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.14.0...@synerise/ds-input@0.14.1) (2020-08-11)
+
+
+### Bug Fixes
+
+* **input:** make selects grey in inpuy ([cd0428b](https://github.com/synerise/synerise-design/commit/cd0428b91e4a3e07a4fc6183f632e1c202e11dd5))
+
+
+
+
+
+# [0.14.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.13.18...@synerise/ds-input@0.14.0) (2020-08-04)
+
+
+### Features
+
+* **input:** add ds-scrollbar into textarea ([3cf7e6e](https://github.com/synerise/synerise-design/commit/3cf7e6e1aa0d11846c3db296ce081f2bef4948b0))
+
+
+
+
+
 ## [0.13.18](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.13.17...@synerise/ds-input@0.13.18) (2020-07-30)
 
 

@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.25.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.24.0...@synerise/ds-icon@0.25.0) (2020-08-12)
+
+
+### Features
+
+* **icon:** added new icons ([9485802](https://github.com/Synerise/synerise-design/commit/948580271ca23844314f2a73df06ac5b74354613))
+
+
+
+
+
+# [0.24.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.23.0...@synerise/ds-icon@0.24.0) (2020-08-11)
+
+
+### Bug Fixes
+
+* **icon:** allow to customize icons color ([a16acc2](https://github.com/Synerise/synerise-design/commit/a16acc288747c18dbdbc9c62ba3771b0ed95da0a))
+
+
+### Features
+
+* **icon:** add folder-favourite icons, upadate config of svgr ([6eb30d3](https://github.com/Synerise/synerise-design/commit/6eb30d39e38a25ec2bdb062b96037c92490b3adf))
+* **icon:** add L & XL icons ([4705eb4](https://github.com/Synerise/synerise-design/commit/4705eb48318e520ff7604773a45162ce43734ee0))
+
+
+
+
+
 # [0.23.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.22.0...@synerise/ds-icon@0.23.0) (2020-07-24)
 
 

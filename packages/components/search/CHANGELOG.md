@@ -3,6 +3,52 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.67](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.1.66...@synerise/ds-search@0.1.67) (2020-08-12)
+
+
+### Bug Fixes
+
+* **search:** visible row perf issue ([cf23fdb](https://github.com/Synerise/synerise-design/commit/cf23fdb54e3e0fe26bb748359d79af0c158a0202))
+
+
+
+
+
+## [0.1.66](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.1.65...@synerise/ds-search@0.1.66) (2020-08-11)
+
+**Note:** Version bump only for package @synerise/ds-search
+
+
+
+
+
+## [0.1.65](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.1.64...@synerise/ds-search@0.1.65) (2020-08-07)
+
+**Note:** Version bump only for package @synerise/ds-search
+
+
+
+
+
+## [0.1.64](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.1.63...@synerise/ds-search@0.1.64) (2020-08-05)
+
+
+### Bug Fixes
+
+* **search:** fix placeholder on safari ([b138c3f](https://github.com/Synerise/synerise-design/commit/b138c3ffecb7b1df11767df08b3b790efdb1b511))
+
+
+
+
+
+## [0.1.63](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.1.62...@synerise/ds-search@0.1.63) (2020-08-04)
+
+**Note:** Version bump only for package @synerise/ds-search
+
+
+
+
+
 ## [0.1.62](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.1.61...@synerise/ds-search@0.1.62) (2020-07-31)
 
 
