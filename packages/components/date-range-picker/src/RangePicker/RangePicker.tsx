@@ -195,6 +195,7 @@ export default class RangePicker extends React.PureComponent<Props, State> {
       entered,
       'entered-start': enteredStart,
       'entered-end': enteredEnd,
+      'initial-entered': !endModifier ? startModifier : undefined,
       initial: !entered && !endModifier ? startModifier : undefined,
     };
     const selectedDays = [from, { from, to } as DateFilter];
