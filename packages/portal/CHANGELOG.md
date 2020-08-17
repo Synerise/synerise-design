@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.94.1](https://github.com/synerise/synerise-design/compare/portal@0.94.0...portal@0.94.1) (2020-08-17)
+
+
+### Bug Fixes
+
+* **collector:** bump search and input component ([2ce9ca7](https://github.com/synerise/synerise-design/commit/2ce9ca7878d6533d2f19ee0e6fa04bf54e165e5f))
+* **date-range-picker:** second ux review changes ([e0bb07b](https://github.com/synerise/synerise-design/commit/e0bb07b783f5eb5db7259d7310211aeaba0ae044))
+* **layout:** fixed knobs import in stories ([e3fdb74](https://github.com/synerise/synerise-design/commit/e3fdb743dd50cc7a8abd8a29e93c11b131ce66fb))
+
+
+
+
+
 # [0.94.0](https://github.com/synerise/synerise-design/compare/portal@0.93.0...portal@0.94.0) (2020-08-12)
 
 

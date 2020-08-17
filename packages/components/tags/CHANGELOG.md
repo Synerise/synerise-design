@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.105](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@0.2.104...@synerise/ds-tags@0.2.105) (2020-08-17)
+
+
+### Bug Fixes
+
+* **tags:** change margins in default-square ([3a17c77](https://github.com/Synerise/synerise-design/commit/3a17c77c17a1f30d719d65fc00acb89be73a005f))
+* **tags:** fix scrollbar and add padding ([331dcb7](https://github.com/Synerise/synerise-design/commit/331dcb721ab5b081ecc71e4506ff2355a4b4edb9))
+* **tags:** fix tests ([8819883](https://github.com/Synerise/synerise-design/commit/88198835b160526c1c7c921e2ca964463030be64))
+
+
+
+
+
 ## [0.2.104](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@0.2.103...@synerise/ds-tags@0.2.104) (2020-08-12)
 
 

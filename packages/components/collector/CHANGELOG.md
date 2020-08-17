@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@0.1.0...@synerise/ds-collector@0.1.1) (2020-08-17)
+
+
+### Bug Fixes
+
+* **collector:** remove last item on clear ([8926637](https://github.com/Synerise/synerise-design/commit/8926637809253d99e7e93062a1fb4d73e7b3c862))
+
+
+
+
+
 # 0.1.0 (2020-08-12)
 
 

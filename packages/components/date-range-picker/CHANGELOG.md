@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.1.13...@synerise/ds-date-range-picker@0.1.14) (2020-08-17)
+
+
+### Bug Fixes
+
+* **date-range-picker:** linter errors fixed ([fd4fec5](https://github.com/Synerise/synerise-design/commit/fd4fec55dee42298ec0581ac42a97efe30dbb0ca))
+* **date-range-picker:** linter errors fixed ([6c22489](https://github.com/Synerise/synerise-design/commit/6c224899676669a35b7762580f3e424f199f3093))
+* **date-range-picker:** second ux review changes ([e0bb07b](https://github.com/Synerise/synerise-design/commit/e0bb07b783f5eb5db7259d7310211aeaba0ae044))
+* **date-range-picker:** second ux review changes ([6c14c0e](https://github.com/Synerise/synerise-design/commit/6c14c0ec972c2a28da69b4025fbc66c7a394c6a8))
+* **date-range-picker:** switch to date mode when value is undefined ([cc0d071](https://github.com/Synerise/synerise-design/commit/cc0d071b816c641b13b9c500971f805c2484e045))
+
+
+
+
+
 ## [0.1.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.1.12...@synerise/ds-date-range-picker@0.1.13) (2020-08-12)
 
 **Note:** Version bump only for package @synerise/ds-date-range-picker
