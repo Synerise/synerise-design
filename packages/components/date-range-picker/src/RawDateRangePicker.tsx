@@ -37,6 +37,10 @@ class RawDateRangePicker extends React.PureComponent<Props, State> {
     if (prevProps.value !== value && !value) {
       this.handleRangeChange(value);
     }
+    const { mode } = this.state;
+    if (!value?.to && !value?.from && mode !== MODES.DATE) {
+      this.handleSwitchMode();
+    }
   }
 
   handleFilterCancel = (): void => {
