@@ -18,6 +18,7 @@ export const Title = styled.h4`
   margin: 0 0 24px;
   text-align: center;
   max-width: 240px;
+  word-break: break-word;
 `;
 
 export const Description = styled(T.Description)`
@@ -45,8 +46,16 @@ export const ButtonContainer = styled.div`
 export const PanelContainer = styled.div`
   margin: 0 0 24px;
   width: 100%;
-  textarea {
-    max-height: 234px;
+  &&& {
+    textarea {
+      max-height: 234px;
+      background-color: ${(props): string => props.theme.palette.white};
+    }
+  }
+  .ant-list {
+    border: 1px solid ${(props): string => props.theme.palette['grey-300']};
+    border-radius: 3px;
+    padding: 8px;
   }
 `;
 
