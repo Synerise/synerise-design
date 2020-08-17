@@ -39,10 +39,10 @@ class List<T> extends React.PureComponent<ListPropsType<T>> {
     let ReadyList;
 
     if (isNestedArray(dataSource)) {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-      // @ts-ignore
       ReadyList =
         !!dataSource &&
+        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+        // @ts-ignore
         dataSource.map((singleDataSource: T[] | undefined, index: number) => {
           const isLastItem = dataSource.length === index + 1;
           if (index === 0) {
