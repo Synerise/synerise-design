@@ -21,7 +21,7 @@ const RadioGroupWrapper: React.FC<{ options?: RadioGroupProps }> = ({ children, 
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const isNestedArray = <V extends any>(array: V[] | V[][]): boolean => {
-  return array instanceof Array && !!array.length && array[0] instanceof Array;
+  return !!array.length && array[0] instanceof Array;
 };
 
 class List<T> extends React.PureComponent<ListPropsType<T>> {
@@ -45,7 +45,6 @@ class List<T> extends React.PureComponent<ListPropsType<T>> {
         !!dataSource &&
         dataSource.map((singleDataSource: T[] | undefined, index: number) => {
           const isLastItem = dataSource.length === index + 1;
-
           if (index === 0) {
             return (
               <React.Fragment key={uuid()}>
