@@ -131,12 +131,18 @@ textarea.@{ant-prefix}-input {
 .ant-input-group.ant-input-group-compact > .ds-select-wrapper > .ant-select > .ant-select-selector {
   border-radius: 0;
 }
-.ant-input-group.ant-input-group-compact > *:first-child.ds-select-wrapper > .ant-select > .ant-select-selector {
+.ant-input-group.ant-input-group-compact
+  > *:first-child.ds-select-wrapper:not(.white)
+  > .ant-select
+  > .ant-select-selector {
   background: @grey-050;
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
 }
-.ant-input-group.ant-input-group-compact > *:last-child.ds-select-wrapper > .ant-select > .ant-select-selector {
+.ant-input-group.ant-input-group-compact
+  > *:last-child.ds-select-wrapper:not(.white)
+  > .ant-select
+  > .ant-select-selector {
   background: @grey-050;
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;

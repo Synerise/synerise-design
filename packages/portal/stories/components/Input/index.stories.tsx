@@ -114,7 +114,19 @@ const stories = {
         <Select.Option value="get">GET</Select.Option>
       </Select>
     );
-
+    const whiteSelect = (
+      <Select
+        className={'white'}
+        size={size}
+        tooltip={text('Tooltip', 'This is example tooltip!')}
+        style={{ width: '50%', background: 'red' }}
+        defaultValue="post"
+        error={boolean('Set select error', false)}
+      >
+        <Select.Option value="post">POST</Select.Option>
+        <Select.Option value="get">GET</Select.Option>
+      </Select>
+    );
     const input = (
       <RawInput
         size={size}
@@ -137,7 +149,8 @@ const stories = {
     const inputGroupElements = {
       Input: input,
       InputNumber: inputNumber,
-      Select: select,
+      Button: select,
+      Select: whiteSelect,
     };
     const leftSideComponent = knobSelect(
       'Set left-side component',
@@ -464,7 +477,7 @@ const stories = {
 };
 
 export default {
-name: 'Components/Input',
+  name: 'Components/Input',
   decorator,
   stories,
   Component: Input,
