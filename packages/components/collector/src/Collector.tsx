@@ -11,11 +11,14 @@ import Values from './Elements/Values/Values';
 const DROPDOWN_PADDING = 2 * 8;
 
 const Collector: React.FC<CollectorProps> = ({
+  allowCustomValue,
+  allowMultipleValues,
   error,
   className,
   description,
   selected,
   suggestions,
+  showNavigationHints,
   onConfirm,
   onCancel,
   label,
@@ -27,12 +30,12 @@ const Collector: React.FC<CollectorProps> = ({
   const inputRef = React.useRef<HTMLInputElement>(null);
   const containerRef = React.useRef<HTMLDivElement>(null);
   const mainContentRef = React.useRef<HTMLDivElement>(null);
-  const [isFocused, setFocused] = React.useState(false);
+  const [isFocused, setFocused] = React.useState<boolean>(false);
   const [showGradient, setShowGradient] = React.useState<boolean>(false);
-
-  const [value, setValue] = React.useState('');
-  const [selectedValues, setSelectedValues] = React.useState(selected || []);
-  const [filteredSuggestions, setFilteredSuggestions] = React.useState(suggestions || []);
+  const [scrollLeft, setScrollLeft] = React.useState<number>(0);
+  const [value, setValue] = React.useState<string>('');
+  const [selectedValues, setSelectedValues] = React.useState<string[]>(selected && allowMultipleValues ? selected : []);
+  const [filteredSuggestions, setFilteredSuggestions] = React.useState<string[]>(suggestions || []);
 
   const lowerCaseSelected = React.useMemo(() => arrayToLowerCase(selectedValues), [selectedValues]);
   const onFocusCallback = React.useCallback(
@@ -52,10 +55,17 @@ const Collector: React.FC<CollectorProps> = ({
     },
     [suggestions, selectedValues]
   );
+  React.useEffect(() => {
+    setSelectedValues(selected && allowMultipleValues ? selected : []);
+    setFilteredSuggestions(suggestions || []);
+    setValue('');
+  }, [allowMultipleValues, allowCustomValue, selected, suggestions]);
 
   React.useEffect((): void => {
     if (fixedHeight) {
       setShowGradient(isOverflown(mainContentRef));
+    } else {
+      setShowGradient(false);
     }
   }, [selectedValues, mainContentRef, fixedHeight]);
 
@@ -66,7 +76,7 @@ const Collector: React.FC<CollectorProps> = ({
   const selectValue = React.useCallback(
     val => {
       const trimmedValue = val.trim();
-      if (!!trimmedValue && lowerCaseSelected.indexOf(trimmedValue.toLowerCase()) === -1) {
+      if (allowMultipleValues && !!trimmedValue && lowerCaseSelected.indexOf(trimmedValue.toLowerCase()) === -1) {
         setSelectedValues([...selectedValues, trimmedValue]);
         setFilteredSuggestions(
           filteredSuggestions.filter(
@@ -76,34 +86,61 @@ const Collector: React.FC<CollectorProps> = ({
           )
         );
         setValue('');
+        return;
+      }
+      if (!allowMultipleValues) {
+        setValue(val);
       }
     },
-    [selectedValues, filteredSuggestions, lowerCaseSelected]
+    [selectedValues, filteredSuggestions, lowerCaseSelected, allowMultipleValues]
   );
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>): void => {
-    if (e.key === 'Enter') {
-      selectValue(value);
-    }
-    if (e.key === 'Backspace' && !value && !!selectedValues?.length) {
-      const withoutLastElement = selectedValues.splice(0, selectedValues.length - 1);
-      setSelectedValues(withoutLastElement);
-    }
-  };
   const clear = React.useCallback((): void => {
     setSelectedValues([]);
     setValue('');
   }, []);
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>): void => {
+    if (e.key === 'Enter') {
+      const suggestionsIncludesCurrentValue = filteredSuggestions.some(
+        suggestion => suggestion.trim().toLowerCase() === value.trim().toLowerCase()
+      );
+      if (allowMultipleValues && (allowCustomValue || suggestionsIncludesCurrentValue)) {
+        selectValue(value);
+        return;
+      }
+      if (!allowMultipleValues) {
+        if (allowCustomValue || suggestionsIncludesCurrentValue) {
+          onConfirm && onConfirm([value]);
+          clear();
+        }
+      }
+    }
+    if (allowMultipleValues && e.key === 'Backspace' && !value && !!selectedValues?.length) {
+      const withoutLastElement = selectedValues.splice(0, selectedValues.length - 1);
+      setSelectedValues(withoutLastElement);
+    }
+  };
+
   const onCancelCallback = React.useCallback((): void => {
-    clear();
     onCancel && onCancel();
+    clear();
   }, [onCancel, clear]);
 
   const onConfirmCallback = React.useCallback((): void => {
-    clear();
-    onConfirm(selectedValues);
-  }, [selectedValues, clear, onConfirm]);
+    if (allowMultipleValues) {
+      onConfirm && onConfirm(selectedValues);
+      clear();
+      return;
+    }
+    const suggestionsIncludesCurrentValue = filteredSuggestions.some(
+      suggestion => suggestion.trim().toLowerCase() === value.trim().toLowerCase()
+    );
+    if (allowCustomValue || suggestionsIncludesCurrentValue) {
+      onConfirm && onConfirm([value]);
+      clear();
+    }
+  }, [selectedValues, clear, onConfirm, value, filteredSuggestions, allowMultipleValues, allowCustomValue]);
 
   const getContainerWidth = React.useCallback(
     (): number => Number(containerRef.current?.offsetWidth) - DROPDOWN_PADDING,
@@ -137,9 +174,19 @@ const Collector: React.FC<CollectorProps> = ({
         onFocus={onFocusCallback}
         error={showError}
         disabled={disabled}
-        gradientOverlap={showGradient}
       >
-        <S.MainContent wrap={!fixedHeight} ref={mainContentRef}>
+        <S.MainContent
+          wrap={!fixedHeight}
+          onScroll={({ currentTarget }: React.SyntheticEvent): void => {
+            if (fixedHeight) {
+              setScrollLeft(currentTarget.scrollLeft);
+            }
+          }}
+          hasValues={!!selectedValues?.length}
+          ref={mainContentRef}
+          gradientOverlap={showGradient && scrollLeft > 0}
+          focus={isFocused}
+        >
           <Values
             values={selectedValues}
             onRemove={(val: React.ReactText): void => {
@@ -159,9 +206,10 @@ const Collector: React.FC<CollectorProps> = ({
             }}
             disabled={disabled}
             placeholder={selectedValues && selectedValues.length ? undefined : texts?.placeholder}
+            hasValues={!!selectedValues?.length}
           />
         </S.MainContent>
-        <S.RightSide>
+        <S.RightSide gradientOverlap={showGradient} focus={isFocused}>
           <ButtonPanel
             onCancel={onCancelCallback}
             onConfirm={onConfirmCallback}
@@ -174,13 +222,19 @@ const Collector: React.FC<CollectorProps> = ({
       <OptionsDropdown
         options={filteredSuggestions}
         value={value}
-        visible={isFocused && !disabled && (filteredSuggestions.length > 0 || !!value)}
+        visible={
+          isFocused &&
+          !disabled &&
+          (filteredSuggestions.length > 0 || (!!value && allowMultipleValues && allowCustomValue))
+        }
         onSelect={selectValue}
         onClick={(): void => {
           if (inputRef?.current) {
             inputRef.current.focus();
           }
         }}
+        showAddButton={allowCustomValue && allowMultipleValues}
+        showNavigationHints={showNavigationHints}
         width={getContainerWidth()}
         texts={texts}
       />

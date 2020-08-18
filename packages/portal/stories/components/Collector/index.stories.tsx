@@ -28,13 +28,13 @@ const renderLabel = (text: string, tooltip: string) => {
         color: theme.palette['grey-800'],
         display: 'flex',
         alignItems: 'center',
-        height: '26px'
+        height: '26px',
       }}
     >
-      <span>{text}</span>{' '}
-      <Tooltip title={tooltip}>
+      {!!text && <span>{text}</span>}
+      {!!tooltip && !!text && <Tooltip title={tooltip}>
         <Icon component={<InfoFillS />} color={theme.palette['grey-400']} />
-      </Tooltip>
+      </Tooltip>}
     </div>
   );
 };
@@ -44,6 +44,8 @@ const stories = {
     const labelText = text('Set label', 'Label');
     return (
       <Collector
+        allowCustomValue={boolean('Allow custom values', true)}
+        allowMultipleValues={boolean('Allow multiple values', true)}
         selected={[]}
         label={renderLabel(labelText, tooltipText)}
         disabled={boolean('Set disabled', false)}
@@ -51,6 +53,7 @@ const stories = {
         errorText={text('Set error text', '')}
         suggestions={getSuggestions()}
         fixedHeight={boolean('Set fixed height', false)}
+        showNavigationHints={boolean('Show navigation hints', true)}
         texts={{
           add: 'Add',
           cancel: 'Cancel',
@@ -65,7 +68,7 @@ const stories = {
 };
 
 export default {
-name: 'Components/Collector',
+  name: 'Components/Collector',
   config: {},
   stories,
   decorator,

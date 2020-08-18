@@ -10,12 +10,14 @@ import { OptionsDropdownProps } from './OptionsDropdown.types';
 import NavigationHint from '../NavigationHint/NavigationHint';
 
 const OptionsDropdown: React.FC<OptionsDropdownProps> = ({
+  showAddButton,
   options,
   visible,
   value,
   onSelect,
   onClick,
   width,
+  showNavigationHints,
   texts,
 }: OptionsDropdownProps) => {
   const [scrollTop, setScrollTop] = React.useState<number>(0);
@@ -32,7 +34,7 @@ const OptionsDropdown: React.FC<OptionsDropdownProps> = ({
               setScrollTop(currentTarget.scrollTop);
             }}
           >
-            {!!value && (
+            {showAddButton && !!value && (
               <S.DropdownTop>
                 <S.DropdownAddButton
                   onClick={(): void => {
@@ -63,7 +65,7 @@ const OptionsDropdown: React.FC<OptionsDropdownProps> = ({
               listProps={{ scrollTop }}
             />
           </Scrollbar>
-          <NavigationHint texts={texts} />
+          {showNavigationHints && <NavigationHint texts={texts} />}
         </S.DropdownContent>
       )}
     </S.DropdownWrapper>
