@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.15](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.1.14...@synerise/ds-date-range-picker@0.1.15) (2020-08-18)
+
+
+### Bug Fixes
+
+* **date-range-picker:** force adjacent months when prop changes ([c04dbe2](https://github.com/Synerise/synerise-design/commit/c04dbe210ff32956d325041807bcb0d5e1f7d47a))
+* **date-range-picker:** modified styles for hovering start date ([a36b266](https://github.com/Synerise/synerise-design/commit/a36b266406eb9086f5e95ff2f31430905edcf5ec))
+
+
+
+
+
 ## [0.1.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.1.13...@synerise/ds-date-range-picker@0.1.14) (2020-08-17)
 
 

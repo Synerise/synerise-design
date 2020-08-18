@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.94.2](https://github.com/synerise/synerise-design/compare/portal@0.94.1...portal@0.94.2) (2020-08-18)
+
+
+### Bug Fixes
+
+* **card-select:** change paddings and fix problem with number columns ([6f8ef67](https://github.com/synerise/synerise-design/commit/6f8ef67b36acf466459f65387a41eb84c60ad62f))
+* **collector:** ux review fixes ([fed40a6](https://github.com/synerise/synerise-design/commit/fed40a6929bbbeb0a7021e4bf6abf5755d25b0a7))
+* **icon:** update names of stories ([05b92f8](https://github.com/synerise/synerise-design/commit/05b92f815bd7dc7d4f45fe999d08b297cef0ba5a))
+* **popconfirm:** update names of stories ([6156d29](https://github.com/synerise/synerise-design/commit/6156d293382c384a471f00375479b60c6da4f5f5))
+* **progress-bar:** change to separate knobs of percentage bars ([57a0ec2](https://github.com/synerise/synerise-design/commit/57a0ec295ffcaf883fc1e2d8152149d560e0d8c7))
+* **table:** cleanup stories ([f7eca68](https://github.com/synerise/synerise-design/commit/f7eca68994f336f29c098fbdc405cb6eeed730c1))
+* **table:** fix expandable story ([7f6f73c](https://github.com/synerise/synerise-design/commit/7f6f73c79000eef4f03da30635e0ffb53b288c65))
+* **table:** fix TreeTable styles ([0ccf17b](https://github.com/synerise/synerise-design/commit/0ccf17b936163629903706d04c08568f8198fdb4))
+* **tags:** add clear icon, tooltip and fix padding of separator ([7d9a602](https://github.com/synerise/synerise-design/commit/7d9a602ccf52d44516eaa99846c2e86ac1ded8aa))
+
+
+
+
+
 ## [0.94.1](https://github.com/synerise/synerise-design/compare/portal@0.94.0...portal@0.94.1) (2020-08-17)
 
 

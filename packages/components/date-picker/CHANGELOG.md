@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.22](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@0.1.21...@synerise/ds-date-picker@0.1.22) (2020-08-18)
+
+
+### Bug Fixes
+
+* **date-range-picker:** modified styles for hovering start date ([a36b266](https://github.com/Synerise/synerise-design/commit/a36b266406eb9086f5e95ff2f31430905edcf5ec))
+
+
+
+
+
 ## [0.1.21](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@0.1.20...@synerise/ds-date-picker@0.1.21) (2020-08-17)
 
 

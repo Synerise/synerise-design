@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.106](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@0.2.105...@synerise/ds-tags@0.2.106) (2020-08-18)
+
+
+### Bug Fixes
+
+* **tags:** add clear icon, tooltip and fix padding of separator ([7d9a602](https://github.com/Synerise/synerise-design/commit/7d9a602ccf52d44516eaa99846c2e86ac1ded8aa))
+* **tags:** fix margin ([75e3ea3](https://github.com/Synerise/synerise-design/commit/75e3ea3bad7815642620918d3a390216ecf94e4c))
+* **tags:** fix padding ([ec8c017](https://github.com/Synerise/synerise-design/commit/ec8c017df135ffa70a757727afd4513ee3e9c5aa))
+
+
+
+
+
 ## [0.2.105](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@0.2.104...@synerise/ds-tags@0.2.105) (2020-08-17)
 
 

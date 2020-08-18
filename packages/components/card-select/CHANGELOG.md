@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.41](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-select@0.3.40...@synerise/ds-card-select@0.3.41) (2020-08-18)
+
+
+### Bug Fixes
+
+* **card-select:** change paddings and fix problem with number columns ([6f8ef67](https://github.com/Synerise/synerise-design/commit/6f8ef67b36acf466459f65387a41eb84c60ad62f))
+
+
+
+
+
 ## [0.3.40](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-select@0.3.39...@synerise/ds-card-select@0.3.40) (2020-08-12)
 
 **Note:** Version bump only for package @synerise/ds-card-select
