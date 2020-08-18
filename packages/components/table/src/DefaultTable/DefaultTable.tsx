@@ -6,7 +6,7 @@ import { DSTableProps, RowType } from '../Table.types';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function DefaultTable<T extends any & RowType<T>>(props: DSTableProps<T>): React.ReactElement {
-  const { title, selection, dataSource, rowKey, locale, expandable } = props;
+  const { title, selection, dataSource, rowKey, locale, expandable, components } = props;
 
   const getRowKey = React.useCallback(
     (row: T): React.ReactText | undefined => {
@@ -56,6 +56,17 @@ function DefaultTable<T extends any & RowType<T>>(props: DSTableProps<T>): React
     [selection, getRowKey, dataSource]
   );
 
+  const RenderRow = React.useCallback((row): JSX.Element => {
+    const classNameWithLevel = row.className.split(' ').find((name: string) => name.includes('row-level'));
+    let level;
+    if (classNameWithLevel) {
+      level = classNameWithLevel.split('-').pop();
+    }
+    return (
+      <tr className={`${row.className} ds-table-row ${level ? `ds-table-row-level-${level}` : ''}`}>{row.children}</tr>
+    );
+  }, []);
+
   return (
     // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
     // @ts-ignore
@@ -70,6 +81,12 @@ function DefaultTable<T extends any & RowType<T>>(props: DSTableProps<T>): React
         emptyText: <Result description={locale?.emptyText || 'No data'} type="no-results" noSearchResults />,
       }}
       title={title}
+      components={{
+        body: {
+          row: RenderRow,
+        },
+        ...components,
+      }}
       rowSelection={
         selection && {
           ...selection,
