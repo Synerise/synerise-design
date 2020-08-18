@@ -106,9 +106,7 @@ const stories = {
           title: 'Name',
           dataIndex: 'name',
           key: 'name',
-          render: name => {
-            return <span style={{ fontWeight: 500, fontSize: '13px', lineHeight: '18px' }}>{name}</span>;
-          },
+          render: name => name,
         },
         {
           title: 'Create',
