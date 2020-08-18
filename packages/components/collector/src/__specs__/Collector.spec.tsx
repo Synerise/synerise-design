@@ -11,6 +11,8 @@ describe('Collector', () => {
     const onConfirmFn = jest.fn();
     const { getByText, getByPlaceholderText } = renderWithProvider(
       <Collector
+        allowCustomValue
+        allowMultipleValues
         selected={[]}
         suggestions={SUGGESTIONS}
         onConfirm={onConfirmFn}
@@ -30,6 +32,8 @@ describe('Collector', () => {
     const onConfirmFn = jest.fn();
     const { getByText } = renderWithProvider(
       <Collector
+        allowCustomValue
+        allowMultipleValues
         selected={SELECTED}
         suggestions={[]}
         onConfirm={onConfirmFn}
@@ -49,6 +53,8 @@ describe('Collector', () => {
     const newValue = 'That is new!';
     const { getByText, getByPlaceholderText } = renderWithProvider(
       <Collector
+        allowCustomValue
+        allowMultipleValues
         selected={[]}
         suggestions={[]}
         onConfirm={onConfirmFn}
@@ -71,6 +77,8 @@ describe('Collector', () => {
     const onConfirmFn = jest.fn();
     const { getByText } = renderWithProvider(
       <Collector
+        allowCustomValue
+        allowMultipleValues
         selected={SELECTED}
         suggestions={[]}
         onConfirm={onConfirmFn}
@@ -94,6 +102,8 @@ describe('Collector', () => {
     const onCancelFn = jest.fn();
     const { getByText } = renderWithProvider(
       <Collector
+        allowCustomValue
+        allowMultipleValues
         selected={SELECTED}
         suggestions={[]}
         onConfirm={onConfirmFn}
