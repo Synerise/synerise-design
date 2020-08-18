@@ -53,10 +53,10 @@ export default class RangePicker extends React.PureComponent<Props, State> {
     const { value, forceAdjacentMonths } = this.props;
     const { left } = this.state;
     if (
-      ((!!value?.to && value?.to !== prevProps?.value?.to) || forceAdjacentMonths !== prevProps.forceAdjacentMonths) &&
-      !fnsIsSameMonth(value.to, left.month)
+      (!!value?.to && value?.to !== prevProps?.value?.to && !fnsIsSameMonth(value.to, left.month)) ||
+      forceAdjacentMonths !== prevProps.forceAdjacentMonths
     ) {
-      this.setState(getSidesState(value));
+      this.setState(getSidesState(value, forceAdjacentMonths));
     }
     return null;
   }
@@ -195,6 +195,7 @@ export default class RangePicker extends React.PureComponent<Props, State> {
       entered,
       'entered-start': enteredStart,
       'entered-end': enteredEnd,
+      'initial-entered': !endModifier ? startModifier : undefined,
       initial: !entered && !endModifier ? startModifier : undefined,
     };
     const selectedDays = [from, { from, to } as DateFilter];

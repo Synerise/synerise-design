@@ -17,6 +17,11 @@ const INDENT_SIZE = 42;
 function TreeTable<T extends object = any>(props: DSTableProps<T>): React.ReactElement {
   const { className, selection } = props;
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const RenderRow = React.useCallback((row: any): JSX.Element => {
+    return <S.TreeTableRow className={`${row.className} ds-table-row`}>{row.children}</S.TreeTableRow>;
+  }, []);
+
   const RenderCell = React.useCallback(
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (cell: any): JSX.Element => {
@@ -36,12 +41,12 @@ function TreeTable<T extends object = any>(props: DSTableProps<T>): React.ReactE
       ));
 
       return (
-        <td className={cell.className}>
+        <S.TreeTableCell className={`${cell.className} ds-table-cell`}>
           <S.Indents width={indents.length * INDENT_SIZE} withSelection={Boolean(selection)}>
             {indents}
           </S.Indents>
           {cell.children}
-        </td>
+        </S.TreeTableCell>
       );
     },
     [selection]
@@ -53,6 +58,7 @@ function TreeTable<T extends object = any>(props: DSTableProps<T>): React.ReactE
       indentSize={INDENT_SIZE}
       components={{
         body: {
+          row: RenderRow,
           cell: RenderCell,
         },
       }}

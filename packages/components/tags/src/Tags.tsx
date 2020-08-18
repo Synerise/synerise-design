@@ -94,6 +94,8 @@ const Tags: React.FC<Props> = ({
         onSearchChange={setSearchQuery}
         placeholder={(texts && texts.searchPlaceholder) || ''}
         iconLeft={<Icon component={<SearchM />} color={theme.palette['grey-600']} />}
+        onClearInput={(): void => setSearchQuery('')}
+        clearTooltip={texts && texts.clearTooltip}
       />
       <S.DropdownContainer maxHeight={maxHeight}>
         {isCreatable && (
@@ -124,9 +126,9 @@ const Tags: React.FC<Props> = ({
 
         {manageLink && selectablePool && !selectablePool.length && (
           <>
-            <S.ManageLink href={manageLink} onlyChild={!!(emptyPool && !isCreatable)}>
+            <S.ManageLinkButton type="ghost-primary" href={manageLink} onlyChild={!!(emptyPool && !isCreatable)}>
               {texts && texts.manageLinkLabel}
-            </S.ManageLink>
+            </S.ManageLinkButton>
           </>
         )}
       </S.DropdownContainer>

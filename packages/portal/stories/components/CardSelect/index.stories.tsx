@@ -17,7 +17,6 @@ const stories = {
     const [selected, setSelected] = React.useState<boolean>(false);
     const raised = boolean('Raised', false);
     const tickVisible = boolean('With tick', true);
-    const iconSize = number('Custom Icon component size', 0);
     const hasDescription = boolean('Set Description', true);
     const descriptionMessage = text('Description', 'Suspendisse a pellentesque duim maecenas malesuad.');
     const isOutline = boolean('Outline', false);
@@ -34,7 +33,6 @@ const stories = {
       raised,
       tickVisible,
       icon: <AbTestXl/>,
-      iconSize,
     };
 
     return (
@@ -62,7 +60,6 @@ const stories = {
 
     const raised = boolean('Raised', false);
     const tickVisible = boolean('With tick', true);
-    const iconSize = number('Custom Icon component size', 0);
     const hasDescription = boolean('Set Description', true);
     const descriptionMessage = text('Description', 'Suspendisse a pellentesque duim maecenas malesuad.');
     const isOutline = boolean('Outline', false);
@@ -77,7 +74,6 @@ const stories = {
     const commonProps = {
       raised,
       tickVisible,
-      iconSize,
     };
 
     return (
@@ -104,7 +100,6 @@ const stories = {
     const [selected, setSelected] = React.useState<boolean>(false);
     const raised = boolean('Raised', false);
     const tickVisible = boolean('With tick', true);
-    const iconSize = number('Custom Icon component size', 0);
     const isOutline = boolean('Outline', false);
 
 
@@ -112,7 +107,6 @@ const stories = {
       raised,
       tickVisible,
       icon: <ChartPieL/>,
-      iconSize,
     };
 
     return (
@@ -144,7 +138,7 @@ const stories = {
     const isOutline = boolean('Outline', true);
     const elementsPosition = select('Position of elements', positionOfElements, positionOfElements.center);
     const itemsInGroup = number('Number of cards rendered',2,{min:2});
-    const columns = number('Number of columns',2,{min:1,max:3})
+    const columns = select('Number of columns',[2,3],2)
     const getDescription = (hasDescription: boolean): string => {
       if (hasDescription) {
         return descriptionMessage;
@@ -187,7 +181,7 @@ const stories = {
     const tickVisible = boolean('With tick', true);
     const isOutline = boolean('Outline', true);
     const itemsInGroup = number('Number of cards rendered',2,{min:2});
-    const columns = number('Number of columns',2,{min:1,max:3})
+    const columns = select('Number of columns',[2,3],2)
 
 
     const commonProps = {

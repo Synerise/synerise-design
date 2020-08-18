@@ -43,3 +43,13 @@ export const RowExpander = styled.span`
   width: 24px;
   margin-right: 24px;
 `;
+
+export const TreeTableRow = styled.tr``;
+
+export const TreeTableCell = styled.td`
+  &&& {
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 1.38;
+  }
+`;

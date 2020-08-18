@@ -342,7 +342,8 @@ export const DayPicker = styled(DayPickerBase)`
         color: ${(props): string => props.theme.palette.white};
       }
   }
-  .DayPicker-Day--initial:not(.DayPicker-Day--disabled):not(.DayPicker-Day--entered) {
+  .DayPicker-Day--initial:not(.DayPicker-Day--disabled):not(.DayPicker-Day--entered),
+  .DayPicker-Day--initial-entered:not(.DayPicker-Day--disabled) {
       & > ${DayBackground} {
         background: transparent;
       }

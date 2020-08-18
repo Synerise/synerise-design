@@ -9,20 +9,19 @@ import './style/index.less';
 import { TextItem, ListDivider, ItemWrapper } from './Elements';
 
 export interface ListPropsType<T> extends Omit<ListProps<T>, 'dataSource' | 'footer'> {
-  dataSource: T[] |  T[][];
+  dataSource: T[] | T[][];
   radio?: boolean;
   options?: RadioGroupProps;
   dashed?: boolean;
 }
 
 const RadioGroupWrapper: React.FC<{ options?: RadioGroupProps }> = ({ children, options }) => (
-  // eslint-disable-next-line react/jsx-props-no-spreading
   <Radio.Group {...options}>{children}</Radio.Group>
 );
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const isNestedArray = <V extends any>(array: V[] | V[][]): boolean => {
-  return array instanceof Array && !!array.length && array[0] instanceof Array;
+  return !!array.length && array[0] instanceof Array;
 };
 
 class List<T> extends React.PureComponent<ListPropsType<T>> {
@@ -40,33 +39,31 @@ class List<T> extends React.PureComponent<ListPropsType<T>> {
     let ReadyList;
 
     if (isNestedArray(dataSource)) {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-      // @ts-ignore
-      ReadyList = !!dataSource && dataSource.map((singleDataSource: T[] | undefined, index: number) => {
-        const isLastItem = dataSource.length === index + 1;
+      ReadyList =
+        !!dataSource &&
+        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+        // @ts-ignore
+        dataSource.map((singleDataSource: T[] | undefined, index: number) => {
+          const isLastItem = dataSource.length === index + 1;
+          if (index === 0) {
+            return (
+              <React.Fragment key={uuid()}>
+                <AntdList {...rest} dataSource={singleDataSource} />
+                {!isLastItem && <ListDivider dashed={!!dashed} data-testid="divider" />}
+              </React.Fragment>
+            );
+          }
 
-        if (index === 0) {
           return (
             <React.Fragment key={uuid()}>
-              {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-              <AntdList {...rest} dataSource={singleDataSource} />
+              <AntdList {...rest} header={null} dataSource={singleDataSource} />
               {!isLastItem && <ListDivider dashed={!!dashed} data-testid="divider" />}
             </React.Fragment>
           );
-        }
-
-        return (
-          <React.Fragment key={uuid()}>
-            {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-            <AntdList {...rest} header={null} dataSource={singleDataSource} />
-            {!isLastItem && <ListDivider dashed={!!dashed} data-testid="divider" />}
-          </React.Fragment>
-        );
-      });
+        });
     } else {
       ReadyList = (
         <React.Fragment key={this.uuidKey || uuid()}>
-          {/*  // @ts-ignore eslint-disable-next-line @typescript-eslint/ban-ts-ignore */}
           <AntdList {...rest} dataSource={dataSource as T[]} />
         </React.Fragment>
       );
