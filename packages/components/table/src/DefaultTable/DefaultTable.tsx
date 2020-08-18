@@ -69,11 +69,7 @@ function DefaultTable<T extends any & RowType<T>>(props: DSTableProps<T>): React
         ...locale,
         emptyText: <Result description={locale?.emptyText || 'No data'} type="no-results" noSearchResults />,
       }}
-      /* eslint-disable-next-line @typescript-eslint/ban-ts-ignore */
-      // @ts-ignore
       title={title}
-      /* eslint-disable-next-line @typescript-eslint/ban-ts-ignore */
-      // @ts-ignore
       rowSelection={
         selection && {
           ...selection,
