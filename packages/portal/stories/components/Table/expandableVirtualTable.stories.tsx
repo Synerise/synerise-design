@@ -1,4 +1,4 @@
-import { boolean, select } from '@storybook/addon-knobs';
+import { boolean } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import { withState } from '@dump247/storybook-state';
 import { ItemsMenu, TableCell, VirtualTable } from '@synerise/ds-table';
@@ -7,17 +7,10 @@ import { EditM, FileDownloadM, TrashM } from '@synerise/ds-icon/dist/icons';
 import Table from '@synerise/ds-table';
 import Button from '@synerise/ds-button';
 import * as React from 'react';
-import { dataSource, dataSourceForVirtualTable } from './content/expandable.data';
-import Card from '@synerise/ds-card';
+import { dataSource } from './content/expandable.data';
 import ModalProxy from '@synerise/ds-modal';
 
 const decorator = storyFn => <div style={{ padding: 20, width: '100vw', minWidth: '100%' }}>{storyFn()}</div>;
-
-const CELL_SIZES = {
-  default: 'default',
-  medium: 'medium',
-  small: 'small',
-};
 
 const stories = {
   default: withState({
@@ -31,11 +24,6 @@ const stories = {
         } else {
           store.set({ expandedRows: expandedRows.filter(k => k !== key) });
         }
-      };
-
-      const selectEven = () => {
-        const evenRows = dataSourceForVirtualTable.map(row => row.key).filter((key, index) => index % 2);
-        store.set({selectedRows: evenRows});
       };
 
       const handleSelectRow = (selectedRowKeys) => {
@@ -72,10 +60,9 @@ const stories = {
       };
 
     const countRecords = () => {
-      const result = dataSourceForVirtualTable.reduce((count, record) => {
+      return dataSource.reduce((count, record) => {
         return record.hasOwnProperty('children') && record.children !== undefined ? count + record.children.length : count + 1;
       }, 0);
-      return result;
     };
 
     return (
@@ -85,7 +72,7 @@ const stories = {
             initialWidth={792}
             cellHeight={50}
             title={`${countRecords()} results`}
-            dataSource={dataSourceForVirtualTable}
+            dataSource={dataSource}
             columns={getColumns()}
             loading={boolean('Set loading state', false)}
             roundedHeader={boolean('Rounded header', false)}
@@ -106,9 +93,9 @@ const stories = {
               }
             }
             onSearch={console.log}
-            onRow={(record, index: number) => ({
-              onClick: event => {
-                boolean('Expand on row click', false) && handleExpandRow(record.key)
+            onRow={(record) => ({
+              onClick: () => {
+                boolean('Expand on row click', false) && handleExpandRow(record.key.toString())
               },
             })}
             itemsMenu={
