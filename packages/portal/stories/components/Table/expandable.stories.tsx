@@ -41,6 +41,7 @@ const stories = {
           title: 'Name',
           dataIndex: 'name',
           key: 'name',
+          width: 500,
         },
         {
           title: 'Age',
