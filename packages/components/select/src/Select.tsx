@@ -9,7 +9,7 @@ import Tooltip from '@synerise/ds-tooltip';
 import classNames from 'classnames';
 import * as S from './Select.styles';
 
-export interface Props<T = SelectValue> extends Omit<SelectProps<T>,'listHeight'> {
+export interface Props<T = SelectValue> extends Omit<SelectProps<T>, 'listHeight'> {
   errorText?: React.ReactNode | string;
   error?: boolean;
   label?: React.ReactNode;
@@ -37,13 +37,21 @@ class Select extends React.Component<Props> {
       suffixel,
       style,
       listHeight,
+      className,
       ...antdProps
     } = this.props;
     const { size } = antdProps;
     return (
       <>
         <S.Label label={label} tooltip={tooltip} />
-        <S.SelectWrapper className={classNames('ds-select-wrapper', { error: errorText || error })} style={style}>
+        <S.SelectWrapper
+          className={classNames(
+            'ds-select-wrapper',
+            { error: errorText || error },
+            { [className as string]: !!className }
+          )}
+          style={style}
+        >
           {!!prefixel && <S.PrefixWrapper>{prefixel}</S.PrefixWrapper>}
           <S.AntdSelect
             {...antdProps}
