@@ -134,8 +134,10 @@ text-overflow: ellipsis;
         display:block;
       }
 `}
+  transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out;
   &:hover {
     background-color: ${(props): string => props.theme.palette['grey-200']};
+    color: ${(props): string | false => !props.disabled && props.theme.palette['grey-800']};
     cursor: pointer;
     ${(props): FlattenSimpleInterpolation | false => !!props.shrink && !props.disabled && contentShrinkStyle()}
   }

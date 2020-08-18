@@ -16,70 +16,84 @@ import Button from '@synerise/ds-button';
 
 export const Container = styled.div``;
 const gradientOverlayStyles = (): FlattenSimpleInterpolation => css`
-  border-redius: 3px 0 0 3px;
-  position: absolute;
-  left: 2px;
-  top: 2px;
   display: block;
   pointer-events: none;
   z-index: 2;
   width: 100px;
-  height: 44px;
+  height: 32px;
+  transition: opacity 0.3s ease-in-out;
 `;
 export const CollectorInput = styled(InputWrapper)<{
   error?: boolean;
   focus?: boolean;
   disabled?: boolean;
-  gradientOverlap: boolean;
 }>`
   width: 100%;
   min-height: 48px;
-  padding: 4px 0;
+  padding: 8px 4px;
+  border-radius: 5px;
+`;
+export const MainContent = styled.div<{
+  wrap: boolean;
+  hasValues?: boolean;
+  gradientOverlap?: boolean;
+  focus?: boolean;
+}>`
+  display: flex;
   position: relative;
-  &::before {
-    content: ${(props): string => (props.gradientOverlap ? `''` : 'none')};
-    transition: opacity 0.3s ease-in-out;
+  padding: ${(props): string => (props.hasValues ? '0' : '2px 0')};
+  flex: 1;
+  align-items: flex-start;
+  flex-wrap: ${(props): string => (props.wrap ? 'wrap' : 'nowrap')};
+  overflow-x: scroll;
+  overflow-y: hidden;
+  padding-right: 4px;
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  .ds-input-value-wrapper {
+    min-width: fit-content;
+    margin: 4px 0 4px 8px;
+    right: 0;
+    background: ${(props): string => props.theme.palette['grey-200']};
+  }
+    &::before {
+    content: '';
+    opacity: ${(props): string => (props.gradientOverlap ? `1` : '0')};
+    position: fixed;
     ${gradientOverlayStyles()}
     background-image: ${(props): string => `-webkit-linear-gradient( left,
     ${props.focus ? props.theme.palette['blue-050'] : props.theme.palette.white} 0%,
     rgba(255,255,255,0) 100%
   )`};
   }
-  }
-`;
-export const MainContent = styled.div<{ wrap: boolean }>`
-  display: flex;
-  flex: 1;
-  align-items: center;
-  flex-wrap: ${(props): string => (props.wrap ? 'wrap' : 'nowrap')};
-  overflow-x: scroll;
-  overflow-y: hidden;
 
-  padding-right: 4px;
-  scroll-snap-align: start;
-  ::-webkit-scrollbar {
-    display: none;
-  }
-  margin-left: 2px;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-  .ds-input-value-wrapper {
-    min-width: fit-content;
-    margin: 4px 0 4px 12px;
-    right: 0;
-    background: ${(props): string => props.theme.palette['grey-200']};
-  }
 `;
-export const RightSide = styled.div`
+export const RightSide = styled.div<{ gradientOverlap?: boolean; focus?: boolean }>`
   display: flex;
-  margin: 4px 8px;
+  margin: 0 4px;
+  position:relative;
   .ds-button:not(:last-child) {
     margin-right: 8px;
   }
+  &::before {
+    content: ${(props): string => (props.gradientOverlap ? `''` : 'none')};
+    ${gradientOverlayStyles()}
+    background-image: ${(props): string => `-webkit-linear-gradient( right,
+    ${props.focus ? props.theme.palette['blue-050'] : props.theme.palette.white} 0%,
+    rgba(255,255,255,0) 100%
+  )`};
+    position: absolute;
+    left: -102px;
+  }
 `;
-export const Input = styled(BorderLessInput)<DSInputProps & InputProps & { disabled?: boolean }>`
-  margin: 0 0 0 12px;
+export const Input = styled(BorderLessInput)<DSInputProps & InputProps & { disabled?: boolean; hasValues?: boolean }>`
+  margin: ${(props): string => (props.hasValues ? '6px 0 6px 12px' : '4px 0 4px 12px')};
+  padding: 1px 0;
   min-width: unset;
+  line-height: 18px;
 `;
 export { Value as CollectorValue };
 export { ContentAbove };
