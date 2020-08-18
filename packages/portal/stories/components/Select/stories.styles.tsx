@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { Tag } from '@synerise/ds-tags';
 import Avatar from '@synerise/ds-avatar';
+import Select from '@synerise/ds-select';
 
 export const TagAddon = styled(Tag)`
   height: 32px;
