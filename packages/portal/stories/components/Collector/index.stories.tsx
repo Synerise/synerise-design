@@ -20,21 +20,25 @@ const getSuggestions = () => {
 };
 const renderLabel = (text: string, tooltip: string) => {
   return (
-    <div
-      style={{
-        maxWidth: '200px',
-        textOverflow: 'ellipsis',
-        overflow: 'hidden',
-        color: theme.palette['grey-800'],
-        display: 'flex',
-        alignItems: 'center',
-        height: '26px',
-      }}
-    >
-      {!!text && <span>{text}</span>}
-      {!!tooltip && !!text && <Tooltip title={tooltip}>
-        <Icon component={<InfoFillS />} color={theme.palette['grey-400']} />
-      </Tooltip>}
+    <div style={{ display: 'flex', alignItems: 'center', height: '26px' }}>
+      {!!text && (
+        <span
+          style={{
+            maxWidth: '200px',
+            textOverflow: 'ellipsis',
+            overflow: 'hidden',
+            color: theme.palette['grey-800'],
+            display: 'block',
+          }}
+        >
+          {text}
+        </span>
+      )}
+      {!!tooltip && !!text && (
+        <Tooltip title={tooltip}>
+          <Icon component={<InfoFillS />} color={theme.palette['grey-400']} />
+        </Tooltip>
+      )}
     </div>
   );
 };
