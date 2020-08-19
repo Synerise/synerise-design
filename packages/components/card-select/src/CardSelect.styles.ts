@@ -10,7 +10,15 @@ const transition = `
   transition-duration: 0.2s;
   transition-property: border-color, box-shadow, background-color;
 `;
-
+const getTransformValues = (props: ThemeProps & { elementsPosition: string; size?: string }): string => {
+  if (props.size === 'small') {
+    return 'translate(-2px,-2px)';
+  }
+  if (props.elementsPosition === 'left') {
+    return 'translate(3px,-3px)';
+  }
+  return 'translate( -3px, -3px)';
+};
 const mainPadding = 8;
 const radioWidth = 20;
 const radioSmallWidth = 16;
@@ -21,15 +29,6 @@ const mapElementsPosition = {
   right: 'flex-end',
   center: 'center',
 };
-/*
-const getMainPadding = (props: { size?: string; hasTick?: boolean }): string => {
-  if (props.size === 'small') {
-    return props.hasTick ? '24px 16px 8px' : '8px 16px';
-  }
-
-  return '24px';
-};
-*/
 
 const sizeCondition = (
   smallValue: number | string,
@@ -59,38 +58,36 @@ export const Title = styled.div<{ hasIcon: boolean; size?: string }>`
   font-weight: 500;
   font-size: ${(props): string | number => sizeCondition('10px', '14px', props)};
   margin: ${(props): string => (!props.hasIcon ? '0 16px' : '0')};
-  
 
   ${(props): FlattenSimpleInterpolation | false =>
-  props.size === 'small' &&
-  props.hasIcon &&
-  css`
+    props.size === 'small' &&
+    props.hasIcon &&
+    css`
       margin-top: 4px;
     `};
 `;
 export const Description = styled.div<{ hasTitle?: boolean; hasIcon?: boolean; size?: string }>`
-  font-size: 12px;
+  font-size: 13px;
   text-align: center;
   max-width: 100%;
 
   ${(props): FlattenSimpleInterpolation | undefined | false =>
-  props.hasTitle &&
-  css`
+    props.hasTitle &&
+    css`
       margin-top: 8px;
     `};
 `;
 
-export const IconWrapper = styled.div<{size?: string}>`
+export const IconWrapper = styled.div<{ size?: string }>`
   margin-bottom: ${(props): string | number => sizeCondition(0, mainPadding, props)}px;
   text-align: center;
 `;
-export const Aside = styled.div<{size?: string}>`
+export const Aside = styled.div<{ size?: string }>`
   display: flex;
   padding: 0;
   justify-content: center;
   position: absolute;
   top: ${(props): string | number => sizeCondition('4px', '14px', props)};
-  
 `;
 export const Container = styled.div<
   {
@@ -102,7 +99,6 @@ export const Container = styled.div<
     stretchToFit?: boolean;
     elementsPosition: string | 'left' | 'center' | 'right';
     selected?: boolean;
-
   } & ThemeProps
 >`
 min-width: ${(props): string | number => sizeCondition('48px', '224px', props)};
@@ -119,12 +115,13 @@ max-width: 224px;
   padding: ${(props): string => (props.size === 'small' ? '24px 16px 12px' : '24px')};
   cursor: pointer;
   &&&:focus {
-  box-shadow: ${(props): string => props.disabled ? `0px 0px 0px 1px ${props.theme.palette.white}`: `0px 0px 0px 2px ${props.theme.palette['blue-600']}`};
- 
-  
+  box-shadow: ${(props): string =>
+    props.disabled
+      ? `0px 0px 0px 1px ${props.theme.palette.white}`
+      : `0px 0px 0px 2px ${props.theme.palette['blue-600']}`};
   }
   ${is('value')`
-  box-shadow: ${(props: ThemeProps & {disabled: boolean}): string => props.disabled ? `0px 0px 0px 1px ${props.theme.palette.white}`: `0px 0px 0px 2px ${props.theme.palette['blue-600']}`};
+  box-shadow:  0px 0px 0px 1px ${getVar('grey-200')};
   `}
   
   ${Title}, ${Description}, ${IconWrapper} {
@@ -132,12 +129,13 @@ max-width: 224px;
   }
   
   ${Aside} {
-  ${(props): string => props.elementsPosition === 'left' ? 'right': 'left'}: ${(props): string | number => sizeCondition('4px', '14px', props)};
+  ${(props): string => (props.elementsPosition === 'left' ? 'right' : 'left')}: ${(props): string | number =>
+  sizeCondition('4px', '14px', props)};
   }
   
   ${IconWrapper} {
-  margin-left: ${(props): string => props.elementsPosition === 'left' ? '-18px':'0px'};
-  margin-right: ${(props): string => props.elementsPosition === 'right' ? '-18px':'0px'};
+  margin-left: ${(props): string => (props.elementsPosition === 'left' ? '-18px' : '0px')};
+  margin-right: ${(props): string => (props.elementsPosition === 'right' ? '-18px' : '0px')};
   }
   
   
@@ -179,21 +177,17 @@ max-width: 224px;
   `}
 
   ${is('disabled')`
-    cursor: not-allowed;
+    pointer-events:none;
+    box-shadow: 0px 0px 0px 1px ${getVar('grey-200')};
 
     ${isNot('raised')`
-      border: 2px solid ${getVar('grey-200')};
+      box-shadow: 0px 0px 0px 1px ${getVar('grey-200')};
 
       ${isNot('value')`
-        border: 1px solid ${getVar('grey-200')};
+        box-shadow: 0px 0px 0px 1px ${getVar('grey-200')};
       `}
     `}
     
-    ${is('raised')`
-      ${is('value')`
-        border: 2px solid ${getVar('grey-200')};
-      `}
-    `}
   `};
 `;
 
@@ -203,13 +197,18 @@ export const Main = styled.div<{ disabled?: boolean; size?: string; hasTick?: bo
   `}
 `;
 
-export const TickIcon = styled.div<{ size?: string; disabled?: boolean; selected?: boolean; elementsPosition: string | 'left' | 'center' | 'right'}>`
+export const TickIcon = styled.div<{
+  size?: string;
+  disabled?: boolean;
+  selected?: boolean;
+  elementsPosition: string | 'left' | 'center' | 'right';
+}>`
   ${is('selected')`
-    transform: ${(props: ThemeProps & {elementsPosition: string}): string => props.elementsPosition === 'left' ? 'translate(4px,-4px)':'translate( -4px, -4px)'}; 
+    transform: ${(props: ThemeProps & { elementsPosition: string; size?: string }): string =>
+      getTransformValues(props)}; 
   `}
 
   ${is('disabled')`
-  pointer-events: none;
     ${RadioShape} {
       background-color: ${getVar('grey-050')};
       border-color: ${getVar('grey-200')};
@@ -223,6 +222,8 @@ export const TickIcon = styled.div<{ size?: string; disabled?: boolean; selected
   `}
 `;
 
-
-
-
+export const CardWrapper = styled.div<{ disabled?: boolean }>`
+  ${is('disabled')`
+    cursor:not-allowed;
+  `}
+`;

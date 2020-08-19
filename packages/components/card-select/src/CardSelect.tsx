@@ -40,7 +40,7 @@ const CardSelect: React.FC<CardSelectProps> = ({
   icon,
   iconSize,
   tickSize,
-  elementsPosition='center',
+  elementsPosition = 'center',
   className,
   onClick,
   theme,
@@ -52,59 +52,67 @@ const CardSelect: React.FC<CardSelectProps> = ({
     realIconSize = size === 'small' ? 48 : 96;
   }
   let realTickSize = tickSize;
-  if(!realTickSize) {
-    realTickSize = size ==='small' ? 24 : 30;
+  if (!realTickSize) {
+    realTickSize = size === 'small' ? 24 : 30;
   }
 
   return (
-    <S.Container
-      tabIndex={0}
-      raised={raised}
-      disabled={disabled}
-      value={value}
-      size={size}
-      onClick={handleClick}
-      stretchToFit={stretchToFit}
-      className={`ds-card-select ${className || ''}`}
-      elementsPosition={elementsPosition}
-    >
-      <S.Aside size={size} >
-        {tickVisible && (
-          <S.TickIcon className='ds-card-select-tick' disabled={disabled} elementsPosition={elementsPosition} selected={value} size={size} >
-            {value ? (
-              <Icon
-                size={realTickSize}
-                color={value ? theme.palette['green-600'] : theme.palette['grey-400']}
-                component={<Check3M />}
-              />
-            ) : (
-              <S.RadioShape size={size} />
-            )}
-          </S.TickIcon>
-        )}
-      </S.Aside>
+    <S.CardWrapper disabled={disabled}>
+      <S.Container
+        tabIndex={disabled ? undefined : 0}
+        raised={raised}
+        disabled={disabled}
+        value={value}
+        size={size}
+        onClick={handleClick}
+        stretchToFit={stretchToFit}
+        className={`ds-card-select ${className || ''}`}
+        elementsPosition={elementsPosition}
+      >
+        <S.Aside size={size}>
+          {tickVisible && (
+            <S.TickIcon
+              className="ds-card-select-tick"
+              disabled={disabled}
+              elementsPosition={elementsPosition}
+              selected={value && !disabled}
+              size={size}
+            >
+              {value && !disabled ? (
+                <Icon
+                  size={realTickSize}
+                  color={value ? theme.palette['green-600'] : theme.palette['grey-400']}
+                  component={<Check3M />}
+                />
+              ) : (
+                <S.RadioShape size={size} />
+              )}
+            </S.TickIcon>
+          )}
+        </S.Aside>
 
-      <S.Main size={size} disabled={disabled} hasTick={tickVisible || customTickVisible}>
-        {icon && (
-          <S.IconWrapper size={size}>
-            <Icon  component={icon} size={realIconSize} />
-          </S.IconWrapper>
-        )}
+        <S.Main size={size} disabled={disabled} hasTick={tickVisible || customTickVisible}>
+          {icon && (
+            <S.IconWrapper size={size}>
+              <Icon component={icon} size={realIconSize} />
+            </S.IconWrapper>
+          )}
 
-        {title ? (
-          <S.Title size={size} hasIcon={!!icon}>
-            {title}
-          </S.Title>
-        ) : null}
-        {description && size !== 'small' ? (
-          <S.Description size={size} hasTitle={!!title} hasIcon={!!icon}>
-            {description}
-          </S.Description>
-        ) : null}
-      </S.Main>
+          {title ? (
+            <S.Title size={size} hasIcon={!!icon}>
+              {title}
+            </S.Title>
+          ) : null}
+          {description && size !== 'small' ? (
+            <S.Description size={size} hasTitle={!!title} hasIcon={!!icon}>
+              {description}
+            </S.Description>
+          ) : null}
+        </S.Main>
 
-      <S.Aside size={size}>{customTickVisible && customTickVisibleComponent}</S.Aside>
-    </S.Container>
+        <S.Aside size={size}>{customTickVisible && customTickVisibleComponent}</S.Aside>
+      </S.Container>
+    </S.CardWrapper>
   );
 };
 
