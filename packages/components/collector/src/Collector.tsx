@@ -209,7 +209,7 @@ const Collector: React.FC<CollectorProps> = ({
             hasValues={!!selectedValues?.length}
           />
         </S.MainContent>
-        <S.RightSide gradientOverlap={showGradient} focus={isFocused}>
+        <S.RightSide gradientOverlap={showGradient && !value} focus={isFocused}>
           <ButtonPanel
             onCancel={onCancelCallback}
             onConfirm={onConfirmCallback}
