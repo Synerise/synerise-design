@@ -119,7 +119,7 @@ const stories = {
         className={'white'}
         size={size}
         tooltip={text('Tooltip', 'This is example tooltip!')}
-        style={{ width: '50%', background: 'red' }}
+        style={{ width: '50%' }}
         defaultValue="post"
         error={boolean('Set select error', false)}
       >
