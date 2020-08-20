@@ -39,7 +39,6 @@ const renderCard = (props,showContentInitial= true) => {
   const [showContent,setShowContent] = React.useState(showContentInitial)
 
   return (
-    <React.Suspense fallback={<div>Loading icon</div>}>
       <Card
         lively={props.lively}
         disabled={props.disabled}
@@ -58,7 +57,6 @@ const renderCard = (props,showContentInitial= true) => {
       >
          <div style={{ width: '100%', height: 300 }}>{props.content}</div>
       </Card>
-    </React.Suspense>
   );
 };
 
