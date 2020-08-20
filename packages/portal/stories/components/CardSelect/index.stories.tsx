@@ -15,7 +15,6 @@ const positionOfElements = {
 const stories = {
   cardWithIcon:() =>{
     const [selected, setSelected] = React.useState<boolean>(false);
-    const raised = boolean('Raised', false);
     const tickVisible = boolean('With tick', true);
     const hasDescription = boolean('Set Description', true);
     const descriptionMessage = text('Description', 'Suspendisse a pellentesque duim maecenas malesuad.');
@@ -30,7 +29,6 @@ const stories = {
     };
 
     const commonProps = {
-      raised,
       tickVisible,
       icon: <AbTestXl/>,
     };
@@ -56,6 +54,7 @@ const stories = {
               onChange={() => setSelected(!selected)}
               disabled={boolean('Disabled', false)}
               elementsPosition={elementsPosition}
+              raised={setBackground}
             />
           </div>
         </React.Suspense>
@@ -64,8 +63,6 @@ const stories = {
   },
   cardWithOutIcon:() =>{
     const [selected, setSelected] = React.useState<boolean>(false);
-
-    const raised = boolean('Raised', false);
     const tickVisible = boolean('With tick', true);
     const hasDescription = boolean('Set Description', true);
     const descriptionMessage = text('Description', 'Suspendisse a pellentesque duim maecenas malesuad.');
@@ -79,7 +76,6 @@ const stories = {
     };
 
     const commonProps = {
-      raised,
       tickVisible,
     };
 
@@ -103,6 +99,7 @@ const stories = {
               disabled={boolean('Disabled', false)}
               value={selected}
               onChange={()=> setSelected(!selected)}
+              raised={setBackground}
             />
           </div>
         </React.Suspense>
@@ -112,13 +109,11 @@ const stories = {
   },
   smallCardWithIcon:() =>{
     const [selected, setSelected] = React.useState<boolean>(false);
-    const raised = boolean('Raised', false);
     const tickVisible = boolean('With tick', true);
     const setBackground = boolean('SetBackground', false);
 
 
     const commonProps = {
-      raised,
       tickVisible,
       icon: <ChartPieL/>,
     };
@@ -143,6 +138,7 @@ const stories = {
               onChange={()=> setSelected(!selected)}
               disabled={boolean('Disabled', false)}
               size={'small'}
+              raised={setBackground}
 
             />
           </div>
@@ -152,7 +148,6 @@ const stories = {
   },
   groupOfCards:() =>{
     const [selectedIndex, setSelectedIndex] = React.useState<number>(null);
-    const raised = boolean('Raised', false);
     const tickVisible = boolean('With tick', true);
     const hasDescription = boolean('Set Description', true);
     const descriptionMessage = text('Description', 'Suspendisse a pellentesque duim maecenas malesuad.');
@@ -168,7 +163,6 @@ const stories = {
     };
 
     const commonProps = {
-      raised,
       tickVisible,
       icon: <AbTestXl/>,
     };
@@ -204,14 +198,12 @@ const stories = {
   },
   groupOfSmallCards:() =>{
     const [selectedIndex, setSelectedIndex] = React.useState<number>(null);
-    const raised = boolean('Raised', false);
     const tickVisible = boolean('With tick', true);
     const itemsInGroup = number('Number of cards rendered',2,{min:2});
     const columns = select('Number of columns',[2,3],2)
 
 
     const commonProps = {
-      raised,
       tickVisible,
       icon: <ChartPieL/>,
     };

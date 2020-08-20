@@ -123,6 +123,11 @@ max-width: 224px;
   box-shadow:  0px 0px 0px 1px ${getVar('grey-300')};
   `}
     ${is('value') && is('pressed')` box-shadow:  0px 0px 0px 2px ${getVar('blue-600')};`}
+    ${is('value') &&
+      is('raised')`
+  box-shadow:  0px 0px 0px 0px ${getVar('grey-300')};
+  `}
+    ${is('value') && is('pressed')` box-shadow:  0px 0px 0px 2px ${getVar('blue-600')};`}
 
   ${Title}, ${Description}, ${IconWrapper} {
   text-align: ${(props): string => props.elementsPosition};
