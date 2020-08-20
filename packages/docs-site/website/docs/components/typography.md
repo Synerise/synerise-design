@@ -30,7 +30,11 @@ export const Color = styled.div`
 ##### Ant Design components usage
 
 ```jsx harmony
-import Typograpy from '@synerise/ds-typography';
-
-<Typograpy.Title level={h2}>This is h2 element</Typograpy.Title>;
+import {Title} from '@synerise/ds-typography';
+<Title level={1}>This is h1 element</Title>;
+<Title level={2}>This is h2 element</Title>;
+<Title level={3}>This is h3 element</Title>;
+<Title level={4}>This is h4 element</Title>;
+<Title level={5}>This is h5 element</Title>;
+<Title level={6}>This is h6 element</Title>;
 ```
