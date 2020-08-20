@@ -50,7 +50,7 @@ const CardSelect: React.FC<CardSelectProps> = ({
   const wrapperRef = React.useRef(null);
   const handleClick = (): void => {
     onClick ? onClick() : onChange && onChange(!value);
-    setPressed(!pressed);
+    setPressed(true);
   };
   let realIconSize = iconSize;
 
@@ -62,9 +62,8 @@ const CardSelect: React.FC<CardSelectProps> = ({
     realTickSize = size === 'small' ? 24 : 30;
   }
   useOnClickOutside(wrapperRef, () => {
-    setPressed(false);
+    pressed && setPressed(false);
   });
-  console.log(pressed);
   return (
     <S.CardWrapper disabled={disabled}>
       <S.Container
