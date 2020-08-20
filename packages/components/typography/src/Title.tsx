@@ -15,7 +15,7 @@ const StyledElements = {
   6: H6,
 };
 
-const Title: React.FC<Props> = ({ level, children }) => {
+const Title: React.FC<Props> = ({ level = 1, children }) => {
   const TitleElement = React.useMemo(() => {
     return StyledElements[level];
   }, [level]);
