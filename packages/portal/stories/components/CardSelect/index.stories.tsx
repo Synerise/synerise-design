@@ -42,9 +42,6 @@ const stories = {
         height: '100%',
         alignItems: 'center',
         justifyContent: 'center', }}>
-        <React.Suspense
-          fallback={<div>Loading icons... (or perhaps you've entered an icon that couldn't be found)</div>}
-        >
           <div style={{ marginLeft: 12, marginRight: 12 }}>
             <CardSelect
               {...commonProps}
@@ -57,7 +54,6 @@ const stories = {
               raised={setBackground}
             />
           </div>
-        </React.Suspense>
       </div>
     );
   },
@@ -88,9 +84,6 @@ const stories = {
         height: '100%',
         alignItems: 'center',
         justifyContent: 'center',}}>
-        <React.Suspense
-          fallback={<div>Loading icons... (or perhaps you've entered an icon that couldn't be found)</div>}
-        >
           <div style={{ marginLeft: 12, marginRight: 12 }}>
             <CardSelect
               {...commonProps}
@@ -102,7 +95,6 @@ const stories = {
               raised={setBackground}
             />
           </div>
-        </React.Suspense>
       </div>
     );
 
@@ -127,9 +119,6 @@ const stories = {
         height: '100%',
         alignItems: 'center',
         justifyContent: 'center',}}>
-        <React.Suspense
-          fallback={<div>Loading icons... (or perhaps you've entered an icon that couldn't be found)</div>}
-        >
           <div style={{ marginLeft: 12, marginRight: 12 }}>
             <CardSelect
               {...commonProps}
@@ -142,7 +131,6 @@ const stories = {
 
             />
           </div>
-        </React.Suspense>
       </div>
     );
   },
@@ -176,9 +164,6 @@ const stories = {
         height: '100%',
         alignItems: 'center',
         justifyContent: 'center',}}>
-        <React.Suspense
-          fallback={<div>Loading icons... (or perhaps you've entered an icon that couldn't be found)</div>}
-        >
           <CardSelectGroup width={'large'} columns={columns}>
             {[...Array(itemsInGroup).keys()].map((key,index)=>(
               <CardSelect
@@ -192,7 +177,6 @@ const stories = {
               elementsPosition={elementsPosition}
             />))}
           </CardSelectGroup>
-        </React.Suspense>
       </div>
     );
   },
@@ -217,9 +201,6 @@ const stories = {
         height: '100%',
         alignItems: 'center',
         justifyContent: 'center', }}>
-        <React.Suspense
-          fallback={<div>Loading icons... (or perhaps you've entered an icon that couldn't be found)</div>}
-        >
           <CardSelectGroup width={'small'} columns={columns} >
             {[...Array(itemsInGroup).keys()].map((key,index)=>(
               <CardSelect
@@ -231,7 +212,6 @@ const stories = {
               size={'small'}
               />))}
           </CardSelectGroup>
-        </React.Suspense>
       </div>
     );
   },
