@@ -1,7 +1,4 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore
-import fnsIsWithinRange from 'date-fns/is_within_range';
-
+import fnsIsWithinRange from 'date-fns/isWithinInterval';
 import { Limit, State } from './RangePicker.types';
 import { fnsEndOfDay, fnsIsSameMonth, fnsStartOfDay, fnsStartOfMonth } from '../fns';
 import { TIME_OPTIONS } from '../constants';
@@ -21,7 +18,7 @@ export const getDisabledTimeOptions = (
   const upLimit = upperLimit || fnsEndOfDay(day);
   const options = TIME_OPTIONS[granularity].map((option: number) => SET[granularity](day, option));
   return options
-    .filter((a: number) => !fnsIsWithinRange(a, lowLimit, upLimit))
+    .filter((a: number) => !fnsIsWithinRange(a, { start: lowLimit, end: upLimit }))
     .map((option: number) => GET[granularity](option));
 };
 
@@ -34,12 +31,12 @@ export const getSidesState = (value: DateRange, forceAdjacentMonths?: boolean): 
   return {
     left: {
       month: from,
-      monthTitle: format(from, 'MMM YYYY'),
+      monthTitle: format(from, 'MMM yyyy'),
       mode: 'date',
     },
     right: {
       month: forceAdjacentMonths ? ADD.MONTHS(from, 1) : to,
-      monthTitle: format(to, 'MMM YYYY'),
+      monthTitle: format(to, 'MMM yyyy'),
       mode: 'date',
     },
   };

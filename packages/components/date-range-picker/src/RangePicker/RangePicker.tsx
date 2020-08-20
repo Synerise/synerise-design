@@ -1,17 +1,9 @@
 import * as React from 'react';
 import { DateUtils, RangeModifier, DayModifiers } from 'react-day-picker';
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore
-import fnsIsSameDay from 'date-fns/is_same_day';
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore
+import fnsIsSameDay from 'date-fns/isSameDay';
 import fnsMin from 'date-fns/min';
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore
 import fnsMax from 'date-fns/max';
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore
-import fnsIsWithinRange from 'date-fns/is_within_range';
+import parseISO from 'date-fns/parseISO'
 
 import MonthPicker from '@synerise/ds-date-picker/dist/Elements/MonthPicker/MonthPicker';
 import MomentLocaleUtils from 'react-day-picker/moment';
@@ -38,7 +30,7 @@ import { Props, State, Side as SideType } from './RangePicker.types';
 import getDateFromString from '../dateUtils/getDateFromString';
 import { getSidesState, getDisabledTimeOptions } from './utils';
 
-const TOOLTIP_FORMAT = 'D MMM YYYY, H:mm';
+const TOOLTIP_FORMAT = 'd MMM yyyy, H:mm';
 export default class RangePicker extends React.PureComponent<Props, State> {
   constructor(props: Props) {
     super(props);
@@ -139,11 +131,7 @@ export default class RangePicker extends React.PureComponent<Props, State> {
       <>
         <DayBackground className="DayPicker-Day-BG" />
         <DayText className="DayPicker-Day-Text" data-attr={text}>
-          {value.to && value.from && (
-            <DayTooltip>
-              {fnsFormat(value.from, TOOLTIP_FORMAT, intl.locale)} - {fnsFormat(value.to, TOOLTIP_FORMAT, intl.locale)}
-            </DayTooltip>
-          )}
+
           {text}
         </DayText>
         <DayForeground className="DayPicker-Day-FG" />
@@ -184,19 +172,19 @@ export default class RangePicker extends React.PureComponent<Props, State> {
     const isSelecting = from && !to && enteredTo;
     const enteredStart = isSelecting ? fnsMin(from, enteredTo) : enteredTo;
     const enteredEnd = isSelecting ? fnsMax(from, enteredTo) : enteredTo;
-    const entered = isSelecting
-      ? (day: Date | string | number): boolean => fnsIsWithinRange(day, enteredStart, enteredEnd)
-      : enteredTo;
+/*    const entered = isSelecting
+      ? (day: Date | string | number): boolean => fnsIsWithinRange(day, { start: enteredStart, end: enteredEnd })
+      : enteredTo;*/
     const startModifier = isSelecting && !!enteredTo && !!from && enteredTo < from ? undefined : from;
     const endModifier = isSelecting && !!enteredTo && !!from && enteredTo < from ? from : to;
     const modifiers = {
       start: startModifier,
       end: endModifier,
-      entered,
+
       'entered-start': enteredStart,
       'entered-end': enteredEnd,
       'initial-entered': !endModifier ? startModifier : undefined,
-      initial: !entered && !endModifier ? startModifier : undefined,
+      initial: !false && !endModifier ? startModifier : undefined,
     };
     const selectedDays = [from, { from, to } as DateFilter];
     const adjacentMonths = forceAdjacentMonths || fnsIsSameMonth(ADD.MONTHS(left.month, 1), right.month);
@@ -238,7 +226,7 @@ export default class RangePicker extends React.PureComponent<Props, State> {
   renderTimePicker = (side: SideType): React.ReactNode => {
     const { value } = this.props;
     const { from, to } = value;
-    const sidesAreAdjacent = fnsIsSameDay(fnsAddDays(from, 1), to);
+    const sidesAreAdjacent = fnsIsSameDay(from, to);
     switch (side) {
       case COLUMNS.LEFT: {
         return (

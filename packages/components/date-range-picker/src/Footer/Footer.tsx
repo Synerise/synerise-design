@@ -25,21 +25,17 @@ const Footer: React.FC<Props> = ({
   showTime,
   ...rest
 }) => {
-  const footerFormat = format || (showTime ? 'MMM D, YYYY, HH:mm' : 'MMM D, YYYY');
-  const ChosenRange = React.useMemo(
-    () => (
+  const footerFormat = format || (showTime ? 'MMM d, yyyy, HH:mm' : 'MMM d, yyyy');
+  const ChosenRange = React.useMemo(() => {
+    console.log('value', value);
+    return (
       <S.ChosenRange className="ds-date-range-picker-value">
-        {!!value && !!value.from
-          ? fnsFormat(getDateFromString(value?.from), footerFormat, intl.locale)
-          : texts.startDatePlaceholder}
+        {!!value && !!value.from ? fnsFormat(new Date(value?.from), footerFormat) : texts.startDatePlaceholder}
         <Icon component={<ArrowRightS />} />
-        {!!value && !!value.to
-          ? fnsFormat(getDateFromString(value?.to), footerFormat, intl.locale)
-          : texts.endDatePlaceholder}
+        {!!value && !!value.to ? fnsFormat(new Date(value?.to), footerFormat) : texts.endDatePlaceholder}
       </S.ChosenRange>
-    ),
-    [value, footerFormat, intl.locale, texts]
-  );
+    );
+  }, [value, footerFormat, intl.locale, texts]);
   return (
     <S.Container className="ds-date-range-picker-footer" {...rest}>
       {ChosenRange}

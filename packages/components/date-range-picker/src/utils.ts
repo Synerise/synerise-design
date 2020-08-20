@@ -1,11 +1,5 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore
 import fnsMin from 'date-fns/min';
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore
 import fnsMax from 'date-fns/max';
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore
 import { DateRange } from './date.types';
 import { ABSOLUTE, RELATIVE } from './constants';
 import ADD from './dateUtils/add';

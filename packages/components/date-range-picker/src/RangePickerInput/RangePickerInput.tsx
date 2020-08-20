@@ -37,7 +37,7 @@ const RangePickerInput: React.FC<Props> = ({ value, format, showTime, onChange, 
       if (!dateToDisplay) return '';
       let dateValue = dateToDisplay;
       if (typeof dateToDisplay === 'string') dateValue = moment(dateToDisplay);
-      return moment(dateValue).format(format || showTime ? 'MMM D, YYYY, HH:mm' : 'MMM D, YYYY');
+      return moment(dateValue).format(format || showTime ? 'MMM D, yyyy, HH:mm' : 'MMM D, yyyy');
     },
     [format, showTime]
   );

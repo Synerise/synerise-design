@@ -69,6 +69,7 @@ class RelativeRangePicker extends React.PureComponent<Props, State> {
 
   onModeChange = (mode: string | null): void => {
     const { currentRange } = this.state;
+    console.log('current',currentRange)
     this.setState({ currentGroup: mode }, () => {
       if (mode !== RANGES_MODE.SINCE) {
         const updatedState = {
@@ -79,7 +80,7 @@ class RelativeRangePicker extends React.PureComponent<Props, State> {
           },
           offset: {
             ...currentRange.offset,
-            value: currentRange.offset.value > 1 ? currentRange.offset.value : 1,
+            value: currentRange.offset.value > -1 ? currentRange.offset.value : 0,
           },
           key: undefined,
           future: mode === RANGES_MODE.FUTURE,
@@ -132,7 +133,7 @@ class RelativeRangePicker extends React.PureComponent<Props, State> {
 
   onOffsetValueChange = (value: number | undefined): void => {
     const { currentRange } = this.state;
-    if (value && currentRange) {
+    if (typeof value === 'number' && value > -1 && currentRange) {
       const changes = setOffsetValue(value, currentRange);
       this.onChange(changes);
     }

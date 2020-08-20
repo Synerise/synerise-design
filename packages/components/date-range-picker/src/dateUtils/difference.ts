@@ -1,24 +1,10 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore
-import differenceInHours from 'date-fns/difference_in_hours';
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore
-import differenceInDays from 'date-fns/difference_in_days';
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore
-import differenceInSeconds from 'date-fns/difference_in_seconds';
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore
-import differenceInWeeks from 'date-fns/difference_in_weeks';
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore
-import differenceInMonths from 'date-fns/difference_in_months';
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore
-import differenceInMinutes from 'date-fns/difference_in_minutes';
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore
-import differenceInYears from 'date-fns/difference_in_years';
+import differenceInHours from 'date-fns/differenceInHours';
+import differenceInDays from 'date-fns/differenceInDays';
+import differenceInSeconds from 'date-fns/differenceInSeconds';
+import differenceInWeeks from 'date-fns/differenceInWeeks';
+import differenceInMonths from 'date-fns/differenceInMonths';
+import differenceInMinutes from 'date-fns/differenceInMinutes';
+import differenceInYears from 'date-fns/differenceInYears';
 
 export default {
   HOURS: differenceInHours,

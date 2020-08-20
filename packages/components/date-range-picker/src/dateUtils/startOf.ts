@@ -1,24 +1,24 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
-import fnsStartOfHour from 'date-fns/start_of_hour';
+import fnsStartOfHour from 'date-fns/startOfHour';
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
-import fnsStartOfMinute from 'date-fns/start_of_minute';
+import fnsStartOfMinute from 'date-fns/startOfMinute';
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
-import fnsStartOfSecond from 'date-fns/start_of_second';
+import fnsStartOfSecond from 'date-fns/startOfSecond';
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
-import fnsStartOfDay from 'date-fns/start_of_day';
+import fnsStartOfDay from 'date-fns/startOfDay';
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
-import fnsStartOfISOWeek from 'date-fns/start_of_iso_week';
+import fnsStartOfISOWeek from 'date-fns/startOfISOWeek';
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
-import fnsStartOfMonth from 'date-fns/start_of_month';
+import fnsStartOfMonth from 'date-fns/startOfMonth';
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
-import fnsStartOfISOYear from 'date-fns/start_of_iso_year';
+import fnsStartOfISOYear from 'date-fns/startOfISOWeekYear';
 
 export default {
   HOURS: fnsStartOfHour,
