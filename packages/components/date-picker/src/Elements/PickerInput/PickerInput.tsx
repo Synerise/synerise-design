@@ -31,7 +31,7 @@ const PickerInput: React.FC<Props> = ({
     if (!value) return '';
     let dateValue = value;
     if (typeof value === 'string') dateValue = moment(value);
-    return dateValue.format(format || showTime ? 'MMM D, YYYY, HH:mm' : 'MMM D, YYYY');
+    return dateValue.format(format || showTime ? 'MMM D, yyyy, HH:mm' : 'MMM D, yyyy');
   }, [value, format, showTime]);
 
   const handleApply = React.useCallback(

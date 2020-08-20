@@ -16,7 +16,7 @@ const TimePicker: React.FC<TimePickerProps> = ({
 }: TimePickerProps) => {
   return (
     <>
-      <Navbar title={fnsFormat(value, 'ddd D, YYYY')} key="head" onShortNext={onShortNext} onShortPrev={onShortPrev} />
+      <Navbar title={fnsFormat(value, 'EEE d, yyyy')} key="head" onShortNext={onShortNext} onShortPrev={onShortPrev} />
       <S.Container key="ds-time-picker-body" className="ds-time-picker">
         <S.Picker
           value={value}

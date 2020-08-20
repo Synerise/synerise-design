@@ -23,7 +23,7 @@ function getCells(cursor: Date): Cell[] {
     const date = fnsAddYears(fnsSetYear(cursor, startYear), index);
     return {
       key: date.toISOString(),
-      text: fnsFormat(date, 'YYYY'),
+      text: fnsFormat(date, 'yyyy'),
     } as Cell;
   });
 }

@@ -167,7 +167,7 @@ class RawDatePicker extends React.Component<Props, State> {
         disabledDays={disabledDates}
         selectedDays={selectedDays}
         month={month}
-        title={fnsFormat(month, 'MMM YYYY')}
+        title={fnsFormat(month, 'MMM yyyy')}
         renderDay={this.renderDay}
         onDayClick={this.handleDayClick}
         onDayMouseEnter={this.handleDayMouseEnter}

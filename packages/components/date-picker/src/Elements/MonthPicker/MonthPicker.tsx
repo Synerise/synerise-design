@@ -1,6 +1,14 @@
 import * as React from 'react';
 import { range } from 'lodash';
-import { fnsStartOfMonth, fnsEndOfMonth, fnsSetMonth, fnsIsBefore, fnsAddYears, fnsIsAfter, fnsIsSameMonth } from "../../fns";
+import {
+  fnsStartOfMonth,
+  fnsEndOfMonth,
+  fnsSetMonth,
+  fnsIsBefore,
+  fnsAddYears,
+  fnsIsAfter,
+  fnsIsSameMonth,
+} from '../../fns';
 import fnsFormat from '../../format';
 
 import YearPicker from '../YearPicker/YearPicker';
@@ -67,7 +75,7 @@ export default class MonthPicker extends React.PureComponent<MonthPickerProps, M
     return [
       <Navbar
         onTitleClick={(): void => this.setState({ yearMode: true })}
-        title={fnsFormat(cursor, 'YYYY')}
+        title={fnsFormat(cursor, 'yyyy')}
         onLongPrev={this.handleLongPrev}
         onLongNext={this.handleLongNext}
         key="head"
