@@ -22,9 +22,6 @@
             "zeplinNames": [
                 "Analytics / 02 M / 04 Formula / 04-10-lessorequal-m"
             ],
-            "storybookDemo": {
-                "urlPath": "components-icon--listicon"
-            },
             "confluence": {
                 "urlPath": "projectKey=STOR&rapidView=245"
             },
@@ -36,14 +33,24 @@
                     "additionalListIcon"
                 ]
             }
+        },
+        {
+            "path": "./../../packages/components/input/src/Input.tsx",
+            "zeplinNames": [
+                "01 Input / 01 Input small / 01 Default"
+            ],
+            "confluence": {
+                "urlPath": "projectKey=STOR&rapidView=245"
+            },
+            "storybook": {
+                "kind": "Components|Input",
+                "stories": [
+                    "default"
+                ]
+            }
         }
     ],
     "links": [
-        {
-            "name": "Design System Storybook",
-            "type": "storybookDemo",
-            "url": "https://ds-docs.rc.snrstage.com/storybook-static/?path=/story"
-        },
         {
             "name": "Confluence Sprint Board",
             "type": "confluence",
