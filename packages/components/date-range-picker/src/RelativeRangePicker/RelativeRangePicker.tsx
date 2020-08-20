@@ -132,7 +132,7 @@ class RelativeRangePicker extends React.PureComponent<Props, State> {
 
   onOffsetValueChange = (value: number | undefined): void => {
     const { currentRange } = this.state;
-    if (value && currentRange) {
+    if (typeof value === 'number' && value >= 0 && currentRange) {
       const changes = setOffsetValue(value, currentRange);
       this.onChange(changes);
     }
