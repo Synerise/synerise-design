@@ -1,10 +1,8 @@
 import styled from 'styled-components';
 
 // eslint-disable-next-line import/prefer-default-export
-export const Container = styled.div<{ width: string; columns: number }>`
+export const CardGroup = styled.div<{ width: string; columns: number }>`
   width: ${(props): string => (props.width === 'large' ? '588px' : '338px')};
-  height: 100%;
-  justify-content: justify;
   background-color: white;
   padding: 24px;
   display: grid;

@@ -2,6 +2,7 @@ import * as React from 'react';
 import { withTheme } from 'styled-components';
 import Icon from '@synerise/ds-icon';
 import Check3M from '@synerise/ds-icon/dist/icons/Check3M';
+import { useOnClickOutside } from '@synerise/ds-utils';
 import * as S from './CardSelect.styles';
 
 export interface CardSelectProps {
@@ -45,7 +46,12 @@ const CardSelect: React.FC<CardSelectProps> = ({
   onClick,
   theme,
 }) => {
-  const handleClick = (): void => (onClick ? onClick() : onChange && onChange(!value));
+  const [pressed, setPressed] = React.useState<boolean>(false);
+  const wrapperRef = React.useRef(null);
+  const handleClick = (): void => {
+    onClick ? onClick() : onChange && onChange(!value);
+    setPressed(true);
+  };
   let realIconSize = iconSize;
 
   if (!realIconSize) {
@@ -55,11 +61,14 @@ const CardSelect: React.FC<CardSelectProps> = ({
   if (!realTickSize) {
     realTickSize = size === 'small' ? 24 : 30;
   }
-
+  useOnClickOutside(wrapperRef, () => {
+    pressed && setPressed(false);
+  });
   return (
     <S.CardWrapper disabled={disabled}>
       <S.Container
-        tabIndex={disabled ? undefined : 0}
+        ref={wrapperRef}
+        pressed={pressed}
         raised={raised}
         disabled={disabled}
         value={value}
@@ -69,7 +78,7 @@ const CardSelect: React.FC<CardSelectProps> = ({
         className={`ds-card-select ${className || ''}`}
         elementsPosition={elementsPosition}
       >
-        <S.Aside size={size}>
+        <S.Aside size={size} tabIndex={disabled ? undefined : 0}>
           {tickVisible && (
             <S.TickIcon
               className="ds-card-select-tick"

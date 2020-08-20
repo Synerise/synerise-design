@@ -99,6 +99,7 @@ export const Container = styled.div<
     stretchToFit?: boolean;
     elementsPosition: string | 'left' | 'center' | 'right';
     selected?: boolean;
+    pressed?: boolean;
   } & ThemeProps
 >`
 min-width: ${(props): string | number => sizeCondition('48px', '224px', props)};
@@ -114,16 +115,20 @@ max-width: 224px;
   position: relative;
   padding: ${(props): string => (props.size === 'small' ? '24px 16px 12px' : '24px')};
   cursor: pointer;
-  &&&:focus {
-  box-shadow: ${(props): string =>
-    props.disabled
-      ? `0px 0px 0px 1px ${props.theme.palette.white}`
-      : `0px 0px 0px 2px ${props.theme.palette['blue-600']}`};
+  &&:focus-within {
+      box-shadow:  0px 0px 0px 2px ${getVar('blue-600')};
   }
+  ${isNot('pressed') && isNot('value')`box-shadow:  0px 0px 0px 1px ${getVar('grey-300')};`}
   ${is('value')`
-  box-shadow:  0px 0px 0px 1px ${getVar('grey-200')};
+  box-shadow:  0px 0px 0px 1px ${getVar('grey-300')};
   `}
-  
+    ${is('value') && is('pressed')` box-shadow:  0px 0px 0px 2px ${getVar('blue-600')};`}
+    ${is('value') &&
+      is('raised')`
+  box-shadow:  0px 0px 0px 0px ${getVar('grey-300')};
+  `}
+    ${is('value') && is('pressed')` box-shadow:  0px 0px 0px 2px ${getVar('blue-600')};`}
+
   ${Title}, ${Description}, ${IconWrapper} {
   text-align: ${(props): string => props.elementsPosition};
   }
