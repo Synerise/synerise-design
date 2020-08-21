@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.25](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.12.24...@synerise/ds-select@0.12.25) (2020-08-21)
+
+
+### Bug Fixes
+
+* **select:** fixes for handling classname props ([dbad11e](https://github.com/synerise/synerise-design/commit/dbad11e8d3d50ebdec0a56be23417d4823f3bd75))
+
+
+
+
+
 ## [0.12.24](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.12.23...@synerise/ds-select@0.12.24) (2020-08-18)
 
 **Note:** Version bump only for package @synerise/ds-select

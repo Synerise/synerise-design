@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.107](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@0.2.106...@synerise/ds-tags@0.2.107) (2020-08-21)
+
+
+### Bug Fixes
+
+* **tags:** fix create tag button ([0cd1589](https://github.com/Synerise/synerise-design/commit/0cd1589e81fe85c961edf7aa633e73919f64230e))
+
+
+
+
+
 ## [0.2.106](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@0.2.105...@synerise/ds-tags@0.2.106) (2020-08-18)
 
 

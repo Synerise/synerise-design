@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.1](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.6.0...docs@0.6.1) (2020-08-21)
+
+
+### Bug Fixes
+
+* **docs:** intro image on safari ([69bf4b4](https://gitlab.synerise.com/Frontend/synerise-design/commit/69bf4b43e6d550c578d6bb0b544d12025b6eab08))
+
+
+
+
+
 # [0.6.0](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.5.9...docs@0.6.0) (2020-08-05)
 
 

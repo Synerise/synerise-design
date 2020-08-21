@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.42](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-select@0.3.41...@synerise/ds-card-select@0.3.42) (2020-08-21)
+
+
+### Bug Fixes
+
+* **card-select:** change outline to setBackground fix problem with focus ([88ee5f3](https://github.com/Synerise/synerise-design/commit/88ee5f3e4963e62b7e298c6c3b186326d709f820))
+* **card-select:** change style of box shadow fix tick icon ([ebb66ba](https://github.com/Synerise/synerise-design/commit/ebb66ba3d307fe113a959832bdb3633a3ccc1a70))
+* **card-select:** fix focus state, add setbackground with raised state ([241eb56](https://github.com/Synerise/synerise-design/commit/241eb560e3109377d28c006ab37f370a827b0efa))
+* **card-select:** fixed handling the focus and pressed state ([4c74168](https://github.com/Synerise/synerise-design/commit/4c7416823e4b24f3cf3018c7174748dc1f27c230))
+
+
+
+
+
 ## [0.3.41](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-select@0.3.40...@synerise/ds-card-select@0.3.41) (2020-08-18)
 
 

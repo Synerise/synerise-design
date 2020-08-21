@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-typography@0.8.3...@synerise/ds-typography@0.9.0) (2020-08-21)
+
+
+### Bug Fixes
+
+* **typography:** fix typography examle in storybook ([669ab95](https://github.com/synerise/synerise-design/commit/669ab95283aef104466f64a5a9dcee3ce69eaac1))
+
+
+### Features
+
+* **typography:** add missing h5 and h6 elements ([c162f11](https://github.com/synerise/synerise-design/commit/c162f113da6b46c841ddf448d7e1c8e35cfc8457))
+* **typography:** fix types in styles ([32e7419](https://github.com/synerise/synerise-design/commit/32e7419b780f1716d2f9e034086736bba348f112))
+
+
+
+
+
 ## [0.8.3](https://github.com/synerise/synerise-design/compare/@synerise/ds-typography@0.8.2...@synerise/ds-typography@0.8.3) (2020-03-27)
 
 **Note:** Version bump only for package @synerise/ds-typography

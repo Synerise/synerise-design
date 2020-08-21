@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.95.0](https://github.com/synerise/synerise-design/compare/portal@0.94.2...portal@0.95.0) (2020-08-21)
+
+
+### Bug Fixes
+
+* **card:** fix stories ([1567698](https://github.com/synerise/synerise-design/commit/15676981b32c31c2e16c3faffa99da6ef56b3a76))
+* **card-select:** change outline to setBackground fix problem with focus ([88ee5f3](https://github.com/synerise/synerise-design/commit/88ee5f3e4963e62b7e298c6c3b186326d709f820))
+* **card-select:** fix focus state, add setbackground with raised state ([241eb56](https://github.com/synerise/synerise-design/commit/241eb560e3109377d28c006ab37f370a827b0efa))
+* **card-select:** remove React.Suspense from stories ([80fe6c7](https://github.com/synerise/synerise-design/commit/80fe6c7036bb67928d88d2eee22fc7c54081f8dc))
+* **collector:** allow for longer label in story ([a268f97](https://github.com/synerise/synerise-design/commit/a268f979ad318cd303ef2f23bd66766b24801924))
+* **input:** added exception for white select ([314d8d4](https://github.com/synerise/synerise-design/commit/314d8d479edb9279f87fc8f4a958ff270865f008))
+* **progress-bar:** add to choose color ([9040226](https://github.com/synerise/synerise-design/commit/9040226b5828e78920ea08ccd19f557743ec7f67))
+* **progress-bar:** add to choose color ([9481e4f](https://github.com/synerise/synerise-design/commit/9481e4f6a8d25fb3f359c9f2ccbea38b383375fe))
+* **select:** fixes for handling classname props ([dbad11e](https://github.com/synerise/synerise-design/commit/dbad11e8d3d50ebdec0a56be23417d4823f3bd75))
+* **typography:** fix typography examle in storybook ([669ab95](https://github.com/synerise/synerise-design/commit/669ab95283aef104466f64a5a9dcee3ce69eaac1))
+
+
+### Features
+
+* **typography:** add missing h5 and h6 elements ([c162f11](https://github.com/synerise/synerise-design/commit/c162f113da6b46c841ddf448d7e1c8e35cfc8457))
+
+
+
+
+
 ## [0.94.2](https://github.com/synerise/synerise-design/compare/portal@0.94.1...portal@0.94.2) (2020-08-18)
 
 

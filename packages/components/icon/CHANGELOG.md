@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.26.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.25.0...@synerise/ds-icon@0.26.0) (2020-08-21)
+
+
+### Features
+
+* **icon:** add keyboard icons ([366cbca](https://github.com/Synerise/synerise-design/commit/366cbca3a5aaa1438f7778b70777b887b1bcd350))
+
+
+
+
+
 # [0.25.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.24.0...@synerise/ds-icon@0.25.0) (2020-08-12)
 
 
