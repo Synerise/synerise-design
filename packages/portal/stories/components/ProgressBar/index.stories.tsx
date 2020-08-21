@@ -25,21 +25,22 @@ const decorator = storyFn => <div style={{ background: '#fff', padding: '16px', 
 const stories = {
   soloBar: () => {
     const colors = select('Set custom color', customColorOptions, customColorOptions.green);
-    return <ProgressBar amount={60} percent={50} showLabel={false} strokeColor={colors}></ProgressBar>;
+    return <ProgressBar amount={60} percent={60} showLabel={false} strokeColor={colors}></ProgressBar>;
   },
   soloBarWithLabel: () => {
     const colors = select('Set custom color', customColorOptions, customColorOptions.green);
-    return <ProgressBar amount={30} percent={60} showLabel={true} strokeColor={colors}></ProgressBar>;
+    return <ProgressBar amount={60} percent={60} showLabel={true} strokeColor={colors}></ProgressBar>;
   },
 
   soloBarWithLabelAndDescription: () => {
+    const colors = select('Set custom color', customColorOptions, customColorOptions.green);
     return (
       <ProgressBar
         amount={60}
         percent={60}
         showLabel={true}
         description="Description"
-        strokeColor="#ff5a4d"
+        strokeColor={colors}
       ></ProgressBar>
     );
   },

@@ -2,6 +2,7 @@ import * as React from 'react';
 import { withTheme } from 'styled-components';
 import Icon from '@synerise/ds-icon';
 import Check3M from '@synerise/ds-icon/dist/icons/Check3M';
+import { useOnClickOutside } from '@synerise/ds-utils';
 import * as S from './CardSelect.styles';
 
 export interface CardSelectProps {
@@ -40,71 +41,87 @@ const CardSelect: React.FC<CardSelectProps> = ({
   icon,
   iconSize,
   tickSize,
-  elementsPosition='center',
+  elementsPosition = 'center',
   className,
   onClick,
   theme,
 }) => {
-  const handleClick = (): void => (onClick ? onClick() : onChange && onChange(!value));
+  const [pressed, setPressed] = React.useState<boolean>(false);
+  const wrapperRef = React.useRef(null);
+  const handleClick = (): void => {
+    onClick ? onClick() : onChange && onChange(!value);
+    setPressed(true);
+  };
   let realIconSize = iconSize;
 
   if (!realIconSize) {
     realIconSize = size === 'small' ? 48 : 96;
   }
   let realTickSize = tickSize;
-  if(!realTickSize) {
-    realTickSize = size ==='small' ? 24 : 30;
+  if (!realTickSize) {
+    realTickSize = size === 'small' ? 24 : 30;
   }
-
+  useOnClickOutside(wrapperRef, () => {
+    pressed && setPressed(false);
+  });
   return (
-    <S.Container
-      tabIndex={0}
-      raised={raised}
-      disabled={disabled}
-      value={value}
-      size={size}
-      onClick={handleClick}
-      stretchToFit={stretchToFit}
-      className={`ds-card-select ${className || ''}`}
-      elementsPosition={elementsPosition}
-    >
-      <S.Aside size={size} >
-        {tickVisible && (
-          <S.TickIcon className='ds-card-select-tick' disabled={disabled} elementsPosition={elementsPosition} selected={value} size={size} >
-            {value ? (
-              <Icon
-                size={realTickSize}
-                color={value ? theme.palette['green-600'] : theme.palette['grey-400']}
-                component={<Check3M />}
-              />
-            ) : (
-              <S.RadioShape size={size} />
-            )}
-          </S.TickIcon>
-        )}
-      </S.Aside>
+    <S.CardWrapper disabled={disabled}>
+      <S.Container
+        ref={wrapperRef}
+        pressed={pressed}
+        raised={raised}
+        disabled={disabled}
+        value={value}
+        size={size}
+        onClick={handleClick}
+        stretchToFit={stretchToFit}
+        className={`ds-card-select ${className || ''}`}
+        elementsPosition={elementsPosition}
+      >
+        <S.Aside size={size} tabIndex={disabled ? undefined : 0}>
+          {tickVisible && (
+            <S.TickIcon
+              className="ds-card-select-tick"
+              disabled={disabled}
+              elementsPosition={elementsPosition}
+              selected={value && !disabled}
+              size={size}
+            >
+              {value && !disabled ? (
+                <Icon
+                  size={realTickSize}
+                  color={value ? theme.palette['green-600'] : theme.palette['grey-400']}
+                  component={<Check3M />}
+                />
+              ) : (
+                <S.RadioShape size={size} />
+              )}
+            </S.TickIcon>
+          )}
+        </S.Aside>
 
-      <S.Main size={size} disabled={disabled} hasTick={tickVisible || customTickVisible}>
-        {icon && (
-          <S.IconWrapper size={size}>
-            <Icon  component={icon} size={realIconSize} />
-          </S.IconWrapper>
-        )}
+        <S.Main size={size} disabled={disabled} hasTick={tickVisible || customTickVisible}>
+          {icon && (
+            <S.IconWrapper size={size}>
+              <Icon component={icon} size={realIconSize} />
+            </S.IconWrapper>
+          )}
 
-        {title ? (
-          <S.Title size={size} hasIcon={!!icon}>
-            {title}
-          </S.Title>
-        ) : null}
-        {description && size !== 'small' ? (
-          <S.Description size={size} hasTitle={!!title} hasIcon={!!icon}>
-            {description}
-          </S.Description>
-        ) : null}
-      </S.Main>
+          {title ? (
+            <S.Title size={size} hasIcon={!!icon}>
+              {title}
+            </S.Title>
+          ) : null}
+          {description && size !== 'small' ? (
+            <S.Description size={size} hasTitle={!!title} hasIcon={!!icon}>
+              {description}
+            </S.Description>
+          ) : null}
+        </S.Main>
 
-      <S.Aside size={size}>{customTickVisible && customTickVisibleComponent}</S.Aside>
-    </S.Container>
+        <S.Aside size={size}>{customTickVisible && customTickVisibleComponent}</S.Aside>
+      </S.Container>
+    </S.CardWrapper>
   );
 };
 

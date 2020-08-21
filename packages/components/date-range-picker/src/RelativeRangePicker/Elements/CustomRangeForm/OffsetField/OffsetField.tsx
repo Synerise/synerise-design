@@ -26,7 +26,7 @@ const OffsetField: React.FC<Props> = ({
       </S.Title>
       <S.InputSelectGroup compact>
         <InputNumber
-          min={1}
+          min={0}
           max={CONST.RELATIVE_OFFSET_MAX}
           precision={0}
           step={1}
