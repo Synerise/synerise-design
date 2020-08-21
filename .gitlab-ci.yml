@@ -43,6 +43,7 @@ docs_build:
   stage: test
   only:
     refs:
+      - tags
       - master
       - dev
   script:
