@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.23.32](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.23.31...@synerise/ds-table@0.23.32) (2020-08-21)
+
+**Note:** Version bump only for package @synerise/ds-table
+
+
+
+
+
+## [0.23.31](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.23.30...@synerise/ds-table@0.23.31) (2020-08-18)
+
+
+### Bug Fixes
+
+* **table:** add ds-classnames into table rows and cells ([3bb0a26](https://github.com/synerise/synerise-design/commit/3bb0a26d16b206559a29ad751e31a77a6ecccdaf))
+* **table:** cleanup stories ([f7eca68](https://github.com/synerise/synerise-design/commit/f7eca68994f336f29c098fbdc405cb6eeed730c1))
+* **table:** fix styles of expanded rows ([2d28130](https://github.com/synerise/synerise-design/commit/2d2813065896793cae0be0d960d1535ce1e04c69))
+* **table:** fix TreeTable styles ([0ccf17b](https://github.com/synerise/synerise-design/commit/0ccf17b936163629903706d04c08568f8198fdb4))
+
+
+
+
+
+## [0.23.30](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.23.29...@synerise/ds-table@0.23.30) (2020-08-17)
+
+**Note:** Version bump only for package @synerise/ds-table
+
+
+
+
+
 ## [0.23.29](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.23.28...@synerise/ds-table@0.23.29) (2020-08-12)
 
 **Note:** Version bump only for package @synerise/ds-table

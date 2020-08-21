@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.31](https://github.com/Synerise/synerise-design/compare/@synerise/ds-progress-bar@0.4.30...@synerise/ds-progress-bar@0.4.31) (2020-08-21)
+
+**Note:** Version bump only for package @synerise/ds-progress-bar
+
+
+
+
+
+## [0.4.30](https://github.com/Synerise/synerise-design/compare/@synerise/ds-progress-bar@0.4.29...@synerise/ds-progress-bar@0.4.30) (2020-08-17)
+
+
+### Bug Fixes
+
+* **progress-bar:** fix percentage of bars ([99169fc](https://github.com/Synerise/synerise-design/commit/99169fcb68cd88098f5c98c3960ceb5f0734046a))
+
+
+
+
+
 ## [0.4.29](https://github.com/Synerise/synerise-design/compare/@synerise/ds-progress-bar@0.4.28...@synerise/ds-progress-bar@0.4.29) (2020-08-07)
 
 

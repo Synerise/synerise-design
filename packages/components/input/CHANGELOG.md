@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.15.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.15.1...@synerise/ds-input@0.15.2) (2020-08-21)
+
+
+### Bug Fixes
+
+* **input:** added exception for white select ([314d8d4](https://github.com/synerise/synerise-design/commit/314d8d479edb9279f87fc8f4a958ff270865f008))
+
+
+
+
+
+## [0.15.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.15.0...@synerise/ds-input@0.15.1) (2020-08-18)
+
+**Note:** Version bump only for package @synerise/ds-input
+
+
+
+
+
 # [0.15.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.14.1...@synerise/ds-input@0.15.0) (2020-08-12)
 
 

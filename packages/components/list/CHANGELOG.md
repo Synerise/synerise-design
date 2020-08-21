@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-list@0.5.8...@synerise/ds-list@0.5.9) (2020-08-18)
+
+
+### Bug Fixes
+
+* **list:** fix types ([4328860](https://github.com/Synerise/synerise-design/commit/432886009e801ef76931fb244633c35dada347e6))
+* **list:** fix types ([445a6ff](https://github.com/Synerise/synerise-design/commit/445a6ffeb039c4a21ec945e1bdf5261c337f7e11))
+* **result:** fix textarea, list and headline styles ([15c8092](https://github.com/Synerise/synerise-design/commit/15c80928fd4f5bf297e8f6b3b76b5d0dbad7007b))
+
+
+
+
+
 ## [0.5.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-list@0.5.7...@synerise/ds-list@0.5.8) (2020-07-30)
 
 **Note:** Version bump only for package @synerise/ds-list

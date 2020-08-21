@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@0.1.2...@synerise/ds-collector@0.1.3) (2020-08-21)
+
+
+### Bug Fixes
+
+* **collector:** hide gradient when value is not empty ([4ebf911](https://github.com/Synerise/synerise-design/commit/4ebf911075215cd1a2eac84cffa5ecb9b068d77d))
+
+
+
+
+
+## [0.1.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@0.1.1...@synerise/ds-collector@0.1.2) (2020-08-18)
+
+
+### Bug Fixes
+
+* **collector:** ux review fixes ([fed40a6](https://github.com/Synerise/synerise-design/commit/fed40a6929bbbeb0a7021e4bf6abf5755d25b0a7))
+
+
+
+
+
+## [0.1.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@0.1.0...@synerise/ds-collector@0.1.1) (2020-08-17)
+
+
+### Bug Fixes
+
+* **collector:** remove last item on clear ([8926637](https://github.com/Synerise/synerise-design/commit/8926637809253d99e7e93062a1fb4d73e7b3c862))
+
+
+
+
+
 # 0.1.0 (2020-08-12)
 
 
