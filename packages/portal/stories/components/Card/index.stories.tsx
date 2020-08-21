@@ -98,6 +98,7 @@ const stories = {
           left: 0,
         }}
       >
+        <React.Suspense fallback={"Loading..."}>
         <div style={{ padding: '24px' }}>
           <h3>Variants of card header</h3>
           <S.HeaderWrapper>
@@ -141,7 +142,7 @@ const stories = {
                     <Icon component={<FilterM />} />{' '}
                   </Button>
                   <Button type="ghost" mode="single-icon">
-                    <Icon component={<SearchM />} />{' '}
+                    <Icon component={<SearchM />} />{' '}`
                   </Button>
                 </div>
               ),
@@ -328,6 +329,7 @@ const stories = {
             }, false)}
           </S.HeaderWrapper>
         </div>
+        </React.Suspense>
       </div>
     );
   },
