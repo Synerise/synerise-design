@@ -1,12 +1,4 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore
-import en from 'date-fns/locale/en';
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore
-import pl from 'date-fns/locale/pl';
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore
-import es from 'date-fns/locale/es';
+import { pl, es, enGB as en } from 'date-fns/locale';
 import { fnsFormat } from './fns';
 
 const locales = {

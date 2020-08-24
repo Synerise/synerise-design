@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Props, State, Texts } from 'DatePicker.types';
 import { FormattedMessage } from 'react-intl';
 import { DayModifiers, Modifiers } from 'react-day-picker';
+import { legacyParse } from '@date-fns/upgrade/v2';
 import Footer from './Elements/Footer/Footer';
 import * as S from './DatePicker.styles';
 import DayPicker from './Elements/DayPicker/DayPicker';
@@ -167,7 +168,7 @@ class RawDatePicker extends React.Component<Props, State> {
         disabledDays={disabledDates}
         selectedDays={selectedDays}
         month={month}
-        title={fnsFormat(month, 'MMM YYYY')}
+        title={fnsFormat(month, 'MMM yyyy')}
         renderDay={this.renderDay}
         onDayClick={this.handleDayClick}
         onDayMouseEnter={this.handleDayMouseEnter}
@@ -197,8 +198,8 @@ class RawDatePicker extends React.Component<Props, State> {
         disabledHours={disabledHours}
         disabledMinutes={disabledMinutes}
         disabledSeconds={disabledSeconds}
-        onShortNext={(): void => this.handleDaySwitch(fnsAddDays(value, 1))}
-        onShortPrev={(): void => this.handleDaySwitch(fnsAddDays(value, -1))}
+        onShortNext={(): void => this.handleDaySwitch(fnsAddDays(legacyParse(value), 1))}
+        onShortPrev={(): void => this.handleDaySwitch(fnsAddDays(legacyParse(value), -1))}
       />
     );
   };

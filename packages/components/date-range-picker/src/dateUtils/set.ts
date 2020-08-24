@@ -1,12 +1,6 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore
-import fnsSetHours from 'date-fns/set_hours';
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore
-import fnsSetMinutes from 'date-fns/set_minutes';
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore
-import fnsSetSeconds from 'date-fns/set_seconds';
+import fnsSetHours from "date-fns/setHours";
+import fnsSetMinutes from "date-fns/setMinutes";
+import fnsSetSeconds from "date-fns/setSeconds";
 
 export default {
   HOURS: fnsSetHours,

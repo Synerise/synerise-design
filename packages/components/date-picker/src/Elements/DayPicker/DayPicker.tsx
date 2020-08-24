@@ -31,7 +31,7 @@ const Picker: React.FC<DayPickerProps> = ({
           <>
             <S.Link onClick={onMonthNameClick}>{fnsFormat(month, 'MMM', intl.locale)}</S.Link>
             {'  '}
-            <S.Link onClick={onYearNameClick}>{fnsFormat(month, 'YYYY', intl.locale)}</S.Link>
+            <S.Link onClick={onYearNameClick}>{fnsFormat(month, 'yyyy', intl.locale)}</S.Link>
           </>
         }
         onLongPrev={hideLongPrev ? undefined : (): void => onMonthChange(fnsAddYears(month, -1))}
