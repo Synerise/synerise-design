@@ -2390,6 +2390,13 @@
   resolved "https://registry.yarnpkg.com/@csstools/normalize.css/-/normalize.css-10.1.0.tgz#f0950bba18819512d42f7197e56c518aa491cf18"
   integrity sha512-ij4wRiunFfaJxjB0BdrYHIH8FxBJpOwNPhhAcunlmPdXudL1WQV1qoP9un6JsEBAgQH+7UXyyjh0g7jTxXK6tg==
 
+"@date-fns/upgrade@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@date-fns/upgrade/-/upgrade-1.0.3.tgz#1e59d8c936f63c5c7daeeca09ec82b0849a1252e"
+  integrity sha512-0BLzKmXwWw3Zh3cZzW4xScmwGijXCAulaFdikqNiSnK8PAgYYSWWxOP/kuJFpKaoIT5KzstVGyHsjA7t/QXi1Q==
+  dependencies:
+    date-fns "^2.1"
+
 "@docusaurus/core@^2.0.0-alpha.48":
   version "2.0.0-alpha.54"
   resolved "https://registry.yarnpkg.com/@docusaurus/core/-/core-2.0.0-alpha.54.tgz#c459e835bef6927aa0242a7518419a9d527eb4ca"
@@ -5217,6 +5224,11 @@
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/@synerise/ds-typography/-/ds-typography-0.7.0.tgz#42ec6d4adee553ba23c7b1406f20af7b2b1b2232"
   integrity sha512-YqC3ZZlloh0dRpdY0CHRG/RpJTmhMzybkle0Oh3ym1Kw+Q4GR8Jo+b/W5lfxIcSjzEEzPTORrwZClNPA3H/xrw==
+
+"@synerise/ds-typography@^0.8.3":
+  version "0.8.3"
+  resolved "https://registry.yarnpkg.com/@synerise/ds-typography/-/ds-typography-0.8.3.tgz#9079d69ba637c5c7cafff9d6136ff3125780ce64"
+  integrity sha512-THtP9Va5gZfn7I3rCbV3l86qvs34IYdmooxg1pEfWud85OqHstXC2qwAT51mOJnR7JU/cDNKb81TYP7AbycGmA==
 
 "@synerise/ds-utils@^0.8.26", "@synerise/ds-utils@^0.8.31", "@synerise/ds-utils@^0.8.5":
   version "0.8.31"
@@ -9443,7 +9455,12 @@ data-urls@^1.0.0, data-urls@^1.1.0:
     whatwg-mimetype "^2.2.0"
     whatwg-url "^7.0.0"
 
-date-fns@1.30.1, date-fns@^1.27.2:
+date-fns@2.15.0, date-fns@^2.1:
+  version "2.15.0"
+  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.15.0.tgz#424de6b3778e4e69d3ff27046ec136af58ae5d5f"
+  integrity sha512-ZCPzAMJZn3rNUvvQIMlXhDr4A+Ar07eLeGsGREoWU19a3Pqf5oYa+ccd+B3F6XVtQY6HANMFdOQ8A+ipFnvJdQ==
+
+date-fns@^1.27.2:
   version "1.30.1"
   resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-1.30.1.tgz#2e71bf0b119153dbb4cc4e88d9ea5acfb50dc05c"
   integrity sha512-hBSVCvSmWC+QypYObzwGOd9wqdDpOt+0wl0KbU+R+uuZBS1jN8VsD1ss3irQDknRj5NvxiTF6oj/nDRnN/UQNw==
