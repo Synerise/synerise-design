@@ -1,63 +1,63 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
-import fnsStartOfMonth from 'date-fns/start_of_month';
+import fnsStartOfMonth from "date-fns/startOfMonth";
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
-import fnsSetDate from 'date-fns/set_date';
+import fnsSetDate from "date-fns/setDate";
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
-import fnsSetMonth from 'date-fns/set_month';
+import fnsSetMonth from "date-fns/setMonth";
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
-import fnsSetYear from 'date-fns/set_year';
+import fnsSetYear from "date-fns/setYear";
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
-import fnsStartOfDay from 'date-fns/start_of_day';
+import fnsStartOfDay from "date-fns/startOfDay";
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
-import fnsEndOfDay from 'date-fns/end_of_day';
+import fnsEndOfDay from "date-fns/endOfDay";
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
-import fnsAddYears from 'date-fns/add_years';
+import fnsAddYears from "date-fns/addYears";
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
-import fnsEndOfMonth from 'date-fns/end_of_month';
+import fnsEndOfMonth from "date-fns/endOfMonth";
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
-import fnsIsSameMonth from 'date-fns/is_same_month';
+import fnsIsSameMonth from "date-fns/isSameMonth";
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
-import fnsIsBefore from 'date-fns/is_before';
+import fnsIsBefore from "date-fns/isBefore";
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
-import fnsIsAfter from 'date-fns/is_after';
+import fnsIsAfter from "date-fns/isAfter";
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
-import fnsAddMonths from 'date-fns/add_months';
+import fnsAddMonths from "date-fns/addMonths";
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
-import fnsFormat from 'date-fns/format';
+import fnsFormat from "date-fns/format";
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
-import fnsIsSameYear from 'date-fns/is_same_year';
+import fnsIsSameYear from "date-fns/isSameYear";
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
-import fnsGetYear from 'date-fns/get_year';
+import fnsGetYear from "date-fns/getYear";
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
-import fnsAddHours from 'date-fns/add_hours';
+import fnsAddHours from "date-fns/addHours";
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
-import fnsAddMinutes from 'date-fns/add_minutes';
+import fnsAddMinutes from "date-fns/addMinutes";
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
-import fnsAddSeconds from 'date-fns/add_seconds';
+import fnsAddSeconds from "date-fns/addSeconds";
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
-import fnsAddDays from 'date-fns/add_days';
+import fnsAddDays from "date-fns/addDays";
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
-import fnsAddWeeks from 'date-fns/add_weeks';
+import fnsAddWeeks from "date-fns/addWeeks";
 
 export { fnsAddSeconds };
 export { fnsAddMinutes };

@@ -1,17 +1,9 @@
 import * as React from 'react';
 import { DateUtils, RangeModifier, DayModifiers } from 'react-day-picker';
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore
-import fnsIsSameDay from 'date-fns/is_same_day';
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore
+import fnsIsSameDay from 'date-fns/isSameDay';
 import fnsMin from 'date-fns/min';
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore
 import fnsMax from 'date-fns/max';
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore
-import fnsIsWithinRange from 'date-fns/is_within_range';
+import fnsIsWithinRange from 'date-fns/isWithinInterval';
 
 import MonthPicker from '@synerise/ds-date-picker/dist/Elements/MonthPicker/MonthPicker';
 import MomentLocaleUtils from 'react-day-picker/moment';
@@ -27,6 +19,7 @@ import DayPicker from '@synerise/ds-date-picker/dist/Elements/DayPicker/DayPicke
 import Icon from '@synerise/ds-icon';
 import { CalendarM, ClockM } from '@synerise/ds-icon/dist/icons';
 import { fnsDifferenceInYears } from '@synerise/ds-date-picker/dist/fns';
+import { legacyParse } from '@date-fns/upgrade/v2';
 import { Range } from '../RelativeRangePicker/RelativeRangePicker.styles';
 import { fnsStartOfDay, fnsEndOfDay, fnsIsSameMonth, fnsIsAfter, fnsFormat, fnsAddMinutes, fnsAddDays } from '../fns';
 import * as S from './RangePicker.styles';
@@ -38,7 +31,8 @@ import { Props, State, Side as SideType } from './RangePicker.types';
 import getDateFromString from '../dateUtils/getDateFromString';
 import { getSidesState, getDisabledTimeOptions } from './utils';
 
-const TOOLTIP_FORMAT = 'D MMM YYYY, H:mm';
+
+const TOOLTIP_FORMAT = 'd MMM yyyy, H:mm';
 export default class RangePicker extends React.PureComponent<Props, State> {
   constructor(props: Props) {
     super(props);
@@ -53,7 +47,9 @@ export default class RangePicker extends React.PureComponent<Props, State> {
     const { value, forceAdjacentMonths } = this.props;
     const { left } = this.state;
     if (
-      (!!value?.to && value?.to !== prevProps?.value?.to && !fnsIsSameMonth(value.to, left.month)) ||
+      (!!value?.to &&
+        value?.to !== prevProps?.value?.to &&
+        !fnsIsSameMonth(legacyParse(value.to), legacyParse(left.month))) ||
       forceAdjacentMonths !== prevProps.forceAdjacentMonths
     ) {
       this.setState(getSidesState(value, forceAdjacentMonths));
@@ -78,7 +74,7 @@ export default class RangePicker extends React.PureComponent<Props, State> {
     to = to ? fnsEndOfDay(to) : to;
     if (to) {
       const now = new Date();
-      if (fnsIsSameDay(to, now)) {
+      if (fnsIsSameDay(legacyParse(to), legacyParse(now))) {
         to = now;
       }
     }
@@ -98,11 +94,11 @@ export default class RangePicker extends React.PureComponent<Props, State> {
   handleAddDay = (numberOfDays: number, side: string): void => {
     if (side === COLUMNS.LEFT) {
       const { onChange, value } = this.props;
-      onChange({ ...value, type: ABSOLUTE, from: fnsAddDays(value.from, numberOfDays) });
+      onChange({ ...value, type: ABSOLUTE, from: fnsAddDays(legacyParse(value.from), numberOfDays) });
     }
     if (side === COLUMNS.RIGHT) {
       const { onChange, value } = this.props;
-      onChange({ ...value, type: ABSOLUTE, to: fnsAddDays(value.to, numberOfDays) });
+      onChange({ ...value, type: ABSOLUTE, to: fnsAddDays(legacyParse(value.to), numberOfDays) });
     }
   };
 
@@ -111,7 +107,7 @@ export default class RangePicker extends React.PureComponent<Props, State> {
     const { state } = this;
     const { forceAdjacentMonths } = this.props;
     if (fnsIsSameMonth(month, state[opposite])) {
-      const dir = fnsIsAfter(month, state[side].month) ? 1 : -1;
+      const dir = fnsIsAfter(month, legacyParse(state[side].month)) ? 1 : -1;
       const adjacentMonth = ADD.MONTHS(month, dir);
       this.setState(prevState => ({ ...prevState, [side]: { ...state[side], adjacentMonth, mode } }));
       return;
@@ -134,14 +130,14 @@ export default class RangePicker extends React.PureComponent<Props, State> {
 
   renderDay = (day: Date): React.ReactNode => {
     const text = day.getDate();
-    const { value, intl } = this.props;
+    const { value } = this.props;
     return (
       <>
         <DayBackground className="DayPicker-Day-BG" />
         <DayText className="DayPicker-Day-Text" data-attr={text}>
           {value.to && value.from && (
             <DayTooltip>
-              {fnsFormat(value.from, TOOLTIP_FORMAT, intl.locale)} - {fnsFormat(value.to, TOOLTIP_FORMAT, intl.locale)}
+              {fnsFormat(legacyParse(value.from), TOOLTIP_FORMAT)} - {fnsFormat(legacyParse(value.to), TOOLTIP_FORMAT)}
             </DayTooltip>
           )}
           {text}
@@ -166,11 +162,12 @@ export default class RangePicker extends React.PureComponent<Props, State> {
   renderMonthPicker = (side: SideType): React.ReactNode => {
     const opposite: SideType = side === COLUMNS.LEFT ? (COLUMNS.RIGHT as SideType) : (COLUMNS.LEFT as SideType);
     const { [side]: currentSide, [opposite]: oppositeSide } = this.state;
+    const oppositeMonth = legacyParse(oppositeSide.month);
     return (
       <MonthPicker
         key={`month_picker_${opposite}`}
-        max={side === COLUMNS.LEFT ? ADD.MONTHS(oppositeSide.month, -1) : undefined}
-        min={side === COLUMNS.RIGHT ? ADD.MONTHS(oppositeSide.month, 1) : undefined}
+        max={side === COLUMNS.LEFT ? ADD.MONTHS(oppositeMonth, -1) : undefined}
+        min={side === COLUMNS.RIGHT ? ADD.MONTHS(oppositeMonth, 1) : undefined}
         value={currentSide.month instanceof Date ? currentSide.month : new Date(currentSide.month)}
         onChange={(month: Date): void => this.handleSideMonthChange(side, month, 'date')}
       />
@@ -182,10 +179,11 @@ export default class RangePicker extends React.PureComponent<Props, State> {
     const { enteredTo, left, right, [side]: sideState } = this.state;
     const { from, to, type } = value;
     const isSelecting = from && !to && enteredTo;
-    const enteredStart = isSelecting ? fnsMin(from, enteredTo) : enteredTo;
-    const enteredEnd = isSelecting ? fnsMax(from, enteredTo) : enteredTo;
+    const enteredStart = isSelecting ? fnsMin([legacyParse(from), legacyParse(enteredTo)]) : enteredTo;
+    const enteredEnd = isSelecting ? fnsMax([legacyParse(from), legacyParse(enteredTo)]) : enteredTo;
     const entered = isSelecting
-      ? (day: Date | string | number): boolean => fnsIsWithinRange(day, enteredStart, enteredEnd)
+      ? (day: Date | string | number): boolean =>
+          fnsIsWithinRange(legacyParse(day), { start: legacyParse(enteredStart), end: legacyParse(enteredEnd) })
       : enteredTo;
     const startModifier = isSelecting && !!enteredTo && !!from && enteredTo < from ? undefined : from;
     const endModifier = isSelecting && !!enteredTo && !!from && enteredTo < from ? from : to;
@@ -199,8 +197,10 @@ export default class RangePicker extends React.PureComponent<Props, State> {
       initial: !entered && !endModifier ? startModifier : undefined,
     };
     const selectedDays = [from, { from, to } as DateFilter];
-    const adjacentMonths = forceAdjacentMonths || fnsIsSameMonth(ADD.MONTHS(left.month, 1), right.month);
-    const adjacentYears = forceAdjacentMonths || fnsDifferenceInYears(ADD.MONTHS(left.month, 1), right.month) === 0;
+    const parsedLeft = legacyParse(left.month);
+    const parsedRight = legacyParse(right.month);
+    const adjacentMonths = forceAdjacentMonths || fnsIsSameMonth(ADD.MONTHS(parsedLeft, 1), parsedRight);
+    const adjacentYears = forceAdjacentMonths || fnsDifferenceInYears(ADD.MONTHS(parsedLeft, 1), parsedRight) === 0;
     return (
       <DayPicker
         key={`day_picker_${side}`}
@@ -238,7 +238,7 @@ export default class RangePicker extends React.PureComponent<Props, State> {
   renderTimePicker = (side: SideType): React.ReactNode => {
     const { value } = this.props;
     const { from, to } = value;
-    const sidesAreAdjacent = fnsIsSameDay(from, to);
+    const sidesAreAdjacent = fnsIsSameDay(legacyParse(from), legacyParse(to));
     switch (side) {
       case COLUMNS.LEFT: {
         return (
