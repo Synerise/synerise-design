@@ -34,9 +34,9 @@ const stories = {
             overflowCount={number('overflowCount', 99)}
             showZero={boolean('showZero', false)}
             title={text('title', 'text')}
-            style={object('style', {
+            style={ {
               margin: '0 6px 0 11px',
-            })}
+            }}
           />
           <br />
           <Badge
@@ -46,10 +46,10 @@ const stories = {
             backgroundColor={'yellow'}
             backgroundColorHue={600}
             textColor={'white'}
-            style={object('style2', {
+            style={{
               margin: '0 6px 0 6px',
               alignItems: 'center',
-            })}
+            }}
           />
           <br />
           <Badge
@@ -60,10 +60,10 @@ const stories = {
             backgroundColor={'green'}
             backgroundColorHue={600}
             textColor={'white'}
-            style={object('style3', {
+            style={{
               margin: '0 6px 0 6px',
               alignItems: 'center',
-            })}
+            }}
           />
           <br />
           <Badge
@@ -74,10 +74,10 @@ const stories = {
             backgroundColor={'grey'}
             backgroundColorHue={500}
             textColor={'white'}
-            style={object('style4', {
+            style={{
               margin: '0 4px 0 6px',
               alignItems: 'center',
-            })}
+            }}
           />
           <br />
           <div
@@ -99,12 +99,12 @@ const stories = {
               textColorHue={500}
               style={{
                 ...{ boxShadow: isOutline ? `0 0 0 1px ${theme.palette['grey-500']}` : null },
-                ...object('style5', {
+                ...{
                   minWidth: '16px',
                   minHeight: '16px',
                   margin: '9px 8px 7px 8px',
                   alignItems: 'center',
-                }),
+                },
               }}
             />
           </div>
@@ -114,10 +114,10 @@ const stories = {
             outlined={isOutline}
             backgroundColor={'transparent'}
             textColor={'white'}
-            style={object('style6', {
+            style={{
               margin: '0 11px 0 4px',
               alignItems: 'center',
-            })}
+            }}
           />
           <br />
         </div>
