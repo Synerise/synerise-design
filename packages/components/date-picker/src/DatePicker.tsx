@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Dropdown from '@synerise/ds-dropdown';
-import * as moment from 'moment';
 import { useOnClickOutside } from '@synerise/ds-utils';
 import { Props } from './DatePicker.types';
 import RawDatePicker from './RawDatePicker';
@@ -59,7 +58,7 @@ const DatePicker: React.FC<Props> = ({
       visible={!!dropVisible}
     >
       <PickerInput
-        value={selectedDate ? moment(selectedDate) : selectedDate}
+        value={selectedDate}
         showTime={showTime}
         onClick={(): void => {
           setDropVisible(!dropVisible);

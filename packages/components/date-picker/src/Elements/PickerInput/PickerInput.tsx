@@ -1,5 +1,4 @@
 import * as React from 'react';
-import * as moment from 'moment';
 import Icon from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 
@@ -7,12 +6,14 @@ import { SizeType } from 'antd/lib/config-provider/SizeContext';
 import { CalendarM, Close3S } from '@synerise/ds-icon/dist/icons';
 import { Props } from './PickerInput.types';
 import * as S from './PickerInput.styles';
+import format from '../../format';
+import { legacyParse } from '@date-fns/upgrade/v2';
 
 const PickerInput: React.FC<Props> = ({
   size,
   disabled,
   value,
-  format,
+  format :dateFormat,
   onChange,
   showTime,
   style,
@@ -29,15 +30,13 @@ const PickerInput: React.FC<Props> = ({
 
   const getText = React.useCallback((): string => {
     if (!value) return '';
-    let dateValue = value;
-    if (typeof value === 'string') dateValue = moment(value);
-    return dateValue.format(format || showTime ? 'MMM D, YYYY, HH:mm' : 'MMM D, YYYY');
-  }, [value, format, showTime]);
+    return format(legacyParse(value),dateFormat || showTime ? 'MMM d, yyyy, HH:mm' : 'MMM d, yyyy');
+  }, [value, dateFormat, showTime]);
 
   const handleApply = React.useCallback(
     (date?: Date | null): void => {
       if (!onChange) return;
-      onChange(date ? moment(date) : null, getText());
+      onChange(date,getText());
     },
     [onChange, getText]
   );
