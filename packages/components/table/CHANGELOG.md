@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.23.33](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.23.32...@synerise/ds-table@0.23.33) (2020-08-25)
+
+
+### Bug Fixes
+
+* **table:** fix onRow handlers ([8e24c2b](https://github.com/synerise/synerise-design/commit/8e24c2b9ae67de26a37a241437dc846e2ebc79d3))
+
+
+
+
+
 ## [0.23.32](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.23.31...@synerise/ds-table@0.23.32) (2020-08-21)
 
 **Note:** Version bump only for package @synerise/ds-table
