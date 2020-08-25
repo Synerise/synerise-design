@@ -144,17 +144,9 @@ class RelativeRangePicker extends React.PureComponent<Props, State> {
   render(): React.ReactNode {
     const { intl } = this.props;
     const { groupedRanges, currentGroup, currentRange } = this.state;
+    const visibleRanges = (groupedRanges as []).slice(0, 3);
+    const hiddenRanges = (groupedRanges as []).slice(3);
     if (!currentGroup) return null;
-    const ranges: { visible: DateRange[]; hidden: DateRange[] } =
-      groupedRanges && groupedRanges
-        ? groupedRanges.reduce(
-            (acc: { visible: DateRange[]; hidden: DateRange[] }, range: DateRange, index: number) => {
-              acc[index > 2 ? 'hidden' : 'visible'].push(range);
-              return acc;
-            },
-            { visible: [], hidden: [] }
-          )
-        : { visible: [], hidden: [] };
     return (
       <S.Container>
         <S.Ranges>
@@ -165,8 +157,8 @@ class RelativeRangePicker extends React.PureComponent<Props, State> {
           >
             {intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.CUSTOM' })}
           </S.Range>
-          {this.renderRanges(ranges.visible)}
-          {this.renderRangesDropdown(ranges.hidden)}
+          {this.renderRanges(visibleRanges)}
+          {this.renderRangesDropdown(hiddenRanges)}
         </S.Ranges>
         {this.renderCustomRangeForm()}
       </S.Container>
