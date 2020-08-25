@@ -4,10 +4,10 @@ import Tooltip from '@synerise/ds-tooltip';
 
 import { SizeType } from 'antd/lib/config-provider/SizeContext';
 import { CalendarM, Close3S } from '@synerise/ds-icon/dist/icons';
+import { legacyParse } from '@date-fns/upgrade/v2';
 import { Props } from './PickerInput.types';
 import * as S from './PickerInput.styles';
 import format from '../../format';
-import { legacyParse } from '@date-fns/upgrade/v2';
 
 const PickerInput: React.FC<Props> = ({
   size,
