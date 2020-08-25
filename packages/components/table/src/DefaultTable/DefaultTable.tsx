@@ -57,13 +57,17 @@ function DefaultTable<T extends any & RowType<T>>(props: DSTableProps<T>): React
   );
 
   const RenderRow = React.useCallback((row): JSX.Element => {
+    const { children, ...rowProps } = row;
     const classNameWithLevel = row.className.split(' ').find((name: string) => name.includes('row-level'));
     let level;
     if (classNameWithLevel) {
       level = classNameWithLevel.split('-').pop();
     }
     return (
-      <tr className={`${row.className} ds-table-row ${level ? `ds-table-row-level-${level}` : ''}`}>{row.children}</tr>
+      // eslint-disable-next-line react/jsx-handler-names
+      <tr {...rowProps} className={`${row.className} ds-table-row ${level ? `ds-table-row-level-${level}` : ''}`}>
+        {children}
+      </tr>
     );
   }, []);
 
