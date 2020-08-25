@@ -43,7 +43,7 @@ export const CreateTagDropdownButton = styled(Button)<{ marginless: boolean }>`
   && {
     font-weight: 400;
     text-align: left;
-    width: calc(100% - 11px);
+    width: calc(100% - 6px);
     justify-content: flex-start;
     ${AddIconWrapper} {
       transform: translate(-4px, 0px);
