@@ -4,7 +4,7 @@ import fnsEndOfSecond from "date-fns/endOfSecond";
 import fnsEndOfDay from "date-fns/endOfDay";
 import fnsEndOfISOWeek from "date-fns/endOfISOWeek";
 import fnsEndOfMonth from "date-fns/endOfMonth";
-import fnsEndOfISOYear from "date-fns/endOfISOWeekYear";
+import fnsEndOfYear from "date-fns/endOfYear";
 
 export default {
   HOURS: fnsEndOfHour,
@@ -13,5 +13,5 @@ export default {
   DAYS: fnsEndOfDay,
   WEEKS: fnsEndOfISOWeek,
   MONTHS: fnsEndOfMonth,
-  YEARS: fnsEndOfISOYear,
+  YEARS: fnsEndOfYear,
 };

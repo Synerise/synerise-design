@@ -4,7 +4,7 @@ import fnsStartOfSecond from "date-fns/startOfSecond";
 import fnsStartOfDay from "date-fns/startOfDay";
 import fnsStartOfISOWeek from "date-fns/startOfISOWeek";
 import fnsStartOfMonth from "date-fns/startOfMonth";
-import fnsStartOfISOYear from "date-fns/startOfISOWeekYear";
+import fnsStartOfYear from "date-fns/startOfYear";
 
 export default {
   HOURS: fnsStartOfHour,
@@ -13,5 +13,5 @@ export default {
   DAYS: fnsStartOfDay,
   WEEKS: fnsStartOfISOWeek,
   MONTHS: fnsStartOfMonth,
-  YEARS: fnsStartOfISOYear,
+  YEARS: fnsStartOfYear,
 };

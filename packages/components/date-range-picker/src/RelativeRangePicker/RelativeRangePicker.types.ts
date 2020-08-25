@@ -23,6 +23,6 @@ export type State = {
   past: boolean;
   showCustomForm: boolean;
   currentRange: RelativeDateRange;
-  groupedRanges?: GroupRange;
+  groupedRanges?: DateRange[];
   sinceTimestamp?: Date | undefined;
 };

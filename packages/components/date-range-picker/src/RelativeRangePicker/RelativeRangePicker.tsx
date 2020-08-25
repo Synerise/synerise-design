@@ -46,15 +46,7 @@ class RelativeRangePicker extends React.PureComponent<Props, State> {
     const currentRange =
       value && (value.type === CONST.RELATIVE || isAbsolute(value)) ? getValueForRelativeRange(value) : ranges[0];
     state.currentRange = currentRange as RelativeDateRange;
-    state.groupedRanges = ranges.reduce(
-      (acc, range: RelativeDateRange) => {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-        // @ts-ignore
-        acc[range.future ? RANGES_MODE.FUTURE : RANGES_MODE.PAST].push(range);
-        return acc;
-      },
-      { [RANGES_MODE.PAST]: [], [RANGES_MODE.FUTURE]: [] }
-    );
+    state.groupedRanges = ranges;
     if (
       future !== prevState.future ||
       past !== prevState.past ||
@@ -68,25 +60,7 @@ class RelativeRangePicker extends React.PureComponent<Props, State> {
   }
 
   onModeChange = (mode: string | null): void => {
-    const { currentRange } = this.state;
-    this.setState({ currentGroup: mode }, () => {
-      if (mode !== RANGES_MODE.SINCE) {
-        const updatedState = {
-          ...currentRange,
-          duration: {
-            ...currentRange.duration,
-            value: currentRange.duration.value > 1 ? currentRange.duration.value : 1,
-          },
-          offset: {
-            ...currentRange.offset,
-            value: currentRange.offset.value > 1 ? currentRange.offset.value : 1,
-          },
-          key: undefined,
-          future: mode === RANGES_MODE.FUTURE,
-        };
-        this.onChange(updatedState);
-      }
-    });
+    this.setState({ currentGroup: mode });
   };
 
   onTimestampChange = (timestamp: Date | undefined): void => {
@@ -171,16 +145,16 @@ class RelativeRangePicker extends React.PureComponent<Props, State> {
     const { intl } = this.props;
     const { groupedRanges, currentGroup, currentRange } = this.state;
     if (!currentGroup) return null;
-    const ranges =
-      groupedRanges && groupedRanges[currentGroup]
-        ? groupedRanges[currentGroup].reduce(
-            (acc: DateRange[], range: DateRange, index: number) => {
+    const ranges: { visible: DateRange[]; hidden: DateRange[] } =
+      groupedRanges && groupedRanges
+        ? groupedRanges.reduce(
+            (acc: { visible: DateRange[]; hidden: DateRange[] }, range: DateRange, index: number) => {
               acc[index > 2 ? 'hidden' : 'visible'].push(range);
               return acc;
             },
             { visible: [], hidden: [] }
           )
-        : [];
+        : { visible: [], hidden: [] };
     return (
       <S.Container>
         <S.Ranges>
