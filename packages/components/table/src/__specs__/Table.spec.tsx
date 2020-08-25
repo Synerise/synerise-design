@@ -131,7 +131,7 @@ describe('Table', () => {
     expect(container.querySelector('.ant-pagination-options-quick-jumper')).toBeTruthy();
   });
 
-  it('should render call handleChange', () => {
+  it('should call handleChange', () => {
     // ARRANGE
     const handleChange = jest.fn();
     const{ container } = renderWithProvider(<Table dataSource={props.dataSource} columns={props.columns} pagination={{
@@ -147,6 +147,38 @@ describe('Table', () => {
 
     // ARRANGE
     expect(handleChange).toBeCalled();
+  });
+
+
+  it('should call onRow handlers', () => {
+    // ARRANGE
+    const onClick = jest.fn();
+    const onDoubleClick = jest.fn();
+    const onContextMenu = jest.fn();
+    const onMouseEnter = jest.fn();
+    const onMouseLeave = jest.fn();
+    const { container } = renderWithProvider(<Table dataSource={props.dataSource} columns={props.columns} onRow={(record, index) => ({
+      onClick,
+      onDoubleClick,
+      onContextMenu,
+      onMouseEnter,
+      onMouseLeave
+    })} />);
+
+    // ACT
+    const row = container.querySelector('.ds-table-row');
+    row && fireEvent.click(row);
+    row && fireEvent.doubleClick(row);
+    row && fireEvent.contextMenu(row);
+    row && fireEvent.mouseLeave(row);
+    row && fireEvent.mouseEnter(row);
+
+    // ARRANGE
+    expect(onClick).toBeCalled();
+    expect(onDoubleClick).toBeCalled();
+    expect(onContextMenu).toBeCalled();
+    expect(onMouseEnter).toBeCalled();
+    expect(onMouseLeave).toBeCalled();
   });
 
   it('should show loading state of table', () => {
