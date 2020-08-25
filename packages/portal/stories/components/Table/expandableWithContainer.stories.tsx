@@ -114,7 +114,7 @@ const stories = {
         onSearch={console.log}
         onRow={(record, index: number) => ({
           onClick: event => {
-            boolean('Expand on row click', false) && handleExpandRow(record.key)
+            boolean('Expand on row click', true) && record.more && handleExpandRow(record.key)
           },
         })}
         itemsMenu={

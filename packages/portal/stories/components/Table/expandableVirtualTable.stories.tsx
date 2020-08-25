@@ -18,7 +18,7 @@ const stories = {
     selectedRows: [],
   })(({ store }) => {
       const { expandedRows, selectedRows } = store.state;
-      const handleExpandRow = (key: string): void => {
+      const handleExpandRow = (key: number): void => {
         if (expandedRows.indexOf(key) < 0) {
           store.set({ expandedRows: [...expandedRows, key] });
         } else {
@@ -50,7 +50,10 @@ const stories = {
               if(children !== undefined) {
                 return (
                   <TableCell.ActionCell key={record.key}>
-                    <Button.Expander expanded={expandedRows.indexOf(record.key) >= 0} onClick={() => {handleExpandRow(record.key)}} />
+                    <Button.Expander expanded={expandedRows.indexOf(record.key) >= 0} onClick={(event) => {
+                      event.stopPropagation();
+                      handleExpandRow(record.key)
+                    }} />
                   </TableCell.ActionCell>
                 );
               }
@@ -80,6 +83,9 @@ const stories = {
               expandIconColumnIndex: -1,
               expandedRowKeys: expandedRows,
             }}
+            onRowClick={(record ) => {
+              boolean('Expand on row click', true) && handleExpandRow(record.key)
+            }}
             rowKey={row => row.key}
             selection={{
                 onChange: handleSelectRow,
@@ -93,11 +99,6 @@ const stories = {
               }
             }
             onSearch={console.log}
-            onRow={(record) => ({
-              onClick: () => {
-                boolean('Expand on row click', false) && handleExpandRow(record.key.toString())
-              },
-            })}
             itemsMenu={
               <ItemsMenu>
                 <Button onClick={action('Export')} type='secondary' mode='icon-label'>
