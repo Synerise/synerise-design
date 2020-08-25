@@ -4,8 +4,6 @@ import * as React from 'react';
 import Menu from '@synerise/ds-menu';
 import { InputGroup } from '@synerise/ds-input';
 import { Props as InputGroupProps } from '@synerise/ds-input/dist/InputGroup';
-import Scrollbar from '@synerise/ds-scrollbar';
-import { ScrollbarProps } from '@synerise/ds-scrollbar/dist/Scrollbar';
 
 export const Container = styled.div``;
 
@@ -108,10 +106,10 @@ export const OverlayWrapper = styled.div<{ visible?: boolean; width?: number }>`
   &, & > ul {
     border-radius: 3px;
   }
+  .scrollbar-container > .ps__rail-y > .ps__thumb-y {
+    transform: translateX(1px) !important;
+  }
 `;
 export const DropdownContainer = styled.div`
   position: relative;
-`;
-export const StyledScrollbar = styled(Scrollbar)<ScrollbarProps>`
-  width: 100%;
 `;
