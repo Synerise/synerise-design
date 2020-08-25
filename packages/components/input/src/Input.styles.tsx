@@ -4,6 +4,7 @@ import TextArea from 'antd/lib/input/TextArea';
 import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import * as React from 'react';
 import MaskedInput from 'antd-mask-input';
+import { SizeType } from 'antd/es/config-provider/SizeContext';
 
 const errorInputStyle = (props: ThemeProps): string => `
   &&, .ant-input {
@@ -44,14 +45,10 @@ export const InputWrapper = styled.div<InputWrapperProps>`
       if (props.icon1 || props.icon2) return '36px;';
       return '12px';
     }};
-    ::placeholder {
-      line-height:1.29;
+    &::placeholder {
+      line-height: 1.29;
     }
   }
-  .ant-input::placeholder {
-    line-height: 1.39;
-  }
-  
   .ant-input-group-addon {
     height: 100%;
   }
@@ -101,7 +98,7 @@ export const IconWrapper = styled.div`
 `;
 
 export const AntdInput = styled(
-  React.forwardRef<BaseAntInput, { error?: boolean }>(
+  React.forwardRef<BaseAntInput, { error?: boolean; size?: SizeType }>(
     // eslint-disable-next-line
     ({ error, ...props }, ref) => (
       // eslint-disable-next-line
@@ -114,11 +111,12 @@ export const AntdInput = styled(
   && {
     color: ${(props): string => props.theme.palette['grey-700']};
     z-index: 1;
-
     &::placeholder {
       color: ${(props): string => props.theme.palette['grey-500']};
     }
-
+    &::-moz-placeholder {
+      line-height: ${(props): string => (props.size === 'large' ? `2.49` : `1.29`)};
+    }
     .ds-input-prefix {
       border-top-left-radius: 3px;
       border-bottom-left-radius: 3px;
