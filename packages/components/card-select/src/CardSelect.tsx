@@ -52,11 +52,10 @@ const CardSelect: React.FC<CardSelectProps> = ({
   const handleClick = (): void => {
     onClick ? onClick() : onChange && onChange(!value);
     setPressed(true);
-    if (!tickIconRef) {
-      setTimeout(() => {
-        tickIconRef.current.blur();
-      });
-    }
+
+    setTimeout(() => {
+      if (tickIconRef !== null && tickIconRef.current !== null) tickIconRef.current.blur();
+    });
   };
   let realIconSize = iconSize;
 
