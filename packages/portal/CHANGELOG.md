@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.95.2](https://github.com/synerise/synerise-design/compare/portal@0.95.1...portal@0.95.2) (2020-08-25)
+
+
+### Bug Fixes
+
+* **table:** fix onRow handlers ([8e24c2b](https://github.com/synerise/synerise-design/commit/8e24c2b9ae67de26a37a241437dc846e2ebc79d3))
+
+
+
+
+
 ## [0.95.1](https://github.com/synerise/synerise-design/compare/portal@0.95.0...portal@0.95.1) (2020-08-21)
 
 **Note:** Version bump only for package portal
