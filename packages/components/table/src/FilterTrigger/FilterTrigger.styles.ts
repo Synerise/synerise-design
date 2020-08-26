@@ -5,7 +5,7 @@ import { IconContainer } from '@synerise/ds-icon/dist/Icon.styles';
 const buttonTransition = 'cubic-bezier(.645,.045,.355,1)';
 
 export const FilterButton = styled(Button)<{ opened: boolean }>`
-  && {
+  &&& {
     transition: none;
     &:hover {
       color: ${(props): string => props.theme.palette['blue-600']};
