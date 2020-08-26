@@ -5,6 +5,7 @@ import { IconContainer } from '@synerise/ds-icon/dist/Icon.styles';
 const buttonTransition = 'cubic-bezier(.645,.045,.355,1)';
 
 export const FilterButton = styled(Button)<{ opened: boolean }>`
+  transition: none;
   &:hover {
     color: ${(props): string => props.theme.palette['blue-600']};
     ${IconContainer} {
@@ -18,13 +19,13 @@ export const FilterButton = styled(Button)<{ opened: boolean }>`
   ${(props): FlattenInterpolation<ThemeProps<boolean>> | false =>
     props.opened &&
     css`
-    }
-    &:focus {
-      .btn-focus {
-        box-shadow: none;
+      transition: all 0.3s ${buttonTransition};
+      &:focus {
+        .btn-focus {
+          box-shadow: none;
+        }
       }
-    }
-  `}
+    `}
 `;
 
 export const ClearButton = styled(Button)`
@@ -73,7 +74,6 @@ export const FilterButtonLabel = styled.span`
   opacity: 0;
   width: 100%;
   visibility: hidden;
-  transition: width 0.3s ${buttonTransition}, opacity: 0.3s ${buttonTransition}, visiblity 0.3s ${buttonTransition}, color 0s ${buttonTransition} !important;
 `;
 
 export const FilterTrigger = styled.div<{ opened: boolean; selected?: object }>`
@@ -86,45 +86,49 @@ export const FilterTrigger = styled.div<{ opened: boolean; selected?: object }>`
   ${(props): FlattenInterpolation<ThemeProps<boolean>> | false =>
     props.opened &&
     css`
-      ${FilterButtonLabel} {
-        flex: 1;
-        max-width: 100%;
-        opacity: 1;
-        visibility: visible;
-      }
-      ${FilterButton} {
-        border-radius: 3px 0 0 3px;
-        background-color: rgba(181, 189, 195, 0.15) !important;
-      }
-      ${ListButton} {
-        min-width: 32px;
-        border-radius: 0 3px 3px 0;
-        background-color: rgba(181, 189, 195, 0.15) !important;
-      }
-      ${ClearButton} {
-        background-color: transparent !important;
+      &&& {
+        ${FilterButtonLabel} {
+          flex: 1;
+          max-width: 100%;
+          opacity: 1;
+          visibility: visible;
+        }
+        ${FilterButton} {
+          border-radius: 3px 0 0 3px;
+          background-color: rgba(181, 189, 195, 0.15) !important;
+        }
+        ${ListButton} {
+          min-width: 32px;
+          border-radius: 0 3px 3px 0;
+          background-color: rgba(181, 189, 195, 0.15) !important;
+        }
+        ${ClearButton} {
+          background-color: transparent !important;
+        }
       }
     `}
 
   ${(props): FlattenInterpolation<ThemeProps<boolean>> | false =>
     Boolean(props.selected) &&
     css`
-      ${FilterButtonLabel} {
-        flex: 1;
-        max-width: 100%;
-        opacity: 1;
-        visibility: visible;
-        text-overflow: ellipsis;
-        overflow: hidden;
-      }
-      ${FilterButton} {
-        padding-right: 32px;
-      }
+      &&& {
+        ${FilterButtonLabel} {
+          flex: 1;
+          max-width: 100%;
+          opacity: 1;
+          visibility: visible;
+          text-overflow: ellipsis;
+          overflow: hidden;
+        }
+        ${FilterButton} {
+          padding-right: 32px;
+        }
 
-      ${ClearButton} {
-        background-color: transparent !important;
-        position: absolute;
-        right: 32px;
+        ${ClearButton} {
+          background-color: transparent !important;
+          position: absolute;
+          right: 32px;
+        }
       }
     `};
 
