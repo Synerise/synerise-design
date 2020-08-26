@@ -5,27 +5,29 @@ import { IconContainer } from '@synerise/ds-icon/dist/Icon.styles';
 const buttonTransition = 'cubic-bezier(.645,.045,.355,1)';
 
 export const FilterButton = styled(Button)<{ opened: boolean }>`
-  transition: none;
-  &:hover {
-    color: ${(props): string => props.theme.palette['blue-600']};
-    ${IconContainer} {
-      svg {
-        transition: all 0.3s ${buttonTransition};
-        fill: ${(props): string => props.theme.palette['blue-600']} !important;
-        color: ${(props): string => props.theme.palette['blue-600']} !important;
-      }
-    }
-  }
-  ${(props): FlattenInterpolation<ThemeProps<boolean>> | false =>
-    props.opened &&
-    css`
-      transition: all 0.3s ${buttonTransition};
-      &:focus {
-        .btn-focus {
-          box-shadow: none;
+  && {
+    transition: none;
+    &:hover {
+      color: ${(props): string => props.theme.palette['blue-600']};
+      ${IconContainer} {
+        svg {
+          transition: all 0.3s ${buttonTransition};
+          fill: ${(props): string => props.theme.palette['blue-600']} !important;
+          color: ${(props): string => props.theme.palette['blue-600']} !important;
         }
       }
-    `}
+    }
+    ${(props): FlattenInterpolation<ThemeProps<boolean>> | false =>
+      props.opened &&
+      css`
+        transition: all 0.3s ${buttonTransition};
+        &:focus {
+          .btn-focus {
+            box-shadow: none;
+          }
+        }
+      `}
+  }
 `;
 
 export const ClearButton = styled(Button)`

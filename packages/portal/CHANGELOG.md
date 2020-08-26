@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.95.3](https://github.com/synerise/synerise-design/compare/portal@0.95.2...portal@0.95.3) (2020-08-26)
+
+
+### Bug Fixes
+
+* **table:** fix stories with expandable tables ([fa0f899](https://github.com/synerise/synerise-design/commit/fa0f8996c65b10c15d850c0fc8ee9d29a0ca2d42))
+
+
+
+
+
 ## [0.95.2](https://github.com/synerise/synerise-design/compare/portal@0.95.1...portal@0.95.2) (2020-08-25)
 
 

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.23.34](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.23.33...@synerise/ds-table@0.23.34) (2020-08-26)
+
+
+### Bug Fixes
+
+* **table:** FilterTrigger closing animaiton ([ffc23bc](https://github.com/synerise/synerise-design/commit/ffc23bc2d97c474b29a296dc40bb225165822fc4))
+* **table:** fix styles of FilterTrigger ([0b021ed](https://github.com/synerise/synerise-design/commit/0b021ed044bcd30a8f6e0f70214eded9a03fe06e))
+
+
+
+
+
 ## [0.23.33](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.23.32...@synerise/ds-table@0.23.33) (2020-08-25)
 
 
