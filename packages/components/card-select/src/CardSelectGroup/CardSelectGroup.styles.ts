@@ -8,7 +8,7 @@ export const CardGroup = styled.div<{ width: string; columns: number }>`
   display: grid;
   grid-template-columns: ${(props): string => new Array(props.columns).fill('1fr').join(' ')};
   column-gap: ${(props): string => (props.width === 'large' ? '24px' : '16px')};
-  row-gap: 24px;
+  row-gap: ${(props): string => (props.width === 'large' ? '24px' : '16px')};
 
   .ds-card-select {
     width: 100%;

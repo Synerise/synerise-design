@@ -48,9 +48,14 @@ const CardSelect: React.FC<CardSelectProps> = ({
 }) => {
   const [pressed, setPressed] = React.useState<boolean>(false);
   const wrapperRef = React.useRef(null);
+  const tickIconRef = React.useRef<HTMLDivElement>(null);
   const handleClick = (): void => {
     onClick ? onClick() : onChange && onChange(!value);
     setPressed(true);
+
+    setTimeout(() => {
+      if (tickIconRef !== null && tickIconRef.current !== null) tickIconRef.current.blur();
+    });
   };
   let realIconSize = iconSize;
 
@@ -78,7 +83,7 @@ const CardSelect: React.FC<CardSelectProps> = ({
         className={`ds-card-select ${className || ''}`}
         elementsPosition={elementsPosition}
       >
-        <S.Aside size={size} tabIndex={disabled ? undefined : 0}>
+        <S.Aside size={size} tabIndex={disabled ? undefined : 0} ref={tickIconRef}>
           {tickVisible && (
             <S.TickIcon
               className="ds-card-select-tick"
