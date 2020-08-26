@@ -5,6 +5,7 @@ import { IconContainer } from '@synerise/ds-icon/dist/Icon.styles';
 const buttonTransition = 'cubic-bezier(.645,.045,.355,1)';
 
 export const FilterButton = styled(Button)<{ opened: boolean }>`
+  transition: none;
   &:hover {
     color: ${(props): string => props.theme.palette['blue-600']};
     ${IconContainer} {
@@ -18,13 +19,13 @@ export const FilterButton = styled(Button)<{ opened: boolean }>`
   ${(props): FlattenInterpolation<ThemeProps<boolean>> | false =>
     props.opened &&
     css`
-    }
-    &:focus {
-      .btn-focus {
-        box-shadow: none;
+      transition: all 0.3s ${buttonTransition};
+      &:focus {
+        .btn-focus {
+          box-shadow: none;
+        }
       }
-    }
-  `}
+    `}
 `;
 
 export const ClearButton = styled(Button)`
@@ -73,7 +74,6 @@ export const FilterButtonLabel = styled.span`
   opacity: 0;
   width: 100%;
   visibility: hidden;
-  transition: width 0.3s ${buttonTransition}, opacity: 0.3s ${buttonTransition}, visiblity 0.3s ${buttonTransition}, color 0s ${buttonTransition} !important;
 `;
 
 export const FilterTrigger = styled.div<{ opened: boolean; selected?: object }>`
