@@ -41,11 +41,6 @@ export const AntdCollapse = styled((Collapse as any) as React.ComponentType<Coll
     background-color: rgba(11, 104, 255, 0.07);
     border: none;
 
-    &,
-    *:not(${BlockContent}) {
-      border-radius: 0 !important;
-    }
-
     > ${PanelWrapper} > .ant-collapse-item > .ant-collapse-header {
       color: ${(props): string => props.theme.palette['grey-700']};
       font-size: 14px;
