@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.71](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.1.70...@synerise/ds-search@0.1.71) (2020-08-27)
+
+
+### Bug Fixes
+
+* **search:** added string as width type ([c757491](https://github.com/Synerise/synerise-design/commit/c7574913c0db4383e1cab6564bba97d5d70e92b5))
+
+
+
+
+
 ## [0.1.70](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.1.69...@synerise/ds-search@0.1.70) (2020-08-21)
 
 **Note:** Version bump only for package @synerise/ds-search
