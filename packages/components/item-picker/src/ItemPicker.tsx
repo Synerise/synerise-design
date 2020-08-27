@@ -85,7 +85,7 @@ const ItemPicker: React.FC<ItemPickerProps> = ({
         dropdownRowHeight={dropdownRowHeight}
       />
     ),
-    [dataSource, searchPlaceholder, onChange, closeDropdown, noResults]
+    [dataSource, searchPlaceholder, onChange, closeDropdown, noResults, dropdownRowHeight, dropdownVisibleRows]
   );
 
   const renderTrigger = React.useMemo(
