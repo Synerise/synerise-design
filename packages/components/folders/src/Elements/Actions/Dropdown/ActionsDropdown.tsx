@@ -1,42 +1,76 @@
 import * as React from 'react';
-import { ActionProps } from '../Actions.types';
-import Menu from '@synerise/ds-menu';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon from '@synerise/ds-icon';
-import {
-  CloseM,
-  CloseS,
-  EditM,
-  EditS,
-  OptionHorizontalM,
-  Settings2M,
-  StarM,
-  StarS, TrashM,
-} from '@synerise/ds-icon/dist/icons';
+import { EditM, OptionHorizontalM, Settings2M, StarFillM, StarM, TrashM } from '@synerise/ds-icon/dist/icons';
+import { ActionProps } from '../Actions.types';
 import * as S from '../Actions.styles';
-const ActionsDropdown: React.FC<ActionProps> = ({ onFavourite, onSettingsEnter, onEdit, onDelete }: ActionProps) => {
+
+const ActionsDropdown: React.FC<ActionProps> = ({
+  onFavourite,
+  onSettingsEnter,
+  onEdit,
+  onDelete,
+  isFavourite,
+}: ActionProps) => {
   return (
     <Dropdown
+      placement="bottomRight"
+      overlayStyle={{ boxShadow: '0 4px 12px 0 rgba(35, 41, 54, 0.07)' }}
       overlay={
         <S.DropdownMenu>
-          {!!onEdit && <S.DropdownMenuItem prefixel={<Icon component={<EditM />} />}> Edit </S.DropdownMenuItem>}
-          {!!onDelete && (
-            <S.DropdownMenuItem prefixel={<Icon component={<TrashM />} />} type={'danger'}>
+          {!!onEdit && (
+            <S.DropdownMenuItem
+              prefixel={<Icon component={<EditM />} />}
+              onClick={(): void => {
+                onEdit();
+              }}
+            >
               {' '}
-              Delete{' '}
+              Edit{' '}
+            </S.DropdownMenuItem>
+          )}
+          {!!onDelete && (
+            <S.DropdownMenuItem
+              prefixel={<Icon component={<TrashM />} />}
+              type="danger"
+              onClick={(): void => {
+                onDelete();
+              }}
+            >
+              Delete
             </S.DropdownMenuItem>
           )}
           {!!onFavourite && (
-            <S.DropdownMenuItem prefixel={<Icon component={<StarM />} />}> Favourite </S.DropdownMenuItem>
+            <S.DropdownMenuItem
+              className="favourite"
+              prefixel={
+                <S.FavouriteIconWrapper isFavourite={!!isFavourite}>
+                  <Icon component={isFavourite ? <StarFillM /> : <StarM />} />
+                </S.FavouriteIconWrapper>
+              }
+              onClick={(): void => {
+                onFavourite();
+              }}
+            >
+              {' '}
+              Favourite{' '}
+            </S.DropdownMenuItem>
           )}
           {!!onSettingsEnter && (
-            <S.DropdownMenuItem prefixel={<Icon component={<Settings2M />} />}> Favourite </S.DropdownMenuItem>
+            <S.DropdownMenuItem
+              prefixel={<Icon component={<Settings2M />} />}
+              onClick={(): void => {
+                onSettingsEnter();
+              }}
+            >
+              {' '}
+              Favourite{' '}
+            </S.DropdownMenuItem>
           )}
         </S.DropdownMenu>
       }
-      trigger={'click' as const}
     >
-      <Icon component={<OptionHorizontalM />} />
+      <S.DropdownTrigger component={<OptionHorizontalM />} />
     </Dropdown>
   );
 };
