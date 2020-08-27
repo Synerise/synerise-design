@@ -4,7 +4,7 @@ import { text, select, number, boolean } from '@storybook/addon-knobs';
 import Button from '@synerise/ds-button';
 import Card, { CardGroup, CardBadge } from '@synerise/ds-card';
 import Icon from '@synerise/ds-icon';
-import { CheckS, FilterM, SearchM, UserM, WarningFillM } from '@synerise/ds-icon/dist/icons';
+import { CheckS,Check3M, FilterM, SearchM, UserM, WarningFillM } from '@synerise/ds-icon/dist/icons';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import * as S from './stories.styles';
 const backgrounds = {
@@ -24,7 +24,6 @@ const init = () => {
     lively: boolean('Hover enabled', true),
     withHeader: boolean('With header', true),
     showContent: boolean('Show content', true),
-    withIcon: text('With icon', 'Check3M'),
     iconColor: text('Icon color', '#54cb0b'),
     compactHeader: boolean('Compact header', false),
     headerBorderBottom: boolean('Header with border bottom', false),
@@ -35,7 +34,7 @@ const init = () => {
 };
 
 const renderCard = (props,showContentInitial= true) => {
-  const IconComponent = React.lazy(() => import(`@synerise/ds-icon/dist/icons/${props.withIcon}`));
+  const IconComponent =  <Check3M/>;
   const [showContent,setShowContent] = React.useState(showContentInitial)
 
   return (
@@ -46,7 +45,7 @@ const renderCard = (props,showContentInitial= true) => {
         withHeader={props.withHeader}
         title={props.title}
         description={props.description}
-        icon={props.icon || (props.withIcon && <IconComponent />)}
+        icon={props.icon || (props.withIcon && IconComponent )}
         iconColor={props.iconColor}
         compactHeader={props.compactHeader}
         onHeaderClick={()=>{setShowContent(!showContent)}}
@@ -98,7 +97,7 @@ const stories = {
           left: 0,
         }}
       >
-        <React.Suspense fallback={"Loading..."}>
+
         <div style={{ padding: '24px' }}>
           <h3>Variants of card header</h3>
           <S.HeaderWrapper>
@@ -329,7 +328,6 @@ const stories = {
             }, false)}
           </S.HeaderWrapper>
         </div>
-        </React.Suspense>
       </div>
     );
   },
