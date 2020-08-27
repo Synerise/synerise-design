@@ -33,6 +33,8 @@ export type ItemPickerProps = {
   yesText?: string;
   noText?: string;
   noResults?: string;
+  dropdownVisibleRows?: number;
+  dropdownRowHeight?: number;
 };
 
 const ItemPicker: React.FC<ItemPickerProps> = ({
@@ -58,6 +60,8 @@ const ItemPicker: React.FC<ItemPickerProps> = ({
   noText = intl.formatMessage({ id: 'DS.ITEM-PICKER.NO-TEXT' }),
   noResults = intl.formatMessage({ id: 'DS.ITEM-PICKER.NO-RESULTS' }),
   withClearConfirmation,
+  dropdownVisibleRows,
+  dropdownRowHeight,
 }) => {
   const [dropdownOpened, setDropdownOpened] = React.useState<boolean>(false);
 
@@ -77,6 +81,8 @@ const ItemPicker: React.FC<ItemPickerProps> = ({
         placeholder={searchPlaceholder}
         closeDropdown={closeDropdown}
         noResults={noResults}
+        dropdownVisibleRows={dropdownVisibleRows}
+        dropdownRowHeight={dropdownRowHeight}
       />
     ),
     [dataSource, searchPlaceholder, onChange, closeDropdown, noResults]
