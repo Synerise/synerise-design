@@ -49,6 +49,7 @@ const stories = {
       noText={text('No button label', 'No')}
       noResults={text('No search results info', 'No results')}
       clearConfirmTitle={text('Clear confirm title', 'Are you sure to remove this selection?')}
+      dropdownVisibleRows={6}
     />)
     }
   ),

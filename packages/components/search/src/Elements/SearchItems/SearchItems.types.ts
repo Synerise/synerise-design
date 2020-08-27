@@ -11,7 +11,7 @@ export type SearchItemListProps<T> = {
   listProps?: ListPropsEnhanced;
   onItemClick?: (e: T) => void;
   rowHeight: number;
-  width: number;
+  width: number | string;
   visibleRows?: number;
   height?: number;
 };
