@@ -9,21 +9,13 @@ const stories = {
     const hasError = boolean('Set validation state', false);
     const disabled = boolean('Disabled', false);
     const [checked, setChecked] = React.useState(true);
-    const errorMessage = text('Error Text', 'Error');
-    const getErrorText = (hasError: boolean): string => {
-      if (hasError) {
-        return errorMessage;
-      } else {
-        return '';
-      }
-    };
     return(
       <Switch
         disabled={disabled}
         onChange={setChecked}
         defaultChecked={true}
         checked={checked && !disabled}
-        errorText={getErrorText(hasError)}
+        errorText={hasError}
       />
     );
   },
