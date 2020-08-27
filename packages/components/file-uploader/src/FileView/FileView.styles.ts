@@ -110,7 +110,7 @@ export const FileViewContainer = styled.button<{ disabled?: boolean; error?: boo
   }
 
   &:focus {
-    border-color: ${(props): string => props.theme.palette['blue-600']};
+    border-color: ${(props): string => props.theme.palette['blue-500']};
     background-color: ${(props): string => props.theme.palette['grey-050']};
   }
 
