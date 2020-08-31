@@ -7,7 +7,7 @@ import { FormulaValueType, InputProps } from '../../Factors.types';
 import FormulaModal from './FormulaModal';
 import * as S from './Formula.styles';
 
-const FormulaInput: React.FC<InputProps> = ({ value, onChange, withoutTypeSelector }) => {
+const FormulaInput: React.FC<InputProps> = ({ value, onChange, withoutTypeSelector = false }) => {
   const [openFormulaModal, setOpenFormulaModal] = React.useState(false);
   const mode = React.useMemo(() => {
     return value ? 'two-icons' : 'label-icon';
