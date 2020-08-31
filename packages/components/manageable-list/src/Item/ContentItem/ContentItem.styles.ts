@@ -106,6 +106,14 @@ export const ContentWrapper = styled.div`
   padding: 16px 24px 24px;
   width: 100%;
   border-top: 1px solid ${({ theme }): string => theme.palette['grey-200']};
+  transition: all 0.2s ease-in-out;
+  max-height: 500px;
+  opacity: 1;
+  &&.closed {
+    opacity: 0;
+    max-height: 0;
+    padding: 0 24px;
+  }
 `;
 
 export const ItemContainer = styled.div<ItemContainerProps>`
@@ -128,10 +136,6 @@ export const ItemContainer = styled.div<ItemContainerProps>`
     box-shadow: 0 0 0 1px ${theme.palette['grey-300']};
   }
 `}
-
-  ${ContentWrapper} {
-    display: ${({ opened }): string => (opened ? 'flex' : 'none')};
-  }
 `;
 
 export const ToggleContentWrapper = styled.div`
