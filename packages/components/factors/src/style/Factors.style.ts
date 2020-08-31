@@ -3,13 +3,13 @@ import { InputGroup } from '@synerise/ds-input';
 import { FactorInput } from '../FactorValue/FactorValue.style';
 
 // eslint-disable-next-line import/prefer-default-export
-export const Group = styled(InputGroup)`
+export const Group = styled(InputGroup)<{ withoutTypeSelector: boolean }>`
   && {
     ${FactorInput} {
       width: auto;
       display: inline-flex;
       > * {
-        border-radius: 0 3px 3px 0;
+        border-radius: ${(props): string => (props.withoutTypeSelector ? '3px' : '0 3px 3px 0')};
       }
     }
   }

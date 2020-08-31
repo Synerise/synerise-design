@@ -65,6 +65,7 @@ const Factors: React.FC<FactorsProps> = ({
   availableFactorTypes,
   parameters,
   autocompleteText,
+  withoutTypeSelector = false,
 }) => {
   const factorType = React.useMemo(() => {
     return selectedFactorType || defaultFactorType;
@@ -75,14 +76,16 @@ const Factors: React.FC<FactorsProps> = ({
   }, [selectedFactorType, factorType]);
 
   return (
-    <S.Group compact>
-      <FactorTypeSelector
-        selectedFactorType={factorType}
-        setSelectedFactorType={setSelectedFactorType}
-        selectedFactor={selectedFactor}
-        availableFactorTypes={availableFactorTypes}
-        unavailableFactorTypes={unavailableFactorTypes}
-      />
+    <S.Group compact withoutTypeSelector={withoutTypeSelector}>
+      {!withoutTypeSelector && (
+        <FactorTypeSelector
+          selectedFactorType={factorType}
+          setSelectedFactorType={setSelectedFactorType}
+          selectedFactor={selectedFactor}
+          availableFactorTypes={availableFactorTypes}
+          unavailableFactorTypes={unavailableFactorTypes}
+        />
+      )}
       <FactorValue
         value={value}
         onChangeValue={onChangeValue}
@@ -91,6 +94,7 @@ const Factors: React.FC<FactorsProps> = ({
         expansibleText={expansibleText}
         parameters={parameters}
         autocompleteText={autocompleteText}
+        withoutTypeSelector={withoutTypeSelector}
       />
     </S.Group>
   );

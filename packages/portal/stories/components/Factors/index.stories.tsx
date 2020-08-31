@@ -172,6 +172,7 @@ const stories = {
           groups: GROUPS,
           items: ITEMS
         }}
+        withoutTypeSelector={boolean('Hide type selector', false)}
       />
     )
   }

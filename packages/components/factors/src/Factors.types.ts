@@ -4,8 +4,8 @@ export const ALL_FACTOR_TYPES = [
   'text',
   'number',
   'parameter',
-  'context_parameter',
-  'dynamic_key',
+  'contextParameter',
+  'dynamicKey',
   'formula',
   'array',
   'date',
@@ -50,6 +50,7 @@ export type SelectedFactorType = {
 };
 
 export type FactorsProps = {
+  withoutTypeSelector?: boolean;
   unavailableFactorTypes?: FactorType[];
   availableFactorTypes?: FactorType[];
   selectedFactorType: FactorType;
@@ -79,11 +80,20 @@ export type FactorTypeSelectorProps = Pick<
 
 export type FactorValueProps = Pick<
   FactorsProps,
-  'onChangeValue' | 'value' | 'selectedFactorType' | 'expansibleText' | 'parameters' | 'autocompleteText'
+  | 'onChangeValue'
+  | 'value'
+  | 'selectedFactorType'
+  | 'expansibleText'
+  | 'parameters'
+  | 'autocompleteText'
+  | 'withoutTypeSelector'
 > & {
   selectedFactor: SelectedFactorType;
 };
 
-export type InputProps = Pick<FactorsProps, 'value' | 'expansibleText' | 'parameters' | 'autocompleteText'> & {
+export type InputProps = Pick<
+  FactorsProps,
+  'value' | 'expansibleText' | 'parameters' | 'autocompleteText' | 'withoutTypeSelector'
+> & {
   onChange: (value: FactorValueType) => void;
 };
