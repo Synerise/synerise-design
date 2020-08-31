@@ -18,7 +18,7 @@ yarn add @synerise/ds-app-menu
 ```
 import AppMenu from '@synerise/ds-app-menu'
 import Icon from '@synerise/ds-icon';
-import { DashboardColorM, DashboardGreyM, SettingsColorM, SettingsColorM, AnalyticsColorM } from '@synerise/ds-icon/dist/icons';
+import { DashboardColorM, DashboardGreyM, SettingsColorM, AnalyticsColorM } from '@synerise/ds-icon/dist/icons';
 
 <AppMenu
   activeItem="settings"
