@@ -26,7 +26,11 @@
   "types": "dist/index.d.ts",
   "dependencies": {
     "@synerise/ds-button": "*",
-    "@synerise/ds-typography": "*"
+    "@synerise/ds-dropdown": "*",
+    "@synerise/ds-icon": "*",
+    "@synerise/ds-menu": "*",
+    "@synerise/ds-typography": "*",
+    "@synerise/ds-utils": "*"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
