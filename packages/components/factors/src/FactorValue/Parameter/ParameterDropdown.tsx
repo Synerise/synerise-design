@@ -112,7 +112,17 @@ const ParameterDropdown: React.FC<ParameterDropdownProps> = ({ setSelected, grou
         />
       );
     });
-  }, [currentTabItems, items, groups, activeGroup, searchQuery]);
+  }, [
+    currentTabItems,
+    items,
+    groups,
+    activeGroup,
+    searchQuery,
+    activeTab,
+    filteredItems,
+    setDropdownVisible,
+    setSelected,
+  ]);
 
   const handleSearch = React.useCallback(
     value => {

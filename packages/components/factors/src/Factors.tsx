@@ -73,7 +73,7 @@ const Factors: React.FC<FactorsProps> = ({
 
   const selectedFactor = React.useMemo(() => {
     return factorTypes[factorType];
-  }, [selectedFactorType, factorType]);
+  }, [factorType]);
 
   return (
     <S.Group compact withoutTypeSelector={withoutTypeSelector}>
