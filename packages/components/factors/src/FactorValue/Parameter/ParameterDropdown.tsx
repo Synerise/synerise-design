@@ -54,7 +54,7 @@ const ParameterDropdown: React.FC<ParameterDropdownProps> = ({ setSelected, grou
       });
   }, [items, searchQuery, setDropdownVisible, setSelected]);
 
-  const currentItems = React.useMemo((): React.ReactNode | React.ReactNode[] | undefined => {
+  const currentItems = React.useMemo((): React.ReactNode[] | undefined => {
     if (searchQuery) {
       return filteredItems;
     }
@@ -162,7 +162,11 @@ const ParameterDropdown: React.FC<ParameterDropdownProps> = ({ setSelected, grou
         </S.TabsWrapper>
       )}
       {activeGroup && <Dropdown.BackAction label={activeGroup.name} onClick={(): void => setActiveGroup(undefined)} />}
-      <S.ItemsList>{currentItems || <Result noSearchResults type="no-results" description="No results" />}</S.ItemsList>
+      <S.ItemsList>
+        {// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+        // @ts-ignore
+        currentItems.length ? currentItems : <Result noSearchResults type="no-results" description="No results" />}
+      </S.ItemsList>
     </Dropdown.Wrapper>
   );
 };

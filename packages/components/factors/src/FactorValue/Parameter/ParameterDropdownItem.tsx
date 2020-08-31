@@ -31,6 +31,7 @@ const ParameterDropdownItem: React.FC<Props> = ({ item, clearSearch, searchQuery
     }
     return item.name;
   }, [item, searchQuery]);
+
   return (
     <Menu.Item
       key={item.name + item.id}
