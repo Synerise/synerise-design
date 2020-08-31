@@ -126,7 +126,7 @@ const Tags: React.FC<Props> = ({
 
         {manageLink && selectablePool && !selectablePool.length && (
           <>
-            <S.ManageLinkButton type="ghost-primary" href={manageLink} onlyChild={!!(emptyPool && !isCreatable)}>
+            <S.ManageLinkButton type="ghost" href={manageLink} onlyChild={!!(emptyPool && !isCreatable)}>
               {texts && texts.manageLinkLabel}
             </S.ManageLinkButton>
           </>
