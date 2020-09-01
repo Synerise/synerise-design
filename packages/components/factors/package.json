@@ -28,7 +28,7 @@
     "@synerise/ds-autocomplete": "*",
     "@synerise/ds-badge": "*",
     "@synerise/ds-button": "*",
-    "@synerise/ds-data-picker": "*",
+    "@synerise/ds-date-picker": "*",
     "@synerise/ds-dropdown": "*",
     "@synerise/ds-icon": "*",
     "@synerise/ds-input": "*",
