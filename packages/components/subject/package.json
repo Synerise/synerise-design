@@ -29,6 +29,8 @@
     "@synerise/ds-dropdown": "*",
     "@synerise/ds-icon": "*",
     "@synerise/ds-menu": "*",
+    "@synerise/ds-result": "*",
+    "@synerise/ds-scrollbar": "*",
     "@synerise/ds-typography": "*",
     "@synerise/ds-utils": "*"
   },
