@@ -62,7 +62,7 @@ const OperatorsDropdown: React.FC<OperatorsDropdownProps> = ({ setSelected, grou
       });
       return resultItems;
     },
-    [items]
+    [items, searchQuery, setDropdownVisible, setSelected]
   );
 
   const currentTabItems = React.useMemo((): OperatorsGroup | undefined => {
@@ -113,7 +113,18 @@ const OperatorsDropdown: React.FC<OperatorsDropdownProps> = ({ setSelected, grou
     return groupByGroupName(
       items?.filter((item: OperatorsItem) => item.groupId === (groups[activeTab] as OperatorsGroup).id)
     );
-  }, [currentTabItems, items, groups, searchQuery, activeTab, filteredItems, setDropdownVisible, setSelected]);
+  }, [
+    currentTabItems,
+    items,
+    groups,
+    searchQuery,
+    activeTab,
+    filteredItems,
+    setDropdownVisible,
+    setSelected,
+    activeGroup,
+    groupByGroupName,
+  ]);
 
   const handleSearch = React.useCallback(
     value => {
