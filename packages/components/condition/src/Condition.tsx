@@ -52,7 +52,7 @@ const Condition: React.FC<ConditionProps> = ({ steps, addCondition, removeCondit
                   ))}
                 {addCondition && (
                   <S.AddConditionRow>
-                    <S.ConditionConnections last />
+                    <S.ConditionConnections last first={step.conditions.length === 0} />
                     <Button type="ghost" mode="icon-label" onClick={(): void => addCondition(step.id)}>
                       <Icon component={<Add2M />} />
                       and where

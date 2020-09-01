@@ -109,6 +109,7 @@ export const ConditionConnections = styled.span<{ first?: boolean; last?: boolea
     background-color: ${(props): string => props.theme.palette['grey-300']};
   }
   &:after {
+    display: ${(props): string => (props.first && props.last ? 'none' : 'flex')};
     position: absolute;
     content: '';
     width: 1px;
