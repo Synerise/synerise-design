@@ -29,6 +29,7 @@ export const Description = styled(T.Description)`
 
 export const ButtonContainer = styled.div`
   text-align: center;
+  width: 100%;
 
   ${StyledButtonContainer} {
     margin: 0 4px;
