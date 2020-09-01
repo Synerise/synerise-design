@@ -8,6 +8,7 @@ import ActionsDropdown from '../Actions/Dropdown/ActionsDropdown';
 import ActionsRow from '../Actions/Row/ActionsRow';
 
 const Folder: React.FC<FolderProps> = ({
+  id,
   name,
   favourite,
   actionsDisplay,
@@ -33,7 +34,6 @@ const Folder: React.FC<FolderProps> = ({
   const onMouseOut = React.useCallback((): void => {
     setHovered(false);
   }, [setHovered]);
-
   React.useEffect(() => {
     inputRef?.current !== null && inputRef.current.focus();
   }, [inputRef, editMode]);
@@ -41,21 +41,33 @@ const Folder: React.FC<FolderProps> = ({
     return actionsDisplay === 'inline' ? (
       <ActionsRow
         onDelete={onDelete}
-        onFavourite={onFavourite}
-        onSettingsEnter={onSettingsEnter}
-        onEdit={() => {
-          setEditMode(true);
+        onFavourite={(): void => {
+          onFavourite && onFavourite({ id, name });
         }}
+        onSettingsEnter={onSettingsEnter}
+        onEdit={
+          onEdit
+            ? (): void => {
+                setEditMode(true);
+              }
+            : undefined
+        }
         isFavourite={favourite}
       />
     ) : (
       <ActionsDropdown
         onDelete={onDelete}
-        onFavourite={onFavourite}
-        onSettingsEnter={onSettingsEnter}
-        onEdit={() => {
-          setEditMode(true);
+        onFavourite={(): void => {
+          onFavourite && onFavourite({ id, name });
         }}
+        onSettingsEnter={onSettingsEnter}
+        onEdit={
+          onEdit
+            ? (): void => {
+                setEditMode(true);
+              }
+            : undefined
+        }
         isFavourite={favourite}
       />
     );
@@ -77,6 +89,7 @@ const Folder: React.FC<FolderProps> = ({
             onChange={(e: React.SyntheticEvent<HTMLInputElement>): void => setFolderName(e.currentTarget.value)}
             onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>): void => {
               if (e.key === 'Enter') {
+                onEdit && onEdit({ id, name: folderName });
                 setEditMode(false);
               }
             }}
