@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.32](https://github.com/Synerise/synerise-design/compare/@synerise/ds-progress-bar@0.4.31...@synerise/ds-progress-bar@0.4.32) (2020-09-01)
+
+
+### Bug Fixes
+
+* **progress-bar:** add border to progress bar ([c3b4623](https://github.com/Synerise/synerise-design/commit/c3b4623ca8d3b5d96ee7a9fb08a04c242f90d1bc))
+* **progress-bar:** fix white color ([fca76a0](https://github.com/Synerise/synerise-design/commit/fca76a0ffd39354eb141a8a4356c27ae1e744dd7))
+
+
+
+
+
 ## [0.4.31](https://github.com/Synerise/synerise-design/compare/@synerise/ds-progress-bar@0.4.30...@synerise/ds-progress-bar@0.4.31) (2020-08-21)
 
 **Note:** Version bump only for package @synerise/ds-progress-bar

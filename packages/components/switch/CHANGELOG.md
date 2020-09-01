@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.30](https://github.com/synerise/synerise-design/compare/@synerise/ds-switch@0.3.29...@synerise/ds-switch@0.3.30) (2020-09-01)
+
+
+### Bug Fixes
+
+* **switch:** fixed focus on switch add validation state, change colors ([acab2ef](https://github.com/synerise/synerise-design/commit/acab2efbfe5a7811e46c36dc9c54baa86d58cc1a))
+
+
+
+
+
 ## [0.3.29](https://github.com/synerise/synerise-design/compare/@synerise/ds-switch@0.3.28...@synerise/ds-switch@0.3.29) (2020-08-21)
 
 **Note:** Version bump only for package @synerise/ds-switch

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.17.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.17.1...@synerise/ds-core@0.17.2) (2020-09-01)
+
+
+### Bug Fixes
+
+* **core:** added date picker transaltions ([727900c](https://github.com/synerise/synerise-design/commit/727900c8363daad28b231ef5026644605892da48))
+
+
+
+
+
 ## [0.17.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.17.0...@synerise/ds-core@0.17.1) (2020-07-30)
 
 

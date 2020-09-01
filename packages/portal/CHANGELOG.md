@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.95.5](https://github.com/synerise/synerise-design/compare/portal@0.95.4...portal@0.95.5) (2020-09-01)
+
+
+### Bug Fixes
+
+* **badge:** fix badge and add padding in count ([f657c7c](https://github.com/synerise/synerise-design/commit/f657c7c78b9e770a455404b8af9f6fb5b88f3b6c))
+* **card:** fixed opening card ([1605d54](https://github.com/synerise/synerise-design/commit/1605d547c5bfd2fdacaf8b37dc5bb3127151cb72))
+* **switch:** delete error text ([59ada87](https://github.com/synerise/synerise-design/commit/59ada87997e983c1d46c66d371a9d85620fcd139))
+* **switch:** fixed focus on switch add validation state, change colors ([acab2ef](https://github.com/synerise/synerise-design/commit/acab2efbfe5a7811e46c36dc9c54baa86d58cc1a))
+* **tags:** fix badge in tags and fix text of add button tag ([88648fb](https://github.com/synerise/synerise-design/commit/88648fb38165546596901fbbbe3078d4c89e2896))
+
+
+
+
+
 ## [0.95.4](https://github.com/synerise/synerise-design/compare/portal@0.95.3...portal@0.95.4) (2020-08-27)
 
 
