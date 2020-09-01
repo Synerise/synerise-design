@@ -1,4 +1,12 @@
-import { ExpressionM, FolderM, NotificationsM, VarTypeNumberM, VarTypeStringM } from '@synerise/ds-icon/dist/icons';
+import {
+  BooleanM,
+  CalendarM,
+  ExpressionM,
+  FolderM, HashM, ListM,
+  NotificationsM, TextM,
+  VarTypeNumberM,
+  VarTypeStringM,
+} from '@synerise/ds-icon/dist/icons';
 import * as React from 'react';
 
 export const SUBJECT_ITEMS = [...new Array(30)].map((i, index) => ({

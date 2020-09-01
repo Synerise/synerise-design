@@ -8,6 +8,8 @@ import Factors from '@synerise/ds-factors';
 import { PARAMETER_GROUPS, PARAMETER_ITEMS, SUBJECT_ITEMS } from './data/index.data';
 import { boolean } from '@storybook/addon-knobs';
 import { v4 as uuid } from 'uuid';
+import { OPERATORS_GROUPS, OPERATORS_ITEMS } from '../Operators/data/index.data';
+import Operators from '@synerise/ds-operators';
 
 const DEFAULT_CONDITION_ROW = {
   id: uuid(),
@@ -141,6 +143,31 @@ const stories = {
       })
     }
 
+    const setOperatorValue = (stepId, conditionId, value) => {
+      store.set({
+        steps: store.state.steps.map(s => {
+          if(s.id === stepId) {
+            return {
+              ...s,
+              conditions: s.conditions.map((c) => {
+                if(conditionId === c.id) {
+                  return {
+                    ...c,
+                    operator: {
+                      ...c.operator,
+                      value: value
+                    }
+                  }
+                }
+                return c;
+              })
+            }
+          }
+          return s;
+        })
+      })
+    }
+
     const addStepCondition = (stepId: React.ReactText) => {
       const newCondition = { ...DEFAULT_CONDITION_ROW, id: uuid() };
       store.set({
@@ -222,7 +249,12 @@ const stories = {
                 }}
                 withoutTypeSelector={true}
               />,
-              operator: <div>operator</div>,
+              operator: <Operators
+                onChange={(value) => setOperatorValue(step.id, condition.id, value)}
+                value={condition.operator.value}
+                items={OPERATORS_ITEMS}
+                groups={OPERATORS_GROUPS}
+              />,
               factor: <Factors
                 selectedFactorType={condition.factor.selectedFactorType}
                 defaultFactorType={'text'}

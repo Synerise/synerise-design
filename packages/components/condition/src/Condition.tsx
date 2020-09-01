@@ -5,6 +5,7 @@ import Icon from '@synerise/ds-icon';
 import Button from '@synerise/ds-button';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import Tooltip from '@synerise/ds-tooltip';
+import { ChangeEvent } from 'react';
 import * as S from './Condition.style';
 import { ConditionProps } from './Condition.types';
 
@@ -23,7 +24,8 @@ const Condition: React.FC<ConditionProps> = ({ steps, addCondition, removeCondit
                     value: step.stepName,
                     name: 'condition-step-name',
                     placeholder: 'Step name',
-                    onChange: (event): void => updateStepName && updateStepName(step.id, event.target.value),
+                    onChange: (event: ChangeEvent<HTMLInputElement>): void =>
+                      updateStepName && updateStepName(step.id, event.target.value),
                   }}
                 />
               </S.StepName>

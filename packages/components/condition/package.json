@@ -24,7 +24,13 @@
     "*.less"
   ],
   "types": "dist/index.d.ts",
-  "dependencies": {},
+  "dependencies": {
+    "@synerise/ds-button": "*",
+    "@synerise/ds-core": "*",
+    "@synerise/ds-inline-edit": "*",
+    "@synerise/ds-tooltip": "*",
+    "@synerise/ds-utils": "*"
+  },
   "peerDependencies": {
     "@synerise/ds-core": "*",
     "react": ">=16.9.0 < 17.0.0"
