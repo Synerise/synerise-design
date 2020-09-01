@@ -86,7 +86,7 @@ const OperatorsDropdown: React.FC<OperatorsDropdownProps> = ({ setSelected, grou
           />
         );
       });
-  }, [items, searchQuery, setDropdownVisible, setSelected]);
+  }, [searchQuery, setDropdownVisible, setSelected]);
 
   const currentItems = React.useMemo((): React.ReactNode[] | undefined => {
     if (searchQuery) {
@@ -113,18 +113,7 @@ const OperatorsDropdown: React.FC<OperatorsDropdownProps> = ({ setSelected, grou
     return groupByGroupName(
       items?.filter((item: OperatorsItem) => item.groupId === (groups[activeTab] as OperatorsGroup).id)
     );
-  }, [
-    currentTabItems,
-    items,
-    groups,
-    searchQuery,
-    activeTab,
-    filteredItems,
-    setDropdownVisible,
-    setSelected,
-    activeGroup,
-    groupByGroupName,
-  ]);
+  }, [currentTabItems, items, groups, searchQuery, activeTab, filteredItems, activeGroup, groupByGroupName]);
 
   const handleSearch = React.useCallback(
     value => {
