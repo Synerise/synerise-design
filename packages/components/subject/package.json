@@ -27,7 +27,7 @@
   "dependencies": {
     "@synerise/ds-button": "*",
     "@synerise/ds-dropdown": "*",
-    "@synerise/ds-icom": "*",
+    "@synerise/ds-icon": "*",
     "@synerise/ds-menu": "*",
     "@synerise/ds-typography": "*",
     "@synerise/ds-utils": "*"
