@@ -5,8 +5,17 @@ import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { FolderProps } from './Folder.types';
 import * as S from './Folder.styles';
 import ActionsDropdown from '../Actions/Dropdown/ActionsDropdown';
+import ActionsRow from '../Actions/Row/ActionsRow';
 
-const Folder: React.FC<FolderProps> = ({ name, favourite }: FolderProps) => {
+const Folder: React.FC<FolderProps> = ({
+  name,
+  favourite,
+  actionsDisplay,
+  onSettingsEnter,
+  onDelete,
+  onFavourite,
+  onEdit,
+}: FolderProps) => {
   const [hovered, setHovered] = React.useState<boolean>(false);
   const [folderName, setFolderName] = React.useState<string>(name);
   const [editMode, setEditMode] = React.useState<boolean>(false);
@@ -28,6 +37,29 @@ const Folder: React.FC<FolderProps> = ({ name, favourite }: FolderProps) => {
   React.useEffect(() => {
     inputRef?.current !== null && inputRef.current.focus();
   }, [inputRef, editMode]);
+  const renderSuffix = () => {
+    return actionsDisplay === 'inline' ? (
+      <ActionsRow
+        onDelete={onDelete}
+        onFavourite={onFavourite}
+        onSettingsEnter={onSettingsEnter}
+        onEdit={() => {
+          setEditMode(true);
+        }}
+        isFavourite={favourite}
+      />
+    ) : (
+      <ActionsDropdown
+        onDelete={onDelete}
+        onFavourite={onFavourite}
+        onSettingsEnter={onSettingsEnter}
+        onEdit={() => {
+          setEditMode(true);
+        }}
+        isFavourite={favourite}
+      />
+    );
+  };
   return (
     // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
     <S.FolderItem
@@ -37,17 +69,7 @@ const Folder: React.FC<FolderProps> = ({ name, favourite }: FolderProps) => {
           color={hovered ? theme.palette['blue-600'] : theme.palette['grey-600']}
         />
       }
-      suffixel={
-        <ActionsDropdown
-          onDelete={() => {}}
-          onFavourite={() => {}}
-          onSettingsEnter={() => {}}
-          onEdit={() => {
-            setEditMode(true);
-          }}
-          isFavourite={favourite}
-        />
-      }
+      suffixel={renderSuffix()}
       text={
         editMode ? (
           <S.InlineEditInput

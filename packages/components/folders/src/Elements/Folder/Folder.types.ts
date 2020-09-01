@@ -1,3 +1,5 @@
+import { FoldersProps } from '../../Folders.types';
+
 export type FolderProps = {
   id?: string;
   name: string;
@@ -6,4 +8,4 @@ export type FolderProps = {
   onDelete?: (id: string) => void;
   onFavourite?: (id: string) => void;
   onSettingsEnter?: (id: string) => void;
-};
+} & Pick<FoldersProps, 'actionsDisplay'>;
