@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 // eslint-disable-next-line import/prefer-default-export
 export const FactorInput = styled.div<{ withoutTypeSelector: boolean }>`
-  min-width: 144px;
   .ds-autocomplete {
+    min-width: 144px;
     width: 100%;
     .ant-select {
       width: 100%;

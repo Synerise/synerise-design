@@ -19,7 +19,7 @@ const FactorTypeSelector: React.FC<FactorTypeSelectorProps> = ({
   const typesList = React.useMemo(() => {
     let list = availableFactorTypes || ALL_FACTOR_TYPES;
     if (unavailableFactorTypes !== undefined) {
-      list = list.filter(type => unavailableFactorTypes.indexOf(type) < 0);
+      list = [...list].filter(type => unavailableFactorTypes.indexOf(type) < 0);
     }
 
     return (list as FactorType[]).map((type: FactorType) => (
