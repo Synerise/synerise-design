@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.23](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@0.1.22...@synerise/ds-item-picker@0.1.23) (2020-08-27)
+
+
+### Bug Fixes
+
+* **item-picker:** added virtualization to the dropdown ([5ef7bd9](https://github.com/Synerise/synerise-design/commit/5ef7bd90750ce551a78e9797a9e4bdbf849e9b5c))
+
+
+
+
+
 ## [0.1.22](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@0.1.21...@synerise/ds-item-picker@0.1.22) (2020-08-21)
 
 **Note:** Version bump only for package @synerise/ds-item-picker

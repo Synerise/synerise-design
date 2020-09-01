@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.95.4](https://github.com/synerise/synerise-design/compare/portal@0.95.3...portal@0.95.4) (2020-08-27)
+
+
+### Bug Fixes
+
+* **item-picker:** added virtualization to the dropdown ([5ef7bd9](https://github.com/synerise/synerise-design/commit/5ef7bd90750ce551a78e9797a9e4bdbf849e9b5c))
+
+
+
+
+
 ## [0.95.3](https://github.com/synerise/synerise-design/compare/portal@0.95.2...portal@0.95.3) (2020-08-26)
 
 
