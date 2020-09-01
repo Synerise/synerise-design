@@ -25,10 +25,18 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
+    "@synerise/ds-autocomplete": "*",
+    "@synerise/ds-badge": "*",
     "@synerise/ds-button": "*",
+    "@synerise/ds-data-picker": "*",
     "@synerise/ds-dropdown": "*",
     "@synerise/ds-icon": "*",
+    "@synerise/ds-input": "*",
+    "@synerise/ds-input-number": "*",
     "@synerise/ds-menu": "*",
+    "@synerise/ds-modal": "*",
+    "@synerise/ds-result": "*",
+    "@synerise/ds-tabs": "*",
     "@synerise/ds-typography": "*",
     "@synerise/ds-utils": "*"
   },
