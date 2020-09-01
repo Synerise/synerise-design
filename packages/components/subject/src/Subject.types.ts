@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 export const ALL_TYPES = ['event', 'parameter', 'context'] as const;
-export type SubjectType = typeof ALL_TYPES[number];
+export type SubjectType = typeof ALL_TYPES[number] | string;
 
 export type SubjectItem = {
   id: React.ReactText;
