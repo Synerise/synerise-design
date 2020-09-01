@@ -62,7 +62,7 @@ const OperatorsDropdown: React.FC<OperatorsDropdownProps> = ({ setSelected, grou
       });
       return resultItems;
     },
-    [items, searchQuery, setDropdownVisible, setSelected]
+    [searchQuery, setDropdownVisible, setSelected]
   );
 
   const currentTabItems = React.useMemo((): OperatorsGroup | undefined => {
@@ -86,7 +86,7 @@ const OperatorsDropdown: React.FC<OperatorsDropdownProps> = ({ setSelected, grou
           />
         );
       });
-  }, [searchQuery, setDropdownVisible, setSelected]);
+  }, [items, searchQuery, setDropdownVisible, setSelected]);
 
   const currentItems = React.useMemo((): React.ReactNode[] | undefined => {
     if (searchQuery) {
