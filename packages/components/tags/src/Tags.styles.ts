@@ -43,7 +43,8 @@ export const CreateTagDropdownButton = styled(Button)<{ marginless: boolean }>`
   && {
     font-weight: 400;
     text-align: left;
-
+    width: calc(100% - 6px);
+    justify-content: flex-start;
     ${AddIconWrapper} {
       transform: translate(-4px, 0px);
     }
@@ -52,6 +53,9 @@ export const CreateTagDropdownButton = styled(Button)<{ marginless: boolean }>`
   strong {
     font-weight: 500;
     margin: 0 0 0 3px;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 `;
 

@@ -18,6 +18,9 @@ export default styled(({ flag, outlined, backgroundColor, textColor, backgroundC
 && {
   .ant-scroll-number-only{
     height: 16px;
+    &:last-of-type:not(:first-of-type) > p {
+    padding-right: 1px;
+    }
     & > p {
       ${macro.h200};
       color: inherit;

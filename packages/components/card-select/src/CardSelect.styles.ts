@@ -8,7 +8,7 @@ const getVar = (name: string) => (props: ThemeProps): string => props.theme.pale
 const transition = `
   transition-timing-function: ease-in-out;
   transition-duration: 0.2s;
-  transition-property: border-color, box-shadow, background-color;
+  transition-property: border-color, background-color;
 `;
 const getTransformValues = (props: ThemeProps & { elementsPosition: string; size?: string }): string => {
   if (props.size === 'small') {
@@ -70,6 +70,7 @@ export const Description = styled.div<{ hasTitle?: boolean; hasIcon?: boolean; s
   font-size: 13px;
   text-align: center;
   max-width: 100%;
+  word-break: break-all;
 
   ${(props): FlattenSimpleInterpolation | undefined | false =>
     props.hasTitle &&
@@ -120,12 +121,12 @@ max-width: 224px;
   }
   ${isNot('pressed') && isNot('value')`box-shadow:  0px 0px 0px 1px ${getVar('grey-300')};`}
   ${is('value')`
-  box-shadow:  0px 0px 0px 1px ${getVar('grey-300')};
+  box-shadow:  0px 0px 0px 2px ${getVar('blue-600')};
   `}
     ${is('value') && is('pressed')` box-shadow:  0px 0px 0px 2px ${getVar('blue-600')};`}
     ${is('value') &&
       is('raised')`
-  box-shadow:  0px 0px 0px 0px ${getVar('grey-300')};
+  box-shadow:  0px 0px 0px 2px ${getVar('blue-600')};
   `}
     ${is('value') && is('pressed')` box-shadow:  0px 0px 0px 2px ${getVar('blue-600')};`}
 

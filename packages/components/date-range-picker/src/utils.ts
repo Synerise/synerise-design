@@ -1,17 +1,12 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore
-import fnsMin from 'date-fns/min';
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore
-import fnsMax from 'date-fns/max';
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore
+import fnsMin from "date-fns/min";
+import fnsMax from "date-fns/max";
+import { legacyParse } from "@date-fns/upgrade/v2";
 import { DateRange } from './date.types';
 import { ABSOLUTE, RELATIVE } from './constants';
 import ADD from './dateUtils/add';
 import START_OF from './dateUtils/startOf';
 import END_OF from './dateUtils/endOf';
-import getDateFromString from './dateUtils/getDateFromString';
+
 
 // eslint-disable-next-line import/prefer-default-export
 export const normalizeRange = (range: DateRange): DateRange => {
@@ -32,11 +27,11 @@ export const normalizeRange = (range: DateRange): DateRange => {
       left = ADD[duration.type](START_OF[duration.type](right), 1 - duration.value);
     }
 
-    const from = fnsMin(left, right);
-    const to = fnsMax(left, right);
+    const from = fnsMin([legacyParse(left), right]);
+    const to = fnsMax([legacyParse(left), right]);
     return { ...range, type: RELATIVE, from, to, offset, duration, future };
   }
-  const from = range.from ? getDateFromString(range.from) : undefined;
-  const to = range.to ? getDateFromString(range.to) : undefined;
+  const from = range.from ? legacyParse(range.from) : undefined;
+  const to = range.to ? legacyParse(range.to) : undefined;
   return { ...range, type: ABSOLUTE, from, to };
 };

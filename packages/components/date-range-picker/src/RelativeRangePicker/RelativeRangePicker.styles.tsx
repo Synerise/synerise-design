@@ -86,7 +86,7 @@ export const DatePickerWrapper = styled.div<{ error: boolean }>`
   width: 224px;
 `;
 export const DropMenu = styled(Menu)`
-  padding: 8px;
+  padding: 0 8px 0 0;
 `;
 export const DropMenuItem = styled(Menu.Item)`
   max-height: 32px;
@@ -97,12 +97,17 @@ export const DropMenuItem = styled(Menu.Item)`
 export const OverlayWrapper = styled.div<{ visible?: boolean; width?: number }>`
   position: absolute;
   bottom: 40px;
+  padding: 8px 0 8px 8px;
+  background-color: ${(props): string => props.theme.palette.white};
   display: ${(props): string => (props.visible ? 'flex' : 'none')};
   z-index: 15;
   box-shadow: 0 4px 12px 0 rgba(35, 41, 54, 0.09);
   ${(props): false | string => !!props.width && `width:${props.width}px;`}
   &, & > ul {
     border-radius: 3px;
+  }
+  .scrollbar-container > .ps__rail-y > .ps__thumb-y {
+    transform: translateX(1px) !important;
   }
 `;
 export const DropdownContainer = styled.div`

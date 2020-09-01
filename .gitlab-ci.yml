@@ -64,7 +64,6 @@ docs_deploy:
   needs: ['docs_build']
   only:
     refs:
-      - tags
       - master
       - dev
   allow_failure: true
@@ -83,6 +82,33 @@ docs_deploy:
 
     - docker tag ds-docs quay.io/synerise/ds-docs:"$SANITY_BRANCH"-latest
     - docker push quay.io/synerise/ds-docs:"$SANITY_BRANCH"-latest
+    - echo "Image pushed to remote repository from branch ${CI_COMMIT_REF_NAME} for commit ${CI_COMMIT_SHA}"
+    - docker pull quay.io/synerise/stevedore:master-latest
+    - docker run -e APPLICATION="${APP}" -e AUTODEPLOY_BRANCH="${SANITY_BRANCH}" -e SSHA1=${CI_COMMIT_SHA} -e AUTODEPLOY_TAG="${CI_COMMIT_TAG}" -e USERNAME="${GITLAB_USER_NAME}" --entrypoint /autodeploy.sh quay.io/synerise/stevedore:master-latest
+
+docs_deploy_from_tag:
+  image: docker:stable
+  stage: deploy
+  needs: ['docs_build']
+  only:
+    refs:
+      - tags
+  allow_failure: true
+  script:
+    - SANITY_BRANCH=$CI_COMMIT_REF_SLUG
+    - echo "Sanitized branch name ${SANITY_BRANCH}"
+    - docker login $QUAY_REPO_HOST -u "$QUAY_REPO_USER" -p "$QUAY_REPO_PASS"
+    - cd packages/docs-site
+    - pwd
+    - docker build -t ds-docs .
+    - echo "Push commit image"
+
+    - docker tag ds-docs quay.io/synerise/ds-docs:"$SANITY_BRANCH"-"${CI_COMMIT_SHA}"
+    - docker push quay.io/synerise/ds-docs:"$SANITY_BRANCH"-"${CI_COMMIT_SHA}"
+    - echo "Image pushed to remote repository from branch ${CI_COMMIT_REF_NAME}"
+
+    - docker tag ds-docs quay.io/synerise/ds-docs:"$SANITY_BRANCH"
+    - docker push quay.io/synerise/ds-docs:"$SANITY_BRANCH"
     - echo "Image pushed to remote repository from branch ${CI_COMMIT_REF_NAME} for commit ${CI_COMMIT_SHA}"
     - docker pull quay.io/synerise/stevedore:master-latest
     - docker run -e APPLICATION="${APP}" -e AUTODEPLOY_BRANCH="${SANITY_BRANCH}" -e SSHA1=${CI_COMMIT_SHA} -e AUTODEPLOY_TAG="${CI_COMMIT_TAG}" -e USERNAME="${GITLAB_USER_NAME}" --entrypoint /autodeploy.sh quay.io/synerise/stevedore:master-latest

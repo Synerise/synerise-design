@@ -73,12 +73,12 @@ const stories = {
             count={number('count', 1)}
             overflowCount={number('overflowCount', 99)}
             outlined={true}
-            style={object('style1', {
+            style={{
               backgroundColor: 'transparent',
               color: theme.palette['white'],
               alignItems: 'center',
               margin: '0px',
-            })}
+            }}
           />
         ),
         suffixel: hasSufix && (
@@ -86,12 +86,12 @@ const stories = {
             count={number('count', 1)}
             overflowCount={number('overflowCount', 99)}
             outlined={true}
-            style={object('style2', {
+            style={{
               margin: '0px',
               backgroundColor: 'transparent',
               color: theme.palette['white'],
               alignItems: 'center',
-            })}
+            }}
           />
         ),
       },

@@ -1,6 +1,15 @@
 import * as React from 'react';
 import { range } from 'lodash';
-import { fnsStartOfMonth, fnsEndOfMonth, fnsSetMonth, fnsIsBefore, fnsAddYears, fnsIsAfter, fnsIsSameMonth } from "../../fns";
+import { legacyParse } from '@date-fns/upgrade/v2';
+import {
+  fnsStartOfMonth,
+  fnsEndOfMonth,
+  fnsSetMonth,
+  fnsIsBefore,
+  fnsAddYears,
+  fnsIsAfter,
+  fnsIsSameMonth,
+} from '../../fns';
 import fnsFormat from '../../format';
 
 import YearPicker from '../YearPicker/YearPicker';
@@ -54,7 +63,7 @@ export default class MonthPicker extends React.PureComponent<MonthPickerProps, M
     const { cursor, yearMode } = this.state;
     const { min, max, value, onChange } = this.props;
     const cells = getCells(cursor, min, max);
-    const valueCell = value ? cells.find(cell => fnsIsSameMonth(value, cell.key)) : null;
+    const valueCell = value ? cells.find(cell => fnsIsSameMonth(value, legacyParse(cell.key))) : null;
     const selectedKey = valueCell ? valueCell.key : null;
     if (yearMode) {
       return (
@@ -67,7 +76,7 @@ export default class MonthPicker extends React.PureComponent<MonthPickerProps, M
     return [
       <Navbar
         onTitleClick={(): void => this.setState({ yearMode: true })}
-        title={fnsFormat(cursor, 'YYYY')}
+        title={fnsFormat(cursor, 'yyyy')}
         onLongPrev={this.handleLongPrev}
         onLongNext={this.handleLongNext}
         key="head"

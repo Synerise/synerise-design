@@ -12,10 +12,13 @@ export interface Props extends SwitchProps {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const ExtendedAntdSwitchComponent = (AntdSwitch as any) as React.ComponentType<SwitchProps & { id: string }>;
+const ExtendedAntdSwitchComponent = (AntdSwitch as any) as React.ComponentType<
+  SwitchProps & { id: string; ref?: React.RefObject<HTMLInputElement> }
+>;
 
-export const Switch: React.FC<Props> = ({ errorText, label, description, ...antdSwitchProps }) => {
+export const Switch: React.FC<Props> = ({ errorText, label, description, onChange, ...antdSwitchProps }) => {
   const id = uuid();
+  const switchElement = React.useRef<HTMLInputElement>(null);
 
   return (
     <S.SwitchWrapper className="ds-switch">
@@ -24,6 +27,13 @@ export const Switch: React.FC<Props> = ({ errorText, label, description, ...antd
         {...antdSwitchProps}
         className={errorText ? 'error' : ''}
         id={id}
+        ref={switchElement}
+        onChange={(checked, event): void => {
+          setTimeout(() => {
+            if (switchElement !== null && switchElement.current !== null) switchElement.current.blur();
+          }, 300);
+          onChange && onChange(checked, event);
+        }}
       />
       <S.Texts className="switch-texts">
         <S.Label className="switch-label" htmlFor={id}>

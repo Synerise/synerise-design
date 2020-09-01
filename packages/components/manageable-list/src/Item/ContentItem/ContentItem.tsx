@@ -136,9 +136,12 @@ const ContentItem: React.FC<ContentItemProps> = ({
           )}
         </S.ItemHeaderSuffix>
       </S.ItemHeader>
-      {Boolean(item.content) && Boolean(!item.disableExpanding && expandedState) && (
-        <S.ContentWrapper data-testid="item-content-wrapper">{item.content}</S.ContentWrapper>
-      )}
+      <S.ContentWrapper
+        className={Boolean(item.content) && Boolean(!item.disableExpanding && expandedState) ? '' : 'closed'}
+        data-testid="item-content-wrapper"
+      >
+        {item.content}
+      </S.ContentWrapper>
     </S.ItemContainer>
   );
 };

@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+import { legacyParse } from '@date-fns/upgrade/v2';
 import fnsFormat from '../../format';
 
 import DecadePicker from '../DecadePicker/DecadePicker';
@@ -23,7 +24,7 @@ function getCells(cursor: Date): Cell[] {
     const date = fnsAddYears(fnsSetYear(cursor, startYear), index);
     return {
       key: date.toISOString(),
-      text: fnsFormat(date, 'YYYY'),
+      text: fnsFormat(date, 'yyyy'),
     } as Cell;
   });
 }
@@ -68,7 +69,7 @@ export default class YearPicker extends React.PureComponent<YearPickerProps, Yea
     const { value } = this.props;
     const decadeRange = getDecadeRange(cursor);
     let cells = getCells(cursor);
-    const valueCell = value ? cells.find((cell: Cell): boolean => fnsIsSameYear(value, cell.key)) : null;
+    const valueCell = value ? cells.find((cell: Cell): boolean => fnsIsSameYear(value, legacyParse(cell.key))) : null;
     const selectedKey = valueCell ? valueCell.key : null;
     cells = [
       { key: -1, text: decadeRange[0] - 1, outside: true },

@@ -46,7 +46,7 @@ const FileView: React.FC<FileViewProps> = ({ data, texts, onRemove, removable })
         {hasProgress ? (
           <>
             <S.Name>{texts.uploading}</S.Name>
-            <ProgressBar amount={100} percent={50} />
+            <ProgressBar amount={100} percent={60} />
           </>
         ) : (
           <>
@@ -66,7 +66,7 @@ const FileView: React.FC<FileViewProps> = ({ data, texts, onRemove, removable })
       {removable && !disabled && (
         <S.RemoveButtonWrapper onClick={onRemove} data-testid="fileview-remove">
           <Tooltip title={texts.removeTooltip}>
-          <Icon component={<Close3M />} size={24} />
+            <Icon component={<Close3M />} size={24} />
           </Tooltip>
         </S.RemoveButtonWrapper>
       )}

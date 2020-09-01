@@ -136,6 +136,9 @@ export const DropdownAddButton = styled(Button)`
   strong {
     font-weight: 500;
     margin: 0 0 0 3px;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 `;
 export const DropdownTop = styled.div`

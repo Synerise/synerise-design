@@ -8,6 +8,11 @@
   &:not(&-disabled):active::after {
     width: 12px;
   }
+  & + .switch-texts {
+    .switch-label {
+      color: @grey-700;
+    }
+  }
 
   &&.error {
     background-color: @red-600;
@@ -38,7 +43,10 @@
 
   & + .switch-texts {
     .switch-label {
-      color: @grey-800;
+      color: @grey-700;
+      &:hover {
+        color: @grey-800;
+      }
     }
   }
 }
