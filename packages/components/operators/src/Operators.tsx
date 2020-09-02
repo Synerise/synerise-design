@@ -6,7 +6,7 @@ import Dropdown from '@synerise/ds-dropdown';
 import OperatorsDropdown from './OperatorsDropdown/OperatorsDropdown';
 import { OperatorsItem, OperatorsProps } from './Operator.types';
 
-const Operators: React.FC<OperatorsProps> = ({ value, onChange, groups, items }) => {
+const Operators: React.FC<OperatorsProps> = ({ value, onChange, groups, items, texts }) => {
   const [dropdownVisible, setDropdownVisible] = React.useState(false);
   const handleChange = React.useCallback(
     val => {
@@ -24,11 +24,12 @@ const Operators: React.FC<OperatorsProps> = ({ value, onChange, groups, items })
           setSelected={handleChange}
           groups={groups}
           items={items}
+          texts={texts}
         />
       }
     >
       <Button type="secondary" mode="label-icon" onClick={(): void => setDropdownVisible(true)}>
-        {(value as OperatorsItem).name || 'Choose'}
+        {(value as OperatorsItem).name || texts.buttonLabel}
         <Icon component={<AngleDownS />} />
       </Button>
     </Dropdown>

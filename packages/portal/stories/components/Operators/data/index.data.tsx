@@ -5,6 +5,12 @@ import {
 } from '@synerise/ds-icon/dist/icons';
 import * as React from 'react';
 
+export const OPERATORS_TEXTS = {
+  buttonLabel: 'Choose',
+  searchPlaceholder: 'Search',
+  noResults: 'No results',
+}
+
 export const OPERATORS_GROUPS = [{
   'id': 'DATE_ONE',
   'name': 'Date',

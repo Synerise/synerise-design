@@ -6,20 +6,20 @@ import Tabs from '@synerise/ds-tabs';
 import { useOnClickOutside } from '@synerise/ds-utils';
 import Result from '@synerise/ds-result';
 import Scrollbar from '@synerise/ds-scrollbar';
+import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import * as S from '../Operators.style';
-import { OperatorsGroup, OperatorsItem } from '../Operator.types';
+import { OperatorsDropdownProps, OperatorsGroup, OperatorsItem } from '../Operator.types';
 import OperatorsDropdownItem from './OperatorsDropdownItem';
-
-interface OperatorsDropdownProps {
-  setDropdownVisible: (show: boolean) => void;
-  setSelected: (val: OperatorsItem | OperatorsGroup) => void;
-  groups: OperatorsGroup[];
-  items: OperatorsItem[];
-}
 
 const NO_GROUP_NAME = 'NO_GROUP_NAME';
 
-const OperatorsDropdown: React.FC<OperatorsDropdownProps> = ({ setSelected, groups, items, setDropdownVisible }) => {
+const OperatorsDropdown: React.FC<OperatorsDropdownProps> = ({
+  texts,
+  setSelected,
+  groups,
+  items,
+  setDropdownVisible,
+}) => {
   const defaultTab = React.useMemo(() => {
     const defaultIndex = groups?.findIndex((group: OperatorsGroup) => group.defaultGroup);
     return defaultIndex || 0;
@@ -66,7 +66,7 @@ const OperatorsDropdown: React.FC<OperatorsDropdownProps> = ({ setSelected, grou
   );
 
   const currentTabItems = React.useMemo((): OperatorsGroup | undefined => {
-    return groups?.find((group: OperatorsGroup, index) => {
+    return groups?.find((group: OperatorsGroup, index: number) => {
       return activeTab === index;
     });
   }, [groups, activeTab]);
@@ -135,9 +135,9 @@ const OperatorsDropdown: React.FC<OperatorsDropdownProps> = ({ setSelected, grou
       <Dropdown.SearchInput
         onSearchChange={handleSearch}
         onClearInput={(): void => handleSearch('')}
-        placeholder="Search"
+        placeholder={texts.searchPlaceholder}
         value={searchQuery}
-        iconLeft={<Icon component={<SearchM />} color="#6a7580" />}
+        iconLeft={<Icon component={<SearchM />} color={theme.palette['grey-600']} />}
       />
       {searchQuery === '' && (
         <S.TabsWrapper>
@@ -155,7 +155,11 @@ const OperatorsDropdown: React.FC<OperatorsDropdownProps> = ({ setSelected, grou
         <Scrollbar absolute maxHeight={300}>
           {// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
           // @ts-ignore
-          currentItems.length ? currentItems : <Result noSearchResults type="no-results" description="No results" />}
+          currentItems.length ? (
+            currentItems
+          ) : (
+            <Result noSearchResults type="no-results" description={texts.noResults} />
+          )}
         </Scrollbar>
       </S.ItemsList>
     </Dropdown.Wrapper>

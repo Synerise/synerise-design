@@ -1,5 +1,11 @@
 import * as React from 'react';
 
+export type OperatorTexts = {
+  buttonLabel: string;
+  searchPlaceholder: string;
+  noResults: string;
+};
+
 export type OperatorsItem = {
   name: string;
   icon: React.ReactNode;
@@ -27,4 +33,13 @@ export type OperatorsProps = {
   onChange: (item: OperatorsItem | OperatorsGroup) => void;
   groups: OperatorsGroup[];
   items: OperatorsItem[];
+  texts: OperatorTexts;
+};
+
+export type OperatorsDropdownProps = {
+  setDropdownVisible: (show: boolean) => void;
+  setSelected: (val: OperatorsItem | OperatorsGroup) => void;
+  groups: OperatorsGroup[];
+  items: OperatorsItem[];
+  texts: OperatorTexts;
 };
