@@ -7,7 +7,7 @@ import { SubjectItem, SubjectListProps } from '../Subject.types';
 import * as S from './SubjectList.styles';
 import SubjectListItem from './SubjectListItem';
 
-const SubjectList: React.FC<SubjectListProps> = ({ items, selectItem, hideDropdown }) => {
+const SubjectList: React.FC<SubjectListProps> = ({ items, selectItem, hideDropdown, texts }) => {
   const [searchQuery, setSearchQuery] = React.useState('');
   const overlayRef = React.useRef<HTMLDivElement>(null);
 
@@ -36,13 +36,17 @@ const SubjectList: React.FC<SubjectListProps> = ({ items, selectItem, hideDropdo
     <Dropdown.Wrapper ref={overlayRef}>
       <Dropdown.SearchInput
         onSearchChange={setSearchQuery}
-        placeholder="Search"
+        placeholder={texts.searchPlaceholder}
         value={searchQuery}
         onClearInput={(): void => setSearchQuery('')}
       />
       <S.ItemsList>
         <Scrollbar absolute maxHeight={300}>
-          {renderItems.length ? renderItems : <Result noSearchResults type="no-results" description="No results" />}
+          {renderItems.length ? (
+            renderItems
+          ) : (
+            <Result noSearchResults type="no-results" description={texts.noResults} />
+          )}
         </Scrollbar>
       </S.ItemsList>
     </Dropdown.Wrapper>

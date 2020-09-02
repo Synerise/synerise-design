@@ -17,9 +17,13 @@ export type SubjectProps = {
   selectedItem: SubjectItem;
   type?: SubjectType;
   items: SubjectItem[];
+  texts: {
+    searchPlaceholder: string;
+    noResults: string;
+  };
 };
 
-export type SubjectListProps = Pick<SubjectProps, 'items' | 'selectItem'> & { hideDropdown: () => void };
+export type SubjectListProps = Pick<SubjectProps, 'items' | 'selectItem' | 'texts'> & { hideDropdown: () => void };
 
 export type SubjectTriggerProps = Pick<SubjectProps, 'placeholder' | 'iconPlaceholder' | 'selectedItem'> & {
   color: string;

@@ -5,12 +5,9 @@ import { AggregateM, NotificationsM, VarTypeStringM, WebhookM } from '@synerise/
 import { boolean, select, text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import { withState } from '@dump247/storybook-state';
+import { SUBJECT_TEXTS } from './data/index.data';
+import { SUBJECT_ITEMS } from '../Condition/data/index.data';
 
-const ITEMS = [...new Array(30)].map((i, index) => ({
-  id: index,
-  name: `Attribute #${index}`,
-  icon: <NotificationsM />,
-}));
 
 const ICONS = {
   NotificationsM: <NotificationsM />,
@@ -26,7 +23,16 @@ const DEFAULT_STATE = {
 const stories = {
   default: withState(DEFAULT_STATE)(({ store }) => {
     return (
-      <Subject selectItem={(item) => store.set({selected: item})} showPreview={boolean('Show preview button', true) && action('Show preview')} type={select('Select type', ['event', 'parameter', 'context'], 'event')} placeholder={text('Set placeholder', 'Choose event')} iconPlaceholder={ICONS[select('Select placeholder icon', ['NotificationsM', 'WebhookM', 'VarTypeStringM', 'AggregateM'], 'NotificationsM')]} selectedItem={store.state.selected} items={ITEMS}/>
+      <Subject
+        texts={SUBJECT_TEXTS}
+        selectItem={(item) => store.set({selected: item})}
+        showPreview={boolean('Show preview button', true) && action('Show preview')}
+        type={select('Select type', ['event', 'parameter', 'context'], 'event')}
+        placeholder={text('Set placeholder', 'Choose event')}
+        iconPlaceholder={ICONS[select('Select placeholder icon', ['NotificationsM', 'WebhookM', 'VarTypeStringM', 'AggregateM'], 'NotificationsM')]}
+        selectedItem={store.state.selected}
+        items={SUBJECT_ITEMS}
+      />
     )
   }
 )};

@@ -15,6 +15,7 @@ const Subject: React.FC<SubjectProps> = ({
   selectItem,
   showPreview,
   type,
+  texts,
 }) => {
   const [dropdownVisible, setDropdownVisible] = React.useState(false);
 
@@ -27,7 +28,12 @@ const Subject: React.FC<SubjectProps> = ({
       <Dropdown
         visible={dropdownVisible}
         overlay={
-          <SubjectList items={items} selectItem={selectItem} hideDropdown={(): void => setDropdownVisible(false)} />
+          <SubjectList
+            texts={texts}
+            items={items}
+            selectItem={selectItem}
+            hideDropdown={(): void => setDropdownVisible(false)}
+          />
         }
       >
         <SubjectTrigger
