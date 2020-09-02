@@ -5,7 +5,6 @@ import RawDateRangePicker from '../RawDateRangePicker';
 import { DateRange, RelativeDateRange } from '../date.types';
 import { DAYS, RELATIVE, RELATIVE_PRESETS, ABSOLUTE } from '../constants';
 import { RelativeMode } from '../DateRangePicker.types';
-import { fireEvent } from '@testing-library/react';
 
 const ABSOLUTE_VALUE = {
   type: ABSOLUTE,
