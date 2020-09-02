@@ -11,7 +11,7 @@ export const ALL_FACTOR_TYPES = [
   'date',
 ] as const;
 export type FactorType = typeof ALL_FACTOR_TYPES[number] | string;
-export type DynamiKeyValueType = { key: React.ReactText; value: React.ReactText };
+export type DynamicKeyValueType = { key: React.ReactText; value: React.ReactText };
 export type FormulaValueType = { name: string; value: string };
 export type ParameterValueType = {
   type: string;
@@ -40,13 +40,38 @@ export type FactorValueType =
   | number
   | Date
   | undefined
-  | DynamiKeyValueType
+  | DynamicKeyValueType
   | FormulaValueType
   | ParameterValueType;
+
 export type SelectedFactorType = {
   name: string;
   icon: React.ReactNode;
   input: React.ReactNode;
+};
+
+export type FactorsTexts = {
+  datePicker: {
+    apply: string;
+    clearTooltip: string;
+    inputPlaceholder: string;
+    now: string;
+  };
+  dynamicKey: {
+    keyPlaceholder: string;
+    valuePlaceholder: string;
+  };
+  formula: {
+    buttonPlaceholder: string;
+  };
+  parameter: {
+    searchPlaceholder: string;
+    noResults: string;
+  };
+  valuePlaceholder: string;
+  modalApply: string;
+  modalCancel: string;
+  modalTitle: string;
 };
 
 export type FactorsProps = {
@@ -69,6 +94,7 @@ export type FactorsProps = {
     items: ParameterItem[];
     showAllGroup?: boolean;
   };
+  texts: FactorsTexts;
 };
 
 export type FactorTypeSelectorProps = Pick<
@@ -87,13 +113,38 @@ export type FactorValueProps = Pick<
   | 'parameters'
   | 'autocompleteText'
   | 'withoutTypeSelector'
+  | 'texts'
 > & {
   selectedFactor: SelectedFactorType;
 };
 
 export type InputProps = Pick<
   FactorsProps,
-  'value' | 'expansibleText' | 'parameters' | 'autocompleteText' | 'withoutTypeSelector'
+  'value' | 'expansibleText' | 'parameters' | 'autocompleteText' | 'withoutTypeSelector' | 'texts'
 > & {
   onChange: (value: FactorValueType) => void;
+};
+
+export type TextModalProps = {
+  value: string;
+  onApply: (value: string) => void;
+  visible: boolean;
+  onCancel: () => void;
+  texts: FactorsTexts;
+};
+
+export type ParameterDropdownProps = {
+  setDropdownVisible: (show: boolean) => void;
+  setSelected: (val: ParameterItem) => void;
+  groups?: ParameterGroup[];
+  items?: ParameterItem[];
+  texts: FactorsTexts;
+};
+
+export type FormulaModalProps = {
+  value: FormulaValueType;
+  onApply: (value: FormulaValueType) => void;
+  visible: boolean;
+  onCancel: () => void;
+  texts: FactorsTexts;
 };

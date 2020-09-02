@@ -8,7 +8,7 @@ import { InputProps } from '../../Factors.types';
 import * as S from './Text.styles';
 import TextModal from './TextModal';
 
-const TextInput: React.FC<InputProps> = ({ value, onChange, expansibleText, autocompleteText }) => {
+const TextInput: React.FC<InputProps> = ({ value, onChange, texts, expansibleText, autocompleteText }) => {
   const [openExpanseEditor, setOpenExpanseEditor] = React.useState(false);
 
   const SuffixIcon = React.useMemo(() => {
@@ -44,7 +44,12 @@ const TextInput: React.FC<InputProps> = ({ value, onChange, expansibleText, auto
   return (
     <>
       {autocompleteText ? (
-        <Autocomplete placeholder="Value" suffixIcon={SuffixIcon} value={value as string} onChange={onChange}>
+        <Autocomplete
+          placeholder={texts.valuePlaceholder}
+          suffixIcon={SuffixIcon}
+          value={value as string}
+          onChange={onChange}
+        >
           {autocompleteOptions?.map(option => (
             <Autocomplete.Option key={option} value={option}>
               {option}
@@ -52,13 +57,19 @@ const TextInput: React.FC<InputProps> = ({ value, onChange, expansibleText, auto
           ))}
         </Autocomplete>
       ) : (
-        <RawInput placeholder="Value" suffix={SuffixIcon} value={value as string} onChange={handleChange} />
+        <RawInput
+          placeholder={texts.valuePlaceholder}
+          suffix={SuffixIcon}
+          value={value as string}
+          onChange={handleChange}
+        />
       )}
       <TextModal
         visible={openExpanseEditor}
         onCancel={(): void => setOpenExpanseEditor(false)}
         value={value as string}
         onApply={handleApply}
+        texts={texts}
       />
     </>
   );

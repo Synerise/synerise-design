@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { RawInput } from '@synerise/ds-input';
-import { DynamiKeyValueType, InputProps } from '../../Factors.types';
+import { DynamicKeyValueType, InputProps } from '../../Factors.types';
 import * as S from './DynamicKey.style';
 
-const DynamicKey: React.FC<InputProps> = ({ value, onChange, withoutTypeSelector = false }) => {
+const DynamicKey: React.FC<InputProps> = ({ value, onChange, withoutTypeSelector = false, texts }) => {
   const handleChange = React.useCallback(
     event => {
-      const newValue = { ...(value as DynamiKeyValueType) };
+      const newValue = { ...(value as DynamicKeyValueType) };
       newValue[event.target.name] = event.target.value;
       onChange(newValue);
     },
@@ -14,8 +14,18 @@ const DynamicKey: React.FC<InputProps> = ({ value, onChange, withoutTypeSelector
   );
   return (
     <S.DynamicKey withoutTypeSelector={withoutTypeSelector}>
-      <RawInput placeholder="Key" value={(value as DynamiKeyValueType).key} name="key" onChange={handleChange} />
-      <RawInput placeholder="Value" value={(value as DynamiKeyValueType).value} name="value" onChange={handleChange} />
+      <RawInput
+        placeholder={texts.dynamicKey.keyPlaceholder}
+        value={(value as DynamicKeyValueType).key}
+        name="key"
+        onChange={handleChange}
+      />
+      <RawInput
+        placeholder={texts.dynamicKey.valuePlaceholder}
+        value={(value as DynamicKeyValueType).value}
+        name="value"
+        onChange={handleChange}
+      />
     </S.DynamicKey>
   );
 };

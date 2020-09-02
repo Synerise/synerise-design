@@ -1,16 +1,9 @@
 import * as React from 'react';
 import ModalProxy from '@synerise/ds-modal';
 import InlineEdit from '@synerise/ds-inline-edit';
-import { FormulaValueType } from '../../Factors.types';
+import { FormulaModalProps } from '../../Factors.types';
 
-type FormulaModalProps = {
-  value: FormulaValueType;
-  onApply: (value: FormulaValueType) => void;
-  visible: boolean;
-  onCancel: () => void;
-};
-
-const FormulaModal: React.FC<FormulaModalProps> = ({ value, onApply, onCancel, visible }) => {
+const FormulaModal: React.FC<FormulaModalProps> = ({ value, onApply, onCancel, visible, texts }) => {
   const [formulaName, setFormulaName] = React.useState(value.name);
 
   const handleOk = React.useCallback(() => {
@@ -28,7 +21,7 @@ const FormulaModal: React.FC<FormulaModalProps> = ({ value, onApply, onCancel, v
           input={{
             maxLength: 120,
             name: 'name-of-input',
-            placeholder: 'Define formula',
+            placeholder: texts.formula.buttonPlaceholder,
             onChange: (e): void => setFormulaName(e.target.value),
             // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
             // @ts-ignore
@@ -42,8 +35,8 @@ const FormulaModal: React.FC<FormulaModalProps> = ({ value, onApply, onCancel, v
       onOk={handleOk}
       onCancel={onCancel}
       visible={visible}
-      okText="Apply"
-      cancelText="Cancel"
+      okText={texts.modalApply}
+      cancelText={texts.modalCancel}
     >
       <div>Formula editor</div>
     </ModalProxy>

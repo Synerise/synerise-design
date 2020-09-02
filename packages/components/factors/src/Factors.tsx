@@ -66,6 +66,7 @@ const Factors: React.FC<FactorsProps> = ({
   parameters,
   autocompleteText,
   withoutTypeSelector = false,
+  texts,
 }) => {
   const factorType = React.useMemo(() => {
     return selectedFactorType || defaultFactorType;
@@ -95,6 +96,7 @@ const Factors: React.FC<FactorsProps> = ({
         parameters={parameters}
         autocompleteText={autocompleteText}
         withoutTypeSelector={withoutTypeSelector}
+        texts={texts}
       />
     </S.Group>
   );

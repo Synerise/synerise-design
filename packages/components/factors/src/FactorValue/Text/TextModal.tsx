@@ -1,15 +1,9 @@
 import * as React from 'react';
 import ModalProxy from '@synerise/ds-modal';
 import Textarea from '@synerise/ds-input/dist/Textarea/Textarea';
+import { TextModalProps } from '../../Factors.types';
 
-type TextModalProps = {
-  value: string;
-  onApply: (value: string) => void;
-  visible: boolean;
-  onCancel: () => void;
-};
-
-const TextModal: React.FC<TextModalProps> = ({ value, onApply, onCancel, visible }) => {
+const TextModal: React.FC<TextModalProps> = ({ value, onApply, onCancel, visible, texts }) => {
   const [expandValue, setExpandValue] = React.useState('' || value);
 
   React.useEffect(() => {
@@ -28,13 +22,13 @@ const TextModal: React.FC<TextModalProps> = ({ value, onApply, onCancel, visible
   return (
     <ModalProxy
       size="medium"
-      title="Value"
+      title={texts.modalTitle}
       closable
       onOk={handleOk}
       onCancel={handleCancel}
       visible={visible}
-      okText="Apply"
-      cancelText="Cancel"
+      okText={texts.modalApply}
+      cancelText={texts.modalCancel}
     >
       <Textarea rows={7} value={expandValue} onChange={(event): void => setExpandValue(event.target.value)} />
     </ModalProxy>

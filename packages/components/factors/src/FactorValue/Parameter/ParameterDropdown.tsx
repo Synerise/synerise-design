@@ -5,18 +5,18 @@ import SearchM from '@synerise/ds-icon/dist/icons/SearchM';
 import Tabs from '@synerise/ds-tabs';
 import { useOnClickOutside } from '@synerise/ds-utils';
 import Result from '@synerise/ds-result';
+import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import * as S from './Parameter.style';
-import { ParameterGroup, ParameterItem } from '../../Factors.types';
+import { ParameterDropdownProps, ParameterGroup, ParameterItem } from '../../Factors.types';
 import ParameterDropdownItem from './ParameterDropdownItem';
 
-interface ParameterDropdownProps {
-  setDropdownVisible: (show: boolean) => void;
-  setSelected: (val: ParameterItem) => void;
-  groups?: ParameterGroup[];
-  items?: ParameterItem[];
-}
-
-const ParameterDropdown: React.FC<ParameterDropdownProps> = ({ setSelected, groups, items, setDropdownVisible }) => {
+const ParameterDropdown: React.FC<ParameterDropdownProps> = ({
+  setSelected,
+  texts,
+  groups,
+  items,
+  setDropdownVisible,
+}) => {
   const defaultTab = React.useMemo(() => {
     const defaultIndex = groups?.findIndex((group: ParameterGroup) => group.defaultGroup);
     return defaultIndex || 0;
@@ -145,9 +145,9 @@ const ParameterDropdown: React.FC<ParameterDropdownProps> = ({ setSelected, grou
       <Dropdown.SearchInput
         onSearchChange={handleSearch}
         onClearInput={(): void => handleSearch('')}
-        placeholder="Search"
+        placeholder={texts.parameter.searchPlaceholder}
         value={searchQuery}
-        iconLeft={<Icon component={<SearchM />} color="#6a7580" />}
+        iconLeft={<Icon component={<SearchM />} color={theme.palette['grey-600']} />}
       />
       {searchQuery === '' && (
         <S.TabsWrapper>
@@ -165,7 +165,11 @@ const ParameterDropdown: React.FC<ParameterDropdownProps> = ({ setSelected, grou
       <S.ItemsList>
         {// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
         // @ts-ignore
-        currentItems.length ? currentItems : <Result noSearchResults type="no-results" description="No results" />}
+        currentItems.length ? (
+          currentItems
+        ) : (
+          <Result noSearchResults type="no-results" description={texts.parameter.noResults} />
+        )}
       </S.ItemsList>
     </Dropdown.Wrapper>
   );
