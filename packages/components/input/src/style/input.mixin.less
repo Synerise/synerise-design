@@ -19,6 +19,21 @@
   }
 }
 
+.@{ant-prefix}-input-group {
+  .@{ant-prefix}-input-affix-wrapper {
+    padding: 0 8px 0 12px;
+    > input {
+      &.ant-input {
+        &:focus {
+          background-color: transparent;
+          box-shadow: none;
+          border: 0;
+        }
+      }
+    }
+  }
+}
+
 textarea.@{ant-prefix}-input {
   padding: 8px 12px 8px 12px;
 

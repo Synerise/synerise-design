@@ -1,0 +1,48 @@
+{
+  "name": "@synerise/ds-factors",
+  "version": "0.0.1",
+  "description": "Factors UI Component for the Synerise Design System",
+  "license": "ISC",
+  "repository": "Synerise/synerise-design",
+  "main": "dist/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "npm run build:js && npm run build:css && npm run defs",
+    "build:css": "node ../../../scripts/style/less.js",
+    "build:js": "babel --root-mode upward src --out-dir dist --extensions '.js,.ts,.tsx'",
+    "build:watch": "npm run build:js -- --watch",
+    "defs": "tsc --declaration --outDir dist/ --emitDeclarationOnly",
+    "prepublish": "npm run build",
+    "test": "jest",
+    "test:watch": "npm run test -- --watchAll",
+    "types": "tsc --noEmit"
+  },
+  "sideEffects": [
+    "dist/style/*",
+    "*.less"
+  ],
+  "types": "dist/index.d.ts",
+  "dependencies": {
+    "@synerise/ds-autocomplete": "*",
+    "@synerise/ds-badge": "*",
+    "@synerise/ds-button": "*",
+    "@synerise/ds-date-picker": "*",
+    "@synerise/ds-dropdown": "*",
+    "@synerise/ds-icon": "*",
+    "@synerise/ds-input": "*",
+    "@synerise/ds-input-number": "*",
+    "@synerise/ds-menu": "*",
+    "@synerise/ds-modal": "*",
+    "@synerise/ds-result": "*",
+    "@synerise/ds-tabs": "*",
+    "@synerise/ds-typography": "*",
+    "@synerise/ds-utils": "*"
+  },
+  "peerDependencies": {
+    "@synerise/ds-core": "*",
+    "react": ">=16.9.0 < 17.0.0"
+  },
+  "devDependencies": {}
+}
