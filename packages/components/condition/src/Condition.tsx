@@ -9,7 +9,7 @@ import { ChangeEvent } from 'react';
 import * as S from './Condition.style';
 import { ConditionProps } from './Condition.types';
 
-const Condition: React.FC<ConditionProps> = ({ steps, addCondition, removeCondition, updateStepName }) => {
+const Condition: React.FC<ConditionProps> = ({ steps, addCondition, removeCondition, updateStepName, texts }) => {
   return (
     <S.Condition>
       {steps.map((step, index) => {
@@ -23,7 +23,7 @@ const Condition: React.FC<ConditionProps> = ({ steps, addCondition, removeCondit
                   input={{
                     value: step.stepName,
                     name: 'condition-step-name',
-                    placeholder: 'Step name',
+                    placeholder: texts.stepNamePlaceholder,
                     onChange: (event: ChangeEvent<HTMLInputElement>): void =>
                       updateStepName && updateStepName(step.id, event.target.value),
                   }}
@@ -45,7 +45,7 @@ const Condition: React.FC<ConditionProps> = ({ steps, addCondition, removeCondit
                       <S.CondtionWrapper>{condition.factor}</S.CondtionWrapper>
                       {removeCondition && (
                         <S.RemoveIconWrapper onClick={(): void => removeCondition(step.id, condition.id)}>
-                          <Tooltip title="Remove" trigger={['hover']}>
+                          <Tooltip title={texts.removeConditionRowTooltip} trigger={['hover']}>
                             <Icon component={<CloseS />} color={theme.palette['red-600']} />
                           </Tooltip>
                         </S.RemoveIconWrapper>
@@ -57,7 +57,7 @@ const Condition: React.FC<ConditionProps> = ({ steps, addCondition, removeCondit
                     <S.ConditionConnections last first={step.conditions.length === 0} />
                     <Button type="ghost" mode="icon-label" onClick={(): void => addCondition(step.id)}>
                       <Icon component={<Add2M />} />
-                      and where
+                      {texts.addConditionRowButton}
                     </Button>
                   </S.AddConditionRow>
                 )}

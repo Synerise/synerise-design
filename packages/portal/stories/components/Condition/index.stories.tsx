@@ -8,8 +8,9 @@ import Factors from '@synerise/ds-factors';
 import { PARAMETER_GROUPS, PARAMETER_ITEMS, SUBJECT_ITEMS } from './data/index.data';
 import { boolean } from '@storybook/addon-knobs';
 import { v4 as uuid } from 'uuid';
-import { OPERATORS_GROUPS, OPERATORS_ITEMS } from '../Operators/data/index.data';
+import { OPERATORS_GROUPS, OPERATORS_ITEMS, OPERATORS_TEXTS } from '../Operators/data/index.data';
 import Operators from '@synerise/ds-operators';
+import { FACTORS_TEXTS } from '../Factors/data/index.data';
 
 const DEFAULT_CONDITION_ROW = {
   id: uuid(),
@@ -214,6 +215,11 @@ const stories = {
 
     return (
       <Condition
+        texts={{
+          stepNamePlaceholder: 'Step name',
+          removeConditionRowTooltip: 'Remove',
+          addConditionRowButton: 'and where',
+        }}
         addCondition={boolean('Enable add new condition row', true) && addStepCondition}
         removeCondition={removeStepCondition}
         updateStepName={updateStepName}
@@ -248,12 +254,14 @@ const stories = {
                   items: PARAMETER_ITEMS
                 }}
                 withoutTypeSelector={true}
+                texts={FACTORS_TEXTS}
               />,
               operator: <Operators
                 onChange={(value) => setOperatorValue(step.id, condition.id, value)}
                 value={condition.operator.value}
                 items={OPERATORS_ITEMS}
                 groups={OPERATORS_GROUPS}
+                texts={OPERATORS_TEXTS}
               />,
               factor: <Factors
                 selectedFactorType={condition.factor.selectedFactorType}
@@ -267,6 +275,7 @@ const stories = {
                   groups: PARAMETER_GROUPS,
                   items: PARAMETER_ITEMS
                 }}
+                texts={FACTORS_TEXTS}
               />,
             }))
           }))

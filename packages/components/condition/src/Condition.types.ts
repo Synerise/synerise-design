@@ -19,4 +19,9 @@ export type ConditionProps = {
   addCondition?: (stepId: React.ReactText) => void;
   removeCondition?: (stepId: React.ReactText, conditionRowId: React.ReactText) => void;
   updateStepName?: (stepId: React.ReactText, value: string) => void;
+  texts: {
+    stepNamePlaceholder: string;
+    removeConditionRowTooltip: string;
+    addConditionRowButton: string;
+  };
 };
