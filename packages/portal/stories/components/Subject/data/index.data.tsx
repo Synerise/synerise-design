@@ -6,8 +6,7 @@ export const SUBJECT_TEXTS = {
   noResults: 'No results',
 }
 
-
-const SUBJECT_ITEMS = [...new Array(30)].map((i, index) => ({
+export const SUBJECT_ITEMS = [...new Array(30)].map((i, index) => ({
   id: index,
   name: `Attribute #${index}`,
   icon: <NotificationsM />,

@@ -5,8 +5,7 @@ import { AggregateM, NotificationsM, VarTypeStringM, WebhookM } from '@synerise/
 import { boolean, select, text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import { withState } from '@dump247/storybook-state';
-import { SUBJECT_TEXTS } from './data/index.data';
-import { SUBJECT_ITEMS } from '../Condition/data/index.data';
+import { SUBJECT_TEXTS, SUBJECT_ITEMS } from './data/index.data';
 
 
 const ICONS = {

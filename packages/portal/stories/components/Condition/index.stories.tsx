@@ -11,6 +11,7 @@ import { v4 as uuid } from 'uuid';
 import { OPERATORS_GROUPS, OPERATORS_ITEMS, OPERATORS_TEXTS } from '../Operators/data/index.data';
 import Operators from '@synerise/ds-operators';
 import { FACTORS_TEXTS } from '../Factors/data/index.data';
+import { SUBJECT_TEXTS } from '../Subject/data/index.data';
 
 const DEFAULT_CONDITION_ROW = {
   id: uuid(),
@@ -236,6 +237,7 @@ const stories = {
                 iconPlaceholder={step.subject.iconPlaceholder}
                 selectedItem={step.subject.selectedItem}
                 items={SUBJECT_ITEMS}
+                texts={SUBJECT_TEXTS}
               />
             ),
             conditions: step.conditions.map((condition, index) => ({
