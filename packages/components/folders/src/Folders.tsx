@@ -4,39 +4,23 @@ import Folder from './Elements/Folder/Folder';
 import AddButton from './Elements/AddButton/AddButton';
 import './style/index.less';
 import { FolderItem, FoldersProps } from './Folders.types';
+import { handleItemAdd, handleItemDelete, handleItemEdit, handleItemFavourite, sortAlphabetically } from './utils';
 
-const Folders: React.FC<FoldersProps> = ({ actionsDisplay, dataSource }: FoldersProps) => {
+const Folders: React.FC<FoldersProps> = ({ addButtonDisabled,actionsDisplay, dataSource }: FoldersProps) => {
   const [items, setItems] = React.useState<FolderItem[]>(dataSource);
+
+  const onItemAdd = (addedItem: FolderItem): void => {
+    setItems(handleItemAdd(items, addedItem));
+  };
   const onItemEdit = (editedItem: FolderItem): void => {
-    const updatedItems = items.map(i => {
-      if (i.id === editedItem.id) {
-        return {
-          ...i,
-          name: editedItem.name,
-        };
-      }
-      return i;
-    });
-    setItems(updatedItems);
+    setItems(handleItemEdit(items, editedItem));
   };
   const onItemFavourite = (item: FolderItem): void => {
-    const updatedItems = items.map(i => {
-      if (i.id === item.id) {
-        return {
-          ...i,
-          favourite: !i.favourite,
-        };
-      }
-      return i;
-    });
-    setItems(updatedItems);
+    setItems(handleItemFavourite(items, item));
   };
   const onItemDelete = (deleted: FolderItem): void => {
-    const updatedItems = items.filter(i => i.id !== deleted.id);
-    setItems(updatedItems);
+    setItems(handleItemDelete(items, deleted));
   };
-  const sortAlphabetically = (prev: FolderItem, next: FolderItem): number =>
-    prev.name < next.name ? -1 : prev.name > next.name ? 1 : 0;
 
   const renderItem = (item: FolderItem): React.ReactNode => (
     <Folder
@@ -48,17 +32,16 @@ const Folders: React.FC<FoldersProps> = ({ actionsDisplay, dataSource }: Folders
       onDelete={item.canDelete ? onItemDelete : undefined}
       onEdit={item.canUpdate ? onItemEdit : undefined}
       onFavourite={onItemFavourite}
-      onSettingsEnter={() => {}}
     />
   );
   return (
     <>
-      <AddButton addItemLabel="Add folder" disabled={false} />
+      <AddButton addItemLabel="Add folder" disabled={!!addButtonDisabled} onItemAdd={onItemAdd} />
       <Menu>
         {items
-          .filter(x => !!x.favourite)
+          .filter(x => x.favourite)
           .sort(sortAlphabetically)
-          .map(renderItem)}{' '}
+          .map(renderItem)}
         {items
           .filter(x => !x.favourite)
           .sort(sortAlphabetically)

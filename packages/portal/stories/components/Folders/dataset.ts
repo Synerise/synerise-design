@@ -19,21 +19,17 @@ export const FOLDERS: FolderItem[] = [
     canUpdate: true,
   },
   {
-    id: '4',
-    name: 'Amadeo',
-    favourite: true,
-    canUpdate: true,
-  },
-  {
     id: '5',
     name: 'Amadeo',
     favourite: false,
     canUpdate: true,
+    canDelete: true,
   },
   {
     id: '6',
     name: 'Galileo',
     favourite: false,
     canUpdate: true,
+    canDelete: true,
   },
 ];

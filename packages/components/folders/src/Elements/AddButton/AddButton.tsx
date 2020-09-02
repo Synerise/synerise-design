@@ -4,10 +4,11 @@ import Add3M from '@synerise/ds-icon/dist/icons/Add3M';
 import Button from '@synerise/ds-button';
 import { Input } from '@synerise/ds-input';
 import { Popover } from 'antd';
-import * as S from './AddButtons.styles';
-import { Props } from './AddButton.types';
 import { StarFillM, StarM } from '@synerise/ds-icon/dist/icons';
 import { useOnClickOutside } from '@synerise/ds-utils';
+import * as S from './AddButtons.styles';
+import { Props } from './AddButton.types';
+import { v4 as uuid } from 'uuid';
 
 const DEFAULT_NAME = '';
 const POPUP_CLOSE_DELAY = 250;
@@ -50,8 +51,9 @@ const AddButton: React.FC<Props> = ({ onItemAdd, addItemLabel, disabled, placeho
         content={
           <S.Overlay ref={overlayRef}>
             <Input
-              label="Folder name"
-              placeholder="Add"
+              label={addItemLabel}
+              placeholder={placeholder}
+              onChange={(e: React.SyntheticEvent<HTMLInputElement>): void => setName(e.currentTarget.value)}
               icon1={
                 <S.FavouriteIcon
                   favourite={favourite}
@@ -66,10 +68,11 @@ const AddButton: React.FC<Props> = ({ onItemAdd, addItemLabel, disabled, placeho
             <S.OverlayFooter>
               <Button
                 type="primary"
-                onClick={() => {
+                onClick={(): void => {
                   if (overlayVisible) {
                     setOverlayVisible(false);
                   }
+                  onItemAdd && onItemAdd({ id: uuid(), name, favourite });
                 }}
               >
                 {addItemLabel}

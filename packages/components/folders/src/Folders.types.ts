@@ -1,4 +1,5 @@
 export type FoldersProps = {
+  addButtonDisabled?: boolean;
   actionsDisplay: 'inline' | 'dropdown';
   dataSource: FolderItem[];
 };
