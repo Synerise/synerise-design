@@ -38,12 +38,11 @@ const SelectDropdown: React.FC<Props> = ({
           maxHeight={rowCount * rowHeight}
           absolute
           onScroll={(e: React.UIEvent): void => setScrollTop(e.currentTarget.scrollTop)}
-          style={{ paddingRight: '8px' }}
         >
           <SearchItems
             data={dataSource}
             itemRender={(item: MenuItemProps): JSX.Element => <Menu.Item key={item?.text as string} {...item} />}
-            onItemClick={(i): void => handleChange(i)}
+            onItemClick={(i: MenuItemProps): void => handleChange(i)}
             rowHeight={rowHeight}
             height={rowCount * rowHeight}
             visibleRows={rowCount}

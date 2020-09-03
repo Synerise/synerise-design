@@ -6,7 +6,6 @@ type InPlaceEditableInputContainerProps = {
   size: 'small' | 'normal';
   disabled?: boolean;
   error?: boolean;
-  icon?: string;
 };
 const applyColor = (props: ThemeProps & InPlaceEditableInputContainerProps): string => {
   if (props.error) return props.theme.palette['red-600'];

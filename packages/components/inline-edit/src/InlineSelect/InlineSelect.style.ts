@@ -25,14 +25,11 @@ const applyColorActive = (props: ThemeProps & InPlaceEditableInputContainerProps
   return props.theme.palette['blue-700'];
 };
 
-const applyDots = (props: ThemeProps & InPlaceEditableInputContainerProps): string => {
-  if (props.error) return props.theme.palette['red-600'];
-  return props.theme.palette['blue-600'];
-};
+
 
 const applyDotsOnError = (props: ThemeProps & InPlaceEditableInputContainerProps): string => {
   if (props.error)
-    return `background-image: linear-gradient(to right, ${applyDots(props)} 20%, rgba(255, 255, 255, 0) 10%);
+    return `background-image: linear-gradient(to right, ${((applyColor(props)))} 20%, rgba(255, 255, 255, 0) 10%);
   background-color: transparent;
   background-position: bottom left;
   background-size: 5px 1px;
@@ -43,6 +40,7 @@ const applyDotsOnError = (props: ThemeProps & InPlaceEditableInputContainerProps
 export const FontStyleWatcher = styled.div`
   visibility: hidden;
   pointer-events: none;
+  position: absolute;
 `;
 
 export const IconWrapper = styled.div<{ size: string; expanded: boolean } & ThemeProps>`
@@ -97,13 +95,14 @@ export const InPlaceEditableInputContainer = styled.div<InPlaceEditableInputCont
   ${(props): FlattenSimpleInterpolation | false =>
     !props.pressed &&
     css`
-      &&&:focus:not(:active),
-      &&&:focus-within {
+    &&&{
+      &:focus:not(:active),
+      &:focus-within {
         background-color: transparent;
         background-position: bottom left;
         background-size: 5px 1px;
         background-repeat: repeat-x;
-        background-image: linear-gradient(to right, ${applyDots(props)} 20%, rgba(255, 255, 255, 0) 10%);
+        background-image: linear-gradient(to right, ${applyColor(props)} 20%, rgba(255, 255, 255, 0) 10%);
         input {
           color: transparent;
           cursor: pointer;
@@ -115,6 +114,7 @@ export const InPlaceEditableInputContainer = styled.div<InPlaceEditableInputCont
             fill: ${applyColor(props)};
           }
         }
+      }
       }
     `}
 

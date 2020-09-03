@@ -2,10 +2,10 @@ import * as React from 'react';
 import { select, boolean, text } from '@storybook/addon-knobs';
 import InlineEdit from '@synerise/ds-inline-edit';
 import { action } from '@storybook/addon-actions';
-import { AngleDownS, EditS } from '@synerise/ds-icon/dist/icons';
 import InlineSelect from '@synerise/ds-inline-edit/dist/InlineSelect/InlineSelect';
 
 const DEFAULT_VALUE = "Input value";
+const dataSource = [{ text: 'Item 1' }, { text: 'Item 2' }, { text: 'Item 3' }]
 
 const stories = {
   default: () => {
@@ -15,7 +15,6 @@ const stories = {
     const widthLimit = boolean('Width limit', false);
     const error = boolean('Error', false);
     const disabled = boolean('Disabled', false);
-    const icons ={icon: <EditS/>}
 
     return (
       <div style={{ padding: 8, display: 'inline-block' }}>
@@ -29,7 +28,6 @@ const stories = {
             onChange: event => setValue(event.target.value),
             onEnterPress: action('onEnterPress'),
           }}
-          {...icons}
           style={widthLimit ? { maxWidth: 128 } : {}}
           size={size}
           error={error}
@@ -43,7 +41,6 @@ const stories = {
     const widthLimit = boolean('Width limit', false);
     const error = boolean('Error', false);
     const disabled = boolean('Disabled', false);
-    const icons ={icon: <AngleDownS/>}
 
     return (
       <div style={{ padding: 8, display: 'inline-block' }}>
@@ -54,11 +51,11 @@ const stories = {
             placeholder: 'This is placeholder',
             onEnterPress: action('onEnterPress'),
           }}
-          {...icons}
           style={widthLimit ? { maxWidth: 128 } : {}}
           size={'normal'}
           error={error}
           disabled={disabled}
+          dataSource={dataSource}
         />
       </div>
     );

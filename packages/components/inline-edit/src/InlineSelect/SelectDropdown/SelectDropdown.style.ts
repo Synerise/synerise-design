@@ -16,7 +16,7 @@ export const DSMenu = styled(Menu)`
   flex-direction: column;
   align-items: stretch;
   justify-content: flex-start;
-  padding: 8px 0 8px 8px;
+  padding: 8px ;
 `;
 export const StyledScrollbar = styled(Scrollbar)<ScrollbarProps>`
   && {

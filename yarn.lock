@@ -5045,6 +5045,14 @@
   dependencies:
     "@synerise/ds-icon" "^0.14.3"
 
+"@synerise/ds-button@^0.12.32":
+  version "0.12.32"
+  resolved "https://registry.yarnpkg.com/@synerise/ds-button/-/ds-button-0.12.32.tgz#424ba7153a8826c1ff9cd91aa04b42908e7b97df"
+  integrity sha512-oVmvUjOku/0+KhF9Mu+z/gnpCj26bpWRhT/1IVKxkjFx77FK5RV3uDSqQAuC5INBHtrcenOsaxjDu7kWo07H1A==
+  dependencies:
+    "@synerise/ds-icon" "^0.26.0"
+    "@synerise/ds-tooltip" "^0.7.16"
+
 "@synerise/ds-card@^0.4.11":
   version "0.4.23"
   resolved "https://registry.yarnpkg.com/@synerise/ds-card/-/ds-card-0.4.23.tgz#28e85395f7d31efef541c4ad1e8c1b4c8f2ed23e"
@@ -5059,6 +5067,11 @@
   resolved "https://registry.yarnpkg.com/@synerise/ds-divider/-/ds-divider-0.3.14.tgz#704f5e0edec6d9d7540c48ba451befef40660ca0"
   integrity sha512-QGX4QinvKhGLKuQu+S6ftTUsW3kgoQJM0cKm9wtkMIiwvRyNd37k6Q9PoVk3Kh+UdSq/jB/l8kmL1Dhm84XL4w==
 
+"@synerise/ds-divider@^0.4.29":
+  version "0.4.29"
+  resolved "https://registry.yarnpkg.com/@synerise/ds-divider/-/ds-divider-0.4.29.tgz#46a1bb8de04a6b87b8cdd99402a827518091fb8b"
+  integrity sha512-0eDnai1tIaC/0Dx/Hbmx8U23zn6ZUFFOvVO/DDg472Ra1s6KPdI/9rZwabcO+oKhfC9PkiPaH0PCtYvLSaMgyA==
+
 "@synerise/ds-dropdown@^0.10.10":
   version "0.10.21"
   resolved "https://registry.yarnpkg.com/@synerise/ds-dropdown/-/ds-dropdown-0.10.21.tgz#28dd6d1a66e549d97e15e36e48701c266c701d7c"
@@ -5067,6 +5080,16 @@
     "@synerise/ds-divider" "^0.3.14"
     "@synerise/ds-icon" "^0.14.0"
     "@synerise/ds-input" "^0.10.7"
+
+"@synerise/ds-dropdown@^0.11.74":
+  version "0.11.74"
+  resolved "https://registry.yarnpkg.com/@synerise/ds-dropdown/-/ds-dropdown-0.11.74.tgz#6ae47e6c78fe58503e9d61aae3600b5eb3d7ed71"
+  integrity sha512-UTil+bGi0dRVkp+upl+9fzYakY5aZ4WefOQshh5EA/xdxaCpUaZPipyE99ec0yMO5yPOuwIQ2JbA1XMFm+MowQ==
+  dependencies:
+    "@synerise/ds-divider" "^0.4.29"
+    "@synerise/ds-icon" "^0.26.0"
+    "@synerise/ds-input" "^0.15.3"
+    "@synerise/ds-search-bar" "^0.2.80"
 
 "@synerise/ds-icon@^0.11.1":
   version "0.11.1"
@@ -5099,6 +5122,18 @@
     "@synerise/ds-utils" "^0.8.5"
     uuid "^3.3.3"
 
+"@synerise/ds-input@^0.15.3":
+  version "0.15.3"
+  resolved "https://registry.yarnpkg.com/@synerise/ds-input/-/ds-input-0.15.3.tgz#247ce2407391b5828f38be20755fe0f3a17a45bd"
+  integrity sha512-tN+55dfS32obsfgZj/4bnJmN0A35FNvM8naMYlWdtDW3/xZm/Y2K7up7TYo94LOdG1dEwGnBMFg8UgAKT2tmZQ==
+  dependencies:
+    "@synerise/ds-icon" "^0.26.0"
+    "@synerise/ds-tooltip" "^0.7.16"
+    "@synerise/ds-typography" "^0.9.0"
+    "@synerise/ds-utils" "^0.9.3"
+    antd-mask-input "^0.1.13"
+    uuid "^7.0.2"
+
 "@synerise/ds-menu@^0.1.4":
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/@synerise/ds-menu/-/ds-menu-0.1.4.tgz#49137f5d94f9dd0c7f2258ad8c4687a31dc1d507"
@@ -5107,6 +5142,15 @@
     "@synerise/ds-button" "^0.11.3"
     "@synerise/ds-card" "^0.4.11"
     "@synerise/ds-typography" "*"
+
+"@synerise/ds-search-bar@^0.2.80":
+  version "0.2.80"
+  resolved "https://registry.yarnpkg.com/@synerise/ds-search-bar/-/ds-search-bar-0.2.80.tgz#f87c17b9ff91de9c2a49d3b9a2589f6fe33177d2"
+  integrity sha512-NVPfftkCs5NMzYZL4jGV8QZAKRGFyPm0FbALcoTZg2eQbrSDnQ9NSDa6vc9j5pU/gJ/gfJ5HX5DuyvsJTW69OA==
+  dependencies:
+    "@synerise/ds-button" "^0.12.32"
+    "@synerise/ds-input" "^0.15.3"
+    "@synerise/ds-typography" "^0.9.0"
 
 "@synerise/ds-tooltip@^0.4.26":
   version "0.4.26"
@@ -5129,6 +5173,11 @@
   version "0.8.31"
   resolved "https://registry.yarnpkg.com/@synerise/ds-utils/-/ds-utils-0.8.31.tgz#f0ca7de48c80e6d7c45708f76577747dfe176543"
   integrity sha512-tRL+iGny90Vt5W/m5cRMQrHt53HKx9YRG2whSKSv+TYijZEv2FfCrL073ASW20CK+m9MvKhrq5nFh9INUZWsSA==
+
+"@synerise/ds-utils@^0.9.3":
+  version "0.9.3"
+  resolved "https://registry.yarnpkg.com/@synerise/ds-utils/-/ds-utils-0.9.3.tgz#2cb2a85b385ac5d6e16b670be73c43770f4e1cfb"
+  integrity sha512-gYMeTpQmi4z6jZ9nrWJRbgwR17/+J5CTkt5ktlZpzvvXWdoh1HYHCOSZl4MgxZDxmJq/GkrrWLU3mI+AHCocjQ==
 
 "@testing-library/dom@^7.0.2":
   version "7.2.1"

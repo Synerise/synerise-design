@@ -3,36 +3,29 @@ import AutosizeInput from 'react-input-autosize';
 import { toCamelCase } from '@synerise/ds-utils';
 import Icon from '@synerise/ds-icon';
 import Dropdown from '@synerise/ds-dropdown';
+import { AngleDownS } from '@synerise/ds-icon/dist/icons';
 import * as S from './InlineSelect.style';
 import { attachWidthWatcher } from '../utils';
 import SelectDropdown from './SelectDropdown/SelectDropdown';
+import { MenuItemProps } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.types';
+import { InputProps } from '../InlineEdit';
 
-const SAMPLE = String.fromCharCode(...[...Array(26).keys()].map(i => i + 65));
 
-export type InputProps = {
-  name?: string;
-  value: string | number;
-  disabled?: boolean;
-  onBlur?: React.FocusEventHandler<HTMLInputElement>;
-  onEnterPress?: React.KeyboardEventHandler<HTMLInputElement>;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  placeholder?: string;
-  maxLength?: number;
-  autoComplete?: string;
-};
+
 
 export interface InlineSelectProps {
   size?: 'normal' | 'small';
   tooltipTitle?: string;
   className?: string;
   disabled?: boolean;
-  input: InputProps;
+  input: Partial<InputProps>;
   style?: { [key: string]: string | number };
   autoFocus?: boolean;
   error?: boolean;
   hideIcon?: boolean;
-  icon?: string;
   expanded: boolean;
+  option?: string;
+  dataSource: MenuItemProps[];
 }
 
 const InlineSelect: React.FC<InlineSelectProps> = ({
@@ -44,7 +37,8 @@ const InlineSelect: React.FC<InlineSelectProps> = ({
   hideIcon,
   error,
   input,
-  icon,
+  option,
+  dataSource,
 }): React.ReactElement => {
   const inputRef = React.useMemo(() => {
     return React.createRef<HTMLInputElement>();
@@ -53,8 +47,6 @@ const InlineSelect: React.FC<InlineSelectProps> = ({
   const fontStyleWatcher = React.useMemo(() => {
     return React.createRef<HTMLDivElement>();
   }, []);
-
-  const DEFAULT_VALUE = 'option';
 
   const updateInputWidth = React.useCallback(() => {
     if (inputRef.current) {
@@ -96,7 +88,7 @@ const InlineSelect: React.FC<InlineSelectProps> = ({
         maxLength={input.maxLength}
         disabled={disabled}
         name={input.name}
-        value={selectedValue || DEFAULT_VALUE}
+        value={selectedValue || option}
         autoComplete={input.autoComplete}
         placeholderIsMinWidth={false}
         /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
@@ -109,7 +101,7 @@ const InlineSelect: React.FC<InlineSelectProps> = ({
           placement="bottomRight"
           overlay={
             <SelectDropdown
-              dataSource={[{ text: 'Item 1' }, { text: 'Item 2' }, { text: 'Item 3' }]}
+              dataSource={dataSource}
               onSelect={(item): void => setSelectedValue(item.text as string)}
               closeDropdown={(): void => setOpened(false)}
             />
@@ -117,16 +109,14 @@ const InlineSelect: React.FC<InlineSelectProps> = ({
           trigger={['click']}
         >
           <S.IconWrapper size={size} expanded={opened}>
-            <Icon component={icon} size={24} />
+            <Icon component={<AngleDownS/>} size={24} />
           </S.IconWrapper>
         </Dropdown>
       )}
       <S.FontStyleWatcher
         ref={fontStyleWatcher}
         style={{ position: 'absolute', visibility: 'hidden', pointerEvents: 'none' }}
-      >
-        {SAMPLE}
-      </S.FontStyleWatcher>
+      />
     </S.InPlaceEditableInputContainer>
   );
 };
