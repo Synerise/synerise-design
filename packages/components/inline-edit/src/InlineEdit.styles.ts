@@ -6,6 +6,7 @@ type InPlaceEditableInputContainerProps = {
   size: 'small' | 'normal';
   disabled?: boolean;
   error?: boolean;
+  icon?: string;
 };
 const applyColor = (props: ThemeProps & InPlaceEditableInputContainerProps): string => {
   if (props.error) return props.theme.palette['red-600'];
@@ -15,6 +16,16 @@ const applyColor = (props: ThemeProps & InPlaceEditableInputContainerProps): str
 const applyDots = (props: ThemeProps & InPlaceEditableInputContainerProps): string => {
   if (props.error) return props.theme.palette['red-600'];
   return props.theme.palette['grey-400'];
+};
+
+const applyDotsOnError = (props: ThemeProps & InPlaceEditableInputContainerProps): string => {
+  if (props.error)
+    return `background-image: linear-gradient(to right, ${applyDots(props)} 20%, rgba(255, 255, 255, 0) 10%);
+  background-color: transparent;
+  background-position: bottom left;
+  background-size: 5px 1px;
+  background-repeat: repeat-x;`;
+  return '';
 };
 
 export const FontStyleWatcher = styled.div`
@@ -31,7 +42,7 @@ export const IconWrapper = styled.div<{ size: string } & ThemeProps>`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: ${(props): string => (props.size === 'normal' ? '16px' : '4px')};
+  margin-left: ${(props): string => (props.size === 'normal' ? '8px' : '4px')};
   width: 24px;
   height: 24px;
   line-height: inherit;
@@ -56,6 +67,9 @@ export const InPlaceEditableInputContainer = styled.div<InPlaceEditableInputCont
       color: ${(props): string => applyColor(props)};
       fill: ${(props): string => applyColor(props)};
     }
+  }
+  input {
+    ${(props): string => applyDotsOnError(props)}
   }
   &:hover {
     input {
