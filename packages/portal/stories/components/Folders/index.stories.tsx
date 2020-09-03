@@ -18,7 +18,7 @@ const stories = {
       <div style={wrapperStyles}>
         <Sidebar defaultActiveKey={['0']}>
           <Sidebar.Panel header={'Folders'} id={'first'}>
-            <Folders actionsDisplay={getActionsDisplay(showActionsInRow)} dataSource={FOLDERS} />
+            <Folders actionsDisplay={getActionsDisplay(showActionsInRow)} dataSource={FOLDERS} visibleItemsCount={5} />
           </Sidebar.Panel>
         </Sidebar>
       </div>

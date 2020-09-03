@@ -11,13 +11,21 @@ const ActionsDropdown: React.FC<ActionProps> = ({
   onEdit,
   onDelete,
   isFavourite,
+  dropdownMouseOut,
+  dropdownMouseOver,
 }: ActionProps) => {
   return (
     <Dropdown
       placement="bottomRight"
       overlayStyle={{ boxShadow: '0 4px 12px 0 rgba(35, 41, 54, 0.07)' }}
       overlay={
-        <S.DropdownMenu>
+        // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
+        <S.DropdownMenu
+          // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+          // @ts-ignore
+          onMouseOver={dropdownMouseOver}
+          onMouseOut={dropdownMouseOut}
+        >
           {!!onEdit && (
             <S.DropdownMenuItem
               prefixel={<Icon component={<EditM />} />}

@@ -1,9 +1,15 @@
 import { FolderItem } from './Folders.types';
 
+const DEFAULT_NAME = 'Folder';
+const isDuplicate = (itemsList: FolderItem[], item: FolderItem): boolean => {
+  return itemsList.some(i => i.name.toLowerCase() === item.name.toLowerCase() && i.id !== item.id);
+};
 export const addSuffixToDuplicate = (itemsList: FolderItem[], editedItem: FolderItem): FolderItem => {
-  return itemsList.some(i => i.name.toLowerCase() === editedItem.name.toLowerCase())
-    ? { ...editedItem, name: `${editedItem.name} (1)` }
-    : editedItem;
+  let newItem = editedItem;
+  while (isDuplicate(itemsList, newItem)) {
+    newItem = { ...newItem, name: `${newItem.name || DEFAULT_NAME} (1)` };
+  }
+  return newItem;
 };
 
 export const sortAlphabetically = (prev: FolderItem, next: FolderItem): number => {
@@ -17,7 +23,6 @@ export const sortAlphabetically = (prev: FolderItem, next: FolderItem): number =
 };
 
 export const handleItemAdd = (items: FolderItem[], addedItem: FolderItem) => {
-  console.log('added', addedItem);
   const nonDuplicateItem = addSuffixToDuplicate(items, addedItem);
   return [...items, nonDuplicateItem];
 };

@@ -3,12 +3,11 @@ import Icon from '@synerise/ds-icon';
 import { FolderFavouriteFlatM, FolderFavouriteM, FolderM } from '@synerise/ds-icon/dist/icons';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { useOnClickOutside } from '@synerise/ds-utils';
+import Tooltip from '@synerise/ds-tooltip';
 import { FolderProps } from './Folder.types';
 import * as S from './Folder.styles';
 import ActionsDropdown from '../Actions/Dropdown/ActionsDropdown';
 import ActionsRow from '../Actions/Row/ActionsRow';
-import ModalProxy from '@synerise/ds-modal';
-import DeleteModal from '../DeleteModal/DeleteModal';
 
 const Folder: React.FC<FolderProps> = ({
   id,
@@ -19,12 +18,16 @@ const Folder: React.FC<FolderProps> = ({
   onDelete,
   onFavourite,
   onEdit,
+  toggleDeleteModal,
 }: FolderProps) => {
   const [hovered, setHovered] = React.useState<boolean>(false);
   const [folderName, setFolderName] = React.useState<string>(name);
   const [editMode, setEditMode] = React.useState<boolean>(false);
-  const [deleteModalVisible, setDeleteModalVisible] = React.useState<boolean>(false);
   const inputRef = React.useRef<HTMLInputElement>(null);
+
+  React.useEffect(() => {
+    setFolderName(name);
+  }, [name]);
   const getPrefix = React.useCallback((isFavourite, isHovered): React.ReactNode => {
     if (isFavourite) {
       return isHovered ? <FolderFavouriteFlatM /> : <FolderFavouriteM />;
@@ -47,7 +50,7 @@ const Folder: React.FC<FolderProps> = ({
         onDelete={
           onDelete
             ? (): void => {
-                setDeleteModalVisible(true);
+                toggleDeleteModal && toggleDeleteModal();
               }
             : undefined
         }
@@ -79,53 +82,66 @@ const Folder: React.FC<FolderProps> = ({
             : undefined
         }
         isFavourite={favourite}
+        dropdownMouseOut={() => setHovered(false)}
+        dropdownMouseOver={() => setHovered(true)}
       />
     );
   };
-  useOnClickOutside(inputRef, () => {
-    if (editMode) {
-      onEdit && onEdit({ id, name: folderName });
+  const confirmEdit = (): void => {
+    const trimmedName = folderName.trim();
+    if (trimmedName) {
+      onEdit && onEdit({ id, name: trimmedName });
+      setEditMode(false);
+    } else {
+      onEdit && onEdit({ id, name });
+      setFolderName(name);
       setEditMode(false);
     }
+  };
+  useOnClickOutside(inputRef, () => {
+    if (editMode) {
+      confirmEdit();
+    }
   });
-  React.useEffect(() => {}, [editMode]);
   return (
-    <>
-      <S.FolderItem
-        prefixel={
-          <Icon
-            component={getPrefix(favourite, hovered)}
-            color={hovered ? theme.palette['blue-600'] : theme.palette['grey-600']}
-          />
-        }
-        suffixel={renderSuffix()}
-        text={
-          editMode ? (
+    // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
+    <S.FolderItem
+      prefixel={
+        <Icon
+          component={getPrefix(favourite, hovered)}
+          color={hovered ? theme.palette['blue-600'] : theme.palette['grey-600']}
+        />
+      }
+      suffixel={
+        <S.SuffixWrapper className={hovered ? 'suffix-wrapper-hovered' : undefined}>{renderSuffix()}</S.SuffixWrapper>
+      }
+      text={
+        editMode ? (
+          <>
             <S.InlineEditInput
               value={folderName}
               onChange={(e: React.SyntheticEvent<HTMLInputElement>): void => setFolderName(e.currentTarget.value)}
               onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>): void => {
                 if (e.key === 'Enter') {
-                  onEdit && onEdit({ id, name: folderName });
-                  setEditMode(false);
+                  confirmEdit();
                 }
               }}
               ref={inputRef}
             />
-          ) : (
-            folderName
-          )
-        }
-        onMouseOver={onMouseOver}
-        onMouseOut={onMouseOut}
-      />
-      <DeleteModal
-        visible={deleteModalVisible}
-        onClose={(): void => {
-          setDeleteModalVisible(false);
-        }}
-      />
-    </>
+          </>
+        ) : (
+          <S.FolderText>
+            <Tooltip placement="topLeft" title={folderName}>
+              {folderName}{' '}
+            </Tooltip>
+          </S.FolderText>
+        )
+      }
+      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+      // @ts-ignore
+      onMouseOver={onMouseOver}
+      onMouseOut={onMouseOut}
+    />
   );
 };
 
