@@ -8,7 +8,7 @@ export const DropdownWrapper = styled.div`
   flex-direction: column;
   align-items: stretch;
   justify-content: flex-start;
-  width: 100%;
+  min-width: 200px;
 `;
 
 export const DSMenu = styled(Menu)`
