@@ -31,7 +31,7 @@ export interface InlineEditProps {
   autoFocus?: boolean;
   error?: boolean;
   hideIcon?: boolean;
-  icon?: string;
+
 }
 
 const InlineEdit: React.FC<InlineEditProps> = ({
