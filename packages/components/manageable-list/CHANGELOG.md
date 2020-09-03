@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.25](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.13.24...@synerise/ds-manageable-list@0.13.25) (2020-09-01)
+
+
+### Bug Fixes
+
+* **manageable-list:** add animation of opening and closing ([68d2660](https://github.com/Synerise/synerise-design/commit/68d266032ff30baba4051148db92c4a651f89b3a))
+* **manageable-list:** change number from 1 to 3 ([eb1128a](https://github.com/Synerise/synerise-design/commit/eb1128a82200ef11acb06fb83af5088b8950272b))
+
+
+
+
+
 ## [0.13.24](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.13.23...@synerise/ds-manageable-list@0.13.24) (2020-08-21)
 
 **Note:** Version bump only for package @synerise/ds-manageable-list

@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-result@0.5.0...@synerise/ds-result@0.5.1) (2020-09-01)
+
+**Note:** Version bump only for package @synerise/ds-result
+
+
+
+
+
+# [0.5.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-result@0.4.67...@synerise/ds-result@0.5.0) (2020-09-01)
+
+
+### Features
+
+* **result:** width: 100% for buttonsContainer ([6120820](https://github.com/Synerise/synerise-design/commit/612082045b39f1fce36f699e697d9da2c794175f))
+
+
+
+
+
 ## [0.4.67](https://github.com/Synerise/synerise-design/compare/@synerise/ds-result@0.4.66...@synerise/ds-result@0.4.67) (2020-08-21)
 
 **Note:** Version bump only for package @synerise/ds-result

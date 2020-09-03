@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.24](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@0.1.23...@synerise/ds-date-picker@0.1.24) (2020-09-01)
+
+
+### Bug Fixes
+
+* **date-picker:** linter errors ([fb3750e](https://github.com/Synerise/synerise-design/commit/fb3750e0e632251d09f91665df4eb0ee2caf9b2c))
+* **date-picker:** removed moment dependency ([ce0623e](https://github.com/Synerise/synerise-design/commit/ce0623e52032a40cd7190867beb8dc7ffaf050d0))
+
+
+
+
+
 ## [0.1.23](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@0.1.22...@synerise/ds-date-picker@0.1.23) (2020-08-21)
 
 **Note:** Version bump only for package @synerise/ds-date-picker

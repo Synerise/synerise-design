@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-file-uploader@0.5.10...@synerise/ds-file-uploader@0.5.11) (2020-09-01)
+
+
+### Bug Fixes
+
+* **file-uploader:** fix color of focus and progress bar of file view ([b44b57e](https://github.com/Synerise/synerise-design/commit/b44b57ebedb25464ba5e15bb5ae756c376b453bf))
+
+
+
+
+
 ## [0.5.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-file-uploader@0.5.9...@synerise/ds-file-uploader@0.5.10) (2020-08-21)
 
 **Note:** Version bump only for package @synerise/ds-file-uploader

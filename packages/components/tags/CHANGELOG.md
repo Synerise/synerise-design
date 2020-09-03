@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.108](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@0.2.107...@synerise/ds-tags@0.2.108) (2020-09-01)
+
+
+### Bug Fixes
+
+* **tags:** change type of button ([1ca04f2](https://github.com/Synerise/synerise-design/commit/1ca04f229dd6cc1a6ffe98a99ee406bbb00f8110))
+* **tags:** change width of add tag button ([b04358b](https://github.com/Synerise/synerise-design/commit/b04358ba6c5eb47cd04f4519e0e3773e07fe591e))
+* **tags:** fix badge in tags and fix text of add button tag ([88648fb](https://github.com/Synerise/synerise-design/commit/88648fb38165546596901fbbbe3078d4c89e2896))
+
+
+
+
+
 ## [0.2.107](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@0.2.106...@synerise/ds-tags@0.2.107) (2020-08-21)
 
 

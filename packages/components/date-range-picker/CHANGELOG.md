@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.17](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.1.16...@synerise/ds-date-range-picker@0.1.17) (2020-09-01)
+
+
+### Bug Fixes
+
+* **date-range-picker:** added scrollbar to the hidden ranges dropdown ([8464c34](https://github.com/Synerise/synerise-design/commit/8464c34a7405801f1f04e76671cb8d00211a5a98))
+* **date-range-picker:** removed unused code and dependencies ([a66ad4f](https://github.com/Synerise/synerise-design/commit/a66ad4fafeb167027c0af8d6f296a47004338c96))
+* **date-range-picker:** scrollbar style fixes ([20ea937](https://github.com/Synerise/synerise-design/commit/20ea937da7401314973450ab26ca44328002d66c))
+
+
+
+
+
 ## [0.1.16](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.1.15...@synerise/ds-date-range-picker@0.1.16) (2020-08-21)
 
 

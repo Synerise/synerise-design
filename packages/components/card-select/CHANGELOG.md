@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.43](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-select@0.3.42...@synerise/ds-card-select@0.3.43) (2020-09-01)
+
+
+### Bug Fixes
+
+* **card-select:** fixed build ([335b3be](https://github.com/Synerise/synerise-design/commit/335b3be17492a2abf9c14e643fb14da59c386a85))
+* **card-select:** fixed focus on cards and more text to write ([795e15d](https://github.com/Synerise/synerise-design/commit/795e15dcbe396014a6cbab484ebbd05cf8e01b97))
+
+
+
+
+
 ## [0.3.42](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-select@0.3.41...@synerise/ds-card-select@0.3.42) (2020-08-21)
 
 

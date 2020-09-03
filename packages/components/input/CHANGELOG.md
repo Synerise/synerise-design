@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.15.3](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.15.2...@synerise/ds-input@0.15.3) (2020-09-01)
+
+
+### Bug Fixes
+
+* **input:** added z index to the focused input ([00f6d4c](https://github.com/synerise/synerise-design/commit/00f6d4c8f4f5c6c0434670228e4aaaf3563d2769))
+* **input:** increase specifity of the input padding ([686aa0d](https://github.com/synerise/synerise-design/commit/686aa0ddb7bdc79e50ca68c4069830a6fdf6a2f4))
+* **input:** show border of input number when focused in group ([0f8fb3e](https://github.com/synerise/synerise-design/commit/0f8fb3e12320ad514be7048337e63fb282bf86c5))
+
+
+
+
+
 ## [0.15.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.15.1...@synerise/ds-input@0.15.2) (2020-08-21)
 
 
