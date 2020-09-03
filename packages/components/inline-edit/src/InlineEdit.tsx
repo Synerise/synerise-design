@@ -44,7 +44,6 @@ const InlineEdit: React.FC<InlineEditProps> = ({
   tooltipTitle,
   error,
   input,
-  icon,
 }): React.ReactElement => {
   const inputRef = React.useMemo(() => {
     return React.createRef<HTMLInputElement>();

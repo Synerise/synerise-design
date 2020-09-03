@@ -4,13 +4,11 @@ import { toCamelCase } from '@synerise/ds-utils';
 import Icon from '@synerise/ds-icon';
 import Dropdown from '@synerise/ds-dropdown';
 import { AngleDownS } from '@synerise/ds-icon/dist/icons';
+import { MenuItemProps } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.types';
 import * as S from './InlineSelect.style';
 import { attachWidthWatcher } from '../utils';
 import SelectDropdown from './SelectDropdown/SelectDropdown';
-import { MenuItemProps } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.types';
 import { InputProps } from '../InlineEdit';
-
-
 
 
 export interface InlineSelectProps {
