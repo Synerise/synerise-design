@@ -5143,6 +5143,14 @@
     "@synerise/ds-card" "^0.4.11"
     "@synerise/ds-typography" "*"
 
+"@synerise/ds-scrollbar@^0.2.18":
+  version "0.2.18"
+  resolved "https://registry.yarnpkg.com/@synerise/ds-scrollbar/-/ds-scrollbar-0.2.18.tgz#1ba53d9e6706c0b422f906e014917fb8ec77b640"
+  integrity sha512-GEeb1PNUWJZwQP8koZNH5N7CE6FV/A2UGq9dxrE/3FHKyGA7n+sVXvIM7puoyY+coe/wq7Rh8bGowuHjtZ/kfg==
+  dependencies:
+    "@synerise/ds-icon" "^0.26.0"
+    react-perfect-scrollbar "^1.5.8"
+
 "@synerise/ds-search-bar@^0.2.80":
   version "0.2.80"
   resolved "https://registry.yarnpkg.com/@synerise/ds-search-bar/-/ds-search-bar-0.2.80.tgz#f87c17b9ff91de9c2a49d3b9a2589f6fe33177d2"
@@ -5151,6 +5159,20 @@
     "@synerise/ds-button" "^0.12.32"
     "@synerise/ds-input" "^0.15.3"
     "@synerise/ds-typography" "^0.9.0"
+
+"@synerise/ds-search@^0.1.72":
+  version "0.1.72"
+  resolved "https://registry.yarnpkg.com/@synerise/ds-search/-/ds-search-0.1.72.tgz#4a2265917a0cd662669f324a0ad4ef5472d2506e"
+  integrity sha512-idr33nnHoTSrgebiTAAZ9MR0GhBwgPj1IYhwpo1snW/Ss9cSDVIPn4tq/yHEcMmHWh0BzI8bu+3brpO3DXt0AQ==
+  dependencies:
+    "@synerise/ds-button" "^0.12.32"
+    "@synerise/ds-dropdown" "^0.11.74"
+    "@synerise/ds-menu" "^0.5.27"
+    "@synerise/ds-scrollbar" "^0.2.18"
+    "@synerise/ds-typography" "^0.9.0"
+    "@synerise/ds-utils" "^0.9.3"
+    react-onclickoutside "^6.9.0"
+    react-window "^1.8.5"
 
 "@synerise/ds-tooltip@^0.4.26":
   version "0.4.26"
