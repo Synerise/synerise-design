@@ -1,49 +1,42 @@
 import * as React from 'react';
 import AutosizeInput from 'react-input-autosize';
-import Tooltip from '@synerise/ds-tooltip';
-import Icon from '@synerise/ds-icon';
-import { EditS } from '@synerise/ds-icon/dist/icons';
 import { toCamelCase } from '@synerise/ds-utils';
-import * as S from './InlineEdit.styles';
-import { attachWidthWatcher } from './utils';
+import Icon from '@synerise/ds-icon';
+import Dropdown from '@synerise/ds-dropdown';
+import { AngleDownS } from '@synerise/ds-icon/dist/icons';
+import { MenuItemProps } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.types';
+import * as S from './InlineSelect.style';
+import { attachWidthWatcher } from '../utils';
+import SelectDropdown from './SelectDropdown/SelectDropdown';
+import { InputProps } from '../InlineEdit';
 
-const SAMPLE = String.fromCharCode(...[...Array(26).keys()].map(i => i + 65));
 
-export type InputProps = {
-  name?: string;
-  value: string | number;
-  disabled?: boolean;
-  onBlur?: React.FocusEventHandler<HTMLInputElement>;
-  onEnterPress?: React.KeyboardEventHandler<HTMLInputElement>;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  placeholder?: string;
-  maxLength?: number;
-  autoComplete?: string;
-};
-
-export interface InlineEditProps {
+export interface InlineSelectProps {
   size?: 'normal' | 'small';
   tooltipTitle?: string;
   className?: string;
   disabled?: boolean;
-  input: InputProps;
+  input: Partial<InputProps>;
   style?: { [key: string]: string | number };
   autoFocus?: boolean;
   error?: boolean;
   hideIcon?: boolean;
-
+  expanded: boolean;
+  option?: string;
+  dataSource: MenuItemProps[];
 }
 
-const InlineEdit: React.FC<InlineEditProps> = ({
+const InlineSelect: React.FC<InlineSelectProps> = ({
   className,
   style,
   size = 'normal',
   disabled,
   autoFocus,
   hideIcon,
-  tooltipTitle,
   error,
   input,
+  option,
+  dataSource,
 }): React.ReactElement => {
   const inputRef = React.useMemo(() => {
     return React.createRef<HTMLInputElement>();
@@ -52,34 +45,6 @@ const InlineEdit: React.FC<InlineEditProps> = ({
   const fontStyleWatcher = React.useMemo(() => {
     return React.createRef<HTMLDivElement>();
   }, []);
-
-  const handleChange = React.useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      input.onChange(e);
-    },
-    [input]
-  );
-
-  const handleBlur = React.useCallback(
-    (e: React.FocusEvent<HTMLInputElement>) => {
-      input.onBlur && input.onBlur(e);
-    },
-    [input]
-  );
-
-  const handleKeyPress = React.useCallback(
-    (e: React.KeyboardEvent<HTMLInputElement>) => {
-      if (e.key === 'Enter') {
-        input.onEnterPress && input.onEnterPress(e);
-        inputRef.current && inputRef.current.blur();
-      }
-    },
-    [input, inputRef]
-  );
-
-  const handleFocusInput = React.useCallback(() => {
-    inputRef.current && inputRef.current.focus();
-  }, [inputRef]);
 
   const updateInputWidth = React.useCallback(() => {
     if (inputRef.current) {
@@ -91,12 +56,15 @@ const InlineEdit: React.FC<InlineEditProps> = ({
   }, [inputRef]);
 
   React.useEffect(() => {
-    autoFocus && inputRef.current && inputRef.current.focus();
     updateInputWidth();
     if (fontStyleWatcher) {
       attachWidthWatcher(fontStyleWatcher.current as HTMLDivElement, updateInputWidth);
     }
   }, [autoFocus, fontStyleWatcher, inputRef, updateInputWidth]);
+
+  const [selectedValue, setSelectedValue] = React.useState<string>('option');
+  const [opened, setOpened] = React.useState<boolean>(false);
+  const [pressed, setPressed] = React.useState<boolean>(false);
 
   return (
     <S.InPlaceEditableInputContainer
@@ -105,38 +73,50 @@ const InlineEdit: React.FC<InlineEditProps> = ({
       size={size}
       disabled={disabled}
       error={error}
+      tabIndex={0}
+      onClick={(): void => setOpened(!opened)}
+      onMouseDown={(): void => setPressed(true)}
+      onMouseUp={(): void => setPressed(false)}
+      pressed={pressed}
     >
       <AutosizeInput
         id={input.name ? toCamelCase(input.name) : 'id'}
         className="autosize-input"
         placeholder={input.placeholder}
         maxLength={input.maxLength}
-        onKeyPress={handleKeyPress}
         disabled={disabled}
         name={input.name}
-        value={input.value || ''}
-        onChange={handleChange}
-        onBlur={handleBlur}
+        value={selectedValue || option}
         autoComplete={input.autoComplete}
         placeholderIsMinWidth={false}
         /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
         ref={inputRef as any}
       />
       {!hideIcon && (
-        <Tooltip data-testid="inline-edit-icon" title={tooltipTitle}>
-          <S.IconWrapper onClick={handleFocusInput} size={size}>
-            <Icon component={<EditS/>} size={24} />
+        <Dropdown
+          visible={opened}
+          onVisibleChange={setOpened}
+          placement="bottomRight"
+          overlay={
+            <SelectDropdown
+              dataSource={dataSource}
+              onSelect={(item): void => setSelectedValue(item.text as string)}
+              closeDropdown={(): void => setOpened(false)}
+            />
+          }
+          trigger={['click']}
+        >
+          <S.IconWrapper size={size} expanded={opened}>
+            <Icon component={<AngleDownS/>} size={24} />
           </S.IconWrapper>
-        </Tooltip>
+        </Dropdown>
       )}
       <S.FontStyleWatcher
         ref={fontStyleWatcher}
         style={{ position: 'absolute', visibility: 'hidden', pointerEvents: 'none' }}
-      >
-        {SAMPLE}
-      </S.FontStyleWatcher>
+      />
     </S.InPlaceEditableInputContainer>
   );
 };
 
-export default InlineEdit;
+export default InlineSelect;
