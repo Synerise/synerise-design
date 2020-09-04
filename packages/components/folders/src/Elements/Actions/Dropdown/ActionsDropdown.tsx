@@ -2,9 +2,9 @@ import * as React from 'react';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon from '@synerise/ds-icon';
 import { EditM, OptionHorizontalM, Settings2M, StarFillM, StarM, TrashM } from '@synerise/ds-icon/dist/icons';
+import { ClickParam } from 'antd/es/menu';
 import { ActionProps } from '../Actions.types';
 import * as S from '../Actions.styles';
-import { ClickParam } from 'antd/es/menu';
 
 const ActionsDropdown: React.FC<ActionProps> = ({
   onFavourite,
