@@ -22,10 +22,16 @@ const Folders: React.FC<FoldersProps> = ({
   onSettings,
   texts,
   showHideStep,
+  folderFilter,
 }: FoldersProps) => {
-  const [items, setItems] = React.useState<FolderItem[]>(dataSource);
+  const [items, setItems] = React.useState<FolderItem[]>(folderFilter ? dataSource.filter(folderFilter) : dataSource);
   const [itemToDelete, setItemToDelete] = React.useState<FolderItem | undefined>(undefined);
   const [visibleCount, setVisibleCount] = React.useState<number>(visibleItemsCount);
+
+  React.useEffect(() => {
+    setItems(folderFilter ? dataSource.filter(folderFilter) : dataSource);
+  }, [dataSource, folderFilter]);
+
   const onItemAdd = (addedItem: FolderItem): void => {
     onAdd && onAdd(addedItem);
     setItems(handleItemAdd(items, addedItem));
@@ -71,6 +77,9 @@ const Folders: React.FC<FoldersProps> = ({
     const favouriteItems = items.filter(i => i.favourite).sort(sortAlphabetically);
     const restOfItems = items.filter(i => !i.favourite).sort(sortAlphabetically);
     const total = [...favouriteItems, ...restOfItems].slice(0, visibleCount);
+    if (!!folderFilter && typeof folderFilter === 'function') {
+      return total.filter(folderFilter).map(renderItem);
+    }
     return total.map(renderItem);
   };
   return (
