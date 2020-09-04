@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Container = styled.div`
   display: flex;
   width: 100%;
-  margin: 8px 0;
+  margin: 16px 0 0px 0;
   .ds-button:not(:first-of-type) {
     margin-left: 8px;
   }

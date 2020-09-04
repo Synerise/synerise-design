@@ -4,6 +4,7 @@ import Icon from '@synerise/ds-icon';
 import { EditM, OptionHorizontalM, Settings2M, StarFillM, StarM, TrashM } from '@synerise/ds-icon/dist/icons';
 import { ActionProps } from '../Actions.types';
 import * as S from '../Actions.styles';
+import { ClickParam } from 'antd/es/menu';
 
 const ActionsDropdown: React.FC<ActionProps> = ({
   onFavourite,
@@ -13,6 +14,7 @@ const ActionsDropdown: React.FC<ActionProps> = ({
   isFavourite,
   dropdownMouseOut,
   dropdownMouseOver,
+  texts,
 }: ActionProps) => {
   return (
     <Dropdown
@@ -29,23 +31,24 @@ const ActionsDropdown: React.FC<ActionProps> = ({
           {!!onEdit && (
             <S.DropdownMenuItem
               prefixel={<Icon component={<EditM />} />}
-              onClick={(): void => {
+              onClick={(e: ClickParam): void => {
+                e.domEvent.stopPropagation();
                 onEdit();
               }}
             >
-              {' '}
-              Edit{' '}
+              {texts.edit}
             </S.DropdownMenuItem>
           )}
           {!!onDelete && (
             <S.DropdownMenuItem
               prefixel={<Icon component={<TrashM />} />}
               type="danger"
-              onClick={(): void => {
+              onClick={(e: ClickParam): void => {
+                e.domEvent.stopPropagation();
                 onDelete();
               }}
             >
-              Delete
+              {texts.delete}
             </S.DropdownMenuItem>
           )}
           {!!onFavourite && (
@@ -56,23 +59,23 @@ const ActionsDropdown: React.FC<ActionProps> = ({
                   <Icon component={isFavourite ? <StarFillM /> : <StarM />} />
                 </S.FavouriteIconWrapper>
               }
-              onClick={(): void => {
+              onClick={(e: ClickParam): void => {
+                e.domEvent.stopPropagation();
                 onFavourite();
               }}
             >
-              {' '}
-              Favourite{' '}
+              {isFavourite ? texts.deleteFromFavourites : texts.addToFavourite}
             </S.DropdownMenuItem>
           )}
           {!!onSettingsEnter && (
             <S.DropdownMenuItem
               prefixel={<Icon component={<Settings2M />} />}
-              onClick={(): void => {
+              onClick={(e: ClickParam): void => {
+                e.domEvent.stopPropagation();
                 onSettingsEnter();
               }}
             >
-              {' '}
-              Favourite{' '}
+              {texts.enterSettings}
             </S.DropdownMenuItem>
           )}
         </S.DropdownMenu>

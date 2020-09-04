@@ -8,12 +8,10 @@ export const AddItemLayout = styled.div`
   align-items: stretch;
   justify-content: center;
   width: 100%;
-  margin-bottom: 8px;
 `;
-
-export const AddItemLabel = styled.span`
-  margin-left: 12px;
-`;
+export const ButtonWrapper = styled.div`
+  margin-bottom: 16px;
+`
 export const Overlay = styled.div`
   background: ${(props): string => props.theme.palette.white};
   min-width: 262px;

@@ -8,6 +8,7 @@ import { FolderProps } from './Folder.types';
 import * as S from './Folder.styles';
 import ActionsDropdown from '../Actions/Dropdown/ActionsDropdown';
 import ActionsRow from '../Actions/Row/ActionsRow';
+import { validateFolderName } from '../../utils';
 
 const Folder: React.FC<FolderProps> = ({
   id,
@@ -19,11 +20,25 @@ const Folder: React.FC<FolderProps> = ({
   onFavourite,
   onEdit,
   toggleDeleteModal,
+  texts,
+  onItemSelect,
 }: FolderProps) => {
   const [hovered, setHovered] = React.useState<boolean>(false);
   const [folderName, setFolderName] = React.useState<string>(name);
   const [editMode, setEditMode] = React.useState<boolean>(false);
   const inputRef = React.useRef<HTMLInputElement>(null);
+
+  const confirmEdit = React.useCallback((): void => {
+    if (validateFolderName(folderName)) {
+      const trimmedName = folderName.trim();
+      onEdit && onEdit({ id, name: trimmedName });
+      setEditMode(false);
+    } else {
+      onEdit && onEdit({ id, name });
+      setFolderName(name);
+      setEditMode(false);
+    }
+  }, [folderName, id, name, onEdit]);
 
   React.useEffect(() => {
     setFolderName(name);
@@ -34,6 +49,11 @@ const Folder: React.FC<FolderProps> = ({
     }
     return <FolderM />;
   }, []);
+
+  React.useEffect(() => {
+    inputRef?.current !== null && inputRef.current.focus();
+  }, [inputRef, editMode]);
+
   const onMouseOver = React.useCallback((): void => {
     setHovered(true);
   }, [setHovered]);
@@ -41,71 +61,72 @@ const Folder: React.FC<FolderProps> = ({
   const onMouseOut = React.useCallback((): void => {
     setHovered(false);
   }, [setHovered]);
-  React.useEffect(() => {
-    inputRef?.current !== null && inputRef.current.focus();
-  }, [inputRef, editMode]);
-  const renderSuffix = () => {
+
+  const handleOnFavourite = React.useCallback((): void => {
+    onFavourite && onFavourite({ id, name });
+  }, [onFavourite, id, name]);
+
+  const handleDropdownMouseOver = React.useCallback(() => {
+    setHovered(true);
+  }, []);
+  const handleDropdownMouseOut = React.useCallback(() => {
+    setHovered(false);
+  }, []);
+  const renderSuffix = (): React.ReactNode => {
     return actionsDisplay === 'inline' ? (
       <ActionsRow
         onDelete={
-          onDelete
-            ? (): void => {
-                toggleDeleteModal && toggleDeleteModal();
-              }
-            : undefined
+          onDelete &&
+          ((): void => {
+            toggleDeleteModal && toggleDeleteModal();
+          })
         }
-        onFavourite={(): void => {
-          onFavourite && onFavourite({ id, name });
-        }}
+        onFavourite={handleOnFavourite}
         onSettingsEnter={onSettingsEnter}
         onEdit={
-          onEdit
-            ? (): void => {
-                setEditMode(true);
-              }
-            : undefined
+          onEdit &&
+          ((): void => {
+            setEditMode(true);
+          })
         }
         isFavourite={favourite}
+        texts={texts}
       />
     ) : (
       <ActionsDropdown
-        onDelete={onDelete}
-        onFavourite={(): void => {
-          onFavourite && onFavourite({ id, name });
-        }}
+        onDelete={
+          onDelete &&
+          ((): void => {
+            toggleDeleteModal && toggleDeleteModal();
+          })
+        }
+        onFavourite={handleOnFavourite}
         onSettingsEnter={onSettingsEnter}
         onEdit={
-          onEdit
-            ? (): void => {
-                setEditMode(true);
-              }
-            : undefined
+          onEdit &&
+          ((): void => {
+            setEditMode(true);
+          })
         }
         isFavourite={favourite}
-        dropdownMouseOut={() => setHovered(false)}
-        dropdownMouseOver={() => setHovered(true)}
+        dropdownMouseOut={handleDropdownMouseOut}
+        dropdownMouseOver={handleDropdownMouseOver}
+        texts={texts}
       />
     );
-  };
-  const confirmEdit = (): void => {
-    const trimmedName = folderName.trim();
-    if (trimmedName) {
-      onEdit && onEdit({ id, name: trimmedName });
-      setEditMode(false);
-    } else {
-      onEdit && onEdit({ id, name });
-      setFolderName(name);
-      setEditMode(false);
-    }
   };
   useOnClickOutside(inputRef, () => {
     if (editMode) {
       confirmEdit();
     }
   });
+
   return (
     // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
     <S.FolderItem
+      onClick={(): void => {
+        onItemSelect && onItemSelect({ id, name });
+      }}
       prefixel={
         <Icon
           component={getPrefix(favourite, hovered)}

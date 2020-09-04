@@ -1,5 +1,12 @@
 import { FolderItem } from '@synerise/ds-folders/dist/Folders.types';
-
+import { MenuItemProps } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.types';
+import { ClockM } from '@synerise/ds-icon/dist/icons';
+export const MENU_ITEMS: MenuItemProps[] = [
+  {
+    icon: <ClockM />,
+    text: 'Recent',
+  },
+];
 export const FOLDERS: FolderItem[] = [
   {
     id: '1',

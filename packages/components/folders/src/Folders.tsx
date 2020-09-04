@@ -12,18 +12,29 @@ const Folders: React.FC<FoldersProps> = ({
   addButtonDisabled,
   actionsDisplay,
   dataSource,
-  visibleItemsCount,
+  visibleItemsCount = 5,
+  onDelete,
+  onAdd,
+  onEdit,
+  onFavourite,
+  onSelect,
+  onSettings,
+  texts,
+  showHideStep,
 }: FoldersProps) => {
   const [items, setItems] = React.useState<FolderItem[]>(dataSource);
   const [itemToDelete, setItemToDelete] = React.useState<FolderItem | undefined>(undefined);
-  const [visibleCount, setVisibleCount] = React.useState<number>(visibleItemsCount || 5);
+  const [visibleCount, setVisibleCount] = React.useState<number>(visibleItemsCount);
   const onItemAdd = (addedItem: FolderItem): void => {
+    onAdd && onAdd(addedItem);
     setItems(handleItemAdd(items, addedItem));
   };
   const onItemEdit = (editedItem: FolderItem): void => {
+    onEdit && onEdit(editedItem);
     setItems(handleItemEdit(items, editedItem));
   };
   const onItemFavourite = (item: FolderItem): void => {
+    onFavourite && onFavourite({ ...item, favourite: !item.favourite });
     setItems(handleItemFavourite(items, item));
   };
   const onItemDelete = (deleted: FolderItem): void => {
@@ -41,20 +52,29 @@ const Folders: React.FC<FoldersProps> = ({
       onDelete={item.canDelete ? onItemDelete : undefined}
       onEdit={item.canUpdate ? onItemEdit : undefined}
       onFavourite={onItemFavourite}
+      onSettingsEnter={
+        item.canEnterSettings
+          ? (): void => {
+              onSettings(item);
+            }
+          : undefined
+      }
       toggleDeleteModal={(): void => {
         setItemToDelete(item);
       }}
+      onItemSelect={onSelect}
+      texts={texts}
     />
   );
-  const renderItemsList = () => {
-    const favouriteItems = items.filter(x => x.favourite).sort(sortAlphabetically);
-    const restOfItems = items.filter(x => !x.favourite).sort(sortAlphabetically);
+  const renderItemsList = (): React.ReactNode => {
+    const favouriteItems = items.filter(i => i.favourite).sort(sortAlphabetically);
+    const restOfItems = items.filter(i => !i.favourite).sort(sortAlphabetically);
     const total = [...favouriteItems, ...restOfItems].slice(0, visibleCount);
     return total.map(renderItem);
   };
   return (
     <>
-      <AddModal addItemLabel="Add folder" disabled={!!addButtonDisabled} onItemAdd={onItemAdd} />
+      <AddModal disabled={!!addButtonDisabled} onItemAdd={onItemAdd} texts={texts} />
       <Menu>
         {renderItemsList()}
         <DeleteModal
@@ -64,6 +84,13 @@ const Folders: React.FC<FoldersProps> = ({
             setItemToDelete(undefined);
           }}
           folders={items}
+          onConfirm={(options): void => {
+            if (itemToDelete) {
+              onItemDelete(itemToDelete);
+              onDelete && onDelete(itemToDelete, options);
+            }
+          }}
+          texts={texts}
         />{' '}
       </Menu>
       <ShowLessOrMore
@@ -75,13 +102,8 @@ const Folders: React.FC<FoldersProps> = ({
         }}
         totalItemsCount={items.length}
         visibleItemsCount={visibleCount}
-        texts={{
-          showLessLabel: 'Hide',
-          showMoreLabel: 'Show',
-          less: 'less',
-          more: 'more',
-        }}
-        step={5}
+        texts={texts}
+        step={showHideStep || 5}
       />
     </>
   );

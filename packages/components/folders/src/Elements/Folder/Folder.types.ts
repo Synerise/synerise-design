@@ -1,4 +1,4 @@
-import { FolderItem, FoldersProps } from '../../Folders.types';
+import { FolderItem, FoldersProps, FolderTexts } from '../../Folders.types';
 
 export type FolderProps = {
   id: string;
@@ -8,5 +8,7 @@ export type FolderProps = {
   onEdit?: (item: FolderItem) => void;
   onDelete?: (item: FolderItem) => void;
   onFavourite?: (item: FolderItem) => void;
-  onSettingsEnter?: (item: FolderItem) => void;
+  onSettingsEnter?: (item?: FolderItem) => void;
+  onItemSelect?: (item: FolderItem) => void;
+  texts: FolderTexts;
 } & Pick<FoldersProps, 'actionsDisplay'>;

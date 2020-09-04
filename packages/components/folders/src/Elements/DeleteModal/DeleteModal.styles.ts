@@ -25,3 +25,9 @@ export const ModePicker = styled.div`
 export const SelectWrapper = styled.div`
   margin: 15px 0;
 `;
+
+export const ModalBody = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;

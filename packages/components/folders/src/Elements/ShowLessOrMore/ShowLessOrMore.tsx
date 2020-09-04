@@ -59,7 +59,7 @@ const ShowLessOrMore: React.FC<Props> = ({
         </S.ShowMoreLabel>
       </Button>
     );
-  }, [texts, visibleItemsCount, totalItemsCount, step, onShowLess]);
+  }, [texts, step, onShowLess]);
 
   return (
     <S.Container>

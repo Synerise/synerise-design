@@ -10,23 +10,29 @@ const ActionsRow: React.FC<ActionProps> = ({
   onFavourite,
   onSettingsEnter,
   isFavourite,
+  texts,
 }: ActionProps) => {
   return (
     <S.ActionsWrapper>
       {!!onSettingsEnter && (
         <SingleAction
           className="settings"
-          title="Title"
+          title={texts.enterSettings}
           icon={<Settings2M />}
           onClick={onSettingsEnter}
           iconSize={18}
         />
       )}
       {!!onFavourite && (
-        <SingleAction title="Title" icon={isFavourite ? <StarFillS /> : <StarS />} onClick={onFavourite} />
+        <SingleAction
+          title={isFavourite ? texts.addToFavourite : texts.deleteFromFavourites}
+          icon={isFavourite ? <StarFillS /> : <StarS />}
+          onClick={onFavourite}
+          className="favourite"
+        />
       )}
-      {!!onEdit && <SingleAction title="Title" icon={<EditS />} onClick={onEdit} />}{' '}
-      {!!onDelete && <SingleAction className="delete" title="Title" icon={<CloseS />} onClick={onDelete} />}
+      {!!onEdit && <SingleAction className="edit" title={texts.edit} icon={<EditS />} onClick={onEdit} />}{' '}
+      {!!onDelete && <SingleAction className="delete" title={texts.delete} icon={<CloseS />} onClick={onDelete} />}
     </S.ActionsWrapper>
   );
 };
