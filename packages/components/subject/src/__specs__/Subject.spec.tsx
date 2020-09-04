@@ -1,10 +1,20 @@
 import * as React from 'react';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import { NotificationsM, VarTypeStringM } from '@synerise/ds-icon/dist/icons';
-import { SUBJECT_ITEMS, SUBJECT_TEXTS } from '../../../../portal/stories/components/Subject/data/index.data';
 import { SubjectProps } from '../Subject.types';
 import Subject from '../Subject';
 import { fireEvent } from '@testing-library/react';
+
+export const SUBJECT_TEXTS = {
+  searchPlaceholder: 'Search',
+  noResults: 'No results',
+}
+
+export const SUBJECT_ITEMS = [...new Array(30)].map((i, index) => ({
+  id: index,
+  name: `Attribute #${index}`,
+  icon: <NotificationsM />,
+}));
 
 
 describe('Subject component', () => {
