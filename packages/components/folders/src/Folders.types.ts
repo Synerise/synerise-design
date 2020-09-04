@@ -14,6 +14,7 @@ export type FoldersProps = {
   onSettings: (selected?: FolderItem) => void;
   texts: FolderTexts;
   showHideStep?: number;
+  folderFilter?: (item: FolderItem) => boolean;
 };
 
 export type FolderItem = {
