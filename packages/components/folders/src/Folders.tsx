@@ -8,6 +8,7 @@ import { handleItemAdd, handleItemDelete, handleItemEdit, handleItemFavourite, s
 import DeleteModal from './Elements/DeleteModal/DeleteModal';
 import ShowLessOrMore from './Elements/ShowLessOrMore/ShowLessOrMore';
 
+const DEFAULT_STEP = 5;
 const Folders: React.FC<FoldersProps> = ({
   addButtonDisabled,
   actionsDisplay,
@@ -91,7 +92,7 @@ const Folders: React.FC<FoldersProps> = ({
             }
           }}
           texts={texts}
-        />{' '}
+        />
       </Menu>
       <ShowLessOrMore
         onShowMore={(more): void => {
@@ -103,7 +104,7 @@ const Folders: React.FC<FoldersProps> = ({
         totalItemsCount={items.length}
         visibleItemsCount={visibleCount}
         texts={texts}
-        step={showHideStep || 5}
+        step={showHideStep || DEFAULT_STEP}
       />
     </>
   );

@@ -11,13 +11,14 @@ const ActionsRow: React.FC<ActionProps> = ({
   onSettingsEnter,
   isFavourite,
   texts,
+  hovered,
 }: ActionProps) => {
   return (
     <S.ActionsWrapper>
       {!!onSettingsEnter && (
         <SingleAction
           className="settings"
-          title={texts.enterSettings}
+          title={!!hovered && texts.enterSettings}
           icon={<Settings2M />}
           onClick={onSettingsEnter}
           iconSize={18}
@@ -25,14 +26,16 @@ const ActionsRow: React.FC<ActionProps> = ({
       )}
       {!!onFavourite && (
         <SingleAction
-          title={isFavourite ? texts.addToFavourite : texts.deleteFromFavourites}
+          title={hovered && isFavourite ? texts.addToFavourite : texts.deleteFromFavourites}
           icon={isFavourite ? <StarFillS /> : <StarS />}
           onClick={onFavourite}
           className="favourite"
         />
       )}
-      {!!onEdit && <SingleAction className="edit" title={texts.edit} icon={<EditS />} onClick={onEdit} />}{' '}
-      {!!onDelete && <SingleAction className="delete" title={texts.delete} icon={<CloseS />} onClick={onDelete} />}
+      {!!onEdit && <SingleAction className="edit" title={hovered && texts.edit} icon={<EditS />} onClick={onEdit} />}{' '}
+      {!!onDelete && (
+        <SingleAction className="delete" title={hovered && texts.delete} icon={<CloseS />} onClick={onDelete} />
+      )}
     </S.ActionsWrapper>
   );
 };

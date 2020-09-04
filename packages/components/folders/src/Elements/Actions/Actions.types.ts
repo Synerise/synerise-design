@@ -9,4 +9,5 @@ export type ActionProps = {
   onSettingsEnter?: (item?: FolderItem) => void;
   onFavourite?: (item?: FolderItem) => void;
   texts: FolderTexts;
+  hovered?: boolean;
 };

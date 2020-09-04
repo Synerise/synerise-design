@@ -81,7 +81,10 @@ const Folder: React.FC<FolderProps> = ({
             toggleDeleteModal && toggleDeleteModal();
           })
         }
-        onFavourite={handleOnFavourite}
+        onFavourite={(): void => {
+          setHovered(false)
+          handleOnFavourite && handleOnFavourite();
+        }}
         onSettingsEnter={onSettingsEnter}
         onEdit={
           onEdit &&
@@ -91,6 +94,7 @@ const Folder: React.FC<FolderProps> = ({
         }
         isFavourite={favourite}
         texts={texts}
+        hovered={hovered}
       />
     ) : (
       <ActionsDropdown
