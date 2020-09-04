@@ -89,7 +89,7 @@ const CardTab: React.FC<CardTabProps> = ({
 
   const handleEditName = React.useCallback(
     (event: React.MouseEvent<HTMLElement>): void => {
-      event.stopPropagation();
+      !!event && event.stopPropagation();
       setEdited(true);
     },
     [setEdited]
@@ -110,7 +110,7 @@ const CardTab: React.FC<CardTabProps> = ({
 
   const handleDuplicate = React.useCallback(
     (event: React.MouseEvent<HTMLElement>): void => {
-      event.stopPropagation();
+      !!event && event.stopPropagation();
       onDuplicateTab && onDuplicateTab(id);
     },
     [id, onDuplicateTab]
@@ -118,7 +118,7 @@ const CardTab: React.FC<CardTabProps> = ({
 
   const handleRemove = React.useCallback(
     (event: React.MouseEvent<HTMLElement>): void => {
-      event.stopPropagation();
+      !!event && event.stopPropagation();
       onRemoveTab && onRemoveTab(id);
     },
     [id, onRemoveTab]
@@ -126,7 +126,7 @@ const CardTab: React.FC<CardTabProps> = ({
 
   const handleSelect = React.useCallback(
     (event: React.MouseEvent<HTMLElement>): void => {
-      event.stopPropagation();
+      !!event && event.stopPropagation();
       !edited && onSelectTab && onSelectTab(id);
     },
     [edited, id, onSelectTab]

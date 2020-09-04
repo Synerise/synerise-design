@@ -1,5 +1,4 @@
 import * as React from 'react';
-import AngleRightS from '@synerise/ds-icon/dist/icons/AngleRightS';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import * as copy from 'copy-to-clipboard';
 import { ClickParam } from 'antd/lib/menu';
@@ -7,6 +6,7 @@ import { escapeRegEx } from '@synerise/ds-utils';
 import Icon from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 
+import { CheckS, AngleRightS } from '@synerise/ds-icon/dist/icons';
 import * as S from './Text.styles';
 import { VisibilityTrigger } from '../../../Menu.types';
 
@@ -32,6 +32,7 @@ export interface BasicItemProps {
   indentLevel?: number;
   ordered?: boolean;
   key?: React.ReactText;
+  checked?: boolean;
 }
 const Text: React.FC<BasicItemProps> = ({
   parent,
@@ -51,6 +52,7 @@ const Text: React.FC<BasicItemProps> = ({
   suffixVisibilityTrigger,
   indentLevel,
   ordered,
+  checked,
   ...rest
 }) => {
   const [hovered, setHovered] = React.useState(false);
@@ -82,9 +84,9 @@ const Text: React.FC<BasicItemProps> = ({
   };
   const shouldRenderSuffix = (): boolean => {
     if (showSuffixOnHover) {
-      return !!suffixel && hovered;
+      return (!!suffixel || !!checked) && hovered;
     }
-    return !!suffixel;
+    return !!suffixel || !!checked;
   };
   const shouldRenderPrefix = (): boolean => {
     if (showPrefixOnHover) {
@@ -135,8 +137,9 @@ const Text: React.FC<BasicItemProps> = ({
               </S.ArrowRight>
             )}
             <S.ContentDivider />
-            {!!suffixel && (
+            {(!!suffixel || !!checked) && (
               <S.SuffixWraper visible={shouldRenderSuffix()} disabled={disabled}>
+                {!!checked && <Icon component={<CheckS />} color={theme.palette[`green-600`]} />}
                 {suffixel}
               </S.SuffixWraper>
             )}
