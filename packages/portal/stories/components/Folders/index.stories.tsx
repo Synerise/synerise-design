@@ -7,6 +7,9 @@ import { FOLDERS, MIDDLE_MENU_ITEMS, TOP_MENU_ITEMS } from './dataset';
 import Icon from '@synerise/ds-icon';
 import Divider from '@synerise/ds-divider';
 import { action } from '@storybook/addon-actions';
+import { StarFillM, StarM } from '@synerise/ds-icon/dist/icons';
+import { FolderItem } from '@synerise/ds-folders/dist/Folders.types';
+import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 const wrapperStyles: React.CSSProperties = {
   width: '338px',
   background: 'white',
@@ -17,20 +20,46 @@ const renderMenuItem = (item: { icon: React.ReactNode; text: string }) => (
   <Menu.Item prefixel={<Icon component={item.icon} />} text={item.text} />
 );
 
+const getFilter = filterName => {
+  if (filterName === 'favourite') {
+    return (item: FolderItem) => !!item.favourite;
+  }
+  return undefined;
+};
+
 const stories = {
   default: () => {
     const showActionsInRow = boolean('Show actions in a row', false);
     const getActionsDisplay = (row: boolean): 'inline' | 'dropdown' => {
       return row ? 'inline' : 'dropdown';
     };
+
+    const [filter, setFilter] = React.useState();
     const DividerWrapper = (
       <div style={{ margin: '16px 20px' }}>
-        <Divider />
+        <Divider dashed />
       </div>
     );
     return (
       <div style={wrapperStyles}>
-        <Menu style={{ padding: '0 24px' }}>{TOP_MENU_ITEMS.map(renderMenuItem)}</Menu>
+        <Menu style={{ padding: '0 24px' }}>
+          {TOP_MENU_ITEMS.map(renderMenuItem)}
+          <Menu.Item
+            onClick={() => {
+              filter === 'favourite' ? setFilter(undefined) : setFilter('favourite');
+            }}
+            prefixel={
+              <div>
+                <Icon
+                  component={filter === 'favourite' ? <StarFillM /> : <StarM />}
+                  color={filter === 'favourite' ? theme.palette['yellow-600'] : theme.palette['grey-600']}
+                />
+              </div>
+            }
+          >
+            Starred
+          </Menu.Item>
+        </Menu>
         {DividerWrapper}
         <Menu style={{ padding: '0 24px' }}>{MIDDLE_MENU_ITEMS.map(renderMenuItem)}</Menu>
         {DividerWrapper}
@@ -70,6 +99,7 @@ const stories = {
             onSettings={action('OnSettings')}
             onSelect={action('OnSelect')}
             addButtonDisabled={false}
+            folderFilter={getFilter(filter)}
           />
         </div>
       </div>
