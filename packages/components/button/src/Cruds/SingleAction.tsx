@@ -14,8 +14,14 @@ type SingleActionProps = {
 const SingleAction: React.FC<SingleActionProps> = ({ title, className, onClick, icon, iconSize }) => {
   return (
     <Tooltip title={title}>
-      <S.IconWrapper className={className} onClick={onClick}>
-        <Icon component={icon} size={iconSize || 24 } />
+      <S.IconWrapper
+        className={className}
+        onClick={(e): void => {
+          e.stopPropagation();
+          onClick && onClick();
+        }}
+      >
+        <Icon component={icon} size={iconSize || 24} />
       </S.IconWrapper>
     </Tooltip>
   );
