@@ -1,5 +1,5 @@
 ---
-id: Folders
+id: folders
 title: Folders
 ---
 
