@@ -17,7 +17,7 @@ const SingleAction: React.FC<SingleActionProps> = ({ title, className, onClick, 
       <S.IconWrapper
         className={className}
         onClick={(e): void => {
-          e.stopPropagation();
+          !!e && e.stopPropagation();
           onClick && onClick();
         }}
       >
