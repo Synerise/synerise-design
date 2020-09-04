@@ -1,29 +1,59 @@
 import { FolderItem } from '@synerise/ds-folders/dist/Folders.types';
-import { MenuItemProps } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.types';
-import { ClockM } from '@synerise/ds-icon/dist/icons';
-export const MENU_ITEMS: MenuItemProps[] = [
+import * as React from 'react';
+import { CalendarM, ClockM, EditM, FolderAddM, StopM, TilesM } from '@synerise/ds-icon/dist/icons';
+export const TOP_MENU_ITEMS: { icon: React.ReactNode; text: string }[] = [
+  {
+    icon: <TilesM />,
+    text: 'All campaigns',
+  },
   {
     icon: <ClockM />,
     text: 'Recent',
+  },
+  {
+    icon: <EditM />,
+    text: 'Draft',
+  },
+  {
+    icon: <CalendarM />,
+    text: 'Scheduled',
+  },
+  {
+    icon: <StopM />,
+    text: 'Finished',
+  },
+];
+
+export const MIDDLE_MENU_ITEMS: { icon: React.ReactNode; text: string }[] = [
+  {
+    icon: <FolderAddM />,
+    text: 'Templates',
   },
 ];
 export const FOLDERS: FolderItem[] = [
   {
     id: '1',
-    name: 'Analitycs',
+    name: 'Analytics',
     favourite: true,
+    canUpdate: true,
+    canDelete: true,
+    canEnterSettings: true,
   },
   {
     id: '2',
     name: 'Behavioral',
     favourite: false,
     canUpdate: true,
+    canDelete: true,
+    canEnterSettings: true,
   },
   {
     id: '3',
     name: 'Campaigns',
     favourite: false,
     canUpdate: true,
+    canDelete: true,
+    canEnterSettings: true,
   },
   {
     id: '4',
@@ -31,6 +61,7 @@ export const FOLDERS: FolderItem[] = [
     favourite: false,
     canUpdate: true,
     canDelete: true,
+    canEnterSettings: true,
   },
   {
     id: '5',
@@ -38,23 +69,31 @@ export const FOLDERS: FolderItem[] = [
     favourite: false,
     canUpdate: true,
     canDelete: true,
+    canEnterSettings: true,
   },
   {
     id: '6',
     name: 'Schema',
-    favourite: true,
+    favourite: false,
+    canUpdate: true,
+    canDelete: true,
+    canEnterSettings: true,
   },
   {
     id: '7',
     name: 'Recent',
-    favourite: false,
+    favourite: true,
     canUpdate: true,
+    canDelete: true,
+    canEnterSettings: true,
   },
   {
     id: '8',
     name: 'Upcoming',
     favourite: false,
     canUpdate: true,
+    canDelete: true,
+    canEnterSettings: true,
   },
   {
     id: '9',
@@ -62,26 +101,14 @@ export const FOLDERS: FolderItem[] = [
     favourite: false,
     canUpdate: true,
     canDelete: true,
-  },
-  {
-    id: '10',
-    name: 'Automation 2',
-    favourite: false,
-    canUpdate: true,
-    canDelete: true,
+    canEnterSettings: true,
   },
   {
     id: '11',
     name: 'Promotion',
-    favourite: false,
+    favourite: true,
     canUpdate: true,
     canDelete: true,
-  },
-  {
-    id: '12',
-    name: 'Promotion 2',
-    favourite: false,
-    canUpdate: true,
-    canDelete: true,
+    canEnterSettings: true,
   },
 ];
