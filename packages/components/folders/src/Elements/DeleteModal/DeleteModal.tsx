@@ -71,7 +71,10 @@ const DeleteModal: React.FC<DeleteModalProps> = ({
     >
       <S.ModalBody className="ds-folders-delete">
         <S.DeleteMessage>
-          <strong>{texts.deleteFolderConfirmationMessage}</strong>
+          <strong>
+            {texts.deleteFolderConfirmationMessage}
+            {` "${deletedItem?.name}"?`}
+          </strong>
           <span>{texts.deleteFolderDescription}</span>
         </S.DeleteMessage>
         <S.ModePicker>

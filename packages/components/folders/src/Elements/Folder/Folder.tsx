@@ -11,9 +11,7 @@ import ActionsRow from '../Actions/Row/ActionsRow';
 import { validateFolderName } from '../../utils';
 
 const Folder: React.FC<FolderProps> = ({
-  id,
-  name,
-  favourite,
+  item,
   actionsDisplay,
   onSettingsEnter,
   onDelete,
@@ -23,6 +21,7 @@ const Folder: React.FC<FolderProps> = ({
   texts,
   onItemSelect,
 }: FolderProps) => {
+  const { name, favourite } = item;
   const [hovered, setHovered] = React.useState<boolean>(false);
   const [folderName, setFolderName] = React.useState<string>(name);
   const [editMode, setEditMode] = React.useState<boolean>(false);
@@ -31,14 +30,14 @@ const Folder: React.FC<FolderProps> = ({
   const confirmEdit = React.useCallback((): void => {
     if (validateFolderName(folderName)) {
       const trimmedName = folderName.trim();
-      onEdit && onEdit({ id, name: trimmedName });
+      onEdit && onEdit({ ...item, name: trimmedName });
       setEditMode(false);
     } else {
-      onEdit && onEdit({ id, name });
+      onEdit && onEdit({ ...item, name });
       setFolderName(name);
       setEditMode(false);
     }
-  }, [folderName, id, name, onEdit]);
+  }, [folderName, name, item, onEdit]);
 
   React.useEffect(() => {
     setFolderName(name);
@@ -58,16 +57,13 @@ const Folder: React.FC<FolderProps> = ({
     setHovered(true);
   }, [setHovered]);
 
-  const onMouseOut = React.useCallback(
-    (): void => {
-      setHovered(false);
-    },
-    [setHovered]
-  );
+  const onMouseOut = React.useCallback((): void => {
+    setHovered(false);
+  }, [setHovered]);
 
   const handleOnFavourite = React.useCallback((): void => {
-    onFavourite && onFavourite({ id, name });
-  }, [onFavourite, id, name]);
+    onFavourite && onFavourite(item);
+  }, [onFavourite, item]);
 
   const renderSuffix = (): React.ReactNode => {
     return actionsDisplay === 'inline' ? (
@@ -126,7 +122,7 @@ const Folder: React.FC<FolderProps> = ({
     // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
     <S.FolderItem
       onClick={(): void => {
-        onItemSelect && onItemSelect({ id, name });
+        onItemSelect && onItemSelect(item);
       }}
       prefixel={
         <Icon
@@ -159,7 +155,10 @@ const Folder: React.FC<FolderProps> = ({
           </S.FolderText>
         )
       }
+      inline={actionsDisplay === 'inline'}
       onItemHover={onMouseOver}
+      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+      // @ts-ignore
       onMouseLeave={onMouseOut}
       onMouseOut={onMouseOut}
       onMouseOver={onMouseOver}

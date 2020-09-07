@@ -50,7 +50,8 @@ const AddModal: React.FC<Props> = ({ onItemAdd, disabled, texts }) => {
       setOverlayVisible(false);
     }
     const trimmedName = name.trim();
-    onItemAdd && onItemAdd({ id: uuid(), name: trimmedName, favourite });
+    onItemAdd &&
+      onItemAdd({ id: uuid(), name: trimmedName, favourite, canEnterSettings: true, canUpdate: true, canDelete: true });
     setFavourite(false);
   }, [name, error, onItemAdd, overlayVisible, favourite, texts.invalidNameError]);
 
