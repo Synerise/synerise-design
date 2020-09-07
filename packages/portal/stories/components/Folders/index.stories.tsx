@@ -34,7 +34,6 @@ const stories = {
       return row ? 'inline' : 'dropdown';
     };
 
-    const [filter, setFilter] = React.useState();
     const DividerWrapper = (
       <div style={{ margin: '16px 20px' }}>
         <Divider dashed />
@@ -42,24 +41,7 @@ const stories = {
     );
     return (
       <div style={wrapperStyles}>
-        <Menu style={{ padding: '0 24px' }}>
-          {TOP_MENU_ITEMS.map(renderMenuItem)}
-          <Menu.Item
-            onClick={() => {
-              filter === 'favourite' ? setFilter(undefined) : setFilter('favourite');
-            }}
-            prefixel={
-              <div>
-                <Icon
-                  component={filter === 'favourite' ? <StarFillM /> : <StarM />}
-                  color={filter === 'favourite' ? theme.palette['yellow-600'] : theme.palette['grey-600']}
-                />
-              </div>
-            }
-          >
-            Starred
-          </Menu.Item>
-        </Menu>
+        <Menu style={{ padding: '0 24px' }}>{TOP_MENU_ITEMS.map(renderMenuItem)}</Menu>
         {DividerWrapper}
         <Menu style={{ padding: '0 24px' }}>{MIDDLE_MENU_ITEMS.map(renderMenuItem)}</Menu>
         {DividerWrapper}
@@ -99,7 +81,6 @@ const stories = {
             onSettings={action('OnSettings')}
             onSelect={action('OnSelect')}
             addButtonDisabled={false}
-            folderFilter={getFilter(filter)}
           />
         </div>
       </div>

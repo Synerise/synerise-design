@@ -19,7 +19,9 @@ const ActionsDropdown: React.FC<ActionProps> = ({
   return (
     <Dropdown
       placement="bottomRight"
-      overlayStyle={{ boxShadow: '0 4px 12px 0 rgba(35, 41, 54, 0.07)' }}
+      trigger={['click']}
+      overlayStyle={{ boxShadow: '0 4px 12px 0 rgba(35, 41, 54, 0.07)'}}
+      align={{offset:[12,12]}}
       overlay={
         // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
         <S.DropdownMenu

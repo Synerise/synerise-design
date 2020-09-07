@@ -1,6 +1,6 @@
 import { FolderItem } from '@synerise/ds-folders/dist/Folders.types';
 import * as React from 'react';
-import { CalendarM, ClockM, EditM, FolderAddM, StopM, TilesM } from '@synerise/ds-icon/dist/icons';
+import { CalendarM, ClockM, EditM, FolderAddM, StarM, StopM, TilesM } from '@synerise/ds-icon/dist/icons';
 export const TOP_MENU_ITEMS: { icon: React.ReactNode; text: string }[] = [
   {
     icon: <TilesM />,
@@ -21,6 +21,10 @@ export const TOP_MENU_ITEMS: { icon: React.ReactNode; text: string }[] = [
   {
     icon: <StopM />,
     text: 'Finished',
+  },
+  {
+    icon: <StarM />,
+    text: 'Starred',
   },
 ];
 
