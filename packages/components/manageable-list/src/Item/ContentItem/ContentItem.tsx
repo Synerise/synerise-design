@@ -11,27 +11,31 @@ import ItemActions from '../ItemActions/ItemActions';
 import ItemName from '../ItemName/ItemName';
 
 export type ContentItemProps = {
-  item: ItemProps;
-  draggable?: boolean;
-  onRemove?: (removeParams: { id: string }) => void;
-  onDuplicate?: (duplicateParams: { id: string }) => void;
-  onUpdate?: (updateParams: { id: string; name: string }) => void;
-  greyBackground?: boolean;
-  theme: { [k: string]: string };
   changeOrderDisabled?: boolean;
+  dashed?: boolean;
+  draggable?: boolean;
+  expanded?: boolean;
+  greyBackground?: boolean;
+  headerPrefix?: React.ReactNode;
+  headerSuffix?: React.ReactNode;
+  hideExpander?: boolean;
+  item: ItemProps;
+  onDuplicate?: (duplicateParams: { id: string }) => void;
+  onExpand?: (id: string, isExpanded: boolean) => void;
+  onRemove?: (removeParams: { id: string }) => void;
+  onUpdate?: (updateParams: { id: string; name: string }) => void;
   texts: {
     [k: string]: string | React.ReactNode;
   };
-  hideExpander?: boolean;
-  expanded?: boolean;
-  onExpand?: (id: string, isExpanded: boolean) => void;
-};
+  theme: { [k: string]: string };
+} & React.HTMLAttributes<HTMLDivElement>;
 
 const ContentItem: React.FC<ContentItemProps> = ({
   onRemove,
   onUpdate,
   onDuplicate,
   draggable,
+  dashed,
   item,
   greyBackground = false,
   changeOrderDisabled,
@@ -40,6 +44,9 @@ const ContentItem: React.FC<ContentItemProps> = ({
   hideExpander,
   expanded,
   onExpand,
+  headerSuffix,
+  headerPrefix,
+  ...rest
 }): React.ReactElement => {
   const [expandedState, setExpanded] = React.useState(expanded);
   const [editMode, setEditMode] = React.useState(false);
@@ -70,6 +77,8 @@ const ContentItem: React.FC<ContentItemProps> = ({
       greyBackground={greyBackground}
       key={item.id}
       data-testid="item-with-content"
+      dashed={dashed}
+      {...rest}
     >
       <S.ItemHeader
         hasPrefix={Boolean(draggable || item.tag || item.icon)}
@@ -94,9 +103,11 @@ const ContentItem: React.FC<ContentItemProps> = ({
               <Icon size={24} component={item.icon} color={theme.palette['grey-600']} />
             </S.IconWrapper>
           )}
+          {!!headerPrefix && headerPrefix}
         </S.ItemHeaderPrefix>
         <ItemName item={item} editMode={editMode} onUpdate={updateName} />
         <S.ItemHeaderSuffix>
+          {!!headerSuffix && headerSuffix}
           <ItemActions
             item={item}
             duplicateAction={onDuplicate}
