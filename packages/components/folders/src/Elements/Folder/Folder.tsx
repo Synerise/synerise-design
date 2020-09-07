@@ -58,20 +58,17 @@ const Folder: React.FC<FolderProps> = ({
     setHovered(true);
   }, [setHovered]);
 
-  const onMouseOut = React.useCallback((): void => {
-    setHovered(false);
-  }, [setHovered]);
+  const onMouseOut = React.useCallback(
+    (): void => {
+      setHovered(false);
+    },
+    [setHovered]
+  );
 
   const handleOnFavourite = React.useCallback((): void => {
     onFavourite && onFavourite({ id, name });
   }, [onFavourite, id, name]);
 
-  const handleDropdownMouseOver = React.useCallback(() => {
-    setHovered(true);
-  }, []);
-  const handleDropdownMouseOut = React.useCallback(() => {
-    setHovered(false);
-  }, []);
   const renderSuffix = (): React.ReactNode => {
     return actionsDisplay === 'inline' ? (
       <ActionsRow
@@ -82,7 +79,7 @@ const Folder: React.FC<FolderProps> = ({
           })
         }
         onFavourite={(): void => {
-          setHovered(false)
+          setHovered(false);
           handleOnFavourite && handleOnFavourite();
         }}
         onSettingsEnter={onSettingsEnter}
@@ -113,8 +110,8 @@ const Folder: React.FC<FolderProps> = ({
           })
         }
         isFavourite={favourite}
-        dropdownMouseOut={handleDropdownMouseOut}
-        dropdownMouseOver={handleDropdownMouseOver}
+        dropdownMouseOut={onMouseOut}
+        dropdownMouseOver={onMouseOver}
         texts={texts}
       />
     );
@@ -162,10 +159,10 @@ const Folder: React.FC<FolderProps> = ({
           </S.FolderText>
         )
       }
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-      // @ts-ignore
-      onMouseOver={onMouseOver}
+      onItemHover={onMouseOver}
+      onMouseLeave={onMouseOut}
       onMouseOut={onMouseOut}
+      onMouseOver={onMouseOver}
     />
   );
 };

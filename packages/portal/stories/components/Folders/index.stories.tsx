@@ -62,7 +62,7 @@ const stories = {
               deleteFolderDescription: 'This folder isn’t empty. What you want to do with content? ',
               deleteFromFavourites: 'Favourites',
               deleteAllContent: 'Remove all items',
-              edit: 'Edit',
+              edit: 'Rename',
               enterSettings: 'Settings',
               favourite: 'Favourite',
               invalidNameError: 'Invalid folder name',
