@@ -93,7 +93,7 @@ describe('Folders', () => {
           onFavourite={onFavourite}
           //@ts-ignore
           texts={{
-            deleteFolderConfirmationMessage: 'Are you sure?',
+            deleteFolderDescription:'Folder is going to be deleted',
             deleteFolderLabel: 'Remove folder',
           }}
         />
@@ -102,11 +102,11 @@ describe('Folders', () => {
       fireEvent.mouseOver(folder);
       const deleteIcon = container.querySelector('.delete');
       !!deleteIcon && fireEvent.click(deleteIcon);
-      waitFor(
+      await waitFor(
         () => {
-          expect(getByText('Are you sure?')).toBeTruthy();
+          expect(getByText('Folder is going to be deleted')).toBeTruthy();
         },
-        { timeout: 500 }
+        { timeout: 300 }
       );
     });
   it('should render modal when adding item', async () => {
