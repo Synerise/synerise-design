@@ -1,6 +1,7 @@
-import styled from 'styled-components';
+import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import { Tag } from '@synerise/ds-tags/dist/Tag/Tag.styles';
 import Button from '@synerise/ds-button';
+import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { ItemLabel } from '../SimpleItem/SimpleItem.styles';
 import { ItemActionsWrapper } from '../ItemActions/ItemActions.styles';
 import { ItemMeta } from '../ItemMeta/ItemMeta.styles';
@@ -8,6 +9,7 @@ import { ItemMeta } from '../ItemMeta/ItemMeta.styles';
 type ItemContainerProps = {
   opened: boolean;
   greyBackground: boolean | undefined;
+  dashed?: boolean;
 };
 
 type DraggerWrapperProps = {
@@ -17,7 +19,15 @@ type DraggerWrapperProps = {
 type ItemHeaderProps = {
   hasPrefix: boolean;
 };
-
+const dashedStyle = (props: ThemeProps): FlattenSimpleInterpolation => css`
+  && {
+    box-shadow: 0 0 0 0 transparent;
+    border: 1px dashed ${props.theme.palette['grey-300']};
+  }
+  &&:hover {
+    border: 1px dashed ${props.theme.palette['grey-400']};
+  }
+`;
 export const DraggerWrapper = styled.div<DraggerWrapperProps>`
   cursor: pointer;
   display: flex;
@@ -136,6 +146,7 @@ export const ItemContainer = styled.div<ItemContainerProps>`
     box-shadow: 0 0 0 1px ${theme.palette['grey-300']};
   }
 `}
+  ${(props): FlattenSimpleInterpolation | false => !!props.dashed && dashedStyle(props)}
 `;
 
 export const ToggleContentWrapper = styled.div`
