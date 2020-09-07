@@ -150,6 +150,9 @@ textarea.@{ant-prefix}-input {
 }
 .ant-input-group.ant-input-group-compact {
   z-index: 1;
+  > * > *:hover {
+    z-index: 2;
+  }
   > *:first-child.ds-select-wrapper > .ant-select > .ant-select-selector {
     border-top-left-radius: 3px;
     border-bottom-left-radius: 3px;
