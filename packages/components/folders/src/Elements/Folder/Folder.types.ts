@@ -1,10 +1,8 @@
 import { FolderItem, FoldersProps, FolderTexts } from '../../Folders.types';
 
 export type FolderProps = {
-  id: string;
-  name: string;
+  item: FolderItem;
   toggleDeleteModal?: () => void;
-  favourite?: boolean;
   onEdit?: (item: FolderItem) => void;
   onDelete?: (item: FolderItem) => void;
   onFavourite?: (item: FolderItem) => void;

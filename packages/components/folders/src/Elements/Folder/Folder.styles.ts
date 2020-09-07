@@ -4,17 +4,18 @@ import { BorderLessInput } from '@synerise/ds-input/dist/InputMultivalue/InputMu
 import { Props as DSInputProps } from '@synerise/ds-input/dist/Input';
 import { MenuItemProps } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.types';
 
-export const SuffixWrapper = styled.div`
-  &:not(.suffix-wrapper-hovered) {
-    opacity: 0;
-  }
-`;
-export const FolderItem = styled(Menu.Item)<MenuItemProps | JSX.IntrinsicAttributes>`
+export const SuffixWrapper = styled.div``;
+export const FolderItem = styled(Menu.Item)<MenuItemProps & JSX.IntrinsicAttributes & { inline: boolean }>`
   && {
     border-radius: 3px !important;
+    ${SuffixWrapper}:not(.suffix-wrapper-hovered) {
+      ${(props): string | false => props.inline && 'display:none;'}
+      opacity: 0;
+    }
   }
   &&:hover {
-    .suffix-wrapper-hovered {
+    ${SuffixWrapper} {
+      ${(props): string | false => props.inline && 'display:flex;'}
       opacity: 1;
     }
   }

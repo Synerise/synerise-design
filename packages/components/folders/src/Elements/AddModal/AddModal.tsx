@@ -50,7 +50,9 @@ const AddModal: React.FC<Props> = ({ onItemAdd, disabled, texts }) => {
       setOverlayVisible(false);
     }
     const trimmedName = name.trim();
-    onItemAdd && onItemAdd({ id: uuid(), name: trimmedName, favourite });
+    onItemAdd &&
+      onItemAdd({ id: uuid(), name: trimmedName, favourite, canEnterSettings: true, canUpdate: true, canDelete: true });
+    setFavourite(false);
   }, [name, error, onItemAdd, overlayVisible, favourite, texts.invalidNameError]);
 
   const handleKeyDown = React.useCallback(
@@ -67,7 +69,7 @@ const AddModal: React.FC<Props> = ({ onItemAdd, disabled, texts }) => {
   return (
     <S.AddItemLayout>
       <Popover
-        className='ds-folders-add'
+        className="ds-folders-add"
         content={
           <S.Overlay ref={overlayRef}>
             <Input

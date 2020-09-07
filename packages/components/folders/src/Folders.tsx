@@ -9,6 +9,7 @@ import DeleteModal from './Elements/DeleteModal/DeleteModal';
 import ShowLessOrMore from './Elements/ShowLessOrMore/ShowLessOrMore';
 
 const DEFAULT_STEP = 5;
+const MODAL_CLOSE_DURATION = 250;
 const Folders: React.FC<FoldersProps> = ({
   addButtonDisabled,
   actionsDisplay,
@@ -26,12 +27,18 @@ const Folders: React.FC<FoldersProps> = ({
 }: FoldersProps) => {
   const [items, setItems] = React.useState<FolderItem[]>(folderFilter ? dataSource.filter(folderFilter) : dataSource);
   const [itemToDelete, setItemToDelete] = React.useState<FolderItem | undefined>(undefined);
+  const [deleteModalVisible, setDeleteModalVisible] = React.useState<boolean>(false);
   const [visibleCount, setVisibleCount] = React.useState<number>(visibleItemsCount);
 
   React.useEffect(() => {
     setItems(folderFilter ? dataSource.filter(folderFilter) : dataSource);
   }, [dataSource, folderFilter]);
 
+  React.useEffect(() => {
+    if (!deleteModalVisible && !!itemToDelete) {
+      setDeleteModalVisible(true);
+    }
+  }, [deleteModalVisible,itemToDelete]);
   const onItemAdd = (addedItem: FolderItem): void => {
     onAdd && onAdd(addedItem);
     setItems(handleItemAdd(items, addedItem));
@@ -51,11 +58,9 @@ const Folders: React.FC<FoldersProps> = ({
 
   const renderItem = (item: FolderItem): React.ReactNode => (
     <Folder
-      id={item.id}
+      item={item}
       key={`${item.id}-${item.name}`}
-      name={item.name}
       actionsDisplay={actionsDisplay}
-      favourite={!!item.favourite}
       onDelete={item.canDelete ? onItemDelete : undefined}
       onEdit={item.canUpdate ? onItemEdit : undefined}
       onFavourite={onItemFavourite}
@@ -88,10 +93,13 @@ const Folders: React.FC<FoldersProps> = ({
       <Menu>
         {renderItemsList()}
         <DeleteModal
-          visible={!!itemToDelete}
+          visible={deleteModalVisible}
           deletedItem={itemToDelete}
           onClose={(): void => {
-            setItemToDelete(undefined);
+            setDeleteModalVisible(false);
+            setTimeout(() => {
+              setItemToDelete(undefined);
+            }, MODAL_CLOSE_DURATION);
           }}
           folders={items}
           onConfirm={(options): void => {

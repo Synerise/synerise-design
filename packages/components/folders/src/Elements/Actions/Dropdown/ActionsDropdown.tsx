@@ -19,7 +19,8 @@ const ActionsDropdown: React.FC<ActionProps> = ({
   return (
     <Dropdown
       placement="bottomRight"
-      overlayStyle={{ boxShadow: '0 4px 12px 0 rgba(35, 41, 54, 0.07)' }}
+      overlayStyle={{ boxShadow: '0 4px 12px 0 rgba(35, 41, 54, 0.07)', padding: 0 }}
+      align={{ offset: [12, 12] }}
       overlay={
         // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
         <S.DropdownMenu
@@ -28,29 +29,6 @@ const ActionsDropdown: React.FC<ActionProps> = ({
           onMouseOver={dropdownMouseOver}
           onMouseOut={dropdownMouseOut}
         >
-          {!!onEdit && (
-            <S.DropdownMenuItem
-              prefixel={<Icon component={<EditM />} />}
-              onClick={(e: ClickParam): void => {
-                e.domEvent.stopPropagation();
-                onEdit();
-              }}
-            >
-              {texts.edit}
-            </S.DropdownMenuItem>
-          )}
-          {!!onDelete && (
-            <S.DropdownMenuItem
-              prefixel={<Icon component={<TrashM />} />}
-              type="danger"
-              onClick={(e: ClickParam): void => {
-                e.domEvent.stopPropagation();
-                onDelete();
-              }}
-            >
-              {texts.delete}
-            </S.DropdownMenuItem>
-          )}
           {!!onFavourite && (
             <S.DropdownMenuItem
               className="favourite"
@@ -76,6 +54,29 @@ const ActionsDropdown: React.FC<ActionProps> = ({
               }}
             >
               {texts.enterSettings}
+            </S.DropdownMenuItem>
+          )}
+          {!!onEdit && (
+            <S.DropdownMenuItem
+              prefixel={<Icon component={<EditM />} />}
+              onClick={(e: ClickParam): void => {
+                e.domEvent.stopPropagation();
+                onEdit();
+              }}
+            >
+              {texts.edit}
+            </S.DropdownMenuItem>
+          )}
+          {!!onDelete && (
+            <S.DropdownMenuItem
+              prefixel={<Icon component={<TrashM />} />}
+              type="danger"
+              onClick={(e: ClickParam): void => {
+                e.domEvent.stopPropagation();
+                onDelete();
+              }}
+            >
+              {texts.delete}
             </S.DropdownMenuItem>
           )}
         </S.DropdownMenu>

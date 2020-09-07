@@ -34,7 +34,6 @@ const stories = {
       return row ? 'inline' : 'dropdown';
     };
 
-    const [filter, setFilter] = React.useState();
     const DividerWrapper = (
       <div style={{ margin: '16px 20px' }}>
         <Divider dashed />
@@ -42,24 +41,7 @@ const stories = {
     );
     return (
       <div style={wrapperStyles}>
-        <Menu style={{ padding: '0 24px' }}>
-          {TOP_MENU_ITEMS.map(renderMenuItem)}
-          <Menu.Item
-            onClick={() => {
-              filter === 'favourite' ? setFilter(undefined) : setFilter('favourite');
-            }}
-            prefixel={
-              <div>
-                <Icon
-                  component={filter === 'favourite' ? <StarFillM /> : <StarM />}
-                  color={filter === 'favourite' ? theme.palette['yellow-600'] : theme.palette['grey-600']}
-                />
-              </div>
-            }
-          >
-            Starred
-          </Menu.Item>
-        </Menu>
+        <Menu style={{ padding: '0 24px' }}>{TOP_MENU_ITEMS.map(renderMenuItem)}</Menu>
         {DividerWrapper}
         <Menu style={{ padding: '0 24px' }}>{MIDDLE_MENU_ITEMS.map(renderMenuItem)}</Menu>
         {DividerWrapper}
@@ -76,11 +58,11 @@ const stories = {
               chooseDestinationFolder: 'Choose folder',
               delete: 'Remove',
               deleteFolderLabel: 'Remove folder',
-              deleteFolderConfirmationMessage: 'Are you sure you want to remove folder?',
-              deleteFolderDescription: 'This folder isn’t empty. What you want to do with content? ',
+              deleteFolderConfirmationMessage: 'Are you sure you want to remove folder',
+              deleteFolderDescription: 'What you want to do with content? ',
               deleteFromFavourites: 'Favourites',
               deleteAllContent: 'Remove all items',
-              edit: 'Edit',
+              edit: 'Rename',
               enterSettings: 'Settings',
               favourite: 'Favourite',
               invalidNameError: 'Invalid folder name',
@@ -99,7 +81,6 @@ const stories = {
             onSettings={action('OnSettings')}
             onSelect={action('OnSelect')}
             addButtonDisabled={false}
-            folderFilter={getFilter(filter)}
           />
         </div>
       </div>

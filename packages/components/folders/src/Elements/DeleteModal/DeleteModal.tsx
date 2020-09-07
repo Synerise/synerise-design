@@ -32,12 +32,13 @@ const DeleteModal: React.FC<DeleteModalProps> = ({
         <Select
           className="destination-folder-select"
           label={texts.chooseDestinationFolder}
+          placeholder={texts.chooseDestinationFolder}
           value={destination?.name}
           onChange={(id: SelectValue): void => {
             setDestination(folders.find(item => item.id === id));
           }}
           dropdownRender={(menu: React.ReactNode): React.ReactElement => <Scrollbar maxHeight={256}>{menu}</Scrollbar>}
-          dropdownStyle={{ padding: 0 }}
+          dropdownStyle={{ padding: '8px 0 8px 8px' }}
           listHeight="100%"
         >
           {folders
@@ -70,7 +71,10 @@ const DeleteModal: React.FC<DeleteModalProps> = ({
     >
       <S.ModalBody className="ds-folders-delete">
         <S.DeleteMessage>
-          <strong>{texts.deleteFolderConfirmationMessage}</strong>
+          <strong>
+            {texts.deleteFolderConfirmationMessage}
+            {` "${deletedItem?.name}"?`}
+          </strong>
           <span>{texts.deleteFolderDescription}</span>
         </S.DeleteMessage>
         <S.ModePicker>
