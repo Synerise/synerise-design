@@ -32,6 +32,7 @@ const DeleteModal: React.FC<DeleteModalProps> = ({
         <Select
           className="destination-folder-select"
           label={texts.chooseDestinationFolder}
+          placeholder={texts.chooseDestinationFolder}
           value={destination?.name}
           onChange={(id: SelectValue): void => {
             setDestination(folders.find(item => item.id === id));
