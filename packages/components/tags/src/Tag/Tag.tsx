@@ -58,7 +58,7 @@ const Tag: React.FC<Props> = ({
 
   return (
     <S.Tag
-      className={className}
+      className={`ds-tag ${className}`}
       isStatusShape={isStatusShape}
       shape={shape}
       color={color}
