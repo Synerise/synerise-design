@@ -15,13 +15,11 @@ const shapes = {
 };
 const withTag = () => {
   const defaultProps = getDefaultProps();
-  const [isChecked, setChecked] = React.useState(false);
   const shape = select('Set tag shape', shapes, TagShape.SMALL_SQUARE);
   const suffixel = <Tag name={'Tag'} shape={shape} />;
   const props = {
     dataSource: attachKnobsToDataSource(simpleText),
     suffixel,
-    onClick: () => setChecked(!isChecked),
     ...defaultProps,
   } as object;
   return decorator(props);
