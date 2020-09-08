@@ -30,6 +30,7 @@ import withSelection from './withSelection/withSelection';
 import withFlag from './withFlag/withFlag';
 import * as S from './stories.styles';
 import { v4 as uuid } from 'uuid';
+import withTag from './withTag/withTag';
 
 export const decorator = props => {
   const { dataSource, ...rest } = props;
@@ -95,6 +96,7 @@ const stories = {
   withBreadcrumb,
   withSelection,
   withFlag,
+  withTag,
 };
 
 export default {
