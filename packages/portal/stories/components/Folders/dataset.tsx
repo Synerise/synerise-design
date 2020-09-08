@@ -22,10 +22,6 @@ export const TOP_MENU_ITEMS: { icon: React.ReactNode; text: string }[] = [
     icon: <StopM />,
     text: 'Finished',
   },
-  {
-    icon: <StarM />,
-    text: 'Starred',
-  },
 ];
 
 export const MIDDLE_MENU_ITEMS: { icon: React.ReactNode; text: string }[] = [
@@ -110,6 +106,22 @@ export const FOLDERS: FolderItem[] = [
   {
     id: '11',
     name: 'Promotion',
+    favourite: true,
+    canUpdate: true,
+    canDelete: true,
+    canEnterSettings: true,
+  },
+  {
+    id: '12',
+    name: 'Promotion 3',
+    favourite: true,
+    canUpdate: true,
+    canDelete: true,
+    canEnterSettings: true,
+  },
+  {
+    id: '13',
+    name: 'Promotion 4',
     favourite: true,
     canUpdate: true,
     canDelete: true,

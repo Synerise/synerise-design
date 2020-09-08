@@ -1,30 +1,64 @@
-import styled from 'styled-components';
+import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import Menu from '@synerise/ds-menu';
 import { BorderLessInput } from '@synerise/ds-input/dist/InputMultivalue/InputMultivalue.styles';
 import { Props as DSInputProps } from '@synerise/ds-input/dist/Input';
 import { MenuItemProps } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.types';
 
+export const applyDots = (color: string): FlattenSimpleInterpolation => css`
+  background-color: transparent;
+  background-origin: border-box;
+  background-position: 0 19px;
+  background-size: 5px 1px;
+  background-repeat: repeat-x;
+  background-image: linear-gradient(to right, ${color} 20%, rgba(255, 255, 255, 0) 10%);
+`;
+
+export const InlineEditWrapper = styled.div`
+  display: flex;
+  flex: 1;
+  padding-bottom: 2px;
+`;
+
+export const InlineEditInput = styled(BorderLessInput)<DSInputProps>`
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  width: 100%;
+`;
+
 export const SuffixWrapper = styled.div``;
-export const FolderItem = styled(Menu.Item)<MenuItemProps & JSX.IntrinsicAttributes & { inline: boolean }>`
+export const FolderItem = styled(Menu.Item)<
+  MenuItemProps & JSX.IntrinsicAttributes & { inline: boolean; editMode: boolean }
+>`
   && {
+    min-height: 32px;
+    z-index: 1;
     border-radius: 3px !important;
     ${SuffixWrapper}:not(.suffix-wrapper-hovered) {
       ${(props): string | false => props.inline && 'display:none;'}
       opacity: 0;
     }
-  }
-  &&:hover {
-    ${SuffixWrapper} {
-      ${(props): string | false => props.inline && 'display:flex;'}
-      opacity: 1;
+    ${InlineEditWrapper} {
+      ${(props): FlattenSimpleInterpolation => applyDots(props.theme.palette['grey-600'])}
+    }
+    .ds-menu-content-wrapper > .ds-menu-content {
+      width: 100%;
+      margin-right: 8px;
+      margin-top: ${(props): string => (props.editMode ? '-2px' : '0')};
+    }
+
+    &:hover {
+      ${SuffixWrapper} {
+        ${(props): string | false => props.inline && 'display:flex;'}
+        opacity: 1;
+      }
+      ${InlineEditWrapper} {
+        ${(props): FlattenSimpleInterpolation => applyDots(props.theme.palette['blue-600'])}
+      }
     }
   }
 `;
-export const InlineEditInput = styled(BorderLessInput)<DSInputProps>`
-  margin: 0;
-  padding: 0;
-  text-decoration: underline dotted;
-`;
+
 export const FolderText = styled.div`
   padding-right: 20px;
   overflow: hidden;

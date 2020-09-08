@@ -28,8 +28,14 @@ const Folders: React.FC<FoldersProps> = ({
   const [items, setItems] = React.useState<FolderItem[]>(folderFilter ? dataSource.filter(folderFilter) : dataSource);
   const [itemToDelete, setItemToDelete] = React.useState<FolderItem | undefined>(undefined);
   const [deleteModalVisible, setDeleteModalVisible] = React.useState<boolean>(false);
-  const [visibleCount, setVisibleCount] = React.useState<number>(visibleItemsCount);
+  const [maxVisibleItemsCount, setMaxVisibleItemsCount] = React.useState<number>(visibleItemsCount);
 
+  React.useEffect(() => {
+    const itemsCount = items.length;
+    if (maxVisibleItemsCount > itemsCount && visibleItemsCount < itemsCount) {
+      setMaxVisibleItemsCount(itemsCount);
+    }
+  }, [items, maxVisibleItemsCount, visibleItemsCount]);
   React.useEffect(() => {
     setItems(folderFilter ? dataSource.filter(folderFilter) : dataSource);
   }, [dataSource, folderFilter]);
@@ -38,7 +44,8 @@ const Folders: React.FC<FoldersProps> = ({
     if (!deleteModalVisible && !!itemToDelete) {
       setDeleteModalVisible(true);
     }
-  }, [deleteModalVisible,itemToDelete]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [itemToDelete]);
   const onItemAdd = (addedItem: FolderItem): void => {
     onAdd && onAdd(addedItem);
     setItems(handleItemAdd(items, addedItem));
@@ -81,7 +88,7 @@ const Folders: React.FC<FoldersProps> = ({
   const renderItemsList = (): React.ReactNode => {
     const favouriteItems = items.filter(i => i.favourite).sort(sortAlphabetically);
     const restOfItems = items.filter(i => !i.favourite).sort(sortAlphabetically);
-    const total = [...favouriteItems, ...restOfItems].slice(0, visibleCount);
+    const total = [...favouriteItems, ...restOfItems].slice(0, maxVisibleItemsCount);
     if (!!folderFilter && typeof folderFilter === 'function') {
       return total.filter(folderFilter).map(renderItem);
     }
@@ -113,13 +120,13 @@ const Folders: React.FC<FoldersProps> = ({
       </Menu>
       <ShowLessOrMore
         onShowMore={(more): void => {
-          setVisibleCount(visibleCount + more);
+          setMaxVisibleItemsCount(maxVisibleItemsCount + more);
         }}
         onShowLess={(less): void => {
-          setVisibleCount(visibleCount - less);
+          setMaxVisibleItemsCount(maxVisibleItemsCount - less);
         }}
         totalItemsCount={items.length}
-        visibleItemsCount={visibleCount}
+        visibleItemsCount={items.length <= maxVisibleItemsCount ? items.length : maxVisibleItemsCount}
         texts={texts}
         step={showHideStep || DEFAULT_STEP}
       />
