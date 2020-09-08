@@ -30,6 +30,7 @@ const getFilter = filterName => {
 const stories = {
   default: () => {
     const showActionsInRow = boolean('Show actions in a row', false);
+    const [starred, setStarred] = React.useState(false);
     const getActionsDisplay = (row: boolean): 'inline' | 'dropdown' => {
       return row ? 'inline' : 'dropdown';
     };
@@ -41,7 +42,24 @@ const stories = {
     );
     return (
       <div style={wrapperStyles}>
-        <Menu style={{ padding: '0 24px' }}>{TOP_MENU_ITEMS.map(renderMenuItem)}</Menu>
+        <Menu style={{ padding: '0 24px' }}>
+          {TOP_MENU_ITEMS.map(renderMenuItem)}
+          <Menu.Item
+            onClick={() => {
+              setStarred(!starred);
+            }}
+            prefixel={
+              <div>
+                <Icon
+                  component={starred ? <StarFillM /> : <StarM />}
+                  color={starred ? theme.palette['yellow-600'] : theme.palette['grey-600']}
+                />
+              </div>
+            }
+          >
+            Starred
+          </Menu.Item>
+        </Menu>
         {DividerWrapper}
         <Menu style={{ padding: '0 24px' }}>{MIDDLE_MENU_ITEMS.map(renderMenuItem)}</Menu>
         {DividerWrapper}

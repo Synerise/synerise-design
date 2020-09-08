@@ -121,6 +121,7 @@ const Folder: React.FC<FolderProps> = ({
   return (
     // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
     <S.FolderItem
+      editMode={editMode}
       onClick={(): void => {
         onItemSelect && onItemSelect(item);
       }}
@@ -135,7 +136,7 @@ const Folder: React.FC<FolderProps> = ({
       }
       text={
         editMode ? (
-          <>
+          <S.InlineEditWrapper>
             <S.InlineEditInput
               value={folderName}
               onChange={(e: React.SyntheticEvent<HTMLInputElement>): void => setFolderName(e.currentTarget.value)}
@@ -146,7 +147,7 @@ const Folder: React.FC<FolderProps> = ({
               }}
               ref={inputRef}
             />
-          </>
+          </S.InlineEditWrapper>
         ) : (
           <S.FolderText>
             <Tooltip placement="topLeft" title={folderName}>

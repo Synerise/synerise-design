@@ -12,7 +12,7 @@ export const Container = styled.div`
   }
 `;
 
-export const ShowMoreLabel = styled.div`
+export const Label = styled.div`
   background: transparent;
   outline: 0;
   cursor: pointer;

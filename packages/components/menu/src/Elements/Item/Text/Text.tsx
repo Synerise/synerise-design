@@ -127,7 +127,7 @@ const Text: React.FC<BasicItemProps> = ({
                 {prefixel}
               </S.PrefixelWrapper>
             )}
-            <S.Content highlight={!!highlight}>
+            <S.Content className="ds-menu-content" highlight={!!highlight}>
               {canCopyToClipboard && hovered ? copyHint : renderChildren()}
               {!!description && <S.Description>{description}</S.Description>}
             </S.Content>

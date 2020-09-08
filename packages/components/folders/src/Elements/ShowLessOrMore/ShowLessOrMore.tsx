@@ -13,11 +13,18 @@ const ShowLessOrMore: React.FC<Props> = ({
   step,
   texts,
 }: Props) => {
-  const allItemsVisible = totalItemsCount === visibleItemsCount;
-  const itemsOverLimit = React.useMemo((): number => {
-    return totalItemsCount - visibleItemsCount;
-  }, [totalItemsCount, visibleItemsCount]);
+  const areAllItemsVisible = totalItemsCount === visibleItemsCount;
+  const itemsOverLimit = totalItemsCount - visibleItemsCount;
 
+  const itemsToHide = React.useMemo(() => {
+    if (itemsOverLimit > step) {
+      return visibleItemsCount - itemsOverLimit;
+    }
+    if (visibleItemsCount - step < step) {
+      return visibleItemsCount - step;
+    }
+    return step;
+  }, [itemsOverLimit, step, visibleItemsCount]);
   const renderShowMoreButton = React.useCallback(() => {
     const more = itemsOverLimit > step ? step : itemsOverLimit;
     return (
@@ -31,15 +38,15 @@ const ShowLessOrMore: React.FC<Props> = ({
           className="ds-folder-show-more"
         >
           <Icon component={<ArrowDownCircleM />} />
-          <S.ShowMoreLabel>
+          <S.Label>
             <span>{texts.showMoreLabel}</span>
             <strong>{more}</strong>
             <span>{texts.more}</span>
-          </S.ShowMoreLabel>
+          </S.Label>
         </Button>
       )
     );
-  }, [texts, visibleItemsCount, totalItemsCount, step, itemsOverLimit, onShowMore]);
+  }, [texts, visibleItemsCount,totalItemsCount, step, itemsOverLimit, onShowMore]);
 
   const renderShowLessButton = React.useCallback(() => {
     return (
@@ -47,24 +54,24 @@ const ShowLessOrMore: React.FC<Props> = ({
         type="ghost"
         mode="icon-label"
         onClick={(): void => {
-          onShowLess(step);
+          onShowLess(itemsToHide);
         }}
         className="ds-folder-show-less"
       >
         <Icon component={<ArrowUpCircleM />} />
-        <S.ShowMoreLabel>
+        <S.Label>
           <span>{texts.showMoreLabel}</span>
-          <strong>{step}</strong>
+          <strong>{itemsToHide}</strong>
           <span>{texts.less}</span>
-        </S.ShowMoreLabel>
+        </S.Label>
       </Button>
     );
-  }, [texts, step, onShowLess]);
+  }, [texts , onShowLess, itemsToHide]);
 
   return (
     <S.Container>
-      {!allItemsVisible && renderShowMoreButton()}
-      {visibleItemsCount > step && renderShowLessButton()}
+      {!areAllItemsVisible && renderShowMoreButton()}
+      {itemsToHide > 0 && visibleItemsCount > step && renderShowLessButton()}
     </S.Container>
   );
 };
