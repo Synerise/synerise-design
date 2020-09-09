@@ -1,11 +1,12 @@
 import * as React from 'react';
 
-const DailyFilter = () => {
+const MonthlyFilter = () => {
   return (
     <div>
-  DailyFilter
+      Monthly
+
     </div>
   );
 };
 
-export default DailyFilter;
+export default MonthlyFilter;

@@ -1,5 +1,6 @@
 import { WrappedComponentProps } from 'react-intl';
 import { DateFilter, DateRange } from 'date.types';
+import { FilterDefinition } from './RangeFilter/RangeFilter.types';
 
 export interface Props extends WrappedComponentProps {
   showRelativePicker?: boolean;
@@ -37,6 +38,7 @@ export interface State {
   mode: string;
   value: DateRange;
   changed: boolean;
+  filter?: FilterDefinition;
 }
 export interface Texts {
   custom?: string;
