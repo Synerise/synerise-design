@@ -10,6 +10,7 @@ import AddonCollapse from './AddonCollapse/AddonCollapse';
 import RelativeRangePicker from './RelativeRangePicker/RelativeRangePicker';
 import Footer from './Footer/Footer';
 import { normalizeRange } from './utils';
+import RangeFilter from './RangeFilter/RangeFilter';
 
 class RawDateRangePicker extends React.PureComponent<Props, State> {
   static defaultProps = {
@@ -113,13 +114,13 @@ class RawDateRangePicker extends React.PureComponent<Props, State> {
       relativeModes,
       texts,
     } = this.props;
-    const { value, mode, changed } = this.state;
+    const { value, mode, changed, filter } = this.state;
     const { from, to, key } = value;
 
     if (mode === MODES.FILTER)
       return (
         <Container>
-          <div>RangeFilter placeholder</div>
+          <RangeFilter value={filter} onCancel={this.handleFilterCancel} onApply={this.handleFilterApply} />
         </Container>
       );
 

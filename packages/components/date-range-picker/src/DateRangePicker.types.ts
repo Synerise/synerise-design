@@ -1,5 +1,6 @@
 import { DateFilter, DateRange } from 'date.types';
 import * as React from 'react';
+import { FilterDefinition } from './RangeFilter/RangeFilter.types';
 
 export interface Props {
   disabledDate?: (date?: Date) => boolean;
@@ -38,6 +39,7 @@ export interface State {
   mode: string;
   value: DateRange;
   changed: boolean;
+  filter?: FilterDefinition;
 }
 export type Texts = {
   [k in Translations]: string | React.ReactNode;
