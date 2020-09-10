@@ -7,6 +7,8 @@ import { ABSOLUTE, RELATIVE } from './constants';
 import ADD from './dateUtils/add';
 import START_OF from './dateUtils/startOf';
 import END_OF from './dateUtils/endOf';
+import dayjs from 'dayjs';
+import 'dayjs/plugin/utc';
 import { Texts } from './DateRangePicker.types';
 
 // eslint-disable-next-line import/prefer-default-export
@@ -87,4 +89,9 @@ export const getDefaultTexts = (intl: IntlShape,texts?: Partial<Texts>): Texts =
     years:  texts?.years || intl.formatMessage({ id: `DS.DATE-RANGE-PICKER.YEARS` }),
     yesterday: texts?.yesterday || intl.formatMessage({ id: `DS.DATE-RANGE-PICKER.YESTERDAY` }),
   };
+};
+
+
+export const formatTime = (seconds: number, format: string = 'HH:mm:ss') => {
+  return dayjs.utc(seconds * 1000).format(format);
 };
