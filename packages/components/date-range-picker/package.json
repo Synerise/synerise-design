@@ -27,6 +27,7 @@
   "dependencies": {
     "@synerise/ds-date-picker": "^0.1.24",
     "@synerise/ds-time-picker": "^0.3.8",
+    "dayjs": "^1.8.35",
     "lodash": "^4.17.20",
     "ramda": "^0.27.0"
   },

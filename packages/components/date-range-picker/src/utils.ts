@@ -6,7 +6,8 @@ import { ABSOLUTE, RELATIVE } from './constants';
 import ADD from './dateUtils/add';
 import START_OF from './dateUtils/startOf';
 import END_OF from './dateUtils/endOf';
-
+import dayjs from 'dayjs';
+import 'dayjs/plugin/utc';
 
 // eslint-disable-next-line import/prefer-default-export
 export const normalizeRange = (range: DateRange): DateRange => {
@@ -34,4 +35,9 @@ export const normalizeRange = (range: DateRange): DateRange => {
   const from = range.from ? legacyParse(range.from) : undefined;
   const to = range.to ? legacyParse(range.to) : undefined;
   return { ...range, type: ABSOLUTE, from, to };
+};
+
+
+export const formatTime = (seconds: number, format: string = 'HH:mm:ss') => {
+  return dayjs.utc(seconds * 1000).format(format);
 };
