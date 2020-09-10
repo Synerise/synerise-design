@@ -2,7 +2,7 @@ import { MONTHLY_TYPES, TYPES } from './constants';
 import groupBy from 'lodash/groupBy';
 import omit from 'lodash/omit';
 import range from 'lodash/range';
-import { NormalizedFilter, DenormalizedFilter } from './RangeFilter.types';
+import { NormalizedFilter, DenormalizedFilter, FilterValue, FilterDefinition } from './RangeFilter.types';
 
 /*
  * Map field from components to datefilter schema
@@ -27,7 +27,7 @@ export const denormMapTimeSchema = (item: NormalizedFilter): DenormalizedFilter 
   return { start: from, stop: to, day: Number.isNaN(+day) ? undefined : +day - 1, ...rest };
 };
 
-export const normalizeValue = ({ type, definition }) => {
+export const normalizeValue = ({ type, definition }: FilterValue) => {
   const result = { type, nestingType: 'IN_PLACE' }; // TODO - datepicker type
   let days;
   switch (type) {
@@ -35,12 +35,12 @@ export const normalizeValue = ({ type, definition }) => {
       return { ...mapTimeSchema(definition), ...result };
     case TYPES.WEEKLY:
       days = Object.values(definition)
-        .filter((day: Object) => day.restricted)
-        .map((item: Object) => mapTimeSchema(item));
+        .filter(day => day.restricted)
+        .map((item: DenormalizedFilter) => mapTimeSchema(item));
       break;
-    case TYPES.MONTHLY:
+    case TYPES.MONTHLY && definition instanceof Array:
       const rules = [];
-      definition.map(def => {
+      (definition as FilterDefinition[]).map(def => {
         days = Object.values(def.definition)
           .filter((day: Object) => day.restricted)
           .map(({ restricted, display, ...rest }) => mapTimeSchema(rest));
@@ -94,7 +94,7 @@ export const createMonthlyDayRange = rules =>
   }, {});
 
 export const denormalizers: { [key: string]: Function } = {
-  [TYPES.DAILY]: values => denormMapTimeSchema(values),
+  [TYPES.DAILY]: (values: NormalizedFilter) => denormMapTimeSchema(values),
   [TYPES.WEEKLY]: values => createWeeklyRange(values.days),
   [TYPES.MONTHLY]: values => {
     const monthlyDenormalizers = {

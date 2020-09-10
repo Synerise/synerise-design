@@ -64,6 +64,7 @@ class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState
           </ButtonGroup>
           {Component && (
             <Component
+              intl={intl}
               value={definition}
               onChange={(def: FilterDefinition): void => this.setValue({ ...value, definition: def })}
             />
