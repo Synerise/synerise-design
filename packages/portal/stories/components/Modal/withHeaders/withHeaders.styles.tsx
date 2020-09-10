@@ -32,3 +32,8 @@ export const Modal = styled(DsModal)<ModalProps & { withTabs?: boolean }>`
     ${props => !!props.withTabs && `align-items:flex-start`}
   }
 `;
+
+export const ContentPlaceholder = styled.div`
+  width: 100%;
+  height: 180px;
+`;

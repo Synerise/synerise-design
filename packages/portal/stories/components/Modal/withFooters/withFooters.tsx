@@ -5,6 +5,7 @@ import Switch from '@synerise/ds-switch';
 import Button from '@synerise/ds-button';
 import ModalProxy from '@synerise/ds-modal';
 import { action } from '@storybook/addon-actions';
+import { withState } from '@dump247/storybook-state';
 
 const FooterTypes = {
   DEFAULT: 'DEFAULT',
@@ -19,7 +20,7 @@ const FooterKnobs = {
   Blank: FooterTypes.BLANK
 };
 
-const customFooterProps = (headerType: string) => {
+const customFooterProps = (headerType: string, switchEnabled: boolean, setSwitchEnabled: (state: boolean) => void) => {
   switch (headerType) {
     case FooterTypes.DEFAULT: {
       return {
@@ -46,7 +47,7 @@ const customFooterProps = (headerType: string) => {
       return {
         footer: <div style={{ display: 'flex', flexWrap: 'nowrap' }}>
           <div style={{ width: '100%', display: 'flex', alignItems: 'center' }}>
-            <Switch label={text('Set switch label', 'Show property')} checked />
+            <Switch onChange={setSwitchEnabled} label={text('Set switch label', 'Show property')} checked={switchEnabled} />
           </div>
           <div style={{ display: 'flex' }}>
             <Button type="ghost">Cancel</Button>
@@ -66,14 +67,19 @@ const customFooterProps = (headerType: string) => {
   }
 };
 
-const withFooters = () => {
+const DEFAULT_STATE = {
+  switchEnabled: false,
+}
+
+const withFooters = withState(DEFAULT_STATE)(({ store }) => {
+
   const footer = select('Set footer type', FooterKnobs, FooterTypes.DEFAULT);
   return <ModalProxy
     size={select('Size', sizes, null)}
     visible={boolean('Set open', true)}
     title="Modal with footer"
-    {...customFooterProps(footer)}
+    {...customFooterProps(footer, store.state.switchEnabled, (switchEnabled) => store.set({switchEnabled}))}
   >Modal content...</ModalProxy>;
-};
+});
 
 export default withFooters;

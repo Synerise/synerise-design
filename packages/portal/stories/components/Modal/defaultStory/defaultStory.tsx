@@ -20,7 +20,6 @@ const defaultStory = withState(DEFAULT_STATE)(({ store }) => {
           {...spread}
           visible={store.state.visible}
           onCancel={() => store.set({visible: false})}
-          closable
           footer={
             spread.removeFooter ? null : !spread.renderCustomFooter ? (
               undefined
