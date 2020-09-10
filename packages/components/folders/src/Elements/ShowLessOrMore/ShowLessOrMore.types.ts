@@ -3,6 +3,7 @@ export type Props = {
   onShowLess: (less: number) => void;
   totalItemsCount: number;
   visibleItemsCount: number;
+  maxItemsToShow: number;
   step: number;
   texts: {
     showLessLabel?: string | React.ReactNode;

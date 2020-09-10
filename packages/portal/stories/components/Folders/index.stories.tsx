@@ -2,7 +2,7 @@ import * as React from 'react';
 import Sidebar from '@synerise/ds-sidebar';
 import Folders from '@synerise/ds-folders';
 import Menu from '@synerise/ds-menu';
-import { boolean } from '@storybook/addon-knobs';
+import { boolean, number } from '@storybook/addon-knobs';
 import { FOLDERS, MIDDLE_MENU_ITEMS, TOP_MENU_ITEMS } from './dataset';
 import Icon from '@synerise/ds-icon';
 import Divider from '@synerise/ds-divider';
@@ -67,7 +67,7 @@ const stories = {
           <Folders
             actionsDisplay={getActionsDisplay(showActionsInRow)}
             dataSource={FOLDERS}
-            visibleItemsCount={5}
+            maxItemsVisible={number('Set default max items visible', 5, { min: 1 })}
             texts={{
               add: 'Add',
               addItemLabel: 'Add folder',
