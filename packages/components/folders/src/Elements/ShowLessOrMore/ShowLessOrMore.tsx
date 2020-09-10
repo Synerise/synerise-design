@@ -12,6 +12,7 @@ const ShowLessOrMore: React.FC<Props> = ({
   visibleItemsCount,
   step,
   texts,
+  maxItemsToShow,
 }: Props) => {
   const areAllItemsVisible = totalItemsCount === visibleItemsCount;
   const itemsOverLimit = totalItemsCount - visibleItemsCount;
@@ -20,11 +21,11 @@ const ShowLessOrMore: React.FC<Props> = ({
     if (itemsOverLimit > step) {
       return visibleItemsCount - itemsOverLimit;
     }
-    if (visibleItemsCount - step < step) {
-      return visibleItemsCount - step;
+    if (visibleItemsCount - maxItemsToShow < step) {
+      return visibleItemsCount - maxItemsToShow;
     }
     return step;
-  }, [itemsOverLimit, step, visibleItemsCount]);
+  }, [itemsOverLimit, step, visibleItemsCount, maxItemsToShow]);
   const renderShowMoreButton = React.useCallback(() => {
     const more = itemsOverLimit > step ? step : itemsOverLimit;
     return (

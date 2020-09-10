@@ -58,7 +58,7 @@ export const handleItemDelete = (items: FolderItem[], deletedItem: FolderItem): 
 export const validateFolderName = (name: string): boolean => {
   const trimmedName = name.trim();
   // eslint-disable-next-line no-useless-escape
-  const CONTAINS_ONLY_ALLOWED_CHARACTERS = /^[a-zA-Z]+?[^\\\/:*?"<>|\n\r]+$/gm;
+  const CONTAINS_ONLY_ALLOWED_CHARACTERS = /^[^\\\/\?\*\"\>\<\:\|]*$/im;
   if (!trimmedName || !trimmedName.match(CONTAINS_ONLY_ALLOWED_CHARACTERS)) {
     return false;
   }

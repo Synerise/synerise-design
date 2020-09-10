@@ -5,7 +5,7 @@ export type FoldersProps = {
   addButtonDisabled?: boolean;
   actionsDisplay: 'inline' | 'dropdown';
   dataSource: FolderItem[];
-  visibleItemsCount?: number;
+  maxItemsVisible?: number;
   onDelete: (deleted: FolderItem, options: { mode: DeleteMode; destination?: FolderItem }) => void;
   onEdit: (edited: FolderItem) => void;
   onAdd: (added: FolderItem) => void;

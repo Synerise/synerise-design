@@ -9,12 +9,13 @@ import DeleteModal from './Elements/DeleteModal/DeleteModal';
 import ShowLessOrMore from './Elements/ShowLessOrMore/ShowLessOrMore';
 
 const DEFAULT_STEP = 5;
+const DEFAULT_ITEMS_VISIBLE = 5;
 const MODAL_CLOSE_DURATION = 250;
 const Folders: React.FC<FoldersProps> = ({
   addButtonDisabled,
   actionsDisplay,
   dataSource,
-  visibleItemsCount = 5,
+  maxItemsVisible,
   onDelete,
   onAdd,
   onEdit,
@@ -28,14 +29,19 @@ const Folders: React.FC<FoldersProps> = ({
   const [items, setItems] = React.useState<FolderItem[]>(folderFilter ? dataSource.filter(folderFilter) : dataSource);
   const [itemToDelete, setItemToDelete] = React.useState<FolderItem | undefined>(undefined);
   const [deleteModalVisible, setDeleteModalVisible] = React.useState<boolean>(false);
-  const [maxVisibleItemsCount, setMaxVisibleItemsCount] = React.useState<number>(visibleItemsCount);
+  const [visibleItemsCount, setVisibleItemsCount] = React.useState<number>(
+    maxItemsVisible && maxItemsVisible > 0 ? maxItemsVisible : DEFAULT_ITEMS_VISIBLE
+  );
 
   React.useEffect(() => {
+    setVisibleItemsCount(maxItemsVisible && maxItemsVisible > 0 ? maxItemsVisible : DEFAULT_ITEMS_VISIBLE);
+  }, [maxItemsVisible]);
+  React.useEffect(() => {
     const itemsCount = items.length;
-    if (maxVisibleItemsCount > itemsCount && visibleItemsCount < itemsCount) {
-      setMaxVisibleItemsCount(itemsCount);
+    if (maxItemsVisible && visibleItemsCount > itemsCount) {
+      setVisibleItemsCount(itemsCount);
     }
-  }, [items, maxVisibleItemsCount, visibleItemsCount]);
+  }, [items, visibleItemsCount, maxItemsVisible]);
   React.useEffect(() => {
     setItems(folderFilter ? dataSource.filter(folderFilter) : dataSource);
   }, [dataSource, folderFilter]);
@@ -88,7 +94,7 @@ const Folders: React.FC<FoldersProps> = ({
   const renderItemsList = (): React.ReactNode => {
     const favouriteItems = items.filter(i => i.favourite).sort(sortAlphabetically);
     const restOfItems = items.filter(i => !i.favourite).sort(sortAlphabetically);
-    const total = [...favouriteItems, ...restOfItems].slice(0, maxVisibleItemsCount);
+    const total = [...favouriteItems, ...restOfItems].slice(0, visibleItemsCount);
     if (!!folderFilter && typeof folderFilter === 'function') {
       return total.filter(folderFilter).map(renderItem);
     }
@@ -120,14 +126,15 @@ const Folders: React.FC<FoldersProps> = ({
       </Menu>
       <ShowLessOrMore
         onShowMore={(more): void => {
-          setMaxVisibleItemsCount(maxVisibleItemsCount + more);
+          setVisibleItemsCount(visibleItemsCount + more);
         }}
         onShowLess={(less): void => {
-          setMaxVisibleItemsCount(maxVisibleItemsCount - less);
+          setVisibleItemsCount(visibleItemsCount - less);
         }}
         totalItemsCount={items.length}
-        visibleItemsCount={items.length <= maxVisibleItemsCount ? items.length : maxVisibleItemsCount}
+        visibleItemsCount={items.length <= visibleItemsCount ? items.length : visibleItemsCount}
         texts={texts}
+        maxItemsToShow={Number(maxItemsVisible)}
         step={showHideStep || DEFAULT_STEP}
       />
     </>
