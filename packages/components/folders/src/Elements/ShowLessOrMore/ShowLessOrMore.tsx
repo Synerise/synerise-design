@@ -14,6 +14,7 @@ const ShowLessOrMore: React.FC<Props> = ({
   texts,
   maxItemsToShow,
 }: Props) => {
+
   const areAllItemsVisible = totalItemsCount === visibleItemsCount;
   const itemsOverLimit = totalItemsCount - visibleItemsCount;
 
@@ -25,7 +26,9 @@ const ShowLessOrMore: React.FC<Props> = ({
       return visibleItemsCount - maxItemsToShow;
     }
     return step;
-  }, [itemsOverLimit, step, visibleItemsCount, maxItemsToShow]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [itemsOverLimit, step, visibleItemsCount, maxItemsToShow, totalItemsCount]);
+
   const renderShowMoreButton = React.useCallback(() => {
     const more = itemsOverLimit > step ? step : itemsOverLimit;
     return (

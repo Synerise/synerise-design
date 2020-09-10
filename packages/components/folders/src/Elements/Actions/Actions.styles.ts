@@ -17,12 +17,8 @@ export const ActionsWrapper = styled.div`
     .ds-icon:hover svg {
       fill: ${(props): string => props.theme.palette['blue-600']};
     }
-
     .delete .ds-icon svg {
       fill: ${(props): string => props.theme.palette['red-600']};
-    }
-    .settings .ds-icon {
-      margin: 0 3px;
     }
   }
 `;

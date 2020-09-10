@@ -11,8 +11,9 @@ export const AddItemLayout = styled.div`
 `;
 export const ButtonWrapper = styled.div`
   margin-bottom: 16px;
-`
+`;
 export const Overlay = styled.div`
+  padding: 16px;
   background: ${(props): string => props.theme.palette.white};
   min-width: 262px;
 `;

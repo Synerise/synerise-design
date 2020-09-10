@@ -3,16 +3,16 @@ import Icon from '@synerise/ds-icon';
 import Add3M from '@synerise/ds-icon/dist/icons/Add3M';
 import Button from '@synerise/ds-button';
 import { Input } from '@synerise/ds-input';
-import { Popover } from 'antd';
 import { StarFillM, StarM } from '@synerise/ds-icon/dist/icons';
 import { useOnClickOutside } from '@synerise/ds-utils';
 import { v4 as uuid } from 'uuid';
+import Dropdown from '@synerise/ds-dropdown';
 import * as S from './AddModal.styles';
 import { Props } from './AddModal.types';
 import { validateFolderName } from '../../utils';
 
 const DEFAULT_NAME = '';
-const POPUP_CLOSE_DELAY = 250;
+const POPUP_CLOSE_DELAY = 400;
 const AddModal: React.FC<Props> = ({ onItemAdd, disabled, texts }) => {
   const [name, setName] = React.useState(DEFAULT_NAME);
   const [favourite, setFavourite] = React.useState<boolean>(false);
@@ -68,9 +68,9 @@ const AddModal: React.FC<Props> = ({ onItemAdd, disabled, texts }) => {
   };
   return (
     <S.AddItemLayout>
-      <Popover
+      <Dropdown
         className="ds-folders-add"
-        content={
+        overlay={
           <S.Overlay ref={overlayRef}>
             <Input
               handleInputRef={focus}
@@ -100,7 +100,13 @@ const AddModal: React.FC<Props> = ({ onItemAdd, disabled, texts }) => {
         }
         placement="bottomLeft"
         trigger={['click']}
+        overlayStyle={{ boxShadow: '0 4px 12px 0 rgba(35, 41, 54, 0.07)' }}
         visible={overlayVisible}
+        onVisibleChange={(visible): void => {
+          if (!visible) {
+            setFavourite(false);
+          }
+        }}
       >
         <S.ButtonWrapper>
           <Button type="ghost-primary" mode="icon-label" onClick={toggleInput} disabled={disabled}>
@@ -108,7 +114,7 @@ const AddModal: React.FC<Props> = ({ onItemAdd, disabled, texts }) => {
             {texts.addItemLabel}
           </Button>
         </S.ButtonWrapper>
-      </Popover>
+      </Dropdown>
     </S.AddItemLayout>
   );
 };

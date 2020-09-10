@@ -1,6 +1,6 @@
 import * as React from 'react';
 import SingleAction from '@synerise/ds-button/dist/Cruds/SingleAction';
-import { CloseS, EditS, Settings2M, StarFillS, StarS } from '@synerise/ds-icon/dist/icons';
+import { CloseS, EditS, Settings2S, StarFillS, StarS,  } from '@synerise/ds-icon/dist/icons';
 import { ActionProps } from '../Actions.types';
 import * as S from '../Actions.styles';
 
@@ -18,9 +18,8 @@ const ActionsRow: React.FC<ActionProps> = ({
         <SingleAction
           className="settings"
           title={texts.enterSettings}
-          icon={<Settings2M />}
+          icon={<Settings2S />}
           onClick={onSettingsEnter}
-          iconSize={18}
         />
       )}
       {!!onFavourite && (
