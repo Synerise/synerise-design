@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { sizes } from '../index.stories';
 import { boolean, select } from '@storybook/addon-knobs';
-import PageHeader from '@synerise/ds-page-header/dist/PageHeader';
 import * as S from './withHeaders.styles';
 import Avatar from '@synerise/ds-avatar';
 import { MailM, SearchM, UserM } from '@synerise/ds-icon/dist/icons';
