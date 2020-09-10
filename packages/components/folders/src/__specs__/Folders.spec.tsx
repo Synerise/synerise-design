@@ -172,7 +172,7 @@ describe('Folders', () => {
         onEdit={onEdit}
         onAdd={onAdd}
         onFavourite={onFavourite}
-        visibleItemsCount={2}
+        maxItemsVisible={2}
         //@ts-ignore
         texts={{
           addItemLabel: 'Add folder',
@@ -223,7 +223,7 @@ describe('Folders', () => {
         onEdit={onEdit}
         onAdd={onAdd}
         onFavourite={onFavourite}
-        visibleItemsCount={2}
+        maxItemsVisible={2}
         //@ts-ignore
         texts={{
           addItemLabel: 'Add folder',
