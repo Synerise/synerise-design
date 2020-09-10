@@ -16,8 +16,8 @@ const wrapperStyles: React.CSSProperties = {
   padding: '24px 0',
 };
 
-const renderMenuItem = (item: { icon: React.ReactNode; text: string }) => (
-  <Menu.Item prefixel={<Icon component={item.icon} />} text={item.text} />
+const renderMenuItem = (item: { icon: React.ReactNode; text: string }, onClick: () => void) => (
+  <Menu.Item prefixel={<Icon component={item.icon} />} text={item.text} onClick={onClick} />
 );
 
 const getFilter = filterName => {
@@ -43,7 +43,11 @@ const stories = {
     return (
       <div style={wrapperStyles}>
         <Menu style={{ padding: '0 24px' }}>
-          {TOP_MENU_ITEMS.map(renderMenuItem)}
+          {TOP_MENU_ITEMS.map(item =>
+            renderMenuItem(item, (): void => {
+              setStarred(false);
+            })
+          )}
           <Menu.Item
             onClick={() => {
               setStarred(!starred);
@@ -61,7 +65,13 @@ const stories = {
           </Menu.Item>
         </Menu>
         {DividerWrapper}
-        <Menu style={{ padding: '0 24px' }}>{MIDDLE_MENU_ITEMS.map(renderMenuItem)}</Menu>
+        <Menu style={{ padding: '0 24px' }}>
+          {MIDDLE_MENU_ITEMS.map(item =>
+            renderMenuItem(item, (): void => {
+              setStarred(false);
+            })
+          )}
+        </Menu>
         {DividerWrapper}
         <div style={{ padding: '0 24px' }}>
           <Folders
