@@ -1,35 +1,36 @@
 import * as React from 'react';
 import SidebarObject from '@synerise/ds-sidebar-object';
-import { boolean, select, text } from '@storybook/addon-knobs';
+import { boolean, select } from '@storybook/addon-knobs';
 import Button from '@synerise/ds-button';
 import Drawer from '@synerise/ds-drawer';
-import Typography from 'antd/lib/typography';
 import Tabs from '@synerise/ds-tabs';
-import { action } from '@storybook/addon-actions';
 import Icon from '@synerise/ds-icon';
-import { AngleDownM, AngleDownS, AngleUpM, OptionHorizontalM, SearchM } from '@synerise/ds-icon/dist/icons';
+import { AngleDownM, AngleUpM, EditM, FolderM, OptionHorizontalM } from '@synerise/ds-icon/dist/icons';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { FormattedMessage } from 'react-intl';
 import ArrowLeftM from '@synerise/ds-icon/dist/icons/ArrowLeftM';
 import CloseM from '@synerise/ds-icon/dist/icons/CloseM';
-import InlineEdit from '@synerise/ds-inline-edit';
 import Badge from '@synerise/ds-badge';
 import Avatar from '@synerise/ds-avatar';
 import MailS from '@synerise/ds-icon/dist/icons/MailS';
 import MailM from '@synerise/ds-icon/dist/icons/MailM';
-import Description, { DescriptionRow } from '@synerise/ds-description';
 import Status from '@synerise/ds-status';
 import Tags, { TagShape } from '@synerise/ds-tags';
 import { v4 as uuid } from 'uuid';
 import sample from 'lodash/sample';
+import { ButtonWrapper } from '@synerise/ds-sidebar-object/Elements/Header/Header.style';
+import  Tooltip  from '@synerise/ds-tooltip';
+import Dropdown from '@synerise/ds-dropdown';
+import Menu from '@synerise/ds-menu';
+import { MenuWrapper } from '@synerise/ds-sidebar-object/Elements/Header/Dropdown/Dropdown.style';
 
 const sizes = ['small', 'medium', 'large', 'extraLarge'] as const;
 const statuses = ['blocked', 'inactive', 'active'] as const;
-const getColor = (name) => {
+const getColor = name => {
   return theme.palette[name];
 };
-const getIconSize = (size) => {
-  return size === 'small' ? <MailS/> : <MailM/>;
+const getIconSize = size => {
+  return size === 'small' ? <MailS /> : <MailM />;
 };
 
 const randomColorPool = [
@@ -57,7 +58,17 @@ const allTags = [
     name: 'Customer Service PL',
     color: '#13c2bc',
   },
-  ];
+  {
+    id: 2,
+    name: 'Tag Name 3',
+    color: '#76dc25',
+  },
+  {
+    id: 3,
+    name: 'Tag Name 4',
+    color: '#6d2dd3',
+  },
+];
 const backgroundColors = [
   'red',
   'green',
@@ -88,23 +99,9 @@ const iconColors = [
   'violet-600',
 ] as const;
 
-const backgroundColorHue = [
-  '900',
-  '800',
-  '700',
-  '600',
-  '500',
-  '400',
-  '300',
-  '200',
-  '100',
-  '050',
-] as const;
+const backgroundColorHue = ['900', '800', '700', '600', '500', '400', '300', '200', '100', '050'] as const;
 
 const imgSrc = 'https://www.w3schools.com/howto/img_avatar.png';
-const SELECT = ['table', 'inline'];
-const RATIO = ['20-80', '30-70', '40-60', '50-50', '60-40', '70-30', '80-20'];
-
 const TABS = [
   {
     label: 'Overview',
@@ -116,9 +113,6 @@ const TABS = [
     label: 'Versions',
   },
 ];
-const texts = {
-  noResults: <FormattedMessage id="DS.ITEM-FILTER.NO-RESULTS" />,
-};
 const headerTypes = {
   singleTitle: 'singleTitle',
   singleTitleWithBackIcon: 'singleTitleWithBackIcon',
@@ -128,7 +122,6 @@ const closeActionTypes = {
   twoButtons: 'twoButtons',
   singleCloseIcon: 'singleCloseIcon',
 };
-
 
 const renderBackIcon = (headerType, onBackClickHandler) => {
   if (headerType === headerTypes.singleTitleWithBackIcon) {
@@ -142,54 +135,23 @@ const renderBackIcon = (headerType, onBackClickHandler) => {
   } else return null;
 };
 
-const renderActionButtons = (closeActionType, actionClickHandler) => {
-  if (closeActionType === closeActionTypes.singleCloseIcon) {
-    return (
-      <React.Fragment>
-        <Button type="ghost" mode="single-icon" onClick={actionClickHandler} data-testid="ds-item-filter-close-button">
-          <Icon component={<CloseM />} />
-        </Button>
-      </React.Fragment>
-    );
-  } else
-    return (
-      <React.Fragment>
-        <Button  type={'ghost'}>
-          <Icon component={<AngleUpM />} />
-        </Button>
-        <Button  type={'ghost'}>
-          <Icon component={<AngleDownM />} />
-        </Button>
-        <Button  type={'ghost'}>
-          <Icon component={<OptionHorizontalM />} />
-        </Button>
-        <Button type={'ghost'} onClick={actionClickHandler}>
-          <Icon component={<CloseM />} />
-        </Button>
-      </React.Fragment>
-    );
-};
-
 const stories = {
   default: () => {
     const [drawerVisible, setDrawerVisible] = React.useState(false);
     const [activeTab, setActiveTab] = React.useState(0);
-    const [value, setValue] = React.useState<string>('Winter Campaign');
-    const inputValue = text( 'InputValue', value);
     const [tags, setTags] = React.useState<Array<any>>(allTags);
-    const [selected, setSelected] = React.useState<Array<any>>(allTags.slice(0, 6));
+    const [selected, setSelected] = React.useState<Array<any>>(allTags.slice(0, 2));
     const shapes = {
       'Default Round': TagShape.DEFAULT_ROUND,
       'Default Square': TagShape.DEFAULT_SQUARE,
     };
-
     const shape = select('Shape', shapes, shapes['Default Round']);
     const removable = boolean('Ability to remove', true);
     const addable = boolean('Ability to add', true);
     const creatable = boolean('Ability to create', true);
     const withManageLink = boolean('With manage tags link', true);
     const disabled = boolean('Disable entire group', false);
-    const size = select('Size', ['small', 'normal'], 'small');
+    const data = [{  id :'2',name: 'Example folder' }, { name: 'Winter' }, { name: 'Summer' }, { name: 'Drafts' }, { name: 'Archived' }];
     let headerType = select('Set header type', headerTypes, headerTypes.singleTitle);
     let closeActionType = select('Set close action type', closeActionTypes, closeActionTypes.twoButtons);
     return (
@@ -198,65 +160,42 @@ const stories = {
           Sidebar Object
         </Button>
         <Drawer visible={drawerVisible} placement="right" width={676} onClose={() => setDrawerVisible(false)}>
-          <Drawer.DrawerHeaderWithoutPadding>
-            <Drawer.DrawerHeader>
-              <Drawer.DrawerHeaderBar>
-                {renderBackIcon(headerType, () => setDrawerVisible(false))}
-                <Badge status={select('Set status', statuses, 'inactive')}>
-                  <Avatar
-                    backgroundColor={select('Set background color', backgroundColors, 'pink')}
-                    backgroundColorHue={select('Set background color hue', backgroundColorHue, '100')}
-                    size={select('Set size', sizes, 'large')}
-                    shape={select('Set shape', shapes, 'circle')}
-                    iconComponent={
-                      <Icon color={getColor(select('Set icon color', iconColors, 'pink-600'))} component={getIconSize(select('Set size', sizes, 'large'))}/>
-                    }
-                    tooltip={{name: 'Silvia Jobs', email: 'silvia.jobs@gmail.com'}}
-                    hasStatus={boolean('Has status', true)}
-                    style={{ flex: 1, margin: 0 }}
-                  />
-                </Badge>
-                <Typography.Title style={{ flex: 2, marginLeft: '15px', }} level={4}>
-                  <InlineEdit
-                    input={{
-                      name: 'name-of-input',
-                      value: inputValue,
-                      maxLength: 120,
-                      placeholder: 'This is placeholder',
-                      onBlur: action('onBlur'),
-                      onChange: event => setValue(event.target.value),
-                      onEnterPress: action('onEnterPress'),
-                    }}
-                  />
-                </Typography.Title>
-                {renderActionButtons(closeActionType, () => setDrawerVisible(false))}
-              </Drawer.DrawerHeaderBar>
-              <Tabs
-                activeTab={activeTab}
-                tabs={TABS}
-                handleTabClick={setActiveTab}
-                configuration={{ label: 'Configure', action: action('onConfigurationClick') }}
-              />
-            </Drawer.DrawerHeader>
-            <div style={{padding: '12px 24px 12px 24px', borderBottom: '1px solid grey'}}>
-            Folder: <Button type={'ghost'}>
-            Example folder
-              <Icon component={<AngleDownS/>} />
-          </Button>
-            </div>
-          </Drawer.DrawerHeaderWithoutPadding>
-          <Drawer.DrawerBody>
-            <Drawer.DrawerContent style={{ borderBottom: '1px solid grey'}}>
-              <Description type={select('Select description type', SELECT, 'table')} ratio={select('Select ratio', RATIO, '30-70')}>
-              <DescriptionRow label="Type:" value={'Email campaign'} />
-              <DescriptionRow label="Author:" prefixEl={<Avatar src={imgSrc} size='small' shape='circle' />} value={'Teresa Smith'} />
-              <DescriptionRow label="Status:" value={<Status label='Draft' type='disabled'/>}/>
-              <DescriptionRow label="Created:" value={'25 May, 2020 15:32'} />
-              <DescriptionRow label="Last edited:" value={'27 May, 2020 15:32'} />
-              <DescriptionRow label="ID:" value={'3423-3426-8263-6634-6834-2352'} />
-              </Description>
-              </Drawer.DrawerContent>
-            <div style={{padding: '12px 24px 0 20px', borderBottom: '1px solid grey'}}>
+          <SidebarObject
+            avatar={
+              <Badge status={select('Set status', statuses, 'inactive')}>
+                <Avatar
+                  backgroundColor={select('Set background color', backgroundColors, 'pink')}
+                  backgroundColorHue={select('Set background color hue', backgroundColorHue, '100')}
+                  size={select('Set size', sizes, 'large')}
+                  shape={select('Set shape', shapes, 'circle')}
+                  iconComponent={
+                    <Icon
+                      color={getColor(select('Set icon color', iconColors, 'pink-600'))}
+                      component={getIconSize(select('Set size', sizes, 'large'))}
+                    />
+                  }
+                  tooltip={{ name: 'Silvia Jobs', email: 'silvia.jobs@gmail.com' }}
+                  hasStatus={boolean('Has status', true)}
+                  style={{ flex: 1, margin: 0 }}
+                />
+              </Badge>
+            } folders={data}
+            parentFolder={{ id :'2',name: 'Example folder' }}
+            name={'Winter Campaign'}
+            headerPreffix={renderBackIcon(headerType, () => setDrawerVisible(false))}
+            onEdit={()=> {}}
+            onDuplicate={()=> {}}
+            onMove={()=> {}}
+            onDelete={()=> {}}
+            onId={()=> {}}
+            headerTabs={<Tabs activeTab={activeTab} tabs={TABS} handleTabClick={setActiveTab} />}
+            inputObject={{'Type:': "Email campaign",
+              'Status': <div><Status label="Draft" type="disabled" /></div>,
+              'Author': <div><Avatar src={imgSrc} size="small" shape="circle" style={{marginRight: '10px'}}/>Teresa Smith</div>,
+            'Created': "25 May, 2020 15:32", 'Last edited:': "27 May, 2020 15:32",
+              'ID': "3423-3426-8263-6634-6834-2352"
+            }}
+            contentTags={
               <Tags
                 data={tags}
                 tagShape={shape}
@@ -265,7 +204,7 @@ const stories = {
                 addable={addable}
                 creatable={creatable}
                 removable={removable}
-                overlayStyle={{width: '283px'}}
+                overlayStyle={{ width: '283px', boxShadow: '0 4px 17px -3px rgba(191,191,191,1)' }}
                 maxHeight={200}
                 texts={{
                   clearTooltip: 'Clear',
@@ -293,22 +232,8 @@ const stories = {
                 }}
                 manageLink={withManageLink}
               />
-            </div>
-            <div style={{padding: '12px 24px 12px 24px'}}>
-              <InlineEdit
-                input={{
-                  name: 'name-of-input',
-                  value: inputValue,
-                  maxLength: 120,
-                  placeholder: 'This is placeholder',
-                  onBlur: action('onBlur'),
-                  onChange: event => setValue(event.target.value),
-                  onEnterPress: action('onEnterPress'),
-                }}
-                size={size}
-              />
-            </div>
-          </Drawer.DrawerBody>
+            }
+          ></SidebarObject>
         </Drawer>
       </div>
     );
@@ -316,8 +241,8 @@ const stories = {
 };
 
 export default {
-name: 'Components/SidebarObject',
+  name: 'Components/SidebarObject',
   config: {},
   stories,
   Component: SidebarObject,
-}
+};
