@@ -53,6 +53,21 @@ const headerWithPrefix = (text: string, prefix: React.ReactNode) => {
   );
 };
 
+const footer = (
+  <div style={{ display: 'flex', flexWrap: 'nowrap' }}>
+    <div style={{ width: '100%', display: 'flex' }}>
+      <Button type="secondary">Settings</Button>
+    </div>
+    <div style={{ display: 'flex' }}>
+      <Button type="ghost">Cancel</Button>
+
+      <Button type="primary">
+        Apply
+      </Button>
+    </div>
+  </div>
+)
+
 const headerWithTabs = (text: string) => {
   const [activeTab, setActiveTab] = React.useState(0);
   return (
@@ -131,7 +146,7 @@ const withHeaders = () => {
   const storyProps = {
     size: select('Size', sizes, null),
     visible: boolean('Set open', true),
-    footer: null,
+    footer: boolean('Show footer', true) ? footer : null,
     headerActions: (
       <div>
         <Button mode="single-icon" type="ghost" onClick={action('Additional header button clicked')}>
@@ -141,6 +156,8 @@ const withHeaders = () => {
     ),
   };
   const header = select('Set header type', HeaderKnobs, HeaderTypes.DEFAULT);
-  return <S.Modal {...storyProps} {...customHeaderProps(header)} withTabs={header === HeaderTypes.TABS} />;
+  return <S.Modal {...storyProps} {...customHeaderProps(header)} withTabs={header === HeaderTypes.TABS} >
+    <S.ContentPlaceholder></S.ContentPlaceholder>
+  </S.Modal>;
 };
 export default withHeaders;
