@@ -40,7 +40,7 @@ const stories = {
           </Grid>
         </S.FixedGrid>
         <Grid>
-          <Grid.Item xxl={8} xl={4} lg={4} md={2} sm={2} xs={3}>
+          <Grid.Item xxl={8} xl={4} lg={4} md={2} sm={8} xs={3}>
             <Card showContent title="Item #1">
               <Description type="inline">
                 <DescriptionRow label={'XXL'} value={'Span 8 of 24'}/>
@@ -52,7 +52,7 @@ const stories = {
               </Description>
             </Card>
           </Grid.Item>
-          <Grid.Item xxl={8} xl={8} lg={4} md={4} sm={4} xs={3}>
+          <Grid.Item xxl={8} xl={8} lg={4} md={4} sm={8} xs={3}>
             <Card showContent title="Item #1">
               <Description type="inline">
                 <DescriptionRow label={'XXL'} value={'Span 8 of 24'}/>
@@ -64,7 +64,7 @@ const stories = {
               </Description>
             </Card>
           </Grid.Item>
-          <Grid.Item xxl={8} xl={4} lg={4} md={2} sm={2} xs={3}>
+          <Grid.Item xxl={8} xl={4} lg={4} md={2} sm={8} xs={3}>
             <Card showContent title="Item #1">
               <Description type="inline">
                 <DescriptionRow label={'XXL'} value={'Span 8 of 24'}/>
