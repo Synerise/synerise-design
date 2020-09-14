@@ -8,6 +8,7 @@ import { DSProvider } from '@synerise/ds-core';
 import syneriseTheme from './theme';
 import './style/index.css';
 import '@synerise/ds-core/dist/js/style';
+import VIEWPORTS from './viewports';
 const req = require.context('../stories', true, /\.stories.tsx$/);
 
 const withDSProvider = (storyFn) => React.createElement(DSProvider, {
@@ -84,6 +85,10 @@ addParameters({
   options: {
     theme: syneriseTheme,
   },
+  viewport: {
+    viewports: VIEWPORTS,
+    defaultViewport: '1280'
+  }
 });
 
 configure(loadStories, module);
