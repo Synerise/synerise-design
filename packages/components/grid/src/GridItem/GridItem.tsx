@@ -36,7 +36,11 @@ const Item: React.FC<GridItemProps> = ({ children, ...props }) => {
     return breakpointData.breakpoint?.columns || DEFAULT_COLUMNS_NUMBER;
   }, [breakpointColumns, breakpointData.breakpoint?.columns]);
 
-  return <S.GridItem columns={getColumns}>{children}</S.GridItem>;
+  return (
+    <S.GridItem className="ds-grid-item" columns={getColumns}>
+      {children}
+    </S.GridItem>
+  );
 };
 
 export default Item;

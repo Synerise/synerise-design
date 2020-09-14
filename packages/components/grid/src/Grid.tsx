@@ -18,7 +18,11 @@ const Grid: React.FC<GridProps> & {
   const breakpointData: DimensionsWithBreakpoint = useBreakpoint();
 
   return (
-    <S.GridContainer columns={breakpointData.breakpoint?.columns || DEFAULT_COLUMNS_NUMBER} gutter={gutter}>
+    <S.GridContainer
+      className="ds-grid"
+      columns={breakpointData.breakpoint?.columns || DEFAULT_COLUMNS_NUMBER}
+      gutter={gutter}
+    >
       <GridContext.Provider value={breakpointData}>{children}</GridContext.Provider>
     </S.GridContainer>
   );
