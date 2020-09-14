@@ -13,7 +13,7 @@ import {
   FolderM,
   OptionHorizontalM,
   TrashM,
-  CloseM
+  CloseM,
 } from '@synerise/ds-icon/dist/icons';
 
 import Dropdown from '@synerise/ds-dropdown';
@@ -34,21 +34,21 @@ const Header: React.FC<HeaderProps> = ({
   onEdit,
   onId,
   texts,
-  onActionClick
+  onActionClick,
 }) => {
-  const renderActionButtons =(): React.ReactNode => {
+  const renderActionButtons = (): React.ReactNode => {
     return (
-      <React.Fragment>
+      <div>
         <Tooltip title="next">
           <S.ButtonWrapper>
-            <Button type='ghost' mode="single-icon">
+            <Button type="ghost" mode="single-icon">
               <Icon size={20} component={<AngleUpM />} />
             </Button>
           </S.ButtonWrapper>
         </Tooltip>
         <Tooltip title="previous">
           <S.ButtonWrapper>
-            <Button type='ghost' mode="single-icon">
+            <Button type="ghost" mode="single-icon">
               <Icon size={20} component={<AngleDownM />} />
             </Button>
           </S.ButtonWrapper>
@@ -72,17 +72,17 @@ const Header: React.FC<HeaderProps> = ({
           }
         >
           <S.ButtonWrapper>
-            <Button type='ghost' mode="single-icon">
+            <Button type="ghost" mode="single-icon">
               <Icon component={<OptionHorizontalM />} />
             </Button>
           </S.ButtonWrapper>
         </Dropdown>
         <S.ButtonWrapper>
-          <Button type='ghost' mode="single-icon" onClick={onActionClick}>
+          <Button type="ghost" mode="single-icon" onClick={onActionClick}>
             <Icon component={<CloseM />} />
           </Button>
         </S.ButtonWrapper>
-      </React.Fragment>
+      </div>
     );
   };
   return (
@@ -105,7 +105,6 @@ const Header: React.FC<HeaderProps> = ({
         </S.DrawerHeaderBar>
         {tabs}
       </Drawer.DrawerHeader>
-
     </Drawer.DrawerHeaderWithoutPadding>
   );
 };

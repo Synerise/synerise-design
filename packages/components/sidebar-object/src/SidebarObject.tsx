@@ -43,19 +43,23 @@ const SidebarObject: React.FC<SidebarObjectProps> = ({
         texts={texts}
         activeTab={activeTab}
       />
-      {activeTab === 0 && <S.HeaderWrapper>
-        Folder:{' '}
-        <Dropdown
-          overlayStyle={{ boxShadow: '0 4px 17px -3px rgba(191,191,191,1)' }}
-          overlay={<DropdownOverlay texts={texts} parentFolder={parentFolder}  data={folders}></DropdownOverlay>}
-        >
-          <Button type="ghost">
-            {parentFolder.name}
-            <Icon component={<AngleDownS />} />
-          </Button>
-        </Dropdown>
-      </S.HeaderWrapper>}
-      {activeTab === 0 &&<Content texts={texts} description={<ObjectSummary inputObject={inputObject} />} tags={contentTags}/>}
+      {activeTab === 0 && (
+        <S.HeaderWrapper>
+          Folder:{' '}
+          <Dropdown
+            overlayStyle={{ boxShadow: '0 4px 17px -3px rgba(191,191,191,1)' }}
+            overlay={<DropdownOverlay texts={texts} parentFolder={parentFolder} data={folders} />}
+          >
+            <Button type="ghost">
+              {parentFolder.name}
+              <Icon component={<AngleDownS />} />
+            </Button>
+          </Dropdown>
+        </S.HeaderWrapper>
+      )}
+      {activeTab === 0 && (
+        <Content texts={texts} description={<ObjectSummary inputObject={inputObject} />} tags={contentTags} />
+      )}
     </div>
   );
 };

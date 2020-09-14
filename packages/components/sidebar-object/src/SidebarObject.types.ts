@@ -1,7 +1,6 @@
 import { FolderItem } from '@synerise/ds-folders/Folders.types';
-import { HeaderTexts } from './Elements/Header/Header.types';
 import { TabItem } from '@synerise/ds-tabs/dist/Tabs';
-
+import { HeaderTexts } from './Elements/Header/Header.types';
 
 export type SidebarObjectProps = {
   avatar: React.ReactNode;
