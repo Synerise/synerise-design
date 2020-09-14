@@ -47,7 +47,7 @@ const stories = {
                 <DescriptionRow label={'XL'} value={'Span 4 of 16'}/>
                 <DescriptionRow label={'LG'} value={'Span 4 of 12'}/>
                 <DescriptionRow label={'MD'} value={'Span 2 of 8'}/>
-                <DescriptionRow label={'SM'} value={'Span 2 of 8'}/>
+                <DescriptionRow label={'SM'} value={'Span 8 of 8'}/>
                 <DescriptionRow label={'XS'} value={'Span 3 of 3'}/>
               </Description>
             </Card>
@@ -59,7 +59,7 @@ const stories = {
                 <DescriptionRow label={'XL'} value={'Span 8 of 16'}/>
                 <DescriptionRow label={'LG'} value={'Span 4 of 12'}/>
                 <DescriptionRow label={'MD'} value={'Span 4 of 8'}/>
-                <DescriptionRow label={'SM'} value={'Span 4 of 8'}/>
+                <DescriptionRow label={'SM'} value={'Span 8 of 8'}/>
                 <DescriptionRow label={'XS'} value={'Span 3 of 3'}/>
               </Description>
             </Card>
@@ -71,7 +71,7 @@ const stories = {
                 <DescriptionRow label={'XL'} value={'Span 4 of 16'}/>
                 <DescriptionRow label={'LG'} value={'Span 4 of 12'}/>
                 <DescriptionRow label={'MD'} value={'Span 2 of 8'}/>
-                <DescriptionRow label={'SM'} value={'Span 2 of 8'}/>
+                <DescriptionRow label={'SM'} value={'Span 8 of 8'}/>
                 <DescriptionRow label={'XS'} value={'Span 3 of 3'}/>
               </Description>
             </Card>
