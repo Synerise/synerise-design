@@ -1,14 +1,14 @@
 import * as React from 'react';
+import Tabs from '@synerise/ds-tabs';
+import Dropdown from '@synerise/ds-dropdown';
+import Button from '@synerise/ds-button';
+import Icon from '@synerise/ds-icon';
+import { AngleDownS } from '@synerise/ds-icon/dist/icons';
 import { SidebarObjectProps } from './SidebarObject.types';
 import Header from './Elements/Header/Header';
 import Content from './Elements/Content/Content';
 import ObjectSummary from './Elements/ObjectSummary/ObjectSummary';
-import Tabs from '@synerise/ds-tabs';
-import Dropdown from '@synerise/ds-dropdown';
 import DropdownOverlay from './Elements/Header/Dropdown/DropdownOverlay';
-import Button from '@synerise/ds-button';
-import Icon from '@synerise/ds-icon';
-import { AngleDownS } from '@synerise/ds-icon/dist/icons';
 import * as S from './Elements/Header/Header.style';
 
 const SidebarObject: React.FC<SidebarObjectProps> = ({

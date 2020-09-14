@@ -6,7 +6,6 @@ import InlineEdit from '@synerise/ds-inline-edit';
 import Button from '@synerise/ds-button';
 import {
   AngleDownM,
-  AngleDownS,
   AngleUpM,
   CopyClipboardM,
   DuplicateM,
