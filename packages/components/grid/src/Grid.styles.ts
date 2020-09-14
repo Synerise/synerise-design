@@ -10,4 +10,5 @@ export const GridContainer = styled.div<{ columns: number; gutter: number }>`
 
 export const GridItem = styled.div<{ columns?: number }>`
   grid-column: span ${(props): number => props.columns || 1};
+  display: ${(props): string => (props.columns === 0 ? 'none' : 'inherit')};
 `;

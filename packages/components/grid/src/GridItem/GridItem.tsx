@@ -8,6 +8,7 @@ const BREAKPOINTS = ['xxl', 'xl', 'lg', 'md', 'sm', 'xs'];
 
 const Item: React.FC<GridItemProps> = ({ children, ...props }) => {
   const breakpointData: DimensionsWithBreakpoint = React.useContext(GridContext);
+
   const definedBreakpoints = React.useMemo(() => {
     return BREAKPOINTS.filter(breakpoint => props[breakpoint] !== undefined).map(breakpoint => {
       return {
@@ -17,7 +18,7 @@ const Item: React.FC<GridItemProps> = ({ children, ...props }) => {
     });
   }, [props]);
 
-  const findBreakpoint = React.useMemo((): number | undefined => {
+  const breakpointColumns = React.useMemo((): number | undefined => {
     if (breakpointData.breakpoint) {
       const { name } = breakpointData.breakpoint;
       if (props[name] !== undefined) return props[name];
@@ -31,8 +32,9 @@ const Item: React.FC<GridItemProps> = ({ children, ...props }) => {
   }, [breakpointData.breakpoint, definedBreakpoints, props]);
 
   const getColumns = React.useMemo(() => {
-    return findBreakpoint || breakpointData.breakpoint?.columns || DEFAULT_COLUMNS_NUMBER;
-  }, [findBreakpoint, breakpointData.breakpoint?.columns]);
+    if (breakpointColumns !== undefined) return breakpointColumns;
+    return breakpointData.breakpoint?.columns || DEFAULT_COLUMNS_NUMBER;
+  }, [breakpointColumns, breakpointData.breakpoint?.columns]);
 
   return <S.GridItem columns={getColumns}>{children}</S.GridItem>;
 };
