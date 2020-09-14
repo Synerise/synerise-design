@@ -1,43 +1,54 @@
 import * as React from 'react';
 
 import Grid from '@synerise/ds-grid';
-import { GridItem } from '@synerise/ds-grid/dist/Grid.styles';
+import Card from '@synerise/ds-card';
+import { number } from '@storybook/addon-knobs';
+import Description, { DescriptionRow } from '@synerise/ds-description';
 
 const stories = {
   default: () => {
+    console.log('test');
     return (
-      <Grid>
-        <GridItem>Item #1</GridItem>
-        <GridItem columns={3}>Item #2</GridItem>
-        <GridItem>Item #3</GridItem>
-        <GridItem>Item #4</GridItem>
-        <GridItem>Item #5</GridItem>
-        <GridItem>Item #6</GridItem>
-        <GridItem>Item #7</GridItem>
-        <GridItem>Item #8</GridItem>
-        <GridItem>Item #9</GridItem>
-        <GridItem>Item #10</GridItem>
-        <GridItem>Item #11</GridItem>
-        <GridItem>Item #12</GridItem>
-        <GridItem>Item #13</GridItem>
-        <GridItem>Item #14</GridItem>
-        <GridItem>Item #15</GridItem>
-        <GridItem>Item #16</GridItem>
-        <GridItem>Item #17</GridItem>
-        <GridItem>Item #18</GridItem>
-        <GridItem>Item #19</GridItem>
-        <GridItem>Item #20</GridItem>
-        <GridItem>Item #21</GridItem>
-        <GridItem>Item #22</GridItem>
-        <GridItem>Item #23</GridItem>
-        <GridItem>Item #24</GridItem>
-        <GridItem>Item #25</GridItem>
-        <GridItem>Item #26</GridItem>
-        <GridItem>Item #27</GridItem>
-        <GridItem>Item #28</GridItem>
-        <GridItem>Item #29</GridItem>
-        <GridItem>Item #30</GridItem>
-      </Grid>
+      <div style={{width: '100%', height: '100%', position: 'absolute', top: 0, left: 0, padding: 24}}>
+        <Grid>
+          <Grid.Item xxl={8} xl={4} lg={4} md={2} sm={2} xs={3}>
+            <Card showContent title="Item #1">
+              <Description type="inline">
+                <DescriptionRow label={'XXL'} value={'Span 8 of 24'}/>
+                <DescriptionRow label={'XL'} value={'Span 4 of 16'}/>
+                <DescriptionRow label={'LG'} value={'Span 4 of 12'}/>
+                <DescriptionRow label={'MD'} value={'Span 2 of 8'}/>
+                <DescriptionRow label={'SM'} value={'Span 2 of 8'}/>
+                <DescriptionRow label={'XS'} value={'Span 3 of 3'}/>
+              </Description>
+            </Card>
+          </Grid.Item>
+          <Grid.Item xxl={8} xl={8} lg={4} md={4} sm={4} xs={3}>
+            <Card showContent title="Item #1">
+              <Description type="inline">
+                <DescriptionRow label={'XXL'} value={'Span 8 of 24'}/>
+                <DescriptionRow label={'XL'} value={'Span 8 of 16'}/>
+                <DescriptionRow label={'LG'} value={'Span 4 of 12'}/>
+                <DescriptionRow label={'MD'} value={'Span 2 of 8'}/>
+                <DescriptionRow label={'SM'} value={'Span 2 of 8'}/>
+                <DescriptionRow label={'XS'} value={'Span 3 of 3'}/>
+              </Description>
+            </Card>
+          </Grid.Item>
+          <Grid.Item xxl={8} xl={4} lg={4} md={2} sm={2} xs={3}>
+            <Card showContent title="Item #1">
+              <Description type="inline">
+                <DescriptionRow label={'XXL'} value={'Span 8 of 24'}/>
+                <DescriptionRow label={'XL'} value={'Span 4 of 16'}/>
+                <DescriptionRow label={'LG'} value={'Span 4 of 12'}/>
+                <DescriptionRow label={'MD'} value={'Span 2 of 8'}/>
+                <DescriptionRow label={'SM'} value={'Span 2 of 8'}/>
+                <DescriptionRow label={'XS'} value={'Span 3 of 3'}/>
+              </Description>
+            </Card>
+          </Grid.Item>
+        </Grid>
+      </div>
     )
   },
 };
