@@ -34,7 +34,7 @@ const Item: React.FC<GridItemProps> = ({ children, ...props }) => {
   const getColumns = React.useMemo(() => {
     if (breakpointColumns !== undefined) return breakpointColumns;
     return breakpointData.breakpoint?.columns || DEFAULT_COLUMNS_NUMBER;
-  }, [breakpointColumns, breakpointData.breakpoint?.columns]);
+  }, [breakpointColumns, breakpointData]);
 
   return (
     <S.GridItem className="ds-grid-item" columns={getColumns}>
