@@ -21,7 +21,7 @@ describe('SidebarObject', () => {
     const { getByDisplayValue } = renderWithProvider(
       <SidebarObject
         name='Name'
-        parentFolder={{name: 'Folder'}}
+        parentFolder={{name: 'Folder', id: 'FolderItem'}}
         // @ts-ignore
         texts={{name: 'Text'}}
         inputObject={{}}
@@ -36,7 +36,7 @@ describe('SidebarObject', () => {
     const { getByText } = renderWithProvider(
       <SidebarObject
         name='Name'
-        parentFolder={{name: 'Folder'}}
+        parentFolder={{name: 'Folder', id: 'FolderItem'}}
         // @ts-ignore
         texts={{name: 'Text'}}
         inputObject={{Status: 'active'}}
@@ -51,7 +51,7 @@ describe('SidebarObject', () => {
     const { getByText } = renderWithProvider(
       <SidebarObject
         name='Name'
-        parentFolder={{name: 'Folder'}}
+        parentFolder={{name: 'Folder' ,id: 'FolderItem'}}
         // @ts-ignore
         texts={{name: 'Text'}}
         inputObject={{Status: 'active'}}
@@ -66,7 +66,7 @@ describe('SidebarObject', () => {
     const { container } = renderWithProvider(
       <SidebarObject
         name='Name'
-        parentFolder={{name: 'Folder'}}
+        parentFolder={{name: 'Folder' ,id: 'FolderItem'}}
         // @ts-ignore
         texts={{name: 'Text'}}
         inputObject={{Status: 'active'}}
@@ -84,7 +84,7 @@ describe('SidebarObject', () => {
     const { container } = renderWithProvider(
       <SidebarObject
         name='Name'
-        parentFolder={{name: 'Folder'}}
+        parentFolder={{name: 'Folder' ,id: 'FolderItem'}}
         // @ts-ignore
         texts={{name: 'Text'}}
         inputObject={{Status: 'active'}}

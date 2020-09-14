@@ -16,7 +16,8 @@ export type HeaderProps = {
   onDelete: (inputObject: object) => void;
   onId: (inputObject: object) => void;
   texts: HeaderTexts;
-  onActionClick: () => void;
+  onCloseClick: () => void;
+  activeTab: number;
 };
 
 export type HeaderTexts = {

@@ -4,6 +4,7 @@ import Icon from '@synerise/ds-icon';
 import Typography from 'antd/lib/typography';
 import InlineEdit from '@synerise/ds-inline-edit';
 import Button from '@synerise/ds-button';
+import { action } from '@storybook/addon-actions';
 import {
   AngleDownM,
   AngleUpM,
@@ -34,11 +35,11 @@ const Header: React.FC<HeaderProps> = ({
   onEdit,
   onId,
   texts,
-  onActionClick,
+  onCloseClick,
 }) => {
   const renderActionButtons = (): React.ReactNode => {
     return (
-      <div>
+      <>
         <Tooltip title="next">
           <S.ButtonWrapper>
             <Button type="ghost" mode="single-icon">
@@ -78,11 +79,11 @@ const Header: React.FC<HeaderProps> = ({
           </S.ButtonWrapper>
         </Dropdown>
         <S.ButtonWrapper>
-          <Button type="ghost" mode="single-icon" onClick={onActionClick}>
+          <Button type="ghost" mode="single-icon" onClick={onCloseClick}>
             <Icon component={<CloseM />} />
           </Button>
         </S.ButtonWrapper>
-      </div>
+      </>
     );
   };
   return (
@@ -98,6 +99,7 @@ const Header: React.FC<HeaderProps> = ({
                 value: name,
                 maxLength: 120,
                 placeholder: texts.namePlaceholder,
+                onChange: action('on Change'),
               }}
             />
           </Typography.Title>

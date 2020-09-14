@@ -9,28 +9,19 @@ import { DropdownWrapper, MenuWrapper } from './Dropdown.style';
 import { HeaderTexts } from '../Header.types';
 
 interface Props {
-  value: string;
-  onSearchChange: (value: string) => void;
   data: FolderItem[];
-  onClickAction: () => void;
+  onClickAction?: () => void;
   onClearInput?: () => void;
   parentFolder: FolderItem;
   texts: HeaderTexts;
 }
 
-const DropdownOverlay: React.FC<Props> = ({
-  value,
-  onSearchChange,
-  onClearInput,
-  data,
-  onClickAction,
-  parentFolder,
-  texts,
-}) => {
+const DropdownOverlay: React.FC<Props> = ({ onClearInput, data, onClickAction, parentFolder, texts }) => {
+  const [value, setValue] = React.useState('');
   return (
     <DropdownWrapper>
       <Dropdown.SearchInput
-        onSearchChange={onSearchChange}
+        onSearchChange={setValue}
         onClearInput={onClearInput}
         placeholder={texts.search}
         value={value}
@@ -46,7 +37,12 @@ const DropdownOverlay: React.FC<Props> = ({
           ))}
         </Menu>
       </MenuWrapper>
-      <Dropdown.BottomAction onClickAction={onClickAction} icon={<Add3M />}>
+      <Dropdown.BottomAction
+        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+        // @ts-ignore
+        onClickAction={onClickAction}
+        icon={<Add3M />}
+      >
         Add folder
       </Dropdown.BottomAction>
     </DropdownWrapper>

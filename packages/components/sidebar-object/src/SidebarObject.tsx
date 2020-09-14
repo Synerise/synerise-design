@@ -26,6 +26,7 @@ const SidebarObject: React.FC<SidebarObjectProps> = ({
   onId,
   parentFolder,
   texts,
+  onCloseClick,
 }) => {
   const [activeTab, setActiveTab] = React.useState(0);
   return (
@@ -42,6 +43,7 @@ const SidebarObject: React.FC<SidebarObjectProps> = ({
         onId={onId}
         texts={texts}
         activeTab={activeTab}
+        onCloseClick={onCloseClick}
       />
       {activeTab === 0 && (
         <S.HeaderWrapper>

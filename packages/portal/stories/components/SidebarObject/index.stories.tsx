@@ -109,10 +109,7 @@ const headerTypes = {
   singleTitleWithBackIcon: 'singleTitleWithBackIcon',
 };
 
-const closeActionTypes = {
-  twoButtons: 'twoButtons',
-  singleCloseIcon: 'singleCloseIcon',
-};
+
 
 const renderBackIcon = (headerType, onBackClickHandler) => {
   if (headerType === headerTypes.singleTitleWithBackIcon) {
@@ -143,7 +140,6 @@ const stories = {
     const disabled = boolean('Disable entire group', false);
     const data = [{  id :'2',name: 'Example folder' }, { name: 'Winter' }, { name: 'Summer' }, { name: 'Drafts' }, { name: 'Archived' }];
     let headerType = select('Set header type', headerTypes, headerTypes.singleTitle);
-    let closeActionType = select('Set close action type', closeActionTypes, closeActionTypes.twoButtons);
     return (
       <div>
         <Button onClick={() => setDrawerVisible(!drawerVisible)} type="primary">
@@ -169,7 +165,8 @@ const stories = {
                   style={{ flex: 1, margin: 0 }}
                 />
               </Badge>
-            } folders={data}
+
+            } onCloseClick={() => setDrawerVisible(false)} folders={data}
             parentFolder={{ id :'2',name: 'Example folder' }}
             name={'Winter Campaign'}
             texts={{value: 'Description',placeholder: 'This is placeholder',name: 'DescriptionInput',search: 'Search'}}
