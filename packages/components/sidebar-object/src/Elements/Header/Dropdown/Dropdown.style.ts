@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const DropdownWrapper = styled.div`
-  background: #fff;
+  background: ${(props): string => props.theme.palette.white };
   width: 220px;
 `;
 export const MenuWrapper = styled.div`

@@ -1,11 +1,13 @@
 import { FolderItem } from '@synerise/ds-folders/Folders.types';
+import { HeaderTexts } from './Elements/Header/Header.types';
+import { TabItem } from '@synerise/ds-tabs/dist/Tabs';
+
 
 export type SidebarObjectProps = {
-  value?: string;
   avatar: React.ReactNode;
   name: string;
   headerPreffix: React.ReactNode;
-  headerTabs: React.ReactNode;
+  headerTabs: TabItem[];
   inputObject: object;
   contentTags: React.ReactNode;
   folders: FolderItem[];
@@ -15,4 +17,5 @@ export type SidebarObjectProps = {
   onDelete: (inputObject: object) => void;
   onId: (inputObject: object) => void;
   parentFolder: FolderItem;
+  texts: HeaderTexts;
 };

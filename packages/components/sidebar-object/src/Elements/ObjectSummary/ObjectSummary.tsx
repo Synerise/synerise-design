@@ -5,7 +5,7 @@ import { ObjectSummaryProps } from './ObjectSummary.types';
 const ObjectSummary: React.FC<ObjectSummaryProps> = ({inputObject}) => {
   const keys = Object.keys(inputObject);
   return ( <Description>
-    {keys.map(key=><DescriptionRow label={key} value={inputObject[key]} />)}</Description>
+    {keys.map(key=> <DescriptionRow label={key} value={inputObject[key]} />)}</Description>
   );
 
 };

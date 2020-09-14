@@ -5,11 +5,8 @@ import Button from '@synerise/ds-button';
 import Drawer from '@synerise/ds-drawer';
 import Tabs from '@synerise/ds-tabs';
 import Icon from '@synerise/ds-icon';
-import { AngleDownM, AngleUpM, EditM, FolderM, OptionHorizontalM } from '@synerise/ds-icon/dist/icons';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
-import { FormattedMessage } from 'react-intl';
 import ArrowLeftM from '@synerise/ds-icon/dist/icons/ArrowLeftM';
-import CloseM from '@synerise/ds-icon/dist/icons/CloseM';
 import Badge from '@synerise/ds-badge';
 import Avatar from '@synerise/ds-avatar';
 import MailS from '@synerise/ds-icon/dist/icons/MailS';
@@ -18,11 +15,6 @@ import Status from '@synerise/ds-status';
 import Tags, { TagShape } from '@synerise/ds-tags';
 import { v4 as uuid } from 'uuid';
 import sample from 'lodash/sample';
-import { ButtonWrapper } from '@synerise/ds-sidebar-object/Elements/Header/Header.style';
-import  Tooltip  from '@synerise/ds-tooltip';
-import Dropdown from '@synerise/ds-dropdown';
-import Menu from '@synerise/ds-menu';
-import { MenuWrapper } from '@synerise/ds-sidebar-object/Elements/Header/Dropdown/Dropdown.style';
 
 const sizes = ['small', 'medium', 'large', 'extraLarge'] as const;
 const statuses = ['blocked', 'inactive', 'active'] as const;
@@ -138,7 +130,6 @@ const renderBackIcon = (headerType, onBackClickHandler) => {
 const stories = {
   default: () => {
     const [drawerVisible, setDrawerVisible] = React.useState(false);
-    const [activeTab, setActiveTab] = React.useState(0);
     const [tags, setTags] = React.useState<Array<any>>(allTags);
     const [selected, setSelected] = React.useState<Array<any>>(allTags.slice(0, 2));
     const shapes = {
@@ -182,13 +173,14 @@ const stories = {
             } folders={data}
             parentFolder={{ id :'2',name: 'Example folder' }}
             name={'Winter Campaign'}
+            texts={{value: 'Description',placeholder: 'This is placeholder',name: 'DescriptionInput',search: 'Search'}}
             headerPreffix={renderBackIcon(headerType, () => setDrawerVisible(false))}
             onEdit={()=> {}}
             onDuplicate={()=> {}}
             onMove={()=> {}}
             onDelete={()=> {}}
             onId={()=> {}}
-            headerTabs={<Tabs activeTab={activeTab} tabs={TABS} handleTabClick={setActiveTab} />}
+            headerTabs={TABS}
             inputObject={{'Type:': "Email campaign",
               'Status': <div><Status label="Draft" type="disabled" /></div>,
               'Author': <div><Avatar src={imgSrc} size="small" shape="circle" style={{marginRight: '10px'}}/>Teresa Smith</div>,

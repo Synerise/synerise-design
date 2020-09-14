@@ -14,13 +14,12 @@ import {
   FolderM,
   OptionHorizontalM,
   TrashM,
+  CloseM
 } from '@synerise/ds-icon/dist/icons';
 
 import Dropdown from '@synerise/ds-dropdown';
 import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
 import Menu from '@synerise/ds-menu';
-import CloseM from '@synerise/ds-icon/dist/icons/CloseM';
-import DropdownOverlay from './Dropdown/DropdownOverlay';
 import { HeaderProps } from './Header.types';
 import * as S from './Header.style';
 import { MenuWrapper } from './Header.style';
@@ -30,15 +29,15 @@ const Header: React.FC<HeaderProps> = ({
   name,
   preffix,
   tabs,
-  exampleFolders,
   onMove,
   onDuplicate,
   onDelete,
   onEdit,
   onId,
-  parentFolder,
+  texts,
+  onActionClick
 }) => {
-  const renderActionButtons = actionClickHandler => {
+  const renderActionButtons =(): React.ReactNode => {
     return (
       <React.Fragment>
         <Tooltip title="next">
@@ -80,7 +79,7 @@ const Header: React.FC<HeaderProps> = ({
           </S.ButtonWrapper>
         </Dropdown>
         <S.ButtonWrapper>
-          <Button type='ghost' mode="single-icon" onClick={actionClickHandler}>
+          <Button type='ghost' mode="single-icon" onClick={onActionClick}>
             <Icon component={<CloseM />} />
           </Button>
         </S.ButtonWrapper>
@@ -96,10 +95,10 @@ const Header: React.FC<HeaderProps> = ({
           <Typography.Title style={{ flex: 2, marginLeft: '15px' }} level={4}>
             <InlineEdit
               input={{
-                name: 'name-of-input',
+                name: texts.name,
                 value: name,
                 maxLength: 120,
-                placeholder: 'This is placeholder',
+                placeholder: texts.namePlaceholder,
               }}
             />
           </Typography.Title>
@@ -107,18 +106,7 @@ const Header: React.FC<HeaderProps> = ({
         </S.DrawerHeaderBar>
         {tabs}
       </Drawer.DrawerHeader>
-      <S.HeaderWrapper>
-        Folder:{' '}
-        <Dropdown
-          overlayStyle={{ boxShadow: '0 4px 17px -3px rgba(191,191,191,1)' }}
-          overlay={<DropdownOverlay parentFolder={parentFolder} data={exampleFolders}></DropdownOverlay>}
-        >
-          <Button type="ghost">
-            {parentFolder.name}
-            <Icon component={<AngleDownS />} />
-          </Button>
-        </Dropdown>
-      </S.HeaderWrapper>
+
     </Drawer.DrawerHeaderWithoutPadding>
   );
 };

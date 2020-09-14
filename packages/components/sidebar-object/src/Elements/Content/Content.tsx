@@ -5,7 +5,7 @@ import { ContentProps } from './Content.types';
 import { ContentWrapper, InlineEditWrapper, TagsWrapper } from './Content.style';
 
 
-const Content: React.FC<ContentProps> = ({description,tags}) => {
+const Content: React.FC<ContentProps> = ({description,tags,texts}) => {
   return<Drawer.DrawerBody>
     <ContentWrapper>
     {description}
@@ -16,10 +16,10 @@ const Content: React.FC<ContentProps> = ({description,tags}) => {
     <InlineEditWrapper>
       <InlineEdit
         input={{
-          name: 'DescriptionInput',
-          value: 'Description',
+          name: texts.name,
+          value: texts.value,
           maxLength: 120,
-          placeholder: 'This is placeholder',
+          placeholder: texts.inlineEditPlaceholder,
         }}
         size='small'
       />
