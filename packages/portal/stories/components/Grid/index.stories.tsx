@@ -48,7 +48,7 @@ const stories = {
                 <DescriptionRow label={'LG'} value={'Span 4 of 12'}/>
                 <DescriptionRow label={'MD'} value={'Span 2 of 8'}/>
                 <DescriptionRow label={'SM'} value={'Span 2 of 8'}/>
-                <DescriptionRow label={'XS'} value={' Span 3 of 3'}/>
+                <DescriptionRow label={'XS'} value={'Span 3 of 3'}/>
               </Description>
             </Card>
           </Grid.Item>
