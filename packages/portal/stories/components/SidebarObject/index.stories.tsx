@@ -3,7 +3,6 @@ import SidebarObject from '@synerise/ds-sidebar-object';
 import { boolean, select } from '@storybook/addon-knobs';
 import Button from '@synerise/ds-button';
 import Drawer from '@synerise/ds-drawer';
-import Tabs from '@synerise/ds-tabs';
 import Icon from '@synerise/ds-icon';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import ArrowLeftM from '@synerise/ds-icon/dist/icons/ArrowLeftM';

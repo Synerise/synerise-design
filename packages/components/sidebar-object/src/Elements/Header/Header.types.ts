@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { FolderItem } from '@synerise/ds-folders/Folders.types';
 
 export type HeaderProps = {
   value?: string;
