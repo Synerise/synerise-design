@@ -14,6 +14,12 @@ export const Item = styled.div`
   width: 100%;
   position: relative;
   height: 100vh;
-  background-color: ${(props): string => props.theme.palette['blue-600']};
-  opacity: 0.1;
+  background-color: ${(props): string => props.theme.palette['grey-200']};
+  opacity: 0.3;
+`;
+
+export const GridItem = styled.div`
+  background-color: ${(props): string => props.theme.palette.white};
+  border: 1px dashed ${(props): string => props.theme.palette.black};
+  padding: 24px;
 `;
