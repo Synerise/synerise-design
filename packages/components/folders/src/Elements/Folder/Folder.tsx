@@ -42,9 +42,9 @@ const Folder: React.FC<FolderProps> = ({
   React.useEffect(() => {
     setFolderName(name);
   }, [name]);
-  const getPrefix = React.useCallback((isFavourite, isHovered): React.ReactNode => {
+  const getPrefix = React.useCallback((isFavourite, isHovered, isEditMode): React.ReactNode => {
     if (isFavourite) {
-      return isHovered ? <FolderFavouriteFlatM /> : <FolderFavouriteM />;
+      return isHovered || isEditMode ? <FolderFavouriteFlatM /> : <FolderFavouriteM />;
     }
     return <FolderM />;
   }, []);
@@ -126,10 +126,12 @@ const Folder: React.FC<FolderProps> = ({
         onItemSelect && onItemSelect(item);
       }}
       prefixel={
-        <Icon
-          component={getPrefix(favourite, hovered)}
-          color={hovered ? theme.palette['blue-600'] : theme.palette['grey-600']}
-        />
+        <S.PrefixWrapper>
+          <Icon
+            component={getPrefix(favourite, hovered, editMode)}
+            color={hovered || editMode ? theme.palette['blue-600'] : theme.palette['grey-600']}
+          />
+        </S.PrefixWrapper>
       }
       suffixel={
         <S.SuffixWrapper className={hovered ? 'suffix-wrapper-hovered' : undefined}>{renderSuffix()}</S.SuffixWrapper>

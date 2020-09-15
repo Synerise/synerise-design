@@ -26,7 +26,9 @@ export const InlineEditInput = styled(BorderLessInput)<DSInputProps>`
   width: 100%;
 `;
 
-export const SuffixWrapper = styled.div``;
+export const SuffixWrapper = styled.div`
+  transition: opacity 0.2s ease-out;
+`;
 export const FolderItem = styled(Menu.Item)<
   MenuItemProps & JSX.IntrinsicAttributes & { inline: boolean; editMode: boolean }
 >`
@@ -35,7 +37,6 @@ export const FolderItem = styled(Menu.Item)<
     z-index: 1;
     border-radius: 3px !important;
     ${SuffixWrapper}:not(.suffix-wrapper-hovered) {
-      ${(props): string | false => props.inline && 'display:none;'}
       opacity: 0;
     }
     ${InlineEditWrapper} {
@@ -46,6 +47,16 @@ export const FolderItem = styled(Menu.Item)<
       margin-right: 8px;
       margin-top: ${(props): string => (props.editMode ? '-2px' : '0')};
     }
+    ${(props): FlattenSimpleInterpolation | false =>
+      props.editMode &&
+      css`
+        & {
+          background-color: ${props.theme.palette['grey-050']};
+          ${SuffixWrapper} {
+            display: none;
+          }
+        }
+      `}
 
     &:hover {
       ${SuffixWrapper} {
@@ -65,3 +76,4 @@ export const FolderText = styled.div`
   display: block;
   text-overflow: ellipsis;
 `;
+export const PrefixWrapper = styled.div``;
