@@ -29,7 +29,7 @@ const Operators: React.FC<OperatorsProps> = ({ value, onChange, groups, items, t
       }
     >
       <Button type="secondary" mode="label-icon" onClick={(): void => setDropdownVisible(true)}>
-        {(value as OperatorsItem).name || texts.buttonLabel}
+        {value ? (value as OperatorsItem).name : texts.buttonLabel}
         <Icon component={<AngleDownS />} />
       </Button>
     </Dropdown>

@@ -11,7 +11,7 @@ export type OperatorsItem = {
   icon: React.ReactNode;
   group?: string;
   groupId: React.ReactText;
-  groupName: string;
+  groupName?: string;
   id: React.ReactText;
   logic?: string;
   value?: string;
@@ -29,7 +29,7 @@ export type OperatorsGroup = {
 };
 
 export type OperatorsProps = {
-  value: OperatorsItem;
+  value?: OperatorsItem | undefined;
   onChange: (item: OperatorsItem | OperatorsGroup) => void;
   groups: OperatorsGroup[];
   items: OperatorsItem[];
