@@ -1,4 +1,4 @@
-import styled, { FlattenInterpolation } from 'styled-components';
+import styled, { css, FlattenInterpolation, FlattenSimpleInterpolation } from 'styled-components';
 import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { macro } from '@synerise/ds-typography';
 
@@ -6,10 +6,16 @@ type InPlaceEditableInputContainerProps = {
   size: 'small' | 'normal';
   disabled?: boolean;
   error?: boolean;
+  pressed?: boolean;
 };
 const applyColor = (props: ThemeProps & InPlaceEditableInputContainerProps): string => {
   if (props.error) return props.theme.palette['red-600'];
   return props.theme.palette['grey-800'];
+};
+
+const applyColorFocus = (props: ThemeProps & InPlaceEditableInputContainerProps): string => {
+  if (props.error) return props.theme.palette['red-600'];
+  return props.theme.palette['blue-600'];
 };
 
 const applyDots = (props: ThemeProps & InPlaceEditableInputContainerProps): string => {
@@ -84,15 +90,26 @@ export const InPlaceEditableInputContainer = styled.div<InPlaceEditableInputCont
     }
   }
 
-  &:focus {
-    input {
-      background-image: linear-gradient(
-        to right,
-        ${(props: ThemeProps): string => props.theme.palette['blue-600']} 20%,
-        rgba(255, 255, 255, 0) 10%
-      );
-    }
-  }
+ 
+  ${(props): FlattenSimpleInterpolation | false =>
+    !props.pressed &&
+    css`
+      &&& {
+        &:focus:not(:active),
+        &:focus-within {
+          input {
+            color: transparent;
+            cursor: pointer;
+            text-shadow: 0 0 0 ${applyColor(props)};
+            background-color: transparent;
+            background-position: bottom left;
+            background-size: 5px 1px;
+            background-repeat: repeat-x;
+            background-image: linear-gradient(to right, ${applyColorFocus(props)} 20%, rgba(255, 255, 255, 0) 10%);
+          }
+        }
+      }
+    `}
 
   > .autosize-input {
     display: inline-block;
@@ -110,7 +127,7 @@ export const InPlaceEditableInputContainer = styled.div<InPlaceEditableInputCont
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 100%;
-    padding: 0;
+    padding-bottom: ${(props): string => (props.size === 'normal' ? '0' : '2px')};
     margin: 0;
     vertical-align: top;
     color: ${(props): string => applyColor(props)};
