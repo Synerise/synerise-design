@@ -3,10 +3,10 @@ import Icon from '@synerise/ds-icon';
 import Dropdown from '@synerise/ds-dropdown';
 import Menu from '@synerise/ds-menu';
 import { Add3M, FolderM, SearchM } from '@synerise/ds-icon/dist/icons';
-import { FolderItem } from '@synerise/ds-folders/dist/Folders.types';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { DropdownWrapper, MenuWrapper } from './Dropdown.style';
 import { HeaderTexts } from '../Header.types';
+import { FolderItem } from '../../../SidebarObject.types';
 
 interface Props {
   data: FolderItem[];

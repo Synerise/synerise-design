@@ -1,5 +1,4 @@
 import { TabItem } from '@synerise/ds-tabs/dist/Tabs';
-import { FolderItem } from '@synerise/ds-folders/dist/Folders.types';
 import { HeaderTexts } from './Elements/Header/Header.types';
 
 export type SidebarObjectProps = {
@@ -18,4 +17,12 @@ export type SidebarObjectProps = {
   parentFolder: FolderItem;
   texts: HeaderTexts;
   onCloseClick: () => void;
+};
+export type FolderItem = {
+  id: string;
+  name: string;
+  favourite?: boolean;
+  canUpdate?: boolean;
+  canDelete?: boolean;
+  canEnterSettings?: boolean;
 };
