@@ -19,6 +19,7 @@ const OperatorsDropdown: React.FC<OperatorsDropdownProps> = ({
   groups,
   items,
   setDropdownVisible,
+  value,
 }) => {
   const defaultTab = React.useMemo(() => {
     const defaultIndex = groups?.findIndex((group: OperatorsGroup) => group.defaultGroup);
@@ -56,6 +57,7 @@ const OperatorsDropdown: React.FC<OperatorsDropdownProps> = ({
               searchQuery={searchQuery}
               hideDropdown={(): void => setDropdownVisible(false)}
               select={setSelected}
+              selected={Boolean(value) && item.id === value?.id}
             />
           );
         });
@@ -83,6 +85,7 @@ const OperatorsDropdown: React.FC<OperatorsDropdownProps> = ({
             clearSearch={(): void => setSearchQuery('')}
             hideDropdown={(): void => setDropdownVisible(false)}
             select={setSelected}
+            selected={Boolean(value) && item.id === value?.id}
           />
         );
       });
@@ -116,8 +119,8 @@ const OperatorsDropdown: React.FC<OperatorsDropdownProps> = ({
   }, [currentTabItems, items, groups, searchQuery, activeTab, filteredItems, activeGroup, groupByGroupName]);
 
   const handleSearch = React.useCallback(
-    value => {
-      setSearchQuery(value);
+    val => {
+      setSearchQuery(val);
     },
     [setSearchQuery]
   );

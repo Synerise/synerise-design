@@ -42,4 +42,5 @@ export type OperatorsDropdownProps = {
   groups: OperatorsGroup[];
   items: OperatorsItem[];
   texts: OperatorTexts;
+  value: OperatorsItem | undefined;
 };

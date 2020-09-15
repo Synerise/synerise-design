@@ -20,6 +20,7 @@ const Operators: React.FC<OperatorsProps> = ({ value, onChange, groups, items, t
       visible={dropdownVisible}
       overlay={
         <OperatorsDropdown
+          value={value}
           setDropdownVisible={setDropdownVisible}
           setSelected={handleChange}
           groups={groups}

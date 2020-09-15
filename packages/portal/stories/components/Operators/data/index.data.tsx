@@ -179,9 +179,9 @@ export const OPERATORS_ITEMS = [{
   'icon': <CalendarM />,
   'groupName': 'Date',
 }, {
-  'id': 'DATE_ONELESS',
-  'value': 'DATE_ONELESS',
-  'logic': 'LESS',
+  'id': 'DATE_EQUAL',
+  'value': 'DATE_EQUAL',
+  'logic': 'EQUAL',
   'name': 'Equal',
   'groupId': 'DATE_ONE',
   'group': 'DATE_ONE',
