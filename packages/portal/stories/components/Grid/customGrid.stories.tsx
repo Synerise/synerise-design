@@ -21,12 +21,12 @@ const stories = {
               <Grid.Item {...item}>
                 <S.GridItem>
                   <Description type="inline">
-                    <DescriptionRow label={'XXL'} value={`Span ${item.xxl} of 24`}/>
-                    <DescriptionRow label={'XL'} value={`Span ${item.xl} of 16`}/>
-                    <DescriptionRow label={'LG'} value={`Span ${item.lg} of 12`}/>
-                    <DescriptionRow label={'MD'} value={`Span ${item.md} of 8`}/>
-                    <DescriptionRow label={'SM'} value={`Span ${item.sm} of 8`}/>
-                    <DescriptionRow label={'XS'} value={`Span ${item.xs} of 3`}/>
+                    <DescriptionRow label={'XXL'} value={`${item.xxl}/24`}/>
+                    <DescriptionRow label={'XL'} value={`${item.xl}/16`}/>
+                    <DescriptionRow label={'LG'} value={`${item.lg}/12`}/>
+                    <DescriptionRow label={'MD'} value={`${item.md}/8`}/>
+                    <DescriptionRow label={'SM'} value={`${item.sm}/8`}/>
+                    <DescriptionRow label={'XS'} value={`${item.xs}/3`}/>
                   </Description>
                 </S.GridItem>
               </Grid.Item>
