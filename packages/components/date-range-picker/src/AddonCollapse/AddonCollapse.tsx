@@ -3,7 +3,7 @@ import Button from '@synerise/ds-button';
 import * as S from './AddonCollapse.styles';
 import { Props } from './AddonCollapse.types';
 
-const AddonCollapse: React.FC<Props> = ({ title, content, expanded: initialExpanded }: Props) => {
+const AddonCollapse: React.FC<Props> = ({ title, content, expanded: initialExpanded, onCollapseChange }: Props) => {
   const [expanded, setExpand] = React.useState<boolean>(initialExpanded || false);
   return (
     <S.AddonWrapper expanded={expanded}>
@@ -12,6 +12,7 @@ const AddonCollapse: React.FC<Props> = ({ title, content, expanded: initialExpan
         <Button.Expander
           onClick={(): void => {
             setExpand(!expanded);
+            onCollapseChange && onCollapseChange();
           }}
           expanded={expanded}
         />

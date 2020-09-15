@@ -2,8 +2,9 @@ import * as React from 'react';
 import { IntlShape } from 'react-intl';
 
 export type FilterValue = {
-  definition: Partial<FilterDefinition> | Partial<FilterDefinition>[];
+  definition?: Partial<FilterDefinition>;
   type: string;
+  value: string;
 };
 export type RangeFilterProps = {
   value: FilterValue;
@@ -12,8 +13,8 @@ export type RangeFilterProps = {
   intl: IntlShape;
 };
 export type RangeFilterState = {
-  type: string;
-  value: FilterValue;
+  type?: string;
+  value: Partial<FilterValue>;
 };
 export type FilterDefinition = {
   start?: string;
@@ -21,13 +22,12 @@ export type FilterDefinition = {
   inverted?: boolean;
   restricted?: boolean;
   period?: string;
+  type: string;
+  display?: string;
 };
-export type FilterType = {
-  component: JSX.Element;
-  definition: FilterDefinition;
-  labelTranslationKey: string;
-};
+
 export type Period = {
+  translationKey?: string;
   name: string | React.ReactNode;
   value: string | React.ReactNode;
 };
@@ -41,4 +41,13 @@ export type NormalizedFilter = {
   from: string;
   to: string;
   day?: React.ReactText;
+  week?: React.ReactText;
+};
+export type WeekFilter = {
+  week: number;
+}
+export type ComponentDataType = {
+  labelTranslationKey: string;
+  component: JSX.Element;
+  definition: any;
 };
