@@ -14,7 +14,7 @@ const Content: React.FC<ContentProps> = ({ description, tags, texts }) => {
         <InlineEdit
           input={{
             name: texts.name,
-            value: value,
+            value,
             maxLength: 120,
             placeholder: texts.inlineEditPlaceholder,
             onChange: (event): void => setValue(event.target.value),

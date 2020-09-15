@@ -96,7 +96,7 @@ const Header: React.FC<HeaderProps> = ({
             <InlineEdit
               input={{
                 name: texts.name,
-                value: value,
+                value,
                 maxLength: 120,
                 placeholder: texts.namePlaceholder,
                 onChange: (event): void => setValue(event.target.value),
