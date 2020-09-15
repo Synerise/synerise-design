@@ -26,19 +26,20 @@ import SidebarObject from '@synerise/ds-sidebar-object'
 
 ## API
 
-| Property | Description | Type | Default |
-| --- | --- | --- | --- |
-| avatar        | Add icon of avatar      | React.ReactNode            | - |
-| name          | Name of the inline edit | string                     | - |
-| headerPreffix | Show the arrowLeftIcon  | React.ReactNode            | - |
-| headerTabs    | Tabs to click and pick  | TabItem                    | - |
-| inputObject   | Panel of content        | object                     | - |
-| contentTags   | Panel of tags           | React.ReactNode            | - |
-| folders       | Dropdown content        | FolderItem                 | - |
-| onEdit        | Icon in dropdown        | (inputObject:object) => void | - |
-| onDuplicate   | Icon in dropdown        | (inputObject:object) => void | - |
-| onMove        | Icon in dropdown        | (inputObject:object) => void | - |
-| onDelete      | Icon in dropdown        | (inputObject:object) => void | - |
-| onId          | Icon in dropdown        | (inputObject:object) => void | - |
-| parentFolder  | text picked in button   | FolderItem                 | - |
-| texts         | Group of texts          | HeaderTexts                | - |
+| Property      | Description                                         | Type                         | Default |
+| ------------- | --------------------------------------------------- | ---------------------------- | ------- |
+| avatar        | Add icon of avatar                                  | React.ReactNode              | -       |
+| headerPreffix | Element rendered on the left side of the header     | React.ReactNode              | -       |
+| headerTabs    | Tabs component to switch between content            | TabItem                      | -       |
+| inputObject   | Panel of content                                    | object                       | -       |
+| contentTags   | Panel of tags                                       | React.ReactNode              | -       |
+| folders       | List of folders an object can be moved to           | FolderItem                   | -       |
+| onEdit        | Icon in dropdown                                    | (inputObject:object) => void | -       |
+| onDuplicate   | Icon in dropdown                                    | (inputObject:object) => void | -       |
+| onMove        | Icon in dropdown                                    | (inputObject:object) => void | -       |
+| onDelete      | Icon in dropdown                                    | (inputObject:object) => void | -       |
+| onId          | Callback executed after clicking on the object's ID | (inputObject:object) => void | -       |
+| parentFolder  | Parent folder an object belongs to                  | FolderItem                   | -       |
+| texts         | Group of texts                                      | HeaderTexts                  | -       |
+| onCloseClick  | Prop to close Drawer                                | void                         | -       |
+| inputObjectId | Id of an object's                                   | string                       | -       |

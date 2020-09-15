@@ -31,7 +31,7 @@ const DropdownOverlay: React.FC<Props> = ({ onClearInput, data, onClickAction, p
       <MenuWrapper>
         <Menu dataSource={data}>
           {data.map(item => (
-            <Menu.Item key={value} checked={parentFolder.id === item.id} prefixel={<Icon component={<FolderM />} />}>
+            <Menu.Item key={parentFolder.id} checked={parentFolder.id === item.id} prefixel={<Icon component={<FolderM />} />}>
               {item.name}
             </Menu.Item>
           ))}

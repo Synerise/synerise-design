@@ -3,7 +3,6 @@ import { HeaderTexts } from './Elements/Header/Header.types';
 
 export type SidebarObjectProps = {
   avatar: React.ReactNode;
-  name: string;
   headerPreffix: React.ReactNode;
   headerTabs: TabItem[];
   inputObject: object;
@@ -17,6 +16,7 @@ export type SidebarObjectProps = {
   parentFolder: FolderItem;
   texts: HeaderTexts;
   onCloseClick: () => void;
+  inputObjectId: string;
 };
 export type FolderItem = {
   id: string;

@@ -1,9 +1,7 @@
 import * as React from 'react';
 
 export type HeaderProps = {
-  value?: string;
   avatar: React.ReactNode;
-  name: string;
   preffix: React.ReactNode;
   tabs: React.ReactNode;
   nextTooltip?: React.ReactNode | string;
@@ -18,12 +16,18 @@ export type HeaderProps = {
   texts: HeaderTexts;
   onCloseClick: () => void;
   activeTab: number;
+  inputObject: string;
 };
 
 export type HeaderTexts = {
-  value: string;
   name: string;
   inlineEditPlaceholder: string;
   namePlaceholder: string;
   search: string;
+  deleteIcon: string;
+  duplicateIcon: string;
+  moveIcon: string;
+  folder: string;
+  editIcon: string;
+
 };

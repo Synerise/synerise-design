@@ -109,8 +109,6 @@ const headerTypes = {
   singleTitleWithBackIcon: 'singleTitleWithBackIcon',
 };
 
-
-
 const renderBackIcon = (headerType, onBackClickHandler) => {
   if (headerType === headerTypes.singleTitleWithBackIcon) {
     return (
@@ -138,7 +136,13 @@ const stories = {
     const creatable = boolean('Ability to create', true);
     const withManageLink = boolean('With manage tags link', true);
     const disabled = boolean('Disable entire group', false);
-    const data = [{  id :'2',name: 'Example folder' }, { name: 'Winter' }, { name: 'Summer' }, { name: 'Drafts' }, { name: 'Archived' }];
+    const data = [
+      { id: '2', name: 'Example folder' },
+      { name: 'Winter' },
+      { name: 'Summer' },
+      { name: 'Drafts' },
+      { name: 'Archived' },
+    ];
     let headerType = select('Set header type', headerTypes, headerTypes.singleTitle);
     return (
       <div>
@@ -165,23 +169,45 @@ const stories = {
                   style={{ flex: 1, margin: 0 }}
                 />
               </Badge>
-
-            } onCloseClick={() => setDrawerVisible(false)} folders={data}
-            parentFolder={{ id :'2',name: 'Example folder' }}
-            name={'Winter Campaign'}
-            texts={{value: 'Description',placeholder: 'This is placeholder',name: 'DescriptionInput',search: 'Search'}}
+            }
+            inputObjectId={'3254-3434-5232...'}
+            onCloseClick={() => setDrawerVisible(false)}
+            folders={data}
+            parentFolder={{ id: '2', name: 'Example folder' }}
+            texts={{
+              namePlaceholder: 'This is placeholder',
+              name: 'DescriptionInput',
+              search: 'Search',
+              inlineEditPlaceholder: 'Winter Campaign',
+              editIcon: 'Edit',
+              deleteIcon: 'Delete',
+              duplicateIcon: 'Duplicate',
+              moveIcon: 'Move to',
+              folder: 'Folder',
+            }}
             headerPreffix={renderBackIcon(headerType, () => setDrawerVisible(false))}
-            onEdit={()=> {}}
-            onDuplicate={()=> {}}
-            onMove={()=> {}}
-            onDelete={()=> {}}
-            onId={()=> {}}
+            onEdit={() => {}}
+            onDuplicate={() => {}}
+            onMove={() => {}}
+            onDelete={() => {}}
+            onId={() => {}}
             headerTabs={TABS}
-            inputObject={{'Type:': "Email campaign",
-              'Status': <div><Status label="Draft" type="disabled" /></div>,
-              'Author': <div><Avatar src={imgSrc} size="small" shape="circle" style={{marginRight: '10px'}}/>Teresa Smith</div>,
-            'Created': "25 May, 2020 15:32", 'Last edited:': "27 May, 2020 15:32",
-              'ID': "3423-3426-8263-6634-6834-2352"
+            inputObject={{
+              'Type:': 'Email campaign',
+              Status: (
+                <div>
+                  <Status label="Draft" type="disabled" />
+                </div>
+              ),
+              Author: (
+                <div>
+                  <Avatar src={imgSrc} size="small" shape="circle" style={{ marginRight: '10px' }} />
+                  Teresa Smith
+                </div>
+              ),
+              Created: '25 May, 2020 15:32',
+              'Last edited:': '27 May, 2020 15:32',
+              ID: '3423-3426-8263-6634-6834-2352',
             }}
             contentTags={
               <Tags

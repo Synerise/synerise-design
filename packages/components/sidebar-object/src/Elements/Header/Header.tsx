@@ -4,7 +4,6 @@ import Icon from '@synerise/ds-icon';
 import Typography from 'antd/lib/typography';
 import InlineEdit from '@synerise/ds-inline-edit';
 import Button from '@synerise/ds-button';
-import { action } from '@storybook/addon-actions';
 import {
   AngleDownM,
   AngleUpM,
@@ -26,7 +25,6 @@ import { MenuWrapper } from './Header.style';
 
 const Header: React.FC<HeaderProps> = ({
   avatar,
-  name,
   preffix,
   tabs,
   onMove,
@@ -36,7 +34,9 @@ const Header: React.FC<HeaderProps> = ({
   onId,
   texts,
   onCloseClick,
+  inputObject,
 }) => {
+  const [value, setValue] = React.useState<string>('Winter Campaign');
   const renderActionButtons = (): React.ReactNode => {
     return (
       <>
@@ -58,17 +58,17 @@ const Header: React.FC<HeaderProps> = ({
           overlayStyle={{ boxShadow: '0 4px 17px -3px rgba(191,191,191,1)' }}
           overlay={
             <Menu style={{ padding: '8px 16px' }}>
-              {onEdit && <Menu.Item prefixel={<Icon component={<EditM />} />}>Edit</Menu.Item>}
-              {onDuplicate && <Menu.Item prefixel={<Icon component={<DuplicateM />} />}>Duplicate</Menu.Item>}
-              {onMove && <Menu.Item prefixel={<Icon component={<FolderM />} />}>Move to</Menu.Item>}
+              {onEdit && <Menu.Item prefixel={<Icon component={<EditM />} />}>{texts.editIcon}</Menu.Item>}
+              {onDuplicate && <Menu.Item prefixel={<Icon component={<DuplicateM />} />}>{texts.duplicateIcon}</Menu.Item>}
+              {onMove && <Menu.Item prefixel={<Icon component={<FolderM />} />}>{texts.moveIcon}</Menu.Item>}
               <MenuWrapper>
                 {onDelete && (
                   <Menu.Item type="danger" prefixel={<Icon component={<TrashM />} />}>
-                    Delete
+                    {texts.deleteIcon}
                   </Menu.Item>
                 )}
               </MenuWrapper>
-              {onId && <Menu.Item prefixel={<Icon component={<CopyClipboardM />} />}>ID: 3254-3434-5232...</Menu.Item>}
+              {onId && <Menu.Item prefixel={<Icon component={<CopyClipboardM />} />}>${`ID: ${inputObject}`}</Menu.Item>}
             </Menu>
           }
         >
@@ -96,10 +96,10 @@ const Header: React.FC<HeaderProps> = ({
             <InlineEdit
               input={{
                 name: texts.name,
-                value: name,
+                value: value,
                 maxLength: 120,
                 placeholder: texts.namePlaceholder,
-                onChange: action('on Change'),
+                onChange: (event): void => setValue(event.target.value),
               }}
             />
           </Typography.Title>

@@ -13,7 +13,6 @@ import * as S from './Elements/Header/Header.style';
 
 const SidebarObject: React.FC<SidebarObjectProps> = ({
   avatar,
-  name,
   headerPreffix,
   headerTabs,
   inputObject,
@@ -27,13 +26,13 @@ const SidebarObject: React.FC<SidebarObjectProps> = ({
   parentFolder,
   texts,
   onCloseClick,
+  inputObjectId
 }) => {
   const [activeTab, setActiveTab] = React.useState(0);
   return (
     <div>
       <Header
         avatar={avatar}
-        name={name}
         preffix={headerPreffix}
         tabs={<Tabs activeTab={activeTab} tabs={headerTabs} handleTabClick={setActiveTab} />}
         onDelete={onDelete}
@@ -44,10 +43,11 @@ const SidebarObject: React.FC<SidebarObjectProps> = ({
         texts={texts}
         activeTab={activeTab}
         onCloseClick={onCloseClick}
+        inputObject={inputObjectId}
       />
       {activeTab === 0 && (
         <S.HeaderWrapper>
-          Folder:{' '}
+          {texts.folder}:{' '}
           <Dropdown
             overlayStyle={{ boxShadow: '0 4px 17px -3px rgba(191,191,191,1)' }}
             overlay={<DropdownOverlay texts={texts} parentFolder={parentFolder} data={folders} />}
