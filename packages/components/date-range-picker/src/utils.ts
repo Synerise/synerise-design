@@ -11,7 +11,6 @@ import dayjs from 'dayjs';
 import 'dayjs/plugin/utc';
 import { Texts } from './DateRangePicker.types';
 
-// eslint-disable-next-line import/prefer-default-export
 export const normalizeRange = (range: DateRange): DateRange => {
   if (!range || !range.type) {
     return { type: ABSOLUTE, from: undefined, to: undefined };
@@ -92,6 +91,9 @@ export const getDefaultTexts = (intl: IntlShape,texts?: Partial<Texts>): Texts =
 };
 
 
-export const formatTime = (seconds: number, format: string = 'HH:mm:ss') => {
-  return dayjs.utc(seconds * 1000).format(format);
+export const formatTime = (seconds: number, formatString = 'HH:mm:ss'): string => {
+  return dayjs
+    .extend(utcPlugin)
+    .utc(seconds * 1000)
+    .format(formatString);
 };

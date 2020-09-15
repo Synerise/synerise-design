@@ -1,19 +1,22 @@
 import * as React from 'react';
 import TimeWindow from '../TimeWindow/TimeWindow';
+import { WeeklyFilterProps, Days } from './WeeklyFilter.types';
 
-class WeeklyFilter extends React.PureComponent {
+class WeeklyFilter extends React.PureComponent<WeeklyFilterProps> {
   render(): JSX.Element {
     const { value, onChange, intl } = this.props;
     return (
       <TimeWindow
         style={{ marginTop: 32 }}
-        title={intl.formatMessage({ id: 'SNRS.DATE.SELECT_DAY' })}
+        title={intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.SELECT_DAY' })}
         showSelectAll
         invertibleTime
-        dayTemplate={dayOfWeek => ({ day: dayOfWeek })}
+        dayTemplate={(dayOfWeek: React.ReactText): { day: React.ReactText } => ({ day: dayOfWeek })}
         days={value}
-        numberOfDays={32}
-        onChange={(val): void => onChange(val)}
+        numberOfDays={7}
+        onChange={(val: Days): void => {
+          onChange(val);
+        }}
         timeMarks={{}}
         intl={intl}
       />

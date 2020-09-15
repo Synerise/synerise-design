@@ -18,7 +18,7 @@ export type Days = {
 
 export type CustomDayConfig = {
   component?: React.ComponentType<DayProps>;
-  template?: Object;
+  template?: object;
   tooltip?: string;
   label?: string;
   longLabel?: string;
@@ -34,11 +34,11 @@ export type Props = {
   numberOfDays: number;
   numberOfDaysPerRow?: number;
   rowLabelFormatter?: (rowIndex: number) => string;
-  dayTemplate: (day: DayKey) => Object;
+  dayTemplate: (day: DayKey) => object;
   dayFormatter: (day: DayKey, long?: boolean) => string;
   invertibleTime?: boolean;
-  timeMarks?: Object;
-  style?: Object;
+  timeMarks?: object;
+  style?: React.CSSProperties;
   customForm?: (value: number | string, bool: boolean) => React.ReactNode;
   onCheckDay?: Function;
   onUncheckDay?: Function;

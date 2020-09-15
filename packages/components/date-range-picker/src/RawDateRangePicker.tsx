@@ -11,6 +11,7 @@ import RelativeRangePicker from './RelativeRangePicker/RelativeRangePicker';
 import Footer from './Footer/Footer';
 import { normalizeRange } from './utils';
 import RangeFilter from './RangeFilter/RangeFilter';
+import Button from '@synerise/ds-button';
 
 class RawDateRangePicker extends React.PureComponent<Props, State> {
   static defaultProps = {
