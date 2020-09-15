@@ -12,6 +12,5 @@ export const SearchResultHighlight = styled.span`
 `;
 
 export const ItemsList = styled(Menu)`
-  padding: 8px;
   width: 100%;
 `;

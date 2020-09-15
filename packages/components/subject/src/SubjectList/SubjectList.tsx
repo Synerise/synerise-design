@@ -3,6 +3,8 @@ import Dropdown from '@synerise/ds-dropdown';
 import Scrollbar from '@synerise/ds-scrollbar';
 import Result from '@synerise/ds-result';
 import { useOnClickOutside } from '@synerise/ds-utils';
+import Icon from '@synerise/ds-icon';
+import { SearchM } from '@synerise/ds-icon/dist/icons';
 import { SubjectItem, SubjectListProps } from '../Subject.types';
 import * as S from './SubjectList.styles';
 import SubjectListItem from './SubjectListItem';
@@ -35,13 +37,15 @@ const SubjectList: React.FC<SubjectListProps> = ({ items, selectItem, hideDropdo
   return (
     <Dropdown.Wrapper ref={overlayRef}>
       <Dropdown.SearchInput
+        autofocus
+        iconLeft={<Icon component={<SearchM />} />}
         onSearchChange={setSearchQuery}
         placeholder={texts.searchPlaceholder}
         value={searchQuery}
         onClearInput={(): void => setSearchQuery('')}
       />
       <S.ItemsList>
-        <Scrollbar absolute maxHeight={300}>
+        <Scrollbar style={{ padding: 8 }} absolute maxHeight={300}>
           {renderItems.length ? (
             renderItems
           ) : (
