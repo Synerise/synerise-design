@@ -16,21 +16,6 @@ const TABS = [
   },
 ];
 describe('SidebarObject', () => {
-  it('should render folder name', function() {
-    // ARRANGE
-    const { getByDisplayValue } = renderWithProvider(
-      <SidebarObject
-        name='Name'
-        parentFolder={{name: 'Folder', id: 'FolderItem'}}
-        // @ts-ignore
-        texts={{name: 'Text'}}
-        inputObject={{}}
-        headerTabs={TABS}
-      />
-    );
-    // ASSERT
-    expect(getByDisplayValue('Name')).toBeTruthy();
-  });
   it('should render inputObject key', function() {
     // ARRANGE
     const { getByText } = renderWithProvider(
