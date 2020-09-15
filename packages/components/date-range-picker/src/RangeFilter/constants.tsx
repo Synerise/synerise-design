@@ -26,22 +26,26 @@ export const TYPES = {
 
 export const PERIODS: Period[] = [
   {
-    name: <FormattedMessage id="SNRS.DATE.MONTHIN" />,
+    translationKey: 'DS.DATE-RANGE-PICKER.MONTHIN',
+    name: 'DS.DATE-RANGE-PICKER.MONTHIN',
     value: MONTHLY_TYPES.DAY_OF_MONTH,
   },
   {
-    name: <FormattedMessage id="SNRS.DATE.WEEKIN" />,
+    translationKey: 'DS.DATE-RANGE-PICKER.WEEKIN',
+    name: 'DS.DATE-RANGE-PICKER.WEEKIN',
     value: MONTHLY_TYPES.DAY_OF_WEEK,
   },
 ];
 
 export const PERIODS_TYPE: Period[] = [
   {
-    name: <FormattedMessage id="SNRS.MONTHLY-PICKER.BEGINNING" />,
+    translationKey: 'DS.DATE-RANGE-PICKER.BEGINNING',
+    name: 'DS.DATE-RANGE-PICKER.BEGINNING',
     value: 'beginning',
   },
   {
-    name: <FormattedMessage id="SNRS.MONTHLY-PICKER.END" />,
+    translationKey: 'DS.DATE-RANGE-PICKER.END',
+    name: 'DS.DATE-RANGE-PICKER.END',
     value: 'ending',
   },
 ];
@@ -50,15 +54,15 @@ export const defaultId = Math.random();
 
 export const TYPES_DATA = {
   MONTHLY: {
-    labelTranslationKey: 'SNRS.DATE.MONTHLY',
+    labelTranslationKey: 'DS.DATE-RANGE-PICKER.MONTHLY',
     component: MonthlyFilter,
     definition: [
       { period: MONTHLY_TYPES.DAY_OF_MONTH, periodType: PERIODS_TYPE[0].value, definition: {}, id: defaultId },
     ],
   },
-  WEEKLY: { labelTranslationKey: 'SNRS.DATE.WEEKLY', component: WeeklyFilter, definition: {} },
+  WEEKLY: { labelTranslationKey: 'DS.DATE-RANGE-PICKER.WEEKLY', component: WeeklyFilter, definition: {} },
   DAILY: {
-    labelTranslationKey: 'SNRS.DATE.DAILY',
+    labelTranslationKey: 'DS.DATE-RANGE-PICKER.DAILY',
     component: DailyFilter,
     definition: {
       start: '00:00:00.000',

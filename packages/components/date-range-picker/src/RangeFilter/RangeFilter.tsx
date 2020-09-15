@@ -1,5 +1,5 @@
 import * as React from 'react';
-import cloneDeep from 'lodash/cloneDeep';
+import { cloneDeep } from 'lodash';
 import ButtonGroup from '@synerise/ds-button-group';
 import { injectIntl } from 'react-intl';
 
@@ -20,13 +20,13 @@ class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState
   }
 
   componentWillReceiveProps(props: RangeFilterProps): void {
-    this.setValue(denormalizeValue(props.value));
+    this.setValue(denormalizeValue(props.value) as FilterValue);
   }
 
   handleApply = (): void => {
     const { onApply } = this.props;
     const { value } = this.state;
-    onApply && onApply(normalizeValue(value));
+    onApply && onApply(normalizeValue(value as FilterValue));
   };
 
   handleCancel = (): void => {
@@ -35,7 +35,7 @@ class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState
   };
 
   handleTypeChange = (type: string): void =>
-    this.setValue({ type, definition: cloneDeep(TYPES_DATA[type].definition) });
+    this.setValue({ type, definition: cloneDeep(TYPES_DATA[type].definition) } as FilterValue);
 
   setValue = (value: FilterValue): void => this.setState({ value });
 
@@ -48,7 +48,7 @@ class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState
     return (
       <S.Container>
         <S.Header>
-          <S.Title>{intl.formatMessage({ id: 'SNRS.DATE.DATES_FILTER' })}</S.Title>
+          <S.Title>{intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.DATES_FILTER' })}</S.Title>
         </S.Header>
         <S.Body>
           <ButtonGroup fullWidth style={{ marginBottom: 16 }} size="large">
@@ -66,14 +66,14 @@ class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState
             <Component
               intl={intl}
               value={definition}
-              onChange={(def: FilterDefinition): void => this.setValue({ ...value, definition: def })}
+              onChange={(def: FilterDefinition): void => this.setValue({ ...value, definition: def } as FilterValue)}
             />
           )}
         </S.Body>
         <S.Footer>
-          <Button onClick={this.handleCancel}>{intl.formatMessage({ id: 'SNRS.ACTIONS.CANCEL' })}</Button>
-          <Button type="primary" disabled={!isValidValue(value)} onClick={this.handleApply}>
-            {intl.formatMessage({ id: 'SNRS.ACTIONS.APPLY' })}
+          <Button onClick={this.handleCancel}>{intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.CANCEL' })}</Button>
+          <Button type="primary" disabled={!isValidValue(value as FilterValue)} onClick={this.handleApply}>
+            {intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.APPLY' })}
           </Button>
         </S.Footer>
       </S.Container>

@@ -1,9 +1,7 @@
-import styled, { css } from 'styled-components';
-import range from 'lodash/range';
+import styled from 'styled-components';
+import { range } from 'lodash';
 
-import { media } from '../../utils';
-
-const commonGridStyle = css`
+/* const commonGridStyle = css`
   display: grid;
   grid-gap: 8px;
   grid-template-columns: ${(props: { columns?: number }) =>
@@ -13,7 +11,7 @@ const commonGridStyle = css`
   grid-auto-rows: 1fr;
   white-space: nowrap;
   align-items: center;
-`;
+`; */
 
 export const TimeWindowContainer = styled.div`
   display: flex;

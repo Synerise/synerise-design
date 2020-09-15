@@ -1,13 +1,9 @@
 import * as React from 'react';
-import range from 'lodash/range';
-import rangeRight from 'lodash/rangeRight';
-import groupBy from 'lodash/groupBy';
-import reverse from 'lodash/reverse';
-import flatten from 'lodash/flatten';
-import values from 'lodash/values';
-import ceil from 'lodash/ceil';
+import { range, rangeRight, groupBy, reverse, flatten, values, ceil } from 'lodash';
+
 import { FormattedMessage, injectIntl } from 'react-intl';
 import Slider from '@synerise/ds-slider';
+import { SliderMarks, SliderValue } from 'antd/es/slider';
 import { Header, Action } from './Header/Header';
 import Day from './Day/Day';
 import { formatTime } from '../../utils';
@@ -23,40 +19,45 @@ class TimeWindowBase extends React.Component<Props, State> {
     showSelectAll: false,
     showUnselectAll: true,
     dayTemplate: (index: number) => ({ dayOfWeek: index + 1 }),
-    dayFormatter: (dayKey: DayKey) => <FormattedMessage id={`SNRS.TIME-WINDOW.WEEKDAYS-SHORT.DAY_${dayKey}`} />,
-    timeMarks: { '0': '00:00', '12': <FormattedMessage id={`SNRS.TIME-WINDOW.SET-HOURS`} />, '24': '24:00' },
+    dayFormatter: (dayKey: DayKey) => <FormattedMessage id={`DS.DATE-RANGE-PICKER.WEEKDAYS-SHORT-${dayKey}`} />,
+    timeMarks: { '0': '00:00', '12': <FormattedMessage id="DS.DATE-RANGE-PICKER.SET-HOURS" />, '24': '24:00' },
   };
 
-  componentDidMount() {
-    const activeDay = range(0, this.props.numberOfDays).find(day => this.isDayRestricted(day));
+  componentDidMount(): void {
+    const { numberOfDays } = this.props;
+    const activeDay = range(0, numberOfDays).find(day => this.isDayRestricted(day));
     activeDay && this.checkActiveDay(activeDay);
   }
 
-  isDayRestricted = (dayKey: DayKey) => !!this.props.days[dayKey] && this.props.days[dayKey].restricted;
+  isDayRestricted = (dayKey: DayKey) => {
+    const { days } = this.props;
+    return !!days[dayKey] && days[dayKey].restricted;
+  };
 
-  checkActiveDay = (dayKey: DayKey) => {
+  checkActiveDay = (dayKey: DayKey): void => {
     if (!this.isDayRestricted(dayKey)) this.checkDay(dayKey);
     this.setState({ activeDay: dayKey });
   };
 
-  uncheckActiveDay = (dayKey: DayKey) => {
+  uncheckActiveDay = (dayKey: DayKey): void => {
     this.setState({ activeDay: null });
     this.unCheckDay(dayKey);
   };
 
-  toggleDay = (dayKey: DayKey, forcedState: boolean) => {
+  toggleDay = (dayKey: DayKey, forcedState: boolean): void => {
+    const { activeDay } = this.state;
     if (typeof forcedState !== 'undefined') {
       forcedState ? this.checkActiveDay(dayKey) : this.uncheckActiveDay(dayKey);
       return;
     }
-    if (this.state.activeDay === dayKey) {
+    if (activeDay === dayKey) {
       this.uncheckActiveDay(dayKey);
     } else {
       this.checkActiveDay(dayKey);
     }
   };
 
-  handleDayChange = (dayKey: DayKey, dayChanges: Partial<DayOptions>) => {
+  handleDayChange = (dayKey: DayKey, dayChanges: Partial<DayOptions>): void => {
     const { onChange, days } = this.props;
     onChange({
       ...days,
@@ -67,7 +68,9 @@ class TimeWindowBase extends React.Component<Props, State> {
     });
   };
 
-  checkDay = (dayKey: DayKey) => {
+  checkDay = (dayKey: DayKey): void => {
+    const { onCheckDay } = this.props;
+
     this.handleDayChange(dayKey, {
       start: '00:00:00.000',
       stop: '23:59:59.999',
@@ -75,10 +78,11 @@ class TimeWindowBase extends React.Component<Props, State> {
       display: true,
     });
 
-    this.props.onCheckDay && this.props.onCheckDay(dayKey);
+    onCheckDay && onCheckDay(dayKey);
   };
 
-  unCheckDay = (dayKey: DayKey) => {
+  unCheckDay = (dayKey: DayKey): void => {
+    const { onUncheckDay } = this.props;
     this.handleDayChange(dayKey, {
       start: '00:00:00.000',
       stop: '23:59:59.999',
@@ -86,25 +90,26 @@ class TimeWindowBase extends React.Component<Props, State> {
       display: false,
     });
 
-    this.props.onUncheckDay && this.props.onUncheckDay(dayKey);
+    onUncheckDay && onUncheckDay(dayKey);
   };
 
-  handleDayTimeChange = (value: number[], dayKey: DayKey) =>
+  handleDayTimeChange = (value: SliderValue, dayKey: DayKey): void =>
     this.handleDayChange(dayKey, {
       restricted: true,
       start: this.parseValueToTime(value[0], 'HH:mm:ss.SSS'),
       stop: this.parseValueToTime(value[1], 'HH:mm:ss.SSS'),
     });
 
-  clearSelected = () => {
-    this.props.onUnselectAll && this.props.onUnselectAll();
+  clearSelected = (): void => {
+    const { onUnselectAll, onChange } = this.props;
+    onUnselectAll && onUnselectAll();
 
-    this.setState({ activeDay: null }, () => this.props.onChange({}));
+    this.setState({ activeDay: null }, () => onChange({}));
   };
 
-  selectAll = () => {
+  selectAll = (): void => {
     const days = {};
-
+    const { onChange, onSelectAll } = this.props;
     this.getAllKeys().forEach(key => {
       days[key] = {
         ...this.getDayValue(key),
@@ -113,9 +118,9 @@ class TimeWindowBase extends React.Component<Props, State> {
       };
     });
 
-    this.props.onSelectAll && this.props.onSelectAll();
+    onSelectAll && onSelectAll();
 
-    this.props.onChange(days);
+    onChange(days);
   };
 
   getDayValue = (dayKey: DayKey) => {
@@ -153,7 +158,7 @@ class TimeWindowBase extends React.Component<Props, State> {
     return label;
   };
 
-  getAllKeys = () => {
+  getAllKeys = (): number[] => {
     const { numberOfDays, customDays } = this.props;
     let keys = range(numberOfDays);
 
@@ -167,34 +172,32 @@ class TimeWindowBase extends React.Component<Props, State> {
     return date.getHours() + ceil(date.getMinutes() / 60, 2);
   };
 
-  parseValueToTime = (value: number, format?: string) =>
+  parseValueToTime = (value: number, format?: string): string =>
     formatTime(value === 24 ? 24 * 60 * 60 - 0.001 : value * 3600, format);
 
-  tooltipFormatter = (value: number | number[], index: number) => {
+  tooltipFormatter = (value: number | number[], index?: number): React.ReactNode => {
     const format = 'HH:mm';
-    if (typeof value !== 'number' && value.length) {
+    if (typeof value !== 'number' && value.length && index) {
       const CONCAT_VALUES = 1.75;
       const isClose = value[1] - value[0] <= CONCAT_VALUES;
       const isSameValue = value[0] === value[1];
-      return isClose ? (
-        index === 0 ? (
+      if (isClose) {
+        return index === 0 ? (
           <span style={{ width: isSameValue ? 'auto' : '145px', textAlign: 'center', display: 'inline-block' }}>
             {this.parseValueToTime(value[0], format)}
             {!isSameValue && ` - ${this.parseValueToTime(value[1], format)}`}
           </span>
         ) : (
           ''
-        )
-      ) : (
-        this.parseValueToTime(value[index], format)
-      );
-    } else {
-      return this.parseValueToTime(value as number, format);
+        );
+      }
+      return this.parseValueToTime(value[index], format);
     }
+    return this.parseValueToTime(value as number, format);
   };
 
-  renderDay = (dayKey: DayKey) => {
-    const { customDays, intl } = this.props;
+  renderDay = (dayKey: DayKey): JSX.Element => {
+    const { customDays, intl, readOnly } = this.props;
     const { activeDay } = this.state;
     const isRestricted = this.isDayRestricted(dayKey);
     const isActive = activeDay === dayKey;
@@ -206,7 +209,7 @@ class TimeWindowBase extends React.Component<Props, State> {
     }
     if (!tooltip && activeDay !== dayKey) {
       tooltip = intl.formatMessage({
-        id: isRestricted ? 'SNRS.TIME-WINDOW.CLICK-TO-SET-TIME' : 'SNRS.TIME-WINDOW.CLICK-TO-SELECT',
+        id: isRestricted ? 'DS.DATE-RANGE-PICKER.CLICK-TO-SET-TIME' : 'DS.DATE-RANGE-PICKER.CLICK-TO-SELECT',
       });
     }
     if (!Component) {
@@ -221,19 +224,20 @@ class TimeWindowBase extends React.Component<Props, State> {
         tooltip={tooltip}
         restricted={isRestricted}
         active={isActive}
-        readOnly={this.props.readOnly}
+        readOnly={readOnly}
         intl={intl}
-        onToggle={(forceState: boolean) => !this.props.readOnly && this.toggleDay(dayKey, forceState)}
-        onChange={(dayChanges: DayOptions) => this.handleDayChange(dayKey, dayChanges)}
+        onToggle={(forceState: boolean): false | void => !readOnly && this.toggleDay(dayKey, forceState)}
+        onChange={(dayChanges: DayOptions): void => this.handleDayChange(dayKey, dayChanges)}
       />
     );
   };
 
-  reverseRange = (range: number[], groupItem: number) => {
-    const grouping = (item: number) => Math.floor(item / groupItem);
-    return flatten(reverse(values(groupBy(range, grouping))));
+  reverseRange = (inputRange: number[], groupItem: number): number[] => {
+    const grouping = (item: number): number => Math.floor(item / groupItem);
+    return flatten(reverse(values(groupBy(inputRange, grouping))));
   };
-  renderGrid = (keys: number[]) => {
+
+  renderGrid = (keys: number[]): React.ReactNode => {
     const {
       numberOfDays,
       numberOfDaysPerRow,
@@ -253,13 +257,13 @@ class TimeWindowBase extends React.Component<Props, State> {
       actions.push({
         key: 'unselect-all',
         onClick: this.clearSelected,
-        label: <FormattedMessage id={`SNRS.TIME-WINDOW.UNSELECT-ALL`} />,
+        label: <FormattedMessage id="DS.DATE-RANGE-PICKER.UNSELECT-ALL" />,
       });
     if (showSelectAll)
       actions.push({
         key: 'select-all',
         onClick: this.selectAll,
-        label: <FormattedMessage id={`SNRS.TIME-WINDOW.SELECT-ALL`} />,
+        label: <FormattedMessage id="DS.DATE-RANGE-PICKER.SELECT-ALL" />,
       });
     let grid = (
       <S.Days columns={numberOfColumns}>
@@ -272,9 +276,11 @@ class TimeWindowBase extends React.Component<Props, State> {
       grid = (
         <S.Wrapper>
           <S.Labels>
-            {rangeMethod(numberOfRows).map(rowIndex => (
-              <span key={rowIndex}>{rowLabelFormatter(rowIndex)}</span>
-            ))}
+            {rangeMethod(numberOfRows).map(
+              (rowIndex: number): React.ReactNode => (
+                <span key={rowIndex}>{rowLabelFormatter(rowIndex)}</span>
+              )
+            )}
           </S.Labels>
           {grid}
         </S.Wrapper>
@@ -288,9 +294,10 @@ class TimeWindowBase extends React.Component<Props, State> {
     );
   };
 
-  renderSlider = (dayKey: DayKey, singleMode: boolean) => {
-    if (this.props.customForm) {
-      return this.props.customForm(dayKey, singleMode);
+  renderSlider = (dayKey: DayKey, singleMode: boolean): React.ReactNode => {
+    const { customForm } = this.props;
+    if (customForm) {
+      return customForm(dayKey, singleMode);
     }
 
     const { invertibleTime, timeMarks } = this.props;
@@ -300,16 +307,16 @@ class TimeWindowBase extends React.Component<Props, State> {
         dots={false}
         style={{ marginTop: !invertibleTime ? 64 : undefined }}
         inverted={invertibleTime ? dayValue.inverted : undefined}
-        onInvert={invertibleTime ? () => this.handleDayChange(dayKey, { inverted: !dayValue.inverted }) : undefined}
         tipFormatter={this.tooltipFormatter}
         range
         value={[this.parseTimeToFloat(dayValue.start), this.parseTimeToFloat(dayValue.stop)]}
         min={0}
         max={24}
         step={0.25}
-        marks={timeMarks}
-        onChange={(value: number[]) => this.handleDayTimeChange(value, dayKey)}
-        tooltipVisible={true}
+        marks={timeMarks as SliderMarks}
+        onChange={(value: SliderValue): void => this.handleDayTimeChange(value, dayKey)}
+        tooltipVisible
+        // onInvert={invertibleTime ? (): void => this.handleDayChange(dayKey, { inverted: !dayValue.inverted }) : undefined}
       />
     );
     if (!invertibleTime) return slider;
@@ -317,7 +324,7 @@ class TimeWindowBase extends React.Component<Props, State> {
       {
         key: 'invert',
         onClick: () => this.handleDayChange(dayKey, { inverted: !dayValue.inverted }),
-        label: <FormattedMessage id={`SNRS.TIME-WINDOW.INVERSE-SELECTION`} />,
+        label: <FormattedMessage id="DS.DATE-RANGE-PICKER.INVERSE-SELECTION" />,
       },
     ];
     return (
@@ -332,7 +339,7 @@ class TimeWindowBase extends React.Component<Props, State> {
     );
   };
 
-  render() {
+  render(): JSX.Element {
     const { style } = this.props;
     const { activeDay } = this.state;
     const keys = this.getAllKeys();
@@ -348,4 +355,6 @@ class TimeWindowBase extends React.Component<Props, State> {
 }
 
 const TimeWindow = TimeWindowBase;
-export default TimeWindow;
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore
+export default injectIntl(TimeWindow);
