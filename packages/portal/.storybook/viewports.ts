@@ -1,6 +1,6 @@
 const VIEWPORTS = {
   xxl: {
-    name: '1920',
+    name: '1920 - XXL',
     type: 'desktop',
     styles: {
       width: '1920px',
@@ -8,7 +8,7 @@ const VIEWPORTS = {
     }
   },
   xl: {
-    name: '1600',
+    name: '1600 - XL',
     type: 'desktop',
     styles: {
       width: '1600px',
@@ -16,7 +16,7 @@ const VIEWPORTS = {
     }
   },
   lg: {
-    name: '1280',
+    name: '1280 - LG',
     type: 'desktop',
     styles: {
       width: '1280px',
@@ -24,7 +24,7 @@ const VIEWPORTS = {
     }
   },
   md: {
-    name: '960',
+    name: '960 - MD',
     type: 'tablet',
     styles: {
       width: '960px',
@@ -32,7 +32,7 @@ const VIEWPORTS = {
     }
   },
   sm: {
-    name: '768',
+    name: '768 - SM',
     type: 'mobile',
     styles: {
       width: '768px',
@@ -40,7 +40,7 @@ const VIEWPORTS = {
     }
   },
   xs: {
-    name: '320',
+    name: '320 - XS',
     type: 'mobile',
     styles: {
       width: '320px',
