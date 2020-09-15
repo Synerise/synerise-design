@@ -8,7 +8,8 @@ type InPlaceEditableInputContainerProps = {
   error?: boolean;
   icon?: string;
   expanded?: boolean;
-  pressed?: boolean;
+  pressed: boolean;
+  dropdownOpened: boolean;
 };
 const applyColor = (props: ThemeProps & InPlaceEditableInputContainerProps): string => {
   if (props.error) return props.theme.palette['red-600'];
@@ -67,6 +68,7 @@ export const IconWrapper = styled.div<{ size: string; expanded: boolean } & Them
 
 export const InPlaceEditableInputContainer = styled.div<InPlaceEditableInputContainerProps>`
   display: flex;
+  padding-bottom: 2px;
   max-width: 100%;
   align-items: center;
   opacity: ${({ disabled }): number => (disabled ? 0.4 : 1)};
@@ -79,7 +81,7 @@ export const InPlaceEditableInputContainer = styled.div<InPlaceEditableInputCont
   }
   ${(props): string => applyDotsOnError(props)}
 
-  &&&:hover {
+  &&:hover {
     input {
       color: transparent;
       cursor: pointer;
@@ -93,7 +95,7 @@ export const InPlaceEditableInputContainer = styled.div<InPlaceEditableInputCont
     }
   }
   ${(props): FlattenSimpleInterpolation | false =>
-    !props.pressed &&
+    !props.pressed && !props.dropdownOpened &&
     css`
     &&&{
       &:focus:not(:active),
@@ -117,20 +119,21 @@ export const InPlaceEditableInputContainer = styled.div<InPlaceEditableInputCont
       }
       }
     `}
-
-  &&&:active {
+${(props): FlattenSimpleInterpolation | false => (props.dropdownOpened || props.pressed) && css `&&&:active, &&&{
     input {
       color: transparent;
       cursor: pointer;
-      text-shadow: 0 0 0 ${(props): string => applyColorActive(props)};
+      text-shadow: 0 0 0 ${ applyColorActive(props)};
     }
     ${IconWrapper} {
       background-color: transparent;
       svg {
-        fill: ${(props): string => applyColorActive(props)};
+        fill: ${ applyColorActive(props)};
       }
     }
-  }
+  }`}
+  
+  
 
   > .autosize-input {
     display: inline-block;

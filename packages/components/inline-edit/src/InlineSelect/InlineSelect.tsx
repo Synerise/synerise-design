@@ -67,6 +67,19 @@ const InlineSelect: React.FC<InlineSelectProps> = ({
   const [pressed, setPressed] = React.useState<boolean>(false);
 
   return (
+    <Dropdown
+      visible={opened}
+      onVisibleChange={setOpened}
+      placement="bottomRight"
+      overlay={
+        <SelectDropdown
+          dataSource={dataSource}
+          onSelect={(item): void => setSelectedValue(item.text as string)}
+          closeDropdown={(): void => setOpened(false)}
+        />
+      }
+      trigger={['click']}
+    >
     <S.InPlaceEditableInputContainer
       className={`ds-inline-edit ${className || ''}`}
       style={style}
@@ -74,10 +87,10 @@ const InlineSelect: React.FC<InlineSelectProps> = ({
       disabled={disabled}
       error={error}
       tabIndex={0}
-      onClick={(): void => setOpened(!opened)}
       onMouseDown={(): void => setPressed(true)}
       onMouseUp={(): void => setPressed(false)}
       pressed={pressed}
+      dropdownOpened={opened}
     >
       <AutosizeInput
         id={input.name ? toCamelCase(input.name) : 'id'}
@@ -93,29 +106,17 @@ const InlineSelect: React.FC<InlineSelectProps> = ({
         ref={inputRef as any}
       />
       {!hideIcon && (
-        <Dropdown
-          visible={opened}
-          onVisibleChange={setOpened}
-          placement="bottomRight"
-          overlay={
-            <SelectDropdown
-              dataSource={dataSource}
-              onSelect={(item): void => setSelectedValue(item.text as string)}
-              closeDropdown={(): void => setOpened(false)}
-            />
-          }
-          trigger={['click']}
-        >
+
           <S.IconWrapper size={size} expanded={opened}>
             <Icon component={<AngleDownS/>} size={24} />
           </S.IconWrapper>
-        </Dropdown>
       )}
       <S.FontStyleWatcher
         ref={fontStyleWatcher}
         style={{ position: 'absolute', visibility: 'hidden', pointerEvents: 'none' }}
       />
     </S.InPlaceEditableInputContainer>
+    </Dropdown>
   );
 };
 
