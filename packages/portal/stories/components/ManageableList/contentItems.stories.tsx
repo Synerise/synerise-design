@@ -12,7 +12,8 @@ import {
   withIcon,
   withExpanderAndOptions,
 } from './contentItems.data';
-import Tag, { TagShape } from '@synerise/ds-tags/dist/Tag/Tag';
+import Tag from '@synerise/ds-tags/dist/Tag/Tag';
+import { TagShape } from '@synerise/ds-tags/dist/Tag/Tag.types';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import styled from 'styled-components';
 
