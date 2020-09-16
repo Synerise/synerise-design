@@ -104,7 +104,7 @@ const Condition: React.FC<ConditionProps> = ({ steps, addCondition, removeCondit
                         )}
                       </S.CondtionWrapper>
                       <S.CondtionWrapper>{condition.factor && <Factors {...condition.factor} />}</S.CondtionWrapper>
-                      {removeCondition && (
+                      {removeCondition && step.conditions.length > 1 && (
                         <S.RemoveIconWrapper onClick={(): void => removeCondition(step.id, condition.id)}>
                           <Tooltip title={texts.removeConditionRowTooltip} trigger={['hover']}>
                             <Icon component={<CloseS />} color={theme.palette['red-600']} />
