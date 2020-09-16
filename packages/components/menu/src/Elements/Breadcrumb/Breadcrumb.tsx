@@ -5,6 +5,7 @@ import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { escapeRegEx } from '@synerise/ds-utils';
 import * as S from './Breadcrumb.styles';
 import { MenuItemProps } from '../Item/MenuItem.types';
+import { BreadcrumbProps } from './Breadcrumb.types';
 
 const Breadcrumb: React.FC<BreadcrumbProps & MenuItemProps> = ({
   path,
