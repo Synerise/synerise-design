@@ -4,7 +4,7 @@ import Badge from '@synerise/ds-badge';
 import Avatar from '@synerise/ds-avatar';
 import * as S from './AvatarGroup.styles';
 import GroupModal from './Modal/GroupModal';
-import { AvatarGroupProps } from 'AvatarGroup.types';
+import { AvatarGroupProps } from './AvatarGroup.types';
 
 const AvatarGroup: React.FC<AvatarGroupProps> = ({
   dataSource,
