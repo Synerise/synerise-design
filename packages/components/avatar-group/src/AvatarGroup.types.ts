@@ -1,5 +1,5 @@
-import { BadgeProps } from '@synerise/ds-badge/dist/Badge';
-import { AvatarProps } from '@synerise/ds-avatar/dist/Avatar';
+import { BadgeProps } from '@synerise/ds-badge/dist/Badge.types';
+import { AvatarProps } from '@synerise/ds-avatar/dist/Avatar.types';
 import * as React from 'react';
 
 export type Size = 'small' | 'medium' | 'large' | undefined;
