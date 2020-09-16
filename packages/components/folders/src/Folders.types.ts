@@ -5,16 +5,16 @@ export type FoldersProps = {
   addButtonDisabled?: boolean;
   actionsDisplay: 'inline' | 'dropdown';
   dataSource: FolderItem[];
+  folderFilter?: (item: FolderItem) => boolean;
   maxItemsVisible?: number;
+  onAdd: (added: FolderItem) => void;
   onDelete: (deleted: FolderItem, options: { mode: DeleteMode; destination?: FolderItem }) => void;
   onEdit: (edited: FolderItem) => void;
-  onAdd: (added: FolderItem) => void;
   onFavourite: (favourite: FolderItem) => void;
   onSelect: (selected: FolderItem) => void;
   onSettings: (selected?: FolderItem) => void;
   texts: FolderTexts;
   showHideStep?: number;
-  folderFilter?: (item: FolderItem) => boolean;
 };
 
 export type FolderItem = {
@@ -41,12 +41,12 @@ export type FolderTexts = {
   edit: string | React.ReactNode;
   enterSettings: string | React.ReactNode;
   favourite: string | React.ReactNode;
-  invalidNameError?: string | React.ReactNode;
   folderNamePlaceholder?: string;
+  invalidNameError?: string | React.ReactNode;
+  less: string | React.ReactNode;
+  more: string | React.ReactNode;
   moveToDefault: string | React.ReactNode;
   moveToOtherFolder: string | React.ReactNode;
   showLessLabel: string | React.ReactNode;
   showMoreLabel: string | React.ReactNode;
-  less: string | React.ReactNode;
-  more: string | React.ReactNode;
 };
