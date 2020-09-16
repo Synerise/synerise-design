@@ -6,29 +6,9 @@ import { withTheme } from 'styled-components';
 import Dropdown from '@synerise/ds-dropdown';
 import { OptionHorizontalM } from '@synerise/ds-icon/dist/icons';
 import * as S from './ContentItem.styles';
-import { ItemProps } from '../Item';
 import ItemActions from '../ItemActions/ItemActions';
 import ItemName from '../ItemName/ItemName';
-
-export type ContentItemProps = {
-  changeOrderDisabled?: boolean;
-  dashed?: boolean;
-  draggable?: boolean;
-  expanded?: boolean;
-  greyBackground?: boolean;
-  headerPrefix?: React.ReactNode;
-  headerSuffix?: React.ReactNode;
-  hideExpander?: boolean;
-  item: ItemProps;
-  onDuplicate?: (duplicateParams: { id: string }) => void;
-  onExpand?: (id: string, isExpanded: boolean) => void;
-  onRemove?: (removeParams: { id: string }) => void;
-  onUpdate?: (updateParams: { id: string; name: string }) => void;
-  texts: {
-    [k: string]: string | React.ReactNode;
-  };
-  theme: { [k: string]: string };
-} & React.HTMLAttributes<HTMLDivElement>;
+import { ContentItemProps } from './ContentItem.types';
 
 const ContentItem: React.FC<ContentItemProps> = ({
   onRemove,
