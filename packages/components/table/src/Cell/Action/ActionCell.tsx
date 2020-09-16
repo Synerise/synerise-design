@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as S from './ActionCell.styles';
-
+import { Props } from './ActionCell.types';
 
 
 const ActionCell: React.FC<Props> = ({ children, gapSize = 24, contentAlign = 'right' }: Props) => {

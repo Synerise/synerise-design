@@ -9,7 +9,8 @@ import * as S from './Table.styles';
 import { DSTableProps } from './Table.types';
 import TableHeader from './TableHeader/TableHeader';
 import DefaultTable from './DefaultTable/DefaultTable';
-import GroupTable, { GroupType } from './GroupTable/GroupTable';
+import GroupTable from './GroupTable/GroupTable';
+import { GroupType } from './GroupTable/GroupTable.types';
 
 export const SELECTION_ALL = 'SELECTION_ALL';
 export const SELECTION_INVERT = 'SELECTION_INVERT';
