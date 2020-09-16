@@ -71,7 +71,7 @@ import { AngleDownS } from '@synerise/ds-icon/dist/icons';
 | -------- | ------------------------------------------------------ | ---------------------------------------------- | --------- |
 | block    | Defines if the button should take all available space. | boolean                                        | `false`   |
 | disabled | Defines if the button is disabled.                     | boolean                                        | `false`   |
-| label    | Label of the button.                                   | `left-rounded` / `squared` / `right-rounded`   | -         |
+| label    | Label of the button.                                   | string / React.ReactNode   | -         |
 | onClick  | Callback executed after clicking the button            | (event: React.MouseEvent<HTMLElement>) => void | -         |
 | status   | Defines the color of the button.                       | `upload` / `error`/ `default`                  | `default` |
 

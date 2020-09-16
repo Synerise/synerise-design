@@ -11,7 +11,7 @@ export enum CreatorStatus {
 export interface CreatorProps {
   onClick?: (event: React.MouseEvent<HTMLElement>) => void;
   disabled?: boolean;
-  label?: string;
+  label?: string | React.ReactNode;
   block?: boolean;
   status?: CreatorStatus;
 }
