@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import Menu from '@synerise/ds-menu';
 import Scrollbar from '@synerise/ds-scrollbar';
-import { ScrollbarProps } from '@synerise/ds-scrollbar/dist/Scrollbar';
+import { ScrollbarProps } from '@synerise/ds-scrollbar/dist/Scrollbar.types';
 
 export const DropdownWrapper = styled.div`
   display: flex;
