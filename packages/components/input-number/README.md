@@ -13,25 +13,25 @@ Input-Number UI Component
 
 ### Props
 
-| Property         | Description                                                                                       | Type                                     | Default   |
-| ---------------- | ------------------------------------------------------------------------------------------------- | ---------------------------------------- | --------- |
-| errorText        | error message, if provided input will be set in error state                                       | string                                   | -         |
-| label            | input label                                                                                       | string                                   | -         |
-| description      | input description                                                                                 | string                                   | -         |
-| autoFocus        | get focus when component mounted                                                                  | boolean                                  | false     |
-| defaultValue     | initial value                                                                                     | number                                   |
-| disabled         | disable the input                                                                                 | boolean                                  | false     |
-| formatter        | Specifies the format of the value presented                                                       | function(value: number / string): string | -         |
-| max              | max value                                                                                         | number                                   | Infinity  |
-| min              | min value                                                                                         | number                                   | -Infinity |
-| parser           | Specifies the value extracted from formatter                                                      | function(string): number                 | -         |
-| precision        | precision of input value                                                                          | number                                   | -         |
-| decimalSeparator | decimal separator                                                                                 | string                                   | -         |
-| size             | height of input box                                                                               | string                                   | -         |
-| step             | The number to which the current value is increased or decreased. It can be an integer or decimal. | number/string                            | 1         |
-| value            | current value                                                                                     | number                                   |
-| onChange         | The callback triggered when the value is changed.                                                 | function(value: number / string)         |
-| onPressEnter     | The callback function that is triggered when Enter key is pressed.                                | function(e)                              |
+| Property         | Description                                                                                       | Type                               | Default   |
+| ---------------- | ------------------------------------------------------------------------------------------------- | ---------------------------------- | --------- |
+| autoFocus        | Get focus when component mounted                                                                  | boolean                            |`false`    |
+| decimalSeparator | Decimal separator                                                                                 | string                             | -         |
+| defaultValue     | Initial value                                                                                     | number                             |
+| description      | Input description                                                                                 | string                             | -         |
+| disabled         | Disable the input                                                                                 | boolean                            |`false`    |
+| errorText        | Error message, if provided input will be set in error state                                       | string                             | -         |
+| formatter        | Specifies the format of the value presented                                                       | (value: number / string) => string | -         |
+| label            | Input label                                                                                       | string                             | -         |
+| max              | Max value                                                                                         | number                             | Infinity  |
+| min              | Min value                                                                                         | number                             | -Infinity |
+| onChange         | The callback triggered when the value is changed.                                                 | (value: number / string) => void   |
+| onPressEnter     | The callback function that is triggered when Enter key is pressed.                                | (e:Event) => void                  |
+| parser           | Specifies the value extracted from formatter                                                      | (val: number / string) => string   | -         |
+| precision        | Precision of input value                                                                          | number                             | -         |
+| size             | Height of input box                                                                               | string                             | -         |
+| step             | The number to which the current value is increased or decreased. It can be an integer or decimal. | number / string                    | 1         |
+| value            | Current value                                                                                     | number                             | -         |
 
 ### Methods
 

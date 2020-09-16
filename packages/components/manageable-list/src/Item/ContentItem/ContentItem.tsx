@@ -121,8 +121,8 @@ const ContentItem: React.FC<ContentItemProps> = ({
             <S.ToggleContentWrapper data-testid="item-toggle-content-wrapper">
               <Button.Expander
                 disabled={item.disableExpanding}
-                onClick={(e: React.MouseEvent<HTMLButtonElement>): void => {
-                  e.stopPropagation();
+                onClick={(e?: React.MouseEvent<HTMLElement>): void => {
+                  !!e && e.stopPropagation();
                   !item.disableExpanding && setExpanded(!expandedState);
                   !item.disableExpanding && onExpand && onExpand(item.id, !expandedState);
                 }}

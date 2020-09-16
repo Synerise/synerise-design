@@ -23,7 +23,7 @@ export type Props = Omit<ButtonProps, 'type'> & {
    *
    * @default simple
    */
-  mode?: string;
+  mode?: 'single-icon' | 'split' | 'two-icons' |'label-icon' | 'icon-label' | string;
   /**
    * Defines color of `custom-color` button.
    *

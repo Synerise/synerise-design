@@ -54,27 +54,27 @@ const items = [
 | Property   | Description                                                                  | Type            | Default |
 | ---------- | ---------------------------------------------------------------------------- | --------------- | ------- |
 | dataSource | Array of items to display in menu                                            | MenuItemProps[] | -       |
-| ordered    | Determines if items should be displayed with index prefix (starting from 01) | boolean         | false   |
-| ordered    | Determines if items should be displayed with index prefix (starting from 01) | boolean         | false   |
+| ordered    | Determines if items should be displayed with index prefix (starting from 01) | boolean         |`false`  |
+| ordered    | Determines if items should be displayed with index prefix (starting from 01) | boolean         |`false`  |
 
 ### MenuItemProps
 
 | Property                | Description                                                    | Type                            | Default   |
 | ----------------------- | -------------------------------------------------------------- | ------------------------------- | --------- |
 | text                    | Text displayed inside the item                                 | string / React.ReactNode        | -         |
-| parent                  | Boolean to display arrow for parent item                       | boolean                         | false     |
+| parent                  | Boolean to display arrow for parent item                       | boolean                         |`false`    |
 | prefixel                | Prefix element                                                 | React.ReactNode                 | -         |
-| prefixVisibilityTrigger | Trigger for displaying the prefix element                      | 'default' / 'hover'             | 'default' |
+| prefixVisibilityTrigger | Trigger for displaying the prefix element                      | `default` / `hover`             | `default` |
 | suffixel                | Suffix element                                                 | React.ReactNode                 | -         |
-| suffixVisibilityTrigger | Trigger for displaying the suffix element                      | 'default' / 'hover'             | 'default' |
-| disabled                | Disable an item element                                        | boolean                         | false     |
+| suffixVisibilityTrigger | Trigger for displaying the suffix element                      | `default` / `hover`             | `default` |
+| disabled                | Disable an item element                                        | boolean                         |`false`    |
 | description             | Additional description displayed inside the item               | string / React.ReactNode        |           |
 | subMenu                 | Array of nested items                                          | MenuItemProps[]                 |           |
-| copyable                | Boolean to enable option of copying the value to the clipboard | boolean                         | false     |
+| copyable                | Boolean to enable option of copying the value to the clipboard | boolean                         |`false`    |
 | copyHint                | Text displayed on hovering copyable item                       | string                          |           |
 | copyValue               | Value to be copied to clipboard when copyable item is clicked  | string                          |           |
 | copyTooltip             | Tooltip to be displayed when copyable item is clicked          | string / React.ReactNode        |           |
-| type                    | Type of the item                                               | 'default' / 'select' / 'danger' | 'default' |
+| type                    | Type of the item                                               | `default` / `select` / `danger` | `default` |
 | highlight               | Text to be highlighted inside the item                         | string                          |           |
 | children                | Children of the item                                           | React.ReactNode                 |           |
 | indentLevel             | Indent level of the text inside the item.                      | Number                          | 0         |

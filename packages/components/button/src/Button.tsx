@@ -13,9 +13,9 @@ import Cruds, { CrudsProps } from './Cruds/Cruds';
 const RIPPLE_ANIMATION_OFFSET = 50;
 
 const Button: React.FC<Props> & {
-  Expander: React.ElementType;
-  Creator: React.ElementType;
-  Cruds: React.ElementType;
+  Expander: React.ElementType<ExpanderProps>;
+  Creator: React.ElementType<CreatorProps>;
+  Cruds: React.ElementType<CrudsProps>;
 } = ({
   type = 'secondary',
   mode,
@@ -77,8 +77,8 @@ const Button: React.FC<Props> & {
     </S.AntdButton>
   );
 };
-Button.Expander = (props: ExpanderProps): React.ReactElement => Expander(props) as React.ReactElement;
-Button.Creator = (props: CreatorProps): React.ReactElement => Creator(props) as React.ReactElement;
-Button.Cruds = (props: CrudsProps): React.ReactElement => Cruds(props) as React.ReactElement;
+Button.Expander = (props: ExpanderProps): React.ReactElement<ExpanderProps> => Expander(props) as React.ReactElement<ExpanderProps>;
+Button.Creator = (props: CreatorProps): React.ReactElement<CreatorProps> => Creator(props) as React.ReactElement<CreatorProps>;
+Button.Cruds = (props: CrudsProps): React.ReactElement<CrudsProps> => Cruds(props) as React.ReactElement<CrudsProps>;
 
 export default Button;
