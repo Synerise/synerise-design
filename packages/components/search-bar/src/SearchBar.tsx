@@ -6,19 +6,7 @@ import { useState } from 'react';
 import Tooltip from '@synerise/ds-tooltip';
 import { FormattedMessage } from 'react-intl';
 import * as S from './SearchBar.styles';
-
-export interface SearchBarProps {
-  onSearchChange: (value: string) => void;
-  onClearInput?: () => void;
-  placeholder: string;
-  className?: string;
-  clearTooltip?: string | React.ReactNode;
-  value: string;
-  iconLeft?: React.ReactNode;
-  autofocus?: boolean;
-  disabled?: boolean;
-  borderRadius?: boolean | undefined;
-}
+import { SearchBarProps } from './SearchBar.types';
 
 const SearchBar: React.FC<SearchBarProps> = ({
   value,
