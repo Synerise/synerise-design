@@ -1,4 +1,4 @@
-import { TabItem } from '@synerise/ds-tabs/dist/Tabs';
+import { TabItem } from '@synerise/ds-tabs/dist/Tabs.types';
 import { HeaderTexts } from './Elements/Header/Header.types';
 
 export type SidebarObjectProps = {
