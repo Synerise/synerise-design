@@ -1,20 +1,13 @@
 import * as React from 'react';
 import Menu from '@synerise/ds-menu';
 
-import { ItemRollElement } from '../ItemsRoll.types';
 import { RemoveIcon } from './ItemRemoveIcon';
 import * as S from './ListItem.styles';
+import { ItemElementProps } from './ListItem.types';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 export const NOOP = (): void => {};
 
-type ItemElementProps = {
-  highlight: string;
-  item: ItemRollElement;
-  onItemClick?: (id: string) => void;
-  onItemRemove?: (id: string) => void;
-  removeTooltipLabel: string | React.ReactNode;
-};
 
 const ItemElement: React.FC<ItemElementProps> = ({
   item,

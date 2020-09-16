@@ -5,13 +5,9 @@ import Tooltip from '@synerise/ds-tooltip';
 
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { RemoveIconWrapper } from './ItemRemoveIcon.styles';
+import { RemoveIconProps } from './ItemRemoveIcon.types';
 
-export type RemoveIconProps = {
-  id: string;
-  handleRemove: (id: string) => void;
-  tooltipLabel: string | React.ReactNode;
-};
-
+// eslint-disable-next-line import/prefer-default-export
 export const RemoveIcon: React.FC<RemoveIconProps> = ({ id, handleRemove, tooltipLabel }) => (
   <Tooltip title={tooltipLabel}>
     <RemoveIconWrapper>
