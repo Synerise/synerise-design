@@ -98,7 +98,6 @@ export const InPlaceEditableInputContainer = styled.div<InPlaceEditableInputCont
         &:focus:not(:active),
         &:focus-within {
           input {
-            color: transparent;
             cursor: pointer;
             text-shadow: 0 0 0 ${applyColor(props)};
             background-color: transparent;
