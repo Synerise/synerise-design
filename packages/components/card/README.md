@@ -86,13 +86,13 @@ yarn add @synerise/ds-card
 | headerSideChildren | Defines if the container includes a button (in the header)                                                            | React.ReactNode                                                              | -       |
 | children           | Defines if the button casts a shadow when the cursor is hovered over                                                  | React.ReactNode                                                              | -       |
 | size               | Defines the width of the container (the container width is set to 100% when this property is not passed).             | `small` (472px) / `medium` (588px) / `large` (966px) / `extraLarge` (1232px) | -       |
-| withoutPadding     | Reset padding of ContentContainer                                                                                     | boolean                                                                      | false   |
-| headerBorderBottom | Show line under CardHeader                                                                                            | boolean                                                                      | false   |
-| background         | Style of Card container                                                                                               | 'white', 'white-shadow' , 'grey', 'grey-shadow', 'outline'                   | 'white' |
+| withoutPadding     | Reset padding of ContentContainer                                                                                     | boolean                                                                      |`false`  |
+| headerBorderBottom | Show line under CardHeader                                                                                            | boolean                                                                      |`false`  |
+| background         | Background of Card container                                                                                               | `white` / `white-shadow` / `grey` / `grey-shadow` / `outline`                | `white` |
 
 #### CardBadge
 
-| Property           | Description                         | Type                                     | Default   |
-| ------------------ | ----------------                    | ------------------                       | -------   |
-| Icon               | Icon rendered in badge              | React.ReactNode                          | -         |
-| Status             | Defines the color of badge and icon | 'success', 'error', 'warning', 'default' | 'default' |  
+| Property | Description                         | Type                                        | Default   |
+| -------- | ----------------------------------- | ------------------------------------------- | --------- |
+| Icon     | Icon rendered in badge              | React.ReactNode                             | -         |
+| Status   | Defines the color of badge and icon | `success` / `error` / `warning` / `default` | `default` |
