@@ -2,14 +2,7 @@ import * as React from 'react';
 import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
 import Icon from '@synerise/ds-icon';
 import * as S from './Cruds.styles';
-
-type SingleActionProps = {
-  title: React.ReactNode | string;
-  className?: string;
-  onClick: () => void;
-  icon: React.ReactNode;
-  iconSize?: number;
-};
+import { SingleActionProps } from './SingleAction.types';
 
 const SingleAction: React.FC<SingleActionProps> = ({ title, className, onClick, icon, iconSize }) => {
   return (

@@ -2,18 +2,7 @@ import * as React from 'react';
 import Icon from '@synerise/ds-icon';
 import { AngleDownS } from '@synerise/ds-icon/dist/icons';
 import * as S from './Expander.styles';
-
-export enum ExpanderSize {
-  'S' = 24,
-  'M' = 32,
-}
-
-export interface ExpanderProps {
-  onClick?: (event: React.MouseEvent<HTMLElement>) => void;
-  size?: 'S' | 'M';
-  disabled?: boolean;
-  expanded?: boolean;
-}
+import { ExpanderProps, ExpanderSize } from './Expander.types';
 
 const Expander: React.FC<ExpanderProps> = ({ size = 'S', expanded, disabled, onClick }) => {
   return (
