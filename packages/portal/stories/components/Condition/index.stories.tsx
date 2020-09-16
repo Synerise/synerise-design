@@ -6,7 +6,7 @@ import { withState } from '@dump247/storybook-state';
 import { NotificationsM, VarTypeStringM } from '@synerise/ds-icon/dist/icons';
 import Factors from '@synerise/ds-factors';
 import { PARAMETER_GROUPS, PARAMETER_ITEMS, SUBJECT_ITEMS } from './data/index.data';
-import { boolean } from '@storybook/addon-knobs';
+import { boolean, select } from '@storybook/addon-knobs';
 import { v4 as uuid } from 'uuid';
 import { OPERATORS_GROUPS, OPERATORS_ITEMS, OPERATORS_TEXTS } from '../Operators/data/index.data';
 import Operators from '@synerise/ds-operators';
@@ -270,7 +270,9 @@ const stories = {
                 defaultFactorType={'text'}
                 setSelectedFactorType={(factorType) => setStepConditionFactorType(step.id, condition.id, factorType)}
                 onChangeValue={(value) => setStepConditionFactorValue(step.id, condition.id, value)}
+                textType='default'
                 value={condition.factor.value}
+                formulaEditor={<div>Formula editor</div>}
                 parameters={{
                   buttonLabel: 'Parameter',
                   buttonIcon: <VarTypeStringM />,
