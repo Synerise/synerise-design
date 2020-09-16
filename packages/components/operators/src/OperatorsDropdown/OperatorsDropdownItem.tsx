@@ -17,6 +17,7 @@ interface Props {
 const OperatorsDropdownItem: React.FC<Props> = ({ item, clearSearch, searchQuery, hideDropdown, select, selected }) => {
   return (
     <Menu.Item
+      className="ds-operator-item"
       key={item.name + item.id}
       prefixel={searchQuery && <Icon component={item.icon} />}
       highlight={searchQuery}

@@ -3,7 +3,7 @@ import Dropdown from '@synerise/ds-dropdown';
 import Icon from '@synerise/ds-icon';
 import SearchM from '@synerise/ds-icon/dist/icons/SearchM';
 import Tabs from '@synerise/ds-tabs';
-import { useOnClickOutside } from '@synerise/ds-utils';
+import { focusWithArrowKeys, useOnClickOutside } from '@synerise/ds-utils';
 import Result from '@synerise/ds-result';
 import Scrollbar from '@synerise/ds-scrollbar';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
@@ -134,13 +134,20 @@ const OperatorsDropdown: React.FC<OperatorsDropdownProps> = ({
   }, [groups]);
 
   return (
-    <Dropdown.Wrapper style={{ width: '300px' }} ref={overlayRef}>
+    <Dropdown.Wrapper
+      style={{ width: '300px' }}
+      ref={overlayRef}
+      onKeyDown={(e): void => {
+        // eslint-disable-next-line @typescript-eslint/no-empty-function
+        searchQuery && focusWithArrowKeys(e, 'ds-operator-item', () => {});
+      }}
+    >
       <Dropdown.SearchInput
         onSearchChange={handleSearch}
         onClearInput={(): void => handleSearch('')}
         placeholder={texts.searchPlaceholder}
         value={searchQuery}
-        autofocus
+        autofocus={!searchQuery}
         iconLeft={<Icon component={<SearchM />} color={theme.palette['grey-600']} />}
       />
       {searchQuery === '' && (
