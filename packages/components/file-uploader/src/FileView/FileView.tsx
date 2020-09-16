@@ -5,21 +5,8 @@ import FileM from '@synerise/ds-icon/dist/icons/FileM';
 import Close3M from '@synerise/ds-icon/dist/icons/Close3M';
 import ProgressBar from '@synerise/ds-progress-bar';
 import Tooltip from '@synerise/ds-tooltip';
-import { ExtendedFile } from '../FileUploader.types';
 import * as S from './FileView.styles';
-
-export interface FileViewTexts {
-  size: string | React.ReactNode;
-  uploading: string | React.ReactNode;
-  removeTooltip?: string | React.ReactNode;
-}
-
-interface FileViewProps {
-  data: ExtendedFile;
-  texts: FileViewTexts;
-  removable?: boolean;
-  onRemove?: () => void;
-}
+import { FileViewProps } from './FileView.types';
 
 const FileView: React.FC<FileViewProps> = ({ data, texts, onRemove, removable }) => {
   const previewableMimeTypes = ['image/png', 'image/gif', 'image/jpeg', 'image/svg+xml'];
