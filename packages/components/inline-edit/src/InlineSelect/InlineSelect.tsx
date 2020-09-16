@@ -71,6 +71,7 @@ const InlineSelect: React.FC<InlineSelectProps> = ({
       visible={opened}
       onVisibleChange={setOpened}
       placement="bottomRight"
+      disabled={disabled}
       overlay={
         <SelectDropdown
           dataSource={dataSource}
