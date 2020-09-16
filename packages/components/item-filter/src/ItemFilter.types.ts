@@ -1,4 +1,4 @@
-import { ItemProps } from '@synerise/ds-manageable-list/dist/Item/Item';
+import { ItemProps } from '@synerise/ds-manageable-list/dist/Item/Item.types';
 import * as React from 'react';
 import { IntlFormatters } from 'react-intl';
 
