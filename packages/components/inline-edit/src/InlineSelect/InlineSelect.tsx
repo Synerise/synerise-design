@@ -68,7 +68,7 @@ const InlineSelect: React.FC<InlineSelectProps> = ({
 
   return (
     <Dropdown
-      visible={opened}
+      visible = { !disabled && opened}
       onVisibleChange={setOpened}
       placement="bottomRight"
       disabled={disabled}
