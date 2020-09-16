@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { propsWithKnobs, sizes } from '../index.stories';
+import {  sizes } from '../index.stories';
 import { boolean, select, text } from '@storybook/addon-knobs';
 import Switch from '@synerise/ds-switch';
 import Button from '@synerise/ds-button';

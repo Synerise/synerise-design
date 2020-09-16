@@ -1,13 +1,10 @@
 import { boolean, text } from '@storybook/addon-knobs';
 import { Field, Form as FinalForm } from 'react-final-form';
 import InputNumber from '@synerise/ds-input-number';
-import { Input, TextArea } from '@synerise/ds-input';
+import { TextArea } from '@synerise/ds-input';
 import Radio from '@synerise/ds-radio';
-import Select from '@synerise/ds-select';
-import Button from '@synerise/ds-button';
 import Form from '@synerise/ds-form';
 import * as React from 'react';
-import Checkbox from '@synerise/ds-checkbox/dist';
 import ManageableList from '@synerise/ds-manageable-list';
 import { action } from '@storybook/addon-actions';
 

@@ -1,5 +1,4 @@
-import React from 'react';
-import { SearchInputProps } from '@synerise/ds-dropdown/dist/elements/SearchInput/SearchInput';
+import * as React from 'react';
 import { SearchInput } from '@synerise/ds-search/dist/Elements';
 type DebouncedInputProps = { debouncedOnChange: (text: string) => void };
 const DebouncedInput: React.FC<DebouncedInputProps> = ({ debouncedOnChange }: DebouncedInputProps) => {
