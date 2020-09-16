@@ -5,9 +5,9 @@ import { CardTabTexts } from '../CardTab';
 
 interface Props {
   changeNameAvailable: boolean;
-  enterEditNameMode: (event: React.MouseEvent<HTMLElement>) => void;
-  onDuplicateTab?: (event: React.MouseEvent<HTMLElement>) => void;
-  onRemoveTab?: (event: React.MouseEvent<HTMLElement>) => void;
+  enterEditNameMode: (event?: React.MouseEvent<HTMLElement>) => void;
+  onDuplicateTab?: (event?: React.MouseEvent<HTMLElement>) => void;
+  onRemoveTab?: (event?: React.MouseEvent<HTMLElement>) => void;
   texts?: CardTabTexts;
 }
 
@@ -21,7 +21,7 @@ const CardTabActions: React.FC<Props> = ({
   return (
     <S.CardTabSuffix data-testid="card-tab-suffix">
       <Button.Cruds
-        onEdit={changeNameAvailable && enterEditNameMode}
+        onEdit={changeNameAvailable ? enterEditNameMode : undefined}
         editTooltip={texts?.changeNameTooltip}
         onDuplicate={onDuplicateTab}
         duplicateTooltip={texts?.duplicateTooltip}
