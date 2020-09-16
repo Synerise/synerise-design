@@ -3,14 +3,8 @@ import Menu from '@synerise/ds-menu';
 import { MenuItemProps } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.types';
 import { SearchItems } from '@synerise/ds-search/dist/Elements';
 import * as S from './SelectDropdown.style';
+import { Props } from './SelectDropdown.types';
 
-interface Props {
-  dataSource: MenuItemProps[];
-  dropdownVisibleRows?: number;
-  dropdownRowHeight?: number;
-  onSelect: (item: MenuItemProps) => void;
-  closeDropdown: () => void;
-}
 const DEFAULT_ROW_HEIGHT = 32;
 const DEFAULT_VISIBLE_ROWS = 10;
 const SelectDropdown: React.FC<Props> = ({
