@@ -63,6 +63,7 @@ export type FactorsTexts = {
   };
   formula: {
     buttonPlaceholder: string;
+    defaultName: string;
   };
   parameter: {
     searchPlaceholder: string;
@@ -83,7 +84,7 @@ export type FactorsProps = {
   defaultFactorType: FactorType;
   onChangeValue: (value: FactorValueType) => void;
   value: FactorValueType;
-  expansibleText?: boolean;
+  textType?: 'autocomplete' | 'expansible' | 'default' | string;
   autocompleteText?: {
     options: string[];
   };
@@ -94,6 +95,7 @@ export type FactorsProps = {
     items: ParameterItem[];
     showAllGroup?: boolean;
   };
+  formulaEditor?: React.ReactNode;
   texts: FactorsTexts;
 };
 
@@ -109,20 +111,23 @@ export type FactorValueProps = Pick<
   | 'onChangeValue'
   | 'value'
   | 'selectedFactorType'
-  | 'expansibleText'
   | 'parameters'
   | 'autocompleteText'
   | 'withoutTypeSelector'
   | 'texts'
+  | 'textType'
+  | 'formulaEditor'
 > & {
   selectedFactor: SelectedFactorType;
 };
 
 export type InputProps = Pick<
   FactorsProps,
-  'value' | 'expansibleText' | 'parameters' | 'autocompleteText' | 'withoutTypeSelector' | 'texts'
+  'value' | 'parameters' | 'autocompleteText' | 'withoutTypeSelector' | 'texts' | 'textType'
 > & {
   onChange: (value: FactorValueType) => void;
+  factorType: FactorType;
+  formulaEditor?: React.ReactNode;
 };
 
 export type TextModalProps = {
@@ -147,4 +152,5 @@ export type FormulaModalProps = {
   visible: boolean;
   onCancel: () => void;
   texts: FactorsTexts;
+  formulaEditor?: React.ReactNode;
 };

@@ -14,6 +14,7 @@ export const FACTORS_TEXTS = {
   },
   formula: {
     buttonPlaceholder: 'Define formula',
+    defaultName: 'Formula'
   },
   parameter: {
     searchPlaceholder: 'Search',

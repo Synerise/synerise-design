@@ -60,13 +60,14 @@ const Factors: React.FC<FactorsProps> = ({
   onChangeValue,
   value,
   defaultFactorType = 'text',
-  expansibleText,
+  textType = 'Default',
   unavailableFactorTypes,
   availableFactorTypes,
   parameters,
   autocompleteText,
   withoutTypeSelector = false,
   texts,
+  formulaEditor,
 }) => {
   const factorType = React.useMemo(() => {
     return selectedFactorType || defaultFactorType;
@@ -92,10 +93,11 @@ const Factors: React.FC<FactorsProps> = ({
         onChangeValue={onChangeValue}
         selectedFactor={selectedFactor}
         selectedFactorType={factorType}
-        expansibleText={expansibleText}
+        textType={textType}
         parameters={parameters}
         autocompleteText={autocompleteText}
         withoutTypeSelector={withoutTypeSelector}
+        formulaEditor={formulaEditor}
         texts={texts}
       />
     </S.Group>
