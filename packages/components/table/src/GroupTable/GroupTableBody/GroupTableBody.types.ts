@@ -1,5 +1,5 @@
-import { RowSelection } from '../../Table.types';
 import * as React from 'react';
+import { RowSelection } from '../../Table.types';
 import { GroupColumnsType, GroupType } from '../GroupTable';
 
 export interface Props<T extends unknown> {
