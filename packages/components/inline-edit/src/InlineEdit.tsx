@@ -27,7 +27,7 @@ export interface InlineEditProps {
   className?: string;
   disabled?: boolean;
   input: InputProps;
-  style?: { [key: string]: string | number };
+  style?: React.CSSProperties;
   autoFocus?: boolean;
   error?: boolean;
   hideIcon?: boolean;

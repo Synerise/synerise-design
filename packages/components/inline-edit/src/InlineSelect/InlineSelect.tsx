@@ -17,12 +17,12 @@ export interface InlineSelectProps {
   className?: string;
   disabled?: boolean;
   input: Partial<InputProps>;
-  style?: { [key: string]: string | number };
+  style?: React.CSSProperties;
   autoFocus?: boolean;
   error?: boolean;
   hideIcon?: boolean;
   expanded: boolean;
-  option?: string;
+  placeholder?: string;
   dataSource: MenuItemProps[];
 }
 
@@ -35,7 +35,7 @@ const InlineSelect: React.FC<InlineSelectProps> = ({
   hideIcon,
   error,
   input,
-  option,
+  placeholder,
   dataSource,
 }): React.ReactElement => {
   const inputRef = React.useMemo(() => {
@@ -62,7 +62,7 @@ const InlineSelect: React.FC<InlineSelectProps> = ({
     }
   }, [autoFocus, fontStyleWatcher, inputRef, updateInputWidth]);
 
-  const [selectedValue, setSelectedValue] = React.useState<string>('option');
+  const [selectedValue, setSelectedValue] = React.useState<string>(placeholder  || 'option');
   const [opened, setOpened] = React.useState<boolean>(false);
   const [pressed, setPressed] = React.useState<boolean>(false);
 
@@ -86,7 +86,7 @@ const InlineSelect: React.FC<InlineSelectProps> = ({
         maxLength={input.maxLength}
         disabled={disabled}
         name={input.name}
-        value={selectedValue || option}
+        value={selectedValue || placeholder}
         autoComplete={input.autoComplete}
         placeholderIsMinWidth={false}
         /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
