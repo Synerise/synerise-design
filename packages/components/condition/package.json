@@ -27,7 +27,10 @@
   "dependencies": {
     "@synerise/ds-button": "*",
     "@synerise/ds-core": "*",
+    "@synerise/ds-factors": "*",
     "@synerise/ds-inline-edit": "*",
+    "@synerise/ds-operators": "*",
+    "@synerise/ds-subject": "*",
     "@synerise/ds-tooltip": "*",
     "@synerise/ds-utils": "*"
   },

@@ -1,9 +1,7 @@
 import {
-  BooleanM,
-  CalendarM,
   ExpressionM,
-  FolderM, HashM, ListM,
-  NotificationsM, TextM,
+  FolderM,
+  NotificationsM,
   VarTypeNumberM,
   VarTypeStringM,
 } from '@synerise/ds-icon/dist/icons';

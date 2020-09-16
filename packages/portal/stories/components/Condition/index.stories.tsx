@@ -1,15 +1,12 @@
 import * as React from 'react';
 
 import Condition from '@synerise/ds-condition';
-import Subject from '@synerise/ds-subject';
 import { withState } from '@dump247/storybook-state';
 import { NotificationsM, VarTypeStringM } from '@synerise/ds-icon/dist/icons';
-import Factors from '@synerise/ds-factors';
 import { PARAMETER_GROUPS, PARAMETER_ITEMS, SUBJECT_ITEMS } from './data/index.data';
-import { boolean, select } from '@storybook/addon-knobs';
+import { boolean, select, text } from '@storybook/addon-knobs';
 import { v4 as uuid } from 'uuid';
 import { OPERATORS_GROUPS, OPERATORS_ITEMS, OPERATORS_TEXTS } from '../Operators/data/index.data';
-import Operators from '@synerise/ds-operators';
 import { FACTORS_TEXTS } from '../Factors/data/index.data';
 import { SUBJECT_TEXTS } from '../Subject/data/index.data';
 
@@ -19,7 +16,7 @@ const DEFAULT_CONDITION_ROW = {
     value: '',
   },
   operator: {
-    value: '',
+    value: undefined,
   },
   factor: {
     selectedFactorType: '',
@@ -38,7 +35,7 @@ const DEFAULT_STATE = {
       stepName: 'Step name',
       subject: {
         showPreview: undefined,
-        type: 'event' as const,
+        type: 'event',
         placeholder: 'Choose event',
         iconPlaceholder: <NotificationsM />,
         selectedItem: undefined,
@@ -228,59 +225,57 @@ const stories = {
           store.state.steps.map(step => ({
             id: step.id,
             stepName: boolean('Show step name', true) && step.stepName,
-            subject: (
-              <Subject
-                selectItem={(item) => setStepSubject(step.id, item)}
-                showPreview={step.subject.showPreview}
-                type={step.subject.type}
-                placeholder={step.subject.placeholder}
-                iconPlaceholder={step.subject.iconPlaceholder}
-                selectedItem={step.subject.selectedItem}
-                items={SUBJECT_ITEMS}
-                texts={SUBJECT_TEXTS}
-              />
-            ),
+            subject: {
+              selectItem: (item) => setStepSubject(step.id, item),
+              showPreview: step.subject.showPreview,
+              type: select('Choose subject type', ['parameter', 'event', 'context'], 'parameter'),
+              placeholder: text('Set subject placeholder', 'Choose event'),
+              iconPlaceholder: step.subject.iconPlaceholder,
+              selectedItem: step.subject.selectedItem,
+              items: SUBJECT_ITEMS,
+              texts: SUBJECT_TEXTS,
+            },
             conditions: step.conditions.map((condition, index) => ({
               id: condition.id,
-              parameter: <Factors
-                availableFactorTypes={['parameter']}
-                selectedFactorType={'parameter'}
-                defaultFactorType={'parameter'}
-                setSelectedFactorType={() => {}}
-                onChangeValue={(value) => setStepConditionParameter(step.id, condition.id, value)}
-                value={condition.parameter.value}
-                parameters={{
+              parameter: {
+                availableFactorTypes: ['parameter'],
+                selectedFactorType: 'parameter',
+                defaultFactorType: 'parameter',
+                setSelectedFactorType: () => {},
+                onChangeValue: (value) => setStepConditionParameter(step.id, condition.id, value),
+                value: condition.parameter.value,
+                parameters: {
                   buttonLabel: 'Parameter',
                   buttonIcon: <VarTypeStringM />,
                   groups: PARAMETER_GROUPS,
                   items: PARAMETER_ITEMS
-                }}
-                withoutTypeSelector={true}
-                texts={FACTORS_TEXTS}
-              />,
-              operator: <Operators
-                onChange={(value) => setOperatorValue(step.id, condition.id, value)}
-                value={condition.operator.value}
-                items={OPERATORS_ITEMS}
-                groups={OPERATORS_GROUPS}
-                texts={OPERATORS_TEXTS}
-              />,
-              factor: <Factors
-                selectedFactorType={condition.factor.selectedFactorType}
-                defaultFactorType={'text'}
-                setSelectedFactorType={(factorType) => setStepConditionFactorType(step.id, condition.id, factorType)}
-                onChangeValue={(value) => setStepConditionFactorValue(step.id, condition.id, value)}
-                textType='default'
-                value={condition.factor.value}
-                formulaEditor={<div>Formula editor</div>}
-                parameters={{
+                },
+                withoutTypeSelector: true,
+                texts: FACTORS_TEXTS,
+              },
+              operator: {
+                onChange: (value) => setOperatorValue(step.id, condition.id, value),
+                value: condition.operator.value,
+                items: OPERATORS_ITEMS,
+                groups: OPERATORS_GROUPS,
+                texts: OPERATORS_TEXTS,
+              },
+              factor: {
+                selectedFactorType: condition.factor.selectedFactorType,
+                defaultFactorType: 'text',
+                setSelectedFactorType: (factorType) => setStepConditionFactorType(step.id, condition.id, factorType),
+                onChangeValue: (value) => setStepConditionFactorValue(step.id, condition.id, value),
+                textType: 'default',
+                value: condition.factor.value,
+                formulaEditor: <div>Formula editor</div>,
+                parameters: {
                   buttonLabel: 'Parameter',
                   buttonIcon: <VarTypeStringM />,
                   groups: PARAMETER_GROUPS,
                   items: PARAMETER_ITEMS
-                }}
-                texts={FACTORS_TEXTS}
-              />,
+                },
+                texts: FACTORS_TEXTS,
+              },
             }))
           }))
         } />

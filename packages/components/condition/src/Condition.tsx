@@ -6,10 +6,55 @@ import Button from '@synerise/ds-button';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import Tooltip from '@synerise/ds-tooltip';
 import { ChangeEvent } from 'react';
+import Subject from '@synerise/ds-subject';
+import Factors from '@synerise/ds-factors';
+import Operators from '@synerise/ds-operators';
+import { ConditionProps, ConditionStep, StepConditions } from './Condition.types';
 import * as S from './Condition.style';
-import { ConditionProps } from './Condition.types';
 
 const Condition: React.FC<ConditionProps> = ({ steps, addCondition, removeCondition, updateStepName, texts }) => {
+  const clearConditionRow = React.useCallback(
+    step => {
+      if (removeCondition && addCondition) {
+        step.conditions.forEach((condition: StepConditions) => {
+          removeCondition(step.id, condition.id);
+        });
+
+        addCondition(step.id);
+      } else {
+        step.conditions.forEach((condition: StepConditions) => {
+          condition.factor && condition.factor.onChangeValue(undefined);
+          condition.operator && condition.operator.onChange(undefined);
+          condition.parameter && condition.parameter.onChangeValue(undefined);
+        });
+      }
+    },
+    [removeCondition, addCondition]
+  );
+
+  const selectSubject = React.useCallback(
+    (value, step: ConditionStep): void => {
+      step.subject.selectItem(value);
+      clearConditionRow(step);
+    },
+    [clearConditionRow]
+  );
+
+  const selectParameter = React.useCallback((condition: StepConditions, value): void => {
+    if (condition.id && condition.parameter) {
+      condition.parameter.onChangeValue(value);
+      condition.operator && condition.operator.onChange(undefined);
+      condition.factor && condition.factor.onChangeValue(undefined);
+    }
+  }, []);
+
+  const selectOperator = React.useCallback((condition: StepConditions, value): void => {
+    if (condition.id && condition.operator) {
+      condition.operator.onChange(value);
+      condition.factor && condition.factor.onChangeValue(undefined);
+    }
+  }, []);
+
   return (
     <S.Condition>
       {steps.map((step, index) => {
@@ -31,7 +76,9 @@ const Condition: React.FC<ConditionProps> = ({ steps, addCondition, removeCondit
               </S.StepName>
             )}
             <S.StepConditions>
-              <S.Subject>{step.subject}</S.Subject>
+              <S.Subject>
+                <Subject {...step.subject} selectItem={(value): void => selectSubject(value, step)} />
+              </S.Subject>
               <S.ConditionRows>
                 {step.conditions &&
                   step.conditions.map((condition, conditionIndex) => (
@@ -40,9 +87,23 @@ const Condition: React.FC<ConditionProps> = ({ steps, addCondition, removeCondit
                         first={conditionIndex === 0}
                         last={conditionIndex + 1 === step.conditions.length && !addCondition}
                       />
-                      <S.CondtionWrapper>{condition.parameter}</S.CondtionWrapper>
-                      <S.CondtionWrapper>{condition.operator}</S.CondtionWrapper>
-                      <S.CondtionWrapper>{condition.factor}</S.CondtionWrapper>
+                      <S.CondtionWrapper>
+                        {condition.parameter && (
+                          <Factors
+                            {...condition.parameter}
+                            onChangeValue={(value): void => selectParameter(condition, value)}
+                          />
+                        )}
+                      </S.CondtionWrapper>
+                      <S.CondtionWrapper>
+                        {condition.operator && (
+                          <Operators
+                            {...condition.operator}
+                            onChange={(value): void => selectOperator(condition, value)}
+                          />
+                        )}
+                      </S.CondtionWrapper>
+                      <S.CondtionWrapper>{condition.factor && <Factors {...condition.factor} />}</S.CondtionWrapper>
                       {removeCondition && (
                         <S.RemoveIconWrapper onClick={(): void => removeCondition(step.id, condition.id)}>
                           <Tooltip title={texts.removeConditionRowTooltip} trigger={['hover']}>

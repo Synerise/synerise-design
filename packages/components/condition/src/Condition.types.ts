@@ -1,15 +1,18 @@
 import * as React from 'react';
+import { SubjectProps } from '@synerise/ds-subject/dist/Subject.types';
+import { FactorsProps } from '@synerise/ds-factors/dist/Factors.types';
+import { OperatorsProps } from '@synerise/ds-operators/dist/Operator.types';
 
 export type StepConditions = {
   id: React.ReactText;
-  parameter?: React.ReactNode;
-  operator?: React.ReactNode;
-  factor?: React.ReactNode;
+  parameter?: FactorsProps;
+  operator?: OperatorsProps;
+  factor?: FactorsProps;
 };
 
 export type ConditionStep = {
   id: React.ReactText;
-  subject: React.ReactNode;
+  subject: SubjectProps;
   stepName?: string;
   conditions: StepConditions[];
 };
