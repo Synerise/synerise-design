@@ -3,31 +3,10 @@ import { AngleDownS, Close3S, WarningFillM } from '@synerise/ds-icon/dist/icons'
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import Icon from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
-import { MenuItemProps } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.types';
 import Button from '@synerise/ds-button';
 import Popconfirm from '@synerise/ds-popconfirm';
 import * as S from './Trigger.styles';
-import { ItemPickerSize } from '../ItemPicker';
-
-interface Props {
-  openDropdown: () => void;
-  closeDropdown: () => void;
-  size: ItemPickerSize;
-  clear: string | React.ReactNode;
-  onClear: () => void;
-  opened: boolean;
-  placeholder: string | React.ReactNode;
-  placeholderIcon?: React.ReactNode;
-  error?: boolean;
-  disabled?: boolean;
-  selected?: MenuItemProps;
-  changeButtonLabel?: string | React.ReactNode;
-  withChangeButton?: boolean;
-  clearConfirmTitle: string;
-  yesText: string;
-  noText: string;
-  withClearConfirmation: boolean;
-}
+import { Props } from './Trigger.types';
 
 const Trigger: React.FC<Props> = ({
   selected,
