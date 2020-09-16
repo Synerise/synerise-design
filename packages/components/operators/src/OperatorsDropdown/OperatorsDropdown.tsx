@@ -140,6 +140,7 @@ const OperatorsDropdown: React.FC<OperatorsDropdownProps> = ({
         onClearInput={(): void => handleSearch('')}
         placeholder={texts.searchPlaceholder}
         value={searchQuery}
+        autofocus
         iconLeft={<Icon component={<SearchM />} color={theme.palette['grey-600']} />}
       />
       {searchQuery === '' && (
@@ -150,6 +151,7 @@ const OperatorsDropdown: React.FC<OperatorsDropdownProps> = ({
             activeTab={activeTab}
             handleTabClick={(index: number): void => {
               setActiveTab(index);
+              setActiveGroup(undefined);
             }}
           />
         </S.TabsWrapper>

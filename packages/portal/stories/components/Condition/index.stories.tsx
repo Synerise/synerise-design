@@ -9,6 +9,7 @@ import { v4 as uuid } from 'uuid';
 import { OPERATORS_GROUPS, OPERATORS_ITEMS, OPERATORS_TEXTS } from '../Operators/data/index.data';
 import { FACTORS_TEXTS } from '../Factors/data/index.data';
 import { SUBJECT_TEXTS } from '../Subject/data/index.data';
+import { action } from '@storybook/addon-actions';
 
 const DEFAULT_CONDITION_ROW = {
   id: uuid(),
@@ -227,15 +228,15 @@ const stories = {
             stepName: boolean('Show step name', true) && step.stepName,
             subject: {
               selectItem: (item) => setStepSubject(step.id, item),
-              showPreview: step.subject.showPreview,
               type: select('Choose subject type', ['parameter', 'event', 'context'], 'parameter'),
               placeholder: text('Set subject placeholder', 'Choose event'),
+              showPreview: boolean('Subject with preview', true) && action('ShowPreview'),
               iconPlaceholder: step.subject.iconPlaceholder,
               selectedItem: step.subject.selectedItem,
               items: SUBJECT_ITEMS,
               texts: SUBJECT_TEXTS,
             },
-            conditions: step.conditions.map((condition, index) => ({
+            conditions: step.conditions.map((condition) => ({
               id: condition.id,
               parameter: {
                 availableFactorTypes: ['parameter'],

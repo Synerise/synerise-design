@@ -147,6 +147,7 @@ const ParameterDropdown: React.FC<ParameterDropdownProps> = ({
         onClearInput={(): void => handleSearch('')}
         placeholder={texts.parameter.searchPlaceholder}
         value={searchQuery}
+        autofocus
         iconLeft={<Icon component={<SearchM />} color={theme.palette['grey-600']} />}
       />
       {searchQuery === '' && (
@@ -157,6 +158,7 @@ const ParameterDropdown: React.FC<ParameterDropdownProps> = ({
             activeTab={activeTab}
             handleTabClick={(index: number): void => {
               setActiveTab(index);
+              setActiveGroup(undefined);
             }}
           />
         </S.TabsWrapper>
