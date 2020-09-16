@@ -1,10 +1,12 @@
 import * as React from 'react';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import {range} from 'lodash';
-import CardTabs, { CardTabsItem } from '../CardTabs';
-import CardTab, { prefixType } from '../CardTab/CardTab';
+import CardTabs from '../CardTabs';
+import CardTab from '../CardTab/CardTab';
 import { fireEvent } from '@testing-library/react';
 import FileM from '@synerise/ds-icon/dist/icons/FileM';
+import { CardTabsItem } from 'CardTabs.types';
+import { prefixType } from 'CardTab/CardTab.types';
 
 describe('Card Tabs', () => {
   const ITEMS: CardTabsItem[] = range(3).map((i: number) => ({
