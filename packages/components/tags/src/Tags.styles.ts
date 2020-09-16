@@ -22,7 +22,7 @@ export const AddButton = styled(Button)<{ marginless?: boolean }>`
   margin: ${(props): string => (props.marginless ? '0' : '0 0 0 8px')};
 
   span {
-    padding-left: 4px;
+    padding: 0 4px;
   }
 `;
 
