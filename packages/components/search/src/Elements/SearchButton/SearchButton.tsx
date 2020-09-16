@@ -3,14 +3,8 @@ import Icon from '@synerise/ds-icon/dist/Icon';
 import Button from '@synerise/ds-button';
 import SearchM from '@synerise/ds-icon/dist/icons/SearchM';
 import * as S from "../../Search.styles";
+import { SearchButtonProps } from './SearchButton.types';
 
-export type SearchButtonProps = {
-  inputOpen: boolean;
-  hidden: boolean;
-  onClick: () => void;
-  clickable? : boolean;
-  inputFocused? : boolean;
-};
 const SearchButton: React.FC<SearchButtonProps> = ({inputOpen,hidden,onClick,inputFocused,clickable }: SearchButtonProps ) => {
   return (
     <S.SearchButton
