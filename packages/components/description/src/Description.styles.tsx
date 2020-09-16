@@ -1,7 +1,7 @@
 import styled, { FlattenSimpleInterpolation, css } from 'styled-components';
 import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { PrefixWrapper, RowLabel, RowWrapper, SuffixWrapper, ValueWrapper } from './Row/DescriptionRow.styles';
-import { DescriptionRatio, DescriptionType } from './Description';
+import { DescriptionRatio, DescriptionType } from './Description.types';
 
 const getColumnsWidth = (ratio: DescriptionRatio | null = null): string | false => {
   const mapRatioToWidth = {
