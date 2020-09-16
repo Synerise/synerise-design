@@ -7,10 +7,11 @@ export interface CrudsProps {
   removeTooltip?: React.ReactNode | string;
   moveTooltip?: React.ReactNode | string;
   deleteTooltip?: React.ReactNode | string;
-  onDelete?: () => void;
-  onAdd?: () => void;
-  onEdit?: () => void;
-  onDuplicate?: () => void;
-  onMove?: () => void;
-  onRemove?: () => void;
+  onDelete?: (event?: React.MouseEvent<HTMLElement>) => void;
+  onAdd?: (event?: React.MouseEvent<HTMLElement>) => void;
+  onEdit?: (event?: React.MouseEvent<HTMLElement>) => void;
+  onDuplicate?: (event?: React.MouseEvent<HTMLElement>) => void;
+  onMove?: (event?: React.MouseEvent<HTMLElement>) => void;
+  onRemove?: (event?: React.MouseEvent<HTMLElement>) => void;
+
 }

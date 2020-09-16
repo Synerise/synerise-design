@@ -5,7 +5,7 @@ import { IconContainer } from '@synerise/ds-icon/dist/Icon.styles';
 
 import Button from '../Button';
 import { ButtonFocus, RippleEffect } from '../Button.styles';
-import { CreatorStatus } from './Creator';
+import { CreatorStatus } from './Creator.types';
 
 export const CreatorLabel = styled.span`
   && {

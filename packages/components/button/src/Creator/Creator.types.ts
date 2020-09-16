@@ -4,9 +4,10 @@ export enum CreatorStatus {
   Upload = 'upload',
 }
 export interface CreatorProps {
-  onClick: () => void;
+  onClick?: (event: React.MouseEvent<HTMLElement>) => void;
   disabled?: boolean;
-  label?: string;
+  label?: string | React.ReactNode;
   block?: boolean;
   status?: CreatorStatus;
+
 }

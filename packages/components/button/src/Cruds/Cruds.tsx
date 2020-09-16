@@ -2,7 +2,7 @@ import * as React from 'react';
 import { AddS, CloseS, DragHandleM, DuplicateS, EditS, TrashS } from '@synerise/ds-icon/dist/icons';
 import * as S from './Cruds.styles';
 import SingleAction from './SingleAction';
-import { CrudsProps } from './Action.types';
+import { CrudsProps } from './Cruds.types';
 
 const Cruds: React.FC<CrudsProps> = ({
   onDelete,

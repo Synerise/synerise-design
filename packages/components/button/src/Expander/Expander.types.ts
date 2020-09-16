@@ -4,9 +4,8 @@ export enum ExpanderSize {
 }
 
 export interface ExpanderProps {
-  onClick: () => void;
-  size: ExpanderSize;
-  disabled: boolean;
-  pressed: boolean;
-  expanded: boolean;
+  onClick?: (event: React.MouseEvent<HTMLElement>) => void;
+  size?: 'S' | 'M';
+  disabled?: boolean;
+  expanded?: boolean;
 }
