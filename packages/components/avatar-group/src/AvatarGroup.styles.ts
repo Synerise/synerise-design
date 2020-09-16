@@ -1,5 +1,5 @@
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
-import { Size } from './AvatarGroup';
+import { Size } from './AvatarGroup.types';
 
 const SIZES = {
   small: '24px',
