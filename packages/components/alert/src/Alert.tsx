@@ -1,29 +1,9 @@
 import * as React from 'react';
-import { AlertProps } from 'antd/lib/alert';
 import './style/index.less';
 import { Check2M, Close2M, NotificationsM } from '@synerise/ds-icon/dist/icons';
 import Icon from '@synerise/ds-icon';
 import * as S from './Alert.styles';
-
-export interface Props extends Omit<AlertProps, 'type'> {
-  type: 'success' | 'warning' | 'error' | 'info';
-  color?:
-    | 'blue'
-    | 'grey'
-    | 'red'
-    | 'green'
-    | 'yellow'
-    | 'pink'
-    | 'mars'
-    | 'orange'
-    | 'fern'
-    | 'cyan'
-    | 'purple'
-    | 'violet';
-  mode?: 'background' | 'background-outline' | 'outline' | 'clear';
-  showMoreLabel?: React.ReactNode;
-  onShowMore?: () => void;
-}
+import { Props } from './Alert.types';
 
 const ICONS = {
   success: <Check2M />,
