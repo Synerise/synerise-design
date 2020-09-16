@@ -1,23 +1,15 @@
 import * as React from 'react';
 import '@synerise/ds-core/dist/js/style';
 import './style/index.less';
-import { CheckboxProps as AntCheckboxProps } from 'antd/lib/checkbox';
 import { Description, ErrorText } from '@synerise/ds-typography';
 import * as S from './Checkbox.styles';
-
-export interface CheckboxProps extends AntCheckboxProps {
-  description?: string;
-  errorText?: string;
-  hasError?: boolean;
-  withoutPadding?: boolean;
-}
+import { CheckboxProps } from './Checkbox.types';
 
 class Checkbox extends React.Component<CheckboxProps> {
   static Group = S.AntdCheckbox.Group;
 
   render(): React.ReactNode {
     const { description, errorText, children, withoutPadding, hasError, ...antdCheckboxProps } = this.props;
-
     return (
       <S.CheckboxWrapper className="ds-checkbox" withoutPadding={Boolean(withoutPadding)}>
         <S.AntdCheckbox
