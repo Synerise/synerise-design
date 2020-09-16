@@ -1,22 +1,10 @@
 import * as React from 'react';
 import * as S from '../Table.styles';
 import FilterTrigger from '../FilterTrigger/FilterTrigger';
-import { Filter, RowSelection } from '../Table.types';
+import { Filter } from '../Table.types';
 import TableSelection from './TableSelection';
+import { Props } from './TableHeader.types';
 
-interface Props<T extends { key: React.ReactText }> {
-  title?: React.ReactNode;
-  filters?: Filter[];
-  selectedRows?: number;
-  itemsMenu: React.ReactNode;
-  selection?: RowSelection<T>;
-  dataSource: T[];
-  searchComponent?: React.ReactNode;
-  filterComponent?: React.ReactNode;
-  rowKey?: Function | string;
-  withBorderTop?: boolean;
-  headerButton?: React.ReactNode;
-}
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
 const TableHeader: React.FC<Props> = ({

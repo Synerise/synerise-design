@@ -4,12 +4,7 @@ import Icon from '@synerise/ds-icon';
 import { Input } from '@synerise/ds-input';
 import { ChangeEvent } from 'react';
 import * as S from './EditableCell.styles';
-
-interface Props {
-  value: string | undefined;
-  onChange: (newValue: string) => void;
-  placeholder?: string;
-}
+import { Props } from './EditableCell.types';
 
 const EditableCell: React.FC<Props> = ({ value, onChange, placeholder }: Props) => {
   const [editMode, setEditMode] = React.useState(false);

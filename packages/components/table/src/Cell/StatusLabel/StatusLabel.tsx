@@ -1,12 +1,7 @@
 import * as React from 'react';
 import Badge from '@synerise/ds-badge';
-import { Status } from '@synerise/ds-badge/dist/Badge';
 import * as S from './StatusLabel.styles';
-
-type Props = {
-  status: Status;
-  label: string | React.ReactNode;
-};
+import { Props } from './StatusLabel.types';
 
 const StatusLabelCell: React.FC<Props> = ({ status, label }: Props) => {
   return (
