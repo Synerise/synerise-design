@@ -1,17 +1,6 @@
 import * as React from 'react';
 import * as S from './Icon.styles';
-
-export type IconProps = {
-  color?: string;
-  name?: string;
-  title?: string;
-  size?: string | number;
-  stroke?: boolean;
-  onClick?: React.MouseEventHandler;
-  component?: React.ReactNode;
-  className?: string;
-  style?: React.CSSProperties;
-} & React.HTMLAttributes<HTMLDivElement>;
+import { IconProps } from './Icon.types';
 
 const Icon: React.FC<IconProps> = props => {
   const { color, name, size, stroke, onClick, component, className, style, ...rest } = props;
