@@ -4,12 +4,7 @@ import { v4 as uuid } from 'uuid';
 import './style/index.less';
 import AntdSwitch, { SwitchProps } from 'antd/lib/switch';
 import * as S from './Switch.styles';
-
-export interface Props extends SwitchProps {
-  errorText?: string | React.ReactNode;
-  label: string | React.ReactNode;
-  description?: string | React.ReactNode;
-}
+import { Props } from './Switch.types';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const ExtendedAntdSwitchComponent = (AntdSwitch as any) as React.ComponentType<
