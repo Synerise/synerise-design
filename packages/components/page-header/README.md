@@ -13,16 +13,19 @@ This component could be used as header of page with main title and navigation
 
 ## API
 
-| Property    | Description                              | Type                        | Default |
-| ----------- | ---------------------------------------- | --------------------------- | ------- |
-| rightSide   | Place for optional node on right side    | React.ReactNode             | -       |
-| bar         | Place for optional node below header     | React.ReactNode             | -       |
-| tabs        | Place for optional tabs component        | React.ReactNode             | -       |
-| avatar      | Place for optional avatar component      | React.ReactNode             | -       |
-| more        | Place for more detail button             | React.ReactNode             | -       |
-| title       | Title of header                          | React.ReactNode `or` string | -       |
-| description | Description of header                    | React.ReactNode `or` string | -       |
-| onGoBack    | Callback to previous state               | function                    | -       |
-| onClose     | Callback to close layer                  | function                    | -       |
-| isolated    | Add horizontal line to separate content  | boolean                     | `false` |
-| inlineEdit  | Object with InlineEdit component options | Object                      | `false` |
+| Property    | Description                              | Type                     | Default |
+| ----------- | ---------------------------------------- | ------------------------ | ------- |
+| avatar      | Place for optional avatar component      | React.ReactNode          | -       |
+| bar         | Place for optional node below header     | React.ReactNode          | -       |
+| className   | Class added to the component             | string                   | -       |
+| description | Description of header                    | React.ReactNode / string | -       |
+| goBackIcon  | Custom icon for "go back" button         | React.ReactNode          | -       |
+| isolated    | Add horizontal line to separate content  | boolean                  | `false` |
+| inlineEdit  | Object with InlineEdit component options | Object                   | -       |
+| more        | Place for more detail button             | React.ReactNode          | -       |
+| onGoBack    | Callback to previous state               | () => void               | -       |
+| onClose     | Callback to close layer                  | () => void               | -       |
+| rightSide   | Place for optional node on right side    | React.ReactNode          | -       |
+| tabs        | Place for optional tabs component        | React.ReactNode          | -       |
+| title       | Title of header                          | React.ReactNode / string | -       |
+
