@@ -1,4 +1,4 @@
-import { ItemProps } from '../Item';
+import { ItemProps } from '../Item.types';
 
 export type ItemLabelProps = {
   item: ItemProps;

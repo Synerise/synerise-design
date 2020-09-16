@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ItemProps } from '../Item';
+import { ItemProps } from '../Item.types';
 
 export type Props = {
   item: ItemProps;
