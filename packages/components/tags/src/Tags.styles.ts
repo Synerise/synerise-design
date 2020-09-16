@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import Button from '@synerise/ds-button';
 import SearchBar from '@synerise/ds-search-bar/';
 import Scrollbar from '@synerise/ds-scrollbar';
-import { ScrollbarProps } from '@synerise/ds-scrollbar/dist/Scrollbar';
+import { ScrollbarProps } from '@synerise/ds-scrollbar/dist/Scrollbar.types';
 
 export const Container = styled.div`
   margin-bottom: 24px;
