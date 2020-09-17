@@ -5,7 +5,7 @@ import { ContentProps } from './Content.types';
 import { ContentWrapper, InlineEditWrapper, TagsWrapper } from './Content.style';
 
 const Content: React.FC<ContentProps> = ({ description, tags, texts }) => {
-  const [value, setValue] = React.useState<string>('Description');
+  const [value, setValue] = React.useState<string>('');
   return (
     <Drawer.DrawerBody>
       <ContentWrapper>{description}</ContentWrapper>
@@ -16,7 +16,7 @@ const Content: React.FC<ContentProps> = ({ description, tags, texts }) => {
             name: texts.name,
             value,
             maxLength: 120,
-            placeholder: texts.inlineEditPlaceholder,
+            placeholder: texts.namePlaceholder,
             onChange: (event): void => setValue(event.target.value),
           }}
           size="small"

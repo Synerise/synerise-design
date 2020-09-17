@@ -4,22 +4,19 @@ import Dropdown from '@synerise/ds-dropdown';
 import Menu from '@synerise/ds-menu';
 import { Add3M, FolderM, SearchM } from '@synerise/ds-icon/dist/icons';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { useOnClickOutside } from '@synerise/ds-utils';
 import { DropdownWrapper, MenuWrapper } from './Dropdown.style';
-import { HeaderTexts } from '../Header.types';
-import { FolderItem } from '../../../SidebarObject.types';
+import { Props } from './DropdownOverlay.types';
 
-interface Props {
-  data: FolderItem[];
-  onClickAction?: () => void;
-  onClearInput?: () => void;
-  parentFolder: FolderItem;
-  texts: HeaderTexts;
-}
 
-const DropdownOverlay: React.FC<Props> = ({ onClearInput, data, onClickAction, parentFolder, texts }) => {
+const DropdownOverlay: React.FC<Props> = ({ onClearInput, data, onClickAction, parentFolder, texts,onDropdownOutsideClick }) => {
   const [value, setValue] = React.useState('');
+  const ref = React.useRef<HTMLDivElement>(null);
+  useOnClickOutside(ref, () => {
+   onDropdownOutsideClick();
+  });
   return (
-    <DropdownWrapper>
+    <DropdownWrapper ref={ref}>
       <Dropdown.SearchInput
         onSearchChange={setValue}
         onClearInput={onClearInput}

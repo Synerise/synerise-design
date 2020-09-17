@@ -17,11 +17,11 @@ import {
 } from '@synerise/ds-icon/dist/icons';
 
 import Dropdown from '@synerise/ds-dropdown';
-import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
 import Menu from '@synerise/ds-menu';
+import { useOnClickOutside } from '@synerise/ds-utils';
 import { HeaderProps } from './Header.types';
 import * as S from './Header.style';
-import { MenuWrapper } from './Header.style';
+import { DropdownWrapper, MenuWrapper } from './Header.style';
 
 const Header: React.FC<HeaderProps> = ({
   avatar,
@@ -37,43 +37,47 @@ const Header: React.FC<HeaderProps> = ({
   inputObject,
 }) => {
   const [value, setValue] = React.useState<string>('Winter Campaign');
+  const [dropdownVisible, setDropdownVisible] = React.useState(false);
+  const ref = React.useRef<HTMLDivElement>(null);
+  useOnClickOutside(ref, () => {
+    setDropdownVisible(false);
+  });
   const renderActionButtons = (): React.ReactNode => {
     return (
       <>
-        <Tooltip title="next">
           <S.ButtonWrapper>
             <Button type="ghost" mode="single-icon">
               <Icon size={20} component={<AngleUpM />} />
             </Button>
           </S.ButtonWrapper>
-        </Tooltip>
-        <Tooltip title="previous">
           <S.ButtonWrapper>
             <Button type="ghost" mode="single-icon">
               <Icon size={20} component={<AngleDownM />} />
             </Button>
           </S.ButtonWrapper>
-        </Tooltip>
         <Dropdown
           overlayStyle={{ boxShadow: '0 4px 17px -3px rgba(191,191,191,1)' }}
+          visible={dropdownVisible}
           overlay={
-            <Menu style={{ padding: '8px 16px' }}>
+            <DropdownWrapper ref={ref}>
+            <Menu style={{ padding: '8px 8px' }}>
               {onEdit && <Menu.Item prefixel={<Icon component={<EditM />} />}>{texts.editIcon}</Menu.Item>}
               {onDuplicate && <Menu.Item prefixel={<Icon component={<DuplicateM />} />}>{texts.duplicateIcon}</Menu.Item>}
               {onMove && <Menu.Item prefixel={<Icon component={<FolderM />} />}>{texts.moveIcon}</Menu.Item>}
-              <MenuWrapper>
                 {onDelete && (
                   <Menu.Item type="danger" prefixel={<Icon component={<TrashM />} />}>
                     {texts.deleteIcon}
                   </Menu.Item>
                 )}
+                <MenuWrapper>
+              {onId && <Menu.Item prefixel={<Icon component={<CopyClipboardM />} />}>{`ID: ${inputObject.id}`}</Menu.Item>}
               </MenuWrapper>
-              {onId && <Menu.Item prefixel={<Icon component={<CopyClipboardM />} />}>${`ID: ${inputObject}`}</Menu.Item>}
             </Menu>
+            </DropdownWrapper>
           }
         >
           <S.ButtonWrapper>
-            <Button type="ghost" mode="single-icon">
+            <Button onClick={(): void => setDropdownVisible(!dropdownVisible)} type="ghost" mode="single-icon">
               <Icon component={<OptionHorizontalM />} />
             </Button>
           </S.ButtonWrapper>
@@ -98,7 +102,7 @@ const Header: React.FC<HeaderProps> = ({
                 name: texts.name,
                 value,
                 maxLength: 120,
-                placeholder: texts.namePlaceholder,
+                placeholder: texts.inlineEditPlaceholder,
                 onChange: (event): void => setValue(event.target.value),
               }}
             />

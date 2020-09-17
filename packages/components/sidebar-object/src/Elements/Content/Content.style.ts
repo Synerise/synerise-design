@@ -15,9 +15,7 @@ margin: 0 24px;
 export const InlineEditWrapper = styled.div`
 padding: 12px 0;
 margin: 0 24px;
-#descriptioninput{
-color: ${(props): string =>props.theme.palette['grey-400']};
-}
+white-space: pre;
 .ds-inline-edit > div:nth-child(2){
 background-color: ${(props): string =>props.theme.palette.white};
 
