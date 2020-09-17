@@ -73,7 +73,7 @@ describe('Factors component', () => {
     const factorsTypeSelector = container.querySelector('.ds-factors-type-selector');
 
     // ACT
-    fireEvent.click(factorsTypeSelector);
+    factorsTypeSelector && fireEvent.click(factorsTypeSelector);
 
     // ASSERT
     expect(queryByText('Text')).toBeTruthy();
@@ -92,7 +92,7 @@ describe('Factors component', () => {
     const factorsTypeSelector = container.querySelector('.ds-factors-type-selector');
 
     // ACT
-    fireEvent.click(factorsTypeSelector);
+    factorsTypeSelector && fireEvent.click(factorsTypeSelector);
 
     // ASSERT
     expect(queryByText('Text')).toBeTruthy();
@@ -112,9 +112,9 @@ describe('Factors component', () => {
     const factorsTypeSelector = container.querySelector('.ds-factors-type-selector');
 
     // ACT
-    fireEvent.click(factorsTypeSelector);
+    factorsTypeSelector && fireEvent.click(factorsTypeSelector);
     const numberFactroType = queryByText('Number');
-    fireEvent.click(numberFactroType);
+    numberFactroType && fireEvent.click(numberFactroType);
 
     // ASSERT
     expect(selectFactorType).toBeCalledWith('number');
