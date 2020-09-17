@@ -7,16 +7,8 @@ import { SearchM } from '@synerise/ds-icon/dist/icons';
 import Icon from '@synerise/ds-icon';
 import { SearchItems } from '@synerise/ds-search/dist/Elements';
 import * as S from './ItemPickerDropdown.style';
+import { Props } from './ItemPickerDropdown.types';
 
-interface Props {
-  onChange: (item: MenuItemProps) => void;
-  placeholder: string;
-  dataSource: MenuItemProps[];
-  closeDropdown: () => void;
-  noResults: string;
-  dropdownVisibleRows?: number;
-  dropdownRowHeight?: number;
-}
 const DEFAULT_ROW_HEIGHT = 32;
 const DEFAULT_VISIBLE_ROWS = 10;
 const ItemPickerDropdown: React.FC<Props> = ({
@@ -42,7 +34,13 @@ const ItemPickerDropdown: React.FC<Props> = ({
 
   const filteredDataSource = React.useMemo(() => {
     return searchQuery
-      ? dataSource.filter(item => item.text && String(item.text).toLowerCase().includes(searchQuery.toLowerCase()))
+      ? dataSource.filter(
+          item =>
+            item.text &&
+            String(item.text)
+              .toLowerCase()
+              .includes(searchQuery.toLowerCase())
+        )
       : dataSource;
   }, [searchQuery, dataSource]);
 

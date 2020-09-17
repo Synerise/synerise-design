@@ -3,7 +3,7 @@ import Menu from '@synerise/ds-menu';
 import { MenuItemProps } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.types';
 import { AntdMenuProps } from '@synerise/ds-menu/dist/Menu.types';
 import Icon from '@synerise/ds-icon';
-import { IconProps } from '@synerise/ds-icon/dist/Icon';
+import { IconProps } from '@synerise/ds-icon/dist/Icon.types';
 
 export const ActionsWrapper = styled.div`
   && {

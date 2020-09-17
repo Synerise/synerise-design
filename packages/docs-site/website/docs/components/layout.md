@@ -32,11 +32,22 @@ import Layout from '@synerise/ds-layout'
 
 ## API
 
-| Property  | Description                              | Type          | Default |
-| --------- | ---------------------------------------- | ------------- | ------- |
-| header    | Set top header content page              | ReactNode     |         |
-| left      | Set left content page                    | React.Node    |         |
-| right     | Set right content page                   | React.Node    |         |
-| children  | The layout elements passed to the parent | React.Node    |         |
-| className | Layout's className                       | string        |         |
-| styles    | Custom layout syles                      | CSSProperties |         |
+| Property  | Description                              | Type            | Default |
+| --------- | ---------------------------------------- | --------------- | ------- |
+| header    | Set top header content page              | React.ReactNode |         |
+| left      | Set left content page                    | React.ReactNode |         |
+| right     | Set right content page                   | React.ReactNode |         |
+| children  | The layout elements passed to the parent | React.ReactNode |         |
+| className | Layout's className                       | string          |         |
+| styles    | Custom layout styles                     | LayoutStyles    |         |
+
+### LayoutStyles
+
+| Property   | Description                     | Type                | Default |
+| ---------- | ------------------------------- | ------------------- | ------- |
+| left       | Styles of left component        | React.CSSProperties | -       |
+| leftInner  | Styles of left inner component  | React.CSSProperties | -       |
+| main       | Styles of main component        | React.CSSProperties | -       |
+| mainInner  | Styles of main inner component  | React.CSSProperties | -       |
+| right      | Styles of right component       | React.CSSProperties | -       |
+| rightInner | Styles of right inner component | React.CSSProperties | -       |

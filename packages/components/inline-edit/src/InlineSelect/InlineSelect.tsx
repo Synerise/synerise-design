@@ -4,27 +4,10 @@ import { toCamelCase } from '@synerise/ds-utils';
 import Icon from '@synerise/ds-icon';
 import Dropdown from '@synerise/ds-dropdown';
 import { AngleDownS } from '@synerise/ds-icon/dist/icons';
-import { MenuItemProps } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.types';
 import * as S from './InlineSelect.style';
 import { attachWidthWatcher } from '../utils';
 import SelectDropdown from './SelectDropdown/SelectDropdown';
-import { InputProps } from '../InlineEdit';
-
-
-export interface InlineSelectProps {
-  size?: 'normal' | 'small';
-  tooltipTitle?: string;
-  className?: string;
-  disabled?: boolean;
-  input: Partial<InputProps>;
-  style?: React.CSSProperties;
-  autoFocus?: boolean;
-  error?: boolean;
-  hideIcon?: boolean;
-  expanded: boolean;
-  placeholder?: string;
-  dataSource: MenuItemProps[];
-}
+import { InlineSelectProps } from './InlineSelect.types';
 
 const InlineSelect: React.FC<InlineSelectProps> = ({
   className,

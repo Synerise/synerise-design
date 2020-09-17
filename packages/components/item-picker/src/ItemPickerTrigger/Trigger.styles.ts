@@ -1,6 +1,6 @@
 import styled, { css, FlattenInterpolation } from 'styled-components';
 import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
-import { ItemPickerSize } from '../ItemPicker';
+import { ItemPickerSize } from '../ItemPicker.types';
 
 type TriggerWrapperProps = {
   opened: boolean;

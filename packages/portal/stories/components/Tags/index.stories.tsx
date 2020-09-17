@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { select, boolean, text, number, object } from '@storybook/addon-knobs';
+import { select, boolean, number } from '@storybook/addon-knobs';
 import sample from 'lodash/sample';
 import { v4 as uuid } from 'uuid';
 
-import Tags, { Tag, TagShape } from '@synerise/ds-tags';
+import Tags, { TagShape } from '@synerise/ds-tags';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import Icon from '@synerise/ds-icon';
 import { Add3S } from '@synerise/ds-icon/dist/icons';

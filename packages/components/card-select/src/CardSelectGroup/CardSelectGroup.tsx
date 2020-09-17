@@ -1,13 +1,7 @@
 import * as React from 'react';
 
 import * as S from './CardSelectGroup.styles';
-
-interface CardSelectGroupProps {
-  className?: string;
-  children: React.ReactNode;
-  width?: 'small' | 'large';
-  columns?: number;
-}
+import { CardSelectGroupProps } from './CardSelectGroup.types';
 
 const CardSelectGroup: React.FC<CardSelectGroupProps> = ({ className, children, width = 'large', columns = 2 }) => {
   return (

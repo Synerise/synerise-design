@@ -1,61 +1,11 @@
 import * as React from 'react';
-import { AvatarProps as AntAvatarProps } from 'antd/lib/avatar';
 import Tooltip from '@synerise/ds-tooltip';
 import '@synerise/ds-core/dist/js/style';
+
 import './style/index.less';
-
 import AntdAvatar from './Avatar.styles';
+import { AvatarProps } from './Avatar.types';
 
-type color =
-  | 'red'
-  | 'green'
-  | 'grey'
-  | 'yellow'
-  | 'blue'
-  | 'pink'
-  | 'mars'
-  | 'orange'
-  | 'fern'
-  | 'cyan'
-  | 'purple'
-  | 'violet';
-
-type colorHue = '900' | '800' | '700' | '600' | '500' | '400' | '300' | '200' | '100' | '050';
-type size = 'small' | 'medium' | 'large' | 'extraLarge' | undefined;
-
-export interface AvatarProps extends Omit<AntAvatarProps, 'size' | 'icon'> {
-  /**
-   * Aligns a badge with the avatar
-   */
-  hasStatus?: boolean;
-  /**
-   * The size of the avatar
-   */
-  size?: size;
-  /**
-   * Provides a custom component as a child. If both are provided, the prop icon has a greater priority 
-   */
-  iconComponent?: React.ReactNode;
-  /**
-   * Background color of the avatar
-   */
-  backgroundColor?: color;
-  /**
-   * Hue of the avatar background color
-   */
-  backgroundColorHue?: colorHue;
-  /**
-   * Defines if the avatar is disabled
-   */
-  disabled?: boolean;
-  /**
-   * Text on a tooltip
-   */
-  tooltip?: {
-    name: string;
-    email: string;
-  };
-}
 const Avatar: React.FC<AvatarProps> = ({
   backgroundColor,
   backgroundColorHue = '400',

@@ -3,7 +3,6 @@ import * as React from 'react';
 import Grid from '@synerise/ds-grid';
 import Description, { DescriptionRow } from '@synerise/ds-description';
 import * as S from './Grid.styles';
-import { boolean } from '@storybook/addon-knobs';
 import GridPreview from './GridPreview';
 
 const stories = {

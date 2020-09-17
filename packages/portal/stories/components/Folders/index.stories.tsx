@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Sidebar from '@synerise/ds-sidebar';
 import Folders from '@synerise/ds-folders';
 import Menu from '@synerise/ds-menu';
 import { boolean, number } from '@storybook/addon-knobs';

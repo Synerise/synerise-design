@@ -1,7 +1,6 @@
 import * as React from 'react';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import * as copy from 'copy-to-clipboard';
-import { ClickParam } from 'antd/lib/menu';
 import { escapeRegEx } from '@synerise/ds-utils';
 import Icon from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
@@ -9,31 +8,8 @@ import Tooltip from '@synerise/ds-tooltip';
 import { CheckS, AngleRightS } from '@synerise/ds-icon/dist/icons';
 import * as S from './Text.styles';
 import { VisibilityTrigger } from '../../../Menu.types';
+import { BasicItemProps } from './Text.types';
 
-export interface BasicItemProps {
-  className?: string;
-  parent?: boolean;
-  disabled?: boolean;
-  prefixel?: React.ReactNode;
-  suffixel?: React.ReactNode;
-  danger?: boolean;
-  actions?: React.ReactNode;
-  onClick?: (props: ClickParam) => void;
-  description?: string | React.ReactNode;
-  copyable?: boolean;
-  copyHint?: string;
-  copyValue?: string;
-  copyTooltip?: string | React.ReactNode;
-  highlight?: string;
-  style?: React.CSSProperties;
-  onItemHover?: (e: MouseEvent) => void;
-  suffixVisibilityTrigger?: string;
-  prefixVisibilityTrigger?: string;
-  indentLevel?: number;
-  ordered?: boolean;
-  key?: React.ReactText;
-  checked?: boolean;
-}
 const Text: React.FC<BasicItemProps> = ({
   parent,
   disabled,

@@ -2,19 +2,9 @@ import * as React from 'react';
 import List from '@synerise/ds-list';
 import Icon from '@synerise/ds-icon';
 import * as S from './SimpleItem.styles';
-import { ItemProps } from '../Item';
 import ItemActions from '../ItemActions/ItemActions';
 import ItemName from '../ItemName/ItemName';
-
-type Props = {
-  item: ItemProps;
-  onRemove?: (removeParams: { id: string }) => void;
-  onSelect: (selectParams: { id: string }) => void;
-  onUpdate?: (updateParams: { id: string; name: string }) => void;
-  texts?: {
-    [k: string]: string | React.ReactNode;
-  };
-};
+import { Props } from './SimpleItem.types';
 
 const SimpleItem: React.FC<Props> = ({ item, onRemove, onSelect, onUpdate, texts }) => {
   const [editMode, setEditMode] = React.useState(false);

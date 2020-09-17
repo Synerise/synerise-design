@@ -1,19 +1,10 @@
 import * as React from 'react';
-import { SliderProps } from 'antd/lib/slider';
 import { Label } from '@synerise/ds-typography';
 import '@synerise/ds-core/dist/js/style';
 import './style/index.less';
 import * as S from './Slider.styles';
+import { Props } from './Slider.types';
 
-type AntdSliderProps = Omit<SliderProps, 'value'>;
-interface Props extends AntdSliderProps {
-  label?: React.ReactNode | string;
-  value?: number | number[];
-  inverted?: boolean;
-  useColorPalette?: boolean;
-  autoFocus?: boolean;
-  tracksColorMap?: S.colorMapProps;
-}
 
 const getDefaultTooltipPopupContainer = (): HTMLElement => document.querySelector(`.ant-slider`) as HTMLElement;
 

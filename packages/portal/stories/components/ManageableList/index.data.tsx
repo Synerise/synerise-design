@@ -1,5 +1,6 @@
 import FolderM from '@synerise/ds-icon/dist/icons/FolderM';
-import Tag, { TagShape } from '@synerise/ds-tags/dist/Tag/Tag';
+import Tag from '@synerise/ds-tags/dist/Tag/Tag';
+import  { TagShape } from '@synerise/ds-tags/dist/Tag/Tag.types';
 import FileM from '@synerise/ds-icon/dist/icons/FileM';
 import * as React from 'react';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';

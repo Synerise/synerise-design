@@ -7,50 +7,14 @@ import Icon from '@synerise/ds-icon';
 import { CloseM } from '@synerise/ds-icon/dist/icons';
 import SearchM from '@synerise/ds-icon/dist/icons/SearchM';
 import Result from '@synerise/ds-result';
-import { ItemProps } from '@synerise/ds-manageable-list/dist/Item/Item';
 import { withTheme } from 'styled-components';
-import { IntlFormatters, injectIntl } from 'react-intl';
+import { injectIntl } from 'react-intl';
 import SearchBar from '@synerise/ds-search-bar';
 import Scrollbar from '@synerise/ds-scrollbar';
 import { FixedSizeList, FixedSizeList as List, ListChildComponentProps } from 'react-window';
 import FilterItem from '@synerise/ds-manageable-list/dist/Item/FilterItem/FilterItem';
 import * as S from './ItemFIlter.styles';
-
-export type Category = {
-  label: string;
-  items: Item[];
-  hasMore: boolean;
-};
-
-interface Item extends ItemProps {
-  categories: string[];
-}
-
-export type ItemFilterProps = {
-  visible: boolean;
-  hide: () => void;
-  fetchData: (category: Category) => void;
-  loading?: boolean;
-  removeItem?: (removeParams: { id: string }) => void;
-  editItem?: (editParams: { id: string; name: string }) => void;
-  duplicateItem?: (duplicateParams: { id: string }) => void;
-  selectItem: (selectParams: { id: string }) => void;
-  categories: Category[];
-  selectedItemId: string | undefined;
-  maxToShowItems?: number;
-  texts?: {
-    [k: string]: string | React.ReactNode;
-  };
-  theme: {
-    [k: string]: string;
-  };
-  intl: IntlFormatters;
-  search?: {
-    onChange: (value: string) => void;
-    onClear: () => void;
-    value: string;
-  };
-};
+import { ItemFilterProps } from './ItemFilter.types';
 
 const DRAWER_WIDTH = 676;
 const FILTER_ITEM_HEIGHT = 48;

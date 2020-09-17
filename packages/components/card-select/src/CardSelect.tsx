@@ -4,27 +4,7 @@ import Icon from '@synerise/ds-icon';
 import Check3M from '@synerise/ds-icon/dist/icons/Check3M';
 import { useOnClickOutside } from '@synerise/ds-utils';
 import * as S from './CardSelect.styles';
-
-export interface CardSelectProps {
-  icon?: React.ReactNode;
-  raised?: boolean;
-  description?: string | React.ReactNode;
-  title?: string | React.ReactNode;
-  value?: boolean;
-  disabled?: boolean;
-  tickVisible?: boolean;
-  size?: 'small' | 'medium';
-  className?: string;
-  iconSize?: number;
-  tickSize?: number;
-  stretchToFit?: boolean;
-  customTickVisible?: boolean;
-  customTickVisibleComponent?: React.ReactNode;
-  theme: { [k: string]: string };
-  onChange?: (value: boolean) => void;
-  onClick?: () => void;
-  elementsPosition?: string | 'left' | 'center' | 'right';
-}
+import { CardSelectProps } from './CardSelect.types';
 
 const CardSelect: React.FC<CardSelectProps> = ({
   title,

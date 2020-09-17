@@ -4,18 +4,7 @@ import './style/index.less';
 import SpinnerM from '@synerise/ds-icon/dist/icons/SpinnerM';
 import Icon from '@synerise/ds-icon';
 import * as S from './Scrollbar.styles';
-
-export type ScrollbarProps = {
-  children: React.ReactNode | string;
-  classes?: string;
-  maxHeight?: string | number;
-  absolute?: boolean;
-  onScroll?: (e: React.UIEvent) => void;
-  loading?: boolean;
-  hasMore?: boolean;
-  fetchData?: () => void;
-  style?: React.CSSProperties;
-};
+import { ScrollbarProps } from './Scrollbar.types';
 
 const Scrollbar: React.FC<ScrollbarProps> = ({
   loading,

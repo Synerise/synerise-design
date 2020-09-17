@@ -1,24 +1,7 @@
 import * as React from 'react';
 import Scrollbar from '@synerise/ds-scrollbar';
 import * as S from './Layout.styles';
-
-interface Style<T> {
-  left?: T;
-  leftInner?: T;
-  main?: T;
-  mainInner?: T;
-  right?: T;
-  rightInner?: T;
-}
-
-export type LayoutProps = {
-  header?: React.ReactNode;
-  left?: React.ReactNode;
-  right?: React.ReactNode;
-  children: React.ReactNode;
-  className?: string;
-  styles?: Style<React.CSSProperties>;
-};
+import { LayoutProps } from './Layout.types';
 
 const Layout: React.FC<LayoutProps> = props => {
   const { header, left, right, children, className, styles } = props;

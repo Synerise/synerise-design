@@ -6,13 +6,7 @@ import * as S from './ListItem.styles';
 import { RemoveIcon } from './ItemRemoveIcon';
 import { ItemRollElement } from '../ItemsRoll.types';
 import { NOOP } from './ListItem';
-
-type ItemRendererProps = {
-  highlight: string;
-  onItemClick?: (id: string) => void;
-  onItemRemove?: (id: string) => void;
-  tooltipLabel: string | React.ReactNode;
-};
+import { ItemRendererProps } from './VirtualizedListItem.types';
 
 const ItemRenderer = ({ highlight, onItemClick, onItemRemove, tooltipLabel }: ItemRendererProps) => ({
   index,

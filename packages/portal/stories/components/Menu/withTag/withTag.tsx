@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { simpleText } from '../dataset';
 import { attachKnobsToDataSource, decorator, getDefaultProps } from '../index.stories';
-import { Tag, TagShape } from '@synerise/ds-tags';
+import Tag from '@synerise/ds-tags/dist/Tag/Tag';
+import { TagShape } from '@synerise/ds-tags/dist/Tag/Tag.types';
 import { text, select } from '@storybook/addon-knobs';
 
 const shapes = {

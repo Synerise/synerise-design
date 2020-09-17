@@ -1,7 +1,7 @@
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import Menu from '@synerise/ds-menu';
 import { BorderLessInput } from '@synerise/ds-input/dist/InputMultivalue/InputMultivalue.styles';
-import { Props as DSInputProps } from '@synerise/ds-input/dist/Input';
+import { Props as DSInputProps } from '@synerise/ds-input/dist/Input.types';
 import { MenuItemProps } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.types';
 
 export const applyDots = (color: string): FlattenSimpleInterpolation => css`

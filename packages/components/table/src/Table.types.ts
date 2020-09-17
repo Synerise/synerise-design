@@ -2,7 +2,7 @@ import { ColumnType, TableProps } from 'antd/lib/table';
 import * as React from 'react';
 import { TableLocale, TableRowSelection } from 'antd/lib/table/interface';
 import DSTable from './Table';
-import { GroupType } from './GroupTable/GroupTable';
+import { GroupType } from './GroupTable/GroupTable.types';
 
 export type AntTableProps<T> = Omit<
   TableProps<T>,

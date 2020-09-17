@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Icon from '@synerise/ds-icon';
-import { IconProps } from '@synerise/ds-icon/dist/Icon';
+import { IconProps } from '@synerise/ds-icon/dist/Icon.types';
 
 export const AddItemLayout = styled.div`
   display: inline;

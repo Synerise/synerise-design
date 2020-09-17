@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Search from '@synerise/ds-search';
 import { number, text } from '@storybook/addon-knobs';
-import { FilterElement } from '@synerise/ds-search/dist/Search.types';
 import Menu from '@synerise/ds-menu';
 import Icon from '@synerise/ds-icon';
 import { getItemsWithAvatar, getSuggestions, parameters, recent } from './dataPopulator';
@@ -117,7 +116,7 @@ const stories = {
           tooltip: parametersTooltip,
           title: parametersTitle,
           rowHeight: 32,
-          itemRender: (item: FilterElement) => (
+          itemRender: (item) => (
             <Menu.Item
               highlight={value}
               style={{ paddingLeft: '12px' }}
@@ -135,14 +134,14 @@ const stories = {
           tooltip: recentTooltip,
           title: recentTitle,
           rowHeight: 32,
-          itemRender: (item: FilterElement) => <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>,
+          itemRender: (item) => <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>,
         }}
         suggestions={suggestions}
         suggestionsDisplayProps={{
           tooltip: suggestionsTooltip,
           title: suggestionsTitle,
           rowHeight: 32,
-          itemRender: (item: FilterElement) => <Menu.Item onItemHover={NOOP}>{item && item.text}</Menu.Item>,
+          itemRender: (item) => <Menu.Item onItemHover={NOOP}>{item && item.text}</Menu.Item>,
         }}
         textLookupConfig={{
           parameters: 'text',
@@ -194,7 +193,7 @@ const stories = {
           tooltip: parametersTooltip,
           title: parametersTitle,
           rowHeight: 32,
-          itemRender: (item: FilterElement) => (
+          itemRender: (item) => (
             <Menu.Item
               style={{ paddingLeft: '12px' }}
               onItemHover={NOOP}
@@ -211,7 +210,7 @@ const stories = {
           tooltip: recentTooltip,
           title: recentTitle,
           rowHeight: 50,
-          itemRender: (item: FilterElement) => (
+          itemRender: (item) => (
             <Menu.Item onItemHover={NOOP} {...item} style={{ paddingLeft: '12px' }}>
               {item.text}
             </Menu.Item>
@@ -222,7 +221,7 @@ const stories = {
           tooltip: suggestionsTooltip,
           title: suggestionsTitle,
           rowHeight: 32,
-          itemRender: (item: FilterElement) => <Menu.Item onItemHover={NOOP}>{item && item.text}</Menu.Item>,
+          itemRender: (item) => <Menu.Item onItemHover={NOOP}>{item && item.text}</Menu.Item>,
         }}
         textLookupConfig={{
           parameters: 'text',

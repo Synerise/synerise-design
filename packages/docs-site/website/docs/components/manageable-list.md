@@ -32,42 +32,42 @@ ManageableList UI Component
 
 ## API
 
-| Property            | Description                                                                      | Type                                    | Default   |
-| ------------------- | -------------------------------------------------------------------------------- | --------------------------------------- | --------- |
-| maxToShowItems      | Shows x first items, rest are hidden under `show more` button                    | number                                  | 5         |
-| onItemAdd           | Callback triggered when user hits `enter` key in the new item input field.       | Function({ name: string })              | -         |
-| onItemRemove        | Callback triggered when user clicks on the remove item button.                   | Function({ id: string })                | -         |
-| onItemEdit          | Callback triggered then user hits `enter` key in the edit item name input field. | Function({ id: string; name: string })  | -         |
-| onItemSelect        | Callback triggered when user clicks on list item.                                | Function({ id: string })                | -         |
-| onChangeOrder       | Callback triggered when user changes order of items                              | Function(Item[])                        | -         |
-| items               | Array of list items                                                              | Item[]                                  | -         |
-| loading             | Loading state                                                                    | boolean                                 | -         |
-| type                | Type of list                                                                     | string `default`, `content` or `filter` | 'default' |
-| addButtonDisabled   | Disable add item button                                                          | boolean                                 | false     |
-| changeOrderDisabled | Disable change of order                                                          | boolean                                 | false     |
-| greyBackground      | Change background color of list and list items                                   | boolean                                 | false     |
-| texts               | Texts on buttons, confirms and popups                                            | Texts                                   | -         |
-| searchQuery         | Search query used to highlight list item name                                    | Texts                                   | -         |
+| Property            | Description                                                                      | Type                                   | Default   |
+| ------------------- | -------------------------------------------------------------------------------- | -------------------------------------- | --------- |
+| maxToShowItems      | Shows x first items, rest are hidden under `show more` button                    | number                                 | 5         |
+| onItemAdd           | Callback triggered when user hits `enter` key in the new item input field.       | ({ name: string }) => void             | -         |
+| onItemRemove        | Callback triggered when user clicks on the remove item button.                   | ({ id: string }) => void               | -         |
+| onItemEdit          | Callback triggered then user hits `enter` key in the edit item name input field. | ({ id: string; name: string }) => void | -         |
+| onItemSelect        | Callback triggered when user clicks on list item.                                | ({ id: string }) => void               | -         |
+| onChangeOrder       | Callback triggered when user changes order of items                              | (Item[]) => void                       | -         |
+| items               | Array of list items                                                              | Item[]                                 | -         |
+| loading             | Loading state                                                                    | boolean                                | -         |
+| type                | Type of list                                                                     | `default` / `content` / `filter`       | `default` |
+| addButtonDisabled   | Disable add item button                                                          | boolean                                |`false`    |
+| changeOrderDisabled | Disable change of order                                                          | boolean                                |`false`    |
+| greyBackground      | Change background color of list and list items                                   | boolean                                |`false`    |
+| texts               | Texts on buttons, confirms and popups                                            | Texts                                  | -         |
+| searchQuery         | Search query used to highlight list item name                                    | string                                 | -         |
 
 ### Texts
 
-| Property                | Description                                   | Type   | Default |
-| ----------------------- | --------------------------------------------- | ------ | ------- |
-| addItemLabel            | Label of add item button                      | string | -       |
-| showMoreLabel           | Label of show more items button               | string | -       |
-| showLessLabel           | Label of show less items button               | string | -       |
-| more                    | Translation of 'more'                         | string | -       |
-| less                    | Translation of 'less'                         | string | -       |
-| activateItem            | Activate item confirm title                   | string | -       |
-| activate                | Label of confirm activation button            | string | -       |
-| cancel                  | Label of cancel button                        | string | -       |
-| deleteConfirmationTitle | Title of delete item confirmation popup       | string | -       |
-| deleteConfirmationTitle | Description of delete item confirmation popup | string | -       |
-| deleteConfirmationYes   | Label of delete confirmation button           | string | -       |
-| deleteConfirmationNo    | Label of delete cancellation button           | string | -       |
-| itemActionRename        | Label of rename item action                   | string | -       |
-| itemActionDuplicate     | Label of duplicate item action                | string | -       |
-| itemActionDelete        | Label of delete item action                   | string | -       |
+| Property                | Description                                   | Type                     | Default |
+| ----------------------- | --------------------------------------------- | ------------------------ | ------- |
+| addItemLabel            | Label of add item button                      | string / React.ReactNode | -       |
+| showMoreLabel           | Label of show more items button               | string / React.ReactNode | -       |
+| showLessLabel           | Label of show less items button               | string / React.ReactNode | -       |
+| more                    | Translation of 'more'                         | string / React.ReactNode | -       |
+| less                    | Translation of 'less'                         | string / React.ReactNode | -       |
+| activateItem            | Activate item confirm title                   | string / React.ReactNode | -       |
+| activate                | Label of confirm activation button            | string / React.ReactNode | -       |
+| cancel                  | Label of cancel button                        | string / React.ReactNode | -       |
+| deleteConfirmationTitle | Title of delete item confirmation popup       | string / React.ReactNode | -       |
+| deleteConfirmationTitle | Description of delete item confirmation popup | string / React.ReactNode | -       |
+| deleteConfirmationYes   | Label of delete confirmation button           | string / React.ReactNode | -       |
+| deleteConfirmationNo    | Label of delete cancellation button           | string / React.ReactNode | -       |
+| itemActionRename        | Label of rename item action                   | string / React.ReactNode | -       |
+| itemActionDuplicate     | Label of duplicate item action                | string / React.ReactNode | -       |
+| itemActionDelete        | Label of delete item action                   | string / React.ReactNode | -       |
 
 #### Item
 

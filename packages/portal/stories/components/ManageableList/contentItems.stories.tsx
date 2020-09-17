@@ -2,7 +2,7 @@ import * as React from 'react';
 import ManageableList from '@synerise/ds-manageable-list';
 import { withState } from '@dump247/storybook-state';
 import { action } from '@storybook/addon-actions';
-import { boolean, select, text } from '@storybook/addon-knobs';
+import { boolean, select } from '@storybook/addon-knobs';
 import ContentItem from '@synerise/ds-manageable-list/dist/Item/ContentItem/ContentItem';
 import {
   withLabel,
@@ -12,7 +12,8 @@ import {
   withIcon,
   withExpanderAndOptions,
 } from './contentItems.data';
-import Tag, { TagShape } from '@synerise/ds-tags/dist/Tag/Tag';
+import Tag from '@synerise/ds-tags/dist/Tag/Tag';
+import { TagShape } from '@synerise/ds-tags/dist/Tag/Tag.types';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import styled from 'styled-components';
 

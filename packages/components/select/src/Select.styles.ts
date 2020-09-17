@@ -3,7 +3,7 @@ import Select from 'antd/lib/select';
 import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import * as React from 'react';
 import { Label as DSLabel } from '@synerise/ds-input';
-import { Props } from './Select';
+import { Props } from './Select.types';
 
 const { OptGroup, Option } = Select;
 

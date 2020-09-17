@@ -1,16 +1,8 @@
 import * as React from 'react';
 import Input from 'antd/lib/input';
-import { GroupProps } from 'antd/es/input';
 import * as InputStyles from './Input.styles';
 import Label from './Label/Label';
-
-export interface Props extends GroupProps {
-  label?: React.ReactNode;
-  errors?: string[];
-  description?: React.ReactNode;
-  resetMargin?: boolean;
-  tooltip?: React.ReactNode;
-}
+import { Props } from './InputGroup.types';
 
 const InputGroup: React.FC<Props> = ({
   children,

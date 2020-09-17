@@ -4,12 +4,7 @@ import * as copy from 'copy-to-clipboard';
 import Icon from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 import * as S from './Copyable.styles';
-
-interface Props {
-  value: string;
-  confirmMessage: string;
-  tooltipTimeout: number;
-}
+import { Props } from './Copyable.types';
 
 const CopyableCell: React.FC<Props> = ({ value, confirmMessage, tooltipTimeout = 2000 }: Props) => {
   const [tooltipVisible, setTooltipVisible] = React.useState(false);

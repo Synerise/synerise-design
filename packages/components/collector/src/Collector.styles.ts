@@ -9,7 +9,7 @@ import {
   ValueText,
 } from '@synerise/ds-input/dist/InputMultivalue/InputMultivalue.styles';
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
-import { Props as DSInputProps } from '@synerise/ds-input/dist/Input';
+import { Props as DSInputProps } from '@synerise/ds-input/dist/Input.types';
 import { InputProps } from 'antd/lib/input';
 import Value from '@synerise/ds-input/dist/InputMultivalue/Elements/Value';
 import Button from '@synerise/ds-button';

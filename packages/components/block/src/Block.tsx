@@ -1,12 +1,7 @@
 import * as React from 'react';
 import * as S from './Block.styles';
+import { BlockProps } from './Block.types';
 
-export type BlockProps = {
-  className?: string;
-  children: React.ReactNode | string;
-  isDragging: boolean;
-  icon: React.ReactNode;
-};
 
 const Block: React.FC<BlockProps> = ({ className, children, isDragging, icon }) => {
   const ref = React.useRef<HTMLDivElement>(null);

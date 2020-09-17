@@ -4,7 +4,7 @@ import { fireEvent } from '@testing-library/react';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 
 import Button from '../Button';
-import { CreatorStatus } from '../Creator/Creator';
+import { CreatorStatus } from '../Creator/Creator.types';
 
 const LABEL_TEXT = 'Add something';
 

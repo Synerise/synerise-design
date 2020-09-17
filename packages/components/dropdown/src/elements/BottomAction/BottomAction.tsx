@@ -1,11 +1,7 @@
 import * as React from 'react';
 import Icon from '@synerise/ds-icon';
 import * as S from './BottomAction.styles';
-
-interface Props {
-  onClickAction: () => void;
-  icon?: React.ReactElement;
-}
+import { Props } from './BottomAction.types';
 
 const BottomAction: React.FC<Props> = ({ onClickAction, children, icon }) => (
   <S.BottomAction onClick={onClickAction}>
