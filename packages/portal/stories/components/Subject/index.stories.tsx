@@ -7,7 +7,6 @@ import { action } from '@storybook/addon-actions';
 import { withState } from '@dump247/storybook-state';
 import { SUBJECT_TEXTS, SUBJECT_ITEMS } from './data/index.data';
 
-
 const ICONS = {
   NotificationsM: <NotificationsM />,
   WebhookM: <WebhookM />,
