@@ -18,10 +18,10 @@ import {
 
 import Dropdown from '@synerise/ds-dropdown';
 import Menu from '@synerise/ds-menu';
+import { useOnClickOutside } from '@synerise/ds-utils';
 import { HeaderProps } from './Header.types';
 import * as S from './Header.style';
 import { DropdownWrapper, MenuWrapper } from './Header.style';
-import { useOnClickOutside } from '@synerise/ds-utils';
 
 const Header: React.FC<HeaderProps> = ({
   avatar,
