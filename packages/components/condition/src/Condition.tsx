@@ -68,7 +68,7 @@ const Condition: React.FC<ConditionProps> = ({ steps, addCondition, removeCondit
   }, []);
 
   return (
-    <S.Condition>
+    <S.Condition className='ds-conditions'>
       {steps.map((step, index) => {
         return (
           <S.Step key={step.id} withStepName={Boolean(step.stepName)}>
@@ -79,7 +79,7 @@ const Condition: React.FC<ConditionProps> = ({ steps, addCondition, removeCondit
                   size="small"
                   input={{
                     value: step.stepName,
-                    name: 'condition-step-name',
+                    name: `condition-step-name-${step.id}`,
                     placeholder: texts.stepNamePlaceholder,
                     onChange: (event: ChangeEvent<HTMLInputElement>): void =>
                       updateStepName && updateStepName(step.id, event.target.value),
@@ -119,7 +119,7 @@ const Condition: React.FC<ConditionProps> = ({ steps, addCondition, removeCondit
                       </S.CondtionWrapper>
                       <S.CondtionWrapper>{condition.factor && <Factors {...condition.factor} />}</S.CondtionWrapper>
                       {removeCondition && step.conditions.length > 1 && (
-                        <S.RemoveIconWrapper onClick={(): void => removeCondition(step.id, condition.id)}>
+                        <S.RemoveIconWrapper onClick={(): void => removeCondition(step.id, condition.id)} className='ds-conditions-remove-row'>
                           <Tooltip title={texts.removeConditionRowTooltip} trigger={['hover']}>
                             <Icon component={<CloseS />} color={theme.palette['red-600']} />
                           </Tooltip>
