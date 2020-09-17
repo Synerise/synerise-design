@@ -16,7 +16,10 @@ export type HeaderProps = {
   texts: HeaderTexts;
   onCloseClick: () => void;
   activeTab: number;
-  inputObject: { id: string } & object;
+  inputObject: {
+    id: string;
+    [key: string]: string | React.ReactNode;
+  } & object;
 };
 
 export type HeaderTexts = {

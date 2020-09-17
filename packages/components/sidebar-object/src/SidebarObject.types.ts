@@ -5,7 +5,10 @@ export type SidebarObjectProps = {
   avatar: React.ReactNode;
   headerPreffix: React.ReactNode;
   headerTabs: TabItem[];
-  inputObject: {id: string} & object;
+  inputObject: {
+    id: string;
+    [key: string]: string | React.ReactNode;
+  } & object;
   contentTags: React.ReactNode;
   folders: FolderItem[];
   onEdit: (inputObject: object) => void;
