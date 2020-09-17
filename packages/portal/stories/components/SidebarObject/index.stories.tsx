@@ -170,12 +170,11 @@ const stories = {
                 />
               </Badge>
             }
-            inputObjectId={'3254-3434-5232...'}
             onCloseClick={() => setDrawerVisible(false)}
             folders={data}
             parentFolder={{ id: '2', name: 'Example folder' }}
             texts={{
-              namePlaceholder: 'This is placeholder',
+              namePlaceholder: 'Description',
               name: 'DescriptionInput',
               search: 'Search',
               inlineEditPlaceholder: 'Winter Campaign',
@@ -200,14 +199,14 @@ const stories = {
                 </div>
               ),
               Author: (
-                <div>
+                <div style={{display: 'flex', alignItems: 'center'}}>
                   <Avatar src={imgSrc} size="small" shape="circle" style={{ marginRight: '10px' }} />
-                  Teresa Smith
+                  <span>Teresa Smith</span>
                 </div>
               ),
               Created: '25 May, 2020 15:32',
-              'Last edited:': '27 May, 2020 15:32',
-              ID: '3423-3426-8263-6634-6834-2352',
+              'Last edited': '27 May, 2020 15:32',
+              id: '3423-3426-8263-6634-6834-2352',
             }}
             contentTags={
               <Tags

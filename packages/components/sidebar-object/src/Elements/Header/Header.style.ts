@@ -17,7 +17,11 @@ export const DrawerHeaderBar = styled.div`
 `;
 
 export const MenuWrapper = styled.div`
-  border-bottom: 1px dashed ${(props): string => props.theme.palette['grey-300']};
-  margin: 0 4px;
-  padding-bottom: 6px;
+  border-top: 1px dashed ${(props): string => props.theme.palette['grey-300']};
+  margin: 6px 0 0;
+  padding: 6px 0 6px 4px;
+`;
+export const DropdownWrapper = styled.div`
+  background: ${(props): string => props.theme.palette.white };
+  width: 216px;
 `;

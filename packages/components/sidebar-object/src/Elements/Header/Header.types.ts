@@ -16,7 +16,7 @@ export type HeaderProps = {
   texts: HeaderTexts;
   onCloseClick: () => void;
   activeTab: number;
-  inputObject: string;
+  inputObject: { id: string } & object;
 };
 
 export type HeaderTexts = {

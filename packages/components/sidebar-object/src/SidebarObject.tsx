@@ -26,9 +26,9 @@ const SidebarObject: React.FC<SidebarObjectProps> = ({
   parentFolder,
   texts,
   onCloseClick,
-  inputObjectId
 }) => {
   const [activeTab, setActiveTab] = React.useState(0);
+  const [dropdownVisible, setDropdownVisible] = React.useState(false);
   return (
     <div>
       <Header
@@ -43,16 +43,24 @@ const SidebarObject: React.FC<SidebarObjectProps> = ({
         texts={texts}
         activeTab={activeTab}
         onCloseClick={onCloseClick}
-        inputObject={inputObjectId}
+        inputObject={inputObject}
       />
       {activeTab === 0 && (
         <S.HeaderWrapper>
           {texts.folder}:{' '}
           <Dropdown
             overlayStyle={{ boxShadow: '0 4px 17px -3px rgba(191,191,191,1)' }}
-            overlay={<DropdownOverlay texts={texts} parentFolder={parentFolder} data={folders} />}
+            visible={dropdownVisible}
+            overlay={
+              <DropdownOverlay
+                texts={texts}
+                parentFolder={parentFolder}
+                data={folders}
+                onDropdownOutsideClick={(): void => setDropdownVisible(false)}
+              />
+            }
           >
-            <Button type="ghost">
+            <Button onClick={(): void => setDropdownVisible(!dropdownVisible)} type="ghost">
               {parentFolder.name}
               <Icon component={<AngleDownS />} />
             </Button>

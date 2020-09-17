@@ -5,7 +5,7 @@ export type SidebarObjectProps = {
   avatar: React.ReactNode;
   headerPreffix: React.ReactNode;
   headerTabs: TabItem[];
-  inputObject: object;
+  inputObject: {id: string} & object;
   contentTags: React.ReactNode;
   folders: FolderItem[];
   onEdit: (inputObject: object) => void;
@@ -16,7 +16,7 @@ export type SidebarObjectProps = {
   parentFolder: FolderItem;
   texts: HeaderTexts;
   onCloseClick: () => void;
-  inputObjectId: string;
+
 };
 export type FolderItem = {
   id: string;
