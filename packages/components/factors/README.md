@@ -100,11 +100,12 @@ import Factors from '@synerise/ds-factors'
 | Property               | Description                                                                               | Type                             | Default   | 
 | ---                    | ---                                                                                       | ---                              | ---       | 
 | autocompleteText       | Array of available autocomplete suggestions (only if textType is equal to `autocomplete`) | {options: string[]}              | -         | 
+| availableFactorTypes   | Array of available factor types                                                           | FactorType[]                     | -         |
 | defaultFactorType      | Default factor type                                                                       | FactorType                       | -         | 
 | formulaEditor          | Formula editor render in modal when factory type is equal to `formula`                    | React.ReactNode                  | -         | 
 | onChangeValue          | Callback called when user change value                                                    | (value: FactorValueType) => void | -         | 
 | opened                 | Whether if dropdown should opens from outside of component                                | boolean                          | false     | 
-| parameters             | Options for parameters list                                                               | ParameterOptions                  | -         | 
+| parameters             | Options for parameters list                                                               | ParameterOptions                 | -         | 
 | selectedFactorType     | Selected factor type                                                                      | FactorType                       | -         | 
 | setSelectedFactorType  | Callback called when user selects factor type                                             | (factor: FactorType) => void     | -         | 
 | texts                  | Translations object                                                                       | FactorsTexts                     | -         | 
