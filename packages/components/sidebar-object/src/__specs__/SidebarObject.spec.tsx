@@ -24,7 +24,7 @@ describe('SidebarObject', () => {
         parentFolder={{name: 'Folder', id: 'FolderItem'}}
         // @ts-ignore
         texts={{name: 'Text'}}
-        inputObject={{Status: 'active'}}
+        inputObject={{Status: 'active', id: "123"}}
         headerTabs={TABS}
       />
     );
@@ -39,7 +39,7 @@ describe('SidebarObject', () => {
         parentFolder={{name: 'Folder' ,id: 'FolderItem'}}
         // @ts-ignore
         texts={{name: 'Text'}}
-        inputObject={{Status: 'active'}}
+        inputObject={{Status: 'active', id: "123"}}
         headerTabs={TABS}
       />
     );
@@ -54,7 +54,7 @@ describe('SidebarObject', () => {
         parentFolder={{name: 'Folder' ,id: 'FolderItem'}}
         // @ts-ignore
         texts={{name: 'Text'}}
-        inputObject={{Status: 'active'}}
+        inputObject={{Status: 'active', id: "123"}}
         headerTabs={TABS}
       />
     );
@@ -72,7 +72,7 @@ describe('SidebarObject', () => {
         parentFolder={{name: 'Folder' ,id: 'FolderItem'}}
         // @ts-ignore
         texts={{name: 'Text'}}
-        inputObject={{Status: 'active'}}
+        inputObject={{Status: 'active', id: "123"}}
         headerTabs={TABS}
         headerPreffix={<div className='buttons'/>}
       />
