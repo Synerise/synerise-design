@@ -34,6 +34,7 @@ export type OperatorsProps = {
   groups: OperatorsGroup[];
   items: OperatorsItem[];
   texts: OperatorTexts;
+  opened?: boolean;
 };
 
 export type OperatorsDropdownProps = {
