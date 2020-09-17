@@ -181,7 +181,8 @@
       "WEEKIN": "week",
       "MONTHIN": "month",
       "BEGINNING": "beginning",
-      "END": "end"
+      "END": "end",
+      "CLICK-TO-SELECT": "Click to select"
     },
     "CARD-TAB": {
       "REMOVE": "Remove",
