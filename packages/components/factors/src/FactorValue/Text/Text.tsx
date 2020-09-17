@@ -53,6 +53,8 @@ const TextInput: React.FC<InputProps> = ({ value, onChange, texts, textType, aut
       ) : (
         <S.Input
           placeholder={texts.valuePlaceholder}
+          // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+          // @ts-ignore
           suffix={SuffixIcon}
           value={value as string}
           onChange={handleChange}

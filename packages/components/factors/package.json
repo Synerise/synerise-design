@@ -38,7 +38,8 @@
     "@synerise/ds-result": "*",
     "@synerise/ds-tabs": "*",
     "@synerise/ds-typography": "*",
-    "@synerise/ds-utils": "*"
+    "@synerise/ds-utils": "*",
+    "@synerise/ds-inline-edit": "*"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

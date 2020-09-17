@@ -24,6 +24,7 @@ const FactorTypeSelector: React.FC<FactorTypeSelectorProps> = ({
 
     return (list as FactorType[]).map((type: FactorType) => (
       <Menu.Item
+        className='ds-factor-type'
         key={factorTypes[type].name}
         prefixel={<Icon component={factorTypes[type].icon} />}
         suffixel={type === selectedFactorType ? <Icon component={<CheckS />} color={theme.palette['green-600']} /> : ''}
@@ -37,7 +38,7 @@ const FactorTypeSelector: React.FC<FactorTypeSelectorProps> = ({
   return (
     <Tooltip title={selectedFactor.name} trigger={['hover']}>
       <Dropdown overlay={<S.FactorTypeList>{typesList}</S.FactorTypeList>} trigger={['click']}>
-        <S.TriggerButton mode="single-icon">
+        <S.TriggerButton mode="single-icon"  className='ds-factors-type-selector'>
           <Icon component={selectedFactor.icon} />
         </S.TriggerButton>
       </Dropdown>

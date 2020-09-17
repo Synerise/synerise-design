@@ -79,7 +79,7 @@ const Factors: React.FC<FactorsProps> = ({
   }, [factorType]);
 
   return (
-    <S.Group resetMargin compact withoutTypeSelector={withoutTypeSelector}>
+    <S.Group resetMargin compact withoutTypeSelector={withoutTypeSelector} className={`ds-factors ds-factors-${factorType}`}>
       {!withoutTypeSelector && (
         <FactorTypeSelector
           selectedFactorType={factorType}
