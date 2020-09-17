@@ -26,7 +26,7 @@ const stories = {
         onChangeValue={changeHandler}
         textType={select('Select type of text input', ['autocomplete', 'expansible', 'default'], 'default')}
         defaultFactorType='text'
-        autocompleteText={boolean('Enable autocomplete', true) && {
+        autocompleteText={{
           options: ['First name', 'Last name', 'City', 'Age', 'Points']
         }}
         unavailableFactorTypes={object('Unavailable factor types (text, number, parameter, contextParameter, dynamicKey, formula, array, date)', ['number', 'formula'])}
