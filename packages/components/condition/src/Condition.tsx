@@ -13,21 +13,23 @@ import { ConditionProps, ConditionStep, StepConditions } from './Condition.types
 import * as S from './Condition.style';
 
 const Condition: React.FC<ConditionProps> = ({ steps, addCondition, removeCondition, updateStepName, texts }) => {
+  const [currentConditionId, setCurrentConditionId] = React.useState<React.ReactText>('');
+  const [currentField, setCurrentField] = React.useState<string>('');
+
   const clearConditionRow = React.useCallback(
     step => {
       if (removeCondition && addCondition) {
-        step.conditions.forEach((condition: StepConditions) => {
-          removeCondition(step.id, condition.id);
-        });
-
-        addCondition(step.id);
-      } else {
-        step.conditions.forEach((condition: StepConditions) => {
-          condition.factor && condition.factor.onChangeValue(undefined);
-          condition.operator && condition.operator.onChange(undefined);
-          condition.parameter && condition.parameter.onChangeValue(undefined);
+        step.conditions.forEach((condition: StepConditions, index: number) => {
+          if (index > 0) {
+            removeCondition(step.id, condition.id);
+          }
         });
       }
+      step.conditions.forEach((condition: StepConditions) => {
+        condition.factor && condition.factor.onChangeValue(undefined);
+        condition.operator && condition.operator.onChange(undefined);
+        condition.parameter && condition.parameter.onChangeValue(undefined);
+      });
     },
     [removeCondition, addCondition]
   );
@@ -36,6 +38,12 @@ const Condition: React.FC<ConditionProps> = ({ steps, addCondition, removeCondit
     (value, step: ConditionStep): void => {
       step.subject.selectItem(value);
       clearConditionRow(step);
+      setCurrentConditionId(step.conditions[0].id);
+      if (step.conditions[0].parameter) {
+        setCurrentField('parameter');
+      } else if (step.conditions[0].operator) {
+        setCurrentField('operator');
+      }
     },
     [clearConditionRow]
   );
@@ -45,6 +53,8 @@ const Condition: React.FC<ConditionProps> = ({ steps, addCondition, removeCondit
       condition.parameter.onChangeValue(value);
       condition.operator && condition.operator.onChange(undefined);
       condition.factor && condition.factor.onChangeValue(undefined);
+      setCurrentConditionId(condition.id);
+      setCurrentField('operator');
     }
   }, []);
 
@@ -52,6 +62,8 @@ const Condition: React.FC<ConditionProps> = ({ steps, addCondition, removeCondit
     if (condition.id && condition.operator) {
       condition.operator.onChange(value);
       condition.factor && condition.factor.onChangeValue(undefined);
+      setCurrentConditionId('');
+      setCurrentField('');
     }
   }, []);
 
@@ -92,6 +104,7 @@ const Condition: React.FC<ConditionProps> = ({ steps, addCondition, removeCondit
                           <Factors
                             {...condition.parameter}
                             onChangeValue={(value): void => selectParameter(condition, value)}
+                            opened={condition.id === currentConditionId && currentField === 'parameter'}
                           />
                         )}
                       </S.CondtionWrapper>
@@ -100,6 +113,7 @@ const Condition: React.FC<ConditionProps> = ({ steps, addCondition, removeCondit
                           <Operators
                             {...condition.operator}
                             onChange={(value): void => selectOperator(condition, value)}
+                            opened={condition.id === currentConditionId && currentField === 'operator'}
                           />
                         )}
                       </S.CondtionWrapper>

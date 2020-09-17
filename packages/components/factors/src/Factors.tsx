@@ -68,6 +68,7 @@ const Factors: React.FC<FactorsProps> = ({
   withoutTypeSelector = false,
   texts,
   formulaEditor,
+  opened,
 }) => {
   const factorType = React.useMemo(() => {
     return selectedFactorType || defaultFactorType;
@@ -99,6 +100,7 @@ const Factors: React.FC<FactorsProps> = ({
         withoutTypeSelector={withoutTypeSelector}
         formulaEditor={formulaEditor}
         texts={texts}
+        opened={opened}
       />
     </S.Group>
   );

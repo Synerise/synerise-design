@@ -6,7 +6,7 @@ import { AngleDownS } from '@synerise/ds-icon/dist/icons';
 import { InputProps, ParameterValueType } from '../../Factors.types';
 import ParameterDropdown from './ParameterDropdown';
 
-const ParameterInput: React.FC<InputProps> = ({ value, onChange, parameters, texts }) => {
+const ParameterInput: React.FC<InputProps> = ({ value, onChange, parameters, texts, opened }) => {
   // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
   // @ts-ignore
   const { buttonIcon, buttonLabel, ...restParameters } = parameters;
@@ -17,6 +17,12 @@ const ParameterInput: React.FC<InputProps> = ({ value, onChange, parameters, tex
     },
     [onChange]
   );
+
+  React.useEffect(() => {
+    if (opened) {
+      setDropdownVisible(true);
+    }
+  }, [opened]);
 
   return (
     <Dropdown
@@ -31,8 +37,8 @@ const ParameterInput: React.FC<InputProps> = ({ value, onChange, parameters, tex
       }
     >
       <Button type="secondary" mode="two-icons" onClick={(): void => setDropdownVisible(true)}>
-        <Icon component={(value as ParameterValueType).icon || buttonIcon} />
-        {(value as ParameterValueType).name || buttonLabel}
+        <Icon component={(value as ParameterValueType)?.icon || buttonIcon} />
+        {(value as ParameterValueType)?.name || buttonLabel}
         <Icon component={<AngleDownS />} />
       </Button>
     </Dropdown>

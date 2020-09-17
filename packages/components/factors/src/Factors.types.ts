@@ -97,6 +97,7 @@ export type FactorsProps = {
   };
   formulaEditor?: React.ReactNode;
   texts: FactorsTexts;
+  opened?: boolean;
 };
 
 export type FactorTypeSelectorProps = Pick<
@@ -117,13 +118,14 @@ export type FactorValueProps = Pick<
   | 'texts'
   | 'textType'
   | 'formulaEditor'
+  | 'opened'
 > & {
   selectedFactor: SelectedFactorType;
 };
 
 export type InputProps = Pick<
   FactorsProps,
-  'value' | 'parameters' | 'autocompleteText' | 'withoutTypeSelector' | 'texts' | 'textType'
+  'value' | 'parameters' | 'autocompleteText' | 'withoutTypeSelector' | 'texts' | 'textType' | 'opened'
 > & {
   onChange: (value: FactorValueType) => void;
   factorType: FactorType;

@@ -13,6 +13,7 @@ const FactorValue: React.FC<FactorValueProps> = ({
   withoutTypeSelector = false,
   texts,
   formulaEditor,
+  opened,
 }) => {
   const inputType = React.useMemo(() => {
     const InputComponent = selectedFactor.input;
@@ -31,6 +32,7 @@ const FactorValue: React.FC<FactorValueProps> = ({
         withoutTypeSelector={withoutTypeSelector}
         texts={texts}
         formulaEditor={formulaEditor}
+        opened={opened}
       />
     );
   }, [
@@ -44,6 +46,7 @@ const FactorValue: React.FC<FactorValueProps> = ({
     withoutTypeSelector,
     texts,
     formulaEditor,
+    opened,
   ]);
 
   return <S.FactorInput withoutTypeSelector={withoutTypeSelector}>{inputType}</S.FactorInput>;
