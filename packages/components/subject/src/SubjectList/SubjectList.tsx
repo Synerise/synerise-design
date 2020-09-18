@@ -2,7 +2,7 @@ import * as React from 'react';
 import Dropdown from '@synerise/ds-dropdown';
 import Scrollbar from '@synerise/ds-scrollbar';
 import Result from '@synerise/ds-result';
-import { useOnClickOutside } from '@synerise/ds-utils';
+import { focusWithArrowKeys, useOnClickOutside } from '@synerise/ds-utils';
 import Icon from '@synerise/ds-icon';
 import { SearchM } from '@synerise/ds-icon/dist/icons';
 import { SubjectItem, SubjectListProps } from '../Subject.types';
@@ -12,6 +12,7 @@ import SubjectListItem from './SubjectListItem';
 const SubjectList: React.FC<SubjectListProps> = ({ items, selectItem, hideDropdown, texts }) => {
   const [searchQuery, setSearchQuery] = React.useState('');
   const overlayRef = React.useRef<HTMLDivElement>(null);
+  const [searchInputCanBeFocused, setSearchInputFocus] = React.useState(true);
 
   useOnClickOutside(overlayRef, () => {
     hideDropdown();
@@ -35,9 +36,19 @@ const SubjectList: React.FC<SubjectListProps> = ({ items, selectItem, hideDropdo
   }, [items, searchQuery, hideDropdown, selectItem, setSearchQuery]);
 
   return (
-    <Dropdown.Wrapper ref={overlayRef}>
+    <Dropdown.Wrapper
+      ref={overlayRef}
+      onKeyDown={(e): void => {
+        setSearchInputFocus(false);
+        // eslint-disable-next-line @typescript-eslint/no-empty-function
+        searchQuery &&
+          focusWithArrowKeys(e, 'ds-subject-item', () => {
+            setSearchInputFocus(true);
+          });
+      }}
+    >
       <Dropdown.SearchInput
-        autofocus
+        autofocus={!searchQuery || searchInputCanBeFocused}
         iconLeft={<Icon component={<SearchM />} />}
         onSearchChange={setSearchQuery}
         placeholder={texts.searchPlaceholder}
