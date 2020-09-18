@@ -132,6 +132,7 @@ const stories = {
     },
     mode: 'multiple',
     defaultValue: 'a10',
+    placeholder: 'Select options',
     onChange: action('OnChange'),
     dropdownRender: (menu) => <Scrollbar maxHeight={256}>{menu}</Scrollbar>,
     dropdownStyle: { paddingRight: '0' },
@@ -167,6 +168,7 @@ const stories = {
     defaultValue: 'lucy',
     mode: 'multiple',
     onChange: action('OnChange'),
+    placeholder: 'Select options',
     children: [
       <OptGroup label="Manager">
         <Option value="jack">Jack</Option>
