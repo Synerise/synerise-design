@@ -2,19 +2,24 @@ import * as React from 'react';
 import dayjs from 'dayjs';
 import Select from '@synerise/ds-select';
 import TimePicker from '@synerise/ds-time-picker';
-import { RangeFormProps } from './RangeForm.types';
-import * as S from './RangeForm.styles';
-import { range } from '../../../constants';
-import { getDisabledTimeOptions } from '../../../RangePicker/utils';
 import Button from '@synerise/ds-button';
 import { OptionHorizontalM } from '@synerise/ds-icon/dist/icons';
 import Icon from '@synerise/ds-icon';
+import { RangeFormProps } from './RangeForm.types';
+import * as S from './RangeForm.styles';
+import { getDisabledTimeOptions } from '../../../RangePicker/utils';
 
 const TODAY = new Date();
-const RangeForm: React.FC<RangeFormProps> = () => {
-  const [start, setStart] = React.useState<Date | undefined>(dayjs(TODAY).startOf('day'));
-  const [end, setEnd] = React.useState<Date | undefined>(dayjs(TODAY).endOf('day'));
+
+const RangeForm: React.FC<RangeFormProps> = ({startDate, endDate}) => {
+  const [start, setStart] = React.useState<Date | undefined>(startDate);
+  const [end, setEnd] = React.useState<Date | undefined>(endDate);
   const areStartAndEndValid = React.useMemo(() => !!start && !!end, [start, end]);
+
+  React.useEffect(()=>{
+    setStart(startDate);
+    setEnd(endDate);
+  },[startDate, endDate])
 
   React.useEffect(() => {
     if (!start) {
