@@ -27,7 +27,7 @@ const stories = {
 )};
 
 export default {
-name: 'Components/Operators',
+name: 'Filter/Operators',
   config: {},
   stories,
   Component: Operators,

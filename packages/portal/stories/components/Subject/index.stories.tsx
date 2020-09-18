@@ -36,7 +36,7 @@ const stories = {
 )};
 
 export default {
-name: 'Components/Subject',
+name: 'Filter/Subject',
   config: {},
   stories,
   Component: Subject,

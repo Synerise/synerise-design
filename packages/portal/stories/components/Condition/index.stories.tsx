@@ -285,7 +285,7 @@ const stories = {
 )};
 
 export default {
-name: 'Components/Condition',
+name: 'Filter/Condition',
   config: {},
   stories,
   Component: Condition,

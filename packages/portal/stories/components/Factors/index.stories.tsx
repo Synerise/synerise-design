@@ -45,7 +45,7 @@ const stories = {
 )};
 
 export default {
-name: 'Components/Factors',
+name: 'Filter/Factors',
   config: {},
   stories,
   Component: Factors,
