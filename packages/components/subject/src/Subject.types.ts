@@ -14,7 +14,7 @@ export type SubjectProps = {
   placeholder: string | React.ReactNode;
   iconPlaceholder: React.ReactNode;
   selectItem: (item: SubjectItem) => void;
-  selectedItem: SubjectItem;
+  selectedItem?: SubjectItem | undefined;
   type?: SubjectType;
   items: SubjectItem[];
   texts: {

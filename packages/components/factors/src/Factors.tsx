@@ -60,13 +60,15 @@ const Factors: React.FC<FactorsProps> = ({
   onChangeValue,
   value,
   defaultFactorType = 'text',
-  expansibleText,
+  textType = 'Default',
   unavailableFactorTypes,
   availableFactorTypes,
   parameters,
   autocompleteText,
   withoutTypeSelector = false,
   texts,
+  formulaEditor,
+  opened,
 }) => {
   const factorType = React.useMemo(() => {
     return selectedFactorType || defaultFactorType;
@@ -77,7 +79,7 @@ const Factors: React.FC<FactorsProps> = ({
   }, [factorType]);
 
   return (
-    <S.Group resetMargin compact withoutTypeSelector={withoutTypeSelector}>
+    <S.Group resetMargin compact withoutTypeSelector={withoutTypeSelector} className={`ds-factors ds-factors-${factorType}`}>
       {!withoutTypeSelector && (
         <FactorTypeSelector
           selectedFactorType={factorType}
@@ -92,11 +94,13 @@ const Factors: React.FC<FactorsProps> = ({
         onChangeValue={onChangeValue}
         selectedFactor={selectedFactor}
         selectedFactorType={factorType}
-        expansibleText={expansibleText}
+        textType={textType}
         parameters={parameters}
         autocompleteText={autocompleteText}
         withoutTypeSelector={withoutTypeSelector}
+        formulaEditor={formulaEditor}
         texts={texts}
+        opened={opened}
       />
     </S.Group>
   );

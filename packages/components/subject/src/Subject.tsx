@@ -14,7 +14,7 @@ const Subject: React.FC<SubjectProps> = ({
   placeholder,
   selectItem,
   showPreview,
-  type,
+  type = 'parameter',
   texts,
 }) => {
   const [dropdownVisible, setDropdownVisible] = React.useState(false);

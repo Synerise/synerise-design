@@ -1,20 +1,32 @@
-import {
-  ExpressionM,
-  FolderM,
-  NotificationsM,
-  VarTypeNumberM,
-  VarTypeStringM,
-} from '@synerise/ds-icon/dist/icons';
+import { ExpressionM, FolderM, VarTypeNumberM, VarTypeStringM } from '@synerise/ds-icon/dist/icons';
 import * as React from 'react';
 
-export const SUBJECT_ITEMS = [...new Array(30)].map((i, index) => ({
-  id: index,
-  name: `Attribute #${index}`,
-  icon: <NotificationsM />,
-}));
+export const FACTORS_TEXTS = {
+  datePicker: {
+    apply: 'Apply',
+    clearTooltip: 'Clear',
+    inputPlaceholder: 'Select date',
+    now: 'Now',
+  },
+  dynamicKey: {
+    keyPlaceholder: 'Key',
+    valuePlaceholder: 'Value',
+  },
+  formula: {
+    buttonPlaceholder: 'Define formula',
+    defaultName: 'Formula'
+  },
+  parameter: {
+    searchPlaceholder: 'Search',
+    noResults: 'No results',
+  },
+  valuePlaceholder: 'Value',
+  modalApply: 'Apply',
+  modalCancel: 'Cancel',
+  modalTitle: 'Value'
+}
 
-
-export const PARAMETER_GROUPS = [
+export const FACTORS_GROUPS = [
   {
     name: 'Recent',
     id: 1,
@@ -41,7 +53,7 @@ export const PARAMETER_GROUPS = [
   }
 ];
 
-export const PARAMETER_ITEMS = [
+export const FACTORS_ITEMS = [
   {
     id: 0,
     name: 'First name',

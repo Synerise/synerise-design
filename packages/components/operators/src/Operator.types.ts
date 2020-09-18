@@ -11,7 +11,7 @@ export type OperatorsItem = {
   icon: React.ReactNode;
   group?: string;
   groupId: React.ReactText;
-  groupName: string;
+  groupName?: string;
   id: React.ReactText;
   logic?: string;
   value?: string;
@@ -29,11 +29,12 @@ export type OperatorsGroup = {
 };
 
 export type OperatorsProps = {
-  value: OperatorsItem;
-  onChange: (item: OperatorsItem | OperatorsGroup) => void;
+  value?: OperatorsItem | undefined;
+  onChange: (item: OperatorsItem | OperatorsGroup | undefined) => void;
   groups: OperatorsGroup[];
   items: OperatorsItem[];
   texts: OperatorTexts;
+  opened?: boolean;
 };
 
 export type OperatorsDropdownProps = {
@@ -42,4 +43,5 @@ export type OperatorsDropdownProps = {
   groups: OperatorsGroup[];
   items: OperatorsItem[];
   texts: OperatorTexts;
+  value: OperatorsItem | undefined;
 };

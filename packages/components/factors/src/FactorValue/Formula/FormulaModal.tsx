@@ -3,8 +3,8 @@ import ModalProxy from '@synerise/ds-modal';
 import InlineEdit from '@synerise/ds-inline-edit';
 import { FormulaModalProps } from '../../Factors.types';
 
-const FormulaModal: React.FC<FormulaModalProps> = ({ value, onApply, onCancel, visible, texts }) => {
-  const [formulaName, setFormulaName] = React.useState(value.name);
+const FormulaModal: React.FC<FormulaModalProps> = ({ value, onApply, onCancel, visible, texts, formulaEditor }) => {
+  const [formulaName, setFormulaName] = React.useState(value.name || texts.formula.defaultName);
 
   const handleOk = React.useCallback(() => {
     onApply({
@@ -38,7 +38,7 @@ const FormulaModal: React.FC<FormulaModalProps> = ({ value, onApply, onCancel, v
       okText={texts.modalApply}
       cancelText={texts.modalCancel}
     >
-      <div>Formula editor</div>
+      {formulaEditor}
     </ModalProxy>
   );
 };

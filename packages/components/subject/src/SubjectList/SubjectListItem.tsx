@@ -21,6 +21,7 @@ const SubjectListItem: React.FC<Props> = ({ item, clearSearch, searchQuery, hide
         select(item);
       }}
       prefixel={<Icon component={item.icon} />}
+      className="ds-subject-item"
     >
       {item.name}
     </Menu.Item>

@@ -3,9 +3,10 @@ import Dropdown from '@synerise/ds-dropdown';
 import Icon from '@synerise/ds-icon';
 import SearchM from '@synerise/ds-icon/dist/icons/SearchM';
 import Tabs from '@synerise/ds-tabs';
-import { useOnClickOutside } from '@synerise/ds-utils';
+import { focusWithArrowKeys, useOnClickOutside } from '@synerise/ds-utils';
 import Result from '@synerise/ds-result';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import Scrollbar from '@synerise/ds-scrollbar';
 import * as S from './Parameter.style';
 import { ParameterDropdownProps, ParameterGroup, ParameterItem } from '../../Factors.types';
 import ParameterDropdownItem from './ParameterDropdownItem';
@@ -26,6 +27,7 @@ const ParameterDropdown: React.FC<ParameterDropdownProps> = ({
   const [searchQuery, setSearchQuery] = React.useState<string>('');
   const [activeTab, setActiveTab] = React.useState<number>(defaultTab);
   const [activeGroup, setActiveGroup] = React.useState<ParameterGroup | undefined>(undefined);
+  const [searchInputCanBeFocused, setSearchInputFocus] = React.useState(true);
 
   useOnClickOutside(overlayRef, () => {
     setDropdownVisible(false);
@@ -141,12 +143,24 @@ const ParameterDropdown: React.FC<ParameterDropdownProps> = ({
   }, [groups]);
 
   return (
-    <Dropdown.Wrapper style={{ width: '300px' }} ref={overlayRef}>
+    <Dropdown.Wrapper
+      style={{ width: '300px' }}
+      ref={overlayRef}
+      onKeyDown={(e): void => {
+        setSearchInputFocus(false);
+        // eslint-disable-next-line @typescript-eslint/no-empty-function
+        searchQuery &&
+          focusWithArrowKeys(e, 'ds-parameter-item', () => {
+            setSearchInputFocus(true);
+          });
+      }}
+    >
       <Dropdown.SearchInput
         onSearchChange={handleSearch}
         onClearInput={(): void => handleSearch('')}
         placeholder={texts.parameter.searchPlaceholder}
         value={searchQuery}
+        autofocus={!searchQuery || searchInputCanBeFocused}
         iconLeft={<Icon component={<SearchM />} color={theme.palette['grey-600']} />}
       />
       {searchQuery === '' && (
@@ -157,19 +171,22 @@ const ParameterDropdown: React.FC<ParameterDropdownProps> = ({
             activeTab={activeTab}
             handleTabClick={(index: number): void => {
               setActiveTab(index);
+              setActiveGroup(undefined);
             }}
           />
         </S.TabsWrapper>
       )}
       {activeGroup && <Dropdown.BackAction label={activeGroup.name} onClick={(): void => setActiveGroup(undefined)} />}
       <S.ItemsList>
-        {// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-        // @ts-ignore
-        currentItems.length ? (
-          currentItems
-        ) : (
-          <Result noSearchResults type="no-results" description={texts.parameter.noResults} />
-        )}
+        <Scrollbar absolute maxHeight={300} style={{ padding: 8 }}>
+          {// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+          // @ts-ignore
+          currentItems.length ? (
+            currentItems
+          ) : (
+            <Result noSearchResults type="no-results" description={texts.parameter.noResults} />
+          )}
+        </Scrollbar>
       </S.ItemsList>
     </Dropdown.Wrapper>
   );

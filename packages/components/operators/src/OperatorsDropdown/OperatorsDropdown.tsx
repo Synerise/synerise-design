@@ -3,7 +3,7 @@ import Dropdown from '@synerise/ds-dropdown';
 import Icon from '@synerise/ds-icon';
 import SearchM from '@synerise/ds-icon/dist/icons/SearchM';
 import Tabs from '@synerise/ds-tabs';
-import { useOnClickOutside } from '@synerise/ds-utils';
+import { focusWithArrowKeys, useOnClickOutside } from '@synerise/ds-utils';
 import Result from '@synerise/ds-result';
 import Scrollbar from '@synerise/ds-scrollbar';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
@@ -19,6 +19,7 @@ const OperatorsDropdown: React.FC<OperatorsDropdownProps> = ({
   groups,
   items,
   setDropdownVisible,
+  value,
 }) => {
   const defaultTab = React.useMemo(() => {
     const defaultIndex = groups?.findIndex((group: OperatorsGroup) => group.defaultGroup);
@@ -29,6 +30,7 @@ const OperatorsDropdown: React.FC<OperatorsDropdownProps> = ({
   const [searchQuery, setSearchQuery] = React.useState<string>('');
   const [activeTab, setActiveTab] = React.useState<number>(defaultTab);
   const [activeGroup, setActiveGroup] = React.useState<OperatorsGroup | undefined>(undefined);
+  const [searchInputCanBeFocused, setSearchInputFocus] = React.useState(true);
 
   useOnClickOutside(overlayRef, () => {
     setDropdownVisible(false);
@@ -56,13 +58,14 @@ const OperatorsDropdown: React.FC<OperatorsDropdownProps> = ({
               searchQuery={searchQuery}
               hideDropdown={(): void => setDropdownVisible(false)}
               select={setSelected}
+              selected={Boolean(value) && item.id === value?.id}
             />
           );
         });
       });
       return resultItems;
     },
-    [searchQuery, setDropdownVisible, setSelected]
+    [searchQuery, setDropdownVisible, setSelected, value]
   );
 
   const currentTabItems = React.useMemo((): OperatorsGroup | undefined => {
@@ -83,10 +86,11 @@ const OperatorsDropdown: React.FC<OperatorsDropdownProps> = ({
             clearSearch={(): void => setSearchQuery('')}
             hideDropdown={(): void => setDropdownVisible(false)}
             select={setSelected}
+            selected={Boolean(value) && item.id === value?.id}
           />
         );
       });
-  }, [items, searchQuery, setDropdownVisible, setSelected]);
+  }, [items, searchQuery, setDropdownVisible, setSelected, value]);
 
   const currentItems = React.useMemo((): React.ReactNode[] | undefined => {
     if (searchQuery) {
@@ -116,8 +120,8 @@ const OperatorsDropdown: React.FC<OperatorsDropdownProps> = ({
   }, [currentTabItems, items, groups, searchQuery, activeTab, filteredItems, activeGroup, groupByGroupName]);
 
   const handleSearch = React.useCallback(
-    value => {
-      setSearchQuery(value);
+    val => {
+      setSearchQuery(val);
     },
     [setSearchQuery]
   );
@@ -131,12 +135,24 @@ const OperatorsDropdown: React.FC<OperatorsDropdownProps> = ({
   }, [groups]);
 
   return (
-    <Dropdown.Wrapper style={{ width: '300px' }} ref={overlayRef}>
+    <Dropdown.Wrapper
+      style={{ width: '300px' }}
+      ref={overlayRef}
+      onKeyDown={(e): void => {
+        setSearchInputFocus(false);
+        // eslint-disable-next-line @typescript-eslint/no-empty-function
+        searchQuery &&
+          focusWithArrowKeys(e, 'ds-operator-item', () => {
+            setSearchInputFocus(true);
+          });
+      }}
+    >
       <Dropdown.SearchInput
         onSearchChange={handleSearch}
         onClearInput={(): void => handleSearch('')}
         placeholder={texts.searchPlaceholder}
         value={searchQuery}
+        autofocus={!searchQuery || searchInputCanBeFocused}
         iconLeft={<Icon component={<SearchM />} color={theme.palette['grey-600']} />}
       />
       {searchQuery === '' && (
@@ -147,12 +163,13 @@ const OperatorsDropdown: React.FC<OperatorsDropdownProps> = ({
             activeTab={activeTab}
             handleTabClick={(index: number): void => {
               setActiveTab(index);
+              setActiveGroup(undefined);
             }}
           />
         </S.TabsWrapper>
       )}
       <S.ItemsList>
-        <Scrollbar absolute maxHeight={300}>
+        <Scrollbar absolute maxHeight={300} style={{ padding: 8 }}>
           {// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
           // @ts-ignore
           currentItems.length ? (

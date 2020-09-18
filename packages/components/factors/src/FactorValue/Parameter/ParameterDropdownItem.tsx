@@ -14,6 +14,7 @@ interface Props {
 const ParameterDropdownItem: React.FC<Props> = ({ item, clearSearch, searchQuery, hideDropdown, select }) => {
   return (
     <Menu.Item
+      className="ds-parameter-item"
       key={item.name + item.id}
       prefixel={<Icon component={item.icon} />}
       highlight={searchQuery}
