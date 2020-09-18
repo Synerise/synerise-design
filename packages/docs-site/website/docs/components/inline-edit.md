@@ -55,7 +55,7 @@ InlineEdit UI Component
 | error        | Error state of component                 | boolean                                                                           | `false`  |
 | expanded     | Initial expansion state of dropdown menu | boolean                                                                           | `false`  |
 | hideIcon     | Hides input icon                         | boolean                                                                           | `false`  |
-| input        | Properties of the input                  | Partial<InlineEditInput>                                                          | `false`  |
+| input        | Properties of the input                  | InlineEditInput                                                          | `false`  |
 | placeholder  | Default text of the select               | string                                                                            | -        |
 | size         | Component size                           | `normal` / `small`                                                                | `normal` |
 | style        | Styles object                            | React.CSSProperties                                                               | -        |
