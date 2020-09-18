@@ -164,7 +164,7 @@ const OperatorsDropdown: React.FC<OperatorsDropdownProps> = ({
         </S.TabsWrapper>
       )}
       <S.ItemsList>
-        <Scrollbar absolute maxHeight={300}>
+        <Scrollbar absolute maxHeight={300} style={{ padding: 8 }}>
           {// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
           // @ts-ignore
           currentItems.length ? (

@@ -10,7 +10,6 @@ export const ContentPlaceholder = styled.div`
 `;
 
 export const ItemsList = styled(Menu)`
-  padding: 8px;
   width: 100%;
 `;
 
