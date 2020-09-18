@@ -4,12 +4,15 @@ import { range, rangeRight, groupBy, reverse, flatten, values, ceil } from 'loda
 import { FormattedMessage, injectIntl } from 'react-intl';
 import Slider from '@synerise/ds-slider';
 import { SliderMarks, SliderValue } from 'antd/es/slider';
+import dayjs from 'dayjs';
 import { Header, Action } from './Header/Header';
 import Day from './Day/Day';
 import { formatTime } from '../../utils';
 import { DayKey, Props, State, DayOptions } from './TimeWindow.types';
 import * as S from './TimeWindow.styles';
+import RangeForm from '../DailyFilter/RangeForm/RangeForm';
 
+const TODAY = new Date();
 class TimeWindowBase extends React.Component<Props, State> {
   state: State = { activeDay: null };
 
@@ -339,6 +342,47 @@ class TimeWindowBase extends React.Component<Props, State> {
     );
   };
 
+  getDateFromDayValue = (dayValue: string) => {
+    const DAY_FORMAT = `YYYY-MM-DD`;
+    const todayToString = dayjs(TODAY).format(DAY_FORMAT);
+    const input = `${todayToString}-${dayValue}`;
+    return dayjs(input,`${DAY_FORMAT}-HH:mm:ss.SSS`).toDate();
+  };
+
+  renderRangeForm = (dayKey: DayKey, singleMode: boolean): React.ReactNode => {
+    const { customForm } = this.props;
+    if (customForm) {
+      return customForm(dayKey, singleMode);
+    }
+
+    const { invertibleTime, timeMarks } = this.props;
+    const dayValue = this.getDayValue(dayKey);
+    const slider = (
+      <RangeForm
+        startDate={this.getDateFromDayValue(dayValue.start)}
+        endDate={this.getDateFromDayValue(dayValue.stop)}
+      />
+    );
+    if (!invertibleTime) return slider;
+    const actions = [
+      {
+        key: 'invert',
+        onClick: () => this.handleDayChange(dayKey, { inverted: !dayValue.inverted }),
+        label: <FormattedMessage id="DS.DATE-RANGE-PICKER.INVERSE-SELECTION" />,
+      },
+    ];
+    return (
+      <>
+        <Header
+          title={this.getDayLabel(dayKey, true)}
+          actions={actions}
+          style={{ marginBottom: 16, marginTop: singleMode ? 0 : 44 }}
+        />
+        {slider}
+      </>
+    );
+  };
+
   render(): JSX.Element {
     const { style } = this.props;
     const { activeDay } = this.state;
@@ -349,6 +393,7 @@ class TimeWindowBase extends React.Component<Props, State> {
       <S.TimeWindowContainer style={style}>
         {!singleMode && this.renderGrid(keys)}
         {sliderKey !== null && this.renderSlider(sliderKey, singleMode)}
+        {sliderKey !== null && this.renderRangeForm(sliderKey, singleMode)}
       </S.TimeWindowContainer>
     );
   }

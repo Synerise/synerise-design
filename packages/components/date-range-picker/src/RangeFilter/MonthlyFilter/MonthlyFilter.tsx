@@ -22,6 +22,7 @@ import ManageableList from '@synerise/ds-manageable-list';
 import ContentItem from '@synerise/ds-manageable-list/dist/Item/ContentItem/ContentItem';
 import { Tag, TagShape } from '@synerise/ds-tags';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import Button from '@synerise/ds-button';
 
 class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
   state = {
@@ -256,12 +257,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
         ))}
         <AddContainer>
           {value.length < MAX_RULES_ALLOWED && (
-            <AddButton onClick={this.handleAddRow}>
-              <Icon component={<Add3M />} size={25} />
-              <span>
-                <FormattedMessage id="DS.DATE-RANGE-PICKER.ADD-RULE" />
-              </span>
-            </AddButton>
+            <Button.Creator  label={<FormattedMessage id="DS.DATE-RANGE-PICKER.ADD-RULE" />} onClick={this.handleAddRow} block />
           )}
         </AddContainer>
       </React.Fragment>
