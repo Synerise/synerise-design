@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.27](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.12.26...@synerise/ds-select@0.12.27) (2020-09-18)
+
+
+### Bug Fixes
+
+* **select:** fix placeholder & search input position ([c7a862e](https://github.com/synerise/synerise-design/commit/c7a862e34ffa837b2dc794353c8f89e1d8b88af9))
+
+
+
+
+
 ## [0.12.26](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.12.25...@synerise/ds-select@0.12.26) (2020-09-01)
 
 **Note:** Version bump only for package @synerise/ds-select
