@@ -6,6 +6,7 @@ import Tabs from '@synerise/ds-tabs';
 import { focusWithArrowKeys, useOnClickOutside } from '@synerise/ds-utils';
 import Result from '@synerise/ds-result';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import Scrollbar from '@synerise/ds-scrollbar';
 import * as S from './Parameter.style';
 import { ParameterDropdownProps, ParameterGroup, ParameterItem } from '../../Factors.types';
 import ParameterDropdownItem from './ParameterDropdownItem';
@@ -172,13 +173,15 @@ const ParameterDropdown: React.FC<ParameterDropdownProps> = ({
       )}
       {activeGroup && <Dropdown.BackAction label={activeGroup.name} onClick={(): void => setActiveGroup(undefined)} />}
       <S.ItemsList>
-        {// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-        // @ts-ignore
-        currentItems.length ? (
-          currentItems
-        ) : (
-          <Result noSearchResults type="no-results" description={texts.parameter.noResults} />
-        )}
+        <Scrollbar absolute maxHeight={300} style={{ padding: 8 }}>
+          {// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+          // @ts-ignore
+          currentItems.length ? (
+            currentItems
+          ) : (
+            <Result noSearchResults type="no-results" description={texts.parameter.noResults} />
+          )}
+        </Scrollbar>
       </S.ItemsList>
     </Dropdown.Wrapper>
   );
