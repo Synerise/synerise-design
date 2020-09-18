@@ -35,6 +35,24 @@
             }
         },
         {
+            "path": "./../../packages/components/button/src/Button.tsx",
+            "zeplinNames": [
+                "01 Primary *",
+                "02 Secondary *",
+                "03 Tertiary *",
+                "04 Custom color *",
+                "05 Ghost Primary *",
+                "06 Ghost Secondary *"
+            ],
+            "confluence": {
+                "urlPath": "projectKey=STOR&rapidView=245"
+            },
+            "storybook": {
+                "kind": "Components|Button"
+                
+            }
+        },
+        {
             "path": "./../../packages/components/input/src/Input.tsx",
             "zeplinNames": [
                 "01 Input / 01 Input small / 01 Default"
