@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.95.6](https://github.com/synerise/synerise-design/compare/portal@0.95.5...portal@0.95.6) (2020-09-18)
+
+
+### Bug Fixes
+
+* **select:** fix placeholder & search input position ([c7a862e](https://github.com/synerise/synerise-design/commit/c7a862e34ffa837b2dc794353c8f89e1d8b88af9))
+
+
+
+
+
 ## [0.95.5](https://github.com/synerise/synerise-design/compare/portal@0.95.4...portal@0.95.5) (2020-09-01)
 
 
