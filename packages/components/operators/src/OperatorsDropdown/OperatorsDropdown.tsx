@@ -30,6 +30,7 @@ const OperatorsDropdown: React.FC<OperatorsDropdownProps> = ({
   const [searchQuery, setSearchQuery] = React.useState<string>('');
   const [activeTab, setActiveTab] = React.useState<number>(defaultTab);
   const [activeGroup, setActiveGroup] = React.useState<OperatorsGroup | undefined>(undefined);
+  const [searchInputCanBeFocused, setSearchInputFocus] = React.useState(true);
 
   useOnClickOutside(overlayRef, () => {
     setDropdownVisible(false);
@@ -138,8 +139,12 @@ const OperatorsDropdown: React.FC<OperatorsDropdownProps> = ({
       style={{ width: '300px' }}
       ref={overlayRef}
       onKeyDown={(e): void => {
+        setSearchInputFocus(false);
         // eslint-disable-next-line @typescript-eslint/no-empty-function
-        searchQuery && focusWithArrowKeys(e, 'ds-operator-item', () => {});
+        searchQuery &&
+          focusWithArrowKeys(e, 'ds-operator-item', () => {
+            setSearchInputFocus(true);
+          });
       }}
     >
       <Dropdown.SearchInput
@@ -147,7 +152,7 @@ const OperatorsDropdown: React.FC<OperatorsDropdownProps> = ({
         onClearInput={(): void => handleSearch('')}
         placeholder={texts.searchPlaceholder}
         value={searchQuery}
-        autofocus={!searchQuery}
+        autofocus={!searchQuery || searchInputCanBeFocused}
         iconLeft={<Icon component={<SearchM />} color={theme.palette['grey-600']} />}
       />
       {searchQuery === '' && (
