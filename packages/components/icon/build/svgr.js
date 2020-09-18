@@ -41,10 +41,16 @@ const pascalCaseFilename = filePath => {
   return pascalCase(filename);
 };
 
+const kebabCaseFilename = filePath => {
+  const filename = path.basename(filePath).replace('.svg', '');
+  return filename;
+};
+
 const buildIconsSet = (path, libDir, indexDistFile) => {
   glob(path, {}, function(er, files) {
     for (let file of files) {
       const componentName = pascalCaseFilename(file);
+      const componentClassName = kebabCaseFilename(file);
       fs.readFile(file, 'UTF-8', (err, content) => {
         svgr(
           content,
@@ -53,6 +59,9 @@ const buildIconsSet = (path, libDir, indexDistFile) => {
             plugins: ['@svgr/plugin-svgo', '@svgr/plugin-jsx', '@svgr/plugin-prettier'],
             svgoConfig: {
               "plugins": [{
+                addClassesToSVGElement: {
+                  className: componentClassName,
+                },
                 cleanupIDs: {
                   prefix: `svg-${hash(file)}`,
                 },
