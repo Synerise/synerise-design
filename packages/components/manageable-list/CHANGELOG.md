@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.14.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.13.26...@synerise/ds-manageable-list@0.14.0) (2020-09-07)
+
+
+### Features
+
+* **manageeable-list:** added props: headerSuffix, headerPrefix, dashed ([6d6e696](https://github.com/Synerise/synerise-design/commit/6d6e6962908d2b7f65f5ac2c7939eb1fcb47c75e))
+
+
+
+
+
 ## [0.13.26](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.13.25...@synerise/ds-manageable-list@0.13.26) (2020-09-03)
 
 **Note:** Version bump only for package @synerise/ds-manageable-list
