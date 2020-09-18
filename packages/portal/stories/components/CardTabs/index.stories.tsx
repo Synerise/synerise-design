@@ -98,6 +98,7 @@ const stories = {
       store.set({
         items: [...store.state.items, {
           ...duplicatedTab,
+          tag: String.fromCharCode(65 + store.state.nextId).toUpperCase(),
           id: store.state.nextId,
         }],
         nextId: store.state.nextId + 1,
