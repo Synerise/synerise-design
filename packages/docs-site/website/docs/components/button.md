@@ -62,7 +62,7 @@ import { AngleDownS } from '@synerise/ds-icon/dist/icons';
 | justifyContent | Defines justify of content in button.                                        | JustifyContentProperty (React.CSSPRroperties)                                                                                             | -           |
 | loading        | Sets the loading status of button.                                           | boolean / `{ delay?: number }`                                                                                                            | `false`     |
 | mode           | Defines the mode of the button content. It affects content inside the button | `single-icon` / `split` / `two-icons` /`label-icon` / `icon-label`                                                                        | -           |
-| onClick        | Callback executed after clicking the button                                  | (event: React.MouseEvent<HTMLElement>) => void                                                                                            | -           |
+| onClick        | Callback executed after clicking the button                                  | (event: React.MouseEvent) => void                                                                                                         | -           |
 | type           | Defines the type of the button.                                              | `primary` / `secondary`/ `tertiary`/ `tertiary-white` / `ghost-primary` / `ghost` / `ghost-white` / `custom-color` / `custom-color-ghost` | `secondary` |
 
 ## Button.Creator
@@ -71,8 +71,8 @@ import { AngleDownS } from '@synerise/ds-icon/dist/icons';
 | -------- | ------------------------------------------------------ | ---------------------------------------------- | --------- |
 | block    | Defines if the button should take all available space. | boolean                                        | `false`   |
 | disabled | Defines if the button is disabled.                     | boolean                                        | `false`   |
-| label    | Label of the button.                                   | string / React.ReactNode   | -         |
-| onClick  | Callback executed after clicking the button            | (event: React.MouseEvent<HTMLElement>) => void | -         |
+| label    | Label of the button.                                   | string / React.ReactNode                       | -         |
+| onClick  | Callback executed after clicking the button            | (event: React.MouseEvent) => void | -         |
 | status   | Defines the color of the button.                       | `upload` / `error`/ `default`                  | `default` |
 
 ## Button.Expander
@@ -81,7 +81,7 @@ import { AngleDownS } from '@synerise/ds-icon/dist/icons';
 | -------- | ------------------------------------------- | ---------------------------------------------- | ------- |
 | disabled | Defines if the button is disabled.          | boolean                                        | `false` |
 | expanded | The current state of the button.            | boolean                                        | `false` |
-| onClick  | Callback executed after clicking the button | (event: React.MouseEvent<HTMLElement>) => void | -       |
+| onClick  | Callback executed after clicking the button | (event: React.MouseEvent) => void | -       |
 | size     | Defines the size of the button.             | `S` / `M`                                      | `M`     |
 
 ## Button.Cruds
@@ -94,9 +94,9 @@ import { AngleDownS } from '@synerise/ds-icon/dist/icons';
 | editTooltip      | Tooltip of the edit button                                                   | React.ReactNode / string                       | -       |
 | moveTooltip      | Tooltip of the move button                                                   | React.ReactNode / string                       | -       |
 | removeTooltip    | Tooltip of the remove button                                                 | React.ReactNode / string                       | -       |
-| onAdd            | Callback executed after clicking the add button.                             | (event: React.MouseEvent<HTMLElement>) => void | -       |
-| onDuplicate      | Callback executed after clicking the duplicate button.                       | (event: React.MouseEvent<HTMLElement>) => void | -       |
-| onDelete         | Callback executed after clicking the delete button.                          | (event: React.MouseEvent<HTMLElement>) => void | -       |
-| onEdit           | Callback executed after clicking the edit button.                            | (event: React.MouseEvent<HTMLElement>) => void | -       |
-| onMove           | Callback executed after clicking the move button.                            | (event: React.MouseEvent<HTMLElement>) => void | -       |
-| onRemove         | Callback executed after clicking the remove button.                          | (event: React.MouseEvent<HTMLElement>) => void | -       |
+| onAdd            | Callback executed after clicking the add button.                             | (event: React.MouseEvent) => void | -       |
+| onDuplicate      | Callback executed after clicking the duplicate button.                       | (event: React.MouseEvent) => void | -       |
+| onDelete         | Callback executed after clicking the delete button.                          | (event: React.MouseEvent) => void | -       |
+| onEdit           | Callback executed after clicking the edit button.                            | (event: React.MouseEvent) => void | -       |
+| onMove           | Callback executed after clicking the move button.                            | (event: React.MouseEvent) => void | -       |
+| onRemove         | Callback executed after clicking the remove button.                          | (event: React.MouseEvent) => void | -       |
