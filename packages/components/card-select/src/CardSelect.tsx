@@ -79,6 +79,7 @@ const CardSelect: React.FC<CardSelectProps> = ({
         value={value}
         size={size}
         onClick={handleClick}
+        stretchToFit={stretchToFit}
         className={`ds-card-select ${className || ''}`}
         elementsPosition={elementsPosition}
       >
