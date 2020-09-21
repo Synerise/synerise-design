@@ -22,6 +22,7 @@ const stories = {
         placeholder={placeholder}
         label={renderLabel(labelText)}
         labelTooltip={labelTooltip}
+        suffixTooltip={'Edit'}
       />
     );
   },
@@ -39,6 +40,7 @@ const stories = {
         placeholder={placeholder}
         label={renderLabel(labelText)}
         labelTooltip={labelTooltip}
+        suffixTooltip={'Edit'}
       />
     );
   },

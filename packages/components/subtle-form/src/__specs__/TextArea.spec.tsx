@@ -1,7 +1,7 @@
 import * as React from 'react';
 import SubtleForm from '../SubtleForm';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
-import { fireEvent, waitFor } from '@testing-library/react';
+import { fireEvent } from '@testing-library/react';
 
 describe('Subtle Textarea', () => {
   it('should render current value', () => {

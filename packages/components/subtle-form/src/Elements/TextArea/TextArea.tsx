@@ -3,8 +3,8 @@ import Icon from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 import { EditS } from '@synerise/ds-icon/dist/icons';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
-import * as S from '../../SubtleForm.styles';
 import { Label, TextArea } from '@synerise/ds-input';
+import * as S from '../../SubtleForm.styles';
 import { SubtleTextAreaProps } from './TextArea.types';
 
 const SubtleTextArea: React.FC<SubtleTextAreaProps> = ({
@@ -44,7 +44,7 @@ const SubtleTextArea: React.FC<SubtleTextAreaProps> = ({
   }, []);
 
   return (
-    <S.Subtle className={'ds-subtle-form'}>
+    <S.Subtle className="ds-subtle-form">
       <S.ContentAbove active={active}>
         <Label label={label} tooltip={labelTooltip} />
       </S.ContentAbove>
@@ -59,6 +59,7 @@ const SubtleTextArea: React.FC<SubtleTextAreaProps> = ({
             value={value}
             rows={visibleRows < 2 ? 2 : visibleRows}
             style={{ margin: 0 }}
+            // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
             // @ts-ignore
             wrapperStyle={{ minHeight: visibleRows * 17 + 17, margin: 0 }}
           />

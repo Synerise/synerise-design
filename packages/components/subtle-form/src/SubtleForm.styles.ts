@@ -5,7 +5,7 @@ const disableBlinkingCursor = (props: ThemeProps & { grey: boolean }): FlattenSi
   color: transparent;
   text-shadow: 0 1px ${props.grey ? props.theme.palette['grey-500'] : props.theme.palette['grey-600']};
 `;
-export const ValueArea = styled.textarea<{ grey: boolean; active: boolean }>`
+export const ValueArea = styled.textarea<{ grey: boolean }>`
   &:hover {
     cursor: pointer;
   }
@@ -59,7 +59,7 @@ export const Inactive = styled.div<{ rows: number }>`
   align-items: flex-start;
   background: transparent;
   display: flex;
-        padding: 7px 8px 7px 12px;
+  padding: 7px 8px 7px 12px;
   border-radius: 3px;
   transition: background 0.1s ease-in;
 
