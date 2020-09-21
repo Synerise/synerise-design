@@ -96,6 +96,7 @@ export const Container = styled.div<
     raised?: boolean;
     value?: boolean;
     size?: string;
+    stretchToFit?: boolean;
     elementsPosition: string | 'left' | 'center' | 'right';
     selected?: boolean;
     pressed?: boolean;
@@ -103,6 +104,10 @@ export const Container = styled.div<
   >`
 min-width: ${(props): string | number => sizeCondition('48px', '224px', props)};
 
+  ${is('stretchToFit')`
+    height: 100%;
+  `}
+  
   ${transition};
   background-color: ${getVar('white')};
   border-radius: ${(props): string => props.theme.variable('@border-radius-base')};
