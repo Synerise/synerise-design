@@ -69,7 +69,7 @@ export const Title = styled.div<{ hasIcon: boolean; size?: string }>`
 export const Description = styled.div<{ hasTitle?: boolean; hasIcon?: boolean; size?: string }>`
   font-size: 13px;
   text-align: center;
-  max-width: 100%;
+  max-width: 176px;
   word-break: break-all;
 
   ${(props): FlattenSimpleInterpolation | undefined | false =>
@@ -104,7 +104,6 @@ export const Container = styled.div<
   } & ThemeProps
 >`
 min-width: ${(props): string | number => sizeCondition('48px', '224px', props)};
-max-width: 224px;
 
   ${transition};
   background-color: ${getVar('white')};
