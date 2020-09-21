@@ -60,9 +60,9 @@ export const Title = styled.div<{ hasIcon: boolean; size?: string }>`
   margin: ${(props): string => (!props.hasIcon ? '0 16px' : '0')};
 
   ${(props): FlattenSimpleInterpolation | false =>
-    props.size === 'small' &&
-    props.hasIcon &&
-    css`
+  props.size === 'small' &&
+  props.hasIcon &&
+  css`
       margin-top: 4px;
     `};
 `;
@@ -70,11 +70,11 @@ export const Description = styled.div<{ hasTitle?: boolean; hasIcon?: boolean; s
   font-size: 13px;
   text-align: center;
   max-width: 176px;
-  word-break: break-all;
-
+  word-wrap: break-word;
+  overflow-wrap: break-word;
   ${(props): FlattenSimpleInterpolation | undefined | false =>
-    props.hasTitle &&
-    css`
+  props.hasTitle &&
+  css`
       margin-top: 8px;
     `};
 `;
@@ -95,14 +95,12 @@ export const Container = styled.div<
     disabled?: boolean;
     raised?: boolean;
     value?: boolean;
-    stretch?: boolean;
     size?: string;
-    stretchToFit?: boolean;
     elementsPosition: string | 'left' | 'center' | 'right';
     selected?: boolean;
     pressed?: boolean;
   } & ThemeProps
->`
+  >`
 min-width: ${(props): string | number => sizeCondition('48px', '224px', props)};
 
   ${transition};
@@ -123,10 +121,12 @@ min-width: ${(props): string | number => sizeCondition('48px', '224px', props)};
   box-shadow:  0px 0px 0px 2px ${getVar('blue-600')};
   `}
     ${is('value') && is('pressed')` box-shadow:  0px 0px 0px 2px ${getVar('blue-600')};`}
-    ${is('value') &&
-      is('raised')`
+    ${
+  is('value') &&
+  is('raised')`
   box-shadow:  0px 0px 0px 2px ${getVar('blue-600')};
-  `}
+  `
+}
     ${is('value') && is('pressed')` box-shadow:  0px 0px 0px 2px ${getVar('blue-600')};`}
 
   ${Title}, ${Description}, ${IconWrapper} {
@@ -144,10 +144,6 @@ min-width: ${(props): string | number => sizeCondition('48px', '224px', props)};
   }
   
   
-
-  ${is('stretchToFit')`
-    height: 100%;
-  `}
 
   ${isNot('disabled')`
     
@@ -210,7 +206,7 @@ export const TickIcon = styled.div<{
 }>`
   ${is('selected')`
     transform: ${(props: ThemeProps & { elementsPosition: string; size?: string }): string =>
-      getTransformValues(props)}; 
+  getTransformValues(props)}; 
   `}
 
   ${is('disabled')`
@@ -227,8 +223,12 @@ export const TickIcon = styled.div<{
   `}
 `;
 
-export const CardWrapper = styled.div<{ disabled?: boolean }>`
+export const CardWrapper = styled.div<{ disabled?: boolean; stretchToFit?: boolean }>`
   ${is('disabled')`
     cursor:not-allowed;
   `}
+  ${is('stretchToFit')`
+    height: 100%;
+  `}
 `;
+
