@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.46](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-select@0.3.45...@synerise/ds-card-select@0.3.46) (2020-09-21)
+
+
+### Bug Fixes
+
+* **card-select:** added stretchToFit prop to child and parent ([0be9f2d](https://github.com/Synerise/synerise-design/commit/0be9f2d17e5321d75165586a0d203213559ade8d))
+
+
+
+
+
 ## [0.3.45](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-select@0.3.44...@synerise/ds-card-select@0.3.45) (2020-09-21)
 
 
