@@ -70,8 +70,8 @@ export const Description = styled.div<{ hasTitle?: boolean; hasIcon?: boolean; s
   font-size: 13px;
   text-align: center;
   max-width: 176px;
-  word-break: break-all;
-
+  word-wrap: break-word;
+  overflow-wrap: break-word;
   ${(props): FlattenSimpleInterpolation | undefined | false =>
     props.hasTitle &&
     css`
@@ -95,9 +95,7 @@ export const Container = styled.div<
     disabled?: boolean;
     raised?: boolean;
     value?: boolean;
-    stretch?: boolean;
     size?: string;
-    stretchToFit?: boolean;
     elementsPosition: string | 'left' | 'center' | 'right';
     selected?: boolean;
     pressed?: boolean;
@@ -123,10 +121,12 @@ min-width: ${(props): string | number => sizeCondition('48px', '224px', props)};
   box-shadow:  0px 0px 0px 2px ${getVar('blue-600')};
   `}
     ${is('value') && is('pressed')` box-shadow:  0px 0px 0px 2px ${getVar('blue-600')};`}
-    ${is('value') &&
+    ${
+      is('value') &&
       is('raised')`
   box-shadow:  0px 0px 0px 2px ${getVar('blue-600')};
-  `}
+  `
+    }
     ${is('value') && is('pressed')` box-shadow:  0px 0px 0px 2px ${getVar('blue-600')};`}
 
   ${Title}, ${Description}, ${IconWrapper} {
@@ -144,10 +144,6 @@ min-width: ${(props): string | number => sizeCondition('48px', '224px', props)};
   }
   
   
-
-  ${is('stretchToFit')`
-    height: 100%;
-  `}
 
   ${isNot('disabled')`
     
@@ -227,8 +223,11 @@ export const TickIcon = styled.div<{
   `}
 `;
 
-export const CardWrapper = styled.div<{ disabled?: boolean }>`
+export const CardWrapper = styled.div<{ disabled?: boolean; stretchToFit?: boolean }>`
   ${is('disabled')`
     cursor:not-allowed;
+  `}
+  ${is('stretchToFit')`
+    height: 100%;
   `}
 `;
