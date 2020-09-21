@@ -60,9 +60,9 @@ export const Title = styled.div<{ hasIcon: boolean; size?: string }>`
   margin: ${(props): string => (!props.hasIcon ? '0 16px' : '0')};
 
   ${(props): FlattenSimpleInterpolation | false =>
-    props.size === 'small' &&
-    props.hasIcon &&
-    css`
+  props.size === 'small' &&
+  props.hasIcon &&
+  css`
       margin-top: 4px;
     `};
 `;
@@ -73,8 +73,8 @@ export const Description = styled.div<{ hasTitle?: boolean; hasIcon?: boolean; s
   word-wrap: break-word;
   overflow-wrap: break-word;
   ${(props): FlattenSimpleInterpolation | undefined | false =>
-    props.hasTitle &&
-    css`
+  props.hasTitle &&
+  css`
       margin-top: 8px;
     `};
 `;
@@ -100,9 +100,13 @@ export const Container = styled.div<
     selected?: boolean;
     pressed?: boolean;
   } & ThemeProps
->`
+  >`
 min-width: ${(props): string | number => sizeCondition('48px', '224px', props)};
 
+  ${is('stretchToFit')`
+    height: 100%;
+  `}
+  
   ${transition};
   background-color: ${getVar('white')};
   border-radius: ${(props): string => props.theme.variable('@border-radius-base')};
@@ -122,11 +126,11 @@ min-width: ${(props): string | number => sizeCondition('48px', '224px', props)};
   `}
     ${is('value') && is('pressed')` box-shadow:  0px 0px 0px 2px ${getVar('blue-600')};`}
     ${
-      is('value') &&
-      is('raised')`
+  is('value') &&
+  is('raised')`
   box-shadow:  0px 0px 0px 2px ${getVar('blue-600')};
   `
-    }
+}
     ${is('value') && is('pressed')` box-shadow:  0px 0px 0px 2px ${getVar('blue-600')};`}
 
   ${Title}, ${Description}, ${IconWrapper} {
@@ -206,7 +210,7 @@ export const TickIcon = styled.div<{
 }>`
   ${is('selected')`
     transform: ${(props: ThemeProps & { elementsPosition: string; size?: string }): string =>
-      getTransformValues(props)}; 
+  getTransformValues(props)}; 
   `}
 
   ${is('disabled')`
@@ -231,3 +235,4 @@ export const CardWrapper = styled.div<{ disabled?: boolean; stretchToFit?: boole
     height: 100%;
   `}
 `;
+
