@@ -7,25 +7,25 @@ import * as S from './CardSelect.styles';
 import { CardSelectProps } from './CardSelect.types';
 
 const CardSelect: React.FC<CardSelectProps> = ({
-  title,
-  description,
-  customTickVisible,
-  customTickVisibleComponent,
-  tickVisible,
-  stretchToFit,
-  raised,
-  value,
-  size,
-  disabled,
-  onChange,
-  icon,
-  iconSize,
-  tickSize,
-  elementsPosition = 'center',
-  className,
-  onClick,
-  theme,
-}) => {
+                                                 title,
+                                                 description,
+                                                 customTickVisible,
+                                                 customTickVisibleComponent,
+                                                 tickVisible,
+                                                 stretchToFit,
+                                                 raised,
+                                                 value,
+                                                 size,
+                                                 disabled,
+                                                 onChange,
+                                                 icon,
+                                                 iconSize,
+                                                 tickSize,
+                                                 elementsPosition = 'center',
+                                                 className,
+                                                 onClick,
+                                                 theme,
+                                               }) => {
   const [pressed, setPressed] = React.useState<boolean>(false);
   const wrapperRef = React.useRef(null);
   const tickIconRef = React.useRef<HTMLDivElement>(null);
@@ -50,7 +50,7 @@ const CardSelect: React.FC<CardSelectProps> = ({
     pressed && setPressed(false);
   });
   return (
-    <S.CardWrapper disabled={disabled}>
+    <S.CardWrapper disabled={disabled} stretchToFit={stretchToFit}>
       <S.Container
         ref={wrapperRef}
         pressed={pressed}
@@ -59,7 +59,6 @@ const CardSelect: React.FC<CardSelectProps> = ({
         value={value}
         size={size}
         onClick={handleClick}
-        stretchToFit={stretchToFit}
         className={`ds-card-select ${className || ''}`}
         elementsPosition={elementsPosition}
       >
@@ -117,3 +116,4 @@ CardSelect.defaultProps = {
 };
 
 export default withTheme(CardSelect);
+
