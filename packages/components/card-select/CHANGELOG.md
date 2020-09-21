@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.44](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-select@0.3.43...@synerise/ds-card-select@0.3.44) (2020-09-21)
+
+
+### Bug Fixes
+
+* **card-select:** delete max width of container ([68c2114](https://github.com/Synerise/synerise-design/commit/68c2114e0d3ad94ba296977104433d2dc061c72b))
+
+
+
+
+
 ## [0.3.43](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-select@0.3.42...@synerise/ds-card-select@0.3.43) (2020-09-01)
 
 
