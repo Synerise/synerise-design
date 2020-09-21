@@ -24,11 +24,16 @@
     "*.less"
   ],
   "types": "dist/index.d.ts",
-  "dependencies": {},
+  "dependencies": {
+    "@synerise/ds-icon": "^0.26.0",
+    "@synerise/ds-input": "^0.15.3",
+    "@synerise/ds-tooltip": "^0.7.16"
+  },
   "peerDependencies": {
     "@synerise/ds-core": "*",
     "react": ">=16.9.0 < 17.0.0"
   },
   "devDependencies": {
+    "@synerise/ds-utils": "^0.9.3"
   }
 }
