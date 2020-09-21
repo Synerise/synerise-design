@@ -6,16 +6,7 @@ import Divider from '@synerise/ds-divider';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import * as S from '../../Cascader.styles';
 import BackAction from '../BackAction/BackAction';
-import { Category } from '../../Cascader.types';
-
-interface Props {
-  breadcrumbVisible?: boolean;
-  backActionVisible?: boolean;
-  activeCategory: Category;
-  previousCategory: Category;
-  onHomeIconClick: () => void;
-  onPathClick: (item: string) => void;
-}
+import { Props } from './Navigation.types';
 
 const Navigation: React.FC<Props> = ({
   backActionVisible,

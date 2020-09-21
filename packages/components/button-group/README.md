@@ -7,14 +7,10 @@ A group of buttons is used to wrap a series of buttons.
 
 ## When to use it
 
----
-
 - To combine primary and secondary buttons.
 - To allow users to navigate between several separate tabs with options in a main screen.
 
 ## Component anatomy
-
----
 
 This is a complex component, which means that it may consist of other components:
 
@@ -23,8 +19,6 @@ This is a complex component, which means that it may consist of other components
 - [utils](/docs/components/utils/)
 
 ## Installation
-
----
 
 ```
 npm i @synerise/ds-button-group
@@ -37,8 +31,6 @@ yarn add @synerise/ds-button-group
 ```
 
 ## Usage
-
----
 
 ```
 import ButtonGroup from '@synerise/ds-button-group'
@@ -56,21 +48,13 @@ import ButtonGroup from '@synerise/ds-button-group'
 
 ```
 
-## Demo
-
----
-
-<iframe src="/storybook-static/iframe.html?id=components-buttongroup--default"></iframe>
-
 ## API
 
----
-
-| Property        | Description                                                             | Type            | Default  |
-| --------------- | ----------------------------------------------------------------------- | --------------- | -------- |
-| title           | The title of the group                                                  | string          | -        |
-| description     | The description of the group                                            | string          | -        |
-| size            | Defines the size of the button: `small`, `large`                        | string          | -        |
-| buttonsPosition | Defines the horizontal position of buttons: `left`, `center` or `right` | string          | `center` |
-| fullWidth       | Set buttons width to fill all available space                           | boolean         | `false`  |
-| children        | Buttons used in the group                                               | React.ReactNode | -        |
+| Property        | Description                                   | Type                        | Default  |
+| --------------- | --------------------------------------------- | --------------------------- | -------- |
+| title           | The title of the group                        | string                      | -        |
+| description     | The description of the group                  | string                      | -        |
+| size            | Defines the size of the button.               | `small`/ `middle` / `large` | `middle` |
+| buttonsPosition | Defines the horizontal position of buttons.   | `left` / `center` / `right` | `center` |
+| fullWidth       | Set buttons width to fill all available space | boolean                     | `false`  |
+| children        | Buttons used in the group                     | React.ReactNode             | -        |

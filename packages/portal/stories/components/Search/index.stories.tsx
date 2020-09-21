@@ -1,16 +1,14 @@
 import * as React from 'react';
 import Search from '@synerise/ds-search';
-import VarTypeStringM from '@synerise/ds-icon/dist/icons/VarTypeStringM';
-import { number, text, boolean } from '@storybook/addon-knobs';
-import { VarTypeListM, VarTypeNumberM } from '@synerise/ds-icon/dist/icons';
-import { FilterElement } from '@synerise/ds-search/dist/Search.types';
+import { number, text } from '@storybook/addon-knobs';
 import Menu from '@synerise/ds-menu';
 import Icon from '@synerise/ds-icon';
-import { getItemsWithAvatar, getSuggestions } from './dataPopulator';
+import { getItemsWithAvatar, getSuggestions, parameters, recent } from './dataPopulator';
 import Divider from '@synerise/ds-divider';
 import { SearchInput } from '@synerise/ds-search/dist/Elements';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
-
+import DebouncedInput from './DebouncedInput';
+import { debounce } from 'debounce';
 const decorator = storyFn => (
   <div style={{ width: '100vw', position: 'absolute', left: '0', top: '20vh' }}>
     <div style={{ width: '300px', margin: 'auto' }}>{storyFn()}</div>
@@ -19,31 +17,6 @@ const decorator = storyFn => (
 
 const NOOP = (): void => {};
 
-const parameters = [
-  { text: 'First Name', icon: <VarTypeStringM /> },
-  { text: 'Last Name', icon: <VarTypeStringM /> },
-  { text: 'Sex', icon: <VarTypeStringM /> },
-  { text: 'City', icon: <VarTypeStringM /> },
-  { text: 'Transactions', icon: <VarTypeNumberM /> },
-  { text: 'IP', icon: <VarTypeStringM /> },
-  { text: 'Price', icon: <VarTypeListM /> },
-  { text: 'Discount', icon: <VarTypeListM /> },
-  { text: 'Products bought', icon: <VarTypeListM /> },
-  { text: 'Loyalty points', icon: <VarTypeListM /> },
-];
-
-const recent = [
-  { text: 'Bangkok', filter: 'City', icon: <VarTypeStringM /> },
-  { text: 'Frank', filter: 'Last Name', icon: <VarTypeStringM /> },
-  { text: 'Basel', filter: 'City', icon: <VarTypeStringM /> },
-  { text: 'Chicago', filter: 'City', icon: <VarTypeStringM /> },
-  { text: 'London', filter: 'City', icon: <VarTypeStringM /> },
-  { text: 'Brandon', filter: 'Last Name', icon: <VarTypeStringM /> },
-  { text: 'Male', filter: 'Sex', icon: <VarTypeStringM /> },
-  { text: 'Brandon', filter: 'Last Name', icon: <VarTypeStringM /> },
-  { text: 'Rogers', filter: 'Last Name', icon: <VarTypeStringM /> },
-  { text: 'Richards', filter: 'Last Name', icon: <VarTypeStringM /> },
-];
 const recentWithAvatars = getItemsWithAvatar(20);
 
 const stories = {
@@ -84,6 +57,20 @@ const stories = {
         closeOnClickOutside={false}
         alwaysExpanded
       />
+    );
+  },
+  withDebounce: () => {
+    const [debouncedValue, setDebouncedValue] = React.useState<string>('');
+    const debounceDelay = number('Set debounce delay [ms]', 500, { range: true, min: 0, max: 2000, step: 100 });
+    return (
+      <div style={{ width: '300px' }}>
+        <DebouncedInput debouncedOnChange={debounce(setDebouncedValue, debounceDelay)} />
+        <div style={{ margin: '10px 0' }}>
+          {' '}
+          <div style={{ marginRight: '4px', fontWeight: 500 }}>Debounced:</div>
+          <p style={{ wordBreak: 'break-all' }}>{debouncedValue}</p>
+        </div>
+      </div>
     );
   },
   withDropdown: () => {
@@ -129,7 +116,7 @@ const stories = {
           tooltip: parametersTooltip,
           title: parametersTitle,
           rowHeight: 32,
-          itemRender: (item: FilterElement) => (
+          itemRender: (item) => (
             <Menu.Item
               highlight={value}
               style={{ paddingLeft: '12px' }}
@@ -147,14 +134,14 @@ const stories = {
           tooltip: recentTooltip,
           title: recentTitle,
           rowHeight: 32,
-          itemRender: (item: FilterElement) => <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>,
+          itemRender: (item) => <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>,
         }}
         suggestions={suggestions}
         suggestionsDisplayProps={{
           tooltip: suggestionsTooltip,
           title: suggestionsTitle,
           rowHeight: 32,
-          itemRender: (item: FilterElement) => <Menu.Item onItemHover={NOOP}>{item && item.text}</Menu.Item>,
+          itemRender: (item) => <Menu.Item onItemHover={NOOP}>{item && item.text}</Menu.Item>,
         }}
         textLookupConfig={{
           parameters: 'text',
@@ -206,7 +193,7 @@ const stories = {
           tooltip: parametersTooltip,
           title: parametersTitle,
           rowHeight: 32,
-          itemRender: (item: FilterElement) => (
+          itemRender: (item) => (
             <Menu.Item
               style={{ paddingLeft: '12px' }}
               onItemHover={NOOP}
@@ -223,7 +210,7 @@ const stories = {
           tooltip: recentTooltip,
           title: recentTitle,
           rowHeight: 50,
-          itemRender: (item: FilterElement) => (
+          itemRender: (item) => (
             <Menu.Item onItemHover={NOOP} {...item} style={{ paddingLeft: '12px' }}>
               {item.text}
             </Menu.Item>
@@ -234,7 +221,7 @@ const stories = {
           tooltip: suggestionsTooltip,
           title: suggestionsTitle,
           rowHeight: 32,
-          itemRender: (item: FilterElement) => <Menu.Item onItemHover={NOOP}>{item && item.text}</Menu.Item>,
+          itemRender: (item) => <Menu.Item onItemHover={NOOP}>{item && item.text}</Menu.Item>,
         }}
         textLookupConfig={{
           parameters: 'text',

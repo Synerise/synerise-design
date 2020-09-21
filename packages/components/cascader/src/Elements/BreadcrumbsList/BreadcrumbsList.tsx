@@ -2,18 +2,10 @@ import * as React from 'react';
 import Menu from '@synerise/ds-menu';
 import { Path } from 'Cascader.types';
 import { renderSearchList } from '@synerise/ds-search/dist/Elements/SearchItems/SearchItems';
+import { BreadcrumbsListProps } from './BreadcrumbsList.types';
 
 const DEFAULT_VISIBLE_ROWS = 6;
 const DEFAULT_ROW_HEIGHT = 50;
-export interface BreadcrumbsListProps {
-  paths: Path[];
-  width: number;
-  rowHeight?: number;
-  visibleRows?: number;
-  highlight?: string;
-  onBreadCrumbClick?: (breadcrumb: Path) => void;
-  scrollTop: number;
-}
 
 const BreadcrumbsList: React.FC<BreadcrumbsListProps> = ({
   paths,

@@ -24,14 +24,14 @@ import * as React from 'react';
 import Dropdown from '@synerise/ds-dropdown';
 import Menu from '@synerise/ds-menu';
 import Switch from '@synerise/ds-switch/dist/Switch';
-import ColumnManager, { SavedView } from '@synerise/ds-column-manager/dist/ColumnManager';
+import ColumnManager from '@synerise/ds-column-manager/dist/ColumnManager';
+import { SavedView } from '@synerise/ds-column-manager/dist/ColumnManager.types';
 import * as moment from 'moment';
 import ItemFilter from '@synerise/ds-item-filter/dist/ItemFilter';
 import Result from '@synerise/ds-result';
 import ModalProxy from '@synerise/ds-modal';
 import { COLUMNS, EMPTY_VIEW, CATEGORIES, VIEWS } from './content/withFiltersAndSearch.data';
-import { FilterElement } from '@synerise/ds-search/dist/Search.types';
-import Divider from '@synerise/ds-divider';
+import { AnyObject } from '@synerise/ds-search/dist/Search.types';
 import Search from '@synerise/ds-search';
 import VarTypeStringM from '@synerise/ds-icon/dist/icons/VarTypeStringM';
 import Tooltip from '@synerise/ds-tooltip';
@@ -425,7 +425,7 @@ const stories = {
                 tooltip: 'Parameters',
                 title: 'Parameters',
                 rowHeight: 32,
-                itemRender: (item: FilterElement) => {
+                itemRender: (item: AnyObject) => {
                   return (
                     <Menu.Item
                       highlight={store.state.searchValue}
@@ -444,7 +444,7 @@ const stories = {
                 tooltip: 'Recent',
                 title: 'Recent',
                 rowHeight: 32,
-                itemRender: (item: FilterElement) => (
+                itemRender: (item: AnyObject) => (
                   <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>
                 ),
               }}
@@ -453,7 +453,7 @@ const stories = {
                 tooltip: 'Suggestions',
                 title: 'Suggestions',
                 rowHeight: 32,
-                itemRender: (item: FilterElement) => (
+                itemRender: (item: AnyObject) => (
                   <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>
                 ),
               }}

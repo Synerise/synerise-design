@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { DrawerProps as AntdDrawerProps } from 'antd/lib/drawer';
 import {
   AntdDrawer,
   DrawerBody,
@@ -10,11 +9,7 @@ import {
   DrawerHeaderBar,
 } from './Drawer.styles';
 import './style/index.less';
-
-export interface DrawerProps extends Omit<AntdDrawerProps, 'closable'> {
-  title?: string;
-  closable?: string;
-}
+import { DrawerProps } from './Drawer.types';
 
 class Drawer extends React.PureComponent<DrawerProps> {
   static DrawerBody = DrawerBody;

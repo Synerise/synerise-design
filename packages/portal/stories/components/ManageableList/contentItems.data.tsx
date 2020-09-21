@@ -1,5 +1,6 @@
 import FolderM from '@synerise/ds-icon/dist/icons/FolderM';
-import Tag, { TagShape } from '@synerise/ds-tags/dist/Tag/Tag';
+import Tag from '@synerise/ds-tags/dist/Tag/Tag';
+import { TagShape } from '@synerise/ds-tags/dist/Tag/Tag.types';
 import * as React from 'react';
 import { Input } from '@synerise/ds-input';
 import { DropdownMenu, DropdownMenuItem } from '@synerise/ds-manageable-list/dist/Item/FilterItem/FilterItem.styles';

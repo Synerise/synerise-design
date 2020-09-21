@@ -1,19 +1,9 @@
 import * as React from 'react';
 import * as S from './InputMultivalue.styles';
 import Value from './Elements/Value';
+import { Props } from './InputMultivalue.types';
 
-export interface Props {
-  error?: boolean;
-  className?: string;
-  errorText?: React.ReactNode | string;
-  label?: React.ReactNode | string;
-  description?: React.ReactNode | string;
-  values: React.ReactText[];
-  disabled?: boolean;
-  onBlur?: () => void;
-  onFocus?: () => void;
-  maxLength?: number;
-}
+
 const emptyValue = '';
 const InputMultivalue: React.FC<Props> = props => {
   const {

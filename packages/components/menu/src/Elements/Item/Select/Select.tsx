@@ -3,7 +3,7 @@ import { v4 as uuid } from 'uuid';
 import '@synerise/ds-core/dist/js/style';
 
 import * as S from './Select.styles';
-import { BasicItemProps } from '../Text/Text';
+import { BasicItemProps } from '../Text/Text.types';
 
 const Select: React.FC<BasicItemProps>  = (props) => {
   const {

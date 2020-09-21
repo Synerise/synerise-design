@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DividerProps } from '@synerise/ds-divider/dist/Divider';
+import { DividerProps } from '@synerise/ds-divider/dist/Divider.types';
 import * as S from './Divider.styles';
 
 const Divider: React.FC<DividerProps> = (props) => (

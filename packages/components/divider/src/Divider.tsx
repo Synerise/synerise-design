@@ -1,12 +1,8 @@
 import * as React from 'react';
 import '@synerise/ds-core/dist/js/style';
 import './style/index.less';
-import AntdDivider, { DividerProps as AntDividerProps } from 'antd/lib/divider';
-
-export interface DividerProps extends AntDividerProps {
-  marginTop?: number;
-  marginBottom?: number;
-}
+import AntdDivider from 'antd/lib/divider';
+import { DividerProps } from './Divider.types';
 
 const Divider: React.FC<DividerProps> = ({ marginBottom, marginTop, style, ...antdDividerProps }) => {
   return (

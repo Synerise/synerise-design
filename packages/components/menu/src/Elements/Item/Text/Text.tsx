@@ -1,38 +1,15 @@
 import * as React from 'react';
-import AngleRightS from '@synerise/ds-icon/dist/icons/AngleRightS';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import * as copy from 'copy-to-clipboard';
-import { ClickParam } from 'antd/lib/menu';
 import { escapeRegEx } from '@synerise/ds-utils';
 import Icon from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 
+import { CheckS, AngleRightS } from '@synerise/ds-icon/dist/icons';
 import * as S from './Text.styles';
 import { VisibilityTrigger } from '../../../Menu.types';
+import { BasicItemProps } from './Text.types';
 
-export interface BasicItemProps {
-  className?: string;
-  parent?: boolean;
-  disabled?: boolean;
-  prefixel?: React.ReactNode;
-  suffixel?: React.ReactNode;
-  danger?: boolean;
-  actions?: React.ReactNode;
-  onClick?: (props: ClickParam) => void;
-  description?: string | React.ReactNode;
-  copyable?: boolean;
-  copyHint?: string;
-  copyValue?: string;
-  copyTooltip?: string | React.ReactNode;
-  highlight?: string;
-  style?: React.CSSProperties;
-  onItemHover?: (e: MouseEvent) => void;
-  suffixVisibilityTrigger?: string;
-  prefixVisibilityTrigger?: string;
-  indentLevel?: number;
-  ordered?: boolean;
-  key?: React.ReactText;
-}
 const Text: React.FC<BasicItemProps> = ({
   parent,
   disabled,
@@ -51,6 +28,7 @@ const Text: React.FC<BasicItemProps> = ({
   suffixVisibilityTrigger,
   indentLevel,
   ordered,
+  checked,
   ...rest
 }) => {
   const [hovered, setHovered] = React.useState(false);
@@ -82,9 +60,9 @@ const Text: React.FC<BasicItemProps> = ({
   };
   const shouldRenderSuffix = (): boolean => {
     if (showSuffixOnHover) {
-      return !!suffixel && hovered;
+      return (!!suffixel || !!checked) && hovered;
     }
-    return !!suffixel;
+    return !!suffixel || !!checked;
   };
   const shouldRenderPrefix = (): boolean => {
     if (showPrefixOnHover) {
@@ -125,7 +103,7 @@ const Text: React.FC<BasicItemProps> = ({
                 {prefixel}
               </S.PrefixelWrapper>
             )}
-            <S.Content highlight={!!highlight}>
+            <S.Content className="ds-menu-content" highlight={!!highlight}>
               {canCopyToClipboard && hovered ? copyHint : renderChildren()}
               {!!description && <S.Description>{description}</S.Description>}
             </S.Content>
@@ -135,8 +113,9 @@ const Text: React.FC<BasicItemProps> = ({
               </S.ArrowRight>
             )}
             <S.ContentDivider />
-            {!!suffixel && (
+            {(!!suffixel || !!checked) && (
               <S.SuffixWraper visible={shouldRenderSuffix()} disabled={disabled}>
+                {!!checked && <Icon component={<CheckS />} color={theme.palette[`green-600`]} />}
                 {suffixel}
               </S.SuffixWraper>
             )}

@@ -2,36 +2,13 @@ import * as React from 'react';
 import AutosizeInput from 'react-input-autosize';
 import Tooltip from '@synerise/ds-tooltip';
 import Icon from '@synerise/ds-icon';
-import EditS from '@synerise/ds-icon/dist/icons/EditS';
+import { EditS } from '@synerise/ds-icon/dist/icons';
 import { toCamelCase } from '@synerise/ds-utils';
 import * as S from './InlineEdit.styles';
 import { attachWidthWatcher } from './utils';
+import { InlineEditProps } from './InlineEdit.types';
 
 const SAMPLE = String.fromCharCode(...[...Array(26).keys()].map(i => i + 65));
-
-export type InputProps = {
-  name?: string;
-  value: string | number;
-  disabled?: boolean;
-  onBlur?: React.FocusEventHandler<HTMLInputElement>;
-  onEnterPress?: React.KeyboardEventHandler<HTMLInputElement>;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  placeholder?: string;
-  maxLength?: number;
-  autoComplete?: string;
-};
-
-export interface InlineEditProps {
-  size?: 'normal' | 'small';
-  tooltipTitle?: string;
-  className?: string;
-  disabled?: boolean;
-  input: InputProps;
-  style?: { [key: string]: string | number };
-  autoFocus?: boolean;
-  error?: boolean;
-  hideIcon?: boolean;
-}
 
 const InlineEdit: React.FC<InlineEditProps> = ({
   className,
@@ -124,7 +101,7 @@ const InlineEdit: React.FC<InlineEditProps> = ({
       {!hideIcon && (
         <Tooltip data-testid="inline-edit-icon" title={tooltipTitle}>
           <S.IconWrapper onClick={handleFocusInput} size={size}>
-            <Icon component={<EditS />} size={24} />
+            <Icon component={<EditS/>} size={24} />
           </S.IconWrapper>
         </Tooltip>
       )}

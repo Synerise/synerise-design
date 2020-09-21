@@ -3,11 +3,7 @@ import Icon from '@synerise/ds-icon';
 import { DuplicateM } from '@synerise/ds-icon/dist/icons';
 import * as React from 'react';
 import * as S from './DescriptionRow.styles';
-
-interface CopyProps {
-  tooltipVisible: boolean;
-  tooltipTitle: string;
-}
+import { CopyProps } from './Copy.types';
 
 const Copy: React.FC<CopyProps> = ({ tooltipVisible, tooltipTitle }) => {
   return (

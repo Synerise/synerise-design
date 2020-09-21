@@ -4,13 +4,7 @@ import Icon from '@synerise/ds-icon';
 import Add3M from '@synerise/ds-icon/dist/icons/Add3M';
 import Button from '@synerise/ds-button';
 import * as S from './AddItemWithName.styles';
-
-type Props = {
-  onItemAdd?: (addParams: { name: string }) => void;
-  addItemLabel: string | React.ReactNode;
-  disabled: boolean;
-  placeholder?: string;
-};
+import { Props } from './AddItemWithName.types';
 
 const DEFAULT_NAME = '';
 

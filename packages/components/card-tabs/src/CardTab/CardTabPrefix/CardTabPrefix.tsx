@@ -3,14 +3,9 @@ import Icon from '@synerise/ds-icon';
 import DragHandleM from '@synerise/ds-icon/dist/icons/DragHandleM';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import * as S from '../CardTab.styles';
-import { prefixType } from '../CardTab';
+import { prefixType } from '../CardTab.types';
+import { Props } from './CardTabPrefix.types';
 
-interface Props {
-  prefix: prefixType;
-  draggable?: boolean;
-  tag?: string;
-  prefixIcon?: React.ReactNode;
-}
 
 const CardTabPrefix: React.FC<Props> = ({ prefix, draggable, tag, prefixIcon }) => {
   return (

@@ -1,4 +1,5 @@
-import Tag, { TagShape } from '@synerise/ds-tags/dist/Tag/Tag';
+import Tag from '@synerise/ds-tags/dist/Tag/Tag';
+import { TagShape } from '@synerise/ds-tags/dist/Tag/Tag.types';
 import FileM from '@synerise/ds-icon/dist/icons/FileM';
 import * as React from 'react';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';

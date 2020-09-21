@@ -2,40 +2,11 @@ import * as React from 'react';
 import Label from '@synerise/ds-input/dist/Label/Label';
 import { Description } from '@synerise/ds-typography';
 import Dropdown from '@synerise/ds-dropdown';
-import { MenuItemProps } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.types';
-import { injectIntl, IntlShape } from 'react-intl';
+import { injectIntl } from 'react-intl';
 import * as S from './ItemPicker.styles';
 import ItemPickerDropdown from './ItemPickerDropdown/ItemPickerDropdown';
 import Trigger from './ItemPickerTrigger/Trigger';
-
-export type ItemPickerSize = 'small' | 'large';
-
-export type ItemPickerProps = {
-  intl: IntlShape;
-  dataSource: MenuItemProps[];
-  placeholder: string | React.ReactNode;
-  onClear: () => void;
-  onChange: (item: MenuItemProps) => void;
-  selectedItem?: MenuItemProps | undefined;
-  clear?: string | React.ReactNode;
-  searchPlaceholder?: string;
-  size?: ItemPickerSize;
-  label?: string | React.ReactNode;
-  description?: string | React.ReactNode;
-  placeholderIcon?: React.ReactNode;
-  error?: boolean;
-  errorMessage?: string | React.ReactNode;
-  tooltip?: string | React.ReactNode;
-  disabled?: boolean;
-  changeButtonLabel?: string | React.ReactNode;
-  withClearConfirmation?: boolean;
-  clearConfirmTitle?: string;
-  yesText?: string;
-  noText?: string;
-  noResults?: string;
-  dropdownVisibleRows?: number;
-  dropdownRowHeight?: number;
-};
+import { ItemPickerProps } from './ItemPicker.types';
 
 const ItemPicker: React.FC<ItemPickerProps> = ({
   intl,

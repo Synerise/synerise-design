@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { SelectProps, SelectValue } from 'antd/lib/select';
 import { ErrorText, Description } from '@synerise/ds-typography';
 import '@synerise/ds-core/dist/js/style';
 import './style/index.less';
@@ -8,18 +7,7 @@ import Icon from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 import classNames from 'classnames';
 import * as S from './Select.styles';
-
-export interface Props<T = SelectValue> extends Omit<SelectProps<T>, 'listHeight'> {
-  errorText?: React.ReactNode | string;
-  error?: boolean;
-  label?: React.ReactNode;
-  description?: React.ReactNode;
-  tooltip?: React.ReactNode;
-  clearTooltip?: string;
-  prefixel?: React.ReactNode;
-  suffixel?: React.ReactNode;
-  listHeight?: React.ReactText;
-}
+import { Props } from './Select.types';
 
 class Select extends React.Component<Props> {
   static Option = S.AntdSelectOption;

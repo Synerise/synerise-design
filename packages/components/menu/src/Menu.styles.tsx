@@ -77,7 +77,7 @@ export const SubMenuItem = styled(Menu.SubMenu)<SubMenuProps>`
     cursor: ${(props): string => (props.disabled ? 'not-allowed' : 'pointer')};
     font-weight: 500;
     border-radius: 3px;
-    transition: background-color 0.3s ease-out;
+    transition: background-color 0.2s ease-out;
     && .ant-menu-submenu-title:hover {
       && > i.ant-menu-submenu-arrow {
          background-image: url("${(props): string =>

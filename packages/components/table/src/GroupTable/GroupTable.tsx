@@ -1,28 +1,10 @@
 import * as React from 'react';
-
 import Table, { ColumnsType } from 'antd/lib/table';
-import { GroupType as GroupByType } from '@synerise/ds-column-manager/dist/ColumnManager.types';
 import { DSTableProps } from '../Table.types';
 import GroupTableBody from './GroupTableBody/GroupTableBody';
 import '../style/index.less';
 import GroupTableHeader from './GroupTableHeader/GroupTableHeader';
-
-type SortOrderType = 'ascend' | 'descend' | boolean;
-
-export type GroupColumnsType<T> = ColumnsType<T> & {
-  sortOrder: SortOrderType;
-  key: React.ReactText;
-  render: Function;
-  dataIndex: React.ReactText;
-};
-
-export type GroupType<T> = {
-  column: string;
-  value: React.ReactText | boolean | object;
-  key: React.ReactText;
-  rows: T[];
-  groupType: GroupByType;
-};
+import { SortOrderType, GroupType, GroupColumnsType } from './GroupTable.types';
 
 const EMPTY_COLUMN = {
   sortOrder: false,

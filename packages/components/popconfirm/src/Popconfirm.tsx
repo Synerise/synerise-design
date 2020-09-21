@@ -1,21 +1,10 @@
 import * as React from 'react';
 import '@synerise/ds-core/dist/js/style';
-import { PopconfirmProps } from 'antd/lib/popconfirm';
 import './style/index.less';
 import { Carousel } from 'antd';
 import * as S from './Popconfirm.styles';
-import ConfirmMessage, { ConfirmMessageProps } from './ConfirmMessage/ConfirmMessage';
-
-type PopconfirmType = React.FC<
-  PopconfirmProps & {
-    description?: string | React.ReactNode;
-    images?: string[];
-    imagesAutoplay?: boolean;
-    imagesAutoplaySpeed?: number;
-  }
-> & {
-  ConfirmMessage: React.FC<ConfirmMessageProps>;
-};
+import ConfirmMessage from './ConfirmMessage/ConfirmMessage';
+import { PopconfirmType } from './Popconfirm.types';
 
 const Popconfirm: PopconfirmType = ({
   icon,

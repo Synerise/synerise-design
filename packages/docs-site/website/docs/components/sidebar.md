@@ -30,17 +30,17 @@ import Sidebar from '@synerise/ds-sidebar'
 
 #### Sidebar
 
-| Property         | Description                                | Type            | Default |
-| ---------------- | ------------------------------------------ | --------------- | ------- |
-| children         | Place for Panel element                    | React.ReactNode | -       |
-| order            | Place for optional Array with render order | string[]        | -       |
-| onChangeOrder    | Called on drag and drop fired              | function        | -       |
-| defaultActiveKey | Place for optional default active panel    | `Array<string>`   | -       |
+| Property         | Description                                | Type                             | Default |
+| ---------------- | ------------------------------------------ | -------------------------------- | ------- |
+| children         | Place for Panel element                    | React.ReactNode                  | -       |
+| order            | Place for optional Array with render order | string[]                         | -       |
+| onChangeOrder    | Called on drag and drop fired              | (order: string / string[])=>void | -       |
+| defaultActiveKey | Place for optional default active panel    | string[]                         | -       |
 
 #### Panel
 
-| Property | Description       | Type                        | Default |
-| -------- | ----------------- | --------------------------- | ------- |
-| header   | Panel header name | React.ReactNode `or` string | -       |
-| children | Panel content     | React.ReactNode `or` string | -       |
-| id       | Panel unique id   | string                      | -       |
+| Property | Description       | Type                     | Default |
+| -------- | ----------------- | ------------------------ | ------- |
+| header   | Panel header name | React.ReactNode / string | -       |
+| children | Panel content     | React.ReactNode / string | -       |
+| id       | Panel unique id   | string                   | -       |

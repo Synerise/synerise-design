@@ -2,30 +2,8 @@ import * as React from 'react';
 import Popconfirm from '@synerise/ds-popconfirm';
 import Icon from '@synerise/ds-icon';
 import { ArrowDownCircleM, ArrowUpCircleM, CloseS, WarningFillM } from '@synerise/ds-icon/dist/icons';
-
 import * as S from '../ItemsRoll.styles';
-import { Texts, ItemsRollProps } from '../ItemsRoll.types';
-
-type FooterProps = Pick<ItemsRollProps, 'onClearAll' | 'maxToShowItems' | 'showMoreStep'> & {
-  allTexts: { [k in Texts]: string | React.ReactNode };
-  itemsCount: number;
-  showAdditionalItems: () => void;
-  showDefaultItemsAmount: () => void;
-  visibleItemsCount: number;
-  searchMode: boolean;
-};
-
-type ShowLessButtonProps = {
-  showDefaultItemsAmount: () => void;
-  showLessLabel: string | React.ReactNode;
-};
-
-type ShowMoreButtonProps = {
-  getShowMoreNumber: number;
-  moreLabel: string | React.ReactNode;
-  showAdditionalItems: () => void;
-  showLabel: string | React.ReactNode;
-};
+import { ShowLessButtonProps, ShowMoreButtonProps, FooterProps } from './Footer.types';
 
 const ShowLessButton: React.FC<ShowLessButtonProps> = ({ showDefaultItemsAmount, showLessLabel }) => (
   <S.ShowButton type="ghost" mode="icon-label" onClick={showDefaultItemsAmount}>

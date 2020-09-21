@@ -1,27 +1,7 @@
 import * as React from 'react';
 import AntdTooltip from 'antd/lib/tooltip';
 import * as S from './ConfirmMessage.style';
-
-export interface ConfirmMessageProps {
-  children: React.ReactChildren | React.ReactChild;
-  displayDuration?: number;
-  title: string;
-  onClick: (callback: () => void) => void;
-  icon?: React.ReactNode;
-  placement?:
-    | 'top'
-    | 'left'
-    | 'right'
-    | 'bottom'
-    | 'topLeft'
-    | 'topRight'
-    | 'bottomLeft'
-    | 'bottomRight'
-    | 'leftTop'
-    | 'leftBottom'
-    | 'rightTop'
-    | 'rightBottom';
-}
+import { ConfirmMessageProps } from './ConfirmMessage.types';
 
 export const ConfirmMessage: React.FC<ConfirmMessageProps> = ({
   children,

@@ -5,21 +5,7 @@ import EditM from '@synerise/ds-icon/dist/icons/EditM';
 
 import * as S from '../ItemsRoll.styles';
 import Extras from '../Extras';
-import { ItemsRollProps, Texts } from '../ItemsRoll.types';
-
-type HeaderProps = Pick<
-  ItemsRollProps,
-  | 'actions'
-  | 'changeSelectionIcon'
-  | 'onChangeSelection'
-  | 'onSearch'
-  | 'onSearchClear'
-  | 'searchValue'
-  | 'searchPlaceholder'
-> & {
-  allTexts: { [k in Texts]: string | React.ReactNode };
-  itemsCount: number;
-};
+import { HeaderProps } from './Header.types';
 
 const Header: React.FC<HeaderProps> = ({
   actions,

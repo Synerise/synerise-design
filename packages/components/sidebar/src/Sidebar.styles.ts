@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import Collapse, { CollapseProps } from 'antd/lib/collapse';
 import * as React from 'react';
-import { BlockContent } from '@synerise/ds-block/dist/Block.styles';
 
 const { Panel } = Collapse;
 
@@ -40,11 +39,6 @@ export const AntdCollapse = styled((Collapse as any) as React.ComponentType<Coll
   &.ant-collapse {
     background-color: rgba(11, 104, 255, 0.07);
     border: none;
-
-    &,
-    *:not(${BlockContent}) {
-      border-radius: 0 !important;
-    }
 
     > ${PanelWrapper} > .ant-collapse-item > .ant-collapse-header {
       color: ${(props): string => props.theme.palette['grey-700']};

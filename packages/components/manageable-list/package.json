@@ -27,6 +27,7 @@
   "dependencies": {
     "@synerise/ds-button": "^0.12.32",
     "@synerise/ds-icon": "^0.26.0",
+    "@synerise/ds-inline-edit": "^0.1.61",
     "@synerise/ds-list": "^0.5.10",
     "@synerise/ds-menu": "^0.5.27",
     "@synerise/ds-popconfirm": "^0.5.5",

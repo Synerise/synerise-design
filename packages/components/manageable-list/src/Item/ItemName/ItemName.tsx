@@ -4,14 +4,7 @@ import InlineEdit from '@synerise/ds-inline-edit/dist/InlineEdit';
 import { InfoFillS } from '@synerise/ds-icon/dist/icons';
 import { escapeRegEx } from '@synerise/ds-utils';
 import * as S from '../SimpleItem/SimpleItem.styles';
-import { ItemProps } from '../Item';
-
-type ItemLabelProps = {
-  item: ItemProps;
-  onUpdate?: (updateParams: { id: string; name: string }) => void;
-  editMode: boolean;
-  searchQuery?: string;
-};
+import { ItemLabelProps } from './ItemName.types';
 
 const ItemName: React.FC<ItemLabelProps> = ({ item, onUpdate, editMode, searchQuery }): React.ReactElement => {
   const [editedName, setName] = React.useState(item.name);

@@ -3,8 +3,9 @@ import range from 'lodash/range';
 import CardTabs from '@synerise/ds-card-tabs';
 import { withState } from '@dump247/storybook-state';
 import { boolean, number, select, text } from '@storybook/addon-knobs';
-import CardTab, { prefixType } from '@synerise/ds-card-tabs/dist/CardTab/CardTab';
-import { CardTabsItem } from '@synerise/ds-card-tabs/dist/CardTabs';
+import CardTab from '@synerise/ds-card-tabs/dist/CardTab/CardTab';
+import { prefixType }  from '@synerise/ds-card-tabs/dist/CardTab/CardTab.types';
+import { CardTabsItem } from '@synerise/ds-card-tabs/dist/CardTabs.types';
 import { action } from '@storybook/addon-actions';
 import { ShowM, FileM} from '@synerise/ds-icon/dist/icons';
 
@@ -97,6 +98,7 @@ const stories = {
       store.set({
         items: [...store.state.items, {
           ...duplicatedTab,
+          tag: String.fromCharCode(65 + store.state.nextId).toUpperCase(),
           id: store.state.nextId,
         }],
         nextId: store.state.nextId + 1,

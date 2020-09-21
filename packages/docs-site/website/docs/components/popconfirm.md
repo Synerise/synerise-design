@@ -29,27 +29,26 @@ import Popconfirm from '@synerise/ds-popconfirm';
 
 ## API
 
-| Property            | Description                                      | Type                  | Default                            |
-| ------------        | ------------------------------------------------ | --------------------- | --------
-| cancelText          | text of the Cancel button                        | string                | Cancel                             |
-| okText              | text of the Confirm button                       | string                | OK                                 |
-| okType              | Button type of the Confirm button                | string                | primary                            |
-| title               | title of the confirmation box                    | string or ReactNode   |                                    |
-| description         | description of the confirmation box              | string or ReactNode   |                                    |
-| images              | urls of images displayed as a carousel           | string[]              | []                                 |
-| imagesAutoplay      | Whether to autoplay images                       | boolean               | false                              |
-| imagesAutoplaySpeed | speed of autoplay [ms]                           | number                | 5000                               |
-| onCancel            | callback of cancel                               | function(e)           | -                                  |
-| onConfirm           | callback of confirmation                         | function(e)           | -                                  |
-| icon                | customize icon of confirmation                   | ReactNode             | <Icon type="exclamation-circle" /> |
-| disabled            | is show popconfirm when click its childrenNode   | boolean               | false                              |
-
+| Property            | Description                            | Type                     | Default                              |
+| ------------------- | -------------------------------------- | ------------------------ | ------------------------------------ |
+| cancelText          | Text of the Cancel button              | string                   | `Cancel`                             |
+| okText              | Text of the Confirm button             | string                   | `OK`                                 |
+| okType              | Button type of the Confirm button      | string                   | `primary`                            |
+| title               | Title of the confirmation box          | string / React.ReactNode | -                                    |
+| description         | Description of the confirmation box    | string / React.ReactNode | -                                    |
+| images              | Urls of images displayed as a carousel | string[]                 | `[]`                                 |
+| imagesAutoplay      | Whether to autoplay images             | boolean                  | `false`                              |
+| imagesAutoplaySpeed | Speed of autoplay [ms]                 | number                   | `5000`                               |
+| onCancel            | Callback of cancel                     | (e: Event) => void       | -                                    |
+| onConfirm           | Callback of confirmation               | (e: Event) => void       | -                                    |
+| icon                | Customize icon of confirmation         | React.ReactNode          | `<Icon type="exclamation-circle" />` |
+| disabled            | Whether component is disabled          | boolean                  | `false`                              |
 
 # Popcofirm.ConfirmMessage
 
 ## Usage
 
-```javascript
+````javascript
 import Popconfirm from '@synerise/ds-popconfirm';
 
 <Popconfirm.ConfirmMessage
@@ -80,3 +79,4 @@ import Popconfirm from '@synerise/ds-popconfirm';
 | displayDuration | confirm message display time in ms                                                                                                                                    | number                                   | 5000     |
 | placement       | position of confirm message `left`, `top`, `right`, `bottom`, `topLeft`, `topRight`, `bottomLeft`, `bottomRight`, `leftTop`, `leftBottom,`, `rightTop`, `rightBottom` | string                                   | `topLeft`|
 | onClick         | method which returns a showConfirmMessage callback                                                                                                                    | (showConfirmMessage: () => void) => void | -        |
+````

@@ -3,16 +3,7 @@ import Avatar from '@synerise/ds-avatar';
 import * as moment from 'moment';
 import getInitials from '@synerise/ds-utils/dist/getInitials/getInitials';
 import * as S from './ItemMeta.styles';
-
-interface Props {
-  user?: {
-    avatar_url?: string;
-    firstname?: string;
-    lastname?: string;
-    email?: string;
-  };
-  created?: string;
-}
+import { Props } from './ItemMeta.types';
 
 export const ItemMeta: React.FC<Props> = ({ user, created }: Props) => {
   const tooltipData = {

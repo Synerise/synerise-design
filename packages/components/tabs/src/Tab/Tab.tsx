@@ -2,19 +2,7 @@ import * as React from 'react';
 import Icon from '@synerise/ds-icon';
 import classNames from 'classnames';
 import * as S from './Tab.styles';
-
-export type TabProps = {
-  index: number;
-  label?: string | React.ReactNode;
-  icon?: React.ReactNode;
-  underscore?: boolean;
-  isActive?: boolean;
-  disabled?: boolean;
-  className?: string;
-  onClick: (index: number) => void;
-  forwardedRef: React.RefObject<HTMLButtonElement>;
-  block?: boolean;
-};
+import { TabProps } from './Tab.types';
 
 const Tab: React.FC<TabProps> = ({
   index,

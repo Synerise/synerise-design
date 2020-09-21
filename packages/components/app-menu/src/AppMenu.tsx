@@ -1,21 +1,13 @@
 import * as React from 'react';
 import { useOnClickOutside } from '@synerise/ds-utils';
-
 import SubMenu from './SubMenu/SubMenu';
 import MenuContext from './MenuContext/MenuContext';
 import Item from './Item/Item';
 import NavigableItems from './NavigableItems/NavigableItems';
 import * as S from './AppMenu.styles';
+import { AppMenuProps, AppMenuSubComponents } from './AppMenu.types';
 
-type AppMenuProps = {
-  className?: string;
-  activeItem: string;
-  footer: React.ReactElement;
-  children: React.ReactNodeArray;
-  top?: number;
-};
-
-const AppMenu: React.FC<AppMenuProps> & { SubMenu: typeof SubMenu; Item: typeof Item } = ({
+const AppMenu: React.FC<AppMenuProps> & AppMenuSubComponents = ({
   className,
   children,
   footer,

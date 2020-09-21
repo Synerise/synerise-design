@@ -5,19 +5,8 @@ import CloseS from '@synerise/ds-icon/dist/icons/CloseS';
 import Icon from '@synerise/ds-icon';
 import { withTheme } from 'styled-components';
 import Tooltip from '@synerise/ds-tooltip';
-import { ItemProps } from '../Item';
 import * as S from './ItemActions.styles';
-
-type ItemActionsProps = {
-  item: ItemProps;
-  removeAction?: (removeParams: { id: string }) => void;
-  removeActionTooltip?: string | React.ReactNode;
-  editAction?: () => void;
-  editActionTooltip?: string | React.ReactNode;
-  duplicateAction?: (duplicateParams: { id: string }) => void;
-  duplicateActionTooltip?: string | React.ReactNode;
-  theme: { [k: string]: string };
-};
+import { ItemActionsProps } from './ItemActions.types';
 
 const ItemActions: React.FC<ItemActionsProps> = ({
   item,

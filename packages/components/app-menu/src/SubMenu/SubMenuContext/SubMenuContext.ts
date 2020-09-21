@@ -1,12 +1,5 @@
 import { createContext } from 'react';
-
-type SubMenuContextType =
-  | {
-      id: string;
-      isActive: boolean;
-      setOpened: (opened: boolean) => void;
-    }
-  | undefined;
+import { SubMenuContextType } from './SubMenuContext.types';
 
 const SubMenuContext = createContext<SubMenuContextType>(undefined);
 

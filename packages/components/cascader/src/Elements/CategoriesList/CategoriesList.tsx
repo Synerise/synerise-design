@@ -6,14 +6,8 @@ import Icon from '@synerise/ds-icon';
 import styled from 'styled-components';
 import { Category } from '../../Cascader.types';
 import { hasNestedCategories } from '../../utlis';
+import { CategoriesListProps } from './CategoriesList.types';
 
-export interface CategoriesListProps {
-  rootCategory: Category;
-  onCategoryClick: (item: Category) => void;
-  suffixel: React.ReactNode | string;
-  onSuffixelClick: (item: Category) => void;
-  selectedIds: React.ReactText[];
-}
 const CategoriesSuffix = styled.div``;
 
 const CategoriesList: React.FC<CategoriesListProps> = ({

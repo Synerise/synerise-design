@@ -5,25 +5,10 @@ import SearchNoResultsM from '@synerise/ds-icon/dist/icons/SearchNoResultsM';
 import Menu from '@synerise/ds-menu';
 
 import * as S from '../ItemsRoll.styles';
-import { ItemsRollProps, ItemRollElement } from '../ItemsRoll.types';
+import { ItemRollElement } from '../ItemsRoll.types';
 import ItemElement from './ListItem';
 import ItemRenderer from './VirtualizedListItem';
-
-type ListProps = Pick<
-  ItemsRollProps,
-  | 'groups'
-  | 'items'
-  | 'onItemClick'
-  | 'onItemRemove'
-  | 'searchValue'
-  | 'useVirtualizedList'
-  | 'virtualizedRowHeight'
-  | 'virtualizedRowWidth'
-> & {
-  noResultsLabel: string | React.ReactNode;
-  removeTooltipLabel: string | React.ReactNode;
-  visibleItems: ItemRollElement[];
-};
+import { ListProps } from './List.types';
 
 export const itemsInGroup = (group: string, items: ItemRollElement[]): ItemRollElement[] =>
   items.filter(item => item.group === group);
