@@ -7,7 +7,7 @@ import { ScrollbarProps } from '@synerise/ds-scrollbar/dist/Scrollbar.types';
 export const Container = styled.div`
   margin-bottom: 24px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   flex-direction: row;
 `;
 
@@ -60,7 +60,7 @@ export const CreateTagDropdownButton = styled(Button)<{ marginless: boolean }>`
 `;
 
 export const ManageLinkButton = styled(Button)<{ onlyChild: boolean }>`
-  margin: ${(props): string => (props.onlyChild ? '0' : '8px ')};
+  margin: ${(props): string => (props.onlyChild  ? '8px' : '8px ')};
 `;
 
 export const Seperator = styled.hr`
@@ -109,8 +109,8 @@ export const DropdownSearch = styled(SearchBar)`
   }
 `;
 
-export const DropdownNoTags = styled.span`
-  padding: 4px;
+export const DropdownNoTags = styled.div`
+  padding: 8px 20px;
 `;
 
 export const Overlay = styled.div`
