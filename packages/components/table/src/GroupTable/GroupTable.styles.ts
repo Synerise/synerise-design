@@ -51,11 +51,17 @@ export const GroupValueLabel = styled.span`
 
 export const SubRow = styled.td<{ selected?: boolean; withBorderLeft?: boolean; sorted?: boolean }>`
   background-color: ${(props): string => {
-    if (props.selected) return 'rgb(250, 248, 234) !important;';
-    if (props.sorted) return 'rgba(213, 232, 246, 0.44) !important;';
-    return `${props.theme.palette['grey-050']};`;
-  }}
-    
+      if (props.selected) return 'rgb(250, 248, 234) !important;';
+      if (props.sorted) return 'rgba(213, 232, 246, 0.44) !important;';
+      return `${props.theme.palette['grey-050']};`;
+    }}
+    &&& {
+    font-weight: ${(props): string => {
+      if (props.selected || props.sorted) return '500';
+      return 'initial';
+    }};
+  }
+
   position: relative;
   &:before {
     content: '';
