@@ -7,6 +7,51 @@ const renderLabel = (text: string) => {
   return <div style={{ maxWidth: '200px', textOverflow: 'ellipsis', overflow: 'hidden' }}>{text}</div>;
 };
 const stories = {
+  default: () => {
+    const [city, setCity] = React.useState<string | undefined>();
+    const [description, setDescription] = React.useState<string | undefined>();
+    const [name, setName] = React.useState<string | undefined>();
+    return (
+      <div>
+        <div style={{ marginBottom: '16px' }}>
+          <SubtleForm.TextArea
+            minRows={1}
+            maxRows={1}
+            value={name}
+            onChange={setName}
+            placeholder={'Name'}
+            label={renderLabel('Name')}
+            labelTooltip={'Name'}
+            suffixTooltip={'Edit'}
+          />
+        </div>
+        <div style={{ marginBottom: '16px' }}>
+          <SubtleForm.TextArea
+            minRows={1}
+            maxRows={1}
+            value={city}
+            onChange={setCity}
+            placeholder={'City'}
+            label={renderLabel('City')}
+            labelTooltip={'City'}
+            suffixTooltip={'Edit'}
+          />
+        </div>
+        <div style={{ marginBottom: '0px' }}>
+          <SubtleForm.TextArea
+            minRows={3}
+            maxRows={6}
+            value={description}
+            onChange={setDescription}
+            placeholder={'Description'}
+            label={renderLabel('Description')}
+            labelTooltip={'Description'}
+            suffixTooltip={'Edit'}
+          />
+        </div>
+      </div>
+    );
+  },
   withMinRows: () => {
     const min = number('Set min rows ', 5, { min: 1, max: 10, range: true });
     const labelText = text('Set label text ', 'Label');

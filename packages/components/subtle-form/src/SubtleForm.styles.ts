@@ -5,10 +5,13 @@ const disableBlinkingCursor = (props: ThemeProps & { grey: boolean }): FlattenSi
   color: transparent;
   text-shadow: 0 1px ${props.grey ? props.theme.palette['grey-500'] : props.theme.palette['grey-600']};
 `;
+
 export const ValueArea = styled.textarea<{ grey: boolean }>`
   &:hover {
     cursor: pointer;
   }
+  word-wrap: break-word;
+  overflow-wrap: break-word;
   ${(props): FlattenSimpleInterpolation => disableBlinkingCursor(props)}
   width: 100%;
   height: 100%;
@@ -30,15 +33,20 @@ export const MainContent = styled.div`
   display: flex;
   align-items: flex-start;
   flex: 1;
-  word-break: break-all;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
   width: 100%;
   height: 100%;
 `;
 export const Suffix = styled.div`
+  position: absolute;
+  right: 6px;
+  top: 6px;
   display: flex;
   opacity: 0;
   height: 24px;
   transition: opacity 0.1s ease-in;
+  transition-delay: 0.2s;
   margin-top: -2px;
 `;
 export const Container = styled.div<{ active: boolean }>`
@@ -54,18 +62,20 @@ export const Container = styled.div<{ active: boolean }>`
   }
 `;
 export const Inactive = styled.div<{ rows: number }>`
+  position: relative;
   min-height: 32px;
   height: ${(props): string => `calc(${props.rows * 17 + 17}px);`}
   align-items: flex-start;
   background: transparent;
   display: flex;
-  padding: 7px 8px 7px 12px;
+  padding: 7px 30px 7px 0px;
   border-radius: 3px;
-  transition: background 0.1s ease-in;
-
+  transition: padding 0.1s ease-in, background 0.1s ease-in;
+  transition-delay: 0.2s;
   ${(props): FlattenSimpleInterpolation =>
     css`
       &:hover {
+        padding: 7px 18px 7px 12px;
         background: ${props.theme.palette['grey-050']};
         cursor: pointer;
         ${Suffix} {
@@ -76,7 +86,7 @@ export const Inactive = styled.div<{ rows: number }>`
 `;
 export const Subtle = styled.div``;
 export const ContentAbove = styled.div<{ active: boolean }>`
-  padding: 0 0 0 12px;
+  padding: 0 0 0 0;
   display: flex;
   justify-content: space-between;
   margin-bottom: ${(props): string => (props.active ? `9px` : `8px`)};
