@@ -1,4 +1,4 @@
-import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
+import styled, { css, FlattenSimpleInterpolation, keyframes } from 'styled-components';
 import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 
 const disableBlinkingCursor = (props: ThemeProps & { grey: boolean }): FlattenSimpleInterpolation => css`
@@ -6,10 +6,17 @@ const disableBlinkingCursor = (props: ThemeProps & { grey: boolean }): FlattenSi
   text-shadow: 0 1px ${props.grey ? props.theme.palette['grey-500'] : props.theme.palette['grey-600']};
 `;
 
-export const ValueArea = styled.textarea<{ grey: boolean }>`
-  &:hover {
-    cursor: default;
+export const blurAnimation = keyframes`
+  0% {
+     padding: 7px 18px 7px 12px;
   }
+  100% {
+     padding: 7px 30px 7px 0px;
+  }
+`;
+
+export const ValueArea = styled.textarea<{ grey: boolean }>`
+  cursor: default;
   word-wrap: break-word;
   overflow-wrap: break-word;
   ${(props): FlattenSimpleInterpolation => disableBlinkingCursor(props)}
@@ -48,11 +55,10 @@ export const Suffix = styled.div`
   transition: opacity 0.1s ease-in;
   transition-delay: 0.2s;
   margin-top: -2px;
-  &:hover {
-    cursor: pointer;
-  }
+  cursor: pointer;
 `;
 export const Container = styled.div<{ active: boolean }>`
+  position: relative;
   width: 100%;
   ${(props): false | FlattenSimpleInterpolation =>
     props.active &&
@@ -64,17 +70,23 @@ export const Container = styled.div<{ active: boolean }>`
     margin: 0;
   }
 `;
-export const Inactive = styled.div<{ rows: number }>`
+export const Inactive = styled.div<{ rows: number; blurred: boolean }>`
   position: relative;
+  width: 100%;
   min-height: 32px;
   height: ${(props): string => `calc(${props.rows * 17 + 17}px);`}
   align-items: flex-start;
-  background: transparent;
+  background: ${(props): string => props.theme.palette.white};
   display: flex;
   padding: 7px 30px 7px 0px;
   border-radius: 3px;
   transition: padding 0.1s ease-in, background 0.1s ease-in;
   transition-delay: 0.2s;
+  ${(props): false | FlattenSimpleInterpolation =>
+    props.blurred &&
+    css`
+      animation: ${blurAnimation} 0.1s ease-in;
+    `}
   ${(props): FlattenSimpleInterpolation =>
     css`
       &:hover {

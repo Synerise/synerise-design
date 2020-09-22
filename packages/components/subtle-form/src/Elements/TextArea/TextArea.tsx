@@ -19,6 +19,7 @@ const SubtleTextArea: React.FC<SubtleTextAreaProps> = ({
   suffix,
 }) => {
   const [active, setActive] = React.useState<boolean>(false);
+  const [blurred, setBlurred] = React.useState<boolean>(false);
   const containerRef = React.useRef<HTMLDivElement>(null);
   const [visibleRows, setVisibleRows] = React.useState<number>(minRows);
   React.useEffect(() => {
@@ -38,9 +39,11 @@ const SubtleTextArea: React.FC<SubtleTextAreaProps> = ({
 
   const handleDeactivate = React.useCallback(() => {
     setActive(false);
+    setBlurred(true)
   }, []);
   const handleActivate = React.useCallback(() => {
     setActive(true);
+    setBlurred(false);
   }, []);
   return (
     <S.Subtle className="ds-subtle-form">
@@ -63,7 +66,7 @@ const SubtleTextArea: React.FC<SubtleTextAreaProps> = ({
             wrapperStyle={{ minHeight: visibleRows * 17 + 17, margin: 0 }}
           />
         ) : (
-          <S.Inactive rows={visibleRows} onClick={handleActivate}>
+          <S.Inactive rows={visibleRows} onClick={handleActivate} blurred={blurred}>
             <S.MainContent>
               <S.ValueArea value={value || placeholder} onBlur={handleDeactivate} grey={!value && !!placeholder} />
             </S.MainContent>
