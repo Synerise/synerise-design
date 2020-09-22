@@ -50,7 +50,6 @@ export const IconWrapper = styled.div<{ size: string; expanded: boolean } & Them
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: ${(props): string => (props.size === 'normal' ? '0px' : '4px')};
   width: 24px;
   height: 24px;
   line-height: inherit;

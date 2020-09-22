@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import InlineSelect from '@synerise/ds-inline-edit/dist/InlineSelect/InlineSelect';
+import { InlineSelectProps } from '@synerise/ds-inline-edit/dist/InlineSelect/InlineSelect.types';
 
 export const Wrapper = styled.div`
 `;
@@ -82,3 +84,6 @@ export const AddButton = styled.div`
     padding-left: 5px;
   }
 `;
+export const Select = styled(InlineSelect)<InlineSelectProps>`
+   margin-left: 6px;
+`
