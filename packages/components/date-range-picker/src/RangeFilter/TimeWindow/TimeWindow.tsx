@@ -2,8 +2,6 @@ import * as React from 'react';
 import { range, rangeRight, groupBy, reverse, flatten, values, ceil } from 'lodash';
 
 import { FormattedMessage, injectIntl } from 'react-intl';
-import Slider from '@synerise/ds-slider';
-import { SliderMarks, SliderValue } from 'antd/es/slider';
 import dayjs from 'dayjs';
 import { Header, Action } from './Header/Header';
 import Day from './Day/Day';
@@ -96,11 +94,11 @@ class TimeWindowBase extends React.Component<Props, State> {
     onUncheckDay && onUncheckDay(dayKey);
   };
 
-  handleDayTimeChange = (value: SliderValue, dayKey: DayKey): void =>
+  handleDayTimeChange = (value: [Date, Date], dayKey: DayKey): void =>
     this.handleDayChange(dayKey, {
       restricted: true,
-      start: this.parseValueToTime(value[0], 'HH:mm:ss.SSS'),
-      stop: this.parseValueToTime(value[1], 'HH:mm:ss.SSS'),
+      start: dayjs(value[0]).format('HH:mm:ss.SSS'),
+      stop: dayjs(value[1]).format('HH:mm:ss.SSS'),
     });
 
   clearSelected = (): void => {
@@ -297,56 +295,11 @@ class TimeWindowBase extends React.Component<Props, State> {
     );
   };
 
-  renderSlider = (dayKey: DayKey, singleMode: boolean): React.ReactNode => {
-    const { customForm } = this.props;
-    if (customForm) {
-      return customForm(dayKey, singleMode);
-    }
-
-    const { invertibleTime, timeMarks } = this.props;
-    const dayValue = this.getDayValue(dayKey);
-    const slider = (
-      <Slider
-        dots={false}
-        style={{ marginTop: !invertibleTime ? 64 : undefined }}
-        inverted={invertibleTime ? dayValue.inverted : undefined}
-        tipFormatter={this.tooltipFormatter}
-        range
-        value={[this.parseTimeToFloat(dayValue.start), this.parseTimeToFloat(dayValue.stop)]}
-        min={0}
-        max={24}
-        step={0.25}
-        marks={timeMarks as SliderMarks}
-        onChange={(value: SliderValue): void => this.handleDayTimeChange(value, dayKey)}
-        tooltipVisible
-        // onInvert={invertibleTime ? (): void => this.handleDayChange(dayKey, { inverted: !dayValue.inverted }) : undefined}
-      />
-    );
-    if (!invertibleTime) return slider;
-    const actions = [
-      {
-        key: 'invert',
-        onClick: () => this.handleDayChange(dayKey, { inverted: !dayValue.inverted }),
-        label: <FormattedMessage id="DS.DATE-RANGE-PICKER.INVERSE-SELECTION" />,
-      },
-    ];
-    return (
-      <>
-        <Header
-          title={this.getDayLabel(dayKey, true)}
-          actions={actions}
-          style={{ marginBottom: 16, marginTop: singleMode ? 0 : 44 }}
-        />
-        {slider}
-      </>
-    );
-  };
-
-  getDateFromDayValue = (dayValue: string) => {
+  getDateFromDayValue = (dayValue: string): Date => {
     const DAY_FORMAT = `YYYY-MM-DD`;
     const todayToString = dayjs(TODAY).format(DAY_FORMAT);
     const input = `${todayToString}-${dayValue}`;
-    return dayjs(input,`${DAY_FORMAT}-HH:mm:ss.SSS`).toDate();
+    return dayjs(input, `${DAY_FORMAT}-HH:mm:ss.SSS`).toDate();
   };
 
   renderRangeForm = (dayKey: DayKey, singleMode: boolean): React.ReactNode => {
@@ -361,6 +314,8 @@ class TimeWindowBase extends React.Component<Props, State> {
       <RangeForm
         startDate={this.getDateFromDayValue(dayValue.start)}
         endDate={this.getDateFromDayValue(dayValue.stop)}
+        onStartChange={(value: Date): void => this.handleDayTimeChange([value, this.getDateFromDayValue(dayValue.stop)], dayKey)}
+        onEndChange={(value: Date): void => this.handleDayTimeChange([this.getDateFromDayValue(dayValue.start), value], dayKey)}
       />
     );
     if (!invertibleTime) return slider;
@@ -392,7 +347,6 @@ class TimeWindowBase extends React.Component<Props, State> {
     return (
       <S.TimeWindowContainer style={style}>
         {!singleMode && this.renderGrid(keys)}
-        {sliderKey !== null && this.renderSlider(sliderKey, singleMode)}
         {sliderKey !== null && this.renderRangeForm(sliderKey, singleMode)}
       </S.TimeWindowContainer>
     );
