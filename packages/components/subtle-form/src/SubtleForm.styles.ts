@@ -70,7 +70,7 @@ export const Inactive = styled.div<{ rows: number }>`
   display: flex;
   padding: 7px 30px 7px 0px;
   border-radius: 3px;
-  transition: all 0.1s ease-in;
+  transition: padding 0.1s ease-in, background 0.1s ease-in;
   transition-delay: 0.2s;
   ${(props): FlattenSimpleInterpolation =>
     css`
