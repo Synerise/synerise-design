@@ -1,8 +1,8 @@
 import * as React from 'react';
 import InputNumber from '@synerise/ds-input-number';
 import { MaskedInput } from '@synerise/ds-input';
-import { Props } from '@synerise/ds-input/dist/Input';
-import { Props as NumberInputProps } from '@synerise/ds-input-number/dist/InputNumber';
+import { Props } from '@synerise/ds-input/dist/Input.types';
+import { Props as NumberInputProps } from '@synerise/ds-input-number/dist/InputNumber.types';
 import * as S from './RangesForm.styles';
 
 type RangeInputProps = Omit<Props, 'value' | 'onChange'> &

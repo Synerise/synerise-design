@@ -9,26 +9,8 @@ import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
 import * as S from './Input.styles';
 import Label from './Label/Label';
 import Textarea from './Textarea/Textarea';
+import { EnhancedProps, Props } from './Input.types';
 
-export interface Props {
-  error?: boolean;
-  className?: string;
-  tooltip?: React.ReactNode;
-  errorText?: React.ReactNode | string;
-  label?: React.ReactNode | string;
-  description?: React.ReactNode | string;
-  counterLimit?: number;
-  icon1?: React.ReactElement;
-  icon1Tooltip?: React.ReactElement;
-  icon2?: React.ReactElement;
-  icon2Tooltip?: React.ReactElement;
-  resetMargin?: boolean;
-  handleInputRef?: (ref: React.MutableRefObject<HTMLInputElement | HTMLTextAreaElement | undefined>) => void;
-  prefixel?: React.ReactNode;
-  suffixel?: React.ReactNode;
-}
-
-type EnhancedProps = Props & (InputProps | TextAreaProps | MaskedInputProps);
 const VERTICAL_BORDER_OFFSET = 2;
 
 const enhancedInput = <P extends object>(

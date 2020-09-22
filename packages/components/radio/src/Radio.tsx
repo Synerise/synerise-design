@@ -1,12 +1,9 @@
 import * as React from 'react';
 import '@synerise/ds-core/dist/js/style';
 import './style/index.less';
-import AntdRadio, { RadioProps, RadioGroupProps } from 'antd/lib/radio';
+import AntdRadio, { RadioGroupProps } from 'antd/lib/radio';
 import * as S from './Radio.styles';
-
-interface Props extends RadioProps {
-  description?: string;
-}
+import { Props } from './Radio.types';
 
 const Group: React.FC<RadioGroupProps & { fullWidth?: boolean; big?: boolean }> = ({
   children,

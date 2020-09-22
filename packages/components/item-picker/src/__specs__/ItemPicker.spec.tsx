@@ -3,19 +3,24 @@ import Icon from '@synerise/ds-icon';
 import { LaptopM, MobileM, UserM } from '@synerise/ds-icon/dist/icons';
 import Avatar from '@synerise/ds-avatar';
 import DSFlag from '@synerise/ds-flag';
-import ItemPicker, { ItemPickerProps, ItemPickerSize } from '../ItemPicker';
+import ItemPicker from '../ItemPicker';
+import { ItemPickerProps, ItemPickerSize } from '../ItemPicker.types';
 import renderWithProvider from '@synerise/ds-utils/dist/testing/renderWithProvider/renderWithProvider';
 
 const imgSrc = 'https://www.w3schools.com/howto/img_avatar.png';
 
-const DATA_SOURCE =  [
+const DATA_SOURCE = [
   {
     text: 'iPhone R',
     prefixel: <Icon component={<MobileM />} />,
   },
   {
     text: 'iPhone X',
-    prefixel: <Avatar src={imgSrc} size='small'>M</Avatar>,
+    prefixel: (
+      <Avatar src={imgSrc} size="small">
+        M
+      </Avatar>
+    ),
   },
   {
     text: 'MacBook Pro 15',
@@ -23,17 +28,20 @@ const DATA_SOURCE =  [
   },
   {
     text: 'MacBook Air 13',
-    prefixel: <Avatar size="small" shape="square" backgroundColor='green'>E</Avatar>,
+    prefixel: (
+      <Avatar size="small" shape="square" backgroundColor="green">
+        E
+      </Avatar>
+    ),
   },
   {
     text: 'Macbook Pro 15',
     prefixel: <Icon component={<LaptopM />} />,
   },
   {
-    text: 'iPad Air 3'
-  }
+    text: 'iPad Air 3',
+  },
 ];
-
 
 const SEARCH_PLACEHOLDER = 'Search';
 const LABEL = 'Label';
@@ -47,18 +55,25 @@ const CLEAR_TEST_ID = 'clear-icon';
 const ANGLE_DOWN_TEST_ID = 'angle-icon';
 const PREFIXEL_TEST_ID = 'value-prefixel';
 
-const ITEM_PICKER = (props: Omit<ItemPickerProps, 'dataSource' | 'placeholder' | 'clear' | 'searchPlaceholder' | 'clearConfirmTitle' | 'yesText' | 'noText' | 'intl'> & {size?: ItemPickerSize}) => {
-  return <ItemPicker
-    dataSource={DATA_SOURCE}
-    size={'small'}
-    placeholder={PLACEHOLDER}
-    clear={REMOVE}
-    searchPlaceholder={SEARCH_PLACEHOLDER}
-    clearConfirmTitle={'Are you sure to remove this selection?'}
-    yesText={'Yes'}
-    noText={'No'}
-    {...props}
-  />
+const ITEM_PICKER = (
+  props: Omit<
+    ItemPickerProps,
+    'dataSource' | 'placeholder' | 'clear' | 'searchPlaceholder' | 'clearConfirmTitle' | 'yesText' | 'noText' | 'intl'
+  > & { size?: ItemPickerSize }
+) => {
+  return (
+    <ItemPicker
+      dataSource={DATA_SOURCE}
+      size={'small'}
+      placeholder={PLACEHOLDER}
+      clear={REMOVE}
+      searchPlaceholder={SEARCH_PLACEHOLDER}
+      clearConfirmTitle={'Are you sure to remove this selection?'}
+      yesText={'Yes'}
+      noText={'No'}
+      {...props}
+    />
+  );
 };
 
 describe('ItemPicker component', () => {
@@ -75,7 +90,14 @@ describe('ItemPicker component', () => {
     const handleClear = jest.fn();
     const handleChange = jest.fn();
 
-    const { getByTestId } = renderWithProvider(<ITEM_PICKER onClear={handleClear} onChange={handleChange} description={DESCRIPTION} placeholderIcon={<Icon component={<UserM/>}/>} />);
+    const { getByTestId } = renderWithProvider(
+      <ITEM_PICKER
+        onClear={handleClear}
+        onChange={handleChange}
+        description={DESCRIPTION}
+        placeholderIcon={<Icon component={<UserM />} />}
+      />
+    );
 
     expect(getByTestId(PLACEHOLDER_ICON_TEST_ID)).toBeTruthy();
   });
@@ -84,7 +106,9 @@ describe('ItemPicker component', () => {
     const handleClear = jest.fn();
     const handleChange = jest.fn();
 
-    const { getByText } = renderWithProvider(<ITEM_PICKER onClear={handleClear} onChange={handleChange} label={LABEL} />);
+    const { getByText } = renderWithProvider(
+      <ITEM_PICKER onClear={handleClear} onChange={handleChange} label={LABEL} />
+    );
 
     expect(getByText(LABEL)).toBeTruthy();
   });
@@ -93,7 +117,9 @@ describe('ItemPicker component', () => {
     const handleClear = jest.fn();
     const handleChange = jest.fn();
 
-    const { getByText } = renderWithProvider(<ITEM_PICKER onClear={handleClear} onChange={handleChange} description={DESCRIPTION} />);
+    const { getByText } = renderWithProvider(
+      <ITEM_PICKER onClear={handleClear} onChange={handleChange} description={DESCRIPTION} />
+    );
 
     expect(getByText(DESCRIPTION)).toBeTruthy();
   });
@@ -102,7 +128,9 @@ describe('ItemPicker component', () => {
     const handleClear = jest.fn();
     const handleChange = jest.fn();
 
-    const { getByTestId } = renderWithProvider(<ITEM_PICKER onClear={handleClear} onChange={handleChange} description={DESCRIPTION} />);
+    const { getByTestId } = renderWithProvider(
+      <ITEM_PICKER onClear={handleClear} onChange={handleChange} description={DESCRIPTION} />
+    );
 
     expect(getByTestId(ANGLE_DOWN_TEST_ID)).toBeTruthy();
   });
@@ -111,7 +139,9 @@ describe('ItemPicker component', () => {
     const handleClear = jest.fn();
     const handleChange = jest.fn();
 
-    const { queryByTestId } = renderWithProvider(<ITEM_PICKER onClear={handleClear} onChange={handleChange} description={DESCRIPTION} size='large' />);
+    const { queryByTestId } = renderWithProvider(
+      <ITEM_PICKER onClear={handleClear} onChange={handleChange} description={DESCRIPTION} size="large" />
+    );
 
     expect(queryByTestId(ANGLE_DOWN_TEST_ID)).toBeFalsy();
   });
@@ -120,7 +150,15 @@ describe('ItemPicker component', () => {
     const handleClear = jest.fn();
     const handleChange = jest.fn();
 
-    const { getByText } = renderWithProvider(<ITEM_PICKER onClear={handleClear} onChange={handleChange} description={DESCRIPTION} error errorMessage={ERROR_MESSAGE} />);
+    const { getByText } = renderWithProvider(
+      <ITEM_PICKER
+        onClear={handleClear}
+        onChange={handleChange}
+        description={DESCRIPTION}
+        error
+        errorMessage={ERROR_MESSAGE}
+      />
+    );
 
     expect(getByText(ERROR_MESSAGE)).toBeTruthy();
   });
@@ -129,7 +167,9 @@ describe('ItemPicker component', () => {
     const handleClear = jest.fn();
     const handleChange = jest.fn();
 
-    const { container } = renderWithProvider(<ITEM_PICKER onClear={handleClear} onChange={handleChange} description={DESCRIPTION} disabled />);
+    const { container } = renderWithProvider(
+      <ITEM_PICKER onClear={handleClear} onChange={handleChange} description={DESCRIPTION} disabled />
+    );
 
     expect(container.querySelectorAll('[disabled]').length).toBe(2);
   });
@@ -138,7 +178,14 @@ describe('ItemPicker component', () => {
     const handleClear = jest.fn();
     const handleChange = jest.fn();
 
-    const { getByText } = renderWithProvider(<ITEM_PICKER onClear={handleClear} onChange={handleChange} description={DESCRIPTION} selectedItem={DATA_SOURCE[0]} />);
+    const { getByText } = renderWithProvider(
+      <ITEM_PICKER
+        onClear={handleClear}
+        onChange={handleChange}
+        description={DESCRIPTION}
+        selectedItem={DATA_SOURCE[0]}
+      />
+    );
 
     expect(getByText(DATA_SOURCE[0].text)).toBeTruthy();
   });
@@ -147,7 +194,14 @@ describe('ItemPicker component', () => {
     const handleClear = jest.fn();
     const handleChange = jest.fn();
 
-    const { queryByTestId } = renderWithProvider(<ITEM_PICKER onClear={handleClear} onChange={handleChange} description={DESCRIPTION} selectedItem={DATA_SOURCE[0]} />);
+    const { queryByTestId } = renderWithProvider(
+      <ITEM_PICKER
+        onClear={handleClear}
+        onChange={handleChange}
+        description={DESCRIPTION}
+        selectedItem={DATA_SOURCE[0]}
+      />
+    );
 
     expect(queryByTestId(PREFIXEL_TEST_ID)).toBeTruthy();
   });
@@ -156,7 +210,14 @@ describe('ItemPicker component', () => {
     const handleClear = jest.fn();
     const handleChange = jest.fn();
 
-    const { queryByTestId } = renderWithProvider(<ITEM_PICKER onClear={handleClear} onChange={handleChange} description={DESCRIPTION} selectedItem={DATA_SOURCE[5]} />);
+    const { queryByTestId } = renderWithProvider(
+      <ITEM_PICKER
+        onClear={handleClear}
+        onChange={handleChange}
+        description={DESCRIPTION}
+        selectedItem={DATA_SOURCE[5]}
+      />
+    );
 
     expect(queryByTestId(PREFIXEL_TEST_ID)).toBeFalsy;
   });
@@ -165,7 +226,14 @@ describe('ItemPicker component', () => {
     const handleClear = jest.fn();
     const handleChange = jest.fn();
 
-    const { getByTestId } = renderWithProvider(<ITEM_PICKER onClear={handleClear} onChange={handleChange} description={DESCRIPTION} selectedItem={DATA_SOURCE[0]} />);
+    const { getByTestId } = renderWithProvider(
+      <ITEM_PICKER
+        onClear={handleClear}
+        onChange={handleChange}
+        description={DESCRIPTION}
+        selectedItem={DATA_SOURCE[0]}
+      />
+    );
 
     expect(getByTestId(CLEAR_TEST_ID)).toBeTruthy();
   });
@@ -174,7 +242,17 @@ describe('ItemPicker component', () => {
     const handleClear = jest.fn();
     const handleChange = jest.fn();
 
-    const { queryByTestId } = renderWithProvider(<ITEM_PICKER onClear={handleClear} onChange={handleChange} description={DESCRIPTION} selectedItem={DATA_SOURCE[0]} size='large' changeButtonLabel={CHANGE_BUTTON_LABEL} withClearConfirmation />);
+    const { queryByTestId } = renderWithProvider(
+      <ITEM_PICKER
+        onClear={handleClear}
+        onChange={handleChange}
+        description={DESCRIPTION}
+        selectedItem={DATA_SOURCE[0]}
+        size="large"
+        changeButtonLabel={CHANGE_BUTTON_LABEL}
+        withClearConfirmation
+      />
+    );
 
     expect(queryByTestId(CHANGE_BUTTON_LABEL)).toBeFalsy();
   });
@@ -183,9 +261,17 @@ describe('ItemPicker component', () => {
     const handleClear = jest.fn();
     const handleChange = jest.fn();
 
-    const { getByText } = renderWithProvider(<ITEM_PICKER onClear={handleClear} onChange={handleChange} description={DESCRIPTION} selectedItem={DATA_SOURCE[0]} size='large' changeButtonLabel={CHANGE_BUTTON_LABEL} />);
+    const { getByText } = renderWithProvider(
+      <ITEM_PICKER
+        onClear={handleClear}
+        onChange={handleChange}
+        description={DESCRIPTION}
+        selectedItem={DATA_SOURCE[0]}
+        size="large"
+        changeButtonLabel={CHANGE_BUTTON_LABEL}
+      />
+    );
 
     expect(getByText(CHANGE_BUTTON_LABEL)).toBeTruthy();
   });
-
 });

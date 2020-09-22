@@ -2,21 +2,8 @@ import * as React from 'react';
 import Icon from '@synerise/ds-icon';
 import { CloseS } from '@synerise/ds-icon/dist/icons';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
-import { Props } from './Tag.types';
+import { Props, TagShape } from './Tag.types';
 import * as S from './Tag.styles';
-
-export enum TagShape {
-  SINGLE_CHARACTER_ROUND = 'single_character_round',
-  SINGLE_CHARACTER_SQUARE = 'single_character_square',
-  DEFAULT_ROUND = 'default_round',
-  DEFAULT_SQUARE = 'default_square',
-  SMALL_ROUND = 'small_round',
-  SMALL_SQUARE = 'small_square',
-  STATUS_NEUTRAL = 'status_custom',
-  STATUS_SUCCESS = 'status_active',
-  STATUS_ERROR = 'status_inactive',
-  STATUS_WARNING = 'status_paused',
-}
 
 const Tag: React.FC<Props> = ({
   id,
@@ -58,7 +45,7 @@ const Tag: React.FC<Props> = ({
 
   return (
     <S.Tag
-      className={className}
+      className={`ds-tag ${className ?? ''}`}
       isStatusShape={isStatusShape}
       shape={shape}
       color={color}

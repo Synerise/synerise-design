@@ -1,24 +1,10 @@
 import * as React from 'react';
 import * as copy from 'copy-to-clipboard';
-import { injectIntl, IntlShape } from 'react-intl';
+import { injectIntl } from 'react-intl';
 import * as S from './DescriptionRow.styles';
 import Star from './Star';
 import Copy from './Copy';
-
-export interface DescriptionRowProps {
-  intl: IntlShape;
-  label: string | React.ReactNode;
-  labelIcon?: React.ReactNode;
-  value: React.ReactNode;
-  prefixEl?: string | React.ReactNode;
-  suffixEl?: string | React.ReactNode;
-  copyValue?: string;
-  starType?: 'active' | 'inactive';
-  texts?: {
-    copyTooltip?: string;
-    copiedTooltip?: string;
-  };
-}
+import { DescriptionRowProps } from './DescriptionRow.types';
 
 const DescriptionRow: React.FC<DescriptionRowProps> = ({
   intl,

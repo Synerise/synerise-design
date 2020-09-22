@@ -2,20 +2,7 @@ import * as React from 'react';
 import { ReactSortable } from 'react-sortablejs-typescript';
 import Button from '@synerise/ds-button';
 import * as S from './CardTabs.styles';
-
-export type CardTabsProps = {
-  className?: string;
-  onChangeOrder?: (newOrder: CardTabsItem[]) => void;
-  onAddTab?: () => void;
-  maxTabsCount?: number;
-  children?: JSX.Element[];
-};
-
-export type CardTabsItem = {
-  id: number;
-  name: string;
-  tag: string;
-};
+import { CardTabsProps } from './CardTabs.types';
 
 const CardTabs: React.FC<CardTabsProps> = ({ className, onChangeOrder, onAddTab, maxTabsCount, children = [] }) => {
   const handleChangeOrder = (newOrder: React.ReactElement[]): void => {

@@ -2,7 +2,8 @@ import * as React from 'react';
 import { CameraM } from '@synerise/ds-icon/dist/icons';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import Icon from '@synerise/ds-icon';
-import Avatar, { AvatarProps } from '../Avatar';
+import { AvatarProps } from 'Avatar.types';
+import Avatar from '../Avatar';
 
 const ProductAvatar: React.FC<Pick<AvatarProps, 'size' | 'src'>> = ({ size, src }) => (
   <Avatar

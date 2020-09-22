@@ -7,19 +7,13 @@ A card select is a form of presenting a selectable option on a separate, usually
 
 ## When to use it
 
----
-
 - To present a user with several types to choose from in one large module (for example, types of recommendations).
 
 ## Component anatomy
 
----
-
 This is a simple component, which means it doesn't consist of any other components.
 
 ## Installation
-
----
 
 ```
 npm i @synerise/ds-card-select
@@ -49,15 +43,10 @@ yarn add @synerise/ds-card-select
 
 ## Demo
 
----
-
 <iframe src="/storybook-static/iframe.html?id=components-cardselect--default"></iframe>
 
+
 ## API
-
----
-
-### Properties
 
 | Property                   | Description                                                          | Type               | Default                                         |
 | -------------------------- | -------------------------------------------------------------------- | ------------------ | ----------------------------------------------- |
@@ -68,8 +57,8 @@ yarn add @synerise/ds-card-select
 | iconSize                   | Defines the size of the icon                                         | number             | 82 px for `medium` size, 48 px for `small` size |
 | title                      | Defines the title of the card                                        | string             | -                                               |
 | description                | Defines the description of the card (not available for `small` size) | string             | -                                               |
-| value                      | Defines if the card is selected by a user                            | boolean            | false                                           |
-| tickVisible                | Defines the display of the checkbox                                  | boolean            | true                                            |
+| value                      | Defines if the card is selected by a user                            | boolean            |`false`                                          |
+| tickVisible                | Defines the display of the checkbox                                  | boolean            | `true`                                           |
 | disabled                   | Defines if the card is disabled (`onChange` still fires)             | boolean            | -                                               |
 | customTickVisible          | Defines if the checkbox is custom                                    | boolean            | -                                               |
 | customTickVisibleComponent | Custom checkbox component                                            | ReactNode          | -                                               |

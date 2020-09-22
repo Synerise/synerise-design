@@ -1,19 +1,11 @@
 import * as React from 'react';
 import '@synerise/ds-core/dist/js/style';
 import './style/index.less';
-import AntdAutoComplete, { AutoCompleteProps as OriginalProps } from 'antd/lib/auto-complete';
+import AntdAutoComplete from 'antd/lib/auto-complete';
 import { ErrorText, Description, Label } from '@synerise/ds-typography';
+import { AutocompleteProps } from 'Autocomplete.types';
 import * as S from './Autocomplete.styles';
 
-export type OverrideProps = {
-  className?: string;
-  errorText?: React.ReactNode | string;
-  label?: React.ReactNode | string;
-  description?: React.ReactNode | string;
-  error?: boolean;
-};
-
-export type AutocompleteProps = OverrideProps & OriginalProps;
 
 class Autocomplete extends React.PureComponent<AutocompleteProps> {
   static Option = AntdAutoComplete.Option;

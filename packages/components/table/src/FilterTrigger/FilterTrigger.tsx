@@ -4,25 +4,7 @@ import { Close3S, FolderM } from '@synerise/ds-icon/dist/icons';
 import Tooltip from '@synerise/ds-tooltip';
 import { useOnClickOutside } from '@synerise/ds-utils';
 import * as S from './FilterTrigger.styles';
-
-interface Props {
-  name: string;
-  selected?: {
-    name: string;
-  };
-  iconComponent: React.ReactNode;
-  tooltips: {
-    default: string;
-    define: string;
-    clear: string;
-    list: string;
-  };
-  openedLabel: string;
-  handleClear: () => void;
-  showList: () => void;
-  show: () => void;
-  disabled?: boolean;
-}
+import { Props } from './FilterTrigger.types';
 
 const FilterTrigger: React.FC<Props> = ({
   name,

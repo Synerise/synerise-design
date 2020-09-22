@@ -1,15 +1,7 @@
 import * as React from 'react';
-import Button, { ButtonGroupProps as AntButtonGroupProps } from 'antd/lib/button';
+import Button from 'antd/lib/button';
 import * as S from './ButtonGroup.styles';
-
-export interface ButtonGroupProps extends AntButtonGroupProps {
-  children?: React.ReactNode;
-  title?: string;
-  description?: string;
-  fullWidth?: boolean;
-  buttonsPosition?: string | 'left' | 'center' | 'right';
-  disabled?: boolean;
-}
+import { ButtonGroupProps } from './ButtonGroup.types';
 
 const ButtonGroup: React.FC<ButtonGroupProps> = ({
   className,

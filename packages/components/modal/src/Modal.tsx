@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import Modal, { ModalProps } from 'antd/lib/modal';
+import Modal from 'antd/lib/modal';
 import Icon from '@synerise/ds-icon';
 import CloseM from '@synerise/ds-icon/dist/icons/CloseM';
 
@@ -10,18 +10,8 @@ import '@synerise/ds-core/dist/js/style';
 import './style/index.less';
 import classnames from 'classnames';
 import * as S from './Modal.styles';
+import { Props } from './Modal.types';
 
-export interface Props extends ModalProps {
-  description?: string;
-  headerActions?: React.ReactNode;
-  size?: 'small' | 'medium' | 'large' | 'extraLarge' | 'fullSize';
-  bodyBackground?: 'white' | 'grey';
-  blank?: boolean;
-  texts?: {
-    okButton?: string;
-    cancelButton?: string;
-  };
-}
 
 const mapSizeToWidth = {
   small: 520,

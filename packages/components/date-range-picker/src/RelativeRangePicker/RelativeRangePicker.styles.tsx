@@ -3,7 +3,7 @@ import Button from '@synerise/ds-button';
 import * as React from 'react';
 import Menu from '@synerise/ds-menu';
 import { InputGroup } from '@synerise/ds-input';
-import { Props as InputGroupProps } from '@synerise/ds-input/dist/InputGroup';
+import { Props as InputGroupProps } from '@synerise/ds-input/dist/InputGroup.types';
 
 export const Container = styled.div``;
 

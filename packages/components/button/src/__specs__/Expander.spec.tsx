@@ -3,7 +3,7 @@ import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import { fireEvent } from '@testing-library/react';
 
 import Button from '../Button';
-import { ExpanderSize } from '../Expander/Expander';
+import { ExpanderSize } from '../Expander/Expander.types';
 
 describe('Expander', () => {
   const onClick = jest.fn();

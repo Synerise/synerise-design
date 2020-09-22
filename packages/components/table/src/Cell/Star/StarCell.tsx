@@ -3,15 +3,7 @@ import { StarFillM, StarM } from '@synerise/ds-icon/dist/icons';
 import { withTheme } from 'styled-components';
 import Icon from '@synerise/ds-icon';
 import * as S from './StarCell.styles';
-
-interface Props {
-  children: React.ReactNode | React.ReactNode[];
-  active?: boolean;
-  onClick?: () => void;
-  theme: {
-    [k: string]: string;
-  };
-}
+import { Props } from './StarCell.types';
 
 const StartCell: React.FC<Props> = ({ children, active, onClick, theme }: Props) => {
   const icon = React.useMemo(() => {

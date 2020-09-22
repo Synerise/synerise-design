@@ -6,17 +6,12 @@ import Dropdown from '@synerise/ds-dropdown';
 import { OptionHorizontalM } from '@synerise/ds-icon/dist/icons';
 import Button from '@synerise/ds-button';
 import Icon from '@synerise/ds-icon';
-import { AvatarProps } from '@synerise/ds-avatar/dist/Avatar';
+import { AvatarProps } from '@synerise/ds-avatar/dist/Avatar.types';
 import Badge from '@synerise/ds-badge';
-import { DataSource, GroupModalSettings } from '../AvatarGroup';
+import { DataSource } from 'AvatarGroup.types';
 import * as S from './GroupModal.styles';
+import { GroupModalProps } from './GroupModal.types';
 
-type GroupModalProps = GroupModalSettings & {
-  visible: boolean;
-  hideModal: () => void;
-  showStatus: boolean;
-  dataSource: DataSource[];
-};
 
 const GroupModal: React.FC<GroupModalProps> = ({
   renderRowMenu,

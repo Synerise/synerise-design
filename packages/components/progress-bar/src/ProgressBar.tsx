@@ -1,13 +1,8 @@
 import * as React from 'react';
-import Progress, { ProgressProps as AntProgressProps } from 'antd/lib/progress';
+import Progress  from 'antd/lib/progress';
 import '@synerise/ds-core/dist/js/style';
 import './style/index.less';
-
-export interface ProgressProps extends AntProgressProps {
-  amount?: number;
-  showLabel?: boolean;
-  description?: string;
-}
+import { ProgressProps } from './ProgressBar.types';
 
 class ProgressBar extends React.PureComponent<ProgressProps> {
   static defaultProps = {

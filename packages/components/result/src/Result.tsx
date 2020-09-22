@@ -8,17 +8,7 @@ import SearchNoResultsM from '@synerise/ds-icon/dist/icons/SearchNoResultsM';
 import InfoM from '@synerise/ds-icon/dist/icons/InfoM';
 
 import * as S from './Result.styles';
-
-export type ResultProps = {
-  className?: string;
-  title?: string | React.ReactNode;
-  type: string | 'info' | 'warning' | 'error' | 'success' | 'progress' | 'no-results';
-  description?: string | React.ReactNode;
-  buttons?: React.ReactNode;
-  panel?: React.ReactNode;
-  customIcon?: React.ReactElement;
-  noSearchResults?: boolean;
-};
+import { ResultProps } from './Result.types';
 
 const mapTypeToStatus = {
   info: {

@@ -96,7 +96,6 @@ export const Container = styled.div<
     raised?: boolean;
     value?: boolean;
     size?: string;
-    stretchToFit?: boolean;
     elementsPosition: string | 'left' | 'center' | 'right';
     selected?: boolean;
     pressed?: boolean;

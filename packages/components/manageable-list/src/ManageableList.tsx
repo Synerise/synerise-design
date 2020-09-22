@@ -4,10 +4,11 @@ import * as _ from 'lodash';
 import { ReactSortable } from 'react-sortablejs-typescript';
 import { FormattedMessage } from 'react-intl';
 import * as S from './ManageableList.styles';
-import Item, { ItemProps } from './Item/Item';
+import Item from './Item/Item';
 import AddItemWithName from './AddItemWithName/AddItemWithName';
 import AddItem from './AddItem/AddItem';
 import { ManageableListProps, ListType, Texts } from './ManageableList.types';
+import { ItemProps } from './Item/Item.types';
 
 const SORTABLE_CONFIG = {
   ghostClass: 'sortable-list-ghost-element',

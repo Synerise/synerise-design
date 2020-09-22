@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { render } from '@testing-library/react';
 import Icon from '../index';
+import renderWithProvider from '@synerise/ds-utils/dist/testing/renderWithProvider/renderWithProvider';
+import { VarTypeStringM } from '../icons';
 
 describe('Icon', () => {
   it('should render', () => {
@@ -11,4 +13,12 @@ describe('Icon', () => {
     // ASSERT
     expect(getByTitle(TEST_TEXT)).toBeTruthy();
   });
+
+  it('Should render with className', () => {
+    // ARRANGE
+    const { container } = renderWithProvider(<Icon component={<VarTypeStringM />} />);
+
+    // ASSERT
+    expect(container.querySelector('.var-type-string-m')).toBeTruthy();
+  })
 });

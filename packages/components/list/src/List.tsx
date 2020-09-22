@@ -2,18 +2,12 @@ import * as React from 'react';
 import { v4 as uuid } from 'uuid';
 import '@synerise/ds-core/dist/js/style';
 import Radio from '@synerise/ds-radio';
-import AntdList, { ListProps } from 'antd/lib/list';
+import AntdList from 'antd/lib/list';
 import { RadioGroupProps } from 'antd/lib/radio';
 import './style/index.less';
 
 import { TextItem, ListDivider, ItemWrapper } from './Elements';
-
-export interface ListPropsType<T> extends Omit<ListProps<T>, 'dataSource' | 'footer'> {
-  dataSource: T[] | T[][];
-  radio?: boolean;
-  options?: RadioGroupProps;
-  dashed?: boolean;
-}
+import { ListPropsType } from './List.types';
 
 const RadioGroupWrapper: React.FC<{ options?: RadioGroupProps }> = ({ children, options }) => (
   <Radio.Group {...options}>{children}</Radio.Group>
@@ -23,6 +17,7 @@ const RadioGroupWrapper: React.FC<{ options?: RadioGroupProps }> = ({ children, 
 export const isNestedArray = <V extends any>(array: V[] | V[][]): boolean => {
   return !!array.length && array[0] instanceof Array;
 };
+
 
 class List<T> extends React.PureComponent<ListPropsType<T>> {
   static ItemWrapper: typeof ItemWrapper = ItemWrapper;

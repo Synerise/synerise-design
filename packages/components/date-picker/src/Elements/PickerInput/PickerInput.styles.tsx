@@ -1,6 +1,6 @@
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import { Input as DSInput } from '@synerise/ds-input';
-import { Props as DSInputProps } from '@synerise/ds-input/dist/Input';
+import { Props as DSInputProps } from '@synerise/ds-input/dist/Input.types';
 import { InputProps as AntdInputProps } from 'antd/lib/input';
 import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 

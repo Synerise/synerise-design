@@ -33,24 +33,24 @@ import Tabs from '@synerise/ds-tabs'
 | Property       | Description                                | Type          | Default |
 | -------------- | ------------------------------------------ | ------------- | ------- |
 | activeTab      | Active tab index                           | number        | -       |
-| tabs           | Array of tabs                              | Tab[]         | []      |
-| handleTabClick | Callback fired when user clicks on the tab | (index) => {} | -       |
 | configuration  | Shows additional position in tabs dropdown | Configuration | -       |
-| underscore     | Underscore active item                     | boolean       | true    |
+| handleTabClick | Callback fired when user clicks on the tab | (index: number) => void | -       |
+| tabs           | Array of tabs                              | Tab[]         | []      |
+| underscore     | Underscore active item                     | boolean       | `true`   |
 
 ### Tab
 
 | Property   | Description            | Type    | Default |
 | ---------- | ---------------------- | ------- | ------- |
-| label      | Label of tab           | string  | -       |
+| disabled   | Flag of disabled tabs  | boolean | `false`   |
 | icon       | tab icon               | Icon    | -       |
-| disabled   | Flag of disabled tabs  | boolean | false   |
-| underscore | Underscore active item | boolean | true    |
+| label      | Label of tab           | string  | -       |
+| underscore | Underscore active item | boolean | `true`   |
 
 #### Configuration
 
 | Property | Description                                                 | Type    | Default |
 | -------- | ----------------------------------------------------------- | ------- | ------- |
-| label    | Label of configuration button                               | string  | -       |
 | action   | Callback fired when user clicks on the configuration button | Icon    | -       |
 | disabled | Flag of disabled configuration button                       | boolean | -       |
+| label    | Label of configuration button                               | string  | -       |

@@ -7,14 +7,9 @@ import { AngleDownS } from '@synerise/ds-icon/dist/icons';
 import Checkbox from '@synerise/ds-checkbox';
 import { CheckboxChangeEvent } from 'antd/lib/checkbox';
 import * as S from '../Table.styles';
-import { RowSelection, Selection, SelectionItem } from '../Table.types';
+import { Selection, SelectionItem } from '../Table.types';
 import { SELECTION_ALL, SELECTION_INVERT } from '../Table';
-
-interface Props<T extends { key: React.ReactText }> {
-  selection?: RowSelection<T>;
-  dataSource: T[];
-  rowKey?: Function | string;
-}
+import { Props } from './TableSelection.types';
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore

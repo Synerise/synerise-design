@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ItemProps } from './Item/Item';
+import { ItemProps } from './Item/Item.types';
 
 export enum ExpansionBehaviour {
   DEFAULT = 'default',

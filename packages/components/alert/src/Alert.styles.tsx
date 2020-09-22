@@ -2,7 +2,7 @@ import * as React from 'react';
 import Alert from 'antd/lib/alert';
 import styled, { css, FlattenInterpolation, ThemeProps } from 'styled-components';
 import { ThemePropsVars } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
-import { Props } from './Alert';
+import { Props } from './Alert.types';
 
 const DARKER_COLORS = ['green', 'yellow'];
 

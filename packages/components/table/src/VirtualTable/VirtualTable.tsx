@@ -5,22 +5,11 @@ import classNames from 'classnames';
 import Checkbox from '@synerise/ds-checkbox';
 import Scrollbar from '@synerise/ds-scrollbar';
 import DSTable from '../Table';
-import { DSTableProps, RowType } from '../Table.types';
+import { RowType } from '../Table.types';
 import VirtualTableRow from './VirtualTableRow';
+import { Props } from './VirtualTable.types';
 
 export const EXPANDED_ROW_PROPERTY = 'expandedChild';
-
-interface Props<T> extends DSTableProps<T> {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  columns: any[];
-  scroll: {
-    x?: number;
-    y: number;
-  };
-  onRowClick?: (row: T) => void;
-  cellHeight: number;
-  initialWidth: number;
-}
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function VirtualTable<T extends any & RowType<T> & { [EXPANDED_ROW_PROPERTY]?: boolean }>(
