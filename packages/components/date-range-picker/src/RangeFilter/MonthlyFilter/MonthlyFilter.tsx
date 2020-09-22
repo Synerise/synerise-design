@@ -1,28 +1,18 @@
 import * as React from 'react';
-import { injectIntl, FormattedMessage } from 'react-intl';
-import { Add3M, CloseM, EditS } from '@synerise/ds-icon/dist/icons';
+import { FormattedMessage, injectIntl } from 'react-intl';
+import { CloseM, EditS } from '@synerise/ds-icon/dist/icons';
 import InlineSelect from '@synerise/ds-inline-edit/dist/InlineSelect/InlineSelect';
-import TimeWindow from '../TimeWindow/TimeWindow';
 import Icon from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
-import AddonCollapse from '../../AddonCollapse/AddonCollapse';
 
-import {
-  Wrapper,
-  DropdownLabel,
-  DropdownHeader,
-  DropdownDeleteBtn,
-  AddContainer,
-  AddButton,
-  EditBtn,
-} from './MonthlyFilter.styles';
+import * as S from './MonthlyFilter.styles';
 import { MONTHLY_TYPES, MONTH_DAYS, PERIODS, PERIODS_TYPE, MAX_RULES_ALLOWED, defaultId } from '../constants';
 import { Month, MonthlyFilterProps } from './MonthlyFilter.types';
-import ManageableList from '@synerise/ds-manageable-list';
 import ContentItem from '@synerise/ds-manageable-list/dist/Item/ContentItem/ContentItem';
 import { Tag, TagShape } from '@synerise/ds-tags';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import Button from '@synerise/ds-button';
+import TimeWindow from '../TimeWindow/TimeWindow';
 
 class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
   state = {
@@ -179,8 +169,8 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
               ),
               id: item.id,
               name: (
-                <DropdownHeader className={visible[item.id] && 'dropdown-header-visible'}>
-                  <DropdownLabel>
+                <S.DropdownHeader className={visible[item.id] && 'dropdown-header-visible'}>
+                  <S.DropdownLabel>
                     <b>
                       <FormattedMessage
                         id="DS.DATE-RANGE-PICKER.RULE"
@@ -190,8 +180,9 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
                       />
                     </b>{' '}
                     <FormattedMessage id="DS.DATE-RANGE-PICKER.DAYS-OF" />
-                  </DropdownLabel>
-                  <InlineSelect
+                  </S.DropdownLabel>
+                  <S.Select
+                    expanded={false}
                     input={{
                       value: intl.formatMessage({ id: PERIODS[0].translationKey }),
                       name: 'name-of-input',
@@ -206,10 +197,11 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
                     size="small"
                   />
 
-                  <DropdownLabel>
+                  <S.DropdownLabel>
                     <FormattedMessage id="DS.DATE-RANGE-PICKER.COUNTED-FROM" />
-                  </DropdownLabel>
-                  <InlineSelect
+                  </S.DropdownLabel>
+                  <S.Select
+                    expanded={false}
                     input={{
                       value: intl.formatMessage({ id: PERIODS_TYPE[0].translationKey }),
                       name: 'name-of-input',
@@ -223,14 +215,14 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
                     //onChange={({ value }) => this.handlePeriodTypeChange(value, key)}
                   />
 
-                  <EditBtn>
+                  <S.EditBtn>
                     <Icon component={<EditS />} size={25} />
                     <FormattedMessage id="SNRS.MANAGEABLE-LIST.EDIT" />
-                  </EditBtn>
-                </DropdownHeader>
+                  </S.EditBtn>
+                </S.DropdownHeader>
               ),
               content: (
-                <Wrapper>
+                <S.Wrapper>
                   <TimeWindow
                     // eslint-disable-next-line react/no-array-index-key
                     key={`${item.period}_${key}`}
@@ -242,24 +234,24 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
                     timeMarks={{}}
                     {...this.getTimeWindowSettings(item)}
                   />
-                </Wrapper>
+                </S.Wrapper>
               ),
             }}
             headerSuffix={
               <Tooltip title={intl.formatMessage({ id: 'SNRS.MANAGEABLE-LIST.REMOVE' })}>
-                <DropdownDeleteBtn onClick={e => this.handleRemoveRow(e, key)}>
+                <S.DropdownDeleteBtn onClick={e => this.handleRemoveRow(e, key)}>
                   <Icon component={<CloseM />} size={15} />
-                </DropdownDeleteBtn>
+                </S.DropdownDeleteBtn>
               </Tooltip>
             }
             texts={{}}
           ></ContentItem>
         ))}
-        <AddContainer>
+        <S.AddContainer>
           {value.length < MAX_RULES_ALLOWED && (
             <Button.Creator  label={<FormattedMessage id="DS.DATE-RANGE-PICKER.ADD-RULE" />} onClick={this.handleAddRow} block />
           )}
-        </AddContainer>
+        </S.AddContainer>
       </React.Fragment>
     );
   }
