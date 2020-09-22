@@ -55,9 +55,7 @@ export const Suffix = styled.div`
   transition: opacity 0.1s ease-in;
   transition-delay: 0.2s;
   margin-top: -2px;
-  &:hover {
-    cursor: pointer;
-  }
+  cursor: pointer;
 `;
 export const Container = styled.div<{ active: boolean }>`
   position: relative;
