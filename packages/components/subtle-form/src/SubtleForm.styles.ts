@@ -8,7 +8,7 @@ const disableBlinkingCursor = (props: ThemeProps & { grey: boolean }): FlattenSi
 
 export const ValueArea = styled.textarea<{ grey: boolean }>`
   &:hover {
-    cursor: pointer;
+    cursor: default;
   }
   word-wrap: break-word;
   overflow-wrap: break-word;
@@ -48,6 +48,9 @@ export const Suffix = styled.div`
   transition: opacity 0.1s ease-in;
   transition-delay: 0.2s;
   margin-top: -2px;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 export const Container = styled.div<{ active: boolean }>`
   width: 100%;
@@ -77,7 +80,6 @@ export const Inactive = styled.div<{ rows: number }>`
       &:hover {
         padding: 7px 18px 7px 12px;
         background: ${props.theme.palette['grey-050']};
-        cursor: pointer;
         ${Suffix} {
           opacity: 1;
         }
