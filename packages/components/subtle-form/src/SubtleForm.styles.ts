@@ -16,9 +16,7 @@ export const blurAnimation = keyframes`
 `;
 
 export const ValueArea = styled.textarea<{ grey: boolean }>`
-  &:hover {
-    cursor: default;
-  }
+  cursor: default;
   word-wrap: break-word;
   overflow-wrap: break-word;
   ${(props): FlattenSimpleInterpolation => disableBlinkingCursor(props)}
@@ -76,8 +74,6 @@ export const Container = styled.div<{ active: boolean }>`
 `;
 export const Inactive = styled.div<{ rows: number; blurred: boolean }>`
   position: relative;
-  left:0;
-  top: 0;
   width: 100%;
   min-height: 32px;
   height: ${(props): string => `calc(${props.rows * 17 + 17}px);`}
@@ -91,7 +87,7 @@ export const Inactive = styled.div<{ rows: number; blurred: boolean }>`
   ${(props): false | FlattenSimpleInterpolation =>
     props.blurred &&
     css`
-      animation: ${blurAnimation} 0.1s ease-in-out;
+      animation: ${blurAnimation} 0.1s ease-in;
     `}
   ${(props): FlattenSimpleInterpolation =>
     css`
