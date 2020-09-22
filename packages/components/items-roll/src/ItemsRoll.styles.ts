@@ -180,7 +180,9 @@ export const NoResultIconWrapper = styled.div`
 `;
 
 export const Divider = styled(DividerBase)<{ footer?: boolean }>`
-  margin: ${(props): string => (props.footer ? '8px 0 12px' : '12px 0 8px')};
+  && {
+    margin: ${(props): string => (props.footer ? '8px 0 12px' : '12px 0 8px')};
+  }
 `;
 
 export const WarningIcon = styled(Icon)`
