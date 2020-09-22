@@ -87,7 +87,7 @@ addParameters({
   },
   viewport: {
     viewports: VIEWPORTS,
-    defaultViewport: '1280'
+    defaultViewport: 'lg'
   }
 });
 
