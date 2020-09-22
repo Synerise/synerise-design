@@ -42,7 +42,6 @@ const SubtleTextArea: React.FC<SubtleTextAreaProps> = ({
   const handleActivate = React.useCallback(() => {
     setActive(true);
   }, []);
-
   return (
     <S.Subtle className="ds-subtle-form">
       <S.ContentAbove active={active}>
