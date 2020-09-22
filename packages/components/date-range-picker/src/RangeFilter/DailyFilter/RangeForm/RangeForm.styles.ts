@@ -8,7 +8,7 @@ export const Container = styled.div`
     margin-right: 8px;
   }
   .ds-time-picker {
-    max-width: none;
+    max-width: 220px;
     width: 100%;
     .filter-time-picker {
       box-shadow: 5px 5px 5px 5px red;
@@ -21,6 +21,7 @@ export const Row = styled.div<{ justifyContent: string }>`
   justify-content: ${(props): string => props.justifyContent};
   min-height: 32px;
   margin-top: 8px;
+  
 `;
 export const Separator = styled.span`
   & {
