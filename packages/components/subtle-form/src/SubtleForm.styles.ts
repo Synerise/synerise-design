@@ -1,9 +1,18 @@
-import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
+import styled, { css, FlattenSimpleInterpolation, keyframes } from 'styled-components';
 import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 
 const disableBlinkingCursor = (props: ThemeProps & { grey: boolean }): FlattenSimpleInterpolation => css`
   color: transparent;
   text-shadow: 0 1px ${props.grey ? props.theme.palette['grey-500'] : props.theme.palette['grey-600']};
+`;
+
+export const blurAnimation = keyframes`
+  0% {
+     padding: 7px 18px 7px 12px;
+  }
+  100% {
+     padding: 7px 30px 7px 0px;
+  }
 `;
 
 export const ValueArea = styled.textarea<{ grey: boolean }>`
@@ -53,6 +62,7 @@ export const Suffix = styled.div`
   }
 `;
 export const Container = styled.div<{ active: boolean }>`
+  position: relative;
   width: 100%;
   ${(props): false | FlattenSimpleInterpolation =>
     props.active &&
@@ -64,17 +74,25 @@ export const Container = styled.div<{ active: boolean }>`
     margin: 0;
   }
 `;
-export const Inactive = styled.div<{ rows: number }>`
+export const Inactive = styled.div<{ rows: number; blurred: boolean }>`
   position: relative;
+  left:0;
+  top: 0;
+  width: 100%;
   min-height: 32px;
   height: ${(props): string => `calc(${props.rows * 17 + 17}px);`}
   align-items: flex-start;
-  background: transparent;
+  background: ${(props): string => props.theme.palette.white};
   display: flex;
   padding: 7px 30px 7px 0px;
   border-radius: 3px;
   transition: padding 0.1s ease-in, background 0.1s ease-in;
   transition-delay: 0.2s;
+  ${(props): false | FlattenSimpleInterpolation =>
+    props.blurred &&
+    css`
+      animation: ${blurAnimation} 0.1s ease-in-out;
+    `}
   ${(props): FlattenSimpleInterpolation =>
     css`
       &:hover {
