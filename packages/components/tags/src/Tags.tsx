@@ -150,22 +150,22 @@ const Tags: React.FC<Props> = ({
               {...tag}
             />
           ))}
+        {addable && (
+          <Dropdown
+            trigger={['click']}
+            placement={overlayPlacement}
+            visible={isAdding}
+            onVisibleChange={setAddingState}
+            overlay={dropdownOverlay}
+            overlayStyle={overlayStyle}
+          >
+            <S.AddButton type="ghost" marginless={selected && !selected.length ? true : undefined}>
+              {addIcon}
+              {texts && texts.addButtonLabel && <span>{texts.addButtonLabel}</span>}
+            </S.AddButton>
+          </Dropdown>
+        )}
       </S.SelectedTags>
-      {addable && (
-        <Dropdown
-          trigger={['click']}
-          placement={overlayPlacement}
-          visible={isAdding}
-          onVisibleChange={setAddingState}
-          overlay={dropdownOverlay}
-          overlayStyle={overlayStyle}
-        >
-          <S.AddButton type="ghost" marginless={selected && !selected.length ? true : undefined}>
-            {addIcon}
-            {texts && texts.addButtonLabel && <span>{texts.addButtonLabel}</span>}
-          </S.AddButton>
-        </Dropdown>
-      )}
     </S.Container>
   );
 };
