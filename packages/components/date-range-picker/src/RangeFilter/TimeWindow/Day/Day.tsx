@@ -23,7 +23,7 @@ const Day: React.FC<Props> = ({
   intl,
   label,
   onChange,
-  onToggle = (_: boolean) => {},
+  onToggle,
   readOnly,
   restricted,
   tooltip,
@@ -52,7 +52,7 @@ const Day: React.FC<Props> = ({
   const icon = React.useMemo(() => {
     if (active) {
       return hovered ? (
-        <Icon component={<CloseS />} color={theme.palette['red-600']} />
+        <Icon component={<CloseS />} onClick={(): void => onToggle(false)} color={theme.palette['red-600']} />
       ) : (
         <Icon component={<CheckS />} color={theme.palette['green-600']} />
       );
@@ -67,9 +67,11 @@ const Day: React.FC<Props> = ({
           onMouseOut={() => setHovered(false)}
           style={readOnlyStyles}
           {...rest}
-          onClick={onToggle as any}
+          onClick={() => {
+            onToggle(!restricted);
+          }}
           type={type}
-          mode={active ? "label-icon" : 'default'}
+          mode={active ? 'label-icon' : 'default'}
         >
           <span>{label}</span>
           {icon}
