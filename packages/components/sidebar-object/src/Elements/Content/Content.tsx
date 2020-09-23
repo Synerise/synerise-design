@@ -1,25 +1,26 @@
 import * as React from 'react';
-import InlineEdit from '@synerise/ds-inline-edit';
 import Drawer from '@synerise/ds-drawer';
+import SubtleForm from '@synerise/ds-subtle-form';
 import { ContentProps } from './Content.types';
 import { ContentWrapper, InlineEditWrapper, TagsWrapper } from './Content.style';
 
-const Content: React.FC<ContentProps> = ({ description, tags, texts }) => {
-  const [value, setValue] = React.useState<string>('');
+const Content: React.FC<ContentProps> = ({ description, tags, textDescription,texts }) => {
+  const [value, setValue] = React.useState<string | undefined>(textDescription);
+
   return (
     <Drawer.DrawerBody>
       <ContentWrapper>{description}</ContentWrapper>
       <TagsWrapper>{tags}</TagsWrapper>
       <InlineEditWrapper>
-        <InlineEdit
-          input={{
-            name: texts.name,
-            value,
-            maxLength: 120,
-            placeholder: texts.namePlaceholder,
-            onChange: (event): void => setValue(event.target.value),
-          }}
-          size="small"
+        <SubtleForm.TextArea
+          minRows={3}
+          maxRows={6}
+          value={value}
+          onChange={setValue}
+          placeholder={texts.placeholder}
+          label={texts.labelName}
+          labelTooltip={texts.labelTooltip}
+          suffixTooltip={texts.suffixTooltip}
         />
       </InlineEditWrapper>
     </Drawer.DrawerBody>

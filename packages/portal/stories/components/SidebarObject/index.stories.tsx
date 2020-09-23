@@ -15,8 +15,7 @@ import Tags, { TagShape } from '@synerise/ds-tags';
 import { v4 as uuid } from 'uuid';
 import sample from 'lodash/sample';
 
-const sizes = ['small', 'medium', 'large', 'extraLarge'] as const;
-const statuses = ['blocked', 'inactive', 'active'] as const;
+
 const getColor = name => {
   return theme.palette[name];
 };
@@ -60,37 +59,8 @@ const allTags = [
     color: '#6d2dd3',
   },
 ];
-const backgroundColors = [
-  'red',
-  'green',
-  'grey',
-  'yellow',
-  'blue',
-  'pink',
-  'mars',
-  'orange',
-  'fern',
-  'cyan',
-  'purple',
-  'violet',
-] as const;
 
-const iconColors = [
-  'red-600',
-  'green-600',
-  'grey-600',
-  'yellow-600',
-  'blue-600',
-  'pink-600',
-  'mars-600',
-  'orange-600',
-  'fern-600',
-  'cyan-600',
-  'purple-600',
-  'violet-600',
-] as const;
 
-const backgroundColorHue = ['900', '800', '700', '600', '500', '400', '300', '200', '100', '050'] as const;
 
 const imgSrc = 'https://www.w3schools.com/howto/img_avatar.png';
 const TABS = [
@@ -152,16 +122,16 @@ const stories = {
         <Drawer visible={drawerVisible} placement="right" width={676} onClose={() => setDrawerVisible(false)}>
           <SidebarObject
             avatar={
-              <Badge status={select('Set status', statuses, 'inactive')}>
+              <Badge status={('inactive')}>
                 <Avatar
-                  backgroundColor={select('Set background color', backgroundColors, 'pink')}
-                  backgroundColorHue={select('Set background color hue', backgroundColorHue, '100')}
-                  size={select('Set size', sizes, 'large')}
-                  shape={select('Set shape', shapes, 'circle')}
+                  backgroundColor={('pink')}
+                  backgroundColorHue={('100')}
+                  size={('large')}
+                  shape={( 'circle')}
                   iconComponent={
                     <Icon
-                      color={getColor(select('Set icon color', iconColors, 'pink-600'))}
-                      component={getIconSize(select('Set size', sizes, 'large'))}
+                      color={getColor('pink-600')}
+                      component={getIconSize('large')}
                     />
                   }
                   tooltip={{ name: 'Silvia Jobs', email: 'silvia.jobs@gmail.com' }}
@@ -183,6 +153,10 @@ const stories = {
               duplicateIcon: 'Duplicate',
               moveIcon: 'Move to',
               folder: 'Folder',
+              placeholder: 'Description',
+              labelName: 'Description',
+              labelTooltip: 'Description',
+              suffixTooltip: 'Edit',
             }}
             headerPreffix={renderBackIcon(headerType, () => setDrawerVisible(false))}
             onEdit={() => {}}
@@ -246,6 +220,7 @@ const stories = {
                 manageLink={withManageLink}
               />
             }
+            textDescription='Description'
           ></SidebarObject>
         </Drawer>
       </div>

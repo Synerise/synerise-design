@@ -19,6 +19,7 @@ export type SidebarObjectProps = {
   parentFolder: FolderItem;
   texts: HeaderTexts;
   onCloseClick: () => void;
+  textDescription: string;
 
 };
 export type FolderItem = {

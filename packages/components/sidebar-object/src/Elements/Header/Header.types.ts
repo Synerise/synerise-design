@@ -32,5 +32,9 @@ export type HeaderTexts = {
   moveIcon: string;
   folder: string;
   editIcon: string;
+  placeholder: string;
+  labelName: string | React.ReactNode;
+  labelTooltip: string | React.ReactNode;
+  suffixTooltip: string | React.ReactNode;
 
 };

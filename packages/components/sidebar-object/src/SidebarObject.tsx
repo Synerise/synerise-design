@@ -26,6 +26,7 @@ const SidebarObject: React.FC<SidebarObjectProps> = ({
   parentFolder,
   texts,
   onCloseClick,
+  textDescription,
 }) => {
   const [activeTab, setActiveTab] = React.useState(0);
   const [dropdownVisible, setDropdownVisible] = React.useState(false);
@@ -68,7 +69,7 @@ const SidebarObject: React.FC<SidebarObjectProps> = ({
         </S.HeaderWrapper>
       )}
       {activeTab === 0 && (
-        <Content texts={texts} description={<ObjectSummary inputObject={inputObject} />} tags={contentTags} />
+        <Content texts={texts} textDescription={textDescription} description={<ObjectSummary inputObject={inputObject} />} tags={contentTags} />
       )}
     </div>
   );
