@@ -13,9 +13,17 @@ const NOOP = (): void => {};
 const MARGIN_BETWEEN_TABS = 24;
 const DROPDOWN_TRIGGER_SIZE = 32;
 
-const Tabs: React.FC<TabsProps> = ({ activeTab, tabs, handleTabClick, configuration, underscore, block }) => {
+const Tabs: React.FC<TabsProps> = ({
+  activeTab,
+  tabs,
+  handleTabClick,
+  configuration,
+  underscore,
+  block,
+  visible = true,
+}) => {
   const containerRef = React.useRef<HTMLDivElement>();
-  const { width } = useResize(containerRef);
+  const { width } = useResize(containerRef, visible);
   const [renderHelperTabs, setRenderHelperTabs] = React.useState(true);
   const [items, setItems] = React.useState<TabWithRef[]>([]);
   const [itemsWidths, setItemsWidths] = React.useState<number[]>([]);
