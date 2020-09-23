@@ -32,6 +32,7 @@ const Operators: React.FC<OperatorsProps> = ({ value, onChange, groups, items, t
           groups={groups}
           items={items}
           texts={texts}
+          visible={dropdownVisible}
         />
       }
     >

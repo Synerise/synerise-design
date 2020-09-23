@@ -12,12 +12,21 @@ interface Props {
   hideDropdown?: () => void;
   select: (item: OperatorsItem | OperatorsGroup) => void;
   selected?: boolean;
+  className: string;
 }
 
-const OperatorsDropdownItem: React.FC<Props> = ({ item, clearSearch, searchQuery, hideDropdown, select, selected }) => {
+const OperatorsDropdownItem: React.FC<Props> = ({
+  item,
+  clearSearch,
+  searchQuery,
+  hideDropdown,
+  select,
+  selected,
+  className,
+}) => {
   return (
     <Menu.Item
-      className="ds-operator-item"
+      className={className}
       key={item.name + item.id}
       prefixel={searchQuery && <Icon component={item.icon} />}
       highlight={searchQuery}

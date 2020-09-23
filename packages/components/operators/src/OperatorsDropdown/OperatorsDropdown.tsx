@@ -7,6 +7,7 @@ import { focusWithArrowKeys, useOnClickOutside } from '@synerise/ds-utils';
 import Result from '@synerise/ds-result';
 import Scrollbar from '@synerise/ds-scrollbar';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { v4 as uuid } from 'uuid';
 import * as S from '../Operators.style';
 import { OperatorsDropdownProps, OperatorsGroup, OperatorsItem } from '../Operator.types';
 import OperatorsDropdownItem from './OperatorsDropdownItem';
@@ -20,6 +21,7 @@ const OperatorsDropdown: React.FC<OperatorsDropdownProps> = ({
   items,
   setDropdownVisible,
   value,
+  visible,
 }) => {
   const defaultTab = React.useMemo(() => {
     const defaultIndex = groups?.findIndex((group: OperatorsGroup) => group.defaultGroup);
@@ -31,6 +33,9 @@ const OperatorsDropdown: React.FC<OperatorsDropdownProps> = ({
   const [activeTab, setActiveTab] = React.useState<number>(defaultTab);
   const [activeGroup, setActiveGroup] = React.useState<OperatorsGroup | undefined>(undefined);
   const [searchInputCanBeFocused, setSearchInputFocus] = React.useState(true);
+  const classNames = React.useMemo(() => {
+    return `ds-operator-item ds-operator-item-${uuid()}`;
+  }, []);
 
   useOnClickOutside(overlayRef, () => {
     setDropdownVisible(false);
@@ -53,6 +58,7 @@ const OperatorsDropdown: React.FC<OperatorsDropdownProps> = ({
         groupedItems[key].forEach((item: OperatorsItem) => {
           resultItems.push(
             <OperatorsDropdownItem
+              className={classNames}
               key={item.name + item.id}
               item={item}
               searchQuery={searchQuery}
@@ -65,7 +71,7 @@ const OperatorsDropdown: React.FC<OperatorsDropdownProps> = ({
       });
       return resultItems;
     },
-    [searchQuery, setDropdownVisible, setSelected, value]
+    [searchQuery, setDropdownVisible, setSelected, value, classNames]
   );
 
   const currentTabItems = React.useMemo((): OperatorsGroup | undefined => {
@@ -80,6 +86,7 @@ const OperatorsDropdown: React.FC<OperatorsDropdownProps> = ({
       .map((item: OperatorsItem) => {
         return (
           <OperatorsDropdownItem
+            className={classNames}
             key={item.name + item.id}
             item={item}
             searchQuery={searchQuery}
@@ -90,7 +97,7 @@ const OperatorsDropdown: React.FC<OperatorsDropdownProps> = ({
           />
         );
       });
-  }, [items, searchQuery, setDropdownVisible, setSelected, value]);
+  }, [items, searchQuery, setDropdownVisible, setSelected, value, classNames]);
 
   const currentItems = React.useMemo((): React.ReactNode[] | undefined => {
     if (searchQuery) {
@@ -101,6 +108,7 @@ const OperatorsDropdown: React.FC<OperatorsDropdownProps> = ({
       return currentTabItems?.subGroups?.map((subGroup: OperatorsGroup) => {
         return (
           <OperatorsDropdownItem
+            className={classNames}
             key={subGroup.name + subGroup.id}
             item={subGroup}
             searchQuery={searchQuery}
@@ -117,7 +125,17 @@ const OperatorsDropdown: React.FC<OperatorsDropdownProps> = ({
     return groupByGroupName(
       items?.filter((item: OperatorsItem) => item.groupId === (groups[activeTab] as OperatorsGroup).id)
     );
-  }, [currentTabItems, items, groups, searchQuery, activeTab, filteredItems, activeGroup, groupByGroupName]);
+  }, [
+    currentTabItems,
+    items,
+    groups,
+    searchQuery,
+    activeTab,
+    filteredItems,
+    activeGroup,
+    groupByGroupName,
+    classNames,
+  ]);
 
   const handleSearch = React.useCallback(
     val => {
@@ -142,7 +160,7 @@ const OperatorsDropdown: React.FC<OperatorsDropdownProps> = ({
         setSearchInputFocus(false);
         // eslint-disable-next-line @typescript-eslint/no-empty-function
         searchQuery &&
-          focusWithArrowKeys(e, 'ds-operator-item', () => {
+          focusWithArrowKeys(e, classNames.split(' ')[1], () => {
             setSearchInputFocus(true);
           });
       }}
@@ -165,6 +183,7 @@ const OperatorsDropdown: React.FC<OperatorsDropdownProps> = ({
               setActiveTab(index);
               setActiveGroup(undefined);
             }}
+            visible={visible}
           />
         </S.TabsWrapper>
       )}
