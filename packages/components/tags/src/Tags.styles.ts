@@ -9,17 +9,21 @@ export const Container = styled.div`
   display: flex;
   align-items: flex-start;
   flex-direction: row;
+  flex-wrap: wrap;
 `;
 
 export const SelectedTags = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
   flex-wrap: wrap;
+  && .ds-tag {
+  margin: 4px;
+  }
 `;
 
 export const AddButton = styled(Button)<{ marginless?: boolean }>`
-  margin: ${(props): string => (props.marginless ? '0' : '0 0 0 8px')};
+  margin: ${(props): string => (props.marginless ? '0' : '0 0 0 4px')};
 
   span {
     padding: 0 4px;

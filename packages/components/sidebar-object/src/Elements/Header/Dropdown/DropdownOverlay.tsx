@@ -9,8 +9,7 @@ import { DropdownWrapper, MenuWrapper } from './Dropdown.style';
 import { Props } from './DropdownOverlay.types';
 
 
-const DropdownOverlay: React.FC<Props> = ({ onClearInput, data, onClickAction, parentFolder, texts,onDropdownOutsideClick }) => {
-  const [value, setValue] = React.useState('');
+const DropdownOverlay: React.FC<Props> = ({ onClearInput, data, onClickAction, parentFolder, texts,onDropdownOutsideClick, onSearchChange, searchValue  }) => {
   const ref = React.useRef<HTMLDivElement>(null);
   useOnClickOutside(ref, () => {
    onDropdownOutsideClick();
@@ -18,10 +17,10 @@ const DropdownOverlay: React.FC<Props> = ({ onClearInput, data, onClickAction, p
   return (
     <DropdownWrapper ref={ref}>
       <Dropdown.SearchInput
-        onSearchChange={setValue}
+        onSearchChange={onSearchChange}
         onClearInput={onClearInput}
         placeholder={texts.search}
-        value={value}
+        value={searchValue}
         iconLeft={<Icon component={<SearchM />} color={theme.palette['grey-600']} />}
         autofocus
       />
