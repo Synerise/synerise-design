@@ -30,6 +30,8 @@ const SidebarObject: React.FC<SidebarObjectProps> = ({
 }) => {
   const [activeTab, setActiveTab] = React.useState(0);
   const [dropdownVisible, setDropdownVisible] = React.useState(false);
+  const onClearInput = (): void => {
+  };
   return (
     <div>
       <Header
@@ -58,10 +60,11 @@ const SidebarObject: React.FC<SidebarObjectProps> = ({
                 parentFolder={parentFolder}
                 data={folders}
                 onDropdownOutsideClick={(): void => setDropdownVisible(false)}
+                onClearInput={onClearInput}
               />
             }
           >
-            <Button onClick={(): void => setDropdownVisible(!dropdownVisible)} type="ghost">
+            <Button onClick={(): void => setDropdownVisible(!dropdownVisible)} mode='label-icon' type="ghost">
               {parentFolder.name}
               <Icon component={<AngleDownS />} />
             </Button>

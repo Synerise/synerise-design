@@ -2,7 +2,6 @@ import * as React from 'react';
 import Drawer from '@synerise/ds-drawer';
 import Icon from '@synerise/ds-icon';
 import Typography from 'antd/lib/typography';
-import InlineEdit from '@synerise/ds-inline-edit';
 import Button from '@synerise/ds-button';
 import {
   AngleDownM,
@@ -97,7 +96,7 @@ const Header: React.FC<HeaderProps> = ({
           {preffix}
           {avatar}
           <Typography.Title style={{ flex: 2, marginLeft: '15px' }} level={4}>
-            <InlineEdit
+            <S.StyledInlineEdit
               input={{
                 name: texts.name,
                 value,

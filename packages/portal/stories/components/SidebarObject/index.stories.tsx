@@ -134,7 +134,6 @@ const stories = {
                       component={getIconSize('large')}
                     />
                   }
-                  tooltip={{ name: 'Silvia Jobs', email: 'silvia.jobs@gmail.com' }}
                   hasStatus={boolean('Has status', true)}
                   style={{ flex: 1, margin: 0 }}
                 />
