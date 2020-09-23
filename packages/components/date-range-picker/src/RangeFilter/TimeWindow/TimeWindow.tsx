@@ -30,7 +30,7 @@ class TimeWindowBase extends React.Component<Props, State> {
     activeDay && this.checkActiveDay(activeDay);
   }
 
-  isDayRestricted = (dayKey: DayKey) => {
+  isDayRestricted = (dayKey: DayKey): boolean => {
     const { days } = this.props;
     return !!days[dayKey] && days[dayKey].restricted;
   };
@@ -56,6 +56,7 @@ class TimeWindowBase extends React.Component<Props, State> {
     } else {
       this.checkActiveDay(dayKey);
     }
+    console.log(this.state);
   };
 
   handleDayChange = (dayKey: DayKey, dayChanges: Partial<DayOptions>): void => {
@@ -308,17 +309,21 @@ class TimeWindowBase extends React.Component<Props, State> {
       return customForm(dayKey, singleMode);
     }
 
-    const { invertibleTime, timeMarks } = this.props;
+    const { invertibleTime } = this.props;
     const dayValue = this.getDayValue(dayKey);
-    const slider = (
+    const rangeForm = (
       <RangeForm
         startDate={this.getDateFromDayValue(dayValue.start)}
         endDate={this.getDateFromDayValue(dayValue.stop)}
-        onStartChange={(value: Date): void => this.handleDayTimeChange([value, this.getDateFromDayValue(dayValue.stop)], dayKey)}
-        onEndChange={(value: Date): void => this.handleDayTimeChange([this.getDateFromDayValue(dayValue.start), value], dayKey)}
+        onStartChange={(value: Date): void =>
+          this.handleDayTimeChange([value, this.getDateFromDayValue(dayValue.stop)], dayKey)
+        }
+        onEndChange={(value: Date): void =>
+          this.handleDayTimeChange([this.getDateFromDayValue(dayValue.start), value], dayKey)
+        }
       />
     );
-    if (!invertibleTime) return slider;
+    if (!invertibleTime) return rangeForm;
     const actions = [
       {
         key: 'invert',
@@ -333,7 +338,7 @@ class TimeWindowBase extends React.Component<Props, State> {
           actions={actions}
           style={{ marginBottom: 16, marginTop: singleMode ? 0 : 44 }}
         />
-        {slider}
+        {rangeForm}
       </>
     );
   };
@@ -344,6 +349,7 @@ class TimeWindowBase extends React.Component<Props, State> {
     const keys = this.getAllKeys();
     const singleMode = keys.length === 1;
     const sliderKey = singleMode ? keys[0] : activeDay;
+    console.log(this.state);
     return (
       <S.TimeWindowContainer style={style}>
         {!singleMode && this.renderGrid(keys)}

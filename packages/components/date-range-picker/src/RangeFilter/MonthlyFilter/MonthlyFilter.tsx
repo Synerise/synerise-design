@@ -77,6 +77,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
       ...data[index],
       periodType: val,
     };
+    console.log(data)
     this.setData(data);
   };
 
@@ -191,6 +192,9 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
                     }}
                     dataSource={PERIODS.map(i => ({
                       text: intl.formatMessage({ id: i.name as string }),
+                      onSelect: (): void => {
+                        this.handleTypeChange(i.value as string, key);
+                      },
                     }))}
                     //                    onChange={({ value }) => this.handleTypeChange(value, key)}
 
@@ -210,15 +214,12 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
                     }}
                     dataSource={PERIODS_TYPE.map(i => ({
                       text: intl.formatMessage({ id: i.translationKey as string }),
+                      onSelect: (): void => {
+                        this.handlePeriodTypeChange(i.value as string, key);
+                      },
                     }))}
                     size="small"
-                    //onChange={({ value }) => this.handlePeriodTypeChange(value, key)}
                   />
-
-                  <S.EditBtn>
-                    <Icon component={<EditS />} size={25} />
-                    <FormattedMessage id="SNRS.MANAGEABLE-LIST.EDIT" />
-                  </S.EditBtn>
                 </S.DropdownHeader>
               ),
               content: (
@@ -238,7 +239,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
               ),
             }}
             headerSuffix={
-              <Tooltip title={intl.formatMessage({ id: 'SNRS.MANAGEABLE-LIST.REMOVE' })}>
+              <Tooltip title={intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.REMOVE' })}>
                 <S.DropdownDeleteBtn onClick={e => this.handleRemoveRow(e, key)}>
                   <Icon component={<CloseM />} size={15} />
                 </S.DropdownDeleteBtn>
@@ -249,7 +250,11 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
         ))}
         <S.AddContainer>
           {value.length < MAX_RULES_ALLOWED && (
-            <Button.Creator  label={<FormattedMessage id="DS.DATE-RANGE-PICKER.ADD-RULE" />} onClick={this.handleAddRow} block />
+            <Button.Creator
+              label={<FormattedMessage id="DS.DATE-RANGE-PICKER.ADD-RULE" />}
+              onClick={this.handleAddRow}
+              block
+            />
           )}
         </S.AddContainer>
       </React.Fragment>

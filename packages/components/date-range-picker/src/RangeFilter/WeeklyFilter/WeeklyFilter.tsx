@@ -15,6 +15,7 @@ class WeeklyFilter extends React.PureComponent<WeeklyFilterProps> {
         days={value}
         numberOfDays={7}
         onChange={(val: Days): void => {
+          console.log('onChange',val)
           onChange(val);
         }}
         timeMarks={{}}

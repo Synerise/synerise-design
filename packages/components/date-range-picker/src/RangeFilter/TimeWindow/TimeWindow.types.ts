@@ -53,4 +53,5 @@ export type Props = {
 
 export type State = {
   activeDay: DayKey | null;
+  selectedDays: any;
 };
