@@ -220,7 +220,7 @@ const stories = {
                 manageLink={withManageLink}
               />
             }
-            textDescription='Description'
+            textDescription=''
           ></SidebarObject>
         </Drawer>
       </div>
