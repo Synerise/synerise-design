@@ -9,12 +9,20 @@ interface Props {
   clearSearch?: () => void;
   hideDropdown?: () => void;
   select: (item: ParameterItem | ParameterGroup) => void;
+  className: string;
 }
 
-const ParameterDropdownItem: React.FC<Props> = ({ item, clearSearch, searchQuery, hideDropdown, select }) => {
+const ParameterDropdownItem: React.FC<Props> = ({
+  item,
+  clearSearch,
+  searchQuery,
+  hideDropdown,
+  select,
+  className,
+}) => {
   return (
     <Menu.Item
-      className="ds-parameter-item"
+      className={className}
       key={item.name + item.id}
       prefixel={<Icon component={item.icon} />}
       highlight={searchQuery}

@@ -6,7 +6,7 @@ type Dimensions = {
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const useResize = (componentRef: React.RefObject<any>): Dimensions => {
+const useResize = (componentRef: React.RefObject<any>, visible = true): Dimensions => {
   const [dimensions, setDimensions] = React.useState({ width: 0, height: 0 });
 
   React.useEffect(() => {
@@ -28,7 +28,7 @@ const useResize = (componentRef: React.RefObject<any>): Dimensions => {
     return (): void => {
       window.removeEventListener('resize', handleResize);
     };
-  }, [componentRef, setDimensions]);
+  }, [componentRef, setDimensions, visible]);
 
   return dimensions;
 };

@@ -146,6 +146,7 @@ export type ParameterDropdownProps = {
   groups?: ParameterGroup[];
   items?: ParameterItem[];
   texts: FactorsTexts;
+  visible: boolean;
 };
 
 export type FormulaModalProps = {

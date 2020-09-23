@@ -7,6 +7,7 @@ export type TabsProps = {
   configuration?: Configuration;
   underscore?: boolean;
   block?: boolean;
+  visible?: boolean;
 };
 
 export type Configuration = {

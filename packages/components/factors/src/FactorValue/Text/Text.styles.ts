@@ -13,7 +13,11 @@ export const IconWrapper = styled.span`
 `;
 
 export const Input = styled(RawInput)`
+  padding: 0;
   &:before {
     display: none;
+  }
+  input {
+    max-height: 30px;
   }
 `;
