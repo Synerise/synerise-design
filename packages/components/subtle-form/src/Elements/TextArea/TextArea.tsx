@@ -39,7 +39,7 @@ const SubtleTextArea: React.FC<SubtleTextAreaProps> = ({
 
   const handleDeactivate = React.useCallback(() => {
     setActive(false);
-    setBlurred(true)
+    setBlurred(true);
   }, []);
   const handleActivate = React.useCallback(() => {
     setActive(true);
@@ -68,7 +68,11 @@ const SubtleTextArea: React.FC<SubtleTextAreaProps> = ({
         ) : (
           <S.Inactive rows={visibleRows} onClick={handleActivate} blurred={blurred}>
             <S.MainContent>
-              <S.ValueArea value={value || placeholder} onBlur={handleDeactivate} grey={!value && !!placeholder} />
+              <S.ValueArea
+                value={value && !!value.trim() ? value : placeholder}
+                onBlur={handleDeactivate}
+                grey={!value && !!placeholder}
+              />
             </S.MainContent>
             <S.Suffix>
               <Tooltip title={suffixTooltip}>
