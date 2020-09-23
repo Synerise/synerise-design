@@ -7,6 +7,7 @@ import { focusWithArrowKeys, useOnClickOutside } from '@synerise/ds-utils';
 import Result from '@synerise/ds-result';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import Scrollbar from '@synerise/ds-scrollbar';
+import { v4 as uuid } from 'uuid';
 import * as S from './Parameter.style';
 import { ParameterDropdownProps, ParameterGroup, ParameterItem } from '../../Factors.types';
 import ParameterDropdownItem from './ParameterDropdownItem';
@@ -17,6 +18,7 @@ const ParameterDropdown: React.FC<ParameterDropdownProps> = ({
   groups,
   items,
   setDropdownVisible,
+  visible,
 }) => {
   const defaultTab = React.useMemo(() => {
     const defaultIndex = groups?.findIndex((group: ParameterGroup) => group.defaultGroup);
@@ -28,6 +30,10 @@ const ParameterDropdown: React.FC<ParameterDropdownProps> = ({
   const [activeTab, setActiveTab] = React.useState<number>(defaultTab);
   const [activeGroup, setActiveGroup] = React.useState<ParameterGroup | undefined>(undefined);
   const [searchInputCanBeFocused, setSearchInputFocus] = React.useState(true);
+
+  const classNames = React.useMemo(() => {
+    return `ds-parameter-item ds-parameter-item-${uuid()}`;
+  }, []);
 
   useOnClickOutside(overlayRef, () => {
     setDropdownVisible(false);
@@ -45,6 +51,7 @@ const ParameterDropdown: React.FC<ParameterDropdownProps> = ({
       .map((item: ParameterItem) => {
         return (
           <ParameterDropdownItem
+            className={classNames}
             key={item.name + item.id}
             item={item}
             searchQuery={searchQuery}
@@ -54,7 +61,7 @@ const ParameterDropdown: React.FC<ParameterDropdownProps> = ({
           />
         );
       });
-  }, [items, searchQuery, setDropdownVisible, setSelected]);
+  }, [items, searchQuery, setDropdownVisible, setSelected, classNames]);
 
   const currentItems = React.useMemo((): React.ReactNode[] | undefined => {
     if (searchQuery) {
@@ -65,6 +72,7 @@ const ParameterDropdown: React.FC<ParameterDropdownProps> = ({
       return currentTabItems?.subGroups?.map((subGroup: ParameterGroup) => {
         return (
           <ParameterDropdownItem
+            className={classNames}
             key={subGroup.name + subGroup.id}
             item={subGroup}
             searchQuery={searchQuery}
@@ -79,6 +87,7 @@ const ParameterDropdown: React.FC<ParameterDropdownProps> = ({
         .map((item: ParameterItem) => {
           return (
             <ParameterDropdownItem
+              className={classNames}
               key={item.name + item.id}
               item={item}
               searchQuery={searchQuery}
@@ -94,6 +103,7 @@ const ParameterDropdown: React.FC<ParameterDropdownProps> = ({
         .map((item: ParameterItem) => {
           return (
             <ParameterDropdownItem
+              className={classNames}
               key={item.name + item.id}
               item={item}
               searchQuery={searchQuery}
@@ -106,6 +116,7 @@ const ParameterDropdown: React.FC<ParameterDropdownProps> = ({
     return items?.map((item: ParameterItem) => {
       return (
         <ParameterDropdownItem
+          className={classNames}
           key={item.name + item.id}
           item={item}
           searchQuery={searchQuery}
@@ -124,6 +135,7 @@ const ParameterDropdown: React.FC<ParameterDropdownProps> = ({
     filteredItems,
     setDropdownVisible,
     setSelected,
+    classNames,
   ]);
 
   const handleSearch = React.useCallback(
@@ -150,7 +162,7 @@ const ParameterDropdown: React.FC<ParameterDropdownProps> = ({
         setSearchInputFocus(false);
         // eslint-disable-next-line @typescript-eslint/no-empty-function
         searchQuery &&
-          focusWithArrowKeys(e, 'ds-parameter-item', () => {
+          focusWithArrowKeys(e, classNames.split(' ')[1], () => {
             setSearchInputFocus(true);
           });
       }}
@@ -173,6 +185,7 @@ const ParameterDropdown: React.FC<ParameterDropdownProps> = ({
               setActiveTab(index);
               setActiveGroup(undefined);
             }}
+            visible={visible}
           />
         </S.TabsWrapper>
       )}

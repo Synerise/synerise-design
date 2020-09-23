@@ -33,6 +33,7 @@ const ParameterInput: React.FC<InputProps> = ({ value, onChange, parameters, tex
           setSelected={handleChange}
           {...restParameters}
           texts={texts}
+          visible={dropdownVisible}
         />
       }
     >

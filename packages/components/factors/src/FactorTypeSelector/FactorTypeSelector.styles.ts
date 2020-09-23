@@ -5,7 +5,7 @@ import Button from '@synerise/ds-button';
 export const FactorTypeList = styled(Menu)`
   padding: 8px;
 
-  .ds-menu-item {
+  .ds-factor-type {
     padding: 0;
   }
 `;
