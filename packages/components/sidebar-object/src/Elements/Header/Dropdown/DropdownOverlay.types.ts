@@ -8,4 +8,6 @@ export interface Props {
   parentFolder: FolderItem;
   texts: HeaderTexts;
   onDropdownOutsideClick: () => void;
+  onSearchChange: (value: string) => void;
+  searchValue: string;
 }

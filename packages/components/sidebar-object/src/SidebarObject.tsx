@@ -30,7 +30,9 @@ const SidebarObject: React.FC<SidebarObjectProps> = ({
 }) => {
   const [activeTab, setActiveTab] = React.useState(0);
   const [dropdownVisible, setDropdownVisible] = React.useState(false);
+  const [value, setValue] = React.useState('');
   const onClearInput = (): void => {
+    setValue('');
   };
   return (
     <div>
@@ -61,6 +63,8 @@ const SidebarObject: React.FC<SidebarObjectProps> = ({
                 data={folders}
                 onDropdownOutsideClick={(): void => setDropdownVisible(false)}
                 onClearInput={onClearInput}
+                searchValue={value}
+                onSearchChange={setValue}
               />
             }
           >
