@@ -5,6 +5,7 @@ import Result from '@synerise/ds-result';
 import { focusWithArrowKeys, useOnClickOutside } from '@synerise/ds-utils';
 import Icon from '@synerise/ds-icon';
 import { SearchM } from '@synerise/ds-icon/dist/icons';
+import { v4 as uuid } from 'uuid';
 import { SubjectItem, SubjectListProps } from '../Subject.types';
 import * as S from './SubjectList.styles';
 import SubjectListItem from './SubjectListItem';
@@ -13,6 +14,9 @@ const SubjectList: React.FC<SubjectListProps> = ({ items, selectItem, hideDropdo
   const [searchQuery, setSearchQuery] = React.useState('');
   const overlayRef = React.useRef<HTMLDivElement>(null);
   const [searchInputCanBeFocused, setSearchInputFocus] = React.useState(true);
+  const classNames = React.useMemo(() => {
+    return `ds-subject-item ds-subject-item-${uuid()}`;
+  }, []);
 
   useOnClickOutside(overlayRef, () => {
     hideDropdown();
@@ -24,6 +28,7 @@ const SubjectList: React.FC<SubjectListProps> = ({ items, selectItem, hideDropdo
       .map((item: SubjectItem) => {
         return (
           <SubjectListItem
+            className={classNames}
             searchQuery={searchQuery}
             key={`${item.name}-${item.id}`}
             select={selectItem}
@@ -33,7 +38,7 @@ const SubjectList: React.FC<SubjectListProps> = ({ items, selectItem, hideDropdo
           />
         );
       });
-  }, [items, searchQuery, hideDropdown, selectItem, setSearchQuery]);
+  }, [items, searchQuery, hideDropdown, selectItem, setSearchQuery, classNames]);
 
   return (
     <Dropdown.Wrapper
@@ -42,7 +47,7 @@ const SubjectList: React.FC<SubjectListProps> = ({ items, selectItem, hideDropdo
         setSearchInputFocus(false);
         // eslint-disable-next-line @typescript-eslint/no-empty-function
         searchQuery &&
-          focusWithArrowKeys(e, 'ds-subject-item', () => {
+          focusWithArrowKeys(e, classNames.split(' ')[1], () => {
             setSearchInputFocus(true);
           });
       }}
