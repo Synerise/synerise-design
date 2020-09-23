@@ -32,5 +32,9 @@ export type HeaderTexts = {
   moveIcon: string;
   folder: string;
   editIcon: string;
+  placeholder: string;
+  labelName: string;
+  labelTooltip: string;
+  suffixTooltip: string;
 
 };
