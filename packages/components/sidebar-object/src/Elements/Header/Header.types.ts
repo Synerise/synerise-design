@@ -33,8 +33,8 @@ export type HeaderTexts = {
   folder: string;
   editIcon: string;
   placeholder: string;
-  labelName: string;
-  labelTooltip: string;
-  suffixTooltip: string;
+  labelName: string | React.ReactNode;
+  labelTooltip: string | React.ReactNode;
+  suffixTooltip: string | React.ReactNode;
 
 };

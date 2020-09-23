@@ -5,9 +5,6 @@ import { ContentProps } from './Content.types';
 import { ContentWrapper, InlineEditWrapper, TagsWrapper } from './Content.style';
 
 const Content: React.FC<ContentProps> = ({ description, tags, textDescription,texts }) => {
-  const renderLabel = (text: string): object => {
-    return <div style={{ maxWidth: '200px', textOverflow: 'ellipsis', overflow: 'hidden' }}>{text}</div>;
-  };
   const [value, setValue] = React.useState<string | undefined>(textDescription);
 
   return (
@@ -21,7 +18,7 @@ const Content: React.FC<ContentProps> = ({ description, tags, textDescription,te
           value={value}
           onChange={setValue}
           placeholder={texts.placeholder}
-          label={renderLabel(texts.labelName)}
+          label={texts.labelName}
           labelTooltip={texts.labelTooltip}
           suffixTooltip={texts.suffixTooltip}
         />
