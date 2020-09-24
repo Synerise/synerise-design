@@ -19,7 +19,7 @@ import {
 import Icon from '@synerise/ds-icon';
 import * as React from 'react';
 
-const LayoutAppMenu = (props: {top: number}) => (
+const LayoutAppMenu = (props) => (
     <AppMenu {...props} activeItem='campaigns' footer={(
       <AppMenu.Item
         name="Settings"
