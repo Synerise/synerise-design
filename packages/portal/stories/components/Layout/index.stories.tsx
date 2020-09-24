@@ -19,6 +19,7 @@ const stories = {
     const showHeader = boolean('Show header', true);
     const showLeft = boolean('Show left', true);
     const showRight = boolean('Show right', true);
+    const showSubheader = boolean('Show subheader', true);
     const transitionTime = number('Transition time', 100, { range: true, min: 1, max: 10000, step: 1 });
     const transitionName = select('Transition name', ['default', 'slide'], 'default');
     const leftLines = number('Left lines', 24, { range: true, min: 0, max: 256, step: 1 });
@@ -49,6 +50,7 @@ const stories = {
               </div>
             )
           }
+          subheader={showSubheader && <PageHeader title={'Layout subheader'} bar={'Description'} />}
           transitionName={transitionName}
           transitionTime={transitionTime}
         >
