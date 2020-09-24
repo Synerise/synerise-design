@@ -1,7 +1,8 @@
 import * as React from 'react';
 import Scrollbar from '@synerise/ds-scrollbar';
-import { AngleRightM } from '@synerise/ds-icon/dist/icons';
+import { AngleLeftS, AngleRightS } from '@synerise/ds-icon/dist/icons';
 import Icon from '@synerise/ds-icon';
+import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import * as S from './Layout.styles';
 import { LayoutProps } from './Layout.types';
 
@@ -15,14 +16,16 @@ const Layout: React.FC<LayoutProps> = props => {
       <S.LayoutBody>
         <>
           {left ? (
-            <S.LayoutSidebar className="ds-layout__sidebar" style={styles && styles.left} opened={leftSidebarOpened}>
-              <Scrollbar absolute>
-                <S.LayoutSidebarInner style={styles && styles.leftInner}>{left}</S.LayoutSidebarInner>
-              </Scrollbar>
+            <S.LayoutSidebarWrapper opened={leftSidebarOpened}>
+              <S.LayoutSidebar className="ds-layout__sidebar" style={styles && styles.left}>
+                <Scrollbar absolute>
+                  <S.LayoutSidebarInner style={styles && styles.leftInner}>{left}</S.LayoutSidebarInner>
+                </Scrollbar>
+              </S.LayoutSidebar>
               <S.SidebarButton onClick={(): void => setLeftSidebarOpened(!leftSidebarOpened)}>
-                <Icon component={<AngleRightM />} />
+                <Icon component={<AngleRightS />} color={theme.palette.white} />
               </S.SidebarButton>
-            </S.LayoutSidebar>
+            </S.LayoutSidebarWrapper>
           ) : null}
         </>
         <S.LayoutMain className="ds-layout__main" data-popup-container style={styles && styles.main}>
@@ -33,18 +36,16 @@ const Layout: React.FC<LayoutProps> = props => {
         </S.LayoutMain>
         <>
           {right ? (
-            <S.LayoutSidebar
-              className="ds-layout__sidebar ds-layout__sidebar--right"
-              style={styles && styles.right}
-              opened={rightSidebarOpened}
-            >
-              <Scrollbar absolute>
-                <S.LayoutSidebarInner style={styles && styles.rightInner}>{right}</S.LayoutSidebarInner>
-              </Scrollbar>
-              <S.SidebarButton onClick={(): void => setRightSidebarOpened(!rightSidebarOpened)}>
-                <Icon component={<AngleRightM />} />
+            <S.LayoutSidebarWrapper opened={rightSidebarOpened} isRight>
+              <S.LayoutSidebar className="ds-layout__sidebar ds-layout__sidebar--right" style={styles && styles.right}>
+                <Scrollbar absolute>
+                  <S.LayoutSidebarInner style={styles && styles.rightInner}>{right}</S.LayoutSidebarInner>
+                </Scrollbar>
+              </S.LayoutSidebar>
+              <S.SidebarButton onClick={(): void => setRightSidebarOpened(!rightSidebarOpened)} isRight>
+                <Icon component={<AngleLeftS />} color={theme.palette.white} />
               </S.SidebarButton>
-            </S.LayoutSidebar>
+            </S.LayoutSidebarWrapper>
           ) : null}
         </>
       </S.LayoutBody>
