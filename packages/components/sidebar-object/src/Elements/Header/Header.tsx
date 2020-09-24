@@ -69,7 +69,7 @@ const Header: React.FC<HeaderProps> = ({
                   </Menu.Item>
                 )}
                 <MenuWrapper>
-              {onId && <Menu.Item prefixel={<Icon component={<CopyClipboardM />} />}>{`ID: ${inputObject.id}`}</Menu.Item>}
+              {onId && <Menu.Item style={{padding: '0 12px'}} prefixel={<Icon component={<CopyClipboardM />} />}>{`ID: ${inputObject.id}`}</Menu.Item>}
               </MenuWrapper>
             </Menu>
             </DropdownWrapper>
