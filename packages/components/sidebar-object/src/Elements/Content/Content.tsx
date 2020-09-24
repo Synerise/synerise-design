@@ -14,7 +14,7 @@ const Content: React.FC<ContentProps> = ({ description, tags, textDescription,te
       <InlineEditWrapper>
         <SubtleForm.TextArea
           minRows={3}
-          maxRows={6}
+          maxRows={10}
           value={value}
           onChange={setValue}
           placeholder={texts.placeholder}

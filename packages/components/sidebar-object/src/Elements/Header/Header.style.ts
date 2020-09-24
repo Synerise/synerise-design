@@ -14,7 +14,7 @@ export const ButtonWrapper = styled.div`
 export const StyledInlineEdit = styled(InlineEdit)<InlineEditProps>`
   
   && .autosize-input > input {
-    max-width:400px;
+    max-width:350px;
     text-overflow: ellipsis;
     overflow: hidden;
   }
@@ -28,8 +28,8 @@ export const DrawerHeaderBar = styled.div`
 
 export const MenuWrapper = styled.div`
   border-top: 1px dashed ${(props): string => props.theme.palette['grey-300']};
-  margin: 6px 0 0;
-  padding: 8px 0 0 4px;
+  margin: 8px 0 0;
+  padding: 8px 0 0 0px;
 `;
 export const DropdownWrapper = styled.div`
   background: ${(props): string => props.theme.palette.white};
