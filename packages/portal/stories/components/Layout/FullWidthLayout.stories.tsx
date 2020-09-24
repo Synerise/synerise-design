@@ -35,7 +35,7 @@ const stories = {
 };
 
 export default {
-  name: 'Components/Layout',
+  name: 'Layout/Layout',
   withoutCenter: true,
   stories,
   Component: Layout,
