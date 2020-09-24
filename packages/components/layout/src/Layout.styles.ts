@@ -16,51 +16,94 @@ export const LayoutHeader = styled.div`
   border-bottom: 1px solid ${(props): string => props.theme.palette['grey-200']};
 `;
 
+export const LayoutSubheader = styled.div`
+  margin: 0 1px;
+  position: relative;
+  max-width: 100%;
+  top: 0;
+  box-shadow: 0 4px 12px 0 rgba(35, 41, 54, 0.04);
+`;
+
 export const LayoutBody = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-  min-width: 0;
   min-height: 0;
+  min-width: 0;
+  position: relative;
   ${mediaQuery.to.medium`overflow: auto;`};
   ${mediaQuery.from.medium`flex-direction: row;`};
+  //min-width: 768px;
 `;
 
 export const LayoutMain = styled.div`
   flex: 1;
   position: relative;
-  ${mediaQuery.from.medium`overflow: auto;`};
 `;
 
 export const LayoutMainInner = styled.div`
-  padding: 24px 12px;
+  padding: 24px;
   ${mediaQuery.to.medium`flex: 0 0 auto;`};
   ${mediaQuery.from.medium`padding: 24px;`};
 `;
 
-export const LayoutSidebar = styled.div`
+export const SidebarButton = styled.button`
+  width: 36px;
+  height: 44px;
+  background-color: ${(props): string => props.theme.palette['grey-500']};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  cursor: pointer;
+  border-radius: 0 3px 3px 0;
+  right: -44px;
+  top: 48px;
+`;
+
+export const LayoutSidebar = styled.div<{ opened: boolean }>`
   z-index: 1;
   overflow-y: auto;
   overflow-x: hidden;
   background-color: #fff;
   height: 100%;
+  box-shadow: 0 4px 12px 0 rgba(35, 41, 54, 0.04);
+  transition: all 0.3s ease-in-out;
   ${mediaQuery.to.medium`flex: 0 0 auto;`};
-  ${mediaQuery.from.medium`flex: 0 1 324px; width: 324px;`};
+  ${mediaQuery.from.medium`flex: 0 1 320px; width: 320px;`};
 
   ${mediaQuery.from.medium`
     &.slide-enter {
       max-width: 0;
     }
     &.slide-enter.slide-enter-active {
-      max-width: 324px;
+      max-width: 320px;
     }
     &.slide-leave {
-      max-width: 324px;
+      max-width: 320px;
     }
     &.slide-leave.slide-leave-active {
       max-width: 0;
     }
   `};
+  ${mediaQuery.to.medium`
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: ${(props): string => (props.opened ? 'translateX(0)' : 'translateX(-320px)')};
+    width: 320px
+  `}
+  &.ds-layout__sidebar--right {
+    ${mediaQuery.to.medium`
+    right: 0;
+    left: auto;
+    transform: translateX(320px);
+  `}
+    ${SidebarButton} {
+      border-radius: 0 3px 3px 0;
+      left: -44px;
+    }
+  }
 `;
 
 export const LayoutSidebarInner = styled.div`
