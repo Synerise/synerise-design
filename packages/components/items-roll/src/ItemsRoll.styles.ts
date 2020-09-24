@@ -36,7 +36,10 @@ export const ShowButtonsWrapper = styled.div`
 `;
 
 export const ListWrapper = styled.div`
-  && {
+  &&& {
+  .ant-menu-inline {
+    border: none;
+    }
     .ant-menu {
       .items-roll-list-item {
         padding-left: 12px;
