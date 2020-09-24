@@ -21,6 +21,7 @@ export const LayoutSubheader = styled.div`
   position: relative;
   max-width: 100%;
   top: 0;
+  z-index: 1;
   box-shadow: 0 4px 12px 0 rgba(35, 41, 54, 0.04);
 `;
 
@@ -31,7 +32,7 @@ export const LayoutBody = styled.div`
   min-height: 0;
   min-width: 0;
   position: relative;
-  ${mediaQuery.to.medium`overflow: auto;`};
+  overflow: hidden;
   ${mediaQuery.from.medium`flex-direction: row;`};
   //min-width: 768px;
 `;
@@ -47,7 +48,7 @@ export const LayoutMainInner = styled.div`
   ${mediaQuery.from.medium`padding: 24px;`};
 `;
 
-export const SidebarButton = styled.button`
+export const SidebarButton = styled.button<{ isRight?: boolean }>`
   width: 36px;
   height: 44px;
   background-color: ${(props): string => props.theme.palette['grey-500']};
@@ -56,12 +57,32 @@ export const SidebarButton = styled.button`
   justify-content: center;
   position: absolute;
   cursor: pointer;
-  border-radius: 0 3px 3px 0;
-  right: -44px;
+  border-radius: ${(props): string => (props.isRight ? '3px 0 0 3px' : '0 3px 3px 0')};
+  right: ${(props): string => (props.isRight ? 'auto' : '-36px')};
+  left: ${(props): string => (!props.isRight ? 'auto' : '-36px')};
   top: 48px;
+  outline: 0;
+  border: 0;
 `;
 
-export const LayoutSidebar = styled.div<{ opened: boolean }>`
+export const LayoutSidebarWrapper = styled.div<{ opened: boolean; isRight?: boolean }>`
+  position: absolute;
+  overflow: visible;
+  width: 320px;
+  height: 100%;
+  transition: transform .3s ease-in-out;
+  left: ${(props): string => (props.isRight ? 'auto' : '0')};
+  right: ${(props): string => (props.isRight ? '0' : 'auto')};
+  z-index: 10;
+  transform: ${(props): string => {
+    if (props.opened) {
+      return 'translateX(0)';
+    }
+    return props.isRight ? 'translateX(320px)' : 'translateX(-320px)';
+  }};
+  )`;
+
+export const LayoutSidebar = styled.div`
   z-index: 1;
   overflow-y: auto;
   overflow-x: hidden;
@@ -90,19 +111,8 @@ export const LayoutSidebar = styled.div<{ opened: boolean }>`
     position: absolute;
     top: 0;
     left: 0;
-    transform: ${(props): string => (props.opened ? 'translateX(0)' : 'translateX(-320px)')};
     width: 320px
   `}
-  &.ds-layout__sidebar--right {
-    ${mediaQuery.to.medium`
-    right: 0;
-    left: auto;
-    transform: translateX(320px);
-  `}
-    ${SidebarButton} {
-      border-radius: 0 3px 3px 0;
-      left: -44px;
-    }
   }
 `;
 
