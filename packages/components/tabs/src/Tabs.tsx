@@ -134,6 +134,7 @@ const Tabs: React.FC<TabsProps> = ({
               isActive={index === activeTab}
               disabled={tab.disabled}
               block={block}
+              suffixel={tab.suffixel}
             />
           );
         })}
