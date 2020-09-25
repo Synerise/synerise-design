@@ -176,13 +176,31 @@
       "WEEKDAYS-SHORT-3": "Thu",
       "WEEKDAYS-SHORT-4": "Fri",
       "WEEKDAYS-SHORT-5": "Sat",
-      "WEEKDAYS-SHORT-6": "Mun",
+      "WEEKDAYS-SHORT-6": "Sun",
       "DAYS-OF": "Days of",
       "WEEKIN": "week",
       "MONTHIN": "month",
       "BEGINNING": "beginning",
       "END": "end",
-      "CLICK-TO-SELECT": "Click to select"
+      "CLICK-TO-SELECT": "Click to select",
+      "NTH": {
+        "1": "1st",
+        "2": "2nd",
+        "3": "3rd",
+        "4": "4th",
+        "5": "5th"
+      },
+      "WEEKDAYS_LONG": {
+        "1": "Monday",
+        "2": "Tuesday",
+        "3": "Wednesday",
+        "4": "Thursday",
+        "5": "Friday",
+        "6": "Saturday",
+        "7": "Sunday"
+      },
+      "EVERY_DAY": "every day",
+      "DATES_FILTER": "Date filter"
     },
     "CARD-TAB": {
       "REMOVE": "Remove",
