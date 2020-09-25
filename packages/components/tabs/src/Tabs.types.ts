@@ -20,6 +20,7 @@ export type TabItem = {
   label?: string | React.ReactNode;
   icon?: React.ReactNode;
   disabled?: boolean;
+  suffixel?: React.ReactNode | React.ReactText;
 };
 
 export type TabWithRef = TabItem & {
