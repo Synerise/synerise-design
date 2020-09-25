@@ -2,16 +2,17 @@ import styled from 'styled-components';
 import InlineSelect from '@synerise/ds-inline-edit/dist/InlineSelect/InlineSelect';
 import { InlineSelectProps } from '@synerise/ds-inline-edit/dist/InlineSelect/InlineSelect.types';
 
-export const Wrapper = styled.div`
+export const MonthlyFilterWrapper = styled.div`
+  padding-top: 24px;
+`;
+export const ContentWrapper = styled.div`
+  margin-left: -8px;
 `;
 
 export const DropdownLabel = styled.span`
   vertical-align: middle;
   font-weight: 500;
-  color: ${props => props.theme.variable('@gray-color-lighter-2')};
-
   b {
-    color: ${props => props.theme.variable('@gray-color')};
     font-weight: 500;
     margin-right: 1em;
     display: inline-block;
@@ -59,7 +60,7 @@ export const DropdownHeader = styled.div`
 export const DropdownDeleteBtn = styled.div`
   && {
     &:hover .icon {
-      color: ${props => props.theme.variable('@red-color')};
+      color: ${(props): string => props.theme.palette['red-600']};
     }
   }
 `;
@@ -75,9 +76,6 @@ export const AddButton = styled.div`
   padding-bottom: 20px;
   transition: 0.2s ease-in-out;
   cursor: pointer;
-  &:hover {
-    color: ${props => props.theme.variable('@primary-color')};
-  }
   span {
     display: inline-block;
     vertical-align: middle;
@@ -85,5 +83,5 @@ export const AddButton = styled.div`
   }
 `;
 export const Select = styled(InlineSelect)<InlineSelectProps>`
-   margin-left: 6px;
-`
+  margin: 2px 0 0 6px;
+`;

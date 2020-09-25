@@ -9,8 +9,8 @@ export type Action = {
 };
 
 type HeaderProps = {
-  title: string;
-  actions: Action[];
+  title: string | React.ReactNode;
+  actions?: Action[];
   style: React.CSSProperties;
 };
 

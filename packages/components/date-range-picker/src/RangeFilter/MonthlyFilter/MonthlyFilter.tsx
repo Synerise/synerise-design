@@ -1,17 +1,16 @@
 import * as React from 'react';
 import { FormattedMessage, injectIntl } from 'react-intl';
-import { CloseM, EditS } from '@synerise/ds-icon/dist/icons';
-import InlineSelect from '@synerise/ds-inline-edit/dist/InlineSelect/InlineSelect';
+import { CloseM } from '@synerise/ds-icon/dist/icons';
 import Icon from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 
-import * as S from './MonthlyFilter.styles';
-import { MONTHLY_TYPES, MONTH_DAYS, PERIODS, PERIODS_TYPE, MAX_RULES_ALLOWED, defaultId } from '../constants';
-import { Month, MonthlyFilterProps } from './MonthlyFilter.types';
 import ContentItem from '@synerise/ds-manageable-list/dist/Item/ContentItem/ContentItem';
 import { Tag, TagShape } from '@synerise/ds-tags';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import Button from '@synerise/ds-button';
+import { Month, MonthlyFilterProps } from './MonthlyFilter.types';
+import { MONTHLY_TYPES, MONTH_DAYS, PERIODS, PERIODS_TYPE, MAX_RULES_ALLOWED, defaultId } from '../constants';
+import * as S from './MonthlyFilter.styles';
 import TimeWindow from '../TimeWindow/TimeWindow';
 
 class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
@@ -26,7 +25,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
     value.length && this.handleCollapse(value[0].id);
   }
 
-  setData = (definition: string): void => {
+  setData = (definition: string | object): void => {
     const { onChange } = this.props;
     return onChange(definition);
   };
@@ -62,6 +61,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
   handleTypeChange = (val: string, index: number): void => {
     const { value } = this.props;
     const data = [...value];
+
     data[index] = {
       ...data[index],
       period: val,
@@ -77,7 +77,6 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
       ...data[index],
       periodType: val,
     };
-    console.log(data)
     this.setData(data);
   };
 
@@ -92,11 +91,13 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
     const { intl } = this.props;
     const weekStartIndex = Math.floor(index / 7);
     const dayOfWeek = index - weekStartIndex * 7;
-    const weekday = intl.formatMessage({ id: `DS.DATE-RANGE-PICKER.WEEKDAYS_LONG.${dayOfWeek}` });
+    const weekday = intl.formatMessage({ id: `DS.DATE-RANGE-PICKER.WEEKDAYS_LONG.${dayOfWeek + 1}` });
     const nthWeek = intl.formatMessage({
-      id: `SNRS.NTH.${weekStartIndex === 5 ? 'LAST' : weekStartIndex + 1}`,
+      id: `DS.DATE-RANGE-PICKER.NTH.${weekStartIndex === 5 ? 'LAST' : weekStartIndex + 1}`,
     });
-    return long ? `${nthWeek} ${weekday}` : intl.formatMessage({ id: `DS.DATE-RANGE-PICKER.WEEKDAYS.${dayOfWeek}` });
+    return long
+      ? `${nthWeek} ${weekday}`
+      : intl.formatMessage({ id: `DS.DATE-RANGE-PICKER.WEEKDAYS-SHORT-${dayOfWeek}` });
   };
 
   dayMonthFormatter = (i: number, long: boolean): string => {
@@ -133,7 +134,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
         inverted: item.periodType === 'ending',
         rowLabelFormatter: (rowIndex: number): string =>
           intl.formatMessage({
-            id: `SNRS.NTH.${rowIndex === 0 && item.periodType === 'ending' ? 'LAST' : rowIndex + 1}`,
+            id: `DS.DATE-RANGE-PICKER.NTH.${rowIndex + 1}`,
           }),
       },
     };
@@ -143,7 +144,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
   handleCollapse = (id: React.ReactText) => {
     const { visible } = this.state;
     const updatedVisible = {};
-    for (let i in visible) {
+    for (const i in visible) {
       updatedVisible[i.id] = !visible[i];
     }
     updatedVisible[id] = true;
@@ -155,8 +156,9 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
   render(): JSX.Element {
     const { value, intl } = this.props;
     const { visible } = this.state;
+    const data = [...value];
     return (
-      <React.Fragment>
+      <S.MonthlyFilterWrapper>
         {value.map((item, key) => (
           <ContentItem
             item={{
@@ -172,32 +174,29 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
               name: (
                 <S.DropdownHeader className={visible[item.id] && 'dropdown-header-visible'}>
                   <S.DropdownLabel>
-                    <b>
-                      <FormattedMessage
-                        id="DS.DATE-RANGE-PICKER.RULE"
-                        values={{
-                          value: key + 1,
-                        }}
-                      />
-                    </b>{' '}
+                    <FormattedMessage
+                      id="DS.DATE-RANGE-PICKER.RULE"
+                      values={{
+                        value: key + 1,
+                      }}
+                    />
+                    {' '}
                     <FormattedMessage id="DS.DATE-RANGE-PICKER.DAYS-OF" />
                   </S.DropdownLabel>
                   <S.Select
                     expanded={false}
+                    placeholder={intl.formatMessage({ id: PERIODS[0].translationKey })}
                     input={{
-                      value: intl.formatMessage({ id: PERIODS[0].translationKey }),
-                      name: 'name-of-input',
+                      name: 'period',
                       maxLength: 120,
-                      placeholder: 'This is placeholder',
                     }}
                     dataSource={PERIODS.map(i => ({
+                      checked: data[key]?.period === i.value,
                       text: intl.formatMessage({ id: i.name as string }),
                       onSelect: (): void => {
                         this.handleTypeChange(i.value as string, key);
                       },
                     }))}
-                    //                    onChange={({ value }) => this.handleTypeChange(value, key)}
-
                     size="small"
                   />
 
@@ -206,13 +205,14 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
                   </S.DropdownLabel>
                   <S.Select
                     expanded={false}
+                    placeholder={intl.formatMessage({ id: PERIODS_TYPE[0].translationKey })}
                     input={{
-                      value: intl.formatMessage({ id: PERIODS_TYPE[0].translationKey }),
-                      name: 'name-of-input',
+                      name: 'period-type',
                       maxLength: 120,
-                      placeholder: 'This is placeholder',
                     }}
                     dataSource={PERIODS_TYPE.map(i => ({
+                      checked: data[key]?.periodType === i.value,
+
                       text: intl.formatMessage({ id: i.translationKey as string }),
                       onSelect: (): void => {
                         this.handlePeriodTypeChange(i.value as string, key);
@@ -223,7 +223,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
                 </S.DropdownHeader>
               ),
               content: (
-                <S.Wrapper>
+                <S.ContentWrapper>
                   <TimeWindow
                     // eslint-disable-next-line react/no-array-index-key
                     key={`${item.period}_${key}`}
@@ -235,7 +235,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
                     timeMarks={{}}
                     {...this.getTimeWindowSettings(item)}
                   />
-                </S.Wrapper>
+                </S.ContentWrapper>
               ),
             }}
             headerSuffix={
@@ -246,7 +246,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
               </Tooltip>
             }
             texts={{}}
-          ></ContentItem>
+          />
         ))}
         <S.AddContainer>
           {value.length < MAX_RULES_ALLOWED && (
@@ -257,7 +257,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
             />
           )}
         </S.AddContainer>
-      </React.Fragment>
+      </S.MonthlyFilterWrapper>
     );
   }
 }

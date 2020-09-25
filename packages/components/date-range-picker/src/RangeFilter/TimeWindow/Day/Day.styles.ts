@@ -26,3 +26,19 @@ export const Container = styled.div`
     }
   }
 `;
+export const Content = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 45px;
+  margin-left: -8px;
+`;
+export const IconWrapper = styled.div<{ active: boolean }>`
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  &&& .ds-icon svg {
+    fill: ${(props): string =>
+      props.active ? props.theme.palette['red-600'] : props.theme.palette['green-600']} !important;
+  }
+`;

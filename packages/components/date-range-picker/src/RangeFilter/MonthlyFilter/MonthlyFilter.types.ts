@@ -2,7 +2,7 @@ import { IntlShape } from 'react-intl';
 
 export type MonthlyFilterProps = {
   value: Month[];
-  onChange: (definition: string) => void;
+  onChange: (definition: string | object) => void;
   intl: IntlShape;
 };
 export type Month = {

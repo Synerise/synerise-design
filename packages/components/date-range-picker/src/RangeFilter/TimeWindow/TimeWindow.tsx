@@ -1,19 +1,18 @@
 import * as React from 'react';
-import { range, rangeRight, groupBy, reverse, flatten, values, ceil } from 'lodash';
-
+import { range } from 'lodash';
 import { FormattedMessage, injectIntl } from 'react-intl';
 import dayjs from 'dayjs';
-import { Header, Action } from './Header/Header';
+import { Header } from './Header/Header';
 import Day from './Day/Day';
-import { formatTime } from '../../utils';
 import { DayKey, Props, State, DayOptions } from './TimeWindow.types';
 import * as S from './TimeWindow.styles';
 import RangeForm from '../DailyFilter/RangeForm/RangeForm';
+import RangeSummary from './RangeSummary/RangeSummary';
+import { getDateFromDayValue } from './utils';
+import Grid from './Grid/Grid';
 
-const TODAY = new Date();
-class TimeWindowBase extends React.Component<Props, State> {
-  state: State = { activeDay: null };
-
+class TimeWindowBase extends React.PureComponent<Props, State> {
+  state: State = { activeDay: [], multipleMode: false };
   static defaultProps = {
     days: {},
     numberOfDays: 7,
@@ -24,12 +23,6 @@ class TimeWindowBase extends React.Component<Props, State> {
     timeMarks: { '0': '00:00', '12': <FormattedMessage id="DS.DATE-RANGE-PICKER.SET-HOURS" />, '24': '24:00' },
   };
 
-  componentDidMount(): void {
-    const { numberOfDays } = this.props;
-    const activeDay = range(0, numberOfDays).find(day => this.isDayRestricted(day));
-    activeDay && this.checkActiveDay(activeDay);
-  }
-
   isDayRestricted = (dayKey: DayKey): boolean => {
     const { days } = this.props;
     return !!days[dayKey] && days[dayKey].restricted;
@@ -37,26 +30,35 @@ class TimeWindowBase extends React.Component<Props, State> {
 
   checkActiveDay = (dayKey: DayKey): void => {
     if (!this.isDayRestricted(dayKey)) this.checkDay(dayKey);
-    this.setState({ activeDay: dayKey });
+    const { activeDay, multipleMode } = this.state;
+    let updatedActiveDay = [];
+    if (multipleMode) {
+      updatedActiveDay = activeDay.includes(dayKey) ? activeDay : [...activeDay, dayKey];
+    } else {
+      updatedActiveDay = [dayKey];
+    }
+    this.setState({ activeDay: updatedActiveDay });
   };
 
   uncheckActiveDay = (dayKey: DayKey): void => {
-    this.setState({ activeDay: null });
+    const { activeDay, multipleMode } = this.state;
+    let updatedActiveDay: DayKey[] = [];
+    if (multipleMode) {
+      updatedActiveDay = activeDay.filter(day => day !== dayKey);
+    }
+    this.setState({ activeDay: updatedActiveDay });
     this.unCheckDay(dayKey);
   };
 
   toggleDay = (dayKey: DayKey, forcedState: boolean): void => {
-    const { activeDay } = this.state;
+    const { activeDay, multipleMode } = this.state;
     if (typeof forcedState !== 'undefined') {
       forcedState ? this.checkActiveDay(dayKey) : this.uncheckActiveDay(dayKey);
       return;
     }
-    if (activeDay === dayKey) {
-      this.uncheckActiveDay(dayKey);
-    } else {
-      this.checkActiveDay(dayKey);
+    if (!multipleMode) {
+      activeDay.includes(dayKey) ? this.uncheckActiveDay(dayKey) : this.checkActiveDay(dayKey);
     }
-    console.log(this.state);
   };
 
   handleDayChange = (dayKey: DayKey, dayChanges: Partial<DayOptions>): void => {
@@ -102,14 +104,27 @@ class TimeWindowBase extends React.Component<Props, State> {
       stop: dayjs(value[1]).format('HH:mm:ss.SSS'),
     });
 
-  clearSelected = (): void => {
-    const { onUnselectAll, onChange } = this.props;
-    onUnselectAll && onUnselectAll();
-
-    this.setState({ activeDay: null }, () => onChange({}));
+  handleMultipleDayTimeChange = (value: [Date, Date]): void => {
+    const { onChange, days } = this.props;
+    const { activeDay } = this.state;
+    const updatedDays = {};
+    activeDay.forEach(k => {
+      updatedDays[k] = {
+        restricted: true,
+        start: dayjs(value[0]).format('HH:mm:ss.SSS'),
+        stop: dayjs(value[1]).format('HH:mm:ss.SSS'),
+      };
+    });
+    onChange({ ...days, ...updatedDays });
   };
 
-  selectAll = (): void => {
+  handleClearSelection = (): void => {
+    const { onUnselectAll, onChange } = this.props;
+    onUnselectAll && onUnselectAll();
+    this.setState({ activeDay: [] }, () => onChange({}));
+  };
+
+  handleSelectAll = (): void => {
     const days = {};
     const { onChange, onSelectAll } = this.props;
     this.getAllKeys().forEach(key => {
@@ -121,7 +136,6 @@ class TimeWindowBase extends React.Component<Props, State> {
     });
 
     onSelectAll && onSelectAll();
-
     onChange(days);
   };
 
@@ -145,10 +159,10 @@ class TimeWindowBase extends React.Component<Props, State> {
     };
   };
 
-  getDayLabel = (dayKey: DayKey, long?: boolean) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  getDayLabel = (dayKey: DayKey, long?: boolean): any => {
     const { dayFormatter, customDays } = this.props;
     let label: any;
-
     if (typeof dayKey === 'string' && customDays && customDays[dayKey]) {
       label = customDays[dayKey][long ? 'longLabel' : 'label'] || customDays[dayKey].label;
     }
@@ -156,60 +170,28 @@ class TimeWindowBase extends React.Component<Props, State> {
       label = label(dayKey, this.getDayValue(dayKey));
     }
     if (!label) label = dayFormatter(dayKey, long);
-
     return label;
   };
 
   getAllKeys = (): number[] => {
     const { numberOfDays, customDays } = this.props;
     let keys = range(numberOfDays);
-
     if (customDays) keys = [...keys, ...((Object.keys(customDays) as unknown) as number[])];
-
     return keys;
-  };
-
-  parseTimeToFloat = (value: string) => {
-    const date = new Date(`1970-01-01T${value}`);
-    return date.getHours() + ceil(date.getMinutes() / 60, 2);
-  };
-
-  parseValueToTime = (value: number, format?: string): string =>
-    formatTime(value === 24 ? 24 * 60 * 60 - 0.001 : value * 3600, format);
-
-  tooltipFormatter = (value: number | number[], index?: number): React.ReactNode => {
-    const format = 'HH:mm';
-    if (typeof value !== 'number' && value.length && index) {
-      const CONCAT_VALUES = 1.75;
-      const isClose = value[1] - value[0] <= CONCAT_VALUES;
-      const isSameValue = value[0] === value[1];
-      if (isClose) {
-        return index === 0 ? (
-          <span style={{ width: isSameValue ? 'auto' : '145px', textAlign: 'center', display: 'inline-block' }}>
-            {this.parseValueToTime(value[0], format)}
-            {!isSameValue && ` - ${this.parseValueToTime(value[1], format)}`}
-          </span>
-        ) : (
-          ''
-        );
-      }
-      return this.parseValueToTime(value[index], format);
-    }
-    return this.parseValueToTime(value as number, format);
   };
 
   renderDay = (dayKey: DayKey): JSX.Element => {
     const { customDays, intl, readOnly } = this.props;
     const { activeDay } = this.state;
     const isRestricted = this.isDayRestricted(dayKey);
-    const isActive = activeDay === dayKey;
+    const isActive = activeDay.includes(dayKey);
     let tooltip, Component;
     if (typeof dayKey === 'string' && customDays && customDays[dayKey]) {
       const { component: CustomComponent, tooltip: customTooltip } = customDays[dayKey];
       if (CustomComponent) Component = CustomComponent;
       if (customTooltip) tooltip = customTooltip;
     }
-    if (!tooltip && activeDay !== dayKey) {
+    if (!tooltip && !isActive) {
       tooltip = intl.formatMessage({
         id: isRestricted ? 'DS.DATE-RANGE-PICKER.CLICK-TO-SET-TIME' : 'DS.DATE-RANGE-PICKER.CLICK-TO-SELECT',
       });
@@ -234,108 +216,31 @@ class TimeWindowBase extends React.Component<Props, State> {
     );
   };
 
-  reverseRange = (inputRange: number[], groupItem: number): number[] => {
-    const grouping = (item: number): number => Math.floor(item / groupItem);
-    return flatten(reverse(values(groupBy(inputRange, grouping))));
-  };
-
-  renderGrid = (keys: number[]): React.ReactNode => {
-    const {
-      numberOfDays,
-      numberOfDaysPerRow,
-      rowLabelFormatter,
-      title,
-      showUnselectAll,
-      showSelectAll,
-      inverted,
-      labelInverted,
-      reverseGroup,
-    } = this.props;
-    const numberOfColumns = numberOfDaysPerRow || numberOfDays;
-    const rangeMethod = labelInverted ? rangeRight : range;
-    const actions: Action[] = [];
-
-    if (showUnselectAll)
-      actions.push({
-        key: 'unselect-all',
-        onClick: this.clearSelected,
-        label: <FormattedMessage id="DS.DATE-RANGE-PICKER.UNSELECT-ALL" />,
-      });
-    if (showSelectAll)
-      actions.push({
-        key: 'select-all',
-        onClick: this.selectAll,
-        label: <FormattedMessage id="DS.DATE-RANGE-PICKER.SELECT-ALL" />,
-      });
-    let grid = (
-      <S.Days columns={numberOfColumns}>
-        {inverted ? this.reverseRange(keys, reverseGroup).map(this.renderDay) : keys.map(this.renderDay)}
-      </S.Days>
-    );
-    const numberOfRows = Math.ceil(numberOfDays / numberOfColumns);
-
-    if (rowLabelFormatter) {
-      grid = (
-        <S.Wrapper>
-          <S.Labels>
-            {rangeMethod(numberOfRows).map(
-              (rowIndex: number): React.ReactNode => (
-                <span key={rowIndex}>{rowLabelFormatter(rowIndex)}</span>
-              )
-            )}
-          </S.Labels>
-          {grid}
-        </S.Wrapper>
-      );
-    }
-    return (
-      <>
-        <Header title={title} actions={actions} style={{ marginBottom: 16 }} />
-        {grid}
-      </>
-    );
-  };
-
-  getDateFromDayValue = (dayValue: string): Date => {
-    const DAY_FORMAT = `YYYY-MM-DD`;
-    const todayToString = dayjs(TODAY).format(DAY_FORMAT);
-    const input = `${todayToString}-${dayValue}`;
-    return dayjs(input, `${DAY_FORMAT}-HH:mm:ss.SSS`).toDate();
-  };
-
-  renderRangeForm = (dayKey: DayKey, singleMode: boolean): React.ReactNode => {
-    const { customForm } = this.props;
-    if (customForm) {
-      return customForm(dayKey, singleMode);
-    }
-
-    const { invertibleTime } = this.props;
-    const dayValue = this.getDayValue(dayKey);
+  renderRangeForm = (dayKeys: DayKey, singleMode: boolean): React.ReactNode => {
+    const { activeDay } = this.state;
+    const dayValue = this.getDayValue(activeDay[0]);
     const rangeForm = (
       <RangeForm
-        startDate={this.getDateFromDayValue(dayValue.start)}
-        endDate={this.getDateFromDayValue(dayValue.stop)}
+        startDate={getDateFromDayValue(dayValue.start)}
+        endDate={getDateFromDayValue(dayValue.stop)}
         onStartChange={(value: Date): void =>
-          this.handleDayTimeChange([value, this.getDateFromDayValue(dayValue.stop)], dayKey)
+          activeDay.length > 1
+            ? this.handleMultipleDayTimeChange([value, getDateFromDayValue(dayValue.stop)])
+            : this.handleDayTimeChange([value, getDateFromDayValue(dayValue.stop)], dayKeys)
         }
         onEndChange={(value: Date): void =>
-          this.handleDayTimeChange([this.getDateFromDayValue(dayValue.start), value], dayKey)
+          activeDay.length > 1
+            ? this.handleMultipleDayTimeChange([value, getDateFromDayValue(dayValue.stop)])
+            : this.handleDayTimeChange([getDateFromDayValue(dayValue.start), value], dayKeys)
         }
       />
     );
-    if (!invertibleTime) return rangeForm;
-    const actions = [
-      {
-        key: 'invert',
-        onClick: () => this.handleDayChange(dayKey, { inverted: !dayValue.inverted }),
-        label: <FormattedMessage id="DS.DATE-RANGE-PICKER.INVERSE-SELECTION" />,
-      },
-    ];
+    const { hideHeader } = this.props;
+    if (hideHeader) return rangeForm;
     return (
       <>
         <Header
-          title={this.getDayLabel(dayKey, true)}
-          actions={actions}
+          title={<RangeSummary dayKeys={dayKeys} getDayLabel={this.getDayLabel} />}
           style={{ marginBottom: 16, marginTop: singleMode ? 0 : 44 }}
         />
         {rangeForm}
@@ -344,16 +249,32 @@ class TimeWindowBase extends React.Component<Props, State> {
   };
 
   render(): JSX.Element {
-    const { style } = this.props;
-    const { activeDay } = this.state;
+    const { style, days, intl, ...rest } = this.props;
+    const { activeDay, multipleMode } = this.state;
     const keys = this.getAllKeys();
     const singleMode = keys.length === 1;
-    const sliderKey = singleMode ? keys[0] : activeDay;
-    console.log(this.state);
+    const rangeFormKey = singleMode ? keys[0] : activeDay;
     return (
-      <S.TimeWindowContainer style={style}>
-        {!singleMode && this.renderGrid(keys)}
-        {sliderKey !== null && this.renderRangeForm(sliderKey, singleMode)}
+      <S.TimeWindowContainer
+        style={style}
+        onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>): void => {
+          if (e.key === 'Shift') {
+            this.setState({ multipleMode: !multipleMode });
+          }
+        }}
+      >
+        {!singleMode && (
+          <Grid
+            onClearSelected={this.handleClearSelection}
+            onSelectAll={this.handleSelectAll}
+            renderDay={this.renderDay}
+            keys={keys}
+            days={days}
+            intl={intl}
+            {...rest}
+          />
+        )}
+        {rangeFormKey !== null && this.renderRangeForm(rangeFormKey, singleMode)}
       </S.TimeWindowContainer>
     );
   }

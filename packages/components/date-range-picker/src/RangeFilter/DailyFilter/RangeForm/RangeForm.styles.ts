@@ -20,7 +20,7 @@ export const Row = styled.div<{ justifyContent: string }>`
   display: flex;
   justify-content: ${(props): string => props.justifyContent};
   min-height: 32px;
-  margin-top: 8px;
+  margin: 8px 0;
   
 `;
 export const Separator = styled.span`

@@ -37,7 +37,9 @@ class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState
   handleTypeChange = (type: string): void =>
     this.setValue({ type, definition: cloneDeep(TYPES_DATA[type].definition) } as FilterValue);
 
-  setValue = (value: FilterValue): void => this.setState({ value });
+  setValue = (value: FilterValue): void => {
+    this.setState({ value })
+  };
 
   render(): JSX.Element {
     const { value } = this.state;
