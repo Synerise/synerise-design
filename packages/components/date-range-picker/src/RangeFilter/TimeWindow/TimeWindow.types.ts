@@ -36,10 +36,9 @@ export type Props = {
   rowLabelFormatter?: (rowIndex: number) => string;
   dayTemplate: (day: DayKey) => object;
   dayFormatter: (day: DayKey, long?: boolean) => string;
-  invertibleTime?: boolean;
+  hideHeader?: boolean;
   timeMarks?: object;
   style?: React.CSSProperties;
-  customForm?: (value: number | string, bool: boolean) => React.ReactNode;
   onCheckDay?: Function;
   onUncheckDay?: Function;
   onSelectAll?: Function;
@@ -52,6 +51,6 @@ export type Props = {
 } & WrappedComponentProps;
 
 export type State = {
-  activeDay: DayKey | null;
-  selectedDays: any;
+  activeDay: DayKey[];
+  multipleMode: boolean;
 };

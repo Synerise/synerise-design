@@ -5,7 +5,6 @@ import TimePicker from '@synerise/ds-time-picker';
 import { RangeFormProps } from './RangeForm.types';
 import * as S from './RangeForm.styles';
 import { getDisabledTimeOptions } from '../../../RangePicker/utils';
-import AddButton from '../../AddButton/AddButton';
 
 const TODAY = new Date();
 const FORM_MODES = {
@@ -15,7 +14,7 @@ const FORM_MODES = {
 const RangeForm: React.FC<RangeFormProps> = ({ startDate, endDate, onStartChange, onEndChange }) => {
   const [start, setStart] = React.useState<Date | undefined>(startDate);
   const [end, setEnd] = React.useState<Date | undefined>(endDate);
-  const [mode, setMode] = React.useState<'Hour' | 'Range'>(FORM_MODES.HOUR);
+  const [mode, setMode] = React.useState<string>(FORM_MODES.RANGE);
   const areStartAndEndValid = React.useMemo(() => !!start && !!end, [start, end]);
 
   React.useEffect(() => {
@@ -89,9 +88,6 @@ const RangeForm: React.FC<RangeFormProps> = ({ startDate, endDate, onStartChange
           ))}
         </Select>
         {mode === 'Hour' ? renderSingleHourPicker() : renderRangePicker()}
-      </S.Row>
-      <S.Row justifyContent="flex-start">
-        <AddButton label="Add range" />
       </S.Row>
     </S.Container>
   );

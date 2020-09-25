@@ -1,14 +1,13 @@
 import * as React from 'react';
 import * as dayjs from 'dayjs';
 import * as customParseFormatPlugin from 'dayjs/plugin/customParseFormat';
-
 import Button from '@synerise/ds-button';
-import Tooltip from '@synerise/ds-tooltip';
-import { CheckS, CloseM, CloseS } from '@synerise/ds-icon/dist/icons';
+import { CheckS, CloseS } from '@synerise/ds-icon/dist/icons';
 import Icon from '@synerise/ds-icon';
+import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import Tooltip from '@synerise/ds-tooltip';
 import { Props } from './Day.types';
 import * as S from './Day.styles';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 
 dayjs.extend(customParseFormatPlugin);
 
@@ -31,52 +30,48 @@ const Day: React.FC<Props> = ({
   ...rest
 }: Props) => {
   const [hovered, setHovered] = React.useState<boolean>(false);
+  const [iconHover, setIconHover] = React.useState<boolean>(false);
   const type = restricted ? 'primary' : 'default';
-  const validMap: boolean[] = [];
-  const tooltipValues =
-    value &&
-    value.values &&
-    value.values
-      .map((val: { startTime: string; endTime: string }) => {
-        const start = val.startTime && format(val.startTime);
-        const end = val.endTime && format(val.endTime);
-        const isPeriod = dayjs(start, TIME_FORMAT).isBefore(dayjs(end, TIME_FORMAT));
-        validMap.push(isPeriod);
-        return start && end ? `${start} - ${end}` : null;
-      })
-      .filter((el: string | null) => el !== null);
-  const joinedValues = tooltipValues && tooltipValues.join(' ');
-  const overlayStyle = joinedValues ? { width: 86 } : {};
   const readOnlyStyles = readOnly ? { opacity: 0.6, cursor: 'default', width: '100%' } : { width: '100%' };
-  const tooltipText = joinedValues || (!readOnly ? tooltip : '');
   const icon = React.useMemo(() => {
     if (active) {
       return hovered ? (
-        <Icon component={<CloseS />} onClick={(): void => onToggle(false)} color={theme.palette['red-600']} />
+        <Tooltip title="Clear" visible>
+          <Icon component={<CloseS />} onClick={(): void => onToggle(false)} color={theme.palette['red-600']} />
+        </Tooltip>
       ) : (
         <Icon component={<CheckS />} color={theme.palette['green-600']} />
       );
     }
     return null;
-  }, [active, hovered]);
+  }, [active, hovered, iconHover]);
   return (
     <S.Container>
-      <Tooltip overlayStyle={overlayStyle} title={(!restricted || value) && tooltipText}>
-        <Button
-          onMouseOver={() => setHovered(true)}
-          onMouseOut={() => setHovered(false)}
-          style={readOnlyStyles}
-          {...rest}
-          onClick={() => {
-            onToggle(!restricted);
-          }}
-          type={type}
-          mode={active ? 'label-icon' : 'default'}
-        >
-          <span>{label}</span>
-          {icon}
-        </Button>
-      </Tooltip>
+      <Button
+        onMouseOut={(): void => setHovered(false)}
+        onMouseLeave={(): void => setHovered(false)}
+        onMouseOver={(): void => setHovered(true)}
+        onMouseEnter={(): void => setHovered(true)}
+        {...rest}
+        style={readOnlyStyles}
+        onClick={onToggle as any}
+        type={type}
+        mode="label-icon"
+      >
+        <S.Content>{label}</S.Content>
+      </Button>
+      <S.IconWrapper
+        active={hovered}
+        onMouseOver={(): void => {
+          setHovered(true);
+          setIconHover(true);
+        }}
+        onMouseOut={(): void => {
+          setIconHover(false);
+        }}
+      >
+        {icon}
+      </S.IconWrapper>
     </S.Container>
   );
   /*  return (
@@ -104,7 +99,7 @@ const Day: React.FC<Props> = ({
         </>
       )}
     </S.Container>
-  );*/
+  ); */
 };
 
 export default Day;

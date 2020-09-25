@@ -19,8 +19,8 @@ export const Footer = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  padding: 12px 24px;
-  background-color: ${props => props.theme.variable('@gray-color-lighter-8')};
+  padding: 24px;
+  background-color: ${(props): string => props.theme.palette['grey-050']};
 
   > *:not(:last-child) {
     margin-right: 16px;
@@ -28,8 +28,8 @@ export const Footer = styled.div`
 `;
 
 export const Title = styled.div`
-  font-size: 18px;
-  line-height: ${props => props.theme.variable('@modal-title-line-height')};
+  font-size: 16px;
+  line-height: 1.39;
   font-weight: 500;
-  color: ${props => props.theme.variable('@heading-color')};
+  color: ${(props): string => props.theme.palette['grey-800']};
 `;
