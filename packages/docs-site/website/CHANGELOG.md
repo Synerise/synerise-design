@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.2](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.6.1...docs@0.6.2) (2020-09-25)
+
+
+### Bug Fixes
+
+* **add-button:** remove component ([9e1490a](https://gitlab.synerise.com/Frontend/synerise-design/commit/9e1490a823f45715e4282ce636cfce758583bea9))
+
+
+
+
+
 ## [0.6.1](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.6.0...docs@0.6.1) (2020-08-21)
 
 

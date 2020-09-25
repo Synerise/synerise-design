@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.62](https://github.com/Synerise/synerise-design/compare/@synerise/ds-inline-edit@0.1.61...@synerise/ds-inline-edit@0.1.62) (2020-09-25)
+
+
+### Bug Fixes
+
+* **inline-edit:** add dropdown to inline select ([17651a0](https://github.com/Synerise/synerise-design/commit/17651a06f6134713cb21cba399b7a85073156917))
+* **inline-edit:** add inline select component ([25ed7c6](https://github.com/Synerise/synerise-design/commit/25ed7c6bc01b9557e23378a565e8d091c046eb72))
+* **inline-edit:** change margin, add dots in validation state,add icon ([b3f55bf](https://github.com/Synerise/synerise-design/commit/b3f55bf4605aa818698adeb9694d86c1d0297421))
+* **inline-edit:** change paddings, fix opening dropdown, change styles ([463dc83](https://github.com/Synerise/synerise-design/commit/463dc8303fe2cf8ca5bb2f9eeeef39b96bfdad0d))
+* **inline-edit:** delete icon props ([5903a1e](https://github.com/Synerise/synerise-design/commit/5903a1e83a4d7474050406fd6fecaaf15de9383f))
+* **inline-edit:** delete icon props ([9f45dc3](https://github.com/Synerise/synerise-design/commit/9f45dc3bf2404d9cbe4b54919b53b1e763980e8f))
+* **inline-edit:** fix cursor ([5e708b5](https://github.com/Synerise/synerise-design/commit/5e708b5d39417ad9ae61319b06d7020f00a68ab7))
+* **inline-edit:** fix disabled ([cf760fd](https://github.com/Synerise/synerise-design/commit/cf760fd7608b0a9f739f11dbce55b75902c996fc))
+* **inline-edit:** fix disabled ([bce21a7](https://github.com/Synerise/synerise-design/commit/bce21a7ba2a4a2d748539d4849104acbe6683847))
+* **inline-edit:** fix docs build ([a7bf718](https://github.com/Synerise/synerise-design/commit/a7bf71809e1d916596f3d419e18dd7ae560839de))
+* **inline-edit:** fix imports ([f6e24f6](https://github.com/Synerise/synerise-design/commit/f6e24f65ecf51cacdf456daaa227bcd8b122c9b1))
+* **inline-edit:** fix paddings and styles ([87e2a6d](https://github.com/Synerise/synerise-design/commit/87e2a6d0f157f4aa532220f5d37eb96055ec1239))
+* **inline-edit:** fix styles of text ([470a7ba](https://github.com/Synerise/synerise-design/commit/470a7ba1176325bc50cb0e500398980ac4943418))
+
+
+
+
+
 ## [0.1.61](https://github.com/Synerise/synerise-design/compare/@synerise/ds-inline-edit@0.1.60...@synerise/ds-inline-edit@0.1.61) (2020-09-01)
 
 **Note:** Version bump only for package @synerise/ds-inline-edit

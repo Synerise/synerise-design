@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.15.4](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.15.3...@synerise/ds-input@0.15.4) (2020-09-25)
+
+
+### Bug Fixes
+
+* **input:** fix group input styles ([df8e467](https://github.com/synerise/synerise-design/commit/df8e467f36eb586f3f086e8774b3e3f8264f5582))
+* **input:** fixed focus and blur of textarea ([7365778](https://github.com/synerise/synerise-design/commit/7365778ba626f96ed4638d5c3a591090f83e50e8))
+
+
+
+
+
 ## [0.15.3](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.15.2...@synerise/ds-input@0.15.3) (2020-09-01)
 
 

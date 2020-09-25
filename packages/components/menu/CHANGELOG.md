@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.5.27...@synerise/ds-menu@0.6.0) (2020-09-25)
+
+
+### Features
+
+* **menu:** added checked prop for resolving suffixel ([2abbb50](https://github.com/Synerise/synerise-design/commit/2abbb508a24c13d18757fa043d71a68fe1e955cd))
+* **menu:** added classname to the content ([3bc5a05](https://github.com/Synerise/synerise-design/commit/3bc5a05af8c0d027a1a02a290b122a420295a10b))
+* **menu:** added handling tags as suffix ([745eb25](https://github.com/Synerise/synerise-design/commit/745eb2565429d18aea0933fbda4ce662c3b9eb87))
+* **sidebar-object:** add props checked ([a8c0d1f](https://github.com/Synerise/synerise-design/commit/a8c0d1f4b1d77d06575cfb7687ca63c6865ae8c7))
+
+
+
+
+
 ## [0.5.27](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.5.26...@synerise/ds-menu@0.5.27) (2020-08-21)
 
 **Note:** Version bump only for package @synerise/ds-menu

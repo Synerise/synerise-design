@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.33](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.12.32...@synerise/ds-button@0.12.33) (2020-09-25)
+
+
+### Bug Fixes
+
+* **button:** added type checking for special btns ([532f31b](https://github.com/synerise/synerise-design/commit/532f31b001fa6ccad260847fad8e0ad88800d3f8))
+* **button:** change handlers type on cruds ([ec11b16](https://github.com/synerise/synerise-design/commit/ec11b168b65cf8b30e8a7cef4b9f18a878a90d15))
+* **button:** creator types fixes ([6bc7a18](https://github.com/synerise/synerise-design/commit/6bc7a18435a5fa7205a0fb8b3ce8efcda5bb8eea))
+* **button:** fix docs build ([a9471b5](https://github.com/synerise/synerise-design/commit/a9471b5141ca07e14bfe00751322f8f2ee15bdc6))
+* **button:** stopped propagation of crud ([da51907](https://github.com/synerise/synerise-design/commit/da5190786957e68a95d818557f4967a4bc53e039))
+* **button:** stopped propagation of events ([102de65](https://github.com/synerise/synerise-design/commit/102de65228de02cd69abdc03d5fb7e6432400d01))
+
+
+
+
+
 ## [0.12.32](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.12.31...@synerise/ds-button@0.12.32) (2020-09-01)
 
 **Note:** Version bump only for package @synerise/ds-button

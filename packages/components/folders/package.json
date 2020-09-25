@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-folders",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Folders UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -15,9 +15,9 @@
     "build:watch": "npm run build:js -- --watch",
     "defs": "tsc --declaration --outDir dist/ --emitDeclarationOnly",
     "prepublish": "npm run build",
-    "types": "tsc --noEmit",
     "test": "jest",
-    "test:watch": "npm run test -- --watchAll"
+    "test:watch": "npm run test -- --watchAll",
+    "types": "tsc --noEmit"
   },
   "sideEffects": [
     "dist/style/*",
@@ -25,13 +25,12 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-button": "*",
-    "@synerise/ds-dropdown": "^0.11.73",
-    "@synerise/ds-menu": "^0.5.27"
+    "@synerise/ds-button": "^0.12.33",
+    "@synerise/ds-dropdown": "^0.11.75",
+    "@synerise/ds-menu": "^0.6.0"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
     "react": ">=16.9.0 < 17.0.0"
-  },
-  "devDependencies": {}
+  }
 }

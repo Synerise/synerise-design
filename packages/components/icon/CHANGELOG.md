@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.27.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.26.0...@synerise/ds-icon@0.27.0) (2020-09-25)
+
+
+### Bug Fixes
+
+* **icon:** add classnames to svg element ([aaeeacd](https://github.com/Synerise/synerise-design/commit/aaeeacd536a4ba68da95fdac9ae4400511174777))
+
+
+### Features
+
+* **icon:** added clock and settings S ([97c0538](https://github.com/Synerise/synerise-design/commit/97c0538c3c84587286923b5740c9da85325b8c25))
+
+
+
+
+
 # [0.26.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.25.0...@synerise/ds-icon@0.26.0) (2020-08-21)
 
 

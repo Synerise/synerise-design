@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.57](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar@0.2.56...@synerise/ds-sidebar@0.2.57) (2020-09-25)
+
+
+### Bug Fixes
+
+* **sidebar:** removed forced border 0 inside panel ([3ab5d3a](https://github.com/Synerise/synerise-design/commit/3ab5d3a04a036286d5e11be6d94149f320a85c16))
+* **sidebar:** removed ununsed statemnet ([2e57474](https://github.com/Synerise/synerise-design/commit/2e5747442cd513d3db6658122230caba871cfdc5))
+
+
+
+
+
 ## [0.2.56](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar@0.2.55...@synerise/ds-sidebar@0.2.56) (2020-09-01)
 
 **Note:** Version bump only for package @synerise/ds-sidebar

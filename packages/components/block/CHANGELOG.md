@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.55](https://github.com/Synerise/synerise-design/compare/@synerise/ds-block@0.3.54...@synerise/ds-block@0.3.55) (2020-09-25)
+
+
+### Bug Fixes
+
+* **block:** removed typos ([cbf3291](https://github.com/Synerise/synerise-design/commit/cbf3291e85561502c469416ecd22ba0477fa91bd))
+
+
+
+
+
 ## [0.3.54](https://github.com/Synerise/synerise-design/compare/@synerise/ds-block@0.3.53...@synerise/ds-block@0.3.54) (2020-09-01)
 
 **Note:** Version bump only for package @synerise/ds-block

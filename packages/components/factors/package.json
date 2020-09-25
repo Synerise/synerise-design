@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-factors",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Factors UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -25,25 +25,24 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-autocomplete": "*",
-    "@synerise/ds-badge": "*",
-    "@synerise/ds-button": "*",
-    "@synerise/ds-date-picker": "*",
-    "@synerise/ds-dropdown": "*",
-    "@synerise/ds-icon": "*",
-    "@synerise/ds-input": "*",
-    "@synerise/ds-input-number": "*",
-    "@synerise/ds-menu": "*",
-    "@synerise/ds-modal": "*",
-    "@synerise/ds-result": "*",
-    "@synerise/ds-tabs": "*",
-    "@synerise/ds-typography": "*",
-    "@synerise/ds-utils": "*",
-    "@synerise/ds-inline-edit": "*"
+    "@synerise/ds-autocomplete": "^0.3.34",
+    "@synerise/ds-badge": "^0.4.34",
+    "@synerise/ds-button": "^0.12.33",
+    "@synerise/ds-date-picker": "^0.1.25",
+    "@synerise/ds-dropdown": "^0.11.75",
+    "@synerise/ds-icon": "^0.27.0",
+    "@synerise/ds-inline-edit": "^0.1.62",
+    "@synerise/ds-input": "^0.15.4",
+    "@synerise/ds-input-number": "^0.3.34",
+    "@synerise/ds-menu": "^0.6.0",
+    "@synerise/ds-modal": "^0.12.0",
+    "@synerise/ds-result": "^0.5.2",
+    "@synerise/ds-tabs": "^0.10.39",
+    "@synerise/ds-typography": "^0.9.1",
+    "@synerise/ds-utils": "^0.10.0"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
     "react": ">=16.9.0 < 17.0.0"
-  },
-  "devDependencies": {}
+  }
 }

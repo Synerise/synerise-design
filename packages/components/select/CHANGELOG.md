@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.29](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.12.28...@synerise/ds-select@0.12.29) (2020-09-25)
+
+
+### Bug Fixes
+
+* **select:** change padding of placeholder ([e1118d4](https://github.com/synerise/synerise-design/commit/e1118d43a25f7af08fe61f30a9ea24fe7466fd0d))
+* **select:** fix docs build ([22a7b67](https://github.com/synerise/synerise-design/commit/22a7b67aa1ec0f668ea75f37c9c9374fb70601a8))
+
+
+
+
+
 ## [0.12.28](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.12.27...@synerise/ds-select@0.12.28) (2020-09-18)
 
 

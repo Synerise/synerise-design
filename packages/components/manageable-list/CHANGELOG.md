@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.14.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.14.0...@synerise/ds-manageable-list@0.14.1) (2020-09-25)
+
+
+### Bug Fixes
+
+* **manageable-list:** added inline edit dependency ([659ae50](https://github.com/Synerise/synerise-design/commit/659ae50b777b25a2f7f3898de276c2cab0fc0080))
+* **manageable-list:** added types for creator ([ba9cfd4](https://github.com/Synerise/synerise-design/commit/ba9cfd4500e10ae18a733d276cb3aab582e7dfad))
+
+
+
+
+
 # [0.14.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.13.26...@synerise/ds-manageable-list@0.14.0) (2020-09-07)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-subtle-form",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "SubtleForm UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -15,9 +15,9 @@
     "build:watch": "npm run build:js -- --watch",
     "defs": "tsc --declaration --outDir dist/ --emitDeclarationOnly",
     "prepublish": "npm run build",
-    "types": "tsc --noEmit",
     "test": "jest",
-    "test:watch": "npm run test -- --watchAll"
+    "test:watch": "npm run test -- --watchAll",
+    "types": "tsc --noEmit"
   },
   "sideEffects": [
     "dist/style/*",
@@ -25,15 +25,15 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-icon": "^0.26.0",
-    "@synerise/ds-input": "^0.15.3",
-    "@synerise/ds-tooltip": "^0.7.16"
+    "@synerise/ds-icon": "^0.27.0",
+    "@synerise/ds-input": "^0.15.4",
+    "@synerise/ds-tooltip": "^0.7.17"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
     "react": ">=16.9.0 < 17.0.0"
   },
   "devDependencies": {
-    "@synerise/ds-utils": "^0.9.3"
+    "@synerise/ds-utils": "^0.10.0"
   }
 }
