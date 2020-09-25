@@ -4,19 +4,18 @@ import './style/index.less';
 
 import Icon from '@synerise/ds-icon';
 import SpinnerM from '@synerise/ds-icon/dist/icons/SpinnerM';
-import Creator, { CreatorProps } from './Creator/Creator';
+import Creator from './Creator/Creator';
 import * as S from './Button.styles';
-import Expander, { ExpanderProps } from './Expander/Expander';
-import { Props } from './Button.types';
-import Cruds, { CrudsProps } from './Cruds/Cruds';
+import Expander from './Expander/Expander';
+import { ButtonSubComponents, Props } from './Button.types';
+import Cruds from './Cruds/Cruds';
+import { ExpanderProps } from './Expander/Expander.types';
+import { CrudsProps } from './Cruds/Cruds.types';
+import { CreatorProps } from './Creator/Creator.types';
 
 const RIPPLE_ANIMATION_OFFSET = 50;
 
-const Button: React.FC<Props> & {
-  Expander: React.ElementType;
-  Creator: React.ElementType;
-  Cruds: React.ElementType;
-} = ({
+const Button: React.FC<Props> & ButtonSubComponents = ({
   type = 'secondary',
   mode,
   justifyContent = 'center',
@@ -77,8 +76,8 @@ const Button: React.FC<Props> & {
     </S.AntdButton>
   );
 };
-Button.Expander = (props: ExpanderProps): React.ReactElement => Expander(props) as React.ReactElement;
-Button.Creator = (props: CreatorProps): React.ReactElement => Creator(props) as React.ReactElement;
-Button.Cruds = (props: CrudsProps): React.ReactElement => Cruds(props) as React.ReactElement;
+Button.Expander = (props: ExpanderProps): React.ReactElement<ExpanderProps> => Expander(props) as React.ReactElement<ExpanderProps>;
+Button.Creator = (props: CreatorProps): React.ReactElement<CreatorProps> => Creator(props) as React.ReactElement<CreatorProps>;
+Button.Cruds = (props: CrudsProps): React.ReactElement<CrudsProps> => Cruds(props) as React.ReactElement<CrudsProps>;
 
 export default Button;

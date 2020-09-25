@@ -2,12 +2,8 @@ import * as React from 'react';
 import Button from '@synerise/ds-button';
 
 import * as S from './AddItem.styles';
+import { AddItemProps } from './AddItem.types';
 
-type AddItemProps = {
-  onItemAdd: () => void;
-  addItemLabel: string | React.ReactNode;
-  disabled: boolean;
-};
 
 const AddItem: React.FC<AddItemProps> = ({ disabled, onItemAdd, addItemLabel }) => {
   return (

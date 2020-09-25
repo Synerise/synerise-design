@@ -4,14 +4,15 @@ import { fireEvent } from '@testing-library/react';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 
 import Button from '../Button';
+import { CreatorStatus } from '../Creator/Creator.types';
 
-const LABEL_TEXT = "Add something";
+const LABEL_TEXT = 'Add something';
 
 describe('Creator', () => {
   const onClick = jest.fn();
-  it('should render', ()=> {
+  it('should render', () => {
     // ARRANGE
-    const { container } = renderWithProvider(<Button.Creator></Button.Creator>);
+    const { container } = renderWithProvider(<Button.Creator onClick={onClick}></Button.Creator>);
 
     // ACT
     const creator = container.querySelector('.ds-button-creator');
@@ -19,7 +20,7 @@ describe('Creator', () => {
     // ASSERT
     expect(creator).toBeTruthy();
   });
-  it('should handle onClick', ()=> {
+  it('should handle onClick', () => {
     // ARRANGE
     const { container } = renderWithProvider(<Button.Creator onClick={onClick}></Button.Creator>);
 
@@ -30,9 +31,9 @@ describe('Creator', () => {
     // ASSERT
     expect(onClick).toBeCalledTimes(1);
   });
-  it('should render disabled with lower opacity', ()=> {
+  it('should render disabled with lower opacity', () => {
     // ARRANGE
-    const { container } = renderWithProvider(<Button.Creator disabled={true}></Button.Creator>);
+    const { container } = renderWithProvider(<Button.Creator onClick={onClick} disabled={true}></Button.Creator>);
 
     // ACT
     const creator = container.querySelector('.ds-button-creator');
@@ -40,9 +41,9 @@ describe('Creator', () => {
     // ASSERT
     expect(creator).toHaveStyle(`opacity:0.4`);
   });
-  it('should render label text', ()=> {
+  it('should render label text', () => {
     // ARRANGE
-    const { getByText } = renderWithProvider(<Button.Creator label={LABEL_TEXT}></Button.Creator>);
+    const { getByText } = renderWithProvider(<Button.Creator onClick={onClick} label={LABEL_TEXT}></Button.Creator>);
 
     // ACT
     const label = getByText(LABEL_TEXT);
@@ -50,24 +51,28 @@ describe('Creator', () => {
     // ASSERT
     expect(label).toBeTruthy();
   });
-  it('should render red when validated', ()=> {
+  it('should render red when validated', () => {
     // ARRANGE
-    const { container } = renderWithProvider(<Button.Creator status={'error'}></Button.Creator>);
+    const { container } = renderWithProvider(
+      <Button.Creator onClick={onClick} status={'error' as CreatorStatus}></Button.Creator>
+    );
 
     // ACT
     const creator = container.querySelector('.ds-button-creator') as HTMLElement;
 
     // ASSERT
-    expect(creator).toHaveStyle(`border: 1px dashed ${theme.palette['red-600']}`)
+    expect(creator).toHaveStyle(`border: 1px dashed ${theme.palette['red-600']}`);
   });
-  it('should render blue when uploading', ()=> {
+  it('should render blue when uploading', () => {
     // ARRANGE
-    const { container } = renderWithProvider(<Button.Creator status={'upload'}></Button.Creator>);
+    const { container } = renderWithProvider(
+      <Button.Creator onClick={onClick} status={'upload' as CreatorStatus}></Button.Creator>
+    );
 
     // ACT
     const creator = container.querySelector('.ds-button-creator') as HTMLElement;
 
     // ASSERT
-    expect(creator).toHaveStyle(`border: 1px dashed ${theme.palette['blue-300']}`)
+    expect(creator).toHaveStyle(`border: 1px dashed ${theme.palette['blue-300']}`);
   });
 });

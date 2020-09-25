@@ -1,6 +1,6 @@
 import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
-import { TagShape } from './Tag';
+import { TagShape } from './Tag.types';
 
 const defaultStatusStyles = css`
   border-radius: 9px;

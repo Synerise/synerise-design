@@ -2,42 +2,9 @@ import * as React from 'react';
 import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
 import Badge from '@synerise/ds-badge';
 import Avatar from '@synerise/ds-avatar';
-import { AvatarProps } from '@synerise/ds-avatar/dist/Avatar';
-import { BadgeProps } from '@synerise/ds-badge/dist/Badge';
-import { ReactNode } from 'react';
 import * as S from './AvatarGroup.styles';
 import GroupModal from './Modal/GroupModal';
-
-export type Size = 'small' | 'medium' | 'large' | undefined;
-
-export type DataSource = BadgeProps & {
-  initials: string;
-  avatarProps: AvatarProps;
-  firstname: string;
-  lastname: string;
-  email: string;
-  id: React.ReactText;
-};
-
-export type GroupModalSettings = {
-  title: string | React.ReactNode;
-  renderRowMenu: (record: DataSource) => JSX.Element;
-  listTitle: string | React.ReactNode;
-  handleOk: () => void;
-  handleInvite: () => void;
-  inviteText: string | ReactNode;
-  okText: string | ReactNode;
-  cancelText: string | ReactNode;
-};
-
-export type AvatarGroupProps = {
-  numberOfVisibleUsers: number;
-  hasStatus?: boolean;
-  size?: Size;
-  dataSource: DataSource[];
-  moreInfoTooltip: string;
-  groupModal?: GroupModalSettings;
-};
+import { AvatarGroupProps } from './AvatarGroup.types';
 
 const AvatarGroup: React.FC<AvatarGroupProps> = ({
   dataSource,

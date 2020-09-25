@@ -1,7 +1,7 @@
 import { boolean, select, text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import { withState } from '@dump247/storybook-state';
-import { ItemsMenu, TreeTable, VirtualTable } from '@synerise/ds-table';
+import { ItemsMenu, TreeTable } from '@synerise/ds-table';
 import Icon from '@synerise/ds-icon';
 import { AddM, ChildRowLeftDownM, EditM, FileDownloadM, TrashM } from '@synerise/ds-icon/dist/icons';
 import Table from '@synerise/ds-table';

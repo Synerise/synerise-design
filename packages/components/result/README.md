@@ -49,7 +49,7 @@ import Result from '@synerise/ds-result'
 
 | Property        | Description                                                              | Type                                                                 | Default |
 | --------------- | ------------------------------------------------------------------------ | -------------------------------------------------------------------- | ------- |
-| type            | type of result                                                           | 'info' / 'warning' / 'error' / 'success' / 'progress' / 'no-results' | -       |
+| type            | type of result                                                           | `info` / `warning` / `error` / `success` / `progress` / `no-results` | -       |
 | closable        | whether or not to show X button to close                                 | boolean                                                              | -       |
 | title           | title text                                                               | string / React.ReactNode                                             | -       |
 | description     | description text                                                         | string / React.ReactNode                                             | -       |

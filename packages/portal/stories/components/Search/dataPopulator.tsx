@@ -3,6 +3,7 @@ import Badge from '@synerise/ds-badge';
 import Avatar from '@synerise/ds-avatar';
 import * as React from 'react';
 import VarTypeStringM from '@synerise/ds-icon/dist/icons/VarTypeStringM';
+import { VarTypeListM, VarTypeNumberM } from '@synerise/ds-icon/dist/icons';
 const IMG_SRC = 'https://www.w3schools.com/howto/img_avatar.png';
 
 export const populateCities = numberOfCities => {
@@ -73,3 +74,30 @@ export const getItemsWithAvatar = numberOfItems => {
   }
   return results;
 };
+
+
+export const parameters = [
+  { text: 'First Name', icon: <VarTypeStringM /> },
+  { text: 'Last Name', icon: <VarTypeStringM /> },
+  { text: 'Sex', icon: <VarTypeStringM /> },
+  { text: 'City', icon: <VarTypeStringM /> },
+  { text: 'Transactions', icon: <VarTypeNumberM /> },
+  { text: 'IP', icon: <VarTypeStringM /> },
+  { text: 'Price', icon: <VarTypeListM /> },
+  { text: 'Discount', icon: <VarTypeListM /> },
+  { text: 'Products bought', icon: <VarTypeListM /> },
+  { text: 'Loyalty points', icon: <VarTypeListM /> },
+];
+
+export const recent = [
+  { text: 'Bangkok', filter: 'City', icon: <VarTypeStringM /> },
+  { text: 'Frank', filter: 'Last Name', icon: <VarTypeStringM /> },
+  { text: 'Basel', filter: 'City', icon: <VarTypeStringM /> },
+  { text: 'Chicago', filter: 'City', icon: <VarTypeStringM /> },
+  { text: 'London', filter: 'City', icon: <VarTypeStringM /> },
+  { text: 'Brandon', filter: 'Last Name', icon: <VarTypeStringM /> },
+  { text: 'Male', filter: 'Sex', icon: <VarTypeStringM /> },
+  { text: 'Brandon', filter: 'Last Name', icon: <VarTypeStringM /> },
+  { text: 'Rogers', filter: 'Last Name', icon: <VarTypeStringM /> },
+  { text: 'Richards', filter: 'Last Name', icon: <VarTypeStringM /> },
+];

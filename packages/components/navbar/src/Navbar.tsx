@@ -1,15 +1,6 @@
 import * as React from 'react';
 import * as S from './Navbar.styles';
-
-export type NavbarProps = {
-  className?: string;
-  color?: string;
-  description: string;
-  logo: React.ReactNode | string;
-  children?: React.ReactNode;
-  actions?: React.ReactNode;
-  additionalNodes?: React.ReactNode[];
-};
+import { NavbarProps } from './Navbar.types';
 
 const Navbar: React.FC<NavbarProps> & { Divider: typeof S.NavbarDivider } = props => {
   const { className, color, logo, description, children, actions, additionalNodes } = props;

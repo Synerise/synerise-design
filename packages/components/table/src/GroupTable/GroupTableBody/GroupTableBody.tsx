@@ -6,22 +6,7 @@ import Icon from '@synerise/ds-icon';
 import AddS from '@synerise/ds-icon/dist/icons/AddS';
 import { GROUP_BY } from '@synerise/ds-column-manager/dist/ColumnManagerGroupSettings/ColumnManagerGroupSettings.types';
 import * as S from '../GroupTable.styles';
-import { RowSelection } from '../../Table.types';
-import { GroupColumnsType, GroupType } from '../GroupTable';
-
-interface Props<T extends unknown> {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  group: any;
-  rowKey: string | Function | undefined;
-  selection?: RowSelection<T>;
-  allItems: T[];
-  expanded: boolean;
-  expandGroup: (key: React.ReactText) => void;
-  columns?: GroupColumnsType<T>[];
-  addItem?: (column: string, value: React.ReactText | boolean | object) => void;
-  activeGroup?: Omit<GroupType<T>, 'rows'> | undefined;
-  hideGroupExpander?: boolean;
-}
+import { Props } from './GroupTableBody.types';
 
 function GroupTableBody<T extends unknown>({
   group,

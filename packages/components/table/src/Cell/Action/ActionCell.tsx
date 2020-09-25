@@ -1,12 +1,7 @@
 import * as React from 'react';
 import * as S from './ActionCell.styles';
+import { Props } from './ActionCell.types';
 
-export type ContentAlign = 'left' | 'right' | 'center';
-interface Props {
-  children: React.ReactNode | React.ReactNode[];
-  gapSize?: number;
-  contentAlign?: ContentAlign;
-}
 
 const ActionCell: React.FC<Props> = ({ children, gapSize = 24, contentAlign = 'right' }: Props) => {
   return (

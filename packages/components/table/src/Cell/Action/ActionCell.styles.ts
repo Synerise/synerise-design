@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { ContentAlign } from './ActionCell';
+import { ContentAlign } from './ActionCell.types';
 
 const align = {
   left: 'flex-start',

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import ProgressBar from '@synerise/ds-progress-bar';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
-import { select, object, number } from '@storybook/addon-knobs';
+import { select, number } from '@storybook/addon-knobs';
 import Multivalue from '@synerise/ds-progress-bar/dist/Multivalue/Multivalue';
 
 

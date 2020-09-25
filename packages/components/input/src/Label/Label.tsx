@@ -3,14 +3,7 @@ import Tooltip from '@synerise/ds-tooltip';
 import Icon from '@synerise/ds-icon';
 import InfoFillS from '@synerise/ds-icon/dist/icons/InfoFillS';
 import * as S from './Label.styles';
-
-export type LabelProps = {
-  id?: string;
-  label?: React.ReactNode;
-  tooltip?: React.ReactNode;
-  style?: object;
-  className?: string;
-};
+import { LabelProps } from './Label.types';
 
 const Label: React.FC<LabelProps> = ({ id, className, label, tooltip, style }) => (
   <>

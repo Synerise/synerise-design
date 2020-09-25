@@ -2,29 +2,7 @@ import * as React from 'react';
 import Icon from '@synerise/ds-icon';
 
 import * as S from './Card.styles';
-
-export type Backgrounds = 'white' | 'white-shadow' | 'grey' | 'grey-shadow' | 'outline';
-
-export interface CardProps {
-  raised?: boolean;
-  disabled?: boolean;
-  className?: string;
-  lively?: boolean;
-  children?: React.ReactNode;
-  style?: React.CSSProperties;
-  withHeader?: boolean;
-  compactHeader?: boolean;
-  title?: React.ReactNode;
-  description?: React.ReactNode;
-  icon?: React.ReactNode;
-  iconColor?: string;
-  headerSideChildren?: React.ReactNode;
-  onHeaderClick?: (e: React.SyntheticEvent) => void;
-  withoutPadding?: boolean;
-  headerBorderBottom?: boolean;
-  background?: Backgrounds;
-  showContent?: boolean;
-}
+import { CardProps } from './Card.types';
 
 const Card: React.FC<CardProps> = ({
   children,
@@ -83,7 +61,7 @@ const Card: React.FC<CardProps> = ({
       )}
       <S.ChildrenContainer className={`contentContainer ${!showContent ? 'closed' : ''}`}>
         <S.PaddingWrapper withoutPadding={withoutPadding}>
-          <div className='content'>{children}</div>
+          <div className="content">{children}</div>
         </S.PaddingWrapper>
       </S.ChildrenContainer>
     </S.Container>

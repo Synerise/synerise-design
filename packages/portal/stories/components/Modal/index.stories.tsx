@@ -5,6 +5,7 @@ import Modal from '@synerise/ds-modal';
 import blank from './blank/blank';
 import defaultStory from './defaultStory/defaultStory';
 import withHeaders from './withHeaders/withHeaders';
+import withFooters from './withFooters/withFooters';
 
 export const sizes = {
   Auto: null,
@@ -46,6 +47,7 @@ const stories = {
   default:defaultStory,
   blank,
   withHeaders,
+  withFooters
 };
 
 export default {

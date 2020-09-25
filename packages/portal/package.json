@@ -34,14 +34,15 @@
     "@babel/preset-env": "7.11.0",
     "@babel/preset-react": "7.8.3",
     "@dump247/storybook-state": "1.6.1",
-    "@storybook/addon-actions": "6.0.5",
-    "@storybook/addon-centered": "5.3.19",
-    "@storybook/addon-info": "5.3.19",
-    "@storybook/addon-knobs": "6.0.5",
-    "@storybook/addon-links": "6.0.5",
-    "@storybook/addon-notes": "5.3.19",
-    "@storybook/addons": "6.0.5",
-    "@storybook/react": "6.0.5",
+    "@storybook/addon-actions": "6.0.21",
+    "@storybook/addon-centered": "5.3.21",
+    "@storybook/addon-info": "5.3.21",
+    "@storybook/addon-knobs": "6.0.21",
+    "@storybook/addon-links": "6.0.21",
+    "@storybook/addon-notes": "5.3.21",
+    "@storybook/addon-viewport": "6.0.21",
+    "@storybook/addons": "6.0.21",
+    "@storybook/react": "6.0.21",
     "@svgr/webpack": "5.2.0",
     "@testing-library/jest-dom": "5.1.1",
     "@testing-library/react": "10.0.1",
@@ -69,5 +70,9 @@
     "react-intl": "3.12.0",
     "style-loader": "1.1.3",
     "styled-components": "5.0.1"
+  },
+  "resolutions": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
   }
 }

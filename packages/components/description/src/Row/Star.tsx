@@ -3,11 +3,7 @@ import Icon from '@synerise/ds-icon';
 import { StarFillM, StarM } from '@synerise/ds-icon/dist/icons';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import * as S from './DescriptionRow.styles';
-
-interface StarProps {
-  starType: 'active' | 'inactive';
-  hasPrefixEl: boolean;
-}
+import { StarProps } from './Star.types';
 
 const Star: React.FC<StarProps> = ({ starType, hasPrefixEl }) =>
   starType === 'active' ? (

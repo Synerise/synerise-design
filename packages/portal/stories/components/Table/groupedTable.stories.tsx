@@ -1,7 +1,7 @@
 import { boolean, number, select, text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import { withState } from '@dump247/storybook-state';
-import Table, { ItemsMenu, TableCell, VirtualTable } from '@synerise/ds-table';
+import Table, { ItemsMenu, TableCell } from '@synerise/ds-table';
 import * as React from 'react';
 import { COLUMNS, DATA_SOURCE, EMPTY_VIEW, VIEWS, CATEGORIES } from './content/groupedTable.data';
 import Avatar from '@synerise/ds-avatar';

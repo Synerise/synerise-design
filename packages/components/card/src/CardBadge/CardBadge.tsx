@@ -1,13 +1,7 @@
 import * as React from 'react';
 import Icon from '@synerise/ds-icon';
 import * as S from './CardBadge.styles';
-
-export type BadgeStatus = 'checked' | 'warning' | 'error' | 'default';
-
-type CardBadgeProps = {
-  icon: React.ReactNode;
-  status?: BadgeStatus;
-};
+import { CardBadgeProps } from './CardBadge.types';
 
 const CardBadge: React.FC<CardBadgeProps> = ({ icon, status = 'default' }) => {
   return (

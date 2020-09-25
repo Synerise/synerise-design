@@ -6,6 +6,7 @@
 @modal-footer-padding-y: 24px;
 
 .@{dialog-prefix-cls} {
+  transform-origin: center !important;
   &.with-description {
     .ant-modal-header {
       padding: @modal-header-padding-y @modal-header-padding-x 12px;
@@ -80,6 +81,7 @@
 
   &-footer {
     && {
+      min-height: 81px;
       background-color: @grey-050;
       padding: @modal-footer-padding-y @modal-footer-padding-x;
       border-top: @border-width-base @border-style-base @grey-100;

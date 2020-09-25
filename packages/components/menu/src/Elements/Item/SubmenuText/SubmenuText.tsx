@@ -3,7 +3,7 @@ import { v4 as uuid } from 'uuid';
 import '@synerise/ds-core/dist/js/style';
 
 import * as S from './SubmenuText.styles';
-import { BasicItemProps } from '../Text/Text';
+import { BasicItemProps } from '../Text/Text.types';
 
 const SubmenuText: React.FC<BasicItemProps> = props => {
   const { disabled, children, prefixel, suffixel, key } = props;

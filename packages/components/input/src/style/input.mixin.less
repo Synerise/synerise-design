@@ -19,6 +19,21 @@
   }
 }
 
+.@{ant-prefix}-input-group {
+  .@{ant-prefix}-input-affix-wrapper {
+    padding: 0 8px 0 12px;
+    > input {
+      &.ant-input {
+        &:focus {
+          background-color: transparent;
+          box-shadow: none;
+          border: 0;
+        }
+      }
+    }
+  }
+}
+
 textarea.@{ant-prefix}-input {
   padding: 8px 12px 8px 12px;
 
@@ -135,6 +150,9 @@ textarea.@{ant-prefix}-input {
 }
 .ant-input-group.ant-input-group-compact {
   z-index: 1;
+  > * > *:hover {
+    z-index: 2;
+  }
   > *:first-child.ds-select-wrapper > .ant-select > .ant-select-selector {
     border-top-left-radius: 3px;
     border-bottom-left-radius: 3px;

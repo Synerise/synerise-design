@@ -6,7 +6,7 @@ import { AngleDownM, AngleDownS, CheckM, CheckS } from '@synerise/ds-icon/dist/i
 import Icon from '@synerise/ds-icon';
 import Button from '@synerise/ds-button';
 import markdown from '@/button/README.md';
-import { CreatorStatus } from '@synerise/ds-button/dist/Creator/Creator';
+import { CreatorStatus } from '@synerise/ds-button/dist/Creator/Creator.types';
 import { withState } from '@dump247/storybook-state';
 
 const typeOptions = {

@@ -3,11 +3,8 @@ import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
 import Icon from '@synerise/ds-icon/dist/Icon';
 import { InfoFillS } from '@synerise/ds-icon/dist/icons';
 import * as S from "../../Search.styles";
+import { SearchHeaderProps } from './SearchHeader.types';
 
-export type SearchHeaderProps = {
-  headerText: string;
-  tooltip?: string;
-};
 const SearchHeader: React.FC<SearchHeaderProps> = ({headerText,tooltip}: SearchHeaderProps) => {
   return (
     <S.MenuHeader>

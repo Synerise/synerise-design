@@ -2,7 +2,7 @@ import * as React from 'react';
 import Description from '../Description';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import { DescriptionRow } from '../index';
-import { DescriptionRowProps } from '../Row/DescriptionRow';
+import { DescriptionRowProps } from '../Row/DescriptionRow.types';
 
 const DESCRIPTION = (props?: Omit<DescriptionRowProps, 'label' | 'value' | 'intl' >) => (
   <Description type='inline'>

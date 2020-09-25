@@ -6,40 +6,24 @@ import { useResize } from '@synerise/ds-utils';
 import Menu from '@synerise/ds-menu';
 import * as S from './Tabs.styles';
 import Tab from './Tab/Tab';
-
-export type TabsProps = {
-  activeTab: number;
-  tabs: TabItem[];
-  handleTabClick: (index: number) => void;
-  configuration?: Configuration;
-  underscore?: boolean;
-  block?: boolean;
-};
-
-type Configuration = {
-  action: () => void;
-  label: string;
-  disabled?: boolean;
-};
-
-export type TabItem = {
-  label?: string | React.ReactNode;
-  icon?: React.ReactNode;
-  disabled?: boolean;
-};
-
-type TabWithRef = TabItem & {
-  ref: React.RefObject<HTMLButtonElement>;
-};
+import { TabsProps, TabWithRef } from './Tabs.types';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 const NOOP = (): void => {};
 const MARGIN_BETWEEN_TABS = 24;
 const DROPDOWN_TRIGGER_SIZE = 32;
 
-const Tabs: React.FC<TabsProps> = ({ activeTab, tabs, handleTabClick, configuration, underscore, block }) => {
+const Tabs: React.FC<TabsProps> = ({
+  activeTab,
+  tabs,
+  handleTabClick,
+  configuration,
+  underscore,
+  block,
+  visible = true,
+}) => {
   const containerRef = React.useRef<HTMLDivElement>();
-  const { width } = useResize(containerRef);
+  const { width } = useResize(containerRef, visible);
   const [renderHelperTabs, setRenderHelperTabs] = React.useState(true);
   const [items, setItems] = React.useState<TabWithRef[]>([]);
   const [itemsWidths, setItemsWidths] = React.useState<number[]>([]);

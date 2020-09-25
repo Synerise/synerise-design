@@ -28,10 +28,11 @@ import IconPicker from '@synerise/ds-icon-picker'
 
 ## API
 
-| Property    | Description           | Type       | Default |
-| ----------- | --------------------- | ---------- | ------- |
-| button      | Button Node           | React.Node | -       |
-| onSelect    | Action on icon select | () => void | -       |
-| data        | Icon list             | Array      | -       |
-| trigger     | Trigger type          | Array      | -       |
-| placeholder | Input placeholder     | string     | -       |
+| Property    | Description                                         | Type                                | Default |
+| ----------- | --------------------------------------------------- | ----------------------------------- | ------- |
+| button      | Button Node                                         | React.ReactElement                  | -       |
+| data        | Icon list                                           | FilterElement[]                     | -       |
+| noResultMsg | Node displayed when no items matches searched query | React.ReactNode                     | -       |
+| onSelect    | Action on icon select                               | (val: React.ReactNode) => void      | -       |
+| placeholder | Input placeholder                                   | string                              | -       |
+| trigger     | Trigger type                                        | `['click', 'hover', 'contextMenu']` | []      |

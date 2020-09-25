@@ -28,14 +28,14 @@ import SearchBar from '@synerise/ds-search-bar'
 
 ## API
 
-| Property       | Description                              | Type                        | Default |
-| -------------- | ---------------------------------------- | --------------------------- | ------- |
-| onSearchChange | Callback when user input                 | function                    | -       |
-| onClearInput   | Callback when user press x               | function                    | -       |
-| placeholder    | Placeholder                              | string `or` React.ReactNode | -       |
-| className      | Optional class                           | string                      | -       |
-| clearTooltip   | Tooltip description above x btn          | string `or` React.ReactNode | -       |
-| value          | The input content value                  | string                      | -       |
-| iconLeft       | Place for optional icon on the left side | React.ReactNode             | -       |
-| autofocus      | Whether the input is focused             | boolean                     | false   |
-| disabled       | Whether the input is disabled.           | boolean                     | -       |
+| Property       | Description                              | Type                     | Default |
+| -------------- | ---------------------------------------- | ------------------------ | ------- |
+| autofocus      | Whether the input is focused             | boolean                  | `false` |
+| className      | Optional class for the component         | string                   | -       |
+| clearTooltip   | Tooltip description above clear button          | string / React.ReactNode | -       |
+| disabled       | Whether the input is disabled.           | boolean                  | -       |
+| iconLeft       | Place for optional icon on the left side | React.ReactNode          | -       |
+| onSearchChange | Callback when user input                 | () => void               | -       |
+| onClearInput   | Callback when user press clear button               | () => void               | -       |
+| placeholder    | Placeholder                              | string / React.ReactNode | -       |
+| value          | The input content value                  | string                   | -       |

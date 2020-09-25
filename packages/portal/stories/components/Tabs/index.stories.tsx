@@ -3,7 +3,7 @@ import SearchM from '@synerise/ds-icon/dist/icons/SearchM';
 import Tabs from '@synerise/ds-tabs';
 import { withState } from '@dump247/storybook-state';
 import { action } from '@storybook/addon-actions';
-import { array, boolean, number } from '@storybook/addon-knobs';
+import { array, boolean } from '@storybook/addon-knobs';
 import { BooleanM, CalendarM, HashM, ListM, TextM } from '@synerise/ds-icon/dist/icons';
 
 const decorator = storyFn => (

@@ -31,8 +31,7 @@ import { Props, State, Side as SideType } from './RangePicker.types';
 import getDateFromString from '../dateUtils/getDateFromString';
 import { getSidesState, getDisabledTimeOptions } from './utils';
 
-
-const TOOLTIP_FORMAT = 'd MMM yyyy, H:mm';
+const TOOLTIP_FORMAT = 'MMM d, yyyy, HH:mm';
 export default class RangePicker extends React.PureComponent<Props, State> {
   constructor(props: Props) {
     super(props);
@@ -50,6 +49,9 @@ export default class RangePicker extends React.PureComponent<Props, State> {
       (!!value?.to &&
         value?.to !== prevProps?.value?.to &&
         !fnsIsSameMonth(legacyParse(value.to), legacyParse(left.month))) ||
+      (!!value?.from &&
+        value?.from !== prevProps?.value?.from &&
+        !fnsIsSameMonth(legacyParse(value.from), legacyParse(left.month))) ||
       forceAdjacentMonths !== prevProps.forceAdjacentMonths
     ) {
       this.setState(getSidesState(value, forceAdjacentMonths));

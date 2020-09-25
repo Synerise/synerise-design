@@ -15,30 +15,13 @@ import ModalProxy from '@synerise/ds-modal';
 import Result from '@synerise/ds-result';
 import Button from '@synerise/ds-button';
 import Dropdown from '@synerise/ds-dropdown';
-import { CSSProperties } from 'react';
 import { ItemType } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.types';
 import Menu from '@synerise/ds-menu';
 import * as S from '../ContentItem/ContentItem.styles';
 import { SelectFilterItem, ItemHeader, DropdownMenu } from './FilterItem.styles';
 import ItemName from '../ItemName/ItemName';
-import { ItemProps } from '../Item';
 import ItemMeta from '../ItemMeta/ItemMeta';
-
-interface FilterItemProps {
-  item: ItemProps;
-  greyBackground?: boolean;
-  onRemove?: (removeParams: { id: string }) => void;
-  onDuplicate?: (duplicateParams: { id: string }) => void;
-  onUpdate?: (updateParams: { id: string; name: string }) => void;
-  onSelect: (selectParams: { id: string }) => void;
-  selected: boolean;
-  texts: {
-    [k: string]: string | React.ReactNode;
-  };
-  theme: { [k: string]: string };
-  searchQuery?: string;
-  style?: CSSProperties;
-}
+import { FilterItemProps } from './FilterItem.types';
 
 const FilterItem: React.FC<FilterItemProps> = ({
   item,

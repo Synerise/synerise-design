@@ -2,27 +2,31 @@ import styled from 'styled-components';
 import Button from '@synerise/ds-button';
 import SearchBar from '@synerise/ds-search-bar/';
 import Scrollbar from '@synerise/ds-scrollbar';
-import { ScrollbarProps } from '@synerise/ds-scrollbar/dist/Scrollbar';
+import { ScrollbarProps } from '@synerise/ds-scrollbar/dist/Scrollbar.types';
 
 export const Container = styled.div`
   margin-bottom: 24px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   flex-direction: row;
+  flex-wrap: wrap;
 `;
 
 export const SelectedTags = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
   flex-wrap: wrap;
+  && .ds-tag {
+  margin: 4px;
+  }
 `;
 
 export const AddButton = styled(Button)<{ marginless?: boolean }>`
-  margin: ${(props): string => (props.marginless ? '0' : '0 0 0 8px')};
+  margin: ${(props): string => (props.marginless ? '0' : '0 0 0 4px')};
 
   span {
-    padding-left: 4px;
+    padding: 0 4px;
   }
 `;
 
@@ -60,7 +64,7 @@ export const CreateTagDropdownButton = styled(Button)<{ marginless: boolean }>`
 `;
 
 export const ManageLinkButton = styled(Button)<{ onlyChild: boolean }>`
-  margin: ${(props): string => (props.onlyChild ? '0' : '8px ')};
+  margin: ${(props): string => (props.onlyChild  ? '8px' : '8px ')};
 `;
 
 export const Seperator = styled.hr`
@@ -109,8 +113,8 @@ export const DropdownSearch = styled(SearchBar)`
   }
 `;
 
-export const DropdownNoTags = styled.span`
-  padding: 4px;
+export const DropdownNoTags = styled.div`
+  padding: 8px 20px;
 `;
 
 export const Overlay = styled.div`

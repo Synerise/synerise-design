@@ -1,10 +1,6 @@
 import * as React from 'react';
-import { TitleProps } from 'antd/es/typography/Title';
 import { H1, H2, H3, H4, H5, H6 } from './CommonElements';
-
-interface Props extends Omit<TitleProps, 'level'> {
-  level: 1 | 2 | 3 | 4 | 5 | 6;
-}
+import { Props } from './Title.types';
 
 const StyledElements = {
   1: H1,

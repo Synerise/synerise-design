@@ -7,7 +7,7 @@ import { withState } from '@dump247/storybook-state';
 import Icon from '@synerise/ds-icon/';
 import { AngleDownS, ArrowRightCircleM, MailM } from '@synerise/ds-icon/dist/icons';
 import Button from '@synerise/ds-button';
-import { boolean, number, select } from '@storybook/addon-knobs';
+import { boolean,  select } from '@storybook/addon-knobs';
 import Avatar from '@synerise/ds-avatar';
 import Badge from '@synerise/ds-badge';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';

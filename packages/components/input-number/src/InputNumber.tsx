@@ -2,16 +2,8 @@ import * as React from 'react';
 import { v4 as uuid } from 'uuid';
 import '@synerise/ds-core/dist/js/style';
 import './style/index.less';
-import { InputNumberProps } from 'antd/lib/input-number';
 import * as S from './InputNumber.styles';
-
-export interface Props extends InputNumberProps {
-  errorText?: React.ReactNode | string;
-  label?: React.ReactNode | string;
-  description?: React.ReactNode | string;
-  error?: boolean;
-  raw?: boolean;
-}
+import { Props } from './InputNumber.types';
 
 const InputNumber: React.FC<Props> = ({ label, description, errorText, raw, error, ...antdProps }) => {
   const id = uuid();

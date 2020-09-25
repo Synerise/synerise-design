@@ -42,7 +42,7 @@ import Alert from '@synerise/ds-alert'
 | description | Additional content of Alert                                                    | string\                 | ReactNode | - |
 | icon        | Custom icon, effective when `showIcon` is `true`                               | ReactNode               | -         | 
 | message     | Content of Alert                                                               | string\                 | ReactNode | - |
-| showIcon    | Whether to show icon                                                           | boolean                 | false     | 
+| showIcon    | Whether to show icon                                                           | boolean                 |`false`    | 
 | type        | Type of Alert styles, options: `success`, `info`, `warning`, `error` | string                  | `info`    | 
 | onClose     | Callback when Alert is closed                                                  | (e: MouseEvent) => void | -         |
 | mode     | Whether to render alert with outline, background, or transparent, options: `background`, `background-outline`, `outline`, `clear`                                                  | string | `background`         |

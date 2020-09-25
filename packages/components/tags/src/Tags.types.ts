@@ -1,6 +1,5 @@
 import { CSSProperties } from 'react';
-import { Props as TagProps } from './Tag/Tag.types';
-import { TagShape } from './Tag/Tag';
+import { Props as TagProps, TagShape } from './Tag/Tag.types';
 
 export interface TagsTexts {
   addButtonLabel?: string;

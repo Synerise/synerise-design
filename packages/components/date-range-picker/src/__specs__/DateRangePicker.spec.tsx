@@ -133,29 +133,6 @@ describe('DateRangePicker', () => {
     selectedRangeEnd.click();
     expect(valueWrapper.textContent).toBe("Oct 1, 2018, 00:00Oct 12, 2018, 23:59");
   });
-  it('should update return absolute value when set custom date range', async () => {
-    const onApply = jest.fn();
-    const { container } = renderWithProvider(
-      <RawDateRangePicker
-        showTime
-        onApply={onApply}
-        showFilter={false}
-        showRelativePicker
-        value={RELATIVE_VALUE as DateRange}
-        forceAbsolute={false}
-        ranges={RANGES}
-        relativeModes={RELATIVE_MODES as RelativeMode[]}
-      />
-    );
-    const selectedRangeStart = container.querySelector('[data-attr="1"]') as HTMLElement;
-    selectedRangeStart.click();
-    const selectedRangeEnd = container.querySelector('[data-attr="12"]') as HTMLElement;
-    selectedRangeEnd.click();
-    const applyButton = container.querySelector(APPLY_BUTTON_SELECTOR) as HTMLElement;
-    applyButton.click();
-    const onApplyParameter = onApply.mock.calls[0][0];
-    expect(onApplyParameter['type']).toBe(ABSOLUTE);
-  });
 
   it('should change format when showTime is false', async () => {
     const onApply = jest.fn();

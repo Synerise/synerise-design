@@ -5,19 +5,7 @@ import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { escapeRegEx } from '@synerise/ds-utils';
 import * as S from './Breadcrumb.styles';
 import { MenuItemProps } from '../Item/MenuItem.types';
-
-export interface BreadcrumbProps {
-  prefixel?: React.ReactNode;
-  disabled?: boolean;
-  path: string[];
-  highlight?: string;
-  description?: string | React.ReactNode;
-  onPathClick?: (path: string & { id?: number | string }) => void;
-  compact?: boolean;
-  startWithArrow?: boolean;
-  gradientOverlap?: boolean;
-  highlightActivePath?: boolean;
-}
+import { BreadcrumbProps } from './Breadcrumb.types';
 
 const Breadcrumb: React.FC<BreadcrumbProps & MenuItemProps> = ({
   path,

@@ -2,7 +2,7 @@ import * as React from 'react';
 import faker from 'faker';
 import { action } from '@storybook/addon-actions';
 import { boolean, select, text } from '@storybook/addon-knobs';
-import Table, { VirtualTable } from '@synerise/ds-table';
+import Table from '@synerise/ds-table';
 import {
   AddM,
   MailM,

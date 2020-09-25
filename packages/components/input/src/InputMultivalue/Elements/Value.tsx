@@ -2,20 +2,14 @@ import * as React from 'react';
 import Icon from '@synerise/ds-icon';
 import { CloseS } from '@synerise/ds-icon/dist/icons';
 import * as S from '../InputMultivalue.styles';
+import { Props } from './Value.types';
 
-export interface Props {
-  disabled?: boolean;
-  key?: string;
-  onRemoveClick: () => void;
-  value: React.ReactText;
-  focused?: boolean;
-}
 const Value: React.FC<Props> = ({ disabled, key, onRemoveClick, value, focused }) => {
   const [hovered, setHovered] = React.useState(false);
   return (
     // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
     <S.ValueWrapper
-      className='ds-input-value-wrapper'
+      className="ds-input-value-wrapper"
       onMouseOver={(): void => {
         focused && setHovered(true);
       }}

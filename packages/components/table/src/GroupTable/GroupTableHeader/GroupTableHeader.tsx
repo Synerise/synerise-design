@@ -1,11 +1,5 @@
 import * as React from 'react';
-
-interface Props<T extends unknown> {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  header: any;
-  activeColumnKey?: string;
-  sortColumn: (column: T) => void;
-}
+import { Props } from './GroupTableHeader.types';
 
 function GroupTableHeader<T extends unknown>({ header, activeColumnKey, sortColumn }: Props<T>): JSX.Element {
   const clickHandle = React.useCallback(

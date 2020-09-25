@@ -5,11 +5,7 @@ import Icon from '@synerise/ds-icon';
 import ArrowLeftM from '@synerise/ds-icon/dist/icons/ArrowLeftM';
 
 import * as S from './BackAction.styles';
-
-interface Props {
-  label: React.ReactNode;
-  onClick: () => void;
-}
+import { Props } from './BackAction.types';
 
 const BackAction: React.FC<Props> = ({ label, onClick }) => (
   <S.BackActionWrapper>
