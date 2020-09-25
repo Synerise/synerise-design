@@ -55,7 +55,6 @@ const Tab: React.FC<TabProps> = ({
       type="button"
       data-testid="tab-container"
       block={block}
-      suffixel={!!suffixel}
     >
       <S.BlockContentWrapper block={block}>
         <S.TabContent className="tab-content">
