@@ -9,7 +9,7 @@ export const PageContainer = styled.div`
   flex-wrap: wrap;
   height: 100vh;
   background-color: rgb(243, 245, 246);
-  overflow-y: hidden;
+  overflow: hidden;
 `;
 
 export const ContentWrapper = styled.div<{ withNavBar: boolean }>`
