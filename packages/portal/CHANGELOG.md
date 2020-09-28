@@ -3,6 +3,85 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.96.0](https://github.com/synerise/synerise-design/compare/portal@0.95.6...portal@0.96.0) (2020-09-25)
+
+
+### Bug Fixes
+
+* **card-tabs:** update example in storybook ([77dcb1b](https://github.com/synerise/synerise-design/commit/77dcb1be381d39b25a659a20196a3a2cf0fc3129))
+* **condition:** clear selection on change subject/param/operator ([18da9f3](https://github.com/synerise/synerise-design/commit/18da9f378afdf447ad8bc10f149c08e832205f55))
+* **condition:** fix stories ([9868e89](https://github.com/synerise/synerise-design/commit/9868e89273306c9f5d47a3b46a4253e0d782748a))
+* **condition:** move examples to Filter category ([314ce7e](https://github.com/synerise/synerise-design/commit/314ce7e198fbbe5a4fc864bccd832182d7ae2907))
+* **docs:** fix default viewport in storybook ([1302336](https://github.com/synerise/synerise-design/commit/13023362e6a27d3ac976ec817ae09bf40c512f3c))
+* **docs:** update docs story ([f5007d7](https://github.com/synerise/synerise-design/commit/f5007d7db83446e682a242588d29663b4c839680))
+* **factors:** autofocus on search input ([dd8ec41](https://github.com/synerise/synerise-design/commit/dd8ec41ca45bf98437e24d4ca015b87c9dab00f7))
+* **factors:** fix example in storybook ([4e50faa](https://github.com/synerise/synerise-design/commit/4e50faae4375ee74f36aad2d22ba70397bb66bb4))
+* **factors:** fix farmula modal, expansible text modal, autocomplete ([92a7e94](https://github.com/synerise/synerise-design/commit/92a7e94af258a9601686d08d63f2317d79ddcfa0))
+* **folders:** added an offset to the actions dropdown ([b1de1e0](https://github.com/synerise/synerise-design/commit/b1de1e04740d9f759a81e1f418e1524c6009ae38))
+* **folders:** added changed after ux review ([8eb8af6](https://github.com/synerise/synerise-design/commit/8eb8af633b4957017f58b029632a8fa0e1744225))
+* **folders:** added max visible items count handling ([2619151](https://github.com/synerise/synerise-design/commit/261915191592b9d3af21fb91521f14bfb16aba51))
+* **folders:** fixed bugs with blank space in name ([4616ea4](https://github.com/synerise/synerise-design/commit/4616ea4ee2c2470c5c105064c9b9919a02f5050b))
+* **folders:** fixed popover for adding the item ([ad59738](https://github.com/synerise/synerise-design/commit/ad597389d6df473dd10e2006bd2805fe8bf1d85c))
+* **folders:** fixed show more and less buttons ([a57b95b](https://github.com/synerise/synerise-design/commit/a57b95b1008145ba99c5b63f06a37f15ac66c44e))
+* **folders:** show more and less cmp fixes ([125bae2](https://github.com/synerise/synerise-design/commit/125bae2f4c4dcf71e92448825aa7afdcc503e230))
+* **folders:** styling fixes after review ([beb8644](https://github.com/synerise/synerise-design/commit/beb86443e5403769067ceab585647b5595e4ec20))
+* **grid:** change grid items size in storybook on 'sm' breakpoint ([bf983e8](https://github.com/synerise/synerise-design/commit/bf983e88f53f3d8ace574c40dbf01d9a7f59af69))
+* **grid:** change styles of gridwrapper in storybook ([1da7001](https://github.com/synerise/synerise-design/commit/1da7001c01631d923f039221589ad23bc165a6ee))
+* **grid:** fix strorybook example ([3a04820](https://github.com/synerise/synerise-design/commit/3a04820146dc28193b0c522db933053e09ea855f))
+* **grid:** fix strorybook example ([b1813d4](https://github.com/synerise/synerise-design/commit/b1813d4efcdd4fd1eb56e050ce7854958c3bee6e))
+* **grid:** fix strorybook example ([6a247eb](https://github.com/synerise/synerise-design/commit/6a247ebf71dab9e90b75727cf80f3522f0116c38))
+* **inline-edit:** add inline select component ([25ed7c6](https://github.com/synerise/synerise-design/commit/25ed7c6bc01b9557e23378a565e8d091c046eb72))
+* **inline-edit:** fix paddings and styles ([87e2a6d](https://github.com/synerise/synerise-design/commit/87e2a6d0f157f4aa532220f5d37eb96055ec1239))
+* **modal:** modal stories ([3140fb4](https://github.com/synerise/synerise-design/commit/3140fb480cbea8bc71bf8effb1254279a8c46ecf))
+* **operators:** add missing translation in storybook example ([25b31e0](https://github.com/synerise/synerise-design/commit/25b31e0c130bdbbd7e21eeacca8048c1d85582d6))
+* **portal:** fix typo in folders stories ([6d18569](https://github.com/synerise/synerise-design/commit/6d1856918f05d5d94869a1f76af6e3f0fac0b037))
+* **sidebar-object:** change string in textDescription ([d7328ee](https://github.com/synerise/synerise-design/commit/d7328ee78927ff65e2c8e5d52aa27ab13285af99))
+* **sidebar-object:** change width of inline edit and dropdwon styles ([ef224f8](https://github.com/synerise/synerise-design/commit/ef224f861951c65bfe33364fc588520f4e2e56dd))
+* **sidebar-object:** delete some knobs and add subtleForm ([b975924](https://github.com/synerise/synerise-design/commit/b9759241d96eae53ec1dd08b8e78ae913880dbe3))
+* **sidebar-object:** fix opening dropdowns, fix inline-edits, ([e103f3a](https://github.com/synerise/synerise-design/commit/e103f3a839a140d03cc24ce3a99561f707b10fa1))
+* **subtle-form:** fixing the types and build ([92a6212](https://github.com/synerise/synerise-design/commit/92a62126ab9679586e8ec49d8016f9127aa78097))
+
+
+### Features
+
+* **condition:** add operators ([ceeb0e4](https://github.com/synerise/synerise-design/commit/ceeb0e418812ceb4e895e0285d8ed952cbe8bdd1))
+* **condition:** add translations ([4b5735f](https://github.com/synerise/synerise-design/commit/4b5735f46ab221b8fb7db8209ee5baf12857e372))
+* **condition:** condition component ([151d0dc](https://github.com/synerise/synerise-design/commit/151d0dc0cf06bb39d9a6e829bcb13a690bd78a79))
+* **condition:** init condition component ([6eccc4e](https://github.com/synerise/synerise-design/commit/6eccc4e056fee08ebfced9bd3d47f041cd689a25))
+* **docs:** storybook-addon-viewport ([c9c3d16](https://github.com/synerise/synerise-design/commit/c9c3d160622d1e1e250e7c73d1bb76fef13f09b3))
+* **factors:** add translations ([253f00c](https://github.com/synerise/synerise-design/commit/253f00c31d022880864c1c0df8cfa5091450dc1c))
+* **factors:** init factors component ([d23dc64](https://github.com/synerise/synerise-design/commit/d23dc64cbc17274fa0a27d920eebb6c32924cc02))
+* **factors:** withoutTypeSelector mode ([0af0622](https://github.com/synerise/synerise-design/commit/0af0622d6b096cc60445e232bdc43b98d6bd5a99))
+* **folders:** added custom filters ([f3a933f](https://github.com/synerise/synerise-design/commit/f3a933f58f34199230e8fddb6effacb3863f9d55))
+* **folders:** added delete modal ([9b4732e](https://github.com/synerise/synerise-design/commit/9b4732e21c3fa51b1bd12a3b01bf25241ebd3202))
+* **folders:** added folders component ([2a940c5](https://github.com/synerise/synerise-design/commit/2a940c5593e464eb26c7f1d6612a62b74e8542ca))
+* **folders:** added sorting by name and favoutire ([09e0770](https://github.com/synerise/synerise-design/commit/09e07701a4c0ede8dbcda0bede48503e7ce2c297))
+* **grid:** add example with customizable grid ([e33c580](https://github.com/synerise/synerise-design/commit/e33c58012248b2054dbaf015b2f0b31d06d4d26a))
+* **grid:** init component ([b0d07d2](https://github.com/synerise/synerise-design/commit/b0d07d2fff61110909977c85318d2b81ef7ca3d9))
+* **grid:** styles, basic example in storybook ([3f873f3](https://github.com/synerise/synerise-design/commit/3f873f335993998d71b305ff3876e129c517999d))
+* **grid:** update example in storybook ([ae5c700](https://github.com/synerise/synerise-design/commit/ae5c700e9c3ed1b3607c6481f31b08c6ec6f7dc0))
+* **menu:** added handling tags as suffix ([745eb25](https://github.com/synerise/synerise-design/commit/745eb2565429d18aea0933fbda4ce662c3b9eb87))
+* **modal:** examples with few footers example ([856c585](https://github.com/synerise/synerise-design/commit/856c585c7f3a9d788c46982dc344d7516140b3df))
+* **operators:** add Check Icon for selected operator ([25d4a9b](https://github.com/synerise/synerise-design/commit/25d4a9b0d0151a851b546e752423c5397e0cde58))
+* **operators:** add translations ([c422c9a](https://github.com/synerise/synerise-design/commit/c422c9ac57d9d40f09ed245f000e6c66f95f6061))
+* **operators:** operators component ([dd6b085](https://github.com/synerise/synerise-design/commit/dd6b08591651f18e68bef9f298efe37e80e346c7))
+* **portal:** cleaned up menu item story ([21dedc0](https://github.com/synerise/synerise-design/commit/21dedc0f9648feb0828ae78bfc3c4f0c9aa88eea))
+* **search:** added a story with debounce implementation ([71420a7](https://github.com/synerise/synerise-design/commit/71420a77629c7faa247b777314e9279944d48cbb))
+* **sidebar-object:** add props checked ([a8c0d1f](https://github.com/synerise/synerise-design/commit/a8c0d1f4b1d77d06575cfb7687ca63c6865ae8c7))
+* **sidebar-object:** Added component ([2fcf43a](https://github.com/synerise/synerise-design/commit/2fcf43a01eb84b8e8cbd223f35ba983bb1260294))
+* **sidebar-object:** Added component sidebar-object ([be24147](https://github.com/synerise/synerise-design/commit/be24147a2aa12bf7a52ae9f8d25c3fbcbcee6f84))
+* **sidebar-object:** Added tests and documentation sidebar-object ([be09267](https://github.com/synerise/synerise-design/commit/be09267373d75fc54cdf2d963c29fbbe4bc5bdb9))
+* **sidebar-object:** fix props onChange ([21b815c](https://github.com/synerise/synerise-design/commit/21b815c961dfafdd01d2d1b47105a21fb999df6c))
+* **sidebar-object:** resolve problems ([3345703](https://github.com/synerise/synerise-design/commit/3345703e4dc876bb6f4062440aa7bb1db7ba649e))
+* **subject:** add subject components ([021fc23](https://github.com/synerise/synerise-design/commit/021fc234a0ec577d8edf9eb0124483ab1fb74369))
+* **subject:** add translations ([9d4fadd](https://github.com/synerise/synerise-design/commit/9d4fadda7a242fdb355f4017df162e7005d2d5f8))
+* **subject:** add translations ([2533f7a](https://github.com/synerise/synerise-design/commit/2533f7afda34ba302a2f96ac12829b67369b6b7b))
+* **subtle-form:** added subtle-form component ([a445ea1](https://github.com/synerise/synerise-design/commit/a445ea184b9414ac51a0adf0a543166e7b2c6491))
+
+
+
+
+
 ## [0.95.6](https://github.com/synerise/synerise-design/compare/portal@0.95.5...portal@0.95.6) (2020-09-18)
 
 

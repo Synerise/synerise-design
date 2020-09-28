@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.60](https://github.com/Synerise/synerise-design/compare/@synerise/ds-app-menu@0.3.59...@synerise/ds-app-menu@0.3.60) (2020-09-25)
+
+
+### Bug Fixes
+
+* **app-menu:** remove duplicated import in documentation ([a8af244](https://github.com/Synerise/synerise-design/commit/a8af244b7fa7157ffc93617fdc2451337224b629))
+
+
+
+
+
 ## [0.3.59](https://github.com/Synerise/synerise-design/compare/@synerise/ds-app-menu@0.3.58...@synerise/ds-app-menu@0.3.59) (2020-09-01)
 
 **Note:** Version bump only for package @synerise/ds-app-menu

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.24.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.23.43...@synerise/ds-table@0.24.0) (2020-09-25)
+
+
+### Features
+
+* **table:** change text style in active column ([1db4873](https://github.com/synerise/synerise-design/commit/1db4873c026ff10248af58f591290657497be2f5))
+* **table:** change text style in active column ([8abb34d](https://github.com/synerise/synerise-design/commit/8abb34de9a505215e225a3857d201eefd9c583e8))
+
+
+
+
+
 ## [0.23.43](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.23.42...@synerise/ds-table@0.23.43) (2020-09-18)
 
 **Note:** Version bump only for package @synerise/ds-table

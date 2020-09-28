@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@0.9.3...@synerise/ds-utils@0.10.0) (2020-09-25)
+
+
+### Bug Fixes
+
+* **utils:** fix size calculation on show component ([baf2772](https://github.com/synerise/synerise-design/commit/baf27720fadca3a9075e7c9657e4d2a084b31a3b))
+
+
+### Features
+
+* **grid:** useBreakpoint ([d433434](https://github.com/synerise/synerise-design/commit/d433434026808f8862874ee5d65f6d83530e1d65))
+* **utils:** add breakpoints into useBreakpoints ([eda5134](https://github.com/synerise/synerise-design/commit/eda5134dd938db2070e4523d498adce8389fa65a))
+
+
+
+
+
 ## [0.9.3](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@0.9.2...@synerise/ds-utils@0.9.3) (2020-09-01)
 
 **Note:** Version bump only for package @synerise/ds-utils

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.56](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-tabs@0.6.55...@synerise/ds-card-tabs@0.6.56) (2020-09-25)
+
+
+### Bug Fixes
+
+* **card-tabs:** adjust types to the cruds types ([06c02c4](https://github.com/Synerise/synerise-design/commit/06c02c4c950bb360d39b811049fb460677b24d6f))
+* **card-tabs:** stopped propagation of an event ([ec142fb](https://github.com/Synerise/synerise-design/commit/ec142fb6c1897878991981f943a3a6828aa7764a))
+
+
+
+
+
 ## [0.6.55](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-tabs@0.6.54...@synerise/ds-card-tabs@0.6.55) (2020-09-01)
 
 **Note:** Version bump only for package @synerise/ds-card-tabs

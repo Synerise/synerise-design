@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.39](https://github.com/synerise/synerise-design/compare/@synerise/ds-tabs@0.10.38...@synerise/ds-tabs@0.10.39) (2020-09-25)
+
+
+### Bug Fixes
+
+* **tabs:** add visible props for tabs on dropdown overlay ([ba6e4a0](https://github.com/synerise/synerise-design/commit/ba6e4a09d780153c16ac1d3a10890e5e33cf5778))
+
+
+
+
+
 ## [0.10.38](https://github.com/synerise/synerise-design/compare/@synerise/ds-tabs@0.10.37...@synerise/ds-tabs@0.10.38) (2020-09-01)
 
 **Note:** Version bump only for package @synerise/ds-tabs

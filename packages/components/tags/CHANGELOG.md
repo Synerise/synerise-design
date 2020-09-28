@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.109](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@0.2.108...@synerise/ds-tags@0.2.109) (2020-09-25)
+
+
+### Bug Fixes
+
+* **tag:** fixed handling undefined classname ([1bc9b0d](https://github.com/Synerise/synerise-design/commit/1bc9b0df35c6d9b7a04aeb5eb7fc90ad51352871))
+* **tags:** added default class for tags ([c3e43d7](https://github.com/Synerise/synerise-design/commit/c3e43d7f8d5b3beae9174d6effc2e151b32a82c8))
+* **tags:** change placement of add button tag ([7edfc6c](https://github.com/Synerise/synerise-design/commit/7edfc6cd6ec3ddb2db145a2f8dc02bde14fb5337))
+* **tags:** changed a way od resolving classname ([33144a4](https://github.com/Synerise/synerise-design/commit/33144a49053585b9d74c554a68630df01c5dda5a))
+* **tags:** fix dropdown tags and their placement ([f48b4ad](https://github.com/Synerise/synerise-design/commit/f48b4ad76fa7081b7ac087a88eef42d082720f80))
+* **tags:** fix padding of AddButton ([d16c4c4](https://github.com/Synerise/synerise-design/commit/d16c4c490197f9f9cde75e8acbe3acf2526153f2))
+
+
+
+
+
 ## [0.2.108](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@0.2.107...@synerise/ds-tags@0.2.108) (2020-09-01)
 
 
