@@ -12,7 +12,8 @@ import { getDateFromDayValue } from './utils';
 import Grid from './Grid/Grid';
 
 class TimeWindowBase extends React.PureComponent<Props, State> {
-  state: State = { activeDay: [], multipleMode: false };
+  // eslint-disable-next-line react/destructuring-assignment
+  state: State = { activeDay: this.props.singleMode ? [0] : [], multipleMode: false };
   static defaultProps = {
     days: {},
     numberOfDays: 7,
@@ -97,12 +98,14 @@ class TimeWindowBase extends React.PureComponent<Props, State> {
     onUncheckDay && onUncheckDay(dayKey);
   };
 
-  handleDayTimeChange = (value: [Date, Date], dayKey: DayKey): void =>
+  handleDayTimeChange = (value: [Date, Date], dayKey: DayKey): void => {
+    console.log('DAYKEY', dayKey);
     this.handleDayChange(dayKey, {
       restricted: true,
       start: dayjs(value[0]).format('HH:mm:ss.SSS'),
       stop: dayjs(value[1]).format('HH:mm:ss.SSS'),
     });
+  };
 
   handleMultipleDayTimeChange = (value: [Date, Date]): void => {
     const { onChange, days } = this.props;
@@ -140,15 +143,14 @@ class TimeWindowBase extends React.PureComponent<Props, State> {
   };
 
   getDayValue = (dayKey: DayKey) => {
-    const { days, dayTemplate, customDays } = this.props;
+    const { days, dayTemplate, customDays, singleMode } = this.props;
     let dayValue = {};
-
-    if (days[dayKey]) dayValue = days[dayKey];
+    if (singleMode) dayValue = days;
+    else if (days[dayKey]) dayValue = days[dayKey];
     else if (typeof dayKey === 'number') dayValue = dayTemplate(dayKey);
     else if (customDays && customDays[dayKey] && customDays[dayKey].template) {
       dayValue = customDays[dayKey].template!;
     }
-
     return {
       start: '00:00:00.000',
       stop: '23:59:59.999',
@@ -218,7 +220,9 @@ class TimeWindowBase extends React.PureComponent<Props, State> {
 
   renderRangeForm = (dayKeys: DayKey, singleMode: boolean): React.ReactNode => {
     const { activeDay } = this.state;
+    console.log('ActiveDay', activeDay);
     const dayValue = this.getDayValue(activeDay[0]);
+    console.log('DAYVALUE', dayValue);
     const rangeForm = (
       <RangeForm
         startDate={getDateFromDayValue(dayValue.start)}
@@ -254,6 +258,7 @@ class TimeWindowBase extends React.PureComponent<Props, State> {
     const keys = this.getAllKeys();
     const singleMode = keys.length === 1;
     const rangeFormKey = singleMode ? keys[0] : activeDay;
+    console.log('RANGE FORM KEY', rangeFormKey);
     return (
       <S.TimeWindowContainer
         style={style}

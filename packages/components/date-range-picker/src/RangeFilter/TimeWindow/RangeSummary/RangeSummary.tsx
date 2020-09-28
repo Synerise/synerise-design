@@ -6,13 +6,13 @@ const RangeSummary: React.FC<RangeSummaryProps> = ({ dayKeys, getDayLabel }: Ran
   let daysToDisplay;
   if (!(dayKeys instanceof Array)) {
     daysToDisplay = <S.DayShortname key={dayKeys}>{getDayLabel(dayKeys, true)}</S.DayShortname>;
-    /*const selectedDaysLabels = keys.map((k, index) => (
-      <S.DayShortname key={k}>
-        {getDayLabel(k, true)}
-        {index + 1 !== keys.length && ', '}
-      </S.DayShortname>
-    ));*/
   }
+  daysToDisplay = dayKeys.map((k, index) => (
+    <S.DayShortname key={k}>
+      {getDayLabel(k, true)}
+      {index + 1 !== dayKeys.length && ', '}
+    </S.DayShortname>
+  ));
   return <S.TitleWrapper>Set time for: {daysToDisplay}</S.TitleWrapper>;
 };
 

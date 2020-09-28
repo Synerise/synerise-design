@@ -25,16 +25,14 @@ const DailyFilter: React.FC<Props> = props => {
         hideHeader
         numberOfDays={0}
         customDays={{ 0: { label: intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.EVERY_DAY' }) } }}
-        days={[value]}
+        days={value[0] ? value[0] : value}
         onChange={val => {
-          console.log('Value:', val);
+
           handleChange(val);
         }}
         timeMarks={{}}
+        singleMode
       />{' '}
-      <Row justifyContent="flex-start">
-        <AddButton label="Add range" />
-      </Row>
     </S.DailyFilterWrapper>
   );
 };

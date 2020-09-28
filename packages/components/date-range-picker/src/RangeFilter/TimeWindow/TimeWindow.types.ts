@@ -48,6 +48,7 @@ export type Props = {
   labelInverted?: boolean;
   reverseGroup: number;
   intl: IntlShape;
+  singleMode?: boolean;
 } & WrappedComponentProps;
 
 export type State = {
