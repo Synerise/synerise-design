@@ -62,7 +62,7 @@ const Header: React.FC<HeaderProps> = ({
               <Menu style={{ padding: '8px 8px' }}>
                 {onEdit && (
                   <Menu.Item
-                    onClick={(): void => setDropdownVisible(!dropdownVisible)}
+                    onClick={(): void =>{ setDropdownVisible(!dropdownVisible); onEdit(inputObject)}}
                     prefixel={<Icon component={<EditM />} />}
                   >
                     {texts.editIcon}
@@ -70,7 +70,7 @@ const Header: React.FC<HeaderProps> = ({
                 )}
                 {onDuplicate && (
                   <Menu.Item
-                    onClick={(): void => setDropdownVisible(!dropdownVisible)}
+                    onClick={(): void => {setDropdownVisible(!dropdownVisible); onDuplicate(inputObject)}}
                     prefixel={<Icon component={<DuplicateM />} />}
                   >
                     {texts.duplicateIcon}
@@ -78,7 +78,7 @@ const Header: React.FC<HeaderProps> = ({
                 )}
                 {onMove && (
                   <Menu.Item
-                    onClick={(): void => setDropdownVisible(!dropdownVisible)}
+                    onClick={(): void => {setDropdownVisible(!dropdownVisible); onMove(inputObject)}}
                     prefixel={<Icon component={<FolderM />} />}
                   >
                     {texts.moveIcon}
@@ -86,7 +86,7 @@ const Header: React.FC<HeaderProps> = ({
                 )}
                 {onDelete && (
                   <Menu.Item
-                    onClick={(): void => setDropdownVisible(!dropdownVisible)}
+                    onClick={(): void => {setDropdownVisible(!dropdownVisible); onDelete(inputObject)}}
                     type="danger"
                     prefixel={<Icon component={<TrashM />} />}
                   >
@@ -96,7 +96,7 @@ const Header: React.FC<HeaderProps> = ({
                 <MenuWrapper>
                   {onId && (
                     <Menu.Item
-                      onClick={(): void => setDropdownVisible(!dropdownVisible)}
+                      onClick={(): void => {setDropdownVisible(!dropdownVisible); onId(inputObject)}}
                       style={{ padding: '0 12px' }}
                       prefixel={<Icon component={<CopyClipboardM />} />}
                     >{`ID: ${inputObject.id}`}</Menu.Item>
