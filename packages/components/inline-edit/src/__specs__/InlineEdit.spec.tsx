@@ -72,6 +72,9 @@ describe('InlineEdit', () => {
     expect(onChange).toHaveBeenCalled();
     expect(input.value).toBe(INPUT_VALUE)
   });
+  beforeEach(()=>{
+    Element.prototype.scrollTo = jest.fn();
+  })
 
   const names = ['is-input-name', 'test_input', 'is_input_name', 'is-input_test-name'];
   const ids = ['isInputName', 'testInput', 'isInputName', 'isInputTestName'];
