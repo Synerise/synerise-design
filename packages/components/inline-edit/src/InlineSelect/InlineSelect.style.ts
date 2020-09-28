@@ -74,6 +74,7 @@ export const InPlaceEditableInputContainer = styled.div<InPlaceEditableInputCont
   opacity: ${({ disabled }): number => (disabled ? 0.4 : 1)};
   pointer-events: ${({ disabled }): string => (disabled ? 'none' : 'all')};
   ${IconWrapper} {
+  margin-right: -3px;
     svg {
       color: ${(props): string => applyColor(props)};
       fill: ${(props): string => applyColor(props)};
