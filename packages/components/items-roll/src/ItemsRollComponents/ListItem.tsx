@@ -19,7 +19,6 @@ const ItemElement: React.FC<ItemElementProps> = ({
   return (
     <S.ListItem
       {...item}
-      data-testid="list-element-wrapper"
       className="items-roll-list-item"
       highlight={highlight}
       onItemHover={NOOP}

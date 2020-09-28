@@ -65,14 +65,14 @@ describe('ItemsRoll', () => {
     expect(C.getByText(`${DEFAULT_ITEMS_LENGTH}`)).toBeInTheDocument();
     expect(C.getByText('Change selection')).toBeInTheDocument();
     expect(C.getByText(`${DEFAULT_MAX_TO_SHOW_ITEMS}`)).toBeInTheDocument();
-    expect(C.queryAllByTestId(`list-element-wrapper`).length).toBe(DEFAULT_MAX_TO_SHOW_ITEMS);
+    expect(C.container.querySelectorAll(`.items-roll-list-item`).length).toBe(DEFAULT_MAX_TO_SHOW_ITEMS);
     expect(C.getByText(`Clear all`)).toBeInTheDocument();
     expect(C.container.querySelectorAll('.ant-divider').length).toBe(2);
     expect(searchInput.getAttribute('placeholder')).toBe('Search...');
     expect(searchInput).toHaveValue('');
 
     // ACT
-    const firstListItem = C.queryAllByTestId('list-element-wrapper')[0] as HTMLDivElement;
+    const firstListItem = C.container.querySelectorAll('.items-roll-list-item')[0] as HTMLDivElement;
 
     fireEvent.mouseOver(firstListItem);
 
