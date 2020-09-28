@@ -8,7 +8,16 @@ import RangePickerInput from './RangePickerInput/RangePickerInput';
 import { DateFilter, DateRange } from './date.types';
 
 const DateRangePicker: React.FC<Props> = props => {
-  const { value, onApply, showTime, onValueChange, texts, popoverPlacement, forceAdjacentMonths } = props;
+  const {
+    value,
+    onApply,
+    showTime,
+    onValueChange,
+    texts,
+    popoverPlacement,
+    popoverTrigger,
+    forceAdjacentMonths,
+  } = props;
   const [popupVisible, setPopupVisible] = React.useState<boolean | undefined>(undefined);
   const [selectedDate, setSelectedDate] = React.useState(value);
   const [inputActive, setInputActive] = React.useState<boolean>();
@@ -61,14 +70,16 @@ const DateRangePicker: React.FC<Props> = props => {
         placement={popoverPlacement}
         {...conditionalVisibilityProps}
       >
-        <RangePickerInput
-          onClick={(): void => setPopupVisible(undefined)}
-          value={selectedDate}
-          showTime={showTime}
-          texts={texts}
-          onChange={onValueChangeCallback}
-          active={!!inputActive}
-        />{' '}
+        {popoverTrigger || (
+          <RangePickerInput
+            onClick={(): void => setPopupVisible(undefined)}
+            value={selectedDate}
+            showTime={showTime}
+            texts={texts}
+            onChange={onValueChangeCallback}
+            active={!!inputActive}
+          />
+        )}
       </Popover>
     </S.PickerWrapper>
   );

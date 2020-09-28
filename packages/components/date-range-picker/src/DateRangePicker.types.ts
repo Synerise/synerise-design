@@ -2,22 +2,12 @@ import { WrappedComponentProps } from 'react-intl';
 import { DateFilter, DateRange } from 'date.types';
 
 export interface Props extends WrappedComponentProps {
-  showRelativePicker?: boolean;
-  showFilter?: boolean;
-  showTime?: boolean;
-  relativeFuture?: boolean;
-  relativePast?: boolean;
+  disabledDate?: (date?: Date) => boolean;
+  format?: string;
+  forceAdjacentMonths?: boolean;
+  forceAbsolute?: boolean;
   onValueChange?: (value: Partial<DateFilter> | undefined) => void;
   onApply: (value: Partial<DateFilter> | undefined) => void;
-  disabledDate?: (date?: Date) => boolean;
-  validate?: (value: DateRange) => { valid: boolean; message?: string };
-  format?: string;
-  ranges?: DateRange[];
-  value: DateRange;
-  forceAbsolute?: boolean;
-  texts?: Texts;
-  forceAdjacentMonths?: boolean;
-  relativeModes?: RelativeMode[];
   popoverPlacement?:
     | 'top'
     | 'left'
@@ -31,6 +21,17 @@ export interface Props extends WrappedComponentProps {
     | 'leftBottom'
     | 'rightTop'
     | 'rightBottom';
+  popoverTrigger?: React.ReactNode;
+  ranges?: DateRange[];
+  relativeFuture?: boolean;
+  relativePast?: boolean;
+  relativeModes?: RelativeMode[];
+  showRelativePicker?: boolean;
+  showFilter?: boolean;
+  showTime?: boolean;
+  texts?: Texts;
+  validate?: (value: DateRange) => { valid: boolean; message?: string };
+  value: DateRange;
 }
 export type RelativeMode = 'PAST' | 'FUTURE' | 'SINCE';
 export interface State {

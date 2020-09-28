@@ -15,6 +15,7 @@ const Tab: React.FC<TabProps> = ({
   underscore,
   className,
   block,
+  suffixel,
 }: TabProps) => {
   const [isPressed, setPressed] = React.useState(false);
   const handleClick = (): void => {
@@ -34,6 +35,12 @@ const Tab: React.FC<TabProps> = ({
     active: isActive,
     pressed: isPressed,
   });
+  const renderSuffixel = (): React.ReactNode => {
+    if (typeof suffixel === 'string' || typeof suffixel === 'number') {
+      return <S.SuffixWrapper>{suffixel}</S.SuffixWrapper>;
+    }
+    return <S.DefaultSuffixWrapper>{suffixel}</S.DefaultSuffixWrapper>;
+  };
 
   return (
     <S.TabContainer
@@ -53,6 +60,7 @@ const Tab: React.FC<TabProps> = ({
         <S.TabContent className="tab-content">
           {icon && <Icon component={icon} size={24} />}
           {label && <S.TabLabel>{label}</S.TabLabel>}
+          {!!suffixel && renderSuffixel()}
         </S.TabContent>
       </S.BlockContentWrapper>
     </S.TabContainer>

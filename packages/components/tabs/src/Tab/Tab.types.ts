@@ -11,4 +11,5 @@ export type TabProps = {
   onClick: (index: number) => void;
   forwardedRef: React.RefObject<HTMLButtonElement>;
   block?: boolean;
+  suffixel?: React.ReactNode | React.ReactText;
 };

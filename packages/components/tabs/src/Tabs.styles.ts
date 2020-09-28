@@ -43,18 +43,12 @@ export const TabsDropdownDivider = styled.div`
   background-repeat: repeat-x;
 `;
 
-export const TabsShowHiddenTabsButton = styled(Button)<ButtonProps>`
-  margin-top: -5px;
+export const ShowHiddenTabsTrigger = styled(Button)<ButtonProps>`
+  margin-bottom: 4px;
 `;
 
 export const HiddenTabs = styled.div`
   position: absolute;
   width: 0;
   visibility: hidden;
-`;
-
-export const ConfigurationButton = styled(Button)<ButtonProps>`
-  &&&:hover {
-    background: ${(props): string => props.theme.palette['grey-050']};
-  }
 `;

@@ -1,12 +1,10 @@
 import * as React from 'react';
 import Icon from '@synerise/ds-icon';
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore
-import moment from 'moment';
-
 import { ArrowRightS, CalendarM, Close3S } from '@synerise/ds-icon/dist/icons';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import Tooltip from '@synerise/ds-tooltip';
+// eslint-disable-next-line import/no-named-default
+import {default as fnsFormat} from '../dateUtils/format';
 import { Props } from './RangePickerInput.types';
 import * as S from './RangePickerInput.styles';
 
@@ -36,8 +34,8 @@ const RangePickerInput: React.FC<Props> = ({ value, format, showTime, onChange, 
     (dateToDisplay): string => {
       if (!dateToDisplay) return '';
       let dateValue = dateToDisplay;
-      if (typeof dateToDisplay === 'string') dateValue = moment(dateToDisplay);
-      return moment(dateValue).format(format || showTime ? 'MMM D, YYYY, HH:mm' : 'MMM D, YYYY');
+      if (typeof dateToDisplay === 'string') dateValue = new Date(dateToDisplay);
+      return fnsFormat(dateValue,format || showTime ? 'MMM D, YYYY, HH:mm' : 'MMM D, YYYY');
     },
     [format, showTime]
   );

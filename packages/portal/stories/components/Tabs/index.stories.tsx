@@ -3,8 +3,10 @@ import SearchM from '@synerise/ds-icon/dist/icons/SearchM';
 import Tabs from '@synerise/ds-tabs';
 import { withState } from '@dump247/storybook-state';
 import { action } from '@storybook/addon-actions';
-import { array, boolean } from '@storybook/addon-knobs';
+import { array, boolean, number } from '@storybook/addon-knobs';
 import { BooleanM, CalendarM, HashM, ListM, TextM } from '@synerise/ds-icon/dist/icons';
+import Badge from '@synerise/ds-badge';
+import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 
 const decorator = storyFn => (
   <div
@@ -50,53 +52,94 @@ const icons = [
 const props = () => ({
   disabled: boolean('Set disabled', false),
 });
-const getHardcodedTabs = (array, disabled) => {
-  return array.map(item => ({ ...item, disabled: disabled }));
+const getHardcodedTab = (array, disabled) => {
+  return array.map(item => ({ ...item, disabled: disabled,}));
 };
-const getTabsFromUserInput = (array, disabled) => {
+const getHardcodedTabs = (array, disabled,suffixel) => {
+  return array.map(item => ({ ...item, disabled: disabled,suffixel: suffixel,}));
+};
+const getTabsFromUserInput = (array,disabled,suffixel) => {
   return array.map(tabLabel => ({
     label: tabLabel,
     disabled: disabled,
+    suffixel: suffixel,
   }));
 };
+
 const defaultTabsArray = ['Tab first', 'Tab second', 'Tab third', 'Tab fourth', 'Tab fifth'];
 const stories = {
-  default: withState({
+ default: withState({
     activeTab: 0,
-  })(({ store }) => (
-    <Tabs
-      underscore={false}
-      tabs={getTabsFromUserInput(array('Tab labels', defaultTabsArray), props().disabled)}
-      activeTab={store.state.activeTab}
-      handleTabClick={(index: number) => store.set({ activeTab: index })}
-    />
-  )),
+  })(({ store }) => {
+   const hasSufix = boolean('setSufix', true);
+   const badgeComponent = <Badge
+     count={number('count', 1)}
+     overflowCount={number('overflowCount', 99)}
+     style={{
+       margin: '0px',
+       backgroundColor: 'transparent',
+       color: theme.palette['grey-500'],
+       alignItems: 'center',
+     }}
+   />
+   return (
+     <Tabs
+       underscore={false}
+       tabs={getTabsFromUserInput(array('Tab labels', defaultTabsArray), props().disabled, hasSufix && badgeComponent)}
+       activeTab={store.state.activeTab}
+       handleTabClick={(index: number) => store.set({ activeTab: index })}
+     />)
+ }),
   withUnderline: withState({
     activeTab: 0,
-  })(({ store }) => (
-    <Tabs
-      underscore
-      tabs={getTabsFromUserInput(array('Tab labels', defaultTabsArray), props().disabled)}
-      activeTab={store.state.activeTab}
-      handleTabClick={(index: number) => store.set({ activeTab: index })}
+  })(({ store }) => {
+    const hasSufix = boolean('setSufix', true);
+    const badgeComponent = <Badge
+      count={number('count', 1)}
+      overflowCount={number('overflowCount', 99)}
+      style={{
+        margin: '0px',
+        backgroundColor: 'transparent',
+        color: theme.palette['grey-500'],
+        alignItems: 'center',
+      }}
     />
-  )),
+    return (
+      <Tabs
+        underscore
+        tabs={getTabsFromUserInput(array('Tab labels', defaultTabsArray), props().disabled,hasSufix && badgeComponent)}
+        activeTab={store.state.activeTab}
+        handleTabClick={(index: number) => store.set({ activeTab: index })}
+      />)
+  }),
   withBlockTabs: withState({
     activeTab: 0,
-  })(({ store }) => (
-    <Tabs
-      tabs={getTabsFromUserInput(array('Tab labels', defaultTabsArray.slice(0, 2)), props().disabled)}
-      activeTab={store.state.activeTab}
-      handleTabClick={(index: number) => store.set({ activeTab: index })}
-      block
-      underscore
+  })(({ store }) => {
+    const hasSufix = boolean('setSufix', true);
+    const badgeComponent = <Badge
+      count={number('count', 1)}
+      overflowCount={number('overflowCount', 99)}
+      style={{
+        margin: '0px',
+        backgroundColor: 'transparent',
+        color: theme.palette['grey-500'],
+        alignItems: 'center',
+      }}
     />
-  )),
+    return (
+      <Tabs
+        tabs={getTabsFromUserInput(array('Tab labels', defaultTabsArray.slice(0, 2)), props().disabled, hasSufix && badgeComponent)}
+        activeTab={store.state.activeTab}
+        handleTabClick={(index: number) => store.set({ activeTab: index })}
+        block
+        underscore
+      />)
+  }),
   withBlockIconTabs: withState({
     activeTab: 0,
   })(({ store }) => (
     <Tabs
-      tabs={getHardcodedTabs(icons, props().disabled)}
+      tabs={getHardcodedTab(icons, props().disabled)}
       activeTab={store.state.activeTab}
       handleTabClick={(index: number) => store.set({ activeTab: index })}
       block
@@ -105,10 +148,21 @@ const stories = {
   )),
   withMenu: withState({
     activeTab: 0,
-  })(({ store }) => (
+  })(({ store }) => { const hasSufix = boolean('setSufix', true);
+    const badgeComponent = <Badge
+      count={number('count', 1)}
+      overflowCount={number('overflowCount', 99)}
+      style={{
+        margin: '0px',
+        backgroundColor: 'transparent',
+        color: theme.palette['grey-500'],
+        alignItems: 'center',
+      }}
+    />
+  return(
     <Tabs
       underscore
-      tabs={getHardcodedTabs(labelsAndIcons, props().disabled)}
+      tabs={getHardcodedTabs(labelsAndIcons, props().disabled,hasSufix && badgeComponent)}
       activeTab={store.state.activeTab}
       handleTabClick={(index: number) => store.set({ activeTab: index })}
       configuration={{
@@ -116,8 +170,8 @@ const stories = {
         action: action('Manage dashboards click'),
         disabled: props().disabled,
       }}
-    />
-  )),
+    />)
+  }),
 };
 
 export default {
