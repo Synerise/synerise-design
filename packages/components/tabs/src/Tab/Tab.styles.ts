@@ -205,7 +205,6 @@ export const TabContainer = styled.button<{ block?: boolean }>`
   ${(props): string | false => !!props.block && applyBlockStyles(props)}
 `;
 const addonStyles = (): string => `
-  height: calc( 66% - 1px);
   font-size: 13px;
   line-height: 10px;
   text-align: center;
