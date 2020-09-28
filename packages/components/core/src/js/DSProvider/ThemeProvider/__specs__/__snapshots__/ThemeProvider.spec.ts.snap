@@ -3,9 +3,9 @@
 exports[`ThemeProvier should match snapshot 1`] = `
 Object {
   "breakpoints": Array [
-    "640px",
-    "1024px",
-    "1200px",
+    "768px",
+    "960px",
+    "1280px",
   ],
   "palette": Object {},
   "space": Array [
