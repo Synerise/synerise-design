@@ -44,7 +44,7 @@ const Layout: React.FC<LayoutProps> = props => {
           </S.LayoutMain>
           <>
             {right ? (
-              <S.LayoutSidebarWrapper opened={rightSidebarOpened} isRight>
+              <S.LayoutSidebarWrapper opened={rightSidebarOpened} right>
                 <S.LayoutSidebar
                   className="ds-layout__sidebar ds-layout__sidebar--right"
                   style={styles && styles.right}
@@ -56,7 +56,7 @@ const Layout: React.FC<LayoutProps> = props => {
                 </S.LayoutSidebar>
                 <S.SidebarButton
                   onClick={(): void => setRightSidebarOpened(!rightSidebarOpened)}
-                  isRight
+                  right
                   opened={rightSidebarOpened}
                 >
                   <S.ArrowIcon component={<AngleLeftS />} color={theme.palette.white} />
