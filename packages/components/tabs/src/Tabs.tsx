@@ -90,9 +90,15 @@ const Tabs: React.FC<TabsProps> = ({
         )}
         {hiddenTabs.length > 0 && configuration && <S.TabsDropdownDivider />}
         {configuration && (
-          <S.ConfigurationButton type="ghost" onClick={handleConfigurationAction} disabled={!!configuration?.disabled}>
-            {configuration.label}
-          </S.ConfigurationButton>
+          <Menu>
+            <Menu.Item
+              key="configuration-btn"
+              onSelect={handleConfigurationAction}
+              disabled={!!configuration?.disabled}
+            >
+              {configuration.label}
+            </Menu.Item>
+          </Menu>
         )}
       </S.TabsDropdownContainer>
     );
@@ -107,10 +113,11 @@ const Tabs: React.FC<TabsProps> = ({
             data-testid="tabs-dropdown"
             overlay={renderHiddenTabs}
             disabled={!!configuration?.disabled}
+            overlayStyle={{ boxShadow: '0 4px 12px 0 rgba(35, 41, 54, 0.07)' }}
           >
-            <S.TabsShowHiddenTabsButton type="ghost" mode="single-icon" disabled={!!configuration?.disabled}>
+            <S.ShowHiddenTabsTrigger type="ghost" mode="single-icon" disabled={!!configuration?.disabled}>
               <Icon component={<OptionHorizontalM />} />
-            </S.TabsShowHiddenTabsButton>
+            </S.ShowHiddenTabsTrigger>
           </Dropdown>
         )}
       </>
