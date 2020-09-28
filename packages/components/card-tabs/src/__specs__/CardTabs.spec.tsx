@@ -15,6 +15,10 @@ describe('Card Tabs', () => {
       tag: String.fromCharCode(65 + i).toUpperCase(),
     }
   ));
+  beforeEach(()=>{
+    Element.prototype.scrollTo = jest.fn();
+  })
+
 
   it('should render CardTabs container', () => {
     // ARRANGE
