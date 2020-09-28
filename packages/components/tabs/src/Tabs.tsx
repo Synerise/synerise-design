@@ -115,7 +115,7 @@ const Tabs: React.FC<TabsProps> = ({
             disabled={!!configuration?.disabled}
             overlayStyle={{ boxShadow: '0 4px 12px 0 rgba(35, 41, 54, 0.07)' }}
           >
-            <S.ShowHiddenTabsTrigger type="ghost" mode="single-icon" disabled={!!configuration?.disabled} tabIndex={0}>
+            <S.ShowHiddenTabsTrigger type="ghost" mode="single-icon" disabled={!!configuration?.disabled}>
               <Icon component={<OptionHorizontalM />} />
             </S.ShowHiddenTabsTrigger>
           </Dropdown>
