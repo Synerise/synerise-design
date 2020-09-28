@@ -37,8 +37,8 @@ export const ShowButtonsWrapper = styled.div`
 
 export const ListWrapper = styled.div`
   &&& {
-  .ant-menu-inline {
-    border: none;
+    .ant-menu-inline {
+      border: none;
     }
     .ant-menu {
       .items-roll-list-item {
@@ -63,6 +63,9 @@ export const ListWrapper = styled.div`
         :focus {
           box-shadow: none !important;
           background: transparent;
+        }
+        :focus:hover {
+          background-color: ${({ theme }): string => theme.palette['grey-050']};
         }
       }
 
