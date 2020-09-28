@@ -12,9 +12,12 @@ import Operators from '@synerise/ds-operators';
 import { ConditionProps, ConditionStep, StepConditions } from './Condition.types';
 import * as S from './Condition.style';
 
+const DEFAULT_FIELD = '';
+const DEFAULT_CONDITION = '';
+
 const Condition: React.FC<ConditionProps> = ({ steps, addCondition, removeCondition, updateStepName, texts }) => {
-  const [currentConditionId, setCurrentConditionId] = React.useState<React.ReactText>('');
-  const [currentField, setCurrentField] = React.useState<string>('');
+  const [currentConditionId, setCurrentConditionId] = React.useState<React.ReactText>(DEFAULT_CONDITION);
+  const [currentField, setCurrentField] = React.useState<string>(DEFAULT_FIELD);
 
   const clearConditionRow = React.useCallback(
     step => {
@@ -62,17 +65,23 @@ const Condition: React.FC<ConditionProps> = ({ steps, addCondition, removeCondit
     if (condition.id && condition.operator) {
       condition.operator.onChange(value);
       condition.factor && condition.factor.onChangeValue(undefined);
-      setCurrentConditionId('');
-      setCurrentField('');
+      setCurrentConditionId(DEFAULT_CONDITION);
+      setCurrentField(DEFAULT_FIELD);
     }
   }, []);
 
+  React.useEffect(() => {
+    if (currentField !== DEFAULT_FIELD) {
+      setCurrentField(DEFAULT_FIELD);
+    }
+  }, [currentField, setCurrentField]);
+
   return (
-    <S.Condition className='ds-conditions'>
+    <S.Condition className="ds-conditions">
       {steps.map((step, index) => {
         return (
-          <S.Step key={step.id} withStepName={Boolean(step.stepName)}>
-            {step.stepName && (
+          <S.Step key={step.id} withStepName={step.stepName !== undefined}>
+            {step.stepName !== undefined && (
               <S.StepName>
                 {`${index + 1}.`}{' '}
                 <InlineEdit
@@ -119,7 +128,10 @@ const Condition: React.FC<ConditionProps> = ({ steps, addCondition, removeCondit
                       </S.CondtionWrapper>
                       <S.CondtionWrapper>{condition.factor && <Factors {...condition.factor} />}</S.CondtionWrapper>
                       {removeCondition && step.conditions.length > 1 && (
-                        <S.RemoveIconWrapper onClick={(): void => removeCondition(step.id, condition.id)} className='ds-conditions-remove-row'>
+                        <S.RemoveIconWrapper
+                          onClick={(): void => removeCondition(step.id, condition.id)}
+                          className="ds-conditions-remove-row"
+                        >
                           <Tooltip title={texts.removeConditionRowTooltip} trigger={['hover']}>
                             <Icon component={<CloseS />} color={theme.palette['red-600']} />
                           </Tooltip>
