@@ -64,7 +64,12 @@ export const LayoutMainInner = styled.div`
   ${mediaQuery.from.medium`padding: 24px;`};
 `;
 
-export const SidebarButton = styled.button<{ isRight?: boolean; opened: boolean }>`
+type SidebarButtonProps = {
+  right?: boolean;
+  opened: boolean;
+};
+
+export const SidebarButton = styled.button<SidebarButtonProps>`
   width: 36px;
   height: 44px;
   background-color: ${(props): string => props.theme.palette['grey-500']};
@@ -73,9 +78,9 @@ export const SidebarButton = styled.button<{ isRight?: boolean; opened: boolean 
   justify-content: center;
   position: absolute;
   cursor: pointer;
-  border-radius: ${(props): string => (props.isRight ? '3px 0 0 3px' : '0 3px 3px 0')};
-  right: ${(props): string => (props.isRight ? 'auto' : '-36px')};
-  left: ${(props): string => (!props.isRight ? 'auto' : '-36px')};
+  border-radius: ${(props): string => (props.right ? '3px 0 0 3px' : '0 3px 3px 0')};
+  right: ${(props): string => (props.right ? 'auto' : '-36px')};
+  left: ${(props): string => (!props.right ? 'auto' : '-36px')};
   top: 48px;
   outline: 0;
   border: 0;
@@ -84,16 +89,17 @@ export const SidebarButton = styled.button<{ isRight?: boolean; opened: boolean 
   transition: all 0.3s ease-in-out;
   ${mediaQuery.to.medium`display: flex; opacity: 1; visibility: visible`};
   ${mediaQuery.from.large`
-      opacity: ${(props): string => (!props.opened ? '1' : '0')};
-      display: ${(props): string => (!props.opened ? 'flex' : 'none')};
-      visibility: ${(props): string => (!props.opened ? 'visible' : 'hidden')};
+      opacity: ${(props: SidebarButtonProps): string => (!props.opened ? '1' : '0')};
+      display: ${(props: SidebarButtonProps): string => (!props.opened ? 'flex' : 'none')};
+      visibility: ${(props: SidebarButtonProps): string => (!props.opened ? 'visible' : 'hidden')};
     `};
   ${ArrowIcon} {
     transition: transform 0.3s ease-in-out;
   }
-
-  ${mediaQuery.to.medium`${(props): string => props.isRight && props.opened && 'left: -44px'}`};
-  ${mediaQuery.to.medium`${(props): string => !props.isRight && props.opened && 'right: -44px'}`};
+  ${mediaQuery.to.medium`${(props: SidebarButtonProps): string | undefined | false =>
+    props.right && props.opened && 'left: -44px'}`};
+  ${mediaQuery.to.medium`${(props: SidebarButtonProps): string | undefined | false =>
+    !props.right && props.opened && 'right: -44px'}`};
 
   ${(props): FlattenSimpleInterpolation | false =>
     props.opened &&
@@ -110,7 +116,11 @@ export const SidebarButton = styled.button<{ isRight?: boolean; opened: boolean 
     `};
 `;
 
-export const LayoutSidebar = styled.div<{ opened: boolean }>`
+type LayoutSidebarProps = {
+  opened: boolean;
+};
+
+export const LayoutSidebar = styled.div<LayoutSidebarProps>`
   z-index: 1;
   overflow-y: auto;
   overflow-x: hidden;
@@ -122,7 +132,7 @@ export const LayoutSidebar = styled.div<{ opened: boolean }>`
   max-width: 100%;
   ${mediaQuery.to.medium`flex: 0 0 auto;`};
   ${mediaQuery.from.medium`flex: 0 1 320px; width: 320px;`};
-  ${mediaQuery.from.large`max-width: ${(props): string => (props.opened ? '320px' : '0px')};`}
+  ${mediaQuery.from.large`max-width: ${(props: LayoutSidebarProps): string => (props.opened ? '320px' : '0px')};`}
   ${mediaQuery.from.medium`
     &.slide-enter {
       max-width: 0;
@@ -146,13 +156,15 @@ export const LayoutSidebar = styled.div<{ opened: boolean }>`
   }
 `;
 
-export const LayoutSidebarWrapper = styled.div<{ opened: boolean; isRight?: boolean }>`
+type LayoutSidebarWrapperProps = { opened: boolean; right?: boolean };
+
+export const LayoutSidebarWrapper = styled.div<LayoutSidebarWrapperProps>`
   position: relative;
   overflow: visible;
   height: 100%;
   transition: transform .3s ease-in-out;
-  left: ${(props): string => (props.isRight ? 'auto' : '0')};
-  right: ${(props): string => (props.isRight ? '0' : 'auto')};
+  left: ${(props): string => (props.right ? 'auto' : '0')};
+  right: ${(props): string => (props.right ? '0' : 'auto')};
   z-index: 10;
   
   &:hover {
@@ -165,15 +177,14 @@ export const LayoutSidebarWrapper = styled.div<{ opened: boolean; isRight?: bool
   
   ${mediaQuery.to.medium`position: absolute;`};
   ${mediaQuery.to.medium`width: 320px;`};
-  // @ts-ignore
-  ${mediaQuery.to.medium`transform: ${({ isRight }): string =>
-    isRight ? 'translateX(320px)' : 'translateX(-320px)'}`};
+  ${mediaQuery.to.medium`transform: ${(props: LayoutSidebarWrapperProps): string =>
+    props.right ? 'translateX(320px)' : 'translateX(-320px)'}`};
   
   ${(props): FlattenSimpleInterpolation | false =>
     props.opened &&
     css`
       && {
-        margin: ${props.isRight ? '0 0 0 1px' : '0 1px 0 0'};
+        margin: ${props.right ? '0 0 0 1px' : '0 1px 0 0'};
         transform: translateX(0);
       }
     `};
