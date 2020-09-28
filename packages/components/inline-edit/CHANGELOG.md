@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.63](https://github.com/Synerise/synerise-design/compare/@synerise/ds-inline-edit@0.1.62...@synerise/ds-inline-edit@0.1.63) (2020-09-28)
+
+
+### Bug Fixes
+
+* **inline-edit:** change margin of icon ([ac3cc92](https://github.com/Synerise/synerise-design/commit/ac3cc92b7febfaa1d4d50497f9c95f20a1eb44e7))
+* **inline-edit:** fix handleBlur ([c59ba2c](https://github.com/Synerise/synerise-design/commit/c59ba2cdaed942de5e0c1eace12b586b7c4d99bb))
+* **inline-edit:** fix handleBlur ([c2d7135](https://github.com/Synerise/synerise-design/commit/c2d71351514be499a2c309d0dff3f57f089c3231))
+
+
+
+
+
 ## [0.1.62](https://github.com/Synerise/synerise-design/compare/@synerise/ds-inline-edit@0.1.61...@synerise/ds-inline-edit@0.1.62) (2020-09-25)
 
 
