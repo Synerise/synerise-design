@@ -22,7 +22,7 @@ const stories = {
           transitionName={transitionName}
         >
           <Grid style={{ paddingTop: 122 }}>
-            <Grid.Item xxl={16} xl={12} lg={12} md={8} sm={8} xs={3} contentWrapper >
+            <Grid.Item xxl={16} xl={12} lg={12} md={8} sm={8} xs={4} contentWrapper >
               <Card showContent>
                 <S.Placeholder height={80} />
               </Card>

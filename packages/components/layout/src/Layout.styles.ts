@@ -19,6 +19,7 @@ export const LayoutContainer = styled.div`
 export const LayoutContent = styled.div`
   overflow: hidden;
   width: 100%;
+  height: 100%;
   ${mediaQuery.to.small`overflow-x: auto;`};
 `;
 
@@ -31,7 +32,6 @@ export const LayoutHeader = styled.div`
 `;
 
 export const LayoutSubheader = styled.div`
-  margin: 0 1px;
   position: relative;
   max-width: 100%;
   top: 0;
@@ -47,6 +47,7 @@ export const LayoutBody = styled.div`
   min-width: 0;
   position: relative;
   overflow: hidden;
+  height: 100%;
   ${mediaQuery.from.medium`flex-direction: row;`};
   ${mediaQuery.to.small`min-width: 704px;`};
 `;
@@ -119,7 +120,6 @@ export const LayoutSidebar = styled.div<{ opened: boolean }>`
   transition: all 0.3s ease-in-out;
   width: 320px;
   max-width: 100%;
-  
   ${mediaQuery.to.medium`flex: 0 0 auto;`};
   ${mediaQuery.from.medium`flex: 0 1 320px; width: 320px;`};
   ${mediaQuery.from.large`max-width: ${(props): string => (props.opened ? '320px' : '0px')};`}
@@ -173,6 +173,7 @@ export const LayoutSidebarWrapper = styled.div<{ opened: boolean; isRight?: bool
     props.opened &&
     css`
       && {
+        margin: ${props.isRight ? '0 0 0 1px' : '0 1px 0 0'};
         transform: translateX(0);
       }
     `};

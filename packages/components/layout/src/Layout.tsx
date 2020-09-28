@@ -6,9 +6,9 @@ import * as S from './Layout.styles';
 import { LayoutProps } from './Layout.types';
 
 const Layout: React.FC<LayoutProps> = props => {
-  const { header, left, right, children, className, styles, subheader } = props;
-  const [leftSidebarOpened, setLeftSidebarOpened] = React.useState(false);
-  const [rightSidebarOpened, setRightSidebarOpened] = React.useState(false);
+  const { header, left, right, children, className, styles, subheader, leftOpened, rightOpened } = props;
+  const [leftSidebarOpened, setLeftSidebarOpened] = React.useState(leftOpened);
+  const [rightSidebarOpened, setRightSidebarOpened] = React.useState(rightOpened);
   return (
     <S.LayoutContainer className={`ds-layout ${className || ''}`}>
       {header ? <S.LayoutHeader className="ds-layout__header">{header}</S.LayoutHeader> : null}
