@@ -23,10 +23,8 @@ const FormulaModal: React.FC<FormulaModalProps> = ({ value, onApply, onCancel, v
             name: 'name-of-input',
             placeholder: texts.formula.buttonPlaceholder,
             onChange: (e): void => setFormulaName(e.target.value),
-            // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-            // @ts-ignore
-            onEnterPress: (e): void => setFormulaName(e.target.value),
-            onBlur: (e): void => setFormulaName(e.target.value),
+            onEnterPress: (e): void => setFormulaName((e.target as HTMLInputElement).value),
+            onBlur: (e): void => setFormulaName(e.target.value || texts.formula.defaultName),
             value: formulaName,
           }}
         />
