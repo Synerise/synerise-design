@@ -19,7 +19,7 @@ import {
 
 export const mapTimeSchema = (item: DenormalizedFilter): NormalizedFilter => {
   const { start, stop, day, ...rest } = item;
-  return { from: start, to: stop, day: day === undefined || Number.isNaN(+day) ? undefined : +day + 1, ...rest };
+  return { from: start, to: stop, day: day && Number.isNaN(+day) ? undefined : +day + 1, ...rest };
 };
 
 /*
@@ -31,9 +31,9 @@ export const mapTimeSchema = (item: DenormalizedFilter): NormalizedFilter => {
 export const denormMapTimeSchema = (item: NormalizedFilter): DenormalizedFilter => {
   const { from, to, day, ...rest } = item;
   return {
-/*    start: from,
+    start: from,
     stop: to,
-    day: day && Number.isNaN(+day) ? undefined : +day - 1,*/
+    day: day && Number.isNaN(+day) ? undefined : +day - 1,
     ...rest,
   } as DenormalizedFilter;
 };
@@ -44,10 +44,7 @@ export const normalizeValue = ({ type, definition }: FilterValue): ComponentData
   const rules: any[] = [];
   switch (type) {
     case TYPES.DAILY:
-      days = Object.values(definition as FilterDefinition)
-        .filter((day: { restricted: boolean }) => day.restricted)
-        .map((item: DenormalizedFilter) => mapTimeSchema(item));
-      break;
+      return { ...mapTimeSchema(definition), ...result };
     case TYPES.WEEKLY:
       days = Object.values(definition as FilterDefinition)
         .filter((day: { restricted: boolean }) => day.restricted)

@@ -65,6 +65,9 @@ export const TYPES_DATA = {
     labelTranslationKey: 'DS.DATE-RANGE-PICKER.DAILY',
     component: DailyFilter,
     definition: {
+      start: '00:00:00.000',
+      stop: '23:59:59.999',
+      inverted: false,
     },
   },
 };
