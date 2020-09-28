@@ -9,13 +9,6 @@ export const TabLabel = styled.span`
   white-space: nowrap;
   color: ${({ theme }): string => theme.palette['grey-700']};
 `;
-const addonStyles = (): string => `
-  height: 50%;
-  padding: 0 3px;
-  font-size: 9px;
-  line-height: 10px;
-  text-align: center;
-`;
 export const BlockContentWrapper = styled.div<{ block?: boolean }>`
   ${(props): string =>
     props.block
@@ -211,7 +204,17 @@ export const TabContainer = styled.button<{ block?: boolean }>`
   }
   ${(props): string | false => !!props.block && applyBlockStyles(props)}
 `;
-export const SuffixWrapper = styled.div`
+const addonStyles = (): string => `
+  height: calc( 66% - 1px);
+  font-size: 13px;
+  line-height: 10px;
+  text-align: center;
+  margin-right: -4px;
+ && .ant-badge-count {
+padding: 0 0 0 3px;
+}
+`;
+export const SuffixWrapper = styled.div``;
+export const DefaultSuffixWrapper = styled.div`
   ${(): string => addonStyles()};
 `;
-export const DefaultSuffixWrapper = styled.div``;
