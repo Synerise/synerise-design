@@ -146,7 +146,7 @@ const stories = {
               namePlaceholder: 'Description',
               name: 'DescriptionInput',
               search: 'Search',
-              inlineEditPlaceholder: 'Winter Campaign',
+              inlineEditPlaceholder: 'Campaign Name',
               editIcon: 'Edit',
               deleteIcon: 'Delete',
               duplicateIcon: 'Duplicate',
