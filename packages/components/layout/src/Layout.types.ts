@@ -17,4 +17,6 @@ export type LayoutProps = {
   children: React.ReactNode;
   className?: string;
   styles?: Style<React.CSSProperties>;
+  leftOpened?: boolean;
+  rightOpened?: boolean;
 };

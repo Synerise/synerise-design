@@ -46,7 +46,7 @@ const BREAKPOINTS = {
   xs: {
     max: 320,
     min: 0,
-    columns: 3,
+    columns: 4,
   },
 };
 

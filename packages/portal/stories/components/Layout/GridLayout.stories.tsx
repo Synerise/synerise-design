@@ -22,52 +22,52 @@ const stories = {
           transitionTime={transitionTime}
         >
           <Grid>
-            <Grid.Item xxl={6} xl={4} lg={3} md={4} sm={4} xs={3} >
+            <Grid.Item xxl={6} xl={4} lg={3} md={4} sm={4} xs={2} >
               <Card showContent>
                 <S.Placeholder height={48} />
               </Card>
             </Grid.Item>
-            <Grid.Item xxl={6} xl={4} lg={3} md={4} sm={4} xs={3} >
+            <Grid.Item xxl={6} xl={4} lg={3} md={4} sm={4} xs={2} >
               <Card showContent>
                 <S.Placeholder height={48} />
               </Card>
             </Grid.Item>
-            <Grid.Item xxl={6} xl={4} lg={3} md={4} sm={4} xs={3} >
+            <Grid.Item xxl={6} xl={4} lg={3} md={4} sm={4} xs={2} >
               <Card showContent>
                 <S.Placeholder height={48} />
               </Card>
             </Grid.Item>
-            <Grid.Item xxl={6} xl={4} lg={3} md={4} sm={4} xs={3} >
+            <Grid.Item xxl={6} xl={4} lg={3} md={4} sm={4} xs={2} >
               <Card showContent>
                 <S.Placeholder height={48} />
               </Card>
             </Grid.Item>
-            <Grid.Item xxl={6} xl={4} lg={3} md={4} sm={4} xs={3} >
+            <Grid.Item xxl={6} xl={4} lg={3} md={4} sm={4} xs={2} >
               <Card showContent>
                 <S.Placeholder height={48} />
               </Card>
             </Grid.Item>
-            <Grid.Item xxl={6} xl={4} lg={3} md={4} sm={4} xs={3} >
+            <Grid.Item xxl={6} xl={4} lg={3} md={4} sm={4} xs={2} >
               <Card showContent>
                 <S.Placeholder height={48} />
               </Card>
             </Grid.Item>
-            <Grid.Item xxl={6} xl={4} lg={3} md={4} sm={4} xs={3} >
+            <Grid.Item xxl={6} xl={4} lg={3} md={4} sm={4} xs={2} >
               <Card showContent>
                 <S.Placeholder height={48} />
               </Card>
             </Grid.Item>
-            <Grid.Item xxl={6} xl={4} lg={3} md={4} sm={4} xs={3} >
+            <Grid.Item xxl={6} xl={4} lg={3} md={4} sm={4} xs={2} >
               <Card showContent>
                 <S.Placeholder height={48} />
               </Card>
             </Grid.Item>
-            <Grid.Item xxl={12} xl={8} lg={6} md={4} sm={4} xs={3} >
+            <Grid.Item xxl={12} xl={8} lg={6} md={4} sm={4} xs={2} >
               <Card showContent>
                 <S.Placeholder />
               </Card>
             </Grid.Item>
-            <Grid.Item xxl={12} xl={8} lg={6} md={4} sm={4} xs={3} >
+            <Grid.Item xxl={12} xl={8} lg={6} md={4} sm={4} xs={2} >
               <Card showContent>
                 <S.Placeholder />
               </Card>

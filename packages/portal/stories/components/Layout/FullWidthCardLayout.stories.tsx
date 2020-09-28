@@ -22,12 +22,12 @@ const stories = {
           transitionTime={transitionTime}
         >
           <Grid>
-            <Grid.Item xxl={24} xl={16} lg={12} md={8} sm={8} xs={3} >
+            <Grid.Item xxl={24} xl={16} lg={12} md={8} sm={8} xs={4} >
               <Card showContent>
                 <S.Placeholder height={80} />
               </Card>
             </Grid.Item>
-            <Grid.Item xxl={24} xl={16} lg={12} md={8} sm={8} xs={3} >
+            <Grid.Item xxl={24} xl={16} lg={12} md={8} sm={8} xs={4} >
               <Card showContent>
                 <S.Placeholder />
               </Card>
