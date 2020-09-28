@@ -46,12 +46,14 @@ import Grid from '@synerise/ds-grid'
 
 ### Grid.Item
 
-| Property | Description                                                                               | Type   | Default |
-| -------- | -----------                                                                               | ----   | ------- |
-| xxl      | `screen > 1600`, number of cells to occupy, 0 corresponds to display: none, max value: 24 | number | -       |
-| xl       | `screen > 1280`, number of cells to occupy, 0 corresponds to display: none, max value: 16 | number | -       |
-| lg       | `screen > 960`, number of cells to occupy, 0 corresponds to display: none, max value: 12  | number | -       |
-| md       | `screen > 768`, number of cells to occupy, 0 corresponds to display: none, max value: 8   | number | -       |
-| sm       | `screen > 320`, number of cells to occupy, 0 corresponds to display: none, max value: 8   | number | -       |
-| xs       | `screen <= 320`, number of cells to occupy, 0 corresponds to display: none, max value: 3  | number | -       |
+| Property       | Description                                                                               | Type    | Default |
+| --------       | -----------                                                                               | ----    | ------- |
+| xxl            | `screen > 1600`, number of cells to occupy, 0 corresponds to display: none, max value: 24 | number  | -       |
+| xl             | `screen > 1280`, number of cells to occupy, 0 corresponds to display: none, max value: 16 | number  | -       |
+| lg             | `screen > 960`, number of cells to occupy, 0 corresponds to display: none, max value: 12  | number  | -       |
+| md             | `screen > 768`, number of cells to occupy, 0 corresponds to display: none, max value: 8   | number  | -       |
+| sm             | `screen > 320`, number of cells to occupy, 0 corresponds to display: none, max value: 8   | number  | -       |
+| xs             | `screen <= 320`, number of cells to occupy, 0 corresponds to display: none, max value: 3  | number  | -       |
+| contentWrapper | Group content with max size (defined in col size props) and center them horizontally      | boolean | -       |
+
 
