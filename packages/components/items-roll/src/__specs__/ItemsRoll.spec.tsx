@@ -82,7 +82,7 @@ describe('ItemsRoll', () => {
     expect(removeIcon).toBeInTheDocument();
 
     // ACT
-    fireEvent.click(firstListItem.querySelector('li')!);
+    fireEvent.click(firstListItem);
 
     // ASSERT
     expect(onItemClick).toHaveBeenCalledTimes(1);
