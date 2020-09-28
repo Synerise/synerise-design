@@ -25,10 +25,16 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
+    "@date-fns/upgrade": "^1.0.3",
+    "@synerise/ds-button": "^0.12.33",
     "@synerise/ds-date-picker": "^0.1.24",
+    "@synerise/ds-icon": "^0.27.0",
     "@synerise/ds-time-picker": "^0.3.8",
+    "@synerise/ds-tooltip": "^0.7.17",
+    "date-fns": "^2.16.1",
     "lodash": "^4.17.20",
-    "ramda": "^0.27.0"
+    "ramda": "^0.27.0",
+    "react-day-picker": "^7.4.8"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
