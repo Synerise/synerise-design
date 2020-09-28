@@ -9,6 +9,9 @@ export const DynamicKey = styled.div<{ withoutTypeSelector: boolean }>`
   width: 100%;
   .ant-input {
     flex: 1;
+    &:focus {
+      z-index: 2;
+    }
     &:first-of-type {
       border-radius: ${(props): string => (props.withoutTypeSelector ? '3px 0 0 3px' : '0 3px 3px 0')};
     }
