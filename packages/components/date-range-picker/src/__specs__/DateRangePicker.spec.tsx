@@ -28,7 +28,7 @@ export const RANGES: RelativeDateRange[] = [
 ] ;
 const texts = {
   myRange:'myRange'
-};
+} as any;
 describe('DateRangePicker', () => {
   it('should render', async () => {
     const onApply = jest.fn();
@@ -57,7 +57,6 @@ describe('DateRangePicker', () => {
         forceAbsolute={false}
         value={ABSOLUTE_VALUE as DateRange}
         relativeModes={RELATIVE_MODES as RelativeMode[]}
-        // @ts-ignore
         texts={texts}
       />
     );
@@ -77,7 +76,6 @@ describe('DateRangePicker', () => {
         value={RELATIVE_VALUE as DateRange}
         relativeModes={RELATIVE_MODES as RelativeMode[]}
         forceAbsolute
-        // @ts-ignore
         texts={texts}
       />
     );
@@ -97,7 +95,6 @@ describe('DateRangePicker', () => {
         value={RELATIVE_VALUE as DateRange}
         forceAbsolute={false}
         relativeModes={RELATIVE_MODES as RelativeMode[]}
-        // @ts-ignore
         texts={texts}
       />
     );
@@ -118,7 +115,6 @@ describe('DateRangePicker', () => {
         forceAbsolute={false}
         ranges={RANGES}
         relativeModes={RELATIVE_MODES as RelativeMode[]}
-        // @ts-ignore
         texts={texts}
       />
     );
@@ -136,7 +132,6 @@ describe('DateRangePicker', () => {
         forceAbsolute={false}
         ranges={RANGES}
         relativeModes={RELATIVE_MODES as RelativeMode[]}
-        // @ts-ignore
         texts={texts}
       />
     );
@@ -160,7 +155,6 @@ describe('DateRangePicker', () => {
         forceAbsolute={false}
         ranges={RANGES}
         relativeModes={RELATIVE_MODES as RelativeMode[]}
-        // @ts-ignore
         texts={texts}
       />
     );

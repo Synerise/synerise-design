@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { injectIntl } from 'react-intl';
 import { omitBy, isUndefined } from 'lodash';
 import { Container, Separator, Addon } from './DateRangePicker.styles';
 import RangePicker from './RangePicker/RangePicker';
@@ -191,4 +190,4 @@ class RawDateRangePicker extends React.PureComponent<Props, State> {
   }
 }
 
-export default injectIntl(RawDateRangePicker);
+export default RawDateRangePicker;
