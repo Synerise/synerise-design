@@ -38,7 +38,6 @@ const stories = {
     );
   },
   inlineSelect: () => {
-    const widthLimit = boolean('Width limit', false);
     const error = boolean('Error', false);
     const disabled = boolean('Disabled', false);
 
@@ -47,11 +46,9 @@ const stories = {
         <InlineSelect
           input={{
             name: 'name-of-input',
-            maxLength: 120,
             placeholder: 'This is placeholder',
             onEnterPress: action('onEnterPress'),
           }}
-          style={widthLimit ? { maxWidth: 128 } : {}}
           size={'normal'}
           error={error}
           disabled={disabled}
