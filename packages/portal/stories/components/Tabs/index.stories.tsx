@@ -72,14 +72,15 @@ const stories = {
     activeTab: 0,
   })(({ store }) => {
    const hasSufix = boolean('setSufix', true);
+   const counter = number('count', 1); console.log(String(counter).length)
    const badgeComponent = <Badge
-     count={number('count', 1)}
+     count={counter}
      overflowCount={number('overflowCount', 99)}
      style={{
-       margin: '0px',
        backgroundColor: 'transparent',
        color: theme.palette['grey-500'],
        alignItems: 'center',
+       marginRight: String(counter).length > 1? '-1px': '-4px'
      }}
    />
    return (
@@ -94,14 +95,15 @@ const stories = {
     activeTab: 0,
   })(({ store }) => {
     const hasSufix = boolean('setSufix', true);
+    const counter = number('count', 1); console.log(String(counter).length)
     const badgeComponent = <Badge
-      count={number('count', 1)}
+      count={counter}
       overflowCount={number('overflowCount', 99)}
       style={{
-        margin: '0px',
         backgroundColor: 'transparent',
         color: theme.palette['grey-500'],
         alignItems: 'center',
+        marginRight: String(counter).length > 1? '-1px': '-4px'
       }}
     />
     return (
@@ -116,14 +118,15 @@ const stories = {
     activeTab: 0,
   })(({ store }) => {
     const hasSufix = boolean('setSufix', true);
+    const counter = number('count', 1); console.log(String(counter).length)
     const badgeComponent = <Badge
-      count={number('count', 1)}
+      count={counter}
       overflowCount={number('overflowCount', 99)}
       style={{
-        margin: '0px',
         backgroundColor: 'transparent',
         color: theme.palette['grey-500'],
         alignItems: 'center',
+        marginRight: String(counter).length > 1? '-1px': '-4px'
       }}
     />
     return (
@@ -148,15 +151,16 @@ const stories = {
   )),
   withMenu: withState({
     activeTab: 0,
-  })(({ store }) => { const hasSufix = boolean('setSufix', true);
+  })(({ store }) => {  const hasSufix = boolean('setSufix', true);
+    const counter = number('count', 1); console.log(String(counter).length)
     const badgeComponent = <Badge
-      count={number('count', 1)}
+      count={counter}
       overflowCount={number('overflowCount', 99)}
       style={{
-        margin: '0px',
         backgroundColor: 'transparent',
         color: theme.palette['grey-500'],
         alignItems: 'center',
+        marginRight: String(counter).length > 1? '-1px': '-4px'
       }}
     />
   return(
