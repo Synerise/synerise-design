@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Popover } from 'antd';
 import './style/index.less';
-import { injectIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 import RawDateRangePicker from './RawDateRangePicker';
 import * as S from './DateRangePicker.styles';
 import { Props } from './DateRangePicker.types';
@@ -19,11 +19,12 @@ const DateRangePicker: React.FC<Props> = props => {
     popoverPlacement,
     popoverTrigger,
     forceAdjacentMonths,
-    intl,
   } = props;
+  const intl = useIntl();
   const [popupVisible, setPopupVisible] = React.useState<boolean | undefined>(undefined);
   const [selectedDate, setSelectedDate] = React.useState(value);
   const [inputActive, setInputActive] = React.useState<boolean>();
+
   const allTexts = React.useMemo(() => getDefaultTexts(intl, texts), [texts, intl]);
   React.useEffect(() => {
     if (popupVisible !== undefined) {
@@ -89,5 +90,5 @@ const DateRangePicker: React.FC<Props> = props => {
   );
 };
 
-export default injectIntl(DateRangePicker);
+export default DateRangePicker;
 export { RawDateRangePicker };
