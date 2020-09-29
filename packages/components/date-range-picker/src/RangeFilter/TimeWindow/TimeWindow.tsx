@@ -130,6 +130,7 @@ class TimeWindowBase extends React.PureComponent<Props, State> {
   handleSelectAll = (): void => {
     const days = {};
     const { onChange, onSelectAll } = this.props;
+
     this.getAllKeys().forEach(key => {
       days[key] = {
         ...this.getDayValue(key),

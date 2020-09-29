@@ -11,7 +11,8 @@ import RelativeRangePicker from './RelativeRangePicker/RelativeRangePicker';
 import Footer from './Footer/Footer';
 import { normalizeRange } from './utils';
 import RangeFilter from './RangeFilter/RangeFilter';
-import Button from '@synerise/ds-button';
+import { injectIntl } from 'react-intl';
+
 
 class RawDateRangePicker extends React.PureComponent<Props, State> {
   static defaultProps = {
@@ -121,7 +122,7 @@ class RawDateRangePicker extends React.PureComponent<Props, State> {
     if (mode === MODES.FILTER)
       return (
         <Container>
-          <RangeFilter value={filter} onCancel={this.handleFilterCancel} onApply={this.handleFilterApply} intl={intl} />
+          <RangeFilter value={filter} onCancel={this.handleFilterCancel} onApply={this.handleFilterApply}/>
         </Container>
       );
 
@@ -149,7 +150,7 @@ class RawDateRangePicker extends React.PureComponent<Props, State> {
     if (showFilter)
       addons.push(
         <AddonCollapse
-          content={<div>FilterSwitch Placholder</div>}
+          content={<div onClick={this.handleModalOpenClick}>FilterSwitch Placholder</div>}
           title={texts?.filter}
           expanded
         />
@@ -192,4 +193,4 @@ class RawDateRangePicker extends React.PureComponent<Props, State> {
   }
 }
 
-export default RawDateRangePicker;
+export default injectIntl(RawDateRangePicker);
