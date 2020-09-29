@@ -12,12 +12,10 @@ const Grid: React.FC<GridProps> = ({
   numberOfDaysPerRow,
   rowLabelFormatter,
   title,
-  showUnselectAll,
   showSelectAll,
   inverted,
   labelInverted,
   reverseGroup,
-  onClearSelected,
   onSelectAll,
   renderDay,
 }: GridProps) => {
@@ -25,12 +23,6 @@ const Grid: React.FC<GridProps> = ({
   const rangeMethod = labelInverted ? rangeRight : range;
   const actions: Action[] = [];
 
-  if (showUnselectAll)
-    actions.push({
-      key: 'unselect-all',
-      onClick: onClearSelected,
-      label: <FormattedMessage id="DS.DATE-RANGE-PICKER.UNSELECT-ALL" />,
-    });
   if (showSelectAll)
     actions.push({
       key: 'select-all',

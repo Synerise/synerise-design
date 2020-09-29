@@ -28,7 +28,6 @@ export type Props = {
   days: Days;
   customDays?: { [key: string]: CustomDayConfig };
   onChange: (days: Days) => void;
-  showUnselectAll: boolean;
   showSelectAll: boolean;
   title: string;
   numberOfDays: number;

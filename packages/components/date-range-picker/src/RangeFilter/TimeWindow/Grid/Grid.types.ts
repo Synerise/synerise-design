@@ -5,7 +5,6 @@ import { CustomDayConfig, DayKey, Days } from '../TimeWindow.types';
 export type GridProps = {
   keys: number[];
   days: Days;
-  showUnselectAll: boolean;
   showSelectAll: boolean;
   title: string;
   numberOfDays: number;

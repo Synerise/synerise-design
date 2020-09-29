@@ -18,7 +18,6 @@ class TimeWindowBase extends React.PureComponent<Props, State> {
     days: {},
     numberOfDays: 7,
     showSelectAll: false,
-    showUnselectAll: true,
     dayTemplate: (index: number) => ({ dayOfWeek: index + 1 }),
     dayFormatter: (dayKey: DayKey) => <FormattedMessage id={`DS.DATE-RANGE-PICKER.WEEKDAYS-SHORT-${dayKey}`} />,
     timeMarks: { '0': '00:00', '12': <FormattedMessage id="DS.DATE-RANGE-PICKER.SET-HOURS" />, '24': '24:00' },
@@ -122,8 +121,7 @@ class TimeWindowBase extends React.PureComponent<Props, State> {
   };
 
   handleClearSelection = (): void => {
-    const { onUnselectAll, onChange } = this.props;
-    onUnselectAll && onUnselectAll();
+    const { onChange } = this.props;
     this.setState({ activeDay: [] }, () => onChange({}));
   };
 
@@ -221,9 +219,7 @@ class TimeWindowBase extends React.PureComponent<Props, State> {
 
   renderRangeForm = (dayKeys: DayKey, singleMode: boolean): React.ReactNode => {
     const { activeDay } = this.state;
-    console.log('ActiveDay', activeDay);
     const dayValue = this.getDayValue(activeDay[0]);
-    console.log('DAYVALUE', dayValue);
     const rangeForm = (
       <RangeForm
         startDate={getDateFromDayValue(dayValue.start)}
