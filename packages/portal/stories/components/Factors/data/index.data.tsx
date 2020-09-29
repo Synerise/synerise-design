@@ -13,7 +13,7 @@ export const FACTORS_TEXTS = {
       valuePlaceholder: 'Value',
   },
   formula: {
-    buttonPlaceholder: 'Define formula',
+    buttonPlaceholder: 'Formula',
     defaultName: 'Formula'
   },
   parameter: {
