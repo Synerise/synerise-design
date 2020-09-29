@@ -1,4 +1,3 @@
-import { IntlShape } from 'react-intl';
 import { DateRange } from '../date.types';
 import { Texts } from '../DateRangePicker.types';
 
@@ -10,8 +9,7 @@ export interface Props {
   dateOnly?: boolean;
   canSwitchMode?: boolean;
   onSwitchMode?: () => void;
-  intl: IntlShape;
-  texts?: Texts;
+  texts: Texts;
   forceAdjacentMonths?: boolean;
 }
 

@@ -308,7 +308,7 @@ export default class RangePicker extends React.PureComponent<Props, State> {
   };
 
   render(): JSX.Element {
-    const { mode, onChange, value, canSwitchMode, dateOnly, onSwitchMode, intl } = this.props;
+    const { mode, onChange, value, canSwitchMode, dateOnly, onSwitchMode, texts } = this.props;
 
     return (
       <>
@@ -322,7 +322,7 @@ export default class RangePicker extends React.PureComponent<Props, State> {
               onChange({ ...value, type: 'ABSOLUTE', to: fnsAddMinutes(new Date(), 1), from: new Date() });
             }}
           >
-            {intl.formatMessage({ id: `DS.DATE-RANGE-PICKER.NOW` })}
+            {texts.now}
           </Range>
           <S.FooterSeparator />
           {!dateOnly && (
@@ -333,9 +333,7 @@ export default class RangePicker extends React.PureComponent<Props, State> {
               onClick={onSwitchMode}
               className="ds-date-time-switch"
             >
-              {intl.formatMessage({
-                id: mode === MODES.TIME ? `DS.DATE-RANGE-PICKER.SELECT-DATE` : `DS.DATE-RANGE-PICKER.SELECT-TIME`,
-              })}
+              {mode === MODES.TIME ? texts.selectDate : texts.selectTime}
               <Icon component={mode === MODES.TIME ? <CalendarM /> : <ClockM />} />
             </S.DateTimeModeSwitch>
           )}
