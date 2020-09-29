@@ -13,7 +13,6 @@ const TimestampRange: React.FC<Props> = ({
   currentRange,
   currentGroup,
   handleChange,
-  intl,
   texts,
   onTimestampChange,
   timestamp,
@@ -58,13 +57,6 @@ const TimestampRange: React.FC<Props> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [durationValue, durationModifier, durationUnit, timestamp]);
 
-  const getErrorMsg = React.useCallback(
-    () =>
-      texts?.emptyDateError
-        ? texts.emptyDateError
-        : intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.EMPTY-DATE-ERROR' }),
-    [texts, intl]
-  );
   const renderDatePicker = (): React.ReactNode => {
     return (
       <S.DatePickerWrapper error={hasError}>
@@ -80,16 +72,14 @@ const TimestampRange: React.FC<Props> = ({
           disabledHours={[]}
           disabledMinutes={[]}
           texts={{
-            apply: texts?.apply ? texts.apply : intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.APPLY' }),
-            now: texts?.now ? texts.now : intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.NOW' }),
-            clearTooltip: texts?.clear ? texts.clear : intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.CLEAR' }),
-            inputPlaceholder: texts?.selectDate
-              ? texts.selectDate
-              : intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.SELECT-DATE' }),
+            apply: texts.apply,
+            now: texts.now,
+            clearTooltip: texts.clear,
+            inputPlaceholder: texts.selectDate,
           }}
           showTime
           error={hasError}
-          errorText={hasError ? getErrorMsg() : null}
+          errorText={hasError ? texts.emptyDateError : null}
           popoverPlacement="topLeft"
         />
       </S.DatePickerWrapper>
@@ -109,11 +99,11 @@ const TimestampRange: React.FC<Props> = ({
           unit && setDurationUnit(unit as RelativeUnits);
         }}
         unit={durationUnit}
-        intl={intl}
         durationModifier={durationModifier}
         onDurationModifierChange={(modifier): void => {
           setDurationModifier(modifier);
         }}
+        texts={texts}
       />
     </S.RangeFormColumn>
   );

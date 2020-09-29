@@ -10,7 +10,7 @@ export type Props = {
   past: boolean;
   since: boolean;
   intl: IntlShape;
-  texts?: Texts;
+  texts: Texts;
   relativeModes?: RelativeMode[];
 };
 export type GroupRange = {

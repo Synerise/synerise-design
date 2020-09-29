@@ -20,13 +20,13 @@ export const range = (start: number, end: number): number[] => {
 };
 
 export const DURATION_MODIFIERS = {
-  LAST: 'TIMESTAMP_LAST',
-  NEXT: 'TIMESTAMP_NEXT',
+  LAST: 'timestampLast',
+  NEXT: 'timestampNext',
 };
 export const RELATIVE_PRESETS = [
   {
     key: 'TODAY',
-    translationKey: 'DS.DATE-RANGE-PICKER.TODAY',
+    translationKey: 'today',
     type: RELATIVE,
     from: null,
     to: null,
@@ -36,7 +36,7 @@ export const RELATIVE_PRESETS = [
   },
   {
     key: 'YESTERDAY',
-    translationKey: 'DS.DATE-RANGE-PICKER.YESTERDAY',
+    translationKey: 'yesterday',
     type: RELATIVE,
     from: null,
     to: null,
@@ -46,7 +46,7 @@ export const RELATIVE_PRESETS = [
   },
   {
     key: 'TOMORROW',
-    translationKey: 'DS.DATE-RANGE-PICKER.TOMORROW',
+    translationKey: 'tomorrow',
     type: RELATIVE,
     from: null,
     to: null,
@@ -56,7 +56,7 @@ export const RELATIVE_PRESETS = [
   },
   {
     key: 'LAST_WEEK',
-    translationKey: 'DS.DATE-RANGE-PICKER.LAST_WEEK',
+    translationKey: 'lastWeek',
     type: RELATIVE,
     from: null,
     to: null,
@@ -66,7 +66,7 @@ export const RELATIVE_PRESETS = [
   },
   {
     key: 'THIS_WEEK',
-    translationKey: 'DS.DATE-RANGE-PICKER.THIS_WEEK',
+    translationKey: 'thisWeek',
     type: RELATIVE,
     from: null,
     to: null,
@@ -76,7 +76,7 @@ export const RELATIVE_PRESETS = [
   },
   {
     key: 'NEXT_WEEK',
-    translationKey: 'DS.DATE-RANGE-PICKER.NEXT_WEEK',
+    translationKey: 'nextWeek',
     type: RELATIVE,
     from: null,
     to: null,
@@ -86,7 +86,7 @@ export const RELATIVE_PRESETS = [
   },
   {
     key: 'LAST_7_DAYS',
-    translationKey: 'DS.DATE-RANGE-PICKER.LAST_7_DAYS',
+    translationKey: 'last7Days',
     type: RELATIVE,
     from: null,
     to: null,
@@ -96,7 +96,7 @@ export const RELATIVE_PRESETS = [
   },
   {
     key: 'NEXT_7_DAYS',
-    translationKey: 'DS.DATE-RANGE-PICKER.NEXT_7_DAYS',
+    translationKey: 'next7Days',
     type: RELATIVE,
     from: null,
     to: null,
@@ -106,7 +106,7 @@ export const RELATIVE_PRESETS = [
   },
   {
     key: 'LAST_MONTH',
-    translationKey: 'DS.DATE-RANGE-PICKER.LAST_MONTH',
+    translationKey: 'lastMonth',
     type: RELATIVE,
     from: null,
     to: null,
@@ -116,7 +116,7 @@ export const RELATIVE_PRESETS = [
   },
   {
     key: 'THIS_MONTH',
-    translationKey: 'DS.DATE-RANGE-PICKER.THIS_MONTH',
+    translationKey: 'thisMonth',
     type: RELATIVE,
     from: null,
     to: null,
@@ -126,7 +126,7 @@ export const RELATIVE_PRESETS = [
   },
   {
     key: 'NEXT_MONTH',
-    translationKey: 'DS.DATE-RANGE-PICKER.NEXT_MONTH',
+    translationKey: 'nextMonth',
     type: RELATIVE,
     from: null,
     to: null,
@@ -136,7 +136,7 @@ export const RELATIVE_PRESETS = [
   },
   {
     key: 'LAST_3_MONTHS',
-    translationKey: 'DS.DATE-RANGE-PICKER.LAST_3_MONTHS',
+    translationKey: 'last3Months',
     type: RELATIVE,
     from: null,
     to: null,
@@ -146,7 +146,7 @@ export const RELATIVE_PRESETS = [
   },
   {
     key: 'NEXT_3_MONTHS',
-    translationKey: 'DS.DATE-RANGE-PICKER.NEXT_3_MONTHS',
+    translationKey: 'next3Months',
     type: RELATIVE,
     from: null,
     to: null,
@@ -156,7 +156,7 @@ export const RELATIVE_PRESETS = [
   },
   {
     key: 'LAST_6_MONTHS',
-    translationKey: 'DS.DATE-RANGE-PICKER.LAST_6_MONTHS',
+    translationKey: 'last6Months',
     type: RELATIVE,
     from: null,
     to: null,
@@ -166,7 +166,7 @@ export const RELATIVE_PRESETS = [
   },
   {
     key: 'NEXT_6_MONTHS',
-    translationKey: 'DS.DATE-RANGE-PICKER.NEXT_6_MONTHS',
+    translationKey: 'next6Months',
     type: RELATIVE,
     from: null,
     to: null,
@@ -176,7 +176,7 @@ export const RELATIVE_PRESETS = [
   },
   {
     key: 'LAST_YEAR',
-    translationKey: 'DS.DATE-RANGE-PICKER.LAST_YEAR',
+    translationKey: 'lastYear',
     type: RELATIVE,
     from: null,
     to: null,
@@ -186,7 +186,7 @@ export const RELATIVE_PRESETS = [
   },
   {
     key: 'NEXT_YEAR',
-    translationKey: 'DS.DATE-RANGE-PICKER.NEXT_YEAR',
+    translationKey: 'nextYear',
     type: RELATIVE,
     from: null,
     to: null,
@@ -196,7 +196,7 @@ export const RELATIVE_PRESETS = [
   },
   {
     key: 'ALL_TIME',
-    translationKey: 'DS.DATE-RANGE-PICKER.ALL_TIME',
+    translationKey: 'allTime',
     type: RELATIVE,
     offset: { type: SECONDS, value: 1 },
     duration: { type: YEARS, value: 100 },

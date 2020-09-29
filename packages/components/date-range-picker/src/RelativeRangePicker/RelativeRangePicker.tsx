@@ -94,14 +94,14 @@ class RelativeRangePicker extends React.PureComponent<Props, State> {
   renderRanges = (ranges: DateRange[]): React.ReactNode => {
     if (!ranges || ranges.length === 0) return null;
     const { currentRange } = this.state;
-    const { onChange, intl, value } = this.props;
-    return <RangeButtons ranges={ranges} currentRange={currentRange} value={value} intl={intl} onChange={onChange} />;
+    const { onChange, texts, value } = this.props;
+    return <RangeButtons ranges={ranges} currentRange={currentRange} value={value} texts={texts} onChange={onChange} />;
   };
 
   renderRangesDropdown = (ranges: DateRange[]): React.ReactNode => {
     const { currentRange } = this.state;
-    const { onChange, intl } = this.props;
-    return <RangeDropdown ranges={ranges} currentRange={currentRange} intl={intl} onChange={onChange} />;
+    const { onChange, texts } = this.props;
+    return <RangeDropdown ranges={ranges} currentRange={currentRange} texts={texts} onChange={onChange} />;
   };
 
   onOffsetValueChange = (value: number | undefined): void => {
@@ -122,14 +122,13 @@ class RelativeRangePicker extends React.PureComponent<Props, State> {
 
   renderCustomRangeForm = (): React.ReactNode => {
     const { currentRange, currentGroup, sinceTimestamp } = this.state;
-    const { ranges, texts, relativeModes, intl } = this.props;
+    const { ranges, texts, relativeModes } = this.props;
     return (
       <CustomRangeForm
         handleModeChange={this.onModeChange}
         ranges={ranges}
         currentRange={currentRange}
         currentGroup={currentGroup}
-        intl={intl}
         handleChange={this.onChange}
         handleDurationValueChange={this.onDurationValueChange}
         handleOffsetValueChange={this.onOffsetValueChange}
@@ -142,7 +141,7 @@ class RelativeRangePicker extends React.PureComponent<Props, State> {
   };
 
   render(): React.ReactNode {
-    const { intl } = this.props;
+    const { texts } = this.props;
     const { groupedRanges, currentGroup, currentRange } = this.state;
     const visibleRanges = (groupedRanges as []).slice(0, 3);
     const hiddenRanges = (groupedRanges as []).slice(3);
@@ -155,7 +154,7 @@ class RelativeRangePicker extends React.PureComponent<Props, State> {
             onClick={this.handleCustomClick}
             type={currentRange && !currentRange.key ? 'primary' : 'tertiary'}
           >
-            {intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.CUSTOM' })}
+            {texts?.custom}
           </S.Range>
           {this.renderRanges(visibleRanges)}
           {this.renderRangesDropdown(hiddenRanges)}

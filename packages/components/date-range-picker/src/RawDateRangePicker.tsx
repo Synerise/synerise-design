@@ -106,7 +106,6 @@ class RawDateRangePicker extends React.PureComponent<Props, State> {
       showTime,
       format,
       disabledDate,
-      intl,
       validate,
       relativeFuture,
       relativePast,
@@ -142,7 +141,7 @@ class RawDateRangePicker extends React.PureComponent<Props, State> {
               texts={texts}
             />
           }
-          title={intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.RELATIVE_DATE_RANGE' })}
+          title={texts?.relativeDateRange}
           expanded
         />
       );
@@ -150,7 +149,7 @@ class RawDateRangePicker extends React.PureComponent<Props, State> {
       addons.push(
         <AddonCollapse
           content={<div>FilterSwitch Placholder</div>}
-          title={intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.FILTER' })}
+          title={texts?.filter}
           expanded
         />
       );
@@ -164,7 +163,6 @@ class RawDateRangePicker extends React.PureComponent<Props, State> {
           onSwitchMode={this.handleSwitchMode}
           dateOnly={!showTime}
           canSwitchMode={isValid}
-          intl={intl}
           texts={texts}
           forceAdjacentMonths={forceAdjacentMonths}
         />
@@ -183,15 +181,7 @@ class RawDateRangePicker extends React.PureComponent<Props, State> {
           canSwitchMode={isValid}
           message={!validator.valid ? validator.message : null}
           onSwitchMode={this.handleSwitchMode}
-          texts={{
-            apply: texts?.apply ? texts.apply : intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.APPLY' }),
-            startDatePlaceholder: texts?.startDatePlaceholder
-              ? texts.startDatePlaceholder
-              : intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.START-DATE' }),
-            endDatePlaceholder: texts?.endDatePlaceholder
-              ? texts.endDatePlaceholder
-              : intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.END-DATE' }),
-          }}
+          texts={texts}
           value={value}
           showTime={showTime}
           format={format}
