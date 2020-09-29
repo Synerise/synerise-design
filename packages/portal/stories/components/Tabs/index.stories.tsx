@@ -72,7 +72,7 @@ const stories = {
     activeTab: 0,
   })(({ store }) => {
    const hasSufix = boolean('setSufix', true);
-   const counter = number('count', 1); console.log(String(counter).length)
+   const counter = number('count', 1);
    const badgeComponent = <Badge
      count={counter}
      overflowCount={number('overflowCount', 99)}
@@ -95,7 +95,7 @@ const stories = {
     activeTab: 0,
   })(({ store }) => {
     const hasSufix = boolean('setSufix', true);
-    const counter = number('count', 1); console.log(String(counter).length)
+    const counter = number('count', 1);
     const badgeComponent = <Badge
       count={counter}
       overflowCount={number('overflowCount', 99)}
@@ -118,7 +118,7 @@ const stories = {
     activeTab: 0,
   })(({ store }) => {
     const hasSufix = boolean('setSufix', true);
-    const counter = number('count', 1); console.log(String(counter).length)
+    const counter = number('count', 1);
     const badgeComponent = <Badge
       count={counter}
       overflowCount={number('overflowCount', 99)}
@@ -152,7 +152,7 @@ const stories = {
   withMenu: withState({
     activeTab: 0,
   })(({ store }) => {  const hasSufix = boolean('setSufix', true);
-    const counter = number('count', 1); console.log(String(counter).length)
+    const counter = number('count', 1);
     const badgeComponent = <Badge
       count={counter}
       overflowCount={number('overflowCount', 99)}
