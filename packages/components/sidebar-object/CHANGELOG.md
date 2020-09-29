@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar-object@0.1.0...@synerise/ds-sidebar-object@0.1.1) (2020-09-28)
+
+
+### Bug Fixes
+
+* **sidebar-object:** add function to items ([e8efb88](https://github.com/Synerise/synerise-design/commit/e8efb884a2f997c6dd951c230d68a628974ba572))
+* **sidebar-object:** name of placeholder changed and fix items in dropdown ([367c71d](https://github.com/Synerise/synerise-design/commit/367c71d9fc2f998756f5537d6717c06ec47004a7))
+
+
+
+
+
 # 0.1.0 (2020-09-25)
 
 

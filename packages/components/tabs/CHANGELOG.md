@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.40](https://github.com/synerise/synerise-design/compare/@synerise/ds-tabs@0.10.39...@synerise/ds-tabs@0.10.40) (2020-09-28)
+
+
+### Bug Fixes
+
+* **tabs:** add counter to tabs ([85786ba](https://github.com/synerise/synerise-design/commit/85786ba5cbda5e887b93ff957d93456103676524))
+* **tabs:** change paddings and margin ([8a49e0f](https://github.com/synerise/synerise-design/commit/8a49e0f4b7a6192355c902de22bc7e5d03ae2b51))
+* **tabs:** delete unnecessary prop ([e67ef1b](https://github.com/synerise/synerise-design/commit/e67ef1b98a58c72397d144d4ed28fb14be667f1d))
+* **tabs:** used menu items instead of btns, moved them to top ([4264358](https://github.com/synerise/synerise-design/commit/4264358ede97fe517f24622ace484160732b9970))
+
+
+
+
+
 ## [0.10.39](https://github.com/synerise/synerise-design/compare/@synerise/ds-tabs@0.10.38...@synerise/ds-tabs@0.10.39) (2020-09-25)
 
 

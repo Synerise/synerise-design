@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.57](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-tabs@0.6.56...@synerise/ds-card-tabs@0.6.57) (2020-09-28)
+
+
+### Bug Fixes
+
+* **card-tabs:** add test ([4220826](https://github.com/Synerise/synerise-design/commit/4220826a3c064efd7bc5d30ca0dbcca7101d5b43))
+
+
+
+
+
 ## [0.6.56](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-tabs@0.6.55...@synerise/ds-card-tabs@0.6.56) (2020-09-25)
 
 

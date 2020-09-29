@@ -1,7 +1,7 @@
-import { WrappedComponentProps } from 'react-intl';
 import { DateFilter, DateRange } from 'date.types';
+import * as React from 'react';
 
-export interface Props extends WrappedComponentProps {
+export interface Props {
   disabledDate?: (date?: Date) => boolean;
   format?: string;
   forceAdjacentMonths?: boolean;
@@ -29,7 +29,7 @@ export interface Props extends WrappedComponentProps {
   showRelativePicker?: boolean;
   showFilter?: boolean;
   showTime?: boolean;
-  texts?: Texts;
+  texts: Texts;
   validate?: (value: DateRange) => { valid: boolean; message?: string };
   value: DateRange;
 }
@@ -39,15 +39,55 @@ export interface State {
   value: DateRange;
   changed: boolean;
 }
-export interface Texts {
-  custom?: string;
-  today?: string;
-  yesterday?: string;
-  apply?: string;
-  endDatePlaceholder?: string;
-  startDatePlaceholder?: string;
-  clear?: string;
-  now?: string;
-  selectDate?: string;
-  emptyDateError?: string;
-}
+export type Texts = {
+  [k in Translations]: string | React.ReactNode;
+} &
+  {
+    [k in TranslationsPlaceholders]: string;
+  };
+
+export type TranslationsPlaceholders = 'endDatePlaceholder' | 'startDatePlaceholder' | 'selectDate' | 'selectTime'
+export type Translations =
+  | 'custom'
+  | 'today'
+  | 'yesterday'
+  | 'apply'
+  | 'clear'
+  | 'now'
+  | 'emptyDateError'
+  | 'last7Days'
+  | 'thisWeek'
+  | 'lastWeek'
+  | 'thisMonth'
+  | 'lastMonth'
+  | 'last3Months'
+  | 'last6Months'
+  | 'lastYear'
+  | 'allTime'
+  | 'tomorrow'
+  | 'next7Days'
+  | 'nextWeek'
+  | 'nextMonth'
+  | 'next3Months'
+  | 'next6Months'
+  | 'nextYear'
+  | 'more'
+  | 'relativeDateRange'
+  | 'last'
+  | 'before'
+  | 'after'
+  | 'since'
+  | 'next'
+  | 'seconds'
+  | 'minutes'
+  | 'hours'
+  | 'days'
+  | 'weeks'
+  | 'months'
+  | 'years'
+  | 'timestampLast'
+  | 'timestampNext'
+  | 'timestampTill'
+  | 'filter'
+  | 'startDate'
+  | 'endDate';

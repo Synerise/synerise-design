@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.96.1](https://github.com/synerise/synerise-design/compare/portal@0.96.0...portal@0.96.1) (2020-09-28)
+
+
+### Bug Fixes
+
+* **sidebar-object:** name of placeholder changed and fix items in dropdown ([367c71d](https://github.com/synerise/synerise-design/commit/367c71d9fc2f998756f5537d6717c06ec47004a7))
+* **tabs:** add counter to tabs ([85786ba](https://github.com/synerise/synerise-design/commit/85786ba5cbda5e887b93ff957d93456103676524))
+
+
+
+
+
 # [0.96.0](https://github.com/synerise/synerise-design/compare/portal@0.95.6...portal@0.96.0) (2020-09-25)
 
 

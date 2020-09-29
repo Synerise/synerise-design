@@ -8,11 +8,11 @@ import { RANGES_ICON } from '../../utils';
 import { Props } from './ModeDropdown.types';
 
 const MODE_TRANSLATION_KEYS = {
-  PAST: 'LAST',
-  FUTURE: 'NEXT',
-  SINCE: 'SINCE',
+  PAST: 'last',
+  FUTURE: 'next',
+  SINCE: 'since',
 };
-const ModeDrop: React.FC<Props> = ({ currentRange, currentGroup, onModeChange, modes, intl }: Props) => {
+const ModeDrop: React.FC<Props> = ({ currentRange, currentGroup, onModeChange, modes, texts }: Props) => {
   const [dropVisible, setDropVisible] = React.useState<boolean>(false);
   const overlayRef = React.useRef<HTMLDivElement>(null);
 
@@ -37,9 +37,7 @@ const ModeDrop: React.FC<Props> = ({ currentRange, currentGroup, onModeChange, m
             prefixel={<Icon component={RANGES_ICON[mode]} />}
             suffixel={mode === currentGroup ? <Icon component={<CheckS />} color={theme.palette['green-600']} /> : null}
           >
-            {intl.formatMessage({
-              id: `DS.DATE-RANGE-PICKER.${MODE_TRANSLATION_KEYS[mode]}`,
-            })}
+            {texts[MODE_TRANSLATION_KEYS[mode]]}
           </S.DropMenuItem>
         ))}
       </S.DropMenu>

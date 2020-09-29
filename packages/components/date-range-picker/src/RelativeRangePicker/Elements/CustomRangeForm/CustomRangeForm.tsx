@@ -19,7 +19,6 @@ const CustomRangeForm: React.FC<Props> = ({
   handleOffsetValueChange,
   handleModeChange,
   handleChange,
-  intl,
   texts,
   handleTimestampChange,
   timestamp,
@@ -34,7 +33,7 @@ const CustomRangeForm: React.FC<Props> = ({
           currentGroup={currentGroup}
           handleChange={handleChange}
           handleOffsetValueChange={handleOffsetValueChange}
-          intl={intl}
+          texts={texts}
         />
       </S.RangeFormColumn>
     );
@@ -47,7 +46,7 @@ const CustomRangeForm: React.FC<Props> = ({
           currentGroup={currentGroup}
           handleChange={handleChange}
           handleDurationValueChange={handleDurationValueChange}
-          intl={intl}
+          texts={texts}
         />
       </S.RangeFormColumn>
     );
@@ -63,7 +62,6 @@ const CustomRangeForm: React.FC<Props> = ({
           handleChange={handleChange}
           onTimestampChange={handleTimestampChange}
           timestamp={timestamp}
-          intl={intl}
           texts={texts}
         />
       </S.RangeFormColumn>
@@ -77,7 +75,7 @@ const CustomRangeForm: React.FC<Props> = ({
           currentGroup={currentGroup}
           currentRange={currentRange}
           onModeChange={handleModeChange}
-          intl={intl}
+          texts={texts}
           modes={relativeModes}
         />
       </S.RangeFormColumn>

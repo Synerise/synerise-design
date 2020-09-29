@@ -1,11 +1,13 @@
 import * as React from 'react';
 import { Popover } from 'antd';
 import './style/index.less';
+import { useIntl } from 'react-intl';
 import RawDateRangePicker from './RawDateRangePicker';
 import * as S from './DateRangePicker.styles';
 import { Props } from './DateRangePicker.types';
 import RangePickerInput from './RangePickerInput/RangePickerInput';
 import { DateFilter, DateRange } from './date.types';
+import { getDefaultTexts } from './utils';
 
 const DateRangePicker: React.FC<Props> = props => {
   const {
@@ -18,9 +20,12 @@ const DateRangePicker: React.FC<Props> = props => {
     popoverTrigger,
     forceAdjacentMonths,
   } = props;
+  const intl = useIntl();
   const [popupVisible, setPopupVisible] = React.useState<boolean | undefined>(undefined);
   const [selectedDate, setSelectedDate] = React.useState(value);
   const [inputActive, setInputActive] = React.useState<boolean>();
+
+  const allTexts = React.useMemo(() => getDefaultTexts(intl, texts), [texts, intl]);
   React.useEffect(() => {
     if (popupVisible !== undefined) {
       setPopupVisible(undefined);
@@ -57,7 +62,7 @@ const DateRangePicker: React.FC<Props> = props => {
             onApply={onApplyCallback}
             onValueChange={onValueChangeCallback}
             value={selectedDate}
-            texts={texts}
+            texts={allTexts}
             forceAdjacentMonths={forceAdjacentMonths}
           />
         }
@@ -75,7 +80,7 @@ const DateRangePicker: React.FC<Props> = props => {
             onClick={(): void => setPopupVisible(undefined)}
             value={selectedDate}
             showTime={showTime}
-            texts={texts}
+            texts={allTexts}
             onChange={onValueChangeCallback}
             active={!!inputActive}
           />

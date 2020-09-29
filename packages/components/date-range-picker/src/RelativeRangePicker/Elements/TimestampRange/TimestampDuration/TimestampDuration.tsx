@@ -9,20 +9,18 @@ import { Props } from './TimestampDuration.types';
 const SELECT_DROPDOWN_OFFSET = -4;
 const TimestampDuration: React.FC<Props> = ({
   handleDurationValueChange,
-  intl,
   durationModifier,
   onDurationModifierChange,
   value,
   onDurationUnitChange,
   unit,
+  texts
 }) => {
   const durationModiferValues = Object.values(DURATION_MODIFIERS);
   return (
     <>
       <S.Title>
-        {intl.formatMessage({
-          id: 'DS.DATE-RANGE-PICKER.TIMESTAMP_TILL',
-        })}
+        {texts.timestampTill}
       </S.Title>
       <S.InputSelectGroup compact>
         <Select
@@ -36,7 +34,7 @@ const TimestampDuration: React.FC<Props> = ({
         >
           {durationModiferValues.map(modifier => (
             <Select.Option key={modifier} value={modifier}>
-              {intl.formatMessage({ id: `DS.DATE-RANGE-PICKER.${modifier.toUpperCase()}` })}
+              {texts[modifier]}
             </Select.Option>
           ))}
         </Select>
@@ -56,7 +54,7 @@ const TimestampDuration: React.FC<Props> = ({
         >
           {CONST.RELATIVE_TYPES.map(type => (
             <Select.Option key={type} value={type}>
-              {intl.formatMessage({ id: `DS.DATE-RANGE-PICKER.${type.toUpperCase()}` })}
+              {texts[type.toLowerCase()]}
             </Select.Option>
           ))}
         </Select>

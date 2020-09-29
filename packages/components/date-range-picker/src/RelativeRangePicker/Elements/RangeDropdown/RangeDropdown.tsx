@@ -12,7 +12,7 @@ const MAX_ITEMS_COUNT = 7;
 const ITEMS_HEIGHT = 32;
 const DROPDOWN_WIDTH = 160;
 const DROPDOWN_PADDING = 8;
-const RangeDropdown: React.FC<Props> = ({ ranges, currentRange, intl, onChange }: Props) => {
+const RangeDropdown: React.FC<Props> = ({ ranges, currentRange, texts, onChange }: Props) => {
   const [dropVisible, setDropVisible] = React.useState<boolean>(false);
   const overlayRef = React.useRef<HTMLDivElement>(null);
 
@@ -45,7 +45,7 @@ const RangeDropdown: React.FC<Props> = ({ ranges, currentRange, intl, onChange }
                 currentRange?.key === range.key && <Icon component={<CheckS />} color={theme.palette['green-600']} />
               }
             >
-              {range.translationKey ? intl.formatMessage({ id: range.translationKey }) : range.key}
+              {range.translationKey ? texts[range.translationKey] : range.key}
             </S.DropMenuItem>
           ))}
         </S.DropMenu>
@@ -60,9 +60,7 @@ const RangeDropdown: React.FC<Props> = ({ ranges, currentRange, intl, onChange }
         onClick={(): void => setDropVisible(!dropVisible)}
       >
         {currentRange &&
-          intl.formatMessage({
-            id: containsCurrentRange ? currentRange.translationKey : 'DS.DATE-RANGE-PICKER.MORE',
-          })}
+          texts[containsCurrentRange && currentRange.translationKey ? currentRange.translationKey : 'more']}
 
         <Icon component={<AngleDownS />} />
       </S.Range>

@@ -4,7 +4,7 @@ import * as CONST from '../../../constants';
 import { Props } from './RangeButtons.types';
 import { isAbsolute } from '../../utils';
 
-const RangeButtons: React.FC<Props> = ({ ranges, currentRange, value, intl, onChange }: Props) => {
+const RangeButtons: React.FC<Props> = ({ ranges, currentRange, value, texts, onChange }: Props) => {
   return (
     <>
       {ranges.map(range => (
@@ -20,7 +20,7 @@ const RangeButtons: React.FC<Props> = ({ ranges, currentRange, value, intl, onCh
               : 'tertiary'
           }
         >
-          {range.translationKey ? intl.formatMessage({ id: range.translationKey }) : range.key}
+          {range.translationKey ? texts[range.translationKey] : range.key}
         </S.Range>
       ))}
     </>

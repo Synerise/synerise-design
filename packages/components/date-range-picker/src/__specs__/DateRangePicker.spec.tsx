@@ -19,14 +19,16 @@ const APPLY_BUTTON_SELECTOR = '.ds-date-range-picker-footer  button';
 export const RANGES: RelativeDateRange[] = [
   {
     key: 'MY_RANGE',
-    translationKey: 'MY_RANGE',
+    translationKey: 'myRange',
     type: RELATIVE,
     future: false,
     offset: { type: DAYS, value: 3 },
     duration: { type: DAYS, value: 1 },
   },
 ] ;
-
+const texts = {
+  myRange:'myRange'
+} as any;
 describe('DateRangePicker', () => {
   it('should render', async () => {
     const onApply = jest.fn();
@@ -38,6 +40,8 @@ describe('DateRangePicker', () => {
         showRelativePicker
         forceAbsolute={false}
         value={ABSOLUTE_VALUE as DateRange}
+        // @ts-ignore
+        texts={texts}
       />
     );
     expect((await container.querySelector('.ds-date-range-picker')) as HTMLElement).toBeTruthy();
@@ -53,6 +57,7 @@ describe('DateRangePicker', () => {
         forceAbsolute={false}
         value={ABSOLUTE_VALUE as DateRange}
         relativeModes={RELATIVE_MODES as RelativeMode[]}
+        texts={texts}
       />
     );
     const leftSideMonth = getByText('Oct');
@@ -71,6 +76,7 @@ describe('DateRangePicker', () => {
         value={RELATIVE_VALUE as DateRange}
         relativeModes={RELATIVE_MODES as RelativeMode[]}
         forceAbsolute
+        texts={texts}
       />
     );
     const applyButton = container.querySelector(APPLY_BUTTON_SELECTOR) as HTMLElement;
@@ -89,6 +95,7 @@ describe('DateRangePicker', () => {
         value={RELATIVE_VALUE as DateRange}
         forceAbsolute={false}
         relativeModes={RELATIVE_MODES as RelativeMode[]}
+        texts={texts}
       />
     );
     const applyButton = container.querySelector(APPLY_BUTTON_SELECTOR) as HTMLElement;
@@ -108,6 +115,7 @@ describe('DateRangePicker', () => {
         forceAbsolute={false}
         ranges={RANGES}
         relativeModes={RELATIVE_MODES as RelativeMode[]}
+        texts={texts}
       />
     );
     expect(getByText(RANGES[0].translationKey as string)).toBeInTheDocument();
@@ -124,6 +132,7 @@ describe('DateRangePicker', () => {
         forceAbsolute={false}
         ranges={RANGES}
         relativeModes={RELATIVE_MODES as RelativeMode[]}
+        texts={texts}
       />
     );
     const valueWrapper = container.querySelector('.ds-date-range-picker-value') as HTMLElement;
@@ -146,6 +155,7 @@ describe('DateRangePicker', () => {
         forceAbsolute={false}
         ranges={RANGES}
         relativeModes={RELATIVE_MODES as RelativeMode[]}
+        texts={texts}
       />
     );
     const valueWrapper = container.querySelector('.ds-date-range-picker-value') as HTMLElement;

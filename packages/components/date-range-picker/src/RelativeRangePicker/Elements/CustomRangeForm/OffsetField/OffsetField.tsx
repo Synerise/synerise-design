@@ -13,17 +13,13 @@ const OffsetField: React.FC<Props> = ({
   currentGroup,
   handleChange,
   currentRange,
-  intl,
+  texts,
 }: Props) => {
   const { offset } = currentRange;
   return (
     <>
       {' '}
-      <S.Title>
-        {intl.formatMessage({
-          id: currentGroup === RANGES_MODE.PAST ? 'DS.DATE-RANGE-PICKER.BEFORE' : 'DS.DATE-RANGE-PICKER.AFTER',
-        })}
-      </S.Title>
+      <S.Title>{currentGroup === RANGES_MODE.PAST ? texts.before : texts.after}</S.Title>
       <S.InputSelectGroup compact>
         <InputNumber
           min={0}
@@ -43,7 +39,7 @@ const OffsetField: React.FC<Props> = ({
         >
           {CONST.RELATIVE_TYPES.map(type => (
             <Select.Option key={type} value={type}>
-              {intl.formatMessage({ id: `DS.DATE-RANGE-PICKER.${type.toUpperCase()}` })}
+              {texts[type.toLowerCase()]}
             </Select.Option>
           ))}
         </Select>
