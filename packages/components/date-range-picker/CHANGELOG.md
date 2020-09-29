@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.20](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.1.19...@synerise/ds-date-range-picker@0.1.20) (2020-09-29)
+
+
+### Bug Fixes
+
+* **date-range-picke:** added missing translations and texts ([915d846](https://github.com/Synerise/synerise-design/commit/915d846916bb90621c83fa954b59cf558a701e5b))
+* **date-range-picker:** code review fixes ([deafd89](https://github.com/Synerise/synerise-design/commit/deafd89312333e617977f9a9dd04de036361624b))
+* **date-range-picker:** useIntl hook instead of prop ([5402267](https://github.com/Synerise/synerise-design/commit/5402267efcda1bec06c34aee1ff337bd621bb6dd))
+
+
+
+
+
 ## [0.1.19](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.1.18...@synerise/ds-date-range-picker@0.1.19) (2020-09-28)
 
 
