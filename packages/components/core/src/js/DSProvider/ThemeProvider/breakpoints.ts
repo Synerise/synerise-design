@@ -1,18 +1,26 @@
 export default {
-  small: {
+  xsmall: {
     min: 0,
-    max: 640,
+    max: 320,
+  },
+  small: {
+    min: 321,
+    max: 768,
   },
   medium: {
-    min: 641,
-    max: 1024,
+    min: 769,
+    max: 960,
   },
   large: {
-    min: 1025,
-    max: 1200,
+    min: 961,
+    max: 1280,
   },
   xlarge: {
-    min: 1201,
+    min: 1281,
+    max: 1600,
+  },
+  xxlarge: {
+    min: 1600,
     max: 0,
   },
 };

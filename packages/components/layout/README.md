@@ -24,6 +24,8 @@ import Layout from '@synerise/ds-layout'
     header={<HeaderComponent />}
     left={<LeftSidebarComponent>}
     right={RightSidebarComponent}
+    leftOpened=true
+    rightOpened=true
     className={layoutClass}
 >
     <Content />
@@ -35,6 +37,7 @@ import Layout from '@synerise/ds-layout'
 | Property  | Description                              | Type            | Default |
 | --------- | ---------------------------------------- | --------------- | ------- |
 | header    | Set top header content page              | React.ReactNode |         |
+| subheader | Set subheader content page               | React.ReactNode |         |
 | left      | Set left content page                    | React.ReactNode |         |
 | right     | Set right content page                   | React.ReactNode |         |
 | children  | The layout elements passed to the parent | React.ReactNode |         |
