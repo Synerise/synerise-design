@@ -204,16 +204,13 @@ export const TabContainer = styled.button<{ block?: boolean }>`
   }
   ${(props): string | false => !!props.block && applyBlockStyles(props)}
 `;
-const addonStyles = (): string => `
+
+export const SuffixWrapper = styled.div``;
+export const DefaultSuffixWrapper = styled.div`
   font-size: 13px;
   line-height: 10px;
   text-align: center;
-  margin-right: -4px;
  && .ant-badge-count {
 padding: 0 0 0 3px;
 }
-`;
-export const SuffixWrapper = styled.div``;
-export const DefaultSuffixWrapper = styled.div`
-  ${(): string => addonStyles()};
 `;
