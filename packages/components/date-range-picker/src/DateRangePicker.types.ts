@@ -39,6 +39,7 @@ export interface State {
   mode: string;
   value: DateRange;
   changed: boolean;
+  filter?: FilterDefinition;
 }
 export type Texts = {
   [k in Translations]: string | React.ReactNode;

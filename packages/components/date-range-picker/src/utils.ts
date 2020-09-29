@@ -1,6 +1,6 @@
-import fnsMin from 'date-fns/min';
-import fnsMax from 'date-fns/max';
-import { legacyParse } from '@date-fns/upgrade/v2';
+import fnsMin from "date-fns/min";
+import fnsMax from "date-fns/max";
+import { legacyParse } from "@date-fns/upgrade/v2";
 import { IntlShape } from 'react-intl';
 import { DateRange } from './date.types';
 import { ABSOLUTE, RELATIVE } from './constants';
@@ -97,3 +97,4 @@ export const formatTime = (seconds: number, formatString = 'HH:mm:ss'): string =
     .utc(seconds * 1000)
     .format(formatString);
 };
+
