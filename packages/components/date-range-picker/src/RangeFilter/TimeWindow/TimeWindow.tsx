@@ -127,18 +127,20 @@ class TimeWindowBase extends React.PureComponent<Props, State> {
 
   handleSelectAll = (): void => {
     const days = {};
+    const keys = this.getAllKeys();
+
     const { onChange, onSelectAll } = this.props;
-
-    this.getAllKeys().forEach(key => {
-      days[key] = {
-        ...this.getDayValue(key),
-        restricted: true,
-        display: true,
-      };
+    this.setState({ multipleMode: true, activeDay: keys }, () => {
+      keys.forEach(key => {
+        days[key] = {
+          ...this.getDayValue(key),
+          restricted: true,
+          display: true,
+        };
+      });
+      onSelectAll && onSelectAll();
+      onChange(days);
     });
-
-    onSelectAll && onSelectAll();
-    onChange(days);
   };
 
   getDayValue = (dayKey: DayKey) => {
@@ -255,7 +257,6 @@ class TimeWindowBase extends React.PureComponent<Props, State> {
     const keys = this.getAllKeys();
     const singleMode = keys.length === 1;
     const rangeFormKey = singleMode ? keys[0] : activeDay;
-    console.log('RANGE FORM KEY', rangeFormKey);
     return (
       <S.TimeWindowContainer
         style={style}

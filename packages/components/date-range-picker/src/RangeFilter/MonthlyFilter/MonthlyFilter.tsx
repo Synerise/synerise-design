@@ -145,7 +145,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
     const { visible } = this.state;
     const updatedVisible = {};
     for (const i in visible) {
-      updatedVisible[i.id] = !visible[i];
+      updatedVisible[i] = false;
     }
     updatedVisible[id] = true;
     this.setState({
@@ -157,10 +157,13 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
     const { value, intl } = this.props;
     const { visible } = this.state;
     const data = [...value];
+    console.log(visible);
     return (
       <S.MonthlyFilterWrapper>
-        {value.map((item, key) => (
+        {data.map((item, key) => (
           <ContentItem
+            onExpand={(id) => this.handleCollapse(id)}
+            expanded={visible[item.id]}
             item={{
               tag: (
                 <Tag
@@ -179,8 +182,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
                       values={{
                         value: key + 1,
                       }}
-                    />
-                    {' '}
+                    />{' '}
                     <FormattedMessage id="DS.DATE-RANGE-PICKER.DAYS-OF" />
                   </S.DropdownLabel>
                   <S.Select
@@ -222,7 +224,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
                   />
                 </S.DropdownHeader>
               ),
-              content: (
+              content: visible[item.id] ? (
                 <S.ContentWrapper>
                   <TimeWindow
                     // eslint-disable-next-line react/no-array-index-key
@@ -236,7 +238,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
                     {...this.getTimeWindowSettings(item)}
                   />
                 </S.ContentWrapper>
-              ),
+              ) : null,
             }}
             headerSuffix={
               <Tooltip title={intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.REMOVE' })}>

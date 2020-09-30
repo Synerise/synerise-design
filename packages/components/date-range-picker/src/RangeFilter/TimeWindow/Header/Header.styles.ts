@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
+  border: 1px solid green;
 `;
 
 export const Title = styled.div`
@@ -14,8 +15,6 @@ export const Actions = styled.div`
 `;
 
 export const Action = styled.a`
-  color: ${props => props.theme.variable('@gray-color-lighter-3')};
-
   &:not(:first-child) {
     margin-left: 16px;
   }
