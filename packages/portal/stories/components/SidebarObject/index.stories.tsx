@@ -105,7 +105,9 @@ const stories = {
     const addable = boolean('Ability to add', true);
     const creatable = boolean('Ability to create', true);
     const withManageLink = boolean('With manage tags link', true);
-    const disabled = boolean('Disable entire group', false);
+    const disabled = boolean('Disable entire tag group', false);
+    const showIcon = boolean('Set Icon',true);
+    const showFolder = boolean('Set Folder',true)
     const data = [
       { id: '2', name: 'Example folder' },
       { name: 'Winter' },
@@ -134,12 +136,13 @@ const stories = {
                       component={getIconSize('large')}
                     />
                   }
-                  hasStatus={boolean('Has status', true)}
+                  hasStatus={(true)}
                   style={{ flex: 1, margin: 0 }}
                 />
               </Badge>
             }
             onCloseClick={() => setDrawerVisible(false)}
+            autoSize={{minRows: 3, maxRows: 10}}
             folders={data}
             parentFolder={{ id: '2', name: 'Example folder' }}
             texts={{
@@ -158,6 +161,9 @@ const stories = {
               suffixTooltip: 'Edit',
             }}
             headerPreffix={renderBackIcon(headerType, () => setDrawerVisible(false))}
+            onArrowUp={showIcon? () => {}: null}
+            onArrowDown={showIcon?  () => {}: null}
+            onFolderSelect={showFolder}
             onEdit={() => {}}
             onDuplicate={() => {}}
             onMove={() => {}}
@@ -187,7 +193,7 @@ const stories = {
                 tagShape={shape}
                 selected={selected}
                 disabled={disabled}
-                addable={addable}
+                addable={addable && !disabled}
                 creatable={creatable}
                 removable={removable}
                 overlayStyle={{ width: '283px', boxShadow: '0 4px 17px -3px rgba(191,191,191,1)' }}

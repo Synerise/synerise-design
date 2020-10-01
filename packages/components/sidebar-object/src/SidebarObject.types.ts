@@ -1,4 +1,5 @@
 import { TabItem } from '@synerise/ds-tabs/dist/Tabs.types';
+import * as React from 'react';
 import { HeaderTexts } from './Elements/Header/Header.types';
 
 export type SidebarObjectProps = {
@@ -20,6 +21,11 @@ export type SidebarObjectProps = {
   texts: HeaderTexts;
   onCloseClick: () => void;
   textDescription: string;
+  onArrowUp: () => void;
+  onArrowDown: () => void;
+  onFolderSelect: (item: FolderItem) => void;
+  onScrollbar: boolean;
+  autoSize: {minRows: number; maxRows: number};
 
 };
 export type FolderItem = {

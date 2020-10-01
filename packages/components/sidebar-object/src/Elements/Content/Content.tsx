@@ -4,7 +4,7 @@ import SubtleForm from '@synerise/ds-subtle-form';
 import { ContentProps } from './Content.types';
 import { ContentWrapper, InlineEditWrapper, TagsWrapper } from './Content.style';
 
-const Content: React.FC<ContentProps> = ({ description, tags, textDescription,texts }) => {
+const Content: React.FC<ContentProps> = ({ description, tags, textDescription,texts,autoSize }) => {
   const [value, setValue] = React.useState<string | undefined>(textDescription);
 
   return (
@@ -13,13 +13,11 @@ const Content: React.FC<ContentProps> = ({ description, tags, textDescription,te
       <TagsWrapper>{tags}</TagsWrapper>
       <InlineEditWrapper>
         <SubtleForm.TextArea
+          autoSize={autoSize}
           minRows={3}
-          maxRows={10}
           value={value}
           onChange={setValue}
           placeholder={texts.placeholder}
-          label={texts.labelName}
-          labelTooltip={texts.labelTooltip}
           suffixTooltip={texts.suffixTooltip}
         />
       </InlineEditWrapper>

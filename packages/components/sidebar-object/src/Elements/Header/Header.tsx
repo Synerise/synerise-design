@@ -34,6 +34,8 @@ const Header: React.FC<HeaderProps> = ({
   texts,
   onCloseClick,
   inputObject,
+  onArrowUp,
+  onArrowDown
 }) => {
   const [value, setValue] = React.useState<string>('Winter Campaign');
   const [dropdownVisible, setDropdownVisible] = React.useState(false);
@@ -44,16 +46,16 @@ const Header: React.FC<HeaderProps> = ({
   const renderActionButtons = (): React.ReactNode => {
     return (
       <>
-        <S.ButtonWrapper>
-          <Button type="ghost" mode="single-icon">
+        {onArrowUp && <S.ButtonWrapper>
+          <Button onClick={onArrowUp} type="ghost" mode="single-icon">
             <Icon size={20} component={<AngleUpM />} />
           </Button>
-        </S.ButtonWrapper>
-        <S.ButtonWrapper>
-          <Button type="ghost" mode="single-icon">
+        </S.ButtonWrapper>}
+        {onArrowDown && <S.ButtonWrapper>
+          <Button onClick={onArrowDown} type="ghost" mode="single-icon">
             <Icon size={20} component={<AngleDownM />} />
           </Button>
-        </S.ButtonWrapper>
+        </S.ButtonWrapper>}
         <Dropdown
           overlayStyle={{ boxShadow: '0 4px 17px -3px rgba(191,191,191,1)' }}
           visible={dropdownVisible}
