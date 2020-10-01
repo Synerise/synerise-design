@@ -10,4 +10,5 @@ export interface Props {
   onDropdownOutsideClick: () => void;
   onSearchChange: (value: string) => void;
   searchValue: string;
+  onFolderSelect: (item: FolderItem) => void;
 }

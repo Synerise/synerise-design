@@ -1,3 +1,4 @@
+import { TextareaAutosize } from '@synerise/ds-subtle-form/dist/Elements/TextArea/TextArea.types';
 import { HeaderTexts } from '../Header/Header.types';
 
 
@@ -6,4 +7,5 @@ description: React.ReactNode;
 tags: React.ReactNode;
 textDescription: string;
 texts: HeaderTexts;
+autoSize: TextareaAutosize;
 };

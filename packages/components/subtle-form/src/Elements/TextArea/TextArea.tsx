@@ -17,6 +17,7 @@ const SubtleTextArea: React.FC<SubtleTextAreaProps> = ({
   labelTooltip,
   suffixTooltip,
   suffix,
+  autoSize
 }) => {
   const [active, setActive] = React.useState<boolean>(false);
   const [blurred, setBlurred] = React.useState<boolean>(false);
@@ -53,6 +54,7 @@ const SubtleTextArea: React.FC<SubtleTextAreaProps> = ({
       <S.Container ref={containerRef} className="ds-subtle-textarea" active={active}>
         {active ? (
           <TextArea
+            autoSize={autoSize}
             autoFocus
             onChange={(e: React.ChangeEvent<HTMLInputElement>): void => {
               onChange && onChange(e.currentTarget.value);
@@ -61,6 +63,7 @@ const SubtleTextArea: React.FC<SubtleTextAreaProps> = ({
             value={value}
             rows={visibleRows < 2 ? 2 : visibleRows}
             style={{ margin: 0 }}
+            placeholder={placeholder}
             // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
             // @ts-ignore
             wrapperStyle={{ minHeight: visibleRows * 17 + 17, margin: 0 }}
