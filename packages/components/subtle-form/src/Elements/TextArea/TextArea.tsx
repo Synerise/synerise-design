@@ -75,7 +75,6 @@ const SubtleTextArea: React.FC<SubtleTextAreaProps> = ({
                 value={value && !!value.trim() ? value : placeholder}
                 onBlur={handleDeactivate}
                 grey={!value && !!placeholder}
-                style={{minHeight: '100%'}}
               />
             </S.MainContent>
             <S.Suffix>
