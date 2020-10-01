@@ -32,6 +32,17 @@ export const ValueArea = styled.textarea<{ grey: boolean }>`
   resize: none;
   -ms-overflow-style: none;
   scrollbar-width: none;
+  &&& {
+    textarea {
+      position: relative;
+      min-height: 100%;
+      resize: none;
+      background: transparent;
+      border: 0;
+      box-shadow: none;
+      outline: 0;
+    }
+  }
   &::-webkit-scrollbar {
     display: none;
   }
