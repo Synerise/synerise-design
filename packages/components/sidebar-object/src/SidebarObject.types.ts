@@ -1,5 +1,6 @@
 import { TabItem } from '@synerise/ds-tabs/dist/Tabs.types';
 import * as React from 'react';
+import { TextareaAutosize } from '@synerise/ds-subtle-form/dist/Elements/TextArea/TextArea.types';
 import { HeaderTexts } from './Elements/Header/Header.types';
 
 export type SidebarObjectProps = {
@@ -25,7 +26,7 @@ export type SidebarObjectProps = {
   onArrowDown: () => void;
   onFolderSelect: (item: FolderItem) => void;
   onScrollbar: boolean;
-  autoSize: {minRows: number; maxRows: number};
+  autoSize: TextareaAutosize;
 
 };
 export type FolderItem = {
