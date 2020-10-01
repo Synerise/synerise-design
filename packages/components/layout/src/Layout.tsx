@@ -27,6 +27,7 @@ const Layout: React.FC<LayoutProps> = props => {
                   </Scrollbar>
                 </S.LayoutSidebar>
                 <S.SidebarButton
+                  withSubheader={Boolean(subheader)}
                   onClick={(): void => setLeftSidebarOpened(!leftSidebarOpened)}
                   opened={leftSidebarOpened}
                 >
@@ -55,6 +56,7 @@ const Layout: React.FC<LayoutProps> = props => {
                   </Scrollbar>
                 </S.LayoutSidebar>
                 <S.SidebarButton
+                  withSubheader={Boolean(subheader)}
                   onClick={(): void => setRightSidebarOpened(!rightSidebarOpened)}
                   right
                   opened={rightSidebarOpened}

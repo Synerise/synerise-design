@@ -67,32 +67,30 @@ export const LayoutMainInner = styled.div`
 type SidebarButtonProps = {
   right?: boolean;
   opened: boolean;
+  withSubheader: boolean;
 };
 
 export const SidebarButton = styled.button<SidebarButtonProps>`
   width: 36px;
   height: 44px;
   background-color: ${(props): string => props.theme.palette['grey-500']};
-  display: none;
   align-items: center;
   justify-content: center;
   position: absolute;
   cursor: pointer;
   border-radius: ${(props): string => (props.right ? '3px 0 0 3px' : '0 3px 3px 0')};
-  right: ${(props): string => (props.right ? 'auto' : '-36px')};
-  left: ${(props): string => (!props.right ? 'auto' : '-36px')};
-  top: 48px;
+  right: ${(props): string => (props.right ? 'auto' : '-32px')};
+  left: ${(props): string => (!props.right ? 'auto' : '-32px')};
+  top: ${(props): string => (props.withSubheader ? '170px' : '48px')};
   outline: 0;
   border: 0;
-  opacity: 0;
-  visibility: hidden;
+  display: flex;
+  opacity: 1;
+  visibility: visible;
   transition: all 0.3s ease-in-out;
+  z-index: 1;
   ${mediaQuery.to.medium`display: flex; opacity: 1; visibility: visible`};
-  ${mediaQuery.from.large`
-      opacity: ${(props: SidebarButtonProps): string => (!props.opened ? '1' : '0')};
-      display: ${(props: SidebarButtonProps): string => (!props.opened ? 'flex' : 'none')};
-      visibility: ${(props: SidebarButtonProps): string => (!props.opened ? 'visible' : 'hidden')};
-    `};
+
   ${ArrowIcon} {
     transition: transform 0.3s ease-in-out;
   }
@@ -104,6 +102,8 @@ export const SidebarButton = styled.button<SidebarButtonProps>`
   ${(props): FlattenSimpleInterpolation | false =>
     props.opened &&
     css`
+      right: ${props.right ? 'auto' : '-4px'};
+      left: ${!props.right ? 'auto' : '-4px'};
       ${mediaQuery.to.medium`width: 44px;`};
       ${mediaQuery.to.medium`background-color: ${props.theme.palette['grey-600']};`};
       ${ArrowIcon} {
@@ -121,7 +121,8 @@ type LayoutSidebarProps = {
 };
 
 export const LayoutSidebar = styled.div<LayoutSidebarProps>`
-  z-index: 1;
+  position: relative;
+  z-index: 10;
   overflow-y: auto;
   overflow-x: hidden;
   background-color: #fff;
@@ -169,9 +170,14 @@ export const LayoutSidebarWrapper = styled.div<LayoutSidebarWrapperProps>`
   
   &:hover {
     ${SidebarButton} {
-      display: flex;
-      opacity: 1;
-      visibility: visible;
+      background-color: ${(props): string => props.theme.palette['grey-600']};
+      left: ${(props): string => (props.right ? '-32px' : 'auto')};
+      right: ${(props): string => (props.right ? 'auto' : '-32px')};
+      ${mediaQuery.to.medium`${(props: SidebarButtonProps): string | undefined | false =>
+        props.right && props.opened && 'left: -44px'}`};
+      ${mediaQuery.to.medium`${(props: SidebarButtonProps): string | undefined | false =>
+        !props.right && props.opened && 'right: -44px'}`};
+
     }
   }
   
