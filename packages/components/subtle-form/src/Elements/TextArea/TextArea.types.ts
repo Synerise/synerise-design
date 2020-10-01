@@ -10,4 +10,5 @@ export type SubtleTextAreaProps = {
   labelTooltip?: React.ReactNode | string;
   suffix?: React.ReactNode | string;
   suffixTooltip?: React.ReactNode | string;
+  autoSize?: {minRows: number; maxRows: number};
 };
