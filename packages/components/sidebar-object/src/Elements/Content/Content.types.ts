@@ -6,4 +6,5 @@ description: React.ReactNode;
 tags: React.ReactNode;
 textDescription: string;
 texts: HeaderTexts;
+autoSize: {minRows: number; maxRows: number};
 };
