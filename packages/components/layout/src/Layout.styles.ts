@@ -67,7 +67,7 @@ export const LayoutMainInner = styled.div`
 type SidebarButtonProps = {
   right?: boolean;
   opened: boolean;
-  withSubheader: boolean;
+  withSubheader?: boolean;
 };
 
 export const SidebarButton = styled.button<SidebarButtonProps>`
