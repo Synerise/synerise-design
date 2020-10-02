@@ -45,7 +45,7 @@ export const MainContent = styled.div`
   width: 100%;
   height: 100%;
 `;
-export const Suffix = styled.div<{ select?: boolean }>`
+export const Suffix = styled.div<{ select?: boolean;  }>`
   position: absolute;
   right: ${(props): string => (props.select ? `9px` : `6px`)};
   top: 6px;
@@ -63,7 +63,7 @@ export const Container = styled.div<{ active: boolean }>`
   ${(props): false | FlattenSimpleInterpolation =>
     props.active &&
     css`
-      margin: -1px 0 0 -1px;
+      margin: -2px 0 0 -1px;
     `}
 
   > div {

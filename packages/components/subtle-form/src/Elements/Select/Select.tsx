@@ -7,8 +7,18 @@ import { Label } from '@synerise/ds-input';
 import Select from '@synerise/ds-select';
 import * as S from '../../SubtleForm.styles';
 import { SubtleSelectProps } from './Select.types';
+import { SelectContainer } from './Select.styles';
 
-const SubtleTextArea: React.FC<SubtleSelectProps> = ({ suffix, suffixTooltip, label, children,labelTooltip }) => {
+const SubtleTextArea: React.FC<SubtleSelectProps> = ({
+  value,
+  suffix,
+  suffixTooltip,
+  label,
+  children,
+  labelTooltip,
+  placeholder,
+  ...rest
+}) => {
   const [active, setActive] = React.useState<boolean>(false);
   const [blurred, setBlurred] = React.useState<boolean>(false);
   const containerRef = React.useRef<HTMLDivElement>(null);
@@ -26,14 +36,14 @@ const SubtleTextArea: React.FC<SubtleSelectProps> = ({ suffix, suffixTooltip, la
       <S.ContentAbove active={active}>
         <Label label={label} tooltip={labelTooltip} />
       </S.ContentAbove>
-      <S.Container ref={containerRef} className="ds-subtle-textarea" active={active}>
+      <SelectContainer ref={containerRef} className="ds-subtle-textarea" active={active}>
         {active && !blurred ? (
-          <Select size="middle" onBlur={handleDeactivate}>
+          <Select autoFocus size="middle" onBlur={handleDeactivate} value={value} placeholder={placeholder} defaultOpen {...rest}>
             {children}
           </Select>
         ) : (
           <S.Inactive onClick={handleActivate} blurred={blurred}>
-            <S.MainContent>hello</S.MainContent>
+            <S.MainContent>{value && !!String(value).trim() ? value : placeholder}</S.MainContent>
             <S.Suffix select>
               <Tooltip title={suffixTooltip}>
                 {suffix ?? <Icon component={<AngleDownS />} color={theme.palette['grey-600']} />}
@@ -41,7 +51,7 @@ const SubtleTextArea: React.FC<SubtleSelectProps> = ({ suffix, suffixTooltip, la
             </S.Suffix>
           </S.Inactive>
         )}
-      </S.Container>
+      </SelectContainer>
     </S.Subtle>
   );
 };

@@ -7,13 +7,11 @@ const renderLabel = (text: string) => {
 };
 const stories = {
   default: () => {
-    const [city, setCity] = React.useState<string | undefined>();
-    const [description, setDescription] = React.useState<string | undefined>();
-    const [name, setName] = React.useState<string | undefined>();
+    const [value, setValue] = React.useState()
     return (
       <div>
         <div style={{ marginBottom: '16px' }}>
-          <SubtleForm.Select>
+          <SubtleForm.Select onChange={val=>setValue(val)} value={value}>
             <Select.Option value={"Select"}>
               Select
             </Select.Option>

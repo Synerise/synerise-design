@@ -1,8 +1,6 @@
 import { SubtleFieldProps } from '../../SubtleForm.types';
-
+import { Props as DsSelectProps } from '@synerise/ds-select/dist/Select.types';
 export type SubtleSelectProps = {
-  onChange?: (value: string) => void;
-  value?: string;
   placeholder?: string;
-} & SubtleFieldProps;
-
+} & SubtleFieldProps &
+  DsSelectProps;
