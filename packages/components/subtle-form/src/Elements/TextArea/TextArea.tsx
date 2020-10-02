@@ -4,8 +4,15 @@ import Tooltip from '@synerise/ds-tooltip';
 import { EditS } from '@synerise/ds-icon/dist/icons';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { Label, TextArea } from '@synerise/ds-input';
+import calculateSize from 'calculate-size';
 import * as S from '../../SubtleForm.styles';
 import { SubtleTextAreaProps } from './TextArea.types';
+
+const FONT = 'Graphik LCG Web';
+const FONT_SIZE = '13px';
+const ROW_HEIGHT_PX = 17;
+const HORIZONTAL_PADDING_PX = 12;
+const VERTICAL_PADDING_PX = 7;
 
 const SubtleTextArea: React.FC<SubtleTextAreaProps> = ({
   minRows = 1,
@@ -17,14 +24,29 @@ const SubtleTextArea: React.FC<SubtleTextAreaProps> = ({
   labelTooltip,
   suffixTooltip,
   suffix,
-  autoSize
+  autoSize,
 }) => {
   const [active, setActive] = React.useState<boolean>(false);
   const [blurred, setBlurred] = React.useState<boolean>(false);
   const containerRef = React.useRef<HTMLDivElement>(null);
   const [visibleRows, setVisibleRows] = React.useState<number>(minRows);
+  const calculateTextHeight = React.useCallback(() => {
+    let textHeight = 0;
+    if (!!value && !!containerRef.current) {
+      const { height } = calculateSize(value, {
+        width: `${containerRef.current.offsetWidth - 2 * HORIZONTAL_PADDING_PX}px`,
+        font: FONT,
+        fontSize: FONT_SIZE,
+      });
+      textHeight = height;
+    }
+    return textHeight;
+  }, [value, containerRef]);
   React.useEffect(() => {
-    const lines = value?.split('\n').length;
+    const keyboardBasedLines = Number(value?.split('\n').length);
+
+    const refBasedLines = Math.floor((calculateTextHeight() + 2 * VERTICAL_PADDING_PX) / ROW_HEIGHT_PX);
+    const lines = Math.max(Number(refBasedLines), keyboardBasedLines);
     if (lines && lines < minRows) {
       setVisibleRows(minRows);
       return;
@@ -36,7 +58,7 @@ const SubtleTextArea: React.FC<SubtleTextAreaProps> = ({
     if (lines) {
       setVisibleRows(lines);
     }
-  }, [minRows, maxRows, value]);
+  }, [minRows, maxRows, value, calculateTextHeight]);
 
   const handleDeactivate = React.useCallback(() => {
     setActive(false);
@@ -66,7 +88,7 @@ const SubtleTextArea: React.FC<SubtleTextAreaProps> = ({
             placeholder={placeholder}
             // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
             // @ts-ignore
-            wrapperStyle={{ minHeight: visibleRows * 17 + 17, margin: 0 }}
+            wrapperStyle={{ minHeight: visibleRows * ROW_HEIGHT_PX + ROW_HEIGHT_PX, margin: 0 }}
           />
         ) : (
           <S.Inactive rows={visibleRows} onClick={handleActivate} blurred={blurred}>
