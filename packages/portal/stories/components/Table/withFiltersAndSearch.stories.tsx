@@ -1,7 +1,7 @@
 import { boolean, number, select, text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import { withState } from '@dump247/storybook-state';
-import { ItemsMenu, TableCell, VirtualTable } from '@synerise/ds-table';
+import { ItemsMenu, TableCell } from '@synerise/ds-table';
 import faker from 'faker';
 import Icon from '@synerise/ds-icon';
 import {
@@ -22,7 +22,6 @@ import Table from '@synerise/ds-table';
 import Button from '@synerise/ds-button';
 import * as React from 'react';
 import Dropdown from '@synerise/ds-dropdown';
-import Menu from '@synerise/ds-menu';
 import Switch from '@synerise/ds-switch/dist/Switch';
 import ColumnManager from '@synerise/ds-column-manager/dist/ColumnManager';
 import { SavedView } from '@synerise/ds-column-manager/dist/ColumnManager.types';
@@ -37,7 +36,7 @@ import VarTypeStringM from '@synerise/ds-icon/dist/icons/VarTypeStringM';
 import Tooltip from '@synerise/ds-tooltip';
 import { ItemType } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.types';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
-
+import * as  S from './styles/Table.stories.styles'
 const decorator = storyFn => (
   <div style={{ padding: 20, width: '100vw', minWidth: '100%', position: 'absolute', top: 0, left: 0 }}>
     {storyFn()}
@@ -238,28 +237,29 @@ const stories = {
           render: () => (
             <TableCell.ActionCell>
               <Dropdown
+                overlayStyle={{ boxShadow: '0 4px 12px 0 rgba(35, 41, 54, 0.07)' }}
                 overlay={
-                  <Menu style={{ padding: 8 }}>
-                    <Menu.Item
+                  <S.DropdownMenu>
+                    <S.DropdownMenuItem
                       onClick={action('Edit')}
                       prefixel={<Icon component={<EditM />} color={theme.palette['grey-600']} />}
                     >
                       Edit
-                    </Menu.Item>
-                    <Menu.Item
+                    </S.DropdownMenuItem>
+                    <S.DropdownMenuItem
                       onClick={action('Duplicate')}
                       prefixel={<Icon component={<DuplicateM />} color={theme.palette['grey-600']} />}
                     >
                       Duplicate
-                    </Menu.Item>
-                    <Menu.Item
+                    </S.DropdownMenuItem>
+                    <S.DropdownMenuItem
                       onClick={action('Delete')}
                       type={ItemType.DANGER}
                       prefixel={<Icon component={<TrashM />} />}
                     >
                       Delete
-                    </Menu.Item>
-                  </Menu>
+                    </S.DropdownMenuItem>
+                  </S.DropdownMenu>
                 }
                 trigger={['click']}
               >
@@ -427,13 +427,13 @@ const stories = {
                 rowHeight: 32,
                 itemRender: (item: AnyObject) => {
                   return (
-                    <Menu.Item
+                    <S.DropdownMenuItem
                       highlight={store.state.searchValue}
                       onItemHover={(): void => {}}
                       prefixel={item && <Icon component={item && item.icon} color={theme.palette['grey-600']} />}
                     >
                       {item && item.text}
-                    </Menu.Item>
+                    </S.DropdownMenuItem>
                   );
                 },
               }}
@@ -445,7 +445,7 @@ const stories = {
                 title: 'Recent',
                 rowHeight: 32,
                 itemRender: (item: AnyObject) => (
-                  <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>
+                  <S.DropdownMenuItem onItemHover={(): void => {}}>{item && item.text}</S.DropdownMenuItem>
                 ),
               }}
               suggestions={store.state.searchSuggestions}
@@ -454,7 +454,7 @@ const stories = {
                 title: 'Suggestions',
                 rowHeight: 32,
                 itemRender: (item: AnyObject) => (
-                  <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>
+                  <S.DropdownMenuItem onItemHover={(): void => {}}>{item && item.text}</S.DropdownMenuItem>
                 ),
               }}
               textLookupConfig={{
