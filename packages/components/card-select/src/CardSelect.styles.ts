@@ -99,6 +99,7 @@ export const Container = styled.div<
     elementsPosition: string | 'left' | 'center' | 'right';
     selected?: boolean;
     pressed?: boolean;
+    stretchToFit?: boolean;
   } & ThemeProps
   >`
 min-width: ${(props): string | number => sizeCondition('48px', '224px', props)};

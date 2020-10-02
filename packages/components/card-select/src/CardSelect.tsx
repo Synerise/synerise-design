@@ -61,6 +61,7 @@ const CardSelect: React.FC<CardSelectProps> = ({
         onClick={handleClick}
         className={`ds-card-select ${className || ''}`}
         elementsPosition={elementsPosition}
+        stretchToFit={stretchToFit}
       >
         <S.Aside size={size} tabIndex={disabled ? undefined : 0} ref={tickIconRef}>
           {tickVisible && (
