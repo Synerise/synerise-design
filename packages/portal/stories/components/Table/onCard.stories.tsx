@@ -38,6 +38,7 @@ import VarTypeStringM from '@synerise/ds-icon/dist/icons/VarTypeStringM';
 import Tooltip from '@synerise/ds-tooltip';
 import { ItemType } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.types';
 import Card from '@synerise/ds-card';
+import * as S from './styles/Table.stories.styles';
 
 const decorator = storyFn => (
   <div style={{ padding: 20, width: '100vw', minWidth: '100%', position: 'absolute', top: 0, left: 0 }}>
@@ -236,22 +237,23 @@ const stories = {
           render: () => (
             <TableCell.ActionCell>
               <Dropdown
+                overlayStyle={{ boxShadow: '0 4px 12px 0 rgba(35, 41, 54, 0.07)' }}
                 overlay={
-                  <Menu style={{ padding: 8 }}>
-                    <Menu.Item onClick={action('Edit')} prefixel={<Icon component={<EditM />} />}>
+                  <S.DropdownMenu>
+                    <S.DropdownMenuItem onClick={action('Edit')} prefixel={<Icon component={<EditM />} />}>
                       Edit
-                    </Menu.Item>
-                    <Menu.Item onClick={action('Duplicate')} prefixel={<Icon component={<DuplicateM />} />}>
+                    </S.DropdownMenuItem>
+                    <S.DropdownMenuItem onClick={action('Duplicate')} prefixel={<Icon component={<DuplicateM />} />}>
                       Duplicate
-                    </Menu.Item>
-                    <Menu.Item
+                    </S.DropdownMenuItem>
+                    <S.DropdownMenuItem
                       onClick={action('Delete')}
                       type={ItemType.DANGER}
                       prefixel={<Icon component={<TrashM />} />}
                     >
                       Delete
-                    </Menu.Item>
-                  </Menu>
+                    </S.DropdownMenuItem>
+                  </S.DropdownMenu>
                 }
                 trigger={['click']}
               >

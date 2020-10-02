@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.28.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.27.0...@synerise/ds-icon@0.28.0) (2020-09-29)
+
+
+### Features
+
+* **icon:** calendar icons added ([f3e708a](https://github.com/Synerise/synerise-design/commit/f3e708aea9f67972506c11aa639374f24049383f))
+
+
+
+
+
 # [0.27.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.26.0...@synerise/ds-icon@0.27.0) (2020-09-25)
 
 

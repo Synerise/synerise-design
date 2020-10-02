@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.96.2](https://github.com/synerise/synerise-design/compare/portal@0.96.1...portal@0.96.2) (2020-09-29)
+
+
+### Bug Fixes
+
+* **date-range-picke:** added missing translations and texts ([915d846](https://github.com/synerise/synerise-design/commit/915d846916bb90621c83fa954b59cf558a701e5b))
+
+
+
+
+
 ## [0.96.1](https://github.com/synerise/synerise-design/compare/portal@0.96.0...portal@0.96.1) (2020-09-28)
 
 
