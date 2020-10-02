@@ -40,13 +40,13 @@ const stories = {
         <div style={{ marginBottom: '0px' }}>
           <SubtleForm.TextArea
             minRows={3}
-            maxRows={6}
             value={description}
             onChange={setDescription}
             placeholder={'Description'}
             label={renderLabel('Description')}
             labelTooltip={'Description'}
             suffixTooltip={'Edit'}
+            autoSize
           />
         </div>
       </div>

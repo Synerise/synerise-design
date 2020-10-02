@@ -8,10 +8,10 @@ const disableBlinkingCursor = (props: ThemeProps & { grey: boolean }): FlattenSi
 
 export const blurAnimation = keyframes`
   0% {
-     padding: 7px 18px 7px 12px;
+        padding: 7px 14px 7px 12px;
   }
   100% {
-     padding: 7px 30px 7px 0px;
+        padding: 7px 26px 7px 0px;
   }
 `;
 
@@ -32,17 +32,6 @@ export const ValueArea = styled.textarea<{ grey: boolean }>`
   resize: none;
   -ms-overflow-style: none;
   scrollbar-width: none;
-  &&& {
-    textarea {
-      position: relative;
-      min-height: 100%;
-      resize: none;
-      background: transparent;
-      border: 0;
-      box-shadow: none;
-      outline: 0;
-    }
-  }
   &::-webkit-scrollbar {
     display: none;
   }
@@ -89,7 +78,7 @@ export const Inactive = styled.div<{ rows: number; blurred: boolean }>`
   align-items: flex-start;
   background: ${(props): string => props.theme.palette.white};
   display: flex;
-  padding: 7px 30px 7px 0px;
+  padding: 7px 26px 7px 0px;
   border-radius: 3px;
   transition: padding 0.1s ease-in, background 0.1s ease-in;
   transition-delay: 0.2s;
@@ -101,7 +90,7 @@ export const Inactive = styled.div<{ rows: number; blurred: boolean }>`
   ${(props): FlattenSimpleInterpolation =>
     css`
       &:hover {
-        padding: 7px 18px 7px 12px;
+        padding: 7px 14px 7px 12px;
         background: ${props.theme.palette['grey-050']};
         ${Suffix} {
           opacity: 1;
