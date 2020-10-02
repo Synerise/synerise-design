@@ -45,9 +45,9 @@ export const MainContent = styled.div`
   width: 100%;
   height: 100%;
 `;
-export const Suffix = styled.div`
+export const Suffix = styled.div<{ select?: boolean }>`
   position: absolute;
-  right: 6px;
+  right: ${(props): string => (props.select ? `9px` : `6px`)};
   top: 6px;
   display: flex;
   opacity: 0;
@@ -70,11 +70,11 @@ export const Container = styled.div<{ active: boolean }>`
     margin: 0;
   }
 `;
-export const Inactive = styled.div<{ rows: number; blurred: boolean }>`
+export const Inactive = styled.div<{ rows?: number; blurred: boolean }>`
   position: relative;
   width: 100%;
   min-height: 32px;
-  height: ${(props): string => `calc(${props.rows * 17 + 17}px);`}
+  ${(props): false | string => !!props.rows && `height: ${props.rows * 17 + 17}px;`}
   align-items: flex-start;
   background: ${(props): string => props.theme.palette.white};
   display: flex;

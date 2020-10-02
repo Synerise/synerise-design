@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { SubtleFieldProps } from '../../SubtleForm.types';
 
 export type SubtleTextAreaProps = {
   minRows?: number;
@@ -6,12 +6,8 @@ export type SubtleTextAreaProps = {
   onChange?: (value: string) => void;
   value?: string;
   placeholder?: string;
-  label?: React.ReactNode | string;
-  labelTooltip?: React.ReactNode | string;
-  suffix?: React.ReactNode | string;
-  suffixTooltip?: React.ReactNode | string;
   autoSize?: TextareaAutosize;
-};
+} & SubtleFieldProps;
 
 export type TextareaAutosize = {
   minRows: number;
