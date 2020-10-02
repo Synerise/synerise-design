@@ -6,7 +6,6 @@ import { ErrorText, Description, Label } from '@synerise/ds-typography';
 import { AutocompleteProps } from 'Autocomplete.types';
 import * as S from './Autocomplete.styles';
 
-
 class Autocomplete extends React.PureComponent<AutocompleteProps> {
   static Option = AntdAutoComplete.Option;
 
@@ -22,6 +21,7 @@ class Autocomplete extends React.PureComponent<AutocompleteProps> {
         <AntdAutoComplete
           // eslint-disable-next-line react/jsx-props-no-spreading
           {...this.props}
+          dropdownClassName="ds-autocomplete-dropdown"
           className={!!errorText || error ? 'error' : undefined}
         />
         {errorText && (
