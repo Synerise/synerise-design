@@ -3,7 +3,6 @@ import Dropdown from '@synerise/ds-dropdown';
 import Icon from '@synerise/ds-icon';
 import OptionHorizontalM from '@synerise/ds-icon/dist/icons/OptionHorizontalM';
 import { useResize } from '@synerise/ds-utils';
-import Menu from '@synerise/ds-menu';
 import * as S from './Tabs.styles';
 import Tab from './Tab/Tab';
 import { TabsProps, TabWithRef } from './Tabs.types';
@@ -75,30 +74,30 @@ const Tabs: React.FC<TabsProps> = ({
     return (
       <S.TabsDropdownContainer data-testid="tabs-dropdown-container">
         {hiddenTabs.length > 0 && (
-          <Menu>
+          <S.DropdownMenu>
             {hiddenTabs.map((item, index) => (
-              <Menu.Item
+              <S.DropdownMenuItem
                 // eslint-disable-next-line react/no-array-index-key
                 key={`${item.label}-dropdown-${index}`}
                 onSelect={(): void => handleTabClick(visibleTabs.length + index)}
                 disabled={item.disabled}
               >
                 {item.label}
-              </Menu.Item>
+              </S.DropdownMenuItem>
             ))}
-          </Menu>
+          </S.DropdownMenu>
         )}
         {hiddenTabs.length > 0 && configuration && <S.TabsDropdownDivider />}
         {configuration && (
-          <Menu>
-            <Menu.Item
+          <S.DropdownMenu>
+            <S.DropdownMenuItem
               key="configuration-btn"
               onSelect={handleConfigurationAction}
               disabled={!!configuration?.disabled}
             >
               {configuration.label}
-            </Menu.Item>
-          </Menu>
+            </S.DropdownMenuItem>
+          </S.DropdownMenu>
         )}
       </S.TabsDropdownContainer>
     );

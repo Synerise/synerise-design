@@ -27,7 +27,6 @@
   "dependencies": {
     "@synerise/ds-dropdown": "^0.11.77",
     "@synerise/ds-menu": "^0.6.2",
-    "@synerise/ds-search-bar": "^0.2.83",
     "@synerise/ds-utils": "^0.10.1",
     "classnames": "2.2.6"
   },
