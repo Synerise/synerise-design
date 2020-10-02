@@ -12,9 +12,10 @@ export type RangeFilterProps = {
   onCancel: () => void;
   intl: IntlShape;
 };
+
 export type RangeFilterState = {
-  type?: string;
-  value: Partial<FilterValue>;
+  [filterType: string]: FilterValue | string | undefined;
+  activeType: string;
 };
 export type FilterDefinition = {
   start?: string;
@@ -45,7 +46,7 @@ export type NormalizedFilter = {
 };
 export type WeekFilter = {
   week: number;
-}
+};
 export type ComponentDataType = {
   labelTranslationKey: string;
   component: JSX.Element;

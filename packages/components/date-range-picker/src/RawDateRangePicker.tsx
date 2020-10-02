@@ -12,7 +12,8 @@ import Footer from './Footer/Footer';
 import { normalizeRange } from './utils';
 import RangeFilter from './RangeFilter/RangeFilter';
 import { injectIntl } from 'react-intl';
-
+import ContentItem from '@synerise/ds-manageable-list/dist/Item/ContentItem/ContentItem';
+import Button from '@synerise/ds-button';
 
 class RawDateRangePicker extends React.PureComponent<Props, State> {
   static defaultProps = {
@@ -116,13 +117,12 @@ class RawDateRangePicker extends React.PureComponent<Props, State> {
       relativeModes,
       texts,
     } = this.props;
-    const { value, mode, changed, filter } = this.state;
+    const { value, mode, changed } = this.state;
     const { from, to, key } = value;
-
     if (mode === MODES.FILTER)
       return (
         <Container>
-          <RangeFilter value={filter} onCancel={this.handleFilterCancel} onApply={this.handleFilterApply}/>
+          <RangeFilter value={value.filter} onCancel={this.handleFilterCancel} onApply={this.handleFilterApply} />
         </Container>
       );
 
@@ -150,7 +150,18 @@ class RawDateRangePicker extends React.PureComponent<Props, State> {
     if (showFilter)
       addons.push(
         <AddonCollapse
-          content={<div onClick={this.handleModalOpenClick}>FilterSwitch Placholder</div>}
+          content={
+            !value.filter ? (
+              <Button.Creator
+                label="Add filter"
+                disabled={!value.from || !value.to}
+                onClick={this.handleModalOpenClick}
+                block
+              />
+            ) : (
+              <ContentItem onClick={this.handleModalOpenClick} item={{ name: 'Filter enabled' }} texts={{}} />
+            )
+          }
           title={texts?.filter}
           expanded
         />

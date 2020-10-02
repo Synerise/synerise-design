@@ -4,6 +4,8 @@ export const Container = styled.div``;
 
 export const Header = styled.div`
   padding: 24px 24px 12px;
+  display: flex;
+  justify-content: space-between;
 `;
 
 export const Body = styled.div`
@@ -14,7 +16,13 @@ export const Body = styled.div`
     z-index: 2;
   }
 `;
-
+export const MainComponentWrapper = styled.div`
+  margin-top: 16px;
+`;
+export const FooterSeparator = styled.div`
+  display: flex;
+  flex: 1;
+`
 export const Footer = styled.div`
   display: flex;
   align-items: center;

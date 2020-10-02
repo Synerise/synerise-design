@@ -8,6 +8,9 @@ import * as S from './RangeFilter.styles';
 import { TYPES, TYPES_DATA } from './constants';
 import { denormalizeValue, isValidValue, normalizeValue } from './utils';
 import { FilterDefinition, FilterValue, RangeFilterProps, RangeFilterState } from './RangeFilter.types';
+import { AngleDownM, AngleDownS, ArrowDownM } from '@synerise/ds-icon/dist/icons';
+import Icon from '@synerise/ds-icon';
+import FilterDropdown from './FilterDropdown/FilterDropdown';
 
 class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState> {
   static defaultProps = {
@@ -16,17 +19,19 @@ class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState
 
   constructor(props: RangeFilterProps) {
     super(props);
-    this.state = { value: denormalizeValue(props.value) };
-  }
-
-  componentWillReceiveProps(props: RangeFilterProps): void {
-    this.setValue(denormalizeValue(props.value) as FilterValue);
+    const valueType = props?.value.type;
+    this.state = {
+      activeType: valueType,
+      [String(valueType)]: { ...denormalizeValue(props.value) },
+    } as RangeFilterState;
   }
 
   handleApply = (): void => {
     const { onApply } = this.props;
-    const { value } = this.state;
-    onApply && onApply(normalizeValue(value as FilterValue));
+    const { activeType } = this.state;
+    // eslint-disable-next-line react/destructuring-assignment
+    const filter = this.state[String(activeType)];
+    onApply && onApply(normalizeValue(filter as FilterValue));
   };
 
   handleCancel = (): void => {
@@ -34,47 +39,64 @@ class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState
     onCancel && onCancel();
   };
 
-  handleTypeChange = (type: string): void =>
-    this.setValue({ type, definition: cloneDeep(TYPES_DATA[type].definition) } as FilterValue);
-
-  setValue = (value: FilterValue): void => {
-    this.setState({ value })
+  handleTypeChange = (type: string): void => {
+    // eslint-disable-next-line react/destructuring-assignment
+    const previousValue = this.state[type] as FilterValue;
+    const previousDefinition = previousValue?.definition;
+    this.setState({
+      activeType: type,
+      [type]: {
+        type,
+        definition: previousDefinition || cloneDeep(TYPES_DATA[type].definition),
+        ...previousValue,
+      } as FilterValue,
+    });
   };
 
   render(): JSX.Element {
-    const { value } = this.state;
-    const { type, definition } = value;
-    const Component = type && TYPES_DATA[type] && TYPES_DATA[type].component;
+    const { activeType } = this.state;
+    // eslint-disable-next-line react/destructuring-assignment
+    const activeValue = this.state[activeType] as FilterValue;
+    const { definition } = activeValue;
+    const Component = activeType && TYPES_DATA[activeType] && TYPES_DATA[activeType].component;
     const { intl } = this.props;
-
     return (
       <S.Container>
         <S.Header>
           <S.Title>{intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.DATES_FILTER' })}</S.Title>
+          <FilterDropdown filters={[this.state[activeValue]]} onFilterSelect={() => {}} label={'Saved filters'} />
         </S.Header>
         <S.Body>
-          <ButtonGroup fullWidth style={{ marginBottom: 16 }} size="large">
+          <ButtonGroup fullWidth size="large">
             {Object.values(TYPES).map(key => (
               <Button
                 key={key}
-                type={value.type === key ? 'primary' : undefined}
+                type={activeType === key ? 'primary' : undefined}
                 onClick={(): void => this.handleTypeChange(key)}
               >
                 {intl.formatMessage({ id: TYPES_DATA[key].labelTranslationKey })}
               </Button>
             ))}
           </ButtonGroup>
-          {Component && (
-            <Component
-              intl={intl}
-              value={definition}
-              onChange={(def: FilterDefinition): void => this.setValue({ ...value, definition: def } as FilterValue)}
-            />
-          )}
+          <S.MainComponentWrapper>
+            {Component && (
+              <Component
+                intl={intl}
+                value={definition}
+                onChange={(def: FilterDefinition): void => {
+                  this.setState({ [activeType]: { ...activeValue, definition: def } });
+                }}
+              />
+            )}
+          </S.MainComponentWrapper>
         </S.Body>
         <S.Footer>
-          <Button onClick={this.handleCancel}>{intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.CANCEL' })}</Button>
-          <Button type="primary" disabled={!isValidValue(value as FilterValue)} onClick={this.handleApply}>
+          <Button type="ghost"> Save filter</Button>
+          <S.FooterSeparator />
+          <Button type="ghost" onClick={this.handleCancel}>
+            {intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.CANCEL' })}
+          </Button>
+          <Button type="primary" disabled={!isValidValue(activeValue as FilterValue)} onClick={this.handleApply}>
             {intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.APPLY' })}
           </Button>
         </S.Footer>
