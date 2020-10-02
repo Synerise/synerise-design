@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.29.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.28.0...@synerise/ds-icon@0.29.0) (2020-10-02)
+
+
+### Features
+
+* **icon:** added image landscape icons ([b59d128](https://github.com/Synerise/synerise-design/commit/b59d128d23f9b386c8ad3802a940dba33c300b79))
+
+
+
+
+
 # [0.28.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.27.0...@synerise/ds-icon@0.28.0) (2020-09-29)
 
 
