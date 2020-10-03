@@ -8,9 +8,8 @@ import * as S from './RangeFilter.styles';
 import { TYPES, TYPES_DATA } from './constants';
 import { denormalizeValue, isValidValue, normalizeValue } from './utils';
 import { FilterDefinition, FilterValue, RangeFilterProps, RangeFilterState } from './RangeFilter.types';
-import { AngleDownM, AngleDownS, ArrowDownM } from '@synerise/ds-icon/dist/icons';
-import Icon from '@synerise/ds-icon';
 import FilterDropdown from './FilterDropdown/FilterDropdown';
+import { NamedFilter } from './FilterDropdown/FilterDropdown.types';
 
 class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState> {
   static defaultProps = {
@@ -31,6 +30,7 @@ class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState
     const { activeType } = this.state;
     // eslint-disable-next-line react/destructuring-assignment
     const filter = this.state[String(activeType)];
+    console.log('filter', normalizeValue(filter));
     onApply && onApply(normalizeValue(filter as FilterValue));
   };
 
@@ -59,12 +59,25 @@ class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState
     const activeValue = this.state[activeType] as FilterValue;
     const { definition } = activeValue;
     const Component = activeType && TYPES_DATA[activeType] && TYPES_DATA[activeType].component;
-    const { intl } = this.props;
+    const { intl, savedFilters } = this.props;
+    console.log('SAVED FILTERS', savedFilters);
     return (
       <S.Container>
         <S.Header>
           <S.Title>{intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.DATES_FILTER' })}</S.Title>
-          <FilterDropdown filters={[this.state[activeValue]]} onFilterSelect={() => {}} label={'Saved filters'} />
+          {!!savedFilters?.length && (
+            <FilterDropdown
+              filters={savedFilters}
+              onFilterSelect={(selected: NamedFilter): void => {
+                console.log('selected',selected)
+                console.log(this.state)
+                const updated = { activeType: selected.type, [selected.type]: { ...selected, definition: selected } };
+                console.log('UPDATED:',updated);
+                this.setState({ activeType: selected.type, [selected.type]: { ...selected, definition: selected } });
+              }}
+              label={'Saved filters'}
+            />
+          )}
         </S.Header>
         <S.Body>
           <ButtonGroup fullWidth size="large">

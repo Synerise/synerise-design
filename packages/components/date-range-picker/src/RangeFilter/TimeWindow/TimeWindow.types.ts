@@ -47,10 +47,10 @@ export type Props = {
   labelInverted?: boolean;
   reverseGroup: number;
   intl: IntlShape;
-  singleMode?: boolean;
+  daily?: boolean;
 } & WrappedComponentProps;
 
 export type State = {
-  activeDay: DayKey[];
-  multipleMode: boolean;
+  activeDays: DayKey[];
+  multipleSelectionMode: boolean;
 };

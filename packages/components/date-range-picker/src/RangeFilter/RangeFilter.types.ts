@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { IntlShape } from 'react-intl';
+import { NamedFilter } from './FilterDropdown/FilterDropdown.types';
 
 export type FilterValue = {
   definition?: Partial<FilterDefinition>;
@@ -11,6 +12,7 @@ export type RangeFilterProps = {
   onApply: (filter: {}) => void;
   onCancel: () => void;
   intl: IntlShape;
+  savedFilters?: NamedFilter[];
 };
 
 export type RangeFilterState = {

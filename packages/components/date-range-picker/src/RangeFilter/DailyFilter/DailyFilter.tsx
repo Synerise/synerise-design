@@ -1,11 +1,7 @@
 import * as React from 'react';
 import { injectIntl, WrappedComponentProps } from 'react-intl';
-import dayjs from 'dayjs';
-import RangeForm from './RangeForm/RangeForm';
 import * as S from './DailyFilter.styles';
 import TimeWindow from '../TimeWindow/TimeWindow';
-import { Row } from './RangeForm/RangeForm.styles';
-import AddButton from '../AddButton/AddButton';
 
 export interface Props extends WrappedComponentProps {
   value: string;
@@ -18,7 +14,7 @@ const DailyFilter: React.FC<Props> = props => {
     onChange && onChange(value[0]);
   };
   const { value, intl } = props;
-  console.log('DAILY FILTER VALUE', value);
+  console.log("VALUE: ",value)
   return (
     <S.DailyFilterWrapper>
       <TimeWindow
@@ -27,11 +23,10 @@ const DailyFilter: React.FC<Props> = props => {
         customDays={{ 0: { label: intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.EVERY_DAY' }) } }}
         days={value[0] ? value[0] : value}
         onChange={val => {
-
           handleChange(val);
         }}
         timeMarks={{}}
-        singleMode
+        daily
       />{' '}
     </S.DailyFilterWrapper>
   );

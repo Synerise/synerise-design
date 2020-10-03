@@ -157,7 +157,6 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
     const { value, intl } = this.props;
     const { visible } = this.state;
     const data = [...value];
-    console.log(visible);
     return (
       <S.MonthlyFilterWrapper>
         {data.map((item, key) => (

@@ -1,6 +1,6 @@
 import { DateFilter, DateRange } from 'date.types';
 import * as React from 'react';
-import { FilterDefinition } from './RangeFilter/RangeFilter.types';
+import { FilterDefinition, FilterValue } from './RangeFilter/RangeFilter.types';
 
 export interface Props {
   disabledDate?: (date?: Date) => boolean;
@@ -27,6 +27,7 @@ export interface Props {
   relativeFuture?: boolean;
   relativePast?: boolean;
   relativeModes?: RelativeMode[];
+  savedFilters?: FilterValue & {name: string}[];
   showRelativePicker?: boolean;
   showFilter?: boolean;
   showTime?: boolean;

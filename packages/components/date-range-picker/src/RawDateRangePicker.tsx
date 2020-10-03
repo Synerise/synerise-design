@@ -1,5 +1,8 @@
 import * as React from 'react';
 import { omitBy, isUndefined } from 'lodash';
+import Button from '@synerise/ds-button';
+import { injectIntl } from 'react-intl';
+import ContentItem from '@synerise/ds-manageable-list/dist/Item/ContentItem/ContentItem';
 import { Container, Separator, Addon } from './DateRangePicker.styles';
 import RangePicker from './RangePicker/RangePicker';
 import { RELATIVE, ABSOLUTE, MODES } from './constants';
@@ -11,9 +14,6 @@ import RelativeRangePicker from './RelativeRangePicker/RelativeRangePicker';
 import Footer from './Footer/Footer';
 import { normalizeRange } from './utils';
 import RangeFilter from './RangeFilter/RangeFilter';
-import { injectIntl } from 'react-intl';
-import ContentItem from '@synerise/ds-manageable-list/dist/Item/ContentItem/ContentItem';
-import Button from '@synerise/ds-button';
 
 class RawDateRangePicker extends React.PureComponent<Props, State> {
   static defaultProps = {
@@ -37,6 +37,7 @@ class RawDateRangePicker extends React.PureComponent<Props, State> {
 
   componentDidUpdate(prevProps: Readonly<Props>): void {
     const { value } = this.props;
+    console.log(this.props.savedFilters)
     if (prevProps.value !== value && !value) {
       this.handleRangeChange(value);
     }
@@ -116,13 +117,14 @@ class RawDateRangePicker extends React.PureComponent<Props, State> {
       forceAdjacentMonths,
       relativeModes,
       texts,
+      savedFilters,
     } = this.props;
     const { value, mode, changed } = this.state;
     const { from, to, key } = value;
     if (mode === MODES.FILTER)
       return (
         <Container>
-          <RangeFilter value={value.filter} onCancel={this.handleFilterCancel} onApply={this.handleFilterApply} />
+          <RangeFilter value={value.filter} onCancel={this.handleFilterCancel} onApply={this.handleFilterApply} savedFilters={savedFilters} />
         </Container>
       );
 

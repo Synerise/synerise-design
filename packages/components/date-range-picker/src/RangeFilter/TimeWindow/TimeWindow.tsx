@@ -13,7 +13,7 @@ import Grid from './Grid/Grid';
 
 class TimeWindowBase extends React.PureComponent<Props, State> {
   // eslint-disable-next-line react/destructuring-assignment
-  state: State = { activeDay: this.props.singleMode ? [0] : [], multipleMode: false };
+  state: State = { activeDays: this.props.daily ? [0] : [], multipleSelectionMode: false };
   static defaultProps = {
     days: {},
     numberOfDays: 7,
@@ -30,34 +30,34 @@ class TimeWindowBase extends React.PureComponent<Props, State> {
 
   checkActiveDay = (dayKey: DayKey): void => {
     if (!this.isDayRestricted(dayKey)) this.checkDay(dayKey);
-    const { activeDay, multipleMode } = this.state;
+    const { activeDays, multipleSelectionMode } = this.state;
     let updatedActiveDay = [];
-    if (multipleMode) {
-      updatedActiveDay = activeDay.includes(dayKey) ? activeDay : [...activeDay, dayKey];
+    if (multipleSelectionMode) {
+      updatedActiveDay = activeDays.includes(dayKey) ? activeDays : [...activeDays, dayKey];
     } else {
       updatedActiveDay = [dayKey];
     }
-    this.setState({ activeDay: updatedActiveDay });
+    this.setState({ activeDays: updatedActiveDay });
   };
 
   uncheckActiveDay = (dayKey: DayKey): void => {
-    const { activeDay, multipleMode } = this.state;
+    const { activeDays, multipleSelectionMode } = this.state;
     let updatedActiveDay: DayKey[] = [];
-    if (multipleMode) {
-      updatedActiveDay = activeDay.filter(day => day !== dayKey);
+    if (multipleSelectionMode) {
+      updatedActiveDay = activeDays.filter(day => day !== dayKey);
     }
-    this.setState({ activeDay: updatedActiveDay });
+    this.setState({ activeDays: updatedActiveDay });
     this.unCheckDay(dayKey);
   };
 
   toggleDay = (dayKey: DayKey, forcedState: boolean): void => {
-    const { activeDay, multipleMode } = this.state;
+    const { activeDays, multipleSelectionMode } = this.state;
     if (typeof forcedState !== 'undefined') {
       forcedState ? this.checkActiveDay(dayKey) : this.uncheckActiveDay(dayKey);
       return;
     }
-    if (!multipleMode) {
-      activeDay.includes(dayKey) ? this.uncheckActiveDay(dayKey) : this.checkActiveDay(dayKey);
+    if (!multipleSelectionMode) {
+      activeDays.includes(dayKey) ? this.uncheckActiveDay(dayKey) : this.checkActiveDay(dayKey);
     }
   };
 
@@ -108,9 +108,9 @@ class TimeWindowBase extends React.PureComponent<Props, State> {
 
   handleMultipleDayTimeChange = (value: [Date, Date]): void => {
     const { onChange, days } = this.props;
-    const { activeDay } = this.state;
+    const { activeDays } = this.state;
     const updatedDays = {};
-    activeDay.forEach(k => {
+    activeDays.forEach(k => {
       updatedDays[k] = {
         restricted: true,
         start: dayjs(value[0]).format('HH:mm:ss.SSS'),
@@ -122,7 +122,7 @@ class TimeWindowBase extends React.PureComponent<Props, State> {
 
   handleClearSelection = (): void => {
     const { onChange } = this.props;
-    this.setState({ activeDay: [] }, () => onChange({}));
+    this.setState({ activeDays: [] }, () => onChange({}));
   };
 
   handleSelectAll = (): void => {
@@ -130,7 +130,7 @@ class TimeWindowBase extends React.PureComponent<Props, State> {
     const keys = this.getAllKeys();
 
     const { onChange, onSelectAll } = this.props;
-    this.setState({ multipleMode: true, activeDay: keys }, () => {
+    this.setState({ multipleSelectionMode: true, activeDays: keys }, () => {
       keys.forEach(key => {
         days[key] = {
           ...this.getDayValue(key),
@@ -144,9 +144,9 @@ class TimeWindowBase extends React.PureComponent<Props, State> {
   };
 
   getDayValue = (dayKey: DayKey) => {
-    const { days, dayTemplate, customDays, singleMode } = this.props;
+    const { days, dayTemplate, customDays, daily } = this.props;
     let dayValue = {};
-    if (singleMode) dayValue = days;
+    if (daily) dayValue = days;
     else if (days[dayKey]) dayValue = days[dayKey];
     else if (typeof dayKey === 'number') dayValue = dayTemplate(dayKey);
     else if (customDays && customDays[dayKey] && customDays[dayKey].template) {
@@ -185,9 +185,9 @@ class TimeWindowBase extends React.PureComponent<Props, State> {
 
   renderDay = (dayKey: DayKey): JSX.Element => {
     const { customDays, intl, readOnly } = this.props;
-    const { activeDay } = this.state;
+    const { activeDays } = this.state;
     const isRestricted = this.isDayRestricted(dayKey);
-    const isActive = activeDay.includes(dayKey);
+    const isActive = activeDays.includes(dayKey);
     let tooltip, Component;
     if (typeof dayKey === 'string' && customDays && customDays[dayKey]) {
       const { component: CustomComponent, tooltip: customTooltip } = customDays[dayKey];
@@ -220,19 +220,19 @@ class TimeWindowBase extends React.PureComponent<Props, State> {
   };
 
   renderRangeForm = (dayKeys: DayKey, singleMode: boolean): React.ReactNode => {
-    const { activeDay } = this.state;
-    const dayValue = this.getDayValue(activeDay[0]);
+    const { activeDays } = this.state;
+    const dayValue = this.getDayValue(activeDays[0]);
     const rangeForm = (
       <RangeForm
         startDate={getDateFromDayValue(dayValue.start)}
         endDate={getDateFromDayValue(dayValue.stop)}
         onStartChange={(value: Date): void =>
-          activeDay.length > 1
+          activeDays.length > 1
             ? this.handleMultipleDayTimeChange([value, getDateFromDayValue(dayValue.stop)])
             : this.handleDayTimeChange([value, getDateFromDayValue(dayValue.stop)], dayKeys)
         }
         onEndChange={(value: Date): void =>
-          activeDay.length > 1
+          activeDays.length > 1
             ? this.handleMultipleDayTimeChange([value, getDateFromDayValue(dayValue.stop)])
             : this.handleDayTimeChange([getDateFromDayValue(dayValue.start), value], dayKeys)
         }
@@ -252,17 +252,17 @@ class TimeWindowBase extends React.PureComponent<Props, State> {
   };
 
   render(): JSX.Element {
-    const { style, days, intl, ...rest } = this.props;
-    const { activeDay, multipleMode } = this.state;
+    const { style, days, daily, intl, ...rest } = this.props;
+    const { activeDays, multipleSelectionMode } = this.state;
     const keys = this.getAllKeys();
     const singleMode = keys.length === 1;
-    const rangeFormKey = singleMode ? keys[0] : activeDay;
+    const rangeFormKey = singleMode ? keys[0] : activeDays;
     return (
       <S.TimeWindowContainer
         style={style}
         onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>): void => {
           if (e.key === 'Shift') {
-            this.setState({ multipleMode: !multipleMode });
+            this.setState({ multipleSelectionMode: !multipleSelectionMode });
           }
         }}
       >
@@ -277,7 +277,7 @@ class TimeWindowBase extends React.PureComponent<Props, State> {
             {...rest}
           />
         )}
-        {rangeFormKey !== null && this.renderRangeForm(rangeFormKey, singleMode)}
+        {(!!activeDays.length || !!daily) && this.renderRangeForm(rangeFormKey, singleMode)}
       </S.TimeWindowContainer>
     );
   }
