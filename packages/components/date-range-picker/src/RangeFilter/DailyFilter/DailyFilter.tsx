@@ -2,8 +2,9 @@ import * as React from 'react';
 import { injectIntl, WrappedComponentProps } from 'react-intl';
 import * as S from './DailyFilter.styles';
 import TimeWindow from '../TimeWindow/TimeWindow';
+import { RangeActions as RangeActionsMethods } from '../TimeWindow/TimeWindow.types';
 
-export interface Props extends WrappedComponentProps {
+export interface Props extends WrappedComponentProps, Partial<RangeActionsMethods> {
   value: string;
   onChange: (v: string) => {};
 }
@@ -13,8 +14,7 @@ const DailyFilter: React.FC<Props> = props => {
     const { onChange } = props;
     onChange && onChange(value[0]);
   };
-  const { value, intl } = props;
-  console.log("VALUE: ",value)
+  const { value, intl,onRangeCopy, onRangePaste,onRangeClear } = props;
   return (
     <S.DailyFilterWrapper>
       <TimeWindow
@@ -27,6 +27,9 @@ const DailyFilter: React.FC<Props> = props => {
         }}
         timeMarks={{}}
         daily
+        onRangePaste={onRangePaste}
+        onRangeCopy={onRangeCopy}
+        onRangeClear={onRangeClear}
       />{' '}
     </S.DailyFilterWrapper>
   );

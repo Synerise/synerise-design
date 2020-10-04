@@ -4,7 +4,7 @@ import { WeeklyFilterProps, Days } from './WeeklyFilter.types';
 
 class WeeklyFilter extends React.PureComponent<WeeklyFilterProps> {
   render(): JSX.Element {
-    const { value, onChange, intl } = this.props;
+    const { value, onChange,onRangeClear,onRangePaste,onRangeCopy,rangeClipboard, intl } = this.props;
     return (
       <TimeWindow
         style={{ marginTop: 32 }}
@@ -20,6 +20,10 @@ class WeeklyFilter extends React.PureComponent<WeeklyFilterProps> {
         }}
         timeMarks={{}}
         intl={intl}
+        onRangePaste={onRangePaste}
+        onRangeCopy={onRangeCopy}
+        onRangeClear={onRangeClear}
+        rangeClipboard={rangeClipboard}
       />
     );
   }

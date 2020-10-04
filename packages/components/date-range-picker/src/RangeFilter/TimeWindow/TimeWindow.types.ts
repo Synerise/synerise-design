@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { IntlShape, WrappedComponentProps } from 'react-intl';
 import { Props as DayProps } from './Day/Day.types';
+import { FilterDefinition } from '../RangeFilter.types';
 
 export type DayKey = number | string;
 
@@ -48,9 +49,17 @@ export type Props = {
   reverseGroup: number;
   intl: IntlShape;
   daily?: boolean;
-} & WrappedComponentProps;
+  rangeClipboard: Partial<FilterDefinition>;
+} & Partial<RangeActions> &
+  WrappedComponentProps;
 
 export type State = {
   activeDays: DayKey[];
   multipleSelectionMode: boolean;
+};
+
+export type RangeActions = {
+  onRangeCopy: (range?: Partial<FilterDefinition>) => void;
+  onRangePaste: (range?: Partial<FilterDefinition>) => void;
+  onRangeClear: () => void;
 };

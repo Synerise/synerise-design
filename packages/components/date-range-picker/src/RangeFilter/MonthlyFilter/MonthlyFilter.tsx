@@ -154,7 +154,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
   };
 
   render(): JSX.Element {
-    const { value, intl } = this.props;
+    const { value,onRangeCopy, onRangePaste, onRangeClear,rangeClipboard, intl } = this.props;
     const { visible } = this.state;
     const data = [...value];
     return (
@@ -234,6 +234,10 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
                     days={item.definition}
                     onChange={(definition): void => this.handleDefinitionChange(definition, key)}
                     timeMarks={{}}
+                    onRangeClear={onRangeClear}
+                    onRangeCopy={onRangeCopy}
+                    onRangePaste={onRangePaste}
+                    rangeClipboard={rangeClipboard}
                     {...this.getTimeWindowSettings(item)}
                   />
                 </S.ContentWrapper>

@@ -52,9 +52,16 @@ class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState
       } as FilterValue,
     });
   };
-
+  handleRangeClear = (): void => {
+    console.log('RANGE CLEARED');
+    this.setState({rangeClipboard: undefined})
+  };
+  handleRangeCopy = (range: Partial<FilterDefinition>): void => {
+    console.log('RANGE COPIED',range);
+    this.setState({rangeClipboard: range})
+  };
   render(): JSX.Element {
-    const { activeType } = this.state;
+    const { activeType, rangeClipboard } = this.state;
     // eslint-disable-next-line react/destructuring-assignment
     const activeValue = this.state[activeType] as FilterValue;
     const { definition } = activeValue;
@@ -69,10 +76,6 @@ class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState
             <FilterDropdown
               filters={savedFilters}
               onFilterSelect={(selected: NamedFilter): void => {
-                console.log('selected',selected)
-                console.log(this.state)
-                const updated = { activeType: selected.type, [selected.type]: { ...selected, definition: selected } };
-                console.log('UPDATED:',updated);
                 this.setState({ activeType: selected.type, [selected.type]: { ...selected, definition: selected } });
               }}
               label={'Saved filters'}
@@ -99,6 +102,9 @@ class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState
                 onChange={(def: FilterDefinition): void => {
                   this.setState({ [activeType]: { ...activeValue, definition: def } });
                 }}
+                onRangeClear={this.handleRangeClear}
+                onRangeCopy={this.handleRangeCopy}
+                rangeClipboard={rangeClipboard}
               />
             )}
           </S.MainComponentWrapper>

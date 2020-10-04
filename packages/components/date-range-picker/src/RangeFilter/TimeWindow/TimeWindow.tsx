@@ -10,6 +10,7 @@ import RangeForm from '../DailyFilter/RangeForm/RangeForm';
 import RangeSummary from './RangeSummary/RangeSummary';
 import { getDateFromDayValue } from './utils';
 import Grid from './Grid/Grid';
+import RangeActions from './RangeActions/RangeActions';
 
 class TimeWindowBase extends React.PureComponent<Props, State> {
   // eslint-disable-next-line react/destructuring-assignment
@@ -176,6 +177,36 @@ class TimeWindowBase extends React.PureComponent<Props, State> {
     return label;
   };
 
+  handleRangeClear = (dayKeys: DayKey): void => {
+    const { activeDays } = this.state;
+    activeDays.length > 1
+      ? this.handleMultipleDayTimeChange([getDateFromDayValue('00:00:00.000'), getDateFromDayValue('23:59:59.999')])
+      : this.handleDayTimeChange([getDateFromDayValue('00:00:00.000'), getDateFromDayValue('23:59:59.999')], dayKeys);
+  };
+
+  handleRangePaste = (dayKeys: DayKey): void => {
+    const { rangeClipboard } = this.props;
+    const { activeDays } = this.state;
+    if (rangeClipboard?.stop && rangeClipboard?.start) {
+      activeDays.length > 1
+        ? this.handleMultipleDayTimeChange([
+            getDateFromDayValue(rangeClipboard.start),
+            getDateFromDayValue(rangeClipboard.stop),
+          ])
+        : this.handleDayTimeChange(
+            [getDateFromDayValue(rangeClipboard.start), getDateFromDayValue(rangeClipboard.stop)],
+            dayKeys
+          );
+    }
+  };
+
+  handleRangeCopy = (): void => {
+    const { onRangeCopy } = this.props;
+    const { activeDays } = this.state;
+    const dayValue = this.getDayValue(activeDays[0]);
+    onRangeCopy && onRangeCopy({ start: dayValue.start, stop: dayValue.stop });
+  };
+
   getAllKeys = (): number[] => {
     const { numberOfDays, customDays } = this.props;
     let keys = range(numberOfDays);
@@ -245,6 +276,14 @@ class TimeWindowBase extends React.PureComponent<Props, State> {
         <Header
           title={<RangeSummary dayKeys={dayKeys} getDayLabel={this.getDayLabel} />}
           style={{ marginBottom: 16, marginTop: singleMode ? 0 : 44 }}
+          suffix={
+            <RangeActions
+              onRangeClear={(): void => this.handleRangeClear(dayKeys)}
+              onRangeCopy={this.handleRangeCopy}
+              onRangePaste={(): void => this.handleRangePaste(dayKeys)}
+              texts={{ clearRange: ' Clear range', copyRange: 'Copy range', pasteRange: 'Paste range' }}
+            />
+          }
         />
         {rangeForm}
       </>
