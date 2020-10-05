@@ -7,6 +7,7 @@ export type Props = {
   disabledHours: number[];
   disabledMinutes: number[];
   disabledSeconds: number[];
+  format?: string;
   intl?: IntlShape;
   onApply?: (date?: Date) => void;
   onClear?: () => void;
