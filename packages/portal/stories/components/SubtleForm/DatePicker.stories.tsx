@@ -12,18 +12,16 @@ const stories = {
     return (
       <div>
         <div style={{ marginBottom: '16px' }}>
-          <SubtleForm.Select
-            onChange={val => setValue(val)}
+          <SubtleForm.DatePicker
+            autoFocus
+            onApply={val => setValue(val)}
             value={value}
             placeholder={'City'}
             label={renderLabel('City')}
             labelTooltip={'City'}
             suffixTooltip={'Select'}
-          >
-            {Cities.map(c => (
-              <Select.Option value={c}>{c}</Select.Option>
-            ))}
-          </SubtleForm.Select>
+            texts={{}}
+         />
         </div>
       </div>
     );
@@ -31,7 +29,7 @@ const stories = {
 };
 
 export default {
-  name: 'Components/SubtleForm/Select',
+  name: 'Components/SubtleForm/DatePicker',
   config: {},
   stories,
   decorator,
