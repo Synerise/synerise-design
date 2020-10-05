@@ -29,6 +29,7 @@ const Text: React.FC<BasicItemProps> = ({
   indentLevel,
   ordered,
   checked,
+  size = 'default',
   ...rest
 }) => {
   const [hovered, setHovered] = React.useState(false);
@@ -93,6 +94,7 @@ const Text: React.FC<BasicItemProps> = ({
       style={style}
       indentLevel={Number(indentLevel)}
       ordered={ordered}
+      size={size}
       {...rest}
     >
       <Tooltip type="default" trigger="click" title={copyTooltip}>

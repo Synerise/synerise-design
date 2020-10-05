@@ -6,8 +6,9 @@ const withMediumAvatar = () => {
   const props = {
     dataSource: attachKnobsToDataSource(avatarMedium),
     selectable: false,
+    size: 'large',
     ...defaultProps,
   } as object;
   return decorator(props);
-}
+};
 export default withMediumAvatar;
