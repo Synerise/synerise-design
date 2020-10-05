@@ -30,6 +30,7 @@ const Layout: React.FC<LayoutProps> = props => {
                   withSubheader={Boolean(subheader)}
                   onClick={(): void => setLeftSidebarOpened(!leftSidebarOpened)}
                   opened={leftSidebarOpened}
+                  bothOpened={leftSidebarOpened && rightSidebarOpened}
                 >
                   <S.ArrowIcon component={<AngleRightS />} color={theme.palette.white} />
                   <S.CloseIcon component={<CloseS />} color={theme.palette.white} />
@@ -60,6 +61,7 @@ const Layout: React.FC<LayoutProps> = props => {
                   onClick={(): void => setRightSidebarOpened(!rightSidebarOpened)}
                   right
                   opened={rightSidebarOpened}
+                  bothOpened={leftSidebarOpened && rightSidebarOpened}
                 >
                   <S.ArrowIcon component={<AngleLeftS />} color={theme.palette.white} />
                   <S.CloseIcon component={<CloseS />} color={theme.palette.white} />

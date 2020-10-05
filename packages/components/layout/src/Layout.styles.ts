@@ -68,6 +68,7 @@ type SidebarButtonProps = {
   right?: boolean;
   opened: boolean;
   withSubheader?: boolean;
+  bothOpened?: boolean;
 };
 
 export const SidebarButton = styled.button<SidebarButtonProps>`
@@ -98,6 +99,9 @@ export const SidebarButton = styled.button<SidebarButtonProps>`
     props.right && props.opened && 'left: -44px'}`};
   ${mediaQuery.to.medium`${(props: SidebarButtonProps): string | undefined | false =>
     !props.right && props.opened && 'right: -44px'}`};
+
+  ${mediaQuery.to.small`${(props: SidebarButtonProps): string | undefined | false =>
+    props.right && props.bothOpened && 'transform: translateY(56px)'}`}
 
   ${(props): FlattenSimpleInterpolation | false =>
     props.opened &&
@@ -133,7 +137,7 @@ export const LayoutSidebar = styled.div<LayoutSidebarProps>`
   max-width: 100%;
   ${mediaQuery.to.medium`flex: 0 0 auto;`};
   ${mediaQuery.from.medium`flex: 0 1 320px; width: 320px;`};
-  ${mediaQuery.from.large`max-width: ${(props: LayoutSidebarProps): string => (props.opened ? '320px' : '0px')};`}
+  ${mediaQuery.from.medium`max-width: ${(props: LayoutSidebarProps): string => (props.opened ? '320px' : '0px')};`}
   ${mediaQuery.from.medium`
     &.slide-enter {
       max-width: 0;
