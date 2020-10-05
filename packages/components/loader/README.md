@@ -28,7 +28,7 @@ import Loader from '@synerise/ds-loader'
 
 | Property         | Description                  | Type                      | Default     |
 | ---------------- | ---------------------------- | ------------------------- | ----------- |
-| size             | Changing size on Loader      | string                    | M           |
-| label            | text of loader               | string | React.ReactNode  | -           |
+| size             | Changing size on Loader      | 'S' / 'M' / 'L'                    | M           |
+| label            | text of loader               | string / React.ReactNode  | -           |
 | elementsPosition | Defines the position of text | right / bottom            | right       |
 
