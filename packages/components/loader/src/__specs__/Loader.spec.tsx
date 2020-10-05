@@ -5,15 +5,15 @@ import Loader from '../index';
 describe('Loader', () => {
   it('should render', function() {
     // ARRANGE
-    const { getByText } = renderWithProvider(
+    const { container } = renderWithProvider(
       <Loader
         size='L'
         elementsPosition='right'
-        textLoader='Loading...'
+        label='Loading...'
       />
     );
     // ASSERT
-    expect(getByText('size')).toBeTruthy();
+    expect(container.querySelector('.ds-loader')).toBeTruthy();
   });
   it('should render label', function() {
     // ARRANGE
@@ -21,9 +21,9 @@ describe('Loader', () => {
       <Loader
         size='L'
         elementsPosition='right'
-        textLoader='Loading...'
+        label ='Loading...'
       />
     );
     // ASSERT
-    expect(getByText('textLoader')).toBeTruthy();
+    expect(getByText('Loading')).toBeTruthy();
   });

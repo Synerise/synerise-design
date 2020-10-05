@@ -11,7 +11,7 @@ const iconSizes = {
 
 const stories = {
   default: () => {
-    const size = select('Size', iconSizes,'S')
+    const size = select('Size', iconSizes,'M')
     const elementsPosition = select('Position of elements', ['right','bottom'],'right');
     const showText = boolean ('Show Loading text',true, );
     const loadingText = text('Loading', 'Loading...');
@@ -24,7 +24,7 @@ const stories = {
     };
     return(
       <div>
-        <Loader size={size} textLoader={loadingText && getLoading(showText)} elementsPosition={elementsPosition}></Loader>
+        <Loader size={size} label={loadingText && getLoading(showText)} elementsPosition={elementsPosition}></Loader>
       </div>
     )
   },

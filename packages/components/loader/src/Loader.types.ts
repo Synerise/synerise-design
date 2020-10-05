@@ -5,6 +5,6 @@ export enum LoaderSize {
 }
 export type LoaderProps = {
   size?: 'S' | 'M' | 'L';
-  textLoader: string;
+  label: string | React.ReactNode;
   elementsPosition: string | 'bottom' | 'right';
 };
