@@ -10,6 +10,7 @@ import * as S from './PickerInput.styles';
 import format from '../../format';
 
 const PickerInput: React.FC<Props> = ({
+  autoFocus,
   size,
   disabled,
   value,
@@ -24,6 +25,8 @@ const PickerInput: React.FC<Props> = ({
   highlight,
   error,
   errorText,
+  onBlur,
+  onFocus,
   ...rest
 }: Props) => {
   const [hovered, setHovered] = React.useState<boolean>(false);
@@ -64,6 +67,7 @@ const PickerInput: React.FC<Props> = ({
       onClick={handleInputClick}
     >
       <S.Input
+        autoFocus={autoFocus}
         active={!!highlight}
         resetMargin
         readOnly

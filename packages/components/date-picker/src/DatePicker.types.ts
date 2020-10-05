@@ -2,22 +2,24 @@ import * as React from 'react';
 import { IntlShape } from 'react-intl';
 
 export type Props = {
-  showTime?: boolean;
-  value?: Date;
-  onApply?: (date?: Date) => void;
-  onValueChange?: (date?: Date) => void;
+  autoFocus?: boolean;
   disabledDates?: (date?: Date) => boolean;
   disabledHours: number[];
   disabledMinutes: number[];
   disabledSeconds: number[];
-  useStartOfDay?: boolean;
-  useEndOfDay?: boolean;
-  texts: Texts;
   intl?: IntlShape;
+  onApply?: (date?: Date) => void;
   onClear?: () => void;
+  onDropdownVisibleChange?: (visible: boolean) => void;
+  onValueChange?: (date?: Date) => void;
   error?: boolean;
   errorText?: string | React.ReactNode;
   popoverPlacement?: 'topLeft' | 'topCenter' | 'topRight' | 'bottomLeft' | 'bottomCenter' | 'bottomRight';
+  showTime?: boolean;
+  texts: Texts;
+  value?: Date;
+  useStartOfDay?: boolean;
+  useEndOfDay?: boolean;
 };
 
 export type State = {

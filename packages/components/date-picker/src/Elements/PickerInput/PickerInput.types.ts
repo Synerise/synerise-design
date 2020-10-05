@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 export type Props = {
+  autoFocus?: boolean;
   size?: 'large' | 'default' | 'small';
   format?: string;
   showTime?: boolean;
