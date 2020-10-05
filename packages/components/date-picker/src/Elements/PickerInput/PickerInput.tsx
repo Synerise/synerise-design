@@ -14,7 +14,7 @@ const PickerInput: React.FC<Props> = ({
   size,
   disabled,
   value,
-  format :dateFormat,
+  format: dateFormat,
   onChange,
   showTime,
   style,
@@ -25,21 +25,21 @@ const PickerInput: React.FC<Props> = ({
   highlight,
   error,
   errorText,
-  onBlur,
-  onFocus,
   ...rest
 }: Props) => {
   const [hovered, setHovered] = React.useState<boolean>(false);
-
   const getText = React.useCallback((): string => {
     if (!value) return '';
-    return format(legacyParse(value),dateFormat || showTime ? 'MMM d, yyyy, HH:mm' : 'MMM d, yyyy');
+    if (dateFormat) {
+      return format(legacyParse(value), dateFormat);
+    }
+    return format(legacyParse(value), dateFormat || showTime ? 'MMM d, yyyy, HH:mm' : 'MMM d, yyyy');
   }, [value, dateFormat, showTime]);
 
   const handleApply = React.useCallback(
     (date?: Date | null): void => {
       if (!onChange) return;
-      onChange(date,getText());
+      onChange(date, getText());
     },
     [onChange, getText]
   );

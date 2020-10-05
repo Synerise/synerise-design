@@ -9,6 +9,7 @@ import * as S from './DatePicker.styles';
 const DatePicker: React.FC<Props> = ({
   autoFocus,
   texts,
+  format,
   value,
   onApply,
   showTime,
@@ -68,6 +69,7 @@ const DatePicker: React.FC<Props> = ({
         onClick={(): void => {
           setDropVisible(!dropVisible);
         }}
+        format={format}
         onClear={(): void => {
           setDropVisible(false);
           setSelectedDate(undefined);
