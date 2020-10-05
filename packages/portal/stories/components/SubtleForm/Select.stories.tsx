@@ -2,7 +2,7 @@ import * as React from 'react';
 import SubtleForm from '@synerise/ds-subtle-form';
 import Select from '@synerise/ds-select';
 import { Cities } from './dataset';
-const decorator = storyFn => <div style={{ width: '400px', padding: '16px', background: '#fff' }}>{storyFn()}</div>;
+const decorator = storyFn => <div style={{ width: '350px', padding: '16px', background: '#fff' }}>{storyFn()}</div>;
 const renderLabel = (text: string) => {
   return <div style={{ maxWidth: '200px', textOverflow: 'ellipsis', overflow: 'hidden' }}>{text}</div>;
 };

@@ -28,7 +28,8 @@
     "@synerise/ds-icon": "^0.28.0",
     "@synerise/ds-input": "^0.15.5",
     "@synerise/ds-tooltip": "^0.7.18",
-    "calculate-size": "^1.1.1"
+    "calculate-size": "^1.1.1",
+    "react-hover-delay-trigger": "^0.2.1"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

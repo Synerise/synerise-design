@@ -1,19 +1,21 @@
 import * as React from 'react';
 import Icon from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
-import { AngleDownS } from '@synerise/ds-icon/dist/icons';
+import { CalendarM } from '@synerise/ds-icon/dist/icons';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { Label } from '@synerise/ds-input';
 import DatePicker from '@synerise/ds-date-picker/dist/DatePicker';
 import format from '@synerise/ds-date-picker/dist/format';
 import * as S from '../../SubtleForm.styles';
-import { SelectContainer, ContentAbove } from './DatePicker.styles';
+import { SelectContainer, ContentAbove, MaskedDatePlaceholder } from './DatePicker.styles';
 import { SubtleDatePickerProps } from './DatePicker.types';
+import { getFormattingString, replaceLettersWithUnderscore } from './utils';
 
 const SubtleDatePicker: React.FC<SubtleDatePickerProps> = ({
   value,
   suffix,
   suffixTooltip,
+  format: dateFormat,
   label,
   children,
   labelTooltip,
@@ -25,15 +27,26 @@ const SubtleDatePicker: React.FC<SubtleDatePickerProps> = ({
   const [blurred, setBlurred] = React.useState<boolean>(false);
   const containerRef = React.useRef<HTMLDivElement>(null);
   const { showTime } = rest;
+  const dateFormattingString = React.useMemo(() => getFormattingString(dateFormat, showTime), [dateFormat, showTime]);
+  const formatValue = React.useCallback(
+    (val): string => {
+      if (!val) return '';
+      return format(val, dateFormattingString);
+    },
+    [dateFormattingString]
+  );
+  const getDisplayText = React.useCallback((): string | undefined => {
+    return value && !!String(value).trim() ? formatValue(value) : placeholder;
+  }, [value, placeholder, formatValue]);
 
-  const formatValue = React.useCallback((val): string => {
-    if (!val) return '';
-    return format(val, showTime ? 'MMM d, yyyy, HH:mm' : 'MMM d, yyyy');
-  }, [showTime]);
-
-  const handleActivate = React.useCallback(() => {
+  const handleActivate = React.useCallback((): void => {
     setActive(true);
     setBlurred(false);
+  }, []);
+
+  const handleDeactivate = React.useCallback((): void => {
+    setActive(false);
+    setBlurred(true);
   }, []);
 
   return (
@@ -46,23 +59,28 @@ const SubtleDatePicker: React.FC<SubtleDatePickerProps> = ({
           <DatePicker
             {...rest}
             autoFocus
+            format={dateFormat}
             value={value}
             onApply={(date): void => {
-              setActive(false);
-              setBlurred(true);
+              handleDeactivate();
               onApply && onApply(date);
             }}
-            onDropdownVisibleChange={(visible: boolean) => {
+            onClear={handleDeactivate}
+            onDropdownVisibleChange={(visible: boolean): void => {
               setActive(visible);
               setBlurred(!visible);
             }}
           />
         ) : (
-          <S.Inactive onClick={handleActivate} blurred={blurred}>
-            <S.MainContent>{value && !!String(value).trim() ? formatValue(value) : placeholder}</S.MainContent>
+          <S.Inactive onClick={handleActivate} blurred={blurred} datePicker datePickerValue={value}>
+            <S.MainContent>
+              {getDisplayText()}
+              <MaskedDatePlaceholder>{replaceLettersWithUnderscore(dateFormattingString)}</MaskedDatePlaceholder>
+            </S.MainContent>
+
             <S.Suffix select>
               <Tooltip title={suffixTooltip}>
-                {suffix ?? <Icon component={<AngleDownS />} color={theme.palette['grey-600']} />}
+                {suffix ?? <Icon component={<CalendarM />} color={theme.palette['grey-600']} />}
               </Tooltip>
             </S.Suffix>
           </S.Inactive>
