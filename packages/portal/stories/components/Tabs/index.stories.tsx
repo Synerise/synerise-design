@@ -80,7 +80,7 @@ const stories = {
        backgroundColor: 'transparent',
        color: theme.palette['grey-500'],
        alignItems: 'center',
-       marginRight: String(counter).length > 1? '-1px': '-4px'
+       marginRight: String(counter).length > 1? '-1px': '-3px'
      }}
    />
    return (
@@ -103,7 +103,7 @@ const stories = {
         backgroundColor: 'transparent',
         color: theme.palette['grey-500'],
         alignItems: 'center',
-        marginRight: String(counter).length > 1? '-1px': '-4px'
+        marginRight: String(counter).length > 1? '-1px': '-3px'
       }}
     />
     return (
@@ -126,7 +126,7 @@ const stories = {
         backgroundColor: 'transparent',
         color: theme.palette['grey-500'],
         alignItems: 'center',
-        marginRight: String(counter).length > 1? '-1px': '-4px'
+        marginRight: String(counter).length > 1? '-1px': '-3px'
       }}
     />
     return (
@@ -160,7 +160,7 @@ const stories = {
         backgroundColor: 'transparent',
         color: theme.palette['grey-500'],
         alignItems: 'center',
-        marginRight: String(counter).length > 1? '-1px': '-4px'
+        marginRight: String(counter).length > 1? '-1px': '-3px'
       }}
     />
   return(
