@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-folders",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Folders UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -27,7 +27,7 @@
   "dependencies": {
     "@synerise/ds-button": "^0.12.35",
     "@synerise/ds-dropdown": "^0.11.77",
-    "@synerise/ds-menu": "^0.6.2"
+    "@synerise/ds-menu": "^0.6.3"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

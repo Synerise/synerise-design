@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.96.4](https://github.com/synerise/synerise-design/compare/portal@0.96.3...portal@0.96.4) (2020-10-05)
+
+
+### Bug Fixes
+
+* **menu:** control max height by size prop ([d010176](https://github.com/synerise/synerise-design/commit/d010176ac2cffdd27a023c577369fb4c34f9867f))
+
+
+
+
+
 ## [0.96.3](https://github.com/synerise/synerise-design/compare/portal@0.96.2...portal@0.96.3) (2020-10-02)
 
 **Note:** Version bump only for package portal
