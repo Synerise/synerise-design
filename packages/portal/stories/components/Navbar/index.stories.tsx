@@ -38,7 +38,7 @@ const backgroundColors = {
 };
 
 
-const logoSrc = 'https://app.portal.rc.snrstage.com/spa/assets/images/logo.svg';
+const logoSrc = 'https://app.synerise.com/spa/assets/images/logo.svg';
 
 const stories = {
   default: () => {
