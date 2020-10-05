@@ -7,7 +7,7 @@ export const spinnerAnimation = keyframes`
      transform: rotate(0deg);
   }
   100% {
-     transform: rotate(360deg);
+     transform: rotate(720deg);
   }
 `;
 const SIZE_DEFAULT = 20;
