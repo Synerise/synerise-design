@@ -11,6 +11,7 @@ type WrapperProps = {
   copyable?: boolean;
   indentLevel?: number;
   ordered?: boolean;
+  size?: 'default' | 'large';
 };
 
 const INDENT_LEVEL_STEP = 16;
@@ -46,6 +47,8 @@ const disableOrdering = (): FlattenSimpleInterpolation => css`
 `;
 export const Wrapper = styled(MenuItem)<WrapperProps>`
   &&& {
+    ${(props): string | false => !props.description && props.size === 'default' && `max-height: 32px;`}
+    ${(props): string | false => props.size === 'large' && `min-height: 50px;`}
     ${(props): string | FlattenSimpleInterpolation => (props.ordered ? '' : disableOrdering())};
     color: ${(props): string => props.theme.palette['grey-700']};
     opacity: ${(props): string => (props.disabled ? '0.4' : '1')};

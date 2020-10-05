@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.43](https://github.com/synerise/synerise-design/compare/@synerise/ds-tabs@0.10.42...@synerise/ds-tabs@0.10.43) (2020-10-02)
+
+
+### Bug Fixes
+
+* **tabs:** removed deps, increased specifity od selectors ([65ef3cb](https://github.com/synerise/synerise-design/commit/65ef3cb98b18a32fa24b86b6bf21378020db118c))
+
+
+
+
+
 ## [0.10.42](https://github.com/synerise/synerise-design/compare/@synerise/ds-tabs@0.10.41...@synerise/ds-tabs@0.10.42) (2020-10-02)
 
 **Note:** Version bump only for package @synerise/ds-tabs
