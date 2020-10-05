@@ -25,6 +25,6 @@ describe('Loader', () => {
       />
     );
     // ASSERT
-    expect(getByText('Loading')).toBeTruthy();
+    expect(getByText('Loading...')).toBeTruthy();
   })
 });
