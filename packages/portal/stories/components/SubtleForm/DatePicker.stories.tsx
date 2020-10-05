@@ -1,27 +1,33 @@
 import * as React from 'react';
 import SubtleForm from '@synerise/ds-subtle-form';
 import Select from '@synerise/ds-select';
-import { Cities } from './dataset';
-const decorator = storyFn => <div style={{ width: '400px', padding: '16px', background: '#fff' }}>{storyFn()}</div>;
+import { replaceLettersWithUnderscore } from '@synerise/ds-subtle-form/dist/Elements/DatePicker/utils';
+const decorator = storyFn => <div style={{ width: '350px', padding: '16px', background: '#fff' }}>{storyFn()}</div>;
 const renderLabel = (text: string) => {
   return <div style={{ maxWidth: '200px', textOverflow: 'ellipsis', overflow: 'hidden' }}>{text}</div>;
 };
 const stories = {
   default: () => {
     const [value, setValue] = React.useState<string>();
+    const format = 'dd-MM-yyyy';
     return (
       <div>
         <div style={{ marginBottom: '16px' }}>
           <SubtleForm.DatePicker
             autoFocus
+            format={format}
             onApply={val => setValue(val)}
             value={value}
-            placeholder={'City'}
-            label={renderLabel('City')}
-            labelTooltip={'City'}
-            suffixTooltip={'Select'}
-            texts={{}}
-         />
+            placeholder={'Date'}
+            label={renderLabel('Date')}
+            labelTooltip={'Date'}
+            suffixTooltip={'Select date'}
+            texts={
+              {
+                inputPlaceholder: replaceLettersWithUnderscore(format),
+              } as any
+            }
+          />
         </div>
       </div>
     );
