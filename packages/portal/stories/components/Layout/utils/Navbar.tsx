@@ -6,7 +6,7 @@ import { Add3M, AngleDownS, BookM, HelpM, NotificationsActiveM } from '@synerise
 import Navbar from '@synerise/ds-navbar';
 import * as React from 'react';
 
-const logoSrc = 'https://app.portal.rc.snrstage.com/spa/assets/images/logo.svg';
+const logoSrc = 'https://app.synerise.com/spa/assets/images/logo.svg';
 
 const LayoutNavbar = () => (
   <Navbar
