@@ -47,6 +47,8 @@ export const TextareaWrapper = styled.div<{ isDisabled: boolean; isFocused: bool
       border: 0;
       box-shadow: none;
       outline: 0;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
     }
   }
 `;

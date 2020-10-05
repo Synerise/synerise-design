@@ -2,9 +2,9 @@ import styled from 'styled-components';
 import InlineEdit from '@synerise/ds-inline-edit';
 import { InlineEditProps } from '@synerise/ds-inline-edit/dist/InlineEdit.types';
 
-export const HeaderWrapper = styled.div`
-  padding: 16px 0;
-  border-bottom: 1px dashed ${(props): string => props.theme.palette['grey-300']};
+export const HeaderWrapper = styled.div<{dashed: boolean}>`
+  padding: ${(props): string => props.dashed ? '16px 0': '0' };
+  border-bottom: ${(props): string => props.dashed ? `1px dashed ${props.theme.palette['grey-300']}`: `0` };
   margin: 0 24px;
 `;
 

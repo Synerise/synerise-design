@@ -6,7 +6,7 @@ import * as S from './Grid.styles';
 import { object } from '@storybook/addon-knobs';
 import GridPreview from './GridPreview';
 
-const DEFAULT_GRID = [{xxl: 8, xl: 6, lg: 4, md: 4, sm: 8, xs: 3},{xxl: 6, xl: 2, lg: 1, md: 4, sm: 4, xs: 3}]
+const DEFAULT_GRID = [{xxl: 8, xl: 6, lg: 4, md: 4, sm: 8, xs: 4},{xxl: 6, xl: 2, lg: 1, md: 4, sm: 4, xs: 4}]
 
 const stories = {
   customGrid: () => {
@@ -26,7 +26,7 @@ const stories = {
                     <DescriptionRow label={'LG'} value={`${item.lg}/12`}/>
                     <DescriptionRow label={'MD'} value={`${item.md}/8`}/>
                     <DescriptionRow label={'SM'} value={`${item.sm}/8`}/>
-                    <DescriptionRow label={'XS'} value={`${item.xs}/3`}/>
+                    <DescriptionRow label={'XS'} value={`${item.xs}/4`}/>
                   </Description>
                 </S.GridItem>
               </Grid.Item>

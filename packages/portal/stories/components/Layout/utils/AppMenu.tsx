@@ -1,12 +1,8 @@
-import * as React from 'react';
-
 import AppMenu from '@synerise/ds-app-menu';
-import Icon from '@synerise/ds-icon';
 import {
+  Add3M, AiSearchColorM, AiSearchGreyM,
   AnalyticsColorM,
-  AnalyticsGreyM,
-  AssetsColorM,
-  AssetsGreyM,
+  AnalyticsGreyM, AssetsColorM, AssetsGreyM,
   AutomationColorM,
   AutomationGreyM,
   CampaignsColorM,
@@ -19,15 +15,12 @@ import {
   DashboardGreyM,
   SettingsColorM,
   SettingsGreyM,
-  Add3M,
-  AiSearchColorM,
-  AiSearchGreyM,
 } from '@synerise/ds-icon/dist/icons';
+import Icon from '@synerise/ds-icon';
+import * as React from 'react';
 
-const stories = {
-  default: () => ({
-    activeItem: 'campaigns',
-    footer: (
+const LayoutAppMenu = (props) => (
+    <AppMenu {...props} activeItem='campaigns' footer={(
       <AppMenu.Item
         name="Settings"
         id="settings"
@@ -71,17 +64,16 @@ const stories = {
             <AppMenu.SubMenu.Item>Export</AppMenu.SubMenu.Item>
           </AppMenu.SubMenu>
         )}>
-        <AppMenu.Item.Icon active={<SettingsColorM />} inActive={<SettingsGreyM />}/>
+      <AppMenu.Item.Icon active={<SettingsColorM />} inActive={<SettingsGreyM />}/>
       </AppMenu.Item>
-    ),
-    children: ([
+    )}>
       <AppMenu.Item
         key="dashboards"
         id="dashboards"
         name="Dashboards"
       >
         <AppMenu.Item.Icon active={<DashboardColorM />} inActive={<DashboardGreyM />}/>
-      </AppMenu.Item>,
+      </AppMenu.Item>
       <AppMenu.Item
         key="customers"
         id="customers"
@@ -96,42 +88,42 @@ const stories = {
         )}
       >
         <AppMenu.Item.Icon active={<CustomersColorM />} inActive={<CustomersGreyM />}/>
-      </AppMenu.Item>,
+      </AppMenu.Item>
       <AppMenu.Item
-       key="campaigns"
-       name="Campaigns"
-       id="campaigns"
-       subMenu={(
-        <AppMenu.SubMenu>
-          <AppMenu.SubMenu.Title>Campaigns</AppMenu.SubMenu.Title>
-          <AppMenu.SubMenu.Item>Dashboard</AppMenu.SubMenu.Item>
-          <AppMenu.SubMenu.SubTitle>Marketing Channels</AppMenu.SubMenu.SubTitle>
-          <AppMenu.SubMenu.Item active>Email</AppMenu.SubMenu.Item>
-          <AppMenu.SubMenu.Item>SMS</AppMenu.SubMenu.Item>
-          <AppMenu.SubMenu.Item>Mobile</AppMenu.SubMenu.Item>
-          <AppMenu.SubMenu.Item>Web Push</AppMenu.SubMenu.Item>
-          <AppMenu.SubMenu.Item>Dynamic Content</AppMenu.SubMenu.Item>
-          <AppMenu.SubMenu.Item>
-            Landing Page
-            <AppMenu.SubMenu.Item.Action> <Icon color="blue" component={<Add3M />} /></AppMenu.SubMenu.Item.Action>
-          </AppMenu.SubMenu.Item>
-          <AppMenu.SubMenu.Item>RTB</AppMenu.SubMenu.Item>
-          <AppMenu.SubMenu.Item>Facebook</AppMenu.SubMenu.Item>
-          <AppMenu.SubMenu.SubTitle>Loyalty & Engagement</AppMenu.SubMenu.SubTitle>
-          <AppMenu.SubMenu.Item>Promotions</AppMenu.SubMenu.Item>
-          <AppMenu.SubMenu.Item>Personalized Promotions</AppMenu.SubMenu.Item>
-          <AppMenu.SubMenu.Item>Recommendations</AppMenu.SubMenu.Item>
-        </AppMenu.SubMenu>
-       )}
-       >
-         <AppMenu.Item.Icon active={<CampaignsColorM />} inActive={<CampaignsGreyM />}/>
-       </AppMenu.Item>,
+        key="campaigns"
+        name="Campaigns"
+        id="campaigns"
+        subMenu={(
+          <AppMenu.SubMenu>
+            <AppMenu.SubMenu.Title>Campaigns</AppMenu.SubMenu.Title>
+            <AppMenu.SubMenu.Item>Dashboard</AppMenu.SubMenu.Item>
+            <AppMenu.SubMenu.SubTitle>Marketing Channels</AppMenu.SubMenu.SubTitle>
+            <AppMenu.SubMenu.Item active>Email</AppMenu.SubMenu.Item>
+            <AppMenu.SubMenu.Item>SMS</AppMenu.SubMenu.Item>
+            <AppMenu.SubMenu.Item>Mobile</AppMenu.SubMenu.Item>
+            <AppMenu.SubMenu.Item>Web Push</AppMenu.SubMenu.Item>
+            <AppMenu.SubMenu.Item>Dynamic Content</AppMenu.SubMenu.Item>
+            <AppMenu.SubMenu.Item>
+              Landing Page
+              <AppMenu.SubMenu.Item.Action> <Icon color="blue" component={<Add3M />} /></AppMenu.SubMenu.Item.Action>
+            </AppMenu.SubMenu.Item>
+            <AppMenu.SubMenu.Item>RTB</AppMenu.SubMenu.Item>
+            <AppMenu.SubMenu.Item>Facebook</AppMenu.SubMenu.Item>
+            <AppMenu.SubMenu.SubTitle>Loyalty & Engagement</AppMenu.SubMenu.SubTitle>
+            <AppMenu.SubMenu.Item>Promotions</AppMenu.SubMenu.Item>
+            <AppMenu.SubMenu.Item>Personalized Promotions</AppMenu.SubMenu.Item>
+            <AppMenu.SubMenu.Item>Recommendations</AppMenu.SubMenu.Item>
+          </AppMenu.SubMenu>
+        )}
+      >
+        <AppMenu.Item.Icon active={<CampaignsColorM />} inActive={<CampaignsGreyM />}/>
+      </AppMenu.Item>
       <AppMenu.Item key="chat" name="Chat" id="chat">
         <AppMenu.Item.Icon active={<ChatColorM />} inActive={<ChatGreyM />}/>
-      </AppMenu.Item>,
+      </AppMenu.Item>
       <AppMenu.Item  key="automation" name="Automation" id="automation">
         <AppMenu.Item.Icon active={<AutomationColorM />} inActive={<AutomationGreyM />}/>
-      </AppMenu.Item>,
+      </AppMenu.Item>
       <AppMenu.Item
         key="analytics"
         name="Analytics"
@@ -156,11 +148,11 @@ const stories = {
             <AppMenu.SubMenu.SubTitle>Results</AppMenu.SubMenu.SubTitle>
             <AppMenu.SubMenu.Item>Dashboards</AppMenu.SubMenu.Item>
             <AppMenu.SubMenu.Item>Reports</AppMenu.SubMenu.Item>
-        </AppMenu.SubMenu>
+          </AppMenu.SubMenu>
         )}
       >
         <AppMenu.Item.Icon active={<AnalyticsColorM />} inActive={<AnalyticsGreyM />}/>
-      </AppMenu.Item>,
+      </AppMenu.Item>
       <AppMenu.Item
         key="ai-search"
         name="AI Search"
@@ -175,43 +167,37 @@ const stories = {
         )}
       >
         <AppMenu.Item.Icon active={<AiSearchColorM />} inActive={<AiSearchGreyM />}/>
-      </AppMenu.Item>,
+      </AppMenu.Item>
       <AppMenu.Item
-      key="assets"
-      name="Data management"
-      id="assets"
-      subMenu={(
-        <AppMenu.SubMenu>
-          <AppMenu.SubMenu.Title>Data management</AppMenu.SubMenu.Title>
-          <AppMenu.SubMenu.SubTitle>Assets</AppMenu.SubMenu.SubTitle>
-          <AppMenu.SubMenu.Item>Catalogs</AppMenu.SubMenu.Item>
-          <AppMenu.SubMenu.Item>Events</AppMenu.SubMenu.Item>
-          <AppMenu.SubMenu.Item>Tags</AppMenu.SubMenu.Item>
-          <AppMenu.SubMenu.Item>Files</AppMenu.SubMenu.Item>
-          <AppMenu.SubMenu.SubTitle>Events</AppMenu.SubMenu.SubTitle>
-          <AppMenu.SubMenu.Item>Event Manager</AppMenu.SubMenu.Item>
-          <AppMenu.SubMenu.Item>Params Manager</AppMenu.SubMenu.Item>
-          <AppMenu.SubMenu.SubTitle>Customers</AppMenu.SubMenu.SubTitle>
-          <AppMenu.SubMenu.Item>Agreements</AppMenu.SubMenu.Item>
-          <AppMenu.SubMenu.Item>Customer Tags</AppMenu.SubMenu.Item>
-          <AppMenu.SubMenu.SubTitle>Content</AppMenu.SubMenu.SubTitle>
-          <AppMenu.SubMenu.Item>Documents</AppMenu.SubMenu.Item>
-          <AppMenu.SubMenu.Item>Blocks</AppMenu.SubMenu.Item>
-          <AppMenu.SubMenu.Item>Voucher Pools</AppMenu.SubMenu.Item>
-          <AppMenu.SubMenu.SubTitle>AI</AppMenu.SubMenu.SubTitle>
-          <AppMenu.SubMenu.Item>Search</AppMenu.SubMenu.Item>
-        </AppMenu.SubMenu>
+        key="assets"
+        name="Data management"
+        id="assets"
+        subMenu={(
+          <AppMenu.SubMenu>
+            <AppMenu.SubMenu.Title>Data management</AppMenu.SubMenu.Title>
+            <AppMenu.SubMenu.SubTitle>Assets</AppMenu.SubMenu.SubTitle>
+            <AppMenu.SubMenu.Item>Catalogs</AppMenu.SubMenu.Item>
+            <AppMenu.SubMenu.Item>Events</AppMenu.SubMenu.Item>
+            <AppMenu.SubMenu.Item>Tags</AppMenu.SubMenu.Item>
+            <AppMenu.SubMenu.Item>Files</AppMenu.SubMenu.Item>
+            <AppMenu.SubMenu.SubTitle>Events</AppMenu.SubMenu.SubTitle>
+            <AppMenu.SubMenu.Item>Event Manager</AppMenu.SubMenu.Item>
+            <AppMenu.SubMenu.Item>Params Manager</AppMenu.SubMenu.Item>
+            <AppMenu.SubMenu.SubTitle>Customers</AppMenu.SubMenu.SubTitle>
+            <AppMenu.SubMenu.Item>Agreements</AppMenu.SubMenu.Item>
+            <AppMenu.SubMenu.Item>Customer Tags</AppMenu.SubMenu.Item>
+            <AppMenu.SubMenu.SubTitle>Content</AppMenu.SubMenu.SubTitle>
+            <AppMenu.SubMenu.Item>Documents</AppMenu.SubMenu.Item>
+            <AppMenu.SubMenu.Item>Blocks</AppMenu.SubMenu.Item>
+            <AppMenu.SubMenu.Item>Voucher Pools</AppMenu.SubMenu.Item>
+            <AppMenu.SubMenu.SubTitle>AI</AppMenu.SubMenu.SubTitle>
+            <AppMenu.SubMenu.Item>Search</AppMenu.SubMenu.Item>
+          </AppMenu.SubMenu>
         )}
       >
         <AppMenu.Item.Icon active={<AssetsColorM />} inActive={<AssetsGreyM />}/>
-      </AppMenu.Item>,
-    ]
-    )
-  }),
-};
+      </AppMenu.Item>
+    </AppMenu>
+);
 
-export default {
-name: 'Components/AppMenu',
-  stories,
-  Component: AppMenu,
-}
+export default LayoutAppMenu;

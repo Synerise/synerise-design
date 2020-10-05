@@ -9,7 +9,7 @@ const GridPreview = () => (
       <Grid.Item xxl={1} xl={1} lg={1} md={1} sm={1} xs={1}><S.Item /></Grid.Item>
       <Grid.Item xxl={1} xl={1} lg={1} md={1} sm={1} xs={1}><S.Item /></Grid.Item>
       <Grid.Item xxl={1} xl={1} lg={1} md={1} sm={1} xs={1}><S.Item /></Grid.Item>
-      <Grid.Item xxl={1} xl={1} lg={1} md={1} sm={1} xs={0}><S.Item /></Grid.Item>
+      <Grid.Item xxl={1} xl={1} lg={1} md={1} sm={1} xs={1}><S.Item /></Grid.Item>
       <Grid.Item xxl={1} xl={1} lg={1} md={1} sm={1} xs={0}><S.Item /></Grid.Item>
       <Grid.Item xxl={1} xl={1} lg={1} md={1} sm={1} xs={0}><S.Item /></Grid.Item>
       <Grid.Item xxl={1} xl={1} lg={1} md={1} sm={1} xs={0}><S.Item /></Grid.Item>

@@ -11,9 +11,12 @@ export interface Style<T> {
 
 export type LayoutProps = {
   header?: React.ReactNode;
+  subheader?: React.ReactNode;
   left?: React.ReactNode;
   right?: React.ReactNode;
   children: React.ReactNode;
   className?: string;
   styles?: Style<React.CSSProperties>;
+  leftOpened?: boolean;
+  rightOpened?: boolean;
 };

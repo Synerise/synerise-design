@@ -14,11 +14,12 @@ export const DEFAULT_COLUMNS_NUMBER = 24;
 
 const Grid: React.FC<GridProps> & {
   Item: React.ElementType;
-} = ({ children, gutter = DEFAULT_GUTTER }) => {
+} = ({ children, gutter = DEFAULT_GUTTER, style }) => {
   const breakpointData: DimensionsWithBreakpoint = useBreakpoint();
 
   return (
     <S.GridContainer
+      style={style}
       className="ds-grid"
       columns={breakpointData.breakpoint?.columns || DEFAULT_COLUMNS_NUMBER}
       gutter={gutter}

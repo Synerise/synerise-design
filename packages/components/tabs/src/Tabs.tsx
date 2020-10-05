@@ -164,6 +164,7 @@ const Tabs: React.FC<TabsProps> = ({
               label={tab.label}
               icon={tab.icon}
               block={block}
+              suffixel={tab.suffixel}
             />
           );
         })}
