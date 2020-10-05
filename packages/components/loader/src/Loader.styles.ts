@@ -10,7 +10,7 @@ export const spinnerAnimation = keyframes`
      transform: rotate(360deg);
   }
 `;
-const SIZE_DEFAULT = 24;
+const SIZE_DEFAULT = 20;
 export const Loader = styled.div<{size?: 'S' | 'M' | 'L'}>`
 
   border: 2px solid ${(props): string =>  props.theme.palette['blue-600']}; 
