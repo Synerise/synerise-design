@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.15.8](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.15.7...@synerise/ds-input@0.15.8) (2020-10-06)
+
+
+### Bug Fixes
+
+* **input:** extended textarea size ([b8d0134](https://github.com/synerise/synerise-design/commit/b8d0134233090daa31adad06bc609553f241362f))
+
+
+
+
+
 ## [0.15.7](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.15.6...@synerise/ds-input@0.15.7) (2020-10-06)
 
 

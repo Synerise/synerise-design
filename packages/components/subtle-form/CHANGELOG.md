@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subtle-form@0.2.0...@synerise/ds-subtle-form@0.3.0) (2020-10-06)
+
+
+### Bug Fixes
+
+* **subtle-form:** error state fixes ([a5b0408](https://github.com/Synerise/synerise-design/commit/a5b0408fa1953672115e87621a1bfaf9937e6ae0))
+
+
+### Features
+
+* **subtle-form:** passed and handled error props to the subcomponents ([4a55e05](https://github.com/Synerise/synerise-design/commit/4a55e05dba339da52e2b77b38a10c5cff368b421))
+
+
+
+
+
 # [0.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subtle-form@0.1.2...@synerise/ds-subtle-form@0.2.0) (2020-10-06)
 
 
