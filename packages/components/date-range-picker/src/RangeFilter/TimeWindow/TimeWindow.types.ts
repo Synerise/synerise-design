@@ -27,6 +27,7 @@ export type CustomDayConfig = {
 
 export type Props = {
   days: Days;
+  monthlyFilter?: boolean;
   customDays?: { [key: string]: CustomDayConfig };
   onChange: (days: Days) => void;
   showSelectAll: boolean;

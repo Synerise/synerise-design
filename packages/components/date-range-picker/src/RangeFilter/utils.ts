@@ -1,5 +1,5 @@
-import { MONTHLY_TYPES, TYPES } from './constants';
 import { groupBy, omit, range } from 'lodash';
+import { MONTHLY_TYPES, TYPES } from './constants';
 
 import {
   NormalizedFilter,
@@ -50,10 +50,11 @@ export const normalizeValue = ({ type, definition }: FilterValue): ComponentData
         .filter((day: { restricted: boolean }) => day.restricted)
         .map((item: DenormalizedFilter) => mapTimeSchema(item));
       break;
-    case TYPES.MONTHLY && definition instanceof Array:
-      (definition as [{ definition: FilterDefinition[]; period: string; periodType: string }]).map(def => {
+    case TYPES.MONTHLY:
+      const rules = [];
+      definition.map(def => {
         days = Object.values(def.definition)
-          .filter(d => !!d.restricted)
+          .filter((day: Record<string, any>) => day.restricted)
           .map(({ restricted, display, ...rest }) => mapTimeSchema(rest));
 
         if (def.period === MONTHLY_TYPES.DAY_OF_WEEK) {

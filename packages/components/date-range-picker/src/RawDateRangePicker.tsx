@@ -14,6 +14,7 @@ import RelativeRangePicker from './RelativeRangePicker/RelativeRangePicker';
 import Footer from './Footer/Footer';
 import { normalizeRange } from './utils';
 import RangeFilter from './RangeFilter/RangeFilter';
+import RangeFilterStatus from './RangeFilter/RangeFilterStatus/RangeFilterStatus';
 
 class RawDateRangePicker extends React.PureComponent<Props, State> {
   static defaultProps = {
@@ -37,7 +38,7 @@ class RawDateRangePicker extends React.PureComponent<Props, State> {
 
   componentDidUpdate(prevProps: Readonly<Props>): void {
     const { value } = this.props;
-    console.log(this.props.savedFilters)
+    console.log(this.props.savedFilters);
     if (prevProps.value !== value && !value) {
       this.handleRangeChange(value);
     }
@@ -124,7 +125,12 @@ class RawDateRangePicker extends React.PureComponent<Props, State> {
     if (mode === MODES.FILTER)
       return (
         <Container>
-          <RangeFilter value={value.filter} onCancel={this.handleFilterCancel} onApply={this.handleFilterApply} savedFilters={savedFilters} />
+          <RangeFilter
+            value={value.filter}
+            onCancel={this.handleFilterCancel}
+            onApply={this.handleFilterApply}
+            savedFilters={savedFilters}
+          />
         </Container>
       );
 
@@ -153,16 +159,12 @@ class RawDateRangePicker extends React.PureComponent<Props, State> {
       addons.push(
         <AddonCollapse
           content={
-            !value.filter ? (
-              <Button.Creator
-                label="Add filter"
-                disabled={!value.from || !value.to}
-                onClick={this.handleModalOpenClick}
-                block
-              />
-            ) : (
-              <ContentItem onClick={this.handleModalOpenClick} item={{ name: 'Filter enabled' }} texts={{}} />
-            )
+            <RangeFilterStatus
+              filter={value.filter}
+              disabled={!value.from || !value.to}
+              label={value?.filter ? 'Filter enabled' : 'Add filter'}
+              onClick={this.handleModalOpenClick}
+            />
           }
           title={texts?.filter}
           expanded

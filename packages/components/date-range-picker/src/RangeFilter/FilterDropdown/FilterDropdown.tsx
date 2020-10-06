@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { FilterDropdownProps } from './FilterDropdown.types';
 import Button from '@synerise/ds-button';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon from '@synerise/ds-icon';
 import { AngleDownS } from '@synerise/ds-icon/dist/icons';
+import { FilterDropdownProps } from './FilterDropdown.types';
 import * as S from './FilterDropdown.styles';
 
 const FilterDropdown: React.FC<FilterDropdownProps> = ({ label, filters, onFilterSelect }) => {

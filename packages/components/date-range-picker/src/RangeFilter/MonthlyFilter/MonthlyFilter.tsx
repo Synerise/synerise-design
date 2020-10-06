@@ -60,14 +60,13 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
 
   handleTypeChange = (val: string, index: number): void => {
     const { value } = this.props;
-    const data = [...value];
 
-    data[index] = {
-      ...data[index],
+    value[index] = {
+      ...value[index],
       period: val,
       definition: {},
     };
-    this.setData(data);
+    this.setData(value);
   };
 
   handlePeriodTypeChange = (val: string, index: number): void => {
@@ -105,7 +104,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
 
     const locale = intl.locale.substring(0, 2);
     return long
-      ? intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.NTH_DAY_OF_MONTH' }, { nth: MONTH_DAYS(locale)[i] })
+      ? intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.NTH-DAY-OF-MONTH' }, { nth: MONTH_DAYS(locale)[i] })
       : MONTH_DAYS(locale)[i];
   };
 
@@ -156,10 +155,9 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
   render(): JSX.Element {
     const { value,onRangeCopy, onRangePaste, onRangeClear,rangeClipboard, intl } = this.props;
     const { visible } = this.state;
-    const data = [...value];
     return (
       <S.MonthlyFilterWrapper>
-        {data.map((item, key) => (
+        {value.map((item, key) => (
           <ContentItem
             onExpand={(id) => this.handleCollapse(id)}
             expanded={visible[item.id]}
@@ -192,7 +190,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
                       maxLength: 120,
                     }}
                     dataSource={PERIODS.map(i => ({
-                      checked: data[key]?.period === i.value,
+                      checked: value[key]?.period === i.value,
                       text: intl.formatMessage({ id: i.name as string }),
                       onSelect: (): void => {
                         this.handleTypeChange(i.value as string, key);
@@ -212,7 +210,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
                       maxLength: 120,
                     }}
                     dataSource={PERIODS_TYPE.map(i => ({
-                      checked: data[key]?.periodType === i.value,
+                      checked: value[key]?.periodType === i.value,
 
                       text: intl.formatMessage({ id: i.translationKey as string }),
                       onSelect: (): void => {
@@ -228,6 +226,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
                   <TimeWindow
                     // eslint-disable-next-line react/no-array-index-key
                     key={`${item.period}_${key}`}
+                    title={'Monthly title'}
                     showSelectAll
                     invertibleTime
                     numberOfDaysPerRow={7}
@@ -238,6 +237,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
                     onRangeCopy={onRangeCopy}
                     onRangePaste={onRangePaste}
                     rangeClipboard={rangeClipboard}
+                    monthlyFilter
                     {...this.getTimeWindowSettings(item)}
                   />
                 </S.ContentWrapper>

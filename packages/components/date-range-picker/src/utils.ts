@@ -2,12 +2,12 @@ import fnsMin from "date-fns/min";
 import fnsMax from "date-fns/max";
 import { legacyParse } from "@date-fns/upgrade/v2";
 import { IntlShape } from 'react-intl';
+import dayjs from 'dayjs';
 import { DateRange } from './date.types';
 import { ABSOLUTE, RELATIVE } from './constants';
 import ADD from './dateUtils/add';
 import START_OF from './dateUtils/startOf';
 import END_OF from './dateUtils/endOf';
-import dayjs from 'dayjs';
 import 'dayjs/plugin/utc';
 import { Texts } from './DateRangePicker.types';
 

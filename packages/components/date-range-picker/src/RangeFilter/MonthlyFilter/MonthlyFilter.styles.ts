@@ -83,5 +83,5 @@ export const AddButton = styled.div`
   }
 `;
 export const Select = styled(InlineSelect)<InlineSelectProps>`
-  margin: 2px 0 0 6px;
+  margin: 2px 4px 0 4px;
 `;

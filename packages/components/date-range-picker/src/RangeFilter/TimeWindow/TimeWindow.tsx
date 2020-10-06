@@ -225,11 +225,6 @@ class TimeWindowBase extends React.PureComponent<Props, State> {
       if (CustomComponent) Component = CustomComponent;
       if (customTooltip) tooltip = customTooltip;
     }
-    if (!tooltip && !isActive) {
-      tooltip = intl.formatMessage({
-        id: isRestricted ? 'DS.DATE-RANGE-PICKER.CLICK-TO-SET-TIME' : 'DS.DATE-RANGE-PICKER.CLICK-TO-SELECT',
-      });
-    }
     if (!Component) {
       Component = Day;
     }
@@ -269,13 +264,12 @@ class TimeWindowBase extends React.PureComponent<Props, State> {
         }
       />
     );
-    const { hideHeader } = this.props;
+    const { hideHeader, monthlyFilter } = this.props;
     if (hideHeader) return rangeForm;
     return (
       <>
         <Header
-          title={<RangeSummary dayKeys={dayKeys} getDayLabel={this.getDayLabel} />}
-          style={{ marginBottom: 16, marginTop: singleMode ? 0 : 44 }}
+          title={<RangeSummary dayKeys={dayKeys} getDayLabel={this.getDayLabel} monthlyFilter={monthlyFilter} />}
           suffix={
             <RangeActions
               onRangeClear={(): void => this.handleRangeClear(dayKeys)}

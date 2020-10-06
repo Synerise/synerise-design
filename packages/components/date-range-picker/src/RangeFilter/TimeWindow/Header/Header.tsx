@@ -26,7 +26,6 @@ export const Header: React.FC<HeaderProps> = ({ title, actions,suffix, ...rest }
         </S.Action>
       ))}
     </S.Actions>
-    <S.Separator/>
     {suffix}
   </S.Container>
 );

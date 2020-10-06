@@ -18,6 +18,10 @@ export const DeleteIcon = styled.div`
   }
 `;
 
+export const DayTooltip = styled.div`
+  display: none;
+`;
+
 export const Container = styled.div`
   position: relative;
   &:not(:hover) {
@@ -25,7 +29,24 @@ export const Container = styled.div`
       display: none;
     }
   }
+  &:hover {
+    ${DayTooltip} {
+      height: 24px;
+      position: absolute;
+      top: -30px;
+      margin-left: calc(-50%);
+      display: block;
+      white-space: nowrap;
+      background-color: rgba(56, 67, 80, 0.9);
+      padding: 3px 8px;
+      border-radius: 3px;
+      z-index: 9;
+      font-weight: 400;
+      color: ${(props): string => props.theme.palette.white};
+    }
+  }
 `;
+
 export const Content = styled.div`
   display: flex;
   justify-content: flex-start;
