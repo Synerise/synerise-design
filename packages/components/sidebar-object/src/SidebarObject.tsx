@@ -5,6 +5,7 @@ import Button from '@synerise/ds-button';
 import Icon from '@synerise/ds-icon';
 import { AngleDownS } from '@synerise/ds-icon/dist/icons';
 import Scrollbar from '@synerise/ds-scrollbar';
+import { TabItem } from '@synerise/ds-tabs/dist/Tabs.types';
 import { SidebarObjectProps } from './SidebarObject.types';
 import Header from './Elements/Header/Header';
 import Content from './Elements/Content/Content';
@@ -33,6 +34,8 @@ const SidebarObject: React.FC<SidebarObjectProps> = ({
   onFolderSelect,
   onScrollbar,
   autoSize,
+  handleTabClick,
+  disableDefaultTabContent
 }) => {
   const [activeTab, setActiveTab] = React.useState(0);
   const [dropdownVisible, setDropdownVisible] = React.useState(false);
@@ -50,7 +53,7 @@ const SidebarObject: React.FC<SidebarObjectProps> = ({
         <Header
           avatar={avatar}
           preffix={headerPreffix}
-          tabs={<Tabs activeTab={activeTab} tabs={headerTabs} handleTabClick={setActiveTab} />}
+          tabs={<Tabs activeTab={activeTab} tabs={headerTabs as TabItem[]} handleTabClick={(index): void  => {setActiveTab(index); handleTabClick(index)}}  />}
           onDelete={onDelete}
           onDuplicate={onDuplicate}
           onEdit={onEdit}
@@ -63,7 +66,7 @@ const SidebarObject: React.FC<SidebarObjectProps> = ({
           onArrowUp={onArrowUp}
           onArrowDown={onArrowDown}
         />
-        {activeTab === 0 && (
+        {activeTab === 0 && !disableDefaultTabContent && (
           <S.HeaderWrapper dashed={!!onFolderSelect}>
             {onFolderSelect && (
               <>
@@ -93,7 +96,7 @@ const SidebarObject: React.FC<SidebarObjectProps> = ({
             )}
           </S.HeaderWrapper>
         )}
-        {activeTab === 0 && (
+        {activeTab === 0 && !disableDefaultTabContent && (
           <Content
             texts={texts}
             autoSize={autoSize}
@@ -102,6 +105,7 @@ const SidebarObject: React.FC<SidebarObjectProps> = ({
             tags={contentTags}
           />
         )}
+        {headerTabs[activeTab]?.content}
       </Scrollbar>
     </div>
   );

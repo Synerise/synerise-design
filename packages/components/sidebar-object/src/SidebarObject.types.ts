@@ -6,7 +6,7 @@ import { HeaderTexts } from './Elements/Header/Header.types';
 export type SidebarObjectProps = {
   avatar: React.ReactNode;
   headerPreffix: React.ReactNode;
-  headerTabs: TabItem[];
+  headerTabs: TabItem & {content?: React.ReactNode}[];
   inputObject: {
     id: string;
     [key: string]: string | React.ReactNode;
@@ -27,6 +27,8 @@ export type SidebarObjectProps = {
   onFolderSelect: (item: FolderItem) => void;
   onScrollbar: boolean;
   autoSize: TextareaAutosize;
+  handleTabClick: (index: number) => void;
+  disableDefaultTabContent?: boolean;
 
 };
 export type FolderItem = {
