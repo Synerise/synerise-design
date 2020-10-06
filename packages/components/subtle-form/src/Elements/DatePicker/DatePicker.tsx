@@ -80,11 +80,13 @@ const SubtleDatePicker: React.FC<SubtleDatePickerProps> = ({
               <MaskedDatePlaceholder>{replaceLettersWithUnderscore(dateFormattingString)}</MaskedDatePlaceholder>
             </S.MainContent>
 
-            <S.Suffix select>
-              <Tooltip title={suffixTooltip}>
-                {suffix ?? <Icon component={<CalendarM />} color={theme.palette['grey-600']} />}
-              </Tooltip>
-            </S.Suffix>
+            {!active && (
+              <S.Suffix select>
+                <Tooltip title={suffixTooltip}>
+                  {suffix ?? <Icon component={<CalendarM />} color={theme.palette['grey-600']} />}
+                </Tooltip>
+              </S.Suffix>
+            )}
           </S.Inactive>
         )}
       </SelectContainer>

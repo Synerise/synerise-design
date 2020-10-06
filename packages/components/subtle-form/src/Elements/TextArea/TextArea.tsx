@@ -25,6 +25,8 @@ const SubtleTextArea: React.FC<SubtleTextAreaProps> = ({
   suffixTooltip,
   suffix,
   autoSize,
+  error,
+  errorText,
 }) => {
   const [active, setActive] = React.useState<boolean>(false);
   const [blurred, setBlurred] = React.useState<boolean>(false);
@@ -74,7 +76,7 @@ const SubtleTextArea: React.FC<SubtleTextAreaProps> = ({
         <Label label={label} tooltip={labelTooltip} />
       </S.ContentAbove>
       <S.Container ref={containerRef} className="ds-subtle-textarea" active={active}>
-        {active ? (
+        {active || error ? (
           <TextArea
             autoSize={autoSize}
             autoFocus
@@ -86,6 +88,8 @@ const SubtleTextArea: React.FC<SubtleTextAreaProps> = ({
             rows={visibleRows < 2 ? 2 : visibleRows}
             style={{ margin: 0 }}
             placeholder={placeholder}
+            error={error}
+            errorText={errorText}
             // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
             // @ts-ignore
             wrapperStyle={{ minHeight: visibleRows * ROW_HEIGHT_PX + ROW_HEIGHT_PX, margin: 0 }}

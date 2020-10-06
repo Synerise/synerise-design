@@ -19,6 +19,8 @@ const stories = {
             label={renderLabel('City')}
             labelTooltip={'City'}
             suffixTooltip={'Select'}
+            error
+            errorText={"ELO"}
           >
             {Cities.map(c => (
               <Select.Option value={c}>{c}</Select.Option>

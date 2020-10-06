@@ -23,6 +23,8 @@ const stories = {
             label={renderLabel('Name')}
             labelTooltip={'Name'}
             suffixTooltip={'Edit'}
+            error={true}
+            errorText={"ELO"}
           />
         </div>
         <div style={{ marginBottom: '16px' }}>

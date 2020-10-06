@@ -1,8 +1,7 @@
 import * as React from 'react';
 import SubtleForm from '@synerise/ds-subtle-form';
-import Select from '@synerise/ds-select';
 import { replaceLettersWithUnderscore } from '@synerise/ds-subtle-form/dist/Elements/DatePicker/utils';
-const decorator = storyFn => <div style={{ width: '350px', padding: '16px', background: '#fff' }}>{storyFn()}</div>;
+const decorator = storyFn => <div style={{ width: '350px', padding: '16px', background: '#fff', marginBottom: '400px' }}>{storyFn()}</div>;
 const renderLabel = (text: string) => {
   return <div style={{ maxWidth: '200px', textOverflow: 'ellipsis', overflow: 'hidden' }}>{text}</div>;
 };
@@ -25,7 +24,8 @@ const stories = {
             texts={
               {
                 inputPlaceholder: replaceLettersWithUnderscore(format),
-              } as any
+                clearTooltip: 'Clear'
+              }
             }
           />
         </div>
