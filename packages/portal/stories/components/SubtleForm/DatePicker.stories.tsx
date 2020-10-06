@@ -1,13 +1,23 @@
 import * as React from 'react';
 import SubtleForm from '@synerise/ds-subtle-form';
 import { replaceLettersWithUnderscore } from '@synerise/ds-subtle-form/dist/Elements/DatePicker/utils';
+import { boolean, text } from '@storybook/addon-knobs';
 const decorator = storyFn => <div style={{ width: '350px', padding: '16px', background: '#fff', marginBottom: '400px' }}>{storyFn()}</div>;
 const renderLabel = (text: string) => {
   return <div style={{ maxWidth: '200px', textOverflow: 'ellipsis', overflow: 'hidden' }}>{text}</div>;
 };
+const getErrorText = (error: boolean, errorText: string): string => {
+  if (error) {
+    return errorText;
+  } else {
+    return '';
+  }
+};
 const stories = {
   default: () => {
     const [value, setValue] = React.useState<string>();
+    const validationState = boolean('Set validation state', false);
+    const errorMessage = text('Error Text', 'Error');
     const format = 'dd-MM-yyyy';
     return (
       <div>
@@ -21,6 +31,8 @@ const stories = {
             label={renderLabel('Date')}
             labelTooltip={'Date'}
             suffixTooltip={'Select date'}
+            error={validationState}
+            errorText={getErrorText(validationState,errorMessage)}
             texts={
               {
                 inputPlaceholder: replaceLettersWithUnderscore(format),

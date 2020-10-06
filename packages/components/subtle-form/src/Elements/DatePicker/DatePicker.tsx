@@ -21,11 +21,14 @@ const SubtleDatePicker: React.FC<SubtleDatePickerProps> = ({
   labelTooltip,
   placeholder,
   onApply,
+  errorText,
+  error,
   ...rest
 }) => {
   const [active, setActive] = React.useState<boolean>(false);
   const [blurred, setBlurred] = React.useState<boolean>(false);
   const containerRef = React.useRef<HTMLDivElement>(null);
+  const hasError = error || !!errorText;
   const { showTime } = rest;
   const dateFormattingString = React.useMemo(() => getFormattingString(dateFormat, showTime), [dateFormat, showTime]);
   const formatValue = React.useCallback(
@@ -55,7 +58,7 @@ const SubtleDatePicker: React.FC<SubtleDatePickerProps> = ({
         <Label label={label} tooltip={labelTooltip} />
       </ContentAbove>
       <SelectContainer ref={containerRef} className="ds-subtle-textarea" active={active}>
-        {active && !blurred ? (
+        {(active && !blurred) || hasError ? (
           <DatePicker
             {...rest}
             value={value}
@@ -64,6 +67,8 @@ const SubtleDatePicker: React.FC<SubtleDatePickerProps> = ({
               onApply && onApply(date);
             }}
             onClear={handleDeactivate}
+            error={error}
+            errorText={errorText}
             // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
             // @ts-ignore
             autoFocus

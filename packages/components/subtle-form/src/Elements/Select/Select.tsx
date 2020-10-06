@@ -25,7 +25,6 @@ const SubtleSelect: React.FC<SubtleSelectProps> = ({
   const [blurred, setBlurred] = React.useState<boolean>(false);
   const containerRef = React.useRef<HTMLDivElement>(null);
   const hasError = error || !!errorText;
-  console.log('hasError', hasError);
   const handleDeactivate = React.useCallback(() => {
     setActive(false);
     setBlurred(true);
@@ -42,14 +41,14 @@ const SubtleSelect: React.FC<SubtleSelectProps> = ({
       <SelectContainer ref={containerRef} className="ds-subtle-textarea" active={active}>
         {(active && !blurred) || hasError ? (
           <Select
-            autoFocus
+            autoFocus={!hasError}
             size="middle"
             onBlur={handleDeactivate}
             value={value}
             placeholder={placeholder}
             errorText={errorText}
             error={error}
-            defaultOpen
+            defaultOpen={!hasError}
             {...rest}
           >
             {children}

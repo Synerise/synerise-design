@@ -1,16 +1,26 @@
 import * as React from 'react';
 
 import SubtleForm from '@synerise/ds-subtle-form';
-import { number, text } from '@storybook/addon-knobs';
+import { boolean, number, text } from '@storybook/addon-knobs';
 const decorator = storyFn => <div style={{ width: '400px', padding: '16px', background: '#fff' }}>{storyFn()}</div>;
 const renderLabel = (text: string) => {
   return <div style={{ maxWidth: '200px', textOverflow: 'ellipsis', overflow: 'hidden' }}>{text}</div>;
+};
+const getErrorText = (error: boolean, errorText: string): string => {
+  if (error) {
+    return errorText;
+  } else {
+    return '';
+  }
 };
 const stories = {
   default: () => {
     const [city, setCity] = React.useState<string | undefined>();
     const [description, setDescription] = React.useState<string | undefined>();
     const [name, setName] = React.useState<string | undefined>();
+    const validationState = boolean('Set validation state', false);
+    const errorMessage = text('Error Text', 'Error');
+
     return (
       <div>
         <div style={{ marginBottom: '16px' }}>
@@ -23,8 +33,8 @@ const stories = {
             label={renderLabel('Name')}
             labelTooltip={'Name'}
             suffixTooltip={'Edit'}
-            error={true}
-            errorText={"ELO"}
+            error={validationState}
+            errorText={getErrorText(validationState,errorMessage)}
           />
         </div>
         <div style={{ marginBottom: '16px' }}>
@@ -37,6 +47,8 @@ const stories = {
             label={renderLabel('City')}
             labelTooltip={'City'}
             suffixTooltip={'Edit'}
+            error={validationState}
+            errorText={getErrorText(validationState,errorMessage)}
           />
         </div>
         <div style={{ marginBottom: '0px' }}>
@@ -49,6 +61,8 @@ const stories = {
             labelTooltip={'Description'}
             suffixTooltip={'Edit'}
             autoSize
+            error={validationState}
+            errorText={getErrorText(validationState,errorMessage)}
           />
         </div>
       </div>
