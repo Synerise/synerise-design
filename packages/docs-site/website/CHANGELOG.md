@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.3](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.6.2...docs@0.6.3) (2020-10-06)
+
+
+### Bug Fixes
+
+* **docs:** added menu markdown file ([c1a9eac](https://gitlab.synerise.com/Frontend/synerise-design/commit/c1a9eace2cb2982bd281cd46a86808a9ccb9b510))
+
+
+
+
+
 ## [0.6.2](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.6.1...docs@0.6.2) (2020-09-25)
 
 
