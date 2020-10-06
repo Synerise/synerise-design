@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@0.1.28...@synerise/ds-date-picker@0.2.0) (2020-10-06)
+
+
+### Bug Fixes
+
+* **date-picker:** handling the formatting correctly ([b28673a](https://github.com/Synerise/synerise-design/commit/b28673ae6255f4dc1bdd3eb85cf41e93a9c66017))
+
+
+### Features
+
+* **date-picker:** added autofocus props ([681bbb4](https://github.com/Synerise/synerise-design/commit/681bbb419f046dec0267553fc2a01c8debf282d9))
+
+
+
+
+
 ## [0.1.28](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@0.1.27...@synerise/ds-date-picker@0.1.28) (2020-10-02)
 
 **Note:** Version bump only for package @synerise/ds-date-picker

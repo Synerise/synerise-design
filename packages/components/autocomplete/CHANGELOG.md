@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.36](https://github.com/Synerise/synerise-design/compare/@synerise/ds-autocomplete@0.3.35...@synerise/ds-autocomplete@0.3.36) (2020-10-06)
+
+
+### Bug Fixes
+
+* **autocomplete:** fix active autocomplete option styles ([66d8b73](https://github.com/Synerise/synerise-design/commit/66d8b737122fb6a37e5e54f072bb307aaa966650))
+* **autocomplete:** specify stronger selector for dropdown ([79d5502](https://github.com/Synerise/synerise-design/commit/79d55025ebd084aa19f232732ede79eddbfc2702))
+
+
+
+
+
 ## [0.3.35](https://github.com/Synerise/synerise-design/compare/@synerise/ds-autocomplete@0.3.34...@synerise/ds-autocomplete@0.3.35) (2020-09-29)
 
 **Note:** Version bump only for package @synerise/ds-autocomplete

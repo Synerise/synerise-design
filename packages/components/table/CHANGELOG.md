@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.25.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.24.6...@synerise/ds-table@0.25.0) (2020-10-06)
+
+
+### Features
+
+* **table:** add bolder title of table ([7b53d1f](https://github.com/synerise/synerise-design/commit/7b53d1fd4ba6393a293430ddd96399ed58e0eb5d))
+
+
+
+
+
 ## [0.24.6](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.24.5...@synerise/ds-table@0.24.6) (2020-10-06)
 
 **Note:** Version bump only for package @synerise/ds-table

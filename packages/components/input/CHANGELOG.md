@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.15.7](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.15.6...@synerise/ds-input@0.15.7) (2020-10-06)
+
+
+### Bug Fixes
+
+* **input:** added break word to text area ([739a2d1](https://github.com/synerise/synerise-design/commit/739a2d177d7692787f76af28c99e0901e7420b75))
+* **input:** fix height of textarea ([e82df0a](https://github.com/synerise/synerise-design/commit/e82df0a6472177ef7931f41de845a4f5002d16d3))
+
+
+
+
+
 ## [0.15.6](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.15.5...@synerise/ds-input@0.15.6) (2020-10-02)
 
 **Note:** Version bump only for package @synerise/ds-input
