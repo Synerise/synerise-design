@@ -1,9 +1,10 @@
 import * as React from 'react';
-import Input, { TextAreaProps } from 'antd/lib/input';
+import Input from 'antd/lib/input';
 import Scrollbar from '@synerise/ds-scrollbar';
 import * as S from './Textarea.styles';
+import { TextAreaProps } from './Textarea.types';
 
-const Textarea: React.FC<TextAreaProps & { error?: string; wrapperStyle?: React.CSSProperties }> = ({
+const Textarea: React.FC<TextAreaProps> = ({
   disabled,
   error,
   rows = 4,
