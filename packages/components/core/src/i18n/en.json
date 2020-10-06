@@ -166,7 +166,7 @@
       "MONTHLY": "Every month",
       "ADD-RULE": "Add rule",
       "RULE": "Rule",
-      "COUNTED-FROM": "Counted from",
+      "COUNTED-FROM": " counted from",
       "CANCEL": "Cancel",
       "SELECT-ALL": "Select all",
       "UNSELECT-ALL": "Unselect all",
@@ -200,7 +200,9 @@
         "7": "Sunday"
       },
       "EVERY_DAY": "every day",
-      "DATES_FILTER": "Date filter"
+      "REMOVE": "Remove",
+      "DATES_FILTER": "Date filter",
+      "NTH-DAY-OF-MONTH": " day of month"
     },
     "CARD-TAB": {
       "REMOVE": "Remove",
