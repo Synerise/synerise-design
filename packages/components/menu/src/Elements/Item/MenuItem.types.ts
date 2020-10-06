@@ -31,4 +31,5 @@ export interface MenuItemProps extends Omit<MenuProps, 'dataSource' | 'footer'> 
   indentLevel?: number;
   menuItemKey?: React.ReactText;
   checked?: boolean;
+  size?: 'default' | 'large';
 }

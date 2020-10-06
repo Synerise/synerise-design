@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.50](https://github.com/Synerise/synerise-design/compare/@synerise/ds-avatar-group@0.2.49...@synerise/ds-avatar-group@0.2.50) (2020-10-02)
+
+**Note:** Version bump only for package @synerise/ds-avatar-group
+
+
+
+
+
+## [0.2.49](https://github.com/Synerise/synerise-design/compare/@synerise/ds-avatar-group@0.2.48...@synerise/ds-avatar-group@0.2.49) (2020-10-02)
+
+**Note:** Version bump only for package @synerise/ds-avatar-group
+
+
+
+
+
 ## [0.2.48](https://github.com/Synerise/synerise-design/compare/@synerise/ds-avatar-group@0.2.47...@synerise/ds-avatar-group@0.2.48) (2020-09-29)
 
 **Note:** Version bump only for package @synerise/ds-avatar-group
