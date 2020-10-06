@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.19.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.18.0...@synerise/ds-core@0.19.0) (2020-10-06)
+
+
+### Features
+
+* **core:** update breakpoints in ThemeProvider ([6b4f4e4](https://github.com/synerise/synerise-design/commit/6b4f4e44d42076782944548990cff89f729700ad))
+
+
+
+
+
 # [0.18.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.17.2...@synerise/ds-core@0.18.0) (2020-09-29)
 
 

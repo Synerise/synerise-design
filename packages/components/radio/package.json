@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-radio",
-  "version": "0.10.31",
+  "version": "0.10.32",
   "description": "Radio UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "synerise/synerise-design",
@@ -25,7 +25,7 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-utils": "^0.10.1"
+    "@synerise/ds-utils": "^0.11.0"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

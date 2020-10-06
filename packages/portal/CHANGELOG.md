@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.97.0](https://github.com/synerise/synerise-design/compare/portal@0.96.4...portal@0.97.0) (2020-10-06)
+
+
+### Bug Fixes
+
+* **factors:** fix issues from QA ([018db66](https://github.com/synerise/synerise-design/commit/018db665818b693ffe1765645ea8d8b0acea0016))
+* **inline-edit:** delete width from props ([60d9a38](https://github.com/synerise/synerise-design/commit/60d9a38edbc32dda33a8eeb6e5423637e88ebdf1))
+* **layout:** fix missing logo in storybook ([0f9685e](https://github.com/synerise/synerise-design/commit/0f9685e3ad10da2d65493d28d0bb82c7effdb00f))
+* **navbar:** fix missing logo in storybook ([18f807c](https://github.com/synerise/synerise-design/commit/18f807cc77ffd67f47ae3feed48c65f0e3465ddb))
+* **sidebar-object:** add knobs to show icons and folders and fix subtle-form ([fe7f464](https://github.com/synerise/synerise-design/commit/fe7f4648e2e6ee9ded2edcb0e71416d4c74c936d))
+* **subtle-form:** allow to define children ([bac3e20](https://github.com/synerise/synerise-design/commit/bac3e20d36f3ce0987507a9f7f7d3ae57c3d59bf))
+* **subtle-form:** fixed handling text overflow ([dcd9bb8](https://github.com/synerise/synerise-design/commit/dcd9bb8a792e3feb6fd0e25a5c4ac7779bd39553))
+* **subtle-form:** fixed placeholder of the date ([4cd5f5e](https://github.com/synerise/synerise-design/commit/4cd5f5ea6fd6ace2c9c946061d4ec683082840ba))
+* **subtle-form:** fixing the build for current date picker version ([ca165cf](https://github.com/synerise/synerise-design/commit/ca165cfb6186fa6155ee9f2fbdf5de45e20c0c5a))
+* **tabs:** fix line ounder the counter ([a817fce](https://github.com/synerise/synerise-design/commit/a817fcecb7b97b8ca9a799f2ba9bee36c2358de9))
+* **tabs:** fix line ounder the counter ([cf78804](https://github.com/synerise/synerise-design/commit/cf78804b1d84baa4eb30a14d07fb637e2ca4c4b2))
+
+
+### Features
+
+* **grid:** update grid size on xsmall ([f9bea08](https://github.com/synerise/synerise-design/commit/f9bea08cb5d38212a91d6fb1cb8b49f850bc7a32))
+* **layout:** add new Layout examples ([f84da64](https://github.com/synerise/synerise-design/commit/f84da6416cc0516a36be077cdad420ab4e1ec5e7))
+* **layout:** add story with fullwidth ([0361f98](https://github.com/synerise/synerise-design/commit/0361f984916ea4c29e717052d1339a0548f315eb))
+* **layout:** move Stories to separate category ([78730d6](https://github.com/synerise/synerise-design/commit/78730d6931356a9670351e3bff3a9e6e900b0ade))
+* **layout:** update sidebars ([9eeb849](https://github.com/synerise/synerise-design/commit/9eeb849c77d930fbf027fb2404b581a51eca17dd))
+* **subtle-form:** added subtle date picker ([a5b5575](https://github.com/synerise/synerise-design/commit/a5b55759f6849a8faefa9c33699cbdd2c16f4a89))
+* **subtle-form:** added subtle select base ([13e6d9a](https://github.com/synerise/synerise-design/commit/13e6d9aacb36e1d4e1f9ae6aea163811d238abb6))
+* **subtle-form:** added subtle select stories ([694e832](https://github.com/synerise/synerise-design/commit/694e8323154a2e18412998797a4f8ca8eccede67))
+
+
+
+
+
 ## [0.96.4](https://github.com/synerise/synerise-design/compare/portal@0.96.3...portal@0.96.4) (2020-10-05)
 
 
