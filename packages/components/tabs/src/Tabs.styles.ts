@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 import Button from '@synerise/ds-button';
 import { Props as ButtonProps } from '@synerise/ds-button/dist/Button.types';
+import { MenuItemProps } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.types';
+import Menu from '@synerise/ds-menu';
+import { AntdMenuProps } from '@synerise/ds-menu/dist/Menu.types';
 
 export const TabsContainer = styled.div<{ block?: boolean }>`
   padding-top: 5px;
@@ -20,12 +23,7 @@ export const TabsDropdownContainer = styled.div`
   justify-content: flex-start;
   background-color: ${({ theme }): string => theme.palette.white};
   opacity: 1;
-  padding: 8px 8px;
-
-  .ant-list {
-    width: 100%;
-    padding: 0;
-  }
+  padding: 8px;
 `;
 
 export const TabsDropdownDivider = styled.div`
@@ -51,4 +49,11 @@ export const HiddenTabs = styled.div`
   position: absolute;
   width: 0;
   visibility: hidden;
+`;
+export const DropdownMenu = styled(Menu)<AntdMenuProps>`
+`;
+export const DropdownMenuItem = styled(Menu.Item)<MenuItemProps>`
+  &&& {
+    border: none;
+  }
 `;
