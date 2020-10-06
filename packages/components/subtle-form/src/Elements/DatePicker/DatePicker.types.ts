@@ -3,5 +3,6 @@ import { SubtleFieldProps } from '../../SubtleForm.types';
 
 export type SubtleDatePickerProps = {
   placeholder?: string;
+  format?: string;
 } & SubtleFieldProps &
   DsDatePickerProps;
