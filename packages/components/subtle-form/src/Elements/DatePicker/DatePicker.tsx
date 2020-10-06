@@ -58,14 +58,16 @@ const SubtleDatePicker: React.FC<SubtleDatePickerProps> = ({
         {active && !blurred ? (
           <DatePicker
             {...rest}
-            autoFocus
-            format={dateFormat}
             value={value}
             onApply={(date): void => {
               handleDeactivate();
               onApply && onApply(date);
             }}
             onClear={handleDeactivate}
+            // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+            // @ts-ignore
+            autoFocus
+            format={dateFormat}
             onDropdownVisibleChange={(visible: boolean): void => {
               setActive(visible);
               setBlurred(!visible);
