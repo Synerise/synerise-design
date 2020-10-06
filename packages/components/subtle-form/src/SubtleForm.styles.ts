@@ -1,5 +1,6 @@
 import styled, { css, FlattenSimpleInterpolation, keyframes } from 'styled-components';
 import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { MaskedDatePlaceholder } from './Elements/DatePicker/DatePicker.styles';
 
 const disableBlinkingCursor = (props: ThemeProps & { grey: boolean }): FlattenSimpleInterpolation => css`
   color: transparent;
@@ -44,10 +45,11 @@ export const MainContent = styled.div`
   overflow-wrap: break-word;
   width: 100%;
   height: 100%;
+  transition: color 0.1s ease-in 0.2s;
 `;
-export const Suffix = styled.div`
+export const Suffix = styled.div<{ select?: boolean }>`
   position: absolute;
-  right: 6px;
+  right: ${(props): string => (props.select ? `9px` : `6px`)};
   top: 6px;
   display: flex;
   opacity: 0;
@@ -63,18 +65,18 @@ export const Container = styled.div<{ active: boolean }>`
   ${(props): false | FlattenSimpleInterpolation =>
     props.active &&
     css`
-      margin: -1px 0 0 -1px;
+      margin: -2px 0 0 -1px;
     `}
 
   > div {
     margin: 0;
   }
 `;
-export const Inactive = styled.div<{ rows: number; blurred: boolean }>`
+export const Inactive = styled.div<{ rows?: number; blurred: boolean; datePicker?: boolean; datePickerValue?: Date }>`
   position: relative;
   width: 100%;
   min-height: 32px;
-  height: ${(props): string => `calc(${props.rows * 17 + 17}px);`}
+  ${(props): false | string => !!props.rows && `height: ${props.rows * 17 + 17}px;`}
   align-items: flex-start;
   background: ${(props): string => props.theme.palette.white};
   display: flex;
@@ -92,6 +94,13 @@ export const Inactive = styled.div<{ rows: number; blurred: boolean }>`
       &:hover {
         padding: 7px 14px 7px 12px;
         background: ${props.theme.palette['grey-050']};
+        ${MainContent} {
+          ${props.datePicker && !props.datePickerValue && `color: transparent;`}
+          ${MaskedDatePlaceholder} {
+            left: 12px;
+            ${props.datePicker && !props.datePickerValue && `color: ${props.theme.palette['grey-600']};`}
+          }
+        }
         ${Suffix} {
           opacity: 1;
         }
