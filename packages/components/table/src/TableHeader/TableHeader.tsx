@@ -32,7 +32,11 @@ const TableHeader: React.FC<Props> = ({
     ) : (
       <S.Left>
         {selection && <TableSelection rowKey={rowKey} dataSource={dataSource} selection={selection} />}
-        {title && <S.Title>{title}</S.Title>}
+        {title && (
+          <S.Title>
+            <strong>{title}</strong>
+          </S.Title>
+        )}
       </S.Left>
     );
   }, [selectedRows, itemsMenu, title, dataSource, selection, rowKey]);

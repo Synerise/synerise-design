@@ -6,7 +6,7 @@ import { DEFAULT_COLUMNS_NUMBER, GridContext } from '../Grid';
 
 const BREAKPOINTS = ['xxl', 'xl', 'lg', 'md', 'sm', 'xs'];
 
-const Item: React.FC<GridItemProps> = ({ children, ...props }) => {
+const Item: React.FC<GridItemProps> = ({ children, contentWrapper, ...props }) => {
   const breakpointData: DimensionsWithBreakpoint = React.useContext(GridContext);
 
   const definedBreakpoints = React.useMemo(() => {
@@ -37,7 +37,12 @@ const Item: React.FC<GridItemProps> = ({ children, ...props }) => {
   }, [breakpointColumns, breakpointData]);
 
   return (
-    <S.GridItem className="ds-grid-item" columns={getColumns}>
+    <S.GridItem
+      className="ds-grid-item"
+      columns={getColumns}
+      maxColumns={breakpointData?.breakpoint?.columns || getColumns}
+      contentWrapper={Boolean(contentWrapper)}
+    >
       {children}
     </S.GridItem>
   );

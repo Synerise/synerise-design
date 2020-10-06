@@ -126,7 +126,7 @@ const stories = {
        >
          <AppMenu.Item.Icon active={<CampaignsColorM />} inActive={<CampaignsGreyM />}/>
        </AppMenu.Item>,
-        <AppMenu.Item key="chat" name="Chat" id="chat">
+      <AppMenu.Item key="chat" name="Chat" id="chat">
         <AppMenu.Item.Icon active={<ChatColorM />} inActive={<ChatGreyM />}/>
       </AppMenu.Item>,
       <AppMenu.Item  key="automation" name="Automation" id="automation">

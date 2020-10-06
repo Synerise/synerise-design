@@ -1,10 +1,12 @@
 import { TabItem } from '@synerise/ds-tabs/dist/Tabs.types';
+import * as React from 'react';
+import { TextareaAutosize } from '@synerise/ds-subtle-form/dist/Elements/TextArea/TextArea.types';
 import { HeaderTexts } from './Elements/Header/Header.types';
 
 export type SidebarObjectProps = {
   avatar: React.ReactNode;
   headerPreffix: React.ReactNode;
-  headerTabs: TabItem[];
+  headerTabs: TabItem & {content?: React.ReactNode}[];
   inputObject: {
     id: string;
     [key: string]: string | React.ReactNode;
@@ -20,6 +22,13 @@ export type SidebarObjectProps = {
   texts: HeaderTexts;
   onCloseClick: () => void;
   textDescription: string;
+  onArrowUp: () => void;
+  onArrowDown: () => void;
+  onFolderSelect: (item: FolderItem) => void;
+  onScrollbar: boolean;
+  autoSize: TextareaAutosize;
+  handleTabClick: (index: number) => void;
+  disableDefaultTabContent?: boolean;
 
 };
 export type FolderItem = {

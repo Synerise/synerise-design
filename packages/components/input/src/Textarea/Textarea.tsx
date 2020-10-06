@@ -10,6 +10,7 @@ const Textarea: React.FC<TextAreaProps & { error?: string; wrapperStyle?: React.
   wrapperStyle,
   onBlur,
   onFocus,
+  autoSize,
   ...props
 }) => {
   const [focus, setFocus] = React.useState<boolean>(false);
@@ -19,7 +20,7 @@ const Textarea: React.FC<TextAreaProps & { error?: string; wrapperStyle?: React.
       isDisabled={Boolean(disabled)}
       isFocused={focus}
       hasError={Boolean(error)}
-      style={{ height: `${rows * 17}px`, ...wrapperStyle }}
+      style={{ height: autoSize ? 'auto' : `${rows * 17}px`, ...wrapperStyle }}
     >
       <Scrollbar absolute>
         <Input.TextArea

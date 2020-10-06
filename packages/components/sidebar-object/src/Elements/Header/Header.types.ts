@@ -16,6 +16,8 @@ export type HeaderProps = {
   texts: HeaderTexts;
   onCloseClick: () => void;
   activeTab: number;
+  onArrowUp: () => void;
+  onArrowDown: () => void;
   inputObject: {
     id: string;
     [key: string]: string | React.ReactNode;
@@ -36,5 +38,4 @@ export type HeaderTexts = {
   labelName: string | React.ReactNode;
   labelTooltip: string | React.ReactNode;
   suffixTooltip: string | React.ReactNode;
-
 };

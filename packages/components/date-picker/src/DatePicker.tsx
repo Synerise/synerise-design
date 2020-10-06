@@ -7,7 +7,9 @@ import PickerInput from './Elements/PickerInput/PickerInput';
 import * as S from './DatePicker.styles';
 
 const DatePicker: React.FC<Props> = ({
+  autoFocus,
   texts,
+  format,
   value,
   onApply,
   showTime,
@@ -16,9 +18,10 @@ const DatePicker: React.FC<Props> = ({
   errorText,
   popoverPlacement,
   error,
+  onDropdownVisibleChange,
   ...rest
 }) => {
-  const [dropVisible, setDropVisible] = React.useState(false);
+  const [dropVisible, setDropVisible] = React.useState(autoFocus || false);
   const [selectedDate, setSelectedDate] = React.useState(value);
   const ref = React.useRef<HTMLDivElement>(null);
   useOnClickOutside(ref, () => {
@@ -54,15 +57,19 @@ const DatePicker: React.FC<Props> = ({
         </S.OverlayContainer>
       }
       overlayStyle={{ boxShadow: '0 4px 12px 0 rgba(35, 41, 54, 0.07)' }}
+      onVisibleChange={onDropdownVisibleChange}
+      trigger={['click']}
       placement={popoverPlacement}
       visible={!!dropVisible}
     >
       <PickerInput
+        autoFocus={autoFocus}
         value={selectedDate}
         showTime={showTime}
         onClick={(): void => {
           setDropVisible(!dropVisible);
         }}
+        format={format}
         onClear={(): void => {
           setDropVisible(false);
           setSelectedDate(undefined);

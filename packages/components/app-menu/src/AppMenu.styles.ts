@@ -6,7 +6,7 @@ export const MenuWrapper = styled.div<{ top: number }>`
   position: fixed;
   left: 0;
   top: ${(props): number => props.top}px;
-  width: 60px;
+  width: 63px;
   box-shadow: 0 4px 12px 0 rgba(35, 41, 54, 0.04);
   display: flex;
   flex-flow: column;

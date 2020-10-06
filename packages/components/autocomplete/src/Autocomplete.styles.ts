@@ -29,7 +29,7 @@ const error = (): FlattenInterpolation<ThemeProps> => css`
 `;
 
 export const AutocompleteWrapper = styled.div`
-  .ant-select-auto-complete {
+  .ant-select-dropdown {
     &.ant-select {
       .ant-input {
         transition: ease-in-out all 0.3s;
@@ -93,11 +93,8 @@ export const AutocompleteWrapper = styled.div`
         font-weight: 500;
       }
     }
-
-    .ant-select-dropdown-menu-item-active:not(.ant-select-dropdown-menu-item-disabled) {
-      font-weight: 500;
-    }
   }
-  .ant-select-selection-search-input{
-  padding: 0;
+  .ant-select-selection-search-input {
+    padding: 0;
+  }
 `;
