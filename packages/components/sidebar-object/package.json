@@ -29,6 +29,7 @@
     "@synerise/ds-description": "^0.1.14",
     "@synerise/ds-dropdown": "^0.11.76",
     "@synerise/ds-inline-edit": "^0.1.64",
+    "@synerise/ds-subtle-form": "^0.1.2",
     "@synerise/ds-tabs": "^0.10.41"
   },
   "peerDependencies": {

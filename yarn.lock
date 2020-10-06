@@ -5172,6 +5172,15 @@
     "@synerise/ds-typography" "^0.9.1"
     classnames "^2.2.6"
 
+"@synerise/ds-subtle-form@^0.1.2":
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/@synerise/ds-subtle-form/-/ds-subtle-form-0.1.2.tgz#9b83cb0918c8f964b1f48408ae14dcfa3dbb91db"
+  integrity sha512-nIZrNFS9UeCCB6I68if2Rb5VbVfN4Uc+MBAyvHDpuQ97Hxnn7CcB9s+Ex6OuReogzjN1xl1nD4rUnXATDB6H4Q==
+  dependencies:
+    "@synerise/ds-icon" "^0.29.0"
+    "@synerise/ds-input" "^0.15.6"
+    "@synerise/ds-tooltip" "^0.7.19"
+
 "@synerise/ds-time-picker@^0.3.11":
   version "0.3.11"
   resolved "https://registry.yarnpkg.com/@synerise/ds-time-picker/-/ds-time-picker-0.3.11.tgz#d54abb89f58e4b0284d4554b77a1eaa9048326a6"
