@@ -26,10 +26,10 @@
   "types": "dist/index.d.ts",
   "dependencies": {
     "@synerise/ds-date-picker": "^0.1.28",
-    "@synerise/ds-icon": "^0.28.0",
-    "@synerise/ds-input": "^0.15.5",
+    "@synerise/ds-icon": "^0.29.0",
+    "@synerise/ds-input": "^0.15.6",
     "@synerise/ds-select": "^0.12.31",
-    "@synerise/ds-tooltip": "^0.7.18",
+    "@synerise/ds-tooltip": "^0.7.19",
     "calculate-size": "^1.1.1"
   },
   "peerDependencies": {
