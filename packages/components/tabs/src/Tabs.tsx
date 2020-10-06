@@ -79,7 +79,7 @@ const Tabs: React.FC<TabsProps> = ({
               <S.DropdownMenuItem
                 // eslint-disable-next-line react/no-array-index-key
                 key={`${item.label}-dropdown-${index}`}
-                onSelect={(): void => handleTabClick(visibleTabs.length + index)}
+                onClick={(): void => handleTabClick(visibleTabs.length + index)}
                 disabled={item.disabled}
               >
                 {item.label}
@@ -92,7 +92,7 @@ const Tabs: React.FC<TabsProps> = ({
           <S.DropdownMenu>
             <S.DropdownMenuItem
               key="configuration-btn"
-              onSelect={handleConfigurationAction}
+              onClick={handleConfigurationAction}
               disabled={!!configuration?.disabled}
             >
               {configuration.label}
