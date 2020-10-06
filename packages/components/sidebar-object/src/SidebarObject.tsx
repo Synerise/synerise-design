@@ -5,13 +5,13 @@ import Button from '@synerise/ds-button';
 import Icon from '@synerise/ds-icon';
 import { AngleDownS } from '@synerise/ds-icon/dist/icons';
 import Scrollbar from '@synerise/ds-scrollbar';
+import { TabItem } from '@synerise/ds-tabs/dist/Tabs.types';
 import { SidebarObjectProps } from './SidebarObject.types';
 import Header from './Elements/Header/Header';
 import Content from './Elements/Content/Content';
 import ObjectSummary from './Elements/ObjectSummary/ObjectSummary';
 import DropdownOverlay from './Elements/Header/Dropdown/DropdownOverlay';
 import * as S from './Elements/Header/Header.style';
-import { TabItem } from '@synerise/ds-tabs/dist/Tabs.types';
 
 const SidebarObject: React.FC<SidebarObjectProps> = ({
   avatar,
