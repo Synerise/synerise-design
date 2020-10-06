@@ -25,11 +25,15 @@ const SubtleTextArea: React.FC<SubtleTextAreaProps> = ({
   suffixTooltip,
   suffix,
   autoSize,
+  error,
+  errorText,
 }) => {
   const [active, setActive] = React.useState<boolean>(false);
   const [blurred, setBlurred] = React.useState<boolean>(false);
   const containerRef = React.useRef<HTMLDivElement>(null);
   const [visibleRows, setVisibleRows] = React.useState<number>(minRows);
+
+  const hasError = error || !!errorText;
   const calculateTextHeight = React.useCallback(() => {
     let textHeight = 0;
     if (!!value && !!containerRef.current) {
@@ -74,10 +78,10 @@ const SubtleTextArea: React.FC<SubtleTextAreaProps> = ({
         <Label label={label} tooltip={labelTooltip} />
       </S.ContentAbove>
       <S.Container ref={containerRef} className="ds-subtle-textarea" active={active}>
-        {active ? (
+        {active || hasError ? (
           <TextArea
             autoSize={autoSize}
-            autoFocus
+            autoFocus={!hasError}
             onChange={(e: React.ChangeEvent<HTMLInputElement>): void => {
               onChange && onChange(e.currentTarget.value);
             }}
@@ -86,9 +90,11 @@ const SubtleTextArea: React.FC<SubtleTextAreaProps> = ({
             rows={visibleRows < 2 ? 2 : visibleRows}
             style={{ margin: 0 }}
             placeholder={placeholder}
+            error={error}
+            errorText={errorText}
             // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
             // @ts-ignore
-            wrapperStyle={{ minHeight: visibleRows * ROW_HEIGHT_PX + ROW_HEIGHT_PX, margin: 0 }}
+            wrapperStyle={{ margin: 0 }}
           />
         ) : (
           <S.Inactive rows={visibleRows} onClick={handleActivate} blurred={blurred}>
