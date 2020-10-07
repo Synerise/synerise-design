@@ -31,6 +31,7 @@ const InlineEdit: React.FC<InlineEditProps> = ({
   const [scrolled, setScrolled] = React.useState<boolean>();
   const handleScroll = React.useCallback((): void => {
     if (inputRef?.current !== null) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const scrolledPixels = ((inputRef?.current as any).input as HTMLElement).scrollLeft;
       if (scrolledPixels > 0) {
         setScrolled(true);
