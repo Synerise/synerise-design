@@ -1,3 +1,4 @@
-export type SaveFilterFormProps = {
 
-}
+export type SaveFilterFormProps = {
+  onFilterSave: (name: string) => void;
+};

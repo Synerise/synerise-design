@@ -118,6 +118,7 @@ class RawDateRangePicker extends React.PureComponent<Props, State> {
       relativeModes,
       texts,
       savedFilters,
+      onFilterSave,
     } = this.props;
     const { value, mode, changed } = this.state;
     const { from, to, key } = value;
@@ -129,6 +130,7 @@ class RawDateRangePicker extends React.PureComponent<Props, State> {
             onCancel={this.handleFilterCancel}
             onApply={this.handleFilterApply}
             savedFilters={savedFilters}
+            onFilterSave={onFilterSave}
           />
         </Container>
       );

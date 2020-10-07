@@ -13,7 +13,7 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({ label, filters, onFilte
         {filters.map(filter => (
           <S.DropdownMenuItem
             key={filter?.name}
-            text={filter.type}
+            text={filter.name}
             onClick={(): void => {
               onFilterSelect && onFilterSelect(filter);
             }}

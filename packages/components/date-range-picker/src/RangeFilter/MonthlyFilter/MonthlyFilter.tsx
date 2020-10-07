@@ -155,9 +155,11 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
   render(): JSX.Element {
     const { value,onRangeCopy, onRangePaste, onRangeClear,rangeClipboard, intl } = this.props;
     const { visible } = this.state;
+    console.log('value',value);
+    const data = [...value];
     return (
       <S.MonthlyFilterWrapper>
-        {value.map((item, key) => (
+        {data.map((item, key) => (
           <ContentItem
             onExpand={(id) => this.handleCollapse(id)}
             expanded={visible[item.id]}
@@ -190,7 +192,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
                       maxLength: 120,
                     }}
                     dataSource={PERIODS.map(i => ({
-                      checked: value[key]?.period === i.value,
+                      checked: data[key]?.period === i.value,
                       text: intl.formatMessage({ id: i.name as string }),
                       onSelect: (): void => {
                         this.handleTypeChange(i.value as string, key);
@@ -210,7 +212,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
                       maxLength: 120,
                     }}
                     dataSource={PERIODS_TYPE.map(i => ({
-                      checked: value[key]?.periodType === i.value,
+                      checked: data[key]?.periodType === i.value,
 
                       text: intl.formatMessage({ id: i.translationKey as string }),
                       onSelect: (): void => {

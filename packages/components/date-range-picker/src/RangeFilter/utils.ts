@@ -9,6 +9,7 @@ import {
   ComponentDataType,
   WeekFilter,
 } from './RangeFilter.types';
+import { SavedFilter } from './FilterDropdown/FilterDropdown.types';
 
 /*
  * Map field from components to datefilter schema
@@ -138,3 +139,16 @@ export const denormalizeValue = (values: FilterValue): Partial<FilterValue> => (
 
 export const isValidValue = (value: FilterValue): boolean =>
   !value.definition.hasOwnProperty('type') || value.definition.type;
+
+export const isDuplicate = (itemsList: SavedFilter[], item: SavedFilter): boolean => {
+  return itemsList.some(i => i.name.toLowerCase() === item.name.toLowerCase() && i.id !== item.id);
+};
+const DEFAULT_NAME = 'Filter';
+
+export const addSuffixToDuplicate = (itemsList: SavedFilter[], editedItem: SavedFilter): SavedFilter => {
+  let newItem = editedItem;
+  while (isDuplicate(itemsList, newItem)) {
+    newItem = { ...newItem, name: `${newItem.name || DEFAULT_NAME} (1)` };
+  }
+  return newItem;
+};

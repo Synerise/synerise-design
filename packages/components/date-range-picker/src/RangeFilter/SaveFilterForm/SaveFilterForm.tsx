@@ -6,11 +6,18 @@ import { CheckM, CloseM } from '@synerise/ds-icon/dist/icons';
 import { SaveFilterFormProps } from './SaveFilterForm.types';
 import * as S from './SaveFilterForm.styles';
 
-const SaveFilterForm: React.FC<SaveFilterFormProps> = () => {
+const SaveFilterForm: React.FC<SaveFilterFormProps> = ({onFilterSave}) => {
   const [active, setActive] = React.useState<boolean>(false);
+  const [name, setName] = React.useState<string>();
   const input = (
     <>
-      <RawInput placeholder="Filter name" />
+      <RawInput
+        placeholder="Filter name"
+        value={name}
+        onChange={(e): void => {
+          setName(e.target.value);
+        }}
+      />
       <S.FormButton
         mode="single-icon"
         type="ghost"
@@ -26,6 +33,8 @@ const SaveFilterForm: React.FC<SaveFilterFormProps> = () => {
         color="blue"
         onClick={(): void => {
           setActive(false);
+          name && onFilterSave(name);
+          setName('');
         }}
       >
         <Icon component={<CheckM />} />

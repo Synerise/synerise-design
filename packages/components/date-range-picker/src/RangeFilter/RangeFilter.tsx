@@ -9,7 +9,7 @@ import { TYPES, TYPES_DATA } from './constants';
 import { denormalizeValue, isValidValue, normalizeValue } from './utils';
 import { FilterDefinition, FilterValue, RangeFilterProps, RangeFilterState } from './RangeFilter.types';
 import FilterDropdown from './FilterDropdown/FilterDropdown';
-import { NamedFilter } from './FilterDropdown/FilterDropdown.types';
+import { SavedFilter } from './FilterDropdown/FilterDropdown.types';
 import SaveFilterForm from './SaveFilterForm/SaveFilterForm';
 
 class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState> {
@@ -24,10 +24,6 @@ class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState
       activeType: valueType,
       [String(valueType)]: { ...denormalizeValue(props.value) },
     } as RangeFilterState;
-  }
-
-  componentWillReceiveProps(props) {
-    this.setState({ value: denormalizeValue(props.value) });
   }
 
   handleApply = (): void => {
@@ -66,6 +62,19 @@ class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState
     this.setState({ rangeClipboard: range });
   };
 
+  handleFilterSave = (filterName: string): void => {
+    const { activeType } = this.state;
+    const { onFilterSave, savedFilters } = this.props;
+    const currentFilter = this.state[activeType];
+    onFilterSave && onFilterSave([...savedFilters, { ...currentFilter, type: activeType, name: filterName, id: 0 }]);
+  };
+
+  handleSavedFilterSelect = (selected: SavedFilter): void => {
+    this.setState({
+      activeType: selected.type,
+      [selected.type]: selected,
+    });
+  };
   render(): JSX.Element {
     const { activeType, rangeClipboard } = this.state;
     // eslint-disable-next-line react/destructuring-assignment
@@ -80,9 +89,7 @@ class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState
           {!!savedFilters?.length && (
             <FilterDropdown
               filters={savedFilters}
-              onFilterSelect={(selected: NamedFilter): void => {
-                this.setState({ activeType: selected.type, [selected.type]: { ...selected, definition: selected } });
-              }}
+              onFilterSelect={this.handleSavedFilterSelect}
               label="Saved filters"
             />
           )}
@@ -115,7 +122,7 @@ class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState
           </S.MainComponentWrapper>
         </S.Body>
         <S.Footer>
-          <SaveFilterForm />
+          <SaveFilterForm onFilterSave={this.handleFilterSave} />
           <S.FooterSeparator />
           <Button type="ghost" onClick={this.handleCancel}>
             {intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.CANCEL' })}
