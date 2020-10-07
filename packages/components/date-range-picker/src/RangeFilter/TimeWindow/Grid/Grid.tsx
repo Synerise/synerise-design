@@ -5,6 +5,7 @@ import { GridProps } from './Grid.types';
 import { Action, Header } from '../Header/Header';
 import * as S from '../TimeWindow.styles';
 import { reverseRange } from '../utils';
+import { HeaderWrapper } from '../TimeWindow.styles';
 
 const Grid: React.FC<GridProps> = ({
   keys,
@@ -52,7 +53,9 @@ const Grid: React.FC<GridProps> = ({
   }
   return (
     <>
-      <Header title={title} actions={actions} style={{ marginBottom: 16 }} />
+      <HeaderWrapper>
+        <Header title={title} actions={actions}/>
+      </HeaderWrapper>
       {grid}
     </>
   );

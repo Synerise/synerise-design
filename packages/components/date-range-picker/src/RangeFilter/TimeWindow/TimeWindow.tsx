@@ -11,6 +11,7 @@ import RangeSummary from './RangeSummary/RangeSummary';
 import { getDateFromDayValue } from './utils';
 import Grid from './Grid/Grid';
 import RangeActions from './RangeActions/RangeActions';
+import SelectionCount from '../SelectionCount/SelectionCount';
 
 class TimeWindowBase extends React.PureComponent<Props, State> {
   // eslint-disable-next-line react/destructuring-assignment
@@ -99,7 +100,6 @@ class TimeWindowBase extends React.PureComponent<Props, State> {
   };
 
   handleDayTimeChange = (value: [Date, Date], dayKey: DayKey): void => {
-    console.log('DAYKEY', dayKey);
     this.handleDayChange(dayKey, {
       restricted: true,
       start: dayjs(value[0]).format('HH:mm:ss.SSS'),
@@ -207,7 +207,7 @@ class TimeWindowBase extends React.PureComponent<Props, State> {
     onRangeCopy && onRangeCopy({ start: dayValue.start, stop: dayValue.stop });
   };
 
-  getAllKeys = (): number[] => {
+  getAllKeys = (): DayKey[] => {
     const { numberOfDays, customDays } = this.props;
     let keys = range(numberOfDays);
     if (customDays) keys = [...keys, ...((Object.keys(customDays) as unknown) as number[])];
@@ -245,7 +245,7 @@ class TimeWindowBase extends React.PureComponent<Props, State> {
     );
   };
 
-  renderRangeForm = (dayKeys: DayKey, singleMode: boolean): React.ReactNode => {
+  renderRangeForm = (dayKeys: DayKey | DayKey[]): React.ReactNode => {
     const { activeDays } = this.state;
     const dayValue = this.getDayValue(activeDays[0]);
     const rangeForm = (
@@ -259,7 +259,7 @@ class TimeWindowBase extends React.PureComponent<Props, State> {
         }
         onEndChange={(value: Date): void =>
           activeDays.length > 1
-            ? this.handleMultipleDayTimeChange([value, getDateFromDayValue(dayValue.stop)])
+            ? this.handleMultipleDayTimeChange([getDateFromDayValue(dayValue.start),value])
             : this.handleDayTimeChange([getDateFromDayValue(dayValue.start), value], dayKeys)
         }
       />
@@ -293,9 +293,14 @@ class TimeWindowBase extends React.PureComponent<Props, State> {
     return (
       <S.TimeWindowContainer
         style={style}
-        onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>): void => {
+        onKeyPress={(e: React.KeyboardEvent<HTMLDivElement>): void => {
           if (e.key === 'Shift') {
-            this.setState({ multipleSelectionMode: !multipleSelectionMode });
+            this.setState({ multipleSelectionMode: true });
+          }
+        }}
+        onKeyUp={(e: React.KeyboardEvent<HTMLDivElement>): void => {
+          if (e.key === 'Shift') {
+            this.setState({ multipleSelectionMode: false });
           }
         }}
       >
@@ -308,9 +313,16 @@ class TimeWindowBase extends React.PureComponent<Props, State> {
             days={days}
             intl={intl}
             {...rest}
+            title={
+              <SelectionCount
+                selectedDayCount={activeDays.length}
+                label="Selected"
+                tooltipLabel="Use shift to switch to multiple mode"
+              />
+            }
           />
         )}
-        {(!!activeDays.length || !!daily) && this.renderRangeForm(rangeFormKey, singleMode)}
+        {(!!activeDays.length || !!daily) && this.renderRangeForm(rangeFormKey)}
       </S.TimeWindowContainer>
     );
   }

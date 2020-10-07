@@ -11,12 +11,11 @@ export type Action = {
 type HeaderProps = {
   title: string | React.ReactNode;
   actions?: Action[];
-  style: React.CSSProperties;
   suffix?: React.ReactNode;
 };
 
-export const Header: React.FC<HeaderProps> = ({ title, actions,suffix, ...rest }) => (
-  <S.Container data-attr="time-window-header" {...rest}>
+export const Header: React.FC<HeaderProps> = ({ title, actions,suffix }) => (
+  <S.Container data-attr="time-window-header">
     <S.Title data-attr="title">{title}</S.Title>
     <S.Actions data-attr="actions">
       {actions &&

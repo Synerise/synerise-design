@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { IntlShape } from 'react-intl';
-import { CustomDayConfig, DayKey, Days } from '../TimeWindow.types';
+import { DayKey, Days } from '../TimeWindow.types';
 
 export type GridProps = {
   keys: number[];
   days: Days;
   showSelectAll: boolean;
-  title: string;
+  title: string | React.ReactNode;
   numberOfDays: number;
   numberOfDaysPerRow?: number;
   rowLabelFormatter?: (rowIndex: number) => string;

@@ -16,7 +16,7 @@ const RangeSummary: React.FC<RangeSummaryProps> = ({ dayKeys, getDayLabel, month
         </S.DayShortname>
       ));
   }, [dayKeys, getDayLabel, monthlyFilter]);
-  return <S.TitleWrapper>Set time for: {daysToDisplay}</S.TitleWrapper>;
+  return <S.TitleWrapper>Set time for:{SPACE_UNICODE}{daysToDisplay}</S.TitleWrapper>;
 };
 
 export default RangeSummary;

@@ -27,7 +27,7 @@ const Day: React.FC<Props> = ({
   const type = active ? 'primary' : 'default';
   const readOnlyStyles = readOnly ? { opacity: 0.6, cursor: 'default', width: '100%' } : { width: '100%' };
   const icon = React.useMemo(() => {
-    if (restricted) {
+    if (restricted && !active) {
       return hovered ? (
         <>
           <S.DayTooltip>Clear</S.DayTooltip>
@@ -38,7 +38,7 @@ const Day: React.FC<Props> = ({
       );
     }
     return null;
-  }, [restricted, hovered, iconHover]);
+  }, [restricted, active, hovered, iconHover]);
   return (
     <S.Container onMouseOut={(): void => setHovered(false)} onMouseOver={(): void => setHovered(true)}>
       <Button {...rest} style={readOnlyStyles} onClick={onToggle as any} type={type} mode="label-icon">

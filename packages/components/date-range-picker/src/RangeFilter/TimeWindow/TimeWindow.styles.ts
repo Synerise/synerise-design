@@ -40,3 +40,6 @@ export const Days = styled.div<{ columns: number }>`
   }
 `;
 
+export const HeaderWrapper = styled.div`
+  margin-bottom: 12px;
+`
