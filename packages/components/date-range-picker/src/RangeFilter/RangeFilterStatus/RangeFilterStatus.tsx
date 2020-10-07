@@ -10,7 +10,7 @@ import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import * as S from './RangeFilterStatus.styles';
 import { RangeFilterStatusProps } from './RangeFilterStatus.types';
 
-const RangeFilterStatus: React.FC<RangeFilterStatusProps> = ({ disabled, filter, label, onClick }) => {
+const RangeFilterStatus: React.FC<RangeFilterStatusProps> = ({ onFilterRemove, disabled, filter, label, onClick }) => {
   const intl = useIntl();
   return (
     <S.Container>
@@ -18,7 +18,7 @@ const RangeFilterStatus: React.FC<RangeFilterStatusProps> = ({ disabled, filter,
         <Button.Creator label={label} disabled={disabled} onClick={onClick} block />
       ) : (
         <ContentItem
-          onClick={e => {
+          onClick={(e): void => {
             e.stopPropagation();
             onClick();
           }}
@@ -27,9 +27,9 @@ const RangeFilterStatus: React.FC<RangeFilterStatusProps> = ({ disabled, filter,
               <S.SuffixText>Change</S.SuffixText>
               <Tooltip title="Remove">
                 <Icon
-                  onClick={e => {
+                  onClick={(e): void => {
                     e.stopPropagation();
-                    console.log('REMOVED');
+                    onFilterRemove && onFilterRemove();
                   }}
                   component={<CloseS />}
                   color={theme.palette['red-600']}

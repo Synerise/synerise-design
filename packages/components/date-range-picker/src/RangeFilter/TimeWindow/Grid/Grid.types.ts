@@ -6,6 +6,7 @@ export type GridProps = {
   keys: number[];
   days: Days;
   showSelectAll: boolean;
+  showUnselectAll: boolean;
   title: string | React.ReactNode;
   numberOfDays: number;
   numberOfDaysPerRow?: number;
@@ -16,7 +17,7 @@ export type GridProps = {
   labelInverted?: boolean;
   reverseGroup: number;
   intl: IntlShape;
-  onClearSelected: () => void;
   onSelectAll: Function;
+  onUnselectAll: Function;
   renderDay: (day: DayKey) => React.ReactNode;
 };

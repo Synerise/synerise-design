@@ -7,8 +7,8 @@ class WeeklyFilter extends React.PureComponent<WeeklyFilterProps> {
     const { value, onChange,onRangeClear,onRangePaste,onRangeCopy,rangeClipboard, intl } = this.props;
     return (
       <TimeWindow
-        title={<div>Select</div>}
         showSelectAll
+        showUnselectAll
         invertibleTime
         dayTemplate={(dayOfWeek: React.ReactText): { day: React.ReactText } => ({ day: dayOfWeek })}
         days={value}

@@ -26,11 +26,16 @@ class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState
     } as RangeFilterState;
   }
 
+  componentWillReceiveProps(props) {
+    this.setState({ value: denormalizeValue(props.value) });
+  }
+
   handleApply = (): void => {
     const { onApply } = this.props;
     const { activeType } = this.state;
     // eslint-disable-next-line react/destructuring-assignment
     const filter = this.state[String(activeType)];
+    console.log('APPLIED', normalizeValue(filter));
     onApply && onApply(normalizeValue(filter as FilterValue));
   };
 
@@ -54,11 +59,11 @@ class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState
   };
 
   handleRangeClear = (): void => {
-    this.setState({rangeClipboard: undefined})
+    this.setState({ rangeClipboard: undefined });
   };
 
   handleRangeCopy = (range: Partial<FilterDefinition>): void => {
-    this.setState({rangeClipboard: range})
+    this.setState({ rangeClipboard: range });
   };
 
   render(): JSX.Element {
@@ -110,7 +115,7 @@ class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState
           </S.MainComponentWrapper>
         </S.Body>
         <S.Footer>
-          <SaveFilterForm/>
+          <SaveFilterForm />
           <S.FooterSeparator />
           <Button type="ghost" onClick={this.handleCancel}>
             {intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.CANCEL' })}

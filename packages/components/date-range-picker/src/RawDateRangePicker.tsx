@@ -38,7 +38,6 @@ class RawDateRangePicker extends React.PureComponent<Props, State> {
 
   componentDidUpdate(prevProps: Readonly<Props>): void {
     const { value } = this.props;
-    console.log(this.props.savedFilters);
     if (prevProps.value !== value && !value) {
       this.handleRangeChange(value);
     }
@@ -160,6 +159,7 @@ class RawDateRangePicker extends React.PureComponent<Props, State> {
         <AddonCollapse
           content={
             <RangeFilterStatus
+              onFilterRemove={this.handleRemoveFilterClick}
               filter={value.filter}
               disabled={!value.from || !value.to}
               label={value?.filter ? 'Filter enabled' : 'Add filter'}

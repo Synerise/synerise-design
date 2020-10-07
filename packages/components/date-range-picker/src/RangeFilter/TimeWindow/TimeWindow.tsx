@@ -113,17 +113,17 @@ class TimeWindowBase extends React.PureComponent<Props, State> {
     const updatedDays = {};
     activeDays.forEach(k => {
       updatedDays[k] = {
-        restricted: true,
+        day:k,
         start: dayjs(value[0]).format('HH:mm:ss.SSS'),
         stop: dayjs(value[1]).format('HH:mm:ss.SSS'),
+        restricted: true,
       };
     });
     onChange({ ...days, ...updatedDays });
   };
 
   handleClearSelection = (): void => {
-    const { onChange } = this.props;
-    this.setState({ activeDays: [] }, () => onChange({}));
+    this.setState({ activeDays: [] } );
   };
 
   handleSelectAll = (): void => {
@@ -285,15 +285,15 @@ class TimeWindowBase extends React.PureComponent<Props, State> {
   };
 
   render(): JSX.Element {
-    const { style, days, daily, intl, ...rest } = this.props;
-    const { activeDays, multipleSelectionMode } = this.state;
+    const { style, days, numberOfDays, daily, intl, ...rest } = this.props;
+    const { activeDays } = this.state;
     const keys = this.getAllKeys();
     const singleMode = keys.length === 1;
     const rangeFormKey = singleMode ? keys[0] : activeDays;
     return (
       <S.TimeWindowContainer
         style={style}
-        onKeyPress={(e: React.KeyboardEvent<HTMLDivElement>): void => {
+        onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>): void => {
           if (e.key === 'Shift') {
             this.setState({ multipleSelectionMode: true });
           }
@@ -306,12 +306,14 @@ class TimeWindowBase extends React.PureComponent<Props, State> {
       >
         {!singleMode && (
           <Grid
-            onClearSelected={this.handleClearSelection}
+            onUnselectAll={this.handleClearSelection}
             onSelectAll={this.handleSelectAll}
+            showUnselectAll={activeDays?.length === numberOfDays}
             renderDay={this.renderDay}
-            keys={keys}
+            keys={keys as number[]}
             days={days}
             intl={intl}
+            numberOfDays={numberOfDays}
             {...rest}
             title={
               <SelectionCount

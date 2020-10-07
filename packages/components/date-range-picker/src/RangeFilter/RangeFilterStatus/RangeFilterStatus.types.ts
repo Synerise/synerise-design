@@ -5,4 +5,5 @@ export type RangeFilterStatusProps = {
   disabled: boolean;
   label: string;
   onClick: () => void;
+  onFilterRemove: () => void;
 };
