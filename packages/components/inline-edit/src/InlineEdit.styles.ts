@@ -7,6 +7,7 @@ type InPlaceEditableInputContainerProps = {
   disabled?: boolean;
   error?: boolean;
   pressed?: boolean;
+  scrolled?: boolean;
 };
 const applyColor = (props: ThemeProps & InPlaceEditableInputContainerProps): string => {
   if (props.error) return props.theme.palette['red-600'];
@@ -123,7 +124,7 @@ export const InPlaceEditableInputContainer = styled.div<InPlaceEditableInputCont
     background-repeat: repeat-x;
     ${({ size }): FlattenInterpolation<ThemeProps> => (size === 'normal' ? macro.h500 : macro.small)}; //todo: set type
     overflow: hidden;
-    text-overflow: ellipsis;
+    text-overflow: ${(props): string => (props.scrolled ? 'initial' : 'ellipsis')};
     max-width: 100%;
     padding-bottom: ${(props): string => (props.size === 'normal' ? '0' : '2px')};
     margin: 0;

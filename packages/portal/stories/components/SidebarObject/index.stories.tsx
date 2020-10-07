@@ -115,7 +115,7 @@ const stories = {
       { name: 'Drafts' },
       { name: 'Archived' },
     ];
-    let headerType = select('Set header type', headerTypes, headerTypes.singleTitle);
+    let headerType = (headerTypes.singleTitle);
     return (
       <div>
         <Button onClick={() => setDrawerVisible(!drawerVisible)} type="primary">
