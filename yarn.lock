@@ -5139,6 +5139,11 @@
   resolved "https://registry.yarnpkg.com/@synerise/ds-typography/-/ds-typography-0.8.3.tgz#9079d69ba637c5c7cafff9d6136ff3125780ce64"
   integrity sha512-THtP9Va5gZfn7I3rCbV3l86qvs34IYdmooxg1pEfWud85OqHstXC2qwAT51mOJnR7JU/cDNKb81TYP7AbycGmA==
 
+"@synerise/ds-utils@^0.11.0":
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/@synerise/ds-utils/-/ds-utils-0.11.0.tgz#eb389f566644f7601b180827b08f8c8370757399"
+  integrity sha512-bWx4VELUZrI6rInfcZWjWzuTw4P62hNDjK0kFV1vu6FEtVwBHVGbyBChduxwPxae0Ed2ccaVwyehVFNB3oNvEQ==
+
 "@synerise/ds-utils@^0.8.26", "@synerise/ds-utils@^0.8.31", "@synerise/ds-utils@^0.8.5":
   version "0.8.31"
   resolved "https://registry.yarnpkg.com/@synerise/ds-utils/-/ds-utils-0.8.31.tgz#f0ca7de48c80e6d7c45708f76577747dfe176543"
