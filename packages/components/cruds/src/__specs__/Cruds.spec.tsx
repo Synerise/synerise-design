@@ -63,24 +63,18 @@ describe('Cruds', () => {
     const {container} = renderWithProvider(<Cruds onAdd={handleAdd} onDelete={handleDelete} onRemove={handleRemove} onMove={handleMove} onEdit={handleEdit} onDuplicate={handleDuplicate} addTooltip={'Add'} deleteTooltip={'Delete'} duplicateTooltip={'Duplicate'} editTooltip={'Edit'} moveTooltip={'Move'} removeTooltip={'Remove'} />);
 
     // ACT
-    const addIcon = container.querySelector(ICON.add);
-    const editIcon = container.querySelector(ICON.edit);
-    const duplicateIcon = container.querySelector(ICON.duplicate);
-    const deleteIcon = container.querySelector(ICON.delete);
-    const moveIcon = container.querySelector(ICON.move);
-    const removeIcon = container.querySelector(ICON.remove);
+    const addIcon = container.querySelector(ICON.add) as HTMLElement;
+    const editIcon = container.querySelector(ICON.edit) as HTMLElement;
+    const duplicateIcon = container.querySelector(ICON.duplicate) as HTMLElement;
+    const deleteIcon = container.querySelector(ICON.delete) as HTMLElement;
+    const moveIcon = container.querySelector(ICON.move) as HTMLElement;
+    const removeIcon = container.querySelector(ICON.remove) as HTMLElement;
 
-    // @ts-ignore
     fireEvent.click(addIcon);
-    // @ts-ignore
     fireEvent.click(editIcon);
-    // @ts-ignore
     fireEvent.click(duplicateIcon);
-    // @ts-ignore
     fireEvent.click(deleteIcon);
-    // @ts-ignore
     fireEvent.click(moveIcon);
-    // @ts-ignore
     fireEvent.click(removeIcon);
 
     // ASSERT
@@ -104,8 +98,7 @@ describe('Cruds', () => {
     />);
 
     // ACT
-    const settingsIcon = container.querySelector(ICON.settings);
-    // @ts-ignore
+    const settingsIcon = container.querySelector(ICON.settings) as HTMLElement;
     fireEvent.click(settingsIcon);
 
     // ASSERT
