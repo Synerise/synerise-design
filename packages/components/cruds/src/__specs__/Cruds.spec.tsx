@@ -1,0 +1,116 @@
+import renderWithProvider from '@synerise/ds-utils/dist/testing/renderWithProvider/renderWithProvider';
+import * as React from 'react';
+import Cruds from '../Cruds';
+import { fireEvent } from '@testing-library/react';
+import { Settings2S } from '@synerise/ds-icon/dist/icons';
+import SingleAction from '../../dist/SingleAction';
+
+const ICON = {
+  add: '.add-s',
+  edit: '.edit-s',
+  duplicate: '.duplicate-s',
+  delete: '.trash-s',
+  move: '.drag-handle-m',
+  remove: '.close-s',
+  settings: '.settings-2-s'
+};
+
+describe('Cruds', () => {
+  it('Should render with multiple icons', () => {
+    // ARRANGE
+    const handleAdd = jest.fn();
+    const handleDelete = jest.fn();
+    const handleDuplicate = jest.fn();
+    const handleEdit = jest.fn();
+    const handleMove = jest.fn();
+    const handleRemove = jest.fn();
+
+    const {container} = renderWithProvider(
+      <Cruds
+        onAdd={handleAdd}
+        onDelete={handleDelete}
+        onRemove={handleRemove}
+        onMove={handleMove}
+        onEdit={handleEdit}
+        onDuplicate={handleDuplicate}
+        addTooltip={'Add'}
+        deleteTooltip={'Delete'}
+        duplicateTooltip={'Duplicate'}
+        editTooltip={'Edit'}
+        moveTooltip={'Move'}
+        removeTooltip={'Remove'}
+      />);
+
+
+    // ASSERT
+    expect(container.querySelector(ICON.add)).toBeTruthy();
+    expect(container.querySelector(ICON.edit)).toBeTruthy();
+    expect(container.querySelector(ICON.duplicate)).toBeTruthy();
+    expect(container.querySelector(ICON.delete)).toBeTruthy();
+    expect(container.querySelector(ICON.move)).toBeTruthy();
+    expect(container.querySelector(ICON.remove)).toBeTruthy();
+  });
+
+  it('Should handle actions', () => {
+    // ARRANGE
+    const handleAdd = jest.fn();
+    const handleDelete = jest.fn();
+    const handleDuplicate = jest.fn();
+    const handleEdit = jest.fn();
+    const handleMove = jest.fn();
+    const handleRemove = jest.fn();
+
+    const {container} = renderWithProvider(<Cruds onAdd={handleAdd} onDelete={handleDelete} onRemove={handleRemove} onMove={handleMove} onEdit={handleEdit} onDuplicate={handleDuplicate} addTooltip={'Add'} deleteTooltip={'Delete'} duplicateTooltip={'Duplicate'} editTooltip={'Edit'} moveTooltip={'Move'} removeTooltip={'Remove'} />);
+
+    // ACT
+    const addIcon = container.querySelector(ICON.add);
+    const editIcon = container.querySelector(ICON.edit);
+    const duplicateIcon = container.querySelector(ICON.duplicate);
+    const deleteIcon = container.querySelector(ICON.delete);
+    const moveIcon = container.querySelector(ICON.move);
+    const removeIcon = container.querySelector(ICON.remove);
+
+    // @ts-ignore
+    fireEvent.click(addIcon);
+    // @ts-ignore
+    fireEvent.click(editIcon);
+    // @ts-ignore
+    fireEvent.click(duplicateIcon);
+    // @ts-ignore
+    fireEvent.click(deleteIcon);
+    // @ts-ignore
+    fireEvent.click(moveIcon);
+    // @ts-ignore
+    fireEvent.click(removeIcon);
+
+    // ASSERT
+    expect(handleAdd).toBeCalled();
+    expect(handleDuplicate).toBeCalled();
+    expect(handleDelete).toBeCalled();
+    expect(handleEdit).toBeCalled();
+    expect(handleMove).toBeCalled();
+    expect(handleRemove).toBeCalled();
+  });
+
+  it('Should render singleAction', () => {
+    // ARRANGE
+    const handleClick = jest.fn();
+
+    const { container } = renderWithProvider(<SingleAction
+      className="settings"
+      title={'Settings'}
+      icon={<Settings2S />}
+      onClick={handleClick}
+    />);
+
+    // ACT
+    const settingsIcon = container.querySelector(ICON.settings);
+    // @ts-ignore
+    fireEvent.click(settingsIcon);
+
+    // ASSERT
+    expect(settingsIcon).toBeTruthy();
+    expect(handleClick).toBeCalled();
+  });
+
+})
