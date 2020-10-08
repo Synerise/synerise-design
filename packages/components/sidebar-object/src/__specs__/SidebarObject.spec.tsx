@@ -16,36 +16,7 @@ const TABS = [
   },
 ];
 describe('SidebarObject', () => {
-  it('should render inputObject key', function() {
-    // ARRANGE
-    const { getByText } = renderWithProvider(
-      <SidebarObject
-        name='Name'
-        parentFolder={{name: 'Folder', id: 'FolderItem'}}
-        // @ts-ignore
-        texts={{name: 'Text'}}
-        inputObject={{Status: 'active', id: "123"}}
-        headerTabs={TABS}
-      />
-    );
-    // ASSERT
-    expect(getByText('Status')).toBeTruthy();
-  });
-  it('should render inputObject value', function() {
-    // ARRANGE
-    const { getByText } = renderWithProvider(
-      <SidebarObject
-        name='Name'
-        parentFolder={{name: 'Folder' ,id: 'FolderItem'}}
-        // @ts-ignore
-        texts={{name: 'Text'}}
-        inputObject={{Status: 'active', id: "123"}}
-        headerTabs={TABS}
-      />
-    );
-    // ASSERT
-    expect(getByText('active')).toBeTruthy();
-  });
+
   it('should render headerTabs', function() {
     // ARRANGE
     const { container } = renderWithProvider(
@@ -82,4 +53,5 @@ describe('SidebarObject', () => {
 
 
   });
+
 });
