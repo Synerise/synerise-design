@@ -24,7 +24,7 @@ export type Props = Omit<ButtonProps, 'type'> & {
    *
    * @default simple
    */
-  mode?: 'single-icon' | 'split' | 'two-icons' |'label-icon' | 'icon-label' | string;
+  mode?: 'single-icon' | 'split' | 'two-icons' | 'label-icon' | 'icon-label' | string;
   /**
    * Defines color of `custom-color` button.
    *
@@ -63,8 +63,7 @@ export type Props = Omit<ButtonProps, 'type'> & {
   onClick?: (event: React.MouseEvent<HTMLElement>) => void;
 };
 
-export type ButtonSubComponents ={
+export type ButtonSubComponents = {
   Expander: React.ElementType;
   Creator: React.ElementType;
-  Cruds: React.ElementType;
-}
+};

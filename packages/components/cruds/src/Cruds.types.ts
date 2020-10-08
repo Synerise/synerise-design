@@ -13,5 +13,4 @@ export interface CrudsProps {
   onDuplicate?: (event?: React.MouseEvent<HTMLElement>) => void;
   onMove?: (event?: React.MouseEvent<HTMLElement>) => void;
   onRemove?: (event?: React.MouseEvent<HTMLElement>) => void;
-
 }

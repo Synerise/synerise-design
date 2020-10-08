@@ -28,7 +28,7 @@
     "@synerise/ds-button": "^0.12.35",
     "@synerise/ds-core": "^0.18.0",
     "@synerise/ds-divider": "^0.4.31",
-    "@synerise/ds-icon": "^0.29.0",
+    "@synerise/ds-icon": "*",
     "@synerise/ds-menu": "^0.6.4",
     "@synerise/ds-scrollbar": "^0.2.21",
     "@synerise/ds-search": "^0.1.77",

@@ -1,9 +1,9 @@
 {
-  "name": "@synerise/ds-dropdown",
-  "version": "0.11.77",
-  "description": "Dropdown UI Component for the Synerise Design System",
+  "name": "@synerise/ds-cruds",
+  "version": "0.0.1",
+  "description": "Cruds UI Component for the Synerise Design System",
   "license": "ISC",
-  "repository": "synerise/synerise-design",
+  "repository": "Synerise/synerise-design",
   "main": "dist/index.js",
   "publishConfig": {
     "access": "public"
@@ -25,17 +25,15 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-divider": "^0.4.31",
+    "@synerise/ds-button": "^0.12.37",
     "@synerise/ds-icon": "*",
-    "@synerise/ds-input": "^0.15.6",
-    "@synerise/ds-search-bar": "^0.2.83"
+    "@synerise/ds-tooltip": "^0.7.19"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
-    "antd": "^4",
     "react": ">=16.9.0 < 17.0.0"
   },
   "devDependencies": {
-    "@synerise/ds-utils": "^0.10.1"
+    "@synerise/ds-utils": "^0.11.0"
   }
 }
