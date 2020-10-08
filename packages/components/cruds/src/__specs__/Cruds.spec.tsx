@@ -3,7 +3,7 @@ import * as React from 'react';
 import Cruds from '../Cruds';
 import { fireEvent } from '@testing-library/react';
 import { Settings2S } from '@synerise/ds-icon/dist/icons';
-import SingleAction from '../../dist/SingleAction';
+import SingleAction from '../SingleAction';
 
 const ICON = {
   add: '.add-s',
