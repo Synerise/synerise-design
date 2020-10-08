@@ -1,7 +1,4 @@
-import * as React from 'react';
 import { range } from 'lodash';
-import { FormattedMessage } from 'react-intl';
-
 import MonthlyFilter from './MonthlyFilter/MonthlyFilter';
 import WeeklyFilter from './WeeklyFilter/WeeklyFilter';
 import DailyFilter from './DailyFilter/DailyFilter';

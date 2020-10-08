@@ -1,10 +1,10 @@
-import React from 'react';
-import { SelectionCountProps } from './SelectionCount.types';
-import * as S from './SelectionCount.styles';
+import * as React from 'react';
 import { InfoFillS } from '@synerise/ds-icon/dist/icons';
 import Icon from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import * as S from './SelectionCount.styles';
+import { SelectionCountProps } from './SelectionCount.types';
 
 const SelectionCount: React.FC<SelectionCountProps> = ({
   label,

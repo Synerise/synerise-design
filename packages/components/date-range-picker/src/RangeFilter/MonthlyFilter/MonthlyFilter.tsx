@@ -41,7 +41,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
     this.handleCollapse(id);
   };
 
-  handleRemoveRow = (e: Event, index: React.ReactText): void => {
+  handleRemoveRow = (e: React.MouseEvent<HTMLDivElement>, index: React.ReactText): void => {
     const { value } = this.props;
     e.stopPropagation();
     const result = value.filter((item, key) => key !== index);
@@ -49,7 +49,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
     this.setData([...result]);
   };
 
-  handleRemoveRowCollapse = (deletedId: number): void => {
+  handleRemoveRowCollapse = (deletedId: string): void => {
     const { value } = this.props;
     const { visible } = this.state;
     const itemKey = value.findIndex(item => item.id === deletedId);
@@ -153,15 +153,15 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
   };
 
   render(): JSX.Element {
-    const { value,onRangeCopy, onRangePaste, onRangeClear,rangeClipboard, intl } = this.props;
+    const { value, onRangeCopy, onRangePaste, onRangeClear, rangeClipboard, intl } = this.props;
     const { visible } = this.state;
-    console.log('value',value);
+    console.log('value', value);
     const data = [...value];
     return (
       <S.MonthlyFilterWrapper>
         {data.map((item, key) => (
           <ContentItem
-            onExpand={(id) => this.handleCollapse(id)}
+            onExpand={(id): void => this.handleCollapse(id)}
             expanded={visible[item.id]}
             item={{
               tag: (
@@ -173,6 +173,8 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
                 />
               ),
               id: item.id,
+              // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+              // @ts-ignore
               name: (
                 <S.DropdownHeader className={visible[item.id] && 'dropdown-header-visible'}>
                   <S.DropdownLabel>
@@ -228,12 +230,12 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
                   <TimeWindow
                     // eslint-disable-next-line react/no-array-index-key
                     key={`${item.period}_${key}`}
-                    title={'Monthly title'}
+                    title="Monthly title"
                     showSelectAll
                     invertibleTime
                     numberOfDaysPerRow={7}
                     days={item.definition}
-                    onChange={(definition): void => this.handleDefinitionChange(definition, key)}
+                    onChange={(definition: string): void => this.handleDefinitionChange(definition, key)}
                     timeMarks={{}}
                     onRangeClear={onRangeClear}
                     onRangeCopy={onRangeCopy}
@@ -247,7 +249,9 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
             }}
             headerSuffix={
               <Tooltip title={intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.REMOVE' })}>
-                <S.DropdownDeleteBtn onClick={e => this.handleRemoveRow(e, key)}>
+                <S.DropdownDeleteBtn
+                  onClick={(e: React.MouseEvent<HTMLDivElement>): void => this.handleRemoveRow(e, key)}
+                >
                   <Icon component={<CloseM />} size={15} />
                 </S.DropdownDeleteBtn>
               </Tooltip>

@@ -6,7 +6,7 @@ import { CheckM, CloseM } from '@synerise/ds-icon/dist/icons';
 import { SaveFilterFormProps } from './SaveFilterForm.types';
 import * as S from './SaveFilterForm.styles';
 
-const SaveFilterForm: React.FC<SaveFilterFormProps> = ({onFilterSave}) => {
+const SaveFilterForm: React.FC<SaveFilterFormProps> = ({ onFilterSave }) => {
   const [active, setActive] = React.useState<boolean>(false);
   const [name, setName] = React.useState<string>();
   const input = (
@@ -14,7 +14,7 @@ const SaveFilterForm: React.FC<SaveFilterFormProps> = ({onFilterSave}) => {
       <RawInput
         placeholder="Filter name"
         value={name}
-        onChange={(e): void => {
+        onChange={(e: React.ChangeEvent<HTMLInputElement>): void => {
           setName(e.target.value);
         }}
       />

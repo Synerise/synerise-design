@@ -1,6 +1,6 @@
 import { DateFilter, DateRange } from 'date.types';
 import * as React from 'react';
-import { FilterDefinition, FilterValue } from './RangeFilter/RangeFilter.types';
+import { FilterDefinition } from './RangeFilter/RangeFilter.types';
 import { SavedFilter } from './RangeFilter/FilterDropdown/FilterDropdown.types';
 
 export interface Props {

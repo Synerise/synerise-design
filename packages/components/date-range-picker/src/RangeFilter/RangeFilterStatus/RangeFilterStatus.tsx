@@ -2,7 +2,7 @@ import * as React from 'react';
 import Button from '@synerise/ds-button';
 import ContentItem from '@synerise/ds-manageable-list/dist/Item/ContentItem/ContentItem';
 import Badge from '@synerise/ds-badge';
-import { CloseM, CloseS, FilterM } from '@synerise/ds-icon/dist/icons';
+import { CloseS, FilterM } from '@synerise/ds-icon/dist/icons';
 import Icon from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 import { useIntl } from 'react-intl';
@@ -18,7 +18,7 @@ const RangeFilterStatus: React.FC<RangeFilterStatusProps> = ({ onFilterRemove, d
         <Button.Creator label={label} disabled={disabled} onClick={onClick} block />
       ) : (
         <ContentItem
-          onClick={(e): void => {
+          onClick={(e: React.MouseEvent<HTMLDivElement>): void => {
             e.stopPropagation();
             onClick();
           }}
@@ -27,7 +27,7 @@ const RangeFilterStatus: React.FC<RangeFilterStatusProps> = ({ onFilterRemove, d
               <S.SuffixText>Change</S.SuffixText>
               <Tooltip title="Remove">
                 <Icon
-                  onClick={(e): void => {
+                  onClick={(e: React.MouseEvent<HTMLDivElement>): void => {
                     e.stopPropagation();
                     onFilterRemove && onFilterRemove();
                   }}

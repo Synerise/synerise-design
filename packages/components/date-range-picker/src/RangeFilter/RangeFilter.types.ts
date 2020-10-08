@@ -8,7 +8,7 @@ export type FilterValue = {
   value: string;
 };
 export type RangeFilterProps = {
-  value: FilterValue;
+  value: FilterValue | undefined;
   onApply: (filter: {}) => void;
   onCancel: () => void;
   intl: IntlShape;
@@ -29,6 +29,7 @@ export type FilterDefinition = {
   period?: string;
   type: string;
   display?: string;
+  periodType?: string;
 };
 
 export type Period = {
@@ -42,11 +43,15 @@ export type DenormalizedFilter = {
   stop: string;
   day?: React.ReactText;
 };
-export type NormalizedFilter = {
+export type NormalizedFilter = NormalizedFilterBase & {
   from: string;
   to: string;
   day?: React.ReactText;
   week?: React.ReactText;
+};
+export type NormalizedFilterBase = {
+  type?: string;
+  nestingType?: string;
 };
 export type WeekFilter = {
   week: number;
@@ -55,4 +60,17 @@ export type ComponentDataType = {
   labelTranslationKey: string;
   component: JSX.Element;
   definition: any;
+};
+
+export type WeeklyFilterDefinition = {
+  [key: string ]: FilterDefinition;
+};
+
+export type MonthlyFilterDefinition = {
+  definition: {
+    [key: string ]: FilterDefinition;
+  };
+  id: number;
+  period: string;
+  periodType: string;
 };

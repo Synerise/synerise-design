@@ -1,4 +1,4 @@
-import dayjs from 'dayjs';
+import * as dayjs from 'dayjs';
 import { flatten, groupBy, reverse, values } from 'lodash';
 
 const TODAY = new Date();

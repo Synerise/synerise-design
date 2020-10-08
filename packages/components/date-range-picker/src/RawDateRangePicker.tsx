@@ -1,8 +1,6 @@
 import * as React from 'react';
 import { omitBy, isUndefined } from 'lodash';
-import Button from '@synerise/ds-button';
 import { injectIntl } from 'react-intl';
-import ContentItem from '@synerise/ds-manageable-list/dist/Item/ContentItem/ContentItem';
 import { Container, Separator, Addon } from './DateRangePicker.styles';
 import RangePicker from './RangePicker/RangePicker';
 import { RELATIVE, ABSOLUTE, MODES } from './constants';
@@ -210,4 +208,6 @@ class RawDateRangePicker extends React.PureComponent<Props, State> {
   }
 }
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore
 export default injectIntl(RawDateRangePicker);

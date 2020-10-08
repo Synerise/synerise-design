@@ -1,5 +1,5 @@
 import * as React from 'react';
-import dayjs from 'dayjs';
+import * as dayjs from 'dayjs';
 import Select from '@synerise/ds-select';
 import TimePicker from '@synerise/ds-time-picker';
 import { RangeFormProps } from './RangeForm.types';
@@ -24,17 +24,25 @@ const RangeForm: React.FC<RangeFormProps> = ({ startDate, endDate, onStartChange
 
   React.useEffect(() => {
     if (!start) {
-      setStart(dayjs(TODAY).startOf('day'));
+      setStart(
+        dayjs(TODAY)
+          .startOf('day')
+          .toDate()
+      );
     }
     if (!end) {
-      setEnd(dayjs(TODAY).endOf('day'));
+      setEnd(
+        dayjs(TODAY)
+          .endOf('day')
+          .toDate()
+      );
     }
   }, [start, end]);
 
   const renderSingleHourPicker = React.useCallback(() => {
     return (
       <TimePicker
-        onChange={date => {
+        onChange={(date): void => {
           setStart(date);
         }}
         value={start}

@@ -40,10 +40,10 @@ export type Props = {
   hideHeader?: boolean;
   timeMarks?: object;
   style?: React.CSSProperties;
-  onCheckDay?: Function;
-  onUncheckDay?: Function;
-  onSelectAll?: Function;
-  onUnselectAll?: Function;
+  onCheckDay?: (dayKey: DayKey) => void;
+  onUncheckDay?: (dayKey: DayKey) => void;
+  onSelectAll?: () => void;
+  onUnselectAll?: () => void;
   readOnly: boolean;
   inverted?: boolean;
   labelInverted?: boolean;

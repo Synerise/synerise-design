@@ -6,8 +6,10 @@ import {
   DenormalizedFilter,
   FilterValue,
   FilterDefinition,
-  ComponentDataType,
   WeekFilter,
+  NormalizedFilterBase,
+  WeeklyFilterDefinition,
+  MonthlyFilterDefinition,
 } from './RangeFilter.types';
 import { SavedFilter } from './FilterDropdown/FilterDropdown.types';
 
@@ -20,7 +22,7 @@ import { SavedFilter } from './FilterDropdown/FilterDropdown.types';
 
 export const mapTimeSchema = (item: DenormalizedFilter): NormalizedFilter => {
   const { start, stop, day, ...rest } = item;
-  return { from: start, to: stop, day: day && Number.isNaN(+day) ? undefined : +day + 1, ...rest };
+  return { from: start, to: stop, day: !day || !Number.isNaN(+day) ? undefined : +day + 1, ...rest };
 };
 
 /*
@@ -34,35 +36,35 @@ export const denormMapTimeSchema = (item: NormalizedFilter): DenormalizedFilter 
   return {
     start: from,
     stop: to,
-    day: day && Number.isNaN(+day) ? undefined : +day - 1,
+    day: !day || !Number.isNaN(+day) ? undefined : +day - 1,
     ...rest,
   } as DenormalizedFilter;
 };
 
-export const normalizeValue = ({ type, definition }: FilterValue): ComponentDataType | { rules: any } => {
-  const result = { type, nestingType: 'IN_PLACE' }; // TODO - datepicker type
+export const normalizeValue = ({ type, definition }: FilterValue): NormalizedFilterBase | { rules: any } => {
+  const result = { type, nestingType: 'IN_PLACE', days: [] }; // TODO - datepicker type
   let days: any[];
-  const rules: any[] = [];
+  let rules: any[] = [];
   switch (type) {
     case TYPES.DAILY:
-      return { ...mapTimeSchema(definition), ...result };
+      return { ...mapTimeSchema(definition as DenormalizedFilter), ...result };
     case TYPES.WEEKLY:
-      days = Object.values(definition as FilterDefinition)
-        .filter((day: { restricted: boolean }) => day.restricted)
-        .map((item: DenormalizedFilter) => mapTimeSchema(item));
+      days = Object.values(definition as WeeklyFilterDefinition)
+        .filter(day => day.restricted)
+        .map(item => mapTimeSchema(item as DenormalizedFilter));
       break;
     case TYPES.MONTHLY:
-      const rules = [];
-      definition.map(def => {
+      rules = [];
+      (definition as MonthlyFilterDefinition[]).map(def => {
         days = Object.values(def.definition)
-          .filter((day: Record<string, any>) => day.restricted)
-          .map(({ restricted, display, ...rest }) => mapTimeSchema(rest));
+          .filter(day => day.restricted)
+          .map(({ restricted, display, ...rest }) => mapTimeSchema(rest as DenormalizedFilter));
 
         if (def.period === MONTHLY_TYPES.DAY_OF_WEEK) {
           rules.push({
-            weeks: Object.entries(groupBy(days, 'week')).map(([week, days]) => ({
+            weeks: Object.entries(groupBy(days, 'week')).map(([week, daysArray]) => ({
               week: +week + 1,
-              days: days.map(day => ({ ...omit(day, ['week']), type })),
+              days: daysArray.map(day => ({ ...omit(day, ['week']), type })),
             })),
             type: def.period,
             inverted: def.periodType !== 'beginning',
@@ -77,7 +79,9 @@ export const normalizeValue = ({ type, definition }: FilterValue): ComponentData
       days = [];
       break;
   }
-  result.days = days.map(({ restricted, display, ...rest }: { restricted: boolean; display: string }) => rest);
+  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+  // @ts-ignore
+  result.days = days.map(({ restricted, display, ...rest }) => rest) as Partial<FilterDefinition>[];
   return result;
 };
 
@@ -138,7 +142,9 @@ export const denormalizeValue = (values: FilterValue): Partial<FilterValue> => (
 });
 
 export const isValidValue = (value: FilterValue): boolean =>
-  !value.definition.hasOwnProperty('type') || value.definition.type;
+  Boolean(
+    value?.definition && (!Object.prototype.hasOwnProperty.call(value?.definition, 'type') || value.definition.type)
+  );
 
 export const isDuplicate = (itemsList: SavedFilter[], item: SavedFilter): boolean => {
   return itemsList.some(i => i.name.toLowerCase() === item.name.toLowerCase() && i.id !== item.id);

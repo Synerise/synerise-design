@@ -4,9 +4,9 @@ import Tooltip from '@synerise/ds-tooltip';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon from '@synerise/ds-icon';
 import { AngleDownS, TrashS } from '@synerise/ds-icon/dist/icons';
+import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { FilterDropdownProps } from './FilterDropdown.types';
 import * as S from './FilterDropdown.styles';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 
 const FilterDropdown: React.FC<FilterDropdownProps> = ({
   removeTooltip,

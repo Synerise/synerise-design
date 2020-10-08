@@ -17,7 +17,7 @@ export type GridProps = {
   labelInverted?: boolean;
   reverseGroup: number;
   intl: IntlShape;
-  onSelectAll: Function;
-  onUnselectAll: Function;
+  onSelectAll: () => void;
+  onUnselectAll: () => void;
   renderDay: (day: DayKey) => React.ReactNode;
 };

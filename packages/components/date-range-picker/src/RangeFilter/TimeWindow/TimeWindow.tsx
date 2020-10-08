@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { range } from 'lodash';
 import { FormattedMessage, injectIntl } from 'react-intl';
-import dayjs from 'dayjs';
+import * as dayjs from 'dayjs';
 import { Header } from './Header/Header';
 import Day from './Day/Day';
 import { DayKey, Props, State, DayOptions } from './TimeWindow.types';
@@ -255,12 +255,12 @@ class TimeWindowBase extends React.PureComponent<Props, State> {
         onStartChange={(value: Date): void =>
           activeDays.length > 1
             ? this.handleMultipleDayTimeChange([value, getDateFromDayValue(dayValue.stop)])
-            : this.handleDayTimeChange([value, getDateFromDayValue(dayValue.stop)], dayKeys)
+            : this.handleDayTimeChange([value, getDateFromDayValue(dayValue.stop)], dayKeys as DayKey)
         }
         onEndChange={(value: Date): void =>
           activeDays.length > 1
             ? this.handleMultipleDayTimeChange([getDateFromDayValue(dayValue.start),value])
-            : this.handleDayTimeChange([getDateFromDayValue(dayValue.start), value], dayKeys)
+            : this.handleDayTimeChange([getDateFromDayValue(dayValue.start), value], dayKeys as DayKey)
         }
       />
     );
@@ -269,12 +269,12 @@ class TimeWindowBase extends React.PureComponent<Props, State> {
     return (
       <>
         <Header
-          title={<RangeSummary dayKeys={dayKeys} getDayLabel={this.getDayLabel} monthlyFilter={monthlyFilter} />}
+          title={<RangeSummary dayKeys={dayKeys as DayKey[]} getDayLabel={this.getDayLabel} monthlyFilter={monthlyFilter} />}
           suffix={
             <RangeActions
-              onRangeClear={(): void => this.handleRangeClear(dayKeys)}
+              onRangeClear={(): void => this.handleRangeClear(dayKeys as DayKey)}
               onRangeCopy={this.handleRangeCopy}
-              onRangePaste={(): void => this.handleRangePaste(dayKeys)}
+              onRangePaste={(): void => this.handleRangePaste(dayKeys as DayKey)}
               texts={{ clearRange: ' Clear range', copyRange: 'Copy range', pasteRange: 'Paste range' }}
             />
           }

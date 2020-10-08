@@ -11,10 +11,20 @@ const RangeActions: React.FC<RangeActionsProps> = ({ texts, onRangeClear, onRang
   const overlay = React.useMemo(() => {
     return (
       <S.ActionsMenu>
-        <S.ActionItem onClick={onRangeCopy} prefixel={<Icon component={<DuplicateM />} />}>
+        <S.ActionItem
+          onClick={(): void => {
+            onRangeCopy && onRangeCopy();
+          }}
+          prefixel={<Icon component={<DuplicateM />} />}
+        >
           {texts.copyRange}
         </S.ActionItem>
-        <S.ActionItem onClick={onRangePaste} prefixel={<Icon component={<ArrowDownCircleM />} />}>
+        <S.ActionItem
+          onClick={(): void => {
+            onRangePaste && onRangePaste();
+          }}
+          prefixel={<Icon component={<ArrowDownCircleM />} />}
+        >
           {texts.pasteRange}
         </S.ActionItem>
         <S.ActionItem
