@@ -5115,6 +5115,14 @@
     "@synerise/ds-card" "^0.4.11"
     "@synerise/ds-typography" "*"
 
+"@synerise/ds-scrollbar@^0.2.23":
+  version "0.2.23"
+  resolved "https://registry.yarnpkg.com/@synerise/ds-scrollbar/-/ds-scrollbar-0.2.23.tgz#2431ecf52d3598bfadc0b3c0b073816fa39af803"
+  integrity sha512-1sAr8KQf/IKK97O3op+UNuB3KKyiAozvpVOpJ+NP0kGWYi3uOJ0N9p20bQPBpMm6MnlAtvz5Mm+7DaX0kkJG4A==
+  dependencies:
+    "@synerise/ds-icon" "^0.30.0"
+    react-perfect-scrollbar "^1.5.8"
+
 "@synerise/ds-tooltip@^0.4.26":
   version "0.4.26"
   resolved "https://registry.yarnpkg.com/@synerise/ds-tooltip/-/ds-tooltip-0.4.26.tgz#e52227e3287e01d23db84531c6e79f66f4184108"
