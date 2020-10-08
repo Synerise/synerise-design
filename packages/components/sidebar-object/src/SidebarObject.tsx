@@ -4,31 +4,23 @@ import Scrollbar from '@synerise/ds-scrollbar';
 import { TabItem } from '@synerise/ds-tabs/dist/Tabs.types';
 import { SidebarObjectProps } from './SidebarObject.types';
 import Header from './Elements/Header/Header';
-import Overview from './Elements/Overview/Overview';
 
 const SidebarObject: React.FC<SidebarObjectProps> = ({
   avatar,
   headerPreffix,
   headerTabs,
   inputObject,
-  contentTags,
-  folders,
   onEdit,
   onDelete,
   onDuplicate,
   onMove,
   onId,
-  parentFolder,
   texts,
   onCloseClick,
-  textDescription,
   onArrowUp,
   onArrowDown,
-  onFolderSelect,
   onScrollbar,
-  autoSize,
   handleTabClick,
-  disableDefaultTabContent
 }) => {
   const [activeTab, setActiveTab] = React.useState(0);
   return (
@@ -54,18 +46,6 @@ const SidebarObject: React.FC<SidebarObjectProps> = ({
           onArrowUp={onArrowUp}
           onArrowDown={onArrowDown}
         />
-        {activeTab === 0 && !disableDefaultTabContent && (
-          <Overview
-          contentTags={contentTags}
-          folders={folders}
-          parentFolder={parentFolder}
-          textDescription={textDescription}
-          onFolderSelect={onFolderSelect}
-          autoSize={autoSize}
-          texts={texts}
-          inputObject={inputObject}
-          />
-        )}
         {headerTabs[activeTab]?.content}
       </Scrollbar>
     </div>
