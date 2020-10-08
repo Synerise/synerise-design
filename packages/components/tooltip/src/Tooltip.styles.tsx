@@ -9,8 +9,10 @@ export const TooltipDescription = styled.div<TooltipExtendedProps>`
   text-align: inherit;
 `;
 
+const titlesWithPadding = ['icon', 'tutorial', 'button'];
+
 export const TooltipTitle = styled.div<TooltipExtendedProps>`
-  margin-bottom: ${(props): string => (props.type === 'icon' || props.type === 'tutorial' ? '8px' : '0px')};
+  margin-bottom: ${({ type }): string => (titlesWithPadding.includes(String(type)) ? '8px' : '0px')};
   font-size: 13px;
   line-height: 1.38;
   font-weight: ${(props): number => (props.type === 'default' ? 400 : 500)};
@@ -21,6 +23,24 @@ export const TooltipTitle = styled.div<TooltipExtendedProps>`
   ${IconContainer} {
     align-self: flex-start;
   }
+`;
+
+export const TooltipButton = styled.div`
+  width: 100%;
+  padding: 8px;
+  background-color: rgba(56, 67, 80, 0.9);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+`;
+
+export const TooltipContent = styled.div`
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
 `;
 
 export const TooltipComponent = styled.div<TooltipExtendedProps>`
@@ -41,7 +61,7 @@ export const TooltipComponent = styled.div<TooltipExtendedProps>`
       padding-top: 8px;
     `}
   ${(props): SimpleInterpolation =>
-    props.type === 'tutorial' &&
+    (props.type === 'tutorial' || props.type === 'button') &&
     css`
       padding: 0;
     `}

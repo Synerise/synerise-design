@@ -6,6 +6,7 @@ import Icon from '@synerise/ds-icon';
 import NotificationsM from '@synerise/ds-icon/dist/icons/NotificationsM';
 import { withTheme } from 'styled-components';
 import { Carousel } from 'antd';
+import Button from '@synerise/ds-button';
 import * as S from './Tooltip.styles';
 import TooltipExtendedProps, { tooltipTypes, descriptionType } from './Tooltip.types';
 
@@ -25,6 +26,7 @@ const Tooltip: React.FC<TooltipExtendedProps & TooltipProps> = ({
   theme,
   offset = 'default',
   children,
+  button,
   ...props
 }) => {
   const shouldRenderIcon = (tooltipType: tooltipTypes, tooltipIcon: React.ReactNode): React.ReactNode | undefined => {
@@ -32,6 +34,45 @@ const Tooltip: React.FC<TooltipExtendedProps & TooltipProps> = ({
     if (tooltipIcon && icon) return icon;
     return <Icon component={<NotificationsM />} color={theme.palette['orange-500']} />;
   };
+
+  const renderTooltip = (
+    <S.TooltipComponent type={type}>
+      <S.TooltipTitle type={type}>
+        {type && shouldRenderIcon(type, icon)}
+        {type !== 'largeSimple' ? title : null}
+      </S.TooltipTitle>
+      <S.TooltipDescription>{shouldRenderDescription(description, type)}</S.TooltipDescription>
+    </S.TooltipComponent>
+  );
+
+  const renderButton = React.useMemo(() => {
+    const buttonMode = (): string => {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+      // @ts-ignore
+      const { buttonIcon, label } = button;
+      if (buttonIcon && label) return 'icon-label';
+      if (buttonIcon) return 'single-icon';
+      return 'label';
+    };
+
+    return (
+      <S.TooltipComponent type={type}>
+        <S.TooltipContent>
+          <S.TooltipTitle type={type}>{title}</S.TooltipTitle>
+          <S.TooltipDescription>{description}</S.TooltipDescription>
+        </S.TooltipContent>
+        {button && (
+          <S.TooltipButton>
+            {/* eslint-disable-next-line react/jsx-handler-names */}
+            <Button type="ghost-white" mode={buttonMode()} onClick={button?.onClick}>
+              {button?.buttonIcon}
+              {button?.label}
+            </Button>
+          </S.TooltipButton>
+        )}
+      </S.TooltipComponent>
+    );
+  }, [button, type, title, description]);
 
   const renderTutorial = (
     <S.TooltipComponent type={type}>
@@ -47,19 +88,11 @@ const Tooltip: React.FC<TooltipExtendedProps & TooltipProps> = ({
     </S.TooltipComponent>
   );
 
-  const renderTooltip = (
-    <S.TooltipComponent type={type}>
-      <S.TooltipTitle type={type}>
-        {type && shouldRenderIcon(type, icon)}
-        {type !== 'largeSimple' ? title : null}
-      </S.TooltipTitle>
-      <S.TooltipDescription>{shouldRenderDescription(description, type)}</S.TooltipDescription>
-    </S.TooltipComponent>
-  );
-
   const tooltipComponent = React.useMemo(() => {
-    return type === 'tutorial' ? renderTutorial : renderTooltip;
-  }, [type, renderTooltip, renderTutorial]);
+    if (type === 'tutorial') return renderTutorial;
+    if (type === 'button') return renderButton;
+    return renderTooltip;
+  }, [type, renderTooltip, renderTutorial, renderButton]);
 
   const offsetClassName = React.useMemo(() => {
     return `ds-tooltip-offset-${offset}`;

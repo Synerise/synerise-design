@@ -25,6 +25,7 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
+    "@synerise/ds-button": "^0.12.37",
     "@synerise/ds-icon": "^0.29.0"
   },
   "peerDependencies": {
