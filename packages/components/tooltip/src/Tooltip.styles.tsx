@@ -9,8 +9,10 @@ export const TooltipDescription = styled.div<TooltipExtendedProps>`
   text-align: inherit;
 `;
 
+const titlesWithPadding = ['icon', 'tutorial', 'button'];
+
 export const TooltipTitle = styled.div<TooltipExtendedProps>`
-  margin-bottom: ${({ type }): string => (type === 'icon' || type === 'tutorial' || type === 'button' ? '8px' : '0px')};
+  margin-bottom: ${({ type }): string => (titlesWithPadding.includes(String(type)) ? '8px' : '0px')};
   font-size: 13px;
   line-height: 1.38;
   font-weight: ${(props): number => (props.type === 'default' ? 400 : 500)};
