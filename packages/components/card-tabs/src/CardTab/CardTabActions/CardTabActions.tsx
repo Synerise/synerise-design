@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Button from '@synerise/ds-button';
+import Cruds from '@synerise/ds-cruds';
 import * as S from '../CardTab.styles';
 import { Props } from './CardTabActions.types';
 
@@ -12,7 +12,7 @@ const CardTabActions: React.FC<Props> = ({
 }) => {
   return (
     <S.CardTabSuffix data-testid="card-tab-suffix">
-      <Button.Cruds
+      <Cruds
         onEdit={changeNameAvailable ? enterEditNameMode : undefined}
         editTooltip={texts?.changeNameTooltip}
         onDuplicate={onDuplicateTab}
