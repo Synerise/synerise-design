@@ -46,40 +46,5 @@ describe('SidebarObject', () => {
     // ASSERT
     expect(getByText('active')).toBeTruthy();
   });
-  it('should render headerTabs', function() {
-    // ARRANGE
-    const { container } = renderWithProvider(
-      <SidebarObject
-        name='Name'
-        parentFolder={{name: 'Folder' ,id: 'FolderItem'}}
-        // @ts-ignore
-        texts={{name: 'Text'}}
-        inputObject={{Status: 'active', id: "123"}}
-        headerTabs={TABS}
-      />
-    );
-    // ASSERT
-    expect(container.querySelector('.ds-tabs')).toBeTruthy();
 
-
-  });
-  it('should render headerPreffix', function() {
-    // ARRANGE
-
-    const { container } = renderWithProvider(
-      <SidebarObject
-        name='Name'
-        parentFolder={{name: 'Folder' ,id: 'FolderItem'}}
-        // @ts-ignore
-        texts={{name: 'Text'}}
-        inputObject={{Status: 'active', id: "123"}}
-        headerTabs={TABS}
-        headerPreffix={<div className='buttons'/>}
-      />
-    );
-    // ASSERT
-    expect(container.querySelector('.buttons')).toBeTruthy();
-
-
-  });
 });
