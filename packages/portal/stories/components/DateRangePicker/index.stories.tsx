@@ -9,16 +9,7 @@ const decorator = storyFn => (
     <div style={{ width: '340px', margin: 'auto' }}>{storyFn()}</div>
   </div>
 );
-const savedFilters = [{
-  name: "Everyday afternoon",
-  day: undefined,
-  display: false,
-  inverted: false,
-  restricted: true,
-  start: "15:00:00.000",
-  stop: "23:59:59.999",
-  type: "DAILY",
-}];
+const savedFilters = [];
 const texts = {
   custom: 'Custom',
   today: 'Today',

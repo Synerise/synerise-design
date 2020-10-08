@@ -13,7 +13,7 @@ export type RangeFilterProps = {
   onCancel: () => void;
   intl: IntlShape;
   savedFilters?: SavedFilter[];
-  onFilterSave?: (filter: SavedFilter) => void;
+  onFilterSave?: (filters: SavedFilter[]) => void;
 };
 
 export type RangeFilterState = {

@@ -6,6 +6,8 @@ export const Header = styled.div`
   padding: 24px 24px 12px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  min-height: 68px;
 `;
 
 export const Body = styled.div`

@@ -4,9 +4,10 @@ import ButtonGroup from '@synerise/ds-button-group';
 import { injectIntl } from 'react-intl';
 
 import Button from '@synerise/ds-button';
+import { v4 as uuid } from 'uuid';
 import * as S from './RangeFilter.styles';
 import { TYPES, TYPES_DATA } from './constants';
-import { denormalizeValue, isValidValue, normalizeValue } from './utils';
+import { addSuffixToDuplicate, denormalizeValue, isValidValue, normalizeValue } from './utils';
 import { FilterDefinition, FilterValue, RangeFilterProps, RangeFilterState } from './RangeFilter.types';
 import FilterDropdown from './FilterDropdown/FilterDropdown';
 import { SavedFilter } from './FilterDropdown/FilterDropdown.types';
@@ -66,7 +67,16 @@ class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState
     const { activeType } = this.state;
     const { onFilterSave, savedFilters } = this.props;
     const currentFilter = this.state[activeType];
-    onFilterSave && onFilterSave([...savedFilters, { ...currentFilter, type: activeType, name: filterName, id: 0 }]);
+    const filterList = savedFilters || [];
+    const filter = { ...currentFilter, type: activeType, name: filterName, id: uuid() };
+    const filterWithUniqueName = addSuffixToDuplicate(filterList,filter )
+    onFilterSave && onFilterSave([...filterList, filterWithUniqueName]);
+  };
+
+  handleSavedFilterRemove = (removedFilterId: string): void => {
+    const {savedFilters, onFilterSave} = this.props;
+    const listWithoutRemovedId = savedFilters ? savedFilters.filter(f=>f.id !== removedFilterId) : [];
+    onFilterSave && onFilterSave(listWithoutRemovedId)
   };
 
   handleSavedFilterSelect = (selected: SavedFilter): void => {
@@ -90,7 +100,9 @@ class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState
             <FilterDropdown
               filters={savedFilters}
               onFilterSelect={this.handleSavedFilterSelect}
+              onFilterRemove={this.handleSavedFilterRemove}
               label="Saved filters"
+              removeTooltip="Remove"
             />
           )}
         </S.Header>
