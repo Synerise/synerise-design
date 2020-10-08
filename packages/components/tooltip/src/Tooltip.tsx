@@ -92,7 +92,7 @@ const Tooltip: React.FC<TooltipExtendedProps & TooltipProps> = ({
     if (type === 'tutorial') return renderTutorial;
     if (type === 'button') return renderButton;
     return renderTooltip;
-  }, [type, renderTooltip, renderTutorial]);
+  }, [type, renderTooltip, renderTutorial, renderButton]);
 
   const offsetClassName = React.useMemo(() => {
     return `ds-tooltip-offset-${offset}`;
