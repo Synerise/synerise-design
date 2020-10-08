@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { fireEvent } from "@testing-library/react";
 import Tooltip from '../index';
-import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
+import renderWithProvider from '@synerise/ds-utils/dist/testing/renderWithProvider/renderWithProvider';
 
 const TUTORIALS = [
     {
