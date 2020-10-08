@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.47](https://github.com/synerise/synerise-design/compare/@synerise/ds-tabs@0.10.46...@synerise/ds-tabs@0.10.47) (2020-10-06)
+
+**Note:** Version bump only for package @synerise/ds-tabs
+
+
+
+
+
+## [0.10.46](https://github.com/synerise/synerise-design/compare/@synerise/ds-tabs@0.10.45...@synerise/ds-tabs@0.10.46) (2020-10-06)
+
+
+### Bug Fixes
+
+* **tabs:** fix line ounder the counter ([ed341e0](https://github.com/synerise/synerise-design/commit/ed341e045e712dff3f9d142a2bd7104d050f5cd6))
+* **tabs:** used onClick instead of onSelect ([ab20a58](https://github.com/synerise/synerise-design/commit/ab20a58c1b26b364c9ec55a2bef593a376692691))
+
+
+
+
+
 ## [0.10.45](https://github.com/synerise/synerise-design/compare/@synerise/ds-tabs@0.10.44...@synerise/ds-tabs@0.10.45) (2020-10-06)
 
 **Note:** Version bump only for package @synerise/ds-tabs

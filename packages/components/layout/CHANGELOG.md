@@ -3,6 +3,37 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-layout@0.6.0...@synerise/ds-layout@0.6.1) (2020-10-06)
+
+**Note:** Version bump only for package @synerise/ds-layout
+
+
+
+
+
+# [0.6.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-layout@0.5.44...@synerise/ds-layout@0.6.0) (2020-10-06)
+
+
+### Bug Fixes
+
+* **layout:** fix styles of both opened sidebars ([5a636ca](https://github.com/synerise/synerise-design/commit/5a636ca76ebf4a0c05b5ca5ff30d29b9cfb52be5))
+* **layout:** fix styles of sidebar button ([53c4525](https://github.com/synerise/synerise-design/commit/53c45252dc646c0ea2174476cde7b413588edce6))
+* **layout:** fix types ([a3e3114](https://github.com/synerise/synerise-design/commit/a3e31148b9855baf9f17087485fe21f37222fe8f))
+* **layout:** fix types ([4594dd6](https://github.com/synerise/synerise-design/commit/4594dd608c97a707724cc2ea2117a1feb1c506ff))
+* **layout:** fix types ([758cbd3](https://github.com/synerise/synerise-design/commit/758cbd3e2e25b1487bae506340ef7943562373f3))
+
+
+### Features
+
+* **grid:** update grid size on xsmall ([f9bea08](https://github.com/synerise/synerise-design/commit/f9bea08cb5d38212a91d6fb1cb8b49f850bc7a32))
+* **layout:** add mobile sidebars ([0805595](https://github.com/synerise/synerise-design/commit/0805595b18521680712ccd239f91365e5f2eb541))
+* **layout:** add Page component into Layout, update Layout styles ([7d65383](https://github.com/synerise/synerise-design/commit/7d6538381cf5eb4b54e91804b2ab3cdf1e3b0b59))
+* **layout:** update sidebars ([9eeb849](https://github.com/synerise/synerise-design/commit/9eeb849c77d930fbf027fb2404b581a51eca17dd))
+
+
+
+
+
 ## [0.5.44](https://github.com/synerise/synerise-design/compare/@synerise/ds-layout@0.5.43...@synerise/ds-layout@0.5.44) (2020-10-02)
 
 **Note:** Version bump only for package @synerise/ds-layout

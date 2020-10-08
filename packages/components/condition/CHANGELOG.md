@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@0.1.7...@synerise/ds-condition@0.1.8) (2020-10-06)
+
+**Note:** Version bump only for package @synerise/ds-condition
+
+
+
+
+
+## [0.1.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@0.1.6...@synerise/ds-condition@0.1.7) (2020-10-06)
+
+
+### Bug Fixes
+
+* **condition:** open next input on select ([72f5474](https://github.com/Synerise/synerise-design/commit/72f54749816c25f3b7c126b1ce8e981dad24d5da))
+
+
+
+
+
 ## [0.1.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@0.1.5...@synerise/ds-condition@0.1.6) (2020-10-06)
 
 **Note:** Version bump only for package @synerise/ds-condition

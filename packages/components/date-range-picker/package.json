@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-date-range-picker",
-  "version": "0.1.21",
+  "version": "0.1.23",
   "description": "Date-Range-Picker UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -26,11 +26,11 @@
   "types": "dist/index.d.ts",
   "dependencies": {
     "@date-fns/upgrade": "^1.0.3",
-    "@synerise/ds-button": "^0.12.35",
-    "@synerise/ds-date-picker": "^0.1.28",
+    "@synerise/ds-button": "^0.12.37",
+    "@synerise/ds-date-picker": "^0.2.1",
     "@synerise/ds-icon": "*",
-    "@synerise/ds-time-picker": "^0.3.11",
-    "@synerise/ds-tooltip": "^0.7.19",
+    "@synerise/ds-time-picker": "^0.3.13",
+    "@synerise/ds-tooltip": "^0.7.20",
     "date-fns": "^2.16.1",
     "lodash": "^4.17.20",
     "ramda": "^0.27.0",

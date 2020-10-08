@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar-object@0.1.7...@synerise/ds-sidebar-object@0.1.8) (2020-10-06)
+
+**Note:** Version bump only for package @synerise/ds-sidebar-object
+
+
+
+
+
+## [0.1.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar-object@0.1.6...@synerise/ds-sidebar-object@0.1.7) (2020-10-06)
+
+
+### Bug Fixes
+
+* **sidebar-object:** add knobs to show icons and folders and fix subtle-form ([6808bf1](https://github.com/Synerise/synerise-design/commit/6808bf1f13462d9818f31d6d37932f9e62663007))
+* **sidebar-object:** add props ([5dc2aac](https://github.com/Synerise/synerise-design/commit/5dc2aac02d80bea69dbdd37a5d86d5e95d3afd56))
+* **sidebar-object:** add props ([c7c5a45](https://github.com/Synerise/synerise-design/commit/c7c5a4562cf254d9fde288465453873b1391fc69))
+* **sidebar-object:** add textareaautosize type ([354218f](https://github.com/Synerise/synerise-design/commit/354218f472c8c0f43656831af21b145a2085e65d))
+* **sidebar-object:** added missing subtle-form dependency ([b2f9da9](https://github.com/Synerise/synerise-design/commit/b2f9da99612ddf1f95774d0808baffe45529ac6b))
+* **sidebar-object:** set maxheight of the drawer to 100vh ([8615d1c](https://github.com/Synerise/synerise-design/commit/8615d1ce8b6746e4f8b5f0c2b801efb92b14833e))
+
+
+
+
+
 ## [0.1.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar-object@0.1.5...@synerise/ds-sidebar-object@0.1.6) (2020-10-06)
 
 **Note:** Version bump only for package @synerise/ds-sidebar-object

@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.1.7...@synerise/ds-factors@0.1.8) (2020-10-06)
+
+**Note:** Version bump only for package @synerise/ds-factors
+
+
+
+
+
+## [0.1.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.1.6...@synerise/ds-factors@0.1.7) (2020-10-06)
+
+
+### Bug Fixes
+
+* **factors:** fix issues from QA ([496e88f](https://github.com/Synerise/synerise-design/commit/496e88f2cca86b87ff484e2a57a9ff3fa7bae425))
+
+
+
+
+
 ## [0.1.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.1.5...@synerise/ds-factors@0.1.6) (2020-10-06)
 
 **Note:** Version bump only for package @synerise/ds-factors

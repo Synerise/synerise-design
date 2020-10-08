@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-app-menu@0.4.0...@synerise/ds-app-menu@0.4.1) (2020-10-06)
+
+**Note:** Version bump only for package @synerise/ds-app-menu
+
+
+
+
+
+# [0.4.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-app-menu@0.3.62...@synerise/ds-app-menu@0.4.0) (2020-10-06)
+
+
+### Features
+
+* **layout:** add story with fullwidth ([0361f98](https://github.com/Synerise/synerise-design/commit/0361f984916ea4c29e717052d1339a0548f315eb))
+
+
+
+
+
 ## [0.3.62](https://github.com/Synerise/synerise-design/compare/@synerise/ds-app-menu@0.3.61...@synerise/ds-app-menu@0.3.62) (2020-10-02)
 
 **Note:** Version bump only for package @synerise/ds-app-menu

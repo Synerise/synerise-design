@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-grid@0.1.1...@synerise/ds-grid@0.2.0) (2020-10-06)
+
+
+### Features
+
+* **grid:** add contentWrapper mode for GridItem ([5eed794](https://github.com/Synerise/synerise-design/commit/5eed794c111ec8d5a6f1fc3f4a2cba9e8083be04))
+
+
+
+
+
 ## [0.1.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-grid@0.1.0...@synerise/ds-grid@0.1.1) (2020-09-29)
 
 **Note:** Version bump only for package @synerise/ds-grid

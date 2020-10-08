@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@0.10.1...@synerise/ds-utils@0.11.0) (2020-10-06)
+
+
+### Features
+
+* **grid:** update grid size on xsmall ([f9bea08](https://github.com/synerise/synerise-design/commit/f9bea08cb5d38212a91d6fb1cb8b49f850bc7a32))
+
+
+
+
+
 ## [0.10.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@0.10.0...@synerise/ds-utils@0.10.1) (2020-09-29)
 
 **Note:** Version bump only for package @synerise/ds-utils
