@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.14.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.14.8...@synerise/ds-manageable-list@0.14.9) (2020-10-09)
+
+
+### Bug Fixes
+
+* **manageable-list:** add latest ds-icon to deps ([3f2b6b4](https://github.com/Synerise/synerise-design/commit/3f2b6b40bfaeae21cd0e5774a0ccb4ef8ef12475))
+
+
+
+
+
 ## [0.14.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.14.7...@synerise/ds-manageable-list@0.14.8) (2020-10-06)
 
 **Note:** Version bump only for package @synerise/ds-manageable-list

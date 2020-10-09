@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.99.0](https://github.com/synerise/synerise-design/compare/portal@0.98.0...portal@0.99.0) (2020-10-09)
+
+
+### Bug Fixes
+
+* **sidebar-object:** change padding and delete text-overflow ([dd8a91c](https://github.com/synerise/synerise-design/commit/dd8a91ca41a5f08cdbc5e176396af90da067b1b1))
+* **sidebar-object:** remove overview component from sidebarobject.tsx ([48fb3a4](https://github.com/synerise/synerise-design/commit/48fb3a451c0f75b3c613c995c2173da0ac97f7d7))
+
+
+### Features
+
+* **button:** move Crud and SingleAction to separate Crud component ([a10976a](https://github.com/synerise/synerise-design/commit/a10976a2677823ea8064068eea7e0c53611cfc78))
+* **cruds:** add Cruds component ([15498ba](https://github.com/synerise/synerise-design/commit/15498bad6e40649f8807c20c96fbdb58b5260f17))
+* **tooltip:** add example of tooltip with button ([a8ddb13](https://github.com/synerise/synerise-design/commit/a8ddb1373fdad98d82330c5db1069dc413772007))
+
+
+
+
+
 # [0.98.0](https://github.com/synerise/synerise-design/compare/portal@0.97.0...portal@0.98.0) (2020-10-06)
 
 

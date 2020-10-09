@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.24](https://github.com/Synerise/synerise-design/compare/@synerise/ds-scrollbar@0.2.23...@synerise/ds-scrollbar@0.2.24) (2020-10-09)
+
+
+### Bug Fixes
+
+* **scrollbar:** add latest ds-icon to deps ([3891c9e](https://github.com/Synerise/synerise-design/commit/3891c9e63d614e95ed6c6129c6be07fc81f5000a))
+
+
+
+
+
 ## [0.2.23](https://github.com/Synerise/synerise-design/compare/@synerise/ds-scrollbar@0.2.22...@synerise/ds-scrollbar@0.2.23) (2020-10-06)
 
 **Note:** Version bump only for package @synerise/ds-scrollbar

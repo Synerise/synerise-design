@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.64](https://github.com/synerise/synerise-design/compare/@synerise/ds-page-header@0.9.63...@synerise/ds-page-header@0.9.64) (2020-10-09)
+
+
+### Bug Fixes
+
+* **page-header:** add latest ds-icon to deps ([7c13272](https://github.com/synerise/synerise-design/commit/7c13272d209179c1db253c2f3b66ff5eae38d065))
+
+
+
+
+
 ## [0.9.63](https://github.com/synerise/synerise-design/compare/@synerise/ds-page-header@0.9.62...@synerise/ds-page-header@0.9.63) (2020-10-06)
 
 **Note:** Version bump only for package @synerise/ds-page-header

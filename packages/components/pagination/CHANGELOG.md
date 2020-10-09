@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.29](https://github.com/synerise/synerise-design/compare/@synerise/ds-pagination@0.6.28...@synerise/ds-pagination@0.6.29) (2020-10-09)
+
+
+### Bug Fixes
+
+* **pagination:** add latest ds-icon to deps ([42ab63c](https://github.com/synerise/synerise-design/commit/42ab63c12548fd8b810693416176f9daa685a266))
+
+
+
+
+
 ## [0.6.28](https://github.com/synerise/synerise-design/compare/@synerise/ds-pagination@0.6.27...@synerise/ds-pagination@0.6.28) (2020-10-06)
 
 **Note:** Version bump only for package @synerise/ds-pagination

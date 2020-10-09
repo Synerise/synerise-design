@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-operators@0.1.8...@synerise/ds-operators@0.1.9) (2020-10-09)
+
+
+### Bug Fixes
+
+* **operators:** add latest ds-icon to deps ([c6fb596](https://github.com/Synerise/synerise-design/commit/c6fb5967f4b20738766f9ce80a90ac9a017a8f79))
+
+
+
+
+
 ## [0.1.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-operators@0.1.7...@synerise/ds-operators@0.1.8) (2020-10-06)
 
 **Note:** Version bump only for package @synerise/ds-operators

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subtle-form@0.3.0...@synerise/ds-subtle-form@0.3.1) (2020-10-09)
+
+
+### Bug Fixes
+
+* **subtle-form:** add latest ds-icon to deps ([0e24899](https://github.com/Synerise/synerise-design/commit/0e24899860b76a7d95c0bab6b91147c6739edce7))
+
+
+
+
+
 # [0.3.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subtle-form@0.2.0...@synerise/ds-subtle-form@0.3.0) (2020-10-06)
 
 

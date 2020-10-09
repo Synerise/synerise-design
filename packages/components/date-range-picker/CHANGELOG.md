@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.24](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.1.23...@synerise/ds-date-range-picker@0.1.24) (2020-10-09)
+
+
+### Bug Fixes
+
+* **date-range-picker:** add latest ds-icon to deps ([2545219](https://github.com/Synerise/synerise-design/commit/25452198609556c0534b4c97bbca7060b12eaa7c))
+
+
+
+
+
 ## [0.1.23](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.1.22...@synerise/ds-date-range-picker@0.1.23) (2020-10-06)
 
 **Note:** Version bump only for package @synerise/ds-date-range-picker

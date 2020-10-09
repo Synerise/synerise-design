@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.72](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.2.71...@synerise/ds-items-roll@0.2.72) (2020-10-09)
+
+
+### Bug Fixes
+
+* **items-roll:** add latest ds-icon to deps ([d36fadb](https://github.com/Synerise/synerise-design/commit/d36fadb9a2d7447d657871421491e77d97999c73))
+
+
+
+
+
 ## [0.2.71](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.2.70...@synerise/ds-items-roll@0.2.71) (2020-10-06)
 
 **Note:** Version bump only for package @synerise/ds-items-roll

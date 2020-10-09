@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.15.9](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.15.8...@synerise/ds-input@0.15.9) (2020-10-09)
+
+
+### Bug Fixes
+
+* **input:** add latest ds-icon to deps ([f1c8ecd](https://github.com/synerise/synerise-design/commit/f1c8ecdafcaa95ad980f7b3d10e5c2d4d65a6ce8))
+* **input:** add scrollbar to deps ([f334972](https://github.com/synerise/synerise-design/commit/f3349725ea26bd70b0ded6d63467147491359c96))
+* **input:** add scrollbar to deps ([8aee10d](https://github.com/synerise/synerise-design/commit/8aee10d1938421bc690fc483d729beacd7ff4a07))
+
+
+
+
+
 ## [0.15.8](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.15.7...@synerise/ds-input@0.15.8) (2020-10-06)
 
 

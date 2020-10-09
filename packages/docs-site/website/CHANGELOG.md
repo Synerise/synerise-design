@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.6.4...docs@0.7.0) (2020-10-09)
+
+
+### Features
+
+* **button:** move Crud and SingleAction to separate Crud component ([a10976a](https://gitlab.synerise.com/Frontend/synerise-design/commit/a10976a2677823ea8064068eea7e0c53611cfc78))
+
+
+
+
+
 ## [0.6.4](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.6.3...docs@0.6.4) (2020-10-06)
 
 **Note:** Version bump only for package docs

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.25.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.25.1...@synerise/ds-table@0.25.2) (2020-10-09)
+
+
+### Bug Fixes
+
+* **table:** add latest ds-icon to deps ([636d0f6](https://github.com/synerise/synerise-design/commit/636d0f6379191864ab14eb5d75e37455a5654b78))
+
+
+
+
+
 ## [0.25.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.25.0...@synerise/ds-table@0.25.1) (2020-10-06)
 
 **Note:** Version bump only for package @synerise/ds-table

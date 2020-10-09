@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.18](https://github.com/Synerise/synerise-design/compare/@synerise/ds-description@0.1.17...@synerise/ds-description@0.1.18) (2020-10-09)
+
+
+### Bug Fixes
+
+* **description:** add latest ds-icon to deps ([3535597](https://github.com/Synerise/synerise-design/commit/3535597212023a5dc285c305923b63f17e9c5683))
+
+
+
+
+
 ## [0.1.17](https://github.com/Synerise/synerise-design/compare/@synerise/ds-description@0.1.16...@synerise/ds-description@0.1.17) (2020-10-06)
 
 **Note:** Version bump only for package @synerise/ds-description
