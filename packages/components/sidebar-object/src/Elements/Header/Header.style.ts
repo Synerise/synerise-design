@@ -3,9 +3,9 @@ import InlineEdit from '@synerise/ds-inline-edit';
 import { InlineEditProps } from '@synerise/ds-inline-edit/dist/InlineEdit.types';
 
 export const HeaderWrapper = styled.div<{dashed: boolean}>`
-  padding: ${(props): string => props.dashed ? '16px 0': '0' };
+  padding: ${(props): string => props.dashed ? '0 0 16px 0': '0' };
   border-bottom: ${(props): string => props.dashed ? `1px dashed ${props.theme.palette['grey-300']}`: `0` };
-  margin: 0 24px;
+  margin-top: -8px;
 `;
 
 export const ButtonWrapper = styled.div`

@@ -25,7 +25,7 @@ const Overview: React.FC<OverviewObjectProps> = ({
     setValue('');
   };
   return (
-    <div>
+    <div style={{width: '100%'}}>
       <S.HeaderWrapper dashed={!!onFolderSelect}>
         {onFolderSelect && (
           <>

@@ -43,4 +43,5 @@ import SidebarObject from '@synerise/ds-sidebar-object'
 | texts          | Group of texts                                      | HeaderTexts                  | -       |
 | onCloseClick   | Prop to close Drawer                                | void                         | -       |
 | inputObjectId  | Id of an object's                                   | string                       | -       |
-| handleTabClick | Callback executed when you click on Tab             | (index: number) => void      |
+| handleTabClick | Callback executed when you click on Tab             | (index: number) => void      | -       |
+| footer         | Callback executed to show footer                    | React.ReactNode              | -       |
