@@ -15,6 +15,8 @@ import Tags, { TagShape } from '@synerise/ds-tags';
 import { v4 as uuid } from 'uuid';
 import sample from 'lodash/sample';
 import Overview from '@synerise/ds-sidebar-object/dist/Elements/Overview/Overview';
+import { ButtonWrapper } from '@synerise/ds-sidebar-object/dist/Elements/Header/Header.style';
+
 
 
 const getColor = name => {
@@ -83,7 +85,97 @@ const renderBackIcon = (headerType, onBackClickHandler) => {
 };
 
 const stories = {
-  sidebarObject: () => {
+  default: () => {
+    const [drawerVisible, setDrawerVisible] = React.useState(false);
+    const showIcon = boolean('Set Icon',true);
+    const showTabs = boolean('Set Tabs',true);
+    const showFooter = boolean('Set Footer',true);
+    let headerType = (headerTypes.singleTitle);
+    const inputObject = {
+      id: '3423-3426-8263-6634-6834-2352',
+    }
+    const texts = {
+      namePlaceholder: 'Description',
+      name: 'DescriptionInput',
+      search: 'Search',
+      inlineEditPlaceholder: 'Campaign Name',
+      editIcon: 'Edit',
+      deleteIcon: 'Delete',
+      duplicateIcon: 'Duplicate',
+      moveIcon: 'Move to',
+      folder: 'Folder',
+      placeholder: 'Description',
+      labelName: 'Description',
+      labelTooltip: 'Description',
+      suffixTooltip: 'Edit',
+    }
+
+    const TABS = [
+      {
+        label: 'Overview', content: <div style={{height: '340px'}}></div>
+      },
+      {
+        label: 'Changelog',
+      },
+      {
+        label: 'Versions',
+      },
+    ];
+    return (
+      <div>
+        <Button onClick={() => setDrawerVisible(!drawerVisible)} type="primary">
+          Sidebar Object
+        </Button>
+        <Drawer visible={drawerVisible} placement="right" width={676} onClose={() => setDrawerVisible(false)}>
+          <SidebarObject
+            avatar={
+              <Badge status={('inactive')}>
+                <Avatar
+                  backgroundColor={('pink')}
+                  backgroundColorHue={('100')}
+                  size={('large')}
+                  shape={( 'circle')}
+                  iconComponent={
+                    <Icon
+                      color={getColor('pink-600')}
+                      component={getIconSize('large')}
+                    />
+                  }
+                  hasStatus={(true)}
+                  style={{ flex: 1, margin: 0 }}
+                />
+              </Badge>
+            }
+            onCloseClick={() => setDrawerVisible(false)}
+            texts={texts}
+            headerPreffix={renderBackIcon(headerType, () => setDrawerVisible(false))}
+            onArrowUp={showIcon? () => {}: null}
+            onArrowDown={showIcon?  () => {}: null}
+            onEdit={() => {}}
+            onDuplicate={() => {}}
+            onMove={() => {}}
+            onDelete={() => {}}
+            onId={() => {}}
+            headerTabs={showTabs? TABS : []}
+            inputObject={inputObject}
+            footer={showFooter? <>
+              <ButtonWrapper style={{ flex: 1, padding: '0'}}>
+                <Button type="secondary"> Settings </Button>
+              </ButtonWrapper>
+              <ButtonWrapper style={{ padding: '0px 8px 0px 0'}}>
+                <Button type="ghost"> Cancel </Button>
+              </ButtonWrapper>
+              <ButtonWrapper style={{ padding: '0'}}>
+                <Button type='primary'> Apply </Button>
+              </ButtonWrapper>
+            </> : null
+            }
+          ></SidebarObject>
+        </Drawer>
+      </div>
+    );
+  },
+  campaign: () => {
     const [drawerVisible, setDrawerVisible] = React.useState(false);
     const [tags, setTags] = React.useState<Array<any>>(allTags);
     const [selected, setSelected] = React.useState<Array<any>>(allTags.slice(0, 2));
@@ -240,6 +332,7 @@ const stories = {
             inputObject={inputObject}
             contentTags={contentTags}
             textDescription=''
+            footer={null}
           ></SidebarObject>
         </Drawer>
       </div>
