@@ -11,7 +11,7 @@ export const TooltipDescription = styled.div<TooltipExtendedProps>`
 
 const titlesWithPadding = ['icon', 'tutorial', 'button'];
 
-export const TooltipTitle = styled.div<TooltipExtendedProps & { tooltipType: tooltipTypes }>`
+export const TooltipTitle = styled.div<Omit<TooltipExtendedProps, 'type'> & { tooltipType: tooltipTypes }>`
   margin-bottom: ${({ tooltipType }): string => (titlesWithPadding.includes(String(tooltipType)) ? '8px' : '0px')};
   font-size: 13px;
   line-height: 1.38;
@@ -43,7 +43,7 @@ export const TooltipContent = styled.div`
   justify-content: flex-start;
 `;
 
-export const TooltipComponent = styled.div<TooltipExtendedProps & { tooltipType: tooltipTypes }>`
+export const TooltipComponent = styled.div<Omit<TooltipExtendedProps, 'type'> & { tooltipType: tooltipTypes }>`
   background-color: rgba(56, 67, 80, 0.9);
   min-height: 24px;
   color: ${(props): string => props.theme.palette['grey-200']};
