@@ -1,6 +1,10 @@
 import * as React from 'react';
-import * as dayjs from 'dayjs';
-import * as customParseFormatPlugin from 'dayjs/plugin/customParseFormat';
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore
+import dayjs from 'dayjs';
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore
+import customParseFormatPlugin from 'dayjs/plugin/customParseFormat';
 import Button from '@synerise/ds-button';
 import { CheckS, CloseS } from '@synerise/ds-icon/dist/icons';
 import Icon from '@synerise/ds-icon';

@@ -1,7 +1,9 @@
 import * as React from 'react';
 import { range } from 'lodash';
 import { FormattedMessage, injectIntl } from 'react-intl';
-import * as dayjs from 'dayjs';
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore
+import dayjs from 'dayjs';
 import { Header } from './Header/Header';
 import Day from './Day/Day';
 import { DayKey, TimeWindowProps, State, DayOptions } from './TimeWindow.types';

@@ -1,4 +1,6 @@
-import * as dayjs from 'dayjs';
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore
+import dayjs from 'dayjs';
 import { flatten, groupBy, reverse, values } from 'lodash';
 
 const TODAY = new Date();
