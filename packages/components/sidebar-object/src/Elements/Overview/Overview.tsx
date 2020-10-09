@@ -25,7 +25,7 @@ const Overview: React.FC<OverviewObjectProps> = ({
     setValue('');
   };
   return (
-    <div style={{width: '100%'}}>
+    <S.OverviewWrapper>
       <S.HeaderWrapper dashed={!!onFolderSelect}>
         {onFolderSelect && (
           <>
@@ -61,7 +61,7 @@ const Overview: React.FC<OverviewObjectProps> = ({
           description={<ObjectSummary inputObject={inputObject} />}
           tags={contentTags}
         />
-    </div>
+    </S.OverviewWrapper>
   );
 };
 export default Overview;

@@ -34,3 +34,7 @@ export const DropdownWrapper = styled.div`
   background: ${(props): string => props.theme.palette.white};
   width: 216px;
 `;
+
+export const OverviewWrapper = styled.div`
+  width: 100%;
+`;
