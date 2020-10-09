@@ -3,9 +3,10 @@ import { boolean, text, select, number } from '@storybook/addon-knobs';
 
 import Tooltip from '@synerise/ds-tooltip';
 import Avatar from '@synerise/ds-avatar';
-import { InfoFillS } from '@synerise/ds-icon/dist/icons';
+import { InfoFillS, InfoM } from '@synerise/ds-icon/dist/icons';
 import Icon from '@synerise/ds-icon';
 import Button from '@synerise/ds-button';
+import { action } from '@storybook/addon-actions';
 
 const decorator = (storyFn) => (
   <div style={{ padding: '60px' }}>
@@ -118,6 +119,23 @@ const stories = {
       </Tooltip>
     </div>
   ),
+  button: () => (
+    <div>
+      <Tooltip
+        {...props()}
+        title={text('Set title', 'Tip for you')}
+        description={text('Set description', 'You can change profile name later in your profile settings')}
+        type="button"
+        button={{
+          label: text('Set button label', 'More info'),
+          onClick: action('click'),
+          buttonIcon: boolean('Show button icon', true) && <Icon component={<InfoM />} />,
+        }}
+      >
+        <Button type="primary">Show tips</Button>
+      </Tooltip>
+    </div>
+  )
 };
 
 export default {

@@ -61,16 +61,6 @@ const CREATOR_TYPE = {
   validated: CreatorStatus.Error,
 };
 
-const crudsoptions = {
-  Multiple: 'Multiple',
-  Add: 'Add',
-  Edit: 'Edit',
-  Duplicate: 'Duplicate',
-  Delete: 'Delete',
-  Remove: 'Remove',
-  Move: 'Move',
-};
-
 const getDefaultProps = (isSplit = false) => ({
   label: text('Label', 'Button'),
   type: select('Set type', !isSplit ? typeOptions : splitTypeOptions, 'primary'),
@@ -105,9 +95,6 @@ const getBackgroundStyles = type => {
     justifyContent: 'center',
   };
 };
-const getCrudsKnobs = () => ({
-  type: select('Set type', crudsoptions, 'Multiple'),
-});
 
 const stories = {
   simple: () => {
@@ -279,40 +266,6 @@ const stories = {
     return (
       <div>
         <Button.Creator {...props} label={'Add position'} onClick={action('Creator Click')}></Button.Creator>
-      </div>
-    );
-  },
-  cruds: () => {
-    const crudProps = getCrudsKnobs();
-    const props = {
-      ...crudProps,
-      style: {
-        margin: 4,
-      },
-    } as object;
-    return (
-      <div>
-        <Button.Cruds
-          {...props}
-          onAdd={crudProps.type === 'Add' || crudProps.type === 'Multiple' ? action('onAdd event triggered') : null}
-          addTooltip="Add"
-          onDelete={
-            crudProps.type === 'Delete' || crudProps.type === 'Multiple' ? action('onDelete event triggered') : null
-          }
-          deleteTooltip="Delete"
-          onDuplicate={
-            crudProps.type === 'Duplicate' || crudProps.type === 'Multiple'
-              ? action('onDuplicate event triggered')
-              : null
-          }
-          duplicateTooltip="Duplicate"
-          onEdit={crudProps.type === 'Edit' || crudProps.type === 'Multiple' ? action('onEdit event triggered') : null}
-          editTooltip="Edit"
-          onMove={crudProps.type === 'Move' ? action('onMove event triggered') : null}
-          moveTooltip="Move"
-          onRemove={crudProps.type === 'Remove' ? action('onRemove event triggered') : null}
-          removeTooltip="Remove"
-        />
       </div>
     );
   },

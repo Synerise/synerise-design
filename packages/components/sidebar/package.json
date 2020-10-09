@@ -28,7 +28,7 @@
     "@synerise/ds-block": "^0.3.59",
     "@synerise/ds-button": "^0.12.37",
     "@synerise/ds-card": "^0.7.15",
-    "@synerise/ds-icon": "^0.30.0",
+    "@synerise/ds-icon": "*",
     "@synerise/ds-typography": "^0.9.1",
     "immutability-helper": "^3.0.1",
     "react-dnd": "^10.0.2",

@@ -14,6 +14,7 @@ import Status from '@synerise/ds-status';
 import Tags, { TagShape } from '@synerise/ds-tags';
 import { v4 as uuid } from 'uuid';
 import sample from 'lodash/sample';
+import Overview from '@synerise/ds-sidebar-object/dist/Elements/Overview/Overview';
 
 
 const getColor = name => {
@@ -63,17 +64,7 @@ const allTags = [
 
 
 const imgSrc = 'https://www.w3schools.com/howto/img_avatar.png';
-const TABS = [
-  {
-    label: 'Overview',
-  },
-  {
-    label: 'Changelog',
-  },
-  {
-    label: 'Versions',
-  },
-];
+
 const headerTypes = {
   singleTitle: 'singleTitle',
   singleTitleWithBackIcon: 'singleTitleWithBackIcon',
@@ -92,7 +83,7 @@ const renderBackIcon = (headerType, onBackClickHandler) => {
 };
 
 const stories = {
-  default: () => {
+  sidebarObject: () => {
     const [drawerVisible, setDrawerVisible] = React.useState(false);
     const [tags, setTags] = React.useState<Array<any>>(allTags);
     const [selected, setSelected] = React.useState<Array<any>>(allTags.slice(0, 2));
@@ -115,7 +106,97 @@ const stories = {
       { name: 'Drafts' },
       { name: 'Archived' },
     ];
-    let headerType = select('Set header type', headerTypes, headerTypes.singleTitle);
+    let headerType = (headerTypes.singleTitle);
+    const parentFolder ={ id: '2', name: 'Example folder' }
+    const autoSize = {minRows: 3, maxRows: 10}
+    const inputObject = {
+      'Type:': 'Email campaign',
+      Status: (
+        <div>
+          <Status label="Draft" type="disabled" />
+        </div>
+      ),
+      Author: (
+        <div style={{display: 'flex', alignItems: 'center'}}>
+          <Avatar src={imgSrc} size="small" shape="circle" style={{ marginRight: '10px' }} />
+          <span>Teresa Smith</span>
+        </div>
+      ),
+      Created: '25 May, 2020 15:32',
+      'Last edited': '27 May, 2020 15:32',
+      id: '3423-3426-8263-6634-6834-2352',
+    }
+    const texts = {
+      namePlaceholder: 'Description',
+      name: 'DescriptionInput',
+      search: 'Search',
+      inlineEditPlaceholder: 'Campaign Name',
+      editIcon: 'Edit',
+      deleteIcon: 'Delete',
+      duplicateIcon: 'Duplicate',
+      moveIcon: 'Move to',
+      folder: 'Folder',
+      placeholder: 'Description',
+      labelName: 'Description',
+      labelTooltip: 'Description',
+      suffixTooltip: 'Edit',
+    }
+    const contentTags = <Tags
+      data={tags}
+      tagShape={shape}
+      selected={selected}
+      disabled={disabled}
+      addable={addable && !disabled}
+      creatable={creatable}
+      removable={removable}
+      overlayStyle={{ width: '283px', boxShadow: '0 4px 17px -3px rgba(191,191,191,1)' }}
+      maxHeight={200}
+      texts={{
+        clearTooltip: 'Clear',
+        addButtonLabel: 'Add tag',
+        manageLinkLabel: 'Manage tags',
+        createTagButtonLabel: 'Add tag',
+        searchPlaceholder: 'Search tag...',
+        dropdownNoTags: 'No tags found',
+      }}
+      onCreate={name => {
+        const tag = {
+          id: uuid(),
+          name,
+          color: sample(randomColorPool),
+        };
+
+        console.log('Created new tag', name, tag);
+
+        setTags([...tags, tag]);
+        setSelected([...selected, tag]);
+      }}
+      onSelectedChange={(tags, actionTaken) => {
+        console.log('Selected tags change', tags, 'with action', actionTaken);
+        setSelected(tags);
+      }}
+      manageLink={withManageLink}
+    />
+    const TABS = [
+      {
+        label: 'Overview', content: <Overview
+          contentTags={contentTags}
+          folders={data}
+          parentFolder={parentFolder}
+          textDescription=''
+          onFolderSelect={showFolder}
+          autoSize={autoSize}
+          texts={texts}
+          inputObject={inputObject}
+        />
+      },
+      {
+        label: 'Changelog',
+      },
+      {
+        label: 'Versions',
+      },
+    ];
     return (
       <div>
         <Button onClick={() => setDrawerVisible(!drawerVisible)} type="primary">
@@ -142,24 +223,10 @@ const stories = {
               </Badge>
             }
             onCloseClick={() => setDrawerVisible(false)}
-            autoSize={{minRows: 3, maxRows: 10}}
+            autoSize={autoSize}
             folders={data}
-            parentFolder={{ id: '2', name: 'Example folder' }}
-            texts={{
-              namePlaceholder: 'Description',
-              name: 'DescriptionInput',
-              search: 'Search',
-              inlineEditPlaceholder: 'Campaign Name',
-              editIcon: 'Edit',
-              deleteIcon: 'Delete',
-              duplicateIcon: 'Duplicate',
-              moveIcon: 'Move to',
-              folder: 'Folder',
-              placeholder: 'Description',
-              labelName: 'Description',
-              labelTooltip: 'Description',
-              suffixTooltip: 'Edit',
-            }}
+            parentFolder={parentFolder}
+            texts={texts}
             headerPreffix={renderBackIcon(headerType, () => setDrawerVisible(false))}
             onArrowUp={showIcon? () => {}: null}
             onArrowDown={showIcon?  () => {}: null}
@@ -170,61 +237,8 @@ const stories = {
             onDelete={() => {}}
             onId={() => {}}
             headerTabs={TABS}
-            inputObject={{
-              'Type:': 'Email campaign',
-              Status: (
-                <div>
-                  <Status label="Draft" type="disabled" />
-                </div>
-              ),
-              Author: (
-                <div style={{display: 'flex', alignItems: 'center'}}>
-                  <Avatar src={imgSrc} size="small" shape="circle" style={{ marginRight: '10px' }} />
-                  <span>Teresa Smith</span>
-                </div>
-              ),
-              Created: '25 May, 2020 15:32',
-              'Last edited': '27 May, 2020 15:32',
-              id: '3423-3426-8263-6634-6834-2352',
-            }}
-            contentTags={
-              <Tags
-                data={tags}
-                tagShape={shape}
-                selected={selected}
-                disabled={disabled}
-                addable={addable && !disabled}
-                creatable={creatable}
-                removable={removable}
-                overlayStyle={{ width: '283px', boxShadow: '0 4px 17px -3px rgba(191,191,191,1)' }}
-                maxHeight={200}
-                texts={{
-                  clearTooltip: 'Clear',
-                  addButtonLabel: 'Add tag',
-                  manageLinkLabel: 'Manage tags',
-                  createTagButtonLabel: 'Add tag',
-                  searchPlaceholder: 'Search tag...',
-                  dropdownNoTags: 'No tags found',
-                }}
-                onCreate={name => {
-                  const tag = {
-                    id: uuid(),
-                    name,
-                    color: sample(randomColorPool),
-                  };
-
-                  console.log('Created new tag', name, tag);
-
-                  setTags([...tags, tag]);
-                  setSelected([...selected, tag]);
-                }}
-                onSelectedChange={(tags, actionTaken) => {
-                  console.log('Selected tags change', tags, 'with action', actionTaken);
-                  setSelected(tags);
-                }}
-                manageLink={withManageLink}
-              />
-            }
+            inputObject={inputObject}
+            contentTags={contentTags}
             textDescription=''
           ></SidebarObject>
         </Drawer>

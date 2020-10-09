@@ -26,20 +26,21 @@ import SidebarObject from '@synerise/ds-sidebar-object'
 
 ## API
 
-| Property      | Description                                         | Type                         | Default |
-| ------------- | --------------------------------------------------- | ---------------------------- | ------- |
-| avatar        | Add icon of avatar                                  | React.ReactNode              | -       |
-| headerPreffix | Element rendered on the left side of the header     | React.ReactNode              | -       |
-| headerTabs    | Tabs component to switch between content            | TabItem                      | -       |
-| inputObject   | Panel of content                                    | object                       | -       |
-| contentTags   | Panel of tags                                       | React.ReactNode              | -       |
-| folders       | List of folders an object can be moved to           | FolderItem                   | -       |
-| onEdit        | Callback executed when clicked on edit icon         | (inputObject:object) => void | -       |
-| onDuplicate   | Callback executed when clicked on duplicate icon    | (inputObject:object) => void | -       |
-| onMove        | Callback executed when clicked on move icon         | (inputObject:object) => void | -       |
-| onDelete      | Callback executed when clicked on delete icon       | (inputObject:object) => void | -       |
-| onId          | Callback executed after clicking on the object's ID | (inputObject:object) => void | -       |
-| parentFolder  | Parent folder an object belongs to                  | FolderItem                   | -       |
-| texts         | Group of texts                                      | HeaderTexts                  | -       |
-| onCloseClick  | Prop to close Drawer                                | void                         | -       |
-| inputObjectId | Id of an object's                                   | string                       | -       |
+| Property       | Description                                         | Type                         | Default |
+| -------------- | --------------------------------------------------- | ---------------------------- | ------- |
+| avatar         | Add icon of avatar                                  | React.ReactNode              | -       |
+| headerPreffix  | Element rendered on the left side of the header     | React.ReactNode              | -       |
+| headerTabs     | Tabs component to switch between content            | TabItem                      | -       |
+| inputObject    | Panel of content                                    | object                       | -       |
+| onArrowUp      | Callback executed to show arrowUp icon              | void                         | -       |
+| onArrowDown    | Callback executed to show arrowUp icon              | void                         | -       |
+| onEdit         | Callback executed when clicked on edit icon         | (inputObject:object) => void | -       |
+| onDuplicate    | Callback executed when clicked on duplicate icon    | (inputObject:object) => void | -       |
+| onMove         | Callback executed when clicked on move icon         | (inputObject:object) => void | -       |
+| onDelete       | Callback executed when clicked on delete icon       | (inputObject:object) => void | -       |
+| onId           | Callback executed after clicking on the object's ID | (inputObject:object) => void | -       |
+| onScrollbar    | Callback executed when scroll                       | boolean                      | -       |
+| texts          | Group of texts                                      | HeaderTexts                  | -       |
+| onCloseClick   | Prop to close Drawer                                | void                         | -       |
+| inputObjectId  | Id of an object's                                   | string                       | -       |
+| handleTabClick | Callback executed when you click on Tab             | (index: number) => void      |

@@ -8,9 +8,7 @@ import Creator from './Creator/Creator';
 import * as S from './Button.styles';
 import Expander from './Expander/Expander';
 import { ButtonSubComponents, Props } from './Button.types';
-import Cruds from './Cruds/Cruds';
 import { ExpanderProps } from './Expander/Expander.types';
-import { CrudsProps } from './Cruds/Cruds.types';
 import { CreatorProps } from './Creator/Creator.types';
 
 const RIPPLE_ANIMATION_OFFSET = 50;
@@ -76,8 +74,9 @@ const Button: React.FC<Props> & ButtonSubComponents = ({
     </S.AntdButton>
   );
 };
-Button.Expander = (props: ExpanderProps): React.ReactElement<ExpanderProps> => Expander(props) as React.ReactElement<ExpanderProps>;
-Button.Creator = (props: CreatorProps): React.ReactElement<CreatorProps> => Creator(props) as React.ReactElement<CreatorProps>;
-Button.Cruds = (props: CrudsProps): React.ReactElement<CrudsProps> => Cruds(props) as React.ReactElement<CrudsProps>;
+Button.Expander = (props: ExpanderProps): React.ReactElement<ExpanderProps> =>
+  Expander(props) as React.ReactElement<ExpanderProps>;
+Button.Creator = (props: CreatorProps): React.ReactElement<CreatorProps> =>
+  Creator(props) as React.ReactElement<CreatorProps>;
 
 export default Button;

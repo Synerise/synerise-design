@@ -1,6 +1,6 @@
 import * as React from 'react';
-import SingleAction from '@synerise/ds-button/dist/Cruds/SingleAction';
-import { CloseS, EditS, Settings2S, StarFillS, StarS,  } from '@synerise/ds-icon/dist/icons';
+import SingleAction from '@synerise/ds-cruds/dist/SingleAction';
+import { CloseS, EditS, Settings2S, StarFillS, StarS } from '@synerise/ds-icon/dist/icons';
 import { ActionProps } from '../Actions.types';
 import * as S from '../Actions.styles';
 

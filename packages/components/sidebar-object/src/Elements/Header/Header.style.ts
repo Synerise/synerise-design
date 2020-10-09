@@ -9,13 +9,12 @@ export const HeaderWrapper = styled.div<{dashed: boolean}>`
 `;
 
 export const ButtonWrapper = styled.div`
-  padding: 0 4px;
+  padding: 0 0 0 8px;
 `;
 export const StyledInlineEdit = styled(InlineEdit)<InlineEditProps>`
   
   && .autosize-input > input {
     max-width:350px;
-    text-overflow: ellipsis;
     overflow: hidden;
   }
 `;

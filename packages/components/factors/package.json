@@ -30,7 +30,7 @@
     "@synerise/ds-button": "^0.12.37",
     "@synerise/ds-date-picker": "^0.2.1",
     "@synerise/ds-dropdown": "^0.11.79",
-    "@synerise/ds-icon": "^0.30.0",
+    "@synerise/ds-icon": "*",
     "@synerise/ds-inline-edit": "^0.1.69",
     "@synerise/ds-input": "^0.15.8",
     "@synerise/ds-input-number": "^0.3.36",

@@ -83,20 +83,3 @@ import { AngleDownS } from '@synerise/ds-icon/dist/icons';
 | expanded | The current state of the button.            | boolean                                        | `false` |
 | onClick  | Callback executed after clicking the button | (event: React.MouseEvent) => void | -       |
 | size     | Defines the size of the button.             | `S` / `M`                                      | `M`     |
-
-## Button.Cruds
-
-| Property         | Description                                                                  | Type                                           | Default |
-| ---------------- | ---------------------------------------------------------------------------- | ---------------------------------------------- | ------- |
-| addTooltip       | Tooltip of the add button                                                    | React.ReactNode / string                       | -       |
-| duplicateTooltip | Tooltip of the duplicate button                                              | React.ReactNode / string                       | -       |
-| deleteTooltip    | Tooltip of the delete button (which has a different icon than remove button) | React.ReactNode / string                       | -       |
-| editTooltip      | Tooltip of the edit button                                                   | React.ReactNode / string                       | -       |
-| moveTooltip      | Tooltip of the move button                                                   | React.ReactNode / string                       | -       |
-| removeTooltip    | Tooltip of the remove button                                                 | React.ReactNode / string                       | -       |
-| onAdd            | Callback executed after clicking the add button.                             | (event: React.MouseEvent) => void | -       |
-| onDuplicate      | Callback executed after clicking the duplicate button.                       | (event: React.MouseEvent) => void | -       |
-| onDelete         | Callback executed after clicking the delete button.                          | (event: React.MouseEvent) => void | -       |
-| onEdit           | Callback executed after clicking the edit button.                            | (event: React.MouseEvent) => void | -       |
-| onMove           | Callback executed after clicking the move button.                            | (event: React.MouseEvent) => void | -       |
-| onRemove         | Callback executed after clicking the remove button.                          | (event: React.MouseEvent) => void | -       |

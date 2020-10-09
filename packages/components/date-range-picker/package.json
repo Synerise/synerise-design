@@ -28,7 +28,7 @@
     "@date-fns/upgrade": "^1.0.3",
     "@synerise/ds-button": "^0.12.37",
     "@synerise/ds-date-picker": "^0.2.1",
-    "@synerise/ds-icon": "^0.30.0",
+    "@synerise/ds-icon": "*",
     "@synerise/ds-time-picker": "^0.3.13",
     "@synerise/ds-tooltip": "^0.7.20",
     "date-fns": "^2.16.1",

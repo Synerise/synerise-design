@@ -26,6 +26,7 @@
   "types": "dist/index.d.ts",
   "dependencies": {
     "@synerise/ds-badge": "^0.4.36",
+    "@synerise/ds-icon": "*",
     "@synerise/ds-tooltip": "^0.7.20"
   },
   "peerDependencies": {
