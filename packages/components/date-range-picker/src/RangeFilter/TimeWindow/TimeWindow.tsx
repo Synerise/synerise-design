@@ -4,7 +4,7 @@ import { FormattedMessage, injectIntl } from 'react-intl';
 import * as dayjs from 'dayjs';
 import { Header } from './Header/Header';
 import Day from './Day/Day';
-import { DayKey, Props, State, DayOptions } from './TimeWindow.types';
+import { DayKey, TimeWindowProps, State, DayOptions } from './TimeWindow.types';
 import * as S from './TimeWindow.styles';
 import RangeForm from '../DailyFilter/RangeForm/RangeForm';
 import RangeSummary from './RangeSummary/RangeSummary';
@@ -12,16 +12,19 @@ import { getDateFromDayValue } from './utils';
 import Grid from './Grid/Grid';
 import RangeActions from './RangeActions/RangeActions';
 import SelectionCount from '../SelectionCount/SelectionCount';
+import { FilterDefinition } from '../RangeFilter.types';
 
-class TimeWindowBase extends React.PureComponent<Props, State> {
+class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
   // eslint-disable-next-line react/destructuring-assignment
   state: State = { activeDays: this.props.daily ? [0] : [], multipleSelectionMode: false };
   static defaultProps = {
     days: {},
     numberOfDays: 7,
     showSelectAll: false,
-    dayTemplate: (index: number) => ({ dayOfWeek: index + 1 }),
-    dayFormatter: (dayKey: DayKey) => <FormattedMessage id={`DS.DATE-RANGE-PICKER.WEEKDAYS-SHORT-${dayKey}`} />,
+    dayTemplate: (index: number): { dayOfWeek: number } => ({ dayOfWeek: index + 1 }),
+    dayFormatter: (dayKey: DayKey): React.ReactNode => (
+      <FormattedMessage id={`DS.DATE-RANGE-PICKER.WEEKDAYS-SHORT-${dayKey}`} />
+    ),
     timeMarks: { '0': '00:00', '12': <FormattedMessage id="DS.DATE-RANGE-PICKER.SET-HOURS" />, '24': '24:00' },
   };
 
@@ -69,7 +72,7 @@ class TimeWindowBase extends React.PureComponent<Props, State> {
       ...days,
       [dayKey]: {
         ...this.getDayValue(dayKey),
-        ...dayChanges,
+        ...(dayChanges as DayOptions),
       },
     });
   };
@@ -113,7 +116,7 @@ class TimeWindowBase extends React.PureComponent<Props, State> {
     const updatedDays = {};
     activeDays.forEach(k => {
       updatedDays[k] = {
-        day:k,
+        day: k,
         start: dayjs(value[0]).format('HH:mm:ss.SSS'),
         stop: dayjs(value[1]).format('HH:mm:ss.SSS'),
         restricted: true,
@@ -123,7 +126,7 @@ class TimeWindowBase extends React.PureComponent<Props, State> {
   };
 
   handleClearSelection = (): void => {
-    this.setState({ activeDays: [] } );
+    this.setState({ activeDays: [] });
   };
 
   handleSelectAll = (): void => {
@@ -144,14 +147,14 @@ class TimeWindowBase extends React.PureComponent<Props, State> {
     });
   };
 
-  getDayValue = (dayKey: DayKey) => {
+  getDayValue = (dayKey: DayKey): Partial<FilterDefinition> => {
     const { days, dayTemplate, customDays, daily } = this.props;
     let dayValue = {};
     if (daily) dayValue = days;
     else if (days[dayKey]) dayValue = days[dayKey];
     else if (typeof dayKey === 'number') dayValue = dayTemplate(dayKey);
-    else if (customDays && customDays[dayKey] && customDays[dayKey].template) {
-      dayValue = customDays[dayKey].template!;
+    else if (customDays && customDays[dayKey]?.template && customDays[dayKey]?.template !== null) {
+      dayValue = customDays[dayKey].template as object;
     }
     return {
       start: '00:00:00.000',
@@ -163,15 +166,11 @@ class TimeWindowBase extends React.PureComponent<Props, State> {
     };
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  getDayLabel = (dayKey: DayKey, long?: boolean): any => {
+  getDayLabel = (dayKey: DayKey, long?: boolean): string | object => {
     const { dayFormatter, customDays } = this.props;
-    let label: any;
+    let label;
     if (typeof dayKey === 'string' && customDays && customDays[dayKey]) {
       label = customDays[dayKey][long ? 'longLabel' : 'label'] || customDays[dayKey].label;
-    }
-    if (typeof label === 'function') {
-      label = label(dayKey, this.getDayValue(dayKey));
     }
     if (!label) label = dayFormatter(dayKey, long);
     return label;
@@ -232,15 +231,17 @@ class TimeWindowBase extends React.PureComponent<Props, State> {
       <Component
         key={dayKey}
         data-attr={dayKey}
-        value={this.getDayValue(dayKey)}
         label={this.getDayLabel(dayKey)}
         tooltip={tooltip}
         restricted={isRestricted}
         active={isActive}
         readOnly={readOnly}
         intl={intl}
-        onToggle={(forceState: boolean): false | void => !readOnly && this.toggleDay(dayKey, forceState)}
+        onToggle={(forceState?: boolean): false | void => !readOnly && this.toggleDay(dayKey, forceState as boolean)}
         onChange={(dayChanges: DayOptions): void => this.handleDayChange(dayKey, dayChanges)}
+        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+        // @ts-ignore
+        value={this.getDayValue(dayKey)}
       />
     );
   };
@@ -250,17 +251,17 @@ class TimeWindowBase extends React.PureComponent<Props, State> {
     const dayValue = this.getDayValue(activeDays[0]);
     const rangeForm = (
       <RangeForm
-        startDate={getDateFromDayValue(dayValue.start)}
-        endDate={getDateFromDayValue(dayValue.stop)}
+        startDate={getDateFromDayValue(dayValue.start as string)}
+        endDate={getDateFromDayValue(dayValue.stop as string)}
         onStartChange={(value: Date): void =>
           activeDays.length > 1
-            ? this.handleMultipleDayTimeChange([value, getDateFromDayValue(dayValue.stop)])
-            : this.handleDayTimeChange([value, getDateFromDayValue(dayValue.stop)], dayKeys as DayKey)
+            ? this.handleMultipleDayTimeChange([value, getDateFromDayValue(dayValue.stop as string)])
+            : this.handleDayTimeChange([value, getDateFromDayValue(dayValue.stop as string)], dayKeys as DayKey)
         }
         onEndChange={(value: Date): void =>
           activeDays.length > 1
-            ? this.handleMultipleDayTimeChange([getDateFromDayValue(dayValue.start),value])
-            : this.handleDayTimeChange([getDateFromDayValue(dayValue.start), value], dayKeys as DayKey)
+            ? this.handleMultipleDayTimeChange([getDateFromDayValue(dayValue.start as string), value])
+            : this.handleDayTimeChange([getDateFromDayValue(dayValue.start as string), value], dayKeys as DayKey)
         }
       />
     );
@@ -269,7 +270,9 @@ class TimeWindowBase extends React.PureComponent<Props, State> {
     return (
       <>
         <Header
-          title={<RangeSummary dayKeys={dayKeys as DayKey[]} getDayLabel={this.getDayLabel} monthlyFilter={monthlyFilter} />}
+          title={
+            <RangeSummary dayKeys={dayKeys as DayKey[]} getDayLabel={this.getDayLabel} monthlyFilter={monthlyFilter} />
+          }
           suffix={
             <RangeActions
               onRangeClear={(): void => this.handleRangeClear(dayKeys as DayKey)}

@@ -7,8 +7,8 @@ import { Period } from './RangeFilter.types';
 
 const LONG_MONTH = new Date(0, 0, 1);
 
-export const MONTH_DAYS = (locale: string) =>
-  range(0, 31).map((i: number) => (locale === 'pl' ? `${++i}.` : fnsFormat(fnsAddDays(LONG_MONTH, i), 'Do')));
+export const MONTH_DAYS = (locale: string): string[] =>
+  range(0, 31).map((i: number) => (locale === 'pl' ? `${i + 1}.` : fnsFormat(fnsAddDays(LONG_MONTH, i), 'Do')));
 
 export const MONTHLY_TYPES = {
   DAY_OF_MONTH: 'MONTH',

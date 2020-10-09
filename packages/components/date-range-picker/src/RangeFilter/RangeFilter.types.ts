@@ -28,7 +28,7 @@ export type FilterDefinition = {
   restricted?: boolean;
   period?: string;
   type: string;
-  display?: string;
+  display?: boolean;
   periodType?: string;
 };
 
@@ -56,19 +56,14 @@ export type NormalizedFilterBase = {
 export type WeekFilter = {
   week: number;
 };
-export type ComponentDataType = {
-  labelTranslationKey: string;
-  component: JSX.Element;
-  definition: any;
-};
 
 export type WeeklyFilterDefinition = {
-  [key: string ]: FilterDefinition;
+  [key: string]: FilterDefinition;
 };
 
 export type MonthlyFilterDefinition = {
   definition: {
-    [key: string ]: FilterDefinition;
+    [key: string]: FilterDefinition;
   };
   id: number;
   period: string;

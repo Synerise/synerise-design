@@ -40,7 +40,7 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
         ))}
       </S.DropdownMenu>
     ),
-    [filters]
+    [filters, onFilterRemove, onFilterSelect, removeTooltip]
   );
   return (
     <Dropdown

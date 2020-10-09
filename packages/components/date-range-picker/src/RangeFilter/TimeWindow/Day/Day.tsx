@@ -19,16 +19,14 @@ const Day: React.FC<Props> = ({
   readOnly,
   restricted,
   tooltip,
-  value,
   ...rest
 }: Props) => {
   const [hovered, setHovered] = React.useState<boolean>(false);
   const [iconHover, setIconHover] = React.useState<boolean>(false);
   const type = active ? 'primary' : 'default';
-  const readOnlyStyles = readOnly ? { opacity: 0.6, cursor: 'default', width: '100%' } : { width: '100%' };
   const icon = React.useMemo(() => {
     if (restricted && !active) {
-      return hovered ? (
+      return hovered && iconHover ? (
         <>
           <S.DayTooltip>Clear</S.DayTooltip>
           <Icon component={<CloseS />} onClick={(): void => onToggle(false)} color={theme.palette['red-600']} />
@@ -38,14 +36,22 @@ const Day: React.FC<Props> = ({
       );
     }
     return null;
-  }, [restricted, active, hovered, iconHover]);
+  }, [restricted, active, hovered, onToggle, iconHover]);
   return (
-    <S.Container onMouseOut={(): void => setHovered(false)} onMouseOver={(): void => setHovered(true)}>
-      <Button {...rest} style={readOnlyStyles} onClick={onToggle as any} type={type} mode="label-icon">
+    <S.Container>
+      <Button
+        {...rest}
+        block
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        onClick={onToggle as any}
+        type={type}
+        mode="label-icon"
+      >
         <S.Content>{label}</S.Content>
       </Button>
+      {/* eslint-disable-next-line jsx-a11y/mouse-events-have-key-events */}
       <S.IconWrapper
-        active={hovered}
+        active={hovered && iconHover}
         onMouseOver={(): void => {
           setHovered(true);
           setIconHover(true);
@@ -58,32 +64,6 @@ const Day: React.FC<Props> = ({
       </S.IconWrapper>
     </S.Container>
   );
-  /*  return (
-    <S.Container className={hovered ? 'hovered' : ''}>
-      <Tooltip
-        visible={hovered && (!restricted || value) && tooltipText}
-        overlayStyle={overlayStyle}
-        title={tooltipText}
-      >
-        <Button style={readOnlyStyles} {...rest} onClick={onToggle as any} type={type}>
-          <span>{label}</span>
-        </Button>
-      </Tooltip>
-      {typeof label === 'function' ? (
-        label(hovered)
-      ) : (
-        <>
-          {restricted && !readOnly && (
-            <Tooltip title={intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.CLEAR-SELECTION' })}>
-              <S.DeleteIcon onClick={(): void => onToggle(false)}>
-                <Icon component={<CloseM />} />
-              </S.DeleteIcon>
-            </Tooltip>
-          )}
-        </>
-      )}
-    </S.Container>
-  ); */
 };
 
 export default Day;

@@ -39,7 +39,7 @@ const RangeActions: React.FC<RangeActionsProps> = ({ texts, onRangeClear, onRang
         </S.ActionItem>
       </S.ActionsMenu>
     );
-  }, [texts]);
+  }, [texts, onRangePaste, onRangeCopy, onRangeClear]);
   const trigger = React.useMemo((): React.ReactNode => {
     return (
       <Button mode="single-icon" type="ghost">

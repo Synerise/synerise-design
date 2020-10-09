@@ -13,7 +13,6 @@ export interface Props extends WrappedComponentProps, Partial<RangeActionsMethod
 const DailyFilter: React.FC<Props> = props => {
   const handleChange = (value: Days): void => {
     const { onChange } = props;
-    console.log("ON CHANGE value[0]",value, value[0])
     onChange && onChange(value[0] as Days);
   };
   const { value, intl, onRangeCopy, onRangePaste, onRangeClear } = props;

@@ -26,7 +26,7 @@ export const Labels = styled.div`
 export const Days = styled.div<{ columns: number }>`
   display: grid;
   grid-gap: 7px;
-  grid-template-columns: ${(props: { columns?: number }) =>
+  grid-template-columns: ${(props: { columns?: number }): string =>
     range(props.columns || 1)
       .map(() => '1fr')
       .join(' ')};
@@ -42,4 +42,4 @@ export const Days = styled.div<{ columns: number }>`
 
 export const HeaderWrapper = styled.div`
   margin-bottom: 12px;
-`
+`;

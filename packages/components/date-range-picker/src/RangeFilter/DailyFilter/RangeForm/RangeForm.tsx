@@ -51,7 +51,7 @@ const RangeForm: React.FC<RangeFormProps> = ({ startDate, endDate, onStartChange
         disabledSeconds={areStartAndEndValid ? getDisabledTimeOptions(start, 'SECONDS', null, end) : []}
       />
     );
-  }, [start, end]);
+  }, [areStartAndEndValid, start, end]);
 
   const renderRangePicker = React.useCallback(() => {
     return (
@@ -79,7 +79,7 @@ const RangeForm: React.FC<RangeFormProps> = ({ startDate, endDate, onStartChange
         />
       </>
     );
-  }, [start, end]);
+  }, [areStartAndEndValid, start, end, onStartChange, onEndChange]);
   return (
     <S.Container>
       <S.Row justifyContent="flex-start">

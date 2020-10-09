@@ -1,4 +1,4 @@
-import * as  React from 'react';
+import * as React from 'react';
 import { WrappedComponentProps } from 'react-intl';
 
 export type Props = {
@@ -6,8 +6,7 @@ export type Props = {
   label: React.ReactNode | ((hovered: boolean) => React.ReactNode);
   restricted: boolean;
   active: boolean;
-  onToggle: (forceState: boolean) => void;
+  onToggle: (forceState?: boolean) => void;
   onChange: Function;
-  value?: any;
   readOnly: boolean;
 } & WrappedComponentProps;

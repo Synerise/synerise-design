@@ -12,6 +12,7 @@ import { Month, MonthlyFilterProps } from './MonthlyFilter.types';
 import { MONTHLY_TYPES, MONTH_DAYS, PERIODS, PERIODS_TYPE, MAX_RULES_ALLOWED, defaultId } from '../constants';
 import * as S from './MonthlyFilter.styles';
 import TimeWindow from '../TimeWindow/TimeWindow';
+import { TimeWindowProps } from '../TimeWindow/TimeWindow.types';
 
 class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
   state = {
@@ -113,7 +114,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
     return { week: weekStartIndex, day: index - weekStartIndex * 7 };
   };
 
-  getTimeWindowSettings = (item: Month) => {
+  getTimeWindowSettings = (item: Month): Partial<TimeWindowProps> => {
     const { intl } = this.props;
 
     const settings = {
@@ -137,14 +138,16 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
           }),
       },
     };
-    return settings[item.period];
+    return settings[item.period] as Partial<TimeWindowProps>;
   };
 
-  handleCollapse = (id: React.ReactText) => {
+  handleCollapse = (id: React.ReactText): void => {
     const { visible } = this.state;
     const updatedVisible = {};
-    for (const i in visible) {
-      updatedVisible[i] = false;
+    const visibleKeys = visible ? Object.keys(visible) : [];
+    for (let i = 0; i < visibleKeys.length; i += 1) {
+      const currentIndex = visibleKeys[i];
+      updatedVisible[currentIndex] = false;
     }
     updatedVisible[id] = true;
     this.setState({
@@ -155,12 +158,12 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
   render(): JSX.Element {
     const { value, onRangeCopy, onRangePaste, onRangeClear, rangeClipboard, intl } = this.props;
     const { visible } = this.state;
-    console.log('value', value);
     const data = [...value];
     return (
       <S.MonthlyFilterWrapper>
         {data.map((item, key) => (
           <ContentItem
+            key={item.id}
             onExpand={(id): void => this.handleCollapse(id)}
             expanded={visible[item.id]}
             item={{

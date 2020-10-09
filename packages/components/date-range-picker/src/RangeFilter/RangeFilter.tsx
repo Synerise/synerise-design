@@ -20,6 +20,7 @@ class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState
   constructor(props: RangeFilterProps) {
     super(props);
     const valueType = props?.value?.type;
+    // eslint-disable-next-line react/state-in-constructor
     this.state = {
       activeType: valueType,
       [String(valueType)]: { ...denormalizeValue(props.value as FilterValue) },

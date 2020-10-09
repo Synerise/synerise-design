@@ -25,7 +25,7 @@ export type CustomDayConfig = {
   longLabel?: string;
 };
 
-export type Props = {
+export type TimeWindowProps = {
   days: Days;
   monthlyFilter?: boolean;
   customDays?: { [key: string]: CustomDayConfig };

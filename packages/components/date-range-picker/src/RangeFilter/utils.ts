@@ -41,10 +41,11 @@ export const denormMapTimeSchema = (item: NormalizedFilter): DenormalizedFilter 
   } as DenormalizedFilter;
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const normalizeValue = ({ type, definition }: FilterValue): NormalizedFilterBase | { rules: any } => {
-  const result = { type, nestingType: 'IN_PLACE', days: [] }; // TODO - datepicker type
-  let days: any[];
-  let rules: any[] = [];
+  const result = { type, nestingType: 'IN_PLACE', days: [] };
+  let days: unknown[];
+  let rules: unknown[] = [];
   switch (type) {
     case TYPES.DAILY:
       return { ...mapTimeSchema(definition as DenormalizedFilter), ...result };
@@ -64,7 +65,7 @@ export const normalizeValue = ({ type, definition }: FilterValue): NormalizedFil
           rules.push({
             weeks: Object.entries(groupBy(days, 'week')).map(([week, daysArray]) => ({
               week: +week + 1,
-              days: daysArray.map(day => ({ ...omit(day, ['week']), type })),
+              days: daysArray.map(day => ({ ...omit(day as object, ['week']), type })),
             })),
             type: def.period,
             inverted: def.periodType !== 'beginning',
