@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Icon from '@synerise/ds-icon';
 
+import ResizeObserver from 'rc-resize-observer';
 import * as S from './Card.styles';
 import { CardProps } from './Card.types';
 
@@ -25,14 +26,7 @@ const Card: React.FC<CardProps> = ({
   hideContent,
 }) => {
   const fatTitle = !description || (description && compactHeader);
-  const contentRef = React.useRef<HTMLDivElement>(null);
   const [contentHeight, setContentHeight] = React.useState<number>(2000);
-  React.useEffect(() => {
-    if (contentRef?.current !== null && contentRef?.current?.offsetHeight !== contentHeight) {
-      setContentHeight(contentRef.current.offsetHeight);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [contentRef, contentRef?.current, contentHeight]);
   return (
     <S.Container
       raised={raised}
@@ -69,9 +63,14 @@ const Card: React.FC<CardProps> = ({
       )}
       <S.ChildrenContainer className={`contentContainer ${hideContent ? 'closed' : 'open'}`}>
         <S.PaddingWrapper withoutPadding={withoutPadding}>
-          <div className="content" ref={contentRef}>
+          <ResizeObserver
+            onResize={({ height }): void => {
+              console.log(height);
+              setContentHeight(height);
+            }}
+          >
             {children}
-          </div>
+          </ResizeObserver>
         </S.PaddingWrapper>
       </S.ChildrenContainer>
     </S.Container>
