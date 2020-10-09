@@ -23,7 +23,7 @@ describe('Card', () => {
     // ARRANGE
     const TEST_ID = 'test_id';
     const { getByTestId } = renderWithProvider(
-      <Card showContent={true} >
+      <Card hideContent={false} >
         <div data-testid={TEST_ID}>
           Content
         </div>

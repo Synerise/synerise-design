@@ -10,7 +10,8 @@ const whiteBg = ['white', 'white-shadow'];
 const greyBg = ['grey', 'grey-shadow'];
 const withBoxShadow = ['white-shadow', 'grey-shadow'];
 const withOutline = ['outline'];
-
+const getTransitionDurationInMs = (contentHeight: number, maxTransitionTime = 400): number =>
+  maxTransitionTime > Math.floor(contentHeight / 5) ? Math.floor(contentHeight / 5) : maxTransitionTime;
 const backgroundColor = (props: { background: Backgrounds; theme: ThemePropsVars }): string => {
   if (whiteBg.includes(props.background)) return props.theme.palette.white;
   if (greyBg.includes(props.background)) return props.theme.palette['grey-050'];
@@ -39,6 +40,7 @@ export const Container = styled.div<{
   disabled?: boolean;
   lively?: boolean;
   background: Backgrounds;
+  contentHeight: number;
 }>`
   background-color: ${(props): string => (props.background ? backgroundColor(props) : props.theme.palette.transparent)};
   box-shadow: ${(props): string => (props.background ? boxShadow(props) : 'none')};
@@ -48,13 +50,14 @@ export const Container = styled.div<{
   width: 100%;
 
   .contentContainer {
-    transition: all 0.2s ease-in-out;
+    transition: opacity ${(props): number => getTransitionDurationInMs(props.contentHeight)}ms ease-in-out,
+      max-height ${(props): number => getTransitionDurationInMs(props.contentHeight)}ms ease-in-out;
     opacity: 1;
-    max-height: 1000px;
+    max-height: ${(props): number => props.contentHeight}px;
     &.closed {
-    opacity: 0;
-    max-height: 0;
-  }
+      opacity: 0;
+      max-height: 0;
+    }
   }
 
   ${(props): FlattenSimpleInterpolation | false =>
@@ -157,7 +160,6 @@ export const HeaderContent = styled.div<{ compact?: boolean; hasIcon: boolean }>
 
 export const ChildrenContainer = styled.div<{ showContent?: true }>`
   overflow: hidden;
-  
 `;
 
 export const PaddingWrapper = styled.div<{ withoutPadding?: boolean }>`

@@ -23,13 +23,13 @@ const stories = {
         >
           <Grid style={{ paddingTop: 122 }}>
             <Grid.Item xxl={16} xl={12} lg={12} md={8} sm={8} xs={4} contentWrapper >
-              <Card showContent>
+              <Card >
                 <S.Placeholder height={80} />
               </Card>
-              <Card showContent>
+              <Card >
                 <S.Placeholder height={80} />
               </Card>
-              <Card showContent>
+              <Card >
                 <S.Placeholder height={80} />
               </Card>
             </Grid.Item>
