@@ -3,6 +3,40 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@0.8.0...@synerise/ds-tooltip@0.8.1) (2020-10-09)
+
+
+### Bug Fixes
+
+* **tooltip:** fix tooltip title styles on firefox ([397913b](https://github.com/synerise/synerise-design/commit/397913bdd1b0d6f4a3c4f12d18e1c5a5ba5c6ac1))
+* **tooltip:** fix types ([a2ad7dc](https://github.com/synerise/synerise-design/commit/a2ad7dc7178eaf7bc1b07ed398138fb980e2815d))
+
+
+
+
+
+# [0.8.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@0.7.20...@synerise/ds-tooltip@0.8.0) (2020-10-09)
+
+
+### Bug Fixes
+
+* **tooltip:** add @synerise/ds-utils to devdependencies ([c81f881](https://github.com/synerise/synerise-design/commit/c81f881462f3c94a4a2b64d995133de11ca12965))
+* **tooltip:** add latest ds-icon to deps ([1c97c1b](https://github.com/synerise/synerise-design/commit/1c97c1b2be2e550a090c77e26e931c6780ab703a))
+* **tooltip:** fix tests ([4b637ac](https://github.com/synerise/synerise-design/commit/4b637acd939c817cff725190c7c6c93abd1ed28f))
+* **tooltip:** fix TS issue ([916b7b9](https://github.com/synerise/synerise-design/commit/916b7b92f861390c799e6cd6e904a39a18a4361e))
+
+
+### Features
+
+* **tooltip:** add Button to dependencies ([110379a](https://github.com/synerise/synerise-design/commit/110379aa5e0a4b65eb1b856ad27f305063c0d82a))
+* **tooltip:** add tooltip with button ([5589bdd](https://github.com/synerise/synerise-design/commit/5589bdd60127a4ccf3515e4dab8cd8451e127d43))
+* **tooltip:** bump icon version ([48369c3](https://github.com/synerise/synerise-design/commit/48369c357638289d217456599446c10e2549b285))
+* **tooltip:** fix styles of tooltip title ([369923b](https://github.com/synerise/synerise-design/commit/369923bc86057923207b687da3dc16392963adca))
+
+
+
+
+
 ## [0.7.20](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@0.7.19...@synerise/ds-tooltip@0.7.20) (2020-10-06)
 
 **Note:** Version bump only for package @synerise/ds-tooltip

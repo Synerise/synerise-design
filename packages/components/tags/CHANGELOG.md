@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.115](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@0.2.114...@synerise/ds-tags@0.2.115) (2020-10-09)
+
+**Note:** Version bump only for package @synerise/ds-tags
+
+
+
+
+
+## [0.2.114](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@0.2.113...@synerise/ds-tags@0.2.114) (2020-10-09)
+
+
+### Bug Fixes
+
+* **tags:** add latest ds-icon to deps ([4e120f7](https://github.com/Synerise/synerise-design/commit/4e120f74a4fe9ad95d45b61fda0f8d6d6e16b122))
+
+
+
+
+
 ## [0.2.113](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@0.2.112...@synerise/ds-tags@0.2.113) (2020-10-06)
 
 **Note:** Version bump only for package @synerise/ds-tags

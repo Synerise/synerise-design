@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-app-menu@0.4.2...@synerise/ds-app-menu@0.4.3) (2020-10-09)
+
+**Note:** Version bump only for package @synerise/ds-app-menu
+
+
+
+
+
+## [0.4.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-app-menu@0.4.1...@synerise/ds-app-menu@0.4.2) (2020-10-09)
+
+
+### Bug Fixes
+
+* **app-menu:** add latest ds-icon to deps ([2021ca5](https://github.com/Synerise/synerise-design/commit/2021ca580c74e34f605dfac2aaf1c25be518a43e))
+
+
+
+
+
 ## [0.4.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-app-menu@0.4.0...@synerise/ds-app-menu@0.4.1) (2020-10-06)
 
 **Note:** Version bump only for package @synerise/ds-app-menu

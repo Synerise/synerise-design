@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.5](https://github.com/synerise/synerise-design/compare/@synerise/ds-modal@0.12.4...@synerise/ds-modal@0.12.5) (2020-10-09)
+
+
+### Bug Fixes
+
+* **modal:** add latest ds-icon to deps ([6f8aff6](https://github.com/synerise/synerise-design/commit/6f8aff675b59fe57222dca86b9b9e198d254d805))
+
+
+
+
+
 ## [0.12.4](https://github.com/synerise/synerise-design/compare/@synerise/ds-modal@0.12.3...@synerise/ds-modal@0.12.4) (2020-10-06)
 
 **Note:** Version bump only for package @synerise/ds-modal

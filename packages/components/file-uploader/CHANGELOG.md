@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.18](https://github.com/Synerise/synerise-design/compare/@synerise/ds-file-uploader@0.5.17...@synerise/ds-file-uploader@0.5.18) (2020-10-09)
+
+**Note:** Version bump only for package @synerise/ds-file-uploader
+
+
+
+
+
+## [0.5.17](https://github.com/Synerise/synerise-design/compare/@synerise/ds-file-uploader@0.5.16...@synerise/ds-file-uploader@0.5.17) (2020-10-09)
+
+
+### Bug Fixes
+
+* **file-uploader:** add latest ds-icon to deps ([87d8c78](https://github.com/Synerise/synerise-design/commit/87d8c78b1a4505c05730d12c0a39e24771deef14))
+
+
+
+
+
 ## [0.5.16](https://github.com/Synerise/synerise-design/compare/@synerise/ds-file-uploader@0.5.15...@synerise/ds-file-uploader@0.5.16) (2020-10-06)
 
 **Note:** Version bump only for package @synerise/ds-file-uploader

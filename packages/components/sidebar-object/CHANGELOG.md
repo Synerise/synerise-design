@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar-object@0.1.9...@synerise/ds-sidebar-object@0.1.10) (2020-10-09)
+
+**Note:** Version bump only for package @synerise/ds-sidebar-object
+
+
+
+
+
+## [0.1.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar-object@0.1.8...@synerise/ds-sidebar-object@0.1.9) (2020-10-09)
+
+
+### Bug Fixes
+
+* **sidebar-object:** change padding and delete text-overflow ([dd8a91c](https://github.com/Synerise/synerise-design/commit/dd8a91ca41a5f08cdbc5e176396af90da067b1b1))
+* **sidebar-object:** fix  tests ([af46d18](https://github.com/Synerise/synerise-design/commit/af46d18c4ec2ee09551e7a7c82183e9f52cb693f))
+* **sidebar-object:** fix documentation and tests ([64fc915](https://github.com/Synerise/synerise-design/commit/64fc9154bc33c2d1570a7da47e40d17ee1a0df41))
+* **sidebar-object:** move content and headerWrapper to overview component ([5b0d388](https://github.com/Synerise/synerise-design/commit/5b0d3888e6ed8bff365ddfafd8c526549b492717))
+* **sidebar-object:** remove overview component from sidebarobject.tsx ([48fb3a4](https://github.com/Synerise/synerise-design/commit/48fb3a451c0f75b3c613c995c2173da0ac97f7d7))
+
+
+
+
+
 ## [0.1.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar-object@0.1.7...@synerise/ds-sidebar-object@0.1.8) (2020-10-06)
 
 **Note:** Version bump only for package @synerise/ds-sidebar-object

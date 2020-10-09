@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.16](https://github.com/synerise/synerise-design/compare/@synerise/ds-avatar@0.9.15...@synerise/ds-avatar@0.9.16) (2020-10-09)
+
+**Note:** Version bump only for package @synerise/ds-avatar
+
+
+
+
+
+## [0.9.15](https://github.com/synerise/synerise-design/compare/@synerise/ds-avatar@0.9.14...@synerise/ds-avatar@0.9.15) (2020-10-09)
+
+
+### Bug Fixes
+
+* **avatar:** add ds-icon to deps ([729c90f](https://github.com/synerise/synerise-design/commit/729c90fd7f1b273e24a291c31fc614eeca37df36))
+* **avatar:** add latest ds-icon to deps ([de57079](https://github.com/synerise/synerise-design/commit/de570798a45d561b001f5ceec104c927d2b49d42))
+
+
+
+
+
 ## [0.9.14](https://github.com/synerise/synerise-design/compare/@synerise/ds-avatar@0.9.13...@synerise/ds-avatar@0.9.14) (2020-10-06)
 
 **Note:** Version bump only for package @synerise/ds-avatar

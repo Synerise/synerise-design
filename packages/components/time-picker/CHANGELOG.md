@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.15](https://github.com/Synerise/synerise-design/compare/@synerise/ds-time-picker@0.3.14...@synerise/ds-time-picker@0.3.15) (2020-10-09)
+
+**Note:** Version bump only for package @synerise/ds-time-picker
+
+
+
+
+
+## [0.3.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-time-picker@0.3.13...@synerise/ds-time-picker@0.3.14) (2020-10-09)
+
+
+### Bug Fixes
+
+* **time-picker:** add latest ds-icon to deps ([5b54779](https://github.com/Synerise/synerise-design/commit/5b5477977f738f8a45fad77aa93d688b115b8470))
+
+
+
+
+
 ## [0.3.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-time-picker@0.3.12...@synerise/ds-time-picker@0.3.13) (2020-10-06)
 
 **Note:** Version bump only for package @synerise/ds-time-picker

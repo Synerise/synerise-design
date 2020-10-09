@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-tabs@0.7.0...@synerise/ds-card-tabs@0.7.1) (2020-10-09)
+
+**Note:** Version bump only for package @synerise/ds-card-tabs
+
+
+
+
+
+# [0.7.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-tabs@0.6.63...@synerise/ds-card-tabs@0.7.0) (2020-10-09)
+
+
+### Features
+
+* **card-tabs:** update Cruds component ([dd589aa](https://github.com/Synerise/synerise-design/commit/dd589aa3c30c8745a32d4d74bfa647f2cb236bb9))
+
+
+
+
+
 ## [0.6.63](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-tabs@0.6.62...@synerise/ds-card-tabs@0.6.63) (2020-10-06)
 
 **Note:** Version bump only for package @synerise/ds-card-tabs

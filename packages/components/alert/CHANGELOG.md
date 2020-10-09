@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.25](https://github.com/Synerise/synerise-design/compare/@synerise/ds-alert@0.1.24...@synerise/ds-alert@0.1.25) (2020-10-09)
+
+
+### Bug Fixes
+
+* **alert:** add latest ds-icon to deps ([b6e9b8f](https://github.com/Synerise/synerise-design/commit/b6e9b8f569b920e7f23a43f22fe6421862aa73a0))
+
+
+
+
+
 ## [0.1.24](https://github.com/Synerise/synerise-design/compare/@synerise/ds-alert@0.1.23...@synerise/ds-alert@0.1.24) (2020-10-06)
 
 **Note:** Version bump only for package @synerise/ds-alert

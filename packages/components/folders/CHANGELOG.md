@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-folders@0.2.0...@synerise/ds-folders@0.2.1) (2020-10-09)
+
+**Note:** Version bump only for package @synerise/ds-folders
+
+
+
+
+
+# [0.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-folders@0.1.6...@synerise/ds-folders@0.2.0) (2020-10-09)
+
+
+### Features
+
+* **folders:** update Crud component ([87bcdf4](https://github.com/Synerise/synerise-design/commit/87bcdf4315776692b3c274c2deb249e979f0e3af))
+
+
+
+
+
 ## [0.1.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-folders@0.1.5...@synerise/ds-folders@0.1.6) (2020-10-06)
 
 **Note:** Version bump only for package @synerise/ds-folders

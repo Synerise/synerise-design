@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-result@0.5.6...@synerise/ds-result@0.5.7) (2020-10-09)
+
+
+### Bug Fixes
+
+* **result:** add latest ds-icon to deps ([bc7022e](https://github.com/Synerise/synerise-design/commit/bc7022e63a4deafed47907adeccd658fdbc4a693))
+
+
+
+
+
 ## [0.5.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-result@0.5.5...@synerise/ds-result@0.5.6) (2020-10-06)
 
 **Note:** Version bump only for package @synerise/ds-result

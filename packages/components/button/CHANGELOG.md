@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.13.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.12.37...@synerise/ds-button@0.13.0) (2020-10-09)
+
+
+### Bug Fixes
+
+* **button:** add latest ds-icon to deps ([2330df4](https://github.com/synerise/synerise-design/commit/2330df47bac1c58da36175d37750768fc5d2e492))
+* **cruds:** prettier ([271b443](https://github.com/synerise/synerise-design/commit/271b443f655d98fce62059dfeb6ab0fab70ce2c0))
+
+
+### Features
+
+* **button:** move Crud and SingleAction to separate Crud component ([a10976a](https://github.com/synerise/synerise-design/commit/a10976a2677823ea8064068eea7e0c53611cfc78))
+* **cruds:** add Cruds component ([15498ba](https://github.com/synerise/synerise-design/commit/15498bad6e40649f8807c20c96fbdb58b5260f17))
+
+
+
+
+
 ## [0.12.37](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.12.36...@synerise/ds-button@0.12.37) (2020-10-06)
 
 **Note:** Version bump only for package @synerise/ds-button

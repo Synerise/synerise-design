@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.53](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-filter@0.4.52...@synerise/ds-item-filter@0.4.53) (2020-10-09)
+
+**Note:** Version bump only for package @synerise/ds-item-filter
+
+
+
+
+
+## [0.4.52](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-filter@0.4.51...@synerise/ds-item-filter@0.4.52) (2020-10-09)
+
+
+### Bug Fixes
+
+* **item-filter:** add latest ds-icon to deps ([d3edf63](https://github.com/Synerise/synerise-design/commit/d3edf638e6984ee0e4bae111251ab2448f5fceec))
+
+
+
+
+
 ## [0.4.51](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-filter@0.4.50...@synerise/ds-item-filter@0.4.51) (2020-10-06)
 
 **Note:** Version bump only for package @synerise/ds-item-filter
