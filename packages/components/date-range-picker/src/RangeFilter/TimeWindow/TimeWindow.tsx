@@ -15,6 +15,7 @@ import Grid from './Grid/Grid';
 import RangeActions from './RangeActions/RangeActions';
 import SelectionCount from '../SelectionCount/SelectionCount';
 import { FilterDefinition } from '../RangeFilter.types';
+import { DEFAULT_RANGE_END, DEFAULT_RANGE_START, TIME_FORMAT } from '../constants';
 
 class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
   // eslint-disable-next-line react/destructuring-assignment
@@ -83,8 +84,8 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
     const { onCheckDay } = this.props;
 
     this.handleDayChange(dayKey, {
-      start: '00:00:00.000',
-      stop: '23:59:59.999',
+      start: DEFAULT_RANGE_START,
+      stop: DEFAULT_RANGE_END,
       restricted: true,
       display: true,
     });
@@ -95,8 +96,8 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
   unCheckDay = (dayKey: DayKey): void => {
     const { onUncheckDay } = this.props;
     this.handleDayChange(dayKey, {
-      start: '00:00:00.000',
-      stop: '23:59:59.999',
+      start: DEFAULT_RANGE_START,
+      stop: DEFAULT_RANGE_END,
       restricted: false,
       display: false,
     });
@@ -107,8 +108,8 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
   handleDayTimeChange = (value: [Date, Date], dayKey: DayKey): void => {
     this.handleDayChange(dayKey, {
       restricted: true,
-      start: dayjs(value[0]).format('HH:mm:ss.SSS'),
-      stop: dayjs(value[1]).format('HH:mm:ss.SSS'),
+      start: dayjs(value[0]).format(TIME_FORMAT),
+      stop: dayjs(value[1]).format(TIME_FORMAT),
     });
   };
 
@@ -119,8 +120,8 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
     activeDays.forEach(k => {
       updatedDays[k] = {
         day: k,
-        start: dayjs(value[0]).format('HH:mm:ss.SSS'),
-        stop: dayjs(value[1]).format('HH:mm:ss.SSS'),
+        start: dayjs(value[0]).format(TIME_FORMAT),
+        stop: dayjs(value[1]).format(TIME_FORMAT),
         restricted: true,
       };
     });
@@ -159,8 +160,8 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
       dayValue = customDays[dayKey].template as object;
     }
     return {
-      start: '00:00:00.000',
-      stop: '23:59:59.999',
+      start: DEFAULT_RANGE_START,
+      stop: DEFAULT_RANGE_END,
       restricted: false,
       display: false,
       inverted: false,
@@ -181,8 +182,14 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
   handleRangeClear = (dayKeys: DayKey): void => {
     const { activeDays } = this.state;
     activeDays.length > 1
-      ? this.handleMultipleDayTimeChange([getDateFromDayValue('00:00:00.000'), getDateFromDayValue('23:59:59.999')])
-      : this.handleDayTimeChange([getDateFromDayValue('00:00:00.000'), getDateFromDayValue('23:59:59.999')], dayKeys);
+      ? this.handleMultipleDayTimeChange([
+          getDateFromDayValue(DEFAULT_RANGE_START),
+          getDateFromDayValue(DEFAULT_RANGE_END),
+        ])
+      : this.handleDayTimeChange(
+          [getDateFromDayValue(DEFAULT_RANGE_START), getDateFromDayValue(DEFAULT_RANGE_END)],
+          dayKeys
+        );
   };
 
   handleRangePaste = (dayKeys: DayKey): void => {

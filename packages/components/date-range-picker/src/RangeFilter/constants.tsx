@@ -7,6 +7,10 @@ import { Period } from './RangeFilter.types';
 
 const LONG_MONTH = new Date(0, 0, 1);
 
+export const TIME_FORMAT = 'HH:mm:ss.SSS';
+export const DEFAULT_RANGE_START = '00:00:00.000';
+export const DEFAULT_RANGE_END = '23:59:59.999';
+
 export const MONTH_DAYS = (locale: string): string[] =>
   range(0, 31).map((i: number) => (locale === 'pl' ? `${i + 1}.` : fnsFormat(fnsAddDays(LONG_MONTH, i), 'Do')));
 
@@ -62,8 +66,8 @@ export const TYPES_DATA = {
     labelTranslationKey: 'DS.DATE-RANGE-PICKER.DAILY',
     component: DailyFilter,
     definition: {
-      start: '00:00:00.000',
-      stop: '23:59:59.999',
+      start: DEFAULT_RANGE_START,
+      stop: DEFAULT_RANGE_END,
       inverted: false,
     },
   },
