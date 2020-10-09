@@ -30,6 +30,8 @@ class ColumnManagerActions extends React.Component<Props, State> {
 
   handleChange = (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
     const { name, value } = event.currentTarget;
+    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+    // @ts-ignore
     this.setState({
       [name]: {
         value,

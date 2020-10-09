@@ -1,7 +1,8 @@
 import * as React from 'react';
 import Icon from '@synerise/ds-icon';
 
-import ResizeObserver from 'rc-resize-observer';
+// import ResizeObserver from 'rc-resize-observer';
+import AnimateHeight from 'react-animate-height';
 import * as S from './Card.styles';
 import { CardProps } from './Card.types';
 
@@ -26,7 +27,7 @@ const Card: React.FC<CardProps> = ({
   hideContent,
 }) => {
   const fatTitle = !description || (description && compactHeader);
-  const [contentHeight, setContentHeight] = React.useState<number>(2000);
+  // const [contentHeight, setContentHeight] = React.useState<number>(2000);
   return (
     <S.Container
       raised={raised}
@@ -35,7 +36,7 @@ const Card: React.FC<CardProps> = ({
       className={`ds-card ${className || ''}`}
       lively={lively}
       background={background}
-      contentHeight={contentHeight}
+      // contentHeight={contentHeight}
     >
       {withHeader && (
         <S.Header onClick={onHeaderClick} headerBorderBottom={headerBorderBottom}>
@@ -61,18 +62,11 @@ const Card: React.FC<CardProps> = ({
           )}
         </S.Header>
       )}
-      <S.ChildrenContainer className={`contentContainer ${hideContent ? 'closed' : 'open'}`}>
-        <S.PaddingWrapper withoutPadding={withoutPadding}>
-          <ResizeObserver
-            onResize={({ height }): void => {
-              console.log(height);
-              setContentHeight(height);
-            }}
-          >
-            {children}
-          </ResizeObserver>
-        </S.PaddingWrapper>
-      </S.ChildrenContainer>
+      <AnimateHeight className="card-animation" duration={300} height={hideContent ? 0 : 'auto'}>
+        <S.ChildrenContainer>
+          <S.PaddingWrapper withoutPadding={withoutPadding}>{children}</S.PaddingWrapper>
+        </S.ChildrenContainer>
+      </AnimateHeight>
     </S.Container>
   );
 };
