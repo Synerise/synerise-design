@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@0.8.0...@synerise/ds-tooltip@0.8.1) (2020-10-09)
+
+
+### Bug Fixes
+
+* **tooltip:** fix tooltip title styles on firefox ([397913b](https://github.com/synerise/synerise-design/commit/397913bdd1b0d6f4a3c4f12d18e1c5a5ba5c6ac1))
+* **tooltip:** fix types ([a2ad7dc](https://github.com/synerise/synerise-design/commit/a2ad7dc7178eaf7bc1b07ed398138fb980e2815d))
+
+
+
+
+
 # [0.8.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@0.7.20...@synerise/ds-tooltip@0.8.0) (2020-10-09)
 
 

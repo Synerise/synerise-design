@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.17](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.7.16...@synerise/ds-card@0.7.17) (2020-10-09)
+
+
+### Bug Fixes
+
+* **card:** removed showContent prop, fixed max height ([2f366ea](https://github.com/Synerise/synerise-design/commit/2f366ea4086614cb659f7eec5d222d306ba86f3d))
+
+
+
+
+
 ## [0.7.16](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.7.15...@synerise/ds-card@0.7.16) (2020-10-09)
 
 

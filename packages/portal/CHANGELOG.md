@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.99.1](https://github.com/synerise/synerise-design/compare/portal@0.99.0...portal@0.99.1) (2020-10-09)
+
+
+### Bug Fixes
+
+* **card:** removed showContent prop, fixed max height ([2f366ea](https://github.com/synerise/synerise-design/commit/2f366ea4086614cb659f7eec5d222d306ba86f3d))
+* **layout:** removed unused card prop from stories ([eec8b26](https://github.com/synerise/synerise-design/commit/eec8b26199981bb0a94f82049b7b744ed1021e50))
+* **table:** removed unused card prop from stories ([f1493b0](https://github.com/synerise/synerise-design/commit/f1493b031bc636ffd455bc799a1e53f938dba38f))
+
+
+
+
+
 # [0.99.0](https://github.com/synerise/synerise-design/compare/portal@0.98.0...portal@0.99.0) (2020-10-09)
 
 

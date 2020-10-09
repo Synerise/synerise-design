@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.14.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.14.9...@synerise/ds-manageable-list@0.14.10) (2020-10-09)
+
+
+### Bug Fixes
+
+* **manageable-list:** added overflow hidden to the closed content item ([8ce87cf](https://github.com/Synerise/synerise-design/commit/8ce87cfc577cf843a87fbc1fc79172fab3552b74))
+
+
+
+
+
 ## [0.14.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.14.8...@synerise/ds-manageable-list@0.14.9) (2020-10-09)
 
 
