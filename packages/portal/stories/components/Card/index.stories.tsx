@@ -7,6 +7,7 @@ import Icon from '@synerise/ds-icon';
 import { CheckS,Check3M, FilterM, SearchM, UserM, WarningFillM } from '@synerise/ds-icon/dist/icons';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import * as S from './stories.styles';
+import Tooltip from '@synerise/ds-tooltip';
 const backgrounds = {
   White: 'white',
   'White with shadow': 'white-shadow',
@@ -23,7 +24,7 @@ const init = () => {
     disabled: boolean('Disabled', false),
     lively: boolean('Hover enabled', true),
     withHeader: boolean('With header', true),
-    showContent: boolean('Show content', true),
+    hideContent: boolean('Enable collapsing', true),
     iconColor: text('Icon color', '#54cb0b'),
     compactHeader: boolean('Compact header', false),
     headerBorderBottom: boolean('Header with border bottom', false),
@@ -33,9 +34,9 @@ const init = () => {
   return { props };
 };
 
-const renderCard = (props,showContentInitial= true) => {
+const renderCard = (props,hideContentInitial= false) => {
   const IconComponent =  <Check3M/>;
-  const [showContent,setShowContent] = React.useState(showContentInitial)
+  const [hideContent,setHideContent] = React.useState(hideContentInitial)
 
   return (
       <Card
@@ -48,11 +49,11 @@ const renderCard = (props,showContentInitial= true) => {
         icon={props.icon || (props.withIcon && IconComponent )}
         iconColor={props.iconColor}
         compactHeader={props.compactHeader}
-        onHeaderClick={()=>{setShowContent(!showContent)}}
+        onHeaderClick={()=>{setHideContent(!hideContent)}}
         headerSideChildren={props.headerSideChildren}
         headerBorderBottom={props.headerBorderBottom}
         background={props.background}
-        showContent={props.showContent && showContent}
+        hideContent={props.hideContent && hideContent}
       >
          <div style={{ width: '100%', height: 300 }}>{props.content}</div>
       </Card>

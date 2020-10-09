@@ -1,6 +1,6 @@
 import styled, { css, SimpleInterpolation } from 'styled-components';
 import { IconContainer } from '@synerise/ds-icon/dist/Icon.styles';
-import TooltipExtendedProps from './Tooltip.types';
+import TooltipExtendedProps, { tooltipTypes } from './Tooltip.types';
 
 export const TooltipDescription = styled.div<TooltipExtendedProps>`
   font-size: 13px;
@@ -11,11 +11,11 @@ export const TooltipDescription = styled.div<TooltipExtendedProps>`
 
 const titlesWithPadding = ['icon', 'tutorial', 'button'];
 
-export const TooltipTitle = styled.div<TooltipExtendedProps>`
-  margin-bottom: ${({ type }): string => (titlesWithPadding.includes(String(type)) ? '8px' : '0px')};
+export const TooltipTitle = styled.div<Omit<TooltipExtendedProps, 'type'> & { tooltipType: tooltipTypes }>`
+  margin-bottom: ${({ tooltipType }): string => (titlesWithPadding.includes(String(tooltipType)) ? '8px' : '0px')};
   font-size: 13px;
   line-height: 1.38;
-  font-weight: ${(props): number => (props.type === 'default' ? 400 : 500)};
+  font-weight: ${(props): number => (props.tooltipType === 'default' ? 400 : 500)};
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -43,7 +43,7 @@ export const TooltipContent = styled.div`
   justify-content: flex-start;
 `;
 
-export const TooltipComponent = styled.div<TooltipExtendedProps>`
+export const TooltipComponent = styled.div<Omit<TooltipExtendedProps, 'type'> & { tooltipType: tooltipTypes }>`
   background-color: rgba(56, 67, 80, 0.9);
   min-height: 24px;
   color: ${(props): string => props.theme.palette['grey-200']};
@@ -56,22 +56,22 @@ export const TooltipComponent = styled.div<TooltipExtendedProps>`
   border-radius: 3px;
   overflow: hidden;
   ${(props): SimpleInterpolation =>
-    props.type === 'icon' &&
+    props.tooltipType === 'icon' &&
     css`
       padding-top: 8px;
     `}
   ${(props): SimpleInterpolation =>
-    (props.type === 'tutorial' || props.type === 'button') &&
+    (props.tooltipType === 'tutorial' || props.tooltipType === 'button') &&
     css`
       padding: 0;
     `}
   ${(props): SimpleInterpolation =>
-    props.type === 'default' &&
+    props.tooltipType === 'default' &&
     css`
       padding: 3px 8px;
     `}
   ${(props): SimpleInterpolation =>
-    props.type === 'avatar' &&
+    props.tooltipType === 'avatar' &&
     css`
       text-align: center;
       align-items: center;

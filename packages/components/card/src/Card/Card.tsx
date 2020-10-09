@@ -22,10 +22,17 @@ const Card: React.FC<CardProps> = ({
   withoutPadding,
   headerBorderBottom,
   background = 'white-shadow',
-  showContent,
+  hideContent,
 }) => {
   const fatTitle = !description || (description && compactHeader);
-
+  const contentRef = React.useRef<HTMLDivElement>(null);
+  const [contentHeight, setContentHeight] = React.useState<number>(2000);
+  React.useEffect(() => {
+    if (contentRef?.current !== null && contentRef?.current?.offsetHeight !== contentHeight) {
+      setContentHeight(contentRef.current.offsetHeight);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [contentRef, contentRef?.current, contentHeight]);
   return (
     <S.Container
       raised={raised}
@@ -34,6 +41,7 @@ const Card: React.FC<CardProps> = ({
       className={`ds-card ${className || ''}`}
       lively={lively}
       background={background}
+      contentHeight={contentHeight}
     >
       {withHeader && (
         <S.Header onClick={onHeaderClick} headerBorderBottom={headerBorderBottom}>
@@ -59,9 +67,11 @@ const Card: React.FC<CardProps> = ({
           )}
         </S.Header>
       )}
-      <S.ChildrenContainer className={`contentContainer ${!showContent ? 'closed' : ''}`}>
+      <S.ChildrenContainer className={`contentContainer ${hideContent ? 'closed' : 'open'}`}>
         <S.PaddingWrapper withoutPadding={withoutPadding}>
-          <div className="content">{children}</div>
+          <div className="content" ref={contentRef}>
+            {children}
+          </div>
         </S.PaddingWrapper>
       </S.ChildrenContainer>
     </S.Container>

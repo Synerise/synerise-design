@@ -123,6 +123,7 @@ export const ContentWrapper = styled.div`
     opacity: 0;
     max-height: 0;
     padding: 0 24px;
+    overflow: hidden;
   }
 `;
 
