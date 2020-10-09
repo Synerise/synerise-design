@@ -36,8 +36,8 @@ const Tooltip: React.FC<TooltipExtendedProps & TooltipProps> = ({
   };
 
   const renderTooltip = (
-    <S.TooltipComponent type={type}>
-      <S.TooltipTitle type={type}>
+    <S.TooltipComponent tooltipType={type}>
+      <S.TooltipTitle tooltipType={type}>
         {type && shouldRenderIcon(type, icon)}
         {type !== 'largeSimple' ? title : null}
       </S.TooltipTitle>
@@ -56,9 +56,9 @@ const Tooltip: React.FC<TooltipExtendedProps & TooltipProps> = ({
     };
 
     return (
-      <S.TooltipComponent type={type}>
+      <S.TooltipComponent tooltipType={type}>
         <S.TooltipContent>
-          <S.TooltipTitle type={type}>{title}</S.TooltipTitle>
+          <S.TooltipTitle tooltipType={type}>{title}</S.TooltipTitle>
           <S.TooltipDescription>{description}</S.TooltipDescription>
         </S.TooltipContent>
         {button && (
@@ -75,12 +75,12 @@ const Tooltip: React.FC<TooltipExtendedProps & TooltipProps> = ({
   }, [button, type, title, description]);
 
   const renderTutorial = (
-    <S.TooltipComponent type={type}>
+    <S.TooltipComponent tooltipType={type}>
       <Carousel autoplay={tutorialAutoplay} autoplaySpeed={tutorialAutoplaySpeed} effect="fade">
         {tutorials &&
           tutorials.map(tutorial => (
             <S.TutorialItem key={`${JSON.stringify(tutorial.title)}`}>
-              <S.TooltipTitle type="tutorial">{tutorial.title}</S.TooltipTitle>
+              <S.TooltipTitle tooltipType="tutorial">{tutorial.title}</S.TooltipTitle>
               <S.TooltipDescription>{tutorial.description}</S.TooltipDescription>
             </S.TutorialItem>
           ))}
