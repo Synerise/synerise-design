@@ -20,5 +20,5 @@ export interface CardProps {
   withoutPadding?: boolean;
   headerBorderBottom?: boolean;
   background?: Backgrounds;
-  showContent?: boolean;
+  hideContent?: boolean;
 }
