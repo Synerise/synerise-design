@@ -32,7 +32,7 @@ class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState
     const { onApply } = this.props;
     const { activeType } = state;
     const filter = state[String(activeType)];
-    onApply && onApply(normalizeValue(filter as FilterValue));
+    onApply && onApply(normalizeValue(filter as FilterValue) as FilterValue);
   };
 
   handleCancel = (): void => {

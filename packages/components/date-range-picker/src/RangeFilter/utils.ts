@@ -22,7 +22,7 @@ import { SavedFilter } from './FilterDropdown/FilterDropdown.types';
 
 export const mapTimeSchema = (item: DenormalizedFilter): NormalizedFilter => {
   const { start, stop, day, ...rest } = item;
-  return { from: start, to: stop, day: !day || !Number.isNaN(+day) ? undefined : +day + 1, ...rest };
+  return { from: start, to: stop, day: day===undefined ||  (day!==undefined &&  Number.isNaN(+day)) ? undefined : +day + 1, ...rest };
 };
 
 /*
@@ -36,14 +36,14 @@ export const denormMapTimeSchema = (item: NormalizedFilter): DenormalizedFilter 
   return {
     start: from,
     stop: to,
-    day: !day || !Number.isNaN(+day) ? undefined : +day - 1,
+    day: day===undefined ||  (day!==undefined &&  Number.isNaN(+day)) || Number.isNaN(+day) ? undefined : +day - 1,
     ...rest,
   } as DenormalizedFilter;
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const normalizeValue = ({ type, definition }: FilterValue): NormalizedFilterBase | { rules: any } => {
-  const result = { type, nestingType: 'IN_PLACE', days: [] };
+  const result = { type, nestingType: 'IN_PLACE' };
   let days: unknown[];
   let rules: unknown[] = [];
   switch (type) {

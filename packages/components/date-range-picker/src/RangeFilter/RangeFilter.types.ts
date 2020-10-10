@@ -5,11 +5,10 @@ import { SavedFilter } from './FilterDropdown/FilterDropdown.types';
 export type FilterValue = {
   definition?: Partial<FilterDefinition>;
   type: string;
-  value: string;
 };
 export type RangeFilterProps = {
   value: FilterValue | undefined;
-  onApply: (filter: {}) => void;
+  onApply: (filter: FilterValue) => void;
   onCancel: () => void;
   intl: IntlShape;
   savedFilters?: SavedFilter[];
