@@ -20,7 +20,7 @@ export const Suffix = styled.div`
   display: flex;
   flex: 1;
   justify-content: flex-end;
-  && {F
+  && {
     font-size: 13px;
     line-height: 22px;
     margin-right: 16px;
