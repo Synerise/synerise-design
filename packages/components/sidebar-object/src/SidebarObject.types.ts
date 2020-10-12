@@ -19,7 +19,7 @@ export type SidebarObjectProps = {
   onCloseClick?: () => void;
   onArrowUp?: () => void;
   onArrowDown?: () => void;
-  onScrollbar?: boolean;
+  withScrollbar?: boolean;
   handleTabClick: (index: number) => void;
   footer?: React.ReactNode;
   name?: string;
