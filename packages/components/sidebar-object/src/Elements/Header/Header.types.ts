@@ -8,20 +8,21 @@ export type HeaderProps = {
   previousTooltip?: React.ReactNode | string;
   crudsTooltip?: React.ReactNode | string;
   closeTooltip?: React.ReactNode | string;
-  onEdit: (inputObject: object) => void;
-  onDuplicate: (inputObject: object) => void;
-  onMove: (inputObject: object) => void;
-  onDelete: (inputObject: object) => void;
-  onId: (inputObject: object) => void;
+  onEdit?: (inputObject: object) => void;
+  onDuplicate?: (inputObject: object) => void;
+  onMove?: (inputObject: object) => void;
+  onDelete?: (inputObject: object) => void;
+  onId?: (inputObject: object) => void;
   texts: HeaderTexts;
-  onCloseClick: () => void;
-  activeTab: number;
-  onArrowUp: () => void;
-  onArrowDown: () => void;
+  onCloseClick?: () => void;
+  onArrowUp?: () => void;
+  onArrowDown?: () => void;
   inputObject: {
     id: string;
     [key: string]: string | React.ReactNode;
   } & object;
+  name?: string | number;
+  onRename?: (name: string) => void;
 };
 
 export type HeaderTexts = {
