@@ -106,7 +106,10 @@ const stories = {
             onAdd={action('OnAdd')}
             onDelete={action('OnDelete')}
             onSettings={action('OnSettings')}
-            onSelect={action('OnSelect')}
+            onSelect={()=>{
+              setStarred(false);
+              action('OnSettings')
+            }}
             addButtonDisabled={false}
           />
         </div>

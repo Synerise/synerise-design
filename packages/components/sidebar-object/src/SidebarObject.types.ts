@@ -21,6 +21,7 @@ export type SidebarObjectProps = {
   onArrowDown: () => void;
   onScrollbar: boolean;
   handleTabClick: (index: number) => void;
+  footer?: React.ReactNode;
 
 };
 export type FolderItem = {
