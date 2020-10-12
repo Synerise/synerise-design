@@ -240,6 +240,9 @@ export default class RangePicker extends React.PureComponent<Props, State> {
   renderTimePicker = (side: SideType): React.ReactNode => {
     const { value } = this.props;
     const { from, to } = value;
+    if (!from || !to) {
+      return null;
+    }
     const sidesAreAdjacent = fnsIsSameDay(legacyParse(from), legacyParse(to));
     switch (side) {
       case COLUMNS.LEFT: {

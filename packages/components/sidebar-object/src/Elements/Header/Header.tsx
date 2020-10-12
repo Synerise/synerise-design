@@ -35,9 +35,10 @@ const Header: React.FC<HeaderProps> = ({
   onCloseClick,
   inputObject,
   onArrowUp,
-  onArrowDown
+  onArrowDown,
+  name ="",
+  onRename
 }) => {
-  const [value, setValue] = React.useState<string>('Winter Campaign');
   const [dropdownVisible, setDropdownVisible] = React.useState(false);
   const ref = React.useRef<HTMLDivElement>(null);
   useOnClickOutside(ref, () => {
@@ -133,10 +134,10 @@ const Header: React.FC<HeaderProps> = ({
             <S.StyledInlineEdit
               input={{
                 name: texts.name,
-                value,
+                value: name,
                 maxLength: 120,
                 placeholder: texts.inlineEditPlaceholder,
-                onChange: (event): void => setValue(event.target.value),
+                onChange: (event): void => {onRename && onRename (event.target.value)},
               }}
             />
           </Typography.Title>

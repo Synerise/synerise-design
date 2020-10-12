@@ -12,7 +12,10 @@ export const Separator = styled.div`
   border-top: 1px solid ${(props): string => props.theme.palette['grey-200']};
 `;
 
-export const Addon = styled.div``;
+export const Addon = styled.div<{last?: boolean}>`
+ ${(props): string | false=> !props.last && `border-bottom: 1px solid ${props.theme.palette['grey-200']};`}
+
+`;
 export const PickerWrapper = styled.div`
   position: relative;
 `;

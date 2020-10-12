@@ -9,6 +9,7 @@ const decorator = storyFn => (
     <div style={{ width: '340px', margin: 'auto' }}>{storyFn()}</div>
   </div>
 );
+const savedFilters = [];
 const texts = {
   custom: 'Custom',
   today: 'Today',
@@ -53,7 +54,7 @@ const texts = {
   timestampLast: 'Last',
   timestampNext: 'Next',
   timestampTill: 'till',
-  filter: 'Filter',
+  filter: 'Date filter',
   selectTime: 'Select time',
   startDate: 'Start date',
   endDate: 'End date',
@@ -85,6 +86,46 @@ const stories = {
         texts={texts}
         popoverPlacement="bottomLeft"
         forceAdjacentMonths={boolean('Set adjacent months', false)}
+        relativeModes={getRelativeModes(modesObj)}
+      />
+    );
+  },
+  withDateFilter: () => {
+    const value = undefined;
+    const showTime = boolean('Set showTime', true);
+    const modesObj = {
+      PAST: boolean('Set relative past mode', true),
+      FUTURE: boolean('Set relative future mode', true),
+      SINCE: boolean('Set relative since mode', true),
+    };
+    const getRelativeModes = (modesObject: object) => {
+      const keys = Object.keys(modesObject);
+      const enabledModes = keys.filter(k => !!modesObject[k]);
+      return enabledModes;
+    };
+    const [filters, setFilters] = React.useState(savedFilters)
+    const showRelativePicker = boolean('Set relative filter', true);
+    return (
+      <DateRangePicker
+        onApply={action('OnApply')}
+        showTime={showTime}
+        value={value}
+        relativeFuture
+        forceAbsolute
+        showRelativePicker={showRelativePicker}
+        savedFilters={filters}
+        onFilterSave={setFilters}
+        texts={{
+          ...texts,
+          startDatePlaceholder: 'Start date',
+          endDatePlaceholder: 'End date',
+          clear: 'Clear',
+          emptyDateError: 'Date cannot be empty',
+
+        }}
+        popoverPlacement="bottomLeft"
+        forceAdjacentMonths={boolean('Set adjacent months', false)}
+        showFilter={true}
         relativeModes={getRelativeModes(modesObj)}
       />
     );

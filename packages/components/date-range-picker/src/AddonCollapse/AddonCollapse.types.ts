@@ -4,4 +4,6 @@ export type Props = {
   content: React.ReactNode;
   title: React.ReactText | React.ReactNode;
   expanded?: boolean;
+  onCollapseChange?: () => void;
+  collapsedSummary?: string | React.ReactNode;
 };

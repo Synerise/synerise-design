@@ -90,6 +90,8 @@ const stories = {
     const showIcon = boolean('Set Icon',true);
     const showTabs = boolean('Set Tabs',true);
     const showFooter = boolean('Set Footer',true);
+    const [activeTab, setActiveTab] = React.useState(0);
+    const [name, setName] = React.useState('Winter campaign');
     let headerType = (headerTypes.singleTitle);
     const inputObject = {
       id: '3423-3426-8263-6634-6834-2352',
@@ -157,7 +159,11 @@ const stories = {
             onDelete={() => {}}
             onId={() => {}}
             headerTabs={showTabs? TABS : []}
+            activeTab={activeTab}
+            handleTabClick={setActiveTab}
             inputObject={inputObject}
+            name={name}
+            onRename={setName}
             footer={showFooter? <>
               <ButtonWrapper style={{ flex: 1, padding: '0'}}>
                 <Button type="secondary"> Settings </Button>
@@ -189,8 +195,10 @@ const stories = {
     const creatable = boolean('Ability to create', true);
     const withManageLink = boolean('With manage tags link', true);
     const disabled = boolean('Disable entire tag group', false);
+    const [activeTab, setActiveTab] = React.useState(0);
     const showIcon = boolean('Set Icon',true);
-    const showFolder = boolean('Set Folder',true)
+    const showFolder = boolean('Set Folder',true);
+    const [name, setName] = React.useState('Winter campaign');
     const data = [
       { id: '2', name: 'Example folder' },
       { name: 'Winter' },
@@ -330,6 +338,10 @@ const stories = {
             onId={() => {}}
             headerTabs={TABS}
             inputObject={inputObject}
+            activeTab={activeTab}
+            handleTabClick={setActiveTab}
+            name={name}
+            onRename={setName}
             contentTags={contentTags}
             textDescription=''
             footer={null}
