@@ -5,7 +5,7 @@ import { Container, Separator, Addon } from './DateRangePicker.styles';
 import RangePicker from './RangePicker/RangePicker';
 import { RELATIVE, ABSOLUTE, MODES } from './constants';
 import relativeToAbsolute from './dateUtils/relativeToAbsolute';
-import { Props, State } from './DateRangePicker.types';
+import { Props, State, AddonType } from './DateRangePicker.types';
 import { DateFilter, DateRange } from './date.types';
 import AddonCollapse from './AddonCollapse/AddonCollapse';
 import RelativeRangePicker from './RelativeRangePicker/RelativeRangePicker';
@@ -118,6 +118,7 @@ class RawDateRangePicker extends React.PureComponent<Props, State> {
       texts,
       savedFilters,
       onFilterSave,
+      intl,
     } = this.props;
     const { value, mode, changed } = this.state;
     const { from, to, key } = value;
@@ -136,41 +137,50 @@ class RawDateRangePicker extends React.PureComponent<Props, State> {
 
     const validator = validate ? validate(value) : { valid: true };
     const isValid = (!!(from && to) || key === 'ALL_TIME') && validator.valid;
-    const addons: React.ReactElement[] = [];
+    const addons: AddonType[] = [];
     if (showRelativePicker && !!relativeModes && relativeModes?.length > 0)
-      addons.push(
-        <AddonCollapse
-          content={
-            <RelativeRangePicker
-              future={relativeFuture}
-              past={relativePast}
-              ranges={ranges}
-              value={value}
-              onChange={this.handleRangeChange}
-              relativeModes={relativeModes}
-              texts={texts}
-            />
-          }
-          title={texts?.relativeDateRange}
-          expanded
-        />
-      );
+      addons.push({
+        content: (
+          <AddonCollapse
+            content={
+              <RelativeRangePicker
+                future={relativeFuture}
+                past={relativePast}
+                ranges={ranges}
+                value={value}
+                onChange={this.handleRangeChange}
+                relativeModes={relativeModes}
+                texts={texts}
+              />
+            }
+            title={texts?.relativeDateRange}
+            expanded
+          />
+        ),
+        key: 'relative-picker',
+      });
     if (showFilter)
-      addons.push(
-        <AddonCollapse
-          content={
-            <RangeFilterStatus
-              onFilterRemove={this.handleRemoveFilterClick}
-              filter={value.filter}
-              disabled={!value.from || !value.to}
-              label={value?.filter ? 'Filter enabled' : 'Add filter'}
-              onClick={this.handleModalOpenClick}
-            />
-          }
-          title={texts?.filter}
-          expanded
-        />
-      );
+      addons.push({
+        content: (
+          <AddonCollapse
+            content={
+              <RangeFilterStatus
+                onFilterRemove={this.handleRemoveFilterClick}
+                filter={value.filter}
+                disabled={!value.from || !value.to}
+                label={value?.filter ? 'Filter enabled' : 'Add filter'}
+                onClick={this.handleModalOpenClick}
+              />
+            }
+            title={texts?.filter}
+            collapsedSummary={
+              value?.filter?.type ? intl.formatMessage({ id: `DS.DATE-RANGE-PICKER.${value?.filter?.type}` }) : null
+            }
+            expanded
+          />
+        ),
+        key: 'filter',
+      });
     return (
       <Container className="ds-date-range-picker">
         <RangePicker
@@ -187,8 +197,9 @@ class RawDateRangePicker extends React.PureComponent<Props, State> {
         {addons.length > 0 && <Separator />}
         {addons.map(
           (addon, index: number): React.ReactNode => (
-            // eslint-disable-next-line react/no-array-index-key
-            <Addon key={index}>{addon}</Addon>
+            <Addon last={addons.length === index+1} className="addon-wrapper" key={addon.key}>
+              {addon.content}
+            </Addon>
           )
         )}
         <Footer

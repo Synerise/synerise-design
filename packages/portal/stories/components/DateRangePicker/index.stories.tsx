@@ -54,7 +54,7 @@ const texts = {
   timestampLast: 'Last',
   timestampNext: 'Next',
   timestampTill: 'till',
-  filter: 'Filter',
+  filter: 'Date filter',
   selectTime: 'Select time',
   startDate: 'Start date',
   endDate: 'End date',
@@ -116,10 +116,12 @@ const stories = {
         savedFilters={filters}
         onFilterSave={setFilters}
         texts={{
+          ...texts,
           startDatePlaceholder: 'Start date',
           endDatePlaceholder: 'End date',
           clear: 'Clear',
           emptyDateError: 'Date cannot be empty',
+
         }}
         popoverPlacement="bottomLeft"
         forceAdjacentMonths={boolean('Set adjacent months', false)}
