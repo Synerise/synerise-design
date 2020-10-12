@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="48px" height="48px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Database / 03 L / 02-relation-one-many-l</title>
+    <g id="Database-/-03-L-/-02-relation-one-many-l" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-24" transform="translate(9.000000, 8.500000)" stroke="#384350" stroke-width="1.5">
+            <path d="M30,15.4994545 C30,14.1182631 28.8806459,13 27.4994545,13 C26.1182631,13 25,14.1182631 25,15.4994545 C25,16.8806459 26.1182631,18 27.4994545,18 C28.8806459,18 30,16.8806459 30,15.4994545 Z" id="Stroke-4" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M30,2.50054549 C30,1.11935413 28.8806459,0 27.4994545,0 C26.1182631,0 25,1.11935413 25,2.50054549 C25,3.88173685 26.1182631,5 27.4994545,5 C28.8806459,5 30,3.88173685 30,2.50054549 Z" id="Stroke-6" stroke-linecap="round" stroke-linejoin="round"></path>
+            <line x1="5.02913852" y1="14.184848" x2="25.0955454" y2="3.7503164" id="Stroke-8" stroke-linecap="round" stroke-linejoin="round"></line>
+            <path d="M30,28.5005455 C30,29.8817369 28.8806459,31 27.4994545,31 C26.1182631,31 25,29.8817369 25,28.5005455 C25,27.1193541 26.1182631,26 27.4994545,26 C28.8806459,26 30,27.1193541 30,28.5005455 Z" id="Stroke-10" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M5,15.4994545 C5,14.1182631 3.88173685,13 2.50054549,13 C1.11935413,13 0,14.1182631 0,15.4994545 C0,16.8806459 1.11935413,18 2.50054549,18 C3.88173685,18 5,16.8806459 5,15.4994545 Z" id="Stroke-12" stroke-linecap="round" stroke-linejoin="round"></path>
+            <line x1="25.2043786" y1="27.3062769" x2="4.9628608" y2="16.7806876" id="Stroke-20" stroke-linecap="round" stroke-linejoin="round"></line>
+            <line x1="5.02913852" y1="15.5" x2="25" y2="15.5" id="Path"></line>
+        </g>
+    </g>
+</svg>
