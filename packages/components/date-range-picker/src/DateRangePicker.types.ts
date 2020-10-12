@@ -1,5 +1,7 @@
 import { DateFilter, DateRange } from 'date.types';
 import * as React from 'react';
+import { FilterDefinition } from './RangeFilter/RangeFilter.types';
+import { SavedFilter } from './RangeFilter/FilterDropdown/FilterDropdown.types';
 
 export interface Props {
   disabledDate?: (date?: Date) => boolean;
@@ -8,6 +10,7 @@ export interface Props {
   forceAbsolute?: boolean;
   onValueChange?: (value: Partial<DateFilter> | undefined) => void;
   onApply: (value: Partial<DateFilter> | undefined) => void;
+  onFilterSave?: (filters: SavedFilter[]) => void;
   popoverPlacement?:
     | 'top'
     | 'left'
@@ -26,6 +29,7 @@ export interface Props {
   relativeFuture?: boolean;
   relativePast?: boolean;
   relativeModes?: RelativeMode[];
+  savedFilters?: SavedFilter[];
   showRelativePicker?: boolean;
   showFilter?: boolean;
   showTime?: boolean;
@@ -38,6 +42,7 @@ export interface State {
   mode: string;
   value: DateRange;
   changed: boolean;
+  filter?: FilterDefinition;
 }
 export type Texts = {
   [k in Translations]: string | React.ReactNode;
@@ -46,7 +51,7 @@ export type Texts = {
     [k in TranslationsPlaceholders]: string;
   };
 
-export type TranslationsPlaceholders = 'endDatePlaceholder' | 'startDatePlaceholder' | 'selectDate' | 'selectTime'
+export type TranslationsPlaceholders = 'endDatePlaceholder' | 'startDatePlaceholder' | 'selectDate' | 'selectTime';
 export type Translations =
   | 'custom'
   | 'today'

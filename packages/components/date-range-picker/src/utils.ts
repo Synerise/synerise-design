@@ -1,7 +1,9 @@
-import fnsMin from 'date-fns/min';
-import fnsMax from 'date-fns/max';
-import { legacyParse } from '@date-fns/upgrade/v2';
+import fnsMin from "date-fns/min";
+import fnsMax from "date-fns/max";
+import { legacyParse } from "@date-fns/upgrade/v2";
 import { IntlShape } from 'react-intl';
+import * as dayjs from 'dayjs';
+import * as utcPlugin from 'dayjs/plugin/utc';
 import { DateRange } from './date.types';
 import { ABSOLUTE, RELATIVE } from './constants';
 import ADD from './dateUtils/add';
@@ -9,7 +11,6 @@ import START_OF from './dateUtils/startOf';
 import END_OF from './dateUtils/endOf';
 import { Texts } from './DateRangePicker.types';
 
-// eslint-disable-next-line import/prefer-default-export
 export const normalizeRange = (range: DateRange): DateRange => {
   if (!range || !range.type) {
     return { type: ABSOLUTE, from: undefined, to: undefined };
@@ -88,3 +89,14 @@ export const getDefaultTexts = (intl: IntlShape,texts?: Partial<Texts>): Texts =
     yesterday: texts?.yesterday || intl.formatMessage({ id: `DS.DATE-RANGE-PICKER.YESTERDAY` }),
   };
 };
+
+
+export const formatTime = (seconds: number, formatString = 'HH:mm:ss'): string => {
+  return dayjs
+    .extend(utcPlugin)
+    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+    // @ts-ignore
+    .utc(seconds * 1000)
+    .format(formatString);
+};
+

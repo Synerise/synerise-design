@@ -14,7 +14,10 @@ export const getDisabledTimeOptions = (
   granularity: string,
   lowerLimit: Limit = null,
   upperLimit: Limit = null
-): [] => {
+): number[] => {
+  if (!day) {
+    return [];
+  }
   const lowLimit = lowerLimit || fnsStartOfDay(legacyParse(day));
   const upLimit = upperLimit || fnsEndOfDay(legacyParse(day));
   const options = TIME_OPTIONS[granularity].map((option: number) => SET[granularity](day, option));
