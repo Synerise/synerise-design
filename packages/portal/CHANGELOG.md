@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.99.2](https://github.com/synerise/synerise-design/compare/portal@0.99.1...portal@0.99.2) (2020-10-12)
+
+
+### Bug Fixes
+
+* **folders:** changed story on storybook ([85e246c](https://github.com/synerise/synerise-design/commit/85e246ccdc074f6c53b9aa900282f754c19f99e5))
+* **sidebar-object:** change paddings and margins, add footer and to props documantation ([daa7994](https://github.com/synerise/synerise-design/commit/daa79943f165f913b6f805b83f6216bab3299378))
+
+
+
+
+
 ## [0.99.1](https://github.com/synerise/synerise-design/compare/portal@0.99.0...portal@0.99.1) (2020-10-09)
 
 

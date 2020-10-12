@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar-object@0.1.10...@synerise/ds-sidebar-object@0.1.11) (2020-10-12)
+
+
+### Bug Fixes
+
+* **sidebar-object:** add styles to header.styles ([ca76753](https://github.com/Synerise/synerise-design/commit/ca7675371c0e5b35337fec5e222446aa4c0498fa))
+* **sidebar-object:** change paddings and margins, add footer and to props documantation ([daa7994](https://github.com/Synerise/synerise-design/commit/daa79943f165f913b6f805b83f6216bab3299378))
+
+
+
+
+
 ## [0.1.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar-object@0.1.9...@synerise/ds-sidebar-object@0.1.10) (2020-10-09)
 
 **Note:** Version bump only for package @synerise/ds-sidebar-object

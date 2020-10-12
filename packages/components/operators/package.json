@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-operators",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "description": "Operators UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -25,13 +25,13 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-button": "^0.13.0",
-    "@synerise/ds-dropdown": "^0.11.81",
-    "@synerise/ds-icon": "*",
-    "@synerise/ds-menu": "^0.6.7",
-    "@synerise/ds-result": "^0.5.7",
-    "@synerise/ds-scrollbar": "^0.2.24",
-    "@synerise/ds-tabs": "^0.10.49",
+    "@synerise/ds-button": "^0.13.1",
+    "@synerise/ds-dropdown": "^0.11.82",
+    "@synerise/ds-icon": "^0.31.0",
+    "@synerise/ds-menu": "^0.6.8",
+    "@synerise/ds-result": "^0.5.8",
+    "@synerise/ds-scrollbar": "^0.2.25",
+    "@synerise/ds-tabs": "^0.10.50",
     "@synerise/ds-utils": "^0.11.0"
   },
   "peerDependencies": {
