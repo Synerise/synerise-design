@@ -177,7 +177,7 @@
       "WEEKDAYS-SHORT-4": "Fri",
       "WEEKDAYS-SHORT-5": "Sat",
       "WEEKDAYS-SHORT-6": "Sun",
-      "DAYS-OF": "Days of",
+      "DAYS-OF": "days of",
       "WEEKIN": "week",
       "MONTHIN": "month",
       "BEGINNING": "beginning",
@@ -202,7 +202,10 @@
       "EVERY_DAY": "every day",
       "REMOVE": "Remove",
       "DATES_FILTER": "Date filter",
-      "NTH-DAY-OF-MONTH": " day of month"
+      "NTH-DAY-OF-MONTH": " day of month",
+      "SELECTED": "Selected",
+      "MULTIPLE-MODE-HINT": "Use the shift key to get multiple selection.",
+      "SELECT-DAYS-DESCRIPTION": "Select the days which you want to set time"
     },
     "CARD-TAB": {
       "REMOVE": "Remove",
