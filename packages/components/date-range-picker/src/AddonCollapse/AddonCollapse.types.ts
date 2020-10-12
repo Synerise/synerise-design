@@ -5,4 +5,5 @@ export type Props = {
   title: React.ReactText | React.ReactNode;
   expanded?: boolean;
   onCollapseChange?: () => void;
+  collapsedSummary?: string | React.ReactNode;
 };

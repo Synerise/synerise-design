@@ -1,9 +1,10 @@
 import { DateFilter, DateRange } from 'date.types';
 import * as React from 'react';
+import { WrappedComponentProps } from 'react-intl';
 import { FilterDefinition } from './RangeFilter/RangeFilter.types';
 import { SavedFilter } from './RangeFilter/FilterDropdown/FilterDropdown.types';
 
-export interface Props {
+export interface Props extends WrappedComponentProps {
   disabledDate?: (date?: Date) => boolean;
   format?: string;
   forceAdjacentMonths?: boolean;
@@ -96,3 +97,8 @@ export type Translations =
   | 'filter'
   | 'startDate'
   | 'endDate';
+
+export type AddonType = {
+  content: React.ReactNode;
+  key: string;
+}

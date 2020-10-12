@@ -6,7 +6,7 @@ import dayjs from 'dayjs';
 // @ts-ignore
 import customParseFormatPlugin from 'dayjs/plugin/customParseFormat';
 import Button from '@synerise/ds-button';
-import { CheckS, CloseS } from '@synerise/ds-icon/dist/icons';
+import { CheckS, Close3S } from '@synerise/ds-icon/dist/icons';
 import Icon from '@synerise/ds-icon';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { Props } from './Day.types';
@@ -33,7 +33,7 @@ const Day: React.FC<Props> = ({
       return hovered && iconHover ? (
         <>
           <S.DayTooltip>Clear</S.DayTooltip>
-          <Icon component={<CloseS />} onClick={(): void => onToggle(false)} color={theme.palette['red-600']} />
+          <Icon component={<Close3S />} onClick={(): void => onToggle(false)} color={theme.palette['red-600']} />
         </>
       ) : (
         <Icon component={<CheckS />} color={theme.palette['green-600']} />

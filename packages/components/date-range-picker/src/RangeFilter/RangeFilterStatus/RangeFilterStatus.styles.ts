@@ -12,5 +12,5 @@ export const SuffixText = styled.span`
 `;
 
 export const Container = styled.div`
-  margin: 10px 0 8px 0;
+  margin: 10px 0 24px 0;
 `
