@@ -13,7 +13,7 @@ const FORM_MODES = {
   HOUR: 'Hour',
   RANGE: 'Range',
 };
-const RangeForm: React.FC<RangeFormProps> = ({ startDate, endDate, onStartChange, onEndChange }) => {
+const RangeForm: React.FC<RangeFormProps> = ({ startDate, endDate, onStartChange, onEndChange, onExactHourSelect }) => {
   const [start, setStart] = React.useState<Date | undefined>(startDate);
   const [end, setEnd] = React.useState<Date | undefined>(endDate);
   const [mode, setMode] = React.useState<string>(FORM_MODES.RANGE);
@@ -45,15 +45,15 @@ const RangeForm: React.FC<RangeFormProps> = ({ startDate, endDate, onStartChange
     return (
       <TimePicker
         onChange={(date): void => {
-          setStart(date);
+          date && onExactHourSelect(date)
         }}
         value={start}
-        disabledHours={areStartAndEndValid ? getDisabledTimeOptions(start, 'HOURS', null, end) : []}
-        disabledMinutes={areStartAndEndValid ? getDisabledTimeOptions(start, 'MINUTES', null, end) : []}
-        disabledSeconds={areStartAndEndValid ? getDisabledTimeOptions(start, 'SECONDS', null, end) : []}
+        disabledHours={[]}
+        disabledMinutes={[]}
+        disabledSeconds={[]}
       />
     );
-  }, [areStartAndEndValid, start, end]);
+  }, [start, onExactHourSelect]);
 
   const renderRangePicker = React.useCallback(() => {
     return (

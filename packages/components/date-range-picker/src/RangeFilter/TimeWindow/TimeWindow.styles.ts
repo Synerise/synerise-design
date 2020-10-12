@@ -43,3 +43,10 @@ export const Days = styled.div<{ columns: number }>`
 export const HeaderWrapper = styled.div`
   margin-bottom: 12px;
 `;
+
+export const SelectionHint = styled.span`
+  margin-top: 4px;
+`
+export const GridContainer = styled.div`
+  margin-bottom: 24px;
+`

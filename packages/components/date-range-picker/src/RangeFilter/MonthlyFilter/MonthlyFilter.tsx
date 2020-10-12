@@ -183,9 +183,6 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
                   <S.DropdownLabel>
                     <FormattedMessage
                       id="DS.DATE-RANGE-PICKER.RULE"
-                      values={{
-                        value: key + 1,
-                      }}
                     />{' '}
                     <FormattedMessage id="DS.DATE-RANGE-PICKER.DAYS-OF" />
                   </S.DropdownLabel>
@@ -196,11 +193,11 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
                       name: 'period',
                       maxLength: 120,
                     }}
-                    dataSource={PERIODS.map(i => ({
-                      checked: data[key]?.period === i.value,
-                      text: intl.formatMessage({ id: i.name as string }),
+                    dataSource={PERIODS.map(period => ({
+                      checked: data[key]?.period === period.value,
+                      text: intl.formatMessage({ id: period.name as string }),
                       onSelect: (): void => {
-                        this.handleTypeChange(i.value as string, key);
+                        this.handleTypeChange(period.value as string, key);
                       },
                     }))}
                     size="small"
@@ -244,8 +241,9 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
                     onRangeCopy={onRangeCopy}
                     onRangePaste={onRangePaste}
                     rangeClipboard={rangeClipboard}
-                    monthlyFilter
+                    monthlyFilterPeriod={data[key].period}
                     {...this.getTimeWindowSettings(item)}
+                    monthlyFilter
                   />
                 </S.ContentWrapper>
               ) : null,

@@ -272,15 +272,20 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
             ? this.handleMultipleDayTimeChange([getDateFromDayValue(dayValue.start as string), value])
             : this.handleDayTimeChange([getDateFromDayValue(dayValue.start as string), value], dayKeys as DayKey)
         }
+        onExactHourSelect={(value: Date): void => {
+          activeDays.length > 1
+            ? this.handleMultipleDayTimeChange([value, value])
+            : this.handleDayTimeChange([value, value], dayKeys as DayKey);
+        }}
       />
     );
-    const { hideHeader, monthlyFilter } = this.props;
+    const { hideHeader, monthlyFilter, monthlyFilterPeriod } = this.props;
     if (hideHeader) return rangeForm;
     return (
       <>
         <Header
           title={
-            <RangeSummary dayKeys={dayKeys as DayKey[]} getDayLabel={this.getDayLabel} monthlyFilter={monthlyFilter} />
+            <RangeSummary dayKeys={dayKeys as DayKey[]} getDayLabel={this.getDayLabel} monthlyFilter={monthlyFilter} monthlyFilterPeriod={monthlyFilterPeriod} />
           }
           suffix={
             <RangeActions
@@ -330,13 +335,14 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
             title={
               <SelectionCount
                 selectedDayCount={activeDays.length}
-                label="Selected"
-                tooltipLabel="Use shift to switch to multiple mode"
+                label={intl.formatMessage({id:'DS.DATE-RANGE-PICKER.SELECTED'})}
+                tooltipLabel={intl.formatMessage({id:'DS.DATE-RANGE-PICKER.MULTIPLE-MODE-HINT'})}
               />
             }
           />
         )}
         {(!!activeDays.length || !!daily) && this.renderRangeForm(rangeFormKey)}
+        {(!activeDays.length && !daily) &&  <S.SelectionHint>{intl.formatMessage({id:'DS.DATE-RANGE-PICKER.SELECT-DAYS-DESCRIPTION'})}</S.SelectionHint>}
       </S.TimeWindowContainer>
     );
   }

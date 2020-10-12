@@ -1,13 +1,12 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  margin-top: 24px;
   display: flex;
 `;
 
 export const Title = styled.div`
   flex: 1;
-  display:flex;
+  display: flex;
   align-items: center;
 `;
 

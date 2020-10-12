@@ -18,13 +18,11 @@ export const Body = styled.div`
     z-index: 2;
   }
 `;
-export const MainComponentWrapper = styled.div`
-  margin-top: 16px;
-`;
+export const MainComponentWrapper = styled.div``;
 export const FooterSeparator = styled.div`
   display: flex;
   flex: 1;
-`
+`;
 export const Footer = styled.div`
   display: flex;
   align-items: center;
@@ -42,4 +40,8 @@ export const Title = styled.div`
   line-height: 1.39;
   font-weight: 500;
   color: ${(props): string => props.theme.palette['grey-800']};
+`;
+
+export const WeeklyFilterContainer = styled.div`
+  margin-top: 24px;
 `;

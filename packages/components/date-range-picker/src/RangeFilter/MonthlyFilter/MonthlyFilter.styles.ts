@@ -41,6 +41,7 @@ export const DropdownHeader = styled.div`
   position: relative;
   font-size: 13px;
   width: 100%;
+  margin-top: -2px;
   display: flex;
   align-items: center;
   .ant-btn {

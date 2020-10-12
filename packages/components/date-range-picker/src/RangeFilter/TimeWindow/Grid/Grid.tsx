@@ -60,12 +60,12 @@ const Grid: React.FC<GridProps> = ({
     );
   }
   return (
-    <>
+    <S.GridContainer className="time-window-grid">
       <HeaderWrapper>
         <Header title={title} actions={actions}/>
       </HeaderWrapper>
       {grid}
-    </>
+    </S.GridContainer>
   );
 };
 

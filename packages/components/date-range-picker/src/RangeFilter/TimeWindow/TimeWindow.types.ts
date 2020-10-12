@@ -28,6 +28,7 @@ export type CustomDayConfig = {
 export type TimeWindowProps = {
   days: Days;
   monthlyFilter?: boolean;
+  monthlyFilterPeriod?: string;
   customDays?: { [key: string]: CustomDayConfig };
   onChange: (days: Days) => void;
   showSelectAll: boolean;
