@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@0.2.4...@synerise/ds-date-picker@0.2.5) (2020-10-12)
+
+
+### Bug Fixes
+
+* **date-picker:** hide navbar when value is undefined ([c3512ef](https://github.com/Synerise/synerise-design/commit/c3512ef2542a2f40000fba0f38ea4f03ddfb77f6))
+
+
+
+
+
 ## [0.2.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@0.2.3...@synerise/ds-date-picker@0.2.4) (2020-10-12)
 
 **Note:** Version bump only for package @synerise/ds-date-picker

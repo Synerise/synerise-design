@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.20.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.19.0...@synerise/ds-core@0.20.0) (2020-10-12)
+
+
+### Features
+
+* **core:** added date filter translations ([6258205](https://github.com/synerise/synerise-design/commit/6258205980a4c71666f07198e6fc4f5a50234031))
+* **core:** added date range picker translations ([15916d1](https://github.com/synerise/synerise-design/commit/15916d1ef8cb437229ef8487be4adc53a29384ca))
+* **core:** added date-range-filter translations ([ad65854](https://github.com/synerise/synerise-design/commit/ad65854d84fafa308046a80d8ef5437c38e219ec))
+* **core:** added translations for date filter ([7069d22](https://github.com/synerise/synerise-design/commit/7069d22289cd90842c7a7d0fc296dfff35e3a7d3))
+* **core:** added translations for range picker ([f704fe0](https://github.com/synerise/synerise-design/commit/f704fe0a75f7cd9ac1b7fd206ce6fe2d7e7631bb))
+
+
+
+
+
 # [0.19.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.18.0...@synerise/ds-core@0.19.0) (2020-10-06)
 
 

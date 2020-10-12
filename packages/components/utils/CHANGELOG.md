@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@0.11.0...@synerise/ds-utils@0.11.1) (2020-10-12)
+
+**Note:** Version bump only for package @synerise/ds-utils
+
+
+
+
+
 # [0.11.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@0.10.1...@synerise/ds-utils@0.11.0) (2020-10-06)
 
 

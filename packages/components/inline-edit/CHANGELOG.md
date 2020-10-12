@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.73](https://github.com/Synerise/synerise-design/compare/@synerise/ds-inline-edit@0.1.72...@synerise/ds-inline-edit@0.1.73) (2020-10-12)
+
+
+### Bug Fixes
+
+* **date-range-picker:** style fixes for date filter ([b7d740c](https://github.com/Synerise/synerise-design/commit/b7d740ca148923ff3fb50458dac9b2fd73064c4c))
+
+
+
+
+
 ## [0.1.72](https://github.com/Synerise/synerise-design/compare/@synerise/ds-inline-edit@0.1.71...@synerise/ds-inline-edit@0.1.72) (2020-10-12)
 
 **Note:** Version bump only for package @synerise/ds-inline-edit

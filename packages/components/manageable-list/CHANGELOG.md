@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.14.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.14.11...@synerise/ds-manageable-list@0.14.12) (2020-10-12)
+
+
+### Bug Fixes
+
+* **date-range-picker:** added handling collapsing monthly view ([66df245](https://github.com/Synerise/synerise-design/commit/66df245bad04e9e6a1dec8b297f0b9b48d32361f))
+* **manageable-list:** hidden overflow when item is closed ([1531ca0](https://github.com/Synerise/synerise-design/commit/1531ca0b0f81971daf0b090d609ea0b388da0959))
+* **manageable-list:** reverted wrong commit ([208c824](https://github.com/Synerise/synerise-design/commit/208c824bbb96729414eda8bfed6b0fd45b7bcf0d))
+* **manageable-list:** rollback npmignore file removed by mistake ([308e810](https://github.com/Synerise/synerise-design/commit/308e8108c13cd5cfb1d6ffe401c56fb7db2018a4))
+
+
+
+
+
 ## [0.14.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.14.10...@synerise/ds-manageable-list@0.14.11) (2020-10-12)
 
 **Note:** Version bump only for package @synerise/ds-manageable-list

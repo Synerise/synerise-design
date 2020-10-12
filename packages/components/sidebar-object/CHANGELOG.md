@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar-object@0.1.11...@synerise/ds-sidebar-object@0.1.12) (2020-10-12)
+
+
+### Bug Fixes
+
+* **sidebar-object:** change name of prop ([1b7cbaf](https://github.com/Synerise/synerise-design/commit/1b7cbafadbd7d46df0a9c8fc55c474dbdd77df25))
+* **sidebar-object:** change name of prop ([4ad0669](https://github.com/Synerise/synerise-design/commit/4ad0669b8e09679014dbe95411fabd820d1ae0e9))
+* **sidebar-object:** change props to inline edit and change which tab is active ([3727c8e](https://github.com/Synerise/synerise-design/commit/3727c8eb29e87d087bd8b5ef07cf55a03202c707))
+* **sidebar-object:** change to not optional props ([e4b342a](https://github.com/Synerise/synerise-design/commit/e4b342a1146e07582bf1a52b08e6d53260054b9d))
+
+
+
+
+
 ## [0.1.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar-object@0.1.10...@synerise/ds-sidebar-object@0.1.11) (2020-10-12)
 
 

@@ -3,6 +3,59 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.1.26...@synerise/ds-date-range-picker@0.2.0) (2020-10-12)
+
+
+### Bug Fixes
+
+* **date-range-picker:** added handling collapsing monthly view ([66df245](https://github.com/Synerise/synerise-design/commit/66df245bad04e9e6a1dec8b297f0b9b48d32361f))
+* **date-range-picker:** added types, fixed linter errors ([6cac266](https://github.com/Synerise/synerise-design/commit/6cac266e6a3ba67ba1341e81935b9cf7fee0530a))
+* **date-range-picker:** apply saved filter choosen from dropdown ([1806858](https://github.com/Synerise/synerise-design/commit/1806858e1a9028cf4e8959a9075683e93684eb26))
+* **date-range-picker:** date filter time window fix ([f10165c](https://github.com/Synerise/synerise-design/commit/f10165c72939ffbfcca1a1b3848b4b7140168207))
+* **date-range-picker:** date filter time window fix ([f7047f8](https://github.com/Synerise/synerise-design/commit/f7047f8033b0022c46341eee0b7460f8eec8db44))
+* **date-range-picker:** fixed paddings and added summary of collapsed addon ([4ff931f](https://github.com/Synerise/synerise-design/commit/4ff931ff6d34c84b96e0485dc3cd463faf0eac7f))
+* **date-range-picker:** fixed selecting periods and types of periods ([f842576](https://github.com/Synerise/synerise-design/commit/f842576e8663e95c15f5c3e88f419516bc8ea007))
+* **date-range-picker:** fixed selecting periods and types of periods ([537c721](https://github.com/Synerise/synerise-design/commit/537c721f71b82b7458eb22c928ec50f057c4930a))
+* **date-range-picker:** fixed the selected days label ([c761ece](https://github.com/Synerise/synerise-design/commit/c761ecefd480aceb3ab722bd3155b9ebde8f5211))
+* **date-range-picker:** fixes after rebasing dev ([a02d073](https://github.com/Synerise/synerise-design/commit/a02d073bf3d4bd6826eb422ff41c354713ae8c7c))
+* **date-range-picker:** moved formats and default vals to const ([802cfda](https://github.com/Synerise/synerise-design/commit/802cfda33fb67eefe9f271777d9eb6dbcfd16e8d))
+* **date-range-picker:** rebased dev ([a3207d4](https://github.com/Synerise/synerise-design/commit/a3207d4e956bfa8e11f1273544254b07f307ce52))
+* **date-range-picker:** removed add buttons ([ffe928e](https://github.com/Synerise/synerise-design/commit/ffe928edf588368b5ed31a41e4fc8e292c087a3b))
+* **date-range-picker:** removed add buttons ([7699de5](https://github.com/Synerise/synerise-design/commit/7699de5d9fe96db5d3d4e835730900c3cd0c703f))
+* **date-range-picker:** removed slider from previous version ([ed8a184](https://github.com/Synerise/synerise-design/commit/ed8a1842947dde2fc9ca8128bc47404913cbf0f3))
+* **date-range-picker:** removed slider from previous version ([0b83a24](https://github.com/Synerise/synerise-design/commit/0b83a2409b1d6fff7fbb221dd5d5f32f0ae5aaf1))
+* **date-range-picker:** removed typo ([963d22d](https://github.com/Synerise/synerise-design/commit/963d22dcab84b4b3b782fb49d352e515483e44c0))
+* **date-range-picker:** removed UnSelectAll prop ([44a695e](https://github.com/Synerise/synerise-design/commit/44a695ebf8f67322e6e831e6b3e4001d0b9dc944))
+* **date-range-picker:** resolved types, fixed build ([0bf204c](https://github.com/Synerise/synerise-design/commit/0bf204cd03e9adcfa77ffe7ff748d9a8b08a21ba))
+* **date-range-picker:** style fixes for date filter ([b7d740c](https://github.com/Synerise/synerise-design/commit/b7d740ca148923ff3fb50458dac9b2fd73064c4c))
+* **date-range-picker:** style fixes for date filter ([b43b3eb](https://github.com/Synerise/synerise-design/commit/b43b3eb6ad665faa7f9e9ca251927bca28d0734d))
+* **date-range-picker:** used array as an active day ([d3a5617](https://github.com/Synerise/synerise-design/commit/d3a56178b1b72c65847bde15421206f866e13f75))
+* **date-range-picker:** used array as an active day ([6a15e4d](https://github.com/Synerise/synerise-design/commit/6a15e4d1f0006d51022acfa1644e1b2af3a77305))
+* **date-range-picker:** used default imports to fix the tests ([8eba3f0](https://github.com/Synerise/synerise-design/commit/8eba3f0d7b9b4f4cc4b02e09e358d7e6f9397197))
+* **manageable-list:** hidden overflow when item is closed ([1531ca0](https://github.com/Synerise/synerise-design/commit/1531ca0b0f81971daf0b090d609ea0b388da0959))
+* **manageable-list:** hidden overflow when item is closed ([e1dea16](https://github.com/Synerise/synerise-design/commit/e1dea161988a33c2032a2ea8a80cead7e236226b))
+
+
+### Features
+
+* **date-range-picker:** added a way to copy and paste range ([287189a](https://github.com/Synerise/synerise-design/commit/287189ab5ba7e4c5c7f34758d5e79d084d1bd830))
+* **date-range-picker:** added ability to remove the filter ([61b8a10](https://github.com/Synerise/synerise-design/commit/61b8a10e9f590a3fc2e4b7db180f4fc8537238a3))
+* **date-range-picker:** added an option to select saved filter ([b62a59a](https://github.com/Synerise/synerise-design/commit/b62a59aabc95ebc3939cd90e320ba67f52017f23))
+* **date-range-picker:** added monthly filter base component ([0a68275](https://github.com/Synerise/synerise-design/commit/0a6827503643b7516c032d2528e76ab5f5c081a9))
+* **date-range-picker:** added monthly filter base component ([dafa9dd](https://github.com/Synerise/synerise-design/commit/dafa9dda6f60ccf5ed8b0b4434e8368546c3a0bb))
+* **date-range-picker:** added range filter component ([c152698](https://github.com/Synerise/synerise-design/commit/c152698f6d9fa5f2aa2320c3bda651360583f170))
+* **date-range-picker:** added range filter component ([33d6ed7](https://github.com/Synerise/synerise-design/commit/33d6ed7f71b7218f12eda770993b171c6d420a17))
+* **date-range-picker:** added range filter component ([19f0283](https://github.com/Synerise/synerise-design/commit/19f0283c43b7c95a65ca6b7548cc555d97d8b640))
+* **date-range-picker:** added range filter status component ([6960286](https://github.com/Synerise/synerise-design/commit/696028605937a5253842b17eeba03a31f8a8d8df))
+* **date-range-picker:** added selection count component ([c0c3fe3](https://github.com/Synerise/synerise-design/commit/c0c3fe32cc52c557f43a6efe704eb60122463ba5))
+* **date-range-picker:** added timewindow component ([7c83714](https://github.com/Synerise/synerise-design/commit/7c83714d83b76f1aafe27586972d1c78502b9949))
+* **date-range-picker:** added timewindow component ([a673695](https://github.com/Synerise/synerise-design/commit/a673695ff3769cc60e8894c76ec002d10bf8aaf0))
+* **date-range-picker:** preserve filters when changing between modes ([71092d2](https://github.com/Synerise/synerise-design/commit/71092d290764c4c8d53173f3e7fb74875fe0dfb3))
+
+
+
+
+
 ## [0.1.26](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.1.25...@synerise/ds-date-range-picker@0.1.26) (2020-10-12)
 
 **Note:** Version bump only for package @synerise/ds-date-range-picker
