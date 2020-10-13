@@ -18,11 +18,11 @@ export const StyledInlineEdit = styled(InlineEdit)<InlineEditProps>`
     overflow: hidden;
   }
 `;
-export const DrawerHeaderBar = styled.div`
+export const DrawerHeaderBar = styled.div<{withTabs: boolean}>`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 10px;
+  padding-bottom: ${(props): string => props.withTabs ? '10px': '19px' };
 `;
 
 export const MenuWrapper = styled.div`

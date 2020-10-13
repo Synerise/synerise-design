@@ -29,6 +29,7 @@
     "@synerise/ds-button": "^0.13.0",
     "@synerise/ds-date-picker": "^0.2.3",
     "@synerise/ds-icon": "*",
+    "@synerise/ds-manageable-list": "^0.14.13",
     "@synerise/ds-time-picker": "^0.3.15",
     "@synerise/ds-tooltip": "^0.8.1",
     "date-fns": "^2.16.1",
