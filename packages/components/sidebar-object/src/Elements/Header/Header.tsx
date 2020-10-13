@@ -151,7 +151,7 @@ const Header: React.FC<HeaderProps> = ({
           {avatar}
           <Typography.Title style={{ flex: 2, marginLeft: '15px' }} level={4}>
             <S.StyledInlineEdit
-              disabled={!!onRename}
+              disabled={!onRename}
               input={{
                 name: texts.name,
                 value: name,
