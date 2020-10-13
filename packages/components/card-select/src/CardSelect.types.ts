@@ -19,4 +19,5 @@ export interface CardSelectProps {
   onChange?: (value: boolean) => void;
   onClick?: () => void;
   elementsPosition?: string | 'left' | 'center' | 'right';
+  error?: boolean;
 }
