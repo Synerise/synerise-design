@@ -37,7 +37,7 @@ const SidebarObject: React.FC<SidebarObjectProps> = ({
         <Header
           avatar={avatar}
           preffix={headerPreffix}
-          tabs={<Tabs activeTab={activeTab} tabs={headerTabs as TabItem[]} handleTabClick={(index): void  => { handleTabClick(index)}}  />}
+          tabs={headerTabs?.length ?<Tabs activeTab={activeTab} tabs={headerTabs as TabItem[]} handleTabClick={(index): void  => { handleTabClick(index)}}/> : null}
           onDelete={onDelete}
           onDuplicate={onDuplicate}
           onEdit={onEdit}
