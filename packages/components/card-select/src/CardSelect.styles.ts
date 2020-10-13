@@ -205,7 +205,7 @@ export const Container = styled.div<
   `};
 `;
 
-export const Main = styled.div<{ disabled?: boolean; size?: string; hasTick?: boolean; elementsPosition: string }>`
+export const Main = styled.div<{ disabled?: boolean; size?: string; hasTick?: boolean }>`
   ${is('disabled')`
     opacity: 0.4;
   `}
