@@ -19,9 +19,10 @@ import DayPicker from '@synerise/ds-date-picker/dist/Elements/DayPicker/DayPicke
 import Icon from '@synerise/ds-icon';
 import { CalendarM, ClockM } from '@synerise/ds-icon/dist/icons';
 import { fnsDifferenceInYears } from '@synerise/ds-date-picker/dist/fns';
+import fnsFormat from '@synerise/ds-date-picker/dist/format';
 import { legacyParse } from '@date-fns/upgrade/v2';
 import { Range } from '../RelativeRangePicker/RelativeRangePicker.styles';
-import { fnsStartOfDay, fnsEndOfDay, fnsIsSameMonth, fnsIsAfter, fnsFormat, fnsAddMinutes, fnsAddDays } from '../fns';
+import { fnsStartOfDay, fnsEndOfDay, fnsIsSameMonth, fnsIsAfter, fnsAddMinutes, fnsAddDays } from '../fns';
 import * as S from './RangePicker.styles';
 import { ABSOLUTE, COLUMNS, MODES } from '../constants';
 
@@ -31,6 +32,8 @@ import { Props, State, Side as SideType } from './RangePicker.types';
 import getDateFromString from '../dateUtils/getDateFromString';
 import { getSidesState, getDisabledTimeOptions } from './utils';
 
+// eslint-disable-next-line @typescript-eslint/no-empty-function
+const NOOP = (): void => {};
 const TOOLTIP_FORMAT = 'MMM d, yyyy, HH:mm';
 export default class RangePicker extends React.PureComponent<Props, State> {
   constructor(props: Props) {
@@ -58,6 +61,8 @@ export default class RangePicker extends React.PureComponent<Props, State> {
     }
     return null;
   }
+
+  componentDidUpdate = NOOP;
 
   handleDayMouseEnter = (day: Date): void => {
     this.setState({ enteredTo: day });
@@ -132,14 +137,15 @@ export default class RangePicker extends React.PureComponent<Props, State> {
 
   renderDay = (day: Date): React.ReactNode => {
     const text = day.getDate();
-    const { value } = this.props;
+    const { value, intl } = this.props;
     return (
       <>
         <DayBackground className="DayPicker-Day-BG" />
         <DayText className="DayPicker-Day-Text" data-attr={text}>
           {value.to && value.from && (
             <DayTooltip>
-              {fnsFormat(legacyParse(value.from), TOOLTIP_FORMAT)} - {fnsFormat(legacyParse(value.to), TOOLTIP_FORMAT)}
+              {fnsFormat(legacyParse(value.from), TOOLTIP_FORMAT, intl.locale)} -{' '}
+              {fnsFormat(legacyParse(value.to), TOOLTIP_FORMAT, intl.locale)}
             </DayTooltip>
           )}
           {text}
