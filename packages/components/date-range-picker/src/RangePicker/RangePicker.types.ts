@@ -1,7 +1,8 @@
+import { WrappedComponentProps } from 'react-intl';
 import { DateRange } from '../date.types';
 import { Texts } from '../DateRangePicker.types';
 
-export interface Props {
+export interface Props extends WrappedComponentProps {
   value: DateRange;
   onChange: (value: DateRange) => void;
   mode: string;

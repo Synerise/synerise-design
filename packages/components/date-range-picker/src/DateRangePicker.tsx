@@ -19,13 +19,14 @@ const DateRangePicker: React.FC<Props> = props => {
     popoverPlacement,
     popoverTrigger,
     forceAdjacentMonths,
+    disableDefaultTexts
   } = props;
   const intl = useIntl();
   const [popupVisible, setPopupVisible] = React.useState<boolean | undefined>(undefined);
   const [selectedDate, setSelectedDate] = React.useState(value);
   const [inputActive, setInputActive] = React.useState<boolean>();
 
-  const allTexts = React.useMemo(() => getDefaultTexts(intl, texts), [texts, intl]);
+  const allTexts = React.useMemo(() => getDefaultTexts(intl,disableDefaultTexts, texts), [texts, disableDefaultTexts, intl]);
   React.useEffect(() => {
     if (popupVisible !== undefined) {
       setPopupVisible(undefined);
