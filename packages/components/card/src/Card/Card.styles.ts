@@ -157,10 +157,10 @@ export const HeaderContent = styled.div<{ compact?: boolean; hasIcon: boolean }>
     `}
 `;
 
-export const ChildrenContainer = styled.div<{ showContent?: true }>`
+export const ChildrenContainer = styled.div`
   overflow: hidden;
 `;
 
 export const PaddingWrapper = styled.div<{ withoutPadding?: boolean }>`
-  padding: ${(props): string => (props.withoutPadding ? '0' : '24px')};
+  padding: ${(props): string => (props.withoutPadding ? '0' : '0 24px 24px 24px')};
 `;
