@@ -36,8 +36,8 @@ const Header: React.FC<HeaderProps> = ({
   inputObject,
   onArrowUp,
   onArrowDown,
-  name ="",
-  onRename
+  name = '',
+  onRename,
 }) => {
   const [dropdownVisible, setDropdownVisible] = React.useState(false);
   const ref = React.useRef<HTMLDivElement>(null);
@@ -47,16 +47,20 @@ const Header: React.FC<HeaderProps> = ({
   const renderActionButtons = (): React.ReactNode => {
     return (
       <>
-        {onArrowUp && <S.ButtonWrapper>
-          <Button onClick={onArrowUp} type="ghost" mode="single-icon">
-            <Icon size={20} component={<AngleUpM />} />
-          </Button>
-        </S.ButtonWrapper>}
-        {onArrowDown && <S.ButtonWrapper>
-          <Button onClick={onArrowDown} type="ghost" mode="single-icon">
-            <Icon size={20} component={<AngleDownM />} />
-          </Button>
-        </S.ButtonWrapper>}
+        {onArrowUp && (
+          <S.ButtonWrapper>
+            <Button onClick={onArrowUp} type="ghost" mode="single-icon">
+              <Icon size={20} component={<AngleUpM />} />
+            </Button>
+          </S.ButtonWrapper>
+        )}
+        {onArrowDown && (
+          <S.ButtonWrapper>
+            <Button onClick={onArrowDown} type="ghost" mode="single-icon">
+              <Icon size={20} component={<AngleDownM />} />
+            </Button>
+          </S.ButtonWrapper>
+        )}
         <Dropdown
           overlayStyle={{ boxShadow: '0 4px 17px -3px rgba(191,191,191,1)' }}
           visible={dropdownVisible}
@@ -66,7 +70,10 @@ const Header: React.FC<HeaderProps> = ({
               <Menu style={{ padding: '8px 8px' }}>
                 {onEdit && (
                   <Menu.Item
-                    onClick={(): void =>{ setDropdownVisible(!dropdownVisible); onEdit(inputObject)}}
+                    onClick={(): void => {
+                      setDropdownVisible(!dropdownVisible);
+                      onEdit(inputObject);
+                    }}
                     prefixel={<Icon component={<EditM />} />}
                   >
                     {texts.editIcon}
@@ -74,7 +81,10 @@ const Header: React.FC<HeaderProps> = ({
                 )}
                 {onDuplicate && (
                   <Menu.Item
-                    onClick={(): void => {setDropdownVisible(!dropdownVisible); onDuplicate(inputObject)}}
+                    onClick={(): void => {
+                      setDropdownVisible(!dropdownVisible);
+                      onDuplicate(inputObject);
+                    }}
                     prefixel={<Icon component={<DuplicateM />} />}
                   >
                     {texts.duplicateIcon}
@@ -82,7 +92,10 @@ const Header: React.FC<HeaderProps> = ({
                 )}
                 {onMove && (
                   <Menu.Item
-                    onClick={(): void => {setDropdownVisible(!dropdownVisible); onMove(inputObject)}}
+                    onClick={(): void => {
+                      setDropdownVisible(!dropdownVisible);
+                      onMove(inputObject);
+                    }}
                     prefixel={<Icon component={<FolderM />} />}
                   >
                     {texts.moveIcon}
@@ -90,7 +103,10 @@ const Header: React.FC<HeaderProps> = ({
                 )}
                 {onDelete && (
                   <Menu.Item
-                    onClick={(): void => {setDropdownVisible(!dropdownVisible); onDelete(inputObject)}}
+                    onClick={(): void => {
+                      setDropdownVisible(!dropdownVisible);
+                      onDelete(inputObject);
+                    }}
                     type="danger"
                     prefixel={<Icon component={<TrashM />} />}
                   >
@@ -100,7 +116,10 @@ const Header: React.FC<HeaderProps> = ({
                 <MenuWrapper>
                   {onId && (
                     <Menu.Item
-                      onClick={(): void => {setDropdownVisible(!dropdownVisible); onId(inputObject)}}
+                      onClick={(): void => {
+                        setDropdownVisible(!dropdownVisible);
+                        onId(inputObject);
+                      }}
                       style={{ padding: '0 12px' }}
                       prefixel={<Icon component={<CopyClipboardM />} />}
                     >{`ID: ${inputObject.id}`}</Menu.Item>
@@ -132,12 +151,15 @@ const Header: React.FC<HeaderProps> = ({
           {avatar}
           <Typography.Title style={{ flex: 2, marginLeft: '15px' }} level={4}>
             <S.StyledInlineEdit
+              disabled={!!onRename}
               input={{
                 name: texts.name,
                 value: name,
                 maxLength: 120,
                 placeholder: texts.inlineEditPlaceholder,
-                onChange: (event): void => {onRename && onRename (event.target.value)},
+                onChange: (event): void => {
+                  onRename && onRename(event.target.value);
+                },
               }}
             />
           </Typography.Title>
