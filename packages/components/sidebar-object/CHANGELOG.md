@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar-object@0.1.14...@synerise/ds-sidebar-object@0.2.0) (2020-10-13)
+
+
+### Bug Fixes
+
+* **sidebar-object:** add prop to change paddings ([e2fae83](https://github.com/Synerise/synerise-design/commit/e2fae8374ddd5f0ffa55f4740dd36a1d796482cd))
+* **sidebar-object:** change name of  prop ([52058aa](https://github.com/Synerise/synerise-design/commit/52058aa3f93890f8e5a7d792bd9e966f771bf132))
+
+
+
+
+
 ## [0.1.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar-object@0.1.13...@synerise/ds-sidebar-object@0.1.14) (2020-10-13)
 
 
