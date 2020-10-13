@@ -127,7 +127,7 @@ const Header: React.FC<HeaderProps> = ({
   return (
     <Drawer.DrawerHeaderWithoutPadding>
       <Drawer.DrawerHeader>
-        <S.DrawerHeaderBar onTabs={!!tabs}>
+        <S.DrawerHeaderBar withTabs={!!tabs}>
           {preffix}
           {avatar}
           <Typography.Title style={{ flex: 2, marginLeft: '15px' }} level={4}>
