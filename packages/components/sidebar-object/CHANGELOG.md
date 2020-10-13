@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar-object@0.1.13...@synerise/ds-sidebar-object@0.1.14) (2020-10-13)
+
+
+### Bug Fixes
+
+* **sidebar-object:** disable name input when onRename is falsy ([deba0d5](https://github.com/Synerise/synerise-design/commit/deba0d5f1270c760df0e6b84a2debc189d68d901))
+* **sidebar-object:** disable name input when onRename is falsy ([23746e6](https://github.com/Synerise/synerise-design/commit/23746e62aecd3fb97dbd40d09efb43e0cc15a179))
+
+
+
+
+
 ## [0.1.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar-object@0.1.12...@synerise/ds-sidebar-object@0.1.13) (2020-10-13)
 
 **Note:** Version bump only for package @synerise/ds-sidebar-object
