@@ -97,19 +97,12 @@ const stories = {
       id: '3423-3426-8263-6634-6834-2352',
     }
     const texts = {
-      namePlaceholder: 'Description',
       name: 'DescriptionInput',
-      search: 'Search',
       inlineEditPlaceholder: 'Campaign Name',
       editIcon: 'Edit',
       deleteIcon: 'Delete',
       duplicateIcon: 'Duplicate',
       moveIcon: 'Move to',
-      folder: 'Folder',
-      placeholder: 'Description',
-      labelName: 'Description',
-      labelTooltip: 'Description',
-      suffixTooltip: 'Edit',
     }
 
     const TABS = [
@@ -185,6 +178,7 @@ const stories = {
     const [drawerVisible, setDrawerVisible] = React.useState(false);
     const [tags, setTags] = React.useState<Array<any>>(allTags);
     const [selected, setSelected] = React.useState<Array<any>>(allTags.slice(0, 2));
+    const [description, setDescription] = React.useState('')
     const shapes = {
       'Default Round': TagShape.DEFAULT_ROUND,
       'Default Square': TagShape.DEFAULT_SQUARE,
@@ -283,7 +277,8 @@ const stories = {
           contentTags={contentTags}
           folders={data}
           parentFolder={parentFolder}
-          textDescription=''
+          onDescriptionChange={setDescription}
+          textDescription={description}
           onFolderSelect={showFolder}
           autoSize={autoSize}
           texts={texts}

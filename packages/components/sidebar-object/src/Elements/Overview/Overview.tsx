@@ -18,6 +18,7 @@ const Overview: React.FC<OverviewObjectProps> = ({
   textDescription,
   onFolderSelect,
   autoSize,
+  onDescriptionChange
 }) => {
   const [dropdownVisible, setDropdownVisible] = React.useState(false);
   const [value, setValue] = React.useState('');
@@ -29,7 +30,7 @@ const Overview: React.FC<OverviewObjectProps> = ({
       <S.HeaderWrapper dashed={!!onFolderSelect}>
         {onFolderSelect && (
           <>
-            {texts.folder}:{' '}
+            {texts?.folder}:{' '}
             <Dropdown
               overlayStyle={{ boxShadow: '0 4px 17px -3px rgba(191,191,191,1)' }}
               visible={dropdownVisible}
@@ -57,6 +58,7 @@ const Overview: React.FC<OverviewObjectProps> = ({
         <Content
           texts={texts}
           autoSize={autoSize}
+          onDescriptionChange={onDescriptionChange}
           textDescription={textDescription}
           description={<ObjectSummary inputObject={inputObject} />}
           tags={contentTags}

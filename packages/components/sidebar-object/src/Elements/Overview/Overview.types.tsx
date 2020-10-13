@@ -11,8 +11,15 @@ export type OverviewObjectProps = {
   contentTags: React.ReactNode;
   folders: FolderItem[];
   parentFolder: FolderItem;
-  texts: HeaderTexts;
+  texts: OverviewTexts;
   textDescription: string;
   onFolderSelect: (item: FolderItem) => void;
   autoSize: TextareaAutosize;
+  onDescriptionChange: (value: string) => void;
+};
+export type OverviewTexts = HeaderTexts & {
+  placeholder: string;
+  suffixTooltip: string | React.ReactNode;
+  search: string;
+  folder: string;
 };

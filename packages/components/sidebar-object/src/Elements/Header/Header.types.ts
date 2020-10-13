@@ -28,15 +28,8 @@ export type HeaderProps = {
 export type HeaderTexts = {
   name: string;
   inlineEditPlaceholder: string;
-  namePlaceholder: string;
-  search: string;
   deleteIcon: string;
   duplicateIcon: string;
   moveIcon: string;
-  folder: string;
   editIcon: string;
-  placeholder: string;
-  labelName: string | React.ReactNode;
-  labelTooltip: string | React.ReactNode;
-  suffixTooltip: string | React.ReactNode;
 };

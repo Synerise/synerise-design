@@ -9,7 +9,7 @@ import { DropdownWrapper, MenuWrapper } from './Dropdown.style';
 import { Props } from './DropdownOverlay.types';
 
 
-const DropdownOverlay: React.FC<Props> = ({ onClearInput, data, onClickAction, parentFolder, texts,onDropdownOutsideClick, onSearchChange, searchValue,onFolderSelect  }) => {
+const DropdownOverlay: React.FC<Props> = ({ texts,onClearInput, data, onClickAction, parentFolder,onDropdownOutsideClick, onSearchChange, searchValue,onFolderSelect  }) => {
   const ref = React.useRef<HTMLDivElement>(null);
   useOnClickOutside(ref, () => {
    onDropdownOutsideClick();
