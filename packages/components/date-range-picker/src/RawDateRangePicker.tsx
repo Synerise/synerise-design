@@ -15,13 +15,11 @@ import RangeFilter from './RangeFilter/RangeFilter';
 import RangeFilterStatus from './RangeFilter/RangeFilterStatus/RangeFilterStatus';
 import { FilterValue } from './RangeFilter/RangeFilter.types';
 
+
 class RawDateRangePicker extends React.PureComponent<Props, State> {
   static defaultProps = {
-    relativeFuture: false,
     relativePast: true,
     showRelativePicker: true,
-    showFilter: false,
-    showTime: false,
     validate: (): { valid: boolean } => ({ valid: true }),
   };
 
@@ -193,6 +191,7 @@ class RawDateRangePicker extends React.PureComponent<Props, State> {
           canSwitchMode={isValid}
           texts={texts}
           forceAdjacentMonths={forceAdjacentMonths}
+          intl={intl}
         />
         {addons.length > 0 && <Separator />}
         {addons.map(

@@ -5,6 +5,7 @@ import { FilterDefinition } from './RangeFilter/RangeFilter.types';
 import { SavedFilter } from './RangeFilter/FilterDropdown/FilterDropdown.types';
 
 export interface Props extends WrappedComponentProps {
+  disableDefaultTexts?: boolean;
   disabledDate?: (date?: Date) => boolean;
   format?: string;
   forceAdjacentMonths?: boolean;
