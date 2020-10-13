@@ -1,4 +1,5 @@
 import { FolderItem } from '../../../SidebarObject.types';
+import { OverviewTexts } from '../../Overview/Overview.types';
 import { HeaderTexts } from '../Header.types';
 
 export interface Props {
@@ -6,7 +7,7 @@ export interface Props {
   onClickAction?: () => void;
   onClearInput?: () => void;
   parentFolder: FolderItem;
-  texts: HeaderTexts;
+  texts: OverviewTexts & HeaderTexts;
   onDropdownOutsideClick: () => void;
   onSearchChange: (value: string) => void;
   searchValue: string;
