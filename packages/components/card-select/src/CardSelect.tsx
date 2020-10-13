@@ -25,6 +25,7 @@ const CardSelect: React.FC<CardSelectProps> = ({
                                                  className,
                                                  onClick,
                                                  theme,
+  error,
                                                }) => {
   const [pressed, setPressed] = React.useState<boolean>(false);
   const wrapperRef = React.useRef(null);
@@ -52,6 +53,7 @@ const CardSelect: React.FC<CardSelectProps> = ({
   return (
     <S.CardWrapper disabled={disabled} stretchToFit={stretchToFit}>
       <S.Container
+        error={!!error}
         ref={wrapperRef}
         pressed={pressed}
         raised={raised}
@@ -62,6 +64,7 @@ const CardSelect: React.FC<CardSelectProps> = ({
         className={`ds-card-select ${className || ''}`}
         elementsPosition={elementsPosition}
         stretchToFit={stretchToFit}
+
       >
         <S.Aside size={size} tabIndex={disabled ? undefined : 0} ref={tickIconRef}>
           {tickVisible && (
@@ -85,7 +88,7 @@ const CardSelect: React.FC<CardSelectProps> = ({
           )}
         </S.Aside>
 
-        <S.Main size={size} disabled={disabled} hasTick={tickVisible || customTickVisible}>
+        <S.Main size={size} disabled={disabled} hasTick={tickVisible || customTickVisible} >
           {icon && (
             <S.IconWrapper size={size}>
               <Icon component={icon} size={realIconSize} />
