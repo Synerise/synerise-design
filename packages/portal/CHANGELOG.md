@@ -3,6 +3,57 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.100.1](https://github.com/synerise/synerise-design/compare/portal@0.100.0...portal@0.100.1) (2020-10-13)
+
+**Note:** Version bump only for package portal
+
+
+
+
+
+# [0.100.0](https://github.com/synerise/synerise-design/compare/portal@0.99.3...portal@0.100.0) (2020-10-12)
+
+
+### Bug Fixes
+
+* **date-range-picker:** apply saved filter choosen from dropdown ([1806858](https://github.com/synerise/synerise-design/commit/1806858e1a9028cf4e8959a9075683e93684eb26))
+* **date-range-picker:** fixed paddings and added summary of collapsed addon ([4ff931f](https://github.com/synerise/synerise-design/commit/4ff931ff6d34c84b96e0485dc3cd463faf0eac7f))
+* **date-range-picker:** rebased dev ([a3207d4](https://github.com/synerise/synerise-design/commit/a3207d4e956bfa8e11f1273544254b07f307ce52))
+* **sidebar-object:** change props to inline edit and change which tab is active ([3727c8e](https://github.com/synerise/synerise-design/commit/3727c8eb29e87d087bd8b5ef07cf55a03202c707))
+
+
+### Features
+
+* **date-range-picker:** added ability to remove the filter ([61b8a10](https://github.com/synerise/synerise-design/commit/61b8a10e9f590a3fc2e4b7db180f4fc8537238a3))
+* **date-range-picker:** added an option to select saved filter ([b62a59a](https://github.com/synerise/synerise-design/commit/b62a59aabc95ebc3939cd90e320ba67f52017f23))
+* **date-range-picker:** added range filter component ([c152698](https://github.com/synerise/synerise-design/commit/c152698f6d9fa5f2aa2320c3bda651360583f170))
+* **date-range-picker:** added range filter component ([33d6ed7](https://github.com/synerise/synerise-design/commit/33d6ed7f71b7218f12eda770993b171c6d420a17))
+* **date-range-picker:** added range filter component ([19f0283](https://github.com/synerise/synerise-design/commit/19f0283c43b7c95a65ca6b7548cc555d97d8b640))
+
+
+
+
+
+## [0.99.3](https://github.com/synerise/synerise-design/compare/portal@0.99.2...portal@0.99.3) (2020-10-12)
+
+**Note:** Version bump only for package portal
+
+
+
+
+
+## [0.99.2](https://github.com/synerise/synerise-design/compare/portal@0.99.1...portal@0.99.2) (2020-10-12)
+
+
+### Bug Fixes
+
+* **folders:** changed story on storybook ([85e246c](https://github.com/synerise/synerise-design/commit/85e246ccdc074f6c53b9aa900282f754c19f99e5))
+* **sidebar-object:** change paddings and margins, add footer and to props documantation ([daa7994](https://github.com/synerise/synerise-design/commit/daa79943f165f913b6f805b83f6216bab3299378))
+
+
+
+
+
 ## [0.99.1](https://github.com/synerise/synerise-design/compare/portal@0.99.0...portal@0.99.1) (2020-10-09)
 
 

@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.20](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.7.19...@synerise/ds-card@0.7.20) (2020-10-13)
+
+**Note:** Version bump only for package @synerise/ds-card
+
+
+
+
+
+## [0.7.19](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.7.18...@synerise/ds-card@0.7.19) (2020-10-13)
+
+**Note:** Version bump only for package @synerise/ds-card
+
+
+
+
+
+## [0.7.18](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.7.17...@synerise/ds-card@0.7.18) (2020-10-12)
+
+
+### Bug Fixes
+
+* **card:** fix Card animation ([9a8fdcf](https://github.com/Synerise/synerise-design/commit/9a8fdcff5aa6b947da1523871a47cf3f9504e5fa))
+
+
+
+
+
 ## [0.7.17](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.7.16...@synerise/ds-card@0.7.17) (2020-10-09)
 
 

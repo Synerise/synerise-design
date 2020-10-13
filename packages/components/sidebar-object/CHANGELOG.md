@@ -3,6 +3,52 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar-object@0.1.13...@synerise/ds-sidebar-object@0.1.14) (2020-10-13)
+
+
+### Bug Fixes
+
+* **sidebar-object:** disable name input when onRename is falsy ([deba0d5](https://github.com/Synerise/synerise-design/commit/deba0d5f1270c760df0e6b84a2debc189d68d901))
+* **sidebar-object:** disable name input when onRename is falsy ([23746e6](https://github.com/Synerise/synerise-design/commit/23746e62aecd3fb97dbd40d09efb43e0cc15a179))
+
+
+
+
+
+## [0.1.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar-object@0.1.12...@synerise/ds-sidebar-object@0.1.13) (2020-10-13)
+
+**Note:** Version bump only for package @synerise/ds-sidebar-object
+
+
+
+
+
+## [0.1.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar-object@0.1.11...@synerise/ds-sidebar-object@0.1.12) (2020-10-12)
+
+
+### Bug Fixes
+
+* **sidebar-object:** change name of prop ([1b7cbaf](https://github.com/Synerise/synerise-design/commit/1b7cbafadbd7d46df0a9c8fc55c474dbdd77df25))
+* **sidebar-object:** change name of prop ([4ad0669](https://github.com/Synerise/synerise-design/commit/4ad0669b8e09679014dbe95411fabd820d1ae0e9))
+* **sidebar-object:** change props to inline edit and change which tab is active ([3727c8e](https://github.com/Synerise/synerise-design/commit/3727c8eb29e87d087bd8b5ef07cf55a03202c707))
+* **sidebar-object:** change to not optional props ([e4b342a](https://github.com/Synerise/synerise-design/commit/e4b342a1146e07582bf1a52b08e6d53260054b9d))
+
+
+
+
+
+## [0.1.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar-object@0.1.10...@synerise/ds-sidebar-object@0.1.11) (2020-10-12)
+
+
+### Bug Fixes
+
+* **sidebar-object:** add styles to header.styles ([ca76753](https://github.com/Synerise/synerise-design/commit/ca7675371c0e5b35337fec5e222446aa4c0498fa))
+* **sidebar-object:** change paddings and margins, add footer and to props documantation ([daa7994](https://github.com/Synerise/synerise-design/commit/daa79943f165f913b6f805b83f6216bab3299378))
+
+
+
+
+
 ## [0.1.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar-object@0.1.9...@synerise/ds-sidebar-object@0.1.10) (2020-10-09)
 
 **Note:** Version bump only for package @synerise/ds-sidebar-object
