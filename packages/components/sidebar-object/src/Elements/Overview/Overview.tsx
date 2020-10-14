@@ -56,6 +56,7 @@ const Overview: React.FC<OverviewObjectProps> = ({
         )}
       </S.HeaderWrapper>
         <Content
+          onFolderSelect={onFolderSelect}
           texts={texts}
           autoSize={autoSize}
           onDescriptionChange={onDescriptionChange}
