@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { isEqual } from 'lodash';
 import { Popover } from 'antd';
 import './style/index.less';
 import { useIntl } from 'react-intl';
@@ -19,19 +20,29 @@ const DateRangePicker: React.FC<Props> = props => {
     popoverPlacement,
     popoverTrigger,
     forceAdjacentMonths,
-    disableDefaultTexts
+    disableDefaultTexts,
   } = props;
   const intl = useIntl();
   const [popupVisible, setPopupVisible] = React.useState<boolean | undefined>(undefined);
   const [selectedDate, setSelectedDate] = React.useState(value);
   const [inputActive, setInputActive] = React.useState<boolean>();
 
-  const allTexts = React.useMemo(() => getDefaultTexts(intl,disableDefaultTexts, texts), [texts, disableDefaultTexts, intl]);
-  React.useEffect(() => {
+  const allTexts = React.useMemo(() => getDefaultTexts(intl, disableDefaultTexts, texts), [
+    texts,
+    disableDefaultTexts,
+    intl,
+  ]);
+  React.useEffect((): void => {
     if (popupVisible !== undefined) {
       setPopupVisible(undefined);
     }
   }, [popupVisible]);
+
+  React.useEffect((): void => {
+    if (!isEqual(value, selectedDate)) {
+      setSelectedDate(value);
+    }
+  }, [value, selectedDate]);
 
   const onValueChangeCallback = React.useCallback(
     (val: Partial<DateFilter> | undefined): void => {
