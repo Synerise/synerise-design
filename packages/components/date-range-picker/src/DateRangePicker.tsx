@@ -42,7 +42,8 @@ const DateRangePicker: React.FC<Props> = props => {
     if (!isEqual(value, selectedDate)) {
       setSelectedDate(value);
     }
-  }, [value, selectedDate]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [value]);
 
   const onValueChangeCallback = React.useCallback(
     (val: Partial<DateFilter> | undefined): void => {
