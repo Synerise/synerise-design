@@ -230,7 +230,7 @@ const stories = {
       setDropdownVisible(false);
     });
     const renderPrefix = (country: Country) => (<div style={{ display: 'flex' }}>
-      <FlagContainer style={{ paddingRight: '10px' }}>
+      <FlagContainer style={{ paddingRight: '8px', paddingTop: '2px' }}>
         <DSFlag country={country.code} size={20} />
       </FlagContainer>
       {country.prefix}
@@ -246,7 +246,7 @@ const stories = {
           setPrefix(renderPrefix(selectedCountry))
         }}
         dropdownStyle={{ width: '300px' }}
-        style={{ width: '115px' }}
+        style={{ width: '107px' }}
         dropdownClassName="dropdownWidth"
         dropdownRender={menu => (
           <div style={{ width: '250px', paddingTop: '0px' }}>
