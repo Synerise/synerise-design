@@ -62,7 +62,7 @@ const Card: React.FC<CardProps> = ({
       )}
       <AnimateHeight className="card-animation" duration={300} height={hideContent ? 0 : 'auto'}>
         <S.ChildrenContainer>
-          <S.PaddingWrapper withoutPadding={withoutPadding}>{children}</S.PaddingWrapper>
+          <S.PaddingWrapper withoutPadding={withoutPadding} withHeader={withHeader}>{children}</S.PaddingWrapper>
         </S.ChildrenContainer>
       </AnimateHeight>
     </S.Container>
