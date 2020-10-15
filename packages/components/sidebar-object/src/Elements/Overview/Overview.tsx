@@ -17,7 +17,6 @@ const Overview: React.FC<OverviewObjectProps> = ({
   texts,
   textDescription,
   onFolderSelect,
-  autoSize,
   onDescriptionChange
 }) => {
   const [dropdownVisible, setDropdownVisible] = React.useState(false);
@@ -58,7 +57,6 @@ const Overview: React.FC<OverviewObjectProps> = ({
         <Content
           onFolderSelect={onFolderSelect}
           texts={texts}
-          autoSize={autoSize}
           onDescriptionChange={onDescriptionChange}
           textDescription={textDescription}
           description={<ObjectSummary inputObject={inputObject} />}

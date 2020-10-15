@@ -37,7 +37,7 @@ export const ValueArea = styled.textarea<{ grey: boolean }>`
     display: none;
   }
 `;
-export const MainContent = styled.div`
+export const MainContent = styled.div<{ hasMargin?: boolean }>`
   display: flex;
   align-items: flex-start;
   flex: 1;
@@ -46,6 +46,10 @@ export const MainContent = styled.div`
   width: 100%;
   height: 100%;
   transition: color 0.1s ease-in 0.2s;
+  ${(props): string | false =>
+    !!props.hasMargin &&
+    `margin-top:1px;
+`}
 `;
 export const Suffix = styled.div<{ select?: boolean }>`
   position: absolute;
@@ -65,11 +69,17 @@ export const Container = styled.div<{ active: boolean }>`
   ${(props): false | FlattenSimpleInterpolation =>
     props.active &&
     css`
-      margin: -2px 0 0 -1px;
+      margin: -1px 0 0 -1px;
     `}
 
   > div {
     margin: 0;
+  }
+  
+    .ds-subtle-select {
+    .ant-select-selector: {
+      transition: all 0.0s linear !important;
+    }
   }
 `;
 export const Inactive = styled.div<{ rows?: number; blurred: boolean; datePicker?: boolean; datePickerValue?: Date }>`
@@ -113,4 +123,8 @@ export const ContentAbove = styled.div<{ active: boolean }>`
   display: flex;
   justify-content: space-between;
   margin-bottom: ${(props): string => (props.active ? `9px` : `8px`)};
+  .ds-icon {
+    margin-bottom: ${(props): string => (props.active ? `1px` : `0`)};
+  }
+
 `;
