@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar-object@0.2.1...@synerise/ds-sidebar-object@0.2.2) (2020-10-15)
+
+
+### Bug Fixes
+
+* **sidebar-object:** add props to change margin ([44e2dfe](https://github.com/Synerise/synerise-design/commit/44e2dfed567f3437344a380bcf2796257657f2ac))
+* **sidebar-object:** change padding ([37102c4](https://github.com/Synerise/synerise-design/commit/37102c4eea707991c9eb40047517f29c82565a85))
+* **sidebar-object:** removed autosize prop from textarea ([006bc28](https://github.com/Synerise/synerise-design/commit/006bc28a691275b4787e5b2e3d59436b8df4ed9b))
+
+
+
+
+
 ## [0.2.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar-object@0.2.0...@synerise/ds-sidebar-object@0.2.1) (2020-10-14)
 
 

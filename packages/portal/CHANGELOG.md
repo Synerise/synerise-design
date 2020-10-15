@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.100.3](https://github.com/synerise/synerise-design/compare/portal@0.100.2...portal@0.100.3) (2020-10-15)
+
+
+### Bug Fixes
+
+* **sidebar-object:** change padding ([37102c4](https://github.com/synerise/synerise-design/commit/37102c4eea707991c9eb40047517f29c82565a85))
+* **subtle-form:** fixed margins and displaying rows ([9eee1b5](https://github.com/synerise/synerise-design/commit/9eee1b56862bf72bb7a6c22dd8e64a18e71d20c0))
+
+
+
+
+
 ## [0.100.2](https://github.com/synerise/synerise-design/compare/portal@0.100.1...portal@0.100.2) (2020-10-14)
 
 
