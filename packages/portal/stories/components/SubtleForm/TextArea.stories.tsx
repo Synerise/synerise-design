@@ -26,7 +26,6 @@ const stories = {
         <div style={{ marginBottom: '16px' }}>
           <SubtleForm.TextArea
             minRows={1}
-            maxRows={1}
             value={name}
             onChange={setName}
             placeholder={'Name'}
@@ -40,7 +39,6 @@ const stories = {
         <div style={{ marginBottom: '16px' }}>
           <SubtleForm.TextArea
             minRows={1}
-            maxRows={1}
             value={city}
             onChange={setCity}
             placeholder={'City'}
@@ -60,7 +58,6 @@ const stories = {
             label={renderLabel('Description')}
             labelTooltip={'Description'}
             suffixTooltip={'Edit'}
-            autoSize
             error={validationState}
             errorText={getErrorText(validationState,errorMessage)}
           />

@@ -4,16 +4,15 @@ import SubtleForm from '@synerise/ds-subtle-form';
 import { ContentProps } from './Content.types';
 import { ContentWrapper, InlineEditWrapper, TagsWrapper } from './Content.style';
 
-const Content: React.FC<ContentProps> = ({ texts,description, tags, textDescription,autoSize,onDescriptionChange }) => {
+const Content: React.FC<ContentProps> = ({ onFolderSelect,texts,description, tags, textDescription,onDescriptionChange }) => {
 
 
   return (
     <Drawer.DrawerBody>
-      <ContentWrapper>{description}</ContentWrapper>
+      <ContentWrapper withFolder={!!onFolderSelect}>{description}</ContentWrapper>
       <TagsWrapper>{tags}</TagsWrapper>
       <InlineEditWrapper>
         <SubtleForm.TextArea
-          autoSize={autoSize}
           minRows={3}
           value={textDescription}
           onChange={onDescriptionChange}

@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 
 
-export const ContentWrapper = styled.div`
+export const ContentWrapper = styled.div<{withFolder: boolean}>`
 padding: 12px 140px 12px 0;
+margin-top: ${(props): string => props.withFolder ? '0': '-17px' };
 border-bottom: 1px dashed ${(props): string =>props.theme.palette['grey-300']};
 `;
 

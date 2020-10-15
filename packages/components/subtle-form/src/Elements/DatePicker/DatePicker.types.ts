@@ -2,6 +2,7 @@ import { Props as DsDatePickerProps } from '@synerise/ds-date-picker/dist/DatePi
 import { SubtleFieldProps } from '../../SubtleForm.types';
 
 export type SubtleDatePickerProps = {
+  activeProp?: boolean;
   placeholder?: string;
   format?: string;
 } & SubtleFieldProps &
