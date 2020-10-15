@@ -1,7 +1,8 @@
 import { AlertProps } from 'antd/lib/alert';
 import * as React from 'react';
 
-export interface Props extends Omit<AlertProps, 'type'> {
+export interface Props extends Omit<AlertProps, 'type' | 'message'> {
+  message?: React.ReactNode;
   type: 'success' | 'warning' | 'error' | 'info';
   color?:
     | 'blue'

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.21](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.7.20...@synerise/ds-card@0.7.21) (2020-10-15)
+
+
+### Bug Fixes
+
+* **card:** disable top padding only when header is provided ([0a47571](https://github.com/Synerise/synerise-design/commit/0a475712a55fbf6bd1084632948d53bd03cd0193))
+
+
+
+
+
 ## [0.7.20](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.7.19...@synerise/ds-card@0.7.20) (2020-10-13)
 
 **Note:** Version bump only for package @synerise/ds-card
