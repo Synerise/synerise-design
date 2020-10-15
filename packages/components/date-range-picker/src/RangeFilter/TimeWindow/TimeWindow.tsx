@@ -4,6 +4,9 @@ import { FormattedMessage, injectIntl } from 'react-intl';
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
 import dayjs from 'dayjs';
+import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { InfoM } from '@synerise/ds-icon/dist/icons';
+import Icon from '@synerise/ds-icon';
 import { Header } from './Header/Header';
 import Day from './Day/Day';
 import { DayKey, TimeWindowProps, State, DayOptions } from './TimeWindow.types';
@@ -16,6 +19,7 @@ import RangeActions from './RangeActions/RangeActions';
 import SelectionCount from '../SelectionCount/SelectionCount';
 import { FilterDefinition } from '../RangeFilter.types';
 import { DEFAULT_RANGE_END, DEFAULT_RANGE_START, TIME_FORMAT } from '../constants';
+import AddButton from '../AddButton/AddButton';
 
 class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
   // eslint-disable-next-line react/destructuring-assignment
@@ -28,7 +32,6 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
     dayFormatter: (dayKey: DayKey): React.ReactNode => (
       <FormattedMessage id={`DS.DATE-RANGE-PICKER.WEEKDAYS-SHORT-${dayKey}`} />
     ),
-    timeMarks: { '0': '00:00', '12': <FormattedMessage id="DS.DATE-RANGE-PICKER.SET-HOURS" />, '24': '24:00' },
   };
 
   isDayRestricted = (dayKey: DayKey): boolean => {
@@ -37,7 +40,8 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
   };
 
   checkActiveDay = (dayKey: DayKey): void => {
-    if (!this.isDayRestricted(dayKey)) this.checkDay(dayKey);
+    const { isRangeDefined } = this.state;
+    if (!this.isDayRestricted(dayKey) && isRangeDefined) this.checkDay(dayKey);
     const { activeDays, multipleSelectionMode } = this.state;
     let updatedActiveDay = [];
     if (multipleSelectionMode) {
@@ -285,7 +289,12 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
       <>
         <Header
           title={
-            <RangeSummary dayKeys={dayKeys as DayKey[]} getDayLabel={this.getDayLabel} monthlyFilter={monthlyFilter} monthlyFilterPeriod={monthlyFilterPeriod} />
+            <RangeSummary
+              dayKeys={dayKeys as DayKey[]}
+              getDayLabel={this.getDayLabel}
+              monthlyFilter={monthlyFilter}
+              monthlyFilterPeriod={monthlyFilterPeriod}
+            />
           }
           suffix={
             <RangeActions
@@ -303,7 +312,7 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
 
   render(): JSX.Element {
     const { style, days, numberOfDays, daily, intl, ...rest } = this.props;
-    const { activeDays } = this.state;
+    const { activeDays, isRangeDefined } = this.state;
     const keys = this.getAllKeys();
     const singleMode = keys.length === 1;
     const rangeFormKey = singleMode ? keys[0] : activeDays;
@@ -335,14 +344,29 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
             title={
               <SelectionCount
                 selectedDayCount={activeDays.length}
-                label={intl.formatMessage({id:'DS.DATE-RANGE-PICKER.SELECTED'})}
-                tooltipLabel={intl.formatMessage({id:'DS.DATE-RANGE-PICKER.MULTIPLE-MODE-HINT'})}
+                label={intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.SELECTED' })}
+                tooltipLabel={intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.MULTIPLE-MODE-HINT' })}
               />
             }
           />
         )}
-        {(!!activeDays.length || !!daily) && this.renderRangeForm(rangeFormKey)}
-        {(!activeDays.length && !daily) &&  <S.SelectionHint>{intl.formatMessage({id:'DS.DATE-RANGE-PICKER.SELECT-DAYS-DESCRIPTION'})}</S.SelectionHint>}
+        {(!!activeDays.length || !!daily) && isRangeDefined && this.renderRangeForm(rangeFormKey)}
+        {!activeDays.length && !daily && !isRangeDefined && (
+          <S.SelectionHint>
+            <Icon component={<InfoM />} color={theme.palette['grey-600']} />{' '}
+            {intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.SELECT-DAYS-DESCRIPTION' })}
+          </S.SelectionHint>
+        )}
+        {!!activeDays.length && !isRangeDefined && (
+          <S.AddButtonWrapper>
+            <AddButton
+              label={intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.ADD-RANGE' })}
+              onClick={(): void => {
+                this.setState({ isRangeDefined: true });
+              }}
+            />
+          </S.AddButtonWrapper>
+        )}
       </S.TimeWindowContainer>
     );
   }

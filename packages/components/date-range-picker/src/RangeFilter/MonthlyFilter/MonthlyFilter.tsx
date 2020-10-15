@@ -236,7 +236,6 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
                     numberOfDaysPerRow={7}
                     days={item.definition}
                     onChange={(definition: string): void => this.handleDefinitionChange(definition, key)}
-                    timeMarks={{}}
                     onRangeClear={onRangeClear}
                     onRangeCopy={onRangeCopy}
                     onRangePaste={onRangePaste}
