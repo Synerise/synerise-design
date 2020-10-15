@@ -12,7 +12,7 @@ const getColor = (props: Props & { theme: ThemePropsVars }): string => {
   return theme.palette[`${color}-${hue}`];
 };
 
-export const AntdAlert = styled((props: Props) => <Alert {...props} />)`
+export const AntdAlert = styled((props: Props & { message: React.ReactNode }) => <Alert {...props} />)`
   ${(props): FlattenInterpolation<ThemeProps<Props>> | false =>
     Boolean(props.color) &&
     css`
