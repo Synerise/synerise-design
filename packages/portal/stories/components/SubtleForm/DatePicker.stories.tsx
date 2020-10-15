@@ -16,6 +16,7 @@ const getErrorText = (error: boolean, errorText: string): string => {
 const stories = {
   default: () => {
     const [value, setValue] = React.useState<string>();
+    const [open, setOpen] = React.useState<boolean>(false);
     const validationState = boolean('Set validation state', false);
     const errorMessage = text('Error Text', 'Error');
     const format = 'dd-MM-yyyy';
@@ -31,8 +32,10 @@ const stories = {
             label={renderLabel('Date')}
             labelTooltip={'Date'}
             suffixTooltip={'Select date'}
-            error={validationState}
-            errorText={getErrorText(validationState,errorMessage)}
+            error={validationState && !open}
+            errorText={getErrorText((validationState && !open),errorMessage)}
+            onDropdownVisibleChange={setOpen}
+            activeProp={open}
             texts={
               {
                 inputPlaceholder: replaceLettersWithUnderscore(format),

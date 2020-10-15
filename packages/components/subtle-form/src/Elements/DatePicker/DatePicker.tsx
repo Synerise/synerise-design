@@ -23,6 +23,8 @@ const SubtleDatePicker: React.FC<SubtleDatePickerProps> = ({
   onApply,
   errorText,
   error,
+  activeProp,
+  onDropdownVisibleChange,
   ...rest
 }) => {
   const [active, setActive] = React.useState<boolean>(false);
@@ -42,6 +44,12 @@ const SubtleDatePicker: React.FC<SubtleDatePickerProps> = ({
     return value && !!String(value).trim() ? formatValue(value) : placeholder;
   }, [value, placeholder, formatValue]);
 
+  React.useEffect(() => {
+    if(error){
+      setActive(false);
+      setBlurred(true);
+    }
+  }, [error, errorText]);
   const handleActivate = React.useCallback((): void => {
     setActive(true);
     setBlurred(false);
@@ -54,10 +62,10 @@ const SubtleDatePicker: React.FC<SubtleDatePickerProps> = ({
 
   return (
     <S.Subtle className="ds-subtle-form">
-      <ContentAbove active={active}>
+      <ContentAbove active={active || hasError}>
         <Label label={label} tooltip={labelTooltip} />
       </ContentAbove>
-      <SelectContainer ref={containerRef} className="ds-subtle-textarea" active={active}>
+      <SelectContainer ref={containerRef} className="ds-subtle-date-picker" active={active || hasError}>
         {(active && !blurred) || hasError ? (
           <DatePicker
             {...rest}
@@ -71,16 +79,18 @@ const SubtleDatePicker: React.FC<SubtleDatePickerProps> = ({
             errorText={errorText}
             // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
             // @ts-ignore
-            autoFocus
+            autoFocus={!hasError}
             format={dateFormat}
             onDropdownVisibleChange={(visible: boolean): void => {
               setActive(visible);
               setBlurred(!visible);
+              onDropdownVisibleChange && onDropdownVisibleChange(visible);
+
             }}
           />
         ) : (
           <S.Inactive onClick={handleActivate} blurred={blurred} datePicker datePickerValue={value}>
-            <S.MainContent>
+            <S.MainContent hasMargin>
               {getDisplayText()}
               <MaskedDatePlaceholder>{replaceLettersWithUnderscore(dateFormattingString)}</MaskedDatePlaceholder>
             </S.MainContent>

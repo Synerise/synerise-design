@@ -24,9 +24,9 @@ const SubtleTextArea: React.FC<SubtleTextAreaProps> = ({
   labelTooltip,
   suffixTooltip,
   suffix,
-  autoSize,
   error,
   errorText,
+  ...rest
 }) => {
   const [active, setActive] = React.useState<boolean>(false);
   const [blurred, setBlurred] = React.useState<boolean>(false);
@@ -46,6 +46,7 @@ const SubtleTextArea: React.FC<SubtleTextAreaProps> = ({
     }
     return textHeight;
   }, [value, containerRef]);
+
   React.useEffect(() => {
     const keyboardBasedLines = Number(value?.split('\n').length);
 
@@ -80,14 +81,14 @@ const SubtleTextArea: React.FC<SubtleTextAreaProps> = ({
       <S.Container ref={containerRef} className="ds-subtle-textarea" active={active}>
         {active || hasError ? (
           <TextArea
-            autoSize={autoSize}
+            {...rest}
             autoFocus={!hasError}
             onChange={(e: React.ChangeEvent<HTMLInputElement>): void => {
               onChange && onChange(e.currentTarget.value);
             }}
             onBlur={handleDeactivate}
             value={value}
-            rows={visibleRows < 2 ? 2 : visibleRows}
+            rows={visibleRows+1}
             style={{ margin: 0 }}
             placeholder={placeholder}
             error={error}

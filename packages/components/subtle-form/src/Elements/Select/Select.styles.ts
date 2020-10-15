@@ -8,6 +8,10 @@ export const SelectContainer = styled.div<{ active: boolean }>`
     css`
       margin: -2px 0 0 -1px;
     `}
+
+  div.ant-select-selector {
+    transition: border 0s linear !important;
+  }
 `;
 
 export const ContentAbove = styled.div<{ active: boolean }>`

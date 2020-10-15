@@ -38,7 +38,7 @@ const SubtleSelect: React.FC<SubtleSelectProps> = ({
       <ContentAbove active={active}>
         <Label label={label} tooltip={labelTooltip} />
       </ContentAbove>
-      <SelectContainer ref={containerRef} className="ds-subtle-textarea" active={active}>
+      <SelectContainer ref={containerRef} className="ds-subtle-select" active={active}>
         {(active && !blurred) || hasError ? (
           <Select
             autoFocus={!hasError}
@@ -55,9 +55,9 @@ const SubtleSelect: React.FC<SubtleSelectProps> = ({
           </Select>
         ) : (
           <S.Inactive onClick={handleActivate} blurred={blurred}>
-            <S.MainContent>{value && !!String(value).trim() ? value : placeholder}</S.MainContent>
+            <S.MainContent hasMargin>{value && !!String(value).trim() ? value : placeholder}</S.MainContent>
             {!active && (
-              <S.Suffix select>
+              <S.Suffix select >
                 <Tooltip title={suffixTooltip}>
                   {suffix ?? <Icon component={<AngleDownS />} color={theme.palette['grey-600']} />}
                 </Tooltip>
