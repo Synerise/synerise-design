@@ -161,6 +161,7 @@ export const ChildrenContainer = styled.div`
   overflow: hidden;
 `;
 
-export const PaddingWrapper = styled.div<{ withoutPadding?: boolean }>`
-  padding: ${(props): string => (props.withoutPadding ? '0' : '0 24px 24px 24px')};
+export const PaddingWrapper = styled.div<{ withHeader?: boolean; withoutPadding?: boolean }>`
+  padding: ${(props): string => (props.withoutPadding ? '0' : `24px`)};
+  ${(props): string | false => !!props.withHeader && `padding-top: 0;`}
 `;

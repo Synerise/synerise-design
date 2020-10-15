@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-select@0.4.0...@synerise/ds-card-select@0.4.1) (2020-10-14)
+
+**Note:** Version bump only for package @synerise/ds-card-select
+
+
+
+
+
+# [0.4.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-select@0.3.55...@synerise/ds-card-select@0.4.0) (2020-10-13)
+
+
+### Bug Fixes
+
+* **card-select:** removed min-width, refactored inner cmp layout ([2d32720](https://github.com/Synerise/synerise-design/commit/2d3272066b43ca1ef4284e569edab010afead1ae))
+
+
+### BREAKING CHANGES
+
+* **card-select:** min-width has been removed, inner layout had changed a lot, so positioning might be broken after
+update
+
+
+
+
+
 ## [0.3.55](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-select@0.3.54...@synerise/ds-card-select@0.3.55) (2020-10-13)
 
 **Note:** Version bump only for package @synerise/ds-card-select

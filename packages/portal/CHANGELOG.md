@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.100.2](https://github.com/synerise/synerise-design/compare/portal@0.100.1...portal@0.100.2) (2020-10-14)
+
+
+### Bug Fixes
+
+* **sidebar-object:** change and deletes some props ([e336e94](https://github.com/synerise/synerise-design/commit/e336e9437583b888a31bc2bfe7868b66563ee810))
+
+
+
+
+
 ## [0.100.1](https://github.com/synerise/synerise-design/compare/portal@0.100.0...portal@0.100.1) (2020-10-13)
 
 **Note:** Version bump only for package portal
