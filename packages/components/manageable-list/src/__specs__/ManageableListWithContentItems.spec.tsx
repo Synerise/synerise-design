@@ -145,7 +145,7 @@ describe('ManageableList with content items', () => {
     );
 
     // ASSERT
-    expect(queryAllByTestId('item-content-wrapper').length).toBe(3);
+    expect(queryAllByTestId('item-content-wrapper').length).toBe(2);
     expect(queryAllByTestId('item-toggle-content-wrapper').length).toBe(2);
   });
 
