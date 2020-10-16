@@ -142,6 +142,7 @@ const enhancedInput = <P extends object>(
 export const TextArea = enhancedInput(Textarea, { type: 'textArea' });
 export const Input = enhancedInput(S.AntdInput, { type: 'input' });
 export const MaskedInput = enhancedInput(S.AntdMaskedInput, { type: 'input' });
+export const RawMaskedInput = S.AntdMaskedInput;
 export { default as InputGroup } from './InputGroup';
 
 export const RawInput = (props: Props & (InputProps | TextAreaProps)): React.ReactElement => {
