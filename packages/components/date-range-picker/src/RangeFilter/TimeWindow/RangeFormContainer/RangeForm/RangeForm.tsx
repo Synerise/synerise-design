@@ -6,7 +6,7 @@ import Select from '@synerise/ds-select';
 import TimePicker from '@synerise/ds-time-picker';
 import { RangeFormProps } from './RangeForm.types';
 import * as S from './RangeForm.styles';
-import { getDisabledTimeOptions } from '../../../RangePicker/utils';
+import { getDisabledTimeOptions } from '../../../../RangePicker/utils';
 
 const TODAY = new Date();
 const FORM_MODES = {

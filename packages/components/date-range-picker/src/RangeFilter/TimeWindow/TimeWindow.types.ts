@@ -39,7 +39,6 @@ export type TimeWindowProps = {
   dayTemplate: (day: DayKey) => object;
   dayFormatter: (day: DayKey, long?: boolean) => string;
   hideHeader?: boolean;
-  style?: React.CSSProperties;
   onCheckDay?: (dayKey: DayKey) => void;
   onUncheckDay?: (dayKey: DayKey) => void;
   onSelectAll?: () => void;
