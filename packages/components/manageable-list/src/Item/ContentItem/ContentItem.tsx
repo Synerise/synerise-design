@@ -5,6 +5,7 @@ import Button from '@synerise/ds-button';
 import { withTheme } from 'styled-components';
 import Dropdown from '@synerise/ds-dropdown';
 import { OptionHorizontalM } from '@synerise/ds-icon/dist/icons';
+import AnimateHeight from 'react-animate-height';
 import * as S from './ContentItem.styles';
 import ItemActions from '../ItemActions/ItemActions';
 import ItemName from '../ItemName/ItemName';
@@ -26,6 +27,7 @@ const ContentItem: React.FC<ContentItemProps> = ({
   onExpand,
   headerSuffix,
   headerPrefix,
+  contentWithoutPadding,
   ...rest
 }): React.ReactElement => {
   const [expandedState, setExpanded] = React.useState(expanded);
@@ -127,12 +129,17 @@ const ContentItem: React.FC<ContentItemProps> = ({
           )}
         </S.ItemHeaderSuffix>
       </S.ItemHeader>
-      <S.ContentWrapper
-        className={Boolean(item.content) && Boolean(!item.disableExpanding && expandedState) ? '' : 'closed'}
-        data-testid="item-content-wrapper"
-      >
-        {item.content}
-      </S.ContentWrapper>
+      {item.content && (
+        <AnimateHeight
+          className="item-content-animation"
+          duration={300}
+          height={!item.disableExpanding && expandedState ? 0 : 'auto'}
+        >
+          <S.ContentWrapper data-testid="item-content-wrapper" withoutPadding={Boolean(contentWithoutPadding)}>
+            {item.content}
+          </S.ContentWrapper>
+        </AnimateHeight>
+      )}
     </S.ItemContainer>
   );
 };

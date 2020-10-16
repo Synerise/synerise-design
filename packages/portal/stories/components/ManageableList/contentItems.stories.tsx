@@ -126,6 +126,7 @@ const stories = {
     return (
       <ContentItem
         item={attachCrudKnobs(store.state.item, crud)}
+        contentWithoutPadding={boolean('Remove padding of content', false)}
         greyBackground={boolean('Set grey background', false)}
         onRemove={action('onItemRemove')}
         onUpdate={item => {

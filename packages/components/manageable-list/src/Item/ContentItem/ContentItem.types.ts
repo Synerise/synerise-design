@@ -19,4 +19,5 @@ export type ContentItemProps = {
     [k: string]: string | React.ReactNode;
   };
   theme: { [k: string]: string };
+  contentWithoutPadding?: boolean;
 } & React.HTMLAttributes<HTMLDivElement>;
