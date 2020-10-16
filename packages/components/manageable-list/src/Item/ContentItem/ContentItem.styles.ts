@@ -112,19 +112,11 @@ export const ItemHeader = styled.div<ItemHeaderProps>`
   }
 `;
 
-export const ContentWrapper = styled.div`
-  padding: 16px 24px 24px;
+export const ContentWrapper = styled.div<{ withoutPadding: boolean }>`
+  padding: ${(props): string => (props.withoutPadding ? '0px' : '16px 24px 24px')};
   width: 100%;
   border-top: 1px solid ${({ theme }): string => theme.palette['grey-200']};
-  transition: all 0.2s ease-in-out;
-  max-height: 500px;
   opacity: 1;
-  &&.closed {
-    opacity: 0;
-    max-height: 0;
-    padding: 0 24px;
-    overflow: hidden;
-  }
 `;
 
 export const ItemContainer = styled.div<ItemContainerProps>`
