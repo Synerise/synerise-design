@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.29](https://github.com/Synerise/synerise-design/compare/@synerise/ds-alert@0.1.28...@synerise/ds-alert@0.1.29) (2020-10-15)
+
+
+### Bug Fixes
+
+* **alert:** message props as not required ([fa959be](https://github.com/Synerise/synerise-design/commit/fa959be32afd5a019d07201892ab3ddd1620e7a3))
+
+
+
+
+
 ## [0.1.28](https://github.com/Synerise/synerise-design/compare/@synerise/ds-alert@0.1.27...@synerise/ds-alert@0.1.28) (2020-10-13)
 
 **Note:** Version bump only for package @synerise/ds-alert

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.4.1...@synerise/ds-date-range-picker@0.4.2) (2020-10-15)
+
+
+### Bug Fixes
+
+* **date-range-picker:** removed useEffect deps to prevent infinitive loop ([63e909e](https://github.com/Synerise/synerise-design/commit/63e909eebec78d0ed15f7c098d4346f7a7e506a0))
+
+
+
+
+
 ## [0.4.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.4.0...@synerise/ds-date-range-picker@0.4.1) (2020-10-14)
 
 

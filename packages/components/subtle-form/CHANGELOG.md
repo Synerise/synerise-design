@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subtle-form@0.3.5...@synerise/ds-subtle-form@0.3.6) (2020-10-15)
+
+
+### Bug Fixes
+
+* **subtle-form:** fixed margins and displaying rows ([9eee1b5](https://github.com/Synerise/synerise-design/commit/9eee1b56862bf72bb7a6c22dd8e64a18e71d20c0))
+
+
+
+
+
 ## [0.3.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subtle-form@0.3.4...@synerise/ds-subtle-form@0.3.5) (2020-10-13)
 
 **Note:** Version bump only for package @synerise/ds-subtle-form
