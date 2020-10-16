@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.100.4](https://github.com/synerise/synerise-design/compare/portal@0.100.3...portal@0.100.4) (2020-10-16)
+
+
+### Bug Fixes
+
+* **manageable-list:** fix max-height of expandable ItemContent ([009b12d](https://github.com/synerise/synerise-design/commit/009b12dbcd9c1c91c6c229fba5711b529c171f67))
+
+
+
+
+
 ## [0.100.3](https://github.com/synerise/synerise-design/compare/portal@0.100.2...portal@0.100.3) (2020-10-15)
 
 

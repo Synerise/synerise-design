@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.14.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.14.13...@synerise/ds-manageable-list@0.14.14) (2020-10-16)
+
+
+### Bug Fixes
+
+* **manageable-list:** fix max-height of expandable ItemContent ([009b12d](https://github.com/Synerise/synerise-design/commit/009b12dbcd9c1c91c6c229fba5711b529c171f67))
+
+
+
+
+
 ## [0.14.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.14.12...@synerise/ds-manageable-list@0.14.13) (2020-10-13)
 
 **Note:** Version bump only for package @synerise/ds-manageable-list
