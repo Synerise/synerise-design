@@ -26,7 +26,7 @@ const modes = ['default', 'multiple', 'tags'];
 const sizes = {
   small: 'small',
   default: 'default',
-  large: 'large,',
+  large: 'large',
 };
 const renderLabel = (text: string) => {
   return <div style={{ maxWidth: '200px', textOverflow: 'ellipsis', overflow: 'hidden' }}>{text}</div>;
