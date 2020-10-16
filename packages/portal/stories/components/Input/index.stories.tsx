@@ -249,7 +249,7 @@ const stories = {
         style={{ width: '107px' }}
         dropdownClassName="dropdownWidth"
         dropdownRender={menu => (
-          <div style={{ width: '250px', paddingTop: '0px' }}>
+          <div style={{ width: '240px', paddingTop: '0px' }}>
             {' '}
             <SearchBar
               onSearchChange={value => {
