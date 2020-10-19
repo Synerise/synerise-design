@@ -55,7 +55,8 @@ export type TimeWindowProps = {
 
 export type State = {
   activeDays: DayKey[];
-  multipleSelectionMode: boolean;
+  controlKeyPressed: boolean;
+  shiftKeyPressed?: boolean;
   isRangeDefined?: boolean;
 };
 

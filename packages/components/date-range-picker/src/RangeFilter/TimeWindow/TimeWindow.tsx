@@ -20,7 +20,8 @@ import RangeFormContainer from './RangeFormContainer/RangeFormContainer';
 
 class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
   // eslint-disable-next-line react/destructuring-assignment
-  state: State = { activeDays: this.props.daily ? [0] : [], multipleSelectionMode: false };
+  state: State = { activeDays: this.props.daily ? [0] : [], controlKeyPressed: false };
+  private wrapperRef = React.createRef<HTMLDivElement>();
   static defaultProps = {
     days: {},
     numberOfDays: 7,
@@ -31,6 +32,22 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
     ),
   };
 
+  componentDidMount(): void {
+    const wrapper = this.wrapperRef;
+    if (wrapper?.current && wrapper.current !== null) {
+      // focus on wrapper to enable listening for keydown without having to click on wrapper
+      wrapper.current.focus();
+    }
+  }
+
+  componentDidUpdate(prevProps: Readonly<TimeWindowProps>, prevState: Readonly<State>): void {
+    const hasCommonRange = this.haveActiveDaysCommonRange();
+    if (prevState.isRangeDefined !== hasCommonRange) {
+      // eslint-disable-next-line react/no-did-update-set-state
+      this.setState({ isRangeDefined: hasCommonRange });
+    }
+  }
+
   isDayRestricted = (dayKey: DayKey): boolean => {
     const { days } = this.props;
     return !!days[dayKey] && days[dayKey].restricted;
@@ -38,11 +55,16 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
 
   checkActiveDay = (dayKey: DayKey): void => {
     const { isRangeDefined } = this.state;
-    if (!this.isDayRestricted(dayKey) && isRangeDefined) this.checkDay(dayKey);
-    const { activeDays, multipleSelectionMode } = this.state;
+    if (!this.isDayRestricted(dayKey) && isRangeDefined && !this.haveActiveDaysCommonRange()) this.checkDay(dayKey);
+    const { activeDays, controlKeyPressed, shiftKeyPressed } = this.state;
     let updatedActiveDay = [];
-    if (multipleSelectionMode) {
+    if (controlKeyPressed) {
       updatedActiveDay = activeDays.includes(dayKey) ? activeDays : [...activeDays, dayKey];
+    } else if (activeDays.length > 0 && shiftKeyPressed) {
+      updatedActiveDay =
+        activeDays[0] < dayKey
+          ? range(+activeDays[0] as number, (+dayKey + 1) as number)
+          : range(+dayKey, +activeDays[0] + 1);
     } else {
       updatedActiveDay = [dayKey];
     }
@@ -50,9 +72,9 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
   };
 
   uncheckActiveDay = (dayKey: DayKey): void => {
-    const { activeDays, multipleSelectionMode } = this.state;
+    const { activeDays, controlKeyPressed } = this.state;
     let updatedActiveDay: DayKey[] = [];
-    if (multipleSelectionMode) {
+    if (controlKeyPressed) {
       updatedActiveDay = activeDays.filter(day => day !== dayKey);
     }
     this.setState({ activeDays: updatedActiveDay });
@@ -60,12 +82,12 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
   };
 
   toggleDay = (dayKey: DayKey, forcedState: boolean): void => {
-    const { activeDays, multipleSelectionMode } = this.state;
+    const { activeDays, controlKeyPressed } = this.state;
     if (typeof forcedState !== 'undefined') {
       forcedState ? this.checkActiveDay(dayKey) : this.uncheckActiveDay(dayKey);
       return;
     }
-    if (!multipleSelectionMode) {
+    if (!controlKeyPressed) {
       activeDays.includes(dayKey) ? this.uncheckActiveDay(dayKey) : this.checkActiveDay(dayKey);
     }
   };
@@ -138,7 +160,7 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
     const keys = this.getAllKeys();
 
     const { onChange, onSelectAll } = this.props;
-    this.setState({ multipleSelectionMode: true, activeDays: keys }, () => {
+    this.setState({ controlKeyPressed: true, activeDays: keys }, () => {
       keys.forEach(key => {
         days[key] = {
           ...this.getDayValue(key),
@@ -273,30 +295,64 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
         hideHeader={hideHeader}
         monthlyFilter={monthlyFilter}
         monthlyFilterPeriod={monthlyFilterPeriod}
-
       />
     );
+  };
+
+  haveActiveDaysCommonRange = (): boolean => {
+    const { activeDays } = this.state;
+    const { days } = this.props;
+    let previousDay: DayOptions | undefined;
+    const activeDaysHaveDifferentRanges = activeDays.some((dayIndex): boolean => {
+      const currentDay = days[dayIndex as number];
+      if (!currentDay) {
+        return true;
+      }
+      if (!previousDay) {
+        previousDay = currentDay;
+        return false;
+      }
+      const areRangeDifferent = currentDay?.start !== previousDay?.start || currentDay?.stop !== previousDay?.stop;
+      previousDay = currentDay;
+      return areRangeDifferent;
+    });
+    return !activeDaysHaveDifferentRanges;
+  };
+
+  handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>): void => {
+    if (e.key === 'Shift') {
+      this.setState({ controlKeyPressed: false, shiftKeyPressed: true });
+    }
+    if (e.key === 'Control' || e.key === 'Meta') {
+      this.setState({ controlKeyPressed: true, shiftKeyPressed: false });
+    }
+  };
+
+  handleKeyUp = (e: React.KeyboardEvent<HTMLDivElement>): void => {
+    if (e.key === 'Control' || e.key === 'Meta') {
+      this.setState({ controlKeyPressed: false });
+    }
+    if (e.key === 'Shift') {
+      this.setState({ shiftKeyPressed: false });
+    }
   };
 
   render(): JSX.Element {
     const { days, numberOfDays, daily, intl, ...rest } = this.props;
     const { activeDays, isRangeDefined } = this.state;
-    console.log('days', days);
     const keys = this.getAllKeys();
     const singleMode = keys.length === 1;
     const rangeFormKey = singleMode ? keys[0] : activeDays;
+
+    const shouldRenderRangeForm = (!!activeDays.length && isRangeDefined) || !!daily;
+    const shouldRenderSelectionHint = !activeDays.length;
+    const shouldRenderAddButton = !!activeDays.length && !daily && !isRangeDefined;
     return (
       <S.TimeWindowContainer
-        onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>): void => {
-          if (e.key === 'Shift') {
-            this.setState({ multipleSelectionMode: true });
-          }
-        }}
-        onKeyUp={(e: React.KeyboardEvent<HTMLDivElement>): void => {
-          if (e.key === 'Shift') {
-            this.setState({ multipleSelectionMode: false });
-          }
-        }}
+        tabIndex={0}
+        ref={this.wrapperRef}
+        onKeyDown={this.handleKeyDown}
+        onKeyUp={this.handleKeyUp}
       >
         {!singleMode && (
           <Grid
@@ -313,23 +369,28 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
               <SelectionCount
                 selectedDayCount={activeDays.length}
                 label={intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.SELECTED' })}
-                tooltipLabel={intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.MULTIPLE-MODE-HINT' })}
               />
             }
           />
         )}
-        {(!!activeDays.length || !!daily) && isRangeDefined && this.renderRangeForm(rangeFormKey)}
-        {!activeDays.length && !daily && !isRangeDefined && (
+        {shouldRenderRangeForm && this.renderRangeForm(rangeFormKey)}
+        {shouldRenderSelectionHint && (
           <S.SelectionHint>
             <Icon component={<InfoM />} color={theme.palette['grey-600']} />{' '}
             {intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.SELECT-DAYS-DESCRIPTION' })}
           </S.SelectionHint>
         )}
-        {!!activeDays.length && !isRangeDefined && (
+        {shouldRenderAddButton && (
           <S.AddButtonWrapper>
             <AddButton
               label={intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.ADD-RANGE' })}
               onClick={(): void => {
+                if (!daily && !this.haveActiveDaysCommonRange()) {
+                  this.handleMultipleDayTimeChange([
+                    getDateFromDayValue(DEFAULT_RANGE_START),
+                    getDateFromDayValue(DEFAULT_RANGE_END),
+                  ]);
+                }
                 this.setState({ isRangeDefined: true });
               }}
             />

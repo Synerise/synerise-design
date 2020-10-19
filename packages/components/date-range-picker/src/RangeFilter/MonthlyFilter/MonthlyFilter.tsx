@@ -164,6 +164,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
         {data.map((item, key) => (
           <ContentItem
             key={item.id}
+            hideExpander={false}
             onExpand={(id): void => this.handleCollapse(id)}
             expanded={visible[item.id]}
             item={{
@@ -245,7 +246,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
                     monthlyFilter
                   />
                 </S.ContentWrapper>
-              ) : null,
+              ) : <div/>,
             }}
             headerSuffix={
               <Tooltip title={intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.REMOVE' })}>

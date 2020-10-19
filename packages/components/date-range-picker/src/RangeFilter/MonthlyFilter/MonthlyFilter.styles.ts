@@ -6,7 +6,7 @@ export const MonthlyFilterWrapper = styled.div`
   padding-top: 24px;
 `;
 export const ContentWrapper = styled.div`
-  margin-left: -8px;
+  margin: 0 -8px;
 `;
 
 export const DropdownLabel = styled.span`
