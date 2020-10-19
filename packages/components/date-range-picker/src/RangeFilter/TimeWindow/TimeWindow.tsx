@@ -63,7 +63,7 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
     } else if (activeDays.length > 0 && shiftKeyPressed) {
       updatedActiveDay =
         activeDays[0] < dayKey
-          ? range(+activeDays[0] as number, (+dayKey + 1) as number)
+          ? range(+activeDays[0], (+dayKey + 1))
           : range(+dayKey, +activeDays[0] + 1);
     } else {
       updatedActiveDay = [dayKey];
@@ -160,14 +160,7 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
     const keys = this.getAllKeys();
 
     const { onChange, onSelectAll } = this.props;
-    this.setState({ controlKeyPressed: true, activeDays: keys }, () => {
-      keys.forEach(key => {
-        days[key] = {
-          ...this.getDayValue(key),
-          restricted: true,
-          display: true,
-        };
-      });
+    this.setState({ activeDays: keys }, () => {
       onSelectAll && onSelectAll();
       onChange(days);
     });
@@ -358,7 +351,7 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
           <Grid
             onUnselectAll={this.handleClearSelection}
             onSelectAll={this.handleSelectAll}
-            showUnselectAll={activeDays?.length === numberOfDays}
+            showUnselectAll={activeDays?.length >0}
             renderDay={this.renderDay}
             keys={keys as number[]}
             days={days}
