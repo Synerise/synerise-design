@@ -34,7 +34,7 @@ function GroupTableBody<T extends unknown>({
   }, [group, getRowKey]);
 
   const selectedRowsNumber = React.useMemo(() => {
-    return selection?.selectedRowKeys.filter((key: React.ReactText) => allRowKeys.includes(key)).length || 0;
+    return selection?.selectedRowKeys?.filter((key: React.ReactText) => allRowKeys.includes(key)).length || 0;
   }, [allRowKeys, selection]);
 
   const activeColumn = React.useMemo(() => {
@@ -57,8 +57,8 @@ function GroupTableBody<T extends unknown>({
         <td colSpan={group.children.length + 1}>
           <S.GroupRow>
             <S.GroupRowLeft>
-              <S.GroupSelection>
-                {selection && (
+              {selection && (
+                <S.GroupSelection>
                   <Checkbox
                     checked={selectedRowsNumber === allRowKeys.length && allRowKeys.length > 0}
                     disabled={allRowKeys.length === 0}
@@ -81,9 +81,9 @@ function GroupTableBody<T extends unknown>({
                       }
                     }}
                   />
-                )}
-              </S.GroupSelection>
-              <S.GroupValue>
+                </S.GroupSelection>
+              )}
+              <S.GroupValue withSelection={Boolean(selection)}>
                 {activeColumn?.render && activeGroup?.groupType === GROUP_BY.value ? (
                   activeColumn.render(group.children[0].props.record.value, {} as T, -1)
                 ) : (
@@ -117,8 +117,8 @@ function GroupTableBody<T extends unknown>({
             const key = getRowKey(rowRecord);
             return (
               <tr key={rowRecord.column}>
-                <S.SubRow withBorderLeft>
-                  {selection && (
+                {selection && (
+                  <S.SubRow withBorderLeft>
                     <Checkbox
                       checked={selection.selectedRowKeys.indexOf(key) >= 0}
                       onChange={(event): void => {
@@ -132,8 +132,8 @@ function GroupTableBody<T extends unknown>({
                         }
                       }}
                     />
-                  )}
-                </S.SubRow>
+                  </S.SubRow>
+                )}
                 {columns?.map(
                   (column, index): React.ReactNode => {
                     return (

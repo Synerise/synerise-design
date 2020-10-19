@@ -36,9 +36,9 @@ export const GroupSelection = styled.div`
   }
 `;
 
-export const GroupValue = styled.div`
+export const GroupValue = styled.div<{ withSelection: boolean }>`
   display: flex;
-  padding: 0 24px;
+  padding: ${(props): string => (props.withSelection ? '0 24px' : '0')};
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
