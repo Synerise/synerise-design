@@ -39,8 +39,6 @@ export type TimeWindowProps = {
   dayTemplate: (day: DayKey) => object;
   dayFormatter: (day: DayKey, long?: boolean) => string;
   hideHeader?: boolean;
-  timeMarks?: object;
-  style?: React.CSSProperties;
   onCheckDay?: (dayKey: DayKey) => void;
   onUncheckDay?: (dayKey: DayKey) => void;
   onSelectAll?: () => void;
@@ -57,7 +55,9 @@ export type TimeWindowProps = {
 
 export type State = {
   activeDays: DayKey[];
-  multipleSelectionMode: boolean;
+  controlKeyPressed: boolean;
+  shiftKeyPressed?: boolean;
+  isRangeDefined?: boolean;
 };
 
 export type RangeActions = {

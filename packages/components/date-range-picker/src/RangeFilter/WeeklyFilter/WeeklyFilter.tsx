@@ -16,7 +16,6 @@ class WeeklyFilter extends React.PureComponent<WeeklyFilterProps> {
           days={value}
           numberOfDays={7}
           onChange={onChange}
-          timeMarks={{}}
           intl={intl}
           onRangePaste={onRangePaste}
           onRangeCopy={onRangeCopy}

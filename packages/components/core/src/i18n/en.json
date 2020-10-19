@@ -205,7 +205,8 @@
       "NTH-DAY-OF-MONTH": " day of month",
       "SELECTED": "Selected",
       "MULTIPLE-MODE-HINT": "Use the shift key to get multiple selection.",
-      "SELECT-DAYS-DESCRIPTION": "Select the days which you want to set time"
+      "SELECT-DAYS-DESCRIPTION": "Select one day or many. Use \"shift\" key or \"ctrl\" key to select more than one.",
+      "ADD-RANGE": "Add range"
     },
     "CARD-TAB": {
       "REMOVE": "Remove",
