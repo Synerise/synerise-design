@@ -67,7 +67,7 @@ const addonType = {
   none: 'none',
 };
 const renderLabel = (text: string) => {
-  return <div style={{ maxWidth: '200px', textOverflow: 'ellipsis', overflow: 'hidden' }}>{text}</div>;
+  return <div style={{ maxWidth: '200px', textOverflow: 'ellipsis', overflow: 'hidden', minHeight: '18px' }}>{text}</div>;
 };
 function renderAddonComponent(suffixElementType: string, labelText?: string) {
   switch (suffixElementType) {
@@ -173,7 +173,7 @@ const stories = {
         dropdownClassName="dropdownWidth"
         size={size}
         dropdownRender={menu => (
-          <div style={{ width: '240px', paddingTop: '0px' }}>
+          <div style={{ width: '240px'}}>
             {' '}
             <SearchBar
               onSearchChange={value => {
@@ -189,7 +189,7 @@ const stories = {
               iconLeft={<Icon component={<SearchM />} color={theme.palette['grey-600']} />}
               autofocus
             />{' '}
-            <div style={{ padding: '8px 8px 0', alignItems: 'center', justifyContent: 'center' }}>{menu}</div>
+            <div style={{ padding: '8px', alignItems: 'center', justifyContent: 'center' }}>{menu}</div>
           </div>
         )}
         value={prefix as unknown as SelectValue}
@@ -359,7 +359,7 @@ const stories = {
               iconLeft={<Icon component={<SearchM />} color={theme.palette['grey-600']} />}
               autofocus
             />{' '}
-            <div style={{ padding: '8px 8px 0', alignItems: 'center', justifyContent: 'center' }}>{menu}</div>
+            <div style={{ padding: '8px', alignItems: 'center', justifyContent: 'center' }}>{menu}</div>
           </div>
         )}
         value={prefix as unknown as SelectValue}
