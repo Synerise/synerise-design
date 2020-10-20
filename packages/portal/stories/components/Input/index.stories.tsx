@@ -67,7 +67,7 @@ const addonType = {
   none: 'none',
 };
 const renderLabel = (text: string) => {
-  return <div style={{ maxWidth: '200px', textOverflow: 'ellipsis', overflow: 'hidden', minHeight: '18px' }}>{text}</div>;
+  return <div style={{ maxWidth: '200px', textOverflow: 'ellipsis', overflow: 'hidden' }}>{text}</div>;
 };
 function renderAddonComponent(suffixElementType: string, labelText?: string) {
   switch (suffixElementType) {
