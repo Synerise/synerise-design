@@ -7,3 +7,4 @@ tsconfig.json
 build
 *.d.ts.map
 tools
+dist/svg
