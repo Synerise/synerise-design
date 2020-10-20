@@ -26,7 +26,6 @@ const DailyFilter: React.FC<Props> = props => {
         onChange={(val: Days): void => {
           handleChange(val);
         }}
-        timeMarks={{}}
         daily
         onRangePaste={onRangePaste}
         onRangeCopy={onRangeCopy}

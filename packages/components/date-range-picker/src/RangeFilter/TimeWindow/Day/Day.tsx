@@ -46,8 +46,9 @@ const Day: React.FC<Props> = ({
       <Button
         {...rest}
         block
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        onClick={onToggle as any}
+        onClick={(): void => {
+          onToggle && onToggle(true);
+        }}
         type={type}
         mode="label-icon"
       >

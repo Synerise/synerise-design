@@ -1,5 +1,13 @@
 import * as React from 'react';
-import { Input, TextArea, RawInput, InputGroup, MaskedInput, InputMultivalue } from '@synerise/ds-input';
+import {
+  Input,
+  TextArea,
+  RawInput,
+  InputGroup,
+  MaskedInput,
+  InputMultivalue,
+  RawMaskedInput,
+} from '@synerise/ds-input';
 
 import Icon from '@synerise/ds-icon';
 import FileM from '@synerise/ds-icon/dist/icons/FileM';
@@ -8,12 +16,39 @@ import { array, boolean, number, select, select as knobSelect, text } from '@sto
 import { action } from '@storybook/addon-actions';
 import * as S from '../Select/stories.styles';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
-import { LaptopM } from '@synerise/ds-icon/dist/icons';
+import { LaptopM, SearchM } from '@synerise/ds-icon/dist/icons';
 import { TagShape } from '@synerise/ds-tags';
 import DSFlag from '@synerise/ds-flag';
 import { FlagContainer } from './stories.styles';
 import Tooltip from '@synerise/ds-tooltip';
 import InputNumber from '@synerise/ds-input-number';
+import {escapeRegEx, useOnClickOutside } from '@synerise/ds-utils';
+import './index.css';
+import { getAllElementsFiltered } from '@synerise/ds-search/dist/Elements/utils/searchUtils';
+import SearchBar from '@synerise/ds-search-bar';
+import { SelectValue } from 'antd/es/select';
+
+const renderWithHighlightedText = (highlight, item): React.ReactNode => {
+  if (highlight && typeof item === 'string') {
+    const index = item.toLowerCase().indexOf(highlight.toLowerCase());
+    if (index === -1) {
+      return item;
+    }
+    const escapedHighlight = escapeRegEx(highlight);
+    const startOfQuery = item.toLowerCase().search(escapedHighlight.toLowerCase());
+    const endOfQuery = startOfQuery + highlight.length;
+    const resultArray = [
+      <span style={{whiteSpace: 'pre-wrap'}}>{item.substring(0, startOfQuery)}</span>,
+      <span key={item} style={{ fontWeight: 600, whiteSpace: 'pre-wrap' }} className="search-highlight">
+        {item.substring(startOfQuery, endOfQuery)}
+      </span>,
+      <span style={{whiteSpace: 'pre-wrap'}}>{item.substring(endOfQuery, item.length)}</span>,
+    ];
+    return resultArray;
+  }
+  return item;
+};
+
 
 const decorator = storyFn => <div style={{ width: '300px' }}>{storyFn()}</div>;
 const sizes = ['default', 'large'];
@@ -102,6 +137,88 @@ const stories = {
   },
   inputGroup: () => {
     const size = knobSelect('Set size', sizes as any, 'default');
+    const [value, setValue] = React.useState<string>('');
+    const [dropdownVisible, setDropdownVisible] = React.useState(false);
+    const inputOptionMask = {"---- ----": "1111-1111", "--- --- ---": "111-111-111"};
+    const dateMask = knobSelect("SelectDateMask",Object.keys(inputOptionMask),"--- --- ---");
+    React.useEffect(() => {setValue("")},[dateMask]);
+    const [searchQuery, setSearchQuery] = React.useState<string>('');
+    const countries = [
+      { name: 'Argentina +123', code: 'AR', prefix: '+123' },
+      { name: 'Albania +456', code: 'Al', prefix: '+456' },
+      { name: 'Austria +78', code: 'AT', prefix: '+78' },
+      { name: 'Brazil +123', code: 'BR', prefix: '+123' },
+    ];
+    const [results, setResults] = React.useState<Country[]>(countries);
+    const ref = React.useRef<HTMLDivElement>(null);
+    useOnClickOutside(ref, () => {
+      setDropdownVisible(false);
+    });
+    const renderPrefix = (country: Country) => (<div style={{ display: 'flex' }}>
+      <FlagContainer style={{ paddingRight: '8px', paddingTop: '2px' }}>
+        <DSFlag country={country.code} size={20} />
+      </FlagContainer>
+      {country.prefix}
+    </div>)
+    const [prefix, setPrefix] = React.useState(renderPrefix(countries[3]));
+    type Country = { name: string; code: string; prefix: string };
+    const phoneNumberSelect = (
+      <Select
+        onChange={countryCode => {
+          const selectedCountry = results.find(result => result.code === countryCode);
+          setPrefix(renderPrefix(selectedCountry))
+        }}
+        dropdownStyle={{ width: '300px' }}
+        style={{ width: '107px' }}
+        dropdownClassName="dropdownWidth"
+        size={size}
+        dropdownRender={menu => (
+          <div style={{ width: '240px'}}>
+            {' '}
+            <SearchBar
+              onSearchChange={value => {
+                setSearchQuery(value);
+                setResults(getAllElementsFiltered(countries as object[], value, 'name') as Country[]);
+              }}
+              placeholder="Search"
+              value={searchQuery}
+              onClearInput={(): void => {
+                setSearchQuery('');
+                setResults(getAllElementsFiltered(countries as object[], '', 'name') as Country[]);
+              }}
+              iconLeft={<Icon component={<SearchM />} color={theme.palette['grey-600']} />}
+              autofocus
+            />{' '}
+            <div style={{ padding: '8px', alignItems: 'center', justifyContent: 'center' }}>{menu}</div>
+          </div>
+        )}
+        value={prefix as unknown as SelectValue}
+        error={boolean('Set select error', false)}
+        onClick={(): void => setDropdownVisible(!dropdownVisible)}
+      >
+        {results.map(country => (
+          <Select.Option key={country.code}>
+            <div style={{ display: 'flex', fontWeight: !!searchQuery ? 400 : 500 }}>
+              <FlagContainer style={{ paddingRight: '12px' }}>
+                <DSFlag country={country.code} size={20} />
+              </FlagContainer>
+              {renderWithHighlightedText(searchQuery, country.name)}
+            </div>
+          </Select.Option>
+        ))}
+      </Select>
+    );
+    const inputMask = (
+      <RawMaskedInput
+        size={size}
+        disabled={boolean('Disabled', false)}
+        onChange={e => setValue(e.target.value)}
+        value={value}
+        error={boolean('Set input error', false)}
+        style={{ width: '45%' }}
+        mask={inputOptionMask[dateMask]}
+      />
+    );
     const select = (
       <Select
         size={size}
@@ -146,21 +263,29 @@ const stories = {
         raw
       />
     );
-    const inputGroupElements = {
+    const inputGroupElementsLeft = {
       Input: input,
       InputNumber: inputNumber,
       Button: select,
       Select: whiteSelect,
+      WithNumberPhonePreffix: phoneNumberSelect,
+    };
+    const inputGroupElementsRight = {
+      Input: input,
+      InputNumber: inputNumber,
+      Button: select,
+      Select: whiteSelect,
+      InputWithMask: inputMask,
     };
     const leftSideComponent = knobSelect(
       'Set left-side component',
-      Object.keys(inputGroupElements),
-      Object.keys(inputGroupElements)[2]
+      Object.keys(inputGroupElementsLeft),
+      Object.keys(inputGroupElementsLeft)[2]
     );
     const rightSideComponent = knobSelect(
       'Set right-side component',
-      Object.keys(inputGroupElements),
-      Object.keys(inputGroupElements)[0]
+      Object.keys(inputGroupElementsRight),
+      Object.keys(inputGroupElementsRight)[0]
     );
 
     return (
@@ -173,54 +298,97 @@ const stories = {
         resetMargin={boolean('ResetMargin', false)}
         compact
       >
-        {inputGroupElements[leftSideComponent]}
-        {inputGroupElements[rightSideComponent]}
+        {inputGroupElementsLeft[leftSideComponent]}
+        {inputGroupElementsRight[rightSideComponent]}
       </InputGroup>
     );
   },
   withFlags: () => {
     const [value, setValue] = React.useState<string>('');
     const size = knobSelect('Set size', sizes as any, 'default');
+    const [dropdownVisible, setDropdownVisible] = React.useState(false);
+    const [searchQuery, setSearchQuery] = React.useState<string>('');
+    const inputOptionMask = {"---- ----": "1111-1111", "--- --- ---": "111-111-111"};
+    const dateMask = knobSelect("SelectDateMask",Object.keys(inputOptionMask),"--- --- ---");
+    React.useEffect(() => {setValue("")},[dateMask]);
+    const countries = [
+      { name: 'Argentina +123', code: 'AR', prefix: '+123' },
+      { name: 'Albania +456', code: 'Al', prefix: '+456' },
+      { name: 'Austria +78', code: 'AT', prefix: '+78' },
+      { name: 'Brazil +123', code: 'BR', prefix: '+123' },
+    ];
+    const [results, setResults] = React.useState<Country[]>(countries);
+    const ref = React.useRef<HTMLDivElement>(null);
+    useOnClickOutside(ref, () => {
+      setDropdownVisible(false);
+    });
+    const renderPrefix = (country: Country) => (<div style={{ display: 'flex' }}>
+      <FlagContainer style={{ paddingRight: '8px', paddingTop: '2px' }}>
+        <DSFlag country={country.code} size={20} />
+      </FlagContainer>
+      {country.prefix}
+    </div>)
+    const [prefix, setPrefix] = React.useState(renderPrefix(countries[3]));
+    type Country = { name: string; code: string; prefix: string };
 
-    const select = (
+
+    const phoneNumberSelect = (
       <Select
+        onChange={countryCode => {
+          const selectedCountry = results.find(result => result.code === countryCode);
+          setPrefix(renderPrefix(selectedCountry))
+        }}
+        dropdownStyle={{ width: '300px' }}
+        style={{ width: '107px' }}
+        dropdownClassName="dropdownWidth"
         size={size}
-        tooltip={text('Tooltip', 'This is example tooltip!')}
-        onChange={action('OnChange')}
-        style={{ width: '120px' }}
-        defaultValue="es"
+        dropdownRender={menu => (
+          <div style={{ width: '240px', paddingTop: '0px' }}>
+            {' '}
+            <SearchBar
+              onSearchChange={value => {
+                setSearchQuery(value);
+                setResults(getAllElementsFiltered(countries as object[], value, 'name') as Country[]);
+              }}
+              placeholder="Search"
+              value={searchQuery}
+              onClearInput={(): void => {
+                setSearchQuery('');
+                setResults(getAllElementsFiltered(countries as object[], '', 'name') as Country[]);
+              }}
+              iconLeft={<Icon component={<SearchM />} color={theme.palette['grey-600']} />}
+              autofocus
+            />{' '}
+            <div style={{ padding: '8px', alignItems: 'center', justifyContent: 'center' }}>{menu}</div>
+          </div>
+        )}
+        value={prefix as unknown as SelectValue}
         error={boolean('Set select error', false)}
+        onClick={(): void => setDropdownVisible(!dropdownVisible)}
       >
-        <Select.Option value="es">
-          <FlagContainer>
-            <DSFlag country={'ES'} size={20} />
-            <span>{'(+34)'}</span>
-          </FlagContainer>
-        </Select.Option>
-        <Select.Option value="pl">
-          <FlagContainer>
-            <DSFlag country={'PL'} size={20} />
-            <span>{'(+48)'}</span>
-          </FlagContainer>
-        </Select.Option>{' '}
-        <Select.Option value="gb">
-          <FlagContainer>
-            <DSFlag country={'GB'} size={20} />
-            <span>{'(+44)'}</span>
-          </FlagContainer>
-        </Select.Option>
+        {results.map(country => (
+          <Select.Option key={country.code}>
+            <div style={{ display: 'flex', fontWeight: !!searchQuery ? 400 : 500 }}>
+              <FlagContainer style={{ paddingRight: '12px' }}>
+                <DSFlag country={country.code} size={20} />
+              </FlagContainer>
+              {renderWithHighlightedText(searchQuery, country.name)}
+            </div>
+          </Select.Option>
+        ))}
       </Select>
     );
 
-    const input = (
-      <RawInput
-        size={size}
-        placeholder={text('Placeholder', 'Placeholder')}
+
+    const inputMask = (
+      <RawMaskedInput
         disabled={boolean('Disabled', false)}
         onChange={e => setValue(e.target.value)}
+        size={size}
         value={value}
         error={boolean('Set input error', false)}
-        style={{ width: '50%' }}
+        style={{ width: '45%' }}
+        mask={inputOptionMask[dateMask]}
       />
     );
 
@@ -234,8 +402,8 @@ const stories = {
         resetMargin={boolean('ResetMargin', false)}
         compact
       >
-        {select}
-        {input}
+        {phoneNumberSelect}
+        {inputMask}
       </InputGroup>
     );
   },
@@ -245,30 +413,59 @@ const stories = {
     const [birthdateValue, setBirthdateValue] = React.useState<string>('');
     const [phoneValue, setPhoneValue] = React.useState<string>('');
     const [phonePrefixValue, setPhonePrefixValue] = React.useState<string>('');
+    const [passwordValue, setPasswordValue] = React.useState<string>('');
+    const [zipCardValue, setZipCardValue] = React.useState<string>('');
+    const inputOptionMask = {
+      "DD-MM-YYYY": "11-11-1111",
+      "DD-MM-YYYY h:mm A": "11-11-1111 1:11 PM",
+      "DD-MM-YYYY H:mm" : "11-11-1111 11:11" ,
+      "MM-DD-YYYY" : "11-11-1111",
+      'MM-DD-YYYY h:mm A' : "11-11-1111 1:11 PM",
+      "MM-DD-YYYY H:mm" : "11-11-1111 11:11" ,
+      "D MMMM, YYYY" : "11 1111, 1111" ,
+      "D MMMM, YYYY h:mm A" : "11 1111, 1111, 1:11 PM",
+      "D MMMM, YYYY H:mm" : "11 1111, 1111, 11:11",
+      "MMMM D, YYYY" : "1111 11, 1111" ,
+      "MMMM D, YYYY h:mm A": "1111 11, 1111 1:11 PM",
+      "MMMM D, YYYY H:mm": "1111 11, 1111 11:11 ",
+      "ddd, MMMM D, YYYY h:mm A": "111, 1111 11, 1111 1:11 PM",
+      "ddd, MMMM D, YYYY H:mm" : "111, 1111 11, 1111 11:11",
+
+    };
+    const dateMask = select("SelectDateMask",Object.keys(inputOptionMask),"DD-MM-YYYY")
+    React.useEffect(() => {setDateValue("")},[dateMask]);
 
     return (
       <div style={{ display: 'flex', flexDirection: 'column', width: 400 }}>
+        <Input
+          label="Password"
+          value={passwordValue}
+          onChange={e => setPasswordValue(e.target.value)}
+          type="password"
+          placeholder="Placeholder"
+        />
+
         <MaskedInput
           label="Phone number"
           value={phoneValue}
           onChange={e => setPhoneValue(e.target.value)}
-          mask="11 111-11-11"
+          mask="(+11) 111-111-111"
         />
 
         <MaskedInput
           label="Phone number with prefix"
           value={phonePrefixValue}
           onChange={e => setPhonePrefixValue(e.target.value)}
-          mask="(11) 111-11-11"
+          mask="(+11) 1111-1111"
         />
 
-        <MaskedInput label="Date" value={dateValue} onChange={e => setDateValue(e.target.value)} mask="11-11-1111" />
+        <MaskedInput label="Date" value={dateValue} onChange={e => setDateValue(e.target.value)} mask={inputOptionMask[dateMask]} />
 
         <MaskedInput
           label="Birthdate"
           value={birthdateValue}
           onChange={e => setBirthdateValue(e.target.value)}
-          mask="11/11/1111"
+          mask="11-11-1111"
         />
 
         <MaskedInput
@@ -276,6 +473,12 @@ const stories = {
           value={creditCardvalue}
           onChange={e => setCreditCardvalue(e.target.value)}
           mask="1111-1111-1111-1111"
+        />
+        <MaskedInput
+          label="Zip-code"
+          value={zipCardValue}
+          onChange={e => setZipCardValue(e.target.value)}
+          mask="11-111"
         />
       </div>
     );

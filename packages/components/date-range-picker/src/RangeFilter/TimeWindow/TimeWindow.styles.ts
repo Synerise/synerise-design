@@ -44,9 +44,20 @@ export const HeaderWrapper = styled.div`
   margin-bottom: 12px;
 `;
 
-export const SelectionHint = styled.span`
+export const SelectionHint = styled.div`
   margin-top: 4px;
-`
+  background: ${(props): string => props.theme.palette['grey-050']};
+  padding: 16px 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .ds-icon {
+    margin-right: 12px;
+  }
+`;
 export const GridContainer = styled.div`
   margin-bottom: 24px;
+`;
+export const AddButtonWrapper = styled.div`
+  display: flex; 
 `
