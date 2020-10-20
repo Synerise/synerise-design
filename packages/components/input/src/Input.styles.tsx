@@ -193,6 +193,7 @@ export const ContentAbove = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 8px;
+  min-height: 18px;
 `;
 export const AddonWrapper = styled.div<{ height: number }>`
   background: ${(props): string => props.theme.palette['grey-050']};
