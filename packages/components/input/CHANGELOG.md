@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.15.14](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.15.13...@synerise/ds-input@0.15.14) (2020-10-20)
+
+
+### Bug Fixes
+
+* **input:** add minHeight of content above ([7d9253c](https://github.com/synerise/synerise-design/commit/7d9253c4478bc760488ad066996eb23d71b2bb35))
+* **input:** fix input with mask and add some maskedinputs ([7febe6a](https://github.com/synerise/synerise-design/commit/7febe6a171105535f68f88980714b150f291b323))
+
+
+
+
+
 ## [0.15.13](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.15.12...@synerise/ds-input@0.15.13) (2020-10-13)
 
 **Note:** Version bump only for package @synerise/ds-input

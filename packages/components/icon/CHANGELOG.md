@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.32.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.31.1...@synerise/ds-icon@0.32.0) (2020-10-20)
+
+
+### Features
+
+* **icon:** replaced var icons, removed plain svgs files from npm package ([4b0f67c](https://github.com/Synerise/synerise-design/commit/4b0f67c80633c1789899f1c0b69c117057d5aee3))
+
+
+
+
+
 ## [0.31.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.31.0...@synerise/ds-icon@0.31.1) (2020-10-13)
 
 **Note:** Version bump only for package @synerise/ds-icon
