@@ -27,8 +27,8 @@ const RangePickerInput: React.FC<Props> = ({ value, format, showTime, onChange, 
     [onChange]
   );
 
-  const handleInputClick = React.useCallback(() => {
-    onClick && onClick();
+  const handleInputClick = React.useCallback((e) => {
+    onClick && onClick(e);
   }, [onClick]);
 
   const getText = React.useCallback(
