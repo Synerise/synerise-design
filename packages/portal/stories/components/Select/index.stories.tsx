@@ -10,8 +10,10 @@ import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { TagShape } from '@synerise/ds-tags';
 import * as S from './stories.styles';
 import Tooltip from '@synerise/ds-tooltip';
+import RangePickerInput from '@synerise/ds-date-range-picker/dist/RangePickerInput/RangePickerInput';
+import { Description } from '@synerise/ds-typography';
 
-const decorator = (storyFn) => <div style={{ padding: '20px', width: '322px' }}>{storyFn()}</div>;
+const decorator = storyFn => <div style={{ padding: '20px', width: '322px' }}>{storyFn()}</div>;
 
 const { Option, OptGroup } = Select;
 
@@ -121,7 +123,7 @@ const stories = {
       showSearch: boolean('showSearch', false),
       onChange: action('OnChange'),
       style: { width: '100%' },
-      children: values.map((opt) => <Option value={opt}>{opt}</Option>),
+      children: values.map(opt => <Option value={opt}>{opt}</Option>),
       notFoundContent: <Result type="no-results" noSearchResults description={'No results'} />,
     };
   },
@@ -134,11 +136,38 @@ const stories = {
     defaultValue: 'a10',
     placeholder: 'Select options',
     onChange: action('OnChange'),
-    dropdownRender: (menu) => <Scrollbar maxHeight={256}>{menu}</Scrollbar>,
+    dropdownRender: menu => <Scrollbar maxHeight={256}>{menu}</Scrollbar>,
     dropdownStyle: { paddingRight: '0' },
     notFoundContent: <Result type="no-results" noSearchResults description={'No results'} />,
     listHeight: '100%',
     children,
+  },
+  dateSelect: () => {
+    const texts = {
+      startDatePlaceholder: 'Start date',
+      endDatePlaceholder: 'End date',
+    };
+    const [active, setActive] = React.useState(false);
+    const validationState = boolean('Set validation state', false);
+    const message = text('Error Text', 'Error');
+    return (
+      <div>
+        <RangePickerInput
+          texts={texts}
+          active={active && !validationState}
+          onFocus={(): void => setActive(true)}
+          onBlur={(): void => setActive(false)}
+          errorText={getErrorText(validationState, message)}
+          error={validationState}
+          tooltip={text('Tooltip', 'This is example tooltip!')}
+          label={renderLabel(text('Label', 'Label'))}
+          description={text('Description', 'Description')}
+          style={{marginTop: '8px'}}
+          onClick={(): void => setActive(true)}
+          disabled={boolean('disabled', false)}
+        />
+      </div>
+    );
   },
   withPrefixAndSuffix: () => {
     const prefixType = select('Set prefix type', addonType, addonType.none);
@@ -155,7 +184,7 @@ const stories = {
       onFocus: action('I am focused'),
       onChange: action('OnChange'),
       style: { width: '100%' },
-      children: values.map((opt) => <Option value={opt}>{opt}</Option>),
+      children: values.map(opt => <Option value={opt}>{opt}</Option>),
       prefixel: renderAddonComponent(prefixType, prefixLabelText),
       suffixel: renderAddonComponent(suffixType, suffixLabelText),
       notFoundContent: <Result type="no-results" noSearchResults description={'No results'} />,
