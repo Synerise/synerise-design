@@ -1,6 +1,6 @@
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import * as React from 'react';
-import RawDatePicker from '../RawDatePicker';
+import RawDatePicker from '../RawDatePicker/RawDatePicker';
 import { fireEvent, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 

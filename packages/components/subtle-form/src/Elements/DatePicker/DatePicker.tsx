@@ -77,8 +77,6 @@ const SubtleDatePicker: React.FC<SubtleDatePickerProps> = ({
             onClear={handleDeactivate}
             error={error}
             errorText={errorText}
-            // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-            // @ts-ignore
             autoFocus={!hasError}
             format={dateFormat}
             onDropdownVisibleChange={(visible: boolean): void => {

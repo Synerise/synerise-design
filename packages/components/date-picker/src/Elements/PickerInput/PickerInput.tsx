@@ -77,7 +77,7 @@ const PickerInput: React.FC<Props> = ({
         placeholder={placeholder}
         value={getText()}
         icon1={
-          hovered && !!value ? (
+          (hovered || !!value )? (
             <S.ClearIconWrapper>
               <Tooltip title={clearTooltip}>
                 <Icon component={<Close3S />} onClick={handleIconClick} />

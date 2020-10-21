@@ -3,19 +3,20 @@ import { Props, State, Texts } from 'DatePicker.types';
 import { FormattedMessage } from 'react-intl';
 import { DayModifiers, Modifiers } from 'react-day-picker';
 import { legacyParse } from '@date-fns/upgrade/v2';
-import Footer from './Elements/Footer/Footer';
-import * as S from './DatePicker.styles';
-import DayPicker from './Elements/DayPicker/DayPicker';
-import MonthPicker from './Elements/MonthPicker/MonthPicker';
-import YearPicker from './Elements/YearPicker/YearPicker';
-import fnsFormat from './format';
-import TimePicker from './Elements/TimePicker/TimePicker';
+import Footer from '../Elements/Footer/Footer';
+import * as S from '../DatePicker.styles';
+import DayPicker from '../Elements/DayPicker/DayPicker';
+import MonthPicker from '../Elements/MonthPicker/MonthPicker';
+import YearPicker from '../Elements/YearPicker/YearPicker';
+import fnsFormat from '../format';
+import TimePicker from '../Elements/TimePicker/TimePicker';
 
-import { DayBackground, DayText, DayForeground } from './Elements/DayPicker/DayPicker.styles';
-import { fnsStartOfMonth, fnsSetYear, fnsSetMonth, fnsSetDate, fnsStartOfDay, fnsEndOfDay, fnsAddDays } from './fns';
-import { changeDayWithHoursPreserved } from './utils';
+import { DayBackground, DayText, DayForeground } from '../Elements/DayPicker/DayPicker.styles';
+import { fnsStartOfMonth, fnsSetYear, fnsSetMonth, fnsSetDate, fnsStartOfDay, fnsEndOfDay, fnsAddDays } from '../fns';
+import { changeDayWithHoursPreserved } from '../utils';
+import { RawDatePickerProps } from './RawDatePicker.types';
 
-class RawDatePicker extends React.Component<Props, State> {
+class RawDatePicker extends React.Component<RawDatePickerProps, State> {
   static defaultProps = {
     showTime: false,
     disabledHours: [],

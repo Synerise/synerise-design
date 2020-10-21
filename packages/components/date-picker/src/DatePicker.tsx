@@ -2,7 +2,7 @@ import * as React from 'react';
 import Dropdown from '@synerise/ds-dropdown';
 import { useOnClickOutside } from '@synerise/ds-utils';
 import { Props } from './DatePicker.types';
-import RawDatePicker from './RawDatePicker';
+import RawDatePicker from './RawDatePicker/RawDatePicker';
 import PickerInput from './Elements/PickerInput/PickerInput';
 import * as S from './DatePicker.styles';
 
@@ -19,6 +19,7 @@ const DatePicker: React.FC<Props> = ({
   popoverPlacement,
   error,
   onDropdownVisibleChange,
+  dropdownProps,
   ...rest
 }) => {
   const [dropVisible, setDropVisible] = React.useState(autoFocus || false);
@@ -61,6 +62,7 @@ const DatePicker: React.FC<Props> = ({
       trigger={['click']}
       placement={popoverPlacement}
       visible={!!dropVisible}
+      {...dropdownProps}
     >
       <PickerInput
         autoFocus={autoFocus}
