@@ -8,7 +8,7 @@ export type Props = {
   disabledHours: number[];
   disabledMinutes: number[];
   disabledSeconds: number[];
-  dropdownProps: Partial<DropdownProps>;
+  dropdownProps?: Partial<DropdownProps>;
   format?: string;
   intl?: IntlShape;
   onApply?: (date?: Date) => void;
