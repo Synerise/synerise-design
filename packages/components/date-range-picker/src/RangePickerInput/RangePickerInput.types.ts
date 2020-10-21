@@ -12,7 +12,7 @@ export type Props = {
   style?: React.CSSProperties;
   placeholder?: string;
   disabled?: boolean;
-  onClick?: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void;
+  onClick?: (e?: React.MouseEvent<HTMLElement, MouseEvent>) => void;
   onClear?: () => void;
   onFocus?: React.FocusEventHandler;
   onBlur?: React.FocusEventHandler;
