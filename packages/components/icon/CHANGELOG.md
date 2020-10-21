@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.33.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.32.0...@synerise/ds-icon@0.33.0) (2020-10-21)
+
+
+### Features
+
+* **icon:** added 3 user type icons ([fb8cf13](https://github.com/Synerise/synerise-design/commit/fb8cf13ec7c14bef7398784416b876681269e10b))
+
+
+
+
+
 # [0.32.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.31.1...@synerise/ds-icon@0.32.0) (2020-10-20)
 
 
