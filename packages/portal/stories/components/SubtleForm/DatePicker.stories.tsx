@@ -30,7 +30,6 @@ const stories = {
             format={format}
             onApply={val => setValue(val)}
             onClear={()=>{
-              console.log('Cleared!')
               setValue(undefined)
             }}
             value={value}
