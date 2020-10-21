@@ -4,7 +4,6 @@ import { ArrowRightS, CalendarM, Close3S } from '@synerise/ds-icon/dist/icons';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import Tooltip from '@synerise/ds-tooltip';
 // eslint-disable-next-line import/no-named-default
-import { Description } from '@synerise/ds-typography';
 import {default as fnsFormat} from '../dateUtils/format';
 import { Props } from './RangePickerInput.types';
 import * as S from './RangePickerInput.styles';

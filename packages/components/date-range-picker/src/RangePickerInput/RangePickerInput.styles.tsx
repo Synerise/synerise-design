@@ -78,9 +78,6 @@ export const IconSeparator = styled.div`
 export const SuffixWrapper = styled.div``;
 export const Label = styled(DSLabel)`
   margin-bottom: 8px;
-  span > .ds-icon > svg {
-    margin-top: 0px;
-  }
 `;
 export const ErrorText = styled.div`
   color: ${(props): string => props.theme.palette['red-600']};
