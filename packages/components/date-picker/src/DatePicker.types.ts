@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { IntlShape } from 'react-intl';
+import { DropdownProps } from '@synerise/ds-dropdown/dist/Dropdown';
 
 export type Props = {
   autoFocus?: boolean;
@@ -7,6 +8,7 @@ export type Props = {
   disabledHours: number[];
   disabledMinutes: number[];
   disabledSeconds: number[];
+  dropdownProps: Partial<DropdownProps>;
   format?: string;
   intl?: IntlShape;
   onApply?: (date?: Date) => void;
