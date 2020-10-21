@@ -11,9 +11,10 @@ import * as S from './RangePickerInput.styles';
 import { normalizeRange } from '../utils';
 import { DateRange } from '../date.types';
 
-const RangePickerInput: React.FC<Props> = ({ value, format, showTime, onChange, onClick, highlight, texts, active }: Props) => {
+const RangePickerInput: React.FC<Props> = ({ value, format, showTime, onChange, onClick, highlight, texts, active, label, description,tooltip, disabled, onFocus, onBlur, error, errorText }: Props) => {
   const dateRangeValue = value ? normalizeRange(value as DateRange) : value;
   const [hovered, setHovered] = React.useState<boolean>(false);
+  const showError =  error || !!errorText;
 
   const handleIconMouseEnter = React.useCallback(() => setHovered(true), []);
   const handleIconMouseLeave = React.useCallback(() => setHovered(false), []);
@@ -26,8 +27,8 @@ const RangePickerInput: React.FC<Props> = ({ value, format, showTime, onChange, 
     [onChange]
   );
 
-  const handleInputClick = React.useCallback(() => {
-    onClick && onClick();
+  const handleInputClick = React.useCallback((e) => {
+    onClick && onClick(e);
   }, [onClick]);
 
   const getText = React.useCallback(
@@ -48,8 +49,8 @@ const RangePickerInput: React.FC<Props> = ({ value, format, showTime, onChange, 
       ) : (
         texts?.startDatePlaceholder
       );
-    return <S.DateWrapper highlight={active && !isFromDateDefined}>{text}</S.DateWrapper>;
-  }, [dateRangeValue, getText, active, texts]);
+    return <S.DateWrapper highlight={active && !disabled && !isFromDateDefined}>{text}</S.DateWrapper>;
+  }, [dateRangeValue, getText, active,disabled, texts]);
 
   const renderEndDate = React.useCallback(() => {
     const isEndDateDefined = dateRangeValue && dateRangeValue.to;
@@ -65,13 +66,18 @@ const RangePickerInput: React.FC<Props> = ({ value, format, showTime, onChange, 
   }, [dateRangeValue, getText, active, texts]);
 
   return (
+    <>
+      {label && (
+      <S.Label label={label} tooltip={tooltip} />)}
     <S.Container
       tabIndex={0}
-      onFocus={handleInputClick}
+      onFocus={onFocus}
+      onClick={handleInputClick}
+      onBlur={onBlur}
       onMouseEnter={handleIconMouseEnter}
       onMouseLeave={handleIconMouseLeave}
     >
-      <S.RangeInputWrapper active={!!highlight} tabIndex={0} focus={active}>
+      <S.RangeInputWrapper error={showError} disabled={disabled} active={!!highlight && !disabled} tabIndex={disabled ? -1 : 0} focus={active && !disabled}>
         {renderFromDate()}
         <Icon component={<ArrowRightS />} color={theme.palette['grey-400']} />
         {renderEndDate()}
@@ -89,6 +95,13 @@ const RangePickerInput: React.FC<Props> = ({ value, format, showTime, onChange, 
         )}
       </S.RangeInputWrapper>
     </S.Container>
+        {(showError || description) && (
+          <S.ContentBelow>
+            {showError && <S.ErrorText>{errorText}</S.ErrorText>}
+            {description && <S.Description>{description}</S.Description>}
+          </S.ContentBelow>
+        )}
+      </>
   );
 };
 
