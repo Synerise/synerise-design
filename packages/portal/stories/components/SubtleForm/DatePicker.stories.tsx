@@ -29,6 +29,10 @@ const stories = {
             autoFocus
             format={format}
             onApply={val => setValue(val)}
+            onClear={()=>{
+              console.log('Cleared!')
+              setValue(undefined)
+            }}
             value={value}
             placeholder={'Date'}
             label={renderLabel('Date')}
