@@ -12,10 +12,17 @@ export type Props = {
   style?: React.CSSProperties;
   placeholder?: string;
   disabled?: boolean;
-  onClick?: () => void;
+  onClick?: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void;
   onClear?: () => void;
+  onFocus?: React.FocusEventHandler;
+  onBlur?: React.FocusEventHandler;
   clearTooltip?: string | React.ReactNode;
   highlight?: boolean;
   texts?: Texts;
   active?: boolean;
+  label?: string | React.ReactNode;
+  description?: string | React.ReactNode;
+  tooltip?: string | React.ReactNode;
+  error?: boolean;
+  errorText?: React.ReactNode | string;
 };
