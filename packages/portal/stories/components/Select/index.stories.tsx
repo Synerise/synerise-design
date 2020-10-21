@@ -162,7 +162,6 @@ const stories = {
           tooltip={text('Tooltip', 'This is example tooltip!')}
           label={renderLabel(text('Label', 'Label'))}
           description={text('Description', 'Description')}
-          style={{marginTop: '8px'}}
           onClick={(): void => setActive(true)}
           disabled={boolean('disabled', false)}
         />
