@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { decorator, getDefaultProps } from '../index.stories';
 import { text } from '@storybook/addon-knobs';
+import * as S from './withUserInfo.styles';
 
 const withUserInfo = () => {
   const defaultProps = getDefaultProps();
@@ -10,10 +11,10 @@ const withUserInfo = () => {
     dataSource: [
       {
         text: (
-          <div style={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>
-            {!!userName && <span style={{ fontWeight: 500, marginRight: '4px' }}>{userName}</span>}
-            <span style={{ fontWeight: 400 }}>{email}</span>
-          </div>
+          <S.UserInfo>
+            {!!userName && <span className={'name'}>{userName}</span>}
+            <span className={'email'}>{email}</span>
+          </S.UserInfo>
         ),
       },
     ],
