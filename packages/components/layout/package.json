@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-layout",
-  "version": "0.6.7",
+  "version": "0.6.8",
   "description": "Layout UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "synerise/synerise-design",
@@ -25,8 +25,8 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-scrollbar": "^0.2.29",
-    "@synerise/ds-utils": "^0.11.3"
+    "@synerise/ds-scrollbar": "^0.2.30",
+    "@synerise/ds-utils": "^0.11.4"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
