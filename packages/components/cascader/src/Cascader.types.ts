@@ -8,8 +8,8 @@ export interface Category {
 }
 export interface CascaderProps {
   categorySuffix: string | React.ReactNode;
-  dropdownMaxHeight?: number;
-  dropdownStyle?: React.CSSProperties;
+  maxHeight?: number;
+  contentStyles?: React.CSSProperties;
   onCategorySelect?: (item: Category, selected: boolean) => void;
   rootCategory: Category;
   searchClearTooltip?: string | React.ReactNode;

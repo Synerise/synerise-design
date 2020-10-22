@@ -12,9 +12,9 @@ import BreadcrumbsList from './Elements/BreadcrumbsList/BreadcrumbsList';
 import CategoriesList from './Elements/CategoriesList/CategoriesList';
 import Navigation from './Elements/Navigation/Navigation';
 
-const DROPDOWN_WIDTH_OFFSET = 18;
 const VERTICAL_PADDING_OFFSET = 8;
 const BREADCRUMB_ITEM_HEIGHT = 50;
+const CATEGORY_ITEM_HEIGHT = 32;
 
 const Cascader: React.FC<CascaderProps> = ({
   rootCategory,
@@ -22,8 +22,8 @@ const Cascader: React.FC<CascaderProps> = ({
   searchInputPlaceholder,
   onCategorySelect,
   categorySuffix,
-  dropdownMaxHeight,
-  dropdownStyle,
+  maxHeight ,
+  contentStyles,
   selectedCategoriesIds,
 }) => {
   const [searchQuery, setSearchQuery] = React.useState<string>('');
@@ -34,22 +34,19 @@ const Cascader: React.FC<CascaderProps> = ({
   const [scrollTop, setScrollTop] = React.useState<number>(0);
   const [selectedIds, setSelectedIds] = React.useState<React.ReactText[]>(selectedCategoriesIds || []);
 
-  const dropdownRef = React.useRef<HTMLDivElement>();
-  const { width, height } = useResize(dropdownRef);
+  const searchResultsContainer = React.useRef<HTMLDivElement>();
+  const categoriesContainer = React.useRef<HTMLDivElement>();
 
+  const { height } = useResize(searchResultsContainer);
   const previousCategory = enteredCategories[enteredCategories.length - 2];
   const isSearching = !!paths && searchQuery.length > 0;
 
-  const calculateWidth = React.useMemo(() => {
-    return width - DROPDOWN_WIDTH_OFFSET;
-  }, [width]);
-
-  const calculateDropdownMaxHeight = React.useMemo(() => {
-    return dropdownMaxHeight ? dropdownMaxHeight - 2 * VERTICAL_PADDING_OFFSET : height - 2 * VERTICAL_PADDING_OFFSET;
-  }, [dropdownMaxHeight, height]);
-
+  const categoriesMaxHeight = maxHeight
+    ? Math.floor((maxHeight - Number(categoriesContainer?.current?.offsetTop)) / CATEGORY_ITEM_HEIGHT) *
+      CATEGORY_ITEM_HEIGHT + VERTICAL_PADDING_OFFSET
+    : undefined;
   const calculateVisibleRows = React.useMemo(() => {
-    return Math.floor((height - VERTICAL_PADDING_OFFSET) / 50);
+    return Math.floor((height - VERTICAL_PADDING_OFFSET) / BREADCRUMB_ITEM_HEIGHT);
   }, [height]);
 
   React.useEffect(() => {
@@ -138,24 +135,23 @@ const Cascader: React.FC<CascaderProps> = ({
           clearTooltip={searchClearTooltip}
         />
       </S.InputWrapper>
-      <S.CategoriesContainer
+      <S.SearchResults
         visible={!isSearching || (filteredPaths && filteredPaths?.length > 0)}
-        ref={dropdownRef as React.RefObject<HTMLDivElement>}
-        maxHeight={dropdownMaxHeight}
-        style={dropdownStyle}
+        ref={searchResultsContainer as React.RefObject<HTMLDivElement>}
+        style={contentStyles}
       >
-        <S.CategoriesScroll
-          maxHeight={calculateDropdownMaxHeight}
-          searching={isSearching}
-          absolute={isSearching}
-          onScroll={({ currentTarget }: React.SyntheticEvent): void => {
-            setScrollTop(currentTarget.scrollTop);
-          }}
-        >
-          <Menu>
-            {isSearching && filteredPaths && (
+        <Menu>
+          {isSearching && filteredPaths && (
+            <S.CascaderScrollbar
+              maxHeight={maxHeight}
+              searching={isSearching}
+              absolute={isSearching}
+              onScroll={({ currentTarget }: React.SyntheticEvent): void => {
+                setScrollTop(currentTarget.scrollTop);
+              }}
+            >
               <BreadcrumbsList
-                width={calculateWidth}
+                width="calc(100% - 8px)"
                 visibleRows={calculateVisibleRows}
                 rowHeight={BREADCRUMB_ITEM_HEIGHT}
                 paths={filteredPaths}
@@ -165,29 +161,40 @@ const Cascader: React.FC<CascaderProps> = ({
                 }}
                 scrollTop={scrollTop}
               />
-            )}
-            <Navigation
-              backActionVisible={
-                !searchQuery && !!previousCategory && !!previousCategory.name && enteredCategories.length > 1
-              }
-              breadcrumbVisible={!searchQuery && !!activeCategory.path}
-              onPathClick={onPathClick}
-              onHomeIconClick={onHomeIconClick}
-              previousCategory={previousCategory}
-              activeCategory={activeCategory}
-            />
-            {!searchQuery && (
-              <CategoriesList
-                rootCategory={activeCategory}
-                onCategoryClick={onCategoryClick}
-                suffixel={categorySuffix}
-                onSuffixelClick={onItemSelect}
-                selectedIds={selectedIds}
-              />
-            )}
-          </Menu>
-        </S.CategoriesScroll>
-      </S.CategoriesContainer>
+            </S.CascaderScrollbar>
+          )}
+          <Navigation
+            backActionVisible={
+              !searchQuery && !!previousCategory && !!previousCategory.name && enteredCategories.length > 1
+            }
+            breadcrumbVisible={!searchQuery && !!activeCategory.path}
+            onPathClick={onPathClick}
+            onHomeIconClick={onHomeIconClick}
+            previousCategory={previousCategory}
+            activeCategory={activeCategory}
+          />
+          {!searchQuery && (
+            <div ref={categoriesContainer as React.RefObject<HTMLDivElement>}>
+              <S.CascaderScrollbar
+                maxHeight={categoriesMaxHeight}
+                searching={isSearching}
+                absolute={isSearching}
+                onScroll={({ currentTarget }: React.SyntheticEvent): void => {
+                  setScrollTop(currentTarget.scrollTop);
+                }}
+              >
+                <CategoriesList
+                  rootCategory={activeCategory}
+                  onCategoryClick={onCategoryClick}
+                  suffixel={categorySuffix}
+                  onSuffixelClick={onItemSelect}
+                  selectedIds={selectedIds}
+                />
+              </S.CascaderScrollbar>
+            </div>
+          )}
+        </Menu>
+      </S.SearchResults>
     </S.Wrapper>
   );
 };

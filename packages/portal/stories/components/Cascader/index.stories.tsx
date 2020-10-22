@@ -23,7 +23,6 @@ const stories = {
           console.log('Category clicked:', item, 'Selected:', selected);
         }}
         selectedCategoriesIds={[]}
-        dropdownMaxHeight={302}
 
       />
     );
