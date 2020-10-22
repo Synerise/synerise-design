@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.71](https://github.com/Synerise/synerise-design/compare/@synerise/ds-cascader@0.1.70...@synerise/ds-cascader@0.1.71) (2020-10-22)
+
+
+### Bug Fixes
+
+* **cascader:** maxHeight handling improved ([0091ead](https://github.com/Synerise/synerise-design/commit/0091eadd9c43e84f10666d63849537a3182efa44))
+
+
+
+
+
 ## [0.1.70](https://github.com/Synerise/synerise-design/compare/@synerise/ds-cascader@0.1.69...@synerise/ds-cascader@0.1.70) (2020-10-21)
 
 **Note:** Version bump only for package @synerise/ds-cascader

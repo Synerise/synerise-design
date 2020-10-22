@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.101.0](https://github.com/synerise/synerise-design/compare/portal@0.100.5...portal@0.101.0) (2020-10-22)
+
+
+### Bug Fixes
+
+* **cascader:** maxHeight handling improved ([0091ead](https://github.com/synerise/synerise-design/commit/0091eadd9c43e84f10666d63849537a3182efa44))
+* **input:** add no result ([3249509](https://github.com/synerise/synerise-design/commit/32495096185cfe6bd18550c04d3bfac9baffc07f))
+* **input:** fix date mask ([a3df929](https://github.com/synerise/synerise-design/commit/a3df9290f33ff332516f55ccfe5c60ec5b185c04))
+* **menu:** fixed disabled state, added userInfo story ([8bfada7](https://github.com/synerise/synerise-design/commit/8bfada718fcc2b164f4caa01b208a8efe7d1f3c9))
+* **select:** add dateSelect component ([cf75609](https://github.com/synerise/synerise-design/commit/cf75609715819cc9977b3a37c46e883a214f17cb))
+* **select:** change styles in dateSelect ([6c0af87](https://github.com/synerise/synerise-design/commit/6c0af873473a9027588eed5faed02bd886eb9234))
+* **subtle-form:** added stricter typings, updated stories ([52e42eb](https://github.com/synerise/synerise-design/commit/52e42ebb5c54dbb16da64726ed06815642519245))
+* **subtle-form:** allow to clear on subtle date picker story ([2ba13bd](https://github.com/synerise/synerise-design/commit/2ba13bddcf03ca769a335751e9e86e0d1bfdde30))
+* **subtle-form:** removed console log from stories ([e65f9ed](https://github.com/synerise/synerise-design/commit/e65f9ed8f5484cef60e25b9573b163a1cd9d67f7))
+
+
+### Features
+
+* **portal:** added new menu stories ([a0149c8](https://github.com/synerise/synerise-design/commit/a0149c8fa9d68550e9477dea75d5e4cddebdd108))
+
+
+
+
+
 ## [0.100.5](https://github.com/synerise/synerise-design/compare/portal@0.100.4...portal@0.100.5) (2020-10-20)
 
 
