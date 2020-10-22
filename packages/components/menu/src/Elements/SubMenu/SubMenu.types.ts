@@ -13,7 +13,7 @@ export interface SubMenuProps extends Omit<MenuProps, 'dataSource' | 'footer'> {
   ordered?: boolean | undefined;
   subMenu?: SubMenuProps[];
   copyable?: boolean;
-  copyHint?: string;
+  copyHint?: string | React.ReactNode;
   copyValue?: string;
   childrenCollapsed?: boolean;
   onTitleClick?: () => void;

@@ -51,16 +51,16 @@ const rootCategory = {
 
 ## API
 
-| Property               | Description                                                      | Type                                        | Default |
-| ---------------------- | ---------------------------------------------------------------- | ------------------------------------------- | ------- |
-| categorySuffix         | Suffix element displayed when hovering on category               | string / React.ReactNode                    | -       |
-| dropdownMaxHeight      | Max height of the dropdown in pixels (In order to enable scroll) | number                                      | -       |
-| dropdownStyles         | Additional styles applied for dropdown                           | React.CSSProperties                         | -       |
-| onCategorySelect       | Callback executed when category is selected                      | (item: Category, selected: boolean) => void | -       |
-| rootCategory           | Root (default) category displayed in dropdown                    | Category                                    | -       |
-| searchClearTooltip     | Tooltip displayed when hovering on clear icon in search input    | string / React.ReactNode                    | -       |
-| searchInputPlaceholder | Placeholder value of search bar input                            | string                                      | -       |
-| selectedCategoriesIds  | Array containing ids of already selected categories              | React.ReactText[]                           | []      |
+| Property               | Description                                                     | Type                                        | Default |
+| ---------------------- | --------------------------------------------------------------- | ------------------------------------------- | ------- |
+| categorySuffix         | Suffix element displayed when hovering on category              | string / React.ReactNode                    | -       |
+| maxHeight              | Max height of the content in pixels (In order to enable scroll) | number /string                              | -       |
+| contentStyles          | Additional styles applied to the content                        | React.CSSProperties                         | -       |
+| onCategorySelect       | Callback executed when category is selected                     | (item: Category, selected: boolean) => void | -       |
+| rootCategory           | Root (default) category displayed in dropdown                   | Category                                    | -       |
+| searchClearTooltip     | Tooltip displayed when hovering on clear icon in search input   | string / React.ReactNode                    | -       |
+| searchInputPlaceholder | Placeholder value of search bar input                           | string                                      | -       |
+| selectedCategoriesIds  | Array containing ids of already selected categories             | React.ReactText[]                           | []      |
 
 ### Category
 

@@ -21,6 +21,7 @@ const SubtleDatePicker: React.FC<SubtleDatePickerProps> = ({
   labelTooltip,
   placeholder,
   onApply,
+  onClear,
   errorText,
   error,
   activeProp,
@@ -45,7 +46,7 @@ const SubtleDatePicker: React.FC<SubtleDatePickerProps> = ({
   }, [value, placeholder, formatValue]);
 
   React.useEffect(() => {
-    if(error){
+    if (error) {
       setActive(false);
       setBlurred(true);
     }
@@ -74,18 +75,18 @@ const SubtleDatePicker: React.FC<SubtleDatePickerProps> = ({
               handleDeactivate();
               onApply && onApply(date);
             }}
-            onClear={handleDeactivate}
+            onClear={(): void => {
+              handleDeactivate();
+              onClear && onClear();
+            }}
             error={error}
             errorText={errorText}
-            // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-            // @ts-ignore
             autoFocus={!hasError}
             format={dateFormat}
             onDropdownVisibleChange={(visible: boolean): void => {
               setActive(visible);
               setBlurred(!visible);
               onDropdownVisibleChange && onDropdownVisibleChange(visible);
-
             }}
           />
         ) : (

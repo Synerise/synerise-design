@@ -12,7 +12,7 @@ export interface BasicItemProps {
   onClick?: (props: ClickParam) => void;
   description?: string | React.ReactNode;
   copyable?: boolean;
-  copyHint?: string;
+  copyHint?: string | React.ReactNode;
   copyValue?: string;
   copyTooltip?: string | React.ReactNode;
   highlight?: string;

@@ -19,7 +19,7 @@ export interface MenuItemProps extends Omit<MenuProps, 'dataSource' | 'footer'> 
   description?: string | React.ReactNode;
   subMenu?: SubMenuProps[];
   copyable?: boolean;
-  copyHint?: string;
+  copyHint?: string | React.ReactNode;
   copyValue?: string;
   copyTooltip?: string | React.ReactNode;
   highlight?: string;

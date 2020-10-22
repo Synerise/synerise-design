@@ -27,6 +27,7 @@ import './index.css';
 import { getAllElementsFiltered } from '@synerise/ds-search/dist/Elements/utils/searchUtils';
 import SearchBar from '@synerise/ds-search-bar';
 import { SelectValue } from 'antd/es/select';
+import Result from '@synerise/ds-result';
 
 const renderWithHighlightedText = (highlight, item): React.ReactNode => {
   if (highlight && typeof item === 'string') {
@@ -140,8 +141,6 @@ const stories = {
     const [value, setValue] = React.useState<string>('');
     const [dropdownVisible, setDropdownVisible] = React.useState(false);
     const inputOptionMask = {"---- ----": "1111-1111", "--- --- ---": "111-111-111"};
-    const dateMask = knobSelect("SelectDateMask",Object.keys(inputOptionMask),"--- --- ---");
-    React.useEffect(() => {setValue("")},[dateMask]);
     const [searchQuery, setSearchQuery] = React.useState<string>('');
     const countries = [
       { name: 'Argentina +123', code: 'AR', prefix: '+123' },
@@ -172,6 +171,7 @@ const stories = {
         style={{ width: '107px' }}
         dropdownClassName="dropdownWidth"
         size={size}
+        notFoundContent={<Result type="no-results" noSearchResults description={'No results'} />}
         dropdownRender={menu => (
           <div style={{ width: '240px'}}>
             {' '}
@@ -208,6 +208,8 @@ const stories = {
         ))}
       </Select>
     );
+    const dateMask = knobSelect("SelectDateMask",Object.keys(inputOptionMask),"--- --- ---");
+    React.useEffect(() => {setValue("")},[dateMask]);
     const inputMask = (
       <RawMaskedInput
         size={size}
