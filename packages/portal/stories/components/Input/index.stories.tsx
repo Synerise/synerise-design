@@ -208,6 +208,8 @@ const stories = {
         ))}
       </Select>
     );
+    const dateMask = knobSelect("SelectDateMask",Object.keys(inputOptionMask),"--- --- ---");
+    React.useEffect(() => {setValue("")},[dateMask]);
     const inputMask = (
       <RawMaskedInput
         size={size}
@@ -287,8 +289,6 @@ const stories = {
       Object.keys(inputGroupElementsRight),
       Object.keys(inputGroupElementsRight)[0]
     );
-    const dateMask = knobSelect("SelectDateMask",Object.keys(inputOptionMask),"--- --- ---");
-    React.useEffect(() => {setValue("")},[dateMask]);
 
     return (
       <InputGroup
