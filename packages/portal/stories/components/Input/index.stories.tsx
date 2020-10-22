@@ -22,7 +22,7 @@ import DSFlag from '@synerise/ds-flag';
 import { FlagContainer } from './stories.styles';
 import Tooltip from '@synerise/ds-tooltip';
 import InputNumber from '@synerise/ds-input-number';
-import {escapeRegEx, useOnClickOutside } from '@synerise/ds-utils';
+import { escapeRegEx, useOnClickOutside } from '@synerise/ds-utils';
 import './index.css';
 import { getAllElementsFiltered } from '@synerise/ds-search/dist/Elements/utils/searchUtils';
 import SearchBar from '@synerise/ds-search-bar';
@@ -39,17 +39,16 @@ const renderWithHighlightedText = (highlight, item): React.ReactNode => {
     const startOfQuery = item.toLowerCase().search(escapedHighlight.toLowerCase());
     const endOfQuery = startOfQuery + highlight.length;
     const resultArray = [
-      <span style={{whiteSpace: 'pre-wrap'}}>{item.substring(0, startOfQuery)}</span>,
+      <span style={{ whiteSpace: 'pre-wrap' }}>{item.substring(0, startOfQuery)}</span>,
       <span key={item} style={{ fontWeight: 600, whiteSpace: 'pre-wrap' }} className="search-highlight">
         {item.substring(startOfQuery, endOfQuery)}
       </span>,
-      <span style={{whiteSpace: 'pre-wrap'}}>{item.substring(endOfQuery, item.length)}</span>,
+      <span style={{ whiteSpace: 'pre-wrap' }}>{item.substring(endOfQuery, item.length)}</span>,
     ];
     return resultArray;
   }
   return item;
 };
-
 
 const decorator = storyFn => <div style={{ width: '300px' }}>{storyFn()}</div>;
 const sizes = ['default', 'large'];
@@ -137,10 +136,11 @@ const stories = {
     );
   },
   inputGroup: () => {
+    const [dateMaskKey, setDateMaskKey] = React.useState<string>('---- ----');
     const size = knobSelect('Set size', sizes as any, 'default');
     const [value, setValue] = React.useState<string>('');
     const [dropdownVisible, setDropdownVisible] = React.useState(false);
-    const inputOptionMask = {"---- ----": "1111-1111", "--- --- ---": "111-111-111"};
+    const inputOptionMask = { '---- ----': '1111-1111', '--- --- ---': '111-111-111' };
     const [searchQuery, setSearchQuery] = React.useState<string>('');
     const countries = [
       { name: 'Argentina +123', code: 'AR', prefix: '+123' },
@@ -153,19 +153,21 @@ const stories = {
     useOnClickOutside(ref, () => {
       setDropdownVisible(false);
     });
-    const renderPrefix = (country: Country) => (<div style={{ display: 'flex' }}>
-      <FlagContainer style={{ paddingRight: '8px', paddingTop: '2px' }}>
-        <DSFlag country={country.code} size={20} />
-      </FlagContainer>
-      {country.prefix}
-    </div>)
+    const renderPrefix = (country: Country) => (
+      <div style={{ display: 'flex' }}>
+        <FlagContainer style={{ paddingRight: '8px', paddingTop: '2px' }}>
+          <DSFlag country={country.code} size={20} />
+        </FlagContainer>
+        {country.prefix}
+      </div>
+    );
     const [prefix, setPrefix] = React.useState(renderPrefix(countries[3]));
     type Country = { name: string; code: string; prefix: string };
     const phoneNumberSelect = (
       <Select
         onChange={countryCode => {
           const selectedCountry = results.find(result => result.code === countryCode);
-          setPrefix(renderPrefix(selectedCountry))
+          setPrefix(renderPrefix(selectedCountry));
         }}
         dropdownStyle={{ width: '300px' }}
         style={{ width: '107px' }}
@@ -173,7 +175,7 @@ const stories = {
         size={size}
         notFoundContent={<Result type="no-results" noSearchResults description={'No results'} />}
         dropdownRender={menu => (
-          <div style={{ width: '240px'}}>
+          <div style={{ width: '240px' }}>
             {' '}
             <SearchBar
               onSearchChange={value => {
@@ -192,7 +194,7 @@ const stories = {
             <div style={{ padding: '8px', alignItems: 'center', justifyContent: 'center' }}>{menu}</div>
           </div>
         )}
-        value={prefix as unknown as SelectValue}
+        value={(prefix as unknown) as SelectValue}
         error={boolean('Set select error', false)}
         onClick={(): void => setDropdownVisible(!dropdownVisible)}
       >
@@ -208,8 +210,6 @@ const stories = {
         ))}
       </Select>
     );
-    const dateMask = knobSelect("SelectDateMask",Object.keys(inputOptionMask),"--- --- ---");
-    React.useEffect(() => {setValue("")},[dateMask]);
     const inputMask = (
       <RawMaskedInput
         size={size}
@@ -218,7 +218,7 @@ const stories = {
         value={value}
         error={boolean('Set input error', false)}
         style={{ width: '45%' }}
-        mask={inputOptionMask[dateMask]}
+        mask={inputOptionMask[dateMaskKey]}
       />
     );
     const select = (
@@ -289,7 +289,11 @@ const stories = {
       Object.keys(inputGroupElementsRight),
       Object.keys(inputGroupElementsRight)[0]
     );
-
+     const dateMask = knobSelect('SelectDateMask', Object.keys(inputOptionMask), '--- --- ---');
+    React.useEffect(() => {
+      setValue('');
+      if (dateMask!== dateMaskKey) {setDateMaskKey(dateMask)}
+    }, [dateMask, dateMaskKey]);
     return (
       <InputGroup
         size={size}
@@ -310,9 +314,11 @@ const stories = {
     const size = knobSelect('Set size', sizes as any, 'default');
     const [dropdownVisible, setDropdownVisible] = React.useState(false);
     const [searchQuery, setSearchQuery] = React.useState<string>('');
-    const inputOptionMask = {"---- ----": "1111-1111", "--- --- ---": "111-111-111"};
-    const dateMask = knobSelect("SelectDateMask",Object.keys(inputOptionMask),"--- --- ---");
-    React.useEffect(() => {setValue("")},[dateMask]);
+    const inputOptionMask = { '---- ----': '1111-1111', '--- --- ---': '111-111-111' };
+    const dateMask = knobSelect('SelectDateMask', Object.keys(inputOptionMask), '--- --- ---');
+    React.useEffect(() => {
+      setValue('');
+    }, [dateMask]);
     const countries = [
       { name: 'Argentina +123', code: 'AR', prefix: '+123' },
       { name: 'Albania +456', code: 'Al', prefix: '+456' },
@@ -324,21 +330,22 @@ const stories = {
     useOnClickOutside(ref, () => {
       setDropdownVisible(false);
     });
-    const renderPrefix = (country: Country) => (<div style={{ display: 'flex' }}>
-      <FlagContainer style={{ paddingRight: '8px', paddingTop: '2px' }}>
-        <DSFlag country={country.code} size={20} />
-      </FlagContainer>
-      {country.prefix}
-    </div>)
+    const renderPrefix = (country: Country) => (
+      <div style={{ display: 'flex' }}>
+        <FlagContainer style={{ paddingRight: '8px', paddingTop: '2px' }}>
+          <DSFlag country={country.code} size={20} />
+        </FlagContainer>
+        {country.prefix}
+      </div>
+    );
     const [prefix, setPrefix] = React.useState(renderPrefix(countries[3]));
     type Country = { name: string; code: string; prefix: string };
-
 
     const phoneNumberSelect = (
       <Select
         onChange={countryCode => {
           const selectedCountry = results.find(result => result.code === countryCode);
-          setPrefix(renderPrefix(selectedCountry))
+          setPrefix(renderPrefix(selectedCountry));
         }}
         dropdownStyle={{ width: '300px' }}
         style={{ width: '107px' }}
@@ -364,7 +371,7 @@ const stories = {
             <div style={{ padding: '8px', alignItems: 'center', justifyContent: 'center' }}>{menu}</div>
           </div>
         )}
-        value={prefix as unknown as SelectValue}
+        value={(prefix as unknown) as SelectValue}
         error={boolean('Set select error', false)}
         onClick={(): void => setDropdownVisible(!dropdownVisible)}
       >
@@ -380,7 +387,6 @@ const stories = {
         ))}
       </Select>
     );
-
 
     const inputMask = (
       <RawMaskedInput
@@ -418,24 +424,25 @@ const stories = {
     const [passwordValue, setPasswordValue] = React.useState<string>('');
     const [zipCardValue, setZipCardValue] = React.useState<string>('');
     const inputOptionMask = {
-      "DD-MM-YYYY": "11-11-1111",
-      "DD-MM-YYYY h:mm A": "11-11-1111 1:11 PM",
-      "DD-MM-YYYY H:mm" : "11-11-1111 11:11" ,
-      "MM-DD-YYYY" : "11-11-1111",
-      'MM-DD-YYYY h:mm A' : "11-11-1111 1:11 PM",
-      "MM-DD-YYYY H:mm" : "11-11-1111 11:11" ,
-      "D MMMM, YYYY" : "11 1111, 1111" ,
-      "D MMMM, YYYY h:mm A" : "11 1111, 1111, 1:11 PM",
-      "D MMMM, YYYY H:mm" : "11 1111, 1111, 11:11",
-      "MMMM D, YYYY" : "1111 11, 1111" ,
-      "MMMM D, YYYY h:mm A": "1111 11, 1111 1:11 PM",
-      "MMMM D, YYYY H:mm": "1111 11, 1111 11:11 ",
-      "ddd, MMMM D, YYYY h:mm A": "111, 1111 11, 1111 1:11 PM",
-      "ddd, MMMM D, YYYY H:mm" : "111, 1111 11, 1111 11:11",
-
+      'DD-MM-YYYY': '11-11-1111',
+      'DD-MM-YYYY h:mm A': '11-11-1111 1:11 PM',
+      'DD-MM-YYYY H:mm': '11-11-1111 11:11',
+      'MM-DD-YYYY': '11-11-1111',
+      'MM-DD-YYYY h:mm A': '11-11-1111 1:11 PM',
+      'MM-DD-YYYY H:mm': '11-11-1111 11:11',
+      'D MMMM, YYYY': '11 1111, 1111',
+      'D MMMM, YYYY h:mm A': '11 1111, 1111, 1:11 PM',
+      'D MMMM, YYYY H:mm': '11 1111, 1111, 11:11',
+      'MMMM D, YYYY': '1111 11, 1111',
+      'MMMM D, YYYY h:mm A': '1111 11, 1111 1:11 PM',
+      'MMMM D, YYYY H:mm': '1111 11, 1111 11:11 ',
+      'ddd, MMMM D, YYYY h:mm A': '111, 1111 11, 1111 1:11 PM',
+      'ddd, MMMM D, YYYY H:mm': '111, 1111 11, 1111 11:11',
     };
-    const dateMask = select("SelectDateMask",Object.keys(inputOptionMask),"DD-MM-YYYY")
-    React.useEffect(() => {setDateValue("")},[dateMask]);
+    const dateMask = select('SelectDateMask', Object.keys(inputOptionMask), 'DD-MM-YYYY');
+    React.useEffect(() => {
+      setDateValue('');
+    }, [dateMask]);
 
     return (
       <div style={{ display: 'flex', flexDirection: 'column', width: 400 }}>
@@ -461,7 +468,12 @@ const stories = {
           mask="(+11) 1111-1111"
         />
 
-        <MaskedInput label="Date" value={dateValue} onChange={e => setDateValue(e.target.value)} mask={inputOptionMask[dateMask]} />
+        <MaskedInput
+          label="Date"
+          value={dateValue}
+          onChange={e => setDateValue(e.target.value)}
+          mask={inputOptionMask[dateMask]}
+        />
 
         <MaskedInput
           label="Birthdate"
