@@ -133,10 +133,13 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
         fill: ${(props): string => props.theme.palette['grey-700']};
       }
     }
+    ${(props): string | false =>
+      !props.disabled &&
+      `
     &:focus:active {
-      background: ${(props): string => `${props.theme.palette['grey-100']}`};
-      color: ${(props): string => props.theme.palette['blue-600']};
-    }
+      background: ${props.theme.palette['grey-100']};
+      color: ${props.theme.palette['blue-600']};
+    }`}
 
     & {
       .ds-icon {
