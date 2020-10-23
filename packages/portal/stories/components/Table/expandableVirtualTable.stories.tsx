@@ -3,12 +3,15 @@ import { action } from '@storybook/addon-actions';
 import { withState } from '@dump247/storybook-state';
 import { ItemsMenu, TableCell, VirtualTable } from '@synerise/ds-table';
 import Icon from '@synerise/ds-icon';
-import { EditM, FileDownloadM, TrashM } from '@synerise/ds-icon/dist/icons';
+import { EditM, FileDownloadM, InfoFillS, TrashM, VarTypeNumberM } from '@synerise/ds-icon/dist/icons';
 import Table from '@synerise/ds-table';
 import Button from '@synerise/ds-button';
 import * as React from 'react';
 import { dataSource } from './content/expandable.data';
 import ModalProxy from '@synerise/ds-modal';
+import { renderWithIconInHeaders } from './helpers/helpers';
+import DSTable from '@synerise/ds-table/dist/Table';
+import VarTypeStringM from '@synerise/ds-icon/dist/icons/VarTypeStringM';
 
 const decorator = storyFn => <div style={{ padding: 20, width: '100vw', minWidth: '100%' }}>{storyFn()}</div>;
 
@@ -36,11 +39,15 @@ const stories = {
             title: 'Name',
             dataIndex: 'name',
             key: 'name',
+            icon: { component: <VarTypeStringM/>},
+            iconTooltip: { component: <InfoFillS/>},
           },
           {
             title: 'Age',
             dataIndex: 'age',
             key: 'age',
+            icon: { component: <VarTypeNumberM/>},
+            iconTooltip: { component: <InfoFillS/>},
           },
           {
             dataIndex: 'children',
@@ -76,7 +83,7 @@ const stories = {
             cellHeight={50}
             title={`${countRecords()} results`}
             dataSource={dataSource}
-            columns={getColumns()}
+            columns={renderWithIconInHeaders(getColumns(),boolean('Set icons in headers', false))}
             loading={boolean('Set loading state', false)}
             roundedHeader={boolean('Rounded header', false)}
             expandable={{

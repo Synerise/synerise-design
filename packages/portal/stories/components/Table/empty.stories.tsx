@@ -36,6 +36,7 @@ import Search from '@synerise/ds-search';
 import VarTypeStringM from '@synerise/ds-icon/dist/icons/VarTypeStringM';
 import Tooltip from '@synerise/ds-tooltip';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { renderWithIconInHeaders } from './helpers/helpers';
 
 const decorator = storyFn => (
   <div style={{ padding: 20, width: '100vw', minWidth: '100%', position: 'absolute', top: 0, left: 0 }}>
@@ -282,7 +283,7 @@ const stories = {
         <Table
           title={`${filteredDataSource().length} ${text('Set name of table items', 'results')}`}
           dataSource={filteredDataSource()}
-          columns={getColumns()}
+          columns={renderWithIconInHeaders(getColumns(),boolean('Set icons in headers', false))}
           loading={boolean('Set loading state', false)}
           cellSize={select('Set cells size', CELL_SIZES, CELL_SIZES.default)}
           filters={[

@@ -3,12 +3,21 @@ import { action } from '@storybook/addon-actions';
 import { withState } from '@dump247/storybook-state';
 import { ItemsMenu, TreeTable } from '@synerise/ds-table';
 import Icon from '@synerise/ds-icon';
-import { AddM, ChildRowLeftDownM, EditM, FileDownloadM, TrashM } from '@synerise/ds-icon/dist/icons';
+import {
+  AddM,
+  ChildRowLeftDownM,
+  EditM,
+  FileDownloadM,
+  InfoFillS,
+  TrashM, VarTypeBooleanM,
+  VarTypeStringM,
+} from '@synerise/ds-icon/dist/icons';
 import Table from '@synerise/ds-table';
 import Button from '@synerise/ds-button';
 import * as React from 'react';
 import { dataSource } from './content/tabletree.data';
 import Checkbox from '@synerise/ds-checkbox';
+import { renderWithIconInHeaders } from './helpers/helpers';
 
 const decorator = storyFn => <div style={{ padding: 20, width: '100vw', minWidth: '100%' }}>{storyFn()}</div>;
 
@@ -106,12 +115,16 @@ const stories = {
           title: 'Name',
           dataIndex: 'name',
           key: 'name',
+          icon: { component: <VarTypeStringM/>},
+          iconTooltip: { component: <InfoFillS/>},
           render: name => name,
         },
         {
           title: 'Create',
           dataIndex: 'create_permission',
           key: 'create_permission',
+          icon: { component: <VarTypeBooleanM/>},
+          iconTooltip: { component: <InfoFillS/>},
           width: 120,
           render: (value, record) => (
             <Checkbox
@@ -125,6 +138,8 @@ const stories = {
           title: 'Read',
           dataIndex: 'read_permission',
           key: 'read_permission',
+          icon: { component: <VarTypeBooleanM/>},
+          iconTooltip: { component: <InfoFillS/>},
           width: 120,
           render: (value, record) => (
             <Checkbox
@@ -138,6 +153,8 @@ const stories = {
           title: 'Edit',
           dataIndex: 'edit_permission',
           key: 'edit_permission',
+          icon: { component: <VarTypeBooleanM/>},
+          iconTooltip: { component: <InfoFillS/>},
           width: 120,
           render: (value, record) => (
             <Checkbox
@@ -151,6 +168,8 @@ const stories = {
           title: 'Delete',
           dataIndex: 'delete_permission',
           key: 'delete_permission',
+          icon: { component: <VarTypeBooleanM/>},
+          iconTooltip: { component: <InfoFillS/>},
           width: 120,
           render: (value, record) => (
             <Checkbox
@@ -172,7 +191,7 @@ const stories = {
       <TreeTable
         title={`${data.length} results`}
         dataSource={data}
-        columns={getColumns()}
+        columns={renderWithIconInHeaders(getColumns(),boolean('Set icons in headers', false))}
         loading={boolean('Set loading state', false)}
         roundedHeader={boolean('Rounded header', false)}
         cellSize={select('Set cells size', CELL_SIZES, CELL_SIZES.default)}
