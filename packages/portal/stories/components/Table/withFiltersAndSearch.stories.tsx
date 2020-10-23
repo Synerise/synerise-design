@@ -37,6 +37,7 @@ import Tooltip from '@synerise/ds-tooltip';
 import { ItemType } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.types';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import * as  S from './styles/Table.stories.styles'
+import { renderWithIconInHeaders } from './helpers/helpers';
 const decorator = storyFn => (
   <div style={{ padding: 20, width: '100vw', minWidth: '100%', position: 'absolute', top: 0, left: 0 }}>
     {storyFn()}
@@ -326,7 +327,7 @@ const stories = {
           dataSource={filteredDataSource()}
           tableLayout="fixed"
           scroll={{ x: 1200 }}
-          columns={getColumns()}
+          columns={renderWithIconInHeaders(getColumns(),boolean('Set icons in headers', false))}
           loading={boolean('Set loading state', false)}
           cellSize={select('Set cells size', CELL_SIZES, CELL_SIZES.default)}
           headerButton={

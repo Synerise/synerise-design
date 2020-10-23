@@ -5,15 +5,15 @@ import { Props } from './IconTooltipCell.types';
 import * as S from './IconTooltipCell.styles';
 
 const IconTooltipCell: React.FC<Props> = ({ label, icon = {}, tooltip = {}, tooltipIcon = {} }) => (
-  <S.IconLabelCell>
+  <S.IconTooltipCell>
     {!!icon && <Icon className="main-icon" {...icon} />}
-    <S.Label>{label}</S.Label>
-    {!!tooltipIcon && (
+    {!!label && <S.Label>{label}</S.Label>}
+    {tooltipIcon && (
       <Tooltip {...tooltip}>
         <Icon className="tooltip-icon" {...tooltipIcon} />
       </Tooltip>
     )}
-  </S.IconLabelCell>
+  </S.IconTooltipCell>
 );
 
 export default IconTooltipCell;

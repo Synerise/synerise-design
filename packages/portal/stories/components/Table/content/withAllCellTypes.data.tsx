@@ -40,7 +40,6 @@ export const COLUMNS = [
     dataIndex: 'country',
     width: 254,
     icon: { component: <VarTypeStringM/>},
-    tooltip: {title: "Tooltip", description: 'Description'},
     iconTooltip: { component: <InfoFillS/>},
     sorter: (a, b) => a.country < b.country,
     render: (country, record) => {
@@ -53,7 +52,6 @@ export const COLUMNS = [
     dataIndex: 'active',
     width: 254,
     icon: { component: <VarTypeStringM/>},
-    tooltip: {title: "Tooltip", description: 'Description'},
     iconTooltip: { component: <InfoFillS/>},
     sorter: (a, b) => a.active - b.active,
     render: (active, record) => {
@@ -70,7 +68,6 @@ export const COLUMNS = [
     dataIndex: 'name',
     width: 254,
     icon: { component: <VarTypeStringM/>},
-    tooltip: {title: "Tooltip", description: 'Description'},
     iconTooltip: { component: <InfoFillS/>},
     render: (name, record) => {
       return (
@@ -87,7 +84,6 @@ export const COLUMNS = [
     textWrap: 'word-break',
     ellipsis: true,
     icon: { component: <VarTypeStringM/>},
-    tooltip: {title: "Tooltip", description: 'Description'},
     iconTooltip: { component: <InfoFillS/>},
     render: (name, record) => (
       <TableCell.IconLabelCell icon={{ component: <VarTypeStringM />, color: '#6a7580' }} label={name} />
@@ -102,7 +98,6 @@ export const COLUMNS = [
     ellipsis: true,
     icon: { component: <VarTypeBooleanM/>},
     tooltip: {title: "Tooltip", description: 'Description'},
-    iconTooltip: { component: <InfoFillS/>},
     render: status => <TableCell.StatusLabelCell status={status} label={status} />,
   },
   {
@@ -113,7 +108,6 @@ export const COLUMNS = [
     textWrap: 'word-break',
     ellipsis: true,
     icon: { component: <VarTypeListM/>},
-    tooltip: {title: "Tooltip", description: 'Description'},
     iconTooltip: { component: <InfoFillS/>},
     render: select => (
       <Select value={select.value}>
@@ -131,7 +125,6 @@ export const COLUMNS = [
     textWrap: 'word-break',
     ellipsis: true,
     icon: { component: <VarTypeListM/>},
-    tooltip: {title: "Tooltip", description: 'Description'},
     iconTooltip: { component: <InfoFillS/>},
     render: age => (
       <Button type="secondary" onClick={() => alert(age)}>
@@ -147,7 +140,6 @@ export const COLUMNS = [
     textWrap: 'word-break',
     ellipsis: true,
     icon: { component: <VarTypeStringM/>},
-    tooltip: {title: "Tooltip", description: 'Description'},
     iconTooltip: { component: <InfoFillS/>},
     render: tag => <Tag shape={tag.shape} name={tag.label} />,
   },
@@ -159,7 +151,6 @@ export const COLUMNS = [
     textWrap: 'word-break',
     ellipsis: true,
     icon: { component: <VarTypeStringM/>},
-    tooltip: {title: "Tooltip", description: 'Description'},
     iconTooltip: { component: <InfoFillS/>},
     render: tag => (
       <TableCell.TagIconCell>
@@ -176,7 +167,6 @@ export const COLUMNS = [
     textWrap: 'word-break',
     ellipsis: true,
     icon: { component: <VarTypeListM/>},
-    tooltip: {title: "Tooltip", description: 'Description'},
     iconTooltip: { component: <InfoFillS/>},
     render: avatar => (
       <Avatar
@@ -197,7 +187,6 @@ export const COLUMNS = [
     textWrap: 'word-break',
     ellipsis: true,
     icon: { component: <VarTypeListM/>},
-    tooltip: {title: "Tooltip", description: 'Description'},
     iconTooltip: { component: <InfoFillS/>},
     render: avatar => (
       <TableCell.AvatarLabelCell
@@ -219,7 +208,6 @@ export const COLUMNS = [
     textWrap: 'word-break',
     ellipsis: true,
     icon: { component: <VarTypeListM/>},
-    tooltip: {title: "Tooltip", description: 'Description'},
     iconTooltip: { component: <InfoFillS/>},
     render: avatar => (
       <TableCell.AvatarLabelCell
@@ -248,7 +236,6 @@ export const COLUMNS = [
     textWrap: 'word-break',
     ellipsis: true,
     icon: { component: <VarTypeListM/>},
-    tooltip: {title: "Tooltip", description: 'Description'},
     iconTooltip: { component: <InfoFillS/>},
     render: avatar => (
       <TableCell.AvatarLabelCell
@@ -275,7 +262,6 @@ export const COLUMNS = [
     textWrap: 'word-break',
     ellipsis: true,
     icon: { component: <VarTypeBooleanM/>},
-    tooltip: {title: "Tooltip", description: 'Description'},
     iconTooltip: { component: <InfoFillS/>},
     render: enabled => (
       <Tooltip title={enabled ? 'Switch off' : 'Switch on'} placement={'topLeft'}>
@@ -291,7 +277,6 @@ export const COLUMNS = [
     textWrap: 'word-break',
     ellipsis: true,
     icon: { component: <VarTypeListM/>},
-    tooltip: {title: "Tooltip", description: 'Description'},
     iconTooltip: { component: <InfoFillS/>},
     render: editable => <TableCell.EditableCell value={editable} placeholder={'No data'} onChange={console.log} />,
   },
@@ -303,7 +288,6 @@ export const COLUMNS = [
     textWrap: 'word-break',
     ellipsis: true,
     icon: { component: <VarTypeListM/>},
-    tooltip: {title: "Tooltip", description: 'Description'},
     iconTooltip: { component: <InfoFillS/>},
     render: name => <TableCell.CopyableCell value={name} confirmMessage="Copied to clipboard!" tooltipTimeout={2000} />,
   },
@@ -313,7 +297,6 @@ export const COLUMNS = [
     dataIndex: 'checked',
     width: 120,
     icon: { component: <VarTypeBooleanM/>},
-    tooltip: {title: "Tooltip", description: 'Description'},
     iconTooltip: { component: <InfoFillS/>},
     render: checked => <Checkbox withoutPadding checked={checked} />,
   },
@@ -323,7 +306,6 @@ export const COLUMNS = [
     textWrap: 'word-break',
     ellipsis: true,
     icon: { component: <VarTypeListM/>},
-    tooltip: {title: "Tooltip", description: 'Description'},
     iconTooltip: { component: <InfoFillS/>},
     render: editable => (
       <Tooltip title="Run">
@@ -335,7 +317,6 @@ export const COLUMNS = [
     width: 254,
     title: 'Multiple buttons',
     icon: { component: <VarTypeListM/>},
-    tooltip: {title: "Tooltip", description: 'Description'},
     iconTooltip: { component: <InfoFillS/>},
     render: () => (
       <TableCell.ActionCell gapSize={8} contentAlign={'left'}>

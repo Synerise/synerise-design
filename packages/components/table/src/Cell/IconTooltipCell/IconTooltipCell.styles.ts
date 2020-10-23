@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const IconLabelCell = styled.span`
+export const IconTooltipCell = styled.span`
   display: flex;
   flex-direction: row;
   align-items: center;

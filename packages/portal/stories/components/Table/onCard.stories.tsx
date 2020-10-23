@@ -39,6 +39,7 @@ import Tooltip from '@synerise/ds-tooltip';
 import { ItemType } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.types';
 import Card from '@synerise/ds-card';
 import * as S from './styles/Table.stories.styles';
+import { renderWithIconInHeaders } from './helpers/helpers';
 
 const decorator = storyFn => (
   <div style={{ padding: 20, width: '100vw', minWidth: '100%', position: 'absolute', top: 0, left: 0 }}>
@@ -325,7 +326,7 @@ const stories = {
           title={`${filteredDataSource().length} ${text('Set name of table items', 'results')}`}
           headerWithBorderTop
           dataSource={filteredDataSource()}
-          columns={getColumns()}
+          columns={renderWithIconInHeaders(getColumns(), boolean('Set icons in headers', false))}
           loading={boolean('Set loading state', false)}
           cellSize={select('Set cells size', CELL_SIZES, CELL_SIZES.default)}
           locale={{

@@ -38,8 +38,7 @@ const renderAlertTooltip = (title, description) => {
           marginBottom: '2px',
         }}
       >
-        <Icon style={{ marginLeft: '8px' }} component={<NotificationsM />} color={theme.palette.white} />
-        <span style={{ marginLeft: '4px' }}>{title}</span>
+        <span>{title}</span>
       </div>
       <div style={{ width: '100%', display: 'flex', alignItems: 'center' }}>{description}</div>
     </div>
@@ -54,11 +53,11 @@ export const renderWithIconInHeaders = (columns: Column[], isEnabled) => {
             label={col.title}
             icon={col.icon}
             tooltipIcon={col.iconTooltip}
-            tooltip={{
+            tooltip={ col.iconTooltip && {
               ...col.tooltip,
               type: 'largeSimple',
               offset: 'small',
-              description: renderAlertTooltip('Alert', 'Lorem ipsum'),
+              description: renderAlertTooltip('FieldID', 'Lorem ipsum'),
             }}
           />
         ),
