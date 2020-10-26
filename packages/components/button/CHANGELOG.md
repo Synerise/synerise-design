@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.6](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.13.5...@synerise/ds-button@0.13.6) (2020-10-22)
+
+**Note:** Version bump only for package @synerise/ds-button
+
+
+
+
+
+## [0.13.5](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.13.4...@synerise/ds-button@0.13.5) (2020-10-21)
+
+**Note:** Version bump only for package @synerise/ds-button
+
+
+
+
+
+## [0.13.4](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.13.3...@synerise/ds-button@0.13.4) (2020-10-20)
+
+**Note:** Version bump only for package @synerise/ds-button
+
+
+
+
+
 ## [0.13.3](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.13.2...@synerise/ds-button@0.13.3) (2020-10-13)
 
 **Note:** Version bump only for package @synerise/ds-button

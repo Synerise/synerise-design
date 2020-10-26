@@ -3,6 +3,42 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@0.2.9...@synerise/ds-date-picker@0.2.10) (2020-10-22)
+
+**Note:** Version bump only for package @synerise/ds-date-picker
+
+
+
+
+
+## [0.2.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@0.2.8...@synerise/ds-date-picker@0.2.9) (2020-10-22)
+
+
+### Bug Fixes
+
+* **date-picker:** made dropdownprops prop optional ([589e9f9](https://github.com/Synerise/synerise-design/commit/589e9f94ac6e7cfbc1a90a6edc9551183a6acce0))
+* **date-picker:** show clear icon when not empty ([185468e](https://github.com/Synerise/synerise-design/commit/185468e69fd7827141d390a80fd901d38fc2a118))
+
+
+
+
+
+## [0.2.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@0.2.7...@synerise/ds-date-picker@0.2.8) (2020-10-21)
+
+**Note:** Version bump only for package @synerise/ds-date-picker
+
+
+
+
+
+## [0.2.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@0.2.6...@synerise/ds-date-picker@0.2.7) (2020-10-20)
+
+**Note:** Version bump only for package @synerise/ds-date-picker
+
+
+
+
+
 ## [0.2.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@0.2.5...@synerise/ds-date-picker@0.2.6) (2020-10-13)
 
 **Note:** Version bump only for package @synerise/ds-date-picker

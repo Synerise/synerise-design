@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.40](https://github.com/Synerise/synerise-design/compare/@synerise/ds-input-number@0.3.39...@synerise/ds-input-number@0.3.40) (2020-10-22)
+
+**Note:** Version bump only for package @synerise/ds-input-number
+
+
+
+
+
+## [0.3.39](https://github.com/Synerise/synerise-design/compare/@synerise/ds-input-number@0.3.38...@synerise/ds-input-number@0.3.39) (2020-10-20)
+
+
+### Bug Fixes
+
+* **input-number:** change padding ([ce649b4](https://github.com/Synerise/synerise-design/commit/ce649b449bdcb9226eed9f54bdeadb4820dbf699))
+
+
+
+
+
 ## [0.3.38](https://github.com/Synerise/synerise-design/compare/@synerise/ds-input-number@0.3.37...@synerise/ds-input-number@0.3.38) (2020-10-13)
 
 **Note:** Version bump only for package @synerise/ds-input-number

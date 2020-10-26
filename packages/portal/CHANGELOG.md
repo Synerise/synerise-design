@@ -3,6 +3,55 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.101.1](https://github.com/synerise/synerise-design/compare/portal@0.101.0...portal@0.101.1) (2020-10-22)
+
+**Note:** Version bump only for package portal
+
+
+
+
+
+# [0.101.0](https://github.com/synerise/synerise-design/compare/portal@0.100.5...portal@0.101.0) (2020-10-22)
+
+
+### Bug Fixes
+
+* **cascader:** maxHeight handling improved ([0091ead](https://github.com/synerise/synerise-design/commit/0091eadd9c43e84f10666d63849537a3182efa44))
+* **input:** add no result ([3249509](https://github.com/synerise/synerise-design/commit/32495096185cfe6bd18550c04d3bfac9baffc07f))
+* **input:** fix date mask ([a3df929](https://github.com/synerise/synerise-design/commit/a3df9290f33ff332516f55ccfe5c60ec5b185c04))
+* **menu:** fixed disabled state, added userInfo story ([8bfada7](https://github.com/synerise/synerise-design/commit/8bfada718fcc2b164f4caa01b208a8efe7d1f3c9))
+* **select:** add dateSelect component ([cf75609](https://github.com/synerise/synerise-design/commit/cf75609715819cc9977b3a37c46e883a214f17cb))
+* **select:** change styles in dateSelect ([6c0af87](https://github.com/synerise/synerise-design/commit/6c0af873473a9027588eed5faed02bd886eb9234))
+* **subtle-form:** added stricter typings, updated stories ([52e42eb](https://github.com/synerise/synerise-design/commit/52e42ebb5c54dbb16da64726ed06815642519245))
+* **subtle-form:** allow to clear on subtle date picker story ([2ba13bd](https://github.com/synerise/synerise-design/commit/2ba13bddcf03ca769a335751e9e86e0d1bfdde30))
+* **subtle-form:** removed console log from stories ([e65f9ed](https://github.com/synerise/synerise-design/commit/e65f9ed8f5484cef60e25b9573b163a1cd9d67f7))
+
+
+### Features
+
+* **portal:** added new menu stories ([a0149c8](https://github.com/synerise/synerise-design/commit/a0149c8fa9d68550e9477dea75d5e4cddebdd108))
+
+
+
+
+
+## [0.100.5](https://github.com/synerise/synerise-design/compare/portal@0.100.4...portal@0.100.5) (2020-10-20)
+
+
+### Bug Fixes
+
+* **input:** add inputwithflag to input group and add masks to datemaskinput ([f3c74ca](https://github.com/synerise/synerise-design/commit/f3c74cae2723ec106b26116ee6add5bf51efde04))
+* **input:** add minHeight of content above ([7d9253c](https://github.com/synerise/synerise-design/commit/7d9253c4478bc760488ad066996eb23d71b2bb35))
+* **input:** add minHeight of Label and change paddings ([f6c86ac](https://github.com/synerise/synerise-design/commit/f6c86ac4cbde32b26c79d537378fdfac6f634e99))
+* **input:** change padding and width ([f431f2f](https://github.com/synerise/synerise-design/commit/f431f2f033a663f39ee0157e81b9e581b7eed23f))
+* **input:** change width ([d878bd8](https://github.com/synerise/synerise-design/commit/d878bd887e0c3cea0c4bfba610e4169a3c92f4b2))
+* **input:** fix input with mask and add some maskedinputs ([7febe6a](https://github.com/synerise/synerise-design/commit/7febe6a171105535f68f88980714b150f291b323))
+* **portal:** removed typo from select story ([ebb8809](https://github.com/synerise/synerise-design/commit/ebb8809cb5d6a9e08e9708c1f8af63102c1be3fc))
+
+
+
+
+
 ## [0.100.4](https://github.com/synerise/synerise-design/compare/portal@0.100.3...portal@0.100.4) (2020-10-16)
 
 

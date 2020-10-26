@@ -3,6 +3,49 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.25.12](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.25.11...@synerise/ds-table@0.25.12) (2020-10-22)
+
+**Note:** Version bump only for package @synerise/ds-table
+
+
+
+
+
+## [0.25.11](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.25.10...@synerise/ds-table@0.25.11) (2020-10-22)
+
+**Note:** Version bump only for package @synerise/ds-table
+
+
+
+
+
+## [0.25.10](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.25.9...@synerise/ds-table@0.25.10) (2020-10-21)
+
+**Note:** Version bump only for package @synerise/ds-table
+
+
+
+
+
+## [0.25.9](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.25.8...@synerise/ds-table@0.25.9) (2020-10-20)
+
+**Note:** Version bump only for package @synerise/ds-table
+
+
+
+
+
+## [0.25.8](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.25.7...@synerise/ds-table@0.25.8) (2020-10-19)
+
+
+### Bug Fixes
+
+* **table:** fix GroupTable without row selection ([8210906](https://github.com/synerise/synerise-design/commit/82109063ab06a53fbeb162a4714a8c900fe1d4e4))
+
+
+
+
+
 ## [0.25.7](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.25.6...@synerise/ds-table@0.25.7) (2020-10-16)
 
 **Note:** Version bump only for package @synerise/ds-table

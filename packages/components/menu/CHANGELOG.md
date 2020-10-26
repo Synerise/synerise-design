@@ -3,6 +3,42 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.6.13...@synerise/ds-menu@0.6.14) (2020-10-22)
+
+**Note:** Version bump only for package @synerise/ds-menu
+
+
+
+
+
+## [0.6.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.6.12...@synerise/ds-menu@0.6.13) (2020-10-22)
+
+
+### Bug Fixes
+
+* **menu:** added reactnode as copyhint type ([6678d0f](https://github.com/Synerise/synerise-design/commit/6678d0f9d796b0dd002e2603a5802f9b968dd909))
+* **menu:** fixed disabled state, added userInfo story ([8bfada7](https://github.com/Synerise/synerise-design/commit/8bfada718fcc2b164f4caa01b208a8efe7d1f3c9))
+
+
+
+
+
+## [0.6.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.6.11...@synerise/ds-menu@0.6.12) (2020-10-21)
+
+**Note:** Version bump only for package @synerise/ds-menu
+
+
+
+
+
+## [0.6.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.6.10...@synerise/ds-menu@0.6.11) (2020-10-20)
+
+**Note:** Version bump only for package @synerise/ds-menu
+
+
+
+
+
 ## [0.6.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.6.9...@synerise/ds-menu@0.6.10) (2020-10-13)
 
 **Note:** Version bump only for package @synerise/ds-menu

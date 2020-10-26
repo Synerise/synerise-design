@@ -3,6 +3,42 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subtle-form@0.3.9...@synerise/ds-subtle-form@0.3.10) (2020-10-22)
+
+**Note:** Version bump only for package @synerise/ds-subtle-form
+
+
+
+
+
+## [0.3.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subtle-form@0.3.8...@synerise/ds-subtle-form@0.3.9) (2020-10-22)
+
+
+### Bug Fixes
+
+* **date-picker:** handle on clear ([dfd8bb4](https://github.com/Synerise/synerise-design/commit/dfd8bb4223ae36569b0b39507ca982c589d0615c))
+* **subtle-form:** added stricter typings, updated stories ([52e42eb](https://github.com/Synerise/synerise-design/commit/52e42ebb5c54dbb16da64726ed06815642519245))
+
+
+
+
+
+## [0.3.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subtle-form@0.3.7...@synerise/ds-subtle-form@0.3.8) (2020-10-21)
+
+**Note:** Version bump only for package @synerise/ds-subtle-form
+
+
+
+
+
+## [0.3.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subtle-form@0.3.6...@synerise/ds-subtle-form@0.3.7) (2020-10-20)
+
+**Note:** Version bump only for package @synerise/ds-subtle-form
+
+
+
+
+
 ## [0.3.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subtle-form@0.3.5...@synerise/ds-subtle-form@0.3.6) (2020-10-15)
 
 

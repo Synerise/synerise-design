@@ -3,6 +3,38 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-folders@0.2.7...@synerise/ds-folders@0.2.8) (2020-10-22)
+
+**Note:** Version bump only for package @synerise/ds-folders
+
+
+
+
+
+## [0.2.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-folders@0.2.6...@synerise/ds-folders@0.2.7) (2020-10-22)
+
+**Note:** Version bump only for package @synerise/ds-folders
+
+
+
+
+
+## [0.2.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-folders@0.2.5...@synerise/ds-folders@0.2.6) (2020-10-21)
+
+**Note:** Version bump only for package @synerise/ds-folders
+
+
+
+
+
+## [0.2.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-folders@0.2.4...@synerise/ds-folders@0.2.5) (2020-10-20)
+
+**Note:** Version bump only for package @synerise/ds-folders
+
+
+
+
+
 ## [0.2.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-folders@0.2.3...@synerise/ds-folders@0.2.4) (2020-10-13)
 
 **Note:** Version bump only for package @synerise/ds-folders
