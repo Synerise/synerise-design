@@ -6,8 +6,6 @@ COPY package.json ./
 
 COPY . .
 
-RUN yarn install
-
 RUN yarn bootstrap
 
 ENV PORT=9099
