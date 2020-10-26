@@ -133,8 +133,9 @@ const ContentItem: React.FC<ContentItemProps> = ({
         <AnimateHeight
           className="item-content-animation"
           duration={300}
-          height={!item.disableExpanding && expandedState ? 0 : 'auto'}
+          height={!item.disableExpanding && !expandedState ? 0 : 'auto'}
         >
+          git
           <S.ContentWrapper data-testid="item-content-wrapper" withoutPadding={Boolean(contentWithoutPadding)}>
             {item.content}
           </S.ContentWrapper>

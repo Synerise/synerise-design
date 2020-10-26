@@ -132,6 +132,10 @@ export const ItemContainer = styled.div<ItemContainerProps>`
   box-shadow: ${({ greyBackground, theme }): string =>
     greyBackground ? '0 4px 12px 0 rgba(35, 41, 54, 0.04)' : `0 0 0 1px ${theme.palette['grey-200']}`};
 
+  && .item-content-animation {
+    width: 100%;
+  }
+
   ${({ greyBackground, theme }): string | false =>
     !greyBackground &&
     `
