@@ -41,7 +41,6 @@ const rippleAnimation = keyframes`
     transform: scale(20);
   }
 `;
-
 export const Spinner = styled.div`
   position: absolute !important;
   top: 0;
@@ -132,7 +131,16 @@ export const AntdButton = styled(
       width: 24px;
       height: 24px;
     }
-    &&.ant-btn-secondary{
+    &&.ant-btn-secondary:not(.ds-expander){
+      &:hover:not(:disabled):not(:focus) {
+        background-color:${(props): string => props.theme.palette['blue-050']};
+        &.ant-btn .btn-focus {
+        box-shadow: inset 0 0 0 1px ${(props): string => props.theme.palette['blue-200']};
+        }
+        > span:not(.btn-focus):after {
+        background-color: ${(props): string => props.theme.palette['blue-200']};
+        }
+      }
       &:active{
         color: ${(props): string => props.theme.palette['blue-600']};
         svg {
