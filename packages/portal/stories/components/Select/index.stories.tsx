@@ -164,7 +164,7 @@ const stories = {
           description={text('Description', 'Description')}
           onClick={(): void => setActive(true)}
           disabled={boolean('disabled', false)}
-          highlight={!!active}
+          highlight={false}
         />
       </div>
     );
