@@ -136,7 +136,7 @@ export const AntdButton = styled(
         color: ${(props): string => props.theme.palette['blue-600']};
         background: ${(props): string => props.theme.palette['blue-100']};
         svg {
-          fill: ${(props): string => props.theme.palette['blue-600']}; !important;
+          fill: ${(props): string => props.theme.palette['blue-600']};
         }
         &.ant-btn .btn-focus {
         box-shadow: inset 0 0 0 1px ${(props): string => props.theme.palette['blue-200']};
@@ -148,7 +148,7 @@ export const AntdButton = styled(
       &:focus:not(:active) {
               color: ${(props): string => props.theme.palette['blue-600']};
         svg {
-          fill: ${(props): string => props.theme.palette['blue-600']}; !important;
+          fill: ${(props): string => props.theme.palette['blue-600']};
         }
         background: ${(props): string => props.theme.palette['blue-050']};
       }
