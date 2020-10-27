@@ -16,6 +16,7 @@ export type CollectorProps = {
   selected: CollectorValue[];
   suggestions: CollectorValue[];
   texts: CollectorTexts;
+  lookupConfig: LookupConfig;
 };
 export type CollectorTexts = {
   add: string | React.ReactNode;
@@ -25,6 +26,10 @@ export type CollectorTexts = {
   toSelect: string | React.ReactNode;
 };
 
+export type LookupConfig = {
+  filter: string;
+  show: string;
+}
 export type CollectorValue = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [key: string]: any;

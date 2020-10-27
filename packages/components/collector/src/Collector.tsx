@@ -1,7 +1,7 @@
 import * as React from 'react';
 import classNames from 'classnames';
 import { focusWithArrowKeys, useOnClickOutside } from '@synerise/ds-utils';
-import { CollectorProps } from './Collector.types';
+import { CollectorProps, CollectorValue } from './Collector.types';
 import * as S from './Collector.styles';
 import ButtonPanel from './Elements/ButtonPanel/ButtonPanel';
 import OptionsDropdown from './Elements/OptionsDropdown/OptionsDropdown';
@@ -26,6 +26,7 @@ const Collector: React.FC<CollectorProps> = ({
   disabled,
   fixedHeight,
   texts,
+  lookupConfig,
 }) => {
   const inputRef = React.useRef<HTMLInputElement>(null);
   const containerRef = React.useRef<HTMLDivElement>(null);
@@ -34,10 +35,14 @@ const Collector: React.FC<CollectorProps> = ({
   const [showGradient, setShowGradient] = React.useState<boolean>(false);
   const [scrollLeft, setScrollLeft] = React.useState<number>(0);
   const [value, setValue] = React.useState<string>('');
-  const [selectedValues, setSelectedValues] = React.useState<string[]>(selected && allowMultipleValues ? selected : []);
-  const [filteredSuggestions, setFilteredSuggestions] = React.useState<string[]>(suggestions || []);
+  const [selectedValues, setSelectedValues] = React.useState<CollectorValue[]>(
+    selected && allowMultipleValues ? selected : []
+  );
+  const [filteredSuggestions, setFilteredSuggestions] = React.useState<CollectorValue[]>(suggestions || []);
 
-  const lowerCaseSelected = React.useMemo(() => arrayToLowerCase(selectedValues), [selectedValues]);
+  const filterLookupKey = lookupConfig?.filter || 'text';
+  const showLookupConfig = lookupConfig?.show || 'text';
+  const lowerCaseSelected = React.useMemo(() => arrayToLowerCase(selectedValues, filterLookupKey), [selectedValues]);
   const onFocusCallback = React.useCallback(
     (e: React.FocusEvent<HTMLDivElement>): void => {
       e.preventDefault();
@@ -50,7 +55,7 @@ const Collector: React.FC<CollectorProps> = ({
   );
   const filterSuggestions = React.useCallback(
     (val: string): void => {
-      const filtered = filterValueSuggestions(suggestions, selectedValues, val);
+      const filtered = filterValueSuggestions(suggestions, selectedValues, val, filterLookupKey);
       setFilteredSuggestions(filtered);
     },
     [suggestions, selectedValues]
@@ -82,7 +87,7 @@ const Collector: React.FC<CollectorProps> = ({
           filteredSuggestions.filter(
             suggestion =>
               suggestion.toLowerCase() !== trimmedValue.toLowerCase() &&
-              !arrayToLowerCase(selectedValues).includes(suggestion.toLowerCase())
+              !arrayToLowerCase(selectedValues, filterLookupKey).includes(suggestion.toLowerCase())
           )
         );
         setValue('');

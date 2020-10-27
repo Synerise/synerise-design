@@ -2,7 +2,7 @@ import * as React from 'react';
 import { ValuesProps } from './Values.types';
 import * as S from '../../Collector.styles';
 
-const Values: React.FC<ValuesProps> = ({ values, onRemove, disabled, focused }: ValuesProps) => {
+const Values: React.FC<ValuesProps> = ({ values, onRemove, disabled, focused, showLookupKey }: ValuesProps) => {
   return (
     <>
       {values.map((val, index) => (
@@ -12,7 +12,7 @@ const Values: React.FC<ValuesProps> = ({ values, onRemove, disabled, focused }: 
           onRemoveClick={(): void => {
             onRemove && onRemove(val);
           }}
-          value={val as string}
+          value={val[showLookupKey]}
           focused={focused}
           disabled={disabled}
         />
