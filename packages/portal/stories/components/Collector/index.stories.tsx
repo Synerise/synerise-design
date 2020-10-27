@@ -13,7 +13,9 @@ const getSuggestions = () => {
   const result = [];
   for (let i = 10; i < 36; i++) {
     for (let j = 0; j < 36; j++) {
-      result.push(`Option ${i.toString(36).toUpperCase()}${j.toString(36).toUpperCase()}`);
+      result.push({
+        text:`Option ${i.toString(36).toUpperCase()}${j.toString(36).toUpperCase()}`
+      });
     }
   }
   return result;

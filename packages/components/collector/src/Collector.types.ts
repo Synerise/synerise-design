@@ -13,8 +13,8 @@ export type CollectorProps = {
   onConfirm: (values: string[]) => void;
   onCancel?: () => void;
   showNavigationHints?: boolean;
-  selected: string[];
-  suggestions: string[];
+  selected: CollectorValue[];
+  suggestions: CollectorValue[];
   texts: CollectorTexts;
 };
 export type CollectorTexts = {
@@ -23,4 +23,9 @@ export type CollectorTexts = {
   placeholder: string;
   toNavigate: string | React.ReactNode;
   toSelect: string | React.ReactNode;
+};
+
+export type CollectorValue = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  [key: string]: any;
 };
