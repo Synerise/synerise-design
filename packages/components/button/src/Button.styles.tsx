@@ -20,7 +20,19 @@ const splitType = {
   secondary: 'secondary',
   tertiary: 'tertiary',
 };
-
+const pressedStyles = (props: ThemeProps): FlattenSimpleInterpolation => css`
+  color: ${props.theme.palette['blue-600']};
+  background: ${props.theme.palette['blue-100']};
+  svg {
+    fill: ${props.theme.palette['blue-600']};
+  }
+  &.ant-btn .btn-focus {
+    box-shadow: inset 0 0 0 1px ${props.theme.palette['blue-200']};
+  }
+  > span:not(.btn-focus) + .ds-icon:before {
+    background-color: ${props.theme.palette['blue-200']};
+  }
+`;
 const spinnerAnimation = keyframes`
   from {
     transform: rotateZ(0deg);
@@ -100,7 +112,19 @@ export const ButtonFocus = styled.div`
 
 // eslint-disable-next-line react/jsx-props-no-spreading
 export const AntdButton = styled(
-  ({ mode, type, loading, justifyContent, groupVariant, customColor, rightIconSize, leftIconSize, size, ...rest }) => {
+  ({
+    mode,
+    type,
+    loading,
+    justifyContent,
+    groupVariant,
+    customColor,
+    rightIconSize,
+    leftIconSize,
+    pressed,
+    size,
+    ...rest
+  }) => {
     // eslint-disable-next-line react/jsx-props-no-spreading
     return <Button type={type === 'custom-color-ghost' ? 'ghost-primary' : type} size={size} {...rest} />;
   }
@@ -133,17 +157,7 @@ export const AntdButton = styled(
     }
     &&.ant-btn-secondary:not(.ds-expander){
       &:active{
-        color: ${(props): string => props.theme.palette['blue-600']};
-        background: ${(props): string => props.theme.palette['blue-100']};
-        svg {
-          fill: ${(props): string => props.theme.palette['blue-600']};
-        }
-        &.ant-btn .btn-focus {
-        box-shadow: inset 0 0 0 1px ${(props): string => props.theme.palette['blue-200']};
-        }
-        > span:not(.btn-focus) +.ds-icon:before {
-        background-color: ${(props): string => props.theme.palette['blue-200']};
-        }
+        ${(props): FlattenSimpleInterpolation => pressedStyles(props)}
       }
       &:focus:not(:active) {
               color: ${(props): string => props.theme.palette['blue-600']};
@@ -160,7 +174,7 @@ export const AntdButton = styled(
         > span:not(.btn-focus) +.ds-icon:before {
         background-color: ${(props): string => props.theme.palette['blue-200']};
         }
-        
+        ${(props): FlattenSimpleInterpolation => props.pressed && pressedStyles(props)}
       }
       &:active{
         color: ${(props): string => props.theme.palette['blue-600']};
