@@ -26,7 +26,7 @@ const Button: React.FC<Props> & ButtonSubComponents = ({
 }) => {
   const rippleRef = React.useRef<HTMLSpanElement>(null);
   const [rippleClassName, setRippleClassName] = React.useState('');
-
+  const [pressed, setPressed] = React.useState<boolean>(false);
   React.useEffect(() => {
     if (rippleClassName !== '') {
       setTimeout(() => {
@@ -58,6 +58,13 @@ const Button: React.FC<Props> & ButtonSubComponents = ({
       groupVariant={groupVariant}
       loading={loading}
       onClick={handleClick}
+      onMouseDown={(): void => {
+        setPressed(true);
+      }}
+      onMouseUp={(): void => {
+        setPressed(false);
+      }}
+      pressed={pressed}
       className={`ds-button ${className}`}
       customColor={color}
       /* eslint-disable-next-line react/jsx-props-no-spreading */
