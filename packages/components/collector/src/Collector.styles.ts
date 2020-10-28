@@ -90,13 +90,18 @@ export const RightSide = styled.div<{ gradientOverlap?: boolean; focus?: boolean
   }
 `;
 export const Input = styled(BorderLessInput)<
-  DSInputProps & InputProps & { disabled?: boolean; hasValues?: boolean; hideCursor: boolean }
+  DSInputProps & InputProps & { disabled?: boolean; hasValues?: boolean; hidden: boolean }
 >`
   margin: ${(props): string => (props.hasValues ? '6px 0 6px 12px' : '4px 0 4px 12px')};
   padding: 1px 0;
   min-width: unset;
   line-height: 18px;
-  ${(props): string | false => props.hideCursor && 'color: transparent;'}
+  ${(props): FlattenSimpleInterpolation | false =>
+    props.hidden &&
+    css`
+      color: transparent;
+      display: none;
+    `}
 `;
 export { Value as CollectorValue };
 export { ContentAbove };

@@ -157,7 +157,8 @@ const Cascader: React.FC<CascaderProps> = ({
                 paths={filteredPaths}
                 highlight={searchQuery}
                 onBreadCrumbClick={(breadcrumb: Path): void => {
-                  onItemSelect(breadcrumb as Category);
+                  const selectedCategory =  searchCategoryWithId(rootCategory,breadcrumb?.id)
+                  selectedCategory ? onItemSelect(selectedCategory) : onItemSelect(breadcrumb as Category)
                 }}
                 scrollTop={scrollTop}
               />

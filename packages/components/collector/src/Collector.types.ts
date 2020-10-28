@@ -7,6 +7,7 @@ export type CollectorProps = {
   description?: React.ReactNode | string;
   disabled?: boolean;
   disableSearch?: boolean;
+  disableButtonPanel?: boolean;
   dropdownContent?: React.ReactNode;
   error?: boolean;
   errorText?: React.ReactNode | string;
@@ -14,7 +15,7 @@ export type CollectorProps = {
   label?: React.ReactNode | string;
   lookupConfig?: LookupConfig;
   onSearchValueChange?: (value: string) => void;
-  onConfirm: (values: CollectorValue[]) => void;
+  onConfirm?: (values: CollectorValue[]) => void;
   onCancel?: () => void;
   onDeselect?: (item: CollectorValue) => void;
   onItemAdd?: (itemName: React.ReactText) => CollectorValue;

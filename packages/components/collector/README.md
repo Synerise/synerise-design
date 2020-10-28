@@ -40,13 +40,14 @@ import Collector from '@synerise/ds-collector'
 | description         | Description rendered below the main component                        | string / React.ReactNode                      | ---     |
 | disabled            | Whether the component is disabled.                                   | boolean                                       | `false` |
 | disableSearch       | Disables an option to type value in the input.                       | boolean                                       | `false` |
+| disableButtonPanel  | Hides the right-hand side panel with "cancel" and "add" buttons      | boolean                                       | `false` |
 | dropdownContent     | Custom content of the dropdown displayed when component is focused   | React.ReactNode                               | `false` |
 | errorText           | error message, if provided input will be set in error state          | string                                        | ---     |
 | error               | If provided input will be set in error state, without error message  | boolean                                       | ---     |
 | fixedHeight         | If provided, Input will preserve the constant height value           | boolean                                       | `false` |
 | label               | Label rendered above the input                                       | string / React.ReactNode                      | ---     |
 | lookupConfig        | Config for keys used to filter and display suggestions values        | {display: string, filter: string}             | ---     |
-| onConfirm           | Callback executed when user clicks "add" button                      | (values: CollectorValue[]) => void             | ---     |
+| onConfirm           | Callback executed when user clicks "add" button                      | (values: CollectorValue[]) => void            | ---     |
 | onCancel            | Callback executed when user clicks "cancel" button                   | () => void                                    | ---     |
 | onDeselect          | Callback executed when user removes already selected item            | (value: CollectorValue) => void               | ---     |
 | onItemAdd           | Callback executed when user adds a custom item to the list.          | (itemName: React.ReactText) => CollectorValue | ---     |

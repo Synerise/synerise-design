@@ -31,6 +31,7 @@ const Collector: React.FC<CollectorProps> = ({
   onDeselect,
   onSelect,
   dropdownContent,
+  disableButtonPanel,
   disableSearch,
   searchValue,
   onSearchValueChange,
@@ -216,20 +217,22 @@ const Collector: React.FC<CollectorProps> = ({
                 : undefined
             }
             disabled={disabled}
-            hideCursor={!!disableSearch}
+            hidden={!!disableSearch}
             placeholder={selectedValues && selectedValues.length ? undefined : texts?.placeholder}
             hasValues={!!selectedValues?.length}
           />
         </S.MainContent>
-        <S.RightSide gradientOverlap={showGradient && !value} focus={isFocused}>
-          <ButtonPanel
-            onCancel={onCancelCallback}
-            onConfirm={onConfirmCallback}
-            disabled={!!disabled}
-            showCancel={!!value || !!selectedValues?.length}
-            texts={texts}
-          />
-        </S.RightSide>
+        {!disableButtonPanel && (
+          <S.RightSide gradientOverlap={showGradient && !value} focus={isFocused}>
+            <ButtonPanel
+              onCancel={onCancelCallback}
+              onConfirm={onConfirmCallback}
+              disabled={!!disabled}
+              showCancel={!!value || !!selectedValues?.length}
+              texts={texts}
+            />
+          </S.RightSide>
+        )}
       </S.CollectorInput>
       <OptionsDropdown
         options={filteredSuggestions}
