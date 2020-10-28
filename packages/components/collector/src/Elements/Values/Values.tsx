@@ -2,7 +2,7 @@ import * as React from 'react';
 import { ValuesProps } from './Values.types';
 import * as S from '../../Collector.styles';
 
-const Values: React.FC<ValuesProps> = ({ values, onRemove, disabled, focused, showLookupKey }: ValuesProps) => {
+const Values: React.FC<ValuesProps> = ({ values, onDeselect, disabled, focused, displayLookupKey }: ValuesProps) => {
   return (
     <>
       {values.map((val, index) => (
@@ -10,9 +10,9 @@ const Values: React.FC<ValuesProps> = ({ values, onRemove, disabled, focused, sh
           // eslint-disable-next-line react/no-array-index-key
           key={`${val}-${index}`}
           onRemoveClick={(): void => {
-            onRemove && onRemove(val);
+            onDeselect && onDeselect(val);
           }}
-          value={val[showLookupKey]}
+          value={val[displayLookupKey]}
           focused={focused}
           disabled={disabled}
         />

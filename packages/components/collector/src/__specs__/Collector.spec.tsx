@@ -3,16 +3,18 @@ import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import * as React from 'react';
 import { fireEvent } from '@testing-library/react';
 
-const SUGGESTIONS = ['Suggestion 1', 'Suggestion 2', 'Other'];
-const SELECTED = ['Suggestion 1', 'Other'];
+const SUGGESTIONS = [{ text: 'Suggestion 1' }, { text: 'Suggestion 2' }, { text: 'Other' }];
+const SELECTED = [{ text: 'Suggestion 1' }, { text: 'Other' }];
 const PLACEHOLDER = 'Select...';
 describe('Collector', () => {
   it('Should render suggestions', () => {
     const onConfirmFn = jest.fn();
+    const onSelectFn = jest.fn();
     const { getByText, getByPlaceholderText } = renderWithProvider(
       <Collector
         allowCustomValue
         allowMultipleValues
+        onSelect={onSelectFn}
         selected={[]}
         suggestions={SUGGESTIONS}
         onConfirm={onConfirmFn}
@@ -26,14 +28,18 @@ describe('Collector', () => {
       />
     );
     getByPlaceholderText(PLACEHOLDER).focus();
-    SUGGESTIONS.map(s => expect(getByText(s)).toBeTruthy());
+    SUGGESTIONS.map(s => expect(getByText(s['text'])).toBeTruthy());
   });
   it('Should render selected values', () => {
     const onConfirmFn = jest.fn();
+    const onSelectFn = jest.fn();
+
     const { getByText } = renderWithProvider(
       <Collector
         allowCustomValue
         allowMultipleValues
+        onSelect={onSelectFn}
+
         selected={SELECTED}
         suggestions={[]}
         onConfirm={onConfirmFn}
@@ -46,15 +52,19 @@ describe('Collector', () => {
         }}
       />
     );
-    SELECTED.map(s => expect(getByText(s)).toBeTruthy());
+    SELECTED.map(s => expect(getByText(s['text'])).toBeTruthy());
   });
   it('Should render added value', () => {
     const onConfirmFn = jest.fn();
+    const onSelectFn = jest.fn();
+
     const newValue = 'That is new!';
     const { getByText, getByPlaceholderText } = renderWithProvider(
       <Collector
         allowCustomValue
         allowMultipleValues
+        onSelect={onSelectFn}
+        onItemAdd={(value)=>({text:value})}
         selected={[]}
         suggestions={[]}
         onConfirm={onConfirmFn}
@@ -75,10 +85,13 @@ describe('Collector', () => {
   });
   it('Should call onConfirm', () => {
     const onConfirmFn = jest.fn();
+    const onSelectFn = jest.fn();
+
     const { getByText } = renderWithProvider(
       <Collector
         allowCustomValue
         allowMultipleValues
+        onSelect={onSelectFn}
         selected={SELECTED}
         suggestions={[]}
         onConfirm={onConfirmFn}
@@ -100,10 +113,12 @@ describe('Collector', () => {
   it('Should call onCancel', () => {
     const onConfirmFn = jest.fn();
     const onCancelFn = jest.fn();
+    const onSelectFn = jest.fn();
     const { getByText } = renderWithProvider(
       <Collector
         allowCustomValue
         allowMultipleValues
+        onSelect={onSelectFn}
         selected={SELECTED}
         suggestions={[]}
         onConfirm={onConfirmFn}

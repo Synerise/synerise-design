@@ -89,11 +89,14 @@ export const RightSide = styled.div<{ gradientOverlap?: boolean; focus?: boolean
     left: -102px;
   }
 `;
-export const Input = styled(BorderLessInput)<DSInputProps & InputProps & { disabled?: boolean; hasValues?: boolean }>`
+export const Input = styled(BorderLessInput)<
+  DSInputProps & InputProps & { disabled?: boolean; hasValues?: boolean; hideCursor: boolean }
+>`
   margin: ${(props): string => (props.hasValues ? '6px 0 6px 12px' : '4px 0 4px 12px')};
   padding: 1px 0;
   min-width: unset;
   line-height: 18px;
+  ${(props): string | false => props.hideCursor && 'color: transparent;'}
 `;
 export { Value as CollectorValue };
 export { ContentAbove };
@@ -104,6 +107,9 @@ export { ErrorText };
 export { ValueText };
 export const DropdownWrapper = styled.div`
   position: relative;
+`;
+export const CustomContentWrapper = styled.div`
+  position: absolute;
 `;
 export const DropdownContent = styled.div<{ visible?: boolean }>`
   background: ${(props): string => props.theme.palette.white};

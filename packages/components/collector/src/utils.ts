@@ -3,7 +3,7 @@ import { CollectorValue } from './Collector.types';
 
 const INPUT_MIN_WIDTH = 150;
 export const arrayToLowerCase = (array: CollectorValue[] = [], lookupKey: string): CollectorValue[] =>
-  array.map(element => ({ ...element, [lookupKey]: (element[lookupKey] as string).toLowerCase() }));
+  array.map(element => ({ ...element, [lookupKey]:  element[lookupKey] && (element[lookupKey] as string).toLowerCase() }));
 
 export const scrollWithHorizontalArrow = (
   ref: React.RefObject<HTMLElement>,
@@ -35,6 +35,6 @@ export const filterValueSuggestions = (
   return suggestions.filter(
     item =>
       (item[lookupKey] as string).toLowerCase().includes(searchValue.toLowerCase()) &&
-      !selectedLowerCase.includes(item[lookupKey].toLowerCase())
+      !selectedLowerCase.find(x=> x[lookupKey] && item[lookupKey] && x[lookupKey]===item[lookupKey].toLowerCase())
   );
 };

@@ -6,17 +6,24 @@ export type CollectorProps = {
   className?: string;
   description?: React.ReactNode | string;
   disabled?: boolean;
+  disableSearch?: boolean;
+  dropdownContent?: React.ReactNode;
   error?: boolean;
   errorText?: React.ReactNode | string;
   fixedHeight?: boolean;
   label?: React.ReactNode | string;
-  onConfirm: (values: string[]) => void;
+  lookupConfig?: LookupConfig;
+  onSearchValueChange?: (value: string) => void;
+  onConfirm: (values: CollectorValue[]) => void;
   onCancel?: () => void;
+  onDeselect?: (item: CollectorValue) => void;
+  onItemAdd?: (itemName: React.ReactText) => CollectorValue;
+  onSelect: (item: CollectorValue) => void;
   showNavigationHints?: boolean;
+  searchValue?: string;
   selected: CollectorValue[];
   suggestions: CollectorValue[];
   texts: CollectorTexts;
-  lookupConfig: LookupConfig;
 };
 export type CollectorTexts = {
   add: string | React.ReactNode;
@@ -28,8 +35,8 @@ export type CollectorTexts = {
 
 export type LookupConfig = {
   filter: string;
-  show: string;
-}
+  display: string;
+};
 export type CollectorValue = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [key: string]: any;
