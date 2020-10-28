@@ -217,7 +217,8 @@ const Collector: React.FC<CollectorProps> = ({
                 : undefined
             }
             disabled={disabled}
-            hidden={!!disableSearch}
+            transparent={!!disableSearch}
+            hidden={!!disableSearch && !!selectedValues.length}
             placeholder={selectedValues && selectedValues.length ? undefined : texts?.placeholder}
             hasValues={!!selectedValues?.length}
           />
