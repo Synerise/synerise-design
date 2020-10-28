@@ -90,7 +90,7 @@ export const RightSide = styled.div<{ gradientOverlap?: boolean; focus?: boolean
   }
 `;
 export const Input = styled(BorderLessInput)<
-  DSInputProps & InputProps & { disabled?: boolean; hasValues?: boolean; hidden: boolean }
+  DSInputProps & InputProps & { disabled?: boolean; hasValues?: boolean; transparent: boolean; hidden: boolean }
 >`
   margin: ${(props): string => (props.hasValues ? '6px 0 6px 12px' : '4px 0 4px 12px')};
   padding: 1px 0;
@@ -99,8 +99,13 @@ export const Input = styled(BorderLessInput)<
   ${(props): FlattenSimpleInterpolation | false =>
     props.hidden &&
     css`
-      color: transparent;
       display: none;
+    `}
+    
+  ${(props): FlattenSimpleInterpolation | false =>
+    props.transparent &&
+    css`
+      color: transparent;
     `}
 `;
 export { Value as CollectorValue };

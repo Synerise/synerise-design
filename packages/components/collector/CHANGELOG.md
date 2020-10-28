@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.23](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@0.1.22...@synerise/ds-collector@0.1.23) (2020-10-28)
+
+
+### Bug Fixes
+
+* **collector:** add an option to hide right panel ([16594cf](https://github.com/Synerise/synerise-design/commit/16594cfc13fe666fc87d6e93ddc30cc098b0fd5f))
+
+
+
+
+
 ## [0.1.22](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@0.1.21...@synerise/ds-collector@0.1.22) (2020-10-28)
 
 
