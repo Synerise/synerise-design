@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.24](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@0.1.23...@synerise/ds-collector@0.1.24) (2020-10-28)
+
+
+### Bug Fixes
+
+* **collector:** show placeholder when searching is disabled ([4ec5521](https://github.com/Synerise/synerise-design/commit/4ec55217713a5e5c2a7fa5981349be51b0982f70))
+
+
+
+
+
 ## [0.1.23](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@0.1.22...@synerise/ds-collector@0.1.23) (2020-10-28)
 
 
