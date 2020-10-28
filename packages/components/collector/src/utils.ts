@@ -1,7 +1,9 @@
 import * as React from 'react';
+import { CollectorValue } from './Collector.types';
 
 const INPUT_MIN_WIDTH = 150;
-export const arrayToLowerCase = (array: string[] = []): string[] => array.map(element => element.toLowerCase());
+export const arrayToLowerCase = (array: CollectorValue[] = [], lookupKey: string): CollectorValue[] =>
+  array.map(element => ({ ...element, [lookupKey]:  element[lookupKey] && (element[lookupKey] as string).toLowerCase() }));
 
 export const scrollWithHorizontalArrow = (
   ref: React.RefObject<HTMLElement>,
@@ -23,9 +25,16 @@ export const isOverflown = (elementRef: React.RefObject<HTMLDivElement>): boolea
   }
   return false;
 };
-export const filterValueSuggestions = (suggestions: string[], selected: string[], searchValue: string): string[] => {
-  const selectedLowerCase = arrayToLowerCase(selected);
+export const filterValueSuggestions = (
+  suggestions: CollectorValue[],
+  selected: CollectorValue[],
+  searchValue: string,
+  lookupKey: string
+): CollectorValue[] => {
+  const selectedLowerCase = arrayToLowerCase(selected, lookupKey);
   return suggestions.filter(
-    item => item.toLowerCase().includes(searchValue.toLowerCase()) && !selectedLowerCase.includes(item.toLowerCase())
+    item =>
+      (item[lookupKey] as string).toLowerCase().includes(searchValue.toLowerCase()) &&
+      !selectedLowerCase.find(x=> x[lookupKey] && item[lookupKey] && x[lookupKey]===item[lookupKey].toLowerCase())
   );
 };

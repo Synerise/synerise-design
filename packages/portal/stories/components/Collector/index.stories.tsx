@@ -7,13 +7,16 @@ import { InfoFillS } from '@synerise/ds-icon/dist/icons';
 import Icon from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { v4 as uuid } from 'uuid';
 
 const decorator = storyFn => <div style={{ width: '588px' }}>{storyFn()}</div>;
 const getSuggestions = () => {
   const result = [];
   for (let i = 10; i < 36; i++) {
     for (let j = 0; j < 36; j++) {
-      result.push(`Option ${i.toString(36).toUpperCase()}${j.toString(36).toUpperCase()}`);
+      result.push({
+        text: `Option ${i.toString(36).toUpperCase()}${j.toString(36).toUpperCase()}`,
+      });
     }
   }
   return result;
@@ -46,17 +49,29 @@ const stories = {
   default: () => {
     const tooltipText = text('Set tooltip text', 'Tooltip');
     const labelText = text('Set label', 'Label');
+    const [selected, setSelected] = React.useState<any[]>([]);
     return (
       <Collector
         allowCustomValue={boolean('Allow custom values', true)}
         allowMultipleValues={boolean('Allow multiple values', true)}
-        selected={[]}
+        selected={selected}
         label={renderLabel(labelText, tooltipText)}
         disabled={boolean('Set disabled', false)}
         description={text('Set description', 'Description')}
         errorText={text('Set error text', '')}
-        suggestions={getSuggestions()}
+        suggestions={getSuggestions().filter(suggestion=>!selected.includes(suggestion))}
         fixedHeight={boolean('Set fixed height', false)}
+        onItemAdd={value => ({
+          text: value,
+        })}
+        onSelect={item => {
+          if (!selected.find(i => i.text === item.text)) {
+            setSelected([...selected, item]);
+          }
+        }}
+        onDeselect={item => {
+            setSelected(selected.filter(i => i.text !== item.text));
+        }}
         showNavigationHints={boolean('Show navigation hints', true)}
         texts={{
           add: 'Add',

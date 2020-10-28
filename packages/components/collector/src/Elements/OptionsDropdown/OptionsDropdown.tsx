@@ -8,6 +8,7 @@ import Divider from '@synerise/ds-divider';
 import * as S from '../../Collector.styles';
 import { OptionsDropdownProps } from './OptionsDropdown.types';
 import NavigationHint from '../NavigationHint/NavigationHint';
+import { CollectorValue } from '../../Collector.types';
 
 const OptionsDropdown: React.FC<OptionsDropdownProps> = ({
   showAddButton,
@@ -17,8 +18,11 @@ const OptionsDropdown: React.FC<OptionsDropdownProps> = ({
   onSelect,
   onClick,
   width,
+  onItemAdd,
   showNavigationHints,
+  lookupKey,
   texts,
+  customContent,
 }: OptionsDropdownProps) => {
   const [scrollTop, setScrollTop] = React.useState<number>(0);
   React.useEffect(() => {
@@ -26,48 +30,53 @@ const OptionsDropdown: React.FC<OptionsDropdownProps> = ({
   }, [visible]);
   return (
     <S.DropdownWrapper onClick={onClick}>
-      {visible && (
-        <S.DropdownContent>
-          <Scrollbar
-            absolute
-            onScroll={({ currentTarget }: React.SyntheticEvent): void => {
-              setScrollTop(currentTarget.scrollTop);
-            }}
-          >
-            {showAddButton && !!value && (
-              <S.DropdownTop>
-                <S.DropdownAddButton
-                  onClick={(): void => {
-                    onSelect && onSelect(value);
-                  }}
-                  type="ghost"
-                  mode="icon-label"
-                >
-                  <Icon component={<Add3M />} />
-                  <span>{texts?.add}</span>
-                  <strong>{value}</strong>
-                </S.DropdownAddButton>
-                {options?.length > 0 && (
-                  <S.DividerContainer>
-                    <Divider dashed />
-                  </S.DividerContainer>
+      {visible &&
+        (customContent ? (
+          <S.CustomContentWrapper>{customContent}</S.CustomContentWrapper>
+        ) : (
+          <S.DropdownContent>
+            <Scrollbar
+              absolute
+              onScroll={({ currentTarget }: React.SyntheticEvent): void => {
+                setScrollTop(currentTarget.scrollTop);
+              }}
+            >
+              {showAddButton && onItemAdd && !!value && (
+                <S.DropdownTop>
+                  <S.DropdownAddButton
+                    onClick={(): void => {
+                      onItemAdd && onItemAdd(value);
+                    }}
+                    type="ghost"
+                    mode="icon-label"
+                  >
+                    <Icon component={<Add3M />} />
+                    <span>{texts?.add}</span>
+                    <strong>{value}</strong>
+                  </S.DropdownAddButton>
+                  {options?.length > 0 && (
+                    <S.DividerContainer>
+                      <Divider dashed />
+                    </S.DividerContainer>
+                  )}
+                </S.DropdownTop>
+              )}
+              <SearchItems
+                data={options}
+                highlight={value as string}
+                visibleRows={6}
+                onItemClick={onSelect}
+                itemRender={(val: CollectorValue): React.ReactElement => (
+                  <Menu.Item key={`${val}`}>{val[lookupKey]}</Menu.Item>
                 )}
-              </S.DropdownTop>
-            )}
-            <SearchItems
-              data={options}
-              highlight={value as string}
-              visibleRows={6}
-              onItemClick={onSelect}
-              itemRender={(val: React.ReactText): React.ReactElement => <Menu.Item key={`${val}`}>{val}</Menu.Item>}
-              rowHeight={32}
-              width={width}
-              listProps={{ scrollTop }}
-            />
-          </Scrollbar>
-          {showNavigationHints && <NavigationHint texts={texts} />}
-        </S.DropdownContent>
-      )}
+                rowHeight={32}
+                width={width}
+                listProps={{ scrollTop }}
+              />
+            </Scrollbar>
+            {showNavigationHints && <NavigationHint texts={texts} />}
+          </S.DropdownContent>
+        ))}
     </S.DropdownWrapper>
   );
 };
