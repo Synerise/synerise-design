@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.7](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.13.6...@synerise/ds-button@0.13.7) (2020-10-28)
+
+
+### Bug Fixes
+
+* **button:** changed hover state accordingly to thte deisgn ([170a754](https://github.com/synerise/synerise-design/commit/170a754893534c04c634d1cb2872e950e7f9a977))
+* **button:** pressed state on firefox and safari fix ([5849074](https://github.com/synerise/synerise-design/commit/5849074956eb5daac60801415322a133fa821496))
+* **button:** removed important from style of the svg-s ([5dfd20e](https://github.com/synerise/synerise-design/commit/5dfd20e62ed1d7b569d3a07d0c88427f20092fa0))
+* **button:** split type, changed a pressed state on secondary button ([37a1fc9](https://github.com/synerise/synerise-design/commit/37a1fc99f86015009779c5a26761706fc925713a))
+
+
+
+
+
 ## [0.13.6](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.13.5...@synerise/ds-button@0.13.6) (2020-10-22)
 
 **Note:** Version bump only for package @synerise/ds-button
