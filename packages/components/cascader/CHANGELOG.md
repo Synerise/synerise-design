@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.74](https://github.com/Synerise/synerise-design/compare/@synerise/ds-cascader@0.1.73...@synerise/ds-cascader@0.1.74) (2020-10-28)
+
+
+### Bug Fixes
+
+* **cascader:** clicking on breadcrumb returns full category ([b236ec9](https://github.com/Synerise/synerise-design/commit/b236ec9237817761f2a60ce5e319476c80db0264))
+
+
+
+
+
 ## [0.1.73](https://github.com/Synerise/synerise-design/compare/@synerise/ds-cascader@0.1.72...@synerise/ds-cascader@0.1.73) (2020-10-28)
 
 **Note:** Version bump only for package @synerise/ds-cascader

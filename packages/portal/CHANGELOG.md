@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.102.1](https://github.com/synerise/synerise-design/compare/portal@0.102.0...portal@0.102.1) (2020-10-28)
+
+
+### Bug Fixes
+
+* **collector:** add an option to hide right panel ([16594cf](https://github.com/synerise/synerise-design/commit/16594cfc13fe666fc87d6e93ddc30cc098b0fd5f))
+
+
+
+
+
 # [0.102.0](https://github.com/synerise/synerise-design/compare/portal@0.101.1...portal@0.102.0) (2020-10-28)
 
 
