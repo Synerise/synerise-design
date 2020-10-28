@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.102.0](https://github.com/synerise/synerise-design/compare/portal@0.101.1...portal@0.102.0) (2020-10-28)
+
+
+### Bug Fixes
+
+* **collector:** use object array instead of string array as entry ([a23f4f4](https://github.com/synerise/synerise-design/commit/a23f4f493b1880ff426cc92091889d72aec440ca))
+* **collector:** used objects instead of strings as input ([9a6a5a7](https://github.com/synerise/synerise-design/commit/9a6a5a75450917c550e229481c1e41e3ae913080))
+* **input:** fix date mask ([324ed87](https://github.com/synerise/synerise-design/commit/324ed87ad226561bed384e2c0a12cdefb6be06df))
+* **portal:** added icons in header knobs in table stories ([b7e12c4](https://github.com/synerise/synerise-design/commit/b7e12c49e66e79fc17f1f58a21cb2bc869b8f04c))
+* **select:** add prop highlight ([7a68a2d](https://github.com/synerise/synerise-design/commit/7a68a2d42126ac268ac0d9b3ad4e7d9265d65b06))
+* **select:** add prop highlight ([f9b9ba8](https://github.com/synerise/synerise-design/commit/f9b9ba8ce162945d7e2ebb579ba46e804a16ba94))
+* **table:** iconTooltipCell - render label only when provided ([f8898f6](https://github.com/synerise/synerise-design/commit/f8898f6812632910ac5786caaa39ef0f1bfc85ab))
+
+
+### Features
+
+* **table:** added IconTooltipCell ([f08cae9](https://github.com/synerise/synerise-design/commit/f08cae9138e57f3bbbbd5525f40dcca32291da37))
+
+
+
+
+
 ## [0.101.1](https://github.com/synerise/synerise-design/compare/portal@0.101.0...portal@0.101.1) (2020-10-22)
 
 **Note:** Version bump only for package portal

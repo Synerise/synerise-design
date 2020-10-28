@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.15.17](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.15.16...@synerise/ds-input@0.15.17) (2020-10-28)
+
+
+### Bug Fixes
+
+* **input:** add tooltip to inputMultivalue ([1430535](https://github.com/synerise/synerise-design/commit/14305353658334df5b4427272c30b825280fa73f))
+
+
+
+
+
 ## [0.15.16](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.15.15...@synerise/ds-input@0.15.16) (2020-10-22)
 
 **Note:** Version bump only for package @synerise/ds-input

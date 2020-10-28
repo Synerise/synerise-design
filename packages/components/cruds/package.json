@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-cruds",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "Cruds UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -25,15 +25,15 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-button": "^0.13.6",
+    "@synerise/ds-button": "^0.13.7",
     "@synerise/ds-icon": "^0.33.1",
-    "@synerise/ds-tooltip": "^0.8.7"
+    "@synerise/ds-tooltip": "^0.8.8"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
     "react": ">=16.9.0 < 17.0.0"
   },
   "devDependencies": {
-    "@synerise/ds-utils": "^0.11.4"
+    "@synerise/ds-utils": "^0.11.5"
   }
 }

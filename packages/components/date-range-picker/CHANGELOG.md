@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.5.4...@synerise/ds-date-range-picker@0.5.5) (2020-10-28)
+
+
+### Bug Fixes
+
+* **date-range-picker:** add prop highlight to function ([0a1e656](https://github.com/Synerise/synerise-design/commit/0a1e6568be8e36b1b94f24096793c7b0565abd36))
+* **date-range-picker:** add prop highlight to function ([683364c](https://github.com/Synerise/synerise-design/commit/683364c753885345550d1eaf73a5eb6e87a0cd93))
+
+
+
+
+
+## [0.5.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.5.3...@synerise/ds-date-range-picker@0.5.4) (2020-10-26)
+
+**Note:** Version bump only for package @synerise/ds-date-range-picker
+
+
+
+
+
 ## [0.5.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.5.2...@synerise/ds-date-range-picker@0.5.3) (2020-10-22)
 
 **Note:** Version bump only for package @synerise/ds-date-range-picker

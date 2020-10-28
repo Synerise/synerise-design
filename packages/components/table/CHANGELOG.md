@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.26.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.25.13...@synerise/ds-table@0.26.0) (2020-10-28)
+
+
+### Bug Fixes
+
+* **table:** iconTooltipCell - render label only when provided ([f8898f6](https://github.com/synerise/synerise-design/commit/f8898f6812632910ac5786caaa39ef0f1bfc85ab))
+
+
+### Features
+
+* **table:** added IconTooltipCell ([f08cae9](https://github.com/synerise/synerise-design/commit/f08cae9138e57f3bbbbd5525f40dcca32291da37))
+
+
+
+
+
+## [0.25.13](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.25.12...@synerise/ds-table@0.25.13) (2020-10-26)
+
+**Note:** Version bump only for package @synerise/ds-table
+
+
+
+
+
 ## [0.25.12](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.25.11...@synerise/ds-table@0.25.12) (2020-10-22)
 
 **Note:** Version bump only for package @synerise/ds-table

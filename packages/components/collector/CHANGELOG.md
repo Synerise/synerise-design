@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.22](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@0.1.21...@synerise/ds-collector@0.1.22) (2020-10-28)
+
+
+### Bug Fixes
+
+* **collector:** object instead of string ([727dafb](https://github.com/Synerise/synerise-design/commit/727dafb0280a74eff7eea8ab144272bf9ad4b3c3))
+* **collector:** use object array instead of string array as entry ([a23f4f4](https://github.com/Synerise/synerise-design/commit/a23f4f493b1880ff426cc92091889d72aec440ca))
+* **collector:** used objects instead of strings as input ([9a6a5a7](https://github.com/Synerise/synerise-design/commit/9a6a5a75450917c550e229481c1e41e3ae913080))
+
+
+
+
+
 ## [0.1.21](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@0.1.20...@synerise/ds-collector@0.1.21) (2020-10-22)
 
 **Note:** Version bump only for package @synerise/ds-collector

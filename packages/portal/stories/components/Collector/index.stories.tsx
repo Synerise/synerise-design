@@ -59,7 +59,7 @@ const stories = {
         disabled={boolean('Set disabled', false)}
         description={text('Set description', 'Description')}
         errorText={text('Set error text', '')}
-        suggestions={getSuggestions().filter(suggestion=>!selected.includes(suggestion))}
+        suggestions={getSuggestions().filter(suggestion => !selected.includes(suggestion))}
         fixedHeight={boolean('Set fixed height', false)}
         onItemAdd={value => ({
           text: value,
@@ -70,7 +70,7 @@ const stories = {
           }
         }}
         onDeselect={item => {
-            setSelected(selected.filter(i => i.text !== item.text));
+          setSelected(selected.filter(i => i.text !== item.text));
         }}
         showNavigationHints={boolean('Show navigation hints', true)}
         texts={{

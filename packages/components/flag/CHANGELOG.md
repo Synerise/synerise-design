@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-flag@0.2.5...@synerise/ds-flag@0.2.6) (2020-10-28)
+
+
+### Performance Improvements
+
+* **flag:** reduced bundle by removing plain svg files ([329a710](https://github.com/Synerise/synerise-design/commit/329a7105f24dbd3562cdb5c28e5bd22e0b412d86))
+
+
+
+
+
 ## [0.2.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-flag@0.2.4...@synerise/ds-flag@0.2.5) (2020-10-22)
 
 **Note:** Version bump only for package @synerise/ds-flag
