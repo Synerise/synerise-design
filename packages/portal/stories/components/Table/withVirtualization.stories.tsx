@@ -7,8 +7,9 @@ import { withState } from '@dump247/storybook-state';
 import { boolean, text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import Button from '@synerise/ds-button';
-import { AddM } from '@synerise/ds-icon/dist/icons';
+import { AddM, InfoFillS, VarTypeStringM } from '@synerise/ds-icon/dist/icons';
 import Icon from '@synerise/ds-icon';
+import { renderWithIconInHeaders } from './helpers/helpers';
 
 const decorator = storyFn => <div style={{ padding: 20, width: '100vw', minWidth: '100%' }}>{storyFn()}</div>;
 
@@ -22,6 +23,8 @@ const columns = [
     title: 'User name',
     key: 'name',
     dataIndex: 'name',
+    icon: { component: <VarTypeStringM/>},
+    iconTooltip: { component: <InfoFillS/>},
   },
 ];
 
@@ -56,7 +59,7 @@ const stories = {
           initialWidth={792}
           title={`${filteredDataSource().length} ${text('Set name of table items', 'results')}`}
           dataSource={filteredDataSource()}
-          columns={columns}
+          columns={renderWithIconInHeaders(columns,boolean('Set icons in headers', false))}
           cellHeight={50}
           rowKey={row => row.key}
           headerButton={

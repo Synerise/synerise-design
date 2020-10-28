@@ -3,21 +3,14 @@ import faker from 'faker';
 import { action } from '@storybook/addon-actions';
 import { boolean, select, text } from '@storybook/addon-knobs';
 import Table from '@synerise/ds-table';
-import {
-  AddM,
-  MailM,
-} from '@synerise/ds-icon/dist/icons';
+import { AddM, MailM } from '@synerise/ds-icon/dist/icons';
 import { TagShape } from '@synerise/ds-tags';
 import { COLUMNS } from './content/withAllCellTypes.data';
 import Button from '@synerise/ds-button';
 import Icon from '@synerise/ds-icon';
+import { Column, renderWithIconInHeaders } from './helpers/helpers';
 
-
-const decorator = (storyFn) => (
-  <div style={{ padding: 20, width: '100vw', minWidth: '100%' }}>
-    {storyFn()}
-  </div>
-);
+const decorator = storyFn => <div style={{ padding: 20, width: '100vw', minWidth: '100%' }}>{storyFn()}</div>;
 
 const dataSource = [...new Array(55)].map((i, k) => ({
   key: k + 1,
@@ -32,10 +25,7 @@ const dataSource = [...new Array(55)].map((i, k) => ({
     icon: <MailM />,
     title: 'Top 10 product add to cart',
     status: 'active',
-    labels: [
-      'Text AB/X',
-      'Edited 11 Jun 2019 18:47',
-    ],
+    labels: ['Text AB/X', 'Edited 11 Jun 2019 18:47'],
   },
   select: {
     value: faker.random.arrayElement(['option 1', 'option 2', 'option 3']),
@@ -61,7 +51,7 @@ const stories = {
     title: `${dataSource.length} results`,
     hideTitleBar: boolean('Hide title bar', false),
     dataSource,
-    columns: COLUMNS,
+    columns: renderWithIconInHeaders(COLUMNS as Column[], boolean('Set icons in headers', false)),
     loading: boolean('Set loading state', false),
     roundedHeader: boolean('Rounded header', false),
     pagination: {
@@ -69,10 +59,10 @@ const stories = {
       showQuickJumper: boolean('Show quick jumper', true),
       onChange: action('pageChanged'),
     },
-    locale:{
+    locale: {
       pagination: {
         items: 'results',
-      }
+      },
     },
     scroll: {
       x: false,
@@ -84,7 +74,7 @@ const stories = {
         <Icon component={<AddM />} />
         {text('Header button label', 'Add row')}
       </Button>
-    )
+    ),
   }),
 };
 

@@ -1,11 +1,11 @@
 import * as React from 'react';
 import classNames from 'classnames';
 import { focusWithArrowKeys, useOnClickOutside } from '@synerise/ds-utils';
-import { CollectorProps } from './Collector.types';
+import { CollectorProps, CollectorValue } from './Collector.types';
 import * as S from './Collector.styles';
 import ButtonPanel from './Elements/ButtonPanel/ButtonPanel';
 import OptionsDropdown from './Elements/OptionsDropdown/OptionsDropdown';
-import { arrayToLowerCase, filterValueSuggestions, isOverflown, scrollWithHorizontalArrow } from './utils';
+import { filterValueSuggestions, isOverflown, scrollWithHorizontalArrow } from './utils';
 import Values from './Elements/Values/Values';
 
 const DROPDOWN_PADDING = 2 * 8;
@@ -26,6 +26,14 @@ const Collector: React.FC<CollectorProps> = ({
   disabled,
   fixedHeight,
   texts,
+  lookupConfig,
+  onItemAdd,
+  onDeselect,
+  onSelect,
+  dropdownContent,
+  disableSearch,
+  searchValue,
+  onSearchValueChange,
 }) => {
   const inputRef = React.useRef<HTMLInputElement>(null);
   const containerRef = React.useRef<HTMLDivElement>(null);
@@ -33,11 +41,15 @@ const Collector: React.FC<CollectorProps> = ({
   const [isFocused, setFocused] = React.useState<boolean>(false);
   const [showGradient, setShowGradient] = React.useState<boolean>(false);
   const [scrollLeft, setScrollLeft] = React.useState<number>(0);
-  const [value, setValue] = React.useState<string>('');
-  const [selectedValues, setSelectedValues] = React.useState<string[]>(selected && allowMultipleValues ? selected : []);
-  const [filteredSuggestions, setFilteredSuggestions] = React.useState<string[]>(suggestions || []);
+  const [value, setValue] = React.useState<string>(searchValue || '');
+  const [selectedValues, setSelectedValues] = React.useState<CollectorValue[]>(
+    selected && allowMultipleValues ? selected : []
+  );
+  const [filteredSuggestions, setFilteredSuggestions] = React.useState<CollectorValue[]>(suggestions || []);
 
-  const lowerCaseSelected = React.useMemo(() => arrayToLowerCase(selectedValues), [selectedValues]);
+  const filterLookupKey = React.useMemo(() => lookupConfig?.filter || 'text', [lookupConfig]);
+  const displayLookupKey = React.useMemo(() => lookupConfig?.display || 'text', [lookupConfig]);
+
   const onFocusCallback = React.useCallback(
     (e: React.FocusEvent<HTMLDivElement>): void => {
       e.preventDefault();
@@ -50,16 +62,20 @@ const Collector: React.FC<CollectorProps> = ({
   );
   const filterSuggestions = React.useCallback(
     (val: string): void => {
-      const filtered = filterValueSuggestions(suggestions, selectedValues, val);
+      const filtered = filterValueSuggestions(suggestions, selectedValues, val, filterLookupKey);
       setFilteredSuggestions(filtered);
     },
-    [suggestions, selectedValues]
+    [suggestions, selectedValues, filterLookupKey]
   );
   React.useEffect(() => {
     setSelectedValues(selected && allowMultipleValues ? selected : []);
     setFilteredSuggestions(suggestions || []);
-    setValue('');
+    allowMultipleValues && setValue('');
   }, [allowMultipleValues, allowCustomValue, selected, suggestions]);
+
+  React.useEffect(() => {
+    searchValue && setValue(searchValue as string);
+  }, [searchValue]);
 
   React.useEffect((): void => {
     if (fixedHeight) {
@@ -73,28 +89,6 @@ const Collector: React.FC<CollectorProps> = ({
     filterSuggestions(value);
   }, [value, selectedValues, filterSuggestions]);
 
-  const selectValue = React.useCallback(
-    val => {
-      const trimmedValue = val.trim();
-      if (allowMultipleValues && !!trimmedValue && lowerCaseSelected.indexOf(trimmedValue.toLowerCase()) === -1) {
-        setSelectedValues([...selectedValues, trimmedValue]);
-        setFilteredSuggestions(
-          filteredSuggestions.filter(
-            suggestion =>
-              suggestion.toLowerCase() !== trimmedValue.toLowerCase() &&
-              !arrayToLowerCase(selectedValues).includes(suggestion.toLowerCase())
-          )
-        );
-        setValue('');
-        return;
-      }
-      if (!allowMultipleValues) {
-        setValue(val);
-      }
-    },
-    [selectedValues, filteredSuggestions, lowerCaseSelected, allowMultipleValues]
-  );
-
   const clear = React.useCallback((): void => {
     setSelectedValues([]);
     setValue('');
@@ -106,12 +100,16 @@ const Collector: React.FC<CollectorProps> = ({
         suggestion => suggestion.trim().toLowerCase() === value.trim().toLowerCase()
       );
       if (allowMultipleValues && (allowCustomValue || suggestionsIncludesCurrentValue)) {
-        selectValue(value);
+        const newValue = onItemAdd && onItemAdd(value);
+        newValue && onSelect(newValue);
         return;
       }
       if (!allowMultipleValues) {
         if (allowCustomValue || suggestionsIncludesCurrentValue) {
-          onConfirm && onConfirm([value]);
+          const newValue = onItemAdd && onItemAdd(value);
+          if (newValue) {
+            onConfirm && onConfirm([newValue]);
+          }
           clear();
         }
       }
@@ -134,13 +132,24 @@ const Collector: React.FC<CollectorProps> = ({
       return;
     }
     const suggestionsIncludesCurrentValue = filteredSuggestions.some(
-      suggestion => suggestion.trim().toLowerCase() === value.trim().toLowerCase()
+      suggestion => suggestion[filterLookupKey]?.trim()?.toLowerCase() === value.trim().toLowerCase()
     );
     if (allowCustomValue || suggestionsIncludesCurrentValue) {
-      onConfirm && onConfirm([value]);
+      const newValue = onItemAdd && onItemAdd(value);
+      newValue && onConfirm && onConfirm([newValue]);
       clear();
     }
-  }, [selectedValues, clear, onConfirm, value, filteredSuggestions, allowMultipleValues, allowCustomValue]);
+  }, [
+    selectedValues,
+    clear,
+    onConfirm,
+    value,
+    filteredSuggestions,
+    allowMultipleValues,
+    allowCustomValue,
+    onItemAdd,
+    filterLookupKey,
+  ]);
 
   const getContainerWidth = React.useCallback(
     (): number => Number(containerRef.current?.offsetWidth) - DROPDOWN_PADDING,
@@ -150,7 +159,6 @@ const Collector: React.FC<CollectorProps> = ({
   useOnClickOutside(containerRef, (): void => {
     setFocused(false);
   });
-
   const showError = error || !!errorText;
   return (
     <S.Container
@@ -189,22 +197,26 @@ const Collector: React.FC<CollectorProps> = ({
         >
           <Values
             values={selectedValues}
-            onRemove={(val: React.ReactText): void => {
-              const filtered = selectedValues.filter(v => v !== val);
-              setSelectedValues(filtered);
-            }}
+            onDeselect={onDeselect}
             focused={isFocused}
             disabled={!!disabled}
+            displayLookupKey={displayLookupKey}
           />
           <S.Input
             onKeyDown={handleKeyDown}
             ref={inputRef}
             value={value}
-            onChange={(e): void => {
-              setValue(e.target.value);
-              filterSuggestions(e.target.value);
-            }}
+            onChange={
+              !disableSearch
+                ? (e): void => {
+                    onSearchValueChange && onSearchValueChange(e.target.value);
+                    setValue(e.target.value);
+                    filterSuggestions(e.target.value);
+                  }
+                : undefined
+            }
             disabled={disabled}
+            hideCursor={!!disableSearch}
             placeholder={selectedValues && selectedValues.length ? undefined : texts?.placeholder}
             hasValues={!!selectedValues?.length}
           />
@@ -221,13 +233,18 @@ const Collector: React.FC<CollectorProps> = ({
       </S.CollectorInput>
       <OptionsDropdown
         options={filteredSuggestions}
+        onItemAdd={onItemAdd}
+        lookupKey={displayLookupKey}
         value={value}
         visible={
           isFocused &&
           !disabled &&
           (filteredSuggestions.length > 0 || (!!value && allowMultipleValues && allowCustomValue))
         }
-        onSelect={selectValue}
+        onSelect={(item): void => {
+          onSelect && onSelect(item);
+          !allowMultipleValues && item[displayLookupKey] && setValue(item[displayLookupKey]);
+        }}
         onClick={(): void => {
           if (inputRef?.current) {
             inputRef.current.focus();
@@ -236,6 +253,7 @@ const Collector: React.FC<CollectorProps> = ({
         showAddButton={allowCustomValue && allowMultipleValues}
         showNavigationHints={showNavigationHints}
         width={getContainerWidth()}
+        customContent={dropdownContent}
         texts={texts}
       />
       {(showError || description) && (

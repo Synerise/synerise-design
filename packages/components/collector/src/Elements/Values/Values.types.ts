@@ -1,8 +1,9 @@
-import * as React from 'react';
+import { CollectorValue } from '../../Collector.types';
 
 export type ValuesProps = {
-  values: React.ReactText[];
-  onRemove: (removedValue: React.ReactText) => void;
+  values: CollectorValue[];
+  onDeselect?: (value: CollectorValue) => void;
   focused: boolean;
   disabled: boolean;
+  displayLookupKey: string;
 };

@@ -20,7 +20,19 @@ const splitType = {
   secondary: 'secondary',
   tertiary: 'tertiary',
 };
-
+const pressedStyles = (props: ThemeProps): FlattenSimpleInterpolation => css`
+  color: ${props.theme.palette['blue-600']};
+  background: ${props.theme.palette['blue-100']};
+  svg {
+    fill: ${props.theme.palette['blue-600']};
+  }
+  &.ant-btn .btn-focus {
+    box-shadow: inset 0 0 0 1px ${props.theme.palette['blue-200']};
+  }
+  > span:not(.btn-focus) + .ds-icon:before {
+    background-color: ${props.theme.palette['blue-200']};
+  }
+`;
 const spinnerAnimation = keyframes`
   from {
     transform: rotateZ(0deg);
@@ -41,7 +53,6 @@ const rippleAnimation = keyframes`
     transform: scale(20);
   }
 `;
-
 export const Spinner = styled.div`
   position: absolute !important;
   top: 0;
@@ -101,9 +112,21 @@ export const ButtonFocus = styled.div`
 
 // eslint-disable-next-line react/jsx-props-no-spreading
 export const AntdButton = styled(
-  ({ mode, type, loading, justifyContent, groupVariant, customColor, rightIconSize, leftIconSize, ...rest }) => {
+  ({
+    mode,
+    type,
+    loading,
+    justifyContent,
+    groupVariant,
+    customColor,
+    rightIconSize,
+    leftIconSize,
+    pressed,
+    size,
+    ...rest
+  }) => {
     // eslint-disable-next-line react/jsx-props-no-spreading
-    return <Button type={type === 'custom-color-ghost' ? 'ghost-primary' : type} {...rest} />;
+    return <Button type={type === 'custom-color-ghost' ? 'ghost-primary' : type} size={size} {...rest} />;
   }
 )`  
   && {
@@ -132,7 +155,27 @@ export const AntdButton = styled(
       width: 24px;
       height: 24px;
     }
-    &&.ant-btn-secondary{
+    &&.ant-btn-secondary:not(.ds-expander){
+      &:active{
+        ${(props): FlattenSimpleInterpolation => pressedStyles(props)}
+      }
+      &:focus:not(:active) {
+              color: ${(props): string => props.theme.palette['blue-600']};
+        svg {
+          fill: ${(props): string => props.theme.palette['blue-600']};
+        }
+        background: ${(props): string => props.theme.palette['blue-050']};
+      }
+      &:hover:not(:disabled):not(:focus) {
+        background-color:${(props): string => props.theme.palette['blue-050']};
+        &.ant-btn .btn-focus {
+        box-shadow: inset 0 0 0 1px ${(props): string => props.theme.palette['blue-200']};
+        }
+        > span:not(.btn-focus) +.ds-icon:before {
+        background-color: ${(props): string => props.theme.palette['blue-200']};
+        }
+        ${(props): FlattenSimpleInterpolation => props.pressed && pressedStyles(props)}
+      }
       &:active{
         color: ${(props): string => props.theme.palette['blue-600']};
         svg {
@@ -171,21 +214,22 @@ export const AntdButton = styled(
           > span:not(.btn-focus) {
             padding-right: 12px;
             position: relative;
-            &:after {
+          }
+          > span:not(.btn-focus) + .ds-icon {
+            margin: 0 4px 0 3px;
+            position: relative;
+            &:before {
               content: '';
               background-color: ${props.type !== splitType[props.type]
                 ? `rgba(255, 255, 255, 0.15);`
                 : props.theme.palette['grey-300']};
+              top: ${props.size === 'large' ? '-12px' : '-4px'};
+              height: ${props.size === 'large' ? '48px' : '32px'};
               width: 1px;
-              top: 0;
-              bottom: 0;
-              right: 0;
+              left: -4px;
               position: absolute;
               transition: all 0.3s ease;
             }
-          }
-          > ${IconContainer}, > .ds-icon {
-            margin: 0 4px 0 3px;
           }
         }
       `}

@@ -48,9 +48,7 @@ describe('LocaleProvider', () => {
 
     // ASSERT
     expect(C.getByText('FOO.BAR.ITEM')).toBeTruthy();
-    expect(mockedError).toHaveBeenCalledWith(
-      '[React Intl] Missing locale data for locale: "es". Using default locale: "en" as fallback.'
-    );
+    expect(mockedError).toHaveBeenCalled();
   });
 
   it('should render fallback translations', function() {

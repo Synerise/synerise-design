@@ -1,4 +1,6 @@
 import randomDate from '../../../utils/randomDate';
+import { InfoFillS, VarTypeBooleanM, VarTypeListM, VarTypeNumberM, VarTypeStringM } from '@synerise/ds-icon/dist/icons';
+import * as React from 'react';
 
 export const COLUMNS = [
   {
@@ -9,6 +11,8 @@ export const COLUMNS = [
     type: 'text',
     fixed: undefined,
     width: 254,
+    icon: { component: <VarTypeStringM/>},
+    iconTooltip: { component: <InfoFillS/>},
   },
   {
     id: '1',
@@ -18,6 +22,8 @@ export const COLUMNS = [
     type: 'boolean',
     fixed: undefined,
     width: 254,
+    icon: { component: <VarTypeBooleanM/>},
+    iconTooltip: { component: <InfoFillS/>},
   },
   {
     id: '2',
@@ -27,6 +33,8 @@ export const COLUMNS = [
     type: 'text',
     fixed: undefined,
     width: 254,
+    icon: { component: <VarTypeStringM/>},
+    iconTooltip: { component: <InfoFillS/>},
   },
   {
     id: '3',
@@ -34,7 +42,9 @@ export const COLUMNS = [
     key: 'age',
     visible: true,
     type: 'number',
-    fixed: undefined
+    fixed: undefined,
+    icon: { component: <VarTypeNumberM/>},
+    iconTooltip: { component: <InfoFillS/>},
   },
 ];
 

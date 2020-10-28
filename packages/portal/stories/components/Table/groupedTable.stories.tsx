@@ -12,7 +12,7 @@ import {
   EditM,
   FileDownloadM,
   FilterM,
-  Grid2M,
+  Grid2M, InfoFillS,
   TrashM,
   VarTypeBooleanM,
   VarTypeDateM,
@@ -29,6 +29,7 @@ import { FilterElement } from '@synerise/ds-search/dist/Search.types';
 import Menu from '@synerise/ds-menu';
 import Divider from '@synerise/ds-divider';
 import VarTypeStringM from '@synerise/ds-icon/dist/icons/VarTypeStringM';
+import { renderWithIconInHeaders } from './helpers/helpers';
 
 const decorator = storyFn => <div style={{ padding: 20, width: '100vw', minWidth: '100%' }}>{storyFn()}</div>;
 
@@ -152,6 +153,8 @@ const stories = {
           switch (column.key) {
             case 'first_name': {
               return {
+                icon: { component: <VarTypeStringM/>},
+                iconTooltip: { component: <InfoFillS/>},
                 title: 'First name',
                 dataIndex: 'first_name',
                 key: 'first_name',
@@ -179,10 +182,13 @@ const stories = {
                 title: 'City',
                 dataIndex: 'city',
                 key: 'city',
+                icon: { component: <VarTypeStringM/>},
+                iconTooltip: { component: <InfoFillS/>},
                 sorter: (a, b) => {
                   if (a.city < b.city) return -1;
                   if (a.city > b.city) return 1;
                   return 0;
+
                 },
               };
             }
@@ -190,6 +196,8 @@ const stories = {
               return {
                 title: 'Age',
                 dataIndex: 'age',
+                icon: { component: <VarTypeNumberM/>},
+                iconTooltip: { component: <InfoFillS/>},
                 key: 'age',
                 sorter: (a, b) => a.age - b.age,
               };
@@ -197,6 +205,8 @@ const stories = {
             case 'last_activity': {
               return {
                 title: 'Last activity',
+                icon: { component: <VarTypeDateM/>},
+                iconTooltip: { component: <InfoFillS/>},
                 dataIndex: 'last_activity',
                 key: 'last_activity',
                 render: last_activity => moment(last_activity).format('DD/MM/YYYY HH:mm'),
@@ -207,6 +217,8 @@ const stories = {
               return {
                 ...column,
                 title: column.name,
+                icon: { component: <VarTypeListM/>},
+                iconTooltip: { component: <InfoFillS/>},
                 dataIndex: column.key,
                 sorter: (a, b) => {
                   if (a[column.key] < b[column.key]) return -1;
@@ -456,7 +468,7 @@ const stories = {
           initialGroupsCollapsed={boolean('Initial groups collapsed?', false)}
           title={`${itemsCount()} results`}
           dataSource={filteredDataSource()}
-          columns={getColumns()}
+          columns={renderWithIconInHeaders(getColumns(),boolean('Set icons in headers', false))}
           loading={boolean('Set loading state', false)}
           roundedHeader={boolean('Rounded header', false)}
           cellSize={select('Set cells size', CELL_SIZES, CELL_SIZES.default)}

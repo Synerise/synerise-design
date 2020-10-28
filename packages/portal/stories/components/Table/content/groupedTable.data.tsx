@@ -1,5 +1,7 @@
 import randomDate from '../../../utils/randomDate';
 import { GROUP_BY } from '@synerise/ds-column-manager/dist/ColumnManagerGroupSettings/ColumnManagerGroupSettings.types';
+import { InfoFillS, VarTypeDateM, VarTypeNumberM, VarTypeStringM } from '@synerise/ds-icon/dist/icons';
+import * as React from 'react';
 
 export const COLUMNS = [
   {
@@ -9,6 +11,8 @@ export const COLUMNS = [
     visible: true,
     type: 'text',
     fixed: undefined,
+    icon: { component: <VarTypeStringM/>},
+    iconTooltip: { component: <InfoFillS/>},
   },
   {
     id: '1',
@@ -17,6 +21,8 @@ export const COLUMNS = [
     visible: true,
     type: 'boolean',
     fixed: undefined,
+    icon: { component: <VarTypeStringM/>},
+    iconTooltip: { component: <InfoFillS/>},
   },
   {
     id: '2',
@@ -25,6 +31,8 @@ export const COLUMNS = [
     visible: true,
     type: 'text',
     fixed: undefined,
+    icon: { component: <VarTypeStringM/>},
+    iconTooltip: { component: <InfoFillS/>},
   },
   {
     id: '3',
@@ -33,6 +41,8 @@ export const COLUMNS = [
     visible: true,
     type: 'number',
     fixed: undefined,
+    icon: { component: <VarTypeNumberM/>},
+    iconTooltip: { component: <InfoFillS/>},
   },
   {
     id: '4',
@@ -42,6 +52,8 @@ export const COLUMNS = [
     type: 'date',
     visible: true,
     fixed: undefined,
+    icon: { component: <VarTypeDateM/>},
+    iconTooltip: { component: <InfoFillS/>},
   },
 ];
 

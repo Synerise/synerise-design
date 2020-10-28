@@ -49,8 +49,8 @@ const RangePickerInput: React.FC<Props> = ({ value, format, showTime, onChange, 
       ) : (
         texts?.startDatePlaceholder
       );
-    return <S.DateWrapper highlight={active && !disabled && !isFromDateDefined}>{text}</S.DateWrapper>;
-  }, [dateRangeValue, getText, active,disabled, texts]);
+    return <S.DateWrapper highlight={active && !disabled && !isFromDateDefined && highlight}>{text}</S.DateWrapper>;
+  }, [dateRangeValue, getText, active,disabled, texts, highlight]);
 
   const renderEndDate = React.useCallback(() => {
     const isEndDateDefined = dateRangeValue && dateRangeValue.to;
@@ -62,8 +62,8 @@ const RangePickerInput: React.FC<Props> = ({ value, format, showTime, onChange, 
       ) : (
         texts?.endDatePlaceholder
       );
-    return <S.DateWrapper highlight={active && !!isFromDateDefined && !isEndDateDefined}>{text}</S.DateWrapper>;
-  }, [dateRangeValue, getText, active, texts]);
+    return <S.DateWrapper highlight={active && !!isFromDateDefined && !isEndDateDefined && highlight}>{text}</S.DateWrapper>;
+  }, [dateRangeValue, getText, active, texts, highlight]);
 
   return (
     <>
