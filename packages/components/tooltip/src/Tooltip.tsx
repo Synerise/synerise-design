@@ -81,7 +81,7 @@ const Tooltip: React.FC<TooltipExtendedProps & TooltipProps> = ({
         )}
       </S.TooltipComponent>
     );
-  }, [button, type, title, description]);
+  }, [button, type, title, description,status]);
 
   const renderTutorial = (
     <S.TooltipComponent tooltipType={type}>
