@@ -7,18 +7,24 @@ import NotificationsM from '@synerise/ds-icon/dist/icons/NotificationsM';
 import { withTheme } from 'styled-components';
 import { Carousel } from 'antd';
 import Button from '@synerise/ds-button';
+import Status from '@synerise/ds-status';
 import * as S from './Tooltip.styles';
-import TooltipExtendedProps, { tooltipTypes, descriptionType } from './Tooltip.types';
+import TooltipExtendedProps, { tooltipTypes, descriptionType, statusType } from './Tooltip.types';
 
 const shouldRenderDescription = (description: descriptionType, type: tooltipTypes): descriptionType | null => {
   if (type === 'default' || !description) return null;
   return description;
+};
+const shouldRenderStatus = (status: statusType, type: tooltipTypes): descriptionType | null => {
+  if (type === 'API' || status) return <Status type='disabled' label='API'/>;
+  return status;
 };
 
 const Tooltip: React.FC<TooltipExtendedProps & TooltipProps> = ({
   type = 'default',
   icon,
   title,
+  status,
   description,
   tutorials,
   tutorialAutoplay = false,
@@ -37,6 +43,9 @@ const Tooltip: React.FC<TooltipExtendedProps & TooltipProps> = ({
 
   const renderTooltip = (
     <S.TooltipComponent tooltipType={type}>
+      <S.TooltipStatus tooltipType={type}>
+        {type && shouldRenderStatus(status,type)}
+      </S.TooltipStatus>
       <S.TooltipTitle tooltipType={type}>
         {type && shouldRenderIcon(type, icon)}
         {type !== 'largeSimple' ? title : null}
@@ -58,6 +67,7 @@ const Tooltip: React.FC<TooltipExtendedProps & TooltipProps> = ({
     return (
       <S.TooltipComponent tooltipType={type}>
         <S.TooltipContent>
+          <S.TooltipStatus tooltipType={type}>{status}</S.TooltipStatus>
           <S.TooltipTitle tooltipType={type}>{title}</S.TooltipTitle>
           <S.TooltipDescription>{description}</S.TooltipDescription>
         </S.TooltipContent>
