@@ -28,7 +28,7 @@ const Popconfirm: PopconfirmType = ({
   ...antdProps
 }) => {
   const popupRef = React.useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = React.useState<boolean | undefined>(!disabled);
+  const [visible, setVisible] = React.useState<boolean | undefined>( undefined);
   useOnClickOutside(popupRef, () => {
     setVisible(false);
   });
