@@ -14,34 +14,34 @@ const IMAGES = ['https://cdn.pixabay.com/photo/2013/11/28/10/36/road-220058_960_
 describe('Popconfirm', () => {
   it('should render', () => {
     // ARRANGE
-    const { getByText } = renderWithProvider(
+    const { getAllByText } = renderWithProvider(
       <Popconfirm title={TITLE}>
         <button>{TEXT}</button>
       </Popconfirm>
     );
 
     // ACT
-    fireEvent.click(getByText(TEXT));
+    fireEvent.click(getAllByText(TEXT)[0]);
 
     //ASSERT
-    expect(getByText(TEXT)).toBeInTheDocument();
-    expect(getByText(TITLE)).toBeInTheDocument();
-    expect(getByText(OK)).toBeInTheDocument();
-    expect(getByText(CANCEL)).toBeInTheDocument();
+    expect(getAllByText(TEXT)[0]).toBeInTheDocument();
+    expect(getAllByText(TITLE)[0]).toBeInTheDocument();
+    expect(getAllByText(OK)[0]).toBeInTheDocument();
+    expect(getAllByText(CANCEL)[0]).toBeInTheDocument();
   });
 
   it('should call onCancel when cancel clicked', () => {
     // ARRANGE
     const onCancel = jest.fn();
-    const { getByText } = renderWithProvider(
+    const { getAllByText } = renderWithProvider(
       <Popconfirm title={TITLE} onCancel={onCancel}>
         <button>{TEXT}</button>
       </Popconfirm>
     );
 
     // ACT
-    fireEvent.click(getByText(TEXT));
-    fireEvent.click(getByText(CANCEL));
+    fireEvent.click(getAllByText(TEXT)[0]);
+    fireEvent.click(getAllByText(CANCEL)[0]);
 
     //ASSERT
     expect(onCancel).toHaveBeenCalled();
@@ -51,15 +51,15 @@ describe('Popconfirm', () => {
   it('should call onOk when OK clicked', () => {
     // ARRANGE
     const onConfirm = jest.fn();
-    const { getByText } = renderWithProvider(
-      <Popconfirm title={TITLE} onConfirm={onConfirm}>
+    const { getAllByText } = renderWithProvider(
+      <Popconfirm title={TITLE} okText={OK} onConfirm={onConfirm}>
         <button>{TEXT}</button>
       </Popconfirm>
     );
 
     // ACT
-    fireEvent.click(getByText(TEXT));
-    fireEvent.click(getByText(OK));
+    fireEvent.click(getAllByText(TEXT)[0]);
+    fireEvent.click(getAllByText(OK)[0]);
 
     //ASSERT
     expect(onConfirm).toHaveBeenCalled();
@@ -68,7 +68,7 @@ describe('Popconfirm', () => {
 
   it('should have custom text on buttons', () => {
     // ARRANGE
-    const { getByText } = renderWithProvider(
+    const { getAllByText, getByText } = renderWithProvider(
       <Popconfirm title={TITLE} okText="okText" cancelText="cancelText">
         <button>{TEXT}</button>
       </Popconfirm>
@@ -78,8 +78,8 @@ describe('Popconfirm', () => {
     fireEvent.click(getByText(TEXT));
 
     //ASSERT
-    expect(getByText('okText')).toBeInTheDocument();
-    expect(getByText('cancelText')).toBeInTheDocument();
+    expect(getAllByText('okText')[0]).toBeInTheDocument();
+    expect(getAllByText('cancelText')[0]).toBeInTheDocument();
   });
 
   it('should have provided placement', () => {
@@ -99,18 +99,18 @@ describe('Popconfirm', () => {
 
   it('should trigger popconfirm on focus', () => {
     // ARRANGE
-    const { getByText } = renderWithProvider(
+    const { getAllByText } = renderWithProvider(
       <Popconfirm title={TITLE} trigger="focus">
         <button>{TEXT}</button>
       </Popconfirm>
     );
 
     // ACT
-    fireEvent.focus(getByText(TEXT));
+    fireEvent.focus(getAllByText(TEXT)[0]);
 
     //ASSERT
-    expect(getByText(OK)).toBeInTheDocument();
-    expect(getByText(CANCEL)).toBeInTheDocument();
+    expect(getAllByText(OK)[0]).toBeInTheDocument();
+    expect(getAllByText(CANCEL)[0]).toBeInTheDocument();
   });
 
   it('should NOT show popconfirm when disabled', () => {

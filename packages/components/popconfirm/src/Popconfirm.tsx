@@ -24,10 +24,11 @@ const Popconfirm: PopconfirmType = ({
   okText = DEFAULT_OK,
   okType = 'primary',
   children,
+  disabled,
   ...antdProps
 }) => {
   const popupRef = React.useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = React.useState<boolean | undefined>(undefined);
+  const [visible, setVisible] = React.useState<boolean | undefined>(!disabled);
   useOnClickOutside(popupRef, () => {
     setVisible(false);
   });
@@ -45,6 +46,7 @@ const Popconfirm: PopconfirmType = ({
   return (
     <S.AntdPopconfirm
       {...antdProps}
+      disabled={disabled}
       visible={visible}
       title={
         <S.PopconfirmContent ref={popupRef}>
@@ -81,7 +83,7 @@ const Popconfirm: PopconfirmType = ({
         </S.PopconfirmContent>
       }
     >
-      <S.PopconfirmChildren role="main" className="ds-popconfirm-children" onClick={(): void => setVisible(true)}>
+      <S.PopconfirmChildren role="main" className="ds-popconfirm-children" onClick={(): void => setVisible(!disabled)}>
         {children}
       </S.PopconfirmChildren>
     </S.AntdPopconfirm>
