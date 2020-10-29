@@ -83,7 +83,7 @@ export const TooltipComponent = styled.div<Omit<TooltipExtendedProps, 'type'> & 
       padding: 13px 18px;
     `}
     ${(props): SimpleInterpolation =>
-  props.tooltipType === 'API' &&
+  props.tooltipType === 'status' &&
   css`
       padding: 10px 25px;
       text-align: center;

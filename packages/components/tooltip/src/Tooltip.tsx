@@ -7,17 +7,16 @@ import NotificationsM from '@synerise/ds-icon/dist/icons/NotificationsM';
 import { withTheme } from 'styled-components';
 import { Carousel } from 'antd';
 import Button from '@synerise/ds-button';
-import Status from '@synerise/ds-status';
 import * as S from './Tooltip.styles';
-import TooltipExtendedProps, { tooltipTypes, descriptionType, statusType } from './Tooltip.types';
+import TooltipExtendedProps, { tooltipTypes, descriptionType } from './Tooltip.types';
 
 const shouldRenderDescription = (description: descriptionType, type: tooltipTypes): descriptionType | null => {
   if (type === 'default' || !description) return null;
   return description;
 };
-const shouldRenderStatus = (status: statusType, type: tooltipTypes): descriptionType | null => {
-  if (type === 'API' || status) return <Status type='disabled' label='API'/>;
-  return status;
+const shouldRenderStatus = (status: React.ReactNode | null, type: tooltipTypes): descriptionType | null => {
+  if (type === 'status' || status) return status;
+  return null;
 };
 
 const Tooltip: React.FC<TooltipExtendedProps & TooltipProps> = ({
