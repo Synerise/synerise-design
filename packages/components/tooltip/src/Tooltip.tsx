@@ -14,11 +14,16 @@ const shouldRenderDescription = (description: descriptionType, type: tooltipType
   if (type === 'default' || !description) return null;
   return description;
 };
+const shouldRenderStatus = (status: React.ReactNode | null, type: tooltipTypes): descriptionType | null => {
+  if (type === 'status' || status) return status;
+  return null;
+};
 
 const Tooltip: React.FC<TooltipExtendedProps & TooltipProps> = ({
   type = 'default',
   icon,
   title,
+  status,
   description,
   tutorials,
   tutorialAutoplay = false,
@@ -37,6 +42,9 @@ const Tooltip: React.FC<TooltipExtendedProps & TooltipProps> = ({
 
   const renderTooltip = (
     <S.TooltipComponent tooltipType={type}>
+      <S.TooltipStatus tooltipType={type}>
+        {type && shouldRenderStatus(status,type)}
+      </S.TooltipStatus>
       <S.TooltipTitle tooltipType={type}>
         {type && shouldRenderIcon(type, icon)}
         {type !== 'largeSimple' ? title : null}
@@ -58,6 +66,7 @@ const Tooltip: React.FC<TooltipExtendedProps & TooltipProps> = ({
     return (
       <S.TooltipComponent tooltipType={type}>
         <S.TooltipContent>
+          <S.TooltipStatus tooltipType={type}>{status}</S.TooltipStatus>
           <S.TooltipTitle tooltipType={type}>{title}</S.TooltipTitle>
           <S.TooltipDescription>{description}</S.TooltipDescription>
         </S.TooltipContent>
@@ -72,7 +81,7 @@ const Tooltip: React.FC<TooltipExtendedProps & TooltipProps> = ({
         )}
       </S.TooltipComponent>
     );
-  }, [button, type, title, description]);
+  }, [button, type, title, description,status]);
 
   const renderTutorial = (
     <S.TooltipComponent tooltipType={type}>

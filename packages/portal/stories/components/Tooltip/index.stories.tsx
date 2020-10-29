@@ -7,6 +7,8 @@ import { InfoFillS, InfoM } from '@synerise/ds-icon/dist/icons';
 import Icon from '@synerise/ds-icon';
 import Button from '@synerise/ds-button';
 import { action } from '@storybook/addon-actions';
+import Status from '@synerise/ds-status';
+import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 
 const decorator = (storyFn) => (
   <div style={{ padding: '60px' }}>
@@ -90,7 +92,37 @@ const stories = {
         offset='small'
       >
         <span style={{display: 'flex'}}>
-          <Icon component={<InfoFillS />} color="#b5bdc3" />
+          <Icon component={<InfoFillS />} color={theme.palette['grey-400']} />
+        </span>
+      </Tooltip>
+    </div>
+  ),
+  WithHeaderAndLabel: () => (
+    <div>
+      <Tooltip
+        {...props()}
+        type="header-label"
+        offset= 'small'
+        title={text('Set tooltip title', 'Icon tooltip')}
+        description={text('Set tooltip description', 'You can change profile name later in your profile settings.')}
+      >
+        <span style={{display: 'flex'}}>
+          <Icon component={<InfoFillS />} color={theme.palette['grey-400']}/>
+        </span>
+      </Tooltip>
+    </div>
+  ),
+  withAPI: () => (
+    <div>
+      <Tooltip
+        {...props()}
+        status={<Status type='disabled' label='API'/>}
+        type="status"
+        title={text('Set tooltip title', 'Shovel Import')}
+        description={text('Set tooltip description', '2••••00b97')}
+      >
+        <span style={{display: 'flex'}}>
+          <Icon component={<InfoFillS />} color={theme.palette['grey-400']} />
         </span>
       </Tooltip>
     </div>

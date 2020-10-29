@@ -53,7 +53,7 @@ const Button: React.FC<Props> & ButtonSubComponents = ({
   return (
     <S.AntdButton
       justifyContent={justifyContent}
-      type={type}
+      type={type || 'secondary'}
       mode={mode}
       groupVariant={groupVariant}
       loading={loading}

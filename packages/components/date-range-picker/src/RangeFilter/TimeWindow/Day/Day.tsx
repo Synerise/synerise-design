@@ -27,7 +27,7 @@ const Day: React.FC<Props> = ({
 }: Props) => {
   const [hovered, setHovered] = React.useState<boolean>(false);
   const [iconHover, setIconHover] = React.useState<boolean>(false);
-  const type = active ? 'primary' : 'default';
+  const type = active ? 'primary' : 'secondary';
   const icon = React.useMemo(() => {
     if (restricted && !active) {
       return hovered && iconHover ? (
