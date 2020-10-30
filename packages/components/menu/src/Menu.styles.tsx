@@ -36,8 +36,9 @@ export const AntdMenu = styled(Menu)<AntdMenuProps>`
   ${(props: AntdMenuProps & ThemeProps): FlattenSimpleInterpolation | false =>
     Boolean(props.asDropdownMenu) &&
     css`
-      padding: 8px;
-      width: 194px;
+      && {
+        padding: 8px;
+        width: 194px;
     `}
   ${(props: AntdMenuProps & ThemeProps): FlattenSimpleInterpolation | false =>
     !!props.ordered &&
