@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.6.16...@synerise/ds-menu@0.7.0) (2020-10-30)
+
+
+### Features
+
+* **menu:** add asDropdownMenu prop for dropdowns/context menus ([839e95e](https://github.com/Synerise/synerise-design/commit/839e95e17d9cfeaaddeeb3461bc4972d14e441ed))
+* **menu:** max-width of menu in dropdown ([d223c66](https://github.com/Synerise/synerise-design/commit/d223c667d9ab9b8b4a45d2836adea51b9dec3582))
+
+
+
+
+
 ## [0.6.16](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.6.15...@synerise/ds-menu@0.6.16) (2020-10-29)
 
 **Note:** Version bump only for package @synerise/ds-menu

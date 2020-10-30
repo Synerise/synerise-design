@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-item-filter",
-  "version": "0.4.64",
+  "version": "0.4.65",
   "description": "ItemFilter UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -27,13 +27,13 @@
   "dependencies": {
     "@synerise/ds-button": "^0.13.8",
     "@synerise/ds-drawer": "^0.4.39",
-    "@synerise/ds-dropdown": "^0.11.89",
+    "@synerise/ds-dropdown": "^0.11.90",
     "@synerise/ds-icon": "^0.33.1",
-    "@synerise/ds-manageable-list": "^0.14.21",
+    "@synerise/ds-manageable-list": "^0.14.22",
     "@synerise/ds-result": "^0.5.15",
     "@synerise/ds-scrollbar": "^0.2.31",
-    "@synerise/ds-search-bar": "^0.2.95",
-    "@synerise/ds-tabs": "^0.10.58",
+    "@synerise/ds-search-bar": "^0.2.96",
+    "@synerise/ds-tabs": "^0.10.59",
     "@synerise/ds-typography": "^0.9.3",
     "react-window": "^1.8.5"
   },
