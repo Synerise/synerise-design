@@ -51,10 +51,12 @@ const items = [
 
 ## Menu
 
-| Property   | Description                                                                  | Type            | Default |
-| ---------- | ---------------------------------------------------------------------------- | --------------- | ------- |
-| dataSource | Array of items to display in menu                                            | MenuItemProps[] | -       |
-| ordered    | Determines if items should be displayed with index prefix (starting from 01) | boolean         | `false` |
+| Property        | Description                                                                  | Type            | Default |
+| ----------      | ---------------------------------------------------------------------------- | --------------- | ------- |
+| asDropdownwMenu | Add additional styles for dropdown menu                                      | boolean         | `false` |
+| dataSource      | Array of items to display in menu                                            | MenuItemProps[] | -       |
+| ordered         | Determines if items should be displayed with index prefix (starting from 01) | boolean         | `false` |
+
 
 
 ### MenuItemProps
