@@ -20,7 +20,7 @@ export const TooltipTitle = styled.div<Omit<TooltipExtendedProps, 'type'> & { to
   align-items: center;
   justify-content: flex-start;
   text-align: inherit;
-  ${IconContainer} {
+  word-break: break-word ${IconContainer} {
     align-self: flex-start;
   }
 `;
@@ -78,17 +78,17 @@ export const TooltipComponent = styled.div<Omit<TooltipExtendedProps, 'type'> & 
       padding: 3px 8px;
     `}
     ${(props): SimpleInterpolation =>
-  props.tooltipType === 'header-label' &&
-  css`
-      padding: 13px 18px;
-    `}
+      props.tooltipType === 'header-label' &&
+      css`
+        padding: 13px 18px;
+      `}
     ${(props): SimpleInterpolation =>
-  props.tooltipType === 'status' &&
-  css`
-      padding: 10px 25px;
-      text-align: center;
-      align-items: center;
-    `}
+      props.tooltipType === 'status' &&
+      css`
+        padding: 10px 25px;
+        text-align: center;
+        align-items: center;
+      `}
   ${(props): SimpleInterpolation =>
     props.tooltipType === 'avatar' &&
     css`
