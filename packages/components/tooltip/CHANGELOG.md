@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.10](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@0.8.9...@synerise/ds-tooltip@0.8.10) (2020-10-30)
+
+
+### Bug Fixes
+
+* **tooltip:** break long texts without spaces ([084ea34](https://github.com/synerise/synerise-design/commit/084ea34081c1ca77511ca2cb7ef51e85e8bd3475))
+
+
+
+
+
 ## [0.8.9](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@0.8.8...@synerise/ds-tooltip@0.8.9) (2020-10-29)
 
 

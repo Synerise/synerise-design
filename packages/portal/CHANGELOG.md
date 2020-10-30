@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.102.3](https://github.com/synerise/synerise-design/compare/portal@0.102.2...portal@0.102.3) (2020-10-30)
+
+
+### Bug Fixes
+
+* **avatar-group:** fix storybook example ([5fde308](https://github.com/synerise/synerise-design/commit/5fde30805ba25f9bc22f9fa7b711fbf1ffaeabd2))
+
+
+
+
+
 ## [0.102.2](https://github.com/synerise/synerise-design/compare/portal@0.102.1...portal@0.102.2) (2020-10-29)
 
 
