@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.8](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.13.7...@synerise/ds-button@0.13.8) (2020-10-29)
+
+
+### Bug Fixes
+
+* **button:** excluded creator from secondary pressed styling ([daf8a08](https://github.com/synerise/synerise-design/commit/daf8a08d4944cd1caf325830b9369b074362999d))
+* **button:** set secondary if provided type is falsy ([e1a2135](https://github.com/synerise/synerise-design/commit/e1a2135e68a2175867c0756f893f370f8159b54f))
+
+
+
+
+
 ## [0.13.7](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.13.6...@synerise/ds-button@0.13.7) (2020-10-28)
 
 

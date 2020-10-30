@@ -7,6 +7,7 @@ import Menu from '@synerise/ds-menu';
 import { LockM, UserRemoveM } from '@synerise/ds-icon/dist/icons';
 import Icon from '@synerise/ds-icon';
 import { action } from '@storybook/addon-actions';
+import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 
 const imgSrc = 'https://www.w3schools.com/howto/img_avatar.png';
 const groupSizes = ['small', 'medium', 'large'] as const;
