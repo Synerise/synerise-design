@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.7.1...@synerise/ds-menu@0.7.2) (2020-10-30)
+
+
+### Bug Fixes
+
+* **menu:** fix styles of menu with asDropdownMenu prop ([60110c0](https://github.com/Synerise/synerise-design/commit/60110c0884be11ad9ad143561db7f263fa1ec571))
+
+
+
+
+
 ## [0.7.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.7.0...@synerise/ds-menu@0.7.1) (2020-10-30)
 
 **Note:** Version bump only for package @synerise/ds-menu
