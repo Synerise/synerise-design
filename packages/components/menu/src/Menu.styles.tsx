@@ -14,6 +14,7 @@ type SubMenuProps = {
 
 type AntdMenuProps = {
   ordered?: boolean | undefined;
+  asDropdownMenu?: boolean;
 };
 
 export const prefixelWrapper = styled.div``;
@@ -24,7 +25,19 @@ const arrowDownSvgWithCustomColor = (color: string): string => {
   return iconWithColor;
 };
 
+export const MenuDivider = styled.div`
+  height: 1px;
+  width: 100%;
+  margin: 8px 0;
+  border-top: 1px dashed ${(props): string => props.theme.palette['grey-300']};
+`;
+
 export const AntdMenu = styled(Menu)<AntdMenuProps>`
+  ${(props: AntdMenuProps & ThemeProps): FlattenSimpleInterpolation | false =>
+    Boolean(props.asDropdownMenu) &&
+    css`
+      padding: 8px;
+    `}
   ${(props: AntdMenuProps & ThemeProps): FlattenSimpleInterpolation | false =>
     !!props.ordered &&
     css`

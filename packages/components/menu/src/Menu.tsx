@@ -16,6 +16,7 @@ class Menu extends React.Component<AntdMenuProps> {
   static Header: typeof Header = Header;
   static ItemGroup = S.AntdMenu.ItemGroup;
   static SubMenu = S.AntdMenu.SubMenu;
+  static Divider = S.MenuDivider;
 
   render(): React.ReactNode {
     const { dataSource, ordered, selectable, children, ...rest } = this.props;
