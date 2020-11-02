@@ -20,7 +20,7 @@ export const TooltipTitle = styled.div<Omit<TooltipExtendedProps, 'type'> & { to
   align-items: center;
   justify-content: flex-start;
   text-align: inherit;
-  ${IconContainer} {
+  word-break: break-word ${IconContainer} {
     align-self: flex-start;
   }
 `;

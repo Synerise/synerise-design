@@ -28,7 +28,7 @@ const MODAL_SIZES = ['small', 'medium', 'large', 'extraLarge', 'fullSize'];
 
 const buttonSetExample = (
   <>
-    <Button type="default" onClick={action('onClick: Cancel')}>
+    <Button type="secondary" onClick={action('onClick: Cancel')}>
       Cancel
     </Button>
     <Button type="primary" onClick={action('onClick: Unpublish')}>
@@ -106,7 +106,7 @@ const stories = {
     return (
       <ModalProxy blank closable onCancel={action('onClick: Cancel')} visible size={select('Select modal size', MODAL_SIZES, 'small')} footer={null}>
         <Result {...props} customIcon={props.customIcon ? exampleAvatar : null} buttons={
-          <Button type="default" onClick={action('onClick: Close')}>
+          <Button type="secondary" onClick={action('onClick: Close')}>
             Close
           </Button>
         }

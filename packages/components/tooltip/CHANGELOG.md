@@ -3,6 +3,38 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.11](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@0.8.10...@synerise/ds-tooltip@0.8.11) (2020-10-30)
+
+**Note:** Version bump only for package @synerise/ds-tooltip
+
+
+
+
+
+## [0.8.10](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@0.8.9...@synerise/ds-tooltip@0.8.10) (2020-10-30)
+
+
+### Bug Fixes
+
+* **tooltip:** break long texts without spaces ([084ea34](https://github.com/synerise/synerise-design/commit/084ea34081c1ca77511ca2cb7ef51e85e8bd3475))
+
+
+
+
+
+## [0.8.9](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@0.8.8...@synerise/ds-tooltip@0.8.9) (2020-10-29)
+
+
+### Bug Fixes
+
+* **tooltip:** add new type tooltips API and header with label ([e6bb579](https://github.com/synerise/synerise-design/commit/e6bb579b2fd28486eea430bae77aac9d0cb608b2))
+* **tooltip:** add status ([5c2193e](https://github.com/synerise/synerise-design/commit/5c2193ef56ca24370870ed6cbeefefb9980836b2))
+* **tooltip:** fix type tooltips status and header with label ([fa2d2dc](https://github.com/synerise/synerise-design/commit/fa2d2dc9a6798346e9026a92c863587f60dedb75))
+
+
+
+
+
 ## [0.8.8](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@0.8.7...@synerise/ds-tooltip@0.8.8) (2020-10-28)
 
 **Note:** Version bump only for package @synerise/ds-tooltip

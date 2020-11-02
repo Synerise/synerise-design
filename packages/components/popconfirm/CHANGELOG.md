@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.20](https://github.com/Synerise/synerise-design/compare/@synerise/ds-popconfirm@0.5.19...@synerise/ds-popconfirm@0.5.20) (2020-10-30)
+
+**Note:** Version bump only for package @synerise/ds-popconfirm
+
+
+
+
+
+## [0.5.19](https://github.com/Synerise/synerise-design/compare/@synerise/ds-popconfirm@0.5.18...@synerise/ds-popconfirm@0.5.19) (2020-10-29)
+
+
+### Bug Fixes
+
+* **popconfirm:** fixed initial visible status when disabled ([b54c9ba](https://github.com/Synerise/synerise-design/commit/b54c9ba6ac16ed7c217f96abbebad6dbce26633c))
+* **popconfirm:** use custom button panel instead of antd one ([3382c7c](https://github.com/Synerise/synerise-design/commit/3382c7c7b6f6dd462ac60b13b124ba201a014705))
+
+
+
+
+
 ## [0.5.18](https://github.com/Synerise/synerise-design/compare/@synerise/ds-popconfirm@0.5.17...@synerise/ds-popconfirm@0.5.18) (2020-10-28)
 
 **Note:** Version bump only for package @synerise/ds-popconfirm

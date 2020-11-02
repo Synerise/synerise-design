@@ -1,8 +1,28 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import Popconfirm from 'antd/lib/popconfirm';
+import Button from '@synerise/ds-button';
+import { Props as ButtonProps } from '@synerise/ds-button/dist/Button.types';
 
 export const AntdPopconfirm = styled(({ ...rest }) => <Popconfirm {...rest} />)``;
+
+export const PopconfirmChildren = styled.div``;
+export const PopconfirmButton = styled(Button)<ButtonProps>`
+  && {
+    height: 28px;
+  }
+`;
+
+export const PopconfirmButtonsWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  margin-top: 16px;
+  justify-content: flex-end;
+  align-items: center;
+  ${PopconfirmButton}:not(:first-of-type) {
+    margin-left: 8px;
+  }
+`;
 
 export const PopconfirmContent = styled.div`
   display: flex;
