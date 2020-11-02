@@ -80,12 +80,12 @@ export const TooltipComponent = styled.div<Omit<TooltipExtendedProps, 'type'> & 
     ${(props): SimpleInterpolation =>
   props.tooltipType === 'header-label' &&
   css`
-      padding: 13px 18px;
+      padding: 13px 16px 16px;
     `}
     ${(props): SimpleInterpolation =>
   props.tooltipType === 'status' &&
   css`
-      padding: 10px 25px;
+      padding: 6px 25px 10px 21px;
       text-align: center;
       align-items: center;
     `}
