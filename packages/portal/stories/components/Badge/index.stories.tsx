@@ -186,7 +186,6 @@ const stories = {
     status: select('status', statuses, 'active'),
     text: text('text', 'Success'),
   }),
-
   statusWithAvatar: () => (
     <>
       <Badge status={select('status', statuses, 'active')}  >
@@ -202,19 +201,19 @@ const stories = {
 
   flagDefault: () => (
     <>
-      <Badge status={select('status', statuses, 'active')} flag={true} />
+      <Badge status={select('status', statuses, 'active')} flag={true} pulsing={boolean('Set Pulsing', false)} />
       <div style={{ width: '50px', height: '50px' }} />
     </>
   ),
   flagWithLabel: () => (
     <>
-      <Badge status={select('status', statuses, 'active')} text={text('text', 'Success')} flag={true} />
+      <Badge status={select('status', statuses, 'active')} text={text('text', 'Success')} pulsing={boolean('Set Pulsing', false)}  flag={true} />
       <div style={{ width: '50px', height: '50px' }} />
     </>
   ),
   flagWithElement: () => (
     <>
-      <Badge status={select('status', statuses, 'active')} flag={true}>
+      <Badge status={select('status', statuses, 'active')} pulsing={boolean('Set Pulsing', false)}  flag={true}>
         <div
           style={{
             width: '48px',
@@ -229,7 +228,7 @@ const stories = {
   ),
   flagWithIcon: () => (
     <>
-      <Badge status={select('status', statuses, 'active')} flag={true}>
+      <Badge status={select('status', statuses, 'active')} pulsing={boolean('Set Pulsing', false)}  flag={true}>
         <Icon color={text('IconColor', '#6a7580')} size={number('IconSize', 24)} component={<FileM />} />
       </Badge>
       <div style={{ width: '50px', height: '50px' }} />
@@ -237,7 +236,7 @@ const stories = {
   ),
   flagWithAvatar: () => (
     <>
-      <Badge status={select('status', statuses, 'active')} flag={true}>
+      <Badge status={select('status', statuses, 'active')} pulsing={boolean('Set Pulsing', false)}  flag={true}>
         <Avatar
           size={select('avatar size', avatarSize, 'extraLarge')}
           shape={select('avatar shape', avatarShape, 'square')}

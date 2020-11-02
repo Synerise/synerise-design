@@ -27,4 +27,5 @@ export interface BadgeProps extends Omit<AntBadgeProps, 'status'> {
   textColor?: Color;
   backgroundColorHue?: ColorHue;
   textColorHue?: ColorHue;
+  pulsing?: boolean;
 }
