@@ -26,6 +26,7 @@
   "types": "dist/index.d.ts",
   "dependencies": {
     "@synerise/ds-button": "^0.13.9",
+    "@synerise/ds-cruds": "^0.1.11",
     "@synerise/ds-inline-edit": "^0.1.83",
     "@synerise/ds-typography": "^0.9.4",
     "react-sortablejs-typescript": "2.0.3",
