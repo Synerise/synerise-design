@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
+import styled, { css, FlattenSimpleInterpolation, keyframes } from 'styled-components';
 import Badge from 'antd/lib/badge';
 import { macro } from '@synerise/ds-typography';
 import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
@@ -11,8 +11,32 @@ const getBackgroundColor = (props: ThemeProps & Pick<BadgeProps, 'backgroundColo
   return props.theme.palette[`${props.backgroundColor}-${props.backgroundColorHue}`];
 };
 
+export const afterElementAnimation = keyframes`
+
+  0% {
+     transform: translate3d(-5px, -5px, 0) scale(0.3);
+     opacity: 0.9;
+  }
+  100% {
+     transform: translate3d(-5px, -5px, 0) scale(1.5);
+     opacity: 0;
+  }
+`;
+
+export const beforeElementAnimation = keyframes`
+
+  0% {
+     transform: translate3d(-2px, -2px, 0) scale(0.5);
+     opacity: 0.9;
+  }
+  100% {
+     transform: translate3d(-2px, -2px, 0) scale(1.5);
+     opacity: 0;
+  }
+`;
+
 // eslint-disable-next-line react/jsx-props-no-spreading
-export default styled(({ flag, outlined, backgroundColor, textColor, backgroundColorHue, textColorHue, ...rest }) => (
+export default styled(({ flag, outlined, backgroundColor, textColor, backgroundColorHue, textColorHue, pulsing, ...rest }) => (
   <Badge {...rest} />
 ))`
 && {
@@ -98,6 +122,8 @@ export default styled(({ flag, outlined, backgroundColor, textColor, backgroundC
               opacity: 0.35;
               border-radius: 50%;
               transform: translate3d(-2px, -2px, 0);
+              ${props.pulsing && css`animation: ${beforeElementAnimation} 2s infinite;`}
+              transform-origin: center;
             }
             &::after {
               display: flex;
@@ -111,7 +137,8 @@ export default styled(({ flag, outlined, backgroundColor, textColor, backgroundC
               opacity: 0.2;
               border-radius: 50%;
               transform: translate3d(-5px, -5px, 0);
-              animation: none;
+              ${props.pulsing && css`animation: ${afterElementAnimation} 2s infinite;`}
+              transform-origin: center;
             }
           }
         `};

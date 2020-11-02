@@ -11,6 +11,7 @@ const Badge: React.FC<BadgeProps> = ({
   textColor,
   backgroundColorHue,
   textColorHue,
+  pulsing,
   ...antdProps
 }) => {
   return (
@@ -22,6 +23,7 @@ const Badge: React.FC<BadgeProps> = ({
       textColor={textColor}
       backgroundColorHue={backgroundColorHue}
       textColorHue={textColorHue}
+      pulsing={pulsing}
       {...antdProps}
     />
   );
