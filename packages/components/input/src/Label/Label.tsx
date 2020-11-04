@@ -5,13 +5,13 @@ import InfoFillS from '@synerise/ds-icon/dist/icons/InfoFillS';
 import * as S from './Label.styles';
 import { LabelProps } from './Label.types';
 
-const Label: React.FC<LabelProps> = ({ id, className, label, tooltip, style }) => (
+const Label: React.FC<LabelProps> = ({ id, className, label, tooltip, tooltipConfig, style }) => (
   <>
     {label && (
       <S.Label style={style} htmlFor={id} className={className}>
         {label}
-        {tooltip && (
-          <Tooltip title={tooltip} placement="top" trigger="hover" transitionName="zoom-big-fast">
+        {(tooltip || tooltipConfig) && (
+          <Tooltip title={tooltip} placement="top" trigger="hover" transitionName="zoom-big-fast" {...tooltipConfig}>
             <span>
               <Icon size={24} component={<InfoFillS />} />
             </span>

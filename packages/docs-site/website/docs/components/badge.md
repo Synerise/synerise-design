@@ -86,3 +86,4 @@ import Badge from '@synerise/ds-badge'
 | title              | Text shown when a cursor is hovered over the badge                 | string                                                                                               | count   |
 | textColor          | Customize text color in badge                                      | `green` / `grey` / `yellow` / `blue` / `pink`/ `mars`/ `orange`/ `fern`/ `cyan`/ `purple` / `violet` | -       |
 | textColorHue       | Customize brightness of color                                      | `900` / `800` / `700` / `600` / `500` / `400` / `300` / `200` / `100` / `050`                        | -       |
+| pulsing            | Set the animation to be true or false                              | boolean                                                                                              | `false` |
