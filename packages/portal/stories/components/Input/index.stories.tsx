@@ -113,7 +113,11 @@ const stories = {
 
     return (
       <Input
-        tooltip={text('Tooltip', 'This is example tooltip!')}
+        tooltipConfig={{
+          description: text('Tooltip description', 'This is example description'),
+          type: select('Tooltip type', ['header-label', 'default', 'largeSimple'], 'header-label'),
+          title: text('Tooltip title', 'This is example tooltip!'),
+        }}
         placeholder={text('Placeholder', 'Placeholder')}
         label={renderLabel(text('Label', 'Label'))}
         description={text('Description', 'Description')}

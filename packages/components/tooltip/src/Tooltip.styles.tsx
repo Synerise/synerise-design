@@ -78,17 +78,17 @@ export const TooltipComponent = styled.div<Omit<TooltipExtendedProps, 'type'> & 
       padding: 3px 8px;
     `}
     ${(props): SimpleInterpolation =>
-      props.tooltipType === 'header-label' &&
-      css`
-        padding: 13px 18px;
-      `}
+  props.tooltipType === 'header-label' &&
+  css`
+      padding: 13px 16px 16px;
+    `}
     ${(props): SimpleInterpolation =>
-      props.tooltipType === 'status' &&
-      css`
-        padding: 10px 25px;
-        text-align: center;
-        align-items: center;
-      `}
+  props.tooltipType === 'status' &&
+  css`
+      padding: 6px 25px 10px 21px;
+      text-align: center;
+      align-items: center;
+    `}
   ${(props): SimpleInterpolation =>
     props.tooltipType === 'avatar' &&
     css`

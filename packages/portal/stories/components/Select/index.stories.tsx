@@ -100,7 +100,7 @@ const stories = {
       errorText: !isFocus && getErrorText(validationState, message),
       error: !isFocus && validationState,
       label: renderLabel(text('Label', 'Label')),
-      allowClear: false,
+      allowClear: boolean('allow clear', false),
       defaultActiveFirstOption: boolean('defaultActiveFirstOption', true),
       defaultValue: text('defaultValue', 'Option A'),
       disabled: boolean('disabled', false),
