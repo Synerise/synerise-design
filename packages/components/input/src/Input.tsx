@@ -25,6 +25,7 @@ const enhancedInput = <P extends object>(
   description,
   counterLimit,
   tooltip,
+  tooltipConfig,
   icon1,
   icon1Tooltip,
   icon2,
@@ -78,7 +79,7 @@ const enhancedInput = <P extends object>(
     <S.OuterWrapper className={className} resetMargin={resetMargin}>
       {(label || counterLimit) && (
         <S.ContentAbove>
-          <Label label={label} id={id} tooltip={tooltip} />
+          <Label label={label} id={id} tooltip={tooltip} tooltipConfig={tooltipConfig} />
           {counterLimit && (
             <S.Counter data-testid="counter">
               {charCount}/{counterLimit}

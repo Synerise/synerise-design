@@ -1,6 +1,14 @@
 import * as React from 'react';
 
-export type tooltipTypes = 'default' | 'icon' | 'largeSimple' | 'tutorial' | 'avatar' | 'button' | 'header-label' | 'status';
+export type tooltipTypes =
+  | 'default'
+  | 'icon'
+  | 'largeSimple'
+  | 'tutorial'
+  | 'avatar'
+  | 'button'
+  | 'header-label'
+  | 'status';
 export type descriptionType = string | React.ReactNode;
 export type Tutorial = {
   title: string | React.ReactNode;
@@ -17,7 +25,6 @@ export default interface TooltipExtendedProps {
   tutorialAutoplay?: boolean;
   tutorialAutoplaySpeed?: number;
   offset?: 'default' | 'small';
-  theme: { [k: string]: string };
   button?: {
     label?: string | React.ReactNode;
     buttonIcon?: React.ReactNode;
