@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-select",
-  "version": "0.12.45",
+  "version": "0.12.46",
   "description": "Select UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "synerise/synerise-design",
@@ -25,7 +25,7 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-input": "^0.15.20",
+    "@synerise/ds-input": "^0.16.0",
     "@synerise/ds-typography": "^0.9.4",
     "classnames": "^2.2.6"
   },

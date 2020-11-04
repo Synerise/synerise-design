@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.103.0](https://github.com/synerise/synerise-design/compare/portal@0.102.4...portal@0.103.0) (2020-11-04)
+
+
+### Bug Fixes
+
+* **badge:** add props pulsing to add animation ([6ebd8dd](https://github.com/synerise/synerise-design/commit/6ebd8dd0a718984ec7ceeb266bb1672ae02b935a))
+* **select:** add allowClear props to storybook ([66b6f8d](https://github.com/synerise/synerise-design/commit/66b6f8d14bebfc1c6705aed29056c23b3ff5117c))
+
+
+### Features
+
+* **tooltip:** custom tooltips in input ([b7cd7d3](https://github.com/synerise/synerise-design/commit/b7cd7d36cfef8e6c7523b4e7ba2770b476ca3e92))
+
+
+
+
+
 ## [0.102.4](https://github.com/synerise/synerise-design/compare/portal@0.102.3...portal@0.102.4) (2020-10-30)
 
 **Note:** Version bump only for package portal

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.16.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.15.20...@synerise/ds-input@0.16.0) (2020-11-04)
+
+
+### Features
+
+* **tooltip:** custom tooltips in input ([b7cd7d3](https://github.com/synerise/synerise-design/commit/b7cd7d36cfef8e6c7523b4e7ba2770b476ca3e92))
+
+
+
+
+
 ## [0.15.20](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.15.19...@synerise/ds-input@0.15.20) (2020-10-30)
 
 **Note:** Version bump only for package @synerise/ds-input
