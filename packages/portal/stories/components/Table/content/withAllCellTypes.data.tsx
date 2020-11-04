@@ -22,7 +22,99 @@ import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { IconProps } from '@synerise/ds-icon/dist/Icon.types';
 import TooltipExtendedProps from '@synerise/ds-tooltip/dist/Tooltip.types';
 
-export const COLUMNS = [
+export const COLUMNS_WITH_TRIGGERS = [
+  {
+    title: 'Select',
+    dataIndex: 'select',
+    key: 'key',
+    width: 254,
+    textWrap: 'word-break',
+    ellipsis: true,
+    icon: { component: <VarTypeListM/>},
+    iconTooltip: { component: <InfoFillS/>},
+    render: select => (
+      <Select value={select.value}>
+        {select.options.map((option: string) => (
+          <Select.Option value={option}>{option}</Select.Option>
+        ))}
+      </Select>
+    ),
+  },
+  {
+    title: 'Button',
+    dataIndex: 'age',
+    key: 'age',
+    width: 254,
+    textWrap: 'word-break',
+    ellipsis: true,
+    icon: { component: <VarTypeListM/>},
+    iconTooltip: { component: <InfoFillS/>},
+    render: age => (
+      <Button type="secondary" onClick={() => alert(age)}>
+        Show age
+      </Button>
+    ),
+  },
+  {
+    width: 254,
+    title: 'Multiple buttons',
+    icon: { component: <VarTypeListM/>},
+    iconTooltip: { component: <InfoFillS/>},
+    render: () => (
+      <TableCell.ActionCell gapSize={8} contentAlign={'left'}>
+        <Button onClick={action('click')} type="custom-color" color="green">
+          Accept
+        </Button>
+        <Button onClick={action('click')} type="secondary">
+          Decline
+        </Button>
+      </TableCell.ActionCell>
+    ),
+  },
+  {
+    title: 'Editable row',
+    dataIndex: 'editable',
+    key: 'editable',
+    width: 254,
+    textWrap: 'word-break',
+    ellipsis: true,
+    icon: { component: <VarTypeListM/>},
+    iconTooltip: { component: <InfoFillS/>},
+    render: editable => <TableCell.EditableCell value={editable} placeholder={'No data'} onChange={console.log} />,
+  },
+  {
+    title: 'Copyable',
+    dataIndex: 'name',
+    key: 'name',
+    width: 254,
+    textWrap: 'word-break',
+    ellipsis: true,
+    icon: { component: <VarTypeListM/>},
+    iconTooltip: { component: <InfoFillS/>},
+    render: name => <TableCell.CopyableCell value={name} confirmMessage="Copied to clipboard!" tooltipTimeout={2000} />,
+  },
+  {
+    title: 'Checkbox',
+    key: 'checked',
+    dataIndex: 'checked',
+    width: 120,
+    icon: { component: <VarTypeBooleanM/>},
+    iconTooltip: { component: <InfoFillS/>},
+    render: checked => <Checkbox withoutPadding checked={checked} />,
+  },
+  {
+    width: 254,
+    render: () => (
+      <TableCell.ActionCell>
+        <Button onClick={action('click')} type="secondary" mode="split">
+          Edit rule
+        </Button>
+      </TableCell.ActionCell>
+    ),
+  },
+];
+
+export const COLUMNS_WITH_LABELS = [
   {
     title: 'Name',
     dataIndex: 'name',
@@ -34,6 +126,9 @@ export const COLUMNS = [
     iconTooltip: { component: <InfoFillS/>},
     sorter: (a, b) => a.name < b.name,
   },
+];
+
+export const COLUMNS_WITH_ICONS = [
   {
     title: 'Name with flag',
     key: 'country',
@@ -89,6 +184,9 @@ export const COLUMNS = [
       <TableCell.IconLabelCell icon={{ component: <VarTypeStringM />, color: '#6a7580' }} label={name} />
     ),
   },
+];
+
+export const COLUMNS_WITH_STATUSES = [
   {
     title: 'Status',
     dataIndex: 'status',
@@ -99,38 +197,6 @@ export const COLUMNS = [
     icon: { component: <VarTypeBooleanM/>},
     tooltip: {title: "Tooltip", description: 'Description'},
     render: status => <TableCell.StatusLabelCell status={status} label={status} />,
-  },
-  {
-    title: 'Select',
-    dataIndex: 'select',
-    key: 'key',
-    width: 254,
-    textWrap: 'word-break',
-    ellipsis: true,
-    icon: { component: <VarTypeListM/>},
-    iconTooltip: { component: <InfoFillS/>},
-    render: select => (
-      <Select value={select.value}>
-        {select.options.map((option: string) => (
-          <Select.Option value={option}>{option}</Select.Option>
-        ))}
-      </Select>
-    ),
-  },
-  {
-    title: 'Button',
-    dataIndex: 'age',
-    key: 'age',
-    width: 254,
-    textWrap: 'word-break',
-    ellipsis: true,
-    icon: { component: <VarTypeListM/>},
-    iconTooltip: { component: <InfoFillS/>},
-    render: age => (
-      <Button type="secondary" onClick={() => alert(age)}>
-        Show age
-      </Button>
-    ),
   },
   {
     title: 'Tag',
@@ -159,6 +225,25 @@ export const COLUMNS = [
       </TableCell.TagIconCell>
     ),
   },
+  {
+    title: 'Enabled',
+    dataIndex: 'enabled',
+    key: 'enabled',
+    width: 254,
+    textWrap: 'word-break',
+    ellipsis: true,
+    icon: { component: <VarTypeBooleanM/>},
+    iconTooltip: { component: <InfoFillS/>},
+    render: enabled => (
+      <Tooltip title={enabled ? 'Switch off' : 'Switch on'} placement={'topLeft'}>
+        <Switch onChange={action('Status change')} checked={enabled} label="" />
+      </Tooltip>
+    ),
+  },
+
+];
+
+export const COLUMNS_WITH_AVATARS = [
   {
     title: 'Avatar',
     dataIndex: 'avatar',
@@ -254,89 +339,13 @@ export const COLUMNS = [
       />
     ),
   },
-  {
-    title: 'Enabled',
-    dataIndex: 'enabled',
-    key: 'enabled',
-    width: 254,
-    textWrap: 'word-break',
-    ellipsis: true,
-    icon: { component: <VarTypeBooleanM/>},
-    iconTooltip: { component: <InfoFillS/>},
-    render: enabled => (
-      <Tooltip title={enabled ? 'Switch off' : 'Switch on'} placement={'topLeft'}>
-        <Switch onChange={action('Status change')} checked={enabled} label="" />
-      </Tooltip>
-    ),
-  },
-  {
-    title: 'Editable row',
-    dataIndex: 'editable',
-    key: 'editable',
-    width: 254,
-    textWrap: 'word-break',
-    ellipsis: true,
-    icon: { component: <VarTypeListM/>},
-    iconTooltip: { component: <InfoFillS/>},
-    render: editable => <TableCell.EditableCell value={editable} placeholder={'No data'} onChange={console.log} />,
-  },
-  {
-    title: 'Copyable',
-    dataIndex: 'name',
-    key: 'name',
-    width: 254,
-    textWrap: 'word-break',
-    ellipsis: true,
-    icon: { component: <VarTypeListM/>},
-    iconTooltip: { component: <InfoFillS/>},
-    render: name => <TableCell.CopyableCell value={name} confirmMessage="Copied to clipboard!" tooltipTimeout={2000} />,
-  },
-  {
-    title: 'Checkbox',
-    key: 'checked',
-    dataIndex: 'checked',
-    width: 120,
-    icon: { component: <VarTypeBooleanM/>},
-    iconTooltip: { component: <InfoFillS/>},
-    render: checked => <Checkbox withoutPadding checked={checked} />,
-  },
-  {
-    title: 'Icon with tooltip',
-    width: 254,
-    textWrap: 'word-break',
-    ellipsis: true,
-    icon: { component: <VarTypeListM/>},
-    iconTooltip: { component: <InfoFillS/>},
-    render: editable => (
-      <Tooltip title="Run">
-        <Icon component={<PlayM />} color="#54cb0b" />{' '}
-      </Tooltip>
-    ),
-  },
-  {
-    width: 254,
-    title: 'Multiple buttons',
-    icon: { component: <VarTypeListM/>},
-    iconTooltip: { component: <InfoFillS/>},
-    render: () => (
-      <TableCell.ActionCell gapSize={8} contentAlign={'left'}>
-        <Button onClick={action('click')} type="custom-color" color="green">
-          Accept
-        </Button>
-        <Button onClick={action('click')} type="secondary">
-          Decline
-        </Button>
-      </TableCell.ActionCell>
-    ),
-  },
-  {
-    width: 254,
-    render: () => (
-      <TableCell.ActionCell>
-        <Button onClick={action('click')} type="secondary" mode="split">
-          Edit rule
-        </Button>
-      </TableCell.ActionCell>
-    ),
-  },
+]
+
+
+export const COLUMNS = [
+  ...COLUMNS_WITH_LABELS,
+  ...COLUMNS_WITH_ICONS,
+  ...COLUMNS_WITH_AVATARS,
+  ...COLUMNS_WITH_STATUSES,
+  ...COLUMNS_WITH_TRIGGERS
 ];

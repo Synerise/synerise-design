@@ -237,6 +237,7 @@ const stories = {
         {
           render: () => (
             <TableCell.ActionCell>
+              <Button>test</Button>
               <Dropdown
                 overlayStyle={{ boxShadow: '0 4px 12px 0 rgba(35, 41, 54, 0.07)' }}
                 overlay={
