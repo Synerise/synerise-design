@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useOnClickOutside } from '@synerise/ds-utils';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon from '@synerise/ds-icon';
-import { Add3M, SearchM } from '@synerise/ds-icon/dist/icons';
+import { SearchM } from '@synerise/ds-icon/dist/icons';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import Menu from '@synerise/ds-menu';
 import Button from '@synerise/ds-button';
@@ -10,10 +10,6 @@ import { renderFooter, typesFooter } from '../index.stories';
 import { boolean, select } from '@storybook/addon-knobs';
 
 interface Props {
-  onSearchChange: (value: string) => void;
-  onClearInput?: () => void;
-  onFooter?: React.ReactNode;
-  onClickAction: () => void;
 }
 
 const WithSearch: React.FC<Props> = () => {

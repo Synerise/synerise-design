@@ -3,13 +3,10 @@ import { useOnClickOutside } from '@synerise/ds-utils';
 import Dropdown from '@synerise/ds-dropdown';
 import Menu from '@synerise/ds-menu';
 import Button from '@synerise/ds-button';
-import { Add3M } from '@synerise/ds-icon/dist/icons';
 import { boolean, select } from '@storybook/addon-knobs';
 import { renderFooter, typesFooter } from '../index.stories';
 
 interface Props {
-  onFooter?: React.ReactNode;
-  onClickAction: () => void;
 }
 
 const Default: React.FC<Props> = () => {
