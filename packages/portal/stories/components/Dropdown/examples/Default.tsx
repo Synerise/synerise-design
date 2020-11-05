@@ -6,10 +6,8 @@ import Button from '@synerise/ds-button';
 import { boolean, select } from '@storybook/addon-knobs';
 import { renderFooter, typesFooter } from '../index.stories';
 
-interface Props {
-}
 
-const Default: React.FC<Props> = () => {
+const Default: React.FC = () => {
   const data = [{ text: 'Preview' }, { text: 'Edit' }, { text: 'Duplicate' }];
   const [dropdownVisible, setDropdownVisible] = React.useState(false);
   const footer = boolean('Set footer', false);
@@ -25,7 +23,7 @@ const Default: React.FC<Props> = () => {
         placement="bottomLeft"
         overlay={
           <Dropdown.Wrapper style={{ width: '220px' }} ref={ref}>
-            <Menu style={{ padding: '8px' }} dataSource={data} />
+            <Menu dataSource={data} asDropdownMenu={true}  style={{ width: '204px' }} />
             {footer && renderFooter(setTypeFooter)}
           </Dropdown.Wrapper>
         }

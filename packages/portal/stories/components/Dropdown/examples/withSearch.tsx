@@ -9,10 +9,9 @@ import Button from '@synerise/ds-button';
 import { renderFooter, typesFooter } from '../index.stories';
 import { boolean, select } from '@storybook/addon-knobs';
 
-interface Props {
-}
 
-const WithSearch: React.FC<Props> = () => {
+
+const WithSearch: React.FC = () => {
   const data = [{ text: 'Preview' }, { text: 'Edit' }, { text: 'Duplicate' }];
   const [dropdownVisible, setDropdownVisible] = React.useState(false);
   const footer = boolean('Set footer', false);
@@ -38,7 +37,7 @@ const WithSearch: React.FC<Props> = () => {
               value={value}
               iconLeft={<Icon component={<SearchM />} color={theme.palette['grey-600']} />}
             />
-            <Menu style={{ padding: '8px' }} dataSource={data} />
+            <Menu dataSource={data} asDropdownMenu={true}  style={{ width: '204px' }}/>
             {footer && renderFooter(setTypeFooter)}
           </Dropdown.Wrapper>
         }
