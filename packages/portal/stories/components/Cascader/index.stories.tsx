@@ -11,7 +11,7 @@ const decorator = storyFn => (
 );
 
 const stories = {
-  Cascader: () => {
+  cascader: () => {
     const root = mock.default;
     const categoryLimit = number('Set home categories count:',5,{min:5, max: 10})
     return (
