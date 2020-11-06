@@ -55,7 +55,7 @@ const WithSearch: React.FC = () => {
             {navigation &&
             <Dropdown.BackAction label="Attributes" onClick={() => alert('BackAction clicked')} />}
             {filteredData?.length === 0 ? <Result type="no-results" noSearchResults description={'No results'} /> :
-            <Menu dataSource={filteredData} asDropdownMenu={true}  style={{ width: '204px' }}>
+            <Menu asDropdownMenu={true}  style={{ width: '204px' }}>
               {filteredData.map(item => (<Menu.Item text={item.text} highlight={value}/>))}
             </Menu>}
             {footer && renderFooter(setTypeFooter)}
