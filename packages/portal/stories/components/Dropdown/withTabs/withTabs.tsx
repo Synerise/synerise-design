@@ -6,7 +6,8 @@ import SearchM from '@synerise/ds-icon/dist/icons/SearchM';
 import Tabs from '@synerise/ds-tabs';
 import { BooleanM, CalendarM, HashM, ListM, TextM } from '@synerise/ds-icon/dist/icons';
 import * as S from './withTabs.styles';
-import { select } from '@storybook/addon-knobs';
+import { boolean, select } from '@storybook/addon-knobs';
+import { renderFooter, typesFooter } from '../index.stories';
 
 const tabsWithIcons = [
   {
@@ -67,6 +68,8 @@ const withTabs = () => {
 
   const [dropdownVisible, setDropdownVisible] = React.useState(false);
   const selectedTabs = select('Set tabs type', tabsType, tabsType.icons);
+  const footer = boolean('Set footer', false);
+  const setTypeFooter = select('Set footer type', typesFooter, 'singleButton');
   return {
     visible: dropdownVisible,
     overlay: (
@@ -89,6 +92,7 @@ const withTabs = () => {
           />
         </S.TabsWrapper>
         <S.ContentPlaceholder></S.ContentPlaceholder>
+        {footer && renderFooter(setTypeFooter)}
       </Dropdown.Wrapper>
     ),
     children: (

@@ -30,7 +30,7 @@ export function renderFooter(suffixElementType: string) {
         <Dropdown.BottomAction
           // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
           // @ts-ignore
-          style={{ marginTop: '0px', padding: '0 8px' }}
+          style={{ marginTop: '0px', padding: '0 8px', cursor: 'auto', }}
         >
           <Button type="ghost" style={{ paddingLeft: '8px' }}>
             {<Icon component={<Add3M />} size={24} color={theme.palette['grey-500']} />}
@@ -47,6 +47,7 @@ export function renderFooter(suffixElementType: string) {
             justifyContent: 'center',
             marginTop: '0px',
             padding: '0 8px',
+            cursor: 'auto',
           }}
         >
           <Button type="ghost" style={{ paddingLeft: '8px' }}>
@@ -63,7 +64,7 @@ export function renderFooter(suffixElementType: string) {
         <Dropdown.BottomAction
           // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
           // @ts-ignore
-          style={{ marginTop: '0px' }}
+          style={{ marginTop: '0px',  cursor: 'auto', }}
         />
       );
     case typesFooter.navigation:
@@ -75,14 +76,19 @@ export function renderFooter(suffixElementType: string) {
             justifyContent: 'center',
             marginTop: '0px',
             padding: '0 8px',
+            cursor: 'auto',
           }}
         >
-          <div style={{ fontWeight: 500,fontSize:'10px', color: theme.palette['grey-400'], marginLeft: '-4px' }}>
+          <div style={{ display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center', fontWeight: 500,fontSize:'10px', color: theme.palette['grey-400'], marginLeft: '-4px' }}>
             {<Icon component={<KeyboardUpM />} size={24} color={theme.palette['grey-400']} />}
             {<Icon component={<KeyboardDownM />} size={24} color={theme.palette['grey-400']} />}
             to navigate
           </div>
-          <div style={{ fontWeight: 500,fontSize:'10px', color: theme.palette['grey-400'],marginLeft: '18px'}}>
+          <div style={{ display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center', fontWeight: 500,fontSize:'10px', color: theme.palette['grey-400'],marginLeft: '18px'}}>
             {<Icon component={<KeyboardEnterM />} size={24} color={theme.palette['grey-400']} />}
             to select
           </div>
