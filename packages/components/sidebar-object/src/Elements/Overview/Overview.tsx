@@ -31,7 +31,6 @@ const Overview: React.FC<OverviewObjectProps> = ({
           <>
             {texts?.folder}:{' '}
             <Dropdown
-              overlayStyle={{ boxShadow: '0 4px 17px -3px rgba(191,191,191,1)' }}
               visible={dropdownVisible}
               overlay={
                 <DropdownOverlay
