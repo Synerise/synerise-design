@@ -159,7 +159,7 @@ describe('Search with dropdown', () => {
         const parameter = screen.getByText('City') as HTMLInputElement;
         parameter.click();
         // ASSERT
-        expect(onParameterValueChange).toBeCalledWith('City');
+        expect(onParameterValueChange).toBeCalledWith('City', { text: 'City', icon: <VarTypeStringM /> });
       },
       {
         timeout: 1000,

@@ -45,7 +45,7 @@ return (
         onValueChange={value => {
           setValue(value);
         }}
-        onParameterValueChange={value => {
+        onParameterValueChange={(value, parameter) => {
           setParameterValue(value);
           const fakeApiResponse = getSuggestions(value);
           setSuggestions(fakeApiResponse);
