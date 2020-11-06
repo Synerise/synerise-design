@@ -20,15 +20,15 @@ export type SearchLookupConfig = {
   suggestions: string;
 };
 
-export type SearchProps<T extends AnyObject> = {
+export type SearchProps<T extends AnyObject, U extends AnyObject> = {
   clearTooltip: string;
   divider?: React.ReactNode;
   dropdownMaxHeight: number;
   filterLookupKey?: string;
   onClear: () => void;
-  onParameterValueChange: (parameterValue: string) => void;
+  onParameterValueChange: (parameterValue: string, parameter: U | null) => void;
   onValueChange: (value: string) => void;
-  parameters: T[];
+  parameters: U[];
   parametersDisplayProps: DataSetProps;
   parameterValue: string;
   placeholder: string;

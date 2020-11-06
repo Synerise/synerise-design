@@ -9,6 +9,7 @@ import { SearchInput } from '@synerise/ds-search/dist/Elements';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import DebouncedInput from './DebouncedInput';
 import { debounce } from 'debounce';
+import { action } from '@storybook/addon-actions';
 const decorator = storyFn => (
   <div style={{ width: '100vw', position: 'absolute', left: '0', top: '20vh' }}>
     <div style={{ width: '300px', margin: 'auto' }}>{storyFn()}</div>
@@ -103,10 +104,11 @@ const stories = {
           setParameterValue('');
           setValue('');
         }}
-        onParameterValueChange={value => {
+        onParameterValueChange={(value, parameter) => {
           setParameterValue(value);
           const fakeApiResponse = getSuggestions(value);
           setSuggestions(fakeApiResponse);
+          console.log(value, parameter);
         }}
         onValueChange={value => {
           setValue(value);
