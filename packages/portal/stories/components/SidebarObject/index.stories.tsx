@@ -243,7 +243,7 @@ const stories = {
       addable={addable && !disabled}
       creatable={creatable}
       removable={removable}
-      overlayStyle={{ width: '283px', boxShadow: '0 4px 17px -3px rgba(191,191,191,1)' }}
+      overlayStyle={{ width: '283px'}}
       maxHeight={200}
       texts={{
         clearTooltip: 'Clear',

@@ -62,7 +62,6 @@ const Header: React.FC<HeaderProps> = ({
           </S.ButtonWrapper>
         )}
         <Dropdown
-          overlayStyle={{ boxShadow: '0 4px 17px -3px rgba(191,191,191,1)' }}
           visible={dropdownVisible}
           placement="bottomLeft"
           overlay={

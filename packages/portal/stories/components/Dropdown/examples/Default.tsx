@@ -11,6 +11,7 @@ const Default: React.FC = () => {
   const data = [{ text: 'Preview' }, { text: 'Edit' }, { text: 'Duplicate' }];
   const [dropdownVisible, setDropdownVisible] = React.useState(false);
   const footer = boolean('Set footer', false);
+  const navigation = boolean('Set navigation', false);
   const setTypeFooter = select('Set footer type', typesFooter, 'singleButton');
   const ref = React.useRef<HTMLDivElement>(null);
   useOnClickOutside(ref, () => {
@@ -19,10 +20,13 @@ const Default: React.FC = () => {
   return (
     <div>
       <Dropdown
+        overlayStyle={{borderRadius: '3px'}}
         visible={dropdownVisible}
         placement="bottomLeft"
         overlay={
-          <Dropdown.Wrapper style={{ width: '220px' }} ref={ref}>
+          <Dropdown.Wrapper style={{ width: '220px', borderRadius: '3px' }} ref={ref}>
+            {navigation &&
+            <Dropdown.BackAction label="Attributes" onClick={() => alert('BackAction clicked')} />}
             <Menu dataSource={data} asDropdownMenu={true}  style={{ width: '204px' }} />
             {footer && renderFooter(setTypeFooter)}
           </Dropdown.Wrapper>
