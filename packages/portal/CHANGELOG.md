@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.104.0](https://github.com/synerise/synerise-design/compare/portal@0.103.0...portal@0.104.0) (2020-11-06)
+
+
+### Features
+
+* **search:** onParameterChange returns parameter name and full param ([8588080](https://github.com/synerise/synerise-design/commit/85880803760a4c3cfb3bc14db9c78c7a6197d7ce))
+
+
+
+
+
 # [0.103.0](https://github.com/synerise/synerise-design/compare/portal@0.102.4...portal@0.103.0) (2020-11-04)
 
 
