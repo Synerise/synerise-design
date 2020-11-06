@@ -23,10 +23,10 @@ const getParametersScrollTop = ({
   recent: AnyObject[];
 }): number => scrollTop - LIST_HEADER_HEIGHT - (hasSomeElement(recent) ? recent.length * rowHeight : 0);
 
-class Search extends React.PureComponent<SearchProps<AnyObject>, SearchState<AnyObject>> {
+class Search extends React.PureComponent<SearchProps<AnyObject, AnyObject>, SearchState<AnyObject>> {
   private wrapperRef = React.createRef<HTMLDivElement>();
 
-  constructor(props: SearchProps<AnyObject>) {
+  constructor(props: SearchProps<AnyObject, AnyObject>) {
     super(props);
     // eslint-disable-next-line react/state-in-constructor
     this.state = {
@@ -47,7 +47,7 @@ class Search extends React.PureComponent<SearchProps<AnyObject>, SearchState<Any
     };
   }
 
-  componentDidUpdate(prevProps: SearchProps<AnyObject>): void {
+  componentDidUpdate(prevProps: SearchProps<AnyObject, AnyObject>): void {
     const { recent, suggestions, parameters, value, textLookupConfig, hideLabel, parameterValue } = this.props;
 
     if (prevProps.value !== value && !value) {
@@ -93,7 +93,7 @@ class Search extends React.PureComponent<SearchProps<AnyObject>, SearchState<Any
         label: null,
         filteredRecent: recent,
       });
-      onParameterValueChange('');
+      onParameterValueChange('', null);
       return;
     }
 
@@ -204,10 +204,14 @@ class Search extends React.PureComponent<SearchProps<AnyObject>, SearchState<Any
 
     if (filterLookupKey && item[filterLookupKey]) {
       onValueChange(item[textLookupConfig.parameters]);
-      onParameterValueChange(item[filterLookupKey]);
+      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+      // @ts-ignore
+      onParameterValueChange(item[filterLookupKey], item);
       this.setState({ isResultChosen: true });
     } else {
-      onParameterValueChange(item[textLookupConfig.parameters]);
+      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+      // @ts-ignore
+      onParameterValueChange(item[textLookupConfig.parameters], item);
     }
   }
 
