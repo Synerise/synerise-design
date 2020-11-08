@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.1.94...@synerise/ds-search@0.2.0) (2020-11-06)
+
+
+### Features
+
+* **search:** onParameterChange returns parameter name and full param ([8588080](https://github.com/Synerise/synerise-design/commit/85880803760a4c3cfb3bc14db9c78c7a6197d7ce))
+
+
+
+
+
 ## [0.1.94](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.1.93...@synerise/ds-search@0.1.94) (2020-11-04)
 
 **Note:** Version bump only for package @synerise/ds-search
