@@ -16,10 +16,24 @@ export const afterElementAnimation = keyframes`
   0% {
      transform: translate3d(-5px, -5px, 0) scale(0.3);
      opacity: 0.9;
+      position: absolute;
+              top: 0;
+              left: 0;
+              width: 16px;
+              height: 16px;
+              background-color: inherit;
+              border-radius: 50%;
   }
   100% {
      transform: translate3d(-5px, -5px, 0) scale(1.5);
      opacity: 0;
+      position: absolute;
+              top: 0;
+              left: 0;
+              width: 16px;
+              height: 16px;
+              background-color: inherit;
+              border-radius: 50%;
   }
 `;
 
@@ -28,17 +42,33 @@ export const beforeElementAnimation = keyframes`
   0% {
      transform: translate3d(-2px, -2px, 0) scale(0.5);
      opacity: 0.9;
+     position: absolute;
+              top: 0;
+              left: 0;
+              width: 10px;
+              height: 10px;
+              background-color: inherit;
+              border-radius: 50%;
   }
   100% {
      transform: translate3d(-2px, -2px, 0) scale(1.5);
      opacity: 0;
+     position: absolute;
+              top: 0;
+              left: 0;
+              width: 10px;
+              height: 10px;
+              background-color: inherit;
+              border-radius: 50%;
   }
 `;
 
 // eslint-disable-next-line react/jsx-props-no-spreading
-export default styled(({ flag, outlined, backgroundColor, textColor, backgroundColorHue, textColorHue, pulsing, ...rest }) => (
-  <Badge {...rest} />
-))`
+export default styled(
+  ({ flag, outlined, backgroundColor, textColor, backgroundColorHue, textColorHue, pulsing, ...rest }) => (
+    <Badge {...rest} />
+  )
+)`
 && {
   .ant-scroll-number-only{
     height: 16px;
@@ -65,37 +95,48 @@ export default styled(({ flag, outlined, backgroundColor, textColor, backgroundC
   }
   ${(props): FlattenSimpleInterpolation | false =>
     css`
-      ${props.status === 'active' &&
+      ${
+        props.status === 'active' &&
         css`
           .ant-badge-status-active {
             background-color: ${props.theme.palette['green-600']};
           }
-        `}
-        ${props.status === 'inactive' &&
+        `
+      }
+        ${
+          props.status === 'inactive' &&
           css`
             .ant-badge-status-inactive {
               background-color: ${props.theme.palette['grey-400']};
             }
-          `}
-      ${props.status === 'blocked' &&
+          `
+        }
+      ${
+        props.status === 'blocked' &&
         css`
           .ant-badge-status-blocked {
             background-color: ${props.theme.palette['red-600']};
           }
-        `}
-        ${props.status === 'processing' &&
+        `
+      }
+        ${
+          props.status === 'processing' &&
           css`
             .ant-badge-status-processing {
               background-color: ${props.theme.palette['blue-600']};
             }
-          `}
-      ${props.outlined &&
+          `
+        }
+      ${
+        props.outlined &&
         css`
           .ant-badge-count {
             box-shadow: 0 0 0 1px ${props.theme.palette.white};
           }
-        `}
-      ${(!!props.flag || !!props.status) &&
+        `
+      }
+      ${
+        (!!props.flag || !!props.status) &&
         css`
           .ant-badge-dot {
             box-shadow: none;
@@ -107,40 +148,31 @@ export default styled(({ flag, outlined, backgroundColor, textColor, backgroundC
           .ant-badge-dot,
           .ant-badge-status-dot {
             overflow: visible;
-            border: ${props.flag ? '0' : `2px solid ${props.theme.palette.white}`};
-            width: ${props.flag ? '6px' : '10px'};
-            height: ${props.flag ? '6px' : '10px'};
+            border: 2px solid ${props.theme.palette.white};
+            width: 10px;
+            height: 10px;
             &::before {
               display: flex;
               content: ${props.flag ? '""' : 'none'};
-              position: absolute;
-              top: 0;
-              left: 0;
-              width: 10px;
-              height: 10px;
-              background-color: inherit;
-              opacity: 0.35;
-              border-radius: 50%;
               transform: translate3d(-2px, -2px, 0);
-              ${props.pulsing && css`animation: ${beforeElementAnimation} 2s infinite;`}
+              ${props.pulsing &&
+              css`
+                animation: ${beforeElementAnimation} 2s infinite;
+              `}
               transform-origin: center;
             }
             &::after {
               display: flex;
               content: ${props.flag ? '""' : 'none'};
-              position: absolute;
-              top: 0;
-              left: 0;
-              width: 16px;
-              height: 16px;
-              background-color: inherit;
-              opacity: 0.2;
-              border-radius: 50%;
               transform: translate3d(-5px, -5px, 0);
-              ${props.pulsing && css`animation: ${afterElementAnimation} 2s infinite;`}
+              ${props.pulsing &&
+              css`
+                animation: ${afterElementAnimation} 2s infinite;
+              `}
               transform-origin: center;
             }
           }
-        `};
+        `
+      };
     `}
 `;
