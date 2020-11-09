@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.15](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar-object@0.2.14...@synerise/ds-sidebar-object@0.2.15) (2020-11-09)
+
+
+### Bug Fixes
+
+* **sidebar-object:** fix box-shadow ([3dc00ea](https://github.com/Synerise/synerise-design/commit/3dc00ea0fc973001e89e95f6d5b13b78d3cfe9a6))
+
+
+
+
+
 ## [0.2.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar-object@0.2.13...@synerise/ds-sidebar-object@0.2.14) (2020-11-08)
 
 **Note:** Version bump only for package @synerise/ds-sidebar-object

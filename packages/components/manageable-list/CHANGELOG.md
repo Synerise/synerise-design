@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.14.28](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.14.27...@synerise/ds-manageable-list@0.14.28) (2020-11-09)
+
+
+### Bug Fixes
+
+* **manageable-list:** added missing deps ([2fba3ec](https://github.com/Synerise/synerise-design/commit/2fba3ec16f4928c357a516de28f5fc668d9564c7))
+* **manageable-list:** added missing ds deps ([faac819](https://github.com/Synerise/synerise-design/commit/faac81912f0a7e54c7c2dec74e09d8fa8813be37))
+* **manageable-list:** deprecated sortable js package replaced ([48c9c71](https://github.com/Synerise/synerise-design/commit/48c9c711d2ff1521082cb3c3a36e9d7c0eb2e78b))
+
+
+
+
+
 ## [0.14.27](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.14.26...@synerise/ds-manageable-list@0.14.27) (2020-11-08)
 
 **Note:** Version bump only for package @synerise/ds-manageable-list
