@@ -5,14 +5,33 @@ import Menu from '@synerise/ds-menu';
 import { Add3M, FolderM, SearchM } from '@synerise/ds-icon/dist/icons';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { useOnClickOutside } from '@synerise/ds-utils';
+import Result from '@synerise/ds-result';
 import { DropdownWrapper, MenuWrapper } from './Dropdown.style';
 import { Props } from './DropdownOverlay.types';
 
-
-const DropdownOverlay: React.FC<Props> = ({ texts,onClearInput, data, onClickAction, parentFolder,onDropdownOutsideClick, onSearchChange, searchValue,onFolderSelect  }) => {
+const DropdownOverlay: React.FC<Props> = ({
+  texts,
+  onClearInput,
+  data,
+  onAddFolderClick,
+  parentFolder,
+  onDropdownOutsideClick,
+  onSearchChange,
+  searchValue,
+  onFolderSelect,
+  foldersIdKey,
+  foldersFilterKey,
+  foldersDisplayKey,
+}) => {
   const ref = React.useRef<HTMLDivElement>(null);
+
+  const filteredData = data.filter(
+    item =>
+      typeof item[foldersFilterKey] === 'string' &&
+      (item[foldersFilterKey] as string).toLowerCase().includes(searchValue.toLowerCase())
+  );
   useOnClickOutside(ref, () => {
-   onDropdownOutsideClick();
+    onDropdownOutsideClick && onDropdownOutsideClick();
   });
   return (
     <DropdownWrapper ref={ref}>
@@ -24,23 +43,30 @@ const DropdownOverlay: React.FC<Props> = ({ texts,onClearInput, data, onClickAct
         iconLeft={<Icon component={<SearchM />} color={theme.palette['grey-600']} />}
         autofocus
       />
-      <MenuWrapper>
-        <Menu dataSource={data}>
-          {data.map(item => (
-            <Menu.Item key={parentFolder.id} onSelect={(): void => onFolderSelect(item)} checked={parentFolder.id === item.id} prefixel={<Icon component={<FolderM />} />}>
-              {item.name}
-            </Menu.Item>
-          ))}
-        </Menu>
+      <MenuWrapper withBottomAction={!!onAddFolderClick}>
+        {filteredData?.length > 0 ? (
+          <Menu>
+            {filteredData?.map(item => (
+              <Menu.Item
+                key={parentFolder[foldersIdKey]}
+                onClick={(): void => onFolderSelect(item)}
+                checked={parentFolder[foldersIdKey] === item[foldersIdKey]}
+                prefixel={<Icon component={<FolderM />} />}
+                highlight={searchValue}
+              >
+                {item[foldersDisplayKey]}
+              </Menu.Item>
+            ))}
+          </Menu>
+        ) : (
+          <Result type="no-results" />
+        )}
       </MenuWrapper>
-      <Dropdown.BottomAction
-        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-        // @ts-ignore
-        onClickAction={onClickAction}
-        icon={<Add3M />}
-      >
-        Add folder
-      </Dropdown.BottomAction>
+      {onAddFolderClick && (
+        <Dropdown.BottomAction onClickAction={onAddFolderClick} icon={<Add3M />}>
+          {texts?.addFolder}
+        </Dropdown.BottomAction>
+      )}
     </DropdownWrapper>
   );
 };

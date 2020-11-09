@@ -7,6 +7,6 @@ description: React.ReactNode;
 tags: React.ReactNode;
 textDescription: string;
 texts: OverviewTexts;
-onDescriptionChange: (value: string) => void;
+onDescriptionChange?: (value: string) => void;
 onFolderSelect: (item: FolderItem) => void;
 };

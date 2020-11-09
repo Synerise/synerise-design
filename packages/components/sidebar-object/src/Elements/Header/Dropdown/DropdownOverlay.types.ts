@@ -4,7 +4,7 @@ import { HeaderTexts } from '../Header.types';
 
 export interface Props {
   data: FolderItem[];
-  onClickAction?: () => void;
+  onAddFolderClick?: () => void;
   onClearInput?: () => void;
   parentFolder: FolderItem;
   texts: OverviewTexts & HeaderTexts;
@@ -12,4 +12,7 @@ export interface Props {
   onSearchChange: (value: string) => void;
   searchValue: string;
   onFolderSelect: (item: FolderItem) => void;
+  foldersFilterKey: string;
+  foldersDisplayKey: string;
+  foldersIdKey: string;
 }

@@ -27,6 +27,7 @@ const SidebarObject: React.FC<SidebarObjectProps> = ({
   onRename,
   activeTab= 0
 }) => {
+  console.log('LINKED')
   return (
     <S.SidebarObjectWrapper>
       <Scrollbar
