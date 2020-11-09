@@ -11,4 +11,5 @@ export interface SearchBarProps {
   autofocus?: boolean;
   disabled?: boolean;
   borderRadius?: boolean | undefined;
+  handleInputRef?: (inputRef: React.MutableRefObject<HTMLInputElement | HTMLTextAreaElement | undefined>) => void;
 }
