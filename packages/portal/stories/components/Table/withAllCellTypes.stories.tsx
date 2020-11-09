@@ -3,14 +3,16 @@ import faker from 'faker';
 import { action } from '@storybook/addon-actions';
 import { boolean, select, text } from '@storybook/addon-knobs';
 import Table from '@synerise/ds-table';
-import { AddM, MailM } from '@synerise/ds-icon/dist/icons';
+import { AddM, MailM, VarTypeStringM } from '@synerise/ds-icon/dist/icons';
 import { TagShape } from '@synerise/ds-tags';
 import {
   COLUMNS,
-  COLUMNS_WITH_AVATARS, COLUMNS_WITH_ICONS,
-  COLUMNS_WITH_LABELS, COLUMNS_WITH_STATUSES,
+  COLUMNS_WITH_AVATARS,
+  COLUMNS_WITH_ICONS,
+  COLUMNS_WITH_LABELS,
+  COLUMNS_WITH_STATUSES,
   COLUMNS_WITH_TRIGGERS,
-  TRIGGER_ICONS,
+  RELATIONS,
 } from './content/withAllCellTypes.data';
 import Button from '@synerise/ds-button';
 import Icon from '@synerise/ds-icon';
@@ -44,6 +46,7 @@ const dataSource = [...new Array(55)].map((i, k) => ({
   enabled: faker.random.boolean(),
   editable: faker.random.boolean() ? faker.name.findName() : undefined,
   checked: faker.random.boolean(),
+  relations: RELATIONS,
 }));
 
 const CELL_SIZES = {
@@ -54,14 +57,14 @@ const CELL_SIZES = {
 
 const getDefaultProps = () => ({
   title: `${dataSource.length} results`,
-    hideTitleBar: boolean('Hide title bar', false),
-    dataSource,
-    loading: boolean('Set loading state', false),
-    roundedHeader: boolean('Rounded header', false),
-    pagination: {
+  hideTitleBar: boolean('Hide title bar', false),
+  dataSource,
+  loading: boolean('Set loading state', false),
+  roundedHeader: boolean('Rounded header', false),
+  pagination: {
     showSizeChanger: boolean('Show size changer', true),
-      showQuickJumper: boolean('Show quick jumper', true),
-      onChange: action('pageChanged'),
+    showQuickJumper: boolean('Show quick jumper', true),
+    onChange: action('pageChanged'),
   },
   locale: {
     pagination: {
@@ -72,8 +75,8 @@ const getDefaultProps = () => ({
     x: false,
   },
   onSearch: action('onSearch'),
-    cellSize: select('Set cells size', CELL_SIZES, CELL_SIZES.default),
-    headerButton: boolean('Show header button', false) && (
+  cellSize: select('Set cells size', CELL_SIZES, CELL_SIZES.default),
+  headerButton: boolean('Show header button', false) && (
     <Button type="ghost" mode="icon-label" onClick={action('Header button action')}>
       <Icon component={<AddM />} />
       {text('Header button label', 'Add row')}
@@ -105,7 +108,7 @@ const stories = {
   withTriggers: () => ({
     ...getDefaultProps(),
     columns: renderWithIconInHeaders(COLUMNS_WITH_TRIGGERS as Column[], boolean('Set icons in headers', false)),
-  })
+  }),
 };
 
 export default {

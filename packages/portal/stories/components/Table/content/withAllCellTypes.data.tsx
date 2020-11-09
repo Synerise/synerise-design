@@ -21,6 +21,54 @@ import Checkbox from '@synerise/ds-checkbox/dist';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { IconProps } from '@synerise/ds-icon/dist/Icon.types';
 import TooltipExtendedProps from '@synerise/ds-tooltip/dist/Tooltip.types';
+import { LabelsWithShowMore } from '@synerise/ds-table/dist/Cell';
+
+export const RELATIONS = [
+  {
+    fieldName: 'Milk',
+    icon: <Icon component={<VarTypeStringM />} />,
+  },
+  {
+    fieldName: 'Oil',
+    icon: <Icon component={<VarTypeStringM />} />,
+  },
+  {
+    fieldName: 'Apple',
+    icon: <Icon component={<VarTypeStringM />} />,
+  },
+  {
+    fieldName: 'Banana',
+    icon: <Icon component={<VarTypeStringM />} />,
+  },
+  {
+    fieldName: 'Bread',
+    icon: <Icon component={<VarTypeStringM />} />,
+  },
+  {
+    fieldName: 'Orange',
+    icon: <Icon component={<VarTypeStringM />} />,
+  },
+  {
+    fieldName: 'Eggs',
+    icon: <Icon component={<VarTypeStringM />} />,
+  },
+  {
+    fieldName: 'Beer',
+    icon: <Icon component={<VarTypeStringM />} />,
+  },
+  {
+    fieldName: 'Cheese',
+    icon: <Icon component={<VarTypeStringM />} />,
+  },
+  {
+    fieldName: 'Pasta',
+    icon: <Icon component={<VarTypeStringM />} />,
+  },
+  {
+    fieldName: 'Rice',
+    icon: <Icon component={<VarTypeStringM />} />,
+  },
+];
 
 export const COLUMNS_WITH_TRIGGERS = [
   {
@@ -30,8 +78,8 @@ export const COLUMNS_WITH_TRIGGERS = [
     width: 254,
     textWrap: 'word-break',
     ellipsis: true,
-    icon: { component: <VarTypeListM/>},
-    iconTooltip: { component: <InfoFillS/>},
+    icon: { component: <VarTypeListM /> },
+    iconTooltip: { component: <InfoFillS /> },
     render: select => (
       <Select value={select.value}>
         {select.options.map((option: string) => (
@@ -47,8 +95,8 @@ export const COLUMNS_WITH_TRIGGERS = [
     width: 254,
     textWrap: 'word-break',
     ellipsis: true,
-    icon: { component: <VarTypeListM/>},
-    iconTooltip: { component: <InfoFillS/>},
+    icon: { component: <VarTypeListM /> },
+    iconTooltip: { component: <InfoFillS /> },
     render: age => (
       <Button type="secondary" onClick={() => alert(age)}>
         Show age
@@ -58,8 +106,8 @@ export const COLUMNS_WITH_TRIGGERS = [
   {
     width: 254,
     title: 'Multiple buttons',
-    icon: { component: <VarTypeListM/>},
-    iconTooltip: { component: <InfoFillS/>},
+    icon: { component: <VarTypeListM /> },
+    iconTooltip: { component: <InfoFillS /> },
     render: () => (
       <TableCell.ActionCell gapSize={8} contentAlign={'left'}>
         <Button onClick={action('click')} type="custom-color" color="green">
@@ -78,8 +126,8 @@ export const COLUMNS_WITH_TRIGGERS = [
     width: 254,
     textWrap: 'word-break',
     ellipsis: true,
-    icon: { component: <VarTypeListM/>},
-    iconTooltip: { component: <InfoFillS/>},
+    icon: { component: <VarTypeListM /> },
+    iconTooltip: { component: <InfoFillS /> },
     render: editable => <TableCell.EditableCell value={editable} placeholder={'No data'} onChange={console.log} />,
   },
   {
@@ -89,8 +137,8 @@ export const COLUMNS_WITH_TRIGGERS = [
     width: 254,
     textWrap: 'word-break',
     ellipsis: true,
-    icon: { component: <VarTypeListM/>},
-    iconTooltip: { component: <InfoFillS/>},
+    icon: { component: <VarTypeListM /> },
+    iconTooltip: { component: <InfoFillS /> },
     render: name => <TableCell.CopyableCell value={name} confirmMessage="Copied to clipboard!" tooltipTimeout={2000} />,
   },
   {
@@ -98,8 +146,8 @@ export const COLUMNS_WITH_TRIGGERS = [
     key: 'checked',
     dataIndex: 'checked',
     width: 120,
-    icon: { component: <VarTypeBooleanM/>},
-    iconTooltip: { component: <InfoFillS/>},
+    icon: { component: <VarTypeBooleanM /> },
+    iconTooltip: { component: <InfoFillS /> },
     render: checked => <Checkbox withoutPadding checked={checked} />,
   },
   {
@@ -122,9 +170,26 @@ export const COLUMNS_WITH_LABELS = [
     textWrap: 'word-break',
     ellipsis: true,
     key: 'name',
-    icon: { component: <VarTypeStringM/>},
-    iconTooltip: { component: <InfoFillS/>},
+    icon: { component: <VarTypeStringM /> },
+    iconTooltip: { component: <InfoFillS /> },
     sorter: (a, b) => a.name < b.name,
+  },
+  {
+    title: 'Relations',
+    dataIndex: 'relations',
+    width: 254,
+    textWrap: 'word-break',
+    ellipsis: true,
+    key: 'relations',
+    render: () => {
+      <LabelsWithShowMore
+        items={RELATIONS}
+        numberOfVisibleItems={2}
+        tooltip="Show more"
+        labelKey={'fieldLabel'}
+        title={'Products'}
+      />;
+    },
   },
 ];
 
@@ -134,8 +199,8 @@ export const COLUMNS_WITH_ICONS = [
     key: 'country',
     dataIndex: 'country',
     width: 254,
-    icon: { component: <VarTypeStringM/>},
-    iconTooltip: { component: <InfoFillS/>},
+    icon: { component: <VarTypeStringM /> },
+    iconTooltip: { component: <InfoFillS /> },
     sorter: (a, b) => a.country < b.country,
     render: (country, record) => {
       return <TableCell.FlagLabelCell countryCode={country} label={record.name} />;
@@ -146,8 +211,8 @@ export const COLUMNS_WITH_ICONS = [
     key: 'active',
     dataIndex: 'active',
     width: 254,
-    icon: { component: <VarTypeStringM/>},
-    iconTooltip: { component: <InfoFillS/>},
+    icon: { component: <VarTypeStringM /> },
+    iconTooltip: { component: <InfoFillS /> },
     sorter: (a, b) => a.active - b.active,
     render: (active, record) => {
       return (
@@ -162,8 +227,8 @@ export const COLUMNS_WITH_ICONS = [
     key: 'name',
     dataIndex: 'name',
     width: 254,
-    icon: { component: <VarTypeStringM/>},
-    iconTooltip: { component: <InfoFillS/>},
+    icon: { component: <VarTypeStringM /> },
+    iconTooltip: { component: <InfoFillS /> },
     render: (name, record) => {
       return (
         <TableCell.StarCell active={record.active} onClick={action('Click start')}>
@@ -178,8 +243,8 @@ export const COLUMNS_WITH_ICONS = [
     width: 254,
     textWrap: 'word-break',
     ellipsis: true,
-    icon: { component: <VarTypeStringM/>},
-    iconTooltip: { component: <InfoFillS/>},
+    icon: { component: <VarTypeStringM /> },
+    iconTooltip: { component: <InfoFillS /> },
     render: (name, record) => (
       <TableCell.IconLabelCell icon={{ component: <VarTypeStringM />, color: '#6a7580' }} label={name} />
     ),
@@ -194,8 +259,8 @@ export const COLUMNS_WITH_STATUSES = [
     width: 254,
     textWrap: 'word-break',
     ellipsis: true,
-    icon: { component: <VarTypeBooleanM/>},
-    tooltip: {title: "Tooltip", description: 'Description'},
+    icon: { component: <VarTypeBooleanM /> },
+    tooltip: { title: 'Tooltip', description: 'Description' },
     render: status => <TableCell.StatusLabelCell status={status} label={status} />,
   },
   {
@@ -205,8 +270,8 @@ export const COLUMNS_WITH_STATUSES = [
     width: 254,
     textWrap: 'word-break',
     ellipsis: true,
-    icon: { component: <VarTypeStringM/>},
-    iconTooltip: { component: <InfoFillS/>},
+    icon: { component: <VarTypeStringM /> },
+    iconTooltip: { component: <InfoFillS /> },
     render: tag => <Tag shape={tag.shape} name={tag.label} />,
   },
   {
@@ -216,8 +281,8 @@ export const COLUMNS_WITH_STATUSES = [
     width: 254,
     textWrap: 'word-break',
     ellipsis: true,
-    icon: { component: <VarTypeStringM/>},
-    iconTooltip: { component: <InfoFillS/>},
+    icon: { component: <VarTypeStringM /> },
+    iconTooltip: { component: <InfoFillS /> },
     render: tag => (
       <TableCell.TagIconCell>
         <Tag shape={tag.shape} name={tag.label} />
@@ -232,15 +297,14 @@ export const COLUMNS_WITH_STATUSES = [
     width: 254,
     textWrap: 'word-break',
     ellipsis: true,
-    icon: { component: <VarTypeBooleanM/>},
-    iconTooltip: { component: <InfoFillS/>},
+    icon: { component: <VarTypeBooleanM /> },
+    iconTooltip: { component: <InfoFillS /> },
     render: enabled => (
       <Tooltip title={enabled ? 'Switch off' : 'Switch on'} placement={'topLeft'}>
         <Switch onChange={action('Status change')} checked={enabled} label="" />
       </Tooltip>
     ),
   },
-
 ];
 
 export const COLUMNS_WITH_AVATARS = [
@@ -251,8 +315,8 @@ export const COLUMNS_WITH_AVATARS = [
     width: 254,
     textWrap: 'word-break',
     ellipsis: true,
-    icon: { component: <VarTypeListM/>},
-    iconTooltip: { component: <InfoFillS/>},
+    icon: { component: <VarTypeListM /> },
+    iconTooltip: { component: <InfoFillS /> },
     render: avatar => (
       <Avatar
         backgroundColor="red"
@@ -271,8 +335,8 @@ export const COLUMNS_WITH_AVATARS = [
     width: 120,
     textWrap: 'word-break',
     ellipsis: true,
-    icon: { component: <VarTypeListM/>},
-    iconTooltip: { component: <InfoFillS/>},
+    icon: { component: <VarTypeListM /> },
+    iconTooltip: { component: <InfoFillS /> },
     render: avatar => (
       <TableCell.AvatarLabelCell
         icon={<Icon component={<LockM />} color={theme.palette['grey-500']} />}
@@ -292,8 +356,8 @@ export const COLUMNS_WITH_AVATARS = [
     width: 254,
     textWrap: 'word-break',
     ellipsis: true,
-    icon: { component: <VarTypeListM/>},
-    iconTooltip: { component: <InfoFillS/>},
+    icon: { component: <VarTypeListM /> },
+    iconTooltip: { component: <InfoFillS /> },
     render: avatar => (
       <TableCell.AvatarLabelCell
         ellipsis={true}
@@ -320,8 +384,8 @@ export const COLUMNS_WITH_AVATARS = [
     width: 254,
     textWrap: 'word-break',
     ellipsis: true,
-    icon: { component: <VarTypeListM/>},
-    iconTooltip: { component: <InfoFillS/>},
+    icon: { component: <VarTypeListM /> },
+    iconTooltip: { component: <InfoFillS /> },
     render: avatar => (
       <TableCell.AvatarLabelCell
         avatar={
@@ -339,13 +403,12 @@ export const COLUMNS_WITH_AVATARS = [
       />
     ),
   },
-]
-
+];
 
 export const COLUMNS = [
   ...COLUMNS_WITH_LABELS,
   ...COLUMNS_WITH_ICONS,
   ...COLUMNS_WITH_AVATARS,
   ...COLUMNS_WITH_STATUSES,
-  ...COLUMNS_WITH_TRIGGERS
+  ...COLUMNS_WITH_TRIGGERS,
 ];
