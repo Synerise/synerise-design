@@ -1,7 +1,7 @@
 import * as React from 'react';
 import List from '@synerise/ds-list';
 import * as _ from 'lodash';
-import { ReactSortable } from 'react-sortablejs-typescript';
+import { ReactSortable } from 'react-sortablejs';
 import { FormattedMessage } from 'react-intl';
 import * as S from './ManageableList.styles';
 import Item from './Item/Item';
