@@ -130,31 +130,6 @@ const stories = {
       </React.Fragment>
     );
   },
-  tagSmall: () => {
-    const shapes = {
-      'Default Round': TagShape.SMALL_ROUND,
-      'Default Square': TagShape.SMALL_SQUARE,
-    };
-    const shape = select('Shape', shapes, shapes['Default Round']);
-    const colors = select('Set custom color', customColorOptions, customColorOptions.blue);
-    const disabled = boolean('Disable', false);
-
-    const thisTag = [
-      {
-        id: 0,
-        name: 'Tag name 3',
-        color: colors,
-      },
-    ];
-
-    return (
-      <React.Fragment>
-        <div style={{ padding: 24 }}>
-          <Tags tagShape={shape} selected={thisTag} disabled={disabled} />
-        </div>
-      </React.Fragment>
-    );
-  },
   tagWithIcon: () => {
     const IMAGE_URL =
       'https://cdn4.iconfinder.com/data/icons/social-messaging-ui-color-shapes-2-free/128/social-reddit-square2-512.png';
