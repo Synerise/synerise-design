@@ -42,7 +42,7 @@
     "@synerise/ds-utils": "^0.11.6",
     "lodash": "^4.17.19",
     "react-animate-height": "^2.0.23",
-    "react-sortablejs-typescript": "^2.0.15"
+    "react-sortablejs": "^6.0.0"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
