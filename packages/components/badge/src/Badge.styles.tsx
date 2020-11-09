@@ -16,24 +16,10 @@ export const afterElementAnimation = keyframes`
   0% {
      transform: translate3d(-5px, -5px, 0) scale(0.3);
      opacity: 0.9;
-      position: absolute;
-              top: 0;
-              left: 0;
-              width: 16px;
-              height: 16px;
-              background-color: inherit;
-              border-radius: 50%;
   }
   100% {
      transform: translate3d(-5px, -5px, 0) scale(1.5);
      opacity: 0;
-      position: absolute;
-              top: 0;
-              left: 0;
-              width: 16px;
-              height: 16px;
-              background-color: inherit;
-              border-radius: 50%;
   }
 `;
 
@@ -42,24 +28,10 @@ export const beforeElementAnimation = keyframes`
   0% {
      transform: translate3d(-2px, -2px, 0) scale(0.5);
      opacity: 0.9;
-     position: absolute;
-              top: 0;
-              left: 0;
-              width: 10px;
-              height: 10px;
-              background-color: inherit;
-              border-radius: 50%;
   }
   100% {
      transform: translate3d(-2px, -2px, 0) scale(1.5);
      opacity: 0;
-     position: absolute;
-              top: 0;
-              left: 0;
-              width: 10px;
-              height: 10px;
-              background-color: inherit;
-              border-radius: 50%;
   }
 `;
 
@@ -158,6 +130,13 @@ export default styled(
               ${props.pulsing &&
               css`
                 animation: ${beforeElementAnimation} 2s infinite;
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 10px;
+                height: 10px;
+                background-color: inherit;
+                border-radius: 50%;
               `}
               transform-origin: center;
             }
@@ -168,6 +147,13 @@ export default styled(
               ${props.pulsing &&
               css`
                 animation: ${afterElementAnimation} 2s infinite;
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 16px;
+                height: 16px;
+                background-color: inherit;
+                border-radius: 50%;
               `}
               transform-origin: center;
             }
