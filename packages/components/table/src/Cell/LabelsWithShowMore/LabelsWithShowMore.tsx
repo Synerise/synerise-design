@@ -23,17 +23,17 @@ const LabelsWithShowMore: React.FC<Props<object>> = ({
     return items
       .slice(0, numberOfVisibleItems)
       .map(item => item[labelKey])
-      .join(',');
+      .join(', ');
   }, [items, labelKey, numberOfVisibleItems]);
-
-  console.log(labels, diff);
 
   return (
     <S.CellWrapper>
-      <span>{labels}</span>
-      <Tooltip title={`${diff} ${tooltip}`}>
-        <S.MoreInfo onClick={(): void => setModalVisible(true)}>+{diff}</S.MoreInfo>
-      </Tooltip>
+      <S.Labels>{labels}</S.Labels>
+      {diff > 0 && (
+        <Tooltip title={`${diff} ${tooltip}`}>
+          <S.MoreInfo onClick={(): void => setModalVisible(true)}>+{diff}</S.MoreInfo>
+        </Tooltip>
+      )}
       <DetailsModal
         visible={modalVisible}
         hide={(): void => setModalVisible(false)}

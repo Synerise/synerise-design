@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Modal from '@synerise/ds-modal';
-import { SearchInput } from '@synerise/ds-search/dist/Elements';
-import { VirtualTable } from '@synerise/ds-table';
+import SearchInput from '@synerise/ds-search/dist/Elements/SearchInput/SearchInput';
+import VirtualTable from "../../../VirtualTable/VirtualTable";
 import { ModalProps } from './Modal.types';
 
 const DetailsModal: React.FC<ModalProps<object>> = ({ visible, hide, items, title, renderItem, labelKey }) => {
@@ -10,6 +10,7 @@ const DetailsModal: React.FC<ModalProps<object>> = ({ visible, hide, items, titl
   const columns = React.useMemo(
     () => [
       {
+        dataIndex: labelKey,
         render: renderItem,
       },
     ],

@@ -5,6 +5,6 @@ export type Props<T extends object> = {
   numberOfVisibleItems: number;
   tooltip: string | React.ReactNode;
   labelKey: string;
-  renderItem: (item: T) => React.ReactNode;
+  renderItem: (label: string, item: T) => Element;
   title: string | React.ReactNode;
 };

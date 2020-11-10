@@ -5,6 +5,6 @@ export type ModalProps<T extends object> = {
   items: T[];
   hide: () => void;
   title: string | React.ReactNode;
-  renderItem: (item: T) => React.ReactNode;
+  renderItem: (label: string, item: T) => Element;
   labelKey: string;
 };

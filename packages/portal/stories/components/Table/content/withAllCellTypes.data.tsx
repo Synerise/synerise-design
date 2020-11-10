@@ -1,14 +1,6 @@
 import { TableCell } from '@synerise/ds-table';
 import { action } from '@storybook/addon-actions';
-import {
-  InfoFillS,
-  LockM,
-  PlayM,
-  UserM,
-  VarTypeStringM,
-  VarTypeBooleanM,
-  VarTypeListM,
-} from '@synerise/ds-icon/dist/icons';
+import { InfoFillS, LockM, VarTypeStringM, VarTypeBooleanM, VarTypeListM } from '@synerise/ds-icon/dist/icons';
 import Select from '@synerise/ds-select';
 import Button from '@synerise/ds-button';
 import { Tag } from '@synerise/ds-tags';
@@ -19,54 +11,52 @@ import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
 import * as React from 'react';
 import Checkbox from '@synerise/ds-checkbox/dist';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
-import { IconProps } from '@synerise/ds-icon/dist/Icon.types';
-import TooltipExtendedProps from '@synerise/ds-tooltip/dist/Tooltip.types';
-import { LabelsWithShowMore } from '@synerise/ds-table/dist/Cell';
+import { IconLabelCell, LabelsWithShowMore } from '@synerise/ds-table/dist/Cell';
 
 export const RELATIONS = [
   {
     fieldName: 'Milk',
-    icon: <Icon component={<VarTypeStringM />} />,
+    icon: { component: <VarTypeStringM />, color: theme.palette['grey-600'] },
   },
   {
     fieldName: 'Oil',
-    icon: <Icon component={<VarTypeStringM />} />,
+    icon: { component: <VarTypeStringM />, color: theme.palette['grey-600'] },
   },
   {
     fieldName: 'Apple',
-    icon: <Icon component={<VarTypeStringM />} />,
+    icon: { component: <VarTypeStringM />, color: theme.palette['grey-600'] },
   },
   {
     fieldName: 'Banana',
-    icon: <Icon component={<VarTypeStringM />} />,
+    icon: { component: <VarTypeStringM />, color: theme.palette['grey-600'] },
   },
   {
     fieldName: 'Bread',
-    icon: <Icon component={<VarTypeStringM />} />,
+    icon: { component: <VarTypeStringM />, color: theme.palette['grey-600'] },
   },
   {
     fieldName: 'Orange',
-    icon: <Icon component={<VarTypeStringM />} />,
+    icon: { component: <VarTypeStringM />, color: theme.palette['grey-600'] },
   },
   {
     fieldName: 'Eggs',
-    icon: <Icon component={<VarTypeStringM />} />,
+    icon: { component: <VarTypeStringM />, color: theme.palette['grey-600'] },
   },
   {
     fieldName: 'Beer',
-    icon: <Icon component={<VarTypeStringM />} />,
+    icon: { component: <VarTypeStringM />, color: theme.palette['grey-600'] },
   },
   {
     fieldName: 'Cheese',
-    icon: <Icon component={<VarTypeStringM />} />,
+    icon: { component: <VarTypeStringM />, color: theme.palette['grey-600'] },
   },
   {
     fieldName: 'Pasta',
-    icon: <Icon component={<VarTypeStringM />} />,
+    icon: { component: <VarTypeStringM />, color: theme.palette['grey-600'] },
   },
   {
     fieldName: 'Rice',
-    icon: <Icon component={<VarTypeStringM />} />,
+    icon: { component: <VarTypeStringM />, color: theme.palette['grey-600'] },
   },
 ];
 
@@ -181,15 +171,18 @@ export const COLUMNS_WITH_LABELS = [
     textWrap: 'word-break',
     ellipsis: true,
     key: 'relations',
-    render: () => {
+    render: () => (
       <LabelsWithShowMore
         items={RELATIONS}
         numberOfVisibleItems={2}
         tooltip="Show more"
-        labelKey={'fieldLabel'}
+        labelKey={'fieldName'}
         title={'Products'}
-      />;
-    },
+        renderItem={(label, item) => {
+          return <IconLabelCell label={label} icon={item.icon} />;
+        }}
+      />
+    ),
   },
 ];
 

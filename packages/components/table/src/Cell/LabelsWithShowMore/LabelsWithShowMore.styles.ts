@@ -39,3 +39,10 @@ export const MoreInfo = styled.div`
     }
   }
 `;
+
+export const Labels = styled.span`
+  display: block;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: calc(100% - 32px);
+`;
