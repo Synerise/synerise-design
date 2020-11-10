@@ -4,7 +4,7 @@ import SearchInput from '@synerise/ds-search/dist/Elements/SearchInput/SearchInp
 import VirtualTable from '../../../VirtualTable/VirtualTable';
 import { ModalProps } from './Modal.types';
 
-const DetailsModal: React.FC<ModalProps<object>> = ({ visible, hide, items, texts, renderItem, labelKey }) => {
+const DetailsModal: React.FC<ModalProps<object>> = ({ visible, hide, items, texts, renderItem, labelKey, loading }) => {
   const [searchQuery, setSearchQuery] = React.useState('');
 
   const columns = React.useMemo(
@@ -32,6 +32,7 @@ const DetailsModal: React.FC<ModalProps<object>> = ({ visible, hide, items, text
         dataSource={filteredItems}
         title={`${filteredItems.length} ${texts.records}`}
         columns={columns}
+        loading={loading}
         searchComponent={
           <SearchInput
             clearTooltip={texts.searchClear}

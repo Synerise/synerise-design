@@ -14,4 +14,5 @@ export type Props<T extends object> = {
   labelKey: string;
   renderItem: (label: string, item: T) => Element;
   texts: ShowMoreTexts;
+  loading?: boolean;
 };

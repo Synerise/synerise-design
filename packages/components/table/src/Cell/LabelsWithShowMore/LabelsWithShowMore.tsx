@@ -5,7 +5,14 @@ import * as S from './LabelsWithShowMore.styles';
 import { Props } from './LabelsWithShowMore.types';
 import DetailsModal from './Modal/Modal';
 
-const LabelsWithShowMore: React.FC<Props<object>> = ({ items, numberOfVisibleItems, renderItem, labelKey, texts }) => {
+const LabelsWithShowMore: React.FC<Props<object>> = ({
+  items,
+  numberOfVisibleItems,
+  renderItem,
+  labelKey,
+  texts,
+  loading,
+}) => {
   const [modalVisible, setModalVisible] = React.useState(false);
 
   const diff = React.useMemo(() => {
@@ -34,6 +41,7 @@ const LabelsWithShowMore: React.FC<Props<object>> = ({ items, numberOfVisibleIte
         renderItem={renderItem}
         labelKey={labelKey}
         texts={texts}
+        loading={loading}
       />
     </S.CellWrapper>
   );

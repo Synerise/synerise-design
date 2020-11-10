@@ -7,4 +7,5 @@ export type ModalProps<T extends object> = {
   renderItem: (label: string, item: T) => Element;
   labelKey: string;
   texts: ShowMoreTexts;
+  loading: boolean;
 };
