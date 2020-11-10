@@ -14,7 +14,7 @@ const DetailsModal: React.FC<ModalProps<object>> = ({ visible, hide, items, text
         render: renderItem,
       },
     ],
-    [renderItem]
+    [renderItem, labelKey]
   );
 
   const filteredItems = React.useMemo(() => {
