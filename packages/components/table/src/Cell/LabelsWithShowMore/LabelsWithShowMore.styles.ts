@@ -29,7 +29,7 @@ export const MoreInfo = styled.div`
     position: absolute;
     top: 1px;
     left: 1px;
-    transition: all 0.3s ease;
+    transition: box-shadow 0.3s ease;
     box-shadow: 0 0 0 2px transparent;
     box-sizing: border-box;
   }
