@@ -32,7 +32,7 @@ export function renderFooter(suffixElementType: string) {
           // @ts-ignore
           style={{ marginTop: '0px', padding: '0 8px', cursor: 'auto', }}
         >
-          <Button type="ghost" style={{ paddingLeft: '8px' }}>
+          <Button type="ghost" style={{ paddingLeft: '8px', marginBottom:'1px' }}>
             {<Icon component={<Add3M />} size={24} color={theme.palette['grey-500']} />}
             <div style={{ paddingLeft: '4px' }}>Button</div>
           </Button>
@@ -44,17 +44,17 @@ export function renderFooter(suffixElementType: string) {
           style={{
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'center',
+            justifyContent: 'space-between',
             marginTop: '0px',
             padding: '0 8px',
             cursor: 'auto',
           }}
         >
-          <Button type="ghost" style={{ paddingLeft: '8px' }}>
+          <Button type="ghost" style={{ paddingLeft: '8px', marginBottom:'1px'}}>
             {<Icon component={<Add3M />} size={24} color={theme.palette['grey-500']} />}
             <div style={{ paddingLeft: '4px' }}>Button</div>
           </Button>
-          <Button type="ghost" style={{ marginLeft: '48px' }}>
+          <Button type="ghost" style={{marginBottom:'1px' }}>
             Button
           </Button>
         </BottomAction>
@@ -73,9 +73,9 @@ export function renderFooter(suffixElementType: string) {
           style={{
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'center',
+            justifyContent: 'space-between',
             marginTop: '0px',
-            padding: '0 8px',
+            padding: '0 16px 0 20px',
             cursor: 'auto',
           }}
         >
@@ -107,8 +107,8 @@ const stories = {
     children: <Button>Click</Button>,
   },
   default: Default,
-  withSearch: WithSearch,
   example1: Example1,
+  withSearch: WithSearch,
   withTabs: withTabs,
 };
 

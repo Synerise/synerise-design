@@ -7,7 +7,7 @@ import Avatar from '@synerise/ds-avatar';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 
 const decorator = storyFn => (
-  <div style={{ display: 'flex', width: '192px', height: '34px', alignItems: 'center' }}>{storyFn()}</div>
+  <div style={{ display: 'flex', width: '192px', height: '34px', alignItems: 'center', justifyContent: 'center' }}>{storyFn()}</div>
 );
 
 const statuses = ['active', 'inactive', 'blocked', 'processing', 'warning'] as const;
@@ -202,13 +202,12 @@ const stories = {
   flagDefault: () => (
     <>
       <Badge status={select('status', statuses, 'active')} flag={true} pulsing={boolean('Set Pulsing', false)} />
-      <div style={{ width: '50px', height: '50px' }} />
+
     </>
   ),
   flagWithLabel: () => (
     <>
       <Badge status={select('status', statuses, 'active')} text={text('text', 'Success')} pulsing={boolean('Set Pulsing', false)}  flag={true} />
-      <div style={{ width: '50px', height: '50px' }} />
     </>
   ),
   flagWithElement: () => (
@@ -223,7 +222,6 @@ const stories = {
           }}
         />
       </Badge>
-      <div style={{ width: '50px', height: '50px' }} />
     </>
   ),
   flagWithIcon: () => (
@@ -231,7 +229,6 @@ const stories = {
       <Badge status={select('status', statuses, 'active')} pulsing={boolean('Set Pulsing', false)}  flag={true}>
         <Icon color={text('IconColor', '#6a7580')} size={number('IconSize', 24)} component={<FileM />} />
       </Badge>
-      <div style={{ width: '50px', height: '50px' }} />
     </>
   ),
   flagWithAvatar: () => (

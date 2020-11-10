@@ -19,9 +19,11 @@ const SearchBar: React.FC<SearchBarProps> = ({
   clearTooltip = <FormattedMessage id="DS.SEARCH-BAR.CLEAR-TOOLTIP" />,
   disabled,
   borderRadius,
+  handleInputRef,
 }) => {
   const [isFocused, setFocus] = useState(false);
   const focus = (inputRef: React.MutableRefObject<HTMLInputElement | HTMLTextAreaElement | undefined>): void => {
+    handleInputRef && handleInputRef(inputRef)
     autofocus && inputRef.current && inputRef.current.focus();
   };
   return (

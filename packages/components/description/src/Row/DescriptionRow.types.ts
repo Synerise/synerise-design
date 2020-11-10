@@ -10,8 +10,10 @@ export interface DescriptionRowProps {
   suffixEl?: string | React.ReactNode;
   copyValue?: string;
   starType?: 'active' | 'inactive';
-  texts?: {
-    copyTooltip?: string;
-    copiedTooltip?: string;
-  };
+  texts?: RowTexts;
+}
+
+export type RowTexts = {
+  copyTooltip?: string;
+  copiedTooltip?: string;
 }

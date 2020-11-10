@@ -11,6 +11,7 @@ const SidebarObject: React.FC<SidebarObjectProps> = ({
   headerPreffix,
   headerTabs,
   inputObject,
+  inlineEditInputProps,
   onEdit,
   onDelete,
   onDuplicate,
@@ -46,6 +47,7 @@ const SidebarObject: React.FC<SidebarObjectProps> = ({
           texts={texts}
           onCloseClick={onCloseClick}
           inputObject={inputObject}
+          inlineEditInputProps={inlineEditInputProps}
           onArrowUp={onArrowUp}
           onArrowDown={onArrowDown}
           name={name}

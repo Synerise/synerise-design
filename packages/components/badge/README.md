@@ -75,15 +75,16 @@ import Badge from '@synerise/ds-badge'
 | backgroundColorHue | Customize brightness of color                                      | `900` / `800` / `700` / `600` / `500` / `400` / `300` / `200` / `100` / `050`                        | -       |
 | color              | Customize the badge dot color                                      | string                                                                                               | -       |
 | count              | Number to show in the badge counter                                | ReactNode                                                                                            |         |
-| dot                | Display a red dot instead of a counter                             | boolean                                                                                              | `false`   |
-| flag               | Show the badge as a flag                                           | boolean                                                                                              | `false`   |
+| dot                | Display a red dot instead of a counter                             | boolean                                                                                              | `false` |
+| flag               | Show the badge as a flag                                           | boolean                                                                                              | `false` |
 | offset             | The offset of the badge dot in [x, y] format                       | [number, number]                                                                                     | -       |
-| outlined           | Add outline to the badge counter                                   | boolean                                                                                              | `false`   |
+| outlined           | Add outline to the badge counter                                   | boolean                                                                                              | `false` |
 | overflowCount      | Maximum number to show in the counter                              | number                                                                                               | 99      |
-| showZero           | Show the badge when the counter is zero                            | boolean                                                                                              | `false`   |
+| pulsing            | Enable pulsing animation                                           | boolean                                                                                              | `false` |
+| showZero           | Show the badge when the counter is zero                            | boolean                                                                                              | `false` |
 | status             | Set badge as a status dot                                          | `active` / `inactive` / `blocked` / `processing`                                                     | ''      |
 | text               | If `status` is set, `text` sets the display text of the status dot | string                                                                                               | ''      |
-| title              | Text shown when a cursor is hovered over the badge                 | string                                                                                               | count   |
 | textColor          | Customize text color in badge                                      | `green` / `grey` / `yellow` / `blue` / `pink`/ `mars`/ `orange`/ `fern`/ `cyan`/ `purple` / `violet` | -       |
 | textColorHue       | Customize brightness of color                                      | `900` / `800` / `700` / `600` / `500` / `400` / `300` / `200` / `100` / `050`                        | -       |
-| pulsing            | Set the animation to be true or false                              | boolean                                                                                              | `false` |
+| title              | Text shown when a cursor is hovered over the badge                 | string                                                                                               | count   |
+

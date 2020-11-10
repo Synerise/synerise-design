@@ -34,6 +34,7 @@ const Header: React.FC<HeaderProps> = ({
   texts,
   onCloseClick,
   inputObject,
+  inlineEditInputProps = {},
   onArrowUp,
   onArrowDown,
   name = '',
@@ -159,6 +160,7 @@ const Header: React.FC<HeaderProps> = ({
                 onChange: (event): void => {
                   onRename && onRename(event.target.value);
                 },
+                ...inlineEditInputProps,
               }}
             />
           </Typography.Title>

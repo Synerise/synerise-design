@@ -26,6 +26,7 @@ const SubtleTextArea: React.FC<SubtleTextAreaProps> = ({
   suffix,
   error,
   errorText,
+  textAreaProps,
   ...rest
 }) => {
   const [active, setActive] = React.useState<boolean>(false);
@@ -65,10 +66,17 @@ const SubtleTextArea: React.FC<SubtleTextAreaProps> = ({
     }
   }, [minRows, maxRows, value, calculateTextHeight]);
 
-  const handleDeactivate = React.useCallback(() => {
-    setActive(false);
-    setBlurred(true);
-  }, []);
+  const handleDeactivate = React.useCallback(
+    (e: React.FocusEvent<HTMLTextAreaElement>) => {
+      if (textAreaProps) {
+        const { onBlur } = textAreaProps;
+        onBlur && onBlur(e);
+      }
+      setActive(false);
+      setBlurred(true);
+    },
+    [textAreaProps]
+  );
   const handleActivate = React.useCallback(() => {
     setActive(true);
     setBlurred(false);
@@ -82,13 +90,14 @@ const SubtleTextArea: React.FC<SubtleTextAreaProps> = ({
         {active || hasError ? (
           <TextArea
             {...rest}
+            {...textAreaProps}
             autoFocus={!hasError}
             onChange={(e: React.ChangeEvent<HTMLInputElement>): void => {
               onChange && onChange(e.currentTarget.value);
             }}
             onBlur={handleDeactivate}
             value={value}
-            rows={visibleRows+1}
+            rows={visibleRows + 1}
             style={{ margin: 0 }}
             placeholder={placeholder}
             error={error}

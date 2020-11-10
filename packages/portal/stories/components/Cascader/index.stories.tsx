@@ -11,7 +11,7 @@ const decorator = storyFn => (
 );
 
 const stories = {
-  cascader: () => {
+  default: () => {
     const root = mock.default;
     const categoryLimit = number('Set home categories count:',5,{min:5, max: 10})
     return (
@@ -30,7 +30,7 @@ const stories = {
 };
 
 export default {
-  name: 'Dropdown/Dropdown',
+  name: 'Dropdown/Dropdown/cascader',
   config: {},
   stories,
   decorator,

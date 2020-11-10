@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useOnClickOutside } from '@synerise/ds-utils';
+import { focusWithArrowKeys, useOnClickOutside } from '@synerise/ds-utils';
 import Dropdown from '@synerise/ds-dropdown';
 import Menu from '@synerise/ds-menu';
 import Button from '@synerise/ds-button';
@@ -24,7 +24,8 @@ const Default: React.FC = () => {
         visible={dropdownVisible}
         placement="bottomLeft"
         overlay={
-          <Dropdown.Wrapper style={{ width: '220px', borderRadius: '3px' }} ref={ref}>
+          <Dropdown.Wrapper style={{ width: '220px' }} onKeyDown={e=>
+            focusWithArrowKeys(e, 'ds-menu-item',() => {})} ref={ref} >
             {navigation &&
             <Dropdown.BackAction label="Attributes" onClick={() => alert('BackAction clicked')} />}
             <Menu dataSource={data} asDropdownMenu={true}  style={{ width: '204px' }} />
