@@ -33,7 +33,6 @@ const OverlayExample1: React.FC<Props> = ({ value, onSearchChange, onClearInput 
       <Dropdown.BackAction label="Attributes" onClick={() => alert('BackAction clicked')} />
       <Menu
         style={{padding: '8px 2px 8px 8px'}}
-        dataSource={data}
         asDropdownMenu={true}
         >
         {data.map(item => (
