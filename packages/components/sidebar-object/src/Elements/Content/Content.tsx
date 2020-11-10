@@ -7,14 +7,14 @@ import { ContentWrapper, InlineEditWrapper, TagsWrapper } from './Content.style'
 const Content: React.FC<ContentProps> = ({
   onFolderSelect,
   texts,
-  description,
+  mainContent,
   tags,
   textDescription,
   onDescriptionChange,
 }) => {
   return (
     <Drawer.DrawerBody>
-      <ContentWrapper withFolder={!!onFolderSelect}>{description}</ContentWrapper>
+      <ContentWrapper withFolder={!!onFolderSelect}>{mainContent}</ContentWrapper>
       <TagsWrapper>{tags}</TagsWrapper>
       {!!onDescriptionChange && (
         <InlineEditWrapper>

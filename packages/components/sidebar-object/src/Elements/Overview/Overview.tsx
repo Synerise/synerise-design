@@ -10,7 +10,6 @@ import ObjectSummary from '../ObjectSummary/ObjectSummary';
 import { OverviewObjectProps } from './Overview.types';
 
 const Overview: React.FC<OverviewObjectProps> = ({
-  inputObjectIdKey="id",
   inputObject,
   contentTags,
   folders,
@@ -65,7 +64,7 @@ const Overview: React.FC<OverviewObjectProps> = ({
           texts={texts}
           onDescriptionChange={onDescriptionChange}
           textDescription={textDescription}
-          description={<ObjectSummary inputObject={inputObject} />}
+          mainContent={<ObjectSummary inputObject={inputObject} />}
           tags={contentTags}
         />
     </S.OverviewWrapper>

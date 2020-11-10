@@ -3,7 +3,7 @@ import { FolderItem } from '../../SidebarObject.types';
 
 
 export type ContentProps ={
-description: React.ReactNode;
+mainContent: React.ReactNode;
 tags: React.ReactNode;
 textDescription: string;
 texts: OverviewTexts;

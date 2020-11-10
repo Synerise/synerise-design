@@ -24,7 +24,6 @@ const DropdownOverlay: React.FC<Props> = ({
   foldersDisplayKey,
 }) => {
   const ref = React.useRef<HTMLDivElement>(null);
-
   const filteredData = data.filter(
     item =>
       typeof item[foldersFilterKey] === 'string' &&
@@ -46,9 +45,9 @@ const DropdownOverlay: React.FC<Props> = ({
       <MenuWrapper withBottomAction={!!onAddFolderClick}>
         {filteredData?.length > 0 ? (
           <Menu>
-            {filteredData?.map(item => (
+            {filteredData?.map((item,i) => (
               <Menu.Item
-                key={parentFolder[foldersIdKey]}
+                key={`${item[foldersIdKey]}-${i}`}
                 onClick={(): void => onFolderSelect(item)}
                 checked={parentFolder[foldersIdKey] === item[foldersIdKey]}
                 prefixel={<Icon component={<FolderM />} />}

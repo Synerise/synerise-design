@@ -3,7 +3,6 @@ import { HeaderTexts } from '../Header/Header.types';
 import { FolderItem } from '../../SidebarObject.types';
 
 export type OverviewObjectProps = {
-  inputObjectIdKey?: string;
   inputObject: {
     [key: string]: string | React.ReactNode;
   } & object;
