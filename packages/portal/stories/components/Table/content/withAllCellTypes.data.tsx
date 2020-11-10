@@ -178,6 +178,13 @@ export const COLUMNS_WITH_LABELS = [
         tooltip="Show more"
         labelKey={'fieldName'}
         title={'Products'}
+        texts={{
+          modalTitle: 'Products',
+          tooltip: 'Show more',
+          searchPlaceholder: 'Search',
+          searchClear: 'Clear',
+          records: 'records',
+        }}
         renderItem={(label, item) => {
           return <IconLabelCell label={label} icon={item.icon} />;
         }}

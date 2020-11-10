@@ -1,10 +1,10 @@
 import * as React from 'react';
 import Modal from '@synerise/ds-modal';
 import SearchInput from '@synerise/ds-search/dist/Elements/SearchInput/SearchInput';
-import VirtualTable from "../../../VirtualTable/VirtualTable";
+import VirtualTable from '../../../VirtualTable/VirtualTable';
 import { ModalProps } from './Modal.types';
 
-const DetailsModal: React.FC<ModalProps<object>> = ({ visible, hide, items, title, renderItem, labelKey }) => {
+const DetailsModal: React.FC<ModalProps<object>> = ({ visible, hide, items, texts, renderItem, labelKey }) => {
   const [searchQuery, setSearchQuery] = React.useState('');
 
   const columns = React.useMemo(
@@ -24,18 +24,18 @@ const DetailsModal: React.FC<ModalProps<object>> = ({ visible, hide, items, titl
   }, [items, labelKey, searchQuery]);
 
   return (
-    <Modal size="small" visible={visible} title={title} closable onCancel={hide} bodyStyle={{ padding: 0 }}>
+    <Modal size="small" visible={visible} title={texts.modalTitle} closable onCancel={hide} bodyStyle={{ padding: 0 }}>
       <VirtualTable
         scroll={{ y: 500, x: 0 }}
         cellHeight={64}
         initialWidth={500}
         dataSource={filteredItems}
-        title={`${filteredItems.length} records`}
+        title={`${filteredItems.length} ${texts.records}`}
         columns={columns}
         searchComponent={
           <SearchInput
-            clearTooltip="Clear"
-            placeholder="Search"
+            clearTooltip={texts.searchClear}
+            placeholder={texts.searchPlaceholder}
             onChange={(value: string): void => {
               setSearchQuery(value);
             }}

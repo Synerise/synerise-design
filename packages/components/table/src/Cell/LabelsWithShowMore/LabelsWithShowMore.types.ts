@@ -1,10 +1,17 @@
 import * as React from 'react';
 
+export type ShowMoreTexts = {
+  tooltip: string | React.ReactNode;
+  searchPlaceholder: string;
+  searchClear: string;
+  modalTitle: string | React.ReactNode;
+  records: string | React.ReactNode;
+};
+
 export type Props<T extends object> = {
   items: T[];
   numberOfVisibleItems: number;
-  tooltip: string | React.ReactNode;
   labelKey: string;
   renderItem: (label: string, item: T) => Element;
-  title: string | React.ReactNode;
+  texts: ShowMoreTexts;
 };
