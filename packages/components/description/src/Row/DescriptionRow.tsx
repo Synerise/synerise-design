@@ -4,7 +4,7 @@ import { injectIntl } from 'react-intl';
 import * as S from './DescriptionRow.styles';
 import Star from './Star';
 import Copy from './Copy';
-import { DescriptionRowProps } from './DescriptionRow.types';
+import { DescriptionRowProps, RowTexts } from './DescriptionRow.types';
 
 const DescriptionRow: React.FC<DescriptionRowProps> = ({
   intl,
@@ -15,25 +15,31 @@ const DescriptionRow: React.FC<DescriptionRowProps> = ({
   suffixEl,
   copyValue,
   starType,
-  texts = {
-    copiedTooltip: intl.formatMessage({ id: 'DS.DESCRIPTION.COPIED' }),
-    copyTooltip: intl.formatMessage({ id: 'DS.DESCRIPTION.COPY-VALUE' }),
-  },
+  texts,
 }) => {
+  const textsObj: RowTexts = React.useMemo(
+    () =>
+      texts || {
+        copiedTooltip: intl.formatMessage({ id: 'DS.DESCRIPTION.COPIED' }),
+        copyTooltip: intl.formatMessage({ id: 'DS.DESCRIPTION.COPY-VALUE' }),
+      },
+    [texts, intl]
+  );
+
   const [tooltipVisible, setTooltipVisible] = React.useState<boolean>(false);
-  const [tooltipTitle, setTooltipTitle] = React.useState(texts.copyTooltip);
+  const [tooltipTitle, setTooltipTitle] = React.useState(textsObj.copyTooltip);
 
   const handleCopy = React.useCallback(() => {
     if (copyValue && copy(copyValue)) {
-      setTooltipTitle(texts.copiedTooltip);
+      setTooltipTitle(textsObj.copiedTooltip);
       setTooltipVisible(true);
     }
-  }, [copyValue, setTooltipTitle, setTooltipVisible, texts.copiedTooltip]);
+  }, [copyValue, setTooltipTitle, setTooltipVisible, textsObj.copiedTooltip]);
 
   const handleMouseEnter = React.useCallback(() => {
     setTooltipVisible(true);
-    setTooltipTitle(texts.copyTooltip);
-  }, [setTooltipTitle, setTooltipVisible, texts.copyTooltip]);
+    setTooltipTitle(textsObj.copyTooltip);
+  }, [setTooltipTitle, setTooltipVisible, textsObj.copyTooltip]);
 
   const handleMouseLeave = React.useCallback(() => {
     setTooltipVisible(false);
@@ -60,7 +66,7 @@ const DescriptionRow: React.FC<DescriptionRowProps> = ({
         )}
         {suffixEl && <S.SuffixWrapper className="ds-description-suffix">{suffixEl}</S.SuffixWrapper>}
         {typeof copyValue === 'string' && (
-          <Copy tooltipVisible={tooltipVisible} tooltipTitle={tooltipTitle as string} {...texts} />
+          <Copy tooltipVisible={tooltipVisible} tooltipTitle={tooltipTitle as string} {...textsObj} />
         )}
       </S.RowValue>
     </S.RowWrapper>
