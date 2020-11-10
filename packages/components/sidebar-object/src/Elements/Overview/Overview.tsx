@@ -13,6 +13,9 @@ const Overview: React.FC<OverviewObjectProps> = ({
   inputObject,
   contentTags,
   folders,
+  foldersDisplayKey='name',
+  foldersFilterKey='name',
+  foldersIdKey='id',
   parentFolder,
   texts,
   textDescription,
@@ -42,11 +45,14 @@ const Overview: React.FC<OverviewObjectProps> = ({
                   searchValue={value}
                   onSearchChange={setValue}
                   onFolderSelect={onFolderSelect}
+                  foldersDisplayKey={foldersDisplayKey}
+                  foldersFilterKey={foldersFilterKey}
+                  foldersIdKey={foldersIdKey}
                 />
               }
             >
               <Button onClick={(): void => setDropdownVisible(!dropdownVisible)} mode="label-icon" type="ghost">
-                {parentFolder.name}
+                {parentFolder?.name}
                 <Icon component={<AngleDownS />} />
               </Button>
             </Dropdown>
@@ -58,7 +64,7 @@ const Overview: React.FC<OverviewObjectProps> = ({
           texts={texts}
           onDescriptionChange={onDescriptionChange}
           textDescription={textDescription}
-          description={<ObjectSummary inputObject={inputObject} />}
+          mainContent={<ObjectSummary inputObject={inputObject} />}
           tags={contentTags}
         />
     </S.OverviewWrapper>
