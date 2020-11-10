@@ -12,11 +12,11 @@ const decorator = (storyFn) => (
 );
 
 const typeOptions = {
+  default: 'default',
   primary: 'primary',
   success: 'success',
   warning: 'warning',
   danger: 'danger',
-  disabled: 'disabled',
 };
 const customColorOptions = {
   blue: theme.palette['blue-600'],
@@ -35,16 +35,16 @@ const customColorOptions = {
 
 const stories = {
   status: () => ({
-    type: select('Type', typeOptions, 'primary'),
+    type: select('Type', typeOptions, 'default'),
     label: 'This is a status',
   }),
-  tagSmall: () => {
+  pillSmall: () => {
     const shapes = {
       'Default Round': TagShape.SMALL_ROUND,
       'Default Square': TagShape.SMALL_SQUARE,
     };
     const shape = select('Shape', shapes, shapes['Default Round']);
-    const colors = select('Set custom color', customColorOptions, customColorOptions.blue);
+    const colors = select('Set custom color', customColorOptions, customColorOptions.grey);
     const disabled = boolean('Disable', false);
 
     const thisTag = [
