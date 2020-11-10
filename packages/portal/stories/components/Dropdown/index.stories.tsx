@@ -32,7 +32,7 @@ export function renderFooter(suffixElementType: string) {
           // @ts-ignore
           style={{ marginTop: '0px', padding: '0 8px', cursor: 'auto', }}
         >
-          <Button type="ghost" style={{ paddingLeft: '8px' }}>
+          <Button type="ghost" style={{ paddingLeft: '8px', marginBottom:'1px' }}>
             {<Icon component={<Add3M />} size={24} color={theme.palette['grey-500']} />}
             <div style={{ paddingLeft: '4px' }}>Button</div>
           </Button>
@@ -50,11 +50,11 @@ export function renderFooter(suffixElementType: string) {
             cursor: 'auto',
           }}
         >
-          <Button type="ghost" style={{ paddingLeft: '8px'}}>
+          <Button type="ghost" style={{ paddingLeft: '8px', marginBottom:'1px'}}>
             {<Icon component={<Add3M />} size={24} color={theme.palette['grey-500']} />}
             <div style={{ paddingLeft: '4px' }}>Button</div>
           </Button>
-          <Button type="ghost" style={{ }}>
+          <Button type="ghost" style={{marginBottom:'1px' }}>
             Button
           </Button>
         </BottomAction>
