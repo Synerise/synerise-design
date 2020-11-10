@@ -1,3 +1,4 @@
+import { TextAreaProps } from '@synerise/ds-input/dist/Textarea/Textarea.types';
 import { SubtleFieldProps } from '../../SubtleForm.types';
 
 export type SubtleTextAreaProps = {
@@ -9,6 +10,7 @@ export type SubtleTextAreaProps = {
   autoSize?: TextareaAutosize;
   error?: boolean;
   errorText?: string | React.ReactNode;
+  textAreaProps?: TextAreaProps;
 } & SubtleFieldProps;
 
 export type TextareaAutosize = {
