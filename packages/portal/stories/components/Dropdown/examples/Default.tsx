@@ -13,7 +13,6 @@ const Default: React.FC = () => {
   const footer = boolean('Set footer', false);
   const navigation = boolean('Set navigation', false);
   const setTypeFooter = select('Set footer type', typesFooter, 'singleButton');
-  const [searchRef, setSearchRef]= React.useState(false);
   const ref = React.useRef<HTMLDivElement>(null);
   useOnClickOutside(ref, () => {
     setDropdownVisible(false);
