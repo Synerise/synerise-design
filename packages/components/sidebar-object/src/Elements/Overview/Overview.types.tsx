@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { TextAreaProps } from '@synerise/ds-input/dist/Textarea/Textarea.types';
 import { HeaderTexts } from '../Header/Header.types';
 import { FolderItem } from '../../SidebarObject.types';
 
@@ -7,6 +8,7 @@ export type OverviewObjectProps = {
     [key: string]: string | React.ReactNode;
   } & object;
   contentTags: React.ReactNode;
+  descriptionTextAreaProps: TextAreaProps;
   folders: FolderItem[];
   foldersFilterKey?: string;
   foldersDisplayKey?: string;

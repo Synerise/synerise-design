@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { InputProps } from '@synerise/ds-inline-edit/dist/InlineEdit.types';
 
 export type HeaderProps = {
   avatar: React.ReactNode;
@@ -21,6 +22,7 @@ export type HeaderProps = {
     id: string;
     [key: string]: string | React.ReactNode;
   } & object;
+  inlineEditInputProps?: InputProps;
   name?: string | number;
   onRename?: (name: string) => void;
 };

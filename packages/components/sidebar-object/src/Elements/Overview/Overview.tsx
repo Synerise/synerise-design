@@ -12,15 +12,16 @@ import { OverviewObjectProps } from './Overview.types';
 const Overview: React.FC<OverviewObjectProps> = ({
   inputObject,
   contentTags,
+  descriptionTextAreaProps = {},
   folders,
-  foldersDisplayKey='name',
-  foldersFilterKey='name',
-  foldersIdKey='id',
+  foldersDisplayKey = 'name',
+  foldersFilterKey = 'name',
+  foldersIdKey = 'id',
   parentFolder,
   texts,
   textDescription,
   onFolderSelect,
-  onDescriptionChange
+  onDescriptionChange,
 }) => {
   const [dropdownVisible, setDropdownVisible] = React.useState(false);
   const [value, setValue] = React.useState('');
@@ -59,14 +60,15 @@ const Overview: React.FC<OverviewObjectProps> = ({
           </>
         )}
       </S.HeaderWrapper>
-        <Content
-          onFolderSelect={onFolderSelect}
-          texts={texts}
-          onDescriptionChange={onDescriptionChange}
-          textDescription={textDescription}
-          mainContent={<ObjectSummary inputObject={inputObject} />}
-          tags={contentTags}
-        />
+      <Content
+        descriptionTextAreaProps={descriptionTextAreaProps}
+        onFolderSelect={onFolderSelect}
+        texts={texts}
+        onDescriptionChange={onDescriptionChange}
+        textDescription={textDescription}
+        mainContent={<ObjectSummary inputObject={inputObject} />}
+        tags={contentTags}
+      />
     </S.OverviewWrapper>
   );
 };

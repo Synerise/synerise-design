@@ -1,5 +1,6 @@
 import { TabItem } from '@synerise/ds-tabs/dist/Tabs.types';
 import * as React from 'react';
+import { InputProps } from '@synerise/ds-inline-edit/dist/InlineEdit.types';
 import { HeaderTexts } from './Elements/Header/Header.types';
 
 export type SidebarObjectProps = {
@@ -10,6 +11,7 @@ export type SidebarObjectProps = {
     id: string;
     [key: string]: string | React.ReactNode;
   } & object;
+  inlineEditInputProps?: InputProps;
   onEdit?: (inputObject: object) => void;
   onDuplicate?: (inputObject: object) => void;
   onMove?: (inputObject: object) => void;
