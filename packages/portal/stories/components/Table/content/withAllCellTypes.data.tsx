@@ -175,9 +175,7 @@ export const COLUMNS_WITH_LABELS = [
       <LabelsWithShowMore
         items={RELATIONS}
         numberOfVisibleItems={2}
-        tooltip="Show more"
         labelKey={'fieldName'}
-        title={'Products'}
         texts={{
           modalTitle: 'Products',
           tooltip: 'Show more',
