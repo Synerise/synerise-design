@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.94](https://github.com/synerise/synerise-design/compare/@synerise/ds-dropdown@0.11.93...@synerise/ds-dropdown@0.11.94) (2020-11-09)
+
+
+### Bug Fixes
+
+* **dropdown:** add two new components default and withSearch ([de76451](https://github.com/synerise/synerise-design/commit/de76451b975d8363f92e20bd3d70b192dd164111))
+* **dropdown:** fix menu styles and box-shadow ([8721a5b](https://github.com/synerise/synerise-design/commit/8721a5b19876091db673b26748e8003ce245281e))
+* **dropdown:** fix menu styles, border-radius add no results and highlighted text ([bffa658](https://github.com/synerise/synerise-design/commit/bffa658ebbdbfa52b17a63ce50c8db0e9e27b04e))
+
+
+
+
+
 ## [0.11.93](https://github.com/synerise/synerise-design/compare/@synerise/ds-dropdown@0.11.92...@synerise/ds-dropdown@0.11.93) (2020-11-08)
 
 **Note:** Version bump only for package @synerise/ds-dropdown

@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-collector",
-  "version": "0.1.31",
+  "version": "0.1.32",
   "description": "Collector UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -27,7 +27,7 @@
   "dependencies": {
     "@synerise/ds-button": "^0.13.10",
     "@synerise/ds-input": "^0.16.1",
-    "@synerise/ds-search": "^0.2.1",
+    "@synerise/ds-search": "^0.2.2",
     "classnames": "^2.2.6"
   },
   "peerDependencies": {

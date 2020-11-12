@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.104.1](https://github.com/synerise/synerise-design/compare/portal@0.104.0...portal@0.104.1) (2020-11-09)
+
+
+### Bug Fixes
+
+* **cascader:** change name ([f1dd56e](https://github.com/synerise/synerise-design/commit/f1dd56ea09afd91be7d92437d981ff31d8a60a68))
+* **cascader:** move to dropdown components ([25decab](https://github.com/synerise/synerise-design/commit/25decab6a80ff2545524764f6ff5481357fcb04c))
+* **dropdown:** add two new components default and withSearch ([372ca1b](https://github.com/synerise/synerise-design/commit/372ca1bdac585e7bf86ce2c63278e7851c3a3c9c))
+* **dropdown:** add two new components default and withSearch ([de76451](https://github.com/synerise/synerise-design/commit/de76451b975d8363f92e20bd3d70b192dd164111))
+* **dropdown:** delete datasource ([2c05641](https://github.com/synerise/synerise-design/commit/2c056418bb104dd4ca86816be493ce38290306c6))
+* **dropdown:** fix menu styles and box-shadow ([8721a5b](https://github.com/synerise/synerise-design/commit/8721a5b19876091db673b26748e8003ce245281e))
+* **dropdown:** fix menu styles, border-radius add no results and highlighted text ([bffa658](https://github.com/synerise/synerise-design/commit/bffa658ebbdbfa52b17a63ce50c8db0e9e27b04e))
+* **sidebar-object:** fix box-shadow ([3dc00ea](https://github.com/synerise/synerise-design/commit/3dc00ea0fc973001e89e95f6d5b13b78d3cfe9a6))
+
+
+
+
+
 # [0.104.0](https://github.com/synerise/synerise-design/compare/portal@0.103.0...portal@0.104.0) (2020-11-06)
 
 

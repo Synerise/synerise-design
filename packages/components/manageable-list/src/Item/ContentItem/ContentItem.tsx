@@ -93,11 +93,11 @@ const ContentItem: React.FC<ContentItemProps> = ({
           <ItemActions
             item={item}
             duplicateAction={onDuplicate}
-            duplicateActionTooltip={texts.itemActionDuplicateTooltip}
+            duplicateActionTooltip={texts?.itemActionDuplicateTooltip}
             removeAction={onRemove}
-            removeActionTooltip={texts.itemActionDeleteTooltip}
+            removeActionTooltip={texts?.itemActionDeleteTooltip}
             editAction={enterEditMode}
-            editActionTooltip={texts.itemActionRenameTooltip}
+            editActionTooltip={texts?.itemActionRenameTooltip}
           />{' '}
           {item.content && !hideExpander && (
             <S.ToggleContentWrapper data-testid="item-toggle-content-wrapper">
