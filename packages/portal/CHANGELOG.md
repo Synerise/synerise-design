@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.105.1](https://github.com/synerise/synerise-design/compare/portal@0.105.0...portal@0.105.1) (2020-11-12)
+
+**Note:** Version bump only for package portal
+
+
+
+
+
 # [0.105.0](https://github.com/synerise/synerise-design/compare/portal@0.104.1...portal@0.105.0) (2020-11-12)
 
 
