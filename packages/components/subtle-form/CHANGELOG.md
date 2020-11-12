@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subtle-form@0.3.17...@synerise/ds-subtle-form@0.4.0) (2020-11-12)
+
+
+### Features
+
+* **subtle-form:** pass a textarea props object ([f6173f2](https://github.com/Synerise/synerise-design/commit/f6173f29b3be1e254ab26f9c4fea8abda3f375ac))
+
+
+
+
+
 ## [0.3.17](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subtle-form@0.3.16...@synerise/ds-subtle-form@0.3.17) (2020-11-09)
 
 **Note:** Version bump only for package @synerise/ds-subtle-form

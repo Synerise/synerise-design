@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.105.0](https://github.com/synerise/synerise-design/compare/portal@0.104.1...portal@0.105.0) (2020-11-12)
+
+
+### Bug Fixes
+
+* **badge:** change animation and add outline to prop flag ([bd28cea](https://github.com/synerise/synerise-design/commit/bd28cea85c3530a6b44641c8ccc0b8ce3c60a1cb))
+* **cascader:** change name ([a70d51a](https://github.com/synerise/synerise-design/commit/a70d51a4cf9c35640c56da2752dfdb3ff49a1ab3))
+* **cascader:** create own folder in dropdowncomponent ([79ba6a3](https://github.com/synerise/synerise-design/commit/79ba6a3887e1b0db4ebe5f9eeb5610eee6019579))
+* **dropdown:** change button and list to menu in overlayExample and some styles ([b67f598](https://github.com/synerise/synerise-design/commit/b67f598a0e41ab0c8b2d8db005a4c8aef95c4d44))
+* **dropdown:** fix some styles of items and add option to select by keys up/down ([6cce5bc](https://github.com/synerise/synerise-design/commit/6cce5bcb3ce548952d5c19a1511ef148da96ccbd))
+* **dropdown:** remove dataSource ([17a78ff](https://github.com/synerise/synerise-design/commit/17a78ffe539d0d64217c86646cb8a14407dc3265))
+* **status:** change to pills component ([45e112b](https://github.com/synerise/synerise-design/commit/45e112b48931ac4f1f58743ba330aa6a4b885c6a))
+* **table:** fix issues from CR ([12817d1](https://github.com/synerise/synerise-design/commit/12817d115d55ea615b2ee517ee9ed86a3c31daaf))
+* **table:** remove unsed props ([e7f950f](https://github.com/synerise/synerise-design/commit/e7f950f2ee8c6408eb9c810fcb010c75957a4db5))
+* **tags:** change to pills component ([970ee9a](https://github.com/synerise/synerise-design/commit/970ee9ad7655e2e6966d82a24eadfc5aa7bcd059))
+
+
+### Features
+
+* **table:** add example of cell with more items ([cfaf6bb](https://github.com/synerise/synerise-design/commit/cfaf6bbc717e3b2da4a80591af651df8b440a5dd))
+* **table:** add example of show more cell ([fba870b](https://github.com/synerise/synerise-design/commit/fba870bdca1c0450a360d67d3bb23a2124e3b200))
+* **table:** add i18n into ShowMore cell ([2c0ca54](https://github.com/synerise/synerise-design/commit/2c0ca547f55fdac57630c1e66027276dbff9a4a5))
+* **table:** update examples in storybook ([095f0ac](https://github.com/synerise/synerise-design/commit/095f0ac7c97b94d892aec92bc4ce498920a4ae56))
+
+
+
+
+
 ## [0.104.1](https://github.com/synerise/synerise-design/compare/portal@0.104.0...portal@0.104.1) (2020-11-09)
 
 

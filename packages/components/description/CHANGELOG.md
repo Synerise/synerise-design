@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.32](https://github.com/Synerise/synerise-design/compare/@synerise/ds-description@0.1.31...@synerise/ds-description@0.1.32) (2020-11-12)
+
+
+### Bug Fixes
+
+* **description:** useMemo for loading texts ([0a7501c](https://github.com/Synerise/synerise-design/commit/0a7501cccd12acfcbb9c2368113ef3b758351e39))
+
+
+
+
+
 ## [0.1.31](https://github.com/Synerise/synerise-design/compare/@synerise/ds-description@0.1.30...@synerise/ds-description@0.1.31) (2020-11-08)
 
 **Note:** Version bump only for package @synerise/ds-description

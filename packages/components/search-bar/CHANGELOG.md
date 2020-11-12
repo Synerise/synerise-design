@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.100](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search-bar@0.2.99...@synerise/ds-search-bar@0.2.100) (2020-11-12)
+
+
+### Bug Fixes
+
+* **search-bar:** add props to searchBar ([1978761](https://github.com/Synerise/synerise-design/commit/1978761e241e7d6479b8354401553b9b694a45c1))
+
+
+
+
+
 ## [0.2.99](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search-bar@0.2.98...@synerise/ds-search-bar@0.2.99) (2020-11-08)
 
 **Note:** Version bump only for package @synerise/ds-search-bar
