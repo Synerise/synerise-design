@@ -16,7 +16,7 @@ const avatarShape = ['circle', 'square'] as const;
 
 const stories = {
   standalone: () => {
-    const isOutline = boolean('badge outline', false);
+    const isOutline = boolean('Badge outline', false);
     return (
       <React.Fragment>
         <div
@@ -28,20 +28,20 @@ const stories = {
           }}
         >
           <Badge
-            count={number('count', 1)}
+            count={number('Count', 1)}
             offset={[0, 0]}
             outlined={isOutline}
-            overflowCount={number('overflowCount', 99)}
-            showZero={boolean('showZero', false)}
-            title={text('title', 'text')}
+            overflowCount={number('OverflowCount', 99)}
+            showZero={boolean('ShowZero', false)}
+            title={text('Title', 'text')}
             style={ {
               margin: '0 6px 0 11px',
             }}
           />
           <br />
           <Badge
-            count={number('count', 1)}
-            overflowCount={number('overflowCount', 99)}
+            count={number('Count', 1)}
+            overflowCount={number('OverflowCount', 99)}
             outlined={isOutline}
             backgroundColor={'yellow'}
             backgroundColorHue={600}
@@ -53,9 +53,9 @@ const stories = {
           />
           <br />
           <Badge
-            count={number('count', 1)}
+            count={number('Count', 1)}
             offset={[0, 0]}
-            overflowCount={number('overflowCount', 99)}
+            overflowCount={number('OverflowCount', 99)}
             outlined={isOutline}
             backgroundColor={'green'}
             backgroundColorHue={600}
@@ -67,9 +67,9 @@ const stories = {
           />
           <br />
           <Badge
-            count={number('count', 1)}
+            count={number('Count', 1)}
             offset={[0, 0]}
-            overflowCount={number('overflowCount', 99)}
+            overflowCount={number('OverflowCount', 99)}
             outlined={isOutline}
             backgroundColor={'grey'}
             backgroundColorHue={500}
@@ -90,10 +90,10 @@ const stories = {
             }}
           >
             <Badge
-              count={number('count', 1)}
+              count={number('Count', 1)}
               offset={[0, 0]}
               outlined={isOutline}
-              overflowCount={number('overflowCount', 99)}
+              overflowCount={number('OverflowCount', 99)}
               backgroundColor={'white'}
               textColor={'grey'}
               textColorHue={500}
@@ -109,8 +109,8 @@ const stories = {
             />
           </div>
           <Badge
-            count={number('count', 1)}
-            overflowCount={number('overflowCount', 99)}
+            count={number('Count', 1)}
+            overflowCount={number('OverflowCount', 99)}
             outlined={isOutline}
             backgroundColor={'transparent'}
             textColor={'white'}
@@ -126,7 +126,7 @@ const stories = {
   },
   dot: () => (
     <React.Fragment>
-      <Badge dot title={text('title', 'text')}>
+      <Badge dot title={text('Title', 'text')}>
         <Icon color={text('IconColor', '#fcc600')} size={number('IconSize', 30)} component={<FileM />} />
       </Badge>
       <br />
@@ -140,11 +140,11 @@ const stories = {
   count: () => (
     <React.Fragment>
       <Badge
-        count={number('count', 5)}
-        outlined={boolean('badge outline', false)}
-        overflowCount={number('overflowCount', 99)}
-        showZero={boolean('showZero', false)}
-        title={text('title', 'text')}
+        count={number('Count', 5)}
+        outlined={boolean('Badge outline', false)}
+        overflowCount={number('OverflowCount', 99)}
+        showZero={boolean('ShowZero', false)}
+        title={text('Title', 'text')}
       >
         <div
           style={{
@@ -183,15 +183,15 @@ const stories = {
     </React.Fragment>
   ),
   status: () => ({
-    status: select('status', statuses, 'active'),
-    text: text('text', 'Success'),
+    status: select('Status', statuses, 'active'),
+    text: text('Text', 'Success'),
   }),
   statusWithAvatar: () => (
     <>
-      <Badge status={select('status', statuses, 'active')}  >
+      <Badge status={select('Status', statuses, 'active')}  >
         <Avatar
-          size={select('avatar size', avatarSize, 'extraLarge')}
-          shape={select('avatar shape', avatarShape, 'square')}
+          size={select('Avatar size', avatarSize, 'extraLarge')}
+          shape={select('Avatar shape', avatarShape, 'square')}
           src={'https://www.w3schools.com/howto/img_avatar.png'}
           hasStatus
         />
@@ -201,18 +201,18 @@ const stories = {
 
   flagDefault: () => (
     <>
-      <Badge status={select('status', statuses, 'active')} flag={true} pulsing={boolean('Set Pulsing', true)} />
+      <Badge status={select('Status', statuses, 'active')} flag={true} pulsing={boolean('Set Pulsing', true)} />
 
     </>
   ),
   flagWithLabel: () => (
     <>
-      <Badge status={select('status', statuses, 'active')} text={text('text', 'Success')} pulsing={boolean('Set Pulsing', true)}  flag={true} />
+      <Badge status={select('Status', statuses, 'active')} text={text('Text', 'Success')} pulsing={boolean('Set Pulsing', true)}  flag={true} />
     </>
   ),
   flagWithElement: () => (
     <>
-      <Badge status={select('status', statuses, 'active')} pulsing={boolean('Set Pulsing', true)}  flag={true}>
+      <Badge status={select('Status', statuses, 'active')} pulsing={boolean('Set Pulsing', true)}  flag={true}>
         <div
           style={{
             width: '48px',
@@ -226,17 +226,17 @@ const stories = {
   ),
   flagWithIcon: () => (
     <>
-      <Badge status={select('status', statuses, 'active')} pulsing={boolean('Set Pulsing', true)}  flag={true}>
+      <Badge status={select('Status', statuses, 'active')} pulsing={boolean('Set Pulsing', true)}  flag={true}>
         <Icon color={text('IconColor', '#6a7580')} size={number('IconSize', 24)} component={<FileM />} />
       </Badge>
     </>
   ),
   flagWithAvatar: () => (
     <>
-      <Badge status={select('status', statuses, 'active')} pulsing={boolean('Set Pulsing', true)}  flag={true}>
+      <Badge status={select('Status', statuses, 'active')} pulsing={boolean('Set Pulsing', true)}  flag={true}>
         <Avatar
-          size={select('avatar size', avatarSize, 'extraLarge')}
-          shape={select('avatar shape', avatarShape, 'square')}
+          size={select('Avatar size', avatarSize, 'extraLarge')}
+          shape={select('Avatar shape', avatarShape, 'square')}
           src={'https://www.w3schools.com/howto/img_avatar.png'}
           hasStatus
         />
