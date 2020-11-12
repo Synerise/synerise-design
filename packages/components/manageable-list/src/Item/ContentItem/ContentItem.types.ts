@@ -15,7 +15,7 @@ export type ContentItemProps = {
   onExpand?: (id: string, isExpanded: boolean) => void;
   onRemove?: (removeParams: { id: string }) => void;
   onUpdate?: (updateParams: { id: string; name: string }) => void;
-  texts: {
+  texts?: {
     [k: string]: string | React.ReactNode;
   };
   theme: { [k: string]: string };
