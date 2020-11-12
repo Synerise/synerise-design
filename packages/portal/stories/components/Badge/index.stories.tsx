@@ -201,18 +201,18 @@ const stories = {
 
   flagDefault: () => (
     <>
-      <Badge status={select('status', statuses, 'active')} flag={true} pulsing={boolean('Set Pulsing', false)} />
+      <Badge status={select('status', statuses, 'active')} flag={true} pulsing={boolean('Set Pulsing', true)} />
 
     </>
   ),
   flagWithLabel: () => (
     <>
-      <Badge status={select('status', statuses, 'active')} text={text('text', 'Success')} pulsing={boolean('Set Pulsing', false)}  flag={true} />
+      <Badge status={select('status', statuses, 'active')} text={text('text', 'Success')} pulsing={boolean('Set Pulsing', true)}  flag={true} />
     </>
   ),
   flagWithElement: () => (
     <>
-      <Badge status={select('status', statuses, 'active')} pulsing={boolean('Set Pulsing', false)}  flag={true}>
+      <Badge status={select('status', statuses, 'active')} pulsing={boolean('Set Pulsing', true)}  flag={true}>
         <div
           style={{
             width: '48px',
@@ -226,14 +226,14 @@ const stories = {
   ),
   flagWithIcon: () => (
     <>
-      <Badge status={select('status', statuses, 'active')} pulsing={boolean('Set Pulsing', false)}  flag={true}>
+      <Badge status={select('status', statuses, 'active')} pulsing={boolean('Set Pulsing', true)}  flag={true}>
         <Icon color={text('IconColor', '#6a7580')} size={number('IconSize', 24)} component={<FileM />} />
       </Badge>
     </>
   ),
   flagWithAvatar: () => (
     <>
-      <Badge status={select('status', statuses, 'active')} pulsing={boolean('Set Pulsing', false)}  flag={true}>
+      <Badge status={select('status', statuses, 'active')} pulsing={boolean('Set Pulsing', true)}  flag={true}>
         <Avatar
           size={select('avatar size', avatarSize, 'extraLarge')}
           shape={select('avatar shape', avatarShape, 'square')}
