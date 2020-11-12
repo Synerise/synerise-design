@@ -3,4 +3,5 @@ export interface StatusProps {
   type: 'primary' | 'success' | 'warning' | 'danger' | 'disabled';
   className?: string;
   onClick?: () => void;
+  color?: string;
 }
