@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.2.4...@synerise/ds-search@0.3.0) (2020-11-13)
+
+
+### Features
+
+* **search:** add disableInput prop ([692768f](https://github.com/Synerise/synerise-design/commit/692768f001fd361efecf5f4f705b2b198da69249))
+* **search:** add inputDisabled prop ([b7ce48d](https://github.com/Synerise/synerise-design/commit/b7ce48d5bd9f62a361494fa8ada329425cd26536))
+* **search:** add inputDisabled prop ([d6cb81d](https://github.com/Synerise/synerise-design/commit/d6cb81d4f5b710cbe5d4528cf5ce94408ff07e38))
+
+
+
+
+
 ## [0.2.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.2.3...@synerise/ds-search@0.2.4) (2020-11-12)
 
 **Note:** Version bump only for package @synerise/ds-search

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.7.8...docs@0.8.0) (2020-11-13)
+
+
+### Features
+
+* **search:** add disableInput prop ([692768f](https://gitlab.synerise.com/Frontend/synerise-design/commit/692768f001fd361efecf5f4f705b2b198da69249))
+
+
+
+
+
 ## [0.7.8](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.7.7...docs@0.7.8) (2020-11-12)
 
 **Note:** Version bump only for package docs

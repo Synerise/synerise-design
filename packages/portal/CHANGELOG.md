@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.106.0](https://github.com/synerise/synerise-design/compare/portal@0.105.1...portal@0.106.0) (2020-11-13)
+
+
+### Features
+
+* **search:** update storybook example ([607e0ca](https://github.com/synerise/synerise-design/commit/607e0ca0927c6e37ea93ee922afdda5dff517c92))
+
+
+
+
+
 ## [0.105.1](https://github.com/synerise/synerise-design/compare/portal@0.105.0...portal@0.105.1) (2020-11-12)
 
 **Note:** Version bump only for package portal
