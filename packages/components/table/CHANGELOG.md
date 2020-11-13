@@ -3,6 +3,35 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.27.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.27.0...@synerise/ds-table@0.27.1) (2020-11-12)
+
+**Note:** Version bump only for package @synerise/ds-table
+
+
+
+
+
+# [0.27.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.26.8...@synerise/ds-table@0.27.0) (2020-11-12)
+
+
+### Bug Fixes
+
+* **table:** fix issues from CR ([12817d1](https://github.com/synerise/synerise-design/commit/12817d115d55ea615b2ee517ee9ed86a3c31daaf))
+* **table:** remove unsed props ([4229f6a](https://github.com/synerise/synerise-design/commit/4229f6a7ae4aecd5ef5695524189faf626e85fb4))
+
+
+### Features
+
+* **table:** add example of show more cell ([fba870b](https://github.com/synerise/synerise-design/commit/fba870bdca1c0450a360d67d3bb23a2124e3b200))
+* **table:** add i18n into ShowMore cell ([2c0ca54](https://github.com/synerise/synerise-design/commit/2c0ca547f55fdac57630c1e66027276dbff9a4a5))
+* **table:** add Label with ShowMore cell ([8594ce2](https://github.com/synerise/synerise-design/commit/8594ce23e6b1d2afc136a43a89d0a9302587f81a))
+* **table:** add loading props to showMore cell ([2df13c0](https://github.com/synerise/synerise-design/commit/2df13c0b69081e2164a13b1c505d975d9db0157a))
+* **table:** modal with all items ([37bcd55](https://github.com/synerise/synerise-design/commit/37bcd5548a431c367f6694d056be9ed4ac68323d))
+
+
+
+
+
 ## [0.26.8](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.26.7...@synerise/ds-table@0.26.8) (2020-11-09)
 
 **Note:** Version bump only for package @synerise/ds-table

@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar-object@0.3.0...@synerise/ds-sidebar-object@0.3.1) (2020-11-12)
+
+**Note:** Version bump only for package @synerise/ds-sidebar-object
+
+
+
+
+
+# [0.3.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar-object@0.2.15...@synerise/ds-sidebar-object@0.3.0) (2020-11-12)
+
+
+### Bug Fixes
+
+* **sidebar-object:** added filtering folder ([085d9a5](https://github.com/Synerise/synerise-design/commit/085d9a5a6c1c0bf3ca53cbd323d7f3efec1faa13))
+* **sidebar-object:** fixed refreshing of the folders list ([fc7a906](https://github.com/Synerise/synerise-design/commit/fc7a906a439a40f44f0e0437f6f23eff8a772129))
+
+
+### Features
+
+* **sidebar-object:** pass input props to inlinEdit and textarea ([4cf6a2f](https://github.com/Synerise/synerise-design/commit/4cf6a2f9d8dbc5974a26f042a9e1f1ef5ad8c9d0))
+
+
+
+
+
 ## [0.2.15](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar-object@0.2.14...@synerise/ds-sidebar-object@0.2.15) (2020-11-09)
 
 

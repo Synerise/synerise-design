@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.45](https://github.com/Synerise/synerise-design/compare/@synerise/ds-badge@0.4.44...@synerise/ds-badge@0.4.45) (2020-11-12)
+
+**Note:** Version bump only for package @synerise/ds-badge
+
+
+
+
+
+## [0.4.44](https://github.com/Synerise/synerise-design/compare/@synerise/ds-badge@0.4.43...@synerise/ds-badge@0.4.44) (2020-11-12)
+
+
+### Bug Fixes
+
+* **badge:** change animation ([6f4df6c](https://github.com/Synerise/synerise-design/commit/6f4df6cd967e861235af850c14fef65c3f717630))
+* **badge:** change animation and add outline to prop flag ([bd28cea](https://github.com/Synerise/synerise-design/commit/bd28cea85c3530a6b44641c8ccc0b8ce3c60a1cb))
+
+
+
+
+
 ## [0.4.43](https://github.com/Synerise/synerise-design/compare/@synerise/ds-badge@0.4.42...@synerise/ds-badge@0.4.43) (2020-11-04)
 
 
