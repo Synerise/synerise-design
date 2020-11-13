@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Search from '@synerise/ds-search';
-import { number, text } from '@storybook/addon-knobs';
+import { boolean, number, text } from '@storybook/addon-knobs';
 import Menu from '@synerise/ds-menu';
 import Icon from '@synerise/ds-icon';
 import { getItemsWithAvatar, getSuggestions, parameters, recent } from './dataPopulator';
@@ -9,7 +9,7 @@ import { SearchInput } from '@synerise/ds-search/dist/Elements';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import DebouncedInput from './DebouncedInput';
 import { debounce } from 'debounce';
-import { action } from '@storybook/addon-actions';
+
 const decorator = storyFn => (
   <div style={{ width: '100vw', position: 'absolute', left: '0', top: '20vh' }}>
     <div style={{ width: '300px', margin: 'auto' }}>{storyFn()}</div>
@@ -118,7 +118,7 @@ const stories = {
           tooltip: parametersTooltip,
           title: parametersTitle,
           rowHeight: 32,
-          itemRender: (item) => (
+          itemRender: item => (
             <Menu.Item
               highlight={value}
               style={{ paddingLeft: '12px' }}
@@ -136,14 +136,14 @@ const stories = {
           tooltip: recentTooltip,
           title: recentTitle,
           rowHeight: 32,
-          itemRender: (item) => <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>,
+          itemRender: item => <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>,
         }}
         suggestions={suggestions}
         suggestionsDisplayProps={{
           tooltip: suggestionsTooltip,
           title: suggestionsTitle,
           rowHeight: 32,
-          itemRender: (item) => <Menu.Item onItemHover={NOOP}>{item && item.text}</Menu.Item>,
+          itemRender: item => <Menu.Item onItemHover={NOOP}>{item && item.text}</Menu.Item>,
         }}
         textLookupConfig={{
           parameters: 'text',
@@ -151,6 +151,7 @@ const stories = {
           suggestions: 'text',
         }}
         value={value}
+        disableInput={boolean('Disable input when property has been choosen', false) && Boolean(parameterValue)}
       />
     );
   },
@@ -195,7 +196,7 @@ const stories = {
           tooltip: parametersTooltip,
           title: parametersTitle,
           rowHeight: 32,
-          itemRender: (item) => (
+          itemRender: item => (
             <Menu.Item
               style={{ paddingLeft: '12px' }}
               onItemHover={NOOP}
@@ -212,7 +213,7 @@ const stories = {
           tooltip: recentTooltip,
           title: recentTitle,
           rowHeight: 50,
-          itemRender: (item) => (
+          itemRender: item => (
             <Menu.Item onItemHover={NOOP} {...item} style={{ paddingLeft: '12px' }}>
               {item.text}
             </Menu.Item>
@@ -223,7 +224,7 @@ const stories = {
           tooltip: suggestionsTooltip,
           title: suggestionsTitle,
           rowHeight: 32,
-          itemRender: (item) => <Menu.Item onItemHover={NOOP}>{item && item.text}</Menu.Item>,
+          itemRender: item => <Menu.Item onItemHover={NOOP}>{item && item.text}</Menu.Item>,
         }}
         textLookupConfig={{
           parameters: 'text',
