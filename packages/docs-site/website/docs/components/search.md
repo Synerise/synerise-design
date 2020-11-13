@@ -100,7 +100,7 @@ return (
 | clearTooltip            | Clear button tooltip text                                                              | string                                                     | -       |
 | filterLookupKey         | key in parameter item object for displaying parameter label in input                   | string                                                     | -       |
 | hideLabel               | Hide label in search input                                                             | boolean                                                    | -       |
-| inputDisabled           | Disable search input                                                                   | boolean                                                    | -       |
+| disableInput            | Disable search input                                                                   | boolean                                                    | -       |
 | onParameterValueChange  | Callback when set parameter type                                                       | function                                                   | -       |
 | onValueChange           | Callback when input changes                                                            | function                                                   | -       |
 | parameters              | Parameters items data displayed in search dropdown                                     | object                                                     | -       |

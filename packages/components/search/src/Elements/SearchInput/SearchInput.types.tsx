@@ -20,7 +20,7 @@ export type SearchInputProps = {
   toggleTrigger?: boolean;
   value: string;
   moveCursorToEnd?: boolean;
-  inputDisable?: boolean;
+  disableInput?: boolean;
 };
 
 export type SearchInputState = {

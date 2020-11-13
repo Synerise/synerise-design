@@ -117,7 +117,7 @@ class SearchInput extends React.Component<SearchInputProps, SearchInputState> {
       placeholder,
       textLookupKey,
       value,
-      inputDisable,
+      disableInput,
     } = this.props;
     const { isInputOpen, inputOffset, isResultChosen, isInputFocused } = this.state;
 
@@ -152,7 +152,7 @@ class SearchInput extends React.Component<SearchInputProps, SearchInputState> {
               }}
               autoFocus
               autoComplete="off"
-              disabled={inputDisable}
+              disabled={disableInput}
             />
           </S.SearchInner>
         </S.SearchInputContent>
