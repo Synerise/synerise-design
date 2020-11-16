@@ -69,6 +69,7 @@ const Tag: React.FC<Props> = ({
         {!!suffixel && renderSuffixel()}
         {isRemovable && (
           <Tooltip title="Delete" visible={iconHover}>
+            {/* eslint-disable-next-line jsx-a11y/mouse-events-have-key-events */}
             <S.RemoveButton
               onClick={onRemoveCall}
               onMouseOver={(): void => {
