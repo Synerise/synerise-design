@@ -19,9 +19,9 @@ export type HeaderProps = {
   onArrowUp?: () => void;
   onArrowDown?: () => void;
   inputObject: {
-    id: string;
     [key: string]: string | React.ReactNode;
   } & object;
+  inputObjectIdKey?: string;
   inlineEditInputProps?: InputProps;
   name?: string | number;
   onRename?: (name: string) => void;

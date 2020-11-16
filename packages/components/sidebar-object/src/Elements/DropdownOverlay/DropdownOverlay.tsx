@@ -6,7 +6,7 @@ import { Add3M, FolderM, SearchM } from '@synerise/ds-icon/dist/icons';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { useOnClickOutside } from '@synerise/ds-utils';
 import Result from '@synerise/ds-result';
-import { DropdownWrapper, MenuWrapper } from './Dropdown.style';
+import { DropdownWrapper, MenuWrapper } from './DropdownOverlay.styles';
 import { Props } from './DropdownOverlay.types';
 
 const DropdownOverlay: React.FC<Props> = ({

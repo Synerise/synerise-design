@@ -26,6 +26,7 @@ const SidebarObject: React.FC<SidebarObjectProps> = ({
   footer,
   name,
   onRename,
+  inputObjectIdKey='id',
   activeTab= 0
 }) => {
   return (
@@ -47,6 +48,7 @@ const SidebarObject: React.FC<SidebarObjectProps> = ({
           texts={texts}
           onCloseClick={onCloseClick}
           inputObject={inputObject}
+          inputObjectIdKey={inputObjectIdKey || 'id'}
           inlineEditInputProps={inlineEditInputProps}
           onArrowUp={onArrowUp}
           onArrowDown={onArrowDown}
