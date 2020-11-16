@@ -11,7 +11,7 @@ import Badge from '@synerise/ds-badge';
 
 const customColorOptions = {
   blue: theme.palette['blue-600'],
-  grey: theme.palette['grey-600'],
+  grey: theme.palette['grey-200'],
   red: theme.palette['red-600'],
   green: theme.palette['green-600'],
   yellow: theme.palette['yellow-600'],
@@ -32,7 +32,7 @@ const stories = {
     };
     const shape = select('Shape', shapes, shapes['Default Round']);
     const removable = boolean('Ability to remove', true);
-    const colors = select('Set custom color', customColorOptions, customColorOptions.blue);
+    const colors = select('Set custom color', customColorOptions, customColorOptions.grey);
     const disabled = boolean('Disable ', false);
 
     const thisTag = [
@@ -58,10 +58,12 @@ const stories = {
     };
     const shape = select('Shape', shapes, shapes['Default Round']);
     const removable = boolean('Ability to remove', true);
-    const colors = select('Set custom color', customColorOptions, customColorOptions.blue);
+    const colors = select('Set custom color', customColorOptions, customColorOptions.grey);
     const hasPrefix = boolean('setPrefix', false);
     const hasSufix = boolean('setSufix', false);
     const disabled = boolean('Disable', false);
+    const getColor = colors => colors === theme.palette['grey-200'] ? theme.palette['grey-600'] : theme.palette.white;
+    const getColorHover = colors => colors === theme.palette['red-600']
 
     const thisTag = [
       {
@@ -72,10 +74,11 @@ const stories = {
           <Badge
             count={number('count', 1)}
             overflowCount={number('overflowCount', 99)}
-            outlined={true}
+            outlined={''}
             style={{
+              ...{ boxShadow: `0 0 0 1px ${getColor(colors)}`},
               backgroundColor: 'transparent',
-              color: theme.palette['white'],
+              color: getColor(colors),
               alignItems: 'center',
               margin: '0px',
             }}
@@ -85,11 +88,12 @@ const stories = {
           <Badge
             count={number('count', 1)}
             overflowCount={number('overflowCount', 99)}
-            outlined={true}
+            outlined={''}
             style={{
+              ...{ boxShadow: `0 0 0 1px ${getColor(colors)}`},
               margin: '0px',
               backgroundColor: 'transparent',
-              color: theme.palette['white'],
+              color: getColor(colors),
               alignItems: 'center',
             }}
           />
@@ -111,7 +115,7 @@ const stories = {
       'Default Square': TagShape.SINGLE_CHARACTER_SQUARE,
     };
     const shape = select('Shape', shapes, shapes['Default Round']);
-    const colors = select('Set custom color', customColorOptions, customColorOptions.blue);
+    const colors = select('Set custom color', customColorOptions, customColorOptions.grey);
     const disabled = boolean('Disable', false);
 
     const thisTag = [
@@ -139,15 +143,16 @@ const stories = {
     };
     const shape = select('Shape', shapes, shapes['Default Round']);
     const removable = boolean('Ability to remove', true);
-    const colors = select('Set custom color', customColorOptions, customColorOptions.blue);
+    const colors = select('Set custom color', customColorOptions, customColorOptions.grey);
     const disabled = boolean('Disable', false);
+    const getColor = colors => colors === theme.palette['grey-200'] ? theme.palette['grey-600'] : theme.palette.white;
 
     const thisTag = [
       {
         id: 0,
         name: 'Tag name 4',
         color: colors,
-        prefixel: <Icon className="icon1" component={<Add3S />} size={20} color="#fff" />,
+        prefixel: <Icon className="icon1" component={<Add3S />} size={20} color={getColor(colors)} />,
       },
     ];
 
@@ -191,57 +196,57 @@ const stories = {
       {
         id: 0,
         name: 'Tag Name 1',
-        color: '#ffc300',
+        color: theme.palette['grey-200'],
       },
       {
         id: 1,
         name: 'Tag Name 2',
-        color: '#13c2bc',
+        color: theme.palette['grey-200'],
       },
       {
         id: 2,
         name: 'Tag Name 3',
-        color: '#76dc25',
+        color: theme.palette['grey-200'],
       },
       {
         id: 3,
         name: 'Tag Name 4',
-        color: '#6d2dd3',
+        color: theme.palette['grey-200'],
       },
       {
         id: 4,
         name: 'Tag Name 5',
-        color: '#ff4d67',
+        color: theme.palette['grey-200'],
       },
       {
         id: 5,
         name: 'Tag Name 6',
-        color: '#fd9f05',
+        color: theme.palette['grey-200'],
       },
       {
         id: 6,
         name: 'Tag Name 7',
-        color: '#2b71cb',
+        color: theme.palette['grey-200'],
       },
       {
         id: 7,
         name: 'Tag Name 8',
-        color: '#61b71e',
+        color: theme.palette['grey-200'],
       },
       {
         id: 8,
         name: 'Tag Name 9',
-        color: '#e62425',
+        color: theme.palette['grey-200'],
       },
       {
         id: 9,
         name: 'Tag Name 10',
-        color: '#f551a9',
+        color: theme.palette['grey-200'],
       },
       {
         id: 10,
         name: 'Tag Name 11',
-        color: '#04bdff',
+        color: theme.palette['grey-200'],
       },
     ];
 
@@ -274,7 +279,7 @@ const stories = {
               const tag = {
                 id: uuid(),
                 name,
-                color: sample(randomColorPool),
+                color: sample(theme.palette['grey-200']),
               };
 
               console.log('Created new tag', name, tag);

@@ -18,7 +18,7 @@ export const SelectedTags = styled.div`
   align-items: flex-start;
   flex-wrap: wrap;
   && .ds-tag {
-  margin: 4px;
+    margin: 4px;
   }
 `;
 
@@ -64,7 +64,7 @@ export const CreateTagDropdownButton = styled(Button)<{ marginless: boolean }>`
 `;
 
 export const ManageLinkButton = styled(Button)<{ onlyChild: boolean }>`
-  margin: ${(props): string => (props.onlyChild  ? '8px' : '8px ')};
+  margin: ${(props): string => (props.onlyChild ? '8px 0px' : '8px 0px')};
 `;
 
 export const Seperator = styled.hr`
