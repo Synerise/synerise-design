@@ -2,8 +2,10 @@ import * as React from 'react';
 import Icon from '@synerise/ds-icon';
 import { CloseS } from '@synerise/ds-icon/dist/icons';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
 import { Props, TagShape } from './Tag.types';
 import * as S from './Tag.styles';
+import { getColorText } from './Tag.styles';
 
 const Tag: React.FC<Props> = ({
   id,
@@ -28,13 +30,14 @@ const Tag: React.FC<Props> = ({
     [TagShape.STATUS_ERROR, TagShape.STATUS_NEUTRAL, TagShape.STATUS_SUCCESS, TagShape.STATUS_WARNING].includes(shape);
   const isRemovable = removable && (isDefaultRound || isDefaultSquare);
   const isActionable = !disabled && isRemovable;
+  const [iconHover, setIconHover] = React.useState(false);
 
   const onRemoveCall = (): void | false => !!onRemove && !!id && onRemove(id);
   const renderPrefixel = (): React.ReactNode => {
     if (typeof prefixel === 'string' || typeof prefixel === 'number') {
-      return <S.PrefixWrapper>{prefixel}</S.PrefixWrapper>;
+      return <S.PrefixWrapper iconHover={iconHover}>{prefixel}</S.PrefixWrapper>;
     }
-    return <S.DefaultPrefixWrapper>{prefixel}</S.DefaultPrefixWrapper>;
+    return <S.DefaultPrefixWrapper iconHover={iconHover}>{prefixel}</S.DefaultPrefixWrapper>;
   };
   const renderSuffixel = (): React.ReactNode => {
     if (typeof suffixel === 'string' || typeof suffixel === 'number') {
@@ -58,16 +61,34 @@ const Tag: React.FC<Props> = ({
       preffixel={!!prefixel}
       suffixel={!!suffixel}
       hasImage={!!image}
+      iconHover={iconHover}
     >
-      <S.Content>
+      <S.Content iconHover={iconHover}>
         {image && isDefaultType && <img src={image} alt="" />}
         {!!prefixel && renderPrefixel()}
         <S.TagName>{name}</S.TagName>
         {!!suffixel && renderSuffixel()}
         {isRemovable && (
-          <S.RemoveButton onClick={onRemoveCall} data-testid="remove-btn">
-            <Icon className="icon" component={<CloseS />} size={24} color={theme.palette.white} />
-          </S.RemoveButton>
+          <Tooltip title="Delete" visible={iconHover}>
+            {/* eslint-disable-next-line jsx-a11y/mouse-events-have-key-events */}
+            <S.RemoveButton
+              onClick={onRemoveCall}
+              onMouseOver={(): void => {
+                setIconHover(true);
+              }}
+              onMouseLeave={(): void => {
+                setIconHover(false);
+              }}
+              data-testid="remove-btn"
+            >
+              <Icon
+                className="icon"
+                component={<CloseS />}
+                size={24}
+                color={getColorText(theme,color)}
+              />
+            </S.RemoveButton>
+          </Tooltip>
         )}
       </S.Content>
     </S.Tag>

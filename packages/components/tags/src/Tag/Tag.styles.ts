@@ -1,5 +1,5 @@
-import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
-import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
+import { ThemeProps, ThemePropsVars } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import styled, { css, FlattenSimpleInterpolation,FlattenInterpolation } from 'styled-components';
 import { TagShape } from './Tag.types';
 
 const defaultStatusStyles = css`
@@ -13,6 +13,9 @@ const defaultStatusStyles = css`
   padding: 0 8px;
   line-height: 18px;
 `;
+export const getColorText = (theme: ThemePropsVars, color?: string, ): string => {
+  return color === theme.palette['grey-200'] ? theme.palette['grey-600'] : theme.palette.white;
+};
 
 type InsertShapeStyles = {
   shape?: TagShape;
@@ -37,6 +40,18 @@ const getWidthOnHover = (props: InsertShapeStyles): string => {
   }
   return 'calc(100% - 10px)';
 };
+const getFilterColor = (props: TagProps): string => {
+  if (props.iconHover && props.color === props.theme.palette['grey-200']) {
+    return 'brightness(100%)';
+  }
+  if (props.color === props.theme.palette['grey-200']) {
+    return 'brightness(90%)';
+  }
+  if (props.iconHover) {
+    return 'brightness(100%)';
+  }
+  return 'brightness(120%)';
+};
 const addonStyles = (props: ThemeProps): string => `
   border: 1px solid;
   border-radius: 10px;
@@ -55,7 +70,7 @@ export const TagName = styled.span`
   text-overflow: ellipsis;
 `;
 export const RemoveButton = styled.div`
-  color: #fff;
+  color: ${({color,theme}): string => getColorText(theme,color)};
   height: 18px;
   width: 18px;
   border-radius: 10px;
@@ -71,7 +86,7 @@ export const RemoveButton = styled.div`
   opacity: 0.8;
 
   &:before {
-    background-color: ${(props): string => props.color || props.theme.palette['grey-900']};
+    color: ${(props): string => props.color || props.theme.palette['red-600']};
     filter: brightness(70%);
     opacity: 0.3;
     content: '';
@@ -82,8 +97,10 @@ export const RemoveButton = styled.div`
     height: 100%;
   }
 
-  &:hover:before {
-    filter: brightness(70%);
+  &&&:hover {
+    .ds-icon svg {
+      fill: ${(props): string => props.theme.palette['red-600']} !important;
+    }
   }
   .icon {
     && {
@@ -121,7 +138,7 @@ const insertShapeStyles = (props: InsertShapeStyles): FlattenSimpleInterpolation
 
     case TagShape.DEFAULT_ROUND:
       return css`
-        color: ${props.textColor || '#fff'};
+        color: ${props.textColor || getColorText(props.theme,props.color)};
         border-radius: 12px;
         font-size: 13px;
         height: 24px;
@@ -151,7 +168,7 @@ const insertShapeStyles = (props: InsertShapeStyles): FlattenSimpleInterpolation
 
               ${RemoveButton} {
                 margin-left: 0px;
-                margin-right: ${ props.suffixel? '2px':'-2px'};
+                margin-right: ${props.suffixel ? '2px' : '-2px'};
                 .icon {
                   position: absolute;
                   left: -3px;
@@ -164,7 +181,7 @@ const insertShapeStyles = (props: InsertShapeStyles): FlattenSimpleInterpolation
 
     case TagShape.DEFAULT_SQUARE:
       return css`
-        color: ${props.textColor || '#fff'};
+        color: ${props.textColor || getColorText(props.theme,props.color)};
         border-radius: 3px;
         font-size: 13px;
         height: 24px;
@@ -193,7 +210,7 @@ const insertShapeStyles = (props: InsertShapeStyles): FlattenSimpleInterpolation
 
               ${RemoveButton} {
                 margin-left: 0px;
-                margin-right: ${ props.suffixel? '2px':'-2px'};
+                margin-right: ${props.suffixel ? '2px' : '-2px'};
                 .icon {
                   position: absolute;
                   left: -3px;
@@ -206,7 +223,7 @@ const insertShapeStyles = (props: InsertShapeStyles): FlattenSimpleInterpolation
 
     case TagShape.SINGLE_CHARACTER_ROUND:
       return css`
-        color: ${props.textColor || '#fff'};
+        color: ${props.textColor || getColorText(props.theme,props.color)};
         border-radius: 12px;
         font-size: 13px;
         height: 24px;
@@ -217,7 +234,7 @@ const insertShapeStyles = (props: InsertShapeStyles): FlattenSimpleInterpolation
 
     case TagShape.SINGLE_CHARACTER_SQUARE:
       return css`
-        color: ${props.textColor || '#fff'};
+        color: ${props.textColor || getColorText(props.theme,props.color)};
         border-radius: 3px;
         font-size: 13px;
         height: 24px;
@@ -270,23 +287,50 @@ type TagProps = {
   suffixel?: boolean;
   preffixel?: boolean;
   hasImage?: boolean;
+  iconHover?: boolean;
 } & ThemeProps;
 
-export const Content = styled.div`
+export const Content = styled.div<{ iconHover?: boolean }>`
   position: relative;
   display: flex;
   align-items: center;
   flex-grow: 0;
   flex-shrink: 1;
+  ${(props): string | false =>
+    !!props.iconHover &&
+    `
+    &&& {
+     color:${props.theme.palette['red-600']};
+   }
+`}
 `;
-export const PrefixWrapper = styled.div`
+export const PrefixWrapper = styled.div<{ iconHover?: boolean }>`
   ${(props): string => addonStyles(props)};
+  ${(props): string | false =>
+    !!props.iconHover &&
+    `.ant-scroll-number{ 
+    color: ${props.theme.palette['red-600']}!important;
+    box-shadow: 0 0 0 1px ${props.theme.palette['red-600']}!important;
+    }
+  .ds-icon svg {
+  fill: ${props.theme.palette['red-600']};
+}`}
 `;
 export const SuffixWrapper = styled.div`
   ${(props): string => addonStyles(props)};
 `;
 export const DefaultSuffixWrapper = styled.div``;
-export const DefaultPrefixWrapper = styled.div``;
+export const DefaultPrefixWrapper = styled.div<{ iconHover?: boolean }>`
+  ${(props): string | false =>
+    !!props.iconHover &&
+    `.ant-scroll-number{ 
+    color: ${props.theme.palette['red-600']}!important;
+    box-shadow: 0 0 0 1px ${props.theme.palette['red-600']}!important;
+    }
+.ds-icon svg {
+  fill: ${props.theme.palette['red-600']};
+}`}
+`;
 
 export const Tag = styled.div<TagProps>`
   position: relative;
@@ -294,8 +338,19 @@ export const Tag = styled.div<TagProps>`
   display: inline-flex;
   font-weight: 500;
   overflow: hidden;
+  cursor: pointer;
+  &:hover:before {
+    filter: ${getFilterColor};
+  }
 
   ${(props): FlattenSimpleInterpolation => insertShapeStyles(props)};
+  ${(props): string | false =>
+    !!props.iconHover &&
+    `
+    &&&:before{
+     background-color:${props.theme.palette['red-050']};
+   }
+`}
 
   ${(props: TagProps): FlattenSimpleInterpolation | false =>
     !!props.disabled &&
@@ -304,7 +359,7 @@ export const Tag = styled.div<TagProps>`
       cursor: not-allowed;
     `}
 
-  ${(props: TagProps): FlattenSimpleInterpolation | false =>
+  ${(props: TagProps): FlattenInterpolation<TagProps> | false =>
     !props.isStatusShape &&
     css`
       &:before {
@@ -320,7 +375,7 @@ export const Tag = styled.div<TagProps>`
       ${props.isActionable &&
         css`
           &:hover:before {
-            filter: brightness(90%);
+            filter: ${getFilterColor};
           }
         `};
     `}

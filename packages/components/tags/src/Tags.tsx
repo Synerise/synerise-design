@@ -2,7 +2,8 @@ import * as React from 'react';
 import { withTheme } from 'styled-components';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon from '@synerise/ds-icon';
-import { Add3M, SearchM } from '@synerise/ds-icon/dist/icons';
+import { Add3M, SearchM, SettingsM } from '@synerise/ds-icon/dist/icons';
+import Result from '@synerise/ds-result';
 import { Props } from './Tags.types';
 import * as S from './Tags.styles';
 import Tag from './Tag/Tag';
@@ -123,15 +124,21 @@ const Tags: React.FC<Props> = ({
         {emptyPool && !isCreatable && !manageLink && (
           <S.DropdownNoTags>{texts && texts.dropdownNoTags}</S.DropdownNoTags>
         )}
-
-        {manageLink && selectablePool && !selectablePool.length && (
-          <>
-            <S.ManageLinkButton type="ghost" href={manageLink} onlyChild={!!(emptyPool && !isCreatable)}>
-              {texts && texts.manageLinkLabel}
-            </S.ManageLinkButton>
-          </>
+        {emptyPool && isCreatable && (
+        <Result type="no-results" noSearchResults description='No results'/>
         )}
       </S.DropdownContainer>
+      {manageLink && selectablePool && !selectablePool.length && (
+        <Dropdown.BottomAction
+          // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+          // @ts-ignore
+          style={{ padding: '0 8px', cursor: 'auto', }}
+        >
+          <S.ManageLinkButton type="ghost" mode="icon-label" href={manageLink}  onlyChild={!!(emptyPool && !isCreatable)}>
+            <Icon component={<SettingsM/>} size={20} color={theme.palette['grey-500']} /> {texts && texts.manageLinkLabel}
+          </S.ManageLinkButton>
+        </Dropdown.BottomAction>
+      )}
     </S.Overlay>
   );
 
