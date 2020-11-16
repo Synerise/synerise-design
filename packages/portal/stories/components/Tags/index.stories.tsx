@@ -8,6 +8,7 @@ import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import Icon from '@synerise/ds-icon';
 import { Add3S } from '@synerise/ds-icon/dist/icons';
 import Badge from '@synerise/ds-badge';
+import { getColorText } from '@synerise/ds-tags/dist/Tag/Tag.styles';
 
 const customColorOptions = {
   blue: theme.palette['blue-600'],
@@ -62,8 +63,6 @@ const stories = {
     const hasPrefix = boolean('setPrefix', false);
     const hasSufix = boolean('setSufix', false);
     const disabled = boolean('Disable', false);
-    const getColor = colors => colors === theme.palette['grey-200'] ? theme.palette['grey-600'] : theme.palette.white;
-    const getColorHover = colors => colors === theme.palette['red-600']
 
     const thisTag = [
       {
@@ -76,9 +75,9 @@ const stories = {
             overflowCount={number('overflowCount', 99)}
             outlined={''}
             style={{
-              ...{ boxShadow: `0 0 0 1px ${getColor(colors)}`},
+              ...{ boxShadow: `0 0 0 1px ${getColorText(theme,colors)}`},
               backgroundColor: 'transparent',
-              color: getColor(colors),
+              color: getColorText(theme,colors),
               alignItems: 'center',
               margin: '0px',
             }}
@@ -90,10 +89,10 @@ const stories = {
             overflowCount={number('overflowCount', 99)}
             outlined={''}
             style={{
-              ...{ boxShadow: `0 0 0 1px ${getColor(colors)}`},
+              ...{ boxShadow: `0 0 0 1px ${getColorText(theme,colors)}`},
               margin: '0px',
               backgroundColor: 'transparent',
-              color: getColor(colors),
+              color: getColorText(theme,colors),
               alignItems: 'center',
             }}
           />
@@ -145,14 +144,13 @@ const stories = {
     const removable = boolean('Ability to remove', true);
     const colors = select('Set custom color', customColorOptions, customColorOptions.grey);
     const disabled = boolean('Disable', false);
-    const getColor = colors => colors === theme.palette['grey-200'] ? theme.palette['grey-600'] : theme.palette.white;
 
     const thisTag = [
       {
         id: 0,
         name: 'Tag name 4',
         color: colors,
-        prefixel: <Icon className="icon1" component={<Add3S />} size={20} color={getColor(colors)} />,
+        prefixel: <Icon className="icon1" component={<Add3S />} size={20} color={getColorText(theme,colors)} />,
       },
     ];
 

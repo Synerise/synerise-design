@@ -5,6 +5,7 @@ import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
 import { Props, TagShape } from './Tag.types';
 import * as S from './Tag.styles';
+import { getColorText } from './Tag.styles';
 
 const Tag: React.FC<Props> = ({
   id,
@@ -84,7 +85,7 @@ const Tag: React.FC<Props> = ({
                 className="icon"
                 component={<CloseS />}
                 size={24}
-                color={color === theme.palette['grey-200'] ? theme.palette['grey-600'] : theme.palette.white}
+                color={getColorText(theme,color)}
               />
             </S.RemoveButton>
           </Tooltip>

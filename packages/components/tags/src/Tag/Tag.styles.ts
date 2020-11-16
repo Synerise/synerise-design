@@ -1,4 +1,4 @@
-import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { ThemeProps, ThemePropsVars } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import styled, { css, FlattenSimpleInterpolation,FlattenInterpolation } from 'styled-components';
 import { TagShape } from './Tag.types';
 
@@ -13,8 +13,8 @@ const defaultStatusStyles = css`
   padding: 0 8px;
   line-height: 18px;
 `;
-const getColorText = (props: InsertShapeStyles): string => {
-  return props.color === props.theme.palette['grey-200'] ? props.theme.palette['grey-600'] : props.theme.palette.white;
+export const getColorText = (theme: ThemePropsVars, color?: string, ): string => {
+  return color === theme.palette['grey-200'] ? theme.palette['grey-600'] : theme.palette.white;
 };
 
 type InsertShapeStyles = {
@@ -70,7 +70,7 @@ export const TagName = styled.span`
   text-overflow: ellipsis;
 `;
 export const RemoveButton = styled.div`
-  color: ${(props): string => getColorText(props)};
+  color: ${({color,theme}): string => getColorText(theme,color)};
   height: 18px;
   width: 18px;
   border-radius: 10px;
@@ -138,7 +138,7 @@ const insertShapeStyles = (props: InsertShapeStyles): FlattenSimpleInterpolation
 
     case TagShape.DEFAULT_ROUND:
       return css`
-        color: ${props.textColor || getColorText(props)};
+        color: ${props.textColor || getColorText(props.theme,props.color)};
         border-radius: 12px;
         font-size: 13px;
         height: 24px;
@@ -181,7 +181,7 @@ const insertShapeStyles = (props: InsertShapeStyles): FlattenSimpleInterpolation
 
     case TagShape.DEFAULT_SQUARE:
       return css`
-        color: ${props.textColor || getColorText(props)};
+        color: ${props.textColor || getColorText(props.theme,props.color)};
         border-radius: 3px;
         font-size: 13px;
         height: 24px;
@@ -223,7 +223,7 @@ const insertShapeStyles = (props: InsertShapeStyles): FlattenSimpleInterpolation
 
     case TagShape.SINGLE_CHARACTER_ROUND:
       return css`
-        color: ${props.textColor || getColorText(props)};
+        color: ${props.textColor || getColorText(props.theme,props.color)};
         border-radius: 12px;
         font-size: 13px;
         height: 24px;
@@ -234,7 +234,7 @@ const insertShapeStyles = (props: InsertShapeStyles): FlattenSimpleInterpolation
 
     case TagShape.SINGLE_CHARACTER_SQUARE:
       return css`
-        color: ${props.textColor || getColorText(props)};
+        color: ${props.textColor || getColorText(props.theme,props.color)};
         border-radius: 3px;
         font-size: 13px;
         height: 24px;
@@ -313,7 +313,7 @@ export const PrefixWrapper = styled.div<{ iconHover?: boolean }>`
     box-shadow: 0 0 0 1px ${props.theme.palette['red-600']}!important;
     }
   .ds-icon svg {
-  fill: ${props.theme.palette['red-600']} !important;
+  fill: ${props.theme.palette['red-600']};
 }`}
 `;
 export const SuffixWrapper = styled.div`
@@ -328,7 +328,7 @@ export const DefaultPrefixWrapper = styled.div<{ iconHover?: boolean }>`
     box-shadow: 0 0 0 1px ${props.theme.palette['red-600']}!important;
     }
 .ds-icon svg {
-  fill: ${props.theme.palette['red-600']} !important;
+  fill: ${props.theme.palette['red-600']};
 }`}
 `;
 
