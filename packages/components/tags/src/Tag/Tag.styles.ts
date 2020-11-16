@@ -1,6 +1,5 @@
 import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
-import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
-import { FlattenInterpolation } from 'styled-components/ts3.7';
+import styled, { css, FlattenSimpleInterpolation,FlattenInterpolation } from 'styled-components';
 import { TagShape } from './Tag.types';
 
 const defaultStatusStyles = css`
@@ -360,7 +359,7 @@ export const Tag = styled.div<TagProps>`
       cursor: not-allowed;
     `}
 
-  ${(props: TagProps): FlattenInterpolation | false =>
+  ${(props: TagProps): FlattenInterpolation<TagProps> | false =>
     !props.isStatusShape &&
     css`
       &:before {
