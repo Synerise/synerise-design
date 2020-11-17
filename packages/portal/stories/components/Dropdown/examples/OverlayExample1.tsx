@@ -11,15 +11,16 @@ import Dropdown from '@synerise/ds-dropdown';
 import Menu from '@synerise/ds-menu';
 import Button from '@synerise/ds-button';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import Result from '@synerise/ds-result';
 
 interface Props {
   value: string;
   onSearchChange: (value: string) => void;
   onClearInput?: () => void;
+  data: any;
 }
 
-const OverlayExample1: React.FC<Props> = ({ value, onSearchChange, onClearInput }) => {
-  const data = [{ text: 'Item 1' }, { text: 'Item 2' }, { text: 'Item 3' },{ text: 'Item 4' } ];
+const OverlayExample1: React.FC<Props> = ({ value, onSearchChange, onClearInput, data}) => {
   return (
     <Dropdown.Wrapper>
       <Dropdown.SearchInput
@@ -28,27 +29,27 @@ const OverlayExample1: React.FC<Props> = ({ value, onSearchChange, onClearInput 
         placeholder="Search"
         value={value}
         iconLeft={<Icon component={<SearchM />} color="#6a7580" />}
-        autofocus
       />
       <Dropdown.BackAction label="Attributes" onClick={() => alert('BackAction clicked')} />
+      {data?.length === 0 ? <Result type="no-results" noSearchResults description={'No results'} /> :
       <Menu
         style={{padding: '8px 2px 8px 8px'}}
         asDropdownMenu={true}
         >
         {data.map(item => (
-          <Menu.Item onSelect={action('onSelect')} prefixel={<Icon component={<FileM />}/>} >
+          <Menu.Item onSelect={action('onSelect')} highlight={value} prefixel={<Icon component={<FileM />}/>} >
             {(item as any).text}
           </Menu.Item>
         ))}
-          </Menu>
+          </Menu>}
       <Dropdown.BottomAction
         // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
         // @ts-ignore
         style={{ marginTop: '0px', padding: '0 8px', cursor: 'auto',alignItems: 'center' }}
       >
-        <Button type="ghost" style={{ paddingLeft: '8px', marginBottom:'1px' }}>
+        <Button type="ghost" mode="icon-label" >
           {<Icon component={<ArrowRightCircleM />} size={24} color={theme.palette['grey-500']} />}
-          <div style={{ paddingLeft: '4px',paddingTop:'1px' }}>Add folder</div>
+          Add folder
         </Button>
       </Dropdown.BottomAction>
     </Dropdown.Wrapper>
