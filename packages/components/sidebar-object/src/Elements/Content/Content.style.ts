@@ -9,7 +9,6 @@ margin-top: ${(props): string => props.withFolder ? '0': '-17px' };
 export const TagsWrapper = styled.div`
 padding: 22px 0 0;
 border-top: 1px dashed ${(props): string =>props.theme.palette['grey-300']};
-margin-left: -2px;
 `;
 export const InlineEditWrapper = styled.div`
 border-top: 1px dashed ${(props): string =>props.theme.palette['grey-300']};

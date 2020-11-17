@@ -4,7 +4,7 @@ import Button from '@synerise/ds-button';
 import Icon from '@synerise/ds-icon';
 import { AngleDownS } from '@synerise/ds-icon/dist/icons';
 import * as S from '../Header/Header.style';
-import DropdownOverlay from '../Header/Dropdown/DropdownOverlay';
+import DropdownOverlay from '../DropdownOverlay/DropdownOverlay';
 import Content from '../Content/Content';
 import ObjectSummary from '../ObjectSummary/ObjectSummary';
 import { OverviewObjectProps } from './Overview.types';
@@ -45,7 +45,10 @@ const Overview: React.FC<OverviewObjectProps> = ({
                   onClearInput={onClearInput}
                   searchValue={value}
                   onSearchChange={setValue}
-                  onFolderSelect={onFolderSelect}
+                  onFolderSelect={(folder): void => {
+                    onFolderSelect && onFolderSelect(folder);
+                    setDropdownVisible(false);
+                  }}
                   foldersDisplayKey={foldersDisplayKey}
                   foldersFilterKey={foldersFilterKey}
                   foldersIdKey={foldersIdKey}
