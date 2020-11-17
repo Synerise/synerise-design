@@ -3,7 +3,7 @@ import Button from '@synerise/ds-button';
 import OverlayExample1 from './OverlayExample1';
 
 const Example1 = () => {
-  const data = [[{ text: 'Item 1' }, { text: 'Item 2' }, { text: 'Item 3' }, { text: 'Item 4' }]];
+  const data = [{ text: 'Item 1' }, { text: 'Item 2' }, { text: 'Item 3' }, { text: 'Item 4' }];
 
   const [filteredData, setFilteredData] = React.useState(data);
   const [value, setValue] = React.useState('');
@@ -11,11 +11,10 @@ const Example1 = () => {
   const filter = (searchTerm: string) => {
     setValue(searchTerm);
 
-    const newData = data.map(list =>
-      list.filter(item => {
+    const newData =
+      data.filter(item => {
         return item.text.toLowerCase().includes(searchTerm.toLowerCase());
-      })
-    );
+      });
 
     setFilteredData(newData);
   };
