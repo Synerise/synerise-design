@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar-object@0.3.2...@synerise/ds-sidebar-object@0.3.3) (2020-11-17)
+
+
+### Bug Fixes
+
+* **sidebar-object:** styles fixes, code structure cleanup ([39a1473](https://github.com/Synerise/synerise-design/commit/39a1473259e83006289b841ed646b1ce820e39d2))
+
+
+
+
+
 ## [0.3.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar-object@0.3.1...@synerise/ds-sidebar-object@0.3.2) (2020-11-13)
 
 **Note:** Version bump only for package @synerise/ds-sidebar-object
