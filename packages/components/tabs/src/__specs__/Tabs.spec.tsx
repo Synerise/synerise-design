@@ -16,6 +16,31 @@ const tabs = [
   },
 ];
 
+function isTabsContainer(element: { [x: string]: { memoizedProps: { [x: string]: string; }; }; }) {
+  return element[Object.keys(element)[0]]?.memoizedProps?.['data-testid'] === 'tabs-container';
+}
+
+//mock for width/height for useResize and tabs visibility
+const originalOffsetWidth = Object.getOwnPropertyDescriptor(window.HTMLElement.prototype, 'offsetWidth');
+
+beforeAll(()=>{
+  Object.defineProperty(window.HTMLElement.prototype, 'offsetWidth',{
+    ...originalOffsetWidth,
+      get: function() {
+        if (isTabsContainer(this)) {
+          return 800;
+        }
+
+        return originalOffsetWidth!.get!.call(this);
+      }
+  });
+})
+
+afterAll(() => {
+  // @ts-ignore
+  Object.defineProperty(window.HTMLElement.prototype, 'offsetWidth', originalOffsetWidth);
+});
+
 describe('Tabs component', () => {
   it('should render tabs container', () => {
     // ARRANGE
@@ -45,5 +70,17 @@ describe('Tabs component', () => {
 
     // ASSERT
     expect(baseElement.getElementsByClassName('ant-dropdown-trigger')).toBeTruthy();
+  });
+
+  it('should render when number of tabs decreases', function() {
+    // ARRANGE
+    const filteredTabs =[tabs[0], tabs[1]];
+    const { getAllByTestId, rerender } = renderWithProvider(<Tabs tabs={tabs} activeTab={0} handleTabClick={() => {}} />);
+
+    // ACT
+    rerender(<Tabs tabs={filteredTabs} activeTab={0} handleTabClick={() => {}} />);
+
+    // ASSERT
+    expect(getAllByTestId('tab-container').length).toBe(2);
   });
 });
