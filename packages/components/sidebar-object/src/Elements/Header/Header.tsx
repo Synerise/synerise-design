@@ -34,6 +34,7 @@ const Header: React.FC<HeaderProps> = ({
   texts,
   onCloseClick,
   inputObject,
+  inputObjectIdKey = 'id',
   inlineEditInputProps = {},
   onArrowUp,
   onArrowDown,
@@ -113,8 +114,8 @@ const Header: React.FC<HeaderProps> = ({
                     {texts.deleteIcon}
                   </Menu.Item>
                 )}
-                <MenuWrapper>
-                  {onId && (
+                {onId && (
+                  <MenuWrapper>
                     <Menu.Item
                       onClick={(): void => {
                         setDropdownVisible(!dropdownVisible);
@@ -122,9 +123,9 @@ const Header: React.FC<HeaderProps> = ({
                       }}
                       style={{ padding: '0 12px' }}
                       prefixel={<Icon component={<CopyClipboardM />} />}
-                    >{`ID: ${inputObject.id}`}</Menu.Item>
-                  )}
-                </MenuWrapper>
+                    >{`ID: ${inputObject[inputObjectIdKey]}`}</Menu.Item>
+                  </MenuWrapper>
+                )}
               </Menu>
             </DropdownWrapper>
           }

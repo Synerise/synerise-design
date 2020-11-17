@@ -1,6 +1,6 @@
-import { FolderItem } from '../../../SidebarObject.types';
-import { OverviewTexts } from '../../Overview/Overview.types';
-import { HeaderTexts } from '../Header.types';
+import { FolderItem } from '../../SidebarObject.types';
+import { OverviewTexts } from '../Overview/Overview.types';
+import { HeaderTexts } from '../Header/Header.types';
 
 export interface Props {
   data: FolderItem[];

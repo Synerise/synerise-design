@@ -7,8 +7,8 @@ export type SidebarObjectProps = {
   avatar?: React.ReactNode;
   headerPreffix?: React.ReactNode;
   headerTabs: TabItem & {content?: React.ReactNode}[];
+  inputObjectIdKey?: string;
   inputObject: {
-    id: string;
     [key: string]: string | React.ReactNode;
   } & object;
   inlineEditInputProps?: InputProps;
