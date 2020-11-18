@@ -65,7 +65,7 @@ const Button: React.FC<Props> & ButtonSubComponents = ({
         setPressed(false);
       }}
       pressed={pressed}
-      className={`ds-button ${className}`}
+      className={`ds-button ${className} ${mode}`}
       customColor={color}
       /* eslint-disable-next-line react/jsx-props-no-spreading */
       {...antdProps}

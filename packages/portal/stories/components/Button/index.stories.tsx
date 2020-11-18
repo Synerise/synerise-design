@@ -8,6 +8,7 @@ import Button from '@synerise/ds-button';
 import markdown from '@/button/README.md';
 import { CreatorStatus } from '@synerise/ds-button/dist/Creator/Creator.types';
 import { withState } from '@dump247/storybook-state';
+import ButtonGroup from '@synerise/ds-button-group';
 
 const typeOptions = {
   Primary: 'primary',
@@ -122,12 +123,24 @@ const stories = {
       },
     } as object;
     return (
-      <div style={getBackgroundStyles(props.type)}>
-        <Button {...props} mode="split">
+      <ButtonGroup style={getBackgroundStyles(props.type)}>
+        <Button
+          mode="label"
+          {...props}
+          type='primary'
+          style={{margin: '0px'}}
+        >
           {props.label}
-          <Icon component={defaultProps.rightIconSize === 'M' ? <AngleDownM /> : <AngleDownS />} />
         </Button>
-      </div>
+        <Button
+          mode="single-icon"
+          {...props}
+          type='primary'
+          style={{margin: '0px'}}
+        >
+          <Icon component={ <AngleDownS />} />
+        </Button>
+      </ButtonGroup>
     );
   },
   twoIcons: () => {
