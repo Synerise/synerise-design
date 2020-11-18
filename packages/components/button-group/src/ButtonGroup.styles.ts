@@ -34,6 +34,9 @@ export const Container = styled.div<{
     justify-content: ${(props): string => mapButtonsPosition[props.buttonsPosition]};
      .ds-button ~ .ds-button.single-icon { border-right: 1px solid rgba(255, 255, 255, 0.15) ;}  
      *:not(:first-child).ds-button.single-icon { border-left: 1px solid rgba(255, 255, 255, 0.15) ; }
+     .ds-button {
+     margin: 0;
+     }
 
     & > .ant-btn {
       width: auto;
