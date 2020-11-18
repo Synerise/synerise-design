@@ -15,6 +15,7 @@ const HORIZONTAL_PADDING_PX = 12;
 const VERTICAL_PADDING_PX = 7;
 
 const SubtleTextArea: React.FC<SubtleTextAreaProps> = ({
+  disabled,
   minRows = 1,
   maxRows,
   value,
@@ -87,7 +88,7 @@ const SubtleTextArea: React.FC<SubtleTextAreaProps> = ({
         <Label label={label} tooltip={labelTooltip} />
       </S.ContentAbove>
       <S.Container ref={containerRef} className="ds-subtle-textarea" active={active}>
-        {active || hasError ? (
+        {(active || hasError) && !disabled ? (
           <TextArea
             {...rest}
             {...textAreaProps}
@@ -107,9 +108,10 @@ const SubtleTextArea: React.FC<SubtleTextAreaProps> = ({
             wrapperStyle={{ margin: 0 }}
           />
         ) : (
-          <S.Inactive rows={visibleRows} onClick={handleActivate} blurred={blurred}>
+          <S.Inactive rows={visibleRows} onClick={handleActivate} blurred={blurred} disabled={disabled}>
             <S.MainContent>
               <S.ValueArea
+                disabled={disabled}
                 value={value && !!value.trim() ? value : placeholder}
                 onBlur={handleDeactivate}
                 grey={!value && !!placeholder}
