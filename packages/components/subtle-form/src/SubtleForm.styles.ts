@@ -97,7 +97,7 @@ export const Inactive = styled.div<{
   background: ${(props): string => props.theme.palette.white};
   display: flex;
   padding: 7px 26px 7px 0px;
-  opacity: ${(props): string | false => (props.disabled ? `0.5` : `1`)};
+  opacity: ${(props): string => (props.disabled ? `0.5` : `1`)};
   border-radius: 3px;
   transition: padding 0.1s ease-in, background 0.1s ease-in;
   transition-delay: 0.2s;
