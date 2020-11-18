@@ -50,7 +50,7 @@ const getFilterColor = (props: TagProps): string => {
   if (props.iconHover) {
     return 'brightness(100%)';
   }
-  return 'brightness(120%)';
+  return 'brightness(110%)';
 };
 const addonStyles = (props: ThemeProps): string => `
   border: 1px solid;
@@ -405,11 +405,11 @@ export const Tag = styled.div<TagProps>`
     margin-right: 0;
   }
   ${SuffixWrapper},${DefaultSuffixWrapper} {
-    margin: ${(props): string => (!props.removable && props.suffixel ? '0px -9px 3px 5px' : '0 4px 3px 1px')};
+    margin: ${(props): string => (!props.removable && props.suffixel ? '0px -8px 3px 5px' : '0 4px 3px 1px')};
     
   }
   ${PrefixWrapper},${DefaultPrefixWrapper} {
-    margin: ${(props): string => (!props.removable && props.preffixel ? '0px 5px 3px -9px' : '0 1px 3px 4px')};
+    margin: ${(props): string => (!props.removable && props.preffixel ? '0px 5px 3px -8px' : '0 1px 3px 4px')};
   }
 `;
 
