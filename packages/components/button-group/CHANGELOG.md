@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.70](https://github.com/Synerise/synerise-design/compare/@synerise/ds-button-group@0.5.69...@synerise/ds-button-group@0.5.70) (2020-11-18)
+
+
+### Bug Fixes
+
+* **button-group:** add border styles to button group ([1204113](https://github.com/Synerise/synerise-design/commit/1204113eac5e1c5bd47719bfcd4c09e365cddf37))
+* **button-group:** add margin to button group ([ca2c241](https://github.com/Synerise/synerise-design/commit/ca2c241d89b3c6ef92be954e9aa20a1b6e41072a))
+* **button-group:** add margin to button group ([854bde5](https://github.com/Synerise/synerise-design/commit/854bde5c23a026d68e54d50afcc559f49fd690fa))
+
+
+
+
+
 ## [0.5.69](https://github.com/Synerise/synerise-design/compare/@synerise/ds-button-group@0.5.68...@synerise/ds-button-group@0.5.69) (2020-11-12)
 
 **Note:** Version bump only for package @synerise/ds-button-group

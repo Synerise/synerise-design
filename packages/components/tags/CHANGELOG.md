@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.131](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@0.2.130...@synerise/ds-tags@0.2.131) (2020-11-18)
+
+
+### Bug Fixes
+
+* **tags:** change colors of tags to default grey and on hover colors to red ([38ba28c](https://github.com/Synerise/synerise-design/commit/38ba28c7a9de2576838ca08534bde67d11305366))
+* **tags:** fix margin and brightness of tag ([ed96432](https://github.com/Synerise/synerise-design/commit/ed96432d3bc48cc95974a7a3e45d885a4ca423ad))
+* **tags:** fix order in imports and fix removeButton ([6e49b50](https://github.com/Synerise/synerise-design/commit/6e49b501b70d3cf15e1d07cf34855c1e1ef967cf))
+* **tags:** fix styles ([48062ff](https://github.com/Synerise/synerise-design/commit/48062ffb5f2ea00c616630e7e15f67a57d085ddb))
+* **tags:** fix styles, export getColorText ([fc54740](https://github.com/Synerise/synerise-design/commit/fc54740ee4fec83d8291b3254d0e83d55a8aa7c4))
+
+
+
+
+
 ## [0.2.130](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@0.2.129...@synerise/ds-tags@0.2.130) (2020-11-12)
 
 **Note:** Version bump only for package @synerise/ds-tags

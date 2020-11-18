@@ -3,6 +3,38 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.106.1](https://github.com/synerise/synerise-design/compare/portal@0.106.0...portal@0.106.1) (2020-11-18)
+
+
+### Bug Fixes
+
+* **badge:** change name of knobs ([d2aff28](https://github.com/synerise/synerise-design/commit/d2aff283f5641acdd5734f1cd6c9d4405698e30a))
+* **badge:** set pulsing on true ([7e3d4f4](https://github.com/synerise/synerise-design/commit/7e3d4f493641ad9beb2acca97b6c9b590fb9f872))
+* **button:** change working of split buttton ([65e3811](https://github.com/synerise/synerise-design/commit/65e3811948b158cc6c2605babf9aef2b8a575e3b))
+* **button:** remove margin from split buttton ([4acec0d](https://github.com/synerise/synerise-design/commit/4acec0d7db82f84dd689adf862135cfda772b1e7))
+* **button:** remove styles in index.stories of split buttton ([24cf6fc](https://github.com/synerise/synerise-design/commit/24cf6fc09238275097268ef320691f47d4762011))
+* **dropdown:** fix items in data, add no results and fix focus on button ([a539784](https://github.com/synerise/synerise-design/commit/a539784876ddcd1106cd5443e7943e8a233bee07))
+* **status:** add customStatus and option to change color ([7d90233](https://github.com/synerise/synerise-design/commit/7d90233d8993bef84bab6854e6cdce52460f5fa2))
+* **status:** change name to pillSmall and color name disabled to default ([15b03e2](https://github.com/synerise/synerise-design/commit/15b03e289e493d94121331339041b7e6c5d5b698))
+* **subtle-form:** added textarea disabled props ([820388e](https://github.com/synerise/synerise-design/commit/820388e1619cf424f8ee10bc3502128706ea5f83))
+* **tags:** change colors of tags to default grey and on hover colors to red ([38ba28c](https://github.com/synerise/synerise-design/commit/38ba28c7a9de2576838ca08534bde67d11305366))
+* **tags:** fix styles, export getColorText ([fc54740](https://github.com/synerise/synerise-design/commit/fc54740ee4fec83d8291b3254d0e83d55a8aa7c4))
+
+
+
+
+
+# [0.106.0](https://github.com/synerise/synerise-design/compare/portal@0.105.1...portal@0.106.0) (2020-11-13)
+
+
+### Features
+
+* **search:** update storybook example ([607e0ca](https://github.com/synerise/synerise-design/commit/607e0ca0927c6e37ea93ee922afdda5dff517c92))
+
+
+
+
+
 ## [0.105.1](https://github.com/synerise/synerise-design/compare/portal@0.105.0...portal@0.105.1) (2020-11-12)
 
 **Note:** Version bump only for package portal

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.31](https://github.com/synerise/synerise-design/compare/@synerise/ds-avatar@0.9.30...@synerise/ds-avatar@0.9.31) (2020-11-18)
+
+
+### Bug Fixes
+
+* **avatar:** add small camera icon ([f50b4f3](https://github.com/synerise/synerise-design/commit/f50b4f373471789cd17b3ba6cc0f62845bd72d74))
+
+
+
+
+
 ## [0.9.30](https://github.com/synerise/synerise-design/compare/@synerise/ds-avatar@0.9.29...@synerise/ds-avatar@0.9.30) (2020-11-12)
 
 **Note:** Version bump only for package @synerise/ds-avatar

@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.131](https://github.com/Synerise/synerise-design/compare/@synerise/ds-status@0.1.130...@synerise/ds-status@0.1.131) (2020-11-18)
+
+
+### Bug Fixes
+
+* **status:** add customStatus and option to change color ([7d90233](https://github.com/Synerise/synerise-design/commit/7d90233d8993bef84bab6854e6cdce52460f5fa2))
+* **status:** add props color to readme ([694c8f3](https://github.com/Synerise/synerise-design/commit/694c8f31163952f1af2d702f5d215b3d2c1baa9e))
+* **status:** change name to pillSmall and color name disabled to default ([15b03e2](https://github.com/Synerise/synerise-design/commit/15b03e289e493d94121331339041b7e6c5d5b698))
+* **status:** fix text color in readme ([f7330d3](https://github.com/Synerise/synerise-design/commit/f7330d32b8a0f9c04362a0624c12cd72dadc146d))
+
+
+
+
+
 ## [0.1.130](https://github.com/Synerise/synerise-design/compare/@synerise/ds-status@0.1.129...@synerise/ds-status@0.1.130) (2020-11-12)
 
 **Note:** Version bump only for package @synerise/ds-status
