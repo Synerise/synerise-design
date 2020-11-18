@@ -75,14 +75,20 @@ export const Container = styled.div<{ active: boolean }>`
   > div {
     margin: 0;
   }
-  
-    .ds-subtle-select {
+
+  .ds-subtle-select {
     .ant-select-selector: {
-      transition: all 0.0s linear !important;
+      transition: all 0s linear !important;
     }
   }
 `;
-export const Inactive = styled.div<{ rows?: number; blurred: boolean; datePicker?: boolean; datePickerValue?: Date }>`
+export const Inactive = styled.div<{
+  rows?: number;
+  blurred: boolean;
+  datePicker?: boolean;
+  datePickerValue?: Date;
+  disabled?: boolean;
+}>`
   position: relative;
   width: 100%;
   min-height: 32px;
@@ -91,15 +97,18 @@ export const Inactive = styled.div<{ rows?: number; blurred: boolean; datePicker
   background: ${(props): string => props.theme.palette.white};
   display: flex;
   padding: 7px 26px 7px 0px;
+  opacity: ${(props): string => (props.disabled ? `0.5` : `1`)};
   border-radius: 3px;
   transition: padding 0.1s ease-in, background 0.1s ease-in;
   transition-delay: 0.2s;
   ${(props): false | FlattenSimpleInterpolation =>
     props.blurred &&
+    !props.disabled &&
     css`
       animation: ${blurAnimation} 0.1s ease-in;
     `}
-  ${(props): FlattenSimpleInterpolation =>
+  ${(props): false | FlattenSimpleInterpolation =>
+    !props.disabled &&
     css`
       &:hover {
         padding: 7px 14px 7px 12px;
@@ -126,5 +135,4 @@ export const ContentAbove = styled.div<{ active: boolean }>`
   .ds-icon {
     margin-bottom: ${(props): string => (props.active ? `1px` : `0`)};
   }
-
 `;

@@ -9,6 +9,7 @@ export type SubtleFormSubComponents = {
   DatePicker: React.ElementType<SubtleDatePickerProps>;
 };
 export type SubtleFieldProps = {
+  disabled?: boolean;
   label?: React.ReactNode | string;
   labelTooltip?: React.ReactNode | string;
   suffix?: React.ReactNode | string;
