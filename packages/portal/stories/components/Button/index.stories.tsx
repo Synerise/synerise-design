@@ -119,7 +119,7 @@ const stories = {
     const props = {
       ...getDefaultProps(true),
       style: {
-        margin: 4,
+        margin: 0,
       },
     } as object;
     return (
@@ -128,7 +128,6 @@ const stories = {
           mode="label"
           {...props}
           type='primary'
-          style={{margin: '0px'}}
         >
           {props.label}
         </Button>
@@ -136,7 +135,6 @@ const stories = {
           mode="single-icon"
           {...props}
           type='primary'
-          style={{margin: '0px'}}
         >
           <Icon component={ <AngleDownS />} />
         </Button>
