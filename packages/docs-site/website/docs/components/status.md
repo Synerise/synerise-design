@@ -34,4 +34,4 @@ import Status from '@synerise/ds-status'
 | label     | text inside the status | string                                                    | -         |
 | className | wrapper class name     | string                                                    | -         |
 | onClick   | onClick event          | () => void                                                | -         |
-| color     | type of color          | string                                                    | `gret`    |
+| color     | type of color          | string                                                    | `grey`    |
