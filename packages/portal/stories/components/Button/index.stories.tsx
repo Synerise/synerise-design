@@ -118,9 +118,6 @@ const stories = {
     const defaultProps = getDefaultProps();
     const props = {
       ...getDefaultProps(true),
-      style: {
-        margin: 0,
-      },
     } as object;
     return (
       <ButtonGroup style={getBackgroundStyles(props.type)}>
