@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.34.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.33.4...@synerise/ds-icon@0.34.0) (2020-11-18)
+
+
+### Features
+
+* **icon:** added camera icon ([581f786](https://github.com/Synerise/synerise-design/commit/581f7860b274929bc4ac24de18a5f7c22973619c))
+
+
+
+
+
 ## [0.33.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.33.3...@synerise/ds-icon@0.33.4) (2020-11-12)
 
 **Note:** Version bump only for package @synerise/ds-icon
