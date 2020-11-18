@@ -43,6 +43,7 @@ const [value, setValue] = React.useState('');
 
 | Property      | Description                                    | Type                     | Default |
 | ------------- | ---------------------------------------------- | ------------------------ | ------- |
+| disabled      | Disables hover effects and value editing       | boolean                  | false   |
 | label         | Label text displayed above the textarea        | string / React.ReactNode | ---     |
 | labelTooltip  | Tooltip displayed on label hover               | string / React.ReactNode | ---     |
 | maxRows       | Maximum rows to be displayed                   | number                   | 0       |

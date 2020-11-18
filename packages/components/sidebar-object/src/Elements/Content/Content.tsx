@@ -8,7 +8,7 @@ const Content: React.FC<ContentProps> = ({
   onFolderSelect,
   texts,
   mainContent,
-  descriptionTextAreaProps,
+  descriptionProps = {},
   tags,
   textDescription,
   onDescriptionChange,
@@ -20,12 +20,12 @@ const Content: React.FC<ContentProps> = ({
       {!!onDescriptionChange && (
         <InlineEditWrapper>
           <SubtleForm.TextArea
-            textAreaProps={descriptionTextAreaProps}
             minRows={3}
             value={textDescription}
             onChange={onDescriptionChange}
             placeholder={texts.placeholder}
             suffixTooltip={texts.suffixTooltip}
+            {...descriptionProps}
           />
         </InlineEditWrapper>
       )}

@@ -19,6 +19,7 @@ const stories = {
     const [description, setDescription] = React.useState<string | undefined>();
     const [name, setName] = React.useState<string | undefined>();
     const validationState = boolean('Set validation state', false);
+    const disabled = boolean('Set disabled', false);
     const errorMessage = text('Error Text', 'Error');
 
     return (
@@ -33,7 +34,8 @@ const stories = {
             labelTooltip={'Name'}
             suffixTooltip={'Edit'}
             error={validationState}
-            errorText={getErrorText(validationState,errorMessage)}
+            errorText={getErrorText(validationState, errorMessage)}
+            disabled={disabled}
           />
         </div>
         <div style={{ marginBottom: '16px' }}>
@@ -46,7 +48,8 @@ const stories = {
             labelTooltip={'City'}
             suffixTooltip={'Edit'}
             error={validationState}
-            errorText={getErrorText(validationState,errorMessage)}
+            errorText={getErrorText(validationState, errorMessage)}
+            disabled={disabled}
           />
         </div>
         <div style={{ marginBottom: '0px' }}>
@@ -59,7 +62,8 @@ const stories = {
             labelTooltip={'Description'}
             suffixTooltip={'Edit'}
             error={validationState}
-            errorText={getErrorText(validationState,errorMessage)}
+            errorText={getErrorText(validationState, errorMessage)}
+            disabled={disabled}
           />
         </div>
       </div>

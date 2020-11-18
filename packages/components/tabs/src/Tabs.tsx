@@ -126,24 +126,26 @@ const Tabs: React.FC<TabsProps> = ({
   const renderVisibleTabs = React.useMemo(() => {
     return (
       <>
-        {visibleTabs.map((tab, index) => {
-          const key = `tabs-tab-${index}`;
-          return (
-            <Tab
-              underscore={underscore}
-              forwardedRef={tab.ref}
-              key={key}
-              index={index}
-              label={tab.label}
-              icon={tab.icon}
-              onClick={handleTabClick}
-              isActive={index === activeTab}
-              disabled={tab.disabled}
-              block={block}
-              suffixel={tab.suffixel}
-            />
-          );
-        })}
+        {visibleTabs
+          .filter(tab => Boolean(tab))
+          .map((tab, index) => {
+            const key = `tabs-tab-${index}`;
+            return (
+              <Tab
+                underscore={underscore}
+                forwardedRef={tab.ref}
+                key={key}
+                index={index}
+                label={tab.label}
+                icon={tab.icon}
+                onClick={handleTabClick}
+                isActive={index === activeTab}
+                disabled={tab.disabled}
+                block={block}
+                suffixel={tab.suffixel}
+              />
+            );
+          })}
       </>
     );
   }, [visibleTabs, activeTab, handleTabClick, underscore, block]);

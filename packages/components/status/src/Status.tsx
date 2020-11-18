@@ -3,7 +3,7 @@ import { TagShape } from '@synerise/ds-tags';
 import * as S from './Status.styles';
 import { StatusProps } from './Status.types';
 
-const Status: React.FC<StatusProps> = ({ type, onClick, className, label }) => {
+const Status: React.FC<StatusProps> = ({ type, onClick, className, label,color, }) => {
   return (
     <S.StatusTag
       onClick={onClick}
@@ -11,6 +11,7 @@ const Status: React.FC<StatusProps> = ({ type, onClick, className, label }) => {
       shape={TagShape.STATUS_NEUTRAL}
       type={type}
       name={label}
+      color={color}
     />
   );
 };

@@ -8,7 +8,7 @@ const typeColor = (props: ThemeProps & { type: string }): string =>
     danger: props.theme.palette['red-600'],
     warning: props.theme.palette['yellow-600'],
     success: props.theme.palette['green-600'],
-    disabled: props.theme.palette['grey-500'],
+    default: props.theme.palette['grey-500'],
   }[props.type]);
 
 // eslint-disable-next-line import/prefer-default-export
