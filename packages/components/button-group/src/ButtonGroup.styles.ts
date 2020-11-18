@@ -26,6 +26,7 @@ export const Container = styled.div<{
 }>`
   width: 100%;
   .ant-btn-group {
+    margin: 4px;
     width: 100%;
     display: flex;
     flex-direction: row;
