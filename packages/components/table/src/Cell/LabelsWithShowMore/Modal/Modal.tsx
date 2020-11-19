@@ -11,6 +11,7 @@ const DetailsModal: React.FC<ModalProps<object>> = ({ visible, hide, items, text
     () => [
       {
         dataIndex: labelKey,
+        key: labelKey,
         render: renderItem,
       },
     ],
@@ -41,6 +42,8 @@ const DetailsModal: React.FC<ModalProps<object>> = ({ visible, hide, items, text
         title={`${filteredItems.length} ${texts.records}`}
         columns={columns}
         loading={loading}
+        showHeader={false}
+        rowKey={labelKey}
         searchComponent={
           <SearchInput
             clearTooltip={texts.searchClear}
