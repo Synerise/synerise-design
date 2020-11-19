@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.27.4](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.27.3...@synerise/ds-table@0.27.4) (2020-11-19)
+
+
+### Bug Fixes
+
+* **table:** remove footer from DetailsModal ([b4d475a](https://github.com/synerise/synerise-design/commit/b4d475a792ab5759d54b1b60610b60f0ab587b8f))
+
+
+
+
+
 ## [0.27.3](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.27.2...@synerise/ds-table@0.27.3) (2020-11-18)
 
 **Note:** Version bump only for package @synerise/ds-table
