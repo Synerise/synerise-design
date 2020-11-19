@@ -24,7 +24,15 @@ const DetailsModal: React.FC<ModalProps<object>> = ({ visible, hide, items, text
   }, [items, labelKey, searchQuery]);
 
   return (
-    <Modal size="small" visible={visible} title={texts.modalTitle} closable onCancel={hide} bodyStyle={{ padding: 0 }}>
+    <Modal
+      size="small"
+      visible={visible}
+      title={texts.modalTitle}
+      closable
+      onCancel={hide}
+      bodyStyle={{ padding: 0 }}
+      footer={null}
+    >
       <VirtualTable
         scroll={{ y: 500, x: 0 }}
         cellHeight={64}
