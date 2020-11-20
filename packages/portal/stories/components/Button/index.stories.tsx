@@ -129,13 +129,12 @@ const stories = {
   split: () => {
     const defaultProps = getSplitProps();
     const fullWidth = boolean('Block', false);
-
     const props = {
       ...defaultProps,
     } as object;
     return (
       <div style={getBackgroundStyles(props.type)}>
-        <ButtonGroup fullWidth={fullWidth} buttonsPosition="center">
+        <ButtonGroup fullWidth={fullWidth} buttonsPosition="center" splitMode={true}>
           <Button mode="label" {...props}>
             {props.label}
           </Button>
