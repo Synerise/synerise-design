@@ -1,4 +1,4 @@
-import styled, { css, FlattenInterpolation, FlattenSimpleInterpolation, keyframes, Keyframes } from 'styled-components';
+import styled, { css, FlattenSimpleInterpolation, keyframes, Keyframes } from 'styled-components';
 import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 
 const mapButtonsPosition = {
