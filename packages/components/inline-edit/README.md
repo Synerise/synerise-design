@@ -46,21 +46,22 @@ InlineEdit UI Component
 
 ## InlineSelect API
 
-| Property      | Description                                   | Type                                                                              | Default  |
-| ------------- | --------------------------------------------- | --------------------------------------------------------------------------------- | -------- |
-| autoFocus     | Set focus on input after mount                | boolean                                                                           | `false`  |
-| className     | Optional className for component              | string                                                                            | -        |
-| dataSource    | Menu items displayed in the dropdown          | [MenuItemProps[]](https://design.synerise.com/docs/components/menu#menuitemprops) | []       |
-| disabled      | Disabled state of component                   | boolean                                                                           | `false`  |
-| dropdownStyle | Styles object applied to the dropdown wrapper | React.CSSProperties                                                               | -        |
-| error         | Error state of component                      | boolean                                                                           | `false`  |
-| expanded      | Initial expansion state of dropdown menu      | boolean                                                                           | `false`  |
-| hideIcon      | Hides input icon                              | boolean                                                                           | `false`  |
-| input         | Properties of the input                       | InlineEditInput                                                                   | `false`  |
-| placeholder   | Default text of the select                    | string                                                                            | -        |
-| size          | Component size                                | `normal` / `small`                                                                | `normal` |
-| style         | Styles object                                 | React.CSSProperties                                                               | -        |
-| tooltipTitle  | Text of the tooltip                           | string                                                                            | -        |
+| Property             | Description                                           | Type                                                                              | Default  |
+| -------------------- | ----------------------------------------------------- | --------------------------------------------------------------------------------- | -------- |
+| autoFocus            | Set focus on input after mount                        | boolean                                                                           | `false`  |
+| className            | Optional className for component                      | string                                                                            | -        |
+| dataSource           | Menu items displayed in the dropdown                  | [MenuItemProps[]](https://design.synerise.com/docs/components/menu#menuitemprops) | []       |
+| disabled             | Disabled state of component                           | boolean                                                                           | `false`  |
+| dropdownOverlayStyle | Styles object applied to the dropdown overlay wrapper | React.CSSProperties                                                               | {}       |
+| dropdownProps        | Props object applied to the dropdown component        | DropdownProps                                                                     | {}       |
+| error                | Error state of component                              | boolean                                                                           | `false`  |
+| expanded             | Initial expansion state of dropdown menu              | boolean                                                                           | `false`  |
+| hideIcon             | Hides input icon                                      | boolean                                                                           | `false`  |
+| input                | Properties of the input                               | InlineEditInput                                                                   | `false`  |
+| placeholder          | Default text of the select                            | string                                                                            | -        |
+| size                 | Component size                                        | `normal` / `small`                                                                | `normal` |
+| style                | Styles object                                         | React.CSSProperties                                                               | -        |
+| tooltipTitle         | Text of the tooltip                                   | string                                                                            | -        |
 
 ## InlineEdit input API
 

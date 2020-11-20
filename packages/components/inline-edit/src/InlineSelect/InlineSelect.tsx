@@ -12,7 +12,8 @@ import { InlineSelectProps } from './InlineSelect.types';
 const InlineSelect: React.FC<InlineSelectProps> = ({
   className,
   style,
-  dropdownStyle,
+  dropdownProps = {},
+  dropdownOverlayStyle = {},
   size = 'normal',
   disabled,
   autoFocus,
@@ -61,10 +62,11 @@ const InlineSelect: React.FC<InlineSelectProps> = ({
           dataSource={dataSource}
           onSelect={(item): void => setSelectedValue(item.text as string)}
           closeDropdown={(): void => setOpened(false)}
-          style={dropdownStyle}
+          style={dropdownOverlayStyle}
         />
       }
       trigger={['click']}
+      {...dropdownProps}
     >
       <S.InPlaceEditableInputContainer
         className={`ds-inline-edit ${className || ''}`}
