@@ -1,4 +1,4 @@
-import styled, { keyframes, Keyframes } from 'styled-components';
+import styled, { css, FlattenInterpolation, FlattenSimpleInterpolation, keyframes, Keyframes } from 'styled-components';
 import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 
 const mapButtonsPosition = {
@@ -33,16 +33,20 @@ export const Container = styled.div<{
     flex-direction: row;
     align-items: center;
     justify-content: ${(props): string => mapButtonsPosition[props.buttonsPosition]};
+    ${(props): FlattenSimpleInterpolation | false =>
+  !!props.splitMode &&
+  css`
      *:not(:first-child).ds-button.single-icon,.ds-button.single-icon.ant-btn-custom-color {
-      border-left: ${(props): string => props.splitMode ? '1px solid rgba(255, 255, 255, 0.15)': '0px'} ;
+      border-left: 1px solid rgba(255, 255, 255, 0.15);
     }
     *:not(:first-child).ds-button.single-icon.ant-btn-ghost-primary,.ds-button.single-icon.ant-btn-ghost,.ds-button.single-icon.ant-btn-ghost-white,.ds-button.single-icon.ant-btn-secondary {
       border-left: 0px;
-      padding-left: ${(props): string => props.splitMode ? '1px': '0px'};
+      padding-left: 1px;
     }
     *:not(:first-child).ds-button.single-icon.ant-btn-tertiary {
-      border-left: ${(props): string => props.splitMode ? '1px solid rgba(106, 117, 128, 0.2)': '0px'};
+      border-left: 1px solid rgba(106, 117, 128, 0.2);
     }
+  `};
 
 
     & > .ant-btn {
