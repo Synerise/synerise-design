@@ -1,5 +1,5 @@
 import styled, { css, FlattenSimpleInterpolation, keyframes, Keyframes } from 'styled-components';
-import { ThemeProps, ThemePropsVars } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 
 const mapButtonsPosition = {
   left: 'flex-start',
