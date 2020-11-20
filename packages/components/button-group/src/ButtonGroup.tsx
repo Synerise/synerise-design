@@ -12,12 +12,14 @@ const ButtonGroup: React.FC<ButtonGroupProps> = ({
   fullWidth,
   buttonsPosition = 'center',
   disabled,
+  splitMode,
 }) => (
   <S.Container
     className={`ds-button-group ${className || ''}`}
     fullWidth={fullWidth}
     buttonsPosition={buttonsPosition}
     disabled={disabled}
+    splitMode={splitMode}
   >
     {title && <S.Title>{title}</S.Title>}
     <Button.Group size={size}>{children}</Button.Group>

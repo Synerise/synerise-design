@@ -23,6 +23,7 @@ export const Container = styled.div<{
   fullWidth?: boolean;
   buttonsPosition: string | 'left' | 'center' | 'right';
   disabled?: boolean;
+  splitMode?: boolean;
 }>`
   width: 100%;
   .ant-btn-group {
@@ -32,26 +33,15 @@ export const Container = styled.div<{
     flex-direction: row;
     align-items: center;
     justify-content: ${(props): string => mapButtonsPosition[props.buttonsPosition]};
-     *:not(:first-child).ds-button.single-icon {
-      border-left: 1px solid rgba(255, 255, 255, 0.15);
+     *:not(:first-child).ds-button.single-icon,.ds-button.single-icon.ant-btn-custom-color {
+      border-left: ${(props): string => props.splitMode ? '1px solid rgba(255, 255, 255, 0.15)': '0px'} ;
     }
-    *:not(:first-child).ds-button.single-icon.ant-btn-custom-color {
-      border-left: 1px solid rgba(255, 255, 255, 0.15);
-    }
-    *:not(:first-child).ds-button.single-icon.ant-btn-secondary {
+    *:not(:first-child).ds-button.single-icon.ant-btn-ghost-primary,.ds-button.single-icon.ant-btn-ghost,.ds-button.single-icon.ant-btn-ghost-white,.ds-button.single-icon.ant-btn-secondary {
       border-left: 0px;
-    }
-    *:not(:first-child).ds-button.single-icon.ant-btn-ghost-primary {
-      border-left: 0px;
-    }
-    *:not(:first-child).ds-button.single-icon.ant-btn-ghost {
-      border-left: 0px;
-    }
-    *:not(:first-child).ds-button.single-icon.ant-btn-ghost-white {
-      border-left: 0px;
+      padding-left: ${(props): string => props.splitMode ? '1px': '0px'};
     }
     *:not(:first-child).ds-button.single-icon.ant-btn-tertiary {
-      border-left: 1px solid rgba(106, 117, 128, 0.2);
+      border-left: ${(props): string => props.splitMode ? '1px solid rgba(106, 117, 128, 0.2)': '0px'};
     }
 
 
