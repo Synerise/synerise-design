@@ -41,7 +41,6 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
   }
 
   componentDidUpdate(prevProps: Readonly<TimeWindowProps>, prevState: Readonly<State>): void {
-    console.log(prevState, prevProps);
     const hasCommonRange = this.haveActiveDaysCommonRange();
     if (prevState.isRangeDefined !== hasCommonRange) {
       // eslint-disable-next-line react/no-did-update-set-state
