@@ -44,7 +44,7 @@ export const Container = styled.div<{
       &:disabled.ds-button.single-icon.ant-btn-custom-color {
       border-left: 1px solid rgba(255, 255, 255, 0.80) !important ;
       }
-      &:disabled.ds-button.single-icon {
+      &:disabled.ds-button.single-icon.ant-btn-primary {
       border-left: 1px solid rgba(255, 255, 255, 0.50) !important ;
       }
     }
@@ -54,6 +54,9 @@ export const Container = styled.div<{
     }
     *:not(:first-child).ds-button.single-icon.ant-btn-tertiary {
       border-left: 1px solid rgba(106, 117, 128, 0.2);
+    }
+    .ds-button.label.ant-btn-tertiary[disabled] {
+      color: ${props.theme.palette['grey-500']} !important;
     }
   `};
 
