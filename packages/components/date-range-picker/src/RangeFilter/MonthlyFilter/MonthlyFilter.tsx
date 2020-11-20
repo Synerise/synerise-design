@@ -1,9 +1,5 @@
 import * as React from 'react';
 import { FormattedMessage, injectIntl } from 'react-intl';
-import { CloseM } from '@synerise/ds-icon/dist/icons';
-import Icon from '@synerise/ds-icon';
-import Tooltip from '@synerise/ds-tooltip';
-
 import ContentItem from '@synerise/ds-manageable-list/dist/Item/ContentItem/ContentItem';
 import { Tag, TagShape } from '@synerise/ds-tags';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
@@ -42,9 +38,8 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
     this.handleCollapse(id);
   };
 
-  handleRemoveRow = (e: React.MouseEvent<HTMLDivElement>, index: React.ReactText): void => {
+  handleRemoveRow = (index: React.ReactText): void => {
     const { value } = this.props;
-    e.stopPropagation();
     const result = value.filter((item, key) => key !== index);
     this.handleRemoveRowCollapse(value[index].id);
     this.setData([...result]);
@@ -167,6 +162,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
             hideExpander={false}
             onExpand={(id): void => this.handleCollapse(id)}
             expanded={visible[item.id]}
+            onRemove={(): void => this.handleRemoveRow(key)}
             item={{
               tag: (
                 <Tag
@@ -176,19 +172,21 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
                   textColor={theme.palette['grey-500']}
                 />
               ),
+              canDelete: true,
               id: item.id,
               // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
               // @ts-ignore
               name: (
                 <S.DropdownHeader className={visible[item.id] && 'dropdown-header-visible'}>
                   <S.DropdownLabel>
-                    <FormattedMessage
-                      id="DS.DATE-RANGE-PICKER.RULE"
-                    />{' '}
+                    <FormattedMessage id="DS.DATE-RANGE-PICKER.RULE" />{' '}
                     <FormattedMessage id="DS.DATE-RANGE-PICKER.DAYS-OF" />
                   </S.DropdownLabel>
                   <S.Select
                     expanded={false}
+                    dropdownStyle={{
+                      minWidth: '150px',
+                    }}
                     placeholder={intl.formatMessage({ id: PERIODS[0].translationKey })}
                     input={{
                       name: 'period',
@@ -209,6 +207,9 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
                   </S.DropdownLabel>
                   <S.Select
                     expanded={false}
+                    dropdownStyle={{
+                      minWidth: '150px',
+                    }}
                     placeholder={intl.formatMessage({ id: PERIODS_TYPE[0].translationKey })}
                     input={{
                       name: 'period-type',
@@ -216,7 +217,6 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
                     }}
                     dataSource={PERIODS_TYPE.map(i => ({
                       checked: data[key]?.periodType === i.value,
-
                       text: intl.formatMessage({ id: i.translationKey as string }),
                       onSelect: (): void => {
                         this.handlePeriodTypeChange(i.value as string, key);
@@ -246,18 +246,13 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
                     monthlyFilter
                   />
                 </S.ContentWrapper>
-              ) : <div/>,
+              ) : (
+                <div />
+              ),
             }}
-            headerSuffix={
-              <Tooltip title={intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.REMOVE' })}>
-                <S.DropdownDeleteBtn
-                  onClick={(e: React.MouseEvent<HTMLDivElement>): void => this.handleRemoveRow(e, key)}
-                >
-                  <Icon component={<CloseM />} size={15} />
-                </S.DropdownDeleteBtn>
-              </Tooltip>
-            }
-            texts={{}}
+            texts={{
+              itemActionDeleteTooltip: intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.REMOVE' }),
+            }}
           />
         ))}
         <S.AddContainer>
