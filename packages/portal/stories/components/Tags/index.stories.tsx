@@ -6,7 +6,7 @@ import { v4 as uuid } from 'uuid';
 import Tags, { TagShape } from '@synerise/ds-tags';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import Icon from '@synerise/ds-icon';
-import { Add3S } from '@synerise/ds-icon/dist/icons';
+import { Add3M} from '@synerise/ds-icon/dist/icons';
 import Badge from '@synerise/ds-badge';
 import { getColorText } from '@synerise/ds-tags/dist/Tag/Tag.styles';
 
@@ -150,7 +150,7 @@ const stories = {
         id: 0,
         name: 'Tag name 4',
         color: colors,
-        prefixel: <Icon className="icon1" component={<Add3S />} size={20} color={getColorText(theme,colors)} />,
+        prefixel: <Icon className="icon1" component={<Add3M />} size={20} color={getColorText(theme,colors)} />,
       },
     ];
 
