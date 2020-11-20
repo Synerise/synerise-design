@@ -12,6 +12,7 @@ import { InlineSelectProps } from './InlineSelect.types';
 const InlineSelect: React.FC<InlineSelectProps> = ({
   className,
   style,
+  dropdownStyle,
   size = 'normal',
   disabled,
   autoFocus,
@@ -45,13 +46,13 @@ const InlineSelect: React.FC<InlineSelectProps> = ({
     }
   }, [autoFocus, fontStyleWatcher, inputRef, updateInputWidth]);
 
-  const [selectedValue, setSelectedValue] = React.useState<string>(placeholder  || 'option');
+  const [selectedValue, setSelectedValue] = React.useState<string>(placeholder || 'option');
   const [opened, setOpened] = React.useState<boolean>(false);
   const [pressed, setPressed] = React.useState<boolean>(false);
 
   return (
     <Dropdown
-      visible = { !disabled && opened}
+      visible={!disabled && opened}
       onVisibleChange={setOpened}
       placement="bottomRight"
       disabled={disabled}
@@ -60,46 +61,46 @@ const InlineSelect: React.FC<InlineSelectProps> = ({
           dataSource={dataSource}
           onSelect={(item): void => setSelectedValue(item.text as string)}
           closeDropdown={(): void => setOpened(false)}
+          style={dropdownStyle}
         />
       }
       trigger={['click']}
     >
-    <S.InPlaceEditableInputContainer
-      className={`ds-inline-edit ${className || ''}`}
-      style={style}
-      size={size}
-      disabled={disabled}
-      error={error}
-      tabIndex={0}
-      onMouseDown={(): void => setPressed(true)}
-      onMouseUp={(): void => setPressed(false)}
-      pressed={pressed}
-      dropdownOpened={opened}
-    >
-      <AutosizeInput
-        id={input.name ? toCamelCase(input.name) : 'id'}
-        className="autosize-input"
-        placeholder={input.placeholder}
-        maxLength={input.maxLength}
+      <S.InPlaceEditableInputContainer
+        className={`ds-inline-edit ${className || ''}`}
+        style={style}
+        size={size}
         disabled={disabled}
-        name={input.name}
-        value={selectedValue || placeholder}
-        autoComplete={input.autoComplete}
-        placeholderIsMinWidth={false}
-        /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
-        ref={inputRef as any}
-      />
-      {!hideIcon && (
-
+        error={error}
+        tabIndex={0}
+        onMouseDown={(): void => setPressed(true)}
+        onMouseUp={(): void => setPressed(false)}
+        pressed={pressed}
+        dropdownOpened={opened}
+      >
+        <AutosizeInput
+          id={input.name ? toCamelCase(input.name) : 'id'}
+          className="autosize-input"
+          placeholder={input.placeholder}
+          maxLength={input.maxLength}
+          disabled={disabled}
+          name={input.name}
+          value={selectedValue || placeholder}
+          autoComplete={input.autoComplete}
+          placeholderIsMinWidth={false}
+          /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
+          ref={inputRef as any}
+        />
+        {!hideIcon && (
           <S.IconWrapper size={size} expanded={opened}>
-            <Icon component={<AngleDownS/>} size={24} />
+            <Icon component={<AngleDownS />} size={24} />
           </S.IconWrapper>
-      )}
-      <S.FontStyleWatcher
-        ref={fontStyleWatcher}
-        style={{ position: 'absolute', visibility: 'hidden', pointerEvents: 'none' }}
-      />
-    </S.InPlaceEditableInputContainer>
+        )}
+        <S.FontStyleWatcher
+          ref={fontStyleWatcher}
+          style={{ position: 'absolute', visibility: 'hidden', pointerEvents: 'none' }}
+        />
+      </S.InPlaceEditableInputContainer>
     </Dropdown>
   );
 };

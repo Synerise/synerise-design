@@ -13,6 +13,7 @@ const SelectDropdown: React.FC<Props> = ({
   dropdownRowHeight,
   onSelect,
   closeDropdown,
+  style,
 }) => {
   const rowCount = dropdownVisibleRows || DEFAULT_VISIBLE_ROWS;
   const rowHeight = dropdownRowHeight || DEFAULT_ROW_HEIGHT;
@@ -26,7 +27,7 @@ const SelectDropdown: React.FC<Props> = ({
   );
 
   return (
-    <S.DropdownWrapper>
+    <S.DropdownWrapper style={style}>
       <S.DSMenu>
         <S.StyledScrollbar
           maxHeight={rowCount * rowHeight}

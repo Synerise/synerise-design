@@ -9,6 +9,7 @@ export interface InlineSelectProps {
   disabled?: boolean;
   input: Partial<InputProps>;
   style?: React.CSSProperties;
+  dropdownStyle?: React.CSSProperties;
   autoFocus?: boolean;
   error?: boolean;
   hideIcon?: boolean;
