@@ -36,8 +36,17 @@ export const Container = styled.div<{
     ${(props): FlattenSimpleInterpolation | false =>
   !!props.splitMode &&
   css`
-     *:not(:first-child).ds-button.single-icon,.ds-button.single-icon.ant-btn-custom-color {
+     *:not(:first-child).ds-button.single-icon,.ds-button.single-icon.ant-btn-custom-color,.ds-button.single-icon.ant-btn-tertiary-white {
       border-left: 1px solid rgba(255, 255, 255, 0.15);
+      &:disabled.ds-button.single-icon.ant-btn-tertiary-white {
+      border-left: 1px solid rgba(255, 255, 255, 0.20) !important ;
+      }
+      &:disabled.ds-button.single-icon.ant-btn-custom-color {
+      border-left: 1px solid rgba(255, 255, 255, 0.80) !important ;
+      }
+      &:disabled.ds-button.single-icon {
+      border-left: 1px solid rgba(255, 255, 255, 0.50) !important ;
+      }
     }
     *:not(:first-child).ds-button.single-icon.ant-btn-ghost-primary,.ds-button.single-icon.ant-btn-ghost,.ds-button.single-icon.ant-btn-ghost-white,.ds-button.single-icon.ant-btn-secondary {
       border-left: 0px;
