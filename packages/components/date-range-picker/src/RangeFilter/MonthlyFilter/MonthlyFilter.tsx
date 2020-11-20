@@ -155,7 +155,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
     const { visible } = this.state;
     const data = [...value];
     return (
-      <S.MonthlyFilterWrapper>
+      <S.MonthlyFilterWrapper className="monthly-wrapper">
         {data.map((item, key) => (
           <ContentItem
             key={item.id}
@@ -184,8 +184,11 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
                   </S.DropdownLabel>
                   <S.Select
                     expanded={false}
-                    dropdownStyle={{
+                    dropdownOverlayStyle={{
                       minWidth: '150px',
+                    }}
+                    dropdownProps={{
+                      getPopupContainer: (): HTMLElement => document.body,
                     }}
                     placeholder={intl.formatMessage({ id: PERIODS[0].translationKey })}
                     input={{
@@ -207,7 +210,10 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
                   </S.DropdownLabel>
                   <S.Select
                     expanded={false}
-                    dropdownStyle={{
+                    dropdownProps={{
+                      getPopupContainer: (): HTMLElement => document.body,
+                    }}
+                    dropdownOverlayStyle={{
                       minWidth: '150px',
                     }}
                     placeholder={intl.formatMessage({ id: PERIODS_TYPE[0].translationKey })}
