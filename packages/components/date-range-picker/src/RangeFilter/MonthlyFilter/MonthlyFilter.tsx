@@ -188,7 +188,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
                       minWidth: '150px',
                     }}
                     dropdownProps={{
-                      getPopupContainer: (): HTMLElement => document.body,
+                      getPopupContainer: (): HTMLElement => document.querySelector('.monthly-wrapper') || document.body,
                     }}
                     placeholder={intl.formatMessage({ id: PERIODS[0].translationKey })}
                     input={{
@@ -211,7 +211,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
                   <S.Select
                     expanded={false}
                     dropdownProps={{
-                      getPopupContainer: (): HTMLElement => document.body,
+                      getPopupContainer: (): HTMLElement => document.querySelector('.monthly-wrapper') || document.body,
                     }}
                     dropdownOverlayStyle={{
                       minWidth: '150px',

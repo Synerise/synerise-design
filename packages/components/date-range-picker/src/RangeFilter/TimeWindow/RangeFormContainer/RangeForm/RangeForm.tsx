@@ -45,9 +45,13 @@ const RangeForm: React.FC<RangeFormProps> = ({ startDate, endDate, onStartChange
     return (
       <TimePicker
         onChange={(date): void => {
-          date && onExactHourSelect(date)
+          date && onExactHourSelect(date);
         }}
         value={start}
+        dropdownProps={{
+          getPopupContainer: (node: HTMLElement): HTMLElement =>
+            node.parentElement != null ? node.parentElement : document.body,
+        }}
         disabledHours={[]}
         disabledMinutes={[]}
         disabledSeconds={[]}
@@ -64,6 +68,10 @@ const RangeForm: React.FC<RangeFormProps> = ({ startDate, endDate, onStartChange
             date && onStartChange(date);
           }}
           value={start}
+          dropdownProps={{
+            getPopupContainer: (node: HTMLElement): HTMLElement =>
+              node.parentElement != null ? node.parentElement : document.body,
+          }}
           disabledHours={areStartAndEndValid ? getDisabledTimeOptions(start, 'HOURS', null, end) : []}
           disabledMinutes={areStartAndEndValid ? getDisabledTimeOptions(start, 'MINUTES', null, end) : []}
           disabledSeconds={areStartAndEndValid ? getDisabledTimeOptions(start, 'SECONDS', null, end) : []}
@@ -75,6 +83,10 @@ const RangeForm: React.FC<RangeFormProps> = ({ startDate, endDate, onStartChange
             date && onEndChange(date);
           }}
           value={end}
+          dropdownProps={{
+            getPopupContainer: (node: HTMLElement): HTMLElement =>
+              node.parentElement != null ? node.parentElement : document.body,
+          }}
           disabledHours={areStartAndEndValid ? getDisabledTimeOptions(end, 'HOURS', start, null) : []}
           disabledMinutes={areStartAndEndValid ? getDisabledTimeOptions(end, 'MINUTES', start, null) : []}
           disabledSeconds={areStartAndEndValid ? getDisabledTimeOptions(end, 'SECONDS', start, null) : []}
@@ -90,6 +102,7 @@ const RangeForm: React.FC<RangeFormProps> = ({ startDate, endDate, onStartChange
           onChange={(value): void => {
             setMode(value as string);
           }}
+          getPopupContainer={(node): HTMLElement => (node.parentElement != null ? node.parentElement : document.body)}
         >
           {Object.values(FORM_MODES).map(modeName => (
             <Select.Option key={modeName} value={modeName}>
