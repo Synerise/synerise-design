@@ -48,7 +48,12 @@ const RangeActions: React.FC<RangeActionsProps> = ({ texts, onRangeClear, onRang
     );
   }, []);
   return (
-    <Dropdown overlay={overlay} overlayStyle={{ boxShadow: '0 4px 12px 0 rgba(35, 41, 54, 0.07)' }} trigger={['click']}>
+    <Dropdown
+      overlay={overlay}
+      overlayStyle={{ boxShadow: '0 4px 12px 0 rgba(35, 41, 54, 0.07)' }}
+      trigger={['click']}
+      getPopupContainer={(node): HTMLElement => (node.parentElement != null ? node.parentElement : document.body)}
+    >
       {trigger}
     </Dropdown>
   );

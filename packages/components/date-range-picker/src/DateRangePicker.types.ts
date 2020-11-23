@@ -1,6 +1,7 @@
-import { DateFilter, DateRange } from 'date.types';
 import * as React from 'react';
+import { DateFilter, DateRange } from 'date.types';
 import { WrappedComponentProps } from 'react-intl';
+import { PopoverProps } from 'antd/lib/popover';
 import { FilterDefinition } from './RangeFilter/RangeFilter.types';
 import { SavedFilter } from './RangeFilter/FilterDropdown/FilterDropdown.types';
 
@@ -13,6 +14,7 @@ export interface Props extends WrappedComponentProps {
   onValueChange?: (value: Partial<DateFilter> | undefined) => void;
   onApply: (value: Partial<DateFilter> | undefined) => void;
   onFilterSave?: (filters: SavedFilter[]) => void;
+  popoverProps?: Partial<PopoverProps>;
   popoverPlacement?:
     | 'top'
     | 'left'
@@ -102,4 +104,4 @@ export type Translations =
 export type AddonType = {
   content: React.ReactNode;
   key: string;
-}
+};

@@ -44,7 +44,7 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
     const hasCommonRange = this.haveActiveDaysCommonRange();
     if (prevState.isRangeDefined !== hasCommonRange) {
       // eslint-disable-next-line react/no-did-update-set-state
-      this.setState({ isRangeDefined: hasCommonRange });
+      this.setState(state => ({ ...state, isRangeDefined: hasCommonRange }));
     }
   }
 
@@ -62,9 +62,7 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
       updatedActiveDay = activeDays.includes(dayKey) ? activeDays : [...activeDays, dayKey];
     } else if (activeDays.length > 0 && shiftKeyPressed) {
       updatedActiveDay =
-        activeDays[0] < dayKey
-          ? range(+activeDays[0], (+dayKey + 1))
-          : range(+dayKey, +activeDays[0] + 1);
+        activeDays[0] < dayKey ? range(+activeDays[0], +dayKey + 1) : range(+dayKey, +activeDays[0] + 1);
     } else {
       updatedActiveDay = [dayKey];
     }
@@ -156,13 +154,10 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
   };
 
   handleSelectAll = (): void => {
-    const days = {};
     const keys = this.getAllKeys();
-
-    const { onChange, onSelectAll } = this.props;
+    const { onSelectAll } = this.props;
     this.setState({ activeDays: keys }, () => {
       onSelectAll && onSelectAll();
-      onChange(days);
     });
   };
 
@@ -351,7 +346,7 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
           <Grid
             onUnselectAll={this.handleClearSelection}
             onSelectAll={this.handleSelectAll}
-            showUnselectAll={activeDays?.length >0}
+            showUnselectAll={activeDays?.length > 0}
             renderDay={this.renderDay}
             keys={keys as number[]}
             days={days}
