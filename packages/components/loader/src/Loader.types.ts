@@ -7,7 +7,7 @@ export type LoaderProps = {
   size?: 'S' | 'M' | 'L';
   label: string | React.ReactNode;
   elementsPosition: string | 'bottom' | 'right';
-  color: string
+  color?: string
     | 'blue'
     | 'grey'
     | 'red'

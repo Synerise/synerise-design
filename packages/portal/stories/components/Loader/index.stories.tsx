@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { boolean, select, text } from '@storybook/addon-knobs';
 import Loader from '@synerise/ds-loader';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+
 
 
 const iconSizes = {
