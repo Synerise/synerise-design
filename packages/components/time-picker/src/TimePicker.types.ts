@@ -16,7 +16,7 @@ export type TimePickerProps = TimePickerDisabledUnits & {
   defaultAM?: boolean;
   defaultOpen?: boolean;
   disabled?: boolean;
-  dropdownProps?: DropdownProps;
+  dropdownProps?: Partial<DropdownProps>;
   intl: IntlShape;
   onChange?: (value: Date | undefined, timeString: string) => void;
   onClockModeChange?: (mode: string) => void;
