@@ -14,7 +14,7 @@ export interface Props extends WrappedComponentProps {
   onValueChange?: (value: Partial<DateFilter> | undefined) => void;
   onApply: (value: Partial<DateFilter> | undefined) => void;
   onFilterSave?: (filters: SavedFilter[]) => void;
-  popoverProps?: PopoverProps;
+  popoverProps?: Partial<PopoverProps>;
   popoverPlacement?:
     | 'top'
     | 'left'
