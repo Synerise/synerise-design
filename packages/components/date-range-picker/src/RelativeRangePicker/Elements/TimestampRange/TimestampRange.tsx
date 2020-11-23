@@ -68,6 +68,9 @@ const TimestampRange: React.FC<Props> = ({
           onClear={(): void => {
             onTimestampChange && onTimestampChange(undefined);
           }}
+          dropdownProps={{
+            getPopupContainer: (node): HTMLElement => (node.parentElement != null ? node.parentElement : document.body),
+          }}
           disabledSeconds={[]}
           disabledHours={[]}
           disabledMinutes={[]}

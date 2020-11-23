@@ -28,10 +28,10 @@ export const Ranges = styled.div`
   display: inline-flex;
   flex-wrap: wrap;
   width: 100%;
+  margin-bottom: 16px;
 `;
 
 export const CustomForm = styled.div`
-  margin-top: 24px;
   display: flex;
 `;
 

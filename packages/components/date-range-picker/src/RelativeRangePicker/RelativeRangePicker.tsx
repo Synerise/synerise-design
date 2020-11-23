@@ -159,7 +159,7 @@ class RelativeRangePicker extends React.PureComponent<Props, State> {
           {this.renderRanges(visibleRanges)}
           {this.renderRangesDropdown(hiddenRanges)}
         </S.Ranges>
-        {this.renderCustomRangeForm()}
+        {currentRange && !currentRange.key && this.renderCustomRangeForm()}
       </S.Container>
     );
   }
