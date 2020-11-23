@@ -19,10 +19,7 @@ class Dropdown extends React.Component<DropdownProps> {
   render(): React.ReactNode {
     return (
       // eslint-disable-next-line react/jsx-props-no-spreading
-      <AntdDropdown
-        getPopupContainer={(node): HTMLElement => (node.parentElement != null ? node.parentElement : document.body)}
-        {...this.props}
-      />
+      <AntdDropdown {...this.props} />
     );
   }
 }
