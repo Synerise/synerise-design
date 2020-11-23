@@ -43,7 +43,6 @@ class Select extends React.Component<Props> {
           {!!prefixel && <S.PrefixWrapper>{prefixel}</S.PrefixWrapper>}
           <S.AntdSelect
             {...antdProps}
-            getPopupContainer={(node): HTMLElement => (node.parentElement != null ? node.parentElement : document.body)}
             listHeight={listHeight}
             size={size}
             prefixel={!!prefixel}
