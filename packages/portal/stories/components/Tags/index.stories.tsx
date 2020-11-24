@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { select, boolean, number } from '@storybook/addon-knobs';
-import sample from 'lodash/sample';
 import { v4 as uuid } from 'uuid';
 
 import Tags, { TagShape } from '@synerise/ds-tags';
@@ -277,7 +276,7 @@ const stories = {
               const tag = {
                 id: uuid(),
                 name,
-                color: sample(theme.palette['grey-200']),
+                color: theme.palette['grey-200'],
               };
 
               console.log('Created new tag', name, tag);
