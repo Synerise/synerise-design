@@ -67,13 +67,6 @@ const getDefaultProps = () => ({
     showQuickJumper: boolean('Show quick jumper', true),
     onChange: action('pageChanged'),
   },
-  locale: {
-    pagination: {
-      items: 'results',
-    },
-    results: 'results',
-    selected: 'selected',
-  },
   scroll: {
     x: false,
   },

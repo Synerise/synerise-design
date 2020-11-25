@@ -75,12 +75,6 @@ const stories = {
             columns={renderWithIconInHeaders(columns, boolean('Set icons in headers', false))}
             cellHeight={50}
             rowKey={row => row.key}
-            locale={{
-              pagination: {
-                items: 'results',
-              },
-              selected: 'selected',
-            }}
             headerButton={
               boolean('Show header button', false) && (
                 <Button type="ghost" mode="icon-label" onClick={action('Header button action')}>

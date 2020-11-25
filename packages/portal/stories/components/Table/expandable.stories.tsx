@@ -105,12 +105,6 @@ const stories = {
           showQuickJumper: boolean('Show quick jumper', true),
           onChange: action('pageChanged'),
         }}
-        locale={{
-          pagination: {
-            items: 'results',
-          },
-          selected: 'selected',
-        }}
         expandable={{
           expandIconColumnIndex: -1,
           expandedRowKeys: expandedRows,

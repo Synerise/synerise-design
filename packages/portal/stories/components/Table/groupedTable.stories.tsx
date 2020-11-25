@@ -471,13 +471,6 @@ const stories = {
           loading={boolean('Set loading state', false)}
           roundedHeader={boolean('Rounded header', false)}
           cellSize={select('Set cells size', CELL_SIZES, CELL_SIZES.default)}
-          locale={{
-            pagination: {
-              items: 'results',
-              groups: 'groups',
-            },
-            selected: 'selected',
-          }}
           filters={[
             {
               key: 'view',

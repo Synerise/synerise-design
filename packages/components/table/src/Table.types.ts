@@ -54,6 +54,7 @@ export type RowType<T> = {
 
 export type Locale = TableLocale & {
   selected?: string;
+  emptyText?: string;
   pagination?: {
     items?: string;
     groups?: string;

@@ -53,12 +53,6 @@ const stories = {
           showQuickJumper: boolean('Show quick jumper', true),
           onChange: action('pageChanged'),
         }}
-        locale={{
-          pagination: {
-            items: 'results',
-          },
-          selected: 'selected',
-        }}
         headerButton={
           boolean('Show header button', false) && (
             <Button type="ghost" mode="icon-label" onClick={action('Header button action')}>

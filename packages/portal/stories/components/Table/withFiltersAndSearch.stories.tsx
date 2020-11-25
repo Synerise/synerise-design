@@ -364,12 +364,6 @@ const stories = {
             showQuickJumper: boolean('Show quick jumper', true),
             onChange: action('pageChanged'),
           }}
-          locale={{
-            pagination: {
-              items: 'results',
-            },
-            selected: 'selected',
-          }}
           rowKey={row => row.key}
           selection={
             boolean('Enable row selection', false) && {

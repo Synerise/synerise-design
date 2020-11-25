@@ -13,6 +13,5 @@ export interface Props<T extends { key: React.ReactText }> {
   rowKey?: Function | string;
   withBorderTop?: boolean;
   headerButton?: React.ReactNode;
-  itemsNumber: number;
   locale: Locale;
 }

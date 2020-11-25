@@ -87,12 +87,6 @@ const stories = {
               ? store.set({ selectedRows: store.state.selectedRows.filter(k => k !== record.key) })
               : store.set({ selectedRows: [...store.state.selectedRows, record.key] });
           }}
-          locale={{
-            pagination: {
-              items: 'results',
-            },
-            selected: 'selected',
-          }}
           searchComponent={
             <SearchInput
               placeholder="Search"

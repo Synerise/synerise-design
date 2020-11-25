@@ -96,12 +96,6 @@ const stories = {
           onRowClick={record => {
             boolean('Expand on row click', true) && handleExpandRow(record.key);
           }}
-          locale={{
-            pagination: {
-              items: 'results',
-            },
-            selected: 'selected',
-          }}
           rowKey={row => row.key}
           selection={{
             onChange: handleSelectRow,

@@ -23,7 +23,7 @@ const TableHeader: React.FC<Props> = ({
 }) => {
   const renderLeftSide = React.useMemo(() => {
     return selectedRows && selectedRows > 0 ? (
-      <S.Left>
+      <S.Left data-testid="ds-table-selection">
         {selection && <TableSelection rowKey={rowKey} dataSource={dataSource} selection={selection} />}
         <S.Title>
           <strong>{selectedRows}</strong> {locale.selected}
@@ -31,7 +31,7 @@ const TableHeader: React.FC<Props> = ({
         {itemsMenu}
       </S.Left>
     ) : (
-      <S.Left>
+      <S.Left data-testid="ds-table-title">
         {selection && <TableSelection rowKey={rowKey} dataSource={dataSource} selection={selection} />}
         {title ? (
           <S.Title>
@@ -44,7 +44,7 @@ const TableHeader: React.FC<Props> = ({
         )}
       </S.Left>
     );
-  }, [selectedRows, itemsMenu, title, dataSource, selection, rowKey]);
+  }, [selectedRows, selection, rowKey, dataSource, locale.selected, locale.pagination.items, itemsMenu, title]);
 
   return (
     <S.Header withBorderTop={withBorderTop}>

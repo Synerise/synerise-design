@@ -88,12 +88,6 @@ const stories = {
             </Button>
           )
         }
-        locale={{
-          pagination: {
-            items: 'results',
-          },
-          selected: 'selected',
-        }}
         pagination={{
           showSizeChanger: boolean('Show size changer', true),
           showQuickJumper: boolean('Show quick jumper', true),
