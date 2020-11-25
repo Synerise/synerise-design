@@ -21,9 +21,10 @@ const DateRangePicker: React.FC<Props> = props => {
     popoverTrigger,
     forceAdjacentMonths,
     disableDefaultTexts,
+    popoverProps = {},
   } = props;
   const intl = useIntl();
-  const [popupVisible, setPopupVisible] = React.useState<boolean | undefined>(undefined);
+  const [popupVisible, setPopupVisible] = React.useState<boolean | undefined>(false);
   const [selectedDate, setSelectedDate] = React.useState(value);
   const [inputActive, setInputActive] = React.useState<boolean>();
 
@@ -79,6 +80,7 @@ const DateRangePicker: React.FC<Props> = props => {
             forceAdjacentMonths={forceAdjacentMonths}
           />
         }
+        getPopupContainer={(node): HTMLElement => (node.parentElement != null ? node.parentElement : document.body)}
         trigger="click"
         overlayStyle={{ maxWidth: '700px', fontWeight: 'unset' }}
         overlayClassName="ds-date-range-popover"
@@ -86,6 +88,7 @@ const DateRangePicker: React.FC<Props> = props => {
           setInputActive(visibility);
         }}
         placement={popoverPlacement}
+        {...popoverProps}
         {...conditionalVisibilityProps}
       >
         {popoverTrigger || (

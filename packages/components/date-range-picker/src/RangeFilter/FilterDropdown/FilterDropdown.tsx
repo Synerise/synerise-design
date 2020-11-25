@@ -48,6 +48,7 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
       trigger={['click']}
       align={{ points: ['tr', 'br'] }}
       overlayStyle={{ boxShadow: '0 4px 12px 0 rgba(35, 41, 54, 0.07)' }}
+      getPopupContainer={(node): HTMLElement => (node.parentElement != null ? node.parentElement : document.body)}
     >
       <Button mode="label-icon" type="ghost">
         <span>{label}</span>

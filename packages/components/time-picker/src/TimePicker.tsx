@@ -27,6 +27,7 @@ const TimePicker: React.FC<TimePickerProps> = ({
   timeFormat,
   use12HourClock,
   alwaysOpen,
+  dropdownProps = {},
   disabled,
   disabledHours,
   disabledMinutes,
@@ -162,6 +163,7 @@ const TimePicker: React.FC<TimePickerProps> = ({
         placement={placement}
         overlay={overlay}
         disabled={disabled}
+        {...dropdownProps}
       >
         <S.TimePickerInput
           className={`${alwaysOpen || open ? 'active' : ''}`}

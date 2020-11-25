@@ -71,7 +71,7 @@ const stories = {
  default: withState({
     activeTab: 0,
   })(({ store }) => {
-   const hasSufix = boolean('setSufix', true);
+   const hasSufix = boolean('Set counter', true);
    const counter = number('count', 1);
    const badgeComponent = <Badge
      count={counter}
@@ -94,7 +94,7 @@ const stories = {
   withUnderline: withState({
     activeTab: 0,
   })(({ store }) => {
-    const hasSufix = boolean('setSufix', true);
+    const hasSufix = boolean('Set counter', true);
     const counter = number('count', 1);
     const badgeComponent = <Badge
       count={counter}
@@ -117,7 +117,7 @@ const stories = {
   withBlockTabs: withState({
     activeTab: 0,
   })(({ store }) => {
-    const hasSufix = boolean('setSufix', true);
+    const hasSufix = boolean('Set counter', true);
     const counter = number('count', 1);
     const badgeComponent = <Badge
       count={counter}
@@ -151,7 +151,7 @@ const stories = {
   )),
   withMenu: withState({
     activeTab: 0,
-  })(({ store }) => {  const hasSufix = boolean('setSufix', true);
+  })(({ store }) => {  const hasSufix = boolean('Set counter', true);
     const counter = number('count', 1);
     const badgeComponent = <Badge
       count={counter}

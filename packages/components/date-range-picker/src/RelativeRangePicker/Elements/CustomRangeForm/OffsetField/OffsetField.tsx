@@ -36,6 +36,7 @@ const OffsetField: React.FC<Props> = ({
           value={offset.type}
           onChange={(type): void => handleChange(setOffsetType(type, currentRange))}
           dropdownAlign={{ points: ['bl', 'tl'], offset: [0, SELECT_DROPDOWN_OFFSET] }}
+          getPopupContainer={(node): HTMLElement => (node.parentElement != null ? node.parentElement : document.body)}
         >
           {CONST.RELATIVE_TYPES.map(type => (
             <Select.Option key={type} value={type}>

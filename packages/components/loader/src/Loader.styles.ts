@@ -11,9 +11,9 @@ export const spinnerAnimation = keyframes`
   }
 `;
 const SIZE_DEFAULT = 20;
-export const Loader = styled.div<{size?: 'S' | 'M' | 'L'}>`
+export const Loader = styled.div<{size?: 'S' | 'M' | 'L';color: string }>`
 
-  border: 2px solid ${(props): string =>  props.theme.palette['blue-600']}; 
+  border: 2px solid ${(props): string => props.theme.palette[`${props.color}-600`]}; 
   border-top: 2px solid transparent; 
   border-radius: 50%;
   width: ${(props): string => LoaderSize[props.size as string]|| SIZE_DEFAULT}px;

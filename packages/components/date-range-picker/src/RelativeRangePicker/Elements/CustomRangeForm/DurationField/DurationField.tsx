@@ -31,6 +31,7 @@ const DurationField: React.FC<Props> = ({ currentRange, handleChange, handleDura
           value={duration.type}
           onChange={(type): void => handleChange(setDurationType(type, currentRange))}
           dropdownAlign={{ points: ['bl', 'tl'], offset: [0, SELECT_DROPDOWN_OFFSET] }}
+          getPopupContainer={(node): HTMLElement => (node.parentElement != null ? node.parentElement : document.body)}
         >
           {CONST.RELATIVE_TYPES.map(type => (
             <Select.Option key={type} value={type}>

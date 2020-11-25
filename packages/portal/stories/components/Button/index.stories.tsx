@@ -74,6 +74,18 @@ const getDefaultProps = (isSplit = false) => ({
   block: boolean('Block', false),
   onClick: action('onClick CLICK'),
 });
+const getSplitProps = (isSplit = false) => ({
+  label: text('Label', 'Button'),
+  type: select('Set type', !isSplit ? typeOptions : splitTypeOptions, 'primary'),
+  color: select('Set custom color', customColorOptions, customColorOptions.red),
+  size: select('Set size', buttonSizes, 'default'),
+  leftIconSize: select('Set size of left icon', iconSizes, 'S'),
+  rightIconSize: select('Set size of right icon', iconSizes, 'S'),
+  disabled: boolean('Disabled', false),
+  loading: boolean('Loading', false),
+  onClick: action('onClick CLICK'),
+});
+
 const getExpanderProps = (isSplit = false) => ({
   size: select('Set size', iconSizes, 'S'),
   disabled: boolean('Disabled', false),
@@ -115,27 +127,23 @@ const stories = {
     );
   },
   split: () => {
-    const defaultProps = getDefaultProps();
+    const defaultProps = getSplitProps();
+    const fullWidth = boolean('Block', false);
     const props = {
-      ...getDefaultProps(true),
+      ...defaultProps,
     } as object;
     return (
-      <ButtonGroup style={getBackgroundStyles(props.type)}>
-        <Button
-          mode="label"
-          {...props}
-          type='primary'
-        >
-          {props.label}
-        </Button>
-        <Button
-          mode="single-icon"
-          {...props}
-          type='primary'
-        >
-          <Icon component={ <AngleDownS />} />
-        </Button>
-      </ButtonGroup>
+      <div style={getBackgroundStyles(props.type)}>
+        <ButtonGroup fullWidth={fullWidth} buttonsPosition="center" splitMode={true}>
+          <Button mode="label" {...props}>
+            {props.label}
+          </Button>
+          <Button mode="single-icon" {...props}>
+            <Icon component={defaultProps.rightIconSize === 'M' ?<AngleDownM/> : <AngleDownS/> } />
+          </Button>
+        </ButtonGroup>
+      </div>
+
     );
   },
   twoIcons: () => {

@@ -44,11 +44,12 @@ const value = {
 | Property             | Description                                                         | Type                 | Default       |
 | -------------------- | ------------------------------------------------------------------- | -------------------- | ------------- |
 | disabledDate         | Function to specify if particular dates are disabled or not         | (date:Date)=>boolean | -             |
-| disabledDefaultTexts | Disables the default texts translations provided by `react-intl`        | boolean              | `false`       |
+| disabledDefaultTexts | Disables the default texts translations provided by `react-intl`    | boolean              | `false`       |
 | forceAbsolute        | Force the outcome to be converted to an absolute date               | boolean              | `false`       |
 | format               | Format of the value displayed in the footer                         | string               | "MMM D, YYYY" |
 | onApply              | Callback executed after applying changes                            | (date:Date)=>void    | -             |
 | ranges               | An array containing custom ranges which may be used as a short-hand | DateRange[]          | []            |
+| popoverProps         | Object representing props applied to the Antd Popover component     | AntdPopoverProps     | {}            |
 | relativePast         | Enable relative filter for past ranges                              | boolean              | `false`       |
 | relativeFuture       | Enable relative filter for future ranges                            | boolean              | `false`       |
 | showTime             | Enable user to choose particular hour                               | boolean              | `false`       |
