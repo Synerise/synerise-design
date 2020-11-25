@@ -24,7 +24,7 @@ export const Size = styled.div`
 
 export const Title = styled.div`
   ${macro.small};
-  color: ${(props): string => props.theme.palette['grey-800']};
+  color: ${(props): string => props.theme.palette['grey-700']};
   padding: 0 24px 0 0;
   strong {
     font-weight: 500;

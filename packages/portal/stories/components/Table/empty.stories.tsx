@@ -24,7 +24,7 @@ import Dropdown from '@synerise/ds-dropdown';
 import Menu from '@synerise/ds-menu';
 import Switch from '@synerise/ds-switch/dist/Switch';
 import ColumnManager from '@synerise/ds-column-manager/dist/ColumnManager';
-import  { SavedView } from '@synerise/ds-column-manager/dist/ColumnManager.types';
+import { SavedView } from '@synerise/ds-column-manager/dist/ColumnManager.types';
 import * as moment from 'moment';
 import ItemFilter from '@synerise/ds-item-filter/dist/ItemFilter';
 import Result from '@synerise/ds-result';
@@ -216,10 +216,16 @@ const stories = {
               <Dropdown
                 overlay={
                   <Menu style={{ padding: 8 }}>
-                    <Menu.Item onClick={action('Edit')} prefixel={<Icon component={<EditM />}  color={theme.palette['grey-600']}/>}>
+                    <Menu.Item
+                      onClick={action('Edit')}
+                      prefixel={<Icon component={<EditM />} color={theme.palette['grey-600']} />}
+                    >
                       Edit
                     </Menu.Item>
-                    <Menu.Item onClick={action('Duplicate')} prefixel={<Icon component={<DuplicateM />} color={theme.palette['grey-600']} />}>
+                    <Menu.Item
+                      onClick={action('Duplicate')}
+                      prefixel={<Icon component={<DuplicateM />} color={theme.palette['grey-600']} />}
+                    >
                       Duplicate
                     </Menu.Item>
                     <Menu.Item onClick={action('Delete')} danger prefixel={<Icon component={<TrashM />} />}>
@@ -281,9 +287,8 @@ const stories = {
     return (
       <>
         <Table
-          title={`${filteredDataSource().length} ${text('Set name of table items', 'results')}`}
           dataSource={filteredDataSource()}
-          columns={renderWithIconInHeaders(getColumns(),boolean('Set icons in headers', false))}
+          columns={renderWithIconInHeaders(getColumns(), boolean('Set icons in headers', false))}
           loading={boolean('Set loading state', false)}
           cellSize={select('Set cells size', CELL_SIZES, CELL_SIZES.default)}
           filters={[
@@ -317,6 +322,7 @@ const stories = {
             pagination: {
               items: 'results',
             },
+            selected: 'selected',
           }}
           rowKey={row => row.key}
           selection={

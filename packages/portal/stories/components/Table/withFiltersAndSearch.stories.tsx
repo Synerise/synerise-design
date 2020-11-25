@@ -323,7 +323,6 @@ const stories = {
     return (
       <>
         <Table
-          title={`${filteredDataSource().length} ${text('Set name of table items', 'results')}`}
           dataSource={filteredDataSource()}
           tableLayout="fixed"
           scroll={{ x: 1200 }}
@@ -369,6 +368,7 @@ const stories = {
             pagination: {
               items: 'results',
             },
+            selected: 'selected',
           }}
           rowKey={row => row.key}
           selection={

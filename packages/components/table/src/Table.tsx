@@ -71,6 +71,7 @@ function DSTable<T extends any>(props: DSTableProps<T>): React.ReactElement {
           filterComponent={filterComponent}
           headerButton={headerButton}
           rowKey={rowKey}
+          locale={locale}
         />
       )
     );
@@ -88,6 +89,7 @@ function DSTable<T extends any>(props: DSTableProps<T>): React.ReactElement {
     hideTitleBar,
     grouped,
     headerButton,
+    locale,
   ]);
 
   const footerPagination = React.useMemo((): object => {

@@ -19,22 +19,27 @@ const TableHeader: React.FC<Props> = ({
   rowKey,
   withBorderTop,
   headerButton,
+  locale,
 }) => {
   const renderLeftSide = React.useMemo(() => {
     return selectedRows && selectedRows > 0 ? (
       <S.Left>
         {selection && <TableSelection rowKey={rowKey} dataSource={dataSource} selection={selection} />}
         <S.Title>
-          <strong>{selectedRows}</strong> selected
+          <strong>{selectedRows}</strong> {locale.selected}
         </S.Title>
         {itemsMenu}
       </S.Left>
     ) : (
       <S.Left>
         {selection && <TableSelection rowKey={rowKey} dataSource={dataSource} selection={selection} />}
-        {title && (
+        {title ? (
           <S.Title>
             <strong>{title}</strong>
+          </S.Title>
+        ) : (
+          <S.Title>
+            <strong>{dataSource.length}</strong> {locale.pagination.items}
           </S.Title>
         )}
       </S.Left>

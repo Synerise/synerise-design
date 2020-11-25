@@ -43,7 +43,6 @@ const stories = {
 
     return (
       <Table
-        title={`${dataSource.length} results`}
         dataSource={dataSource}
         columns={renderWithIconInHeaders(COLUMNS, boolean('Set icons in headers', false))}
         scroll={{ x: 1200 }}
@@ -58,6 +57,7 @@ const stories = {
           pagination: {
             items: 'results',
           },
+          selected: 'selected',
         }}
         headerButton={
           boolean('Show header button', false) && (

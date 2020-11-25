@@ -8,7 +8,8 @@ import {
   EditM,
   FileDownloadM,
   InfoFillS,
-  TrashM, VarTypeListM,
+  TrashM,
+  VarTypeListM,
   VarTypeNumberM,
   VarTypeStringM,
 } from '@synerise/ds-icon/dist/icons';
@@ -17,7 +18,6 @@ import Button from '@synerise/ds-button';
 import * as React from 'react';
 import { dataSource } from './content/expandable.data';
 import { renderWithIconInHeaders } from './helpers/helpers';
-import DSTable from '@synerise/ds-table/dist/Table';
 
 const decorator = storyFn => <div style={{ padding: 20, width: '100vw', minWidth: '100%' }}>{storyFn()}</div>;
 
@@ -41,7 +41,7 @@ const stories = {
       }
     };
 
-    const handleSelectRow = (selectedRowKeys) => {
+    const handleSelectRow = selectedRowKeys => {
       store.set({ selectedRows: selectedRowKeys });
     };
 
@@ -52,45 +52,51 @@ const stories = {
           dataIndex: 'name',
           key: 'name',
           width: 500,
-          icon: { component: <VarTypeStringM/>},
-          iconTooltip: { component: <InfoFillS/>},
+          icon: { component: <VarTypeStringM /> },
+          iconTooltip: { component: <InfoFillS /> },
         },
         {
           title: 'Age',
           dataIndex: 'age',
           key: 'age',
-          icon: { component: <VarTypeNumberM/>},
-          iconTooltip: { component: <InfoFillS/>},
+          icon: { component: <VarTypeNumberM /> },
+          iconTooltip: { component: <InfoFillS /> },
         },
         {
           dataIndex: 'children',
           key: 'children',
           width: 72,
           render: (children, record) => {
-            if(children !== undefined) {
+            if (children !== undefined) {
               return (
                 <TableCell.ActionCell key={record.key}>
-                  <Button.Expander expanded={expandedRows.indexOf(record.key) >= 0} onClick={() => {handleExpandRow(record.key)}} />
+                  <Button.Expander
+                    expanded={expandedRows.indexOf(record.key) >= 0}
+                    onClick={() => {
+                      handleExpandRow(record.key);
+                    }}
+                  />
                 </TableCell.ActionCell>
               );
             }
           },
-        }
+        },
       ];
     };
 
     const countRecords = () => {
       const result = dataSource.reduce((count, record) => {
-        return record.hasOwnProperty('children') && record.children !== undefined ? count + record.children.length : count + 1;
+        return record.hasOwnProperty('children') && record.children !== undefined
+          ? count + record.children.length
+          : count + 1;
       }, 0);
       return result;
     };
 
     return (
       <Table
-        title={`${countRecords()} results`}
         dataSource={dataSource}
-        columns={renderWithIconInHeaders(getColumns(),boolean('Set icons in headers', false))}
+        columns={renderWithIconInHeaders(getColumns(), boolean('Set icons in headers', false))}
         loading={boolean('Set loading state', false)}
         roundedHeader={boolean('Rounded header', false)}
         cellSize={select('Set cells size', CELL_SIZES, CELL_SIZES.default)}
@@ -102,56 +108,54 @@ const stories = {
         locale={{
           pagination: {
             items: 'results',
-          }
+          },
+          selected: 'selected',
         }}
         expandable={{
           expandIconColumnIndex: -1,
           expandedRowKeys: expandedRows,
         }}
         rowKey={row => row.key}
-        headerButton={boolean('Show header button', false) && (
-          <Button type="ghost" mode="icon-label" onClick={action('Header button action')}>
-            <Icon component={<AddM />} />
-            {text('Header button label', 'Add row')}
-          </Button>
-        )}
+        headerButton={
+          boolean('Show header button', false) && (
+            <Button type="ghost" mode="icon-label" onClick={action('Header button action')}>
+              <Icon component={<AddM />} />
+              {text('Header button label', 'Add row')}
+            </Button>
+          )
+        }
         selection={
           boolean('Enable row selection', false) && {
             onChange: handleSelectRow,
             selectedRowKeys: selectedRows,
-            selections: [
-              Table.SELECTION_ALL,
-              undefined,
-              null,
-              Table.SELECTION_INVERT,
-            ]
-          }}
-          onSearch={console.log}
-          onRow={(record, index: number) => ({
-            onClick: event => {
-              boolean('Expand on row click', true) && handleExpandRow(record.key)
-            },
-          })}
-          itemsMenu={
-            <ItemsMenu>
-              <Button onClick={action('Export')} type='secondary' mode='icon-label'>
-                <Icon component={<FileDownloadM/>}/>
-                Export
-              </Button>
-              <Button onClick={action('Edit')} type='secondary' mode='icon-label'>
-                <Icon component={<EditM/>}/>
-                Edit
-              </Button>
-              <Button onClick={action('Delete')} type='secondary' mode='icon-label'>
-                <Icon component={<TrashM/>}/>
-                Delete
-              </Button>
-            </ItemsMenu>
+            selections: [Table.SELECTION_ALL, undefined, null, Table.SELECTION_INVERT],
           }
-        />
-      )
-    }
-  ),
+        }
+        onSearch={console.log}
+        onRow={(record, index: number) => ({
+          onClick: event => {
+            boolean('Expand on row click', true) && handleExpandRow(record.key);
+          },
+        })}
+        itemsMenu={
+          <ItemsMenu>
+            <Button onClick={action('Export')} type="secondary" mode="icon-label">
+              <Icon component={<FileDownloadM />} />
+              Export
+            </Button>
+            <Button onClick={action('Edit')} type="secondary" mode="icon-label">
+              <Icon component={<EditM />} />
+              Edit
+            </Button>
+            <Button onClick={action('Delete')} type="secondary" mode="icon-label">
+              <Icon component={<TrashM />} />
+              Delete
+            </Button>
+          </ItemsMenu>
+        }
+      />
+    );
+  }),
 };
 
 export default {
