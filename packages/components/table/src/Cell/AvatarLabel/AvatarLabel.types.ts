@@ -9,4 +9,5 @@ export type Props = {
   textSize?: 'small' | 'default';
   ellipsis?: boolean;
   maxWidth?: number;
+  avatarSize?: string | 'large';
 };

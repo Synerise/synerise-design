@@ -12,6 +12,7 @@ import * as React from 'react';
 import Checkbox from '@synerise/ds-checkbox/dist';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { IconLabelCell, LabelsWithShowMore } from '@synerise/ds-table/dist/Cell';
+import Badge from '@synerise/ds-badge';
 
 export const RELATIONS = [
   {
@@ -316,14 +317,18 @@ export const COLUMNS_WITH_AVATARS = [
     icon: { component: <VarTypeListM /> },
     iconTooltip: { component: <InfoFillS /> },
     render: avatar => (
-      <Avatar
-        backgroundColor="red"
-        backgroundColorHue="050"
-        size="medium"
-        iconComponent={<Icon component={avatar.icon} color="red" />}
-      >
-        {avatar.initials}
-      </Avatar>
+      <Badge status="active">
+        <Avatar
+          hasStatus={true}
+          backgroundColor="red"
+          backgroundColorHue="050"
+          size="medium"
+          iconComponent={<Icon component={avatar.icon} color="red" />}
+          shape={'circle'}
+        >
+          {avatar.initials}
+        </Avatar>
+      </Badge>
     ),
   },
   {
@@ -339,16 +344,18 @@ export const COLUMNS_WITH_AVATARS = [
       <TableCell.AvatarLabelCell
         icon={<Icon component={<LockM />} color={theme.palette['grey-500']} />}
         avatar={
-          <Avatar backgroundColor="green" backgroundColorHue="400" size="medium" shape={'square'}>
-            {avatar.initials}
-          </Avatar>
+          <Badge status="active">
+            <Avatar hasStatus={true} backgroundColor="green" backgroundColorHue="400" size="medium" shape={'square'}>
+              {avatar.initials}
+            </Avatar>
+          </Badge>
         }
         title={avatar.title}
       />
     ),
   },
   {
-    title: 'Avatar with title',
+    title: 'Avatar M with title',
     dataIndex: 'avatar',
     key: 'avatar',
     width: 254,
@@ -358,20 +365,83 @@ export const COLUMNS_WITH_AVATARS = [
     iconTooltip: { component: <InfoFillS /> },
     render: avatar => (
       <TableCell.AvatarLabelCell
-        ellipsis={true}
-        maxWidth={120}
         avatarAction={action('Avatar Action')}
         avatar={
-          <Avatar
-            backgroundColor="red"
-            backgroundColorHue="050"
-            size="medium"
-            iconComponent={<Icon component={avatar.icon} color="red" />}
-          >
-            {avatar.initials}
-          </Avatar>
+          <Badge status="active">
+            <Avatar
+              hasStatus={true}
+              backgroundColor="red"
+              backgroundColorHue="050"
+              size="medium"
+              iconComponent={<Icon component={avatar.icon} color="red" />}
+              shape={'circle'}
+            >
+              {avatar.initials}
+            </Avatar>
+          </Badge>
         }
         title={avatar.title}
+      />
+    ),
+  },
+  {
+    title: 'Avatar L with title ',
+    dataIndex: 'avatar',
+    key: 'avatar',
+    width: 254,
+    textWrap: 'word-break',
+    ellipsis: true,
+    icon: { component: <VarTypeListM /> },
+    iconTooltip: { component: <InfoFillS /> },
+    render: avatar => (
+      <TableCell.AvatarLabelCell
+        avatarSize="large"
+        avatar={
+          <Badge status="active">
+            <Avatar
+              hasStatus={true}
+              backgroundColor="red"
+              backgroundColorHue="050"
+              size="large"
+              iconComponent={<Icon component={avatar.icon} color="red" />}
+              shape={'circle'}
+            >
+              {avatar.initials}
+            </Avatar>
+          </Badge>
+        }
+        title={avatar.titleLarg}
+      />
+    ),
+  },
+  {
+    title: 'Avatar with title and description',
+    dataIndex: 'avatar',
+    key: 'avatar',
+    width: 254,
+    textWrap: 'word-break',
+    ellipsis: true,
+    icon: { component: <VarTypeListM /> },
+    iconTooltip: { component: <InfoFillS /> },
+    render: avatar => (
+      <TableCell.AvatarLabelCell
+        avatarSize="large"
+        avatar={
+          <Badge status="active">
+            <Avatar
+              hasStatus={true}
+              backgroundColor="red"
+              backgroundColorHue="050"
+              size="large"
+              iconComponent={<Icon component={avatar.icon} color="red" />}
+              shape={'circle'}
+            >
+              {avatar.initials}
+            </Avatar>
+          </Badge>
+        }
+        title={avatar.titleLarg}
+        labels={avatar.label}
       />
     ),
   },
@@ -387,16 +457,20 @@ export const COLUMNS_WITH_AVATARS = [
     render: avatar => (
       <TableCell.AvatarLabelCell
         avatar={
-          <Avatar
-            backgroundColor="red"
-            backgroundColorHue="050"
-            size="large"
-            iconComponent={<Icon component={avatar.icon} color="red" />}
-          >
-            {avatar.initials}
-          </Avatar>
+          <Badge status="active">
+            <Avatar
+              hasStatus={true}
+              backgroundColor="red"
+              backgroundColorHue="050"
+              size="large"
+              iconComponent={<Icon component={avatar.icon} color="red" />}
+              shape={'circle'}
+            >
+              {avatar.initials}
+            </Avatar>
+          </Badge>
         }
-        title={avatar.title}
+        title={avatar.titleLarg}
         labels={avatar.labels}
       />
     ),
