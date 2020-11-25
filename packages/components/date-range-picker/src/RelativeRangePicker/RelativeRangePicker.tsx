@@ -67,16 +67,19 @@ class RelativeRangePicker extends React.PureComponent<Props, State> {
     this.setState({ sinceTimestamp: timestamp });
     if (!timestamp) {
       const { onChange } = this.props;
-      onChange(normalizeRange({ to: undefined, from: undefined } as RelativeDateRange));
+      const updatedRange = normalizeRange({ to: undefined, from: undefined } as RelativeDateRange);
+      onChange(updatedRange);
     }
   };
 
   handleCustomClick = (): void => {
     const { onChange } = this.props;
-    const { currentGroup } = this.state;
+    const { currentGroup, currentRange } = this.state;
     if (currentGroup !== RANGES_MODE.SINCE) {
       const sourceRange = getDefaultCustomRange(currentGroup);
       onChange({ ...sourceRange, key: undefined });
+    } else {
+      onChange({ ...currentRange, key: undefined });
     }
   };
 
@@ -141,25 +144,22 @@ class RelativeRangePicker extends React.PureComponent<Props, State> {
   };
 
   render(): React.ReactNode {
-    const { texts } = this.props;
+    const { texts, value } = this.props;
     const { groupedRanges, currentGroup, currentRange } = this.state;
+    const isCustomValue = !value?.key || !currentRange?.key;
     const visibleRanges = (groupedRanges as []).slice(0, 3);
     const hiddenRanges = (groupedRanges as []).slice(3);
     if (!currentGroup) return null;
     return (
       <S.Container>
         <S.Ranges>
-          <S.Range
-            key="CUSTOM"
-            onClick={this.handleCustomClick}
-            type={currentRange && !currentRange.key ? 'primary' : 'tertiary'}
-          >
+          <S.Range key="CUSTOM" onClick={this.handleCustomClick} type={isCustomValue ? 'primary' : 'tertiary'}>
             {texts?.custom}
           </S.Range>
           {this.renderRanges(visibleRanges)}
           {this.renderRangesDropdown(hiddenRanges)}
         </S.Ranges>
-        {currentRange && !currentRange.key && this.renderCustomRangeForm()}
+        {isCustomValue && this.renderCustomRangeForm()}
       </S.Container>
     );
   }
