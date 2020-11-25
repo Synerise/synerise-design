@@ -12,7 +12,7 @@ export type Props<T extends object> = {
   items: T[];
   numberOfVisibleItems: number;
   labelKey: string;
-  renderItem: (label: string, item: T) => Element;
+  renderItem: (label: string, item: T) => JSX.Element | React.Component;
   texts: ShowMoreTexts;
   loading?: boolean;
 };
