@@ -4,8 +4,9 @@ import Tooltip from '@synerise/ds-tooltip';
 import * as S from './LabelsWithShowMore.styles';
 import { Props } from './LabelsWithShowMore.types';
 import DetailsModal from './Modal/Modal';
+import { DataSourceType } from './Modal/Modal.types';
 
-const LabelsWithShowMore: React.FC<Props<object>> = ({
+const LabelsWithShowMore: React.FC<Props<DataSourceType>> = ({
   items,
   numberOfVisibleItems,
   renderItem,
