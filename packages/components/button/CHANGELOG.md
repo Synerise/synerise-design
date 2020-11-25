@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.13](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.13.12...@synerise/ds-button@0.13.13) (2020-11-25)
+
+
+### Bug Fixes
+
+* **button:** fix props in button-split and fix color styles ([357801f](https://github.com/synerise/synerise-design/commit/357801f25dec4a6723951736e8eb17fc5d9ab8cf))
+
+
+
+
+
 ## [0.13.12](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.13.11...@synerise/ds-button@0.13.12) (2020-11-18)
 
 

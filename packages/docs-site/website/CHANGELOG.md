@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.3](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.8.2...docs@0.8.3) (2020-11-25)
+
+
+### Bug Fixes
+
+* docs update ([0af1b20](https://gitlab.synerise.com/Frontend/synerise-design/commit/0af1b20a2a3b7f18ba2303ff615191aefc2b5aeb))
+
+
+
+
+
 ## [0.8.2](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.8.1...docs@0.8.2) (2020-11-19)
 
 **Note:** Version bump only for package docs

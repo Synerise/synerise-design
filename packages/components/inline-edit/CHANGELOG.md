@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.92](https://github.com/Synerise/synerise-design/compare/@synerise/ds-inline-edit@0.1.91...@synerise/ds-inline-edit@0.1.92) (2020-11-25)
+
+
+### Bug Fixes
+
+* pass custom dropdownprops ([8b1d653](https://github.com/Synerise/synerise-design/commit/8b1d6531a5d392a464fa142c4660bac2117ef108))
+* **inline-edit:** added dropdown style prop ([6709db4](https://github.com/Synerise/synerise-design/commit/6709db49a5e6a4fa5f5b4c164a4c5e7ba306dcbb))
+
+
+
+
+
 ## [0.1.91](https://github.com/Synerise/synerise-design/compare/@synerise/ds-inline-edit@0.1.90...@synerise/ds-inline-edit@0.1.91) (2020-11-18)
 
 **Note:** Version bump only for package @synerise/ds-inline-edit

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-loader@0.0.9...@synerise/ds-loader@0.0.10) (2020-11-25)
+
+
+### Bug Fixes
+
+* **loader:** add optional props color ([3a7f23a](https://github.com/Synerise/synerise-design/commit/3a7f23a129f9eb86a968c62c0e79aca7ae06bfd1))
+* **loader:** add props to change color of loader ([9ab9ad1](https://github.com/Synerise/synerise-design/commit/9ab9ad1abbe6eaa824a584fe4b427e0b85fbc280))
+
+
+
+
+
 ## [0.0.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-loader@0.0.8...@synerise/ds-loader@0.0.9) (2020-11-12)
 
 **Note:** Version bump only for package @synerise/ds-loader
