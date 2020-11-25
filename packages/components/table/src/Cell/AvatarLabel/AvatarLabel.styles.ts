@@ -26,8 +26,9 @@ export const Title = styled.span<{
   textSize: 'small' | 'default';
   ellipsis: boolean;
   maxWidth: number | undefined;
+  avatarSize?: string | 'large';
 }>`
-  font-size: ${(props): string => (props.withLabels && props.textSize === 'default' ? '16px' : '14px')};
+  font-size: ${(props): string => (props.avatarSize === 'large') || (props.withLabels && props.textSize==='default') ? '16px' : '14px'};
   line-height: 20px;
   font-weight: 500;
   color: ${(props): string => props.theme.palette['grey-700']};

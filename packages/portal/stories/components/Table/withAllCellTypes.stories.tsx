@@ -32,8 +32,10 @@ const dataSource = [...new Array(55)].map((i, k) => ({
     initials: 'AN',
     icon: <MailM />,
     title: 'Top 10 product add to cart',
+    titleLarg: 'Summer Sale 45% OFF',
     status: 'active',
     labels: ['Text AB/X', 'Edited 11 Jun 2019 18:47'],
+    label: ['Edited 11 Jun 2019 18:47'],
   },
   select: {
     value: faker.random.arrayElement(['option 1', 'option 2', 'option 3']),

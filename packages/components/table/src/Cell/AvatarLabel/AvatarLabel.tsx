@@ -12,6 +12,7 @@ const AvatarLabel: React.FC<Props> = ({
   textSize = 'default',
   ellipsis,
   maxWidth,
+  avatarSize,
 }) => {
   return (
     <S.AvatarLabel>
@@ -25,6 +26,7 @@ const AvatarLabel: React.FC<Props> = ({
           textSize={textSize}
           ellipsis={Boolean(ellipsis)}
           maxWidth={maxWidth}
+          avatarSize={avatarSize}
         >
           {title}
         </S.Title>
