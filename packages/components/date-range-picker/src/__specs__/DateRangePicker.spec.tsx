@@ -5,6 +5,7 @@ import RawDateRangePicker from '../RawDateRangePicker';
 import { DateRange, RelativeDateRange } from '../date.types';
 import { DAYS, RELATIVE, RELATIVE_PRESETS, ABSOLUTE } from '../constants';
 import { RelativeMode } from '../DateRangePicker.types';
+import { waitFor } from '@testing-library/react';
 
 const ABSOLUTE_VALUE = {
   type: ABSOLUTE,
@@ -25,10 +26,12 @@ export const RANGES: RelativeDateRange[] = [
     offset: { type: DAYS, value: 3 },
     duration: { type: DAYS, value: 1 },
   },
-] ;
+];
 const texts = {
-  myRange:'myRange'
+  relativeDateRange: 'Relative Picker',
+  myRange: 'myRange',
 } as any;
+
 describe('DateRangePicker', () => {
   it('should render', async () => {
     const onApply = jest.fn();
@@ -118,7 +121,13 @@ describe('DateRangePicker', () => {
         texts={texts}
       />
     );
-    expect(getByText(RANGES[0].translationKey as string)).toBeInTheDocument();
+    await getByText(texts.relativeDateRange).click();
+    await waitFor(
+      () => {
+        expect(getByText(texts[RANGES[0].translationKey as string])).toBeInTheDocument();
+      },
+      { timeout: 50 }
+    );
   });
   it('should update displayed range after selecting dates', async () => {
     const onApply = jest.fn();
@@ -140,7 +149,7 @@ describe('DateRangePicker', () => {
     selectedRangeStart.click();
     const selectedRangeEnd = container.querySelector('[data-attr="12"]') as HTMLElement;
     selectedRangeEnd.click();
-    expect(valueWrapper.textContent).toBe("Oct 1, 2018, 00:00Oct 12, 2018, 23:59");
+    expect(valueWrapper.textContent).toBe('Oct 1, 2018, 00:00Oct 12, 2018, 23:59');
   });
 
   it('should change format when showTime is false', async () => {
@@ -163,6 +172,6 @@ describe('DateRangePicker', () => {
     selectedRangeStart.click();
     const selectedRangeEnd = container.querySelector('[data-attr="12"]') as HTMLElement;
     selectedRangeEnd.click();
-    expect(valueWrapper.textContent).toBe("Oct 1, 2018Oct 12, 2018");
+    expect(valueWrapper.textContent).toBe('Oct 1, 2018Oct 12, 2018');
   });
 });
