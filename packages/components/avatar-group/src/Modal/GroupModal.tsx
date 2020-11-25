@@ -12,7 +12,6 @@ import { DataSource } from 'AvatarGroup.types';
 import * as S from './GroupModal.styles';
 import { GroupModalProps } from './GroupModal.types';
 
-
 const GroupModal: React.FC<GroupModalProps> = ({
   renderRowMenu,
   title,
@@ -101,6 +100,7 @@ const GroupModal: React.FC<GroupModalProps> = ({
         cellHeight={64}
         initialWidth={520}
         dataSource={dataSource}
+        rowKey="id"
       />
     </ModalProxy>
   );

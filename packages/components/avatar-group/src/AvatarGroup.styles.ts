@@ -77,31 +77,13 @@ export const Group = styled.div<{ size: Size }>`
 
 export const MoreInfo = styled.div<{ size: Size }>`
   ${(props): FlattenSimpleInterpolation | false => applyMoreInfoStyles(props.size)};
-  box-shadow: 0 0 0 1px ${(props): string => props.theme.palette['grey-300']};
   margin-left: 8px;
   border-radius: 50%;
-  color: ${(props): string => props.theme.palette['grey-400']};
+  color: ${(props): string => props.theme.palette['grey-500']};
   display: flex;
   align-items: center;
   justify-content: center;
   line-height: 1.45;
   cursor: pointer;
   position: relative;
-  &:after {
-    content: '';
-    border-radius: 50%;
-    width: calc(100% - 2px);
-    height: calc(100% - 2px);
-    position: absolute;
-    top: 1px;
-    left: 1px;
-    transition: all 0.3s ease;
-    box-shadow: 0 0 0 2px transparent;
-    box-sizing: border-box;
-  }
-  &:hover {
-    &:after {
-      box-shadow: 0 0 0 1px ${(props): string => props.theme.palette['grey-200']};
-    }
-  }
 `;
