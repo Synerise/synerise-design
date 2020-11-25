@@ -20,7 +20,12 @@ const TimestampRange: React.FC<Props> = ({
   const [durationModifier, setDurationModifier] = React.useState<string>(DURATION_MODIFIERS.LAST);
   const [durationValue, setDurationValue] = React.useState<number>(1);
   const [durationUnit, setDurationUnit] = React.useState<string>(currentRange.duration.type);
-  const hasError = !timestamp;
+  const [error, setError] = React.useState<boolean>(!timestamp);
+
+  React.useEffect(() => {
+    setError(!timestamp);
+  }, [timestamp]);
+
   const handleRangeChange = (date: Date | undefined, duration: Duration): void => {
     if (date) {
       const NOW = new Date();
@@ -59,9 +64,12 @@ const TimestampRange: React.FC<Props> = ({
 
   const renderDatePicker = (): React.ReactNode => {
     return (
-      <S.DatePickerWrapper error={hasError}>
+      <S.DatePickerWrapper error={error}>
         <DatePicker
           value={timestamp}
+          onValueChange={(value): void => {
+            setError(!value);
+          }}
           onApply={(date): void => {
             onTimestampChange && onTimestampChange(date);
           }}
@@ -81,8 +89,8 @@ const TimestampRange: React.FC<Props> = ({
             inputPlaceholder: texts.selectDate,
           }}
           showTime
-          error={hasError}
-          errorText={hasError ? texts.emptyDateError : null}
+          error={error}
+          errorText={error ? texts.emptyDateError : null}
           popoverPlacement="topLeft"
         />
       </S.DatePickerWrapper>
