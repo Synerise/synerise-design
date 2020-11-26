@@ -28,7 +28,7 @@ export const Label = styled.span`
   overflow-x: hidden;
 `;
 
-export const RowValue = styled.div<{ copyable: boolean }>`
+export const RowValue = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -38,7 +38,6 @@ export const RowValue = styled.div<{ copyable: boolean }>`
   color: ${(props): string => props.theme.palette['grey-700']};
   font-weight: 500;
   overflow-x: hidden;
-  cursor: ${(props): string => (props.copyable ? 'pointer' : 'default')};
   .ds-status {
     margin: 0;
   }
