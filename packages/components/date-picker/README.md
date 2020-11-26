@@ -34,6 +34,7 @@ import DatePicker from '@synerise/ds-date-picker'
 | showTime        | Boolean value to enable user to choose particular hour      | boolean              | `false`    |
 | value           | Value of the picker                                         | Date                 | new Date() |
 | onApply         | Callback executed after applying changes                    | (date:Date)=>void    | -          |
+| disabled        | Boolean value to set disabled state of an input             | boolean              | `false`    |
 | disabledDates   | Function to specify if particular dates are disabled or not | (date:Date)=>boolean | -          |
 | disabledHours   | Disabled hours for time picker                              | number[]             | []         |
 | disabledMinutes | Disabled minutes for time picker                            | number[]             | []         |
