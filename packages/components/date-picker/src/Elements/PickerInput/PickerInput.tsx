@@ -28,7 +28,6 @@ const PickerInput: React.FC<Props> = ({
   ...rest
 }: Props) => {
   const [hovered, setHovered] = React.useState<boolean>(false);
-  console.log(disabled, rest);
   const getText = React.useCallback((): string => {
     if (!value) return '';
     if (dateFormat) {
