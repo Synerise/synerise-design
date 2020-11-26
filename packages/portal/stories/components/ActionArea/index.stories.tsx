@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import ActionArea from '@synerise/ds-action-area';
 import { action } from '@storybook/addon-actions';
-import { text } from '@storybook/addon-knobs';
+import { boolean, text } from '@storybook/addon-knobs';
 
 const stories = {
   default: () => (
@@ -11,6 +11,7 @@ const stories = {
       description={text('Set description', 'Very long description')}
       actionLabel={text('Set button label', 'Define')}
       action={action('handle action')}
+      withMargin={boolean('With margin bottom', false)}
     />
   ),
 };

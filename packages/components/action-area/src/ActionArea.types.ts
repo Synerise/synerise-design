@@ -5,4 +5,5 @@ export type ActionAreaProps = {
   description: string | React.ReactNode;
   action: () => void;
   actionLabel: string | React.ReactNode;
+  withMargin?: boolean;
 };
