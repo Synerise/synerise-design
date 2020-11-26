@@ -73,7 +73,9 @@ describe('Table', () => {
 
   it('should render "no data"', () => {
     // ARRANGE
-    const { getByText } = renderWithProvider(<Table columns={props.columns} locale={{emptyText: 'No Data'}} />);
+    const { getByText } = renderWithProvider(
+      <Table dataSource={[]} columns={props.columns} locale={{ emptyText: 'No Data' }} />
+    );
 
     // ASSERT
     expect(getByText('No Data')).toBeTruthy();
@@ -88,7 +90,7 @@ describe('Table', () => {
         dataIndex: 'name',
       },
     ];
-    const { rerender, getByText, getAllByText } = renderWithProvider(<Table columns={columns} />);
+    const { rerender, getByText, getAllByText } = renderWithProvider(<Table dataSource={[]} columns={columns} />);
 
     // ACT
     rerender(<Table columns={props.columns} dataSource={props.dataSource} />);
@@ -109,7 +111,7 @@ describe('Table', () => {
 
   it('should not render pagination', () => {
     // ARRANGE
-    const{ container } = renderWithProvider(<Table dataSource={props.dataSource} columns={props.columns} />);
+    const { container } = renderWithProvider(<Table dataSource={props.dataSource} columns={props.columns} />);
 
     // ASSERT
     expect(container.querySelector('.ant-table-pagination')).toBeNull();
@@ -118,12 +120,18 @@ describe('Table', () => {
   it('should render pagination with size changer and quick jumper', () => {
     // ARRANGE
     const handleChange = jest.fn();
-    const{ container } = renderWithProvider(<Table dataSource={props.dataSource} columns={props.columns} pagination={{
-      showSizeChanger: true,
-      showQuickJumper: true,
-      onChange: handleChange,
-      pageSize: 3
-    }} />);
+    const { container } = renderWithProvider(
+      <Table
+        dataSource={props.dataSource}
+        columns={props.columns}
+        pagination={{
+          showSizeChanger: true,
+          showQuickJumper: true,
+          onChange: handleChange,
+          pageSize: 3,
+        }}
+      />
+    );
 
     // ASSERT
     expect(container.querySelector('.ant-table-pagination')).toBeTruthy();
@@ -134,12 +142,18 @@ describe('Table', () => {
   it('should call handleChange', () => {
     // ARRANGE
     const handleChange = jest.fn();
-    const{ container } = renderWithProvider(<Table dataSource={props.dataSource} columns={props.columns} pagination={{
-      showSizeChanger: true,
-      showQuickJumper: true,
-      onChange: handleChange,
-      pageSize: 3
-    }} />);
+    const { container } = renderWithProvider(
+      <Table
+        dataSource={props.dataSource}
+        columns={props.columns}
+        pagination={{
+          showSizeChanger: true,
+          showQuickJumper: true,
+          onChange: handleChange,
+          pageSize: 3,
+        }}
+      />
+    );
 
     // ACT
     const paginationItem = container.querySelector('.ant-pagination-item-2');
@@ -149,7 +163,6 @@ describe('Table', () => {
     expect(handleChange).toBeCalled();
   });
 
-
   it('should call onRow handlers', () => {
     // ARRANGE
     const onClick = jest.fn();
@@ -157,13 +170,19 @@ describe('Table', () => {
     const onContextMenu = jest.fn();
     const onMouseEnter = jest.fn();
     const onMouseLeave = jest.fn();
-    const { container } = renderWithProvider(<Table dataSource={props.dataSource} columns={props.columns} onRow={(record, index) => ({
-      onClick,
-      onDoubleClick,
-      onContextMenu,
-      onMouseEnter,
-      onMouseLeave
-    })} />);
+    const { container } = renderWithProvider(
+      <Table
+        dataSource={props.dataSource}
+        columns={props.columns}
+        onRow={(record, index) => ({
+          onClick,
+          onDoubleClick,
+          onContextMenu,
+          onMouseEnter,
+          onMouseLeave,
+        })}
+      />
+    );
 
     // ACT
     const row = container.querySelector('.ds-table-row');
@@ -183,7 +202,7 @@ describe('Table', () => {
 
   it('should show loading state of table', () => {
     // ARRANGE
-    const {container} = renderWithProvider(<Table dataSource={props.dataSource} columns={props.columns} loading /> );
+    const { container } = renderWithProvider(<Table dataSource={props.dataSource} columns={props.columns} loading />);
     // ASSERT
     expect(container.querySelector('.spinner')).toBeTruthy();
   });
@@ -193,20 +212,24 @@ describe('Table', () => {
     const handleShowFilter = jest.fn();
     const handleClear = jest.fn();
     // ARRANGE
-    const { getByTestId } = renderWithProvider(<Table dataSource={props.dataSource} columns={props.columns}  filters={
-      [
-        {
-          key: 'view',
-          icon: <Grid2M />,
-          tooltips: { default: 'Table view', clear: 'Clear view', define: 'Define view', list: 'Saved views' },
-          openedLabel: 'Define',
-          showList: handleShowList,
-          show: handleShowFilter,
-          handleClear: handleClear,
-          selected: undefined,
-        }
-      ]
-    } /> );
+    const { getByTestId } = renderWithProvider(
+      <Table
+        dataSource={props.dataSource}
+        columns={props.columns}
+        filters={[
+          {
+            key: 'view',
+            icon: <Grid2M />,
+            tooltips: { default: 'Table view', clear: 'Clear view', define: 'Define view', list: 'Saved views' },
+            openedLabel: 'Define',
+            showList: handleShowList,
+            show: handleShowFilter,
+            handleClear: handleClear,
+            selected: undefined,
+          },
+        ]}
+      />
+    );
     // ASSERT
     expect(getByTestId('filter-trigger-view')).toBeTruthy();
   });
@@ -216,20 +239,24 @@ describe('Table', () => {
     const handleShowFilter = jest.fn();
     const handleClear = jest.fn();
     // ARRANGE
-    const { getByTestId, getByText } = renderWithProvider(<Table dataSource={props.dataSource} columns={props.columns}  filters={
-      [
-        {
-          key: 'view',
-          icon: <Grid2M />,
-          tooltips: { default: 'Table view', clear: 'Clear view', define: 'Define view', list: 'Saved views' },
-          openedLabel: 'Define',
-          showList: handleShowList,
-          show: handleShowFilter,
-          handleClear: handleClear,
-          selected: {name: 'Selected filter'},
-        }
-      ]
-    } /> );
+    const { getByTestId, getByText } = renderWithProvider(
+      <Table
+        dataSource={props.dataSource}
+        columns={props.columns}
+        filters={[
+          {
+            key: 'view',
+            icon: <Grid2M />,
+            tooltips: { default: 'Table view', clear: 'Clear view', define: 'Define view', list: 'Saved views' },
+            openedLabel: 'Define',
+            showList: handleShowList,
+            show: handleShowFilter,
+            handleClear: handleClear,
+            selected: { name: 'Selected filter' },
+          },
+        ]}
+      />
+    );
     const clearBtn = getByTestId('clear-button');
     const showListBtn = getByTestId('show-list-button');
     const showFilterBtn = getByTestId('show-filter-button');
@@ -246,4 +273,30 @@ describe('Table', () => {
     expect(handleShowList).toBeCalled();
   });
 
+  it('Should render auto title', () => {
+    // ARRANGE
+    const { getByTestId } = renderWithProvider(
+      <Table dataSource={props.dataSource} columns={props.columns} locale={{ pagination: { items: 'results' } }} />
+    );
+    // ASSERT
+    expect(getByTestId('ds-table-title').textContent).toEqual('6 results');
+  });
+
+  it('Should render auto title with custom locale', () => {
+    // ARRANGE
+    const { getByTestId } = renderWithProvider(
+      <Table dataSource={props.dataSource} columns={props.columns} locale={{ pagination: { items: 'records' } }} />
+    );
+    // ASSERT
+    expect(getByTestId('ds-table-title').textContent).toEqual('6 records');
+  });
+
+  it('Should render custom title', () => {
+    // ARRANGE
+    const { getByText } = renderWithProvider(
+      <Table dataSource={props.dataSource} columns={props.columns} title={'Custom table title'} />
+    );
+    // ASSERT
+    expect(getByText('Custom table title').textContent).toBeTruthy();
+  });
 });

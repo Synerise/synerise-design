@@ -58,7 +58,6 @@ const CELL_SIZES = {
 };
 
 const getDefaultProps = () => ({
-  title: `${dataSource.length} results`,
   hideTitleBar: boolean('Hide title bar', false),
   dataSource,
   loading: boolean('Set loading state', false),
@@ -67,11 +66,6 @@ const getDefaultProps = () => ({
     showSizeChanger: boolean('Show size changer', true),
     showQuickJumper: boolean('Show quick jumper', true),
     onChange: action('pageChanged'),
-  },
-  locale: {
-    pagination: {
-      items: 'results',
-    },
   },
   scroll: {
     x: false,

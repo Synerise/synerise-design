@@ -43,7 +43,6 @@ const stories = {
 
     return (
       <Table
-        title={`${dataSource.length} results`}
         dataSource={dataSource}
         columns={renderWithIconInHeaders(COLUMNS, boolean('Set icons in headers', false))}
         scroll={{ x: 1200 }}
@@ -53,11 +52,6 @@ const stories = {
           showSizeChanger: boolean('Show size changer', true),
           showQuickJumper: boolean('Show quick jumper', true),
           onChange: action('pageChanged'),
-        }}
-        locale={{
-          pagination: {
-            items: 'results',
-          },
         }}
         headerButton={
           boolean('Show header button', false) && (

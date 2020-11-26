@@ -1,7 +1,7 @@
 import { boolean, select, text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import { withState } from '@dump247/storybook-state';
-import { ItemsMenu, TableCell, VirtualTable } from '@synerise/ds-table';
+import { ItemsMenu, TableCell } from '@synerise/ds-table';
 import Icon from '@synerise/ds-icon';
 import { AddM, EditM, FileDownloadM, InfoFillS, TrashM } from '@synerise/ds-icon/dist/icons';
 import Table from '@synerise/ds-table';
@@ -43,18 +43,23 @@ const stories = {
           title: 'Name',
           dataIndex: 'name',
           key: 'name',
-          icon: { component: <VarTypeStringM/>},
-          iconTooltip: { component: <InfoFillS/>},
+          icon: { component: <VarTypeStringM /> },
+          iconTooltip: { component: <InfoFillS /> },
         },
         {
           dataIndex: 'more',
           key: 'more',
           width: 72,
           render: (more, record) => {
-            if(more !== undefined) {
+            if (more !== undefined) {
               return (
                 <TableCell.ActionCell>
-                  <Button.Expander expanded={expandedRows.indexOf(record.key) >= 0} onClick={() => {handleExpandRow(record.key)}} />
+                  <Button.Expander
+                    expanded={expandedRows.indexOf(record.key) >= 0}
+                    onClick={() => {
+                      handleExpandRow(record.key);
+                    }}
+                  />
                 </TableCell.ActionCell>
               );
             }
@@ -65,28 +70,24 @@ const stories = {
 
     const selectEven = () => {
       const evenRows = dataSource.map(row => row.key).filter((key, index) => index % 2);
-      store.set({selectedRows: evenRows});
+      store.set({ selectedRows: evenRows });
     };
 
     return (
       <Table
-        title={`${dataSource.length} results`}
         dataSource={dataSource}
         columns={renderWithIconInHeaders(getColumns(), boolean('Set icons in headers', false))}
         loading={boolean('Set loading state', false)}
         roundedHeader={boolean('Rounded header', false)}
         cellSize={select('Set cells size', CELL_SIZES, CELL_SIZES.default)}
-        headerButton={boolean('Show header button', false) && (
-          <Button type="ghost" mode="icon-label" onClick={action('Header button action')}>
-            <Icon component={<AddM />} />
-            {text('Header button label', 'Add row')}
-          </Button>
-        )}
-        locale={{
-          pagination: {
-            items: 'results',
-          }
-        }}
+        headerButton={
+          boolean('Show header button', false) && (
+            <Button type="ghost" mode="icon-label" onClick={action('Header button action')}>
+              <Icon component={<AddM />} />
+              {text('Header button label', 'Add row')}
+            </Button>
+          )
+        }
         pagination={{
           showSizeChanger: boolean('Show size changer', true),
           showQuickJumper: boolean('Show quick jumper', true),
@@ -95,7 +96,7 @@ const stories = {
         expandable={{
           expandIconColumnIndex: -1,
           expandedRowKeys: expandedRows,
-          expandedRowRender: (record) => {
+          expandedRowRender: record => {
             return record.more.text;
           },
         }}
@@ -111,35 +112,35 @@ const stories = {
                 key: 'even',
                 label: 'Select even',
                 onClick: selectEven,
-              }
-            ]
+              },
+            ],
           }
         }
         onSearch={console.log}
         onRow={(record, index: number) => ({
           onClick: event => {
-            boolean('Expand on row click', true) && record.more && handleExpandRow(record.key)
+            boolean('Expand on row click', true) && record.more && handleExpandRow(record.key);
           },
         })}
         itemsMenu={
           <ItemsMenu>
-            <Button onClick={action('Export')} type='secondary' mode='icon-label'>
-              <Icon component={<FileDownloadM/>}/>
+            <Button onClick={action('Export')} type="secondary" mode="icon-label">
+              <Icon component={<FileDownloadM />} />
               Export
             </Button>
-            <Button onClick={action('Edit')} type='secondary' mode='icon-label'>
-              <Icon component={<EditM/>}/>
+            <Button onClick={action('Edit')} type="secondary" mode="icon-label">
+              <Icon component={<EditM />} />
               Edit
             </Button>
-            <Button onClick={action('Delete')} type='secondary' mode='icon-label'>
-              <Icon component={<TrashM/>}/>
+            <Button onClick={action('Delete')} type="secondary" mode="icon-label">
+              <Icon component={<TrashM />} />
               Delete
             </Button>
           </ItemsMenu>
         }
-      />)
-    }
-  ),
+      />
+    );
+  }),
 };
 
 export default {

@@ -323,7 +323,6 @@ const stories = {
     return (
       <>
         <Table
-          title={`${filteredDataSource().length} ${text('Set name of table items', 'results')}`}
           dataSource={filteredDataSource()}
           tableLayout="fixed"
           scroll={{ x: 1200 }}
@@ -364,11 +363,6 @@ const stories = {
             showSizeChanger: boolean('Show size changer', true),
             showQuickJumper: boolean('Show quick jumper', true),
             onChange: action('pageChanged'),
-          }}
-          locale={{
-            pagination: {
-              items: 'results',
-            },
           }}
           rowKey={row => row.key}
           selection={

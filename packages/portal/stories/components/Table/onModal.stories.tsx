@@ -24,8 +24,8 @@ const columns = [
     title: 'User name',
     key: 'name',
     dataIndex: 'name',
-    icon: { component: <VarTypeStringM/>},
-    iconTooltip: { component: <InfoFillS/>},
+    icon: { component: <VarTypeStringM /> },
+    iconTooltip: { component: <InfoFillS /> },
   },
 ];
 
@@ -71,7 +71,6 @@ const stories = {
           <VirtualTable
             scroll={{ y: 500, x: 0 }}
             initialWidth={792}
-            title={`${filteredDataSource().length} ${text('Set name of table items', 'results')}`}
             dataSource={filteredDataSource()}
             columns={renderWithIconInHeaders(columns, boolean('Set icons in headers', false))}
             cellHeight={50}

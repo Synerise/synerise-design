@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Filter, RowSelection } from '../Table.types';
+import { Filter, Locale, RowSelection } from '../Table.types';
 
 export interface Props<T extends { key: React.ReactText }> {
   title?: React.ReactNode;
@@ -13,4 +13,5 @@ export interface Props<T extends { key: React.ReactText }> {
   rowKey?: Function | string;
   withBorderTop?: boolean;
   headerButton?: React.ReactNode;
+  locale: Locale;
 }

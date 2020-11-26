@@ -5,8 +5,9 @@ import Icon from '@synerise/ds-icon';
 import SpinnerM from '@synerise/ds-icon/dist/icons/SpinnerM';
 import { AngleLeftS, AngleRightS } from '@synerise/ds-icon/dist/icons';
 import Button from '@synerise/ds-button';
+import { IntlShape, useIntl } from 'react-intl';
 import * as S from './Table.styles';
-import { DSTableProps } from './Table.types';
+import { DSTableProps, Locale } from './Table.types';
 import TableHeader from './TableHeader/TableHeader';
 import DefaultTable from './DefaultTable/DefaultTable';
 import GroupTable from './GroupTable/GroupTable';
@@ -20,8 +21,18 @@ const ITEM_RENDER_TYPE = {
   next: 'next',
 };
 
+const DEFAULT_LOCALE = (intl: IntlShape): Locale => ({
+  pagination: {
+    items: intl.formatMessage({ id: 'TABLE.PAGINATION.ITEMS' }),
+    groups: intl.formatMessage({ id: 'TABLE.PAGINATION.GROUPS' }),
+  },
+  selected: intl.formatMessage({ id: 'TABLE.SELECTED' }),
+  emptyText: intl.formatMessage({ id: 'TABLE.EMPTY_TEXT' }),
+});
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function DSTable<T extends any>(props: DSTableProps<T>): React.ReactElement {
+  const intl = useIntl();
   const {
     title,
     onSearch,
@@ -43,6 +54,14 @@ function DSTable<T extends any>(props: DSTableProps<T>): React.ReactElement {
     headerButton,
     hideColumnNames,
   } = props;
+
+  const getLocale = React.useMemo((): Locale => {
+    return {
+      ...DEFAULT_LOCALE(intl),
+      ...locale,
+      pagination: { ...DEFAULT_LOCALE(intl).pagination, ...locale?.pagination },
+    };
+  }, [intl, locale]);
 
   const renderHeader = React.useCallback((): React.ReactNode => {
     const size = selection && selection?.selectedRowKeys && selection?.selectedRowKeys.length;
@@ -71,23 +90,25 @@ function DSTable<T extends any>(props: DSTableProps<T>): React.ReactElement {
           filterComponent={filterComponent}
           headerButton={headerButton}
           rowKey={rowKey}
+          locale={getLocale}
         />
       )
     );
   }, [
     selection,
+    grouped,
+    dataSource,
+    hideTitleBar,
+    headerWithBorderTop,
     title,
     onSearch,
-    dataSource,
     filters,
     itemsMenu,
     searchComponent,
     filterComponent,
-    rowKey,
-    headerWithBorderTop,
-    hideTitleBar,
-    grouped,
     headerButton,
+    rowKey,
+    getLocale,
   ]);
 
   const footerPagination = React.useMemo((): object => {
@@ -95,7 +116,7 @@ function DSTable<T extends any>(props: DSTableProps<T>): React.ReactElement {
       showTotal: (total: number, range: number[]): React.ReactNode => (
         <span>
           <strong>{range[0]}</strong>-<strong>{range[1]}</strong> of <strong>{total}</strong>{' '}
-          {grouped ? locale?.pagination?.groups : locale?.pagination?.items}
+          {grouped ? getLocale?.pagination?.groups : getLocale?.pagination?.items}
         </span>
       ),
       columnWidth: 72,
@@ -118,7 +139,7 @@ function DSTable<T extends any>(props: DSTableProps<T>): React.ReactElement {
       },
       ...pagination,
     };
-  }, [pagination, grouped, locale]);
+  }, [pagination, grouped, getLocale]);
 
   return (
     <S.TableWrapper
