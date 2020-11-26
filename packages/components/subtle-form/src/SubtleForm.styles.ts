@@ -101,6 +101,15 @@ export const Inactive = styled.div<{
   border-radius: 3px;
   transition: padding 0.1s ease-in, background 0.1s ease-in;
   transition-delay: 0.2s;
+
+  && {
+    ${(props): false | FlattenSimpleInterpolation =>
+      !props.disabled &&
+      css`
+        animation: none;
+      `}
+  }
+
   ${(props): false | FlattenSimpleInterpolation =>
     props.blurred &&
     !props.disabled &&
