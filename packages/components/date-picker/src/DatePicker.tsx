@@ -8,6 +8,7 @@ import * as S from './DatePicker.styles';
 
 const DatePicker: React.FC<Props> = ({
   autoFocus,
+  disabled,
   texts,
   format,
   value,
@@ -24,6 +25,7 @@ const DatePicker: React.FC<Props> = ({
 }) => {
   const [dropVisible, setDropVisible] = React.useState(autoFocus || false);
   const [selectedDate, setSelectedDate] = React.useState(value);
+  console.log(disabled);
   const ref = React.useRef<HTMLDivElement>(null);
   useOnClickOutside(ref, () => {
     !!dropVisible && setDropVisible(false);
@@ -61,16 +63,22 @@ const DatePicker: React.FC<Props> = ({
       onVisibleChange={onDropdownVisibleChange}
       trigger={['click']}
       placement={popoverPlacement}
-      visible={!!dropVisible}
+      visible={!!dropVisible && !disabled}
+      disabled={disabled}
       {...dropdownProps}
     >
       <PickerInput
-        autoFocus={autoFocus}
+        disabled={disabled}
+        autoFocus={!disabled && autoFocus}
         value={selectedDate}
         showTime={showTime}
-        onClick={(): void => {
-          setDropVisible(!dropVisible);
-        }}
+        onClick={
+          !disabled
+            ? (): void => {
+                setDropVisible(!dropVisible);
+              }
+            : undefined
+        }
         format={format}
         onClear={(): void => {
           setDropVisible(false);
@@ -79,7 +87,7 @@ const DatePicker: React.FC<Props> = ({
         }}
         placeholder={texts.inputPlaceholder}
         clearTooltip={texts.clearTooltip}
-        highlight={!!dropVisible}
+        highlight={!!dropVisible && !disabled}
         error={error}
         errorText={errorText}
       />

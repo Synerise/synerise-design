@@ -28,6 +28,7 @@ const PickerInput: React.FC<Props> = ({
   ...rest
 }: Props) => {
   const [hovered, setHovered] = React.useState<boolean>(false);
+  console.log(disabled, rest);
   const getText = React.useCallback((): string => {
     if (!value) return '';
     if (dateFormat) {
@@ -62,9 +63,9 @@ const PickerInput: React.FC<Props> = ({
   );
   return (
     <S.Container
-      onMouseEnter={(): void => setHovered(true)}
-      onMouseLeave={(): void => setHovered(false)}
-      onClick={handleInputClick}
+      onMouseEnter={!disabled ? (): void => setHovered(true) : undefined}
+      onMouseLeave={!disabled ? (): void => setHovered(false) : undefined}
+      onClick={!disabled ? handleInputClick : undefined}
     >
       <S.Input
         autoFocus={autoFocus}
@@ -77,7 +78,7 @@ const PickerInput: React.FC<Props> = ({
         placeholder={placeholder}
         value={getText()}
         icon1={
-          (hovered || !!value )? (
+          (hovered || !!value) && !disabled ? (
             <S.ClearIconWrapper>
               <Tooltip title={clearTooltip}>
                 <Icon component={<Close3S />} onClick={handleIconClick} />
