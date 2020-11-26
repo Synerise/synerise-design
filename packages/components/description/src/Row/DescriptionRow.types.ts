@@ -1,9 +1,7 @@
-import { IntlShape } from 'react-intl';
 import * as React from 'react';
 
 export interface DescriptionRowProps {
-  intl: IntlShape;
-  label: string | React.ReactNode;
+  label?: string | React.ReactNode;
   labelIcon?: React.ReactNode;
   value: React.ReactNode;
   prefixEl?: string | React.ReactNode;
@@ -16,4 +14,4 @@ export interface DescriptionRowProps {
 export type RowTexts = {
   copyTooltip?: string;
   copiedTooltip?: string;
-}
+};

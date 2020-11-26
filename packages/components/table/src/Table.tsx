@@ -23,11 +23,11 @@ const ITEM_RENDER_TYPE = {
 
 const DEFAULT_LOCALE = (intl: IntlShape): Locale => ({
   pagination: {
-    items: intl.formatMessage({ id: 'TABLE.PAGINATION.ITEMS' }),
-    groups: intl.formatMessage({ id: 'TABLE.PAGINATION.GROUPS' }),
+    items: intl.formatMessage({ id: 'DS.TABLE.PAGINATION.ITEMS', defaultMessage: 'results' }),
+    groups: intl.formatMessage({ id: 'DS.TABLE.PAGINATION.GROUPS', defaultMessage: 'groups' }),
   },
-  selected: intl.formatMessage({ id: 'TABLE.SELECTED' }),
-  emptyText: intl.formatMessage({ id: 'TABLE.EMPTY_TEXT' }),
+  selected: intl.formatMessage({ id: 'DS.TABLE.SELECTED', defaultMessage: 'selected' }),
+  emptyText: intl.formatMessage({ id: 'DS.TABLE.EMPTY_TEXT', defaultMessage: 'No data' }),
 });
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

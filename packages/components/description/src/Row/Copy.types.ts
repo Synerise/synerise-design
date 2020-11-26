@@ -1,4 +1,6 @@
+import { RowTexts } from './DescriptionRow.types';
+
 export interface CopyProps {
-  tooltipVisible: boolean;
-  tooltipTitle: string;
+  copyValue: string;
+  texts?: RowTexts;
 }
