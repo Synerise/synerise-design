@@ -4,6 +4,7 @@ import { DropdownProps } from '@synerise/ds-dropdown/dist/Dropdown';
 
 export type Props = {
   autoFocus?: boolean;
+  disabled?: boolean;
   disabledDates?: (date?: Date) => boolean;
   disabledHours: number[];
   disabledMinutes: number[];

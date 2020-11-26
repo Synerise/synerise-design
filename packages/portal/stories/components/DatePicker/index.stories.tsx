@@ -6,9 +6,11 @@ import { boolean } from '@storybook/addon-knobs';
 const stories = {
   default: () => {
     const showTime = boolean('Show time', true);
+    const disabled = boolean("Set disabled", false);
     return (
       <div>
         <DatePicker
+          disabled={disabled}
           showTime={showTime}
           onApply={value => {
             action('Selected', value);

@@ -17,7 +17,6 @@ export const blurAnimation = keyframes`
 `;
 
 export const ValueArea = styled.textarea<{ grey: boolean }>`
-  cursor: default;
   word-wrap: break-word;
   overflow-wrap: break-word;
   ${(props): FlattenSimpleInterpolation => disableBlinkingCursor(props)}
@@ -63,7 +62,7 @@ export const Suffix = styled.div<{ select?: boolean }>`
   margin-top: -2px;
   cursor: pointer;
 `;
-export const Container = styled.div<{ active: boolean }>`
+export const Container = styled.div<{ active: boolean; disabled?: boolean }>`
   position: relative;
   width: 100%;
   ${(props): false | FlattenSimpleInterpolation =>
@@ -81,6 +80,13 @@ export const Container = styled.div<{ active: boolean }>`
       transition: all 0s linear !important;
     }
   }
+  ${(props): FlattenSimpleInterpolation | false =>
+    !!props.disabled &&
+    css`
+      && {
+        cursor: not-allowed;
+      }
+    `}
 `;
 export const Inactive = styled.div<{
   rows?: number;
@@ -101,6 +107,18 @@ export const Inactive = styled.div<{
   border-radius: 3px;
   transition: padding 0.1s ease-in, background 0.1s ease-in;
   transition-delay: 0.2s;
+
+  && {
+    ${(props): false | FlattenSimpleInterpolation =>
+      !!props.disabled &&
+      css`
+        animation: none;
+        textarea {
+          cursor: not-allowed;
+        }
+      `}
+  }
+
   ${(props): false | FlattenSimpleInterpolation =>
     props.blurred &&
     !props.disabled &&
@@ -126,13 +144,18 @@ export const Inactive = styled.div<{
       }
     `}
 `;
-export const Subtle = styled.div``;
+export const Subtle = styled.div<{ disabled?: boolean }>`
+  ${(props): FlattenSimpleInterpolation | false =>
+    !!props.disabled &&
+    css`
+      && {
+        cursor: not-allowed;
+      }
+    `}
+`;
 export const ContentAbove = styled.div<{ active: boolean }>`
-  padding: 0 0 0 0;
+  padding: 0;
   display: flex;
   justify-content: space-between;
   margin-bottom: ${(props): string => (props.active ? `9px` : `8px`)};
-  .ds-icon {
-    margin-bottom: ${(props): string => (props.active ? `1px` : `0`)};
-  }
 `;
