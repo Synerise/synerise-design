@@ -10,6 +10,7 @@ import { SubtleSelectProps } from './Select.types';
 import { SelectContainer, ContentAbove } from './Select.styles';
 
 const SubtleSelect: React.FC<SubtleSelectProps> = ({
+  disabled,
   value,
   suffix,
   suffixTooltip,
@@ -34,13 +35,14 @@ const SubtleSelect: React.FC<SubtleSelectProps> = ({
     setBlurred(false);
   }, []);
   return (
-    <S.Subtle className="ds-subtle-form">
+    <S.Subtle className="ds-subtle-form" disabled={disabled}>
       <ContentAbove active={active}>
         <Label label={label} tooltip={labelTooltip} />
       </ContentAbove>
       <SelectContainer ref={containerRef} className="ds-subtle-select" active={active}>
         {(active && !blurred) || hasError ? (
           <Select
+            disabled={disabled}
             autoFocus={!hasError}
             size="middle"
             onBlur={handleDeactivate}
@@ -54,10 +56,10 @@ const SubtleSelect: React.FC<SubtleSelectProps> = ({
             {children}
           </Select>
         ) : (
-          <S.Inactive onClick={handleActivate} blurred={blurred}>
+          <S.Inactive onClick={!disabled ? handleActivate : undefined} blurred={blurred} disabled={disabled}>
             <S.MainContent hasMargin>{value && !!String(value).trim() ? value : placeholder}</S.MainContent>
-            {!active && (
-              <S.Suffix select >
+            {!active && !disabled && (
+              <S.Suffix select>
                 <Tooltip title={suffixTooltip}>
                   {suffix ?? <Icon component={<AngleDownS />} color={theme.palette['grey-600']} />}
                 </Tooltip>

@@ -87,7 +87,7 @@ const SubtleTextArea: React.FC<SubtleTextAreaProps> = ({
       <S.ContentAbove active={active}>
         <Label label={label} tooltip={labelTooltip} />
       </S.ContentAbove>
-      <S.Container ref={containerRef} className="ds-subtle-textarea" active={active}>
+      <S.Container ref={containerRef} className="ds-subtle-textarea" active={active} disabled={disabled}>
         {(active || hasError) && !disabled ? (
           <TextArea
             {...rest}

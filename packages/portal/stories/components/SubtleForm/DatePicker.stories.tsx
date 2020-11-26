@@ -21,6 +21,8 @@ const stories = {
     const [open, setOpen] = React.useState<boolean>(false);
     const validationState = boolean('Set validation state', false);
     const errorMessage = text('Error Text', 'Error');
+    const disabled = boolean('Set disabled', false);
+
     const format = 'dd-MM-yyyy';
     return (
       <div>
@@ -29,8 +31,8 @@ const stories = {
             autoFocus
             format={format}
             onApply={val => setValue(val)}
-            onClear={()=>{
-              setValue(undefined)
+            onClear={() => {
+              setValue(undefined);
             }}
             value={value}
             placeholder={'Date'}
@@ -42,6 +44,7 @@ const stories = {
             onDropdownVisibleChange={setOpen}
             dropdownProps={{ align: { offset: [0, 8] } }}
             activeProp={open}
+            disabled={disabled}
             disabledHours={[]}
             disabledMinutes={[]}
             disabledSeconds={[]}
