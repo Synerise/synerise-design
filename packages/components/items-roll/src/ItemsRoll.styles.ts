@@ -107,9 +107,9 @@ export const ChangeSelection = styled(Button)`
   align-items: center;
   padding: 4px 9px;
   font-weight: 500;
-  color: ${({ theme }): string => theme.palette['blue-600']};
 
   &&& {
+    color: ${({ theme }): string => theme.palette['blue-600']};
     .ds-icon {
       margin-right: 4px;
 

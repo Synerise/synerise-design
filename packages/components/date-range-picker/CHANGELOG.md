@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.18](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.5.17...@synerise/ds-date-range-picker@0.5.18) (2020-11-25)
+
+
+### Bug Fixes
+
+* **date-range-picker:** made popoverProps an optional type ([bc51bd6](https://github.com/Synerise/synerise-design/commit/bc51bd6deb29b466888ce52f000d105590fb2826))
+* **date-range-picker:** passed getPopupContainer to the monthly view ([eef2ec8](https://github.com/Synerise/synerise-design/commit/eef2ec8f0f82613e87289181e1e759ac445fd17c))
+* **date-range-picker:** popover props, removal icon ([68b6740](https://github.com/Synerise/synerise-design/commit/68b6740b7d8ed180481841251bc1843069989644))
+* **date-range-picker:** unselect all does not clear ranges anumore ([a5faf71](https://github.com/Synerise/synerise-design/commit/a5faf7182f507f35f55a47b4ab3417634e983592))
+* **time-picker:** pass dropdownProps object as timepicker prop ([0213f94](https://github.com/Synerise/synerise-design/commit/0213f946957188d99436ad3254a1101d7f2307e0))
+
+
+
+
+
 ## [0.5.17](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.5.16...@synerise/ds-date-range-picker@0.5.17) (2020-11-18)
 
 **Note:** Version bump only for package @synerise/ds-date-range-picker

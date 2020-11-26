@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.106.2](https://github.com/synerise/synerise-design/compare/portal@0.106.1...portal@0.106.2) (2020-11-25)
+
+
+### Bug Fixes
+
+* **button:** add props split mode ([6aebd5f](https://github.com/synerise/synerise-design/commit/6aebd5fe14896ff5c083118f3d204d3ebe231651))
+* **button:** fix props in button-split and fix color styles ([357801f](https://github.com/synerise/synerise-design/commit/357801f25dec4a6723951736e8eb17fc5d9ab8cf))
+* **loader:** add optional props color ([3a7f23a](https://github.com/synerise/synerise-design/commit/3a7f23a129f9eb86a968c62c0e79aca7ae06bfd1))
+* **loader:** add props to change color of loader ([9ab9ad1](https://github.com/synerise/synerise-design/commit/9ab9ad1abbe6eaa824a584fe4b427e0b85fbc280))
+* **tabs:** change knobs setSufix to setCounter ([904806e](https://github.com/synerise/synerise-design/commit/904806e8590b5923b8cec25babaf676e480e5e5d))
+* **tabs:** change knobs setSufix to setCounter ([e4d0e20](https://github.com/synerise/synerise-design/commit/e4d0e20f351ea4ef2e1257bd7eea0024b473bca3))
+* **tags:** change icon to Add3M ([43c6e5b](https://github.com/synerise/synerise-design/commit/43c6e5bb5d5e304147d6f89301067407fc025358))
+* **tags:** fix color of added tags ([4e6ec44](https://github.com/synerise/synerise-design/commit/4e6ec440f0b195726edf6158e5d430da37f3225c))
+
+
+
+
+
 ## [0.106.1](https://github.com/synerise/synerise-design/compare/portal@0.106.0...portal@0.106.1) (2020-11-18)
 
 

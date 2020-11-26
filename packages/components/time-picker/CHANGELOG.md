@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.32](https://github.com/Synerise/synerise-design/compare/@synerise/ds-time-picker@0.3.31...@synerise/ds-time-picker@0.3.32) (2020-11-25)
+
+
+### Bug Fixes
+
+* **time-picker:** made dropdownProps partial type ([904686e](https://github.com/Synerise/synerise-design/commit/904686e18f0ad4756145a1a147417a8af1ae67dd))
+* **time-picker:** pass dropdownProps object as timepicker prop ([0213f94](https://github.com/Synerise/synerise-design/commit/0213f946957188d99436ad3254a1101d7f2307e0))
+
+
+
+
+
 ## [0.3.31](https://github.com/Synerise/synerise-design/compare/@synerise/ds-time-picker@0.3.30...@synerise/ds-time-picker@0.3.31) (2020-11-18)
 
 **Note:** Version bump only for package @synerise/ds-time-picker

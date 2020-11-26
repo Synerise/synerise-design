@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.71](https://github.com/Synerise/synerise-design/compare/@synerise/ds-button-group@0.5.70...@synerise/ds-button-group@0.5.71) (2020-11-25)
+
+
+### Bug Fixes
+
+* **button:** fix style disabled for splitButton ([7b4c4c9](https://github.com/Synerise/synerise-design/commit/7b4c4c9e6c8cfe63861ee0ca8f9e7a931e1bc6e0))
+* **button-group:** add styles ([d6d13fd](https://github.com/Synerise/synerise-design/commit/d6d13fd192d85b009b6c5c3ad7d6ca58b577a028))
+* **button-group:** add styles to props splitMode ([91f1ebb](https://github.com/Synerise/synerise-design/commit/91f1ebb1fadc83e8a95edf3db97e9481651f7de5))
+* **button-group:** add styles to type of picked buttons ([a13a5a0](https://github.com/Synerise/synerise-design/commit/a13a5a01bed9521b8961cf1c3b2e82d8a7a97699))
+* **button-group:** add styles, add prop splitMode  and description to readme ([93c3e10](https://github.com/Synerise/synerise-design/commit/93c3e10aacb24be84d7d3390c66b0b9fc1e911ca))
+* **button-group:** change description in readme ([296ff9b](https://github.com/Synerise/synerise-design/commit/296ff9ba2ff4cb07a95fc1808e10db15ecab63b6))
+* **button-group:** remove unnecessary FlattenInterpolation ([c230ec4](https://github.com/Synerise/synerise-design/commit/c230ec4f8cba11cbc533e922c17215e722378d25))
+* **button-group:** remove unnecessary type ([c6b612b](https://github.com/Synerise/synerise-design/commit/c6b612b0926e300e51ff2bfe0ae1477992595d83))
+
+
+
+
+
 ## [0.5.70](https://github.com/Synerise/synerise-design/compare/@synerise/ds-button-group@0.5.69...@synerise/ds-button-group@0.5.70) (2020-11-18)
 
 
