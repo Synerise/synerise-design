@@ -275,7 +275,9 @@ describe('Table', () => {
 
   it('Should render auto title', () => {
     // ARRANGE
-    const { getByTestId } = renderWithProvider(<Table dataSource={props.dataSource} columns={props.columns} />);
+    const { getByTestId } = renderWithProvider(
+      <Table dataSource={props.dataSource} columns={props.columns} locale={{ pagination: { items: 'results' } }} />
+    );
     // ASSERT
     expect(getByTestId('ds-table-title').textContent).toEqual('6 results');
   });
