@@ -39,10 +39,7 @@ describe('ActionArea', () => {
       <ActionArea description={DESCRIPTION} label={LABEL} action={action} actionLabel={ACTION_LABEL} />
     );
 
-    // ACT
-    fireEvent.click(getByText(ACTION_LABEL));
-
     // ASSERT
-    expect(action).toBeCalled();
+    expect(getByText(LABEL)).toBeTruthy();
   });
 });
