@@ -35,7 +35,7 @@ const Copy: React.FC<CopyProps> = ({ copyValue, texts }) => {
       setTooltipTitle(textsObj.copyTooltip);
       setTooltipVisible(true);
     },
-    [setTooltipVisible]
+    [setTooltipVisible, textsObj]
   );
 
   const handleMouseLeave = React.useCallback(
