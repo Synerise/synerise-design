@@ -16,10 +16,12 @@ const DescriptionRow: React.FC<DescriptionRowProps> = ({
 }) => {
   return (
     <S.RowWrapper copyable={Boolean(copyValue)}>
-      <S.RowLabel className="ds-description-label">
-        {labelIcon}
-        <S.Label title={typeof label === 'string' ? label : undefined}>{label}</S.Label>
-      </S.RowLabel>
+      {label && (
+        <S.RowLabel className="ds-description-label">
+          {labelIcon}
+          <S.Label title={typeof label === 'string' ? label : undefined}>{label}</S.Label>
+        </S.RowLabel>
+      )}
       <S.RowValue>
         {starType !== undefined && <Star starType={starType} hasPrefixEl={Boolean(prefixEl)} />}
         {prefixEl && <S.PrefixWrapper className="ds-description-prefix">{prefixEl}</S.PrefixWrapper>}
