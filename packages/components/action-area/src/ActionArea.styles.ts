@@ -15,8 +15,11 @@ export const ActionAreaWrapper = styled.div<{ withMargin: boolean }>`
   margin-bottom: ${(props): string => (props.withMargin ? '24px' : '0')};
   .ds-title {
     margin-bottom: 8px;
+    text-align: center;
   }
   ${Description} {
     margin-bottom: 16px;
+    text-align: center;
+    word-break: break-word;
   }
 `;
