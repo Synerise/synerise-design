@@ -6,6 +6,7 @@ import SearchBar from '@synerise/ds-search-bar/';
 import BottomAction from './elements/BottomAction/BottomAction';
 import BackAction from './elements/BackAction/BackAction';
 import { Wrapper } from './Dropdown.styles';
+import TextTrigger from './elements/TextTrigger/TextTrigger';
 
 export type DropdownProps = AntDropDownProps;
 
@@ -15,6 +16,7 @@ class Dropdown extends React.Component<DropdownProps> {
   static BottomAction: typeof BottomAction = BottomAction;
   static BackAction: typeof BackAction = BackAction;
   static Button: typeof AntdDropdown.Button = AntdDropdown.Button;
+  static TextTrigger: typeof TextTrigger = TextTrigger;
 
   render(): React.ReactNode {
     return (
