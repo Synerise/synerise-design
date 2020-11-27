@@ -11,7 +11,6 @@ const stories = {
       description={text('Set description', 'Very long description')}
       actionLabel={text('Set button label', 'Define')}
       action={action('handle action')}
-      withMargin={boolean('With margin bottom', false)}
     />
   ),
 };
