@@ -78,7 +78,6 @@ export const Group = styled.div<{ size: Size }>`
 export const MoreInfo = styled.div<{ size: Size }>`
   ${(props): FlattenSimpleInterpolation | false => applyMoreInfoStyles(props.size)};
   margin-left: 8px;
-  border-radius: 50%;
   color: ${(props): string => props.theme.palette['grey-500']};
   display: flex;
   align-items: center;
