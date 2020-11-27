@@ -13,9 +13,11 @@ const AvatarLabel: React.FC<Props> = ({
   ellipsis,
   maxWidth,
   avatarSize,
+  starCell,
 }) => {
   return (
     <S.AvatarLabel>
+      {starCell && <S.StarCell>{starCell}</S.StarCell>}
       {icon && <S.Icon>{icon}</S.Icon>}
       <S.Avatar onClick={avatarAction} clickable={Boolean(avatarAction)}>
         {avatar}
