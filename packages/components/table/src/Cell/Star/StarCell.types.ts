@@ -7,4 +7,5 @@ export interface Props {
   theme: {
     [k: string]: string;
   };
+  starTooltip?: React.ReactNode;
 }
