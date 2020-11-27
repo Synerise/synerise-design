@@ -8,16 +8,12 @@ export const CellWrapper = styled.div`
 `;
 
 export const MoreInfo = styled.div`
-  width: 24px;
-  height: 24px;
   font-size: 11px;
   margin-left: 8px;
-  border-radius: 50%;
   color: ${(props): string => props.theme.palette['grey-500']};
   display: flex;
   align-items: center;
   justify-content: center;
-  line-height: 1.45;
   cursor: pointer;
   position: relative;
 `;

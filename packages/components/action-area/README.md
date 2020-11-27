@@ -32,5 +32,4 @@ import ActionArea from '@synerise/ds-action-area'
 | actionLabel | Label of action button                           | `string`/ `React.ReactNode` | -       |
 | description | Description of ActionArea                        | `string`/ `React.ReactNode` | -       |
 | label       | Label of ActionArea                              | `string`/ `React.ReactNode` | -       |
-| withMargin  | Adds bottom margin                               | `boolean`                   | -       |
 
