@@ -179,7 +179,7 @@ export const COLUMNS_WITH_LABELS = [
   {
     title: 'Relations',
     dataIndex: 'relations',
-    width: 254,
+    width: 400,
     textWrap: 'word-break',
     ellipsis: true,
     key: 'relations',
