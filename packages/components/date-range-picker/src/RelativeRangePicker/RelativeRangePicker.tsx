@@ -60,7 +60,8 @@ class RelativeRangePicker extends React.PureComponent<Props, State> {
   }
 
   onModeChange = (mode: string | null): void => {
-    this.setState({ currentGroup: mode });
+    const { currentRange } = this.state;
+    this.setState({ currentGroup: mode }, () => this.onChange(normalizeRange(currentRange)));
   };
 
   onTimestampChange = (timestamp: Date | undefined): void => {

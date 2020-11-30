@@ -69,6 +69,7 @@ const TimestampRange: React.FC<Props> = ({
           value={timestamp}
           onValueChange={(value): void => {
             setError(!value);
+            onTimestampChange && onTimestampChange(value);
           }}
           onApply={(date): void => {
             onTimestampChange && onTimestampChange(date);
