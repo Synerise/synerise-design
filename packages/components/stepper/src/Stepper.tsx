@@ -5,10 +5,11 @@ import Step from './Step/Step';
 
 const Stepper: React.FC<StepperProps> & StepperSubComponents = ({
   orientation = ORIENTATIONS.HORIZONTAL,
+  style,
   children,
 }) => {
   return (
-    <S.StepperWrapper className="ds-stepper" orientation={orientation}>
+    <S.StepperWrapper className="ds-stepper" orientation={orientation} style={style}>
       {children &&
         React.Children.map(children, (Child, index) => {
           return (

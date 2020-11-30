@@ -5,7 +5,7 @@ import { Step, StepContent, StepWrapper } from './Step/Step.styles';
 export const StepperWrapper = styled.div<{ orientation: StepperOrientation }>`
   display: flex;
   flex-direction: ${(props): string => (props.orientation === ORIENTATIONS.VERTICAL ? 'column' : 'row')};
-  align-items: flex-start;
+  align-items: center;
   justify-content: flex-start;
   width: auto;
   ${Step} {
@@ -32,6 +32,7 @@ export const StepDivider = styled.div`
   flex: 1;
   margin: 0 8px;
   max-width: 48px;
+  min-width: 8px;
   height: 24px;
   position: relative;
   &:after {
