@@ -2,6 +2,7 @@ import * as React from 'react';
 import { focusWithArrowKeys, useOnClickOutside } from '@synerise/ds-utils';
 import Dropdown from '@synerise/ds-dropdown';
 import Menu from '@synerise/ds-menu';
+import { select } from '@storybook/addon-knobs';
 
 const Default: React.FC = () => {
   const data = [{ text: 'Preview' }, { text: 'Edit' }, { text: 'Duplicate' }];
@@ -27,7 +28,12 @@ const Default: React.FC = () => {
           </Dropdown.Wrapper>
         }
       >
-        <Dropdown.TextTrigger size={5} value={'Select'} />
+        <Dropdown.TextTrigger
+          onClick={() => setDropdownVisible(!dropdownVisible)}
+          size={select('Select size of trigger', [1, 2, 3, 4, 5, 6], 5)}
+          value={'Select'}
+          inactiveColor={select('Select inactive color', ['blue-600', 'grey-600'], 'blue-600')}
+        />
       </Dropdown>
     </div>
   );
