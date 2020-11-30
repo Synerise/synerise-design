@@ -1,19 +1,18 @@
 import * as React from 'react';
 import * as S from './Stepper.styles';
-import { StepperProps, TYPES } from './Stepper.types';
+import { StepperProps, ORIENTATIONS } from './Stepper.types';
 
-const Stepper: React.FC<StepperProps> = ({ type = TYPES.HORIZONTAL, children }) => {
+const Stepper: React.FC<StepperProps> = ({ orientation = ORIENTATIONS.HORIZONTAL, children }) => {
   return (
-    <S.StepperWrapper className="ds-stepper" type={type}>
+    <S.StepperWrapper className="ds-stepper" orientation={orientation}>
       {children &&
         React.Children.map(children, (Child, index) => {
           return (
             <>
               {Child}
               {/*
-              // @ts-ignore
-              */}
-              {type === 'horizontal' && index < children.length - 1 && <S.StepDivider />}
+              // @ts-ignore */}
+              {orientation === ORIENTATIONS.HORIZONTAL && index < children.length - 1 && <S.StepDivider />}
             </>
           );
         })}

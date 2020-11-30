@@ -1,13 +1,13 @@
-export type StepperType = 'vertical' | 'horizontal' | string;
+export type StepperOrientation = 'vertical' | 'horizontal' | string;
 
-export const TYPES: {
-  VERTICAL: StepperType;
-  HORIZONTAL: StepperType;
+export const ORIENTATIONS: {
+  VERTICAL: StepperOrientation;
+  HORIZONTAL: StepperOrientation;
 } = {
   VERTICAL: 'vertical',
   HORIZONTAL: 'horizontal',
 };
 
 export type StepperProps = {
-  type?: StepperType;
+  orientation?: StepperOrientation;
 };

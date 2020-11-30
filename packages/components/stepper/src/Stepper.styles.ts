@@ -1,16 +1,15 @@
 import styled from 'styled-components';
-import { StepperType } from './Stepper.types';
+import { ORIENTATIONS, StepperOrientation } from './Stepper.types';
 import { Step, StepContent, StepWrapper } from './Step/Step.styles';
 
-// eslint-disable-next-line import/prefer-default-export
-export const StepperWrapper = styled.div<{ type: StepperType }>`
+export const StepperWrapper = styled.div<{ orientation: StepperOrientation }>`
   display: flex;
-  flex-direction: ${(props): string => (props.type === 'vertical' ? 'column' : 'row')};
+  flex-direction: ${(props): string => (props.orientation === ORIENTATIONS.VERTICAL ? 'column' : 'row')};
   align-items: flex-start;
   justify-content: flex-start;
   width: auto;
   ${Step} {
-    align-items: ${(props): string => (props.type === 'vertical' ? 'flex-start' : 'center')};
+    align-items: ${(props): string => (props.orientation === ORIENTATIONS.VERTICAL ? 'flex-start' : 'center')};
 
     &:first-of-type {
       margin-top: 0;
@@ -18,13 +17,13 @@ export const StepperWrapper = styled.div<{ type: StepperType }>`
     &:last-of-type {
       margin-bottom: 0;
     }
-    flex-direction: ${(props): string => (props.type === 'vertical' ? 'column' : 'row')};
+    flex-direction: ${(props): string => (props.orientation === ORIENTATIONS.VERTICAL ? 'column' : 'row')};
   }
   ${StepWrapper} {
-    margin: ${(props): string => (props.type === 'vertical' ? '8px 0' : '0')};
+    margin: ${(props): string => (props.orientation === ORIENTATIONS.VERTICAL ? '8px 0' : '0')};
   }
   ${StepContent} {
-    display: ${(props): string => (props.type === 'vertical' ? 'flex' : 'none')};
+    display: ${(props): string => (props.orientation === ORIENTATIONS.VERTICAL ? 'flex' : 'none')};
   }
 `;
 
