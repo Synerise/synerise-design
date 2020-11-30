@@ -12,6 +12,9 @@ import Avatar from '@synerise/ds-avatar';
 import Badge from '@synerise/ds-badge';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import Stepper from '@synerise/ds-stepper';
+import Dropdown from '@synerise/ds-dropdown';
+import Menu from '@synerise/ds-menu';
+import MenuItem from '@synerise/ds-menu/dist/Elements/Item/MenuItem';
 
 const shapes = ['circle', 'square'] as const;
 const statuses = ['active', 'inactive', 'blocked'] as const;
@@ -111,6 +114,90 @@ const stories = {
           <Icon component={<ArrowRightCircleM />} color={theme.palette['grey-600']} />
           More details
         </Button>
+      }
+      avatar={
+        <Badge status="active">
+          <Avatar
+            backgroundColor={select('backgroundColors', backgroundColors, 'red')}
+            backgroundColorHue={'100'}
+            disabled={boolean('disabled', false)}
+            hasStatus
+            shape={select('shape', shapes, 'circle')}
+            size={select('size', ['small', 'medium', 'large', 'extraLarge'], 'large')}
+          >
+            <Icon component={<MailM />} color={theme.palette['red-600']} />
+          </Avatar>
+        </Badge>
+      }
+      tabs={
+        <Tabs
+          tabs={tabs}
+          activeTab={store.state.activeTab}
+          handleTabClick={(index: number) => store.set({ activeTab: index })}
+          configuration={{
+            label: 'Manage dashboards',
+            action: action('Manage dashboards click'),
+          }}
+        />
+      }
+      rightSide={
+        <>
+          <Button>Duplicate</Button>
+          <Button mode={'split'} type={'primary'}>
+            Edit
+            <Icon component={<AngleDownS />} color={'#ffffff'} />
+          </Button>
+        </>
+      }
+    />
+  )),
+  withDropdown: withState({
+    activeTab: 0,
+    value: '',
+    dropdownVisible: false,
+    selectedSpace: 'CRM',
+  })(({ store }) => (
+    <PageHeader
+      onGoBack={action('goBack')}
+      bar={
+        <>
+          <Button type="tertiary">Function</Button>
+        </>
+      }
+      inlineEdit={{
+        name: 'name-of-input',
+        value: store.state.value,
+        maxLength: 60,
+        handleOnChange: event => {
+          store.set({ value: event.target.value });
+        },
+        handleOnBlur: () => action('onBlur'),
+        handleOnEnterPress: () => action('onEnterPress'),
+        placeholder: 'Example text',
+        size: 'normal',
+      }}
+      more={
+        <Dropdown
+          overlay={
+            <Menu asDropdownMenu>
+              <MenuItem onClick={() => store.set({ selectedSpace: 'CRM', dropdownVisible: false })}>CRM</MenuItem>
+              <MenuItem onClick={() => store.set({ selectedSpace: 'Campaign', dropdownVisible: false })}>
+                Campaign
+              </MenuItem>
+              <MenuItem onClick={() => store.set({ selectedSpace: 'Automation', dropdownVisible: false })}>
+                Automation
+              </MenuItem>
+            </Menu>
+          }
+          visible={store.state.dropdownVisible}
+        >
+          <Dropdown.TextTrigger
+            size={2}
+            inactiveColor="blue-600"
+            value={store.state.selectedSpace}
+            onClick={() => store.set({ dropdownVisible: !store.state.dropdownVisible })}
+          />
+        </Dropdown>
       }
       avatar={
         <Badge status="active">
