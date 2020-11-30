@@ -18,7 +18,7 @@ const StartCell: React.FC<Props> = ({ children, active, onClick, theme,starToolt
 
   return (
     <S.StarCell>
-      <Tooltip title={starTooltip}>
+      <Tooltip align={{ offset: [0, 8]}} title={starTooltip}>
         <S.StarredIcon
           active={active}
           component={icon}

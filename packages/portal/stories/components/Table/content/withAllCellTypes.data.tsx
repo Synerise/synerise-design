@@ -459,7 +459,7 @@ export const COLUMNS_WITH_AVATARS = [
   },
   },
   {
-    title: 'Avatar with title and description',
+    title: 'Avatar with label and description',
     dataIndex: 'avatar',
     key: 'avatar',
     width: 254,
@@ -495,7 +495,7 @@ export const COLUMNS_WITH_AVATARS = [
   },
   },
   {
-    title: 'Avatar with title and meta',
+    title: 'Avatar with label and meta',
     dataIndex: 'avatar',
     key: 'avatar',
     width: 254,
