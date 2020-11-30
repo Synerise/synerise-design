@@ -15,6 +15,7 @@ export const ActionAreaWrapper = styled.div`
   .ds-title {
     margin-bottom: 8px;
     text-align: center;
+    word-break: break-word;
   }
   ${Description} {
     margin-bottom: 16px;
