@@ -7,5 +7,5 @@ export type StepProps = {
   done?: boolean;
   validated?: boolean;
   tooltip?: string | React.ReactNode;
-  onClick: () => void;
+  onClick?: () => void;
 };

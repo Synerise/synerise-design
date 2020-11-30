@@ -1,7 +1,6 @@
 import * as React from 'react';
 
 import Stepper from '@synerise/ds-stepper';
-import Step from '@synerise/ds-stepper/dist/Step/Step';
 import { withState } from '@dump247/storybook-state';
 import { boolean, select } from '@storybook/addon-knobs';
 import Radio from '@synerise/ds-radio';
@@ -84,7 +83,7 @@ const stories = {
     return (
       <Stepper type={select('Select stepper type', STEPPER_TYPES, 'horizontal')}>
         {steps.map((step, index) => (
-          <Step
+          <Stepper.Step
             onClick={() => setActiveStep(index)}
             label={step.label}
             stepNumber={step.number}

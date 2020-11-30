@@ -8,6 +8,10 @@ import { StepProps } from './Step.types';
 import * as S from './Step.styles';
 
 const Step: React.FC<StepProps> = ({ stepNumber, label, active, done, validated, tooltip, onClick, children }) => {
+  const handleClick = React.useCallback(() => {
+    onClick && onClick();
+  }, [onClick]);
+
   return (
     <S.Step
       className="ds-step"
@@ -16,7 +20,7 @@ const Step: React.FC<StepProps> = ({ stepNumber, label, active, done, validated,
       validated={Boolean(validated)}
       hasChildren={Boolean(children)}
     >
-      <S.StepWrapper onClick={onClick}>
+      <S.StepWrapper onClick={handleClick} clickable={Boolean(onClick)}>
         <S.StepPrefix>
           {done && !validated ? <Icon component={<CheckS />} color={theme.palette['green-600']} /> : stepNumber}
         </S.StepPrefix>

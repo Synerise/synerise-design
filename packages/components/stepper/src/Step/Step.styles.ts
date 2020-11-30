@@ -24,7 +24,7 @@ export const StepLabel = styled.span`
   flex-wrap: nowrap;
 `;
 
-export const StepWrapper = styled.div<{ onClick: () => void }>`
+export const StepWrapper = styled.div<{ clickable: boolean }>`
   display: flex;
   flex-direction: row;
   align-items: center;
