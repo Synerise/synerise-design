@@ -2,11 +2,24 @@ import * as React from 'react';
 
 import Stepper from '@synerise/ds-stepper';
 import { withState } from '@dump247/storybook-state';
-import { boolean, select } from '@storybook/addon-knobs';
+import { boolean, select, text } from '@storybook/addon-knobs';
 import Radio from '@synerise/ds-radio';
 
 const decorator = storyFn => (
-  <div style={{ padding: 20, width: '100vw', minWidth: '100%', position: 'absolute', top: 0, left: 0 }}>
+  <div
+    style={{
+      padding: 20,
+      width: '100vw',
+      minWidth: '100%',
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      height: '100vh',
+    }}
+  >
     {storyFn()}
   </div>
 );
@@ -29,7 +42,6 @@ const steps = [
   {
     number: 2,
     label: 'Settings',
-    tooltip: 'Tooltip info',
     children: (
       <Radio.Group>
         <Radio name="radio" value="radio" description="Description">
@@ -80,8 +92,9 @@ const stories = {
     const setActiveStep = (index: number) => {
       store.set({ activeStep: index });
     };
+    const showTooltip = boolean('Show tooltip', false);
     return (
-      <Stepper type={select('Select stepper type', STEPPER_TYPES, 'horizontal')}>
+      <Stepper orientation={select('Select stepper type', STEPPER_TYPES, 'horizontal')}>
         {steps.map((step, index) => (
           <Stepper.Step
             onClick={() => setActiveStep(index)}
@@ -90,7 +103,7 @@ const stories = {
             active={index === store.state.activeStep}
             done={index < store.state.activeStep}
             validated={boolean('Set validated', false)}
-            tooltip={step.tooltip}
+            tooltip={showTooltip && text('Set tooltip text', 'Tooltip info')}
             children={step.children}
           />
         ))}
