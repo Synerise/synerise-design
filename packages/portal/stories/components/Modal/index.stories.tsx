@@ -6,6 +6,7 @@ import blank from './blank/blank';
 import defaultStory from './defaultStory/defaultStory';
 import withHeaders from './withHeaders/withHeaders';
 import withFooters from './withFooters/withFooters';
+import withStepper from './withStepper';
 
 export const sizes = {
   Auto: null,
@@ -13,7 +14,7 @@ export const sizes = {
   Medium: 'medium',
   Large: 'large',
   'Extra Large': 'extraLarge',
-  'Full size':'fullSize'
+  'Full size': 'fullSize',
 };
 
 export const bodyBackgroundColors = {
@@ -44,14 +45,15 @@ export const propsWithKnobs = () => ({
 });
 
 const stories = {
-  default:defaultStory,
+  default: defaultStory,
   blank,
   withHeaders,
-  withFooters
+  withFooters,
+  withStepper,
 };
 
 export default {
-name: 'Components/Modal',
+  name: 'Components/Modal',
   stories,
   Component: Modal,
 };

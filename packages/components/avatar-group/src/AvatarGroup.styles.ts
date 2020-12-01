@@ -24,7 +24,6 @@ const MARGINS = {
 
 const applyMoreInfoStyles = (size: Size): FlattenSimpleInterpolation => {
   return css`
-    width: ${SIZES[`${size}`] || '32px'};
     height: ${SIZES[`${size}`] || '32px'};
     font-size: ${FONT_SIZES[`${size}`] || '13px'};
   `;
