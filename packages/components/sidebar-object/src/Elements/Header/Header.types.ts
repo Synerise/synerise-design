@@ -5,6 +5,9 @@ export type HeaderProps = {
   avatar: React.ReactNode;
   preffix: React.ReactNode;
   tabs: React.ReactNode;
+  additionalNode?: React.ReactNode;
+  type?: 'readonly' | 'editable';
+  typeButtons?: 'twoButtons' | 'withNavigation';
   nextTooltip?: React.ReactNode | string;
   previousTooltip?: React.ReactNode | string;
   crudsTooltip?: React.ReactNode | string;
@@ -34,4 +37,5 @@ export type HeaderTexts = {
   duplicateIcon: string;
   moveIcon: string;
   editIcon: string;
+  singleTitle: string;
 };

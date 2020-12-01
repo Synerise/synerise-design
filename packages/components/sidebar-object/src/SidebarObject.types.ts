@@ -6,6 +6,9 @@ import { HeaderTexts } from './Elements/Header/Header.types';
 export type SidebarObjectProps = {
   avatar?: React.ReactNode;
   headerPreffix?: React.ReactNode;
+  additionalNode?: React.ReactNode;
+  headerType: 'readonly' | 'editable';
+  typeButtons: 'twoButtons' | 'withNavigation';
   headerTabs: TabItem & {content?: React.ReactNode}[];
   inputObjectIdKey?: string;
   inputObject: {
