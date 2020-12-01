@@ -49,5 +49,5 @@ import SidebarObject from '@synerise/ds-sidebar-object'
 | handleTabClick       | Callback executed when you click on Tab             | (index: number) => void        | -       |
 | footer               | Callback executed to show footer                    | React.ReactNode                | -       |
 | additionalNode       | Callback executed to show additional element        | React.ReactNode                | -       |
-| headerType           | Prop to choose editable title                       | ‘readonly’ | ‘editable’        | -       |
-| typeButtons          | Prop to choose type of buttons                      | ‘twoButtons’ | ‘withNavigation’| -       |
+| headerType           | Prop to choose editable title                       | ‘readonly’ , ‘editable’        | -       |
+| typeButtons          | Prop to choose type of buttons                      | ‘twoButtons’ , ‘withNavigation’| -       |

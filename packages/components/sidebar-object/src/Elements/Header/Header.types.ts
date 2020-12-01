@@ -6,8 +6,8 @@ export type HeaderProps = {
   preffix: React.ReactNode;
   tabs: React.ReactNode;
   additionalNode?: React.ReactNode;
-  type?: 'readonly' | 'editable';
-  typeButtons?: 'twoButtons' | 'withNavigation';
+  type?: type;
+  typeButtons?: typeButtons;
   nextTooltip?: React.ReactNode | string;
   previousTooltip?: React.ReactNode | string;
   crudsTooltip?: React.ReactNode | string;
@@ -28,6 +28,8 @@ export type HeaderProps = {
   inlineEditInputProps?: InputProps;
   name?: string | number;
   onRename?: (name: string) => void;
+  onCancelClick?: () => void;
+  onApplyClick?: () => void;
 };
 
 export type HeaderTexts = {
@@ -38,4 +40,13 @@ export type HeaderTexts = {
   moveIcon: string;
   editIcon: string;
   singleTitle: string;
+  cancelButton: string;
+  applyButton: string;
+  addFolder: string;
+};
+export type type = {
+  type?: 'readonly' | 'editable';
+};
+export type typeButtons = {
+  typeButtons?: 'twoButtons' | 'withNavigation';
 };

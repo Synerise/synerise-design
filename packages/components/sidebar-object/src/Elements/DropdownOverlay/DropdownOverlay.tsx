@@ -65,13 +65,11 @@ const DropdownOverlay: React.FC<Props> = ({
       {onAddFolderClick && (
         <Dropdown.BottomAction
           onClickAction={(): void => onAddFolderClick(searchValue)}
-          // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-          // @ts-ignore
           style={{padding: '8px'}}
         >
           <Button type="ghost" mode="icon-label">
             <Icon component={<Add3M />} size={24} color={theme.palette['grey-500']} />
-            <div>Add folder</div>
+            <div>{texts.addFolder}</div>
           </Button>
         </Dropdown.BottomAction>
       )}

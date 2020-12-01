@@ -31,6 +31,8 @@ const SidebarObject: React.FC<SidebarObjectProps> = ({
   activeTab= 0,
   headerType,
   typeButtons,
+  onCancelClick,
+  onApplyClick,
 }) => {
   return (
     <S.SidebarObjectWrapper>
@@ -50,6 +52,8 @@ const SidebarObject: React.FC<SidebarObjectProps> = ({
           onId={onId}
           texts={texts}
           onCloseClick={onCloseClick}
+          onCancelClick={onCancelClick}
+          onApplyClick={onApplyClick}
           inputObject={inputObject}
           inputObjectIdKey={inputObjectIdKey || 'id'}
           inlineEditInputProps={inlineEditInputProps}

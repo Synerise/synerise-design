@@ -94,6 +94,8 @@ const stories = {
       deleteIcon: 'Delete',
       duplicateIcon: 'Duplicate',
       moveIcon: 'Move to',
+      cancelButton: 'Cancel',
+      applyButton: 'Apply',
     }
 
     const TABS = [
@@ -133,6 +135,8 @@ const stories = {
               </Badge>
             }
             onCloseClick={() => setDrawerVisible(false)}
+            onApplyClick={() =>{}}
+            onCancelClick={() =>{}}
             texts={texts}
             headerPreffix={renderBackIcon(showBackIcon, () => setDrawerVisible(false))}
             onArrowUp={showIcon? () => {}: null}
@@ -229,6 +233,9 @@ const stories = {
       labelName: 'Description',
       labelTooltip: 'Description',
       suffixTooltip: 'Edit',
+      cancelButton: 'Cancel',
+      applyButton: 'Apply',
+      addFolder: 'Add folder',
     }
     const contentTags = <Tags
       data={tags}

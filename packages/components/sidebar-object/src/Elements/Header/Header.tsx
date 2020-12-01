@@ -43,6 +43,8 @@ const Header: React.FC<HeaderProps> = ({
   additionalNode,
   type,
   typeButtons,
+  onCancelClick,
+  onApplyClick,
 }) => {
   const [dropdownVisible, setDropdownVisible] = React.useState(false);
   const ref = React.useRef<HTMLDivElement>(null);
@@ -52,6 +54,10 @@ const Header: React.FC<HeaderProps> = ({
   const headerTypes = {
     readonly: 'readonly',
     editable: 'editable',
+  };
+  const buttonTypes = {
+    twoButtons: 'twoButtons',
+    withNavigation: 'withNavigation',
   };
   const renderBackTitle = (titleType: typeof type): React.ReactNode => {
     if (titleType === headerTypes.editable) {
@@ -72,10 +78,6 @@ const Header: React.FC<HeaderProps> = ({
       );
     }
     return <S.SingleTitle>{name}</S.SingleTitle>;
-  };
-  const buttonTypes = {
-    twoButtons: 'twoButtons',
-    withNavigation: 'withNavigation',
   };
   const renderActionButtons = (typesOfButtons: typeof typeButtons): React.ReactNode => {
     if (typesOfButtons === buttonTypes.withNavigation) {
@@ -179,10 +181,10 @@ const Header: React.FC<HeaderProps> = ({
     return (
       <>
         <S.ButtonWrapper>
-          <Button type="ghost" onClick={onCloseClick}> Cancel </Button>
+          <Button type="ghost" onClick={onCancelClick}> {texts.cancelButton} </Button>
         </S.ButtonWrapper>
         <S.ButtonWrapper>
-          <Button type="primary"> Apply </Button>
+          <Button type="primary" onClick={onApplyClick}> {texts.applyButton} </Button>
         </S.ButtonWrapper>
       </>
     );
