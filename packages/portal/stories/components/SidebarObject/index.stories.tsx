@@ -176,7 +176,7 @@ const stories = {
     const [tags, setTags] = React.useState<Array<any>>(allTags);
     const [selected, setSelected] = React.useState<Array<any>>(allTags.slice(0, 2));
     const [description, setDescription] = React.useState('');
-    const showBackIcon = boolean('Set back icon',false);
+    const showBackIcon = (false);
     const shapes = {
       'Default Round': TagShape.DEFAULT_ROUND,
       'Default Square': TagShape.DEFAULT_SQUARE,
