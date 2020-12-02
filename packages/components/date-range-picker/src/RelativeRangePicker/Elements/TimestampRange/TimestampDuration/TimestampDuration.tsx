@@ -14,14 +14,12 @@ const TimestampDuration: React.FC<Props> = ({
   value,
   onDurationUnitChange,
   unit,
-  texts
+  texts,
 }) => {
   const durationModiferValues = Object.values(DURATION_MODIFIERS);
   return (
     <>
-      <S.Title>
-        {texts.timestampTill}
-      </S.Title>
+      <S.Title>{texts.timestampTill}</S.Title>
       <S.InputSelectGroup compact>
         <Select
           className="ds-select-duration-type"
@@ -31,6 +29,7 @@ const TimestampDuration: React.FC<Props> = ({
           }}
           dropdownStyle={{ minWidth: '125px' }}
           dropdownAlign={{ points: ['bl', 'tl'], offset: [0, SELECT_DROPDOWN_OFFSET] }}
+          getPopupContainer={(node): HTMLElement => (node.parentElement != null ? node.parentElement : document.body)}
         >
           {durationModiferValues.map(modifier => (
             <Select.Option key={modifier} value={modifier}>
@@ -51,6 +50,7 @@ const TimestampDuration: React.FC<Props> = ({
           dropdownStyle={{ minWidth: '125px' }}
           onChange={(type): void => onDurationUnitChange(type as string)}
           dropdownAlign={{ points: ['bl', 'tl'], offset: [0, SELECT_DROPDOWN_OFFSET] }}
+          getPopupContainer={(node): HTMLElement => (node.parentElement != null ? node.parentElement : document.body)}
         >
           {CONST.RELATIVE_TYPES.map(type => (
             <Select.Option key={type} value={type}>

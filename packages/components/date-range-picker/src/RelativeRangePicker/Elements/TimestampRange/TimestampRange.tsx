@@ -4,6 +4,8 @@ import * as S from '../../RelativeRangePicker.styles';
 import TimestampDuration from './TimestampDuration/TimestampDuration';
 import { Props } from './TimestampRange.types';
 import ADD from '../../../dateUtils/add';
+import START_OF from '../../../dateUtils/startOf';
+import END_OF from '../../../dateUtils/endOf';
 import DIFFERENCE from '../../../dateUtils/difference';
 import { DURATION_MODIFIERS } from '../../../constants';
 import { RelativeUnits, Duration } from '../../../date.types';
@@ -18,7 +20,7 @@ const TimestampRange: React.FC<Props> = ({
   timestamp,
 }: Props) => {
   const [durationModifier, setDurationModifier] = React.useState<string>(DURATION_MODIFIERS.LAST);
-  const [durationValue, setDurationValue] = React.useState<number>(1);
+  const [durationValue, setDurationValue] = React.useState<number>(currentRange.duration.value);
   const [durationUnit, setDurationUnit] = React.useState<string>(currentRange.duration.type);
   const [error, setError] = React.useState<boolean>(!timestamp);
 
@@ -30,10 +32,9 @@ const TimestampRange: React.FC<Props> = ({
     if (date) {
       const NOW = new Date();
       let rangeStart, newOffset, offsetToTimestamp;
-      const future = fnsIsAfter(date, NOW);
-
+      const future = fnsIsAfter(NOW, date);
       if (durationModifier === DURATION_MODIFIERS.NEXT) {
-        rangeStart = ADD[duration.type](date, Number(future));
+        rangeStart = END_OF[duration.type](ADD[duration.type](date, -Number(future)));
         newOffset = DIFFERENCE[duration.type](NOW, rangeStart);
         offsetToTimestamp = {
           ...currentRange,
@@ -43,7 +44,7 @@ const TimestampRange: React.FC<Props> = ({
         };
       }
       if (durationModifier === DURATION_MODIFIERS.LAST) {
-        rangeStart = ADD[duration.type](date, Number(future));
+        rangeStart = START_OF[duration.type](ADD[duration.type](date, -Number(future)));
         newOffset = DIFFERENCE[duration.type](NOW, rangeStart);
         offsetToTimestamp = {
           ...currentRange,

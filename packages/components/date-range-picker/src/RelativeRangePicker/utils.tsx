@@ -5,6 +5,7 @@ import * as React from 'react';
 import { DateRange, RelativeDateRange } from '../date.types';
 import * as CONST from '../constants';
 import { Props } from './RelativeRangePicker.types';
+import { RelativeMode } from '../DateRangePicker.types';
 
 export const setOffsetValue = (value: number | string, currentRange: RelativeDateRange): RelativeDateRange => {
   const updatedValue = value === '' ? null : value;
@@ -44,7 +45,7 @@ export const getDefaultCustomRange = (currentGroup: string | null): RelativeDate
 
 export const isAbsolute = (value: DateRange): boolean => value.type === CONST.ABSOLUTE && !value.from && !value.to;
 
-export function getCurrentGroupFromProps({ relativeModes }: Props): string | null {
+export function getCurrentGroupFromProps({ relativeModes }: Props): RelativeMode | null {
   if (!!relativeModes && relativeModes?.length > 0) {
     return relativeModes[0];
   }

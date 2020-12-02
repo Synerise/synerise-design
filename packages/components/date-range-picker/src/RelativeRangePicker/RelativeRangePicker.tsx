@@ -18,7 +18,7 @@ import {
   setDurationValue,
 } from './utils';
 import { fnsIsAfter } from '../fns';
-import { normalizeRange } from '../utils';
+import { DEFAULT_RANGE, normalizeRange } from '../utils';
 import { RelativeMode } from '../DateRangePicker.types';
 
 class RelativeRangePicker extends React.PureComponent<Props, State> {
@@ -59,9 +59,8 @@ class RelativeRangePicker extends React.PureComponent<Props, State> {
     return state;
   }
 
-  onModeChange = (mode: string | null): void => {
-    const { currentRange } = this.state;
-    this.setState({ currentGroup: mode }, () => this.onChange(normalizeRange(currentRange)));
+  onModeChange = (mode: RelativeMode | null): void => {
+    this.setState({ currentGroup: mode }, () => this.onChange(DEFAULT_RANGE));
   };
 
   onTimestampChange = (timestamp: Date | undefined): void => {

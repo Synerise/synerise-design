@@ -29,9 +29,10 @@ export const normalizeRange = (range: DateRange): DateRange => {
       left = ADD[duration.type](START_OF[duration.type](right), 1 - duration.value);
     }
 
-    const from = fnsMin([legacyParse(left), right]);
-    const to = fnsMax([legacyParse(left), right]);
-    return { ...range, type: RELATIVE, from, to, offset, duration, future };
+    const from = fnsMin([left, right]);
+    const to = fnsMax([left, right]);
+    const normalizedRange = { ...range, type: RELATIVE, from, to, offset, duration, future };
+    return normalizedRange as DateRange;
   }
   const from = range.from ? legacyParse(range.from) : undefined;
   const to = range.to ? legacyParse(range.to) : undefined;
@@ -106,3 +107,11 @@ export const formatTime = (seconds: number, formatString = 'HH:mm:ss'): string =
       .format(formatString)
   );
 };
+
+export const DEFAULT_RANGE = normalizeRange({
+  to: undefined,
+  from: undefined,
+  type: 'RELATIVE',
+  offset: { value: 0, type: 'DAYS' },
+  duration: { value: 1, type: 'DAYS' },
+});

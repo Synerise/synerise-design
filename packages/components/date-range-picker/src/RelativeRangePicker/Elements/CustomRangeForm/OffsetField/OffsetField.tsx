@@ -16,6 +16,11 @@ const OffsetField: React.FC<Props> = ({
   texts,
 }: Props) => {
   const { offset } = currentRange;
+  React.useEffect(() => {
+    if (offset?.value < 0) {
+      handleOffsetValueChange(0);
+    }
+  }, [offset, handleOffsetValueChange]);
   return (
     <>
       {' '}
