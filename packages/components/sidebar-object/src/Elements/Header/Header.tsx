@@ -22,6 +22,15 @@ import { HeaderProps } from './Header.types';
 import * as S from './Header.style';
 import { DropdownWrapper, MenuWrapper } from './Header.style';
 
+const HEADER_TYPES = {
+  readonly: 'readonly',
+  editable: 'editable',
+};
+const BUTTON_TYPES = {
+  twoButtons: 'twoButtons',
+  withNavigation: 'withNavigation',
+};
+
 const Header: React.FC<HeaderProps> = ({
   avatar,
   preffix,
@@ -51,16 +60,8 @@ const Header: React.FC<HeaderProps> = ({
   useOnClickOutside(ref, () => {
     setDropdownVisible(false);
   });
-  const headerTypes = {
-    readonly: 'readonly',
-    editable: 'editable',
-  };
-  const buttonTypes = {
-    twoButtons: 'twoButtons',
-    withNavigation: 'withNavigation',
-  };
   const renderBackTitle = (titleType: typeof type): React.ReactNode => {
-    if (titleType === headerTypes.editable) {
+    if (titleType === HEADER_TYPES.editable) {
       return (
         <S.StyledInlineEdit
           disabled={!onRename}
@@ -80,7 +81,7 @@ const Header: React.FC<HeaderProps> = ({
     return <S.SingleTitle>{name}</S.SingleTitle>;
   };
   const renderActionButtons = (typesOfButtons: typeof typeButtons): React.ReactNode => {
-    if (typesOfButtons === buttonTypes.withNavigation) {
+    if (typesOfButtons === BUTTON_TYPES.withNavigation) {
       return (
         <>
           {onArrowUp && (
