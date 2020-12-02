@@ -40,5 +40,11 @@ export const OverviewWrapper = styled.div`
 `;
 export const SingleTitle = styled.div`
 font-size: 18px;
-padding-left: 2px;
+padding-left: 1px;
+padding-top: 1px;
+max-width: 350px;
+overflow: hidden;
+text-overflow: ellipsis;
+white-space: nowrap;
+
 `;
