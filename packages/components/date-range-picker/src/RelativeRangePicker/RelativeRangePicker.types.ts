@@ -13,12 +13,8 @@ export type Props = {
   texts: Texts;
   relativeModes?: RelativeMode[];
 };
-export type GroupRange = {
-  PAST?: DateRange[];
-  FUTURE?: DateRange[];
-};
 export type State = {
-  currentGroup: string | null;
+  currentGroup: RelativeMode | null;
   future: boolean;
   past: boolean;
   showCustomForm: boolean;
