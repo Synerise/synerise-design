@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar-object@0.3.5...@synerise/ds-sidebar-object@0.3.6) (2020-12-02)
+
+
+### Bug Fixes
+
+* **sidebar-object:** add prop to add new element to it also to pick read only title or edit able ([4a131fc](https://github.com/Synerise/synerise-design/commit/4a131fcfc846da8d22472349b2907029f487bddc))
+* **sidebar-object:** add props to buttons ([cd053f9](https://github.com/Synerise/synerise-design/commit/cd053f963dff87dad60ddd9f3eacd10216cd9a2c))
+* **sidebar-object:** change menu styles ([a5a7bae](https://github.com/Synerise/synerise-design/commit/a5a7baef57485ceab993ab55fc1a1f16e33ea8fa))
+* **sidebar-object:** fix styles of SingleTitle ([8881792](https://github.com/Synerise/synerise-design/commit/88817927e041c05304de512cd1f4960563608c1e))
+* **sidebar-object:** rename headerTypes and ButtonTypes ([17947b9](https://github.com/Synerise/synerise-design/commit/17947b93b5e4ed0236c955a814fdc4db4a739ea2))
+
+
+
+
+
 ## [0.3.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar-object@0.3.4...@synerise/ds-sidebar-object@0.3.5) (2020-11-25)
 
 **Note:** Version bump only for package @synerise/ds-sidebar-object

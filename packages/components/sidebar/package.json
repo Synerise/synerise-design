@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-sidebar",
-  "version": "0.2.78",
+  "version": "0.2.79",
   "description": "Sidebar UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -25,11 +25,11 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-block": "^0.3.76",
-    "@synerise/ds-button": "^0.13.13",
-    "@synerise/ds-card": "^0.7.28",
+    "@synerise/ds-block": "^0.3.77",
+    "@synerise/ds-button": "^0.13.14",
+    "@synerise/ds-card": "^0.7.29",
     "@synerise/ds-icon": "^0.34.0",
-    "@synerise/ds-typography": "^0.9.5",
+    "@synerise/ds-typography": "^0.10.0",
     "immutability-helper": "^3.0.1",
     "react-dnd": "^10.0.2",
     "react-dnd-html5-backend": "^10.0.2"

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-typography@0.9.5...@synerise/ds-typography@0.10.0) (2020-12-02)
+
+
+### Features
+
+* **typography:** add className ds-title to Title component ([3a58b8d](https://github.com/synerise/synerise-design/commit/3a58b8d8465c6cd1dd25f3e0875916bf16d84774))
+
+
+
+
+
 ## [0.9.5](https://github.com/synerise/synerise-design/compare/@synerise/ds-typography@0.9.4...@synerise/ds-typography@0.9.5) (2020-11-12)
 
 **Note:** Version bump only for package @synerise/ds-typography

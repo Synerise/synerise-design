@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.19](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.5.18...@synerise/ds-date-range-picker@0.5.19) (2020-12-02)
+
+
+### Bug Fixes
+
+* **date-range-picker:** default settings when switching modes ([bb92e30](https://github.com/Synerise/synerise-design/commit/bb92e30911545ddcfc917b9ae6211a1214f01e4d))
+* **date-range-picker:** fixed collapsed state inside addons ([d4285d8](https://github.com/Synerise/synerise-design/commit/d4285d8a9d6cb4ec64345d820a9022cd188a8b24))
+* **date-range-picker:** fixed tests after refactor ([daca2bb](https://github.com/Synerise/synerise-design/commit/daca2bb0b29ec6788ca9efd638bf428290872852))
+* **date-range-picker:** fixed validation state in timestamp range picker ([68f568d](https://github.com/Synerise/synerise-design/commit/68f568d214d30a049a2e04dfe3d36a2a472163bd))
+* **date-range-picker:** show rangeform only in custom mode ([7a44d5b](https://github.com/Synerise/synerise-design/commit/7a44d5b7039c69f614a0f2d953f3eef16f03b083))
+* **date-range-picker:** show rangeform when value key is falsy ([cf1f52a](https://github.com/Synerise/synerise-design/commit/cf1f52a13fc2126d888b263a4bcca187660e9b24))
+* **date-range-picker:** tooltip in day cmp inside timewindow grid ([45a4b12](https://github.com/Synerise/synerise-design/commit/45a4b1221f8374bb89997b0ab141fc5439036953))
+* **date-range-picker:** unselect all only when some day selected ([ea4d40b](https://github.com/Synerise/synerise-design/commit/ea4d40b7542b281698d9ac813cb852ced4cf42f1))
+
+
+
+
+
 ## [0.5.18](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.5.17...@synerise/ds-date-range-picker@0.5.18) (2020-11-25)
 
 

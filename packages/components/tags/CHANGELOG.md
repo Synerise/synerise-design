@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.133](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@0.2.132...@synerise/ds-tags@0.2.133) (2020-12-02)
+
+
+### Bug Fixes
+
+* **tags:** fix bottom action and add new prop onManageTagClick ([31325e4](https://github.com/Synerise/synerise-design/commit/31325e43ffeacf3cb85752f33db740a021ff01a2))
+
+
+
+
+
 ## [0.2.132](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@0.2.131...@synerise/ds-tags@0.2.132) (2020-11-25)
 
 **Note:** Version bump only for package @synerise/ds-tags

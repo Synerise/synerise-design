@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.12.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-dropdown@0.11.98...@synerise/ds-dropdown@0.12.0) (2020-12-02)
+
+
+### Bug Fixes
+
+* **dropdown:** add props style ([5658d83](https://github.com/synerise/synerise-design/commit/5658d8381fe600c8b1a1c51b85b4f36d59602637))
+* **dropdown:** dropdown 100% width fix ([5ad7c2a](https://github.com/synerise/synerise-design/commit/5ad7c2a2bf96fbe28df8e031b83992c1ba5ba606))
+
+
+### Features
+
+* **dropdown:** add TextTrigger ([5d7028f](https://github.com/synerise/synerise-design/commit/5d7028f3160cbd4e14e5c56ae80efd21798c2606))
+* **dropdown:** add TextTrigger ([84c5b79](https://github.com/synerise/synerise-design/commit/84c5b79bd28f6b8414e50fae300349b349ed70a9))
+
+
+
+
+
 ## [0.11.98](https://github.com/synerise/synerise-design/compare/@synerise/ds-dropdown@0.11.97...@synerise/ds-dropdown@0.11.98) (2020-11-25)
 
 **Note:** Version bump only for package @synerise/ds-dropdown
