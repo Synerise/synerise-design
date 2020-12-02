@@ -175,8 +175,6 @@ const stories = {
     const [drawerVisible, setDrawerVisible] = React.useState(false);
     const [tags, setTags] = React.useState<Array<any>>(allTags);
     const [selected, setSelected] = React.useState<Array<any>>(allTags.slice(0, 2));
-    const [description, setDescription] = React.useState('');
-    const showBackIcon = (false);
     const shapes = {
       'Default Round': TagShape.DEFAULT_ROUND,
       'Default Square': TagShape.DEFAULT_SQUARE,
@@ -325,7 +323,6 @@ const stories = {
             folders={data}
             parentFolder={parentFolder}
             texts={texts}
-            headerPreffix={renderBackIcon(showBackIcon, () => setDrawerVisible(false))}
             onArrowUp={showIcon? () => {}: null}
             onArrowDown={showIcon?  () => {}: null}
             onFolderSelect={showFolder}
