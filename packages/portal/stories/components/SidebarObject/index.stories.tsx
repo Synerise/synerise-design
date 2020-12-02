@@ -175,6 +175,7 @@ const stories = {
     const [drawerVisible, setDrawerVisible] = React.useState(false);
     const [tags, setTags] = React.useState<Array<any>>(allTags);
     const [selected, setSelected] = React.useState<Array<any>>(allTags.slice(0, 2));
+    const [description, setDescription] = React.useState('');
     const shapes = {
       'Default Round': TagShape.DEFAULT_ROUND,
       'Default Square': TagShape.DEFAULT_SQUARE,
