@@ -102,7 +102,7 @@ const Header: React.FC<HeaderProps> = ({
             placement="bottomLeft"
             overlay={
               <DropdownWrapper ref={ref}>
-                <Menu style={{ padding: '8px 8px' }}>
+                <Menu asDropdownMenu style={{width: '100%'}}>
                   {onEdit && (
                     <Menu.Item
                       onClick={(): void => {
