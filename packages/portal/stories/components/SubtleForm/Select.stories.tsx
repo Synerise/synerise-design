@@ -19,11 +19,12 @@ const stories = {
     const [value, setValue] = React.useState<string>();
     const validationState = boolean('Set validation state', false);
     const errorMessage = text('Error Text', 'Error');
-
+    const disabled = boolean("Set disabled", false);
     return (
       <div>
         <div style={{ marginBottom: '16px' }}>
           <SubtleForm.Select
+            disabled={disabled}
             onChange={val => setValue(val)}
             value={value}
             placeholder={'City'}

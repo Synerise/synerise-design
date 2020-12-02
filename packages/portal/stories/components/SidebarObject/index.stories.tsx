@@ -13,7 +13,6 @@ import MailM from '@synerise/ds-icon/dist/icons/MailM';
 import Status from '@synerise/ds-status';
 import Tags, { TagShape } from '@synerise/ds-tags';
 import { v4 as uuid } from 'uuid';
-import sample from 'lodash/sample';
 import Overview from '@synerise/ds-sidebar-object/dist/Elements/Overview/Overview';
 import { ButtonWrapper } from '@synerise/ds-sidebar-object/dist/Elements/Header/Header.style';
 
@@ -26,40 +25,26 @@ const getIconSize = size => {
   return size === 'small' ? <MailS /> : <MailM />;
 };
 
-const randomColorPool = [
-  '#699788',
-  '#6676e4',
-  '#c3f424',
-  '#f45a0d',
-  '#caaa5b',
-  '#c7fdf0',
-  '#df3caa',
-  '#917809',
-  '#ea8a6f',
-  '#04ed74',
-  '#1c43a2',
-  '#0db790',
-];
 const allTags = [
   {
     id: 0,
     name: 'Summer',
-    color: '#13c2bc',
+    color: theme.palette['grey-200'],
   },
   {
     id: 1,
     name: 'Customer Service PL',
-    color: '#13c2bc',
+    color: theme.palette['grey-200'],
   },
   {
     id: 2,
     name: 'Tag Name 3',
-    color: '#76dc25',
+    color: theme.palette['grey-200'],
   },
   {
     id: 3,
     name: 'Tag Name 4',
-    color: '#6d2dd3',
+    color: theme.palette['grey-200'],
   },
 ];
 
@@ -68,12 +53,16 @@ const allTags = [
 const imgSrc = 'https://www.w3schools.com/howto/img_avatar.png';
 
 const headerTypes = {
-  singleTitle: 'singleTitle',
-  singleTitleWithBackIcon: 'singleTitleWithBackIcon',
+  readonly: 'readonly',
+  editable: 'editable',
+};
+const buttonTypes = {
+  twoButtons: 'twoButtons',
+  withNavigation: 'withNavigation',
 };
 
-const renderBackIcon = (headerType, onBackClickHandler) => {
-  if (headerType === headerTypes.singleTitleWithBackIcon) {
+const renderBackIcon = (showBackIcon, onBackClickHandler) => {
+  if (showBackIcon) {
     return (
       <Drawer.DrawerHeaderBack>
         <Button type="ghost" mode="single-icon" onClick={onBackClickHandler} data-testid="ds-item-filter-close-button">
@@ -88,11 +77,13 @@ const stories = {
   default: () => {
     const [drawerVisible, setDrawerVisible] = React.useState(false);
     const showIcon = boolean('Set Icon',true);
+    const showBackIcon = boolean('Set back icon',false);
     const showTabs = boolean('Set Tabs',true);
     const showFooter = boolean('Set Footer',true);
     const [activeTab, setActiveTab] = React.useState(0);
     const [name, setName] = React.useState('Winter campaign');
-    let headerType = (headerTypes.singleTitle);
+    let headerType = select('Set header type',headerTypes,headerTypes.readonly);
+    let buttonsType = select('Set buttons type',buttonTypes,buttonTypes.withNavigation);
     const inputObject = {
       id: '3423-3426-8263-6634-6834-2352',
     }
@@ -103,6 +94,8 @@ const stories = {
       deleteIcon: 'Delete',
       duplicateIcon: 'Duplicate',
       moveIcon: 'Move to',
+      cancelButton: 'Cancel',
+      applyButton: 'Apply',
     }
 
     const TABS = [
@@ -142,8 +135,10 @@ const stories = {
               </Badge>
             }
             onCloseClick={() => setDrawerVisible(false)}
+            onApplyClick={() =>{}}
+            onCancelClick={() =>{}}
             texts={texts}
-            headerPreffix={renderBackIcon(headerType, () => setDrawerVisible(false))}
+            headerPreffix={renderBackIcon(showBackIcon, () => setDrawerVisible(false))}
             onArrowUp={showIcon? () => {}: null}
             onArrowDown={showIcon?  () => {}: null}
             onEdit={() => {}}
@@ -156,6 +151,8 @@ const stories = {
             handleTabClick={setActiveTab}
             inputObject={inputObject}
             name={name}
+            headerType={headerType}
+            typeButtons={buttonsType}
             onRename={setName}
             footer={showFooter? <>
               <ButtonWrapper style={{ flex: 1, padding: '0'}}>
@@ -178,7 +175,7 @@ const stories = {
     const [drawerVisible, setDrawerVisible] = React.useState(false);
     const [tags, setTags] = React.useState<Array<any>>(allTags);
     const [selected, setSelected] = React.useState<Array<any>>(allTags.slice(0, 2));
-    const [description, setDescription] = React.useState('')
+    const [description, setDescription] = React.useState('');
     const shapes = {
       'Default Round': TagShape.DEFAULT_ROUND,
       'Default Square': TagShape.DEFAULT_SQUARE,
@@ -200,7 +197,8 @@ const stories = {
       { name: 'Drafts' },
       { name: 'Archived' },
     ];
-    let headerType = (headerTypes.singleTitle);
+    let headerType = select('Set header type',headerTypes,headerTypes.readonly);
+    let buttonsType = select('Set buttons type',buttonTypes,buttonTypes.withNavigation);
     const parentFolder ={ id: '2', name: 'Example folder' }
     const autoSize = {minRows: 3, maxRows: 10}
     const inputObject = {
@@ -234,6 +232,9 @@ const stories = {
       labelName: 'Description',
       labelTooltip: 'Description',
       suffixTooltip: 'Edit',
+      cancelButton: 'Cancel',
+      applyButton: 'Apply',
+      addFolder: 'Add folder',
     }
     const contentTags = <Tags
       data={tags}
@@ -257,7 +258,7 @@ const stories = {
         const tag = {
           id: uuid(),
           name,
-          color: sample(randomColorPool),
+          color: theme.palette['grey-200'],
         };
 
         console.log('Created new tag', name, tag);
@@ -283,6 +284,7 @@ const stories = {
           autoSize={autoSize}
           texts={texts}
           inputObject={inputObject}
+          onAddFolderClick={()=>{}}
         />
       },
       {
@@ -322,7 +324,6 @@ const stories = {
             folders={data}
             parentFolder={parentFolder}
             texts={texts}
-            headerPreffix={renderBackIcon(headerType, () => setDrawerVisible(false))}
             onArrowUp={showIcon? () => {}: null}
             onArrowDown={showIcon?  () => {}: null}
             onFolderSelect={showFolder}
@@ -336,6 +337,8 @@ const stories = {
             activeTab={activeTab}
             handleTabClick={setActiveTab}
             name={name}
+            headerType={headerType}
+            typeButtons={buttonsType}
             onRename={setName}
             contentTags={contentTags}
             textDescription=''

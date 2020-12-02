@@ -5,7 +5,7 @@ export type Props = {
   ranges: DateRange[];
   currentRange: RelativeDateRange;
   currentGroup: string | null;
-  onModeChange: (mode: string | null) => void;
+  onModeChange: (mode: RelativeMode | null) => void;
   modes: RelativeMode[];
   texts: Texts;
 };

@@ -4,7 +4,7 @@ import { HeaderTexts } from '../Header/Header.types';
 
 export interface Props {
   data: FolderItem[];
-  onAddFolderClick?: () => void;
+  onAddFolderClick?: (folderName: string) => void;
   onClearInput?: () => void;
   parentFolder: FolderItem;
   texts: OverviewTexts & HeaderTexts;

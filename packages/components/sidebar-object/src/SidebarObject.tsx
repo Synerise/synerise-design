@@ -27,7 +27,12 @@ const SidebarObject: React.FC<SidebarObjectProps> = ({
   name,
   onRename,
   inputObjectIdKey='id',
-  activeTab= 0
+  additionalNode,
+  activeTab= 0,
+  headerType,
+  typeButtons,
+  onCancelClick,
+  onApplyClick,
 }) => {
   return (
     <S.SidebarObjectWrapper>
@@ -47,13 +52,18 @@ const SidebarObject: React.FC<SidebarObjectProps> = ({
           onId={onId}
           texts={texts}
           onCloseClick={onCloseClick}
+          onCancelClick={onCancelClick}
+          onApplyClick={onApplyClick}
           inputObject={inputObject}
           inputObjectIdKey={inputObjectIdKey || 'id'}
           inlineEditInputProps={inlineEditInputProps}
           onArrowUp={onArrowUp}
           onArrowDown={onArrowDown}
           name={name}
+          additionalNode={additionalNode}
           onRename={onRename}
+          type={headerType}
+          typeButtons={typeButtons}
         />
         {headerTabs[activeTab]?.content && <S.ContentContainer>{headerTabs[activeTab]?.content}</S.ContentContainer> }
       </Scrollbar>

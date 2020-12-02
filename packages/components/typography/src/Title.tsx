@@ -16,7 +16,7 @@ const Title: React.FC<Props> = ({ level = 1, children }) => {
     return StyledElements[level];
   }, [level]);
 
-  return <TitleElement>{children}</TitleElement>;
+  return <TitleElement className="ds-title">{children}</TitleElement>;
 };
 
 export default Title;

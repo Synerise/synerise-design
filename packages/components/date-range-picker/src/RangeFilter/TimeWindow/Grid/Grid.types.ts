@@ -20,4 +20,9 @@ export type GridProps = {
   onSelectAll: () => void;
   onUnselectAll: () => void;
   renderDay: (day: DayKey) => React.ReactNode;
+  texts?: GridTexts;
+};
+
+export type GridTexts = {
+  clear?: string | React.ReactNode;
 };

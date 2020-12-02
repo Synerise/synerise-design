@@ -9,7 +9,8 @@ import {
   EditM,
   FileDownloadM,
   InfoFillS,
-  TrashM, VarTypeBooleanM,
+  TrashM,
+  VarTypeBooleanM,
   VarTypeStringM,
 } from '@synerise/ds-icon/dist/icons';
 import Table from '@synerise/ds-table';
@@ -72,10 +73,6 @@ const stories = {
       }
     };
 
-    const handleSelectRow = selectedRowKeys => {
-      store.set({ selectedRows: selectedRowKeys });
-    };
-
     const setValue = (newValue: boolean, record: any, label: string) => {
       const setChildrenValue = data => {
         return data.map(rec => {
@@ -115,16 +112,16 @@ const stories = {
           title: 'Name',
           dataIndex: 'name',
           key: 'name',
-          icon: { component: <VarTypeStringM/>},
-          iconTooltip: { component: <InfoFillS/>},
+          icon: { component: <VarTypeStringM /> },
+          iconTooltip: { component: <InfoFillS /> },
           render: name => name,
         },
         {
           title: 'Create',
           dataIndex: 'create_permission',
           key: 'create_permission',
-          icon: { component: <VarTypeBooleanM/>},
-          iconTooltip: { component: <InfoFillS/>},
+          icon: { component: <VarTypeBooleanM /> },
+          iconTooltip: { component: <InfoFillS /> },
           width: 120,
           render: (value, record) => (
             <Checkbox
@@ -138,8 +135,8 @@ const stories = {
           title: 'Read',
           dataIndex: 'read_permission',
           key: 'read_permission',
-          icon: { component: <VarTypeBooleanM/>},
-          iconTooltip: { component: <InfoFillS/>},
+          icon: { component: <VarTypeBooleanM /> },
+          iconTooltip: { component: <InfoFillS /> },
           width: 120,
           render: (value, record) => (
             <Checkbox
@@ -153,8 +150,8 @@ const stories = {
           title: 'Edit',
           dataIndex: 'edit_permission',
           key: 'edit_permission',
-          icon: { component: <VarTypeBooleanM/>},
-          iconTooltip: { component: <InfoFillS/>},
+          icon: { component: <VarTypeBooleanM /> },
+          iconTooltip: { component: <InfoFillS /> },
           width: 120,
           render: (value, record) => (
             <Checkbox
@@ -168,8 +165,8 @@ const stories = {
           title: 'Delete',
           dataIndex: 'delete_permission',
           key: 'delete_permission',
-          icon: { component: <VarTypeBooleanM/>},
-          iconTooltip: { component: <InfoFillS/>},
+          icon: { component: <VarTypeBooleanM /> },
+          iconTooltip: { component: <InfoFillS /> },
           width: 120,
           render: (value, record) => (
             <Checkbox
@@ -189,9 +186,8 @@ const stories = {
 
     return (
       <TreeTable
-        title={`${data.length} results`}
         dataSource={data}
-        columns={renderWithIconInHeaders(getColumns(),boolean('Set icons in headers', false))}
+        columns={renderWithIconInHeaders(getColumns(), boolean('Set icons in headers', false))}
         loading={boolean('Set loading state', false)}
         roundedHeader={boolean('Rounded header', false)}
         cellSize={select('Set cells size', CELL_SIZES, CELL_SIZES.default)}
@@ -208,11 +204,6 @@ const stories = {
           showSizeChanger: boolean('Show size changer', true),
           showQuickJumper: boolean('Show quick jumper', true),
           onChange: action('pageChanged'),
-        }}
-        locale={{
-          pagination: {
-            items: 'results',
-          },
         }}
         expandIcon={props => {
           const { expandable, expanded, onExpand, record } = props;

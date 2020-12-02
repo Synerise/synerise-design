@@ -22,6 +22,15 @@ import { HeaderProps } from './Header.types';
 import * as S from './Header.style';
 import { DropdownWrapper, MenuWrapper } from './Header.style';
 
+const HEADER_TYPES = {
+  readonly: 'readonly',
+  editable: 'editable',
+};
+const BUTTON_TYPES = {
+  twoButtons: 'twoButtons',
+  withNavigation: 'withNavigation',
+};
+
 const Header: React.FC<HeaderProps> = ({
   avatar,
   preffix,
@@ -40,106 +49,143 @@ const Header: React.FC<HeaderProps> = ({
   onArrowDown,
   name = '',
   onRename,
+  additionalNode,
+  type,
+  typeButtons,
+  onCancelClick,
+  onApplyClick,
 }) => {
   const [dropdownVisible, setDropdownVisible] = React.useState(false);
   const ref = React.useRef<HTMLDivElement>(null);
   useOnClickOutside(ref, () => {
     setDropdownVisible(false);
   });
-  const renderActionButtons = (): React.ReactNode => {
-    return (
-      <>
-        {onArrowUp && (
-          <S.ButtonWrapper>
-            <Button onClick={onArrowUp} type="ghost" mode="single-icon">
-              <Icon size={20} component={<AngleUpM />} />
-            </Button>
-          </S.ButtonWrapper>
-        )}
-        {onArrowDown && (
-          <S.ButtonWrapper>
-            <Button onClick={onArrowDown} type="ghost" mode="single-icon">
-              <Icon size={20} component={<AngleDownM />} />
-            </Button>
-          </S.ButtonWrapper>
-        )}
-        <Dropdown
-          visible={dropdownVisible}
-          placement="bottomLeft"
-          overlay={
-            <DropdownWrapper ref={ref}>
-              <Menu style={{ padding: '8px 8px' }}>
-                {onEdit && (
-                  <Menu.Item
-                    onClick={(): void => {
-                      setDropdownVisible(!dropdownVisible);
-                      onEdit(inputObject);
-                    }}
-                    prefixel={<Icon component={<EditM />} />}
-                  >
-                    {texts.editIcon}
-                  </Menu.Item>
-                )}
-                {onDuplicate && (
-                  <Menu.Item
-                    onClick={(): void => {
-                      setDropdownVisible(!dropdownVisible);
-                      onDuplicate(inputObject);
-                    }}
-                    prefixel={<Icon component={<DuplicateM />} />}
-                  >
-                    {texts.duplicateIcon}
-                  </Menu.Item>
-                )}
-                {onMove && (
-                  <Menu.Item
-                    onClick={(): void => {
-                      setDropdownVisible(!dropdownVisible);
-                      onMove(inputObject);
-                    }}
-                    prefixel={<Icon component={<FolderM />} />}
-                  >
-                    {texts.moveIcon}
-                  </Menu.Item>
-                )}
-                {onDelete && (
-                  <Menu.Item
-                    onClick={(): void => {
-                      setDropdownVisible(!dropdownVisible);
-                      onDelete(inputObject);
-                    }}
-                    type="danger"
-                    prefixel={<Icon component={<TrashM />} />}
-                  >
-                    {texts.deleteIcon}
-                  </Menu.Item>
-                )}
-                {onId && (
-                  <MenuWrapper>
+  const renderBackTitle = (titleType: typeof type): React.ReactNode => {
+    if (titleType === HEADER_TYPES.editable) {
+      return (
+        <S.StyledInlineEdit
+          disabled={!onRename}
+          input={{
+            name: texts.name,
+            value: name,
+            maxLength: 120,
+            placeholder: texts.inlineEditPlaceholder,
+            onChange: (event): void => {
+              onRename && onRename(event.target.value);
+            },
+            ...inlineEditInputProps,
+          }}
+        />
+      );
+    }
+    return <S.SingleTitle>{name}</S.SingleTitle>;
+  };
+  const renderActionButtons = (typesOfButtons: typeof typeButtons): React.ReactNode => {
+    if (typesOfButtons === BUTTON_TYPES.withNavigation) {
+      return (
+        <>
+          {onArrowUp && (
+            <S.ButtonWrapper>
+              <Button onClick={onArrowUp} type="ghost" mode="single-icon">
+                <Icon size={20} component={<AngleUpM />} />
+              </Button>
+            </S.ButtonWrapper>
+          )}
+          {onArrowDown && (
+            <S.ButtonWrapper>
+              <Button onClick={onArrowDown} type="ghost" mode="single-icon">
+                <Icon size={20} component={<AngleDownM />} />
+              </Button>
+            </S.ButtonWrapper>
+          )}
+          <Dropdown
+            visible={dropdownVisible}
+            placement="bottomLeft"
+            overlay={
+              <DropdownWrapper ref={ref}>
+                <Menu asDropdownMenu style={{width: '100%'}}>
+                  {onEdit && (
                     <Menu.Item
                       onClick={(): void => {
                         setDropdownVisible(!dropdownVisible);
-                        onId(inputObject);
+                        onEdit(inputObject);
                       }}
-                      style={{ padding: '0 12px' }}
-                      prefixel={<Icon component={<CopyClipboardM />} />}
-                    >{`ID: ${inputObject[inputObjectIdKey]}`}</Menu.Item>
-                  </MenuWrapper>
-                )}
-              </Menu>
-            </DropdownWrapper>
-          }
-        >
+                      prefixel={<Icon component={<EditM />} />}
+                    >
+                      {texts.editIcon}
+                    </Menu.Item>
+                  )}
+                  {onDuplicate && (
+                    <Menu.Item
+                      onClick={(): void => {
+                        setDropdownVisible(!dropdownVisible);
+                        onDuplicate(inputObject);
+                      }}
+                      prefixel={<Icon component={<DuplicateM />} />}
+                    >
+                      {texts.duplicateIcon}
+                    </Menu.Item>
+                  )}
+                  {onMove && (
+                    <Menu.Item
+                      onClick={(): void => {
+                        setDropdownVisible(!dropdownVisible);
+                        onMove(inputObject);
+                      }}
+                      prefixel={<Icon component={<FolderM />} />}
+                    >
+                      {texts.moveIcon}
+                    </Menu.Item>
+                  )}
+                  {onDelete && (
+                    <Menu.Item
+                      onClick={(): void => {
+                        setDropdownVisible(!dropdownVisible);
+                        onDelete(inputObject);
+                      }}
+                      type="danger"
+                      prefixel={<Icon component={<TrashM />} />}
+                    >
+                      {texts.deleteIcon}
+                    </Menu.Item>
+                  )}
+                  {onId && (
+                    <MenuWrapper>
+                      <Menu.Item
+                        onClick={(): void => {
+                          setDropdownVisible(!dropdownVisible);
+                          onId(inputObject);
+                        }}
+                        style={{ padding: '0 12px' }}
+                        prefixel={<Icon component={<CopyClipboardM />} />}
+                      >{`ID: ${inputObject[inputObjectIdKey]}`}</Menu.Item>
+                    </MenuWrapper>
+                  )}
+                </Menu>
+              </DropdownWrapper>
+            }
+          >
+            <S.ButtonWrapper>
+              <Button onClick={(): void => setDropdownVisible(!dropdownVisible)} type="ghost" mode="single-icon">
+                <Icon component={<OptionHorizontalM />} />
+              </Button>
+            </S.ButtonWrapper>
+          </Dropdown>
           <S.ButtonWrapper>
-            <Button onClick={(): void => setDropdownVisible(!dropdownVisible)} type="ghost" mode="single-icon">
-              <Icon component={<OptionHorizontalM />} />
+            <Button type="ghost" mode="single-icon" onClick={onCloseClick}>
+              <Icon component={<CloseM />} />
             </Button>
           </S.ButtonWrapper>
-        </Dropdown>
+        </>
+      );
+    }
+    return (
+      <>
         <S.ButtonWrapper>
-          <Button type="ghost" mode="single-icon" onClick={onCloseClick}>
-            <Icon component={<CloseM />} />
-          </Button>
+          <Button type="ghost" onClick={onCancelClick}> {texts.cancelButton} </Button>
+        </S.ButtonWrapper>
+        <S.ButtonWrapper>
+          <Button type="primary" onClick={onApplyClick}> {texts.applyButton} </Button>
         </S.ButtonWrapper>
       </>
     );
@@ -151,22 +197,11 @@ const Header: React.FC<HeaderProps> = ({
           {preffix}
           {avatar}
           <Typography.Title style={{ flex: 2, marginLeft: '15px' }} level={4}>
-            <S.StyledInlineEdit
-              disabled={!onRename}
-              input={{
-                name: texts.name,
-                value: name,
-                maxLength: 120,
-                placeholder: texts.inlineEditPlaceholder,
-                onChange: (event): void => {
-                  onRename && onRename(event.target.value);
-                },
-                ...inlineEditInputProps,
-              }}
-            />
+            {renderBackTitle(type)}
           </Typography.Title>
-          {renderActionButtons()}
+          {renderActionButtons(typeButtons)}
         </S.DrawerHeaderBar>
+        {additionalNode}
         {tabs}
       </Drawer.DrawerHeader>
     </Drawer.DrawerHeaderWithoutPadding>

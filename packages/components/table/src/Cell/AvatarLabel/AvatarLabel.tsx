@@ -12,9 +12,12 @@ const AvatarLabel: React.FC<Props> = ({
   textSize = 'default',
   ellipsis,
   maxWidth,
+  avatarSize,
+  starCell,
 }) => {
   return (
     <S.AvatarLabel>
+      {starCell && <S.StarCell>{starCell}</S.StarCell>}
       {icon && <S.Icon>{icon}</S.Icon>}
       <S.Avatar onClick={avatarAction} clickable={Boolean(avatarAction)}>
         {avatar}
@@ -25,6 +28,7 @@ const AvatarLabel: React.FC<Props> = ({
           textSize={textSize}
           ellipsis={Boolean(ellipsis)}
           maxWidth={maxWidth}
+          avatarSize={avatarSize}
         >
           {title}
         </S.Title>

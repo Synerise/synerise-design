@@ -9,6 +9,7 @@ import Button from '@synerise/ds-button';
 import { CheckS, Close3S } from '@synerise/ds-icon/dist/icons';
 import Icon from '@synerise/ds-icon';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import Tooltip from '@synerise/ds-tooltip';
 import { Props } from './Day.types';
 import * as S from './Day.styles';
 
@@ -23,24 +24,18 @@ const Day: React.FC<Props> = ({
   readOnly,
   restricted,
   tooltip,
+  texts,
   ...rest
 }: Props) => {
   const [hovered, setHovered] = React.useState<boolean>(false);
-  const [iconHover, setIconHover] = React.useState<boolean>(false);
   const type = active ? 'primary' : 'secondary';
   const icon = React.useMemo(() => {
-    if (restricted && !active) {
-      return hovered && iconHover ? (
-        <>
-          <S.DayTooltip>Clear</S.DayTooltip>
-          <Icon component={<Close3S />} onClick={(): void => onToggle(false)} color={theme.palette['red-600']} />
-        </>
-      ) : (
-        <Icon component={<CheckS />} color={theme.palette['green-600']} />
-      );
-    }
-    return null;
-  }, [restricted, active, hovered, onToggle, iconHover]);
+    return hovered ? (
+      <Icon component={<Close3S />} onClick={(): void => onToggle(false)} color={theme.palette['red-600']} />
+    ) : (
+      <Icon component={<CheckS />} color={theme.palette['green-600']} />
+    );
+  }, [hovered, onToggle]);
   return (
     <S.Container>
       <Button
@@ -54,19 +49,18 @@ const Day: React.FC<Props> = ({
       >
         <S.Content>{label}</S.Content>
       </Button>
-      {/* eslint-disable-next-line jsx-a11y/mouse-events-have-key-events */}
-      <S.IconWrapper
-        active={hovered && iconHover}
-        onMouseOver={(): void => {
-          setHovered(true);
-          setIconHover(true);
-        }}
-        onMouseOut={(): void => {
-          setIconHover(false);
-        }}
-      >
-        {icon}
-      </S.IconWrapper>
+      {restricted && !active && (
+        <Tooltip
+          trigger={['hover']}
+          title={texts?.clear || 'Clear'}
+          onVisibleChange={(visible: boolean): void => setHovered(visible)}
+          getPopupContainer={(node: HTMLElement): HTMLElement =>
+            node.parentElement ? node.parentElement : document.body
+          }
+        >
+          <S.IconWrapper active={hovered}>{icon}</S.IconWrapper>
+        </Tooltip>
+      )}
     </S.Container>
   );
 };

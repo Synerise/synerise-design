@@ -52,6 +52,15 @@ export type RowType<T> = {
   children?: T[];
 };
 
+export type Locale = TableLocale & {
+  selected?: string;
+  emptyText?: string;
+  pagination?: {
+    items?: string;
+    groups?: string;
+  };
+};
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export interface DSTableProps<T extends any & GroupType<T>> extends AntTableProps<T> {
   title?: string | React.ReactNode;
@@ -74,10 +83,5 @@ export interface DSTableProps<T extends any & GroupType<T>> extends AntTableProp
   columns?: (Omit<ColumnType<T>, 'fixed'> & {
     fixed?: 'left' | 'right' | string;
   })[];
-  locale?: TableLocale & {
-    pagination?: {
-      items?: string;
-      groups?: string;
-    };
-  };
+  locale?: Locale;
 }

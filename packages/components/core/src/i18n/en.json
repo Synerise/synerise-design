@@ -86,6 +86,14 @@
       "ERROR_INTERVAL": "Error - Provide correct interval value",
       "ERROR_RANGE": "Error - Provide correct value"
     },
+    "TABLE": {
+      "PAGINATION": {
+        "ITEMS": "items",
+        "GROUPS": "groups"
+      },
+      "SELECTED": "selected",
+      "EMPTY_TEXT": "No data"
+    },
     "ICON-PICKER": {
       "NO-RESULTS": "No results"
     },

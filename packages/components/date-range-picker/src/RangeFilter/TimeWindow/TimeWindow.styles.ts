@@ -47,9 +47,9 @@ export const HeaderWrapper = styled.div`
 export const SelectionHint = styled.div`
   margin-top: 4px;
   background: ${(props): string => props.theme.palette['grey-050']};
-  padding: 16px 28px;
+  padding: 16px 24px;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   .ds-icon {
     margin-right: 12px;
@@ -59,5 +59,5 @@ export const GridContainer = styled.div`
   margin-bottom: 24px;
 `;
 export const AddButtonWrapper = styled.div`
-  display: flex; 
-`
+  display: flex;
+`;

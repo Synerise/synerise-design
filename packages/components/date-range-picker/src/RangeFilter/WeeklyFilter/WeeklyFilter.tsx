@@ -10,7 +10,6 @@ class WeeklyFilter extends React.PureComponent<WeeklyFilterProps> {
       <S.WeeklyFilterContainer>
         <TimeWindow
           showSelectAll
-          showUnselectAll
           invertibleTime
           dayTemplate={(dayOfWeek: React.ReactText): { day: React.ReactText } => ({ day: dayOfWeek })}
           days={value}

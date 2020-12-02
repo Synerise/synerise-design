@@ -320,20 +320,13 @@ const stories = {
         title={text('Set card title', 'Table on card')}
         withoutPadding
         size={select('Select card size', ['small', 'medium', 'large', 'extraLarge'], 'extraLarge')}
-
       >
         <Table
-          title={`${filteredDataSource().length} ${text('Set name of table items', 'results')}`}
           headerWithBorderTop
           dataSource={filteredDataSource()}
           columns={renderWithIconInHeaders(getColumns(), boolean('Set icons in headers', false))}
           loading={boolean('Set loading state', false)}
           cellSize={select('Set cells size', CELL_SIZES, CELL_SIZES.default)}
-          locale={{
-            pagination: {
-              items: 'results',
-            },
-          }}
           headerButton={
             boolean('Show header button', false) && (
               <Button type="ghost" mode="icon-label" onClick={action('Header button action')}>

@@ -87,16 +87,20 @@ const SubtleTextArea: React.FC<SubtleTextAreaProps> = ({
       <S.ContentAbove active={active}>
         <Label label={label} tooltip={labelTooltip} />
       </S.ContentAbove>
-      <S.Container ref={containerRef} className="ds-subtle-textarea" active={active}>
+      <S.Container ref={containerRef} className="ds-subtle-textarea" active={active} disabled={disabled}>
         {(active || hasError) && !disabled ? (
           <TextArea
             {...rest}
             {...textAreaProps}
-            autoFocus={!hasError}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>): void => {
-              onChange && onChange(e.currentTarget.value);
-            }}
-            onBlur={handleDeactivate}
+            autoFocus={!hasError && !disabled}
+            onChange={
+              !disabled
+                ? (e: React.ChangeEvent<HTMLInputElement>): void => {
+                    onChange && onChange(e.currentTarget.value);
+                  }
+                : undefined
+            }
+            onBlur={!disabled ? handleDeactivate : undefined}
             value={value}
             rows={visibleRows + 1}
             style={{ margin: 0 }}
@@ -108,12 +112,17 @@ const SubtleTextArea: React.FC<SubtleTextAreaProps> = ({
             wrapperStyle={{ margin: 0 }}
           />
         ) : (
-          <S.Inactive rows={visibleRows} onClick={handleActivate} blurred={blurred} disabled={disabled}>
+          <S.Inactive
+            rows={visibleRows}
+            onClick={!disabled ? handleActivate : undefined}
+            blurred={blurred}
+            disabled={disabled}
+          >
             <S.MainContent>
               <S.ValueArea
                 disabled={disabled}
                 value={value && !!value.trim() ? value : placeholder}
-                onBlur={handleDeactivate}
+                onBlur={!disabled ? handleDeactivate : undefined}
                 grey={!value && !!placeholder}
               />
             </S.MainContent>

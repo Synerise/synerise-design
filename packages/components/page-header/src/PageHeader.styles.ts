@@ -56,6 +56,10 @@ export const PageHeaderRightSide = styled.div`
 
   > div {
     display: flex;
+    flex: 1;
+    justify-content: flex-end;
+    align-items: center;
+    flex-direction: row;
 
     > * {
       margin-left: 8px;

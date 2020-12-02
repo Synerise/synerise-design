@@ -8,7 +8,7 @@ export type Props = {
   handleChange: (value: DateRange) => void;
   handleDurationValueChange: (value?: number) => void;
   handleOffsetValueChange: (value?: number) => void;
-  handleModeChange: (mode: string | null) => void;
+  handleModeChange: (mode: RelativeMode | null) => void;
   handleTimestampChange?: (timestamp: Date | undefined) => void;
   timestamp?: Date | undefined;
   texts: Texts;

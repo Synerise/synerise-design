@@ -11,7 +11,11 @@ export const setDurationType = set(lensPath(['duration', 'type']));
 const SELECT_DROPDOWN_OFFSET = -4;
 const DurationField: React.FC<Props> = ({ currentRange, handleChange, handleDurationValueChange, texts }) => {
   const { duration } = currentRange;
-
+  React.useEffect(() => {
+    if (duration?.value < 1) {
+      handleDurationValueChange(1);
+    }
+  }, [duration, handleDurationValueChange]);
   return (
     <>
       <S.InputSelectGroup compact>

@@ -38,3 +38,13 @@ export const DropdownWrapper = styled.div`
 export const OverviewWrapper = styled.div`
   width: 100%;
 `;
+export const SingleTitle = styled.div`
+font-size: 18px;
+padding-left: 1px;
+padding-top: 1px;
+max-width: 350px;
+overflow: hidden;
+text-overflow: ellipsis;
+white-space: nowrap;
+
+`;

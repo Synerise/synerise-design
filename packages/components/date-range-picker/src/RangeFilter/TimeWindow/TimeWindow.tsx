@@ -234,7 +234,7 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
   };
 
   renderDay = (dayKey: DayKey): JSX.Element => {
-    const { customDays, intl, readOnly } = this.props;
+    const { customDays, intl, readOnly, texts } = this.props;
     const { activeDays } = this.state;
     const isRestricted = this.isDayRestricted(dayKey);
     const isActive = activeDays.includes(dayKey);
@@ -262,6 +262,7 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
         // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
         // @ts-ignore
         value={this.getDayValue(dayKey)}
+        texts={texts}
       />
     );
   };
@@ -326,7 +327,7 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
   };
 
   render(): JSX.Element {
-    const { days, numberOfDays, daily, intl, ...rest } = this.props;
+    const { days, numberOfDays, daily, intl, texts, ...rest } = this.props;
     const { activeDays, isRangeDefined } = this.state;
     const keys = this.getAllKeys();
     const singleMode = keys.length === 1;
@@ -352,6 +353,7 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
             days={days}
             intl={intl}
             numberOfDays={numberOfDays}
+            texts={texts}
             {...rest}
             title={
               <SelectionCount

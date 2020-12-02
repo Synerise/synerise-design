@@ -74,9 +74,12 @@ const stories = {
     const labelText = text('Set label text ', 'Label');
     const labelTooltip = text('Set label tooltip ', 'Label');
     const placeholder = text('Set placeholder text ', 'Description');
+    const disabled = boolean('Set disabled', false);
+
     const [value, setValue] = React.useState('');
     return (
       <SubtleForm.TextArea
+        disabled={disabled}
         minRows={min}
         maxRows={10}
         value={value}
@@ -93,9 +96,12 @@ const stories = {
     const labelText = text('Set label text ', 'Label');
     const labelTooltip = text('Set label tooltip ', 'Label');
     const placeholder = text('Set placeholder text ', 'Description');
+    const disabled = boolean('Set disabled', false);
+
     const [value, setValue] = React.useState('');
     return (
       <SubtleForm.TextArea
+        disabled={disabled}
         maxRows={max}
         value={value}
         onChange={setValue}

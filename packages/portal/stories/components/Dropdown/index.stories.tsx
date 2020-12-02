@@ -4,6 +4,7 @@ import Button from '@synerise/ds-button';
 import Example1 from './examples/Example1';
 import withTabs from './withTabs/withTabs';
 import WithSearch from './examples/withSearch';
+import WithTextTrigger from './examples/withTextTrigger';
 import Icon from '@synerise/ds-icon';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { Add3M, KeyboardDownM, KeyboardEnterM, KeyboardUpM } from '@synerise/ds-icon/dist/icons';
@@ -28,11 +29,12 @@ export function renderFooter(suffixElementType: string) {
     case typesFooter.singleButton:
       return (
         <Dropdown.BottomAction
+          onClickAction={() => {}}
           // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
           // @ts-ignore
-          style={{ marginTop: '0px', padding: '0 8px', cursor: 'auto', }}
+          style={{ marginTop: '0px', padding: '0 8px', cursor: 'auto' }}
         >
-          <Button type="ghost" style={{ paddingLeft: '8px', marginBottom:'1px' }}>
+          <Button type="ghost" style={{ paddingLeft: '8px', marginBottom: '1px' }}>
             {<Icon component={<Add3M />} size={24} color={theme.palette['grey-500']} />}
             <div style={{ paddingLeft: '4px' }}>Button</div>
           </Button>
@@ -50,11 +52,11 @@ export function renderFooter(suffixElementType: string) {
             cursor: 'auto',
           }}
         >
-          <Button type="ghost" style={{ paddingLeft: '8px', marginBottom:'1px'}}>
+          <Button type="ghost" style={{ paddingLeft: '8px', marginBottom: '1px' }}>
             {<Icon component={<Add3M />} size={24} color={theme.palette['grey-500']} />}
             <div style={{ paddingLeft: '4px' }}>Button</div>
           </Button>
-          <Button type="ghost" style={{marginBottom:'1px' }}>
+          <Button type="ghost" style={{ marginBottom: '1px' }}>
             Button
           </Button>
         </BottomAction>
@@ -62,9 +64,10 @@ export function renderFooter(suffixElementType: string) {
     case typesFooter.empty:
       return (
         <Dropdown.BottomAction
+          onClickAction={() => {}}
           // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
           // @ts-ignore
-          style={{ marginTop: '0px',  cursor: 'auto', }}
+          style={{ marginTop: '0px', cursor: 'auto' }}
         />
       );
     case typesFooter.navigation:
@@ -79,16 +82,32 @@ export function renderFooter(suffixElementType: string) {
             cursor: 'auto',
           }}
         >
-          <div style={{ display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center', fontWeight: 500,fontSize:'10px', color: theme.palette['grey-400'], marginLeft: '-4px' }}>
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontWeight: 500,
+              fontSize: '10px',
+              color: theme.palette['grey-400'],
+              marginLeft: '-4px',
+            }}
+          >
             {<Icon component={<KeyboardUpM />} size={24} color={theme.palette['grey-400']} />}
             {<Icon component={<KeyboardDownM />} size={24} color={theme.palette['grey-400']} />}
             to navigate
           </div>
-          <div style={{ display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center', fontWeight: 500,fontSize:'10px', color: theme.palette['grey-400'],marginLeft: '18px'}}>
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontWeight: 500,
+              fontSize: '10px',
+              color: theme.palette['grey-400'],
+              marginLeft: '18px',
+            }}
+          >
             {<Icon component={<KeyboardEnterM />} size={24} color={theme.palette['grey-400']} />}
             to select
           </div>
@@ -110,6 +129,7 @@ const stories = {
   example1: Example1,
   withSearch: WithSearch,
   withTabs: withTabs,
+  withTextTrigger: WithTextTrigger,
 };
 
 export default {

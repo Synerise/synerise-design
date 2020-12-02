@@ -67,7 +67,6 @@ export const DropdownDeleteBtn = styled.div`
 `;
 
 export const AddContainer = styled.div`
-  padding-top: 10px;
   margin-top: -1px;
 `;
 
