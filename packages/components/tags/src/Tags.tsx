@@ -27,6 +27,7 @@ const Tags: React.FC<Props> = ({
   maxHeight,
   overlayStyle,
   overlayPlacement,
+  onManageTagClick,
 }: Props) => {
   const [isAdding, setAddingState] = React.useState<boolean>(false);
   const [searchQuery, setSearchQuery] = React.useState<string>('');
@@ -130,8 +131,9 @@ const Tags: React.FC<Props> = ({
       </S.DropdownContainer>
       {manageLink && selectablePool && !selectablePool.length && (
         <Dropdown.BottomAction
-          // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-          // @ts-ignore
+          onClickAction={(): void=>{
+            onManageTagClick && onManageTagClick()
+          }}
           style={{ padding: '0 8px', cursor: 'auto', }}
         >
           <S.ManageLinkButton type="ghost" mode="icon-label" href={manageLink}  onlyChild={!!(emptyPool && !isCreatable)}>

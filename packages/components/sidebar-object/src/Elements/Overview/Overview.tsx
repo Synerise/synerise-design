@@ -22,6 +22,7 @@ const Overview: React.FC<OverviewObjectProps> = ({
   onFolderSelect,
   onDescriptionChange,
   descriptionProps = {},
+  onAddFolderClick,
 }) => {
   const [dropdownVisible, setDropdownVisible] = React.useState(false);
   const [value, setValue] = React.useState('');
@@ -52,6 +53,7 @@ const Overview: React.FC<OverviewObjectProps> = ({
                   foldersDisplayKey={foldersDisplayKey}
                   foldersFilterKey={foldersFilterKey}
                   foldersIdKey={foldersIdKey}
+                  onAddFolderClick={onAddFolderClick}
                 />
               }
             >

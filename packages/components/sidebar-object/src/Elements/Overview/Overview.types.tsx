@@ -18,6 +18,7 @@ export type OverviewObjectProps = {
   textDescription: string;
   onFolderSelect: (item: FolderItem) => void;
   onDescriptionChange: (value: string) => void;
+  onAddFolderClick?: (folderName: string) => void;
 };
 export type OverviewTexts = HeaderTexts & {
   placeholder: string;

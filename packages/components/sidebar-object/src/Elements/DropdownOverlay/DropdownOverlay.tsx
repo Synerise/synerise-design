@@ -6,6 +6,7 @@ import { Add3M, FolderM, SearchM } from '@synerise/ds-icon/dist/icons';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { useOnClickOutside } from '@synerise/ds-utils';
 import Result from '@synerise/ds-result';
+import Button from '@synerise/ds-button';
 import { DropdownWrapper, MenuWrapper } from './DropdownOverlay.styles';
 import { Props } from './DropdownOverlay.types';
 
@@ -45,7 +46,7 @@ const DropdownOverlay: React.FC<Props> = ({
       <MenuWrapper withBottomAction={!!onAddFolderClick}>
         {filteredData?.length > 0 ? (
           <Menu>
-            {filteredData?.map((item,i) => (
+            {filteredData?.map((item, i) => (
               <Menu.Item
                 key={`${item[foldersIdKey]}-${i}`}
                 onClick={(): void => onFolderSelect(item)}
@@ -62,8 +63,14 @@ const DropdownOverlay: React.FC<Props> = ({
         )}
       </MenuWrapper>
       {onAddFolderClick && (
-        <Dropdown.BottomAction onClickAction={onAddFolderClick} icon={<Add3M />}>
-          {texts?.addFolder}
+        <Dropdown.BottomAction
+          onClickAction={(): void => onAddFolderClick(searchValue)}
+          style={{padding: '8px'}}
+        >
+          <Button type="ghost" mode="icon-label">
+            <Icon component={<Add3M />} size={24} color={theme.palette['grey-500']} />
+            <div>{texts.addFolder}</div>
+          </Button>
         </Dropdown.BottomAction>
       )}
     </DropdownWrapper>
