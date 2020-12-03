@@ -13,7 +13,7 @@ export const StepPrefix = styled.div`
   border-color: ${(props): string => props.theme.palette['grey-400']};
   margin-right: 8px;
   text-align: center;
-  transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+  transition: border-color 0.2s ease;
 `;
 
 export const StepNumber = styled.span`
@@ -24,7 +24,7 @@ export const StepNumber = styled.span`
   line-height: 24px;
   justify-content: center;
   align-items: center;
-  transition: color 0.2s ease-in-out;
+  transition: color 0.2s ease;
   color: ${(props): string => props.theme.palette['grey-400']};
 `;
 
@@ -35,11 +35,12 @@ export const StepName = styled.span`
   position: relative;
   display: flex;
   align-items: center;
+  white-space: nowrap;
 `;
 
 export const StepLabel = styled.span`
   color: inherit;
-  transition: color 0.2s ease-in-out;
+  transition: color 0.2s ease;
   color: ${(props): string => props.theme.palette['grey-400']};
 `;
 
@@ -54,7 +55,7 @@ export const StepWrapper = styled.div<{ clickable: boolean }>`
 export const StepContent = styled.div`
   display: flex;
   padding: 0 0 0 20px;
-  transition: padding 0.2s ease-in-out;
+  transition: padding 0.2s ease;
   min-height: 16px;
   position: relative;
   margin-left: 12px;
