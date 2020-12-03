@@ -5,9 +5,9 @@ import { action } from '@storybook/addon-actions';
 import Tabs from '@synerise/ds-tabs';
 import { withState } from '@dump247/storybook-state';
 import Icon from '@synerise/ds-icon/';
-import { AngleDownS, ArrowRightCircleM, MailM, OptionHorizontalM } from '@synerise/ds-icon/dist/icons';
+import { AngleDownS, ArrowRightCircleM, MailM, MailS, OptionHorizontalM } from '@synerise/ds-icon/dist/icons';
 import Button from '@synerise/ds-button';
-import { boolean, select } from '@storybook/addon-knobs';
+import { boolean, select, text } from '@storybook/addon-knobs';
 import Avatar from '@synerise/ds-avatar';
 import Badge from '@synerise/ds-badge';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
@@ -15,6 +15,7 @@ import Stepper from '@synerise/ds-stepper';
 import Dropdown from '@synerise/ds-dropdown';
 import Menu from '@synerise/ds-menu';
 import MenuItem from '@synerise/ds-menu/dist/Elements/Item/MenuItem';
+import Radio from '@synerise/ds-radio';
 
 const shapes = ['circle', 'square'] as const;
 const statuses = ['active', 'inactive', 'blocked'] as const;
@@ -41,6 +42,65 @@ const tabs = [
   },
   {
     label: 'Tab Third',
+  },
+];
+
+const steps = [
+  {
+    number: 1,
+    label: 'Details',
+    children: (
+      <Radio.Group>
+        <Radio name="radio" value="radio" description="Description">
+          Radio
+        </Radio>
+        <Radio name="radio" value="tv" description="Description">
+          TV
+        </Radio>
+      </Radio.Group>
+    ),
+  },
+  {
+    number: 2,
+    label: 'Settings',
+    children: (
+      <Radio.Group>
+        <Radio name="radio" value="radio" description="Description">
+          Radio
+        </Radio>
+        <Radio name="radio" value="tv" description="Description">
+          TV
+        </Radio>
+      </Radio.Group>
+    ),
+  },
+  {
+    number: 3,
+    label: 'Filters & Facets',
+    children: (
+      <Radio.Group>
+        <Radio name="radio" value="radio" description="Description">
+          Radio
+        </Radio>
+        <Radio name="radio" value="tv" description="Description">
+          TV
+        </Radio>
+      </Radio.Group>
+    ),
+  },
+  {
+    number: 4,
+    label: 'Ranking',
+    children: (
+      <Radio.Group>
+        <Radio name="radio" value="radio" description="Description">
+          Radio
+        </Radio>
+        <Radio name="radio" value="tv" description="Description">
+          TV
+        </Radio>
+      </Radio.Group>
+    ),
   },
 ];
 
@@ -156,128 +216,146 @@ const stories = {
     value: '',
     dropdownVisible: false,
     selectedSpace: 'CRM',
-  })(({ store }) => (
-    <PageHeader
-      onGoBack={action('goBack')}
-      bar={
-        <>
-          <Button type="tertiary">Function</Button>
-        </>
-      }
-      inlineEdit={{
-        name: 'name-of-input',
-        value: store.state.value,
-        maxLength: 60,
-        handleOnChange: event => {
-          store.set({ value: event.target.value });
-        },
-        handleOnBlur: () => action('onBlur'),
-        handleOnEnterPress: () => action('onEnterPress'),
-        placeholder: 'Example text',
-        size: 'normal',
-      }}
-      more={
-        <Dropdown
-          overlay={
-            <Menu asDropdownMenu>
-              <MenuItem onClick={() => store.set({ selectedSpace: 'CRM', dropdownVisible: false })}>CRM</MenuItem>
-              <MenuItem onClick={() => store.set({ selectedSpace: 'Campaign', dropdownVisible: false })}>
-                Campaign
-              </MenuItem>
-              <MenuItem onClick={() => store.set({ selectedSpace: 'Automation', dropdownVisible: false })}>
-                Automation
-              </MenuItem>
-            </Menu>
-          }
-          visible={store.state.dropdownVisible}
-        >
-          <Dropdown.TextTrigger
-            size={2}
-            inactiveColor="blue-600"
-            value={store.state.selectedSpace}
-            onClick={() => store.set({ dropdownVisible: !store.state.dropdownVisible })}
+  })(({ store }) => {
+    const avatarSize = select('size', ['small', 'medium', 'large', 'extraLarge'], 'large');
+    return (
+      <PageHeader
+        onGoBack={action('goBack')}
+        bar={
+          <>
+            <Button type="tertiary">Function</Button>
+          </>
+        }
+        inlineEdit={{
+          name: 'name-of-input',
+          value: store.state.value,
+          maxLength: 60,
+          handleOnChange: event => {
+            store.set({ value: event.target.value });
+          },
+          handleOnBlur: () => action('onBlur'),
+          handleOnEnterPress: () => action('onEnterPress'),
+          placeholder: 'Example text',
+          size: 'normal',
+        }}
+        more={
+          <Dropdown
+            overlay={
+              <Menu asDropdownMenu>
+                <MenuItem onClick={() => store.set({ selectedSpace: 'CRM', dropdownVisible: false })}>CRM</MenuItem>
+                <MenuItem onClick={() => store.set({ selectedSpace: 'Campaign', dropdownVisible: false })}>
+                  Campaign
+                </MenuItem>
+                <MenuItem onClick={() => store.set({ selectedSpace: 'Automation', dropdownVisible: false })}>
+                  Automation
+                </MenuItem>
+              </Menu>
+            }
+            visible={store.state.dropdownVisible}
+          >
+            <Dropdown.TextTrigger
+              size={2}
+              inactiveColor="blue-600"
+              value={store.state.selectedSpace}
+              onClick={() => store.set({ dropdownVisible: !store.state.dropdownVisible })}
+            />
+          </Dropdown>
+        }
+        avatar={
+          <Badge status="active">
+            <Avatar
+              backgroundColor={select('backgroundColors', backgroundColors, 'red')}
+              backgroundColorHue={'100'}
+              disabled={boolean('disabled', false)}
+              hasStatus
+              shape={select('shape', shapes, 'circle')}
+              size={avatarSize}
+            >
+              <Icon component={avatarSize === 'small' ? <MailS /> : <MailM />} color={theme.palette['red-600']} />
+            </Avatar>
+          </Badge>
+        }
+        tabs={
+          <Tabs
+            tabs={tabs}
+            activeTab={store.state.activeTab}
+            handleTabClick={(index: number) => store.set({ activeTab: index })}
+            configuration={{
+              label: 'Manage dashboards',
+              action: action('Manage dashboards click'),
+            }}
           />
-        </Dropdown>
-      }
-      avatar={
-        <Badge status="active">
-          <Avatar
-            backgroundColor={select('backgroundColors', backgroundColors, 'red')}
-            backgroundColorHue={'100'}
-            disabled={boolean('disabled', false)}
-            hasStatus
-            shape={select('shape', shapes, 'circle')}
-            size={select('size', ['small', 'medium', 'large', 'extraLarge'], 'large')}
-          >
-            <Icon component={<MailM />} color={theme.palette['red-600']} />
-          </Avatar>
-        </Badge>
-      }
-      tabs={
-        <Tabs
-          tabs={tabs}
-          activeTab={store.state.activeTab}
-          handleTabClick={(index: number) => store.set({ activeTab: index })}
-          configuration={{
-            label: 'Manage dashboards',
-            action: action('Manage dashboards click'),
-          }}
-        />
-      }
-      rightSide={
-        <>
-          <Button>Duplicate</Button>
-          <Button mode={'split'} type={'primary'}>
-            Edit
-            <Icon component={<AngleDownS />} color={'#ffffff'} />
-          </Button>
-        </>
-      }
-    />
-  )),
-  withStepper: () => (
-    <PageHeader
-      avatar={
-        <Badge status="active">
-          <Avatar
-            backgroundColor={select('backgroundColors', backgroundColors, 'red')}
-            backgroundColorHue={'100'}
-            disabled={boolean('disabled', false)}
-            hasStatus
-            shape={select('shape', shapes, 'circle')}
-            size={select('size', ['small', 'medium', 'large', 'extraLarge'], 'large')}
-          >
-            <Icon component={<MailM />} color={theme.palette['red-600']} />
-          </Avatar>
-        </Badge>
-      }
-      inlineEdit={{
-        name: 'name-of-input',
-        value: 'Example text',
-        maxLength: 60,
-        handleOnChange: action('Edit'),
-        handleOnBlur: () => action('onBlur'),
-        handleOnEnterPress: () => action('onEnterPress'),
-        placeholder: 'Example text',
-        size: 'normal',
-      }}
-      rightSide={
-        <>
-          <Stepper style={{ flex: '1', justifyContent: 'flex-end', marginRight: '16px' }}>
-            <Stepper.Step label="Details" stepNumber={1} active />
-            <Stepper.Step label="Settings" stepNumber={2} />
-            <Stepper.Step label="Filters" stepNumber={3} />
-            <Stepper.Step label="Ranking" stepNumber={4} />
-          </Stepper>
-          <Button>Cancel</Button>
-          <Button type={'primary'}>Save</Button>
-          <Button type="ghost" mode="single-icon">
-            <Icon component={<OptionHorizontalM />} />
-          </Button>
-        </>
-      }
-    />
-  ),
+        }
+        rightSide={
+          <>
+            <Button>Duplicate</Button>
+            <Button mode={'split'} type={'primary'}>
+              Edit
+              <Icon component={<AngleDownS />} color={'#ffffff'} />
+            </Button>
+          </>
+        }
+      />
+    );
+  }),
+  withStepper: withState({
+    activeStep: 0,
+  })(({ store }) => {
+    const avatarSize = select('size', ['small', 'medium', 'large', 'extraLarge'], 'large');
+    const showTooltip = boolean('Show step tooltip', false);
+
+    return (
+      <PageHeader
+        avatar={
+          <Badge status="active">
+            <Avatar
+              backgroundColor={select('backgroundColors', backgroundColors, 'red')}
+              backgroundColorHue={'100'}
+              disabled={boolean('disabled', false)}
+              hasStatus
+              shape={select('shape', shapes, 'circle')}
+              size={avatarSize}
+            >
+              <Icon component={avatarSize === 'small' ? <MailS /> : <MailM />} color={theme.palette['red-600']} />
+            </Avatar>
+          </Badge>
+        }
+        inlineEdit={{
+          name: 'name-of-input',
+          value: 'Example text',
+          maxLength: 60,
+          handleOnChange: action('Edit'),
+          handleOnBlur: () => action('onBlur'),
+          handleOnEnterPress: () => action('onEnterPress'),
+          placeholder: 'Example text',
+          size: 'normal',
+        }}
+        rightSide={
+          <>
+            <Stepper style={{ flex: '1', justifyContent: 'flex-end', marginRight: '16px' }}>
+              {steps.map((step, index) => (
+                <Stepper.Step
+                  onClick={() => store.set({ activeStep: index })}
+                  label={step.label}
+                  stepNumber={step.number}
+                  active={index === store.state.activeStep}
+                  done={index < store.state.activeStep}
+                  validated={boolean('Set validated', false)}
+                  tooltip={showTooltip && text('Set tooltip text', 'Tooltip info')}
+                  children={step.children}
+                />
+              ))}
+            </Stepper>
+            <Button>Cancel</Button>
+            <Button type={'primary'}>Save</Button>
+            <Button type="ghost" mode="single-icon">
+              <Icon component={<OptionHorizontalM />} />
+            </Button>
+          </>
+        }
+      />
+    );
+  }),
 };
 
 export default {

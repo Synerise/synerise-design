@@ -5,14 +5,76 @@ import { propsWithKnobs } from '../index.stories';
 import { withState } from '@dump247/storybook-state';
 import * as S from './styles';
 import Stepper from '@synerise/ds-stepper';
+import { boolean, text } from '@storybook/addon-knobs';
+import Radio from '@synerise/ds-radio';
 
 const DEFAULT_STATE = {
   visible: false,
+  activeStep: 0,
 };
+
+const steps = [
+  {
+    number: 1,
+    label: 'Details',
+    children: (
+      <Radio.Group>
+        <Radio name="radio" value="radio" description="Description">
+          Radio
+        </Radio>
+        <Radio name="radio" value="tv" description="Description">
+          TV
+        </Radio>
+      </Radio.Group>
+    ),
+  },
+  {
+    number: 2,
+    label: 'Settings',
+    children: (
+      <Radio.Group>
+        <Radio name="radio" value="radio" description="Description">
+          Radio
+        </Radio>
+        <Radio name="radio" value="tv" description="Description">
+          TV
+        </Radio>
+      </Radio.Group>
+    ),
+  },
+  {
+    number: 3,
+    label: 'Filters & Facets',
+    children: (
+      <Radio.Group>
+        <Radio name="radio" value="radio" description="Description">
+          Radio
+        </Radio>
+        <Radio name="radio" value="tv" description="Description">
+          TV
+        </Radio>
+      </Radio.Group>
+    ),
+  },
+  {
+    number: 4,
+    label: 'Ranking',
+    children: (
+      <Radio.Group>
+        <Radio name="radio" value="radio" description="Description">
+          Radio
+        </Radio>
+        <Radio name="radio" value="tv" description="Description">
+          TV
+        </Radio>
+      </Radio.Group>
+    ),
+  },
+];
 
 const withStepper = withState(DEFAULT_STATE)(({ store }) => {
   const spread = propsWithKnobs();
-
+  const showTooltip = boolean('Show step tooltip', false);
   return (
     <div
       style={{
@@ -63,10 +125,18 @@ const withStepper = withState(DEFAULT_STATE)(({ store }) => {
       >
         <S.StepperWrapper>
           <Stepper style={{ width: '100%', justifyContent: 'center' }}>
-            <Stepper.Step label={'Details'} stepNumber={1} active />
-            <Stepper.Step label={'Settings'} stepNumber={2} />
-            <Stepper.Step label={'Filters'} stepNumber={3} />
-            <Stepper.Step label={'Ranking'} stepNumber={4} />
+            {steps.map((step, index) => (
+              <Stepper.Step
+                onClick={() => store.set({ activeStep: index })}
+                label={step.label}
+                stepNumber={step.number}
+                active={index === store.state.activeStep}
+                done={index < store.state.activeStep}
+                validated={boolean('Set validated', false)}
+                tooltip={showTooltip && text('Set tooltip text', 'Tooltip info')}
+                children={step.children}
+              />
+            ))}
           </Stepper>
         </S.StepperWrapper>
       </Modal>
