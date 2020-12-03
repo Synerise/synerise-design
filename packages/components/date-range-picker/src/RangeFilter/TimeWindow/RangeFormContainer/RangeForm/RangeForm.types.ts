@@ -7,4 +7,5 @@ export type RangeFormProps = {
   onStartChange: (value: Date) => void;
   onEndChange: (value: Date) => void;
   onExactHourSelect: (value: Date) => void;
+  onRangeDelete?: () => void;
 };

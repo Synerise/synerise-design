@@ -3,6 +3,9 @@ import * as React from 'react';
 // @ts-ignore
 import dayjs from 'dayjs';
 import Select from '@synerise/ds-select';
+import Icon from '@synerise/ds-icon';
+import { CloseS } from '@synerise/ds-icon/dist/icons';
+import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import TimePicker from '@synerise/ds-time-picker';
 import { RangeFormProps } from './RangeForm.types';
 import * as S from './RangeForm.styles';
@@ -13,7 +16,14 @@ const FORM_MODES = {
   HOUR: 'Hour',
   RANGE: 'Range',
 };
-const RangeForm: React.FC<RangeFormProps> = ({ startDate, endDate, onStartChange, onEndChange, onExactHourSelect }) => {
+const RangeForm: React.FC<RangeFormProps> = ({
+  startDate,
+  endDate,
+  onStartChange,
+  onEndChange,
+  onExactHourSelect,
+  onRangeDelete,
+}) => {
   const [start, setStart] = React.useState<Date | undefined>(startDate);
   const [end, setEnd] = React.useState<Date | undefined>(endDate);
   const [mode, setMode] = React.useState<string>(FORM_MODES.RANGE);
@@ -110,7 +120,12 @@ const RangeForm: React.FC<RangeFormProps> = ({ startDate, endDate, onStartChange
             </Select.Option>
           ))}
         </Select>
-        {mode === 'Hour' ? renderSingleHourPicker() : renderRangePicker()}
+        {mode === FORM_MODES.HOUR ? renderSingleHourPicker() : renderRangePicker()}
+        {!!onRangeDelete && (
+          <S.RemoveIconWrapper onClick={onRangeDelete}>
+            <Icon component={<CloseS />} color={theme.palette['red-600']} />
+          </S.RemoveIconWrapper>
+        )}
       </S.Row>
     </S.Container>
   );
