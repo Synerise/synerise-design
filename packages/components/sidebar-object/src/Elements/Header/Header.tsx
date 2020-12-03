@@ -180,14 +180,14 @@ const Header: React.FC<HeaderProps> = ({
       );
     }
     return (
-      <>
+      <S.ButtonsWrapper>
         <S.ButtonWrapper>
           <Button type="ghost" onClick={onCancelClick}> {texts.cancelButton} </Button>
         </S.ButtonWrapper>
         <S.ButtonWrapper>
           <Button type="primary" onClick={onApplyClick}> {texts.applyButton} </Button>
         </S.ButtonWrapper>
-      </>
+      </S.ButtonsWrapper>
     );
   };
   return (

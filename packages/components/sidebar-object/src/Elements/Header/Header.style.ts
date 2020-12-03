@@ -23,7 +23,13 @@ export const DrawerHeaderBar = styled.div<{withTabs: boolean}>`
   justify-content: space-between;
   align-items: center;
   padding-bottom: ${(props): string => props.withTabs ? '10px': '24px' };
+  .ant-typography {
+  margin-bottom: 0px;
+  }
 `;
+export const ButtonsWrapper = styled.div`
+  display: flex;
+ `;
 
 export const MenuWrapper = styled.div`
   border-top: 1px dashed ${(props): string => props.theme.palette['grey-300']};
