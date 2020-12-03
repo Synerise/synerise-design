@@ -22,14 +22,20 @@ const Step: React.FC<StepProps> = ({ stepNumber, label, active, done, validated,
     >
       <S.StepWrapper onClick={handleClick} clickable={Boolean(onClick)}>
         <S.StepPrefix>
-          {done && !validated ? <Icon component={<CheckS />} color={theme.palette['green-600']} /> : stepNumber}
+          {done && !validated ? (
+            <Icon component={<CheckS />} color={theme.palette['green-600']} />
+          ) : (
+            <S.StepNumber>{stepNumber}</S.StepNumber>
+          )}
         </S.StepPrefix>
-        <S.StepLabel>{label}</S.StepLabel>
-        {tooltip && active && (
-          <Tooltip trigger={['hover']} title={tooltip}>
-            <Icon component={<WarningFillS />} color={theme.palette['yellow-600']} />
-          </Tooltip>
-        )}
+        <S.StepName data-label={label}>
+          <S.StepLabel>{label}</S.StepLabel>
+          {tooltip && active && (
+            <Tooltip trigger={['hover']} title={tooltip}>
+              <Icon component={<WarningFillS />} color={theme.palette['yellow-600']} />
+            </Tooltip>
+          )}
+        </S.StepName>
       </S.StepWrapper>
       <S.StepContent>
         <AnimateHeight className="ds-step-content" duration={200} height={active ? 'auto' : 0}>

@@ -12,16 +12,35 @@ export const StepPrefix = styled.div`
   border-style: solid;
   border-color: ${(props): string => props.theme.palette['grey-400']};
   margin-right: 8px;
-  color: ${(props): string => props.theme.palette['grey-400']};
+  text-align: center;
   transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out;
 `;
 
-export const StepLabel = styled.span`
+export const StepNumber = styled.span`
+  display: inline-flex;
+  text-align: center;
+  width: 10px;
+  position: absolute;
+  line-height: 24px;
+  justify-content: center;
+  align-items: center;
+  transition: color 0.2s ease-in-out;
+  color: ${(props): string => props.theme.palette['grey-400']};
+`;
+
+export const StepName = styled.span`
   font-size: 13px;
   line-height: 18px;
-  color: ${(props): string => props.theme.palette['grey-400']};
-  transition: color 0.2s ease-in-out;
   flex-wrap: nowrap;
+  position: relative;
+  display: flex;
+  align-items: center;
+`;
+
+export const StepLabel = styled.span`
+  color: inherit;
+  transition: color 0.2s ease-in-out;
+  color: ${(props): string => props.theme.palette['grey-400']};
 `;
 
 export const StepWrapper = styled.div<{ clickable: boolean }>`
@@ -68,7 +87,7 @@ export const Step = styled.div<{ active: boolean; done: boolean; validated: bool
         ${StepPrefix} {
           border-color: ${props.theme.palette['red-600']};
         }
-        ${StepPrefix},
+        ${StepNumber},
         ${StepLabel} {
           color: ${props.theme.palette['red-600']};
           font-weight: 400;
@@ -79,7 +98,7 @@ export const Step = styled.div<{ active: boolean; done: boolean; validated: bool
         ${StepPrefix} {
           border-color: ${props.theme.palette['green-600']};
         }
-        ${StepPrefix},
+        ${StepNumber},
         ${StepLabel} {
           color: ${props.theme.palette['green-600']};
           font-weight: 400;
@@ -90,10 +109,22 @@ export const Step = styled.div<{ active: boolean; done: boolean; validated: bool
         ${StepPrefix} {
           border-color: ${props.theme.palette['grey-700']};
         }
-        ${StepPrefix},
-        ${StepLabel} {
+        ${StepNumber} {
           color: ${props.theme.palette['grey-700']};
           font-weight: 500;
+        }
+        ${StepName} {
+          &::before {
+            border-color: ${props.theme.palette['grey-700']};
+            color: ${props.theme.palette['grey-700']};
+            position: absolute;
+            display: flex;
+            font-weight: 500;
+            content: attr(data-label);
+          }
+          ${StepLabel} {
+            visibility: hidden;
+          }
         }
       `;
     return css`
@@ -101,7 +132,7 @@ export const Step = styled.div<{ active: boolean; done: boolean; validated: bool
         ${StepPrefix} {
           border-color: ${props.theme.palette['grey-700']};
         }
-        ${StepPrefix},
+        ${StepNumber},
         ${StepLabel} {
           color: ${props.theme.palette['grey-700']};
           font-weight: 400;
