@@ -41,13 +41,12 @@ export const CreateTagDropdownButton = styled(Button)<{ marginless: boolean }>`
   text-overflow: ellipsis;
   display: flex;
   align-items: center;
-  margin: 8px;
   position: absolute;
 
   && {
     font-weight: 400;
     text-align: left;
-    width: calc(100% - 6px);
+    width: 100%;
     justify-content: flex-start;
     ${AddIconWrapper} {
       transform: translate(-4px, 0px);
@@ -69,7 +68,7 @@ export const ManageLinkButton = styled(Button)<{ onlyChild: boolean }>`
 
 export const Seperator = styled.hr`
   width: auto;
-  margin: 0 10px 0 20px;
+  margin: 0;
   padding: 0;
   border: 0;
   height: 1px;
@@ -86,7 +85,6 @@ export const Seperator = styled.hr`
 export const DropdownContainer = styled(Scrollbar)<ScrollbarProps>`
   display: flex;
   flex-direction: column;
-  padding: 8px 0;
 `;
 
 export const DropdownTagsContainer = styled.div<{ isCreatable: boolean }>`
@@ -94,9 +92,6 @@ export const DropdownTagsContainer = styled.div<{ isCreatable: boolean }>`
   flex-direction: column;
   padding: ${(props): string => (props.isCreatable ? '8px 0 0' : '0')};
   max-height: 320px;
-  overflow-y: auto;
-  padding: 12px 8px;
-
   > * {
     width: fit-content;
     max-width: fit-content;
