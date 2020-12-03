@@ -8,6 +8,6 @@ export type RangeFormContainerProps = {
   getDayValue: (dayKey: DayKey) => Partial<FilterDefinition>;
   onMultipleDayTimeChange: (value: [Date, Date]) => void;
   onDayTimeChange: (value: [Date, Date], dayKey: DayKey) => void;
-} &
-  Pick<TimeWindowProps, 'monthlyFilter' | 'monthlyFilterPeriod' | 'hideHeader'> &
+  onRangeDelete?: () => void;
+} & Pick<TimeWindowProps, 'monthlyFilter' | 'monthlyFilterPeriod' | 'hideHeader'> &
   Partial<RangeActions>;

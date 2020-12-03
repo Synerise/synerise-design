@@ -20,6 +20,7 @@ const RangeFormContainer: React.FC<RangeFormContainerProps> = ({
   onRangeClear,
   onRangePaste,
   onRangeCopy,
+  onRangeDelete,
 }) => {
   const dayValue = getDayValue(activeDays[0]);
   const rangeForm = (
@@ -41,6 +42,7 @@ const RangeFormContainer: React.FC<RangeFormContainerProps> = ({
           ? onMultipleDayTimeChange([value, value])
           : onDayTimeChange([value, value], dayKeys as DayKey);
       }}
+      onRangeDelete={onRangeDelete}
     />
   );
   if (hideHeader) return rangeForm;
