@@ -1,13 +1,15 @@
-import { CSSProperties } from 'react';
+import * as React from 'react';
 import { Props as TagProps, TagShape } from './Tag/Tag.types';
 
 export interface TagsTexts {
-  addButtonLabel?: string;
+  addButtonLabel?: string | React.ReactNode;
   searchPlaceholder?: string;
-  manageLinkLabel?: string;
-  createTagButtonLabel?: string;
-  dropdownNoTags?: string;
-  clearTooltip?: string;
+  manageLinkLabel?: string | React.ReactNode;
+  createTagButtonLabel?: string | React.ReactNode;
+  dropdownNoTags?: string | React.ReactNode;
+  clearTooltip?: string | React.ReactNode;
+  deleteTooltip?: string | React.ReactNode;
+  noResultsLabel?: string | React.ReactNode;
 }
 
 export interface ActionTaken {
@@ -20,7 +22,7 @@ export interface Props {
   selected?: Array<TagProps>;
   tagShape?: TagShape;
   className?: string;
-  style?: CSSProperties;
+  style?: React.CSSProperties;
   addable?: boolean;
   removable?: boolean;
   creatable?: boolean;

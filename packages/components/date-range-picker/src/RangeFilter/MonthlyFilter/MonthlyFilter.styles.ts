@@ -74,7 +74,7 @@ export const AddButton = styled.div`
   display: inline-block;
   font-weight: 500;
   padding-bottom: 20px;
-  transition: 0.2s ease-in-out;
+  transition: all 0.15s ease-in-out;
   cursor: pointer;
   span {
     display: inline-block;

@@ -37,6 +37,7 @@ const SidebarObject: React.FC<SidebarObjectProps> = ({
   return (
     <S.SidebarObjectWrapper>
       <Scrollbar
+        absolute
         maxHeight="100vh" // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
         // @ts-ignore
         options={{ suppressScrollY: !withScrollbar }}

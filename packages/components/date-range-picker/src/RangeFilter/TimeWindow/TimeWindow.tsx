@@ -76,7 +76,7 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
       updatedActiveDay = activeDays.filter(day => day !== dayKey);
     }
     this.setState({ activeDays: updatedActiveDay });
-    this.unCheckDay(dayKey);
+    this.removeDaySelection(dayKey);
   };
 
   toggleDay = (dayKey: DayKey, forcedState: boolean): void => {
@@ -101,6 +101,13 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
     });
   };
 
+  removeDaySelection = (dayKey: DayKey): void => {
+    const { onChange, days } = this.props;
+    const updatedDays = days;
+    delete updatedDays[dayKey];
+    onChange(updatedDays);
+  };
+
   checkDay = (dayKey: DayKey): void => {
     const { onCheckDay } = this.props;
 
@@ -112,18 +119,6 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
     });
 
     onCheckDay && onCheckDay(dayKey);
-  };
-
-  unCheckDay = (dayKey: DayKey): void => {
-    const { onUncheckDay } = this.props;
-    this.handleDayChange(dayKey, {
-      start: DEFAULT_RANGE_START,
-      stop: DEFAULT_RANGE_END,
-      restricted: false,
-      display: false,
-    });
-
-    onUncheckDay && onUncheckDay(dayKey);
   };
 
   handleDayTimeChange = (value: [Date, Date], dayKey: DayKey): void => {
@@ -147,6 +142,16 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
       };
     });
     onChange({ ...days, ...updatedDays });
+  };
+
+  handleRangeDelete = (): void => {
+    const { onChange, days } = this.props;
+    const { activeDays } = this.state;
+    const updatedDays = days;
+    activeDays.forEach(k => {
+      delete updatedDays[k];
+    });
+    onChange({ ...updatedDays });
   };
 
   handleClearSelection = (): void => {
@@ -269,7 +274,7 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
 
   renderRangeForm = (dayKeys: DayKey | DayKey[]): React.ReactNode => {
     const { activeDays } = this.state;
-    const { hideHeader, monthlyFilterPeriod, monthlyFilter } = this.props;
+    const { hideHeader, monthlyFilterPeriod, monthlyFilter, daily } = this.props;
     return (
       <RangeFormContainer
         activeDays={activeDays}
@@ -284,6 +289,7 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
         hideHeader={hideHeader}
         monthlyFilter={monthlyFilter}
         monthlyFilterPeriod={monthlyFilterPeriod}
+        onRangeDelete={daily ? undefined : this.handleRangeDelete}
       />
     );
   };

@@ -41,7 +41,6 @@ export type TimeWindowProps = {
   dayFormatter: (day: DayKey, long?: boolean) => string;
   hideHeader?: boolean;
   onCheckDay?: (dayKey: DayKey) => void;
-  onUncheckDay?: (dayKey: DayKey) => void;
   onSelectAll?: () => void;
   onUnselectAll?: () => void;
   readOnly: boolean;
