@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.84](https://github.com/Synerise/synerise-design/compare/@synerise/ds-avatar-group@0.2.83...@synerise/ds-avatar-group@0.2.84) (2020-12-04)
+
+**Note:** Version bump only for package @synerise/ds-avatar-group
+
+
+
+
+
+## [0.2.83](https://github.com/Synerise/synerise-design/compare/@synerise/ds-avatar-group@0.2.82...@synerise/ds-avatar-group@0.2.83) (2020-12-02)
+
+
+### Bug Fixes
+
+* **avatar-group:** change styles of show-more button ([0ad359c](https://github.com/Synerise/synerise-design/commit/0ad359c79f4d06d2a0ef9a0261edc82369a15066))
+* **avatar-group:** fix showMore styles ([ebea973](https://github.com/Synerise/synerise-design/commit/ebea9737b0b209e57b33e4539d9c48503a14e1b2))
+* **avatar-group:** fix styles of ShowMore ([ac4ff70](https://github.com/Synerise/synerise-design/commit/ac4ff70e8163aad7a397eebefbb9b5db7ded3396))
+
+
+
+
+
 ## [0.2.82](https://github.com/Synerise/synerise-design/compare/@synerise/ds-avatar-group@0.2.81...@synerise/ds-avatar-group@0.2.82) (2020-11-25)
 
 **Note:** Version bump only for package @synerise/ds-avatar-group

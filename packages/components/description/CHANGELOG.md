@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-description@0.2.0...@synerise/ds-description@0.2.1) (2020-12-04)
+
+**Note:** Version bump only for package @synerise/ds-description
+
+
+
+
+
+# [0.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-description@0.1.35...@synerise/ds-description@0.2.0) (2020-12-02)
+
+
+### Bug Fixes
+
+* **description:** fix hook dependecies ([d63b44e](https://github.com/Synerise/synerise-design/commit/d63b44e344fc8ad2a2dae7dc0c974f46f7ffaafe))
+* **description:** fix RowValue styles ([7f48061](https://github.com/Synerise/synerise-design/commit/7f480615eb89cc6371d259026995464c489a289e))
+
+
+### Features
+
+* **description:** add dotted, and numbered list types ([9d8e78a](https://github.com/Synerise/synerise-design/commit/9d8e78a74def7ee1d390f87bfa25e31cc20681eb))
+* **description:** copy value only on Copy icon click ([855088d](https://github.com/Synerise/synerise-design/commit/855088d0baab1ee78ccb59a5ca2827fe05a2535f))
+
+
+
+
+
 ## [0.1.35](https://github.com/Synerise/synerise-design/compare/@synerise/ds-description@0.1.34...@synerise/ds-description@0.1.35) (2020-11-25)
 
 **Note:** Version bump only for package @synerise/ds-description

@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.6](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@0.9.5...@synerise/ds-tooltip@0.9.6) (2020-12-04)
+
+**Note:** Version bump only for package @synerise/ds-tooltip
+
+
+
+
+
+## [0.9.5](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@0.9.4...@synerise/ds-tooltip@0.9.5) (2020-12-02)
+
+**Note:** Version bump only for package @synerise/ds-tooltip
+
+
+
+
+
 ## [0.9.4](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@0.9.3...@synerise/ds-tooltip@0.9.4) (2020-11-25)
 
 **Note:** Version bump only for package @synerise/ds-tooltip

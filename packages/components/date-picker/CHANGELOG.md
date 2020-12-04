@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.23](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@0.2.22...@synerise/ds-date-picker@0.2.23) (2020-12-04)
+
+**Note:** Version bump only for package @synerise/ds-date-picker
+
+
+
+
+
+## [0.2.22](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@0.2.21...@synerise/ds-date-picker@0.2.22) (2020-12-02)
+
+
+### Bug Fixes
+
+* **date-picker:** handling disabled state ([2cf037e](https://github.com/Synerise/synerise-design/commit/2cf037e30256ea4bb9716b204e4454fe9227fb54))
+
+
+
+
+
 ## [0.2.21](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@0.2.20...@synerise/ds-date-picker@0.2.21) (2020-11-25)
 
 **Note:** Version bump only for package @synerise/ds-date-picker
