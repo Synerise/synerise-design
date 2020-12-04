@@ -21,6 +21,7 @@ const Tag: React.FC<Props> = ({
   onClick,
   prefixel,
   suffixel,
+  texts,
 }: Props) => {
   const isDefaultType = shape && [TagShape.DEFAULT_ROUND, TagShape.DEFAULT_SQUARE].includes(shape);
   const isDefaultRound = shape === TagShape.DEFAULT_ROUND;
@@ -69,7 +70,7 @@ const Tag: React.FC<Props> = ({
         <S.TagName>{name}</S.TagName>
         {!!suffixel && renderSuffixel()}
         {isRemovable && (
-          <Tooltip title="Delete" visible={iconHover}>
+          <Tooltip title={texts?.deleteTooltip || 'Delete'} visible={iconHover}>
             {/* eslint-disable-next-line jsx-a11y/mouse-events-have-key-events */}
             <S.RemoveButton
               onClick={onRemoveCall}
@@ -81,12 +82,7 @@ const Tag: React.FC<Props> = ({
               }}
               data-testid="remove-btn"
             >
-              <Icon
-                className="icon"
-                component={<CloseS />}
-                size={24}
-                color={getColorText(theme,color)}
-              />
+              <Icon className="icon" component={<CloseS />} size={24} color={getColorText(theme, color)} />
             </S.RemoveButton>
           </Tooltip>
         )}

@@ -51,13 +51,15 @@ Tags UI Component
 
 ## TagsTexts
 
-| Property             | Description                                                   | Type                     | Default |
-| -------------------- | ------------------------------------------------------------- | ------------------------ | ------- |
-| addButtonLabel       | Label for add tag button                                      | string / React.ReactNode |         |
-| searchPlaceholder    | Search input placeholder for add tag dropdown                 | string                   |         |
-| manageLinkLabel      | Label for manage link for add tag dropdown                    | string / React.ReactNode |         |
-| createTagButtonLabel | Label for create tag button for add tag dropdown              | string / React.ReactNode |         |
-| dropdownNoTags       | Text for a label displayed when no tags are found to be added | string / React.ReactNode |         |
+| Property             | Description                                                   | Type                     | Default  |
+| -------------------- | ------------------------------------------------------------- | ------------------------ | -------- |
+| addButtonLabel       | Label for add tag button                                      | string / React.ReactNode |          |
+| clearTooltip         | Tooltip text displayed on search clear icon hover             | string / React.ReactNode |          |
+| deleteTooltip        | Tooltip text displayed on remove icon hover                   | string / React.ReactNode | `Delete` |
+| searchPlaceholder    | Search input placeholder for add tag dropdown                 | string                   |          |
+| manageLinkLabel      | Label for manage link for add tag dropdown                    | string / React.ReactNode |          |
+| createTagButtonLabel | Label for create tag button for add tag dropdown              | string / React.ReactNode |          |
+| dropdownNoTags       | Text for a label displayed when no tags are found to be added | string / React.ReactNode |          |
 
 ## TagShape Enum
 

@@ -117,7 +117,7 @@ const Tags: React.FC<Props> = ({
             {selectablePool &&
               selectablePool.map(tag => (
                 // eslint-disable-next-line react/jsx-props-no-spreading
-                <Tag {...tag} key={tag.id} shape={tagShape} onClick={(): void => onPoolTagSelect(tag)} />
+                <Tag {...tag} key={tag.id} shape={tagShape} onClick={(): void => onPoolTagSelect(tag)} texts={texts} />
               ))}
           </S.DropdownTagsContainer>
         )}
@@ -159,6 +159,7 @@ const Tags: React.FC<Props> = ({
               removable={removable}
               onRemove={removable ? onRemove : undefined}
               disabled={disabled}
+              texts={texts}
               // eslint-disable-next-line react/jsx-props-no-spreading
               {...tag}
             />

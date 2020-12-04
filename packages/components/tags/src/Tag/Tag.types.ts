@@ -1,3 +1,5 @@
+import { TagsTexts } from '../Tags.types';
+
 export interface Props {
   id?: string | number;
   name?: string;
@@ -12,8 +14,8 @@ export interface Props {
   onRemove?: (tag: string | number) => void;
   prefixel?: React.ReactNode | React.ReactText;
   suffixel?: React.ReactNode | React.ReactText;
+  texts?: TagsTexts;
 }
-
 
 export enum TagShape {
   SINGLE_CHARACTER_ROUND = 'single_character_round',

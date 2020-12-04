@@ -266,6 +266,7 @@ const stories = {
             maxHeight={200}
             texts={{
               clearTooltip: 'Clear',
+              deleteTooltip: 'Delete',
               addButtonLabel: 'Add tag',
               manageLinkLabel: 'Manage tags',
               createTagButtonLabel: 'Add tag',
