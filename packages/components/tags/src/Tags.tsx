@@ -162,7 +162,6 @@ const Tags: React.FC<Props> = ({
               onRemove={removable ? onRemove : undefined}
               disabled={disabled}
               texts={texts}
-              // eslint-disable-next-line react/jsx-props-no-spreading
               {...tag}
             />
           ))}
