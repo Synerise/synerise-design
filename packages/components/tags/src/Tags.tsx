@@ -125,7 +125,9 @@ const Tags: React.FC<Props> = ({
         {emptyPool && !isCreatable && !manageLink && (
           <S.DropdownNoTags>{texts && texts.dropdownNoTags}</S.DropdownNoTags>
         )}
-        {emptyPool && isCreatable && <Result type="no-results" noSearchResults description="No results" />}
+        {emptyPool && isCreatable && (
+          <Result type="no-results" noSearchResults description={texts?.noResultsLabel || 'No results'} />
+        )}
       </S.DropdownContainer>
       {manageLink && selectablePool && !selectablePool.length && (
         <Dropdown.BottomAction

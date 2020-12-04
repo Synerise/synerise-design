@@ -9,6 +9,7 @@ export interface TagsTexts {
   dropdownNoTags?: string | React.ReactNode;
   clearTooltip?: string | React.ReactNode;
   deleteTooltip?: string | React.ReactNode;
+  noResultsLabel?: string | React.ReactNode;
 }
 
 export interface ActionTaken {
