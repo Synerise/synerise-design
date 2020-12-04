@@ -99,7 +99,7 @@ const Tags: React.FC<Props> = ({
         onClearInput={(): void => setSearchQuery('')}
         clearTooltip={texts && texts.clearTooltip}
       />
-      <S.DropdownContainer maxHeight={maxHeight}>
+      <S.DropdownContainer maxHeight={maxHeight} style={{ padding: '12px' }}>
         {isCreatable && (
           <>
             <S.CreateTagDropdownButton type="ghost" onClick={onCreateNewTag} marginless={!isSeperated}>
@@ -117,7 +117,7 @@ const Tags: React.FC<Props> = ({
             {selectablePool &&
               selectablePool.map(tag => (
                 // eslint-disable-next-line react/jsx-props-no-spreading
-                <Tag {...tag} key={tag.id} shape={tagShape} onClick={(): void => onPoolTagSelect(tag)} />
+                <Tag {...tag} key={tag.id} shape={tagShape} onClick={(): void => onPoolTagSelect(tag)} texts={texts} />
               ))}
           </S.DropdownTagsContainer>
         )}
@@ -126,18 +126,24 @@ const Tags: React.FC<Props> = ({
           <S.DropdownNoTags>{texts && texts.dropdownNoTags}</S.DropdownNoTags>
         )}
         {emptyPool && isCreatable && (
-        <Result type="no-results" noSearchResults description='No results'/>
+          <Result type="no-results" noSearchResults description={texts?.noResultsLabel || 'No results'} />
         )}
       </S.DropdownContainer>
       {manageLink && selectablePool && !selectablePool.length && (
         <Dropdown.BottomAction
-          onClickAction={(): void=>{
-            onManageTagClick && onManageTagClick()
+          onClickAction={(): void => {
+            onManageTagClick && onManageTagClick();
           }}
-          style={{ padding: '0 8px', cursor: 'auto', }}
+          style={{ padding: '0 8px', cursor: 'auto' }}
         >
-          <S.ManageLinkButton type="ghost" mode="icon-label" href={manageLink}  onlyChild={!!(emptyPool && !isCreatable)}>
-            <Icon component={<SettingsM/>} size={20} color={theme.palette['grey-500']} /> {texts && texts.manageLinkLabel}
+          <S.ManageLinkButton
+            type="ghost"
+            mode="icon-label"
+            href={manageLink}
+            onlyChild={!!(emptyPool && !isCreatable)}
+          >
+            <Icon component={<SettingsM />} size={20} color={theme.palette['grey-500']} />{' '}
+            {texts && texts.manageLinkLabel}
           </S.ManageLinkButton>
         </Dropdown.BottomAction>
       )}
@@ -155,7 +161,7 @@ const Tags: React.FC<Props> = ({
               removable={removable}
               onRemove={removable ? onRemove : undefined}
               disabled={disabled}
-              // eslint-disable-next-line react/jsx-props-no-spreading
+              texts={texts}
               {...tag}
             />
           ))}
