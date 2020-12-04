@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.5.19...@synerise/ds-date-range-picker@0.6.0) (2020-12-04)
+
+
+### Features
+
+* **date-range-picker:** added a button to unselect the rangeform row ([458b804](https://github.com/Synerise/synerise-design/commit/458b804c76a3ed5c04a1f628e14883d082097f40))
+
+
+
+
+
 ## [0.5.19](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.5.18...@synerise/ds-date-range-picker@0.5.19) (2020-12-02)
 
 

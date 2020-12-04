@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.134](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@0.2.133...@synerise/ds-tags@0.2.134) (2020-12-04)
+
+
+### Bug Fixes
+
+* **tags:** added missing translations keys ([0705ca2](https://github.com/Synerise/synerise-design/commit/0705ca2ac33d4a430d74e6d42883efcd9aad4962))
+* **tags:** dropdown scrollbar fixes ([bdfdb5d](https://github.com/Synerise/synerise-design/commit/bdfdb5d5131d54646168fbc788fea65b6b285bcb))
+* **tags:** no results translations added ([7e0f526](https://github.com/Synerise/synerise-design/commit/7e0f5265ea2714cc61fa8ae73246e1dfa0747d03))
+
+
+
+
+
 ## [0.2.133](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@0.2.132...@synerise/ds-tags@0.2.133) (2020-12-02)
 
 

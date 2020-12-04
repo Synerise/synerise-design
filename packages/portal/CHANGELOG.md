@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.108.0](https://github.com/synerise/synerise-design/compare/portal@0.107.0...portal@0.108.0) (2020-12-04)
+
+
+### Bug Fixes
+
+* **tags:** added missing translations keys ([0705ca2](https://github.com/synerise/synerise-design/commit/0705ca2ac33d4a430d74e6d42883efcd9aad4962))
+
+
+### Features
+
+* **stepper:** add stepper example in header and in modal ([0d2c059](https://github.com/synerise/synerise-design/commit/0d2c05930e250617f8b66ba2b9afac30cbfd1aa1))
+
+
+
+
+
 # [0.107.0](https://github.com/synerise/synerise-design/compare/portal@0.106.2...portal@0.107.0) (2020-12-02)
 
 

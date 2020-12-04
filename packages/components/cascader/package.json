@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-cascader",
-  "version": "0.1.88",
+  "version": "0.1.89",
   "description": "Cascader UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -25,15 +25,15 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-button": "^0.13.14",
-    "@synerise/ds-core": "^0.22.0",
-    "@synerise/ds-divider": "^0.4.40",
+    "@synerise/ds-button": "^0.13.15",
+    "@synerise/ds-core": "^0.23.0",
+    "@synerise/ds-divider": "^0.4.41",
     "@synerise/ds-icon": "^0.34.0",
-    "@synerise/ds-menu": "^0.7.8",
-    "@synerise/ds-scrollbar": "^0.2.36",
-    "@synerise/ds-search": "^0.3.3",
-    "@synerise/ds-search-bar": "^0.2.104",
-    "@synerise/ds-utils": "^0.11.8"
+    "@synerise/ds-menu": "^0.7.9",
+    "@synerise/ds-scrollbar": "^0.2.37",
+    "@synerise/ds-search": "^0.3.4",
+    "@synerise/ds-search-bar": "^0.2.105",
+    "@synerise/ds-utils": "^0.11.9"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

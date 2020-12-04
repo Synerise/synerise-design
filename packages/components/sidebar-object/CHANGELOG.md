@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar-object@0.3.6...@synerise/ds-sidebar-object@0.3.7) (2020-12-04)
+
+
+### Bug Fixes
+
+* **sidebar-object:** fix styles of DrawerHeaderBar and fix padding of scrollbar ([009d88b](https://github.com/Synerise/synerise-design/commit/009d88bf7c2b2f437cac9dc11beda22e3d61c423))
+
+
+
+
+
 ## [0.3.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar-object@0.3.5...@synerise/ds-sidebar-object@0.3.6) (2020-12-02)
 
 
