@@ -146,7 +146,7 @@ export const DayPicker = styled(DayPickerBase)`
         background-color: ${(props): string => props.theme.palette['blue-100']};
       }
     }
-    &--today${daySelector('entered-start')}${daySelector('entered-end')}:not(${daySelector('selected')}) {
+    &--today${daySelector('entered-start') + daySelector('entered-end')}:not(${daySelector('selected')}) {
       & >  ${DayBackground} {
         background-color: ${(props): string => props.theme.palette['grey-050']};
       }
@@ -225,7 +225,7 @@ ${daySelector('entered')}:not(${daySelector('disabled')}):not(${daySelector('end
       }
     }
 
-  ${daySelector('selected')}:not(${daySelector('disabled')}) {
+  ${daySelector('selected')}:not(${daySelector('disabled')}):not(${daySelector('outside')}) {
     & > div {
       padding-left: 4px;
       margin-left: 0;
@@ -279,7 +279,7 @@ ${daySelector('entered')}:not(${daySelector('disabled')}):not(${daySelector('end
     }
   }
  
-  ${daySelector('start')}:not(${daySelector('disabled')}) {
+  ${daySelector('start')}:not(${daySelector('disabled')}):not(${daySelector('outside')}) {
     & > ${DayText} {
       border-radius: 50%;
       font-weight:500;
@@ -296,8 +296,8 @@ ${daySelector('entered')}:not(${daySelector('disabled')}):not(${daySelector('end
       margin-left: 4px;
     }
   }
-  ${daySelector('start')}:not(${daySelector('disabled')}):last-child,
-   ${daySelector('end')}:not(${daySelector('disabled')}):first-child {
+  ${daySelector('start')}:not(${daySelector('disabled')}):not(${daySelector('outside')}):last-child,
+   ${daySelector('end')}:not(${daySelector('disabled')}):not(${daySelector('outside')}):first-child {
       & > div {
          margin-right: 4px;
       
@@ -307,7 +307,7 @@ ${daySelector('entered')}:not(${daySelector('disabled')}):not(${daySelector('end
       }
   }
   
-  ${daySelector('end')}:not(${daySelector('disabled')}) {
+  ${daySelector('end')}:not(${daySelector('disabled')}):not(${daySelector('outside')}) {
     & > ${DayText} {
       border-radius: 50%;
             font-weight:500;
@@ -322,7 +322,7 @@ ${daySelector('entered')}:not(${daySelector('disabled')}):not(${daySelector('end
       margin-right: 4px;
     }
   }
-  ${daySelector('end')}${daySelector('start')}:not(${daySelector('disabled')}) {
+  ${daySelector('end') + daySelector('start')}:not(${daySelector('disabled')}):not(${daySelector('outside')}) {
     & > div {
       padding-right:4px;
     }
@@ -346,13 +346,18 @@ ${daySelector('entered')}:not(${daySelector('disabled')}):not(${daySelector('end
       }
   }
   ${daySelector('initial')}:not(${daySelector('disabled')}):not(${daySelector('entered')}),
-  ${daySelector('initial-entered')}:not(${daySelector('disabled')}) {
+  ${daySelector('initial-entered')}:not(${daySelector('disabled')}){
       & > ${DayBackground} {
         background: transparent;
       }
   }
+  ${daySelector('outside') + daySelector('entered') + daySelector('selected')} {
+    & > ${DayBackground}  {
+      border-radius: 50%;
+    }
+  }
   &.relative {
-      ${daySelector('start')}${daySelector('selected')}:not(${daySelector('disabled')}):not(${daySelector('outside')}) {
+      ${daySelector('start') + daySelector('selected')}:not(${daySelector('disabled')}):not(${daySelector('outside')}) {
       & > ${DayText} {
         font-weight: 500;
       }
