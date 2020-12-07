@@ -1,10 +1,6 @@
 import * as React from 'react';
 import { DateUtils, RangeModifier, DayModifiers } from 'react-day-picker';
 import fnsIsSameDay from 'date-fns/isSameDay';
-import fnsMin from 'date-fns/min';
-import fnsMax from 'date-fns/max';
-import fnsIsWithinRange from 'date-fns/isWithinInterval';
-
 import MonthPicker from '@synerise/ds-date-picker/dist/Elements/MonthPicker/MonthPicker';
 import MomentLocaleUtils from 'react-day-picker/moment';
 import TimePicker from '@synerise/ds-date-picker/dist/Elements/TimePicker/TimePicker';
@@ -30,7 +26,7 @@ import ADD from '../dateUtils/add';
 import { DateFilter } from '../date.types';
 import { Props, State, Side as SideType } from './RangePicker.types';
 import getDateFromString from '../dateUtils/getDateFromString';
-import { getSidesState, getDisabledTimeOptions } from './utils';
+import { getSidesState, getDisabledTimeOptions, getModifiers } from './utils';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 const NOOP = (): void => {};
@@ -186,24 +182,7 @@ export default class RangePicker extends React.PureComponent<Props, State> {
     const { value, disabledDate, forceAdjacentMonths } = this.props;
     const { enteredTo, left, right, [side]: sideState } = this.state;
     const { from, to, type } = value;
-    const isSelecting = from && !to && enteredTo;
-    const enteredStart = isSelecting ? fnsMin([legacyParse(from), legacyParse(enteredTo)]) : enteredTo;
-    const enteredEnd = isSelecting ? fnsMax([legacyParse(from), legacyParse(enteredTo)]) : enteredTo;
-    const entered = isSelecting
-      ? (day: Date | string | number): boolean =>
-          fnsIsWithinRange(legacyParse(day), { start: legacyParse(enteredStart), end: legacyParse(enteredEnd) })
-      : enteredTo;
-    const startModifier = isSelecting && !!enteredTo && !!from && enteredTo < from ? undefined : from;
-    const endModifier = isSelecting && !!enteredTo && !!from && enteredTo < from ? from : to;
-    const modifiers = {
-      start: startModifier,
-      end: endModifier,
-      entered,
-      'entered-start': enteredStart,
-      'entered-end': enteredEnd,
-      'initial-entered': !endModifier ? startModifier : undefined,
-      initial: !entered && !endModifier ? startModifier : undefined,
-    };
+    const modifiers = getModifiers(from, to, enteredTo);
     const selectedDays = [from, { from, to } as DateFilter];
     const parsedLeft = legacyParse(left.month);
     const parsedRight = legacyParse(right.month);
@@ -230,15 +209,13 @@ export default class RangePicker extends React.PureComponent<Props, State> {
         onMonthChange={(month: Date): void => this.handleSideMonthChange(side, month, 'date')}
         fixedWeeks
         showOutsideDay
+        modifiers={modifiers}
         // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
         // @ts-ignore
         onDayClick={this.handleDayClick}
         // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
         // @ts-ignore
         selectedDays={selectedDays}
-        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-        // @ts-ignore
-        modifiers={modifiers}
       />
     );
   };
