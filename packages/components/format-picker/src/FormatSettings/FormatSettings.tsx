@@ -32,7 +32,7 @@ const getFormattingTypes = (intl: IntlShape, text: FormatPickerTexts): Formattin
   },
 ];
 
-const getCurrenciesConfig = (): CurrencyConfig[] => [
+const getCurrenciesConfig = (currenciesConfig: CurrencyConfig[]): CurrencyConfig[] => [
   {
     currency: 'USD',
     label: '$ Dollar (US)',
@@ -49,6 +49,7 @@ const getCurrenciesConfig = (): CurrencyConfig[] => [
     currency: 'JPY',
     label: '\u00A5 Yen (JP)',
   },
+  ...currenciesConfig,
 ];
 
 const FormatSettings: React.FC<FormatSettingsProps> = ({
@@ -61,6 +62,7 @@ const FormatSettings: React.FC<FormatSettingsProps> = ({
   format,
   value,
   text,
+  currenciesConfig,
 }) => {
   const intl = useIntl();
   const handleDecreaseFixedLength = React.useCallback(() => {
@@ -76,17 +78,18 @@ const FormatSettings: React.FC<FormatSettingsProps> = ({
   }, [onFixedLengthChange, format]);
 
   const selectedCurrency = React.useMemo(() => {
-    return getCurrenciesConfig().find(currency => currency.currency === format.currency);
-  }, [format]);
+    return getCurrenciesConfig(currenciesConfig || []).find(currency => currency.currency === format.currency);
+  }, [currenciesConfig, format]);
 
   return (
     <S.FormatSettingsContainer>
       <S.FormatSettingsWrapper>
-        <Title level={6}>{text.header}</Title>
+        <Title level={6}>{text?.header}</Title>
         <S.FormatSettings>
           <Radio.Group defaultValue={format.dataFormat} onChange={(e): void => onDataFormatChange(e.target.value)}>
             <ButtonGroup>
-              {getFormattingTypes(intl, text).map(type => (
+              {/* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */}
+              {getFormattingTypes(intl, text!).map(type => (
                 <Tooltip key={type.format} trigger={['hover']} title={type.tooltip}>
                   <Button
                     type={type.format === format.dataFormat ? 'primary' : 'secondary'}
@@ -114,7 +117,7 @@ const FormatSettings: React.FC<FormatSettingsProps> = ({
               trigger={['click']}
               overlay={
                 <S.DropdownWrapper>
-                  {getCurrenciesConfig().map(({ currency, label }) => (
+                  {getCurrenciesConfig(currenciesConfig || []).map(({ currency, label }) => (
                     <S.MenuItem
                       key={currency}
                       suffixel={valueFormatter({ value, formatting: { ...format, currency }, intl })}
@@ -133,16 +136,16 @@ const FormatSettings: React.FC<FormatSettingsProps> = ({
             </Dropdown>
           )}
           <Checkbox onChange={(e): void => onUseSeparatorChange(e.target.checked)} checked={format.useSeparator}>
-            {text.useSeparator}
+            {text?.useSeparator}
           </Checkbox>
           <Checkbox onChange={(e): void => onCompactNumbersChange(e.target.checked)} checked={format.compactNumbers}>
-            {text.compactNumbers}
+            {text?.compactNumbers}
           </Checkbox>
         </S.FormatOptions>
       </S.FormatSettingsWrapper>
       <S.FormatFooter>
         <Button type="ghost" onClick={onSetDefault}>
-          {text.setDefault}
+          {text?.setDefault}
         </Button>
       </S.FormatFooter>
     </S.FormatSettingsContainer>
