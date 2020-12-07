@@ -26,7 +26,6 @@ const stories = {
       store.set({ format: { ...format, useSeparator } });
     };
     const handleFixedLengthChange = fixedLength => {
-      console.log(fixedLength);
       store.set({ format: { ...format, fixedLength } });
     };
     const handleCompactNumberChange = compactNumbers => {
@@ -44,7 +43,6 @@ const stories = {
       });
     };
 
-    console.log(store.state);
     return (
       <FormatPicker
         header={'Number format'}
