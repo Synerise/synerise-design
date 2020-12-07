@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 import DayPickerBase from 'react-day-picker';
 
+const DaySelectorPrefix = `.DayPicker-Day`;
+const daySelector = (modifier: string): string => `${DaySelectorPrefix}--${modifier}`;
+
 export const DayBackground = styled.div``;
 export const DayForeground = styled.div`
   border-radius: 50%;
@@ -64,11 +67,11 @@ export const DayPicker = styled(DayPickerBase)`
     display: table-row;
   }
 
-  .DayPicker--interactionDisabled .DayPicker-Day {
+  .DayPicker--interactionDisabled ${DaySelectorPrefix} {
     cursor: default;
   }
 
-  .DayPicker-Day {
+  ${DaySelectorPrefix} {
     width: 40px;
     height: 40px;
     display: table-cell;
@@ -105,12 +108,12 @@ export const DayPicker = styled(DayPickerBase)`
     }
     
     
-    &--today.DayPicker-Day--selected {
+    &--today${daySelector('selected')} {
       & > ${DayText} {
           font-weight: 400;
       }
     }
-      &--entered.DayPicker-Day--entered-start:not(.DayPicker-Day--entered-end){
+      &--entered${daySelector('entered-start')}:not(${daySelector('entered-end')}){
 
       & > ${DayForeground} {
         border-color: ${(props): string => props.theme.palette['blue-300']};
@@ -125,7 +128,7 @@ export const DayPicker = styled(DayPickerBase)`
     }
     
     
-    &--entered.DayPicker-Day--entered-end:not(.DayPicker-Day--entered-start){
+    &--entered${daySelector('entered-end')}:not(${daySelector('entered-start')}){
 
       & > ${DayForeground} {
         border-color: ${(props): string => props.theme.palette['blue-300']};
@@ -138,17 +141,17 @@ export const DayPicker = styled(DayPickerBase)`
       }
     }
     
-    &--entered:not(.DayPicker-Day--entered-start):not(.DayPicker-Day--entered-end){
+    &--entered:not(${daySelector('entered-start')}):not(${daySelector('entered-end')}){
       & > ${DayBackground} {
         background-color: ${(props): string => props.theme.palette['blue-100']};
       }
     }
-    &--today.DayPicker-Day--entered-start.DayPicker-Day--entered-end:not(.DayPicker-Day--selected) {
+    &--today${daySelector('entered-start')}${daySelector('entered-end')}:not(${daySelector('selected')}) {
       & >  ${DayBackground} {
         background-color: ${(props): string => props.theme.palette['grey-050']};
       }
     }
-    &--today.DayPicker-Day--entered:not(.DayPicker-Day--selected) {
+    &--today${daySelector('entered')}:not(${daySelector('selected')}) {
       & > ${DayText} {
         background-color: transparent;
         font-weight: 400;
@@ -162,7 +165,7 @@ export const DayPicker = styled(DayPickerBase)`
       }
     }
 
-    &--today:not(.DayPicker-Day--selected) {
+    &--today:not(${daySelector('selected')}) {
       & > ${DayText} {
         background-color: ${(props): string => props.theme.palette['yellow-100']};
         color: ${(props): string => props.theme.palette['yellow-600']};
@@ -181,12 +184,12 @@ export const DayPicker = styled(DayPickerBase)`
       color: ${(props): string => props.theme.palette['blue-600']};
     }
 
-    &--entered-start:not(.DayPicker-Day--selected) > ${DayBackground} {
+    &--entered-start:not(${daySelector('selected')}) > ${DayBackground} {
       border-top-left-radius: 50%;
       border-bottom-left-radius: 50%;
     }
 
-    &--entered-end:not(.DayPicker-Day--selected) > ${DayBackground} {
+    &--entered-end:not(${daySelector('selected')}) > ${DayBackground} {
       border-top-right-radius: 50%;
       border-bottom-right-radius: 50%;
     }
@@ -206,8 +209,8 @@ export const DayPicker = styled(DayPickerBase)`
     }
   }
 
-.DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--end):not(.DayPicker-Day--start),
-.DayPicker-Day--entered:not(.DayPicker-Day--disabled):not(.DayPicker-Day--end):not(.DayPicker-Day--start){
+${daySelector('selected')}:not(${daySelector('disabled')}):not(${daySelector('end')}):not(${daySelector('start')}),
+${daySelector('entered')}:not(${daySelector('disabled')}):not(${daySelector('end')}):not(${daySelector('start')}){
     &:last-child  > ${DayBackground} {
             border-top-right-radius: 50%;
             border-bottom-right-radius: 50%;
@@ -222,7 +225,7 @@ export const DayPicker = styled(DayPickerBase)`
       }
     }
 
-  .DayPicker-Day--selected:not(.DayPicker-Day--disabled) {
+  ${daySelector('selected')}:not(${daySelector('disabled')}) {
     & > div {
       padding-left: 4px;
       margin-left: 0;
@@ -238,7 +241,7 @@ export const DayPicker = styled(DayPickerBase)`
       color: ${(props): string => props.theme.palette['blue-600']};
     }
 
-    &.DayPicker-Day--ghost {
+    &${daySelector('ghost')} {
       & > ${DayBackground} {
         background-color: ${(props): string => props.theme.palette['blue-600']};
       }
@@ -248,7 +251,7 @@ export const DayPicker = styled(DayPickerBase)`
       }
     }
   }
-    .DayPicker-Day--entered:not(.DayPicker-Day--disabled):not(.DayPicker-Day--entered-start) {
+    ${daySelector('entered')}:not(${daySelector('disabled')}):not(${daySelector('entered-start')}) {
     & > div {
       padding-left: 4px;
       margin-left: 0;
@@ -265,7 +268,7 @@ export const DayPicker = styled(DayPickerBase)`
       color: ${(props): string => props.theme.palette['blue-600']};
     }
 
-    &.DayPicker-Day--ghost {
+    &${daySelector('ghost')} {
       && > ${DayBackground} {
         background-color: ${(props): string => props.theme.palette['blue-600']};
       }
@@ -276,7 +279,7 @@ export const DayPicker = styled(DayPickerBase)`
     }
   }
  
-  .DayPicker-Day--start:not(.DayPicker-Day--disabled) {
+  ${daySelector('start')}:not(${daySelector('disabled')}) {
     & > ${DayText} {
       border-radius: 50%;
       font-weight:500;
@@ -293,8 +296,8 @@ export const DayPicker = styled(DayPickerBase)`
       margin-left: 4px;
     }
   }
-  .DayPicker-Day--start:not(.DayPicker-Day--disabled):last-child,
-   .DayPicker-Day--end:not(.DayPicker-Day--disabled):first-child {
+  ${daySelector('start')}:not(${daySelector('disabled')}):last-child,
+   ${daySelector('end')}:not(${daySelector('disabled')}):first-child {
       & > div {
          margin-right: 4px;
       
@@ -304,7 +307,7 @@ export const DayPicker = styled(DayPickerBase)`
       }
   }
   
-  .DayPicker-Day--end:not(.DayPicker-Day--disabled) {
+  ${daySelector('end')}:not(${daySelector('disabled')}) {
     & > ${DayText} {
       border-radius: 50%;
             font-weight:500;
@@ -319,13 +322,13 @@ export const DayPicker = styled(DayPickerBase)`
       margin-right: 4px;
     }
   }
-  .DayPicker-Day--end.DayPicker-Day--start:not(.DayPicker-Day--disabled) {
+  ${daySelector('end')}${daySelector('start')}:not(${daySelector('disabled')}) {
     & > div {
       padding-right:4px;
     }
   }
 
-  .DayPicker-Day--selected:not(.DayPicker-Day--disabled):hover {
+  ${daySelector('selected')}:not(${daySelector('disabled')}):hover {
       position:relative;
       ${DayTooltip} {
       height: 24px;
@@ -342,18 +345,18 @@ export const DayPicker = styled(DayPickerBase)`
         color: ${(props): string => props.theme.palette.white};
       }
   }
-  .DayPicker-Day--initial:not(.DayPicker-Day--disabled):not(.DayPicker-Day--entered),
-  .DayPicker-Day--initial-entered:not(.DayPicker-Day--disabled) {
+  ${daySelector('initial')}:not(${daySelector('disabled')}):not(${daySelector('entered')}),
+  ${daySelector('initial-entered')}:not(${daySelector('disabled')}) {
       & > ${DayBackground} {
         background: transparent;
       }
   }
   &.relative {
-      .DayPicker-Day--start.DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside) {
+      ${daySelector('start')}${daySelector('selected')}:not(${daySelector('disabled')}):not(${daySelector('outside')}) {
       & > ${DayText} {
         font-weight: 500;
       }
-    .DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside) {
+    ${daySelector('selected')}:not(${daySelector('disabled')}):not(${daySelector('outside')}) {
       & > ${DayBackground} {
         background-color: ${(props): string => props.theme.palette['blue-100']};
       }
