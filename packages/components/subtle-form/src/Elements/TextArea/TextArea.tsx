@@ -7,11 +7,12 @@ import { Label, TextArea } from '@synerise/ds-input';
 import calculateSize from 'calculate-size';
 import * as S from '../../SubtleForm.styles';
 import { SubtleTextAreaProps } from './TextArea.types';
+import { focusPadding } from '../../SubtleForm.styles';
 
 const FONT = 'Graphik LCG Web';
 const FONT_SIZE = '13px';
 const ROW_HEIGHT_PX = 17;
-const HORIZONTAL_PADDING_PX = 12;
+const HORIZONTAL_PADDING_PX = 20;
 const VERTICAL_PADDING_PX = 7;
 
 const SubtleTextArea: React.FC<SubtleTextAreaProps> = ({
@@ -103,7 +104,7 @@ const SubtleTextArea: React.FC<SubtleTextAreaProps> = ({
             onBlur={!disabled ? handleDeactivate : undefined}
             value={value}
             rows={visibleRows + 1}
-            style={{ margin: 0 }}
+            style={{ margin: 0, padding: focusPadding }}
             placeholder={placeholder}
             error={error}
             errorText={errorText}
