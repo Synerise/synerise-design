@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import Menu from '@synerise/ds-menu';
 import { SuffixWraper } from '@synerise/ds-menu/dist/Elements/Item/Text/Text.styles';
+import Button from '@synerise/ds-button';
 
 export const FormatSettingsContainer = styled.div`
   display: flex;
@@ -88,5 +89,11 @@ export const MenuItem = styled(Menu.Item)`
   ${SuffixWraper} {
     color: ${(props): string => props.theme.palette['grey-500']};
     font-weight: 400;
+  }
+`;
+
+export const FixedLengthButton = styled(Button)`
+  &&& {
+    padding: 4px;
   }
 `;

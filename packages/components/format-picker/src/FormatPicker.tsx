@@ -16,10 +16,29 @@ const FormatPicker: React.FC<FormatPickerProps> = ({
   onCompactNumbersChange,
   onSetDefault,
   value,
-  header,
   format,
+  text,
 }) => {
   const intl = useIntl();
+
+  const texts = React.useMemo(
+    () => ({
+      header: intl.formatMessage({ id: 'DS.FORMAT-PICKER.HEADER', defaultMessage: 'Number format' }),
+      format: intl.formatMessage({ id: 'DS.FORMAT-PICKER.FORMAT', defaultMessage: 'Format' }),
+      numeric: intl.formatMessage({ id: 'DS.FORMAT-PICKER.NUMERIC', defaultMessage: 'Numeric' }),
+      cash: intl.formatMessage({ id: 'DS.FORMAT-PICKER.CASH', defaultMessage: 'Cash' }),
+      percentage: intl.formatMessage({ id: 'DS.FORMAT-PICKER.PERCENTAGE', defaultMessage: 'Percentage' }),
+      setDefault: intl.formatMessage({ id: 'DS.FORMAT-PICKER.SET-DEFAULT', defaultMessage: 'Set default' }),
+      useSeparator: intl.formatMessage({ id: 'DS.FORMAT-PICKER.USE-SEPARATOR', defaultMessage: 'Use 1000 separator' }),
+      compactNumbers: intl.formatMessage({
+        id: 'DS.FORMAT-PICKER.COMPACT-NUMBERS',
+        defaultMessage: 'Use compact numbers',
+      }),
+      ...text,
+    }),
+    [text, intl]
+  );
+
   return (
     <Dropdown
       trigger={['click']}
@@ -31,16 +50,16 @@ const FormatPicker: React.FC<FormatPickerProps> = ({
           onCompactNumbersChange={onCompactNumbersChange}
           onUseSeparatorChange={onUseSeparatorChange}
           onSetDefault={onSetDefault}
-          header={header}
           format={format}
           value={value}
+          text={texts}
         />
       }
       placement="topCenter"
     >
       <Button type="tertiary" mode="icon-label">
         <Icon component={<HashM />} />
-        {`Format ${valueFormatter({ value, formatting: format, intl })}`}
+        {`${texts.format} ${valueFormatter({ value, formatting: format, intl })}`}
       </Button>
     </Dropdown>
   );
