@@ -43,5 +43,5 @@ export type FormatPickerProps = {
   onCompactNumbersChange: (useCompact: boolean) => void;
   onFixedLengthChange: (fixedLength: number) => void;
   onSetDefault: () => void;
-  text: FormatPickerTexts;
+  text?: FormatPickerTexts;
 };
