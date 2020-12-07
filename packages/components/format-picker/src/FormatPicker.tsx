@@ -18,6 +18,7 @@ const FormatPicker: React.FC<FormatPickerProps> = ({
   value,
   format,
   text,
+  currenciesConfig,
 }) => {
   const intl = useIntl();
 
@@ -53,6 +54,7 @@ const FormatPicker: React.FC<FormatPickerProps> = ({
           format={format}
           value={value}
           text={texts}
+          currenciesConfig={currenciesConfig}
         />
       }
       placement="topCenter"

@@ -44,4 +44,5 @@ export type FormatPickerProps = {
   onFixedLengthChange: (fixedLength: number) => void;
   onSetDefault: () => void;
   text?: FormatPickerTexts;
+  currenciesConfig?: CurrencyConfig[];
 };
