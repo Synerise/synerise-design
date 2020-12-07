@@ -42,6 +42,9 @@ export const FormatOptions = styled.div`
   justify-content: flex-start;
   margin-top: 20px;
   width: 100%;
+  .ds-dropdown-menu {
+    width: 100%;
+  }
   .ds-checkbox {
     padding: 0;
     margin-bottom: 16px;
@@ -75,16 +78,18 @@ export const DropdownValue = styled.span`
   color: ${(props): string => props.theme.palette['grey-700']};
 `;
 
-export const DropdownWrapper = styled.div`
+export const DropdownWrapper = styled(Menu)`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
   width: 100%;
+  padding: 8px;
 `;
 
 export const MenuItem = styled(Menu.Item)`
   font-weight: 500;
+  width: 100%;
   color: ${(props): string => props.theme.palette['grey-700']};
   ${SuffixWraper} {
     color: ${(props): string => props.theme.palette['grey-500']};

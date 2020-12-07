@@ -9,7 +9,6 @@ import ButtonGroup from '@synerise/ds-button-group';
 import Button from '@synerise/ds-button';
 import Checkbox from '@synerise/ds-checkbox';
 import Dropdown from '@synerise/ds-dropdown';
-import Menu from '@synerise/ds-menu';
 import * as S from './FormatSettings.styles';
 import { CurrencyConfig, FormatPickerTexts, FormattingType } from '../FomartPicker.types';
 import { FormatSettingsProps } from './FormatSettings.types';
@@ -114,7 +113,7 @@ const FormatSettings: React.FC<FormatSettingsProps> = ({
             <Dropdown
               trigger={['click']}
               overlay={
-                <Menu asDropdownMenu>
+                <S.DropdownWrapper>
                   {getCurrenciesConfig().map(({ currency, label }) => (
                     <S.MenuItem
                       key={currency}
@@ -124,7 +123,7 @@ const FormatSettings: React.FC<FormatSettingsProps> = ({
                       {label}
                     </S.MenuItem>
                   ))}
-                </Menu>
+                </S.DropdownWrapper>
               }
             >
               <S.DropdownTrigger>
