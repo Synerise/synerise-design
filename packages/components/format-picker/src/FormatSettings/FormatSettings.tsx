@@ -11,25 +11,25 @@ import Checkbox from '@synerise/ds-checkbox';
 import Dropdown from '@synerise/ds-dropdown';
 import Menu from '@synerise/ds-menu';
 import * as S from './FormatSettings.styles';
-import { CurrencyConfig, FormattingType } from '../FomartPicker.types';
+import { CurrencyConfig, FormatPickerTexts, FormattingType } from '../FomartPicker.types';
 import { FormatSettingsProps } from './FormatSettings.types';
 import { valueFormatter } from '../utils/valueFormatter';
 
-const getFormattingTypes = (intl: IntlShape): FormattingType[] => [
+const getFormattingTypes = (intl: IntlShape, text: FormatPickerTexts): FormattingType[] => [
   {
     format: 'numeric',
     icon: <HashM />,
-    tooltip: intl.formatMessage({ id: 'FORMATTING.TOOLTIPS.FORMAT_NUMBER' }),
+    tooltip: text?.numeric,
   },
   {
     format: 'percent',
     icon: <PercentM />,
-    tooltip: intl.formatMessage({ id: 'FORMATTING.TOOLTIPS.FORMAT_PERCENT' }),
+    tooltip: text?.percentage,
   },
   {
     format: 'cash',
     icon: <Coin2M />,
-    tooltip: intl.formatMessage({ id: 'FORMATTING.TOOLTIPS.FORMAT_CURRENCY' }),
+    tooltip: text?.cash,
   },
 ];
 
@@ -59,9 +59,9 @@ const FormatSettings: React.FC<FormatSettingsProps> = ({
   onFixedLengthChange,
   onUseSeparatorChange,
   onSetDefault,
-  header,
   format,
   value,
+  text,
 }) => {
   const intl = useIntl();
   const handleDecreaseFixedLength = React.useCallback(() => {
@@ -83,11 +83,11 @@ const FormatSettings: React.FC<FormatSettingsProps> = ({
   return (
     <S.FormatSettingsContainer>
       <S.FormatSettingsWrapper>
-        <Title level={6}>{header}</Title>
+        <Title level={6}>{text.header}</Title>
         <S.FormatSettings>
           <Radio.Group defaultValue={format.dataFormat} onChange={(e): void => onDataFormatChange(e.target.value)}>
             <ButtonGroup>
-              {getFormattingTypes(intl).map(type => (
+              {getFormattingTypes(intl, text).map(type => (
                 <Tooltip key={type.format} trigger={['hover']} title={type.tooltip}>
                   <Button
                     type={type.format === format.dataFormat ? 'primary' : 'secondary'}
@@ -101,17 +101,18 @@ const FormatSettings: React.FC<FormatSettingsProps> = ({
             </ButtonGroup>
           </Radio.Group>
           <ButtonGroup buttonsPosition="right">
-            <Button style={{ padding: '4px' }} type="secodary" mode="icon" onClick={handleDecreaseFixedLength}>
+            <S.FixedLengthButton type="secondary" mode="icon" onClick={handleDecreaseFixedLength}>
               <Icon component={<CommaDecM />} />
-            </Button>
-            <Button style={{ padding: '4px' }} type="secodary" mode="icon" onClick={handleIncreaseFixedLength}>
+            </S.FixedLengthButton>
+            <S.FixedLengthButton type="secondary" mode="icon" onClick={handleIncreaseFixedLength}>
               <Icon component={<CommaIncM />} />
-            </Button>
+            </S.FixedLengthButton>
           </ButtonGroup>
         </S.FormatSettings>
         <S.FormatOptions>
           {format.dataFormat === 'cash' && (
             <Dropdown
+              trigger={['click']}
               overlay={
                 <Menu asDropdownMenu>
                   {getCurrenciesConfig().map(({ currency, label }) => (
@@ -133,16 +134,16 @@ const FormatSettings: React.FC<FormatSettingsProps> = ({
             </Dropdown>
           )}
           <Checkbox onChange={(e): void => onUseSeparatorChange(e.target.checked)} checked={format.useSeparator}>
-            Use 1000 separator
+            {text.useSeparator}
           </Checkbox>
           <Checkbox onChange={(e): void => onCompactNumbersChange(e.target.checked)} checked={format.compactNumbers}>
-            Use Compact numbers
+            {text.compactNumbers}
           </Checkbox>
         </S.FormatOptions>
       </S.FormatSettingsWrapper>
       <S.FormatFooter>
         <Button type="ghost" onClick={onSetDefault}>
-          Set default
+          {text.setDefault}
         </Button>
       </S.FormatFooter>
     </S.FormatSettingsContainer>
