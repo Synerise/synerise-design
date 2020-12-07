@@ -7,12 +7,14 @@ const disableBlinkingCursor = (props: ThemeProps & { grey: boolean }): FlattenSi
   text-shadow: 0 1px ${props.grey ? props.theme.palette['grey-500'] : props.theme.palette['grey-600']};
 `;
 
+export const blurPadding = `7px 40px 7px 0px`;
+export const focusPadding = `7px 28px 7px 12px`;
 export const blurAnimation = keyframes`
   0% {
-        padding: 7px 14px 7px 12px;
+        padding:${focusPadding};
   }
   100% {
-        padding: 7px 26px 7px 0px;
+        padding:${blurPadding};
   }
 `;
 
@@ -102,7 +104,7 @@ export const Inactive = styled.div<{
   align-items: flex-start;
   background: ${(props): string => props.theme.palette.white};
   display: flex;
-  padding: 7px 26px 7px 0px;
+  padding: ${blurPadding};
   opacity: ${(props): string => (props.disabled ? `0.5` : `1`)};
   border-radius: 3px;
   transition: padding 0.1s ease-in, background 0.1s ease-in;
@@ -129,7 +131,7 @@ export const Inactive = styled.div<{
     !props.disabled &&
     css`
       &:hover {
-        padding: 7px 14px 7px 12px;
+        padding: ${focusPadding};
         background: ${props.theme.palette['grey-050']};
         ${MainContent} {
           ${props.datePicker && !props.datePickerValue && `color: transparent;`}
