@@ -19,23 +19,26 @@ export const blurAnimation = keyframes`
 `;
 
 export const ValueArea = styled.textarea<{ grey: boolean }>`
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  ${(props): FlattenSimpleInterpolation => disableBlinkingCursor(props)}
-  width: 100%;
-  height: 100%;
-  background: transparent;
-  border: none;
-  padding: 0;
-  margin: 0;
-  overflow: auto;
-  outline: none;
-  box-shadow: none;
-  resize: none;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-  &::-webkit-scrollbar {
-    display: none;
+  && {
+    font-variant-numeric: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    ${(props): FlattenSimpleInterpolation => disableBlinkingCursor(props)}
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+    overflow: auto;
+    outline: none;
+    box-shadow: none;
+    resize: none;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 `;
 export const MainContent = styled.div<{ hasMargin?: boolean }>`
