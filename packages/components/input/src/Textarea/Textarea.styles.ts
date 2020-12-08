@@ -49,6 +49,15 @@ export const TextareaWrapper = styled.div<{ isDisabled: boolean; isFocused: bool
       outline: 0;
       word-wrap: break-word;
       overflow-wrap: break-word;
+      font-variant-numeric: normal;
+      ::placeholder,
+      ::-webkit-input-placeholder {
+        line-height: 1.38;
+      }
+      :-ms-input-placeholder {
+        line-height: 1.38;
+        //duplicate to override firefox styles
+      }
     }
   }
 `;
