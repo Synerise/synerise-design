@@ -2,6 +2,7 @@ import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 
 export const SelectContainer = styled.div<{ active: boolean; disabled: boolean }>`
   position: relative;
+  height: 32px;
   width: 100%;
   ${(props): false | FlattenSimpleInterpolation =>
     props.active &&
