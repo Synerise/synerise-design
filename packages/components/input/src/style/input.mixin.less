@@ -161,17 +161,17 @@ textarea.@{ant-prefix}-input {
   > .ant-input:focus {
     z-index: 2;
   }
-  > *:first-child.ds-select-wrapper:not(.white) > .ant-select > .ant-select-selector {
+  > *:first-child.ds-select-wrapper:not(.white) > .ant-select:not(.error) > .ant-select-selector {
     background: @grey-050;
   }
-}
-
-.ant-input-group.ant-input-group-compact {
   > *:last-child.ds-select-wrapper > .ant-select > .ant-select-selector {
     border-top-right-radius: 3px;
     border-bottom-right-radius: 3px;
   }
   > *:last-child.ds-select-wrapper:not(.white) > .ant-select > .ant-select-selector {
     background: @grey-050;
+  }
+  && > .ds-select-wrapper > .ant-select.error > .ant-select-selector {
+    background: @red-050;
   }
 }
