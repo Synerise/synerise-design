@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { IntlShape, WrappedComponentProps } from 'react-intl';
-import { Props as DayProps } from './Day/Day.types';
+import { DayProps } from './Day/Day.types';
 import { FilterDefinition } from '../RangeFilter.types';
 import { GridTexts } from './Grid/Grid.types';
 

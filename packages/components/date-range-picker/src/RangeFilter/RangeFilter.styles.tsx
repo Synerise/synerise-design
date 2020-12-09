@@ -14,6 +14,9 @@ export const Body = styled.div`
   padding: 12px 24px;
   min-height: 500px;
   .ds-button-group {
+    & > .ant-btn-group {
+      margin: 0;
+    }
     position: relative;
     z-index: 2;
   }

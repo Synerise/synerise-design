@@ -10,39 +10,43 @@ import { CheckS, CloseS } from '@synerise/ds-icon/dist/icons';
 import Icon from '@synerise/ds-icon';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import Tooltip from '@synerise/ds-tooltip';
-import { Props } from './Day.types';
+import { DayProps } from './Day.types';
 import * as S from './Day.styles';
 
 dayjs.extend(customParseFormatPlugin);
 
-const Day: React.FC<Props> = ({
+const Day: React.FC<DayProps> = ({
   active,
-  intl,
   label,
-  onChange,
   onToggle,
   readOnly,
   restricted,
-  tooltip,
+  dayKey,
   texts,
   ...rest
-}: Props) => {
+}: DayProps) => {
   const [hovered, setHovered] = React.useState<boolean>(false);
   const type = active ? 'primary' : 'secondary';
   const icon = React.useMemo(() => {
     return hovered ? (
-      <Icon component={<CloseS />} onClick={(): void => onToggle(false)} color={theme.palette['red-600']} />
+      <Icon
+        component={<CloseS />}
+        onClick={(): void => {
+          !readOnly && onToggle(dayKey, false);
+        }}
+        color={theme.palette['red-600']}
+      />
     ) : (
       <Icon component={<CheckS />} color={theme.palette['green-600']} />
     );
-  }, [hovered, onToggle]);
+  }, [hovered, onToggle, dayKey, readOnly]);
   return (
     <S.Container>
       <Button
         {...rest}
         block
         onClick={(): void => {
-          onToggle && onToggle(true);
+          !readOnly && onToggle && onToggle(dayKey, true);
         }}
         type={type}
         mode="label-icon"
@@ -64,5 +68,4 @@ const Day: React.FC<Props> = ({
     </S.Container>
   );
 };
-
 export default Day;
