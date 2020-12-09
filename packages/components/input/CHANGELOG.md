@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.16.7](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.16.6...@synerise/ds-input@0.16.7) (2020-12-09)
+
+
+### Bug Fixes
+
+* **input:** increase specifity of error styles ([50fb21c](https://github.com/synerise/synerise-design/commit/50fb21ce9c9f1357369fd21388a96d7b0e18bf05))
+* **input:** input group error display fix ([f0380be](https://github.com/synerise/synerise-design/commit/f0380be1906f99dabbd599c24815c659ed813cea))
+
+
+
+
+
 ## [0.16.6](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.16.5...@synerise/ds-input@0.16.6) (2020-12-04)
 
 **Note:** Version bump only for package @synerise/ds-input
