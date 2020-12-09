@@ -5062,6 +5062,16 @@
     "@synerise/ds-icon" "^0.14.0"
     "@synerise/ds-input" "^0.10.7"
 
+"@synerise/ds-dropdown@^0.12.0":
+  version "0.12.1"
+  resolved "https://registry.yarnpkg.com/@synerise/ds-dropdown/-/ds-dropdown-0.12.1.tgz#2e57516da54c60ad8800b4d55c43689b7619fffb"
+  integrity sha512-bTfvYwlpJSOd9HjsohHqYPzzPCEsWjFRwGZe9jg64fT/YS5W9ZV6tWPd9KIb7BUOY+L9LcRnGLcSZBWW9h/0mA==
+  dependencies:
+    "@synerise/ds-divider" "^0.4.41"
+    "@synerise/ds-icon" "^0.34.0"
+    "@synerise/ds-input" "^0.16.6"
+    "@synerise/ds-search-bar" "^0.2.105"
+
 "@synerise/ds-icon@^0.14.0", "@synerise/ds-icon@^0.14.3":
   version "0.14.3"
   resolved "https://registry.yarnpkg.com/@synerise/ds-icon/-/ds-icon-0.14.3.tgz#4c867acd49841ca9600bd2ce27563e292dd92fae"
