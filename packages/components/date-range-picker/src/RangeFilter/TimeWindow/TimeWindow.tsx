@@ -7,7 +7,6 @@ import dayjs from 'dayjs';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { InfoM } from '@synerise/ds-icon/dist/icons';
 import Icon from '@synerise/ds-icon';
-import Day from './Day/Day';
 import { DayKey, TimeWindowProps, State, DayOptions } from './TimeWindow.types';
 import * as S from './TimeWindow.styles';
 import { getDateFromDayValue } from './utils';
@@ -17,6 +16,7 @@ import { FilterDefinition } from '../RangeFilter.types';
 import { DEFAULT_RANGE_END, DEFAULT_RANGE_START, TIME_FORMAT } from '../constants';
 import AddButton from '../AddButton/AddButton';
 import RangeFormContainer from './RangeFormContainer/RangeFormContainer';
+import Day from './Day/Day';
 
 class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
   // eslint-disable-next-line react/destructuring-assignment
@@ -79,7 +79,7 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
     this.removeDaySelection(dayKey);
   };
 
-  toggleDay = (dayKey: DayKey, forcedState: boolean): void => {
+  handleToggleDay = (dayKey: DayKey, forcedState?: boolean): void => {
     const { activeDays, controlKeyPressed } = this.state;
     if (typeof forcedState !== 'undefined') {
       forcedState ? this.checkActiveDay(dayKey) : this.uncheckActiveDay(dayKey);
@@ -255,6 +255,7 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
     return (
       <Component
         key={dayKey}
+        dayKey={dayKey}
         data-attr={dayKey}
         label={this.getDayLabel(dayKey)}
         tooltip={tooltip}
@@ -262,11 +263,7 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
         active={isActive}
         readOnly={readOnly}
         intl={intl}
-        onToggle={(forceState?: boolean): false | void => !readOnly && this.toggleDay(dayKey, forceState as boolean)}
-        onChange={(dayChanges: DayOptions): void => this.handleDayChange(dayKey, dayChanges)}
-        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-        // @ts-ignore
-        value={this.getDayValue(dayKey)}
+        onToggle={this.handleToggleDay}
         texts={texts}
       />
     );
