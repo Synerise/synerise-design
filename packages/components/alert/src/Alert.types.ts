@@ -1,9 +1,12 @@
 import { AlertProps } from 'antd/lib/alert';
 import * as React from 'react';
+import InlineAlert from './InlineAlert/InlineAlert';
+
+export type AlertType = 'success' | 'warning' | 'error' | 'info';
 
 export interface Props extends Omit<AlertProps, 'type' | 'message'> {
   message?: React.ReactNode;
-  type: 'success' | 'warning' | 'error' | 'info';
+  type: AlertType;
   color?:
     | 'blue'
     | 'grey'
@@ -21,3 +24,5 @@ export interface Props extends Omit<AlertProps, 'type' | 'message'> {
   showMoreLabel?: React.ReactNode;
   onShowMore?: () => void;
 }
+
+export type AlertSubComponents = { InlineAlert: typeof InlineAlert };

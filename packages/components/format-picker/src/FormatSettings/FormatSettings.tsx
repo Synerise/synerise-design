@@ -35,19 +35,19 @@ const getFormattingTypes = (intl: IntlShape, text: FormatPickerTexts): Formattin
 const getCurrenciesConfig = (currenciesConfig: CurrencyConfig[]): CurrencyConfig[] => [
   {
     currency: 'USD',
-    label: '$ Dollar (US)',
+    label: 'Dollar (US)',
   },
   {
     currency: 'EUR',
-    label: '\u20AC Euro (EU)',
+    label: 'Euro (EU)',
   },
   {
     currency: 'PLN',
-    label: 'PLN Zloty (PL)',
+    label: 'Złoty (PL)',
   },
   {
     currency: 'JPY',
-    label: '\u00A5 Yen (JP)',
+    label: 'Yen (JP)',
   },
   ...currenciesConfig,
 ];

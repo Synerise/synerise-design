@@ -303,6 +303,7 @@ const stories = {
   })(({ store }) => {
     const avatarSize = select('size', ['small', 'medium', 'large', 'extraLarge'], 'large');
     const showTooltip = boolean('Show step tooltip', false);
+    const invalidStep = select('Set index of invalid step', [0, 1, 2, 3, '-'], '-');
 
     return (
       <PageHeader
@@ -339,8 +340,8 @@ const stories = {
                   label={step.label}
                   stepNumber={step.number}
                   active={index === store.state.activeStep}
-                  done={index < store.state.activeStep}
-                  validated={boolean('Set validated', false)}
+                  done={index < store.state.activeStep || boolean('All steps done', false)}
+                  validated={boolean('Set validated', false) || invalidStep === index}
                   tooltip={showTooltip && text('Set tooltip text', 'Tooltip info')}
                   children={step.children}
                 />
