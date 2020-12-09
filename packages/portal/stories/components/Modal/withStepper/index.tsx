@@ -133,7 +133,7 @@ const withStepper = withState(DEFAULT_STATE)(({ store }) => {
                 stepNumber={step.number}
                 active={index === store.state.activeStep}
                 done={index < store.state.activeStep || boolean('All steps done', false)}
-                validated={boolean('Set validated', false) || invalidStep === index}
+                validated={invalidStep === index}
                 tooltip={showTooltip && text('Set tooltip text', 'Tooltip info')}
                 children={step.children}
               />
