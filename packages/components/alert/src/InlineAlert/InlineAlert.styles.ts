@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { InlineAlertType } from './InlineAlert.types';
 
-const COLORS = {
+const COLORS: Record<InlineAlertType, string> = {
   success: 'green-600',
   warning: 'yellow-600',
   alert: 'red-600',

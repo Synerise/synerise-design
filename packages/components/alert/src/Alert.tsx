@@ -3,10 +3,10 @@ import './style/index.less';
 import { Check2M, Close2M, NotificationsM } from '@synerise/ds-icon/dist/icons';
 import Icon from '@synerise/ds-icon';
 import * as S from './Alert.styles';
-import { AlertSubComponents, Props } from './Alert.types';
+import { AlertSubComponents, AlertType, Props } from './Alert.types';
 import InlineAlert from './InlineAlert/InlineAlert';
 
-const ICONS = {
+const ICONS: Record<AlertType, React.ReactNode> = {
   success: <Check2M />,
   warning: <Check2M />,
   error: <Close2M />,
