@@ -25,37 +25,35 @@ const stories = {
 
     const format = 'dd-MM-yyyy';
     return (
-      <div>
-        <div style={{ marginBottom: '16px' }}>
-          <SubtleForm.DatePicker
-            autoFocus
-            format={format}
-            onApply={val => setValue(val)}
-            onClear={() => {
-              setValue(undefined);
-            }}
-            value={value}
-            placeholder={'Date'}
-            label={renderLabel('Date')}
-            labelTooltip={'Date'}
-            suffixTooltip={'Select date'}
-            error={validationState && !open}
-            errorText={getErrorText(validationState && !open, errorMessage)}
-            onDropdownVisibleChange={setOpen}
-            dropdownProps={{ align: { offset: [0, 8] } }}
-            activeProp={open}
-            disabled={disabled}
-            disabledHours={[]}
-            disabledMinutes={[]}
-            disabledSeconds={[]}
-            texts={
-              {
-                inputPlaceholder: replaceLettersWithUnderscore(format),
-                clearTooltip: 'Clear',
-              } as any
-            }
-          />
-        </div>
+      <div style={{ marginBottom: '16px', height: '57px' }}>
+        <SubtleForm.DatePicker
+          autoFocus
+          format={format}
+          onApply={val => setValue(val)}
+          onClear={() => {
+            setValue(undefined);
+          }}
+          value={value}
+          placeholder={'Date'}
+          label={renderLabel('Date')}
+          labelTooltip={'Date'}
+          suffixTooltip={'Select date'}
+          error={validationState && !open}
+          errorText={getErrorText(validationState && !open, errorMessage)}
+          onDropdownVisibleChange={setOpen}
+          dropdownProps={{ align: { offset: [0, 8] } }}
+          activeProp={open}
+          disabled={disabled}
+          disabledHours={[]}
+          disabledMinutes={[]}
+          disabledSeconds={[]}
+          texts={
+            {
+              inputPlaceholder: replaceLettersWithUnderscore(format),
+              clearTooltip: 'Clear',
+            } as any
+          }
+        />
       </div>
     );
   },

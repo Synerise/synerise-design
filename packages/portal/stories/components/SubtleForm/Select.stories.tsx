@@ -19,26 +19,24 @@ const stories = {
     const [value, setValue] = React.useState<string>();
     const validationState = boolean('Set validation state', false);
     const errorMessage = text('Error Text', 'Error');
-    const disabled = boolean("Set disabled", false);
+    const disabled = boolean('Set disabled', false);
     return (
-      <div>
-        <div style={{ marginBottom: '16px' }}>
-          <SubtleForm.Select
-            disabled={disabled}
-            onChange={val => setValue(val)}
-            value={value}
-            placeholder={'City'}
-            label={renderLabel('City')}
-            labelTooltip={'City'}
-            suffixTooltip={'Select'}
-            error={validationState}
-            errorText={getErrorText(validationState,errorMessage)}
-          >
-            {Cities.map(c => (
-              <Select.Option value={c}>{c}</Select.Option>
-            ))}
-          </SubtleForm.Select>
-        </div>
+      <div style={{ marginBottom: '16px', height: '57px' }}>
+        <SubtleForm.Select
+          disabled={disabled}
+          onChange={val => setValue(val)}
+          value={value}
+          placeholder={'City'}
+          label={renderLabel('City')}
+          labelTooltip={'City'}
+          suffixTooltip={'Select'}
+          error={validationState}
+          errorText={getErrorText(validationState, errorMessage)}
+        >
+          {Cities.map(c => (
+            <Select.Option value={c}>{c}</Select.Option>
+          ))}
+        </SubtleForm.Select>
       </div>
     );
   },
