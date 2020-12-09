@@ -16,7 +16,7 @@ import { FilterDefinition } from '../RangeFilter.types';
 import { DEFAULT_RANGE_END, DEFAULT_RANGE_START, TIME_FORMAT } from '../constants';
 import AddButton from '../AddButton/AddButton';
 import RangeFormContainer from './RangeFormContainer/RangeFormContainer';
-import MemoizedDay from './Day/MemoizedDay';
+import Day from './Day/Day';
 
 class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
   // eslint-disable-next-line react/destructuring-assignment
@@ -250,7 +250,7 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
       if (customTooltip) tooltip = customTooltip;
     }
     if (!Component) {
-      Component = MemoizedDay;
+      Component = Day;
     }
     return (
       <Component
@@ -268,7 +268,6 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
       />
     );
   };
-
 
   renderRangeForm = (dayKeys: DayKey | DayKey[]): React.ReactNode => {
     const { activeDays } = this.state;
