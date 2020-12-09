@@ -7,11 +7,10 @@ import MaskedInput from 'antd-mask-input';
 import { SizeType } from 'antd/es/config-provider/SizeContext';
 
 const errorInputStyle = (props: ThemeProps): string => `
-  &&, .ant-input {
+  &&&, && .ant-input {
     border-color: ${props.theme.palette['red-600']};
     box-shadow: inset 0 0 0 1px ${props.theme.palette['red-600']};
     background: ${props.theme.palette['red-050']};
-    border-radius: 4px;
   }
 `;
 
@@ -108,7 +107,7 @@ export const AntdInput = styled(
 )<{ error?: boolean }>`
   ${(props): string => (props.error ? errorInputStyle(props) : '')};
 
-  && {
+  &&& {
     color: ${(props): string => props.theme.palette['grey-700']};
     z-index: 1;
     &::placeholder {

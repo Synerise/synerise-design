@@ -39,7 +39,7 @@ const enhancedInput = <P extends object>(
 }): React.ReactElement => {
   const [charCount, setCharCount] = React.useState<number>(0);
 
-  const showError = Boolean(errorText);
+  const hasErrorMessage = Boolean(errorText);
   const id = React.useMemo(() => uuid(), []);
 
   const inputRef = React.useRef<HTMLInputElement | HTMLTextAreaElement>();
@@ -108,6 +108,7 @@ const enhancedInput = <P extends object>(
         </S.IconsWrapper>
         <WrappedComponent
           {...antdInputProps}
+          className={hasErrorMessage || error ? 'error' : undefined}
           addonBefore={
             !!prefixel && (
               <S.AddonWrapper className="ds-input-prefix" height={inputAddonHeight - VERTICAL_BORDER_OFFSET}>
@@ -122,7 +123,7 @@ const enhancedInput = <P extends object>(
               </S.AddonWrapper>
             )
           }
-          error={showError || error}
+          error={hasErrorMessage || error}
           onChange={handleChange}
           value={antdInputProps.value}
           id={id}
@@ -130,9 +131,9 @@ const enhancedInput = <P extends object>(
           autoComplete="off"
         />
       </S.InputWrapper>
-      {(showError || description) && (
+      {(hasErrorMessage || description) && (
         <S.ContentBelow>
-          {showError && <S.ErrorText>{errorText}</S.ErrorText>}
+          {hasErrorMessage && <S.ErrorText>{errorText}</S.ErrorText>}
           {description && <S.Description>{description}</S.Description>}
         </S.ContentBelow>
       )}

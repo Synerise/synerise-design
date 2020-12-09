@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.13.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-dropdown@0.12.1...@synerise/ds-dropdown@0.13.0) (2020-12-07)
+
+
+### Bug Fixes
+
+* **dropdown:** dropdown margin and width mixin fix ([a7e1e06](https://github.com/synerise/synerise-design/commit/a7e1e068b0ba127570ce5f0d71752af04829bdb6))
+
+
+
+
+
 ## [0.12.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-dropdown@0.12.0...@synerise/ds-dropdown@0.12.1) (2020-12-04)
 
 **Note:** Version bump only for package @synerise/ds-dropdown
