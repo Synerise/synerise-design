@@ -2,16 +2,26 @@ import * as React from 'react';
 import Alert from '@synerise/ds-alert';
 import { action } from '@storybook/addon-actions';
 import { boolean, select, text } from '@storybook/addon-knobs';
-import { Add3M, AppleFillM, ArrowUpCircleM, CartM, DollarCircleM } from '@synerise/ds-icon/dist/icons';
+import { Add3M, AppleFillM, ArrowUpCircleM, DollarCircleM } from '@synerise/ds-icon/dist/icons';
 
-const decorator = storyFn => <div style={{width: '100%', height: '100%', position: 'absolute', top: 0, left: 0, display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-start'}}>{storyFn()}</div>;
+const decorator = storyFn => (
+  <div
+    style={{
+      width: '100%',
+      height: '100%',
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      display: 'flex',
+      justifyContent: 'flex-start',
+      alignItems: 'flex-start',
+    }}
+  >
+    {storyFn()}
+  </div>
+);
 
-const ALERT_TYPES = [
-  'success',
-  'warning',
-  'error',
-  'info',
-];
+const ALERT_TYPES = ['success', 'warning', 'error', 'info'];
 
 const CUSTOM_COLORS = [
   '',
@@ -26,38 +36,34 @@ const CUSTOM_COLORS = [
   'fern',
   'cyan',
   'purple',
-  'violet'
+  'violet',
 ];
 
-const MODES = [
-  '',
-  'background',
-  'background-outline',
-  'outline',
-  'clear',
-];
+const MODES = ['', 'background', 'background-outline', 'outline', 'clear'];
 
-const CUSTOM_ICONS = [
-  'default',
-  'Add3M',
-  'AppleFillM',
-  'ArrowUpCircleM',
-  'DollarCircleM',
-];
+const CUSTOM_ICONS = ['default', 'Add3M', 'AppleFillM', 'ArrowUpCircleM', 'DollarCircleM'];
 
 const ICONS = {
-  'default': null,
-  'Add3M': <Add3M />,
-  'AppleFillM': <AppleFillM />,
-  'ArrowUpCircleM': <ArrowUpCircleM />,
-  'DollarCircleM': <DollarCircleM />,
+  default: null,
+  Add3M: <Add3M />,
+  AppleFillM: <AppleFillM />,
+  ArrowUpCircleM: <ArrowUpCircleM />,
+  DollarCircleM: <DollarCircleM />,
 };
-
 
 const stories = {
   default: () => {
     return (
-      <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%'}}>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          width: '100%',
+          height: '100%',
+        }}
+      >
         <Alert
           showIcon={boolean('Show icon', true)}
           closeText={text('Close text', '')}
@@ -71,11 +77,39 @@ const stories = {
           onShowMore={boolean('Enable show more', true) && action('Show more')}
         />
       </div>
-    )
+    );
+  },
+  inlineAlerts: () => {
+    return (
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'flex-start',
+          justifyContent: 'center',
+          width: '400px',
+          height: '100%',
+          margin: '0 auto',
+        }}
+      >
+        <Alert.InlineAlert type="warning" message="Inline warning" />
+        <Alert.InlineAlert type="alert" message="Inline alert" />
+        <Alert.InlineAlert type="success" message="Inline success" />
+      </div>
+    );
   },
   allSizes: () => {
     return (
-      <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%'}}>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          width: '100%',
+          height: '100%',
+        }}
+      >
         <Alert
           showIcon={boolean('Show icon', true)}
           description={text('Description', 'This simple modal alert description')}
@@ -104,11 +138,20 @@ const stories = {
           color={select('Set custom color', CUSTOM_COLORS, '')}
         />
       </div>
-    )
+    );
   },
   allModes: () => {
     return (
-      <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%'}}>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          width: '100%',
+          height: '100%',
+        }}
+      >
         <Alert
           showIcon={boolean('Show icon', true)}
           description={text('Description', 'This simple modal alert description')}
@@ -153,17 +196,19 @@ const stories = {
           onShowMore={boolean('Enable show more', true) && action('Show more')}
         />
       </div>
-    )
+    );
   },
   allTypes: () => {
     return (
-      <div style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-        width: '100%'
-      }}>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'flex-start',
+          width: '100%',
+        }}
+      >
         <Alert
           showIcon={boolean('Show icon', true)}
           description={text('Description', 'This simple modal alert description')}
@@ -174,7 +219,7 @@ const stories = {
           showMoreLabel={text('Show more', 'Show more')}
           onShowMore={boolean('Enable show more', true) && action('Show more')}
         />
-        <br/>
+        <br />
         <Alert
           showIcon={boolean('Show icon', true)}
           description={text('Description', 'This simple modal alert description')}
@@ -185,7 +230,7 @@ const stories = {
           showMoreLabel={text('Show more', 'Show more')}
           onShowMore={boolean('Enable show more', true) && action('Show more')}
         />
-        <br/>
+        <br />
         <Alert
           showIcon={boolean('Show icon', true)}
           description={text('Description', 'This simple modal alert description')}
@@ -196,7 +241,7 @@ const stories = {
           showMoreLabel={text('Show more', 'Show more')}
           onShowMore={boolean('Enable show more', true) && action('Show more')}
         />
-        <br/>
+        <br />
         <Alert
           showIcon={boolean('Show icon', true)}
           description={text('Description', 'This simple modal alert description')}
@@ -207,7 +252,7 @@ const stories = {
           showMoreLabel={text('Show more', 'Show more')}
           onShowMore={boolean('Enable show more', true) && action('Show more')}
         />
-        <br/>
+        <br />
         <Alert
           showIcon={boolean('Show icon', true)}
           description={text('Description', 'This simple modal alert description')}
@@ -218,7 +263,7 @@ const stories = {
           showMoreLabel={text('Show more', 'Show more')}
           onShowMore={boolean('Enable show more', true) && action('Show more')}
         />
-        <br/>
+        <br />
         <Alert
           showIcon={boolean('Show icon', true)}
           description={text('Description', 'This simple modal alert description')}
@@ -229,7 +274,7 @@ const stories = {
           showMoreLabel={text('Show more', 'Show more')}
           onShowMore={boolean('Enable show more', true) && action('Show more')}
         />
-        <br/>
+        <br />
         <Alert
           showIcon={boolean('Show icon', true)}
           description={text('Description', 'This simple modal alert description')}
@@ -240,7 +285,7 @@ const stories = {
           showMoreLabel={text('Show more', 'Show more')}
           onShowMore={boolean('Enable show more', true) && action('Show more')}
         />
-        <br/>
+        <br />
         <Alert
           showIcon={boolean('Show icon', true)}
           description={text('Description', 'This simple modal alert description')}
@@ -251,7 +296,7 @@ const stories = {
           showMoreLabel={text('Show more', 'Show more')}
           onShowMore={boolean('Enable show more', true) && action('Show more')}
         />
-        <br/>
+        <br />
         <Alert
           showIcon={boolean('Show icon', true)}
           description={text('Description', 'This simple modal alert description')}
@@ -262,7 +307,7 @@ const stories = {
           showMoreLabel={text('Show more', 'Show more')}
           onShowMore={boolean('Enable show more', true) && action('Show more')}
         />
-        <br/>
+        <br />
         <Alert
           showIcon={boolean('Show icon', true)}
           description={text('Description', 'This simple modal alert description')}
@@ -273,7 +318,7 @@ const stories = {
           showMoreLabel={text('Show more', 'Show more')}
           onShowMore={boolean('Enable show more', true) && action('Show more')}
         />
-        <br/>
+        <br />
         <Alert
           showIcon={boolean('Show icon', true)}
           description={text('Description', 'This simple modal alert description')}
@@ -284,7 +329,7 @@ const stories = {
           showMoreLabel={text('Show more', 'Show more')}
           onShowMore={boolean('Enable show more', true) && action('Show more')}
         />
-        <br/>
+        <br />
         <Alert
           showIcon={boolean('Show icon', true)}
           description={text('Description', 'This simple modal alert description')}
@@ -295,16 +340,16 @@ const stories = {
           showMoreLabel={text('Show more', 'Show more')}
           onShowMore={boolean('Enable show more', true) && action('Show more')}
         />
-        <br/>
+        <br />
       </div>
-    )
+    );
   },
 };
 
 export default {
-name: 'Components/Alert',
+  name: 'Components/Alert',
   config: {},
   decorator,
   stories,
   Component: Alert,
-}
+};

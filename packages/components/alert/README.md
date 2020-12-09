@@ -47,3 +47,11 @@ import Alert from '@synerise/ds-alert'
 | onClose     | Callback when Alert is closed                                                  | (e: MouseEvent) => void | -         |
 | mode     | Whether to render alert with outline, background, or transparent, options: `background`, `background-outline`, `outline`, `clear`                                                  | string | `background`         |
 | color     | Set the color that overrides the standard color of alert, options: `blue`, `grey`, `green`, `yellow`, `red`, `pink`, `mars`, `orange`, `fern`, `cyan`, `purple`, `violet` | string |``         | 
+
+### Alert.InlineAlert
+
+| Property | Description                                                 | Type                         | Default   | 
+| ---      | ---                                                         | ---                          | ---       | 
+| type     | Type of InlineAlert, options: `success`, `alert`, `warning` | `string`                     | `warning` | 
+| message  | Message of alert                                            | `string` \ `React.ReactNode` | -         | 
+
