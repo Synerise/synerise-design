@@ -4,30 +4,41 @@ import { WeeklyFilterProps } from './WeeklyFilter.types';
 import * as S from '../RangeFilter.styles';
 import { DayKey } from '../TimeWindow/TimeWindow.types';
 
-class WeeklyFilter extends React.PureComponent<WeeklyFilterProps> {
-  render(): JSX.Element {
-    const { value, onChange, onRangeClear, onRangePaste, onRangeCopy, rangeClipboard, intl } = this.props;
-    return (
-      <S.WeeklyFilterContainer>
-        <TimeWindow
-          showSelectAll
-          invertibleTime
-          dayFormatter={(dayKey: DayKey): React.ReactNode =>
-            intl.formatMessage({ id: `DS.DATE-RANGE-PICKER.WEEKDAYS-SHORT-${dayKey}` })
-          }
-          dayTemplate={(dayOfWeek: React.ReactText): { day: React.ReactText } => ({ day: dayOfWeek })}
-          days={value}
-          numberOfDays={7}
-          onChange={onChange}
-          intl={intl}
-          onRangePaste={onRangePaste}
-          onRangeCopy={onRangeCopy}
-          onRangeClear={onRangeClear}
-          rangeClipboard={rangeClipboard}
-        />
-      </S.WeeklyFilterContainer>
-    );
-  }
-}
+const WeeklyFilter = ({
+  value,
+  onChange,
+  onRangeClear,
+  onRangePaste,
+  onRangeCopy,
+  rangeClipboard,
+  intl,
+}: WeeklyFilterProps): JSX.Element => {
+  const handleDayFormatter = React.useCallback(
+    (dayKey: DayKey): React.ReactNode => intl.formatMessage({ id: `DS.DATE-RANGE-PICKER.WEEKDAYS-SHORT-${dayKey}` }),
+    [intl]
+  );
+  const handleDayTemplate = React.useCallback(
+    (dayOfWeek: React.ReactText): { day: React.ReactText } => ({ day: dayOfWeek }),
+    []
+  );
+  return (
+    <S.WeeklyFilterContainer>
+      <TimeWindow
+        showSelectAll
+        invertibleTime
+        dayFormatter={handleDayFormatter}
+        dayTemplate={handleDayTemplate}
+        days={value}
+        numberOfDays={7}
+        onChange={onChange}
+        intl={intl}
+        onRangePaste={onRangePaste}
+        onRangeCopy={onRangeCopy}
+        onRangeClear={onRangeClear}
+        rangeClipboard={rangeClipboard}
+      />
+    </S.WeeklyFilterContainer>
+  );
+};
 
 export default WeeklyFilter;
