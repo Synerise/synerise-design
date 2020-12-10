@@ -15,7 +15,7 @@ describe('Completed within component', () => {
     // ARRANGE
     const handleSetValue = jest.fn();
     const { container } = renderWithProvider(
-      <CompletedWithin texts={TEXT} value={{ value: 0, period: undefined }} onSetValue={handleSetValue} />
+      <CompletedWithin text={TEXT} value={{ value: 0, period: undefined }} onSetValue={handleSetValue} />
     );
 
     // ASSERT
@@ -26,7 +26,7 @@ describe('Completed within component', () => {
     // ARRANGE
     const handleSetValue = jest.fn();
     const { getByText, container } = renderWithProvider(
-      <CompletedWithin texts={TEXT} value={{ value: 2, period: 'DAYS' }} onSetValue={handleSetValue} />
+      <CompletedWithin text={TEXT} value={{ value: 2, period: 'DAYS' }} onSetValue={handleSetValue} />
     );
 
     // ASSERT
@@ -38,7 +38,7 @@ describe('Completed within component', () => {
     // ARRANGE
     const handleSetValue = jest.fn();
     const { queryByText, container } = renderWithProvider(
-      <CompletedWithin texts={TEXT} value={{ value: 2, period: 'DAYS' }} onSetValue={handleSetValue} />
+      <CompletedWithin text={TEXT} value={{ value: 2, period: 'DAYS' }} onSetValue={handleSetValue} />
     );
     const clearIcon = container.querySelector('.close-3-s');
 
