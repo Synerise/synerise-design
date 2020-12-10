@@ -52,6 +52,7 @@ const RangeActions: React.FC<RangeActionsProps> = ({ texts, onRangeClear, onRang
       overlay={overlay}
       overlayStyle={{ boxShadow: '0 4px 12px 0 rgba(35, 41, 54, 0.07)' }}
       trigger={['click']}
+      align={{ points: ['tr', 'br'] }}
       getPopupContainer={(node): HTMLElement => (node.parentElement != null ? node.parentElement : document.body)}
     >
       {trigger}
