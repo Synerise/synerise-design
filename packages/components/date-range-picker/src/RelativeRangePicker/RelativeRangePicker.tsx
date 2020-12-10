@@ -77,9 +77,9 @@ class RelativeRangePicker extends React.PureComponent<Props, State> {
     const { currentGroup, currentRange } = this.state;
     if (currentGroup !== RANGES_MODE.SINCE) {
       const sourceRange = getDefaultCustomRange(currentGroup);
-      onChange({ ...sourceRange, key: undefined });
+      onChange({ ...sourceRange, key: undefined, translationKey: 'custom' });
     } else {
-      onChange({ ...currentRange, key: undefined });
+      onChange({ ...currentRange, key: undefined, translationKey: 'custom' });
     }
   };
 

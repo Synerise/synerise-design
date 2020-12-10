@@ -45,7 +45,6 @@ export type RelativeMode = 'PAST' | 'FUTURE' | 'SINCE';
 export interface State {
   mode: string;
   value: DateRange;
-  changed: boolean;
   filter?: FilterDefinition;
   visibleAddonKey?: string | undefined;
 }

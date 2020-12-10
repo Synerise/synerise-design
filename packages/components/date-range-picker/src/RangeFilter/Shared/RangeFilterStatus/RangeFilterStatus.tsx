@@ -42,7 +42,7 @@ const RangeFilterStatus: React.FC<RangeFilterStatusProps> = ({ onFilterRemove, d
             name: intl.formatMessage({ id: `DS.DATE-RANGE-PICKER.${filter.type}` }),
             tag: (
               <S.BadgeWrapper>
-                <Badge status="active" flag>
+                <Badge status="active" flag pulsing>
                   <Icon component={<FilterM />} />
                 </Badge>
               </S.BadgeWrapper>
