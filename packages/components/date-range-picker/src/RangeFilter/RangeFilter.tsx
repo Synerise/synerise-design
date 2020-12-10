@@ -8,9 +8,9 @@ import * as S from './RangeFilter.styles';
 import { TYPES, TYPES_DATA } from './constants';
 import { addSuffixToDuplicate, denormalizeValue, isValidValue, normalizeValue } from './utils';
 import { FilterDefinition, FilterValue, RangeFilterProps, RangeFilterState } from './RangeFilter.types';
-import FilterDropdown from './FilterDropdown/FilterDropdown';
-import { SavedFilter } from './FilterDropdown/FilterDropdown.types';
-import SaveFilterForm from './SaveFilterForm/SaveFilterForm';
+import FilterDropdown from './Shared/FilterDropdown/FilterDropdown';
+import { SavedFilter } from './Shared/FilterDropdown/FilterDropdown.types';
+import SaveFilterForm from './Shared/SaveFilterForm/SaveFilterForm';
 
 class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState> {
   static defaultProps = {

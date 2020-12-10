@@ -3,7 +3,7 @@ import { DateFilter, DateRange } from 'date.types';
 import { WrappedComponentProps } from 'react-intl';
 import { PopoverProps } from 'antd/lib/popover';
 import { FilterDefinition } from './RangeFilter/RangeFilter.types';
-import { SavedFilter } from './RangeFilter/FilterDropdown/FilterDropdown.types';
+import { SavedFilter } from './RangeFilter/Shared/FilterDropdown/FilterDropdown.types';
 
 export interface Props extends WrappedComponentProps {
   disableDefaultTexts?: boolean;

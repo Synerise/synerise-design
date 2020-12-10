@@ -12,7 +12,7 @@ import RelativeRangePicker from './RelativeRangePicker/RelativeRangePicker';
 import Footer from './Footer/Footer';
 import { normalizeRange } from './utils';
 import RangeFilter from './RangeFilter/RangeFilter';
-import RangeFilterStatus from './RangeFilter/RangeFilterStatus/RangeFilterStatus';
+import RangeFilterStatus from './RangeFilter/Shared/RangeFilterStatus/RangeFilterStatus';
 import { FilterValue } from './RangeFilter/RangeFilter.types';
 
 class RawDateRangePicker extends React.PureComponent<Props, State> {
