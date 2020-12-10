@@ -195,7 +195,8 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
     return label;
   };
 
-  handleRangeClear = (dayKeys: DayKey): void => {
+  // Will be useful when we start to support multiple ranges
+  /*  handleRangeClear = (dayKeys: DayKey): void => {
     const { activeDays } = this.state;
     activeDays.length > 1
       ? this.handleMultipleDayTimeChange([
@@ -206,7 +207,7 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
           [getDateFromDayValue(DEFAULT_RANGE_START), getDateFromDayValue(DEFAULT_RANGE_END)],
           dayKeys
         );
-  };
+  }; */
 
   handleRangePaste = (dayKeys: DayKey): void => {
     const { rangeClipboard } = this.props;
@@ -280,7 +281,7 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
         getDayValue={this.getDayValue}
         onMultipleDayTimeChange={this.handleMultipleDayTimeChange}
         onDayTimeChange={this.handleDayTimeChange}
-        onRangeClear={(): void => this.handleRangeClear(dayKeys as DayKey)}
+        onRangeClear={this.handleRangeDelete}
         onRangeCopy={this.handleRangeCopy}
         onRangePaste={(): void => this.handleRangePaste(dayKeys as DayKey)}
         hideHeader={hideHeader}
