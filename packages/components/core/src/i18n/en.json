@@ -230,6 +230,15 @@
       "SET-DEFAULT": "Set default",
       "USE-SEPARATOR": "Use 1000 separator",
       "COMPACT-NUMBERS": "Use compact numbers"
+    },
+    "COMPLETED-WITHIN": {
+      "INTERVAL": "Interval",
+      "YEARS": "Years",
+      "MONTHS": "Months",
+      "DAYS": "Days",
+      "HOURS": "Hours",
+      "MINUTES": "Minutes",
+      "SECONDS": "Seconds"
     }
   }
 }
