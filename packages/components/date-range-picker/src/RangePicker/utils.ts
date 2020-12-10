@@ -3,12 +3,12 @@ import { legacyParse } from '@date-fns/upgrade/v2';
 import { Modifiers } from 'react-day-picker';
 import fnsMin from 'date-fns/min';
 import fnsMax from 'date-fns/max';
-import { Limit, State } from './RangePicker.types';
+import { State } from './RangePicker.types';
 import { fnsEndOfDay, fnsIsSameMonth, fnsStartOfDay, fnsStartOfMonth } from '../fns';
 import { TIME_OPTIONS } from '../constants';
 import SET from '../dateUtils/set';
 import GET from '../dateUtils/get';
-import { DateRange } from '../date.types';
+import { DateRange, NullableDateLimit } from '../date.types';
 import ADD from '../dateUtils/add';
 import format from '../dateUtils/format';
 
@@ -17,8 +17,8 @@ const NOW = new Date();
 export const getDisabledTimeOptions = (
   day: string | Date | undefined,
   granularity: string,
-  lowerLimit: Limit = null,
-  upperLimit: Limit = null
+  lowerLimit: NullableDateLimit = null,
+  upperLimit: NullableDateLimit = null
 ): number[] => {
   if (!day) {
     return [];
@@ -54,9 +54,9 @@ export const getSidesState = (value: DateRange, forceAdjacentMonths?: boolean): 
 };
 
 export const getModifiers = (
-  from: Date | string | undefined,
-  to: Date | string | undefined,
-  enteredTo: Date | string | undefined | null
+  from: NullableDateLimit | undefined,
+  to: NullableDateLimit | undefined,
+  enteredTo: NullableDateLimit | undefined
 ): Modifiers => {
   const isSelecting = from && !to && enteredTo;
   const enteredStart = isSelecting ? fnsMin([legacyParse(from), legacyParse(enteredTo)]) : enteredTo;
