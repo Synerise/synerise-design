@@ -29,7 +29,7 @@ const init = () => {
     headerBorderBottom: boolean('Header with border bottom', false),
     content: text('Content', 'Example of card content'),
     background: select('Background style', backgrounds, 'white-shadow'),
-    footer: boolean('Set Footer',true),
+    showSideChildrenWhenHeaderHidden: boolean('Set Footer',true),
   };
   return { props };
 };
@@ -54,8 +54,7 @@ const renderCard = (props,hideContentInitial= false) => {
         headerBorderBottom={props.headerBorderBottom}
         background={props.background}
         hideContent={props.hideContent && hideContent}
-        footer={props.footer}
-        showSideChildrensWhenHeaderHidden={props.footer}
+        showSideChildrenWhenHeaderHidden={props.showSideChildrenWhenHeaderHidden}
       >
          <div style={{ width: '100%', height: 300 }}>{props.content}</div>
       </Card>

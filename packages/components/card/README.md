@@ -90,8 +90,7 @@ yarn add @synerise/ds-card
 | title                             | Defines the title of the card (in the header)                                                                         | string                                                                       | -       |
 | withHeader                        | Defines if the header is shown                                                                                        | boolean                                                                      | -       |
 | withoutPadding                    | Reset padding of ContentContainer                                                                                     | boolean                                                                      | `false` |
-| footer                            | Defines if the container includes a button (in the footer)                                                            | React.ReactNode                                                              | string  |
-| showSideChildrensWhenHeaderHidden | Show headerSideChildren on the bottom when header is scrolled out of view                                             | boolean                                                                      | `false` |
+| showSideChildrenWhenHeaderHidden  | Show headerSideChildren on the bottom when header is scrolled out of view                                             | boolean                                                                      | `false` |
 
 #### CardBadge
 
