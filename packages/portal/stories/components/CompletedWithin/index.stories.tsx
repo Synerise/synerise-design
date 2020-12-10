@@ -19,7 +19,7 @@ const stories = {
 
     return (
       <CompletedWithin
-        texts={{
+        text={{
           header: 'Completed within',
           completedLabel: 'Completed within',
           clear: 'Clear',
