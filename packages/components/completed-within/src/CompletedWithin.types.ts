@@ -4,6 +4,7 @@ export type CompletedWithinTexts = {
   clear: string | React.ReactNode;
   header: string | React.ReactNode;
   completedLabel: string | React.ReactNode;
+  periodPlaceholder: string | React.ReactNode;
 };
 
 export type Period = 'SECONDS' | 'MINUTES' | 'HOURS' | 'DAYS' | 'MONTHS' | 'YEARS' | string | undefined;
@@ -15,12 +16,11 @@ export type CustomPeriod = {
 
 export type PeriodValue = {
   period: Period;
-  value: number;
+  value: number | undefined;
 };
 
 export type CompletedWithinProps = {
-  texts: CompletedWithinTexts;
-  onClear: () => void;
+  text?: CompletedWithinTexts;
   value: PeriodValue;
   onSetValue: (value: PeriodValue) => void;
   periods?: CustomPeriod[];
