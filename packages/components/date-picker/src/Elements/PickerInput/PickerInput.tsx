@@ -62,6 +62,22 @@ const PickerInput: React.FC<Props> = ({
     },
     [onClick]
   );
+
+  const iconInput = React.useMemo(
+    () =>
+      (hovered || highlight) && !!value && !disabled ? (
+        <S.ClearIconWrapper>
+          <Tooltip title={clearTooltip}>
+            <Icon component={<Close3S />} onClick={handleIconClick} />
+          </Tooltip>
+        </S.ClearIconWrapper>
+      ) : (
+        <S.DefaultIconWrapper>
+          <Icon component={<CalendarM />} />
+        </S.DefaultIconWrapper>
+      ),
+    [hovered, value, disabled, clearTooltip, handleIconClick, highlight]
+  );
   return (
     <S.PickerInputWrapper prefixel={!!prefixel} suffixel={!!suffixel}>
       {!!prefixel && <S.Prefixel>{prefixel}</S.Prefixel>}
