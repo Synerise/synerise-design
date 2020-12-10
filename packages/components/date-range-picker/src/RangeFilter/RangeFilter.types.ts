@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { IntlShape } from 'react-intl';
-import { SavedFilter } from './FilterDropdown/FilterDropdown.types';
+import { SavedFilter } from './Shared/FilterDropdown/FilterDropdown.types';
 
 export type FilterValue = {
   definition?: Partial<FilterDefinition>;

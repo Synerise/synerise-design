@@ -44,6 +44,13 @@ const DatePicker: React.FC<Props> = ({
     },
     [onApply]
   );
+
+  const handleClear = React.useCallback((): void => {
+    setDropVisible(false);
+    setSelectedDate(undefined);
+    onClear && onClear();
+  }, [onClear]);
+
   return (
     <Dropdown
       overlay={
@@ -79,11 +86,7 @@ const DatePicker: React.FC<Props> = ({
             : undefined
         }
         format={format}
-        onClear={(): void => {
-          setDropVisible(false);
-          setSelectedDate(undefined);
-          onClear && onClear();
-        }}
+        onClear={handleClear}
         placeholder={texts.inputPlaceholder}
         clearTooltip={texts.clearTooltip}
         highlight={!!dropVisible && !disabled}

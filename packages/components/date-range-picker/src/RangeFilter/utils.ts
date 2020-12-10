@@ -11,7 +11,7 @@ import {
   WeeklyFilterDefinition,
   MonthlyFilterDefinition,
 } from './RangeFilter.types';
-import { SavedFilter } from './FilterDropdown/FilterDropdown.types';
+import { SavedFilter } from './Shared/FilterDropdown/FilterDropdown.types';
 
 /*
  * Map field from components to datefilter schema
@@ -22,7 +22,12 @@ import { SavedFilter } from './FilterDropdown/FilterDropdown.types';
 
 export const mapTimeSchema = (item: DenormalizedFilter): NormalizedFilter => {
   const { start, stop, day, ...rest } = item;
-  return { from: start, to: stop, day: day===undefined ||  (day!==undefined &&  Number.isNaN(+day)) ? undefined : +day + 1, ...rest };
+  return {
+    from: start,
+    to: stop,
+    day: day === undefined || (day !== undefined && Number.isNaN(+day)) ? undefined : +day + 1,
+    ...rest,
+  };
 };
 
 /*
@@ -36,7 +41,7 @@ export const denormMapTimeSchema = (item: NormalizedFilter): DenormalizedFilter 
   return {
     start: from,
     stop: to,
-    day: day===undefined ||  (day!==undefined &&  Number.isNaN(+day)) || Number.isNaN(+day) ? undefined : +day - 1,
+    day: day === undefined || (day !== undefined && Number.isNaN(+day)) || Number.isNaN(+day) ? undefined : +day - 1,
     ...rest,
   } as DenormalizedFilter;
 };

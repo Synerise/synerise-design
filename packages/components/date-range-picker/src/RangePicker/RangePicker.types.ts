@@ -29,4 +29,3 @@ export interface State {
 }
 
 export type Side = 'left' | 'right';
-export type Limit = string | Date | null | undefined;
