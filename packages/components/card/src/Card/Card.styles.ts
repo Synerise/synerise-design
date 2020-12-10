@@ -165,3 +165,11 @@ export const PaddingWrapper = styled.div<{ withHeader?: boolean; withoutPadding?
   padding: ${(props): string => (props.withoutPadding ? '0' : `24px`)};
   ${(props): string | false => !!props.withHeader && `padding-top: 0;`}
 `;
+export const FooterContainer = styled.div`
+padding: 24px;
+display: flex;
+align-items: center;
+justify-content: flex-end;
+background: ${(props): string => props.theme.palette.white};
+border-top: solid 1px ${(props): string =>props.theme.palette['grey-100']};
+`;

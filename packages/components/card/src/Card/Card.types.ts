@@ -21,4 +21,5 @@ export interface CardProps {
   headerBorderBottom?: boolean;
   background?: Backgrounds;
   hideContent?: boolean;
+  showSideChildrenWhenHeaderHidden?: boolean;
 }

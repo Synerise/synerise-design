@@ -28,7 +28,8 @@
     "@synerise/ds-icon": "^0.34.0",
     "@synerise/ds-typography": "^0.10.0",
     "@synerise/ds-utils": "^0.8.31",
-    "react-animate-height": "^2.0.23"
+    "react-animate-height": "^2.0.23",
+    "react-visibility-sensor": "^5.1.1"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
