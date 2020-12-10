@@ -29,7 +29,7 @@ const init = () => {
     headerBorderBottom: boolean('Header with border bottom', false),
     content: text('Content', 'Example of card content'),
     background: select('Background style', backgrounds, 'white-shadow'),
-    showSideChildrenWhenHeaderHidden: boolean('Set Footer',true),
+    showSideChildrenWhenHeaderHidden: boolean('Set SideChildrenWhenHeaderHidden',true),
   };
   return { props };
 };
