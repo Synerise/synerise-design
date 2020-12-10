@@ -19,7 +19,12 @@ const stories = {
 
     return (
       <CompletedWithin
-        texts={{ header: 'Completed within', completedLabel: 'Completed within', clear: 'Clear' }}
+        texts={{
+          header: 'Completed within',
+          completedLabel: 'Completed within',
+          clear: 'Clear',
+          periodPlaceholder: 'Interval',
+        }}
         value={store.state.value}
         onSetValue={handleSetValue}
       />

@@ -8,10 +8,27 @@ import { CompletedWithinProps, Period } from './CompletedWithin.types';
 import Settings from './Settings/Settings';
 import * as S from './CompleteWithin.styles';
 
-export const DEFAULT_PERIODS = ['INTERVAL', 'SECONDS', 'MINUTES', 'HOURS', 'DAYS', 'MONTHS', 'YEARS'];
+export const DEFAULT_PERIODS = ['SECONDS', 'MINUTES', 'HOURS', 'DAYS', 'MONTHS', 'YEARS'];
 
-const CompletedWithin: React.FC<CompletedWithinProps> = ({ value, onSetValue, texts, periods }) => {
+const CompletedWithin: React.FC<CompletedWithinProps> = ({ value, onSetValue, text, periods }) => {
   const intl = useIntl();
+
+  const texts = React.useMemo(
+    () => ({
+      header: intl.formatMessage({ id: 'DS.COMPLETED-WITHIN.HEADER', defaultMessage: 'Completed within' }),
+      completedLabel: intl.formatMessage({
+        id: 'DS.COMPLETED-WITHIN.COMPLETED-WIHITN',
+        defaultMessage: 'Completed within',
+      }),
+      clear: intl.formatMessage({ id: 'DS.COMPLETED-WITHIN.CLEAR', defaultMessage: 'Clear' }),
+      periodPlaceholder: intl.formatMessage({
+        id: 'DS.COMPLETED-WITHIN.PERIOD-PLACEHOLDER',
+        defaultMessage: 'Interval',
+      }),
+      ...text,
+    }),
+    [text, intl]
+  );
 
   const getPeriods = React.useMemo(() => {
     if (periods !== undefined && periods.length) {
@@ -23,47 +40,51 @@ const CompletedWithin: React.FC<CompletedWithinProps> = ({ value, onSetValue, te
     }));
   }, [periods, intl]);
 
-  const [innerValue, setInnerValue] = React.useState(value.value || 0);
-  const [innerPeriod, setInnerPeriod] = React.useState<Period>(value.period || getPeriods[0].value);
+  const [innerValue, setInnerValue] = React.useState<number | undefined>(value.value);
+  const [innerPeriod, setInnerPeriod] = React.useState<Period>(value.period);
+
+  const hasValue = React.useMemo(() => {
+    return value.value !== undefined && value.value > 0;
+  }, [value]);
 
   const handleVisibleChange = React.useCallback(
     (visible: boolean) => {
-      if (!visible && innerValue > 0) {
+      if (!visible && hasValue && innerPeriod) {
         onSetValue({ value: innerValue, period: innerPeriod });
       }
     },
-    [innerPeriod, innerValue, onSetValue]
+    [hasValue, innerPeriod, innerValue, onSetValue]
   );
 
   const handleClear = React.useCallback(() => {
-    setInnerPeriod(getPeriods[0].value);
-    setInnerValue(0);
-    onSetValue({ value: 0, period: getPeriods[0].value });
-  }, [getPeriods, onSetValue]);
+    setInnerPeriod(undefined);
+    setInnerValue(undefined);
+    onSetValue({ value: undefined, period: undefined });
+  }, [onSetValue]);
 
   const triggerMode = React.useMemo(() => {
-    if (value.value === 0) return 'single-icon';
+    if (!hasValue) return 'single-icon';
     return 'icon-label';
-  }, [value]);
+  }, [hasValue]);
 
   const triggerLabel = React.useMemo(() => {
     return (
-      value.value > 0 &&
+      hasValue &&
       `${texts.completedLabel} ${value.value} ${
         getPeriods.find(singlePeriod => singlePeriod.value === value.period)?.label
       }`
     );
-  }, [getPeriods, texts, value]);
+  }, [getPeriods, hasValue, texts, value]);
 
   return (
-    <S.CompletedWithinWrapper withValue={value.value > 0}>
+    <S.CompletedWithinWrapper withValue={hasValue}>
       <Dropdown
         overlay={
           <Settings
             value={{ value: innerValue, period: innerPeriod }}
             onValueChange={setInnerValue}
             onPeriodChange={setInnerPeriod}
-            texts={texts}
+            text={texts}
             periods={getPeriods}
           />
         }
@@ -76,7 +97,7 @@ const CompletedWithin: React.FC<CompletedWithinProps> = ({ value, onSetValue, te
           {triggerLabel}
         </S.TriggerButton>
       </Dropdown>
-      {value.value > 0 && (
+      {hasValue && (
         <Tooltip title={texts.clear}>
           <S.ClearButton mode="single-icon" type="ghost" onClick={handleClear} data-testid="clear-button">
             <Icon component={<Close3S />} />

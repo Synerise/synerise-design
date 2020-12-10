@@ -16,7 +16,10 @@ yarn add @synerise/ds-completed-within
 ```
 import CompletedWithin from '@synerise/ds-completed-within'
 
-<CompletedWithin />
+<CompletedWithin
+    value={store.state.value}
+    onSetValue={handleSetValue}
+/>
 
 ```
 
@@ -26,5 +29,33 @@ import CompletedWithin from '@synerise/ds-completed-within'
 
 ## API
 
-| Property | Description | Type | Default |
-| --- | --- | --- | --- |
+| Property   | Description                                                                  | Type                         | Default                                |
+| ---        | ---                                                                          | ---                          | ---                                    |
+| text       | Custom labels and tooltips                                                   | CompletedWithinTexts         | -                                      |
+| value      | Selected value                                                               | PeriodValue                  | { value: undefined, period: undefined} |
+| onSetValue | Function called when user has closed the settings with set value, and period | (value: PeriodValue) => void | -                                      |
+| periods    | Custom list of periods                                                       | CustomPeriod[]               | -                                      |
+
+### CompletedWithinTexts
+
+| Property          | Description                         | Type                         | Default            |
+| ---               | ---                                 | ---                          | ---                |
+| header            | Header of settings                  | `string` \ `React.ReactNode` | `Completed within` |
+| completedLabel    | Label of button with selected value | `string` \ `React.ReactNode` | `Completed within` |
+| clear             | Clear button tooltip                | `string` \ `React.ReactNode` | `Clear`            |
+| periodPlaceholder | Placeholder of period select        | `string` \ `React.ReactNode` | `Interval`         |
+
+### PeriodValue
+
+| Property | Description                                                                           | Type                   | Default     |
+| ---      | ---                                                                                   | ---                    | ---         |
+| value    | Numerical value                                                                       | `number` \ `undefined` | `undefined` |
+| period   | Period key, default options: `SECONDS`, `MINUTES`, `HOURS`, `DAYS`, `MONTHS`, `YEARS` | `string` \ `undefined` | `undefined` |
+
+### CustomPeriod
+
+| Property | Description            | Type     | Default |
+| ---      | ---                    | ---      | ---     |
+| value    | Key of custom period   | `string` | -       |
+| label    | Label of custom period | `string` | -       |
+
