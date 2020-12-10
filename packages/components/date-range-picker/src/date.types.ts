@@ -2,10 +2,12 @@ import * as React from 'react';
 
 export type RelativeUnits = 'SECONDS' | 'MINUTES' | 'HOURS' | 'DAYS' | 'WEEKS' | 'MONTHS' | 'YEARS';
 
+export type NullableDateLimit = null | string | Date;
+
 export interface DateFilter {
   type: 'ABSOLUTE' | 'RELATIVE' | 'SINCE';
-  from?: string | Date;
-  to?: string | Date;
+  from?: NullableDateLimit;
+  to?: NullableDateLimit;
   duration?: {
     type: RelativeUnits;
     value: number;
@@ -25,8 +27,8 @@ export interface DateRangeBase {
 }
 
 export interface AbsoluteDateRange extends DateRangeBase {
-  from?: string | Date;
-  to?: string | Date;
+  from?: NullableDateLimit;
+  to?: NullableDateLimit;
   type: 'ABSOLUTE';
 }
 
@@ -42,8 +44,8 @@ export interface RelativeDateRange extends DateRangeBase {
     value: number;
   };
   duration: Duration;
-  from?: string | Date;
-  to?: string | Date;
+  from?: NullableDateLimit;
+  to?: NullableDateLimit;
 }
 
 export type Days = { [key: string]: object };
