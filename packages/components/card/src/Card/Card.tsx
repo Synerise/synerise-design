@@ -2,6 +2,7 @@ import * as React from 'react';
 import Icon from '@synerise/ds-icon';
 
 import AnimateHeight from 'react-animate-height';
+import VisibilitySensor from 'react-visibility-sensor';
 import * as S from './Card.styles';
 import { CardProps } from './Card.types';
 
@@ -17,6 +18,7 @@ const Card: React.FC<CardProps> = ({
   description,
   compactHeader,
   icon,
+  footer,
   iconColor,
   headerSideChildren,
   onHeaderClick,
@@ -24,8 +26,10 @@ const Card: React.FC<CardProps> = ({
   headerBorderBottom,
   background = 'white-shadow',
   hideContent,
+  showSideChildrensWhenHeaderHidden,
 }) => {
   const fatTitle = !description || (description && compactHeader);
+  const [headerActionsVisible, setHeaderActionsVisible] = React.useState(false);
 
   return (
     <S.Container
@@ -54,17 +58,28 @@ const Card: React.FC<CardProps> = ({
           </S.HeaderContent>
 
           {headerSideChildren && (
-            <S.HeaderSideChildren onClick={(event): void => event.stopPropagation()}>
-              {headerSideChildren}
-            </S.HeaderSideChildren>
+            <VisibilitySensor partialVisibility onChange={setHeaderActionsVisible}>
+              <S.HeaderSideChildren onClick={(event): void => event.stopPropagation()}>
+                {headerSideChildren}
+              </S.HeaderSideChildren>
+            </VisibilitySensor>
           )}
         </S.Header>
       )}
       <AnimateHeight className="card-animation" duration={300} height={hideContent ? 0 : 'auto'}>
         <S.ChildrenContainer>
-          <S.PaddingWrapper withoutPadding={withoutPadding} withHeader={withHeader}>{children}</S.PaddingWrapper>
+          <S.PaddingWrapper withoutPadding={withoutPadding} withHeader={withHeader}>
+            {children}
+          </S.PaddingWrapper>
         </S.ChildrenContainer>
       </AnimateHeight>
+      {showSideChildrensWhenHeaderHidden && <AnimateHeight
+        className="card-animation-footer"
+        duration={200}
+        height={footer && headerSideChildren && !headerActionsVisible ? 'auto' : 0}
+      >
+        <S.FooterContainer>{headerSideChildren}</S.FooterContainer>
+      </AnimateHeight>}
     </S.Container>
   );
 };

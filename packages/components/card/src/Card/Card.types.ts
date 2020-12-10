@@ -21,4 +21,6 @@ export interface CardProps {
   headerBorderBottom?: boolean;
   background?: Backgrounds;
   hideContent?: boolean;
+  footer?: React.ReactNode;
+  showSideChildrensWhenHeaderHidden?: boolean;
 }
