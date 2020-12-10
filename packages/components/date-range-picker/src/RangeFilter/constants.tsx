@@ -1,7 +1,7 @@
 import { range } from 'lodash';
-import MonthlyFilter from './MonthlyFilter/MonthlyFilter';
-import WeeklyFilter from './WeeklyFilter/WeeklyFilter';
-import DailyFilter from './DailyFilter/DailyFilter';
+import MonthlyFilter from './Filters/MonthlyFilter/MonthlyFilter';
+import WeeklyFilter from './Filters/WeeklyFilter/WeeklyFilter';
+import DailyFilter from './Filters/DailyFilter/DailyFilter';
 import { fnsAddDays, fnsFormat } from '../fns';
 import { Period } from './RangeFilter.types';
 
