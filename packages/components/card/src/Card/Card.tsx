@@ -18,7 +18,6 @@ const Card: React.FC<CardProps> = ({
   description,
   compactHeader,
   icon,
-  footer,
   iconColor,
   headerSideChildren,
   onHeaderClick,
@@ -26,7 +25,7 @@ const Card: React.FC<CardProps> = ({
   headerBorderBottom,
   background = 'white-shadow',
   hideContent,
-  showSideChildrensWhenHeaderHidden,
+  showSideChildrenWhenHeaderHidden,
 }) => {
   const fatTitle = !description || (description && compactHeader);
   const [headerActionsVisible, setHeaderActionsVisible] = React.useState(false);
@@ -73,10 +72,10 @@ const Card: React.FC<CardProps> = ({
           </S.PaddingWrapper>
         </S.ChildrenContainer>
       </AnimateHeight>
-      {showSideChildrensWhenHeaderHidden && <AnimateHeight
+      {showSideChildrenWhenHeaderHidden && <AnimateHeight
         className="card-animation-footer"
         duration={200}
-        height={footer && headerSideChildren && !headerActionsVisible ? 'auto' : 0}
+        height={ headerSideChildren && !headerActionsVisible ? 'auto' : 0}
       >
         <S.FooterContainer>{headerSideChildren}</S.FooterContainer>
       </AnimateHeight>}
