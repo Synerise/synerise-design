@@ -74,7 +74,7 @@ const Card: React.FC<CardProps> = ({
       </AnimateHeight>
       {showSideChildrenWhenHeaderHidden && <AnimateHeight
         className="card-animation-footer"
-        duration={200}
+        duration={0}
         height={ headerSideChildren && !headerActionsVisible ? 'auto' : 0}
       >
         <S.FooterContainer>{headerSideChildren}</S.FooterContainer>

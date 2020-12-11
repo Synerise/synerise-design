@@ -29,7 +29,7 @@ const init = () => {
     headerBorderBottom: boolean('Header with border bottom', false),
     content: text('Content', 'Example of card content'),
     background: select('Background style', backgrounds, 'white-shadow'),
-    showSideChildrenWhenHeaderHidden: boolean('Set SideChildrenWhenHeaderHidden',true),
+    showSideChildrenWhenHeaderHidden: boolean('Set Footer Active',true),
   };
   return { props };
 };
@@ -63,8 +63,20 @@ const renderCard = (props,hideContentInitial= false) => {
 
 const stories = {
   single: () => {
-    const { props } = init();
-
+    const props  = {
+      title: text('Title', 'Card header'),
+      description: text('Description', 'Description'),
+      raised: boolean('Active', false),
+      disabled: boolean('Disabled', false),
+      lively: boolean('Hover enabled', true),
+      withHeader: boolean('With header', true),
+      hideContent: boolean('Enable collapsing', true),
+      iconColor: text('Icon color', '#54cb0b'),
+      compactHeader: boolean('Compact header', false),
+      headerBorderBottom: boolean('Header with border bottom', false),
+      content: text('Content', 'Example of card content'),
+      background: select('Background style', backgrounds, 'white-shadow'),
+    };
     return (
       <div
         style={{
@@ -147,6 +159,7 @@ const stories = {
                   </Button>
                 </div>
               ),
+              showSideChildrenWhenHeaderHidden: false,
             },false)}
           </S.HeaderWrapper>
 
@@ -168,6 +181,7 @@ const stories = {
                   </Button>
                 </div>
               ),
+              showSideChildrenWhenHeaderHidden: false,
             },false)}
           </S.HeaderWrapper>
 
@@ -179,6 +193,7 @@ const stories = {
               description: null,
               compactHeader: true,
               headerBorderBottom: true,
+              showSideChildrenWhenHeaderHidden: false,
             },false)}
           </S.HeaderWrapper>
 
@@ -258,6 +273,7 @@ const stories = {
                   <Button>Change</Button>
                 </div>
               ),
+              showSideChildrenWhenHeaderHidden: false,
             },false)}
           </S.HeaderWrapper>
 
@@ -300,6 +316,7 @@ const stories = {
                   </Button>
                 </div>
               ),
+              showSideChildrenWhenHeaderHidden: false,
             } ,false)}
           </S.HeaderWrapper>
           <S.HeaderWrapper>
@@ -327,6 +344,7 @@ const stories = {
                   </Button>
                 </div>
               ),
+              showSideChildrenWhenHeaderHidden: false,
             }, false)}
           </S.HeaderWrapper>
         </div>
