@@ -82,10 +82,12 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
   handleToggleDay = (dayKey: DayKey, forcedState?: boolean): void => {
     const { activeDays, controlKeyPressed } = this.state;
     if (typeof forcedState !== 'undefined') {
+      if (controlKeyPressed && forcedState) {
+        activeDays.includes(dayKey) ? this.uncheckActiveDay(dayKey) : this.checkActiveDay(dayKey);
+        return;
+      }
       forcedState ? this.checkActiveDay(dayKey) : this.uncheckActiveDay(dayKey);
-      return;
-    }
-    if (!controlKeyPressed) {
+    } else {
       activeDays.includes(dayKey) ? this.uncheckActiveDay(dayKey) : this.checkActiveDay(dayKey);
     }
   };
