@@ -21,14 +21,11 @@ export const ClearInputWrapper = styled.div`
 `;
 
 export const SearchBar = styled(Input)`
-  && {
+  &&& {
     position: relative;
     height: 52px;
     padding: 0;
-    input::-moz-placeholder {
-      line-height: 52px;
-    }
-    input {
+    input.ant-input {
       position: absolute;
       top: 0;
       left: 0;
@@ -41,9 +38,23 @@ export const SearchBar = styled(Input)`
       &:focus {
         box-shadow: inset 0px -2px 0px 0px ${(props): string => props.theme.palette['blue-600']};
       }
+      ::-webkit-input-placeholder {
+        line-height: 52px;
+      }
+      :-moz-placeholder {
+        line-height: 52px;
+      }
+      ::-moz-placeholder {
+        line-height: 52px;
+      }
+      :-ms-input-placeholder {
+        line-height: 52px;
+      }
     }
   }
 `;
+// placeholder styling rules have to be separated
+// https://stackoverflow.com/questions/44971077/why-do-comma-separated-placeholder-rules-not-get-applied-in-css
 
 export const SearchBarWrapper = styled.div<{
   iconLeft: React.ReactNode;
