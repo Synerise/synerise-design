@@ -29,7 +29,7 @@ const init = () => {
     headerBorderBottom: boolean('Header with border bottom', false),
     content: text('Content', 'Example of card content'),
     background: select('Background style', backgrounds, 'white-shadow'),
-    showSideChildrenWhenHeaderHidden: boolean('Set Footer Active',true),
+    showSideChildrenWhenHeaderHidden: boolean('Set Footer Active',false),
   };
   return { props };
 };
@@ -63,20 +63,7 @@ const renderCard = (props,hideContentInitial= false) => {
 
 const stories = {
   single: () => {
-    const props  = {
-      title: text('Title', 'Card header'),
-      description: text('Description', 'Description'),
-      raised: boolean('Active', false),
-      disabled: boolean('Disabled', false),
-      lively: boolean('Hover enabled', true),
-      withHeader: boolean('With header', true),
-      hideContent: boolean('Enable collapsing', true),
-      iconColor: text('Icon color', '#54cb0b'),
-      compactHeader: boolean('Compact header', false),
-      headerBorderBottom: boolean('Header with border bottom', false),
-      content: text('Content', 'Example of card content'),
-      background: select('Background style', backgrounds, 'white-shadow'),
-    };
+    const {props}  = init()
     return (
       <div
         style={{
@@ -91,7 +78,7 @@ const stories = {
       >
         <h3>Single card</h3>
         <div style={{ paddingTop: 12, width: '100%' }}>
-          {renderCard({ ...props, icon: <CardBadge icon={<CheckS />} status="success" /> })}
+          {renderCard({ ...props,showSideChildrenWhenHeaderHidden: false, icon: <CardBadge icon={<CheckS />} status="success" /> })}
         </div>
       </div>
     );
