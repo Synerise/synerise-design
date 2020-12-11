@@ -29,7 +29,7 @@ const init = () => {
     headerBorderBottom: boolean('Header with border bottom', false),
     content: text('Content', 'Example of card content'),
     background: select('Background style', backgrounds, 'white-shadow'),
-    showSideChildrenWhenHeaderHidden: boolean('Set SideChildrenWhenHeaderHidden',true),
+    showSideChildrenWhenHeaderHidden: boolean('Set Footer Active',false),
   };
   return { props };
 };
@@ -63,8 +63,7 @@ const renderCard = (props,hideContentInitial= false) => {
 
 const stories = {
   single: () => {
-    const { props } = init();
-
+    const {props}  = init()
     return (
       <div
         style={{
@@ -79,7 +78,7 @@ const stories = {
       >
         <h3>Single card</h3>
         <div style={{ paddingTop: 12, width: '100%' }}>
-          {renderCard({ ...props, icon: <CardBadge icon={<CheckS />} status="success" /> })}
+          {renderCard({ ...props,showSideChildrenWhenHeaderHidden: false, icon: <CardBadge icon={<CheckS />} status="success" /> })}
         </div>
       </div>
     );
@@ -147,6 +146,7 @@ const stories = {
                   </Button>
                 </div>
               ),
+              showSideChildrenWhenHeaderHidden: false,
             },false)}
           </S.HeaderWrapper>
 
@@ -168,6 +168,7 @@ const stories = {
                   </Button>
                 </div>
               ),
+              showSideChildrenWhenHeaderHidden: false,
             },false)}
           </S.HeaderWrapper>
 
@@ -179,6 +180,7 @@ const stories = {
               description: null,
               compactHeader: true,
               headerBorderBottom: true,
+              showSideChildrenWhenHeaderHidden: false,
             },false)}
           </S.HeaderWrapper>
 
@@ -258,6 +260,7 @@ const stories = {
                   <Button>Change</Button>
                 </div>
               ),
+              showSideChildrenWhenHeaderHidden: false,
             },false)}
           </S.HeaderWrapper>
 
@@ -300,6 +303,7 @@ const stories = {
                   </Button>
                 </div>
               ),
+              showSideChildrenWhenHeaderHidden: false,
             } ,false)}
           </S.HeaderWrapper>
           <S.HeaderWrapper>
@@ -327,6 +331,7 @@ const stories = {
                   </Button>
                 </div>
               ),
+              showSideChildrenWhenHeaderHidden: false,
             }, false)}
           </S.HeaderWrapper>
         </div>
