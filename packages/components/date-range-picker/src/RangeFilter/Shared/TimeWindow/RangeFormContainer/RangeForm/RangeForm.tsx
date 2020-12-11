@@ -7,16 +7,18 @@ import Icon from '@synerise/ds-icon';
 import { CloseS } from '@synerise/ds-icon/dist/icons';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import TimePicker from '@synerise/ds-time-picker';
-import { RangeFormProps } from './RangeForm.types';
+import { DateLimitMode, RangeFormProps } from './RangeForm.types';
 import * as S from './RangeForm.styles';
 import { getDisabledTimeOptions } from '../../../../../RangePicker/utils';
 
 const TODAY = new Date();
-const FORM_MODES = {
+const FORM_MODES: Record<string, DateLimitMode> = {
   HOUR: 'Hour',
   RANGE: 'Range',
 };
 const RangeForm: React.FC<RangeFormProps> = ({
+  mode = 'Range',
+  onModeChange,
   startDate,
   endDate,
   onStartChange,
@@ -26,8 +28,12 @@ const RangeForm: React.FC<RangeFormProps> = ({
 }) => {
   const [start, setStart] = React.useState<Date | undefined>(startDate);
   const [end, setEnd] = React.useState<Date | undefined>(endDate);
-  const [mode, setMode] = React.useState<string>(FORM_MODES.RANGE);
   const areStartAndEndValid = React.useMemo(() => !!start && !!end, [start, end]);
+
+  const getPopupContainer = React.useCallback(
+    (node: HTMLElement): HTMLElement => (node.parentElement != null ? node.parentElement : document.body),
+    []
+  );
 
   React.useEffect(() => {
     setStart(startDate);
@@ -51,7 +57,7 @@ const RangeForm: React.FC<RangeFormProps> = ({
     }
   }, [start, end]);
 
-  const renderSingleHourPicker = React.useCallback(() => {
+  const singleHourPicker = React.useMemo(() => {
     return (
       <TimePicker
         onChange={(date): void => {
@@ -59,15 +65,14 @@ const RangeForm: React.FC<RangeFormProps> = ({
         }}
         value={start}
         dropdownProps={{
-          getPopupContainer: (node: HTMLElement): HTMLElement =>
-            node.parentElement != null ? node.parentElement : document.body,
+          getPopupContainer,
         }}
         disabledHours={[]}
         disabledMinutes={[]}
         disabledSeconds={[]}
       />
     );
-  }, [start, onExactHourSelect]);
+  }, [start, onExactHourSelect, getPopupContainer]);
 
   const renderRangePicker = React.useCallback(() => {
     return (
@@ -79,8 +84,7 @@ const RangeForm: React.FC<RangeFormProps> = ({
           }}
           value={start}
           dropdownProps={{
-            getPopupContainer: (node: HTMLElement): HTMLElement =>
-              node.parentElement != null ? node.parentElement : document.body,
+            getPopupContainer,
           }}
           disabledHours={areStartAndEndValid ? getDisabledTimeOptions(start, 'HOURS', null, end) : []}
           disabledMinutes={areStartAndEndValid ? getDisabledTimeOptions(start, 'MINUTES', null, end) : []}
@@ -94,8 +98,7 @@ const RangeForm: React.FC<RangeFormProps> = ({
           }}
           value={end}
           dropdownProps={{
-            getPopupContainer: (node: HTMLElement): HTMLElement =>
-              node.parentElement != null ? node.parentElement : document.body,
+            getPopupContainer,
           }}
           disabledHours={areStartAndEndValid ? getDisabledTimeOptions(end, 'HOURS', start, null) : []}
           disabledMinutes={areStartAndEndValid ? getDisabledTimeOptions(end, 'MINUTES', start, null) : []}
@@ -103,24 +106,30 @@ const RangeForm: React.FC<RangeFormProps> = ({
         />
       </>
     );
-  }, [areStartAndEndValid, start, end, onStartChange, onEndChange]);
+  }, [areStartAndEndValid, start, end, onStartChange, onEndChange, getPopupContainer]);
+  const limitModeSelect = React.useMemo(
+    () => (
+      <Select
+        value={mode}
+        onChange={(value): void => {
+          onModeChange(value as DateLimitMode);
+        }}
+        getPopupContainer={getPopupContainer}
+      >
+        {Object.values(FORM_MODES).map(modeName => (
+          <Select.Option key={modeName} value={modeName}>
+            {modeName}
+          </Select.Option>
+        ))}
+      </Select>
+    ),
+    [mode, onModeChange, getPopupContainer]
+  );
   return (
     <S.Container>
       <S.Row justifyContent="flex-start">
-        <Select
-          value={mode}
-          onChange={(value): void => {
-            setMode(value as string);
-          }}
-          getPopupContainer={(node): HTMLElement => (node.parentElement != null ? node.parentElement : document.body)}
-        >
-          {Object.values(FORM_MODES).map(modeName => (
-            <Select.Option key={modeName} value={modeName}>
-              {modeName}
-            </Select.Option>
-          ))}
-        </Select>
-        {mode === FORM_MODES.HOUR ? renderSingleHourPicker() : renderRangePicker()}
+        {limitModeSelect}
+        {mode === FORM_MODES.HOUR ? singleHourPicker : renderRangePicker()}
         {!!onRangeDelete && (
           <S.RemoveIconWrapper onClick={onRangeDelete}>
             <Icon component={<CloseS />} color={theme.palette['red-600']} />
