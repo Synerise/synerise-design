@@ -57,7 +57,7 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
     const { isRangeDefined } = this.state;
     if (!this.isDayRestricted(dayKey) && isRangeDefined && !this.haveActiveDaysCommonRange()) this.checkDay(dayKey);
     const { activeDays, controlKeyPressed, shiftKeyPressed } = this.state;
-    let updatedActiveDay = [];
+    let updatedActiveDay: DayKey[] = [];
     if (controlKeyPressed) {
       updatedActiveDay = activeDays.includes(dayKey) ? activeDays : [...activeDays, dayKey];
     } else if (activeDays.length > 0 && shiftKeyPressed) {
@@ -66,7 +66,7 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
     } else {
       updatedActiveDay = [dayKey];
     }
-    this.setState({ activeDays: updatedActiveDay });
+    this.setState(state => ({ ...state, activeDays: updatedActiveDay }));
   };
 
   uncheckActiveDay = (dayKey: DayKey): void => {
@@ -75,7 +75,7 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
     if (controlKeyPressed) {
       updatedActiveDay = activeDays.filter(day => day !== dayKey);
     }
-    this.setState({ activeDays: updatedActiveDay });
+    this.setState(state => ({ ...state, activeDays: updatedActiveDay }));
     this.removeDaySelection(dayKey);
   };
 
@@ -181,6 +181,7 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
       restricted: false,
       display: false,
       inverted: false,
+      mode: 'Range',
       ...dayValue,
     };
   };
@@ -272,9 +273,11 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
 
   renderRangeForm = (dayKeys: DayKey | DayKey[]): React.ReactNode => {
     const { activeDays } = this.state;
-    const { hideHeader, monthlyFilterPeriod, monthlyFilter, daily } = this.props;
+    const { hideHeader, monthlyFilterPeriod, monthlyFilter, daily, days, onChange } = this.props;
     return (
       <RangeFormContainer
+        onChange={onChange}
+        days={days}
         activeDays={activeDays}
         dayKeys={dayKeys}
         getDayLabel={this.getDayLabel}
@@ -314,19 +317,19 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
 
   handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>): void => {
     if (e.key === 'Shift') {
-      this.setState({ controlKeyPressed: false, shiftKeyPressed: true });
+      this.setState(state => ({ ...state, controlKeyPressed: false, shiftKeyPressed: true }));
     }
     if (e.key === 'Control' || e.key === 'Meta') {
-      this.setState({ controlKeyPressed: true, shiftKeyPressed: false });
+      this.setState(state => ({ ...state, controlKeyPressed: true, shiftKeyPressed: false }));
     }
   };
 
   handleKeyUp = (e: React.KeyboardEvent<HTMLDivElement>): void => {
     if (e.key === 'Control' || e.key === 'Meta') {
-      this.setState({ controlKeyPressed: false });
+      this.setState(state => ({ ...state, controlKeyPressed: false }));
     }
     if (e.key === 'Shift') {
-      this.setState({ shiftKeyPressed: false });
+      this.setState(state => ({ ...state, shiftKeyPressed: false }));
     }
   };
 

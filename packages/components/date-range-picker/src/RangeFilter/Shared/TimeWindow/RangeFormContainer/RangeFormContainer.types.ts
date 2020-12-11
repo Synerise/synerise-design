@@ -9,5 +9,5 @@ export type RangeFormContainerProps = {
   onMultipleDayTimeChange: (value: [Date, Date]) => void;
   onDayTimeChange: (value: [Date, Date], dayKey: DayKey) => void;
   onRangeDelete?: () => void;
-} & Pick<TimeWindowProps, 'monthlyFilter' | 'monthlyFilterPeriod' | 'hideHeader'> &
+} & Pick<TimeWindowProps, 'monthlyFilter' | 'monthlyFilterPeriod' | 'hideHeader' | 'onChange' | 'days'> &
   Partial<RangeActions>;
