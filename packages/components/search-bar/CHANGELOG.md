@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.107](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search-bar@0.2.106...@synerise/ds-search-bar@0.2.107) (2020-12-11)
+
+
+### Bug Fixes
+
+* **search-bar:** use placeholder styling selectors seperately ([6102a04](https://github.com/Synerise/synerise-design/commit/6102a046709cbe6c9884e11861b6096a3632bdb0))
+
+
+
+
+
 ## [0.2.106](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search-bar@0.2.105...@synerise/ds-search-bar@0.2.106) (2020-12-09)
 
 **Note:** Version bump only for package @synerise/ds-search-bar

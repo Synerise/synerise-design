@@ -25,6 +25,8 @@ const PickerInput: React.FC<Props> = ({
   highlight,
   error,
   errorText,
+  prefixel,
+  suffixel,
   ...rest
 }: Props) => {
   const [hovered, setHovered] = React.useState<boolean>(false);
@@ -77,28 +79,34 @@ const PickerInput: React.FC<Props> = ({
     [hovered, value, disabled, clearTooltip, handleIconClick, highlight]
   );
   return (
-    <S.Container
-      onMouseEnter={!disabled ? (): void => setHovered(true) : undefined}
-      onMouseLeave={!disabled ? (): void => setHovered(false) : undefined}
-      onClick={!disabled ? handleInputClick : undefined}
-    >
-      <S.Input
-        autoFocus={autoFocus}
-        active={!!highlight}
-        resetMargin
-        readOnly
-        type="text"
-        size={size as SizeType}
-        disabled={disabled}
-        placeholder={placeholder}
-        value={getText()}
-        icon1={iconInput}
-        style={style}
-        error={error}
-        errorText={errorText}
-        {...rest}
-      />
-    </S.Container>
+    <S.PickerInputWrapper prefixel={!!prefixel} suffixel={!!suffixel}>
+      {!!prefixel && <S.Prefixel>{prefixel}</S.Prefixel>}
+      <S.Container
+        onMouseEnter={!disabled ? (): void => setHovered(true) : undefined}
+        onMouseLeave={!disabled ? (): void => setHovered(false) : undefined}
+        onClick={!disabled ? handleInputClick : undefined}
+      >
+        <S.Input
+          autoFocus={autoFocus}
+          active={!!highlight}
+          resetMargin
+          readOnly
+          type="text"
+          size={size as SizeType}
+          disabled={disabled}
+          placeholder={placeholder}
+          value={getText()}
+          icon1={iconInput}
+          prefixel={prefixel}
+          suffixel={suffixel}
+          style={style}
+          error={error}
+          errorText={errorText}
+          {...rest}
+        />
+      </S.Container>
+      {!!suffixel && <S.Suffixel>{suffixel}</S.Suffixel>}
+    </S.PickerInputWrapper>
   );
 };
 
