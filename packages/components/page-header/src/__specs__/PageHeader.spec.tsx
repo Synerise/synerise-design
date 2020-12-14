@@ -2,12 +2,15 @@ import * as React from 'react';
 import { fireEvent } from '@testing-library/react';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import PageHeader from '../index';
+import { HelpM } from '@synerise/ds-icon/dist/icons';
+import userEvent from '@testing-library/user-event';
 
 describe('PageHeader', () => {
   const onClick = jest.fn();
   const TITLE = 'TEST TITLE';
   const RIGHT_SIDE = 'RIGHT_SIDE';
   const DESCRIPTION = 'DESCRIPTION';
+  const TOOLTIP = 'TOOLTIP';
 
   it('should render title', () => {
     // ARRANGE
@@ -32,18 +35,14 @@ describe('PageHeader', () => {
 
   it('should render bar', () => {
     // ARRANGE
-    const { getByTestId } = renderWithProvider(
-      <PageHeader title={TITLE} bar={<div data-testid="bar">bar</div>}/>
-    );
+    const { getByTestId } = renderWithProvider(<PageHeader title={TITLE} bar={<div data-testid="bar">bar</div>} />);
     // ASSERT
     expect(getByTestId('bar') as HTMLElement).toBeTruthy();
   });
 
   it('should render tabs', () => {
     // ARRANGE
-    const { getByTestId } = renderWithProvider(
-      <PageHeader title={TITLE} tabs={<div data-testid="tabs">tabs</div>}/>
-    );
+    const { getByTestId } = renderWithProvider(<PageHeader title={TITLE} tabs={<div data-testid="tabs">tabs</div>} />);
     // ASSERT
     expect(getByTestId('tabs') as HTMLElement).toBeTruthy();
   });
@@ -51,7 +50,7 @@ describe('PageHeader', () => {
   it('should render avatar', () => {
     // ARRANGE
     const { getByTestId } = renderWithProvider(
-      <PageHeader title={TITLE} avatar={<div data-testid="avatar">avatar</div>}/>
+      <PageHeader title={TITLE} avatar={<div data-testid="avatar">avatar</div>} />
     );
     // ASSERT
     expect(getByTestId('avatar') as HTMLElement).toBeTruthy();
@@ -59,9 +58,7 @@ describe('PageHeader', () => {
 
   it('should render more', () => {
     // ARRANGE
-    const { getByTestId } = renderWithProvider(
-      <PageHeader title={TITLE} more={<div data-testid="more">more</div>}/>
-    );
+    const { getByTestId } = renderWithProvider(<PageHeader title={TITLE} more={<div data-testid="more">more</div>} />);
     // ASSERT
     expect(getByTestId('more') as HTMLElement).toBeTruthy();
   });
@@ -69,9 +66,20 @@ describe('PageHeader', () => {
   it('should render inlineEditor', () => {
     // ARRANGE
     const { getByPlaceholderText } = renderWithProvider(
-      <PageHeader title={TITLE} onGoBack={onClick} inlineEdit={
-        {name: '', value: '', maxLength: 10, handleOnChange: () => {}, handleOnBlur: () => {}, handleOnEnterPress: () => {}, placeholder: 'test', size: 'normal'}
-      } />
+      <PageHeader
+        title={TITLE}
+        onGoBack={onClick}
+        inlineEdit={{
+          name: '',
+          value: '',
+          maxLength: 10,
+          handleOnChange: () => {},
+          handleOnBlur: () => {},
+          handleOnEnterPress: () => {},
+          placeholder: 'test',
+          size: 'normal',
+        }}
+      />
     );
     // ASSERT
     expect(getByPlaceholderText('test')).toBeTruthy();
@@ -116,5 +124,34 @@ describe('PageHeader', () => {
 
     // ASSERT
     expect(onClick).toHaveBeenCalled();
+  });
+
+  it('should render with title tooltip', () => {
+    // ARRANGE
+    const { container } = renderWithProvider(
+      <PageHeader title={TITLE} tooltip={{ trigger: ['hover'], title: TOOLTIP }} tooltipIcon={<HelpM />} />
+    );
+
+    // ASSERT
+    expect(container.querySelector('.help-m')).toBeTruthy();
+  });
+
+  it('should fire handleTooltipClick', () => {
+    // ARRANGE
+    const handleTooltipClick = jest.fn();
+    const { container } = renderWithProvider(
+      <PageHeader
+        title={TITLE}
+        tooltip={{ trigger: ['hover'], title: TOOLTIP }}
+        tooltipIcon={<HelpM />}
+        handleTooltipClick={handleTooltipClick}
+      />
+    );
+
+    // ACT
+    userEvent.click(container.querySelector('.help-m') as HTMLElement);
+
+    // ASSERT
+    expect(handleTooltipClick).toBeCalled();
   });
 });

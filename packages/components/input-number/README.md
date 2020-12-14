@@ -15,11 +15,11 @@ Input-Number UI Component
 
 | Property         | Description                                                                                       | Type                               | Default   |
 | ---------------- | ------------------------------------------------------------------------------------------------- | ---------------------------------- | --------- |
-| autoFocus        | Get focus when component mounted                                                                  | boolean                            |`false`    |
+| autoFocus        | Get focus when component mounted                                                                  | boolean                            | `false`   |
 | decimalSeparator | Decimal separator                                                                                 | string                             | -         |
 | defaultValue     | Initial value                                                                                     | number                             |
 | description      | Input description                                                                                 | string                             | -         |
-| disabled         | Disable the input                                                                                 | boolean                            |`false`    |
+| disabled         | Disable the input                                                                                 | boolean                            | `false`   |
 | errorText        | Error message, if provided input will be set in error state                                       | string                             | -         |
 | formatter        | Specifies the format of the value presented                                                       | (value: number / string) => string | -         |
 | label            | Input label                                                                                       | string                             | -         |

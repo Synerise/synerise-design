@@ -5,7 +5,7 @@ import { action } from '@storybook/addon-actions';
 import Tabs from '@synerise/ds-tabs';
 import { withState } from '@dump247/storybook-state';
 import Icon from '@synerise/ds-icon/';
-import { AngleDownS, ArrowRightCircleM, MailM, MailS, OptionHorizontalM } from '@synerise/ds-icon/dist/icons';
+import { AngleDownS, ArrowRightCircleM, HelpM, MailM, MailS, OptionHorizontalM } from '@synerise/ds-icon/dist/icons';
 import Button from '@synerise/ds-button';
 import { boolean, select, text } from '@storybook/addon-knobs';
 import Avatar from '@synerise/ds-avatar';
@@ -107,6 +107,15 @@ const steps = [
 const stories = {
   default: {
     title: 'Default Main page header',
+  },
+  withTooltip: {
+    title: 'Default Main page header',
+    tooltip: {
+      trigger: ['hover'],
+      title: text('Set tooltip title', 'Tooltip title'),
+    },
+    tooltipIcon: <HelpM />,
+    handleTooltipClick: action('Tooltip click'),
   },
   description: {
     title: 'Main page header with description',
@@ -300,10 +309,15 @@ const stories = {
   }),
   withStepper: withState({
     activeStep: 0,
+    name: 'Example',
   })(({ store }) => {
     const avatarSize = select('size', ['small', 'medium', 'large', 'extraLarge'], 'large');
     const showTooltip = boolean('Show step tooltip', false);
     const invalidStep = select('Set index of invalid step', [0, 1, 2, 3, '-'], '-');
+
+    const handleChangeName = e => {
+      store.set({ name: e.target.value });
+    };
 
     return (
       <PageHeader
@@ -323,9 +337,9 @@ const stories = {
         }
         inlineEdit={{
           name: 'name-of-input',
-          value: 'Example text',
+          value: store.state.name,
           maxLength: 60,
-          handleOnChange: action('Edit'),
+          handleOnChange: handleChangeName,
           handleOnBlur: () => action('onBlur'),
           handleOnEnterPress: () => action('onEnterPress'),
           placeholder: 'Example text',
