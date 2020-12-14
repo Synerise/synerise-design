@@ -239,6 +239,10 @@
       "HOURS": "Hours",
       "MINUTES": "Minutes",
       "SECONDS": "Seconds"
+    },
+    "LOGIC": {
+      "AND": "And",
+      "OR": "Or"
     }
   }
 }
