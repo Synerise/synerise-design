@@ -10,6 +10,7 @@ export { ItemsRollProps, ItemRollElement };
 const ItemsRoll: React.FC<ItemsRollProps> = ({
   actions,
   changeSelectionIcon,
+  changeSelectionDropdownProps,
   className,
   groups,
   intl,
@@ -82,6 +83,7 @@ const ItemsRoll: React.FC<ItemsRollProps> = ({
         actions={actions}
         allTexts={allTexts}
         changeSelectionIcon={changeSelectionIcon}
+        changeSelectionDropdownProps={changeSelectionDropdownProps}
         itemsCount={items.length}
         onChangeSelection={onChangeSelection}
         onSearch={onSearch}

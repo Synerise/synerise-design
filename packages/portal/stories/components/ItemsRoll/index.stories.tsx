@@ -190,6 +190,40 @@ const stories = {
 
     return store.state.componentVisible ? <ItemsRoll {...props} /> : <AfterClearInfo />;
   }),
+  withChangeSelectionDropdown: () => {
+    const [visible, setVisible] = React.useState(false);
+
+    const props = {
+      actions: select(`Actions menu`, actionsSelectOptions, actionsSelectOptions.actions),
+      className: 'custom-class',
+      items: ITEMS_100.slice(0, 10),
+      onClearAll: () => setVisible(false),
+      onItemClick: action('onItemClick'),
+      onItemRemove: action('onItemRemove'),
+      onSearchClear: () => {},
+      searchPlaceholder: SEARCH_PLACEHOLDER,
+      searchValue: '',
+      useFooter: boolean('useFooter', true),
+      maxToShowItems: number('maxToShowItems', 20),
+      onSearch: () => {},
+      showMoreStep: number('showMoreStep', 100),
+      useVirtualizedList: boolean('useVirtualizedList', true),
+      onChangeSelection: () => {},
+      changeSelectionDropdownProps: {
+        overlay: (
+          <ul>
+            <li>Option 1</li>
+            <li>Option 2</li>
+          </ul>
+        ),
+        trigger: ['click'],
+        visible,
+        onVisibleChange: () => setVisible(!visible)
+      }
+    };
+
+    return <ItemsRoll {...props} />;
+  },
 };
 
 export default {
