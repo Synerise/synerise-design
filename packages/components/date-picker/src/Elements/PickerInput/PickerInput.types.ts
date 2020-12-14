@@ -17,4 +17,6 @@ export type Props = {
   highlight?: boolean;
   error?: boolean;
   errorText?: string | React.ReactNode;
+  prefixel?: React.ReactNode | string;
+  suffixel?: React.ReactNode | string;
 };

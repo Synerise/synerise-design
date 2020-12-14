@@ -42,6 +42,8 @@ import DatePicker from '@synerise/ds-date-picker'
 | useStartOfDay   | Boolean value to set hours to the start of the day          | boolean              | `false`    |
 | useEndOfDay     | Boolean value to set hours to the start of the day          | boolean              | `false`    |
 | texts           | Object containing texts                                     | object               | {}         |
+| prefixel        | String or ReactNode to set prefix                           | string | ReactNode   | -          |
+| suffixel        | String or ReactNode to set suffix                           | string | ReactNode   | -          |
 
 ### Texts
 

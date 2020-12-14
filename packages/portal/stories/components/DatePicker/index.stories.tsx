@@ -1,17 +1,21 @@
 import * as React from 'react';
 import DatePicker from '@synerise/ds-date-picker/dist/DatePicker';
 import { action } from '@storybook/addon-actions';
-import { boolean } from '@storybook/addon-knobs';
+import { boolean, text } from '@storybook/addon-knobs';
 
 const stories = {
   default: () => {
     const showTime = boolean('Show time', true);
     const disabled = boolean("Set disabled", false);
+    const prefixel = text('prefixel', 'Prefixel');
+    const suffixel = text('suffixel', 'Suffixel');
     return (
       <div>
         <DatePicker
           disabled={disabled}
           showTime={showTime}
+          prefixel={prefixel}
+          suffixel={suffixel}
           onApply={value => {
             action('Selected', value);
           }}
