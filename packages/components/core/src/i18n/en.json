@@ -243,6 +243,10 @@
     "LOGIC": {
       "AND": "And",
       "OR": "Or"
+    },
+    "MATCHING": {
+      "MATCHING": "matching",
+      "NOT-MATCHING": "not matching"
     }
   }
 }

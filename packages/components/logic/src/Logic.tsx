@@ -2,12 +2,13 @@ import * as React from 'react';
 import Dropdown from '@synerise/ds-dropdown';
 import { useOnClickOutside } from '@synerise/ds-utils';
 import { useIntl } from 'react-intl';
-import { LogicProps } from './Logic.types';
+import { LogicProps, LogicSubComponents } from './Logic.types';
 import * as S from './Login.style';
+import Matching from './Matching/Matching';
 
 const DEFAULT_OPTIONS = ['AND', 'OR'];
 
-const Logic: React.FC<LogicProps> = ({ value, options, onChange }) => {
+const Logic: React.FC<LogicProps> & LogicSubComponents = ({ value, options, onChange }) => {
   const intl = useIntl();
   const [optionsVisible, setOptionsVisible] = React.useState(false);
   const ref = React.useRef<HTMLDivElement>(null);
@@ -63,4 +64,7 @@ const Logic: React.FC<LogicProps> = ({ value, options, onChange }) => {
     </Dropdown>
   );
 };
+
+Logic.Matching = Matching;
+
 export default Logic;
