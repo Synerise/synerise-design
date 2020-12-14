@@ -3,7 +3,7 @@ import Dropdown from '@synerise/ds-dropdown';
 import { useOnClickOutside } from '@synerise/ds-utils';
 import { useIntl } from 'react-intl';
 import { LogicProps, LogicSubComponents } from './Logic.types';
-import * as S from './Login.style';
+import * as S from './Logic.style';
 import Matching from './Matching/Matching';
 
 const DEFAULT_OPTIONS = ['AND', 'OR'];
