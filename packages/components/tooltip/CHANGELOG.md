@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@0.9.7...@synerise/ds-tooltip@0.10.0) (2020-12-14)
+
+
+### Features
+
+* **page-header:** add title tooltip ([7df28ce](https://github.com/synerise/synerise-design/commit/7df28ce8d36703293c9a9b1cc6016d7492ad5008))
+
+
+
+
+
 ## [0.9.7](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@0.9.6...@synerise/ds-tooltip@0.9.7) (2020-12-11)
 
 **Note:** Version bump only for package @synerise/ds-tooltip

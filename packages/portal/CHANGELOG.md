@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.109.0](https://github.com/synerise/synerise-design/compare/portal@0.108.0...portal@0.109.0) (2020-12-14)
+
+
+### Features
+
+* **date-picker:** add suffix and prefix to input & datepicker ([69e21ba](https://github.com/synerise/synerise-design/commit/69e21baf4c91135f51c301dfc69b6501d1e68235))
+* **page-header:** add title tooltip ([7df28ce](https://github.com/synerise/synerise-design/commit/7df28ce8d36703293c9a9b1cc6016d7492ad5008))
+
+
+
+
+
 # [0.108.0](https://github.com/synerise/synerise-design/compare/portal@0.107.0...portal@0.108.0) (2020-12-04)
 
 
