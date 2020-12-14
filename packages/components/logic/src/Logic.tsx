@@ -10,7 +10,7 @@ const DEFAULT_OPTIONS = ['AND', 'OR'];
 const Logic: React.FC<LogicProps> = ({ value, options, onChange }) => {
   const intl = useIntl();
   const [optionsVisible, setOptionsVisible] = React.useState(false);
-  const ref = React.useRef<HTMLElement>(null);
+  const ref = React.useRef<HTMLDivElement>(null);
 
   useOnClickOutside(ref, () => {
     setOptionsVisible(false);
@@ -30,22 +30,24 @@ const Logic: React.FC<LogicProps> = ({ value, options, onChange }) => {
     return (
       // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
       // @ts-ignore
-      <S.LogicMenu asDropdownMenu ref={ref}>
-        {operators.map(operator => (
-          <S.MenuItem
-            // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-            // @ts-ignore
-            key={operator}
-            checked={operator.value === value}
-            onClick={(): void => {
-              setOptionsVisible(false);
-              onChange(operator.value);
-            }}
-          >
-            {operator.label}
-          </S.MenuItem>
-        ))}
-      </S.LogicMenu>
+      <S.Wrapper ref={ref}>
+        <S.LogicMenu asDropdownMenu>
+          {operators.map(operator => (
+            <S.MenuItem
+              // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+              // @ts-ignore
+              key={operator}
+              checked={operator.value === value}
+              onClick={(): void => {
+                setOptionsVisible(false);
+                onChange(operator.value);
+              }}
+            >
+              {operator.label}
+            </S.MenuItem>
+          ))}
+        </S.LogicMenu>
+      </S.Wrapper>
     );
   }, [onChange, operators, value]);
 
