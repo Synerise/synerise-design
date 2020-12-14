@@ -24,7 +24,11 @@
     "*.less"
   ],
   "types": "dist/index.d.ts",
-  "dependencies": {},
+  "dependencies": {
+    "@synerise/ds-dropdown": "^0.13.2",
+    "@synerise/ds-menu": "^0.7.10",
+    "@synerise/ds-utils": "^0.11.9"
+  },
   "peerDependencies": {
     "@synerise/ds-core": "*",
     "react": ">=16.9.0 < 17.0.0"
