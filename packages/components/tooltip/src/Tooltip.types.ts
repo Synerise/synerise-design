@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { TooltipPropsWithTitle } from 'antd/lib/tooltip';
 
 export type tooltipTypes =
   | 'default'
@@ -31,3 +32,5 @@ export default interface TooltipExtendedProps {
     onClick: () => void;
   };
 }
+
+export type TooltipProps = Omit<TooltipPropsWithTitle, 'title'> & TooltipExtendedProps;

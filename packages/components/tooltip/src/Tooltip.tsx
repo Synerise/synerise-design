@@ -1,6 +1,6 @@
 import '@synerise/ds-core/dist/js/style';
 import './style/index.less';
-import AntdTooltip, { TooltipPropsWithTitle } from 'antd/lib/tooltip';
+import AntdTooltip from 'antd/lib/tooltip';
 import * as React from 'react';
 import Icon from '@synerise/ds-icon';
 import NotificationsM from '@synerise/ds-icon/dist/icons/NotificationsM';
@@ -8,7 +8,7 @@ import { Carousel } from 'antd';
 import Button from '@synerise/ds-button';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import * as S from './Tooltip.styles';
-import TooltipExtendedProps, { tooltipTypes, descriptionType } from './Tooltip.types';
+import { tooltipTypes, descriptionType, TooltipProps } from './Tooltip.types';
 
 const shouldRenderDescription = (description: descriptionType, type: tooltipTypes): descriptionType | null => {
   if (type === 'default' || !description) return null;
@@ -19,7 +19,7 @@ const shouldRenderStatus = (status: React.ReactNode | null, type: tooltipTypes):
   return null;
 };
 
-const Tooltip: React.FC<Omit<TooltipPropsWithTitle, 'title'> & TooltipExtendedProps> = ({
+const Tooltip: React.FC<TooltipProps> = ({
   type = 'default',
   icon,
   title,

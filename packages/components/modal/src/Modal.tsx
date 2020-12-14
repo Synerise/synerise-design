@@ -12,7 +12,6 @@ import classnames from 'classnames';
 import * as S from './Modal.styles';
 import { Props } from './Modal.types';
 
-
 const mapSizeToWidth = {
   small: 520,
   medium: 792,
@@ -110,7 +109,6 @@ class ModalProxy extends React.Component<Props> {
 
     return (
       <S.AntdModal
-        // eslint-disable-next-line react/jsx-props-no-spreading
         {...antModalProps}
         className={className}
         width={!size ? undefined : mapSizeToWidth[size]}
