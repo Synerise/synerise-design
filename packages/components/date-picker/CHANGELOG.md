@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@0.3.2...@synerise/ds-date-picker@0.4.0) (2020-12-14)
+
+
+### Features
+
+* **date-picker:** add suffix and prefix to input & datepicker ([69e21ba](https://github.com/Synerise/synerise-design/commit/69e21baf4c91135f51c301dfc69b6501d1e68235))
+
+
+
+
+
 ## [0.3.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@0.3.1...@synerise/ds-date-picker@0.3.2) (2020-12-11)
 
 **Note:** Version bump only for package @synerise/ds-date-picker
