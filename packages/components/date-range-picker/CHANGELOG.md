@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.7.3...@synerise/ds-date-range-picker@0.7.4) (2020-12-14)
+
+
+### Bug Fixes
+
+* **date-range-picker:** added modifiers specs ([67f13b1](https://github.com/Synerise/synerise-design/commit/67f13b165e4ae5a7ad20ece004379b9e305b7038))
+* **date-range-picker:** changed a way of handling default range ([b34ad18](https://github.com/Synerise/synerise-design/commit/b34ad1800d9391f69172d9454ecd56aa8c81d621))
+* **date-range-picker:** delete range on clear range icon click ([eb535e9](https://github.com/Synerise/synerise-design/commit/eb535e94067635ac3be8ed326a43fbc35b0890e5))
+* **date-range-picker:** fixed typings of day modifiers ([9fdc5c2](https://github.com/Synerise/synerise-design/commit/9fdc5c2738b6ae0d710765db1927c7c78710a7a1))
+* **date-range-picker:** hide tooltip on day blur and mouseOut ([d9bceea](https://github.com/Synerise/synerise-design/commit/d9bceea55b834e0a7f579225a9497bf2d35ac3cb))
+* **date-range-picker:** open actions dropdown inside the popover ([837098f](https://github.com/Synerise/synerise-design/commit/837098fa22358561a460e8196b69652e6ab3bebe))
+* **date-range-picker:** preserve the limit mode when selecting days ([df84ab4](https://github.com/Synerise/synerise-design/commit/df84ab4a0c77055405b4088846a428f0dbf220f5))
+* **date-range-picker:** prevent rerendering days ([44bcd79](https://github.com/Synerise/synerise-design/commit/44bcd798c5450623dafe5849ed54cdd736660740))
+* **date-range-picker:** show chosen range summary in addon header ([e9ca271](https://github.com/Synerise/synerise-design/commit/e9ca27169840da99b563e387a428c41b7200a7bb))
+* **date-range-picker:** usecallback in event handlers ([e4cf8a3](https://github.com/Synerise/synerise-design/commit/e4cf8a38ba84a3773676fe32059ae46016ab24dd))
+
+
+
+
+
 ## [0.7.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.7.2...@synerise/ds-date-range-picker@0.7.3) (2020-12-14)
 
 **Note:** Version bump only for package @synerise/ds-date-range-picker

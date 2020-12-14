@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.24.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.23.0...@synerise/ds-core@0.24.0) (2020-12-14)
+
+
+### Features
+
+* **completed-within:** add CompletedWithin component ([5b508b6](https://github.com/synerise/synerise-design/commit/5b508b6cebde22be6fee101038a0acfe6b2447f3))
+* **format-picker:** add i18n ([f65ec86](https://github.com/synerise/synerise-design/commit/f65ec864605e900c734e35a47429697883d612cc))
+
+
+
+
+
 # [0.23.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.22.0...@synerise/ds-core@0.23.0) (2020-12-04)
 
 

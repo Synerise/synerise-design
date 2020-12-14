@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.16.10](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.16.9...@synerise/ds-input@0.16.10) (2020-12-14)
+
+
+### Bug Fixes
+
+* **input:** textarea pleceholder line height ([c249f87](https://github.com/synerise/synerise-design/commit/c249f872953e6664d5e79cdc481d7ae23117ce66))
+
+
+
+
+
 ## [0.16.9](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.16.8...@synerise/ds-input@0.16.9) (2020-12-14)
 
 **Note:** Version bump only for package @synerise/ds-input

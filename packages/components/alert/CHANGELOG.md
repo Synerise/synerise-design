@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-alert@0.1.41...@synerise/ds-alert@0.2.0) (2020-12-14)
+
+
+### Features
+
+* **alert:** add InlineAlert component ([da34414](https://github.com/Synerise/synerise-design/commit/da34414e8267f4c343b2998df86946eb2201acb7))
+* **alert:** improve typing ([ca9362b](https://github.com/Synerise/synerise-design/commit/ca9362b44a3732329a4305ad9fb4933d6be0c13e))
+
+
+
+
+
 ## [0.1.41](https://github.com/Synerise/synerise-design/compare/@synerise/ds-alert@0.1.40...@synerise/ds-alert@0.1.41) (2020-12-11)
 
 **Note:** Version bump only for package @synerise/ds-alert
