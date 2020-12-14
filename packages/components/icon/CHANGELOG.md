@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.35.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.34.0...@synerise/ds-icon@0.35.0) (2020-12-11)
+
+
+### Features
+
+* **icon:** regression and classification icons ([e3a861a](https://github.com/Synerise/synerise-design/commit/e3a861aca6a5d67b898dc90d9aa34eb754f2001e))
+
+
+
+
+
 # [0.34.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.33.4...@synerise/ds-icon@0.34.0) (2020-11-18)
 
 

@@ -19,6 +19,8 @@ export type Props = {
   error?: boolean;
   errorText?: string | React.ReactNode;
   popoverPlacement?: 'topLeft' | 'topCenter' | 'topRight' | 'bottomLeft' | 'bottomCenter' | 'bottomRight';
+  prefixel?: React.ReactNode | string;
+  suffixel?: React.ReactNode | string;
   showTime?: boolean;
   texts: Texts;
   value?: Date;
