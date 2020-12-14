@@ -51,5 +51,5 @@ storybook-static
 .idea
 .docz
 styleguide/
-
+packages/docs-site/website/docs
 **/yarn-error.log
