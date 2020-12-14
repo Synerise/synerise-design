@@ -1,6 +1,7 @@
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import * as React from 'react';
 import RawDatePicker from '../RawDatePicker/RawDatePicker';
+import DatePicker from '../DatePicker';
 import { fireEvent, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 
@@ -196,5 +197,29 @@ describe('RawDatePicker', () => {
     await fireEvent.click(toNextYear as HTMLElement);
     expect(await getByText('1997')).toBeTruthy();
     expect(screen.queryByText('1996')).not.toBeInTheDocument();
+  });
+  it('should render prefix and suffix', () => {
+    // ARRANGE
+    const PREFIX = 'Prefix value';
+    const SUFFIX = 'Suffix value';
+
+    const { getByText } = renderWithProvider(
+      <DatePicker
+        showTime={true}
+        texts={{
+          apply: 'Apply',
+          now: 'Now',
+        }}
+        value={new Date('1996-10-27T03:24:00')}
+        disabledHours={[]}
+        disabledMinutes={[]}
+        disabledSeconds={[]}
+        prefixel={PREFIX}
+        suffixel={SUFFIX}
+      />
+    );
+    // ASSERT
+    expect(getByText(PREFIX)).toBeTruthy();
+    expect(getByText(SUFFIX)).toBeTruthy();
   });
 });

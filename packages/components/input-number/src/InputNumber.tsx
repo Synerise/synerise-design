@@ -5,7 +5,16 @@ import './style/index.less';
 import * as S from './InputNumber.styles';
 import { Props } from './InputNumber.types';
 
-const InputNumber: React.FC<Props> = ({ label, description, errorText, raw, error, ...antdProps }) => {
+const InputNumber: React.FC<Props> = ({
+  label,
+  description,
+  errorText,
+  raw,
+  error,
+  prefixel,
+  suffixel,
+  ...antdProps
+}) => {
   const id = uuid();
   const showError = Boolean(error || errorText);
 
@@ -16,14 +25,17 @@ const InputNumber: React.FC<Props> = ({ label, description, errorText, raw, erro
           <S.Label htmlFor={id}>{label}</S.Label>
         </S.ContentAbove>
       )}
-      <S.AntdInputNumber
-        // eslint-disable-next-line react/jsx-props-no-spreading
-        {...antdProps}
-        id={id}
-        error={showError}
-        className={showError ? 'error' : undefined}
-        autoComplete="off"
-      />
+      <S.InputNumberWrapper prefixel={!!prefixel} suffixel={!!suffixel}>
+        {!!prefixel && <S.Prefixel>{prefixel}</S.Prefixel>}
+        <S.AntdInputNumber
+          {...antdProps}
+          id={id}
+          error={showError}
+          className={showError ? 'error' : undefined}
+          autoComplete="off"
+        />
+        {!!suffixel && <S.Suffixel>{suffixel}</S.Suffixel>}
+      </S.InputNumberWrapper>
       {(showError || description) && !raw && (
         <S.ContentBelow>
           {showError && <S.ErrorText>{errorText}</S.ErrorText>}

@@ -32,6 +32,8 @@ Input-Number UI Component
 | size             | Height of input box                                                                               | string                             | -         |
 | step             | The number to which the current value is increased or decreased. It can be an integer or decimal. | number / string                    | 1         |
 | value            | Current value                                                                                     | number                             | -         |
+| prefixel        | String or ReactNode to set prefix                                                                  | string | ReactNode   | -          |
+| suffixel        | String or ReactNode to set suffix                                                                  | string | ReactNode   | -          |
 
 ### Methods
 

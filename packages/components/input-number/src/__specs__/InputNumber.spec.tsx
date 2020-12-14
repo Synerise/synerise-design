@@ -129,4 +129,20 @@ describe('InputNumber', () => {
     expect(getByText(ERROR_MESSAGE)).toBeTruthy();
     expect(container.querySelector('.ant-input-number.error')).toBeTruthy();
   });
+
+  it('should render prefix and suffix', () => {
+    // ARRANGE
+    const PREFIX = 'Prefix value';
+    const SUFFIX = 'Suffix value';
+    const { getByText } = renderWithProvider(
+      <InputNumber
+        prefixel={PREFIX}
+        suffixel={SUFFIX}
+      />
+    );
+
+    // ASSERT
+    expect(getByText(PREFIX)).toBeTruthy();
+    expect(getByText(SUFFIX)).toBeTruthy();
+  });
 });

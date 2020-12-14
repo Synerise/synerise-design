@@ -18,9 +18,11 @@ const DatePicker: React.FC<Props> = ({
   onClear,
   errorText,
   popoverPlacement,
+  prefixel,
   error,
   onDropdownVisibleChange,
   dropdownProps,
+  suffixel,
   ...rest
 }) => {
   const [dropVisible, setDropVisible] = React.useState(autoFocus || false);
@@ -85,6 +87,8 @@ const DatePicker: React.FC<Props> = ({
           onClear && onClear();
         }}
         placeholder={texts.inputPlaceholder}
+        prefixel={prefixel}
+        suffixel={suffixel}
         clearTooltip={texts.clearTooltip}
         highlight={!!dropVisible && !disabled}
         error={error}

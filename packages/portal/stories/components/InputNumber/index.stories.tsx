@@ -21,6 +21,8 @@ const stories = {
       errorText: !isFocus && getErrorText(validationState, message),
       error: !isFocus && validationState,
       placeholder: placeholder,
+      prefixel: text('prefixel', 'Prefixel'),
+      suffixel: text('suffixel', 'Suffixel'),
       onBlur: () => {
         action('I am blurred');
         setFocus(false);
