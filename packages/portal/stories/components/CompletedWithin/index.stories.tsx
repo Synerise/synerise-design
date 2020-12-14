@@ -13,9 +13,7 @@ const DEFAULT_STATE = {
 
 const stories = {
   default: withState(DEFAULT_STATE)(({ store }) => {
-    const handleSetValue = (value: PeriodValue) => {
-      store.set({ value });
-    };
+    const handleSetValue = (value: PeriodValue) => store.set({ value });
 
     return (
       <CompletedWithin
