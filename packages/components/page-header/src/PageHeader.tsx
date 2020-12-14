@@ -5,10 +5,11 @@ import InlineEdit from '@synerise/ds-inline-edit/';
 import { CloseS, ArrowLeftM } from '@synerise/ds-icon/dist/icons';
 import Button from '@synerise/ds-button/';
 import { withTheme } from 'styled-components';
+import Tooltip from '@synerise/ds-tooltip';
 import * as S from './PageHeader.styles';
 import { PageHeaderProps } from './PageHeader.types';
 
-const PageHeader: React.FC<PageHeaderProps> = (props) => {
+const PageHeader: React.FC<PageHeaderProps> = props => {
   const {
     className,
     onGoBack,
@@ -24,6 +25,9 @@ const PageHeader: React.FC<PageHeaderProps> = (props) => {
     more,
     avatar,
     goBackIcon,
+    tooltip,
+    tooltipIcon,
+    handleTooltipClick,
   } = props;
 
   const backIcon = goBackIcon || (
@@ -61,11 +65,15 @@ const PageHeader: React.FC<PageHeaderProps> = (props) => {
             />
           </S.PageHeaderInlineEdit>
         )}
-
+        <S.PageHeaderClamp>
+          {children || title}
+          {tooltip !== undefined && tooltipIcon && (
+            <Tooltip {...tooltip}>
+              <Icon component={tooltipIcon} onClick={handleTooltipClick} />
+            </Tooltip>
+          )}
+        </S.PageHeaderClamp>
         {!!more && <S.PageHeaderMore>{more}</S.PageHeaderMore>}
-
-        <S.PageHeaderClamp>{children || title}</S.PageHeaderClamp>
-
         {!!description && <S.PageHeaderDescription>{description}</S.PageHeaderDescription>}
         <S.PageHeaderRightSide>
           <div>

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { TooltipProps } from '@synerise/ds-tooltip/dist/Tooltip.types';
 
 export type PageHeaderProps = {
   className?: string;
@@ -14,6 +15,9 @@ export type PageHeaderProps = {
   goBackIcon?: React.ReactNode;
   onClose?: () => void;
   isolated?: boolean;
+  tooltip?: TooltipProps;
+  tooltipIcon?: React.ReactNode;
+  handleTooltipClick?: () => void;
   inlineEdit?: {
     name?: string;
     value: string | number;
