@@ -10,4 +10,6 @@ export interface Props extends AntdSliderProps {
   useColorPalette?: boolean;
   autoFocus?: boolean;
   tracksColorMap?: S.colorMapProps;
+  bolderLine?: boolean;
+  description?: React.ReactNode | string;
 }

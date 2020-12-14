@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { action } from '@storybook/addon-actions';
 import { text, boolean, number, select, object, array } from '@storybook/addon-knobs';
-import Tooltip from '@synerise/ds-tooltip';
 
 import Slider from '@synerise/ds-slider';
 
 const decorator = storyFn => <div style={{ padding: '48px' }}>{storyFn()}</div>;
 
-const sliderValues = [-100, -95, -90, -75, -50, -40, -30, -25, -10, 0, 10, 25, 30, 40, 50, 75, 90, 95, 100];
+const sliderValues = [0, 25, 75, 100];
+const slidersValues = [0,33, 66, 100];
 const placements = [
   'top',
   'left',
@@ -23,63 +23,35 @@ const placements = [
   'rightBottom',
 ];
 
-const marks = {
-  '-100': '-100°',
-  '-75': '-75°',
-  '-50': '-50°',
-  '-25': '-25°',
-  0: {
-    style: {
-      color: '#384350',
-      fontWeight: 500,
-    },
-    label: <strong>0°C</strong>,
-  },
-  25: '25°',
-  26: {
-    style: {
-      lineHeight: 1.2,
-      textAlign: 'center',
-      top: '-14px',
-    },
-    label: (
-      <Tooltip
-        placement="top"
-        title="Tooltip example"
-      >
-        <span>26°</span>
-      </Tooltip>
-    ),
-  },
-  27: {
-    style: {
-      lineHeight: 1.2,
-      textAlign: 'center',
-      top: '14px',
-    },
-    label: (
-      <Tooltip
-        placement="top"
-        title="Tooltip example"
-      >
-        <span>27°</span>
-      </Tooltip>
-    ),
-  },
-  28: '28°',
-  50: '50°',
-  75: '75°',
-  100: '100°',
+const mark = {
+  0: '0',
+  100: '100',
 };
 
-const tipFormatter = (value: string) => <div>{value} °C</div>;
+const tipFormatter = (value: string) => <div className="Tip">{value}%</div>;
 
 const Wrapper = (props: any) => {
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = React.useState(50);
   const [rangeValue, setRangeValue] = React.useState([-50, 50]);
+  const hasMarks = boolean('Set Marks', false);
+  const descriptionMessage = text('Description', 'Description');
+  const hasDescription = boolean('Set Description', false);
+  const getDescription = (hasDescription: boolean): string => {
+    if (hasDescription) {
+      return descriptionMessage;
+    } else {
+      return '';
+    }
+  };
 
   return (
-    <Slider {...props} value={props.range ? rangeValue : value} onChange={props.range ? setRangeValue : setValue} />
+    <Slider
+      {...props}
+      marks={hasMarks && mark}
+      description={descriptionMessage && getDescription(hasDescription)}
+      value={props.range ? rangeValue : value}
+      onChange={props.range ? setRangeValue : setValue}
+    />
   );
 };
 
@@ -90,26 +62,33 @@ const WrapperMultiMode = (props: any) => {
     <Slider {...props} value={props.range ? rangeValue : value} onChange={props.range ? setRangeValue : setValue} />
   );
 };
-
+const WrapperMultiValuesMode = (props: any) => {
+  const [value, setValue] = React.useState(0);
+  const [rangeValue, setRangeValue] = React.useState(slidersValues);
+  return (
+    <Slider {...props} value={props.range ? rangeValue : value} onChange={props.range ? setRangeValue : setValue} />
+  );
+};
 const stories = {
   default: () => (
     <Wrapper
       label={text('label', 'Label')}
       disabled={boolean('disabled', false)}
-      dots={boolean('dots', false)}
+      reverse={boolean('reverse', false)}
       included={boolean('included', true)}
       inverted={boolean('inverted', false)}
       max={number('max', 100)}
-      min={number('min', -100)}
-      range={boolean('range', true)}
-      step={number('step', 1)}
+      min={number('min', 0)}
+      range={boolean('range', false)}
+      step={number('step', 0.1)}
       tipFormatter={tipFormatter}
       onAfterChange={action('onAfterChange')}
       OnChange={action('OnChange')}
-      tooltipPlacement={select('Placement', placements, 'top')}
+      tooltipPlacement={select('Placement', placements, 'bottom')}
       useColorPalette={boolean('useColorPalette', false)}
-      getTooltipPopupContainer={() => document.body}
-      tooltipVisible
+      getTooltipPopupContainer={() => document.querySelector('.ant-slider-handle')}
+      tooltipVisible={boolean('Value visible', false)}
+      bolderLine={boolean('Set bolder Line', false)}
     />
   ),
   withVisibleLabels: () => (
@@ -125,9 +104,10 @@ const stories = {
       step={number('step', 1)}
       onAfterChange={action('onAfterChange')}
       OnChange={action('OnChange')}
-      tooltipPlacement={select('Placement', placements, 'top')}
+      tooltipPlacement={select('Placement', placements, 'bottom')}
       useColorPalette={boolean('useColorPalette', false)}
       getTooltipPopupContainer={() => document.body}
+      bolderLine={boolean('Set bolder Line', false)}
     />
   ),
   multipleRange: () => (
@@ -137,16 +117,49 @@ const stories = {
       dots={boolean('dots', false)}
       included={boolean('included', true)}
       inverted={boolean('inverted', false)}
-      marks={marks}
       max={number('max', 100)}
-      min={number('min', -100)}
+      min={number('min', 0)}
       range={boolean('range', true)}
       step={number('step', 1)}
       tipFormatter={tipFormatter}
       onAfterChange={action('onAfterChange')}
       OnChange={action('OnChange')}
-      tooltipPlacement={select('Placement', placements, 'top')}
+      tooltipPlacement={select('Placement', placements, 'bottom')}
       useColorPalette={boolean('useColorPalette', true)}
+      bolderLine={boolean('Set bolder Line', false)}
+      tooltipVisible={boolean('Value visible', false)}
+      tracksColorMap={{
+        '0': 'cyan-600',
+        '1': 'yellow-600',
+        '2': 'pink-600',
+        '3': 'green-600',
+        '4': 'mars-600',
+        '5': 'orange-600',
+        '6': 'purple-600',
+        '7': 'violet-600',
+        '8': 'red-600',
+        '9': 'fern-600',
+      }}
+    />
+  ),
+  multiValuesRanges: () => (
+    <WrapperMultiValuesMode
+      label={text('label', 'Label')}
+      disabled={boolean('disabled', false)}
+      dots={boolean('dots', false)}
+      included={boolean('included', true)}
+      inverted={boolean('inverted', false)}
+      max={number('max', 100)}
+      min={number('min', 0)}
+      range={boolean('range', true)}
+      step={number('step', 1)}
+      tipFormatter={tipFormatter}
+      onAfterChange={action('onAfterChange')}
+      OnChange={action('OnChange')}
+      tooltipPlacement={select('Placement', placements, 'bottom')}
+      useColorPalette={boolean('useColorPalette', true)}
+      bolderLine={boolean('Set bolder Line', false)}
+      tooltipVisible={boolean('Value visible', false)}
       tracksColorMap={{
         '0': 'cyan-600',
         '1': 'yellow-600',
@@ -164,7 +177,7 @@ const stories = {
 };
 
 export default {
-name: 'Components/Slider',
+  name: 'Components/Slider',
   withoutCenter: true,
   decorator,
   stories,

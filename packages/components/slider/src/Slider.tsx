@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Label } from '@synerise/ds-typography';
 import '@synerise/ds-core/dist/js/style';
 import './style/index.less';
+import { ReactNode } from 'react';
 import * as S from './Slider.styles';
 import { Props } from './Slider.types';
 
@@ -17,6 +18,8 @@ const Slider: React.FC<Props> = ({
   inverted,
   getTooltipPopupContainer,
   tracksColorMap,
+  bolderLine,
+  description,
   ...antdProps
 }) => {
   return (
@@ -31,6 +34,8 @@ const Slider: React.FC<Props> = ({
         {...antdProps}
         className={antdProps.value && couldBeInverted(antdProps.value, !!inverted) ? 'ant-slider-inverted' : undefined}
         useColorPalette={useColorPalette}
+        bolderLine={bolderLine}
+        tipFormatter={(value): ReactNode => <S.DescriptionWrapper><S.DescWrapper>{description}</S.DescWrapper>{value}%</S.DescriptionWrapper>}
         tracksColorMap={tracksColorMap}
         getTooltipPopupContainer={getTooltipPopupContainer || getDefaultTooltipPopupContainer}
       />
