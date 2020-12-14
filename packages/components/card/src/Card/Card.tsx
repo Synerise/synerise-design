@@ -72,13 +72,15 @@ const Card: React.FC<CardProps> = ({
           </S.PaddingWrapper>
         </S.ChildrenContainer>
       </AnimateHeight>
-      {showSideChildrenWhenHeaderHidden && <AnimateHeight
-        className="card-animation-footer"
-        duration={0}
-        height={ headerSideChildren && !headerActionsVisible ? 'auto' : 0}
-      >
-        <S.FooterContainer>{headerSideChildren}</S.FooterContainer>
-      </AnimateHeight>}
+      {showSideChildrenWhenHeaderHidden && (
+        <AnimateHeight
+          className="card-animation-footer"
+          duration={0}
+          height={headerSideChildren && !headerActionsVisible ? 'auto' : 0}
+        >
+          <S.FooterContainer>{headerSideChildren}</S.FooterContainer>
+        </AnimateHeight>
+      )}
     </S.Container>
   );
 };

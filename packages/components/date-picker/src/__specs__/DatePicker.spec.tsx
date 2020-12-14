@@ -203,7 +203,7 @@ describe('RawDatePicker', () => {
     const PREFIX = 'Prefix value';
     const SUFFIX = 'Suffix value';
 
-    const { getByText } = renderWithProvider(
+    const { getAllByText } = renderWithProvider(
       <DatePicker
         showTime={true}
         texts={{
@@ -219,7 +219,7 @@ describe('RawDatePicker', () => {
       />
     );
     // ASSERT
-    expect(getByText(PREFIX)).toBeTruthy();
-    expect(getByText(SUFFIX)).toBeTruthy();
+    expect(getAllByText(PREFIX)[0]).toBeTruthy();
+    expect(getAllByText(SUFFIX)[0]).toBeTruthy();
   });
 });
