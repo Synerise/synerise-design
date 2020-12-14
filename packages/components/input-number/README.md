@@ -15,11 +15,11 @@ Input-Number UI Component
 
 | Property         | Description                                                                                       | Type                               | Default   |
 | ---------------- | ------------------------------------------------------------------------------------------------- | ---------------------------------- | --------- |
-| autoFocus        | Get focus when component mounted                                                                  | boolean                            |`false`    |
+| autoFocus        | Get focus when component mounted                                                                  | boolean                            | `false`   |
 | decimalSeparator | Decimal separator                                                                                 | string                             | -         |
 | defaultValue     | Initial value                                                                                     | number                             |
 | description      | Input description                                                                                 | string                             | -         |
-| disabled         | Disable the input                                                                                 | boolean                            |`false`    |
+| disabled         | Disable the input                                                                                 | boolean                            | `false`   |
 | errorText        | Error message, if provided input will be set in error state                                       | string                             | -         |
 | formatter        | Specifies the format of the value presented                                                       | (value: number / string) => string | -         |
 | label            | Input label                                                                                       | string                             | -         |
@@ -32,8 +32,8 @@ Input-Number UI Component
 | size             | Height of input box                                                                               | string                             | -         |
 | step             | The number to which the current value is increased or decreased. It can be an integer or decimal. | number / string                    | 1         |
 | value            | Current value                                                                                     | number                             | -         |
-| prefixel        | String or ReactNode to set prefix                                                                  | string | ReactNode   | -          |
-| suffixel        | String or ReactNode to set suffix                                                                  | string | ReactNode   | -          |
+| prefixel         | String or ReactNode to set prefix                                                                 | string / ReactNode                 | -         |
+| suffixel         | String or ReactNode to set suffix                                                                 | string / ReactNode                 | -         |
 
 ### Methods
 
