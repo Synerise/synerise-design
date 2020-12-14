@@ -319,10 +319,6 @@ const stories = {
       store.set({ name: e.target.value });
     };
 
-    const handleChangeName = e => {
-      store.set({ name: e.target.value });
-    };
-
     return (
       <PageHeader
         avatar={
