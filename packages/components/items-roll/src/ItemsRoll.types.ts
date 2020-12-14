@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { IntlShape } from 'react-intl';
 import { MenuItemProps } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.types';
+import { DropdownProps } from '@synerise/ds-dropdown/dist/Dropdown';
 
 export type ItemRollElement = MenuItemProps & {
   id: string;
@@ -30,6 +31,7 @@ export type ItemsRollProps = {
   searchPlaceholder: string;
   actions?: ItemRollElement[];
   changeSelectionIcon?: (props: React.SVGProps<SVGSVGElement>) => JSX.Element;
+  changeSelectionDropdownProps?: DropdownProps;
   className?: string;
   groups?: string[];
   maxToShowItems?: number;

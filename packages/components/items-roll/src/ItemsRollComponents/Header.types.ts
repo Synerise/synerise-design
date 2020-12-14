@@ -5,12 +5,13 @@ export type HeaderProps = Pick<
   ItemsRollProps,
   | 'actions'
   | 'changeSelectionIcon'
+  | 'changeSelectionDropdownProps'
   | 'onChangeSelection'
   | 'onSearch'
   | 'onSearchClear'
   | 'searchValue'
   | 'searchPlaceholder'
-  > & {
+> & {
   allTexts: { [k in Texts]: string | React.ReactNode };
   itemsCount: number;
 };
