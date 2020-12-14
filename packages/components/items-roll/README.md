@@ -37,7 +37,8 @@ import ItemsRoll from '@synerise/ds-items-roll';
 | -------------------- | ----------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- | ------- |
 | actions              | ItemRollElement array with configuration for action dropdown menu                                                 | ItemRollElement[]                                       | -       |
 | changeSelectionIcon  | The custom changeSelection icon                                                                                   | `(props: React.SVGProps<SVGSVGElement>) => JSX.Element` | EditM   |
-| className            | Additional class for ItemsRoll wrapper                                                                            | string                                                  | -       |
+| changeSelectionDropdownProps                         | Object with ds-dropdown props                                                     | DropdownProps
+| className            | Additional class for ItemsRoll wrapper                                                                            | string                                                 | -       |
 | groups               | Array of strings where each one corresponds to a group prop in ItemRollElement                                    | string[]                                                | -       |
 | items                | ItemRollElement array for list                                                                                    | ItemRollElement[]                                       | -       |
 | maxToShowItems       | Amount of initial ItemsRollElement to render. Note that if number is greater than 20, list will becoma scrollable | number                                                  | 10      |
