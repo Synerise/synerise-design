@@ -96,7 +96,19 @@ const PickerInput: React.FC<Props> = ({
           disabled={disabled}
           placeholder={placeholder}
           value={getText()}
-          icon1={iconInput}
+          icon1={
+            (hovered || !!value) && !disabled ? (
+              <S.ClearIconWrapper>
+                <Tooltip title={clearTooltip}>
+                  <Icon component={<Close3S />} onClick={handleIconClick} />
+                </Tooltip>
+              </S.ClearIconWrapper>
+            ) : (
+              <S.DefaultIconWrapper>
+                <Icon component={<CalendarM />} />
+              </S.DefaultIconWrapper>
+            )
+          }
           prefixel={prefixel}
           suffixel={suffixel}
           style={style}
