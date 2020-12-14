@@ -1,19 +1,24 @@
 import fnsIsWithinRange from 'date-fns/isWithinInterval';
 import { legacyParse } from '@date-fns/upgrade/v2';
-import { Limit, State } from './RangePicker.types';
+import { Modifiers } from 'react-day-picker';
+import fnsMin from 'date-fns/min';
+import fnsMax from 'date-fns/max';
+import { State } from './RangePicker.types';
 import { fnsEndOfDay, fnsIsSameMonth, fnsStartOfDay, fnsStartOfMonth } from '../fns';
 import { TIME_OPTIONS } from '../constants';
 import SET from '../dateUtils/set';
 import GET from '../dateUtils/get';
-import { DateRange } from '../date.types';
+import { DateRange, NullableDateLimit } from '../date.types';
 import ADD from '../dateUtils/add';
 import format from '../dateUtils/format';
+
+const NOW = new Date();
 
 export const getDisabledTimeOptions = (
   day: string | Date | undefined,
   granularity: string,
-  lowerLimit: Limit = null,
-  upperLimit: Limit = null
+  lowerLimit: NullableDateLimit = null,
+  upperLimit: NullableDateLimit = null
 ): number[] => {
   if (!day) {
     return [];
@@ -45,5 +50,32 @@ export const getSidesState = (value: DateRange, forceAdjacentMonths?: boolean): 
       monthTitle: format(legacyParse(to), 'MMM yyyy'),
       mode: 'date',
     },
+  };
+};
+
+export const getModifiers = (
+  from: NullableDateLimit | undefined,
+  to: NullableDateLimit | undefined,
+  enteredTo: NullableDateLimit | undefined
+): Modifiers => {
+  const isSelecting = from && !to && enteredTo;
+  const enteredStart = isSelecting ? fnsMin([legacyParse(from), legacyParse(enteredTo)]) : enteredTo;
+  const enteredEnd = isSelecting ? fnsMax([legacyParse(from), legacyParse(enteredTo)]) : enteredTo;
+  const entered = isSelecting
+    ? (day: Date | string | number): boolean =>
+        fnsIsWithinRange(legacyParse(day), { start: legacyParse(enteredStart), end: legacyParse(enteredEnd) })
+    : enteredTo;
+  const startModifier = isSelecting && !!enteredTo && !!from && enteredTo < from ? undefined : from;
+  const endModifier = isSelecting && !!enteredTo && !!from && enteredTo < from ? from : to;
+  return {
+    start: startModifier as Date,
+    end: endModifier as Date,
+    entered: entered as Date,
+    outside: undefined,
+    today: NOW,
+    'entered-start': enteredStart as Date,
+    'entered-end': enteredEnd as Date,
+    'initial-entered': !endModifier ? (startModifier as Date) : undefined,
+    initial: !entered && !endModifier ? (startModifier as Date) : undefined,
   };
 };

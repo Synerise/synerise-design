@@ -7,7 +7,6 @@ import Icon from '@synerise/ds-icon';
 import { CheckS,Check3M, FilterM, SearchM, UserM, WarningFillM } from '@synerise/ds-icon/dist/icons';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import * as S from './stories.styles';
-import Tooltip from '@synerise/ds-tooltip';
 const backgrounds = {
   White: 'white',
   'White with shadow': 'white-shadow',
@@ -30,6 +29,7 @@ const init = () => {
     headerBorderBottom: boolean('Header with border bottom', false),
     content: text('Content', 'Example of card content'),
     background: select('Background style', backgrounds, 'white-shadow'),
+    showSideChildrenWhenHeaderHidden: boolean('Set Footer Active',false),
   };
   return { props };
 };
@@ -54,6 +54,7 @@ const renderCard = (props,hideContentInitial= false) => {
         headerBorderBottom={props.headerBorderBottom}
         background={props.background}
         hideContent={props.hideContent && hideContent}
+        showSideChildrenWhenHeaderHidden={props.showSideChildrenWhenHeaderHidden}
       >
          <div style={{ width: '100%', height: 300 }}>{props.content}</div>
       </Card>
@@ -62,8 +63,7 @@ const renderCard = (props,hideContentInitial= false) => {
 
 const stories = {
   single: () => {
-    const { props } = init();
-
+    const {props}  = init()
     return (
       <div
         style={{
@@ -78,7 +78,7 @@ const stories = {
       >
         <h3>Single card</h3>
         <div style={{ paddingTop: 12, width: '100%' }}>
-          {renderCard({ ...props, icon: <CardBadge icon={<CheckS />} status="success" /> })}
+          {renderCard({ ...props,showSideChildrenWhenHeaderHidden: false, icon: <CardBadge icon={<CheckS />} status="success" /> })}
         </div>
       </div>
     );
@@ -146,6 +146,7 @@ const stories = {
                   </Button>
                 </div>
               ),
+              showSideChildrenWhenHeaderHidden: false,
             },false)}
           </S.HeaderWrapper>
 
@@ -167,6 +168,7 @@ const stories = {
                   </Button>
                 </div>
               ),
+              showSideChildrenWhenHeaderHidden: false,
             },false)}
           </S.HeaderWrapper>
 
@@ -178,6 +180,7 @@ const stories = {
               description: null,
               compactHeader: true,
               headerBorderBottom: true,
+              showSideChildrenWhenHeaderHidden: false,
             },false)}
           </S.HeaderWrapper>
 
@@ -257,6 +260,7 @@ const stories = {
                   <Button>Change</Button>
                 </div>
               ),
+              showSideChildrenWhenHeaderHidden: false,
             },false)}
           </S.HeaderWrapper>
 
@@ -299,6 +303,7 @@ const stories = {
                   </Button>
                 </div>
               ),
+              showSideChildrenWhenHeaderHidden: false,
             } ,false)}
           </S.HeaderWrapper>
           <S.HeaderWrapper>
@@ -326,6 +331,7 @@ const stories = {
                   </Button>
                 </div>
               ),
+              showSideChildrenWhenHeaderHidden: false,
             }, false)}
           </S.HeaderWrapper>
         </div>

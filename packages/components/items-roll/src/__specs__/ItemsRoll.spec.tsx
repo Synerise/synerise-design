@@ -470,4 +470,45 @@ describe('ItemsRoll', () => {
     // ASSERT
     expect(C.getByText(`${SHOW_MORE_STEP - 100 - 10}`)).toBeInTheDocument();
   });
+
+  it('renders withChangeSelectionDropdown', () => {
+    const CHANGE_SELECTION_BTN = 'Change selection';
+    const onVisibleChange = jest.fn();
+    const onSearch = jest.fn();
+    const onSearchClear = jest.fn();
+    const onClearAll = jest.fn();
+    const onChangeSelection = jest.fn();
+    const changeSelectionDropdownProps = {
+      overlay: <div>Overlay content</div>,
+      trigger: ['click' as 'click'],
+      onVisibleChange
+    };
+
+    const props = propsFactory({
+      onSearch,
+      onSearchClear,
+      onClearAll,
+      onChangeSelection,
+      changeSelectionDropdownProps,
+      // @ts-ignore
+      texts: {
+        changeSelectionLabel: CHANGE_SELECTION_BTN
+      }
+    });
+
+    // ARRANGE
+    const C = renderWithProvider(
+      <DSProvider locale="en" messages={messages}>
+        <ItemsRoll {...props} />
+      </DSProvider>,
+      {}
+    );
+
+    // ACT
+    fireEvent.click(C.getByText(CHANGE_SELECTION_BTN));
+
+    // ASSERT
+    expect(onChangeSelection).toHaveBeenCalled();
+    expect(onVisibleChange).toHaveBeenCalled();
+  });
 });

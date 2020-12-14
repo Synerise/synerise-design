@@ -1,3 +1,5 @@
+import { RelativeDateRange } from './date.types';
+
 export const SECONDS = 'SECONDS';
 export const MINUTES = 'MINUTES';
 export const HOURS = 'HOURS';
@@ -18,12 +20,13 @@ export const range = (start: number, end: number): number[] => {
   const size = end - start;
   return [...Array(size).keys()].map(i => i + start);
 };
-
+export const CUSTOM_RANGE_KEY = 'custom';
 export const DURATION_MODIFIERS = {
   LAST: 'timestampLast',
   NEXT: 'timestampNext',
 };
-export const RELATIVE_PRESETS = [
+
+export const RELATIVE_PRESETS: RelativeDateRange[] = [
   {
     key: 'TODAY',
     translationKey: 'today',

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import "../../../config/wdyr/wdyr"
 import '@formatjs/intl-relativetimeformat/polyfill';
 import { configure, addDecorator, addParameters, storiesOf, DecoratorFn } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';

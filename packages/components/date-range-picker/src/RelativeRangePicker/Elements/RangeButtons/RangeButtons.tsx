@@ -20,7 +20,7 @@ const RangeButtons: React.FC<Props> = ({ ranges, currentRange, value, texts, onC
               : 'tertiary'
           }
         >
-          {range.translationKey ? texts[range.translationKey] : range.key}
+          {range.translationKey ? texts[range.translationKey] : texts?.custom}
         </S.Range>
       ))}
     </>

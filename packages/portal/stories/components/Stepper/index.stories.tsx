@@ -93,6 +93,8 @@ const stories = {
       store.set({ activeStep: index });
     };
     const showTooltip = boolean('Show tooltip', false);
+    const invalidStep = select('Set index of invalid step', [0, 1, 2, 3, '-'], '-');
+
     return (
       <Stepper orientation={select('Select stepper type', STEPPER_TYPES, 'horizontal')}>
         {steps.map((step, index) => (
@@ -101,8 +103,8 @@ const stories = {
             label={step.label}
             stepNumber={step.number}
             active={index === store.state.activeStep}
-            done={index < store.state.activeStep}
-            validated={boolean('Set validated', false)}
+            done={index < store.state.activeStep || boolean('All steps done', false)}
+            validated={invalidStep === index}
             tooltip={showTooltip && text('Set tooltip text', 'Tooltip info')}
             children={step.children}
           />

@@ -5,7 +5,7 @@ import { IntlShape } from 'react-intl';
 import * as dayjs from 'dayjs';
 import * as utcPlugin from 'dayjs/plugin/utc';
 import { DateRange } from './date.types';
-import { ABSOLUTE, RELATIVE } from './constants';
+import { ABSOLUTE, CUSTOM_RANGE_KEY, RELATIVE } from './constants';
 import ADD from './dateUtils/add';
 import START_OF from './dateUtils/startOf';
 import END_OF from './dateUtils/endOf';
@@ -109,6 +109,8 @@ export const formatTime = (seconds: number, formatString = 'HH:mm:ss'): string =
 };
 
 export const DEFAULT_RANGE = normalizeRange({
+  key: undefined,
+  translationKey: CUSTOM_RANGE_KEY,
   to: undefined,
   from: undefined,
   type: 'RELATIVE',

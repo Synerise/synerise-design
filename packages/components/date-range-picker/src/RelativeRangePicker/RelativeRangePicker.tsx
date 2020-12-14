@@ -2,7 +2,7 @@ import * as React from 'react';
 import { injectIntl } from 'react-intl';
 import * as S from './RelativeRangePicker.styles';
 import * as CONST from '../constants';
-import getValueForRelativeRange from '../dateUtils/getValueForRelativeRange';
+import getRelativePresetForRange from '../dateUtils/getRelativePresetForRange';
 import { Props, State } from './RelativeRangePicker.types';
 import { DateRange, RelativeDateRange } from '../date.types';
 import RangeButtons from './Elements/RangeButtons/RangeButtons';
@@ -11,7 +11,6 @@ import CustomRangeForm from './Elements/CustomRangeForm/CustomRangeForm';
 import {
   getCurrentGroupFromProps,
   RANGES_MODE,
-  isAbsolute,
   getDefaultCustomRange,
   setFuture,
   setOffsetValue,
@@ -20,6 +19,7 @@ import {
 import { fnsIsAfter } from '../fns';
 import { DEFAULT_RANGE, normalizeRange } from '../utils';
 import { RelativeMode } from '../DateRangePicker.types';
+import { CUSTOM_RANGE_KEY } from '../constants';
 
 class RelativeRangePicker extends React.PureComponent<Props, State> {
   static defaultProps = {
@@ -43,8 +43,7 @@ class RelativeRangePicker extends React.PureComponent<Props, State> {
   static getDerivedStateFromProps(nextProps: Props, prevState: State): State {
     const { ranges, value, future, past, relativeModes } = nextProps;
     const state = prevState;
-    const currentRange =
-      value && (value.type === CONST.RELATIVE || isAbsolute(value)) ? getValueForRelativeRange(value) : ranges[0];
+    const currentRange = value && value.type === CONST.RELATIVE ? getRelativePresetForRange(value) : DEFAULT_RANGE;
     state.currentRange = currentRange as RelativeDateRange;
     state.groupedRanges = ranges;
     if (
@@ -77,9 +76,9 @@ class RelativeRangePicker extends React.PureComponent<Props, State> {
     const { currentGroup, currentRange } = this.state;
     if (currentGroup !== RANGES_MODE.SINCE) {
       const sourceRange = getDefaultCustomRange(currentGroup);
-      onChange({ ...sourceRange, key: undefined });
+      onChange({ ...sourceRange, key: undefined, translationKey: CUSTOM_RANGE_KEY });
     } else {
-      onChange({ ...currentRange, key: undefined });
+      onChange({ ...currentRange, key: undefined, translationKey: CUSTOM_RANGE_KEY });
     }
   };
 
@@ -147,13 +146,17 @@ class RelativeRangePicker extends React.PureComponent<Props, State> {
     const { texts, value } = this.props;
     const { groupedRanges, currentGroup, currentRange } = this.state;
     const isCustomValue = !value?.key || !currentRange?.key;
-    const visibleRanges = (groupedRanges as []).slice(0, 3);
-    const hiddenRanges = (groupedRanges as []).slice(3);
+    const visibleRanges = groupedRanges ? groupedRanges.slice(0, 3) : [];
+    const hiddenRanges = groupedRanges ? groupedRanges.slice(3) : [];
     if (!currentGroup) return null;
     return (
       <S.Container>
         <S.Ranges>
-          <S.Range key="CUSTOM" onClick={this.handleCustomClick} type={isCustomValue ? 'primary' : 'tertiary'}>
+          <S.Range
+            key={CUSTOM_RANGE_KEY}
+            onClick={this.handleCustomClick}
+            type={isCustomValue ? 'primary' : 'tertiary'}
+          >
             {texts?.custom}
           </S.Range>
           {this.renderRanges(visibleRanges)}

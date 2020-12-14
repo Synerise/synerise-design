@@ -5,7 +5,7 @@ import { propsWithKnobs } from '../index.stories';
 import { withState } from '@dump247/storybook-state';
 import * as S from './styles';
 import Stepper from '@synerise/ds-stepper';
-import { boolean, text } from '@storybook/addon-knobs';
+import { boolean, select, text } from '@storybook/addon-knobs';
 import Radio from '@synerise/ds-radio';
 
 const DEFAULT_STATE = {
@@ -75,6 +75,7 @@ const steps = [
 const withStepper = withState(DEFAULT_STATE)(({ store }) => {
   const spread = propsWithKnobs();
   const showTooltip = boolean('Show step tooltip', false);
+  const invalidStep = select('Set index of invalid step', [0, 1, 2, 3, '-'], '-');
   return (
     <div
       style={{
@@ -131,8 +132,8 @@ const withStepper = withState(DEFAULT_STATE)(({ store }) => {
                 label={step.label}
                 stepNumber={step.number}
                 active={index === store.state.activeStep}
-                done={index < store.state.activeStep}
-                validated={boolean('Set validated', false)}
+                done={index < store.state.activeStep || boolean('All steps done', false)}
+                validated={invalidStep === index}
                 tooltip={showTooltip && text('Set tooltip text', 'Tooltip info')}
                 children={step.children}
               />

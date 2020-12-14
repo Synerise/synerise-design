@@ -54,7 +54,7 @@ const GroupModal: React.FC<GroupModalProps> = ({
         width: 72,
         render: (id: React.ReactText, record: DataSource): React.ReactNode => (
           <TableCell.ActionCell contentAlign="right">
-            <Dropdown overlay={renderRowMenu(record)} trigger={['click']}>
+            <Dropdown overlay={renderRowMenu(record)} trigger={['click']} placement="bottomRight">
               <Button type="ghost" mode="single-icon">
                 <Icon component={<OptionHorizontalM />} />
               </Button>

@@ -3,9 +3,10 @@ import './style/index.less';
 import { Check2M, Close2M, NotificationsM } from '@synerise/ds-icon/dist/icons';
 import Icon from '@synerise/ds-icon';
 import * as S from './Alert.styles';
-import { Props } from './Alert.types';
+import { AlertSubComponents, AlertType, Props } from './Alert.types';
+import InlineAlert from './InlineAlert/InlineAlert';
 
-const ICONS = {
+const ICONS: Record<AlertType, React.ReactNode> = {
   success: <Check2M />,
   warning: <Check2M />,
   error: <Close2M />,
@@ -14,7 +15,7 @@ const ICONS = {
 
 const DEFAULT_ICON = <Check2M />;
 
-const Alert: (props: Props) => JSX.Element = (props: Props) => {
+const Alert: React.FC<Props> & AlertSubComponents = (props: Props) => {
   const { icon, type, message, description, showMoreLabel, onShowMore } = props;
 
   const renderMessage = React.useMemo(() => {
@@ -43,4 +44,7 @@ const Alert: (props: Props) => JSX.Element = (props: Props) => {
     />
   );
 };
+
+Alert.InlineAlert = InlineAlert;
+
 export default Alert;
