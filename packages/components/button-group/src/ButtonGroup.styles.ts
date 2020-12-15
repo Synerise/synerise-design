@@ -40,17 +40,19 @@ export const Container = styled.div<{
         .ds-button.single-icon.ant-btn-custom-color,
         .ds-button.single-icon.ant-btn-tertiary-white {
           border-left: 1px solid rgba(255, 255, 255, 0.15);
-          &:disabled.ds-button.single-icon.ant-btn-tertiary-white {
-            border-left: 1px solid rgba(255, 255, 255, 0.2) !important ;
-          }
-          &:disabled.ds-button.single-icon.ant-btn-tertiary {
-            border-left: 1px solid rgba(106, 117, 128, 0.1) !important ;
-          }
-          &:disabled.ds-button.single-icon.ant-btn-custom-color {
-            border-left: 1px solid rgba(255, 255, 255, 0.8) !important ;
-          }
-          &:disabled.ds-button.single-icon.ant-btn-primary {
-            border-left: 1px solid rgba(255, 255, 255, 0.5) !important ;
+          &:disabled.ds-button.single-icon {
+            &.ant-btn-tertiary-white {
+              border-left: 1px solid rgba(255, 255, 255, 0.2) !important ;
+            }
+            &.ant-btn-tertiary {
+              border-left: 1px solid rgba(106, 117, 128, 0.1) !important ;
+            }
+            &.ant-btn-custom-color {
+              border-left: 1px solid rgba(255, 255, 255, 0.8) !important ;
+            }
+            &.ant-btn-primary {
+              border-left: 1px solid rgba(255, 255, 255, 0.5) !important ;
+            }
           }
         }
         *:not(:first-child).ds-button.single-icon.ant-btn-ghost-primary,
