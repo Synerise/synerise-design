@@ -69,10 +69,10 @@ export const Container = styled.div<{
         &:hover:not(:disabled) {
           .ds-button {
             &.ant-btn-tertiary {
-              border-color: rgba(106, 117, 128, 0) !important;
+              border-color: transparent !important;
             }
             &.ant-btn-tertiary-white {
-              border-color: rgba(219, 224, 227, 0) !important;
+              border-color: transparent !important;
             }
             &.ant-btn-primary {
               border-color: transparent !important ;
@@ -87,10 +87,10 @@ export const Container = styled.div<{
             border-color: transparent !important ;
           }
           &.ant-btn-tertiary:focus {
-            border-color: rgba(106, 117, 128, 0) !important;
+            border-color: transparent !important;
           }
           &.ant-btn-tertiary-white:focus {
-            border-color: rgba(219, 224, 227, 0) !important;
+            border-color: transparent !important;
           }
 
           &.ant-btn-custom-color:focus {
@@ -101,10 +101,10 @@ export const Container = styled.div<{
           }
 
           &.ant-btn-tertiary:active {
-            border-color: rgba(106, 117, 128, 0) !important;
+            border-color: transparent !important;
           }
           &.ant-btn-tertiary-white:active {
-            border-color: rgba(219, 224, 227, 0) !important;
+            border-color: transparent !important;
           }
 
           &.ant-btn-custom-color:active {
