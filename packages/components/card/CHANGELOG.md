@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.31](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.7.30...@synerise/ds-card@0.7.31) (2020-12-14)
+
+
+### Bug Fixes
+
+* **card:** add option to set header in footer ([5da311d](https://github.com/Synerise/synerise-design/commit/5da311d005a488c8f15536b03e75b44df7a15874))
+* **card:** change name of set footer active knobs and fix animation ([3af55ea](https://github.com/Synerise/synerise-design/commit/3af55eab47ed6855142daff67974f20a5480ebb3))
+* **card:** remove footer prop ([9a55fe3](https://github.com/Synerise/synerise-design/commit/9a55fe376ede31549ab311b34e2ed57bfd008b7e))
+
+
+
+
+
 ## [0.7.30](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.7.29...@synerise/ds-card@0.7.30) (2020-12-11)
 
 **Note:** Version bump only for package @synerise/ds-card

@@ -3,6 +3,37 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.110.0](https://github.com/synerise/synerise-design/compare/portal@0.109.0...portal@0.110.0) (2020-12-14)
+
+
+### Bug Fixes
+
+* **card:** add option to set header in footer ([5da311d](https://github.com/synerise/synerise-design/commit/5da311d005a488c8f15536b03e75b44df7a15874))
+* **card:** change name of set footer active knobs and fix animation ([3af55ea](https://github.com/synerise/synerise-design/commit/3af55eab47ed6855142daff67974f20a5480ebb3))
+* **card:** change name of showSideChildrenWhenHeaderHidden knobs ([121d3f0](https://github.com/synerise/synerise-design/commit/121d3f0bc0296939b82450aa934f976a9d02322c))
+* **card:** fix props in single card ([af51415](https://github.com/synerise/synerise-design/commit/af51415e4543e6c372bbe7d8bfb189f81f64b6ec))
+* **card:** remove footer prop ([9a55fe3](https://github.com/synerise/synerise-design/commit/9a55fe376ede31549ab311b34e2ed57bfd008b7e))
+* **page-header:** fix stories ([6f0a511](https://github.com/synerise/synerise-design/commit/6f0a511687d96f3cedd082c67bf6fb360960b801))
+* **stepper:** fix knobs in storybook ([b67c0ea](https://github.com/synerise/synerise-design/commit/b67c0ea1613931096d1e6f80f6c44ee5e7382659))
+* **stepper:** fix storybook examples ([18e9987](https://github.com/synerise/synerise-design/commit/18e9987f8a20f1796cacb1ce0d2f0d9a356c2be2))
+* **subtle-form:** height and placeholder fixes ([ec8399b](https://github.com/synerise/synerise-design/commit/ec8399b12f87f94135cdc32965f7e3fbaffa6c67))
+
+
+### Features
+
+* **alert:** add InlineAlert component ([da34414](https://github.com/synerise/synerise-design/commit/da34414e8267f4c343b2998df86946eb2201acb7))
+* **completed-within:** add CompletedWithin component ([5b508b6](https://github.com/synerise/synerise-design/commit/5b508b6cebde22be6fee101038a0acfe6b2447f3))
+* **completed-within:** add dependecies ([3137a7f](https://github.com/synerise/synerise-design/commit/3137a7f2304f3ea42b1a05491071fc25ee3f0639))
+* **completed-within:** add tests and documentation ([fec4e0d](https://github.com/synerise/synerise-design/commit/fec4e0d3fd7b79d6145c09ae6b5e8769ceca0393))
+* **format-picker:** add FormatPicker component ([4b9462a](https://github.com/synerise/synerise-design/commit/4b9462a00816c018b9c6d504daeb36eff214c122))
+* **format-picker:** update storybook exampe ([b54824b](https://github.com/synerise/synerise-design/commit/b54824b0912b7afa474435caa75d2c24b6c29cd7))
+* **items-roll:** add changeSelectionDropdownProps prop ([ece497f](https://github.com/synerise/synerise-design/commit/ece497f84358917eeb8910d39ea6cbfb9888973f))
+* **page-header:** add title tooltip ([314608f](https://github.com/synerise/synerise-design/commit/314608fe013e9c978b8e9a88a4b293676e7500dc))
+
+
+
+
+
 # [0.109.0](https://github.com/synerise/synerise-design/compare/portal@0.108.0...portal@0.109.0) (2020-12-14)
 
 

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subtle-form@0.5.3...@synerise/ds-subtle-form@0.5.4) (2020-12-14)
+
+
+### Bug Fixes
+
+* **subtle-form:** height and placeholder fixes ([ec8399b](https://github.com/Synerise/synerise-design/commit/ec8399b12f87f94135cdc32965f7e3fbaffa6c67))
+* **subtle-form:** textarea - increase padding right ([ef93d6e](https://github.com/Synerise/synerise-design/commit/ef93d6e6047e5da5b2992afc0eba1f390c5be93d))
+
+
+
+
+
 ## [0.5.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subtle-form@0.5.2...@synerise/ds-subtle-form@0.5.3) (2020-12-14)
 
 **Note:** Version bump only for package @synerise/ds-subtle-form

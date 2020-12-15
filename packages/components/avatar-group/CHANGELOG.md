@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-avatar-group@0.3.3...@synerise/ds-avatar-group@0.3.4) (2020-12-14)
+
+
+### Bug Fixes
+
+* **avatar-group:** fix context-menu position ([512b79c](https://github.com/Synerise/synerise-design/commit/512b79cc95412c74018bca8da81a9b534f4e0426))
+
+
+
+
+
 ## [0.3.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-avatar-group@0.3.2...@synerise/ds-avatar-group@0.3.3) (2020-12-14)
 
 **Note:** Version bump only for package @synerise/ds-avatar-group
