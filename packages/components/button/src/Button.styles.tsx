@@ -27,7 +27,7 @@ const pressedStyles = (props: ThemeProps): FlattenSimpleInterpolation => css`
     fill: ${props.theme.palette['blue-600']};
   }
   &.ant-btn .btn-focus {
-    box-shadow: inset 0 0 0 1px ${props.theme.palette['blue-200']};
+    box-shadow: inset 0 0 0 1px ${props.theme.palette['blue-300']};
   }
   > span:not(.btn-focus) + .ds-icon:before {
     background-color: ${props.theme.palette['blue-200']};
@@ -169,7 +169,7 @@ export const AntdButton = styled(
       &:hover:not(:disabled):not(:focus) {
         background-color:${(props): string => props.theme.palette['blue-050']};
         &.ant-btn .btn-focus {
-        box-shadow: inset 0 0 0 1px ${(props): string => props.theme.palette['blue-200']};
+        box-shadow: inset 0 0 0 1px ${(props): string => props.theme.palette['blue-300']};
         }
         > span:not(.btn-focus) +.ds-icon:before {
         background-color: ${(props): string => props.theme.palette['blue-200']};
