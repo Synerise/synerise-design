@@ -34,32 +34,86 @@ export const Container = styled.div<{
     align-items: center;
     justify-content: ${(props): string => mapButtonsPosition[props.buttonsPosition]};
     ${(props): FlattenSimpleInterpolation | false =>
-  !!props.splitMode &&
-  css`
-     *:not(:first-child).ds-button.single-icon,.ds-button.single-icon.ant-btn-custom-color,.ds-button.single-icon.ant-btn-tertiary-white {
-      border-left: 1px solid rgba(255, 255, 255, 0.15);
-      &:disabled.ds-button.single-icon.ant-btn-tertiary-white {
-      border-left: 1px solid rgba(255, 255, 255, 0.20) !important ;
-      }
-      &:disabled.ds-button.single-icon.ant-btn-custom-color {
-      border-left: 1px solid rgba(255, 255, 255, 0.80) !important ;
-      }
-      &:disabled.ds-button.single-icon.ant-btn-primary {
-      border-left: 1px solid rgba(255, 255, 255, 0.50) !important ;
-      }
-    }
-    *:not(:first-child).ds-button.single-icon.ant-btn-ghost-primary,.ds-button.single-icon.ant-btn-ghost,.ds-button.single-icon.ant-btn-ghost-white,.ds-button.single-icon.ant-btn-secondary {
-      border-left: 0px;
-      padding-left: 1px;
-    }
-    *:not(:first-child).ds-button.single-icon.ant-btn-tertiary {
-      border-left: 1px solid rgba(106, 117, 128, 0.2);
-    }
-    .ds-button.label.ant-btn-tertiary[disabled] {
-      color: ${props.theme.palette['grey-500']} !important;
-    }
-  `};
+      !!props.splitMode &&
+      css`
+        *:not(:first-child).ds-button.single-icon,
+        .ds-button.single-icon.ant-btn-custom-color,
+        .ds-button.single-icon.ant-btn-tertiary-white {
+          border-left: 1px solid rgba(255, 255, 255, 0.15);
+          &:disabled.ds-button.single-icon {
+            &.ant-btn-tertiary-white {
+              border-left: 1px solid rgba(255, 255, 255, 0.2) !important ;
+            }
+            &.ant-btn-tertiary {
+              border-left: 1px solid rgba(106, 117, 128, 0.1) !important ;
+            }
+            &.ant-btn-custom-color {
+              border-left: 1px solid rgba(255, 255, 255, 0.8) !important ;
+            }
+            &.ant-btn-primary {
+              border-left: 1px solid rgba(255, 255, 255, 0.5) !important ;
+            }
+          }
+        }
+        *:not(:first-child).ds-button.single-icon.ant-btn-ghost-primary,
+        .ds-button.single-icon.ant-btn-ghost,
+        .ds-button.single-icon.ant-btn-ghost-white,
+        .ds-button.single-icon.ant-btn-secondary {
+          border-left: 0px;
+          padding-left: 1px;
+        }
+        *:not(:first-child).ds-button.single-icon.ant-btn-tertiary {
+          border-left: 1px solid rgba(106, 117, 128, 0.2);
+        }
+        .ds-button.label.ant-btn-tertiary[disabled] {
+          color: ${props.theme.palette['grey-500']} !important;
+        }
+        &:hover:not(:disabled) {
+          .ds-button {
+            &.ant-btn-tertiary {
+              border-color: transparent !important;
+            }
+            &.ant-btn-tertiary-white {
+              border-color: transparent !important;
+            }
+            &.ant-btn-primary {
+              border-color: transparent !important ;
+            }
+            &.ant-btn-custom-color {
+              border-color: transparent !important ;
+            }
+          }
+        }
+        .ds-button {
+          &.ant-btn-primary:focus {
+            border-color: transparent !important ;
+          }
+          &.ant-btn-tertiary:focus {
+            border-color: transparent !important;
+          }
+          &.ant-btn-tertiary-white:focus {
+            border-color: transparent !important;
+          }
 
+          &.ant-btn-custom-color:focus {
+            border-color: transparent !important ;
+          }
+          &.ant-btn-primary:active {
+            border-color: transparent !important ;
+          }
+
+          &.ant-btn-tertiary:active {
+            border-color: transparent !important;
+          }
+          &.ant-btn-tertiary-white:active {
+            border-color: transparent !important;
+          }
+
+          &.ant-btn-custom-color:active {
+            border-color: transparent !important ;
+          }
+        }
+      `};
 
     & > .ant-btn {
       width: auto;
