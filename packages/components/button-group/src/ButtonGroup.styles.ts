@@ -43,7 +43,7 @@ export const Container = styled.div<{
           &:disabled.ds-button.single-icon.ant-btn-tertiary-white {
             border-left: 1px solid rgba(255, 255, 255, 0.2) !important ;
           }
-          &:disabled.ds-button.single-icon.ant-btn-tertiary{
+          &:disabled.ds-button.single-icon.ant-btn-tertiary {
             border-left: 1px solid rgba(106, 117, 128, 0.1) !important ;
           }
           &:disabled.ds-button.single-icon.ant-btn-custom-color {
@@ -67,11 +67,13 @@ export const Container = styled.div<{
           color: ${props.theme.palette['grey-500']} !important;
         }
         &:hover:not(:disabled) {
-          .ds-button.ant-btn-tertiary {
-            border-color: rgba(106, 117, 128, 0) !important;
-          }
-          .ds-button.ant-btn-tertiary-white {
-            border-color: rgba(219, 224, 227, 0) !important;
+          .ds-button {
+            &.ant-btn-tertiary {
+              border-color: rgba(106, 117, 128, 0) !important;
+            }
+            &.ant-btn-tertiary-white {
+              border-color: rgba(219, 224, 227, 0) !important;
+            }
           }
           .ant-btn-primary {
             border-color: transparent !important ;
@@ -84,11 +86,14 @@ export const Container = styled.div<{
         .ant-btn-primary:focus {
           border-left: 1px solid transparent !important ;
         }
-        .ds-button.ant-btn-tertiary:focus {
-          border-color: rgba(106, 117, 128, 0) !important;
-        }
-        .ds-button.ant-btn-tertiary-white:focus {
-          border-color: rgba(219, 224, 227, 0) !important;
+
+        .ds-button {
+          &.ant-btn-tertiary:focus {
+            border-color: rgba(106, 117, 128, 0) !important;
+          }
+          &.ant-btn-tertiary-white:focus {
+            border-color: rgba(219, 224, 227, 0) !important;
+          }
         }
         .ant-btn-custom-color:focus {
           border-left: 1px solid transparent !important ;
@@ -96,11 +101,13 @@ export const Container = styled.div<{
         .ant-btn-primary:active {
           border-left: 1px solid transparent !important ;
         }
-        .ds-button.ant-btn-tertiary:active {
-          border-color: rgba(106, 117, 128, 0) !important;
-        }
-        .ds-button.ant-btn-tertiary-white:active {
-          border-color: rgba(219, 224, 227, 0) !important;
+        .ds-button {
+          &.ant-btn-tertiary:active {
+            border-color: rgba(106, 117, 128, 0) !important;
+          }
+          &.ant-btn-tertiary-white:active {
+            border-color: rgba(219, 224, 227, 0) !important;
+          }
         }
         .ant-btn-custom-color:active {
           border-left: 1px solid transparent !important ;
