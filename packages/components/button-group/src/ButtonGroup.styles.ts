@@ -74,43 +74,42 @@ export const Container = styled.div<{
             &.ant-btn-tertiary-white {
               border-color: rgba(219, 224, 227, 0) !important;
             }
-          }
-          .ant-btn-primary {
-            border-color: transparent !important ;
-          }
-          .ant-btn-custom-color {
-            border-color: transparent !important ;
+            &.ant-btn-primary {
+              border-color: transparent !important ;
+            }
+            &.ant-btn-custom-color {
+              border-color: transparent !important ;
+            }
           }
         }
-
-        .ant-btn-primary:focus {
-          border-left: 1px solid transparent !important ;
-        }
-
         .ds-button {
+          &.ant-btn-primary:focus {
+            border-color: transparent !important ;
+          }
           &.ant-btn-tertiary:focus {
             border-color: rgba(106, 117, 128, 0) !important;
           }
           &.ant-btn-tertiary-white:focus {
             border-color: rgba(219, 224, 227, 0) !important;
           }
-        }
-        .ant-btn-custom-color:focus {
-          border-left: 1px solid transparent !important ;
-        }
-        .ant-btn-primary:active {
-          border-left: 1px solid transparent !important ;
-        }
-        .ds-button {
+
+          &.ant-btn-custom-color:focus {
+            border-color: transparent !important ;
+          }
+          &.ant-btn-primary:active {
+            border-color: transparent !important ;
+          }
+
           &.ant-btn-tertiary:active {
             border-color: rgba(106, 117, 128, 0) !important;
           }
           &.ant-btn-tertiary-white:active {
             border-color: rgba(219, 224, 227, 0) !important;
           }
-        }
-        .ant-btn-custom-color:active {
-          border-left: 1px solid transparent !important ;
+
+          &.ant-btn-custom-color:active {
+            border-color: transparent !important ;
+          }
         }
       `};
 
