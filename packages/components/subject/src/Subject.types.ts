@@ -10,7 +10,7 @@ export type SubjectItem = {
 };
 
 export type SubjectProps = {
-  showPreview: () => void;
+  onShowPreview?: () => void;
   placeholder: string | React.ReactNode;
   iconPlaceholder: React.ReactNode;
   selectItem: (item: SubjectItem) => void;
