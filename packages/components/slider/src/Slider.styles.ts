@@ -3,10 +3,7 @@ import Slider, { SliderProps } from 'antd/lib/slider';
 import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { ComponentType } from 'react';
 import * as React from 'react';
-
-export declare type colorMapProps = {
-  [key: string]: string;
-};
+import { ColorMapProps } from './Slider.types';
 
 const indexMap = {
   '0': 'green-600',
@@ -21,7 +18,7 @@ const indexMap = {
   '9': 'fern-600',
 };
 
-const createTracksStyles = (props: ThemeProps, colorsMap: colorMapProps): FlattenSimpleInterpolation => {
+const createTracksStyles = (props: ThemeProps, colorsMap: ColorMapProps): FlattenSimpleInterpolation => {
   const styles = Object.values(colorsMap).map(
     (color: string, index: number) => `
       &-${index + 1},
@@ -46,7 +43,7 @@ export const DescWrapper = styled.div`
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const AntdSlider = styled((Slider as any) as ComponentType<Omit<SliderProps, 'value'>>)<{
   useColorPalette?: boolean;
-  tracksColorMap?: colorMapProps;
+  tracksColorMap?: ColorMapProps;
   bolderLine?: boolean;
   description?: React.ReactNode | string;
 }>`
@@ -86,6 +83,7 @@ export const AntdSlider = styled((Slider as any) as ComponentType<Omit<SliderPro
   
   &&& :hover{
   .ant-tooltip-content {
+        border-radius: 3px;
         background-color: ${(props): string => props.theme.palette['grey-900']};
       }
       .ant-tooltip-inner {
@@ -96,16 +94,8 @@ export const AntdSlider = styled((Slider as any) as ComponentType<Omit<SliderPro
   .ant-slider-dot:last-of-type, .ant-slider-dot:first-of-type {
   visibility: hidden;
   }
-  .ant-slider-mark-text:last-of-type {
-  padding-right: 30px;
-  }
-  .ant-slider-handle-1{
-  visibility: hidden;
-  pointer-events: none;
-  }
-  .ant-slider-handle-4{
-  display: none;
-  pointer-events: none;
+  .ant-slider-handle {
+    z-index: 99;
   }
 `;
 

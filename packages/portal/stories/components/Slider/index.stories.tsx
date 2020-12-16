@@ -3,11 +3,13 @@ import { action } from '@storybook/addon-actions';
 import { text, boolean, number, select, object, array } from '@storybook/addon-knobs';
 
 import Slider from '@synerise/ds-slider';
+import { Props as SliderProps } from '@synerise/ds-slider/dist/Slider.types';
+import { AllocationVariant } from '@synerise/ds-slider/dist/Allocation/Allocation.types';
+import { TooltipPlacement } from 'antd/es/tooltip';
 
 const decorator = storyFn => <div style={{ padding: '48px' }}>{storyFn()}</div>;
 
 const sliderValues = [0, 25, 75, 100];
-const slidersValues = [0,33, 66, 100];
 const placements = [
   'top',
   'left',
@@ -22,10 +24,26 @@ const placements = [
   'rightTop',
   'rightBottom',
 ];
-
+const allocationVariants: AllocationVariant[] = [
+  { name: 'Variant A', percentage: 33, tabId: 1, tabLetter: 'A' },
+  { name: 'Variant B', percentage: 33, tabId: 2, tabLetter: 'B' },
+  { name: 'Variant C', percentage: 34, tabId: 3, tabLetter: 'C' },
+];
 const mark = {
   0: '0',
   100: '100',
+};
+const tracksColorMap = {
+  '0': 'cyan-600',
+  '1': 'yellow-600',
+  '2': 'pink-600',
+  '3': 'green-600',
+  '4': 'mars-600',
+  '5': 'orange-600',
+  '6': 'purple-600',
+  '7': 'violet-600',
+  '8': 'red-600',
+  '9': 'fern-600',
 };
 
 const tipFormatter = (value: string) => <div className="Tip">{value}%</div>;
@@ -62,11 +80,20 @@ const WrapperMultiMode = (props: any) => {
     <Slider {...props} value={props.range ? rangeValue : value} onChange={props.range ? setRangeValue : setValue} />
   );
 };
-const WrapperMultiValuesMode = (props: any) => {
-  const [value, setValue] = React.useState(0);
-  const [rangeValue, setRangeValue] = React.useState(slidersValues);
+const WrapperMultiValuesMode = (props: SliderProps) => {
+  const [variants, setVariants] = React.useState<AllocationVariant[]>(allocationVariants);
   return (
-    <Slider {...props} value={props.range ? rangeValue : value} onChange={props.range ? setRangeValue : setValue} />
+    <Slider
+      {...props}
+      type={'allocation'}
+      allocationConfig={{
+        variants,
+        onAllocationChange: setVariants,
+        controlGroupEnabled: false,
+        controlGroupLabel: 'CG',
+        controlGroupTooltip: 'Control group',
+      }}
+    />
   );
 };
 const stories = {
@@ -83,12 +110,11 @@ const stories = {
       step={number('step', 0.1)}
       tipFormatter={tipFormatter}
       onAfterChange={action('onAfterChange')}
-      OnChange={action('OnChange')}
       tooltipPlacement={select('Placement', placements, 'bottom')}
       useColorPalette={boolean('useColorPalette', false)}
       getTooltipPopupContainer={() => document.querySelector('.ant-slider-handle')}
       tooltipVisible={boolean('Value visible', false)}
-      bolderLine={boolean('Set bolder Line', false)}
+      thick={boolean('Set thick', false)}
     />
   ),
   withVisibleLabels: () => (
@@ -103,11 +129,10 @@ const stories = {
       range={boolean('range', true)}
       step={number('step', 1)}
       onAfterChange={action('onAfterChange')}
-      OnChange={action('OnChange')}
       tooltipPlacement={select('Placement', placements, 'bottom')}
       useColorPalette={boolean('useColorPalette', false)}
       getTooltipPopupContainer={() => document.body}
-      bolderLine={boolean('Set bolder Line', false)}
+      thick={boolean('Set thick', false)}
     />
   ),
   multipleRange: () => (
@@ -123,55 +148,24 @@ const stories = {
       step={number('step', 1)}
       tipFormatter={tipFormatter}
       onAfterChange={action('onAfterChange')}
-      OnChange={action('OnChange')}
       tooltipPlacement={select('Placement', placements, 'bottom')}
       useColorPalette={boolean('useColorPalette', true)}
-      bolderLine={boolean('Set bolder Line', false)}
+      thick={boolean('Set thick', false)}
       tooltipVisible={boolean('Value visible', false)}
-      tracksColorMap={{
-        '0': 'cyan-600',
-        '1': 'yellow-600',
-        '2': 'pink-600',
-        '3': 'green-600',
-        '4': 'mars-600',
-        '5': 'orange-600',
-        '6': 'purple-600',
-        '7': 'violet-600',
-        '8': 'red-600',
-        '9': 'fern-600',
-      }}
+      tracksColorMap={tracksColorMap}
     />
   ),
   multiValuesRanges: () => (
     <WrapperMultiValuesMode
       label={text('label', 'Label')}
       disabled={boolean('disabled', false)}
-      dots={boolean('dots', false)}
-      included={boolean('included', true)}
-      inverted={boolean('inverted', false)}
-      max={number('max', 100)}
-      min={number('min', 0)}
-      range={boolean('range', true)}
-      step={number('step', 1)}
-      tipFormatter={tipFormatter}
+      tipFormatter={tipFormatter as any}
       onAfterChange={action('onAfterChange')}
-      OnChange={action('OnChange')}
-      tooltipPlacement={select('Placement', placements, 'bottom')}
+      tooltipPlacement={select('Placement', placements, 'bottom') as TooltipPlacement}
       useColorPalette={boolean('useColorPalette', true)}
-      bolderLine={boolean('Set bolder Line', false)}
+      thick={boolean('Set thick', false)}
       tooltipVisible={boolean('Value visible', false)}
-      tracksColorMap={{
-        '0': 'cyan-600',
-        '1': 'yellow-600',
-        '2': 'pink-600',
-        '3': 'green-600',
-        '4': 'mars-600',
-        '5': 'orange-600',
-        '6': 'purple-600',
-        '7': 'violet-600',
-        '8': 'red-600',
-        '9': 'fern-600',
-      }}
+      tracksColorMap={tracksColorMap}
     />
   ),
 };
@@ -181,5 +175,4 @@ export default {
   withoutCenter: true,
   decorator,
   stories,
-  Component: Slider,
 };
