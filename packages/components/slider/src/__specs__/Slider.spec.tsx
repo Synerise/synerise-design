@@ -3,7 +3,7 @@ import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import { fireEvent } from '@testing-library/react';
 
 import Slider from '../index';
-import { AllocationVariant } from '../../dist/Allocation/Allocation.types';
+import { AllocationVariant } from '../Allocation/Allocation.types';
 
 const LABEL = 'label';
 const FIFTY = 50;

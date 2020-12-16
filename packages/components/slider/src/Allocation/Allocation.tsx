@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Tooltip from '@synerise/ds-tooltip';
+import { useIntl } from 'react-intl';
 import { SliderValue } from 'antd/es/slider';
 import { DescriptionWrapper, Description } from '../Slider.styles';
 import * as S from './Allocation.styles';
@@ -28,6 +29,8 @@ const Allocation: React.FC<Props> = ({
     controlGroupTooltip,
   } = allocationConfig as AllocationConfig;
   const [allocations, setAllocations] = React.useState(countAllocation(variants, controlGroupEnabled));
+  const intl = useIntl();
+
   React.useEffect(() => {
     setAllocations(countAllocation(variants, controlGroupEnabled));
   }, [variants, controlGroupEnabled]);
@@ -42,13 +45,20 @@ const Allocation: React.FC<Props> = ({
           </Tooltip>
         )}
         {!allocationVariants[index] && (
-          <Tooltip title={controlGroupTooltip || 'Control group'}>
-            <S.MarkLetter index="cg">{controlGroupLabel || 'CG'}</S.MarkLetter>
+          <Tooltip
+            title={
+              controlGroupTooltip ||
+              intl.formatMessage({ id: 'DS.SLIDER.CONTROL-GROUP', defaultMessage: 'Control group' })
+            }
+          >
+            <S.MarkLetter index="cg">
+              {controlGroupLabel || intl.formatMessage({ id: 'DS.SLIDER.CONTROL-GROUP-TOOLTIP', defaultMessage: 'CG' })}
+            </S.MarkLetter>
           </Tooltip>
         )}
       </S.Mark>
     ),
-    [controlGroupTooltip, controlGroupLabel]
+    [controlGroupTooltip, controlGroupLabel, intl]
   );
 
   const handleChange = React.useCallback(
