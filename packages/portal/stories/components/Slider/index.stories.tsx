@@ -117,7 +117,7 @@ const stories = {
       thick={boolean('Set thick', false)}
     />
   ),
-  withVisibleLabels: () => (
+/*  withVisibleLabels: () => (
     <Wrapper
       tooltipVisible={true}
       disabled={boolean('disabled', false)}
@@ -134,7 +134,7 @@ const stories = {
       getTooltipPopupContainer={() => document.body}
       thick={boolean('Set thick', false)}
     />
-  ),
+  ),*/
   multipleRange: () => (
     <WrapperMultiMode
       label={text('label', 'Label')}
@@ -160,10 +160,7 @@ const stories = {
       label={text('label', 'Label')}
       disabled={boolean('disabled', false)}
       tipFormatter={tipFormatter as any}
-      onAfterChange={action('onAfterChange')}
       tooltipPlacement={select('Placement', placements, 'bottom') as TooltipPlacement}
-      useColorPalette={boolean('useColorPalette', true)}
-      thick={boolean('Set thick', false)}
       tooltipVisible={boolean('Value visible', false)}
       tracksColorMap={tracksColorMap}
     />

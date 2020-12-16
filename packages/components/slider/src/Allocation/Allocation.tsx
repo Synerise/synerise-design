@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Tooltip from '@synerise/ds-tooltip';
 import { SliderValue } from 'antd/es/slider';
+import { DescriptionWrapper, Description } from '../Slider.styles';
 import * as S from './Allocation.styles';
 import { Props } from '../Slider.types';
 import {
@@ -12,7 +13,13 @@ import {
 } from './utils';
 import { AllocationConfig, AllocationVariant } from './Allocation.types';
 
-const Allocation: React.FC<Props> = ({ allocationConfig, tracksColorMap, ...rest }: Props) => {
+const Allocation: React.FC<Props> = ({
+  allocationConfig,
+  tracksColorMap,
+  description,
+  tipFormatter,
+  ...rest
+}: Props) => {
   const {
     variants,
     onAllocationChange,
@@ -41,7 +48,7 @@ const Allocation: React.FC<Props> = ({ allocationConfig, tracksColorMap, ...rest
         )}
       </S.Mark>
     ),
-    []
+    [controlGroupTooltip, controlGroupLabel]
   );
 
   const handleChange = React.useCallback(
@@ -52,7 +59,7 @@ const Allocation: React.FC<Props> = ({ allocationConfig, tracksColorMap, ...rest
       const calculatedVariants = mapSliderValueToVariants(value, variants);
       !isLowerOrUpperBound(value, calculatedVariants) && onAllocationChange && onAllocationChange(calculatedVariants);
     },
-    [onAllocationChange]
+    [onAllocationChange, variants]
   );
 
   return (
@@ -68,6 +75,12 @@ const Allocation: React.FC<Props> = ({ allocationConfig, tracksColorMap, ...rest
       marks={mapUserAllocationToMarks(allocations, markRenderer, variants)}
       onChange={handleChange}
       step={1}
+      tipFormatter={(value): React.ReactNode => (
+        <DescriptionWrapper>
+          {description && <Description>{description}</Description>}
+          {tipFormatter && tipFormatter(value)}
+        </DescriptionWrapper>
+      )}
     >
       <S.TrackContainer controlGroup={controlGroupEnabled}>
         {allocations.map((u: number, index: number) => (

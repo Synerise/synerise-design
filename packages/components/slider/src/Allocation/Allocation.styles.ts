@@ -72,8 +72,7 @@ export const TrackContainer = styled.div<{ controlGroup?: boolean }>`
   & > div:last-child {
     border-radius: 20px;
   }
-
-  ${(props): false | FlattenSimpleInterpolation =>
+  ${(props): false | undefined | FlattenSimpleInterpolation =>
     props.controlGroup &&
     css`
       ${Track}:last-child {
