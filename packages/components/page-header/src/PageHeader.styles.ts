@@ -82,6 +82,7 @@ export const PageHeaderClamp = styled.div`
   -webkit-box-orient: vertical; // prefix required for line-clamp
   overflow: hidden;
   color: ${(props): string => props.theme.palette['grey-800']};
+  align-items: center;
 
   .ds-icon {
     margin-left: 8px;
