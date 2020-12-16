@@ -7,6 +7,7 @@ const Stepper: React.FC<StepperProps> & StepperSubComponents = ({
   orientation = ORIENTATIONS.HORIZONTAL,
   style,
   children,
+  size = 'default',
 }) => {
   return (
     <S.StepperWrapper className="ds-stepper" orientation={orientation} style={style}>
@@ -14,7 +15,7 @@ const Stepper: React.FC<StepperProps> & StepperSubComponents = ({
         React.Children.map(children, (Child, index) => {
           return (
             <>
-              {Child}
+              {React.isValidElement(Child) ? React.cloneElement(Child, { size, orientation }) : Child}
               {/*
               // @ts-ignore */}
               {orientation === ORIENTATIONS.HORIZONTAL && index < children.length - 1 && <S.StepDivider />}
