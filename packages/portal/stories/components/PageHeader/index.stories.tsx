@@ -18,7 +18,7 @@ import MenuItem from '@synerise/ds-menu/dist/Elements/Item/MenuItem';
 import Radio from '@synerise/ds-radio';
 
 const shapes = ['circle', 'square'] as const;
-const statuses = ['active', 'inactive', 'blocked'] as const;
+
 const backgroundColors = [
   'red',
   'green',
