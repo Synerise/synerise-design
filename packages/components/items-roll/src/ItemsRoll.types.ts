@@ -22,6 +22,8 @@ export type Texts =
   | 'showLabel'
   | 'showLessLabel';
 
+export type ItemsRollGroup = string;
+
 export type ItemsRollProps = {
   intl: IntlShape;
   items: ItemRollElement[];
@@ -33,11 +35,11 @@ export type ItemsRollProps = {
   changeSelectionIcon?: (props: React.SVGProps<SVGSVGElement>) => JSX.Element;
   changeSelectionDropdownProps?: DropdownProps;
   className?: string;
-  groups?: string[];
+  groups?: ItemsRollGroup[];
   maxToShowItems?: number;
   onClearAll?: () => void;
   onChangeSelection?: () => void;
-  onItemRemove?: (id: string) => void;
+  onItemRemove?: (id: string, group?: ItemsRollGroup) => void;
   onItemClick?: (id: string) => void;
   style?: React.CSSProperties;
   showMoreStep?: number;

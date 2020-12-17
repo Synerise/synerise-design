@@ -9,6 +9,7 @@ export const NOOP = (): void => {};
 
 const ItemElement: React.FC<ItemElementProps> = ({
   item,
+  group,
   highlight,
   onItemClick,
   onItemRemove,
@@ -25,7 +26,9 @@ const ItemElement: React.FC<ItemElementProps> = ({
       suffixel={
         <S.SuffixelWrapper>
           {item.suffixel}
-          {onItemRemove && <RemoveIcon id={item.id} handleRemove={onItemRemove} tooltipLabel={removeTooltipLabel} />}
+          {onItemRemove && (
+            <RemoveIcon id={item.id} handleRemove={onItemRemove} tooltipLabel={removeTooltipLabel} group={group} />
+          )}
         </S.SuffixelWrapper>
       }
       onClick={onClick}
