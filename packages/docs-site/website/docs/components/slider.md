@@ -59,9 +59,31 @@ import Slider from '@synerise/ds-slider';
 | vertical                 | If true, the slider will be vertical.                                                                                                          | Boolean                                     | `false`                                                                                |
 | onAfterChange            | Fire when onmouseup is fired.                                                                                                                  | (value)                                     | -                                                                                      |
 | onChange                 | Callback function that is fired when the user changes the slider's value.                                                                      | (value)                                     | -                                                                                      |
+| thick                    | Set thickness of the slider                                                                                                                    | Boolean                                     | `false`                                                                                |
+| type                     | Defines a way of handling slider ranges                                                                                                        | `default` / `allocation`                    | `default`                                                                              |
 | tooltipPlacement         | Set Tooltip display position. Ref Tooltip.                                                                                                     | string                                      |                                                                                        |
 | tooltipVisible           | If true, Tooltip will show always, or it will not show anyway, even if dragging or hovering.                                                   | Boolean                                     |                                                                                        |
-| getTooltipPopupContainer | The DOM container of the Tooltip, the default behavior is to create a div element in body.                                                     | () => React.HTMLElement                      | `() => document.body`                                                                  |
+| getTooltipPopupContainer | The DOM container of the Tooltip, the default behavior is to create a div element in body.                                                     | () => React.HTMLElement                     | `() => document.body`                                                                  |
 | inverted                 | Allow to use slider in inverted mode. Applies only when value is `number or [number, number]`                                                  | Boolean                                     | `false`                                                                                |
 | useColorPalette          | Allow the usage of predefined palette for slider tracks                                                                                        | Boolean                                     | `false`                                                                                |
 | tracksColorMap           | Allow to import your 10 colors color map.                                                                                                      | Object                                      |                                                                                        |
+
+### AllocationConfig
+
+| Property            | Description                                               | Type                                     | Default         |
+| ------------------- | --------------------------------------------------------- | ---------------------------------------- | --------------- |
+| controlGroupEnabled | Enables treating the rest of the range as control group.  | boolean                                  | `false`         |
+| controlGroupLabel   | Label displayed over control group range                  | string / React.ReactNode                 | `Control group` |
+| controlGroupTooltip | Tooltip displayed when hovering over control group label. | string / React.ReactNode                 | `CG`            |
+| variants            | Whether the thumb can drag over tick only.                | AllocationVariant[]                      | `false`         |
+| onAllocationChange  | Callback executed when user changes slider value.         | (variants?: AllocationVariant[]) => void | `false`         |
+
+### AllocationConfig
+
+| Property            | Description                                               | Type                                     | Default         |
+| ------------------- | --------------------------------------------------------- | ---------------------------------------- | --------------- |
+| controlGroupEnabled | Enables treating the rest of the range as control group.  | boolean                                  | `false`         |
+| controlGroupLabel   | Label displayed over control group range                  | string / React.ReactNode                 | `Control group` |
+| controlGroupTooltip | Tooltip displayed when hovering over control group label. | string / React.ReactNode                 | `CG`            |
+| variants            | Whether the thumb can drag over tick only.                | AllocationVariant[]                      | `false`         |
+| onAllocationChange  | Callback executed when user changes slider value.         | (variants?: AllocationVariant[]) => void | `false`         |
