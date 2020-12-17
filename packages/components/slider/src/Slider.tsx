@@ -22,6 +22,7 @@ const Slider: React.FC<Props> = props => {
     description,
     tipFormatter,
     allocationConfig,
+    hideMinAndMaxMarks,
     ...antdProps
   } = props;
   const labelElement = React.useMemo(
@@ -50,6 +51,7 @@ const Slider: React.FC<Props> = props => {
         className={antdProps.value && couldBeInverted(antdProps.value, !!inverted) ? 'ant-slider-inverted' : undefined}
         useColorPalette={useColorPalette}
         thick={thick}
+        hideMinAndMaxMarks={hideMinAndMaxMarks}
         tipFormatter={(value): React.ReactNode => (
           <S.DescriptionWrapper>
             {description && <S.Description>{description}</S.Description>}

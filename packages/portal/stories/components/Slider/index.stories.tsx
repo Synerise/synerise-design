@@ -69,6 +69,7 @@ const Wrapper = (props: any) => {
       description={descriptionMessage && getDescription(hasDescription)}
       value={props.range ? rangeValue : value}
       onChange={props.range ? setRangeValue : setValue}
+      hideMinAndMaxMarks={true}
     />
   );
 };
