@@ -33,30 +33,30 @@ import ItemsRoll from '@synerise/ds-items-roll';
 
 ## API
 
-| Property             | Description                                                                                                       | Type                                                    | Default |
-| -------------------- | ----------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- | ------- |
-| actions              | ItemRollElement array with configuration for action dropdown menu                                                 | ItemRollElement[]                                       | -       |
-| changeSelectionIcon  | The custom changeSelection icon                                                                                   | `(props: React.SVGProps<SVGSVGElement>) => JSX.Element` | EditM   |
-| changeSelectionDropdownProps                         | Object with ds-dropdown props                                                     | DropdownProps
-| className            | Additional class for ItemsRoll wrapper                                                                            | string                                                 | -       |
-| groups               | Array of strings where each one corresponds to a group prop in ItemRollElement                                    | string[]                                                | -       |
-| items                | ItemRollElement array for list                                                                                    | ItemRollElement[]                                       | -       |
-| maxToShowItems       | Amount of initial ItemsRollElement to render. Note that if number is greater than 20, list will becoma scrollable | number                                                  | 10      |
-| onClearAll           | Callback function that is fired when click on clearAll button                                                     | () => void                                              | -       |
-| onChangeSelection    | Callback function that is fired when click on changeSelection button                                              | () => void                                              | -       |
-| onItemClick          | Callback function that is fired when list element is clicked                                                      | (id: string) => void                                    | -       |
-| onItemRemove         | Callback function that is fired when list element remove icon is clicked                                          | (id: string) => void                                    | -       |
-| onSearch             | Callback function that is fired when input changed                                                                | (value: string) => void                                 | -       |
-| onSearchClear        | Callback function that is fired when input is cleared                                                             | () => void                                              | -       |
-| searchPlaceholder    | Placeholder for search input component                                                                            | string                                                  | -       |
-| searchValue          | Value of search input component                                                                                   | string                                                  | -       |
-| showMoreStep         | Amount of items to load on show more button click                                                                 | number                                                  | 10      |
-| style                | Object with CSS properties                                                                                        | React.CSSProperties                                     | -       |
-| texts                | Object contains texts for buttons, title etc.                                                                     | Texts                                                   | -       |
-| useFooter            | Whether the footer is visibile                                                                                    | boolean                                                 | -       |
-| useVirtualizedList   | Whether to use react-virtualized for list                                                                         | boolean                                                 |`false`  |
-| virtualizedRowHeight | Height of virtualizedlist row                                                                                     | number                                                  | 32px    |
-| virtualizedRowWidth  | Width of virtualized list                                                                                         | number                                                  | -       |
+| Property                     | Description                                                                                                       | Type                                                    | Default |
+| ---------------------------- | ----------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- | ------- |
+| actions                      | ItemRollElement array with configuration for action dropdown menu                                                 | ItemRollElement[]                                       | -       |
+| changeSelectionIcon          | The custom changeSelection icon                                                                                   | `(props: React.SVGProps<SVGSVGElement>) => JSX.Element` | EditM   |
+| changeSelectionDropdownProps | Object with ds-dropdown props                                                                                     | DropdownProps                                           |
+| className                    | Additional class for ItemsRoll wrapper                                                                            | string                                                  | -       |
+| groups                       | Array of strings where each one corresponds to a group prop in ItemRollElement                                    | string[]                                                | -       |
+| items                        | ItemRollElement array for list                                                                                    | ItemRollElement[]                                       | -       |
+| maxToShowItems               | Amount of initial ItemsRollElement to render. Note that if number is greater than 20, list will becoma scrollable | number                                                  | 10      |
+| onClearAll                   | Callback function that is fired when click on clearAll button                                                     | () => void                                              | -       |
+| onChangeSelection            | Callback function that is fired when click on changeSelection button                                              | () => void                                              | -       |
+| onItemClick                  | Callback function that is fired when list element is clicked                                                      | (id: string) => void                                    | -       |
+| onItemRemove                 | Callback function that is fired when list element remove icon is clicked                                          | (id: string, group?: string) => void                    | -       |
+| onSearch                     | Callback function that is fired when input changed                                                                | (value: string) => void                                 | -       |
+| onSearchClear                | Callback function that is fired when input is cleared                                                             | () => void                                              | -       |
+| searchPlaceholder            | Placeholder for search input component                                                                            | string                                                  | -       |
+| searchValue                  | Value of search input component                                                                                   | string                                                  | -       |
+| showMoreStep                 | Amount of items to load on show more button click                                                                 | number                                                  | 10      |
+| style                        | Object with CSS properties                                                                                        | React.CSSProperties                                     | -       |
+| texts                        | Object contains texts for buttons, title etc.                                                                     | Texts                                                   | -       |
+| useFooter                    | Whether the footer is visibile                                                                                    | boolean                                                 | -       |
+| useVirtualizedList           | Whether to use react-virtualized for list                                                                         | boolean                                                 | `false` |
+| virtualizedRowHeight         | Height of virtualizedlist row                                                                                     | number                                                  | 32px    |
+| virtualizedRowWidth          | Width of virtualized list                                                                                         | number                                                  | -       |
 
 #### ItemRollElement
 
@@ -81,8 +81,8 @@ import ItemsRoll from '@synerise/ds-items-roll';
 
 #### Texts
 
-| Property                | Description                   | Type   | Default            |
-| ----------------------- | ----------------------------- | ------ | ------------------ |
+| Property                | Description                   | Type                     | Default            |
+| ----------------------- | ----------------------------- | ------------------------ | ------------------ |
 | changeSelectionLabel    | Change selection button label | string / React.ReactNode | 'Change selection' |
 | clearAllLabel           | Clear all button label        | string / React.ReactNode | 'Clear all'        |
 | itemsLabel              | Items label                   | string / React.ReactNode | 'Items'            |
