@@ -52,32 +52,30 @@ const items = [
 ## Menu
 
 | Property        | Description                                                                  | Type            | Default |
-| ----------      | ---------------------------------------------------------------------------- | --------------- | ------- |
+| --------------- | ---------------------------------------------------------------------------- | --------------- | ------- |
 | asDropdownwMenu | Add additional styles for dropdown menu                                      | boolean         | `false` |
 | dataSource      | Array of items to display in menu                                            | MenuItemProps[] | -       |
 | ordered         | Determines if items should be displayed with index prefix (starting from 01) | boolean         | `false` |
 
-
-
 ### MenuItemProps
 
-| Property                | Description                                                    | Type                            | Default   |
-| ----------------------- | -------------------------------------------------------------- | ------------------------------- | --------- |
-| children                | Children of the item                                           | React.ReactNode                 |           |
-| copyable                | Boolean to enable option of copying the value to the clipboard | boolean                         | `false`   |
-| copyHint                | Text displayed on hovering copyable item                       | string                          |           |
-| copyValue               | Value to be copied to clipboard when copyable item is clicked  | string                          |           |
-| copyTooltip             | Tooltip to be displayed when copyable item is clicked          | string / React.ReactNode        |           |
-| disabled                | Disable an item element                                        | boolean                         | `false`   |
-| description             | Additional description displayed inside the item               | string / React.ReactNode        |           |
-| highlight               | Text to be highlighted inside the item                         | string                          |           |
-| indentLevel             | Indent level of the text inside the item.                      | Number                          | 0         |
-| parent                  | Boolean to display arrow for parent item                       | boolean                         | `false`   |
-| prefixel                | Prefix element                                                 | React.ReactNode                 | -         |
-| prefixVisibilityTrigger | Trigger for displaying the prefix element                      | `default` / `hover`             | `default` |
-| size                    | Size of the item. Affects the maximum and minimum height.      | `default` / `large`             | `default` |
-| suffixel                | Suffix element                                                 | React.ReactNode                 | -         |
-| suffixVisibilityTrigger | Trigger for displaying the suffix element                      | `default` / `hover`             | `default` |
-| subMenu                 | Array of nested items                                          | MenuItemProps[]                 |           |
-| text                    | Text displayed inside the item                                 | string / React.ReactNode        | -         |
-| type                    | Type of the item                                               | `default` / `select` / `danger` | `default` |
+| Property                | Description                                                    | Type                                                    | Default   |
+| ----------------------- | -------------------------------------------------------------- | ------------------------------------------------------- | --------- |
+| children                | Children of the item                                           | React.ReactNode                                         |           |
+| copyable                | Boolean to enable option of copying the value to the clipboard | boolean                                                 | `false`   |
+| copyHint                | Text displayed on hovering copyable item                       | string                                                  |           |
+| copyValue               | Value to be copied to clipboard when copyable item is clicked  | string                                                  |           |
+| copyTooltip             | Tooltip to be displayed when copyable item is clicked          | string / React.ReactNode                                |           |
+| disabled                | Disable an item element                                        | boolean                                                 | `false`   |
+| description             | Additional description displayed inside the item               | string / React.ReactNode                                |           |
+| highlight               | Text to be highlighted inside the item                         | string                                                  |           |
+| indentLevel             | Indent level of the text inside the item.                      | Number                                                  | 0         |
+| parent                  | Boolean to display arrow for parent item                       | boolean                                                 | `false`   |
+| prefixel                | Prefix element node or a function to render it.                | (hovered: boolean) => React.ReactNode / React.ReactNode | -         |
+| prefixVisibilityTrigger | Trigger for displaying the prefix element                      | `default` / `hover`                                     | `default` |
+| size                    | Size of the item. Affects the maximum and minimum height.      | `default` / `large`                                     | `default` |
+| suffixel                | Suffix element node or a function to render it.                | (hovered: boolean) => React.ReactNode / React.ReactNode | -         |
+| suffixVisibilityTrigger | Trigger for displaying the suffix element                      | `default` / `hover`                                     | `default` |
+| subMenu                 | Array of nested items                                          | MenuItemProps[]                                         |           |
+| text                    | Text displayed inside the item                                 | string / React.ReactNode                                | -         |
+| type                    | Type of the item                                               | `default` / `select` / `danger`                         | `default` |
