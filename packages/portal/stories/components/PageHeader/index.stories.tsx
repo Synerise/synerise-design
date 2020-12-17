@@ -108,15 +108,15 @@ const stories = {
   default: {
     title: 'Default Main page header',
   },
-  withTooltip: {
-    title: 'Default Main page header',
+  withTooltip: () => ({
+    title: text('Set page title', 'Default Main page header'),
     tooltip: {
       trigger: ['hover'],
       title: text('Set tooltip title', 'Tooltip title'),
     },
     tooltipIcon: <HelpM />,
     handleTooltipClick: action('Tooltip click'),
-  },
+  }),
   description: {
     title: 'Main page header with description',
     description: 'Description',
