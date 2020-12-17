@@ -59,18 +59,20 @@ const Text: React.FC<BasicItemProps> = ({
     }
     return children;
   };
-  const shouldRenderSuffix = (): boolean => {
+  const shouldRenderSuffix = React.useMemo((): boolean => {
     if (showSuffixOnHover) {
       return (!!suffixel || !!checked) && hovered;
     }
     return !!suffixel || !!checked;
-  };
-  const shouldRenderPrefix = (): boolean => {
+  }, [showSuffixOnHover, suffixel, checked, hovered]);
+
+  const shouldRenderPrefix = React.useMemo((): boolean => {
     if (showPrefixOnHover) {
       return !!prefixel && hovered;
     }
     return !!prefixel;
-  };
+  }, [showPrefixOnHover, prefixel, hovered]);
+
   return (
     // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
     // @ts-ignore
@@ -100,8 +102,8 @@ const Text: React.FC<BasicItemProps> = ({
       <Tooltip type="default" trigger="click" title={copyTooltip}>
         <S.Inner>
           <S.ContentWrapper className="ds-menu-content-wrapper">
-            {shouldRenderPrefix() && (
-              <S.PrefixelWrapper className="ds-menu-prefix" visible={shouldRenderPrefix()} disabled={disabled}>
+            {shouldRenderPrefix && (
+              <S.PrefixelWrapper className="ds-menu-prefix" visible={shouldRenderPrefix} disabled={disabled}>
                 {prefixel}
               </S.PrefixelWrapper>
             )}
@@ -116,7 +118,7 @@ const Text: React.FC<BasicItemProps> = ({
             )}
             <S.ContentDivider />
             {(!!suffixel || !!checked) && (
-              <S.SuffixWraper visible={shouldRenderSuffix()} disabled={disabled}>
+              <S.SuffixWraper visible={shouldRenderSuffix} disabled={disabled}>
                 {!!checked && <Icon component={<CheckS />} color={theme.palette[`green-600`]} />}
                 {suffixel}
               </S.SuffixWraper>

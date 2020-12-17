@@ -16,12 +16,25 @@ type WrapperProps = {
 
 const INDENT_LEVEL_STEP = 16;
 
+const TRANSITION_FN = '0.2s ease-out';
+
 const calculateIndent = (indentLevel: number | undefined): number => {
   const indentLevelPadding = indentLevel && Number(indentLevel) > 0 ? indentLevel * INDENT_LEVEL_STEP : 0;
   return indentLevelPadding;
 };
+
+const hiddenElementStyle = (): FlattenSimpleInterpolation => css`
+  opacity: 0;
+  pointer-events: none;
+`;
+
+const visibleElementStyle = (): FlattenSimpleInterpolation => css`
+  opacity: 1;
+  pointer-events: all;
+`;
+
 export const ArrowRight = styled.div<{ disabled?: boolean }>`
-  transition: all 0.3s ease-out;
+  transition: all ${TRANSITION_FN};
   opacity: ${(props): string => (props.disabled ? '1' : '0')};
 `;
 
@@ -31,7 +44,9 @@ export const Inner = styled.div`
 `;
 
 export const PrefixelWrapper = styled.div<{ disabled?: boolean; visible?: boolean }>`
-  display: ${(props): string | false => (props.visible ? `flex` : `none`)};
+  display: flex;
+  ${(props): FlattenSimpleInterpolation => (props.visible ? visibleElementStyle() : hiddenElementStyle())};
+  transition: opacity ${TRANSITION_FN};
   margin-top: -7px;
   margin-bottom: -7px;
   margin-left: -4px;
@@ -60,7 +75,7 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
     align-items: center;
     margin: 0;
     height: auto;
-    transition: background-color 0.2s ease-out;
+    transition: background-color ${TRANSITION_FN};
     padding-left: ${(props): string => (props.prefixel ? '8' : '12')}px;
     ${Inner} {
       padding-left: ${(props): string => `${calculateIndent(props.indentLevel)}px `};
@@ -240,7 +255,9 @@ export const Description = styled.div`
 
 export const SuffixWraper = styled.div<{ disabled?: boolean; visible?: boolean }>`
   justify-content: flex-end;
-  display: ${(props): string | false => (props.visible ? `flex` : `none`)};
+  display: flex;
+  transition: opacity ${TRANSITION_FN};
+  ${(props): FlattenSimpleInterpolation => (props.visible ? visibleElementStyle() : hiddenElementStyle())};
   ${(props): string | false =>
     !!props.disabled &&
     `svg {
