@@ -64,6 +64,7 @@ const List: React.FC<ListProps> = ({
                   <Menu.ItemGroup key={group} title={group}>
                     {groupItems.map(item => (
                       <ItemElement
+                        group={group}
                         key={item.id}
                         highlight={searchValue}
                         onItemClick={onItemClick}

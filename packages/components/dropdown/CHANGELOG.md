@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.6](https://github.com/synerise/synerise-design/compare/@synerise/ds-dropdown@0.13.5...@synerise/ds-dropdown@0.13.6) (2020-12-15)
+
+
+### Bug Fixes
+
+* **dropdown:** remove overflow: hidden from dropdown first child ([46fa650](https://github.com/synerise/synerise-design/commit/46fa65045b040fee5bb2b1ab935171849d9a1ad9))
+
+
+
+
+
 ## [0.13.5](https://github.com/synerise/synerise-design/compare/@synerise/ds-dropdown@0.13.4...@synerise/ds-dropdown@0.13.5) (2020-12-15)
 
 

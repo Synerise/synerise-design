@@ -8,7 +8,7 @@ import { ItemRollElement } from '../ItemsRoll.types';
 import { NOOP } from './ListItem';
 import { ItemRendererProps } from './VirtualizedListItem.types';
 
-const ItemRenderer = ({ highlight, onItemClick, onItemRemove, tooltipLabel }: ItemRendererProps) => ({
+const ItemRenderer = ({ highlight, onItemClick, onItemRemove, tooltipLabel, group }: ItemRendererProps) => ({
   index,
   style,
   data,
@@ -30,7 +30,9 @@ const ItemRenderer = ({ highlight, onItemClick, onItemRemove, tooltipLabel }: It
         suffixel={
           <S.SuffixelWrapper>
             {suffixel}
-            {!!onItemRemove && <RemoveIcon id={item.id} handleRemove={onItemRemove} tooltipLabel={tooltipLabel} />}
+            {!!onItemRemove && (
+              <RemoveIcon id={item.id} handleRemove={onItemRemove} tooltipLabel={tooltipLabel} group={group} />
+            )}
           </S.SuffixelWrapper>
         }
       >

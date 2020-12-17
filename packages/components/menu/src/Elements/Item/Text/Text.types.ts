@@ -18,8 +18,8 @@ export interface BasicItemProps {
   highlight?: string;
   style?: React.CSSProperties;
   onItemHover?: (e: MouseEvent) => void;
-  suffixVisibilityTrigger?: string;
-  prefixVisibilityTrigger?: string;
+  suffixVisibilityTrigger?: 'default' | 'hover';
+  prefixVisibilityTrigger?: 'default' | 'hover';
   indentLevel?: number;
   ordered?: boolean;
   key?: React.ReactText;
