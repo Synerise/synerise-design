@@ -8,7 +8,7 @@ import { fireEvent } from '@testing-library/react';
 export const SUBJECT_TEXTS = {
   searchPlaceholder: 'Search',
   noResults: 'No results',
-}
+};
 
 export const SUBJECT_ITEMS = [...new Array(30)].map((i, index) => ({
   id: index,
@@ -16,12 +16,11 @@ export const SUBJECT_ITEMS = [...new Array(30)].map((i, index) => ({
   icon: <NotificationsM />,
 }));
 
-
 describe('Subject component', () => {
   const DEFAULT_PROPS: SubjectProps = {
     texts: SUBJECT_TEXTS,
     selectItem: () => {},
-    showPreview: () => {},
+    onShowPreview: () => {},
     type: 'event',
     placeholder: 'Choose event',
     iconPlaceholder: <NotificationsM />,
@@ -29,12 +28,12 @@ describe('Subject component', () => {
     items: SUBJECT_ITEMS,
   };
 
-  const RENDER_SUBJECT = (props?: {}) => (<Subject {...DEFAULT_PROPS} {...props}/>);
+  const RENDER_SUBJECT = (props?: {}) => <Subject {...DEFAULT_PROPS} {...props} />;
 
   test('Should render with custom placeholder', () => {
     // ARRANGE
-    const PLACEHOLDER = "Choose parameter";
-    const { getByText } = renderWithProvider(RENDER_SUBJECT({placeholder: PLACEHOLDER}));
+    const PLACEHOLDER = 'Choose parameter';
+    const { getByText } = renderWithProvider(RENDER_SUBJECT({ placeholder: PLACEHOLDER }));
 
     //ASSERT
     expect(getByText(PLACEHOLDER)).toBeTruthy();
@@ -42,8 +41,8 @@ describe('Subject component', () => {
 
   test('Should render without showPreview button', () => {
     // ARRANGE
-    const PLACEHOLDER = "Choose parameter";
-    const { container } = renderWithProvider(RENDER_SUBJECT({placeholder: PLACEHOLDER, showPreview: false}));
+    const PLACEHOLDER = 'Choose parameter';
+    const { container } = renderWithProvider(RENDER_SUBJECT({ placeholder: PLACEHOLDER, onShowPreview: undefined }));
     const buttons = container.querySelectorAll('.ds-button');
 
     // ASSERT
@@ -52,8 +51,8 @@ describe('Subject component', () => {
 
   test('Should render with showPreview button', () => {
     // ARRANGE
-    const showPreview = jest.fn();
-    const { container } = renderWithProvider(RENDER_SUBJECT({showPreview: showPreview}));
+    const onShowPreview = jest.fn();
+    const { container } = renderWithProvider(RENDER_SUBJECT({ onShowPreview: onShowPreview }));
     const buttons = container.querySelectorAll('.ds-button');
 
     // ASSERT
@@ -62,34 +61,36 @@ describe('Subject component', () => {
 
   test('Should call showPreview callback', () => {
     // ARRANGE
-    const showPreview = jest.fn();
-    const { container } = renderWithProvider(RENDER_SUBJECT({showPreview: showPreview}));
+    const onShowPreview = jest.fn();
+    const { container } = renderWithProvider(RENDER_SUBJECT({ onShowPreview: onShowPreview }));
     const buttons = container.querySelectorAll('.ds-button');
 
     // ACT
     fireEvent.click(buttons[1]);
 
     // ASSERT
-    expect(showPreview).toBeCalled();
+    expect(onShowPreview).toBeCalled();
   });
 
   test('Should call showPreview callback', () => {
     // ARRANGE
-    const showPreview = jest.fn();
-    const { container } = renderWithProvider(RENDER_SUBJECT({showPreview: showPreview}));
+    const onShowPreview = jest.fn();
+    const { container } = renderWithProvider(RENDER_SUBJECT({ onShowPreview: onShowPreview }));
     const buttons = container.querySelectorAll('.ds-button');
 
     // ACT
     fireEvent.click(buttons[1]);
 
     // ASSERT
-    expect(showPreview).toBeCalled();
+    expect(onShowPreview).toBeCalled();
   });
 
   test('Should render with selected item', () => {
     // ARRANGE
     const SELECTED_ITEM_NAME = 'Selected item';
-    const { getByText } = renderWithProvider(RENDER_SUBJECT({selectedItem: {name: SELECTED_ITEM_NAME, id: 0, icon: <VarTypeStringM />}}));
+    const { getByText } = renderWithProvider(
+      RENDER_SUBJECT({ selectedItem: { name: SELECTED_ITEM_NAME, id: 0, icon: <VarTypeStringM /> } })
+    );
 
     // ASSERT
     expect(getByText(SELECTED_ITEM_NAME)).toBeTruthy();
@@ -97,7 +98,9 @@ describe('Subject component', () => {
 
   test('Should open dropdown with list of items and search', () => {
     // ARRANGE
-    const { container, getByText, getByPlaceholderText } = renderWithProvider(RENDER_SUBJECT(), {container: document.body});
+    const { container, getByText, getByPlaceholderText } = renderWithProvider(RENDER_SUBJECT(), {
+      container: document.body,
+    });
     const button = container.querySelector('.ds-button');
 
     // ACT
@@ -110,7 +113,9 @@ describe('Subject component', () => {
 
   test('Should open dropdown with list of items and search by query and show "No results"', () => {
     // ARRANGE
-    const { container, getByText, getByPlaceholderText } = renderWithProvider(RENDER_SUBJECT(), {container: document.body});
+    const { container, getByText, getByPlaceholderText } = renderWithProvider(RENDER_SUBJECT(), {
+      container: document.body,
+    });
     const button = container.querySelector('.ds-button');
 
     // ACT
@@ -124,7 +129,9 @@ describe('Subject component', () => {
 
   test('Should open dropdown with list of items and shows list of searching results', () => {
     // ARRANGE
-    const { container, getByPlaceholderText, queryAllByRole } = renderWithProvider(RENDER_SUBJECT(), {container: document.body});
+    const { container, getByPlaceholderText, queryAllByRole } = renderWithProvider(RENDER_SUBJECT(), {
+      container: document.body,
+    });
     const button = container.querySelector('.ds-button');
 
     // ACT
@@ -138,7 +145,7 @@ describe('Subject component', () => {
 
   test('Should open dropdown with list, select item and update trigger button', () => {
     // ARRANGE
-    const { container, getByText } = renderWithProvider(RENDER_SUBJECT(), {container: document.body});
+    const { container, getByText } = renderWithProvider(RENDER_SUBJECT(), { container: document.body });
     const button = container.querySelector('.ds-button');
 
     // ACT
@@ -149,5 +156,4 @@ describe('Subject component', () => {
     expect(container.querySelector('.ant-dropdown-hidden')).toBeTruthy();
     expect(getByText(SUBJECT_ITEMS[3].name)).toBeTruthy();
   });
-
 });
