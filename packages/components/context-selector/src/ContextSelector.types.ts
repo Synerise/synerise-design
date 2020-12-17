@@ -9,7 +9,7 @@ export type ContextTexts = {
 export type ContextItem = {
   name: string;
   icon: React.ReactNode;
-  groupId: React.ReactText;
+  groupId?: React.ReactText;
   groupName?: string;
   id: React.ReactText;
   subGroups?: ContextGroup[];
@@ -17,7 +17,7 @@ export type ContextItem = {
 
 export type ContextGroup = {
   defaultGroup?: boolean;
-  icon: React.ReactNode;
+  icon?: React.ReactNode;
   id: React.ReactText;
   itemType?: string;
   name: string;
@@ -44,4 +44,14 @@ export type ContextDropdownProps = {
   texts: ContextTexts;
   value: ContextItem | undefined;
   visible?: boolean;
+};
+
+export type ContextSelectorDropdownItemProps = {
+  item: ContextItem | ContextGroup;
+  searchQuery: string;
+  clearSearch?: () => void;
+  hideDropdown?: () => void;
+  select: (item: ContextItem | ContextGroup) => void;
+  selected?: boolean;
+  className: string;
 };

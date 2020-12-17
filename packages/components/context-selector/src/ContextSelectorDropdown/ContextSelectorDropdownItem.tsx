@@ -3,19 +3,9 @@ import Icon from '@synerise/ds-icon';
 import Menu from '@synerise/ds-menu';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { CheckS } from '@synerise/ds-icon/dist/icons';
-import { ContextGroup, ContextItem } from '../ContextSelector.types';
+import { ContextSelectorDropdownItemProps } from '../ContextSelector.types';
 
-interface Props {
-  item: ContextItem | ContextGroup;
-  searchQuery: string;
-  clearSearch?: () => void;
-  hideDropdown?: () => void;
-  select: (item: ContextItem | ContextGroup) => void;
-  selected?: boolean;
-  className: string;
-}
-
-const ContextSelectorDropdownItem: React.FC<Props> = ({
+const ContextSelectorDropdownItem: React.FC<ContextSelectorDropdownItemProps> = ({
   item,
   clearSearch,
   searchQuery,

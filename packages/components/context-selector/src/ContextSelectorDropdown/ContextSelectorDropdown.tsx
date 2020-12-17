@@ -139,17 +139,7 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
     return groupByGroupName(
       items?.filter((item: ContextItem) => item.groupId === (groups[activeTab] as ContextGroup).id)
     );
-  }, [
-    currentTabItems,
-    items,
-    groups,
-    searchQuery,
-    activeTab,
-    filteredItems,
-    activeGroup,
-    groupByGroupName,
-    classNames,
-  ]);
+  }, [currentTabItems, items, groups, searchQuery, activeTab, filteredItems, activeGroup, groupByGroupName]);
 
   const handleSearch = React.useCallback(
     val => {
@@ -172,7 +162,6 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
       ref={overlayRef}
       onKeyDown={(e): void => {
         setSearchInputFocus(false);
-        // eslint-disable-next-line @typescript-eslint/no-empty-function
         searchQuery &&
           focusWithArrowKeys(e, classNames.split(' ')[1], () => {
             setSearchInputFocus(true);
@@ -206,9 +195,7 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
       )}
       <S.ItemsList>
         <Scrollbar absolute maxHeight={300} style={{ padding: 8 }}>
-          {// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-          // @ts-ignore
-          currentItems.length ? (
+          {currentItems?.length ? (
             currentItems
           ) : (
             <Result noSearchResults type="no-results" description={texts.noResults} />

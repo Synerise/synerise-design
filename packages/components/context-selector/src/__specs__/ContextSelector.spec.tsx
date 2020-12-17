@@ -3,16 +3,16 @@ import { CONTEXT_TEXTS, CONTEXT_ITEMS, CONTEXT_GROUPS } from './data/index.data'
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import { ApiM } from '@synerise/ds-icon/dist/icons';
 import ContextSelector from '../ContextSelector';
-import { ContextSelectorProps } from '../../dist/ContextSelector';
+import { ContextProps } from './../ContextSelector.types';
 
-const DEFAULT_PROPS: ContextSelectorProps = {
+const DEFAULT_PROPS: ContextProps = {
   texts: CONTEXT_TEXTS,
   onChange: () => {},
   value: undefined,
   items: CONTEXT_ITEMS,
   groups: CONTEXT_GROUPS,
 };
-const RENDER_CONTEXT_SELECTOR = (props?: {}) => <ContextSelector {...DEFAULT_PROPS} {...props} />;
+const RENDER_CONTEXT_SELECTOR = (props?: Partial<ContextProps>) => <ContextSelector {...DEFAULT_PROPS} {...props} />;
 
 describe('Context selector component', () => {
   test('Should render', () => {
