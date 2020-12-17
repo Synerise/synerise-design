@@ -8,14 +8,14 @@ import { RemoveIconWrapper } from './ItemRemoveIcon.styles';
 import { RemoveIconProps } from './ItemRemoveIcon.types';
 
 // eslint-disable-next-line import/prefer-default-export
-export const RemoveIcon: React.FC<RemoveIconProps> = ({ id, handleRemove, tooltipLabel }) => (
+export const RemoveIcon: React.FC<RemoveIconProps> = ({ id, handleRemove, tooltipLabel, group }) => (
   <Tooltip title={tooltipLabel}>
     <RemoveIconWrapper>
       <Icon
         className="element-remove-icon"
         onClick={(e: React.MouseEvent<HTMLDivElement>): void => {
           e.stopPropagation();
-          handleRemove(id);
+          handleRemove(id, group);
         }}
         component={<CloseS />}
         color={theme.palette['red-600']}
