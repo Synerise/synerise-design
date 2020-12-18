@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.7.12...@synerise/ds-menu@0.7.13) (2020-12-17)
+
+
+### Bug Fixes
+
+* **menu:** hide elements with opacity and disabling pointer events ([7125f21](https://github.com/Synerise/synerise-design/commit/7125f21fbb766f98f1482bfba81f9e226f451993))
+
+
+
+
+
 ## [0.7.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.7.11...@synerise/ds-menu@0.7.12) (2020-12-14)
 
 **Note:** Version bump only for package @synerise/ds-menu
