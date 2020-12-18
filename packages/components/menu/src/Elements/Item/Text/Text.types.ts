@@ -1,12 +1,14 @@
 import * as React from 'react';
 import { ClickParam } from 'antd/lib/menu';
 
+export type AddonRenderer = (hovered: boolean) => React.ReactNode;
+
 export interface BasicItemProps {
   className?: string;
   parent?: boolean;
   disabled?: boolean;
-  prefixel?: React.ReactNode;
-  suffixel?: React.ReactNode;
+  prefixel?: React.ReactNode | AddonRenderer;
+  suffixel?: React.ReactNode | AddonRenderer;
   danger?: boolean;
   actions?: React.ReactNode;
   onClick?: (props: ClickParam) => void;

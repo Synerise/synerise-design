@@ -8,7 +8,11 @@ import Tooltip from '@synerise/ds-tooltip';
 import { CheckS, AngleRightS } from '@synerise/ds-icon/dist/icons';
 import * as S from './Text.styles';
 import { VisibilityTrigger } from '../../../Menu.types';
-import { BasicItemProps } from './Text.types';
+import { AddonRenderer, BasicItemProps } from './Text.types';
+
+const renderAddon = (addon: React.ReactNode | AddonRenderer, ...params: Parameters<AddonRenderer>): React.ReactNode => {
+  return addon instanceof Function ? addon(...params) : addon;
+};
 
 const Text: React.FC<BasicItemProps> = ({
   parent,
@@ -37,7 +41,9 @@ const Text: React.FC<BasicItemProps> = ({
   const canCopyToClipboard = copyable && copyHint && copyValue && !disabled;
   const showSuffixOnHover = suffixVisibilityTrigger === VisibilityTrigger.HOVER;
   const showPrefixOnHover = prefixVisibilityTrigger === VisibilityTrigger.HOVER;
-  const shouldListenToHoverEvents = canCopyToClipboard || showSuffixOnHover || showPrefixOnHover;
+
+  const suffixElement = React.useMemo(() => renderAddon(suffixel, hovered), [suffixel, hovered]);
+  const prefixElement = React.useMemo(() => renderAddon(prefixel, hovered), [prefixel, hovered]);
 
   const renderChildren = (): React.ReactNode => {
     if (highlight && typeof children === 'string') {
@@ -61,17 +67,17 @@ const Text: React.FC<BasicItemProps> = ({
   };
   const shouldRenderSuffix = React.useMemo((): boolean => {
     if (showSuffixOnHover) {
-      return (!!suffixel || !!checked) && hovered;
+      return (!!suffixElement || !!checked) && hovered;
     }
-    return !!suffixel || !!checked;
-  }, [showSuffixOnHover, suffixel, checked, hovered]);
+    return !!suffixElement || !!checked;
+  }, [showSuffixOnHover, suffixElement, checked, hovered]);
 
   const shouldRenderPrefix = React.useMemo((): boolean => {
     if (showPrefixOnHover) {
-      return !!prefixel && hovered;
+      return !!prefixElement && hovered;
     }
-    return !!prefixel;
-  }, [showPrefixOnHover, prefixel, hovered]);
+    return !!prefixElement;
+  }, [showPrefixOnHover, prefixElement, hovered]);
 
   return (
     // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
@@ -79,10 +85,10 @@ const Text: React.FC<BasicItemProps> = ({
     // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
     <S.Wrapper
       onMouseOver={(): void => {
-        shouldListenToHoverEvents && setHovered(true);
+        setHovered(true);
       }}
       onMouseLeave={(): void => {
-        shouldListenToHoverEvents && setHovered(false);
+        setHovered(false);
       }}
       onMouseDown={(): void => {
         setClicked(!clicked);
@@ -90,7 +96,7 @@ const Text: React.FC<BasicItemProps> = ({
       }}
       disabled={disabled}
       tabIndex={disabled ? -1 : 0}
-      prefixel={prefixel}
+      prefixel={prefixElement}
       description={description}
       className="ds-menu-item"
       style={style}
@@ -117,10 +123,10 @@ const Text: React.FC<BasicItemProps> = ({
               </S.ArrowRight>
             )}
             <S.ContentDivider />
-            {(!!suffixel || !!checked) && (
+            {(!!suffixElement || !!checked) && (
               <S.SuffixWraper visible={shouldRenderSuffix} disabled={disabled}>
                 {!!checked && <Icon component={<CheckS />} color={theme.palette[`green-600`]} />}
-                {suffixel}
+                {suffixElement}
               </S.SuffixWraper>
             )}
           </S.ContentWrapper>
