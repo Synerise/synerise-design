@@ -22,6 +22,9 @@ export const AllocationSlider = styled(AntdSlider)<Props>`
   .ant-slider-dot {
     display: none;
   }
+  && .ant-slider-mark-text:last-of-type {
+  padding-right: 0;
+  }
 `;
 
 export const Mark = styled.div`

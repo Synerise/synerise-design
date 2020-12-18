@@ -2,8 +2,7 @@ import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import Slider, { SliderProps } from 'antd/lib/slider';
 import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { ComponentType } from 'react';
-import * as React from 'react';
-import { ColorMapProps } from './Slider.types';
+import { ColorMapProps, SliderStyleProps } from './Slider.types';
 
 const INDEX_MAP = {
   '0': 'green-600',
@@ -40,61 +39,71 @@ export const DescriptionWrapper = styled.div`
   right: 0;
 `;
 
-export const applyTooltipStyles = (props: ThemeProps): FlattenSimpleInterpolation => css`
+export const applyTooltipStyles = (props: ThemeProps & SliderStyleProps): FlattenSimpleInterpolation => css`
   .ant-tooltip-inner {
     font-size: 13px;
     padding: 3px 7px;
   }
+  ${props.disabled &&
+    `.ant-tooltip-inner {
+        color: ${props.theme.palette['grey-400']};
+      }
+    `}
+
+  &&&.ant-slider-disabled {
+    .ant-slider-rail {
+      background-color: ${props.theme.palette['grey-200']};
+    }
+  }
   .ant-slider-handle:hover,
   .ant-slider-handle:focus {
+    ${!props.disabled &&
+      `
     .ant-tooltip-content {
       background-color: ${props.theme.palette['grey-900']};
     }
     ${Description} {
-      color: ${props.theme.palette['grey-600']};
+      color: ${!props.disabled && props.theme.palette['grey-600']};
     }
     .ant-tooltip-inner {
       color: ${props.theme.palette['grey-050']};
     }
+    `}
   }
-  &&& :hover {
-    .ant-tooltip-content {
-      border-radius: 3px;
-      background-color: ${props.theme.palette['grey-900']};
-    }
-    .ant-tooltip-inner {
-      color: ${props.theme.palette['grey-050']};
-    }
+
+  .ant-slider-dot:last-of-type,
+  .ant-slider-dot:first-of-type {
+    visibility: ${props.hideMinAndMaxMarks ? 'hidden' : 'visible'};
+  }
+  .ant-slider-mark-text:last-of-type {
+    padding-right: 30px;
   }
 `;
 const createTracksStyles = (props: ThemeProps, colorsMap: ColorMapProps): FlattenSimpleInterpolation => {
   const styles = Object.values(colorsMap).map(
     (color: string, index: number) => `
-      &-${index + 1},
-      &-${index + 11} {
+      .ant-slider-track-${index + 1},
+      .ant-slider-track-${index + 11} {
         background-color: ${props.theme.palette[color]};
       }
+      
   `
   );
   const style = styles.join('');
   return css`
+    .ant-slider-track {
+      background-color: ${props.theme.palette[colorsMap[0]]};
+    }
     ${style}
   `;
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const AntdSlider = styled((Slider as any) as ComponentType<Omit<SliderProps, 'value'>>)<{
-  useColorPalette?: boolean;
-  tracksColorMap?: ColorMapProps;
-  thick?: boolean;
-  description?: React.ReactNode | string;
-}>`
+export const AntdSlider = styled((Slider as any) as ComponentType<Omit<SliderProps, 'value'>>)<SliderStyleProps>`
+  ${(props): FlattenSimpleInterpolation =>
+    props.useColorPalette ? createTracksStyles(props, props.tracksColorMap ? props.tracksColorMap : INDEX_MAP) : css``}
   .ant-slider-track {
-    ${(props): FlattenSimpleInterpolation =>
-      props.useColorPalette
-        ? createTracksStyles(props, props.tracksColorMap ? props.tracksColorMap : INDEX_MAP)
-        : css``}
-      height: ${(props): string => (props.thick ? '6px' : '3px')}
+    height: ${(props): string => (props.thick ? '6px' : '3px')};
   }
   &.ant-slider:hover {
     ${(props): FlattenSimpleInterpolation =>
@@ -103,9 +112,9 @@ export const AntdSlider = styled((Slider as any) as ComponentType<Omit<SliderPro
         : css``};
   }
   .ant-slider-rail {
-  height: ${(props): string => (props.thick ? '6px' : '3px')}
+    height: ${(props): string => (props.thick ? '6px' : '3px')};
   }
- ${(props): FlattenSimpleInterpolation => applyTooltipStyles(props)}
+  ${(props): FlattenSimpleInterpolation => applyTooltipStyles(props)}
   .ant-slider-handle {
     z-index: 99;
   }
