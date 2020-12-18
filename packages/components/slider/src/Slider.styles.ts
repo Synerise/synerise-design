@@ -5,7 +5,7 @@ import { ComponentType } from 'react';
 import { ColorMapProps, SliderStyleProps } from './Slider.types';
 
 const INDEX_MAP = {
-  '0': 'blue-600',
+  '0': 'green-600',
   '1': 'cyan-600',
   '2': 'yellow-600',
   '3': 'orange-600',
@@ -44,9 +44,12 @@ export const applyTooltipStyles = (props: ThemeProps & SliderStyleProps): Flatte
     font-size: 13px;
     padding: 3px 7px;
   }
-  .ant-tooltip-inner {
-    color: ${props.disabled && props.theme.palette['grey-400']};
-  }
+  ${props.disabled &&
+    `.ant-tooltip-inner {
+        color: ${props.theme.palette['grey-400']};
+      }
+    `}
+
   &&&.ant-slider-disabled {
     .ant-slider-rail {
       background-color: ${props.theme.palette['grey-200']};
@@ -54,15 +57,24 @@ export const applyTooltipStyles = (props: ThemeProps & SliderStyleProps): Flatte
   }
   .ant-slider-handle:hover,
   .ant-slider-handle:focus {
+    ${!props.disabled &&
+      `
     .ant-tooltip-content {
-      background-color: ${!props.disabled && props.theme.palette['grey-900']};
+      background-color: ${props.theme.palette['grey-900']};
     }
+    `}
+    ${!props.disabled &&
+      `
     ${Description} {
       color: ${!props.disabled && props.theme.palette['grey-600']};
     }
+    `}
+    ${!props.disabled &&
+      `
     .ant-tooltip-inner {
-      color: ${!props.disabled && props.theme.palette['grey-050']};
+      color: ${props.theme.palette['grey-050']};
     }
+    `}
   }
 
   .ant-slider-dot:last-of-type,
