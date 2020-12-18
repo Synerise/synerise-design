@@ -5,8 +5,18 @@ import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import * as S from './Layout.styles';
 import { LayoutProps } from './Layout.types';
 
-const Layout: React.FC<LayoutProps> = props => {
-  const { header, left, right, children, className, styles, subheader, leftOpened, rightOpened } = props;
+const Layout: React.FC<LayoutProps> = ({
+  header,
+  left,
+  right,
+  children,
+  className,
+  styles,
+  subheader,
+  leftOpened,
+  rightOpened,
+  fullPage = false,
+}) => {
   const [leftSidebarOpened, setLeftSidebarOpened] = React.useState(Boolean(leftOpened));
   const [rightSidebarOpened, setRightSidebarOpened] = React.useState(Boolean(rightOpened));
   return (
@@ -41,7 +51,9 @@ const Layout: React.FC<LayoutProps> = props => {
           <S.LayoutMain className="ds-layout__main" data-popup-container style={styles && styles.main}>
             <S.LayoutSubheader>{subheader}</S.LayoutSubheader>
             <Scrollbar absolute>
-              <S.LayoutMainInner style={styles && styles.mainInner}>{children}</S.LayoutMainInner>
+              <S.LayoutMainInner fullPage={fullPage} style={styles && styles.mainInner}>
+                {children}
+              </S.LayoutMainInner>
             </Scrollbar>
           </S.LayoutMain>
           <>
