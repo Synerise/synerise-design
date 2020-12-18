@@ -24,6 +24,7 @@ export interface Props extends AntdSliderProps {
   thick?: boolean;
   description?: React.ReactNode | string;
   hideMinAndMaxMarks?: boolean;
+  disabled?: boolean;
 };
 export type SliderStyleProps = {
   useColorPalette?: boolean;
@@ -31,4 +32,5 @@ export type SliderStyleProps = {
   thick?: boolean;
   description?: React.ReactNode | string;
   hideMinAndMaxMarks?: boolean;
+  disabled?: boolean;
 };

@@ -5,7 +5,6 @@ import { text, boolean, number, select, object, array } from '@storybook/addon-k
 import Slider from '@synerise/ds-slider';
 import { Props as SliderProps } from '@synerise/ds-slider/dist/Slider.types';
 import { AllocationVariant } from '@synerise/ds-slider/dist/Allocation/Allocation.types';
-import { TooltipPlacement } from 'antd/es/tooltip';
 
 const decorator = storyFn => <div style={{ padding: '48px' }}>{storyFn()}</div>;
 
@@ -29,6 +28,18 @@ const allocationVariants: AllocationVariant[] = [
   { name: 'Variant B', percentage: 33, tabId: 2, tabLetter: 'B' },
   { name: 'Variant C', percentage: 34, tabId: 3, tabLetter: 'C' },
 ];
+const customColorOptions = {
+  red: 'red-600',
+  green: 'green-600',
+  yellow: 'yellow-600',
+  pink: 'pink-600',
+  mars: 'mars-600',
+  orange: 'orange-600',
+  fern: 'fern-600',
+  cyan: 'cyan-600',
+  purple: 'purple-600',
+  violet: 'violet-600',
+};
 const mark = {
   0: '0',
   100: '100',
@@ -54,6 +65,8 @@ const Wrapper = (props: any) => {
   const hasMarks = boolean('Set Marks', false);
   const descriptionMessage = text('Description', 'Description');
   const hasDescription = boolean('Set Description', false);
+  const [tracksColor, setTracksColor] = React.useState(tracksColorMap);
+  const color = select('Set color', customColorOptions, customColorOptions.green);
   const getDescription = (hasDescription: boolean): string => {
     if (hasDescription) {
       return descriptionMessage;
@@ -61,7 +74,10 @@ const Wrapper = (props: any) => {
       return '';
     }
   };
-
+  React.useEffect(() => {
+    setTracksColor({ ...tracksColor, '0': color });
+  },[color]);
+console.log(tracksColor)
   return (
     <Slider
       {...props}
@@ -70,6 +86,7 @@ const Wrapper = (props: any) => {
       value={props.range ? rangeValue : value}
       onChange={props.range ? setRangeValue : setValue}
       hideMinAndMaxMarks={true}
+      tracksColorMap={tracksColor}
     />
   );
 };
@@ -100,25 +117,26 @@ const WrapperMultiValuesMode = (props: SliderProps) => {
 const stories = {
   default: () => (
     <Wrapper
-      label={text('label', 'Label')}
-      disabled={boolean('disabled', false)}
-      reverse={boolean('reverse', false)}
-      included={boolean('included', true)}
-      inverted={boolean('inverted', false)}
-      max={number('max', 100)}
-      min={number('min', 0)}
-      range={boolean('range', false)}
-      step={number('step', 0.1)}
+      label={text('Label', 'Label')}
+      disabled={boolean('Disabled', false)}
+      reverse={boolean('Reverse', false)}
+      included={boolean('Included', true)}
+      inverted={boolean('Inverted', false)}
+      max={number('Max', 100)}
+      min={number('Min', 0)}
+      range={boolean('Range', false)}
+      step={number('Step', 10)}
+      dots={boolean('Dots', false)}
       tipFormatter={tipFormatter}
       onAfterChange={action('onAfterChange')}
-      tooltipPlacement={select('Placement', placements, 'bottom')}
-      useColorPalette={boolean('useColorPalette', false)}
-      getTooltipPopupContainer={() => document.querySelector('.ant-slider-handle')}
+      tooltipPlacement={'bottom'}
+      getTooltipPopupContainer={container => container}
+      useColorPalette={boolean('UseColorPalette', false)}
       tooltipVisible={boolean('Value visible', false)}
       thick={boolean('Set thick', false)}
     />
   ),
-/*  withVisibleLabels: () => (
+  /*  withVisibleLabels: () => (
     <Wrapper
       tooltipVisible={true}
       disabled={boolean('disabled', false)}
@@ -138,19 +156,20 @@ const stories = {
   ),*/
   multipleRange: () => (
     <WrapperMultiMode
-      label={text('label', 'Label')}
-      disabled={boolean('disabled', false)}
-      dots={boolean('dots', false)}
-      included={boolean('included', true)}
-      inverted={boolean('inverted', false)}
-      max={number('max', 100)}
-      min={number('min', 0)}
-      range={boolean('range', true)}
-      step={number('step', 1)}
+      label={text('Label', 'Label')}
+      disabled={boolean('Disabled', false)}
+      dots={boolean('Dots', false)}
+      included={boolean('Included', true)}
+      inverted={boolean('Inverted', false)}
+      max={number('Max', 100)}
+      min={number('Min', 0)}
+      range={boolean('Range', true)}
+      step={number('Step', 1)}
       tipFormatter={tipFormatter}
       onAfterChange={action('onAfterChange')}
+      getTooltipPopupContainer={container => container}
       tooltipPlacement={select('Placement', placements, 'bottom')}
-      useColorPalette={boolean('useColorPalette', true)}
+      useColorPalette={boolean('UseColorPalette', true)}
       thick={boolean('Set thick', false)}
       tooltipVisible={boolean('Value visible', false)}
       tracksColorMap={tracksColorMap}
@@ -159,10 +178,8 @@ const stories = {
   multiValuesRanges: () => (
     <WrapperMultiValuesMode
       label={text('label', 'Label')}
-      disabled={boolean('disabled', false)}
+      disabled={boolean('Disabled', false)}
       tipFormatter={tipFormatter as any}
-      tooltipPlacement={select('Placement', placements, 'bottom') as TooltipPlacement}
-      tooltipVisible={boolean('Value visible', false)}
       tracksColorMap={tracksColorMap}
     />
   ),
