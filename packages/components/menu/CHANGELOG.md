@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.7.13...@synerise/ds-menu@0.7.14) (2020-12-18)
+
+
+### Bug Fixes
+
+* **menu:** pass hover state to the suffix and prefix fn ([15048bd](https://github.com/Synerise/synerise-design/commit/15048bd207dffe8404a45b0b44b796458f80f377))
+
+
+
+
+
 ## [0.7.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.7.12...@synerise/ds-menu@0.7.13) (2020-12-17)
 
 

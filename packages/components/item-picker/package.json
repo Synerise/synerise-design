@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-item-picker",
-  "version": "0.2.7",
+  "version": "0.2.8",
   "description": "ItemPicker UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -26,8 +26,8 @@
   "types": "dist/index.d.ts",
   "dependencies": {
     "@synerise/ds-dropdown": "^0.13.6",
-    "@synerise/ds-menu": "^0.7.13",
-    "@synerise/ds-search": "^0.4.7",
+    "@synerise/ds-menu": "^0.7.14",
+    "@synerise/ds-search": "^0.4.8",
     "@synerise/ds-search-bar": "^0.2.109",
     "@synerise/ds-typography": "^0.10.0"
   },
