@@ -62,15 +62,9 @@ export const applyTooltipStyles = (props: ThemeProps & SliderStyleProps): Flatte
     .ant-tooltip-content {
       background-color: ${props.theme.palette['grey-900']};
     }
-    `}
-    ${!props.disabled &&
-      `
     ${Description} {
       color: ${!props.disabled && props.theme.palette['grey-600']};
     }
-    `}
-    ${!props.disabled &&
-      `
     .ant-tooltip-inner {
       color: ${props.theme.palette['grey-050']};
     }
