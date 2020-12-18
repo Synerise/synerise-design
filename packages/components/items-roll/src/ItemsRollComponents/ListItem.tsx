@@ -16,21 +16,22 @@ const ItemElement: React.FC<ItemElementProps> = ({
   removeTooltipLabel,
 }) => {
   const onClick = React.useCallback(() => onItemClick && onItemClick(item.id), [onItemClick, item.id]);
-
+  const renderSuffixElement = (hovered: boolean): React.ReactNode =>
+    item.suffixel instanceof Function ? item.suffixel(hovered) : item.suffixel;
   return (
     <S.ListItem
       {...item}
       className="items-roll-list-item"
       highlight={highlight}
       onItemHover={NOOP}
-      suffixel={
+      suffixel={(hovered: boolean): React.ReactNode => (
         <S.SuffixelWrapper>
-          {item.suffixel}
+          {renderSuffixElement(hovered) || null}
           {onItemRemove && (
             <RemoveIcon id={item.id} handleRemove={onItemRemove} tooltipLabel={removeTooltipLabel} group={group} />
           )}
         </S.SuffixelWrapper>
-      }
+      )}
       onClick={onClick}
     >
       {item.text}
