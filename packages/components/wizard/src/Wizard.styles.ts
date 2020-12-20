@@ -6,7 +6,8 @@ export const WizardWrapper = styled.div`
   left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: 100;
+  z-index: 1000;
+  background-color: ${(props): string => props.theme.palette.white};
 `;
 
 export const WizardHeader = styled.div`
