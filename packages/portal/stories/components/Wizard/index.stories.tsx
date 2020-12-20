@@ -89,8 +89,8 @@ const stories = {
           title={text('Set wizard title', 'Wizard title')}
           onClose={handleClose}
           headerAction={<Button onClick={action('header action')}>Save and skip wizard</Button>}
-          onPrevStep={handlePrevStep}
-          onNextStep={handleNextStep}
+          onPrevStep={store.state.activeStep === 0 ? null : handlePrevStep}
+          onNextStep={store.state.activeStep === 3 ? handleClose : handleNextStep}
           contentWidth={'588px'}
           texts={{
             prevButtonLabel: 'Back',
@@ -148,15 +148,15 @@ const stories = {
           title={text('Set wizard title', 'Wizard title')}
           onClose={handleClose}
           headerAction={<Button onClick={action('header action')}>Save and skip wizard</Button>}
-          onPrevStep={handlePrevStep}
-          onNextStep={handleNextStep}
+          onPrevStep={store.state.activeStep === 0 ? null : handlePrevStep}
+          onNextStep={store.state.activeStep === 3 ? handleClose : handleNextStep}
           contentWidth={'588px'}
           texts={{
             prevButtonLabel: 'Back',
             nextButtonLabel: store.state.activeStep === 3 ? 'Complete' : 'Next step',
           }}
           stepper={
-            <Stepper size={'small≥'}>
+            <Stepper size={'small'}>
               {steps.map((step, index) => (
                 <Stepper.Step
                   onClick={() => setActiveStep(index)}

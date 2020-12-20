@@ -72,6 +72,8 @@ export const WizardButtons = styled.div`
   margin: 48px 0 0;
 `;
 
+export const ButtonPlaceholder = styled.span``;
+
 export const ModalWizardButtons = styled.div`
   display: flex;
   flex-direction: row;

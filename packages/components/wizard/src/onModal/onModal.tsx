@@ -34,11 +34,13 @@ const WizardOnModal: React.FC<OnModalProps> = ({
       }
       footer={
         <S.ModalWizardButtons>
-          {onPrevStep && (
+          {onPrevStep ? (
             <Button mode="icon-label" type="ghost" onClick={onPrevStep}>
               <Icon component={<ArrowLeftCircleM />} />{' '}
               {texts?.prevButtonLabel || intl.formatMessage({ id: 'DS.WIZARD.PREV-BUTTON', defaultMessage: 'Back' })}
             </Button>
+          ) : (
+            <S.ButtonPlaceholder />
           )}
           {onNextStep && (
             <Button type="primary" onClick={onNextStep}>
