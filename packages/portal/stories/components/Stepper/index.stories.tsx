@@ -55,7 +55,7 @@ const steps = [
   },
   {
     number: 3,
-    label: 'Filters & Facets',
+    label: 'Filters & Facets in analytics',
     children: (
       <Radio.Group>
         <Radio name="radio" value="radio" description="Description">
@@ -87,7 +87,7 @@ const STEPPER_TYPES = ['horizontal', 'vertical'];
 
 const stories = {
   default: withState({
-    activeStep: -1,
+    activeStep: 0,
   })(({ store }) => {
     const setActiveStep = (index: number) => {
       store.set({ activeStep: index });
@@ -96,7 +96,10 @@ const stories = {
     const invalidStep = select('Set index of invalid step', [0, 1, 2, 3, '-'], '-');
 
     return (
-      <Stepper orientation={select('Select stepper type', STEPPER_TYPES, 'horizontal')}>
+      <Stepper
+        orientation={select('Select stepper type', STEPPER_TYPES, 'horizontal')}
+        size={select('Set stepper size', ['small', 'default'], 'default')}
+      >
         {steps.map((step, index) => (
           <Stepper.Step
             onClick={() => setActiveStep(index)}

@@ -5072,6 +5072,16 @@
     "@synerise/ds-input" "^0.16.6"
     "@synerise/ds-search-bar" "^0.2.105"
 
+"@synerise/ds-dropdown@^0.13.6":
+  version "0.13.6"
+  resolved "https://registry.yarnpkg.com/@synerise/ds-dropdown/-/ds-dropdown-0.13.6.tgz#7942b3afa5d4a2b20601229438d60366bd317316"
+  integrity sha512-qADRuFiMwwfuQUAmTHsLyMp1u3+QqNFhD6VHvysPK9FVyzjJN8IOWi9PAmcSRg3daFEL9NskycyqgTeA3GtmTw==
+  dependencies:
+    "@synerise/ds-divider" "^0.4.42"
+    "@synerise/ds-icon" "^0.35.0"
+    "@synerise/ds-input" "^0.16.10"
+    "@synerise/ds-search-bar" "^0.2.109"
+
 "@synerise/ds-icon@^0.14.0", "@synerise/ds-icon@^0.14.3":
   version "0.14.3"
   resolved "https://registry.yarnpkg.com/@synerise/ds-icon/-/ds-icon-0.14.3.tgz#4c867acd49841ca9600bd2ce27563e292dd92fae"
@@ -5086,6 +5096,18 @@
   version "0.34.0"
   resolved "https://registry.yarnpkg.com/@synerise/ds-icon/-/ds-icon-0.34.0.tgz#944af7487e53a86110d285246236638b95218f0f"
   integrity sha512-8rlEkcXyAvxx+8yKAcg7uO/Eu9F9Smjw8Qim6bClut2P7cNEsvS07PR+QHuYR2QLaFhQz4e865CJEsLAfDk+/g==
+
+"@synerise/ds-inline-edit@^0.2.8":
+  version "0.2.8"
+  resolved "https://registry.yarnpkg.com/@synerise/ds-inline-edit/-/ds-inline-edit-0.2.8.tgz#b31bed9164f51a8ad837b23058d353423b6c9b64"
+  integrity sha512-hgjzWcGANTGAe3iveftyWk8Si4ETz1QDSrd6oM82ea5rbTpMRFprGWkEyBZbWOqGApd2DKmMB3snlmg7LJyHCw==
+  dependencies:
+    "@synerise/ds-dropdown" "^0.13.6"
+    "@synerise/ds-icon" "^0.35.0"
+    "@synerise/ds-menu" "^0.7.14"
+    "@synerise/ds-search" "^0.4.8"
+    "@synerise/ds-tooltip" "^0.10.1"
+    react-input-autosize "^2.2.2"
 
 "@synerise/ds-input-number@^0.3.45":
   version "0.3.45"
@@ -5114,6 +5136,40 @@
     "@synerise/ds-button" "^0.11.3"
     "@synerise/ds-card" "^0.4.11"
     "@synerise/ds-typography" "*"
+
+"@synerise/ds-menu@^0.7.14":
+  version "0.7.14"
+  resolved "https://registry.yarnpkg.com/@synerise/ds-menu/-/ds-menu-0.7.14.tgz#b1fc5d731d74d57de14a82de42eda79e388480a6"
+  integrity sha512-FiWTDQ12c8TmRRbRknYzSUJJvR65qSlnStfrKTeyliBXhnLLFImdMj3h7rvpoPi8virn0s5LlARjkSeX2JID8A==
+  dependencies:
+    "@synerise/ds-icon" "^0.35.0"
+    "@synerise/ds-tooltip" "^0.10.1"
+    "@synerise/ds-typography" "^0.10.0"
+
+"@synerise/ds-page-header@^0.11.5":
+  version "0.11.5"
+  resolved "https://registry.yarnpkg.com/@synerise/ds-page-header/-/ds-page-header-0.11.5.tgz#39302946821aee8436ee6ca3731807b0f3855d36"
+  integrity sha512-8mdgNsSyJLa91UC5Qt0VecTg6UJNHM2A+8oqzdxyRf70JTZhZmCFeqb2yYgbEI8h5JB1xscrwXt1bq30voz44g==
+  dependencies:
+    "@synerise/ds-button" "^0.13.17"
+    "@synerise/ds-icon" "^0.35.0"
+    "@synerise/ds-inline-edit" "^0.2.8"
+    "@synerise/ds-typography" "^0.10.0"
+    "@synerise/ds-utils" "^0.11.10"
+
+"@synerise/ds-search@^0.4.8":
+  version "0.4.8"
+  resolved "https://registry.yarnpkg.com/@synerise/ds-search/-/ds-search-0.4.8.tgz#82c4b99f522643ac9f2fe9308250ed70d073b537"
+  integrity sha512-u3aZJTre9RHbtIpylM0nd5WmqWt/VOkEkWPRen/PX3XohISV0aIYewLmq1Wgrq25QFXktOZP6P41BEJuvPCJ/w==
+  dependencies:
+    "@synerise/ds-button" "^0.13.17"
+    "@synerise/ds-dropdown" "^0.13.6"
+    "@synerise/ds-menu" "^0.7.14"
+    "@synerise/ds-scrollbar" "^0.2.39"
+    "@synerise/ds-typography" "^0.10.0"
+    "@synerise/ds-utils" "^0.11.10"
+    react-onclickoutside "^6.9.0"
+    react-window "^1.8.5"
 
 "@synerise/ds-tooltip@^0.4.26":
   version "0.4.26"

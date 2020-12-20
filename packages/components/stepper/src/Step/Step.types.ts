@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { StepperOrientation, StepperSize } from '../Stepper.types';
 
 export type StepProps = {
   label: string | React.ReactNode;
@@ -8,4 +9,6 @@ export type StepProps = {
   validated?: boolean;
   tooltip?: string | React.ReactNode;
   onClick?: () => void;
+  size?: StepperSize;
+  orientation?: StepperOrientation;
 };

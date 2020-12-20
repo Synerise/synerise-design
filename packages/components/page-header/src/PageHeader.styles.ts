@@ -81,6 +81,7 @@ export const PageHeaderClamp = styled.div`
   overflow: hidden;
   align-items: center;
   color: ${(props): string => props.theme.palette['grey-800']};
+  align-items: center;
 
   .ds-icon {
     margin-left: 8px;

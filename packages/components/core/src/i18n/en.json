@@ -247,6 +247,10 @@
     "MATCHING": {
       "MATCHING": "matching",
       "NOT-MATCHING": "not matching"
+    },
+    "WIZARD": {
+      "BACK-BUTTON": "Back",
+      "NEXT-BUTTON": "Next step"
     }
   }
 }
