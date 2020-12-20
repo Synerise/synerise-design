@@ -62,22 +62,10 @@ import ItemsRoll from '@synerise/ds-items-roll';
 
 | Property    | Description                                                                         | Type                       | Default |
 | ----------- | ----------------------------------------------------------------------------------- | -------------------------- | ------- |
-| copyable    | Whether item element could be copied on click                                       | boolean                    | -       |
-| copyHint    | Label for copy text, showed on hover                                                | string                     | -       |
-| copyValue   | Value of copied text                                                                | string                     | -       |
-| danger      | Whether add styles custom styles to element (red color)                             | boolean                    | -       |
-| description | Description of the element                                                          | string or React.ReactNode  | -       |
-| disabled    | Whether disabled element                                                            | boolean                    | -       |
 | group       | Define affiliation to a specific group in groups Array passed as props to ItemsRoll | string                     | -       |
-| highlight   | What part of the element text to highlight                                          | string                     | -       |
 | id          | Unique identifier for element. Used as a key in map                                 | string                     | -       |
-| index       | Test of the element                                                                 | number                     | -       |
-| nestedMenu  | Array of child elements or strings to nest inside element                           | SubMenuProps[] or string[] | -       |
-| ordered     | Whether item elements are ordered                                                   | boolean                    | -       |
-| parent      | ???                                                                                 | boolean                    | -       |
-| prefixel    | Element to insert before text of the element                                        | React.ReactNode            | -       |
-| subMenu     | Array of child elements or strings to add as sub menu to element                    | SubMenuProps[] or string[] | -       |
-| text        | Label for the element                                                               | string or React.ReactNode  | -       |
+
+ Rest of the `ItemRollElement` props is inherited from [MenuItemProps](https://design.synerise.com/docs/components/menu#menuitemprops)
 
 #### Texts
 
