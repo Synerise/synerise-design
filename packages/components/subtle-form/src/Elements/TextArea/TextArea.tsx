@@ -119,7 +119,7 @@ const SubtleTextArea: React.FC<SubtleTextAreaProps> = ({
             blurred={blurred}
             disabled={disabled}
           >
-            <S.MainContent>
+            <S.MainContent breakWord>
               <S.ValueArea
                 disabled={disabled}
                 value={value && !!value.trim() ? value : placeholder}

@@ -4,6 +4,7 @@ import Tooltip from '@synerise/ds-tooltip';
 import { AngleDownS } from '@synerise/ds-icon/dist/icons';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { Label } from '@synerise/ds-input';
+import { useOnClickOutside } from '@synerise/ds-utils';
 import * as S from '../../SubtleForm.styles';
 import { SelectContainer, ContentAbove } from './Field.styles';
 import { SubtleFieldProps } from '../../SubtleForm.types';
@@ -20,22 +21,26 @@ const SutbleField: React.FC<SubtleFieldProps> = ({
   const [active, setActive] = React.useState<boolean>(false);
   const [blurred, setBlurred] = React.useState<boolean>(false);
   const containerRef = React.useRef<HTMLDivElement>(null);
-  /*  const handleDeactivate = React.useCallback(() => {
+  const handleDeactivate = React.useCallback(() => {
     setActive(false);
     setBlurred(true);
-  }, []); */
+  }, []);
   const handleActivate = React.useCallback(() => {
     setActive(true);
     setBlurred(false);
   }, []);
+
+  useOnClickOutside(containerRef, () => {
+    handleDeactivate();
+  });
   return (
     <S.Subtle className="ds-subtle-form" disabled={disabled}>
       <ContentAbove active={active}>
         <Label label={label} tooltip={labelTooltip} />
       </ContentAbove>
       <SelectContainer ref={containerRef} className="ds-subtle-select" active={active}>
-        {active && !blurred ? (
-          activeElement
+        {active && !blurred && !!activeElement ? (
+          React.cloneElement(activeElement())
         ) : (
           <S.Inactive onClick={!disabled ? handleActivate : undefined} blurred={blurred} disabled={disabled}>
             <S.MainContent hasMargin>{inactiveElement}</S.MainContent>
