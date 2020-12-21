@@ -70,47 +70,23 @@ export const Container = styled.div<{
         }
         &:hover:not(:disabled) {
           .ds-button {
-            &.ant-btn-tertiary {
-              border-color: transparent !important;
-            }
-            &.ant-btn-tertiary-white {
-              border-color: transparent !important;
-            }
-            &.ant-btn-primary {
-              border-color: transparent !important ;
-            }
+            &.ant-btn-tertiary,
+            &.ant-btn-tertiary-white,
+            &.ant-btn-primary,
             &.ant-btn-custom-color {
-              border-color: transparent !important ;
+              border-color: transparent !important;
             }
           }
         }
-        .ds-button {
-          &.ant-btn-primary:focus {
-            border-color: transparent !important ;
-          }
-          &.ant-btn-tertiary:focus {
+        .ds-button:focus {
+          &.ant-btn-primary,
+          &.ant-btn-tertiary,
+          &.ant-btn-tertiary-white,
+          &.ant-btn-custom-color {
             border-color: transparent !important;
-          }
-          &.ant-btn-tertiary-white:focus {
-            border-color: transparent !important;
-          }
-
-          &.ant-btn-custom-color:focus {
-            border-color: transparent !important ;
-          }
-          &.ant-btn-primary:active {
-            border-color: transparent !important ;
-          }
-
-          &.ant-btn-tertiary:active {
-            border-color: transparent !important;
-          }
-          &.ant-btn-tertiary-white:active {
-            border-color: transparent !important;
-          }
-
-          &.ant-btn-custom-color:active {
-            border-color: transparent !important ;
+            &:active {
+              border-color: transparent !important;
+            }
           }
         }
       `};
