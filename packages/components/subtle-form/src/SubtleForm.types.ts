@@ -14,4 +14,6 @@ export type SubtleFieldProps = {
   labelTooltip?: React.ReactNode | string;
   suffix?: React.ReactNode | string;
   suffixTooltip?: React.ReactNode | string;
+  activeElement?: React.ReactNode;
+  inactiveElement?: React.ReactNode;
 };
