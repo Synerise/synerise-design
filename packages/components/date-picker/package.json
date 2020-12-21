@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-date-picker",
-  "version": "0.5.3",
+  "version": "0.5.4",
   "description": "DatePicker UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -29,7 +29,7 @@
     "@synerise/ds-button": "^0.13.18",
     "@synerise/ds-core": "^0.25.0",
     "@synerise/ds-icon": "^0.35.0",
-    "@synerise/ds-time-picker": "^0.4.7",
+    "@synerise/ds-time-picker": "^0.4.8",
     "@synerise/ds-tooltip": "^0.10.2",
     "classnames": "^2.2.6",
     "date-fns": "2.16.1",
