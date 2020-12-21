@@ -3,6 +3,9 @@ import SubtleForm from '@synerise/ds-subtle-form';
 import Select from '@synerise/ds-select';
 import { Cities } from './dataset';
 import { boolean, text } from '@storybook/addon-knobs';
+import Dropdown from '@synerise/ds-dropdown';
+import { Input } from '@synerise/ds-input';
+import InputNumber from '@synerise/ds-input-number';
 const decorator = storyFn => <div style={{ width: '314px', padding: '16px', background: '#fff' }}>{storyFn()}</div>;
 export const renderLabel = (text: string) => {
   return <div style={{ maxWidth: '200px', textOverflow: 'ellipsis', overflow: 'hidden' }}>{text}</div>;
@@ -16,27 +19,18 @@ export const getErrorText = (error: boolean, errorText: string): string => {
 };
 const stories = {
   default: () => {
-    const [value, setValue] = React.useState<string>();
+    const [value, setValue] = React.useState<number>(1);
     const validationState = boolean('Set validation state', false);
     const errorMessage = text('Error Text', 'Error');
     const disabled = boolean('Set disabled', false);
     return (
       <div style={{ marginBottom: '16px', height: '57px' }}>
-        <SubtleForm.Select
-          disabled={disabled}
-          onChange={val => setValue(val)}
-          value={value}
+        <SubtleForm.Field
+          activeElement={()=><InputNumber autoFocus value={value} onChange={e => setValue(e)} />}
+          inactiveElement={'inactive'}
           placeholder={'City'}
           label={renderLabel('City')}
-          labelTooltip={'City'}
-          suffixTooltip={'Select'}
-          error={validationState}
-          errorText={getErrorText(validationState, errorMessage)}
-        >
-          {Cities.map(c => (
-            <Select.Option value={c}>{c}</Select.Option>
-          ))}
-        </SubtleForm.Select>
+        ></SubtleForm.Field>
       </div>
     );
   },

@@ -41,12 +41,23 @@ export const ValueArea = styled.textarea<{ grey: boolean }>`
     }
   }
 `;
-export const MainContent = styled.div<{ hasMargin?: boolean }>`
-  display: flex;
-  align-items: flex-start;
-  flex: 1;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
+export const MainContent = styled.div<{ hasMargin?: boolean; breakWord?: boolean }>`
+  ${(props): FlattenSimpleInterpolation =>
+    props.breakWord
+      ? css`
+          display: flex;
+          align-items: flex-start;
+          flex: 1;
+          word-wrap: break-word;
+          overflow-wrap: break-word;
+        `
+      : css`
+          overflow-wrap: nowrap;
+          display: block;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+        `}
   width: 100%;
   height: 100%;
   transition: color 0.1s ease-in 0.2s;
