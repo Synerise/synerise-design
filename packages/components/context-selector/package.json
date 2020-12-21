@@ -1,0 +1,43 @@
+{
+  "name": "@synerise/ds-context-selector",
+  "version": "0.0.1",
+  "description": "ContextSelector UI Component for the Synerise Design System",
+  "license": "ISC",
+  "repository": "Synerise/synerise-design",
+  "main": "dist/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "npm run build:js && npm run build:css && npm run defs",
+    "build:css": "node ../../../scripts/style/less.js",
+    "build:js": "babel --root-mode upward src --out-dir dist --extensions '.js,.ts,.tsx'",
+    "build:watch": "npm run build:js -- --watch",
+    "defs": "tsc --declaration --outDir dist/ --emitDeclarationOnly",
+    "prepublish": "npm run build",
+    "test": "jest",
+    "test:watch": "npm run test -- --watchAll",
+    "types": "tsc --noEmit"
+  },
+  "sideEffects": [
+    "dist/style/*",
+    "*.less"
+  ],
+  "types": "dist/index.d.ts",
+  "dependencies": {
+    "@synerise/ds-button": "^0.13.17",
+    "@synerise/ds-dropdown": "^0.13.6",
+    "@synerise/ds-icon": "^0.35.0",
+    "@synerise/ds-menu": "^0.7.12",
+    "@synerise/ds-result": "^0.5.24",
+    "@synerise/ds-scrollbar": "^0.2.39",
+    "@synerise/ds-tabs": "^0.11.6",
+    "@synerise/ds-utils": "^0.11.10",
+    "classnames": "^2.2.6"
+  },
+  "peerDependencies": {
+    "@synerise/ds-core": "*",
+    "react": ">=16.9.0 < 17.0.0"
+  },
+  "devDependencies": {}
+}

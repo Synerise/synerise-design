@@ -77,11 +77,11 @@ export const PageHeaderDescription = styled.div`
 export const PageHeaderClamp = styled.div`
   ${macro.h600};
   line-height: 26px;
-  display: -webkit-box; // prefix required for line-clamp
-  -webkit-line-clamp: 1; // prefix required for line-clamp
-  -webkit-box-orient: vertical; // prefix required for line-clamp
+  display: flex;
   overflow: hidden;
+  align-items: center;
   color: ${(props): string => props.theme.palette['grey-800']};
+  align-items: center;
 
   .ds-icon {
     margin-left: 8px;
@@ -90,6 +90,13 @@ export const PageHeaderClamp = styled.div`
       fill: ${(props): string => props.theme.palette['grey-600']};
     }
   }
+`;
+
+export const PageHeaderTitle = styled.span`
+  display: block;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 `;
 
 export const PageHeaderTabsWrapper = styled.div`

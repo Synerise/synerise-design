@@ -3,13 +3,18 @@ import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import { fireEvent } from '@testing-library/react';
 
 import Slider from '../index';
+import { AllocationVariant } from '../Allocation/Allocation.types';
 
 const LABEL = 'label';
 const FIFTY = 50;
 const MAX = 100;
 const MIN = 0;
 const tipFormatter = (value: number) => <div className="tooltip-content">{value}</div>;
-
+const allocationVariants: AllocationVariant[] = [
+  { name: 'Variant A', percentage: 33, tabId: 1, tabLetter: 'A' },
+  { name: 'Variant B', percentage: 33, tabId: 2, tabLetter: 'B' },
+  { name: 'Variant C', percentage: 34, tabId: 3, tabLetter: 'C' },
+];
 describe('Slider', () => {
   it('should render with label', () => {
     // ARRANGE
@@ -80,7 +85,9 @@ describe('Slider', () => {
 
   it('should show tooltip on hover', () => {
     // ARRANGE
-    const { container } = renderWithProvider(<Slider max={MAX} min={MIN} value={FIFTY} tipFormatter={tipFormatter} />);
+    const { container } = renderWithProvider(
+      <Slider max={MAX} min={MIN} value={FIFTY} tipFormatter={tipFormatter} tooltipVisible />
+    );
 
     const sliderComponent = container.querySelector('.ant-slider');
     const sliderHandle = sliderComponent && sliderComponent.querySelector('.ant-slider-handle');
@@ -88,11 +95,10 @@ describe('Slider', () => {
     // ACT
     sliderHandle && fireEvent.mouseOver(sliderHandle);
 
-    const body = document.querySelector('body');
-    const tooltipContent = body && body.querySelector('.tooltip-content');
+    const tooltipContent = container.querySelector('.ant-tooltip-inner');
 
     // ASSERT
-    expect(tooltipContent && tooltipContent.innerHTML).toBe(`${FIFTY}`);
+    expect(tooltipContent && tooltipContent.textContent).toBe(`${FIFTY}`);
   });
 
   it('should handle onChange event', () => {
@@ -118,5 +124,35 @@ describe('Slider', () => {
 
     // ASSERT
     expect(onChange).toHaveBeenCalledTimes(2);
+  });
+  it('should render allocation labels', () => {
+    // ARRANGE
+    const { getByText } = renderWithProvider(
+      <Slider
+        type={'allocation'}
+        allocationConfig={{
+          variants: allocationVariants,
+        }}
+        tipFormatter={tipFormatter}
+      />
+    );
+    // ASSERT
+    allocationVariants.forEach(v => {
+      expect(getByText(v.tabLetter as string)).toBeTruthy();
+    });
+  });
+  it('should render (n-1) handles for (n) variants', () => {
+    // ARRANGE
+    const { container } = renderWithProvider(
+      <Slider
+        type={'allocation'}
+        allocationConfig={{
+          variants: allocationVariants,
+        }}
+        tipFormatter={tipFormatter}
+      />
+    );
+    // ASSERT
+    expect(container.querySelectorAll('.ant-slider-handle').length).toBe(allocationVariants.length - 1);
   });
 });

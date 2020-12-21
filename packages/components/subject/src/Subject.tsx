@@ -13,7 +13,7 @@ const Subject: React.FC<SubjectProps> = ({
   items,
   placeholder,
   selectItem,
-  showPreview,
+  onShowPreview,
   type = 'parameter',
   texts,
 }) => {
@@ -44,8 +44,8 @@ const Subject: React.FC<SubjectProps> = ({
           selectedItem={selectedItem}
         />
       </Dropdown>
-      {showPreview && (
-        <S.ShowPreviewButton onClick={showPreview} type="custom-color" mode="single-icon" color={color}>
+      {onShowPreview && (
+        <S.ShowPreviewButton onClick={onShowPreview} type="custom-color" mode="single-icon" color={color}>
           <Icon component={<ShowM />} />
         </S.ShowPreviewButton>
       )}

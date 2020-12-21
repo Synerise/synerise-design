@@ -2,6 +2,7 @@ import Step from 'Step/Step';
 import { CSSProperties } from 'styled-components';
 
 export type StepperOrientation = 'vertical' | 'horizontal' | string;
+export type StepperSize = 'small' | 'default' | string;
 
 export const ORIENTATIONS: {
   VERTICAL: StepperOrientation;
@@ -14,6 +15,7 @@ export const ORIENTATIONS: {
 export type StepperProps = {
   orientation?: StepperOrientation;
   style?: CSSProperties;
+  size?: StepperSize;
 };
 
 export type StepperSubComponents = { Step: typeof Step };

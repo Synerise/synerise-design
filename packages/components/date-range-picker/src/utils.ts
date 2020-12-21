@@ -2,8 +2,6 @@ import fnsMin from 'date-fns/min';
 import fnsMax from 'date-fns/max';
 import { legacyParse } from '@date-fns/upgrade/v2';
 import { IntlShape } from 'react-intl';
-import * as dayjs from 'dayjs';
-import * as utcPlugin from 'dayjs/plugin/utc';
 import { DateRange } from './date.types';
 import { ABSOLUTE, CUSTOM_RANGE_KEY, RELATIVE } from './constants';
 import ADD from './dateUtils/add';
@@ -95,17 +93,6 @@ export const getDefaultTexts = (intl: IntlShape, disableDefault?: boolean, texts
     years: texts?.years || getIntlMessage(`DS.DATE-RANGE-PICKER.YEARS`, intl, disableDefault),
     yesterday: texts?.yesterday || getIntlMessage(`DS.DATE-RANGE-PICKER.YESTERDAY`, intl, disableDefault),
   };
-};
-
-export const formatTime = (seconds: number, formatString = 'HH:mm:ss'): string => {
-  return (
-    dayjs
-      .extend(utcPlugin)
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-      // @ts-ignore
-      .utc(seconds * 1000)
-      .format(formatString)
-  );
 };
 
 export const DEFAULT_RANGE = normalizeRange({

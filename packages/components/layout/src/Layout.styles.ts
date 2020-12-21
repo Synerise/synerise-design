@@ -24,7 +24,7 @@ export const LayoutContent = styled.div`
 `;
 
 export const LayoutHeader = styled.div`
-  flex: 0;
+  flex: 1 1 auto;
   z-index: 1;
   box-shadow: 0 2px 6px ${(props): string => hexToRgba(props.theme.palette['grey-400'], 0.12)};
   border-bottom: 1px solid ${(props): string => props.theme.palette['grey-200']};
@@ -58,10 +58,12 @@ export const LayoutMain = styled.div`
   ${mediaQuery.to.small`min-width: 704px;`};
 `;
 
-export const LayoutMainInner = styled.div`
-  padding: 24px;
+export const LayoutMainInner = styled.div<{ fullPage: boolean }>`
   ${mediaQuery.to.medium`flex: 0 0 auto;`};
   ${mediaQuery.from.medium`padding: 24px;`};
+  && {
+    padding: ${(props): string => (props.fullPage ? '0' : '24px')};
+  }
 `;
 
 type SidebarButtonProps = {

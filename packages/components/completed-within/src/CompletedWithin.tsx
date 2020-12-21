@@ -43,17 +43,15 @@ const CompletedWithin: React.FC<CompletedWithinProps> = ({ value, onSetValue, te
   const [innerValue, setInnerValue] = React.useState<number | undefined>(value.value);
   const [innerPeriod, setInnerPeriod] = React.useState<Period>(value.period);
 
-  const hasValue = React.useMemo(() => {
-    return value.value !== undefined && value.value > 0;
-  }, [value]);
+  const hasValue = React.useMemo(() => value.value !== undefined && value.value > 0, [value]);
 
   const handleVisibleChange = React.useCallback(
     (visible: boolean) => {
-      if (!visible && hasValue && innerPeriod) {
+      if (!visible && innerValue && innerPeriod) {
         onSetValue({ value: innerValue, period: innerPeriod });
       }
     },
-    [hasValue, innerPeriod, innerValue, onSetValue]
+    [innerPeriod, innerValue, onSetValue]
   );
 
   const handleClear = React.useCallback(() => {

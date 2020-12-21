@@ -11,33 +11,41 @@ const ICONS = {
   NotificationsM: <NotificationsM />,
   WebhookM: <WebhookM />,
   VarTypeStringM: <VarTypeStringM />,
-  AggregateM: <AggregateM />
-}
+  AggregateM: <AggregateM />,
+};
 
 const DEFAULT_STATE = {
   selected: undefined,
-}
+};
 
 const stories = {
   default: withState(DEFAULT_STATE)(({ store }) => {
     return (
       <Subject
         texts={SUBJECT_TEXTS}
-        selectItem={(item) => store.set({selected: item})}
-        showPreview={boolean('Show preview button', true) && action('Show preview')}
+        selectItem={item => store.set({ selected: item })}
+        onShowPreview={boolean('Show preview button', true) && action('Show preview')}
         type={select('Select type', ['event', 'parameter', 'context'], 'event')}
         placeholder={text('Set placeholder', 'Choose event')}
-        iconPlaceholder={ICONS[select('Select placeholder icon', ['NotificationsM', 'WebhookM', 'VarTypeStringM', 'AggregateM'], 'NotificationsM')]}
+        iconPlaceholder={
+          ICONS[
+            select(
+              'Select placeholder icon',
+              ['NotificationsM', 'WebhookM', 'VarTypeStringM', 'AggregateM'],
+              'NotificationsM'
+            )
+          ]
+        }
         selectedItem={store.state.selected}
         items={SUBJECT_ITEMS}
       />
-    )
-  }
-)};
+    );
+  }),
+};
 
 export default {
-name: 'Filter/Subject',
+  name: 'Filter/Subject',
   config: {},
   stories,
   Component: Subject,
-}
+};

@@ -19,4 +19,5 @@ export type LayoutProps = {
   styles?: Style<React.CSSProperties>;
   leftOpened?: boolean;
   rightOpened?: boolean;
+  fullPage?: boolean;
 };

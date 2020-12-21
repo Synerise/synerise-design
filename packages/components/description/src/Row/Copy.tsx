@@ -1,6 +1,6 @@
 import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
 import Icon from '@synerise/ds-icon';
-import { DuplicateM } from '@synerise/ds-icon/dist/icons';
+import { CopyClipboardM } from '@synerise/ds-icon/dist/icons';
 import * as React from 'react';
 import * as copy from 'copy-to-clipboard';
 import { useIntl } from 'react-intl';
@@ -54,7 +54,7 @@ const Copy: React.FC<CopyProps> = ({ copyValue, texts }) => {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        <Icon component={<DuplicateM />} />
+        <Icon component={<CopyClipboardM />} />
       </S.Copyable>
     </Tooltip>
   );

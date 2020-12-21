@@ -8,6 +8,7 @@ import { BooleanM, CalendarM, HashM, ListM, TextM } from '@synerise/ds-icon/dist
 import * as S from './withTabs.styles';
 import { boolean, select } from '@storybook/addon-knobs';
 import { renderFooter, typesFooter } from '../index.stories';
+import { useOnClickOutside } from '@synerise/ds-utils';
 
 const tabsWithIcons = [
   {
@@ -70,10 +71,14 @@ const withTabs = () => {
   const selectedTabs = select('Set tabs type', tabsType, tabsType.icons);
   const footer = boolean('Set footer', false);
   const setTypeFooter = select('Set footer type', typesFooter, 'singleButton');
+  const ref = React.useRef<HTMLDivElement>(null);
+  useOnClickOutside(ref, () => {
+    setDropdownVisible(false);
+  });
   return {
     visible: dropdownVisible,
     overlay: (
-      <Dropdown.Wrapper style={{ width: '300px' }}>
+      <Dropdown.Wrapper ref={ref} style={{ width: '300px' }}>
         <Dropdown.SearchInput
           onSearchChange={filter}
           onClearInput={onClearInput}
