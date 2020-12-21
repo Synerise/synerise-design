@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subject@0.2.8...@synerise/ds-subject@0.3.0) (2020-12-21)
+
+
+### Features
+
+* **subject:** rename prop showPreviow to onShowPreview ([7ea1279](https://github.com/Synerise/synerise-design/commit/7ea1279ec7208bef7a26300a02393a385d988839))
+
+
+
+
+
 ## [0.2.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subject@0.2.7...@synerise/ds-subject@0.2.8) (2020-12-18)
 
 **Note:** Version bump only for package @synerise/ds-subject

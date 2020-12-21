@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.57](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.12.56...@synerise/ds-select@0.12.57) (2020-12-21)
+
+**Note:** Version bump only for package @synerise/ds-select
+
+
+
+
+
 ## [0.12.56](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.12.55...@synerise/ds-select@0.12.56) (2020-12-14)
 
 **Note:** Version bump only for package @synerise/ds-select

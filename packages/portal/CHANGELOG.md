@@ -3,6 +3,37 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.111.0](https://github.com/synerise/synerise-design/compare/portal@0.110.0...portal@0.111.0) (2020-12-21)
+
+
+### Bug Fixes
+
+* **completed-within:** fix selected value state ([f17fef1](https://github.com/synerise/synerise-design/commit/f17fef15afa8bba1869cffe616fb701ecc5db65d))
+* **dropdown:** add option to close dropdown by click outside in example1 and withTabs ([fa1a104](https://github.com/synerise/synerise-design/commit/fa1a1040553884eb1cc93c7520cfdea5041ad754))
+* **page-header:** cleanup ([c6f4b47](https://github.com/synerise/synerise-design/commit/c6f4b47cbc1da03f7e5fdfe66ddac0bd2e58f8a1))
+* **page-header:** fix page header with tooltip icon position ([912f877](https://github.com/synerise/synerise-design/commit/912f8773bfbfc1e87a53e6e8e0c0a7104c40b8c9))
+* **slider:** add styles to ant-slider-track and props disabled ([a53631a](https://github.com/synerise/synerise-design/commit/a53631a49bd9b34e2e5eb2c46e79ed3c34840b6b))
+* **slider:** hide first and last mark, add new prop ([66f6373](https://github.com/synerise/synerise-design/commit/66f6373cf60737d0decbac5d8d2c40837bac26ca))
+* **slider:** linter errors ([da0d7ad](https://github.com/synerise/synerise-design/commit/da0d7ad7ef8b00384236103346d2ee5e3800996c))
+* **slider:** new multivaluerange component ([e5765ce](https://github.com/synerise/synerise-design/commit/e5765ce46694a258ed8de0c9815010f10f3c760f))
+
+
+### Features
+
+* **context-selector:** add ContextSelector component ([2ca8b54](https://github.com/synerise/synerise-design/commit/2ca8b5407ecfaa393843bed55ab143becdfd94ea))
+* **logic:** add Logic component ([f59a330](https://github.com/synerise/synerise-design/commit/f59a330b63310cafa2c21223908bfb0f5029985f))
+* **logic:** add Matching component ([0b772bd](https://github.com/synerise/synerise-design/commit/0b772bde72df48ebf96841927e70b753a752462d))
+* **slider:** allocation variant added ([ff080a8](https://github.com/synerise/synerise-design/commit/ff080a8834f1f34a638dca8a1e07287dae5812dd))
+* **stepper:** add small mode ([6ec7181](https://github.com/synerise/synerise-design/commit/6ec7181886ccfd97f099aa63c10bcb66f9c84d39))
+* **subject:** rename prop showPreviow to onShowPreview ([7ea1279](https://github.com/synerise/synerise-design/commit/7ea1279ec7208bef7a26300a02393a385d988839))
+* **wizard:** add wizard component ([5e2a280](https://github.com/synerise/synerise-design/commit/5e2a280390c95e08b10fc3f404bfec2c5ad3b697))
+* **wizard:** add wizard component ([a787c0f](https://github.com/synerise/synerise-design/commit/a787c0f76fcaa56ecb86ddc8fecbbe16d4c07655))
+* **wizard:** styles improvements ([addfcae](https://github.com/synerise/synerise-design/commit/addfcae58413e55722c3b9195dab85aa98c3cfac))
+
+
+
+
+
 # [0.110.0](https://github.com/synerise/synerise-design/compare/portal@0.109.0...portal@0.110.0) (2020-12-14)
 
 

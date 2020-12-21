@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-description@0.2.4...@synerise/ds-description@0.2.5) (2020-12-21)
+
+
+### Bug Fixes
+
+* **description:** change icon to CopyClipboardM ([836f45c](https://github.com/Synerise/synerise-design/commit/836f45c2687a7d0feb97d69629618e472f04adf8))
+* **description:** change icon to CopyClipboardM ([7506085](https://github.com/Synerise/synerise-design/commit/750608506268ea42e5c5e6ae1bd1c6802e4e16f4))
+
+
+
+
+
 ## [0.2.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-description@0.2.3...@synerise/ds-description@0.2.4) (2020-12-14)
 
 **Note:** Version bump only for package @synerise/ds-description

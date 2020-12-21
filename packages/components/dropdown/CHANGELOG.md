@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.7](https://github.com/synerise/synerise-design/compare/@synerise/ds-dropdown@0.13.6...@synerise/ds-dropdown@0.13.7) (2020-12-21)
+
+
+### Bug Fixes
+
+* **dropdown:** fix TextTrigger props ([111d563](https://github.com/synerise/synerise-design/commit/111d56357540f044becfb1d1eb06f4cf8f75ae29))
+
+
+
+
+
 ## [0.13.6](https://github.com/synerise/synerise-design/compare/@synerise/ds-dropdown@0.13.5...@synerise/ds-dropdown@0.13.6) (2020-12-15)
 
 

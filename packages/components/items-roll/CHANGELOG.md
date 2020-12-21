@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.4.5...@synerise/ds-items-roll@0.4.6) (2020-12-21)
+
+
+### Bug Fixes
+
+* **items-roll:** remove icon render changes ([903e68e](https://github.com/Synerise/synerise-design/commit/903e68ee7f1846672712d1d5e7d1b404c7e4f483))
+
+
+
+
+
 ## [0.4.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.4.4...@synerise/ds-items-roll@0.4.5) (2020-12-18)
 
 
