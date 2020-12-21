@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.46](https://github.com/Synerise/synerise-design/compare/@synerise/ds-progress-bar@0.4.45...@synerise/ds-progress-bar@0.4.46) (2020-12-21)
+
+
+### Bug Fixes
+
+* **slider:** fix styles with props disabled ([8747887](https://github.com/Synerise/synerise-design/commit/8747887a6a4f3a319853b48afe79d058838806ea))
+
+
+
+
+
 ## [0.4.45](https://github.com/Synerise/synerise-design/compare/@synerise/ds-progress-bar@0.4.44...@synerise/ds-progress-bar@0.4.45) (2020-12-14)
 
 **Note:** Version bump only for package @synerise/ds-progress-bar

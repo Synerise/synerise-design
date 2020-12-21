@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-layout@0.6.17...@synerise/ds-layout@0.7.0) (2020-12-21)
+
+
+### Features
+
+* **wizard:** add wizard component ([5e2a280](https://github.com/synerise/synerise-design/commit/5e2a280390c95e08b10fc3f404bfec2c5ad3b697))
+
+
+
+
+
 ## [0.6.17](https://github.com/synerise/synerise-design/compare/@synerise/ds-layout@0.6.16...@synerise/ds-layout@0.6.17) (2020-12-14)
 
 **Note:** Version bump only for package @synerise/ds-layout

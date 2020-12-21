@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.9](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.8.8...docs@0.8.9) (2020-12-21)
+
+
+### Bug Fixes
+
+* **items-roll:** remove icon render changes ([903e68e](https://gitlab.synerise.com/Frontend/synerise-design/commit/903e68ee7f1846672712d1d5e7d1b404c7e4f483))
+
+
+
+
+
 ## [0.8.8](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.8.7...docs@0.8.8) (2020-12-18)
 
 **Note:** Version bump only for package docs

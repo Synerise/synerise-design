@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-slider@0.7.70...@synerise/ds-slider@0.8.0) (2020-12-21)
+
+
+### Bug Fixes
+
+* **slider:** add styles to ant-slider-track and props disabled ([a53631a](https://github.com/Synerise/synerise-design/commit/a53631a49bd9b34e2e5eb2c46e79ed3c34840b6b))
+* **slider:** fix styles with props disabled ([d2615f2](https://github.com/Synerise/synerise-design/commit/d2615f2e0e2b9bd603380d755940e714f53edda0))
+* **slider:** fix styles with props disabled ([a1d81b5](https://github.com/Synerise/synerise-design/commit/a1d81b5d270e23f9fac32d8f45b80c22121d8fae))
+* **slider:** hide first and last mark, add new prop ([66f6373](https://github.com/Synerise/synerise-design/commit/66f6373cf60737d0decbac5d8d2c40837bac26ca))
+* **slider:** linter errors ([da0d7ad](https://github.com/Synerise/synerise-design/commit/da0d7ad7ef8b00384236103346d2ee5e3800996c))
+* **slider:** new multivaluerange component ([e5765ce](https://github.com/Synerise/synerise-design/commit/e5765ce46694a258ed8de0c9815010f10f3c760f))
+* **slider:** use intl to provide translation ([0e6485f](https://github.com/Synerise/synerise-design/commit/0e6485f74cfe260d279892d9ca9563935807a16e))
+
+
+### Features
+
+* **slider:** allocation variant added ([ff080a8](https://github.com/Synerise/synerise-design/commit/ff080a8834f1f34a638dca8a1e07287dae5812dd))
+
+
+
+
+
 ## [0.7.70](https://github.com/Synerise/synerise-design/compare/@synerise/ds-slider@0.7.69...@synerise/ds-slider@0.7.70) (2020-12-14)
 
 **Note:** Version bump only for package @synerise/ds-slider

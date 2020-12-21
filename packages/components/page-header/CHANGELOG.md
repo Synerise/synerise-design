@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.12.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-page-header@0.11.5...@synerise/ds-page-header@0.12.0) (2020-12-21)
+
+
+### Bug Fixes
+
+* **page-header:** fix page header with tooltip icon position ([912f877](https://github.com/synerise/synerise-design/commit/912f8773bfbfc1e87a53e6e8e0c0a7104c40b8c9))
+
+
+### Features
+
+* **wizard:** add wizard component ([a787c0f](https://github.com/synerise/synerise-design/commit/a787c0f76fcaa56ecb86ddc8fecbbe16d4c07655))
+
+
+
+
+
 ## [0.11.5](https://github.com/synerise/synerise-design/compare/@synerise/ds-page-header@0.11.4...@synerise/ds-page-header@0.11.5) (2020-12-18)
 
 **Note:** Version bump only for package @synerise/ds-page-header

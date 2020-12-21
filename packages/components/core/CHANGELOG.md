@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.25.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.24.0...@synerise/ds-core@0.25.0) (2020-12-21)
+
+
+### Features
+
+* **logic:** add Logic component ([f59a330](https://github.com/synerise/synerise-design/commit/f59a330b63310cafa2c21223908bfb0f5029985f))
+* **logic:** add Matching component ([0b772bd](https://github.com/synerise/synerise-design/commit/0b772bde72df48ebf96841927e70b753a752462d))
+* **wizard:** add wizard component ([5e2a280](https://github.com/synerise/synerise-design/commit/5e2a280390c95e08b10fc3f404bfec2c5ad3b697))
+
+
+
+
+
 # [0.24.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.23.0...@synerise/ds-core@0.24.0) (2020-12-14)
 
 

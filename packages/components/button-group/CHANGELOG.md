@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.76](https://github.com/Synerise/synerise-design/compare/@synerise/ds-button-group@0.5.75...@synerise/ds-button-group@0.5.76) (2020-12-21)
+
+
+### Bug Fixes
+
+* **button-group:** button group style cleanup - split mode ([bfd2e11](https://github.com/Synerise/synerise-design/commit/bfd2e11fe7914c3c464db16e028b993de0b8c661))
+* **button-group:** fix style ([8c265f7](https://github.com/Synerise/synerise-design/commit/8c265f791ac97d61c8f197681d477c22cd40c8e7))
+* **button-group:** fix style add all border-color to transparent ([b2cd51e](https://github.com/Synerise/synerise-design/commit/b2cd51edcf39c5eb6ef09606bb0141bb8a5f04dc))
+* **button-group:** fix style add one class to all options of split button ([1601518](https://github.com/Synerise/synerise-design/commit/1601518add4ad772f355b43946540fc7d23a7cfc))
+* **button-group:** fix style to split button ([90c9656](https://github.com/Synerise/synerise-design/commit/90c9656e22be14831bd155fda7576c01a5e54f19))
+* **button-group:** fix styles to split button ([6162eb8](https://github.com/Synerise/synerise-design/commit/6162eb8c760c411206a46ae9d01112a9c1e72f2c))
+
+
+
+
+
 ## [0.5.75](https://github.com/Synerise/synerise-design/compare/@synerise/ds-button-group@0.5.74...@synerise/ds-button-group@0.5.75) (2020-12-14)
 
 **Note:** Version bump only for package @synerise/ds-button-group
