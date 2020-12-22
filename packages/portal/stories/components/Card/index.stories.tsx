@@ -4,9 +4,10 @@ import { text, select, number, boolean } from '@storybook/addon-knobs';
 import Button from '@synerise/ds-button';
 import Card, { CardGroup, CardBadge } from '@synerise/ds-card';
 import Icon from '@synerise/ds-icon';
-import { CheckS,Check3M, FilterM, SearchM, UserM, WarningFillM } from '@synerise/ds-icon/dist/icons';
+import { CheckS, Check3M, FilterM, SearchM, UserM, WarningFillM } from '@synerise/ds-icon/dist/icons';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import * as S from './stories.styles';
+import { Backgrounds, CardProps } from '@synerise/ds-card/dist/Card/Card.types';
 const backgrounds = {
   White: 'white',
   'White with shadow': 'white-shadow',
@@ -28,42 +29,51 @@ const init = () => {
     compactHeader: boolean('Compact header', false),
     headerBorderBottom: boolean('Header with border bottom', false),
     content: text('Content', 'Example of card content'),
-    background: select('Background style', backgrounds, 'white-shadow'),
-    showSideChildrenWhenHeaderHidden: boolean('Set Footer Active',false),
+    background: select('Background style', backgrounds, 'white-shadow') as Backgrounds,
+    showSideChildrenWhenHeaderHidden: boolean('Set Footer Active', false),
   };
   return { props };
 };
 
-const renderCard = (props,hideContentInitial= false) => {
-  const IconComponent =  <Check3M/>;
-  const [hideContent,setHideContent] = React.useState(hideContentInitial)
-
+const renderCard = (
+  props: CardProps & { withIcon?: string | boolean },
+  hideContentInitial = false,
+  onExpansionChange?: (expanded: boolean) => void
+) => {
+  const IconComponent = <Check3M />;
+  const [hideContent, setHideContent] = React.useState(hideContentInitial);
+  React.useEffect(() => {
+    setHideContent(hideContentInitial);
+  }, [hideContentInitial]);
   return (
-      <Card
-        lively={props.lively}
-        disabled={props.disabled}
-        raised={props.raised}
-        withHeader={props.withHeader}
-        title={props.title}
-        description={props.description}
-        icon={props.icon || (props.withIcon && IconComponent )}
-        iconColor={props.iconColor}
-        compactHeader={props.compactHeader}
-        onHeaderClick={()=>{setHideContent(!hideContent)}}
-        headerSideChildren={props.headerSideChildren}
-        headerBorderBottom={props.headerBorderBottom}
-        background={props.background}
-        hideContent={props.hideContent && hideContent}
-        showSideChildrenWhenHeaderHidden={props.showSideChildrenWhenHeaderHidden}
-      >
-         <div style={{ width: '100%', height: 300 }}>{props.content}</div>
-      </Card>
+    <Card
+      lively={props.lively}
+      disabled={props.disabled}
+      raised={props.raised}
+      withHeader={props.withHeader}
+      title={props.title}
+      description={props.description}
+      icon={props.icon || (props.withIcon && IconComponent)}
+      iconColor={props.iconColor}
+      compactHeader={props.compactHeader}
+      onHeaderClick={() => {
+        onExpansionChange && onExpansionChange(!hideContent);
+        setHideContent(!hideContent);
+      }}
+      headerSideChildren={props.headerSideChildren}
+      headerBorderBottom={props.headerBorderBottom}
+      background={props.background}
+      hideContent={props.hideContent && hideContent}
+      showSideChildrenWhenHeaderHidden={props.showSideChildrenWhenHeaderHidden}
+    >
+      <div style={{ width: '100%', height: 300 }}>{props.content}</div>
+    </Card>
   );
 };
 
 const stories = {
   single: () => {
-    const {props}  = init()
+    const { props } = init();
     return (
       <div
         style={{
@@ -78,14 +88,19 @@ const stories = {
       >
         <h3>Single card</h3>
         <div style={{ paddingTop: 12, width: '100%' }}>
-          {renderCard({ ...props,showSideChildrenWhenHeaderHidden: false, icon: <CardBadge icon={<CheckS />} status="success" /> })}
+          {renderCard({
+            ...props,
+            showSideChildrenWhenHeaderHidden: false,
+            icon: <CardBadge icon={<CheckS />} status="success" />,
+          })}
         </div>
       </div>
     );
   },
   headers: () => {
     const { props } = init();
-
+    const [forceCollapseOnApply1, setCollapseOnApply1] = React.useState(false);
+    const [forceCollapseOnApply2, setCollapseOnApply2] = React.useState(false);
 
     return (
       <div
@@ -98,241 +113,299 @@ const stories = {
           left: 0,
         }}
       >
-
         <div style={{ padding: '24px' }}>
           <h3>Variants of card header</h3>
           <S.HeaderWrapper>
-            {renderCard({
-              ...props,
-              lively: true,
-              description: null,
-              withIcon: false,
-              headerSideChildren: null,
-              compactHeader: false,
-              headerBorderBottom: false,
-            },false)}
+            {renderCard(
+              {
+                ...props,
+                lively: true,
+                description: null,
+                withIcon: false,
+                headerSideChildren: null,
+                compactHeader: false,
+                headerBorderBottom: false,
+              },
+              false
+            )}
           </S.HeaderWrapper>
           <S.HeaderWrapper>
-            {renderCard({
-              ...props,
-              lively: true,
-              description: null,
-              withIcon: false,
-              compactHeader: false,
-              headerBorderBottom: false,
-              headerSideChildren: (
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gridColumnGap: '8px' }}>
-                  <Button type="ghost">Cancel</Button>
-                  <Button type="primary">Apply</Button>
-                </div>
-              ),
-            },false)}
-          </S.HeaderWrapper>
-
-          <S.HeaderWrapper>
-            {renderCard({
-              ...props,
-              lively: true,
-              withIcon: false,
-              compactHeader: true,
-              headerBorderBottom: false,
-              headerSideChildren: (
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gridColumnGap: '8px' }}>
-                  <Button type="ghost" mode="single-icon">
-                    <Icon component={<FilterM />} />{' '}
-                  </Button>
-                  <Button type="ghost" mode="single-icon">
-                    <Icon component={<SearchM />} />{' '}`
-                  </Button>
-                </div>
-              ),
-              showSideChildrenWhenHeaderHidden: false,
-            },false)}
-          </S.HeaderWrapper>
-
-          <S.HeaderWrapper>
-            {renderCard({
-              ...props,
-              lively: true,
-              withIcon: false,
-              compactHeader: true,
-              headerBorderBottom: false,
-              icon: <CardBadge icon={<CheckS />} status="success" />,
-              headerSideChildren: (
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gridColumnGap: '8px' }}>
-                  <Button type="ghost" mode="single-icon">
-                    <Icon component={<FilterM />} />{' '}
-                  </Button>
-                  <Button type="ghost" mode="single-icon">
-                    <Icon component={<SearchM />} />{' '}
-                  </Button>
-                </div>
-              ),
-              showSideChildrenWhenHeaderHidden: false,
-            },false)}
-          </S.HeaderWrapper>
-
-          <S.HeaderWrapper>
-            {renderCard({
-              ...props,
-              lively: true,
-              withIcon: false,
-              description: null,
-              compactHeader: true,
-              headerBorderBottom: true,
-              showSideChildrenWhenHeaderHidden: false,
-            },false)}
-          </S.HeaderWrapper>
-
-          <S.HeaderWrapper>
-            {renderCard({
-              ...props,
-              lively: true,
-              compactHeader: false,
-              icon: <CardBadge icon={<CheckS />} />,
-              headerBorderBottom: false,
-              headerSideChildren: (
-                <div>
-                  <Button>Define</Button>
-                </div>
-              ),
-            },false)}
-          </S.HeaderWrapper>
-          <S.HeaderWrapper>
-            {renderCard({
-              ...props,
-              lively: true,
-              compactHeader: false,
-              icon: <CardBadge icon={<CheckS />} />,
-              headerBorderBottom: false,
-              headerSideChildren: (
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gridColumnGap: 8 }}>
-                  <Button type="ghost">Cancel</Button>
-                  <Button type="custom-color" color="green">
-                    Apply
-                  </Button>
-                </div>
-              ),
-            },false)}
-          </S.HeaderWrapper>
-          <S.HeaderWrapper>
-            {renderCard({
-              ...props,
-              lively: true,
-              compactHeader: false,
-              icon: <CardBadge icon={<CheckS />} />,
-              headerBorderBottom: false,
-              headerSideChildren: (
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gridColumnGap: 8 }}>
-                  <Button type="custom-color" color={'yellow'}>
-                    Skip step
-                  </Button>
-                  <Button>Define</Button>
-                </div>
-              ),
-            },false)}
-          </S.HeaderWrapper>
-
-          <S.HeaderWrapper>
-            {renderCard({
-              ...props,
-              lively: true,
-              compactHeader: false,
-              icon: <CardBadge icon={<CheckS />} status="success" />,
-              headerBorderBottom: false,
-              headerSideChildren: (
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr', gridColumnGap: 8 }}>
-                  <Button>Change</Button>
-                </div>
-              ),
-            },false)}
-          </S.HeaderWrapper>
-          <S.HeaderWrapper>
-            {renderCard({
-              ...props,
-              lively: true,
-              compactHeader: false,
-              disabled: true,
-              icon: <CardBadge icon={<CheckS />} />,
-              headerBorderBottom: false,
-              headerSideChildren: (
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr', gridColumnGap: 8 }}>
-                  <Button>Change</Button>
-                </div>
-              ),
-              showSideChildrenWhenHeaderHidden: false,
-            },false)}
-          </S.HeaderWrapper>
-
-          <S.HeaderWrapper>
-            {renderCard({
-              ...props,
-              lively: true,
-              compactHeader: false,
-              withIcon: 'UserM',
-              iconColor: theme.palette['grey-400'],
-              headerBorderBottom: false,
-              headerSideChildren: (
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr', gridColumnGap: 8 }}>
-                  <Button>Change</Button>
-                </div>
-              ),
-            },false)}
-          </S.HeaderWrapper>
-          <S.HeaderWrapper>
-            {renderCard({
-              ...props,
-              lively: false,
-              raised: false,
-              compactHeader: false,
-              withIcon: 'UserM',
-              iconColor: theme.palette['grey-400'],
-              headerBorderBottom: false,
-              headerSideChildren: (
-                <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gridColumnGap: 8 }}>
-                  <div style={{ display: 'flex', alignItems: 'center' }}>
-                    <Icon
-                      component={<WarningFillM />}
-                      color={theme.palette['yellow-600']}
-                      style={{ marginRight: '4px' }}
-                    />
-                    <span style={{ fontWeight: 500, color: theme.palette['yellow-600'] }}>Uncompleted</span>
+            {renderCard(
+              {
+                ...props,
+                lively: true,
+                description: null,
+                withIcon: false,
+                compactHeader: false,
+                headerBorderBottom: false,
+                onHeaderClick: e => {
+                  setCollapseOnApply1(!e);
+                },
+                headerSideChildren: (
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gridColumnGap: '8px' }}>
+                    <Button type="ghost">Cancel</Button>
+                    <Button
+                      type="primary"
+                      onClick={() => {
+                        setCollapseOnApply1(true);
+                      }}
+                    >
+                      Apply
+                    </Button>
                   </div>
-                  <Button type="custom-color" color="green" disabled>
-                    Apply
-                  </Button>
-                </div>
-              ),
-              showSideChildrenWhenHeaderHidden: false,
-            } ,false)}
+                ),
+              },
+              forceCollapseOnApply1,
+              expanded => setCollapseOnApply1(expanded)
+            )}
+          </S.HeaderWrapper>
+
+          <S.HeaderWrapper>
+            {renderCard(
+              {
+                ...props,
+                lively: true,
+                withIcon: false,
+                compactHeader: true,
+                headerBorderBottom: false,
+                headerSideChildren: (
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gridColumnGap: '8px' }}>
+                    <Button type="ghost" mode="single-icon">
+                      <Icon component={<FilterM />} />{' '}
+                    </Button>
+                    <Button type="ghost" mode="single-icon">
+                      <Icon component={<SearchM />} /> `
+                    </Button>
+                  </div>
+                ),
+                showSideChildrenWhenHeaderHidden: false,
+              },
+              false
+            )}
+          </S.HeaderWrapper>
+
+          <S.HeaderWrapper>
+            {renderCard(
+              {
+                ...props,
+                lively: true,
+                withIcon: false,
+                compactHeader: true,
+                headerBorderBottom: false,
+                icon: <CardBadge icon={<CheckS />} status="success" />,
+                headerSideChildren: (
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gridColumnGap: '8px' }}>
+                    <Button type="ghost" mode="single-icon">
+                      <Icon component={<FilterM />} />{' '}
+                    </Button>
+                    <Button type="ghost" mode="single-icon">
+                      <Icon component={<SearchM />} />{' '}
+                    </Button>
+                  </div>
+                ),
+                showSideChildrenWhenHeaderHidden: false,
+              },
+              false
+            )}
+          </S.HeaderWrapper>
+
+          <S.HeaderWrapper>
+            {renderCard(
+              {
+                ...props,
+                lively: true,
+                withIcon: false,
+                description: null,
+                compactHeader: true,
+                headerBorderBottom: true,
+                showSideChildrenWhenHeaderHidden: false,
+              },
+              false
+            )}
+          </S.HeaderWrapper>
+
+          <S.HeaderWrapper>
+            {renderCard(
+              {
+                ...props,
+                lively: true,
+                compactHeader: false,
+                icon: <CardBadge icon={<CheckS />} />,
+                headerBorderBottom: false,
+                headerSideChildren: (
+                  <div>
+                    <Button>Define</Button>
+                  </div>
+                ),
+              },
+              false
+            )}
           </S.HeaderWrapper>
           <S.HeaderWrapper>
-            {renderCard({
-              ...props,
-              lively: false,
-              raised: false,
-              description: null,
-              compactHeader: false,
-              icon: <Icon component={<UserM />}  style={{marginTop:'3px'}}/>,
-              iconColor: theme.palette['grey-400'],
-              headerBorderBottom: false,
-              headerSideChildren: (
-                <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gridColumnGap: 8 }}>
-                  <div style={{ display: 'flex', alignItems: 'center' }}>
-                    <Icon
-                      component={<WarningFillM />}
-                      color={theme.palette['yellow-600']}
-                      style={{ marginRight: '4px'}}
-                    />
-                    <span style={{ fontWeight: 500, color: theme.palette['yellow-600'] }}>Uncompleted</span>
+            {renderCard(
+              {
+                ...props,
+                lively: true,
+                compactHeader: false,
+                icon: <CardBadge icon={<CheckS />} />,
+                headerBorderBottom: false,
+                headerSideChildren: (
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gridColumnGap: 8 }}>
+                    <Button type="ghost">Cancel</Button>
+                    <Button
+                      type="custom-color"
+                      color="green"
+                      onClick={() => {
+                        setCollapseOnApply2(true);
+                      }}
+                    >
+                      Apply
+                    </Button>
                   </div>
-                  <Button type="custom-color" color="green" disabled>
-                    Apply
-                  </Button>
-                </div>
-              ),
-              showSideChildrenWhenHeaderHidden: false,
-            }, false)}
+                ),
+              },
+              forceCollapseOnApply2,
+              expanded => {
+                setCollapseOnApply2(expanded);
+              }
+            )}
+          </S.HeaderWrapper>
+          <S.HeaderWrapper>
+            {renderCard(
+              {
+                ...props,
+                lively: true,
+                compactHeader: false,
+                icon: <CardBadge icon={<CheckS />} />,
+                headerBorderBottom: false,
+                headerSideChildren: (
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gridColumnGap: 8 }}>
+                    <Button type="custom-color" color={'yellow'}>
+                      Skip step
+                    </Button>
+                    <Button>Define</Button>
+                  </div>
+                ),
+              },
+              false
+            )}
+          </S.HeaderWrapper>
+
+          <S.HeaderWrapper>
+            {renderCard(
+              {
+                ...props,
+                lively: true,
+                compactHeader: false,
+                icon: <CardBadge icon={<CheckS />} status="success" />,
+                headerBorderBottom: false,
+                headerSideChildren: (
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr', gridColumnGap: 8 }}>
+                    <Button>Change</Button>
+                  </div>
+                ),
+              },
+              false
+            )}
+          </S.HeaderWrapper>
+          <S.HeaderWrapper>
+            {renderCard(
+              {
+                ...props,
+                lively: true,
+                compactHeader: false,
+                disabled: true,
+                icon: <CardBadge icon={<CheckS />} />,
+                headerBorderBottom: false,
+                headerSideChildren: (
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr', gridColumnGap: 8 }}>
+                    <Button>Change</Button>
+                  </div>
+                ),
+                showSideChildrenWhenHeaderHidden: false,
+              },
+              false
+            )}
+          </S.HeaderWrapper>
+
+          <S.HeaderWrapper>
+            {renderCard(
+              {
+                ...props,
+                lively: true,
+                compactHeader: false,
+                withIcon: 'UserM',
+                iconColor: theme.palette['grey-400'],
+                headerBorderBottom: false,
+                headerSideChildren: (
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr', gridColumnGap: 8 }}>
+                    <Button>Change</Button>
+                  </div>
+                ),
+              },
+              false
+            )}
+          </S.HeaderWrapper>
+          <S.HeaderWrapper>
+            {renderCard(
+              {
+                ...props,
+                lively: false,
+                raised: false,
+                compactHeader: false,
+                withIcon: 'UserM',
+                iconColor: theme.palette['grey-400'],
+                headerBorderBottom: false,
+                headerSideChildren: (
+                  <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gridColumnGap: 8 }}>
+                    <div style={{ display: 'flex', alignItems: 'center' }}>
+                      <Icon
+                        component={<WarningFillM />}
+                        color={theme.palette['yellow-600']}
+                        style={{ marginRight: '4px' }}
+                      />
+                      <span style={{ fontWeight: 500, color: theme.palette['yellow-600'] }}>Uncompleted</span>
+                    </div>
+                    <Button type="custom-color" color="green" disabled>
+                      Apply
+                    </Button>
+                  </div>
+                ),
+                showSideChildrenWhenHeaderHidden: false,
+              },
+              false
+            )}
+          </S.HeaderWrapper>
+          <S.HeaderWrapper>
+            {renderCard(
+              {
+                ...props,
+                lively: false,
+                raised: false,
+                description: null,
+                compactHeader: false,
+                icon: <Icon component={<UserM />} style={{ marginTop: '3px' }} />,
+                iconColor: theme.palette['grey-400'],
+                headerBorderBottom: false,
+                headerSideChildren: (
+                  <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gridColumnGap: 8 }}>
+                    <div style={{ display: 'flex', alignItems: 'center' }}>
+                      <Icon
+                        component={<WarningFillM />}
+                        color={theme.palette['yellow-600']}
+                        style={{ marginRight: '4px' }}
+                      />
+                      <span style={{ fontWeight: 500, color: theme.palette['yellow-600'] }}>Uncompleted</span>
+                    </div>
+                    <Button type="custom-color" color="green" disabled>
+                      Apply
+                    </Button>
+                  </div>
+                ),
+                showSideChildrenWhenHeaderHidden: false,
+              },
+              false
+            )}
           </S.HeaderWrapper>
         </div>
       </div>
@@ -348,7 +421,7 @@ const stories = {
         <h3>Card Group</h3>
         <div style={{ padding: '12px 0', width: '100%' }}>
           <CardGroup columns={rowItems}>
-            {range(0, itemsInGroup).map((i) => (
+            {range(0, itemsInGroup).map(i => (
               <div key={i}>{renderCard({ ...props, icon: <CardBadge icon={<CheckS />} /> })}</div>
             ))}
           </CardGroup>
