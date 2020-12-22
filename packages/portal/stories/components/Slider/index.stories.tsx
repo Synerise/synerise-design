@@ -62,7 +62,7 @@ const tipFormatter = (value: string) => <div className="Tip">{value}%</div>;
 const Wrapper = (props: any) => {
   const [value, setValue] = React.useState(50);
   const [rangeValue, setRangeValue] = React.useState([-50, 50]);
-  const hasMarks = boolean('Set Marks', false);
+  const hasMarks = boolean('Set scale', false);
   const descriptionMessage = text('Description', 'Description');
   const hasDescription = boolean('Set Description', false);
   const [tracksColor, setTracksColor] = React.useState(tracksColorMap);
@@ -120,7 +120,7 @@ const stories = {
       label={text('Label', 'Label')}
       disabled={boolean('Disabled', false)}
       reverse={boolean('Reverse', false)}
-      included={boolean('Included', true)}
+      included={boolean('Set area active', true)}
       inverted={boolean('Inverted', false)}
       max={number('Max', 100)}
       min={number('Min', 0)}
@@ -159,7 +159,7 @@ const stories = {
       label={text('Label', 'Label')}
       disabled={boolean('Disabled', false)}
       dots={boolean('Dots', false)}
-      included={boolean('Included', true)}
+      included={boolean('Set area active', true)}
       inverted={boolean('Inverted', false)}
       max={number('Max', 100)}
       min={number('Min', 0)}

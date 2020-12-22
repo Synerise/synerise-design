@@ -53,6 +53,7 @@ const Slider: React.FC<Props> = props => {
         useColorPalette={useColorPalette}
         thick={thick}
         disabled={disabled}
+        description={description}
         hideMinAndMaxMarks={hideMinAndMaxMarks}
         tipFormatter={(value): React.ReactNode => (
           <S.DescriptionWrapper>

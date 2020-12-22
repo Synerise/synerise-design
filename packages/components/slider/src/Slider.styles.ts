@@ -117,5 +117,16 @@ export const AntdSlider = styled((Slider as any) as ComponentType<Omit<SliderPro
   ${(props): FlattenSimpleInterpolation => applyTooltipStyles(props)}
   .ant-slider-handle {
     z-index: 99;
+    margin-top: ${(props): string => (props.thick ? '-7px' : '-8px')};
+    
+  }
+  .ant-slider-dot {
+  margin-top: ${(props): string => (props.thick ? '0px' : '-1px')};
+  }
+  .ant-slider-dot:active{
+  background-color: ${(props): string => (props.tracksColorMap)};
+  }
+   &&&.ant-slider {
+  margin-top: ${(props): string => (props.description ? '38px' : '24px')} ; 
   }
 `;
