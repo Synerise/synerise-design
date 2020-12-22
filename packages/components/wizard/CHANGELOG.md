@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-wizard@0.1.1...@synerise/ds-wizard@0.1.2) (2020-12-22)
+
+
+### Bug Fixes
+
+* **wizard:** add overflow visible to the layout header ([c1467b7](https://github.com/Synerise/synerise-design/commit/c1467b7c067bb4cc08a58e50e53acedc089bbec9))
+
+
+
+
+
 ## [0.1.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-wizard@0.1.0...@synerise/ds-wizard@0.1.1) (2020-12-21)
 
 **Note:** Version bump only for package @synerise/ds-wizard
