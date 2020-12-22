@@ -86,12 +86,18 @@ const createTracksStyles = (props: ThemeProps, colorsMap: ColorMapProps): Flatte
       .ant-slider-track-${index + 11} {
         background-color: ${props.theme.palette[color]};
       }
-      
+      .ant-slider-dot-active${index + 1},
+      .ant-slider-dot-active${index + 11} {
+        background-color: ${props.theme.palette[color]};
+      }
   `
   );
   const style = styles.join('');
   return css`
     .ant-slider-track {
+      background-color: ${props.theme.palette[colorsMap[0]]};
+    }
+    .ant-slider-dot-active {
       background-color: ${props.theme.palette[colorsMap[0]]};
     }
     ${style}
@@ -118,15 +124,11 @@ export const AntdSlider = styled((Slider as any) as ComponentType<Omit<SliderPro
   .ant-slider-handle {
     z-index: 99;
     margin-top: ${(props): string => (props.thick ? '-7px' : '-8px')};
-    
   }
   .ant-slider-dot {
-  margin-top: ${(props): string => (props.thick ? '0px' : '-1px')};
+    margin-top: ${(props): string => (props.thick ? '0px' : '-1px')};
   }
-  .ant-slider-dot:active{
-  background-color: ${(props): string => (props.tracksColorMap)};
-  }
-   &&&.ant-slider {
-  margin-top: ${(props): string => (props.description ? '38px' : '24px')} ; 
+  &&&.ant-slider {
+    margin-top: ${(props): string => (props.description ? '38px' : '24px')};
   }
 `;

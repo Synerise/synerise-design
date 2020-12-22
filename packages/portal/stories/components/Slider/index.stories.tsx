@@ -131,7 +131,7 @@ const stories = {
       onAfterChange={action('onAfterChange')}
       tooltipPlacement={'bottom'}
       getTooltipPopupContainer={container => container}
-      useColorPalette={boolean('UseColorPalette', false)}
+      useColorPalette={true}
       tooltipVisible={boolean('Value visible', false)}
       thick={boolean('Set thick', false)}
     />
@@ -169,7 +169,7 @@ const stories = {
       onAfterChange={action('onAfterChange')}
       getTooltipPopupContainer={container => container}
       tooltipPlacement={select('Placement', placements, 'bottom')}
-      useColorPalette={boolean('UseColorPalette', true)}
+      useColorPalette={true}
       thick={boolean('Set thick', false)}
       tooltipVisible={boolean('Value visible', false)}
       tracksColorMap={tracksColorMap}
