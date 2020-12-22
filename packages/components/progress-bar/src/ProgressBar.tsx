@@ -1,7 +1,5 @@
 import * as React from 'react';
-import Progress  from 'antd/lib/progress';
-import '@synerise/ds-core/dist/js/style';
-import './style/index.less';
+import * as S from './ProgressBar.styles';
 import { ProgressProps } from './ProgressBar.types';
 
 class ProgressBar extends React.PureComponent<ProgressProps> {
@@ -15,18 +13,39 @@ class ProgressBar extends React.PureComponent<ProgressProps> {
   };
 
   render(): React.ReactNode {
-    const { showLabel, description, amount, percent, type, status, strokeColor, strokeLinecap, className } = this.props;
+    const {
+      showLabel,
+      description,
+      amount,
+      percent,
+      type,
+      status,
+      strokeColor,
+      strokeLinecap,
+      className,
+      thick,
+      labelFormatter,
+      containerStyles,
+    } = this.props;
     return (
-      <div className={`${className || ''} progress-bar-container`} data-testid="progress-bar-container">
-        {showLabel && (
-          <span className="progress-bar-label" data-testid="progress-bar-label">
-            <strong data-testid="progress-bar-max-value">{amount}</strong>
-            <span data-testid="progress-bar-max-percent">{` (${percent}%)`}</span>
-          </span>
-        )}
-        <Progress
+      <S.Container
+        className={`${className || ''} progress-bar-container`}
+        data-testid="progress-bar-container"
+        style={containerStyles}
+      >
+        {showLabel &&
+          (labelFormatter ? (
+            labelFormatter(amount, percent)
+          ) : (
+            <span className="progress-bar-label" data-testid="progress-bar-label">
+              <S.MaxValue data-testid="progress-bar-max-value">{amount}</S.MaxValue>
+              <span data-testid="progress-bar-max-percent">{` (${percent}%)`}</span>
+            </span>
+          ))}
+        <S.AntdProgressBar
           percent={percent}
           type={type}
+          thick={thick}
           status={status}
           strokeColor={strokeColor}
           strokeLinecap={strokeLinecap}
@@ -37,7 +56,7 @@ class ProgressBar extends React.PureComponent<ProgressProps> {
             {description}
           </span>
         )}
-      </div>
+      </S.Container>
     );
   }
 }
