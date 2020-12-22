@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.4.7...@synerise/ds-items-roll@0.4.8) (2020-12-22)
+
+
+### Bug Fixes
+
+* **items-roll:** set opacity on remove icon hover ([86301d0](https://github.com/Synerise/synerise-design/commit/86301d0ff2230b506c4be3ef219952645ebc03ff))
+
+
+
+
+
 ## [0.4.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.4.6...@synerise/ds-items-roll@0.4.7) (2020-12-21)
 
 **Note:** Version bump only for package @synerise/ds-items-roll
