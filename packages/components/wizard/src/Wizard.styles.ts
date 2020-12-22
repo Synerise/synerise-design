@@ -8,6 +8,10 @@ export const WizardWrapper = styled.div`
   height: 100vh;
   z-index: 1000;
   background-color: ${(props): string => props.theme.palette.white};
+
+  && .ds-layout__header {
+    overflow: visible;
+  }
 `;
 
 export const WizardHeader = styled.div`
