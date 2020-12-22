@@ -107,8 +107,7 @@ export const Container = styled.div<{ active: boolean; disabled?: boolean }>`
 export const Inactive = styled.div<{
   rows?: number;
   blurred: boolean;
-  datePicker?: boolean;
-  datePickerValue?: Date;
+  mask?: boolean;
   disabled?: boolean;
 }>`
   position: relative;
@@ -148,10 +147,10 @@ export const Inactive = styled.div<{
         padding: ${focusPadding};
         background: ${props.theme.palette['grey-050']};
         ${MainContent} {
-          ${props.datePicker && !props.datePickerValue && `color: transparent;`}
+          ${props.mask && `color: transparent;`}
           ${MaskedDatePlaceholder} {
             left: 12px;
-            ${props.datePicker && !props.datePickerValue && `color: ${props.theme.palette['grey-600']};`}
+            ${props.mask && `color: ${props.theme.palette['grey-600']};`}
           }
         }
         ${Suffix} {

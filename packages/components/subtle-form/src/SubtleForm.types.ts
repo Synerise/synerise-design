@@ -19,4 +19,6 @@ export type SubtleFieldProps = {
   suffixTooltip?: React.ReactNode | string;
   activeElement?: () => React.ReactElement;
   inactiveElement?: () => React.ReactElement;
+  mask?: string;
+  maskVisible?: boolean;
 };

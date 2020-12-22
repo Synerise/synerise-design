@@ -8,10 +8,19 @@ import DSFlag from '@synerise/ds-flag';
 import Status from '@synerise/ds-status';
 import { StatusProps } from '@synerise/ds-status/dist/Status.types';
 import { SelectValue } from 'antd/es/select';
+import styled from 'styled-components';
 const decorator = storyFn => <div style={{ width: '314px', padding: '16px', background: '#fff' }}>{storyFn()}</div>;
+
 export const renderLabel = (text: string, icon?: React.ReactNode) => {
   return <div style={{ maxWidth: '200px', textOverflow: 'ellipsis', overflow: 'hidden' }}>{text}</div>;
 };
+
+const StatusWrapper = styled.div`
+  .ds-status {
+    margin: 0;
+  }
+`;
+
 export const getErrorText = (error: boolean, errorText: string): string => {
   if (error) {
     return errorText;
@@ -28,7 +37,11 @@ const renderPrefix = (country: any) => (
   </div>
 );
 
-const renderStatus = (status: StatusProps) => <Status {...status} />;
+const renderStatus = (status: StatusProps) => (
+  <StatusWrapper>
+    <Status {...status} />
+  </StatusWrapper>
+);
 const stories = {
   default: () => {
     const [value, setValue] = React.useState<string>();
@@ -41,9 +54,9 @@ const stories = {
           disabled={disabled}
           onChange={val => setValue(val)}
           value={value}
-          placeholder={'City'}
-          label={renderLabel('City')}
-          labelTooltip={'City'}
+          placeholder={'Status'}
+          label={renderLabel('Status')}
+          labelTooltip={'Status'}
           suffixTooltip={'Select'}
           error={validationState}
           errorText={getErrorText(validationState, errorMessage)}

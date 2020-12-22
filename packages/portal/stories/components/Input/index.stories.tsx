@@ -293,10 +293,12 @@ const stories = {
       Object.keys(inputGroupElementsRight),
       Object.keys(inputGroupElementsRight)[0]
     );
-     const dateMask = knobSelect('SelectDateMask', Object.keys(inputOptionMask), '--- --- ---');
+    const dateMask = knobSelect('SelectDateMask', Object.keys(inputOptionMask), '--- --- ---');
     React.useEffect(() => {
       setValue('');
-      if (dateMask!== dateMaskKey) {setDateMaskKey(dateMask)}
+      if (dateMask !== dateMaskKey) {
+        setDateMaskKey(dateMask);
+      }
     }, [dateMask, dateMaskKey]);
     return (
       <InputGroup
