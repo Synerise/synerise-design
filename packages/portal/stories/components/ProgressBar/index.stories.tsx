@@ -1,7 +1,7 @@
 import * as React from 'react';
 import ProgressBar from '@synerise/ds-progress-bar';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
-import { select, number } from '@storybook/addon-knobs';
+import { select, number, boolean } from '@storybook/addon-knobs';
 import Multivalue from '@synerise/ds-progress-bar/dist/Multivalue/Multivalue';
 
 
@@ -20,12 +20,40 @@ const customColorOptions = {
   purple: theme.palette['purple-500'],
   violet: theme.palette['violet-500'],
 };
-const decorator = storyFn => <div style={{ background: '#fff', padding: '16px', width: '600px' }}>{storyFn()}</div>;
+const decorator = storyFn => (
+  <div
+    style={{
+      background: '#fff',
+      padding: '16px',
+      width: '600px',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+    }}
+  >
+    {storyFn()}
+  </div>
+);
 
 const stories = {
   soloBar: () => {
     const colors = select('Set custom color', customColorOptions, customColorOptions.green);
     return <ProgressBar amount={60} percent={60} showLabel={false} strokeColor={colors}></ProgressBar>;
+  },
+  soloSmallBar: () => {
+    const colors = select('Set custom color', customColorOptions, customColorOptions.green);
+    return (
+      <div style={{ width: '100px' }}>
+        <ProgressBar
+          thick={boolean('Set small bar', false)}
+          showLabel={true}
+          containerStyles={{flexDirection: 'row-reverse'}}
+          labelFormatter={(amount,percent) => <div style={{ padding: ' 8px 0 0 8px', flex: 2}}>{percent}%</div>}
+          percent={60}
+          strokeColor={colors}
+        ></ProgressBar>
+      </div>
+    );
   },
   soloBarWithLabel: () => {
     const colors = select('Set custom color', customColorOptions, customColorOptions.green);
@@ -65,7 +93,7 @@ const stories = {
 };
 
 export default {
-name: 'Components/Progress Bar',
+  name: 'Components/Progress Bar',
   decorator,
   stories,
   Component: ProgressBar,

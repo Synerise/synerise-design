@@ -6,7 +6,7 @@ export const Container = styled.div`
   && {
     width: 100%;
     display: flex;
-    flex-direction: column;
+    flex-direction: ${(props): string => (props.containerStyles ? 'row' : 'column')};
     align-items: flex-start;
     justify-content: flex-start;
     color: ${(props): string => props.theme.palette['grey-500']};
@@ -23,7 +23,8 @@ export const MaxValue = styled.strong`
 export const AntdProgressBar = styled(Progress)<ProgressProps>`
   &.ant-progress-line {
     width: 100%;
-    height: 6px;
+    height: ${(props): string => (props.thick ? '3px' : '6px')};
+    margin-top: ${(props): string => (props.thick ? '3px' : '0px')};
     margin: 14px 0;
     border-radius: 3px;
     color: ${(props): string => props.theme.palette['grey-200']};
@@ -37,7 +38,7 @@ export const AntdProgressBar = styled(Progress)<ProgressProps>`
     }
     .ant-progress-outer,
     .ant-progress-inner {
-      background: transparent;
+      background: ${(props): string => props.theme.palette['grey-100']};
     }
     .ant-progress-outer,
     .ant-progress-inner,
