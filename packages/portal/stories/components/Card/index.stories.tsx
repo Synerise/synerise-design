@@ -99,8 +99,18 @@ const stories = {
   },
   headers: () => {
     const { props } = init();
-    const [forceCollapseOnApply1, setCollapseOnApply1] = React.useState(false);
-    const [forceCollapseOnApply2, setCollapseOnApply2] = React.useState(false);
+    const [collapsedCardsState, setCollapsedCardsState] = React.useState({
+      0: false,
+      1: false,
+      2: false,
+      3: false,
+      4: false,
+      5: false,
+      6: false,
+    });
+
+    const updateCollapsedState = (index, collapsed) =>
+      setCollapsedCardsState({ ...collapsedCardsState, [index]: collapsed });
 
     return (
       <div
@@ -138,16 +148,13 @@ const stories = {
                 withIcon: false,
                 compactHeader: false,
                 headerBorderBottom: false,
-                onHeaderClick: e => {
-                  setCollapseOnApply1(!e);
-                },
                 headerSideChildren: (
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gridColumnGap: '8px' }}>
                     <Button type="ghost">Cancel</Button>
                     <Button
                       type="primary"
                       onClick={() => {
-                        setCollapseOnApply1(true);
+                        updateCollapsedState(0, true);
                       }}
                     >
                       Apply
@@ -155,8 +162,8 @@ const stories = {
                   </div>
                 ),
               },
-              forceCollapseOnApply1,
-              expanded => setCollapseOnApply1(expanded)
+              collapsedCardsState[0],
+              collapsed => updateCollapsedState(0, collapsed)
             )}
           </S.HeaderWrapper>
 
@@ -234,11 +241,18 @@ const stories = {
                 headerBorderBottom: false,
                 headerSideChildren: (
                   <div>
-                    <Button>Define</Button>
+                    <Button
+                      onClick={() => {
+                        updateCollapsedState(1, false);
+                      }}
+                    >
+                      Define
+                    </Button>
                   </div>
                 ),
               },
-              false
+              collapsedCardsState[1],
+              collapsed => updateCollapsedState(1, collapsed)
             )}
           </S.HeaderWrapper>
           <S.HeaderWrapper>
@@ -256,7 +270,7 @@ const stories = {
                       type="custom-color"
                       color="green"
                       onClick={() => {
-                        setCollapseOnApply2(true);
+                        updateCollapsedState(2, true);
                       }}
                     >
                       Apply
@@ -264,10 +278,8 @@ const stories = {
                   </div>
                 ),
               },
-              forceCollapseOnApply2,
-              expanded => {
-                setCollapseOnApply2(expanded);
-              }
+              collapsedCardsState[2],
+              collapsed => updateCollapsedState(2, collapsed)
             )}
           </S.HeaderWrapper>
           <S.HeaderWrapper>
@@ -283,11 +295,18 @@ const stories = {
                     <Button type="custom-color" color={'yellow'}>
                       Skip step
                     </Button>
-                    <Button>Define</Button>
+                    <Button
+                      onClick={() => {
+                        updateCollapsedState(3, false);
+                      }}
+                    >
+                      Define
+                    </Button>
                   </div>
                 ),
               },
-              false
+              collapsedCardsState[3],
+              collapsed => updateCollapsedState(3, collapsed)
             )}
           </S.HeaderWrapper>
 
@@ -301,11 +320,18 @@ const stories = {
                 headerBorderBottom: false,
                 headerSideChildren: (
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr', gridColumnGap: 8 }}>
-                    <Button>Change</Button>
+                    <Button
+                      onClick={() => {
+                        updateCollapsedState(4, false);
+                      }}
+                    >
+                      Change
+                    </Button>
                   </div>
                 ),
               },
-              false
+              collapsedCardsState[4],
+              collapsed => updateCollapsedState(4, collapsed)
             )}
           </S.HeaderWrapper>
           <S.HeaderWrapper>
@@ -319,12 +345,19 @@ const stories = {
                 headerBorderBottom: false,
                 headerSideChildren: (
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr', gridColumnGap: 8 }}>
-                    <Button>Change</Button>
+                    <Button
+                      onClick={() => {
+                        updateCollapsedState(5, false);
+                      }}
+                    >
+                      Change
+                    </Button>
                   </div>
                 ),
                 showSideChildrenWhenHeaderHidden: false,
               },
-              false
+              collapsedCardsState[5],
+              collapsed => updateCollapsedState(5, collapsed)
             )}
           </S.HeaderWrapper>
 
@@ -339,11 +372,18 @@ const stories = {
                 headerBorderBottom: false,
                 headerSideChildren: (
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr', gridColumnGap: 8 }}>
-                    <Button>Change</Button>
+                    <Button
+                      onClick={() => {
+                        updateCollapsedState(6, false);
+                      }}
+                    >
+                      Change
+                    </Button>
                   </div>
                 ),
               },
-              false
+              collapsedCardsState[6],
+              collapsed => updateCollapsedState(6, collapsed)
             )}
           </S.HeaderWrapper>
           <S.HeaderWrapper>
