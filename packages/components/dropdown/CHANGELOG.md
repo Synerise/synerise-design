@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.8](https://github.com/synerise/synerise-design/compare/@synerise/ds-dropdown@0.13.7...@synerise/ds-dropdown@0.13.8) (2020-12-21)
+
+
+### Bug Fixes
+
+* **dropdown:** added shadow to the content ([bcc03f9](https://github.com/synerise/synerise-design/commit/bcc03f96cd701b91a1798405657ff08c38261f96))
+
+
+
+
+
 ## [0.13.7](https://github.com/synerise/synerise-design/compare/@synerise/ds-dropdown@0.13.6...@synerise/ds-dropdown@0.13.7) (2020-12-21)
 
 
