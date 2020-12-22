@@ -8,9 +8,10 @@ export const Multivalue = styled.div<{ color: string; percent: number }>`
   overflow: hidden;
   margin-top: -6px;
 `;
-export const Container = styled.div<{}>`
+export const Container = styled.div`
   position: relative;
   height: 16px;
+  width: 100%;
   padding-top: 11px;
   flex-wrap: wrap;
   justify-content: flex-start;

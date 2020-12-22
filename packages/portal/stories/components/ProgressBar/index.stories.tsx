@@ -1,10 +1,8 @@
 import * as React from 'react';
 import ProgressBar from '@synerise/ds-progress-bar';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
-import { select, number, boolean } from '@storybook/addon-knobs';
+import { select, number } from '@storybook/addon-knobs';
 import Multivalue from '@synerise/ds-progress-bar/dist/Multivalue/Multivalue';
-
-
 
 const customColorOptions = {
   blue: theme.palette['blue-500'],
@@ -38,21 +36,14 @@ const decorator = storyFn => (
 const stories = {
   soloBar: () => {
     const colors = select('Set custom color', customColorOptions, customColorOptions.green);
-    return <ProgressBar amount={60} percent={60} showLabel={false} strokeColor={colors}></ProgressBar>;
-  },
-  soloSmallBar: () => {
-    const colors = select('Set custom color', customColorOptions, customColorOptions.green);
     return (
-      <div style={{ width: '100px' }}>
-        <ProgressBar
-          thick={boolean('Set small bar', false)}
-          showLabel={true}
-          containerStyles={{flexDirection: 'row-reverse'}}
-          labelFormatter={(amount,percent) => <div style={{ padding: ' 8px 0 0 8px', flex: 2}}>{percent}%</div>}
-          percent={60}
-          strokeColor={colors}
-        ></ProgressBar>
-      </div>
+      <ProgressBar
+        amount={60}
+        percent={60}
+        showLabel={false}
+        strokeColor={colors}
+        containerStyles={{ display: 'flex', flexDirection: 'row', width: '300px' }}
+      ></ProgressBar>
     );
   },
   soloBarWithLabel: () => {
@@ -75,15 +66,15 @@ const stories = {
   multivalueBar: () => {
     const percentArray = [
       {
-        percent: number( "Set percent value 1: ", 100, {min:0, max:100}),
+        percent: number('Set percent value 1: ', 100, { min: 0, max: 100 }),
         color: customColorOptions.mars,
       },
       {
-        percent: number( "Set percent value 2: ", 80, {min:0, max:100}),
+        percent: number('Set percent value 2: ', 80, { min: 0, max: 100 }),
         color: customColorOptions.yellow,
       },
       {
-        percent: number( "Set percent value 3: ", 60, {min:0, max:100}),
+        percent: number('Set percent value 3: ', 60, { min: 0, max: 100 }),
         color: customColorOptions.cyan,
       },
     ];

@@ -6,7 +6,7 @@ export const Container = styled.div`
   && {
     width: 100%;
     display: flex;
-    flex-direction: ${(props): string => (props.containerStyles ? 'row' : 'column')};
+    flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
     color: ${(props): string => props.theme.palette['grey-500']};
