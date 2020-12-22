@@ -119,7 +119,6 @@ const stories = {
     <Wrapper
       label={text('Label', 'Label')}
       disabled={boolean('Disabled', false)}
-      reverse={boolean('Reverse', false)}
       included={boolean('Set area active', true)}
       inverted={boolean('Inverted', false)}
       max={number('Max', 100)}
@@ -158,7 +157,7 @@ const stories = {
     <WrapperMultiMode
       label={text('Label', 'Label')}
       disabled={boolean('Disabled', false)}
-      dots={boolean('Dots', false)}
+      dots={false}
       included={boolean('Set area active', true)}
       inverted={boolean('Inverted', false)}
       max={number('Max', 100)}
@@ -168,7 +167,7 @@ const stories = {
       tipFormatter={tipFormatter}
       onAfterChange={action('onAfterChange')}
       getTooltipPopupContainer={container => container}
-      tooltipPlacement={select('Placement', placements, 'bottom')}
+      tooltipPlacement={'bottom'}
       useColorPalette={true}
       thick={boolean('Set thick', false)}
       tooltipVisible={boolean('Value visible', false)}
@@ -177,7 +176,7 @@ const stories = {
   ),
   multiValuesRanges: () => (
     <WrapperMultiValuesMode
-      label={text('label', 'Label')}
+      label={text('Label', 'Label')}
       disabled={boolean('Disabled', false)}
       tipFormatter={tipFormatter as any}
       tracksColorMap={tracksColorMap}

@@ -49,6 +49,11 @@ export const applyTooltipStyles = (props: ThemeProps & SliderStyleProps): Flatte
         color: ${props.theme.palette['grey-400']};
       }
     `}
+  ${props.disabled &&
+    `.ant-slider-dot {
+        background-color: ${props.theme.palette.white};
+      }
+    `}
 
   &&&.ant-slider-disabled {
     .ant-slider-rail {
@@ -71,7 +76,7 @@ export const applyTooltipStyles = (props: ThemeProps & SliderStyleProps): Flatte
     `}
   }
 
-  .ant-slider-dot:last-of-type,
+  .ant-slider-dot[style*='left: 100%;'],
   .ant-slider-dot:first-of-type {
     visibility: ${props.hideMinAndMaxMarks ? 'hidden' : 'visible'};
   }
