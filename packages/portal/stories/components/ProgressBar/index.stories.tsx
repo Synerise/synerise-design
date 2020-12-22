@@ -1,7 +1,7 @@
 import * as React from 'react';
 import ProgressBar from '@synerise/ds-progress-bar';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
-import { select, number } from '@storybook/addon-knobs';
+import { select, number, boolean } from '@storybook/addon-knobs';
 import Multivalue from '@synerise/ds-progress-bar/dist/Multivalue/Multivalue';
 
 const customColorOptions = {
@@ -42,9 +42,23 @@ const stories = {
         percent={60}
         showLabel={false}
         strokeColor={colors}
-        containerStyles={{ display: 'flex', flexDirection: 'row', width: '300px' }}
+        containerStyles={{ display: 'flex', flexDirection: 'row', }}
       ></ProgressBar>
     );
+  },
+  soloSmallBar: () => {
+    const colors = select('Set custom color', customColorOptions, customColorOptions.green);
+    return (
+        <ProgressBar
+          thick={boolean('Set small bar', false)}
+          showLabel={true}
+          containerStyles={{flexDirection: 'row-reverse',  width: '80px'}}
+          labelFormatter={(amount,percent) => <div style={{ padding: ' 8px 0 0 8px'}}>{percent}%</div>}
+          percent={60}
+          strokeColor={colors}
+        ></ProgressBar>
+    );
+
   },
   soloBarWithLabel: () => {
     const colors = select('Set custom color', customColorOptions, customColorOptions.green);
