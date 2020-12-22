@@ -142,7 +142,7 @@ const stories = {
       <>
         <Wizard.OnModal
           modalProps={{
-            size: 'large',
+            size: 'medium',
           }}
           visible={store.state.visible}
           title={text('Set wizard title', 'Wizard title')}
@@ -185,7 +185,7 @@ const stories = {
             </>
           }
         >
-          <div style={{ width: '100%', height: '500px', backgroundColor: theme.palette['red-200'] }}></div>
+          <div style={{ width: '100%', height: '439px', backgroundColor: theme.palette['red-200'] }}></div>
         </Wizard.OnModal>
         <Button onClick={handleShow}>Show wizard</Button>
       </>
