@@ -150,7 +150,14 @@ const stories = {
                 headerBorderBottom: false,
                 headerSideChildren: (
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gridColumnGap: '8px' }}>
-                    <Button type="ghost">Cancel</Button>
+                    <Button
+                      type="ghost"
+                      onClick={() => {
+                        updateCollapsedState(0, true);
+                      }}
+                    >
+                      Cancel
+                    </Button>
                     <Button
                       type="primary"
                       onClick={() => {
@@ -178,10 +185,10 @@ const stories = {
                 headerSideChildren: (
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gridColumnGap: '8px' }}>
                     <Button type="ghost" mode="single-icon">
-                      <Icon component={<FilterM />} />{' '}
+                      <Icon component={<FilterM />} />
                     </Button>
                     <Button type="ghost" mode="single-icon">
-                      <Icon component={<SearchM />} /> `
+                      <Icon component={<SearchM />} />
                     </Button>
                   </div>
                 ),
@@ -203,10 +210,10 @@ const stories = {
                 headerSideChildren: (
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gridColumnGap: '8px' }}>
                     <Button type="ghost" mode="single-icon">
-                      <Icon component={<FilterM />} />{' '}
+                      <Icon component={<FilterM />} />
                     </Button>
                     <Button type="ghost" mode="single-icon">
-                      <Icon component={<SearchM />} />{' '}
+                      <Icon component={<SearchM />} />
                     </Button>
                   </div>
                 ),
@@ -265,7 +272,14 @@ const stories = {
                 headerBorderBottom: false,
                 headerSideChildren: (
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gridColumnGap: 8 }}>
-                    <Button type="ghost">Cancel</Button>
+                    <Button
+                      type="ghost"
+                      onClick={() => {
+                        updateCollapsedState(2, true);
+                      }}
+                    >
+                      Cancel
+                    </Button>
                     <Button
                       type="custom-color"
                       color="green"
@@ -292,7 +306,13 @@ const stories = {
                 headerBorderBottom: false,
                 headerSideChildren: (
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gridColumnGap: 8 }}>
-                    <Button type="custom-color" color={'yellow'}>
+                    <Button
+                      type="custom-color"
+                      color={'yellow'}
+                      onClick={() => {
+                        updateCollapsedState(3, true);
+                      }}
+                    >
                       Skip step
                     </Button>
                     <Button
