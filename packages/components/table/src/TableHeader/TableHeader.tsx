@@ -20,14 +20,19 @@ const TableHeader: React.FC<Props> = ({
   withBorderTop,
   headerButton,
   locale,
+  renderSelectionTitle,
 }) => {
   const renderLeftSide = React.useMemo(() => {
     return selectedRows && selectedRows > 0 ? (
       <S.Left data-testid="ds-table-selection">
         {selection && <TableSelection rowKey={rowKey} dataSource={dataSource} selection={selection} />}
-        <S.Title>
-          <strong>{selectedRows}</strong> {locale.selected}
-        </S.Title>
+        {renderSelectionTitle ? (
+          renderSelectionTitle(selection, filters)
+        ) : (
+          <S.Title>
+            <strong>{selectedRows}</strong> {locale.selected}
+          </S.Title>
+        )}
         {itemsMenu}
       </S.Left>
     ) : (
@@ -44,7 +49,18 @@ const TableHeader: React.FC<Props> = ({
         )}
       </S.Left>
     );
-  }, [selectedRows, selection, rowKey, dataSource, locale.selected, locale.pagination.items, itemsMenu, title]);
+  }, [
+    selectedRows,
+    selection,
+    rowKey,
+    dataSource,
+    locale.selected,
+    locale.pagination.items,
+    itemsMenu,
+    title,
+    renderSelectionTitle,
+    filters,
+  ]);
 
   return (
     <S.Header withBorderTop={withBorderTop}>

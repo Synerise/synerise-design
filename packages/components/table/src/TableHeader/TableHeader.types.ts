@@ -14,4 +14,5 @@ export interface Props<T extends { key: React.ReactText }> {
   withBorderTop?: boolean;
   headerButton?: React.ReactNode;
   locale: Locale;
+  renderSelectionTitle?: (selection?: RowSelection<T>, filters?: Filter[]) => React.ReactNode;
 }

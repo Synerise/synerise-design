@@ -66,7 +66,6 @@ export interface DSTableProps<T extends any & GroupType<T>> extends AntTableProp
   title?: string | React.ReactNode;
   hideTitleBar?: boolean;
   headerWithBorderTop?: boolean;
-  onSearch?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   itemsMenu?: string | React.ReactNode;
   search?: string;
   cellSize?: string | 'medium' | 'small';
@@ -84,4 +83,5 @@ export interface DSTableProps<T extends any & GroupType<T>> extends AntTableProp
     fixed?: 'left' | 'right' | string;
   })[];
   locale?: Locale;
+  renderSelectionTitle?: (selection?: RowSelection<T>, filters?: Filter[]) => React.ReactNode;
 }

@@ -35,7 +35,6 @@ function DSTable<T extends any>(props: DSTableProps<T>): React.ReactElement {
   const intl = useIntl();
   const {
     title,
-    onSearch,
     loading,
     selection,
     itemsMenu,
@@ -53,6 +52,7 @@ function DSTable<T extends any>(props: DSTableProps<T>): React.ReactElement {
     locale,
     headerButton,
     hideColumnNames,
+    renderSelectionTitle,
   } = props;
 
   const getLocale = React.useMemo((): Locale => {
@@ -81,7 +81,6 @@ function DSTable<T extends any>(props: DSTableProps<T>): React.ReactElement {
           withBorderTop={headerWithBorderTop}
           selectedRows={size}
           title={title}
-          onSearch={onSearch}
           filters={filters}
           itemsMenu={itemsMenu}
           selection={selection}
@@ -91,6 +90,7 @@ function DSTable<T extends any>(props: DSTableProps<T>): React.ReactElement {
           headerButton={headerButton}
           rowKey={rowKey}
           locale={getLocale}
+          renderSelectionTitle={renderSelectionTitle}
         />
       )
     );
@@ -98,10 +98,10 @@ function DSTable<T extends any>(props: DSTableProps<T>): React.ReactElement {
     selection,
     grouped,
     dataSource,
+    renderSelectionTitle,
     hideTitleBar,
     headerWithBorderTop,
     title,
-    onSearch,
     filters,
     itemsMenu,
     searchComponent,
