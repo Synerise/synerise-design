@@ -35,8 +35,8 @@ const Wizard: React.FC<WizardProps> & WizardSubComponent = ({
             onClose={onClose}
             rightSide={
               <S.WizardHeader>
-                <S.WizardStepper>{stepper}</S.WizardStepper>
-                <S.WizardHeaderAction>{headerAction}</S.WizardHeaderAction>
+                {stepper && <S.WizardStepper>{stepper}</S.WizardStepper>}
+                {headerAction && <S.WizardHeaderAction>{headerAction}</S.WizardHeaderAction>}
               </S.WizardHeader>
             }
           />

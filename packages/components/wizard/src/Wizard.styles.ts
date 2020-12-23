@@ -6,7 +6,7 @@ export const WizardWrapper = styled.div`
   left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: 999999;
+  z-index: 1500;
   background-color: ${(props): string => props.theme.palette.white};
 
   && .ds-layout__header {
@@ -19,7 +19,6 @@ export const WizardHeader = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: flex-end;
-  padding-right: 24px;
   position: relative;
   margin-right: 16px;
   &:after {
@@ -30,13 +29,15 @@ export const WizardHeader = styled.div`
     background-color: ${(props): string => props.theme.palette['grey-200']};
     position: absolute;
     right: 0;
-    top: -4px;
+    top: -8px;
   }
 `;
 
-export const WizardStepper = styled.div``;
+export const WizardStepper = styled.div`
+  margin-right: 24px;
+`;
 export const WizardHeaderAction = styled.div`
-  margin-left: 24px;
+  margin-right: 24px;
 `;
 
 export const WizardContainer = styled.div<{ contentWidth?: string; withFooter: boolean }>`
