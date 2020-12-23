@@ -85,7 +85,7 @@ describe('Wizard component', () => {
     renderWithProvider(<Wizard title={TITLE} visible={true} onClose={handleClose} />);
 
     // ACT
-    userEvent.click(document.querySelector('.close-s') as HTMLElement);
+    userEvent.click(document.querySelector('.close-m') as HTMLElement);
 
     // ASSERT
     expect(handleClose).toBeCalled();

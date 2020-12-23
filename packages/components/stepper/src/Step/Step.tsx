@@ -48,7 +48,7 @@ const Step: React.FC<StepProps> = ({
     >
       <S.StepWrapper onClick={handleClick} clickable={Boolean(onClick)}>
         <Tooltip trigger={['hover']} title={label}>
-          <S.StepPrefix>
+          <S.StepPrefix noMargin={!label}>
             {done && !validated ? (
               <Icon component={<CheckS />} color={theme.palette['green-600']} />
             ) : (
