@@ -2,7 +2,7 @@ import * as React from 'react';
 import Icon from '@synerise/ds-icon';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import InlineEdit from '@synerise/ds-inline-edit/';
-import { CloseS, ArrowLeftM } from '@synerise/ds-icon/dist/icons';
+import { CloseM, ArrowLeftM } from '@synerise/ds-icon/dist/icons';
 import Button from '@synerise/ds-button/';
 import { withTheme } from 'styled-components';
 import Tooltip from '@synerise/ds-tooltip';
@@ -83,7 +83,7 @@ const PageHeader: React.FC<PageHeaderProps> = props => {
                 <Icon
                   className="page-header__close"
                   color={theme.palette['grey-500']}
-                  component={<CloseS />}
+                  component={<CloseM />}
                   size={32}
                   onClick={onClose}
                 />
