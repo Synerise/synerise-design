@@ -17,7 +17,7 @@ const ItemRenderer = ({ highlight, onItemClick, onItemRemove, tooltipLabel, grou
   const { suffixel, ...item } = data[index] as ItemRollElement;
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const onClick = React.useCallback(() => onItemClick && onItemClick(item.id), [item.id]);
+  const onClick = React.useCallback(() => onItemClick && onItemClick(item.id, group), [item.id]);
 
   return (
     <S.ListItem>

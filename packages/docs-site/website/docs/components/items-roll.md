@@ -44,7 +44,7 @@ import ItemsRoll from '@synerise/ds-items-roll';
 | maxToShowItems               | Amount of initial ItemsRollElement to render. Note that if number is greater than 20, list will becoma scrollable | number                                                  | 10      |
 | onClearAll                   | Callback function that is fired when click on clearAll button                                                     | () => void                                              | -       |
 | onChangeSelection            | Callback function that is fired when click on changeSelection button                                              | () => void                                              | -       |
-| onItemClick                  | Callback function that is fired when list element is clicked                                                      | (id: string) => void                                    | -       |
+| onItemClick                  | Callback function that is fired when list element is clicked                                                      | (id: string, group?: string) => void                    | -       |
 | onItemRemove                 | Callback function that is fired when list element remove icon is clicked                                          | (id: string, group?: string) => void                    | -       |
 | onSearch                     | Callback function that is fired when input changed                                                                | (value: string) => void                                 | -       |
 | onSearchClear                | Callback function that is fired when input is cleared                                                             | () => void                                              | -       |
@@ -60,12 +60,12 @@ import ItemsRoll from '@synerise/ds-items-roll';
 
 #### ItemRollElement
 
-| Property    | Description                                                                         | Type                       | Default |
-| ----------- | ----------------------------------------------------------------------------------- | -------------------------- | ------- |
-| group       | Define affiliation to a specific group in groups Array passed as props to ItemsRoll | string                     | -       |
-| id          | Unique identifier for element. Used as a key in map                                 | string                     | -       |
+| Property | Description                                                                         | Type   | Default |
+| -------- | ----------------------------------------------------------------------------------- | ------ | ------- |
+| group    | Define affiliation to a specific group in groups Array passed as props to ItemsRoll | string | -       |
+| id       | Unique identifier for element. Used as a key in map                                 | string | -       |
 
- Rest of the `ItemRollElement` props is inherited from [MenuItemProps](https://design.synerise.com/docs/components/menu#menuitemprops)
+Rest of the `ItemRollElement` props is inherited from [MenuItemProps](https://design.synerise.com/docs/components/menu#menuitemprops)
 
 #### Texts
 

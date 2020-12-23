@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-wizard@0.1.2...@synerise/ds-wizard@0.1.3) (2020-12-22)
+
+
+### Bug Fixes
+
+* **wizard:** disable render on portal to fix scrollbar position ([0f66a8e](https://github.com/Synerise/synerise-design/commit/0f66a8e1ca8d5023431d1996ea03d92b9b29f478))
+
+
+
+
+
 ## [0.1.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-wizard@0.1.1...@synerise/ds-wizard@0.1.2) (2020-12-22)
 
 

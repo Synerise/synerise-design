@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.111.1](https://github.com/synerise/synerise-design/compare/portal@0.111.0...portal@0.111.1) (2020-12-22)
+
+
+### Bug Fixes
+
+* **wizard:** disable render on portal to fix scrollbar position ([0f66a8e](https://github.com/synerise/synerise-design/commit/0f66a8e1ca8d5023431d1996ea03d92b9b29f478))
+
+
+
+
+
 # [0.111.0](https://github.com/synerise/synerise-design/compare/portal@0.110.0...portal@0.111.0) (2020-12-21)
 
 
