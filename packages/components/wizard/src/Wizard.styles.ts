@@ -6,7 +6,7 @@ export const WizardWrapper = styled.div`
   left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: 1000;
+  z-index: 999999;
   background-color: ${(props): string => props.theme.palette.white};
 
   && .ds-layout__header {

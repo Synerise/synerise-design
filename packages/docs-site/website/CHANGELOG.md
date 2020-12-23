@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.10](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.8.9...docs@0.8.10) (2020-12-23)
+
+
+### Bug Fixes
+
+* **items-roll:** pass group name on item click ([9130fcf](https://gitlab.synerise.com/Frontend/synerise-design/commit/9130fcf2244801fa8b163562102738ecb94a1dc9))
+
+
+
+
+
 ## [0.8.9](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.8.8...docs@0.8.9) (2020-12-21)
 
 
