@@ -155,6 +155,7 @@ export const AntdButton = styled(
       width: 24px;
       height: 24px;
     }
+    &&.ant-btn-default:not(.ds-expander):not(.ds-button-creator),
     &&.ant-btn-secondary:not(.ds-expander):not(.ds-button-creator){
       &:active{
         ${(props): FlattenSimpleInterpolation => pressedStyles(props)}
