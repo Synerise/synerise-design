@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.4.8...@synerise/ds-items-roll@0.4.9) (2020-12-23)
+
+
+### Bug Fixes
+
+* **items-roll:** pass group name on item click ([9130fcf](https://github.com/Synerise/synerise-design/commit/9130fcf2244801fa8b163562102738ecb94a1dc9))
+
+
+
+
+
 ## [0.4.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.4.7...@synerise/ds-items-roll@0.4.8) (2020-12-22)
 
 
