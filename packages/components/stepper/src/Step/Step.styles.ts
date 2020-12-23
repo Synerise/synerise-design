@@ -1,7 +1,7 @@
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import { ORIENTATIONS, StepperOrientation, StepperSize } from '../Stepper.types';
 
-export const StepPrefix = styled.div`
+export const StepPrefix = styled.div<{ noMargin: boolean }>`
   width: 24px;
   min-width: 24px;
   height: 24px;
@@ -12,12 +12,13 @@ export const StepPrefix = styled.div`
   border-width: 1px;
   border-style: solid;
   border-color: ${(props): string => props.theme.palette['grey-400']};
-  margin-right: 8px;
+  margin-right: ${(props): string => (props.noMargin ? '0' : '8px')};
   text-align: center;
   transition: border-color 0.2s ease-in-out, margin-right 0.2s ease-in-out;
 `;
 
 export const StepNumber = styled.span`
+  font-size: 13px;
   display: inline-flex;
   text-align: center;
   width: 10px;
