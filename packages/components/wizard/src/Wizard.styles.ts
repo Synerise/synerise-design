@@ -14,7 +14,7 @@ export const WizardWrapper = styled.div`
   }
 `;
 
-export const WizardHeader = styled.div`
+export const WizardHeader = styled.div<{ withHeaderAction?: boolean }>`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -29,7 +29,7 @@ export const WizardHeader = styled.div`
     background-color: ${(props): string => props.theme.palette['grey-200']};
     position: absolute;
     right: 0;
-    top: -8px;
+    top: ${(props): string => (props.withHeaderAction ? '-4px' : '-8px')};
   }
 `;
 
