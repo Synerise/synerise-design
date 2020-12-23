@@ -18,6 +18,7 @@ export const StepPrefix = styled.div`
 `;
 
 export const StepNumber = styled.span`
+  font-size: 13px;
   display: inline-flex;
   text-align: center;
   width: 10px;
