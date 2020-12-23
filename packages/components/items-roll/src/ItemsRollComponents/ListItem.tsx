@@ -15,7 +15,7 @@ const ItemElement: React.FC<ItemElementProps> = ({
   onItemRemove,
   removeTooltipLabel,
 }) => {
-  const onClick = React.useCallback(() => onItemClick && onItemClick(item.id), [onItemClick, item.id]);
+  const onClick = React.useCallback(() => onItemClick && onItemClick(item.id, group), [onItemClick, item.id, group]);
   const renderSuffixElement = (hovered: boolean): React.ReactNode =>
     item.suffixel instanceof Function ? item.suffixel(hovered) : item.suffixel;
   return (

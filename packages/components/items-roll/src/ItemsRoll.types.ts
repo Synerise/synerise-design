@@ -40,7 +40,7 @@ export type ItemsRollProps = {
   onClearAll?: () => void;
   onChangeSelection?: () => void;
   onItemRemove?: (id: string, group?: ItemsRollGroup) => void;
-  onItemClick?: (id: string) => void;
+  onItemClick?: (id: string, group?: ItemsRollGroup) => void;
   style?: React.CSSProperties;
   showMoreStep?: number;
   texts?: {
