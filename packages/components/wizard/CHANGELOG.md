@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-wizard@0.1.5...@synerise/ds-wizard@0.1.6) (2020-12-23)
+
+
+### Bug Fixes
+
+* **wizard:** position of the after element ([5385646](https://github.com/Synerise/synerise-design/commit/5385646d2906b7e8e3a8260a6caceda2c8af6024))
+* **wizard:** style fixes in header actions ([2032493](https://github.com/Synerise/synerise-design/commit/2032493f7c170aa62832b7f393572e94452fa9ab))
+
+
+
+
+
 ## [0.1.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-wizard@0.1.4...@synerise/ds-wizard@0.1.5) (2020-12-23)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.11](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.8.10...docs@0.8.11) (2020-12-23)
+
+
+### Bug Fixes
+
+* **table:** render custom title when items are selected ([34cd046](https://gitlab.synerise.com/Frontend/synerise-design/commit/34cd046560343da28057262df63ef32c333bed9d))
+
+
+
+
+
 ## [0.8.10](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.8.9...docs@0.8.10) (2020-12-23)
 
 

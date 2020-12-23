@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-stepper@0.2.1...@synerise/ds-stepper@0.2.2) (2020-12-23)
+
+
+### Bug Fixes
+
+* **stepper:** remove margin when label not provided ([81ae659](https://github.com/Synerise/synerise-design/commit/81ae65905b36d7cb257df93f9972d952409c2779))
+
+
+
+
+
 ## [0.2.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-stepper@0.2.0...@synerise/ds-stepper@0.2.1) (2020-12-23)
 
 **Note:** Version bump only for package @synerise/ds-stepper
