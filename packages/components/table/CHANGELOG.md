@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.29.12](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.29.11...@synerise/ds-table@0.29.12) (2020-12-23)
+
+
+### Bug Fixes
+
+* **table:** render custom title when items are selected ([34cd046](https://github.com/synerise/synerise-design/commit/34cd046560343da28057262df63ef32c333bed9d))
+
+
+
+
+
 ## [0.29.11](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.29.10...@synerise/ds-table@0.29.11) (2020-12-23)
 
 **Note:** Version bump only for package @synerise/ds-table
