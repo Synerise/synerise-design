@@ -75,6 +75,7 @@ export const Value = styled.div`
   color: ${(props): string => props.theme.palette['grey-700']};
   max-width: 100%;
   overflow: hidden;
+  padding: 0 0 0 4px;
   ${Prefix} {
     svg {
       fill: ${(props): string => props.theme.palette['grey-600']};
