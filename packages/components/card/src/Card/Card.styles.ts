@@ -118,7 +118,7 @@ export const Title = styled(Typography.Title)<{ fat: boolean }>`
   }
 `;
 
-export const Description = styled.p`
+export const Description = styled.div`
   && {
     margin: 6px 0 0;
   }
