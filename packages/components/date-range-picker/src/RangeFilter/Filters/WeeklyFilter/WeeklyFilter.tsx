@@ -12,6 +12,7 @@ const WeeklyFilter = ({
   onRangeCopy,
   rangeClipboard,
   intl,
+  texts,
 }: WeeklyFilterProps): JSX.Element => {
   const handleDayFormatter = React.useCallback(
     (dayKey: DayKey): React.ReactNode => intl.formatMessage({ id: `DS.DATE-RANGE-PICKER.WEEKDAYS-SHORT-${dayKey}` }),
@@ -24,6 +25,7 @@ const WeeklyFilter = ({
   return (
     <S.WeeklyFilterContainer>
       <TimeWindow
+        texts={texts}
         showSelectAll
         invertibleTime
         dayFormatter={handleDayFormatter}

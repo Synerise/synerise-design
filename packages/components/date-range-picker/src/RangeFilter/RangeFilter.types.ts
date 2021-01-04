@@ -2,6 +2,7 @@ import * as React from 'react';
 import { IntlShape } from 'react-intl';
 import { SavedFilter } from './Shared/FilterDropdown/FilterDropdown.types';
 import { DateLimitMode } from './Shared/TimeWindow/RangeFormContainer/RangeForm/RangeForm.types';
+import { Texts } from '../DateRangePicker.types';
 
 export type FilterValue = {
   definition?: Partial<FilterDefinition>;
@@ -14,6 +15,7 @@ export type RangeFilterProps = {
   intl: IntlShape;
   savedFilters?: SavedFilter[];
   onFilterSave?: (filters: SavedFilter[]) => void;
+  texts?: Texts;
 };
 
 export type RangeFilterState = {

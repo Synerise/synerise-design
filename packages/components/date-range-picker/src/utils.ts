@@ -92,6 +92,12 @@ export const getDefaultTexts = (intl: IntlShape, disableDefault?: boolean, texts
     weeks: texts?.weeks || getIntlMessage(`DS.DATE-RANGE-PICKER.WEEKS`, intl, disableDefault),
     years: texts?.years || getIntlMessage(`DS.DATE-RANGE-PICKER.YEARS`, intl, disableDefault),
     yesterday: texts?.yesterday || getIntlMessage(`DS.DATE-RANGE-PICKER.YESTERDAY`, intl, disableDefault),
+    pasteRange: texts?.pasteRange || getIntlMessage(`DS.DATE-RANGE-PICKER.PASTE-RANGE`, intl, disableDefault),
+    clearRange: texts?.clearRange || getIntlMessage(`DS.DATE-RANGE-PICKER.CLEAR-RANGE`, intl, disableDefault),
+    copyRange: texts?.copyRange || getIntlMessage(`DS.DATE-RANGE-PICKER.COPY-RANGE`, intl, disableDefault),
+    remove: texts?.remove || getIntlMessage(`DS.DATE-RANGE-PICKER.REMOVE`, intl, disableDefault),
+    savedFiltersTrigger:
+      texts?.savedFiltersTrigger || getIntlMessage(`DS.DATE-RANGE-PICKER.SAVED-FILTERS`, intl, disableDefault),
   };
 };
 

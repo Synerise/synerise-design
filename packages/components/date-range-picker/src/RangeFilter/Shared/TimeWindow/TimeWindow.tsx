@@ -7,7 +7,7 @@ import dayjs from 'dayjs';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { InfoM } from '@synerise/ds-icon/dist/icons';
 import Icon from '@synerise/ds-icon';
-import { DayKey, TimeWindowProps, State, DayOptions } from './TimeWindow.types';
+import { DayKey, TimeWindowProps, State, DayOptions, TimeWindowTexts } from './TimeWindow.types';
 import * as S from './TimeWindow.styles';
 import { getDateFromDayValue } from './utils';
 import Grid from './Grid/Grid';
@@ -275,7 +275,7 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
 
   renderRangeForm = (dayKeys: DayKey | DayKey[]): React.ReactNode => {
     const { activeDays } = this.state;
-    const { hideHeader, monthlyFilterPeriod, monthlyFilter, daily, days, onChange } = this.props;
+    const { hideHeader, monthlyFilterPeriod, monthlyFilter, daily, days, onChange, texts } = this.props;
     return (
       <RangeFormContainer
         onChange={onChange}
@@ -293,6 +293,7 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
         monthlyFilter={monthlyFilter}
         monthlyFilterPeriod={monthlyFilterPeriod}
         onRangeDelete={daily ? undefined : this.handleRangeDelete}
+        texts={(texts || {}) as TimeWindowTexts}
       />
     );
   };

@@ -1,4 +1,4 @@
-import { DayKey, RangeActions, TimeWindowProps } from '../TimeWindow.types';
+import { DayKey, RangeActions, TimeWindowProps, TimeWindowTexts } from '../TimeWindow.types';
 import { FilterDefinition } from '../../../RangeFilter.types';
 
 export type RangeFormContainerProps = {
@@ -9,5 +9,6 @@ export type RangeFormContainerProps = {
   onMultipleDayTimeChange: (value: [Date, Date]) => void;
   onDayTimeChange: (value: [Date, Date], dayKey: DayKey) => void;
   onRangeDelete?: () => void;
+  texts: TimeWindowTexts;
 } & Pick<TimeWindowProps, 'monthlyFilter' | 'monthlyFilterPeriod' | 'hideHeader' | 'onChange' | 'days'> &
   Partial<RangeActions>;
