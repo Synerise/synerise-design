@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.47](https://github.com/Synerise/synerise-design/compare/@synerise/ds-progress-bar@0.4.46...@synerise/ds-progress-bar@0.4.47) (2021-01-04)
+
+
+### Bug Fixes
+
+* **progress-bar:** add 100% width to the multivalue variant ([1b29d01](https://github.com/Synerise/synerise-design/commit/1b29d01eeea10e582a90d12f9220c3d38cfeb917))
+* **progress-bar:** add new small bar component ([d5c64a2](https://github.com/Synerise/synerise-design/commit/d5c64a2e60f6792a403e084212c47a3630dfb09b))
+* **progress-bar:** removed external styles mixins ([5fa8532](https://github.com/Synerise/synerise-design/commit/5fa8532ef1b75bff5f16ba71b2726d92491fab93))
+
+
+
+
+
 ## [0.4.46](https://github.com/Synerise/synerise-design/compare/@synerise/ds-progress-bar@0.4.45...@synerise/ds-progress-bar@0.4.46) (2020-12-21)
 
 
