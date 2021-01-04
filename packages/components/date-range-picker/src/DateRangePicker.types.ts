@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { DateFilter, DateRange } from 'date.types';
 import { WrappedComponentProps } from 'react-intl';
 import { PopoverProps } from 'antd/lib/popover';
+import { DateFilter, DateRange } from './date.types';
 import { FilterDefinition } from './RangeFilter/RangeFilter.types';
 import { SavedFilter } from './RangeFilter/Shared/FilterDropdown/FilterDropdown.types';
 
@@ -41,6 +41,7 @@ export interface Props extends WrappedComponentProps {
   validate?: (value: DateRange) => { valid: boolean; message?: string };
   value: DateRange;
 }
+
 export type RelativeMode = 'PAST' | 'FUTURE' | 'SINCE';
 export interface State {
   mode: string;
@@ -99,7 +100,16 @@ export type Translations =
   | 'timestampTill'
   | 'filter'
   | 'startDate'
-  | 'endDate';
+  | 'endDate'
+  | 'remove'
+  | 'savedFiltersTrigger'
+  | 'clearRange'
+  | 'copyRange'
+  | 'pasteRange';
+
+export type WithTranslations = {
+  texts?: Texts;
+};
 
 export type AddonType = {
   content: React.ReactNode;

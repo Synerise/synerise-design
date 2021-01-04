@@ -88,7 +88,7 @@ class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState
     const activeValue = state[activeType] as FilterValue;
     const { definition } = activeValue;
     const Component = activeType && TYPES_DATA[activeType] && TYPES_DATA[activeType].component;
-    const { intl, savedFilters } = this.props;
+    const { intl, savedFilters, texts } = this.props;
     return (
       <S.Container>
         <S.Header>
@@ -98,8 +98,8 @@ class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState
               filters={savedFilters}
               onFilterSelect={this.handleSavedFilterSelect}
               onFilterRemove={this.handleSavedFilterRemove}
-              label="Saved filters"
-              removeTooltip="Remove"
+              label={texts?.savedFiltersTrigger}
+              removeTooltip={texts?.remove}
             />
           )}
         </S.Header>
@@ -119,6 +119,7 @@ class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState
             {Component && (
               <Component
                 intl={intl}
+                texts={texts}
                 value={definition}
                 onChange={(def: FilterDefinition): void => {
                   this.setState({ [activeType]: { ...activeValue, definition: def } });

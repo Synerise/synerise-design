@@ -26,6 +26,11 @@ export type CustomDayConfig = {
   longLabel?: string;
 };
 
+export type TimeWindowTexts = {
+  clearRange: React.ReactNode | string;
+  copyRange: React.ReactNode | string;
+  pasteRange: React.ReactNode | string;
+};
 export type TimeWindowProps = {
   days: Days;
   monthlyFilter?: boolean;
@@ -50,7 +55,7 @@ export type TimeWindowProps = {
   intl: IntlShape;
   daily?: boolean;
   rangeClipboard: Partial<FilterDefinition>;
-  texts?: GridTexts;
+  texts?: TimeWindowTexts & GridTexts;
 } & Partial<RangeActions> &
   WrappedComponentProps;
 

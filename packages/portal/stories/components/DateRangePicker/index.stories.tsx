@@ -58,6 +58,11 @@ const texts = {
   selectTime: 'Select time',
   startDate: 'Start date',
   endDate: 'End date',
+  remove: 'Remove',
+  clearRange: ' Clear range',
+  savedFiltersTrigger: 'Saved filters',
+  copyRange: 'Copy range',
+  pasteRange: 'Paste range',
 };
 
 const stories = {
@@ -103,7 +108,7 @@ const stories = {
       const enabledModes = keys.filter(k => !!modesObject[k]);
       return enabledModes;
     };
-    const [filters, setFilters] = React.useState(savedFilters)
+    const [filters, setFilters] = React.useState(savedFilters);
     const showRelativePicker = boolean('Set relative filter', true);
     return (
       <DateRangePicker
@@ -121,7 +126,6 @@ const stories = {
           endDatePlaceholder: 'End date',
           clear: 'Clear',
           emptyDateError: 'Date cannot be empty',
-
         }}
         popoverPlacement="bottomLeft"
         forceAdjacentMonths={boolean('Set adjacent months', false)}

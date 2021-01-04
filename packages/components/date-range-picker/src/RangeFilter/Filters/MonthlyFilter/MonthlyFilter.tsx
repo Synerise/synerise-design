@@ -151,7 +151,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
   };
 
   render(): JSX.Element {
-    const { value, onRangeCopy, onRangePaste, onRangeClear, rangeClipboard, intl } = this.props;
+    const { value, onRangeCopy, onRangePaste, onRangeClear, rangeClipboard, intl, texts } = this.props;
     const { visible } = this.state;
     const data = [...value];
     return (
@@ -235,6 +235,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
               content: visible[item.id] ? (
                 <S.ContentWrapper>
                   <TimeWindow
+                    texts={texts}
                     // eslint-disable-next-line react/no-array-index-key
                     key={`${item.period}_${key}`}
                     title="Monthly title"

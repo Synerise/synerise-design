@@ -25,6 +25,7 @@ const RangeForm: React.FC<RangeFormProps> = ({
   onEndChange,
   onExactHourSelect,
   onRangeDelete,
+  texts,
 }) => {
   const [start, setStart] = React.useState<Date | undefined>(startDate);
   const [end, setEnd] = React.useState<Date | undefined>(endDate);
@@ -78,6 +79,7 @@ const RangeForm: React.FC<RangeFormProps> = ({
     return (
       <>
         <TimePicker
+          clearTooltip={texts?.clear}
           onChange={(date?: Date): void => {
             setStart(date);
             date && onStartChange(date);
@@ -92,6 +94,7 @@ const RangeForm: React.FC<RangeFormProps> = ({
         />
         <S.Separator>-</S.Separator>
         <TimePicker
+          clearTooltip={texts?.clear}
           onChange={(date?: Date): void => {
             setEnd(date);
             date && onEndChange(date);
@@ -106,7 +109,7 @@ const RangeForm: React.FC<RangeFormProps> = ({
         />
       </>
     );
-  }, [areStartAndEndValid, start, end, onStartChange, onEndChange, getPopupContainer]);
+  }, [areStartAndEndValid, start, end, onStartChange, onEndChange, getPopupContainer, texts]);
   const limitModeSelect = React.useMemo(
     () => (
       <Select

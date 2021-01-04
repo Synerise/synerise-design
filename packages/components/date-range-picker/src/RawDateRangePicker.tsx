@@ -190,6 +190,7 @@ class RawDateRangePicker extends React.PureComponent<Props, State> {
       return (
         <Container>
           <RangeFilter
+            texts={texts}
             value={value.filter}
             onCancel={this.handleFilterCancel}
             onApply={this.handleFilterApply}
