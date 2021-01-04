@@ -8,6 +8,7 @@ import RangeSummary from '../RangeSummary/RangeSummary';
 import RangeActions from '../RangeActions/RangeActions';
 import { DateLimitMode } from './RangeForm/RangeForm.types';
 import { ActionsTexts } from '../RangeActions/RangeActions.types';
+import { Texts } from '../../../../DateRangePicker.types';
 
 const DEFAULT_LIMIT_MODE: DateLimitMode = 'Range';
 const RangeFormContainer: React.FC<RangeFormContainerProps> = ({
@@ -49,8 +50,7 @@ const RangeFormContainer: React.FC<RangeFormContainerProps> = ({
   const rangeForm = React.useMemo(
     () => (
       <RangeForm
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        texts={texts as any}
+        texts={texts as Texts}
         onModeChange={(selected: DateLimitMode): void => {
           setMode(selected);
           handleModeChange(selected);
