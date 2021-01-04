@@ -7,7 +7,7 @@ import { CONTEXT_CLIENT_GROUPS, CONTEXT_CLIENT_ITEMS } from './data/client.data'
 import { action } from '@storybook/addon-actions';
 
 const DEFAULT_STATE = {
-  value: '',
+  value: undefined,
 };
 
 const stories = {
@@ -28,8 +28,7 @@ const stories = {
   }),
   clientContext: withState(DEFAULT_STATE)(({ store }) => {
     const setValue = value => {
-      action('setValue', value);
-      // store.set({ value });
+      store.set({ value });
     };
 
     return (

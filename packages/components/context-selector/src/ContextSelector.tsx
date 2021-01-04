@@ -35,7 +35,7 @@ const ContextSelector: React.FC<ContextProps> = ({ value, onChange, groups, item
 
   const triggerButton = React.useMemo(() => {
     const { buttonLabel } = texts;
-    return addMode ? (
+    return addMode && !value ? (
       <Button type="primary" mode="icon-label" onClick={handleClick}>
         <Icon component={<Add3M />} />
         {buttonLabel}
