@@ -21,6 +21,7 @@ const Settings: React.FC<SettingsProps> = ({ value, text, onPeriodChange, onValu
           onChange={(option: Period): void => {
             onPeriodChange(option);
           }}
+          dropdownStyle={{ minWidth: '150px' }}
         >
           {periods.map(period => (
             <Select.Option key={period.value} value={period.value}>
