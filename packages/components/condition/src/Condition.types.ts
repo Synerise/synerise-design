@@ -2,6 +2,7 @@ import * as React from 'react';
 import { SubjectProps } from '@synerise/ds-subject/dist/Subject.types';
 import { FactorsProps } from '@synerise/ds-factors/dist/Factors.types';
 import { OperatorsProps } from '@synerise/ds-operators/dist/Operator.types';
+import { ContextProps } from '@synerise/ds-context-selector/dist/ContextSelector.types';
 
 export type StepConditions = {
   id: React.ReactText;
@@ -12,7 +13,8 @@ export type StepConditions = {
 
 export type ConditionStep = {
   id: React.ReactText;
-  subject: SubjectProps;
+  subject?: SubjectProps;
+  context?: ContextProps;
   stepName?: string;
   conditions: StepConditions[];
 };

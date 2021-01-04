@@ -30,7 +30,7 @@ import Condition from '@synerise/ds-condition'
         id: 1,
         stepName: 'Step #1',
         subject: {
-          selectItem: (item) => setStepSubject(step.id, item),
+          onSelectItem: (item) => setStepSubject(step.id, item),
           type: 'event',
           placeholder: 'Choose event',
           showPreview: false,
@@ -39,6 +39,13 @@ import Condition from '@synerise/ds-condition'
           items: SUBJECT_ITEMS,
           texts: SUBJECT_TEXTS,
         },
+        context: {
+          texts: CONTEXT_TEXTS,
+          onSelectItem: item => setStepSubject(step.id, item),
+          selectedItem: step.subject.selectedItem,
+          items: CONTEXT_ITEMS,
+          groups: CONTEXT_GROUPS,
+        }
         conditions: [{
           id: 0,
           parameter: {
@@ -102,13 +109,14 @@ import Condition from '@synerise/ds-condition'
 
 ### ConditionStep
 
-| Property   | Description          | Type                                     | Default | 
-| ---        | ---                  | ---                                      | ---     | 
-| conditions | Rows of conditions   | StepConditions[]                         | -       |
-| id         | Id of condition step | React.ReactText                          | -       | 
-| stepName   | The name of step     | string                                   | -       | 
-| subject    | Subject options      | [SubjectProps](/docs/components/subject) | -       |  
- 
+| Property   | Description             | Type                                                      | Default | 
+| ---        | ---                     | ---                                                       | ---     | 
+| conditions | Rows of conditions      | StepConditions[]                                          | -       | 
+| id         | Id of condition step    | React.ReactText                                           | -       | 
+| stepName   | The name of step        | string                                                    | -       | 
+| subject    | Subject options         | [SubjectProps](/docs/components/subject)                  | -       | 
+| context    | ContextSelector options | [ContextSelectorProps](/docs/components/context-selector) | -       | 
+
 ### StepConditions
 
 | Property   | Description                | Type                                         | Default | 
