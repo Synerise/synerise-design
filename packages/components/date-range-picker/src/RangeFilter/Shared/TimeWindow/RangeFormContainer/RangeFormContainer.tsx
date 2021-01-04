@@ -49,6 +49,7 @@ const RangeFormContainer: React.FC<RangeFormContainerProps> = ({
   const rangeForm = React.useMemo(
     () => (
       <RangeForm
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         texts={texts as any}
         onModeChange={(selected: DateLimitMode): void => {
           setMode(selected);

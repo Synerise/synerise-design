@@ -109,7 +109,7 @@ const RangeForm: React.FC<RangeFormProps> = ({
         />
       </>
     );
-  }, [areStartAndEndValid, start, end, onStartChange, onEndChange, getPopupContainer]);
+  }, [areStartAndEndValid, start, end, onStartChange, onEndChange, getPopupContainer, texts]);
   const limitModeSelect = React.useMemo(
     () => (
       <Select
