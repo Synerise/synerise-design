@@ -4,8 +4,9 @@ import * as S from './DailyFilter.styles';
 import TimeWindow from '../../Shared/TimeWindow/TimeWindow';
 import { RangeActions as RangeActionsMethods } from '../../Shared/TimeWindow/TimeWindow.types';
 import { Days } from '../../../date.types';
+import { WithTranslations } from '../../../DateRangePicker.types';
 
-export interface Props extends WrappedComponentProps, Partial<RangeActionsMethods> {
+export interface Props extends WrappedComponentProps, Partial<RangeActionsMethods>, WithTranslations {
   value: string;
   onChange: (v: Days) => {};
 }
@@ -15,10 +16,11 @@ const DailyFilter: React.FC<Props> = props => {
     const { onChange } = props;
     onChange && onChange(value[0] as Days);
   };
-  const { value, intl, onRangeCopy, onRangePaste, onRangeClear } = props;
+  const { value, intl, onRangeCopy, onRangePaste, onRangeClear, texts } = props;
   return (
     <S.DailyFilterWrapper>
       <TimeWindow
+        texts={texts}
         hideHeader
         numberOfDays={0}
         customDays={{ 0: { label: intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.EVERY_DAY' }) } }}
