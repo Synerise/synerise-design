@@ -13,7 +13,7 @@ export type SubjectProps = {
   onShowPreview?: () => void;
   placeholder: string | React.ReactNode;
   iconPlaceholder: React.ReactNode;
-  selectItem: (item: SubjectItem) => void;
+  onSelectItem: (item: SubjectItem) => void;
   selectedItem?: SubjectItem | undefined;
   type?: SubjectType;
   items: SubjectItem[];
@@ -23,7 +23,7 @@ export type SubjectProps = {
   };
 };
 
-export type SubjectListProps = Pick<SubjectProps, 'items' | 'selectItem' | 'texts'> & { hideDropdown: () => void };
+export type SubjectListProps = Pick<SubjectProps, 'items' | 'onSelectItem' | 'texts'> & { hideDropdown: () => void };
 
 export type SubjectTriggerProps = Pick<SubjectProps, 'placeholder' | 'iconPlaceholder' | 'selectedItem'> & {
   color: string;

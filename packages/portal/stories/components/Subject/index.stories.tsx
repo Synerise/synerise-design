@@ -23,7 +23,7 @@ const stories = {
     return (
       <Subject
         texts={SUBJECT_TEXTS}
-        selectItem={item => store.set({ selected: item })}
+        onSelectItem={item => store.set({ selected: item })}
         onShowPreview={boolean('Show preview button', true) && action('Show preview')}
         type={select('Select type', ['event', 'parameter', 'context'], 'event')}
         placeholder={text('Set placeholder', 'Choose event')}
