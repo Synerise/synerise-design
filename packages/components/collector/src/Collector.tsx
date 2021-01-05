@@ -93,6 +93,8 @@ const Collector: React.FC<CollectorProps> = ({
   const clear = React.useCallback((): void => {
     setSelectedValues([]);
     setValue('');
+    setFocused(false);
+    inputRef?.current && inputRef.current.blur();
   }, []);
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>): void => {
@@ -122,8 +124,8 @@ const Collector: React.FC<CollectorProps> = ({
   };
 
   const onCancelCallback = React.useCallback((): void => {
-    onCancel && onCancel();
     clear();
+    onCancel && onCancel();
   }, [onCancel, clear]);
 
   const onConfirmCallback = React.useCallback((): void => {
@@ -161,6 +163,7 @@ const Collector: React.FC<CollectorProps> = ({
     setFocused(false);
   });
   const showError = error || !!errorText;
+
   return (
     <S.Container
       ref={containerRef}
