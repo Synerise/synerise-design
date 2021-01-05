@@ -66,7 +66,7 @@ export const applyTooltipStyles = (props: ThemeProps & DsSliderProps): FlattenSi
       `
     .ant-tooltip-content {
       background-color: ${props.theme.palette['grey-900']};
-      border-radius: 4px;
+      border-radius: 3px;
     }
     ${Description} {
       color: ${!props.disabled && props.theme.palette['grey-600']};
@@ -82,7 +82,7 @@ export const applyTooltipStyles = (props: ThemeProps & DsSliderProps): FlattenSi
   .ant-slider-handle:not(:focus) {
     .ant-tooltip-content:hover {
       background-color: transparent !important;
-      border-radius: 4px;
+      border-radius: 3px;
     }
     .ant-tooltip-inner:hover {
       color: ${!props.disabled && props.theme.palette['grey-600']} !important;
