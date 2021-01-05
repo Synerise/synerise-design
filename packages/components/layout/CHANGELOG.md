@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.3](https://github.com/synerise/synerise-design/compare/@synerise/ds-layout@0.7.2...@synerise/ds-layout@0.7.3) (2021-01-05)
+
+
+### Bug Fixes
+
+* **layout:** increase specifity of the header ([ad25ea8](https://github.com/synerise/synerise-design/commit/ad25ea8b85af08e60cd90060c1be388ee8b3114c))
+
+
+
+
+
 ## [0.7.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-layout@0.7.1...@synerise/ds-layout@0.7.2) (2021-01-04)
 
 **Note:** Version bump only for package @synerise/ds-layout
