@@ -21,16 +21,9 @@ export interface Props extends AntdSliderProps {
   useColorPalette?: boolean;
   autoFocus?: boolean;
   tracksColorMap?: ColorMapProps;
-  thick?: boolean;
+  thickness?: number ;
   description?: React.ReactNode | string;
   hideMinAndMaxMarks?: boolean;
   disabled?: boolean;
 };
-export type SliderStyleProps = {
-  useColorPalette?: boolean;
-  tracksColorMap?: ColorMapProps;
-  thick?: boolean;
-  description?: React.ReactNode | string;
-  hideMinAndMaxMarks?: boolean;
-  disabled?: boolean;
-};
+
