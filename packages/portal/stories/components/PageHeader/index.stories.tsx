@@ -16,6 +16,7 @@ import Dropdown from '@synerise/ds-dropdown';
 import Menu from '@synerise/ds-menu';
 import MenuItem from '@synerise/ds-menu/dist/Elements/Item/MenuItem';
 import Radio from '@synerise/ds-radio';
+import { useOnClickOutside } from '@synerise/ds-utils';
 
 const shapes = ['circle', 'square'] as const;
 
@@ -220,13 +221,15 @@ const stories = {
       }
     />
   )),
-  withDropdown: withState({
-    activeTab: 0,
-    value: '',
-    dropdownVisible: false,
-    selectedSpace: 'CRM',
-  })(({ store }) => {
+  withDropdown:() => {
     const avatarSize = select('size', ['small', 'medium', 'large', 'extraLarge'], 'large');
+    const [value,setValue] = React.useState('');
+    const [selectedSpace,setSelectedSpace] = React.useState('CRM');
+    const [dropdownVisible, setDropdownVisible] = React.useState(false);
+    const ref = React.useRef<HTMLDivElement>(null);
+    useOnClickOutside(ref, () => {
+      setDropdownVisible(false);
+    });
     return (
       <PageHeader
         onGoBack={action('goBack')}
@@ -237,10 +240,10 @@ const stories = {
         }
         inlineEdit={{
           name: 'name-of-input',
-          value: store.state.value,
+          value: value,
           maxLength: 60,
           handleOnChange: event => {
-            store.set({ value: event.target.value });
+            setValue( event.target.value );
           },
           handleOnBlur: () => action('onBlur'),
           handleOnEnterPress: () => action('onEnterPress'),
@@ -250,23 +253,25 @@ const stories = {
         more={
           <Dropdown
             overlay={
+              <div ref={ref}>
               <Menu asDropdownMenu>
-                <MenuItem onClick={() => store.set({ selectedSpace: 'CRM', dropdownVisible: false })}>CRM</MenuItem>
-                <MenuItem onClick={() => store.set({ selectedSpace: 'Campaign', dropdownVisible: false })}>
+                <MenuItem onClick={() => {setSelectedSpace("CRM"); setDropdownVisible(false)}}>CRM</MenuItem>
+                <MenuItem onClick={() => {setSelectedSpace("Campaign"); setDropdownVisible(false)}}>
                   Campaign
                 </MenuItem>
-                <MenuItem onClick={() => store.set({ selectedSpace: 'Automation', dropdownVisible: false })}>
+                <MenuItem onClick={() => {setSelectedSpace("Automation"); setDropdownVisible(false)}}>
                   Automation
                 </MenuItem>
               </Menu>
+              </div>
             }
-            visible={store.state.dropdownVisible}
+            visible={dropdownVisible}
           >
             <Dropdown.TextTrigger
               size={2}
               inactiveColor="blue-600"
-              value={store.state.selectedSpace}
-              onClick={() => store.set({ dropdownVisible: !store.state.dropdownVisible })}
+              value={selectedSpace}
+              onClick={() => setDropdownVisible(true)}
             />
           </Dropdown>
         }
@@ -287,8 +292,8 @@ const stories = {
         tabs={
           <Tabs
             tabs={tabs}
-            activeTab={store.state.activeTab}
-            handleTabClick={(index: number) => store.set({ activeTab: index })}
+            activeTab={0}
+            handleTabClick={(index: number) => {}}
             configuration={{
               label: 'Manage dashboards',
               action: action('Manage dashboards click'),
@@ -306,7 +311,7 @@ const stories = {
         }
       />
     );
-  }),
+  },
   withStepper: withState({
     activeStep: 0,
     name: 'Example',
