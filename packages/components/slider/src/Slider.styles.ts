@@ -56,6 +56,9 @@ export const applyTooltipStyles = (props: ThemeProps & DsSliderProps): FlattenSi
     `}
 
   &&&.ant-slider-disabled {
+    .ant-slider-dot-active {
+      background-color: ${props.theme.palette.white};
+    }
     .ant-slider-rail {
       background-color: ${props.theme.palette['grey-200']};
     }
@@ -148,6 +151,9 @@ const createTracksStyles = (
         }
         .ant-slider-track {
           background-color: ${props.theme.palette['grey-200']} !important;
+        }
+        .ant-slider-dot-active {
+          border-color: ${props.theme.palette['grey-200']} !important;
         }
       }
     }

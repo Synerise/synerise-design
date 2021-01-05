@@ -132,7 +132,7 @@ const stories = {
       dots={boolean('Dots', false)}
       tipFormatter={tipFormatter}
       onAfterChange={action('onAfterChange')}
-      tooltipPlacement={'bottom'}
+      tooltipPlacement='bottom'
       getTooltipPopupContainer={container => container}
       useColorPalette={true}
       tooltipVisible={boolean('Value visible', false)}
@@ -171,7 +171,7 @@ const stories = {
       tipFormatter={tipFormatter}
       onAfterChange={action('onAfterChange')}
       getTooltipPopupContainer={container => container}
-      tooltipPlacement={'bottom'}
+      tooltipPlacement='bottom'
       useColorPalette={true}
       thickness={select('Set bolder slider', sizeTypes,sizeTypes.light)}
       tooltipVisible={boolean('Value visible', false)}
