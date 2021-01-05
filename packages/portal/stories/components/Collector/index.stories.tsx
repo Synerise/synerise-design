@@ -50,6 +50,7 @@ const stories = {
     const tooltipText = text('Set tooltip text', 'Tooltip');
     const labelText = text('Set label', 'Label');
     const [selected, setSelected] = React.useState<any[]>([]);
+
     return (
       <Collector
         allowCustomValue={boolean('Allow custom values', true)}
@@ -72,6 +73,7 @@ const stories = {
         onDeselect={item => {
           setSelected(selected.filter(i => i.text !== item.text));
         }}
+        onCancel={() => setSelected([])}
         showNavigationHints={boolean('Show navigation hints', true)}
         texts={{
           add: 'Add',

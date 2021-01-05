@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.33](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.7.32...@synerise/ds-card@0.7.33) (2021-01-04)
+
+
+### Bug Fixes
+
+* **card:** replace html tag ([7f7f7f0](https://github.com/Synerise/synerise-design/commit/7f7f7f0a87f1d045899dcd48fd6a87252b71c0d3))
+
+
+
+
+
+## [0.7.32](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.7.31...@synerise/ds-card@0.7.32) (2020-12-23)
+
+**Note:** Version bump only for package @synerise/ds-card
+
+
+
+
+
 ## [0.7.31](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.7.30...@synerise/ds-card@0.7.31) (2020-12-14)
 
 

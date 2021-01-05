@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.111.2](https://github.com/synerise/synerise-design/compare/portal@0.111.1...portal@0.111.2) (2021-01-04)
+
+
+### Bug Fixes
+
+* **date-range-picker:** replaced texts with translations ([6fa40bd](https://github.com/synerise/synerise-design/commit/6fa40bd159c5f202789b3752f16bcd93e66a2c1c))
+* **progress-bar:** add 100% width to the multivalue variant ([1b29d01](https://github.com/synerise/synerise-design/commit/1b29d01eeea10e582a90d12f9220c3d38cfeb917))
+* **progress-bar:** add new small bar component ([932a95c](https://github.com/synerise/synerise-design/commit/932a95ca664419f815058023a027981e73f0b34e))
+* **progress-bar:** add new small bar component ([d5c64a2](https://github.com/synerise/synerise-design/commit/d5c64a2e60f6792a403e084212c47a3630dfb09b))
+
+
+
+
+
 ## [0.111.1](https://github.com/synerise/synerise-design/compare/portal@0.111.0...portal@0.111.1) (2020-12-22)
 
 
