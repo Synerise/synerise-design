@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { action } from '@storybook/addon-actions';
-import { text, boolean, number, select, object, array } from '@storybook/addon-knobs';
+import { text, boolean, number, select, } from '@storybook/addon-knobs';
 
 import Slider from '@synerise/ds-slider';
 import { Props as SliderProps } from '@synerise/ds-slider/dist/Slider.types';
@@ -23,6 +23,10 @@ const placements = [
   'rightTop',
   'rightBottom',
 ];
+const sizeTypes = {
+  light: '3',
+  bold: '6',
+};
 const allocationVariants: AllocationVariant[] = [
   { name: 'Variant A', percentage: 33, tabId: 1, tabLetter: 'A' },
   { name: 'Variant B', percentage: 33, tabId: 2, tabLetter: 'B' },
@@ -132,7 +136,7 @@ const stories = {
       getTooltipPopupContainer={container => container}
       useColorPalette={true}
       tooltipVisible={boolean('Value visible', false)}
-      thick={boolean('Set thick', false)}
+      thickness={select('Set bolder slider', sizeTypes,sizeTypes.light)}
     />
   ),
   /*  withVisibleLabels: () => (
@@ -169,7 +173,7 @@ const stories = {
       getTooltipPopupContainer={container => container}
       tooltipPlacement={'bottom'}
       useColorPalette={true}
-      thick={boolean('Set thick', false)}
+      thickness={select('Set bolder slider', sizeTypes,sizeTypes.light)}
       tooltipVisible={boolean('Value visible', false)}
       tracksColorMap={tracksColorMap}
     />
