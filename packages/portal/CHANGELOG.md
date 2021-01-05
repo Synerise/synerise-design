@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.111.3](https://github.com/synerise/synerise-design/compare/portal@0.111.2...portal@0.111.3) (2021-01-05)
+
+
+### Bug Fixes
+
+* **collector:** hide suggestions list on cancel ([0ab6601](https://github.com/synerise/synerise-design/commit/0ab6601b37e1775a827c6056b6bb80daa12489d0))
+
+
+
+
+
 ## [0.111.2](https://github.com/synerise/synerise-design/compare/portal@0.111.1...portal@0.111.2) (2021-01-04)
 
 
