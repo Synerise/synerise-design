@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@0.2.13...@synerise/ds-collector@0.2.14) (2021-01-05)
+
+
+### Bug Fixes
+
+* **collector:** hide suggestions list on cancel ([0ab6601](https://github.com/Synerise/synerise-design/commit/0ab6601b37e1775a827c6056b6bb80daa12489d0))
+
+
+
+
+
 ## [0.2.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@0.2.12...@synerise/ds-collector@0.2.13) (2021-01-04)
 
 **Note:** Version bump only for package @synerise/ds-collector
