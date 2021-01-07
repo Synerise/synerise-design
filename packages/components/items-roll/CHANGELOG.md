@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.4.11...@synerise/ds-items-roll@0.4.12) (2021-01-05)
+
+
+### Bug Fixes
+
+* **items-roll:** optional texts in items-roll ([85283c4](https://github.com/Synerise/synerise-design/commit/85283c4d4076e3f831b8dfa0fcfb369202d3ec85))
+
+
+
+
+
 ## [0.4.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.4.10...@synerise/ds-items-roll@0.4.11) (2021-01-04)
 
 **Note:** Version bump only for package @synerise/ds-items-roll
