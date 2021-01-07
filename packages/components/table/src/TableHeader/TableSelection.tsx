@@ -73,16 +73,17 @@ function TableSelection<T extends { key: React.ReactText; children?: T[] }>({
     }
   }, [dataSource, selection, getRowKey]);
 
-  const allSelected = React.useMemo(() => {
-    const allRecords = dataSource.reduce((count: number, record: T) => {
-      return record.children !== undefined ? count + record.children.length : count + 1;
-    }, 0);
-    return dataSource && selection?.selectedRowKeys && allRecords === selection.selectedRowKeys.length;
-  }, [dataSource, selection]);
-
   const isEmpty = React.useMemo(() => {
     return dataSource.length === 0;
   }, [dataSource]);
+
+  const allSelected = React.useMemo(() => {
+    if (isEmpty) return false;
+    const allRecords = dataSource.reduce((count: number, record: T) => {
+      return record.children !== undefined ? count + record.children.length : count + 1;
+    }, 0);
+    return selection?.selectedRowKeys && allRecords === selection.selectedRowKeys.length;
+  }, [dataSource, selection, isEmpty]);
 
   return selection?.selectedRowKeys ? (
     <S.Selection>
