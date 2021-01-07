@@ -10,7 +10,7 @@ import { SubjectItem, SubjectListProps } from '../Subject.types';
 import * as S from './SubjectList.styles';
 import SubjectListItem from './SubjectListItem';
 
-const SubjectList: React.FC<SubjectListProps> = ({ items, selectItem, hideDropdown, texts }) => {
+const SubjectList: React.FC<SubjectListProps> = ({ items, onSelectItem, hideDropdown, texts }) => {
   const [searchQuery, setSearchQuery] = React.useState('');
   const overlayRef = React.useRef<HTMLDivElement>(null);
   const [searchInputCanBeFocused, setSearchInputFocus] = React.useState(true);
@@ -31,14 +31,14 @@ const SubjectList: React.FC<SubjectListProps> = ({ items, selectItem, hideDropdo
             className={classNames}
             searchQuery={searchQuery}
             key={`${item.name}-${item.id}`}
-            select={selectItem}
+            select={onSelectItem}
             hideDropdown={hideDropdown}
             clearSearch={(): void => setSearchQuery('')}
             item={item}
           />
         );
       });
-  }, [items, searchQuery, hideDropdown, selectItem, setSearchQuery, classNames]);
+  }, [items, searchQuery, hideDropdown, onSelectItem, setSearchQuery, classNames]);
 
   return (
     <Dropdown.Wrapper

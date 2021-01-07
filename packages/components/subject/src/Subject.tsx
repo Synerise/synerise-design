@@ -12,7 +12,7 @@ const Subject: React.FC<SubjectProps> = ({
   iconPlaceholder,
   items,
   placeholder,
-  selectItem,
+  onSelectItem,
   onShowPreview,
   type = 'parameter',
   texts,
@@ -31,7 +31,7 @@ const Subject: React.FC<SubjectProps> = ({
           <SubjectList
             texts={texts}
             items={items}
-            selectItem={selectItem}
+            onSelectItem={onSelectItem}
             hideDropdown={(): void => setDropdownVisible(false)}
           />
         }

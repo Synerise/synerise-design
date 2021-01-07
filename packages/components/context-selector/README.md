@@ -22,8 +22,8 @@ import ContextSelector from '@synerise/ds-context-selector'
      searchPlaceholder: 'Search',
      noResults: 'No results',
    }}
-    onChange={(item) => {}}
-    value={{
+    onSelectItem={(item) => {}}
+    selectedItem={{
        name: 'Transaction charge',
        id: 6,
        icon: <NotificationsM />,
@@ -84,15 +84,15 @@ import ContextSelector from '@synerise/ds-context-selector'
 
 ## API
 
-| Property | Description                                                | Type                                                   | Default   |
-| ---      | ---                                                        | ---                                                    | ---       |
-| groups   | Groups of items                                            | ContextGroup[]                                         | []        |
-| items    | Array of items                                             | ContextItem[]                                          | []        |
-| onChange | Callback called when user selects item                     | (item: ContextItem \ ContextGroup \ undefined) => void | -         |
-| opened   | Whether if dropdown should opens from outside of component | boolean                                                | false     |
-| texts    | Translations object                                        | ContextSelectorTexts                                   | -         |
-| value    | Selected item                                              | ContextItem \ undefined                                | undefined |
-| addMode  | If true trigger doesn't change style when value is set     | ContextItem \ undefined                                | undefined |
+| Property     | Description                                                | Type                                                   | Default   |
+| ---          | ---                                                        | ---                                                    | ---       |
+| groups       | Groups of items                                            | ContextGroup[]                                         | []        |
+| items        | Array of items                                             | ContextItem[]                                          | []        |
+| onSelectItem | Callback called when user selects item                     | (item: ContextItem \ ContextGroup \ undefined) => void | -         |
+| opened       | Whether if dropdown should opens from outside of component | boolean                                                | false     |
+| texts        | Translations object                                        | ContextSelectorTexts                                   | -         |
+| selectedItem | Selected item                                              | ContextItem \ undefined                                | undefined |
+| addMode      | If true trigger doesn't change style when value is set     | ContextItem \ undefined                                | undefined |
 
 ### ContextGroup
 

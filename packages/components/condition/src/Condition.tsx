@@ -9,6 +9,7 @@ import { ChangeEvent } from 'react';
 import Subject from '@synerise/ds-subject';
 import Factors from '@synerise/ds-factors';
 import Operators from '@synerise/ds-operators';
+import ContextSelector from '@synerise/ds-context-selector';
 import { ConditionProps, ConditionStep, StepConditions } from './Condition.types';
 import * as S from './Condition.style';
 
@@ -33,20 +34,28 @@ const Condition: React.FC<ConditionProps> = ({ steps, addCondition, removeCondit
         condition.operator && condition.operator.onChange(undefined);
         condition.parameter && condition.parameter.onChangeValue(undefined);
       });
-    },
-    [removeCondition, addCondition]
-  );
-
-  const selectSubject = React.useCallback(
-    (value, step: ConditionStep): void => {
-      step.subject.selectItem(value);
-      clearConditionRow(step);
       setCurrentConditionId(step.conditions[0].id);
       if (step.conditions[0].parameter) {
         setCurrentField('parameter');
       } else if (step.conditions[0].operator) {
         setCurrentField('operator');
       }
+    },
+    [removeCondition, addCondition]
+  );
+
+  const selectSubject = React.useCallback(
+    (value, step: ConditionStep): void => {
+      step.subject && step.subject.onSelectItem(value);
+      clearConditionRow(step);
+    },
+    [clearConditionRow]
+  );
+
+  const selectContext = React.useCallback(
+    (value, step: ConditionStep): void => {
+      step.context && step.context.onSelectItem(value);
+      clearConditionRow(step);
     },
     [clearConditionRow]
   );
@@ -98,7 +107,12 @@ const Condition: React.FC<ConditionProps> = ({ steps, addCondition, removeCondit
             )}
             <S.StepConditions>
               <S.Subject>
-                <Subject {...step.subject} selectItem={(value): void => selectSubject(value, step)} />
+                {step.subject && (
+                  <Subject {...step.subject} onSelectItem={(value): void => selectSubject(value, step)} />
+                )}
+                {step.context && (
+                  <ContextSelector {...step.context} onSelectItem={(value): void => selectContext(value, step)} />
+                )}
               </S.Subject>
               <S.ConditionRows>
                 {step.conditions &&

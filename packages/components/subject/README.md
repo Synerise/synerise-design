@@ -21,7 +21,7 @@ import Subject from '@synerise/ds-subject'
         noResults: 'No results',
         searchPlaceholder: 'Search'
     }}
-    selectItem={(item) => {}
+    onSelectItem={(item) => {}
     onShowPreview={() => {}}
     type='event'
     placeholder='Choose event'
@@ -55,7 +55,7 @@ import Subject from '@synerise/ds-subject'
 | items           | Array of available subjects                             | SubjectItem[]             | []          | 
 | placeholder     | Placeholder for empty selected item                     | string \ React.ReactNode; | -           | 
 | selectedItem?   | Selected item                                           | SubjectItem \ undefined;  | `undefined` | 
-| selectItem      | Callback called when user select new subject            | ( SubjectItem) => void;   | -           | 
+| onSelectItem    | Callback called when user select new subject            | ( SubjectItem) => void;   | -           | 
 | onShowPreview   | Callback called when user clicks on Show Preview button | () => void \ undefined    | -           | 
 | texts           | Object with translations                                | TEXTS                     | -           | 
 | type?           | Type of subject `parameter` \ `context` \ `event`       | SubjectType               | `parameter` | 

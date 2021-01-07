@@ -9,6 +9,7 @@ import Settings from './Settings/Settings';
 import * as S from './CompleteWithin.styles';
 
 export const DEFAULT_PERIODS = ['SECONDS', 'MINUTES', 'HOURS', 'DAYS', 'MONTHS', 'YEARS'];
+const DEFAULT_PERIOD = 'YEARS';
 
 const CompletedWithin: React.FC<CompletedWithinProps> = ({ value, onSetValue, text, periods }) => {
   const intl = useIntl();
@@ -41,7 +42,7 @@ const CompletedWithin: React.FC<CompletedWithinProps> = ({ value, onSetValue, te
   }, [periods, intl]);
 
   const [innerValue, setInnerValue] = React.useState<number | undefined>(value.value);
-  const [innerPeriod, setInnerPeriod] = React.useState<Period>(value.period);
+  const [innerPeriod, setInnerPeriod] = React.useState<Period>(value.period || DEFAULT_PERIOD);
 
   const hasValue = React.useMemo(() => value.value !== undefined && value.value > 0, [value]);
 
