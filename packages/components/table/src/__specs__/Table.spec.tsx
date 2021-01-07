@@ -299,4 +299,24 @@ describe('Table', () => {
     // ASSERT
     expect(getByText('Custom table title').textContent).toBeTruthy();
   });
+
+  it('Should render with unchecked and disabled row selection checkbox', () => {
+    // ARRANGE
+    const handleChangeSelection = jest.fn();
+    const { getByTestId } = renderWithProvider(
+      <Table
+        dataSource={[]}
+        columns={props.columns}
+        title="Title"
+        selection={{ selectedRowKeys: [], onChange: handleChangeSelection }}
+      />
+    );
+    const rowSelectionCheckbox = getByTestId('ds-table-title').querySelector(
+      'input[type=checkbox]'
+    ) as HTMLInputElement;
+
+    // ASSERT
+    expect(rowSelectionCheckbox.checked).toBeFalsy();
+    expect(rowSelectionCheckbox.disabled).toBeTruthy();
+  });
 });
