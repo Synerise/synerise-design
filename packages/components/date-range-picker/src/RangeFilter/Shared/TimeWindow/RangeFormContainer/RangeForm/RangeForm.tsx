@@ -74,7 +74,7 @@ const RangeForm: React.FC<RangeFormProps> = ({
         disabledSeconds={[]}
       />
     );
-  }, [start, onExactHourSelect, getPopupContainer]);
+  }, [start, onExactHourSelect, getPopupContainer, texts]);
 
   const renderRangePicker = React.useCallback(() => {
     return (
