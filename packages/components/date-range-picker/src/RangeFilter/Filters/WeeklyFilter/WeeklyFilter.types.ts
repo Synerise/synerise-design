@@ -7,7 +7,7 @@ export type WeeklyFilterProps = {
   value: Days;
   onChange: (days: Days) => void;
   intl: IntlShape;
-  rangeClipboard: Partial<FilterDefinition>;
+  rangeClipboard?: Partial<FilterDefinition>;
 } & WithTranslations &
   Partial<RangeActions>;
 

@@ -7,7 +7,7 @@ export type MonthlyFilterProps = {
   value: Month[];
   onChange: (definition: string | object) => void;
   intl: IntlShape;
-  rangeClipboard: Partial<FilterDefinition>;
+  rangeClipboard?: Partial<FilterDefinition>;
 } & Partial<RangeActions> &
   WithTranslations;
 export type Month = {

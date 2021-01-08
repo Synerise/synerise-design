@@ -132,25 +132,33 @@ export const denormalizers: { [key: string]: Function } = {
       [MONTHLY_TYPES.DAY_OF_WEEK]: createMonthlyWeekDayRange,
     };
     return values.rules.map(value => ({
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-      // @ts-ignore
-      definition: monthlyDenormalizers[value.type](value),
       period: value.type,
       id: Math.random(),
       periodType: value.inverted ? 'ending' : 'beginning',
+      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+      // @ts-ignore
+      definition: monthlyDenormalizers[value.type](value),
     }));
   },
 };
 
-export const denormalizeValue = (values: FilterValue): Partial<FilterValue> => ({
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const validators: { [key: string]: (values: any) => boolean } = {
+  [TYPES.DAILY]: (values: NormalizedFilter) => Boolean(!!values?.from && !!values?.to),
+  [TYPES.WEEKLY]: (values: WeeklyFilterDefinition) =>
+    Boolean(values?.definition && !!Object.keys(values.definition).length),
+  [TYPES.MONTHLY]: (values: FilterValue<MonthlyFilterDefinition>) =>
+    Boolean(
+      values?.definition && !!Object.keys(values.definition) && Object.keys(values.definition[0].definition).length > 0
+    ),
+};
+
+export const denormalizeValue = (values: FilterValue<FilterDefinition>): Partial<FilterValue<FilterDefinition>> => ({
   type: values.type,
   definition: denormalizers[values.type](values),
 });
 
-export const isValidValue = (value: FilterValue): boolean =>
-  Boolean(
-    value?.definition && (!Object.prototype.hasOwnProperty.call(value?.definition, 'type') || value.definition.type)
-  );
+export const isValidValue = (value: FilterValue<FilterDefinition>): boolean => validators[value.type](value);
 
 export const isDuplicate = (itemsList: SavedFilter[], item: SavedFilter): boolean => {
   return itemsList.some(i => i.name.toLowerCase() === item.name.toLowerCase() && i.id !== item.id);

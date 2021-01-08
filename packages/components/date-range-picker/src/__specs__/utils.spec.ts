@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom/extend-expect';
-import { denormalizeValue, normalizeValue } from '../RangeFilter/utils';
+import { denormalizeValue, isValidValue, normalizeValue } from '../RangeFilter/utils';
 import { FilterValue } from '../RangeFilter/RangeFilter.types';
 
 const denormalizeWeeklyFilter = {
@@ -77,66 +77,66 @@ const denormalizedMonthlyFilterBeginningOfMonth = {
   type: 'MONTHLY',
 };
 const denormalizedMonthlyFilterWithWeekPeriod = {
-  "type": "MONTHLY",
-  "definition": [
+  type: 'MONTHLY',
+  definition: [
     {
-      "period": "WEEK",
-      "periodType": "beginning",
-      "definition": {
-        "0": {
-          "start": "00:00:00.000",
-          "stop": "23:59:59.999",
-          "restricted": true,
-          "display": true,
-          "inverted": false,
-          "week": 0,
-          "day": 0,
-          "type": "MONTHLY",
+      period: 'WEEK',
+      periodType: 'beginning',
+      definition: {
+        '0': {
+          start: '00:00:00.000',
+          stop: '23:59:59.999',
+          restricted: true,
+          display: true,
+          inverted: false,
+          week: 0,
+          day: 0,
+          type: 'MONTHLY',
         },
-        "1": {
-          "start": "00:00:00.000",
-          "stop": "23:59:59.999",
-          "restricted": true,
-          "display": true,
-          "inverted": false,
-          "week": 0,
-          "day": 1,
-          "type": "MONTHLY",
+        '1': {
+          start: '00:00:00.000',
+          stop: '23:59:59.999',
+          restricted: true,
+          display: true,
+          inverted: false,
+          week: 0,
+          day: 1,
+          type: 'MONTHLY',
         },
-        "8": {
-          "start": "00:00:00.000",
-          "stop": "23:59:59.999",
-          "restricted": true,
-          "display": true,
-          "inverted": false,
-          "week": 1,
-          "day": 1,
-          "type": "MONTHLY",
+        '8': {
+          start: '00:00:00.000',
+          stop: '23:59:59.999',
+          restricted: true,
+          display: true,
+          inverted: false,
+          week: 1,
+          day: 1,
+          type: 'MONTHLY',
         },
-        "16": {
-          "start": "00:00:00.000",
-          "stop": "23:59:59.999",
-          "restricted": true,
-          "display": true,
-          "inverted": false,
-          "week": 2,
-          "day": 2,
-          "type": "MONTHLY",
+        '16': {
+          start: '00:00:00.000',
+          stop: '23:59:59.999',
+          restricted: true,
+          display: true,
+          inverted: false,
+          week: 2,
+          day: 2,
+          type: 'MONTHLY',
         },
-        "24": {
-          "start": "00:00:00.000",
-          "stop": "23:59:59.999",
-          "restricted": true,
-          "display": true,
-          "inverted": false,
-          "week": 3,
-          "day": 3,
-          "type": "MONTHLY",
-        }
+        '24': {
+          start: '00:00:00.000',
+          stop: '23:59:59.999',
+          restricted: true,
+          display: true,
+          inverted: false,
+          week: 3,
+          day: 3,
+          type: 'MONTHLY',
+        },
       },
-    }
-  ]
-}
+    },
+  ],
+};
 
 const normalizedMonthlyFilterBeginningOfMonth = {
   rules: [
@@ -156,71 +156,71 @@ const normalizedMonthlyFilterBeginningOfMonth = {
 };
 
 const normalizedMonthlyFilterWithWeekPeriod = {
-  "type": "MONTHLY",
-  "nestingType": "IN_PLACE",
-  "rules": [
+  type: 'MONTHLY',
+  nestingType: 'IN_PLACE',
+  rules: [
     {
-      "weeks": [
+      weeks: [
         {
-          "week": 1,
-          "days": [
+          week: 1,
+          days: [
             {
-              "from": "00:00:00.000",
-              "to": "23:59:59.999",
-              "day": 1,
-              "inverted": false,
-              "type": "MONTHLY"
+              from: '00:00:00.000',
+              to: '23:59:59.999',
+              day: 1,
+              inverted: false,
+              type: 'MONTHLY',
             },
             {
-              "from": "00:00:00.000",
-              "to": "23:59:59.999",
-              "day": 2,
-              "inverted": false,
-              "type": "MONTHLY"
-            }
-          ]
+              from: '00:00:00.000',
+              to: '23:59:59.999',
+              day: 2,
+              inverted: false,
+              type: 'MONTHLY',
+            },
+          ],
         },
         {
-          "week": 2,
-          "days": [
+          week: 2,
+          days: [
             {
-              "from": "00:00:00.000",
-              "to": "23:59:59.999",
-              "day": 2,
-              "inverted": false,
-              "type": "MONTHLY"
-            }
-          ]
+              from: '00:00:00.000',
+              to: '23:59:59.999',
+              day: 2,
+              inverted: false,
+              type: 'MONTHLY',
+            },
+          ],
         },
         {
-          "week": 3,
-          "days": [
+          week: 3,
+          days: [
             {
-              "from": "00:00:00.000",
-              "to": "23:59:59.999",
-              "day": 3,
-              "inverted": false,
-              "type": "MONTHLY"
-            }
-          ]
+              from: '00:00:00.000',
+              to: '23:59:59.999',
+              day: 3,
+              inverted: false,
+              type: 'MONTHLY',
+            },
+          ],
         },
         {
-          "week": 4,
-          "days": [
+          week: 4,
+          days: [
             {
-              "from": "00:00:00.000",
-              "to": "23:59:59.999",
-              "day": 4,
-              "inverted": false,
-              "type": "MONTHLY"
-            }
-          ]
-        }
+              from: '00:00:00.000',
+              to: '23:59:59.999',
+              day: 4,
+              inverted: false,
+              type: 'MONTHLY',
+            },
+          ],
+        },
       ],
-      "type": "WEEK",
-      "inverted": false
-    }
-  ]
+      type: 'WEEK',
+      inverted: false,
+    },
+  ],
 };
 
 describe('DateRangePicker utils (snrs-components refactor)', () => {
@@ -254,6 +254,29 @@ describe('DateRangePicker utils (snrs-components refactor)', () => {
       expect(denormalizeValue(normalizedMonthlyFilterWithWeekPeriod)).toMatchObject(
         denormalizedMonthlyFilterWithWeekPeriod
       );
+    });
+  });
+});
+
+const VALID_DAILY_FILTER = {
+  from: 'test',
+  to: 'end',
+  type: 'DAILY',
+};
+
+const INVALID_DAILY_FILTER = {
+  from: null,
+  to: 'end',
+  type: 'DAILY',
+};
+
+describe('DateRangePicker utils ', () => {
+  describe('validators ', () => {
+    it('should return true for valid daily filter', () => {
+      expect(isValidValue(VALID_DAILY_FILTER)).toBe(true);
+    });
+    it('should return false for invalid daily filter', () => {
+      expect(isValidValue(INVALID_DAILY_FILTER)).toBe(false);
     });
   });
 });

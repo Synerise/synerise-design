@@ -61,6 +61,7 @@ const RangeForm: React.FC<RangeFormProps> = ({
   const singleHourPicker = React.useMemo(() => {
     return (
       <TimePicker
+        clearTooltip={texts?.clear}
         onChange={(date): void => {
           date && onExactHourSelect(date);
         }}
@@ -73,7 +74,7 @@ const RangeForm: React.FC<RangeFormProps> = ({
         disabledSeconds={[]}
       />
     );
-  }, [start, onExactHourSelect, getPopupContainer]);
+  }, [start, onExactHourSelect, getPopupContainer, texts]);
 
   const renderRangePicker = React.useCallback(() => {
     return (

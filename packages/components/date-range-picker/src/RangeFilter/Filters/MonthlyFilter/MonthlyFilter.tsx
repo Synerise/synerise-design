@@ -265,7 +265,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
         <S.AddContainer>
           {value.length < MAX_RULES_ALLOWED && (
             <Button.Creator
-              label={<FormattedMessage id="DS.DATE-RANGE-PICKER.ADD-RULE" />}
+              label={intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.ADD-RULE' })}
               onClick={this.handleAddRow}
               block
             />

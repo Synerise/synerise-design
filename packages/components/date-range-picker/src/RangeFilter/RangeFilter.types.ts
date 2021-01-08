@@ -4,8 +4,10 @@ import { SavedFilter } from './Shared/FilterDropdown/FilterDropdown.types';
 import { DateLimitMode } from './Shared/TimeWindow/RangeFormContainer/RangeForm/RangeForm.types';
 import { Texts } from '../DateRangePicker.types';
 
-export type FilterValue = {
-  definition?: Partial<FilterDefinition>;
+export type PeriodType = 'ending' | 'beginning';
+
+export type FilterValue<T = FilterDefinition> = {
+  definition?: Partial<T>;
   type: string;
 };
 export type RangeFilterProps = {
@@ -31,7 +33,7 @@ export type FilterDefinition = {
   period?: string;
   type: string;
   display?: boolean;
-  periodType?: string;
+  periodType?: PeriodType;
   mode?: DateLimitMode;
 };
 
@@ -70,5 +72,5 @@ export type MonthlyFilterDefinition = {
   };
   id: number;
   period: string;
-  periodType: string;
+  periodType: PeriodType;
 };
