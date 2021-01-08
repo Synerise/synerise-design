@@ -47,10 +47,7 @@ export const denormMapTimeSchema = (item: NormalizedFilter): DenormalizedFilter 
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const normalizeValue = ({
-  type,
-  definition,
-}: FilterValue<FilterDefinition>): NormalizedFilterBase | { rules: any } => {
+export const normalizeValue = ({ type, definition }: FilterValue): NormalizedFilterBase | { rules: any } => {
   const result = { type, nestingType: 'IN_PLACE' };
   let days: unknown[];
   let rules: unknown[] = [];
