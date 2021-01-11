@@ -21,9 +21,8 @@ describe('SidebarObject', () => {
     // ARRANGE
     const { container } = renderWithProvider(
       <SidebarObject
-        name='Name'
-        parentFolder={{name: 'Folder' ,id: 'FolderItem'}}
         // @ts-ignore
+        name='Name'
         texts={{name: 'Text'}}
         inputObject={{Status: 'active', id: "123"}}
         headerTabs={TABS}
@@ -39,9 +38,8 @@ describe('SidebarObject', () => {
 
     const { container } = renderWithProvider(
       <SidebarObject
-        name='Name'
-        parentFolder={{name: 'Folder' ,id: 'FolderItem'}}
         // @ts-ignore
+        name='Name'
         texts={{name: 'Text'}}
         inputObject={{Status: 'active', id: "123"}}
         headerTabs={TABS}
