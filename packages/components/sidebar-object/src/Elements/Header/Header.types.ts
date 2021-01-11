@@ -6,8 +6,8 @@ export type HeaderProps = {
   preffix: React.ReactNode;
   tabs: React.ReactNode;
   additionalNode?: React.ReactNode;
-  type?: type;
-  typeButtons?: typeButtons;
+  type?: HeaderType;
+  typeButtons?: ButtonVariant;
   nextTooltip?: React.ReactNode | string;
   previousTooltip?: React.ReactNode | string;
   crudsTooltip?: React.ReactNode | string;
@@ -32,7 +32,7 @@ export type HeaderProps = {
   onApplyClick?: () => void;
 };
 
-export type HeaderTexts = {
+export type HeaderTexts = Partial<{
   name: string;
   inlineEditPlaceholder: string;
   deleteIcon: string;
@@ -43,10 +43,13 @@ export type HeaderTexts = {
   cancelButton: string;
   applyButton: string;
   addFolder: string;
-};
-export type type = {
-  type?: 'readonly' | 'editable';
-};
-export type typeButtons = {
-  typeButtons?: 'twoButtons' | 'withNavigation';
-};
+}>;
+export enum HeaderType {
+  READONLY = 'readonly',
+  EDITABLE = 'editable',
+}
+
+export enum ButtonVariant {
+  TWO_BUTTONS = 'twoButtons',
+  WITH_NAVIGATION = 'withNavigation',
+}

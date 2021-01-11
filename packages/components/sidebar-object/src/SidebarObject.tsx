@@ -4,7 +4,8 @@ import Scrollbar from '@synerise/ds-scrollbar';
 import { TabItem } from '@synerise/ds-tabs/dist/Tabs.types';
 import { SidebarObjectProps } from './SidebarObject.types';
 import Header from './Elements/Header/Header';
-import * as S from './SidebarObject.style'
+import * as S from './SidebarObject.style';
+import { ButtonVariant, HeaderType } from './Elements/Header/Header.types';
 
 const SidebarObject: React.FC<SidebarObjectProps> = ({
   avatar,
@@ -26,11 +27,11 @@ const SidebarObject: React.FC<SidebarObjectProps> = ({
   footer,
   name,
   onRename,
-  inputObjectIdKey='id',
+  inputObjectIdKey = 'id',
   additionalNode,
-  activeTab= 0,
-  headerType,
-  typeButtons,
+  activeTab = 0,
+  headerType = HeaderType.READONLY,
+  typeButtons = ButtonVariant.TWO_BUTTONS,
   onCancelClick,
   onApplyClick,
 }) => {
@@ -45,7 +46,17 @@ const SidebarObject: React.FC<SidebarObjectProps> = ({
         <Header
           avatar={avatar}
           preffix={headerPreffix}
-          tabs={headerTabs?.length ?<Tabs activeTab={activeTab} tabs={headerTabs as TabItem[]} handleTabClick={(index): void  => { handleTabClick(index)}}/> : null}
+          tabs={
+            headerTabs?.length ? (
+              <Tabs
+                activeTab={activeTab}
+                tabs={headerTabs as TabItem[]}
+                handleTabClick={(index): void => {
+                  handleTabClick && handleTabClick(index);
+                }}
+              />
+            ) : null
+          }
           onDelete={onDelete}
           onDuplicate={onDuplicate}
           onEdit={onEdit}
@@ -66,9 +77,9 @@ const SidebarObject: React.FC<SidebarObjectProps> = ({
           type={headerType}
           typeButtons={typeButtons}
         />
-        {headerTabs[activeTab]?.content && <S.ContentContainer>{headerTabs[activeTab]?.content}</S.ContentContainer> }
+        {headerTabs[activeTab]?.content && <S.ContentContainer>{headerTabs[activeTab]?.content}</S.ContentContainer>}
       </Scrollbar>
-      <S.ContentPlaceholder/>
+      <S.ContentPlaceholder />
       {!!footer && <S.FooterContainer> {footer} </S.FooterContainer>}
     </S.SidebarObjectWrapper>
   );
