@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar-object@0.4.13...@synerise/ds-sidebar-object@0.4.14) (2021-01-11)
+
+
+### Bug Fixes
+
+* **sidebar-object:** default values for props ([dca4826](https://github.com/Synerise/synerise-design/commit/dca482674be67a84a5f14c3c8a2bb4902bb48ac5))
+* **sidebar-object:** fix required types ([b2e7ac3](https://github.com/Synerise/synerise-design/commit/b2e7ac35bf087fee00dcb805037abb91e1de7443))
+* **sidebar-object:** removed ts-ignore in specs ([200f354](https://github.com/Synerise/synerise-design/commit/200f354dac6dfbaa02c333820a2c7b83925668c5))
+
+
+
+
+
 ## [0.4.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar-object@0.4.12...@synerise/ds-sidebar-object@0.4.13) (2021-01-04)
 
 **Note:** Version bump only for package @synerise/ds-sidebar-object
