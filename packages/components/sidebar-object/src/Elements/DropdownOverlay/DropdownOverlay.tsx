@@ -38,7 +38,7 @@ const DropdownOverlay: React.FC<Props> = ({
       <Dropdown.SearchInput
         onSearchChange={onSearchChange}
         onClearInput={onClearInput}
-        placeholder={texts.search}
+        placeholder={texts?.search || ''}
         value={searchValue}
         iconLeft={<Icon component={<SearchM />} color={theme.palette['grey-600']} />}
         autofocus
@@ -63,10 +63,7 @@ const DropdownOverlay: React.FC<Props> = ({
         )}
       </MenuWrapper>
       {onAddFolderClick && (
-        <Dropdown.BottomAction
-          onClickAction={(): void => onAddFolderClick(searchValue)}
-          style={{padding: '8px'}}
-        >
+        <Dropdown.BottomAction onClickAction={(): void => onAddFolderClick(searchValue)} style={{ padding: '8px' }}>
           <Button type="ghost" mode="icon-label">
             <Icon component={<Add3M />} size={24} color={theme.palette['grey-500']} />
             <div>{texts.addFolder}</div>

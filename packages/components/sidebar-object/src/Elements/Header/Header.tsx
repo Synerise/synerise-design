@@ -18,18 +18,9 @@ import {
 import Dropdown from '@synerise/ds-dropdown';
 import Menu from '@synerise/ds-menu';
 import { useOnClickOutside } from '@synerise/ds-utils';
-import { HeaderProps } from './Header.types';
+import { ButtonVariant, HeaderProps, HeaderType } from './Header.types';
 import * as S from './Header.style';
 import { DropdownWrapper, MenuWrapper } from './Header.style';
-
-const HEADER_TYPES = {
-  readonly: 'readonly',
-  editable: 'editable',
-};
-const BUTTON_TYPES = {
-  twoButtons: 'twoButtons',
-  withNavigation: 'withNavigation',
-};
 
 const Header: React.FC<HeaderProps> = ({
   avatar,
@@ -50,8 +41,8 @@ const Header: React.FC<HeaderProps> = ({
   name = '',
   onRename,
   additionalNode,
-  type,
-  typeButtons,
+  type = HeaderType.READONLY,
+  typeButtons = ButtonVariant.TWO_BUTTONS,
   onCancelClick,
   onApplyClick,
 }) => {
@@ -61,7 +52,7 @@ const Header: React.FC<HeaderProps> = ({
     setDropdownVisible(false);
   });
   const renderBackTitle = (titleType: typeof type): React.ReactNode => {
-    if (titleType === HEADER_TYPES.editable) {
+    if (titleType === HeaderType.EDITABLE) {
       return (
         <S.StyledInlineEdit
           disabled={!onRename}
@@ -81,7 +72,7 @@ const Header: React.FC<HeaderProps> = ({
     return <S.SingleTitle>{name}</S.SingleTitle>;
   };
   const renderActionButtons = (typesOfButtons: typeof typeButtons): React.ReactNode => {
-    if (typesOfButtons === BUTTON_TYPES.withNavigation) {
+    if (typesOfButtons === ButtonVariant.WITH_NAVIGATION) {
       return (
         <>
           {onArrowUp && (
@@ -103,7 +94,7 @@ const Header: React.FC<HeaderProps> = ({
             placement="bottomLeft"
             overlay={
               <DropdownWrapper ref={ref}>
-                <Menu asDropdownMenu style={{width: '100%'}}>
+                <Menu asDropdownMenu style={{ width: '100%' }}>
                   {onEdit && (
                     <Menu.Item
                       onClick={(): void => {
@@ -182,10 +173,16 @@ const Header: React.FC<HeaderProps> = ({
     return (
       <S.ButtonsWrapper>
         <S.ButtonWrapper>
-          <Button type="ghost" onClick={onCancelClick}> {texts.cancelButton} </Button>
+          <Button type="ghost" onClick={onCancelClick}>
+            {' '}
+            {texts.cancelButton}{' '}
+          </Button>
         </S.ButtonWrapper>
         <S.ButtonWrapper>
-          <Button type="primary" onClick={onApplyClick}> {texts.applyButton} </Button>
+          <Button type="primary" onClick={onApplyClick}>
+            {' '}
+            {texts.applyButton}{' '}
+          </Button>
         </S.ButtonWrapper>
       </S.ButtonsWrapper>
     );

@@ -20,10 +20,11 @@ export type OverviewObjectProps = {
   onDescriptionChange: (value: string) => void;
   onAddFolderClick?: (folderName: string) => void;
 };
-export type OverviewTexts = HeaderTexts & {
-  placeholder: string;
-  suffixTooltip: string | React.ReactNode;
-  search: string;
-  folder: string;
-  addFolder: string;
-};
+export type OverviewTexts = HeaderTexts &
+  Partial<{
+    placeholder: string;
+    suffixTooltip: string | React.ReactNode;
+    search: string;
+    folder: string;
+    addFolder: string;
+  }>;
