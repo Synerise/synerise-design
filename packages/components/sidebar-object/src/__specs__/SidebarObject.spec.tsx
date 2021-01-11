@@ -21,7 +21,6 @@ describe('SidebarObject', () => {
     // ARRANGE
     const { container } = renderWithProvider(
       <SidebarObject
-        // @ts-ignore
         name='Name'
         texts={{name: 'Text'}}
         inputObject={{Status: 'active', id: "123"}}
@@ -38,7 +37,6 @@ describe('SidebarObject', () => {
 
     const { container } = renderWithProvider(
       <SidebarObject
-        // @ts-ignore
         name='Name'
         texts={{name: 'Text'}}
         inputObject={{Status: 'active', id: "123"}}
@@ -48,8 +46,6 @@ describe('SidebarObject', () => {
     );
     // ASSERT
     expect(container.querySelector('.buttons')).toBeTruthy();
-
-
   });
 
 });
