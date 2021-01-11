@@ -5,6 +5,7 @@ import { TabItem } from '@synerise/ds-tabs/dist/Tabs.types';
 import { SidebarObjectProps } from './SidebarObject.types';
 import Header from './Elements/Header/Header';
 import * as S from './SidebarObject.style';
+import { ButtonVariant, HeaderType } from './Elements/Header/Header.types';
 
 const SidebarObject: React.FC<SidebarObjectProps> = ({
   avatar,
@@ -29,8 +30,8 @@ const SidebarObject: React.FC<SidebarObjectProps> = ({
   inputObjectIdKey = 'id',
   additionalNode,
   activeTab = 0,
-  headerType,
-  typeButtons,
+  headerType = HeaderType.READONLY,
+  typeButtons = ButtonVariant.TWO_BUTTONS,
   onCancelClick,
   onApplyClick,
 }) => {
