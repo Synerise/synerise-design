@@ -5,7 +5,6 @@ import { DateLimitMode } from './Shared/TimeWindow/RangeFormContainer/RangeForm/
 import { Texts } from '../DateRangePicker.types';
 
 export type PeriodType = 'ending' | 'beginning';
-
 export type FilterValue<T = FilterDefinition> = {
   definition?: Partial<T>;
   type: string;
@@ -47,6 +46,7 @@ export type DenormalizedFilter = {
   start: string;
   stop: string;
   day?: React.ReactText;
+  restricted?: boolean;
 };
 export type NormalizedFilter = NormalizedFilterBase & {
   from: string;
