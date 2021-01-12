@@ -35,6 +35,7 @@ export const DescriptionWrapper = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
+  user-select: none;
   bottom: 0;
   right: 0;
 `;
@@ -43,6 +44,7 @@ export const applyTooltipStyles = (props: ThemeProps & DsSliderProps): FlattenSi
   .ant-tooltip-inner {
     font-size: 13px;
     padding: 3px 7px;
+    user-select: none;
   }
   ${props.disabled &&
     `.ant-tooltip-inner {

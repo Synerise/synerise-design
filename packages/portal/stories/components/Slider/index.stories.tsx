@@ -24,8 +24,8 @@ const placements = [
   'rightBottom',
 ];
 const sizeTypes = {
-  light: '3',
-  bold: '6',
+  '3px': '3',
+  '6px': '6',
 };
 const allocationVariants: AllocationVariant[] = [
   { name: 'Variant A', percentage: 33, tabId: 1, tabLetter: 'A' },
@@ -136,7 +136,7 @@ const stories = {
       getTooltipPopupContainer={container => container}
       useColorPalette={true}
       tooltipVisible={boolean('Value visible', false)}
-      thickness={select('Set bolder slider', sizeTypes,sizeTypes.light)}
+      thickness={select('Set bar thickness', sizeTypes,sizeTypes['3px'])}
     />
   ),
   /*  withVisibleLabels: () => (
