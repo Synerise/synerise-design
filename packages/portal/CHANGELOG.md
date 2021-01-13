@@ -3,6 +3,38 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.112.0](https://github.com/synerise/synerise-design/compare/portal@0.111.3...portal@0.112.0) (2021-01-13)
+
+
+### Bug Fixes
+
+* **completed-within:** fix styles ([c71ad81](https://github.com/synerise/synerise-design/commit/c71ad81afca4932e4019b18762faa382ded123e7))
+* **context-selector:** client version with selected value ([0d154b4](https://github.com/synerise/synerise-design/commit/0d154b4a42577cd0c6b0390da2be8691eda6d15f))
+* **input:** pass autosize object to textarea ([bc68f5d](https://github.com/synerise/synerise-design/commit/bc68f5dc201eca1830ae7dcfb2dbe1c5feb54a0b))
+* **page-header:** fix component page header with dropdown ([0227020](https://github.com/synerise/synerise-design/commit/0227020bd560d3ee1ca1424970613d5a1729a418))
+* **progress-bar:** fix placement of label in progress bar ([e37820e](https://github.com/synerise/synerise-design/commit/e37820e67b786780a61e93d3313ae99e4e6d11a9))
+* **slider:** fix disabled dots styles ([7662a6c](https://github.com/synerise/synerise-design/commit/7662a6c89a41da43856f468f36c10db5d731e153))
+* **slider:** fix focusing handlers and description ([1196f83](https://github.com/synerise/synerise-design/commit/1196f837205d5d0eced4a575b1ae9de0376d5036))
+* **slider:** fix style disabled of dots ([3f1e4c4](https://github.com/synerise/synerise-design/commit/3f1e4c41b37e6d886be25981897047dade790431))
+* **slider:** fix styles in default slider ([9871aa3](https://github.com/synerise/synerise-design/commit/9871aa3f78a80e4284dbbce2ce057fa6c70eb0f4))
+* **slider:** fix styles of dots ([6430737](https://github.com/synerise/synerise-design/commit/6430737007bd98634187d5e0fa5bacabfc8658a5))
+* **slider:** fix styles of tooltip, track, rail and handle ([757e9a9](https://github.com/synerise/synerise-design/commit/757e9a9bc536c8b05123252f8ff881833182a802))
+* **slider:** remove inverted knobs and remove highlight value and mark ([e34f0bd](https://github.com/synerise/synerise-design/commit/e34f0bd6f0e7f6b356efe82c9cd33cbf46ec1238))
+* **table:** add progress bar to default table ([d5f9fc6](https://github.com/synerise/synerise-design/commit/d5f9fc65b6fd101ae6402bd7aa663d0573b076b3))
+* **table:** fix placement of label in progress bar and add name type of cell ([dd31d6f](https://github.com/synerise/synerise-design/commit/dd31d6f2bac7899ab7dc6c3f204b399d0e89b22c))
+
+
+### Features
+
+* **condition:** add context to step configuration ([8b3fdb5](https://github.com/synerise/synerise-design/commit/8b3fdb5eaf9e8b586b79fa426875e096e341dcb8))
+* **context-selector:** rename props `value` and `onChange` ([0ee75d2](https://github.com/synerise/synerise-design/commit/0ee75d2a0ba6595e0ada2ee502347954a2a6cf30))
+* **cruds:** expose single action as subcomponent ([8e2b29e](https://github.com/synerise/synerise-design/commit/8e2b29e703719b6432b0f8749cd97f250c697e49))
+* **subject:** rename prop `selectItem` to `onSelectItem` ([406cf3f](https://github.com/synerise/synerise-design/commit/406cf3f57e8eb57153f7fb5b979a580b142f4694))
+
+
+
+
+
 ## [0.111.3](https://github.com/synerise/synerise-design/compare/portal@0.111.2...portal@0.111.3) (2021-01-05)
 
 

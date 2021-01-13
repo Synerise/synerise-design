@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@0.2.13...@synerise/ds-condition@0.3.0) (2021-01-13)
+
+
+### Features
+
+* **condition:** add context to step configuration ([8b3fdb5](https://github.com/Synerise/synerise-design/commit/8b3fdb5eaf9e8b586b79fa426875e096e341dcb8))
+
+
+
+
+
 ## [0.2.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@0.2.12...@synerise/ds-condition@0.2.13) (2021-01-04)
 
 **Note:** Version bump only for package @synerise/ds-condition

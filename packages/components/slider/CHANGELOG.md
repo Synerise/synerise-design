@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-slider@0.8.3...@synerise/ds-slider@0.8.4) (2021-01-13)
+
+
+### Bug Fixes
+
+* **slider:** fix border-radius of tooltip ([23a2d25](https://github.com/Synerise/synerise-design/commit/23a2d2526205b59d2aa758168fef51b1a9501714))
+* **slider:** fix disabled dots styles ([7662a6c](https://github.com/Synerise/synerise-design/commit/7662a6c89a41da43856f468f36c10db5d731e153))
+* **slider:** fix focusing handlers and description ([1196f83](https://github.com/Synerise/synerise-design/commit/1196f837205d5d0eced4a575b1ae9de0376d5036))
+* **slider:** fix style disabled of dots ([3f1e4c4](https://github.com/Synerise/synerise-design/commit/3f1e4c41b37e6d886be25981897047dade790431))
+* **slider:** fix styles in default slider ([9871aa3](https://github.com/Synerise/synerise-design/commit/9871aa3f78a80e4284dbbce2ce057fa6c70eb0f4))
+* **slider:** fix styles of dots ([6430737](https://github.com/Synerise/synerise-design/commit/6430737007bd98634187d5e0fa5bacabfc8658a5))
+* **slider:** fix styles of tooltip, track, rail and handle ([757e9a9](https://github.com/Synerise/synerise-design/commit/757e9a9bc536c8b05123252f8ff881833182a802))
+* **slider:** remove inverted knobs and remove highlight value and mark ([e34f0bd](https://github.com/Synerise/synerise-design/commit/e34f0bd6f0e7f6b356efe82c9cd33cbf46ec1238))
+
+
+
+
+
 ## [0.8.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-slider@0.8.2...@synerise/ds-slider@0.8.3) (2021-01-04)
 
 **Note:** Version bump only for package @synerise/ds-slider
