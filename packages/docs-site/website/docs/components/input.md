@@ -22,7 +22,7 @@ Input UI Component
 #### Input
 
 | Property       | Description                                                                                                                                                        | Type                                                                    | Default   |
-| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------                                                        | --------- |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------- | --------- |
 | addonAfter     | The label text displayed after (on the right side of) the input field.                                                                                             | string\ReactNode                                                        |           |
 | addonBefore    | The label text displayed before (on the left side of) the input field.                                                                                             | string\ReactNode                                                        |           |
 | allowClear     | Allow to remove input content with clear icon                                                                                                                      | boolean                                                                 |           |
@@ -39,6 +39,7 @@ Input UI Component
 | onPressEnter   | The callback function that is triggered when Enter key is pressed.                                                                                                 | function(e)                                                             |           |
 | prefix         | The prefix icon for the Input.                                                                                                                                     | string\ReactNode                                                        |           |
 | resetMargin    | Whether input should have margin reset                                                                                                                             | boolean                                                                 | -         |
+| resize         | 'resize' CSS property passed to the input component                                                                                                                | `none` / `both` / `horizontal` / `vertical` / `initial` / `inherit`     | -         |
 | size           | The size of the input box. Note: in the context of a form, the `large` size is used. Available: `large` `default` `small`                                          | string                                                                  | `default` |
 | suffix         | The suffix icon for the Input.                                                                                                                                     | string\ReactNode                                                        |           |
 | tooltip        | Tooltip content                                                                                                                                                    | ReactNode                                                               | -         |
@@ -60,5 +61,5 @@ Same as Input api with additional props:
 
 | Property | Description                                                                                             | Type    | Default |
 | -------- | ------------------------------------------------------------------------------------------------------- | ------- | ------- |
-| compact  | Whether use compact style                                                                               | boolean |`false`  |
+| compact  | Whether use compact style                                                                               | boolean | `false` |
 | size     | The size of Input.Group specifies the size of the included Input fields. Available: large default small | string  | default |
