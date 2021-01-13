@@ -27,7 +27,7 @@ const Textarea: React.FC<TextAreaProps> = ({
     >
       <Scrollbar absolute>
         <Input.TextArea
-          autoSize
+          autoSize={autoSize}
           {...props}
           disabled={disabled}
           onFocus={(e): void => {
