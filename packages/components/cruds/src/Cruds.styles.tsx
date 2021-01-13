@@ -1,12 +1,9 @@
 import styled from 'styled-components';
 
 export const CrudsContainer = styled.div`
-   {
-    display: flex;
-    width: 100%;
-    height: 24px;
-    cursor: pointer;
-  }
+  display: flex;
+  height: 24px;
+  cursor: pointer;
 
   .add,
   .duplicate,

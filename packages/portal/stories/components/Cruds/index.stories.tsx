@@ -29,7 +29,7 @@ const stories = {
     } as object;
     return (
 <div>
-  <Cruds
+  <Cruds.CustomAction
     {...props}
     onAdd={crudProps.type === 'Add' || crudProps.type === 'Multiple' ? action('onAdd event triggered') : null}
     addTooltip="Add"
