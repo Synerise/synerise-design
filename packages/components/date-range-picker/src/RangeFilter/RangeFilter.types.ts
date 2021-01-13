@@ -20,6 +20,7 @@ export type RangeFilterProps = {
 };
 
 export type RangeFilterState = {
+  previousFilter?: FilterValue;
   [filterType: string]: FilterValue | Partial<FilterDefinition> | string | undefined;
   activeType: string;
   rangeClipboard?: Partial<FilterDefinition>;

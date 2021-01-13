@@ -259,14 +259,21 @@ describe('DateRangePicker utils (snrs-components refactor)', () => {
 });
 
 const VALID_DAILY_FILTER = {
-  from: 'test',
-  to: 'end',
+  definition: {
+    start: '2014-03-04T00:00:00.000',
+    stop: '2014-05-04T00:00:00.000',
+    type: 'DAILY',
+
+  },
   type: 'DAILY',
 };
 
 const INVALID_DAILY_FILTER = {
-  from: null,
-  to: 'end',
+  definition: {
+    start: null,
+    stop: '2014-03-04T00:00:00.000',
+    type: 'DAILY',
+  },
   type: 'DAILY',
 };
 
@@ -276,7 +283,7 @@ describe('DateRangePicker utils ', () => {
       expect(isValidValue(VALID_DAILY_FILTER)).toBe(true);
     });
     it('should return false for invalid daily filter', () => {
-      expect(isValidValue(INVALID_DAILY_FILTER)).toBe(false);
+      expect(isValidValue(INVALID_DAILY_FILTER as any)).toBe(false);
     });
   });
 });
