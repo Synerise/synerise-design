@@ -11,6 +11,7 @@ const Textarea: React.FC<TextAreaProps> = ({
   wrapperStyle,
   onBlur,
   onFocus,
+  resize,
   autoSize,
   ...props
 }) => {
@@ -21,6 +22,7 @@ const Textarea: React.FC<TextAreaProps> = ({
       isDisabled={Boolean(disabled)}
       isFocused={focus}
       hasError={Boolean(error)}
+      resize={resize}
       style={{ height: autoSize ? 'auto' : `${rows * 17}px`, ...wrapperStyle }}
     >
       <Scrollbar absolute>
