@@ -144,7 +144,7 @@ export const denormalizers: { [key: string]: Function } = {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const validators: { [key: string]: (values: any) => boolean } = {
-  [TYPES.DAILY]: (values: NormalizedFilter) => Boolean(!!values?.from && !!values?.to),
+  [TYPES.DAILY]: (values: FilterValue) => Boolean(!!values?.definition?.start && !!values?.definition?.stop),
   [TYPES.WEEKLY]: (values: WeeklyFilterDefinition) =>
     Boolean(values?.definition && !!Object.keys(values.definition).length),
   [TYPES.MONTHLY]: (values: FilterValue<MonthlyFilterDefinition>) =>

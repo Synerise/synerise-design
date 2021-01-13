@@ -23,7 +23,7 @@ class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState
     // eslint-disable-next-line react/state-in-constructor
     this.state = {
       activeType: valueType,
-      [String(valueType)]: { ...denormalizeValue(props.value as FilterValue<FilterDefinition>) },
+      [String(valueType)]: { ...denormalizeValue(props.value as FilterValue) },
     } as RangeFilterState;
   }
 
@@ -32,7 +32,7 @@ class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState
     const { onApply } = this.props;
     const { activeType } = state;
     const filter = state[String(activeType)];
-    onApply && onApply(normalizeValue(filter as FilterValue<FilterDefinition>) as FilterValue<FilterDefinition>);
+    onApply && onApply(normalizeValue(filter as FilterValue) as FilterValue);
   };
 
   handleCancel = (): void => {
@@ -42,7 +42,7 @@ class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState
 
   handleTypeChange = (type: string): void => {
     const { state } = this;
-    const previousValue = state[type] as FilterValue<FilterDefinition>;
+    const previousValue = state[type] as FilterValue;
     const previousDefinition = previousValue?.definition;
     this.setState({
       activeType: type,
@@ -50,7 +50,7 @@ class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState
         type,
         definition: previousDefinition || cloneDeep(TYPES_DATA[type].definition),
         ...previousValue,
-      } as FilterValue<FilterDefinition>,
+      } as FilterValue,
     });
   };
 
@@ -85,7 +85,7 @@ class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState
   render(): JSX.Element {
     const { state } = this;
     const { activeType, rangeClipboard } = state;
-    const activeValue = state[activeType] as FilterValue<FilterDefinition>;
+    const activeValue = state[activeType] as FilterValue;
     const { definition } = activeValue;
     const Component = activeType && TYPES_DATA[activeType] && TYPES_DATA[activeType].component;
     const { intl, savedFilters, texts } = this.props;
@@ -136,11 +136,7 @@ class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState
           <Button type="ghost" onClick={this.handleCancel}>
             {intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.CANCEL' })}
           </Button>
-          <Button
-            type="primary"
-            disabled={!isValidValue(activeValue as FilterValue<FilterDefinition>)}
-            onClick={this.handleApply}
-          >
+          <Button type="primary" disabled={!isValidValue(activeValue)} onClick={this.handleApply}>
             {intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.APPLY' })}
           </Button>
         </S.Footer>

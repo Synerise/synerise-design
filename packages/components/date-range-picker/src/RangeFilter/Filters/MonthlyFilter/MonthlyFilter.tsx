@@ -22,7 +22,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
     value.length && this.handleCollapse(value[0].id);
   }
 
-  setData = (definition: string | object): void => {
+  setData = (definition: Month[]): void => {
     const { onChange } = this.props;
     return onChange(definition);
   };
@@ -33,7 +33,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
 
     this.setData([
       ...value,
-      { period: MONTHLY_TYPES.DAY_OF_MONTH, periodType: PERIODS_TYPE[0].value, definition: {}, id },
+      { period: MONTHLY_TYPES.DAY_OF_MONTH, periodType: PERIODS_TYPE[0].value as string, definition: {}, id },
     ]);
     this.handleCollapse(id);
   };
@@ -75,10 +75,14 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
     this.setData(data);
   };
 
-  handleDefinitionChange = (definition: string, index: number): void => {
+  handleDefinitionChange = (definition: Month, index: number): void => {
     const { value } = this.props;
     const data = [...value];
-    data[index] = { ...data[index], definition };
+    const currentDefinition: Month = data[index];
+    data[index] = {
+      ...currentDefinition,
+      definition,
+    };
     this.setData(data);
   };
 
@@ -173,7 +177,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
                 />
               ),
               canDelete: true,
-              id: item.id,
+              id: item.id as string,
               // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
               // @ts-ignore
               name: (
@@ -243,7 +247,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
                     invertibleTime
                     numberOfDaysPerRow={7}
                     days={item.definition}
-                    onChange={(definition: string): void => this.handleDefinitionChange(definition, key)}
+                    onChange={(definition: Month): void => this.handleDefinitionChange(definition, key)}
                     onRangeClear={onRangeClear}
                     onRangeCopy={onRangeCopy}
                     onRangePaste={onRangePaste}
