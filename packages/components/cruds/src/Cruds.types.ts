@@ -1,4 +1,5 @@
 import * as React from 'react';
+import SingleAction from './SingleAction';
 
 export interface CrudsProps {
   addTooltip?: React.ReactNode | string;
@@ -14,3 +15,5 @@ export interface CrudsProps {
   onMove?: (event?: React.MouseEvent<HTMLElement>) => void;
   onRemove?: (event?: React.MouseEvent<HTMLElement>) => void;
 }
+
+export type CrudsSubComponents = { CustomAction: typeof SingleAction };
