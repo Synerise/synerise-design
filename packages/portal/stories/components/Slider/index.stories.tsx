@@ -163,7 +163,6 @@ const stories = {
       disabled={boolean('Disabled', false)}
       dots={false}
       included={boolean('Set area active', true)}
-      inverted={boolean('Inverted', false)}
       max={number('Max', 100)}
       min={number('Min', 0)}
       range={boolean('Range', true)}
@@ -173,7 +172,7 @@ const stories = {
       getTooltipPopupContainer={container => container}
       tooltipPlacement='bottom'
       useColorPalette={true}
-      thickness={select('Set bolder slider', sizeTypes,sizeTypes.light)}
+      thickness={select('Set bar thickness', sizeTypes,sizeTypes['3px'])}
       tooltipVisible={boolean('Value visible', false)}
       tracksColorMap={tracksColorMap}
     />
