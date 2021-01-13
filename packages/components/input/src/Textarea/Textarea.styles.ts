@@ -1,10 +1,16 @@
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
+import { ResizeProperty } from 'csstype';
 
 // eslint-disable-next-line import/prefer-default-export
-export const TextareaWrapper = styled.div<{ isDisabled: boolean; isFocused: boolean; hasError: boolean }>`
+export const TextareaWrapper = styled.div<{
+  resize?: ResizeProperty;
+  isDisabled: boolean;
+  isFocused: boolean;
+  hasError: boolean;
+}>`
   position: relative;
   overflow: auto;
-  resize: vertical;
+  resize: ${(props): string => (props.resize ? props.resize : 'vertical')};
   border-radius: 3px;
   transition: background-color 0.3s ease-in-out, border 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
   ${(props): FlattenSimpleInterpolation => {

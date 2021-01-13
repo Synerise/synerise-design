@@ -19,7 +19,7 @@ export const SUBJECT_ITEMS = [...new Array(30)].map((i, index) => ({
 describe('Subject component', () => {
   const DEFAULT_PROPS: SubjectProps = {
     texts: SUBJECT_TEXTS,
-    selectItem: () => {},
+    onSelectItem: () => {},
     onShowPreview: () => {},
     type: 'event',
     placeholder: 'Choose event',

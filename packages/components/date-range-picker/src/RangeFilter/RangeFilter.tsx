@@ -136,7 +136,7 @@ class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState
           <Button type="ghost" onClick={this.handleCancel}>
             {intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.CANCEL' })}
           </Button>
-          <Button type="primary" disabled={!isValidValue(activeValue as FilterValue)} onClick={this.handleApply}>
+          <Button type="primary" disabled={!isValidValue(activeValue)} onClick={this.handleApply}>
             {intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.APPLY' })}
           </Button>
         </S.Footer>

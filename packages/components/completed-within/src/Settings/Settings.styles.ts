@@ -8,6 +8,7 @@ export const Settings = styled.div`
   justify-content: flex-start;
   padding: 20px;
   background-color: ${(props): string => props.theme.palette.white};
+  max-width: 238px;
   .ant-input-group {
     > * {
       width: 50%;

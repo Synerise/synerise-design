@@ -161,11 +161,11 @@ export const AntdButton = styled(
         ${(props): FlattenSimpleInterpolation => pressedStyles(props)}
       }
       &:focus:not(:active) {
-              color: ${(props): string => props.theme.palette['blue-600']};
+              color: ${(props): string => props.theme.palette['grey-600']};
         svg {
-          fill: ${(props): string => props.theme.palette['blue-600']};
+          fill: ${(props): string => props.theme.palette['grey-600']};
         }
-        background: ${(props): string => props.theme.palette['blue-050']};
+        background: ${(props): string => props.theme.palette['grey-050']};
       }
       &:hover:not(:disabled):not(:focus) {
         background-color:${(props): string => props.theme.palette['blue-050']};

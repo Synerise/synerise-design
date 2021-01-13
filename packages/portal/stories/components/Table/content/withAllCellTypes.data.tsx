@@ -13,7 +13,8 @@ import Checkbox from '@synerise/ds-checkbox/dist';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { IconLabelCell, LabelsWithShowMore } from '@synerise/ds-table/dist/Cell';
 import Badge from '@synerise/ds-badge';
-import { boolean } from '@storybook/addon-knobs';
+import { boolean, select } from '@storybook/addon-knobs';
+import ProgressBar from '@synerise/ds-progress-bar';
 
 export const RELATIONS = [
   {
@@ -72,6 +73,20 @@ export const RELATIONS = [
     icon: { component: <VarTypeStringM />, color: theme.palette['grey-600'] },
   },
 ];
+const customColorOptions = {
+  blue: theme.palette['blue-500'],
+  grey: theme.palette['grey-500'],
+  red: theme.palette['red-500'],
+  green: theme.palette['green-500'],
+  yellow: theme.palette['yellow-500'],
+  pink: theme.palette['pink-500'],
+  mars: theme.palette['mars-500'],
+  orange: theme.palette['orange-500'],
+  fern: theme.palette['fern-500'],
+  cyan: theme.palette['cyan-500'],
+  purple: theme.palette['purple-500'],
+  violet: theme.palette['violet-500'],
+};
 
 export const COLUMNS_WITH_TRIGGERS = [
   {
@@ -162,6 +177,26 @@ export const COLUMNS_WITH_TRIGGERS = [
         </Button>
       </TableCell.ActionCell>
     ),
+  },
+  ];
+export const COLUMNS_WITH_PROGRESS_BAR = [
+  {
+    width: 254,
+    title: 'Progress Bar',
+    render: () => {
+      const colors = select('Set custom color', customColorOptions, customColorOptions.green);
+      const isThick = boolean('Set thick', false);
+      return (
+        <ProgressBar
+          thick={isThick}
+          showLabel={true}
+          containerStyles={{flexDirection: 'row-reverse',  width: '80px'}}
+          labelFormatter={(amount,percent) => <div style={{padding : isThick ? '7px 0px 0px 8px' : '8px 0 0 8px'}}>{percent}%</div>}
+          percent={60}
+          strokeColor={colors}
+        ></ProgressBar>
+      )
+    },
   },
 ];
 
@@ -537,4 +572,5 @@ export const COLUMNS = [
   ...COLUMNS_WITH_AVATARS,
   ...COLUMNS_WITH_STATUSES,
   ...COLUMNS_WITH_TRIGGERS,
+  ...COLUMNS_WITH_PROGRESS_BAR,
 ];

@@ -4,8 +4,9 @@ import { SavedFilter } from './Shared/FilterDropdown/FilterDropdown.types';
 import { DateLimitMode } from './Shared/TimeWindow/RangeFormContainer/RangeForm/RangeForm.types';
 import { Texts } from '../DateRangePicker.types';
 
-export type FilterValue = {
-  definition?: Partial<FilterDefinition>;
+export type PeriodType = 'ending' | 'beginning';
+export type FilterValue<T = FilterDefinition> = {
+  definition?: Partial<T>;
   type: string;
 };
 export type RangeFilterProps = {
@@ -19,6 +20,7 @@ export type RangeFilterProps = {
 };
 
 export type RangeFilterState = {
+  previousFilter?: FilterValue;
   [filterType: string]: FilterValue | Partial<FilterDefinition> | string | undefined;
   activeType: string;
   rangeClipboard?: Partial<FilterDefinition>;
@@ -31,7 +33,7 @@ export type FilterDefinition = {
   period?: string;
   type: string;
   display?: boolean;
-  periodType?: string;
+  periodType?: PeriodType;
   mode?: DateLimitMode;
 };
 
@@ -45,6 +47,7 @@ export type DenormalizedFilter = {
   start: string;
   stop: string;
   day?: React.ReactText;
+  restricted?: boolean;
 };
 export type NormalizedFilter = NormalizedFilterBase & {
   from: string;
@@ -70,5 +73,5 @@ export type MonthlyFilterDefinition = {
   };
   id: number;
   period: string;
-  periodType: string;
+  periodType: PeriodType;
 };

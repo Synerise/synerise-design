@@ -13,7 +13,7 @@ import Footer from './Footer/Footer';
 import { normalizeRange } from './utils';
 import RangeFilter from './RangeFilter/RangeFilter';
 import RangeFilterStatus from './RangeFilter/Shared/RangeFilterStatus/RangeFilterStatus';
-import { FilterValue } from './RangeFilter/RangeFilter.types';
+import { FilterDefinition, FilterValue } from './RangeFilter/RangeFilter.types';
 
 class RawDateRangePicker extends React.PureComponent<Props, State> {
   static defaultProps = {
@@ -48,7 +48,7 @@ class RawDateRangePicker extends React.PureComponent<Props, State> {
     this.setState({ mode: MODES.DATE });
   };
 
-  handleFilterApply = (filter?: FilterValue): void => {
+  handleFilterApply = (filter?: FilterValue<FilterDefinition>): void => {
     const { value } = this.state;
     this.setState({ mode: MODES.DATE, value: { ...value, filter: filter as DateFilter } });
   };

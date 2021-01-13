@@ -6,13 +6,21 @@ import Dropdown from '@synerise/ds-dropdown';
 import ContextSelectorDropdown from './ContextSelectorDropdown/ContextSelectorDropdown';
 import { ContextItem, ContextProps } from './ContextSelector.types';
 
-const ContextSelector: React.FC<ContextProps> = ({ value, onChange, groups, items, texts, opened, addMode }) => {
+const ContextSelector: React.FC<ContextProps> = ({
+  selectedItem,
+  onSelectItem,
+  groups,
+  items,
+  texts,
+  opened,
+  addMode,
+}) => {
   const [dropdownVisible, setDropdownVisible] = React.useState(false);
   const handleChange = React.useCallback(
     val => {
-      onChange(val);
+      onSelectItem(val);
     },
-    [onChange]
+    [onSelectItem]
   );
 
   React.useEffect(() => {
@@ -22,12 +30,12 @@ const ContextSelector: React.FC<ContextProps> = ({ value, onChange, groups, item
   }, [opened]);
 
   const triggerMode = React.useMemo(() => {
-    return value ? 'two-icons' : 'label-icon';
-  }, [value]);
+    return selectedItem ? 'two-icons' : 'label-icon';
+  }, [selectedItem]);
 
   const triggerColor = React.useMemo(() => {
-    return value ? 'green' : 'blue';
-  }, [value]);
+    return selectedItem ? 'green' : 'blue';
+  }, [selectedItem]);
 
   const handleClick = React.useCallback(() => {
     setDropdownVisible(true);
@@ -35,26 +43,26 @@ const ContextSelector: React.FC<ContextProps> = ({ value, onChange, groups, item
 
   const triggerButton = React.useMemo(() => {
     const { buttonLabel } = texts;
-    return addMode ? (
+    return addMode && !selectedItem ? (
       <Button type="primary" mode="icon-label" onClick={handleClick}>
         <Icon component={<Add3M />} />
         {buttonLabel}
       </Button>
     ) : (
       <Button type="custom-color" color={triggerColor} mode={triggerMode} onClick={handleClick}>
-        {value ? <Icon component={value.icon} /> : null}
-        {value ? (value as ContextItem).name : buttonLabel}
+        {selectedItem ? <Icon component={selectedItem.icon} /> : null}
+        {selectedItem ? (selectedItem as ContextItem).name : buttonLabel}
         <Icon component={<AngleDownS />} />
       </Button>
     );
-  }, [addMode, handleClick, texts, triggerColor, triggerMode, value]);
+  }, [addMode, handleClick, texts, triggerColor, triggerMode, selectedItem]);
 
   return (
     <Dropdown
       visible={dropdownVisible}
       overlay={
         <ContextSelectorDropdown
-          value={value}
+          value={selectedItem}
           setDropdownVisible={setDropdownVisible}
           setSelected={handleChange}
           groups={groups}

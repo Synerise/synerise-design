@@ -27,8 +27,8 @@ export type ContextGroup = {
 
 export type ContextItemsInSubGroup = ContextItem & { isGroup?: boolean };
 export type ContextProps = {
-  value?: ContextItem | undefined;
-  onChange: (item: ContextItem | ContextGroup | undefined) => void;
+  selectedItem?: ContextItem | undefined;
+  onSelectItem: (item: ContextItem | ContextGroup | undefined) => void;
   groups: ContextGroup[];
   items: ContextItem[];
   texts: ContextTexts;

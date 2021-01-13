@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { RangeFormContainerProps } from './RangeFormContainer.types';
 import RangeForm from './RangeForm/RangeForm';
-import { getDateFromDayValue } from '../utils';
+import { getDateFromDayValue, getDefaultFilterForLimitMode } from '../utils';
 import { DayKey } from '../TimeWindow.types';
 import { Header } from '../Header/Header';
 import RangeSummary from '../RangeSummary/RangeSummary';
@@ -11,6 +11,7 @@ import { ActionsTexts } from '../RangeActions/RangeActions.types';
 import { Texts } from '../../../../DateRangePicker.types';
 
 const DEFAULT_LIMIT_MODE: DateLimitMode = 'Range';
+
 const RangeFormContainer: React.FC<RangeFormContainerProps> = ({
   activeDays,
   days,
@@ -34,9 +35,10 @@ const RangeFormContainer: React.FC<RangeFormContainerProps> = ({
   const handleModeChange = React.useCallback(
     (selectedMode: DateLimitMode) => {
       const updatedDays = {};
-      activeDays.forEach(k => {
-        updatedDays[k] = {
-          ...days[k],
+      activeDays.forEach(i => {
+        updatedDays[i] = {
+          ...days[i],
+          ...getDefaultFilterForLimitMode(selectedMode),
           mode: selectedMode,
         };
       });

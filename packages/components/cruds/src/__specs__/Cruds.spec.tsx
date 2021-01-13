@@ -3,7 +3,6 @@ import * as React from 'react';
 import Cruds from '../Cruds';
 import { fireEvent } from '@testing-library/react';
 import { Settings2S } from '@synerise/ds-icon/dist/icons';
-import SingleAction from '../SingleAction';
 
 const ICON = {
   add: '.add-s',
@@ -12,7 +11,7 @@ const ICON = {
   delete: '.trash-s',
   move: '.drag-handle-m',
   remove: '.close-s',
-  settings: '.settings-2-s'
+  settings: '.settings-2-s',
 };
 
 describe('Cruds', () => {
@@ -25,7 +24,7 @@ describe('Cruds', () => {
     const handleMove = jest.fn();
     const handleRemove = jest.fn();
 
-    const {container} = renderWithProvider(
+    const { container } = renderWithProvider(
       <Cruds
         onAdd={handleAdd}
         onDelete={handleDelete}
@@ -39,8 +38,8 @@ describe('Cruds', () => {
         editTooltip={'Edit'}
         moveTooltip={'Move'}
         removeTooltip={'Remove'}
-      />);
-
+      />
+    );
 
     // ASSERT
     expect(container.querySelector(ICON.add)).toBeTruthy();
@@ -60,7 +59,22 @@ describe('Cruds', () => {
     const handleMove = jest.fn();
     const handleRemove = jest.fn();
 
-    const {container} = renderWithProvider(<Cruds onAdd={handleAdd} onDelete={handleDelete} onRemove={handleRemove} onMove={handleMove} onEdit={handleEdit} onDuplicate={handleDuplicate} addTooltip={'Add'} deleteTooltip={'Delete'} duplicateTooltip={'Duplicate'} editTooltip={'Edit'} moveTooltip={'Move'} removeTooltip={'Remove'} />);
+    const { container } = renderWithProvider(
+      <Cruds
+        onAdd={handleAdd}
+        onDelete={handleDelete}
+        onRemove={handleRemove}
+        onMove={handleMove}
+        onEdit={handleEdit}
+        onDuplicate={handleDuplicate}
+        addTooltip={'Add'}
+        deleteTooltip={'Delete'}
+        duplicateTooltip={'Duplicate'}
+        editTooltip={'Edit'}
+        moveTooltip={'Move'}
+        removeTooltip={'Remove'}
+      />
+    );
 
     // ACT
     const addIcon = container.querySelector(ICON.add) as HTMLElement;
@@ -86,16 +100,13 @@ describe('Cruds', () => {
     expect(handleRemove).toBeCalled();
   });
 
-  it('Should render singleAction', () => {
+  it('Should render customAction', () => {
     // ARRANGE
     const handleClick = jest.fn();
 
-    const { container } = renderWithProvider(<SingleAction
-      className="settings"
-      title={'Settings'}
-      icon={<Settings2S />}
-      onClick={handleClick}
-    />);
+    const { container } = renderWithProvider(
+      <Cruds.CustomAction className="settings" title={'Settings'} icon={<Settings2S />} onClick={handleClick} />
+    );
 
     // ACT
     const settingsIcon = container.querySelector(ICON.settings) as HTMLElement;
@@ -105,5 +116,4 @@ describe('Cruds', () => {
     expect(settingsIcon).toBeTruthy();
     expect(handleClick).toBeCalled();
   });
-
-})
+});

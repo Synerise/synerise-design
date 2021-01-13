@@ -7,7 +7,7 @@ import { CONTEXT_CLIENT_GROUPS, CONTEXT_CLIENT_ITEMS } from './data/client.data'
 import { action } from '@storybook/addon-actions';
 
 const DEFAULT_STATE = {
-  value: '',
+  value: undefined,
 };
 
 const stories = {
@@ -19,8 +19,8 @@ const stories = {
     return (
       <ContextSelector
         texts={CONTEXT_TEXTS}
-        onChange={setValue}
-        value={store.state.value}
+        onSelectItem={setValue}
+        selectedItem={store.state.value}
         items={CONTEXT_ITEMS}
         groups={CONTEXT_GROUPS}
       />
@@ -28,15 +28,14 @@ const stories = {
   }),
   clientContext: withState(DEFAULT_STATE)(({ store }) => {
     const setValue = value => {
-      action('setValue', value);
-      // store.set({ value });
+      store.set({ value });
     };
 
     return (
       <ContextSelector
         texts={{ ...CONTEXT_TEXTS, buttonLabel: 'Add filter' }}
-        onChange={setValue}
-        value={store.state.value}
+        onSelectItem={setValue}
+        selectedItem={store.state.value}
         items={CONTEXT_CLIENT_ITEMS}
         groups={CONTEXT_CLIENT_GROUPS}
         addMode={true}

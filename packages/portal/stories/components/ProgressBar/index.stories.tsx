@@ -48,12 +48,13 @@ const stories = {
   },
   soloSmallBar: () => {
     const colors = select('Set custom color', customColorOptions, customColorOptions.green);
+    const isThick = boolean('Set thick', false);
     return (
         <ProgressBar
-          thick={boolean('Set small bar', false)}
+          thick={isThick}
           showLabel={true}
           containerStyles={{flexDirection: 'row-reverse',  width: '80px'}}
-          labelFormatter={(amount,percent) => <div style={{ padding: ' 8px 0 0 8px'}}>{percent}%</div>}
+          labelFormatter={(amount,percent) => <div style={{padding : isThick ? '7px 0px 0px 8px' : '8px 0 0 8px'}}>{percent}%</div>}
           percent={60}
           strokeColor={colors}
         ></ProgressBar>

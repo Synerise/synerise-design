@@ -7,8 +7,8 @@ import { ContextProps } from './../ContextSelector.types';
 
 const DEFAULT_PROPS: ContextProps = {
   texts: CONTEXT_TEXTS,
-  onChange: () => {},
-  value: undefined,
+  onSelectItem: () => {},
+  selectedItem: undefined,
   items: CONTEXT_ITEMS,
   groups: CONTEXT_GROUPS,
 };
@@ -25,7 +25,7 @@ describe('Context selector component', () => {
   test('Should show selected value', () => {
     const { getByText } = renderWithProvider(
       RENDER_CONTEXT_SELECTOR({
-        value: {
+        selectedItem: {
           name: 'Schema builder app',
           id: 'SCHEMA_BUILDER_APP',
           icon: <ApiM />,

@@ -18,7 +18,7 @@ const Slider: React.FC<Props> = props => {
     getTooltipPopupContainer,
     tracksColorMap,
     type,
-    thick,
+    thickness,
     description,
     tipFormatter,
     allocationConfig,
@@ -51,8 +51,9 @@ const Slider: React.FC<Props> = props => {
         {...antdProps}
         className={antdProps.value && couldBeInverted(antdProps.value, !!inverted) ? 'ant-slider-inverted' : undefined}
         useColorPalette={useColorPalette}
-        thick={thick}
+        thickness={thickness}
         disabled={disabled}
+        description={description}
         hideMinAndMaxMarks={hideMinAndMaxMarks}
         tipFormatter={(value): React.ReactNode => (
           <S.DescriptionWrapper>

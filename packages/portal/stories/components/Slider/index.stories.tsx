@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { action } from '@storybook/addon-actions';
-import { text, boolean, number, select, object, array } from '@storybook/addon-knobs';
+import { text, boolean, number, select, } from '@storybook/addon-knobs';
 
 import Slider from '@synerise/ds-slider';
 import { Props as SliderProps } from '@synerise/ds-slider/dist/Slider.types';
@@ -23,6 +23,10 @@ const placements = [
   'rightTop',
   'rightBottom',
 ];
+const sizeTypes = {
+  '3px': '3',
+  '6px': '6',
+};
 const allocationVariants: AllocationVariant[] = [
   { name: 'Variant A', percentage: 33, tabId: 1, tabLetter: 'A' },
   { name: 'Variant B', percentage: 33, tabId: 2, tabLetter: 'B' },
@@ -62,7 +66,7 @@ const tipFormatter = (value: string) => <div className="Tip">{value}%</div>;
 const Wrapper = (props: any) => {
   const [value, setValue] = React.useState(50);
   const [rangeValue, setRangeValue] = React.useState([-50, 50]);
-  const hasMarks = boolean('Set Marks', false);
+  const hasMarks = boolean('Set scale', false);
   const descriptionMessage = text('Description', 'Description');
   const hasDescription = boolean('Set Description', false);
   const [tracksColor, setTracksColor] = React.useState(tracksColorMap);
@@ -119,8 +123,7 @@ const stories = {
     <Wrapper
       label={text('Label', 'Label')}
       disabled={boolean('Disabled', false)}
-      reverse={boolean('Reverse', false)}
-      included={boolean('Included', true)}
+      included={boolean('Set area active', true)}
       inverted={boolean('Inverted', false)}
       max={number('Max', 100)}
       min={number('Min', 0)}
@@ -129,11 +132,11 @@ const stories = {
       dots={boolean('Dots', false)}
       tipFormatter={tipFormatter}
       onAfterChange={action('onAfterChange')}
-      tooltipPlacement={'bottom'}
+      tooltipPlacement='bottom'
       getTooltipPopupContainer={container => container}
-      useColorPalette={boolean('UseColorPalette', false)}
+      useColorPalette={true}
       tooltipVisible={boolean('Value visible', false)}
-      thick={boolean('Set thick', false)}
+      thickness={select('Set bar thickness', sizeTypes,sizeTypes['3px'])}
     />
   ),
   /*  withVisibleLabels: () => (
@@ -158,9 +161,8 @@ const stories = {
     <WrapperMultiMode
       label={text('Label', 'Label')}
       disabled={boolean('Disabled', false)}
-      dots={boolean('Dots', false)}
-      included={boolean('Included', true)}
-      inverted={boolean('Inverted', false)}
+      dots={false}
+      included={boolean('Set area active', true)}
       max={number('Max', 100)}
       min={number('Min', 0)}
       range={boolean('Range', true)}
@@ -168,16 +170,16 @@ const stories = {
       tipFormatter={tipFormatter}
       onAfterChange={action('onAfterChange')}
       getTooltipPopupContainer={container => container}
-      tooltipPlacement={select('Placement', placements, 'bottom')}
-      useColorPalette={boolean('UseColorPalette', true)}
-      thick={boolean('Set thick', false)}
+      tooltipPlacement='bottom'
+      useColorPalette={true}
+      thickness={select('Set bar thickness', sizeTypes,sizeTypes['3px'])}
       tooltipVisible={boolean('Value visible', false)}
       tracksColorMap={tracksColorMap}
     />
   ),
   multiValuesRanges: () => (
     <WrapperMultiValuesMode
-      label={text('label', 'Label')}
+      label={text('Label', 'Label')}
       disabled={boolean('Disabled', false)}
       tipFormatter={tipFormatter as any}
       tracksColorMap={tracksColorMap}
