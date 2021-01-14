@@ -18,6 +18,8 @@ import { ButtonWrapper } from '@synerise/ds-sidebar-object/dist/Elements/Header/
 import StarCell from '@synerise/ds-table/dist/Cell/Star/StarCell';
 
 
+import ContentItem from '@synerise/ds-manageable-list/dist/Item/ContentItem/ContentItem';
+import Menu from '@synerise/ds-menu';
 
 const getColor = name => {
   return theme.palette[name];
@@ -48,8 +50,6 @@ const allTags = [
     color: theme.palette['grey-200'],
   },
 ];
-
-
 
 const imgSrc = 'https://www.w3schools.com/howto/img_avatar.png';
 
@@ -85,6 +85,10 @@ const renderStarred = (showStarred) => {
   } else return null;
 };
 
+const renderVersionList = [...new Array(30)].map((v, i) => (
+  <ContentItem item={{ id: `${i}`, name: `Version: 0.0.${i}` }} />
+));
+
 const stories = {
   default: () => {
     const [drawerVisible, setDrawerVisible] = React.useState(false);
@@ -95,11 +99,11 @@ const stories = {
     const showFooter = boolean('Set Footer',true);
     const [activeTab, setActiveTab] = React.useState(0);
     const [name, setName] = React.useState('Winter campaign');
-    let headerType = select('Set header type',headerTypes,headerTypes.readonly);
-    let buttonsType = select('Set buttons type',buttonTypes,buttonTypes.withNavigation);
+    let headerType = select('Set header type', headerTypes, headerTypes.readonly);
+    let buttonsType = select('Set buttons type', buttonTypes, buttonTypes.withNavigation);
     const inputObject = {
       id: '3423-3426-8263-6634-6834-2352',
-    }
+    };
     const texts = {
       name: 'DescriptionInput',
       inlineEditPlaceholder: 'Campaign Name',
@@ -109,17 +113,19 @@ const stories = {
       moveIcon: 'Move to',
       cancelButton: 'Cancel',
       applyButton: 'Apply',
-    }
+    };
 
     const TABS = [
       {
-        label: 'Overview', content: <div style={{height: '340px'}}></div>
+        label: 'Overview',
+        content: <div style={{ height: '340px' }}></div>,
       },
       {
         label: 'Changelog',
       },
       {
         label: 'Versions',
+        content: <Menu>{renderVersionList}</Menu>,
       },
     ];
     return (
@@ -130,26 +136,21 @@ const stories = {
         <Drawer visible={drawerVisible} placement="right" width={676} onClose={() => setDrawerVisible(false)}>
           <SidebarObject
             avatar={
-              <Badge status={('inactive')}>
+              <Badge status={'inactive'}>
                 <Avatar
-                  backgroundColor={('pink')}
-                  backgroundColorHue={('100')}
-                  size={('large')}
-                  shape={( 'circle')}
-                  iconComponent={
-                    <Icon
-                      color={getColor('pink-600')}
-                      component={getIconSize('large')}
-                    />
-                  }
-                  hasStatus={(true)}
+                  backgroundColor={'pink'}
+                  backgroundColorHue={'100'}
+                  size={'large'}
+                  shape={'circle'}
+                  iconComponent={<Icon color={getColor('pink-600')} component={getIconSize('large')} />}
+                  hasStatus={true}
                   style={{ flex: 1, margin: 0 }}
                 />
               </Badge>
             }
             onCloseClick={() => setDrawerVisible(false)}
-            onApplyClick={() =>{}}
-            onCancelClick={() =>{}}
+            onApplyClick={() => {}}
+            onCancelClick={() => {}}
             texts={texts}
             headerPreffix={renderStarred(showStarred) || renderBackIcon(showBackIcon, () => setDrawerVisible(false))}
             onArrowUp={showIcon? () => {}: null}
@@ -159,7 +160,7 @@ const stories = {
             onMove={() => {}}
             onDelete={() => {}}
             onId={() => {}}
-            headerTabs={showTabs? TABS : []}
+            headerTabs={showTabs ? TABS : []}
             activeTab={activeTab}
             handleTabClick={setActiveTab}
             inputObject={inputObject}
@@ -167,17 +168,20 @@ const stories = {
             headerType={headerType}
             typeButtons={buttonsType}
             onRename={setName}
-            footer={showFooter? <>
-              <ButtonWrapper style={{ flex: 1, padding: '0'}}>
-                <Button type="secondary"> Settings </Button>
-              </ButtonWrapper>
-              <ButtonWrapper style={{ padding: '0px 8px 0px 0'}}>
-                <Button type="ghost"> Cancel </Button>
-              </ButtonWrapper>
-              <ButtonWrapper style={{ padding: '0'}}>
-                <Button type='primary'> Apply </Button>
-              </ButtonWrapper>
-            </> : null
+            footer={
+              showFooter ? (
+                <>
+                  <ButtonWrapper style={{ flex: 1, padding: '0' }}>
+                    <Button type="secondary"> Settings </Button>
+                  </ButtonWrapper>
+                  <ButtonWrapper style={{ padding: '0px 8px 0px 0' }}>
+                    <Button type="ghost"> Cancel </Button>
+                  </ButtonWrapper>
+                  <ButtonWrapper style={{ padding: '0' }}>
+                    <Button type="primary"> Apply </Button>
+                  </ButtonWrapper>
+                </>
+              ) : null
             }
           ></SidebarObject>
         </Drawer>
@@ -201,8 +205,8 @@ const stories = {
     const withManageLink = boolean('With manage tags link', true);
     const disabled = boolean('Disable entire tag group', false);
     const [activeTab, setActiveTab] = React.useState(0);
-    const showIcon = boolean('Set Icon',true);
-    const showFolder = boolean('Set Folder',true);
+    const showIcon = boolean('Set Icon', true);
+    const showFolder = boolean('Set Folder', true);
     const [name, setName] = React.useState('Winter campaign');
     const data = [
       { id: '2', name: 'Example folder' },
@@ -211,10 +215,10 @@ const stories = {
       { name: 'Drafts' },
       { name: 'Archived' },
     ];
-    let headerType = select('Set header type',headerTypes,headerTypes.readonly);
-    let buttonsType = select('Set buttons type',buttonTypes,buttonTypes.withNavigation);
-    const parentFolder ={ id: '2', name: 'Example folder' }
-    const autoSize = {minRows: 3, maxRows: 10}
+    let headerType = select('Set header type', headerTypes, headerTypes.readonly);
+    let buttonsType = select('Set buttons type', buttonTypes, buttonTypes.withNavigation);
+    const parentFolder = { id: '2', name: 'Example folder' };
+    const autoSize = { minRows: 3, maxRows: 10 };
     const inputObject = {
       'Type:': 'Email campaign',
       Status: (
@@ -223,7 +227,7 @@ const stories = {
         </div>
       ),
       Author: (
-        <div style={{display: 'flex', alignItems: 'center'}}>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
           <Avatar src={imgSrc} size="small" shape="circle" style={{ marginRight: '10px' }} />
           <span>Teresa Smith</span>
         </div>
@@ -231,7 +235,7 @@ const stories = {
       Created: '25 May, 2020 15:32',
       'Last edited': '27 May, 2020 15:32',
       id: '3423-3426-8263-6634-6834-2352',
-    }
+    };
     const texts = {
       namePlaceholder: 'Description',
       name: 'DescriptionInput',
@@ -249,57 +253,62 @@ const stories = {
       cancelButton: 'Cancel',
       applyButton: 'Apply',
       addFolder: 'Add folder',
-    }
-    const contentTags = <Tags
-      data={tags}
-      tagShape={shape}
-      selected={selected}
-      disabled={disabled}
-      addable={addable && !disabled}
-      creatable={creatable}
-      removable={removable}
-      overlayStyle={{ width: '283px'}}
-      maxHeight={200}
-      texts={{
-        clearTooltip: 'Clear',
-        addButtonLabel: 'Add tag',
-        manageLinkLabel: 'Manage tags',
-        createTagButtonLabel: 'Add tag',
-        searchPlaceholder: 'Search tag...',
-        dropdownNoTags: 'No tags found',
-      }}
-      onCreate={name => {
-        const tag = {
-          id: uuid(),
-          name,
-          color: theme.palette['grey-200'],
-        };
+    };
+    const contentTags = (
+      <Tags
+        data={tags}
+        tagShape={shape}
+        selected={selected}
+        disabled={disabled}
+        addable={addable && !disabled}
+        creatable={creatable}
+        removable={removable}
+        overlayStyle={{ width: '283px' }}
+        maxHeight={200}
+        texts={{
+          clearTooltip: 'Clear',
+          addButtonLabel: 'Add tag',
+          manageLinkLabel: 'Manage tags',
+          createTagButtonLabel: 'Add tag',
+          searchPlaceholder: 'Search tag...',
+          dropdownNoTags: 'No tags found',
+        }}
+        onCreate={name => {
+          const tag = {
+            id: uuid(),
+            name,
+            color: theme.palette['grey-200'],
+          };
 
-        console.log('Created new tag', name, tag);
+          console.log('Created new tag', name, tag);
 
-        setTags([...tags, tag]);
-        setSelected([...selected, tag]);
-      }}
-      onSelectedChange={(tags, actionTaken) => {
-        console.log('Selected tags change', tags, 'with action', actionTaken);
-        setSelected(tags);
-      }}
-      manageLink={withManageLink}
-    />
+          setTags([...tags, tag]);
+          setSelected([...selected, tag]);
+        }}
+        onSelectedChange={(tags, actionTaken) => {
+          console.log('Selected tags change', tags, 'with action', actionTaken);
+          setSelected(tags);
+        }}
+        manageLink={withManageLink}
+      />
+    );
     const TABS = [
       {
-        label: 'Overview', content: <Overview
-          contentTags={contentTags}
-          folders={data}
-          parentFolder={parentFolder}
-          onDescriptionChange={setDescription}
-          textDescription={description}
-          onFolderSelect={showFolder}
-          autoSize={autoSize}
-          texts={texts}
-          inputObject={inputObject}
-          onAddFolderClick={()=>{}}
-        />
+        label: 'Overview',
+        content: (
+          <Overview
+            contentTags={contentTags}
+            folders={data}
+            parentFolder={parentFolder}
+            onDescriptionChange={setDescription}
+            textDescription={description}
+            onFolderSelect={showFolder}
+            autoSize={autoSize}
+            texts={texts}
+            inputObject={inputObject}
+            onAddFolderClick={() => {}}
+          />
+        ),
       },
       {
         label: 'Changelog',
@@ -316,19 +325,14 @@ const stories = {
         <Drawer visible={drawerVisible} placement="right" width={676} onClose={() => setDrawerVisible(false)}>
           <SidebarObject
             avatar={
-              <Badge status={('inactive')}>
+              <Badge status={'inactive'}>
                 <Avatar
-                  backgroundColor={('pink')}
-                  backgroundColorHue={('100')}
-                  size={('large')}
-                  shape={( 'circle')}
-                  iconComponent={
-                    <Icon
-                      color={getColor('pink-600')}
-                      component={getIconSize('large')}
-                    />
-                  }
-                  hasStatus={(true)}
+                  backgroundColor={'pink'}
+                  backgroundColorHue={'100'}
+                  size={'large'}
+                  shape={'circle'}
+                  iconComponent={<Icon color={getColor('pink-600')} component={getIconSize('large')} />}
+                  hasStatus={true}
                   style={{ flex: 1, margin: 0 }}
                 />
               </Badge>
@@ -339,8 +343,8 @@ const stories = {
             folders={data}
             parentFolder={parentFolder}
             texts={texts}
-            onArrowUp={showIcon? () => {}: null}
-            onArrowDown={showIcon?  () => {}: null}
+            onArrowUp={showIcon ? () => {} : null}
+            onArrowDown={showIcon ? () => {} : null}
             onFolderSelect={showFolder}
             onEdit={() => {}}
             onDuplicate={() => {}}
@@ -356,7 +360,7 @@ const stories = {
             typeButtons={buttonsType}
             onRename={setName}
             contentTags={contentTags}
-            textDescription=''
+            textDescription=""
             footer={null}
           ></SidebarObject>
         </Drawer>
