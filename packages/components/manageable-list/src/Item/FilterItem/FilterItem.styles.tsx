@@ -69,6 +69,7 @@ export const ItemHeader = styled.div`
   justify-content: stretch;
   width: 100%;
   padding: 12px;
+  max-height: 48px;
 
   &:hover {
     ${ItemLabel} {
