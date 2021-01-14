@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.17](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar-object@0.4.16...@synerise/ds-sidebar-object@0.4.17) (2021-01-14)
+
+
+### Bug Fixes
+
+* **sidebar-object:** move header above scrollbar wrapper ([0242c22](https://github.com/Synerise/synerise-design/commit/0242c22134c55c38718a0d344252a9fbea395b3d))
+
+
+
+
+
 ## [0.4.16](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar-object@0.4.15...@synerise/ds-sidebar-object@0.4.16) (2021-01-14)
 
 

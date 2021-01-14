@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.112.1](https://github.com/synerise/synerise-design/compare/portal@0.112.0...portal@0.112.1) (2021-01-14)
+
+
+### Bug Fixes
+
+* **manageable-list:** fix styles of FilterItem & ItemMeta ([ac0f3f6](https://github.com/synerise/synerise-design/commit/ac0f3f63ef51f521d8a5e970a3640835e920885e))
+* **sidebar-object:** add starred icon to header in sidebar-object ([48ccaf0](https://github.com/synerise/synerise-design/commit/48ccaf03bafd09001cb72146ff9fd5462f409d77))
+* **sidebar-object:** add starred icon to header in sidebar-object default ([79ee578](https://github.com/synerise/synerise-design/commit/79ee5784229ea6e14f1c5a0313e872311b5a083d))
+* **sidebar-object:** move header above scrollbar wrapper ([0242c22](https://github.com/synerise/synerise-design/commit/0242c22134c55c38718a0d344252a9fbea395b3d))
+
+
+
+
+
 # [0.112.0](https://github.com/synerise/synerise-design/compare/portal@0.111.3...portal@0.112.0) (2021-01-13)
 
 
