@@ -89,6 +89,7 @@ const stories = {
   default: () => {
     const [drawerVisible, setDrawerVisible] = React.useState(false);
     const showIcon = boolean('Set Icon',true);
+    const showStarred = boolean('Set starred icon',false);
     const showBackIcon = boolean('Set back icon',false);
     const showTabs = boolean('Set Tabs',true);
     const showFooter = boolean('Set Footer',true);
@@ -150,7 +151,7 @@ const stories = {
             onApplyClick={() =>{}}
             onCancelClick={() =>{}}
             texts={texts}
-            headerPreffix={renderBackIcon(showBackIcon, () => setDrawerVisible(false))}
+            headerPreffix={renderStarred(showStarred) || renderBackIcon(showBackIcon, () => setDrawerVisible(false))}
             onArrowUp={showIcon? () => {}: null}
             onArrowDown={showIcon?  () => {}: null}
             onEdit={() => {}}
