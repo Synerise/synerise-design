@@ -6,13 +6,13 @@ import Button from '@synerise/ds-button';
 import {
   AngleDownM,
   AngleUpM,
+  CloseM,
   CopyClipboardM,
   DuplicateM,
   EditM,
   FolderM,
   OptionHorizontalM,
   TrashM,
-  CloseM,
 } from '@synerise/ds-icon/dist/icons';
 
 import Dropdown from '@synerise/ds-dropdown';
@@ -42,7 +42,7 @@ const Header: React.FC<HeaderProps> = ({
   onRename,
   additionalNode,
   type = HeaderType.READONLY,
-  typeButtons = ButtonVariant.TWO_BUTTONS,
+  typeButtons,
   onCancelClick,
   onApplyClick,
 }) => {
@@ -170,22 +170,25 @@ const Header: React.FC<HeaderProps> = ({
         </>
       );
     }
-    return (
-      <S.ButtonsWrapper>
-        <S.ButtonWrapper>
-          <Button type="ghost" onClick={onCancelClick}>
-            {' '}
-            {texts.cancelButton}{' '}
-          </Button>
-        </S.ButtonWrapper>
-        <S.ButtonWrapper>
-          <Button type="primary" onClick={onApplyClick}>
-            {' '}
-            {texts.applyButton}{' '}
-          </Button>
-        </S.ButtonWrapper>
-      </S.ButtonsWrapper>
-    );
+    if (typesOfButtons === ButtonVariant.TWO_BUTTONS) {
+      return (
+        <S.ButtonsWrapper>
+          <S.ButtonWrapper>
+            <Button type="ghost" onClick={onCancelClick}>
+              {' '}
+              {texts.cancelButton}{' '}
+            </Button>
+          </S.ButtonWrapper>
+          <S.ButtonWrapper>
+            <Button type="primary" onClick={onApplyClick}>
+              {' '}
+              {texts.applyButton}{' '}
+            </Button>
+          </S.ButtonWrapper>
+        </S.ButtonsWrapper>
+      );
+    }
+    return null;
   };
   return (
     <Drawer.DrawerHeaderWithoutPadding>
