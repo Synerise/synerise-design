@@ -15,6 +15,7 @@ import Tags, { TagShape } from '@synerise/ds-tags';
 import { v4 as uuid } from 'uuid';
 import Overview from '@synerise/ds-sidebar-object/dist/Elements/Overview/Overview';
 import { ButtonWrapper } from '@synerise/ds-sidebar-object/dist/Elements/Header/Header.style';
+import StarCell from '@synerise/ds-table/dist/Cell/Star/StarCell';
 
 
 
@@ -72,11 +73,23 @@ const renderBackIcon = (showBackIcon, onBackClickHandler) => {
     );
   } else return null;
 };
+const renderStarred = (showStarred) => {
+  const [starred,setStarred] = React.useState(false);
+  const knobsActive= boolean('Set starred state active', false);
+  if (showStarred) {
+    return (
+      <div>
+        <StarCell children starTooltip={knobsActive ? "Starred": undefined} active={starred} onClick={knobsActive? ():void => setStarred(!starred) : undefined}/>
+      </div>
+    );
+  } else return null;
+};
 
 const stories = {
   default: () => {
     const [drawerVisible, setDrawerVisible] = React.useState(false);
     const showIcon = boolean('Set Icon',true);
+    const showStarred = boolean('Set starred icon',false);
     const showBackIcon = boolean('Set back icon',false);
     const showTabs = boolean('Set Tabs',true);
     const showFooter = boolean('Set Footer',true);
@@ -138,7 +151,7 @@ const stories = {
             onApplyClick={() =>{}}
             onCancelClick={() =>{}}
             texts={texts}
-            headerPreffix={renderBackIcon(showBackIcon, () => setDrawerVisible(false))}
+            headerPreffix={renderStarred(showStarred) || renderBackIcon(showBackIcon, () => setDrawerVisible(false))}
             onArrowUp={showIcon? () => {}: null}
             onArrowDown={showIcon?  () => {}: null}
             onEdit={() => {}}
@@ -181,6 +194,7 @@ const stories = {
       'Default Square': TagShape.DEFAULT_SQUARE,
     };
     const shape = select('Shape', shapes, shapes['Default Round']);
+    const showStarred = boolean('Set starred icon',false);
     const removable = boolean('Ability to remove', true);
     const addable = boolean('Ability to add', true);
     const creatable = boolean('Ability to create', true);
@@ -320,6 +334,7 @@ const stories = {
               </Badge>
             }
             onCloseClick={() => setDrawerVisible(false)}
+            headerPreffix={renderStarred(showStarred)}
             autoSize={autoSize}
             folders={data}
             parentFolder={parentFolder}
