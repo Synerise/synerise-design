@@ -21,6 +21,7 @@ const Avatar: React.FC<AvatarProps> = ({
   return (
     <Tooltip type="avatar" title={tooltip?.name} description={tooltip?.email} mouseLeaveDelay={0} mouseEnterDelay={0}>
       <AntdAvatar
+        className="ds-avatar"
         onMouseDown={(): void => setPressed(true)}
         onMouseOut={(): void => setPressed(false)}
         onMouseUp={(): void => setPressed(false)}

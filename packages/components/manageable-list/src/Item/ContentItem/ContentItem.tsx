@@ -119,7 +119,6 @@ const ContentItem: React.FC<ContentItemProps> = ({
                   className="ds-dropdown-trigger"
                   mode="single-icon"
                   type="ghost"
-                  size="small"
                   onClick={stopPropagationHandler}
                 >
                   <Icon component={<OptionHorizontalM />} color={theme.palette['grey-600']} />
