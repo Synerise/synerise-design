@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-completed-within@0.1.7...@synerise/ds-completed-within@0.1.8) (2021-01-13)
+
+
+### Bug Fixes
+
+* **completed-within:** fix styles ([c71ad81](https://github.com/Synerise/synerise-design/commit/c71ad81afca4932e4019b18762faa382ded123e7))
+
+
+
+
+
 ## [0.1.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-completed-within@0.1.6...@synerise/ds-completed-within@0.1.7) (2021-01-04)
 
 **Note:** Version bump only for package @synerise/ds-completed-within

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subject@0.3.4...@synerise/ds-subject@0.4.0) (2021-01-13)
+
+
+### Features
+
+* **subject:** rename prop `selectItem` to `onSelectItem` ([406cf3f](https://github.com/Synerise/synerise-design/commit/406cf3f57e8eb57153f7fb5b979a580b142f4694))
+
+
+
+
+
 ## [0.3.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subject@0.3.3...@synerise/ds-subject@0.3.4) (2021-01-04)
 
 **Note:** Version bump only for package @synerise/ds-subject

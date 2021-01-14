@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.1.4...@synerise/ds-context-selector@0.2.0) (2021-01-13)
+
+
+### Bug Fixes
+
+* **context-selector:** client version with selected value ([0d154b4](https://github.com/Synerise/synerise-design/commit/0d154b4a42577cd0c6b0390da2be8691eda6d15f))
+
+
+### Features
+
+* **context-selector:** rename props `value` and `onChange` ([0ee75d2](https://github.com/Synerise/synerise-design/commit/0ee75d2a0ba6595e0ada2ee502347954a2a6cf30))
+
+
+
+
+
 ## [0.1.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.1.3...@synerise/ds-context-selector@0.1.4) (2021-01-04)
 
 **Note:** Version bump only for package @synerise/ds-context-selector

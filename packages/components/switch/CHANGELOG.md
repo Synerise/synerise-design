@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.46](https://github.com/synerise/synerise-design/compare/@synerise/ds-switch@0.3.45...@synerise/ds-switch@0.3.46) (2021-01-13)
+
+
+### Bug Fixes
+
+* **switch:** increase mixins specifity ([f4a3c67](https://github.com/synerise/synerise-design/commit/f4a3c670b727234ad172c48e6b5e16a9cdf615d2))
+
+
+
+
+
 ## [0.3.45](https://github.com/synerise/synerise-design/compare/@synerise/ds-switch@0.3.44...@synerise/ds-switch@0.3.45) (2021-01-04)
 
 **Note:** Version bump only for package @synerise/ds-switch

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.22](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.13.21...@synerise/ds-button@0.13.22) (2021-01-13)
+
+
+### Bug Fixes
+
+* **button:** fix focus color in secondary type button ([24df081](https://github.com/synerise/synerise-design/commit/24df08170f9cde8ccc08b61ec519cd86c1fde92c))
+
+
+
+
+
 ## [0.13.21](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.13.20...@synerise/ds-button@0.13.21) (2021-01-04)
 
 **Note:** Version bump only for package @synerise/ds-button

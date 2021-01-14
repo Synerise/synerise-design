@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.16.15](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.16.14...@synerise/ds-input@0.16.15) (2021-01-13)
+
+
+### Bug Fixes
+
+* **input:** pass autosize object to textarea ([bc68f5d](https://github.com/synerise/synerise-design/commit/bc68f5dc201eca1830ae7dcfb2dbe1c5feb54a0b))
+* **input:** pass custom resize prop ([138fe17](https://github.com/synerise/synerise-design/commit/138fe179338da0dccf2d9929c5fa66614629ee11))
+
+
+
+
+
 ## [0.16.14](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.16.13...@synerise/ds-input@0.16.14) (2021-01-04)
 
 **Note:** Version bump only for package @synerise/ds-input

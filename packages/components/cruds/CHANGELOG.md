@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-cruds@0.1.25...@synerise/ds-cruds@0.2.0) (2021-01-13)
+
+
+### Features
+
+* **cruds:** expose single action as subcomponent ([8e2b29e](https://github.com/Synerise/synerise-design/commit/8e2b29e703719b6432b0f8749cd97f250c697e49))
+
+
+
+
+
 ## [0.1.25](https://github.com/Synerise/synerise-design/compare/@synerise/ds-cruds@0.1.24...@synerise/ds-cruds@0.1.25) (2021-01-04)
 
 **Note:** Version bump only for package @synerise/ds-cruds
