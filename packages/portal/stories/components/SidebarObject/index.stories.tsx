@@ -16,6 +16,8 @@ import { v4 as uuid } from 'uuid';
 import Overview from '@synerise/ds-sidebar-object/dist/Elements/Overview/Overview';
 import { ButtonWrapper } from '@synerise/ds-sidebar-object/dist/Elements/Header/Header.style';
 import StarCell from '@synerise/ds-table/dist/Cell/Star/StarCell';
+import { StarFillM, StarM } from '@synerise/ds-icon/dist/icons';
+import Tooltip from '@synerise/ds-tooltip';
 
 
 
@@ -78,8 +80,15 @@ const renderStarred = (showStarred) => {
   const knobsActive= boolean('Set starred state active', false);
   if (showStarred) {
     return (
-      <div>
-        <StarCell children starTooltip={knobsActive ? "Starred": undefined} active={starred} onClick={knobsActive? ():void => setStarred(!starred) : undefined}/>
+      <div style={{marginRight: '10px'}}>
+        <Tooltip align={{ offset: [0, 5]}} title={knobsActive ? "Starred": undefined}>
+        <Button iconColor={starred ? theme.palette['yellow-600'] : theme.palette['grey-600']} type="ghost" mode="single-icon" onClick={knobsActive? ():void => setStarred(!starred) : undefined}>
+          <Icon
+            component={starred ? <StarFillM /> : <StarM />}
+            color={starred ? theme.palette['yellow-600'] : theme.palette['grey-600']}
+          />
+        </Button>
+        </Tooltip>
       </div>
     );
   } else return null;
