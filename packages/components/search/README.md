@@ -101,6 +101,7 @@ return (
 | filterLookupKey         | key in parameter item object for displaying parameter label in input                   | string                                                     | -       |
 | hideLabel               | Hide label in search input                                                             | boolean                                                    | -       |
 | disableInput            | Disable search input                                                                   | boolean                                                    | -       |
+| inputProps              | Props object passed to the SearchInput component                                       | object                                                     | -       |
 | onParameterValueChange  | Callback when set parameter type                                                       | function                                                   | -       |
 | onValueChange           | Callback when input changes                                                            | function                                                   | -       |
 | parameters              | Parameters items data displayed in search dropdown                                     | object                                                     | -       |
@@ -114,7 +115,6 @@ return (
 | textLookupConfig        | config of keys for lookup in parameters, recent and suggestions datasets               | { parameters: string; recent: string; suggestions: string} | -       |
 | value                   | The input content value                                                                | string                                                     | -       |
 | width                   | Width of the search input when expanded                                                | number                                                     | -       |
-
 
 ### DataSetProps
 
@@ -152,12 +152,13 @@ import { SearchInput } from '@synerise/ds-search/dist/Elements';
 
 | Property            | Description                                                               | Type     | Default |
 | ------------------- | ------------------------------------------------------------------------- | -------- | ------- |
-| alwaysHighlight     | When set, the input always has blue border when expanded                  | boolean  |`false`  |
-| alwaysExpanded      | Boolean value to force expanded state of the input                        | boolean  |`false`  |
+| alwaysHighlight     | When set, the input always has blue border when expanded                  | boolean  | `false` |
+| alwaysExpanded      | Boolean value to force expanded state of the input                        | boolean  | `false` |
 | clearTooltip        | Clear button tooltip text                                                 | string   | -       |
-| closeOnClickOutside | Boolean value to prevent / force toggling the input when clicking outside | boolean  |`false`  |
+| closeOnClickOutside | Boolean value to prevent / force toggling the input when clicking outside | boolean  | `false` |
 | filterLabel         | Label displayed on the left-hand side of the input caret                  | object   | -       |
 | focusTrigger        | Boolean value for triggering focus on the input                           | boolean  | -       |
+| inputProps          | Props object passed to the input element of the component                         | object   | -       |
 | onValueChange       | Callback when input changes                                               | function | -       |
 | onButtonClick       | Callback executed when clicking search button                             | function | -       |
 | onClear             | Callback after clicking clear button                                      | function | -       |
