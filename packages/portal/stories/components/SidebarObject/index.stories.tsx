@@ -76,12 +76,11 @@ const renderBackIcon = (showBackIcon, onBackClickHandler) => {
 };
 const renderStarred = (showStarred) => {
   const [starred,setStarred] = React.useState(false);
-  const knobsActive= boolean('Set starred state active', false);
   if (showStarred) {
     return (
       <div style={{marginRight: '10px'}}>
-        <Tooltip align={{ offset: [0, 5]}} title={knobsActive ? "Starred": undefined}>
-        <Button iconColor={starred ? theme.palette['yellow-600'] : theme.palette['grey-600']} type="ghost" mode="single-icon" onClick={knobsActive? ():void => setStarred(!starred) : undefined}>
+        <Tooltip align={{ offset: [0, 5]}} title="Starred">
+        <Button iconColor={starred ? theme.palette['yellow-600'] : theme.palette['grey-600']} type="ghost" mode="single-icon" onClick={() => {setStarred(!starred)}}>
           <Icon
             component={starred ? <StarFillM /> : <StarM />}
             color={starred ? theme.palette['yellow-600'] : theme.palette['grey-600']}
