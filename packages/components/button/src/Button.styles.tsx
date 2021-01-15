@@ -123,6 +123,7 @@ export const AntdButton = styled(
     leftIconSize,
     pressed,
     size,
+    iconColor,
     ...rest
   }) => {
     // eslint-disable-next-line react/jsx-props-no-spreading
@@ -202,7 +203,12 @@ export const AntdButton = styled(
         &.ant-btn {
           &:not(:disabled) {
             svg {
-              fill: ${(color): string => color.theme.palette['grey-600']};
+              fill: ${props.iconColor ? props.theme.palette[`${props.iconColor}-600`] : props.theme.palette['grey-600']};
+            }
+            &:hover {
+              svg {
+                fill: ${props.iconColor ? props.theme.palette['blue-600'] : props.theme.palette['grey-600']};
+              }
             }
           }
         }
