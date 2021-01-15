@@ -15,7 +15,6 @@ import Tags, { TagShape } from '@synerise/ds-tags';
 import { v4 as uuid } from 'uuid';
 import Overview from '@synerise/ds-sidebar-object/dist/Elements/Overview/Overview';
 import { ButtonWrapper } from '@synerise/ds-sidebar-object/dist/Elements/Header/Header.style';
-import StarCell from '@synerise/ds-table/dist/Cell/Star/StarCell';
 import { StarFillM, StarM } from '@synerise/ds-icon/dist/icons';
 import Tooltip from '@synerise/ds-tooltip';
 
