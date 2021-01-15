@@ -158,7 +158,7 @@ import { SearchInput } from '@synerise/ds-search/dist/Elements';
 | closeOnClickOutside | Boolean value to prevent / force toggling the input when clicking outside | boolean  | `false` |
 | filterLabel         | Label displayed on the left-hand side of the input caret                  | object   | -       |
 | focusTrigger        | Boolean value for triggering focus on the input                           | boolean  | -       |
-| inputProps          | Props object passed to the input element of the component                         | object   | -       |
+| inputProps          | Props object passed to the input element of the component                 | object   | -       |
 | onValueChange       | Callback when input changes                                               | function | -       |
 | onButtonClick       | Callback executed when clicking search button                             | function | -       |
 | onClear             | Callback after clicking clear button                                      | function | -       |
