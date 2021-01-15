@@ -15,7 +15,8 @@ import Tags, { TagShape } from '@synerise/ds-tags';
 import { v4 as uuid } from 'uuid';
 import Overview from '@synerise/ds-sidebar-object/dist/Elements/Overview/Overview';
 import { ButtonWrapper } from '@synerise/ds-sidebar-object/dist/Elements/Header/Header.style';
-import StarCell from '@synerise/ds-table/dist/Cell/Star/StarCell';
+import { StarFillM, StarM } from '@synerise/ds-icon/dist/icons';
+import Tooltip from '@synerise/ds-tooltip';
 
 
 import ContentItem from '@synerise/ds-manageable-list/dist/Item/ContentItem/ContentItem';
@@ -75,11 +76,17 @@ const renderBackIcon = (showBackIcon, onBackClickHandler) => {
 };
 const renderStarred = (showStarred) => {
   const [starred,setStarred] = React.useState(false);
-  const knobsActive= boolean('Set starred state active', false);
   if (showStarred) {
     return (
-      <div>
-        <StarCell children starTooltip={knobsActive ? "Starred": undefined} active={starred} onClick={knobsActive? ():void => setStarred(!starred) : undefined}/>
+      <div style={{marginRight: '10px'}}>
+        <Tooltip align={{ offset: [0, 5]}} title="Starred">
+        <Button iconColor={starred ? theme.palette['yellow-600'] : theme.palette['grey-600']} type="ghost" mode="single-icon" onClick={() => {setStarred(!starred)}}>
+          <Icon
+            component={starred ? <StarFillM /> : <StarM />}
+            color={starred ? theme.palette['yellow-600'] : theme.palette['grey-600']}
+          />
+        </Button>
+        </Tooltip>
       </div>
     );
   } else return null;

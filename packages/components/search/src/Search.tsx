@@ -306,7 +306,15 @@ class Search extends React.PureComponent<SearchProps<AnyObject, AnyObject>, Sear
   }
 
   renderInputWrapper(): React.ReactNode {
-    const { placeholder, clearTooltip, value, textLookupConfig, filterLookupKey, disableInput } = this.props;
+    const {
+      placeholder,
+      clearTooltip,
+      value,
+      textLookupConfig,
+      filterLookupKey,
+      disableInput,
+      inputProps,
+    } = this.props;
     const { label, focusInputTrigger, toggleInputTrigger, moveCursorToEnd } = this.state;
 
     return (
@@ -333,6 +341,7 @@ class Search extends React.PureComponent<SearchProps<AnyObject, AnyObject>, Sear
         value={value}
         moveCursorToEnd={moveCursorToEnd}
         disableInput={disableInput}
+        inputProps={inputProps}
       />
     );
   }
