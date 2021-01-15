@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { InputProps } from 'antd/lib/input';
 
 export type SearchInputProps = {
   alwaysExpanded?: boolean;
@@ -21,6 +22,7 @@ export type SearchInputProps = {
   value: string;
   moveCursorToEnd?: boolean;
   disableInput?: boolean;
+  inputProps?: Partial<InputProps>;
 };
 
 export type SearchInputState = {
