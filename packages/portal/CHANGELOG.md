@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.112.2](https://github.com/synerise/synerise-design/compare/portal@0.112.1...portal@0.112.2) (2021-01-15)
+
+
+### Bug Fixes
+
+* **sidebar-object:** add button with starred icon to header in sidebar-object ([3d48de1](https://github.com/synerise/synerise-design/commit/3d48de1682cc25687022b5923ab360abe2d2bd74))
+* **sidebar-object:** delete unnecessary import ([c82e676](https://github.com/synerise/synerise-design/commit/c82e676fee3a4fc60765988a1aef4413b82f5479))
+* **sidebar-object:** remove knobs to set starred active ([6c8653c](https://github.com/synerise/synerise-design/commit/6c8653c809392e907c9e9d5056b1d60e382e39dc))
+* **table:** passed inputProps in stories ([9218398](https://github.com/synerise/synerise-design/commit/9218398197b7d4cd6ce4df7dca173573a3ecb990))
+
+
+
+
+
 ## [0.112.1](https://github.com/synerise/synerise-design/compare/portal@0.112.0...portal@0.112.1) (2021-01-14)
 
 
