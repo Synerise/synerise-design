@@ -61,6 +61,20 @@ export type Props = Omit<ButtonProps, 'type'> & {
    * Sets the handler to handle `click` event
    */
   onClick?: (event: React.MouseEvent<HTMLElement>) => void;
+  iconColor?:
+    | string
+    | 'blue'
+    | 'grey'
+    | 'red'
+    | 'green'
+    | 'yellow'
+    | 'pink'
+    | 'mars'
+    | 'orange'
+    | 'fern'
+    | 'cyan'
+    | 'purple'
+    | 'violet';
 };
 
 export type ButtonSubComponents = {
