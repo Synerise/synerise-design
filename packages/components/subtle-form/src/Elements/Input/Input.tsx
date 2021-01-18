@@ -50,6 +50,8 @@ const SubtleTextArea: React.FC<SubtleInputProps> = ({
       </S.ContentAbove>
       <S.Container ref={containerRef} className="ds-subtle-input" active={active} disabled={disabled}>
         {(active || hasError) && !disabled ? (
+          // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+          // @ts-ignore
           <Input
             autoFocus={!hasError && !disabled}
             onChange={

@@ -25,7 +25,7 @@ const stories = {
       <div style={{ marginBottom: '16px', height: '57px' }}>
         <SubtleForm.Field
           value={value}
-          activeElement={() => <InputNumber autoFocus value={value} onChange={e => setValue(e)} />}
+          activeElement={() => <InputNumber autoFocus value={value} onChange={e => setValue(e)} placeholder={placeholder} />}
           inactiveElement={() => value || placeholder}
           label={renderLabel('Number')}
           labelTooltip={'Number'}

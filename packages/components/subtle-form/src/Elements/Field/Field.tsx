@@ -46,6 +46,8 @@ const SutbleField: React.FC<SubtleFieldProps> = ({
           activeElement()
         ) : (
           <S.Inactive
+            tabIndex={0}
+            onFocus={!disabled ? handleActivate : undefined}
             onClick={!disabled ? handleActivate : undefined}
             blurred={blurred}
             disabled={disabled}

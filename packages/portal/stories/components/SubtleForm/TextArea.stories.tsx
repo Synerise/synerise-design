@@ -25,8 +25,7 @@ const stories = {
     return (
       <div>
         <div style={{ marginBottom: '16px' }}>
-          <SubtleForm.TextArea
-            minRows={1}
+          <SubtleForm.Input
             value={name}
             onChange={setName}
             placeholder={'Name'}
@@ -39,8 +38,7 @@ const stories = {
           />
         </div>
         <div style={{ marginBottom: '16px' }}>
-          <SubtleForm.TextArea
-            minRows={1}
+          <SubtleForm.Input
             value={city}
             onChange={setCity}
             placeholder={'City'}

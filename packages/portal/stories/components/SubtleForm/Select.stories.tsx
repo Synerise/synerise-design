@@ -117,9 +117,9 @@ const stories = {
             setValue(renderStatus(selectedStatus));
           }}
           value={value as SelectValue}
-          placeholder={'Country'}
-          label={renderLabel('Country')}
-          labelTooltip={'Country'}
+          placeholder={'Status'}
+          label={renderLabel('Status')}
+          labelTooltip={'Status'}
           suffixTooltip={'Select'}
           error={validationState}
           errorText={getErrorText(validationState, errorMessage)}
