@@ -142,6 +142,9 @@ export const Container = styled.div<{ active?: boolean; disabled?: boolean }>`
     ${Inactive} {
       line-height: 18px;
     }
+    .ant-input::placeholder {
+      line-height: 16px;
+    }
   }
   position: relative;
   width: 100%;
@@ -160,7 +163,7 @@ export const Container = styled.div<{ active?: boolean; disabled?: boolean }>`
       transition: all 0s linear !important;
     }
   }
-  && .ant-input-number-input {
+  && .ant-input-number-input::placeholder {
     padding-bottom: 8px;
   }
   ${(props): FlattenSimpleInterpolation | false =>
