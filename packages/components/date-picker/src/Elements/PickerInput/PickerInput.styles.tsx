@@ -62,7 +62,9 @@ export const PickerInputWrapper = styled.div<{ prefixel: boolean; suffixel: bool
   `}
 `;
 
-export const Container = styled.div``;
+export const Container = styled.div`
+  width: 100%;
+`;
 export const ClearIconWrapper = styled.div`
   .ds-icon svg {
     fill: ${(props): string => props.theme.palette['red-600']};
