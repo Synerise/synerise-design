@@ -20,12 +20,24 @@ export const getErrorText = (error: boolean, errorText: string): string => {
 const stories = {
   inputNumber: () => {
     const [value, setValue] = React.useState<number>();
+    const [active, setActive] = React.useState<boolean | undefined>(false);
+
     const placeholder = 'Number';
     return (
       <div style={{ marginBottom: '16px', height: '57px' }}>
         <SubtleForm.Field
           value={value}
-          activeElement={() => <InputNumber autoFocus value={value} onChange={e => setValue(e)} placeholder={placeholder} />}
+          active={active}
+          activeElement={() => (
+            <InputNumber
+              autoFocus
+              value={value}
+              onFocus={()=>setActive(true)}
+              onBlur={() => setActive(false)}
+              onChange={e => setValue(e)}
+              placeholder={placeholder}
+            />
+          )}
           inactiveElement={() => value || placeholder}
           label={renderLabel('Number')}
           labelTooltip={'Number'}
