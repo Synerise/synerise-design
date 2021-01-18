@@ -6,11 +6,11 @@ import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { Label } from '@synerise/ds-input';
 import { useOnClickOutside } from '@synerise/ds-utils';
 import * as S from '../../SubtleForm.styles';
-import { SelectContainer, ContentAbove } from './Field.styles';
+import { ContentAbove } from './Field.styles';
 import { SubtleFieldProps } from '../../SubtleForm.types';
 import { MaskedDatePlaceholder } from '../DatePicker/DatePicker.styles';
 
-const SutbleField: React.FC<SubtleFieldProps> = ({
+const SubtleField: React.FC<SubtleFieldProps> = ({
   disabled,
   suffix,
   suffixTooltip,
@@ -20,8 +20,9 @@ const SutbleField: React.FC<SubtleFieldProps> = ({
   inactiveElement,
   mask,
   maskVisible,
+  active: activeProp,
 }) => {
-  const [active, setActive] = React.useState<boolean>(false);
+  const [active, setActive] = React.useState<boolean | undefined>(activeProp);
   const [blurred, setBlurred] = React.useState<boolean>(false);
   const containerRef = React.useRef<HTMLDivElement>(null);
   const handleDeactivate = React.useCallback(() => {
@@ -33,6 +34,8 @@ const SutbleField: React.FC<SubtleFieldProps> = ({
     setBlurred(false);
   }, []);
 
+  React.useEffect((): void => setActive(activeProp), [activeProp]);
+
   useOnClickOutside(containerRef, () => {
     handleDeactivate();
   });
@@ -41,7 +44,7 @@ const SutbleField: React.FC<SubtleFieldProps> = ({
       <ContentAbove active={active}>
         <Label label={label} tooltip={labelTooltip} />
       </ContentAbove>
-      <SelectContainer ref={containerRef} className="ds-subtle-select" active={active}>
+      <S.Container ref={containerRef} className="ds-subtle-field" active={active}>
         {active && !blurred && !!activeElement ? (
           activeElement()
         ) : (
@@ -49,6 +52,7 @@ const SutbleField: React.FC<SubtleFieldProps> = ({
             tabIndex={0}
             onFocus={!disabled ? handleActivate : undefined}
             onClick={!disabled ? handleActivate : undefined}
+            onBlur={handleDeactivate}
             blurred={blurred}
             disabled={disabled}
             mask={maskVisible}
@@ -66,8 +70,8 @@ const SutbleField: React.FC<SubtleFieldProps> = ({
             )}
           </S.Inactive>
         )}
-      </SelectContainer>
+      </S.Container>
     </S.Subtle>
   );
 };
-export default SutbleField;
+export default SubtleField;

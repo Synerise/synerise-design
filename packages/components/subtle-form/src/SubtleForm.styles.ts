@@ -137,7 +137,7 @@ export const ValueArea = styled.textarea<{ grey: boolean }>`
   }
 `;
 
-export const Container = styled.div<{ active: boolean; disabled?: boolean }>`
+export const Container = styled.div<{ active?: boolean; disabled?: boolean }>`
   &.ds-subtle-input {
     ${Inactive} {
       line-height: 18px;
@@ -146,7 +146,7 @@ export const Container = styled.div<{ active: boolean; disabled?: boolean }>`
   position: relative;
   width: 100%;
   ${(props): false | FlattenSimpleInterpolation =>
-    props.active &&
+    !!props.active &&
     css`
       margin: -1px 0 0 -1px;
     `}
@@ -159,6 +159,9 @@ export const Container = styled.div<{ active: boolean; disabled?: boolean }>`
     .ant-select-selector: {
       transition: all 0s linear !important;
     }
+  }
+  && .ant-input-number-input {
+    padding-bottom: 8px;
   }
   ${(props): FlattenSimpleInterpolation | false =>
     !!props.disabled &&

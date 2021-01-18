@@ -12,6 +12,7 @@ export type SubtleFormSubComponents = {
   Input: React.ElementType<SubtleInputProps>;
 };
 export type SubtleFieldProps = {
+  active?: boolean;
   disabled?: boolean;
   label?: React.ReactNode | string;
   labelTooltip?: React.ReactNode | string;
