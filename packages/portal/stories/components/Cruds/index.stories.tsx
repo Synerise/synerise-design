@@ -4,7 +4,7 @@ import Cruds from '@synerise/ds-cruds';
 import { action } from '@storybook/addon-actions';
 import { select } from '@storybook/addon-knobs';
 
-const crudsoptions = {
+const CRUDS_OPTIONS = {
   Multiple: 'Multiple',
   Add: 'Add',
   Edit: 'Edit',
@@ -15,7 +15,7 @@ const crudsoptions = {
 };
 
 const getCrudsKnobs = () => ({
-  type: select('Set type', crudsoptions, 'Multiple'),
+  type: select('Set type', CRUDS_OPTIONS, 'Multiple'),
 });
 
 const stories = {
@@ -29,7 +29,7 @@ const stories = {
     } as object;
     return (
 <div>
-  <Cruds.CustomAction
+  <Cruds
     {...props}
     onAdd={crudProps.type === 'Add' || crudProps.type === 'Multiple' ? action('onAdd event triggered') : null}
     addTooltip="Add"
