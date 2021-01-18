@@ -79,7 +79,7 @@ const PickerInput: React.FC<Props> = ({
     [hovered, value, disabled, clearTooltip, handleIconClick, highlight]
   );
   return (
-    <S.PickerInputWrapper prefixel={!!prefixel} suffixel={!!suffixel}>
+    <S.PickerInputWrapper prefixel={!!prefixel} suffixel={!!suffixel} className="ds-date-input">
       {!!prefixel && <S.Prefixel>{prefixel}</S.Prefixel>}
       <S.Container
         onMouseEnter={!disabled ? (): void => setHovered(true) : undefined}
