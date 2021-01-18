@@ -22,6 +22,7 @@ const Content: React.FC<ContentProps> = ({
           <SubtleForm.TextArea
             minRows={3}
             // TODO: fix handler type
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             onChange={onDescriptionChange as any}
             value={textDescription}
             placeholder={texts.placeholder}
