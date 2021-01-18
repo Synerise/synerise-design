@@ -21,8 +21,9 @@ const Content: React.FC<ContentProps> = ({
         <InlineEditWrapper>
           <SubtleForm.TextArea
             minRows={3}
+            // TODO: fix handler type
+            onChange={onDescriptionChange as any}
             value={textDescription}
-            onChange={onDescriptionChange}
             placeholder={texts.placeholder}
             suffixTooltip={texts.suffixTooltip}
             {...descriptionProps}

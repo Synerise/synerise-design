@@ -54,13 +54,10 @@ const SubtleTextArea: React.FC<SubtleInputProps> = ({
           // @ts-ignore
           <Input
             autoFocus={!hasError && !disabled}
-            onChange={
-              !disabled
-                ? (e: React.ChangeEvent<HTMLInputElement>): void => {
-                    onChange && onChange(e.currentTarget.value);
-                  }
-                : undefined
-            }
+            disabled={disabled}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>): void => {
+              onChange && onChange(e.currentTarget.value);
+            }}
             onBlur={!disabled ? handleDeactivate : undefined}
             value={value}
             style={{ margin: 0, padding: focusPadding }}
