@@ -8,10 +8,11 @@ export enum LoaderSize {
 export type LoaderProps = {
   size?: 'S' | 'M' | 'L';
   label: string | React.ReactNode;
-  labelPosition?: string | 'bottom' | 'right';
+  labelPosition?: 'bottom' | 'right';
   percent?: number | React.ReactNode;
   percentFormatter?: (percent?: number | React.ReactNode) => React.ReactNode;
-  color?: string
+  color?:
+    | string
     | 'blue'
     | 'grey'
     | 'red'
