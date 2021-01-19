@@ -28,25 +28,25 @@ const DEFAULT_CONDITION_ROW = {
   },
 };
 
+const DEFAULT_STEP = () => ({
+  id: uuid(),
+  stepName: 'Step name',
+  subject: {
+    showPreview: undefined,
+    type: 'event',
+    placeholder: 'Choose event',
+    iconPlaceholder: <NotificationsM />,
+    selectedItem: undefined,
+    items: SUBJECT_ITEMS,
+  },
+  conditions: [DEFAULT_CONDITION_ROW],
+});
+
 const DEFAULT_STATE = {
   selected: undefined,
   selectedFactorType: undefined,
   factorValue: undefined,
-  steps: [
-    {
-      id: 0,
-      stepName: 'Step name',
-      subject: {
-        showPreview: undefined,
-        type: 'event',
-        placeholder: 'Choose event',
-        iconPlaceholder: <NotificationsM />,
-        selectedItem: undefined,
-        items: SUBJECT_ITEMS,
-      },
-      conditions: [DEFAULT_CONDITION_ROW],
-    },
-  ],
+  steps: [DEFAULT_STEP()],
 };
 
 const stories = {
@@ -184,7 +184,6 @@ const stories = {
     };
 
     const removeStepCondition = (stepId: React.ReactText, conditionId: React.ReactText) => {
-      console.log(stepId, conditionId);
       store.set({
         steps: store.state.steps.map(step => {
           if (step.id === stepId) {
@@ -212,82 +211,129 @@ const stories = {
       });
     };
 
+    const removeStep = stepId => {
+      store.set({
+        steps: store.state.steps.filter(step => step.id !== stepId),
+      });
+    };
+
+    const duplicateStep = stepId => {
+      const duplicatedStep = { ...store.state.steps.find(step => step.id === stepId) };
+      duplicatedStep.id = uuid();
+      store.set({
+        steps: [...store.state.steps, duplicatedStep],
+      });
+    };
+
+    const addStep = () => {
+      store.set({
+        steps: [...store.state.steps, DEFAULT_STEP()],
+      });
+    };
+
+    const onChangeOrder = newOrder => {
+      store.set({ steps: newOrder });
+    };
+
     const withContextAsSubject = boolean('Use contextSelector as subject', false);
 
     return (
-      <Condition
-        texts={{
-          stepNamePlaceholder: 'Step name',
-          removeConditionRowTooltip: 'Remove',
-          addConditionRowButton: 'and where',
+      <div
+        style={{
+          padding: 24,
+          height: '100%',
+          width: '100%',
+          display: 'flex',
+          alignItems: 'flex-start',
+          justifyContent: 'center',
+          position: 'absolute',
+          top: '0',
+          left: '0',
         }}
-        addCondition={boolean('Enable add new condition row', true) && addStepCondition}
-        removeCondition={removeStepCondition}
-        updateStepName={updateStepName}
-        steps={store.state.steps.map(step => ({
-          id: step.id,
-          stepName: boolean('Show step name', true) && step.stepName,
-          subject: !withContextAsSubject && {
-            onSelectItem: item => setStepSubject(step.id, item),
-            type: select('Choose subject type', ['parameter', 'event', 'context'], 'parameter'),
-            placeholder: text('Set subject placeholder', 'Choose event'),
-            showPreview: boolean('Subject with preview', true) && action('ShowPreview'),
-            iconPlaceholder: step.subject.iconPlaceholder,
-            selectedItem: step.subject.selectedItem,
-            items: SUBJECT_ITEMS,
-            texts: SUBJECT_TEXTS,
-          },
-          context: withContextAsSubject && {
-            texts: CONTEXT_TEXTS,
-            onSelectItem: item => setStepSubject(step.id, item),
-            selectedItem: step.subject.selectedItem,
-            items: CONTEXT_ITEMS,
-            groups: CONTEXT_GROUPS,
-          },
-          conditions: step.conditions.map(condition => ({
-            id: condition.id,
-            parameter: {
-              availableFactorTypes: ['parameter'],
-              selectedFactorType: 'parameter',
-              defaultFactorType: 'parameter',
-              setSelectedFactorType: () => {},
-              onChangeValue: value => setStepConditionParameter(step.id, condition.id, value),
-              value: condition.parameter.value,
-              parameters: {
-                buttonLabel: 'Parameter',
-                buttonIcon: <VarTypeStringM />,
-                groups: PARAMETER_GROUPS,
-                items: PARAMETER_ITEMS,
+      >
+        <Condition
+          texts={{
+            stepNamePlaceholder: 'Step name',
+            removeConditionRowTooltip: 'Remove',
+            addConditionRowButton: 'and where',
+            dropLabel: 'Drop me here',
+            addStep: 'Add funnel step',
+            duplicateTooltip: 'Duplicate',
+            removeTooltip: 'Remove',
+            moveTooltip: 'Move',
+          }}
+          addCondition={boolean('Enable add new condition row', true) && addStepCondition}
+          removeCondition={removeStepCondition}
+          updateStepName={updateStepName}
+          removeStep={removeStep}
+          duplicateStep={duplicateStep}
+          addStep={addStep}
+          onChangeOrder={boolean('Enable change order', true) && onChangeOrder}
+          steps={store.state.steps.map(step => ({
+            id: step.id,
+            stepName: boolean('Show step name', true) && step.stepName,
+            subject: !withContextAsSubject && {
+              onSelectItem: item => setStepSubject(step.id, item),
+              type: select('Choose subject type', ['parameter', 'event', 'context'], 'parameter'),
+              placeholder: text('Set subject placeholder', 'Choose event'),
+              showPreview: boolean('Subject with preview', true) && action('ShowPreview'),
+              iconPlaceholder: step.subject.iconPlaceholder,
+              selectedItem: step.subject.selectedItem,
+              items: SUBJECT_ITEMS,
+              texts: SUBJECT_TEXTS,
+            },
+            context: withContextAsSubject && {
+              texts: CONTEXT_TEXTS,
+              onSelectItem: item => setStepSubject(step.id, item),
+              selectedItem: step.subject.selectedItem,
+              items: CONTEXT_ITEMS,
+              groups: CONTEXT_GROUPS,
+            },
+            conditions: step.conditions.map(condition => ({
+              id: condition.id,
+              parameter: {
+                availableFactorTypes: ['parameter'],
+                selectedFactorType: 'parameter',
+                defaultFactorType: 'parameter',
+                setSelectedFactorType: () => {},
+                onChangeValue: value => setStepConditionParameter(step.id, condition.id, value),
+                value: condition.parameter.value,
+                parameters: {
+                  buttonLabel: 'Parameter',
+                  buttonIcon: <VarTypeStringM />,
+                  groups: PARAMETER_GROUPS,
+                  items: PARAMETER_ITEMS,
+                },
+                withoutTypeSelector: true,
+                texts: FACTORS_TEXTS,
               },
-              withoutTypeSelector: true,
-              texts: FACTORS_TEXTS,
-            },
-            operator: {
-              onChange: value => setOperatorValue(step.id, condition.id, value),
-              value: condition.operator.value,
-              items: OPERATORS_ITEMS,
-              groups: OPERATORS_GROUPS,
-              texts: OPERATORS_TEXTS,
-            },
-            factor: {
-              selectedFactorType: condition.factor.selectedFactorType,
-              defaultFactorType: 'text',
-              setSelectedFactorType: factorType => setStepConditionFactorType(step.id, condition.id, factorType),
-              onChangeValue: value => setStepConditionFactorValue(step.id, condition.id, value),
-              textType: 'default',
-              value: condition.factor.value,
-              formulaEditor: <div>Formula editor</div>,
-              parameters: {
-                buttonLabel: 'Parameter',
-                buttonIcon: <VarTypeStringM />,
-                groups: PARAMETER_GROUPS,
-                items: PARAMETER_ITEMS,
+              operator: {
+                onChange: value => setOperatorValue(step.id, condition.id, value),
+                value: condition.operator.value,
+                items: OPERATORS_ITEMS,
+                groups: OPERATORS_GROUPS,
+                texts: OPERATORS_TEXTS,
               },
-              texts: FACTORS_TEXTS,
-            },
-          })),
-        }))}
-      />
+              factor: {
+                selectedFactorType: condition.factor.selectedFactorType,
+                defaultFactorType: 'text',
+                setSelectedFactorType: factorType => setStepConditionFactorType(step.id, condition.id, factorType),
+                onChangeValue: value => setStepConditionFactorValue(step.id, condition.id, value),
+                textType: 'default',
+                value: condition.factor.value,
+                formulaEditor: <div>Formula editor</div>,
+                parameters: {
+                  buttonLabel: 'Parameter',
+                  buttonIcon: <VarTypeStringM />,
+                  groups: PARAMETER_GROUPS,
+                  items: PARAMETER_ITEMS,
+                },
+                texts: FACTORS_TEXTS,
+              },
+            })),
+          }))}
+        />
+      </div>
     );
   }),
 };

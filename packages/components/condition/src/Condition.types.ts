@@ -24,9 +24,18 @@ export type ConditionProps = {
   addCondition?: (stepId: React.ReactText) => void;
   removeCondition?: (stepId: React.ReactText, conditionRowId: React.ReactText) => void;
   updateStepName?: (stepId: React.ReactText, value: string) => void;
+  removeStep: (stepId: React.ReactText) => void;
+  duplicateStep: (stepId: React.ReactText) => void;
+  addStep: () => void;
+  onChangeOrder?: (newOrder: ConditionStep[]) => void;
   texts: {
     stepNamePlaceholder: string;
     removeConditionRowTooltip: string;
     addConditionRowButton: string;
+    addStep: string | React.ReactNode;
+    dropLabel: string;
+    moveTooltip: string;
+    duplicateTooltip: string;
+    removeTooltip: string;
   };
 };

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import InlineEdit from '@synerise/ds-inline-edit';
-import { Add2M, CloseS } from '@synerise/ds-icon/dist/icons';
+import { Add2M, Add3M, CloseS, DragHandleM } from '@synerise/ds-icon/dist/icons';
 import Icon from '@synerise/ds-icon';
 import Button from '@synerise/ds-button';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
@@ -10,13 +10,34 @@ import Subject from '@synerise/ds-subject';
 import Factors from '@synerise/ds-factors';
 import Operators from '@synerise/ds-operators';
 import ContextSelector from '@synerise/ds-context-selector';
+import Cruds from '@synerise/ds-cruds';
+import { ReactSortable } from 'react-sortablejs-typescript';
 import { ConditionProps, ConditionStep, StepConditions } from './Condition.types';
 import * as S from './Condition.style';
 
 const DEFAULT_FIELD = '';
 const DEFAULT_CONDITION = '';
+// eslint-disable-next-line @typescript-eslint/no-empty-function
+const NOOP = (): void => {};
+const SORTABLE_CONFIG = {
+  ghostClass: 'steps-list-ghost-element',
+  className: 'steps-list',
+  handle: '.step-drag-handler',
+  animation: 150,
+  forceFallback: true,
+};
 
-const Condition: React.FC<ConditionProps> = ({ steps, addCondition, removeCondition, updateStepName, texts }) => {
+const Condition: React.FC<ConditionProps> = ({
+  steps,
+  addCondition,
+  removeCondition,
+  updateStepName,
+  texts,
+  duplicateStep,
+  removeStep,
+  addStep,
+  onChangeOrder,
+}) => {
   const [currentConditionId, setCurrentConditionId] = React.useState<React.ReactText>(DEFAULT_CONDITION);
   const [currentField, setCurrentField] = React.useState<string>(DEFAULT_FIELD);
 
@@ -85,88 +106,116 @@ const Condition: React.FC<ConditionProps> = ({ steps, addCondition, removeCondit
     }
   }, [currentField, setCurrentField]);
 
+  const draggableEnabled = React.useMemo(() => onChangeOrder && steps.length > 1, [steps]);
+
   return (
     <S.Condition className="ds-conditions">
-      {steps.map((step, index) => {
-        return (
-          <S.Step key={step.id} withStepName={step.stepName !== undefined}>
-            {step.stepName !== undefined && (
-              <S.StepName>
-                {`${index + 1}.`}{' '}
-                <InlineEdit
-                  size="small"
-                  input={{
-                    value: step.stepName,
-                    name: `condition-step-name-${step.id}`,
-                    placeholder: texts.stepNamePlaceholder,
-                    onChange: (event: ChangeEvent<HTMLInputElement>): void =>
-                      updateStepName && updateStepName(step.id, event.target.value),
-                  }}
-                />
-              </S.StepName>
-            )}
-            <S.StepConditions>
-              <S.Subject>
-                {step.subject && (
-                  <Subject {...step.subject} onSelectItem={(value): void => selectSubject(value, step)} />
+      <ReactSortable {...SORTABLE_CONFIG} list={steps} setList={onChangeOrder || NOOP}>
+        {steps.map((step, index) => {
+          return (
+            <S.Step key={step.id} withStepName={step.stepName !== undefined} data-dropLabel={texts.dropLabel}>
+              <S.StepHeader>
+                {step.stepName !== undefined && (
+                  <S.StepName>
+                    {`${index + 1}.`}{' '}
+                    <InlineEdit
+                      size="small"
+                      input={{
+                        value: step.stepName,
+                        name: `condition-step-name-${step.id}`,
+                        placeholder: texts.stepNamePlaceholder,
+                        onChange: (event: ChangeEvent<HTMLInputElement>): void =>
+                          updateStepName && updateStepName(step.id, event.target.value),
+                      }}
+                    />
+                  </S.StepName>
                 )}
-                {step.context && (
-                  <ContextSelector {...step.context} onSelectItem={(value): void => selectContext(value, step)} />
-                )}
-              </S.Subject>
-              <S.ConditionRows>
-                {step.conditions &&
-                  step.conditions.map((condition, conditionIndex) => (
-                    <S.ConditionRow key={`condition-row-${condition.id}`}>
-                      <S.ConditionConnections
-                        first={conditionIndex === 0}
-                        last={conditionIndex + 1 === step.conditions.length && !addCondition}
-                      />
-                      <S.CondtionWrapper>
-                        {condition.parameter && (
-                          <Factors
-                            {...condition.parameter}
-                            onChangeValue={(value): void => selectParameter(condition, value)}
-                            opened={condition.id === currentConditionId && currentField === 'parameter'}
-                          />
+                <S.StepCruds>
+                  {draggableEnabled && (
+                    <Cruds.CustomAction
+                      icon={<DragHandleM />}
+                      title={texts.moveTooltip}
+                      onClick={NOOP}
+                      className="step-drag-handler"
+                    />
+                  )}
+                  <Cruds
+                    onDuplicate={(): void => duplicateStep(step.id)}
+                    onDelete={(): void => removeStep(step.id)}
+                    duplicateTooltip={texts.duplicateTooltip}
+                    deleteTooltip={texts.removeTooltip}
+                  />
+                </S.StepCruds>
+              </S.StepHeader>
+              <S.StepConditions>
+                <S.Subject>
+                  {step.subject && (
+                    <Subject {...step.subject} onSelectItem={(value): void => selectSubject(value, step)} />
+                  )}
+                  {step.context && (
+                    <ContextSelector {...step.context} onSelectItem={(value): void => selectContext(value, step)} />
+                  )}
+                </S.Subject>
+                <S.ConditionRows>
+                  {step.conditions &&
+                    step.conditions.map((condition, conditionIndex) => (
+                      <S.ConditionRow key={`condition-row-${condition.id}`}>
+                        <S.ConditionConnections
+                          first={conditionIndex === 0}
+                          last={conditionIndex + 1 === step.conditions.length && !addCondition}
+                        />
+                        <S.ConditionWrapper>
+                          {condition.parameter && (
+                            <Factors
+                              {...condition.parameter}
+                              onChangeValue={(value): void => selectParameter(condition, value)}
+                              opened={condition.id === currentConditionId && currentField === 'parameter'}
+                            />
+                          )}
+                        </S.ConditionWrapper>
+                        <S.ConditionWrapper>
+                          {condition.operator && (
+                            <Operators
+                              {...condition.operator}
+                              onChange={(value): void => selectOperator(condition, value)}
+                              opened={condition.id === currentConditionId && currentField === 'operator'}
+                            />
+                          )}
+                        </S.ConditionWrapper>
+                        <S.ConditionWrapper>{condition.factor && <Factors {...condition.factor} />}</S.ConditionWrapper>
+                        {removeCondition && step.conditions.length > 1 && (
+                          <S.RemoveIconWrapper
+                            onClick={(): void => removeCondition(step.id, condition.id)}
+                            className="ds-conditions-remove-row"
+                          >
+                            <Tooltip title={texts.removeConditionRowTooltip} trigger={['hover']}>
+                              <Icon component={<CloseS />} color={theme.palette['red-600']} />
+                            </Tooltip>
+                          </S.RemoveIconWrapper>
                         )}
-                      </S.CondtionWrapper>
-                      <S.CondtionWrapper>
-                        {condition.operator && (
-                          <Operators
-                            {...condition.operator}
-                            onChange={(value): void => selectOperator(condition, value)}
-                            opened={condition.id === currentConditionId && currentField === 'operator'}
-                          />
-                        )}
-                      </S.CondtionWrapper>
-                      <S.CondtionWrapper>{condition.factor && <Factors {...condition.factor} />}</S.CondtionWrapper>
-                      {removeCondition && step.conditions.length > 1 && (
-                        <S.RemoveIconWrapper
-                          onClick={(): void => removeCondition(step.id, condition.id)}
-                          className="ds-conditions-remove-row"
-                        >
-                          <Tooltip title={texts.removeConditionRowTooltip} trigger={['hover']}>
-                            <Icon component={<CloseS />} color={theme.palette['red-600']} />
-                          </Tooltip>
-                        </S.RemoveIconWrapper>
-                      )}
-                    </S.ConditionRow>
-                  ))}
-                {addCondition && (
-                  <S.AddConditionRow>
-                    <S.ConditionConnections last first={step.conditions.length === 0} />
-                    <Button type="ghost" mode="icon-label" onClick={(): void => addCondition(step.id)}>
-                      <Icon component={<Add2M />} />
-                      {texts.addConditionRowButton}
-                    </Button>
-                  </S.AddConditionRow>
-                )}
-              </S.ConditionRows>
-            </S.StepConditions>
-          </S.Step>
-        );
-      })}
+                      </S.ConditionRow>
+                    ))}
+                  {addCondition && (
+                    <S.AddConditionRow>
+                      <S.ConditionConnections last first={step.conditions.length === 0} />
+                      <Button type="ghost" mode="icon-label" onClick={(): void => addCondition(step.id)}>
+                        <Icon component={<Add2M />} />
+                        {texts.addConditionRowButton}
+                      </Button>
+                    </S.AddConditionRow>
+                  )}
+                </S.ConditionRows>
+              </S.StepConditions>
+            </S.Step>
+          );
+        })}
+      </ReactSortable>
+      {addStep && (
+        <Button type="ghost-primary" mode="icon-label" onClick={addStep}>
+          <Icon component={<Add3M />} />
+          {texts.addStep}
+        </Button>
+      )}
     </S.Condition>
   );
 };

@@ -103,9 +103,13 @@ import Condition from '@synerise/ds-condition'
 | ---             | ---                                                         | ---                                                                | ---     | 
 | addCondition    | Callback called when user adds new row of conditions        | (stepId: React.ReactText) => void                                  | -       | 
 | removeCondition | Callback called when user clicks on remove row of condtions | (stepId: React.ReactText, conditionRowId: React.ReactText) => void | -       | 
-| steps           | Array contains all steps of condition                       | ConditionStep[]                                                    | -       |
-| texts           | Translations object                                         | Texts                                                              | -       |
-| updateStepName  | Callback called when user change the name of step           | (stepId: React.ReactText, value: string) => void                   | -       |  
+| steps           | Array contains all steps of condition                       | ConditionStep[]                                                    | -       | 
+| texts           | Translations object                                         | Texts                                                              | -       | 
+| updateStepName  | Callback called when user change the name of step           | (stepId: React.ReactText, value: string) => void                   | -       | 
+| addStep         | Callback called when user clicks on add step button         | () => void                                                         | -       | 
+| duplicateStep   | Callback called when user clicks on duplicate step button   | (stepId: React.ReactText) => void                                  | -       | 
+| removeStep      | Callback called when user clicks on remove step button      | (stepId: React.ReactText) => void                                  | -       | 
+| onChangeOrder   | Callback called when user change order of steps             | (order: ConditionStep[]) => void                                   | -       | 
 
 ### ConditionStep
 
@@ -132,7 +136,13 @@ import Condition from '@synerise/ds-condition'
 
 | Property                  | Description                             | Type   | Default | 
 | ---                       | ---                                     | ---    | ---     | 
-| addConditionRowButton     | Label of add conditions row button      | string | -       |
+| addConditionRowButton     | Label of add conditions row button      | string | -       | 
 | removeConditionRowTooltip | Tooltip on remove conditions row button | string | -       | 
-| stepNamePlaceholder       | Placeholder of step name                | string | -       |  
+| stepNamePlaceholder       | Placeholder of step name                | string | -       | 
+| addStep                   | Label of add step button                | string | -       | 
+| duplicateTooltip          | Tooltip on duplicate step button        | string | -       | 
+| moveTooltip               | Tooltip on move step button             | string | -       | 
+| removeTooltip             | Tooltip on remove step button           | string | -       | 
+| dropLabel                 | Label on drop zone                      | string | -       | 
+
 

@@ -1,4 +1,24 @@
 import styled from 'styled-components';
+import { IconWrapper } from '@synerise/ds-inline-edit/dist/InlineEdit.styles';
+
+export const StepConditions = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+`;
+
+export const StepName = styled.div`
+  font-size: 13px;
+  line-height: 1.84;
+  color: ${(props): string => props.theme.palette['grey-400']};
+  margin: 0 0 12px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  white-space: pre-wrap;
+`;
 
 export const Condition = styled.div`
   padding: 12px 0;
@@ -7,6 +27,18 @@ export const Condition = styled.div`
   align-items: flex-start;
   justify-content: flex-start;
   min-width: 575px;
+
+  .steps-list {
+    width: 100%;
+  }
+`;
+
+export const StepCruds = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  opacity: 0;
+  visibility: hidden;
 `;
 
 export const Step = styled.div<{ withStepName: boolean }>`
@@ -14,22 +46,92 @@ export const Step = styled.div<{ withStepName: boolean }>`
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  margin: ${(props): string => (props.withStepName ? '12px 0 24px' : '24px 0')};
+  padding: ${(props): string => (props.withStepName ? '12px 0 36px' : '24px 0')};
+  border-top: 1px dotted ${(props): string => props.theme.palette['grey-300']};
+  
+  &:first-of-type {
+    border-top: 0;
+    &.steps-list-ghost-element {
+      &:after {
+        display: none;
+      }
+    }
+  }
+  
+  &:hover {
+    ${StepCruds} {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+  &.sortable-chosen {
+    cursor: grabbing;
+    width: 100%;
+    opacity: 1 !important;
+    height: 50px;
+    background-color: ${(props): string => props.theme.palette.white};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+    box-shadow: 0 16px 32px 0 #23293619;
+
+    ${StepName} {
+      margin: 0;
+      ${IconWrapper} {
+        display: none;
+      }
+    }
+
+    ${StepConditions} {
+      display: none;
+    }
+  }
+  &.steps-list-ghost-element {
+    cursor: grabbing;
+    width: 100%;
+    background-color: ${(props): string => props.theme.palette['blue-050']};
+    border: 1px dashed ${(props): string => props.theme.palette['blue-300']};
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin-bottom: 24px;
+    height: 50px;
+    box-shadow: none;
+    position: relative;
+    &:after {
+      content: '';
+      position: absolute;
+      top: -24px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      border-bottom: 1px dotted ${(props): string => props.theme.palette['grey-300']};
+    }
+    &:before {
+      content: attr(data-dropLabel);
+      text-align: center;
+      position: relative;
+      color: ${(props): string => props.theme.palette['blue-600']};
+    }
+    * {
+      display: none;
+    }
+  }
+}
 `;
 
-export const CondtionWrapper = styled.div``;
-
-export const StepName = styled.div`
-  font-size: 13px;
-  line-height: 1.38;
-  color: ${(props): string => props.theme.palette['grey-400']};
-  margin: 16px 0 12px;
+export const StepHeader = styled.div`
   display: flex;
+  width: 100%;
   flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  white-space: pre-wrap;
+  align-items: flex-start;
+  justify-content: space-between;
 `;
+
+export const ConditionWrapper = styled.div``;
 
 export const Subject = styled.div``;
 
@@ -46,13 +148,6 @@ export const RemoveIconWrapper = styled.span`
   margin-left: 8px;
 `;
 
-export const StepConditions = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: flex-start;
-`;
-
 export const ConditionRows = styled.div`
   display: flex;
   align-items: flex-start;
@@ -67,7 +162,7 @@ export const ConditionRow = styled.div`
   justify-content: flex-start;
   padding-bottom: 16px;
 
-  ${CondtionWrapper} {
+  ${ConditionWrapper} {
     margin-right: 8px;
     &:last-of-type {
       margin-right: 0;
