@@ -11,12 +11,11 @@ export const spinnerAnimation = keyframes`
   }
 `;
 const SIZE_DEFAULT = 20;
-export const Loader = styled.div<{size?: 'S' | 'M' | 'L';color: string }>`
-
-  border: 2px solid ${(props): string => props.theme.palette[`${props.color}-600`]}; 
-  border-top: 2px solid transparent; 
+export const Loader = styled.div<{ size?: 'S' | 'M' | 'L'; color: string }>`
+  border: 2px solid ${(props): string => props.theme.palette[`${props.color}-600`]};
+  border-top: 2px solid transparent;
   border-radius: 50%;
-  width: ${(props): string => LoaderSize[props.size as string]|| SIZE_DEFAULT}px;
+  width: ${(props): string => LoaderSize[props.size as string] || SIZE_DEFAULT}px;
   height: ${(props): string => LoaderSize[props.size as string] || SIZE_DEFAULT}px;
   animation: ${spinnerAnimation} 2s linear infinite;
 `;
@@ -26,18 +25,17 @@ const mapElementsPosition = {
 };
 
 export const TextWrapper = styled.div`
-
-
+  display: flex;
 `;
-export const Wrapper = styled.div<{size?: 'S' | 'M' | 'L'}>`
-margin: ${(props): string => (props.size === 'L' ? '12px' : '8px')};
-
+export const PercentWrapper = styled.div`
+  padding-left: 4px;
 `;
-export const LoaderWrapper = styled.div<{elementsPosition: string | 'bottom' | 'right'}>`
-display: flex;
-flex-direction: ${(props): string => mapElementsPosition[props.elementsPosition]}; 
-align-items: center;
-justify-content: center;
-
+export const Wrapper = styled.div<{ size?: 'S' | 'M' | 'L' }>`
+  margin: ${(props): string => (props.size === 'L' ? '12px' : '8px')};
 `;
-
+export const LoaderWrapper = styled.div<{ elementsPosition: string | 'bottom' | 'right' }>`
+  display: flex;
+  flex-direction: ${(props): string => mapElementsPosition[props.elementsPosition]};
+  align-items: center;
+  justify-content: center;
+`;
