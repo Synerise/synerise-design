@@ -1,3 +1,5 @@
+import * as React from 'react';
+
 export enum LoaderSize {
   'S' = 12,
   'M' = 20,
@@ -6,8 +8,11 @@ export enum LoaderSize {
 export type LoaderProps = {
   size?: 'S' | 'M' | 'L';
   label: string | React.ReactNode;
-  elementsPosition: string | 'bottom' | 'right';
-  color?: string
+  labelPosition?: 'bottom' | 'right';
+  percent?: number | React.ReactNode;
+  percentFormatter?: (percent?: number | React.ReactNode) => React.ReactNode;
+  color?:
+    | string
     | 'blue'
     | 'grey'
     | 'red'
