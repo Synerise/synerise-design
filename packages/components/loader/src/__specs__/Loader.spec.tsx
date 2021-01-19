@@ -8,7 +8,7 @@ describe('Loader', () => {
     const { container } = renderWithProvider(
       <Loader
         size='L'
-        elementsPosition='right'
+        labelPosition='right'
         label='Loading...'
       />
     );
@@ -20,7 +20,7 @@ describe('Loader', () => {
     const { getByText } = renderWithProvider(
       <Loader
         size='L'
-        elementsPosition='right'
+        labelPosition='right'
         label ='Loading...'
       />
     );
