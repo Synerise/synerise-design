@@ -2,6 +2,7 @@ import * as React from 'react';
 import Matching from '@synerise/ds-logic/dist/Matching/Matching';
 import InlineEdit from '@synerise/ds-inline-edit';
 import Cruds from '@synerise/ds-cruds';
+import { DragHandleM } from '@synerise/ds-icon/dist/icons';
 import * as S from './StepCard.styles';
 
 export type StepCardProps = {
@@ -11,6 +12,10 @@ export type StepCardProps = {
   onChangeName: (name: string) => void;
   onChangeMatching: (matching: boolean) => void;
 };
+
+// eslint-disable-next-line @typescript-eslint/no-empty-function
+const NOOP = (): void => {};
+
 const StepCard: React.FC<StepCardProps> = ({ children, name, onChangeName, footer, matching, onChangeMatching }) => {
   return (
     <S.Container>
@@ -32,7 +37,10 @@ const StepCard: React.FC<StepCardProps> = ({ children, name, onChangeName, foote
           />
         </S.LeftSide>
         <S.RightSide>
-          <Cruds />
+          <S.CrudsWrapper>
+            <Cruds.CustomAction title="Move" onClick={NOOP} icon={<DragHandleM />} />
+            <Cruds deleteTooltip="Delete" onDelete={NOOP} duplicateTooltip="Duplicate" onDuplicate={NOOP} />
+          </S.CrudsWrapper>
         </S.RightSide>
       </S.Header>
       <S.Body>{children}</S.Body>

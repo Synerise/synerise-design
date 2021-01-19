@@ -8,6 +8,17 @@ export const Container = styled.div`
   width: 100%;
   background-color: ${(props): string => props.theme.palette.white};
   border-radius: 3px;
+  box-shadow: 0 4px 12px 0 #2329360a;
+  min-width: 594px;
+`;
+
+export const CrudsWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  opacity: 0;
+  visibility: hidden;
 `;
 
 export const Header = styled.div`
@@ -16,7 +27,15 @@ export const Header = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 22px 24px;
+  width: 100%;
   border-bottom: 1px dotted ${(props): string => props.theme.palette['grey-300']};
+  cursor: grab;
+  &:hover {
+    ${CrudsWrapper} {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
 `;
 
 export const LeftSide = styled.div`
