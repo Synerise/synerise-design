@@ -106,7 +106,7 @@ const Condition: React.FC<ConditionProps> = ({
     }
   }, [currentField, setCurrentField]);
 
-  const draggableEnabled = React.useMemo(() => onChangeOrder && steps.length > 1, [steps]);
+  const draggableEnabled = React.useMemo(() => onChangeOrder && steps.length > 1, [steps, onChangeOrder]);
 
   return (
     <S.Condition className="ds-conditions">
