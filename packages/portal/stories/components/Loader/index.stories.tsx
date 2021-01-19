@@ -54,7 +54,7 @@ const stories = {
     const showText = boolean ('Show Loading text',true, );
     const colors = select('Set custom color', colorOptions, colorOptions.blue);
     const loadingText = text('Loading', 'Loading...');
-    const showPercent = boolean ('Show percent text',true, );
+    const showPercent = boolean ('Show percent text',false , );
 
     const getLoading = (showText: boolean): string | null => {
       if (showText) {
