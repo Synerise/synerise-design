@@ -33,9 +33,9 @@ export const PercentWrapper = styled.div`
 export const Wrapper = styled.div<{ size?: 'S' | 'M' | 'L' }>`
   margin: ${(props): string => (props.size === 'L' ? '12px' : '8px')};
 `;
-export const LoaderWrapper = styled.div<{ elementsPosition: string | 'bottom' | 'right' }>`
+export const LoaderWrapper = styled.div<{ labelPosition: string | 'bottom' | 'right' }>`
   display: flex;
-  flex-direction: ${(props): string => mapElementsPosition[props.elementsPosition]};
+  flex-direction: ${(props): string => mapElementsPosition[props.labelPosition]};
   align-items: center;
   justify-content: center;
 `;

@@ -11,7 +11,7 @@ const Loader: React.FC<LoaderProps> = ({
   percentFormatter,
 }) => {
   return (
-    <S.LoaderWrapper className="ds-loader" elementsPosition={labelPosition}>
+    <S.LoaderWrapper className="ds-loader" labelPosition={labelPosition}>
       <S.Wrapper size={size}>
         <S.Loader size={size} color={color} />
       </S.Wrapper>
