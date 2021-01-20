@@ -1,6 +1,6 @@
 import { TableCell } from '@synerise/ds-table';
 import { action } from '@storybook/addon-actions';
-import { InfoFillS, LockM, VarTypeStringM, VarTypeBooleanM, VarTypeListM } from '@synerise/ds-icon/dist/icons';
+import { InfoFillS, LockM, VarTypeStringM, VarTypeBooleanM, VarTypeListM, UserM } from '@synerise/ds-icon/dist/icons';
 import Select from '@synerise/ds-select';
 import Button from '@synerise/ds-button';
 import { Tag } from '@synerise/ds-tags';
@@ -275,14 +275,14 @@ export const COLUMNS_WITH_ICONS = [
     key: 'name',
     dataIndex: 'name',
     width: 254,
-    icon: { component: <VarTypeStringM /> },
+    icon: { component: <UserM /> },
     iconTooltip: { component: <InfoFillS /> },
     render: name => {
       const [starred,setStarred] = React.useState(false);
       const knobsActive= boolean('Set starred state active', false);
       return (
         <TableCell.StarCell starTooltip={knobsActive ? "Starred": undefined} active={starred} onClick={knobsActive? ():void => setStarred(!starred) : undefined}>
-          <TableCell.IconLabelCell label={name} icon={{ component: <VarTypeStringM />, color: '#6a7580' }} />
+          <TableCell.IconLabelCell label={name} icon={{ component: <UserM />, color: '#6a7580' }} />
         </TableCell.StarCell>
       );
     },
@@ -293,10 +293,10 @@ export const COLUMNS_WITH_ICONS = [
     width: 254,
     textWrap: 'word-break',
     ellipsis: true,
-    icon: { component: <VarTypeStringM /> },
+    icon: { component: <UserM /> },
     iconTooltip: { component: <InfoFillS /> },
     render: (name, record) => (
-      <TableCell.IconLabelCell icon={{ component: <VarTypeStringM />, color: '#6a7580' }} label={name} />
+      <TableCell.IconLabelCell icon={{ component: <UserM />, color: '#6a7580' }} label={name} />
     ),
   },
 ];
