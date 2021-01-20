@@ -67,25 +67,26 @@ const Condition: React.FC<ConditionProps> = ({
 
   const selectSubject = React.useCallback(
     (value, step: ConditionStep): void => {
-      step.subject && step.subject.onSelectItem(value);
       clearConditionRow(step);
+      step.subject && step.subject.onSelectItem(value);
     },
     [clearConditionRow]
   );
 
   const selectContext = React.useCallback(
     (value, step: ConditionStep): void => {
-      step.context && step.context.onSelectItem(value);
       clearConditionRow(step);
+      step.context && step.context.onSelectItem(value);
     },
     [clearConditionRow]
   );
 
   const selectParameter = React.useCallback((condition: StepConditions, value): void => {
+    console.log('select parameter', condition, value);
     if (condition.id && condition.parameter) {
-      condition.parameter.onChangeValue(value);
       condition.operator && condition.operator.onChange(undefined);
       condition.factor && condition.factor.onChangeValue(undefined);
+      condition.parameter.onChangeValue(value);
       setCurrentConditionId(condition.id);
       setCurrentField('operator');
     }
@@ -93,8 +94,8 @@ const Condition: React.FC<ConditionProps> = ({
 
   const selectOperator = React.useCallback((condition: StepConditions, value): void => {
     if (condition.id && condition.operator) {
-      condition.operator.onChange(value);
       condition.factor && condition.factor.onChangeValue(undefined);
+      condition.operator.onChange(value);
       setCurrentConditionId(DEFAULT_CONDITION);
       setCurrentField(DEFAULT_FIELD);
     }
