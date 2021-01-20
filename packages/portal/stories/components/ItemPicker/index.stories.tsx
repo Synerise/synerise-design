@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Dropdown from '@synerise/ds-dropdown';
 import ItemPicker from '@synerise/ds-item-picker';
 import { boolean, select, text } from '@storybook/addon-knobs';
 import { Add3M, FileM, UserM } from '@synerise/ds-icon/dist/icons';
@@ -89,6 +90,11 @@ const stories = {
         noText={text('No button label', 'No')}
         noResults={text('No search results info', 'No results')}
         clearConfirmTitle={text('Clear confirm title', 'Are you sure to remove this selection?')}
+        dropdownBottomAction={(
+          <Dropdown.BottomAction icon={ICONS.add} onClickAction={() => {}} style={{ marginTop: 0 }}>
+            {text('Set bottom action label', 'Bottom action label')}
+          </Dropdown.BottomAction>
+        )}
       />
     );
   }),

@@ -8,4 +8,5 @@ export interface Props {
   noResults: string;
   dropdownVisibleRows?: number;
   dropdownRowHeight?: number;
+  dropdownBottomAction?: React.ReactNode;
 }
