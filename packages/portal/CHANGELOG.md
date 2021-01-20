@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.113.0](https://github.com/synerise/synerise-design/compare/portal@0.112.2...portal@0.113.0) (2021-01-20)
+
+
+### Bug Fixes
+
+* **cruds:** storybook story fixes ([a44e49f](https://github.com/synerise/synerise-design/commit/a44e49fb752d7e4a894158169df2abcbf9e4652d))
+* **date-picker:** set container width to 100% ([edc738e](https://github.com/synerise/synerise-design/commit/edc738e9e0a6418b06645aa24fca8e29515bf957))
+* **loader:** add percent value of loader ([888006a](https://github.com/synerise/synerise-design/commit/888006a27bf5466e75544a18697f57ec9b6c6312))
+* **loader:** change showPercent value to false ([c792e41](https://github.com/synerise/synerise-design/commit/c792e414ab99d1697562c51922499a09f327136d))
+* **subtle-form:** fixed inactive element rendering, added stories ([0a990c1](https://github.com/synerise/synerise-design/commit/0a990c141138327406549689557cc517fd3375bb))
+* **subtle-form:** input number styles ([b08dedc](https://github.com/synerise/synerise-design/commit/b08dedc6f19893e0273f604934a3a78c871722e2))
+* resolved conflicts with dev ([66c6e28](https://github.com/synerise/synerise-design/commit/66c6e28546fe0efc0e93943f0bd10779091f0116))
+* **subtle-form:** fixed inactive element rendering, added stories ([b00659f](https://github.com/synerise/synerise-design/commit/b00659f0bb3309b66b2b1d0c5640e15a519212f3))
+* **subtle-form:** input placeholder styles ([afbc748](https://github.com/synerise/synerise-design/commit/afbc7484d26a8df080bdccd2954b505c2fd8a47e))
+
+
+### Features
+
+* **subtle-form:** added input as subtle field ([e8a8d42](https://github.com/synerise/synerise-design/commit/e8a8d4203aecc07e62c1589e57a37b426098c92d))
+* **subtle-form:** added input as subtle field ([0c753d7](https://github.com/synerise/synerise-design/commit/0c753d725ae509d72931fcf69a44f8f9d3d77c34))
+* **subtle-form:** generic subtle form field ([c71ffbb](https://github.com/synerise/synerise-design/commit/c71ffbb63aa12bfbe7892e4da11f1c2a2fc9e65f))
+* **subtle-form:** generic subtle form field ([f3eef58](https://github.com/synerise/synerise-design/commit/f3eef583794541c9872e576ffe13901ac1607c6e))
+
+
+
+
+
 ## [0.112.2](https://github.com/synerise/synerise-design/compare/portal@0.112.1...portal@0.112.2) (2021-01-15)
 
 
