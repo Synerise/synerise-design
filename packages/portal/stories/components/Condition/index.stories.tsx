@@ -2,8 +2,15 @@ import * as React from 'react';
 
 import Condition from '@synerise/ds-condition';
 import { withState } from '@dump247/storybook-state';
-import { NotificationsM, VarTypeStringM } from '@synerise/ds-icon/dist/icons';
-import { PARAMETER_GROUPS, PARAMETER_ITEMS, SUBJECT_ITEMS } from './data/index.data';
+import { VarTypeStringM } from '@synerise/ds-icon/dist/icons';
+import {
+  DEFAULT_CONDITION_ROW,
+  DEFAULT_STATE,
+  DEFAULT_STEP,
+  PARAMETER_GROUPS,
+  PARAMETER_ITEMS,
+  SUBJECT_ITEMS,
+} from './data/index.data';
 import { boolean, select, text } from '@storybook/addon-knobs';
 import { v4 as uuid } from 'uuid';
 import { OPERATORS_GROUPS, OPERATORS_ITEMS, OPERATORS_TEXTS } from '../Operators/data/index.data';
@@ -12,42 +19,6 @@ import { SUBJECT_TEXTS } from '../Subject/data/index.data';
 import { CONTEXT_GROUPS, CONTEXT_ITEMS, CONTEXT_TEXTS } from '../ContextSelector/data/index.data';
 
 import { action } from '@storybook/addon-actions';
-
-const DEFAULT_CONDITION_ROW = {
-  id: uuid(),
-  parameter: {
-    value: '',
-  },
-  operator: {
-    value: undefined,
-  },
-  factor: {
-    selectedFactorType: '',
-    defaultFactorType: 'text',
-    value: '',
-  },
-};
-
-const DEFAULT_STEP = () => ({
-  id: uuid(),
-  stepName: 'Step name',
-  subject: {
-    showPreview: undefined,
-    type: 'event',
-    placeholder: 'Choose event',
-    iconPlaceholder: <NotificationsM />,
-    selectedItem: undefined,
-    items: SUBJECT_ITEMS,
-  },
-  conditions: [DEFAULT_CONDITION_ROW],
-});
-
-const DEFAULT_STATE = {
-  selected: undefined,
-  selectedFactorType: undefined,
-  factorValue: undefined,
-  steps: [DEFAULT_STEP()],
-};
 
 const stories = {
   default: withState(DEFAULT_STATE)(({ store }) => {
@@ -169,7 +140,7 @@ const stories = {
     };
 
     const addStepCondition = (stepId: React.ReactText) => {
-      const newCondition = { ...DEFAULT_CONDITION_ROW, id: uuid() };
+      const newCondition = { ...DEFAULT_CONDITION_ROW(), id: uuid() };
       store.set({
         steps: store.state.steps.map(step => {
           if (step.id === stepId) {
