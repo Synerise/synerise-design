@@ -37,6 +37,7 @@ const dataSource = [...new Array(55)].map((i, k) => ({
     status: 'active',
     labels: ['Text AB/X', 'Edited 11 Jun 2019 18:47'],
     label: ['Edited 11 Jun 2019 18:47'],
+    labelLoader: ['Dynamic'],
     starCell: <StarCell onClick={action('Click start')}/>,
   },
   select: {

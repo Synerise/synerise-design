@@ -25,7 +25,7 @@ const colorOptions = {
   violet: 'violet',
 };
 
-const PercantageWrapper = styled.div`
+export const PercantageWrapper = styled.div`
 @property --num {
   syntax: "<integer>";
   initial-value: 0;

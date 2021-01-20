@@ -14,6 +14,7 @@ const AvatarLabel: React.FC<Props> = ({
   maxWidth,
   avatarSize,
   starCell,
+  loader,
 }) => {
   return (
     <S.AvatarLabel>
@@ -39,6 +40,7 @@ const AvatarLabel: React.FC<Props> = ({
             </S.Label>
           )
         )}
+        {loader && <S.Loader>{loader}</S.Loader>}
       </S.Description>
     </S.AvatarLabel>
   );
