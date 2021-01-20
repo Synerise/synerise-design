@@ -5223,6 +5223,15 @@
     antd-mask-input "^0.1.13"
     uuid "^7.0.2"
 
+"@synerise/ds-logic@^0.1.6":
+  version "0.1.6"
+  resolved "https://registry.yarnpkg.com/@synerise/ds-logic/-/ds-logic-0.1.6.tgz#e2ca8287e174d617a3c1841e88d60bb3caf694eb"
+  integrity sha512-TQAT7JLcinB4+ag90EeB4XPKaUUemxvAw57pVkkZBNOVlQp8GyqT1tuvAPM00kcBUBkaRC7dKJme9qAIyZ3jjQ==
+  dependencies:
+    "@synerise/ds-dropdown" "^0.13.13"
+    "@synerise/ds-menu" "^0.7.20"
+    "@synerise/ds-utils" "^0.11.12"
+
 "@synerise/ds-menu@^0.1.4":
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/@synerise/ds-menu/-/ds-menu-0.1.4.tgz#49137f5d94f9dd0c7f2258ad8c4687a31dc1d507"
