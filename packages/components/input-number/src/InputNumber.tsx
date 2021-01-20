@@ -29,6 +29,7 @@ const InputNumber: React.FC<Props> = ({
         {!!prefixel && <S.Prefixel>{prefixel}</S.Prefixel>}
         <S.AntdInputNumber
           {...antdProps}
+          type="number"
           id={id}
           error={showError}
           className={showError ? 'error' : undefined}
