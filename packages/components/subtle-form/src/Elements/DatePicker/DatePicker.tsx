@@ -104,8 +104,7 @@ const SubtleDatePicker: React.FC<SubtleDatePickerProps> = ({
             disabled={disabled}
             onClick={!disabled ? handleActivate : undefined}
             blurred={blurred}
-            datePicker
-            datePickerValue={value}
+            mask={!value}
           >
             <S.MainContent hasMargin>
               {getDisplayText()}

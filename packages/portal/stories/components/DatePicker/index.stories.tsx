@@ -32,7 +32,7 @@ const stories = {
 };
 const decorator = storyFn => (
   <div style={{ width: '100vw', position: 'absolute', left: '0', top: '20vh' }}>
-    <div style={{ width: '200px', margin: 'auto' }}>{storyFn()}</div>
+    <div style={{ width: '320px', margin: 'auto' }}>{storyFn()}</div>
   </div>
 );
 export default {

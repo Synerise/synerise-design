@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { boolean, select, text } from '@storybook/addon-knobs';
 import Loader from '@synerise/ds-loader';
+import styled from 'styled-components';
 
 
 
@@ -24,13 +25,37 @@ const colorOptions = {
   violet: 'violet',
 };
 
+const PercantageWrapper = styled.div`
+@property --num {
+  syntax: "<integer>";
+  initial-value: 0;
+  inherits: false;
+}
+  animation: counter 10s infinite ease-in-out;
+  counter-reset: num var(--num);
+
+&::after {
+  content: counter(num);
+}
+
+@keyframes counter {
+  from {
+    --num: 0;
+  }
+  to {
+    --num: 100;
+  }
+}
+`;
 const stories = {
   default: () => {
     const size = select('Size', iconSizes,'M')
-    const elementsPosition = select('Position of elements', ['right','bottom'],'right');
+    const labelPosition = select('Position of elements', ['right','bottom'],'right');
     const showText = boolean ('Show Loading text',true, );
     const colors = select('Set custom color', colorOptions, colorOptions.blue);
     const loadingText = text('Loading', 'Loading...');
+    const showPercent = boolean ('Show percent text',false , );
+
     const getLoading = (showText: boolean): string | null => {
       if (showText) {
         return loadingText;
@@ -38,9 +63,16 @@ const stories = {
         return null;
       }
     };
+    const getPercent = (): number | React.ReactNode | null => {
+      if (showPercent) {
+        return <div style={{display: 'flex'}}><PercantageWrapper/> %</div>;
+      } else {
+        return null;
+      }
+    };
     return(
       <div>
-        <Loader size={size} color={colors} label={loadingText && getLoading(showText)} elementsPosition={elementsPosition}></Loader>
+        <Loader percentFormatter={getPercent} size={size} color={colors} label={loadingText && getLoading(showText)} labelPosition={labelPosition}></Loader>
       </div>
     )
   },
