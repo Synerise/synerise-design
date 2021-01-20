@@ -19,6 +19,7 @@ const ItemPickerDropdown: React.FC<Props> = ({
   noResults,
   dropdownVisibleRows,
   dropdownRowHeight,
+  dropdownBottomAction,
 }) => {
   const rowCount = dropdownVisibleRows || DEFAULT_VISIBLE_ROWS;
   const rowHeight = dropdownRowHeight || DEFAULT_ROW_HEIGHT;
@@ -77,6 +78,7 @@ const ItemPickerDropdown: React.FC<Props> = ({
           />
         </S.StyledScrollbar>
       </S.DSMenu>
+      {dropdownBottomAction}
     </S.DropdownWrapper>
   );
 };

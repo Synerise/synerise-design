@@ -33,6 +33,7 @@ const ItemPicker: React.FC<ItemPickerProps> = ({
   withClearConfirmation,
   dropdownVisibleRows,
   dropdownRowHeight,
+  dropdownBottomAction,
 }) => {
   const [dropdownOpened, setDropdownOpened] = React.useState<boolean>(false);
 
@@ -54,9 +55,19 @@ const ItemPicker: React.FC<ItemPickerProps> = ({
         noResults={noResults}
         dropdownVisibleRows={dropdownVisibleRows}
         dropdownRowHeight={dropdownRowHeight}
+        dropdownBottomAction={dropdownBottomAction}
       />
     ),
-    [dataSource, searchPlaceholder, onChange, closeDropdown, noResults, dropdownRowHeight, dropdownVisibleRows]
+    [
+      dataSource,
+      searchPlaceholder,
+      onChange,
+      closeDropdown,
+      noResults,
+      dropdownRowHeight,
+      dropdownVisibleRows,
+      dropdownBottomAction,
+    ]
   );
 
   const renderTrigger = React.useMemo(
