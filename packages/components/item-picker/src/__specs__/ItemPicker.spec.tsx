@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { fireEvent } from '@testing-library/react';
 import Icon from '@synerise/ds-icon';
 import { LaptopM, MobileM, UserM } from '@synerise/ds-icon/dist/icons';
 import Avatar from '@synerise/ds-avatar';
@@ -54,6 +55,7 @@ const PLACEHOLDER_ICON_TEST_ID = 'placeholder-icon';
 const CLEAR_TEST_ID = 'clear-icon';
 const ANGLE_DOWN_TEST_ID = 'angle-icon';
 const PREFIXEL_TEST_ID = 'value-prefixel';
+const BOTTOM_ACTION_LABEL = 'Bottom action label';
 
 const ITEM_PICKER = (
   props: Omit<
@@ -274,4 +276,26 @@ describe('ItemPicker component', () => {
 
     expect(getByText(CHANGE_BUTTON_LABEL)).toBeTruthy();
   });
+
+  it('should render with bottom action', () => {
+    const handleClear = jest.fn();
+    const handleChange = jest.fn();
+
+    const { getByText } = renderWithProvider(
+      <ITEM_PICKER
+        onClear={handleClear}
+        onChange={handleChange}
+        description={DESCRIPTION}
+        selectedItem={DATA_SOURCE[0]}
+        size="large"
+        changeButtonLabel={CHANGE_BUTTON_LABEL}
+        dropdownBottomAction={<span>{BOTTOM_ACTION_LABEL}</span>}
+      />
+    );
+
+    fireEvent.click(getByText(CHANGE_BUTTON_LABEL));
+
+    expect(getByText(BOTTOM_ACTION_LABEL)).toBeTruthy();
+  });
+
 });
