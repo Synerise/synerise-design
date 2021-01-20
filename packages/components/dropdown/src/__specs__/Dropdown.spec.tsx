@@ -17,6 +17,31 @@ describe('Dropdown', () => {
     expect(getByText(TEST_TEXT)).toBeTruthy();
   });
 
+  it('by default should open in [data-popup-container]', () => {
+    const render = renderWithProvider(
+      <div data-popup-container>
+        <Dropdown overlay={<div/>} trigger={['click']} visible={true}>
+          <button/>
+        </Dropdown>
+      </div>
+    );
+    
+    expect(render.container.querySelector('.ant-dropdown')).toBeTruthy();
+  });
+
+  it('if no [data-popup-container] open in body', () => {
+    const render = renderWithProvider(
+      <div>
+        <Dropdown overlay={<div/>} trigger={['click']} visible={true}>
+          <button/>
+        </Dropdown>
+      </div>
+    );
+    
+    expect(render.container.querySelector('.ant-dropdown')).toBeFalsy();
+    expect(document.body.querySelector('.ant-dropdown')).toBeTruthy();
+  });
+
   describe('Dropdown.SearchInput', () => {
     it('should handle input', () => {
       // ARRANGE
@@ -62,3 +87,4 @@ describe('Dropdown', () => {
     });
   });
 });
+

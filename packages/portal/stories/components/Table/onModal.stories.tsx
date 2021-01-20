@@ -115,6 +115,7 @@ const stories = {
                   store.set({ searchValue: '' });
                 }}
                 closeOnClickOutside={true}
+                inputProps={{ autoFocus: false }}
               />
             }
           />

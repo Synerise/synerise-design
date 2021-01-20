@@ -5,9 +5,9 @@ import MomentLocaleUtils from 'react-day-picker/moment';
 
 export type DayPickerProps = {
   month: Date;
-  onMonthChange: (month: Date) => void;
-  onMonthNameClick: () => void;
-  onYearNameClick: () => void;
+  onMonthChange?: (month: Date) => void;
+  onMonthNameClick?: () => void;
+  onYearNameClick?: () => void;
   hideLongPrev?: boolean;
   hideShortPrev?: boolean;
   hideShortNext?: boolean;
@@ -21,8 +21,9 @@ export type DayPickerProps = {
   modifiers?: Modifiers;
   localeUtils?: MomentLocaleUtils;
   title?: string;
-  renderDay: (day: Date) => React.ReactNode;
-  onDayClick: (day: Date, modifiers: DayModifiers, e: React.MouseEvent<HTMLDivElement>) => void;
-  onDayMouseEnter: (day: Date) => void;
-  onDayMouseLeave: () => void;
+  renderDay?: (day: Date) => React.ReactNode;
+  renderNavbar?: (props: DayPickerProps) => React.ReactNode;
+  onDayClick?: (day: Date, modifiers: DayModifiers, e: React.MouseEvent<HTMLDivElement>) => void;
+  onDayMouseEnter?: (day: Date) => void;
+  onDayMouseLeave?: () => void;
 };

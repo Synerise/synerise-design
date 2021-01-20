@@ -31,9 +31,9 @@ export const ListWithGrabber = styled(props => (
     margin: 0;
   }
   margin-bottom: 16px;
-  
-  & > .ant-list{
-    height:48px;
+
+  & > .ant-list {
+    height: 48px;
   }
 `;
 
@@ -134,8 +134,9 @@ const stories = {
         }}
         onDuplicate={action('onItemSelect')}
         texts={getTexts()}
-        onExpand={(id, isExpanded)=>{store.set({item: {...store.state.item, expanded: isExpanded}})}}
-
+        onExpand={(id, isExpanded) => {
+          store.set({ item: { ...store.state.item, expanded: isExpanded } });
+        }}
       />
     );
   }),
@@ -170,8 +171,9 @@ const stories = {
         }}
         onDuplicate={action('onItemSelect')}
         texts={getTexts()}
-        onExpand={(id, isExpanded)=>{store.set({item: {...store.state.item, expanded: isExpanded}})}}
-
+        onExpand={(id, isExpanded) => {
+          store.set({ item: { ...store.state.item, expanded: isExpanded } });
+        }}
       />
     );
   }),

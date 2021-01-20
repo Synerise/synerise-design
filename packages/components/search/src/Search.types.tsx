@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { ListProps } from 'react-window';
+import { InputProps } from 'antd/lib/input';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type AnyObject = Record<string, any>;
@@ -25,6 +26,7 @@ export type SearchProps<T extends AnyObject, U extends AnyObject> = {
   divider?: React.ReactNode;
   dropdownMaxHeight: number;
   filterLookupKey?: string;
+  inputProps?: InputProps;
   onClear: () => void;
   onParameterValueChange: (parameterValue: string, parameter: U | null) => void;
   onValueChange: (value: string) => void;

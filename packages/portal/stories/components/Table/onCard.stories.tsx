@@ -460,6 +460,7 @@ const stories = {
               }}
               value={store.state.searchValue}
               width={300}
+              inputProps={{ autoFocus: false }}
             />
           }
         />

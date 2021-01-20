@@ -110,4 +110,12 @@ describe('Avatar', () => {
     // ASSERT
     expect(avatar).toHaveStyle('opacity: 0.4;pointer-events: none;');
   });
+
+  it('should contain `ds-avatar` className', () => {
+    // ARRANGE
+    const { container } = renderWithProvider(<Avatar>AA</Avatar>);
+
+    // ASSERT
+    expect(container.querySelector('.ds-avatar')).toBeTruthy();
+  });
 });

@@ -95,26 +95,26 @@ return (
 
 ## API
 
-| Property                | Description                                                                            | Type                                                       | Default |
-| ----------------------- | -------------------------------------------------------------------------------------- | ---------------------------------------------------------- | ------- |
-| clearTooltip            | Clear button tooltip text                                                              | string                                                     | -       |
-| filterLookupKey         | key in parameter item object for displaying parameter label in input                   | string                                                     | -       |
-| hideLabel               | Hide label in search input                                                             | boolean                                                    | -       |
-| disableInput            | Disable search input                                                                   | boolean                                                    | -       |
-| onParameterValueChange  | Callback when set parameter type                                                       | function                                                   | -       |
-| onValueChange           | Callback when input changes                                                            | function                                                   | -       |
-| parameters              | Parameters items data displayed in search dropdown                                     | object                                                     | -       |
-| parametersDisplayProps  | An object containing the details of how parameters list should render                  | DataSetProps                                               | -       |
-| parameterValue          | Chosen parameter type                                                                  | string                                                     | -       |
-| placeholder             | Input placeholder                                                                      | string                                                     | -       |
-| recent                  | Recent items data displayed in search dropdown                                         | object                                                     | -       |
-| recentDisplayProps      | An object containing the details of how recent items list should render                | DataSetProps                                               | -       |
-| suggestions             | Suggestions items data displayed after picking particular parameter in search dropdown | object or undefined or null                                | -       |
-| suggestionsDisplayProps | An object containing the details of how suggestions list should render                 | DataSetProps or undefined or null                          | -       |
-| textLookupConfig        | config of keys for lookup in parameters, recent and suggestions datasets               | { parameters: string; recent: string; suggestions: string} | -       |
-| value                   | The input content value                                                                | string                                                     | -       |
-| width                   | Width of the search input when expanded                                                | number                                                     | -       |
-
+| Property                | Description                                                                            | Type                                                                     | Default |
+| ----------------------- | -------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ | ------- |
+| clearTooltip            | Clear button tooltip text                                                              | string                                                                   | -       |
+| filterLookupKey         | key in parameter item object for displaying parameter label in input                   | string                                                                   | -       |
+| hideLabel               | Hide label in search input                                                             | boolean                                                                  | -       |
+| disableInput            | Disable search input                                                                   | boolean                                                                  | -       |
+| inputProps              | Props object passed to the SearchInput component                                       | [InputProps](https://design.synerise.com/docs/components/input/#input-1) | -       |
+| onParameterValueChange  | Callback when set parameter type                                                       | function                                                                 | -       |
+| onValueChange           | Callback when input changes                                                            | function                                                                 | -       |
+| parameters              | Parameters items data displayed in search dropdown                                     | object                                                                   | -       |
+| parametersDisplayProps  | An object containing the details of how parameters list should render                  | DataSetProps                                                             | -       |
+| parameterValue          | Chosen parameter type                                                                  | string                                                                   | -       |
+| placeholder             | Input placeholder                                                                      | string                                                                   | -       |
+| recent                  | Recent items data displayed in search dropdown                                         | object                                                                   | -       |
+| recentDisplayProps      | An object containing the details of how recent items list should render                | DataSetProps                                                             | -       |
+| suggestions             | Suggestions items data displayed after picking particular parameter in search dropdown | object or undefined or null                                              | -       |
+| suggestionsDisplayProps | An object containing the details of how suggestions list should render                 | DataSetProps or undefined or null                                        | -       |
+| textLookupConfig        | config of keys for lookup in parameters, recent and suggestions datasets               | { parameters: string; recent: string; suggestions: string}               | -       |
+| value                   | The input content value                                                                | string                                                                   | -       |
+| width                   | Width of the search input when expanded                                                | number                                                                   | -       |
 
 ### DataSetProps
 
@@ -150,23 +150,24 @@ import { SearchInput } from '@synerise/ds-search/dist/Elements';
 
 ### SearchInput
 
-| Property            | Description                                                               | Type     | Default |
-| ------------------- | ------------------------------------------------------------------------- | -------- | ------- |
-| alwaysHighlight     | When set, the input always has blue border when expanded                  | boolean  |`false`  |
-| alwaysExpanded      | Boolean value to force expanded state of the input                        | boolean  |`false`  |
-| clearTooltip        | Clear button tooltip text                                                 | string   | -       |
-| closeOnClickOutside | Boolean value to prevent / force toggling the input when clicking outside | boolean  |`false`  |
-| filterLabel         | Label displayed on the left-hand side of the input caret                  | object   | -       |
-| focusTrigger        | Boolean value for triggering focus on the input                           | boolean  | -       |
-| onValueChange       | Callback when input changes                                               | function | -       |
-| onButtonClick       | Callback executed when clicking search button                             | function | -       |
-| onClear             | Callback after clicking clear button                                      | function | -       |
-| onClick             | Callback executed when clicking inside an input                           | function | -       |
-| onKeyDown           | Callback executed when pressing a keyboard key.                           | function | -       |
-| onToggle            | Callback executed when expanding / narrowing the input wrapper            | function | -       |
-| placeholder         | Input placeholder                                                         | string   | -       |
-| toggleTrigger       | Boolean value for triggering expanding / narrowing the input              | boolean  | -       |
-| value               | The input content value                                                   | string   | -       |
+| Property            | Description                                                               | Type                                                                     | Default |
+| ------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------ | ------- |
+| alwaysHighlight     | When set, the input always has blue border when expanded                  | boolean                                                                  | `false` |
+| alwaysExpanded      | Boolean value to force expanded state of the input                        | boolean                                                                  | `false` |
+| clearTooltip        | Clear button tooltip text                                                 | string                                                                   | -       |
+| closeOnClickOutside | Boolean value to prevent / force toggling the input when clicking outside | boolean                                                                  | `false` |
+| filterLabel         | Label displayed on the left-hand side of the input caret                  | object                                                                   | -       |
+| focusTrigger        | Boolean value for triggering focus on the input                           | boolean                                                                  | -       |
+| inputProps          | Props object passed to the input element of the component                 | [InputProps](https://design.synerise.com/docs/components/input/#input-1) | -       |
+| onValueChange       | Callback when input changes                                               | function                                                                 | -       |
+| onButtonClick       | Callback executed when clicking search button                             | function                                                                 | -       |
+| onClear             | Callback after clicking clear button                                      | function                                                                 | -       |
+| onClick             | Callback executed when clicking inside an input                           | function                                                                 | -       |
+| onKeyDown           | Callback executed when pressing a keyboard key.                           | function                                                                 | -       |
+| onToggle            | Callback executed when expanding / narrowing the input wrapper            | function                                                                 | -       |
+| placeholder         | Input placeholder                                                         | string                                                                   | -       |
+| toggleTrigger       | Boolean value for triggering expanding / narrowing the input              | boolean                                                                  | -       |
+| value               | The input content value                                                   | string                                                                   | -       |
 
 ### SearchInput usage
 

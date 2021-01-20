@@ -18,35 +18,23 @@ export const blurAnimation = keyframes`
   }
 `;
 
-export const ValueArea = styled.textarea<{ grey: boolean }>`
-  && {
-    font-variant-numeric: normal;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    ${(props): FlattenSimpleInterpolation => disableBlinkingCursor(props)}
-    width: 100%;
-    height: 100%;
-    background: transparent;
-    border: none;
-    padding: 0;
-    margin: 0;
-    overflow: auto;
-    outline: none;
-    box-shadow: none;
-    resize: none;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-    &::-webkit-scrollbar {
-      display: none;
-    }
-  }
-`;
-export const MainContent = styled.div<{ hasMargin?: boolean }>`
-  display: flex;
-  align-items: flex-start;
-  flex: 1;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
+export const MainContent = styled.div<{ hasMargin?: boolean; breakWord?: boolean }>`
+  ${(props): FlattenSimpleInterpolation =>
+    props.breakWord
+      ? css`
+          display: flex;
+          align-items: flex-start;
+          flex: 1;
+          word-wrap: break-word;
+          overflow-wrap: break-word;
+        `
+      : css`
+          overflow-wrap: nowrap;
+          display: block;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+        `}
   width: 100%;
   height: 100%;
   transition: color 0.1s ease-in 0.2s;
@@ -55,6 +43,7 @@ export const MainContent = styled.div<{ hasMargin?: boolean }>`
     `margin-top:1px;
 `}
 `;
+
 export const Suffix = styled.div<{ select?: boolean }>`
   position: absolute;
   right: ${(props): string => (props.select ? `9px` : `6px`)};
@@ -67,37 +56,11 @@ export const Suffix = styled.div<{ select?: boolean }>`
   margin-top: -2px;
   cursor: pointer;
 `;
-export const Container = styled.div<{ active: boolean; disabled?: boolean }>`
-  position: relative;
-  width: 100%;
-  ${(props): false | FlattenSimpleInterpolation =>
-    props.active &&
-    css`
-      margin: -1px 0 0 -1px;
-    `}
 
-  > div {
-    margin: 0;
-  }
-
-  .ds-subtle-select {
-    .ant-select-selector: {
-      transition: all 0s linear !important;
-    }
-  }
-  ${(props): FlattenSimpleInterpolation | false =>
-    !!props.disabled &&
-    css`
-      && {
-        cursor: not-allowed;
-      }
-    `}
-`;
 export const Inactive = styled.div<{
   rows?: number;
   blurred: boolean;
-  datePicker?: boolean;
-  datePickerValue?: Date;
+  mask?: boolean;
   disabled?: boolean;
 }>`
   position: relative;
@@ -137,10 +100,10 @@ export const Inactive = styled.div<{
         padding: ${focusPadding};
         background: ${props.theme.palette['grey-050']};
         ${MainContent} {
-          ${props.datePicker && !props.datePickerValue && `color: transparent;`}
+          ${props.mask && `color: transparent;`}
           ${MaskedDatePlaceholder} {
             left: 12px;
-            ${props.datePicker && !props.datePickerValue && `color: ${props.theme.palette['grey-600']};`}
+            ${props.mask && `color: ${props.theme.palette['grey-600']};`}
           }
         }
         ${Suffix} {
@@ -149,6 +112,69 @@ export const Inactive = styled.div<{
       }
     `}
 `;
+
+export const ValueArea = styled.textarea<{ grey: boolean }>`
+  && {
+    font-variant-numeric: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    ${(props): FlattenSimpleInterpolation => disableBlinkingCursor(props)}
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+    overflow: auto;
+    outline: none;
+    box-shadow: none;
+    resize: none;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+`;
+
+export const Container = styled.div<{ active?: boolean; disabled?: boolean }>`
+  &.ds-subtle-input {
+    ${Inactive} {
+      line-height: 18px;
+    }
+    .ant-input::placeholder {
+      line-height: 16px;
+    }
+  }
+  position: relative;
+  width: 100%;
+  ${(props): false | FlattenSimpleInterpolation =>
+    !!props.active &&
+    css`
+      margin: -1px 0 0 -1px;
+    `}
+
+  > div {
+    margin: 0;
+  }
+
+  .ds-subtle-select {
+    .ant-select-selector: {
+      transition: all 0s linear !important;
+    }
+  }
+  && .ant-input-number-input::placeholder {
+    padding-bottom: 8px;
+  }
+  ${(props): FlattenSimpleInterpolation | false =>
+    !!props.disabled &&
+    css`
+      && {
+        cursor: not-allowed;
+      }
+    `}
+`;
+
 export const Subtle = styled.div<{ disabled?: boolean }>`
   ${(props): FlattenSimpleInterpolation | false =>
     !!props.disabled &&

@@ -7,6 +7,7 @@ import BottomAction from './elements/BottomAction/BottomAction';
 import BackAction from './elements/BackAction/BackAction';
 import { Wrapper } from './Dropdown.styles';
 import TextTrigger from './elements/TextTrigger/TextTrigger';
+import { getPopupContainer } from './utils/getPopupContainer';
 
 export type DropdownProps = AntDropDownProps;
 
@@ -21,9 +22,14 @@ class Dropdown extends React.Component<DropdownProps> {
   render(): React.ReactNode {
     return (
       // eslint-disable-next-line react/jsx-props-no-spreading
-      <AntdDropdown {...this.props} />
+      <AntdDropdown
+        getPopupContainer={getPopupContainer}
+        align={{ offset: [0, 8] }} // STOR-588
+        {...this.props}
+      />
     );
   }
 }
 
+export * from './utils/getPopupContainer';
 export default Dropdown;
