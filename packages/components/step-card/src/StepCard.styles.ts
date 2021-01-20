@@ -29,7 +29,6 @@ export const Header = styled.div`
   padding: 22px 24px;
   width: 100%;
   border-bottom: 1px dotted ${(props): string => props.theme.palette['grey-300']};
-  cursor: grab;
   &:hover {
     ${CrudsWrapper} {
       opacity: 1;

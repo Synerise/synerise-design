@@ -11,6 +11,7 @@ import Icon from '@synerise/ds-icon';
 import { default as fnsFormat } from '@synerise/ds-date-range-picker/dist/dateUtils/format';
 import { ConditionExample } from './data/Condition';
 import { DEFAULT_STEP } from '../Condition/data/index.data';
+import { action } from '@storybook/addon-actions';
 
 const stories = {
   default: () => {
@@ -45,6 +46,16 @@ const stories = {
         onChangeMatching={setMatching}
         name={name}
         onChangeName={setName}
+        onDuplicate={action('duplicate')}
+        onDelete={action('delete')}
+        texts={{
+          matching: 'Matching',
+          notMatching: 'Not matching',
+          namePlaceholder: 'Placeholder',
+          moveTooltip: 'Move',
+          deleteTooltip: 'Delete',
+          duplicateTooltip: 'Duplicate',
+        }}
         footer={
           boolean('Show footer', true) && (
             <>
