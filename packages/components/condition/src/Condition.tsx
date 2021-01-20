@@ -82,7 +82,6 @@ const Condition: React.FC<ConditionProps> = ({
   );
 
   const selectParameter = React.useCallback((condition: StepConditions, value): void => {
-    console.log('select parameter', condition, value);
     if (condition.id && condition.parameter) {
       condition.operator && condition.operator.onChange(undefined);
       condition.factor && condition.factor.onChangeValue(undefined);
