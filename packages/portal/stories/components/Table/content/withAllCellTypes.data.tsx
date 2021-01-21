@@ -15,7 +15,7 @@ import { IconLabelCell, LabelsWithShowMore } from '@synerise/ds-table/dist/Cell'
 import Badge from '@synerise/ds-badge';
 import { boolean, select, text } from '@storybook/addon-knobs';
 import ProgressBar from '@synerise/ds-progress-bar';
-import { PercantageWrapper } from '../../Loader/index.stories';
+import { Counter} from '../../Loader/index.stories';
 import Loader from '@synerise/ds-loader';
 
 
@@ -610,7 +610,7 @@ export const COLUMNS_WITH_AVATARS = [
       const getPercent = (): number | React.ReactNode | null => {
           return (
             <div style={{ display: 'flex' }}>
-              <PercantageWrapper /> %
+              <Counter/>
             </div>
           );
       };
