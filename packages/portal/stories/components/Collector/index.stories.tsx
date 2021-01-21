@@ -7,7 +7,6 @@ import { InfoFillS } from '@synerise/ds-icon/dist/icons';
 import Icon from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
-import { v4 as uuid } from 'uuid';
 
 const decorator = storyFn => <div style={{ width: '588px' }}>{storyFn()}</div>;
 const getSuggestions = () => {
@@ -82,7 +81,7 @@ const stories = {
           toSelect: 'to select',
           toNavigate: 'to navigate',
         }}
-        onConfirm={action('onConfirm')}
+        onConfirm={() => setSelected([])}
       />
     );
   },

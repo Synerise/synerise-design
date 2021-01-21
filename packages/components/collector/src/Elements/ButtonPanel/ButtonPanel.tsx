@@ -6,11 +6,11 @@ const ButtonPanel: React.FC<ButtonPanelProps> = ({ onConfirm, onCancel, disabled
   return (
     <>
       {showCancel && (
-        <Button type="ghost" disabled={disabled} onClick={onCancel}>
+        <Button type="ghost" disabled={disabled} onClick={onCancel} onFocus={(e): void => e.stopPropagation()}>
           {texts?.cancel}
         </Button>
       )}
-      <Button type="primary" disabled={disabled} onClick={onConfirm}>
+      <Button type="primary" disabled={disabled} onClick={onConfirm} onFocus={(e): void => e.stopPropagation()}>
         {texts?.add}
       </Button>
     </>
