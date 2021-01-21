@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.18](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@0.2.17...@synerise/ds-collector@0.2.18) (2021-01-21)
+
+
+### Bug Fixes
+
+* **collector:** prevent to open suggestions on add button ([c14d16d](https://github.com/Synerise/synerise-design/commit/c14d16ddc54a592c710cafebc3636ff939bdca18))
+
+
+
+
+
 ## [0.2.17](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@0.2.16...@synerise/ds-collector@0.2.17) (2021-01-21)
 
 
