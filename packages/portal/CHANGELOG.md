@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.114.0](https://github.com/synerise/synerise-design/compare/portal@0.113.0...portal@0.114.0) (2021-01-21)
+
+
+### Bug Fixes
+
+* **collector:** disable selection on suggestions list ([1d296ea](https://github.com/synerise/synerise-design/commit/1d296eacd4692df3ee12c1ec60121c87150e96a3))
+
+
+### Features
+
+* **item-picker:** add bottom action ([ae2045a](https://github.com/synerise/synerise-design/commit/ae2045aebd88e7b1efc36a04cd757512d68da117))
+
+
+
+
+
 # [0.113.0](https://github.com/synerise/synerise-design/compare/portal@0.112.2...portal@0.113.0) (2021-01-20)
 
 
