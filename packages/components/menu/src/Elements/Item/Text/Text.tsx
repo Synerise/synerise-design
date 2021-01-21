@@ -96,7 +96,6 @@ const Text: React.FC<BasicItemProps> = ({
       }}
       disabled={disabled}
       tabIndex={disabled ? -1 : 0}
-      prefixel={prefixElement}
       description={description}
       className="ds-menu-item"
       style={style}
