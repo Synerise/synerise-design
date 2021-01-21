@@ -15,7 +15,7 @@ import { IconLabelCell, LabelsWithShowMore } from '@synerise/ds-table/dist/Cell'
 import Badge from '@synerise/ds-badge';
 import { boolean, select, text } from '@storybook/addon-knobs';
 import ProgressBar from '@synerise/ds-progress-bar';
-import { PercantageWrapper } from '../../Loader/index.stories';
+import { Counter} from '../../Loader/index.stories';
 import Loader from '@synerise/ds-loader';
 
 
@@ -594,7 +594,7 @@ export const COLUMNS_WITH_AVATARS = [
     },
   },
   {
-    title: 'Avatar with label and description',
+    title: 'Avatar with loading state',
     dataIndex: 'avatar',
     key: 'avatar',
     width: 254,
@@ -605,28 +605,14 @@ export const COLUMNS_WITH_AVATARS = [
     render: avatar => {
       const [starred, setStarred] = React.useState(false);
       const knobsActive = boolean('Set starred state active', false);
-      const showText = boolean('Show Loading text', true);
-      const colors = select('Set color', colorOptions, colorOptions.blue);
       const loadingText = text('Loading', 'Loading...');
-      const showPercent = boolean('Show percent text', false);
 
-      const getLoading = (showText: boolean): string | null => {
-        if (showText) {
-          return loadingText;
-        } else {
-          return null;
-        }
-      };
       const getPercent = (): number | React.ReactNode | null => {
-        if (showPercent) {
           return (
             <div style={{ display: 'flex' }}>
-              <PercantageWrapper /> %
+              <Counter/>
             </div>
           );
-        } else {
-          return null;
-        }
       };
       return (
         <TableCell.AvatarLabelCell
@@ -664,8 +650,8 @@ export const COLUMNS_WITH_AVATARS = [
                 <Loader
                   percentFormatter={getPercent}
                   size='S'
-                  color={colors}
-                  label={loadingText && getLoading(showText)}
+                  color='blue'
+                  label={loadingText}
                   labelPosition='right'
                 />
               </div>
