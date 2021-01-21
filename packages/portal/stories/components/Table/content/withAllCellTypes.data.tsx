@@ -608,13 +608,11 @@ export const COLUMNS_WITH_AVATARS = [
       const loadingText = text('Loading', 'Loading...');
 
       const getPercent = (): number | React.ReactNode | null => {
-        if (true) {
           return (
             <div style={{ display: 'flex' }}>
               <PercantageWrapper /> %
             </div>
           );
-        }
       };
       return (
         <TableCell.AvatarLabelCell
