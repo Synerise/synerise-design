@@ -24,6 +24,9 @@ const Slider: React.FC<Props> = props => {
     allocationConfig,
     hideMinAndMaxMarks,
     disabled,
+    max,
+    min,
+    value,
     ...antdProps
   } = props;
   const labelElement = React.useMemo(
@@ -43,22 +46,29 @@ const Slider: React.FC<Props> = props => {
       </>
     );
   }
+  const minValue = Number(min);
+  const maxValue = Number(max);
+
   return (
     <>
       {labelElement}
       <S.AntdSlider
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...antdProps}
-        className={antdProps.value && couldBeInverted(antdProps.value, !!inverted) ? 'ant-slider-inverted' : undefined}
+        max={max}
+        value={value}
+        reachedEnd={Number(value)>(maxValue-minValue)*0.95}
+        reachedStart={Number(value)<(maxValue-minValue)*0.05}
+        className={value && couldBeInverted(value, !!inverted) ? 'ant-slider-inverted' : undefined}
         useColorPalette={useColorPalette}
         thickness={thickness}
         disabled={disabled}
         description={description}
         hideMinAndMaxMarks={hideMinAndMaxMarks}
-        tipFormatter={(value): React.ReactNode => (
+        tipFormatter={(tipValue): React.ReactNode => (
           <S.DescriptionWrapper>
             {description && <S.Description>{description}</S.Description>}
-            {tipFormatter && tipFormatter(value)}
+            {tipFormatter && tipFormatter(tipValue)}
           </S.DescriptionWrapper>
         )}
         tracksColorMap={tracksColorMap}

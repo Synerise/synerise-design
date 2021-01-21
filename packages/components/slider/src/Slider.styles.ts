@@ -40,7 +40,7 @@ export const DescriptionWrapper = styled.div`
   right: 0;
 `;
 
-export const applyTooltipStyles = (props: ThemeProps & DsSliderProps): FlattenSimpleInterpolation => css`
+export const applyTooltipStyles = (props: ThemeProps & DsSliderProps & SliderStyles): FlattenSimpleInterpolation => css`
   .ant-tooltip-inner {
     font-size: 13px;
     padding: 3px 7px;
@@ -101,6 +101,12 @@ export const applyTooltipStyles = (props: ThemeProps & DsSliderProps): FlattenSi
   .ant-slider-mark-text:last-of-type {
     padding-right: 30px;
   }
+    .ant-slider-mark-text:last-of-type {
+      ${props.reachedEnd && `opacity: 0`}
+    }
+    .ant-slider-mark-text:first-of-type {
+      ${props.reachedStart && `opacity: 0`}
+    }
   .ant-slider-handle-dragging {
     border-color: ${props.theme.palette['grey-050']} !important;
     box-shadow: 0 0 0 3px rgba(35, 138, 254, 0.25) !important;
@@ -162,9 +168,13 @@ const createTracksStyles = (
     ${style}
   `;
 };
+type SliderStyles = {
+  reachedEnd?: boolean;
+  reachedStart?: boolean;
+}
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const AntdSlider = styled((Slider as any) as ComponentType<Omit<SliderProps, 'value'>>)<DsSliderProps>`
+export const AntdSlider = styled((Slider as any) as ComponentType<Omit<SliderProps, 'value'>>)<DsSliderProps & SliderStyles>`
   ${(props): FlattenSimpleInterpolation =>
     props.useColorPalette ? createTracksStyles(props, props.tracksColorMap ? props.tracksColorMap : INDEX_MAP) : css``}
   .ant-slider-track {
