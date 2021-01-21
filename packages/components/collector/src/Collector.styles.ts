@@ -101,7 +101,7 @@ export const Input = styled(BorderLessInput)<
     css`
       display: none;
     `}
-    
+
   ${(props): FlattenSimpleInterpolation | false =>
     props.transparent &&
     css`
@@ -117,6 +117,7 @@ export { ErrorText };
 export { ValueText };
 export const DropdownWrapper = styled.div`
   position: relative;
+  user-select: none;
 `;
 export const CustomContentWrapper = styled.div`
   position: absolute;
