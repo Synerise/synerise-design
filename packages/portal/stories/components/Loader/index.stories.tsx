@@ -28,7 +28,7 @@ const colorOptions = {
 
 
 
-const Counter = ({ delay = 100 }) => {
+export const Counter = ({ delay = 100 }) => {
   const [count, setCount] = useState(0);
 
   useInterval(() => {
