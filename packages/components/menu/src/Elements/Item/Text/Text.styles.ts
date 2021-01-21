@@ -126,9 +126,6 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
       opacity: 0.05;
       border-radius: inherit;
     }
-    &:active {
-      background: none;
-    }
     & .ds-checkbox {
       padding: 0px;
     }
@@ -151,10 +148,13 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
     ${(props): string | false =>
       !props.disabled &&
       `
-    &:focus:active {
+    &:focus:active, &:active {
       background: ${props.theme.palette['grey-100']};
       color: ${props.theme.palette['blue-600']};
     }`}
+    &:active {
+      background: none;
+    }
 
     & {
       .ds-icon {
@@ -181,6 +181,7 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
         }
       }
     }
+
     &:hover {
       & .ds-menu-prefix > * > .ant-avatar::before,
       .ds-menu-prefix > .ant-badge::before,
