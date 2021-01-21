@@ -611,8 +611,6 @@ export const COLUMNS_WITH_AVATARS = [
       const getLoading = (): string | null => {
         if (true) {
           return loadingText;
-        } else {
-          return null;
         }
       };
       const getPercent = (): number | React.ReactNode | null => {
@@ -622,8 +620,6 @@ export const COLUMNS_WITH_AVATARS = [
               <PercantageWrapper /> %
             </div>
           );
-        } else {
-          return null;
         }
       };
       return (
