@@ -118,8 +118,10 @@ const Collector: React.FC<CollectorProps> = ({
       }
     }
     if (allowMultipleValues && e.key === 'Backspace' && !value && !!selectedValues?.length) {
-      const withoutLastElement = selectedValues.splice(0, selectedValues.length - 1);
-      setSelectedValues(withoutLastElement);
+      const lastElement = selected.pop();
+      if (lastElement && onDeselect) {
+        onDeselect(lastElement);
+      }
     }
   };
 

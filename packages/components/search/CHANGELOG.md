@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.15](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.4.14...@synerise/ds-search@0.4.15) (2021-01-15)
+
+
+### Bug Fixes
+
+* **search:** pass inputProps to the search input ([51e9004](https://github.com/Synerise/synerise-design/commit/51e9004b961d20bb454892fe49cc8a969f52ebde))
+
+
+
+
+
 ## [0.4.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.4.13...@synerise/ds-search@0.4.14) (2021-01-13)
 
 **Note:** Version bump only for package @synerise/ds-search

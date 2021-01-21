@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.16.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.16.0...@synerise/ds-manageable-list@0.16.1) (2021-01-15)
+
+**Note:** Version bump only for package @synerise/ds-manageable-list
+
+
+
+
+
+# [0.16.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.15.14...@synerise/ds-manageable-list@0.16.0) (2021-01-14)
+
+
+### Bug Fixes
+
+* **manageable-list:** fix styles of FilterItem & ItemMeta ([ac0f3f6](https://github.com/Synerise/synerise-design/commit/ac0f3f63ef51f521d8a5e970a3640835e920885e))
+
+
+### Features
+
+* **manageable-list:** use standard size of dropdown trigger buttons ([04e4ce8](https://github.com/Synerise/synerise-design/commit/04e4ce854e225f40c3e22b3cde658b1128106a4b))
+
+
+
+
+
 ## [0.15.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.15.13...@synerise/ds-manageable-list@0.15.14) (2021-01-13)
 
 **Note:** Version bump only for package @synerise/ds-manageable-list

@@ -3,6 +3,61 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.113.0](https://github.com/synerise/synerise-design/compare/portal@0.112.2...portal@0.113.0) (2021-01-20)
+
+
+### Bug Fixes
+
+* **cruds:** storybook story fixes ([a44e49f](https://github.com/synerise/synerise-design/commit/a44e49fb752d7e4a894158169df2abcbf9e4652d))
+* **date-picker:** set container width to 100% ([edc738e](https://github.com/synerise/synerise-design/commit/edc738e9e0a6418b06645aa24fca8e29515bf957))
+* **loader:** add percent value of loader ([888006a](https://github.com/synerise/synerise-design/commit/888006a27bf5466e75544a18697f57ec9b6c6312))
+* **loader:** change showPercent value to false ([c792e41](https://github.com/synerise/synerise-design/commit/c792e414ab99d1697562c51922499a09f327136d))
+* **subtle-form:** fixed inactive element rendering, added stories ([0a990c1](https://github.com/synerise/synerise-design/commit/0a990c141138327406549689557cc517fd3375bb))
+* **subtle-form:** input number styles ([b08dedc](https://github.com/synerise/synerise-design/commit/b08dedc6f19893e0273f604934a3a78c871722e2))
+* resolved conflicts with dev ([66c6e28](https://github.com/synerise/synerise-design/commit/66c6e28546fe0efc0e93943f0bd10779091f0116))
+* **subtle-form:** fixed inactive element rendering, added stories ([b00659f](https://github.com/synerise/synerise-design/commit/b00659f0bb3309b66b2b1d0c5640e15a519212f3))
+* **subtle-form:** input placeholder styles ([afbc748](https://github.com/synerise/synerise-design/commit/afbc7484d26a8df080bdccd2954b505c2fd8a47e))
+
+
+### Features
+
+* **subtle-form:** added input as subtle field ([e8a8d42](https://github.com/synerise/synerise-design/commit/e8a8d4203aecc07e62c1589e57a37b426098c92d))
+* **subtle-form:** added input as subtle field ([0c753d7](https://github.com/synerise/synerise-design/commit/0c753d725ae509d72931fcf69a44f8f9d3d77c34))
+* **subtle-form:** generic subtle form field ([c71ffbb](https://github.com/synerise/synerise-design/commit/c71ffbb63aa12bfbe7892e4da11f1c2a2fc9e65f))
+* **subtle-form:** generic subtle form field ([f3eef58](https://github.com/synerise/synerise-design/commit/f3eef583794541c9872e576ffe13901ac1607c6e))
+
+
+
+
+
+## [0.112.2](https://github.com/synerise/synerise-design/compare/portal@0.112.1...portal@0.112.2) (2021-01-15)
+
+
+### Bug Fixes
+
+* **sidebar-object:** add button with starred icon to header in sidebar-object ([3d48de1](https://github.com/synerise/synerise-design/commit/3d48de1682cc25687022b5923ab360abe2d2bd74))
+* **sidebar-object:** delete unnecessary import ([c82e676](https://github.com/synerise/synerise-design/commit/c82e676fee3a4fc60765988a1aef4413b82f5479))
+* **sidebar-object:** remove knobs to set starred active ([6c8653c](https://github.com/synerise/synerise-design/commit/6c8653c809392e907c9e9d5056b1d60e382e39dc))
+* **table:** passed inputProps in stories ([9218398](https://github.com/synerise/synerise-design/commit/9218398197b7d4cd6ce4df7dca173573a3ecb990))
+
+
+
+
+
+## [0.112.1](https://github.com/synerise/synerise-design/compare/portal@0.112.0...portal@0.112.1) (2021-01-14)
+
+
+### Bug Fixes
+
+* **manageable-list:** fix styles of FilterItem & ItemMeta ([ac0f3f6](https://github.com/synerise/synerise-design/commit/ac0f3f63ef51f521d8a5e970a3640835e920885e))
+* **sidebar-object:** add starred icon to header in sidebar-object ([48ccaf0](https://github.com/synerise/synerise-design/commit/48ccaf03bafd09001cb72146ff9fd5462f409d77))
+* **sidebar-object:** add starred icon to header in sidebar-object default ([79ee578](https://github.com/synerise/synerise-design/commit/79ee5784229ea6e14f1c5a0313e872311b5a083d))
+* **sidebar-object:** move header above scrollbar wrapper ([0242c22](https://github.com/synerise/synerise-design/commit/0242c22134c55c38718a0d344252a9fbea395b3d))
+
+
+
+
+
 # [0.112.0](https://github.com/synerise/synerise-design/compare/portal@0.111.3...portal@0.112.0) (2021-01-13)
 
 

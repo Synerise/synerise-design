@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.26](https://github.com/Synerise/synerise-design/compare/@synerise/ds-list@0.5.25...@synerise/ds-list@0.5.26) (2021-01-14)
+
+
+### Bug Fixes
+
+* **list:** add 1px of vertical margin to the dividder ([5848477](https://github.com/Synerise/synerise-design/commit/58484778c2a2c58b3bfd0de9b32856c061ad1834))
+
+
+
+
+
 ## [0.5.25](https://github.com/Synerise/synerise-design/compare/@synerise/ds-list@0.5.24...@synerise/ds-list@0.5.25) (2021-01-04)
 
 **Note:** Version bump only for package @synerise/ds-list

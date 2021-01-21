@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@0.5.9...@synerise/ds-date-picker@0.5.10) (2021-01-20)
+
+
+### Bug Fixes
+
+* **date-picker:** set container width to 100% ([edc738e](https://github.com/Synerise/synerise-design/commit/edc738e9e0a6418b06645aa24fca8e29515bf957))
+
+
+
+
+
+## [0.5.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@0.5.8...@synerise/ds-date-picker@0.5.9) (2021-01-15)
+
+
+### Bug Fixes
+
+* **date-picker:** custom navbar in day picker ([92c60bf](https://github.com/Synerise/synerise-design/commit/92c60bfb581f5691c944234c39f6697468df0c3a))
+
+
+
+
+
 ## [0.5.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@0.5.7...@synerise/ds-date-picker@0.5.8) (2021-01-13)
 
 **Note:** Version bump only for package @synerise/ds-date-picker
