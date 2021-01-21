@@ -607,12 +607,6 @@ export const COLUMNS_WITH_AVATARS = [
       const knobsActive = boolean('Set starred state active', false);
       const loadingText = text('Loading', 'Loading...');
 
-
-      const getLoading = (): string | null => {
-        if (true) {
-          return loadingText;
-        }
-      };
       const getPercent = (): number | React.ReactNode | null => {
         if (true) {
           return (
@@ -659,7 +653,7 @@ export const COLUMNS_WITH_AVATARS = [
                   percentFormatter={getPercent}
                   size='S'
                   color='blue'
-                  label={loadingText && getLoading()}
+                  label={loadingText}
                   labelPosition='right'
                 />
               </div>
