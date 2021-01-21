@@ -594,7 +594,7 @@ export const COLUMNS_WITH_AVATARS = [
     },
   },
   {
-    title: 'Avatar with label and description',
+    title: 'Avatar with loading state',
     dataIndex: 'avatar',
     key: 'avatar',
     width: 254,
@@ -605,20 +605,18 @@ export const COLUMNS_WITH_AVATARS = [
     render: avatar => {
       const [starred, setStarred] = React.useState(false);
       const knobsActive = boolean('Set starred state active', false);
-      const showText = boolean('Show Loading text', true);
-      const colors = select('Set color', colorOptions, colorOptions.blue);
       const loadingText = text('Loading', 'Loading...');
-      const showPercent = boolean('Show percent text', false);
 
-      const getLoading = (showText: boolean): string | null => {
-        if (showText) {
+
+      const getLoading = (): string | null => {
+        if (true) {
           return loadingText;
         } else {
           return null;
         }
       };
       const getPercent = (): number | React.ReactNode | null => {
-        if (showPercent) {
+        if (true) {
           return (
             <div style={{ display: 'flex' }}>
               <PercantageWrapper /> %
@@ -664,8 +662,8 @@ export const COLUMNS_WITH_AVATARS = [
                 <Loader
                   percentFormatter={getPercent}
                   size='S'
-                  color={colors}
-                  label={loadingText && getLoading(showText)}
+                  color='blue'
+                  label={loadingText && getLoading()}
                   labelPosition='right'
                 />
               </div>
