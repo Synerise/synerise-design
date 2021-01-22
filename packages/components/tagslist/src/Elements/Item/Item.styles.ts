@@ -76,4 +76,7 @@ export const TagsListText = styled.div`
   display: block;
   text-overflow: ellipsis;
 `;
-export const PrefixWrapper = styled.div``;
+export const PrefixWrapper = styled.div`
+  min-width: 24px;
+  text-align: center;
+`;

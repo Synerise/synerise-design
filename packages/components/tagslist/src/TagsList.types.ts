@@ -15,6 +15,7 @@ export type TagsListProps = {
   onSettings: (selected?: TagsListItem) => void;
   texts: TagsListTexts;
   showHideStep?: number;
+  withCheckbox?: boolean;
 };
 
 export type TagsListItem = {

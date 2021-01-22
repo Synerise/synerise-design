@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Icon from '@synerise/ds-icon';
-import { FolderFavouriteFlatM, FolderFavouriteM, FolderM } from '@synerise/ds-icon/dist/icons';
+import Checkbox from '@synerise/ds-checkbox';
+import { TagM, TagStarredM, TagStarredFlatM } from '@synerise/ds-icon/dist/icons';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { useOnClickOutside } from '@synerise/ds-utils';
 import Tooltip from '@synerise/ds-tooltip';
@@ -10,7 +11,9 @@ import ActionsDropdown from '../Actions/Dropdown/ActionsDropdown';
 import ActionsRow from '../Actions/Row/ActionsRow';
 import { validateFolderName } from '../../utils';
 
-const Folder: React.FC<ItemProps> = ({
+const { useEffect, useState, useCallback, useRef } = React;
+
+const Item: React.FC<ItemProps> = ({
   item,
   actionsDisplay,
   onSettingsEnter,
@@ -20,14 +23,21 @@ const Folder: React.FC<ItemProps> = ({
   toggleDeleteModal,
   texts,
   onItemSelect,
+  checked = false,
+  withCheckbox = true,
+  icon,
+  iconFavourite,
+  iconFavouriteFlat
 }: ItemProps) => {
   const { name, favourite } = item;
-  const [hovered, setHovered] = React.useState<boolean>(false);
-  const [folderName, setFolderName] = React.useState<string>(name);
-  const [editMode, setEditMode] = React.useState<boolean>(false);
-  const inputRef = React.useRef<HTMLInputElement>(null);
+  const [hovered, setHovered] = useState<boolean>(false);
+  const [folderName, setFolderName] = useState<string>(name);
+  const [editMode, setEditMode] = useState<boolean>(false);
+  const [isChecked, setChecked] = useState<boolean>(checked);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const timeoutRef = useRef<number>(0);
 
-  const confirmEdit = React.useCallback((): void => {
+  const confirmEdit = useCallback((): void => {
     if (validateFolderName(folderName)) {
       const trimmedName = folderName.trim();
       onEdit && onEdit({ ...item, name: trimmedName });
@@ -39,33 +49,39 @@ const Folder: React.FC<ItemProps> = ({
     }
   }, [folderName, name, item, onEdit]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     setFolderName(name);
   }, [name]);
-  const getPrefix = React.useCallback((isFavourite, isHovered, isEditMode): React.ReactNode => {
+
+  // Change checked state if prop changes
+  useEffect(() => {
+    if(isChecked !== checked) setChecked(checked);
+  }, [checked, setChecked]);
+
+  const getPrefix = useCallback((isFavourite, isHovered, isEditMode): React.ReactNode => {
     if (isFavourite) {
-      return isHovered || isEditMode ? <FolderFavouriteFlatM /> : <FolderFavouriteM />;
+      return isHovered || isEditMode ? <TagStarredFlatM /> : <TagStarredM />;
     }
-    return <FolderM />;
+    return <TagM />;
   }, []);
 
-  React.useEffect(() => {
+  useEffect(() => {
     inputRef?.current !== null && inputRef.current.focus();
   }, [inputRef, editMode]);
 
-  const onMouseOver = React.useCallback((): void => {
+  const onMouseOver = useCallback((): void => {
     setHovered(true);
   }, [setHovered]);
 
-  const onMouseOut = React.useCallback((): void => {
+  const onMouseOut = useCallback((): void => {
     setHovered(false);
   }, [setHovered]);
 
-  const handleOnFavourite = React.useCallback((): void => {
+  const handleOnFavourite = useCallback((): void => {
     onFavourite && onFavourite(item);
   }, [onFavourite, item]);
 
-  const renderSuffix = (): React.ReactNode => {
+  const renderSuffix = (): ReactNode => {
     return actionsDisplay === 'inline' ? (
       <ActionsRow
         onDelete={
@@ -123,14 +139,21 @@ const Folder: React.FC<ItemProps> = ({
     <S.TagsListItem
       editMode={editMode}
       onClick={(): void => {
+        setChecked(!isChecked);
         onItemSelect && onItemSelect(item);
       }}
       prefixel={
         <S.PrefixWrapper>
-          <Icon
-            component={getPrefix(favourite, hovered, editMode)}
-            color={hovered || editMode ? theme.palette['blue-600'] : theme.palette['grey-600']}
-          />
+          {withCheckbox && (hovered || isChecked) ? 
+            <Checkbox 
+              checked={isChecked}
+            /> :
+            <Icon
+              component={getPrefix(favourite, hovered, editMode)}
+              color={hovered || editMode ? theme.palette['blue-600'] : theme.palette['grey-600']}
+            />
+          }
+          
         </S.PrefixWrapper>
       }
       suffixel={
@@ -169,4 +192,4 @@ const Folder: React.FC<ItemProps> = ({
   );
 };
 
-export default Folder;
+export default Item;

@@ -25,6 +25,7 @@ const TagsList: React.FC<TagsListProps> = ({
   texts,
   showHideStep,
   folderFilter,
+  withCheckbox,
 }: TagsListProps) => {
   const [items, setItems] = React.useState<TagsListItem[]>(folderFilter ? dataSource.filter(folderFilter) : dataSource);
   const [itemToDelete, setItemToDelete] = React.useState<TagsListItem | undefined>(undefined);
@@ -77,6 +78,7 @@ const TagsList: React.FC<TagsListProps> = ({
       onDelete={item.canDelete ? onItemDelete : undefined}
       onEdit={item.canUpdate ? onItemEdit : undefined}
       onFavourite={onItemFavourite}
+      withCheckbox={withCheckbox}
       onSettingsEnter={
         item.canEnterSettings
           ? (): void => {
