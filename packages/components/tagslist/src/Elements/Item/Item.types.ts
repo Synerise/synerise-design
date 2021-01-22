@@ -10,7 +10,7 @@ export type ItemProps = {
   onEdit?: (item: TagsListItem) => void;
   onDelete?: (item: TagsListItem) => void;
   onFavourite?: (item: TagsListItem) => void;
-  onVisibility?: (visibility : TagVisibility, item?: TagsListItem) => void;
+  onVisibility?: (visibility: TagVisibility, item?: TagsListItem) => void;
   onSettingsEnter?: (item?: TagsListItem) => void;
   onItemSelect?: (item: TagsListItem) => void;
   icon?: ReactElement;

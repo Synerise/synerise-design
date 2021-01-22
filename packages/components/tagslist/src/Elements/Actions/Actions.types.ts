@@ -9,7 +9,7 @@ export type ActionProps = {
   onEdit?: (item?: TagsListItem) => void;
   onSettingsEnter?: (item?: TagsListItem) => void;
   onFavourite?: (item?: TagsListItem) => void;
-  onVisibility?: (visibility : TagVisibility, item?: TagsListItem) => void;
+  onVisibility?: (visibility: TagVisibility, item?: TagsListItem) => void;
   visibility?: TagVisibility;
   texts: TagsListTexts;
   hovered?: boolean;
@@ -18,6 +18,6 @@ export type ActionProps = {
 export type VisibilityProps = {
   texts: TagsListTexts;
   item: TagsListItem;
-  onVisibility?: (visibility : TagVisibility, item?: TagsListItem) => void;
+  onVisibility?: (visibility: TagVisibility, item?: TagsListItem) => void;
   visibility?: TagVisibility;
 };

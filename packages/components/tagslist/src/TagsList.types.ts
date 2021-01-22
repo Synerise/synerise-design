@@ -11,7 +11,7 @@ export type TagsListProps = {
   onDelete: (deleted: TagsListItem, options: { mode: DeleteMode; destination?: TagsListItem }) => void;
   onEdit: (edited: TagsListItem) => void;
   onFavourite: (favourite: TagsListItem) => void;
-  onVisibility: (visibility : TagVisibility, item?: TagsListItem) => void;
+  onVisibility: (visibility: TagVisibility, item?: TagsListItem) => void;
   onSelect: (selected: TagsListItem) => void;
   onSettings: (selected?: TagsListItem) => void;
   texts: TagsListTexts;

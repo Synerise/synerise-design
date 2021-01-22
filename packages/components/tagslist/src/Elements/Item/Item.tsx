@@ -8,7 +8,6 @@ import Tooltip from '@synerise/ds-tooltip';
 import { ItemProps } from './Item.types';
 import * as S from './Item.styles';
 import ActionsDropdown from '../Actions/Dropdown/ActionsDropdown';
-import ActionsRow from '../Actions/Row/ActionsRow';
 import { validateFolderName } from '../../utils';
 
 const { useEffect, useState, useCallback, useRef } = React;
@@ -25,16 +24,12 @@ const Item: React.FC<ItemProps> = ({
   texts,
   onItemSelect,
   checked = false,
-  withCheckbox = true,
-  icon,
-  iconFavourite,
-  iconFavouriteFlat
+  withCheckbox = true
 }: ItemProps) => {
   const { name, favourite } = item;
   const [hovered, setHovered] = useState<boolean>(false);
   const [folderName, setFolderName] = useState<string>(name);
   const [editMode, setEditMode] = useState<boolean>(false);
-  const [isChecked, setChecked] = useState<boolean>(checked);
   const [overflowed, setOverflowed] = useState<boolean>(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const timeoutRef = useRef<number>(0);
@@ -60,11 +55,6 @@ const Item: React.FC<ItemProps> = ({
     }
   }, [name]);
 
-  // Change checked state if prop changes
-  useEffect(() => {
-    if(isChecked !== checked) setChecked(checked);
-  }, [checked, setChecked]);
-
   const getPrefix = useCallback((isFavourite, isHovered, isEditMode): React.ReactNode => {
     if (isFavourite) {
       return isHovered || isEditMode ? <TagStarredFlatM /> : <TagStarredM />;
@@ -82,7 +72,7 @@ const Item: React.FC<ItemProps> = ({
   }, [hovered, setHovered, timeoutRef]);
 
   const onMouseOut = useCallback((): void => {
-    timeoutRef.current = setTimeout(() => setHovered(false), 10);
+    if(hovered) timeoutRef.current = setTimeout(() => setHovered(false), 10);
   }, [hovered, setHovered, timeoutRef]);
 
   const handleOnFavourite = useCallback((): void => {
@@ -124,14 +114,13 @@ const Item: React.FC<ItemProps> = ({
     <S.TagsListItem
       editMode={editMode}
       onClick={(): void => {
-        if(typeof checked === 'undefined') setChecked(!isChecked);
         onItemSelect && onItemSelect(item);
       }}
       prefixel={
         <S.PrefixWrapper>
-          {withCheckbox && (hovered || isChecked) ? 
+          {withCheckbox && (hovered || checked) ? 
             <Checkbox 
-              checked={isChecked}
+              checked={checked}
             /> :
             <Icon
               component={getPrefix(favourite, hovered, editMode)}

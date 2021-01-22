@@ -9,10 +9,10 @@ import { ActionProps, VisibilityProps } from '../Actions.types';
 import { TagVisibility } from '../../../TagsList.types';
 import * as S from '../Actions.styles';
 
-const triggerClick = (event: React.MouseEvent<HTMLElement, MouseEvent>) => event.stopPropagation();
-const dropdownMenuClick = (event: ClickParam) => event.domEvent.stopPropagation();
+const triggerClick = (event: React.MouseEvent<HTMLElement, MouseEvent>): void => event.stopPropagation();
+const dropdownMenuClick = (event: ClickParam): void => event.domEvent.stopPropagation();
 
-const CheckIcon : React.FC = () => <Icon color={theme.palette['green-600']} component={<CheckS />} />;
+const CheckIcon: React.FC = () => <Icon color={theme.palette['green-600']} component={<CheckS />} />;
 
 const Visibility: React.FC<VisibilityProps> = ({texts, onVisibility, visibility, item}) => {
   const visibilities = {
@@ -27,9 +27,9 @@ const Visibility: React.FC<VisibilityProps> = ({texts, onVisibility, visibility,
     <>
       {Object
       .keys(visibilities)
-      .map((key : string) => {
+      .map((key: string) => {
         const text = visibilities[key];
-        const dropdownMenuItemClick = (event: ClickParam) => {
+        const dropdownMenuItemClick = (event: ClickParam): void => {
           event.domEvent.stopPropagation();
           const vis = key as TagVisibility;
           setVisibility(vis);
@@ -59,8 +59,6 @@ const ActionsDropdown: React.FC<ActionProps> = ({
   item,
   isFavourite,
   visibility,
-  dropdownMouseOut,
-  dropdownMouseOver,
   texts,
 }: ActionProps) => {
   return (
