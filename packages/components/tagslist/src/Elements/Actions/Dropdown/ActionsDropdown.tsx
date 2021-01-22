@@ -6,6 +6,10 @@ import { ClickParam } from 'antd/es/menu';
 import { ActionProps } from '../Actions.types';
 import * as S from '../Actions.styles';
 
+const triggerOnClick = (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
+  event.stopPropagation();
+}
+
 const ActionsDropdown: React.FC<ActionProps> = ({
   onFavourite,
   onSettingsEnter,
@@ -83,7 +87,10 @@ const ActionsDropdown: React.FC<ActionProps> = ({
         </S.DropdownMenu>
       }
     >
-      <S.DropdownTrigger component={<OptionHorizontalM />} />
+      <S.DropdownTrigger 
+        component={<OptionHorizontalM />} 
+        onClick={triggerOnClick}
+      />
     </Dropdown>
   );
 };
