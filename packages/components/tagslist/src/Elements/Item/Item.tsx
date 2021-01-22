@@ -19,6 +19,7 @@ const Item: React.FC<ItemProps> = ({
   onSettingsEnter,
   onDelete,
   onFavourite,
+  onVisibility,
   onEdit,
   toggleDeleteModal,
   texts,
@@ -88,51 +89,30 @@ const Item: React.FC<ItemProps> = ({
     onFavourite && onFavourite(item);
   }, [onFavourite, item]);
 
-  const renderSuffix = (): React.ReactNode => {
-    return actionsDisplay === 'inline' ? (
-      <ActionsRow
-        onDelete={
-          onDelete &&
-          ((): void => {
-            toggleDeleteModal && toggleDeleteModal();
-          })
-        }
-        onFavourite={(): void => {
-          setHovered(false);
-          handleOnFavourite && handleOnFavourite();
-        }}
-        onSettingsEnter={onSettingsEnter}
-        onEdit={
-          onEdit &&
-          ((): void => {
-            setEditMode(true);
-          })
-        }
-        isFavourite={favourite}
-        texts={texts}
-        hovered={hovered}
-      />
-    ) : (
-      <ActionsDropdown
-        onDelete={
-          onDelete &&
-          ((): void => {
-            toggleDeleteModal && toggleDeleteModal();
-          })
-        }
-        onFavourite={handleOnFavourite}
-        onSettingsEnter={onSettingsEnter}
-        onEdit={
-          onEdit &&
-          ((): void => {
-            setEditMode(true);
-          })
-        }
-        isFavourite={favourite}
-        texts={texts}
-      />
-    );
-  };
+  const renderSuffix = (): React.ReactNode => (
+    <ActionsDropdown
+      onDelete={
+        onDelete &&
+        ((): void => {
+          toggleDeleteModal && toggleDeleteModal();
+        })
+      }
+      item={item}
+      onVisibility={onVisibility}
+      visibility={item.visibility}
+      onFavourite={handleOnFavourite}
+      onSettingsEnter={onSettingsEnter}
+      onEdit={
+        onEdit &&
+        ((): void => {
+          setEditMode(true);
+        })
+      }
+      isFavourite={favourite}
+      texts={texts}
+    />
+  );
+
   useOnClickOutside(inputRef, () => {
     if (editMode) {
       confirmEdit();

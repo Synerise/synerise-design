@@ -1,5 +1,5 @@
 import { ReactElement } from 'react';
-import { TagsListItem, TagsListProps, TagsListTexts } from '../../TagsList.types';
+import { TagsListItem, TagsListProps, TagsListTexts, TagVisibility } from '../../TagsList.types';
 
 export type ItemProps = {
   item: TagsListItem;
@@ -10,6 +10,7 @@ export type ItemProps = {
   onEdit?: (item: TagsListItem) => void;
   onDelete?: (item: TagsListItem) => void;
   onFavourite?: (item: TagsListItem) => void;
+  onVisibility?: (visibility : TagVisibility, item?: TagsListItem) => void;
   onSettingsEnter?: (item?: TagsListItem) => void;
   onItemSelect?: (item: TagsListItem) => void;
   icon?: ReactElement;

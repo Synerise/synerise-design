@@ -11,11 +11,19 @@ export type TagsListProps = {
   onDelete: (deleted: TagsListItem, options: { mode: DeleteMode; destination?: TagsListItem }) => void;
   onEdit: (edited: TagsListItem) => void;
   onFavourite: (favourite: TagsListItem) => void;
+  onVisibility: (visibility : TagVisibility, item?: TagsListItem) => void;
   onSelect: (selected: TagsListItem) => void;
   onSettings: (selected?: TagsListItem) => void;
   texts: TagsListTexts;
   showHideStep?: number;
   withCheckbox?: boolean;
+  withVisibility?: boolean;
+};
+
+export enum TagVisibility {
+  Hide = 'hide',
+  Show = 'show',
+  ShowIfUsed = 'showfiused',
 };
 
 export type TagsListItem = {
@@ -23,6 +31,7 @@ export type TagsListItem = {
   name: string;
   favourite?: boolean;
   checked?: boolean;
+  visibility?: TagVisibility;
   canUpdate?: boolean;
   canDelete?: boolean;
   canEnterSettings?: boolean;
@@ -51,4 +60,7 @@ export type TagsListTexts = {
   moveToOtherFolder: string | React.ReactNode;
   showLessLabel: string | React.ReactNode;
   showMoreLabel: string | React.ReactNode;
+  visibilityHide: string | React.ReactNode;
+  visibilityShow: string | React.ReactNode;
+  visibilityShowIfUsed: string | React.ReactNode;
 };

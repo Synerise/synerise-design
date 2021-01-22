@@ -23,6 +23,7 @@ const TagsList: React.FC<TagsListProps> = ({
   onAdd,
   onEdit,
   onFavourite,
+  onVisibility,
   onSelect,
   onSettings,
   texts,
@@ -82,6 +83,7 @@ const TagsList: React.FC<TagsListProps> = ({
       onDelete={item.canDelete ? onItemDelete : undefined}
       onEdit={item.canUpdate ? onItemEdit : undefined}
       onFavourite={onItemFavourite}
+      onVisibility={onVisibility}
       withCheckbox={withCheckbox}
       onSettingsEnter={
         item.canEnterSettings

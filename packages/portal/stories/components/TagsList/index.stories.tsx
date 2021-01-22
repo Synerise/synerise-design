@@ -81,18 +81,18 @@ const stories = {
             maxItemsVisible={number('Set default max items visible', 5, { min: 1 })}
             texts={{
               add: 'Add',
-              addItemLabel: 'Add folder',
+              addItemLabel: 'Add tag',
               addToFavourite: 'Favourite',
               cancel: 'Cancel',
               chooseDestinationFolder: 'Choose folder',
-              delete: 'Remove',
+              delete: 'Delete',
               deleteFolderLabel: 'Remove folder',
               deleteFolderConfirmationMessage: 'Are you sure you want to remove folder',
               deleteFolderDescription: 'What you want to do with content? ',
               deleteFromFavourites: 'Favourite',
               deleteAllContent: 'Remove all items',
               edit: 'Rename',
-              enterSettings: 'Settings',
+              enterSettings: 'Manage tags',
               favourite: 'Favourite',
               invalidNameError: 'Invalid folder name',
               folderNamePlaceholder: 'Folder name',
@@ -102,14 +102,19 @@ const stories = {
               showMoreLabel: 'Show',
               less: 'less',
               more: 'more',
+              visibilityShow: 'Show',
+              visibilityShowIfUsed: 'Show if used',
+              visibilityHide: 'Hide',
             }}
             onFavourite={action('OnFavourite')}
             onEdit={action('OnEdit')}
             onAdd={action('OnAdd')}
             onDelete={action('OnDelete')}
             onSettings={action('OnSettings')}
+            onVisibility={(visibility: TagVisibility, item: TagsListItem) => {
+              console.log('visibility', visibility, item);
+            }}
             onSelect={(item: TagsListItem) => {
-              console.log('zmiana');
               const newSource = [...dataSource];
 
               const idx = newSource

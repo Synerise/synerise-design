@@ -1,6 +1,7 @@
-import { FolderItem } from '@synerise/ds-folders/dist/Folders.types';
 import * as React from 'react';
 import { CalendarM, ClockM, EditM, FolderAddM, StarM, StopM, TilesM } from '@synerise/ds-icon/dist/icons';
+import { TagsListItem } from '@synerise/ds-tagslist/dist/TagsList.types';
+
 export const TOP_MENU_ITEMS: { icon: React.ReactNode; text: string }[] = [
   {
     icon: <TilesM />,
@@ -30,12 +31,14 @@ export const MIDDLE_MENU_ITEMS: { icon: React.ReactNode; text: string }[] = [
     text: 'Templates',
   },
 ];
-export const FOLDERS: FolderItem[] = [
+
+export const FOLDERS: TagsListItem[] = [
   {
     id: '1',
     name: 'Analytics',
     favourite: true,
     checked: false,
+    visibility: 'show',
     canUpdate: true,
     canDelete: true,
     canEnterSettings: true,
@@ -44,6 +47,7 @@ export const FOLDERS: FolderItem[] = [
     id: '2',
     name: 'Behavioral',
     favourite: false,
+    visibility: 'showifused',
     checked: false,
     canUpdate: true,
     canDelete: true,
@@ -54,6 +58,7 @@ export const FOLDERS: FolderItem[] = [
     name: 'Campaigns',
     favourite: false,
     checked: false,
+    visibility: 'hide',
     canUpdate: true,
     canDelete: true,
     canEnterSettings: true,
@@ -63,6 +68,7 @@ export const FOLDERS: FolderItem[] = [
     name: 'Campaigns 2',
     favourite: false,
     checked: false,
+    visibility: 'hide',
     canUpdate: true,
     canDelete: true,
     canEnterSettings: true,
@@ -72,6 +78,7 @@ export const FOLDERS: FolderItem[] = [
     name: 'Metrics',
     favourite: false,
     checked: false,
+    visibility: 'hide',
     canUpdate: true,
     canDelete: true,
     canEnterSettings: true,
@@ -81,6 +88,7 @@ export const FOLDERS: FolderItem[] = [
     name: 'Schema',
     favourite: false,
     checked: false,
+    visibility: 'hide',
     canUpdate: true,
     canDelete: true,
     canEnterSettings: true,
@@ -90,6 +98,7 @@ export const FOLDERS: FolderItem[] = [
     name: 'Recent',
     favourite: true,
     checked: false,
+    visibility: 'hide',
     canUpdate: true,
     canDelete: true,
     canEnterSettings: true,
@@ -99,6 +108,7 @@ export const FOLDERS: FolderItem[] = [
     name: 'Upcoming',
     favourite: false,
     checked: false,
+    visibility: 'hide',
     canUpdate: true,
     canDelete: true,
     canEnterSettings: true,
@@ -108,6 +118,7 @@ export const FOLDERS: FolderItem[] = [
     name: 'Automation',
     favourite: false,
     checked: false,
+    visibility: 'hide',
     canUpdate: true,
     canDelete: true,
     canEnterSettings: true,
@@ -117,6 +128,7 @@ export const FOLDERS: FolderItem[] = [
     name: 'Promotion',
     favourite: true,
     checked: false,
+    visibility: 'hide',
     canUpdate: true,
     canDelete: true,
     canEnterSettings: true,
@@ -126,6 +138,7 @@ export const FOLDERS: FolderItem[] = [
     name: 'Promotion 3',
     favourite: true,
     checked: false,
+    visibility: 'hide',
     canUpdate: true,
     canDelete: true,
     canEnterSettings: true,
@@ -135,6 +148,7 @@ export const FOLDERS: FolderItem[] = [
     name: 'Promotion 4 with very long name',
     favourite: true,
     checked: false,
+    visibility: 'hide',
     canUpdate: true,
     canDelete: true,
     canEnterSettings: true,
