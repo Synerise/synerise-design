@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { boolean, select, text } from '@storybook/addon-knobs';
 import Loader from '@synerise/ds-loader';
-import styled from 'styled-components';
+import useInterval from "@use-it/interval";
+import { useState } from 'react';
 
 
 
@@ -25,28 +26,20 @@ const colorOptions = {
   violet: 'violet',
 };
 
-const PercantageWrapper = styled.div`
-@property --num {
-  syntax: "<integer>";
-  initial-value: 0;
-  inherits: false;
-}
-  animation: counter 10s infinite ease-in-out;
-  counter-reset: num var(--num);
 
-&::after {
-  content: counter(num);
-}
 
-@keyframes counter {
-  from {
-    --num: 0;
-  }
-  to {
-    --num: 100;
-  }
-}
-`;
+export const Counter = ({ delay = 100 }) => {
+  const [count, setCount] = useState(0);
+
+  useInterval(() => {
+    setCount((currentCount) => currentCount + 1);
+    if (count === 100)
+      setCount(0)
+  }, delay);
+
+  return <span>{count}%</span>;
+};
+
 const stories = {
   default: () => {
     const size = select('Size', iconSizes,'M')
@@ -65,7 +58,7 @@ const stories = {
     };
     const getPercent = (): number | React.ReactNode | null => {
       if (showPercent) {
-        return <div style={{display: 'flex'}}><PercantageWrapper/> %</div>;
+        return (<Counter/>);
       } else {
         return null;
       }
