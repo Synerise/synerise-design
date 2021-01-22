@@ -1,10 +1,10 @@
-import { FolderItem } from './Folders.types';
+import { TagsListItem } from './TagsList.types';
 
 const DEFAULT_NAME = '';
-const isDuplicate = (itemsList: FolderItem[], item: FolderItem): boolean => {
+const isDuplicate = (itemsList: TagsListItem[], item: TagsListItem): boolean => {
   return itemsList.some(i => i.name.toLowerCase() === item.name.toLowerCase() && i.id !== item.id);
 };
-export const addSuffixToDuplicate = (itemsList: FolderItem[], editedItem: FolderItem): FolderItem => {
+export const addSuffixToDuplicate = (itemsList: TagsListItem[], editedItem: TagsListItem): TagsListItem => {
   let newItem = editedItem;
   while (isDuplicate(itemsList, newItem)) {
     newItem = { ...newItem, name: `${newItem.name || DEFAULT_NAME} (1)` };
@@ -12,7 +12,7 @@ export const addSuffixToDuplicate = (itemsList: FolderItem[], editedItem: Folder
   return newItem;
 };
 
-export const sortAlphabetically = (prev: FolderItem, next: FolderItem): number => {
+export const sortAlphabetically = (prev: TagsListItem, next: TagsListItem): number => {
   const prevName = prev.name.toLowerCase();
   const nextName = next.name.toLowerCase();
 
@@ -22,12 +22,12 @@ export const sortAlphabetically = (prev: FolderItem, next: FolderItem): number =
   return prevName > nextName ? 1 : 0;
 };
 
-export const handleItemAdd = (items: FolderItem[], addedItem: FolderItem): FolderItem[] => {
+export const handleItemAdd = (items: TagsListItem[], addedItem: TagsListItem): TagsListItem[] => {
   const nonDuplicateItem = addSuffixToDuplicate(items, addedItem);
   return [...items, nonDuplicateItem];
 };
 
-export const handleItemFavourite = (items: FolderItem[], item: FolderItem): FolderItem[] => {
+export const handleItemFavourite = (items: TagsListItem[], item: TagsListItem): TagsListItem[] => {
   return items.map(i => {
     if (i.id === item.id) {
       return {
@@ -38,7 +38,7 @@ export const handleItemFavourite = (items: FolderItem[], item: FolderItem): Fold
     return i;
   });
 };
-export const handleItemEdit = (items: FolderItem[], editedItem: FolderItem): FolderItem[] => {
+export const handleItemEdit = (items: TagsListItem[], editedItem: TagsListItem): TagsListItem[] => {
   const nonDuplicateItem = addSuffixToDuplicate(items, editedItem);
   return items.map(i => {
     if (i.id === nonDuplicateItem.id) {
@@ -51,7 +51,7 @@ export const handleItemEdit = (items: FolderItem[], editedItem: FolderItem): Fol
   });
 };
 
-export const handleItemDelete = (items: FolderItem[], deletedItem: FolderItem): FolderItem[] => {
+export const handleItemDelete = (items: TagsListItem[], deletedItem: TagsListItem): TagsListItem[] => {
   return items.filter(item => item.id !== deletedItem.id);
 };
 

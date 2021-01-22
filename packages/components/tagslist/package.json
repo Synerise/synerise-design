@@ -1,7 +1,7 @@
 {
-  "name": "@synerise/ds-folders",
+  "name": "@synerise/ds-tagslist",
   "version": "0.3.14",
-  "description": "Folders UI Component for the Synerise Design System",
+  "description": "TagsList UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
   "main": "dist/index.js",

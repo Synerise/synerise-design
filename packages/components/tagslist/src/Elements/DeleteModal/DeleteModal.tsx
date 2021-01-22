@@ -8,7 +8,7 @@ import { SelectValue } from 'antd/es/select';
 import Scrollbar from '@synerise/ds-scrollbar';
 import * as S from './DeleteModal.styles';
 import { DeleteModalProps, DeleteMode } from './DeleteModal.types';
-import { FolderItem } from '../../Folders.types';
+import { TagsListItem } from '../../TagsList.types';
 import { sortAlphabetically } from '../../utils';
 
 const DeleteModal: React.FC<DeleteModalProps> = ({
@@ -20,7 +20,7 @@ const DeleteModal: React.FC<DeleteModalProps> = ({
   texts,
 }: DeleteModalProps) => {
   const [mode, setMode] = React.useState<DeleteMode>('move-to-default');
-  const [destination, setDestination] = React.useState<FolderItem | undefined>(undefined);
+  const [destination, setDestination] = React.useState<TagsListItem | undefined>(undefined);
 
   const handleConfirm = React.useCallback(() => {
     onConfirm && onConfirm({ mode, destination });

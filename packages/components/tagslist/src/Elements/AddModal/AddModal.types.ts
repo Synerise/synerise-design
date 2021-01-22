@@ -1,7 +1,7 @@
-import { FolderItem, FolderTexts } from '../../Folders.types';
+import { TagsListItem, TagsListTexts } from '../../TagsList.types';
 
 export type Props = {
-  onItemAdd?: (addParams: FolderItem) => void;
+  onItemAdd?: (addParams: TagsListItem) => void;
   disabled: boolean;
-  texts: FolderTexts;
+  texts: TagsListTexts;
 };

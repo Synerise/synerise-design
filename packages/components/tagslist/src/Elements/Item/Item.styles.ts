@@ -29,7 +29,7 @@ export const InlineEditInput = styled(BorderLessInput)<DSInputProps>`
 export const SuffixWrapper = styled.div`
   transition: opacity 0.2s ease-out;
 `;
-export const FolderItem = styled(Menu.Item)<
+export const TagsListItem = styled(Menu.Item)<
   MenuItemProps & JSX.IntrinsicAttributes & { inline: boolean; editMode: boolean }
 >`
   && {
@@ -70,7 +70,7 @@ export const FolderItem = styled(Menu.Item)<
   }
 `;
 
-export const FolderText = styled.div`
+export const TagsListText = styled.div`
   padding-right: 20px;
   overflow: hidden;
   display: block;

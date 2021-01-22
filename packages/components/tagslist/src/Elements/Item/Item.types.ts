@@ -1,12 +1,12 @@
-import { FolderItem, FoldersProps, FolderTexts } from '../../Folders.types';
+import { TagsListItem, TagsListProps, TagsListTexts } from '../../TagsList.types';
 
-export type FolderProps = {
-  item: FolderItem;
+export type ItemProps = {
+  item: TagsListItem;
   toggleDeleteModal?: () => void;
-  onEdit?: (item: FolderItem) => void;
-  onDelete?: (item: FolderItem) => void;
-  onFavourite?: (item: FolderItem) => void;
-  onSettingsEnter?: (item?: FolderItem) => void;
-  onItemSelect?: (item: FolderItem) => void;
-  texts: FolderTexts;
-} & Pick<FoldersProps, 'actionsDisplay'>;
+  onEdit?: (item: TagsListItem) => void;
+  onDelete?: (item: TagsListItem) => void;
+  onFavourite?: (item: TagsListItem) => void;
+  onSettingsEnter?: (item?: TagsListItem) => void;
+  onItemSelect?: (item: TagsListItem) => void;
+  texts: TagsListTexts;
+} & Pick<TagsListProps, 'actionsDisplay'>;

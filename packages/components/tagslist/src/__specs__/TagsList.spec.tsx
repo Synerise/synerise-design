@@ -1,23 +1,23 @@
 import * as React from 'react';
-import Folders from '../Folders';
+import TagsList from '../TagsList';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import { fireEvent, waitFor } from '@testing-library/react';
-import { FolderItem } from '../Folders.types';
+import { TagsListItem } from '../TagsList.types';
 
-const FOLDERS: FolderItem[] = [
+const FOLDERS: TagsListItem[] = [
   { name: 'Bangkok', id: '1', canDelete: true, canUpdate: true },
   { name: 'Paris', id: '2', canDelete: true },
   { name: 'Alaska', id: '3', canDelete: true },
   { name: 'Zaragoza', id: '4', canDelete: true },
 ];
-describe('Folders', () => {
+describe('TagsList', () => {
   it('should render passed folder names', () => {
     const onDelete = jest.fn();
     const onEdit = jest.fn();
     const onAdd = jest.fn();
     const onFavourite = jest.fn();
     const { getByText } = renderWithProvider(
-      <Folders
+      <TagsList
         actionsDisplay={'inline'}
         dataSource={FOLDERS}
         onDelete={onDelete}
@@ -39,7 +39,7 @@ describe('Folders', () => {
       const onAdd = jest.fn();
       const onFavourite = jest.fn();
       const { getByText, container } = renderWithProvider(
-        <Folders
+        <TagsList
           actionsDisplay={'inline'}
           dataSource={FOLDERS}
           onDelete={onDelete}
@@ -61,7 +61,7 @@ describe('Folders', () => {
       const onAdd = jest.fn();
       const onFavourite = jest.fn();
       const { getByText, container } = renderWithProvider(
-        <Folders
+        <TagsList
           actionsDisplay={'inline'}
           dataSource={FOLDERS}
           onDelete={onDelete}
@@ -84,7 +84,7 @@ describe('Folders', () => {
       const onAdd = jest.fn();
       const onFavourite = jest.fn();
       const { getByText, container } = renderWithProvider(
-        <Folders
+        <TagsList
           actionsDisplay={'inline'}
           dataSource={FOLDERS}
           onDelete={onDelete}
@@ -115,7 +115,7 @@ describe('Folders', () => {
     const onAdd = jest.fn();
     const onFavourite = jest.fn();
     const { getByText, container } = renderWithProvider(
-      <Folders
+      <TagsList
         actionsDisplay={'inline'}
         dataSource={FOLDERS}
         onDelete={onDelete}
@@ -137,7 +137,7 @@ describe('Folders', () => {
     const onAdd = jest.fn();
     const onFavourite = jest.fn();
     const { getByText, container } = renderWithProvider(
-      <Folders
+      <TagsList
         actionsDisplay={'inline'}
         dataSource={FOLDERS}
         onDelete={onDelete}
@@ -165,7 +165,7 @@ describe('Folders', () => {
     const onAdd = jest.fn();
     const onFavourite = jest.fn();
     const { getByText, queryByText } = renderWithProvider(
-      <Folders
+      <TagsList
         actionsDisplay={'inline'}
         dataSource={FOLDERS}
         onDelete={onDelete}
@@ -190,9 +190,9 @@ describe('Folders', () => {
     const onEdit = jest.fn();
     const onAdd = jest.fn();
     const onFavourite = jest.fn();
-    const newItems: FolderItem[] = [...FOLDERS, { name: 'Zanzibar', id: '7', favourite: true }];
+    const newItems: TagsListItem[] = [...FOLDERS, { name: 'Zanzibar', id: '7', favourite: true }];
     const { getByText } = renderWithProvider(
-      <Folders
+      <TagsList
         actionsDisplay={'inline'}
         dataSource={newItems}
         onDelete={onDelete}
@@ -216,7 +216,7 @@ describe('Folders', () => {
     const onAdd = jest.fn();
     const onFavourite = jest.fn();
     const { getByText, queryByText } = renderWithProvider(
-      <Folders
+      <TagsList
         actionsDisplay={'inline'}
         dataSource={FOLDERS}
         onDelete={onDelete}

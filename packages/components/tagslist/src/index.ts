@@ -1,1 +1,1 @@
-export { default } from './Folders';
+export { default } from './TagsList';

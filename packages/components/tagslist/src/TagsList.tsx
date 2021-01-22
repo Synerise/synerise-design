@@ -1,9 +1,9 @@
 import * as React from 'react';
 import Menu from '@synerise/ds-menu';
-import Folder from './Elements/Folder/Folder';
+import Item from './Elements/Item/Item';
 import AddModal from './Elements/AddModal/AddModal';
 import './style/index.less';
-import { FolderItem, FoldersProps } from './Folders.types';
+import { TagsListItem, TagsListProps } from './TagsList.types';
 import { handleItemAdd, handleItemDelete, handleItemEdit, handleItemFavourite, sortAlphabetically } from './utils';
 import DeleteModal from './Elements/DeleteModal/DeleteModal';
 import ShowLessOrMore from './Elements/ShowLessOrMore/ShowLessOrMore';
@@ -11,7 +11,7 @@ import ShowLessOrMore from './Elements/ShowLessOrMore/ShowLessOrMore';
 const DEFAULT_STEP = 5;
 const DEFAULT_ITEMS_VISIBLE = 5;
 const MODAL_CLOSE_DURATION = 250;
-const Folders: React.FC<FoldersProps> = ({
+const TagsList: React.FC<TagsListProps> = ({
   addButtonDisabled,
   actionsDisplay,
   dataSource,
@@ -25,9 +25,9 @@ const Folders: React.FC<FoldersProps> = ({
   texts,
   showHideStep,
   folderFilter,
-}: FoldersProps) => {
-  const [items, setItems] = React.useState<FolderItem[]>(folderFilter ? dataSource.filter(folderFilter) : dataSource);
-  const [itemToDelete, setItemToDelete] = React.useState<FolderItem | undefined>(undefined);
+}: TagsListProps) => {
+  const [items, setItems] = React.useState<TagsListItem[]>(folderFilter ? dataSource.filter(folderFilter) : dataSource);
+  const [itemToDelete, setItemToDelete] = React.useState<TagsListItem | undefined>(undefined);
   const [deleteModalVisible, setDeleteModalVisible] = React.useState<boolean>(false);
   const [visibleItemsCount, setVisibleItemsCount] = React.useState<number>(
     maxItemsVisible && maxItemsVisible > 0 ? maxItemsVisible : DEFAULT_ITEMS_VISIBLE
@@ -52,25 +52,25 @@ const Folders: React.FC<FoldersProps> = ({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [itemToDelete]);
-  const onItemAdd = (addedItem: FolderItem): void => {
+  const onItemAdd = (addedItem: TagsListItem): void => {
     onAdd && onAdd(addedItem);
     setItems(handleItemAdd(items, addedItem));
   };
-  const onItemEdit = (editedItem: FolderItem): void => {
+  const onItemEdit = (editedItem: TagsListItem): void => {
     onEdit && onEdit(editedItem);
     setItems(handleItemEdit(items, editedItem));
   };
-  const onItemFavourite = (item: FolderItem): void => {
+  const onItemFavourite = (item: TagsListItem): void => {
     onFavourite && onFavourite({ ...item, favourite: !item.favourite });
     setItems(handleItemFavourite(items, item));
   };
-  const onItemDelete = (deleted: FolderItem): void => {
+  const onItemDelete = (deleted: TagsListItem): void => {
     setItemToDelete(deleted);
     setItems(handleItemDelete(items, deleted));
   };
 
-  const renderItem = (item: FolderItem): React.ReactNode => (
-    <Folder
+  const renderItem = (item: TagsListItem): React.ReactNode => (
+    <Item
       item={item}
       key={`${item.id}-${item.name}`}
       actionsDisplay={actionsDisplay}
@@ -140,4 +140,4 @@ const Folders: React.FC<FoldersProps> = ({
     </>
   );
 };
-export default Folders;
+export default TagsList;

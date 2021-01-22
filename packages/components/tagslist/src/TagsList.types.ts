@@ -1,23 +1,23 @@
 import * as React from 'react';
 import { DeleteMode } from './Elements/DeleteModal/DeleteModal.types';
 
-export type FoldersProps = {
+export type TagsListProps = {
   addButtonDisabled?: boolean;
   actionsDisplay: 'inline' | 'dropdown';
-  dataSource: FolderItem[];
-  folderFilter?: (item: FolderItem) => boolean;
+  dataSource: TagsListItem[];
+  folderFilter?: (item: TagsListItem) => boolean;
   maxItemsVisible?: number;
-  onAdd: (added: FolderItem) => void;
-  onDelete: (deleted: FolderItem, options: { mode: DeleteMode; destination?: FolderItem }) => void;
-  onEdit: (edited: FolderItem) => void;
-  onFavourite: (favourite: FolderItem) => void;
-  onSelect: (selected: FolderItem) => void;
-  onSettings: (selected?: FolderItem) => void;
-  texts: FolderTexts;
+  onAdd: (added: TagsListItem) => void;
+  onDelete: (deleted: TagsListItem, options: { mode: DeleteMode; destination?: TagsListItem }) => void;
+  onEdit: (edited: TagsListItem) => void;
+  onFavourite: (favourite: TagsListItem) => void;
+  onSelect: (selected: TagsListItem) => void;
+  onSettings: (selected?: TagsListItem) => void;
+  texts: TagsListTexts;
   showHideStep?: number;
 };
 
-export type FolderItem = {
+export type TagsListItem = {
   id: string;
   name: string;
   favourite?: boolean;
@@ -26,7 +26,7 @@ export type FolderItem = {
   canEnterSettings?: boolean;
 };
 
-export type FolderTexts = {
+export type TagsListTexts = {
   add: string | React.ReactNode;
   addItemLabel: string | React.ReactNode;
   addToFavourite: string | React.ReactNode;

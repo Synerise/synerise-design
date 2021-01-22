@@ -1,13 +1,13 @@
-import { FolderItem, FolderTexts } from '../../Folders.types';
+import { TagsListItem, TagsListTexts } from '../../TagsList.types';
 
 export type ActionProps = {
   isFavourite?: boolean;
   dropdownMouseOver?: () => void;
   dropdownMouseOut?: () => void;
-  onDelete?: (item?: FolderItem) => void;
-  onEdit?: (item?: FolderItem) => void;
-  onSettingsEnter?: (item?: FolderItem) => void;
-  onFavourite?: (item?: FolderItem) => void;
-  texts: FolderTexts;
+  onDelete?: (item?: TagsListItem) => void;
+  onEdit?: (item?: TagsListItem) => void;
+  onSettingsEnter?: (item?: TagsListItem) => void;
+  onFavourite?: (item?: TagsListItem) => void;
+  texts: TagsListTexts;
   hovered?: boolean;
 };

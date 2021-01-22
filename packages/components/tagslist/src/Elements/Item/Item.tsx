@@ -4,13 +4,13 @@ import { FolderFavouriteFlatM, FolderFavouriteM, FolderM } from '@synerise/ds-ic
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { useOnClickOutside } from '@synerise/ds-utils';
 import Tooltip from '@synerise/ds-tooltip';
-import { FolderProps } from './Folder.types';
-import * as S from './Folder.styles';
+import { ItemProps } from './Item.types';
+import * as S from './Item.styles';
 import ActionsDropdown from '../Actions/Dropdown/ActionsDropdown';
 import ActionsRow from '../Actions/Row/ActionsRow';
 import { validateFolderName } from '../../utils';
 
-const Folder: React.FC<FolderProps> = ({
+const Folder: React.FC<ItemProps> = ({
   item,
   actionsDisplay,
   onSettingsEnter,
@@ -20,7 +20,7 @@ const Folder: React.FC<FolderProps> = ({
   toggleDeleteModal,
   texts,
   onItemSelect,
-}: FolderProps) => {
+}: ItemProps) => {
   const { name, favourite } = item;
   const [hovered, setHovered] = React.useState<boolean>(false);
   const [folderName, setFolderName] = React.useState<string>(name);
@@ -120,7 +120,7 @@ const Folder: React.FC<FolderProps> = ({
 
   return (
     // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
-    <S.FolderItem
+    <S.TagsListItem
       editMode={editMode}
       onClick={(): void => {
         onItemSelect && onItemSelect(item);
@@ -151,11 +151,11 @@ const Folder: React.FC<FolderProps> = ({
             />
           </S.InlineEditWrapper>
         ) : (
-          <S.FolderText>
+          <S.TagsListText>
             <Tooltip placement="topLeft" title={folderName}>
               {folderName}{' '}
             </Tooltip>
-          </S.FolderText>
+          </S.TagsListText>
         )
       }
       inline={actionsDisplay === 'inline'}

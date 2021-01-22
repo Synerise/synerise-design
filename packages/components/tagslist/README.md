@@ -1,9 +1,9 @@
 ---
 id: folders
-title: Folders
+title: TagsList
 ---
 
-Folders UI Component
+TagsList UI Component
 
 ## Installation
 
@@ -16,15 +16,15 @@ yarn add @synerise/ds-folders
 ## Usage
 
 ```
-import Folders from '@synerise/ds-folders'
+import TagsList from '@synerise/ds-folders'
 
-<Folders />
+<TagsList />
 
 ```
 
 ## Demo
 
-<iframe src="/storybook-static/iframe.html?id=components-Folders--default"></iframe>
+<iframe src="/storybook-static/iframe.html?id=components-TagsList--default"></iframe>
 
 ## API
 
@@ -32,19 +32,19 @@ import Folders from '@synerise/ds-folders'
 | ----------------- | ----------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | -------- |
 | addButtonDisabled | Defines if add button is disabled                                       | boolean                                                                                  | `false`  |
 | actionsDisplay    | The way of displaying actions menu                                      | `inline` / `dropdown`                                                                    | `inline` |
-| dataSource        | Array of items which should be displayed as folders                     | FolderItem[]                                                                             | []       |
-| folderFilter      | Filter function which may be applied to the data source                 | (item: FolderItem)=>boolean                                                              | -        |
+| dataSource        | Array of items which should be displayed as folders                     | TagsListItem[]                                                                             | []       |
+| folderFilter      | Filter function which may be applied to the data source                 | (item: TagsListItem)=>boolean                                                              | -        |
 | maxItemsVisible   | The maximum amount of items which will be visible on the initial render | number                                                                                   | 5        |
-| onAdd             | Callback executed when new folder is added                              | (added: FolderItem) => void                                                              | -        |
-| onDelete          | Callback executed when a folder is deleted                              | (deleted: FolderItem, options: `{ mode: DeleteMode; destination?: FolderItem }`) => void | -        |
-| onEdit            | Callback executed when a folder is edited                               | (edited: FolderItem) => void                                                             | -        |
-| onFavourite       | Callback executed when a folder is added or removed from favourites     | (favourite: FolderItem) => void                                                          | -        |
-| onSelect          | Callback executed when a folder is selected                             | (selected: FolderItem) => void                                                           | -        |
-| onSettings        | Callback executed when user enters settings panel for a folder          | (selected: FolderItem) => void                                                           | -        |
+| onAdd             | Callback executed when new folder is added                              | (added: TagsListItem) => void                                                              | -        |
+| onDelete          | Callback executed when a folder is deleted                              | (deleted: TagsListItem, options: `{ mode: DeleteMode; destination?: TagsListItem }`) => void | -        |
+| onEdit            | Callback executed when a folder is edited                               | (edited: TagsListItem) => void                                                             | -        |
+| onFavourite       | Callback executed when a folder is added or removed from favourites     | (favourite: TagsListItem) => void                                                          | -        |
+| onSelect          | Callback executed when a folder is selected                             | (selected: TagsListItem) => void                                                           | -        |
+| onSettings        | Callback executed when user enters settings panel for a folder          | (selected: TagsListItem) => void                                                           | -        |
 | showHideStep      | Number of items shown after clicking "show more" button                 | number                                                                                   | 5        |
-| texts             | Translation texts passed to the component                               | FolderTexts                                                                              | -        |
+| texts             | Translation texts passed to the component                               | TagsListTexts                                                                              | -        |
 
-### FolderItem
+### TagsListItem
 
 | Property         | Description                                  | Type    | Default |
 | ---------------- | -------------------------------------------- | ------- | ------- |
@@ -55,7 +55,7 @@ import Folders from '@synerise/ds-folders'
 | canDelete        | Whether item is removable                    | boolean | `false` |
 | canEnterSettings | Whether user can enter settings for the item | boolean | `false` |
 
-### FolderTexts
+### TagsListTexts
 
 | Property                        | Description                                                                                | Type                     | Default |
 | ------------------------------- | ------------------------------------------------------------------------------------------ | ------------------------ | ------- |

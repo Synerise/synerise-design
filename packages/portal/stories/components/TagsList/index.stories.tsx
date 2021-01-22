@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Folders from '@synerise/ds-folders';
+import TagsList from '@synerise/ds-tagslist';
 import Menu from '@synerise/ds-menu';
 import { boolean, number } from '@storybook/addon-knobs';
 import { FOLDERS, MIDDLE_MENU_ITEMS, TOP_MENU_ITEMS } from './dataset';
@@ -7,7 +7,7 @@ import Icon from '@synerise/ds-icon';
 import Divider from '@synerise/ds-divider';
 import { action } from '@storybook/addon-actions';
 import { StarFillM, StarM } from '@synerise/ds-icon/dist/icons';
-import { FolderItem } from '@synerise/ds-folders/dist/Folders.types';
+import { Item } from '@synerise/ds-tagslist/dist/TagsList.types';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 const wrapperStyles: React.CSSProperties = {
   width: '338px',
@@ -21,7 +21,7 @@ const renderMenuItem = (item: { icon: React.ReactNode; text: string }, onClick: 
 
 const getFilter = filterName => {
   if (filterName === 'favourite') {
-    return (item: FolderItem) => !!item.favourite;
+    return (item: Item) => !!item.favourite;
   }
   return undefined;
 };
@@ -73,7 +73,7 @@ const stories = {
         </Menu>
         {DividerWrapper}
         <div style={{ padding: '0 24px' }}>
-          <Folders
+          <TagsList
             actionsDisplay={getActionsDisplay(showActionsInRow)}
             dataSource={FOLDERS}
             maxItemsVisible={number('Set default max items visible', 5, { min: 1 })}
@@ -119,7 +119,7 @@ const stories = {
 };
 
 export default {
-  name: 'Components/Folders',
+  name: 'Components/TagsList',
   config: {},
   stories,
 };
