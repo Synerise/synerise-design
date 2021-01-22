@@ -161,7 +161,11 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
     `}
     
     &:active {
+<<<<<<< HEAD
       background: ${(props): string => props.theme.palette['blue-050']};
+=======
+      background: ${(props): string => props.theme.palette['grey-050']};
+>>>>>>> feat(item-picker): add bottom action
     }
 
     & {
