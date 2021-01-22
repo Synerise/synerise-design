@@ -161,7 +161,7 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
     `}
     
     &:active {
-      background: none;
+      background: ${(props): string => props.theme.palette['grey-050']};
     }
 
     & {
