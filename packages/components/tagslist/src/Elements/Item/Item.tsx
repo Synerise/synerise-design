@@ -69,19 +69,22 @@ const Item: React.FC<ItemProps> = ({
     inputRef?.current !== null && inputRef.current.focus();
   }, [inputRef, editMode]);
 
+  console.log('rerender', timeoutRef.current);
+
   const onMouseOver = useCallback((): void => {
-    setHovered(true);
-  }, [setHovered]);
+      clearTimeout(timeoutRef.current);
+      if(!hovered) setHovered(true);
+  }, [hovered, setHovered, timeoutRef]);
 
   const onMouseOut = useCallback((): void => {
-    setHovered(false);
-  }, [setHovered]);
+    timeoutRef.current = setTimeout(() => setHovered(false), 10);
+  }, [hovered, setHovered, timeoutRef]);
 
   const handleOnFavourite = useCallback((): void => {
     onFavourite && onFavourite(item);
   }, [onFavourite, item]);
 
-  const renderSuffix = (): ReactNode => {
+  const renderSuffix = (): React.ReactNode => {
     return actionsDisplay === 'inline' ? (
       <ActionsRow
         onDelete={
@@ -122,8 +125,6 @@ const Item: React.FC<ItemProps> = ({
           })
         }
         isFavourite={favourite}
-        dropdownMouseOut={onMouseOut}
-        dropdownMouseOver={onMouseOver}
         texts={texts}
       />
     );
@@ -182,10 +183,8 @@ const Item: React.FC<ItemProps> = ({
         )
       }
       inline={actionsDisplay === 'inline'}
-      onItemHover={onMouseOver}
       // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
       // @ts-ignore
-      onMouseLeave={onMouseOut}
       onMouseOut={onMouseOut}
       onMouseOver={onMouseOver}
     />
