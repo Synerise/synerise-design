@@ -76,8 +76,8 @@ const Item: React.FC<ItemProps> = ({
   }, [inputRef, editMode]);
 
   const onMouseOver = useCallback((): void => {
-      clearTimeout(timeoutRef.current);
-      if(!hovered) setHovered(true);
+    clearTimeout(timeoutRef.current);
+    if(!hovered) setHovered(true);
   }, [hovered, setHovered, timeoutRef]);
 
   const onMouseOut = useCallback((): void => {
@@ -144,7 +144,7 @@ const Item: React.FC<ItemProps> = ({
     <S.TagsListItem
       editMode={editMode}
       onClick={(): void => {
-        setChecked(!isChecked);
+        if(typeof checked === 'undefined') setChecked(!isChecked);
         onItemSelect && onItemSelect(item);
       }}
       prefixel={

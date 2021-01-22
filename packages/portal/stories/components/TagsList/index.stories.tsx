@@ -1,5 +1,6 @@
 import * as React from 'react';
 import TagsList from '@synerise/ds-tagslist';
+import { TagsListItem } from '@synerise/ds-tagslist/dist/TagsList.types';
 import Menu from '@synerise/ds-menu';
 import { boolean, number } from '@storybook/addon-knobs';
 import { FOLDERS, MIDDLE_MENU_ITEMS, TOP_MENU_ITEMS } from './dataset';
@@ -7,7 +8,6 @@ import Icon from '@synerise/ds-icon';
 import Divider from '@synerise/ds-divider';
 import { action } from '@storybook/addon-actions';
 import { StarFillM, StarM } from '@synerise/ds-icon/dist/icons';
-import { Item } from '@synerise/ds-tagslist/dist/TagsList.types';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 const wrapperStyles: React.CSSProperties = {
   width: '338px',
@@ -21,15 +21,17 @@ const renderMenuItem = (item: { icon: React.ReactNode; text: string }, onClick: 
 
 const getFilter = filterName => {
   if (filterName === 'favourite') {
-    return (item: Item) => !!item.favourite;
+    return (item: TagsListItem) => !!item.favourite;
   }
   return undefined;
 };
 
 const stories = {
   default: () => {
-    const showActionsInRow = boolean('Show actions in a row', false);
+    // const showActionsInRow = boolean('Show actions in a row', false);
+    const showCheckboxes = boolean('Show item checkboxes on hover', true);
     const [starred, setStarred] = React.useState(false);
+    const [dataSource, setDataSource] = React.useState(FOLDERS);
     const getActionsDisplay = (row: boolean): 'inline' | 'dropdown' => {
       return row ? 'inline' : 'dropdown';
     };
@@ -39,6 +41,7 @@ const stories = {
         <Divider dashed />
       </div>
     );
+
     return (
       <div style={wrapperStyles}>
         <Menu style={{ padding: '0 24px' }}>
@@ -74,8 +77,7 @@ const stories = {
         {DividerWrapper}
         <div style={{ padding: '0 24px' }}>
           <TagsList
-            actionsDisplay={getActionsDisplay(showActionsInRow)}
-            dataSource={FOLDERS}
+            dataSource={dataSource}
             maxItemsVisible={number('Set default max items visible', 5, { min: 1 })}
             texts={{
               add: 'Add',
@@ -106,11 +108,19 @@ const stories = {
             onAdd={action('OnAdd')}
             onDelete={action('OnDelete')}
             onSettings={action('OnSettings')}
-            onSelect={()=>{
-              setStarred(false);
-              action('OnSettings')
+            onSelect={(item: TagsListItem) => {
+              console.log('zmiana');
+              const newSource = [...dataSource];
+
+              const idx = newSource
+                .findIndex((row: any) => item.id === row.id);
+
+              newSource[idx].checked = !newSource[idx].checked;
+
+              setDataSource(newSource);
             }}
             addButtonDisabled={false}
+            withCheckbox={showCheckboxes}
           />
         </div>
       </div>

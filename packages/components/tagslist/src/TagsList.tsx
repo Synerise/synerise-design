@@ -11,6 +11,9 @@ import ShowLessOrMore from './Elements/ShowLessOrMore/ShowLessOrMore';
 const DEFAULT_STEP = 5;
 const DEFAULT_ITEMS_VISIBLE = 5;
 const MODAL_CLOSE_DURATION = 250;
+
+const MemoItem = React.memo(Item);
+
 const TagsList: React.FC<TagsListProps> = ({
   addButtonDisabled,
   actionsDisplay,
@@ -71,10 +74,11 @@ const TagsList: React.FC<TagsListProps> = ({
   };
 
   const renderItem = (item: TagsListItem): React.ReactNode => (
-    <Item
+    <MemoItem
       item={item}
       key={`${item.id}-${item.name}`}
       actionsDisplay={actionsDisplay}
+      checked={item.checked}
       onDelete={item.canDelete ? onItemDelete : undefined}
       onEdit={item.canUpdate ? onItemEdit : undefined}
       onFavourite={onItemFavourite}

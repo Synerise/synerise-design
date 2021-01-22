@@ -22,6 +22,7 @@ export type TagsListItem = {
   id: string;
   name: string;
   favourite?: boolean;
+  checked?: boolean;
   canUpdate?: boolean;
   canDelete?: boolean;
   canEnterSettings?: boolean;
