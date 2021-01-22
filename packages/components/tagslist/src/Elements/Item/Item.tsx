@@ -34,8 +34,10 @@ const Item: React.FC<ItemProps> = ({
   const [folderName, setFolderName] = useState<string>(name);
   const [editMode, setEditMode] = useState<boolean>(false);
   const [isChecked, setChecked] = useState<boolean>(checked);
+  const [overflowed, setOverflowed] = useState<boolean>(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const timeoutRef = useRef<number>(0);
+  const textRef = useRef<HTMLDivElement>(null);
 
   const confirmEdit = useCallback((): void => {
     if (validateFolderName(folderName)) {
@@ -51,6 +53,10 @@ const Item: React.FC<ItemProps> = ({
 
   useEffect(() => {
     setFolderName(name);
+    // Check if is overflowed
+    if(textRef.current && textRef.current?.offsetWidth < textRef.current?.scrollWidth) {
+      setOverflowed(true);
+    }
   }, [name]);
 
   // Change checked state if prop changes
@@ -68,8 +74,6 @@ const Item: React.FC<ItemProps> = ({
   useEffect(() => {
     inputRef?.current !== null && inputRef.current.focus();
   }, [inputRef, editMode]);
-
-  console.log('rerender', timeoutRef.current);
 
   const onMouseOver = useCallback((): void => {
       clearTimeout(timeoutRef.current);
@@ -175,10 +179,12 @@ const Item: React.FC<ItemProps> = ({
             />
           </S.InlineEditWrapper>
         ) : (
-          <S.TagsListText>
-            <Tooltip placement="topLeft" title={folderName}>
-              {folderName}{' '}
-            </Tooltip>
+          <S.TagsListText ref={textRef}>
+            {overflowed ? (
+              <Tooltip placement="topLeft" title={folderName}>
+                {folderName}{' '}
+              </Tooltip>
+            ) : folderName}
           </S.TagsListText>
         )
       }
