@@ -126,9 +126,6 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
       opacity: 0.05;
       border-radius: inherit;
     }
-    &:active {
-      background: none;
-    }
     & .ds-checkbox {
       padding: 0px;
     }
@@ -138,6 +135,7 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
     & .ds-tag {
       margin: 0;
     }
+    
     &:focus:not(:active) {
       box-shadow: ${(props): string | false =>
         !props.disabled && `inset 0 0 0 2px ${props.theme.palette['blue-600']} `};
@@ -148,13 +146,23 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
         fill: ${(props): string => props.theme.palette['grey-700']};
       }
     }
+    
     ${(props): string | false =>
       !props.disabled &&
       `
-    &:focus:active {
+    &:focus:active, &:active {
       background: ${props.theme.palette['grey-100']};
-      color: ${props.theme.palette['blue-600']};
-    }`}
+      color: ${props.theme.palette['blue-600']} ! important;
+      
+      .ds-menu-prefix { ${IconContainer} > svg {
+        fill: ${props.theme.palette['blue-600']} !important;
+      }}
+    }
+    `}
+    
+    &:active {
+      background: ${(props): string => props.theme.palette['grey-050']};
+    }
 
     & {
       .ds-icon {
@@ -163,6 +171,7 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
         align-items: center;
       }
     }
+
     ${PrefixelWrapper} > .ds-icon > svg {
       ${(props): string | false =>
         !props.disabled &&
@@ -181,6 +190,7 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
         }
       }
     }
+
     &:hover {
       & .ds-menu-prefix > * > .ant-avatar::before,
       .ds-menu-prefix > .ant-badge::before,

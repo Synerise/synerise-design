@@ -7,6 +7,9 @@ import { Props as SliderProps } from '@synerise/ds-slider/dist/Slider.types';
 import { AllocationVariant } from '@synerise/ds-slider/dist/Allocation/Allocation.types';
 
 const decorator = storyFn => <div style={{ padding: '48px' }}>{storyFn()}</div>;
+const renderDescription = (text: string) => {
+  return <div style={{ maxWidth: '120px', textOverflow: 'ellipsis', overflow: 'hidden',whiteSpace: 'nowrap' }}>{text}</div>;
+};
 
 const sliderValues = [0, 25, 75, 100];
 const placements = [
@@ -44,10 +47,6 @@ const customColorOptions = {
   purple: 'purple-600',
   violet: 'violet-600',
 };
-const mark = {
-  0: '0',
-  100: '100',
-};
 const tracksColorMap = {
   '0': 'cyan-600',
   '1': 'yellow-600',
@@ -67,11 +66,12 @@ const Wrapper = (props: any) => {
   const [value, setValue] = React.useState(50);
   const [rangeValue, setRangeValue] = React.useState([-50, 50]);
   const hasMarks = boolean('Set scale', false);
-  const descriptionMessage = text('Description', 'Description');
+  const maxMark = number('Max', 100);
+  const descriptionMessage = renderDescription(text('Description', 'Description'));
   const hasDescription = boolean('Set Description', false);
   const [tracksColor, setTracksColor] = React.useState(tracksColorMap);
   const color = select('Set color', customColorOptions, customColorOptions.green);
-  const getDescription = (hasDescription: boolean): string => {
+  const getDescription = (hasDescription: boolean): string | React.ReactNode => {
     if (hasDescription) {
       return descriptionMessage;
     } else {
@@ -81,11 +81,16 @@ const Wrapper = (props: any) => {
   React.useEffect(() => {
     setTracksColor({ ...tracksColor, '0': color });
   },[color]);
+  const mark = {
+    0: '0',
+    [maxMark]: maxMark,
+  };
 console.log(tracksColor)
   return (
     <Slider
       {...props}
       marks={hasMarks && mark}
+      max={maxMark}
       description={descriptionMessage && getDescription(hasDescription)}
       value={props.range ? rangeValue : value}
       onChange={props.range ? setRangeValue : setValue}
@@ -125,7 +130,6 @@ const stories = {
       disabled={boolean('Disabled', false)}
       included={boolean('Set area active', true)}
       inverted={boolean('Inverted', false)}
-      max={number('Max', 100)}
       min={number('Min', 0)}
       range={boolean('Range', false)}
       step={number('Step', 10)}

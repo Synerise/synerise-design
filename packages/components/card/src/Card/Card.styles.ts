@@ -115,12 +115,13 @@ export const Title = styled(Typography.Title)<{ fat: boolean }>`
     align-items: center;
     min-height: ${(props): string => (props.fat ? '32px' : '20px')};
     margin: 0;
+    margin-bottom: 6px;
   }
 `;
 
 export const Description = styled.div`
   && {
-    margin: 6px 0 0;
+    margin: 0;
   }
 `;
 
