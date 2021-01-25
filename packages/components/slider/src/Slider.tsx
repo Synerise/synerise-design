@@ -34,8 +34,8 @@ const Slider: React.FC<Props> = props => {
   const calcHandlePosition = React.useCallback(() => {
     const handler =  document.querySelectorAll('.ant-slider-handle');
     const markTexts =  document.querySelectorAll('.ant-slider-mark-text');
-    let reachedStart;
-    let reachedEnd;
+    let reachedStart = false;
+    let reachedEnd = false;
     if (handler && markTexts?.length) {
       const firstMark = markTexts[0].getBoundingClientRect();
       const lastMark = markTexts[markTexts.length - 1].getBoundingClientRect();
@@ -43,13 +43,9 @@ const Slider: React.FC<Props> = props => {
       const lastHandler = handler[handler.length - 1].getBoundingClientRect();
       if (firstMark.x + 50 + firstMark.width > firstHandler.x || firstMark.x + 50 + firstMark.width > lastHandler.x) {
         reachedStart = true;
-      } else {
-        reachedStart = false;
       }
       if (lastMark.x - 1 - lastMark.width < firstHandler.x || lastMark.x - 1 - lastMark.width < lastHandler.x) {
         reachedEnd = true;
-      } else {
-        reachedEnd = false;
       }
     }
     return { reachedEnd, reachedStart };
