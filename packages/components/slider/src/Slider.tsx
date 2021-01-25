@@ -30,26 +30,30 @@ const Slider: React.FC<Props> = props => {
     range,
     ...antdProps
   } = props;
-  const handler = document.querySelectorAll('.ant-slider-handle');
-  const markTexts = document.querySelectorAll('.ant-slider-mark-text');
-  let reachedEnd ;
-  let reachedStart ;
-  if(handler && markTexts?.length) {
-    const firstMark = markTexts[0].getBoundingClientRect();
-    const lastMark = markTexts[markTexts.length - 1].getBoundingClientRect();
-    const firstHandler = handler[0].getBoundingClientRect();
-    const lastHandler = handler[handler.length - 1].getBoundingClientRect();
-    if (firstMark.x + 50 + firstMark.width > firstHandler.x || firstMark.x + 50 + firstMark.width > lastHandler.x ) {
-      reachedStart = true
-    } else {
-      reachedStart = false
+
+  const calcHandlePosition = React.useCallback(() => {
+    const handler =  document.querySelectorAll('.ant-slider-handle');
+    const markTexts =  document.querySelectorAll('.ant-slider-mark-text');
+    let reachedStart;
+    let reachedEnd;
+    if (handler && markTexts?.length) {
+      const firstMark = markTexts[0].getBoundingClientRect();
+      const lastMark = markTexts[markTexts.length - 1].getBoundingClientRect();
+      const firstHandler = handler[0].getBoundingClientRect();
+      const lastHandler = handler[handler.length - 1].getBoundingClientRect();
+      if (firstMark.x + 50 + firstMark.width > firstHandler.x || firstMark.x + 50 + firstMark.width > lastHandler.x) {
+        reachedStart = true;
+      } else {
+        reachedStart = false;
+      }
+      if (lastMark.x - 1 - lastMark.width < firstHandler.x || lastMark.x - 1 - lastMark.width < lastHandler.x) {
+        reachedEnd = true;
+      } else {
+        reachedEnd = false;
+      }
     }
-    if (lastMark.x - 1 - lastMark.width < firstHandler.x || lastMark.x - 1 - lastMark.width < lastHandler.x) {
-      reachedEnd = true
-    } else {
-      reachedEnd = false
-    }
-  };
+    return { reachedEnd, reachedStart };
+  }, []);
 
   const labelElement = React.useMemo(
     () =>
@@ -77,9 +81,9 @@ const Slider: React.FC<Props> = props => {
         {...antdProps}
         max={max}
         value={value}
-        reachedEnd={reachedEnd}
+        reachedEnd={calcHandlePosition().reachedEnd}
         range={range}
-        reachedStart={reachedStart}
+        reachedStart={calcHandlePosition().reachedStart}
         className={value && couldBeInverted(value, !!inverted) ? 'ant-slider-inverted' : undefined}
         useColorPalette={useColorPalette}
         thickness={thickness}
