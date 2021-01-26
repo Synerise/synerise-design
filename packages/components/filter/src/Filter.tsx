@@ -1,0 +1,133 @@
+import * as React from 'react';
+import { ReactSortable } from 'react-sortablejs-typescript';
+import Logic from '@synerise/ds-logic';
+import Matching from '@synerise/ds-logic/dist/Matching/Matching';
+import StepCard from '@synerise/ds-step-card';
+import { LogicOperatorValue } from '@synerise/ds-logic/dist/Logic.types';
+import Button from '@synerise/ds-button';
+import { Add3M } from '@synerise/ds-icon/dist/icons';
+import Icon from '@synerise/ds-icon';
+import { useIntl } from 'react-intl';
+import * as S from './Filter.styles';
+import { Expression, FilterProps } from './Filter.types';
+
+const SORTABLE_CONFIG = {
+  ghostClass: 'ghost-element',
+  className: 'sortable-list',
+  handle: '.step-card-drag-handler',
+  animation: 150,
+  forceFallback: true,
+};
+
+const NOOP = (): void => undefined;
+
+const component = {
+  LOGIC: <Logic onChange={NOOP} value="" />,
+  STEP: (
+    <StepCard matching={false} name="" onChangeMatching={NOOP} onChangeName={NOOP} onDelete={NOOP} onDuplicate={NOOP} />
+  ),
+};
+
+const Filter: React.FC<FilterProps> = ({
+  expressions,
+  matching,
+  onChangeOrder,
+  onChangeLogic,
+  onChangeStepMatching,
+  onChangeStepName,
+  onDeleteStep,
+  onDuplicateStep,
+  renderStepFooter,
+  renderStepContent,
+  addStep,
+  texts,
+}) => {
+  const { formatMessage } = useIntl();
+  const text = React.useMemo(
+    () => ({
+      matching: {
+        matching: formatMessage({ id: 'DS.MATCHING.MATCHING' }),
+        notMatching: formatMessage({ id: 'DS.MATCHING.NOT-MATCHING' }),
+        ...texts.matching,
+      },
+      step: {
+        matching: formatMessage({ id: 'DS.MATCHING.MATCHING' }),
+        notMatching: formatMessage({ id: 'DS.MATCHING.NOT-MATCHING' }),
+        namePlaceholder: formatMessage({ id: 'DS.STEP-CARD.NAME-PLACEHOLDER' }),
+        moveTooltip: formatMessage({ id: 'DS.STEP-CARD.MOVE' }),
+        deleteTooltip: formatMessage({ id: 'DS.STEP-CARD.DELETE' }),
+        duplicateTooltip: formatMessage({ id: 'DS.STEP-CARD.DUPLICATE' }),
+        ...texts.step,
+      },
+      addFilter: formatMessage({ id: 'DS.FILTER.ADD-FILTER' }),
+      dropMeHere: formatMessage({ id: 'DS.FILTER.DROP-ME-HERE' }),
+    }),
+    [formatMessage, texts]
+  );
+  const componentProps = React.useCallback(
+    (expression: Expression) => {
+      const props = {
+        LOGIC: {
+          onChange: (value: LogicOperatorValue): void => onChangeLogic(expression.id, value),
+        },
+        STEP: {
+          onChangeMatching: (value: boolean): void => onChangeStepMatching(expression.id, value),
+          onChangeName: (value: string): void => onChangeStepName(expression.id, value),
+          onDelete: (): void => onDeleteStep(expression.id),
+          onDuplicate: (): void => onDuplicateStep(expression.id),
+          footer: renderStepFooter(expression),
+          children: renderStepContent(expression),
+          texts: text.step,
+        },
+      };
+      return props[expression.type];
+    },
+    [
+      onChangeLogic,
+      onChangeStepMatching,
+      onChangeStepName,
+      onDeleteStep,
+      onDuplicateStep,
+      renderStepContent,
+      renderStepFooter,
+      text,
+    ]
+  );
+
+  const renderExpression = React.useCallback(
+    (expression, index) => {
+      return (
+        <S.ExpressionWrapper key={expression.id} data-dropLabel={text.dropMeHere}>
+          {React.cloneElement(component[expression.type], { ...expression.data, ...componentProps(expression) })}
+          {expression.logic && index + 1 < expressions.length && (
+            <S.LogicWrapper>
+              {React.cloneElement(component[expression.logic.type], {
+                ...expression.logic.data,
+                ...componentProps(expression.logic),
+              })}
+            </S.LogicWrapper>
+          )}
+        </S.ExpressionWrapper>
+      );
+    },
+    [componentProps, expressions.length, text]
+  );
+
+  return (
+    <S.FilterWrapper>
+      {matching && <Matching {...matching} texts={text.matching} />}
+      <ReactSortable {...SORTABLE_CONFIG} list={expressions} setList={onChangeOrder}>
+        {expressions.map(renderExpression)}
+      </ReactSortable>
+      {addStep && (
+        <S.AddButtonWrapper>
+          <Button type="primary" mode="icon-label" onClick={addStep}>
+            <Icon component={<Add3M />} />
+            {text.addFilter}
+          </Button>
+        </S.AddButtonWrapper>
+      )}
+    </S.FilterWrapper>
+  );
+};
+export default Filter;
