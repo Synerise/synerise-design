@@ -12,6 +12,7 @@ import Operators from '@synerise/ds-operators';
 import ContextSelector from '@synerise/ds-context-selector';
 import Cruds from '@synerise/ds-cruds';
 import { ReactSortable } from 'react-sortablejs-typescript';
+import { useIntl } from 'react-intl';
 import { ConditionProps, ConditionStep, StepConditions } from './Condition.types';
 import * as S from './Condition.style';
 
@@ -38,6 +39,20 @@ const Condition: React.FC<ConditionProps> = ({
   addStep,
   onChangeOrder,
 }) => {
+  const { formatMessage } = useIntl();
+  const text = React.useMemo(
+    () => ({
+      stepNamePlaceholder: formatMessage({ id: 'DS.CONDTION.STEP_NAME-PLACEHOLDER' }),
+      removeConditionRowTooltip: formatMessage({ id: 'DS.CONDTION.REMOVE-CONDITION-ROW-TOOLTIP' }),
+      addConditionRowButton: formatMessage({ id: 'DS.CONDTION.ADD-CONDITION-ROW-BUTTON' }),
+      addStep: formatMessage({ id: 'DS.CONDTION.ADD-STEP' }),
+      dropLabel: formatMessage({ id: 'DS.CONDTION.DROP-LABEL' }),
+      moveTooltip: formatMessage({ id: 'DS.CONDTION.MOVE-TOOLTIP' }),
+      duplicateTooltip: formatMessage({ id: 'DS.CONDTION.DUPLICATE-TOOLTIP' }),
+      removeTooltip: formatMessage({ id: 'DS.CONDTION.REMOVE-TOOLTIP' }),
+    }),
+    [texts, formatMessage]
+  );
   const [currentConditionId, setCurrentConditionId] = React.useState<React.ReactText>(DEFAULT_CONDITION);
   const [currentField, setCurrentField] = React.useState<string>(DEFAULT_FIELD);
 
@@ -113,7 +128,7 @@ const Condition: React.FC<ConditionProps> = ({
       <ReactSortable {...SORTABLE_CONFIG} list={steps} setList={onChangeOrder || NOOP}>
         {steps.map((step, index) => {
           return (
-            <S.Step key={step.id} withStepName={step.stepName !== undefined} data-dropLabel={texts.dropLabel}>
+            <S.Step key={step.id} withStepName={step.stepName !== undefined} data-dropLabel={text.dropLabel}>
               <S.StepHeader>
                 {step.stepName !== undefined && (
                   <S.StepName>
@@ -123,7 +138,7 @@ const Condition: React.FC<ConditionProps> = ({
                       input={{
                         value: step.stepName,
                         name: `condition-step-name-${step.id}`,
-                        placeholder: texts.stepNamePlaceholder,
+                        placeholder: text.stepNamePlaceholder,
                         onChange: (event: ChangeEvent<HTMLInputElement>): void =>
                           updateStepName && updateStepName(step.id, event.target.value),
                       }}
@@ -134,7 +149,7 @@ const Condition: React.FC<ConditionProps> = ({
                   {draggableEnabled && (
                     <Cruds.CustomAction
                       icon={<DragHandleM />}
-                      title={texts.moveTooltip}
+                      title={text.moveTooltip}
                       onClick={NOOP}
                       className="step-drag-handler"
                     />
@@ -142,8 +157,8 @@ const Condition: React.FC<ConditionProps> = ({
                   <Cruds
                     onDuplicate={(): void => duplicateStep(step.id)}
                     onDelete={(): void => removeStep(step.id)}
-                    duplicateTooltip={texts.duplicateTooltip}
-                    deleteTooltip={texts.removeTooltip}
+                    duplicateTooltip={text.duplicateTooltip}
+                    deleteTooltip={text.removeTooltip}
                   />
                 </S.StepCruds>
               </S.StepHeader>
@@ -188,7 +203,7 @@ const Condition: React.FC<ConditionProps> = ({
                             onClick={(): void => removeCondition(step.id, condition.id)}
                             className="ds-conditions-remove-row"
                           >
-                            <Tooltip title={texts.removeConditionRowTooltip} trigger={['hover']}>
+                            <Tooltip title={text.removeConditionRowTooltip} trigger={['hover']}>
                               <Icon component={<CloseS />} color={theme.palette['red-600']} />
                             </Tooltip>
                           </S.RemoveIconWrapper>
@@ -200,7 +215,7 @@ const Condition: React.FC<ConditionProps> = ({
                       <S.ConditionConnections last first={step.conditions.length === 0} />
                       <Button type="ghost" mode="icon-label" onClick={(): void => addCondition(step.id)}>
                         <Icon component={<Add2M />} />
-                        {texts.addConditionRowButton}
+                        {text.addConditionRowButton}
                       </Button>
                     </S.AddConditionRow>
                   )}
@@ -213,7 +228,7 @@ const Condition: React.FC<ConditionProps> = ({
       {addStep && (
         <Button type="ghost-primary" mode="icon-label" onClick={addStep}>
           <Icon component={<Add3M />} />
-          {texts.addStep}
+          {text.addStep}
         </Button>
       )}
     </S.Condition>
