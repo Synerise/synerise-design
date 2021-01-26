@@ -30,26 +30,26 @@ const Slider: React.FC<Props> = props => {
     range,
     ...antdProps
   } = props;
-
+  const [reachedEnd, setReachedEnd] = React.useState(false);
+  const [reachedStart, setReachedStart] = React.useState(false);
   const calcHandlePosition = React.useCallback(() => {
     const handler =  document.querySelectorAll('.ant-slider-handle');
     const markTexts =  document.querySelectorAll('.ant-slider-mark-text');
-    let reachedStart = false;
-    let reachedEnd = false;
     if (handler && markTexts?.length) {
       const firstMark = markTexts[0].getBoundingClientRect();
       const lastMark = markTexts[markTexts.length - 1].getBoundingClientRect();
       const firstHandler = handler[0].getBoundingClientRect();
       const lastHandler = handler[handler.length - 1].getBoundingClientRect();
-      if (firstMark.x + 50 + firstMark.width > firstHandler.x || firstMark.x + 50 + firstMark.width > lastHandler.x) {
-        reachedStart = true;
-      }
-      if (lastMark.x - 1 - lastMark.width < firstHandler.x || lastMark.x - 1 - lastMark.width < lastHandler.x) {
-        reachedEnd = true;
-      }
+      if (firstMark.x + 40 + firstMark.width > firstHandler.x || firstMark.x + 40 + firstMark.width > lastHandler.x) {
+        setReachedStart(true);
+      }else{ setReachedStart(false) }
+      if (lastMark.x - 40 < firstHandler.x || lastMark.x - 40 < lastHandler.x) {
+        setReachedEnd(true);
+      }else{ setReachedEnd(false) }
     }
     return { reachedEnd, reachedStart };
-  }, []);
+  }, [reachedEnd, reachedStart ]);
+  React.useEffect( ()=> {setTimeout(()=>{calcHandlePosition()},0) },[calcHandlePosition,value])
 
   const labelElement = React.useMemo(
     () =>
@@ -77,9 +77,9 @@ const Slider: React.FC<Props> = props => {
         {...antdProps}
         max={max}
         value={value}
-        reachedEnd={calcHandlePosition().reachedEnd}
+        reachedEnd={reachedEnd}
         range={range}
-        reachedStart={calcHandlePosition().reachedStart}
+        reachedStart={reachedStart}
         className={value && couldBeInverted(value, !!inverted) ? 'ant-slider-inverted' : undefined}
         useColorPalette={useColorPalette}
         thickness={thickness}
