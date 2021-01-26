@@ -42,14 +42,14 @@ const Condition: React.FC<ConditionProps> = ({
   const { formatMessage } = useIntl();
   const text = React.useMemo(
     () => ({
-      stepNamePlaceholder: formatMessage({ id: 'DS.CONDTION.STEP_NAME-PLACEHOLDER' }),
-      removeConditionRowTooltip: formatMessage({ id: 'DS.CONDTION.REMOVE-CONDITION-ROW-TOOLTIP' }),
-      addConditionRowButton: formatMessage({ id: 'DS.CONDTION.ADD-CONDITION-ROW-BUTTON' }),
-      addStep: formatMessage({ id: 'DS.CONDTION.ADD-STEP' }),
-      dropLabel: formatMessage({ id: 'DS.CONDTION.DROP-LABEL' }),
-      moveTooltip: formatMessage({ id: 'DS.CONDTION.MOVE-TOOLTIP' }),
-      duplicateTooltip: formatMessage({ id: 'DS.CONDTION.DUPLICATE-TOOLTIP' }),
-      removeTooltip: formatMessage({ id: 'DS.CONDTION.REMOVE-TOOLTIP' }),
+      stepNamePlaceholder: formatMessage({ id: 'DS.CONDITION.STEP_NAME-PLACEHOLDER' }),
+      removeConditionRowTooltip: formatMessage({ id: 'DS.CONDITION.REMOVE-CONDITION-ROW-TOOLTIP' }),
+      addConditionRowButton: formatMessage({ id: 'DS.CONDITION.ADD-CONDITION-ROW-BUTTON' }),
+      addStep: formatMessage({ id: 'DS.CONDITION.ADD-STEP' }),
+      dropLabel: formatMessage({ id: 'DS.CONDITION.DROP-LABEL' }),
+      moveTooltip: formatMessage({ id: 'DS.CONDITION.MOVE-TOOLTIP' }),
+      duplicateTooltip: formatMessage({ id: 'DS.CONDITION.DUPLICATE-TOOLTIP' }),
+      removeTooltip: formatMessage({ id: 'DS.CONDITION.REMOVE-TOOLTIP' }),
     }),
     [texts, formatMessage]
   );

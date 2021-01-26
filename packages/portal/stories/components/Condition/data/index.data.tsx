@@ -1,7 +1,6 @@
 import { ExpressionM, FolderM, NotificationsM, VarTypeNumberM, VarTypeStringM } from '@synerise/ds-icon/dist/icons';
 import * as React from 'react';
 import { v4 as uuid } from 'uuid';
-import { ConditionStep } from '@synerise/ds-condition/dist/Condition.types';
 
 export const SUBJECT_ITEMS = [...new Array(30)].map((i, index) => ({
   id: index,
