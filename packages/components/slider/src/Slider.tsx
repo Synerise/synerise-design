@@ -48,7 +48,7 @@ const Slider: React.FC<Props> = props => {
       }else{ setReachedEnd(false) }
     }
     return { reachedEnd, reachedStart };
-  }, []);
+  }, [reachedEnd, reachedStart ]);
   React.useEffect( ()=> {setTimeout(()=>{calcHandlePosition()},0) },[calcHandlePosition,value])
 
   const labelElement = React.useMemo(
