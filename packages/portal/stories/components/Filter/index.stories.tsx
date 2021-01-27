@@ -237,8 +237,8 @@ const stories = {
         }}
       >
         <Filter
-          addStep={handleAddStep}
           expressions={store.state.expressions}
+          onAdd={handleAddStep}
           onChangeLogic={handleChangeLogic}
           onChangeOrder={handleChangeOrder}
           onChangeStepMatching={handleChangeStepMatching}

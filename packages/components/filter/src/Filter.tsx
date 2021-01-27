@@ -39,12 +39,15 @@ const Filter: React.FC<FilterProps> = ({
   onDuplicateStep,
   renderStepFooter,
   renderStepContent,
-  addStep,
+  onAdd,
   texts,
 }) => {
   const { formatMessage } = useIntl();
   const text = React.useMemo(
     () => ({
+      addFilter: formatMessage({ id: 'DS.FILTER.ADD-FILTER' }),
+      dropMeHere: formatMessage({ id: 'DS.FILTER.DROP-ME-HERE' }),
+      ...texts,
       matching: {
         matching: formatMessage({ id: 'DS.MATCHING.MATCHING' }),
         notMatching: formatMessage({ id: 'DS.MATCHING.NOT-MATCHING' }),
@@ -59,8 +62,6 @@ const Filter: React.FC<FilterProps> = ({
         duplicateTooltip: formatMessage({ id: 'DS.STEP-CARD.DUPLICATE' }),
         ...texts?.step,
       },
-      addFilter: formatMessage({ id: 'DS.FILTER.ADD-FILTER' }),
-      dropMeHere: formatMessage({ id: 'DS.FILTER.DROP-ME-HERE' }),
     }),
     [formatMessage, texts]
   );
@@ -75,8 +76,8 @@ const Filter: React.FC<FilterProps> = ({
           onChangeName: (value: string): void => onChangeStepName(expression.id, value),
           onDelete: (): void => onDeleteStep(expression.id),
           onDuplicate: (): void => onDuplicateStep(expression.id),
-          footer: renderStepFooter(expression),
-          children: renderStepContent(expression),
+          footer: renderStepFooter && renderStepFooter(expression),
+          children: renderStepContent && renderStepContent(expression),
           texts: text.step,
         },
       };
@@ -119,9 +120,9 @@ const Filter: React.FC<FilterProps> = ({
       <ReactSortable {...SORTABLE_CONFIG} list={expressions} setList={onChangeOrder}>
         {expressions.map(renderExpression)}
       </ReactSortable>
-      {addStep && (
+      {onAdd && (
         <S.AddButtonWrapper>
-          <Button type="primary" mode="icon-label" onClick={addStep}>
+          <Button type="primary" mode="icon-label" onClick={onAdd}>
             <Icon component={<Add3M />} />
             {text.addFilter}
           </Button>

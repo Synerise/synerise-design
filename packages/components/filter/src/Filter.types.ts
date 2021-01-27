@@ -29,9 +29,9 @@ export type FilterProps = {
   onChangeStepName: (id: string, name: string) => void;
   onDeleteStep: (id: string) => void;
   onDuplicateStep: (id: string) => void;
-  renderStepFooter: (expression: Expression) => React.ReactNode;
-  renderStepContent: (expression: Expression) => React.ReactNode;
-  addStep?: () => void;
+  renderStepFooter?: (expression: Expression) => React.ReactNode;
+  renderStepContent?: (expression: Expression) => React.ReactNode;
+  onAdd?: () => void;
   texts?: {
     matching: MatchingTexts;
     step: StepCardTexts;
