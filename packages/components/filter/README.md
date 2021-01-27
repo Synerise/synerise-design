@@ -78,7 +78,7 @@ import Filter from '@synerise/ds-filter'
 | ---      | ---                                                 | ---                                            | ---     | 
 | type     | Type of expression: `STEP` or `LOGIC`               | `STEP` \ `LOGIC`                               | -       | 
 | id       | Id of expression                                    | string                                         | -       | 
-| data     | Object with props of expression, base of type value | `Partial<StepCardProps>` \ Partial<LogicProps> | -       | 
+| data     | Object with props of expression, base of type value | `Partial<StepCardProps>` \ `Partial<LogicProps>` | -       | 
 | logic    | Logic component related to Step expression          | `Expression`                                   | -       |
 
 ### FilterTexts
