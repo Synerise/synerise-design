@@ -20,7 +20,7 @@ import Menu from '@synerise/ds-menu';
 import { useOnClickOutside } from '@synerise/ds-utils';
 import { ButtonVariant, HeaderProps, HeaderType } from './Header.types';
 import * as S from './Header.style';
-import { DropdownWrapper, MenuWrapper } from './Header.style';
+import { DropdownWrapper } from './Header.style';
 
 const Header: React.FC<HeaderProps> = ({
   avatar,
@@ -71,6 +71,14 @@ const Header: React.FC<HeaderProps> = ({
     }
     return <S.SingleTitle>{name}</S.SingleTitle>;
   };
+
+  const renderMenuDivider = React.useMemo(() => onEdit || onDelete || onDuplicate || onMove, [
+    onEdit,
+    onDelete,
+    onDuplicate,
+    onMove,
+  ]);
+
   const renderActionButtons = (typesOfButtons: typeof typeButtons): React.ReactNode => {
     if (typesOfButtons === ButtonVariant.WITH_NAVIGATION) {
       return (
@@ -140,17 +148,16 @@ const Header: React.FC<HeaderProps> = ({
                       {texts.deleteIcon}
                     </Menu.Item>
                   )}
+                  {renderMenuDivider && <Menu.Divider />}
                   {onId && (
-                    <MenuWrapper>
-                      <Menu.Item
-                        onClick={(): void => {
-                          setDropdownVisible(!dropdownVisible);
-                          onId(inputObject);
-                        }}
-                        style={{ padding: '0 12px' }}
-                        prefixel={<Icon component={<CopyClipboardM />} />}
-                      >{`ID: ${inputObject[inputObjectIdKey]}`}</Menu.Item>
-                    </MenuWrapper>
+                    <Menu.Item
+                      onClick={(): void => {
+                        setDropdownVisible(!dropdownVisible);
+                        onId(inputObject);
+                      }}
+                      style={{ padding: '0 12px' }}
+                      prefixel={<Icon component={<CopyClipboardM />} />}
+                    >{`ID: ${inputObject[inputObjectIdKey]}`}</Menu.Item>
                   )}
                 </Menu>
               </DropdownWrapper>
