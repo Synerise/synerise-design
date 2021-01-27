@@ -12,7 +12,7 @@ const Navbar = () => {
     window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);
-    }
+    };
   }, []);
 
   const toggleMenu = React.useCallback(() => {
@@ -25,16 +25,25 @@ const Navbar = () => {
         <a className="c-main-header__logo" title="Home" href="/">
           <img src="/images/logo-synerise.svg " alt="Synerise" />
         </a>
-        <button onClick={() => toggleMenu()} type="button" className={`c-main-header__btn ${opened ? 'active' : ''}`} aria-label="Toggle menu">
-          <div className="btn"><span></span><span></span><span></span></div>
+        <button
+          onClick={() => toggleMenu()}
+          type="button"
+          className={`c-main-header__btn ${opened ? 'active' : ''}`}
+          aria-label="Toggle menu"
+        >
+          <div className="btn">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
         </button>
         <ul className="c-main-nav">
           <NavItemExpandable label="Get started">
-            <NavSubItem title="About" label="About" link="/about"/>
-            <NavSubItem title="Develop" label="Develop" link="/develop"/>
+            <NavSubItem title="About" label="About" link="/about" />
+            <NavSubItem title="Develop" label="Develop" link="/develop" />
           </NavItemExpandable>
-          <NavItem title="Guidelines" label="Guidelines" link="/docs/palette"/>
-          <NavItem title="Components" label="Components" link="/storybook-static/"/>
+          {/*<NavItem title="Guidelines" label="Guidelines" link="/docs/palette"/>*/}
+          <NavItem title="Components" label="Components" link="/storybook-static/" />
 
           <li className="hover-action-subitem c-main-nav__item c-main-nav__item--end">
             <a className="c-read-more c-main-nav__item__link" href="https://app.synerise.com/spa/login" target="_self">
@@ -43,26 +52,32 @@ const Navbar = () => {
             </a>
           </li>
           <div className="mobile-btn-wrapper header-sticky-wrapper">
-            <a className="c-button-filled  mobile-request-btn header-sticky-btn" href="https://demo.synerise.com/request" target="_blank" rel="noreferrer">Request a demo</a>
+            <a
+              className="c-button-filled  mobile-request-btn header-sticky-btn"
+              href="https://demo.synerise.com/request"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Request a demo
+            </a>
           </div>
         </ul>
       </nav>
     </header>
-  )
+  );
 };
 
-const NavItem = ({ link, label, title}) => {
+const NavItem = ({ link, label, title }) => {
   return (
     <li className="hover-action-subitem c-main-nav__item">
       <a className="c-main-nav__item__link" title={title} href={link}>
         <span className="c-main-nav__submenu__item__title">{label}</span>
       </a>
     </li>
-  )
+  );
 };
 
-
-const NavItemExpandable = ({children, label}) => {
+const NavItemExpandable = ({ children, label }) => {
   const [expanded, setExpanded] = React.useState(false);
 
   return (
@@ -73,15 +88,14 @@ const NavItemExpandable = ({children, label}) => {
       onClick={() => setExpanded(!expanded)}
     >
       <span className="c-main-nav__item__link" role="button">
-        {label}<i className="c-main-nav__item__link__icon icon-angle-down-m"></i>
+        {label}
+        <i className="c-main-nav__item__link__icon icon-angle-down-m"></i>
       </span>
       <div className={`c-main-nav__submenu with-featured featured-null initialized ${expanded ? 'expanded' : ''}`}>
-        <ul className="c-main-nav__submenu__list">
-          {children}
-        </ul>
+        <ul className="c-main-nav__submenu__list">{children}</ul>
       </div>
     </li>
-  )
+  );
 };
 
 const NavSubItem = ({ link, label, title }) => {
@@ -91,9 +105,8 @@ const NavSubItem = ({ link, label, title }) => {
         <span className="c-main-nav__submenu__item__title">{label}</span>
       </a>
     </li>
-  )
+  );
 };
-
 
 export default () => (
   <ClientOnly>
