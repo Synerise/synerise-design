@@ -265,6 +265,8 @@ const stories = {
               matching: 'matching',
               notMatching: 'not matching',
             },
+            addFilter: 'Add filter',
+            dropMeHere: 'Drop me here',
           }}
         />
       </div>

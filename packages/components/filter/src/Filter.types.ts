@@ -33,9 +33,9 @@ export type FilterProps = {
   renderStepContent?: (expression: Expression) => React.ReactNode;
   onAdd?: () => void;
   texts?: {
-    matching: MatchingTexts;
-    step: StepCardTexts;
-    addFilter: string;
-    dropMeHere: string;
+    matching?: MatchingTexts;
+    step?: StepCardTexts;
+    addFilter?: string;
+    dropMeHere?: string;
   };
 };

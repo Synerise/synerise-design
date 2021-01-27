@@ -12,14 +12,14 @@ const DEFAULT_TEXTS = {
 };
 
 const DEFAULT_EXPRESSION = {
-  type: 'STEP',
+  type: 'STEP' as const,
   id: '123',
   data: {
     name: 'Step #1',
     matching: false,
   },
   logic: {
-    type: 'LOGIC',
+    type: 'LOGIC' as const,
     id: '321',
     data: {
       value: 'AND',
