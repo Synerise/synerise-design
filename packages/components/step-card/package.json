@@ -1,7 +1,7 @@
 {
-  "name": "@synerise/ds-condition",
-  "version": "0.3.3",
-  "description": "Condition UI Component for the Synerise Design System",
+  "name": "@synerise/ds-step-card",
+  "version": "0.0.1",
+  "description": "StepCard UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
   "main": "dist/index.js",
@@ -25,22 +25,14 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-button": "^0.13.24",
-    "@synerise/ds-context-selector": "^0.2.2",
-    "@synerise/ds-core": "^0.26.0",
+    "@synerise/ds-cruds": "^0.2.1",
     "@synerise/ds-icon": "^0.36.0",
-    "@synerise/ds-cruds": "^0.2.1",    
-    "@synerise/ds-factors": "^0.2.17",
-    "@synerise/ds-inline-edit": "^0.2.16",
-    "@synerise/ds-operators": "^0.2.16",
-    "@synerise/ds-subject": "^0.4.2",
-    "@synerise/ds-tooltip": "^0.10.8",
-    "@synerise/ds-utils": "^0.11.12",
-    "react-sortablejs": "^6.0.0",
-    "react-sortablejs-typescript": "^2.0.15"
+    "@synerise/ds-inline-edit": "^0.2.15",
+    "@synerise/ds-logic": "^0.1.6"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
     "react": ">=16.9.0 < 17.0.0"
-  }
+  },
+  "devDependencies": {}
 }

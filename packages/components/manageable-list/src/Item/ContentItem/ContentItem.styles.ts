@@ -139,10 +139,10 @@ export const ItemContainer = styled.div<ItemContainerProps>`
   ${({ greyBackground, theme }): string | false =>
     !greyBackground &&
     `
-&:hover {
-    box-shadow: 0 0 0 1px ${theme.palette['grey-300']};
-  }
-`}
+      &:hover {
+        box-shadow: 0 0 0 1px ${theme.palette['grey-300']};
+      }
+  `}
   ${(props): FlattenSimpleInterpolation | false => !!props.dashed && dashedStyle(props)}
 `;
 
