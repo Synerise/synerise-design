@@ -18,7 +18,6 @@ import { ButtonWrapper } from '@synerise/ds-sidebar-object/dist/Elements/Header/
 import { StarFillM, StarM } from '@synerise/ds-icon/dist/icons';
 import Tooltip from '@synerise/ds-tooltip';
 
-
 import ContentItem from '@synerise/ds-manageable-list/dist/Item/ContentItem/ContentItem';
 import Menu from '@synerise/ds-menu';
 
@@ -74,18 +73,25 @@ const renderBackIcon = (showBackIcon, onBackClickHandler) => {
     );
   } else return null;
 };
-const renderStarred = (showStarred) => {
-  const [starred,setStarred] = React.useState(false);
+const renderStarred = showStarred => {
+  const [starred, setStarred] = React.useState(false);
   if (showStarred) {
     return (
-      <div style={{marginRight: '10px'}}>
-        <Tooltip align={{ offset: [0, 5]}} title="Starred">
-        <Button iconColor={starred ? theme.palette['yellow-600'] : theme.palette['grey-600']} type="ghost" mode="single-icon" onClick={() => {setStarred(!starred)}}>
-          <Icon
-            component={starred ? <StarFillM /> : <StarM />}
-            color={starred ? theme.palette['yellow-600'] : theme.palette['grey-600']}
-          />
-        </Button>
+      <div style={{ marginRight: '10px' }}>
+        <Tooltip align={{ offset: [0, 5] }} title="Starred">
+          <Button
+            iconColor={starred ? theme.palette['yellow-600'] : theme.palette['grey-600']}
+            type="ghost"
+            mode="single-icon"
+            onClick={() => {
+              setStarred(!starred);
+            }}
+          >
+            <Icon
+              component={starred ? <StarFillM /> : <StarM />}
+              color={starred ? theme.palette['yellow-600'] : theme.palette['grey-600']}
+            />
+          </Button>
         </Tooltip>
       </div>
     );
@@ -99,11 +105,11 @@ const renderVersionList = [...new Array(30)].map((v, i) => (
 const stories = {
   default: () => {
     const [drawerVisible, setDrawerVisible] = React.useState(false);
-    const showIcon = boolean('Set Icon',true);
-    const showStarred = boolean('Set starred icon',false);
-    const showBackIcon = boolean('Set back icon',false);
-    const showTabs = boolean('Set Tabs',true);
-    const showFooter = boolean('Set Footer',true);
+    const showIcon = boolean('Set Icon', true);
+    const showStarred = boolean('Set starred icon', false);
+    const showBackIcon = boolean('Set back icon', false);
+    const showTabs = boolean('Set Tabs', true);
+    const showFooter = boolean('Set Footer', true);
     const [activeTab, setActiveTab] = React.useState(0);
     const [name, setName] = React.useState('Winter campaign');
     let headerType = select('Set header type', headerTypes, headerTypes.readonly);
@@ -160,8 +166,8 @@ const stories = {
             onCancelClick={() => {}}
             texts={texts}
             headerPreffix={renderStarred(showStarred) || renderBackIcon(showBackIcon, () => setDrawerVisible(false))}
-            onArrowUp={showIcon? () => {}: null}
-            onArrowDown={showIcon?  () => {}: null}
+            onArrowUp={showIcon ? () => {} : null}
+            onArrowDown={showIcon ? () => {} : null}
             onEdit={() => {}}
             onDuplicate={() => {}}
             onMove={() => {}}
@@ -205,7 +211,7 @@ const stories = {
       'Default Square': TagShape.DEFAULT_SQUARE,
     };
     const shape = select('Shape', shapes, shapes['Default Round']);
-    const showStarred = boolean('Set starred icon',false);
+    const showStarred = boolean('Set starred icon', false);
     const removable = boolean('Ability to remove', true);
     const addable = boolean('Ability to add', true);
     const creatable = boolean('Ability to create', true);
@@ -353,10 +359,10 @@ const stories = {
             onArrowUp={showIcon ? () => {} : null}
             onArrowDown={showIcon ? () => {} : null}
             onFolderSelect={showFolder}
-            onEdit={() => {}}
-            onDuplicate={() => {}}
-            onMove={() => {}}
-            onDelete={() => {}}
+            onEdit={undefined}
+            onDuplicate={undefined}
+            onMove={undefined}
+            onDelete={undefined}
             onId={() => {}}
             headerTabs={TABS}
             inputObject={inputObject}
