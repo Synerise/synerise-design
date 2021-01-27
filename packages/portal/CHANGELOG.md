@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.115.2](https://github.com/synerise/synerise-design/compare/portal@0.115.1...portal@0.115.2) (2021-01-27)
+
+
+### Bug Fixes
+
+* **sidebar-object:** hide Menu.Divider when only onId action available ([adbd633](https://github.com/synerise/synerise-design/commit/adbd633c6c27c7d6c8ee625de0df4acd1f0bd2e8))
+
+
+
+
+
 ## [0.115.1](https://github.com/synerise/synerise-design/compare/portal@0.115.0...portal@0.115.1) (2021-01-27)
 
 **Note:** Version bump only for package portal
