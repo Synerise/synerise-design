@@ -50,6 +50,7 @@ const Condition: React.FC<ConditionProps> = ({
       moveTooltip: formatMessage({ id: 'DS.CONDITION.MOVE-TOOLTIP' }),
       duplicateTooltip: formatMessage({ id: 'DS.CONDITION.DUPLICATE-TOOLTIP' }),
       removeTooltip: formatMessage({ id: 'DS.CONDITION.REMOVE-TOOLTIP' }),
+      ...texts,
     }),
     [texts, formatMessage]
   );
