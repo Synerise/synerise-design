@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { LogicOperatorValue, LogicProps } from '@synerise/ds-logic/dist/Logic.types';
-import { MatchingProps, MatchingTexts } from '@synerise/ds-logic/dist/Matching/Matching.types';
-import { StepCardProps, StepCardTexts } from '@synerise/ds-step-card/dist/StepCard.types';
+import { LogicOperatorValue, LogicProps } from '@synerise/ds-logic/src/Logic.types';
+import { StepCardProps, StepCardTexts } from '@synerise/ds-step-card/src/StepCard.types';
+import { MatchingProps, MatchingTexts } from '@synerise/ds-logic/src/Matching/Matching.types';
 
 export type Expression =
   | {

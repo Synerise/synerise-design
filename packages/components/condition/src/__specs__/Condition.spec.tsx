@@ -62,7 +62,7 @@ const getConditions = (conditionsNumber: number): StepConditions[] => {
       selectedFactorType: 'parameter',
       defaultFactorType: 'parameter',
       setSelectedFactorType: () => {},
-      onChangeValue: value => {},
+      onChangeValue: () => {},
       value: condition.parameter.value,
       parameters: {
         buttonLabel: 'Parameter',
@@ -74,7 +74,7 @@ const getConditions = (conditionsNumber: number): StepConditions[] => {
       texts: FACTORS_TEXTS,
     },
     operator: {
-      onChange: value => {},
+      onChange: () => {},
       value: condition.operator.value,
       items: OPERATORS_ITEMS,
       groups: OPERATORS_GROUPS,
@@ -83,8 +83,8 @@ const getConditions = (conditionsNumber: number): StepConditions[] => {
     factor: {
       selectedFactorType: condition.factor.selectedFactorType,
       defaultFactorType: 'text',
-      setSelectedFactorType: factorType => {},
-      onChangeValue: value => {},
+      setSelectedFactorType: () => {},
+      onChangeValue: () => {},
       textType: 'default',
       value: condition.factor.value,
       formulaEditor: <div>Formula editor</div>,
@@ -162,7 +162,7 @@ describe('Condition component', () => {
   test('Should not render add condition row button', () => {
     // ARRANGE
     const { queryByText } = renderWithProvider(RENDER_CONDITIONS({ addCondition: false }));
-    const addConditionButton = queryByText(DEFAULT_PROPS().texts.addConditionRowButton);
+    const addConditionButton = queryByText(DEFAULT_TEXTS.addConditionRowButton);
 
     // ASSERT
     expect(addConditionButton).toBeFalsy();
@@ -181,7 +181,7 @@ describe('Condition component', () => {
     // ARRANGE
     const addCondition = jest.fn();
     const { getByText } = renderWithProvider(RENDER_CONDITIONS({ addCondition }));
-    const addConditionButton = getByText(DEFAULT_PROPS().texts.addConditionRowButton);
+    const addConditionButton = getByText(DEFAULT_TEXTS.addConditionRowButton);
 
     // ACT
     fireEvent.click(addConditionButton);
