@@ -3,22 +3,20 @@ import { LogicOperatorValue, LogicProps } from '@synerise/ds-logic/src/Logic.typ
 import { StepCardProps, StepCardTexts } from '@synerise/ds-step-card/src/StepCard.types';
 import { MatchingProps, MatchingTexts } from '@synerise/ds-logic/src/Matching/Matching.types';
 
-export type Expression =
-  | {
-      type: 'LOGIC';
-      id: string;
-      data: Partial<LogicProps>;
-    }
-  | {
-      type: 'STEP';
-      id: string;
-      data: Partial<StepCardProps>;
-      logic?: {
-        type: 'LOGIC';
-        id: string;
-        data: Partial<LogicProps>;
-      };
-    };
+type LogicType = {
+  type: 'LOGIC';
+  id: string;
+  data: Partial<LogicProps>;
+};
+
+type StepType = {
+  type: 'STEP';
+  id: string;
+  data: Partial<StepCardProps>;
+  logic?: LogicType;
+};
+
+export type Expression = LogicType | StepType;
 
 export type FilterProps = {
   expressions: Expression[];

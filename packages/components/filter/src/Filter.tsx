@@ -19,13 +19,9 @@ const SORTABLE_CONFIG = {
   forceFallback: true,
 };
 
-const NOOP = (): void => undefined;
-
 const component = {
-  LOGIC: <Logic onChange={NOOP} value="" />,
-  STEP: (
-    <StepCard matching={false} name="" onChangeMatching={NOOP} onChangeName={NOOP} onDelete={NOOP} onDuplicate={NOOP} />
-  ),
+  LOGIC: Logic,
+  STEP: StepCard,
 };
 
 const Filter: React.FC<FilterProps> = ({
@@ -97,15 +93,14 @@ const Filter: React.FC<FilterProps> = ({
 
   const renderExpression = React.useCallback(
     (expression, index) => {
+      const Component = component[expression.type];
+      const LogicComponent = expression.logic && component[expression.logic.type];
       return (
         <S.ExpressionWrapper key={expression.id} data-dropLabel={text.dropMeHere}>
-          {React.cloneElement(component[expression.type], { ...expression.data, ...componentProps(expression) })}
+          <Component {...expression.data} {...componentProps(expression)} />
           {expression.logic && index + 1 < expressions.length && (
             <S.LogicWrapper>
-              {React.cloneElement(component[expression.logic.type], {
-                ...expression.logic.data,
-                ...componentProps(expression.logic),
-              })}
+              <LogicComponent {...expression.logic.data} {...componentProps(expression.logic)} />
             </S.LogicWrapper>
           )}
         </S.ExpressionWrapper>
