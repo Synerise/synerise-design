@@ -48,7 +48,7 @@ const Filter: React.FC<FilterProps> = ({
       matching: {
         matching: formatMessage({ id: 'DS.MATCHING.MATCHING' }),
         notMatching: formatMessage({ id: 'DS.MATCHING.NOT-MATCHING' }),
-        ...texts.matching,
+        ...texts?.matching,
       },
       step: {
         matching: formatMessage({ id: 'DS.MATCHING.MATCHING' }),
@@ -57,7 +57,7 @@ const Filter: React.FC<FilterProps> = ({
         moveTooltip: formatMessage({ id: 'DS.STEP-CARD.MOVE' }),
         deleteTooltip: formatMessage({ id: 'DS.STEP-CARD.DELETE' }),
         duplicateTooltip: formatMessage({ id: 'DS.STEP-CARD.DUPLICATE' }),
-        ...texts.step,
+        ...texts?.step,
       },
       addFilter: formatMessage({ id: 'DS.FILTER.ADD-FILTER' }),
       dropMeHere: formatMessage({ id: 'DS.FILTER.DROP-ME-HERE' }),
