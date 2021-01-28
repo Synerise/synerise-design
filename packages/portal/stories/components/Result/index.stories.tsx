@@ -65,12 +65,12 @@ const iconsNames = Object.keys(iconsRaw);
 
 const getDefaultProps = () => ({
   type: select('Select type', types, 'success'),
-  customIcon: boolean('Custom icon', false),
   title: text('Title', 'File upload is in progress…'),
   description: text(
     'Description',
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sodales elit ut justo tristique hendrerit.'
   ),
+  customIcon: boolean('Set custom symbol', false),
 });
 const exampleAvatar = (
   <Avatar
@@ -85,17 +85,18 @@ const exampleAvatar = (
 const stories = {
   default: () => {
     const props = getDefaultProps();
-    const customXlIcon = select('Set custom XL Icon', iconsNames, iconsNames[0]);
-    const IconComp = iconsRaw[customXlIcon]
+
     const additionalIcon = [
       'AvatarIcon',
       'IconXl',
     ];
+    const customIcons = select('Set symbol', additionalIcon,'AvatarIcon');
+    const customXlIcon = select('Set custom XL Icon', iconsNames, iconsNames[0]);
+    const IconComp = iconsRaw[customXlIcon]
     const additionalMapper = {
       AvatarIcon: exampleAvatar,
       IconXl: <Icon style={{margin: '-24px'}} component={<IconComp />} size={96} />,
     };
-    const customIcons = select('Set symbol', additionalIcon,'AvatarIcon');
     return (
       <Result
         {...props}
