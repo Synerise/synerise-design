@@ -5,6 +5,13 @@
   "license": "ISC",
   "repository": "synerise/synerise-design",
   "main": "dist/js/index.js",
+  "files": [
+    "/dist",
+    "CHANGELOG.md",
+    "README.md",
+    "package.json",
+    "LICENSE.md"
+  ],
   "publishConfig": {
     "access": "public"
   },
