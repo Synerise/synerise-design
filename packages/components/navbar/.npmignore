@@ -2,6 +2,7 @@ __specs__
 __spec__
 src
 .babelrc
+.jest-cache
 jest.config.js
 tsconfig.json
 build
