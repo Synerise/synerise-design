@@ -9,8 +9,7 @@ import { action } from '@storybook/addon-actions';
 import { TextArea } from '@synerise/ds-input';
 import ModalProxy from '@synerise/ds-modal';
 import Icon from '@synerise/ds-icon';
-import AbTestXl from '@synerise/ds-icon/dist/icons/XL/AbTestXl';
-import AddXl from '@synerise/ds-icon/dist/icons/XL/AddXl';
+
 
 const decorator = storyFn => <div style={{ width: '520px' }}>{storyFn()}</div>;
 
