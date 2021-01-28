@@ -8,12 +8,12 @@ import Avatar from '@synerise/ds-avatar';
 import { action } from '@storybook/addon-actions';
 import { TextArea } from '@synerise/ds-input';
 import ModalProxy from '@synerise/ds-modal';
+import Icon from '@synerise/ds-icon';
+import AbTestXl from '@synerise/ds-icon/dist/icons/XL/AbTestXl';
+import AddXl from '@synerise/ds-icon/dist/icons/XL/AddXl';
 
-const decorator = storyFn => (
-  <div style={{ width: '520px' }}>
-    {storyFn()}
-  </div>
-);
+const decorator = storyFn => <div style={{ width: '520px' }}>{storyFn()}</div>;
+
 
 const types = {
   success: 'success',
@@ -38,7 +38,12 @@ const buttonSetExample = (
 );
 
 const textareaExample = (
-  <TextArea resetMargin rows={8} disabled value="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in dignissim odio, et luctus risus. Suspendisse vitae dignissim dolor. Nunc vel mollis massa. Cras laoreet nulla in velit elementum sollicitudin. Mauris ut erat nisi. Sed sapien ex, commodo sit amet neque varius, mollis egestas orci. Aenean maximus nibh nec arcu dapibus varius. Nulla lorem magna, maximus vel neque ac, consectetur finibus massa. Etiam bibendum augue in finibus tincidunt. Etiam dui risus, vehicula et massa sed, congue consectetur enim. Integer aliquet purus vitae elit congue, laoreet faucibus odio iaculis. In tincidunt viverra lacus id aliquet." />
+  <TextArea
+    resetMargin
+    rows={8}
+    disabled
+    value="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in dignissim odio, et luctus risus. Suspendisse vitae dignissim dolor. Nunc vel mollis massa. Cras laoreet nulla in velit elementum sollicitudin. Mauris ut erat nisi. Sed sapien ex, commodo sit amet neque varius, mollis egestas orci. Aenean maximus nibh nec arcu dapibus varius. Nulla lorem magna, maximus vel neque ac, consectetur finibus massa. Etiam bibendum augue in finibus tincidunt. Etiam dui risus, vehicula et massa sed, congue consectetur enim. Integer aliquet purus vitae elit congue, laoreet faucibus odio iaculis. In tincidunt viverra lacus id aliquet."
+  />
 );
 
 const listExample = (
@@ -52,74 +57,118 @@ const listExample = (
         { text: 'Automation name #5' },
       ],
     ]}
-    renderItem={(item => (
-      <List.Item>
-        {item.text}
-      </List.Item>
-    ))}
+    renderItem={item => <List.Item>{item.text}</List.Item>}
   />
 );
+const req = require.context('@synerise/ds-icon/dist/icons/XL', false, /index.js/);
+const iconsRaw = req(req.keys()[0]);
+const iconsNames = Object.keys(iconsRaw);
 
 const getDefaultProps = () => ({
   type: select('Select type', types, 'success'),
   customIcon: boolean('Custom icon', false),
   title: text('Title', 'File upload is in progress…'),
-  description: text('Description', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sodales elit ut justo tristique hendrerit.'),
+  description: text(
+    'Description',
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sodales elit ut justo tristique hendrerit.'
+  ),
 });
-
-const exampleAvatar = <Avatar
-  backgroundColor='mars'
-  backgroundColorHue='100'
-  size='large'
-  shape='circle'
-  src={'https://www.w3schools.com/howto/img_avatar.png'}
-/>;
+const exampleAvatar = (
+  <Avatar
+    backgroundColor="mars"
+    backgroundColorHue="100"
+    size="large"
+    shape="circle"
+    src={'https://www.w3schools.com/howto/img_avatar.png'}
+  />
+);
 
 const stories = {
   default: () => {
     const props = getDefaultProps();
+    const customXlIcon = select('Set custom XL Icon', iconsNames, iconsNames[0]);
+    const IconComp = iconsRaw[customXlIcon]
+    const additionalIcon = [
+      'AvatarIcon',
+      'IconXl',
+    ];
+    const additionalMapper = {
+      AvatarIcon: exampleAvatar,
+      IconXl: <Icon style={{margin: '-24px'}} component={<IconComp />} size={96} />,
+    };
+    const customIcons = select('Set symbol', additionalIcon,'AvatarIcon');
     return (
-      <Result {...props} customIcon={props.customIcon ? exampleAvatar : null} buttons={buttonSetExample} />
-    )
+      <Result
+        {...props}
+        customIcon={props.customIcon ? additionalMapper[customIcons] : null}
+        buttons={buttonSetExample}
+      />
+    );
   },
   noSearchResults: () => {
-    return (
-      <Result description="No results" type="no-results" noSearchResults />
-    )
+    return <Result description="No results" type="no-results" noSearchResults />;
   },
   withTextarea: () => {
     const props = getDefaultProps();
     return (
-      <Result {...props} customIcon={props.customIcon ? exampleAvatar : null} buttons={buttonSetExample} panel={textareaExample} />
-    )
+      <Result
+        {...props}
+        customIcon={props.customIcon ? exampleAvatar : null}
+        buttons={buttonSetExample}
+        panel={textareaExample}
+      />
+    );
   },
   withList: () => {
     const props = getDefaultProps();
     return (
-      <ModalProxy blank closable onCancel={action('onClick: Cancel')} visible size={select('Select modal size', MODAL_SIZES, 'small')} footer={null}>
-        <Result {...props} customIcon={props.customIcon ? exampleAvatar : null} buttons={buttonSetExample} panel={listExample} />
+      <ModalProxy
+        blank
+        closable
+        onCancel={action('onClick: Cancel')}
+        visible
+        size={select('Select modal size', MODAL_SIZES, 'small')}
+        footer={null}
+      >
+        <Result
+          {...props}
+          customIcon={props.customIcon ? exampleAvatar : null}
+          buttons={buttonSetExample}
+          panel={listExample}
+        />
       </ModalProxy>
-    )
+    );
   },
   withModal: () => {
     const props = getDefaultProps();
     return (
-      <ModalProxy blank closable onCancel={action('onClick: Cancel')} visible size={select('Select modal size', MODAL_SIZES, 'small')} footer={null}>
-        <Result {...props} customIcon={props.customIcon ? exampleAvatar : null} buttons={
-          <Button type="secondary" onClick={action('onClick: Close')}>
-            Close
-          </Button>
-        }
-        panel={textareaExample} />
-     </ModalProxy>
-    )
+      <ModalProxy
+        blank
+        closable
+        onCancel={action('onClick: Cancel')}
+        visible
+        size={select('Select modal size', MODAL_SIZES, 'small')}
+        footer={null}
+      >
+        <Result
+          {...props}
+          customIcon={props.customIcon ? exampleAvatar : null}
+          buttons={
+            <Button type="secondary" onClick={action('onClick: Close')}>
+              Close
+            </Button>
+          }
+          panel={textareaExample}
+        />
+      </ModalProxy>
+    );
   },
 };
 
 export default {
-name: 'Components/Result',
+  name: 'Components/Result',
   config: {},
   stories,
   decorator,
   Component: Result,
-}
+};
