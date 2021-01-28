@@ -9,7 +9,7 @@ export const TextareaWrapper = styled.div<{
   hasError: boolean;
 }>`
   position: relative;
-  overflow: auto;
+  overflow: hidden;
   resize: ${(props): string => (props.resize ? props.resize : 'vertical')};
   border-radius: 3px;
   transition: background-color 0.3s ease-in-out, border 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
@@ -25,6 +25,14 @@ export const TextareaWrapper = styled.div<{
         box-shadow: inset 0 0 0 1px ${props.theme.palette['blue-600']};
         border: 1px solid ${props.theme.palette['blue-600']};
         background-color: ${props.theme.palette['blue-050']};
+        &&& {
+          textarea {
+            &::-webkit-scrollbar-thumb {
+              background-color: #e1e3e6;
+              border: 4px solid ${props.theme.palette['blue-050']} !important;
+            }
+          }
+        }
       `;
     if (props.hasError)
       return css`
@@ -39,9 +47,12 @@ export const TextareaWrapper = styled.div<{
   }}
 
   .scrollbar-container {
-    min-height: 100%;
+    height: 100%;
+    top: 1px;
+    bottom: 0;
+    right: 1px;
     div {
-      height: 100%;
+      height: calc(100% - 1px);
     }
   }
   &&& {
