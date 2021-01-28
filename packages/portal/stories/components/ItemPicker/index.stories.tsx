@@ -42,6 +42,8 @@ const stories = {
       onChange={handleChange}
       clear={text('Set clear tooltip', 'Remove')}
       onClear={handleClear}
+      onFocus={() => console.log('onFocus')}
+      onBlur={() => console.log('onBlur')}
       disabled={boolean('Disabled', false)}
       error={boolean('Has error?', false)}
       errorMessage={text('Error message', 'Error')}
