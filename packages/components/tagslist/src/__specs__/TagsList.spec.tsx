@@ -1,7 +1,7 @@
 import * as React from 'react';
-import TagsList from '../TagsList';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import { fireEvent, waitFor } from '@testing-library/react';
+import TagsList from '../TagsList';
 import { TagsListItem } from '../TagsList.types';
 
 const FOLDERS: TagsListItem[] = [
@@ -18,13 +18,12 @@ describe('TagsList', () => {
     const onFavourite = jest.fn();
     const { getByText } = renderWithProvider(
       <TagsList
-        actionsDisplay={'inline'}
-        dataSource={FOLDERS}
+        items={FOLDERS}
         onDelete={onDelete}
         onEdit={onEdit}
         onAdd={onAdd}
         onFavourite={onFavourite}
-        //@ts-ignore
+        // @ts-ignore
         texts={{}}
       />
     );
@@ -40,13 +39,12 @@ describe('TagsList', () => {
       const onFavourite = jest.fn();
       const { getByText, container } = renderWithProvider(
         <TagsList
-          actionsDisplay={'inline'}
-          dataSource={FOLDERS}
+          items={FOLDERS}
           onDelete={onDelete}
           onEdit={onEdit}
           onAdd={onAdd}
           onFavourite={onFavourite}
-          //@ts-ignore
+          // @ts-ignore
           texts={{}}
         />
       );
@@ -62,13 +60,12 @@ describe('TagsList', () => {
       const onFavourite = jest.fn();
       const { getByText, container } = renderWithProvider(
         <TagsList
-          actionsDisplay={'inline'}
-          dataSource={FOLDERS}
+          items={FOLDERS}
           onDelete={onDelete}
           onEdit={onEdit}
           onAdd={onAdd}
           onFavourite={onFavourite}
-          //@ts-ignore
+          // @ts-ignore
           texts={{}}
         />
       );
@@ -85,13 +82,12 @@ describe('TagsList', () => {
       const onFavourite = jest.fn();
       const { getByText, container } = renderWithProvider(
         <TagsList
-          actionsDisplay={'inline'}
-          dataSource={FOLDERS}
+          items={FOLDERS}
           onDelete={onDelete}
           onEdit={onEdit}
           onAdd={onAdd}
           onFavourite={onFavourite}
-          //@ts-ignore
+          // @ts-ignore
           texts={{
             deleteFolderDescription:'Folder is going to be deleted',
             deleteFolderLabel: 'Remove folder',
@@ -116,13 +112,12 @@ describe('TagsList', () => {
     const onFavourite = jest.fn();
     const { getByText, container } = renderWithProvider(
       <TagsList
-        actionsDisplay={'inline'}
-        dataSource={FOLDERS}
+        items={FOLDERS}
         onDelete={onDelete}
         onEdit={onEdit}
         onAdd={onAdd}
         onFavourite={onFavourite}
-        //@ts-ignore
+        // @ts-ignore
         texts={{
           addItemLabel: 'Add folder',
         }}
@@ -138,13 +133,12 @@ describe('TagsList', () => {
     const onFavourite = jest.fn();
     const { getByText, container } = renderWithProvider(
       <TagsList
-        actionsDisplay={'inline'}
-        dataSource={FOLDERS}
+        items={FOLDERS}
         onDelete={onDelete}
         onEdit={onEdit}
         onAdd={onAdd}
         onFavourite={onFavourite}
-        //@ts-ignore
+        // @ts-ignore
         texts={{
           addItemLabel: 'Add folder',
           showLessLabel: 'Hide',
@@ -166,14 +160,13 @@ describe('TagsList', () => {
     const onFavourite = jest.fn();
     const { getByText, queryByText } = renderWithProvider(
       <TagsList
-        actionsDisplay={'inline'}
-        dataSource={FOLDERS}
+        items={FOLDERS}
         onDelete={onDelete}
         onEdit={onEdit}
         onAdd={onAdd}
         onFavourite={onFavourite}
         maxItemsVisible={2}
-        //@ts-ignore
+        // @ts-ignore
         texts={{
           addItemLabel: 'Add folder',
           showLessLabel: 'Hide',
@@ -193,14 +186,13 @@ describe('TagsList', () => {
     const newItems: TagsListItem[] = [...FOLDERS, { name: 'Zanzibar', id: '7', favourite: true }];
     const { getByText } = renderWithProvider(
       <TagsList
-        actionsDisplay={'inline'}
-        dataSource={newItems}
+        items={newItems}
         onDelete={onDelete}
         onEdit={onEdit}
         onAdd={onAdd}
         onFavourite={onFavourite}
         visibleItemsCount={2}
-        //@ts-ignore
+        // @ts-ignore
         texts={{
           addItemLabel: 'Add folder',
           showLessLabel: 'Hide',
@@ -217,14 +209,13 @@ describe('TagsList', () => {
     const onFavourite = jest.fn();
     const { getByText, queryByText } = renderWithProvider(
       <TagsList
-        actionsDisplay={'inline'}
-        dataSource={FOLDERS}
+        items={FOLDERS}
         onDelete={onDelete}
         onEdit={onEdit}
         onAdd={onAdd}
         onFavourite={onFavourite}
         maxItemsVisible={2}
-        //@ts-ignore
+        // @ts-ignore
         texts={{
           addItemLabel: 'Add folder',
           showLessLabel: 'Hide',

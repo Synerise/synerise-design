@@ -31,8 +31,8 @@ const DeleteModal: React.FC<DeleteModalProps> = ({
       <S.SelectWrapper>
         <Select
           className="destination-folder-select"
-          label={texts.chooseDestinationFolder}
-          placeholder={texts.chooseDestinationFolder}
+          label={texts?.chooseDestinationFolder}
+          placeholder={texts?.chooseDestinationFolder}
           value={destination?.name}
           onChange={(id: SelectValue): void => {
             setDestination(folders.find(item => item.id === id));
@@ -59,23 +59,23 @@ const DeleteModal: React.FC<DeleteModalProps> = ({
       footer={
         <S.Footer>
           <Button type="ghost" onClick={onClose}>
-            {texts.cancel}
+            {texts?.cancel}
           </Button>
           <Button type="custom-color" color="red" onClick={handleConfirm} disabled={disablePrimaryButton}>
-            {texts.deleteFolderLabel}
+            {texts?.deleteFolderLabel}
           </Button>
         </S.Footer>
       }
       onCancel={onClose}
-      title={<div>{texts.deleteFolderLabel}</div>}
+      title={<div>{texts?.deleteFolderLabel}</div>}
     >
       <S.ModalBody className="ds-folders-delete">
         <S.DeleteMessage>
           <strong>
-            {texts.deleteFolderConfirmationMessage}
+            {texts?.deleteFolderConfirmationMessage}
             {` "${deletedItem?.name}"?`}
           </strong>
-          <span>{texts.deleteFolderDescription}</span>
+          <span>{texts?.deleteFolderDescription}</span>
         </S.DeleteMessage>
         <S.ModePicker>
           <Radio.Group
@@ -83,10 +83,10 @@ const DeleteModal: React.FC<DeleteModalProps> = ({
             defaultValue="move-to-default"
             onChange={(e: RadioChangeEvent): void => setMode(e.target.value)}
           >
-            <Radio value="move-to-default">{texts.moveToDefault}</Radio>
-            <Radio value="move-to-other">{texts.moveToOtherFolder}</Radio>
+            <Radio value="move-to-default">{texts?.moveToDefault}</Radio>
+            <Radio value="move-to-other">{texts?.moveToOtherFolder}</Radio>
             {renderSelect()}
-            <Radio value="delete-all">{texts.deleteAllContent}</Radio>
+            <Radio value="delete-all">{texts?.deleteAllContent}</Radio>
           </Radio.Group>
         </S.ModePicker>
       </S.ModalBody>

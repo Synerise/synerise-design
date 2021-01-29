@@ -43,9 +43,9 @@ const ShowLessOrMore: React.FC<Props> = ({
         >
           <Icon component={<ArrowDownCircleM />} />
           <S.Label>
-            <span>{texts.showMoreLabel}</span>
+            <span>{texts?.showMoreLabel}</span>
             <strong>{more}</strong>
-            <span>{texts.more}</span>
+            <span>{texts?.more}</span>
           </S.Label>
         </Button>
       )
@@ -64,9 +64,9 @@ const ShowLessOrMore: React.FC<Props> = ({
       >
         <Icon component={<ArrowUpCircleM />} />
         <S.Label>
-          <span>{texts.showMoreLabel}</span>
+          <span>{texts?.showMoreLabel}</span>
           <strong>{itemsToHide}</strong>
-          <span>{texts.less}</span>
+          <span>{texts?.less}</span>
         </S.Label>
       </Button>
     );

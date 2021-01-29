@@ -38,6 +38,7 @@ export const handleItemFavourite = (items: TagsListItem[], item: TagsListItem): 
     return i;
   });
 };
+
 export const handleItemEdit = (items: TagsListItem[], editedItem: TagsListItem): TagsListItem[] => {
   const nonDuplicateItem = addSuffixToDuplicate(items, editedItem);
   return items.map(i => {

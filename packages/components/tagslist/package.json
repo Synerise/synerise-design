@@ -14,7 +14,6 @@
     "build:js": "babel --root-mode upward src --out-dir dist --extensions '.js,.ts,.tsx'",
     "build:watch": "npm run build:js -- --watch",
     "defs": "tsc --declaration --outDir dist/ --emitDeclarationOnly",
-    "prepublish": "npm run build",
     "test": "jest",
     "test:watch": "npm run test -- --watchAll",
     "types": "tsc --noEmit"
@@ -27,7 +26,9 @@
   "dependencies": {
     "@synerise/ds-button": "^0.13.22",
     "@synerise/ds-dropdown": "^0.13.12",
-    "@synerise/ds-menu": "^0.7.19"
+    "@synerise/ds-menu": "^0.7.19",
+    "@types/react-highlight-words": "^0.16.1",
+    "react-highlight-words": "^0.17.0"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

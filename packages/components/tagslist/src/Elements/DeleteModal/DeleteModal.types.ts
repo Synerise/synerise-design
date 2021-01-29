@@ -6,6 +6,6 @@ export type DeleteModalProps = {
   onConfirm: (options: { mode: DeleteMode; destination?: TagsListItem }) => void;
   deletedItem: TagsListItem | undefined;
   folders: TagsListItem[];
-  texts: TagsListTexts;
+  texts: TagsListTexts | undefined;
 };
 export type DeleteMode = 'move-to-default' | 'move-to-other' | 'delete-all';

@@ -10,13 +10,14 @@ export type ActionProps = {
   onSettingsEnter?: (item?: TagsListItem) => void;
   onFavourite?: (item?: TagsListItem) => void;
   onVisibility?: (visibility: TagVisibility, item?: TagsListItem) => void;
+  onDropdown?: (visible: boolean) => void;
   visibility?: TagVisibility;
-  texts: TagsListTexts;
+  texts: TagsListTexts | undefined;
   hovered?: boolean;
 };
 
 export type VisibilityProps = {
-  texts: TagsListTexts;
+  texts: TagsListTexts | undefined;
   item: TagsListItem;
   onVisibility?: (visibility: TagVisibility, item?: TagsListItem) => void;
   visibility?: TagVisibility;

@@ -1,3 +1,5 @@
+import { TagsListTexts } from "../../TagsList.types"
+
 export type Props = {
   onShowMore: (more: number) => void;
   onShowLess: (less: number) => void;
@@ -5,10 +7,5 @@ export type Props = {
   visibleItemsCount: number;
   maxItemsToShow: number;
   step: number;
-  texts: {
-    showLessLabel?: string | React.ReactNode;
-    showMoreLabel?: string | React.ReactNode;
-    less?: string | React.ReactNode;
-    more?: string | React.ReactNode;
-  };
+  texts: TagsListTexts | undefined;
 };

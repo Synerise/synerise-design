@@ -1,23 +1,40 @@
 import * as React from 'react';
+
+// import { v4 as uuid } from 'uuid';
 import Icon from '@synerise/ds-icon';
 import Add3M from '@synerise/ds-icon/dist/icons/Add3M';
 import Button from '@synerise/ds-button';
-import { Input } from '@synerise/ds-input';
-import { StarFillM, StarM } from '@synerise/ds-icon/dist/icons';
+import Menu from '@synerise/ds-menu';
+import SearchBar from '@synerise/ds-search-bar';
+import Checkbox from '@synerise/ds-checkbox';
+import CheckboxTristate from '@synerise/ds-checkbox-tristate';
+import Tooltip from '@synerise/ds-tooltip';
+import { Settings2M, InfoFillS } from '@synerise/ds-icon/dist/icons';
 import { useOnClickOutside } from '@synerise/ds-utils';
-import { v4 as uuid } from 'uuid';
 import Dropdown from '@synerise/ds-dropdown';
+
+// import { validateFolderName } from '../../utils';
+import { AddModalProps } from './AddModal.types';
 import * as S from './AddModal.styles';
-import { Props } from './AddModal.types';
-import { validateFolderName } from '../../utils';
 
 const DEFAULT_NAME = '';
 const POPUP_CLOSE_DELAY = 400;
-const AddModal: React.FC<Props> = ({ onItemAdd, disabled, texts }) => {
+
+type TagInfoProps = {
+  info: string;
+}
+
+const TagInfo: React.FC<TagInfoProps> = ({info}) => {
+  return <Tooltip
+    title={info}
+  >
+    <S.TagInfoIcon component={<InfoFillS />} />
+  </Tooltip> 
+}
+
+const AddModal: React.FC<AddModalProps> = ({ onItemAdd, disabled, texts, tristate = false }) => {
   const [name, setName] = React.useState(DEFAULT_NAME);
-  const [favourite, setFavourite] = React.useState<boolean>(false);
   const [overlayVisible, setOverlayVisible] = React.useState<boolean>(false);
-  const [error, setError] = React.useState<string | React.ReactNode>();
   const overlayRef = React.useRef<HTMLDivElement>(null);
 
   useOnClickOutside(overlayRef, () => {
@@ -29,8 +46,8 @@ const AddModal: React.FC<Props> = ({ onItemAdd, disabled, texts }) => {
     setName(DEFAULT_NAME);
   });
 
-  const handleNameChange = React.useCallback((event: React.ChangeEvent<HTMLInputElement>): void => {
-    setName(event.target.value);
+  const handleNameChange = React.useCallback((name: string): void => {
+    setName(name);
   }, []);
 
   const toggleInput = React.useCallback((): void => {
@@ -38,84 +55,72 @@ const AddModal: React.FC<Props> = ({ onItemAdd, disabled, texts }) => {
     setOverlayVisible(!overlayVisible);
   }, [overlayVisible]);
 
-  const confirmAdd = React.useCallback((): void => {
-    if (!validateFolderName(name)) {
-      setError(texts.invalidNameError);
-      return;
-    }
-    if (error) {
-      setError(undefined);
-    }
-    if (overlayVisible) {
-      setOverlayVisible(false);
-    }
-    const trimmedName = name.trim();
-    onItemAdd &&
-      onItemAdd({ id: uuid(), name: trimmedName, favourite, canEnterSettings: true, canUpdate: true, canDelete: true });
-    setFavourite(false);
-  }, [name, error, onItemAdd, overlayVisible, favourite, texts.invalidNameError]);
-
-  const handleKeyDown = React.useCallback(
-    (e: React.KeyboardEvent<HTMLInputElement>) => {
-      if (e.key === 'Enter') {
-        confirmAdd();
-      }
-    },
-    [confirmAdd]
-  );
   const focus = (inputRef: React.MutableRefObject<HTMLInputElement | HTMLTextAreaElement | undefined>): void => {
     overlayVisible && inputRef.current && inputRef.current.focus();
   };
+
+  const CheckboxComponent = tristate ? CheckboxTristate : Checkbox;
+
   return (
-    <S.AddItemLayout>
-      <Dropdown
-        className="ds-folders-add"
-        overlay={
-          <S.Overlay ref={overlayRef}>
-            <Input
-              handleInputRef={focus}
-              onKeyDown={handleKeyDown}
-              label={texts.addItemLabel}
-              placeholder={texts.folderNamePlaceholder}
-              value={name}
-              onChange={handleNameChange}
-              errorText={error}
-              icon1={
-                <S.FavouriteIcon
-                  favourite={favourite}
-                  component={favourite ? <StarFillM /> : <StarM />}
-                  onClick={(): void => {
-                    setFavourite(!favourite);
-                  }}
-                />
-              }
-              icon1Tooltip={<span>{texts.addToFavourite}</span>}
-            />
-            <S.OverlayFooter>
-              <Button type="primary" onClick={confirmAdd}>
-                {texts.addItemLabel}
-              </Button>
-            </S.OverlayFooter>
-          </S.Overlay>
+    <Dropdown
+      overlay={
+        <Dropdown.Wrapper style={{width: 'auto', minWidth: 'auto'}} ref={overlayRef}>
+          <SearchBar 
+            placeholder="Search"
+            handleInputRef={focus}
+            value={name}
+            onSearchChange={handleNameChange}
+          />
+          <Menu asDropdownMenu style={{width: 'auto'}}>
+            <S.TagItem
+              prefixel={<CheckboxComponent />}
+              suffixel={<TagInfo info="Testing tooltip" />}
+            >Tag 1</S.TagItem>
+            <S.TagItem 
+              prefixel={<CheckboxComponent />}
+              suffixel={<TagInfo info="Testing tooltip" />}
+            >Tag 2</S.TagItem>
+            <S.TagItem
+              prefixel={<CheckboxComponent />}
+              suffixel={<TagInfo info="Testing tooltip" />}
+            >Tag 3</S.TagItem>
+          </Menu>
+          <Dropdown.BottomAction 
+            onClickAction={() => {}} 
+          >
+            <div style={{width: '100%', display: 'flex', flexDirection: 'row'}}>
+              <div style={{flexGrow: 1}}>
+                <Button type="ghost">
+                  <Icon component={<Settings2M />} size={24} />&nbsp;
+                  {texts?.enterSettings}
+                </Button>
+              </div>
+              <Button type="ghost-primary">{texts?.applyAdd}</Button>
+            </div>
+          </Dropdown.BottomAction>
+        </Dropdown.Wrapper>
+      }
+      placement="bottomLeft"
+      trigger={['click']}
+      overlayStyle={{ boxShadow: '0 4px 12px 0 rgba(138, 140, 145, 0.07)' }}
+      visible={overlayVisible}
+      onVisibleChange={(visible): void => {
+        if (!visible) {
+          // setFavourite(false);
         }
-        placement="bottomLeft"
-        trigger={['click']}
-        overlayStyle={{ boxShadow: '0 4px 12px 0 rgba(35, 41, 54, 0.07)' }}
-        visible={overlayVisible}
-        onVisibleChange={(visible): void => {
-          if (!visible) {
-            setFavourite(false);
-          }
-        }}
-      >
-        <S.ButtonWrapper>
-          <Button type="ghost-primary" mode="icon-label" onClick={toggleInput} disabled={disabled}>
-            <Icon component={<Add3M />} size={24} />
-            {texts.addItemLabel}
-          </Button>
-        </S.ButtonWrapper>
-      </Dropdown>
-    </S.AddItemLayout>
+      }}
+    >
+      <S.ButtonWrapper style={{}}>
+        <Button 
+        type="ghost-primary" 
+        mode="icon-label" 
+        onClick={toggleInput} 
+        disabled={disabled}>
+          <Icon component={<Add3M />} size={24} />
+          {texts?.addItemLabel}
+        </Button>
+      </S.ButtonWrapper>
+    </Dropdown>
   );
 };
 

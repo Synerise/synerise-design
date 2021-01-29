@@ -1,9 +1,9 @@
 import { ReactElement } from 'react';
-import { TagsListItem, TagsListProps, TagsListTexts, TagVisibility } from '../../TagsList.types';
+import { TagsListItem, TagsListTexts, TagVisibility } from '../../TagsList.types';
 
 export type ItemProps = {
   item: TagsListItem;
-  texts: TagsListTexts;
+  texts: TagsListTexts | undefined;
   checked?: boolean;
   withCheckbox?: boolean;
   toggleDeleteModal?: () => void;
@@ -16,4 +16,4 @@ export type ItemProps = {
   icon?: ReactElement;
   iconFavourite?: ReactElement;
   iconFavouriteFlat?: ReactElement;
-} & Pick<TagsListProps, 'actionsDisplay'>;
+};

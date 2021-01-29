@@ -1,7 +1,8 @@
 import { TagsListItem, TagsListTexts } from '../../TagsList.types';
 
-export type Props = {
+export type AddModalProps = {
   onItemAdd?: (addParams: TagsListItem) => void;
   disabled: boolean;
-  texts: TagsListTexts;
+  texts: TagsListTexts | undefined;
+  tristate?: boolean;
 };

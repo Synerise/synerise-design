@@ -29,8 +29,13 @@ export const InlineEditInput = styled(BorderLessInput)<DSInputProps>`
 export const SuffixWrapper = styled.div`
   transition: opacity 0.2s ease-out;
 `;
+
 export const TagsListItem = styled(Menu.Item)<
-  MenuItemProps & JSX.IntrinsicAttributes & { inline: boolean; editMode: boolean }
+  MenuItemProps & JSX.IntrinsicAttributes & { 
+    inline: boolean; 
+    editMode: boolean;
+    hovered: boolean;
+  }
 >`
   && {
     min-height: 32px;
@@ -58,6 +63,15 @@ export const TagsListItem = styled(Menu.Item)<
         }
       `}
 
+    ${(props): FlattenSimpleInterpolation | false =>
+      props.hovered &&
+      css`
+        & { 
+          background-color: ${props.theme.palette['grey-050']};
+        }
+      `
+    }
+
     &:hover {
       ${SuffixWrapper} {
         ${(props): string | false => props.inline && 'display:flex;'}
@@ -75,7 +89,25 @@ export const TagsListText = styled.div`
   overflow: hidden;
   display: block;
   text-overflow: ellipsis;
+
+    mark.highlight {
+      padding: 0;
+      background: none;
+      font-weight: 600;
+      color: inherit;
+    }
+
+    span.unhighlight {
+      font-weight: 400;
+      color: inherit;
+    }
 `;
+
+export const TagsListTextHighlight = styled.span`
+  background: #ff0;
+  font-weight: 500;
+`;
+
 export const PrefixWrapper = styled.div`
   min-width: 24px;
   text-align: center;

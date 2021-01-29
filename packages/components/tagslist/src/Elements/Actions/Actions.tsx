@@ -5,20 +5,22 @@ import Menu from '@synerise/ds-menu';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { EditM, OptionHorizontalM, Settings2M, StarFillM, StarM, TrashM, CheckS } from '@synerise/ds-icon/dist/icons';
 import { ClickParam } from 'antd/es/menu';
-import { ActionProps, VisibilityProps } from '../Actions.types';
-import { TagVisibility } from '../../../TagsList.types';
-import * as S from '../Actions.styles';
+import { ActionProps, VisibilityProps } from './Actions.types';
+import { TagVisibility } from '../../TagsList.types';
+import * as S from './Actions.styles';
 
 const triggerClick = (event: React.MouseEvent<HTMLElement, MouseEvent>): void => event.stopPropagation();
 const dropdownMenuClick = (event: ClickParam): void => event.domEvent.stopPropagation();
 
 const CheckIcon: React.FC = () => <Icon color={theme.palette['green-600']} component={<CheckS />} />;
 
+const NOOP = () => {};
+
 const Visibility: React.FC<VisibilityProps> = ({texts, onVisibility, visibility, item}) => {
   const visibilities = {
-    show: texts.visibilityShow,
-    showifused: texts.visibilityShowIfUsed,
-    hide: texts.visibilityHide,
+    show: texts?.visibilityShow,
+    showifused: texts?.visibilityShowIfUsed,
+    hide: texts?.visibilityHide,
   }
 
   const [stateVisibility, setVisibility] = React.useState(visibility);
@@ -56,6 +58,7 @@ const ActionsDropdown: React.FC<ActionProps> = ({
   onSettingsEnter,
   onEdit,
   onDelete,
+  onDropdown = NOOP,
   item,
   isFavourite,
   visibility,
@@ -67,6 +70,7 @@ const ActionsDropdown: React.FC<ActionProps> = ({
       overlayStyle={{ boxShadow: '0 4px 12px 0 rgba(35, 41, 54, 0.07)', padding: 0 }}
       align={{ offset: [12, 12] }}
       trigger={['click']}
+      onVisibleChange={onDropdown}
       overlay={
         // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
         <S.DropdownMenu asDropdownMenu onClick={dropdownMenuClick}>
@@ -83,9 +87,10 @@ const ActionsDropdown: React.FC<ActionProps> = ({
               onClick={(e: ClickParam): void => {
                 e.domEvent.stopPropagation();
                 onFavourite();
+                onDropdown(false);
               }}
             >
-              {isFavourite ? texts.deleteFromFavourites : texts.addToFavourite}
+              {isFavourite ? texts?.deleteFromFavourites : texts?.addToFavourite}
             </S.DropdownMenuItem>
           )}
           {!!onEdit && (
@@ -94,9 +99,10 @@ const ActionsDropdown: React.FC<ActionProps> = ({
               onClick={(e: ClickParam): void => {
                 e.domEvent.stopPropagation();
                 onEdit();
+                onDropdown(false);
               }}
             >
-              {texts.edit}
+              {texts?.edit}
             </S.DropdownMenuItem>
           )}
           {!!onSettingsEnter && (
@@ -105,9 +111,10 @@ const ActionsDropdown: React.FC<ActionProps> = ({
               onClick={(e: ClickParam): void => {
                 e.domEvent.stopPropagation();
                 onSettingsEnter();
+                onDropdown(false);
               }}
             >
-              {texts.enterSettings}
+              {texts?.enterSettings}
             </S.DropdownMenuItem>
           )}
           <Menu.Divider />
@@ -118,9 +125,10 @@ const ActionsDropdown: React.FC<ActionProps> = ({
               onClick={(e: ClickParam): void => {
                 e.domEvent.stopPropagation();
                 onDelete();
+                onDropdown(false);
               }}
             >
-              {texts.delete}
+              {texts?.delete}
             </S.DropdownMenuItem>
           )}
         </S.DropdownMenu>
