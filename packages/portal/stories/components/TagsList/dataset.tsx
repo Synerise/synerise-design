@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { CalendarM, ClockM, EditM, FolderAddM, StarM, StopM, TilesM } from '@synerise/ds-icon/dist/icons';
-import { TagsListItem } from '@synerise/ds-tagslist/dist/TagsList.types';
+import { TagsListItem, TagVisibility } from '@synerise/ds-tagslist/dist/TagsList.types';
 
 export const TOP_MENU_ITEMS: { icon: React.ReactNode; text: string }[] = [
   {
@@ -32,13 +32,33 @@ export const MIDDLE_MENU_ITEMS: { icon: React.ReactNode; text: string }[] = [
   },
 ];
 
+export const ADD_TAGS: TagsListItem[] = [
+  {
+    id: '123123123',
+    name: 'Tag 1',
+    description: 'Tags 1 description',
+  },
+  {
+    id: '12334323',
+    name: 'Tag 2',
+  },
+  {
+    id: '123123126',
+    name: 'Tag 4',
+  },
+  {
+    id: '123123565',
+    name: 'Tag 5',
+  },
+]
+
 export const FOLDERS: TagsListItem[] = [
   {
     id: '1',
     name: 'Analytics',
     favourite: true,
     checked: false,
-    visibility: 'show',
+    visibility: TagVisibility.Show,
     canUpdate: true,
     canDelete: true,
     canEnterSettings: true,
@@ -47,7 +67,7 @@ export const FOLDERS: TagsListItem[] = [
     id: '2',
     name: 'Behavioral',
     favourite: false,
-    visibility: 'showifused',
+    visibility: TagVisibility.ShowIfUsed,
     checked: false,
     canUpdate: true,
     canDelete: true,
@@ -58,7 +78,7 @@ export const FOLDERS: TagsListItem[] = [
     name: 'Campaigns',
     favourite: false,
     checked: false,
-    visibility: 'hide',
+    visibility: TagVisibility.Hide,
     canUpdate: true,
     canDelete: true,
     canEnterSettings: true,
@@ -68,7 +88,7 @@ export const FOLDERS: TagsListItem[] = [
     name: 'Campaigns 2',
     favourite: false,
     checked: false,
-    visibility: 'hide',
+    visibility: TagVisibility.Hide,
     canUpdate: true,
     canDelete: true,
     canEnterSettings: true,
@@ -78,7 +98,7 @@ export const FOLDERS: TagsListItem[] = [
     name: 'Metrics',
     favourite: false,
     checked: false,
-    visibility: 'hide',
+    visibility: TagVisibility.Hide,
     canUpdate: true,
     canDelete: true,
     canEnterSettings: true,
@@ -88,7 +108,7 @@ export const FOLDERS: TagsListItem[] = [
     name: 'Schema',
     favourite: false,
     checked: false,
-    visibility: 'hide',
+    visibility: TagVisibility.Hide,
     canUpdate: true,
     canDelete: true,
     canEnterSettings: true,
@@ -98,7 +118,7 @@ export const FOLDERS: TagsListItem[] = [
     name: 'Recent',
     favourite: true,
     checked: false,
-    visibility: 'hide',
+    visibility: TagVisibility.Hide,
     canUpdate: true,
     canDelete: true,
     canEnterSettings: true,
@@ -108,7 +128,7 @@ export const FOLDERS: TagsListItem[] = [
     name: 'Upcoming',
     favourite: false,
     checked: false,
-    visibility: 'hide',
+    visibility: TagVisibility.Hide,
     canUpdate: true,
     canDelete: true,
     canEnterSettings: true,
@@ -118,27 +138,27 @@ export const FOLDERS: TagsListItem[] = [
     name: 'Automation',
     favourite: false,
     checked: false,
-    visibility: 'hide',
+    visibility: TagVisibility.Hide,
     canUpdate: true,
     canDelete: true,
     canEnterSettings: true,
   },
   {
     id: '11',
-    name: 'Promotion',
+    name: 'Promotion - Promo Promo!',
     favourite: true,
     checked: false,
-    visibility: 'hide',
+    visibility: TagVisibility.Hide,
     canUpdate: true,
     canDelete: true,
     canEnterSettings: true,
   },
   {
     id: '12',
-    name: 'Promotion 3',
+    name: 'The Promotion 3 - Promotion',
     favourite: true,
     checked: false,
-    visibility: 'hide',
+    visibility: TagVisibility.Hide,
     canUpdate: true,
     canDelete: true,
     canEnterSettings: true,
@@ -148,7 +168,7 @@ export const FOLDERS: TagsListItem[] = [
     name: 'Promotion 4 with very long name',
     favourite: true,
     checked: false,
-    visibility: 'hide',
+    visibility: TagVisibility.Hide,
     canUpdate: true,
     canDelete: true,
     canEnterSettings: true,

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Highlighter from 'react-highlight-words';
+import { ClickParam } from 'antd/lib/menu';
 
 import Icon from '@synerise/ds-icon';
 import Checkbox from '@synerise/ds-checkbox';
@@ -8,8 +9,8 @@ import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { useOnClickOutside } from '@synerise/ds-utils';
 import Tooltip from '@synerise/ds-tooltip';
 
-import { ClickParam } from 'antd/lib/menu';
 import { validateFolderName } from '../../utils';
+import { TagsListItem } from '../../TagsList.types';
 import TagsListContext from '../../TagsListContext';
 import Actions from '../Actions';
 import { ItemProps } from './Item.types';
@@ -18,7 +19,8 @@ import * as S from './Item.styles';
 
 const { useEffect, useState, useCallback, useRef } = React;
 
-const NOOP = () => {};
+const NOOP = (item: TagsListItem) => {};
+const VIS_NOOP = () => {};
 
 function getRenderItemName(itemName: string, query: string ): React.ReactNode {
   if(query && itemName.toLowerCase().match(query.toLowerCase())) {
@@ -35,16 +37,15 @@ function getRenderItemName(itemName: string, query: string ): React.ReactNode {
 const Item: React.FC<ItemProps> = ({
   item,
   onSettingsEnter,
-  onDelete,
-  onFavourite,
-  onVisibility,
+  onDelete = NOOP,
+  onFavourite = NOOP,
+  onVisibility = VIS_NOOP,
   onEdit,
-  toggleDeleteModal,
   texts,
   onItemSelect = NOOP,
   checked = false,
   withCheckbox = true
-}: ItemProps) => {
+}) => {
   const { name, favourite } = item;
   const { searchQuery } = React.useContext(TagsListContext);
   
@@ -77,7 +78,7 @@ const Item: React.FC<ItemProps> = ({
     if(textRef.current && textRef.current?.offsetWidth < textRef.current?.scrollWidth) {
       setOverflowed(true);
     }
-  }, [name]);
+  }, [name, textRef]);
 
   const getPrefix = useCallback((isFavourite, isHovered, isEditMode): React.ReactNode => {
     if (isFavourite) {
@@ -99,7 +100,7 @@ const Item: React.FC<ItemProps> = ({
   };
 
   const handleOnFavourite = (): void => {
-    onFavourite && onFavourite(item);
+    onFavourite(item);
   };
 
   const handleOnEdit = onEdit && ((): void => {
@@ -112,12 +113,7 @@ const Item: React.FC<ItemProps> = ({
 
   const renderSuffix = (): React.ReactNode => (
     <Actions
-      onDelete={
-        onDelete &&
-        ((): void => {
-          toggleDeleteModal && toggleDeleteModal();
-        })
-      }
+      onDelete={onDelete}
       item={item}
       onVisibility={onVisibility}
       onDropdown={onDropdown}
@@ -137,11 +133,10 @@ const Item: React.FC<ItemProps> = ({
   });
 
   const onClick = (params: ClickParam): void => {
-    console.log(item);
-    onItemSelect && onItemSelect(item);
+    onItemSelect(item);
   };
 
-  const isHovered = hovered || dropdownOpened;
+  const isHovered = !!(hovered || dropdownOpened);
 
   return (
     // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events

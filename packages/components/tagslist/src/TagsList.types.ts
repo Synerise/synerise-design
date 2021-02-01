@@ -13,20 +13,25 @@ export enum TagsListActions {
 export type TagsListProps = {
   addButtonDisabled?: boolean;
   items?: TagsListItem[];
+  defaultItems?: TagsListItem[];
   loadingItems?: boolean;
   addItemsList?: TagsListItem[];
   addItemsLoading?: boolean;
   maxItemsVisible?: number;
   visibleItemsCount?: number;
-  onChange?: (action: TagsListActions, newItems: TagsListItem[], newTargetItem: TagsListItem, originItems: TagsListItem[], originTargetItem: TagsListItem) => void;
-  onAdd?: (added: TagsListItem) => void;
+  onChange?: (
+    action: TagsListActions, 
+    newItems: TagsListItem[], 
+    newTargetItem: TagsListItem, 
+    originItems: TagsListItem[], 
+    originTargetItem: TagsListItem
+  ) => void;
+  onAddDropdown?: (visible: boolean) => void;
   onDelete?: (deleted: TagsListItem, options: { mode: DeleteMode; destination?: TagsListItem }) => void;
-  onEdit?: (edited: TagsListItem) => void;
-  onFavourite?: (favourite: TagsListItem) => void;
-  onVisibility?: (visibility: TagVisibility, item?: TagsListItem) => void;
-  onSelect?: (selected: TagsListItem) => void;
   onSearch?: (query: string) => void;
   onSettings?: (selected?: TagsListItem) => void;
+  onManageTags?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
+  onItemsAdd?: (items: TagsListItem[]) => void;
   texts?: TagsListTexts | undefined;
   showHideStep?: number;
   withCheckbox?: boolean;
@@ -37,15 +42,16 @@ export type TagsListProps = {
 export enum TagVisibility {
   Hide = 'hide',
   Show = 'show',
-  ShowIfUsed = 'showfiused',
+  ShowIfUsed = 'showfifused',
 };
 
 export type TagsListItem = {
-  id: string;
+  id: string | number;
   name: string;
   favourite?: boolean;
   checked?: boolean;
   visibility?: TagVisibility;
+  description?: string;
   canUpdate?: boolean;
   canDelete?: boolean;
   canEnterSettings?: boolean;

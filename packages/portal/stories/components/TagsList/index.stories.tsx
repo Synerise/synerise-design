@@ -1,18 +1,26 @@
 import * as React from 'react';
-import TagsList from '@synerise/ds-tagslist';
-import { TagsListItem } from '@synerise/ds-tagslist/dist/TagsList.types';
+import Button from '@synerise/ds-button';
+import TagsList, { AddModal } from '@synerise/ds-tagslist';
+import { TagsListActions, TagsListItem, TagVisibility } from '@synerise/ds-tagslist/dist/TagsList.types';
 import Menu from '@synerise/ds-menu';
 import { boolean, number } from '@storybook/addon-knobs';
-import { FOLDERS, MIDDLE_MENU_ITEMS, TOP_MENU_ITEMS } from './dataset';
+import { ADD_TAGS, FOLDERS, MIDDLE_MENU_ITEMS, TOP_MENU_ITEMS } from './dataset';
 import Icon from '@synerise/ds-icon';
-import Divider from '@synerise/ds-divider';
+import message from '@synerise/ds-message';
 import { action } from '@storybook/addon-actions';
-import { StarFillM, StarM } from '@synerise/ds-icon/dist/icons';
+import { StarFillM, StarM, TagM } from '@synerise/ds-icon/dist/icons';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+
+const { Divider } = Menu;
+
 const wrapperStyles: React.CSSProperties = {
   width: '338px',
   background: 'white',
-  padding: '24px 0',
+  position: 'absolute',
+  top: 0,
+  left: '50%',
+  marginLeft: '-164px',
+  bottom: 0,
 };
 
 const renderMenuItem = (item: { icon: React.ReactNode; text: string }, onClick: () => void) => (
@@ -26,25 +34,55 @@ const getFilter = filterName => {
   return undefined;
 };
 
+function onManageTags(event: React.MouseEvent<HTMLElement, MouseEvent>) {
+  message.success('Manage tags clicked!');
+}
+
 const stories = {
   default: () => {
-    // const showActionsInRow = boolean('Show actions in a row', false);
+    const [dataSource, setDataSource] = React.useState(FOLDERS);
+
+    return (
+      <div data-popup-container>
+        <TagsList 
+          defaultItems={FOLDERS}
+          addItemsList={ADD_TAGS}
+          onManageTags={onManageTags}
+        />
+      </div>
+    )
+  },
+  controlledInMenu: () => {
     const showCheckboxes = boolean('Show item checkboxes on hover', true);
     const [starred, setStarred] = React.useState(false);
     const [dataSource, setDataSource] = React.useState(FOLDERS);
-    const getActionsDisplay = (row: boolean): 'inline' | 'dropdown' => {
-      return row ? 'inline' : 'dropdown';
+    const [addItems, setAddItems] = React.useState([]);
+    const [addItemsLoading, setAddItemsLoading] = React.useState(true);
+
+    const handleOnChange = (action: TagsListActions, newItems: TagsListItem[], newItem: TagsListItem) => {
+      setDataSource(newItems);
     };
 
-    const DividerWrapper = (
-      <div style={{ margin: '16px 20px' }}>
-        <Divider dashed />
-      </div>
-    );
+    const handleOnAddDropdown = (visible: boolean) => {
+      if(visible)
+        setTimeout(() => {
+          setAddItemsLoading(false);
+          setAddItems(ADD_TAGS);
+        }, 1000);
+      if(!visible)
+        setTimeout(() => {
+          setAddItemsLoading(true);
+          setAddItems([]);
+        }, 1000);
+    }
+
+    const handleOnItemsAdd = (items: TagsListItem[]) => {
+      setDataSource([...dataSource, ...items]);
+    }
 
     return (
-      <div style={wrapperStyles}>
-        <Menu style={{ padding: '0 24px' }}>
+      <div style={wrapperStyles} data-popup-container>
+        <Menu asDropdownMenu style={{width: 'auto', padding: '24px'}}>
           {TOP_MENU_ITEMS.map(item =>
             renderMenuItem(item, (): void => {
               setStarred(false);
@@ -65,24 +103,21 @@ const stories = {
           >
             Starred
           </Menu.Item>
-        </Menu>
-        {DividerWrapper}
-        <Menu style={{ padding: '0 24px' }}>
+          <Divider />
           {MIDDLE_MENU_ITEMS.map(item =>
             renderMenuItem(item, (): void => {
               setStarred(false);
             })
           )}
-        </Menu>
-        {DividerWrapper}
-        <div style={{ padding: '0 24px' }}>
+          <Divider />
           <TagsList
-            dataSource={dataSource}
-            maxItemsVisible={number('Set default max items visible', 5, { min: 1 })}
+            items={dataSource}
+            maxItemsVisible={number('Set default max items visible', 10, { min: 1 })}
             texts={{
               add: 'Add',
               addItemLabel: 'Add tag',
               addToFavourite: 'Favourite',
+              applyAdd: 'Apply',
               cancel: 'Cancel',
               chooseDestinationFolder: 'Choose folder',
               delete: 'Delete',
@@ -106,31 +141,36 @@ const stories = {
               visibilityShowIfUsed: 'Show if used',
               visibilityHide: 'Hide',
             }}
-            onFavourite={action('OnFavourite')}
-            onEdit={action('OnEdit')}
-            onAdd={action('OnAdd')}
-            onDelete={action('OnDelete')}
-            onSettings={action('OnSettings')}
-            onVisibility={(visibility: TagVisibility, item: TagsListItem) => {
-              console.log('visibility', visibility, item);
-            }}
-            onSelect={(item: TagsListItem) => {
-              const newSource = [...dataSource];
-
-              const idx = newSource
-                .findIndex((row: any) => item.id === row.id);
-
-              newSource[idx].checked = !newSource[idx].checked;
-
-              setDataSource(newSource);
-            }}
+            onChange={handleOnChange}
+            onAddDropdown={handleOnAddDropdown}
+            onManageTags={onManageTags}
+            onItemsAdd={handleOnItemsAdd}
+            addItemsLoading={addItemsLoading}
+            addItemsList={addItems}
             addButtonDisabled={false}
             withCheckbox={showCheckboxes}
           />
-        </div>
+        </Menu>
       </div>
     );
   },
+  addModal: () => {
+    const disabled = boolean('Disabled', false);
+    const tristate = boolean('Use tristate checkbox', false);
+    const consoleLog = boolean('Console log Apply result', true);
+    return (
+      <AddModal 
+        disabled={disabled}
+        trigger={(
+          <Button leftIconSize="S" mode="icon-label">
+            <Icon component={<TagM />} />
+            Tags
+          </Button>
+        )}
+        onManageTags={onManageTags}
+      />
+    );
+  }
 };
 
 export default {

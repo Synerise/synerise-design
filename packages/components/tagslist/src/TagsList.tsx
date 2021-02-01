@@ -3,33 +3,40 @@ import Menu from '@synerise/ds-menu';
 import Result from '@synerise/ds-result';
 
 import TagsListContext, { defaultValue } from './TagsListContext';
-import MemoItem from './Elements/Item/MemoItem';
+//import MemoItem from './Elements/Item/MemoItem';
+import Item from './Elements/Item/Item';
 import Toolbar from './Elements/Toolbar';
-import { TagsListItem, TagsListProps } from './TagsList.types';
-import { handleItemDelete, handleItemEdit, handleItemFavourite, sortAlphabetically } from './utils';
-import DeleteModal from './Elements/DeleteModal/DeleteModal';
+import { TagsListActions, TagsListItem, TagsListProps, TagVisibility } from './TagsList.types';
+import { sortAlphabetically } from './utils';
 import ShowLessOrMore from './Elements/ShowLessOrMore/ShowLessOrMore';
 
 import './style/index.less';
 
 const DEFAULT_STEP = 5;
 const DEFAULT_ITEMS_VISIBLE = 5;
-const MODAL_CLOSE_DURATION = 250;
+
+export function replaceItem(items: TagsListItem[], item: TagsListItem, index?: number): [TagsListItem[], TagsListItem] {
+  const newItems = [...items];
+  const idx = index ? 
+    index :
+    newItems.findIndex((findItem: TagsListItem) => findItem.id === item.id);
+  if(idx > -1) newItems[idx] = item;
+  return [newItems, newItems[idx]];
+}
 
 const TagsList: React.FC<TagsListProps> = (props) => {
   const {
-    items = [],
+    items: controlledItems,
+    defaultItems = [],
     maxItemsVisible,
-    onDelete,
-    onEdit,
-    onFavourite,
-    onVisibility,
-    onSelect,
+    onChange,
     onSettings,
     texts,
     showHideStep,
     withCheckbox = true
   } = props;
+
+  const isControlled = 'items' in props;
 
   const [searchQuery, setSearchQuery] = React.useState<string>('');
   const [searchOpen, setSearchOpen] = React.useState<boolean>(false);
@@ -38,12 +45,24 @@ const TagsList: React.FC<TagsListProps> = (props) => {
     return item.name.toLowerCase().match(searchQuery.toLowerCase());
   };
 
-  const setItems = (items: TagsListItem[]) => {};
-  const [itemToDelete, setItemToDelete] = React.useState<TagsListItem | undefined>(undefined);
-  const [deleteModalVisible, setDeleteModalVisible] = React.useState<boolean>(false);
+  const [items, setItems] = React.useState<TagsListItem[]>(controlledItems || defaultItems);
+  //const [itemToDelete, setItemToDelete] = React.useState<TagsListItem | undefined>(undefined);
+  //const [deleteModalVisible, setDeleteModalVisible] = React.useState<boolean>(false);
   const [visibleItemsCount, setVisibleItemsCount] = React.useState<number>(
     maxItemsVisible && maxItemsVisible > 0 ? maxItemsVisible : DEFAULT_ITEMS_VISIBLE
   );
+
+  // if is controlled and no onChange method whine!
+  React.useEffect(() => {
+    isControlled && !onChange && console.warn(`${TagsList.displayName}: You've added controlled 'items' list but there is no onChange event function!`);
+  }, [isControlled, onChange]);
+
+  // if is controlled and items props changes do update!
+  React.useEffect(() => {
+    if(isControlled && JSON.stringify(controlledItems) !== JSON.stringify(items)) {
+      setItems(controlledItems || []);
+    }
+  }, [isControlled, controlledItems, items]);
 
   React.useEffect(() => {
     setVisibleItemsCount(maxItemsVisible && maxItemsVisible > 0 ? maxItemsVisible : DEFAULT_ITEMS_VISIBLE);
@@ -56,42 +75,56 @@ const TagsList: React.FC<TagsListProps> = (props) => {
     }
   }, [items, visibleItemsCount, maxItemsVisible]);
 
-  React.useEffect(() => {
-    if (!deleteModalVisible && !!itemToDelete) {
-      setDeleteModalVisible(true);
+  const handleOnChange = (action: TagsListActions, item: TagsListItem): void => {
+    let newItems: TagsListItem[];
+    let newItem: TagsListItem;
+
+    switch(action) {
+      case TagsListActions.Favourite:
+        [newItems, newItem] = replaceItem(items, {...item, favourite: !item.favourite});
+        break;
+      case TagsListActions.Select:
+        [newItems, newItem] = replaceItem(items, {...item, checked: !item.checked});
+        break;
+      case TagsListActions.Delete:
+        newItems = items.filter((thisItem) => thisItem.id !== item.id);
+        console.log(newItems);
+        newItem = item;
+        break;
+      default:
+        [newItems, newItem] = replaceItem(items, item);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [itemToDelete]);
 
-  /* const onItemAdd = (addedItem: TagsListItem): void => {
-    onAdd && onAdd(addedItem);
-    setItems(handleItemAdd(items, addedItem));
-  }; */
+    isControlled ? 
+      onChange && onChange(action, newItems, newItem, items, item) : 
+      setItems(newItems);
+  };
 
-  const onItemEdit = (editedItem: TagsListItem): void => {
-    onEdit && onEdit(editedItem);
-    setItems(handleItemEdit(items, editedItem));
+  const onItemEdit = (item: TagsListItem): void => {
+    handleOnChange(TagsListActions.Edit, item);
   };
 
   const onItemFavourite = (item: TagsListItem): void => {
-    onFavourite && onFavourite({ ...item, favourite: !item.favourite });
-    setItems(handleItemFavourite(items, item));
+    handleOnChange(TagsListActions.Favourite, item);
+  };
+
+  const onItemVisibility = (visibility: TagVisibility, item: TagsListItem): void => {
+    handleOnChange(TagsListActions.Visibility, {...item, visibility });
   };
 
   const onItemDelete = (deleted: TagsListItem): void => {
-    setItemToDelete(deleted);
-    setItems(handleItemDelete(items, deleted));
+    handleOnChange(TagsListActions.Delete, deleted);
   };
 
   const renderItem = (item: TagsListItem): React.ReactNode => (
-    <MemoItem
+    <Item
       item={item}
       key={`${item.id}-${item.name}`}
       checked={item.checked}
-      onDelete={item.canDelete ? onItemDelete : undefined}
+      onDelete={item.canDelete ? onItemDelete : () => {}}
       onEdit={item.canUpdate ? onItemEdit : undefined}
       onFavourite={onItemFavourite}
-      onVisibility={onVisibility}
+      onVisibility={onItemVisibility}
       withCheckbox={withCheckbox}
       onSettingsEnter={
         item.canEnterSettings
@@ -100,10 +133,9 @@ const TagsList: React.FC<TagsListProps> = (props) => {
             }
           : undefined
       }
-      toggleDeleteModal={(): void => {
-        setItemToDelete(item);
+      onItemSelect={(item: TagsListItem) => {
+        handleOnChange(TagsListActions.Select, item);
       }}
-      onItemSelect={onSelect}
       texts={texts}
     />
   );
@@ -116,7 +148,7 @@ const TagsList: React.FC<TagsListProps> = (props) => {
       [...favouriteItems, ...restOfItems].filter(searchFilter) :
       [...favouriteItems, ...restOfItems].slice(0, visibleItemsCount);
 
-    if(searchQuery && !total.length)
+    if(!total.length)
       return (
         <Result
           description="No results"
@@ -142,24 +174,6 @@ const TagsList: React.FC<TagsListProps> = (props) => {
       <Toolbar />
       <Menu>
         {renderItemsList()}
-        <DeleteModal
-          visible={deleteModalVisible}
-          deletedItem={itemToDelete}
-          onClose={(): void => {
-            setDeleteModalVisible(false);
-            setTimeout(() => {
-              setItemToDelete(undefined);
-            }, MODAL_CLOSE_DURATION);
-          }}
-          folders={items}
-          onConfirm={(options): void => {
-            if (itemToDelete) {
-              onItemDelete(itemToDelete);
-              onDelete && onDelete(itemToDelete, options);
-            }
-          }}
-          texts={texts}
-        />
       </Menu>
       {!searchQuery && (
         <ShowLessOrMore

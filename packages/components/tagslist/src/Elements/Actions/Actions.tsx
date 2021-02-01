@@ -18,9 +18,9 @@ const NOOP = () => {};
 
 const Visibility: React.FC<VisibilityProps> = ({texts, onVisibility, visibility, item}) => {
   const visibilities = {
-    show: texts?.visibilityShow,
-    showifused: texts?.visibilityShowIfUsed,
-    hide: texts?.visibilityHide,
+    [TagVisibility.Show]: texts?.visibilityShow,
+    [TagVisibility.ShowIfUsed]: texts?.visibilityShowIfUsed,
+    [TagVisibility.Hide]: texts?.visibilityHide,
   }
 
   const [stateVisibility, setVisibility] = React.useState(visibility);
@@ -52,7 +52,7 @@ const Visibility: React.FC<VisibilityProps> = ({texts, onVisibility, visibility,
   );
 };
 
-const ActionsDropdown: React.FC<ActionProps> = ({
+const Actions: React.FC<ActionProps> = ({
   onVisibility,
   onFavourite,
   onSettingsEnter,
@@ -67,8 +67,6 @@ const ActionsDropdown: React.FC<ActionProps> = ({
   return (
     <Dropdown
       placement="bottomRight"
-      overlayStyle={{ boxShadow: '0 4px 12px 0 rgba(35, 41, 54, 0.07)', padding: 0 }}
-      align={{ offset: [12, 12] }}
       trigger={['click']}
       onVisibleChange={onDropdown}
       overlay={
@@ -124,7 +122,7 @@ const ActionsDropdown: React.FC<ActionProps> = ({
               type="danger"
               onClick={(e: ClickParam): void => {
                 e.domEvent.stopPropagation();
-                onDelete();
+                onDelete(item);
                 onDropdown(false);
               }}
             >
@@ -142,4 +140,4 @@ const ActionsDropdown: React.FC<ActionProps> = ({
   );
 };
 
-export default ActionsDropdown;
+export default Actions;

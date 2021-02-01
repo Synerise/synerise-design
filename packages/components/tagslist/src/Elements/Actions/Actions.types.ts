@@ -5,11 +5,11 @@ export type ActionProps = {
   dropdownMouseOver?: () => void;
   dropdownMouseOut?: () => void;
   item: TagsListItem;
-  onDelete?: (item?: TagsListItem) => void;
+  onDelete?: (item: TagsListItem) => void;
   onEdit?: (item?: TagsListItem) => void;
   onSettingsEnter?: (item?: TagsListItem) => void;
   onFavourite?: (item?: TagsListItem) => void;
-  onVisibility?: (visibility: TagVisibility, item?: TagsListItem) => void;
+  onVisibility?: (visibility: TagVisibility, item: TagsListItem) => void;
   onDropdown?: (visible: boolean) => void;
   visibility?: TagVisibility;
   texts: TagsListTexts | undefined;
@@ -19,6 +19,6 @@ export type ActionProps = {
 export type VisibilityProps = {
   texts: TagsListTexts | undefined;
   item: TagsListItem;
-  onVisibility?: (visibility: TagVisibility, item?: TagsListItem) => void;
+  onVisibility?: (visibility: TagVisibility, item: TagsListItem) => void;
   visibility?: TagVisibility;
 };

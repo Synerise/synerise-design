@@ -1,8 +1,15 @@
+import * as React from 'react';
 import { TagsListItem, TagsListTexts } from '../../TagsList.types';
 
 export type AddModalProps = {
-  onItemAdd?: (addParams: TagsListItem) => void;
   disabled: boolean;
+  items?: TagsListItem[];
   texts: TagsListTexts | undefined;
+  loading?: boolean;
   tristate?: boolean;
+  trigger?: React.ReactNode;
+  searchAddTag?: boolean;
+  onItemsAdd?: (items: TagsListItem[]) => void;
+  onVisibleChange?: (visible: boolean) => void;
+  onManageTags?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
 };

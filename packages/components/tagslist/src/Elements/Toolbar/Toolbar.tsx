@@ -6,9 +6,16 @@ import Search from '../Search';
 
 import * as S from './Toolbar.styles';
 
+const NOOP = () => {};
+
 const Toolbar: React.FC = ({children}) => {
   const { 
     addButtonDisabled,
+    onAddDropdown = NOOP,
+    onManageTags = NOOP,
+    onItemsAdd = NOOP,
+    addItemsLoading = false,
+    addItemsList = [],
     texts,
     searchOpen,
   } = React.useContext(TagsListContext) || {};
@@ -17,7 +24,8 @@ const Toolbar: React.FC = ({children}) => {
   const addItemRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
-    if(addItemRef.current) setAddItemWidth(addItemRef.current.offsetWidth);
+    if(addItemRef.current) 
+      setAddItemWidth(addItemRef.current.offsetWidth);
   }, [addItemRef]);
 
   return (
@@ -28,8 +36,12 @@ const Toolbar: React.FC = ({children}) => {
       >
         <AddModal 
           disabled={!!addButtonDisabled} 
-          texts={texts} 
-          onItemAdd={() => {}}
+          texts={texts}
+          loading={addItemsLoading}
+          items={addItemsList}
+          onVisibleChange={onAddDropdown}
+          onItemsAdd={onItemsAdd}
+          onManageTags={onManageTags}
         />
       </S.AddItem>
       <Search />

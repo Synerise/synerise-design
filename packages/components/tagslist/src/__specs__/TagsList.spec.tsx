@@ -1,4 +1,4 @@
-import * as React from 'react';
+/* import * as React from 'react';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import { fireEvent, waitFor } from '@testing-library/react';
 import TagsList from '../TagsList';
@@ -10,7 +10,7 @@ const FOLDERS: TagsListItem[] = [
   { name: 'Alaska', id: '3', canDelete: true },
   { name: 'Zaragoza', id: '4', canDelete: true },
 ];
-describe('TagsList', () => {
+/* describe('TagsList', () => {
   it('should render passed folder names', () => {
     const onDelete = jest.fn();
     const onEdit = jest.fn();
@@ -227,4 +227,4 @@ describe('TagsList', () => {
     expect(getByText('Bangkok')).toBeTruthy();
     expect(queryByText('Zaragoza')).toBeNull();
   });
-});
+}); */
