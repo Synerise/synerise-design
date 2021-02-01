@@ -27,8 +27,30 @@ const Slider: React.FC<Props> = props => {
     max,
     min,
     value,
+    range,
     ...antdProps
   } = props;
+  const [reachedEnd, setReachedEnd] = React.useState(false);
+  const [reachedStart, setReachedStart] = React.useState(false);
+  const calcHandlePosition = React.useCallback(() => {
+    const handler =  document.querySelectorAll('.ant-slider-handle');
+    const markTexts =  document.querySelectorAll('.ant-slider-mark-text');
+    if (handler && markTexts?.length) {
+      const firstMark = markTexts[0].getBoundingClientRect();
+      const lastMark = markTexts[markTexts.length - 1].getBoundingClientRect();
+      const firstHandler = handler[0].getBoundingClientRect();
+      const lastHandler = handler[handler.length - 1].getBoundingClientRect();
+      if (firstMark.x + 40 + firstMark.width > firstHandler.x || firstMark.x + 40 + firstMark.width > lastHandler.x) {
+        setReachedStart(true);
+      }else{ setReachedStart(false) }
+      if (lastMark.x - 40 < firstHandler.x || lastMark.x - 40 < lastHandler.x) {
+        setReachedEnd(true);
+      }else{ setReachedEnd(false) }
+    }
+    return { reachedEnd, reachedStart };
+  }, [reachedEnd, reachedStart ]);
+  React.useEffect( ()=> {setTimeout(()=>{calcHandlePosition()},0) },[calcHandlePosition,value])
+
   const labelElement = React.useMemo(
     () =>
       label ? (
@@ -46,8 +68,6 @@ const Slider: React.FC<Props> = props => {
       </>
     );
   }
-  const minValue = Number(min);
-  const maxValue = Number(max);
 
   return (
     <>
@@ -57,8 +77,9 @@ const Slider: React.FC<Props> = props => {
         {...antdProps}
         max={max}
         value={value}
-        reachedEnd={Number(value)>(maxValue-minValue)*0.95}
-        reachedStart={Number(value)<(maxValue-minValue)*0.05}
+        reachedEnd={reachedEnd}
+        range={range}
+        reachedStart={reachedStart}
         className={value && couldBeInverted(value, !!inverted) ? 'ant-slider-inverted' : undefined}
         useColorPalette={useColorPalette}
         thickness={thickness}

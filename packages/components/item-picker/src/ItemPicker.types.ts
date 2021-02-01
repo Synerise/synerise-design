@@ -10,6 +10,8 @@ export type ItemPickerProps = {
   placeholder: string | React.ReactNode;
   onClear: () => void;
   onChange: (item: MenuItemProps) => void;
+  onBlur?: () => void;
+  onFocus?: () => void;
   selectedItem?: MenuItemProps | undefined;
   clear?: string | React.ReactNode;
   searchPlaceholder?: string;

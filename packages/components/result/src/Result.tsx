@@ -54,13 +54,11 @@ const Result: React.FC<ResultProps> = ({
   noSearchResults = false,
 }) => {
   const { IconComponent, ...iconContainerStyles } = mapTypeToStatus[type];
-
   return (
     <S.ResultContainer className={`ds-result ${className || ''}`} noSearchResults={noSearchResults}>
       <S.MainPanel>
         <S.ResultIconContainer>
           {customIcon || (
-            // eslint-disable-next-line react/jsx-props-no-spreading
             <S.StatusIconContainer {...iconContainerStyles}>
               <Icon component={<IconComponent />} size={24} />
             </S.StatusIconContainer>

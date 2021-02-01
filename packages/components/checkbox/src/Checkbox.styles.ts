@@ -23,18 +23,22 @@ export const AntdCheckbox = styled(BaseAntCheckbox)<Props & ThemeProps>`
     align-items: center;
     line-height: 1;
     ${(props: Props & ThemeProps): FlattenSimpleInterpolation | undefined | false => props.solo && soloCss};
+
     .ant-checkbox {
       top: 0;
     }
   }
+
   .ant-checkbox-input:focus + .ant-checkbox-inner {
     border: 1px solid ${(props: ThemeProps): string => props.theme.palette['blue-600']};
     box-shadow: inset 0 0 0 1px ${(props: ThemeProps): string => props.theme.palette['blue-600']};
   }
+
   && > .ant-checkbox-disabled.ant-checkbox-checked > span.ant-checkbox-inner {
     background-image: ${(props: ThemeProps): string =>
       `url("${checkSvgWithCustomColor(props.theme.palette['grey-400'])}")`};
   }
+
   && > .ant-checkbox-checked > span.ant-checkbox-inner {
     background-image: ${(props: ThemeProps): string => `url("${checkSvgWithCustomColor(props.theme.palette.white)}")`};
 
@@ -44,6 +48,32 @@ export const AntdCheckbox = styled(BaseAntCheckbox)<Props & ThemeProps>`
 
     :focus {
       border: none;
+    }
+  }
+
+  && {
+    > .ant-checkbox-indeterminate,
+    .ant-checkbox-indeterminate.ant-checkbox-checked {
+      > span.ant-checkbox-inner {
+        background-color: ${(props: ThemeProps): string => props.theme.palette['blue-600']};
+        border: 1px solid ${(props: ThemeProps): string => props.theme.palette['blue-600']};
+        background-image: none;
+
+        ::after {
+          background: #fff;
+          height: 2px;
+          display: table;
+          left: 50%;
+        }
+      }
+    }
+    :hover {
+      > .ant-checkbox-indeterminate,
+      .ant-checkbox-indeterminate.ant-checkbox-checked {
+        > span.ant-checkbox-inner {
+          background-color: ${(props: ThemeProps): string => props.theme.palette['blue-500']};
+        }
+      }
     }
   }
 `;

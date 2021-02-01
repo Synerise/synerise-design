@@ -250,9 +250,29 @@
       "MATCHING": "matching",
       "NOT-MATCHING": "not matching"
     },
+    "STEP-CARD": {
+      "NAME-PLACEHOLDER": "Name",
+      "MOVE": "Move",
+      "DELETE": "Delete",
+      "DUPLICATE": "Duplicate"
+    },
     "WIZARD": {
       "BACK-BUTTON": "Back",
       "NEXT-BUTTON": "Next step"
+    },
+    "FILTER": {
+      "DROP-ME-HERE": "Drop me here",
+      "ADD-FILTER": "Add filter"
+    },
+    "CONDITION": {
+      "STEP_NAME-PLACEHOLDER": "Step name",
+      "REMOVE-CONDITION-ROW-TOOLTIP":"Delete",
+      "ADD-CONDITION-ROW-BUTTON": "Add conditon",
+      "ADD-STEP":"Add step",
+      "DROP-LABEL": "Drop me here",
+      "MOVE-TOOLTIP":"Move",
+      "DUPLICATE-TOOLTIP": "Duplicate",
+      "REMOVE-TOOLTIP":"Delete"
     }
   }
 }
