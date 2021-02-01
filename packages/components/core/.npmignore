@@ -1,8 +1,0 @@
-__specs__
-src
-.babelrc
-.jest-cache
-jest.config.js
-tsconfig.json
-build
-*.d.ts.map
