@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@0.3.3...@synerise/ds-condition@0.4.0) (2021-02-01)
+
+
+### Bug Fixes
+
+* **condition:** add default texts ([49bf62a](https://github.com/Synerise/synerise-design/commit/49bf62a23614a0ce92876c8d894bd5543f908538))
+* **condition:** clean up ([4798708](https://github.com/Synerise/synerise-design/commit/4798708de68917c6e7282219095f8ee2c6a06941))
+* **condition:** clearing conditions on change context/subject/operator ([37a0b64](https://github.com/Synerise/synerise-design/commit/37a0b64ac60dd602c6c99396750fe3a7ab7ebb28))
+* **condition:** default texts ([375dd63](https://github.com/Synerise/synerise-design/commit/375dd6367b727489a0f8d75f58e3b614f8830c5d))
+* **filter:** ts issues ([2612eba](https://github.com/Synerise/synerise-design/commit/2612eba1ed0b0e0ded5b585f366e6aab5e119804))
+* **logic:** add default texts ([a3f9b4e](https://github.com/Synerise/synerise-design/commit/a3f9b4ef5a09c6402805b3575cf05eb20d7ef1e3))
+
+
+### Features
+
+* **condition:** add missing hook dependecy ([6ec567e](https://github.com/Synerise/synerise-design/commit/6ec567e31402a29927568c999c7504e3a580bf02))
+* **condition:** add option for change order of steps ([20911ca](https://github.com/Synerise/synerise-design/commit/20911cab9c3e8358057ea0eb73c0047f52616922))
+* **step-card:** add missing deps in package.json ([c9a1347](https://github.com/Synerise/synerise-design/commit/c9a1347b8d3fda04a044d08aac320bc06b25d47b))
+
+
+
+
+
 ## [0.3.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@0.3.2...@synerise/ds-condition@0.3.3) (2021-01-22)
 
 **Note:** Version bump only for package @synerise/ds-condition

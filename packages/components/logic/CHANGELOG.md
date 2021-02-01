@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-logic@0.1.7...@synerise/ds-logic@0.1.8) (2021-02-01)
+
+
+### Bug Fixes
+
+* **logic:** add default texts ([a3f9b4e](https://github.com/Synerise/synerise-design/commit/a3f9b4ef5a09c6402805b3575cf05eb20d7ef1e3))
+
+
+
+
+
 ## [0.1.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-logic@0.1.6...@synerise/ds-logic@0.1.7) (2021-01-22)
 
 **Note:** Version bump only for package @synerise/ds-logic

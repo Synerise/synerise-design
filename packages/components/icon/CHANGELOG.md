@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.38.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.37.0...@synerise/ds-icon@0.38.0) (2021-02-01)
+
+
+### Features
+
+* **item-picker:** add bottom action ([08ff982](https://github.com/Synerise/synerise-design/commit/08ff9826b48a085aa71d48ea9297a4419629a709))
+
+
+
+
+
 # [0.37.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.36.0...@synerise/ds-icon@0.37.0) (2021-01-22)
 
 

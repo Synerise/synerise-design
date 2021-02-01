@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-checkbox@0.9.25...@synerise/ds-checkbox@0.10.0) (2021-02-01)
+
+
+### Features
+
+* **checkbox:** STOR-638 new style for indeterminate state ([ff412fb](https://github.com/synerise/synerise-design/commit/ff412fbff19d467083e1696ef4c0195e7a9855a6))
+
+
+
+
+
 ## [0.9.25](https://github.com/synerise/synerise-design/compare/@synerise/ds-checkbox@0.9.24...@synerise/ds-checkbox@0.9.25) (2021-01-04)
 
 **Note:** Version bump only for package @synerise/ds-checkbox
