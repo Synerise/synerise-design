@@ -38,6 +38,7 @@ textarea.@{ant-prefix}-input {
   padding: 8px 12px 8px 12px;
 
   &::-webkit-scrollbar {
+    transition: background-color 0.3s ease-in-out, border 0.3s ease-in-out;
     width: 11px;
     height: 11px;
     cursor: default;
@@ -49,8 +50,8 @@ textarea.@{ant-prefix}-input {
   }
   &::-webkit-scrollbar-track {
     border-radius: 3px;
-    background-color: white;
-    border: 4px solid white;
+    background-color: transparent !important;
+    border: 4px solid rgba(0, 0, 0, 0) !important;
   }
   &::-webkit-scrollbar-corner {
     background: transparent;
@@ -68,12 +69,18 @@ textarea.@{ant-prefix}-input {
   }
   &:focus {
     &::-webkit-scrollbar-track {
-      border-radius: 0;
-      background-color: @blue-050;
-      border: 4px solid @blue-050;
+      border-radius: 3px;
+      background-color: transparent !important;
+      border: 4px solid rgba(0, 0, 0, 0) !important;
     }
     &::-webkit-scrollbar-thumb {
-      border: 4px solid @blue-050;
+      background-color: transparent;
+      border-radius: 8px;
+      border: 4px solid rgba(0, 0, 0, 0) !important;
+      &:hover,
+      &:active {
+        background-color: #a6acb3;
+      }
     }
   }
   &:disabled {
