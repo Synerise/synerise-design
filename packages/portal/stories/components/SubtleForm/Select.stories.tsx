@@ -70,9 +70,9 @@ const stories = {
           disabled={disabled}
           onChange={val => setValue(val)}
           value={value}
-          placeholder={'Status'}
-          label={renderLabel('Status')}
-          labelTooltip={'Status'}
+          placeholder={'City'}
+          label={renderLabel('City')}
+          labelTooltip={'City'}
           suffixTooltip={'Select'}
           error={validationState}
           errorText={getErrorText(validationState, errorMessage)}
