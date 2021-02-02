@@ -52,7 +52,7 @@ const stories = {
       </div>
     )
   },
-  controlledInMenu: () => {
+  controlledInSidebar: () => {
     const showCheckboxes = boolean('Show item checkboxes on hover', true);
     const [starred, setStarred] = React.useState(false);
     const [dataSource, setDataSource] = React.useState(FOLDERS);
@@ -69,6 +69,7 @@ const stories = {
           setAddItemsLoading(false);
           setAddItems(ADD_TAGS);
         }, 1000);
+
       if(!visible)
         setTimeout(() => {
           setAddItemsLoading(true);
@@ -103,16 +104,10 @@ const stories = {
           >
             Starred
           </Menu.Item>
-          <Divider />
-          {MIDDLE_MENU_ITEMS.map(item =>
-            renderMenuItem(item, (): void => {
-              setStarred(false);
-            })
-          )}
-          <Divider />
+          <Divider higher />
           <TagsList
             items={dataSource}
-            maxItemsVisible={number('Set default max items visible', 10, { min: 1 })}
+            maxItemsVisible={number('Set default max items visible', 5, { min: 1 })}
             texts={{
               add: 'Add',
               addItemLabel: 'Add tag',
@@ -135,6 +130,7 @@ const stories = {
               moveToOtherFolder: 'Move to other folder',
               showLessLabel: 'Hide',
               showMoreLabel: 'Show',
+              searchClear: 'Clear',
               less: 'less',
               more: 'more',
               visibilityShow: 'Show',

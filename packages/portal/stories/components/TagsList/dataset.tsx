@@ -34,21 +34,54 @@ export const MIDDLE_MENU_ITEMS: { icon: React.ReactNode; text: string }[] = [
 
 export const ADD_TAGS: TagsListItem[] = [
   {
-    id: '123123123',
+    id: '111',
     name: 'Tag 1',
     description: 'Tags 1 description',
   },
   {
-    id: '12334323',
+    id: '112',
     name: 'Tag 2',
+    description: 'Tags 2 description',
   },
   {
-    id: '123123126',
+    id: '113',
+    name: 'Tag 3',
+    description: 'Tags 3 description',
+  },
+  {
+    id: '114',
     name: 'Tag 4',
+    description: 'Tags 4 description',
   },
   {
-    id: '123123565',
+    id: '115',
     name: 'Tag 5',
+    description: 'Tags 5 description',
+  },
+  {
+    id: '116',
+    name: 'Tag 6',
+    description: 'Tags 6 description',
+  },
+  {
+    id: '117',
+    name: 'Tag 7',
+    description: 'Tags 7 description',
+  },
+  {
+    id: '118',
+    name: 'Tag 8',
+    description: 'Tags 8 description',
+  },
+  {
+    id: '119',
+    name: 'Tag 9',
+    description: 'Tags 9 description',
+  },
+  {
+    id: '120',
+    name: 'Tag 10',
+    description: 'Tags 10 description',
   },
 ]
 
