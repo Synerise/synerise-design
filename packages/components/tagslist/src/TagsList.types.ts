@@ -79,6 +79,7 @@ export type TagsListTexts = {
   more?: string | React.ReactNode;
   moveToDefault?: string | React.ReactNode;
   moveToOtherFolder?: string | React.ReactNode;
+  searchClear?: React.ReactNode;
   showLessLabel?: string | React.ReactNode;
   showMoreLabel?: string | React.ReactNode;
   visibilityHide?: string | React.ReactNode;

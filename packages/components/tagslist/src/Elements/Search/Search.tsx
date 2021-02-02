@@ -9,23 +9,26 @@ const NOOP = () => {};
 
 const Search: React.FC = () => {
   const {
-    searchOpen = false,
     searchQuery = '', 
     setSearchQuery = NOOP,
     setSearchOpen = NOOP,
   } = React.useContext(TagsListContext) || {};
 
+  const inputRef = React.useRef(null);
+
+  const onChange = (query: string) => { setSearchQuery(query); };
+
   return (
-    <S.SearchContainer>
+    <S.SearchContainer ref={inputRef}>
       <SearchInput
-        onChange={(query: string) => { setSearchQuery(query); }} 
+        onChange={onChange} 
         value={searchQuery || ''}
+        closeOnClickOutside
+        onToggle={(isOpen: boolean) => {
+          setSearchOpen(isOpen);
+        }}
         onClear={() => { 
           setSearchQuery('');
-        }} 
-        onButtonClick={() => { 
-          searchOpen && setSearchQuery('');
-          setSearchOpen(!searchOpen);
         }}
       />
     </S.SearchContainer>

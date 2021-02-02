@@ -4,7 +4,7 @@ import { TagsListItem, TagsListTexts } from '../../TagsList.types';
 export type AddModalProps = {
   disabled: boolean;
   items?: TagsListItem[];
-  texts: TagsListTexts | undefined;
+  texts?: TagsListTexts;
   loading?: boolean;
   tristate?: boolean;
   trigger?: React.ReactNode;

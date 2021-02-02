@@ -1,16 +1,18 @@
 import * as React from 'react';
 import Menu from '@synerise/ds-menu';
 import Result from '@synerise/ds-result';
+import { useIntl } from 'react-intl';
 
 import TagsListContext, { defaultValue } from './TagsListContext';
-//import MemoItem from './Elements/Item/MemoItem';
 import Item from './Elements/Item/Item';
 import Toolbar from './Elements/Toolbar';
 import { TagsListActions, TagsListItem, TagsListProps, TagVisibility } from './TagsList.types';
 import { sortAlphabetically } from './utils';
 import ShowLessOrMore from './Elements/ShowLessOrMore/ShowLessOrMore';
+import useTexts from './useTexts';
 
 import './style/index.less';
+import * as S from './TagsList.styles';
 
 const DEFAULT_STEP = 5;
 const DEFAULT_ITEMS_VISIBLE = 5;
@@ -31,12 +33,14 @@ const TagsList: React.FC<TagsListProps> = (props) => {
     maxItemsVisible,
     onChange,
     onSettings,
-    texts,
+    texts: propTexts = {},
     showHideStep,
     withCheckbox = true
   } = props;
 
   const isControlled = 'items' in props;
+  
+  const texts = useTexts(propTexts);
 
   const [searchQuery, setSearchQuery] = React.useState<string>('');
   const [searchOpen, setSearchOpen] = React.useState<boolean>(false);
@@ -46,8 +50,6 @@ const TagsList: React.FC<TagsListProps> = (props) => {
   };
 
   const [items, setItems] = React.useState<TagsListItem[]>(controlledItems || defaultItems);
-  //const [itemToDelete, setItemToDelete] = React.useState<TagsListItem | undefined>(undefined);
-  //const [deleteModalVisible, setDeleteModalVisible] = React.useState<boolean>(false);
   const [visibleItemsCount, setVisibleItemsCount] = React.useState<number>(
     maxItemsVisible && maxItemsVisible > 0 ? maxItemsVisible : DEFAULT_ITEMS_VISIBLE
   );
@@ -88,7 +90,6 @@ const TagsList: React.FC<TagsListProps> = (props) => {
         break;
       case TagsListActions.Delete:
         newItems = items.filter((thisItem) => thisItem.id !== item.id);
-        console.log(newItems);
         newItem = item;
         break;
       default:
@@ -163,6 +164,7 @@ const TagsList: React.FC<TagsListProps> = (props) => {
   const contextValue = {
     ...defaultValue,
     ...props,
+    texts,
     searchQuery,
     setSearchQuery,
     searchOpen,
@@ -170,27 +172,29 @@ const TagsList: React.FC<TagsListProps> = (props) => {
   }
 
   return (
-    <TagsListContext.Provider value={contextValue}>
-      <Toolbar />
-      <Menu>
-        {renderItemsList()}
-      </Menu>
-      {!searchQuery && (
-        <ShowLessOrMore
-          onShowMore={(more): void => {
-            setVisibleItemsCount(visibleItemsCount + more);
-          }}
-          onShowLess={(less): void => {
-            setVisibleItemsCount(visibleItemsCount - less);
-          }}
-          totalItemsCount={items.length}
-          visibleItemsCount={items.length <= visibleItemsCount ? items.length : visibleItemsCount}
-          texts={texts}
-          maxItemsToShow={Number(maxItemsVisible)}
-          step={showHideStep || DEFAULT_STEP}
-        />
-      )}
-    </TagsListContext.Provider>
+    <S.TagsList>
+      <TagsListContext.Provider value={contextValue}>
+        <Toolbar />
+        <Menu>
+          {renderItemsList()}
+        </Menu>
+        {!searchQuery && (
+          <ShowLessOrMore
+            onShowMore={(more): void => {
+              setVisibleItemsCount(visibleItemsCount + more);
+            }}
+            onShowLess={(less): void => {
+              setVisibleItemsCount(visibleItemsCount - less);
+            }}
+            totalItemsCount={items.length}
+            visibleItemsCount={items.length <= visibleItemsCount ? items.length : visibleItemsCount}
+            texts={texts}
+            maxItemsToShow={Number(maxItemsVisible)}
+            step={showHideStep || DEFAULT_STEP}
+          />
+        )}
+      </TagsListContext.Provider>
+    </S.TagsList>
   );
 };
 export default TagsList;

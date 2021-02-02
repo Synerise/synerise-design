@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import Icon from '@synerise/ds-icon';
 import Menu from '@synerise/ds-menu';
+import Dropdown from '@synerise/ds-dropdown';
 
 import { IconProps } from '@synerise/ds-icon/dist/Icon.types';
 
@@ -14,16 +15,24 @@ export const AddItemLayout = styled.div`
   overflow: hidden;
 `;
 
-export const ButtonWrapper = styled.div`
+export const BottomAction = styled(Dropdown.BottomAction)`
+  margin-top: 0;
+  padding: 8px;
 `;
 
 export const TagInfoIcon = styled(Icon)`
   &&& {
     visibility: hidden;
-    // color: ${(props): string => props.theme.palette['grey-600']};
     > svg {
       fill: ${(props): string => props.theme.palette['grey-600']};
     }
+  }
+`;
+
+export const TagItems = styled(Menu)`
+  &&& {
+    width: auto;
+    min-height: 176px;
   }
 `;
 
@@ -35,6 +44,13 @@ export const TagItem = styled(Menu.Item)`
       }
     }
   }
+`;
+
+export const Loader = styled.div`
+  height: 176px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const Overlay = styled.div`
@@ -53,6 +69,6 @@ export const FavouriteIcon = styled(Icon)<IconProps & { favourite?: boolean }>`
   ${(props): false | string =>
     !!props.favourite &&
     `&.icon.icon1.ds-icon svg {
-  fill: ${props.theme.palette['yellow-600']};
-  }`}
+      fill: ${props.theme.palette['yellow-600']};
+    }`}
 `;

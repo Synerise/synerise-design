@@ -69,10 +69,16 @@ const Actions: React.FC<ActionProps> = ({
       placement="bottomRight"
       trigger={['click']}
       onVisibleChange={onDropdown}
+      align={{ offset: [12, 16] }}
       overlay={
         // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
         <S.DropdownMenu asDropdownMenu onClick={dropdownMenuClick}>
-          <Visibility texts={texts} item={item} onVisibility={onVisibility} visibility={visibility} />
+          <Visibility 
+            texts={texts} 
+            item={item} 
+            onVisibility={onVisibility} 
+            visibility={visibility} 
+          />
           <Menu.Divider />
           {!!onFavourite && (
             <S.DropdownMenuItem

@@ -10,6 +10,7 @@ import Checkbox from '@synerise/ds-checkbox';
 import CheckboxTristate from '@synerise/ds-checkbox-tristate';
 import Loader from '@synerise/ds-loader';
 import Tooltip from '@synerise/ds-tooltip';
+import Scrollbar from '@synerise/ds-scrollbar';
 import { Settings2M, InfoFillS, SearchM } from '@synerise/ds-icon/dist/icons';
 import { useOnClickOutside } from '@synerise/ds-utils';
 import Dropdown from '@synerise/ds-dropdown';
@@ -111,7 +112,7 @@ const AddModal: React.FC<AddModalProps> = ({
       .map((item: TagsListItem) => {
         return (
           <S.TagItem
-            key={item.id}
+            key={`${item.id}-${item.name}`}
             highlight={search}
             prefixel={<CheckboxComponent checked={selectedTags[item.id]} />}
             suffixel={item.description && <TagInfo info={item.description} />}
@@ -174,6 +175,22 @@ const AddModal: React.FC<AddModalProps> = ({
     return null;
   }
 
+  const renderedList = (
+    loading ? 
+      <S.Loader>
+        <Loader
+          color="blue"
+          label="Loading..."
+          labelPosition="bottom"
+          size="M"
+        />
+      </S.Loader> :
+      <S.TagItems asDropdownMenu>
+        {searchAddTag ? renderAddTag() : null}
+        {renderedItems}
+      </S.TagItems>
+  );
+
   return (
     <Dropdown
       overlay={
@@ -185,20 +202,13 @@ const AddModal: React.FC<AddModalProps> = ({
             iconLeft={<Icon component={<SearchM />}/>}
             value={search}
             onSearchChange={handleSearchChange}
+            clearTooltip={texts?.searchClear || "Clear"}
+            onClearInput={() => { setSearch(DEFAULT_NAME) }}
           />
-          <Menu asDropdownMenu style={{width: 'auto'}}>
-            {searchAddTag && renderAddTag()}
-            {loading ? <Loader
-              color="blue"
-              label="Loading..."
-              labelPosition="bottom"
-              size="L"
-            /> : renderedItems}
-          </Menu>
-          <Dropdown.BottomAction 
-            onClickAction={() => {}}
-            style={{paddingLeft: '8px', paddingRight: '8px'}}
-          >
+          <Scrollbar maxHeight={176}>
+            {renderedList}
+          </Scrollbar>
+          <S.BottomAction onClickAction={() => {}}>
             <div style={{width: '100%', display: 'flex', flexDirection: 'row'}}>
               <div style={{flexGrow: 1}}>
                 <Button type="ghost" mode="icon-label" onClick={onManageTags}>
@@ -208,7 +218,7 @@ const AddModal: React.FC<AddModalProps> = ({
               </div>
               {selected ? <Button type="ghost-primary" onClick={handleItemsAdd}>{texts?.applyAdd}</Button> : null}
             </div>
-          </Dropdown.BottomAction>
+          </S.BottomAction>
         </Dropdown.Wrapper>
       }
       placement="bottomLeft"
@@ -216,7 +226,7 @@ const AddModal: React.FC<AddModalProps> = ({
       visible={overlayVisible}
       onVisibleChange={onVisibleChange}
     >
-      <S.ButtonWrapper 
+      <div 
         onClick={toggleInput}
       >
         {trigger || <Button 
@@ -226,7 +236,7 @@ const AddModal: React.FC<AddModalProps> = ({
             <Icon component={<Add3M />} size={24} />
             {texts?.addItemLabel}
         </Button>}
-      </S.ButtonWrapper>
+      </div>
     </Dropdown>
   );
 };
