@@ -1,0 +1,11 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# 0.1.0 (2021-02-01)
+
+
+### Features
+
+* **checkbox-tristate:** STOR-638 new component CheckboxTristate ([7c28df8](https://github.com/Synerise/synerise-design/commit/7c28df84e5a18ec913e2ffb4a05e9967bf252f38))

@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-slider@0.9.0...@synerise/ds-slider@0.9.1) (2021-02-01)
+
+
+### Bug Fixes
+
+* **slider:** add dependencies ([cc18aaf](https://github.com/Synerise/synerise-design/commit/cc18aaf48b8224f461da16678d04cff6375070b0))
+* **slider:** add function to hide mark-texts when handler is close to them ([0871027](https://github.com/Synerise/synerise-design/commit/08710273c3cd5092c4ff668ca17ddcbd1f96f4f6))
+* **slider:** add wrapping description and hidding scales when handler is close to them ([f0f426b](https://github.com/Synerise/synerise-design/commit/f0f426bf2a6ce3fd42c6aaebb49bfd8ff7594a25))
+* **slider:** fix function ([90d22bb](https://github.com/Synerise/synerise-design/commit/90d22bba2983ba64b43cf5bdc0fbdf1cdd5dde5d))
+* **slider:** fix function ([c8674f9](https://github.com/Synerise/synerise-design/commit/c8674f9180f10f6f31e2a945608d1c5a99e519e0))
+* **slider:** improve function ([0b3ad4f](https://github.com/Synerise/synerise-design/commit/0b3ad4fca615e63005cc1b417e365ab36da3349e))
+
+
+
+
+
 # [0.9.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-slider@0.8.5...@synerise/ds-slider@0.9.0) (2021-01-22)
 
 

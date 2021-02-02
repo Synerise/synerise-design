@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-checkbox-tristate",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Checkbox Tristate UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -9,6 +9,13 @@
     "name": "Dariusz Arciszewski"
   },
   "main": "dist/index.js",
+  "files": [
+    "/dist",
+    "CHANGELOG.md",
+    "README.md",
+    "package.json",
+    "LICENSE.md"
+  ],
   "publishConfig": {
     "access": "public"
   },
@@ -29,11 +36,10 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-checkbox": "^0.9.25"
+    "@synerise/ds-checkbox": "^0.10.0"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
     "react": ">=16.9.0 < 17.0.0"
-  },
-  "devDependencies": {}
+  }
 }

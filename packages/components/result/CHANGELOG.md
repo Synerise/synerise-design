@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.32](https://github.com/Synerise/synerise-design/compare/@synerise/ds-result@0.5.31...@synerise/ds-result@0.5.32) (2021-02-01)
+
+
+### Bug Fixes
+
+* **result:** add new icons Xl to pick in deafult result component ([4b8d5a4](https://github.com/Synerise/synerise-design/commit/4b8d5a4b5ef51e2edee2aa16223d17a2165d63ff))
+
+
+
+
+
 ## [0.5.31](https://github.com/Synerise/synerise-design/compare/@synerise/ds-result@0.5.30...@synerise/ds-result@0.5.31) (2021-01-22)
 
 **Note:** Version bump only for package @synerise/ds-result
