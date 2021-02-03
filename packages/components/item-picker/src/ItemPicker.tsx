@@ -36,6 +36,7 @@ const ItemPicker: React.FC<ItemPickerProps> = ({
   dropdownVisibleRows,
   dropdownRowHeight,
   dropdownBottomAction,
+  closeOnBottomAction,
 }) => {
   const [dropdownOpened, setDropdownOpened] = React.useState<boolean>(false);
 
@@ -72,6 +73,7 @@ const ItemPicker: React.FC<ItemPickerProps> = ({
         dropdownVisibleRows={dropdownVisibleRows}
         dropdownRowHeight={dropdownRowHeight}
         dropdownBottomAction={dropdownBottomAction}
+        closeOnBottomAction={closeOnBottomAction}
       />
     ),
     [

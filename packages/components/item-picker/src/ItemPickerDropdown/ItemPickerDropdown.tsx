@@ -20,6 +20,7 @@ const ItemPickerDropdown: React.FC<Props> = ({
   dropdownVisibleRows,
   dropdownRowHeight,
   dropdownBottomAction,
+  closeOnBottomAction,
 }) => {
   const rowCount = dropdownVisibleRows || DEFAULT_VISIBLE_ROWS;
   const rowHeight = dropdownRowHeight || DEFAULT_ROW_HEIGHT;
@@ -44,6 +45,15 @@ const ItemPickerDropdown: React.FC<Props> = ({
         )
       : dataSource;
   }, [searchQuery, dataSource]);
+
+  const renderBottomAction = React.useMemo(() => {
+    const bottomAction = !closeOnBottomAction ? (
+      dropdownBottomAction
+    ) : (
+      <S.BottomActionWrapper onClick={closeDropdown}>{dropdownBottomAction}</S.BottomActionWrapper>
+    );
+    return dropdownBottomAction && <S.DropdownFooter>{bottomAction}</S.DropdownFooter>;
+  }, [closeOnBottomAction, dropdownBottomAction, closeDropdown]);
 
   return (
     <S.DropdownWrapper>
@@ -78,7 +88,7 @@ const ItemPickerDropdown: React.FC<Props> = ({
           />
         </S.StyledScrollbar>
       </S.DSMenu>
-      {dropdownBottomAction}
+      {renderBottomAction}
     </S.DropdownWrapper>
   );
 };

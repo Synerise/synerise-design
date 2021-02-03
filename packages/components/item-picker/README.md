@@ -51,8 +51,8 @@ import ItemPicker from '@synerise/ds-item-picker'
 | dataSource            | Array of items to display in menu                        | [MenuItemProps[]](https://design.synerise.com/docs/components/menu#menuitemprops)               | -                                        |
 | dropdownVisibleRows   | Visible rows count displayed in the dropdown             | number                                                                                          | 10                                       |
 | dropdownRowHeight     | Height of the row displayed in the dropdown              | number                                                                                          | 32                                       |
-| dropdownBottomAction? | Dropdown bottom action         | 'Create'                | React.ReactNode
-
+| dropdownBottomAction? | Dropdown bottom action                                   | React.ReactNode                                                                                 | -                                        |
+| closeOnBottomAction?  | Close dropdown when bottom action has been clicked       | boolean                                                                                         | false                                    |
 | placeholder           | Placeholder text                                         | string, React.ReactNode                                                                         | -                                        |
 | clear                 | Clear button tooltip                                     | string, React.ReactNode                                                                         | 'Remove'                                 |
 | searchPlaceholder     | Placeholder of SearchBar in dropdown                     | string                                                                                          | 'Search'                                 |
