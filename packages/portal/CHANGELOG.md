@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.117.0](https://github.com/synerise/synerise-design/compare/portal@0.116.0...portal@0.117.0) (2021-02-03)
+
+
+### Bug Fixes
+
+* **item-picker:** close dropdown on bottom action ([cd39911](https://github.com/synerise/synerise-design/commit/cd39911c33ce5e9a9c3694fadadec35052311bd0))
+
+
+
+
+
 # [0.116.0](https://github.com/synerise/synerise-design/compare/portal@0.115.2...portal@0.116.0) (2021-02-01)
 
 
