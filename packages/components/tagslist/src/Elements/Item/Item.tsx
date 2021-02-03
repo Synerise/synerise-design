@@ -10,7 +10,7 @@ import { useOnClickOutside, NOOP } from '@synerise/ds-utils';
 import Tooltip from '@synerise/ds-tooltip';
 
 import { validateFolderName } from '../../utils';
-import TagsListContext from '../../TagsListContext';
+import useTagsListContext from '../../useTagsListContext';
 import Actions from '../Actions';
 import { ItemProps } from './Item.types';
 
@@ -43,7 +43,7 @@ const Item: React.FC<ItemProps> = ({
   withCheckbox = true
 }) => {
   const { name, favourite } = item;
-  const { searchQuery } = React.useContext(TagsListContext);
+  const { searchQuery } = useTagsListContext();
   
   const [dropdownOpened, setDropdownOpened] = React.useState<boolean>(false);
   const [hovered, setHovered] = React.useState<boolean>(false);

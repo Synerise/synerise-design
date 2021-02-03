@@ -7,3 +7,4 @@ export { default as escapeRegEx } from './regex/regex';
 export { default as doubleClickListener } from './doubleClickListener/doubleClickListener';
 export { default as useResize } from './useResize/useResize';
 export { default as useBreakpoint } from './useBreakpoint/useBreakpoint';
+export const NOOP = () => {};

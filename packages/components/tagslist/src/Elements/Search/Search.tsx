@@ -3,7 +3,7 @@ import * as React from 'react';
 import { NOOP } from '@synerise/ds-utils';
 import { SearchInput } from '@synerise/ds-search/dist/Elements';
 
-import TagsListContext from '../../TagsListContext';
+import useTagsListContext from '../../useTagsListContext';
 import * as S from './Search.styles';
 
 const Search: React.FC = () => {
@@ -11,7 +11,7 @@ const Search: React.FC = () => {
     searchQuery = '', 
     setSearchQuery = NOOP,
     setSearchOpen = NOOP,
-  } = React.useContext(TagsListContext) || {};
+  } = useTagsListContext();
 
   const inputRef = React.useRef(null);
 
