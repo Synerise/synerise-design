@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Menu from '@synerise/ds-menu';
 import Result from '@synerise/ds-result';
-import { useIntl } from 'react-intl';
 
 import TagsListContext, { defaultValue } from './TagsListContext';
 import Item from './Elements/Item/Item';

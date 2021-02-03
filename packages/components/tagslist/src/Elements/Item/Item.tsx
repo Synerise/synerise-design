@@ -6,30 +6,26 @@ import Icon from '@synerise/ds-icon';
 import Checkbox from '@synerise/ds-checkbox';
 import { TagM, TagStarredM, TagStarredFlatM } from '@synerise/ds-icon/dist/icons';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
-import { useOnClickOutside } from '@synerise/ds-utils';
+import { useOnClickOutside, NOOP } from '@synerise/ds-utils';
 import Tooltip from '@synerise/ds-tooltip';
 
 import { validateFolderName } from '../../utils';
-import { TagsListItem } from '../../TagsList.types';
 import TagsListContext from '../../TagsListContext';
 import Actions from '../Actions';
 import { ItemProps } from './Item.types';
 
 import * as S from './Item.styles';
 
-const { useEffect, useState, useCallback, useRef } = React;
-
-const NOOP = (item: TagsListItem) => {};
-const VIS_NOOP = () => {};
-
 function getRenderItemName(itemName: string, query: string ): React.ReactNode {
   if(query && itemName.toLowerCase().match(query.toLowerCase())) {
-    return <Highlighter 
-      searchWords={[query]}
-      highlightClassName="highlight"
-      unhighlightClassName="unhighlight"
-      textToHighlight={itemName}
-    />
+    return (
+      <Highlighter 
+        searchWords={[query]}
+        highlightClassName="highlight"
+        unhighlightClassName="unhighlight"
+        textToHighlight={itemName}
+      />
+    )
   }
   return itemName;
 }
@@ -39,7 +35,7 @@ const Item: React.FC<ItemProps> = ({
   onSettingsEnter,
   onDelete = NOOP,
   onFavourite = NOOP,
-  onVisibility = VIS_NOOP,
+  onVisibility = NOOP,
   onEdit,
   texts,
   onItemSelect = NOOP,
@@ -49,18 +45,18 @@ const Item: React.FC<ItemProps> = ({
   const { name, favourite } = item;
   const { searchQuery } = React.useContext(TagsListContext);
   
-  const [dropdownOpened, setDropdownOpened] = useState<boolean>(false);
-  const [hovered, setHovered] = useState<boolean>(false);
-  const [itemName, setItemName] = useState<string>(name);
-  const [editMode, setEditMode] = useState<boolean>(false);
-  const [overflowed, setOverflowed] = useState<boolean>(false);
+  const [dropdownOpened, setDropdownOpened] = React.useState<boolean>(false);
+  const [hovered, setHovered] = React.useState<boolean>(false);
+  const [itemName, setItemName] = React.useState<string>(name);
+  const [editMode, setEditMode] = React.useState<boolean>(false);
+  const [overflowed, setOverflowed] = React.useState<boolean>(false);
 
-  const inputRef = useRef<HTMLInputElement>(null);
-  const textRef = useRef<HTMLDivElement>(null);
+  const inputRef = React.useRef<HTMLInputElement>(null);
+  const textRef = React.useRef<HTMLDivElement>(null);
 
   const renderItemName = getRenderItemName(itemName, searchQuery);
 
-  const confirmEdit = useCallback((): void => {
+  const confirmEdit = React.useCallback((): void => {
     if (validateFolderName(itemName)) {
       const trimmedName = itemName.trim();
       onEdit && onEdit({ ...item, name: trimmedName });
@@ -72,7 +68,7 @@ const Item: React.FC<ItemProps> = ({
     }
   }, [itemName, name, item, onEdit]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     setItemName(name);
     // Check if is overflowed
     if(textRef.current && textRef.current?.offsetWidth < textRef.current?.scrollWidth) {
@@ -80,14 +76,14 @@ const Item: React.FC<ItemProps> = ({
     }
   }, [name, textRef]);
 
-  const getPrefix = useCallback((isFavourite, isHovered, isEditMode): React.ReactNode => {
+  const getPrefix = React.useCallback((isFavourite, isHovered, isEditMode): React.ReactNode => {
     if (isFavourite) {
       return isHovered || isEditMode ? <TagStarredFlatM /> : <TagStarredM />;
     }
     return <TagM />;
   }, []);
 
-  useEffect(() => {
+  React.useEffect(() => {
     inputRef?.current !== null && inputRef.current.focus();
   }, [inputRef, editMode]);
 

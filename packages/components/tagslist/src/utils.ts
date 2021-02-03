@@ -4,6 +4,7 @@ const DEFAULT_NAME = '';
 const isDuplicate = (itemsList: TagsListItem[], item: TagsListItem): boolean => {
   return itemsList.some(i => i.name.toLowerCase() === item.name.toLowerCase() && i.id !== item.id);
 };
+
 export const addSuffixToDuplicate = (itemsList: TagsListItem[], editedItem: TagsListItem): TagsListItem => {
   let newItem = editedItem;
   while (isDuplicate(itemsList, newItem)) {

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { CalendarM, ClockM, EditM, FolderAddM, StarM, StopM, TilesM } from '@synerise/ds-icon/dist/icons';
-import { TagsListItem, TagVisibility } from '@synerise/ds-tagslist/dist/TagsList.types';
+import { TagsListItem, TagsListTexts, TagVisibility } from '@synerise/ds-tagslist/dist/TagsList.types';
 
 export const TOP_MENU_ITEMS: { icon: React.ReactNode; text: string }[] = [
   {
@@ -207,3 +207,34 @@ export const FOLDERS: TagsListItem[] = [
     canEnterSettings: true,
   },
 ];
+
+
+export const TEXTS: TagsListTexts = {
+  add: 'Add',
+  addItemLabel: 'Add tag',
+  addToFavourite: 'Favourite',
+  applyAdd: 'Apply',
+  cancel: 'Cancel',
+  chooseDestinationFolder: 'Choose folder',
+  delete: 'Delete',
+  deleteFolderLabel: 'Remove folder',
+  deleteFolderConfirmationMessage: 'Are you sure you want to remove folder',
+  deleteFolderDescription: 'What you want to do with content? ',
+  deleteFromFavourites: 'Favourite',
+  deleteAllContent: 'Remove all items',
+  edit: 'Rename',
+  enterSettings: 'Manage tags',
+  favourite: 'Favourite',
+  invalidNameError: 'Invalid folder name',
+  folderNamePlaceholder: 'Folder name',
+  moveToDefault: 'Move to default folder',
+  moveToOtherFolder: 'Move to other folder',
+  showLessLabel: 'Hide',
+  showMoreLabel: 'Show',
+  searchClear: 'Clear',
+  less: 'less',
+  more: 'more',
+  visibilityShow: 'Show',
+  visibilityShowIfUsed: 'Show if used',
+  visibilityHide: 'Hide',
+};

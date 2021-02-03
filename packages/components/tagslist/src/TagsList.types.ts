@@ -42,7 +42,7 @@ export type TagsListProps = {
 export enum TagVisibility {
   Hide = 'hide',
   Show = 'show',
-  ShowIfUsed = 'showfifused',
+  ShowIfUsed = 'showifused',
 };
 
 export type TagsListItem = {
@@ -63,26 +63,22 @@ export type TagsListTexts = {
   addToFavourite?: React.ReactNode;
   applyAdd?: React.ReactNode;
   cancel?: React.ReactNode;
-  chooseDestinationFolder?: React.ReactNode;
   delete?: React.ReactNode;
-  deleteFolderLabel?: string | React.ReactNode;
-  deleteFolderConfirmationMessage?: string | React.ReactNode;
-  deleteFolderDescription?: string | React.ReactNode;
-  deleteFromFavourites?: string | React.ReactNode;
-  deleteAllContent?: string | React.ReactNode;
-  edit?: string | React.ReactNode;
-  enterSettings?: string | React.ReactNode;
-  favourite?: string | React.ReactNode;
+  deleteFromFavourites?: React.ReactNode;
+  deleteAllContent?: React.ReactNode;
+  edit?: React.ReactNode;
+  enterSettings?: React.ReactNode;
+  favourite?: React.ReactNode;
   folderNamePlaceholder?: string;
-  invalidNameError?: string | React.ReactNode;
-  less?: string | React.ReactNode;
-  more?: string | React.ReactNode;
-  moveToDefault?: string | React.ReactNode;
-  moveToOtherFolder?: string | React.ReactNode;
+  invalidNameError?: React.ReactNode;
+  less?: React.ReactNode;
+  more?: React.ReactNode;
+  moveToDefault?: React.ReactNode;
+  moveToOtherFolder?: React.ReactNode;
   searchClear?: React.ReactNode;
-  showLessLabel?: string | React.ReactNode;
-  showMoreLabel?: string | React.ReactNode;
-  visibilityHide?: string | React.ReactNode;
-  visibilityShow?: string | React.ReactNode;
-  visibilityShowIfUsed?: string | React.ReactNode;
+  showLessLabel?: React.ReactNode;
+  showMoreLabel?: React.ReactNode;
+  visibilityHide?: React.ReactNode;
+  visibilityShow?: React.ReactNode;
+  visibilityShowIfUsed?: React.ReactNode;
 };

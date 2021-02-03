@@ -63,7 +63,7 @@ const Actions: React.FC<ActionProps> = ({
   isFavourite,
   visibility,
   texts,
-}: ActionProps) => {
+}) => {
   return (
     <Dropdown
       placement="bottomRight"

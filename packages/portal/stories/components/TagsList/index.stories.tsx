@@ -1,30 +1,32 @@
 import * as React from 'react';
 import Button from '@synerise/ds-button';
 import TagsList, { AddModal } from '@synerise/ds-tagslist';
-import { TagsListActions, TagsListItem, TagVisibility } from '@synerise/ds-tagslist/dist/TagsList.types';
+import { TagsListActions, TagsListItem } from '@synerise/ds-tagslist/dist/TagsList.types';
 import Menu from '@synerise/ds-menu';
 import { boolean, number } from '@storybook/addon-knobs';
-import { ADD_TAGS, FOLDERS, MIDDLE_MENU_ITEMS, TOP_MENU_ITEMS } from './dataset';
+import { ADD_TAGS, FOLDERS, MIDDLE_MENU_ITEMS, TOP_MENU_ITEMS, TEXTS } from './dataset';
+import Scrollbar from '@synerise/ds-scrollbar';
 import Icon from '@synerise/ds-icon';
 import message from '@synerise/ds-message';
-import { action } from '@storybook/addon-actions';
 import { StarFillM, StarM, TagM } from '@synerise/ds-icon/dist/icons';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import * as S from '@synerise/ds-layout/dist/Layout.styles';
 
 const { Divider } = Menu;
 
 const wrapperStyles: React.CSSProperties = {
-  width: '338px',
-  background: 'white',
   position: 'absolute',
   top: 0,
-  left: '50%',
-  marginLeft: '-164px',
+  left: 0,
   bottom: 0,
 };
 
 const renderMenuItem = (item: { icon: React.ReactNode; text: string }, onClick: () => void) => (
-  <Menu.Item prefixel={<Icon component={item.icon} />} text={item.text} onClick={onClick} />
+  <Menu.Item 
+    prefixel={<Icon component={item.icon} />} 
+    text={item.text} 
+    onClick={onClick} 
+  />
 );
 
 const getFilter = filterName => {
@@ -81,84 +83,65 @@ const stories = {
       setDataSource([...dataSource, ...items]);
     }
 
+    const onItemClick = () => setStarred(!starred);
+
     return (
-      <div style={wrapperStyles} data-popup-container>
-        <Menu asDropdownMenu style={{width: 'auto', padding: '24px'}}>
-          {TOP_MENU_ITEMS.map(item =>
-            renderMenuItem(item, (): void => {
-              setStarred(false);
-            })
-          )}
-          <Menu.Item
-            onClick={() => {
-              setStarred(!starred);
-            }}
-            prefixel={
-              <div>
-                <Icon
-                  component={starred ? <StarFillM /> : <StarM />}
-                  color={starred ? theme.palette['yellow-600'] : theme.palette['grey-600']}
+      <div style={wrapperStyles}>
+        <S.LayoutSidebarWrapper opened>
+          <S.LayoutSidebar opened>
+            <Scrollbar>
+              <Menu asDropdownMenu style={{width: 'auto', padding: '24px'}} data-popup-container>
+                {TOP_MENU_ITEMS.map(item =>
+                  renderMenuItem(item, (): void => {
+                    setStarred(false);
+                  })
+                )}
+                <Menu.Item
+                  onClick={onItemClick}
+                  prefixel={
+                    <div>
+                      <Icon
+                        component={starred ? <StarFillM /> : <StarM />}
+                        color={starred ? theme.palette['yellow-600'] : theme.palette['grey-600']}
+                      />
+                    </div>
+                  }
+                >
+                  Starred
+                </Menu.Item>
+                <Divider higher />
+                <TagsList
+                  items={dataSource}
+                  maxItemsVisible={number('Set default max items visible', 5, { min: 1 })}
+                  texts={TEXTS}
+                  onChange={handleOnChange}
+                  onAddDropdown={handleOnAddDropdown}
+                  onManageTags={onManageTags}
+                  onItemsAdd={handleOnItemsAdd}
+                  addItemsLoading={addItemsLoading}
+                  addItemsList={addItems}
+                  addButtonDisabled={false}
+                  withCheckbox={showCheckboxes}
                 />
-              </div>
-            }
-          >
-            Starred
-          </Menu.Item>
-          <Divider higher />
-          <TagsList
-            items={dataSource}
-            maxItemsVisible={number('Set default max items visible', 5, { min: 1 })}
-            texts={{
-              add: 'Add',
-              addItemLabel: 'Add tag',
-              addToFavourite: 'Favourite',
-              applyAdd: 'Apply',
-              cancel: 'Cancel',
-              chooseDestinationFolder: 'Choose folder',
-              delete: 'Delete',
-              deleteFolderLabel: 'Remove folder',
-              deleteFolderConfirmationMessage: 'Are you sure you want to remove folder',
-              deleteFolderDescription: 'What you want to do with content? ',
-              deleteFromFavourites: 'Favourite',
-              deleteAllContent: 'Remove all items',
-              edit: 'Rename',
-              enterSettings: 'Manage tags',
-              favourite: 'Favourite',
-              invalidNameError: 'Invalid folder name',
-              folderNamePlaceholder: 'Folder name',
-              moveToDefault: 'Move to default folder',
-              moveToOtherFolder: 'Move to other folder',
-              showLessLabel: 'Hide',
-              showMoreLabel: 'Show',
-              searchClear: 'Clear',
-              less: 'less',
-              more: 'more',
-              visibilityShow: 'Show',
-              visibilityShowIfUsed: 'Show if used',
-              visibilityHide: 'Hide',
-            }}
-            onChange={handleOnChange}
-            onAddDropdown={handleOnAddDropdown}
-            onManageTags={onManageTags}
-            onItemsAdd={handleOnItemsAdd}
-            addItemsLoading={addItemsLoading}
-            addItemsList={addItems}
-            addButtonDisabled={false}
-            withCheckbox={showCheckboxes}
-          />
-        </Menu>
+              </Menu>
+            </Scrollbar>
+          </S.LayoutSidebar>
+        </S.LayoutSidebarWrapper>
       </div>
     );
   },
   addModal: () => {
     const disabled = boolean('Disabled', false);
-    const tristate = boolean('Use tristate checkbox', false);
-    const consoleLog = boolean('Console log Apply result', true);
+
     return (
       <AddModal 
         disabled={disabled}
+        items={ADD_TAGS}
         trigger={(
-          <Button leftIconSize="S" mode="icon-label">
+          <Button 
+            leftIconSize="S"
+            mode="icon-label"
+          >
             <Icon component={<TagM />} />
             Tags
           </Button>

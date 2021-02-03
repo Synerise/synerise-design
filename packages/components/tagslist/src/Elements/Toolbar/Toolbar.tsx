@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import TagsListContext from '../../TagsListContext';
+import useTagsListContext from '../../useTagsListContext';
 import AddModal from '../AddModal';
 import Search from '../Search';
 
@@ -18,8 +18,8 @@ const Toolbar: React.FC = ({children}) => {
     addItemsList = [],
     texts,
     searchOpen,
-  } = React.useContext(TagsListContext) || {};
-
+  } = useTagsListContext();
+  
   const [addItemWidth, setAddItemWidth] = React.useState<number>(0);
   const addItemRef = React.useRef<HTMLDivElement>(null);
 

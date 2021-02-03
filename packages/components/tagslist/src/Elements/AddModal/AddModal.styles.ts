@@ -18,6 +18,7 @@ export const AddItemLayout = styled.div`
 export const BottomAction = styled(Dropdown.BottomAction)`
   margin-top: 0;
   padding: 8px;
+  cursor: pointer;
 `;
 
 export const TagInfoIcon = styled(Icon)`

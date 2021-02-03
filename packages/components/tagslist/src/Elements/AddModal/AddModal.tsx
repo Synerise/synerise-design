@@ -1,6 +1,5 @@
 import * as React from 'react';
 
-// import { v4 as uuid } from 'uuid';
 import Icon from '@synerise/ds-icon';
 import Add3M from '@synerise/ds-icon/dist/icons/Add3M';
 import Button from '@synerise/ds-button';
@@ -11,12 +10,11 @@ import CheckboxTristate from '@synerise/ds-checkbox-tristate';
 import Loader from '@synerise/ds-loader';
 import Tooltip from '@synerise/ds-tooltip';
 import Scrollbar from '@synerise/ds-scrollbar';
-import { Settings2M, InfoFillS, SearchM } from '@synerise/ds-icon/dist/icons';
-import { useOnClickOutside } from '@synerise/ds-utils';
+import { Settings2M, InfoFillS, SearchM, LegendBottomM } from '@synerise/ds-icon/dist/icons';
+import { useOnClickOutside, NOOP } from '@synerise/ds-utils';
 import Dropdown from '@synerise/ds-dropdown';
 import Result from '@synerise/ds-result';
 
-// import { validateFolderName } from '../../utils';
 import { AddModalProps } from './AddModal.types';
 import * as S from './AddModal.styles';
 import { TagsListItem } from 'TagsList.types';
@@ -30,27 +28,38 @@ type TagInfoProps = {
 }
 
 const TagInfo: React.FC<TagInfoProps> = ({info}) => {
-  return <Tooltip
-    title={info}
-  >
-    <S.TagInfoIcon component={<InfoFillS />} />
-  </Tooltip> 
+  return (
+    <Tooltip title={info}>
+      <S.TagInfoIcon component={<InfoFillS />} />
+    </Tooltip> 
+  );
+}
+
+function getNewItem(name: string) {
+  return {
+    id: name,
+    name: name,
+    canUpdate: true,
+    canDelete: true,
+    canEnterSettings: true,
+  };
 }
 
 const AddModal: React.FC<AddModalProps> = ({ 
-  items = [],
+  items: propItems,
   disabled, 
   texts, 
   tristate = false,
   loading = false,
   trigger,
   searchAddTag = true,
-  onManageTags = () => {},
-  onItemsAdd = () => {},
-  onVisibleChange = () => {}
+  onManageTags = NOOP,
+  onItemsAdd = NOOP,
+  onVisibleChange = NOOP
 }) => {
   const CheckboxComponent = tristate ? CheckboxTristate : Checkbox;
   const [search, setSearch] = React.useState(DEFAULT_NAME);
+  const [items, setItems] = React.useState(propItems || []);
   const [selectedTags, setSelectedTags] = React.useState({});
   const [newTagSelected, setNewTagSelected] = React.useState(false);
   const [overlayVisible, setOverlayVisible] = React.useState<boolean>(false);
@@ -67,6 +76,10 @@ const AddModal: React.FC<AddModalProps> = ({
     setSearch(DEFAULT_NAME);
   });
 
+  React.useEffect(() => {
+    if(propItems) setItems(propItems);
+  }, [propItems]);
+
   const handleSearchChange = React.useCallback((name: string): void => {
     setSearch(name);
   }, []);
@@ -79,15 +92,6 @@ const AddModal: React.FC<AddModalProps> = ({
       item.canEnterSettings = item.canEnterSettings === undefined ? true : item.canEnterSettings;
       return item;
     });
-
-    if(newTagSelected)
-      add.push({
-        id: search,
-        name: search,
-        canUpdate: true,
-        canDelete: true,
-        canEnterSettings: true,
-      });
 
     onItemsAdd(add as TagsListItem[]);
     setOverlayVisible(false);
@@ -110,33 +114,35 @@ const AddModal: React.FC<AddModalProps> = ({
         return !search ? true : item.name.toLowerCase().indexOf(search.toLowerCase()) > -1;
       })
       .map((item: TagsListItem) => {
+        const itemOnClick = (param: ClickParam) => {
+          let checked: boolean | undefined = true;
+          
+          if(tristate && item.id in selectedTags && selectedTags[item.id] === undefined) {
+            checked = false;
+          } else if(tristate && item.id in selectedTags && selectedTags[item.id] === true) {
+            checked = undefined;
+          } else if(selectedTags[item.id]) {
+            checked = false;
+          }
+          
+          let newSelectedTags = {
+            ...selectedTags,
+            [item.id]: checked,
+          };
+          
+          if(checked === false) 
+            newSelectedTags[item.id]
+          
+          setSelectedTags(newSelectedTags);
+        };
+
         return (
           <S.TagItem
             key={`${item.id}-${item.name}`}
             highlight={search}
             prefixel={<CheckboxComponent checked={selectedTags[item.id]} />}
             suffixel={item.description && <TagInfo info={item.description} />}
-            onClick={(param: ClickParam) => {
-              let checked: boolean | undefined = true;
-              
-              if(tristate && item.id in selectedTags && selectedTags[item.id] === undefined) {
-                checked = false;
-              } else if(tristate && item.id in selectedTags && selectedTags[item.id] === true) {
-                checked = undefined;
-              } else if(selectedTags[item.id]) {
-                checked = false;
-              }
-              
-              const newSelectedTags = {
-                ...selectedTags,
-                [item.id]: checked,
-              };
-              
-              if(checked === false) 
-                delete(newSelectedTags[item.id]);
-              
-              setSelectedTags(newSelectedTags);
-            }}
+            onClick={itemOnClick}
           >
             {item.name}
           </S.TagItem>
@@ -156,13 +162,28 @@ const AddModal: React.FC<AddModalProps> = ({
       return item.name.toLowerCase().trim() === search.toLowerCase().trim();
     });
 
+    const onAddTagClick = () => {
+      const newItem = getNewItem(search);
+      const newItems = [
+        newItem,
+        ...items
+      ];
+      const newSelectedTags = {
+        [newItem.id]: true,
+        ...selectedTags,
+      };
+
+      setItems(newItems);
+      setSearch('');
+      setNewTagSelected(false);
+      setSelectedTags(newSelectedTags);
+    }
+
     if(search && !perfectMatch.length) {
       return (
         <>
           <S.TagItem
-            onClick={() => {
-              setNewTagSelected(!newTagSelected);
-            }}
+            onClick={onAddTagClick}
             prefixel={<Checkbox checked={newTagSelected} />}
           >
             Add: {search}
@@ -191,6 +212,8 @@ const AddModal: React.FC<AddModalProps> = ({
       </S.TagItems>
   );
 
+  const onClearInput = () => { setSearch(DEFAULT_NAME) };
+
   return (
     <Dropdown
       overlay={
@@ -203,12 +226,12 @@ const AddModal: React.FC<AddModalProps> = ({
             value={search}
             onSearchChange={handleSearchChange}
             clearTooltip={texts?.searchClear || "Clear"}
-            onClearInput={() => { setSearch(DEFAULT_NAME) }}
+            onClearInput={onClearInput}
           />
           <Scrollbar maxHeight={176}>
             {renderedList}
           </Scrollbar>
-          <S.BottomAction onClickAction={() => {}}>
+          <S.BottomAction onClickAction={NOOP}>
             <div style={{width: '100%', display: 'flex', flexDirection: 'row'}}>
               <div style={{flexGrow: 1}}>
                 <Button type="ghost" mode="icon-label" onClick={onManageTags}>
@@ -226,16 +249,13 @@ const AddModal: React.FC<AddModalProps> = ({
       visible={overlayVisible}
       onVisibleChange={onVisibleChange}
     >
-      <div 
-        onClick={toggleInput}
-      >
-        {trigger || <Button 
-          type="ghost-primary" 
-          mode="icon-label" 
-          disabled={disabled}>
+      <div onClick={toggleInput}>
+        {trigger || (
+          <Button type="ghost-primary" mode="icon-label" disabled={disabled}>
             <Icon component={<Add3M />} size={24} />
             {texts?.addItemLabel}
-        </Button>}
+          </Button>
+        )}
       </div>
     </Dropdown>
   );

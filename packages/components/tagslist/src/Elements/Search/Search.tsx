@@ -1,11 +1,10 @@
 import * as React from 'react';
 
+import { NOOP } from '@synerise/ds-utils';
 import { SearchInput } from '@synerise/ds-search/dist/Elements';
 
 import TagsListContext from '../../TagsListContext';
 import * as S from './Search.styles';
-
-const NOOP = () => {};
 
 const Search: React.FC = () => {
   const {
