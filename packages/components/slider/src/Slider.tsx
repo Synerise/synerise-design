@@ -40,10 +40,10 @@ const Slider: React.FC<Props> = props => {
       const lastMark = markTexts[markTexts.length - 1].getBoundingClientRect();
       const firstHandler = handler[0].getBoundingClientRect();
       const lastHandler = handler[handler.length - 1].getBoundingClientRect();
-      if (firstMark.x + 40 + firstMark.width > firstHandler.x || firstMark.x + 40 + firstMark.width > lastHandler.x) {
+      if (firstMark.x + 10 + firstMark.width > firstHandler.x || firstMark.x + 10 + firstMark.width > lastHandler.x) {
         setReachedStart(true);
       }else{ setReachedStart(false) }
-      if (lastMark.x - 40 < firstHandler.x || lastMark.x - 40 < lastHandler.x) {
+      if (lastMark.x - 30 < firstHandler.x || lastMark.x - 30 < lastHandler.x) {
         setReachedEnd(true);
       }else{ setReachedEnd(false) }
     }
