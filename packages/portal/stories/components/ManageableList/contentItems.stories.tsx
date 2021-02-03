@@ -57,14 +57,13 @@ const getTag = shape => (
 const radioText = {
   text1: 'Randomization',
   text2: 'AI Engine',
-
 };
 const radio = (
-  <Radio.Group style={{display: 'flex'}} onChange={action('onChange')} defaultValue="A">
-    <Radio style={{marginTop: '30px'}} disabled={boolean('disabled', false)} value="A">
+  <Radio.Group style={{ display: 'flex' }} onChange={action('onChange')} defaultValue="A">
+    <Radio style={{ marginTop: '30px' }} disabled={boolean('disabled', false)} value="A">
       {radioText.text1}
     </Radio>
-    <Radio style={{marginTop: '30px'}} disabled={boolean('disabled', false)} value="B">
+    <Radio style={{ marginTop: '30px' }} disabled={boolean('disabled', false)} value="B">
       {radioText.text2}
     </Radio>
   </Radio.Group>
@@ -79,24 +78,39 @@ const attachCrudKnobs = (item, knobValue) => {
   return { ...item, canUpdate: knobValue, canDuplicate: knobValue, canDelete: knobValue };
 };
 const attachContentKnobs = (item, knobValue): ItemProps => {
-  return { ...item, content: knobValue ? <Input label={'Label'} placeholder={'Placeholder'} style={{ width: '472px' }} resetMargin /> : null };
+  return {
+    ...item,
+    content: knobValue ? (
+      <Input label={'Label'} placeholder={'Placeholder'} style={{ width: '472px' }} resetMargin />
+    ) : null,
+  };
 };
 const attachRadioKnobs = (item, knobValue): ItemProps => {
-  return { ...item, headerSuffix: knobValue ? <Radio.Group style={{display: 'flex'}} onChange={action('onChange')} defaultValue="A">
-      <Radio style={{marginTop: '30px'}} disabled={boolean('disabled', false)} value="A">
-        {radioText.text1}
-      </Radio>
-      <Radio style={{marginTop: '30px'}} disabled={boolean('disabled', false)} value="B">
-        {radioText.text2}
-      </Radio>
-    </Radio.Group> : null };
+  return {
+    ...item,
+    headerSuffix: knobValue ? (
+      <Radio.Group style={{ display: 'flex' }} onChange={action('onChange')} defaultValue="A">
+        <Radio style={{ marginTop: '30px' }} disabled={boolean('disabled', false)} value="A">
+          {radioText.text1}
+        </Radio>
+        <Radio style={{ marginTop: '30px' }} disabled={boolean('disabled', false)} value="B">
+          {radioText.text2}
+        </Radio>
+      </Radio.Group>
+    ) : null,
+  };
 };
 const attachDropdownKnobs = (item, knobValue): ItemProps => {
-  return { ...item, dropdown: knobValue ? <DropdownMenu>
-      <DropdownMenuItem> Option 1</DropdownMenuItem>
-      <DropdownMenuItem> Option 2 </DropdownMenuItem>
-      <DropdownMenuItem> Option 3 </DropdownMenuItem>
-    </DropdownMenu> : null  };
+  return {
+    ...item,
+    dropdown: knobValue ? (
+      <DropdownMenu>
+        <DropdownMenuItem> Option 1</DropdownMenuItem>
+        <DropdownMenuItem> Option 2 </DropdownMenuItem>
+        <DropdownMenuItem> Option 3 </DropdownMenuItem>
+      </DropdownMenu>
+    ) : null,
+  };
 };
 
 const getTexts = () => ({
@@ -105,326 +119,122 @@ const getTexts = () => ({
   itemActionDeleteTooltip: 'Delete',
 });
 
-const withExpander = withState({
-  item: withLabel,
-})(({ store }) => {
+const withExpander = defaultItem => {
+  const [item, setItem] = React.useState(defaultItem);
   return (
     <ContentItem
-      item={attachContentKnobs(store.state.item,true)}
+      item={defaultItem}
       greyBackground={boolean('Set grey background', false)}
       onRemove={action('onItemRemove')}
       onUpdate={item => {
-        editItem(item, store);
+        editItem(item, setItem);
       }}
       onDuplicate={action('onItemSelect')}
       texts={getTexts()}
       onExpand={(id, isExpanded) => {
-        store.set({ item: { ...store.state.item, expanded: isExpanded } });
+        setItem({ item: { ...item, expanded: isExpanded } });
       }}
     />
   );
-});
-const withOption = withState({
-    item: withLabel,
-  })(({ store }) => {
-    return (
-      <ContentItem
-        item={attachDropdownKnobs(store.state.item,true)}
-        greyBackground={boolean('Set grey background', false)}
-        onRemove={action('onItemRemove')}
-        onUpdate={item => {
-          editItem(item, store);
-        }}
-        onDuplicate={action('onItemSelect')}
-        texts={getTexts()}
-      />
-    );
-  });
-const withRadios = withState({
-  item: withLabel,
-})(({ store }) => {
+};
+const withOption = defaultItem => {
+  const [item, setItem] = React.useState(defaultItem);
   return (
     <ContentItem
-      item={store.state.item}
-      greyBackground={boolean('Set grey background', false)}
-      headerSuffix={radio}
-    />
-  );
-});
-const withCruds = withState({
-  item: withLabel,
-})(({ store }) => {
-  return (
-    <ContentItem
-      item={attachCrudKnobs(store.state.item, true)}
+      item={defaultItem}
       greyBackground={boolean('Set grey background', false)}
       onRemove={action('onItemRemove')}
       onUpdate={item => {
-        editItem(item, store);
+        editItem(item, setItem);
       }}
       onDuplicate={action('onItemSelect')}
       texts={getTexts()}
     />
   );
-});
-const withExpander1 = withState({
-  item: withIcon,
-})(({ store }) => {
+};
+const withRadios = defaultItem => {
+  return <ContentItem item={defaultItem} greyBackground={boolean('Set grey background', false)} headerSuffix={radio} />;
+};
+const withCruds = defaultItem => {
+  const [item, setItem] = React.useState(defaultItem);
   return (
     <ContentItem
-      item={attachContentKnobs(store.state.item,true)}
+      item={defaultItem}
       greyBackground={boolean('Set grey background', false)}
       onRemove={action('onItemRemove')}
       onUpdate={item => {
-        editItem(item, store);
-      }}
-      onDuplicate={action('onItemSelect')}
-      texts={getTexts()}
-      onExpand={(id, isExpanded) => {
-        store.set({ item: { ...store.state.item, expanded: isExpanded } });
-      }}
-    />
-  );
-});
-const withOption1 = withState({
-  item: withIcon,
-})(({ store }) => {
-  return (
-    <ContentItem
-      item={attachDropdownKnobs(store.state.item,true)}
-      greyBackground={boolean('Set grey background', false)}
-      onRemove={action('onItemRemove')}
-      onUpdate={item => {
-        editItem(item, store);
+        editItem(item, setItem);
       }}
       onDuplicate={action('onItemSelect')}
       texts={getTexts()}
     />
   );
-});
-const withRadios1 = withState({
-  item: withIcon,
-})(({ store }) => {
-  return (
-    <ContentItem
-      item={store.state.item}
-      greyBackground={boolean('Set grey background', false)}
-      headerSuffix={radio}
-    />
-  );
-});
-const withCruds1 = withState({
-  item: withIcon,
-})(({ store }) => {
-  return (
-    <ContentItem
-      item={attachCrudKnobs(store.state.item, true)}
-      greyBackground={boolean('Set grey background', false)}
-      onRemove={action('onItemRemove')}
-      onUpdate={item => {
-        editItem(item, store);
-      }}
-      onDuplicate={action('onItemSelect')}
-      texts={getTexts()}
-    />
-  );
-});
-const withExpander2 = withState({
-  item: withTagAndLabel,
-})(({ store }) => {
-  const tagShape = select('Set tag shape', tagShapes, tagShapes.round);
-  return (
-    <ContentItem
-      item={attachContentKnobs({tag: getTag(tagShape),...store.state.item},true)}
-      greyBackground={boolean('Set grey background', false)}
-      onRemove={action('onItemRemove')}
-      onUpdate={item => {
-        editItem(item, store);
-      }}
-      onDuplicate={action('onItemSelect')}
-      texts={getTexts()}
-      onExpand={(id, isExpanded) => {
-        store.set({ item: { ...store.state.item, expanded: isExpanded } });
-      }}
-    />
-  );
-});
-const withOption2 = withState({
-  item: withTagAndLabel,
-})(({ store }) => {
-  const tagShape = select('Set tag shape', tagShapes, tagShapes.round);
-  return (
-    <ContentItem
-      item={attachDropdownKnobs({tag: getTag(tagShape),...store.state.item},true)}
-      greyBackground={boolean('Set grey background', false)}
-      onRemove={action('onItemRemove')}
-      onUpdate={item => {
-        editItem(item, store);
-      }}
-      onDuplicate={action('onItemSelect')}
-      texts={getTexts()}
-    />
-  );
-});
-const withRadios2 = withState({
-  item: withTagAndLabel,
-})(({ store }) => {
-  const tagShape = select('Set tag shape', tagShapes, tagShapes.round);
-  return (
-    <ContentItem
-      item={{tag: getTag(tagShape),...store.state.item}}
-      greyBackground={boolean('Set grey background', false)}
-      headerSuffix={radio}
-    />
-  );
-});
-const withCruds2 = withState({
-  item: withTagAndLabel,
-})(({ store }) => {
-  const tagShape = select('Set tag shape', tagShapes, tagShapes.round);
-  return (
-    <ContentItem
-      item={attachCrudKnobs({tag: getTag(tagShape),...store.state.item}, true)}
-      greyBackground={boolean('Set grey background', false)}
-      onRemove={action('onItemRemove')}
-      onUpdate={item => {
-        editItem(item, store);
-      }}
-      onDuplicate={action('onItemSelect')}
-      texts={getTexts()}
-    />
-  );
-});
-const withExpander3 = withState({
-  item: withLabel,
-})(({ store }) => {
+};
+const grabberWithExpander = defaultItem => {
+  const [item, setItem] = React.useState(defaultItem);
   return (
     <ListWithGrabber
       onItemSelect={NOOP}
       maxToShowItems={1}
       onChangeOrder={NOOP}
       type="content"
-      items={[attachContentKnobs(store.state.item,true)]}
+      items={[defaultItem]}
       loading={false}
       changeOrderDisabled={boolean('Disable change order', false)}
       greyBackground={boolean('Set grey background', false)}
       texts={getTexts()}
       onExpand={(id, isExpanded) => {
-        store.set({ item: { ...store.state.item, expanded: isExpanded } });
+        setItem({ item: { ...item, expanded: isExpanded } });
       }}
     />
   );
-});
-const withOption3 = withState({
-  item: withLabel,
-})(({ store }) => {
+};
+const grabberWithOption = defaultItem => {
   return (
     <ListWithGrabber
       onItemSelect={NOOP}
       maxToShowItems={1}
       onChangeOrder={NOOP}
       type="content"
-      items={[attachDropdownKnobs(store.state.item,true)]}
+      items={[defaultItem]}
       loading={false}
       changeOrderDisabled={boolean('Disable change order', false)}
       greyBackground={boolean('Set grey background', false)}
       texts={getTexts()}
     />
   );
-});
-const withRadios3 = withState({
-  item: withLabel,
-})(({ store }) => {
+};
+const grabberWithRadios = defaultItem => {
   return (
     <ListWithGrabber
       onItemSelect={NOOP}
       maxToShowItems={1}
       onChangeOrder={NOOP}
       type="content"
-      items={[attachRadioKnobs(store.state.item,true)]}
+      items={[defaultItem]}
       loading={false}
       changeOrderDisabled={boolean('Disable change order', false)}
       greyBackground={boolean('Set grey background', false)}
       texts={getTexts()}
     />
   );
-});
-const withCruds3 = withState({
-  item: withLabel,
-})(({ store }) => {
+};
+const grabberWithCruds = defaultItem => {
   return (
     <ListWithGrabber
       onItemSelect={NOOP}
       maxToShowItems={1}
       onChangeOrder={NOOP}
       type="content"
-      items={[attachCrudKnobs(store.state.item, true)]}
+      items={[defaultItem]}
       loading={false}
       changeOrderDisabled={boolean('Disable change order', false)}
       greyBackground={boolean('Set grey background', false)}
       texts={getTexts()}
     />
   );
-});
+};
 const stories = {
-  withLabel: withState({
-    item: withLabel,
-  })(({ store }) => {
-    const crud = boolean('Set CRUD', false);
-    return (
-      <ContentItem
-        item={attachCrudKnobs(store.state.item, crud)}
-        greyBackground={boolean('Set grey background', false)}
-        onRemove={action('onItemRemove')}
-        onUpdate={item => {
-          editItem(item, store);
-        }}
-        onDuplicate={action('onItemSelect')}
-        texts={getTexts()}
-      />
-    );
-  }),
-  withIconAndLabel: withState({
-    item: withIcon,
-  })(({ store }) => {
-    const crud = boolean('Set CRUD', false);
-    return (
-      <ContentItem
-        item={attachCrudKnobs(store.state.item, crud)}
-        greyBackground={boolean('Set grey background', false)}
-        onRemove={action('onItemRemove')}
-        onUpdate={item => {
-          editItem(item, store);
-        }}
-        onDuplicate={action('onItemSelect')}
-        texts={getTexts()}
-      />
-    );
-  }),
-  withTagAndLabel: withState({
-    item: withTagAndLabel,
-  })(({ store }) => {
-    const crud = boolean('Set CRUD', false);
-    const tagShape = select('Set tag shape', tagShapes, tagShapes.round);
-    return (
-      <ContentItem
-        item={attachCrudKnobs(
-          {
-            tag: getTag(tagShape),
-            ...store.state.item,
-          },
-          crud
-        )}
-        greyBackground={boolean('Set grey background', false)}
-        onRemove={action('onItemRemove')}
-        onUpdate={item => {
-          editItem(item, store);
-        }}
-        onDuplicate={action('onItemSelect')}
-        texts={getTexts()}
-      />
-    );
-  }),
   withExpander: withState({
     item: withContent,
   })(({ store }) => {
@@ -483,86 +293,76 @@ const stories = {
       />
     );
   }),
-  withGrabber: withState({
-    item: withLabel,
-  })(({ store }) => {
-    const crud = boolean('Set CRUD', false);
-    return (
-      <ListWithGrabber
-        onItemSelect={NOOP}
-        maxToShowItems={1}
-        onChangeOrder={NOOP}
-        type="content"
-        items={[attachCrudKnobs(store.state.item, crud)]}
-        loading={false}
-        changeOrderDisabled={boolean('Disable change order', false)}
-        greyBackground={boolean('Set grey background', false)}
-        texts={getTexts()}
-      />
-    );
-  }),
-  withLabelOptions: () => {
+  withLabel: () => {
     const selectSuffix = select('Select Suffix', suffixType, suffixType.cruds);
+    const suffix = boolean('Set suffix', false);
     switch (selectSuffix) {
       case suffixType.cruds:
-        return withCruds()
+        return withCruds(attachCrudKnobs(withLabel, suffix));
       case suffixType.expander:
-        return withExpander()
+        return withExpander(attachContentKnobs(withLabel, suffix));
       case suffixType.dropdown:
-        return withOption()
+        return withOption(attachDropdownKnobs(withLabel, suffix));
       case suffixType.radio:
-        return withRadios()
+        return withRadios(attachRadioKnobs(withLabel, suffix));
       default:
-        return null
-    } return null
+        return null;
+    }
+    return null;
   },
-  withLabelAndIconOptions: () => {
+  withLabelAndIcon: () => {
     const selectSuffix = select('Select Suffix', suffixType, suffixType.cruds);
+    const suffix = boolean('Set suffix', false);
     switch (selectSuffix) {
       case suffixType.cruds:
-        return withCruds1()
+        return withCruds(attachCrudKnobs(withIcon, suffix));
       case suffixType.expander:
-        return withExpander1()
+        return withExpander(attachContentKnobs(withIcon, suffix));
       case suffixType.dropdown:
-        return withOption1()
+        return withOption(attachDropdownKnobs(withIcon, suffix));
       case suffixType.radio:
-        return withRadios1()
+        return withRadios(attachRadioKnobs(withIcon, suffix));
       default:
-        return null
-    } return null
+        return null;
+    }
+    return null;
   },
-  withLabelAndTagOptions: () => {
+  withLabelAndTag: () => {
     const selectSuffix = select('Select Suffix', suffixType, suffixType.cruds);
+    const tagShape = select('Set tag shape', tagShapes, tagShapes.round);
+    const suffix = boolean('Set suffix', false);
     switch (selectSuffix) {
       case suffixType.cruds:
-        return withCruds2()
+        return withCruds(attachCrudKnobs({ tag: getTag(tagShape), ...withTagAndLabel }, suffix));
       case suffixType.expander:
-        return withExpander2()
+        return withExpander(attachContentKnobs({ tag: getTag(tagShape), ...withTagAndLabel }, suffix));
       case suffixType.dropdown:
-        return withOption2()
+        return withOption(attachDropdownKnobs({ tag: getTag(tagShape), ...withTagAndLabel }, suffix));
       case suffixType.radio:
-        return withRadios2()
+        return withRadios(attachRadioKnobs({ tag: getTag(tagShape), ...withTagAndLabel }, suffix));
       default:
-        return null
-    } return null
+        return null;
+    }
+    return null;
   },
-  withGrabberOptions: () => {
+  withGrabber: () => {
     const selectSuffix = select('Select Suffix', suffixType, suffixType.cruds);
-    switch (selectSuffix) {
-      case suffixType.cruds:
-        return withCruds3()
-      case suffixType.expander:
-        return withExpander3()
-      case suffixType.dropdown:
-        return withOption3()
-      case suffixType.radio:
-        return withRadios3()
-      default:
-        return null
-    } return null
+    const suffix = boolean('Set suffix', false);
+    if (selectSuffix === suffixType.cruds) {
+      return grabberWithCruds(attachCrudKnobs(withLabel, suffix));
+    }
+    if (selectSuffix === suffixType.expander) {
+      return grabberWithExpander(attachContentKnobs(withLabel, suffix));
+    }
+    if (selectSuffix === suffixType.dropdown) {
+      return grabberWithOption(attachDropdownKnobs(withLabel, suffix));
+    }
+    if (selectSuffix === suffixType.radio) {
+      return grabberWithRadios(attachRadioKnobs(withLabel, suffix));
+    }
+    return null;
   },
 };
-
 
 export default {
   name: 'manageable list/Content items',
