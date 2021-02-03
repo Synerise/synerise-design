@@ -41,4 +41,5 @@ export type ItemProps = {
   dropdown?: React.ReactElement;
   disableExpanding?: boolean;
   expanded?: boolean;
+  headerSuffix?: React.ReactNode;
 };
