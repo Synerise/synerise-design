@@ -310,7 +310,7 @@ const stories = {
     }
     return null;
   },
-  withLabelAndIcon: () => {
+  withIconAndLabel: () => {
     const selectSuffix = select('Select Suffix', suffixType, suffixType.cruds);
     const suffix = boolean('Set suffix', false);
     switch (selectSuffix) {
@@ -327,7 +327,7 @@ const stories = {
     }
     return null;
   },
-  withLabelAndTag: () => {
+  withTagAndLabel: () => {
     const selectSuffix = select('Select Suffix', suffixType, suffixType.cruds);
     const tagShape = select('Set tag shape', tagShapes, tagShapes.round);
     const suffix = boolean('Set suffix', false);
