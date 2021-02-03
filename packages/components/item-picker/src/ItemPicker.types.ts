@@ -32,4 +32,5 @@ export type ItemPickerProps = {
   dropdownVisibleRows?: number;
   dropdownRowHeight?: number;
   dropdownBottomAction?: React.ReactNode;
+  closeOnBottomAction?: boolean;
 };
