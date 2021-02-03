@@ -77,14 +77,15 @@ const ItemPicker: React.FC<ItemPickerProps> = ({
       />
     ),
     [
+      onChange,
       dataSource,
       searchPlaceholder,
-      onChange,
       closeDropdown,
       noResults,
-      dropdownRowHeight,
       dropdownVisibleRows,
+      dropdownRowHeight,
       dropdownBottomAction,
+      closeOnBottomAction,
     ]
   );
 
