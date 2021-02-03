@@ -25,3 +25,16 @@ export const StyledScrollbar = styled(Scrollbar)<ScrollbarProps>`
     }
   }
 `;
+
+export const DropdownFooter = styled.div`
+  background-color: ${(props): string => props.theme.palette['grey-050']};
+  height: 52px;
+  display: flex;
+  align-items: center;
+  border-top: 1px solid ${(props): string => props.theme.palette['grey-100']};
+  cursor: default;
+  margin: 0;
+  padding: 0 8px;
+`;
+
+export const BottomActionWrapper = styled.div``;

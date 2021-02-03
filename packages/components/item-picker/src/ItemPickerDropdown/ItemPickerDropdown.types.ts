@@ -9,4 +9,5 @@ export interface Props {
   dropdownVisibleRows?: number;
   dropdownRowHeight?: number;
   dropdownBottomAction?: React.ReactNode;
+  closeOnBottomAction?: boolean;
 }
