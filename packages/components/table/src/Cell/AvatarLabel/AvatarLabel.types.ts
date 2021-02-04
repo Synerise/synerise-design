@@ -10,6 +10,5 @@ export type Props = {
   ellipsis?: boolean;
   maxWidth?: number;
   avatarSize?: string | 'large';
-  starCell?: React.ReactElement;
   loader?: React.ReactElement;
 };

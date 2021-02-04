@@ -60,5 +60,5 @@ export const Label = styled.span<{ textSize: 'small' | 'default'; ellipsis: bool
 export const Icon = styled.div`
   margin-right: 8px;
 `;
-export const StarCell = styled.div``;
+
 export const Loader = styled.div``;

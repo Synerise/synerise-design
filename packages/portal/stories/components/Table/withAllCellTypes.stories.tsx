@@ -17,7 +17,6 @@ import {
 import Button from '@synerise/ds-button';
 import Icon from '@synerise/ds-icon';
 import { Column, renderWithIconInHeaders } from './helpers/helpers';
-import { StarCell } from '@synerise/ds-table/dist/Cell/Star/StarCell.styles';
 
 const decorator = storyFn => <div style={{ padding: 20, width: '100vw', minWidth: '100%' }}>{storyFn()}</div>;
 
@@ -38,7 +37,6 @@ const dataSource = [...new Array(55)].map((i, k) => ({
     labels: ['Text AB/X', 'Edited 11 Jun 2019 18:47'],
     label: ['Edited 11 Jun 2019 18:47'],
     labelLoader: ['Dynamic'],
-    starCell: <StarCell onClick={action('Click start')}/>,
   },
   select: {
     value: faker.random.arrayElement(['option 1', 'option 2', 'option 3']),
