@@ -5,7 +5,7 @@ import Icon from '@synerise/ds-icon';
 import Checkbox from '@synerise/ds-checkbox';
 import { TagM, TagStarredM, TagStarredFlatM } from '@synerise/ds-icon/dist/icons';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
-import { useOnClickOutside, NOOP } from '@synerise/ds-utils';
+import { useOnClickOutside, sNOOPy } from '@synerise/ds-utils';
 import Tooltip from '@synerise/ds-tooltip';
 
 import { validateFolderName } from '../../utils';
@@ -15,16 +15,16 @@ import { ItemProps } from './Item.types';
 
 import * as S from './Item.styles';
 
-function getRenderItemName(itemName: string, query: string ): React.ReactNode {
-  if(query && itemName.toLowerCase().match(query.toLowerCase())) {
+function getRenderItemName(itemName: string, query: string): React.ReactNode {
+  if (query && itemName.toLowerCase().match(query.toLowerCase())) {
     return (
-      <Highlighter 
+      <Highlighter
         searchWords={[query]}
         highlightClassName="highlight"
         unhighlightClassName="unhighlight"
         textToHighlight={itemName}
       />
-    )
+    );
   }
   return itemName;
 }
@@ -32,18 +32,18 @@ function getRenderItemName(itemName: string, query: string ): React.ReactNode {
 const Item: React.FC<ItemProps> = ({
   item,
   onSettingsEnter,
-  onDelete = NOOP,
-  onFavourite = NOOP,
-  onVisibility = NOOP,
+  onDelete = sNOOPy,
+  onFavourite = sNOOPy,
+  onVisibility = sNOOPy,
   onEdit,
   texts,
-  onItemSelect = NOOP,
+  onItemSelect = sNOOPy,
   checked = false,
-  withCheckbox = true
+  withCheckbox = true,
 }) => {
   const { name, favourite } = item;
   const { searchQuery } = useTagsListContext();
-  
+
   const [dropdownOpened, setDropdownOpened] = React.useState<boolean>(false);
   const [hovered, setHovered] = React.useState<boolean>(false);
   const [itemName, setItemName] = React.useState<string>(name);
@@ -70,7 +70,7 @@ const Item: React.FC<ItemProps> = ({
   React.useEffect(() => {
     setItemName(name);
     // Check if is overflowed
-    if(textRef.current && textRef.current?.offsetWidth < textRef.current?.scrollWidth) {
+    if (textRef.current && textRef.current?.offsetWidth < textRef.current?.scrollWidth) {
       setOverflowed(true);
     }
   }, [name, textRef]);
@@ -98,9 +98,11 @@ const Item: React.FC<ItemProps> = ({
     onFavourite(item);
   };
 
-  const handleOnEdit = onEdit && ((): void => {
-    setEditMode(true);
-  });
+  const handleOnEdit =
+    onEdit &&
+    ((): void => {
+      setEditMode(true);
+    });
 
   const onDropdown = (opened: boolean): void => {
     setDropdownOpened(opened);
@@ -141,15 +143,14 @@ const Item: React.FC<ItemProps> = ({
       hovered={isHovered}
       prefixel={
         <S.PrefixWrapper>
-          {withCheckbox && (isHovered || checked || editMode) ? 
-            <Checkbox 
-              checked={checked}
-            /> :
+          {withCheckbox && (isHovered || checked || editMode) ? (
+            <Checkbox checked={checked} />
+          ) : (
             <Icon
               component={getPrefix(favourite, isHovered, editMode)}
               color={isHovered || editMode ? theme.palette['blue-600'] : theme.palette['grey-600']}
             />
-          }
+          )}
         </S.PrefixWrapper>
       }
       suffixel={
@@ -175,7 +176,9 @@ const Item: React.FC<ItemProps> = ({
               <Tooltip placement="topLeft" title={itemName}>
                 {renderItemName}
               </Tooltip>
-            ) : renderItemName}
+            ) : (
+              renderItemName
+            )}
           </S.TagsListText>
         )
       }

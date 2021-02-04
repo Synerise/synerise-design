@@ -4,7 +4,7 @@ import Icon from '@synerise/ds-icon';
 import Menu from '@synerise/ds-menu';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { EditM, OptionHorizontalM, Settings2M, StarFillM, StarM, TrashM, CheckS } from '@synerise/ds-icon/dist/icons';
-import { NOOP } from '@synerise/ds-utils';
+import { sNOOPy } from '@synerise/ds-utils';
 import { ClickParam } from 'antd/es/menu';
 import { ActionProps, VisibilityProps } from './Actions.types';
 import { TagVisibility } from '../../TagsList.types';
@@ -15,37 +15,31 @@ const dropdownMenuClick = (event: ClickParam): void => event.domEvent.stopPropag
 
 const CheckIcon: React.FC = () => <Icon color={theme.palette['green-600']} component={<CheckS />} />;
 
-const Visibility: React.FC<VisibilityProps> = ({texts, onVisibility, visibility, item}) => {
+const Visibility: React.FC<VisibilityProps> = ({ texts, onVisibility, visibility, item }) => {
   const visibilities = {
     [TagVisibility.Show]: texts?.visibilityShow,
     [TagVisibility.ShowIfUsed]: texts?.visibilityShowIfUsed,
     [TagVisibility.Hide]: texts?.visibilityHide,
-  }
+  };
 
   const [stateVisibility, setVisibility] = React.useState(visibility);
 
   return (
     <>
-      {Object
-      .keys(visibilities)
-      .map((key: string) => {
+      {Object.keys(visibilities).map((key: string) => {
         const text = visibilities[key];
         const dropdownMenuItemClick = (event: ClickParam): void => {
           event.domEvent.stopPropagation();
           const vis = key as TagVisibility;
           setVisibility(vis);
-          if(typeof onVisibility === 'function') onVisibility(vis, item);
+          if (typeof onVisibility === 'function') onVisibility(vis, item);
         };
 
         return (
-          <S.DropdownMenuItem 
-            suffixel={stateVisibility === key && CheckIcon} 
-            onClick={dropdownMenuItemClick}
-            key={key}
-          >
+          <S.DropdownMenuItem suffixel={stateVisibility === key && CheckIcon} onClick={dropdownMenuItemClick} key={key}>
             {text}
           </S.DropdownMenuItem>
-        )
+        );
       })}
     </>
   );
@@ -57,7 +51,7 @@ const Actions: React.FC<ActionProps> = ({
   onSettingsEnter,
   onEdit,
   onDelete,
-  onDropdown = NOOP,
+  onDropdown = sNOOPy,
   item,
   isFavourite,
   visibility,
@@ -72,12 +66,7 @@ const Actions: React.FC<ActionProps> = ({
       overlay={
         // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
         <S.DropdownMenu asDropdownMenu onClick={dropdownMenuClick}>
-          <Visibility 
-            texts={texts} 
-            item={item} 
-            onVisibility={onVisibility} 
-            visibility={visibility} 
-          />
+          <Visibility texts={texts} item={item} onVisibility={onVisibility} visibility={visibility} />
           <Menu.Divider />
           {!!onFavourite && (
             <S.DropdownMenuItem
@@ -137,10 +126,7 @@ const Actions: React.FC<ActionProps> = ({
         </S.DropdownMenu>
       }
     >
-      <S.DropdownTrigger 
-        component={<OptionHorizontalM />} 
-        onClick={triggerClick}
-      />
+      <S.DropdownTrigger component={<OptionHorizontalM />} onClick={triggerClick} />
     </Dropdown>
   );
 };
