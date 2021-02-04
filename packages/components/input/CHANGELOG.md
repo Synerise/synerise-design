@@ -3,6 +3,42 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.16.19](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.16.18...@synerise/ds-input@0.16.19) (2021-02-02)
+
+**Note:** Version bump only for package @synerise/ds-input
+
+
+
+
+
+## [0.16.18](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.16.17...@synerise/ds-input@0.16.18) (2021-02-01)
+
+
+### Bug Fixes
+
+* **input:** fix styles of scrollbar in textarea ([00e903b](https://github.com/synerise/synerise-design/commit/00e903ba170d30d009c7ea722aebc20f8f5143ad))
+* **input:** fix textarea scrollbar styles ([180c664](https://github.com/synerise/synerise-design/commit/180c664c2670483b003d7513d68e507f4da3d024))
+
+
+
+
+
+## [0.16.17](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.16.16...@synerise/ds-input@0.16.17) (2021-01-22)
+
+**Note:** Version bump only for package @synerise/ds-input
+
+
+
+
+
+## [0.16.16](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.16.15...@synerise/ds-input@0.16.16) (2021-01-15)
+
+**Note:** Version bump only for package @synerise/ds-input
+
+
+
+
+
 ## [0.16.15](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.16.14...@synerise/ds-input@0.16.15) (2021-01-13)
 
 

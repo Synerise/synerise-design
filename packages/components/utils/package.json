@@ -1,10 +1,17 @@
 {
   "name": "@synerise/ds-utils",
-  "version": "0.11.12",
+  "version": "0.11.14",
   "description": "Utils UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "synerise/synerise-design",
   "main": "dist/index.js",
+  "files": [
+    "/dist",
+    "CHANGELOG.md",
+    "README.md",
+    "package.json",
+    "LICENSE.md"
+  ],
   "publishConfig": {
     "access": "public"
   },
@@ -27,6 +34,6 @@
     "react": ">=16.9.0 < 17.0.0"
   },
   "devDependencies": {
-    "@synerise/ds-core": "^0.26.0"
+    "@synerise/ds-core": "^0.26.2"
   }
 }

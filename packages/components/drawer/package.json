@@ -1,10 +1,17 @@
 {
   "name": "@synerise/ds-drawer",
-  "version": "0.4.46",
+  "version": "0.4.48",
   "description": "Drawer UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
   "main": "dist/index.js",
+  "files": [
+    "/dist",
+    "CHANGELOG.md",
+    "README.md",
+    "package.json",
+    "LICENSE.md"
+  ],
   "publishConfig": {
     "access": "public"
   },
@@ -30,6 +37,6 @@
     "react": ">=16.9.0 < 17.0.0"
   },
   "devDependencies": {
-    "@synerise/ds-utils": "^0.11.12"
+    "@synerise/ds-utils": "^0.11.14"
   }
 }

@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.8.1...@synerise/ds-card@0.8.2) (2021-02-02)
+
+**Note:** Version bump only for package @synerise/ds-card
+
+
+
+
+
+## [0.8.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.8.0...@synerise/ds-card@0.8.1) (2021-02-01)
+
+**Note:** Version bump only for package @synerise/ds-card
+
+
+
+
+
+# [0.8.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.7.33...@synerise/ds-card@0.8.0) (2021-01-22)
+
+
+### Features
+
+* **item-picker:** add bottom action ([145f5df](https://github.com/Synerise/synerise-design/commit/145f5df49c690f10bc6fe07cece1eab6f1e27c16))
+
+
+
+
+
 ## [0.7.33](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.7.32...@synerise/ds-card@0.7.33) (2021-01-04)
 
 

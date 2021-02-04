@@ -147,21 +147,28 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
       }
     }
     
-    ${(props): string | false =>
+    ${(props): FlattenSimpleInterpolation | false =>
       !props.disabled &&
-      `
-    &:focus:active, &:active {
-      background: ${props.theme.palette['grey-100']};
-      color: ${props.theme.palette['blue-600']} ! important;
-      
-      .ds-menu-prefix { ${IconContainer} > svg {
-        fill: ${props.theme.palette['blue-600']} !important;
-      }}
-    }
-    `}
+      css`
+        &:focus:active,
+        &:active {
+          background: ${props.theme.palette['grey-100']};
+          && {
+            color: ${props.theme.palette['blue-600']};
+
+            .ds-menu-prefix {
+              ${IconContainer} > svg {
+                fill: ${props.theme.palette['blue-600']};
+              }
+            }
+          }
+        }
+      `}
     
     &:active {
-      background: ${(props): string => props.theme.palette['grey-050']};
+      && {
+        background: ${(props): string => props.theme.palette['blue-050']};
+      }
     }
 
     & {

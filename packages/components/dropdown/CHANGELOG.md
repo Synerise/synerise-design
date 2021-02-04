@@ -3,6 +3,45 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.16](https://github.com/synerise/synerise-design/compare/@synerise/ds-dropdown@0.13.15...@synerise/ds-dropdown@0.13.16) (2021-02-02)
+
+
+### Bug Fixes
+
+* **dropdown:** add typography as peer dependency ([e8ddb67](https://github.com/synerise/synerise-design/commit/e8ddb670d7d2cc97daafda7b072d10aa611b6bb8))
+
+
+
+
+
+## [0.13.15](https://github.com/synerise/synerise-design/compare/@synerise/ds-dropdown@0.13.14...@synerise/ds-dropdown@0.13.15) (2021-02-01)
+
+**Note:** Version bump only for package @synerise/ds-dropdown
+
+
+
+
+
+## [0.13.14](https://github.com/synerise/synerise-design/compare/@synerise/ds-dropdown@0.13.13...@synerise/ds-dropdown@0.13.14) (2021-01-22)
+
+**Note:** Version bump only for package @synerise/ds-dropdown
+
+
+
+
+
+## [0.13.13](https://github.com/synerise/synerise-design/compare/@synerise/ds-dropdown@0.13.12...@synerise/ds-dropdown@0.13.13) (2021-01-15)
+
+
+### Bug Fixes
+
+* **dropdown:** STOR-588 add 8px from trigger + def getPopupContainer ([497a2ec](https://github.com/synerise/synerise-design/commit/497a2ecd74e6e913601799fbcd7e010f409d42db))
+* **dropdown:** tests for STOR-588 ([d271cd6](https://github.com/synerise/synerise-design/commit/d271cd67708c8c921b932391cc3e39e7fe0d49c1))
+
+
+
+
+
 ## [0.13.12](https://github.com/synerise/synerise-design/compare/@synerise/ds-dropdown@0.13.11...@synerise/ds-dropdown@0.13.12) (2021-01-13)
 
 **Note:** Version bump only for package @synerise/ds-dropdown

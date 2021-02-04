@@ -1,10 +1,17 @@
 {
   "name": "@synerise/ds-slider",
-  "version": "0.8.4",
+  "version": "0.9.2",
   "description": "Slider UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
   "main": "dist/index.js",
+  "files": [
+    "/dist",
+    "CHANGELOG.md",
+    "README.md",
+    "package.json",
+    "LICENSE.md"
+  ],
   "publishConfig": {
     "access": "public"
   },
@@ -25,8 +32,8 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-tooltip": "^0.10.6",
-    "@synerise/ds-typography": "^0.10.0"
+    "@synerise/ds-tooltip": "^0.10.10",
+    "@synerise/ds-typography": "^0.10.1"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
@@ -34,6 +41,6 @@
     "react": ">=16.9.0 < 17.0.0"
   },
   "devDependencies": {
-    "@synerise/ds-utils": "^0.11.12"
+    "@synerise/ds-utils": "^0.11.14"
   }
 }

@@ -3,6 +3,71 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.23](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar-object@0.4.22...@synerise/ds-sidebar-object@0.4.23) (2021-02-02)
+
+**Note:** Version bump only for package @synerise/ds-sidebar-object
+
+
+
+
+
+## [0.4.22](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar-object@0.4.21...@synerise/ds-sidebar-object@0.4.22) (2021-02-01)
+
+**Note:** Version bump only for package @synerise/ds-sidebar-object
+
+
+
+
+
+## [0.4.21](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar-object@0.4.20...@synerise/ds-sidebar-object@0.4.21) (2021-01-27)
+
+
+### Bug Fixes
+
+* **sidebar-object:** hide Menu.Divider when only onId action available ([adbd633](https://github.com/Synerise/synerise-design/commit/adbd633c6c27c7d6c8ee625de0df4acd1f0bd2e8))
+
+
+
+
+
+## [0.4.20](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar-object@0.4.19...@synerise/ds-sidebar-object@0.4.20) (2021-01-22)
+
+**Note:** Version bump only for package @synerise/ds-sidebar-object
+
+
+
+
+
+## [0.4.19](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar-object@0.4.18...@synerise/ds-sidebar-object@0.4.19) (2021-01-20)
+
+
+### Bug Fixes
+
+* **subtle-form:** code review fixes ([8ee9bb6](https://github.com/Synerise/synerise-design/commit/8ee9bb6441b407758e8342b6c784bf4724555c1a))
+
+
+
+
+
+## [0.4.18](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar-object@0.4.17...@synerise/ds-sidebar-object@0.4.18) (2021-01-15)
+
+**Note:** Version bump only for package @synerise/ds-sidebar-object
+
+
+
+
+
+## [0.4.17](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar-object@0.4.16...@synerise/ds-sidebar-object@0.4.17) (2021-01-14)
+
+
+### Bug Fixes
+
+* **sidebar-object:** move header above scrollbar wrapper ([0242c22](https://github.com/Synerise/synerise-design/commit/0242c22134c55c38718a0d344252a9fbea395b3d))
+
+
+
+
+
 ## [0.4.16](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar-object@0.4.15...@synerise/ds-sidebar-object@0.4.16) (2021-01-14)
 
 

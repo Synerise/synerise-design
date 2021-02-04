@@ -62,4 +62,4 @@ import Logic from '@synerise/ds-logic'
 | Property    | Description                                               | Type   | Default    |
 | ---         | ---                                                       | ---    | ---        |
 | matching    | Label of Toggle component, visible when matching is true  | string | `matching` |
-| notMatching | Label of Toggle component, visible when matching is false | string | `matching` |
+| notMatching | Label of Toggle component, visible when matching is false | string | `not matching` |

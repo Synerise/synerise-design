@@ -3,6 +3,47 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-loader@0.1.1...@synerise/ds-loader@0.1.2) (2021-02-02)
+
+**Note:** Version bump only for package @synerise/ds-loader
+
+
+
+
+
+## [0.1.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-loader@0.1.0...@synerise/ds-loader@0.1.1) (2021-02-01)
+
+**Note:** Version bump only for package @synerise/ds-loader
+
+
+
+
+
+# [0.1.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-loader@0.0.16...@synerise/ds-loader@0.1.0) (2021-01-22)
+
+
+### Features
+
+* **item-picker:** add bottom action ([145f5df](https://github.com/Synerise/synerise-design/commit/145f5df49c690f10bc6fe07cece1eab6f1e27c16))
+
+
+
+
+
+## [0.0.16](https://github.com/Synerise/synerise-design/compare/@synerise/ds-loader@0.0.15...@synerise/ds-loader@0.0.16) (2021-01-20)
+
+
+### Bug Fixes
+
+* **loader:** add percent value of loader ([888006a](https://github.com/Synerise/synerise-design/commit/888006a27bf5466e75544a18697f57ec9b6c6312))
+* **loader:** change elementsPosition to labelPosition ([d0019cd](https://github.com/Synerise/synerise-design/commit/d0019cdcb0d78768b046c04e05096e6570598377))
+* **loader:** change elementsPosition to labelPosition ([b756105](https://github.com/Synerise/synerise-design/commit/b756105436c44c1ad42bf34f1a97f9342570d98c))
+* **loader:** change labelPosition type ([164a150](https://github.com/Synerise/synerise-design/commit/164a1502d14422dbc7e37586206ba81c23cf6236))
+
+
+
+
+
 ## [0.0.15](https://github.com/Synerise/synerise-design/compare/@synerise/ds-loader@0.0.14...@synerise/ds-loader@0.0.15) (2021-01-04)
 
 **Note:** Version bump only for package @synerise/ds-loader

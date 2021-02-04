@@ -1,10 +1,17 @@
 {
   "name": "@synerise/ds-message",
-  "version": "0.3.8",
+  "version": "0.3.9",
   "description": "Message UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
   "main": "dist/index.js",
+  "files": [
+    "/dist",
+    "CHANGELOG.md",
+    "README.md",
+    "package.json",
+    "LICENSE.md"
+  ],
   "publishConfig": {
     "access": "public"
   },

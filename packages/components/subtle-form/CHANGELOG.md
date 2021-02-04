@@ -3,6 +3,59 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subtle-form@0.6.2...@synerise/ds-subtle-form@0.6.3) (2021-02-02)
+
+**Note:** Version bump only for package @synerise/ds-subtle-form
+
+
+
+
+
+## [0.6.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subtle-form@0.6.1...@synerise/ds-subtle-form@0.6.2) (2021-02-01)
+
+**Note:** Version bump only for package @synerise/ds-subtle-form
+
+
+
+
+
+## [0.6.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subtle-form@0.6.0...@synerise/ds-subtle-form@0.6.1) (2021-01-22)
+
+**Note:** Version bump only for package @synerise/ds-subtle-form
+
+
+
+
+
+# [0.6.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subtle-form@0.5.13...@synerise/ds-subtle-form@0.6.0) (2021-01-20)
+
+
+### Bug Fixes
+
+* **subtle-form:** code review fixes ([8ee9bb6](https://github.com/Synerise/synerise-design/commit/8ee9bb6441b407758e8342b6c784bf4724555c1a))
+* **subtle-form:** fixed inactive element rendering, added stories ([b00659f](https://github.com/Synerise/synerise-design/commit/b00659f0bb3309b66b2b1d0c5640e15a519212f3))
+* **subtle-form:** input number styles ([b08dedc](https://github.com/Synerise/synerise-design/commit/b08dedc6f19893e0273f604934a3a78c871722e2))
+* **subtle-form:** input placeholder styles ([a8dd956](https://github.com/Synerise/synerise-design/commit/a8dd9560edbe9196eef9aaaebacb827a3a84eccb))
+* **subtle-form:** input placeholder styles ([afbc748](https://github.com/Synerise/synerise-design/commit/afbc7484d26a8df080bdccd2954b505c2fd8a47e))
+
+
+### Features
+
+* **subtle-form:** added input as subtle field ([e8a8d42](https://github.com/Synerise/synerise-design/commit/e8a8d4203aecc07e62c1589e57a37b426098c92d))
+* **subtle-form:** generic subtle form field ([c71ffbb](https://github.com/Synerise/synerise-design/commit/c71ffbb63aa12bfbe7892e4da11f1c2a2fc9e65f))
+
+
+
+
+
+## [0.5.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subtle-form@0.5.12...@synerise/ds-subtle-form@0.5.13) (2021-01-15)
+
+**Note:** Version bump only for package @synerise/ds-subtle-form
+
+
+
+
+
 ## [0.5.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subtle-form@0.5.11...@synerise/ds-subtle-form@0.5.12) (2021-01-13)
 
 **Note:** Version bump only for package @synerise/ds-subtle-form

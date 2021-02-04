@@ -1,11 +1,12 @@
 import * as React from 'react';
-import Dropdown from '@synerise/ds-dropdown';
+import Button from '@synerise/ds-button';
 import ItemPicker from '@synerise/ds-item-picker';
 import { boolean, select, text } from '@storybook/addon-knobs';
 import { Add3M, FileM, UserM } from '@synerise/ds-icon/dist/icons';
 import Icon from '@synerise/ds-icon';
 import { dataSource } from './dataset';
 import { withState } from '@dump247/storybook-state';
+import { action } from '@storybook/addon-actions';
 
 const PLACEHOLDER_ICONS = ['none', 'user', 'add', 'file'];
 const ICONS = {
@@ -29,46 +30,49 @@ const stories = {
       return ICONS[icon];
     };
 
-    return (<ItemPicker
-      dataSource={dataSource}
-      searchPlaceholder={text('Set search placeholder', 'Search')}
-      label={text('Set label', 'Label')}
-      description={text('Set description', 'Description')}
-      tooltip={text('Set tooltip', 'Tooltip')}
-      placeholder={text('Set placeholder', 'Set customer')}
-      placeholderIcon={getPlaceholderIcon(select('Choose placeholder icon', PLACEHOLDER_ICONS, 'none'))}
-      selectedItem={store.state.selected}
-      onChange={handleChange}
-      clear={text('Set clear tooltip', 'Remove')}
-      onClear={handleClear}
-      disabled={boolean('Disabled', false)}
-      error={boolean('Has error?', false)}
-      errorMessage={text('Error message', 'Error')}
-      size={'small'}
-      withClearConfirmation={boolean('With clear confirmation', false)}
-      yesText={text('Yes button label', 'Yes')}
-      noText={text('No button label', 'No')}
-      noResults={text('No search results info', 'No results')}
-      clearConfirmTitle={text('Clear confirm title', 'Are you sure to remove this selection?')}
-      dropdownVisibleRows={6}
-    />)
-    }
-  ),
-  large: withState({selected: null})(({ store }) => {
+    return (
+      <ItemPicker
+        dataSource={dataSource}
+        searchPlaceholder={text('Set search placeholder', 'Search')}
+        label={text('Set label', 'Label')}
+        description={text('Set description', 'Description')}
+        tooltip={text('Set tooltip', 'Tooltip')}
+        placeholder={text('Set placeholder', 'Set customer')}
+        placeholderIcon={getPlaceholderIcon(select('Choose placeholder icon', PLACEHOLDER_ICONS, 'none'))}
+        selectedItem={store.state.selected}
+        onChange={handleChange}
+        clear={text('Set clear tooltip', 'Remove')}
+        onClear={handleClear}
+        onFocus={() => console.log('onFocus')}
+        onBlur={() => console.log('onBlur')}
+        disabled={boolean('Disabled', false)}
+        error={boolean('Has error?', false)}
+        errorMessage={text('Error message', 'Error')}
+        size={'small'}
+        withClearConfirmation={boolean('With clear confirmation', false)}
+        yesText={text('Yes button label', 'Yes')}
+        noText={text('No button label', 'No')}
+        noResults={text('No search results info', 'No results')}
+        clearConfirmTitle={text('Clear confirm title', 'Are you sure to remove this selection?')}
+        dropdownVisibleRows={6}
+      />
+    );
+  }),
+  large: withState({ selected: null })(({ store }) => {
+    const handleChange = item => {
+      store.set({ selected: item });
+    };
 
-      const handleChange = (item) => {
-        store.set({selected: item});
-      };
+    const handleClear = () => {
+      store.set({ selected: null });
+    };
 
-      const handleClear = () => {
-        store.set({selected: null});
-      };
+    const getPlaceholderIcon = icon => {
+      return ICONS[icon];
+    };
 
-      const getPlaceholderIcon = (icon) => {
-        return ICONS[icon];
-      };
-
-      return (<ItemPicker
+    return (
+      <ItemPicker
         dataSource={dataSource}
         searchPlaceholder={text('Set search placeholder', 'Search')}
         label={text('Set label', 'Label')}
@@ -90,11 +94,13 @@ const stories = {
         noText={text('No button label', 'No')}
         noResults={text('No search results info', 'No results')}
         clearConfirmTitle={text('Clear confirm title', 'Are you sure to remove this selection?')}
-        dropdownBottomAction={(
-          <Dropdown.BottomAction icon={ICONS.add} onClickAction={() => {}} style={{ marginTop: 0 }}>
+        closeOnBottomAction={boolean('Close dropdown on bottom action', true)}
+        dropdownBottomAction={
+          <Button type="ghost" mode={'icon-label'} onClick={action('bottom action')}>
+            <Icon component={<Add3M />} />
             {text('Set bottom action label', 'Bottom action label')}
-          </Dropdown.BottomAction>
-        )}
+          </Button>
+        }
       />
     );
   }),

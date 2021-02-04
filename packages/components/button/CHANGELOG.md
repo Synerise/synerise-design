@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.26](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.13.25...@synerise/ds-button@0.13.26) (2021-02-02)
+
+**Note:** Version bump only for package @synerise/ds-button
+
+
+
+
+
+## [0.13.25](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.13.24...@synerise/ds-button@0.13.25) (2021-02-01)
+
+**Note:** Version bump only for package @synerise/ds-button
+
+
+
+
+
+## [0.13.24](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.13.23...@synerise/ds-button@0.13.24) (2021-01-22)
+
+**Note:** Version bump only for package @synerise/ds-button
+
+
+
+
+
+## [0.13.23](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.13.22...@synerise/ds-button@0.13.23) (2021-01-15)
+
+
+### Bug Fixes
+
+* **button:** add new prop iconColor and new styles on hover color in buttton ([4e8be6d](https://github.com/synerise/synerise-design/commit/4e8be6d25e6e18e62d0a805956dee5ab1eca0fab))
+
+
+
+
+
 ## [0.13.22](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.13.21...@synerise/ds-button@0.13.22) (2021-01-13)
 
 

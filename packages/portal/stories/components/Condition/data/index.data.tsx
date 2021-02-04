@@ -1,11 +1,6 @@
-import {
-  ExpressionM,
-  FolderM,
-  NotificationsM,
-  VarTypeNumberM,
-  VarTypeStringM,
-} from '@synerise/ds-icon/dist/icons';
+import { ExpressionM, FolderM, NotificationsM, VarTypeNumberM, VarTypeStringM } from '@synerise/ds-icon/dist/icons';
 import * as React from 'react';
+import { v4 as uuid } from 'uuid';
 
 export const SUBJECT_ITEMS = [...new Array(30)].map((i, index) => ({
   id: index,
@@ -13,32 +8,33 @@ export const SUBJECT_ITEMS = [...new Array(30)].map((i, index) => ({
   icon: <NotificationsM />,
 }));
 
-
 export const PARAMETER_GROUPS = [
   {
     name: 'Recent',
     id: 1,
     defaultGroup: true,
-  },{
+  },
+  {
     name: 'All',
     id: 2,
-    subGroups: [{
-      name: 'Attributes',
-      id: 3,
-      icon: <FolderM />
-    },
+    subGroups: [
+      {
+        name: 'Attributes',
+        id: 3,
+        icon: <FolderM />,
+      },
       {
         name: 'Expressions',
         id: 4,
-        icon: <FolderM />
+        icon: <FolderM />,
       },
       {
         name: 'Aggregates',
         id: 3,
-        icon: <FolderM />
+        icon: <FolderM />,
       },
-    ]
-  }
+    ],
+  },
 ];
 
 export const PARAMETER_ITEMS = [
@@ -150,4 +146,40 @@ export const PARAMETER_ITEMS = [
     groupId: 5,
     icon: <VarTypeStringM />,
   },
-]
+];
+
+export const DEFAULT_CONDITION_ROW = () => ({
+  id: uuid(),
+  parameter: {
+    value: '',
+  },
+  operator: {
+    value: undefined,
+  },
+  factor: {
+    selectedFactorType: '',
+    defaultFactorType: 'text',
+    value: '',
+  },
+});
+
+export const DEFAULT_STEP = () => ({
+  id: uuid(),
+  stepName: 'Step name',
+  subject: {
+    onShowPreview: undefined,
+    type: 'event',
+    placeholder: 'Choose event',
+    iconPlaceholder: <NotificationsM />,
+    selectedItem: undefined,
+    items: SUBJECT_ITEMS,
+  },
+  conditions: [DEFAULT_CONDITION_ROW()],
+});
+
+export const DEFAULT_STATE = {
+  selected: undefined,
+  selectedFactorType: undefined,
+  factorValue: undefined,
+  steps: [DEFAULT_STEP()],
+};

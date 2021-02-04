@@ -24,8 +24,33 @@ const Slider: React.FC<Props> = props => {
     allocationConfig,
     hideMinAndMaxMarks,
     disabled,
+    max,
+    min,
+    value,
+    range,
     ...antdProps
   } = props;
+  const [reachedEnd, setReachedEnd] = React.useState(false);
+  const [reachedStart, setReachedStart] = React.useState(false);
+  const calcHandlePosition = React.useCallback(() => {
+    const handler =  document.querySelectorAll('.ant-slider-handle');
+    const markTexts =  document.querySelectorAll('.ant-slider-mark-text');
+    if (handler && markTexts?.length) {
+      const firstMark = markTexts[0].getBoundingClientRect();
+      const lastMark = markTexts[markTexts.length - 1].getBoundingClientRect();
+      const firstHandler = handler[0].getBoundingClientRect();
+      const lastHandler = handler[handler.length - 1].getBoundingClientRect();
+      if (firstMark.x + 10 + firstMark.width > firstHandler.x || firstMark.x + 10 + firstMark.width > lastHandler.x) {
+        setReachedStart(true);
+      }else{ setReachedStart(false) }
+      if (lastMark.x - 30 < firstHandler.x || lastMark.x - 30 < lastHandler.x) {
+        setReachedEnd(true);
+      }else{ setReachedEnd(false) }
+    }
+    return { reachedEnd, reachedStart };
+  }, [reachedEnd, reachedStart ]);
+  React.useEffect( ()=> {setTimeout(()=>{calcHandlePosition()},0) },[calcHandlePosition,value])
+
   const labelElement = React.useMemo(
     () =>
       label ? (
@@ -43,22 +68,28 @@ const Slider: React.FC<Props> = props => {
       </>
     );
   }
+
   return (
     <>
       {labelElement}
       <S.AntdSlider
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...antdProps}
-        className={antdProps.value && couldBeInverted(antdProps.value, !!inverted) ? 'ant-slider-inverted' : undefined}
+        max={max}
+        value={value}
+        reachedEnd={reachedEnd}
+        range={range}
+        reachedStart={reachedStart}
+        className={value && couldBeInverted(value, !!inverted) ? 'ant-slider-inverted' : undefined}
         useColorPalette={useColorPalette}
         thickness={thickness}
         disabled={disabled}
         description={description}
         hideMinAndMaxMarks={hideMinAndMaxMarks}
-        tipFormatter={(value): React.ReactNode => (
+        tipFormatter={(tipValue): React.ReactNode => (
           <S.DescriptionWrapper>
             {description && <S.Description>{description}</S.Description>}
-            {tipFormatter && tipFormatter(value)}
+            {tipFormatter && tipFormatter(tipValue)}
           </S.DescriptionWrapper>
         )}
         tracksColorMap={tracksColorMap}

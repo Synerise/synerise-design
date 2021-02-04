@@ -5092,6 +5092,11 @@
   resolved "https://registry.yarnpkg.com/@synerise/ds-icon/-/ds-icon-0.35.0.tgz#77a65452fd055fefd4ed2b4b376094300a9d293e"
   integrity sha512-jt5Nwn2HCyWE05NtndjAhS0+/hZ3kQpNaM/fuCu0VovqGdnJ59S+jO2O739LwItKa4bIyFPHivctCDDn/9ZduA==
 
+"@synerise/ds-icon@^0.36.0":
+  version "0.36.0"
+  resolved "https://registry.yarnpkg.com/@synerise/ds-icon/-/ds-icon-0.36.0.tgz#d90b6b1c5bd289886414948651ce08939d2436be"
+  integrity sha512-QIsusjZAOURBSNdEqNuFFFFfy+GE1ZnwlTLThMq3bbJ3bgHWj7i5jpE27rW3r4+NP3l6ON10S4dwrmrEFqGTzw==
+
 "@synerise/ds-input-number@^0.3.45":
   version "0.3.45"
   resolved "https://registry.yarnpkg.com/@synerise/ds-input-number/-/ds-input-number-0.3.45.tgz#c7fad23ae0d7b3c34ac53c9028190324bf99d065"
@@ -5823,6 +5828,11 @@
     lodash "^4.17.15"
     semver "^6.3.0"
     tsutils "^3.17.1"
+
+"@use-it/interval@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@use-it/interval/-/interval-1.0.0.tgz#c42c68f22ca29a0dc929041746373d94496d2b3a"
+  integrity sha512-WQFcnSt/xM/mS8ZtJ0ut5lhPrl+V0HDPPcI/J0eUClsfiD+/r8A7IeW/pVcfpSVGWRmN3+WnjNteWuKyWs2WZg==
 
 "@vxna/mini-html-webpack-template@^1.0.0":
   version "1.0.0"
@@ -19316,9 +19326,9 @@ react-dom@16.13.0:
     scheduler "^0.19.0"
 
 react-dom@^16.10.2, react-dom@^16.8.3:
-  version "16.13.1"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.13.1.tgz#c1bd37331a0486c078ee54c4740720993b2e0e7f"
-  integrity sha512-81PIMmVLnCNLO/fFOQxdQkvEq/+Hfpv24XNJfpyZhTRfO0QcmQIF/PgCa1zCOj2w1hrn12MFLyaJ/G0+Mxtfag==
+  version "16.14.0"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.14.0.tgz#7ad838ec29a777fb3c75c3a190f661cf92ab8b89"
+  integrity sha512-1gCeQXDLoIqMgqD3IO2Ah9bnf0w9kzhwN5q4FGnHZ67hBm9yePzB5JJAIQCc8x3pFnNlwFq4RidZggNAAkzWWw==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
@@ -19876,9 +19886,9 @@ react@16.13.0:
     prop-types "^15.6.2"
 
 react@^16.10.2, react@^16.6.0, react@^16.8.3:
-  version "16.13.1"
-  resolved "https://registry.yarnpkg.com/react/-/react-16.13.1.tgz#2e818822f1a9743122c063d6410d85c1e3afe48e"
-  integrity sha512-YMZQQq32xHLX0bz5Mnibv1/LHb3Sqzngu7xstSM+vrkE5Kzr9xE0yMByK5kMoTK30YVJE61WfbxIFFvfeDKT1w==
+  version "16.14.0"
+  resolved "https://registry.yarnpkg.com/react/-/react-16.14.0.tgz#94d776ddd0aaa37da3eda8fc5b6b18a4c9a3114d"
+  integrity sha512-0X2CImDkJGApiAlcf0ODKIneSwBPhqJawOa5wCtKbu7ZECrmS26NvtSILynQ66cgkT/RJ4LidJOc3bUESwmU8g==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"

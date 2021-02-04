@@ -9,6 +9,7 @@ import { filterValueSuggestions, isOverflown, scrollWithHorizontalArrow } from '
 import Values from './Elements/Values/Values';
 
 const DROPDOWN_PADDING = 2 * 8;
+const COLLECTOR_CLASSNAME = 'ds-collector';
 
 const Collector: React.FC<CollectorProps> = ({
   allowCustomValue,
@@ -54,10 +55,12 @@ const Collector: React.FC<CollectorProps> = ({
   const onFocusCallback = React.useCallback(
     (e: React.FocusEvent<HTMLDivElement>): void => {
       e.preventDefault();
-      if (!!inputRef && !!inputRef?.current) {
-        inputRef.current.focus({ preventScroll: true });
+      if (!e.target.classList.contains(COLLECTOR_CLASSNAME)) {
+        if (!!inputRef && !!inputRef?.current) {
+          inputRef.current.focus({ preventScroll: true });
+        }
+        setFocused(true);
       }
-      setFocused(true);
     },
     [inputRef]
   );
@@ -118,8 +121,10 @@ const Collector: React.FC<CollectorProps> = ({
       }
     }
     if (allowMultipleValues && e.key === 'Backspace' && !value && !!selectedValues?.length) {
-      const withoutLastElement = selectedValues.splice(0, selectedValues.length - 1);
-      setSelectedValues(withoutLastElement);
+      const lastElement = selected.pop();
+      if (lastElement && onDeselect) {
+        onDeselect(lastElement);
+      }
     }
   };
 
@@ -180,7 +185,7 @@ const Collector: React.FC<CollectorProps> = ({
         </S.ContentAbove>
       )}
       <S.CollectorInput
-        className={classNames('ds-collector', { [className as string]: !!className })}
+        className={classNames(COLLECTOR_CLASSNAME, { [className as string]: !!className })}
         tabIndex={0}
         focus={isFocused}
         onFocus={onFocusCallback}

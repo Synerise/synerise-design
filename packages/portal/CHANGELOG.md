@@ -3,6 +3,149 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.116.0](https://github.com/synerise/synerise-design/compare/portal@0.115.2...portal@0.116.0) (2021-02-01)
+
+
+### Bug Fixes
+
+* **condition:** clearing conditions on change context/subject/operator ([37a0b64](https://github.com/synerise/synerise-design/commit/37a0b64ac60dd602c6c99396750fe3a7ab7ebb28))
+* **item-picker:** fix storybook ui ([d66c907](https://github.com/synerise/synerise-design/commit/d66c907f83a5fc5897be6f048a663ec8fff176f8))
+* **loader:** add export to counter function ([2ba9055](https://github.com/synerise/synerise-design/commit/2ba90550f1a4caa505a5df8239f3096b567f3c1c))
+* **loader:** change animation of percent number in loader ([8cad001](https://github.com/synerise/synerise-design/commit/8cad001bece3b5875e42d7e03b10db2326acc44c))
+* **logic:** add default texts ([a3f9b4e](https://github.com/synerise/synerise-design/commit/a3f9b4ef5a09c6402805b3575cf05eb20d7ef1e3))
+* **result:** add new icons Xl to pick in deafult result component ([bc08487](https://github.com/synerise/synerise-design/commit/bc0848733b338e6b432bf0a89927778b419d4def))
+* **result:** add new icons Xl to pick in deafult result component ([4b8d5a4](https://github.com/synerise/synerise-design/commit/4b8d5a4b5ef51e2edee2aa16223d17a2165d63ff))
+* **result:** fix order of knobs ([a9dc1ca](https://github.com/synerise/synerise-design/commit/a9dc1ca57ba8d296783d670a68ff1b3231580437))
+* **sidebar-object:** hide Menu.Divider when only onId action available ([0aefe90](https://github.com/synerise/synerise-design/commit/0aefe905f3c42f27bab16374d198b96659268104))
+* **slider:** add maxMark knobs ([07a5e71](https://github.com/synerise/synerise-design/commit/07a5e7167ee2e83efa3aa360249beb73976b8584))
+* **slider:** add wrapping description and hidding scales when handler is close to them ([f0f426b](https://github.com/synerise/synerise-design/commit/f0f426bf2a6ce3fd42c6aaebb49bfd8ff7594a25))
+* **step-card:** move example to 'Filter' category in sb ([5e6fae8](https://github.com/synerise/synerise-design/commit/5e6fae854939e7f6ddee6ac3e8a4c1e273473b61))
+* **subtle-form:** added checked icon in stories ([cad7662](https://github.com/synerise/synerise-design/commit/cad76622defd646dde53e60e5c2106591b3694fb))
+* **table:** change PercentageWrapper to Counter function ([e6479ba](https://github.com/synerise/synerise-design/commit/e6479badc6d2c20eb594300d5b3d24a3a8778fbf))
+* **table:** delete get loading function ([b4f8891](https://github.com/synerise/synerise-design/commit/b4f889111f2833cec64c734ae16a11437de3759d))
+* **table:** delete knobs and change cell to Avatar with loading state ([952849d](https://github.com/synerise/synerise-design/commit/952849db733ad6d57792d7e9a3d69cab52e71dc5))
+* **table:** delete returns in functions ([01038df](https://github.com/synerise/synerise-design/commit/01038dfe311b184ec48e2b00c036b8a6bb2069af))
+* **table:** delete un needed function ([e0a7937](https://github.com/synerise/synerise-design/commit/e0a793791a3c7249739719f0a7467b8269413e21))
+* **table:** STOR-656 replace icon for user ([ba8e04e](https://github.com/synerise/synerise-design/commit/ba8e04e8eb81dca4629f72bcfbf0d9e7e98540f9))
+
+
+### Features
+
+* **checkbox-tristate:** STOR-638 new component CheckboxTristate ([7c28df8](https://github.com/synerise/synerise-design/commit/7c28df84e5a18ec913e2ffb4a05e9967bf252f38))
+* **condition:** add option for change order of steps ([20911ca](https://github.com/synerise/synerise-design/commit/20911cab9c3e8358057ea0eb73c0047f52616922))
+* **filter:** init component ([e98f134](https://github.com/synerise/synerise-design/commit/e98f1344da0c42ef2cd66835dab34ce4017d8b72))
+* **item-picker:** add bottom action ([0eed3a9](https://github.com/synerise/synerise-design/commit/0eed3a95f9de29af30005945125216aea858e712))
+* **item-picker:** add onFocus and onBlur handlers ([00df343](https://github.com/synerise/synerise-design/commit/00df343215a9806dc30b88354637015c2e57cce6))
+* **step-card:** add example with condition ([bc01741](https://github.com/synerise/synerise-design/commit/bc017410266c4ed0e4e80e0279068fdac5152ba3))
+* **step-card:** add styles ([2be1f3b](https://github.com/synerise/synerise-design/commit/2be1f3b5781de7b8bf7f69d49f897e12c2aa271c))
+* **step-card:** init component ([a66ee2a](https://github.com/synerise/synerise-design/commit/a66ee2a4163ef2cb3dfbedc8f7fb8b74150c8a9c))
+* **step-card:** update types ([fcf3d1d](https://github.com/synerise/synerise-design/commit/fcf3d1d3e81b6a9060f2c83c4fc58a4a99d05baa))
+
+
+
+
+
+## [0.115.2](https://github.com/synerise/synerise-design/compare/portal@0.115.1...portal@0.115.2) (2021-01-27)
+
+
+### Bug Fixes
+
+* **sidebar-object:** hide Menu.Divider when only onId action available ([adbd633](https://github.com/synerise/synerise-design/commit/adbd633c6c27c7d6c8ee625de0df4acd1f0bd2e8))
+
+
+
+
+
+## [0.115.1](https://github.com/synerise/synerise-design/compare/portal@0.115.0...portal@0.115.1) (2021-01-27)
+
+**Note:** Version bump only for package portal
+
+
+
+
+
+# [0.115.0](https://github.com/synerise/synerise-design/compare/portal@0.114.0...portal@0.115.0) (2021-01-22)
+
+
+### Features
+
+* **item-picker:** add bottom action ([145f5df](https://github.com/synerise/synerise-design/commit/145f5df49c690f10bc6fe07cece1eab6f1e27c16))
+
+
+
+
+
+# [0.114.0](https://github.com/synerise/synerise-design/compare/portal@0.113.0...portal@0.114.0) (2021-01-21)
+
+
+### Bug Fixes
+
+* **collector:** disable selection on suggestions list ([1d296ea](https://github.com/synerise/synerise-design/commit/1d296eacd4692df3ee12c1ec60121c87150e96a3))
+
+
+### Features
+
+* **item-picker:** add bottom action ([ae2045a](https://github.com/synerise/synerise-design/commit/ae2045aebd88e7b1efc36a04cd757512d68da117))
+
+
+
+
+
+# [0.113.0](https://github.com/synerise/synerise-design/compare/portal@0.112.2...portal@0.113.0) (2021-01-20)
+
+
+### Bug Fixes
+
+* **cruds:** storybook story fixes ([a44e49f](https://github.com/synerise/synerise-design/commit/a44e49fb752d7e4a894158169df2abcbf9e4652d))
+* **date-picker:** set container width to 100% ([edc738e](https://github.com/synerise/synerise-design/commit/edc738e9e0a6418b06645aa24fca8e29515bf957))
+* **loader:** add percent value of loader ([888006a](https://github.com/synerise/synerise-design/commit/888006a27bf5466e75544a18697f57ec9b6c6312))
+* **loader:** change showPercent value to false ([c792e41](https://github.com/synerise/synerise-design/commit/c792e414ab99d1697562c51922499a09f327136d))
+* **subtle-form:** fixed inactive element rendering, added stories ([0a990c1](https://github.com/synerise/synerise-design/commit/0a990c141138327406549689557cc517fd3375bb))
+* **subtle-form:** input number styles ([b08dedc](https://github.com/synerise/synerise-design/commit/b08dedc6f19893e0273f604934a3a78c871722e2))
+* resolved conflicts with dev ([66c6e28](https://github.com/synerise/synerise-design/commit/66c6e28546fe0efc0e93943f0bd10779091f0116))
+* **subtle-form:** fixed inactive element rendering, added stories ([b00659f](https://github.com/synerise/synerise-design/commit/b00659f0bb3309b66b2b1d0c5640e15a519212f3))
+* **subtle-form:** input placeholder styles ([afbc748](https://github.com/synerise/synerise-design/commit/afbc7484d26a8df080bdccd2954b505c2fd8a47e))
+
+
+### Features
+
+* **subtle-form:** added input as subtle field ([e8a8d42](https://github.com/synerise/synerise-design/commit/e8a8d4203aecc07e62c1589e57a37b426098c92d))
+* **subtle-form:** added input as subtle field ([0c753d7](https://github.com/synerise/synerise-design/commit/0c753d725ae509d72931fcf69a44f8f9d3d77c34))
+* **subtle-form:** generic subtle form field ([c71ffbb](https://github.com/synerise/synerise-design/commit/c71ffbb63aa12bfbe7892e4da11f1c2a2fc9e65f))
+* **subtle-form:** generic subtle form field ([f3eef58](https://github.com/synerise/synerise-design/commit/f3eef583794541c9872e576ffe13901ac1607c6e))
+
+
+
+
+
+## [0.112.2](https://github.com/synerise/synerise-design/compare/portal@0.112.1...portal@0.112.2) (2021-01-15)
+
+
+### Bug Fixes
+
+* **sidebar-object:** add button with starred icon to header in sidebar-object ([3d48de1](https://github.com/synerise/synerise-design/commit/3d48de1682cc25687022b5923ab360abe2d2bd74))
+* **sidebar-object:** delete unnecessary import ([c82e676](https://github.com/synerise/synerise-design/commit/c82e676fee3a4fc60765988a1aef4413b82f5479))
+* **sidebar-object:** remove knobs to set starred active ([6c8653c](https://github.com/synerise/synerise-design/commit/6c8653c809392e907c9e9d5056b1d60e382e39dc))
+* **table:** passed inputProps in stories ([9218398](https://github.com/synerise/synerise-design/commit/9218398197b7d4cd6ce4df7dca173573a3ecb990))
+
+
+
+
+
+## [0.112.1](https://github.com/synerise/synerise-design/compare/portal@0.112.0...portal@0.112.1) (2021-01-14)
+
+
+### Bug Fixes
+
+* **manageable-list:** fix styles of FilterItem & ItemMeta ([ac0f3f6](https://github.com/synerise/synerise-design/commit/ac0f3f63ef51f521d8a5e970a3640835e920885e))
+* **sidebar-object:** add starred icon to header in sidebar-object ([48ccaf0](https://github.com/synerise/synerise-design/commit/48ccaf03bafd09001cb72146ff9fd5462f409d77))
+* **sidebar-object:** add starred icon to header in sidebar-object default ([79ee578](https://github.com/synerise/synerise-design/commit/79ee5784229ea6e14f1c5a0313e872311b5a083d))
+* **sidebar-object:** move header above scrollbar wrapper ([0242c22](https://github.com/synerise/synerise-design/commit/0242c22134c55c38718a0d344252a9fbea395b3d))
+
+
+
+
+
 # [0.112.0](https://github.com/synerise/synerise-design/compare/portal@0.111.3...portal@0.112.0) (2021-01-13)
 
 

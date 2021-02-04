@@ -1,10 +1,17 @@
 {
   "name": "@synerise/ds-select",
-  "version": "0.12.61",
+  "version": "0.12.65",
   "description": "Select UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "synerise/synerise-design",
   "main": "dist/index.js",
+  "files": [
+    "/dist",
+    "CHANGELOG.md",
+    "README.md",
+    "package.json",
+    "LICENSE.md"
+  ],
   "publishConfig": {
     "access": "public"
   },
@@ -25,8 +32,8 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-input": "^0.16.15",
-    "@synerise/ds-typography": "^0.10.0",
+    "@synerise/ds-input": "^0.16.19",
+    "@synerise/ds-typography": "^0.10.1",
     "classnames": "^2.2.6"
   },
   "peerDependencies": {
@@ -35,6 +42,6 @@
     "react": ">=16.9.0 < 17.0.0"
   },
   "devDependencies": {
-    "@synerise/ds-utils": "^0.11.12"
+    "@synerise/ds-utils": "^0.11.14"
   }
 }

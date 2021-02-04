@@ -1,10 +1,17 @@
 {
   "name": "@synerise/ds-condition",
-  "version": "0.3.0",
+  "version": "0.4.1",
   "description": "Condition UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
   "main": "dist/index.js",
+  "files": [
+    "/dist",
+    "CHANGELOG.md",
+    "README.md",
+    "package.json",
+    "LICENSE.md"
+  ],
   "publishConfig": {
     "access": "public"
   },
@@ -25,15 +32,19 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-button": "^0.13.22",
-    "@synerise/ds-context-selector": "^0.2.0",
-    "@synerise/ds-core": "^0.26.0",
-    "@synerise/ds-factors": "^0.2.14",
-    "@synerise/ds-inline-edit": "^0.2.14",
-    "@synerise/ds-operators": "^0.2.14",
-    "@synerise/ds-subject": "^0.4.0",
-    "@synerise/ds-tooltip": "^0.10.6",
-    "@synerise/ds-utils": "^0.11.12"
+    "@synerise/ds-button": "^0.13.26",
+    "@synerise/ds-context-selector": "^0.2.4",
+    "@synerise/ds-core": "^0.26.2",
+    "@synerise/ds-cruds": "^0.2.4",
+    "@synerise/ds-factors": "^0.2.19",
+    "@synerise/ds-icon": "^0.36.0",
+    "@synerise/ds-inline-edit": "^0.2.18",
+    "@synerise/ds-operators": "^0.2.18",
+    "@synerise/ds-subject": "^0.4.4",
+    "@synerise/ds-tooltip": "^0.10.10",
+    "@synerise/ds-utils": "^0.11.14",
+    "react-sortablejs": "^6.0.0",
+    "react-sortablejs-typescript": "^2.0.15"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

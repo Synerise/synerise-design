@@ -24,6 +24,8 @@ const ItemPicker: React.FC<ItemPickerProps> = ({
   searchPlaceholder = intl.formatMessage({ id: 'DS.ITEM-PICKER.SEARCH' }),
   clear = intl.formatMessage({ id: 'DS.ITEM-PICKER.CLEAR' }),
   selectedItem,
+  onFocus,
+  onBlur,
   size = 'small',
   changeButtonLabel = intl.formatMessage({ id: 'DS.ITEM-PICKER.CHANGE' }),
   clearConfirmTitle = intl.formatMessage({ id: 'DS.ITEM-PICKER.CLEAR-CONFIRM' }),
@@ -34,16 +36,31 @@ const ItemPicker: React.FC<ItemPickerProps> = ({
   dropdownVisibleRows,
   dropdownRowHeight,
   dropdownBottomAction,
+  closeOnBottomAction,
 }) => {
   const [dropdownOpened, setDropdownOpened] = React.useState<boolean>(false);
 
+  const onVisibilityChange = (state: boolean): void => {
+    setDropdownOpened(state);
+
+    if (state && typeof onFocus === 'function') {
+      onFocus();
+    }
+
+    if (!state && typeof onBlur === 'function') {
+      onBlur();
+    }
+  };
+
   const openDropdown = React.useCallback(() => {
     setDropdownOpened(true);
-  }, [setDropdownOpened]);
+    typeof onFocus === 'function' && onFocus();
+  }, [setDropdownOpened, onFocus]);
 
   const closeDropdown = React.useCallback(() => {
     setDropdownOpened(false);
-  }, [setDropdownOpened]);
+    typeof onBlur === 'function' && onBlur();
+  }, [setDropdownOpened, onBlur]);
 
   const dropdownOverlay = React.useMemo(
     () => (
@@ -56,17 +73,19 @@ const ItemPicker: React.FC<ItemPickerProps> = ({
         dropdownVisibleRows={dropdownVisibleRows}
         dropdownRowHeight={dropdownRowHeight}
         dropdownBottomAction={dropdownBottomAction}
+        closeOnBottomAction={closeOnBottomAction}
       />
     ),
     [
+      onChange,
       dataSource,
       searchPlaceholder,
-      onChange,
       closeDropdown,
       noResults,
-      dropdownRowHeight,
       dropdownVisibleRows,
+      dropdownRowHeight,
       dropdownBottomAction,
+      closeOnBottomAction,
     ]
   );
 
@@ -120,7 +139,7 @@ const ItemPicker: React.FC<ItemPickerProps> = ({
         disabled={disabled}
         trigger={['click']}
         overlay={dropdownOverlay}
-        onVisibleChange={setDropdownOpened}
+        onVisibleChange={onVisibilityChange}
       >
         {renderTrigger}
       </Dropdown>

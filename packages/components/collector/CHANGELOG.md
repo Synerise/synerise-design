@@ -3,6 +3,62 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.21](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@0.2.20...@synerise/ds-collector@0.2.21) (2021-02-02)
+
+**Note:** Version bump only for package @synerise/ds-collector
+
+
+
+
+
+## [0.2.20](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@0.2.19...@synerise/ds-collector@0.2.20) (2021-02-01)
+
+**Note:** Version bump only for package @synerise/ds-collector
+
+
+
+
+
+## [0.2.19](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@0.2.18...@synerise/ds-collector@0.2.19) (2021-01-22)
+
+**Note:** Version bump only for package @synerise/ds-collector
+
+
+
+
+
+## [0.2.18](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@0.2.17...@synerise/ds-collector@0.2.18) (2021-01-21)
+
+
+### Bug Fixes
+
+* **collector:** prevent to open suggestions on add button ([c14d16d](https://github.com/Synerise/synerise-design/commit/c14d16ddc54a592c710cafebc3636ff939bdca18))
+
+
+
+
+
+## [0.2.17](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@0.2.16...@synerise/ds-collector@0.2.17) (2021-01-21)
+
+
+### Bug Fixes
+
+* **collector:** disable selection on suggestions list ([8e1ba4e](https://github.com/Synerise/synerise-design/commit/8e1ba4e82a5aba5daf9de61d6c456d462a11099a))
+* **condition:** prevent showing suggestions on add/cancel button click ([c6edca7](https://github.com/Synerise/synerise-design/commit/c6edca75b611480593ca6c18c9c6a6c0a2b06ee7))
+* **condition:** use onDeselect on backspace ([61d1c42](https://github.com/Synerise/synerise-design/commit/61d1c422249b184d0323f160035bce2480f724ae))
+
+
+
+
+
+## [0.2.16](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@0.2.15...@synerise/ds-collector@0.2.16) (2021-01-15)
+
+**Note:** Version bump only for package @synerise/ds-collector
+
+
+
+
+
 ## [0.2.15](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@0.2.14...@synerise/ds-collector@0.2.15) (2021-01-13)
 
 **Note:** Version bump only for package @synerise/ds-collector

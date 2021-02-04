@@ -3,6 +3,38 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.65](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.12.64...@synerise/ds-select@0.12.65) (2021-02-02)
+
+**Note:** Version bump only for package @synerise/ds-select
+
+
+
+
+
+## [0.12.64](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.12.63...@synerise/ds-select@0.12.64) (2021-02-01)
+
+**Note:** Version bump only for package @synerise/ds-select
+
+
+
+
+
+## [0.12.63](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.12.62...@synerise/ds-select@0.12.63) (2021-01-22)
+
+**Note:** Version bump only for package @synerise/ds-select
+
+
+
+
+
+## [0.12.62](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.12.61...@synerise/ds-select@0.12.62) (2021-01-15)
+
+**Note:** Version bump only for package @synerise/ds-select
+
+
+
+
+
 ## [0.12.61](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.12.60...@synerise/ds-select@0.12.61) (2021-01-13)
 
 **Note:** Version bump only for package @synerise/ds-select

@@ -1,10 +1,17 @@
 {
   "name": "@synerise/ds-button-group",
-  "version": "0.5.80",
+  "version": "0.5.84",
   "description": "Button-Group UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
   "main": "dist/index.js",
+  "files": [
+    "/dist",
+    "CHANGELOG.md",
+    "README.md",
+    "package.json",
+    "LICENSE.md"
+  ],
   "publishConfig": {
     "access": "public"
   },
@@ -25,8 +32,8 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-button": "^0.13.22",
-    "@synerise/ds-utils": "^0.11.12"
+    "@synerise/ds-button": "^0.13.26",
+    "@synerise/ds-utils": "^0.11.14"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

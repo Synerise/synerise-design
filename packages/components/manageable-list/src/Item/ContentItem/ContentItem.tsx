@@ -89,7 +89,7 @@ const ContentItem: React.FC<ContentItemProps> = ({
         </S.ItemHeaderPrefix>
         <ItemName item={item} editMode={editMode} onUpdate={updateName} />
         <S.ItemHeaderSuffix>
-          {!!headerSuffix && headerSuffix}
+          {(!!headerSuffix || item?.headerSuffix) && headerSuffix || item.headerSuffix}
           <ItemActions
             item={item}
             duplicateAction={onDuplicate}

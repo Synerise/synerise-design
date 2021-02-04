@@ -39,7 +39,6 @@ describe('Collector', () => {
         allowCustomValue
         allowMultipleValues
         onSelect={onSelectFn}
-
         selected={SELECTED}
         suggestions={[]}
         onConfirm={onConfirmFn}
@@ -64,7 +63,7 @@ describe('Collector', () => {
         allowCustomValue
         allowMultipleValues
         onSelect={onSelectFn}
-        onItemAdd={(value)=>({text:value})}
+        onItemAdd={value => ({ text: value })}
         selected={[]}
         suggestions={[]}
         onConfirm={onConfirmFn}

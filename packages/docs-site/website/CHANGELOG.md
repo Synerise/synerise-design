@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.8.14...docs@0.9.0) (2021-01-27)
+
+
+### Features
+
+* **docs:** hide links to guidelines ([665f734](https://gitlab.synerise.com/Frontend/synerise-design/commit/665f734dfede378da77e30f82d4f12c611147145))
+
+
+
+
+
+## [0.8.14](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.8.13...docs@0.8.14) (2021-01-20)
+
+**Note:** Version bump only for package docs
+
+
+
+
+
+## [0.8.13](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.8.12...docs@0.8.13) (2021-01-15)
+
+**Note:** Version bump only for package docs
+
+
+
+
+
 ## [0.8.12](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.8.11...docs@0.8.12) (2021-01-14)
 
 **Note:** Version bump only for package docs
