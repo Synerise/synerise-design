@@ -34,6 +34,7 @@
     "@synerise/ds-button": "^0.13.26",
     "@synerise/ds-dropdown": "^0.13.16",
     "@synerise/ds-menu": "^0.8.2",
+    "@synerise/ds-search": "^0.4.18",
     "@types/react-highlight-words": "^0.16.1",
     "react-highlight-words": "^0.17.0"
   },
