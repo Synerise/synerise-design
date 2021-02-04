@@ -24,7 +24,7 @@ const arrowDownSvgWithCustomColor = (color: string): string => {
 export const MenuDivider = styled.div`
   height: 1px;
   width: 100%;
-  margin: ${(props: MenuDividerProps) => props.higher ? '16px': '8px'} 0;
+  margin: ${(props: MenuDividerProps): string => props.higher ? '16px': '8px'} 0;
   border-top: 1px dashed ${(props): string => props.theme.palette['grey-300']};
 `;
 
