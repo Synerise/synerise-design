@@ -2,6 +2,7 @@ import * as React from 'react';
 import Menu from '@synerise/ds-menu';
 import Result from '@synerise/ds-result';
 import { NOOP } from '@synerise/ds-utils';
+import * as invariant from 'invariant';
 
 import TagsListContext, { defaultValue } from './TagsListContext';
 import Item from './Elements/Item/Item';
@@ -20,11 +21,11 @@ const DEFAULT_ITEMS_VISIBLE = 5;
 export function replaceItem(items: TagsListItem[], item: TagsListItem, index?: number): [TagsListItem[], TagsListItem] {
   const newItems = [...items];
   const idx = index || newItems.findIndex((findItem: TagsListItem) => findItem.id === item.id);
-  if(idx > -1) newItems[idx] = item;
+  if (idx > -1) newItems[idx] = item;
   return [newItems, newItems[idx]];
 }
 
-const TagsList: React.FC<TagsListProps> = (props) => {
+const TagsList: React.FC<TagsListProps> = props => {
   const {
     items: controlledItems,
     defaultItems = [],
@@ -33,11 +34,11 @@ const TagsList: React.FC<TagsListProps> = (props) => {
     onSettings,
     texts: propTexts = {},
     showHideStep,
-    withCheckbox = true
+    withCheckbox = true,
   } = props;
 
   const isControlled = 'items' in props;
-  
+
   const texts = useTexts(propTexts);
 
   const [searchQuery, setSearchQuery] = React.useState<string>('');
@@ -54,12 +55,15 @@ const TagsList: React.FC<TagsListProps> = (props) => {
 
   // if is controlled and no onChange method whine!
   React.useEffect(() => {
-    isControlled && !onChange && console.warn(`${TagsList.displayName}: You've added controlled 'items' list but there is no onChange event function!`);
+    invariant(
+      !(isControlled && !onChange),
+      `${TagsList.displayName}: You've added controlled 'items' list but there is no onChange event function!`
+    );
   }, [isControlled, onChange]);
 
   // if is controlled and items props changes do update!
   React.useEffect(() => {
-    if(isControlled && JSON.stringify(controlledItems) !== JSON.stringify(items)) {
+    if (isControlled && JSON.stringify(controlledItems) !== JSON.stringify(items)) {
       setItems(controlledItems || []);
     }
   }, [isControlled, controlledItems, items]);
@@ -79,24 +83,22 @@ const TagsList: React.FC<TagsListProps> = (props) => {
     let newItems: TagsListItem[];
     let newItem: TagsListItem;
 
-    switch(action) {
+    switch (action) {
       case TagsListActions.Favourite:
-        [newItems, newItem] = replaceItem(items, {...item, favourite: !item.favourite});
+        [newItems, newItem] = replaceItem(items, { ...item, favourite: !item.favourite });
         break;
       case TagsListActions.Select:
-        [newItems, newItem] = replaceItem(items, {...item, checked: !item.checked});
+        [newItems, newItem] = replaceItem(items, { ...item, checked: !item.checked });
         break;
       case TagsListActions.Delete:
-        newItems = items.filter((thisItem) => thisItem.id !== item.id);
+        newItems = items.filter(thisItem => thisItem.id !== item.id);
         newItem = item;
         break;
       default:
         [newItems, newItem] = replaceItem(items, item);
     }
 
-    isControlled ? 
-      onChange && onChange(action, newItems, newItem, items, item) : 
-      setItems(newItems);
+    isControlled ? onChange && onChange(action, newItems, newItem, items, item) : setItems(newItems);
   };
 
   const onItemEdit = (item: TagsListItem): void => {
@@ -108,7 +110,7 @@ const TagsList: React.FC<TagsListProps> = (props) => {
   };
 
   const onItemVisibility = (visibility: TagVisibility, item: TagsListItem): void => {
-    handleOnChange(TagsListActions.Visibility, {...item, visibility });
+    handleOnChange(TagsListActions.Visibility, { ...item, visibility });
   };
 
   const onItemDelete = (deleted: TagsListItem): void => {
@@ -117,7 +119,7 @@ const TagsList: React.FC<TagsListProps> = (props) => {
 
   const onItemSelect = (item: TagsListItem): void => {
     handleOnChange(TagsListActions.Select, item);
-  }
+  };
 
   const renderItem = (item: TagsListItem): React.ReactNode => (
     <Item
@@ -145,18 +147,11 @@ const TagsList: React.FC<TagsListProps> = (props) => {
     const favouriteItems = items.filter(i => i.favourite).sort(sortAlphabetically);
     const restOfItems = items.filter(i => !i.favourite).sort(sortAlphabetically);
 
-    const total = searchQuery ? 
-      [...favouriteItems, ...restOfItems].filter(searchFilter) :
-      [...favouriteItems, ...restOfItems].slice(0, visibleItemsCount);
+    const total = searchQuery
+      ? [...favouriteItems, ...restOfItems].filter(searchFilter)
+      : [...favouriteItems, ...restOfItems].slice(0, visibleItemsCount);
 
-    if(!total.length)
-      return (
-        <Result
-          description="No results"
-          noSearchResults
-          type="no-results"
-        />
-      );
+    if (!total.length) return <Result description="No results" noSearchResults type="no-results" />;
 
     return total.map(renderItem);
   };
@@ -168,16 +163,14 @@ const TagsList: React.FC<TagsListProps> = (props) => {
     searchQuery,
     setSearchQuery,
     searchOpen,
-    setSearchOpen
-  }
+    setSearchOpen,
+  };
 
   return (
     <TagsListContainer>
       <TagsListContext.Provider value={contextValue}>
         <Toolbar />
-        <Menu>
-          {renderItemsList()}
-        </Menu>
+        <Menu>{renderItemsList()}</Menu>
         {!searchQuery && (
           <ShowLessOrMore
             onShowMore={(more): void => {
