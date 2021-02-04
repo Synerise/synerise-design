@@ -15,8 +15,10 @@ import { useOnClickOutside, NOOP } from '@synerise/ds-utils';
 import Dropdown from '@synerise/ds-dropdown';
 import Result from '@synerise/ds-result';
 
-import { TagsListItem } from 'TagsList.types';
+import useTexts from '../../useTexts';
+import { TagsListItem } from '../../TagsList.types';
 import { AddModalProps } from './AddModal.types';
+
 import * as S from './AddModal.styles';
 
 const DEFAULT_NAME = '';
@@ -47,7 +49,7 @@ function getNewItem(name: string): TagsListItem {
 const AddModal: React.FC<AddModalProps> = ({ 
   items: propItems,
   disabled, 
-  texts, 
+  texts: propTexts, 
   tristate = false,
   loading = false,
   trigger,
@@ -63,6 +65,7 @@ const AddModal: React.FC<AddModalProps> = ({
   const [newTagSelected, setNewTagSelected] = React.useState(false);
   const [overlayVisible, setOverlayVisible] = React.useState<boolean>(false);
   const overlayRef = React.useRef<HTMLDivElement>(null);
+  const texts = useTexts(propTexts);
 
   const selected = Object.keys(selectedTags).length || newTagSelected;
 
@@ -200,7 +203,7 @@ const AddModal: React.FC<AddModalProps> = ({
       <S.Loader>
         <Loader
           color="blue"
-          label="Loading..."
+          label={texts?.loading}
           labelPosition="bottom"
           size="M"
         />

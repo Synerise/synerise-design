@@ -27,6 +27,7 @@ export default function useTexts(texts: TagsListTexts = {}): TagsListTexts {
     showMoreLabel: formatMessage({id: 'DS.TAGS-LIST.SHOW'}),
     searchClear: formatMessage({id: 'DS.TAGS-LIST.CLEAR'}),
     less: formatMessage({id: 'DS.TAGS-LIST.LESS'}),
+    loading: formatMessage({id: 'DS.TAGS-LIST.LOADING'}),
     more: formatMessage({id: 'DS.TAGS-LIST.MORE'}),
     visibilityShow: formatMessage({id: 'DS.TAGS-LIST.SHOW'}),
     visibilityShowIfUsed: formatMessage({id: 'DS.TAGS-LIST.SHOW-IF-USED'}),

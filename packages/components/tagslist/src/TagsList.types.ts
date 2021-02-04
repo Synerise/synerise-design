@@ -72,6 +72,7 @@ export type TagsListTexts = {
   folderNamePlaceholder?: string;
   invalidNameError?: React.ReactNode;
   less?: React.ReactNode;
+  loading?: React.ReactNode;
   more?: React.ReactNode;
   moveToDefault?: React.ReactNode;
   moveToOtherFolder?: React.ReactNode;
