@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { DeleteMode } from './Elements/DeleteModal/DeleteModal.types';
 
 export enum TagsListActions {
   Add = 'add',
@@ -20,14 +19,13 @@ export type TagsListProps = {
   maxItemsVisible?: number;
   visibleItemsCount?: number;
   onChange?: (
-    action: TagsListActions, 
-    newItems: TagsListItem[], 
-    newTargetItem: TagsListItem, 
-    originItems: TagsListItem[], 
+    action: TagsListActions,
+    newItems: TagsListItem[],
+    newTargetItem: TagsListItem,
+    originItems: TagsListItem[],
     originTargetItem: TagsListItem
   ) => void;
   onAddDropdown?: (visible: boolean) => void;
-  onDelete?: (deleted: TagsListItem, options: { mode: DeleteMode; destination?: TagsListItem }) => void;
   onSearch?: (query: string) => void;
   onSettings?: (selected?: TagsListItem) => void;
   onManageTags?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
@@ -43,7 +41,7 @@ export enum TagVisibility {
   Hide = 'hide',
   Show = 'show',
   ShowIfUsed = 'showifused',
-};
+}
 
 export type TagsListItem = {
   id: string | number;
