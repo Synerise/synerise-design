@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
-export const TagsList = styled.div`
+const TagsList = styled.div`
   background: #fff;
 `;
+
+export default TagsList;

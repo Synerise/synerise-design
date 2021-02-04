@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
-export const SearchContainer = styled.div`
+const SearchContainer = styled.div`
   flex-grow: 1;
 `;
+
+export default SearchContainer;

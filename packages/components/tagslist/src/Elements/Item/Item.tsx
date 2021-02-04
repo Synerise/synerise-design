@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Highlighter from 'react-highlight-words';
-import { ClickParam } from 'antd/lib/menu';
 
 import Icon from '@synerise/ds-icon';
 import Checkbox from '@synerise/ds-checkbox';
@@ -103,7 +102,7 @@ const Item: React.FC<ItemProps> = ({
     setEditMode(true);
   });
 
-  const onDropdown = (opened: boolean) => {
+  const onDropdown = (opened: boolean): void => {
     setDropdownOpened(opened);
   };
 
@@ -128,7 +127,7 @@ const Item: React.FC<ItemProps> = ({
     }
   });
 
-  const onClick = (params: ClickParam): void => {
+  const onClick = (): void => {
     onItemSelect(item);
   };
 

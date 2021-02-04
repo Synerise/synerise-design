@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Menu from '@synerise/ds-menu';
 import Result from '@synerise/ds-result';
+import { NOOP } from '@synerise/ds-utils';
 
 import TagsListContext, { defaultValue } from './TagsListContext';
 import Item from './Elements/Item/Item';
@@ -11,16 +12,14 @@ import ShowLessOrMore from './Elements/ShowLessOrMore/ShowLessOrMore';
 import useTexts from './useTexts';
 
 import './style/index.less';
-import * as S from './TagsList.styles';
+import TagsListContainer from './TagsList.styles';
 
 const DEFAULT_STEP = 5;
 const DEFAULT_ITEMS_VISIBLE = 5;
 
 export function replaceItem(items: TagsListItem[], item: TagsListItem, index?: number): [TagsListItem[], TagsListItem] {
   const newItems = [...items];
-  const idx = index ? 
-    index :
-    newItems.findIndex((findItem: TagsListItem) => findItem.id === item.id);
+  const idx = index || newItems.findIndex((findItem: TagsListItem) => findItem.id === item.id);
   if(idx > -1) newItems[idx] = item;
   return [newItems, newItems[idx]];
 }
@@ -44,7 +43,7 @@ const TagsList: React.FC<TagsListProps> = (props) => {
   const [searchQuery, setSearchQuery] = React.useState<string>('');
   const [searchOpen, setSearchOpen] = React.useState<boolean>(false);
 
-  const searchFilter = (item: TagsListItem) => {
+  const searchFilter = (item: TagsListItem): RegExpMatchArray | null => {
     return item.name.toLowerCase().match(searchQuery.toLowerCase());
   };
 
@@ -116,12 +115,16 @@ const TagsList: React.FC<TagsListProps> = (props) => {
     handleOnChange(TagsListActions.Delete, deleted);
   };
 
+  const onItemSelect = (item: TagsListItem): void => {
+    handleOnChange(TagsListActions.Select, item);
+  }
+
   const renderItem = (item: TagsListItem): React.ReactNode => (
     <Item
       item={item}
       key={`${item.id}-${item.name}`}
       checked={item.checked}
-      onDelete={item.canDelete ? onItemDelete : () => {}}
+      onDelete={item.canDelete ? onItemDelete : NOOP}
       onEdit={item.canUpdate ? onItemEdit : undefined}
       onFavourite={onItemFavourite}
       onVisibility={onItemVisibility}
@@ -133,9 +136,7 @@ const TagsList: React.FC<TagsListProps> = (props) => {
             }
           : undefined
       }
-      onItemSelect={(item: TagsListItem) => {
-        handleOnChange(TagsListActions.Select, item);
-      }}
+      onItemSelect={onItemSelect}
       texts={texts}
     />
   );
@@ -171,7 +172,7 @@ const TagsList: React.FC<TagsListProps> = (props) => {
   }
 
   return (
-    <S.TagsList>
+    <TagsListContainer>
       <TagsListContext.Provider value={contextValue}>
         <Toolbar />
         <Menu>
@@ -193,7 +194,7 @@ const TagsList: React.FC<TagsListProps> = (props) => {
           />
         )}
       </TagsListContext.Provider>
-    </S.TagsList>
+    </TagsListContainer>
   );
 };
 export default TagsList;

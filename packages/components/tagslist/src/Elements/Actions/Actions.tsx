@@ -4,6 +4,7 @@ import Icon from '@synerise/ds-icon';
 import Menu from '@synerise/ds-menu';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { EditM, OptionHorizontalM, Settings2M, StarFillM, StarM, TrashM, CheckS } from '@synerise/ds-icon/dist/icons';
+import { NOOP } from '@synerise/ds-utils';
 import { ClickParam } from 'antd/es/menu';
 import { ActionProps, VisibilityProps } from './Actions.types';
 import { TagVisibility } from '../../TagsList.types';
@@ -13,8 +14,6 @@ const triggerClick = (event: React.MouseEvent<HTMLElement, MouseEvent>): void =>
 const dropdownMenuClick = (event: ClickParam): void => event.domEvent.stopPropagation();
 
 const CheckIcon: React.FC = () => <Icon color={theme.palette['green-600']} component={<CheckS />} />;
-
-const NOOP = () => {};
 
 const Visibility: React.FC<VisibilityProps> = ({texts, onVisibility, visibility, item}) => {
   const visibilities = {

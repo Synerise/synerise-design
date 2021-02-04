@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { TagsListTexts } from "./TagsList.types";
 import { useIntl } from 'react-intl';
+
+import { TagsListTexts } from "./TagsList.types";
 
 export default function useTexts(texts: TagsListTexts = {}): TagsListTexts {
   const { formatMessage } = useIntl();
@@ -31,5 +32,5 @@ export default function useTexts(texts: TagsListTexts = {}): TagsListTexts {
     visibilityShowIfUsed: formatMessage({id: 'DS.TAGS-LIST.SHOW-IF-USED'}),
     visibilityHide: formatMessage({id: 'DS.TAGS-LIST.HIDE'}),
     ...texts
-  }), [texts]);
+  }), [texts, formatMessage]);
 }

@@ -1,7 +1,9 @@
 import * as React from 'react';
+import { NOOP } from '@synerise/ds-utils';
+
 import { TagsListProps } from './TagsList.types';
 
-type ContextValues = {
+export type ContextValues = {
   searchOpen: boolean;
   searchQuery: string;
   setSearchQuery: (query: string) => void;
@@ -13,8 +15,8 @@ export const defaultValue: ContextValues = {
   withTristateCheckbox: true,
   searchOpen: false,
   searchQuery: '',
-  setSearchQuery: (query: string) => {},
-  setSearchOpen: (open: boolean) => {}
+  setSearchQuery: NOOP,
+  setSearchOpen: NOOP
 }
 
 const TagsListContext: React.Context<ContextValues> = React.createContext(defaultValue);

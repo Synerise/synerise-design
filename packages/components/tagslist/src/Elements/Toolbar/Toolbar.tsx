@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { NOOP } from '@synerise/ds-utils';
 
 import useTagsListContext from '../../useTagsListContext';
 import AddModal from '../AddModal';
@@ -6,9 +7,7 @@ import Search from '../Search';
 
 import * as S from './Toolbar.styles';
 
-const NOOP = () => {};
-
-const Toolbar: React.FC = ({children}) => {
+const Toolbar: React.FC = () => {
   const { 
     addButtonDisabled,
     onAddDropdown = NOOP,
@@ -19,7 +18,7 @@ const Toolbar: React.FC = ({children}) => {
     texts,
     searchOpen,
   } = useTagsListContext();
-  
+
   const [addItemWidth, setAddItemWidth] = React.useState<number>(0);
   const addItemRef = React.useRef<HTMLDivElement>(null);
 
