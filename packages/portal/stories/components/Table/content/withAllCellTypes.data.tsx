@@ -276,45 +276,8 @@ export const COLUMNS_WITH_ICONS = [
       return <TableCell.FlagLabelCell countryCode={country} label={record.name} />;
     },
   },
-  {
-    title: 'Name with star',
-    key: 'active',
-    dataIndex: 'active',
-    width: 254,
-    icon: { component: <VarTypeStringM /> },
-    iconTooltip: { component: <InfoFillS /> },
-    sorter: (a, b) => a.active - b.active,
-    render: (active, record) => {
-      const [starred, setStarred] = React.useState(false);
-      const knobsActive = boolean('Set starred state active', false);
-      return (
-        <TableCell.StarCell
-          starTooltip={knobsActive ? 'Starred' : undefined}
-          active={starred}
-          onClick={knobsActive ? (): void => setStarred(!starred) : undefined}
-        >
-          {record.name}
-        </TableCell.StarCell>
-      );
-    },
-  },
-  {
-    title: 'Name with icon and star',
-    key: 'name',
-    dataIndex: 'name',
-    width: 254,
-    icon: { component: <UserM /> },
-    iconTooltip: { component: <InfoFillS /> },
-    render: name => {
-      const [starred, setStarred] = React.useState(false);
-      const knobsActive = boolean('Set starred state active', false);
-      return (
-        <TableCell.StarCell starTooltip={knobsActive ? "Starred": undefined} active={starred} onClick={knobsActive? ():void => setStarred(!starred) : undefined}>
-          <TableCell.IconLabelCell label={name} icon={{ component: <UserM />, color: '#6a7580' }} />
-        </TableCell.StarCell>
-      );
-    },
-  },
+
+
   {
     title: 'Icon with label',
     dataIndex: 'name',
@@ -396,19 +359,8 @@ export const COLUMNS_WITH_AVATARS = [
     icon: { component: <VarTypeListM /> },
     iconTooltip: { component: <InfoFillS /> },
     render: avatar => {
-      const [starred, setStarred] = React.useState(false);
-      const knobsActive = boolean('Set starred state active', false);
       return (
         <TableCell.AvatarLabelCell
-          starCell={
-            <TableCell.StarCell
-              starTooltip={knobsActive ? 'Starred' : undefined}
-              active={starred}
-              onClick={knobsActive ? (): void => setStarred(!starred) : undefined}
-            >
-              {avatar.starCell}
-            </TableCell.StarCell>
-          }
           avatar={
             <Badge status="active">
               <Avatar
@@ -437,19 +389,8 @@ export const COLUMNS_WITH_AVATARS = [
     icon: { component: <VarTypeListM /> },
     iconTooltip: { component: <InfoFillS /> },
     render: avatar => {
-      const [starred, setStarred] = React.useState(false);
-      const knobsActive = boolean('Set starred state active', false);
       return (
         <TableCell.AvatarLabelCell
-          starCell={
-            <TableCell.StarCell
-              starTooltip={knobsActive ? 'Starred' : undefined}
-              active={starred}
-              onClick={knobsActive ? (): void => setStarred(!starred) : undefined}
-            >
-              {avatar.starCell}
-            </TableCell.StarCell>
-          }
           icon={<Icon component={<LockM />} color={theme.palette['grey-500']} />}
           avatar={
             <Badge status="active">
@@ -473,19 +414,8 @@ export const COLUMNS_WITH_AVATARS = [
     icon: { component: <VarTypeListM /> },
     iconTooltip: { component: <InfoFillS /> },
     render: avatar => {
-      const [starred, setStarred] = React.useState(false);
-      const knobsActive = boolean('Set starred state active', false);
       return (
         <TableCell.AvatarLabelCell
-          starCell={
-            <TableCell.StarCell
-              starTooltip={knobsActive ? 'Starred' : undefined}
-              active={starred}
-              onClick={knobsActive ? (): void => setStarred(!starred) : undefined}
-            >
-              {avatar.starCell}
-            </TableCell.StarCell>
-          }
           avatarAction={action('Avatar Action')}
           avatar={
             <Badge status="active">
@@ -516,19 +446,8 @@ export const COLUMNS_WITH_AVATARS = [
     icon: { component: <VarTypeListM /> },
     iconTooltip: { component: <InfoFillS /> },
     render: avatar => {
-      const [starred, setStarred] = React.useState(false);
-      const knobsActive = boolean('Set starred state active', false);
       return (
         <TableCell.AvatarLabelCell
-          starCell={
-            <TableCell.StarCell
-              starTooltip={knobsActive ? 'Starred' : undefined}
-              active={starred}
-              onClick={knobsActive ? (): void => setStarred(!starred) : undefined}
-            >
-              {avatar.starCell}
-            </TableCell.StarCell>
-          }
           avatarSize="large"
           avatar={
             <Badge status="active">
@@ -559,19 +478,8 @@ export const COLUMNS_WITH_AVATARS = [
     icon: { component: <VarTypeListM /> },
     iconTooltip: { component: <InfoFillS /> },
     render: avatar => {
-      const [starred, setStarred] = React.useState(false);
-      const knobsActive = boolean('Set starred state active', false);
       return (
         <TableCell.AvatarLabelCell
-          starCell={
-            <TableCell.StarCell
-              starTooltip={knobsActive ? 'Starred' : undefined}
-              active={starred}
-              onClick={knobsActive ? (): void => setStarred(!starred) : undefined}
-            >
-              {avatar.starCell}
-            </TableCell.StarCell>
-          }
           avatarSize="large"
           avatar={
             <Badge status="active">
@@ -603,8 +511,6 @@ export const COLUMNS_WITH_AVATARS = [
     icon: { component: <VarTypeListM /> },
     iconTooltip: { component: <InfoFillS /> },
     render: avatar => {
-      const [starred, setStarred] = React.useState(false);
-      const knobsActive = boolean('Set starred state active', false);
       const loadingText = text('Loading', 'Loading...');
 
       const getPercent = (): number | React.ReactNode | null => {
@@ -616,15 +522,6 @@ export const COLUMNS_WITH_AVATARS = [
       };
       return (
         <TableCell.AvatarLabelCell
-          starCell={
-            <TableCell.StarCell
-              starTooltip={knobsActive ? 'Starred' : undefined}
-              active={starred}
-              onClick={knobsActive ? (): void => setStarred(!starred) : undefined}
-            >
-              {avatar.starCell}
-            </TableCell.StarCell>
-          }
           avatarSize="large"
           avatar={
             <Badge status="active">
@@ -671,19 +568,8 @@ export const COLUMNS_WITH_AVATARS = [
     icon: { component: <VarTypeListM /> },
     iconTooltip: { component: <InfoFillS /> },
     render: avatar => {
-      const [starred, setStarred] = React.useState(false);
-      const knobsActive = boolean('Set starred state active', false);
       return (
         <TableCell.AvatarLabelCell
-          starCell={
-            <TableCell.StarCell
-              starTooltip={knobsActive ? 'Starred' : undefined}
-              active={starred}
-              onClick={knobsActive ? (): void => setStarred(!starred) : undefined}
-            >
-              {avatar.starCell}
-            </TableCell.StarCell>
-          }
           avatar={
             <Badge status="active">
               <Avatar
