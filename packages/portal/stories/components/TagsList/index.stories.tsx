@@ -90,7 +90,7 @@ const stories = {
       <div style={wrapperStyles}>
         <S.LayoutSidebarWrapper opened>
           <S.LayoutSidebar opened>
-            <Scrollbar>
+            <Scrollbar absolute>
               <Menu asDropdownMenu style={{width: 'auto', padding: '24px'}} data-popup-container>
                 {TOP_MENU_ITEMS.map(item =>
                   renderMenuItem(item, (): void => {

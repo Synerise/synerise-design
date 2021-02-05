@@ -26,7 +26,7 @@ function getRenderItemName(itemName: string, query: string): React.ReactElement 
       />
     );
   }
-  return <>{itemName}</>;
+  return <span>{itemName}</span>;
 }
 
 const Item: React.FC<ItemProps> = ({
@@ -40,6 +40,7 @@ const Item: React.FC<ItemProps> = ({
   onItemSelect = sNOOPy,
   checked = false,
   withCheckbox = true,
+  rootPrefixCls,
 }) => {
   const { name, favourite } = item;
   const { searchQuery } = useTagsListContext();
@@ -140,7 +141,9 @@ const Item: React.FC<ItemProps> = ({
     <S.TagsListItem
       editMode={editMode}
       onClick={onClick}
+      active={checked}
       hovered={isHovered}
+      rootPrefixCls={rootPrefixCls}
       prefixel={
         <S.PrefixWrapper>
           {withCheckbox && (isHovered || checked || editMode) ? (

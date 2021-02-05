@@ -38,7 +38,7 @@ export const TagItems = styled(Menu)`
 `;
 
 export const TagItem = styled(Menu.Item)`
-  &&& {
+  &&&& {
     &:hover {
       ${TagInfoIcon} {
         visibility: visible;

@@ -2,7 +2,6 @@ import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import Menu from '@synerise/ds-menu';
 import { BorderLessInput } from '@synerise/ds-input/dist/InputMultivalue/InputMultivalue.styles';
 import { Props as DSInputProps } from '@synerise/ds-input/dist/Input.types';
-import { MenuItemProps } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.types';
 
 export const applyDots = (color: string): FlattenSimpleInterpolation => css`
   background-color: transparent;
@@ -30,14 +29,14 @@ export const SuffixWrapper = styled.div`
   transition: opacity 0.2s ease-out;
 `;
 
-export const TagsListItem = styled(Menu.Item)<
-  MenuItemProps & JSX.IntrinsicAttributes & { 
-    inline: boolean; 
-    editMode: boolean;
-    hovered: boolean;
-  }
->`
-  && {
+export const TagsListItem = styled(Menu.Item)<{
+  inline: boolean;
+  editMode: boolean;
+  hovered: boolean;
+  rootPrefixCls?: string;
+  active?: boolean;
+}>`
+  &&&& {
     min-height: 32px;
     z-index: 1;
     border-radius: 3px !important;
@@ -66,11 +65,10 @@ export const TagsListItem = styled(Menu.Item)<
     ${(props): FlattenSimpleInterpolation | false =>
       props.hovered &&
       css`
-        & { 
+        & {
           background-color: ${props.theme.palette['grey-050']};
         }
-      `
-    }
+      `}
 
     &:hover {
       ${SuffixWrapper} {
@@ -90,17 +88,17 @@ export const TagsListText = styled.div`
   display: block;
   text-overflow: ellipsis;
 
-    mark.highlight {
-      padding: 0;
-      background: none;
-      font-weight: 600;
-      color: inherit;
-    }
+  mark.highlight {
+    padding: 0;
+    background: none;
+    font-weight: 600;
+    color: inherit;
+  }
 
-    span.unhighlight {
-      font-weight: 400;
-      color: inherit;
-    }
+  span.unhighlight {
+    font-weight: 400;
+    color: inherit;
+  }
 `;
 
 export const TagsListTextHighlight = styled.span`

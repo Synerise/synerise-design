@@ -30,7 +30,7 @@ type TagInfoProps = {
 
 const TagInfo: React.FC<TagInfoProps> = ({ info }) => {
   return (
-    <Tooltip title={info}>
+    <Tooltip title={info} mouseLeaveDelay={0}>
       <S.TagInfoIcon component={<InfoFillS />} />
     </Tooltip>
   );
@@ -144,8 +144,8 @@ const AddModal: React.FC<AddModalProps> = ({
 
           return (
             <S.TagItem
-              key={`${item.id}-${item.name}`}
               highlight={search}
+              key={`${item.id}-${item.name}`}
               prefixel={<CheckboxComponent checked={thisChecked} />}
               suffixel={item.description && <TagInfo info={item.description} />}
               onClick={itemOnClick}
@@ -196,12 +196,17 @@ const AddModal: React.FC<AddModalProps> = ({
     return null;
   };
 
+  const selectedKeys = Object.keys(selectedTags).map(id => {
+    const item = items.find(row => row.id === id) || ({} as TagsListItem);
+    return `${item.id}-${item.name}`;
+  });
+
   const renderedList = loading ? (
     <S.Loader>
       <Loader color="blue" label={texts?.loading} labelPosition="bottom" size="M" />
     </S.Loader>
   ) : (
-    <S.TagItems asDropdownMenu>
+    <S.TagItems asDropdownMenu selectedKeys={selectedKeys}>
       {searchAddTag ? renderAddTag() : null}
       {renderedItems}
     </S.TagItems>
@@ -213,7 +218,7 @@ const AddModal: React.FC<AddModalProps> = ({
 
   return (
     <Dropdown
-      overlay={
+      overlay={(): React.ReactElement => (
         <Dropdown.Wrapper style={{ width: 'auto', minWidth: '250px' }} ref={overlayRef}>
           <SearchBar
             placeholder="Search"
@@ -225,7 +230,9 @@ const AddModal: React.FC<AddModalProps> = ({
             clearTooltip={texts?.searchClear || 'Clear'}
             onClearInput={onClearInput}
           />
-          <Scrollbar maxHeight={176}>{renderedList}</Scrollbar>
+          <Scrollbar maxHeight={176} absolute>
+            {renderedList}
+          </Scrollbar>
           <S.BottomAction onClickAction={sNOOPy}>
             <div style={{ width: '100%', display: 'flex', flexDirection: 'row' }}>
               <div style={{ flexGrow: 1 }}>
@@ -243,7 +250,7 @@ const AddModal: React.FC<AddModalProps> = ({
             </div>
           </S.BottomAction>
         </Dropdown.Wrapper>
-      }
+      )}
       placement="bottomLeft"
       trigger={['click']}
       visible={overlayVisible}
