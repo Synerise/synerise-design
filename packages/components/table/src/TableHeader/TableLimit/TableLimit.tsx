@@ -16,7 +16,7 @@ export function TableLimit<T extends { key: React.ReactText; children?: T[] }>({
       selection?.limit &&
       selection?.limit <= selectedRows && (
         <S.Alert>
-          <Alert.InlineAlert type="warning" message="Selection limit has been reached" />
+          <Alert.InlineAlert type="warning" message={locale.selectionLimitWarning} />
         </S.Alert>
       ),
     [selectedRows, selection]

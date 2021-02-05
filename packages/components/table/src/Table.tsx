@@ -28,6 +28,10 @@ const DEFAULT_LOCALE = (intl: IntlShape): Locale => ({
   },
   selected: intl.formatMessage({ id: 'DS.TABLE.SELECTED', defaultMessage: 'selected' }),
   emptyText: intl.formatMessage({ id: 'DS.TABLE.EMPTY_TEXT', defaultMessage: 'No data' }),
+  selectionLimitWarning: intl.formatMessage({
+    id: 'DS.TABLE.SELECTION_LIMIT_WARNING',
+    defaultMessage: 'Selection limit has been reached',
+  }),
 });
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
