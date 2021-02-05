@@ -1,4 +1,4 @@
-/* import * as React from 'react';
+import * as React from 'react';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import { fireEvent, waitFor } from '@testing-library/react';
 import TagsList from '../TagsList';
@@ -10,6 +10,21 @@ const FOLDERS: TagsListItem[] = [
   { name: 'Alaska', id: '3', canDelete: true },
   { name: 'Zaragoza', id: '4', canDelete: true },
 ];
+
+describe('TagsList', () => {
+  it('should render items then `defaultItems` passed', () => {
+    const { getByText } = renderWithProvider(
+      <TagsList
+        defaultItems={FOLDERS}
+      />
+    );
+    expect(getByText('Bangkok')).toBeTruthy();
+    expect(getByText('Paris')).toBeTruthy();
+    expect(getByText('Alaska')).toBeTruthy();
+    expect(getByText('Zaragoza')).toBeTruthy();
+  })
+});
+
 /* describe('TagsList', () => {
   it('should render passed folder names', () => {
     const onDelete = jest.fn();

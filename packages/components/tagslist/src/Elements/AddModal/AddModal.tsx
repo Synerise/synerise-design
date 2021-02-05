@@ -89,6 +89,7 @@ const AddModal: React.FC<AddModalProps> = ({
   const handleItemsAdd = (): void => {
     const add = Object.keys(selectedTags).map(id => {
       const newItem = { ...items.filter(thisItem => thisItem.id === id).shift() } as TagsListItem;
+      newItem.checked = selectedTags[id];
       newItem.canUpdate = newItem.canUpdate === undefined ? true : newItem.canUpdate;
       newItem.canDelete = newItem.canDelete === undefined ? true : newItem.canDelete;
       newItem.canEnterSettings = newItem.canEnterSettings === undefined ? true : newItem.canEnterSettings;
@@ -138,11 +139,14 @@ const AddModal: React.FC<AddModalProps> = ({
             setSelectedTags(newSelectedTags);
           };
 
+          const tristateChecked = item.id in selectedTags ? selectedTags[item.id] : false;
+          const thisChecked = !tristate ? selectedTags[item.id] : tristateChecked;
+
           return (
             <S.TagItem
               key={`${item.id}-${item.name}`}
               highlight={search}
-              prefixel={<CheckboxComponent checked={selectedTags[item.id]} />}
+              prefixel={<CheckboxComponent checked={thisChecked} />}
               suffixel={item.description && <TagInfo info={item.description} />}
               onClick={itemOnClick}
             >

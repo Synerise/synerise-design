@@ -63,11 +63,9 @@ export type TagsListTexts = {
   cancel?: React.ReactNode;
   delete?: React.ReactNode;
   deleteFromFavourites?: React.ReactNode;
-  deleteAllContent?: React.ReactNode;
   edit?: React.ReactNode;
   enterSettings?: React.ReactNode;
   favourite?: React.ReactNode;
-  folderNamePlaceholder?: string;
   invalidNameError?: React.ReactNode;
   less?: React.ReactNode;
   loading?: React.ReactNode;

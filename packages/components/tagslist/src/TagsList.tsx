@@ -2,7 +2,7 @@ import * as React from 'react';
 import Menu from '@synerise/ds-menu';
 import Result from '@synerise/ds-result';
 import { sNOOPy } from '@synerise/ds-utils';
-import * as invariant from 'invariant';
+import invariant from 'invariant';
 
 import TagsListContext, { defaultValue } from './TagsListContext';
 import Item from './Elements/Item/Item';
@@ -165,6 +165,12 @@ const TagsList: React.FC<TagsListProps> = props => {
     searchOpen,
     setSearchOpen,
   };
+
+  if (!isControlled)
+    contextValue.onItemsAdd = (addItems: TagsListItem[]): void => {
+      const newItems = addItems.map(item => ({ ...item, checked: false }));
+      setItems([...items, ...newItems]);
+    };
 
   return (
     <TagsListContainer>

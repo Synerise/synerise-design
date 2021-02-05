@@ -80,7 +80,8 @@ const stories = {
     }
 
     const handleOnItemsAdd = (items: TagsListItem[]) => {
-      setDataSource([...dataSource, ...items]);
+      const newItems = items.map((item) => ({...item, checked: false}));
+      setDataSource([...dataSource, ...newItems]);
     }
 
     const onItemClick = () => setStarred(!starred);
@@ -132,22 +133,32 @@ const stories = {
   },
   addModal: () => {
     const disabled = boolean('Disabled', false);
+    const tristate = boolean('Use tristate', true);
+    const tags = ADD_TAGS.map((tag) => ({...tag, checked: false}));
+
+    const onItemsAdd = (items: TagsListItem[]) => {
+      console.log('Items to be added: ', items);
+    }
 
     return (
-      <AddModal 
-        disabled={disabled}
-        items={ADD_TAGS}
-        trigger={(
-          <Button 
-            leftIconSize="S"
-            mode="icon-label"
-          >
-            <Icon component={<TagM />} />
-            Tags
-          </Button>
-        )}
-        onManageTags={onManageTags}
-      />
+      <div style={{height: '320px'}} data-popup-container>
+        <AddModal 
+          disabled={disabled}
+          items={tags}
+          tristate={tristate}
+          onItemsAdd={onItemsAdd}
+          trigger={(
+            <Button 
+              leftIconSize="S"
+              mode="icon-label"
+            >
+              <Icon component={<TagM />} />
+              Tags
+            </Button>
+          )}
+          onManageTags={onManageTags}
+        />
+      </div>
     );
   }
 };

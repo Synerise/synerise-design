@@ -15,7 +15,7 @@ import { ItemProps } from './Item.types';
 
 import * as S from './Item.styles';
 
-function getRenderItemName(itemName: string, query: string): React.ReactNode {
+function getRenderItemName(itemName: string, query: string): React.ReactElement {
   if (query && itemName.toLowerCase().match(query.toLowerCase())) {
     return (
       <Highlighter
@@ -26,7 +26,7 @@ function getRenderItemName(itemName: string, query: string): React.ReactNode {
       />
     );
   }
-  return itemName;
+  return <>{itemName}</>;
 }
 
 const Item: React.FC<ItemProps> = ({
