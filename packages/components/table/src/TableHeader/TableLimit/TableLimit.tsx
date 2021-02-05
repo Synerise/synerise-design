@@ -19,7 +19,7 @@ export function TableLimit<T extends { key: React.ReactText; children?: T[] }>({
           <Alert.InlineAlert type="warning" message={locale.selectionLimitWarning} />
         </S.Alert>
       ),
-    [selectedRows, selection]
+    [locale.selectionLimitWarning, selectedRows, selection]
   );
 
   const selected = React.useMemo(() => {

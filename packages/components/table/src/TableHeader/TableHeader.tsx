@@ -56,18 +56,7 @@ const TableHeader: React.FC<Props> = ({
         )}
       </S.Left>
     );
-  }, [
-    selectedRows,
-    selection,
-    rowKey,
-    dataSource,
-    locale.selected,
-    locale.pagination.items,
-    itemsMenu,
-    title,
-    renderSelectionTitle,
-    filters,
-  ]);
+  }, [selection, dataSource, itemsMenu, locale, selectedRows, rowKey, renderSelectionTitle, filters, title]);
 
   return (
     <S.Header withBorderTop={withBorderTop}>
