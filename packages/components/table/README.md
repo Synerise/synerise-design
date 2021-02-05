@@ -90,6 +90,7 @@ This type of table requires a specific type of dataSource which has to contain a
 | selectedRowKeys | Array of selected row keys                       | React.ReactText                                                 | []      |
 | selections      | Selections options available in table title      | SelectionItem[]                                                 | -       |
 | onChange        | Callback executed when selection changes         | (selectedRowKeys: React.ReactText[], selectedRows: T[]) => void | -       |
+| limit           | Max length of selection rows array               | number                                                          | -       |
 
 #### SelectionItem
 

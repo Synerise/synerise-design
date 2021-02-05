@@ -115,6 +115,7 @@ function DefaultTable<T extends any & RowType<T>>(props: DSTableProps<T>): React
             return (
               <Checkbox
                 checked={checked || allChildsChecked}
+                disabled={!checked && Boolean(selection.limit && selection.limit <= selection.selectedRowKeys.length)}
                 indeterminate={isIndeterminate}
                 onChange={(event): void => {
                   toggleRowSelection(event.target.checked, record);
