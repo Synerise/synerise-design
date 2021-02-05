@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.1](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.9.0...docs@0.9.1) (2021-02-05)
+
+
+### Bug Fixes
+
+* **docs:** update table docs ([e871b6e](https://gitlab.synerise.com/Frontend/synerise-design/commit/e871b6ef51d5175fdd3b34a84c98d859160d2ae0))
+
+
+
+
+
 # [0.9.0](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.8.14...docs@0.9.0) (2021-01-27)
 
 
