@@ -92,7 +92,8 @@
         "GROUPS": "groups"
       },
       "SELECTED": "selected",
-      "EMPTY_TEXT": "No data"
+      "EMPTY_TEXT": "No data",
+      "SELECTION_LIMIT_WARNING": "Selection limit has been reached."
     },
     "ICON-PICKER": {
       "NO-RESULTS": "No results"

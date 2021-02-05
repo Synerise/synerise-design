@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@0.4.1...@synerise/ds-item-picker@0.5.0) (2021-02-03)
+
+
+### Bug Fixes
+
+* **item-picker:** close dropdown on bottom action ([5bae311](https://github.com/Synerise/synerise-design/commit/5bae311dd0db0b47f40ef7adad79ab2b97726dc5))
+* **item-picker:** close dropdown on bottom action ([cd39911](https://github.com/Synerise/synerise-design/commit/cd39911c33ce5e9a9c3694fadadec35052311bd0))
+
+
+
+
+
 ## [0.4.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@0.4.0...@synerise/ds-item-picker@0.4.1) (2021-02-02)
 
 **Note:** Version bump only for package @synerise/ds-item-picker
