@@ -24,13 +24,11 @@ const TableHeader: React.FC<Props> = ({
   renderSelectionTitle,
 }) => {
   const renderLeftSide = React.useMemo(() => {
-    if (selection.limit)
+    if (selection?.limit)
       return <TableLimit total={dataSource.length} selection={selection} itemsMenu={itemsMenu} locale={locale} />;
     return selectedRows && selectedRows > 0 ? (
       <S.Left data-testid="ds-table-selection">
-        {selection && !selection.limit && (
-          <TableSelection rowKey={rowKey} dataSource={dataSource} selection={selection} />
-        )}
+        {selection && <TableSelection rowKey={rowKey} dataSource={dataSource} selection={selection} />}
         {renderSelectionTitle ? (
           renderSelectionTitle(selection, filters)
         ) : (
@@ -42,9 +40,7 @@ const TableHeader: React.FC<Props> = ({
       </S.Left>
     ) : (
       <S.Left data-testid="ds-table-title">
-        {selection && !selection.limit && (
-          <TableSelection rowKey={rowKey} dataSource={dataSource} selection={selection} />
-        )}
+        {selection && <TableSelection rowKey={rowKey} dataSource={dataSource} selection={selection} />}
         {title ? (
           <S.Title>
             <strong>{title}</strong>
