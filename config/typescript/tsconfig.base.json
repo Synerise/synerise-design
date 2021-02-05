@@ -15,6 +15,7 @@
     "importHelpers": true,
     "suppressImplicitAnyIndexErrors": true,
     "esModuleInterop": false,
+    "allowSyntheticDefaultImports": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "baseUrl": ".",
