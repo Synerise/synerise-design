@@ -376,6 +376,7 @@ const stories = {
                   onClick: selectEven,
                 },
               ],
+              limit: boolean('Show selection limit', false) ? number('Set selection limit', 5) : undefined,
             }
           }
           itemsMenu={

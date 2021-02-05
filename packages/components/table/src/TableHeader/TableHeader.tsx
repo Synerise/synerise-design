@@ -4,6 +4,7 @@ import FilterTrigger from '../FilterTrigger/FilterTrigger';
 import { Filter } from '../Table.types';
 import TableSelection from './TableSelection';
 import { Props } from './TableHeader.types';
+import { TableLimit } from './TableLimit/TableLimit';
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
@@ -23,9 +24,13 @@ const TableHeader: React.FC<Props> = ({
   renderSelectionTitle,
 }) => {
   const renderLeftSide = React.useMemo(() => {
+    if (selection.limit)
+      return <TableLimit total={dataSource.length} selection={selection} itemsMenu={itemsMenu} locale={locale} />;
     return selectedRows && selectedRows > 0 ? (
       <S.Left data-testid="ds-table-selection">
-        {selection && <TableSelection rowKey={rowKey} dataSource={dataSource} selection={selection} />}
+        {selection && !selection.limit && (
+          <TableSelection rowKey={rowKey} dataSource={dataSource} selection={selection} />
+        )}
         {renderSelectionTitle ? (
           renderSelectionTitle(selection, filters)
         ) : (
@@ -37,7 +42,9 @@ const TableHeader: React.FC<Props> = ({
       </S.Left>
     ) : (
       <S.Left data-testid="ds-table-title">
-        {selection && <TableSelection rowKey={rowKey} dataSource={dataSource} selection={selection} />}
+        {selection && !selection.limit && (
+          <TableSelection rowKey={rowKey} dataSource={dataSource} selection={selection} />
+        )}
         {title ? (
           <S.Title>
             <strong>{title}</strong>

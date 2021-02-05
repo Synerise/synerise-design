@@ -4,7 +4,7 @@ import Table from '@synerise/ds-table';
 import * as React from 'react';
 import { SearchInput } from '@synerise/ds-search/dist/Elements';
 import { withState } from '@dump247/storybook-state';
-import { boolean, text } from '@storybook/addon-knobs';
+import { boolean, number, text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import Modal from '@synerise/ds-modal';
 import Button from '@synerise/ds-button';
@@ -95,6 +95,7 @@ const stories = {
                   onClick: selectEven,
                 },
               ],
+              limit: boolean('Show selection limit', false) ? number('Set selection limit', 5) : undefined,
             }}
             onRowClick={record => {
               store.state.selectedRows.indexOf(record.key) >= 0
