@@ -132,8 +132,10 @@ const stories = {
     );
   },
   addModal: () => {
+    const tristate = boolean('Use tristate checkbox', true);
+    const canAddTags = boolean('Can add tags', true);
     const disabled = boolean('Disabled', false);
-    const tristate = boolean('Use tristate', true);
+    
     const tags = ADD_TAGS.map((tag) => ({...tag, checked: false}));
 
     const onItemsAdd = (items: TagsListItem[]) => {
@@ -147,10 +149,12 @@ const stories = {
           items={tags}
           tristate={tristate}
           onItemsAdd={onItemsAdd}
+          searchAddTag={canAddTags}
           trigger={(
             <Button 
               leftIconSize="S"
               mode="icon-label"
+              disabled={disabled}
             >
               <Icon component={<TagM />} />
               Tags
