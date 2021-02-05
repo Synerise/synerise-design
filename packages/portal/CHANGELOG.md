@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.118.0](https://github.com/synerise/synerise-design/compare/portal@0.117.0...portal@0.118.0) (2021-02-05)
+
+
+### Features
+
+* **table:** add selection limit ([7697b91](https://github.com/synerise/synerise-design/commit/7697b916ad116b9b3ed8d79d436e47d4fcc5228c))
+
+
+
+
+
 # [0.117.0](https://github.com/synerise/synerise-design/compare/portal@0.116.0...portal@0.117.0) (2021-02-03)
 
 
