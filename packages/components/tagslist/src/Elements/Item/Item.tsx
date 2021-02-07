@@ -141,7 +141,7 @@ const Item: React.FC<ItemProps> = ({
     <S.TagsListItem
       editMode={editMode}
       onClick={onClick}
-      active={checked}
+      className={checked ? `${rootPrefixCls}-item-selected` : ''}
       hovered={isHovered}
       rootPrefixCls={rootPrefixCls}
       prefixel={

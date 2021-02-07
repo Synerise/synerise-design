@@ -172,13 +172,13 @@ const TagsList: React.FC<TagsListProps> = props => {
       setItems([...items, ...newItems]);
     };
 
-  const selectedKeys = items.filter(item => item.checked).map(item => `${item.id}-${item.name}`);
-
   return (
     <TagsListContainer>
       <TagsListContext.Provider value={contextValue}>
         <Toolbar />
-        <Menu selectedKeys={selectedKeys}>{renderItemsList()}</Menu>
+        <Menu>
+          {renderItemsList()}
+        </Menu>
         {!searchQuery && (
           <ShowLessOrMore
             onShowMore={(more): void => {

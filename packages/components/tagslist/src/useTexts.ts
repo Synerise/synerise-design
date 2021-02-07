@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl';
 
 import { TagsListTexts } from './TagsList.types';
 
-export default function useTexts(texts: TagsListTexts = {}): TagsListTexts {
+export default function useTexts(texts: TagsListTexts): TagsListTexts {
   const { formatMessage } = useIntl();
 
   return React.useMemo(
@@ -30,6 +30,7 @@ export default function useTexts(texts: TagsListTexts = {}): TagsListTexts {
       visibilityHide: formatMessage({ id: 'DS.TAGS-LIST.HIDE', defaultMessage: 'Hide' }),
       ...texts,
     }),
-    [texts, formatMessage]
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [texts],
   );
 }
