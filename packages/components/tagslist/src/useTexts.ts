@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl';
 
 import { TagsListTexts } from './TagsList.types';
 
-export default function useTexts(texts: TagsListTexts): TagsListTexts {
+export default function useTexts(texts: TagsListTexts | undefined): TagsListTexts {
   const { formatMessage } = useIntl();
 
   return React.useMemo(
