@@ -1,13 +1,13 @@
 import * as React from 'react';
 
-import { sNOOPy } from '@synerise/ds-utils';
+import { NOOP } from '@synerise/ds-utils';
 import { SearchInput } from '@synerise/ds-search/dist/Elements';
 
 import useTagsListContext from '../../useTagsListContext';
 import SearchContainer from './Search.styles';
 
 const Search: React.FC = () => {
-  const { searchQuery = '', setSearchQuery = sNOOPy, setSearchOpen = sNOOPy } = useTagsListContext();
+  const { searchQuery = '', setSearchQuery = NOOP, setSearchOpen = NOOP } = useTagsListContext();
 
   const inputRef = React.useRef(null);
 

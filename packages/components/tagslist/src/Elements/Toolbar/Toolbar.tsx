@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { sNOOPy } from '@synerise/ds-utils';
+import { NOOP } from '@synerise/ds-utils';
 
 import useTagsListContext from '../../useTagsListContext';
 import AddModal from '../AddModal';
@@ -10,9 +10,9 @@ import * as S from './Toolbar.styles';
 const Toolbar: React.FC = () => {
   const {
     addButtonDisabled,
-    onAddDropdown = sNOOPy,
-    onManageTags = sNOOPy,
-    onItemsAdd = sNOOPy,
+    onAddDropdown = NOOP,
+    onManageTags = NOOP,
+    onItemsAdd = NOOP,
     addItemsLoading = false,
     addItemsList = [],
     texts,

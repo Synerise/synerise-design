@@ -18596,6 +18596,11 @@ randexp@0.4.6:
     discontinuous-range "1.0.0"
     ret "~0.1.10"
 
+random-hash@^4.0.1:
+  version "4.0.1"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/random-hash/-/random-hash-4.0.1.tgz#342d7d14501e664f0bee2d9a13eeae9c973cb755"
+  integrity sha1-NC19FFAeZk8L7i2aE+6unJc8t1U=
+
 randombytes@^2.0.0, randombytes@^2.0.1, randombytes@^2.0.5, randombytes@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/randombytes/-/randombytes-2.1.0.tgz#df6f84372f0270dc65cdf6291349ab7a473d4f2a"

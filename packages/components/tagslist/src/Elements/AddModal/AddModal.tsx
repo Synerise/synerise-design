@@ -11,7 +11,7 @@ import Loader from '@synerise/ds-loader';
 import Tooltip from '@synerise/ds-tooltip';
 import Scrollbar from '@synerise/ds-scrollbar';
 import { Settings2M, InfoFillS, SearchM } from '@synerise/ds-icon/dist/icons';
-import { useOnClickOutside, sNOOPy } from '@synerise/ds-utils';
+import { useOnClickOutside, NOOP } from '@synerise/ds-utils';
 import Dropdown from '@synerise/ds-dropdown';
 import Result from '@synerise/ds-result';
 
@@ -54,9 +54,9 @@ const AddModal: React.FC<AddModalProps> = ({
   loading = false,
   trigger,
   searchAddTag = true,
-  onManageTags = sNOOPy,
-  onItemsAdd = sNOOPy,
-  onVisibleChange = sNOOPy,
+  onManageTags = NOOP,
+  onItemsAdd = NOOP,
+  onVisibleChange = NOOP,
 }) => {
   const CheckboxComponent = tristate ? CheckboxTristate : Checkbox;
   const [search, setSearch] = React.useState(DEFAULT_NAME);
@@ -233,7 +233,7 @@ const AddModal: React.FC<AddModalProps> = ({
           <Scrollbar maxHeight={176} absolute>
             {renderedList}
           </Scrollbar>
-          <S.BottomAction onClickAction={sNOOPy}>
+          <S.BottomAction onClickAction={NOOP}>
             <div style={{ width: '100%', display: 'flex', flexDirection: 'row' }}>
               <div style={{ flexGrow: 1 }}>
                 <Button type="ghost" mode="icon-label" onClick={onManageTags}>

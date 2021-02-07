@@ -5,7 +5,7 @@ import Icon from '@synerise/ds-icon';
 import Checkbox from '@synerise/ds-checkbox';
 import { TagM, TagStarredM, TagStarredFlatM } from '@synerise/ds-icon/dist/icons';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
-import { useOnClickOutside, sNOOPy } from '@synerise/ds-utils';
+import { useOnClickOutside, NOOP } from '@synerise/ds-utils';
 import Tooltip from '@synerise/ds-tooltip';
 
 import { validateFolderName } from '../../utils';
@@ -32,12 +32,12 @@ function getRenderItemName(itemName: string, query: string): React.ReactElement 
 const Item: React.FC<ItemProps> = ({
   item,
   onSettingsEnter,
-  onDelete = sNOOPy,
-  onFavourite = sNOOPy,
-  onVisibility = sNOOPy,
+  onDelete = NOOP,
+  onFavourite = NOOP,
+  onVisibility = NOOP,
   onEdit,
   texts,
-  onItemSelect = sNOOPy,
+  onItemSelect = NOOP,
   checked = false,
   withCheckbox = true,
   rootPrefixCls,

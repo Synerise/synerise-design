@@ -4,7 +4,7 @@ import Icon from '@synerise/ds-icon';
 import Menu from '@synerise/ds-menu';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { EditM, OptionHorizontalM, Settings2M, StarFillM, StarM, TrashM, CheckS } from '@synerise/ds-icon/dist/icons';
-import { sNOOPy } from '@synerise/ds-utils';
+import { NOOP } from '@synerise/ds-utils';
 import { ClickParam } from 'antd/es/menu';
 import { ActionProps, VisibilityProps } from './Actions.types';
 import { TagVisibility } from '../../TagsList.types';
@@ -51,7 +51,7 @@ const Actions: React.FC<ActionProps> = ({
   onSettingsEnter,
   onEdit,
   onDelete,
-  onDropdown = sNOOPy,
+  onDropdown = NOOP,
   item,
   isFavourite,
   visibility,
