@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { sNOOPy } from '@synerise/ds-utils';
+import { NOOP } from '@synerise/ds-utils';
 
 import { TagsListProps } from './TagsList.types';
 
@@ -15,8 +15,8 @@ export const defaultValue: ContextValues = {
   withTristateCheckbox: true,
   searchOpen: false,
   searchQuery: '',
-  setSearchQuery: sNOOPy,
-  setSearchOpen: sNOOPy,
+  setSearchQuery: NOOP,
+  setSearchOpen: NOOP,
 };
 
 const TagsListContext: React.Context<ContextValues> = React.createContext(defaultValue);

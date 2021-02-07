@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Menu from '@synerise/ds-menu';
 import Result from '@synerise/ds-result';
-import { sNOOPy } from '@synerise/ds-utils';
+import { NOOP } from '@synerise/ds-utils';
 import invariant from 'invariant';
 
 import TagsListContext, { defaultValue } from './TagsListContext';
@@ -126,7 +126,7 @@ const TagsList: React.FC<TagsListProps> = props => {
       item={item}
       key={`${item.id}-${item.name}`}
       checked={item.checked}
-      onDelete={item.canDelete ? onItemDelete : sNOOPy}
+      onDelete={item.canDelete ? onItemDelete : NOOP}
       onEdit={item.canUpdate ? onItemEdit : undefined}
       onFavourite={onItemFavourite}
       onVisibility={onItemVisibility}
