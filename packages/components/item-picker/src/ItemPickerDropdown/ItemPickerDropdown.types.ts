@@ -10,5 +10,5 @@ export interface Props {
   dropdownRowHeight?: number;
   dropdownBottomAction?: React.ReactNode;
   closeOnBottomAction?: boolean;
-  dropdownOpened: boolean;
+  isDropdownOpened: boolean;
 }
