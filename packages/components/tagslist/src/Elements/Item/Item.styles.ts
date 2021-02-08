@@ -2,6 +2,18 @@ import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import Menu from '@synerise/ds-menu';
 import { BorderLessInput } from '@synerise/ds-input/dist/InputMultivalue/InputMultivalue.styles';
 import { Props as DSInputProps } from '@synerise/ds-input/dist/Input.types';
+import Icon from '@synerise/ds-icon';
+
+export type TagsListItemType = {
+  inline: boolean;
+  editMode: boolean;
+  hovered: boolean;
+  rootPrefixCls?: string;
+  active?: boolean;
+  withCheckbox?: boolean;
+};
+
+export const rootPrefix = ({ rootPrefixCls }: TagsListItemType): string => rootPrefixCls || 'ant-menu';
 
 export const applyDots = (color: string): FlattenSimpleInterpolation => css`
   background-color: transparent;
@@ -29,13 +41,15 @@ export const SuffixWrapper = styled.div`
   transition: opacity 0.2s ease-out;
 `;
 
-export const TagsListItem = styled(Menu.Item)<{
-  inline: boolean;
-  editMode: boolean;
-  hovered: boolean;
-  rootPrefixCls?: string;
-  active?: boolean;
-}>`
+export const TagIconFav = styled(Icon)``;
+
+export const TagIcon = styled(Icon)`
+  svg {
+    fill: ${(props): string => props.theme.palette['grey-600']};
+  }
+`;
+
+export const TagsListItem = styled(Menu.Item)<TagsListItemType>`
   &&&& {
     min-height: 32px;
     z-index: 1;
@@ -51,6 +65,7 @@ export const TagsListItem = styled(Menu.Item)<{
       margin-right: 8px;
       margin-top: ${(props): string => (props.editMode ? '-2px' : '0')};
     }
+
     ${(props): FlattenSimpleInterpolation | false =>
       props.editMode &&
       css`
@@ -70,6 +85,10 @@ export const TagsListItem = styled(Menu.Item)<{
         }
       `}
 
+    .ds-checkbox {
+      display: none;
+    }
+
     &:hover {
       ${SuffixWrapper} {
         ${(props): string | false => props.inline && 'display:flex;'}
@@ -77,6 +96,20 @@ export const TagsListItem = styled(Menu.Item)<{
       }
       ${InlineEditWrapper} {
         ${(props): FlattenSimpleInterpolation => applyDots(props.theme.palette['blue-600'])}
+      }
+    }
+
+    &:hover,
+    &.${rootPrefix}-item-selected {
+      .ds-checkbox {
+        display: block;
+      }
+      ${TagIconFav}, ${TagIcon} {
+        ${(props): string => (props.withCheckbox ? 'display: none ! important' : '')};
+        svg,
+        svg > path:not(:first-child) {
+          fill: ${(props): string => props.theme.palette['blue-600']} !important;
+        }
       }
     }
   }
@@ -106,7 +139,16 @@ export const TagsListTextHighlight = styled.span`
   font-weight: 500;
 `;
 
-export const PrefixWrapper = styled.div`
+export const PrefixWrapper = styled.div<{
+  favourite?: boolean;
+}>`
   min-width: 24px;
   text-align: center;
+
+  ${TagIconFav} {
+    display: ${({ favourite }): string => (favourite ? 'flex' : 'none ! important')};
+  }
+  ${TagIcon} {
+    display: ${({ favourite }): string => (!favourite ? 'flex' : 'none ! important')};
+  }
 `;

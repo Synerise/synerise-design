@@ -1,10 +1,8 @@
 import * as React from 'react';
 import Highlighter from 'react-highlight-words';
 
-import Icon from '@synerise/ds-icon';
 import Checkbox from '@synerise/ds-checkbox';
-import { TagM, TagStarredM, TagStarredFlatM } from '@synerise/ds-icon/dist/icons';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { TagM, TagStarredM } from '@synerise/ds-icon/dist/icons';
 import { useOnClickOutside, NOOP } from '@synerise/ds-utils';
 import Tooltip from '@synerise/ds-tooltip';
 
@@ -76,13 +74,6 @@ const Item: React.FC<ItemProps> = ({
     }
   }, [name, textRef]);
 
-  const getPrefix = React.useCallback((isFavourite, isHovered, isEditMode): React.ReactNode => {
-    if (isFavourite) {
-      return isHovered || isEditMode ? <TagStarredFlatM /> : <TagStarredM />;
-    }
-    return <TagM />;
-  }, []);
-
   React.useEffect(() => {
     inputRef?.current !== null && inputRef.current.focus();
   }, [inputRef, editMode]);
@@ -136,26 +127,29 @@ const Item: React.FC<ItemProps> = ({
 
   const isHovered = !!(hovered || dropdownOpened);
 
+  const prefixel = React.useMemo(
+    () => (
+      <S.PrefixWrapper favourite={favourite}>
+        {withCheckbox && <Checkbox checked={checked} />}
+        {favourite ? <S.TagIconFav component={<TagStarredM />} /> : null}
+        {!favourite ? <S.TagIcon component={<TagM />} /> : null}
+      </S.PrefixWrapper>
+    ),
+    [checked, withCheckbox, favourite]
+  );
+
+  const className = checked || editMode || isHovered ? `${rootPrefixCls}-item-selected` : '';
+
   return (
     // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
     <S.TagsListItem
       editMode={editMode}
       onClick={onClick}
-      className={checked ? `${rootPrefixCls}-item-selected` : ''}
+      className={className}
       hovered={isHovered}
       rootPrefixCls={rootPrefixCls}
-      prefixel={
-        <S.PrefixWrapper>
-          {withCheckbox && (isHovered || checked || editMode) ? (
-            <Checkbox checked={checked} />
-          ) : (
-            <Icon
-              component={getPrefix(favourite, isHovered, editMode)}
-              color={isHovered || editMode ? theme.palette['blue-600'] : theme.palette['grey-600']}
-            />
-          )}
-        </S.PrefixWrapper>
-      }
+      prefixel={prefixel}
+      withCheckbox={withCheckbox}
       suffixel={
         <S.SuffixWrapper className={isHovered ? 'suffix-wrapper-hovered' : undefined}>{renderSuffix()}</S.SuffixWrapper>
       }
