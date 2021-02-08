@@ -88,7 +88,7 @@ const Slider: React.FC<Props> = props => {
         hideMinAndMaxMarks={hideMinAndMaxMarks}
         tipFormatter={(tipValue): React.ReactNode => (
           <S.DescriptionWrapper>
-            {description && <S.Description>{description}</S.Description>}
+            {description && <S.Description range={range}>{description}</S.Description>}
             {tipFormatter && tipFormatter(tipValue)}
           </S.DescriptionWrapper>
         )}
