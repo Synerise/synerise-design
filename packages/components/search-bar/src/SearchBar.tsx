@@ -22,10 +22,17 @@ const SearchBar: React.FC<SearchBarProps> = ({
   handleInputRef,
 }) => {
   const [isFocused, setFocus] = useState(false);
-  const focus = (inputRef: React.MutableRefObject<HTMLInputElement | HTMLTextAreaElement | undefined>): void => {
-    handleInputRef && handleInputRef(inputRef)
-    autofocus && inputRef.current && inputRef.current.focus();
-  };
+  const [inputRef, setInputRef] = useState<
+    React.MutableRefObject<HTMLInputElement | HTMLTextAreaElement | undefined>
+  >();
+
+  React.useEffect(() => {
+    if (inputRef) {
+      handleInputRef && handleInputRef(inputRef);
+      autofocus && inputRef.current && inputRef.current.focus();
+    }
+  }, [autofocus, handleInputRef, inputRef]);
+
   return (
     <S.SearchBarWrapper
       iconLeft={iconLeft}
@@ -57,7 +64,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
         value={value}
         className={className}
         resetMargin
-        handleInputRef={focus}
+        handleInputRef={setInputRef}
         disabled={disabled}
         autoComplete="off"
       />
