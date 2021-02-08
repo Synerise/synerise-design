@@ -16,7 +16,7 @@ import Dropdown from '@synerise/ds-dropdown';
 import Result from '@synerise/ds-result';
 
 import useTexts from '../../useTexts';
-import { TagsListItem } from '../../TagsList.types';
+import { TagsListItem, TagVisibility } from '../../TagsList.types';
 import { AddModalProps } from './AddModal.types';
 
 import * as S from './AddModal.styles';
@@ -93,6 +93,7 @@ const AddModal: React.FC<AddModalProps> = ({
       newItem.canUpdate = newItem.canUpdate === undefined ? true : newItem.canUpdate;
       newItem.canDelete = newItem.canDelete === undefined ? true : newItem.canDelete;
       newItem.canEnterSettings = newItem.canEnterSettings === undefined ? true : newItem.canEnterSettings;
+      newItem.visibility = TagVisibility.Hide;
       return newItem;
     });
 

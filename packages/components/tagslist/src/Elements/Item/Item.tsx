@@ -131,8 +131,7 @@ const Item: React.FC<ItemProps> = ({
     () => (
       <S.PrefixWrapper favourite={favourite}>
         {withCheckbox && <Checkbox checked={checked} />}
-        {favourite ? <S.TagIconFav component={<TagStarredM />} /> : null}
-        {!favourite ? <S.TagIcon component={<TagM />} /> : null}
+        {favourite ? <S.TagIconFav component={<TagStarredM />} /> : <S.TagIcon component={<TagM />} />}
       </S.PrefixWrapper>
     ),
     [checked, withCheckbox, favourite]
