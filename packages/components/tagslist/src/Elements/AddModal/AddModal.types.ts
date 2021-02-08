@@ -4,6 +4,7 @@ import { TagsListItem, TagsListTexts } from '../../TagsList.types';
 export type AddModalProps = {
   disabled: boolean;
   items?: TagsListItem[];
+  hideItems?: [string | number];
   texts?: TagsListTexts;
   loading?: boolean;
   tristate?: boolean;

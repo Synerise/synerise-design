@@ -76,6 +76,7 @@ const Actions: React.FC<ActionProps> = ({
                   <Icon component={isFavourite ? <StarFillM /> : <StarM />} />
                 </S.FavouriteIconWrapper>
               }
+              suffixel={isFavourite ? <CheckIcon /> : null}
               onClick={(e: ClickParam): void => {
                 e.domEvent.stopPropagation();
                 onFavourite();

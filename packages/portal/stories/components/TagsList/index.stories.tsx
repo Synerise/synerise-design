@@ -81,7 +81,12 @@ const stories = {
 
     const handleOnItemsAdd = (items: TagsListItem[]) => {
       const newItems = items.map((item) => ({...item, checked: false}));
-      setDataSource([...dataSource, ...newItems]);
+      const newDs = [...dataSource];
+      newItems.forEach((item: TagsListItem) => {
+        if(newDs.findIndex((row: TagsListItem) => row.id === item.id) === -1)
+          newDs.push(item);
+      });
+      setDataSource(newDs);
     }
 
     const onItemClick = () => setStarred(!starred);
@@ -113,7 +118,7 @@ const stories = {
                 <Divider higher />
                 <TagsList
                   items={dataSource}
-                  maxItemsVisible={number('Set default max items visible', 5, { min: 1 })}
+                  maxItemsVisible={number('Set default max items visible', 10, { min: 1 })}
                   texts={TEXTS}
                   onChange={handleOnChange}
                   onAddDropdown={handleOnAddDropdown}

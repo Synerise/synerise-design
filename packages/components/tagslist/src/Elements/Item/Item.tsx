@@ -137,6 +137,10 @@ const Item: React.FC<ItemProps> = ({
     [checked, withCheckbox, favourite]
   );
 
+  const suffixel = (
+    <S.SuffixWrapper className={isHovered ? 'suffix-wrapper-hovered' : undefined}>{renderSuffix()}</S.SuffixWrapper>
+  );
+
   const className = checked || editMode || isHovered ? `${rootPrefixCls}-item-selected` : '';
 
   return (
@@ -149,9 +153,7 @@ const Item: React.FC<ItemProps> = ({
       rootPrefixCls={rootPrefixCls}
       prefixel={prefixel}
       withCheckbox={withCheckbox}
-      suffixel={
-        <S.SuffixWrapper className={isHovered ? 'suffix-wrapper-hovered' : undefined}>{renderSuffix()}</S.SuffixWrapper>
-      }
+      suffixel={suffixel}
       text={
         editMode ? (
           <S.InlineEditWrapper>

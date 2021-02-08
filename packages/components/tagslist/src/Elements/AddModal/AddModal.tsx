@@ -14,6 +14,7 @@ import { Settings2M, InfoFillS, SearchM } from '@synerise/ds-icon/dist/icons';
 import { useOnClickOutside, NOOP } from '@synerise/ds-utils';
 import Dropdown from '@synerise/ds-dropdown';
 import Result from '@synerise/ds-result';
+import generateHash from 'random-hash';
 
 import useTexts from '../../useTexts';
 import { TagsListItem, TagVisibility } from '../../TagsList.types';
@@ -38,7 +39,7 @@ const TagInfo: React.FC<TagInfoProps> = ({ info }) => {
 
 function getNewItem(name: string): TagsListItem {
   return {
-    id: name,
+    id: generateHash(),
     name,
     canUpdate: true,
     canDelete: true,
@@ -82,9 +83,7 @@ const AddModal: React.FC<AddModalProps> = ({
     if (propItems) setItems(propItems);
   }, [propItems]);
 
-  const handleSearchChange = React.useCallback((name: string): void => {
-    setSearch(name);
-  }, []);
+  const handleSearchChange = (name: string): void => setSearch(name);
 
   const handleItemsAdd = (): void => {
     const add = Object.keys(selectedTags).map(id => {
@@ -99,14 +98,17 @@ const AddModal: React.FC<AddModalProps> = ({
 
     onItemsAdd(add as TagsListItem[]);
     setOverlayVisible(false);
+    setSelectedTags({});
+    setNewTagSelected(false);
+    setSearch(DEFAULT_NAME);
   };
 
-  const toggleInput = React.useCallback((): void => {
+  const toggleInput = (): void => {
     setSearch(DEFAULT_NAME);
     setNewTagSelected(false);
-    setOverlayVisible(!overlayVisible);
     setSelectedTags({});
-  }, [overlayVisible]);
+    setOverlayVisible(!overlayVisible);
+  };
 
   const focus = (inputRef: React.MutableRefObject<HTMLInputElement | HTMLTextAreaElement | undefined>): void => {
     overlayVisible && inputRef.current && inputRef.current.focus();

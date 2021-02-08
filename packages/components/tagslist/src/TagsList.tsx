@@ -15,8 +15,8 @@ import useTexts from './useTexts';
 import './style/index.less';
 import TagsListContainer from './TagsList.styles';
 
-const DEFAULT_STEP = 5;
-const DEFAULT_ITEMS_VISIBLE = 5;
+const DEFAULT_STEP = 100;
+const DEFAULT_ITEMS_VISIBLE = 10;
 
 export function replaceItem(items: TagsListItem[], item: TagsListItem, index?: number): [TagsListItem[], TagsListItem] {
   const newItems = [...items];
@@ -169,16 +169,18 @@ const TagsList: React.FC<TagsListProps> = props => {
   if (!isControlled)
     contextValue.onItemsAdd = (addItems: TagsListItem[]): void => {
       const newItems = addItems.map(item => ({ ...item, checked: false }));
-      setItems([...items, ...newItems]);
+      const newList = [...items];
+      newItems.forEach((item: TagsListItem) => {
+        if (newList.findIndex((row: TagsListItem) => row.id === item.id) === -1) newList.push(item);
+      });
+      setItems(newList);
     };
 
   return (
     <TagsListContainer>
       <TagsListContext.Provider value={contextValue}>
         <Toolbar />
-        <Menu>
-          {renderItemsList()}
-        </Menu>
+        <Menu>{renderItemsList()}</Menu>
         {!searchQuery && (
           <ShowLessOrMore
             onShowMore={(more): void => {

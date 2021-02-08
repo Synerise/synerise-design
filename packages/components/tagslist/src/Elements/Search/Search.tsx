@@ -7,7 +7,7 @@ import useTagsListContext from '../../useTagsListContext';
 import SearchContainer from './Search.styles';
 
 const Search: React.FC = () => {
-  const { searchQuery = '', setSearchQuery = NOOP, setSearchOpen = NOOP } = useTagsListContext();
+  const { searchQuery = '', setSearchQuery = NOOP, setSearchOpen = NOOP, texts } = useTagsListContext();
 
   const inputRef = React.useRef(null);
 
@@ -23,6 +23,7 @@ const Search: React.FC = () => {
         closeOnClickOutside
         onToggle={onToggle}
         onClear={onClear}
+        clearTooltip={texts?.searchClear}
       />
     </SearchContainer>
   );
