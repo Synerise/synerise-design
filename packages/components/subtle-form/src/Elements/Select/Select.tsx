@@ -20,6 +20,7 @@ const SubtleSelect: React.FC<SubtleSelectProps> = ({
   placeholder,
   error,
   errorText,
+  dropdownAlign = {},
   ...rest
 }) => {
   const [active, setActive] = React.useState<boolean>(false);
@@ -51,13 +52,21 @@ const SubtleSelect: React.FC<SubtleSelectProps> = ({
             errorText={errorText}
             error={error}
             defaultOpen={!hasError}
+            dropdownAlign={{ offset: [0, 8], ...dropdownAlign }}
             {...rest}
           >
             {children}
           </Select>
         ) : (
-          <S.Inactive onClick={!disabled ? handleActivate : undefined} blurred={blurred} disabled={disabled}>
-            <S.MainContent hasMargin>{value && !!String(value).trim() ? value : placeholder}</S.MainContent>
+          <S.Inactive
+            className="inactive-content"
+            onClick={!disabled ? handleActivate : undefined}
+            blurred={blurred}
+            disabled={disabled}
+          >
+            <S.MainContent className="main-content" hasMargin>
+              {value && !!String(value).trim() ? value : placeholder}
+            </S.MainContent>
             {!active && !disabled && (
               <S.Suffix select>
                 <Tooltip title={suffixTooltip}>
