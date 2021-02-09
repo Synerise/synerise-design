@@ -1,4 +1,4 @@
-import { TagsListTexts } from "../../TagsList.types"
+import { TagsListTexts } from '../../TagsList.types';
 
 export type Props = {
   onShowMore: (more: number) => void;
@@ -7,5 +7,5 @@ export type Props = {
   visibleItemsCount: number;
   maxItemsToShow: number;
   step: number;
-  texts: TagsListTexts | undefined;
+  texts?: TagsListTexts;
 };

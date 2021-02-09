@@ -12,12 +12,12 @@ export type ActionProps = {
   onVisibility?: (visibility: TagVisibility, item: TagsListItem) => void;
   onDropdown?: (visible: boolean) => void;
   visibility?: TagVisibility;
-  texts: TagsListTexts | undefined;
+  texts?: TagsListTexts;
   hovered?: boolean;
 };
 
 export type VisibilityProps = {
-  texts: TagsListTexts | undefined;
+  texts?: TagsListTexts;
   item: TagsListItem;
   onVisibility?: (visibility: TagVisibility, item: TagsListItem) => void;
   visibility?: TagVisibility;

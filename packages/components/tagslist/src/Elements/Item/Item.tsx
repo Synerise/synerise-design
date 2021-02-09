@@ -13,7 +13,7 @@ import { ItemProps } from './Item.types';
 
 import * as S from './Item.styles';
 
-function getRenderItemName(itemName: string, query: string): React.ReactElement {
+const ItemName: React.FC<{ itemName: string; query: string }> = ({ itemName, query }) => {
   if (query && itemName.toLowerCase().match(query.toLowerCase())) {
     return (
       <Highlighter
@@ -25,7 +25,7 @@ function getRenderItemName(itemName: string, query: string): React.ReactElement 
     );
   }
   return <span>{itemName}</span>;
-}
+};
 
 const Item: React.FC<ItemProps> = ({
   item,
@@ -52,18 +52,17 @@ const Item: React.FC<ItemProps> = ({
   const inputRef = React.useRef<HTMLInputElement>(null);
   const textRef = React.useRef<HTMLDivElement>(null);
 
-  const renderItemName = getRenderItemName(itemName, searchQuery);
+  const renderItemName = <ItemName itemName={itemName} query={searchQuery} />;
 
   const confirmEdit = React.useCallback((): void => {
     if (validateFolderName(itemName)) {
       const trimmedName = itemName.trim();
       onEdit && onEdit({ ...item, name: trimmedName });
-      setEditMode(false);
     } else {
       onEdit && onEdit({ ...item, name });
       setItemName(name);
-      setEditMode(false);
     }
+    setEditMode(false);
   }, [itemName, name, item, onEdit]);
 
   React.useEffect(() => {
@@ -78,11 +77,11 @@ const Item: React.FC<ItemProps> = ({
     inputRef?.current !== null && inputRef.current.focus();
   }, [inputRef, editMode]);
 
-  const onMouseOver = (): void => {
+  const onMouseEnter = (): void => {
     setHovered(true);
   };
 
-  const onMouseOut = (): void => {
+  const onMouseLeave = (): void => {
     setHovered(false);
   };
 
@@ -179,9 +178,9 @@ const Item: React.FC<ItemProps> = ({
       suffixel={suffixel}
       text={textComponent}
       // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-      // @ts-ignore
-      onMouseLeave={onMouseOut}
-      onMouseEnter={onMouseOver}
+      // @ts-ignore: because onMouseLeave is not there :P just for clearance onMouseOut does the same
+      onMouseLeave={onMouseLeave}
+      onMouseEnter={onMouseEnter}
     />
   );
 };
