@@ -84,7 +84,8 @@ const stories = {
             limit: boolean('Show limit', false) ? number('Set limit', 5) : undefined,
           }}
           onRowClick={record => {
-            store.state.selectedRows.indexOf(record.key) >= 0
+            store.state.selectedRows.indexOf(record.key) >= 0 ||
+            store.state.selectedRows.length >= number('Set limit', 5)
               ? store.set({ selectedRows: store.state.selectedRows.filter(k => k !== record.key) })
               : store.set({ selectedRows: [...store.state.selectedRows, record.key] });
           }}
