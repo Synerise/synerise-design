@@ -103,4 +103,22 @@ const OrderedList: React.FC<OrderedListProps> = ({ list, options,content }) => {
     </S.OrderedList>
   );
 };
-export default OrderedList;
+type OrderedListItem = { label: string; index: number; subMenu?: OrderedListItem[] }
+type ListProps = {
+  data: OrderedListItem[];
+}
+export const Menu = ({data}: ListProps) => {
+  return (
+    <S.OrderedList>
+      <ul>
+        {data.map(item => {
+          return (<li>
+            {item.label}
+            {item.subMenu && <Menu data={item.subMenu} />}
+          </li>);
+        })}
+      </ul>
+    </S.OrderedList>
+  );
+}
+export default Menu
