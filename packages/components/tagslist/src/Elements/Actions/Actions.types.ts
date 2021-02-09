@@ -7,7 +7,7 @@ export type ActionProps = {
   item: TagsListItem;
   onDelete?: (item: TagsListItem) => void;
   onEdit?: (item?: TagsListItem) => void;
-  onSettingsEnter?: (item?: TagsListItem) => void;
+  onSettingsEnter?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
   onFavourite?: (item?: TagsListItem) => void;
   onVisibility?: (visibility: TagVisibility, item: TagsListItem) => void;
   onDropdown?: (visible: boolean) => void;

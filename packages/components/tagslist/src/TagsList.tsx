@@ -15,7 +15,7 @@ import useTexts from './useTexts';
 import './style/index.less';
 import TagsListContainer from './TagsList.styles';
 
-const DEFAULT_STEP = 100;
+const DEFAULT_STEP = 10;
 const DEFAULT_ITEMS_VISIBLE = 10;
 
 export function replaceItem(items: TagsListItem[], item: TagsListItem, index?: number): [TagsListItem[], TagsListItem] {
@@ -31,7 +31,7 @@ const TagsList: React.FC<TagsListProps> = props => {
     defaultItems = [],
     maxItemsVisible,
     onChange,
-    onSettings,
+    onManageTags = NOOP,
     texts: propTexts = {},
     showHideStep,
     withCheckbox = true,
@@ -133,8 +133,8 @@ const TagsList: React.FC<TagsListProps> = props => {
       withCheckbox={withCheckbox}
       onSettingsEnter={
         item.canEnterSettings
-          ? (): void => {
-              onSettings && onSettings(item);
+          ? (event: React.MouseEvent<HTMLElement, MouseEvent>): void => {
+              onManageTags && onManageTags(event);
             }
           : undefined
       }

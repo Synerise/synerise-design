@@ -2,9 +2,8 @@ import * as React from 'react';
 import { TagsListItem, TagsListTexts } from '../../TagsList.types';
 
 export type AddModalProps = {
-  disabled: boolean;
+  disabled?: boolean;
   items?: TagsListItem[];
-  hideItems?: [string | number];
   texts?: TagsListTexts;
   loading?: boolean;
   tristate?: boolean;

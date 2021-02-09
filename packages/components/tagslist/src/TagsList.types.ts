@@ -27,7 +27,6 @@ export type TagsListProps = {
   ) => void;
   onAddDropdown?: (visible: boolean) => void;
   onSearch?: (query: string) => void;
-  onSettings?: (selected?: TagsListItem) => void;
   onManageTags?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
   onItemsAdd?: (items: TagsListItem[]) => void;
   texts?: TagsListTexts | undefined;

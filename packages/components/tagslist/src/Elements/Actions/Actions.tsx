@@ -103,7 +103,7 @@ const Actions: React.FC<ActionProps> = ({
               prefixel={<Icon component={<Settings2M />} />}
               onClick={(e: ClickParam): void => {
                 e.domEvent.stopPropagation();
-                onSettingsEnter();
+                onSettingsEnter(e.domEvent);
                 onDropdown(false);
               }}
             >

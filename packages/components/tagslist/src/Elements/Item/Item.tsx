@@ -100,21 +100,6 @@ const Item: React.FC<ItemProps> = ({
     setDropdownOpened(opened);
   };
 
-  const renderSuffix = (): React.ReactNode => (
-    <Actions
-      onDelete={onDelete}
-      item={item}
-      onVisibility={onVisibility}
-      onDropdown={onDropdown}
-      visibility={item.visibility}
-      onFavourite={handleOnFavourite}
-      onSettingsEnter={onSettingsEnter}
-      onEdit={handleOnEdit}
-      isFavourite={favourite}
-      texts={texts}
-    />
-  );
-
   useOnClickOutside(inputRef, () => {
     if (editMode) {
       confirmEdit();
@@ -138,10 +123,48 @@ const Item: React.FC<ItemProps> = ({
   );
 
   const suffixel = (
-    <S.SuffixWrapper className={isHovered ? 'suffix-wrapper-hovered' : undefined}>{renderSuffix()}</S.SuffixWrapper>
+    <S.SuffixWrapper className={isHovered ? 'suffix-wrapper-hovered' : undefined}>
+      <Actions
+        onDelete={onDelete}
+        item={item}
+        onVisibility={onVisibility}
+        onDropdown={onDropdown}
+        visibility={item.visibility}
+        onFavourite={handleOnFavourite}
+        onSettingsEnter={onSettingsEnter}
+        onEdit={handleOnEdit}
+        isFavourite={favourite}
+        texts={texts}
+      />
+    </S.SuffixWrapper>
   );
 
   const className = checked || editMode || isHovered ? `${rootPrefixCls}-item-selected` : '';
+
+  const textComponent = React.useMemo(() => {
+    const inlineOnChange = (e: React.SyntheticEvent<HTMLInputElement>): void => setItemName(e.currentTarget.value);
+    const inlineOnKeyDown = (e: React.KeyboardEvent<HTMLInputElement>): void => {
+      if (e.key === 'Enter') {
+        confirmEdit();
+      }
+    };
+
+    return editMode ? (
+      <S.InlineEditWrapper>
+        <S.InlineEditInput value={itemName} onChange={inlineOnChange} onKeyDown={inlineOnKeyDown} ref={inputRef} />
+      </S.InlineEditWrapper>
+    ) : (
+      <S.TagsListText ref={textRef}>
+        {overflowed ? (
+          <Tooltip placement="topLeft" title={itemName}>
+            {renderItemName}
+          </Tooltip>
+        ) : (
+          renderItemName
+        )}
+      </S.TagsListText>
+    );
+  }, [editMode, itemName, confirmEdit, inputRef, textRef, overflowed, renderItemName]);
 
   return (
     // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
@@ -154,32 +177,7 @@ const Item: React.FC<ItemProps> = ({
       prefixel={prefixel}
       withCheckbox={withCheckbox}
       suffixel={suffixel}
-      text={
-        editMode ? (
-          <S.InlineEditWrapper>
-            <S.InlineEditInput
-              value={itemName}
-              onChange={(e: React.SyntheticEvent<HTMLInputElement>): void => setItemName(e.currentTarget.value)}
-              onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>): void => {
-                if (e.key === 'Enter') {
-                  confirmEdit();
-                }
-              }}
-              ref={inputRef}
-            />
-          </S.InlineEditWrapper>
-        ) : (
-          <S.TagsListText ref={textRef}>
-            {overflowed ? (
-              <Tooltip placement="topLeft" title={itemName}>
-                {renderItemName}
-              </Tooltip>
-            ) : (
-              renderItemName
-            )}
-          </S.TagsListText>
-        )
-      }
+      text={textComponent}
       // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
       // @ts-ignore
       onMouseLeave={onMouseOut}

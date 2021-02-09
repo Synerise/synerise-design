@@ -23,7 +23,6 @@ import { AddModalProps } from './AddModal.types';
 import * as S from './AddModal.styles';
 
 const DEFAULT_NAME = '';
-const POPUP_CLOSE_DELAY = 0;
 
 type TagInfoProps = {
   info: string;
@@ -49,7 +48,7 @@ function getNewItem(name: string): TagsListItem {
 
 const AddModal: React.FC<AddModalProps> = ({
   items: propItems,
-  disabled,
+  disabled = false,
   texts: propTexts,
   tristate = false,
   loading = false,
@@ -71,12 +70,10 @@ const AddModal: React.FC<AddModalProps> = ({
   const selected = Object.keys(selectedTags).length || newTagSelected;
 
   useOnClickOutside(overlayRef, () => {
-    setTimeout(() => {
-      if (overlayVisible) {
-        setOverlayVisible(false);
-      }
-    }, POPUP_CLOSE_DELAY);
-    setSearch(DEFAULT_NAME);
+    if (overlayVisible) {
+      setOverlayVisible(false);
+      setSearch(DEFAULT_NAME);
+    }
   });
 
   React.useEffect(() => {

@@ -4,7 +4,7 @@ import { fireEvent } from '@testing-library/react';
 
 import TagsList from './TagsList';
 import { TagsListItem } from './TagsList.types';
-import Providers from './Providers';
+import Providers from './TestProviders';
 
 const TAGS: TagsListItem[] = [
   { name: 'Bangkok', id: '1', canDelete: true, canUpdate: true },
@@ -27,13 +27,13 @@ describe('TagsList', () => {
   });
 
   it('should throw exception if controlled and no onChange method', () => {
-    expect(
+    expect(() => {
       renderWithProvider(
         <Providers>
           <TagsList items={TAGS} />
         </Providers>
-      )
-    ).toThrow();
+      );
+    }).toThrow();
   });
 
   it('fire onChange when item is clicked', () => {

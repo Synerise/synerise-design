@@ -12,7 +12,7 @@ export type ItemProps = {
   onDelete?: (item: TagsListItem) => void;
   onFavourite?: (item: TagsListItem) => void;
   onVisibility?: (visibility: TagVisibility, item: TagsListItem) => void;
-  onSettingsEnter?: (item?: TagsListItem) => void;
+  onSettingsEnter?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
   onItemSelect?: (item: TagsListItem) => void;
   icon?: ReactElement;
   iconFavourite?: ReactElement;
