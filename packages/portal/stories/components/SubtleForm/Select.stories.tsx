@@ -24,9 +24,20 @@ const StatusWrapper = styled.div<{ flex?: boolean }>`
     `display: flex;
   justify-content: space-between;
   align-items: center;`}
+
   .ds-status {
     margin: 0;
   }
+`;
+
+const SelectedStatusWrapper = styled.div`
+  .ds-status {
+    margin: 0;
+  }
+  display: inline-flex;
+  align-items: flex-start;
+  position: absolute;
+  top: 7px;
 `;
 
 const renderStatusOption = (status: StatusProps, checked?: boolean) => (
@@ -37,9 +48,9 @@ const renderStatusOption = (status: StatusProps, checked?: boolean) => (
 );
 
 const renderSelectedStatus = (status: StatusProps) => (
-  <StatusWrapper>
+  <SelectedStatusWrapper>
     <Status {...status} />
-  </StatusWrapper>
+  </SelectedStatusWrapper>
 );
 export const getErrorText = (error: boolean, errorText: string): string => {
   if (error) {
