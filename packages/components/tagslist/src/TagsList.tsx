@@ -133,7 +133,7 @@ const TagsList: React.FC<TagsListProps> = props => {
       withCheckbox={withCheckbox}
       onSettingsEnter={
         item.canEnterSettings
-          ? (event: React.MouseEvent<HTMLElement, MouseEvent>): void => {
+          ? (event: React.MouseEvent<HTMLElement, MouseEvent> | Event): void => {
               onManageTags && onManageTags(event);
             }
           : undefined
