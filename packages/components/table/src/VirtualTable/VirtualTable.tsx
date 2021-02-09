@@ -63,13 +63,17 @@ function VirtualTable<T extends any & RowType<T> & { [EXPANDED_ROW_PROPERTY]?: b
               }) || [];
             const isIndeterminate =
               hasChilds && checkedChilds.length > 0 && checkedChilds.length < record.children.length;
+            const checked =
+              (recordKey !== undefined &&
+                selection.selectedRowKeys &&
+                selection.selectedRowKeys.indexOf(recordKey) >= 0) ||
+              allChildsChecked;
             return (
               recordKey !== undefined && (
                 <Checkbox
                   key={`checkbox-${recordKey}`}
-                  checked={
-                    (selection.selectedRowKeys && selection.selectedRowKeys.indexOf(recordKey) >= 0) || allChildsChecked
-                  }
+                  checked={checked}
+                  disabled={!checked && Boolean(selection.limit && selection.limit <= selection.selectedRowKeys.length)}
                   indeterminate={isIndeterminate}
                   onChange={(event): void => {
                     const { selectedRowKeys, onChange } = selection;

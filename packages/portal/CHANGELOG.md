@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.118.0](https://github.com/synerise/synerise-design/compare/portal@0.117.0...portal@0.118.0) (2021-02-05)
+
+
+### Features
+
+* **table:** add selection limit ([7697b91](https://github.com/synerise/synerise-design/commit/7697b916ad116b9b3ed8d79d436e47d4fcc5228c))
+
+
+
+
+
+# [0.117.0](https://github.com/synerise/synerise-design/compare/portal@0.116.0...portal@0.117.0) (2021-02-03)
+
+
+### Bug Fixes
+
+* **item-picker:** close dropdown on bottom action ([cd39911](https://github.com/synerise/synerise-design/commit/cd39911c33ce5e9a9c3694fadadec35052311bd0))
+
+
+
+
+
 # [0.116.0](https://github.com/synerise/synerise-design/compare/portal@0.115.2...portal@0.116.0) (2021-02-01)
 
 

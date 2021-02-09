@@ -58,16 +58,6 @@ const radioText = {
   text1: 'Randomization',
   text2: 'AI Engine',
 };
-const radio = (
-  <Radio.Group style={{ display: 'flex' }} onChange={action('onChange')} defaultValue="A">
-    <Radio style={{ marginTop: '30px' }} disabled={boolean('disabled', false)} value="A">
-      {radioText.text1}
-    </Radio>
-    <Radio style={{ marginTop: '30px' }} disabled={boolean('disabled', false)} value="B">
-      {radioText.text2}
-    </Radio>
-  </Radio.Group>
-);
 const suffixType = {
   cruds: 'cruds',
   expander: 'expander',
@@ -153,7 +143,7 @@ const withOption = defaultItem => {
   );
 };
 const withRadios = defaultItem => {
-  return <ContentItem item={defaultItem} greyBackground={boolean('Set grey background', false)} headerSuffix={radio} />;
+  return <ContentItem item={defaultItem} greyBackground={boolean('Set grey background', false)}  />;
 };
 const withCruds = defaultItem => {
   const [item, setItem] = React.useState(defaultItem);

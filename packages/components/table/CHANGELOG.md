@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.31.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.30.2...@synerise/ds-table@0.31.0) (2021-02-05)
+
+
+### Features
+
+* **table:** add selection limit ([8544003](https://github.com/synerise/synerise-design/commit/8544003576d0c21b91ffff482461426e32a17998))
+* **table:** add selection limit ([7697b91](https://github.com/synerise/synerise-design/commit/7697b916ad116b9b3ed8d79d436e47d4fcc5228c))
+* **table:** add selection limit warning message ([9dd4aeb](https://github.com/synerise/synerise-design/commit/9dd4aebdba32ac17935b950078030fb87a40d073))
+* **table:** add selection limit warning message ([71433b4](https://github.com/synerise/synerise-design/commit/71433b406924bc7ec098f71d6e36d58ab0f6ad82))
+
+
+
+
+
 ## [0.30.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.30.1...@synerise/ds-table@0.30.2) (2021-02-02)
 
 **Note:** Version bump only for package @synerise/ds-table
