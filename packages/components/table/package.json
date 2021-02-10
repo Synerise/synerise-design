@@ -32,6 +32,7 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
+    "@synerise/ds-alert": "^0.2.8",
     "@synerise/ds-button": "^0.13.28",
     "@synerise/ds-checkbox": "^0.10.3",
     "@synerise/ds-column-manager": "^0.8.21",

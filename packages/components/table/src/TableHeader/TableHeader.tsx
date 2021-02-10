@@ -4,7 +4,7 @@ import FilterTrigger from '../FilterTrigger/FilterTrigger';
 import { Filter } from '../Table.types';
 import TableSelection from './TableSelection';
 import { Props } from './TableHeader.types';
-import { TableLimit } from './TableLimit/TableLimit';
+import { TableLimit } from './TableLimit';
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
