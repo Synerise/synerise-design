@@ -35,13 +35,7 @@ const ShowLessOrMore: React.FC<Props> = ({
 
     return (
       totalItemsCount > visibleItemsCount && (
-        <Button
-          type="ghost"
-          mode="icon-label"
-          onClick={onClick}
-          className="ds-tagslist-show-more"
-          key={generateHash()}
-        >
+        <Button type="ghost" mode="icon-label" onClick={onClick} className="ds-tagslist-show-more" key={generateHash()}>
           <Icon component={<ArrowDownCircleM />} />
           <S.Label>
             <span>{texts?.showMoreLabel}</span>
@@ -51,21 +45,15 @@ const ShowLessOrMore: React.FC<Props> = ({
         </Button>
       )
     );
-  }, [texts, visibleItemsCount,totalItemsCount, step, itemsOverLimit, onShowMore]);
+  }, [texts, visibleItemsCount, totalItemsCount, step, itemsOverLimit, onShowMore]);
 
   const renderShowLessButton = React.useCallback(() => {
     const onClick = (): void => {
       onShowLess(itemsToHide);
-    }
+    };
 
     return (
-      <Button
-        type="ghost"
-        mode="icon-label"
-        onClick={onClick}
-        className="ds-folder-show-less"
-        key={generateHash()}
-      >
+      <Button type="ghost" mode="icon-label" onClick={onClick} className="ds-folder-show-less" key={generateHash()}>
         <Icon component={<ArrowUpCircleM />} />
         <S.Label>
           <span>{texts?.showMoreLabel}</span>
@@ -74,7 +62,7 @@ const ShowLessOrMore: React.FC<Props> = ({
         </S.Label>
       </Button>
     );
-  }, [texts , onShowLess, itemsToHide]);
+  }, [texts, onShowLess, itemsToHide]);
 
   return (
     <S.Container>
