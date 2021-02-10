@@ -28,11 +28,10 @@ export const DropdownMenu = styled(Menu)<AntdMenuProps>`
 export const DropdownMenuItem = styled(Menu.Item)<MenuItemProps>`
   max-height: 32px;
 `;
-export const FavouriteIconWrapper = styled.div<{ isFavourite: boolean }>`
+export const FavouriteIconWrapper = styled.div<{ favourite: boolean }>`
   .ds-icon svg {
-  transition: fill 0.2s ease;
-    fill: ${(props): string =>
-      props.isFavourite ? props.theme.palette['yellow-600'] : props.theme.palette['grey-600']};
+    transition: fill 0.2s ease;
+    fill: ${(props): string => (props.favourite ? props.theme.palette['yellow-600'] : props.theme.palette['grey-600'])};
   }
 `;
 

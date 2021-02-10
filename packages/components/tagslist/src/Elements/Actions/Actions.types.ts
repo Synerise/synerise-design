@@ -1,24 +1,24 @@
 import { TagsListItem, TagsListTexts, TagVisibility } from '../../TagsList.types';
 
 export type ActionProps = {
-  isFavourite?: boolean;
   dropdownMouseOver?: () => void;
   dropdownMouseOut?: () => void;
   item: TagsListItem;
   onDelete?: (item: TagsListItem) => void;
   onEdit?: (item?: TagsListItem) => void;
   onSettingsEnter?: (event: React.MouseEvent<HTMLElement, MouseEvent> | Event) => void;
-  onFavourite?: (item?: TagsListItem) => void;
-  onVisibility?: (visibility: TagVisibility, item: TagsListItem) => void;
-  onDropdown?: (visible: boolean) => void;
+  onFavouriteChange?: (item?: TagsListItem) => void;
+  onVisibilityChange?: (visibility: TagVisibility, item: TagsListItem) => void;
+  onDropdownToggle?: (visible: boolean) => void;
   visibility?: TagVisibility;
   texts?: TagsListTexts;
   hovered?: boolean;
+  favourite?: boolean;
 };
 
 export type VisibilityProps = {
   texts?: TagsListTexts;
   item: TagsListItem;
-  onVisibility?: (visibility: TagVisibility, item: TagsListItem) => void;
+  onVisibilityChange?: (visibility: TagVisibility, item: TagsListItem) => void;
   visibility?: TagVisibility;
 };

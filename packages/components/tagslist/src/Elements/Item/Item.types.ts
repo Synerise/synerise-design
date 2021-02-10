@@ -10,8 +10,8 @@ export type ItemProps = {
   toggleDeleteModal?: () => void;
   onEdit?: (item: TagsListItem) => void;
   onDelete?: (item: TagsListItem) => void;
-  onFavourite?: (item: TagsListItem) => void;
-  onVisibility?: (visibility: TagVisibility, item: TagsListItem) => void;
+  onFavouriteChange?: (item: TagsListItem) => void;
+  onVisibilityChange?: (visibility: TagVisibility, item: TagsListItem) => void;
   onSettingsEnter?: (event: React.MouseEvent<HTMLElement, MouseEvent> | Event) => void;
   onItemSelect?: (item: TagsListItem) => void;
   icon?: ReactElement;

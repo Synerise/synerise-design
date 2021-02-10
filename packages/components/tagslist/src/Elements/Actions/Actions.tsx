@@ -15,7 +15,7 @@ const dropdownMenuClick = (event: ClickParam): void => event.domEvent.stopPropag
 
 const CheckIcon: React.FC = () => <Icon color={theme.palette['green-600']} component={<CheckS />} />;
 
-const Visibility: React.FC<VisibilityProps> = ({ texts, onVisibility, visibility, item }) => {
+const Visibility: React.FC<VisibilityProps> = ({ texts, onVisibilityChange = NOOP, visibility, item }) => {
   const visibilities = {
     [TagVisibility.Show]: texts?.visibilityShow,
     [TagVisibility.ShowIfUsed]: texts?.visibilityShowIfUsed,
@@ -32,7 +32,7 @@ const Visibility: React.FC<VisibilityProps> = ({ texts, onVisibility, visibility
           event.domEvent.stopPropagation();
           const vis = key as TagVisibility;
           setVisibility(vis);
-          if (typeof onVisibility === 'function') onVisibility(vis, item);
+          onVisibilityChange(vis, item);
         };
 
         return (
@@ -46,14 +46,14 @@ const Visibility: React.FC<VisibilityProps> = ({ texts, onVisibility, visibility
 };
 
 const Actions: React.FC<ActionProps> = ({
-  onVisibility,
-  onFavourite,
+  onVisibilityChange,
+  onFavouriteChange,
   onSettingsEnter,
   onEdit,
   onDelete,
-  onDropdown = NOOP,
+  onDropdownToggle = NOOP,
   item,
-  isFavourite,
+  favourite,
   visibility,
   texts,
 }) => {
@@ -61,29 +61,29 @@ const Actions: React.FC<ActionProps> = ({
     <Dropdown
       placement="bottomRight"
       trigger={['click']}
-      onVisibleChange={onDropdown}
+      onVisibleChange={onDropdownToggle}
       align={{ offset: [12, 16] }}
       overlay={
         // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
         <S.DropdownMenu asDropdownMenu onClick={dropdownMenuClick}>
-          <Visibility texts={texts} item={item} onVisibility={onVisibility} visibility={visibility} />
+          <Visibility texts={texts} item={item} onVisibilityChange={onVisibilityChange} visibility={visibility} />
           <Menu.Divider />
-          {!!onFavourite && (
+          {!!onFavouriteChange && (
             <S.DropdownMenuItem
               className="favourite"
               prefixel={
-                <S.FavouriteIconWrapper isFavourite={!!isFavourite}>
-                  <Icon component={isFavourite ? <StarFillM /> : <StarM />} />
+                <S.FavouriteIconWrapper favourite={!!favourite}>
+                  <Icon component={favourite ? <StarFillM /> : <StarM />} />
                 </S.FavouriteIconWrapper>
               }
-              suffixel={isFavourite ? <CheckIcon /> : null}
+              suffixel={favourite ? <CheckIcon /> : null}
               onClick={(e: ClickParam): void => {
                 e.domEvent.stopPropagation();
-                onFavourite();
-                onDropdown(false);
+                onFavouriteChange();
+                onDropdownToggle(false);
               }}
             >
-              {isFavourite ? texts?.deleteFromFavourites : texts?.addToFavourite}
+              {favourite ? texts?.deleteFromFavourites : texts?.addToFavourite}
             </S.DropdownMenuItem>
           )}
           {!!onEdit && (
@@ -92,7 +92,7 @@ const Actions: React.FC<ActionProps> = ({
               onClick={(e: ClickParam): void => {
                 e.domEvent.stopPropagation();
                 onEdit();
-                onDropdown(false);
+                onDropdownToggle(false);
               }}
             >
               {texts?.edit}
@@ -104,7 +104,7 @@ const Actions: React.FC<ActionProps> = ({
               onClick={(e: ClickParam): void => {
                 e.domEvent.stopPropagation();
                 onSettingsEnter(e.domEvent);
-                onDropdown(false);
+                onDropdownToggle(false);
               }}
             >
               {texts?.enterSettings}
@@ -118,7 +118,7 @@ const Actions: React.FC<ActionProps> = ({
               onClick={(e: ClickParam): void => {
                 e.domEvent.stopPropagation();
                 onDelete(item);
-                onDropdown(false);
+                onDropdownToggle(false);
               }}
             >
               {texts?.delete}

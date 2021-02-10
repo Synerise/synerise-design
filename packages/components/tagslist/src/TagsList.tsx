@@ -30,6 +30,7 @@ const TagsList: React.FC<TagsListProps> = props => {
     items: controlledItems,
     defaultItems = [],
     maxItemsVisible,
+    onItemsAdd,
     onChange,
     onManageTags = NOOP,
     texts: propTexts = {},
@@ -128,8 +129,8 @@ const TagsList: React.FC<TagsListProps> = props => {
       checked={item.checked}
       onDelete={item.canDelete ? onItemDelete : NOOP}
       onEdit={item.canUpdate ? onItemEdit : undefined}
-      onFavourite={onItemFavourite}
-      onVisibility={onItemVisibility}
+      onFavouriteChange={onItemFavourite}
+      onVisibilityChange={onItemVisibility}
       withCheckbox={withCheckbox}
       onSettingsEnter={
         item.canEnterSettings
@@ -166,7 +167,7 @@ const TagsList: React.FC<TagsListProps> = props => {
     setSearchOpen,
   };
 
-  if (!isControlled)
+  if (!isControlled && !onItemsAdd)
     contextValue.onItemsAdd = (addItems: TagsListItem[]): void => {
       const newItems = addItems.map(item => ({ ...item, checked: false }));
       const newList = [...items];

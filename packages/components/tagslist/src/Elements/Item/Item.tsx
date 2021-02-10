@@ -31,8 +31,8 @@ const Item: React.FC<ItemProps> = ({
   item,
   onSettingsEnter,
   onDelete = NOOP,
-  onFavourite = NOOP,
-  onVisibility = NOOP,
+  onFavouriteChange = NOOP,
+  onVisibilityChange = NOOP,
   onEdit,
   texts,
   onItemSelect = NOOP,
@@ -85,8 +85,8 @@ const Item: React.FC<ItemProps> = ({
     setHovered(false);
   };
 
-  const handleOnFavourite = (): void => {
-    onFavourite(item);
+  const handleOnFavouriteChange = (): void => {
+    onFavouriteChange(item);
   };
 
   const handleOnEdit =
@@ -95,7 +95,7 @@ const Item: React.FC<ItemProps> = ({
       setEditMode(true);
     });
 
-  const onDropdown = (opened: boolean): void => {
+  const onDropdownToggle = (opened: boolean): void => {
     setDropdownOpened(opened);
   };
 
@@ -126,13 +126,13 @@ const Item: React.FC<ItemProps> = ({
       <Actions
         onDelete={onDelete}
         item={item}
-        onVisibility={onVisibility}
-        onDropdown={onDropdown}
+        onVisibilityChange={onVisibilityChange}
+        onDropdownToggle={onDropdownToggle}
         visibility={item.visibility}
-        onFavourite={handleOnFavourite}
+        onFavouriteChange={handleOnFavouriteChange}
         onSettingsEnter={onSettingsEnter}
         onEdit={handleOnEdit}
-        isFavourite={favourite}
+        favourite={favourite}
         texts={texts}
       />
     </S.SuffixWrapper>
@@ -178,7 +178,7 @@ const Item: React.FC<ItemProps> = ({
       suffixel={suffixel}
       text={textComponent}
       // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-      // @ts-ignore: because onMouseLeave is not there :P just for clearance onMouseOut does the same
+      // @ts-ignore: because onMouseLeave is not there :P just for clearance onMouseOut isn't there too
       onMouseLeave={onMouseLeave}
       onMouseEnter={onMouseEnter}
     />
