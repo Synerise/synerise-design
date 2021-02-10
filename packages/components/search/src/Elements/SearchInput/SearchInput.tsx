@@ -98,11 +98,12 @@ class SearchInput extends React.Component<SearchInputProps, SearchInputState> {
 
   // This handler is used for onClickOutside HOC
   handleClickOutside = (): void => {
-    const { closeOnClickOutside, value } = this.props;
+    const { closeOnClickOutside, onToggle, value } = this.props;
     if (closeOnClickOutside && !value) {
       this.setState({
         isInputOpen: false,
       });
+      onToggle && onToggle(false);
     }
   };
 

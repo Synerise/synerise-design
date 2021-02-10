@@ -2,6 +2,7 @@ import * as React from 'react';
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { Menu } from 'antd';
+import { AntdMenuProps, MenuDividerProps } from './Menu.types';
 
 type SubMenuProps = {
   ordered?: boolean | undefined;
@@ -10,11 +11,6 @@ type SubMenuProps = {
   prefixel?: React.ReactNode;
   title: string | React.ReactNode;
   tabIndex?: number;
-};
-
-type AntdMenuProps = {
-  ordered?: boolean | undefined;
-  asDropdownMenu?: boolean;
 };
 
 export const prefixelWrapper = styled.div``;
@@ -28,7 +24,7 @@ const arrowDownSvgWithCustomColor = (color: string): string => {
 export const MenuDivider = styled.div`
   height: 1px;
   width: 100%;
-  margin: 8px 0;
+  margin: ${(props: MenuDividerProps): string => (props.higher ? '16px' : '8px')} 0;
   border-top: 1px dashed ${(props): string => props.theme.palette['grey-300']};
 `;
 
