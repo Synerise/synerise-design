@@ -56,11 +56,13 @@
     ]
   },
   "dependencies": {
+    "@sguest/roman-js": "^1.0.1",
     "antd": "4.1.5",
     "react": "16.13.0",
     "react-dom": "16.13.0",
     "react-perfect-scrollbar": "^1.5.8",
-    "react-styleguidist": "^11.0.5"
+    "react-styleguidist": "^11.0.5",
+    "romans": "^1.0.2"
   },
   "devDependencies": {
     "@babel/cli": "7.8.4",

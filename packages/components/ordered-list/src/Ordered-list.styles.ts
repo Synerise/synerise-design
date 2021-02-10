@@ -5,7 +5,7 @@ export const OrderedList = styled.ol`
   flex-direction: column;
   padding: 0;
   ol {
-    padding-left: 40px;
+    padding-left: 30px;
   }
   ol li {
     margin: 10px 0;
