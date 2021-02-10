@@ -1,8 +1,9 @@
 import * as React from 'react';
 import ProgressBar from '@synerise/ds-progress-bar';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
-import { select, number, boolean } from '@storybook/addon-knobs';
+import { select, text, number, boolean } from '@storybook/addon-knobs';
 import Multivalue from '@synerise/ds-progress-bar/dist/Multivalue/Multivalue';
+import ProgressTiles from '@synerise/ds-progress-bar/dist/ProgressTiles/ProgressTiles';
 
 const customColorOptions = {
   blue: theme.palette['blue-500'],
@@ -42,7 +43,7 @@ const stories = {
         percent={60}
         showLabel={false}
         strokeColor={colors}
-        containerStyles={{ display: 'flex', flexDirection: 'row', }}
+        containerStyles={{ display: 'flex', flexDirection: 'row' }}
       ></ProgressBar>
     );
   },
@@ -50,16 +51,17 @@ const stories = {
     const colors = select('Set custom color', customColorOptions, customColorOptions.green);
     const isThick = boolean('Set thick', false);
     return (
-        <ProgressBar
-          thick={isThick}
-          showLabel={true}
-          containerStyles={{flexDirection: 'row-reverse',  width: '80px'}}
-          labelFormatter={(amount,percent) => <div style={{padding : isThick ? '7px 0px 0px 8px' : '8px 0 0 8px'}}>{percent}%</div>}
-          percent={60}
-          strokeColor={colors}
-        ></ProgressBar>
+      <ProgressBar
+        thick={isThick}
+        showLabel={true}
+        containerStyles={{ flexDirection: 'row-reverse', width: '80px' }}
+        labelFormatter={(amount, percent) => (
+          <div style={{ padding: isThick ? '7px 0px 0px 8px' : '8px 0 0 8px' }}>{percent}%</div>
+        )}
+        percent={60}
+        strokeColor={colors}
+      ></ProgressBar>
     );
-
   },
   soloBarWithLabel: () => {
     const colors = select('Set custom color', customColorOptions, customColorOptions.green);
@@ -95,6 +97,25 @@ const stories = {
     ];
 
     return <Multivalue values={percentArray}></Multivalue>;
+  },
+  withProgressTiles: () => {
+    const tileWidths = ['10px', '30px', '60px', '100px'];
+
+    return (
+      <ProgressTiles
+        percent={number('Set percent ', 45, { min: 0, max: 100 })}
+        tileWidth={select('TileWidth', tileWidths, '100px')}
+        label={text('Label', 'Label')}
+        colors={[
+          customColorOptions.mars,
+          customColorOptions.yellow,
+          customColorOptions.cyan,
+          customColorOptions.red,
+          customColorOptions.yellow,
+          customColorOptions.violet
+        ]}
+      />
+    );
   },
 };
 
