@@ -12,6 +12,7 @@ type WrapperProps = {
   indentLevel?: number;
   ordered?: boolean;
   size?: 'default' | 'large';
+  active?: boolean;
 };
 
 const INDENT_LEVEL_STEP = 16;
@@ -91,7 +92,7 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
       margin-bottom: 0px;
     }
     &.ant-menu-item-selected {
-      background: none;
+      background: ${(props): string => props.theme.palette['blue-050']};
       color: ${(props): string => props.theme.palette['blue-600']};
       .ds-menu-prefix > .ds-icon > svg {
         fill: ${(props): string => props.theme.palette['blue-600']};
@@ -167,7 +168,7 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
     
     &:active {
       && {
-      background: ${(props): string => props.theme.palette['blue-050']};
+        background: ${(props): string => props.theme.palette['blue-050']};
       }
     }
 

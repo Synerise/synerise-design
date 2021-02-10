@@ -9,6 +9,7 @@ export const IconWrapper = styled.div`
 
 export const TextWrapper = styled.div`
   line-height: 12px;
+  width: 100%;
 `;
 
 export const BottomAction = styled.div`

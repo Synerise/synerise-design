@@ -17,7 +17,7 @@ const INDEX_MAP = {
   '9': 'fern-600',
 };
 
-export const Description = styled.div<{ range?: boolean}>`
+export const Description = styled.div<{ range?: boolean }>`
   margin-bottom: 45px;
   padding-bottom: 80px;
   color: ${(props): string => props.theme.palette['grey-500']};

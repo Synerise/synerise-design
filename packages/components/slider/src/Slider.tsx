@@ -33,8 +33,8 @@ const Slider: React.FC<Props> = props => {
   const [reachedEnd, setReachedEnd] = React.useState(false);
   const [reachedStart, setReachedStart] = React.useState(false);
   const calcHandlePosition = React.useCallback(() => {
-    const handler =  document.querySelectorAll('.ant-slider-handle');
-    const markTexts =  document.querySelectorAll('.ant-slider-mark-text');
+    const handler = document.querySelectorAll('.ant-slider-handle');
+    const markTexts = document.querySelectorAll('.ant-slider-mark-text');
     if (handler && markTexts?.length) {
       const firstMark = markTexts[0].getBoundingClientRect();
       const lastMark = markTexts[markTexts.length - 1].getBoundingClientRect();
@@ -42,14 +42,22 @@ const Slider: React.FC<Props> = props => {
       const lastHandler = handler[handler.length - 1].getBoundingClientRect();
       if (firstMark.x + 10 + firstMark.width > firstHandler.x || firstMark.x + 10 + firstMark.width > lastHandler.x) {
         setReachedStart(true);
-      }else{ setReachedStart(false) }
+      } else {
+        setReachedStart(false);
+      }
       if (lastMark.x - 30 < firstHandler.x || lastMark.x - 30 < lastHandler.x) {
         setReachedEnd(true);
-      }else{ setReachedEnd(false) }
+      } else {
+        setReachedEnd(false);
+      }
     }
     return { reachedEnd, reachedStart };
-  }, [reachedEnd, reachedStart ]);
-  React.useEffect( ()=> {setTimeout(()=>{calcHandlePosition()},0) },[calcHandlePosition,value])
+  }, [reachedEnd, reachedStart]);
+  React.useEffect(() => {
+    setTimeout(() => {
+      calcHandlePosition();
+    }, 0);
+  }, [calcHandlePosition, value]);
 
   const labelElement = React.useMemo(
     () =>
