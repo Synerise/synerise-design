@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.31.3](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.31.2...@synerise/ds-table@0.31.3) (2021-02-10)
+
+
+### Bug Fixes
+
+* **table:** add ds-alert as dependency ([36d370e](https://github.com/synerise/synerise-design/commit/36d370e83a2d1baffe87cb17d7ced64ed420bcb3))
+
+
+
+
+
 ## [0.31.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.31.1...@synerise/ds-table@0.31.2) (2021-02-08)
 
 **Note:** Version bump only for package @synerise/ds-table
