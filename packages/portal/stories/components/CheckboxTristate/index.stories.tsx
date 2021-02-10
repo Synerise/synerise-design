@@ -28,7 +28,7 @@ const stories = {
 };
 
 export default {
-  name: 'Components/CheckboxTristate',
+  name: 'Components/Checkbox/CheckboxTristate',
   config: {},
   stories,
   Component: CheckboxTristate,
