@@ -21,6 +21,7 @@ const ItemPickerDropdown: React.FC<Props> = ({
   dropdownRowHeight,
   dropdownBottomAction,
   closeOnBottomAction,
+  isDropdownOpened,
 }) => {
   const rowCount = dropdownVisibleRows || DEFAULT_VISIBLE_ROWS;
   const rowHeight = dropdownRowHeight || DEFAULT_ROW_HEIGHT;
@@ -63,7 +64,7 @@ const ItemPickerDropdown: React.FC<Props> = ({
         placeholder={placeholder}
         value={searchQuery}
         onClearInput={(): void => setSearchQuery('')}
-        autofocus
+        autofocus={isDropdownOpened}
       />
       <S.DSMenu>
         {filteredDataSource.length === 0 && <Result type="no-results" description={noResults} />}

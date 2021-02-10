@@ -65,11 +65,11 @@ export const Inactive = styled.div<{
 }>`
   position: relative;
   width: 100%;
-  min-height: 32px;
+  height: 32px;
+  display: flex;
   ${(props): false | string => !!props.rows && `height: ${props.rows * 17 + 17}px;`}
   align-items: flex-start;
   background: ${(props): string => props.theme.palette.white};
-  display: flex;
   padding: ${blurPadding};
   opacity: ${(props): string => (props.disabled ? `0.5` : `1`)};
   border-radius: 3px;

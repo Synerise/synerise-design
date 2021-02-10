@@ -74,6 +74,7 @@ const ItemPicker: React.FC<ItemPickerProps> = ({
         dropdownRowHeight={dropdownRowHeight}
         dropdownBottomAction={dropdownBottomAction}
         closeOnBottomAction={closeOnBottomAction}
+        isDropdownOpened={dropdownOpened}
       />
     ),
     [
@@ -86,6 +87,7 @@ const ItemPicker: React.FC<ItemPickerProps> = ({
       dropdownRowHeight,
       dropdownBottomAction,
       closeOnBottomAction,
+      dropdownOpened,
     ]
   );
 

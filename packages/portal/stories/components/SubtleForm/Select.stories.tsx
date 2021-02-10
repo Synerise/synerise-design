@@ -9,7 +9,7 @@ import Status from '@synerise/ds-status';
 import { StatusProps } from '@synerise/ds-status/dist/Status.types';
 import { SelectValue } from 'antd/es/select';
 import styled from 'styled-components';
-import { CheckM, CheckS } from '@synerise/ds-icon/dist/icons';
+import { CheckS } from '@synerise/ds-icon/dist/icons';
 import Icon from '@synerise/ds-icon';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 const decorator = storyFn => <div style={{ width: '314px', padding: '16px', background: '#fff' }}>{storyFn()}</div>;
@@ -18,12 +18,40 @@ export const renderLabel = (text: string, icon?: React.ReactNode) => {
   return <div style={{ maxWidth: '200px', textOverflow: 'ellipsis', overflow: 'hidden' }}>{text}</div>;
 };
 
-const StatusWrapper = styled.div`
+const StatusWrapper = styled.div<{ flex?: boolean }>`
+  ${props =>
+    props.flex &&
+    `display: flex;
+  justify-content: space-between;
+  align-items: center;`}
+
   .ds-status {
     margin: 0;
   }
 `;
 
+const SelectedStatusWrapper = styled.div`
+  .ds-status {
+    margin: 0;
+  }
+  display: inline-flex;
+  align-items: flex-start;
+  position: absolute;
+  top: 7px;
+`;
+
+const renderStatusOption = (status: StatusProps, checked?: boolean) => (
+  <StatusWrapper flex>
+    <Status {...status} />
+    {checked && <Icon component={<CheckS />} color={theme.palette['green-600']} />}
+  </StatusWrapper>
+);
+
+const renderSelectedStatus = (status: StatusProps) => (
+  <SelectedStatusWrapper>
+    <Status {...status} />
+  </SelectedStatusWrapper>
+);
 export const getErrorText = (error: boolean, errorText: string): string => {
   if (error) {
     return errorText;
@@ -40,11 +68,6 @@ const renderPrefix = (country: any) => (
   </div>
 );
 
-const renderStatus = (status: StatusProps) => (
-  <StatusWrapper>
-    <Status {...status} />
-  </StatusWrapper>
-);
 const stories = {
   default: () => {
     const [value, setValue] = React.useState<string>();
@@ -57,9 +80,9 @@ const stories = {
           disabled={disabled}
           onChange={val => setValue(val)}
           value={value}
-          placeholder={'Status'}
-          label={renderLabel('Status')}
-          labelTooltip={'Status'}
+          placeholder={'City'}
+          label={renderLabel('City')}
+          labelTooltip={'City'}
           suffixTooltip={'Select'}
           error={validationState}
           errorText={getErrorText(validationState, errorMessage)}
@@ -113,6 +136,7 @@ const stories = {
   },
   statuses: () => {
     const [value, setValue] = React.useState<React.ReactNode | undefined>();
+    const [statusLabel, setStatusLabel] = React.useState<string | undefined>();
     const validationState = boolean('Set validation state', false);
     const errorMessage = text('Error Text', 'Error');
     const disabled = boolean('Set disabled', false);
@@ -122,7 +146,8 @@ const stories = {
           disabled={disabled}
           onChange={label => {
             const selectedStatus = Statuses.find(s => s.label === label);
-            setValue(renderStatus(selectedStatus));
+            setValue(renderSelectedStatus(selectedStatus));
+            setStatusLabel(label);
           }}
           value={value as SelectValue}
           placeholder={'Status'}
@@ -130,14 +155,12 @@ const stories = {
           labelTooltip={'Status'}
           suffixTooltip={'Select'}
           error={validationState}
+          options={Statuses.map(status => ({
+            label: renderStatusOption(status, statusLabel === status.label),
+            value: status.label,
+          }))}
           errorText={getErrorText(validationState, errorMessage)}
-        >
-          {Statuses.map(status => (
-            <Select.Option key={status.label}>
-              <Status {...status} />
-            </Select.Option>
-          ))}
-        </SubtleForm.Select>
+        ></SubtleForm.Select>
       </div>
     );
   },

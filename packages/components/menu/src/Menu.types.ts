@@ -6,6 +6,11 @@ export interface AntdMenuProps extends Omit<MenuProps, 'dataSource' | 'footer'> 
   ordered?: boolean;
   asDropdownMenu?: boolean;
 }
+
+export type MenuDividerProps = {
+  higher?: boolean;
+}
+
 export enum VisibilityTrigger {
   DEFAULT = 'default',
   HOVER = 'hover',

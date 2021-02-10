@@ -17,12 +17,13 @@ const INDEX_MAP = {
   '9': 'fern-600',
 };
 
-export const Description = styled.div`
+export const Description = styled.div<{ range?: boolean }>`
   margin-bottom: 45px;
   padding-bottom: 80px;
   color: ${(props): string => props.theme.palette['grey-500']};
   font-weight: 400;
   position: absolute;
+  opacity: ${(props): string => (props.range ? '0' : '1')};
 `;
 
 export const LabelWrapper = styled.div`
@@ -81,6 +82,14 @@ export const applyTooltipStyles = (props: ThemeProps & DsSliderProps & SliderSty
     }
     `}
   }
+  .ant-slider-handle:focus {
+  ${!props.disabled &&
+    `
+  ${Description} {
+     ${props.range && `opacity: 1`};
+    }
+    }
+    `}
   .ant-slider-handle:hover:not(:focus) {
     background-color: ${!props.disabled && props.theme.palette['grey-500']};
   }
@@ -171,10 +180,12 @@ const createTracksStyles = (
 type SliderStyles = {
   reachedEnd?: boolean;
   reachedStart?: boolean;
-}
+};
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const AntdSlider = styled((Slider as any) as ComponentType<Omit<SliderProps, 'value'>>)<DsSliderProps & SliderStyles>`
+export const AntdSlider = styled((Slider as any) as ComponentType<Omit<SliderProps, 'value'>>)<
+  DsSliderProps & SliderStyles
+>`
   ${(props): FlattenSimpleInterpolation =>
     props.useColorPalette ? createTracksStyles(props, props.tracksColorMap ? props.tracksColorMap : INDEX_MAP) : css``}
   .ant-slider-track {
