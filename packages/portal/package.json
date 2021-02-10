@@ -5,8 +5,8 @@
   "homepage": "./",
   "repository": "synerise/synerise-design",
   "scripts": {
-    "build-docs": "build-storybook -s public",
-    "storybook": "start-storybook -p 9099 -s public"
+    "build-docs": "build-storybook",
+    "storybook": "start-storybook -p 9099"
   },
   "browserslist": [
     ">0.2%",
