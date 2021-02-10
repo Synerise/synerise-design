@@ -13074,6 +13074,11 @@ highlight-words-core@^1.2.0:
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/highlight-words-core/-/highlight-words-core-1.2.2.tgz#1eff6d7d9f0a22f155042a00791237791b1eeaaa"
   integrity sha1-Hv9tfZ8KIvFVBCoAeRI3eRse6qo=
 
+highlight.js@^10.1.1, highlight.js@~10.6.0:
+  version "10.6.0"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/highlight.js/-/highlight.js-10.6.0.tgz#0073aa71d566906965ba6e1b7be7b2682f5e18b6"
+  integrity sha1-AHOqcdVmkGllum4be+eyaC9eGLY=
+
 highlight.js@~9.13.0:
   version "9.13.1"
   resolved "https://registry.yarnpkg.com/highlight.js/-/highlight.js-9.13.1.tgz#054586d53a6863311168488a0f58d6c505ce641e"
