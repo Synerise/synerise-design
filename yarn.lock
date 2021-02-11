@@ -4113,11 +4113,6 @@
   dependencies:
     any-observable "^0.3.0"
 
-"@sguest/roman-js@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@sguest/roman-js/-/roman-js-1.0.1.tgz#26f7d44a2b22cf1e34604f92966e092fb035d32a"
-  integrity sha512-Fc7lrKWn6JbyyjvNs2HqAV0Jzv+aztsfq0MyU+PDpsuqOqmkET8HngesDJZ8GeMUU0iTMOczPq0bX9YucpiJOg==
-
 "@sinonjs/commons@^1.7.0":
   version "1.7.1"
   resolved "https://registry.yarnpkg.com/@sinonjs/commons/-/commons-1.7.1.tgz#da5fd19a5f71177a53778073978873964f49acf1"
@@ -5101,6 +5096,11 @@
   version "0.36.0"
   resolved "https://registry.yarnpkg.com/@synerise/ds-icon/-/ds-icon-0.36.0.tgz#d90b6b1c5bd289886414948651ce08939d2436be"
   integrity sha512-QIsusjZAOURBSNdEqNuFFFFfy+GE1ZnwlTLThMq3bbJ3bgHWj7i5jpE27rW3r4+NP3l6ON10S4dwrmrEFqGTzw==
+
+"@synerise/ds-icon@^0.38.2":
+  version "0.38.2"
+  resolved "https://registry.yarnpkg.com/@synerise/ds-icon/-/ds-icon-0.38.2.tgz#acf55dc6d17fb720e38dba76db39daad21f4e25d"
+  integrity sha512-kdBguscAV9esacblt5uZkloga2UXc2rKBrA870p8Ky5W5UI9VydgDClHNM6TeyYoW8NAPM8TNPhGlCEKweY8nQ==
 
 "@synerise/ds-input-number@^0.3.45":
   version "0.3.45"
@@ -20672,11 +20672,6 @@ rmc-feedback@^2.0.0:
   dependencies:
     babel-runtime "6.x"
     classnames "^2.2.5"
-
-romans@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/romans/-/romans-1.0.2.tgz#98c97c7b2e0a412b1503f7cc5fbd32609dfe4817"
-  integrity sha512-6Q5EoZbQZ6zJuKiP13MnIbfM28ao7ctUo7zfELr4eXl9QyMgZarslu3Ty/Uiwcy+/6519bFTJ0X1Rqd1Sg3VYA==
 
 rst-selector-parser@^2.2.3:
   version "2.2.3"

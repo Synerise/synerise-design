@@ -1,12 +1,12 @@
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 
 import * as React from 'react';
-import OrderedList from '../../dist/OrderedList';
-import { OrderedListProps } from '../../dist/Ordered-list';
 import Icon from '@synerise/ds-icon';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { Close3S } from '@synerise/ds-icon/dist/icons';
 import { RenderResult } from '@testing-library/react';
+import { OrderedListItem } from '../Ordered-list.types';
+import OrderedList from '../Ordered-list';
 
   describe('Ordered-list with nested items', () => {
     const data = [
@@ -14,11 +14,11 @@ import { RenderResult } from '@testing-library/react';
       { text: 'Option 2' },
       { text: 'Option 3', subMenu: [{ text: 'Child 1' }] },
       { text: 'Option 4', subMenu: [{ text: 'Child 1' }] },
-    ] as OrderedListProps[];
+    ] ;
 
     it('should render basic menu list', () => {
       // ARRANGE
-      const { getByText } = renderWithProvider(<OrderedList data={data}/>);
+      const { getByText } = renderWithProvider(<OrderedList data={data as unknown as OrderedListItem[]}/>);
 
       // ASSERT
       expect(getByText('Option 1')).toBeTruthy();
@@ -27,10 +27,14 @@ import { RenderResult } from '@testing-library/react';
   });
 describe('Ordered-list indexFormatter', () => {
   const indexFormatter = (index: number) => (`${index}-custom`)
+  const data = [
+    { text: 'Option 1' },
+    { text: 'Option 2' },
+  ] ;
 
   it('should render basic menu list', () => {
     // ARRANGE
-    const { getByText } = renderWithProvider(<OrderedList indexFormatter={indexFormatter}/>);
+    const { getByText } = renderWithProvider(<OrderedList data={data}  indexFormatter={indexFormatter}/>);
 
     // ASSERT
     expect(getByText("1-custom")).toBeTruthy();
