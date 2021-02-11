@@ -25,4 +25,4 @@ const Item: React.FC<OrderedListItem & Pick<ListProps, 'indexFormatter'>> = ({
   );
 };
 
-export default Item;
+export default React.memo(Item);
