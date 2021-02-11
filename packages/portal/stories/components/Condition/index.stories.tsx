@@ -224,7 +224,7 @@ const stories = {
       >
         <Condition
           texts={{
-            stepNamePlaceholder: 'Step name',
+            stepNamePlaceholder: 'unnamed step',
             removeConditionRowTooltip: 'Remove',
             addConditionRowButton: 'and where',
             dropLabel: 'Drop me here',
@@ -290,7 +290,10 @@ const stories = {
                 defaultFactorType: 'text',
                 setSelectedFactorType: factorType => setStepConditionFactorType(step.id, condition.id, factorType),
                 onChangeValue: value => setStepConditionFactorValue(step.id, condition.id, value),
-                textType: 'default',
+                textType: select('Select type of text input', ['autocomplete', 'expansible', 'default'], 'default'),
+                autocompleteText: {
+                  options: ['First name', 'Last name', 'City', 'Age', 'Points'],
+                },
                 value: condition.factor.value,
                 formulaEditor: <div>Formula editor</div>,
                 parameters: {

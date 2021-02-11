@@ -165,7 +165,7 @@ export const DEFAULT_CONDITION_ROW = () => ({
 
 export const DEFAULT_STEP = () => ({
   id: uuid(),
-  stepName: 'Step name',
+  stepName: '',
   subject: {
     onShowPreview: undefined,
     type: 'event',
