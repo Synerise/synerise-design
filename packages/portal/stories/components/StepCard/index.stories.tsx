@@ -70,7 +70,7 @@ const stories = {
           )
         }
       >
-        <ConditionExample steps={steps} onChange={setSteps} />;
+        <ConditionExample steps={steps} onChange={setSteps} />
       </StepCard>
     );
   },
