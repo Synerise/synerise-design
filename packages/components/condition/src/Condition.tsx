@@ -45,6 +45,7 @@ const Condition: React.FC<ConditionProps> = ({
       stepNamePlaceholder: formatMessage({ id: 'DS.CONDITION.STEP_NAME-PLACEHOLDER' }),
       removeConditionRowTooltip: formatMessage({ id: 'DS.CONDITION.REMOVE-CONDITION-ROW-TOOLTIP' }),
       addConditionRowButton: formatMessage({ id: 'DS.CONDITION.ADD-CONDITION-ROW-BUTTON' }),
+      addFirstConditionRowButton: formatMessage({ id: 'DS.CONDITION.ADD-FIRST-CONDITION-ROW-BUTTON' }),
       addStep: formatMessage({ id: 'DS.CONDITION.ADD-STEP' }),
       dropLabel: formatMessage({ id: 'DS.CONDITION.DROP-LABEL' }),
       moveTooltip: formatMessage({ id: 'DS.CONDITION.MOVE-TOOLTIP' }),
@@ -59,6 +60,7 @@ const Condition: React.FC<ConditionProps> = ({
 
   const clearConditionRow = React.useCallback(
     step => {
+      if (step.conditions.length === 0) return;
       if (removeCondition && addCondition) {
         step.conditions.forEach((condition: StepConditions, index: number) => {
           if (index > 0) {
@@ -111,8 +113,8 @@ const Condition: React.FC<ConditionProps> = ({
     if (condition.id && condition.operator) {
       condition.factor && condition.factor.onChangeValue(undefined);
       condition.operator.onChange(value);
-      setCurrentConditionId(DEFAULT_CONDITION);
-      setCurrentField(DEFAULT_FIELD);
+      setCurrentConditionId(condition.id);
+      setCurrentField('factor');
     }
   }, []);
 
@@ -173,7 +175,7 @@ const Condition: React.FC<ConditionProps> = ({
                   )}
                 </S.Subject>
                 <S.ConditionRows>
-                  {step.conditions &&
+                  {step.conditions.length > 0 &&
                     step.conditions.map((condition, conditionIndex) => (
                       <S.ConditionRow key={`condition-row-${condition.id}`}>
                         <S.ConditionConnections
@@ -198,7 +200,14 @@ const Condition: React.FC<ConditionProps> = ({
                             />
                           )}
                         </S.ConditionWrapper>
-                        <S.ConditionWrapper>{condition.factor && <Factors {...condition.factor} />}</S.ConditionWrapper>
+                        <S.ConditionWrapper>
+                          {condition.factor && (
+                            <Factors
+                              {...condition.factor}
+                              opened={condition.id === currentConditionId && currentField === 'factor'}
+                            />
+                          )}
+                        </S.ConditionWrapper>
                         {removeCondition && step.conditions.length > 1 && (
                           <S.RemoveIconWrapper
                             onClick={(): void => removeCondition(step.id, condition.id)}
@@ -216,7 +225,7 @@ const Condition: React.FC<ConditionProps> = ({
                       <S.ConditionConnections last first={step.conditions.length === 0} />
                       <Button type="ghost" mode="icon-label" onClick={(): void => addCondition(step.id)}>
                         <Icon component={<Add2M />} />
-                        {text.addConditionRowButton}
+                        {step.conditions.length > 0 ? text.addConditionRowButton : text.addFirstConditionRowButton}
                       </Button>
                     </S.AddConditionRow>
                   )}

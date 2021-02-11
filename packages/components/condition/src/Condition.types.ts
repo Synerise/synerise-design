@@ -22,6 +22,7 @@ export type ConditionStep = {
 export type ConditionTexts = {
   stepNamePlaceholder: string;
   removeConditionRowTooltip: string;
+  addFirstConditionRowButton: string;
   addConditionRowButton: string;
   addStep: string | React.ReactNode;
   dropLabel: string;
