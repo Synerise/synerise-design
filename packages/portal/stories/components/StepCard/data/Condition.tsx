@@ -236,8 +236,9 @@ export const ConditionExample: React.FC<ConditionExampleProps> = ({ steps, onCha
   return (
     <Condition
       texts={{
-        stepNamePlaceholder: 'unnamed step',
+        stepNamePlaceholder: 'Unnamed step',
         removeConditionRowTooltip: 'Remove',
+        addFirstConditionRowButton: 'where',
         addConditionRowButton: 'and where',
         dropLabel: 'Drop me here',
         addStep: 'Add funnel step',

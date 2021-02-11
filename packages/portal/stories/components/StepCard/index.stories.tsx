@@ -51,7 +51,7 @@ const stories = {
         texts={{
           matching: 'Matching',
           notMatching: 'Not matching',
-          namePlaceholder: 'unnamed',
+          namePlaceholder: 'Unnamed',
           moveTooltip: 'Move',
           deleteTooltip: 'Delete',
           duplicateTooltip: 'Duplicate',

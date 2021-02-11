@@ -35,8 +35,10 @@ const TextInput: React.FC<InputProps> = ({ value, onChange, texts, textType, aut
 
   const autocompleteOptions = React.useMemo(() => {
     return (
-      autocompleteText &&
-      autocompleteText.options.filter(option => option.toLowerCase().includes((value as string).toLowerCase()))
+      (value &&
+        autocompleteText &&
+        autocompleteText.options.filter(option => option.toLowerCase().includes((value as string).toLowerCase()))) ||
+      []
     );
   }, [value, autocompleteText]);
 
