@@ -25,6 +25,17 @@ import { RenderResult } from '@testing-library/react';
       expect(getByText('Option 2')).toBeTruthy();
     });
   });
+describe('Ordered-list indexFormatter', () => {
+  const indexFormatter = (index: number) => (`${index}-custom`)
+
+  it('should render basic menu list', () => {
+    // ARRANGE
+    const { getByText } = renderWithProvider(<OrderedList indexFormatter={indexFormatter}/>);
+
+    // ASSERT
+    expect(getByText("1-custom")).toBeTruthy();
+  });
+});
 describe('Ordered-list with prefix and suffix', () => {
     const dataSource = [
       {

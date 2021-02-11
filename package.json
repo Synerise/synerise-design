@@ -60,7 +60,7 @@
     "react": "16.13.0",
     "react-dom": "16.13.0",
     "react-perfect-scrollbar": "^1.5.8",
-    "react-styleguidist": "^11.0.5",
+    "react-styleguidist": "^11.0.5"
   },
   "devDependencies": {
     "@babel/cli": "7.8.4",
