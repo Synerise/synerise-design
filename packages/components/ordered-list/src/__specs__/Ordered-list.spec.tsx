@@ -5,7 +5,7 @@ import OrderedList from '../../dist/OrderedList';
 import { OrderedListProps } from '../../dist/Ordered-list';
 import Icon from '@synerise/ds-icon';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
-import { CloseS } from '@synerise/ds-icon/dist/icons';
+import { Close3S } from '@synerise/ds-icon/dist/icons';
 import { RenderResult } from '@testing-library/react';
 
   describe('Ordered-list with nested items', () => {
@@ -42,7 +42,7 @@ describe('Ordered-list with prefix and suffix', () => {
         text: 'Option 1',
         suffixel: (
           <div className={'suffix-test-wrapper'}>
-            <Icon color={theme.palette['red-600']} component={<CloseS />} />
+            <Icon color={theme.palette['red-600']} component={<Close3S />} />
           </div>
         ),
       },
@@ -50,7 +50,7 @@ describe('Ordered-list with prefix and suffix', () => {
         text: 'Option 2',
         prefixel: (
           <div className={'prefix-test-wrapper'}>
-            <Icon color={theme.palette['blue-600']} component={<CloseS />} />
+            <Icon color={theme.palette['blue-600']} component={<Close3S />} />
           </div>
         ),
       },
