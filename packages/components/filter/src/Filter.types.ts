@@ -29,7 +29,7 @@ export type FilterProps = {
   onDuplicateStep: (id: string) => void;
   renderStepFooter?: (expression: Expression) => React.ReactNode;
   renderStepContent?: (expression: Expression) => React.ReactNode;
-  onAdd?: () => void;
+  addFilterComponent?: React.ReactNode;
   texts?: {
     matching?: MatchingTexts;
     step?: StepCardTexts;

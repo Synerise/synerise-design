@@ -12,8 +12,11 @@ import Button from '@synerise/ds-button';
 import Icon from '@synerise/ds-icon';
 import { CalendarM } from '@synerise/ds-icon/dist/icons';
 import { default as fnsFormat } from '@synerise/ds-date-range-picker/dist/dateUtils/format';
+import { CONTEXT_TEXTS } from '../ContextSelector/data/index.data';
+import { CONTEXT_CLIENT_GROUPS, CONTEXT_CLIENT_ITEMS } from '../ContextSelector/data/client.data';
+import ContextSelector from '@synerise/ds-context-selector';
 
-const DEFAULT_EXPRESSION = () => ({
+const DEFAULT_EXPRESSION = (subject = undefined) => ({
   type: 'STEP',
   id: uuid(),
   data: {
@@ -37,7 +40,7 @@ const DEFAULT_EXPRESSION = () => ({
       to: undefined,
     },
   },
-  expressionSteps: [DEFAULT_STEP()],
+  expressionSteps: [DEFAULT_STEP(subject)],
 });
 
 const DEFAULT_STATE = {
@@ -210,8 +213,8 @@ const stories = {
       return <ConditionExample onChange={handleChangeExpressionSteps} steps={expression.expressionSteps} />;
     };
 
-    const handleAddStep = () => {
-      store.set({ expressions: [...store.state.expressions, DEFAULT_EXPRESSION()] });
+    const handleAddStep = subject => {
+      store.set({ expressions: [...store.state.expressions, DEFAULT_EXPRESSION(subject)] });
     };
 
     const handleChangeMatching = matching => {
@@ -238,7 +241,16 @@ const stories = {
       >
         <Filter
           expressions={store.state.expressions}
-          onAdd={handleAddStep}
+          addFilterComponent={
+            <ContextSelector
+              texts={{ ...CONTEXT_TEXTS, buttonLabel: 'Add filter' }}
+              onSelectItem={handleAddStep}
+              selectedItem={null}
+              items={CONTEXT_CLIENT_ITEMS}
+              groups={CONTEXT_CLIENT_GROUPS}
+              addMode={true}
+            />
+          }
           onChangeLogic={handleChangeLogic}
           onChangeOrder={handleChangeOrder}
           onChangeStepMatching={handleChangeStepMatching}
@@ -256,7 +268,7 @@ const stories = {
             step: {
               matching: 'Matching',
               notMatching: 'Not matching',
-              namePlaceholder: 'unnamed',
+              namePlaceholder: 'Unnamed',
               moveTooltip: 'Move',
               deleteTooltip: 'Delete',
               duplicateTooltip: 'Duplicate',
