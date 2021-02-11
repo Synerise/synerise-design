@@ -17,7 +17,7 @@ const DEFAULT_EXPRESSION = () => ({
   type: 'STEP',
   id: uuid(),
   data: {
-    name: 'Step #1',
+    name: '',
     matching: false,
   },
   logic: {
@@ -256,7 +256,7 @@ const stories = {
             step: {
               matching: 'Matching',
               notMatching: 'Not matching',
-              namePlaceholder: 'name',
+              namePlaceholder: 'unnamed',
               moveTooltip: 'Move',
               deleteTooltip: 'Delete',
               duplicateTooltip: 'Duplicate',
