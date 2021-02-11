@@ -10,10 +10,11 @@ const Item: React.FC<OrderedListItem & Pick<ListProps, 'indexFormatter'>> = ({
   subMenu,
   indexFormatter,
   index,
+  listStyle
 }) => {
   return (
     <>
-      <S.ItemWrapper>
+      <S.ItemWrapper listStyle={listStyle}>
         {indexFormatter ? indexFormatter(index) : index}
         {prefixel}
         {label}

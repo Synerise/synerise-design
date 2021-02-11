@@ -8,9 +8,11 @@ export type OrderedListItem = {
   suffixel?: React.ReactNode;
   index: number;
   subMenu?: OrderedListItem[];
+  listStyle?: string;
 };
 
 export type ListProps = {
   data: OrderedListItem[];
   indexFormatter?: (index: number) => React.ReactNode | string;
+  listStyle?: string;
 };
