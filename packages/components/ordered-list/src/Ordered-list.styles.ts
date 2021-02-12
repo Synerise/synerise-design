@@ -13,4 +13,7 @@ export const OrderedList = styled.ol<{ listStyle?: string }>`
     padding: 0;
     list-style-type: ${(props): string => (props.listStyle ? props.listStyle : 'none')};
   }
+  li {
+    margin-right: 4px;
+  }
 `;
