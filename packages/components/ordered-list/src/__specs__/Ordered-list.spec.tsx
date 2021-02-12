@@ -34,7 +34,7 @@ describe('Ordered-list indexFormatter', () => {
 
   it('should render basic menu list', () => {
     // ARRANGE
-    const { getByText } = renderWithProvider(<OrderedList data={data}  indexFormatter={indexFormatter}/>);
+    const { getByText } = renderWithProvider(<OrderedList data={data as unknown as OrderedListItem[]}  indexFormatter={indexFormatter}/>);
 
     // ASSERT
     expect(getByText("1-custom")).toBeTruthy();
@@ -61,7 +61,7 @@ describe('Ordered-list with prefix and suffix', () => {
       ]
   let renderedMenu: RenderResult;
   beforeEach(() => {
-    renderedMenu = renderWithProvider(<OrderedList data={dataSource} />);
+    renderedMenu = renderWithProvider(<OrderedList data={dataSource as unknown as OrderedListItem[]} />);
   });
   it('should render prefix element', () => {
     // ARRANGE
