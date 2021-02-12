@@ -2,7 +2,6 @@ import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 
 import * as React from 'react';
 import Icon from '@synerise/ds-icon';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { Close3S } from '@synerise/ds-icon/dist/icons';
 import { RenderResult } from '@testing-library/react';
 import { OrderedListItem } from '../Ordered-list.types';
@@ -46,7 +45,7 @@ describe('Ordered-list with prefix and suffix', () => {
         text: 'Option 1',
         suffixel: (
           <div className={'suffix-test-wrapper'}>
-            <Icon color={theme.palette['red-600']} component={<Close3S />} />
+            <Icon  component={<Close3S />} />
           </div>
         ),
       },
@@ -54,7 +53,7 @@ describe('Ordered-list with prefix and suffix', () => {
         text: 'Option 2',
         prefixel: (
           <div className={'prefix-test-wrapper'}>
-            <Icon color={theme.palette['blue-600']} component={<Close3S />} />
+            <Icon  component={<Close3S />} />
           </div>
         ),
       },
