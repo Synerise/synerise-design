@@ -177,9 +177,9 @@ const stories = {
     };
     const setLevel = select('Set level', level,level.first);
     const Icons = {
-      CheckS: <Icon size={20} style={{marginBottom: '2px'}}  component={<CheckS />} />,
-      Close3S: <Icon size={20} style={{marginBottom: '2px'}}  color={theme.palette['red-600']} component={<Close3S />} />,
-      Check3S: <Icon size={20} style={{marginBottom: '2px'}}  color={theme.palette['green-600']} component={<Check3S />} />,
+      CheckS: <Icon size={20}   component={<CheckS />} />,
+      Close3S: <Icon size={20}  color={theme.palette['red-600']} component={<Close3S />} />,
+      Check3S: <Icon size={20}  color={theme.palette['green-600']} component={<Check3S />} />,
     };
     const textIcons = [
       'CheckS',
