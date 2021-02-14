@@ -3,12 +3,31 @@ import { FullScreenM } from '@synerise/ds-icon/dist/icons';
 import Icon from '@synerise/ds-icon';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import Autocomplete from '@synerise/ds-autocomplete';
+import { Input } from '@synerise/ds-input';
+import { useState } from 'react';
 import { InputProps } from '../../Factors.types';
 import * as S from './Text.styles';
 import TextModal from './TextModal';
 
-const TextInput: React.FC<InputProps> = ({ value, onChange, texts, textType, autocompleteText, factorType }) => {
+const TextInput: React.FC<InputProps> = ({
+  value,
+  onChange,
+  texts,
+  textType,
+  autocompleteText,
+  factorType,
+  opened,
+}) => {
   const [openExpanseEditor, setOpenExpanseEditor] = React.useState(false);
+  const [inputRef, setInputRef] = useState<
+    React.MutableRefObject<HTMLInputElement | HTMLTextAreaElement | undefined>
+  >();
+
+  React.useEffect(() => {
+    if (inputRef?.current && opened) {
+      inputRef.current.focus();
+    }
+  }, [inputRef, opened]);
 
   const SuffixIcon = React.useMemo(() => {
     return factorType === 'text' && textType === 'expansible' ? (
@@ -53,14 +72,15 @@ const TextInput: React.FC<InputProps> = ({ value, onChange, texts, textType, aut
           ))}
         </Autocomplete>
       ) : (
-        <S.Input
-          placeholder={texts.valuePlaceholder}
-          // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-          // @ts-ignore
-          suffix={SuffixIcon}
-          value={value as string}
-          onChange={handleChange}
-        />
+        <S.InputWrapper>
+          <Input
+            handleInputRef={setInputRef}
+            placeholder={texts.valuePlaceholder}
+            suffix={SuffixIcon}
+            value={value as string}
+            onChange={handleChange}
+          />
+        </S.InputWrapper>
       )}
       <TextModal
         visible={openExpanseEditor}

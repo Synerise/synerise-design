@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { RawInput } from '@synerise/ds-input';
 
 // eslint-disable-next-line import/prefer-default-export
 export const IconWrapper = styled.span`
@@ -12,12 +11,14 @@ export const IconWrapper = styled.span`
   }
 `;
 
-export const Input = styled(RawInput)`
-  padding: 0;
-  &:before {
-    display: none;
-  }
+export const InputWrapper = styled.div`
   input {
-    max-height: 30px;
+    padding: 0;
+    &:before {
+      display: none;
+    }
+    input {
+      max-height: 30px;
+    }
   }
 `;
