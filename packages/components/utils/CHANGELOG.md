@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.12.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@0.11.16...@synerise/ds-utils@0.12.0) (2021-02-15)
+
+
+### Features
+
+* **progress-bar:** add progress tiles ([3a4a29a](https://github.com/synerise/synerise-design/commit/3a4a29a959d6842a9c873ba8dacf6da32211370b))
+
+
+
+
+
 ## [0.11.16](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@0.11.15...@synerise/ds-utils@0.11.16) (2021-02-08)
 
 **Note:** Version bump only for package @synerise/ds-utils
