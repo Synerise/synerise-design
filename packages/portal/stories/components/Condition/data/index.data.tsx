@@ -163,18 +163,18 @@ export const DEFAULT_CONDITION_ROW = () => ({
   },
 });
 
-export const DEFAULT_STEP = () => ({
+export const DEFAULT_STEP = (subject = undefined) => ({
   id: uuid(),
-  stepName: 'Step name',
+  stepName: '',
   subject: {
     onShowPreview: undefined,
     type: 'event',
     placeholder: 'Choose event',
     iconPlaceholder: <NotificationsM />,
-    selectedItem: undefined,
+    selectedItem: subject,
     items: SUBJECT_ITEMS,
   },
-  conditions: [DEFAULT_CONDITION_ROW()],
+  conditions: [],
 });
 
 export const DEFAULT_STATE = {

@@ -236,8 +236,9 @@ export const ConditionExample: React.FC<ConditionExampleProps> = ({ steps, onCha
   return (
     <Condition
       texts={{
-        stepNamePlaceholder: 'Step name',
+        stepNamePlaceholder: 'Unnamed step',
         removeConditionRowTooltip: 'Remove',
+        addFirstConditionRowButton: 'where',
         addConditionRowButton: 'and where',
         dropLabel: 'Drop me here',
         addStep: 'Add funnel step',
@@ -302,7 +303,10 @@ export const ConditionExample: React.FC<ConditionExampleProps> = ({ steps, onCha
             defaultFactorType: 'text',
             setSelectedFactorType: factorType => setStepConditionFactorType(step.id, condition.id, factorType),
             onChangeValue: value => setStepConditionFactorValue(step.id, condition.id, value),
-            textType: 'default',
+            textType: select('Select type of text input', ['autocomplete', 'expansible', 'default'], 'default'),
+            autocompleteText: {
+              options: ['First name', 'Last name', 'City', 'Age', 'Points'],
+            },
             value: condition.factor.value,
             formulaEditor: <div>Formula editor</div>,
             parameters: {

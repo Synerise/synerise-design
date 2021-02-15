@@ -4,9 +4,6 @@ import Logic from '@synerise/ds-logic';
 import Matching from '@synerise/ds-logic/dist/Matching/Matching';
 import StepCard from '@synerise/ds-step-card';
 import { LogicOperatorValue } from '@synerise/ds-logic/dist/Logic.types';
-import Button from '@synerise/ds-button';
-import { Add3M } from '@synerise/ds-icon/dist/icons';
-import Icon from '@synerise/ds-icon';
 import { useIntl } from 'react-intl';
 import * as S from './Filter.styles';
 import { Expression, FilterProps } from './Filter.types';
@@ -15,7 +12,7 @@ const SORTABLE_CONFIG = {
   ghostClass: 'ghost-element',
   className: 'sortable-list',
   handle: '.step-card-drag-handler',
-  animation: 150,
+  animation: 200,
   forceFallback: true,
 };
 
@@ -35,7 +32,7 @@ const Filter: React.FC<FilterProps> = ({
   onDuplicateStep,
   renderStepFooter,
   renderStepContent,
-  onAdd,
+  addFilterComponent,
   texts,
 }) => {
   const { formatMessage } = useIntl();
@@ -115,14 +112,7 @@ const Filter: React.FC<FilterProps> = ({
       <ReactSortable {...SORTABLE_CONFIG} list={expressions} setList={onChangeOrder}>
         {expressions.map(renderExpression)}
       </ReactSortable>
-      {onAdd && (
-        <S.AddButtonWrapper>
-          <Button type="primary" mode="icon-label" onClick={onAdd}>
-            <Icon component={<Add3M />} />
-            {text.addFilter}
-          </Button>
-        </S.AddButtonWrapper>
-      )}
+      {addFilterComponent && <S.AddButtonWrapper>{addFilterComponent}</S.AddButtonWrapper>}
     </S.FilterWrapper>
   );
 };
