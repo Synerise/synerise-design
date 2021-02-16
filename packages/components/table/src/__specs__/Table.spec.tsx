@@ -259,7 +259,7 @@ describe('Table', () => {
     );
     const clearBtn = getByTestId('clear-button');
     const showListBtn = getByTestId('show-list-button');
-    const showFilterBtn = getByTestId('show-filter-button');
+    const showFilterBtn = getByTestId('filter-trigger-view');
 
     // ACT
     fireEvent.click(clearBtn);
