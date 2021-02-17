@@ -10,10 +10,10 @@ export type ActionProps = {
   onFavouriteChange?: (item?: TagsListItem) => void;
   onVisibilityChange?: (visibility: TagVisibility, item: TagsListItem) => void;
   onDropdownToggle?: (visible: boolean) => void;
-  visibility?: TagVisibility;
   texts?: TagsListTexts;
   hovered?: boolean;
   favourite?: boolean;
+  visible?: boolean;
 };
 
 export type VisibilityProps = {

@@ -19,14 +19,14 @@ const visibilityIcons = {
   [TagVisibility.Hide]: HideM,
 };
 
-const Visibility: React.FC<VisibilityProps> = ({ texts, onVisibilityChange = NOOP, visibility, item }) => {
+const Visibility: React.FC<VisibilityProps> = ({ texts, onVisibilityChange = NOOP, item }) => {
   const visibilities = {
     [TagVisibility.Show]: texts?.visibilityShow,
     [TagVisibility.Hide]: texts?.visibilityHide,
     [TagVisibility.ShowIfUsed]: texts?.visibilityShowIfUsed,
   };
 
-  const [stateVisibility, setVisibility] = React.useState(visibility);
+  const [stateVisibility, setVisibility] = React.useState(item.visibility);
 
   return (
     <>

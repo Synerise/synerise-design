@@ -5,6 +5,7 @@ import Menu from '@synerise/ds-menu';
 import { EditM, OptionHorizontalM, Settings2M, StarFillM, StarM, TrashM } from '@synerise/ds-icon/dist/icons';
 import { NOOP } from '@synerise/ds-utils';
 import { ClickParam } from 'antd/es/menu';
+import { TagVisibility, TagsListItem } from '../../TagsList.types';
 
 import Visibility, { CheckIcon } from './Visibility';
 
@@ -15,27 +16,34 @@ const triggerClick = (event: React.MouseEvent<HTMLElement, MouseEvent>): void =>
 const dropdownMenuClick = (event: ClickParam): void => event.domEvent.stopPropagation();
 
 const Actions: React.FC<ActionProps> = ({
-  onVisibilityChange,
+  onVisibilityChange = NOOP,
   onFavouriteChange,
   onSettingsEnter,
   onEdit,
   onDelete,
   onDropdownToggle = NOOP,
   item,
-  favourite,
-  visibility,
   texts,
+  visible,
 }) => {
+  const { favourite } = item;
+
+  const handleVisibilityChange = (visibility: TagVisibility, thisItem: TagsListItem): void => {
+    onVisibilityChange(visibility, thisItem);
+    onDropdownToggle(false);
+  };
+
   return (
     <Dropdown
       placement="bottomRight"
       trigger={['click']}
       onVisibleChange={onDropdownToggle}
+      visible={visible}
       align={{ offset: [12, 16] }}
       overlay={
         // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
         <S.DropdownMenu asDropdownMenu onClick={dropdownMenuClick}>
-          <Visibility texts={texts} item={item} onVisibilityChange={onVisibilityChange} visibility={visibility} />
+          <Visibility texts={texts} item={item} onVisibilityChange={handleVisibilityChange} />
           <Menu.Divider />
           {!!onFavouriteChange && (
             <S.DropdownMenuItem
