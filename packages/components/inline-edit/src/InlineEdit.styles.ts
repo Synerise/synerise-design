@@ -3,7 +3,7 @@ import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/t
 import { macro } from '@synerise/ds-typography';
 
 type InPlaceEditableInputContainerProps = {
-  size: 'small' | 'normal';
+  size: 'large' | 'small' | 'normal';
   disabled?: boolean;
   error?: boolean;
   pressed?: boolean;
@@ -34,6 +34,12 @@ const applyDotsOnError = (props: ThemeProps & InPlaceEditableInputContainerProps
   return '';
 };
 
+const fontSize = {
+  large: macro.h600,
+  normal: macro.h400,
+  small: macro.small,
+};
+
 export const FontStyleWatcher = styled.div`
   visibility: hidden;
   pointer-events: none;
@@ -48,7 +54,7 @@ export const IconWrapper = styled.div<{ size: string } & ThemeProps>`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: ${(props): string => (props.size === 'normal' ? '8px' : '4px')};
+  margin-left: ${(props): string => (props.size === 'small' ? '4px' : '8px')};
   width: 24px;
   height: 24px;
   line-height: inherit;
@@ -91,7 +97,6 @@ export const InPlaceEditableInputContainer = styled.div<InPlaceEditableInputCont
     }
   }
 
- 
   ${(props): FlattenSimpleInterpolation | false =>
     !props.pressed &&
     css`
@@ -122,11 +127,11 @@ export const InPlaceEditableInputContainer = styled.div<InPlaceEditableInputCont
     background-position: bottom left;
     background-size: 5px 1px;
     background-repeat: repeat-x;
-    ${({ size }): FlattenInterpolation<ThemeProps> => (size === 'normal' ? macro.h500 : macro.small)}; //todo: set type
+    ${(props): FlattenInterpolation<ThemeProps> => fontSize[props.size]}
     overflow: hidden;
     text-overflow: ${(props): string => (props.scrolled ? 'initial' : 'ellipsis')};
     max-width: 100%;
-    padding-bottom: ${(props): string => (props.size === 'normal' ? '0' : '2px')};
+    padding-bottom: ${(props): string => (props.size === 'small' ? '2px' : '0')};
     margin: 0;
     vertical-align: top;
     color: ${(props): string => applyColor(props)};

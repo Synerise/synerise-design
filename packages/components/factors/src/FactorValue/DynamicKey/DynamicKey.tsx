@@ -12,17 +12,18 @@ const DynamicKey: React.FC<InputProps> = ({ value, onChange, withoutTypeSelector
     },
     [onChange, value]
   );
+
   return (
     <S.DynamicKey withoutTypeSelector={withoutTypeSelector}>
       <RawInput
         placeholder={texts.dynamicKey.keyPlaceholder}
-        value={(value as DynamicKeyValueType).key}
+        value={(value as DynamicKeyValueType)?.key}
         name="key"
         onChange={handleChange}
       />
       <RawInput
         placeholder={texts.dynamicKey.valuePlaceholder}
-        value={(value as DynamicKeyValueType).value}
+        value={(value as DynamicKeyValueType)?.value}
         name="value"
         onChange={handleChange}
       />

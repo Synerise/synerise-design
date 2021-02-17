@@ -13,7 +13,7 @@ export type InputProps = {
 };
 
 export interface InlineEditProps {
-  size?: 'normal' | 'small';
+  size?: 'large' | 'normal' | 'small';
   tooltipTitle?: string;
   className?: string;
   disabled?: boolean;
@@ -22,5 +22,4 @@ export interface InlineEditProps {
   autoFocus?: boolean;
   error?: boolean;
   hideIcon?: boolean;
-
 }

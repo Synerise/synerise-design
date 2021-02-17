@@ -31,6 +31,6 @@ export default function useTexts(texts: TagsListTexts | undefined): TagsListText
       ...texts,
     }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [texts],
+    [texts]
   );
 }

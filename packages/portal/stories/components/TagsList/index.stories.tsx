@@ -137,7 +137,7 @@ const stories = {
     );
   },
   addModal: () => {
-    const tristate = boolean('Use tristate checkbox', true);
+    const tristate = boolean('Use tristate checkbox', false);
     const canAddTags = boolean('Can add tags', true);
     const disabled = boolean('Disabled', false);
     

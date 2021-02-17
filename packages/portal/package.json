@@ -5,8 +5,8 @@
   "homepage": "./",
   "repository": "synerise/synerise-design",
   "scripts": {
-    "build-docs": "build-storybook -s public",
-    "storybook": "start-storybook -p 9099 -s public"
+    "build-docs": "build-storybook",
+    "storybook": "start-storybook -p 9099"
   },
   "browserslist": [
     ">0.2%",
@@ -35,15 +35,16 @@
     "@babel/preset-env": "7.11.0",
     "@babel/preset-react": "7.8.3",
     "@dump247/storybook-state": "1.6.1",
-    "@storybook/addon-actions": "6.0.21",
+    "@icons/material": "0.4.1",
+    "@storybook/addon-actions": "6.1.17",
     "@storybook/addon-centered": "5.3.21",
     "@storybook/addon-info": "5.3.21",
-    "@storybook/addon-knobs": "6.0.21",
-    "@storybook/addon-links": "6.0.21",
+    "@storybook/addon-knobs": "6.1.17",
+    "@storybook/addon-links": "6.1.17",
     "@storybook/addon-notes": "5.3.21",
-    "@storybook/addon-viewport": "6.0.21",
-    "@storybook/addons": "6.0.21",
-    "@storybook/react": "6.0.21",
+    "@storybook/addon-viewport": "6.1.17",
+    "@storybook/addons": "6.1.17",
+    "@storybook/react": "6.1.17",
     "@svgr/webpack": "5.2.0",
     "@testing-library/jest-dom": "5.1.1",
     "@testing-library/react": "10.0.1",
