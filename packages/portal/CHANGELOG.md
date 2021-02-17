@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.120.0](https://github.com/synerise/synerise-design/compare/portal@0.119.0...portal@0.120.0) (2021-02-17)
+
+
+### Features
+
+* **progress-bar:** add progress tiles ([ba7a987](https://github.com/synerise/synerise-design/commit/ba7a987f4859c0021d30f0cbc6a510919ae34893))
+
+
+
+
+
 # [0.119.0](https://github.com/synerise/synerise-design/compare/portal@0.118.1...portal@0.119.0) (2021-02-15)
 
 

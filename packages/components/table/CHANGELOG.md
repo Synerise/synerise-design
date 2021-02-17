@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.33.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.32.0...@synerise/ds-table@0.33.0) (2021-02-17)
+
+
+### Features
+
+* **progress-bar:** add progress tiles ([ba7a987](https://github.com/synerise/synerise-design/commit/ba7a987f4859c0021d30f0cbc6a510919ae34893))
+
+
+
+
+
 # [0.32.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.31.3...@synerise/ds-table@0.32.0) (2021-02-15)
 
 
