@@ -9,7 +9,7 @@ import Settings from './Settings/Settings';
 import * as S from './CompleteWithin.styles';
 
 export const DEFAULT_PERIODS = ['SECONDS', 'MINUTES', 'HOURS', 'DAYS', 'MONTHS', 'YEARS'];
-const DEFAULT_PERIOD = 'YEARS';
+const DEFAULT_PERIOD = 'DAYS';
 
 const CompletedWithin: React.FC<CompletedWithinProps> = ({ value, onSetValue, text, periods }) => {
   const intl = useIntl();

@@ -113,6 +113,7 @@ const getSteps = (stepsNumber: number, conditionsNumber: number): StepConditions
 const DEFAULT_TEXTS = {
   stepNamePlaceholder: 'Step name',
   removeConditionRowTooltip: 'Remove',
+  addFirstConditionRowButton: 'where',
   addConditionRowButton: 'and where',
   duplicateTooltip: 'Duplicate',
   removeTooltip: 'Remove',

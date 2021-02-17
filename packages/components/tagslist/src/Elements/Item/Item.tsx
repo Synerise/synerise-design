@@ -52,8 +52,6 @@ const Item: React.FC<ItemProps> = ({
   const inputRef = React.useRef<HTMLInputElement>(null);
   const textRef = React.useRef<HTMLDivElement>(null);
 
-  const renderItemName = <ItemName itemName={itemName} query={searchQuery} />;
-
   const confirmEdit = React.useCallback((): void => {
     if (validateFolderName(itemName)) {
       const trimmedName = itemName.trim();
@@ -126,13 +124,12 @@ const Item: React.FC<ItemProps> = ({
       <Actions
         onDelete={onDelete}
         item={item}
+        visible={dropdownOpened}
         onVisibilityChange={onVisibilityChange}
         onDropdownToggle={onDropdownToggle}
-        visibility={item.visibility}
         onFavouriteChange={handleOnFavouriteChange}
         onSettingsEnter={onSettingsEnter}
         onEdit={handleOnEdit}
-        favourite={favourite}
         texts={texts}
       />
     </S.SuffixWrapper>
@@ -148,6 +145,9 @@ const Item: React.FC<ItemProps> = ({
       }
     };
 
+    // This is stupid but Tooltip has problem with ForwardRef :/
+    const renderItemName = <ItemName itemName={itemName} query={searchQuery} />;
+
     return editMode ? (
       <S.InlineEditWrapper>
         <S.InlineEditInput value={itemName} onChange={inlineOnChange} onKeyDown={inlineOnKeyDown} ref={inputRef} />
@@ -156,14 +156,14 @@ const Item: React.FC<ItemProps> = ({
       <S.TagsListText ref={textRef}>
         {overflowed ? (
           <Tooltip placement="topLeft" title={itemName}>
-            {renderItemName}
+            <span>{renderItemName}</span>
           </Tooltip>
         ) : (
           renderItemName
         )}
       </S.TagsListText>
     );
-  }, [editMode, itemName, confirmEdit, inputRef, textRef, overflowed, renderItemName]);
+  }, [editMode, itemName, confirmEdit, inputRef, textRef, overflowed, searchQuery]);
 
   return (
     // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events

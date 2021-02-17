@@ -4,14 +4,14 @@ import InlineEdit from '@synerise/ds-inline-edit';
 import { action } from '@storybook/addon-actions';
 import InlineSelect from '@synerise/ds-inline-edit/dist/InlineSelect/InlineSelect';
 
-const DEFAULT_VALUE = "Input value";
-const dataSource = [{ text: 'Item 1' }, { text: 'Item 2' }, { text: 'Item 3' }]
+const DEFAULT_VALUE = 'Input value';
+const dataSource = [{ text: 'Item 1' }, { text: 'Item 2' }, { text: 'Item 3' }];
 
 const stories = {
   default: () => {
     const [value, setValue] = React.useState<string>(DEFAULT_VALUE);
-    const inputValue = text( 'InputValue', value)
-    const size = select('Size', ['small', 'normal'], 'normal');
+    const inputValue = text('InputValue', value);
+    const size = select('Size', ['small', 'normal', 'large'], 'normal');
     const widthLimit = boolean('Width limit', false);
     const error = boolean('Error', false);
     const disabled = boolean('Disabled', false);
@@ -56,11 +56,11 @@ const stories = {
         />
       </div>
     );
-  }
+  },
 };
 
 export default {
-name: 'Components/InlineEdit',
+  name: 'Components/InlineEdit',
   stories,
   Component: InlineEdit,
 };

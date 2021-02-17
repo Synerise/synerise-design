@@ -2,6 +2,7 @@ import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import * as React from 'react';
 import Filter from '../Filter';
 import { fireEvent } from '@testing-library/dom';
+import Button from '@synerise/ds-button';
 
 const DEFAULT_TEXTS = {
   matching: {
@@ -76,7 +77,7 @@ describe('Filter component', () => {
         onChangeStepName={onChangeStepName}
         onDeleteStep={onDeleteStep}
         onDuplicateStep={onDuplicateStep}
-        onAdd={onAdd}
+        addFilterComponent={<Button onClick={onAdd}>{DEFAULT_TEXTS.addFilter}</Button>}
         matching={{
           onChange: onChangeMatching,
           matching: true,

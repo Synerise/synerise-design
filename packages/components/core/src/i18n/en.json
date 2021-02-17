@@ -268,7 +268,8 @@
     "CONDITION": {
       "STEP_NAME-PLACEHOLDER": "Step name",
       "REMOVE-CONDITION-ROW-TOOLTIP":"Delete",
-      "ADD-CONDITION-ROW-BUTTON": "Add conditon",
+      "ADD-FIRST-CONDITION-ROW-BUTTON": "Add condition",
+      "ADD-CONDITION-ROW-BUTTON": "Add condition",
       "ADD-STEP":"Add step",
       "DROP-LABEL": "Drop me here",
       "MOVE-TOOLTIP":"Move",
