@@ -99,7 +99,7 @@ export const Trigger = styled.div<{ size: ItemPickerSize }>`
 `;
 
 export const TriggerWrapper = styled.div<TriggerWrapperProps>`
-  width: 282px;
+  width: 100%;
   display: flex;
   cursor: ${(props): string => {
     if (props.disabled) return 'not-allowed';
