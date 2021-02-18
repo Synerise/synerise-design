@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.17.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.17.0...@synerise/ds-manageable-list@0.17.1) (2021-02-17)
+
+**Note:** Version bump only for package @synerise/ds-manageable-list
+
+
+
+
+
+# [0.17.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.16.6...@synerise/ds-manageable-list@0.17.0) (2021-02-15)
+
+
+### Features
+
+* **progress-bar:** add progress tiles ([3a4a29a](https://github.com/Synerise/synerise-design/commit/3a4a29a959d6842a9c873ba8dacf6da32211370b))
+
+
+
+
+
 ## [0.16.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.16.5...@synerise/ds-manageable-list@0.16.6) (2021-02-08)
 
 **Note:** Version bump only for package @synerise/ds-manageable-list

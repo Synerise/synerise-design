@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.50](https://github.com/synerise/synerise-design/compare/@synerise/ds-radio@0.10.49...@synerise/ds-radio@0.10.50) (2021-02-17)
+
+**Note:** Version bump only for package @synerise/ds-radio
+
+
+
+
+
+## [0.10.49](https://github.com/synerise/synerise-design/compare/@synerise/ds-radio@0.10.48...@synerise/ds-radio@0.10.49) (2021-02-15)
+
+**Note:** Version bump only for package @synerise/ds-radio
+
+
+
+
+
 ## [0.10.48](https://github.com/synerise/synerise-design/compare/@synerise/ds-radio@0.10.47...@synerise/ds-radio@0.10.48) (2021-02-08)
 
 **Note:** Version bump only for package @synerise/ds-radio
