@@ -5836,6 +5836,11 @@
   resolved "https://registry.yarnpkg.com/@synerise/ds-icon/-/ds-icon-0.36.0.tgz#d90b6b1c5bd289886414948651ce08939d2436be"
   integrity sha512-QIsusjZAOURBSNdEqNuFFFFfy+GE1ZnwlTLThMq3bbJ3bgHWj7i5jpE27rW3r4+NP3l6ON10S4dwrmrEFqGTzw==
 
+"@synerise/ds-icon@^0.38.2":
+  version "0.38.2"
+  resolved "https://registry.yarnpkg.com/@synerise/ds-icon/-/ds-icon-0.38.2.tgz#acf55dc6d17fb720e38dba76db39daad21f4e25d"
+  integrity sha512-kdBguscAV9esacblt5uZkloga2UXc2rKBrA870p8Ky5W5UI9VydgDClHNM6TeyYoW8NAPM8TNPhGlCEKweY8nQ==
+
 "@synerise/ds-input-number@^0.3.45":
   version "0.3.45"
   resolved "https://registry.yarnpkg.com/@synerise/ds-input-number/-/ds-input-number-0.3.45.tgz#c7fad23ae0d7b3c34ac53c9028190324bf99d065"
@@ -5864,6 +5869,15 @@
     "@synerise/ds-card" "^0.4.11"
     "@synerise/ds-typography" "*"
 
+"@synerise/ds-search-bar@^0.2.105":
+  version "0.2.120"
+  resolved "https://registry.yarnpkg.com/@synerise/ds-search-bar/-/ds-search-bar-0.2.120.tgz#b00c0309d30b0fc7f66e5a36367d30146921d8cf"
+  integrity sha512-63Z82DcWUhM5092At8zjYMpvIrYcTiLNEZxnlm3cz5PJUO1ZFRCNph58nKXu7lrAmKtKJ9HOyRJpiYw1PEzE3w==
+  dependencies:
+    "@synerise/ds-button" "^0.13.28"
+    "@synerise/ds-input" "^0.16.21"
+    "@synerise/ds-typography" "^0.10.2"
+
 "@synerise/ds-tooltip@^0.4.26":
   version "0.4.26"
   resolved "https://registry.yarnpkg.com/@synerise/ds-tooltip/-/ds-tooltip-0.4.26.tgz#e52227e3287e01d23db84531c6e79f66f4184108"
@@ -5888,6 +5902,11 @@
   version "0.8.3"
   resolved "https://registry.yarnpkg.com/@synerise/ds-typography/-/ds-typography-0.8.3.tgz#9079d69ba637c5c7cafff9d6136ff3125780ce64"
   integrity sha512-THtP9Va5gZfn7I3rCbV3l86qvs34IYdmooxg1pEfWud85OqHstXC2qwAT51mOJnR7JU/cDNKb81TYP7AbycGmA==
+
+"@synerise/ds-utils@^0.11.16", "@synerise/ds-utils@^0.11.9":
+  version "0.11.16"
+  resolved "https://registry.yarnpkg.com/@synerise/ds-utils/-/ds-utils-0.11.16.tgz#f01e6ff980d03d7948d2b48048019ab9da3bba24"
+  integrity sha512-51nQ/eEic9VKsO+YTjBvSNR/h+KWN2sUHUy+E/H8Wwz/DnWx9nxdBVwEp6TcHRf2l3SeD7FGwuAyN9O0f/chCQ==
 
 "@synerise/ds-utils@^0.8.26", "@synerise/ds-utils@^0.8.31", "@synerise/ds-utils@^0.8.5":
   version "0.8.31"
