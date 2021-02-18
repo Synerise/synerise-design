@@ -1,9 +1,9 @@
 ---
 id: ordered-list
-title: OrderedList
+title: UnorderedList
 ---
 
-OrderedList UI Component
+UnorderedList UI Component
 
 ## Installation
 ```
@@ -14,9 +14,9 @@ yarn add @synerise/ds-ordered-list
 
 ## Usage
 ```
-import OrderedList from '@synerise/ds-ordered-list'
+import UnorderedList from '@synerise/ds-ordered-list'
 
-<OrderedList />
+<UnorderedList />
 
 ```
 

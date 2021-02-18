@@ -11,6 +11,8 @@ const Item: React.FC<OrderedListItem & Pick<ListProps, 'indexFormatter'>> = ({
   indexFormatter,
   index,
   listStyle,
+  subMenuProps,
+  text,
 }) => {
   return (
     <>
@@ -22,7 +24,9 @@ const Item: React.FC<OrderedListItem & Pick<ListProps, 'indexFormatter'>> = ({
         {label}
         {suffixel}
       </S.ItemWrapper>
-      {!!subMenu && subMenu?.length > 0 && <OrderedList indexFormatter={indexFormatter} data={subMenu} />}
+      {!!subMenu && subMenu?.length > 0 && (
+        <OrderedList text={text} indexFormatter={indexFormatter} data={subMenu} {...subMenuProps} />
+      )}
     </>
   );
 };
