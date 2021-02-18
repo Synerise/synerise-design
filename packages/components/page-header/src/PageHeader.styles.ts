@@ -82,7 +82,9 @@ export const PageHeaderClamp = styled.div`
   align-items: center;
   color: ${(props): string => props.theme.palette['grey-800']};
   align-items: center;
+`;
 
+export const PageHeaderTooltipWraper = styled.div`
   .ds-icon {
     margin-left: 8px;
     svg {
