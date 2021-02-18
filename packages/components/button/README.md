@@ -84,3 +84,19 @@ import { AngleDownS } from '@synerise/ds-icon/dist/icons';
 | expanded | The current state of the button.            | boolean                                        | `false` |
 | onClick  | Callback executed after clicking the button | (event: React.MouseEvent) => void | -       |
 | size     | Defines the size of the button.             | `S` / `M`                                      | `M`     |
+
+## Button.Checkbox
+
+This is special checkbox built on Button and inheriting its appereance.
+It behaves like checkbox input due to `role="checkbox"` and `aria-checked` attributes.
+
+### Props
+It inherits all `Button`'s props excluding `type`, `block`, `color`, `groupVariant`, `icon`, `iconColor`, `leftIconSize`, `mode`, `rightIconSize`, `size`, `onChange`, `onChange`.
+
+| Property       | Description                                                | Type                         | Default     |
+|----------------|------------------------------------------------------------|------------------------------|-------------|
+| checked        | (optional) Sets checkbox state for controlled component.   | `boolean`                    | `undefined` |
+| defaultChecked | (optional) Sets checkbox state for uncontrolled component. | `boolean`                    | `false`     |
+| hasError       | (optional) Changes appereance for wrong validation.        | `boolean`                    | `undefined` |
+| indeterminate  | (optional) Forces indeterminate checkbox state.            | `boolean`                    | `undefined` |
+| onChange       | (optional) On change callback                              | `(checked: boolean) => void` |             |
