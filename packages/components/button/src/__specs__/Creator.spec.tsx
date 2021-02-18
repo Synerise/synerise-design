@@ -3,7 +3,7 @@ import * as React from 'react';
 import { fireEvent } from '@testing-library/react';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 
-import Button from '../Button';
+import Button from '../index';
 import { CreatorStatus } from '../Creator/Creator.types';
 
 const LABEL_TEXT = 'Add something';
