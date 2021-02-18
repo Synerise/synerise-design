@@ -53,7 +53,7 @@ function GroupTableBody<T extends unknown>({
 
   return (
     <>
-      <tr className={`${group.className} ds-group-row`}>
+      <S.GroupTableRow className={`${group.className} ds-group-row`}>
         <td colSpan={group.children.length + 1}>
           <S.GroupRow>
             <S.GroupRowLeft>
@@ -94,7 +94,7 @@ function GroupTableBody<T extends unknown>({
             </S.GroupRowLeft>
             <S.GroupRowRight>
               {addItem && activeGroup && (
-                <Button
+                <S.GroupAddItemButton
                   type="ghost"
                   mode="icon-label"
                   onClick={(): void => {
@@ -103,13 +103,13 @@ function GroupTableBody<T extends unknown>({
                 >
                   <Icon component={<AddS />} />
                   Add item
-                </Button>
+                </S.GroupAddItemButton>
               )}
               {groupExpander}
             </S.GroupRowRight>
           </S.GroupRow>
         </td>
-      </tr>
+      </S.GroupTableRow>
       {expanded &&
         group.children[0].props.record.rows.map(
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
