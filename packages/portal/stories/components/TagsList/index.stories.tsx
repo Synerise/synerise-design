@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Button from '@synerise/ds-button';
-import TagsList, { AddModal } from '@synerise/ds-tagslist';
+import TagsList, { AddModal, DEFAULT_STEP, DEFAULT_ITEMS_VISIBLE } from '@synerise/ds-tagslist';
 import { TagsListActions, TagsListItem } from '@synerise/ds-tagslist/dist/TagsList.types';
 import Menu from '@synerise/ds-menu';
 import { boolean, number } from '@storybook/addon-knobs';
@@ -56,6 +56,9 @@ const stories = {
   },
   controlledInSidebar: () => {
     const showCheckboxes = boolean('Show item checkboxes on hover', true);
+    const itemsVisible = number('Set default max items visible', DEFAULT_ITEMS_VISIBLE, { min: 1 });
+    const step = number('Set step', DEFAULT_STEP, { min: 1 });
+
     const [starred, setStarred] = React.useState(false);
     const [dataSource, setDataSource] = React.useState(FOLDERS);
     const [addItems, setAddItems] = React.useState([]);
@@ -118,7 +121,8 @@ const stories = {
                 <Divider higher />
                 <TagsList
                   items={dataSource}
-                  maxItemsVisible={number('Set default max items visible', 10, { min: 1 })}
+                  maxItemsVisible={itemsVisible}
+                  step={step}
                   texts={TEXTS}
                   onChange={handleOnChange}
                   onAddDropdown={handleOnAddDropdown}
@@ -147,6 +151,14 @@ const stories = {
       console.log('Items to be added: ', items);
     }
 
+    const trigger = boolean('Use custom trigger button', false) ?
+      (
+        <Button mode="icon-label" disabled={disabled}>
+          <Icon component={<TagM />} />
+          Tags
+        </Button>
+      ) : undefined;
+
     return (
       <div style={{height: '320px'}} data-popup-container>
         <AddModal 
@@ -155,16 +167,7 @@ const stories = {
           tristate={tristate}
           onItemsAdd={onItemsAdd}
           searchAddTag={canAddTags}
-          trigger={(
-            <Button 
-              leftIconSize="S"
-              mode="icon-label"
-              disabled={disabled}
-            >
-              <Icon component={<TagM />} />
-              Tags
-            </Button>
-          )}
+          trigger={trigger}
           onManageTags={onManageTags}
         />
       </div>
