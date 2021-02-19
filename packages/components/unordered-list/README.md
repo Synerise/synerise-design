@@ -26,5 +26,12 @@ import UnorderedList from '@synerise/ds-unordered-list'
 
 ## API
 
-| Property | Description | Type | Default |
-| --- | --- | --- | --- |
+| Property       | Description                   | Type                     | Default     |
+| -------------- | ----------------------------- | ------------------------ | ----------- |
+| listStyle      | style to pick unordered list  | string                   | -           |      
+| index          | set number of ordered list    | number                   | -           |
+| id             | name of the item              | string                   | -           |
+| subMenu        | items list                    | OrderedListItem[]        | -           |
+| label          | label contains text           | string                   | -           |
+| suffixel       | place to set item             | React.ReactNode          | -           |
+| prefixel       | place to set item             | React.ReactNode          | -           |
