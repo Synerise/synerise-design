@@ -38,6 +38,5 @@ export const LoaderWrapper = styled.div<{ labelPosition:  'bottom' | 'right' ; m
   flex-direction: ${(props): string => mapElementsPosition[props.labelPosition]};
   align-items: center;
   justify-content: center;
-  position: ${(props): string => (props.mode === 'absolute' ? 'absolute' : 'relative')}; 
    ${(props): FlattenSimpleInterpolation | false => props.mode === 'absolute' && css ` position: absolute; top: 50%; left: 50%; `};
 `;
