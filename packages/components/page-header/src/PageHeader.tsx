@@ -68,9 +68,11 @@ const PageHeader: React.FC<PageHeaderProps> = props => {
         <S.PageHeaderClamp>
           <S.PageHeaderTitle>{children || title}</S.PageHeaderTitle>
           {tooltip !== undefined && tooltipIcon && (
-            <Tooltip {...tooltip}>
-              <Icon component={tooltipIcon} onClick={handleTooltipClick} />
-            </Tooltip>
+            <S.PageHeaderTooltipWraper>
+              <Tooltip {...tooltip}>
+                <Icon component={tooltipIcon} onClick={handleTooltipClick} />
+              </Tooltip>
+            </S.PageHeaderTooltipWraper>
           )}
         </S.PageHeaderClamp>
         {!!more && <S.PageHeaderMore>{more}</S.PageHeaderMore>}

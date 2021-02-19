@@ -259,7 +259,7 @@ const AddModal: React.FC<AddModalProps> = ({
       {/* eslint-disable-next-line */}
       <div onClick={toggleInput}>
         {trigger || (
-          <Button type="ghost-primary" mode="icon-label" disabled={disabled}>
+          <Button type="ghost" mode="icon-label" disabled={disabled}>
             <Icon component={<Add3M />} size={24} />
             {texts?.addItemLabel}
           </Button>

@@ -20,7 +20,6 @@ import {
   VarTypeListM,
   VarTypeNumberM,
 } from '@synerise/ds-icon/dist/icons';
-import DSTable from '@synerise/ds-table';
 import ColumnManager, { SavedView } from '@synerise/ds-column-manager/dist/ColumnManager';
 import * as moment from 'moment';
 import ItemFilter from '@synerise/ds-item-filter/dist/ItemFilter';
@@ -462,7 +461,7 @@ const stories = {
 
     return (
       <>
-        <DSTable
+        <Table
           grouped={Boolean(store.state.groupSettings)}
           hideGroupExpander={boolean('Hide group expander', false)}
           initialGroupsCollapsed={boolean('Initial groups collapsed?', false)}

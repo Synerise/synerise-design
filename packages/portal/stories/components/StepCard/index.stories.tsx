@@ -16,7 +16,7 @@ import { action } from '@storybook/addon-actions';
 const stories = {
   default: () => {
     const [matching, setMatching] = React.useState(false);
-    const [name, setName] = React.useState('funnel');
+    const [name, setName] = React.useState('');
     const [completedWithinValue, setCompletedWithinValue] = React.useState({ value: undefined, period: undefined });
     const [rangeValue, setRangeValue] = React.useState(undefined);
     const [steps, setSteps] = React.useState([DEFAULT_STEP()]);
@@ -51,7 +51,7 @@ const stories = {
         texts={{
           matching: 'Matching',
           notMatching: 'Not matching',
-          namePlaceholder: 'Placeholder',
+          namePlaceholder: 'Unnamed',
           moveTooltip: 'Move',
           deleteTooltip: 'Delete',
           duplicateTooltip: 'Duplicate',
@@ -70,7 +70,7 @@ const stories = {
           )
         }
       >
-        <ConditionExample steps={steps} onChange={setSteps} />;
+        <ConditionExample steps={steps} onChange={setSteps} />
       </StepCard>
     );
   },

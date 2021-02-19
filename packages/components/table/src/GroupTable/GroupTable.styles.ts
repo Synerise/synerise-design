@@ -1,6 +1,19 @@
 import styled from 'styled-components';
 import { StatusTag } from '@synerise/ds-status/dist/Status.styles';
+import Button from '@synerise/ds-button';
 import { CheckboxWrapper } from '@synerise/ds-checkbox/dist/Checkbox.styles';
+
+export const GroupAddItemButton = styled(Button)`
+  opacity: 0;
+`;
+
+export const GroupTableRow = styled.tr`
+  :hover {
+    ${GroupAddItemButton} {
+      opacity: 1;
+    }
+  }
+`;
 
 export const GroupRow = styled.div`
   display: flex;

@@ -20,9 +20,10 @@ const FilterTrigger: React.FC<Props> = ({
   handleClear,
   showList,
   show,
-  disabled
+  disabled,
 }) => {
   const [opened, setOpened] = React.useState<boolean>(false);
+
   React.useEffect(() => {
     selected && setOpened(true);
   }, [selected, opened, setOpened]);
@@ -37,17 +38,22 @@ const FilterTrigger: React.FC<Props> = ({
     !selected && setOpened(false);
   });
 
-  const renderOpened = React.useMemo(
-    () => (
-      <>
+  const triggerMode = opened ? 'icon-label' : 'single-icon';
+  const triggerType = opened ? 'tertiary' : 'ghost';
+  const triggerOnClick = opened ? show : handleOpen;
+
+  return (
+    <span ref={ref}>
+      <S.FilterButtonGroup splitMode>
         <Tooltip title={selected?.name || tooltips.define}>
           <S.FilterButton
             opened={opened}
-            mode={opened ? 'icon-label' : 'single-icon'}
-            type="ghost"
-            onClick={opened ? show : handleOpen}
-            data-testid="show-filter-button"
+            selected={selected}
+            type={triggerType}
+            mode={triggerMode}
             disabled={disabled}
+            onClick={triggerOnClick}
+            data-testid={`filter-trigger-${name}`}
           >
             <Icon component={iconComponent} />
             <S.FilterButtonLabel>{selected?.name || openedLabel}</S.FilterButtonLabel>
@@ -55,28 +61,21 @@ const FilterTrigger: React.FC<Props> = ({
         </Tooltip>
         {selected && (
           <Tooltip title={tooltips.clear}>
-            <S.ClearButton mode="single-icon" type="ghost" onClick={handleClear} data-testid="clear-button">
+            <S.ClearButton mode="single-icon" type="tertiary" onClick={handleClear} data-testid="clear-button">
               <Icon component={<Close3S />} />
             </S.ClearButton>
           </Tooltip>
         )}
         {opened && (
           <Tooltip title={tooltips.list}>
-            <S.ListButton mode="single-icon" type="ghost" onClick={showList} data-testid="show-list-button">
+            <S.ListButton mode="single-icon" type="tertiary" onClick={showList} data-testid="show-list-button">
               <Icon component={<FolderM />} />
             </S.ListButton>
           </Tooltip>
         )}
-      </>
-    ),
-    [opened, tooltips, selected, handleClear, show, showList, handleOpen, iconComponent, openedLabel, disabled]
-  );
-
-  return (
-    <S.FilterTrigger ref={ref} data-testid={`filter-trigger-${name}`} opened={opened} selected={selected}>
-      <S.FilterButtons>{renderOpened}</S.FilterButtons>
-    </S.FilterTrigger>
+      </S.FilterButtonGroup>
+    </span>
   );
 };
 
-export default FilterTrigger;
+export default React.memo(FilterTrigger);

@@ -42,6 +42,7 @@ const SubjectList: React.FC<SubjectListProps> = ({ items, onSelectItem, hideDrop
 
   return (
     <Dropdown.Wrapper
+      style={{ width: '300px' }}
       ref={overlayRef}
       onKeyDown={(e): void => {
         setSearchInputFocus(false);

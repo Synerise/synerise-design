@@ -3611,6 +3611,11 @@
   dependencies:
     "@hapi/hoek" "^8.3.0"
 
+"@icons/material@0.4.1":
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/@icons/material/-/material-0.4.1.tgz#20ba0dff8d59a2b8749c7ad765faad52ae45b868"
+  integrity sha512-r4CuKUZv9GeAYvWc6WEVF0Xiw/IS4S50zna/M0/ISJOKe3RbpbHN3yBjX7ZnaPGqH/rm5SnDBv8FNOHLpM7OpQ==
+
 "@icons/material@^0.2.4":
   version "0.2.4"
   resolved "https://registry.yarnpkg.com/@icons/material/-/material-0.2.4.tgz#e90c9f71768b3736e76d7dd6783fc6c2afa88bc8"
