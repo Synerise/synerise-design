@@ -4,7 +4,7 @@ import * as React from 'react';
 import Icon from '@synerise/ds-icon';
 import { Close3S } from '@synerise/ds-icon/dist/icons';
 import { RenderResult } from '@testing-library/react';
-import { OrderedListItem } from '../Unordered-list.types';
+import { UnorderedListItem } from '../Unordered-list.types';
 import UnorderedList from '../Unordered-list';
 
   describe('Ordered-list with nested items', () => {
@@ -18,7 +18,7 @@ import UnorderedList from '../Unordered-list';
 
     it('should render basic menu list', () => {
       // ARRANGE
-      const { getByText } = renderWithProvider(<UnorderedList indexFormatter={indexFormatter} data={data as unknown as OrderedListItem[]}/>);
+      const { getByText } = renderWithProvider(<UnorderedList indexFormatter={indexFormatter} data={data as unknown as UnorderedListItem[]}/>);
 
       // ASSERT
       expect(getByText('Option 1')).toBeTruthy();
@@ -26,7 +26,7 @@ import UnorderedList from '../Unordered-list';
     });
     it('should render children items after click on parent', () => {
       // ARRANGE
-      const { getByText } = renderWithProvider(<UnorderedList indexFormatter={indexFormatter} data={data as unknown as OrderedListItem[]} />);
+      const { getByText } = renderWithProvider(<UnorderedList indexFormatter={indexFormatter} data={data as unknown as UnorderedListItem[]} />);
 
       // ASSERT
       expect(getByText('Child 1')).toBeTruthy();
@@ -41,7 +41,7 @@ describe('Ordered-list indexFormatter', () => {
 
   it('should render basic menu list', () => {
     // ARRANGE
-    const { getByText } = renderWithProvider(<UnorderedList data={data as unknown as OrderedListItem[]} indexFormatter={customIndexFormatter}/>);
+    const { getByText } = renderWithProvider(<UnorderedList data={data as unknown as UnorderedListItem[]} indexFormatter={customIndexFormatter}/>);
 
     // ASSERT
     expect(getByText("0-custom")).toBeTruthy();
@@ -68,7 +68,7 @@ describe('Ordered-list with prefix and suffix', () => {
       ]
   let renderedMenu: RenderResult;
   beforeEach(() => {
-    renderedMenu = renderWithProvider(<UnorderedList data={dataSource as unknown as OrderedListItem[]} />);
+    renderedMenu = renderWithProvider(<UnorderedList data={dataSource as unknown as UnorderedListItem[]} />);
   });
   it('should render prefix element', () => {
     // ARRANGE
