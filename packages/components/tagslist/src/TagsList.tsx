@@ -34,7 +34,7 @@ const TagsList: React.FC<TagsListProps> = props => {
     onChange,
     onManageTags = NOOP,
     texts: propTexts = {},
-    step = DEFAULT_STEP,
+    showMoreStep = DEFAULT_STEP,
     withCheckbox = true,
   } = props;
 
@@ -192,7 +192,7 @@ const TagsList: React.FC<TagsListProps> = props => {
             visibleItemsCount={items.length <= visibleItemsCount ? items.length : visibleItemsCount}
             texts={texts}
             maxItemsToShow={Number(maxItemsVisible)}
-            step={step}
+            showMoreStep={showMoreStep}
           />
         )}
       </TagsListContext.Provider>

@@ -122,7 +122,7 @@ const stories = {
                 <TagsList
                   items={dataSource}
                   maxItemsVisible={itemsVisible}
-                  step={step}
+                  showMoreStep={step}
                   texts={TEXTS}
                   onChange={handleOnChange}
                   onAddDropdown={handleOnAddDropdown}

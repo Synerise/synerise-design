@@ -30,7 +30,7 @@ export type TagsListProps = {
   onManageTags?: (event: React.MouseEvent<HTMLElement, MouseEvent> | Event) => void;
   onItemsAdd?: (items: TagsListItem[]) => void;
   texts?: TagsListTexts | undefined;
-  step?: number;
+  showMoreStep?: number;
   withCheckbox?: boolean;
   withTristateCheckbox?: boolean;
   withVisibility?: boolean;

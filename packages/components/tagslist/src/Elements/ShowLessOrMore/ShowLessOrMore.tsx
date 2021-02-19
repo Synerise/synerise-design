@@ -11,7 +11,7 @@ const ShowLessOrMore: React.FC<Props> = ({
   onShowLess,
   totalItemsCount,
   visibleItemsCount,
-  step,
+  showMoreStep,
   texts,
   maxItemsToShow,
 }: Props) => {
@@ -19,23 +19,18 @@ const ShowLessOrMore: React.FC<Props> = ({
   const itemsOverLimit = totalItemsCount - visibleItemsCount;
 
   const itemsToHide = React.useMemo(() => {
-    if (itemsOverLimit > step) {
-      return visibleItemsCount - itemsOverLimit;
-    }
-    if (visibleItemsCount - maxItemsToShow < step) {
-      return visibleItemsCount - maxItemsToShow;
-    }
-    return step;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [itemsOverLimit, step, visibleItemsCount, maxItemsToShow, totalItemsCount]);
+    if (visibleItemsCount === maxItemsToShow) return 0;
+    if (visibleItemsCount - maxItemsToShow < showMoreStep) return visibleItemsCount - maxItemsToShow;
+    return showMoreStep;
+  }, [showMoreStep, visibleItemsCount, maxItemsToShow]);
 
   const renderShowMoreButton = React.useCallback(() => {
-    const more = itemsOverLimit > step ? step : itemsOverLimit;
+    const more = itemsOverLimit > showMoreStep ? showMoreStep : itemsOverLimit;
     const onClick = (): void => onShowMore(more);
 
     return (
       totalItemsCount > visibleItemsCount && (
-        <Button type="ghost" mode="icon-label" onClick={onClick} className="ds-tagslist-show-more" key={generateHash()}>
+        <Button type="ghost" mode="icon-label" onClick={onClick} key={generateHash()}>
           <Icon component={<ArrowDownCircleM />} />
           <S.Label>
             <span>{texts?.showMoreLabel}</span>
@@ -45,7 +40,7 @@ const ShowLessOrMore: React.FC<Props> = ({
         </Button>
       )
     );
-  }, [texts, visibleItemsCount, totalItemsCount, step, itemsOverLimit, onShowMore]);
+  }, [texts, visibleItemsCount, totalItemsCount, showMoreStep, itemsOverLimit, onShowMore]);
 
   const renderShowLessButton = React.useCallback(() => {
     const onClick = (): void => {
@@ -53,7 +48,7 @@ const ShowLessOrMore: React.FC<Props> = ({
     };
 
     return (
-      <Button type="ghost" mode="icon-label" onClick={onClick} className="ds-folder-show-less" key={generateHash()}>
+      <Button type="ghost" mode="icon-label" onClick={onClick} key={generateHash()}>
         <Icon component={<ArrowUpCircleM />} />
         <S.Label>
           <span>{texts?.showMoreLabel}</span>
@@ -67,7 +62,7 @@ const ShowLessOrMore: React.FC<Props> = ({
   return (
     <S.Container>
       {!areAllItemsVisible && renderShowMoreButton()}
-      {itemsToHide > 0 && visibleItemsCount > step && renderShowLessButton()}
+      {itemsToHide > 0 && visibleItemsCount > showMoreStep && renderShowLessButton()}
     </S.Container>
   );
 };
