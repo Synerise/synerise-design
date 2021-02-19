@@ -1,6 +1,6 @@
 ---
 id: ordered-list
-title: UnorderedList
+title: OrderedList
 ---
 
 UnorderedList UI Component
