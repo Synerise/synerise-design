@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 // eslint-disable-next-line import/prefer-default-export
-export const TextTrigger = styled.div<{ inactiveColor: string }>`
+export const TextTrigger = styled.div<{ inactiveColor: string; onFocus?: () => void }>`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -14,6 +14,14 @@ export const TextTrigger = styled.div<{ inactiveColor: string }>`
   svg {
     color: ${(props): string => props.inactiveColor};
     fill: ${(props): string => props.inactiveColor};
+  }
+  &&&:focus {
+      .ds-title,
+      svg {
+        color: ${(props): string => props.theme.palette['blue-700']};
+        fill: ${(props): string => props.theme.palette['blue-700']};
+      }
+    }
   }
 
   &:hover {
