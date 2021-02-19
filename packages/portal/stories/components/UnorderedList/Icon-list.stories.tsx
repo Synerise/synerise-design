@@ -11,7 +11,6 @@ const renderLabel = (text: string) => {
   return <div style={{ maxWidth: '200px', textOverflow: 'ellipsis', overflow: 'hidden' }}>{text}</div>;
 };
 
-
 const stories = {
   default: () => {
     const level = {
@@ -122,7 +121,7 @@ const stories = {
 };
 
 export default {
-  name: 'Components/Ordered&UnorderedList/Icon-list',
+  name: 'Components/Ordered&UnorderedList/ Icon-list',
   config: {},
   stories,
 };
