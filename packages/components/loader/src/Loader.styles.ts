@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components';
+import styled, { css, FlattenSimpleInterpolation, keyframes } from 'styled-components';
 import { LoaderSize } from './Loader.types';
 
 export const spinnerAnimation = keyframes`
@@ -33,9 +33,11 @@ export const PercentWrapper = styled.div`
 export const Wrapper = styled.div<{ size?: 'S' | 'M' | 'L' }>`
   margin: ${(props): string => (props.size === 'L' ? '12px' : '8px')};
 `;
-export const LoaderWrapper = styled.div<{ labelPosition: string | 'bottom' | 'right' }>`
+export const LoaderWrapper = styled.div<{ labelPosition:  'bottom' | 'right' ; mode?: 'absolute'}>`
   display: flex;
   flex-direction: ${(props): string => mapElementsPosition[props.labelPosition]};
   align-items: center;
   justify-content: center;
+  position: ${(props): string => (props.mode === 'absolute' ? 'absolute' : 'relative')}; 
+   ${(props): FlattenSimpleInterpolation | false => props.mode === 'absolute' && css ` position: absolute; top: 50%; left: 50%; `};
 `;
