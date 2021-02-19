@@ -65,7 +65,7 @@ const stories = {
     };
     return(
       <div>
-        <Loader percentFormatter={getPercent} size={size} color={colors} label={loadingText && getLoading(showText)} labelPosition={labelPosition}></Loader>
+        <Loader mode='absolute' percentFormatter={getPercent} size={size} color={colors} label={loadingText && getLoading(showText)} labelPosition={labelPosition}></Loader>
       </div>
     )
   },

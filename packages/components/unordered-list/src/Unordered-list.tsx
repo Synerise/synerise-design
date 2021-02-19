@@ -1,10 +1,10 @@
 import * as React from 'react';
 import Label from '@synerise/ds-input/dist/Label/Label';
-import * as S from './Ordered-list.styles';
+import * as S from './Unordered-list.styles';
 import Item from './Elements/Item/Item';
-import { ListProps } from './Ordered-list.types';
+import { ListProps } from './Unordered-list.types';
 
-const OrderedList: React.FC<ListProps> = ({ data, indexFormatter, listStyle, text }) => {
+const UnorderedList: React.FC<ListProps> = ({ data, indexFormatter, listStyle, text }) => {
   return (
     <div>
       {text && (
@@ -12,13 +12,13 @@ const OrderedList: React.FC<ListProps> = ({ data, indexFormatter, listStyle, tex
           <Label label={text} />
         </S.ContentAbove>
       )}
-      <S.OrderedList listStyle={listStyle}>
+      <S.UnorderedList listStyle={listStyle}>
         {data.map((item, index) => (
           <Item listStyle={listStyle} index={index} key={String(item?.id)} indexFormatter={indexFormatter} {...item} />
         ))}
-      </S.OrderedList>
+      </S.UnorderedList>
     </div>
   );
 };
 
-export default OrderedList;
+export default UnorderedList;

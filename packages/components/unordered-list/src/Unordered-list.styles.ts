@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 
-export const OrderedList = styled.ol<{ listStyle?: string }>`
+export const UnorderedList = styled.ul<{ listStyle?: string }>`
   display: flex;
   flex-direction: column;
   padding: 0;
-  ol {
+  ul {
     margin-left: 10px;
     padding-left: 30px;
   }
-  ol li {
+  ul li {
     padding: 0;
     list-style-type: ${(props): string => (props.listStyle ? props.listStyle : 'none')};
   }

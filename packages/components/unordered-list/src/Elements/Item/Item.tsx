@@ -1,9 +1,9 @@
 import * as React from 'react';
 import * as S from './Item.styles';
-import { ListProps, OrderedListItem } from '../../Ordered-list.types';
-import OrderedList from '../../Ordered-list';
+import { ListProps, UnorderedListItem } from '../../Unordered-list.types';
+import UnorderedList from '../../Unordered-list';
 
-const Item: React.FC<OrderedListItem & Pick<ListProps, 'indexFormatter'>> = ({
+const Item: React.FC<UnorderedListItem & Pick<ListProps, 'indexFormatter'>> = ({
   label,
   suffixel,
   prefixel,
@@ -25,7 +25,7 @@ const Item: React.FC<OrderedListItem & Pick<ListProps, 'indexFormatter'>> = ({
         {suffixel}
       </S.ItemWrapper>
       {!!subMenu && subMenu?.length > 0 && (
-        <OrderedList text={text} indexFormatter={indexFormatter} data={subMenu} {...subMenuProps} />
+        <UnorderedList text={text} indexFormatter={indexFormatter} data={subMenu} {...subMenuProps} />
       )}
     </>
   );
