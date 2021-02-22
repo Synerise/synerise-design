@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-popconfirm@0.5.41...@synerise/ds-popconfirm@0.6.0) (2021-02-22)
+
+
+### Bug Fixes
+
+* **popconfirm:** use antd component ([5b64c85](https://github.com/Synerise/synerise-design/commit/5b64c858b0f483ca8b83dc85c1a32293b253b8ca))
+
+
+### Features
+
+* **popconfirm:** remove popover arrow ([77f08b1](https://github.com/Synerise/synerise-design/commit/77f08b16915091bfaec8c3b8ab6ca6291623c250))
+
+
+
+
+
 ## [0.5.41](https://github.com/Synerise/synerise-design/compare/@synerise/ds-popconfirm@0.5.40...@synerise/ds-popconfirm@0.5.41) (2021-02-17)
 
 **Note:** Version bump only for package @synerise/ds-popconfirm
