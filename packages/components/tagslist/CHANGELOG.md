@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tagslist@0.5.1...@synerise/ds-tagslist@0.5.2) (2021-02-18)
+
+
+### Bug Fixes
+
+* **taglist:** add tristate as dependency ([159d437](https://github.com/Synerise/synerise-design/commit/159d437bc81cf5475701409f6c3b33914967b423))
+
+
+
+
+
 ## [0.5.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tagslist@0.5.0...@synerise/ds-tagslist@0.5.1) (2021-02-18)
 
 
