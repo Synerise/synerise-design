@@ -9,7 +9,11 @@ const TITLE = 'Title';
 const DESCRIPTION = 'Description';
 const CANCEL = 'Cancel';
 const OK = 'OK';
-const IMAGES = ['https://cdn.pixabay.com/photo/2013/11/28/10/36/road-220058_960_720.jpg', 'https://cdn.pixabay.com/photo/2015/07/09/22/45/tree-838667_960_720.jpg', 'https://cdn.pixabay.com/photo/2015/07/05/10/18/tree-832079_960_720.jpg'];
+const IMAGES = [
+  'https://cdn.pixabay.com/photo/2013/11/28/10/36/road-220058_960_720.jpg',
+  'https://cdn.pixabay.com/photo/2015/07/09/22/45/tree-838667_960_720.jpg',
+  'https://cdn.pixabay.com/photo/2015/07/05/10/18/tree-832079_960_720.jpg',
+];
 
 describe('Popconfirm', () => {
   it('should render', () => {
@@ -97,7 +101,7 @@ describe('Popconfirm', () => {
     expect(document.querySelector('button')).toBeInTheDocument();
   });
 
-  /*it('should trigger popconfirm on focus', () => {
+  it('should trigger popconfirm on focus', () => {
     // ARRANGE
     const { getAllByText } = renderWithProvider(
       <Popconfirm title={TITLE} trigger="focus">
@@ -112,7 +116,7 @@ describe('Popconfirm', () => {
     expect(getAllByText(OK)[0]).toBeInTheDocument();
     expect(getAllByText(CANCEL)[0]).toBeInTheDocument();
   });
-*/
+
   it('should NOT show popconfirm when disabled', () => {
     // ARRANGE
     const { getByText } = renderWithProvider(
