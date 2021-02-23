@@ -6,5 +6,6 @@ export type TextTriggerProps = {
   size: 1 | 2 | 3 | 4 | 5 | 6;
   onClick: () => void;
   onFocus?: () => void;
+  expanded?: boolean;
 
 };

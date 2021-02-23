@@ -299,6 +299,7 @@ const stories = {
           >
             <Dropdown.TextTrigger
               size={2}
+              expanded={dropdownVisible}
               inactiveColor="blue-600"
               value={selectedSpace}
               onFocus={()=> setFocused(isFocused)}
