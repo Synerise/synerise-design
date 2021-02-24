@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import OrderedList from '@synerise/ds-ordered-list';
-import { select, text } from '@storybook/addon-knobs';
+import { boolean, select, text } from '@storybook/addon-knobs';
 
 
 
@@ -40,10 +40,10 @@ const withZerosFormatter = (index: number) => `0${index + 1}. `;
 const withLettersFormatter = (index: number) => `${String.fromCharCode(index + 97).toLowerCase()}. `;
 const romanFormatter = romanize;
 const formatterType = {
-  Decimal: numberFormatter,
-  'Decimal with leading zeros': withZerosFormatter,
-  'Lowercase roman numerals': romanFormatter,
-  'Lowercase ascii letters': withLettersFormatter,
+  'decimal': numberFormatter,
+  'decimal with leading zeros': withZerosFormatter,
+  'lowercase roman numerals': romanFormatter,
+  'lowercase ascii letters': withLettersFormatter,
 };
 const level = {
   first: 'first',
@@ -56,7 +56,16 @@ const stories = {
   default: () => {
 
     const setLevel = select('Set list level', level, level.first);
-    const formatter = select('Set order type', formatterType, formatterType.Decimal);
+    const formatter = select('Set order type', formatterType, formatterType.decimal);
+    const hasLabel = boolean('Set label', true);
+    const label = text('Label', 'Header label');
+    const getLabel = (hasLabel: boolean): string => {
+      if (hasLabel) {
+        return label;
+      } else {
+        return '';
+      }
+    };
     const data = [
       {
         label: ' Ordered List level 1',
@@ -109,15 +118,24 @@ const stories = {
       },
     ];
 
-    return <OrderedList text={renderLabel(text('Label', 'Header label'))} data={data} indexFormatter={formatter} />;
+    return <OrderedList text={renderLabel(label && getLabel(hasLabel))} data={data} indexFormatter={formatter} />;
   },
-  NestList: () => {
+  nestList: () => {
     const level = {
       first: 'first',
       second: 'second',
     };
     const setLevel = select('Set list level', level, level.second);
-    const formatter = select('Set order type', formatterType, formatterType.Decimal);
+    const formatter = select('Set order type', formatterType, formatterType.decimal);
+    const hasLabel = boolean('Set label', true);
+    const label = text('Label', 'Header label');
+    const getLabel = (hasLabel: boolean): string => {
+      if (hasLabel) {
+        return label;
+      } else {
+        return '';
+      }
+    };
     const data = [
       {
         label: ' Ordered List level 1',
@@ -169,16 +187,25 @@ const stories = {
       },
     ];
 
-    return <OrderedList text={renderLabel(text('Label', 'Header label'))} data={data} indexFormatter={formatter} />;
+    return <OrderedList text={renderLabel(label && getLabel(hasLabel))} data={data} indexFormatter={formatter} />;
   },
-  NestedList: () => {
+  nestedList: () => {
     const level = {
       first: 'first',
       second: 'second',
       third: 'third',
     };
     const setLevel = select('Set list level', level, level.third);
-    const formatter = select('Set order type', formatterType, formatterType.Decimal);
+    const formatter = select('Set order type', formatterType, formatterType.decimal);
+    const hasLabel = boolean('Set label', true);
+    const label = text('Label', 'Header label');
+    const getLabel = (hasLabel: boolean): string => {
+      if (hasLabel) {
+        return label;
+      } else {
+        return '';
+      }
+    };
     const data = [
       {
         label: ' Ordered List level 1',
@@ -237,7 +264,7 @@ const stories = {
       },
     ];
 
-    return <OrderedList text={renderLabel(text('Label', 'Header label'))} data={data} indexFormatter={formatter} />;
+    return <OrderedList text={renderLabel(label && getLabel(hasLabel))} data={data} indexFormatter={formatter} />;
   },
 };
 

@@ -1,14 +1,10 @@
 import styled from 'styled-components';
 
-export const ItemWrapper = styled.li<{ listStyle?: string }>`
-  margin: 10px 0 10px 0;
-  list-style: none;
-  list-style-type: ${(props): string => (props.listStyle ? props.listStyle : 'none')};
-  display: flex;
+export const ItemWrapper = styled.li`
+  margin: 6px 0 6px 0;
+  display: list-item;
   justify-content: flex-start;
   align-items: center;
 `;
-export const IndexFormatterWrapper = styled.li<{ listStyle?: string }>`
-  list-style: none;
-  list-style-type: ${(props): string => (props.listStyle ? props.listStyle : 'none')};
-`;
+export const IndexFormatterWrapper = styled.span`
+  `;
