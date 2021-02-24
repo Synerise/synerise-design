@@ -24,7 +24,7 @@ const stories = {
       CheckS: <Icon size={20} style={{marginRight: '2px', marginLeft: '-4px'}} color={theme.palette['grey-600']} component={<CheckS />} />,
       Close3S: <Icon size={20} style={{marginRight: '2px', marginLeft: '-4px'}} color={theme.palette['red-600']} component={<Close3S />} />,
       Check3S: <Icon size={20} style={{marginRight: '2px', marginLeft: '-4px'}} color={theme.palette['green-600']} component={<Check3S />} />,
-      Emoji: <Icon size={20} style={{ display: 'flex', marginRight: '2px', marginLeft: '-4px',justifyContent: 'center'}}  component='👉' />
+      Emoji: <Icon size={20} style={{ marginRight: '2px'}}  component='👉' />
     };
     const textIcons = ['CheckS', 'Close3S', 'Check3S','Emoji'];
     const iconType = select('Set symbol', textIcons, 'CheckS');
