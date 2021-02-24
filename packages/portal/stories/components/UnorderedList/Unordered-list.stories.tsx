@@ -1,4 +1,4 @@
-import { select, text } from '@storybook/addon-knobs';
+import { boolean, select, text } from '@storybook/addon-knobs';
 import UnorderedList from '@synerise/ds-unordered-list';
 import * as React from 'react';
 
@@ -27,7 +27,16 @@ const stories = {
       disc: 'disc',
       dashed: 'dashed',
     };
-    const ListStyle = select('Set order', preffix, preffix.dashed);
+    const listStyle = select('Set order', preffix, preffix.dashed);
+    const hasLabel = boolean('Set label', true);
+    const label = text('Label', 'Header label');
+    const getLabel = (hasLabel: boolean): string => {
+      if (hasLabel) {
+        return label;
+      } else {
+        return '';
+      }
+    };
     const data = [
       {
         label: 'Unordered List level 1',
@@ -78,16 +87,25 @@ const stories = {
       },
     ];
 
-    return <UnorderedList text={renderLabel(text('Label', 'Header label'))} listStyle={ListStyle} data={data}
-                        indexFormatter={ListStyle === preffix.dashed ? formatterUnorderedType.dashed : formatterUnorderedType.empty}/>;
+    return <UnorderedList text={renderLabel(label && getLabel(hasLabel))} listStyle={listStyle === preffix.dashed ? 'none' : listStyle} data={data}
+                        indexFormatter={listStyle === preffix.dashed ? formatterUnorderedType.dashed : formatterUnorderedType.empty}/>;
   },
-  NestedList: () => {
+  nestedList: () => {
     const level = {
       first: 'first',
       second: 'second',
       third: 'third',
     };
     const setLevel = select('Set list level', level, level.third);
+    const hasLabel = boolean('Set label', true);
+    const label = text('Label', 'Header label');
+    const getLabel = (hasLabel: boolean): string => {
+      if (hasLabel) {
+        return label;
+      } else {
+        return '';
+      }
+    };
     const data = [
       {
         label: 'Unordered List level 1',
@@ -146,7 +164,7 @@ const stories = {
       },
     ];
 
-    return <UnorderedList text={renderLabel(text('Label', 'Header label'))} listStyle='dashed' data={data}
+    return <UnorderedList text={renderLabel(label && getLabel(hasLabel))} listStyle='none' data={data}
                         indexFormatter={dashedFormatter}/>;
   },
 }
