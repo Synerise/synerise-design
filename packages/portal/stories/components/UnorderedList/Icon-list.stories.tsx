@@ -21,10 +21,10 @@ const stories = {
     const emptyFormatter = () => ``;
     const setLevel = select('Set list level', level, level.first);
     const Icons = {
-      CheckS: <Icon size={20} style={{marginRight: '4px', marginLeft: '-4px'}} color={theme.palette['grey-600']} component={<CheckS />} />,
-      Close3S: <Icon size={20} style={{marginRight: '4px', marginLeft: '-4px'}} color={theme.palette['red-600']} component={<Close3S />} />,
-      Check3S: <Icon size={20} style={{marginRight: '4px', marginLeft: '-4px'}} color={theme.palette['green-600']} component={<Check3S />} />,
-      Emoji: <Icon size={20} style={{ }}  component='👉' />
+      CheckS: <Icon size={20} style={{marginRight: '2px', }} color={theme.palette['grey-600']} component={<CheckS />} />,
+      Close3S: <Icon size={20} style={{marginRight: '2px'}} color={theme.palette['red-600']} component={<Close3S />} />,
+      Check3S: <Icon size={20} style={{marginRight: '2px'}} color={theme.palette['green-600']} component={<Check3S />} />,
+      Emoji: <Icon size={20} style={{marginLeft: '2px', }}  component='👉' />
     };
     const textIcons = ['CheckS', 'Close3S', 'Check3S','Emoji'];
     const iconType = select('Set symbol', textIcons, 'CheckS');
