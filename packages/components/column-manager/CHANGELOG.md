@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.26](https://github.com/Synerise/synerise-design/compare/@synerise/ds-column-manager@0.8.25...@synerise/ds-column-manager@0.8.26) (2021-02-25)
+
+
+### Bug Fixes
+
+* **column-manager:** fix test ([2fdf74c](https://github.com/Synerise/synerise-design/commit/2fdf74c4ff933e195707c2ec82195753fa41438a))
+* **column-manager:** use react-sortatablejs ([9effdd5](https://github.com/Synerise/synerise-design/commit/9effdd551b58710b400ceeda9209aea9afc9b9a0))
+
+
+
+
+
 ## [0.8.25](https://github.com/Synerise/synerise-design/compare/@synerise/ds-column-manager@0.8.24...@synerise/ds-column-manager@0.8.25) (2021-02-22)
 
 **Note:** Version bump only for package @synerise/ds-column-manager
