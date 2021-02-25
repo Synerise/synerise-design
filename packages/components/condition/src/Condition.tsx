@@ -11,7 +11,7 @@ import Factors from '@synerise/ds-factors';
 import Operators from '@synerise/ds-operators';
 import ContextSelector from '@synerise/ds-context-selector';
 import Cruds from '@synerise/ds-cruds';
-import { ReactSortable } from 'react-sortablejs-typescript';
+import { ReactSortable } from 'react-sortablejs';
 import { useIntl } from 'react-intl';
 import { ConditionProps, ConditionStep, StepConditions } from './Condition.types';
 import * as S from './Condition.style';

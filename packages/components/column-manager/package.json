@@ -42,8 +42,7 @@
     "@synerise/ds-typography": "^0.10.2",
     "@synerise/ds-utils": "^0.12.1",
     "react-final-form": "^6.3.5",
-    "react-sortablejs": "^2.0.11",
-    "react-sortablejs-typescript": "^2.0.15",
+    "react-sortablejs": "^6.0.0",
     "uuid": "^8.1.0"
   },
   "peerDependencies": {

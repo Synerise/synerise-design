@@ -15,7 +15,8 @@ const ITEM_FILTER_TEXTS = {
   activate: 'Activate',
   cancel: 'Cancel',
   deleteConfirmationTitle: 'Delete filter',
-  deleteConfirmationDescription: 'Deleting this filter will permanently remove it from templates library. All tables using this filter will be reset.',
+  deleteConfirmationDescription:
+    'Deleting this filter will permanently remove it from templates library. All tables using this filter will be reset.',
   deleteLabel: 'Delete',
   noResults: 'No results',
   searchPlaceholder: 'Search',
@@ -50,6 +51,8 @@ const COLUMNS = [
     visible: true,
     type: 'text',
     fixed: 'left',
+    chosen: false,
+    selected: false,
   },
   {
     id: '1',
@@ -57,6 +60,8 @@ const COLUMNS = [
     visible: true,
     type: 'text',
     fixed: undefined,
+    chosen: false,
+    selected: false,
   },
   {
     id: '2',
@@ -64,6 +69,8 @@ const COLUMNS = [
     visible: false,
     type: 'text',
     fixed: undefined,
+    chosen: false,
+    selected: false,
   },
   {
     id: '3',
@@ -71,6 +78,8 @@ const COLUMNS = [
     visible: false,
     type: 'number',
     fixed: undefined,
+    chosen: false,
+    selected: false,
   },
 ];
 
@@ -140,8 +149,9 @@ const CATEGORIES = [
         },
         columns: COLUMNS,
       },
-    ]
-  }, {
+    ],
+  },
+  {
     label: 'My filters',
     hasMore: false,
     items: [
@@ -173,11 +183,17 @@ const CATEGORIES = [
         },
         columns: COLUMNS,
       },
-    ]
-  }
+    ],
+  },
 ];
 
-const COLUMN_MANAGER = (visible: boolean = true, hide: () => void = () => {}, onSave: (currentView: View) => void = () => {}, onApply = () => {}, selectedFilter = '') => (
+const COLUMN_MANAGER = (
+  visible: boolean = true,
+  hide: () => void = () => {},
+  onSave: (currentView: View) => void = () => {},
+  onApply = () => {},
+  selectedFilter = ''
+) => (
   <ColumnManager
     hide={hide}
     visible={visible}
@@ -186,10 +202,10 @@ const COLUMN_MANAGER = (visible: boolean = true, hide: () => void = () => {}, on
     onApply={onApply}
     texts={TEXTS}
     itemFilterConfig={{
-      removeItem: (params: {id: string}) => {},
-      editItem: (params: {id: string, name: string}) => {},
-      selectItem: (params: {id: string}) => {},
-      duplicateItem: (params: {id: string}) => {},
+      removeItem: (params: { id: string }) => {},
+      editItem: (params: { id: string; name: string }) => {},
+      selectItem: (params: { id: string }) => {},
+      duplicateItem: (params: { id: string }) => {},
       selectedItemId: selectedFilter,
       categories: CATEGORIES,
       items: FILTERS,
@@ -198,11 +214,18 @@ const COLUMN_MANAGER = (visible: boolean = true, hide: () => void = () => {}, on
   />
 );
 
-
 describe('ColumnManager', () => {
   it('should render', () => {
     // ARRANGE
-    const { getByText } = renderWithProvider(COLUMN_MANAGER(true, () => {}, () => {}, () => {}, ''));
+    const { getByText } = renderWithProvider(
+      COLUMN_MANAGER(
+        true,
+        () => {},
+        () => {},
+        () => {},
+        ''
+      )
+    );
 
     //ASSERT
     expect(getByText('Manage columns')).toBeTruthy();
@@ -216,7 +239,15 @@ describe('ColumnManager', () => {
   it('should close himself when close or cancel button has been clicked', () => {
     // ARRANGE
     const hide = jest.fn();
-    const { getByTestId } = renderWithProvider(COLUMN_MANAGER(true, hide, () => {}, () => {}, '' ));
+    const { getByTestId } = renderWithProvider(
+      COLUMN_MANAGER(
+        true,
+        hide,
+        () => {},
+        () => {},
+        ''
+      )
+    );
 
     // ACT
     fireEvent.click(getByTestId('ds-column-manager-close'));
@@ -230,7 +261,7 @@ describe('ColumnManager', () => {
     // ARRANGE
     const hide = jest.fn();
     const apply = jest.fn();
-    const { getByTestId } = renderWithProvider(COLUMN_MANAGER(true, hide, () => {}, apply, '' ));
+    const { getByTestId } = renderWithProvider(COLUMN_MANAGER(true, hide, () => {}, apply, ''));
 
     // ACT
     fireEvent.click(getByTestId('ds-column-manager-apply'));
@@ -244,7 +275,9 @@ describe('ColumnManager', () => {
     const hide = jest.fn();
     const apply = jest.fn();
     const save = jest.fn();
-    const { getByTestId, getByPlaceholderText, getByText } = renderWithProvider(COLUMN_MANAGER(true, hide, save, apply, '' ));
+    const { getByTestId, getByPlaceholderText, getByText } = renderWithProvider(
+      COLUMN_MANAGER(true, hide, save, apply, '')
+    );
 
     // ACT
     fireEvent.click(getByText('Save view'));
@@ -255,11 +288,11 @@ describe('ColumnManager', () => {
     const modalApply = getByTestId('ds-modal-apply');
 
     // ACT
-    fireEvent.change(nameInput, {target: {value: 'Test name'}});
+    fireEvent.change(nameInput, { target: { value: 'Test name' } });
     fireEvent.click(modalApply);
 
     // ASSERT
-    expect(save).toBeCalledWith({meta: {name: 'Test name', description: '' }, columns: COLUMNS});
+    expect(save).toBeCalledWith({ meta: { name: 'Test name', description: '' }, columns: COLUMNS });
   });
 
   it('should show validation error on new filter modal', async () => {
@@ -267,7 +300,7 @@ describe('ColumnManager', () => {
     const hide = jest.fn();
     const apply = jest.fn();
     const save = jest.fn();
-    const { getByTestId, getByText } = renderWithProvider(COLUMN_MANAGER(true, hide, save, apply, '' ));
+    const { getByTestId, getByText } = renderWithProvider(COLUMN_MANAGER(true, hide, save, apply, ''));
 
     // ACT
     fireEvent.click(getByText('Save view'));
@@ -292,7 +325,7 @@ describe('ColumnManager', () => {
     const hide = jest.fn();
     const apply = jest.fn();
     const save = jest.fn();
-    const { queryAllByTestId } = renderWithProvider(COLUMN_MANAGER(true, hide, save, apply, '' ));
+    const { queryAllByTestId } = renderWithProvider(COLUMN_MANAGER(true, hide, save, apply, ''));
     const hiddenColumns = queryAllByTestId('ds-column-manager-hidden-item');
     const visibleColumns = queryAllByTestId('ds-column-manager-visible-item');
 
@@ -306,7 +339,7 @@ describe('ColumnManager', () => {
     const hide = jest.fn();
     const apply = jest.fn();
     const save = jest.fn();
-    const { queryAllByTestId } = renderWithProvider(COLUMN_MANAGER(true, hide, save, apply, '' ));
+    const { queryAllByTestId } = renderWithProvider(COLUMN_MANAGER(true, hide, save, apply, ''));
     let visibleColumns = queryAllByTestId('ds-column-manager-visible-item');
 
     // ACT
@@ -327,10 +360,10 @@ describe('ColumnManager', () => {
     const hide = jest.fn();
     const apply = jest.fn();
     const save = jest.fn();
-    const { queryAllByTestId, getByPlaceholderText } = renderWithProvider(COLUMN_MANAGER(true, hide, save, apply, '' ));
+    const { queryAllByTestId, getByPlaceholderText } = renderWithProvider(COLUMN_MANAGER(true, hide, save, apply, ''));
 
     // ACT
-    fireEvent.change(getByPlaceholderText('Search'), {target: {value: 'City'}});
+    fireEvent.change(getByPlaceholderText('Search'), { target: { value: 'City' } });
     await wait();
     const filteredColumns = queryAllByTestId('ds-column-manager-filtered-item');
 
@@ -343,7 +376,7 @@ describe('ColumnManager', () => {
     const hide = jest.fn();
     const apply = jest.fn();
     const save = jest.fn();
-    const { getByTestId, getByText } = renderWithProvider(COLUMN_MANAGER(true, hide, save, apply, '' ));
+    const { getByTestId, getByText } = renderWithProvider(COLUMN_MANAGER(true, hide, save, apply, ''));
 
     // ACT
     fireEvent.click(getByTestId('ds-column-manager-show-filters'));
@@ -351,6 +384,5 @@ describe('ColumnManager', () => {
 
     // ASSERT
     expect(getByText('Item filter')).toBeTruthy();
-  })
-
+  });
 });
