@@ -7,26 +7,26 @@ import * as S from './CardSelect.styles';
 import { CardSelectProps } from './CardSelect.types';
 
 const CardSelect: React.FC<CardSelectProps> = ({
-                                                 title,
-                                                 description,
-                                                 customTickVisible,
-                                                 customTickVisibleComponent,
-                                                 tickVisible,
-                                                 stretchToFit,
-                                                 raised,
-                                                 value,
-                                                 size,
-                                                 disabled,
-                                                 onChange,
-                                                 icon,
-                                                 iconSize,
-                                                 tickSize,
-                                                 elementsPosition = 'center',
-                                                 className,
-                                                 onClick,
-                                                 theme,
+  title,
+  description,
+  customTickVisible,
+  customTickVisibleComponent,
+  tickVisible,
+  stretchToFit,
+  raised,
+  value,
+  size,
+  disabled,
+  onChange,
+  icon,
+  iconSize,
+  tickSize,
+  elementsPosition = 'center',
+  className,
+  onClick,
+  theme,
   error,
-                                               }) => {
+}) => {
   const [pressed, setPressed] = React.useState<boolean>(false);
   const wrapperRef = React.useRef(null);
   const tickIconRef = React.useRef<HTMLDivElement>(null);
@@ -64,7 +64,6 @@ const CardSelect: React.FC<CardSelectProps> = ({
         className={`ds-card-select ${className || ''}`}
         elementsPosition={elementsPosition}
         stretchToFit={stretchToFit}
-
       >
         <S.Aside size={size} tabIndex={disabled ? undefined : 0} ref={tickIconRef}>
           {tickVisible && (
@@ -75,7 +74,7 @@ const CardSelect: React.FC<CardSelectProps> = ({
               selected={value && !disabled}
               size={size}
             >
-              {value && !disabled ? (
+              {value ? (
                 <Icon
                   size={realTickSize}
                   color={value ? theme.palette['green-600'] : theme.palette['grey-400']}
@@ -88,7 +87,7 @@ const CardSelect: React.FC<CardSelectProps> = ({
           )}
         </S.Aside>
 
-        <S.Main size={size} disabled={disabled} hasTick={tickVisible || customTickVisible} >
+        <S.Main size={size} disabled={disabled} hasTick={tickVisible || customTickVisible}>
           {icon && (
             <S.IconWrapper size={size}>
               <Icon component={icon} size={realIconSize} />
@@ -120,4 +119,3 @@ CardSelect.defaultProps = {
 };
 
 export default withTheme(CardSelect);
-
