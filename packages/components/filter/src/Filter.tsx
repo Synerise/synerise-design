@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ReactSortable } from 'react-sortablejs-typescript';
+import { ReactSortable } from 'react-sortablejs';
 import Logic from '@synerise/ds-logic';
 import Matching from '@synerise/ds-logic/dist/Matching/Matching';
 import StepCard from '@synerise/ds-step-card';

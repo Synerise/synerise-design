@@ -43,8 +43,7 @@
     "@synerise/ds-subject": "^0.5.0",
     "@synerise/ds-tooltip": "^0.10.14",
     "@synerise/ds-utils": "^0.12.1",
-    "react-sortablejs": "^6.0.0",
-    "react-sortablejs-typescript": "^2.0.15"
+    "react-sortablejs": "^6.0.0"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

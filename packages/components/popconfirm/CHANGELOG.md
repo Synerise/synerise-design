@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-popconfirm@0.6.0...@synerise/ds-popconfirm@0.6.1) (2021-02-22)
+
+
+### Bug Fixes
+
+* **popconfirm:** hide popover arrow - increase specifity ([ce3398c](https://github.com/Synerise/synerise-design/commit/ce3398cc34ed5831f7b46a6cab48855e6715fa39))
+
+
+
+
+
 # [0.6.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-popconfirm@0.5.41...@synerise/ds-popconfirm@0.6.0) (2021-02-22)
 
 

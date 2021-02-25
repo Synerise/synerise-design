@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ReactSortable } from 'react-sortablejs-typescript';
+import { ReactSortable } from 'react-sortablejs';
 import * as S from './ColumnManager.style';
 import ColumnManagerItem from '../ColumnManagerItem/ColumnManagerItem';
 import ColumnManagerSearchResults from '../ColumnManagerSearchResults/ColumnManagerSearchResults';
