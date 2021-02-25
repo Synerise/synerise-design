@@ -85,7 +85,6 @@ export const IconWrapper = styled.div<{ size?: string }>`
   margin-bottom: ${(props): string | number => sizeCondition(0, mainPadding, props)}px;
   text-align: center;
   width: 100%;
-
 `;
 export const Aside = styled.div<{ size?: string }>`
   display: flex;
@@ -168,7 +167,6 @@ export const Container = styled.div<
     }
 
     ${isNot('raised')`
-
       ${isNot('value')`
        box-shadow: 0px 0px 0px 1px ${getVar('grey-300')};
         
@@ -191,11 +189,10 @@ export const Container = styled.div<
   `}
 
   ${is('disabled')`
+    opacity: 0.4;
     pointer-events:none;
-    box-shadow: 0px 0px 0px 1px ${getVar('grey-200')};
 
     ${isNot('raised')`
-      box-shadow: 0px 0px 0px 1px ${getVar('grey-200')};
 
       ${isNot('value')`
         box-shadow: 0px 0px 0px 1px ${getVar('grey-200')};
@@ -206,15 +203,11 @@ export const Container = styled.div<
 `;
 
 export const Main = styled.div<{ disabled?: boolean; size?: string; hasTick?: boolean }>`
-  ${is('disabled')`
-    opacity: 0.4;
-  `}
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-
 `;
 
 export const TickIcon = styled.div<{
