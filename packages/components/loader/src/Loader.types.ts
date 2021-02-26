@@ -9,6 +9,7 @@ export type LoaderProps = {
   size?: 'S' | 'M' | 'L';
   label?: string | React.ReactNode;
   labelPosition?: 'bottom' | 'right';
+  mode?: 'absolute';
   percent?: number | React.ReactNode;
   percentFormatter?: (percent?: number | React.ReactNode) => React.ReactNode;
   color?:

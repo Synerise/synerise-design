@@ -19,10 +19,11 @@ export const OverlayWrapper = styled.div`
   padding: 6px;
 `;
 
-export const Overlay = styled.div`
+export const Overlay = styled.span`
   width: 250px;
   background-color: ${(props): string => props.theme.palette.white};
   position: relative;
+  display: block;
   border-radius: 3px;
 
   ${OverlayWrapper}:not(:last-child) {

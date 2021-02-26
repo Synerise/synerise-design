@@ -6,6 +6,6 @@ export type Props = {
   totalItemsCount: number;
   visibleItemsCount: number;
   maxItemsToShow: number;
-  step: number;
+  showMoreStep: number;
   texts?: TagsListTexts;
 };

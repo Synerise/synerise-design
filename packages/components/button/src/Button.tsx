@@ -4,16 +4,12 @@ import './style/index.less';
 
 import Icon from '@synerise/ds-icon';
 import SpinnerM from '@synerise/ds-icon/dist/icons/SpinnerM';
-import Creator from './Creator/Creator';
 import * as S from './Button.styles';
-import Expander from './Expander/Expander';
-import { ButtonSubComponents, Props } from './Button.types';
-import { ExpanderProps } from './Expander/Expander.types';
-import { CreatorProps } from './Creator/Creator.types';
+import { Props } from './Button.types';
 
 const RIPPLE_ANIMATION_OFFSET = 50;
 
-const Button: React.FC<Props> & ButtonSubComponents = ({
+const Button: React.FC<Props> = ({
   type = 'secondary',
   mode,
   justifyContent = 'center',
@@ -81,9 +77,5 @@ const Button: React.FC<Props> & ButtonSubComponents = ({
     </S.AntdButton>
   );
 };
-Button.Expander = (props: ExpanderProps): React.ReactElement<ExpanderProps> =>
-  Expander(props) as React.ReactElement<ExpanderProps>;
-Button.Creator = (props: CreatorProps): React.ReactElement<CreatorProps> =>
-  Creator(props) as React.ReactElement<CreatorProps>;
 
 export default Button;

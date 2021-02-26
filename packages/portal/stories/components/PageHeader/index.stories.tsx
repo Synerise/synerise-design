@@ -5,7 +5,15 @@ import { action } from '@storybook/addon-actions';
 import Tabs from '@synerise/ds-tabs';
 import { withState } from '@dump247/storybook-state';
 import Icon from '@synerise/ds-icon/';
-import { AngleDownS, ArrowRightCircleM, HelpM, MailM, MailS, OptionHorizontalM } from '@synerise/ds-icon/dist/icons';
+import {
+  AngleDownS,
+  ArrowRightCircleM,
+  CheckS,
+  HelpM,
+  MailM,
+  MailS,
+  OptionHorizontalM,
+} from '@synerise/ds-icon/dist/icons';
 import Button from '@synerise/ds-button';
 import { boolean, select, text } from '@storybook/addon-knobs';
 import Avatar from '@synerise/ds-avatar';
@@ -221,12 +229,14 @@ const stories = {
       }
     />
   )),
-  withDropdown:() => {
+  withDropdown: () => {
     const avatarSize = select('size', ['small', 'medium', 'large', 'extraLarge'], 'large');
-    const [value,setValue] = React.useState('');
-    const [selectedSpace,setSelectedSpace] = React.useState('CRM');
+    const [value, setValue] = React.useState('');
+    const [selectedSpace, setSelectedSpace] = React.useState('CRM');
     const [dropdownVisible, setDropdownVisible] = React.useState(false);
+    const [isFocused, setFocused] = React.useState(false);
     const ref = React.useRef<HTMLDivElement>(null);
+    const disabled = boolean('Set disabled', false)
     useOnClickOutside(ref, () => {
       setDropdownVisible(false);
     });
@@ -243,7 +253,7 @@ const stories = {
           value: value,
           maxLength: 60,
           handleOnChange: event => {
-            setValue( event.target.value );
+            setValue(event.target.value);
           },
           handleOnBlur: () => action('onBlur'),
           handleOnEnterPress: () => action('onEnterPress'),
@@ -254,23 +264,45 @@ const stories = {
           <Dropdown
             overlay={
               <div ref={ref}>
-              <Menu asDropdownMenu>
-                <MenuItem onClick={() => {setSelectedSpace("CRM"); setDropdownVisible(false)}}>CRM</MenuItem>
-                <MenuItem onClick={() => {setSelectedSpace("Campaign"); setDropdownVisible(false)}}>
-                  Campaign
-                </MenuItem>
-                <MenuItem onClick={() => {setSelectedSpace("Automation"); setDropdownVisible(false)}}>
-                  Automation
-                </MenuItem>
-              </Menu>
+                <Menu selectable={true} asDropdownMenu>
+                  <MenuItem
+                    onClick={() => {
+                      setSelectedSpace('CRM');
+                      setDropdownVisible(false);
+                    }}
+                    checked={selectedSpace==='CRM'}
+                  >
+                    CRM
+                  </MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      setSelectedSpace('Campaign');
+                      setDropdownVisible(false);
+                    }}
+                    checked={selectedSpace==='Campaign'}
+                  >
+                    Campaign
+                  </MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      setSelectedSpace('Automation');
+                      setDropdownVisible(false);
+                    }}
+                    checked={selectedSpace==='Automation'}
+                  >
+                    Automation
+                  </MenuItem>
+                </Menu>
               </div>
             }
             visible={dropdownVisible}
           >
             <Dropdown.TextTrigger
               size={2}
+              expanded={dropdownVisible}
               inactiveColor="blue-600"
               value={selectedSpace}
+              onFocus={()=> setFocused(isFocused)}
               onClick={() => setDropdownVisible(true)}
             />
           </Dropdown>

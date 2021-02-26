@@ -15,8 +15,8 @@ import useTexts from './useTexts';
 import './style/index.less';
 import TagsListContainer from './TagsList.styles';
 
-const DEFAULT_STEP = 10;
-const DEFAULT_ITEMS_VISIBLE = 10;
+export const DEFAULT_STEP = 10;
+export const DEFAULT_ITEMS_VISIBLE = 10;
 
 export function replaceItem(items: TagsListItem[], item: TagsListItem, index?: number): [TagsListItem[], TagsListItem] {
   const newItems = [...items];
@@ -29,12 +29,12 @@ const TagsList: React.FC<TagsListProps> = props => {
   const {
     items: controlledItems,
     defaultItems = [],
-    maxItemsVisible,
+    maxItemsVisible = DEFAULT_ITEMS_VISIBLE,
     onItemsAdd,
     onChange,
     onManageTags = NOOP,
     texts: propTexts = {},
-    showHideStep,
+    showMoreStep = DEFAULT_STEP,
     withCheckbox = true,
   } = props;
 
@@ -50,9 +50,7 @@ const TagsList: React.FC<TagsListProps> = props => {
   };
 
   const [items, setItems] = React.useState<TagsListItem[]>(controlledItems || defaultItems);
-  const [visibleItemsCount, setVisibleItemsCount] = React.useState<number>(
-    maxItemsVisible && maxItemsVisible > 0 ? maxItemsVisible : DEFAULT_ITEMS_VISIBLE
-  );
+  const [visibleItemsCount, setVisibleItemsCount] = React.useState<number>(maxItemsVisible);
 
   // if is controlled and no onChange method whine!
   React.useEffect(() => {
@@ -194,7 +192,7 @@ const TagsList: React.FC<TagsListProps> = props => {
             visibleItemsCount={items.length <= visibleItemsCount ? items.length : visibleItemsCount}
             texts={texts}
             maxItemsToShow={Number(maxItemsVisible)}
-            step={showHideStep || DEFAULT_STEP}
+            showMoreStep={showMoreStep}
           />
         )}
       </TagsListContext.Provider>

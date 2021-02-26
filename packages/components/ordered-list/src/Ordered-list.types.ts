@@ -1,6 +1,5 @@
 import * as React from 'react';
 
-
 export type OrderedListItem = {
   id: string;
   label: string;
@@ -9,10 +8,13 @@ export type OrderedListItem = {
   index: number;
   subMenu?: OrderedListItem[];
   listStyle?: string;
+  subMenuProps?: Omit<ListProps, 'data'>;
+  text?: React.ReactNode | string;
 };
 
 export type ListProps = {
   data: OrderedListItem[];
   indexFormatter?: (index: number) => React.ReactNode | string;
   listStyle?: string;
+  text?: React.ReactNode | string;
 };

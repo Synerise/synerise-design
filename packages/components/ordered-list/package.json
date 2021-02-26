@@ -15,9 +15,9 @@
     "build:watch": "npm run build:js -- --watch",
     "defs": "tsc --declaration --outDir dist/ --emitDeclarationOnly",
     "prepublish": "npm run build",
+    "types": "tsc --noEmit",
     "test": "jest",
-    "test:watch": "npm run test -- --watchAll",
-    "types": "tsc --noEmit"
+    "test:watch": "npm run test -- --watchAll"
   },
   "sideEffects": [
     "dist/style/*",
@@ -26,6 +26,7 @@
   "types": "dist/index.d.ts",
   "dependencies": {
     "@synerise/ds-icon": "^0.38.2",
+    "@synerise/ds-input": "^0.16.23",
     "@synerise/ds-utils": "^0.11.16"
   },
   "peerDependencies": {

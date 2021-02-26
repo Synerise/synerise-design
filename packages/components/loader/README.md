@@ -34,4 +34,5 @@ import Loader from '@synerise/ds-loader'
 | color            | Changing color of Loader     | string                    | `blue`      |
 | percent          | percent number of loader     | number / React.ReactNode  | -           |
 | percentFormatter | prop to keep in order        | React.ReactNode           | -           |
+| mode             | prop to set loader in center | absolute / undefined      | -           |
 
