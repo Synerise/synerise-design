@@ -7,5 +7,5 @@ export const ItemWrapper = styled.li`
   align-items: center;
 `;
 export const IndexFormatterWrapper = styled.span<{ listStyle?: string }>`
-  margin-right: ${(props): string => (props.listStyle === 'none' ? '6px' : '-4px')};
+  margin-right: 6px;
 `;
