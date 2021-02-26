@@ -17,7 +17,7 @@ const Item: React.FC<UnorderedListItem & Pick<ListProps, 'indexFormatter'>> = ({
   return (
     <>
       <S.ItemWrapper>
-        <S.IndexFormatterWrapper >
+        <S.IndexFormatterWrapper listStyle={listStyle}>
           {indexFormatter ? indexFormatter(index) : index}
         </S.IndexFormatterWrapper>
         {prefixel}
@@ -25,7 +25,13 @@ const Item: React.FC<UnorderedListItem & Pick<ListProps, 'indexFormatter'>> = ({
         {suffixel}
       </S.ItemWrapper>
       {!!subMenu && subMenu?.length > 0 && (
-        <UnorderedList text={text} indexFormatter={indexFormatter} data={subMenu} listStyle={listStyle} {...subMenuProps} />
+        <UnorderedList
+          text={text}
+          indexFormatter={indexFormatter}
+          data={subMenu}
+          listStyle={listStyle}
+          {...subMenuProps}
+        />
       )}
     </>
   );
