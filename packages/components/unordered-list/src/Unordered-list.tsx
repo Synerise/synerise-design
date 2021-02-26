@@ -4,7 +4,7 @@ import * as S from './Unordered-list.styles';
 import Item from './Elements/Item/Item';
 import { ListProps } from './Unordered-list.types';
 
-const UnorderedList: React.FC<ListProps> = ({ data, indexFormatter, listStyle, text }) => {
+const UnorderedList: React.FC<ListProps> = ({ data, indexFormatter, text }) => {
   return (
     <div>
       {text && (
@@ -12,9 +12,9 @@ const UnorderedList: React.FC<ListProps> = ({ data, indexFormatter, listStyle, t
           <Label label={text} />
         </S.ContentAbove>
       )}
-      <S.UnorderedList listStyle={listStyle}>
+      <S.UnorderedList>
         {data.map((item, index) => (
-          <Item listStyle={listStyle} index={index} key={String(item?.id)} indexFormatter={indexFormatter} {...item} />
+          <Item index={index} key={String(item?.id)} indexFormatter={indexFormatter} {...item} />
         ))}
       </S.UnorderedList>
     </div>

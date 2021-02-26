@@ -10,28 +10,20 @@ const Item: React.FC<UnorderedListItem & Pick<ListProps, 'indexFormatter'>> = ({
   subMenu,
   indexFormatter,
   index,
-  listStyle,
+
   subMenuProps,
   text,
 }) => {
   return (
     <>
       <S.ItemWrapper>
-        <S.IndexFormatterWrapper listStyle={listStyle}>
-          {indexFormatter ? indexFormatter(index) : index}
-        </S.IndexFormatterWrapper>
+        <S.IndexFormatterWrapper>{indexFormatter ? indexFormatter(index) : index}</S.IndexFormatterWrapper>
         {prefixel}
         {label}
         {suffixel}
       </S.ItemWrapper>
       {!!subMenu && subMenu?.length > 0 && (
-        <UnorderedList
-          text={text}
-          indexFormatter={indexFormatter}
-          data={subMenu}
-          listStyle={listStyle}
-          {...subMenuProps}
-        />
+        <UnorderedList text={text} indexFormatter={indexFormatter} data={subMenu} {...subMenuProps} />
       )}
     </>
   );
