@@ -3,6 +3,54 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tagslist@0.5.2...@synerise/ds-tagslist@0.6.0) (2021-03-01)
+
+
+### Bug Fixes
+
+* **tagslist:** allowSyntheticDefaultImports true ([856a8f7](https://github.com/Synerise/synerise-design/commit/856a8f71a54a549e26fcaa323787bbb939628ecb))
+* **tagslist:** don't select on dropdown trigger ([35071cf](https://github.com/Synerise/synerise-design/commit/35071cfc0bdfadc62028dbd242f39e07b55b16c9))
+* **tagslist:** fix and optimize ([2ddccaf](https://github.com/Synerise/synerise-design/commit/2ddccaf0a62ee6b5d1fd57e98a553fd313042794))
+* **tagslist:** fix hover jumpng and rerendering ([b1201c9](https://github.com/Synerise/synerise-design/commit/b1201c9ef98e85a1b2872549229a302859909fcb))
+* **tagslist:** fix mouseout/over issue! yeah! ([52a015f](https://github.com/Synerise/synerise-design/commit/52a015f4a96b4098234e94c8e7464393c4abb421))
+* **tagslist:** fix search dep ([17a17c0](https://github.com/Synerise/synerise-design/commit/17a17c0250be2d926358e7742e88dd888736e5e2))
+* **tagslist:** fix stepping and naming ([78bc4e3](https://github.com/Synerise/synerise-design/commit/78bc4e316c1e6638afd681786f25a996ff589c24))
+* **tagslist:** fix types ([610ec62](https://github.com/Synerise/synerise-design/commit/610ec6223dc5ed4fa88594fb597ee254e34751e5))
+* **tagslist:** fixes from STOR-636 ([d838c93](https://github.com/Synerise/synerise-design/commit/d838c9389fe5dfed47a65d7af27d48441f939e0b))
+* **tagslist:** loading text ([1cedd65](https://github.com/Synerise/synerise-design/commit/1cedd653917f4dad48503780f9d0a76c740e3454))
+* **tagslist:** MouseEvent vs Event ([9cca257](https://github.com/Synerise/synerise-design/commit/9cca25764c5b965415302387b4a79c259cc76157))
+* **tagslist:** refactor ([306b042](https://github.com/Synerise/synerise-design/commit/306b042e4483d4808e83dafa1da99ad7e70fb49a))
+* **tagslist:** sNOOPy ([8b2946c](https://github.com/Synerise/synerise-design/commit/8b2946ca7ea209b7a12390863c1a0fe1f3f61df7))
+* **tagslist:** sNOOPy had to die ;( ([7196c17](https://github.com/Synerise/synerise-design/commit/7196c1703cb0d56520e984436666a2df1fe515fc))
+* **tagslist:** sNOOPy had to die ;( + package.json + yarn.locj ([12e1097](https://github.com/Synerise/synerise-design/commit/12e1097f696ba969da736624de6c54d2f3812a4c))
+* **tagslist:** STOR-636 fix show-hide / trigger button knob ([b8c3d0b](https://github.com/Synerise/synerise-design/commit/b8c3d0b8b9fe91928750678d8eca13d27698211f))
+* **tagslist:** STOR-683 + move Visibility to separate component ([663bd6d](https://github.com/Synerise/synerise-design/commit/663bd6d2154493c45d424ae13242ea4918dfe5bd))
+* **tagslist:** STOR-683 and STOR-636 fixes ([6dc945f](https://github.com/Synerise/synerise-design/commit/6dc945f510812927a894380f28589f85817e1bc8))
+* **tagslist:** tsc errors ([0a2a308](https://github.com/Synerise/synerise-design/commit/0a2a3086ce9f501ff510e4a4695ba45af9016f91))
+
+
+### Features
+
+* **tagslist:** add checkboxes to the items hover ([d2fc1b3](https://github.com/Synerise/synerise-design/commit/d2fc1b39b263a7cdef968a17c8970e1871262fbf))
+* **tagslist:** context + refactor + some new stuff ([588855e](https://github.com/Synerise/synerise-design/commit/588855eb05f9155a9eaa74d465d142eb5dbd557f))
+* **tagslist:** fixes + useIntl ([dd46469](https://github.com/Synerise/synerise-design/commit/dd46469d2cf0ab567f33117fa503d9f0b97c7983))
+* **tagslist:** more refactor and bug fixes ([7b2d22c](https://github.com/Synerise/synerise-design/commit/7b2d22c54ecbd85a8487bc116151a791c83706da))
+* **tagslist:** new AddModal and other stuff ([ee35c22](https://github.com/Synerise/synerise-design/commit/ee35c22e21b3460b54c8758ccc5fe20535c0e89f))
+* **tagslist:** refactor ([3ef75fd](https://github.com/Synerise/synerise-design/commit/3ef75fd8d25fc188f82c8790d88c37d6624ff625))
+* **tagslist:** refactor ([10c562c](https://github.com/Synerise/synerise-design/commit/10c562cb4e28fee68534d78154ddb443f6f2054d))
+* **tagslist:** remove tooltip on short names ([8b54ac1](https://github.com/Synerise/synerise-design/commit/8b54ac1b41b5f33b9e3faa6cb354ee78fb3b7d37))
+* **tagslist:** STOR-636 add visiblity menu ([4adfabb](https://github.com/Synerise/synerise-design/commit/4adfabb98c7deaba977941b20fe2e7df1375f90c))
+* **tagslist:** STOR-636 after filename change, rename inside files ([459e301](https://github.com/Synerise/synerise-design/commit/459e30142f44ca4a32a3763dc8e7f2dc58bfcc26))
+* **tagslist:** STOR-636 fixes ([ef7991f](https://github.com/Synerise/synerise-design/commit/ef7991f8913c933e162c375637560c49b580e96c))
+* **tagslist:** STOR-636 rename Folders to TagsList ([b102793](https://github.com/Synerise/synerise-design/commit/b102793d8171fa83b12b18a7c6317e68330989b5))
+* **tagslist:** STOR-636 use stored dataSource and show it in story ([3a365e6](https://github.com/Synerise/synerise-design/commit/3a365e6f4d0388b1ed5c2cc3ce7bc9a6adc6e91c))
+* **tagslist:** use invariant instead of console.log ([b53b1fe](https://github.com/Synerise/synerise-design/commit/b53b1fec04391e4107337eadc9a9f87c7a12bf5f))
+* **tagslist:** use new context and NOOP ([ea50058](https://github.com/Synerise/synerise-design/commit/ea50058bd21607ea660f3c14a6451a5a277aebe6))
+
+
+
+
+
 ## [0.5.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tagslist@0.5.1...@synerise/ds-tagslist@0.5.2) (2021-02-18)
 
 

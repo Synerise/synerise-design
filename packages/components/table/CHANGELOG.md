@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.33.4](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.33.3...@synerise/ds-table@0.33.4) (2021-03-01)
+
+
+### Bug Fixes
+
+* **table:** Move to ButtonGroup and tertiary buttons ([969f7b2](https://github.com/synerise/synerise-design/commit/969f7b272f96e98fe7d48cbef5874b394e794fb2))
+* **table:** remove starIcon from table ([5650ac2](https://github.com/synerise/synerise-design/commit/5650ac2197e3abed1ba7194f0cb0a72424fae0a4))
+* **table:** selection dropdown parent fix ([b697de4](https://github.com/synerise/synerise-design/commit/b697de4eed60b1aa061471bc073cf1e6f5fd7d07))
+* **table:** STOR-685 show add item button on hover ([181ba1e](https://github.com/synerise/synerise-design/commit/181ba1e7d20ca8e3ffa7991b6e8295f0e4e7567b))
+
+
+
+
+
 ## [0.33.3](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.33.2...@synerise/ds-table@0.33.3) (2021-02-25)
 
 **Note:** Version bump only for package @synerise/ds-table

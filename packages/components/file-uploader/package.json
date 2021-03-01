@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-file-uploader",
-  "version": "0.5.51",
+  "version": "0.5.52",
   "description": "FileUploader UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -32,10 +32,10 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-button": "^0.13.30",
+    "@synerise/ds-button": "^0.13.31",
     "@synerise/ds-icon": "^0.39.0",
     "@synerise/ds-progress-bar": "^0.5.1",
-    "@synerise/ds-tooltip": "^0.10.14",
+    "@synerise/ds-tooltip": "^0.10.15",
     "@synerise/ds-typography": "^0.10.2",
     "filesize.js": "^2.0.0",
     "react-dropzone": "^10.2.1"
