@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.2.0...@synerise/ds-filter@0.2.1) (2021-02-25)
+
+
+### Bug Fixes
+
+* **filter:** use react-sortatablejs ([ee5d6f5](https://github.com/Synerise/synerise-design/commit/ee5d6f5affdc04f7c193e620e38ff7005d969b23))
+
+
+
+
+
 # [0.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.1.4...@synerise/ds-filter@0.2.0) (2021-02-17)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@0.5.0...@synerise/ds-condition@0.5.1) (2021-02-25)
+
+
+### Bug Fixes
+
+* **condition:** use react-sortatablejs ([efb1e74](https://github.com/Synerise/synerise-design/commit/efb1e748998f8e8adba64f11382805b3674ae877))
+
+
+
+
+
 # [0.5.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@0.4.4...@synerise/ds-condition@0.5.0) (2021-02-17)
 
 
