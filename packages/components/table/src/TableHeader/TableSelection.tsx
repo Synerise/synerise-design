@@ -86,7 +86,7 @@ function TableSelection<T extends { key: React.ReactText; children?: T[] }>({
   }, [dataSource, selection, isEmpty]);
 
   return selection?.selectedRowKeys ? (
-    <S.Selection>
+    <S.Selection data-popup-container>
       <Checkbox
         disabled={isEmpty}
         checked={allSelected}
