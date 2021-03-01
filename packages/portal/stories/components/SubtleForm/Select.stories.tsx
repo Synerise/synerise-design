@@ -26,7 +26,7 @@ const StatusWrapper = styled.div<{ flex?: boolean }>`
   align-items: center;`}
 
   .ds-status {
-    margin: 0;
+    margin: 1px 0 0 0;
   }
 `;
 
@@ -143,6 +143,7 @@ const stories = {
     return (
       <div style={{ marginBottom: '16px', height: '57px' }}>
         <SubtleForm.Select
+          style={{ animation: 'none' }}
           disabled={disabled}
           onChange={label => {
             const selectedStatus = Statuses.find(s => s.label === label);
