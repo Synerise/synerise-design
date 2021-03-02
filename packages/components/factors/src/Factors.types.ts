@@ -96,7 +96,7 @@ export type FactorsProps = {
     showAllGroup?: boolean;
   };
   formulaEditor?: React.ReactNode;
-  texts: FactorsTexts;
+  texts?: Partial<FactorsTexts>;
   opened?: boolean;
 };
 
@@ -115,18 +115,19 @@ export type FactorValueProps = Pick<
   | 'parameters'
   | 'autocompleteText'
   | 'withoutTypeSelector'
-  | 'texts'
   | 'textType'
   | 'formulaEditor'
   | 'opened'
 > & {
+  texts: FactorsTexts;
   selectedFactor: SelectedFactorType;
 };
 
 export type InputProps = Pick<
   FactorsProps,
-  'value' | 'parameters' | 'autocompleteText' | 'withoutTypeSelector' | 'texts' | 'textType' | 'opened'
+  'value' | 'parameters' | 'autocompleteText' | 'withoutTypeSelector' | 'textType' | 'opened'
 > & {
+  texts: FactorsTexts;
   onChange: (value: FactorValueType) => void;
   factorType: FactorType;
   formulaEditor?: React.ReactNode;

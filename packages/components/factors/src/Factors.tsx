@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useIntl } from 'react-intl';
 import { BookM, Calendar2M, DynamicKeyM, FormulaM, HashM, ListM, ShowM, TextM } from '@synerise/ds-icon/dist/icons';
 import InputNumber from '@synerise/ds-input-number';
 import * as S from './style/Factors.style';
@@ -70,6 +71,39 @@ const Factors: React.FC<FactorsProps> = ({
   formulaEditor,
   opened,
 }) => {
+  const { formatMessage } = useIntl();
+  const text = React.useMemo(
+    () => ({
+      datePicker: {
+        apply: formatMessage({ id: 'DS.FACTORS.DATE_PICKER.APPLY', defaultMessage: 'Apply' }),
+        clearTooltip: formatMessage({ id: 'DS.FACTORS.DATE_PICKER.CLEAR_TOOLTIP', defaultMessage: 'Clear' }),
+        inputPlaceholder: formatMessage({
+          id: 'DS.FACTORS.DATE_PICKER.INPUT_PLACEHOLDER',
+          defaultMessage: 'Select date',
+        }),
+        now: formatMessage({ id: 'DS.FACTORS.DATE_PICKER.NOW', defaultMessage: 'Now' }),
+      },
+      dynamicKey: {
+        keyPlaceholder: formatMessage({ id: 'DS.FACTORS.DYNAMIC_KEY.KEY_PLACEHOLDER', defaultMessage: 'Key' }),
+        valuePlaceholder: formatMessage({ id: 'DS.FACTORS.DYNAMIC_KEY.VALUE_PLACEHOLDER', defaultMessage: 'Value' }),
+      },
+      formula: {
+        buttonPlaceholder: formatMessage({ id: 'DS.FACTORS.FORMULA.BUTTON_PLACEHOLDER', defaultMessage: 'Formula' }),
+        defaultName: formatMessage({ id: 'DS.FACTORS.FORMULA.DEFAULT_NAME', defaultMessage: 'Formula' }),
+      },
+      parameter: {
+        searchPlaceholder: formatMessage({ id: 'DS.FACTORS.PARAMETER.SEARCH_PLACEHOLDER', defaultMessage: 'Search' }),
+        noResults: formatMessage({ id: 'DS.FACTORS.PARAMETER.NO_RESULTS', defaultMessage: 'No results' }),
+      },
+      valuePlaceholder: formatMessage({ id: 'DS.FACTORS.VALUE_PLACEHOLDER', defaultMessage: 'Value' }),
+      modalApply: formatMessage({ id: 'DS.FACTORS.MODAL_APPLY', defaultMessage: 'Apply' }),
+      modalCancel: formatMessage({ id: 'DS.FACTORS.MODAL_CANCEL', defaultMessage: 'Cancel' }),
+      modalTitle: formatMessage({ id: 'DS.FACTORS.MODAL_TITLE', defaultMessage: 'Value' }),
+      ...texts,
+    }),
+    [texts, formatMessage]
+  );
+
   const factorType = React.useMemo(() => {
     return selectedFactorType || defaultFactorType;
   }, [selectedFactorType, defaultFactorType]);
@@ -79,7 +113,12 @@ const Factors: React.FC<FactorsProps> = ({
   }, [factorType]);
 
   return (
-    <S.Group resetMargin compact withoutTypeSelector={withoutTypeSelector} className={`ds-factors ds-factors-${factorType}`}>
+    <S.Group
+      resetMargin
+      compact
+      withoutTypeSelector={withoutTypeSelector}
+      className={`ds-factors ds-factors-${factorType}`}
+    >
       {!withoutTypeSelector && (
         <FactorTypeSelector
           selectedFactorType={factorType}
@@ -99,7 +138,7 @@ const Factors: React.FC<FactorsProps> = ({
         autocompleteText={autocompleteText}
         withoutTypeSelector={withoutTypeSelector}
         formulaEditor={formulaEditor}
-        texts={texts}
+        texts={text}
         opened={opened}
       />
     </S.Group>
