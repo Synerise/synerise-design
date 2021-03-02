@@ -26,6 +26,7 @@ export const Title = styled.div`
   ${macro.small};
   color: ${(props): string => props.theme.palette['grey-700']};
   padding: 0 24px 0 0;
+
   strong {
     font-weight: 500;
   }
@@ -94,7 +95,24 @@ export const Selection = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  width: 72px;
+  width: 64px;
+  margin-right: 24px;
+  border-radius: 3px;
+
+  &:hover {
+    background-color: ${({ theme }): string => theme.palette['grey-100']};
+  }
+
+  .ds-button:first-child {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .ds-button:last-child {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
   ${CheckboxWrapper} {
     padding: 0;
   }
@@ -144,5 +162,18 @@ export const TableWrapper = styled.div<{ hideColumnNames?: boolean }>`
   }
   .ant-table-wrapper .ant-table {
     z-index: 1;
+  }
+
+  .ant-table .ant-table-cell.ant-table-selection-column,
+  .ant-table .ant-table-cell.ds-table-star-column {
+    padding: 0 8px 0 24px;
+
+    & > button {
+      display: inline-block;
+    }
+  }
+
+  .ant-table .ant-table-cell.ant-table-selection-column + .ant-table-cell.ds-table-star-column {
+    padding-left: 0;
   }
 `;

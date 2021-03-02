@@ -2,12 +2,15 @@ import * as React from 'react';
 import { FixedSizeList as List } from 'react-window';
 import ResizeObserver from 'rc-resize-observer';
 import classNames from 'classnames';
-import Checkbox from '@synerise/ds-checkbox';
+import { compact } from 'lodash';
+import Button from '@synerise/ds-button';
+import Tooltip from '@synerise/ds-tooltip';
 import Scrollbar from '@synerise/ds-scrollbar';
 import DSTable from '../Table';
 import { RowType } from '../Table.types';
 import VirtualTableRow from './VirtualTableRow';
 import { Props } from './VirtualTable.types';
+import useRowStar from '../hooks/useRowStar';
 
 export const EXPANDED_ROW_PROPERTY = 'expandedChild';
 
@@ -23,12 +26,29 @@ function VirtualTable<T extends any & RowType<T> & { [EXPANDED_ROW_PROPERTY]?: b
     selection,
     onRowClick,
     rowKey,
+    rowStar,
     initialWidth = 0,
     dataSource,
     expandable,
+    locale,
   } = props;
 
   const [tableWidth, setTableWidth] = React.useState(initialWidth);
+  const { getRowStarColumn } = useRowStar(rowStar?.starredRowKeys || []);
+  const propsForRowStar = {
+    ...props,
+    rowStar: {
+      ...rowStar,
+      onClick: (e): void => {
+        e.stopPropagation();
+
+        if (typeof rowStar?.onClick === 'function') {
+          rowStar.onClick(e);
+        }
+      },
+    },
+  } as Props<T>;
+  const rowStarColumn = getRowStarColumn(propsForRowStar);
 
   const getRowKey = React.useCallback(
     (row: T): React.ReactText | undefined => {
@@ -41,41 +61,44 @@ function VirtualTable<T extends any & RowType<T> & { [EXPANDED_ROW_PROPERTY]?: b
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const virtualColumns = React.useMemo((): any[] => {
-    if (selection) {
-      return [
-        {
-          width: 72,
-          key: 'key',
-          dataIndex: 'key',
-          render: (key: string, record: T): React.ReactNode => {
-            const recordKey = getRowKey(record);
-            const hasChilds = record.children !== undefined && Array.isArray(record.children);
-            const allChildsChecked =
-              hasChilds &&
-              record.children?.filter((child: T) => {
-                const childKey = getRowKey(child);
-                return childKey && selection?.selectedRowKeys.indexOf(childKey) < 0;
-              }).length === 0;
-            const checkedChilds =
-              record.children?.filter((child: T) => {
-                const childKey = getRowKey(child);
-                return childKey && selection?.selectedRowKeys.indexOf(childKey) >= 0;
-              }) || [];
-            const isIndeterminate =
-              hasChilds && checkedChilds.length > 0 && checkedChilds.length < record.children.length;
-            const checked =
-              (recordKey !== undefined &&
-                selection.selectedRowKeys &&
-                selection.selectedRowKeys.indexOf(recordKey) >= 0) ||
-              allChildsChecked;
-            return (
-              recordKey !== undefined && (
-                <Checkbox
+    return compact([
+      !!selection && {
+        width: 64,
+        key: 'key',
+        dataIndex: 'key',
+        render: (key: string, record: T): React.ReactNode => {
+          const recordKey = getRowKey(record);
+          const hasChilds = record.children !== undefined && Array.isArray(record.children);
+          const allChildsChecked =
+            hasChilds &&
+            record.children?.filter((child: T) => {
+              const childKey = getRowKey(child);
+              return childKey && selection?.selectedRowKeys.indexOf(childKey) < 0;
+            }).length === 0;
+          const checkedChilds =
+            record.children?.filter((child: T) => {
+              const childKey = getRowKey(child);
+              return childKey && selection?.selectedRowKeys.indexOf(childKey) >= 0;
+            }) || [];
+          const isIndeterminate =
+            hasChilds && checkedChilds.length > 0 && checkedChilds.length < record.children.length;
+          const checked =
+            (recordKey !== undefined &&
+              selection.selectedRowKeys &&
+              selection.selectedRowKeys.indexOf(recordKey) >= 0) ||
+            allChildsChecked;
+          return (
+            recordKey !== undefined && (
+              <Tooltip title={locale?.selectRowTooltip}>
+                <Button.Checkbox
                   key={`checkbox-${recordKey}`}
                   checked={checked}
                   disabled={!checked && Boolean(selection.limit && selection.limit <= selection.selectedRowKeys.length)}
                   indeterminate={isIndeterminate}
-                  onChange={(event): void => {
+                  onClick={(e): void => {
+                    e.stopPropagation();
+                  }}
+                  onChange={(isChecked): void => {
                     const { selectedRowKeys, onChange } = selection;
                     let selectedRows: T[] = [];
                     dataSource &&
@@ -94,7 +117,7 @@ function VirtualTable<T extends any & RowType<T> & { [EXPANDED_ROW_PROPERTY]?: b
                           }
                         }
                       });
-                    if (event.target.checked) {
+                    if (isChecked) {
                       if (hasChilds) {
                         selectedRows = [...selectedRows, ...record.children];
                       } else {
@@ -116,15 +139,15 @@ function VirtualTable<T extends any & RowType<T> & { [EXPANDED_ROW_PROPERTY]?: b
                       );
                   }}
                 />
-              )
-            );
-          },
+              </Tooltip>
+            )
+          );
         },
-        ...columns,
-      ];
-    }
-    return columns;
-  }, [columns, selection, getRowKey, dataSource]);
+      },
+      !!rowStar && rowStarColumn,
+      ...columns,
+    ]);
+  }, [columns, selection, rowStar, rowStarColumn, getRowKey, dataSource, locale]);
 
   const mergedColumns = React.useMemo(() => {
     const widthColumnCount = virtualColumns.filter(({ width }) => !width).length;
@@ -235,7 +258,7 @@ function VirtualTable<T extends any & RowType<T> & { [EXPANDED_ROW_PROPERTY]?: b
       <DSTable
         {...props}
         className={classNames(className, 'virtual-table')}
-        columns={selection ? mergedColumns.slice(1) : mergedColumns}
+        columns={mergedColumns}
         pagination={false}
         components={{
           body: renderBody,

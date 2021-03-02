@@ -32,14 +32,18 @@ class VirtualTableRow<T> extends React.PureComponent<Props<T>> {
       >
         {mergedColumns.map((column, columnIndex) => (
           <S.ColWrapper
-            className={classNames('virtual-table-cell', {
-              'virtual-table-cell-last': columnIndex === mergedColumns.length - 1,
-              'ant-table-selection-column': columnIndex === 0 && selection,
-              'ds-expanded-row-first': rowData[EXPANDED_ROW_PROPERTY] && columnIndex === 0,
-              'ds-expanded-row-data':
-                rowData[EXPANDED_ROW_PROPERTY] &&
-                ((columnIndex === 1 && selection) || (columnIndex === 0 && !selection)),
-            })}
+            className={classNames(
+              'virtual-table-cell',
+              {
+                'virtual-table-cell-last': columnIndex === mergedColumns.length - 1,
+                'ant-table-selection-column': columnIndex === 0 && selection,
+                'ds-expanded-row-first': rowData[EXPANDED_ROW_PROPERTY] && columnIndex === 0,
+                'ds-expanded-row-data':
+                  rowData[EXPANDED_ROW_PROPERTY] &&
+                  ((columnIndex === 1 && selection) || (columnIndex === 0 && !selection)),
+              },
+              column.className
+            )}
             key={`row-${index}-column-${column.dataIndex || column.key}`}
             width={column.width}
           >

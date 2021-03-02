@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Icon from '@synerise/ds-icon';
-import { CheckboxDeafultM, CheckboxIndeterminateM, CheckboxSelectedFillM } from '@synerise/ds-icon/dist/icons';
+import { CheckboxIndeterminateM, CheckboxSelectedFillM } from '@synerise/ds-icon/dist/icons';
 import Button from '../Button';
 import * as S from './Checkbox.styles';
 import { CheckboxButtonProps, ButtonCheckboxIconProps } from './Checkbox.types';
@@ -14,7 +14,12 @@ const CheckboxButtonIcon = ({ checked, indeterminate }: ButtonCheckboxIconProps)
     return <CheckboxSelectedFillM />;
   }
 
-  return <CheckboxDeafultM />;
+  return (
+    <>
+      <S.DefaultIcon />
+      <S.HoverIcon />
+    </>
+  );
 };
 
 const getNextCheckedState = (prevState: boolean, { checked, indeterminate }: CheckboxButtonProps): boolean => {
@@ -30,10 +35,14 @@ const getNextCheckedState = (prevState: boolean, { checked, indeterminate }: Che
 };
 
 const CheckboxButton = (props: CheckboxButtonProps): React.ReactElement => {
-  const { checked, defaultChecked = false, hasError, indeterminate, onChange, ...restProps } = props;
+  const { checked, defaultChecked = false, hasError, indeterminate, onChange, onClick, ...restProps } = props;
   const [isCheckedState, setIsCheckedState] = React.useState(defaultChecked);
 
-  const handleButtonClick = (): void => {
+  const handleButtonClick = (e: React.MouseEvent<HTMLElement, MouseEvent>): void => {
+    if (typeof onClick === 'function') {
+      onClick(e);
+    }
+
     setIsCheckedState((prevState: boolean) => {
       const nextState = getNextCheckedState(prevState, props);
 
@@ -52,6 +61,7 @@ const CheckboxButton = (props: CheckboxButtonProps): React.ReactElement => {
       aria-checked={indeterminate ? 'mixed' : isChecked}
       mode="single-icon"
       role="checkbox"
+      style={{ transition: 'none' }}
       tabIndex={0}
       type="ghost"
       onClick={handleButtonClick}
