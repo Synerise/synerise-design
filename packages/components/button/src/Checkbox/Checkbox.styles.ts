@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { CheckboxDeafultM, CheckboxM } from '@synerise/ds-icon/dist/icons';
 
 export const IconWrapper = styled.span<{ active?: boolean; error?: boolean }>`
   &&&& svg {
@@ -15,8 +16,8 @@ export const IconWrapper = styled.span<{ active?: boolean; error?: boolean }>`
     fill: ${({ theme }): string => theme.palette['grey-200']} !important;
   }
 
-  /* disabled icon background */
-  .ant-btn-ghost[disabled] &::before {
+  /* icon background */
+  .ds-button.ant-btn-ghost &::before {
     content: '';
     display: 'block';
     position: absolute;
@@ -26,7 +27,32 @@ export const IconWrapper = styled.span<{ active?: boolean; error?: boolean }>`
     top: 0;
     margin: 5px;
     z-index: -1;
+  }
+
+  .ds-button.ant-btn-ghost:not(:hover) &::before {
+    background: ${({ theme }): string => theme.palette.white};
+  }
+
+  .ds-button.ant-btn-ghost[disabled] &::before,
+  .ds-button.ant-btn-ghost[disabled]:hover &::before {
     background: ${({ theme }): string => theme.palette['grey-050']};
+  }
+`;
+
+export const DefaultIcon = styled(CheckboxDeafultM)`
+  display: block;
+
+  .ds-button.ant-btn-ghost:not([disabled]):hover & {
+    background: red !important;
+    display: none;
+  }
+`;
+
+export const HoverIcon = styled(CheckboxM)`
+  display: none;
+
+  .ds-button.ant-btn-ghost:not([disabled]):hover & {
+    display: block;
   }
 `;
 

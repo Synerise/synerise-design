@@ -8,11 +8,13 @@ const renderLabel = (text: string) => {
 
 
 
-const emptyFormatter = () => ``;
 const dashedFormatter = () => ` - `;
+const squareFormatter = () => ` ▪ `;
+const discFormatter = () => ` ● `;
 const formatterUnorderedType = {
-  empty: emptyFormatter,
   dashed: dashedFormatter,
+  disc: discFormatter,
+  square: squareFormatter,
 };
 const stories = {
   default: () => {
@@ -22,12 +24,9 @@ const stories = {
       third: 'third',
     };
     const setLevel = select('Set list level', level, level.first);
-    const preffix = {
-      square: 'square',
-      disc: 'disc',
-      dashed: 'dashed',
-    };
-    const listStyle = select('Set order', preffix, preffix.dashed);
+
+
+    const formatter = select('Set order type', formatterUnorderedType, formatterUnorderedType.dashed);
     const hasLabel = boolean('Set label', true);
     const label = text('Label', 'Header label');
     const getLabel = (hasLabel: boolean): string => {
@@ -87,8 +86,8 @@ const stories = {
       },
     ];
 
-    return <UnorderedList text={renderLabel(label && getLabel(hasLabel))} listStyle={listStyle === preffix.dashed ? 'none' : listStyle} data={data}
-                        indexFormatter={listStyle === preffix.dashed ? formatterUnorderedType.dashed : formatterUnorderedType.empty}/>;
+    return <UnorderedList text={renderLabel(label && getLabel(hasLabel))} data={data}
+                        indexFormatter={formatter}/>;
   },
   nestedList: () => {
     const level = {
@@ -119,8 +118,7 @@ const stories = {
       {
         label: 'Unordered List level 1',
         subMenuProps:   {
-          indexFormatter: () => null,
-          listStyle: 'square',
+          indexFormatter: squareFormatter,
         },
         subMenu: setLevel === level.second || setLevel === level.third
           ? [
@@ -130,8 +128,7 @@ const stories = {
             {
               label: 'Unordered List level 2',
               subMenuProps:  {
-                indexFormatter: () => null,
-                listStyle: 'square',
+                indexFormatter: squareFormatter,
               },
               subMenu: setLevel === level.third
                 ? [

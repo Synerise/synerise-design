@@ -1,12 +1,11 @@
 import * as React from 'react';
 import { action } from '@storybook/addon-actions';
 import { withState } from '@dump247/storybook-state';
-
 import Button from '@synerise/ds-button';
+import { boolean } from '@storybook/addon-knobs';
 
 interface CheckboxValue {
   value: boolean;
-  required: boolean;
 }
 
 const isIndeterminate = (values: CheckboxValue[]): boolean => {
@@ -24,36 +23,32 @@ const createStateUpdateMap = (newValue: boolean, itemIndex?: number) => ({ value
 };
 
 const controlledInitialState: CheckboxValue[] = [
-  { value: false, required: false },
-  { value: true, required: true },
-  { value: false, required: false },
+  { value: false },
+  { value: true },
+  { value: false },
 ];
 
 const stories = {
-  Default: () => (
-    <Button.Checkbox onChange={action('default change')} />
+  default: () => (
+    <Button.Checkbox
+      checked={boolean('checked', undefined)}
+      disabled={boolean('disabled', undefined)}
+      hasError={boolean('hasError', undefined)}
+      indeterminate={boolean('indeterminate', undefined)}
+      onChange={action('onChange')}
+    />
   ),
-  DefaultChecked: () => (
-    <Button.Checkbox defaultChecked={true} onChange={action('default checked change')} />
+  defaultChecked: () => (
+    <Button.Checkbox
+      checked={boolean('checked', undefined)}
+      defaultChecked={boolean('defaultChecked', true)}
+      disabled={boolean('disabled', undefined)}
+      hasError={boolean('hasError', undefined)}
+      indeterminate={boolean('indeterminate', undefined)}
+      onChange={action('onChange')}
+    />
   ),
-  Indeterminate: () => (
-    <Button.Checkbox indeterminate />
-  ),
-  Disabled: () => (
-    <>
-      <Button.Checkbox disabled />
-      <Button.Checkbox disabled checked />
-      <Button.Checkbox disabled indeterminate />
-    </>
-  ),
-  Error: () => (
-    <>
-      <Button.Checkbox hasError />
-      <Button.Checkbox hasError defaultChecked={true} />
-      <Button.Checkbox hasError indeterminate />
-    </>
-  ),
-  Controlled: withState({ values: controlledInitialState })(({ store }) => (
+  controlled: withState({ values: controlledInitialState })(({ store }) => (
     <>
       <Button.Checkbox
         checked={store.state.values.every(({ value }) => value === true)}
@@ -62,10 +57,9 @@ const stories = {
       />
       <hr />
       {store.state.values.map(
-        ({ value, required }, index) => (
+        ({ value }, index) => (
           <Button.Checkbox
             checked={value}
-            hasError={!!required && !value}
             onChange={(isChecked) => {
               store.set({
                 values: store.state.values.map(createStateUpdateMap(isChecked, index))
@@ -79,7 +73,7 @@ const stories = {
 };
 
 export default {
-  name: 'Components/Button/Checkbox',
+  name: 'Components/Button/ButtonWithSymbols/WithCheckbox',
   stories,
   Component: Button,
 };

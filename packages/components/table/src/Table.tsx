@@ -32,6 +32,10 @@ const DEFAULT_LOCALE = (intl: IntlShape): Locale => ({
     id: 'DS.TABLE.SELECTION_LIMIT_WARNING',
     defaultMessage: 'Selection limit has been reached',
   }),
+  starRowTooltip: intl.formatMessage({ id: 'DS.TABLE.STAR_ROW_TOOLTIP', defaultMessage: 'Starred' }),
+  selectRowTooltip: intl.formatMessage({ id: 'DS.TABLE.SELECT_ROW_TOOLTIP', defaultMessage: 'Select' }),
+  selectAllTooltip: intl.formatMessage({ id: 'DS.TABLE.SELECT_ALL_TOOLTIP', defaultMessage: 'Select' }),
+  selectionOptionsTooltip: intl.formatMessage({ id: 'DS.TABLE.SELECTION_OPTIONS', defaultMessage: 'Options' }),
 });
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -160,6 +164,7 @@ function DSTable<T extends any>(props: DSTableProps<T>): React.ReactElement {
         // @ts-ignore
         <GroupTable<T>
           {...props}
+          locale={getLocale}
           title={renderHeader}
           pagination={dataSource?.length && pagination ? footerPagination : false}
         />
@@ -168,6 +173,7 @@ function DSTable<T extends any>(props: DSTableProps<T>): React.ReactElement {
           scroll={{ x: 'auto' }}
           tableLayout="auto"
           {...props}
+          locale={getLocale}
           title={renderHeader}
           pagination={dataSource?.length && pagination ? footerPagination : false}
         />
