@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@0.5.2...@synerise/ds-condition@0.6.0) (2021-03-02)
+
+
+### Features
+
+* **condition:** adjust for design ([1d338ef](https://github.com/Synerise/synerise-design/commit/1d338efd6ec42cd542c735475bd3956ef9e3a12a))
+
+
+
+
+
 ## [0.5.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@0.5.1...@synerise/ds-condition@0.5.2) (2021-03-01)
 
 **Note:** Version bump only for package @synerise/ds-condition

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.3.1...@synerise/ds-factors@0.4.0) (2021-03-02)
+
+
+### Features
+
+* **condition:** adjust for design ([1d338ef](https://github.com/Synerise/synerise-design/commit/1d338efd6ec42cd542c735475bd3956ef9e3a12a))
+
+
+
+
+
 ## [0.3.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.3.0...@synerise/ds-factors@0.3.1) (2021-03-01)
 
 **Note:** Version bump only for package @synerise/ds-factors

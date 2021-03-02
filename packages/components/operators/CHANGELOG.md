@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-operators@0.2.23...@synerise/ds-operators@0.3.0) (2021-03-02)
+
+
+### Features
+
+* **condition:** adjust for design ([1d338ef](https://github.com/Synerise/synerise-design/commit/1d338efd6ec42cd542c735475bd3956ef9e3a12a))
+
+
+
+
+
 ## [0.2.23](https://github.com/Synerise/synerise-design/compare/@synerise/ds-operators@0.2.22...@synerise/ds-operators@0.2.23) (2021-03-01)
 
 **Note:** Version bump only for package @synerise/ds-operators
