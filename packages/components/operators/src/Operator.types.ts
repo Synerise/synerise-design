@@ -33,7 +33,7 @@ export type OperatorsProps = {
   onChange: (item: OperatorsItem | OperatorsGroup | undefined) => void;
   groups: OperatorsGroup[];
   items: OperatorsItem[];
-  texts: OperatorTexts;
+  texts?: Partial<OperatorTexts>;
   opened?: boolean;
 };
 

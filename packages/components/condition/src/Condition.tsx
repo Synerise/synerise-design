@@ -170,8 +170,8 @@ const Condition: React.FC<ConditionProps> = ({
                     />
                   )}
                   <Cruds
-                    onDuplicate={(): void => duplicateStep(step.id)}
-                    onDelete={(): void => removeStep(step.id)}
+                    onDuplicate={duplicateStep ? (): void => duplicateStep(step.id) : undefined}
+                    onDelete={removeStep ? (): void => removeStep(step.id) : undefined}
                     duplicateTooltip={text.duplicateTooltip}
                     deleteTooltip={text.removeTooltip}
                   />
