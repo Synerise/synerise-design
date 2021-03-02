@@ -91,7 +91,7 @@ This is special checkbox built on Button and inheriting its appereance.
 It behaves like checkbox input due to `role="checkbox"` and `aria-checked` attributes.
 
 ### Props
-It inherits all `Button`'s props excluding `type`, `block`, `color`, `groupVariant`, `icon`, `iconColor`, `leftIconSize`, `mode`, `rightIconSize`, `size`, `onChange`, `onChange`.
+It inherits all `Button`'s props excluding `type`, `block`, `color`, `groupVariant`, `icon`, `iconColor`, `leftIconSize`, `mode`, `rightIconSize`, `size`, `onChange`.
 
 | Property       | Description                                                | Type                         | Default     |
 |----------------|------------------------------------------------------------|------------------------------|-------------|
@@ -100,3 +100,15 @@ It inherits all `Button`'s props excluding `type`, `block`, `color`, `groupVaria
 | hasError       | (optional) Changes appereance for wrong validation.        | `boolean`                    | `undefined` |
 | indeterminate  | (optional) Forces indeterminate checkbox state.            | `boolean`                    | `undefined` |
 | onChange       | (optional) On change callback                              | `(checked: boolean) => void` |             |
+
+## Button.Star
+
+This is star toggle built on Button and inheriting its appereance.
+
+### Props
+It inherits all `Button`'s props excluding.
+
+| Property       | Description                                                | Type                         | Default     |
+|----------------|------------------------------------------------------------|------------------------------|-------------|
+| active         | (optional) Sets checkbox state for controlled component.   | `boolean`                    | `undefined` |
+

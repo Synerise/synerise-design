@@ -9,34 +9,35 @@ import Trigger from './ItemPickerTrigger/Trigger';
 import { ItemPickerProps } from './ItemPicker.types';
 
 const ItemPicker: React.FC<ItemPickerProps> = ({
+  dataSource,
   intl,
-  label,
-  tooltip,
   onChange,
   onClear,
-  dataSource,
-  placeholderIcon,
-  disabled,
   placeholder,
+  changeButtonLabel = intl.formatMessage({ id: 'DS.ITEM-PICKER.CHANGE' }),
+  clear = intl.formatMessage({ id: 'DS.ITEM-PICKER.CLEAR' }),
+  clearConfirmTitle = intl.formatMessage({ id: 'DS.ITEM-PICKER.CLEAR-CONFIRM' }),
+  closeOnBottomAction,
+  description,
+  disabled,
+  dropdownBottomAction,
+  dropdownProps = {},
+  dropdownRowHeight,
+  dropdownVisibleRows,
   error,
   errorMessage,
-  description,
-  searchPlaceholder = intl.formatMessage({ id: 'DS.ITEM-PICKER.SEARCH' }),
-  clear = intl.formatMessage({ id: 'DS.ITEM-PICKER.CLEAR' }),
-  selectedItem,
-  onFocus,
+  label,
   onBlur,
-  size = 'small',
-  changeButtonLabel = intl.formatMessage({ id: 'DS.ITEM-PICKER.CHANGE' }),
-  clearConfirmTitle = intl.formatMessage({ id: 'DS.ITEM-PICKER.CLEAR-CONFIRM' }),
-  yesText = intl.formatMessage({ id: 'DS.ITEM-PICKER.YES-TEXT' }),
-  noText = intl.formatMessage({ id: 'DS.ITEM-PICKER.NO-TEXT' }),
+  onFocus,
   noResults = intl.formatMessage({ id: 'DS.ITEM-PICKER.NO-RESULTS' }),
+  noText = intl.formatMessage({ id: 'DS.ITEM-PICKER.NO-TEXT' }),
+  placeholderIcon,
+  searchPlaceholder = intl.formatMessage({ id: 'DS.ITEM-PICKER.SEARCH' }),
+  selectedItem,
+  tooltip,
+  size = 'small',
+  yesText = intl.formatMessage({ id: 'DS.ITEM-PICKER.YES-TEXT' }),
   withClearConfirmation,
-  dropdownVisibleRows,
-  dropdownRowHeight,
-  dropdownBottomAction,
-  closeOnBottomAction,
 }) => {
   const [dropdownOpened, setDropdownOpened] = React.useState<boolean>(false);
 
@@ -142,6 +143,7 @@ const ItemPicker: React.FC<ItemPickerProps> = ({
         trigger={['click']}
         overlay={dropdownOverlay}
         onVisibleChange={onVisibilityChange}
+        {...dropdownProps}
       >
         {renderTrigger}
       </Dropdown>
