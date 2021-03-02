@@ -180,6 +180,7 @@ const getSuggestions = value => {
 const stories = {
   default: withState({
     selectedRows: [],
+    starredRowKeys: [],
     categories: CATEGORIES,
     savedViews: VIEWS,
     columns: COLUMNS,
@@ -379,6 +380,12 @@ const stories = {
               limit: boolean('Show selection limit', false) ? number('Set selection limit', 5) : undefined,
             }
           }
+          rowStar={boolean('Enable row star', undefined) && {
+            starredRowKeys: store.state.starredRowKeys,
+            onChange: (starredRowKeys): void => {
+              store.set({ starredRowKeys });
+            }
+          }}
           itemsMenu={
             <ItemsMenu>
               <Button onClick={action('Export')} type="secondary" mode="icon-label">

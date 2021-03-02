@@ -3,9 +3,8 @@ import Dropdown from '@synerise/ds-dropdown';
 import Menu from '@synerise/ds-menu';
 import Button from '@synerise/ds-button';
 import Icon from '@synerise/ds-icon';
-import { AngleDownS } from '@synerise/ds-icon/dist/icons';
-import Checkbox from '@synerise/ds-checkbox';
-import { CheckboxChangeEvent } from 'antd/lib/checkbox';
+import Tooltip from '@synerise/ds-tooltip';
+import { OptionVerticalM } from '@synerise/ds-icon/dist/icons';
 import * as S from '../Table.styles';
 import { Selection, SelectionItem } from '../Table.types';
 import { SELECTION_ALL, SELECTION_INVERT } from '../Table';
@@ -17,6 +16,7 @@ function TableSelection<T extends { key: React.ReactText; children?: T[] }>({
   dataSource,
   selection,
   rowKey,
+  locale,
 }: Props<T>): React.ReactElement | null {
   const getRowKey = React.useCallback(
     (row): React.ReactText | undefined => {
@@ -87,18 +87,20 @@ function TableSelection<T extends { key: React.ReactText; children?: T[] }>({
 
   return selection?.selectedRowKeys ? (
     <S.Selection data-popup-container>
-      <Checkbox
-        disabled={isEmpty}
-        checked={allSelected}
-        onChange={(event: CheckboxChangeEvent): void => {
-          if (event.target.checked) {
-            selectAll();
-          } else {
-            unselectAll();
-          }
-        }}
-        indeterminate={selection?.selectedRowKeys.length > 0 && !allSelected}
-      />
+      <Tooltip title={locale?.selectAllTooltip}>
+        <Button.Checkbox
+          disabled={isEmpty}
+          checked={allSelected}
+          onChange={(isChecked): void => {
+            if (isChecked) {
+              selectAll();
+            } else {
+              unselectAll();
+            }
+          }}
+          indeterminate={selection?.selectedRowKeys.length > 0 && !allSelected}
+        />
+      </Tooltip>
       {selection?.selections && (
         <Dropdown
           disabled={isEmpty}
@@ -133,9 +135,11 @@ function TableSelection<T extends { key: React.ReactText; children?: T[] }>({
             </S.SelectionMenu>
           }
         >
-          <Button mode="single-icon" type="ghost">
-            <Icon component={<AngleDownS />} />
-          </Button>
+          <Tooltip title={locale?.selectionOptionsTooltip}>
+            <Button mode="single-icon" type="ghost">
+              <Icon component={<OptionVerticalM />} />
+            </Button>
+          </Tooltip>
         </Dropdown>
       )}
     </S.Selection>

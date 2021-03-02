@@ -188,6 +188,7 @@ const stories = {
     searchValue: '',
     selectedFilter: undefined,
     selectedRows: [],
+    starredRowKeys: [],
     selectedView: undefined,
   })(({ store }) => {
     const { selectedRows, columns } = store.state;
@@ -381,6 +382,12 @@ const stories = {
               ],
             }
           }
+          rowStar={boolean('Enable row star', undefined) && {
+            starredRowKeys: store.state.starredRowKeys,
+            onChange: (starredRowKeys): void => {
+              store.set({ starredRowKeys });
+            }
+          }}
           itemsMenu={
             <ItemsMenu>
               <Button onClick={action('Export')} type="secondary" mode="icon-label">

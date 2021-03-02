@@ -1,12 +1,17 @@
 import * as React from 'react';
+import { compact } from 'lodash';
 import Table from 'antd/lib/table';
 import Result from '@synerise/ds-result';
-import Checkbox from '@synerise/ds-checkbox';
-import { DSTableProps, RowType } from '../Table.types';
+import Button from '@synerise/ds-button';
+import Tooltip from '@synerise/ds-tooltip';
+import { DSTableProps, RowType, DSColumnType } from '../Table.types';
+import useRowStar from '../hooks/useRowStar';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function DefaultTable<T extends any & RowType<T>>(props: DSTableProps<T>): React.ReactElement {
-  const { title, selection, dataSource, rowKey, locale, expandable, components } = props;
+  const { title, selection, rowStar, dataSource, rowKey, locale, expandable, components, columns } = props;
+  const { getRowStarColumn } = useRowStar(rowStar?.starredRowKeys || []);
+  const starColumn = getRowStarColumn(props);
 
   const getRowKey = React.useCallback(
     (row: T): React.ReactText | undefined => {
@@ -71,11 +76,19 @@ function DefaultTable<T extends any & RowType<T>>(props: DSTableProps<T>): React
     );
   }, []);
 
+  const prependedColumns = compact<DSColumnType<T>>([!!rowStar && starColumn]);
+
   return (
     // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
     // @ts-ignore
     <Table<T>
       {...props}
+      columns={[
+        ...prependedColumns,
+        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+        // @ts-ignore: columns type is different in DSTableProps than AntTableProps
+        ...columns,
+      ]}
       expandable={{
         expandIconColumnIndex: -1,
         ...expandable,
@@ -95,7 +108,7 @@ function DefaultTable<T extends any & RowType<T>>(props: DSTableProps<T>): React
         selection && {
           ...selection,
           selections: selection?.selections?.filter(Boolean),
-          columnWidth: 72,
+          columnWidth: 64,
           renderCell: (checked: boolean, record: T): React.ReactNode => {
             const hasChilds = record.children !== undefined && Array.isArray(record.children);
             const allChildsChecked =
@@ -113,14 +126,16 @@ function DefaultTable<T extends any & RowType<T>>(props: DSTableProps<T>): React
             const isIndeterminate =
               hasChilds && checkedChilds.length > 0 && checkedChilds.length < record.children.length;
             return (
-              <Checkbox
-                checked={checked || allChildsChecked}
-                disabled={!checked && Boolean(selection.limit && selection.limit <= selection.selectedRowKeys.length)}
-                indeterminate={isIndeterminate}
-                onChange={(event): void => {
-                  toggleRowSelection(event.target.checked, record);
-                }}
-              />
+              <Tooltip title={locale?.selectRowTooltip}>
+                <Button.Checkbox
+                  checked={checked || allChildsChecked}
+                  disabled={!checked && Boolean(selection.limit && selection.limit <= selection.selectedRowKeys.length)}
+                  indeterminate={isIndeterminate}
+                  onChange={(isChecked): void => {
+                    toggleRowSelection(isChecked, record);
+                  }}
+                />
+              </Tooltip>
             );
           },
         }

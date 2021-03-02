@@ -28,7 +28,7 @@ const TableHeader: React.FC<Props> = ({
       return <TableLimit total={dataSource.length} selection={selection} itemsMenu={itemsMenu} locale={locale} />;
     return selectedRows && selectedRows > 0 ? (
       <S.Left data-testid="ds-table-selection">
-        {selection && <TableSelection rowKey={rowKey} dataSource={dataSource} selection={selection} />}
+        {selection && <TableSelection rowKey={rowKey} dataSource={dataSource} selection={selection} locale={locale} />}
         {renderSelectionTitle ? (
           renderSelectionTitle(selection, filters)
         ) : (
@@ -40,7 +40,7 @@ const TableHeader: React.FC<Props> = ({
       </S.Left>
     ) : (
       <S.Left data-testid="ds-table-title">
-        {selection && <TableSelection rowKey={rowKey} dataSource={dataSource} selection={selection} />}
+        {selection && <TableSelection rowKey={rowKey} dataSource={dataSource} selection={selection} locale={locale} />}
         {title ? (
           <S.Title>
             <strong>{title}</strong>
