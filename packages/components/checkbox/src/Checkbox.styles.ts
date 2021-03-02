@@ -76,6 +76,19 @@ export const AntdCheckbox = styled(BaseAntCheckbox)<Props & ThemeProps>`
       }
     }
   }
+
+  /* displays checked icon on hover */
+  &&:hover
+    > .ant-checkbox:not(.ant-checkbox-checked):not(.ant-checkbox-indeterminate):not(.ant-checkbox-disabled)
+    > span.ant-checkbox-inner {
+    border-width: 1px;
+    border-style: solid;
+    /* used important to override antd's error border color */
+    border-color: ${(props: ThemeProps): string => props.theme.palette['blue-600']} !important;
+    outline: none;
+    background-image: ${(props: ThemeProps): string =>
+      `url("${checkSvgWithCustomColor(props.theme.palette['blue-600'])}")`};
+  }
 `;
 
 export const AdditionalData = styled.div`
