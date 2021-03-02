@@ -17,6 +17,7 @@ const NO_GROUP_NAME = 'NO_GROUP_NAME';
 const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
   texts,
   setSelected,
+  onSetGroup,
   groups,
   items,
   setDropdownVisible,
@@ -36,6 +37,14 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
   const classNames = React.useMemo(() => {
     return `ds-context-item ds-context-item-${uuid()}`;
   }, []);
+
+  const handleOnSetGroup = React.useCallback(
+    (item: ContextItem | ContextGroup) => {
+      onSetGroup && onSetGroup(item);
+      setActiveGroup(item);
+    },
+    [onSetGroup]
+  );
 
   useOnClickOutside(overlayRef, () => {
     setDropdownVisible(false);
@@ -61,7 +70,7 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
               key={item.name + item.id}
               item={item}
               searchQuery={searchQuery}
-              select={setActiveGroup}
+              select={handleOnSetGroup}
             />
           ) : (
             <ContextSelectorDropdownItem
@@ -79,7 +88,7 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
       });
       return resultItems;
     },
-    [activeGroup, classNames, searchQuery, setSelected, value, setDropdownVisible]
+    [activeGroup, classNames, searchQuery, setSelected, value, setDropdownVisible, handleOnSetGroup]
   );
 
   const currentTabItems = React.useMemo((): ContextGroup | undefined => {
@@ -176,7 +185,7 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
         autofocus={!searchQuery || searchInputCanBeFocused}
         iconLeft={<Icon component={<SearchM />} color={theme.palette['grey-600']} />}
       />
-      {searchQuery === '' && (
+      {searchQuery === '' && getTabs.length > 1 && (
         <S.TabsWrapper>
           <Tabs
             block

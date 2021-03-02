@@ -32,6 +32,7 @@ export type ContextProps = {
   groups: ContextGroup[];
   items: ContextItem[];
   texts: ContextTexts;
+  onSetGroup?: (item: ContextItem | ContextGroup | undefined) => void;
   opened?: boolean;
   addMode?: boolean;
 };
@@ -43,6 +44,7 @@ export type ContextDropdownProps = {
   items: ContextItem[];
   texts: ContextTexts;
   value: ContextItem | undefined;
+  onSetGroup?: (val: ContextItem | ContextGroup) => void;
   visible?: boolean;
 };
 
