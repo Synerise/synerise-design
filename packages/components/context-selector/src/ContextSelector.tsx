@@ -9,6 +9,7 @@ import { ContextItem, ContextProps } from './ContextSelector.types';
 const ContextSelector: React.FC<ContextProps> = ({
   selectedItem,
   onSelectItem,
+  onSetGroup,
   groups,
   items,
   texts,
@@ -21,6 +22,12 @@ const ContextSelector: React.FC<ContextProps> = ({
       onSelectItem(val);
     },
     [onSelectItem]
+  );
+  const handleOnSetGroup = React.useCallback(
+    val => {
+      onSetGroup && onSetGroup(val);
+    },
+    [onSetGroup]
   );
 
   React.useEffect(() => {
@@ -65,6 +72,7 @@ const ContextSelector: React.FC<ContextProps> = ({
           value={selectedItem}
           setDropdownVisible={setDropdownVisible}
           setSelected={handleChange}
+          onSetGroup={handleOnSetGroup}
           groups={groups}
           items={items}
           texts={texts}
