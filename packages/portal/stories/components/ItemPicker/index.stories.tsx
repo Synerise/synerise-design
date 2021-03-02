@@ -56,6 +56,9 @@ const stories = {
             noResults={text('No search results info', 'No results')}
             clearConfirmTitle={text('Clear confirm title', 'Are you sure to remove this selection?')}
             dropdownVisibleRows={6}
+            dropdownProps={{
+              getPopupContainer: () => document.querySelector('.ds-items-picker'),
+            }}
         />
       </div>
     );
