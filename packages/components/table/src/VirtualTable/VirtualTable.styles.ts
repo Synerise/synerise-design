@@ -15,7 +15,19 @@ export const ColWrapper = styled.div<{ width?: number }>`
   max-width: ${(props): string => (props.width ? `${props.width}px` : 'auto')};
   padding: 0 24px;
 
-  .ds-checkbox {
-    padding: 0;
+  &.virtual-table-cell.ant-table-selection-column {
+    padding: 0 8px 0 24px;
+  }
+
+  &.virtual-table-cell.ds-table-star-column {
+    padding: 0 8px 0 24px;
+
+    & > button {
+      display: flex;
+    }
+  }
+
+  &.virtual-table-cell.ant-table-selection-column + .virtual-table-cell.ds-table-star-column {
+    padding-left: 0;
   }
 `;

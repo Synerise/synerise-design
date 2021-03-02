@@ -31,6 +31,7 @@ const stories = {
   default: withState({
     expandedRows: [],
     selectedRows: [],
+    starredRowKeys: [],
   })(({ store }) => {
     const { expandedRows, selectedRows } = store.state;
     const handleExpandRow = (key: string): void => {
@@ -125,6 +126,12 @@ const stories = {
             selections: [Table.SELECTION_ALL, undefined, null, Table.SELECTION_INVERT],
           }
         }
+        rowStar={boolean('Enable row star', undefined) && {
+          starredRowKeys: store.state.starredRowKeys,
+          onChange: (starredRowKeys): void => {
+            store.set({ starredRowKeys });
+          }
+        }}
         onSearch={console.log}
         onRow={(record, index: number) => ({
           onClick: event => {

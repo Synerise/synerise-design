@@ -3,6 +3,7 @@ import * as React from 'react';
 import { TableLocale, TableRowSelection } from 'antd/lib/table/interface';
 import DSTable from './Table';
 import { GroupType } from './GroupTable/GroupTable.types';
+import { RowStar } from './hooks/useRowStar.types';
 
 export type AntTableProps<T> = Omit<
   TableProps<T>,
@@ -61,6 +62,14 @@ export type Locale = TableLocale & {
     items?: string;
     groups?: string;
   };
+  selectRowTooltip?: string;
+  selectAllTooltip?: string;
+  starRowTooltip?: string;
+  selectionOptionsTooltip?: string;
+};
+
+export type DSColumnType<T> = Omit<ColumnType<T>, 'fixed'> & {
+  fixed?: 'left' | 'right' | string;
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -73,6 +82,7 @@ export interface DSTableProps<T extends any & GroupType<T>> extends AntTableProp
   cellSize?: string | 'medium' | 'small';
   roundedHeader?: boolean;
   selection?: RowSelection<T>;
+  rowStar?: RowStar<T>;
   filters?: Filter[];
   searchComponent?: React.ReactNode;
   filterComponent?: React.ReactNode;
@@ -81,9 +91,7 @@ export interface DSTableProps<T extends any & GroupType<T>> extends AntTableProp
   hideGroupExpander?: boolean;
   initialGroupsCollapsed?: boolean;
   hideColumnNames?: boolean;
-  columns?: (Omit<ColumnType<T>, 'fixed'> & {
-    fixed?: 'left' | 'right' | string;
-  })[];
+  columns?: DSColumnType<T>[];
   locale?: Locale;
   renderSelectionTitle?: (selection?: RowSelection<T>, filters?: Filter[]) => React.ReactNode;
 }

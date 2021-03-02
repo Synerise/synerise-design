@@ -63,6 +63,7 @@ const stories = {
     searchValue: '',
     searchFilterValue: '',
     searchSuggestions: [],
+    starredRowKeys: [],
     groupSettings: undefined,
   })(({ store }) => {
     const { selectedRows, columns } = store.state;
@@ -403,11 +404,11 @@ const stories = {
           .toLowerCase();
         const data = store.state.groupSettings
           ? store.state.dataSource?.reduce((items, group) => {
-              if (group.rows) {
-                return [...items, ...group.rows];
-              }
-              return [...items];
-            }, [])
+            if (group.rows) {
+              return [...items, ...group.rows];
+            }
+            return [...items];
+          }, [])
           : store.state.dataSource;
 
         const allSuggestions = data.map(record => {
@@ -533,6 +534,12 @@ const stories = {
               selections: [Table.SELECTION_ALL, Table.SELECTION_INVERT],
             }
           }
+          rowStar={boolean('Enable row star', undefined) && {
+            starredRowKeys: store.state.starredRowKeys,
+            onChange: (starredRowKeys): void => {
+              store.set({ starredRowKeys });
+            }
+          }}
           searchComponent={
             <Search
               clearTooltip="Clear"
@@ -559,7 +566,7 @@ const stories = {
                 itemRender: (item: FilterElement) => (
                   <Menu.Item
                     highlight={store.state.searchValue}
-                    onItemHover={(): void => {}}
+                    onItemHover={(): void => { }}
                     prefixel={item && <Icon component={item && item.icon} />}
                   >
                     {item && item.text}
@@ -574,7 +581,7 @@ const stories = {
                 title: 'Recent',
                 rowHeight: 32,
                 itemRender: (item: FilterElement) => (
-                  <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>
+                  <Menu.Item onItemHover={(): void => { }}>{item && item.text}</Menu.Item>
                 ),
                 divider: (
                   <div style={{ padding: '12px', paddingBottom: '0px' }}>
@@ -589,7 +596,7 @@ const stories = {
                 title: 'Suggestions',
                 rowHeight: 32,
                 itemRender: (item: FilterElement) => (
-                  <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>
+                  <Menu.Item onItemHover={(): void => { }}>{item && item.text}</Menu.Item>
                 ),
               }}
               textLookupConfig={{

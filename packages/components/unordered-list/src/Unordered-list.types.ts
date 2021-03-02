@@ -7,7 +7,6 @@ export type UnorderedListItem = {
   suffixel?: React.ReactNode;
   index: number;
   subMenu?: UnorderedListItem[];
-  listStyle?: string;
   subMenuProps?: Omit<ListProps, 'data'>;
   text?: React.ReactNode | string;
 };
@@ -15,6 +14,5 @@ export type UnorderedListItem = {
 export type ListProps = {
   data: UnorderedListItem[];
   indexFormatter?: (index: number) => React.ReactNode | string;
-  listStyle?: string;
   text?: React.ReactNode | string;
 };

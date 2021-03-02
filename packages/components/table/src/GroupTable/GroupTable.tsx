@@ -165,7 +165,7 @@ function GroupTable<T extends GroupType<T>>(
         rowSelection={
           selection && {
             ...selection,
-            columnWidth: 72,
+            columnWidth: 64,
           }
         }
       />

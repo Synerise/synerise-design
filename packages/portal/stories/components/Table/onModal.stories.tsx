@@ -33,6 +33,7 @@ const stories = {
   default: withState({
     searchValue: '',
     selectedRows: [],
+    starredRowKeys: [],
     modalVisible: false,
   })(({ store }) => {
     const filteredDataSource = () => {
@@ -96,6 +97,12 @@ const stories = {
                 },
               ],
               limit: boolean('Show selection limit', false) ? number('Set selection limit', 5) : undefined,
+            }}
+            rowStar={boolean('Enable row star', undefined) && {
+              starredRowKeys: store.state.starredRowKeys,
+              onChange: (starredRowKeys): void => {
+                store.set({ starredRowKeys });
+              }
             }}
             onRowClick={record => {
               store.state.selectedRows.indexOf(record.key) >= 0 ||
