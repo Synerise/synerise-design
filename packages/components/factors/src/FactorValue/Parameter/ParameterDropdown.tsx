@@ -175,7 +175,7 @@ const ParameterDropdown: React.FC<ParameterDropdownProps> = ({
         autofocus={!searchQuery || searchInputCanBeFocused}
         iconLeft={<Icon component={<SearchM />} color={theme.palette['grey-600']} />}
       />
-      {searchQuery === '' && (
+      {searchQuery === '' && getTabs.length > 1 && (
         <S.TabsWrapper>
           <Tabs
             block

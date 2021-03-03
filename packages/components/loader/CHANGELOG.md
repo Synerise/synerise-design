@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-loader@0.1.6...@synerise/ds-loader@0.1.7) (2021-03-01)
+
+
+### Bug Fixes
+
+* **loader:** add new package to package json ([6bf940d](https://github.com/Synerise/synerise-design/commit/6bf940de16e78a554e7950094d11c32d0bcbe017))
+* **loader:** add new prop mode to set absolute position of loader ([57a2888](https://github.com/Synerise/synerise-design/commit/57a2888e0cac3d948aedcd65ba729eab258cbe30))
+* **loader:** fix styles ([6fe4224](https://github.com/Synerise/synerise-design/commit/6fe4224bf646f5daf3f754e85c45794ee080c7da))
+
+
+
+
+
 ## [0.1.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-loader@0.1.5...@synerise/ds-loader@0.1.6) (2021-02-17)
 
 **Note:** Version bump only for package @synerise/ds-loader

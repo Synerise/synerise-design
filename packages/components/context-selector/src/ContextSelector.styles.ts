@@ -31,3 +31,10 @@ export const Title = styled.div`
   color: ${(props): string => props.theme.palette['grey-500']};
   padding: 8px 12px;
 `;
+
+export const ItemWrapper = styled.div`
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: ${(props): string => props.theme.palette.white};
+`;
