@@ -3,6 +3,70 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.121.1](https://github.com/synerise/synerise-design/compare/portal@0.121.0...portal@0.121.1) (2021-03-02)
+
+**Note:** Version bump only for package portal
+
+
+
+
+
+# [0.121.0](https://github.com/synerise/synerise-design/compare/portal@0.120.0...portal@0.121.0) (2021-03-01)
+
+
+### Bug Fixes
+
+* **docs:** move checkboxes to folder ([bc19eb7](https://github.com/synerise/synerise-design/commit/bc19eb70ba31b87424daa49598811325534d48e5))
+* **docs:** remove public as it doesn't exist ([1d7c3c2](https://github.com/synerise/synerise-design/commit/1d7c3c236dda4aa9405d64a1f079e3892826f36d))
+* **docs:** upgrade storybook 6.1.17 ([80e8f64](https://github.com/synerise/synerise-design/commit/80e8f6470e697aa1a07ee2bdddd3376b46b1191f))
+* **loader:** add new prop mode to set absolute position of loader ([57a2888](https://github.com/synerise/synerise-design/commit/57a2888e0cac3d948aedcd65ba729eab258cbe30))
+* **manageable-list:** add knobs to pick item in manageable-list ([83ebd28](https://github.com/synerise/synerise-design/commit/83ebd285b9cec5e0a215da3024a94d2ee5a87c7b))
+* **manageable-list:** change names ([faf5161](https://github.com/synerise/synerise-design/commit/faf51610adfb7d154cd9e94d459cdf9ec0591208))
+* **manageable-list:** delete unnecessary components and fix suffix to pick ([a6ba134](https://github.com/synerise/synerise-design/commit/a6ba1349ca29cf2ce7ade541ad4de315a802b507))
+* **manageable-list:** fix disabled radio buttons ([af27ee5](https://github.com/synerise/synerise-design/commit/af27ee5e59272fbda3716bdf9a3104acb2775114))
+* **ordered-list:** fix stories order ([23f3686](https://github.com/synerise/synerise-design/commit/23f3686bedbb44d1f8d0c9e541fe135f49675c50))
+* **ordered-list:** fix styles of ordered list ([64c3466](https://github.com/synerise/synerise-design/commit/64c346676d88e87294aca0bf317655bb242a618e))
+* **ordered-list:** fix styles of ordered-list ([f7d7ef4](https://github.com/synerise/synerise-design/commit/f7d7ef4fe1cd8730ac5ff998bfb1818cbd6f0926))
+* **ordered-list:** new ordered list ([2124d7f](https://github.com/synerise/synerise-design/commit/2124d7f6244c1798d42bb32864958a76949e2196))
+* **page-header:** add checkS icon to picked item ([bbcb366](https://github.com/synerise/synerise-design/commit/bbcb36625d06a1fee669b72d68384d55f6ff7c56))
+* **page-header:** add prop to rotate icon when clicked ([e372652](https://github.com/synerise/synerise-design/commit/e3726525330fc852963a374993ae25f1b06ca9ad))
+* **subtle-form:** select styles for statuses ([2fc23e4](https://github.com/synerise/synerise-design/commit/2fc23e4d9299145c831a2d6d8812674bb6608a79))
+* **subtle-form:** status select story fixes ([be88102](https://github.com/synerise/synerise-design/commit/be88102510491ea1e6f57057835a2bbda03d15f0))
+* **subtle-form:** text changes in stories ([dc44ab5](https://github.com/synerise/synerise-design/commit/dc44ab5d867ea19aae6b3a241cb17beaaed21419))
+* **subtle-form:** unused code in stories ([92ee7e7](https://github.com/synerise/synerise-design/commit/92ee7e7e44b758c7ba22915006fb16ff9d43d819))
+* **table:** fix stories with selection limi ([d342437](https://github.com/synerise/synerise-design/commit/d342437b0900fb2945a49653f24b788fd0e12ea2))
+* **table:** remove starIcon from table ([5650ac2](https://github.com/synerise/synerise-design/commit/5650ac2197e3abed1ba7194f0cb0a72424fae0a4))
+* **table:** remove width to fix table on firefox ([979bdc4](https://github.com/synerise/synerise-design/commit/979bdc4e0c8c4c6cff1661fb89f214fef75219f6))
+* **table:** STOR-685 show add item button on hover ([181ba1e](https://github.com/synerise/synerise-design/commit/181ba1e7d20ca8e3ffa7991b6e8295f0e4e7567b))
+* **tagslist:** fix and optimize ([2ddccaf](https://github.com/synerise/synerise-design/commit/2ddccaf0a62ee6b5d1fd57e98a553fd313042794))
+* **tagslist:** fix stepping and naming ([78bc4e3](https://github.com/synerise/synerise-design/commit/78bc4e316c1e6638afd681786f25a996ff589c24))
+* **tagslist:** some switches in storybook ([ad8a680](https://github.com/synerise/synerise-design/commit/ad8a680bb44fe16db1f166fcecbf2916ab756dbf))
+* **tagslist:** STOR-636 fix show-hide / trigger button knob ([b8c3d0b](https://github.com/synerise/synerise-design/commit/b8c3d0b8b9fe91928750678d8eca13d27698211f))
+* **unordered-list:** fix styles of icon list ([8d16972](https://github.com/synerise/synerise-design/commit/8d16972b5591d67a0b890ed80d27adb82951a2df))
+* **unordered-list:** fix styles of icon list ([db43bcc](https://github.com/synerise/synerise-design/commit/db43bcc8e511d5d82f62b6ee87ddd3ae92c235b7))
+* **unordered-list:** fix styles of icons in icon list ([f70a979](https://github.com/synerise/synerise-design/commit/f70a979437586f514414c1be5106002057583814))
+* **unordered-list:** fix styles of icons in icon list ([f8b9373](https://github.com/synerise/synerise-design/commit/f8b9373535f9d90e71ff3d32866f25b662af0f7f))
+* **unordered-list:** fix styles of unordered list ([d6f7bd3](https://github.com/synerise/synerise-design/commit/d6f7bd30b627eccfddb22ff78948fce683a654d3))
+
+
+### Features
+
+* **ordered-list:** add new stories unordered list and icon list ([79e640d](https://github.com/synerise/synerise-design/commit/79e640d64566ca9de29e162bd5630e6dac91c2b9))
+* **progress-bar:** add progress tiles ([b2a2167](https://github.com/synerise/synerise-design/commit/b2a2167c7f9a39646618298a86ca400dbc532d45))
+* **tagslist:** more refactor and bug fixes ([7b2d22c](https://github.com/synerise/synerise-design/commit/7b2d22c54ecbd85a8487bc116151a791c83706da))
+* **tagslist:** new AddModal and other stuff ([ee35c22](https://github.com/synerise/synerise-design/commit/ee35c22e21b3460b54c8758ccc5fe20535c0e89f))
+* **tagslist:** refactor ([10c562c](https://github.com/synerise/synerise-design/commit/10c562cb4e28fee68534d78154ddb443f6f2054d))
+* **tagslist:** STOR-636 add visiblity menu ([4adfabb](https://github.com/synerise/synerise-design/commit/4adfabb98c7deaba977941b20fe2e7df1375f90c))
+* **tagslist:** STOR-636 after filename change, rename inside files ([459e301](https://github.com/synerise/synerise-design/commit/459e30142f44ca4a32a3763dc8e7f2dc58bfcc26))
+* **tagslist:** STOR-636 fixes ([ef7991f](https://github.com/synerise/synerise-design/commit/ef7991f8913c933e162c375637560c49b580e96c))
+* **tagslist:** STOR-636 rename Folders to TagsList ([b102793](https://github.com/synerise/synerise-design/commit/b102793d8171fa83b12b18a7c6317e68330989b5))
+* **tagslist:** STOR-636 use stored dataSource and show it in story ([3a365e6](https://github.com/synerise/synerise-design/commit/3a365e6f4d0388b1ed5c2cc3ce7bc9a6adc6e91c))
+* **tagslist:** Update stories ([6e875df](https://github.com/synerise/synerise-design/commit/6e875dfb6d8675fb2bcb72fc0ce65662a8172387))
+
+
+
+
+
 # [0.120.0](https://github.com/synerise/synerise-design/compare/portal@0.119.0...portal@0.120.0) (2021-02-17)
 
 

@@ -3,8 +3,10 @@ import Button from '@synerise/ds-button';
 import Icon from '@synerise/ds-icon';
 import { AngleDownS, Add3M } from '@synerise/ds-icon/dist/icons';
 import Dropdown from '@synerise/ds-dropdown';
+import Tooltip from '@synerise/ds-tooltip';
 import ContextSelectorDropdown from './ContextSelectorDropdown/ContextSelectorDropdown';
 import { ContextItem, ContextProps } from './ContextSelector.types';
+import { ItemWrapper } from './ContextSelector.styles';
 
 const ContextSelector: React.FC<ContextProps> = ({
   selectedItem,
@@ -58,7 +60,11 @@ const ContextSelector: React.FC<ContextProps> = ({
     ) : (
       <Button type="custom-color" color={triggerColor} mode={triggerMode} onClick={handleClick}>
         {selectedItem ? <Icon component={selectedItem.icon} /> : null}
-        {selectedItem ? (selectedItem as ContextItem).name : buttonLabel}
+        <ItemWrapper>
+          <Tooltip title={selectedItem ? (selectedItem as ContextItem).name : undefined}>
+            {selectedItem ? (selectedItem as ContextItem).name : buttonLabel}
+          </Tooltip>
+        </ItemWrapper>
         <Icon component={<AngleDownS />} />
       </Button>
     );

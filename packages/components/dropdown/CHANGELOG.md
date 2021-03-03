@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.14.3](https://github.com/synerise/synerise-design/compare/@synerise/ds-dropdown@0.14.2...@synerise/ds-dropdown@0.14.3) (2021-03-02)
+
+**Note:** Version bump only for package @synerise/ds-dropdown
+
+
+
+
+
+## [0.14.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-dropdown@0.14.1...@synerise/ds-dropdown@0.14.2) (2021-03-01)
+
+
+### Bug Fixes
+
+* **dropdown:** add focus styles ([cfb847b](https://github.com/synerise/synerise-design/commit/cfb847bd20b054bfb7b1119b1012f2e3ec61a68c))
+* **dropdown:** add new prop to rotate icon ([5ca035e](https://github.com/synerise/synerise-design/commit/5ca035eb8cb06d1a74221f94034bdec658141493))
+
+
+
+
+
 ## [0.14.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-dropdown@0.14.0...@synerise/ds-dropdown@0.14.1) (2021-02-17)
 
 **Note:** Version bump only for package @synerise/ds-dropdown
