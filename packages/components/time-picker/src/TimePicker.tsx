@@ -11,7 +11,7 @@ import * as S from './TimePicker.styles';
 import { TimePickerProps } from './TimePicker.types';
 
 const defaultUnits = ['hour', 'minute', 'second'] as dayjs.UnitType[];
-const CLOCK_MODES = {
+export const CLOCK_MODES = {
   AM: 'AM',
   PM: 'PM',
 };
@@ -24,10 +24,12 @@ const TimePicker: React.FC<TimePickerProps> = ({
   defaultOpen,
   defaultAM,
   onChange,
+  containerStyle = {},
   timeFormat,
   use12HourClock,
   alwaysOpen,
   dropdownProps = {},
+  inputProps = {},
   disabled,
   disabledHours,
   disabledMinutes,
@@ -155,7 +157,7 @@ const TimePicker: React.FC<TimePickerProps> = ({
     return overlay;
   }
   return (
-    <S.Container className={`ds-time-picker ${className || ''}`} data-testid="tp-container">
+    <S.Container className={`ds-time-picker ${className || ''}`} data-testid="tp-container" style={containerStyle}>
       <Dropdown
         trigger={trigger}
         visible={alwaysOpen || open}
@@ -172,6 +174,7 @@ const TimePicker: React.FC<TimePickerProps> = ({
           placeholder={placeholderValue}
           readOnly
           icon1={timePickerIcon}
+          {...inputProps}
         />
       </Dropdown>
     </S.Container>
