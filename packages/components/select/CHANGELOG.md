@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.13.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.12.71...@synerise/ds-select@0.13.0) (2021-03-03)
+
+
+### Features
+
+* **condition:** adjust for design ([1018428](https://github.com/synerise/synerise-design/commit/101842816d94a413d36bffc1b64ffdb87cf0e753))
+
+
+
+
+
 ## [0.12.71](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.12.70...@synerise/ds-select@0.12.71) (2021-03-02)
 
 **Note:** Version bump only for package @synerise/ds-select

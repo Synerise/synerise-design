@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.13.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@0.12.1...@synerise/ds-utils@0.13.0) (2021-03-03)
+
+
+### Features
+
+* **condition:** adjust for design ([1018428](https://github.com/synerise/synerise-design/commit/101842816d94a413d36bffc1b64ffdb87cf0e753))
+
+
+
+
+
 ## [0.12.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@0.12.0...@synerise/ds-utils@0.12.1) (2021-02-17)
 
 **Note:** Version bump only for package @synerise/ds-utils
