@@ -3,11 +3,11 @@ import '@synerise/ds-core/dist/js/style';
 import './style/index.less';
 import AntdDropdown, { DropDownProps as AntDropDownProps } from 'antd/lib/dropdown';
 import SearchBar from '@synerise/ds-search-bar/';
+import { getPopupContainer } from '@synerise/ds-utils';
 import BottomAction from './elements/BottomAction/BottomAction';
 import BackAction from './elements/BackAction/BackAction';
 import { Wrapper } from './Dropdown.styles';
 import TextTrigger from './elements/TextTrigger/TextTrigger';
-import { getPopupContainer } from './utils/getPopupContainer';
 
 export type DropdownProps = AntDropDownProps;
 
@@ -31,5 +31,4 @@ class Dropdown extends React.Component<DropdownProps> {
   }
 }
 
-export * from './utils/getPopupContainer';
 export default Dropdown;
