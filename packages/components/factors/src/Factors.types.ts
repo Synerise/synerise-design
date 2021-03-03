@@ -77,10 +77,10 @@ export type FactorsTexts = {
 
 export type FactorsProps = {
   withoutTypeSelector?: boolean;
+  setSelectedFactorType?: (factor: FactorType) => void;
   unavailableFactorTypes?: FactorType[];
   availableFactorTypes?: FactorType[];
   selectedFactorType: FactorType;
-  setSelectedFactorType: (factor: FactorType) => void;
   defaultFactorType: FactorType;
   onChangeValue: (value: FactorValueType) => void;
   value: FactorValueType;
@@ -102,8 +102,9 @@ export type FactorsProps = {
 
 export type FactorTypeSelectorProps = Pick<
   FactorsProps,
-  'unavailableFactorTypes' | 'availableFactorTypes' | 'selectedFactorType' | 'setSelectedFactorType'
+  'unavailableFactorTypes' | 'availableFactorTypes' | 'selectedFactorType'
 > & {
+  setSelectedFactorType: (factor: FactorType) => void;
   selectedFactor: SelectedFactorType;
 };
 

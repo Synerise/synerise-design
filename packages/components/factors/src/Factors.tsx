@@ -119,7 +119,7 @@ const Factors: React.FC<FactorsProps> = ({
       withoutTypeSelector={withoutTypeSelector}
       className={`ds-factors ds-factors-${factorType}`}
     >
-      {!withoutTypeSelector && (
+      {!withoutTypeSelector && setSelectedFactorType && (
         <FactorTypeSelector
           selectedFactorType={factorType}
           setSelectedFactorType={setSelectedFactorType}

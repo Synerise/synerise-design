@@ -108,6 +108,7 @@ export const AntdInput = styled(
   ${(props): string => (props.error ? errorInputStyle(props) : '')};
 
   &&& {
+    min-height: 32px;
     color: ${(props): string => props.theme.palette['grey-700']};
     z-index: 1;
     &::placeholder {
