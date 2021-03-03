@@ -13,9 +13,10 @@ const InputNumber: React.FC<Props> = ({
   error,
   prefixel,
   suffixel,
+  style,
   ...antdProps
 }) => {
-  const id = uuid();
+  const id = React.useMemo(() => uuid(), []);
   const showError = Boolean(error || errorText);
 
   return (
@@ -25,11 +26,10 @@ const InputNumber: React.FC<Props> = ({
           <S.Label htmlFor={id}>{label}</S.Label>
         </S.ContentAbove>
       )}
-      <S.InputNumberWrapper prefixel={!!prefixel} suffixel={!!suffixel}>
+      <S.InputNumberWrapper prefixel={!!prefixel} suffixel={!!suffixel} style={style}>
         {!!prefixel && <S.Prefixel>{prefixel}</S.Prefixel>}
         <S.AntdInputNumber
           {...antdProps}
-          type="number"
           id={id}
           error={showError}
           className={showError ? 'error' : undefined}

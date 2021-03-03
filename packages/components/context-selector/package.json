@@ -26,6 +26,7 @@
     "test:watch": "npm run test -- --watchAll",
     "types": "tsc --noEmit"
   },
+  "gitHead": "fb9af91dbebaf4d5ac135be15a78712786cca0f2",
   "sideEffects": [
     "dist/style/*",
     "*.less"
