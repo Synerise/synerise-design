@@ -5,6 +5,7 @@ import './style/index.less';
 import { Close3M, CloseS } from '@synerise/ds-icon/dist/icons';
 import Icon from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
+import { getPopupContainer as defaultGetPopupContainer } from '@synerise/ds-utils';
 import classNames from 'classnames';
 import * as S from './Select.styles';
 import { Props } from './Select.types';
@@ -26,6 +27,7 @@ class Select extends React.Component<Props> {
       style,
       listHeight,
       className,
+      getPopupContainer = defaultGetPopupContainer,
       ...antdProps
     } = this.props;
     const { size } = antdProps;
@@ -42,7 +44,9 @@ class Select extends React.Component<Props> {
         >
           {!!prefixel && <S.PrefixWrapper>{prefixel}</S.PrefixWrapper>}
           <S.AntdSelect
+            dropdownAlign={{ offset: [0, 8] }} // STOR-588
             {...antdProps}
+            getPopupContainer={getPopupContainer}
             listHeight={listHeight}
             size={size}
             prefixel={!!prefixel}
