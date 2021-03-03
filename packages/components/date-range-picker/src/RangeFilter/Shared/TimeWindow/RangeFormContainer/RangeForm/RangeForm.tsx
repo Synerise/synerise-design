@@ -12,12 +12,11 @@ import * as S from './RangeForm.styles';
 import { getDisabledTimeOptions } from '../../../../../RangePicker/utils';
 
 const TODAY = new Date();
-const FORM_MODES: Record<string, DateLimitMode> = {
+export const FORM_MODES: Record<string, DateLimitMode> = {
   HOUR: 'Hour',
   RANGE: 'Range',
 };
 const RangeForm: React.FC<RangeFormProps> = ({
-  mode = 'Range',
   onModeChange,
   startDate,
   endDate,
@@ -25,6 +24,8 @@ const RangeForm: React.FC<RangeFormProps> = ({
   onEndChange,
   onExactHourSelect,
   onRangeDelete,
+  valueSelectionMode = [FORM_MODES.RANGE, FORM_MODES.HOUR],
+  mode = valueSelectionMode[0],
   texts,
 }) => {
   const [start, setStart] = React.useState<Date | undefined>(startDate);
@@ -112,22 +113,23 @@ const RangeForm: React.FC<RangeFormProps> = ({
     );
   }, [areStartAndEndValid, start, end, onStartChange, onEndChange, getPopupContainer, texts]);
   const limitModeSelect = React.useMemo(
-    () => (
-      <Select
-        value={mode}
-        onChange={(value): void => {
-          onModeChange(value as DateLimitMode);
-        }}
-        getPopupContainer={getPopupContainer}
-      >
-        {Object.values(FORM_MODES).map(modeName => (
-          <Select.Option key={modeName} value={modeName}>
-            {modeName}
-          </Select.Option>
-        ))}
-      </Select>
-    ),
-    [mode, onModeChange, getPopupContainer]
+    () =>
+      valueSelectionMode.length > 1 ? (
+        <Select
+          value={mode}
+          onChange={(value): void => {
+            onModeChange(value as DateLimitMode);
+          }}
+          getPopupContainer={getPopupContainer}
+        >
+          {valueSelectionMode.map(modeName => (
+            <Select.Option key={modeName} value={modeName}>
+              {modeName}
+            </Select.Option>
+          ))}
+        </Select>
+      ) : null,
+    [mode, onModeChange, getPopupContainer, valueSelectionMode]
   );
   return (
     <S.Container>

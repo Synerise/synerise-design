@@ -275,7 +275,16 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
 
   renderRangeForm = (dayKeys: DayKey | DayKey[]): React.ReactNode => {
     const { activeDays } = this.state;
-    const { hideHeader, monthlyFilterPeriod, monthlyFilter, daily, days, onChange, texts } = this.props;
+    const {
+      hideHeader,
+      monthlyFilterPeriod,
+      monthlyFilter,
+      daily,
+      days,
+      onChange,
+      texts,
+      valueSelectionModes,
+    } = this.props;
     return (
       <RangeFormContainer
         onChange={onChange}
@@ -294,6 +303,7 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
         monthlyFilterPeriod={monthlyFilterPeriod}
         onRangeDelete={daily ? undefined : this.handleRangeDelete}
         texts={(texts || {}) as TimeWindowTexts}
+        valueSelectionModes={valueSelectionModes}
       />
     );
   };

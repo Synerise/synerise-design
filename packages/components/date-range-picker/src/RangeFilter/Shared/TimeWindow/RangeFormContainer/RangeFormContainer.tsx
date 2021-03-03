@@ -29,6 +29,7 @@ const RangeFormContainer: React.FC<RangeFormContainerProps> = ({
   onRangeDelete,
   texts,
   onChange,
+  valueSelectionModes,
 }) => {
   const dayValue = getDayValue(activeDays[0]);
   const [mode, setMode] = React.useState<DateLimitMode>(dayValue?.mode || DEFAULT_LIMIT_MODE);
@@ -76,6 +77,7 @@ const RangeFormContainer: React.FC<RangeFormContainerProps> = ({
             : onDayTimeChange([value, value], dayKeys as DayKey);
         }}
         onRangeDelete={onRangeDelete}
+        valueSelectionMode={valueSelectionModes}
       />
     ),
     [

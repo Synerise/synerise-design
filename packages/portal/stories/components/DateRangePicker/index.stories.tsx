@@ -3,6 +3,7 @@ import * as React from 'react';
 import DateRangePicker from '@synerise/ds-date-range-picker';
 import { boolean } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
+import RangeFilter from '@synerise/ds-date-range-picker/dist/RangeFilter/RangeFilter';
 
 const decorator = storyFn => (
   <div style={{ width: '100vw', position: 'absolute', left: '0', top: '5vh' }}>
@@ -154,6 +155,13 @@ const stories = {
         texts={texts}
         popoverPlacement="bottomLeft"
       />
+    );
+  },
+  rangeFilter: () => {
+    return (
+      <div style={{ width: '600px' }}>
+        <RangeFilter hideFooter onChange={console.log} value={undefined} />
+      </div>
     );
   },
 };
