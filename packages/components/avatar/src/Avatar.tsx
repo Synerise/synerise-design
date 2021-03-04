@@ -1,25 +1,56 @@
 import * as React from 'react';
 import Tooltip from '@synerise/ds-tooltip';
 import '@synerise/ds-core/dist/js/style';
+import Icon from '@synerise/ds-icon';
 
 import './style/index.less';
 import AntdAvatar from './Avatar.styles';
 import { AvatarProps } from './Avatar.types';
 
+export const DEFAULT_SIZE = 'medium';
+export const ICON_SIZES = {
+  small: 16,
+  medium: 24,
+  large: 30,
+  extraLarge: 42
+};
+
 const Avatar: React.FC<AvatarProps> = ({
   backgroundColor,
-  backgroundColorHue = '400',
+  backgroundColorHue = '500',
+  children,
   disabled = false,
   hasStatus = false,
   iconComponent,
+  iconScale = true,
   tooltip,
-  size = 'medium',
+  size = DEFAULT_SIZE,
   ...antdProps
-}: AvatarProps) => {
+}) => {
   const [pressed, setPressed] = React.useState(false);
+  const sizes = {...ICON_SIZES};
+  let iconElement = iconComponent as React.ReactElement;
+
+  // Enforce icon to be scaled 
+  if(iconElement?.type === Icon && iconScale) {
+    if(iconElement.props.component.type.name.match(/S$/)) sizes.small = 24;
+    
+    const iconSize = sizes[size] || sizes[DEFAULT_SIZE];
+
+    iconElement = React.cloneElement(iconElement, {
+      size: iconSize
+    });
+  }
 
   return (
-    <Tooltip type="avatar" title={tooltip?.name} description={tooltip?.email} mouseLeaveDelay={0} mouseEnterDelay={0}>
+    <Tooltip 
+      type="avatar" 
+      title={tooltip?.title || tooltip?.name} 
+      description={tooltip?.description || tooltip?.email} 
+      status={tooltip?.status}
+      mouseLeaveDelay={0} 
+      mouseEnterDelay={0}
+    >
       <AntdAvatar
         className="ds-avatar"
         onMouseDown={(): void => setPressed(true)}
@@ -34,7 +65,7 @@ const Avatar: React.FC<AvatarProps> = ({
         size={size}
         {...antdProps}
       >
-        {iconComponent || antdProps.children}
+        {iconElement || children}
       </AntdAvatar>
     </Tooltip>
   );

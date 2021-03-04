@@ -191,7 +191,7 @@ const stories = {
       <Badge status={select('Status', statuses, 'active')}  >
         <Avatar
           size={select('Avatar size', avatarSize, 'extraLarge')}
-          shape={select('Avatar shape', avatarShape, 'square')}
+          shape={select('Avatar shape', avatarShape, 'circle')}
           src={'https://www.w3schools.com/howto/img_avatar.png'}
           hasStatus
         />

@@ -1,8 +1,9 @@
 import * as React from 'react';
-import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 
-import Avatar from '../index';
+import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import Badge from '@synerise/ds-badge';
+
+import Avatar from './index';
 
 const CIRCLE_SHAPE = 'circle';
 const SQUARE_SHAPE = 'square';
@@ -31,7 +32,7 @@ describe('Avatar', () => {
         backgroundColor={FERN}
         iconComponent={
           <div>
-            <svg></svg>
+            <svg>i</svg>
           </div>
         }
       />
@@ -57,8 +58,8 @@ describe('Avatar', () => {
   it('should render with badge dot', () => {
     // ARRANGE
     const { container } = renderWithProvider(
-      <Badge status={'inactive'}>
-        <Avatar hasStatus={true} src={IMG_SRC} size={'small'} />
+      <Badge status="inactive">
+        <Avatar hasStatus src={IMG_SRC} size="small" />
       </Badge>
     );
 
@@ -74,12 +75,12 @@ describe('Avatar', () => {
 
   it('should render with proper styles', () => {
     // ARRANGE
-    const { container } = renderWithProvider(<Avatar backgroundColor={RED} shape={SQUARE_SHAPE} size={'small'} />);
+    const { container } = renderWithProvider(<Avatar backgroundColor={RED} shape={SQUARE_SHAPE} size="small" />);
 
     const avatar = container.querySelector('.ant-avatar');
 
     // ASSERT
-    expect(avatar).toHaveStyle('background: #ff8475');
+    expect(avatar).toHaveStyle('background: #ff5a4d');
     expect(avatar).toHaveClass('ant-avatar-square');
   });
 

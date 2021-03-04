@@ -32,6 +32,11 @@ export interface AvatarProps extends Omit<AntAvatarProps, 'size' | 'icon'> {
    */
   iconComponent?: React.ReactNode;
   /**
+   * Auto scale icons for sizes
+   * @default true
+   */
+  iconScale?: boolean;
+  /**
    * Background color of the avatar
    */
   backgroundColor?: Color;
@@ -47,7 +52,31 @@ export interface AvatarProps extends Omit<AntAvatarProps, 'size' | 'icon'> {
    * Text on a tooltip
    */
   tooltip?: {
-    name: string;
-    email: string;
+    title?: React.ReactNode;
+    description?: React.ReactNode;
+    status?: React.ReactNode;
+    // Backward compatibility:
+    name?: React.ReactNode;
+    email?: React.ReactNode;
   };
 }
+
+type DefinedAvatarProps = Pick<AvatarProps, 'disabled' | 'tooltip' | 'backgroundColor' | 'iconComponent' | 'size' | 'src'>& {
+  badgeStatus?: string;
+  color?: Color;
+  text?: string;
+};
+
+export type ObjectAvatarProps = DefinedAvatarProps & {
+  objectName?: string;
+  objectStatus?: string;
+  objectDescription?: string;
+  onClick?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+};
+
+export type UserAvatarProps = DefinedAvatarProps & {
+  email?: string;
+  firstName?: string;
+  lastName?: string;
+  onClick?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+};
