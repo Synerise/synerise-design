@@ -3,6 +3,7 @@ import { FixedSizeList as List } from 'react-window';
 import ResizeObserver from 'rc-resize-observer';
 import classNames from 'classnames';
 import { compact } from 'lodash';
+import { useIntl } from 'react-intl';
 import Button from '@synerise/ds-button';
 import Tooltip from '@synerise/ds-tooltip';
 import Scrollbar from '@synerise/ds-scrollbar';
@@ -11,6 +12,7 @@ import { RowType } from '../Table.types';
 import VirtualTableRow from './VirtualTableRow';
 import { Props } from './VirtualTable.types';
 import useRowStar from '../hooks/useRowStar';
+import { useTableLocale } from '../utils/locale';
 
 export const EXPANDED_ROW_PROPERTY = 'expandedChild';
 
@@ -32,6 +34,8 @@ function VirtualTable<T extends any & RowType<T> & { [EXPANDED_ROW_PROPERTY]?: b
     expandable,
     locale,
   } = props;
+  const intl = useIntl();
+  const tableLocale = useTableLocale(intl, locale);
 
   const [tableWidth, setTableWidth] = React.useState(initialWidth);
   const { getRowStarColumn } = useRowStar(rowStar?.starredRowKeys || []);
@@ -47,6 +51,7 @@ function VirtualTable<T extends any & RowType<T> & { [EXPANDED_ROW_PROPERTY]?: b
         }
       },
     },
+    locale: tableLocale,
   } as Props<T>;
   const rowStarColumn = getRowStarColumn(propsForRowStar);
 
@@ -89,7 +94,7 @@ function VirtualTable<T extends any & RowType<T> & { [EXPANDED_ROW_PROPERTY]?: b
             allChildsChecked;
           return (
             recordKey !== undefined && (
-              <Tooltip title={locale?.selectRowTooltip}>
+              <Tooltip title={tableLocale?.selectRowTooltip} mouseLeaveDelay={0}>
                 <Button.Checkbox
                   key={`checkbox-${recordKey}`}
                   checked={checked}
@@ -147,7 +152,7 @@ function VirtualTable<T extends any & RowType<T> & { [EXPANDED_ROW_PROPERTY]?: b
       !!rowStar && rowStarColumn,
       ...columns,
     ]);
-  }, [columns, selection, rowStar, rowStarColumn, getRowKey, dataSource, locale]);
+  }, [columns, selection, rowStar, rowStarColumn, getRowKey, dataSource, tableLocale]);
 
   const mergedColumns = React.useMemo(() => {
     const widthColumnCount = virtualColumns.filter(({ width }) => !width).length;
@@ -249,6 +254,8 @@ function VirtualTable<T extends any & RowType<T> & { [EXPANDED_ROW_PROPERTY]?: b
     ]
   );
 
+  const columnsSliceStartIndex = Number(!!selection) + Number(!!rowStar);
+
   return (
     <ResizeObserver
       onResize={({ offsetWidth }): void => {
@@ -258,11 +265,13 @@ function VirtualTable<T extends any & RowType<T> & { [EXPANDED_ROW_PROPERTY]?: b
       <DSTable
         {...props}
         className={classNames(className, 'virtual-table')}
-        columns={mergedColumns}
+        // Remove columns which cause header columns indent
+        columns={mergedColumns.slice(columnsSliceStartIndex)}
         pagination={false}
         components={{
           body: renderBody,
         }}
+        locale={tableLocale}
       />
     </ResizeObserver>
   );

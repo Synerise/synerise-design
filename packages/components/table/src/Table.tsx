@@ -5,13 +5,14 @@ import Icon from '@synerise/ds-icon';
 import SpinnerM from '@synerise/ds-icon/dist/icons/SpinnerM';
 import { AngleLeftS, AngleRightS } from '@synerise/ds-icon/dist/icons';
 import Button from '@synerise/ds-button';
-import { IntlShape, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 import * as S from './Table.styles';
-import { DSTableProps, Locale } from './Table.types';
+import { DSTableProps } from './Table.types';
 import TableHeader from './TableHeader/TableHeader';
 import DefaultTable from './DefaultTable/DefaultTable';
 import GroupTable from './GroupTable/GroupTable';
 import { GroupType } from './GroupTable/GroupTable.types';
+import { useTableLocale } from './utils/locale';
 
 export const SELECTION_ALL = 'SELECTION_ALL';
 export const SELECTION_INVERT = 'SELECTION_INVERT';
@@ -20,23 +21,6 @@ const ITEM_RENDER_TYPE = {
   prev: 'prev',
   next: 'next',
 };
-
-const DEFAULT_LOCALE = (intl: IntlShape): Locale => ({
-  pagination: {
-    items: intl.formatMessage({ id: 'DS.TABLE.PAGINATION.ITEMS', defaultMessage: 'results' }),
-    groups: intl.formatMessage({ id: 'DS.TABLE.PAGINATION.GROUPS', defaultMessage: 'groups' }),
-  },
-  selected: intl.formatMessage({ id: 'DS.TABLE.SELECTED', defaultMessage: 'selected' }),
-  emptyText: intl.formatMessage({ id: 'DS.TABLE.EMPTY_TEXT', defaultMessage: 'No data' }),
-  selectionLimitWarning: intl.formatMessage({
-    id: 'DS.TABLE.SELECTION_LIMIT_WARNING',
-    defaultMessage: 'Selection limit has been reached',
-  }),
-  starRowTooltip: intl.formatMessage({ id: 'DS.TABLE.STAR_ROW_TOOLTIP', defaultMessage: 'Starred' }),
-  selectRowTooltip: intl.formatMessage({ id: 'DS.TABLE.SELECT_ROW_TOOLTIP', defaultMessage: 'Select' }),
-  selectAllTooltip: intl.formatMessage({ id: 'DS.TABLE.SELECT_ALL_TOOLTIP', defaultMessage: 'Select' }),
-  selectionOptionsTooltip: intl.formatMessage({ id: 'DS.TABLE.SELECTION_OPTIONS', defaultMessage: 'Options' }),
-});
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function DSTable<T extends any>(props: DSTableProps<T>): React.ReactElement {
@@ -63,13 +47,7 @@ function DSTable<T extends any>(props: DSTableProps<T>): React.ReactElement {
     renderSelectionTitle,
   } = props;
 
-  const getLocale = React.useMemo((): Locale => {
-    return {
-      ...DEFAULT_LOCALE(intl),
-      ...locale,
-      pagination: { ...DEFAULT_LOCALE(intl).pagination, ...locale?.pagination },
-    };
-  }, [intl, locale]);
+  const tableLocale = useTableLocale(intl, locale);
 
   const renderHeader = React.useCallback((): React.ReactNode => {
     const size = selection && selection?.selectedRowKeys && selection?.selectedRowKeys.length;
@@ -97,7 +75,7 @@ function DSTable<T extends any>(props: DSTableProps<T>): React.ReactElement {
           filterComponent={filterComponent}
           headerButton={headerButton}
           rowKey={rowKey}
-          locale={getLocale}
+          locale={tableLocale}
           renderSelectionTitle={renderSelectionTitle}
         />
       )
@@ -116,7 +94,7 @@ function DSTable<T extends any>(props: DSTableProps<T>): React.ReactElement {
     filterComponent,
     headerButton,
     rowKey,
-    getLocale,
+    tableLocale,
   ]);
 
   const footerPagination = React.useMemo((): object => {
@@ -124,7 +102,7 @@ function DSTable<T extends any>(props: DSTableProps<T>): React.ReactElement {
       showTotal: (total: number, range: number[]): React.ReactNode => (
         <span>
           <strong>{range[0]}</strong>-<strong>{range[1]}</strong> of <strong>{total}</strong>{' '}
-          {grouped ? getLocale?.pagination?.groups : getLocale?.pagination?.items}
+          {grouped ? tableLocale?.pagination?.groups : tableLocale?.pagination?.items}
         </span>
       ),
       columnWidth: 72,
@@ -147,7 +125,7 @@ function DSTable<T extends any>(props: DSTableProps<T>): React.ReactElement {
       },
       ...pagination,
     };
-  }, [pagination, grouped, getLocale]);
+  }, [pagination, grouped, tableLocale]);
 
   return (
     <S.TableWrapper
@@ -164,7 +142,7 @@ function DSTable<T extends any>(props: DSTableProps<T>): React.ReactElement {
         // @ts-ignore
         <GroupTable<T>
           {...props}
-          locale={getLocale}
+          locale={tableLocale}
           title={renderHeader}
           pagination={dataSource?.length && pagination ? footerPagination : false}
         />
@@ -173,7 +151,7 @@ function DSTable<T extends any>(props: DSTableProps<T>): React.ReactElement {
           scroll={{ x: 'auto' }}
           tableLayout="auto"
           {...props}
-          locale={getLocale}
+          locale={tableLocale}
           title={renderHeader}
           pagination={dataSource?.length && pagination ? footerPagination : false}
         />

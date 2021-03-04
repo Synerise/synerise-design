@@ -126,7 +126,7 @@ function DefaultTable<T extends any & RowType<T>>(props: DSTableProps<T>): React
             const isIndeterminate =
               hasChilds && checkedChilds.length > 0 && checkedChilds.length < record.children.length;
             return (
-              <Tooltip title={locale?.selectRowTooltip}>
+              <Tooltip title={locale?.selectRowTooltip} mouseLeaveDelay={0}>
                 <Button.Checkbox
                   checked={checked || allChildsChecked}
                   disabled={!checked && Boolean(selection.limit && selection.limit <= selection.selectedRowKeys.length)}

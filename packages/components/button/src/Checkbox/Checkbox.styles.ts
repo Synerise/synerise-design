@@ -16,6 +16,11 @@ export const IconWrapper = styled.span<{ active?: boolean; error?: boolean }>`
     fill: ${({ theme }): string => theme.palette['grey-200']} !important;
   }
 
+  .ant-btn-ghost:hover & .ds-icon svg,
+  .ant-btn-ghost:focus:hover & .ds-icon svg {
+    fill: ${({ theme }): string => theme.palette['blue-600']};
+  }
+
   /* icon background */
   .ds-button.ant-btn-ghost &::before {
     content: '';
@@ -29,7 +34,9 @@ export const IconWrapper = styled.span<{ active?: boolean; error?: boolean }>`
     z-index: -1;
   }
 
-  .ds-button.ant-btn-ghost:not(:hover) &::before {
+  .ds-button.ant-btn-ghost &::before,
+  .ds-button.ant-btn-ghost:hover &::before,
+  .ds-button.ant-btn-ghost:focus:hover &::before {
     background: ${({ theme }): string => theme.palette.white};
   }
 
@@ -43,7 +50,6 @@ export const DefaultIcon = styled(CheckboxDeafultM)`
   display: block;
 
   .ds-button.ant-btn-ghost:not([disabled]):hover & {
-    background: red !important;
     display: none;
   }
 `;
