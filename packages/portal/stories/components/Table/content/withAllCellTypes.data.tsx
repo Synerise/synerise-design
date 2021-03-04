@@ -364,31 +364,6 @@ export const COLUMNS_WITH_AVATARS = [
     },
   },
   {
-    title: 'Icon Avatar Label',
-    dataIndex: 'avatar',
-    key: 'avatar',
-    width: 120,
-    textWrap: 'word-break',
-    ellipsis: true,
-    icon: { component: <VarTypeListM /> },
-    iconTooltip: { component: <InfoFillS /> },
-    render: avatar => {
-      return (
-        <TableCell.AvatarLabelCell
-          icon={<Icon component={<LockM />} color={theme.palette['grey-500']} />}
-          avatar={
-            <Badge status="active">
-              <Avatar hasStatus={true} backgroundColor="green" backgroundColorHue="400" size="medium" shape={'square'}>
-                {avatar.initials}
-              </Avatar>
-            </Badge>
-          }
-          title={avatar.title}
-        />
-      );
-    },
-  },
-  {
     title: 'Avatar M with label',
     dataIndex: 'avatar',
     key: 'avatar',
