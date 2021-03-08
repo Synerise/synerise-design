@@ -17,6 +17,7 @@ const ContextSelector: React.FC<ContextProps> = ({
   texts,
   opened,
   addMode,
+  loading,
 }) => {
   const [dropdownVisible, setDropdownVisible] = React.useState(false);
   const handleChange = React.useCallback(
@@ -83,6 +84,7 @@ const ContextSelector: React.FC<ContextProps> = ({
           items={items}
           texts={texts}
           visible={dropdownVisible}
+          loading={loading}
         />
       }
     >

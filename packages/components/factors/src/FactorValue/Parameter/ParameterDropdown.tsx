@@ -8,6 +8,7 @@ import Result from '@synerise/ds-result';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import Scrollbar from '@synerise/ds-scrollbar';
 import { v4 as uuid } from 'uuid';
+import Loader from '@synerise/ds-loader';
 import * as S from './Parameter.style';
 import { ParameterDropdownProps, ParameterGroup, ParameterItem } from '../../Factors.types';
 import ParameterDropdownItem from './ParameterDropdownItem';
@@ -19,6 +20,7 @@ const ParameterDropdown: React.FC<ParameterDropdownProps> = ({
   items,
   setDropdownVisible,
   visible,
+  loading,
 }) => {
   const defaultTab = React.useMemo(() => {
     const defaultIndex = groups?.findIndex((group: ParameterGroup) => group.defaultGroup);
@@ -154,6 +156,16 @@ const ParameterDropdown: React.FC<ParameterDropdownProps> = ({
     );
   }, [groups]);
 
+  const getNoResultContainer = React.useMemo(
+    () =>
+      loading ? (
+        <Loader label={texts.parameter.loadingParameter} labelPosition="bottom" />
+      ) : (
+        <Result noSearchResults type="no-results" description={texts.parameter.noResults} />
+      ),
+    [loading, texts]
+  );
+
   return (
     <Dropdown.Wrapper
       style={{ width: '300px' }}
@@ -194,11 +206,7 @@ const ParameterDropdown: React.FC<ParameterDropdownProps> = ({
         <Scrollbar absolute maxHeight={300} style={{ padding: 8 }}>
           {// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
           // @ts-ignore
-          currentItems.length ? (
-            currentItems
-          ) : (
-            <Result noSearchResults type="no-results" description={texts.parameter.noResults} />
-          )}
+          currentItems.length ? currentItems : getNoResultContainer}
         </Scrollbar>
       </S.ItemsList>
     </Dropdown.Wrapper>
