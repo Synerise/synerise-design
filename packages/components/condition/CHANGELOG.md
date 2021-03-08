@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@0.6.2...@synerise/ds-condition@0.6.3) (2021-03-08)
+
+
+### Bug Fixes
+
+* **condition:** minior fixes ([26982be](https://github.com/Synerise/synerise-design/commit/26982bee3f682e6f8d5126e4143c80c4405f6bae))
+
+
+
+
+
 ## [0.6.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@0.6.1...@synerise/ds-condition@0.6.2) (2021-03-03)
 
 **Note:** Version bump only for package @synerise/ds-condition
