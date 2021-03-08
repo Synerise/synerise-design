@@ -41,4 +41,5 @@ export type ConditionProps = {
   addStep?: () => void;
   onChangeOrder?: (newOrder: ConditionStep[]) => void;
   texts?: Partial<ConditionTexts>;
+  minConditionsLength?: number;
 };

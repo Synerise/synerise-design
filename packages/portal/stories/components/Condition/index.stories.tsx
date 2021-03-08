@@ -241,6 +241,7 @@ const stories = {
           duplicateStep={duplicateStep}
           addStep={addStep}
           onChangeOrder={boolean('Enable change order', true) && onChangeOrder}
+          minConditionsLength={0}
           steps={store.state.steps.map(step => ({
             id: step.id,
             stepName: boolean('Show step name', true) && step.stepName,
@@ -260,6 +261,7 @@ const stories = {
               selectedItem: step.subject.selectedItem,
               items: CONTEXT_ITEMS,
               groups: CONTEXT_GROUPS,
+              loading: boolean('Loading context content', true),
             },
             conditions: step.conditions.map(condition => ({
               id: condition.id,
@@ -269,6 +271,7 @@ const stories = {
                 defaultFactorType: 'parameter',
                 setSelectedFactorType: () => {},
                 onChangeValue: value => setStepConditionParameter(step.id, condition.id, value),
+                onParamsClick: () => { console.log('params click')},
                 value: condition.parameter.value,
                 parameters: {
                   buttonLabel: 'Parameter',
@@ -278,6 +281,7 @@ const stories = {
                 },
                 withoutTypeSelector: true,
                 texts: FACTORS_TEXTS,
+                loading: boolean('Loading parameters content', true),
               },
               operator: {
                 onChange: value => setOperatorValue(step.id, condition.id, value),

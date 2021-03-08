@@ -3,6 +3,7 @@ import * as React from 'react';
 export type ContextTexts = {
   buttonLabel: string;
   searchPlaceholder: string;
+  loadingResults: string;
   noResults: string;
 };
 
@@ -35,6 +36,7 @@ export type ContextProps = {
   onSetGroup?: (item: ContextItem | ContextGroup | undefined) => void;
   opened?: boolean;
   addMode?: boolean;
+  loading?: boolean;
 };
 
 export type ContextDropdownProps = {
@@ -46,6 +48,7 @@ export type ContextDropdownProps = {
   value: ContextItem | undefined;
   onSetGroup?: (val: ContextItem | ContextGroup) => void;
   visible?: boolean;
+  loading?: boolean;
 };
 
 export type ContextSelectorDropdownItemProps = {

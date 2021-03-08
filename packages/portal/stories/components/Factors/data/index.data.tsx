@@ -18,7 +18,8 @@ export const FACTORS_TEXTS = {
   },
   parameter: {
     searchPlaceholder: 'Search',
-      noResults: 'No results',
+    noResults: 'No results',
+    loadingParameter: 'Loading parameters',
   },
   valuePlaceholder: 'Value',
     modalApply: 'Apply',
