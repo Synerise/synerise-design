@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.33.7](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.33.6...@synerise/ds-table@0.33.7) (2021-03-09)
+
+
+### Bug Fixes
+
+* **table:** fix last button radius in header selection ([2b3bdd5](https://github.com/synerise/synerise-design/commit/2b3bdd5117ac85175e486a9f02b517abe8736c24))
+
+
+
+
+
 ## [0.33.6](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.33.5...@synerise/ds-table@0.33.6) (2021-03-03)
 
 **Note:** Version bump only for package @synerise/ds-table
