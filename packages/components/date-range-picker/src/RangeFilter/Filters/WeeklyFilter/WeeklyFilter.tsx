@@ -19,10 +19,12 @@ const WeeklyFilter = ({
     (dayKey: DayKey): React.ReactNode => intl.formatMessage({ id: `DS.DATE-RANGE-PICKER.WEEKDAYS-SHORT-${dayKey}` }),
     [intl]
   );
+
   const handleDayTemplate = React.useCallback(
     (dayOfWeek: React.ReactText): { day: React.ReactText } => ({ day: dayOfWeek }),
     []
   );
+  console.log('WeeklyFilter days', value);
   return (
     <S.WeeklyFilterContainer>
       <TimeWindow

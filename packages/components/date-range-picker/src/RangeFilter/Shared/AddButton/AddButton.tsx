@@ -13,4 +13,4 @@ const AddButton: React.FC<AddButtonProps> = ({ label, ...rest }: AddButtonProps)
   );
 };
 
-export default AddButton;
+export default React.memo(AddButton);

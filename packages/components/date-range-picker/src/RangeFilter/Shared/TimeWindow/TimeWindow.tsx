@@ -4,9 +4,6 @@ import { FormattedMessage, injectIntl } from 'react-intl';
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
 import dayjs from 'dayjs';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
-import { InfoM } from '@synerise/ds-icon/dist/icons';
-import Icon from '@synerise/ds-icon';
 import { DayKey, TimeWindowProps, State, DayOptions, TimeWindowTexts } from './TimeWindow.types';
 import * as S from './TimeWindow.styles';
 import { getDateFromDayValue } from './utils';
@@ -17,6 +14,7 @@ import { DEFAULT_RANGE_END, DEFAULT_RANGE_START, TIME_FORMAT } from '../../const
 import AddButton from '../AddButton/AddButton';
 import RangeFormContainer from './RangeFormContainer/RangeFormContainer';
 import Day from './Day/Day';
+import SelectionHint from '../SelectionHint/SelectionHint';
 
 class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
   // eslint-disable-next-line react/destructuring-assignment
@@ -247,11 +245,10 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
     const { activeDays } = this.state;
     const isRestricted = this.isDayRestricted(dayKey);
     const isActive = activeDays.includes(dayKey);
-    let tooltip, Component;
+    let Component;
     if (typeof dayKey === 'string' && customDays && customDays[dayKey]) {
-      const { component: CustomComponent, tooltip: customTooltip } = customDays[dayKey];
+      const { component: CustomComponent } = customDays[dayKey];
       if (CustomComponent) Component = CustomComponent;
-      if (customTooltip) tooltip = customTooltip;
     }
     if (!Component) {
       Component = Day;
@@ -262,7 +259,6 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
         dayKey={dayKey}
         data-attr={dayKey}
         label={this.getDayLabel(dayKey)}
-        tooltip={tooltip}
         restricted={isRestricted}
         active={isActive}
         readOnly={readOnly}
@@ -385,10 +381,7 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
         )}
         {shouldRenderRangeForm && this.renderRangeForm(rangeFormKey)}
         {shouldRenderSelectionHint && (
-          <S.SelectionHint>
-            <Icon component={<InfoM />} color={theme.palette['grey-600']} />{' '}
-            {intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.SELECT-DAYS-DESCRIPTION' })}
-          </S.SelectionHint>
+          <SelectionHint message={intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.SELECT-DAYS-DESCRIPTION' })} />
         )}
         {shouldRenderAddButton && (
           <S.AddButtonWrapper>

@@ -124,7 +124,7 @@ class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState
                 onChange={(def: FilterDefinition): void => {
                   const updatedFilter = { [activeType]: { ...activeValue, definition: def } };
                   this.setState(updatedFilter);
-                  onChange && onChange(updatedFilter);
+                  onChange && onChange(updatedFilter as any);
                 }}
                 onRangeCopy={this.handleRangeCopy}
                 rangeClipboard={rangeClipboard}

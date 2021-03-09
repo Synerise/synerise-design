@@ -5,7 +5,6 @@ import { DayKey } from '../TimeWindow.types';
 
 export type DayProps = {
   dayKey: DayKey;
-  tooltip?: string;
   label: React.ReactNode | ((hovered: boolean) => React.ReactNode);
   restricted: boolean;
   active: boolean;

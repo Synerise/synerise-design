@@ -27,14 +27,21 @@ const RangeFormContainer: React.FC<RangeFormContainerProps> = ({
   onRangePaste,
   onRangeCopy,
   onRangeDelete,
-  texts,
+  texts = {},
   onChange,
   valueSelectionModes,
+  onModeChange,
+  timePickerProps,
+  renderSuffix,
 }) => {
   const dayValue = getDayValue(activeDays[0]);
   const [mode, setMode] = React.useState<DateLimitMode>(dayValue?.mode || DEFAULT_LIMIT_MODE);
   const handleModeChange = React.useCallback(
     (selectedMode: DateLimitMode) => {
+      if (onModeChange) {
+        onModeChange(selectedMode);
+        return;
+      }
       const updatedDays = {};
       activeDays.forEach(i => {
         updatedDays[i] = {
@@ -45,7 +52,7 @@ const RangeFormContainer: React.FC<RangeFormContainerProps> = ({
       });
       onChange({ ...days, ...updatedDays });
     },
-    [onChange, days, activeDays]
+    [onChange, days, activeDays, onModeChange]
   );
   React.useEffect((): void => {
     setMode(dayValue?.mode || DEFAULT_LIMIT_MODE);
@@ -78,6 +85,7 @@ const RangeFormContainer: React.FC<RangeFormContainerProps> = ({
         }}
         onRangeDelete={onRangeDelete}
         valueSelectionMode={valueSelectionModes}
+        timePickerProps={timePickerProps}
       />
     ),
     [
@@ -90,8 +98,21 @@ const RangeFormContainer: React.FC<RangeFormContainerProps> = ({
       dayKeys,
       onRangeDelete,
       texts,
+      timePickerProps,
     ]
   );
+  const suffix = React.useMemo(() => {
+    return renderSuffix ? (
+      renderSuffix()
+    ) : (
+      <RangeActions
+        onRangeClear={onRangeClear}
+        onRangeCopy={onRangeCopy}
+        onRangePaste={onRangePaste}
+        texts={texts as ActionsTexts}
+      />
+    );
+  }, [onRangePaste, onRangeClear, onRangeCopy, texts, renderSuffix]);
   if (hideHeader) return rangeForm;
   return (
     <>
@@ -104,14 +125,7 @@ const RangeFormContainer: React.FC<RangeFormContainerProps> = ({
             monthlyFilterPeriod={monthlyFilterPeriod}
           />
         }
-        suffix={
-          <RangeActions
-            onRangeClear={onRangeClear}
-            onRangeCopy={onRangeCopy}
-            onRangePaste={onRangePaste}
-            texts={texts as ActionsTexts}
-          />
-        }
+        suffix={suffix}
       />
       {rangeForm}
     </>
