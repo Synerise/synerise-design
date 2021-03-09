@@ -6,6 +6,48 @@
       "ADD-ITEM": "Dodaj",
       "SHOW-MORE": "Pokaż więcej",
       "SHOW-LESS": "Pokaż mniej"
+    },
+    "TABLE": {
+      "STAR_ROW_TOOLTIP": "Ulubione",
+      "SELECT_ROW_TOOLTIP": "Wybierz",
+      "SELECT_ALL_TOOLTIP": "Zaznacz wszystko",
+      "SELECTION_OPTIONS": "Opcje"
+    },
+    "OPERATORS": {
+      "BUTTON_LABEL": "Wybierz",
+      "SEARCH_PLACEHOLDER": "Wpisz frazę",
+      "NO_RESULTS": "Brak wyników"
+    },
+    "FILE-UPLOADER": {
+      "BUTTON-LABEL": "Załaduj nowy plik",
+      "BUTTON-DESC": "lub przeciągnij go tutaj",
+      "SIZE": "Rozmiar:",
+      "UPLOADING": "Wgrywanie..."
+    },
+    "FACTORS": {
+      "DATE_PICKER": {
+        "CLEAR_TOOLTIP": "Wyczyść",
+        "NOW": "Teraz",
+        "APPLY": "Zapisz",
+        "INPUT_PLACEHOLDER": "Wybierz datę"
+      },
+      "MODAL_TITLE": "Wartość",
+      "MODAL_CANCEL": "Anuluj",
+      "VALUE_PLACEHOLDER": "Wartość",
+      "PARAMETER": {
+        "NO_RESULTS": "Brak wyników",
+        "LOADING_PARAMETERS": "Ładowanie parametrów",
+        "SEARCH_PLACEHOLDER": "Szukaj"
+      },
+      "FORMULA": {
+        "BUTTON_PLACEHOLDER": "Wyrażenie",
+        "DEFAULT_NAME": "Wyrażenie"
+      },
+      "DYNAMIC_KEY": {
+        "VALUE_PLACEHOLDER": "Wartość",
+        "KEY_PLACEHOLDER": "Klucz"
+      },
+      "MODAL_APPLY": "Zapisz"
     }
   }
 }
