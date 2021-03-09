@@ -103,12 +103,12 @@ export const Selection = styled.div`
     background-color: ${({ theme }): string => theme.palette['grey-100']};
   }
 
-  .ds-button:first-child {
+  .ant-btn.ds-button:first-of-type {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
   }
 
-  .ds-button:last-child {
+  .ant-btn.ds-button:last-of-type {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
   }
