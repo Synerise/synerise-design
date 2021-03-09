@@ -4,6 +4,36 @@
       "COPY-VALUE": "Copy value",
       "COPIED": "Copied"
     },
+    "FACTORS": {
+      "DATE_PICKER": {
+        "APPLY": "Apply",
+        "CLEAR_TOOLTIP": "Clear",
+        "INPUT_PLACEHOLDER": "Select date",
+        "NOW": "Now"
+      },
+      "MODAL_TITLE": "Value",
+      "MODAL_CANCEL": "Cancel",
+      "MODAL_APPLY": "Apply",
+      "VALUE_PLACEHOLDER": "Value",
+      "PARAMETER": {
+        "NO_RESULTS": "No results",
+        "SEARCH_PLACEHOLDER": "Search",
+        "LOADING_PARAMETERS": "Loading parameters"
+      },
+      "FORMULA": {
+        "BUTTON_PLACEHOLDER": "Formula",
+        "DEFAULT_NAME": "Formula"
+      },
+      "DYNAMIC_KEY": {
+        "VALUE_PLACEHOLDER": "Value",
+        "KEY_PLACEHOLDER": "Key"
+      }
+    },
+    "OPERATORS": {
+      "BUTTON_LABEL": "Choose",
+      "SEARCH_PLACEHOLDER": "Search",
+      "NO_RESULTS": "No results"
+    },
     "MANAGABLE-LIST": {
       "LESS": "less",
       "MORE": "more",
@@ -93,7 +123,11 @@
       },
       "SELECTED": "selected",
       "EMPTY_TEXT": "No data",
-      "SELECTION_LIMIT_WARNING": "Selection limit has been reached."
+      "SELECTION_LIMIT_WARNING": "Selection limit has been reached.",
+      "STAR_ROW_TOOLTIP": "Starred",
+      "SELECT_ROW_TOOLTIP": "Select",
+      "SELECT_ALL_TOOLTIP": "Select all",
+      "SELECTION_OPTIONS": "Options"
     },
     "ICON-PICKER": {
       "NO-RESULTS": "No results"
@@ -267,14 +301,14 @@
     },
     "CONDITION": {
       "STEP_NAME-PLACEHOLDER": "Step name",
-      "REMOVE-CONDITION-ROW-TOOLTIP":"Delete",
+      "REMOVE-CONDITION-ROW-TOOLTIP": "Delete",
       "ADD-FIRST-CONDITION-ROW-BUTTON": "Add condition",
       "ADD-CONDITION-ROW-BUTTON": "Add condition",
-      "ADD-STEP":"Add step",
+      "ADD-STEP": "Add step",
       "DROP-LABEL": "Drop me here",
-      "MOVE-TOOLTIP":"Move",
+      "MOVE-TOOLTIP": "Move",
       "DUPLICATE-TOOLTIP": "Duplicate",
-      "REMOVE-TOOLTIP":"Delete"
+      "REMOVE-TOOLTIP": "Delete"
     }
   }
 }
